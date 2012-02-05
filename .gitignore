@@ -11,6 +11,7 @@ nbproject
 /log/*
 
 # project specific ignores
+/config/secure
 /config/databases.yml
 
 # generated folders

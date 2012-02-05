@@ -22,6 +22,3 @@
 [submodule "plugins/iceTaggablePlugin"]
 	path = plugins/iceTaggablePlugin
 	url = git@github.com:CollectorsQuest/iceTaggablePlugin.git
-[submodule "config/secure"]
-	path = config/secure
-	url = git@github.com:CollectorsQuest/collectorsquest.com-secure.git
