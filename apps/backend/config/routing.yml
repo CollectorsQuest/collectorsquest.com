@@ -1,0 +1,190 @@
+wp_post:
+  class: sfPropelORMRouteCollection
+  options:
+    model:                wpPost
+    module:               wpPost
+    prefix_path:          /wpPost
+    column:               id
+    with_wildcard_routes: true
+    actions:              [list]
+
+featured_weeks:
+  class: sfPropelORMRouteCollection
+  options:
+    model:                Featured
+    module:               featuredWeeks
+    prefix_path:          /featured-weeks
+    column:               id
+    with_wildcard_routes: true
+
+collectible_for_sale_export:
+  url: /collectibleForSale/export
+  param: { module: collectibleForSale, action: export }
+
+collector_export:
+  url: /collector/export
+  param: { module: collectors, action: export }
+
+collectible_for_sale:
+  class: sfPropelORMRouteCollection
+  options:
+    model:                CollectibleForSale
+    module:               collectibleForSale
+    prefix_path:          /collectibleForSale
+    column:               id
+    with_wildcard_routes: true
+
+comment:
+  class: sfPropelORMRouteCollection
+  options:
+    model:                Comment
+    module:               comments
+    prefix_path:          /comments
+    column:               id
+    with_wildcard_routes: true
+
+promotion_transaction:
+  class: sfPropelORMRouteCollection
+  options:
+    model:                PromotionTransaction
+    module:               promotionTransaction
+    prefix_path:          /promotionTransaction
+    column:               id
+    with_wildcard_routes: true
+
+promotion:
+  class: sfPropelORMRouteCollection
+  options:
+    model:                Promotion
+    module:               promotion
+    prefix_path:          /promotion
+    column:               id
+    with_wildcard_routes: true
+
+package_transaction:
+  class: sfPropelORMRouteCollection
+  options:
+    model:                PackageTransaction
+    module:               packageTransaction
+    prefix_path:          /packageTransaction
+    column:               id
+    with_wildcard_routes: true
+
+package:
+  class: sfPropelORMRouteCollection
+  options:
+    model:                Package
+    module:               package
+    prefix_path:          /package
+    column:               id
+    with_wildcard_routes: true
+
+playlist:
+  class: sfPropelRouteCollection
+  options:
+    model:                Playlist
+    module:               playlists
+    prefix_path:          /playlists
+    column:               id
+    with_wildcard_routes: true
+
+private_message:
+  class: sfPropelRouteCollection
+  options:
+    model:                PrivateMessage
+    module:               messages
+    prefix_path:          /messages
+    column:               id
+    with_wildcard_routes: true
+
+message_template:
+  class: sfPropelRouteCollection
+  options:
+    model:                PrivateMessageTemplate
+    module:               messageTemplates
+    prefix_path:          /messageTemplates
+    column:               id
+    with_wildcard_routes: true
+
+collection_category:
+  class: sfPropelRouteCollection
+  options:
+    model:                CollectionCategory
+    module:               collectionCategories
+    prefix_path:          /collectionCategories
+    column:               id
+    with_wildcard_routes: true
+
+video_playlist:
+  class: sfPropelRouteCollection
+  options:
+    model:                VideoPlaylist
+    module:               videoPlaylists
+    prefix_path:          /videoPlaylists
+    column:               id
+    with_wildcard_routes: true
+
+video:
+  class: sfPropelRouteCollection
+  options:
+    model:                Video
+    module:               videos
+    prefix_path:          /videos
+    column:               id
+    with_wildcard_routes: true
+
+collectible:
+  class: sfPropelRouteCollection
+  options:
+    model:                Collectible
+    module:               collectibles
+    prefix_path:          /collectibles
+    column:               id
+    with_wildcard_routes: true
+
+collection:
+  class: sfPropelRouteCollection
+  options:
+    model:                Collection
+    module:               collections
+    prefix_path:          /collections
+    column:               id
+    with_wildcard_routes: true
+
+collector:
+  class: sfPropelRouteCollection
+  options:
+    model:                Collector
+    module:               collectors
+    prefix_path:          /collectors
+    column:               id
+    with_wildcard_routes: true
+
+marketplace_list:
+  url:   /list/marketplace
+  param: { module: collectibleForSale, action: index }
+
+item_offers:
+  url:   /item/offers
+  param: { module: collectibleForSale, action: itemOffers }
+
+
+# default rules
+
+ga:
+  url:   /ga
+  param: { module: iceBackendModule, action: godAuth }
+
+homepage:
+  url:   /
+  param: { module: iceBackendModule, action: dashboard }
+
+
+# generic rules
+
+default_index:
+  url:   /:module
+  param: { action: index }
+
+default:
+  url:   /:module/:action/*

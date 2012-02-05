@@ -1,0 +1,11 @@
+itemOffer:
+  is_secure: on
+
+itemOffers:
+  is_secure: on
+
+makeOffer:
+  is_secure: on
+
+buyNow:
+  is_secure: on

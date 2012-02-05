@@ -1,0 +1,158 @@
+connection: blog
+noXsd: false
+defaultIdMethod: native
+package: lib.model.blog
+
+classes:
+  wpPost:
+    tableName: wp_posts
+    skipSql: true
+    columns:
+      id:                     ~
+      post_author:            { type: integer,      required: true, default: 0, foreignClass: wpUser, foreignReference: id }
+      post_date:              { type: timestamp,    required: true, default: "0000-00-00 00:00:00" }
+      post_date_gmt:          { type: timestamp,    required: true, default: "0000-00-00 00:00:00" }
+      post_content:           { type: longvarchar,  required: true  }
+      post_title:             { type: longvarchar,  required: true, primaryString: true  }
+      post_excerpt:           { type: longvarchar,  required: true  }
+      post_status:            { type: varchar(20),  required: true, default: "publish" }
+      comment_status:         { type: varchar(20),  required: true, default: "open" }
+      ping_status:            { type: varchar(20),  required: true, default: "open" }
+      post_password:          { type: varchar(20),  required: true  }
+      post_name:              { type: varchar(200), required: true  }
+      to_ping:                { type: longvarchar,  required: true  }
+      pinged:                 { type: longvarchar,  required: true  }
+      post_modified:          { type: timestamp,    required: true, default: "0000-00-00 00:00:00" }
+      post_modified_gmt:      { type: timestamp,    required: true, default: "0000-00-00 00:00:00" }
+      post_content_filtered:  { type: longvarchar,  required: true  }
+      post_parent:            { type: integer,      required: false, default: 0, foreignClass: wpPost, foreignReference: id }
+      guid:                   { type: varchar(255), required: true  }
+      menu_order:             { type: integer,      required: true, default: 0 }
+      post_type:              { type: varchar(100), required: true, default: "post" }
+      post_mime_type:         { type: varchar(100), required: true  }
+      comment_count:          { type: integer,      required: true, default: 0 }
+    indexes:
+      type_status_date:       [ post_type, post_status, post_date, id ]
+
+  wpPostMeta:
+    tableName: wp_postmeta
+    skipSql: true
+    columns:
+      meta_id:                { type: integer,      required: true,  primaryKey: true, autoIncrement: true }
+      post_id:                { type: integer,      required: true,  default: 0, foreignClass: wpPost, foreignReference: id }
+      meta_key:               { type: varchar(255), required: false, default: null }
+      meta_value:             { type: longvarchar,  required: false, default: null }
+
+  wpUser:
+    tableName: wp_users
+    skipSql: true
+    columns:
+      id:                     ~
+      user_login:             { type: varchar(60),  required: true  }
+      user_pass:              { type: varchar(64),  required: true  }
+      user_nicename:          { type: varchar(50),  required: true  }
+      user_email:             { type: varchar(100), required: true  }
+      user_url:               { type: varchar(100), required: true  }
+      user_registered:        { type: timestamp,    required: true, default: "0000-00-00 00:00:00" }
+      user_activation_key:    { type: varchar(60),  required: true  }
+      user_status:            { type: integer,      required: true, default: 0 }
+      display_name:           { type: varchar(250), required: true, primaryString: true  }
+
+  wpUserMeta:
+    tableName: wp_usermeta
+    skipSql: true
+    columns:
+      umeta_id:               { type: integer,      required: true,  primaryKey: true, default: null, auto_increment: true }
+      user_id:                { type: integer,      required: true,  default: 0, foreignClass: wpUsers, foreignReference: id }
+      meta_key:               { type: varchar(255), required: false, default: null }
+      meta_value:             { type: longvarchar,  required: false, default: null }
+
+  wpTerm:
+    tableName: wp_terms
+    skipSql: true
+    columns:
+      term_id:                { type: integer,      required: true, primaryKey: true, autoIncrement: true }
+      name:                   { type: varchar(55),  required: true  }
+      slug:                   { type: varchar(200), required: true, index: unique }
+      term_group:             { type: integer,      required: true, default: 0 }
+
+  wpTermRelationship:
+    tableName: wp_term_relationships
+    skipSql: true
+    columns:
+      object_id:              { type: integer,      required: true, default: 0, primaryKey: true }
+      term_taxonomy_id:       { type: integer,      required: true, default: 0, primaryKey: true, foreignClass: wpTermTaxonomy, foreignReference: term_taxonomy_id }
+      term_order:             { type: integer,      required: true, default: 0 }
+
+  wpTermTaxonomy:
+    tableName: wp_term_taxonomy
+    skipSql: true
+    columns:
+      term_taxonomy_id:       { type: integer,      required: true, primaryKey: true, autoIncrement: true }
+      term_id:                { type: integer,      required: true, foreignClass: wpTerm, foreignReference: term_id }
+      taxonomy:               { type: varchar(32),  required: true }
+      description:            { type: longvarchar,  required: true }
+      parent:                 { type: integer,      required: true, default: 0 }
+      count:                  { type: integer,      required: true, default: 0 }
+    uniques:
+      term_id_taxonomy:       [ term_id, taxonomy ]
+
+  wpComment:
+    tableName: wp_comments
+    skipSql: true
+    columns:
+      comment_id:             { type: integer,      required: true, primaryKey: true, autoIncrement: true }
+      comment_post_id:        { type: integer,      required: true, default: 0, foreignClass: wpPost, foreignReference: id }
+      comment_author:         { type: varchar(100), required: true, sqlType: "TINYTEXT" }
+      comment_author_email:   { type: varchar(100), required: true  }
+      comment_author_url:     { type: varchar(200), required: true  }
+      comment_author_IP:      { type: varchar(100), required: true  }
+      comment_date:           { type: timestamp,    required: true, default: "0000-00-00 00:00:00" }
+      comment_date_gmt:       { type: timestamp,    required: true, default: "0000-00-00 00:00:00" }
+      comment_content:        { type: longvarchar,  required: true  }
+      comment_karma:          { type: integer,      required: true, default: 0 }
+      comment_approved:       { type: varchar(20),  required: true, default: 1 }
+      comment_agent:          { type: varchar(255), required: true  }
+      comment_type:           { type: varchar(20),  required: true  }
+      comment_parent:         { type: integer,      required: true, default: 0, foreignClass: wpComment, foreignReference: comment_id }
+      user_id:                { type: integer,      required: true, default: 0, foreignClass: wpUser, foreignReference: id }
+    indexes:
+      comment_approved_date_gmt: [ comment_approved, comment_date_gmt ]
+
+
+  wpCommentMeta:
+    tableName: wp_commentmeta
+    skipSql: true
+    columns:
+      meta_id:                { type: integer,      required: true,  primaryKey: true,  autoIncrement: true }
+      comment_id:             { type: integer,      required: true,  foreignClass: wpComment, foreignReference: comment_id }
+      meta_key:               { type: varchar(255), required: false, default: null }
+      meta_value:             { type: clob,         required: false, default: null  }
+
+  wpOption:
+    tableName: wp_options
+    skipSql: true
+    columns:
+      option_id:              { type: integer,      required: true, primaryKey: true, auto_increment: true }
+      blog_id:                { type: integer,      required: true, primaryKey: true, default: 0 }
+      option_name:            { type: varchar(64),  required: true, primaryKey: true }
+      option_value:           { type: longvarchar,  required: true  }
+      autoload:               { type: varchar(20),  required: true, default: "yes" }
+
+  wpLink:
+    tableName: wp_links
+    skipSql: true
+    columns:
+      link_id:                { type: integer,      required: true, default: null, primaryKey: true,	auto_increment: true }
+      link_url:               { type: varchar(255), required: true  }
+      link_name:              { type: varchar(255), required: true  }
+      link_image:             { type: varchar(255), required: true  }
+      link_target:            { type: varchar(25),  required: true  }
+      link_description:       { type: varchar(255), required: true  }
+      link_visible:           { type: varchar(20),  required: true, default: "Y" }
+      link_owner:             { type: integer,      required: true, default: 1 }
+      link_rating:            { type: integer,      required: true, default: 0 }
+      link_updated:           { type: timestamp,    required: true, default: "0000-00-00 00:00:00" }
+      link_rel:               { type: varchar(255), required: true  }
+      link_notes:             { type: longvarchar,  required: true  }
+      link_rss:               { type: varchar(255), required: true  }

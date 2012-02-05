@@ -1,0 +1,8 @@
+rendering: ~
+security:  ~
+
+IceRequestHistory:
+  class: IceRequestHistoryFilter
+
+cache:     ~
+execution: ~

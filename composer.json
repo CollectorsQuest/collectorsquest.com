@@ -1,0 +1,110 @@
+{
+    "name": "CollectorsQuest.com",
+    "version": "3.0.0",
+    "config": {
+        "vendor-dir": ".",
+        "bin-dir": "console/"
+    },
+    "repositories": {
+        "CollectorsQuest/sfFormExtraPlugin": {
+            "package": {
+                "name": "plugins/sfFormExtraPlugin",
+                "version": "1.1.3",
+                "source": {
+                    "url": "http://svn.symfony-project.org/plugins/sfFormExtraPlugin/branches/1.3",
+                    "type": "svn",
+                    "reference": "@33317"
+                }
+            }
+        },
+        "CollectorsQuest/sfGuardPlugin": {
+            "package": {
+                "name": "plugins/sfGuardPlugin",
+                "version": "4.0.2",
+                "source": {
+                    "url": "http://svn.symfony-project.org/plugins/sfGuardPlugin/branches/1.3",
+                    "type": "svn",
+                    "reference": "@33317"
+                }
+            }
+        },
+        "propelorm/sfPropelORMPlugin": {
+            "package": {
+                "name": "plugins/sfPropelORMPlugin",
+                "version": "1.3.1",
+                "source": {
+                    "url": "git://github.com/propelorm/sfPropelORMPlugin.git",
+                    "type": "git",
+                    "reference": "4ef3ab6cd269d960b3152c37dfda91b809600e54"
+                }
+            }
+        },
+        "propelorm/Propel": {
+            "package": {
+                "name": "plugins/sfPropelORMPlugin/lib/vendor/propel",
+                "version": "1.6.4",
+                "dist": {
+                    "url": "https://github.com/propelorm/Propel/zipball/1.6.4",
+                    "type": "zip"
+                },
+                "source": {
+                    "url": "git://github.com/propelorm/Propel.git",
+                    "type": "git",
+                    "reference": "f6ca7125cbe0d5cd91f6cd62b70b34858e6860c5"
+                },
+                "require": {
+                    "plugins/sfPropelORMPlugin": "1.3.1"
+                }
+            }
+        },
+        "Xosofox/Phing": {
+            "package": {
+                "name": "plugins/sfPropelORMPlugin/lib/vendor/phing",
+                "version": "2.3.3",
+                "source": {
+                    "url": "git://github.com/Xosofox/phing.git",
+                    "type": "git",
+                    "reference": "98cab9de5845065447b9c0e97e2454f5b571ddab"
+                },
+                "require": {
+                    "plugins/sfPropelORMPlugin": "1.3.1"
+                }
+            }
+        },
+        "CollectorsQuest/sfGravatarPlugin": {
+            "package": {
+                "name": "plugins/sfGravatarPlugin",
+                "version": "0.9.0",
+                "source": {
+                    "url": "git://github.com/CollectorsQuest/sfGravatarPlugin.git",
+                    "type": "git",
+                    "reference": "13875a44c453f3b34860dc12df0e7831dbd6157a"
+                }
+            }
+        },
+        "Jadell/neo4jphp": {
+            "package": {
+                "name": "lib/vendor/neo4jphp",
+                "version": "0.0.6",
+                "dist": {
+                    "url": "https://github.com/jadell/neo4jphp/zipball/0.0.6-beta",
+                    "type": "zip"
+                },
+                "source": {
+                    "url": "git://github.com/jadell/neo4jphp.git",
+                    "type": "git",
+                    "reference": "ab8b97e4d4a36ca680911c5ea69d77b75d46bd8a"
+                }
+            }
+        }
+    },
+    "require": {
+        "plugins/sfFormExtraPlugin": "1.1.3",
+        "plugins/sfGravatarPlugin": "0.9.0",
+        "plugins/sfGuardPlugin": "4.0.2",
+        "plugins/sfPropelORMPlugin": "1.3.1",
+        "plugins/sfPropelORMPlugin/lib/vendor/propel": "1.6.4",
+        "plugins/sfPropelORMPlugin/lib/vendor/phing": "2.3.3",
+        "lib/vendor/neo4jphp": "0.0.6"
+    }
+}

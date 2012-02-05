@@ -1,0 +1,7 @@
+itemOffersSeller:
+  components:
+    sidebar: [marketplace, sidebar]
+
+itemOffersBuyer:
+  components:
+    sidebar: [marketplace, sidebar]

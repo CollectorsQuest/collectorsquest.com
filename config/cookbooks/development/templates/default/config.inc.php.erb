@@ -1,0 +1,51 @@
+<?php
+/**
+ * Debian local configuration file
+ *
+ * This file overrides the settings made by phpMyAdmin interactive setup
+ * utility.
+ *
+ * For example configuration see /usr/share/doc/phpmyadmin/examples/config.default.php.gz
+ *
+ * NOTE: do not add security sensitive data to this file (like passwords)
+ * unless you really know what you're doing. If you do, any user that can
+ * run PHP or CGI on your webserver will be able to read them. If you still
+ * want to do this, make sure to properly secure the access to this file
+ * (also on the filesystem level).
+ */
+
+/**
+ * Server(s) configuration
+ */
+$cfg['Servers'] = array();
+
+/* Server: MySQL Master [1] */
+$i = 1;
+
+$cfg['Servers'][$i] = array();
+$cfg['Servers'][$i]['verbose'] = 'MySQL Master';
+$cfg['Servers'][$i]['host'] = 'cq-mysql-master';
+$cfg['Servers'][$i]['port'] = '';
+$cfg['Servers'][$i]['socket'] = '';
+$cfg['Servers'][$i]['connect_type'] = 'tcp';
+$cfg['Servers'][$i]['extension'] = 'mysql';
+$cfg['Servers'][$i]['compress'] = true;
+$cfg['Servers'][$i]['nopassword'] = true;
+$cfg['Servers'][$i]['auth_type'] = 'cookie';
+$cfg['Servers'][$i]['user'] = 'root';
+$cfg['Servers'][$i]['password'] = '';
+$cfg['Servers'][$i]['AllowNoPassword'] = true;
+
+/*
+ * Directories for saving/loading files from server
+ */
+$cfg['DefaultLang'] = 'en';
+$cfg['ServerDefault'] = 1;
+$cfg['UploadDir'] = '';
+$cfg['SaveDir'] = '';
+$cfg['ZipDump'] = false;
+$cfg['BZipDump'] = false;
+$cfg['PmaNoRelation_DisableWarning'] = true;
+$cfg['SuhosinDisableWarning'] = true;
+$cfg['PersistentConnections'] = true;
+$cfg['PropertiesIconic'] = true;

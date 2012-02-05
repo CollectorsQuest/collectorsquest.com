@@ -1,0 +1,103 @@
+.sf-menu, .sf-menu * {
+  margin:			0;
+  padding:		0;
+  list-style:		none;
+}
+.sf-menu {
+  line-height:	1.0;
+}
+.sf-menu ul {
+  position:		absolute;
+  top:			-999em;
+  width:			7.5em; /* left offset of submenus need to match (see below) */
+}
+.sf-menu ul li {
+  width:			100%;
+}
+.sf-menu li:hover {
+  visibility:		inherit; /* fixes IE7 'sticky bug' */
+}
+.sf-menu li {
+  float:			left;
+  position:		relative;
+}
+.sf-menu a {
+  display:		block;
+  position:		relative;
+}
+.sf-menu li:hover ul,
+.sf-menu li.sfHover ul {
+  left:			1px;
+  top:			38px; /* match top ul list item height */
+  z-index:		99;
+}
+ul.sf-menu li:hover li ul,
+ul.sf-menu li.sfHover li ul {
+  top:			-999em;
+}
+ul.sf-menu li li:hover ul,
+ul.sf-menu li li.sfHover ul {
+  left:			7em; /* match ul width */
+  top:			0;
+}
+ul.sf-menu li li:hover li ul,
+ul.sf-menu li li.sfHover li ul {
+  top:			-999em;
+}
+ul.sf-menu li li li:hover ul,
+ul.sf-menu li li li.sfHover ul {
+  left:			7.5em; /* match ul width */
+  top:			0;
+}
+
+.sf-menu a {
+  padding: 10px 15px 0 15px;
+  text-decoration:none;
+}
+.sf-menu a, .sf-menu a:visited  {
+  color: #000;
+  text-shadow: #fff 1px 1px 2px;
+}
+.sf-menu li {
+  height: 34px;
+  font-size: 130%;
+	 background:		#BADC70;
+  border-bottom: 2px solid #BADC70;
+}
+.sf-menu li li {
+  font-size: 90%;
+ 	background:		#BADC70;
+}
+
+.sf-menu li:hover, .sf-menu li.sfHover,
+.sf-menu a:focus, .sf-menu a:hover, .sf-menu a:active {
+	 background:		#cfef89;
+	 outline:		0;
+}
+
+.sf-menu li:hover {
+  border-bottom: 2px solid #DF912F;
+}
+
+.sf-menu li:hover li {
+  border-bottom: 2px solid #BADC70;
+}
+
+.sf-menu li span {
+  display: none;
+  position: absolute;
+  top: 25px;
+  left: 0;
+  width: 180px;
+  height: 40px;
+  font: normal 11px Verdana, Georgia, "Times New Roman", Times, serif;
+  line-height: 15px;
+  background:		#cfef89;
+  color: #000;
+  padding: 8px 15px 2px 15px;
+}
+
+.sf-menu li:hover span {
+  margin-top: 13px;
+  display: block;
+}

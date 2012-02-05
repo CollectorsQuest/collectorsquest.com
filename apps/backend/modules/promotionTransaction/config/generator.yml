@@ -1,0 +1,41 @@
+generator:
+  class: IcePropelGenerator
+  param:
+    model_class:           PromotionTransaction
+    theme:                 bootstrap
+    non_verbose_templates: true
+    with_show:             false
+    singular:              PromotionTransaction
+    plural:                PromotionTransactions
+    route_prefix:          promotion_transaction
+    with_propel_route:     1
+    actions_base_class:    cqBackendActions
+
+    config:
+      actions:  ~
+
+      fields:
+        collector_id: { label: Collector }
+        promotion_id: { label: Promotion }
+        amount:       { label: Amount }
+        amount_type:  { label: Amount Type }
+        created_at:   { label: Date of Transaction }
+
+      list:
+        title: Promotion Transactions
+        display: [collector, promotion, amount, amount_type, created_at]
+        hide: [id]
+        sort: [id, desc]
+        object_actions: { }
+        batch_actions: { }
+        actions: { }
+
+      filter:
+        display: [collector_id, promotion_id, amount]
+        fields:
+          amount:
+            widgetOptions: { with_empty: false }
+
+      form:  ~
+      edit:  ~
+      new:   ~

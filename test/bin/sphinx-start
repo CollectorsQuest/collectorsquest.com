@@ -1,0 +1,15 @@
+#!/bin/bash
+
+DIR="$( cd -P "$( dirname "$0" )" && pwd )"
+
+mkdir -p /www/tmp/sphinx/website
+
+if [ -f /tmp/searchd.pid ];
+then
+  cat /tmp/searchd.pid | xargs kill
+fi;
+
+cat $DIR/sphinx.conf > $DIR/sphinx.running.conf
+cat $DIR/../../config/sphinx/* >> $DIR/sphinx.running.conf
+
+/opt/sphinx/bin/searchd --config $DIR/sphinx.running.conf

@@ -1,0 +1,24 @@
+[submodule "plugins/iceLibsPlugin"]
+	path = plugins/iceLibsPlugin
+	url = git@github.com:CollectorsQuest/iceLibsPlugin.git
+[submodule "plugins/iceAssetsPlugin"]
+	path = plugins/iceAssetsPlugin
+	url = git@github.com:CollectorsQuest/iceAssetsPlugin.git
+[submodule "plugins/iceBackendPlugin"]
+	path = plugins/iceBackendPlugin
+	url = git@github.com:CollectorsQuest/iceBackendPlugin.git
+[submodule "plugins/iceBehaviorsPlugin"]
+	path = plugins/iceBehaviorsPlugin
+	url = git@github.com:CollectorsQuest/iceBehaviorsPlugin.git
+[submodule "plugins/iceCrontabPlugin"]
+	path = plugins/iceCrontabPlugin
+	url = git@github.com:CollectorsQuest/iceCrontabPlugin.git
+[submodule "plugins/iceJobQueuePlugin"]
+	path = plugins/iceJobQueuePlugin
+	url = git@github.com:CollectorsQuest/iceJobQueuePlugin.git
+[submodule "plugins/iceSpamControlPlugin"]
+	path = plugins/iceSpamControlPlugin
+	url = git@github.com:CollectorsQuest/iceSpamControlPlugin.git
+[submodule "plugins/iceTaggablePlugin"]
+	path = plugins/iceTaggablePlugin
+	url = git@github.com:CollectorsQuest/iceTaggablePlugin.git

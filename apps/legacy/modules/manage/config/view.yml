@@ -1,0 +1,44 @@
+all:
+  stylesheets: [legacy/forms.css]
+
+profileSuccess:
+  javascripts: [jquery/pstrength.js]
+  components:
+    sidebar: [manage, sidebarProfile]
+
+friendsSuccess:
+  components:
+    sidebar: [manage, sidebarFriends]
+
+collectionsSuccess:
+  stylesheets: [legacy/collections.css]
+  components:
+    sidebar: [manage, sidebarCollections]
+
+collectionSuccess:
+  stylesheets: [legacy/collections.css, jquery/tags.css]
+  components:
+    sidebar: [manage, sidebarCollection]
+
+collectibleSuccess:
+  stylesheets: [legacy/collections.css, jquery/tags.css]
+  components:
+    sidebar: [manage, sidebarCollectible]
+
+collectiblesSuccess:
+  stylesheets: [legacy/collections.css, jquery/tags.css]
+  components:
+    sidebar: [manage, sidebarCollectibles]
+
+marketplaceEmpty:
+  components:
+    sidebar: [manage, sidebarMarketplaceEmpty]
+
+dropboxSuccess:
+  stylesheets: [legacy/collections.css]
+  components:
+    sidebar: [manage, sidebarDropbox]
+
+dropboxNoCollectibles:
+  components:
+    sidebar: [manage, sidebarDropbox]

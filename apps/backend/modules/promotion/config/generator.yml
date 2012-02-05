@@ -1,0 +1,37 @@
+generator:
+  class: IcePropelGenerator
+  param:
+    model_class:           Promotion
+    theme:                 bootstrap
+    non_verbose_templates: true
+    with_show:             false
+    singular:              Promotion
+    plural:                Promotions
+    route_prefix:          promotion
+    with_propel_route:     1
+    actions_base_class:    cqBackendActions
+
+    config:
+      actions: ~
+
+      fields:
+        promotion_name: { label: Promotion Name }
+        promotion_code: { label: Promotion Code }
+        amount: { label: Amount }
+        amount_type: { label: Amount Type }
+        no_of_time_used: { label: Limit }
+        expiry_date: { label: Expiry Date }
+
+      list:
+        title: Promotions
+        display: [id, =promotion_name, promotion_code, amount, amount_type, no_of_time_used, expiry_date]
+      filter:
+        class: false
+
+      form:
+        display: [promotion_name, promotion_desc, promotion_code, amount, amount_type, no_of_time_used, expiry_date]
+      edit:
+        title: Edit Promotion
+      new:
+        title: New Promotion
+        actions:  { _list: ~, _save: ~ }

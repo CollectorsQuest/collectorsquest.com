@@ -1,0 +1,14 @@
+default:
+  enabled:     false
+  with_layout: false
+  lifetime:    86400
+
+_navigation:
+  enabled:     false
+  with_layout: false
+  lifetime:    3600
+
+_indexSlot1:
+  enabled:     true
+  with_layout: false
+  lifetime:    600

@@ -1,0 +1,80 @@
+generator:
+  class: IcePropelGenerator
+  param:
+    model_class:           Featured
+    theme:                 bootstrap
+    non_verbose_templates: true
+    with_show:             false
+    singular:              FeaturedWeek
+    plural:                FeaturedWeeks
+    route_prefix:          featured_weeks
+    with_propel_route:     1
+    actions_base_class:    cqBackendActions
+
+    config:
+      actions: ~
+      fields:
+        id: { label: ID }
+        start_date: { label: Start, date_format: 'MM/dd/yyyy' }
+        end_date: { label: End, date_format: 'MM/dd/yyyy' }
+        is_active: { label: "Active?" }
+        list_title: { label: "Title & Homepage Text" }
+
+      list:
+        title: Featured Weeks
+        display: [=id, _list_title, is_active, start_date, end_date]
+        sort: [end_date, desc]
+
+      filter:
+        display: [featured_id, is_active]
+        fields:
+          featured_id:
+            widgetOptions: { with_empty: false }
+
+      form:
+        class: FeaturedWeekForm
+
+        fields:
+          title:
+            attributes: { class: span8 }
+          homepage_text:
+            label: Homepage Text
+            attributes: { class: span8 }
+          start_date:
+            label: Start Date
+            attributes: { class: span2 }
+          end_date:
+            label: End Date
+            attributes: { class: span2 }
+          is_active:
+            label: "Active?"
+            attributes: { class: 'yes_no' }
+
+          category_ids:
+            label: Category IDs
+            attributes: { class: span8 }
+            help: "List the IDs for the categories, sepearated with 'commas'"
+          collector_ids:
+            label: Collector IDs
+            attributes: { class: span8 }
+            help: "List the IDs for the collectors, sepearated with 'commas'"
+          collection_ids:
+            label: Collection IDs
+            attributes: { class: span8 }
+            help: "List the IDs for the collections, sepearated with 'commas'"
+          collectible_ids:
+            label: Collectible IDs
+            attributes: { class: span8 }
+            help: "List the IDs for the collectibles, sepearated with 'commas'"
+
+        display:
+          "": [title, homepage_text, start_date, end_date, is_active]
+          Categories: [category_ids, _edit_categories]
+          Collectors: [collector_ids, _edit_collectors]
+          Collections: [collection_ids, _edit_collections]
+          Collectibles: [collectible_ids, _edit_collectibles]
+
+      edit:
+        title: Edit Featured Week
+      new:
+        title: New Featured Week

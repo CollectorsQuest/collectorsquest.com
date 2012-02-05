@@ -1,0 +1,278 @@
+#contents a {
+  text-decoration: none;
+}
+
+.categorytitle {
+	color: #ffffff;
+	font-size: 14px;
+	padding: 3px;
+}
+
+.categorybox {
+	border: 0px solid black;
+	margin: 5px;
+}
+
+.main{
+/*	font-family: Verdana; */
+	font-family: Verdana;
+	font-size: 10px;
+	}
+
+.footer{
+	font-family: Verdana;
+	font-size: 10px;
+	color: #777777;
+	}
+
+a.copyright{
+	text-decoration: none;
+	font-family: Verdana;
+	font-size: 10px;
+	color: #777777;
+	}
+
+a.copyright:hover{
+	text-decoration: underline;
+	font-family: Verdana;
+	font-size: 10px;
+	color: #FF6600;
+	}
+
+
+/*	Required Classes For Helios
+	You can edit these to customize Helios, but they should not be removed	*/
+a.main{
+	font-family: Verdana;
+	font-size: 11px;
+	color: #666666;
+	}
+
+a.main:hover{
+	text-decoration: none;
+	font-family: Verdana;
+	font-size: 11px;
+	color: #FF6600;
+	}
+
+.eventFrontMain{
+	padding: 3px;
+	border-top: 15px solid white;
+	font-family: Verdana;
+	font-size: 11px;
+	color: #555555;
+	background: #E0E0E0;
+	}
+
+.eventActual{
+	text-decoration: none;
+	color: #555555;
+}
+
+
+.eventListHL{
+	font-family: Verdana;
+	font-size: 11px;
+	border-bottom: 1px solid #4C8C9E;
+/*	background: #EFEFEF; */
+	background: #ffffff;
+	}
+
+.eventButton{
+	font-family: Verdana;
+	font-size: 11px;
+	}
+
+.eventInput{
+	border: solid #BDBDBD 1px;
+	font-family: Verdana;
+	font-size: 11px;
+	}
+
+.eventReqTag{
+	font-family: Verdana;
+	font-size: 11px;
+	font-weight: bold;
+	color: crimson;
+	}
+
+.eventSeparator{
+	background: #BDBDBD;
+	}
+
+td.MenuCell{
+	text-decoration: none;
+	font-family: Verdana;
+	font-size: 11px;
+	color: #3D3F3E;
+	}
+
+/*	End Required Classes For Calendar	*/
+
+
+/*	Begin Required Classes For Feedback
+	You shouldn't need to edit these	*/
+
+.feedback{
+	background: #EFEFEF;
+	font-family: Verdana;
+	font-size: 11px;
+	font-weight: bold;
+	padding: 3px;
+	text-align: center;
+	}
+
+.info{
+	background: #EFEFEF;
+	border: solid 2px #008E0D;
+	}
+
+.warning{
+	background: #EFEFEF;
+	border: solid 2px #FFDA00;
+	}
+
+.error{
+	background: #EFEFEF;
+	border: solid 2px #E40000;
+	}
+
+/*	End Required Classes For Feedback	*/
+
+
+#page {background: #fff;}
+
+.p-calendar #content {
+	padding:15px;
+	width: 750px;
+	font-size:75%;
+	}
+
+/***Hack so IE PC can't see*****/
+html>body.p-calendar #content {width: 750px; border:0;}
+
+
+
+
+#calendar-left-col {
+	width: 565px;
+/*	height: 500px; */
+	float:left;
+	margin-top:20px;
+
+	}
+
+#calendar-right-col {
+	margin-top:10px;
+	padding-top: 10px;
+	width: 180px;
+/*	height: 500px; */
+	background: #F8FBE5;
+	float:right;
+	}
+
+#calendar-right-col .widgettitle {
+  font-size: 14px;
+  padding: 7px 0 5px 8px;
+  background: #62A0B2;
+  color: #fff;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+/********Weekly NEXT and BACK arrows ************/
+
+#week-arrows {float:right;
+text-align:right;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	}
+
+.next-week a, .next-week a:link, .next-week a:visited {
+	/*background: url(.../images/cal-arrows-forward.gif) no-repeat 3px right;*/
+	color: #4C8C9E;
+	text-decoration:none;
+	padding-left: 5px;
+	margin:0;
+	float:left;
+	}
+
+.next-week a:after{ content: "  " url(/cal/events./images/cal-arrows-forward.gif);}
+
+.prev-week a, .prev-week a:link, .prev-week a:visited {
+	/*background: url(.../images/cal-arrows-back.gif) no-repeat 0 4px;*/
+	border-right: solid 1px #4C8C9E;
+	padding-right:7px;
+	color: #4C8C9E;
+	text-decoration:none;
+	float:left;
+	}
+
+.prev-week a:before{ content: url("/cal/events./images/cal-arrows-back.gif") "  " ;}
+.prev-week a:hover, .next-week a:hover {
+	text-decoration:none;
+	color: #CC6600;
+	}
+
+/*** hack to have arrows show in IE PC because it can't understand the before and after stuff ***/
+* html .prev-week a, * html .prev-week a:link, * html .prev-week a:visited  {
+   background: url(/cal/events./images/cal-arrows-back.gif) no-repeat 0 4px;
+   padding-left:15px;
+   text-decoration:none;
+   }
+* html .next-week a, * html .next-week a:link, * html .next-week a:visited  {
+ background: url(/cal/events./images/cal-arrows-forward.gif) no-repeat 3px right;
+   padding-right:12px;
+   text-decoration:none;
+   }
+
+/******** SUB-NAVIGATION (in blue bar) **************/
+
+#sub-nav-container {
+	background: #4C8C9E;
+	width:100%;
+	height:40px;
+	}
+
+.p-calendar ul#nav-b-top  {
+	float:right;
+	width: 425px;
+	margin:0;
+	padding:0;
+	height:40px;
+	}
+
+#nav-b-top li {
+	display:inline;
+	color:#fff;
+	float:left;
+	border-right: solid 1px #fff;
+	margin: 18px 0 0 0;
+	padding: 0 7px;
+
+
+	}
+
+#nav-b-top li a:link, #nav-b-top li a:visited, #nav-b-top li a:active {
+	color: #fff;
+	text-decoration:none;
+	}
+
+#nav-b-top li a:hover {
+	text-decoration:underline;
+	}
+
+
+.p-calendar #nav-b-top li.last {
+	border-right: 0;
+	}
+
+/****MAKE ALL NAV ITEMS SELF-AWARE so that their link is underlined when the visitor is on that page********/
+#p-cal-home li#nav-b-home a,
+#p-cal-submit li#nav-b-submit a,
+#p-cal-search li#nav-b-search a,
+#p-cal-hotlist li#nav-b-hotlist a,
+#p-cal-filter li#nav-b-filter a {
+	text-decoration:underline;
+}

@@ -1,0 +1,34 @@
+all:
+  pager:
+    list_collectors_max: 9
+    list_collections_max: 14
+    list_collectibles_max: 16
+    search_collectors_max: 16
+    search_collections_max: 12
+    search_collectibles_max: 16
+    search_blog_posts_max: 5
+    search_calendar_events_max: 10
+    manage_collections_max: 10
+    manage_collectibles_max: 16
+
+  tag:
+    cloud_max: 90
+
+  search:
+    title_weight: 5
+    body_weight:  1
+    desc_weight:  2
+    tag_weight:   3
+
+  feed:
+    collections_max: 12
+    collectors_max: 12
+    collectibles_max: 15
+
+  aent:
+    pawn_stars:
+      collector: 6667
+      collection: 2841
+    american_pickers:
+       collector: 6668
+       collection: 2842

@@ -1,0 +1,40 @@
+generator:
+  class: IcePropelGenerator
+  param:
+    model_class:           PackageTransaction
+    theme:                 bootstrap
+    non_verbose_templates: true
+    with_show:             false
+    singular:              PackageTransaction
+    plural:                PackageTransactions
+    route_prefix:          package_transaction
+    with_propel_route:     1
+    actions_base_class:    cqBackendActions
+
+    config:
+      actions: ~
+      fields:
+        collector: { label: Seller }
+        package_id: { label: Package, renderer: [Package, packageName]}
+        max_items_for_sale: { label: Max Items }
+        package_price: { label: Price }
+        expiry_date: { label: Expiry Date }
+        payment_status: { label: Status }
+        created_at: { label: 'Order Date' }
+
+      list:
+        title: Package Transactions
+        display: [collector, payment_status, package_id, max_items_for_sale, package_price, expiry_date, created_at]
+        hide: [id]
+        sort: [id, desc]
+        object_actions: { }
+        batch_actions: { }
+        actions: { }
+
+      filter:
+        display: [collector_id, package_id]
+
+      form: ~
+      edit: ~
+      new:
+        actions:  { _list: ~, _save: ~ }

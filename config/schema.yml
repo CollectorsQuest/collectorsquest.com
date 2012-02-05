@@ -1,0 +1,540 @@
+connection: propel
+noXsd: false
+defaultIdMethod: native
+package: lib.model
+
+classes:
+
+  ###
+  # NOTE: Make SURE to update also CollectorArchive in archive.schema.yml
+  ##
+  Collector:
+    columns:
+      id:  ~
+      graph_id:       { type: integer, required: false, index: unique }
+      facebook_id:    { type: varchar, size: 20, index: unique }
+      username:       { type: varchar, size: 64, required: true }
+      display_name:   { type: varchar, size: 64, required: true, primaryString: true }
+      slug:           { type: varchar, size: 64, required: true, index: unique }
+      sha1_password:  { type: varchar, size: 40, required: true }
+      salt:           { type: varchar, size: 32, required: true }
+      email:          { type: varchar, size: 128, index: unique }
+      user_type:      { type: char, sqlType: "ENUM('Collector','Seller')", default: "Collector", required: true }
+      items_allowed:         integer
+      what_you_collect:      { type: varchar, size: 255 }
+      purchases_per_year:    { type: integer, default: 0 }
+      what_you_sell:         { type: varchar, size: 255 }
+      annually_spend:        { type: float, default: 0 }
+      most_expensive_item:   { type: float, default: 0 }
+      company:               { type: varchar, size: 255 }
+      locale:         { type: varchar, size: 5, default: "en_US" }
+      score:          { type: integer, default: 0 }
+      spam_score:     { type: integer, default: 0 }
+      is_spam:        { type: boolean, default: false }
+      is_public:      { type: boolean, default: true }
+      session_id:     { type: varchar, size: 32 }
+      last_seen_at:   { type: timestamp }
+
+      eblob: { type: longvarchar, default: null }
+
+    propel_behaviors:
+      archivable: { archive_class: CollectorArchive, archived_at_column: archived_at }
+      timestampable:  ~
+
+  ###
+  # NOTE: Make SURE to update also CollectorProfileArchive in archive.schema.yml
+  ##
+  CollectorProfile:
+    columns:
+      id:  ~
+      collector_id:    { type: integer, foreignClass: Collector, foreignReference: id, required: true, onDelete: cascade }
+      collector_type:  { type: char, sqlType: "ENUM('Collector','Seller')", default: "Collector", required: true }
+      birthday:        date
+      gender:          { type: char, sqlType: "ENUM('f','m')" }
+      zip_postal:      varchar(10)
+      country:         varchar(64)
+      country_iso3166: varchar(2)
+      website:         varchar(128)
+      about:           longvarchar
+      collections:     longvarchar
+      collecting:      varchar(255)
+      most_spent:      integer
+      anually_spent:   integer
+      new_item_every:  varchar(64)
+      interests:       longvarchar
+      is_featured:     { type: boolean, default: false }
+      is_seller:       { type: boolean, default: false }
+      is_image_auto:   { type: boolean, default: true }
+      preferences:     longvarchar
+      notifications:   longvarchar
+
+    uniques:
+      collector_profile_U_1: [collector_id]
+
+    propel_behaviors:
+      archivable: { archive_class: CollectorProfileArchive, archived_at_column: archived_at }
+      timestampable:  ~
+
+  CollectorEmail:
+    columns:
+      id:  ~
+      collector_id:  { type: integer, foreignClass: Collector, foreignReference: id, required: true, onDelete: cascade }
+      email:         { type: varchar, size: 128, index: true }
+      hash:          { type: varchar, size: 40, required: true }
+      salt:          { type: varchar, size: 32, required: true }
+      is_verified:   { type: boolean, default: false }
+
+    propel_behaviors:
+      timestampable:  ~
+
+  ###
+  # NOTE: Make SURE to update also CollectorIdentifierArchive in archive.schema.yml
+  ##
+  CollectorIdentifier:
+    columns:
+      id:  ~
+      collector_id:  { type: integer, foreignClass: Collector, foreignReference: id, required: true, onDelete: cascade }
+      identifier:    { type: varchar, size: 255, index: unique }
+      created_at:    ~
+
+    propel_behaviors:
+      archivable: { archive_class: CollectorIdentifierArchive, archived_at_column: archived_at }
+
+  CollectorInterview:
+    columns:
+      id:  ~
+      collector_id:            { type: integer, foreignClass: Collector, foreignReference: id, required: false, onDelete: setnull }
+      collection_category_id:  { type: integer, foreignClass: CollectionCategory, foreignReference: id, onDelete: setnull }
+      collection_id:           { type: integer, foreignClass: Collection, foreignReference: id, onDelete: setnull }
+      title:                   { type: varchar, size: 128, required: true, primaryString: true }
+      catch_phrase:            { type: varchar, size: 128, required: true }
+      is_active:               { type: boolean, default: false }
+      created_at:  ~
+
+  ###
+  # NOTE: Make SURE to update also CollectorGeocacheArchive in archive.schema.yml
+  ##
+  CollectorGeocache:
+    columns:
+      id:  ~
+      collector_id:     { type: integer, foreignClass: Collector, foreignReference: id, required: true, onDelete: cascade }
+      country:          { type: char, size: 64 }
+      country_iso3166:  { type: char, size: 2 }
+      state:            { type: varchar, size: 64 }
+      county:           { type: varchar, size: 64 }
+      city:             { type: varchar, size: 64 }
+      zip_postal:       { type: char, size: 10 }
+      address:          { type: varchar, size: 128 }
+      latitude:         { type: float, sqlType: "DECIMAL(8,5)" }
+      longitude:        { type: float, sqlType: "DECIMAL(8,5)" }
+      timezone:         { type: varchar, size: 128 }
+
+    propel_behaviors:
+      archivable: { archive_class: CollectorGeocacheArchive, log_archived_at: false }
+
+  CollectorFriend:
+    columns:
+      id:  ~
+      collector_id:  { type: integer, required: true, foreignClass: Collector, foreignReference: id }
+      friend_id:     { type: integer, required: true, foreignClass: Collector, foreignReference: id }
+      created_at:    ~
+
+  InterviewQuestion:
+    columns:
+      id:  ~
+      collector_interview_id:  { type: integer, foreignClass: CollectorInterview, foreignReference: id, required: true, onDelete: cascade }
+      question:                { type: varchar, size: 128, required: true }
+      answer:                  { type: longvarchar, required: true }
+      photo:                   varchar(128)
+
+  ###
+  # NOTE: Make SURE to update also CollectionArchive in archive.schema.yml
+  ##
+  Collection:
+    columns:
+      id:  ~
+      graph_id:                { type: integer, required: false, index: unique }
+      collection_category_id:  { type: integer, foreignClass: CollectionCategory, foreignReference: id, onDelete: setnull }
+      collector_id:            { type: integer, required: true, foreignClass: Collector, foreignReference: id, onDelete: cascade }
+      name:                    { type: varchar, size: 255, required: true, primaryString: true }
+      slug:                    { type: varchar, size: 128 }
+      description:             { type: longvarchar, required: true }
+      num_items:               { type: integer, default: 0 }
+      num_views:               { type: integer, default: 0 }
+      num_comments:            { type: integer, default: 0 }
+      num_ratings:             { type: integer, default: 0 }
+      score:                   { type: integer, default: 0 }
+      is_public:               { type: boolean, default: true }
+      is_featured:             { type: boolean, default: false }
+      comments_on:             { type: boolean, default: true }
+      rating_on:               { type: boolean, default: true }
+
+      eblob: { type: longvarchar, default: null }
+
+    propel_behaviors:
+      archivable: { archive_class: CollectionArchive, archived_at_column: archived_at }
+      timestampable:  ~
+
+  CollectionCategory:
+    columns:
+      id:  ~
+      parent_id:  { type: integer, default: 0 }
+      name:       { type: varchar, size: 64, required: true, primaryString: true }
+      slug:       { type: varchar, size: 64 }
+      score:      { type: integer, default: 0 }
+
+  CollectionCategoryField:
+    columns:
+      id:  ~
+      collection_category_id:  { type: integer, required: true, foreignClass: CollectionCategory, foreignReference: id, onDelete: cascade }
+      custom_field_id:  ~
+    uniques:
+      collection_category_field: [collection_category_id, custom_field_id]
+
+  ###
+  # NOTE: Make SURE to update also CollectibleArchive in archive.schema.yml
+  ##
+  Collectible:
+    columns:
+      id:  ~
+      graph_id:          { type: integer, required: false, index: unique }
+      collector_id:      { type: integer, foreignClass: Collector, foreignReference: id, required: true, onDelete: cascade }
+      collection_id:     { type: integer, foreignClass: Collection, foreignReference: id, required: false, onDelete: setnull }
+      name:              { type: varchar, size: 255, required: true, primaryString: true }
+      slug:              { type: varchar, size: 128, index: unique }
+      description:       { type: longvarchar, required: true }
+      num_comments:      { type: integer, default: 0 }
+      batch_hash:        { type: varchar, size: 32, index: true }
+      score:             { type: integer, default: 0 }
+      position:          { type: integer, default: 0 }
+      is_name_automatic: { type: boolean, default: false }
+
+      eblob:             { type: longvarchar, default: null }
+
+    propel_behaviors:
+      archivable: { archive_class: CollectibleArchive, archived_at_column: archived_at }
+      timestampable:  ~
+
+  ###
+  # NOTE: Make SURE to update also CollectibleForSaleArchive in archive.schema.yml
+  ##
+  CollectibleForSale:
+    columns:
+      id:  ~
+      collectible_id:       { type: integer, required: true, foreignClass: Collectible, foreignReference: id, onDelete: cascade }
+      price:                { type: float }
+      condition:            { type: char, sqlType: "ENUM('excellent','very good','good','fair','poor')", required: true }
+      is_price_negotiable:  { type: boolean, default: false }
+      is_shipping_free:     { type: boolean, default: false }
+      is_sold:              { type: boolean, default: false }
+      is_ready:             { type: boolean, default: false, description: 'Show in the market or no' }
+      quantity:             { type: integer, required: true, default: 1 }
+
+    uniques:
+      collectible_for_sale_item: [collectible_id]
+
+    propel_behaviors:
+      archivable: { archive_class: CollectibleForSaleArchive, archived_at_column: archived_at }
+      timestampable:  ~
+
+  ###
+  # NOTE: Make SURE to update also CollectibleOfferArchive in archive.schema.yml
+  ##
+  CollectibleOffer:
+    columns:
+      id:  ~
+      collectible_id:           { type: integer, required: true, foreignClass: Collectible, foreignReference: id, onDelete: cascade }
+      collectible_for_sale_id:  { type: integer, required: true, foreignClass: CollectibleForSale, foreignReference: id, onDelete: cascade }
+      collector_id:             { type: integer, required: true, foreignClass: Collector, foreignReference: id }
+      price:                    { type: float }
+      status:                   { type: char, sqlType: "ENUM('pending','counter','rejected','accepted')", required: true }
+
+    propel_behaviors:
+      archivable: { archive_class: CollectibleOfferArchive, archived_at_column: archived_at }
+      timestampable:  ~
+
+  ###
+  # NOTE: Make SURE to update also MultimediaArchive in archive.schema.yml
+  ##
+  Multimedia:
+    columns:
+      id:  ~
+      model:        { type: char, size: 64, required: true }
+      model_id:     { type: integer }
+      type:         { type: char, sqlType: "ENUM('image','video')", default: image, required: true }
+      name:         { type: varchar, size: 128 }
+      md5:          { type: char, size: 32, required: true }
+      colors:       { type: varchar(128) }
+      orientation:  { type: char, sqlType: "ENUM('landscape','portrait')", default: landscape }
+      source:       { type: varchar(255) }
+      is_primary:   { type: boolean, default: false }
+
+    indexes:
+      multimedia_I_1: [model, model_id]
+
+    uniques:
+      multimedia_U_1: [model, model_id, md5]
+
+    propel_behaviors:
+      archivable: { archive_class: MultimediaArchive, archived_at_column: archived_at }
+      timestampable:  ~
+
+  PrivateMessage:
+    columns:
+      id:  ~
+      thread:        { type: varchar, size: 32 }
+      sender:        { type: integer, required: true }
+      receiver:      { type: integer, required: true }
+      subject:       { type: varchar, size: 255, required: true }
+      body:          { type: longvarchar, required: true }
+      is_rich:       { type: boolean, default: false }
+      is_read:       { type: boolean, default: false }
+      is_replied:    { type: boolean, default: false }
+      is_forwarded:  { type: boolean, default: false }
+      is_marked:     { type: boolean, default: false }
+      is_deleted:    { type: boolean, default: false }
+      created_at:    ~
+
+  PrivateMessageTemplate:
+    columns:
+      id:  ~
+      subject:      { type: varchar, size: 255, required: true }
+      body:         { type: longvarchar, required: true }
+      description:  { type: varchar, size: 255 }
+
+    propel_behaviors:
+      timestampable:  ~
+
+  Comment:
+    columns:
+      id:  ~
+      disqus_id:       { type: char, size: 10 }
+      parent_id:       { type: char, size: 10 }
+      collection_id:   { type: integer, foreignClass: Collection, foreignReference: id, required: true, onDelete: cascade }
+      collectible_id:  { type: integer, foreignClass: Collectible, foreignReference: id, onDelete: setnull }
+      collector_id:    { type: integer, foreignClass: Collector, foreignReference: id, onDelete: cascade }
+      author_name:     { type: varchar, size: 128 }
+      author_email:    { type: varchar, size: 128 }
+      author_url:      { type: varchar, size: 255 }
+      subject:         { type: varchar, size: 128 }
+      body:            { type: longvarchar, required: true }
+      ip_address:      { type: varchar, size: 15 }
+      created_at:  ~
+
+    uniques:
+      comment_U_1:  [disqus_id]
+
+    propel_behaviors:
+      archivable: { archive_class: CommentArchive, archived_at_column: archived_at }
+
+  CustomField:
+    columns:
+      id:  ~
+      name:        { type: varchar, size: 64, required: true }
+      type:        { type: tinyint, required: true }
+      object:      longvarchar
+      validation:  longvarchar
+
+  CustomValue:
+    columns:
+      id:  ~
+      collection_id:    { type: integer, foreignClass: Collection, foreignReference: id, required: true, onDelete: cascade }
+      collectible_id:   { type: integer, foreignClass: Collectible, foreignReference: id, required: true, onDelete: cascade }
+      field_id:         { type: integer, required: true }
+      value_text:       varchar(255)
+      value_date:       date
+      value_numeric:    float
+      value_bool:       { type: boolean, default: false }
+
+    propel_behaviors:
+      timestampable:  ~
+
+  Event:
+    columns:
+      id:  ~
+      title:        { type: varchar, size: 128, required: true }
+      description:  { type: longvarchar, required: true }
+      created_at:   ~
+
+  EventVideo:
+    columns:
+      id:  ~
+      event_id:  ~
+      title:        { type: varchar, size: 128, required: true }
+      description:  { type: longvarchar, required: true }
+      lenght:       integer
+      thumb_small:  varchar(255)
+      thumb_large:  varchar(255)
+      filename:     varchar(255)
+      views:        integer
+      created_at:   ~
+
+  Video:
+    columns:
+      id:  ~
+      title:         { type: varchar, size: 64, required: true }
+      slug:          { type: varchar, size: 64 }
+      description:   { type: longvarchar, required: true }
+      type:          { type: varchar, size: 64, required: true }
+      length:        integer
+      filename:      varchar(128)
+      thumb_small:   varchar(128)
+      thumb_large:   varchar(128)
+      is_published:  boolean
+      published_at:  timestamp
+      uploaded_at:   timestamp
+      created_at:    ~
+
+  VideoPlaylist:
+    columns:
+      id:  ~
+      video_id:  ~
+      playlist_id:  ~
+      position:     tinyint
+
+  VideoCollectionCategory:
+    columns:
+      id:  ~
+      video_id:  ~
+      collection_category_id:  { type: integer, required: true, foreignClass: CollectionCategory, foreignReference: id, onDelete: cascade }
+      created_at:  ~
+
+  Playlist:
+    columns:
+      id:  ~
+      title:         { type: varchar, size: 64, required: true }
+      slug:          { type: varchar, size: 64 }
+      description:   { type: longvarchar, required: true }
+      type:          { type: varchar, size: 64, required: true }
+      length:        integer
+      is_published:  boolean
+      published_at:  timestamp
+      created_at:    ~
+
+  Trivia:
+    columns:
+      id:  ~
+      content:     { type: longvarchar, required: true }
+      created_at:  ~
+
+  ResourceCategory:
+    columns:
+      id:          ~
+      name:        { type: varchar, size: 128, required: true }
+      slug:        varchar(128)
+      thumbnail:   varchar(64)
+      created_at:  ~
+
+  ResourceEntry:
+    columns:
+      id:  ~
+      category_id:  { type: integer, required: true, foreignClass: ResourceCategory, foreignReference: id }
+      type:         { type: varchar, size: 24, required: true, default: Blog }
+      name:         { type: varchar, size: 128, required: true }
+      slug:         varchar(128)
+      description:  { type: longvarchar, required: true }
+      url:          { type: varchar, size: 255, required: true }
+      rss:          { type: varchar, size: 255, required: true }
+      thumbnail:    varchar(64)
+      blogger:      varchar(128)
+      email:        varchar(128)
+      created_at:   ~
+
+  Term:
+    columns:
+      id:  ~
+      name:  { type: varchar, size: 100, primaryString: true }
+
+  TermRelationship:
+    columns:
+      id:  ~
+      term_id:   ~
+      model:     { type: varchar, size: 30, index: true }
+      model_id:  { type: integer }
+
+  Score:
+    columns:
+      id:  ~
+      day:         { type: date }
+      model:       { type: char, size: 64, required: true }
+      model_id:    { type: integer }
+      views:       { type: integer, default: 0 }
+      ratings:     { type: integer, default: 0 }
+      score:       { type: integer, default: 0 }
+
+    uniques:
+      score_U_1:  [day, model, model_id]
+
+    propel_behaviors:
+      timestampable:  ~
+
+  Featured:
+    treeMode: NestedSet
+    columns:
+      id:  ~
+      featured_type_id:  { type: tinyint, required: true }
+      featured_model:    { type: varchar, size: 64, required: true }
+      featured_id:       { type: integer }
+      tree_left:         { type: integer, required: true, default: 0, nestedSetLeftKey: true }
+      tree_right:        { type: integer, required: true, default: 0, nestedSetRightKey: true }
+      tree_scope:        { type: integer, required: true, default: 0, treeScopeKey: true }
+      eblob:             { type: longvarchar }
+      start_date:        { type: date }
+      end_date:          { type: date }
+      position:          { type: tinyint, default: 0 }
+      is_active:         { type: boolean, default: true, required: true }
+
+  Package:
+    columns:
+      id:  ~
+      plan_type:            { type: char, sqlType: "ENUM('Casual','Power')", default: NULL, required: true }
+      package_name:         { type: varchar, size: 255, required: true }
+      package_description:  { type: longvarchar }
+      max_items_for_sale:   { type: integer }
+      package_price:        { type: float }
+
+    propel_behaviors:
+      timestampable:  ~
+
+  PackageTransaction:
+    columns:
+      id:  ~
+      package_id:          { type: integer, foreignClass: Package, foreignReference: id, required: true, onDelete: restrict }
+      collector_id:        { type: integer, foreignClass: Collector, foreignReference: id, required: true, onDelete: cascade }
+      payment_status:      { type: varchar, default: pending, size: 255 }
+      max_items_for_sale:  { type: integer }
+      package_price:       { type: float }
+      expiry_date:         { type: timestamp }
+      created_at:  ~
+
+  Promotion:
+    columns:
+      id:  ~
+      promotion_code:   { type: varchar, size: 255, required: true }
+      promotion_name:   { type: varchar, size: 255, required: true }
+      promotion_desc:   { type: longvarchar }
+      amount:           { type: float}
+      amount_type:      { type: char, sqlType: "ENUM('Fix','Percentage')", default: Fix, required: true }
+      no_of_time_used:  { type: integer }
+      expiry_date:      { type: timestamp }
+
+    uniques:
+      promotion_U_I: [promotion_code]
+
+    propel_behaviors:
+      timestampable:  ~
+
+  PromotionTransaction:
+    columns:
+      id:  ~
+      promotion_id:  { type: integer, foreignClass: Promotion, foreignReference: id, required: true, onDelete: restrict }
+      collector_id:  { type: integer, foreignClass: Collector, foreignReference: id, required: true, onDelete: cascade }
+      amount:        { type: float }
+      amount_type:   { type: varchar, default: pending, size: 255 }
+      created_at:  ~
+
+  NewsletterSignup:
+    columns:
+      id:  ~
+      email:  { type: varchar, size: 255, required: true }
+      name:   { type: varchar, size: 255, required: true }

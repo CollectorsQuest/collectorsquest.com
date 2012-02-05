@@ -1,0 +1,8 @@
+all:
+  is_internal: true
+
+prod:
+  is_internal: true
+
+dev:
+  is_internal: false

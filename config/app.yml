@@ -1,0 +1,77 @@
+all:
+  shopify_domain_name: "collectorsquest.myshopify.com"
+  admin_email_id: "no-reply@collectorsquest.com"
+
+  ice_libs:
+    emails:
+      sender: 'no-reply@collectorsquest.com'
+      notify: 'developers@collectorsquest.com'
+
+  ice_backend:
+    god_auth:
+      secret: "s6nr1ea16fo1br0wn5a31wnzhhazerr8"
+      timeout:  3600
+
+  credentials:
+    akismet: "8fd3f2fddbaa"
+    google_maps: "ABQIAAAAFWhrOd_LZ8oN4w-vkUWughQAU-WnqYQCO7zppSGvHR51tCrN4xRY0TaQWDhMG_uhoslQtMZplJu3gg"
+    disqus_user_key: "rCJyPA1GJlX3hoF3tdSdrGbbeGBeI7I9G1Qspd5QuR6AiCscBxREmoo1SLBnlJyf"
+    disqus_forum_key: "nqopSzGkkro8tc53AgA3DNW56WSYBbZRetdoNPE8whwKY7b7dvELc05Nm9Yq5nMD"
+    impermium: "6eed575e07cc2431293287a570d0afd0c3efde87"
+    defensio: "BB85A65A8118C50AA3918CB254A34176"
+    dlvrit: "123456789abcdefg"
+
+    rpxnow:
+      application_domain: "https://collectorsquest-dev.rpxnow.com/"
+      application_id: "epghfmlgdcconfbmkmof"
+      api_key: "dabc61cdced770898eccd13f3b9f100e40d46b40"
+
+    recaptcha:
+      public_key: "6LdACwsAAAAAAE5tZTcYG47Lth2jzxxZeXAbll-Z"
+      private_key: "6LdACwsAAAAAAM19l6G0lFk4F560SWvBM2k5M9L0"
+
+    facebook:
+      application_id: "293221397397430"
+      application_secret: "21b6fb4368bbe3bf4157afe83e6945d4"
+
+  paypal:
+    api_username: "kangov_1327417143_biz_api1.collectorsquest.com"
+    api_password: "1327417177"
+    api_signature: "A..-CRlw0YpkY2B3ut0vv.OPym-eAT-VZrXVgkU8OKXkg-3ddWsYS50Q"
+    api_url: "https://api-3t.sandbox.paypal.com/nvp"
+    is_online: false
+
+    payment_action: "Sale"
+    currency_code: "USD"
+    payment_method: "doDirectPayment"
+
+    url: "https://www.sandbox.paypal.com/cgi-bin/webscr"
+    merchant_account: "kangov_1327417143_biz@collectorsquest.com"
+
+dev:
+  domain_name: "collectorsquest.dev"
+  www_domain: "www.collectorsquest.dev"
+  static_domain: "static.collectorsquest.dev"
+  multimedia_domain: "multimedia.collectorsquest.dev"
+
+  cq:
+    www_domain: "http://www.collectorsquest.dev/"
+    static_domain: "http://static.collectorsquest.dev/"
+    multimedia_domain: "http://multimedia.collectorsquest.dev"
+
+  ice_assets:
+    domain: "cqcdns.dev"
+
+stg:
+  domain_name: "collectorsquest.stg"
+  www_domain: "www.collectorsquest.stg"
+  static_domain: "static.collectorsquest.stg"
+  multimedia_domain: "multimedia.collectorsquest.stg"
+
+  cq:
+    www_domain: "http://www.collectorsquest.stg"
+    static_domain: "http://static.collectorsquest.stg"
+    multimedia_domain: "http://multimedia.collectorsquest.stg"
+
+  ice_assets:
+    domain: "cqcdns.stg"

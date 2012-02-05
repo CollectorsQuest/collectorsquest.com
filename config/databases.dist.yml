@@ -1,0 +1,109 @@
+all:
+  propel:
+    class:        sfPropelDatabase
+    param:
+      classname:  DebugPDO
+      dsn:        mysql:dbname=collectorsquest_dev;host=127.0.0.1
+      username:   root
+      password:
+      encoding:   utf8
+      persistent: true
+      pooling:    true
+
+      debug:
+        realmemoryusage: true
+        details:
+          time:
+            enabled: true
+          slow:
+            enabled: true
+            threshold: 0.01
+          memdelta:
+            enabled: true
+          mempeak:
+            enabled: true
+          method:
+            enabled: true
+          mem:
+            enabled: true
+          querycount:
+            enabled: true
+
+  blog:
+    class:        sfPropelDatabase
+    param:
+      classname:  DebugPDO
+      dsn:        mysql:dbname=collectorsquest_dev;host=127.0.0.1
+      username:   root
+      password:
+      encoding:   utf8
+      persistent: true
+
+  calendar:
+    class:        sfPropelDatabase
+    param:
+      classname:  DebugPDO
+      dsn:        mysql:dbname=collectorsquest_dev;host=127.0.0.1
+      username:   root
+      password:
+      encoding:   utf8
+      persistent: true
+
+  queue:
+    class:        sfPropelDatabase
+    param:
+      classname:  DebugPDO
+      dsn:        mysql:dbname=collectorsquest_dev;host=127.0.0.1
+      username:   root
+      password:
+      encoding:   utf8
+      persistent: true
+
+  icepique:
+    class:        sfPropelDatabase
+    param:
+      classname:  DebugPDO
+      dsn:        mysql:dbname=collectorsquest_dev;host=127.0.0.1
+      username:   root
+      password:
+      encoding:   utf8
+      persistent: true
+
+  archive:
+    class:        sfPropelDatabase
+    param:
+      classname:  DebugPDO
+      dsn:        mysql:dbname=collectorsquest_dev;host=127.0.0.1
+      username:   root
+      password:
+      encoding:   utf8
+      persistent: true
+
+test:
+  propel:
+    param:
+      classname:  DebugPDO
+      dsn:        mysql:dbname=collectorsquest_test;host=127.0.0.1
+      username:   root
+      password:
+
+  blog:
+    param:
+      classname:  DebugPDO
+      dsn:        mysql:dbname=collectorsquest_test;host=127.0.0.1
+      username:   root
+      password:
+
+  icepique:
+    param:
+      classname:  DebugPDO
+      dsn:        mysql:dbname=collectorsquest_test;host=127.0.0.1
+      username:   root
+      password:
+
+  archive:
+    param:
+      classname:  DebugPDO
+      dsn:        mysql:dbname=collectorsquest_test;host=127.0.0.1
+      username:   root
+      password:

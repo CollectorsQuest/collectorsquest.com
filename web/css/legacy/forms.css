@@ -1,0 +1,23 @@
+
+ul.error_list {
+	margin: 0;
+  padding: 0;
+}
+
+ul.error_list li {
+  margin: 5px 0;
+  padding: 5px;
+  background-color: red;
+  color : #FFF;
+  font-weight: bold;
+}
+
+.required {
+  font-style: italic;
+  color: red;
+}
+
+.optional, .recommended {
+  color: #ccc; 
+  font-style: italic;
+}

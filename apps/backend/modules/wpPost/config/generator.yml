@@ -1,0 +1,31 @@
+generator:
+  class: IcePropelGenerator
+  param:
+    model_class:           wpPost
+    theme:                 bootstrap
+    non_verbose_templates: true
+    with_show:             false
+    singular:              wpPost
+    plural:                wpPosts
+    route_prefix:          wp_post
+    with_propel_route:     1
+    actions_base_class:    cqBackendActions
+
+    config:
+      actions:
+        list: ~
+        query_methods: [joinWithwpUser]
+      fields:
+        wp_user:  { label: Author, is_sortable: true }
+
+      list:
+        title: WP Posts
+        display: [wp_user, _post_title, post_date, _count_words, _count_chars]
+        actions: {}
+        batch_actions: {}
+        object_actions: {}
+
+      filter:  ~
+      form:    ~
+      edit:    ~
+      new:     ~
