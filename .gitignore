@@ -24,7 +24,7 @@ base
 /plugins/sf*Plugin
 /plugins/ice*Plugin
 /lib/vendor/neo4jphp
-!/plugions/sfPropelORMPlugin
+!/plugins/sfPropelORMPlugin
 
 # symlinked folders (when on windows)
 /web/sf
@@ -33,4 +33,5 @@ base
 # Vagrant
 /config/vagrant/.vagrant
 /config/vagrant/platform
-/config/vagrant/github_rsa
+/config/vagrant/id_rsa
+
