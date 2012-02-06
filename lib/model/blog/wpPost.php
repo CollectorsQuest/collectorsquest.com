@@ -50,6 +50,22 @@ class wpPost extends BasewpPost
      $tags[] = $row[0];
     }
 
-    return ($type == 'array')?$tags:implode(', ', $tags);
+    return ($type == 'array') ? $tags : implode(', ', $tags);
   }
+
+  public function getPlainPostContent()
+  {
+    return strip_tags($this->getPostContent());
+  }
+
+  public function countPostContentWords()
+  {
+    return count(explode(' ', $this->getPlainPostContent()));
+  }
+
+  public function countPostContentChars()
+  {
+    return mb_strlen(str_replace(' ', '', $this->getPlainPostContent()), 'utf-8');
+  }
+
 }
