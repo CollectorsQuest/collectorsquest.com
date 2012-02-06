@@ -1,0 +1,4 @@
+all:
+  stylesheets: [legacy/collections.css, legacy/collectors.css, legacy/tags.css]
+  components:
+    sidebar: [collectors, sidebar]

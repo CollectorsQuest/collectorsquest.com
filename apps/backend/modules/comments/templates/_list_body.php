@@ -1,0 +1,1 @@
+<?php echo truncate_text($Comment->getBody(), 50); ?>

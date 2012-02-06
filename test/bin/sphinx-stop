@@ -1,0 +1,12 @@
+#!/bin/bash
+
+DIR="$( cd -P "$( dirname "$0" )" && pwd )"
+
+if [ -f /tmp/searchd.pid ];
+then
+  cat /tmp/searchd.pid | xargs kill
+fi;
+
+rm $DIR/sphinx.running.conf
+rm /tmp/searchd.log
+rm /tmp/query.log

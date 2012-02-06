@@ -1,0 +1,3 @@
+all:
+  stylesheets: [legacy/videos.css]
+  javascripts: [swfobject.js, legacy/videos.js]

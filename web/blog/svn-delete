@@ -1,0 +1,3 @@
+#!/bin/bash
+newfiles=`svn status --ignore-externals | grep '!' | cut -c 8-`
+for f in $newfiles; do svn delete $f; done

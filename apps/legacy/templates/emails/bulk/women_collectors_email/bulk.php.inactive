@@ -1,0 +1,32 @@
+<?php
+
+require("/home/httpd/vhosts/collectorsquest.com/httpdocs/cq_email.php");
+
+$fromname = "Elizabeth Kressel";
+$fromaddress = "ekressel@collectorsquest.com";
+$subject = "Collectors' Quest Survey";
+
+$names = file("names.csv");
+
+foreach ($names as $line) {
+  $line = rtrim($line);
+  list($first,$last,$email) = split(",",$line);
+
+  $message = file_get_contents("email_body.html");
+
+  $message = str_replace("%first%",$first,$message); 
+  $message = str_replace("%last%",$last,$message); 
+
+  $toname = "$first $last";
+  $toaddress = $email;
+
+  if(cq_email($fromname, $fromaddress, $toname, $toaddress, $subject, $message)) {
+    print "Mail sent to $toaddress<br>\n";
+  } else {
+    die("Mail error on user: $email<br>\n");
+  }
+}
+
+print "Success!<br>\n";
+
+?>

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+DIR="$( cd -P "$( dirname "$0" )" && pwd )"
+
+if [ ! -f $DIR/sphinx.running.conf ];
+then
+  $DIR/sphinx-start
+fi;
+
+/opt/sphinx/bin/indexer --config $DIR/sphinx.running.conf --rotate test_products_bg test_products_en

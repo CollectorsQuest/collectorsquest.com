@@ -1,0 +1,50 @@
+connection: propel
+noXsd: false
+defaultIdMethod: native
+package: lib.model.legacy
+
+classes:
+  CollectionItem:
+    skipSql: true
+    columns:
+      id:               ~
+      collection_id:    { type: integer, foreignClass: Collection, foreignReference: id }
+      name:             { type: varchar, size: 50, required: true }
+      slug:             varchar(128)
+      description:      { type: longvarchar, required: true }
+      est_value:        { type: integer, default: 0 }
+      purchased_price:  { type: integer, default: 0 }
+      currency:         varchar(50)
+      photo:            varchar(128)
+      is_for_sale:      { type: boolean, default: false }
+      num_views:        { type: integer, default: 0 }
+      position:         tinyint
+      created_at:       ~
+      updated_at:       ~
+
+  CollectionItemForSale:
+    skipSql: true
+    columns:
+      id:  ~
+      item_id:  { type: integer, required: true, foreignClass: CollectionItem, foreignReference: id }
+      price:  { type: float }
+      condition:  { type: char, sqlType: "ENUM('excellent','very good','good','fair','poor')", required: true }
+      is_price_negotiable:  { type: boolean, default: false }
+      is_shipping_free:  { type: boolean, default: false }
+      is_sold:  { type: boolean, default: false }
+      created_at:  ~
+      updated_at:  ~
+    uniques:
+      collection_item_for_sale_item: [item_id]
+
+  CollectionItemOffer:
+    skipSql: true
+    columns:
+      id:  ~
+      item_id: { type: integer, required: true, foreignClass: CollectionItem, foreignReference: id }
+      item_for_sale_id: { type: integer, required: true, foreignClass: CollectionItemForSale, foreignReference: id }
+      collector_id:  { type: integer, foreignClass: Collector, foreignReference: id }
+      price:   { type: float }
+      status:  { type: char, sqlType: "ENUM('pending','counter','rejected','accepted')", required: true }
+      created_at:  ~
+      updated_at:  ~

@@ -1,0 +1,26 @@
+generator:
+  class: IcePropelGenerator
+  param:
+    model_class:           Video
+    theme:                 bootstrap
+    non_verbose_templates: true
+    with_show:             false
+    singular:              Video
+    plural:                Videos
+    route_prefix:          video
+    with_propel_route:     1
+    actions_base_class:    cqBackendActions
+
+    config:
+      actions: ~
+      fields:
+        id: { label: ID }
+        is_published: { label: "Published?" }
+      list:
+        title: Videos
+        display: [id, type, _list_title, length, is_published, published_at]
+      filter:
+        display: [title, type, is_published]
+      form:    ~
+      edit:    ~
+      new:     ~

@@ -1,0 +1,34 @@
+generator:
+  class: IcePropelGenerator
+  param:
+    model_class:           Comment
+    theme:                 bootstrap
+    non_verbose_templates: true
+    with_show:             false
+    singular:              Comment
+    plural:                Comments
+    route_prefix:          comment
+    with_propel_route:     1
+    actions_base_class:    cqBackendActions
+
+    config:
+      actions: ~
+      fields:
+        author:      { label: Author }
+        list_body:   { label: Comment }
+        created_at:  { label: "Date & Time" }
+
+      list:
+        title:  Comments
+        display:  [collection, collectible, subject, _list_body, created_at]
+        sort:  [created_at, desc]
+
+        actions: {}
+        object_actions:
+          _delete:  { confirm: Are you sure you want to delete this comment? }
+
+      filter:
+        display: [subject, body]
+        fields:
+          subject:
+            widgetOptions: { with_empty: false }

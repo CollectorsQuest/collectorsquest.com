@@ -1,0 +1,34 @@
+# IDE and SCM files
+nbproject
+.project
+.idea
+.svn
+*~
+.swp
+
+# symfony folders
+/cache/*
+/log/*
+
+# project specific ignores
+/config/secure
+/config/databases.yml
+
+# generated folders
+om
+map
+base
+
+# composer modules
+.composer
+/plugins/sf*Plugin
+/lib/vendor/neo4jphp
+
+# symlinked folders (when on windows)
+/web/sf
+/web/sf*Plugin
+
+# Vagrant
+/config/vagrant/.vagrant
+/config/vagrant/platform
+/config/vagrant/github_rsa

@@ -1,0 +1,70 @@
+all:
+  ice_backend:
+    site: "CollectorsQuest.com"
+    google_apps_domain: collectorsquest.com
+    logo: /images/backend/logo.png
+
+    categories:
+      Collectors:
+        items:
+          Collectors:
+            url: collector
+            image: theme/icons/users.png
+          Messages:
+            url: private_message
+            image: theme/icons/messaging.png
+          Templates:
+            url: message_template
+            image: theme/icons/message_config.png
+
+      Collections:
+        items:
+          Collections:
+            url: collection
+            image: theme/icons/mediamanager.png
+          Collectibles:
+            url: collectible
+            image: theme/icons/mediamanager.png
+          Categories:
+            url: collection_category
+            image: theme/icons/categories.png
+
+      Videos:
+        items:
+          Videos:
+            url: video
+          Playlists:
+            url: playlist
+
+      Marketplace:
+        items:
+          Marketplace:
+            url: marketplace_list
+            image: theme/icons/menu.png
+          Promotion:
+            url: promotion
+            image: theme/icons/generic.png
+          Promotion Transactions:
+            url: promotion_transaction
+            image: theme/icons/backup.png
+          Packages:
+            url: package
+            image: theme/icons/install.png
+          Package Transactions:
+            url: package_transaction
+            image: theme/icons/backup.png
+
+      Blog:
+        items:
+          Posts:
+            url: wp_post
+            image: theme/icons/addedit.png
+
+      Everything Else:
+        items:
+          Featured Weeks:
+            url: featured_weeks
+
+          Comments:
+            url: comment
+            image: theme/icons/language.png

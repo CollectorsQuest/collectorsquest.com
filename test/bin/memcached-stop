@@ -1,0 +1,9 @@
+#!/bin/bash
+
+DIR="$( cd -P "$( dirname "$0" )" && pwd )"
+
+if [ -f /tmp/memcached.pid ];
+then
+  cat /tmp/memcached.pid | xargs kill
+  rm /tmp/memcached.pid
+fi;

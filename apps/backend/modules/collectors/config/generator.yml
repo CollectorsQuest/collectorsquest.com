@@ -1,0 +1,54 @@
+generator:
+  class: IcePropelGenerator
+  param:
+    model_class:           Collector
+    theme:                 bootstrap
+    non_verbose_templates: true
+    with_show:             false
+    singular:              Collector
+    plural:                Collectors
+    route_prefix:          collector
+    with_propel_route:     1
+    actions_base_class:    cqBackendActions
+
+    config:
+      actions: ~
+
+      fields:
+        id: { label: ID }
+        display_name: { label: Display Name }
+        list_count_collections: { label: Collections }
+        list_spaminess: { label: Spaminess }
+        list_auto_login: { label: '' }
+        created_at: { label: Since, date_format: 'MM/dd/yyyy' }
+        is_public: { label: "Public?" }
+
+      list:
+        title: Collectors
+        display: [id, =username, display_name, email, _list_count_collections, _list_spaminess, created_at]
+        sort: [created_at, desc]
+        object_actions:
+          _edit: ~
+          _delete: ~
+          autologin: { label: "Auto Login", action: autoLogin, params: { target: '_blank' } }
+        actions:
+          export: { label: "Export to CSV", action: export }
+
+      filter:
+        display: [username, display_name, email, spaminess, is_spam]
+        fields:
+          email:
+            widgetOptions: { with_empty: false }
+          spaminess: { label: Spaminess }
+          is_spam: { label: "Spam?" }
+
+      form:
+        class: CollectorEditForm
+
+      edit:
+        title: Edit Collector <small>(%%USERNAME%%)</small>
+        fields:
+          password: { label: Password, help: "If you do not want to change the password, leave the field empty" }
+        display: [display_name, email, password, photo, is_public]
+
+      new: ~

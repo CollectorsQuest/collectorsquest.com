@@ -1,0 +1,26 @@
+generator:
+  class: IcePropelGenerator
+  param:
+    model_class:           Playlist
+    theme:                 bootstrap
+    non_verbose_templates: true
+    with_show:             false
+    singular:              Playlist
+    plural:                Playlists
+    route_prefix:          playlist
+    with_propel_route:     1
+    actions_base_class:    cqBackendActions
+
+    config:
+      actions: ~
+      fields:
+        id: { label: ID }
+        is_published: { label: "Published?" }
+      list:
+        title: Playlists
+        display: [id, title, type, length, is_published, published_at]
+      filter:
+        display: [title, type, is_published]
+      form:    ~
+      edit:    ~
+      new:     ~

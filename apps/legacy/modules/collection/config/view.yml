@@ -1,0 +1,32 @@
+all:
+  stylesheets: [legacy/collections.css]
+  javascripts: [legacy/disqus.js, jquery/bt.js]
+  components:
+    sidebar: [collection, sidebar]
+
+collectibleSuccess:
+  stylesheets: [legacy/scrollable.css, jquery/imgbox.css]
+  javascripts: [jquery/mousewheel.js, jquery/carousel.js, jquery/imgbox.js]
+  components:
+    sidebar: [collection, sidebarCollectible]
+
+itemSuccess:
+  stylesheets: [legacy/scrollable.css, jquery/imgbox.css]
+  javascripts: [jquery/mousewheel.js, jquery/carousel.js, jquery/imgbox.js]
+  components:
+    sidebar: [collection, sidebarCollectible]
+
+createStep1:
+  stylesheets: [legacy/forms.css]
+  components:
+    sidebar: [general, sidebar]
+
+createStep2:
+  stylesheets: [jquery/tags.css, legacy/forms.css]
+  components:
+    sidebar: [general, sidebar]
+
+createStep3:
+  stylesheets: [legacy/forms.css]
+  components:
+    sidebar: [general, sidebar]

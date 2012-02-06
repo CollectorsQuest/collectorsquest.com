@@ -1,0 +1,7 @@
+config/secure/app.yml:
+  class:    sfDefineEnvironmentConfigHandler
+  param:
+    prefix: app_
+
+config/secure/databases.yml:
+  class:    sfDatabaseConfigHandler

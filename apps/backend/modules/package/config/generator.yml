@@ -1,0 +1,37 @@
+generator:
+  class: IcePropelGenerator
+  param:
+    model_class:           Package
+    theme:                 bootstrap
+    non_verbose_templates: true
+    with_show:             false
+    singular:              Package
+    plural:                Packages
+    route_prefix:          package
+    with_propel_route:     1
+    actions_base_class:    cqBackendActions
+
+    config:
+      actions: ~
+      fields:
+        package_name: { label: Package Name }
+        package_description: { label: Package Description }
+        max_item_for_sale: { label: Max Item For Sale }
+        package_price: { label: Package Price }
+        plan_type: { label: Plan Type }
+
+      list:
+        title: Packages
+        display: [id, =package_name, max_items_for_sale, package_price, plan_type]
+
+      filter:
+        class: false
+
+      form:
+        display:
+          "Package":  [package_name, package_description, max_items_for_sale, package_price, plan_type]
+      edit:
+        title: Edit Package
+      new:
+        title: Add Package
+        actions:  { _list: ~, _save: ~ }

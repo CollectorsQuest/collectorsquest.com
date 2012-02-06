@@ -1,0 +1,41 @@
+generator:
+  class: IcePropelGenerator
+  param:
+    model_class:           Collection
+    theme:                 bootstrap
+    non_verbose_templates: true
+    with_show:             false
+    singular:              Collection
+    plural:                Collections
+    route_prefix:          collection
+    with_propel_route:     1
+    actions_base_class:    cqBackendActions
+
+    config:
+      actions: ~
+
+      fields:
+        id: { label: ID }
+        collection_category_id: { label: Category }
+        collection_category: { label: Category }
+        tag_string: { label: Tags }
+        count_collectibles: { label: Collectibles }
+        created_at: { label: Date, date_format: 'MM/dd/yyyy' }
+
+      list:
+        title: Collections
+        display: [id, collection_category, collector, =name, tag_string, count_collectibles, score, created_at]
+        sort: [created_at, desc]
+        batch_actions: {}
+        actions:
+          _new: ~
+          export: { label: "Export to CSV", action: export }
+
+      filter:
+        display: [name, collection_category_id]
+
+      form:
+        display: [name, collection_category_id]
+
+      edit:    ~
+      new:     ~

@@ -1,0 +1,50 @@
+prod:
+  .settings:
+    logging_enabled:        false
+    cache:                  true
+    etag:                   true
+
+dev:
+  .settings:
+    error_reporting:        <?php echo (E_ALL | E_STRICT)."\n" ?>
+    web_debug:              true
+    cache:                  false
+    etag:                   false
+
+test:
+  .settings:
+    error_reporting:        <?php echo ((E_ALL | E_STRICT) ^ E_NOTICE)."\n" ?>
+    cache:                  false
+    web_debug:              false
+    etag:                   false
+
+all:
+  .settings:
+    i18n:                   true
+    default_culture:        en
+    default_timezone:       America/New_York
+    charset:                utf-8
+
+    enabled_modules:        [cqAjax, cqCollectors, cqCollections, cqSearch, sfExternalLink]
+    standard_helpers:       [Partial, Cache, Form, I18N, cqGeneral, cqImages, cqLinks, cqJavascripts, cqHTML]
+    sf_compat_10:           off
+
+    csrf_secret:            3f85ac1b6df576a9cd855c0ad7b7773d25a0a68a
+
+    # Output escaping settings
+    escaping_strategy:      false
+    escaping_method:        ESC_SPECIALCHARS
+
+    # Cache settings
+    lazy_cache_key:         true
+    no_script_name:         true
+
+  .actions:
+    error_404_module:       general
+    error_404_action:       error404
+
+    login_module:           general
+    login_action:           login
+
+    secure_module:          general
+    secure_action:          index

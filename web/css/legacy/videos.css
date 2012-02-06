@@ -1,0 +1,41 @@
+#mediaplayer {
+  float: left;
+  width: 480px;
+  min-height: 385px;
+  margin-right: 10px;
+}
+
+#video-title {
+  background: #829EAD;
+  color: #fff;
+  font-size: 24px;
+  padding: 5px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+#video-description {
+  background: #fff;
+  color: #000;
+  padding: 10px;
+  height: 36px;
+}
+
+#video-ads {
+  background: #fff;
+  width: 160px;
+  height: 500px;
+  float: right;
+  padding: 5px;
+  margin-top: -5px;
+  margin-right: -10px;
+  overflow: hidden;
+}
+
+#playlist .video {
+  width: 280px;
+  background: #fff;
+  padding: 5px;
+  margin-bottom: 8px;
+  height: 84px
+}

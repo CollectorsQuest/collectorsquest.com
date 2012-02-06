@@ -1,0 +1,30 @@
+generator:
+  class: IcePropelGenerator
+  param:
+    model_class:           CollectionCategory
+    theme:                 bootstrap
+    non_verbose_templates: true
+    with_show:             false
+    singular:              CollectionCategory
+    plural:                CollectionCategorys
+    route_prefix:          collection_category
+    with_propel_route:     1
+    actions_base_class:    cqBackendActions
+
+    config:
+      actions: ~
+      fields:
+        id: { label: ID }
+        tags_string: { label: Tags }
+        collections_count: { label: Collections }
+      list:
+        title: Collection Categories
+        display: [id, parent, name, tags_string, collections_count, score]
+      filter:
+        display: [parent, name]
+      form:
+        display: [parent, name, tags, score]
+      edit:
+        title: Edit Collection Category
+      new:
+        title: New Collection Category

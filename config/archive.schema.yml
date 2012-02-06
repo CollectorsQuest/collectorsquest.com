@@ -1,0 +1,202 @@
+connection: archive
+noXsd: false
+defaultIdMethod: native
+package: lib.model.archive
+
+classes:
+  CollectorArchive:
+    columns:
+      id:             { type: integer, index: true, primaryKey: true, autoIncrement: false }
+      graph_id:       { type: integer, required: false, index: true }
+      facebook_id:    { type: varchar, size: 20, index: true }
+      username:       { type: varchar, size: 64, required: true }
+      display_name:   { type: varchar, size: 64, required: true, primaryString: true }
+      slug:           { type: varchar, size: 64, required: true, index: true }
+      sha1_password:  { type: varchar, size: 40, required: true }
+      salt:           { type: varchar, size: 32, required: true }
+      email:          { type: varchar, size: 128, index: true }
+      user_type:      { type: char, sqlType: "ENUM('Collector','Seller')", default: "Collector", required: true }
+      items_allowed:         integer
+      what_you_collect:      { type: varchar, size: 255 }
+      purchases_per_year:    { type: integer, default: 0 }
+      what_you_sell:         { type: varchar, size: 255 }
+      annually_spend:        { type: float, default: 0 }
+      most_expensive_item:   { type: float, default: 0 }
+      company:               { type: varchar, size: 255 }
+      locale:         { type: varchar, size: 5, default: "en_US" }
+      score:          { type: integer, default: 0 }
+      spam_score:     { type: integer, default: 0 }
+      is_spam:        { type: boolean, default: false }
+      is_public:      { type: boolean, default: true }
+      session_id:     { type: varchar, size: 32 }
+      last_seen_at:   { type: timestamp }
+
+      eblob:        { type: longvarchar, default: null }
+
+      updated_at:   { type: timestamp }
+      created_at:   { type: timestamp }
+      archived_at:  { type: timestamp }
+
+  CollectorProfileArchive:
+    columns:
+      id:              { type: integer, index: true, primaryKey: true, autoIncrement: false }
+      collector_id:    { type: integer, index: true }
+      collector_type:  { type: char, sqlType: "ENUM('Collector','Seller')", default: "Collector", required: true }
+      birthday:        { type: date }
+      gender:          { type: char, sqlType: "ENUM('f','m')" }
+      zip_postal:      varchar(10)
+      country:         varchar(64)
+      country_iso3166: varchar(2)
+      website:         varchar(128)
+      about:           longvarchar
+      collections:     longvarchar
+      collecting:      varchar(255)
+      most_spent:      integer
+      anually_spent:   integer
+      new_item_every:  varchar(64)
+      interests:       longvarchar
+      is_featured:     { type: boolean, default: false }
+      is_seller:       { type: boolean, default: false }
+      is_image_auto:   { type: boolean, default: true }
+      preferences:     longvarchar
+      notifications:   longvarchar
+
+      updated_at:   { type: timestamp }
+      created_at:   { type: timestamp }
+      archived_at:  { type: timestamp }
+
+  CollectorIdentifierArchive:
+    columns:
+      id:            { type: integer, index: true, primaryKey: true, autoIncrement: false }
+      collector_id:  { type: integer, index: true }
+      identifier:    { type: varchar, size: 255, index: true }
+      created_at:    { type: timestamp }
+      archived_at:   { type: timestamp }
+
+  CollectorGeocacheArchive:
+    columns:
+      id:               { type: integer, index: true, primaryKey: true, autoIncrement: false }
+      collector_id:     { type: integer, index: true }
+      country:          { type: char, size: 64 }
+      country_iso3166:  { type: char, size: 2 }
+      state:            { type: varchar, size: 64 }
+      county:           { type: varchar, size: 64 }
+      city:             { type: varchar, size: 64 }
+      zip_postal:       { type: char, size: 10 }
+      address:          { type: varchar, size: 128 }
+      latitude:         { type: float, sqlType: "DECIMAL(8,5)" }
+      longitude:        { type: float, sqlType: "DECIMAL(8,5)" }
+      timezone:         { type: varchar, size: 128 }
+
+  CollectionArchive:
+    columns:
+      id:                      { type: integer, index: true, primaryKey: true, autoIncrement: false }
+      graph_id:                { type: integer, required: false, index: index }
+      collection_category_id:  { type: integer, index: true }
+      collector_id:            { type: integer, index: true }
+      name:                    { type: varchar, size: 255, required: true, primaryString: true }
+      slug:                    { type: varchar, size: 128 }
+      description:             { type: longvarchar, required: true }
+      num_items:               { type: integer, default: 0 }
+      num_views:               { type: integer, default: 0 }
+      num_comments:            { type: integer, default: 0 }
+      num_ratings:             { type: integer, default: 0 }
+      score:                   { type: integer, default: 0 }
+      is_public:               { type: boolean, default: true }
+      is_featured:             { type: boolean, default: false }
+      comments_on:             { type: boolean, default: true }
+      rating_on:               { type: boolean, default: true }
+
+      eblob:        { type: longvarchar, default: null }
+
+      updated_at:   { type: timestamp }
+      created_at:   { type: timestamp }
+      archived_at:  { type: timestamp }
+
+  CollectibleArchive:
+    columns:
+      id:                { type: integer, index: true, primaryKey: true, autoIncrement: false }
+      graph_id:          { type: integer, required: false, index: index }
+      collector_id:      { type: integer, index: true }
+      collection_id:     { type: integer, index: true }
+      name:              { type: varchar, size: 255, required: true, primaryString: true }
+      slug:              { type: varchar, size: 128, index: true }
+      description:       { type: longvarchar, required: true }
+      num_comments:      { type: integer, default: 0 }
+      batch_hash:        { type: varchar, size: 32, index: true }
+      score:             { type: integer, default: 0 }
+      position:          { type: integer, default: 0 }
+      is_name_automatic: { type: boolean, default: false }
+
+      eblob:        { type: longvarchar, default: null }
+
+      updated_at:   { type: timestamp }
+      created_at:   { type: timestamp }
+      archived_at:  { type: timestamp }
+
+  CollectibleForSaleArchive:
+    columns:
+      id:                   { type: integer, index: true, primaryKey: true, autoIncrement: false }
+      collectible_id:       { type: integer, index: true }
+      price:                { type: float }
+      condition:            { type: char, sqlType: "ENUM('excellent','very good','good','fair','poor')", required: true }
+      is_price_negotiable:  { type: boolean, default: false }
+      is_shipping_free:     { type: boolean, default: false }
+      is_sold:              { type: boolean, default: false }
+      is_ready:             { type: boolean, default: false, description: 'Show in the market or no' }
+      quantity:             { type: integer, required: true, default: 1 }
+
+      updated_at:   { type: timestamp }
+      created_at:   { type: timestamp }
+      archived_at:  { type: timestamp }
+
+  CollectibleOfferArchive:
+    columns:
+      id:              { type: integer, index: true, primaryKey: true, autoIncrement: false }
+      collectible_id:  { type: integer, index: true }
+      collectible_for_sale_id: { type: integer }
+      collector_id:    { type: integer }
+      price:           { type: float }
+      status:          { type: char, sqlType: "ENUM('pending','counter','rejected','accepted')", required: true }
+
+      updated_at:   { type: timestamp }
+      created_at:   { type: timestamp }
+      archived_at:  { type: timestamp }
+
+  CommentArchive:
+    columns:
+      id:              { type: integer, index: true, primaryKey: true, autoIncrement: false }
+      disqus_id:       { type: char, size: 10 }
+      parent_id:       { type: char, size: 10 }
+      collection_id:   { type: integer, index: true }
+      collectible_id:  { type: integer, index: true }
+      collector_id:    { type: integer, index: true }
+      author_name:     { type: varchar, size: 128 }
+      author_email:    { type: varchar, size: 128 }
+      author_url:      { type: varchar, size: 255 }
+      subject:         { type: varchar, size: 128 }
+      body:            { type: longvarchar, required: true }
+      ip_address:      { type: varchar, size: 15 }
+
+      created_at:      { type: timestamp }
+      archived_at:     { type: timestamp }
+
+  MultimediaArchive:
+    columns:
+      id:           { type: integer, index: true, primaryKey: true, autoIncrement: false }
+      model:        { type: char, size: 64, required: true }
+      model_id:     { type: integer }
+      type:         { type: char, sqlType: "ENUM('image','video')", default: image, required: true }
+      name:         { type: varchar, size: 128 }
+      md5:          { type: char, size: 32, required: true }
+      colors:       { type: varchar(128) }
+      orientation:  { type: char, sqlType: "ENUM('landscape','portrait')", default: landscape }
+      source:       { type: varchar(255) }
+      is_primary:   { type: boolean, default: false }
+
+      updated_at:   { type: timestamp }
+      created_at:   { type: timestamp }
+      archived_at:  { type: timestamp }
+
+    indexes:
+      multimedia_I_1: [model, model_id]

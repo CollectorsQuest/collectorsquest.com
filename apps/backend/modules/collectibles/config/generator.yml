@@ -1,0 +1,30 @@
+generator:
+  class: IcePropelGenerator
+  param:
+    model_class:           Collectible
+    theme:                 bootstrap
+    non_verbose_templates: true
+    with_show:             false
+    singular:              Collectible
+    plural:                Collectibles
+    route_prefix:          collectible
+    with_propel_route:     1
+    actions_base_class:    cqBackendActions
+
+    config:
+      actions: ~
+      fields:
+        id: { label: ID }
+        created_at: { label: Date, date_format: 'MM/dd/yyyy' }
+
+      list:
+        title: Collectibles
+        display: [id, collector, collection, =name, score, created_at]
+        sort: [created_at, desc]
+
+      filter:
+        display: [name]
+
+      form:    ~
+      edit:    ~
+      new:     ~

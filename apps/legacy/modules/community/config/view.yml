@@ -1,0 +1,49 @@
+all:
+  components:
+#    sidebar: [community, sidebar]
+    secondary_navigation: [community, secondaryNavigation]
+    right_navigation: [community, rightNavigation]
+    right_ads: [community, rightAds]
+
+
+spotlightSuccess:
+  stylesheets: [legacy/collections.css, legacy/tags.css]
+  components:
+    sidebar: [community, sidebarSpotlight]
+
+15MinutesOfFameSuccess:
+  components:
+    sidebar: [community, sidebar]
+
+indexSuccess:
+  javascripts: [swfobject]
+  components:
+    right_navigation: []
+
+signupSuccess:
+  components:
+    right_navigation: []
+
+collectorSignupSuccess:
+  components:
+    right_navigation: []
+
+sellerSignupSuccess:
+  components:
+    right_navigation: []
+
+showSuccess:
+  javascripts: [swfobject]
+  components:
+    right_navigation: []
+
+searchSuccess:
+  stylesheets:    [tabs]
+  javascripts:    [object.event.js, control.tabs.js]
+  components:
+    right_navigation: []
+
+sellItemSuccess:
+  stylesheets:    [/extjs/css/ext-all.css, /extjs/css/ext-all.css]
+  javascripts:    [/extjs/ext-base.js, /extjs/ext-all.js]
+

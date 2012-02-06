@@ -1,0 +1,11 @@
+body {
+  overflow: visible;
+}
+
+#header-search-box {
+  padding: 6px 0 0 5px;
+}
+
+legend {
+  margin-bottom: 20px;
+}

@@ -1,0 +1,1 @@
+<?= sprintf('%d (%d)', $Collector->countCollections(), $Collector->countCollectibles()); ?>

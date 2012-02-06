@@ -1,0 +1,26 @@
+Options +FollowSymLinks +ExecCGI
+
+<IfModule pagespeed_module>
+  ModPagespeedDisallow */combine.php*
+</IfModule>
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  RewriteRule ^cal/events/(.*)$ /calendar/events/$1 [R=301,L]
+  RewriteRule ^collectible/item/(\d+)\.html$ /collectible/$1/n-a [R=301,L]
+
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteRule ^(.*)\.html$ /$1 [R=301,L]
+
+  # we check if the .html version is here (caching)
+  RewriteRule ^$ index.html [QSA]
+  RewriteRule ^([^.]+)$ $1.html [QSA]
+
+  RewriteRule ^page/(.*)$ /blog/$1 [QSA,L]
+
+  # no, so we redirect to our front web controller
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteRule ^(.*)$ index.php [QSA,L]
+</IfModule>

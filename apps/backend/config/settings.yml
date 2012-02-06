@@ -1,0 +1,52 @@
+prod:
+  .settings:
+    no_script_name:         false
+    logging_enabled:        false
+
+dev:
+  .settings:
+    error_reporting:        <?php echo (E_ALL | E_STRICT)."\n" ?>
+    web_debug:              true
+    cache:                  false
+    no_script_name:         false
+    etag:                   false
+
+test:
+  .settings:
+    error_reporting:        <?php echo ((E_ALL | E_STRICT) ^ E_NOTICE)."\n" ?>
+    cache:                  false
+    web_debug:              false
+    no_script_name:         false
+    etag:                   false
+
+all:
+  .settings:
+    default_timezone:       America/New_York
+    charset:                utf-8
+
+    enabled_modules:        [sfGuardAuth, sfGuardUser, sfGuardPermission, sfGuardGroup, iceBackendModule]
+    standard_helpers:       [Partial, Cache, Form, I18N, Text, iceAssets, iceJavascript, iceBackend, cqGeneral, cqImages, cqJavascripts]
+    sf_compat_10:           off
+
+    # Form security secret (CSRF protection)
+    csrf_secret:            09d149482b57e89b5a529d4e15ffa6623e01e6f6
+
+    # Output escaping settings
+    escaping_strategy:      false
+    escaping_method:        ESC_SPECIALCHARS
+
+    # Cache settings
+    lazy_cache_key:         true
+
+  .actions:
+    default_module:         iceBackendModule
+    default_action:         dashboard
+
+    error_404_module:       iceBackendModule
+    error_404_action:       error404
+
+    login_module:           iceBackendModule
+    login_action:           signIn
+
+    secure_module:          iceBackendModule
+    secure_action:          secure

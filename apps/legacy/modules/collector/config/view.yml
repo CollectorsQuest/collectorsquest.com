@@ -1,0 +1,12 @@
+all:
+  stylesheets: [legacy/collectors.css, legacy/collections.css]
+
+signupSuccess:
+  javascripts: [jquery/pstrength.js]
+  stylesheets: [legacy/forms.css]
+  components:
+    sidebar: [general, sidebar]
+
+signupFacebookSuccess:
+  components:
+    sidebar: [general, sidebar]
