@@ -58,7 +58,8 @@ class collectionComponents extends cqComponents
         $this->buttons[] = array(
           'text' => 'Empty Dropbox',
           'icon' => 'trash',
-          'route' => '@manage_dropbox?cmd=empty&encrypt=1'
+          'route' => '@manage_dropbox?cmd=empty&encrypt=1',
+          'confirm' => 'This will permanently delete all Collectibles in your Dropbox. Do you want to continue?'
         );
       }
     }
