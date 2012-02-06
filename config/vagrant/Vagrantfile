@@ -1,6 +1,6 @@
 Vagrant::Config.run do |config|
   config.vm.box = "collectorsquest"
-  config.vm.box_url = "http://collectorsquest.s3.amazonaws.com/virtualbox/collectorsquest.2012.01.20.box"
+  config.vm.box_url = "http://collectorsquest.s3.amazonaws.com/virtualbox/collectorsquest.2012-02-06.box"
 
   config.vm.network :hostonly, "172.16.183.128"
   config.vm.share_folder("vhosts", "/mnt/vhosts", "../../../", :nfs => true)
@@ -24,7 +24,7 @@ Vagrant::Config.run do |config|
     chef.cookbooks_path = "../cookbooks"
 
     chef.add_recipe("main")
-    chef.add_recipe("main::subversion")
+    chef.add_recipe("main::github")
     chef.add_recipe("main::web")
     chef.add_recipe("sphinx")
     chef.add_recipe("development")

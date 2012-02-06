@@ -33,4 +33,4 @@ base
 # Vagrant
 /config/vagrant/.vagrant
 /config/vagrant/platform
-/config/vagrant/github_rsa
+/config/vagrant/id_rsa

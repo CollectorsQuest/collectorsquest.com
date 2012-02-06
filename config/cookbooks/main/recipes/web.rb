@@ -1,5 +1,7 @@
 # web cookbook
 
+require_recipe "subversion"
+
 require_recipe "zend"
 require_recipe "zend::xsendfile"
 require_recipe "zend::browscap"
