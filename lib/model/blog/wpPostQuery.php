@@ -50,11 +50,4 @@ class wpPostQuery extends BasewpPostQuery {
       ->filterByPostStatus(array('publish', 'draft'), Criteria::IN);
   }
 
-
-  public function filterByPostTypePost()
-  {
-    return $this
-      ->filterByPostType('post');
-  }
-
 } // wpPostQuery

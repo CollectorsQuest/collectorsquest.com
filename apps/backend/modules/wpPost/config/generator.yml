@@ -29,7 +29,9 @@ generator:
         batch_actions: { }
         object_actions: { }
         sort: [ post_date, desc ]
-        query_methods: [ filterByPublishedOrDraft, filterByPostTypePost ]
+        query_methods:
+          filterByPublishedOrDraft: []
+          filterByPostType:  ['post']
 
       filter:
         display: [ post_author, post_date, post_status, post_title, post_content ]
