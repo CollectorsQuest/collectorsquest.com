@@ -14,3 +14,4 @@ register_shutdown_function(create_function('', 'touch("cache/.ignore"); touch("l
 chdir(dirname(__FILE__));
 require_once(dirname(__FILE__).'/config/ProjectConfiguration.class.php');
 include(sfCoreAutoload::getInstance()->getBaseDir().'/command/cli.php');
+
