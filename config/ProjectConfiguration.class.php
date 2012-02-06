@@ -2,6 +2,7 @@
 
 date_default_timezone_set('America/New_York');
 
+define('SF_LIB_DIR', dirname(__FILE__).'/../lib/vendor/symfony/lib/autoload/sfCoreAutoload.class.php');
 require_once __DIR__.'/../plugins/iceLibsPlugin/lib/autoload/IceCoreAutoload.class.php';
 require_once __DIR__.'/../plugins/iceLibsPlugin/lib/autoload/SplClassLoader.class.php';
 IceCoreAutoload::register();
