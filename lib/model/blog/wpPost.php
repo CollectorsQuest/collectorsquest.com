@@ -55,12 +55,19 @@ class wpPost extends BasewpPost
 
   public function getPlainPostContent()
   {
-    return strip_tags($this->getPostContent());
+    return trim(strip_tags($this->getPostContent()));
   }
 
   public function countPostContentWords()
   {
-    return count(explode(' ', $this->getPlainPostContent()));
+    if ('' == $this->getPlainPostContent())
+    {
+      return 0;
+    }
+    else
+    {
+      return count(explode(' ', $this->getPlainPostContent()));
+    }
   }
 
   public function countPostContentChars()
