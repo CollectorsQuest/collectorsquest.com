@@ -17,10 +17,14 @@ generator:
         query_methods: [joinWithwpUser]
       fields:
         wp_user:  { label: Author, is_sortable: true }
+        post_title: { label: Title }
+        post_date: { label: Date }
+        count_words: { label: "# Words" }
+        count_chars: { label: "# Chars" }
 
       list:
-        title: WP Posts
-        display: [wp_user, _post_title, post_date, _count_words, _count_chars]
+        title: Blog Posts
+        display: [ wp_user, _post_title, _count_words, _count_chars, post_date ]
         actions: {}
         batch_actions: {}
         object_actions: {}
