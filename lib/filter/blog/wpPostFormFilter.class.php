@@ -15,16 +15,9 @@ class wpPostFormFilter extends BasewpPostFormFilter
    * http://codex.wordpress.org/Post_Status_Transitions
    */
   protected static $post_status_valus = array(
-      'publish' => 'publish', // default selection
-      'new' => 'new',
-      'pending' => 'pending',
-      'draft' => 'draft',
-      'auto-draft' => 'auto-draft',
-      'future' => 'future',
-      'private' => 'private',
-      'inherit' => 'inherit',
-      'trash' => 'trash',
       '' => 'All statuses',
+      'publish' => 'Published', // default selection
+      'draft' => 'Draft',
   );
 
   /**
@@ -32,11 +25,11 @@ class wpPostFormFilter extends BasewpPostFormFilter
    * http://codex.wordpress.org/Function_Reference/wp_insert_post
    */
   protected static $post_type_values = array(
-      'post' => 'post', // default selection
-      'page' => 'page',
-      'link' => 'link',
-      'nav_menu_item' => 'nav_menu_item',
       '' => 'All types',
+      'post' => 'Post', // default selection
+      'page' => 'Page',
+      'link' => 'Link',
+      'nav_menu_item' => 'Navigation Menu Item',
       // and custom post types, but we won't handle those
   );
 
@@ -50,6 +43,14 @@ class wpPostFormFilter extends BasewpPostFormFilter
     $this->setupPostDateField();
 
     $this->widgetSchema['post_author']->setOption('add_empty', true);
+
+    $this->widgetSchema->setLabels(array(
+        'post_author' => 'Author',
+        'post_status' => 'Status',
+        'post_content' => 'Search body',
+        'post_type' => 'Type',
+        'post_title' => 'Search title',
+    ));
   }
 
 
@@ -60,7 +61,7 @@ class wpPostFormFilter extends BasewpPostFormFilter
     ));
 
     $this->validatorSchema['post_status'] = new sfValidatorChoice(array(
-        'choices' => array_values(self::$post_status_valus),
+        'choices' => array_keys(self::$post_status_valus),
         'required' => false,
     ));
   }
@@ -73,7 +74,7 @@ class wpPostFormFilter extends BasewpPostFormFilter
     ));
 
     $this->validatorSchema['post_type'] = new sfValidatorChoice(array(
-        'choices' => array_values(self::$post_type_values),
+        'choices' => array_keys(self::$post_type_values),
         'required' => false,
     ));
   }
