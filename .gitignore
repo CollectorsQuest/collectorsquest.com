@@ -22,7 +22,9 @@ base
 # composer modules
 .composer
 /plugins/sf*Plugin
+/plugins/ice*Plugin
 /lib/vendor/neo4jphp
+!/plugions/sfPropelORMPlugin
 
 # symlinked folders (when on windows)
 /web/sf
