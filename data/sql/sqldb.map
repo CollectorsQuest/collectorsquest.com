@@ -2,9 +2,14 @@
 lib.model.blog.schema.sql=blog
 lib.model.schema.sql=propel
 lib.model.archive.schema.sql=archive
+
+lib.model.triggers.sql=propel
+lib.mode.views.sql=propel
+lib.model.procedures.sql=propel
+
 plugins.iceCrontabPlugin.lib.model.schema.sql=icepique
 plugins.iceJobQueuePlugin.lib.model.schema.sql=icepique
 plugins.iceSpamControlPlugin.lib.model.schema.sql=propel
 plugins.iceTaggablePlugin.lib.model.schema.sql=propel
 plugins.sfGuardPlugin.lib.model.schema.sql=propel
-lib.model.legacy.schema.sql=propel
+
