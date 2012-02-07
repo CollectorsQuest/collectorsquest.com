@@ -39,6 +39,7 @@ classes:
 
     propel_behaviors:
       archivable: { archive_class: CollectorArchive, archived_at_column: archived_at }
+      extra_properties: ~
       timestampable:  ~
 
   ###

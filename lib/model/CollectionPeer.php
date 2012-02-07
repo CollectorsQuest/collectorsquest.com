@@ -178,7 +178,7 @@ class CollectionPeer extends BaseCollectionPeer
         case 'Collector':
           $c->add(CollectionPeer::COLLECTOR_ID, $object->getId(), Criteria::NOT_EQUAL);
           break;
-        case 'CollectionItem':
+        case 'Collectible':
           $c->add(CollectionPeer::ID, $object->getCollection()->getId(), Criteria::NOT_EQUAL);
           break;
       }
@@ -244,7 +244,7 @@ class CollectionPeer extends BaseCollectionPeer
 
           $c->add(CollectionPeer::COLLECTOR_ID, $object->getId(), Criteria::NOT_EQUAL);
           break;
-        case 'CollectionItem':
+        case 'Collectible':
           $tag_ids = $object->getCollection()->getCollectionCategory()->getTagIds();
           $c->add(CollectionPeer::ID, $object->getCollection()->getId(), Criteria::NOT_EQUAL);
           break;
