@@ -33,9 +33,9 @@ class PropelMigration_1328632411
         CREATE TABLE `collector_extra_property`
         (
           `id` INTEGER NOT NULL AUTO_INCREMENT,
+          `collector_id` INTEGER NOT NULL,
           `property_name` VARCHAR(255) NOT NULL,
           `property_value` TEXT,
-          `collector_id` INTEGER NOT NULL,
           PRIMARY KEY (`id`),
           INDEX `collector_extra_property_FI_1` (`collector_id`),
           CONSTRAINT `collector_extra_property_FK_1`
