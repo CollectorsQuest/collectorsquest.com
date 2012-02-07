@@ -429,11 +429,17 @@ class manageActions extends cqActions
       $this->redirect('@manage_collections');
     }
 
-    $form = new ManageCollectiblesForm(array('collectibles' => $pager->getResults(), 'user' => $this->getUser()->getCollector()));
+    $form = new ManageCollectiblesForm(array(
+      'collectibles' => $pager->getResults(),
+      'collector' => $this->getUser()->getCollector()
+    ));
 
     if ($request->isMethod('post'))
     {
-      $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
+      $form->bind(
+        $request->getParameter($form->getName()),
+        $request->getFiles($form->getName())
+      );
 
       if ($form->isValid())
       {
@@ -443,6 +449,7 @@ class manageActions extends cqActions
           foreach ($form->getValues() as $index => $value)
           {
             $collectible = CollectiblePeer::retrieveByPK($value['id']);
+            $collectible->setCollectionId($value['collection_id']);
             $collectible->setName($value['name']);
             $collectible->setDescription($value['description'], 'html');
             $collectible->setTags(is_array($value['tags']) ? implode(', ', $value['tags']) : $value['tags']);
