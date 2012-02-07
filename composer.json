@@ -28,17 +28,6 @@
                 }
             }
         },
-        "CollectorsQuest/sfGravatarPlugin": {
-            "package": {
-                "name": "plugins/sfGravatarPlugin",
-                "version": "0.9.0",
-                "source": {
-                    "url": "git://github.com/CollectorsQuest/sfGravatarPlugin.git",
-                    "type": "git",
-                    "reference": "13875a44c453f3b34860dc12df0e7831dbd6157a"
-                }
-            }
-        },
         "Jadell/neo4jphp": {
             "package": {
                 "name": "lib/vendor/neo4jphp",
@@ -57,7 +46,6 @@
     },
     "require": {
         "plugins/sfFormExtraPlugin": "1.1.3",
-        "plugins/sfGravatarPlugin": "0.9.0",
         "plugins/sfGuardPlugin": "4.0.2",
         "lib/vendor/neo4jphp": "0.0.6"
     }
