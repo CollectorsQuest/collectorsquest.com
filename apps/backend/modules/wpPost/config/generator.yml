@@ -15,17 +15,27 @@ generator:
       actions:
         list: ~
         query_methods: [joinWithwpUser]
+
       fields:
         wp_user:  { label: Author, is_sortable: true }
+        post_date: { label: Publish Date }
+        count_words: { label: "# Words" }
+        count_chars: { label: "# Chars" }
 
       list:
-        title: WP Posts
-        display: [wp_user, _post_title, post_date, _count_words, _count_chars]
-        actions: {}
-        batch_actions: {}
-        object_actions: {}
+        title: Blog Posts
+        display: [ wp_user, _post_title, _count_words, _count_chars, post_date ]
+        actions: { }
+        batch_actions: { }
+        object_actions: { }
+        sort: [ post_date, desc ]
+        query_methods:
+          filterByPublishedOrDraft: []
+          filterByPostType:  ['post']
 
-      filter:  ~
+      filter:
+        display: [ post_author, post_date, post_status, post_title, post_content ]
+
       form:    ~
       edit:    ~
       new:     ~

@@ -42,4 +42,12 @@ class wpPostQuery extends BasewpPostQuery {
         ->orderByUserNicename($order)
       ->endUse();
   }
+
+
+  public function filterByPublishedOrDraft()
+  {
+    return $this
+      ->filterByPostStatus(array('publish', 'draft'), Criteria::IN);
+  }
+
 } // wpPostQuery

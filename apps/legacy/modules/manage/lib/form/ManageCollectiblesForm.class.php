@@ -14,7 +14,7 @@ class ManageCollectiblesForm extends sfForm
     /* @var $collectible Collectible */
     foreach ($this->getDefault('collectibles') as $item)
     {
-      $this->embedForm($i++, new SingleCollectibleForm($item));
+      $this->embedForm($i++, new CollectibleEditForm($item));
     }
 
     $this->getWidgetSchema()->setNameFormat('collectibles[%s]');

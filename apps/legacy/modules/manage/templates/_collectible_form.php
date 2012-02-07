@@ -2,6 +2,16 @@
 <?php echo $form->renderHiddenFields() ?>
 
 <div class="span-4" style="text-align: right;">
+  <?php echo cq_label_for($form, 'collection_id', __('Collection:')); ?>
+  <div class="optional"><?php echo __('(optional)'); ?></div>
+</div>
+<div class="prepend-1 span-13 last">
+  <?php echo cq_select_tag($form, 'collection_id'); ?>
+  <?php echo $form['collection_id']->renderError(); ?>
+</div>
+<div class="clear append-bottom">&nbsp;</div>
+
+<div class="span-4" style="text-align: right;">
   <?php echo cq_label_for($form, 'name', __('Name:')); ?>
   <div class="required"><?php echo __('(required)'); ?></div>
 </div>
