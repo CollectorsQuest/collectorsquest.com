@@ -46,19 +46,27 @@ class collectionComponents extends cqComponents
         'route' => 'fancybox_collection_add_collectibles('. $this->collection->getId() .')'
       );
 
+      /**
+        $this->buttons[] = array(
+          'text' => 'Move Collectibles',
+          'icon' => 'shuffle',
+          'route' => 'ajax_load("#contents", "'. url_for('@ajax_collection?section=component&page=collectiblesMove') .'?id='. $this->collection->getId() .'")'
+        );
+      */
+
       $this->buttons[] = array(
         'text' => 'Re-Order Collectibles',
         'icon' => 'refresh',
         'route' => 'ajax_load("#contents", "'. url_for('@ajax_collection?section=component&page=collectiblesReorder') .'?id='. $this->collection->getId() .'")'
       );
 
-
       if ($this->collection instanceof CollectionDropbox)
       {
         $this->buttons[] = array(
           'text' => 'Empty Dropbox',
           'icon' => 'trash',
-          'route' => '@manage_dropbox?cmd=empty&encrypt=1'
+          'route' => '@manage_dropbox?cmd=empty&encrypt=1',
+          'confirm' => 'This will permanently delete all Collectibles in your Dropbox. Do you want to continue?'
         );
       }
     }
@@ -127,6 +135,38 @@ class collectionComponents extends cqComponents
 
   public function executeCollectiblesReorder()
   {
+    $this->_get_collection();
+
+    if ($this->getUser()->isOwnerOf($this->collection))
+    {
+      $c = new Criteria();
+      $c->addAscendingOrderByColumn(CollectiblePeer::POSITION);
+      $c->addDescendingOrderByColumn(CollectiblePeer::CREATED_AT);
+
+      $this->collectibles = $this->collection->getCollectibles($c);
+    }
+
+    return sfView::SUCCESS;
+  }
+
+  public function executeCollectiblesMove()
+  {
+    $this->_get_collection();
+
+    if ($this->getUser()->isOwnerOf($this->collection))
+    {
+      $c = new Criteria();
+      $c->addAscendingOrderByColumn(CollectiblePeer::POSITION);
+      $c->addDescendingOrderByColumn(CollectiblePeer::CREATED_AT);
+
+      $this->collectibles = $this->collection->getCollectibles($c);
+    }
+
+    return sfView::SUCCESS;
+  }
+
+  private function _get_collection()
+  {
     if ($id = $this->getRequestParameter('id'))
     {
       $this->collection = CollectionPeer::retrieveByPk($id);
@@ -145,17 +185,6 @@ class collectionComponents extends cqComponents
         $this->collection = $collector->getCollectionDropbox();
       }
     }
-
-    if ($this->getUser()->isOwnerOf($this->collection))
-    {
-      $c = new Criteria();
-      $c->addAscendingOrderByColumn(CollectiblePeer::POSITION);
-      $c->addDescendingOrderByColumn(CollectiblePeer::CREATED_AT);
-
-      $this->collectibles = $this->collection->getCollectibles($c);
-    }
-
-    return sfView::SUCCESS;
   }
 
 }

@@ -6,12 +6,21 @@ class CollectibleEditForm extends BaseCollectibleForm
   {
     parent::configure();
 
-    $this->validatorSchema->setOption('allow_extra_fields', true);
-    $this->validatorSchema->setOption('filter_extra_fields', true);
+    /** @var $collector Collector */
+    $collector = $this->getOption('collector', $this->getObject()->getCollector());
 
     $this->getWidgetSchema()->setFormFormatterName('legacy');
 
-    $this->validatorSchema->setPostValidator(new sfValidatorPass());
+    $this->validatorSchema->setOption('allow_extra_fields', true);
+    $this->validatorSchema->setOption('filter_extra_fields', true);
+
+    $criteria = new Criteria();
+    $criteria->add(CollectionPeer::COLLECTOR_ID, $collector->getId());
+    $criteria->addAscendingOrderByColumn(CollectionPeer::NAME);
+
+    $this->widgetSchema['collection_id'] = new sfWidgetFormPropelChoice(array(
+      'model' => 'Collection', 'criteria' => $criteria, 'add_empty' => true
+    ));
 
     $this->widgetSchema['thumbnail'] = new sfWidgetFormInputFile();
     $this->validatorSchema['thumbnail'] = new sfValidatorFile(array('required' => false));
@@ -19,13 +28,29 @@ class CollectibleEditForm extends BaseCollectibleForm
     $this->widgetSchema['tags'] = new sfWidgetFormInput();
     $this->validatorSchema['tags'] = new sfValidatorPass();
 
+    $this->validatorSchema->setPostValidator(new sfValidatorPass());
+
     unset($this->widgetSchema['graph_id'], $this->validatorSchema['graph_id']);
     unset($this->widgetSchema['collector_id'], $this->validatorSchema['collector_id']);
-    unset($this->widgetSchema['collection_id'], $this->validatorSchema['collection_id']);
     unset($this->widgetSchema['slug'], $this->validatorSchema['slug']);
 
     unset($this->widgetSchema['position'], $this->widgetSchema['score']);
     unset($this->validatorSchema['position'], $this->validatorSchema['score']);
+
+    if ($collector && $collector->getUserType() == 'Seller')
+    {
+      $collectibleForSale = $this->getObject()->getForSaleInformation();
+
+      if (!$collectibleForSale)
+      {
+        $collectibleForSale = new CollectibleForSale();
+        $collectibleForSale->setCollectible($this->getObject());
+      }
+
+      $embedForm = new CollectibleForSaleEditForm($collectibleForSale);
+
+      $this->embedForm('for_sale', $embedForm);
+    }
   }
 
   public function updateDescriptionColumn($value)
