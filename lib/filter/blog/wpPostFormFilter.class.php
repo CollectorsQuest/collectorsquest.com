@@ -42,7 +42,10 @@ class wpPostFormFilter extends BasewpPostFormFilter
     $this->setupPostTypeField();
     $this->setupPostDateField();
 
-    $this->widgetSchema['post_author']->setOption('add_empty', true);
+    $this->widgetSchema['post_author'] = new sfWidgetFormPropelChoice(array(
+      'model' => 'wpUser', 'add_empty' => true,
+      'query_methods' => array('orderByDisplayName')
+    ));
 
     $this->widgetSchema->setLabels(array(
         'post_author' => 'Author',

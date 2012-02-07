@@ -18,7 +18,7 @@ generator:
 
       fields:
         wp_user:  { label: Author, is_sortable: true }
-        post_date: { label: Date }
+        post_date: { label: Publish Date }
         count_words: { label: "# Words" }
         count_chars: { label: "# Chars" }
 
