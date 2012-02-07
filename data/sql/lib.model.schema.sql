@@ -944,5 +944,25 @@ CREATE TABLE `newsletter_signup`
 	PRIMARY KEY (`id`)
 ) ENGINE=InnoDB;
 
+-- ---------------------------------------------------------------------
+-- collector_extra_property
+-- ---------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `collector_extra_property`;
+
+CREATE TABLE `collector_extra_property`
+(
+	`id` INTEGER NOT NULL AUTO_INCREMENT,
+	`property_name` VARCHAR(255) NOT NULL,
+	`property_value` TEXT,
+	`collector_id` INTEGER NOT NULL,
+	PRIMARY KEY (`id`),
+	INDEX `collector_extra_property_FI_1` (`collector_id`),
+	CONSTRAINT `collector_extra_property_FK_1`
+		FOREIGN KEY (`collector_id`)
+		REFERENCES `collector` (`id`)
+		ON DELETE CASCADE
+) ENGINE=InnoDB;
+
 # This restores the fkey checks, after having unset them earlier
 SET FOREIGN_KEY_CHECKS = 1;
