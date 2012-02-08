@@ -1,0 +1,41 @@
+connection: icepique
+noXsd: false
+defaultIdMethod: native
+package: plugins.iceJobQueuePlugin.lib.model
+encoding: utf8
+
+classes:
+  JobQueue:
+    phpName: iceModelJobQueue
+    columns:
+      id:  ~
+      unique_key:     { type: char, size: 64 }
+      function_name:  { type: varchar, size: 255, primaryString: true }
+      priority:       { type: integer, sqlType: "SMALLINT UNSIGNED", required: true, default: 1 }
+      data:           { type: longvarchar, sqlType: "LONGBLOB", required: true }
+      when_to_run:    { type: integer, sqlType: "BIGINT UNSIGNED", required: true, default: 0 }
+      created_at:     { type: timestamp, defaultExpr: CURRENT_TIMESTAMP }
+    uniques:
+      job_queue_U_1:  [unique_key]
+
+  JobRun:
+    phpName: iceModelJobRun
+    columns:
+      id:  ~
+      crontab_id:    { type: integer, required: false, default: null }
+      context:       { type: char, sqlType: "ENUM('global', 'collectorsquest')", default: global, required: true }
+      unique_key:    { type: char, size: 64, required: true }
+      job_handle:    { type: char, size: 64, required: true }
+      function_name: { type: varchar, size: 255 }
+      completed:     { type: integer, default: 0 }
+      total:         { type: integer, default: 0 }
+      status:        { type: char, sqlType: "ENUM('pending', 'queued', 'running', 'cancelled', 'completed', 'failed')", default: pending, required: true }
+      cpu_stats:     { type: longvarchar, required: true }
+      memory_stats:  { type: longvarchar, required: true }
+      loadavg_stats: { type: longvarchar, required: true }
+      priority:      { type: integer, sqlType: "SMALLINT UNSIGNED", required: true, default: 1 }
+      is_background: { type: boolean, required: true, default: false }
+      updated_at:  ~
+      created_at:  ~
+    uniques:
+      job_run_U_1: [unique_key]
