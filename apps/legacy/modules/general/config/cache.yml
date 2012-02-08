@@ -6,4 +6,4 @@ index:
 _indexTheme:
   enabled:     false
   with_layout: false
-  lifetime:    3600
+  lifetime:    60
