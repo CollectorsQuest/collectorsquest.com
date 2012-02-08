@@ -46,9 +46,9 @@
   </div>
   <?php foreach($playlists['events'] as $playlist): ?>
   <div style="float: left; width: 150px; margin: 0 10px; text-align: center;">
-    <?php echo link_to(image_tag($playlist->getThumbSmallSrc()), '@video_playlist?playlist_id='.$playlist->getId().'&slug='.$playlist->getSlug()); ?>
+    <?php echo link_to(image_tag($playlist->getThumbSmallSrc()), '@video_playlist?id='. $playlist->getId() .'&slug='. $playlist->getSlug()); ?>
     <br>
-    <?php echo link_to($playlist->getTitle(), '@video_playlist?playlist_id='.$playlist->getId().'&slug='.$playlist->getSlug()); ?>
+    <?php echo link_to($playlist->getTitle(), '@video_playlist?id='. $playlist->getId() .'&slug='. $playlist->getSlug()); ?>
   </div>
   <?php endforeach; ?>
   <br clear="all">
@@ -65,9 +65,9 @@
     <ul>
       <?php foreach($playlists['spotlight'] as $key => $playlist): ?>
       <li style="float: left; width: 150px; margin: 0pt 10px; text-align: center;">
-        <?php echo link_to(image_tag($playlist->getThumbSmallSrc()), '@video_playlist?playlist_id='. $playlist->getId() .'&slug='. $playlist->getSlug()); ?>
+        <?php echo link_to(image_tag($playlist->getThumbSmallSrc()), '@video_playlist?id='. $playlist->getId() .'&slug='. $playlist->getSlug()); ?>
         <br>
-        <?php echo link_to($playlist->getTitle(), '@video_playlist?playlist_id='. $playlist->getId() .'&slug='. $playlist->getSlug()); ?>
+        <?php echo link_to($playlist->getTitle(), '@video_playlist?id='. $playlist->getId() .'&slug='. $playlist->getSlug()); ?>
       </li>
       <?php endforeach; ?>
     </ul>

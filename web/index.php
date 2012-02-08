@@ -19,41 +19,16 @@ else
 /**
  * @var cqApplicationConfiguration $configuration
  */
-require dirname(__FILE__) .'/../config/bootstrap.php';
+require __DIR__ .'/../config/bootstrap.php';
 sfContext::createInstance($configuration)->dispatch();
 
 // Time the request and send it to Graphite
 cqStats::timing('collectorsquest.response', cqTimer::getInstance()->getElapsedTime());
 
-/**
- * Track requests from the top search spiders to statsd
- */
-$spiders = array(
-  'googlebot' => "/\.googlebot\.com$/i",
-  'msnbot' => "/search\.live\.com$/i",
-  'yahoo' => "/\.yahoo\.com$/i"
-);
-
-foreach ($spiders as $name => $pattern)
+// Tracking if the request is from a Search Engine
+if (false !== $crawler = cqStatic::isCrawler())
 {
-  if (isset($_SERVER['HTTP_USER_AGENT']) && stristr($_SERVER['HTTP_USER_AGENT'], $name))
-  {
-    $ip = cqStatic::getUserIpAddress();
-    $hostname = gethostbyaddr($ip);
-
-    if (preg_match($pattern, $hostname))
-    {
-      // Now we have a hit that half-passes the check. One last go:
-      $real_ip = gethostbyname($hostname);
-
-      if ($ip == $real_ip)
-      {
-        cqStats::increment('collectorsquest.crawlers.'. $name);
-      }
-    }
-
-    break;
-  }
+  cqStats::increment('collectorsquest.crawlers.'. $crawler);
 }
 
 /**

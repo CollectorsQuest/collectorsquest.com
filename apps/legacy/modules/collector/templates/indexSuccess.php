@@ -199,8 +199,8 @@
       <p><?= __('Before you leave, make sure you can find your way back.'); ?></p>
       <p>
         <b><?= __('Direct link:'); ?></b><br>
-        <a href="<?= url_for('@collector_by_id?id='.$collector->getId().'&slug='.$collector->getSlug(), true); ?>" title="<?= $collector->getDisplayName(); ?>">
-          <?= url_for('@collector_by_id?id='.$collector->getId().'&slug='.$collector->getSlug(), true); ?>
+        <a href="<?= url_for('@collector_by_slug?id='.$collector->getId().'&slug='.$collector->getSlug(), true); ?>" title="<?= $collector->getDisplayName(); ?>">
+          <?= url_for('@collector_by_slug?id='.$collector->getId().'&slug='.$collector->getSlug(), true); ?>
         </a>
       </p>
     </fieldset>

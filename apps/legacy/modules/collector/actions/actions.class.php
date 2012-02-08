@@ -110,7 +110,7 @@ class collectorActions extends cqActions
       $id   = $collector->getId();
       $slug = $collector->getSlug();
 
-      $this->redirect('@collector_by_id?id='. $id .'&slug='. $slug);
+      $this->redirect('@collector_by_slug?id='. $id .'&slug='. $slug);
     }
 
     $this->redirect('@login');
