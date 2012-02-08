@@ -320,52 +320,6 @@ class Collector extends BaseCollector
     return CollectorGeocachePeer::doSelectOne($criteria);
   }
 
-  public function sendToImpermium($opration = 'UPDATE')
-  {
-    $params = array(
-      'user_id' => $this->getId(),
-      'operation' => $opration,
-      'alias' => $this->getDisplayName(),
-      'password_hash' => substr($this->getSha1Password(), 0, 12),
-      'email_identity' => $this->getEmail(),
-      'zip' => $this->getProfile()->getZipPostal(),
-      'user_url' => $this->getProfile()->getWebsiteUrl(),
-      'profile_permalink' => 'http://www.collectorsquest.com/collector/'. $this->getId() .'/'. $this->getSlug()
-    );
-
-    if (php_sapi_name() !== 'cli')
-    {
-      $params['enduser_ip'] = IceStatic::getUserIpAddress();
-      $params['http_headers'] = array(
-        "HTTP_ACCEPT_LANGUAGE" => $_SERVER["HTTP_ACCEPT_LANGUAGE"],
-        "HTTP_REFERER" => $_SERVER["HTTP_REFERER"],
-        "HTTP_ACCEPT_CHARSET" => @$_SERVER["HTTP_ACCEPT_CHARSET"],
-        "HTTP_KEEP_ALIVE" => @$_SERVER["HTTP_KEEP_ALIVE"],
-        "HTTP_ACCEPT_ENCODING" => $_SERVER["HTTP_ACCEPT_ENCODING"],
-        "HTTP_CONNECTION" => $_SERVER["HTTP_CONNECTION"],
-        "HTTP_ACCEPT" => $_SERVER["HTTP_ACCEPT"],
-        "HTTP_USER_AGENT" => $_SERVER["HTTP_USER_AGENT"]
-      );
-    }
-
-    try
-    {
-      $impermium = cqStatic::getImpermiumClient();
-      $response = $impermium->api('user/account', $params, sfConfig::get('sf_environment') !== 'prod');
-
-      if (!empty($response['spam_classifier']) && is_array($response['spam_classifier']))
-      {
-        $this->setIsSpam($response['spam_classifier']['label'] == 'spam' ? true : false);
-        $this->setSpamScore(100 * $response['spam_classifier']['score']);
-        $this->save();
-      }
-    }
-    catch (ImpermiumApiException $e)
-    {
-      ;
-    }
-  }
-
   public function sendToDefensio($operation = 'UPDATE')
   {
     $content = implode(' ', array(

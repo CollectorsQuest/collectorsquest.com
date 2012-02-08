@@ -34,9 +34,6 @@ class manageActions extends cqActions
         // Clear the Geo Cache
         CollectorGeocacheQuery::create()->filterByCollectorId($collector->getId())->delete();
 
-        // Send the profile data to Impermium to analyse
-        $collector->sendToImpermium('UPDATE');
-
         // Send the profile data to Defensio to analyse
         $collector->sendToDefensio('UPDATE');
 
