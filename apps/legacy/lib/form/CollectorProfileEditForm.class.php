@@ -35,7 +35,7 @@ class CollectorProfileEditForm extends BaseCollectorProfileForm
       'collections' => new sfValidatorString(array('required' => false)),
       'collecting' => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'most_spent' => new sfValidatorNumber(array('min' => 0, 'max' => 2147483647, 'required' => false)),
-      'anually_spent' => new sfValidatorNumber(array('min' => 0, 'max' => 2147483647, 'required' => false)),
+      'annually_spent' => new sfValidatorNumber(array('min' => 0, 'max' => 2147483647, 'required' => false)),
       'new_item_every' => new sfValidatorString(array('max_length' => 64, 'required' => false)),
       'interests' => new sfValidatorString(array('required' => false)),
       'notifications' => new sfValidatorString(array('required' => false)),
@@ -53,5 +53,6 @@ class CollectorProfileEditForm extends BaseCollectorProfileForm
       'expert' => 'Expert',
     );
   }
+
 
 }

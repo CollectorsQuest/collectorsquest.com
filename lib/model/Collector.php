@@ -2,6 +2,7 @@
 
 class Collector extends BaseCollector
 {
+
   protected $profile = null;
 
   public function postSave(PropelPDO $con = null)
@@ -56,7 +57,7 @@ class Collector extends BaseCollector
   {
     if (!$salt = $this->getSalt())
     {
-      $salt = md5(rand(100000, 999999) .'_'. $this->getUsername());
+      $salt = md5(rand(100000, 999999) . '_' . $this->getUsername());
       $this->setSalt($salt);
     }
 
@@ -76,7 +77,7 @@ class Collector extends BaseCollector
 
         $json = json_encode(array(
           'version' => $version, 'id' => $this->getId(),
-          'created' => (int) $this->getCreatedAt('U'), 'time' => (int) $time
+          'created' => (int)$this->getCreatedAt('U'), 'time' => (int)$time
         ));
 
         $hash = sprintf(
@@ -249,7 +250,7 @@ class Collector extends BaseCollector
     $tag_ids = array();
     while ($tag_id = $stmt->fetchColumn(0))
     {
-      $tag_ids[] = (int) $tag_id;
+      $tag_ids[] = (int)$tag_id;
     }
 
     return $tag_ids;
@@ -320,6 +321,52 @@ class Collector extends BaseCollector
     return CollectorGeocachePeer::doSelectOne($criteria);
   }
 
+  public function sendToImpermium($opration = 'UPDATE')
+  {
+    $params = array(
+      'user_id' => $this->getId(),
+      'operation' => $opration,
+      'alias' => $this->getDisplayName(),
+      'password_hash' => substr($this->getSha1Password(), 0, 12),
+      'email_identity' => $this->getEmail(),
+      'zip' => $this->getProfile()->getZipPostal(),
+      'user_url' => $this->getProfile()->getWebsiteUrl(),
+      'profile_permalink' => 'http://www.collectorsquest.com/collector/' . $this->getId() . '/' . $this->getSlug()
+    );
+
+    if (php_sapi_name() !== 'cli')
+    {
+      $params['enduser_ip'] = IceStatic::getUserIpAddress();
+      $params['http_headers'] = array(
+        "HTTP_ACCEPT_LANGUAGE" => $_SERVER["HTTP_ACCEPT_LANGUAGE"],
+        "HTTP_REFERER" => $_SERVER["HTTP_REFERER"],
+        "HTTP_ACCEPT_CHARSET" => @$_SERVER["HTTP_ACCEPT_CHARSET"],
+        "HTTP_KEEP_ALIVE" => @$_SERVER["HTTP_KEEP_ALIVE"],
+        "HTTP_ACCEPT_ENCODING" => $_SERVER["HTTP_ACCEPT_ENCODING"],
+        "HTTP_CONNECTION" => $_SERVER["HTTP_CONNECTION"],
+        "HTTP_ACCEPT" => $_SERVER["HTTP_ACCEPT"],
+        "HTTP_USER_AGENT" => $_SERVER["HTTP_USER_AGENT"]
+      );
+    }
+
+    try
+    {
+      $impermium = cqStatic::getImpermiumClient();
+      $response = $impermium->api('user/account', $params, sfConfig::get('sf_environment') !== 'prod');
+
+      if (!empty($response['spam_classifier']) && is_array($response['spam_classifier']))
+      {
+        $this->setIsSpam($response['spam_classifier']['label'] == 'spam' ? true : false);
+        $this->setSpamScore(100 * $response['spam_classifier']['score']);
+        $this->save();
+      }
+    }
+    catch (ImpermiumApiException $e)
+    {
+      ;
+    }
+  }
+
   public function sendToDefensio($operation = 'UPDATE')
   {
     $content = implode(' ', array(
@@ -336,7 +383,7 @@ class Collector extends BaseCollector
       'author-logged-in' => ($operation == 'UPDATE') ? 'true' : 'false',
       'author-name' => $this->getDisplayName(),
       'author-url' => $this->getProfile()->getWebsiteUrl(),
-      'document-permalink' => 'http://www.collectorsquest.com/collector/'. $this->getId() .'/'. $this->getSlug(),
+      'document-permalink' => 'http://www.collectorsquest.com/collector/' . $this->getId() . '/' . $this->getSlug(),
       'content' => $content,
       'async' => 'false'
     );
@@ -445,23 +492,29 @@ class Collector extends BaseCollector
 
     /** @var $collector_identifiers CollectorIdentifier[] */
     if ($collector_identifiers = $this->getCollectorIdentifiers($con))
-    foreach ($collector_identifiers as $collector_identifier)
     {
-      $collector_identifier->delete($con);
+      foreach ($collector_identifiers as $collector_identifier)
+      {
+        $collector_identifier->delete($con);
+      }
     }
 
     /** @var $collector_geocaches CollectorGeoCache[] */
     if ($collector_geocaches = $this->getCollectorGeocaches($con))
-    foreach ($collector_geocaches as $collector_geocache)
     {
-      $collector_geocache->delete($con);
+      foreach ($collector_geocaches as $collector_geocache)
+      {
+        $collector_geocache->delete($con);
+      }
     }
 
     /** @var $collector_profiles CollectorProfile[] */
     if ($collector_profiles = $this->getCollectorProfiles($con))
-    foreach ($collector_profiles as $collector_profile)
     {
-      $collector_profile->delete($con);
+      foreach ($collector_profiles as $collector_profile)
+      {
+        $collector_profile->delete($con);
+      }
     }
 
     return parent::preDelete($con);
@@ -482,6 +535,66 @@ class Collector extends BaseCollector
     {
       return parent::__call($m, $a);
     }
+  }
+
+  public function getAnnuallySpend()
+  {
+    return $this->getProperty('about.annually_spent');
+  }
+
+  public function setAnnuallySpend($v)
+  {
+    return $this->setProperty('about.annually_spent', $v);
+  }
+
+  public function getWhatYouCollect()
+  {
+    return $this->getProperty('about.what_you_collect');
+  }
+
+  public function setWhatYouCollect($v)
+  {
+    return $this->setProperty('about.what_you_collect', $v);
+  }
+
+  public function getWhatYouSell()
+  {
+    return $this->getProperty('about.what_you_sell');
+  }
+
+  public function setWhatYouSell($v)
+  {
+    return $this->setProperty('about.what_you_sell', $v);
+  }
+
+  public function getPurchasesPerYear()
+  {
+    return $this->getProperty('about.purchases_per_year');
+  }
+
+  public function setPurchasesPerYear($v)
+  {
+    return $this->setProperty('about.purchases_per_year', $v);
+  }
+
+  public function getMostExpensiveItem()
+  {
+    return $this->getProperty('about.most_expensive_item');
+  }
+
+  public function setMostExpensiveItem($v)
+  {
+    return $this->setProperty('about.most_expensive_item', $v);
+  }
+
+  public function getCompany()
+  {
+    return $this->getProperty('about.company');
+  }
+
+  public function setCompany($v)
+  {
+    return $this->setProperty('about.company', $v);
   }
 
 }
