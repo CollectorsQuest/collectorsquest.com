@@ -10,6 +10,7 @@ CREATE TABLE `collectible_archive` (
   `slug` varchar(128) DEFAULT NULL,
   `description` text NOT NULL,
   `num_comments` int(11) DEFAULT '0',
+  `batch_hash` varchar(32) DEFAULT NULL,
   `score` int(11) DEFAULT '0',
   `position` int(11) DEFAULT '0',
   `is_name_automatic` tinyint(1) DEFAULT '0',
@@ -22,8 +23,9 @@ CREATE TABLE `collectible_archive` (
   KEY `collectible_archive_I_2` (`graph_id`),
   KEY `collectible_archive_I_3` (`collector_id`),
   KEY `collectible_archive_I_4` (`collection_id`),
-  KEY `collectible_archive_I_5` (`slug`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  KEY `collectible_archive_I_5` (`slug`),
+  KEY `collectible_archive_I_6` (`batch_hash`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 LOCK TABLES `collectible_archive` WRITE;
 /*!40000 ALTER TABLE `collectible_archive` DISABLE KEYS */;

@@ -12,7 +12,7 @@ class collectionAction extends cqAjaxAction
 
     if ($pk = $request->getParameter('id'))
     {
-      $collection = CollectionPeer::retrieveByPK($pk);
+      $collection = CollectorCollectionPeer::retrieveByPK($pk);
     }
     else if ($pk = $request->getParameter('collectible_id'))
     {

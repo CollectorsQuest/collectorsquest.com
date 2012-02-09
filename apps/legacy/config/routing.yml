@@ -23,7 +23,7 @@ ajax_editable_load:
 ajax_collection_snapshot:
   url:   /ajax/collection/:id/snapshot
   class: sfPropelRoute
-  options: { model: Collection, type: object, method: getObjectForRoute }
+  options: { model: CollectorCollection, type: object, method: getObjectForRoute }
   param: { module: ajax, action: collectionSnapshot }
   requirements: { id: '\d+' }
 
@@ -141,7 +141,7 @@ dropbox_by_slug:
 collection_by_slug:
   url:  /collection/:id/:slug
   class: cqPropelRoute
-  options: { model: Collection, type: object, method: getObjectForRoute, statsd: true }
+  options: { model: CollectorCollection, type: object, method: getObjectForRoute, statsd: true }
   param: { module: collection, action: index }
   requirements: { id: '\d+', slug: '[\-\w\.]+' }
 
@@ -362,7 +362,7 @@ manage_collections:
 manage_collection_by_slug:
   url:  /manage/collection/:id/:slug
   class: sfPropelRoute
-  options: { model: Collection, type: object, method: getObjectForRoute }
+  options: { model: CollectorCollection, type: object, method: getObjectForRoute }
   param: { module: manage, action: collection }
   requirements: { id: '\d+', slug: '[\-\w\.]+', sf_method: [get, post] }
 
@@ -378,7 +378,7 @@ manage_collectibles_dropbox:
 manage_collectibles_by_slug:
   url:  /manage/collectibles/:id/:slug
   class: sfPropelRoute
-  options: { model: Collection, type: object, method: getObjectForRoute }
+  options: { model: CollectorCollection, type: object, method: getObjectForRoute }
   params: { module: manage, action: collectibles }
   requirements:
     id: \d+

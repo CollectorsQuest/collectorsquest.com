@@ -23,7 +23,7 @@ class collectionActions extends cqActions
     }
     else
     {
-      /** @var $collection Collection */
+      /** @var $collection CollectorCollection */
       $collection = $object;
 
       /** @var $collector Collector */
@@ -42,16 +42,17 @@ class collectionActions extends cqActions
     if ($collection instanceof CollectionDropbox)
     {
       $c = new Criteria();
-      $c->add(CollectiblePeer::COLLECTOR_ID, $collector->getId(), Criteria::EQUAL);
-      $c->add(CollectiblePeer::COLLECTION_ID, null, Criteria::ISNULL);
+      $c->addJoin(CollectiblePeer::ID, CollectionCollectiblePeer::COLLECTIBLE_ID, Criteria::LEFT_JOIN);
+      $c->add(CollectionCollectiblePeer::COLLECTION_ID, null, Criteria::ISNULL);
     }
     else
     {
       $c = new Criteria();
-      $c->add(CollectiblePeer::COLLECTION_ID, $collection->getId());
+      $c->addJoin(CollectiblePeer::ID, CollectionCollectiblePeer::COLLECTIBLE_ID, Criteria::RIGHT_JOIN);
+      $c->add(CollectionCollectiblePeer::COLLECTION_ID, $collection->getId());
     }
 
-    $c->addAscendingOrderByColumn(CollectiblePeer::POSITION);
+    $c->addAscendingOrderByColumn(CollectionCollectiblePeer::POSITION);
     $c->addAscendingOrderByColumn(CollectiblePeer::CREATED_AT);
 
     $per_page = ($request->getParameter('show') == 'all') ? 999 : sfConfig::get('app_pager_list_collectibles_max', 16);
@@ -114,17 +115,17 @@ class collectionActions extends cqActions
     if ($collection->countCollectibles() == 0)
     {
       $c = new Criteria();
-      $c->add(CollectionPeer::IS_PUBLIC, true);
+      $c->add(CollectorCollectionPeer::IS_PUBLIC, true);
       if ($collection->getCollectionCategoryId())
       {
-        $c->add(CollectionPeer::COLLECTION_CATEGORY_ID, $collection->getCollectionCategoryId());
+        $c->add(CollectorCollectionPeer::COLLECTION_CATEGORY_ID, $collection->getCollectionCategoryId());
       }
-      $c->add(CollectionPeer::NUM_ITEMS, 4, Criteria::GREATER_EQUAL);
-      $c->addAscendingOrderByColumn(CollectionPeer::SCORE);
-      $c->addDescendingOrderByColumn(CollectionPeer::CREATED_AT);
+      $c->add(CollectorCollectionPeer::NUM_ITEMS, 4, Criteria::GREATER_EQUAL);
+      $c->addAscendingOrderByColumn(CollectorCollectionPeer::SCORE);
+      $c->addDescendingOrderByColumn(CollectorCollectionPeer::CREATED_AT);
       $c->setLimit(9);
 
-      $this->collections = CollectionPeer::doSelect($c);
+      $this->collections = CollectorCollectionPeer::doSelect($c);
 
       return 'NoCollectibles';
     }
@@ -189,9 +190,9 @@ class collectionActions extends cqActions
     $this->additional_multimedia = $collectible->getMultimedia(false);
 
     $c = new Criteria();
-    $c->add(CollectiblePeer::ID, $collectible->getId(), Criteria::NOT_EQUAL);
-    $c->addAscendingOrderByColumn(CollectiblePeer::POSITION);
-    $c->addAscendingOrderByColumn(CollectiblePeer::CREATED_AT);
+    $c->add(CollectionCollectiblePeer::COLLECTIBLE_ID, $collectible->getId(), Criteria::NOT_EQUAL);
+    $c->addAscendingOrderByColumn(CollectionCollectiblePeer::POSITION);
+    $c->addAscendingOrderByColumn(CollectionCollectiblePeer::CREATED_AT);
     $this->collectibles = $collection->getCollectibles($c);
 
     $this->loadHelpers('cqLinks');
@@ -304,7 +305,7 @@ class collectionActions extends cqActions
         return 'Step2';
         break;
       case 3:
-        $this->collection = CollectionPeer::retrieveByPK($request->getParameter('collection_id'));
+        $this->collection = CollectorCollectionPeer::retrieveByPK($request->getParameter('collection_id'));
 
         return 'Step3';
         break;

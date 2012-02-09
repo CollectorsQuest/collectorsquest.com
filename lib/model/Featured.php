@@ -124,7 +124,7 @@ class Featured extends BaseFeaturedNestedSet
       }
     }
 
-    $q = CollectionQuery::create();
+    $q = CollectorCollectionQuery::create();
 
     if (!empty($pks))                      $q->filterById($pks, Criteria::IN);
     if (!empty($collector_pks))            $q->filterByCollectorId($collector_pks, Criteria::IN);
@@ -172,8 +172,8 @@ class Featured extends BaseFeaturedNestedSet
 
       if (!empty($collection_category_pks))
       {
-        $q->join('Collectible.Collection');
-        $q->useQuery('Collection')
+        $q->join('Collectible.CollectorCollection');
+        $q->useQuery('CollectorCollection')
           ->filterByCollectionCategoryId($collection_category_pks)
           ->endUse();
       }

@@ -6,7 +6,7 @@ class wpPost extends BasewpPost
 {
   public function getRelatedCollections($limit = 2)
   {
-    return CollectionPeer::getPopularByTag($this->getTags('array'), $limit);
+    return CollectorCollectionPeer::getPopularByTag($this->getTags('array'), $limit);
   }
 
   public function getRelatedVideos($limit = 2)

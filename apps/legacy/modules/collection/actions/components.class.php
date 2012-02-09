@@ -6,7 +6,7 @@ class collectionComponents extends cqComponents
   {
     if ($id = $this->getRequestParameter('id'))
     {
-      $this->collection = CollectionPeer::retrieveByPk($id);
+      $this->collection = CollectorCollectionPeer::retrieveByPk($id);
     }
     else if ($id = $this->getRequestParameter('collector_id'))
     {
@@ -140,8 +140,8 @@ class collectionComponents extends cqComponents
     if ($this->getUser()->isOwnerOf($this->collection))
     {
       $c = new Criteria();
-      $c->addAscendingOrderByColumn(CollectiblePeer::POSITION);
-      $c->addDescendingOrderByColumn(CollectiblePeer::CREATED_AT);
+      $c->addAscendingOrderByColumn(CollectionCollectiblePeer::POSITION);
+      $c->addDescendingOrderByColumn(CollectionCollectiblePeer::CREATED_AT);
 
       $this->collectibles = $this->collection->getCollectibles($c);
     }
@@ -156,8 +156,8 @@ class collectionComponents extends cqComponents
     if ($this->getUser()->isOwnerOf($this->collection))
     {
       $c = new Criteria();
-      $c->addAscendingOrderByColumn(CollectiblePeer::POSITION);
-      $c->addDescendingOrderByColumn(CollectiblePeer::CREATED_AT);
+      $c->addAscendingOrderByColumn(CollectionCollectiblePeer::POSITION);
+      $c->addDescendingOrderByColumn(CollectionCollectiblePeer::CREATED_AT);
 
       $this->collectibles = $this->collection->getCollectibles($c);
     }
@@ -169,7 +169,7 @@ class collectionComponents extends cqComponents
   {
     if ($id = $this->getRequestParameter('id'))
     {
-      $this->collection = CollectionPeer::retrieveByPk($id);
+      $this->collection = CollectorCollectionPeer::retrieveByPk($id);
     }
     else if ($id = $this->getRequestParameter('collector_id'))
     {

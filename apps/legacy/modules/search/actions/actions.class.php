@@ -109,11 +109,11 @@ class searchActions extends cqActions
     if (empty($totals))
     {
       $c = new Criteria();
-      $c->add(CollectionPeer::IS_PUBLIC, true);
-      $c->addAscendingOrderByColumn(CollectionPeer::SCORE);
+      $c->add(CollectorCollectionPeer::IS_PUBLIC, true);
+      $c->addAscendingOrderByColumn(CollectorCollectionPeer::SCORE);
       $c->setLimit(9);
 
-      $this->collections = CollectionPeer::doSelect($c);
+      $this->collections = CollectorCollectionPeer::doSelect($c);
 
       return 'NoResults';
     }
@@ -401,10 +401,10 @@ class searchActions extends cqActions
         $pks = array_keys($result['matches']);
 
         $c = new Criteria;
-        $c->add(CollectionPeer::ID, $pks, Criteria::IN);
-        $c->addAscendingOrderByColumn(sprintf('FIELD(%s, %s)', CollectionPeer::ID, implode(', ', $pks)));
+        $c->add(CollectorCollectionPeer::ID, $pks, Criteria::IN);
+        $c->addAscendingOrderByColumn(sprintf('FIELD(%s, %s)', CollectorCollectionPeer::ID, implode(', ', $pks)));
 
-        $this->collections = CollectionPeer::doSelect($c);
+        $this->collections = CollectorCollectionPeer::doSelect($c);
       }
     }
 

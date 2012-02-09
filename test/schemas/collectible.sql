@@ -5,13 +5,13 @@ CREATE TABLE `collectible` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `graph_id` int(11) DEFAULT NULL,
   `collector_id` int(11) NOT NULL,
-  `collection_id` int(11) NOT NULL,
+  `collection_id` int(11) DEFAULT NULL,
   `name` varchar(255) NOT NULL,
   `slug` varchar(128) DEFAULT NULL,
   `description` text NOT NULL,
   `num_comments` int(11) DEFAULT '0',
+  `batch_hash` varchar(32) DEFAULT NULL,
   `score` int(11) DEFAULT '0',
-  `position` int(11) DEFAULT '0',
   `is_name_automatic` tinyint(1) DEFAULT '0',
   `eblob` text,
   `created_at` datetime DEFAULT NULL,
@@ -19,10 +19,11 @@ CREATE TABLE `collectible` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `collectible_U_1` (`graph_id`),
   UNIQUE KEY `collectible_U_2` (`slug`),
+  KEY `collectible_I_1` (`batch_hash`),
   KEY `collectible_FI_1` (`collector_id`),
   KEY `collectible_FI_2` (`collection_id`),
   CONSTRAINT `collectible_FK_1` FOREIGN KEY (`collector_id`) REFERENCES `collector` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `collectible_FK_2` FOREIGN KEY (`collection_id`) REFERENCES `collection` (`id`) ON DELETE CASCADE
+  CONSTRAINT `collectible_FK_2` FOREIGN KEY (`collection_id`) REFERENCES `collection` (`id`) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 LOCK TABLES `collectible` WRITE;

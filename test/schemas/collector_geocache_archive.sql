@@ -17,7 +17,7 @@ CREATE TABLE `collector_geocache_archive` (
   PRIMARY KEY (`id`),
   KEY `collector_geocache_archive_I_1` (`id`),
   KEY `collector_geocache_archive_I_2` (`collector_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 LOCK TABLES `collector_geocache_archive` WRITE;
 /*!40000 ALTER TABLE `collector_geocache_archive` DISABLE KEYS */;

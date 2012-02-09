@@ -43,8 +43,9 @@ class marketplaceInfoActions extends sfActions
     }
     if ($search ['category_id'] = $request->getParameter('category_id'))
     {
-      $oCriteria->addJoin(CollectiblePeer::COLLECTION_ID, CollectionPeer::ID);
-      $oCriteria->add(CollectionPeer::COLLECTION_CATEGORY_ID, $search ['category_id']);
+      $oCriteria->addJoin(CollectiblePeer::ID, CollectionCollectiblePeer::COLLECTIBLE_ID, Criteria::RIGHT_JOIN);
+      $oCriteria->addJoin(CollectionCollectiblePeer::COLLECTION_ID, CollectionPeer::ID);
+      $oCriteria->add(CollectorCollectionPeer::COLLECTION_CATEGORY_ID, $search ['category_id']);
     }
     if ($search ['condition'] = $request->getParameter('condition'))
     {
@@ -84,7 +85,7 @@ class marketplaceInfoActions extends sfActions
     $this->pager = $oPager;
   }
 
-  public function executeItemOffers(sfWebRequest $request)
+  public function executeItemOffers()
   {
     $this->item_for_sale = CollectibleForSalePeer::retrieveByPK($this->getRequestParameter('id'));
     $this->forward404Unless($this->item_for_sale);

@@ -41,18 +41,18 @@ function link_to_collector($object, $type = 'text', $options = array())
   {
     case "collection_image":
       $c = new Criteria();
-      $c->add(CollectionPeer::NUM_ITEMS, 3, Criteria::GREATER_EQUAL);
+      $c->add(CollectorCollectionPeer::NUM_ITEMS, 3, Criteria::GREATER_EQUAL);
       $c->addAscendingOrderByColumn('RAND()');
 
       if (array_key_exists('collection_category', $options))
       {
-        $c->add(CollectionPeer::COLLECTION_CATEGORY_ID, (is_object($options['collection_category'])) ? $options['collection_category']->getId() : $options['collection_category']);
+        $c->add(CollectorCollectionPeer::COLLECTION_CATEGORY_ID, (is_object($options['collection_category'])) ? $options['collection_category']->getId() : $options['collection_category']);
       }
 
       $collections = $collector->getCollections($c);
       if (is_array($collections))
       {
-        /** @var Collection $collection */
+        /** @var CollectorCollection $collection */
         $collection = array_shift($collections);
         if ($collection instanceof Collection)
         {

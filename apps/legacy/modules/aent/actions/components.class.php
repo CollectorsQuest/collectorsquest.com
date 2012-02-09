@@ -304,7 +304,7 @@ class aentComponents extends sfComponents
     else
     {
       $this->collectibles_for_sale = $collectible->getRelatedCollectiblesForSale(6);
-      $this->featured = CollectionPeer::getRelatedCollections($collectible, 8);
+      $this->featured = CollectorCollectionPeer::getRelatedCollections($collectible, 8);
     }
 
     $this->collectible = $collectible;

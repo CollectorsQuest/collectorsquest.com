@@ -18,8 +18,8 @@ class marketplaceActions extends cqActions
   {
     $c = new Criteria;
 //    $c->setDistinct();
-    $c->addJoin(CollectionCategoryPeer::ID, CollectionPeer::COLLECTION_CATEGORY_ID, Criteria::INNER_JOIN);
-    $c->addJoin(CollectionPeer::ID, CollectiblePeer::COLLECTION_ID, Criteria::INNER_JOIN);
+    $c->addJoin(CollectionCategoryPeer::ID, CollectorCollectionPeer::COLLECTION_CATEGORY_ID, Criteria::INNER_JOIN);
+    $c->addJoin(CollectorCollectionPeer::ID, CollectiblePeer::COLLECTION_ID, Criteria::INNER_JOIN);
     $c->addJoin(CollectiblePeer::ID, CollectibleForSalePeer::COLLECTIBLE_ID, Criteria::INNER_JOIN);
     $c->add(CollectibleForSalePeer::IS_SOLD, false);
     $c->add(CollectionCategoryPeer::NAME, 'None', Criteria::NOT_EQUAL);
@@ -105,7 +105,7 @@ class marketplaceActions extends cqActions
     {
       $who = 'buyer';
 
-      $seller = $collectible->getCollection()->getCollector();
+      $seller = $collectible->getCollector();
       $buyer = $this->getUser()->getCollector();
     }
 
@@ -345,13 +345,15 @@ class marketplaceActions extends cqActions
 
   public function executeMakeCounterOffer()
   {
+    /** @var $offer CollectibleOffer */
     $offer = $this->getRoute()->getObject();
 
     $collectible = $offer->getCollectible();
 
     $this->forward404Unless($this->getUser()->isOwnerOf($collectible) || $offer->getCollectorId() == $this->getUser()->getId());
 
-    sfLoader::loadHelpers(array('Tag', 'Url', 'cqLinks'));
+    $this->loadHelpers(array('Tag', 'Url', 'cqLinks'));
+
     if ($this->getUser()->isOwnerOf($collectible))
     {
       $who = 'seller';
@@ -363,7 +365,7 @@ class marketplaceActions extends cqActions
     {
       $who = 'buyer';
 
-      $seller = $collectible->getCollection()->getCollector();
+      $seller = $collectible->getCollector();
       $buyer = $this->getUser()->getCollector();
     }
     $replacements = array(
@@ -455,7 +457,7 @@ class marketplaceActions extends cqActions
           if ($snIdCollectibleForSale > 0 && $snIdCollection > 0)
           {
             $this->forward404Unless($omSaleItems = CollectibleForSalePeer::retrieveByPK($snIdCollectibleForSale), sprintf('Object collection item sale does not exist (%s).', $snIdCollectibleForSale));
-            $this->forward404Unless($this->omCollection = CollectionPeer::retrieveByPK($snIdCollection), sprintf('Object collection does not exist (%s).', $snIdCollection));
+            $this->forward404Unless($this->omCollection = CollectorCollectionPeer::retrieveByPK($snIdCollection), sprintf('Object collection does not exist (%s).', $snIdCollection));
 
             $this->oForm = new CollectibleForSaleForm($omSaleItems);
             $this->oCollectionForm = new CollectionForm($this->omCollection);

@@ -156,7 +156,6 @@ classes:
       id:  ~
       graph_id:                { type: integer, required: false, index: unique }
       collection_category_id:  { type: integer, foreignClass: CollectionCategory, foreignReference: id, onDelete: setnull }
-      collector_id:            { type: integer, required: true, foreignClass: Collector, foreignReference: id, onDelete: cascade }
       name:                    { type: varchar, size: 255, required: true, primaryString: true }
       slug:                    { type: varchar, size: 128 }
       description:             { type: longvarchar, required: true }
@@ -184,6 +183,24 @@ classes:
       slug:       { type: varchar, size: 64 }
       score:      { type: integer, default: 0 }
 
+  CollectionCollectible:
+    isCrossRef: true
+    columns:
+      collection_id:   { type: integer, required: true, foreignClass: Collection, foreignReference: id, onDelete: cascade, primaryKey: true }
+      collectible_id:  { type: integer, required: true, foreignClass: Collectible, foreignReference: id, onDelete: cascade, primaryKey: true }
+      score:           { type: integer, default: 0 }
+      position:        { type: integer, default: 0 }
+
+    propel_behaviors:
+      timestampable:  ~
+
+  CollectorCollection:
+    columns:
+      collector_id:    { type: integer, required: true, foreignClass: Collector, foreignReference: id, onDelete: cascade }
+
+    propel_behaviors:
+      concrete_inheritance: { extends: collection, copy_data_to_parent: true }
+
   CollectionCategoryField:
     columns:
       id:  ~
@@ -200,14 +217,12 @@ classes:
       id:  ~
       graph_id:          { type: integer, required: false, index: unique }
       collector_id:      { type: integer, foreignClass: Collector, foreignReference: id, required: true, onDelete: cascade }
-      collection_id:     { type: integer, foreignClass: Collection, foreignReference: id, required: false, onDelete: setnull }
       name:              { type: varchar, size: 255, required: true, primaryString: true }
       slug:              { type: varchar, size: 128, index: unique }
       description:       { type: longvarchar, required: true }
       num_comments:      { type: integer, default: 0 }
       batch_hash:        { type: varchar, size: 32, index: true }
       score:             { type: integer, default: 0 }
-      position:          { type: integer, default: 0 }
       is_name_automatic: { type: boolean, default: false }
 
       eblob:             { type: longvarchar, default: null }

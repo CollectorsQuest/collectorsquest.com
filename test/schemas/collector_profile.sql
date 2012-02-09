@@ -23,8 +23,8 @@ CREATE TABLE `collector_profile` (
   `is_image_auto` tinyint(1) DEFAULT '1',
   `preferences` text,
   `notifications` text,
-  `updated_at` datetime DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `collector_profile_U_1` (`collector_id`),
   CONSTRAINT `collector_profile_FK_1` FOREIGN KEY (`collector_id`) REFERENCES `collector` (`id`) ON DELETE CASCADE

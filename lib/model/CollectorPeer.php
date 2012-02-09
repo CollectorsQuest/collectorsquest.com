@@ -265,7 +265,8 @@ class CollectorPeer extends BaseCollectorPeer
   {
     $pks = array();
 
-    $collections = CollectionPeer::getRelatedCollections($object, $limit, $criteria);
+    /** @var $collections CollectorCollection[] */
+    $collections = CollectorCollectionPeer::getRelatedCollections($object, $limit, $criteria);
     foreach ($collections as $collection)
     {
       $pks = $collection->getCollectorId();

@@ -18,7 +18,7 @@ CREATE TABLE `multimedia_archive` (
   PRIMARY KEY (`id`),
   KEY `multimedia_archive_I_1` (`id`),
   KEY `multimedia_I_1` (`model`,`model_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 LOCK TABLES `multimedia_archive` WRITE;
 /*!40000 ALTER TABLE `multimedia_archive` DISABLE KEYS */;

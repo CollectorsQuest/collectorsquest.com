@@ -9,8 +9,8 @@ CREATE TABLE `score` (
   `views` int(11) DEFAULT '0',
   `ratings` int(11) DEFAULT '0',
   `score` int(11) DEFAULT '0',
-  `updated_at` datetime DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `score_U_1` (`day`,`model`,`model_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

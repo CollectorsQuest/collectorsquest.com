@@ -47,11 +47,11 @@ class communityActions extends cqActions
     $this->redirectUnless($this->featured_week, '@homepage');
 
     // get the latest 3 collections
-    $c = new Criteria();
-    $c->add(CollectionPeer::NUM_ITEMS, 4, Criteria::GREATER_EQUAL);
-    $c->addDescendingOrderByColumn('RAND()');
-    $c->setLimit(3);
-    $this->collections = CollectionPeer::doSelectJoinCollector($c);
+    $q = CollectionQuery::create()
+       ->filterByNumItems(4, Criteria::GREATER_EQUAL)
+        ->limit(3)
+       ->addDescendingOrderByColumn('RAND()');
+    $this->collections = $q->find();
 
     $this->featured_collection = $this->featured_week->getCollections(5);
 
@@ -61,7 +61,7 @@ class communityActions extends cqActions
       $this->featured_collector = $this->featured_collection->getCollector();
 
       $c = new Criteria();
-      $c->addAscendingOrderByColumn(CollectiblePeer::POSITION);
+      $c->addAscendingOrderByColumn(CollectionCollectiblePeer::POSITION);
       $c->setLimit(12);
 
       $this->featured_collectibles = $this->featured_collection->getCollectibles($c);

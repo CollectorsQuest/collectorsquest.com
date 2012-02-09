@@ -5,7 +5,6 @@ CREATE TABLE `collection` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `graph_id` int(11) DEFAULT NULL,
   `collection_category_id` int(11) DEFAULT NULL,
-  `collector_id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `slug` varchar(128) DEFAULT NULL,
   `description` text NOT NULL,
@@ -21,12 +20,11 @@ CREATE TABLE `collection` (
   `eblob` text,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
+  `descendant_class` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `collection_U_1` (`graph_id`),
   KEY `collection_FI_1` (`collection_category_id`),
-  KEY `collection_FI_2` (`collector_id`),
-  CONSTRAINT `collection_FK_1` FOREIGN KEY (`collection_category_id`) REFERENCES `collection_category` (`id`) ON DELETE SET NULL,
-  CONSTRAINT `collection_FK_2` FOREIGN KEY (`collector_id`) REFERENCES `collector` (`id`) ON DELETE CASCADE
+  CONSTRAINT `collection_FK_1` FOREIGN KEY (`collection_category_id`) REFERENCES `collection_category` (`id`) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 LOCK TABLES `collection` WRITE;

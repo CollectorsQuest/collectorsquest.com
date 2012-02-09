@@ -67,9 +67,11 @@ class CommentForm extends BaseCommentForm
 
   public function doSave($con = null)
   {
-    $is_authenticated = sfContext::getInstance()->getUser()->isAuthenticated();
-    $is_facebook_authenticated = sfContext::getInstance()->getUser()->isFacebookAuthenticated();
+    /** @var $user cqUser */
     $user = sfContext::getInstance()->getUser();
+
+    $is_authenticated = $user->isAuthenticated();
+    $is_facebook_authenticated = $user->isFacebookAuthenticated();
 
     if (isset($_SERVER['HTTP_X_FORWARDED_FOR']))
     {
@@ -88,11 +90,13 @@ class CommentForm extends BaseCommentForm
 
     if ($object instanceof Collectible)
     {
+      /** @var $object Collectible */
       $array['collection_id'] = $object->getCollectionId();
       $array['collectible_id'] = $object->getId();
     }
     else if ($object instanceof Collection)
     {
+      /** @var $object Collection */
       $array['collection_id'] = $object->getId();
       $array['collectible_id'] = null;
     }
@@ -127,14 +131,13 @@ class CommentForm extends BaseCommentForm
       $akismet->setCommentAuthorEmail($array['author_email']);
       $akismet->setCommentAuthorURL($array['author_url']);
 
-      // By default the comment is not treated as spam until proven the opposite
-      $is_spam = false;
       try
       {
         $is_spam = $akismet->isCommentSpam();
       }
       catch (Exception $e)
       {
+        // By default the comment is not treated as spam until proven the opposite
         $is_spam = true;
       }
 

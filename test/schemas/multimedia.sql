@@ -12,8 +12,8 @@ CREATE TABLE `multimedia` (
   `orientation` enum('landscape','portrait') DEFAULT 'landscape',
   `source` varchar(255) DEFAULT NULL,
   `is_primary` tinyint(1) DEFAULT '0',
-  `updated_at` datetime DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `multimedia_U_1` (`model`,`model_id`,`md5`),
   KEY `multimedia_I_1` (`model`,`model_id`)

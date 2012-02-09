@@ -36,7 +36,7 @@ CREATE TABLE `collector_archive` (
   KEY `collector_archive_I_3` (`facebook_id`),
   KEY `collector_archive_I_4` (`slug`),
   KEY `collector_archive_I_5` (`email`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 LOCK TABLES `collector_archive` WRITE;
 /*!40000 ALTER TABLE `collector_archive` DISABLE KEYS */;

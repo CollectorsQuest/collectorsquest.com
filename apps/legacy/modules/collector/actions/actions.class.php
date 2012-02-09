@@ -59,7 +59,7 @@ class collectorActions extends cqActions
     $this->collector_profile = $collector->getProfile();
 
     $this->related_collections = $collector->getRelatedCollections(10, $this->rnd_flag);
-    $this->count_collections = $collector->countCollections();
+    $this->count_collections = $collector->countCollectorCollections();
 
     // Get the dropbox of the collector
     $dropbox = $collector->getCollectionDropbox();
@@ -90,7 +90,7 @@ class collectorActions extends cqActions
     return sfView::SUCCESS;
   }
 
-  public function executeDropbox(sfWebRequest $request)
+  public function executeDropbox()
   {
     if ($collector = $this->getCollector())
     {
@@ -103,7 +103,7 @@ class collectorActions extends cqActions
     $this->redirect('@login');
   }
 
-  public function executeMe(sfWebRequest $request)
+  public function executeMe()
   {
     if ($collector = $this->getCollector())
     {

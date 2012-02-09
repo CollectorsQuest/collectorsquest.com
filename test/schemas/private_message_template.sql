@@ -6,8 +6,8 @@ CREATE TABLE `private_message_template` (
   `subject` varchar(255) NOT NULL,
   `body` text NOT NULL,
   `description` varchar(255) DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;

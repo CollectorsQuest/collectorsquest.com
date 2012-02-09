@@ -117,7 +117,7 @@ class emailsActions extends cqActions
     {
       $collection = CollectionQuery::create()->addAscendingOrderByColumn('RAND()')->findOne();
     }
-    else if (!$collection = CollectionPeer::retrieveByPK($request->getParameter('collection_id')))
+    else if (!$collection = CollectorCollectionPeer::retrieveByPK($request->getParameter('collection_id')))
     {
       $collection = new Collection();
     }

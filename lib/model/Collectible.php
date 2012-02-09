@@ -1,4 +1,5 @@
 <?php
+
 require 'lib/model/om/BaseCollectible.php';
 
 class Collectible extends BaseCollectible
@@ -119,7 +120,7 @@ class Collectible extends BaseCollectible
 
   public function getRelatedCollections($limit = 5, &$rnd_flag = false)
   {
-    $collections = CollectionPeer::getRelatedCollections($this, $limit);
+    $collections = CollectorCollectionPeer::getRelatedCollections($this, $limit);
 
     if ($limit != $found = count($collections))
     {
@@ -133,34 +134,53 @@ class Collectible extends BaseCollectible
       {
         $collector = $sf_user->getCollector();
         $c = new Criteria();
-        $c->add(CollectionPeer::ID, $this->getId(), Criteria::NOT_EQUAL);
-        $c->add(CollectionPeer::COLLECTOR_ID, $collector->getId(), Criteria::NOT_EQUAL);
+        $c->add(CollectorCollectionPeer::ID, $this->getId(), Criteria::NOT_EQUAL);
+        $c->add(CollectorCollectionPeer::COLLECTOR_ID, $collector->getId(), Criteria::NOT_EQUAL);
         $c->addAscendingOrderByColumn('RAND()');
 
-        $collections = array_merge($collections, CollectionPeer::getRelatedCollections($collector, $limit, $c));
+        $collections = array_merge($collections, CollectorCollectionPeer::getRelatedCollections($collector, $limit, $c));
       }
     }
 
     if (0 == count($collections))
     {
       $c = new Criteria();
-      $c->add(CollectionPeer::ID, $this->getCollectionId(), Criteria::NOT_EQUAL);
+      $c->add(CollectorCollectionPeer::ID, $this->getCollectionId(), Criteria::NOT_EQUAL);
 
-      $collections = CollectionPeer::getRandomCollections($limit, $c);
+      $collections = CollectorCollectionPeer::getRandomCollections($limit, $c);
       $rnd_flag = true;
     }
 
     return $collections;
   }
 
+  public function getCollectionId()
+  {
+    // @todo
+  }
+
+  public function setCollectionId($v)
+  {
+    // @todo
+  }
+
   public function getCollection(PropelPDO $con = null)
   {
-    if (!$collection = parent::getCollection($con))
+    $c = new Criteria();
+    $c->addJoin(CollectorCollectionPeer::ID, CollectionCollectiblePeer::COLLECTION_ID, Criteria::LEFT_JOIN);
+    $c->add(CollectionCollectiblePeer::COLLECTIBLE_ID, $this->getId());
+
+    if (!$collection = CollectorCollectionPeer::doSelectOne($c, $con))
     {
       $collection = new CollectionDropbox($this->getCollectorId());
     }
 
     return $collection;
+  }
+
+  public function getCollectorCollection(PropelPDO $con = null)
+  {
+    return $this->getCollection($con);
   }
 
   public function getCollectionTags()

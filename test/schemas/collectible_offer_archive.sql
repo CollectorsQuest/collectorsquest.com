@@ -14,7 +14,7 @@ CREATE TABLE `collectible_offer_archive` (
   PRIMARY KEY (`id`),
   KEY `collectible_offer_archive_I_1` (`id`),
   KEY `collectible_offer_archive_I_2` (`collectible_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 LOCK TABLES `collectible_offer_archive` WRITE;
 /*!40000 ALTER TABLE `collectible_offer_archive` DISABLE KEYS */;

@@ -3,7 +3,7 @@
 /**
  * Skeleton subclass for performing query and update operations on the 'collectible_for_sale' table.
  *
- * 
+ *
  *
  * You should add additional methods to this class to meet the
  * application requirements.  This class will only be generated as
@@ -17,11 +17,13 @@ class CollectibleForSaleQuery extends BaseCollectibleForSaleQuery
   {
     if (!is_null($seller))
     {
-      return $this->useCollectibleQuery()
+      $this->useCollectibleQuery()
         ->filterByCollectorId($seller)
         ->enduse()
       ;
     }
+
+    return $this;
   }
 
   public function filterByOffersCount($hasOffers = null)
@@ -33,7 +35,7 @@ class CollectibleForSaleQuery extends BaseCollectibleForSaleQuery
         ->groupByCollectibleForSaleId()
         ->endUse();
     }
-    
+
     return $this;
   }
 

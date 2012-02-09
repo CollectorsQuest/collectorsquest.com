@@ -29,8 +29,8 @@ class marketplaceComponents extends sfComponents
       $crit->addOr($c->getNewCriterion(CollectionCategoryPeer::NAME, $pks_CATEGORY, Criteria::CUSTOM));
 
       // Search in category name
-      // $c->addJoin(CollectionPeer::ID, CollectiblePeer::COLLECTION_ID, Criteria::LEFT_JOIN);
-      // $c->addJoin(CollectionPeer::COLLECTION_CATEGORY_ID, CollectionCategoryPeer::ID, Criteria::LEFT_JOIN);
+      // $c->addJoin(CollectorCollectionPeer::ID, CollectiblePeer::COLLECTION_ID, Criteria::LEFT_JOIN);
+      // $c->addJoin(CollectorCollectionPeer::COLLECTION_CATEGORY_ID, CollectionCategoryPeer::ID, Criteria::LEFT_JOIN);
       $c->addAnd($crit);
     }
 
@@ -53,11 +53,11 @@ class marketplaceComponents extends sfComponents
 
     if ($category = CollectionCategoryQuery::create()->findOneById($request->getParameter('id', @$search['category_id'])))
     {
-      $c->addJoin(CollectiblePeer::COLLECTION_ID, CollectionPeer::ID);
-      $c->add(CollectionPeer::COLLECTION_CATEGORY_ID, $category->getId());
+      $c->addJoin(CollectiblePeer::COLLECTION_ID, CollectorCollectionPeer::ID);
+      $c->add(CollectorCollectionPeer::COLLECTION_CATEGORY_ID, $category->getId());
       if ($category->getParentId() > 0)
       {
-        $c->addOr(CollectionPeer::COLLECTION_CATEGORY_ID, $category->getParentId());
+        $c->addOr(CollectorCollectionPeer::COLLECTION_CATEGORY_ID, $category->getParentId());
       }
     }
     if ($search['condition'] = $this->getRequestParameter('condition', @$search['condition']))

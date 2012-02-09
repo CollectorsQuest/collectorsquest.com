@@ -21,7 +21,7 @@ CREATE TABLE `comment_archive` (
   KEY `comment_archive_I_2` (`collection_id`),
   KEY `comment_archive_I_3` (`collectible_id`),
   KEY `comment_archive_I_4` (`collector_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 LOCK TABLES `comment_archive` WRITE;
 /*!40000 ALTER TABLE `comment_archive` DISABLE KEYS */;
