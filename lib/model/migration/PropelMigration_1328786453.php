@@ -13,11 +13,30 @@ class PropelMigration_1328786453
     /* @var $pdo PropelPDO */
     $pdo = $manager->getPdoConnection('propel');
 
+    $pdo->exec('
+      ALTER TABLE `collector_extra_property`
+      ADD UNIQUE KEY `unq_collector_property` (`collector_id`, `property_name`)'
+    );
+
+    $pdo->exec('
+      DELETE FROM collector_profile
+      WHERE NOT EXISTS (SELECT id FROM collector WHERE id = collector_profile.collector_id)
+    ');
+
+    $pdo->exec('
+      ALTER TABLE `collector_profile`
+      ADD CONSTRAINT `fk_collector`
+        FOREIGN KEY (`collector_id`)
+        REFERENCES `collector` (`id`)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+      ');
+
     $fields = array(
-      'about.annually_spent'      => 'annually_spend',
       'about.what_you_collect'    => 'what_you_collect',
-      'about.what_you_sell'       => 'what_you_sell',
       'about.purchases_per_year'  => 'purchases_per_year',
+      'about.what_you_sell'       => 'what_you_sell',
+      'about.annually_spend'      => 'annually_spend',
       'about.most_expensive_item' => 'most_expensive_item',
       'about.company'             => 'company',
     );
@@ -63,7 +82,7 @@ class PropelMigration_1328786453
   public function getUpSQL()
   {
     return array(
-      'propel' => '
+      'propel'  => '
         ALTER TABLE `collector`
         DROP `what_you_collect`,
         DROP `purchases_per_year`,
@@ -72,7 +91,7 @@ class PropelMigration_1328786453
         DROP `most_expensive_item`,
         DROP `company`
         ',
-      'propel' => '
+      'archive' => '
         ALTER TABLE `collector_archive`
         DROP `what_you_collect`,
         DROP `purchases_per_year`,
@@ -103,8 +122,19 @@ class PropelMigration_1328786453
   public function getDownSQL()
   {
     return array(
-      'propel' => '
+      'propel'  => '
         ALTER TABLE `collector` ADD
+        (
+          `what_you_collect` VARCHAR(255),
+          `purchases_per_year` INTEGER DEFAULT 0 NOT NULL,
+          `what_you_sell` VARCHAR(255),
+          `annually_spend` FLOAT,
+          `most_expensive_item` FLOAT,
+          `company` VARCHAR(255)
+        );
+        ',
+      'archive' => '
+        ALTER TABLE `collector_archive` ADD
         (
           `what_you_collect` VARCHAR(255),
           `purchases_per_year` INTEGER DEFAULT 0 NOT NULL,
