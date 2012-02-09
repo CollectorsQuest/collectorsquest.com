@@ -411,9 +411,6 @@ class CollectorPeer extends BaseCollectorPeer
       $collector_profile->save();
       $collector->save();
 
-      // Send the profile data to Impermium to analyse
-      $collector->sendToImpermium('CREATE');
-
       // Send the profile data to Defensio to analyse
       $collector->sendToDefensio('CREATE');
     }
