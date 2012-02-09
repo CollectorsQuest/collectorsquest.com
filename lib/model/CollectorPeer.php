@@ -354,7 +354,7 @@ class CollectorPeer extends BaseCollectorPeer
     }
     if (!empty($data['annually_spend']))
     {
-      $collector->setAnnuallySpend($data['annually_spend']);
+      $collector->setAnnuallySpent($data['annually_spend']);
       $collector_profile->setAnuallySpent($data['annually_spend']);
     }
     if (!empty($data['most_expensive_item']))
