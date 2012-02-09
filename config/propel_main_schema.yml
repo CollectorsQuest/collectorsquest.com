@@ -56,13 +56,13 @@ classes:
       country:         varchar(64)
       country_iso3166: varchar(2)
       website:         varchar(128)
-      about:           longvarchar
-      collections:     longvarchar
-      collecting:      varchar(255)
-      most_spent:      integer
-      anually_spent:   integer
-      new_item_every:  varchar(64)
-      interests:       longvarchar
+#      about:           longvarchar
+#      collections:     longvarchar
+#      collecting:      varchar(255)
+#      most_spent:      integer
+#      anually_spent:   integer
+#      new_item_every:  varchar(64)
+#      interests:       longvarchar
       is_featured:     { type: boolean, default: false }
       is_seller:       { type: boolean, default: false }
       is_image_auto:   { type: boolean, default: true }

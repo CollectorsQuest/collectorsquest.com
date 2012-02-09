@@ -122,22 +122,22 @@
   </div>
 
   <div class="span-17 append-bottom last">
-    <?php if ($collector_profile->getCollecting()): ?>
+    <?php if ($collector->getWhatYouCollect()): ?>
       <div style='padding: 3px 0 0 0; margin:0;'>
         <b><?php echo __('I collect:'); ?></b>&nbsp;
-        <span style='color: #66A3B5'><?= strip_tags($collector_profile->getCollecting()); ?></span>
+        <span style='color: #66A3B5'><?= strip_tags($collector->getWhatYouCollect()); ?></span>
       </div>
     <?php endif; ?>
-    <?php if ($collector_profile->getMostSpent()): ?>
+    <?php if ($collector->getMostExpensiveItem()): ?>
       <div style='padding: 3px 0 0 0; margin:0;'>
         <b><?php echo __("The most I've spent on an item:"); ?></b>&nbsp;
-        <span style='color: #66A3B5'>$<?= money_format($collector_profile->getMostSpent(), 2); ?></span>
+        <span style='color: #66A3B5'>$<?= money_format($collector->getMostExpensiveItem(), 2); ?></span>
       </div>
     <?php endif; ?>
-    <?php if ($collector_profile->getAnuallySpent()): ?>
+    <?php if ($collector->getAnnuallySpend()): ?>
       <div style='padding: 3px 0 0 0; margin:0;'>
         <b><?php echo __("Annually I spend about:"); ?></b>&nbsp;
-        <span style='color: #66A3B5'>$<?= money_format($collector_profile->getAnuallySpent(), 2); ?></span>
+        <span style='color: #66A3B5'>$<?= money_format($collector->getAnnuallySpend(), 2); ?></span>
       </div>
     <?php endif; ?>
     <?php if ($collector_profile->getNewItemEvery()): ?>

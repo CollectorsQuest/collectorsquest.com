@@ -539,12 +539,12 @@ class Collector extends BaseCollector
 
   public function getAnnuallySpend()
   {
-    return $this->getProperty('about.annually_spent');
+    return $this->getProperty('about.annually_spend');
   }
 
   public function setAnnuallySpend($v)
   {
-    return $this->setProperty('about.annually_spent', $v);
+    return $this->setProperty('about.annually_spend', $v);
   }
 
   public function getWhatYouCollect()
@@ -554,7 +554,7 @@ class Collector extends BaseCollector
 
   public function setWhatYouCollect($v)
   {
-    return $this->setProperty('about.what_you_collect', $v);
+    return $this->setProperty('about.what_you_collect', trim(str_replace(array(',', ',  '), ', ', $v), ', '));
   }
 
   public function getWhatYouSell()
@@ -564,7 +564,7 @@ class Collector extends BaseCollector
 
   public function setWhatYouSell($v)
   {
-    return $this->setProperty('about.what_you_sell', $v);
+    return $this->setProperty('about.what_you_sell', trim(str_replace(array(',', ',  '), ', ', $v), ', '));
   }
 
   public function getPurchasesPerYear()
