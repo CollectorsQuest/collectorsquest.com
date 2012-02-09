@@ -22,4 +22,5 @@ include_once $configuration->getSymfonyLibDir().'/vendor/lime/lime.php';
 
 register_shutdown_function(function(){
   sfToolkit::clearDirectory(sfConfig::get('sf_cache_dir'));
+  touch(sfConfig::get('sf_cache_dir').'/.ignore');
 });
