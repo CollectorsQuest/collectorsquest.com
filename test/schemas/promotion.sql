@@ -14,9 +14,10 @@ CREATE TABLE `promotion` (
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `promotion_U_I` (`promotion_code`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 LOCK TABLES `promotion` WRITE;
 /*!40000 ALTER TABLE `promotion` DISABLE KEYS */;
+INSERT  IGNORE INTO `promotion` (`id`, `promotion_code`, `promotion_name`, `promotion_desc`, `amount`, `amount_type`, `no_of_time_used`, `expiry_date`, `created_at`, `updated_at`) VALUES (1,'CQ2011','Beta Testers Promotions','The promotion is given to the sellers who help us with the initial testing of the Marketplace piece.',100,'Fix',100,'2011-06-30 23:59:59','2011-05-29 22:47:17','2011-05-29 22:47:20'),(2,'CQ2011-DHX11','Free subscription!','The promotion is given to the sellers who help us with the initial testing of the Marketplace piece.',250,'Fix',975,'2011-07-05 19:49:24','2011-06-05 19:49:24','2011-06-14 18:53:53');
 /*!40000 ALTER TABLE `promotion` ENABLE KEYS */;
 UNLOCK TABLES;

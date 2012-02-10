@@ -8,7 +8,7 @@ CREATE TABLE `sf_guard_remember_key` (
   `created_at` datetime DEFAULT NULL,
   PRIMARY KEY (`user_id`,`ip_address`),
   CONSTRAINT `sf_guard_remember_key_FK_1` FOREIGN KEY (`user_id`) REFERENCES `sf_guard_user` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 LOCK TABLES `sf_guard_remember_key` WRITE;
 /*!40000 ALTER TABLE `sf_guard_remember_key` DISABLE KEYS */;

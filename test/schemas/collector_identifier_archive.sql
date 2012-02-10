@@ -11,7 +11,7 @@ CREATE TABLE `collector_identifier_archive` (
   KEY `collector_identifier_archive_I_1` (`id`),
   KEY `collector_identifier_archive_I_2` (`collector_id`),
   KEY `collector_identifier_archive_I_3` (`identifier`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 LOCK TABLES `collector_identifier_archive` WRITE;
 /*!40000 ALTER TABLE `collector_identifier_archive` DISABLE KEYS */;

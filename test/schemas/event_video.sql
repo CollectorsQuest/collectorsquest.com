@@ -15,7 +15,7 @@ CREATE TABLE `event_video` (
   PRIMARY KEY (`id`),
   KEY `event_video_FI_1` (`event_id`),
   CONSTRAINT `event_video_FK_1` FOREIGN KEY (`event_id`) REFERENCES `event` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 LOCK TABLES `event_video` WRITE;
 /*!40000 ALTER TABLE `event_video` DISABLE KEYS */;

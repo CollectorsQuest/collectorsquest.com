@@ -1,7 +1,11 @@
 #!/bin/bash
 
+mysqladmin drop collectorsquest_test
+mysqladmin create collectorsquest_test
+
 ./symfony propel:insert-sql --env=test --no-confirmation
-./symfony propel:data-load --env=test test/fixtures/common
+./symfony propel:data-load --env=test --connection=propel test/fixtures/common/propel
+./symfony propel:data-load --env=test --connection=archive test/fixtures/common/archive
 
 mysql -utest -pr4BBPRyt628YDF -D collectorsquest_test < data/sql/lib.model.views.sql
 mysql -utest -pr4BBPRyt628YDF -D collectorsquest_test < data/sql/lib.model.procedures.sql

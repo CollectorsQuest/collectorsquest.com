@@ -17,7 +17,7 @@ CREATE TABLE `collectible_for_sale_archive` (
   PRIMARY KEY (`id`),
   KEY `collectible_for_sale_archive_I_1` (`id`),
   KEY `collectible_for_sale_archive_I_2` (`collectible_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 LOCK TABLES `collectible_for_sale_archive` WRITE;
 /*!40000 ALTER TABLE `collectible_for_sale_archive` DISABLE KEYS */;

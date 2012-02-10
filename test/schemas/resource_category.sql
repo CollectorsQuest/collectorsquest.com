@@ -8,7 +8,7 @@ CREATE TABLE `resource_category` (
   `thumbnail` varchar(64) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 LOCK TABLES `resource_category` WRITE;
 /*!40000 ALTER TABLE `resource_category` DISABLE KEYS */;

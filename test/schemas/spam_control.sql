@@ -12,7 +12,7 @@ CREATE TABLE `spam_control` (
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `spam_control_U_1` (`field`,`value`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 LOCK TABLES `spam_control` WRITE;
 /*!40000 ALTER TABLE `spam_control` DISABLE KEYS */;

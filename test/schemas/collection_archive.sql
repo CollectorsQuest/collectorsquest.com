@@ -5,7 +5,7 @@ CREATE TABLE `collection_archive` (
   `id` int(11) NOT NULL,
   `graph_id` int(11) DEFAULT NULL,
   `collection_category_id` int(11) DEFAULT NULL,
-  `collector_id` int(11) DEFAULT NULL,
+  `descendant_class` varchar(100) DEFAULT NULL,
   `name` varchar(255) NOT NULL,
   `slug` varchar(128) DEFAULT NULL,
   `description` text NOT NULL,
@@ -25,9 +25,8 @@ CREATE TABLE `collection_archive` (
   PRIMARY KEY (`id`),
   KEY `collection_archive_I_1` (`id`),
   KEY `collection_archive_I_2` (`graph_id`),
-  KEY `collection_archive_I_3` (`collection_category_id`),
-  KEY `collection_archive_I_4` (`collector_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  KEY `collection_archive_I_3` (`collection_category_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 LOCK TABLES `collection_archive` WRITE;
 /*!40000 ALTER TABLE `collection_archive` DISABLE KEYS */;

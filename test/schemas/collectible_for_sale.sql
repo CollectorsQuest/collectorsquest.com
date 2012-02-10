@@ -16,7 +16,7 @@ CREATE TABLE `collectible_for_sale` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `collectible_for_sale_item` (`collectible_id`),
   CONSTRAINT `collectible_for_sale_FK_1` FOREIGN KEY (`collectible_id`) REFERENCES `collectible` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 LOCK TABLES `collectible_for_sale` WRITE;
 /*!40000 ALTER TABLE `collectible_for_sale` DISABLE KEYS */;

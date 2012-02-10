@@ -14,7 +14,7 @@ CREATE TABLE `collector_email` (
   KEY `collector_email_I_1` (`email`),
   KEY `collector_email_FI_1` (`collector_id`),
   CONSTRAINT `collector_email_FK_1` FOREIGN KEY (`collector_id`) REFERENCES `collector` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 LOCK TABLES `collector_email` WRITE;
 /*!40000 ALTER TABLE `collector_email` DISABLE KEYS */;

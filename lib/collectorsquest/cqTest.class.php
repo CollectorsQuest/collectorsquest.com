@@ -41,4 +41,48 @@ class cqTest
       exec($cmd);
     }
   }
+
+  /**
+   * @static
+   *
+   * @param  string  $model
+   * @return BaseObject
+   */
+  public static function getRandomModelObject($model)
+  {
+    $class = sfInflector::classify($model);
+
+    return null;
+  }
+
+  /**
+   * @static
+   *
+   * @param  string   $model The name of the model we want a new instance of
+   * @param  boolean  $save Whether to save the Model before returning it
+   *
+   * @return BaseObject
+   */
+  public static function getNewModelObject($model, $save = true)
+  {
+    $object = self::getFakeModelObject($model);
+
+    if ($save === true && method_exists($object, 'save'))
+    {
+      $object->save();
+    }
+
+    return $object;
+  }
+
+  /**
+   * @static
+   *
+   * @param  string  $model
+   * @return BaseObject
+   */
+  private static function getFakeModelObject($model)
+  {
+    return null;
+  }
 }

@@ -17,7 +17,7 @@ CREATE TABLE `resource_entry` (
   PRIMARY KEY (`id`),
   KEY `resource_entry_FI_1` (`category_id`),
   CONSTRAINT `resource_entry_FK_1` FOREIGN KEY (`category_id`) REFERENCES `resource_category` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 LOCK TABLES `resource_entry` WRITE;
 /*!40000 ALTER TABLE `resource_entry` DISABLE KEYS */;

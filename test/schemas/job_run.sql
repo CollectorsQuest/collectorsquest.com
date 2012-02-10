@@ -20,7 +20,7 @@ CREATE TABLE `job_run` (
   `created_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `job_run_U_1` (`unique_key`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 LOCK TABLES `job_run` WRITE;
 /*!40000 ALTER TABLE `job_run` DISABLE KEYS */;

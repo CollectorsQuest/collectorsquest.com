@@ -9,7 +9,7 @@ CREATE TABLE `collector_extra_property` (
   PRIMARY KEY (`id`),
   KEY `collector_extra_property_FI_1` (`collector_id`),
   CONSTRAINT `collector_extra_property_FK_1` FOREIGN KEY (`collector_id`) REFERENCES `collector` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 LOCK TABLES `collector_extra_property` WRITE;
 /*!40000 ALTER TABLE `collector_extra_property` DISABLE KEYS */;
