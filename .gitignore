@@ -9,7 +9,8 @@ nbproject
 # symfony folders
 /cache/*
 /log/*
-/data/sql
+/data/sql/*.schema.sql
+/data/sql/sqldb.map
 
 # project specific ignores
 /config/secure
