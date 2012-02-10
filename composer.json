@@ -31,10 +31,22 @@
                     "reference": "ab8b97e4d4a36ca680911c5ea69d77b75d46bd8a"
                 }
             }
+        },
+        "fzaninotto/faker": {
+            "package": {
+                "name": "lib/vendor/faker",
+                "version": "master-dev",
+                "source": {
+                    "url": "git://github.com/fzaninotto/Faker.git",
+                    "type": "git",
+                    "reference": "ab426e0253a1fe41fd6077df86f34fb0a2ca65a8"
+                }
+            }
         }
     },
     "require": {
         "plugins/sfGuardPlugin": "4.0.2",
-        "lib/vendor/neo4jphp": "0.0.6"
+        "lib/vendor/neo4jphp": "0.0.6",
+        "lib/vendor/faker": "master-dev"
     }
 }

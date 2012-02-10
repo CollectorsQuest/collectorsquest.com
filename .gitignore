@@ -25,6 +25,7 @@ base
 /plugins/sf*Plugin
 /plugins/ice*Plugin
 /lib/vendor/neo4jphp
+/lib/vendor/faker
 !/plugins/sfPropelORMPlugin
 
 # symlinked folders (when on windows)
