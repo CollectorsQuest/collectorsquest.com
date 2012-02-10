@@ -131,6 +131,7 @@ class generalActions extends cqActions
           $this->getUser()->setFlash(
             'success', $this->__('We have sent an email to %email% with your new password.', array('%email%' => $to))
           );
+          $this->redirect('@login');
         }
         else
         {
