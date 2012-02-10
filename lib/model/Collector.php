@@ -412,8 +412,13 @@ class Collector extends BaseCollector
 
       if (is_array($result) && (int)$result[0] == 200)
       {
+        var_dump($result);
         $this->setIsSpam((string)$result[1]->allow == 'false' ? true : false);
         $this->setSpamScore(100 * (float)$result[1]->spaminess);
+        $this->setProperty('spam.signature', $result[1]->signature);
+        $this->setProperty('spam.classification', $result[1]->classification);
+        $this->setProperty('spam.profanity-match', 'false' == $result[1]['profanity-match'] ? false : true);
+        $this->setProperty('spam.allow', 'false' == $result[1]['allow'] ? false : true);
         $this->save();
       }
     }
@@ -422,6 +427,40 @@ class Collector extends BaseCollector
       ;
     }
 
+  }
+
+  /**
+   * Send to defensio mark as spam|ham
+   *
+   * @param bool $allow
+   */
+  public function defensioMark($allow)
+  {
+    $params = array(
+      'allow'     => $allow ? 'true' : 'false',
+    );
+
+    try
+    {
+      $defensio = cqStatic::getDefensioClient();
+      $result = $defensio->putDocument($this->getProperty('spam.signature'), $params);
+
+      if (is_array($result) && (int)$result[0] == 200)
+      {
+        var_dump($result);
+        $this->setIsSpam((string)$result[1]->allow == 'false' ? true : false);
+        $this->setSpamScore(100 * (float)$result[1]->spaminess);
+        $this->setProperty('spam.signature', $result[1]->signature);
+        $this->setProperty('spam.classification', $result[1]->classification);
+        $this->setProperty('spam.profanity-match', 'false' == $result[1]['profanity-match'] ? false : true);
+        $this->setProperty('spam.allow', 'false' == $result[1]['allow'] ? false : true);
+        $this->save();
+      }
+    }
+    catch (Exception $e)
+    {
+      throw $e;
+    }
   }
 
   /**

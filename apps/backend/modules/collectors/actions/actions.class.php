@@ -12,6 +12,7 @@ require_once dirname(__FILE__) . '/../lib/collectorsGeneratorHelper.class.php';
  */
 class collectorsActions extends autoCollectorsActions
 {
+
   /**
    * @param  sfWebRequest  $request
    * @return sfView
@@ -76,6 +77,42 @@ class collectorsActions extends autoCollectorsActions
     }
 
     return sfView::ERROR;
+  }
+
+  /**
+   * Action MarkAsSpam
+   *
+   * @param sfWebRequest $request
+   *
+   */
+  public function executeMarkAsSpam(sfWebRequest $request)
+  {
+
+    /* @var $collector Collector */
+    $collector = $this->getRoute()->getObject();
+    var_dump($collector);
+
+    $collector->defensioMark(false);
+
+    die('bp');
+  }
+
+  /**
+   * Action MarkAsSpam
+   *
+   * @param sfWebRequest $request
+   *
+   */
+  public function executeMarkAsHam(sfWebRequest $request)
+  {
+
+    /* @var $collector Collector */
+    $collector = $this->getRoute()->getObject();
+    var_dump($collector);
+
+    $collector->defensioMark(true);
+
+    die('bp');
   }
 
 }
