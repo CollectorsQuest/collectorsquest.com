@@ -1,0 +1,13 @@
+PrivateMessageTemplate:
+  PrivateMessageTemplate_1:
+    subject: 'Welcome to Collectors'' Quest'
+    body: "Welcome to Collectors' Quest - the destination place for all collectors & sellers.\r\n        Get started by <a href=\"http://www.collectorsquest.com/collection/create.html\">adding your own collection</a> or just click around to find some great <a href=\"http://www.collectorsquest.com/collections/filter/most-recent\">collections</a> and <a href=\"http://www.collectorsquest.com/collectors\">collectors</a>.\r\n\r\n        What's in your collection?"
+    description: 'The welcome email to be sent to collectors upon signup'
+    created_at: '2011-05-29 21:42:28'
+    updated_at: '2011-05-29 21:42:26'
+  PrivateMessageTemplate_2:
+    subject: 'Welcome to Collectors'' Quest'
+    body: "Welcome to Collectors' Quest - the destination place for all collectors & sellers.\r\n        Get started by <a href=\"http://www.collectorsquest.com/collection/create.html\">adding your own collection for sale</a> or just click around to find some great <a href=\"http://www.collectorsquest.com/collections/filter/most-recent\">collections</a> and <a href=\"http://www.collectorsquest.com/collectors\">collectors</a>.\r\n\r\n        What do you have for sale?"
+    description: 'The welcome email to be sent to sellers upon signup'
+    created_at: '2011-05-29 21:42:28'
+    updated_at: '2011-05-29 21:42:26'

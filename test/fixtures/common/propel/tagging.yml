@@ -1,0 +1,1901 @@
+iceModelTagging:
+  iceModelTagging_93:
+    tag_id: iceModelTag_77
+    taggable_model: Collection
+    taggable_id: '53'
+  iceModelTagging_94:
+    tag_id: iceModelTag_83
+    taggable_model: Collection
+    taggable_id: '53'
+  iceModelTagging_115:
+    tag_id: iceModelTag_97
+    taggable_model: Collection
+    taggable_id: '70'
+  iceModelTagging_117:
+    tag_id: iceModelTag_77
+    taggable_model: Collection
+    taggable_id: '70'
+  iceModelTagging_147:
+    tag_id: iceModelTag_119
+    taggable_model: Collection
+    taggable_id: '85'
+  iceModelTagging_148:
+    tag_id: iceModelTag_120
+    taggable_model: Collection
+    taggable_id: '85'
+  iceModelTagging_506:
+    tag_id: iceModelTag_379
+    taggable_model: Collection
+    taggable_id: '209'
+  iceModelTagging_507:
+    tag_id: iceModelTag_380
+    taggable_model: Collection
+    taggable_id: '209'
+  iceModelTagging_508:
+    tag_id: iceModelTag_381
+    taggable_model: Collection
+    taggable_id: '209'
+  iceModelTagging_509:
+    tag_id: iceModelTag_145
+    taggable_model: Collection
+    taggable_id: '209'
+  iceModelTagging_510:
+    tag_id: iceModelTag_382
+    taggable_model: Collection
+    taggable_id: '209'
+  iceModelTagging_549:
+    tag_id: iceModelTag_190
+    taggable_model: Collection
+    taggable_id: '230'
+  iceModelTagging_550:
+    tag_id: iceModelTag_406
+    taggable_model: Collection
+    taggable_id: '230'
+  iceModelTagging_1312:
+    tag_id: iceModelTag_415
+    taggable_model: Collectible
+    taggable_id: '522'
+  iceModelTagging_1313:
+    tag_id: iceModelTag_86
+    taggable_model: Collectible
+    taggable_id: '522'
+  iceModelTagging_1314:
+    tag_id: iceModelTag_21
+    taggable_model: Collectible
+    taggable_id: '522'
+  iceModelTagging_4286:
+    tag_id: iceModelTag_32
+    taggable_model: Collectible
+    taggable_id: '3833'
+  iceModelTagging_4287:
+    tag_id: iceModelTag_1351
+    taggable_model: Collectible
+    taggable_id: '3833'
+  iceModelTagging_4288:
+    tag_id: iceModelTag_385
+    taggable_model: Collectible
+    taggable_id: '3833'
+  iceModelTagging_4289:
+    tag_id: iceModelTag_1352
+    taggable_model: Collectible
+    taggable_id: '3833'
+  iceModelTagging_5194:
+    tag_id: iceModelTag_623
+    taggable_model: Collection
+    taggable_id: '281'
+  iceModelTagging_5195:
+    tag_id: iceModelTag_907
+    taggable_model: Collection
+    taggable_id: '281'
+  iceModelTagging_5196:
+    tag_id: iceModelTag_415
+    taggable_model: Collection
+    taggable_id: '281'
+  iceModelTagging_5197:
+    tag_id: iceModelTag_377
+    taggable_model: Collection
+    taggable_id: '281'
+  iceModelTagging_5827:
+    tag_id: iceModelTag_207
+    taggable_model: Collectible
+    taggable_id: '4760'
+  iceModelTagging_5828:
+    tag_id: iceModelTag_571
+    taggable_model: Collectible
+    taggable_id: '4760'
+  iceModelTagging_5829:
+    tag_id: iceModelTag_157
+    taggable_model: Collectible
+    taggable_id: '4760'
+  iceModelTagging_6021:
+    tag_id: iceModelTag_849
+    taggable_model: Collection
+    taggable_id: '299'
+  iceModelTagging_6022:
+    tag_id: iceModelTag_207
+    taggable_model: Collection
+    taggable_id: '299'
+  iceModelTagging_6024:
+    tag_id: iceModelTag_84
+    taggable_model: Collection
+    taggable_id: '299'
+  iceModelTagging_6025:
+    tag_id: iceModelTag_1779
+    taggable_model: Collection
+    taggable_id: '299'
+  iceModelTagging_8262:
+    tag_id: iceModelTag_2127
+    taggable_model: Collectible
+    taggable_id: '5612'
+  iceModelTagging_8263:
+    tag_id: iceModelTag_2123
+    taggable_model: Collectible
+    taggable_id: '5612'
+  iceModelTagging_15696:
+    tag_id: iceModelTag_32
+    taggable_model: Video
+    taggable_id: '1'
+  iceModelTagging_15697:
+    tag_id: iceModelTag_498
+    taggable_model: Video
+    taggable_id: '1'
+  iceModelTagging_15698:
+    tag_id: iceModelTag_84
+    taggable_model: Video
+    taggable_id: '1'
+  iceModelTagging_15699:
+    tag_id: iceModelTag_2722
+    taggable_model: Video
+    taggable_id: '1'
+  iceModelTagging_15700:
+    tag_id: iceModelTag_374
+    taggable_model: Video
+    taggable_id: '1'
+  iceModelTagging_15701:
+    tag_id: iceModelTag_2740
+    taggable_model: Video
+    taggable_id: '2'
+  iceModelTagging_15702:
+    tag_id: iceModelTag_3026
+    taggable_model: Video
+    taggable_id: '2'
+  iceModelTagging_15703:
+    tag_id: iceModelTag_3027
+    taggable_model: Video
+    taggable_id: '3'
+  iceModelTagging_15704:
+    tag_id: iceModelTag_3028
+    taggable_model: Video
+    taggable_id: '3'
+  iceModelTagging_15705:
+    tag_id: iceModelTag_291
+    taggable_model: Video
+    taggable_id: '3'
+  iceModelTagging_15706:
+    tag_id: iceModelTag_3029
+    taggable_model: Video
+    taggable_id: '3'
+  iceModelTagging_15707:
+    tag_id: iceModelTag_3030
+    taggable_model: Video
+    taggable_id: '4'
+  iceModelTagging_15708:
+    tag_id: iceModelTag_3031
+    taggable_model: Video
+    taggable_id: '4'
+  iceModelTagging_15709:
+    tag_id: iceModelTag_405
+    taggable_model: Video
+    taggable_id: '4'
+  iceModelTagging_15710:
+    tag_id: iceModelTag_1170
+    taggable_model: Video
+    taggable_id: '5'
+  iceModelTagging_15711:
+    tag_id: iceModelTag_3032
+    taggable_model: Video
+    taggable_id: '5'
+  iceModelTagging_15712:
+    tag_id: iceModelTag_3033
+    taggable_model: Video
+    taggable_id: '5'
+  iceModelTagging_15713:
+    tag_id: iceModelTag_2078
+    taggable_model: Video
+    taggable_id: '6'
+  iceModelTagging_15714:
+    tag_id: iceModelTag_3034
+    taggable_model: Video
+    taggable_id: '6'
+  iceModelTagging_15715:
+    tag_id: iceModelTag_3035
+    taggable_model: Video
+    taggable_id: '6'
+  iceModelTagging_15716:
+    tag_id: iceModelTag_3036
+    taggable_model: Video
+    taggable_id: '6'
+  iceModelTagging_15717:
+    tag_id: iceModelTag_2337
+    taggable_model: Video
+    taggable_id: '6'
+  iceModelTagging_15718:
+    tag_id: iceModelTag_3037
+    taggable_model: Video
+    taggable_id: '6'
+  iceModelTagging_15719:
+    tag_id: iceModelTag_3038
+    taggable_model: Video
+    taggable_id: '6'
+  iceModelTagging_15720:
+    tag_id: iceModelTag_3039
+    taggable_model: Video
+    taggable_id: '7'
+  iceModelTagging_15721:
+    tag_id: iceModelTag_2696
+    taggable_model: Video
+    taggable_id: '7'
+  iceModelTagging_15722:
+    tag_id: iceModelTag_441
+    taggable_model: Video
+    taggable_id: '7'
+  iceModelTagging_15723:
+    tag_id: iceModelTag_416
+    taggable_model: Video
+    taggable_id: '7'
+  iceModelTagging_15724:
+    tag_id: iceModelTag_421
+    taggable_model: Video
+    taggable_id: '8'
+  iceModelTagging_15725:
+    tag_id: iceModelTag_422
+    taggable_model: Video
+    taggable_id: '8'
+  iceModelTagging_15726:
+    tag_id: iceModelTag_1333
+    taggable_model: Video
+    taggable_id: '8'
+  iceModelTagging_15727:
+    tag_id: iceModelTag_3040
+    taggable_model: Video
+    taggable_id: '8'
+  iceModelTagging_15728:
+    tag_id: iceModelTag_3041
+    taggable_model: Video
+    taggable_id: '8'
+  iceModelTagging_15729:
+    tag_id: iceModelTag_3042
+    taggable_model: Video
+    taggable_id: '8'
+  iceModelTagging_15730:
+    tag_id: iceModelTag_29
+    taggable_model: Video
+    taggable_id: '10'
+  iceModelTagging_15731:
+    tag_id: iceModelTag_2505
+    taggable_model: Video
+    taggable_id: '10'
+  iceModelTagging_15732:
+    tag_id: iceModelTag_24
+    taggable_model: Video
+    taggable_id: '10'
+  iceModelTagging_15733:
+    tag_id: iceModelTag_1375
+    taggable_model: Video
+    taggable_id: '10'
+  iceModelTagging_15734:
+    tag_id: iceModelTag_3043
+    taggable_model: Video
+    taggable_id: '10'
+  iceModelTagging_15735:
+    tag_id: iceModelTag_190
+    taggable_model: Video
+    taggable_id: '11'
+  iceModelTagging_15736:
+    tag_id: iceModelTag_193
+    taggable_model: Video
+    taggable_id: '11'
+  iceModelTagging_15737:
+    tag_id: iceModelTag_2438
+    taggable_model: Video
+    taggable_id: '11'
+  iceModelTagging_15738:
+    tag_id: iceModelTag_3044
+    taggable_model: Video
+    taggable_id: '11'
+  iceModelTagging_15739:
+    tag_id: iceModelTag_3045
+    taggable_model: Video
+    taggable_id: '11'
+  iceModelTagging_15741:
+    tag_id: iceModelTag_3046
+    taggable_model: Video
+    taggable_id: '11'
+  iceModelTagging_15742:
+    tag_id: iceModelTag_2259
+    taggable_model: Video
+    taggable_id: '12'
+  iceModelTagging_15743:
+    tag_id: iceModelTag_533
+    taggable_model: Video
+    taggable_id: '12'
+  iceModelTagging_15744:
+    tag_id: iceModelTag_1059
+    taggable_model: Video
+    taggable_id: '13'
+  iceModelTagging_15745:
+    tag_id: iceModelTag_193
+    taggable_model: Video
+    taggable_id: '13'
+  iceModelTagging_15746:
+    tag_id: iceModelTag_2041
+    taggable_model: Video
+    taggable_id: '13'
+  iceModelTagging_15747:
+    tag_id: iceModelTag_3047
+    taggable_model: Video
+    taggable_id: '13'
+  iceModelTagging_15748:
+    tag_id: iceModelTag_2439
+    taggable_model: Video
+    taggable_id: '13'
+  iceModelTagging_15749:
+    tag_id: iceModelTag_3048
+    taggable_model: Video
+    taggable_id: '13'
+  iceModelTagging_15750:
+    tag_id: iceModelTag_515
+    taggable_model: Video
+    taggable_id: '13'
+  iceModelTagging_15751:
+    tag_id: iceModelTag_374
+    taggable_model: Video
+    taggable_id: '14'
+  iceModelTagging_15752:
+    tag_id: iceModelTag_529
+    taggable_model: Video
+    taggable_id: '14'
+  iceModelTagging_15753:
+    tag_id: iceModelTag_498
+    taggable_model: Video
+    taggable_id: '14'
+  iceModelTagging_15754:
+    tag_id: iceModelTag_3049
+    taggable_model: Video
+    taggable_id: '15'
+  iceModelTagging_15755:
+    tag_id: iceModelTag_3050
+    taggable_model: Video
+    taggable_id: '15'
+  iceModelTagging_15756:
+    tag_id: iceModelTag_3051
+    taggable_model: Video
+    taggable_id: '15'
+  iceModelTagging_15757:
+    tag_id: iceModelTag_1168
+    taggable_model: Video
+    taggable_id: '15'
+  iceModelTagging_15758:
+    tag_id: iceModelTag_3052
+    taggable_model: Video
+    taggable_id: '15'
+  iceModelTagging_15759:
+    tag_id: iceModelTag_3053
+    taggable_model: Video
+    taggable_id: '16'
+  iceModelTagging_15760:
+    tag_id: iceModelTag_33
+    taggable_model: Video
+    taggable_id: '16'
+  iceModelTagging_15761:
+    tag_id: iceModelTag_2306
+    taggable_model: Video
+    taggable_id: '16'
+  iceModelTagging_15762:
+    tag_id: iceModelTag_507
+    taggable_model: Video
+    taggable_id: '16'
+  iceModelTagging_15763:
+    tag_id: iceModelTag_3054
+    taggable_model: Video
+    taggable_id: '17'
+  iceModelTagging_15764:
+    tag_id: iceModelTag_33
+    taggable_model: Video
+    taggable_id: '17'
+  iceModelTagging_15765:
+    tag_id: iceModelTag_190
+    taggable_model: Video
+    taggable_id: '17'
+  iceModelTagging_15766:
+    tag_id: iceModelTag_910
+    taggable_model: Video
+    taggable_id: '17'
+  iceModelTagging_15767:
+    tag_id: iceModelTag_626
+    taggable_model: Video
+    taggable_id: '17'
+  iceModelTagging_15768:
+    tag_id: iceModelTag_3055
+    taggable_model: Video
+    taggable_id: '17'
+  iceModelTagging_15769:
+    tag_id: iceModelTag_3056
+    taggable_model: Video
+    taggable_id: '17'
+  iceModelTagging_15770:
+    tag_id: iceModelTag_193
+    taggable_model: Video
+    taggable_id: '18'
+  iceModelTagging_15771:
+    tag_id: iceModelTag_3057
+    taggable_model: Video
+    taggable_id: '18'
+  iceModelTagging_15772:
+    tag_id: iceModelTag_33
+    taggable_model: Video
+    taggable_id: '19'
+  iceModelTagging_15773:
+    tag_id: iceModelTag_3058
+    taggable_model: Video
+    taggable_id: '19'
+  iceModelTagging_15774:
+    tag_id: iceModelTag_136
+    taggable_model: Video
+    taggable_id: '19'
+  iceModelTagging_15775:
+    tag_id: iceModelTag_3059
+    taggable_model: Video
+    taggable_id: '20'
+  iceModelTagging_15776:
+    tag_id: iceModelTag_3054
+    taggable_model: Video
+    taggable_id: '20'
+  iceModelTagging_15778:
+    tag_id: iceModelTag_190
+    taggable_model: Video
+    taggable_id: '20'
+  iceModelTagging_15779:
+    tag_id: iceModelTag_34
+    taggable_model: Video
+    taggable_id: '20'
+  iceModelTagging_15780:
+    tag_id: iceModelTag_193
+    taggable_model: Video
+    taggable_id: '20'
+  iceModelTagging_15781:
+    tag_id: iceModelTag_1059
+    taggable_model: Video
+    taggable_id: '20'
+  iceModelTagging_15782:
+    tag_id: iceModelTag_3054
+    taggable_model: Video
+    taggable_id: '21'
+  iceModelTagging_15783:
+    tag_id: iceModelTag_83
+    taggable_model: Video
+    taggable_id: '21'
+  iceModelTagging_15784:
+    tag_id: iceModelTag_271
+    taggable_model: Video
+    taggable_id: '21'
+  iceModelTagging_15785:
+    tag_id: iceModelTag_1060
+    taggable_model: Video
+    taggable_id: '21'
+  iceModelTagging_15786:
+    tag_id: iceModelTag_3054
+    taggable_model: Video
+    taggable_id: '22'
+  iceModelTagging_15787:
+    tag_id: iceModelTag_3060
+    taggable_model: Video
+    taggable_id: '22'
+  iceModelTagging_15788:
+    tag_id: iceModelTag_3061
+    taggable_model: Video
+    taggable_id: '22'
+  iceModelTagging_15789:
+    tag_id: iceModelTag_1059
+    taggable_model: Video
+    taggable_id: '22'
+  iceModelTagging_15790:
+    tag_id: iceModelTag_84
+    taggable_model: Video
+    taggable_id: '22'
+  iceModelTagging_15791:
+    tag_id: iceModelTag_3054
+    taggable_model: Video
+    taggable_id: '23'
+  iceModelTagging_15792:
+    tag_id: iceModelTag_3056
+    taggable_model: Video
+    taggable_id: '23'
+  iceModelTagging_15793:
+    tag_id: iceModelTag_3062
+    taggable_model: Video
+    taggable_id: '24'
+  iceModelTagging_15794:
+    tag_id: iceModelTag_2008
+    taggable_model: Video
+    taggable_id: '24'
+  iceModelTagging_15795:
+    tag_id: iceModelTag_1403
+    taggable_model: Video
+    taggable_id: '24'
+  iceModelTagging_15796:
+    tag_id: iceModelTag_2751
+    taggable_model: Video
+    taggable_id: '24'
+  iceModelTagging_15797:
+    tag_id: iceModelTag_3063
+    taggable_model: Video
+    taggable_id: '24'
+  iceModelTagging_15798:
+    tag_id: iceModelTag_1168
+    taggable_model: Video
+    taggable_id: '25'
+  iceModelTagging_15799:
+    tag_id: iceModelTag_3064
+    taggable_model: Video
+    taggable_id: '25'
+  iceModelTagging_15800:
+    tag_id: iceModelTag_3049
+    taggable_model: Video
+    taggable_id: '25'
+  iceModelTagging_15801:
+    tag_id: iceModelTag_32
+    taggable_model: Video
+    taggable_id: '26'
+  iceModelTagging_15802:
+    tag_id: iceModelTag_3065
+    taggable_model: Video
+    taggable_id: '26'
+  iceModelTagging_15803:
+    tag_id: iceModelTag_113
+    taggable_model: Video
+    taggable_id: '26'
+  iceModelTagging_15804:
+    tag_id: iceModelTag_374
+    taggable_model: Video
+    taggable_id: '26'
+  iceModelTagging_15805:
+    tag_id: iceModelTag_3066
+    taggable_model: Video
+    taggable_id: '26'
+  iceModelTagging_15806:
+    tag_id: iceModelTag_32
+    taggable_model: Video
+    taggable_id: '27'
+  iceModelTagging_15807:
+    tag_id: iceModelTag_3066
+    taggable_model: Video
+    taggable_id: '27'
+  iceModelTagging_15808:
+    tag_id: iceModelTag_3065
+    taggable_model: Video
+    taggable_id: '27'
+  iceModelTagging_15809:
+    tag_id: iceModelTag_374
+    taggable_model: Video
+    taggable_id: '27'
+  iceModelTagging_15810:
+    tag_id: iceModelTag_1021
+    taggable_model: Video
+    taggable_id: '27'
+  iceModelTagging_15811:
+    tag_id: iceModelTag_374
+    taggable_model: Video
+    taggable_id: '28'
+  iceModelTagging_15812:
+    tag_id: iceModelTag_510
+    taggable_model: Video
+    taggable_id: '28'
+  iceModelTagging_15813:
+    tag_id: iceModelTag_2947
+    taggable_model: Video
+    taggable_id: '28'
+  iceModelTagging_15814:
+    tag_id: iceModelTag_374
+    taggable_model: Video
+    taggable_id: '29'
+  iceModelTagging_15815:
+    tag_id: iceModelTag_529
+    taggable_model: Video
+    taggable_id: '29'
+  iceModelTagging_15816:
+    tag_id: iceModelTag_510
+    taggable_model: Video
+    taggable_id: '29'
+  iceModelTagging_15817:
+    tag_id: iceModelTag_1021
+    taggable_model: Video
+    taggable_id: '29'
+  iceModelTagging_15818:
+    tag_id: iceModelTag_529
+    taggable_model: Video
+    taggable_id: '30'
+  iceModelTagging_15819:
+    tag_id: iceModelTag_32
+    taggable_model: Video
+    taggable_id: '30'
+  iceModelTagging_15820:
+    tag_id: iceModelTag_523
+    taggable_model: Video
+    taggable_id: '30'
+  iceModelTagging_15821:
+    tag_id: iceModelTag_374
+    taggable_model: Video
+    taggable_id: '30'
+  iceModelTagging_15822:
+    tag_id: iceModelTag_510
+    taggable_model: Video
+    taggable_id: '30'
+  iceModelTagging_15823:
+    tag_id: iceModelTag_1021
+    taggable_model: Video
+    taggable_id: '30'
+  iceModelTagging_15824:
+    tag_id: iceModelTag_3067
+    taggable_model: Video
+    taggable_id: '31'
+  iceModelTagging_15826:
+    tag_id: iceModelTag_3068
+    taggable_model: Video
+    taggable_id: '31'
+  iceModelTagging_15827:
+    tag_id: iceModelTag_3069
+    taggable_model: Video
+    taggable_id: '31'
+  iceModelTagging_15828:
+    tag_id: iceModelTag_3070
+    taggable_model: Video
+    taggable_id: '31'
+  iceModelTagging_15829:
+    tag_id: iceModelTag_3071
+    taggable_model: Video
+    taggable_id: '32'
+  iceModelTagging_15830:
+    tag_id: iceModelTag_3072
+    taggable_model: Video
+    taggable_id: '32'
+  iceModelTagging_15831:
+    tag_id: iceModelTag_1168
+    taggable_model: Video
+    taggable_id: '32'
+  iceModelTagging_15832:
+    tag_id: iceModelTag_538
+    taggable_model: Video
+    taggable_id: '33'
+  iceModelTagging_15833:
+    tag_id: iceModelTag_2297
+    taggable_model: Video
+    taggable_id: '33'
+  iceModelTagging_15834:
+    tag_id: iceModelTag_538
+    taggable_model: Video
+    taggable_id: '34'
+  iceModelTagging_15835:
+    tag_id: iceModelTag_193
+    taggable_model: Video
+    taggable_id: '34'
+  iceModelTagging_15836:
+    tag_id: iceModelTag_300
+    taggable_model: Video
+    taggable_id: '34'
+  iceModelTagging_15837:
+    tag_id: iceModelTag_3073
+    taggable_model: Video
+    taggable_id: '35'
+  iceModelTagging_15838:
+    tag_id: iceModelTag_538
+    taggable_model: Video
+    taggable_id: '35'
+  iceModelTagging_15839:
+    tag_id: iceModelTag_1148
+    taggable_model: Video
+    taggable_id: '36'
+  iceModelTagging_15840:
+    tag_id: iceModelTag_1292
+    taggable_model: Video
+    taggable_id: '36'
+  iceModelTagging_15841:
+    tag_id: iceModelTag_84
+    taggable_model: Video
+    taggable_id: '36'
+  iceModelTagging_15842:
+    tag_id: iceModelTag_863
+    taggable_model: Video
+    taggable_id: '37'
+  iceModelTagging_15843:
+    tag_id: iceModelTag_3074
+    taggable_model: Video
+    taggable_id: '37'
+  iceModelTagging_15844:
+    tag_id: iceModelTag_1148
+    taggable_model: Video
+    taggable_id: '37'
+  iceModelTagging_15845:
+    tag_id: iceModelTag_2897
+    taggable_model: Video
+    taggable_id: '37'
+  iceModelTagging_15846:
+    tag_id: iceModelTag_3075
+    taggable_model: Video
+    taggable_id: '37'
+  iceModelTagging_15847:
+    tag_id: iceModelTag_2901
+    taggable_model: Video
+    taggable_id: '37'
+  iceModelTagging_15848:
+    tag_id: iceModelTag_3076
+    taggable_model: Video
+    taggable_id: '38'
+  iceModelTagging_15849:
+    tag_id: iceModelTag_3077
+    taggable_model: Video
+    taggable_id: '38'
+  iceModelTagging_15850:
+    tag_id: iceModelTag_3078
+    taggable_model: Video
+    taggable_id: '38'
+  iceModelTagging_15851:
+    tag_id: iceModelTag_1789
+    taggable_model: Video
+    taggable_id: '38'
+  iceModelTagging_15852:
+    tag_id: iceModelTag_3076
+    taggable_model: Video
+    taggable_id: '39'
+  iceModelTagging_15853:
+    tag_id: iceModelTag_3079
+    taggable_model: Video
+    taggable_id: '39'
+  iceModelTagging_15854:
+    tag_id: iceModelTag_1229
+    taggable_model: Video
+    taggable_id: '39'
+  iceModelTagging_15855:
+    tag_id: iceModelTag_2798
+    taggable_model: Video
+    taggable_id: '39'
+  iceModelTagging_15856:
+    tag_id: iceModelTag_738
+    taggable_model: Video
+    taggable_id: '39'
+  iceModelTagging_15857:
+    tag_id: iceModelTag_2712
+    taggable_model: Video
+    taggable_id: '40'
+  iceModelTagging_15858:
+    tag_id: iceModelTag_3080
+    taggable_model: Video
+    taggable_id: '40'
+  iceModelTagging_15859:
+    tag_id: iceModelTag_35
+    taggable_model: Video
+    taggable_id: '40'
+  iceModelTagging_15860:
+    tag_id: iceModelTag_3081
+    taggable_model: Video
+    taggable_id: '40'
+  iceModelTagging_15861:
+    tag_id: iceModelTag_1353
+    taggable_model: Video
+    taggable_id: '40'
+  iceModelTagging_15862:
+    tag_id: iceModelTag_3080
+    taggable_model: Video
+    taggable_id: '41'
+  iceModelTagging_15863:
+    tag_id: iceModelTag_1782
+    taggable_model: Video
+    taggable_id: '41'
+  iceModelTagging_15864:
+    tag_id: iceModelTag_124
+    taggable_model: Video
+    taggable_id: '41'
+  iceModelTagging_15865:
+    tag_id: iceModelTag_3082
+    taggable_model: Video
+    taggable_id: '42'
+  iceModelTagging_15866:
+    tag_id: iceModelTag_42
+    taggable_model: Video
+    taggable_id: '42'
+  iceModelTagging_15867:
+    tag_id: iceModelTag_43
+    taggable_model: Video
+    taggable_id: '42'
+  iceModelTagging_15868:
+    tag_id: iceModelTag_42
+    taggable_model: Video
+    taggable_id: '43'
+  iceModelTagging_15869:
+    tag_id: iceModelTag_43
+    taggable_model: Video
+    taggable_id: '43'
+  iceModelTagging_15870:
+    tag_id: iceModelTag_214
+    taggable_model: Video
+    taggable_id: '43'
+  iceModelTagging_15871:
+    tag_id: iceModelTag_3083
+    taggable_model: Video
+    taggable_id: '43'
+  iceModelTagging_15872:
+    tag_id: iceModelTag_42
+    taggable_model: Video
+    taggable_id: '44'
+  iceModelTagging_15873:
+    tag_id: iceModelTag_43
+    taggable_model: Video
+    taggable_id: '44'
+  iceModelTagging_15874:
+    tag_id: iceModelTag_3084
+    taggable_model: Video
+    taggable_id: '45'
+  iceModelTagging_15875:
+    tag_id: iceModelTag_42
+    taggable_model: Video
+    taggable_id: '45'
+  iceModelTagging_15876:
+    tag_id: iceModelTag_3085
+    taggable_model: Video
+    taggable_id: '46'
+  iceModelTagging_15877:
+    tag_id: iceModelTag_42
+    taggable_model: Video
+    taggable_id: '46'
+  iceModelTagging_15878:
+    tag_id: iceModelTag_3086
+    taggable_model: Video
+    taggable_id: '47'
+  iceModelTagging_15879:
+    tag_id: iceModelTag_3087
+    taggable_model: Video
+    taggable_id: '47'
+  iceModelTagging_15880:
+    tag_id: iceModelTag_2259
+    taggable_model: Video
+    taggable_id: '47'
+  iceModelTagging_15881:
+    tag_id: iceModelTag_3088
+    taggable_model: Video
+    taggable_id: '47'
+  iceModelTagging_15882:
+    tag_id: iceModelTag_3086
+    taggable_model: Video
+    taggable_id: '48'
+  iceModelTagging_15883:
+    tag_id: iceModelTag_3087
+    taggable_model: Video
+    taggable_id: '48'
+  iceModelTagging_15884:
+    tag_id: iceModelTag_3089
+    taggable_model: Video
+    taggable_id: '48'
+  iceModelTagging_15885:
+    tag_id: iceModelTag_2259
+    taggable_model: Video
+    taggable_id: '48'
+  iceModelTagging_15886:
+    tag_id: iceModelTag_3086
+    taggable_model: Video
+    taggable_id: '49'
+  iceModelTagging_15887:
+    tag_id: iceModelTag_3087
+    taggable_model: Video
+    taggable_id: '49'
+  iceModelTagging_15888:
+    tag_id: iceModelTag_3090
+    taggable_model: Video
+    taggable_id: '49'
+  iceModelTagging_15889:
+    tag_id: iceModelTag_3086
+    taggable_model: Video
+    taggable_id: '50'
+  iceModelTagging_15890:
+    tag_id: iceModelTag_3087
+    taggable_model: Video
+    taggable_id: '50'
+  iceModelTagging_15891:
+    tag_id: iceModelTag_3091
+    taggable_model: Video
+    taggable_id: '50'
+  iceModelTagging_15892:
+    tag_id: iceModelTag_3086
+    taggable_model: Video
+    taggable_id: '51'
+  iceModelTagging_15893:
+    tag_id: iceModelTag_3092
+    taggable_model: Video
+    taggable_id: '51'
+  iceModelTagging_15894:
+    tag_id: iceModelTag_3093
+    taggable_model: Video
+    taggable_id: '52'
+  iceModelTagging_15895:
+    tag_id: iceModelTag_3094
+    taggable_model: Video
+    taggable_id: '52'
+  iceModelTagging_15896:
+    tag_id: iceModelTag_2138
+    taggable_model: Video
+    taggable_id: '52'
+  iceModelTagging_15897:
+    tag_id: iceModelTag_2458
+    taggable_model: Video
+    taggable_id: '52'
+  iceModelTagging_15898:
+    tag_id: iceModelTag_3095
+    taggable_model: Video
+    taggable_id: '52'
+  iceModelTagging_15899:
+    tag_id: iceModelTag_3093
+    taggable_model: Video
+    taggable_id: '53'
+  iceModelTagging_15900:
+    tag_id: iceModelTag_3094
+    taggable_model: Video
+    taggable_id: '53'
+  iceModelTagging_15901:
+    tag_id: iceModelTag_2138
+    taggable_model: Video
+    taggable_id: '53'
+  iceModelTagging_15902:
+    tag_id: iceModelTag_2458
+    taggable_model: Video
+    taggable_id: '53'
+  iceModelTagging_15903:
+    tag_id: iceModelTag_3095
+    taggable_model: Video
+    taggable_id: '53'
+  iceModelTagging_15904:
+    tag_id: iceModelTag_3096
+    taggable_model: Video
+    taggable_id: '53'
+  iceModelTagging_15905:
+    tag_id: iceModelTag_3097
+    taggable_model: Video
+    taggable_id: '53'
+  iceModelTagging_15906:
+    tag_id: iceModelTag_3098
+    taggable_model: Video
+    taggable_id: '53'
+  iceModelTagging_15907:
+    tag_id: iceModelTag_3099
+    taggable_model: Video
+    taggable_id: '53'
+  iceModelTagging_15908:
+    tag_id: iceModelTag_3100
+    taggable_model: Video
+    taggable_id: '56'
+  iceModelTagging_15909:
+    tag_id: iceModelTag_3101
+    taggable_model: Video
+    taggable_id: '56'
+  iceModelTagging_15910:
+    tag_id: iceModelTag_1168
+    taggable_model: Video
+    taggable_id: '56'
+  iceModelTagging_16346:
+    tag_id: iceModelTag_3124
+    taggable_model: Video
+    taggable_id: '43'
+  iceModelTagging_16347:
+    tag_id: iceModelTag_3125
+    taggable_model: Video
+    taggable_id: '51'
+  iceModelTagging_16348:
+    tag_id: iceModelTag_1800
+    taggable_model: Video
+    taggable_id: '55'
+  iceModelTagging_16349:
+    tag_id: iceModelTag_2041
+    taggable_model: Video
+    taggable_id: '55'
+  iceModelTagging_16350:
+    tag_id: iceModelTag_3126
+    taggable_model: Video
+    taggable_id: '55'
+  iceModelTagging_16351:
+    tag_id: iceModelTag_2439
+    taggable_model: Video
+    taggable_id: '55'
+  iceModelTagging_17688:
+    tag_id: iceModelTag_77
+    taggable_model: Collection
+    taggable_id: '590'
+  iceModelTagging_17689:
+    tag_id: iceModelTag_36
+    taggable_model: Collection
+    taggable_id: '590'
+  iceModelTagging_18598:
+    tag_id: iceModelTag_1896
+    taggable_model: Collection
+    taggable_id: '619'
+  iceModelTagging_18599:
+    tag_id: iceModelTag_21
+    taggable_model: Collection
+    taggable_id: '619'
+  iceModelTagging_21094:
+    tag_id: iceModelTag_207
+    taggable_model: Collection
+    taggable_id: '299'
+  iceModelTagging_21146:
+    tag_id: iceModelTag_207
+    taggable_model: Video
+    taggable_id: '31'
+  iceModelTagging_23048:
+    tag_id: iceModelTag_4752
+    taggable_model: Collection
+    taggable_id: '626'
+  iceModelTagging_23050:
+    tag_id: iceModelTag_38
+    taggable_model: Collection
+    taggable_id: '626'
+  iceModelTagging_23341:
+    tag_id: iceModelTag_2791
+    taggable_model: StoreProduct
+    taggable_id: '1'
+  iceModelTagging_23342:
+    tag_id: iceModelTag_9
+    taggable_model: StoreProduct
+    taggable_id: '1'
+  iceModelTagging_23343:
+    tag_id: iceModelTag_53
+    taggable_model: StoreProduct
+    taggable_id: '1'
+  iceModelTagging_23344:
+    tag_id: iceModelTag_42
+    taggable_model: StoreProduct
+    taggable_id: '1'
+  iceModelTagging_23345:
+    tag_id: iceModelTag_2791
+    taggable_model: StoreProduct
+    taggable_id: '2'
+  iceModelTagging_23346:
+    tag_id: iceModelTag_9
+    taggable_model: StoreProduct
+    taggable_id: '2'
+  iceModelTagging_23347:
+    tag_id: iceModelTag_53
+    taggable_model: StoreProduct
+    taggable_id: '2'
+  iceModelTagging_23348:
+    tag_id: iceModelTag_42
+    taggable_model: StoreProduct
+    taggable_id: '2'
+  iceModelTagging_23349:
+    tag_id: iceModelTag_42
+    taggable_model: CollectionCategory
+    taggable_id: '61'
+  iceModelTagging_23350:
+    tag_id: iceModelTag_4843
+    taggable_model: CollectionCategory
+    taggable_id: '61'
+  iceModelTagging_23351:
+    tag_id: iceModelTag_43
+    taggable_model: CollectionCategory
+    taggable_id: '61'
+  iceModelTagging_23352:
+    tag_id: iceModelTag_36
+    taggable_model: CollectionCategory
+    taggable_id: '62'
+  iceModelTagging_23353:
+    tag_id: iceModelTag_4844
+    taggable_model: CollectionCategory
+    taggable_id: '62'
+  iceModelTagging_23354:
+    tag_id: iceModelTag_53
+    taggable_model: CollectionCategory
+    taggable_id: '62'
+  iceModelTagging_23355:
+    tag_id: iceModelTag_193
+    taggable_model: CollectionCategory
+    taggable_id: '62'
+  iceModelTagging_23356:
+    tag_id: iceModelTag_496
+    taggable_model: StoreProduct
+    taggable_id: '3'
+  iceModelTagging_23357:
+    tag_id: iceModelTag_42
+    taggable_model: StoreProduct
+    taggable_id: '3'
+  iceModelTagging_23540:
+    tag_id: iceModelTag_32
+    taggable_model: Collectible
+    taggable_id: '9730'
+  iceModelTagging_23541:
+    tag_id: iceModelTag_4895
+    taggable_model: Collectible
+    taggable_id: '9730'
+  iceModelTagging_23875:
+    tag_id: iceModelTag_193
+    taggable_model: Video
+    taggable_id: '34'
+  iceModelTagging_23876:
+    tag_id: iceModelTag_3094
+    taggable_model: Video
+    taggable_id: '54'
+  iceModelTagging_23877:
+    tag_id: iceModelTag_459
+    taggable_model: Video
+    taggable_id: '54'
+  iceModelTagging_23878:
+    tag_id: iceModelTag_1599
+    taggable_model: Video
+    taggable_id: '54'
+  iceModelTagging_23879:
+    tag_id: iceModelTag_4944
+    taggable_model: Video
+    taggable_id: '54'
+  iceModelTagging_23880:
+    tag_id: iceModelTag_4945
+    taggable_model: Video
+    taggable_id: '54'
+  iceModelTagging_24196:
+    tag_id: iceModelTag_207
+    taggable_model: Collection
+    taggable_id: '299'
+  iceModelTagging_24248:
+    tag_id: iceModelTag_207
+    taggable_model: Video
+    taggable_id: '31'
+  iceModelTagging_24721:
+    tag_id: iceModelTag_4976
+    taggable_model: Collection
+    taggable_id: '626'
+  iceModelTagging_25223:
+    tag_id: iceModelTag_2499
+    taggable_model: CollectionCategory
+    taggable_id: '63'
+  iceModelTagging_25224:
+    tag_id: iceModelTag_533
+    taggable_model: CollectionCategory
+    taggable_id: '63'
+  iceModelTagging_25701:
+    tag_id: iceModelTag_207
+    taggable_model: Collection
+    taggable_id: '299'
+  iceModelTagging_25753:
+    tag_id: iceModelTag_207
+    taggable_model: Video
+    taggable_id: '31'
+  iceModelTagging_26431:
+    tag_id: iceModelTag_538
+    taggable_model: CollectionCategory
+    taggable_id: '64'
+  iceModelTagging_27034:
+    tag_id: iceModelTag_1904
+    taggable_model: CollectionCategory
+    taggable_id: '65'
+  iceModelTagging_27533:
+    tag_id: iceModelTag_2150
+    taggable_model: Collectible
+    taggable_id: '11225'
+  iceModelTagging_27534:
+    tag_id: iceModelTag_258
+    taggable_model: Collectible
+    taggable_id: '11225'
+  iceModelTagging_27535:
+    tag_id: iceModelTag_207
+    taggable_model: Collectible
+    taggable_id: '11225'
+  iceModelTagging_27676:
+    tag_id: iceModelTag_5460
+    taggable_model: CollectionCategory
+    taggable_id: '66'
+  iceModelTagging_27677:
+    tag_id: iceModelTag_739
+    taggable_model: CollectionCategory
+    taggable_id: '66'
+  iceModelTagging_27678:
+    tag_id: iceModelTag_33
+    taggable_model: CollectionCategory
+    taggable_id: '66'
+  iceModelTagging_27679:
+    tag_id: iceModelTag_374
+    taggable_model: CollectionCategory
+    taggable_id: '66'
+  iceModelTagging_28318:
+    tag_id: iceModelTag_644
+    taggable_model: Video
+    taggable_id: '61'
+  iceModelTagging_28319:
+    tag_id: iceModelTag_5568
+    taggable_model: Video
+    taggable_id: '61'
+  iceModelTagging_28320:
+    tag_id: iceModelTag_5569
+    taggable_model: Video
+    taggable_id: '61'
+  iceModelTagging_28322:
+    tag_id: iceModelTag_644
+    taggable_model: Video
+    taggable_id: '66'
+  iceModelTagging_28323:
+    tag_id: iceModelTag_5568
+    taggable_model: Video
+    taggable_id: '66'
+  iceModelTagging_28324:
+    tag_id: iceModelTag_5571
+    taggable_model: Video
+    taggable_id: '66'
+  iceModelTagging_28326:
+    tag_id: iceModelTag_5568
+    taggable_model: Video
+    taggable_id: '58'
+  iceModelTagging_28327:
+    tag_id: iceModelTag_5572
+    taggable_model: Video
+    taggable_id: '58'
+  iceModelTagging_28329:
+    tag_id: iceModelTag_5573
+    taggable_model: Video
+    taggable_id: '59'
+  iceModelTagging_28331:
+    tag_id: iceModelTag_5575
+    taggable_model: Video
+    taggable_id: '59'
+  iceModelTagging_28333:
+    tag_id: iceModelTag_5576
+    taggable_model: Video
+    taggable_id: '58'
+  iceModelTagging_28334:
+    tag_id: iceModelTag_644
+    taggable_model: Video
+    taggable_id: '63'
+  iceModelTagging_28335:
+    tag_id: iceModelTag_5577
+    taggable_model: Video
+    taggable_id: '63'
+  iceModelTagging_28336:
+    tag_id: iceModelTag_5568
+    taggable_model: Video
+    taggable_id: '63'
+  iceModelTagging_28337:
+    tag_id: iceModelTag_5578
+    taggable_model: Video
+    taggable_id: '63'
+  iceModelTagging_28339:
+    tag_id: iceModelTag_5579
+    taggable_model: Video
+    taggable_id: '60'
+  iceModelTagging_28340:
+    tag_id: iceModelTag_5568
+    taggable_model: Video
+    taggable_id: '60'
+  iceModelTagging_28341:
+    tag_id: iceModelTag_5580
+    taggable_model: Video
+    taggable_id: '60'
+  iceModelTagging_28342:
+    tag_id: iceModelTag_644
+    taggable_model: Video
+    taggable_id: '67'
+  iceModelTagging_28343:
+    tag_id: iceModelTag_5568
+    taggable_model: Video
+    taggable_id: '67'
+  iceModelTagging_28344:
+    tag_id: iceModelTag_5581
+    taggable_model: Video
+    taggable_id: '67'
+  iceModelTagging_28345:
+    tag_id: iceModelTag_644
+    taggable_model: Video
+    taggable_id: '62'
+  iceModelTagging_28346:
+    tag_id: iceModelTag_5568
+    taggable_model: Video
+    taggable_id: '62'
+  iceModelTagging_28347:
+    tag_id: iceModelTag_5582
+    taggable_model: Video
+    taggable_id: '62'
+  iceModelTagging_28348:
+    tag_id: iceModelTag_5583
+    taggable_model: Video
+    taggable_id: '62'
+  iceModelTagging_28349:
+    tag_id: iceModelTag_644
+    taggable_model: Video
+    taggable_id: '64'
+  iceModelTagging_28350:
+    tag_id: iceModelTag_5568
+    taggable_model: Video
+    taggable_id: '64'
+  iceModelTagging_28351:
+    tag_id: iceModelTag_5584
+    taggable_model: Video
+    taggable_id: '64'
+  iceModelTagging_28352:
+    tag_id: iceModelTag_5585
+    taggable_model: Video
+    taggable_id: '64'
+  iceModelTagging_28353:
+    tag_id: iceModelTag_5586
+    taggable_model: Video
+    taggable_id: '64'
+  iceModelTagging_28354:
+    tag_id: iceModelTag_644
+    taggable_model: Video
+    taggable_id: '65'
+  iceModelTagging_28355:
+    tag_id: iceModelTag_5568
+    taggable_model: Video
+    taggable_id: '65'
+  iceModelTagging_28356:
+    tag_id: iceModelTag_5587
+    taggable_model: Video
+    taggable_id: '65'
+  iceModelTagging_28358:
+    tag_id: iceModelTag_5589
+    taggable_model: Video
+    taggable_id: '65'
+  iceModelTagging_28359:
+    tag_id: iceModelTag_644
+    taggable_model: Video
+    taggable_id: '64'
+  iceModelTagging_28363:
+    tag_id: iceModelTag_644
+    taggable_model: Video
+    taggable_id: '58'
+  iceModelTagging_28365:
+    tag_id: iceModelTag_5591
+    taggable_model: Video
+    taggable_id: '59'
+  iceModelTagging_28367:
+    tag_id: iceModelTag_644
+    taggable_model: Video
+    taggable_id: '60'
+  iceModelTagging_28427:
+    tag_id: iceModelTag_2078
+    taggable_model: CollectionCategory
+    taggable_id: '67'
+  iceModelTagging_28428:
+    tag_id: iceModelTag_5595
+    taggable_model: CollectionCategory
+    taggable_id: '67'
+  iceModelTagging_28429:
+    tag_id: iceModelTag_3672
+    taggable_model: CollectionCategory
+    taggable_id: '67'
+  iceModelTagging_29407:
+    tag_id: iceModelTag_5986
+    taggable_model: Collectible
+    taggable_id: '12373'
+  iceModelTagging_30206:
+    tag_id: iceModelTag_5705
+    taggable_model: Collectible
+    taggable_id: '12373'
+  iceModelTagging_30207:
+    tag_id: iceModelTag_644
+    taggable_model: Collectible
+    taggable_id: '12373'
+  iceModelTagging_34295:
+    tag_id: iceModelTag_802
+    taggable_model: Collection
+    taggable_id: '882'
+  iceModelTagging_34317:
+    tag_id: iceModelTag_32
+    taggable_model: Collection
+    taggable_id: '883'
+  iceModelTagging_34318:
+    tag_id: iceModelTag_3126
+    taggable_model: Collection
+    taggable_id: '883'
+  iceModelTagging_34319:
+    tag_id: iceModelTag_533
+    taggable_model: Collection
+    taggable_id: '883'
+  iceModelTagging_34336:
+    tag_id: iceModelTag_32
+    taggable_model: Collectible
+    taggable_id: '14239'
+  iceModelTagging_34337:
+    tag_id: iceModelTag_3126
+    taggable_model: Collectible
+    taggable_id: '14239'
+  iceModelTagging_34539:
+    tag_id: iceModelTag_3201
+    taggable_model: CollectionCategory
+    taggable_id: '752'
+  iceModelTagging_34540:
+    tag_id: iceModelTag_571
+    taggable_model: CollectionCategory
+    taggable_id: '752'
+  iceModelTagging_34541:
+    tag_id: iceModelTag_179
+    taggable_model: CollectionCategory
+    taggable_id: '753'
+  iceModelTagging_34542:
+    tag_id: iceModelTag_7298
+    taggable_model: CollectionCategory
+    taggable_id: '753'
+  iceModelTagging_35707:
+    tag_id: iceModelTag_7200
+    taggable_model: Collection
+    taggable_id: '882'
+  iceModelTagging_35708:
+    tag_id: iceModelTag_7199
+    taggable_model: Collection
+    taggable_id: '882'
+  iceModelTagging_38115:
+    tag_id: iceModelTag_207
+    taggable_model: Collection
+    taggable_id: '299'
+  iceModelTagging_38167:
+    tag_id: iceModelTag_207
+    taggable_model: Video
+    taggable_id: '31'
+  iceModelTagging_39205:
+    tag_id: iceModelTag_7770
+    taggable_model: Video
+    taggable_id: '61'
+  iceModelTagging_39206:
+    tag_id: iceModelTag_7771
+    taggable_model: Video
+    taggable_id: '61'
+  iceModelTagging_39207:
+    tag_id: iceModelTag_7772
+    taggable_model: Video
+    taggable_id: '59'
+  iceModelTagging_39208:
+    tag_id: iceModelTag_4610
+    taggable_model: Video
+    taggable_id: '65'
+  iceModelTagging_42126:
+    tag_id: iceModelTag_207
+    taggable_model: Collection
+    taggable_id: '299'
+  iceModelTagging_42178:
+    tag_id: iceModelTag_207
+    taggable_model: Video
+    taggable_id: '31'
+  iceModelTagging_42987:
+    tag_id: iceModelTag_1778
+    taggable_model: Collection
+    taggable_id: '299'
+  iceModelTagging_42988:
+    tag_id: iceModelTag_207
+    taggable_model: Collection
+    taggable_id: '299'
+  iceModelTagging_43039:
+    tag_id: iceModelTag_1778
+    taggable_model: Video
+    taggable_id: '31'
+  iceModelTagging_43040:
+    tag_id: iceModelTag_207
+    taggable_model: Video
+    taggable_id: '31'
+  iceModelTagging_44790:
+    tag_id: iceModelTag_8709
+    taggable_model: Collection
+    taggable_id: '85'
+  iceModelTagging_45033:
+    tag_id: iceModelTag_3837
+    taggable_model: CollectionCategory
+    taggable_id: '755'
+  iceModelTagging_45034:
+    tag_id: iceModelTag_84
+    taggable_model: CollectionCategory
+    taggable_id: '755'
+  iceModelTagging_45674:
+    tag_id: iceModelTag_139
+    taggable_model: CollectionCategory
+    taggable_id: '756'
+  iceModelTagging_45675:
+    tag_id: iceModelTag_1955
+    taggable_model: CollectionCategory
+    taggable_id: '756'
+  iceModelTagging_45676:
+    tag_id: iceModelTag_138
+    taggable_model: CollectionCategory
+    taggable_id: '756'
+  iceModelTagging_46918:
+    tag_id: iceModelTag_2188
+    taggable_model: CollectionCategory
+    taggable_id: '757'
+  iceModelTagging_46919:
+    tag_id: iceModelTag_8811
+    taggable_model: CollectionCategory
+    taggable_id: '757'
+  iceModelTagging_46920:
+    tag_id: iceModelTag_2192
+    taggable_model: CollectionCategory
+    taggable_id: '757'
+  iceModelTagging_46921:
+    tag_id: iceModelTag_2189
+    taggable_model: CollectionCategory
+    taggable_id: '757'
+  iceModelTagging_47697:
+    tag_id: iceModelTag_8880
+    taggable_model: Collectible
+    taggable_id: '17378'
+  iceModelTagging_51175:
+    tag_id: iceModelTag_6
+    taggable_model: Collectible
+    taggable_id: '18599'
+  iceModelTagging_51176:
+    tag_id: iceModelTag_166
+    taggable_model: Collectible
+    taggable_id: '18599'
+  iceModelTagging_51177:
+    tag_id: iceModelTag_1830
+    taggable_model: Collectible
+    taggable_id: '18599'
+  iceModelTagging_51178:
+    tag_id: iceModelTag_365
+    taggable_model: Collectible
+    taggable_id: '18599'
+  iceModelTagging_57750:
+    tag_id: iceModelTag_116
+    taggable_model: Collection
+    taggable_id: '1272'
+  iceModelTagging_57751:
+    tag_id: iceModelTag_36
+    taggable_model: Collection
+    taggable_id: '1272'
+  iceModelTagging_57752:
+    tag_id: iceModelTag_9613
+    taggable_model: Collection
+    taggable_id: '1272'
+  iceModelTagging_57753:
+    tag_id: iceModelTag_128
+    taggable_model: Collection
+    taggable_id: '1272'
+  iceModelTagging_57754:
+    tag_id: iceModelTag_9614
+    taggable_model: Collection
+    taggable_id: '1272'
+  iceModelTagging_57762:
+    tag_id: iceModelTag_116
+    taggable_model: Collectible
+    taggable_id: '20389'
+  iceModelTagging_57763:
+    tag_id: iceModelTag_36
+    taggable_model: Collectible
+    taggable_id: '20389'
+  iceModelTagging_57764:
+    tag_id: iceModelTag_9613
+    taggable_model: Collectible
+    taggable_id: '20389'
+  iceModelTagging_57765:
+    tag_id: iceModelTag_128
+    taggable_model: Collectible
+    taggable_id: '20389'
+  iceModelTagging_57766:
+    tag_id: iceModelTag_9614
+    taggable_model: Collectible
+    taggable_id: '20389'
+  iceModelTagging_57767:
+    tag_id: iceModelTag_1320
+    taggable_model: Collectible
+    taggable_id: '20389'
+  iceModelTagging_57768:
+    tag_id: iceModelTag_9617
+    taggable_model: Collectible
+    taggable_id: '20389'
+  iceModelTagging_57769:
+    tag_id: iceModelTag_4273
+    taggable_model: Collectible
+    taggable_id: '20389'
+  iceModelTagging_57777:
+    tag_id: iceModelTag_9446
+    taggable_model: Collectible
+    taggable_id: '20389'
+  iceModelTagging_57833:
+    tag_id: iceModelTag_2364
+    taggable_model: CollectionCategory
+    taggable_id: '760'
+  iceModelTagging_57834:
+    tag_id: iceModelTag_2957
+    taggable_model: CollectionCategory
+    taggable_id: '760'
+  iceModelTagging_57835:
+    tag_id: iceModelTag_1297
+    taggable_model: CollectionCategory
+    taggable_id: '760'
+  iceModelTagging_57836:
+    tag_id: iceModelTag_9627
+    taggable_model: CollectionCategory
+    taggable_id: '760'
+  iceModelTagging_57837:
+    tag_id: iceModelTag_2364
+    taggable_model: CollectionCategory
+    taggable_id: '761'
+  iceModelTagging_57838:
+    tag_id: iceModelTag_2957
+    taggable_model: CollectionCategory
+    taggable_id: '761'
+  iceModelTagging_57839:
+    tag_id: iceModelTag_1297
+    taggable_model: CollectionCategory
+    taggable_id: '761'
+  iceModelTagging_57840:
+    tag_id: iceModelTag_9627
+    taggable_model: CollectionCategory
+    taggable_id: '761'
+  iceModelTagging_57841:
+    tag_id: iceModelTag_9628
+    taggable_model: CollectionCategory
+    taggable_id: '761'
+  iceModelTagging_57842:
+    tag_id: iceModelTag_2364
+    taggable_model: CollectionCategory
+    taggable_id: '762'
+  iceModelTagging_57843:
+    tag_id: iceModelTag_2957
+    taggable_model: CollectionCategory
+    taggable_id: '762'
+  iceModelTagging_57844:
+    tag_id: iceModelTag_1297
+    taggable_model: CollectionCategory
+    taggable_id: '762'
+  iceModelTagging_57845:
+    tag_id: iceModelTag_9627
+    taggable_model: CollectionCategory
+    taggable_id: '762'
+  iceModelTagging_57846:
+    tag_id: iceModelTag_9628
+    taggable_model: CollectionCategory
+    taggable_id: '762'
+  iceModelTagging_57847:
+    tag_id: iceModelTag_2364
+    taggable_model: CollectionCategory
+    taggable_id: '763'
+  iceModelTagging_57848:
+    tag_id: iceModelTag_2957
+    taggable_model: CollectionCategory
+    taggable_id: '763'
+  iceModelTagging_57849:
+    tag_id: iceModelTag_1297
+    taggable_model: CollectionCategory
+    taggable_id: '763'
+  iceModelTagging_57850:
+    tag_id: iceModelTag_9627
+    taggable_model: CollectionCategory
+    taggable_id: '763'
+  iceModelTagging_57851:
+    tag_id: iceModelTag_9628
+    taggable_model: CollectionCategory
+    taggable_id: '763'
+  iceModelTagging_61374:
+    tag_id: iceModelTag_8834
+    taggable_model: Collectible
+    taggable_id: '21499'
+  iceModelTagging_61375:
+    tag_id: iceModelTag_8835
+    taggable_model: Collectible
+    taggable_id: '21499'
+  iceModelTagging_61376:
+    tag_id: iceModelTag_8832
+    taggable_model: Collectible
+    taggable_id: '21499'
+  iceModelTagging_61701:
+    tag_id: iceModelTag_9955
+    taggable_model: Collection
+    taggable_id: '1354'
+  iceModelTagging_68291:
+    tag_id: iceModelTag_3775
+    taggable_model: Collection
+    taggable_id: '1452'
+  iceModelTagging_68292:
+    tag_id: iceModelTag_10415
+    taggable_model: Collection
+    taggable_id: '1452'
+  iceModelTagging_68293:
+    tag_id: iceModelTag_10416
+    taggable_model: Collection
+    taggable_id: '1452'
+  iceModelTagging_68294:
+    tag_id: iceModelTag_3837
+    taggable_model: Collection
+    taggable_id: '1452'
+  iceModelTagging_68295:
+    tag_id: iceModelTag_4732
+    taggable_model: Collection
+    taggable_id: '1452'
+  iceModelTagging_68296:
+    tag_id: iceModelTag_10417
+    taggable_model: Collection
+    taggable_id: '1452'
+  iceModelTagging_68297:
+    tag_id: iceModelTag_1042
+    taggable_model: Collection
+    taggable_id: '1452'
+  iceModelTagging_68298:
+    tag_id: iceModelTag_2054
+    taggable_model: Collection
+    taggable_id: '1452'
+  iceModelTagging_68299:
+    tag_id: iceModelTag_116
+    taggable_model: Collection
+    taggable_id: '1452'
+  iceModelTagging_74288:
+    tag_id: iceModelTag_1183
+    taggable_model: Collection
+    taggable_id: '1494'
+  iceModelTagging_74289:
+    tag_id: iceModelTag_10496
+    taggable_model: Collection
+    taggable_id: '1494'
+  iceModelTagging_74290:
+    tag_id: iceModelTag_10497
+    taggable_model: Collection
+    taggable_id: '1494'
+  iceModelTagging_74291:
+    tag_id: iceModelTag_21
+    taggable_model: Collection
+    taggable_id: '1494'
+  iceModelTagging_77919:
+    tag_id: iceModelTag_3775
+    taggable_model: Collection
+    taggable_id: '1506'
+  iceModelTagging_77920:
+    tag_id: iceModelTag_9778
+    taggable_model: Collection
+    taggable_id: '1506'
+  iceModelTagging_77921:
+    tag_id: iceModelTag_2722
+    taggable_model: Collection
+    taggable_id: '1506'
+  iceModelTagging_77922:
+    tag_id: iceModelTag_9777
+    taggable_model: Collection
+    taggable_id: '1506'
+  iceModelTagging_77923:
+    tag_id: iceModelTag_3837
+    taggable_model: Collection
+    taggable_id: '1506'
+  iceModelTagging_77924:
+    tag_id: iceModelTag_33
+    taggable_model: Collection
+    taggable_id: '1506'
+  iceModelTagging_86363:
+    tag_id: iceModelTag_3837
+    taggable_model: Collection
+    taggable_id: '1554'
+  iceModelTagging_87503:
+    tag_id: iceModelTag_10725
+    taggable_model: Collectible
+    taggable_id: '25489'
+  iceModelTagging_114478:
+    tag_id: iceModelTag_115
+    taggable_model: Collection
+    taggable_id: '1725'
+  iceModelTagging_118018:
+    tag_id: iceModelTag_8832
+    taggable_model: Collection
+    taggable_id: '1753'
+  iceModelTagging_118019:
+    tag_id: iceModelTag_737
+    taggable_model: Collection
+    taggable_id: '1753'
+  iceModelTagging_121173:
+    tag_id: iceModelTag_377
+    taggable_model: Collectible
+    taggable_id: '30800'
+  iceModelTagging_121174:
+    tag_id: iceModelTag_6815
+    taggable_model: Collectible
+    taggable_id: '30800'
+  iceModelTagging_121175:
+    tag_id: iceModelTag_123
+    taggable_model: Collectible
+    taggable_id: '30800'
+  iceModelTagging_126357:
+    tag_id: iceModelTag_115
+    taggable_model: Collection
+    taggable_id: '1803'
+  iceModelTagging_130148:
+    tag_id: iceModelTag_115
+    taggable_model: Collection
+    taggable_id: '1865'
+  iceModelTagging_130156:
+    tag_id: iceModelTag_115
+    taggable_model: Collectible
+    taggable_id: '32391'
+  iceModelTagging_131107:
+    tag_id: iceModelTag_115
+    taggable_model: Collection
+    taggable_id: '1872'
+  iceModelTagging_139031:
+    tag_id: iceModelTag_115
+    taggable_model: Collectible
+    taggable_id: '35254'
+  iceModelTagging_140251:
+    tag_id: iceModelTag_115
+    taggable_model: Collectible
+    taggable_id: '35557'
+  iceModelTagging_143344:
+    tag_id: iceModelTag_115
+    taggable_model: Collectible
+    taggable_id: '36312'
+  iceModelTagging_151967:
+    tag_id: iceModelTag_12338
+    taggable_model: Collection
+    taggable_id: '1402'
+  iceModelTagging_151986:
+    tag_id: iceModelTag_12338
+    taggable_model: Collection
+    taggable_id: '1452'
+  iceModelTagging_151992:
+    tag_id: iceModelTag_12338
+    taggable_model: Collection
+    taggable_id: '1506'
+  iceModelTagging_165319:
+    tag_id: iceModelTag_8867
+    taggable_model: CollectionCategory
+    taggable_id: '377'
+  iceModelTagging_165320:
+    tag_id: iceModelTag_137
+    taggable_model: CollectionCategory
+    taggable_id: '377'
+  iceModelTagging_165321:
+    tag_id: iceModelTag_9745
+    taggable_model: CollectionCategory
+    taggable_id: '377'
+  iceModelTagging_165322:
+    tag_id: iceModelTag_459
+    taggable_model: CollectionCategory
+    taggable_id: '377'
+  iceModelTagging_165323:
+    tag_id: iceModelTag_13973
+    taggable_model: CollectionCategory
+    taggable_id: '377'
+  iceModelTagging_165324:
+    tag_id: iceModelTag_3197
+    taggable_model: CollectionCategory
+    taggable_id: '377'
+  iceModelTagging_165325:
+    tag_id: iceModelTag_138
+    taggable_model: CollectionCategory
+    taggable_id: '5'
+  iceModelTagging_165326:
+    tag_id: iceModelTag_2070
+    taggable_model: CollectionCategory
+    taggable_id: '5'
+  iceModelTagging_165327:
+    tag_id: iceModelTag_145
+    taggable_model: CollectionCategory
+    taggable_id: '5'
+  iceModelTagging_165328:
+    tag_id: iceModelTag_1171
+    taggable_model: CollectionCategory
+    taggable_id: '5'
+  iceModelTagging_165329:
+    tag_id: iceModelTag_116
+    taggable_model: CollectionCategory
+    taggable_id: '5'
+  iceModelTagging_165330:
+    tag_id: iceModelTag_13974
+    taggable_model: CollectionCategory
+    taggable_id: '5'
+  iceModelTagging_166405:
+    tag_id: iceModelTag_32
+    taggable_model: Collection
+    taggable_id: '2904'
+  iceModelTagging_166406:
+    tag_id: iceModelTag_374
+    taggable_model: Collection
+    taggable_id: '2904'
+  iceModelTagging_166407:
+    tag_id: iceModelTag_505
+    taggable_model: Collection
+    taggable_id: '2904'
+  iceModelTagging_172177:
+    tag_id: iceModelTag_415
+    taggable_model: CollectionCategory
+    taggable_id: '308'
+  iceModelTagging_172178:
+    tag_id: iceModelTag_14610
+    taggable_model: CollectionCategory
+    taggable_id: '308'
+  iceModelTagging_172179:
+    tag_id: iceModelTag_3255
+    taggable_model: CollectionCategory
+    taggable_id: '308'

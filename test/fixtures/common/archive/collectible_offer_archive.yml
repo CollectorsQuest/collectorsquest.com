@@ -1,0 +1,116 @@
+CollectibleOfferArchive:
+  CollectibleOfferArchive_30:
+    id: '30'
+    collectible_id: '24316'
+    collectible_for_sale_id: '1068'
+    collector_id: '1332'
+    price: '20'
+    status: ''
+    updated_at: '2011-06-21 21:04:53'
+    created_at: '2009-06-23 14:20:39'
+    archived_at: '2011-06-21 21:04:53'
+  CollectibleOfferArchive_38:
+    id: '38'
+    collectible_id: '25733'
+    collectible_for_sale_id: '1320'
+    collector_id: '1425'
+    price: '30'
+    status: accepted
+    updated_at: '2011-06-21 08:03:46'
+    created_at: '2009-08-02 03:17:26'
+    archived_at: '2011-06-21 08:03:46'
+  CollectibleOfferArchive_55:
+    id: '55'
+    collectible_id: '25725'
+    collectible_for_sale_id: '1302'
+    collector_id: '1525'
+    price: '1'
+    status: rejected
+    updated_at: '2011-06-21 08:03:45'
+    created_at: '2009-09-22 02:56:07'
+    archived_at: '2011-06-21 08:03:45'
+  CollectibleOfferArchive_58:
+    id: '58'
+    collectible_id: '25715'
+    collectible_for_sale_id: '1331'
+    collector_id: '1576'
+    price: '50'
+    status: pending
+    updated_at: '2011-06-21 08:03:46'
+    created_at: '2009-10-07 11:57:00'
+    archived_at: '2011-06-21 08:03:46'
+  CollectibleOfferArchive_61:
+    id: '61'
+    collectible_id: '25746'
+    collectible_for_sale_id: '1371'
+    collector_id: '1576'
+    price: '300'
+    status: rejected
+    updated_at: '2011-06-21 08:03:45'
+    created_at: '2009-10-08 07:22:53'
+    archived_at: '2011-06-21 08:03:45'
+  CollectibleOfferArchive_97:
+    id: '97'
+    collectible_id: '30574'
+    collectible_for_sale_id: '1493'
+    collector_id: '2590'
+    price: '50'
+    status: pending
+    updated_at: '2010-02-19 14:00:51'
+    created_at: '2010-02-19 14:00:51'
+  CollectibleOfferArchive_104:
+    id: '104'
+    collectible_id: '24314'
+    collectible_for_sale_id: '1071'
+    collector_id: '2644'
+    price: '4'
+    status: ''
+    updated_at: '2011-06-21 21:05:40'
+    created_at: '2010-02-25 00:40:00'
+    archived_at: '2011-06-21 21:05:40'
+  CollectibleOfferArchive_111:
+    id: '111'
+    collectible_id: '25725'
+    collectible_for_sale_id: '1302'
+    collector_id: '2644'
+    price: '3'
+    status: accepted
+    updated_at: '2011-06-21 08:03:45'
+    created_at: '2010-02-25 00:59:46'
+    archived_at: '2011-06-21 08:03:45'
+  CollectibleOfferArchive_120:
+    id: '120'
+    collectible_id: '23435'
+    collectible_for_sale_id: '721'
+    collector_id: '6598'
+    price: '25'
+    status: pending
+    updated_at: '2011-06-09 00:09:59'
+    created_at: '2011-06-09 00:09:59'
+  CollectibleOfferArchive_168:
+    id: '168'
+    collectible_id: '61266'
+    collectible_for_sale_id: '2260'
+    collector_id: '8026'
+    price: '112'
+    status: pending
+    updated_at: '2011-09-06 06:22:11'
+    created_at: '2011-09-06 06:22:11'
+  CollectibleOfferArchive_169:
+    id: '169'
+    collectible_id: '56859'
+    collectible_for_sale_id: '2168'
+    collector_id: '8026'
+    price: '450'
+    status: pending
+    updated_at: '2011-09-06 06:22:50'
+    created_at: '2011-09-06 06:22:50'
+  CollectibleOfferArchive_209:
+    id: '209'
+    collectible_id: '23875'
+    collectible_for_sale_id: '1180'
+    collector_id: '9362'
+    price: '15'
+    status: pending
+    updated_at: '2012-01-29 07:47:48'
+    created_at: '2012-01-29 07:47:48'

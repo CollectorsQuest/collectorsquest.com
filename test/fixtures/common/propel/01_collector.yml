@@ -1,0 +1,377 @@
+Collector:
+  Collector_12:
+    facebook_id: '501327639'
+    username: resonantfish
+    display_name: Robotbacon
+    slug: robotbacon
+    sha1_password: 94bf9c1e72028441b35d81551eeb36977b032e31
+    salt: 777b485dd5cfbc003525430040587aa0
+    email: collin@collectorsquest.com
+    user_type: Seller
+    items_allowed: '1000'
+    purchases_per_year: '0'
+    locale: en_US
+    score: '0'
+    spam_score: '5'
+    is_spam: '0'
+    is_public: '1'
+    session_id: tbnbcs8jkrj4u3ac42f3p46927
+    last_seen_at: '2012-01-31 16:41:44'
+    created_at: '2007-05-31 14:21:52'
+    updated_at: '2012-01-31 16:41:44'
+  Collector_52:
+    username: dinocollector
+    display_name: Dinocollector
+    slug: dinocollector
+    sha1_password: 53ca290fc733df31b90a5fe3d6f0f4bf4ed674bf
+    salt: 93aba57b8ca0c64e9bb3a88f9a9353e1
+    email: bfplatt@ku.edu
+    user_type: Collector
+    items_allowed: '0'
+    purchases_per_year: '0'
+    locale: en_US
+    score: '0'
+    spam_score: '5'
+    is_spam: '0'
+    is_public: '1'
+    last_seen_at: '2011-06-13 00:00:00'
+    created_at: '2007-06-19 01:15:50'
+    updated_at: '2012-01-05 15:06:03'
+  Collector_59:
+    username: poptart
+    display_name: Poptart
+    slug: poptart
+    sha1_password: 6314456d348131bc694c65b50d14d72ec85899aa
+    salt: dcf45611bedf847e93193bdeb5dc89b4
+    email: Deanna.Pop.Tart@gmail.com
+    user_type: Seller
+    items_allowed: '1000'
+    purchases_per_year: '0'
+    locale: en_US
+    score: '0'
+    spam_score: '5'
+    is_spam: '0'
+    is_public: '1'
+    last_seen_at: '2011-06-24 00:00:00'
+    created_at: '2007-06-24 01:24:56'
+    updated_at: '2012-01-20 15:16:22'
+  Collector_163:
+    username: pmurph
+    display_name: pmurph
+    slug: pmurph
+    sha1_password: 8d3fc41fc527899c2b0ca8daf5b3fd035a37d523
+    salt: d5679e47b535554e781841541ed5a086
+    email: paulmurphy777@yahoo.com
+    user_type: Collector
+    items_allowed: '0'
+    purchases_per_year: '0'
+    locale: en_US
+    score: '0'
+    spam_score: '5'
+    is_spam: '0'
+    is_public: '1'
+    last_seen_at: '2007-11-25 00:00:00'
+    created_at: '2007-09-15 22:27:59'
+    updated_at: '2012-01-05 15:10:49'
+  Collector_235:
+    username: collectio
+    display_name: Collectio
+    slug: collectio
+    sha1_password: 37076d6ddaee8c09f8b7e0f6bc425df3a80edd31
+    salt: 48bbd197c92ca1fec8e6a7cc34ed0051
+    email: collectio@mail.com
+    user_type: Collector
+    items_allowed: '0'
+    purchases_per_year: '0'
+    locale: en_US
+    score: '0'
+    spam_score: '40'
+    is_spam: '0'
+    is_public: '1'
+    last_seen_at: '2009-01-28 00:00:00'
+    created_at: '2008-01-02 18:42:45'
+    updated_at: '2012-01-05 15:13:44'
+  Collector_531:
+    username: blackgem
+    display_name: Blackgem
+    slug: blackgem
+    sha1_password: 9b01c3491791a71a5857d348888e5e54b12b30ad
+    salt: 0b3345adfdd3211ee6bd841f180c22ec
+    email: rselcoe@entouchonline.net
+    user_type: Collector
+    items_allowed: '0'
+    purchases_per_year: '0'
+    locale: en_US
+    score: '0'
+    spam_score: '5'
+    is_spam: '0'
+    is_public: '1'
+    last_seen_at: '2009-01-01 00:00:00'
+    created_at: '2008-04-06 11:43:49'
+    updated_at: '2012-01-05 15:25:43'
+  Collector_644:
+    username: barry2952
+    display_name: Barry2952
+    slug: barry2952
+    sha1_password: 4e274a46310e1cc6605a9b94fbc0e874016913b7
+    salt: 60fbf91c8c088cd15ef4bee57b49e953
+    email: barry2952@twmi.rr.com
+    user_type: Collector
+    items_allowed: '0'
+    purchases_per_year: '0'
+    locale: en_US
+    score: '0'
+    spam_score: '5'
+    is_spam: '0'
+    is_public: '1'
+    session_id: uk0etad72vq2iul0b0i8idh1i3
+    last_seen_at: '2010-10-06 00:00:00'
+    created_at: '2008-06-24 17:03:10'
+    updated_at: '2012-01-05 15:30:03'
+  Collector_714:
+    username: sleeves
+    display_name: Sleeves
+    slug: sleeves
+    sha1_password: 08a6f024a0629880139f3a1b0903692736a9530e
+    salt: f64acb350cfbc08294d2da3de51d2ff2
+    email: sleeves@home.nl
+    user_type: Collector
+    items_allowed: '0'
+    purchases_per_year: '0'
+    locale: en_US
+    score: '0'
+    spam_score: '5'
+    is_spam: '0'
+    is_public: '1'
+    last_seen_at: '2009-01-22 00:00:00'
+    created_at: '2008-08-23 09:25:20'
+    updated_at: '2012-01-05 15:32:53'
+  Collector_846:
+    username: francesca76
+    display_name: Francesca76
+    slug: francesca76
+    sha1_password: 69f15ff0e3c8534e7576eb3eb03c1a407a8135d4
+    salt: 85e0ca4d66214f86f3820db7fe0c9400
+    email: baifrancesca@gmail.com
+    user_type: Collector
+    items_allowed: '0'
+    purchases_per_year: '0'
+    locale: en_US
+    score: '0'
+    spam_score: '5'
+    is_spam: '0'
+    is_public: '1'
+    last_seen_at: '2008-12-21 00:00:00'
+    created_at: '2008-12-12 12:58:56'
+    updated_at: '2012-01-05 15:38:00'
+  Collector_870:
+    username: dinoobcessed
+    display_name: Dinoobcessed
+    slug: dinoobcessed
+    sha1_password: 1f55d8470f54addc19b4cfba31ceaddd3785882e
+    salt: 5e0f08508a2ab196dceec1fd7e8b110d
+    email: permian123@yahoo.com
+    user_type: Seller
+    items_allowed: '1000'
+    purchases_per_year: '0'
+    locale: en_US
+    score: '0'
+    spam_score: '5'
+    is_spam: '0'
+    is_public: '1'
+    session_id: f70go3q86sv5k6fosja8nanob1
+    last_seen_at: '2012-01-04 00:00:00'
+    created_at: '2008-12-27 23:20:15'
+    updated_at: '2012-01-05 15:39:00'
+  Collector_963:
+    username: trbuttons
+    display_name: Trbuttons
+    slug: trbuttons
+    sha1_password: 756f60b8c7d9ac188605f4f775cf6d4df75e6c85
+    salt: 5c1fbad789e9cf38e3ad7c623db6fdc4
+    email: TRbuttons@aol.com
+    user_type: Seller
+    items_allowed: '-3'
+    purchases_per_year: '0'
+    locale: en_US
+    score: '0'
+    spam_score: '5'
+    is_spam: '0'
+    is_public: '1'
+    session_id: 68tgbaqbqug16250jplgmhfam1
+    last_seen_at: '2011-06-15 00:00:00'
+    created_at: '2009-02-04 21:13:10'
+    updated_at: '2012-01-05 15:42:37'
+  Collector_1082:
+    username: googlecool97
+    display_name: Googlecool97
+    slug: googlecool97
+    sha1_password: 2cc36b8571d7f6707722531c7cfb73c7c02b6e9a
+    salt: 160fab3d1d5f98eed462d8ffd2ab8b77
+    email: brini123@gmail.com
+    user_type: Collector
+    items_allowed: '0'
+    purchases_per_year: '0'
+    locale: en_US
+    score: '0'
+    spam_score: '5'
+    is_spam: '0'
+    is_public: '1'
+    last_seen_at: '2009-06-22 00:00:00'
+    created_at: '2009-03-12 22:00:40'
+    updated_at: '2012-01-05 15:47:27'
+  Collector_1212:
+    username: tofunky
+    display_name: Tofunky
+    slug: tofunky
+    sha1_password: 3fb7deb6aee6fdf6e7b662d1a32c99a735523abd
+    salt: 502eff96a82283a5f1a628195523587d
+    email: tofunky@mac.com
+    user_type: Collector
+    items_allowed: '0'
+    purchases_per_year: '0'
+    locale: en_US
+    score: '0'
+    spam_score: '5'
+    is_spam: '0'
+    is_public: '1'
+    session_id: 0bmim9mlsknbelo48cev6iuoj5
+    last_seen_at: '2012-01-24 16:01:30'
+    created_at: '2009-05-03 18:58:54'
+    updated_at: '2012-01-24 16:01:30'
+  Collector_1317:
+    username: wildheart
+    display_name: Wildheart
+    slug: wildheart
+    sha1_password: 7b7f6bcb4d34431384c129f33deac3bd257c298d
+    salt: 40a85e4bd1b6b51827d4d823657f9dcd
+    email: mih.nicolae@yahoo.com
+    user_type: Collector
+    items_allowed: '0'
+    purchases_per_year: '0'
+    locale: en_US
+    score: '0'
+    spam_score: '5'
+    is_spam: '0'
+    is_public: '1'
+    session_id: j3b4h3kf33j3lseo4lttbqhc75
+    last_seen_at: '2011-04-06 00:00:00'
+    created_at: '2009-06-15 15:10:12'
+    updated_at: '2012-01-05 15:56:54'
+  Collector_1374:
+    username: duckland
+    display_name: Duckland
+    slug: duckland
+    sha1_password: df33ab65ba95345cd45efe70803fc11bf50189f6
+    salt: fc7f8cae18c1770ea01a2fdbf639670f
+    email: iscully@hotmail.com
+    user_type: Collector
+    items_allowed: '0'
+    purchases_per_year: '0'
+    locale: en_US
+    score: '0'
+    spam_score: '5'
+    is_spam: '0'
+    is_public: '1'
+    last_seen_at: '2009-07-21 00:00:00'
+    created_at: '2009-07-15 07:21:05'
+    updated_at: '2012-01-05 15:59:08'
+  Collector_3632:
+    username: 'Distinctive Styles'
+    display_name: 'Distinctive Styles'
+    slug: distinctive-styles
+    sha1_password: 2fa12fb5762e7b614d0bb0fabb8ba1d4a8080d37
+    salt: 01537b4417e5b0dd4ce511e2f18c75e9
+    email: distinctivestyles@yahoo.com
+    user_type: Collector
+    items_allowed: '0'
+    purchases_per_year: '0'
+    locale: en_US
+    score: '0'
+    spam_score: '5'
+    is_spam: '0'
+    is_public: '1'
+    session_id: j3b4h3kf33j3lseo4lttbqhc75
+    last_seen_at: '2011-04-06 00:00:00'
+    created_at: '2010-06-27 10:19:23'
+    updated_at: '2012-01-05 17:18:18'
+  Collector_4208:
+    username: freeburgh
+    display_name: 'Houston Freeburg Collection'
+    slug: houston-freeburg-collection
+    sha1_password: 8c688dbf80061b40240fe959a1735d38a55f7351
+    salt: f9920cf3fcf2dc3afe0b729a5442a66f
+    email: freeburgh@bellsouth.net
+    user_type: Collector
+    items_allowed: '0'
+    purchases_per_year: '0'
+    locale: en_US
+    score: '0'
+    spam_score: '5'
+    is_spam: '0'
+    is_public: '1'
+    session_id: 02k168r34n7fl3tpvflvasro73
+    last_seen_at: '2010-09-12 00:00:00'
+    created_at: '2010-09-12 12:04:44'
+    updated_at: '2012-01-05 17:40:41'
+  Collector_4295:
+    username: kalexk13
+    display_name: 'Rubbie Ducks'
+    slug: rubbie-ducks
+    sha1_password: 03c3021f337b6f2652bcb99e9d5de657a64880c9
+    salt: 72e12f57a1dce6824ef20b538b6ca18f
+    email: kaley523@gmail.com
+    user_type: Collector
+    items_allowed: '0'
+    purchases_per_year: '0'
+    locale: en_US
+    score: '0'
+    spam_score: '5'
+    is_spam: '0'
+    is_public: '1'
+    session_id: rc7e7aqdnr8mjbcc6rbgliabl0
+    last_seen_at: '2010-09-28 00:00:00'
+    created_at: '2010-09-28 20:51:11'
+    updated_at: '2012-01-05 17:44:01'
+  Collector_6610:
+    username: donnalee
+    display_name: stardust06242
+    slug: stardust06242
+    sha1_password: 29913d9ebfbf3a68a4cfe5e5736862e52958bb91
+    salt: f9a40fb7ef832dda6156ffed71430c4b
+    email: stardust466@juno.com
+    user_type: Seller
+    items_allowed: '-29'
+    what_you_collect: ''
+    purchases_per_year: '0'
+    what_you_sell: 'photographica & antiques'
+    locale: en_US
+    score: '0'
+    spam_score: '5'
+    is_spam: '0'
+    is_public: '1'
+    last_seen_at: '2011-06-24 00:00:00'
+    created_at: '2011-06-09 17:51:10'
+    updated_at: '2012-01-06 04:35:32'
+  Collector_6700:
+    username: ShabbyChicPickerChick
+    display_name: ShabbyChicPickerChick
+    slug: shabbychicpickerchick
+    sha1_password: 81b2e38a6007b53095601c7821daacc17495d210
+    salt: 3c0ed8bec5264b46dd4fe7df60d39ffd
+    email: shabbychicpickerchick@hotmail.com
+    user_type: Seller
+    items_allowed: '-1'
+    what_you_collect: 'Unique pottery, antique cameras, furniture, if it catches my eye...it is a keeper'
+    purchases_per_year: '0'
+    what_you_sell: 'antiques, collectibles, retro you name it I might have it or will find it..'
+    company: 'Shabby Chic Picker Chick Antiques & Collectibles'
+    locale: en_US
+    score: '0'
+    spam_score: '5'
+    is_spam: '0'
+    is_public: '1'
+    session_id: b132g7j82p1hg39a2o06upgll0
+    last_seen_at: '2011-08-24 00:00:00'
+    created_at: '2011-06-13 21:45:21'
+    updated_at: '2012-01-06 04:37:52'

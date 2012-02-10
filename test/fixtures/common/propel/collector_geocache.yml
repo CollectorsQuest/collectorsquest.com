@@ -1,0 +1,151 @@
+CollectorGeocache:
+  CollectorGeocache_10:
+    collector_id: Collector_12
+    country: USA
+    country_iso3166: US
+    state: NY
+    county: Putnam
+    city: 'Putnam Valley'
+    zip_postal: '10579'
+    address: 'Putnam Valley, NY 10579, USA'
+    latitude: '41.39138'
+    longitude: '-73.83014'
+    timezone: America/New_York
+  CollectorGeocache_32:
+    collector_id: Collector_52
+    country: USA
+    country_iso3166: US
+    state: KS
+    county: Douglas
+    city: Lawrence
+    zip_postal: '66046'
+    address: 'Lawrence, KS 66046, USA'
+    latitude: '38.90271'
+    longitude: '-95.21623'
+    timezone: America/Chicago
+  CollectorGeocache_124:
+    collector_id: Collector_163
+    country: USA
+    country_iso3166: US
+    state: NY
+    city: Brooklyn
+    zip_postal: '11201'
+    address: 'Brooklyn, NY 11201, USA'
+    latitude: '40.69457'
+    longitude: '-73.99182'
+    timezone: America/New_York
+  CollectorGeocache_158:
+    collector_id: Collector_235
+    country: Sweden
+    country_iso3166: SE
+    address: Sweden
+    latitude: '60.12816'
+    longitude: '18.64350'
+  CollectorGeocache_239:
+    collector_id: Collector_644
+    country: USA
+    country_iso3166: US
+    state: MI
+    county: Oakland
+    city: Farmington
+    zip_postal: '48335'
+    address: 'Farmington, MI 48335, USA'
+    latitude: '42.46434'
+    longitude: '-83.40564'
+    timezone: America/New_York
+  CollectorGeocache_485:
+    collector_id: Collector_1374
+    country: Spain
+    country_iso3166: ES
+    address: Spain
+    latitude: '40.46367'
+    longitude: '-3.74922'
+  CollectorGeocache_1410:
+    collector_id: Collector_531
+    country: USA
+    country_iso3166: US
+    state: TX
+    county: Harris
+    city: Cypress
+    zip_postal: '77429'
+    address: 'Cypress, TX 77429, USA'
+    latitude: '30.01411'
+    longitude: '-95.66683'
+    timezone: America/Chicago
+  CollectorGeocache_1490:
+    collector_id: Collector_846
+    country: Italy
+    country_iso3166: IT
+    address: Italy
+    latitude: '41.87194'
+    longitude: '12.56738'
+  CollectorGeocache_1491:
+    collector_id: Collector_1082
+    country: USA
+    country_iso3166: US
+    state: NC
+    county: Iredell
+    city: Mooresville
+    zip_postal: '28115'
+    address: 'Mooresville, NC 28115, USA'
+    latitude: '35.58429'
+    longitude: '-80.78794'
+    timezone: America/New_York
+  CollectorGeocache_1586:
+    collector_id: Collector_714
+    country: 'The Netherlands'
+    country_iso3166: NL
+    address: 'The Netherlands'
+    latitude: '52.13263'
+    longitude: '5.29127'
+  CollectorGeocache_2918:
+    collector_id: Collector_3632
+    country: USA
+    country_iso3166: US
+    address: 'United States'
+    latitude: '37.09024'
+    longitude: '-95.71289'
+    timezone: America/New_York
+  CollectorGeocache_3950:
+    collector_id: Collector_1317
+    country: Romania
+    country_iso3166: RO
+    address: Romania
+    latitude: '45.94316'
+    longitude: '24.96676'
+  CollectorGeocache_3951:
+    collector_id: Collector_1317
+    country: Romania
+    country_iso3166: RO
+    address: Romania
+    latitude: '45.94316'
+    longitude: '24.96676'
+  CollectorGeocache_3952:
+    collector_id: Collector_1317
+    country: Romania
+    country_iso3166: RO
+    address: Romania
+    latitude: '45.94316'
+    longitude: '24.96676'
+  CollectorGeocache_7140:
+    collector_id: Collector_6610
+    country: USA
+    country_iso3166: US
+    state: NH
+    city: Hinsdale
+    zip_postal: '03451'
+    address: 'Hinsdale, NH 03451, USA'
+    latitude: '42.80834'
+    longitude: '-72.50865'
+    timezone: America/New_York
+  CollectorGeocache_8724:
+    collector_id: Collector_6700
+    country: USA
+    country_iso3166: US
+    state: NE
+    city: Omaha
+    zip_postal: '68127'
+    address: 'Omaha, NE 68127, USA'
+    latitude: '41.20735'
+    longitude: '-96.05204'
+    timezone: America/New_York
