@@ -90,15 +90,14 @@ class collectorsActions extends autoCollectorsActions
 
     /* @var $collector Collector */
     $collector = $this->getRoute()->getObject();
-    var_dump($collector);
+    $collector->markAsSpam();
 
-    $collector->defensioMark(false);
-
-    die('bp');
+    $this->getUser()->setFlash('notice', sprintf('Collector "%s" marked as spam', $collector->getUsername()));
+    $this->redirect('collector');
   }
 
   /**
-   * Action MarkAsSpam
+   * Action MarkAsHam
    *
    * @param sfWebRequest $request
    *
@@ -108,11 +107,10 @@ class collectorsActions extends autoCollectorsActions
 
     /* @var $collector Collector */
     $collector = $this->getRoute()->getObject();
-    var_dump($collector);
+    $collector->markAsHam();
 
-    $collector->defensioMark(true);
-
-    die('bp');
+    $this->getUser()->setFlash('notice', sprintf('Collector "%s" marked as ham', $collector->getUsername()));
+    $this->redirect('collector');
   }
 
 }
