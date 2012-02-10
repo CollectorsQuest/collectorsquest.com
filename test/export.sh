@@ -1,7 +1,7 @@
 #!/bin/bash
 
-mysqladmin drop collectorsquest_test
-mysqladmin create collectorsquest_test
+echo "DROP DATABASE IF EXISTS collectorsquest_test;" | mysql -u root
+echo "CREATE DATABASE collectorsquest_test DEFAULT CHARACTER SET utf8;" | mysql -u root
 
 ./symfony propel:insert-sql --env=test --no-confirmation
 ./symfony propel:data-load --env=test --connection=propel test/fixtures/common/propel

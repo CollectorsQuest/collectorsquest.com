@@ -26,7 +26,7 @@ CREATE TABLE `collection_archive` (
   KEY `collection_archive_I_1` (`id`),
   KEY `collection_archive_I_2` (`graph_id`),
   KEY `collection_archive_I_3` (`collection_category_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 LOCK TABLES `collection_archive` WRITE;
 /*!40000 ALTER TABLE `collection_archive` DISABLE KEYS */;

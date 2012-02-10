@@ -8,7 +8,7 @@ CREATE TABLE `sf_guard_user_permission` (
   KEY `sf_guard_user_permission_FI_2` (`permission_id`),
   CONSTRAINT `sf_guard_user_permission_FK_1` FOREIGN KEY (`user_id`) REFERENCES `sf_guard_user` (`id`) ON DELETE CASCADE,
   CONSTRAINT `sf_guard_user_permission_FK_2` FOREIGN KEY (`permission_id`) REFERENCES `sf_guard_permission` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 LOCK TABLES `sf_guard_user_permission` WRITE;
 /*!40000 ALTER TABLE `sf_guard_user_permission` DISABLE KEYS */;

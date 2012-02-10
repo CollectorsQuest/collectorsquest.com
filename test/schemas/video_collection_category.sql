@@ -11,7 +11,7 @@ CREATE TABLE `video_collection_category` (
   KEY `video_collection_category_FI_2` (`collection_category_id`),
   CONSTRAINT `video_collection_category_FK_1` FOREIGN KEY (`video_id`) REFERENCES `video` (`id`),
   CONSTRAINT `video_collection_category_FK_2` FOREIGN KEY (`collection_category_id`) REFERENCES `collection_category` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 LOCK TABLES `video_collection_category` WRITE;
 /*!40000 ALTER TABLE `video_collection_category` DISABLE KEYS */;

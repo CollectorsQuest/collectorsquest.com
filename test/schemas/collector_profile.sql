@@ -28,7 +28,7 @@ CREATE TABLE `collector_profile` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `collector_profile_U_1` (`collector_id`),
   CONSTRAINT `collector_profile_FK_1` FOREIGN KEY (`collector_id`) REFERENCES `collector` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 LOCK TABLES `collector_profile` WRITE;
 /*!40000 ALTER TABLE `collector_profile` DISABLE KEYS */;

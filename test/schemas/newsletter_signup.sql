@@ -6,7 +6,7 @@ CREATE TABLE `newsletter_signup` (
   `email` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 LOCK TABLES `newsletter_signup` WRITE;
 /*!40000 ALTER TABLE `newsletter_signup` DISABLE KEYS */;

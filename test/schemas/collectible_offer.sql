@@ -17,7 +17,7 @@ CREATE TABLE `collectible_offer` (
   CONSTRAINT `collectible_offer_FK_1` FOREIGN KEY (`collectible_id`) REFERENCES `collectible` (`id`) ON DELETE CASCADE,
   CONSTRAINT `collectible_offer_FK_2` FOREIGN KEY (`collectible_for_sale_id`) REFERENCES `collectible_for_sale` (`id`) ON DELETE CASCADE,
   CONSTRAINT `collectible_offer_FK_3` FOREIGN KEY (`collector_id`) REFERENCES `collector` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 LOCK TABLES `collectible_offer` WRITE;
 /*!40000 ALTER TABLE `collectible_offer` DISABLE KEYS */;

@@ -17,7 +17,7 @@ CREATE TABLE `collector_geocache` (
   PRIMARY KEY (`id`),
   KEY `collector_geocache_FI_1` (`collector_id`),
   CONSTRAINT `collector_geocache_FK_1` FOREIGN KEY (`collector_id`) REFERENCES `collector` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 LOCK TABLES `collector_geocache` WRITE;
 /*!40000 ALTER TABLE `collector_geocache` DISABLE KEYS */;

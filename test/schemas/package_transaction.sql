@@ -15,7 +15,7 @@ CREATE TABLE `package_transaction` (
   KEY `package_transaction_FI_2` (`collector_id`),
   CONSTRAINT `package_transaction_FK_1` FOREIGN KEY (`package_id`) REFERENCES `package` (`id`),
   CONSTRAINT `package_transaction_FK_2` FOREIGN KEY (`collector_id`) REFERENCES `collector` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 LOCK TABLES `package_transaction` WRITE;
 /*!40000 ALTER TABLE `package_transaction` DISABLE KEYS */;

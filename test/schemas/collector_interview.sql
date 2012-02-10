@@ -17,7 +17,7 @@ CREATE TABLE `collector_interview` (
   CONSTRAINT `collector_interview_FK_1` FOREIGN KEY (`collector_id`) REFERENCES `collector` (`id`) ON DELETE SET NULL,
   CONSTRAINT `collector_interview_FK_2` FOREIGN KEY (`collection_category_id`) REFERENCES `collection_category` (`id`) ON DELETE SET NULL,
   CONSTRAINT `collector_interview_FK_3` FOREIGN KEY (`collection_id`) REFERENCES `collection` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 LOCK TABLES `collector_interview` WRITE;
 /*!40000 ALTER TABLE `collector_interview` DISABLE KEYS */;

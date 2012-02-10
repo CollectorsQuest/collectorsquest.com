@@ -6,7 +6,7 @@ CREATE TABLE `trivia` (
   `content` text NOT NULL,
   `created_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 LOCK TABLES `trivia` WRITE;
 /*!40000 ALTER TABLE `trivia` DISABLE KEYS */;

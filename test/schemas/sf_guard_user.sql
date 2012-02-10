@@ -13,7 +13,7 @@ CREATE TABLE `sf_guard_user` (
   `is_super_admin` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `sf_guard_user_U_1` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 LOCK TABLES `sf_guard_user` WRITE;
 /*!40000 ALTER TABLE `sf_guard_user` DISABLE KEYS */;

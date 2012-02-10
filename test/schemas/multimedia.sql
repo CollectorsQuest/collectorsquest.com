@@ -17,7 +17,7 @@ CREATE TABLE `multimedia` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `multimedia_U_1` (`model`,`model_id`,`md5`),
   KEY `multimedia_I_1` (`model`,`model_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=387 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=387 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 LOCK TABLES `multimedia` WRITE;
 /*!40000 ALTER TABLE `multimedia` DISABLE KEYS */;

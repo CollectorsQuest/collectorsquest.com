@@ -10,7 +10,7 @@ CREATE TABLE `term_relationship` (
   KEY `term_relationship_I_1` (`model`),
   KEY `term_relationship_FI_1` (`term_id`),
   CONSTRAINT `term_relationship_FK_1` FOREIGN KEY (`term_id`) REFERENCES `term` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 LOCK TABLES `term_relationship` WRITE;
 /*!40000 ALTER TABLE `term_relationship` DISABLE KEYS */;

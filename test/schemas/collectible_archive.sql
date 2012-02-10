@@ -23,7 +23,7 @@ CREATE TABLE `collectible_archive` (
   KEY `collectible_archive_I_3` (`collector_id`),
   KEY `collectible_archive_I_4` (`slug`),
   KEY `collectible_archive_I_5` (`batch_hash`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 LOCK TABLES `collectible_archive` WRITE;
 /*!40000 ALTER TABLE `collectible_archive` DISABLE KEYS */;

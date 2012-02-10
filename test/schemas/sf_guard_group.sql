@@ -7,7 +7,7 @@ CREATE TABLE `sf_guard_group` (
   `description` text,
   PRIMARY KEY (`id`),
   UNIQUE KEY `sf_guard_group_U_1` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 LOCK TABLES `sf_guard_group` WRITE;
 /*!40000 ALTER TABLE `sf_guard_group` DISABLE KEYS */;

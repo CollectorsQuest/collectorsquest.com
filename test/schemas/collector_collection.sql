@@ -28,7 +28,7 @@ CREATE TABLE `collector_collection` (
   CONSTRAINT `collector_collection_FK_1` FOREIGN KEY (`collector_id`) REFERENCES `collector` (`id`) ON DELETE CASCADE,
   CONSTRAINT `collector_collection_FK_2` FOREIGN KEY (`id`) REFERENCES `collection` (`id`) ON DELETE CASCADE,
   CONSTRAINT `collector_collection_FK_3` FOREIGN KEY (`collection_category_id`) REFERENCES `collection_category` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 LOCK TABLES `collector_collection` WRITE;
 /*!40000 ALTER TABLE `collector_collection` DISABLE KEYS */;

@@ -11,7 +11,7 @@ CREATE TABLE `collector_friend` (
   KEY `collector_friend_FI_2` (`friend_id`),
   CONSTRAINT `collector_friend_FK_1` FOREIGN KEY (`collector_id`) REFERENCES `collector` (`id`),
   CONSTRAINT `collector_friend_FK_2` FOREIGN KEY (`friend_id`) REFERENCES `collector` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 LOCK TABLES `collector_friend` WRITE;
 /*!40000 ALTER TABLE `collector_friend` DISABLE KEYS */;

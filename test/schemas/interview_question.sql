@@ -10,7 +10,7 @@ CREATE TABLE `interview_question` (
   PRIMARY KEY (`id`),
   KEY `interview_question_FI_1` (`collector_interview_id`),
   CONSTRAINT `interview_question_FK_1` FOREIGN KEY (`collector_interview_id`) REFERENCES `collector_interview` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 LOCK TABLES `interview_question` WRITE;
 /*!40000 ALTER TABLE `interview_question` DISABLE KEYS */;

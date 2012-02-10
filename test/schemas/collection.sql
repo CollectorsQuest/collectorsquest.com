@@ -25,7 +25,7 @@ CREATE TABLE `collection` (
   UNIQUE KEY `collection_U_1` (`graph_id`),
   KEY `collection_FI_1` (`collection_category_id`),
   CONSTRAINT `collection_FK_1` FOREIGN KEY (`collection_category_id`) REFERENCES `collection_category` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=280 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=280 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 LOCK TABLES `collection` WRITE;
 /*!40000 ALTER TABLE `collection` DISABLE KEYS */;

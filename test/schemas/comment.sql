@@ -23,7 +23,7 @@ CREATE TABLE `comment` (
   CONSTRAINT `comment_FK_1` FOREIGN KEY (`collection_id`) REFERENCES `collection` (`id`) ON DELETE CASCADE,
   CONSTRAINT `comment_FK_2` FOREIGN KEY (`collectible_id`) REFERENCES `collectible` (`id`) ON DELETE SET NULL,
   CONSTRAINT `comment_FK_3` FOREIGN KEY (`collector_id`) REFERENCES `collector` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=709 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=709 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 LOCK TABLES `comment` WRITE;
 /*!40000 ALTER TABLE `comment` DISABLE KEYS */;

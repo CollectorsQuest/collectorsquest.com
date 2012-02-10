@@ -8,7 +8,7 @@ CREATE TABLE `collection_category` (
   `slug` varchar(64) DEFAULT NULL,
   `score` int(11) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=783 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=783 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 LOCK TABLES `collection_category` WRITE;
 /*!40000 ALTER TABLE `collection_category` DISABLE KEYS */;

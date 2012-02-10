@@ -12,7 +12,7 @@ CREATE TABLE `tag` (
   PRIMARY KEY (`id`),
   KEY `tag_I_1` (`name`),
   KEY `tag_I_2` (`triple_namespace`,`triple_key`)
-) ENGINE=InnoDB AUTO_INCREMENT=12210 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12210 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 LOCK TABLES `tag` WRITE;
 /*!40000 ALTER TABLE `tag` DISABLE KEYS */;

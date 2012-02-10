@@ -34,7 +34,7 @@ CREATE TABLE `collector` (
   UNIQUE KEY `collector_U_1` (`graph_id`),
   UNIQUE KEY `collector_U_2` (`facebook_id`),
   UNIQUE KEY `collector_U_4` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 LOCK TABLES `collector` WRITE;
 /*!40000 ALTER TABLE `collector` DISABLE KEYS */;

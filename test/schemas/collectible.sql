@@ -21,7 +21,7 @@ CREATE TABLE `collectible` (
   KEY `collectible_I_1` (`batch_hash`),
   KEY `collectible_FI_1` (`collector_id`),
   CONSTRAINT `collectible_FK_1` FOREIGN KEY (`collector_id`) REFERENCES `collector` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5748 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5748 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 LOCK TABLES `collectible` WRITE;
 /*!40000 ALTER TABLE `collectible` DISABLE KEYS */;

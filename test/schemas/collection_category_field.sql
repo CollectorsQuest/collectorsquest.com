@@ -10,7 +10,7 @@ CREATE TABLE `collection_category_field` (
   KEY `collection_category_field_FI_2` (`custom_field_id`),
   CONSTRAINT `collection_category_field_FK_1` FOREIGN KEY (`collection_category_id`) REFERENCES `collection_category` (`id`) ON DELETE CASCADE,
   CONSTRAINT `collection_category_field_FK_2` FOREIGN KEY (`custom_field_id`) REFERENCES `custom_field` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=570 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=570 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 LOCK TABLES `collection_category_field` WRITE;
 /*!40000 ALTER TABLE `collection_category_field` DISABLE KEYS */;

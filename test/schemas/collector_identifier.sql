@@ -10,7 +10,7 @@ CREATE TABLE `collector_identifier` (
   UNIQUE KEY `collector_identifier_U_1` (`identifier`),
   KEY `collector_identifier_FI_1` (`collector_id`),
   CONSTRAINT `collector_identifier_FK_1` FOREIGN KEY (`collector_id`) REFERENCES `collector` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 LOCK TABLES `collector_identifier` WRITE;
 /*!40000 ALTER TABLE `collector_identifier` DISABLE KEYS */;

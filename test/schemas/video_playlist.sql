@@ -11,7 +11,7 @@ CREATE TABLE `video_playlist` (
   KEY `video_playlist_FI_2` (`playlist_id`),
   CONSTRAINT `video_playlist_FK_1` FOREIGN KEY (`video_id`) REFERENCES `video` (`id`),
   CONSTRAINT `video_playlist_FK_2` FOREIGN KEY (`playlist_id`) REFERENCES `playlist` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 LOCK TABLES `video_playlist` WRITE;
 /*!40000 ALTER TABLE `video_playlist` DISABLE KEYS */;

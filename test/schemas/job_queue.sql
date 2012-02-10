@@ -11,7 +11,7 @@ CREATE TABLE `job_queue` (
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `job_queue_U_1` (`unique_key`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 LOCK TABLES `job_queue` WRITE;
 /*!40000 ALTER TABLE `job_queue` DISABLE KEYS */;

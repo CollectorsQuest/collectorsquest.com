@@ -10,7 +10,7 @@ CREATE TABLE `tagging` (
   KEY `tagging_I_1` (`taggable_model`,`taggable_id`),
   KEY `tagging_FI_1` (`tag_id`),
   CONSTRAINT `tagging_FK_1` FOREIGN KEY (`tag_id`) REFERENCES `tag` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=476 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=476 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 LOCK TABLES `tagging` WRITE;
 /*!40000 ALTER TABLE `tagging` DISABLE KEYS */;

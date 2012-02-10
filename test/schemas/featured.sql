@@ -15,7 +15,7 @@ CREATE TABLE `featured` (
   `position` tinyint(4) DEFAULT '0',
   `is_active` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=210 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=210 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 LOCK TABLES `featured` WRITE;
 /*!40000 ALTER TABLE `featured` DISABLE KEYS */;

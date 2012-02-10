@@ -12,7 +12,7 @@ CREATE TABLE `collection_collectible` (
   KEY `collection_collectible_FI_2` (`collectible_id`),
   CONSTRAINT `collection_collectible_FK_1` FOREIGN KEY (`collection_id`) REFERENCES `collection` (`id`) ON DELETE CASCADE,
   CONSTRAINT `collection_collectible_FK_2` FOREIGN KEY (`collectible_id`) REFERENCES `collectible` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 LOCK TABLES `collection_collectible` WRITE;
 /*!40000 ALTER TABLE `collection_collectible` DISABLE KEYS */;

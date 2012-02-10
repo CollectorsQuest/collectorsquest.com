@@ -17,7 +17,7 @@ CREATE TABLE `custom_value` (
   KEY `custom_value_FI_2` (`collectible_id`),
   CONSTRAINT `custom_value_FK_1` FOREIGN KEY (`collection_id`) REFERENCES `collection` (`id`) ON DELETE CASCADE,
   CONSTRAINT `custom_value_FK_2` FOREIGN KEY (`collectible_id`) REFERENCES `collectible` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 LOCK TABLES `custom_value` WRITE;
 /*!40000 ALTER TABLE `custom_value` DISABLE KEYS */;

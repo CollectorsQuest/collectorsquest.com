@@ -16,7 +16,7 @@ CREATE TABLE `private_message` (
   `is_deleted` tinyint(1) DEFAULT '0',
   `created_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=121 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=121 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 LOCK TABLES `private_message` WRITE;
 /*!40000 ALTER TABLE `private_message` DISABLE KEYS */;

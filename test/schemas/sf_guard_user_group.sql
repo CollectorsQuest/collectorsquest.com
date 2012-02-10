@@ -8,7 +8,7 @@ CREATE TABLE `sf_guard_user_group` (
   KEY `sf_guard_user_group_FI_2` (`group_id`),
   CONSTRAINT `sf_guard_user_group_FK_1` FOREIGN KEY (`user_id`) REFERENCES `sf_guard_user` (`id`) ON DELETE CASCADE,
   CONSTRAINT `sf_guard_user_group_FK_2` FOREIGN KEY (`group_id`) REFERENCES `sf_guard_group` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 LOCK TABLES `sf_guard_user_group` WRITE;
 /*!40000 ALTER TABLE `sf_guard_user_group` DISABLE KEYS */;
