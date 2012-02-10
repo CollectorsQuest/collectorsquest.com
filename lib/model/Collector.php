@@ -412,7 +412,6 @@ class Collector extends BaseCollector
 
       if (is_array($result) && (int)$result[0] == 200)
       {
-        var_dump($result);
         $this->setIsSpam((string)$result[1]->allow == 'false' ? true : false);
         $this->setSpamScore(100 * (float)$result[1]->spaminess);
         $this->setProperty('spam.signature', $result[1]->signature);
