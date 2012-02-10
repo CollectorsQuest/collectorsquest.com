@@ -54,7 +54,7 @@ class PropelMigration_1328798752
         (
           `id` INTEGER NOT NULL,
         	`graph_id` INTEGER,
-        	`collection_category_id` INTEGER,
+        	`collection_category_id` SMALLINT,
         	`collector_id` INTEGER NOT NULL,
         	`name` VARCHAR(255) NOT NULL,
         	`slug` VARCHAR(128),
@@ -91,6 +91,10 @@ class PropelMigration_1328798752
 
         ALTER TABLE `collection` ADD `descendant_class` VARCHAR(100)  NULL  DEFAULT NULL  AFTER `collection_category_id`;
         UPDATE `collection` SET `descendant_class` = 'CollectorCollection' WHERE `descendant_class` IS NULL;
+      ",
+      'archive' => "
+        ALTER TABLE `collection_archive` ADD `descendant_class` VARCHAR(100)  NULL  DEFAULT NULL  AFTER `collection_category_id`;
+        UPDATE `collection_archive` SET `descendant_class` = 'CollectorCollection' WHERE `descendant_class` IS NULL;
       "
     );
   }
@@ -124,6 +128,9 @@ class PropelMigration_1328798752
         ALTER TABLE `collection` DROP `descendant_class`;
         DROP TABLE IF EXISTS `collection_collectible`;
         DROP TABLE IF EXISTS `collector_collection`;
+      ",
+      'archive' => "
+        ALTER TABLE `collection_archive` DROP `descendant_class`;
       "
     );
   }

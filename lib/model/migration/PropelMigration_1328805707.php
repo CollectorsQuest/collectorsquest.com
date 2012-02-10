@@ -10,7 +10,10 @@ class PropelMigration_1328805707
     /** @var $pdo PDO */
     $pdo = $manager->getPdoConnection('propel');
 
-    $sql = "INSERT INTO `collector_collection` SELECT * FROM `collection`;";
+    $sql = "INSERT INTO `collector_collection`
+            SELECT id, graph_id, collection_category_id, collector_id, `name`, slug, description, num_items, num_views, num_comments, num_ratings,
+                   score, is_public, is_featured, comments_on, rating_on, eblob, updated_at, created_at
+              FROM `collection`;";
     $pdo->prepare($sql)->execute();
 
     $sql = "INSERT IGNORE INTO `collection_collectible`
@@ -45,6 +48,11 @@ class PropelMigration_1328805707
         ALTER TABLE `collectible` DROP INDEX `collectible_FI_2`;
         ALTER TABLE `collectible` DROP `collection_id`;
         ALTER TABLE `collectible` DROP `position`;
+      ",
+      'archive' => "
+        ALTER TABLE `collection_archive`  DROP `collector_id`;
+        ALTER TABLE `collectible_archive` DROP `collection_id`;
+        ALTER TABLE `collectible_archive` DROP `position`;
       "
     );
   }

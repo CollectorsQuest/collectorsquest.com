@@ -93,6 +93,7 @@ classes:
       id:                      { type: integer, index: true, primaryKey: true, autoIncrement: false }
       graph_id:                { type: integer, required: false, index: index }
       collection_category_id:  { type: integer, index: true }
+      descendant_class:        { type: varchar, size: 100 }
       name:                    { type: varchar, size: 255, required: true, primaryString: true }
       slug:                    { type: varchar, size: 128 }
       description:             { type: longvarchar, required: true }
@@ -117,14 +118,12 @@ classes:
       id:                { type: integer, index: true, primaryKey: true, autoIncrement: false }
       graph_id:          { type: integer, required: false, index: index }
       collector_id:      { type: integer, index: true }
-      collection_id:     { type: integer, index: true }
       name:              { type: varchar, size: 255, required: true, primaryString: true }
       slug:              { type: varchar, size: 128, index: true }
       description:       { type: longvarchar, required: true }
       num_comments:      { type: integer, default: 0 }
       batch_hash:        { type: varchar, size: 32, index: true }
       score:             { type: integer, default: 0 }
-      position:          { type: integer, default: 0 }
       is_name_automatic: { type: boolean, default: false }
 
       eblob:        { type: longvarchar, default: null }

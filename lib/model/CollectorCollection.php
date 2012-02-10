@@ -277,27 +277,3 @@ class CollectorCollection extends BaseCollectorCollection
     return parent::preDelete($con);
   }
 }
-
-sfPropelBehavior::add('CollectorCollection', array('IceTaggableBehavior'));
-
-sfPropelBehavior::add(
-  'CollectorCollection',
-  array('PropelActAsEblobBehavior' => array('column' => 'eblob')
-));
-
-sfPropelBehavior::add(
-  'CollectorCollection',
-  array(
-    'PropelActAsSluggableBehavior' => array(
-      'columns' => array(
-        'from' => CollectorCollectionPeer::NAME,
-        'to' => CollectorCollectionPeer::SLUG
-      ),
-      'separator' => '-',
-      'permanent' => false,
-      'lowercase' => true,
-      'ascii' => true,
-      'chars' => 128
-    )
-  )
-);

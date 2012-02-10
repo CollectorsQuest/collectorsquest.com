@@ -142,7 +142,11 @@ class Featured extends BaseFeaturedNestedSet
     $pks = explode(',', $this->homepage_collectibles);
     $pks = array_filter($pks);
 
-    if (empty($pks))
+    if (!empty($pks))
+    {
+      $q->filterByPrimaryKeys($pks);
+    }
+    else
     {
       $collector_pks = $collection_pks = $collection_category_pks = array();
 
@@ -172,8 +176,8 @@ class Featured extends BaseFeaturedNestedSet
 
       if (!empty($collection_category_pks))
       {
-        $q->join('Collectible.CollectorCollection');
-        $q->useQuery('CollectorCollection')
+        $q->joinCollectionCollectible();
+        $q->useQuery('CollectionCollectible')
           ->filterByCollectionCategoryId($collection_category_pks)
           ->endUse();
       }
@@ -186,11 +190,7 @@ class Featured extends BaseFeaturedNestedSet
         $q->filterByCollectionId($collection_pks);
       }
     }
-    else
-    {
-      $q->filterByPrimaryKeys($pks);
-    }
 
-		  return ($q->hasWhereClause()) ? $q->findOne() : null;
+    return $q->hasWhereClause() ? $q->findOne() : null;
   }
 }
