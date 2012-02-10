@@ -12,6 +12,7 @@ require_once dirname(__FILE__) . '/../lib/collectorsGeneratorHelper.class.php';
  */
 class collectorsActions extends autoCollectorsActions
 {
+
   /**
    * @param  sfWebRequest  $request
    * @return sfView
@@ -76,6 +77,40 @@ class collectorsActions extends autoCollectorsActions
     }
 
     return sfView::ERROR;
+  }
+
+  /**
+   * Action MarkAsSpam
+   *
+   * @param sfWebRequest $request
+   *
+   */
+  public function executeMarkAsSpam(sfWebRequest $request)
+  {
+
+    /* @var $collector Collector */
+    $collector = $this->getRoute()->getObject();
+    $collector->markAsSpam();
+
+    $this->getUser()->setFlash('notice', sprintf('Collector "%s" marked as spam', $collector->getUsername()));
+    $this->redirect('collector');
+  }
+
+  /**
+   * Action MarkAsHam
+   *
+   * @param sfWebRequest $request
+   *
+   */
+  public function executeMarkAsHam(sfWebRequest $request)
+  {
+
+    /* @var $collector Collector */
+    $collector = $this->getRoute()->getObject();
+    $collector->markAsHam();
+
+    $this->getUser()->setFlash('notice', sprintf('Collector "%s" marked as ham', $collector->getUsername()));
+    $this->redirect('collector');
   }
 
 }
