@@ -35,8 +35,8 @@ class PropelMigration_1328798752
         	`collectible_id` INTEGER NOT NULL,
         	`score` INTEGER DEFAULT 0,
         	`position` INTEGER DEFAULT 0,
-        	`created_at` DATETIME,
         	`updated_at` DATETIME,
+        	`created_at` DATETIME,
         	PRIMARY KEY (`collection_id`,`collectible_id`),
         	INDEX `collection_collectible_FI_2` (`collectible_id`),
         	CONSTRAINT `collection_collectible_FK_1`
