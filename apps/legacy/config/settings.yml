@@ -1,6 +1,5 @@
 prod:
   .settings:
-    logging_enabled:        false
     cache:                  true
     etag:                   true
 
@@ -38,6 +37,9 @@ all:
     # Cache settings
     lazy_cache_key:         true
     no_script_name:         true
+
+    # Logging
+    logging_enabled:        false
 
   .actions:
     error_404_module:       general
