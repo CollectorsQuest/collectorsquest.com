@@ -41,7 +41,7 @@
   <div style="color: #ccc; font-style: italic;"><?= __('(optional)'); ?></div>
 </div>
 <div class="prepend-1 span-12 last">
-  <?= cq_select_tag($form, 'gender', array('width' => 100)); ?>
+  <?= cq_select_tag($form, 'gender', array('width' => 150)); ?>
 </div>
 <br clear="all"/><br />
 

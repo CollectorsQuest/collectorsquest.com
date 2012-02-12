@@ -14,8 +14,6 @@ class CollectorSignupStep3Form extends BaseFormPropel
       'zip_postal' => new sfWidgetFormInputText(),
       'country'    => new sfWidgetFormI18nSelectCountry(array('add_empty' => true, 'culture' => 'en')),
       'website'    => new sfWidgetFormInputText(),
-
-//      'captcha'    => new sfWidgetFormReCaptcha(array('public_key' => $recaptcha['public_key']))
     ));
 
     $this->setValidators(array(
@@ -24,8 +22,6 @@ class CollectorSignupStep3Form extends BaseFormPropel
       'zip_postal' => new sfValidatorString(array('max_length' => 15, 'required' => false)),
       'country'    => new sfValidatorI18nChoiceCountry(array('required' => true)),
       'website'    => new sfValidatorString(array('max_length' => 255, 'required' => false)),
-
-//      'captcha'    => new sfValidatorReCaptcha(array('private_key' => $recaptcha['private_key']))
     ));
 
     $this->widgetSchema->setNameFormat('collectorstep3[%s]');

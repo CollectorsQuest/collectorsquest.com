@@ -77,8 +77,8 @@ class collectorActions extends cqActions
     $this->prependTitle($collector->getDisplayName());
 
     // Building the meta tags
-    $this->getResponse()->addMeta('description', $this->collector->getAbout());
-    $this->getResponse()->addMeta('keywords', $this->collector->getInterests());
+    $this->getResponse()->addMeta('description', $this->collector->getAboutMe());
+    $this->getResponse()->addMeta('keywords', $this->collector->getAboutInterests());
 
     // Building the geo.* meta tags
     $this->getResponse()->addGeoMeta($collector);
@@ -215,7 +215,7 @@ class collectorActions extends cqActions
         );
 
         // Create the collector, based on the submited data
-        if ($collector = CollectorPeer::saveUserDataFromArray($amUserData))
+        if ($collector = CollectorPeer::createFromArray($amUserData))
         {
           $this->getUser()->Authenticate(true, $collector, false);
 
