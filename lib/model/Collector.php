@@ -453,31 +453,36 @@ class Collector extends BaseCollector
   /**
    * Send to defensio mark as spam|ham
    *
-   * @param bool $allow
+   * @param  boolean  $allow
+   * @return boolean
    */
   public function sendToDefensioMark($allow)
   {
     $params = array(
-      'allow'     => $allow ? 'true' : 'false',
+      'allow' => $allow ? 'true' : 'false',
     );
 
     try
     {
       $defensio = cqStatic::getDefensioClient();
       $result = $defensio->putDocument($this->getProperty('spam.signature'), $params);
-
-      if (is_array($result) && (int)$result[0] == 200)
-      {
-        $this->setProperty('spam.signature', (string)$result[1]->signature);
-        $this->setProperty('spam.classification', (string)$result[1]->classification);
-        $this->setProperty('spam.profanity-match', 'false' == (string)$result[1]['profanity-match'] ? false : true);
-        $this->setProperty('spam.allow', 'false' == (string)$result[1]['allow'] ? false : true);
-      }
     }
-    catch (Exception $e)
+    catch (DefensioError $e)
     {
-      throw $e;
+      $result = null;
     }
+
+    if (is_array($result) && (int)$result[0] == 200)
+    {
+      $this->setProperty('spam.signature', (string)$result[1]->signature);
+      $this->setProperty('spam.classification', (string)$result[1]->classification);
+      $this->setProperty('spam.profanity-match', 'false' == (string)$result[1]['profanity-match'] ? false : true);
+      $this->setProperty('spam.allow', 'false' == (string)$result[1]['allow'] ? false : true);
+
+      return true;
+    }
+
+    return false;
   }
 
   /**

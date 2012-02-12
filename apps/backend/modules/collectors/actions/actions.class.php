@@ -66,6 +66,10 @@ class collectorsActions extends autoCollectorsActions
     return sfView::NONE;
   }
 
+  /**
+   * @param  sfWebRequest  $request
+   * @return string
+   */
   public function executeAutoLogin(sfWebRequest $request)
   {
     $collector = CollectorQuery::create()->findOneById($request->getParameter('id'));
@@ -81,35 +85,43 @@ class collectorsActions extends autoCollectorsActions
 
   /**
    * Action MarkAsSpam
-   *
-   * @param sfWebRequest $request
-   *
    */
-  public function executeMarkAsSpam(sfWebRequest $request)
+  public function executeMarkAsSpam()
   {
+    try
+    {
+      /* @var $collector Collector */
+      $collector = $this->getRoute()->getObject();
+      $collector->markAsSpam();
 
-    /* @var $collector Collector */
-    $collector = $this->getRoute()->getObject();
-    $collector->markAsSpam();
+      $this->getUser()->setFlash('notice', sprintf('Collector "%s" marked as spam', $collector->getUsername()));
+    }
+    catch (Exception $e)
+    {
+      $this->getUser()->setFlash('error', 'There was an error and the operation did not succeed!');
+    }
 
-    $this->getUser()->setFlash('notice', sprintf('Collector "%s" marked as spam', $collector->getUsername()));
     $this->redirect('collector');
   }
 
   /**
    * Action MarkAsHam
-   *
-   * @param sfWebRequest $request
-   *
    */
-  public function executeMarkAsHam(sfWebRequest $request)
+  public function executeMarkAsHam()
   {
+    try
+    {
+      /* @var $collector Collector */
+      $collector = $this->getRoute()->getObject();
+      $collector->markAsHam();
 
-    /* @var $collector Collector */
-    $collector = $this->getRoute()->getObject();
-    $collector->markAsHam();
+      $this->getUser()->setFlash('notice', sprintf('Collector "%s" marked as ham', $collector->getUsername()));
+    }
+    catch (Exception $e)
+    {
+      $this->getUser()->setFlash('error', 'There was an error and the operation did not succeed!');
+    }
 
-    $this->getUser()->setFlash('notice', sprintf('Collector "%s" marked as ham', $collector->getUsername()));
     $this->redirect('collector');
   }
 
