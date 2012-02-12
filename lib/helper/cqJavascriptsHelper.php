@@ -97,13 +97,20 @@ function cq_echo_javascripts()
 
   if (!empty($contents))
   {
-    include_once __DIR__.'/../vendor/JavaScriptMinify.class.php';
-
-    try
+    if (function_exists('jsmin'))
     {
-      $contents = JavaScriptMinify::minify($contents);
+      $contents = (sfConfig::get('sf_environment') == 'prod') ? jsmin($contents) : $contents;
     }
-    catch (Exception $e) { ; }
+    else
+    {
+      include_once __DIR__ . '/../../plugins/iceLibsPlugin/lib/vendor/JavaScriptMinify.class.php';
+
+      try
+      {
+        $contents = (sfConfig::get('sf_environment') == 'prod') ? JavaScriptMinify::minify($contents) : $contents;
+      }
+      catch (Exception $e) { ; }
+    }
 
     echo content_tag('script', javascript_cdata_section(trim($contents)), array('type' => 'text/javascript'));
   }
