@@ -49,10 +49,10 @@
 <br clear="all"/><br>
 
 <div class="span-5" style="text-align: right;">
-  <?= cq_label_for($form, 'anually_spent', __('How much do you spend annually? (in USD)')); ?>
+  <?= cq_label_for($form, 'annually_spend', __('How much do you spend annually? (in USD)')); ?>
   <div style="color: #ccc; font-style: italic;"><?= __('(optional)'); ?></div>
 </div>
 <div class="prepend-1 span-12 last">
-  <?= cq_input_tag($form, 'anually_spent', array('width' => 100)); ?>
-  <?= $form['anually_spent']->renderError(); ?>
+  <?= cq_input_tag($form, 'annually_spend', array('width' => 100)); ?>
+  <?= $form['annually_spend']->renderError(); ?>
 </div>

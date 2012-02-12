@@ -93,10 +93,10 @@ collector_auto_login:
   url:  /collector/auto-login/:hash
   param: { module: general, action: login }
 
-collector_by_id:
+collector_by_slug:
   url:  /collector/:id/:slug
-  class: sfPropelRoute
-  options: { model: Collector, type: object, method: getObjectForRoute }
+  class: cqPropelRoute
+  options: { model: Collector, type: object, method: getObjectForRoute, statsd: true }
   param: { module: collector, action: index }
   requirements: { id: '\d+', slug: '[\-\w\.]+' }
 
@@ -140,8 +140,8 @@ dropbox_by_slug:
 
 collection_by_slug:
   url:  /collection/:id/:slug
-  class: sfPropelRoute
-  options: { model: Collection, type: object, method: getObjectForRoute }
+  class: cqPropelRoute
+  options: { model: Collection, type: object, method: getObjectForRoute, statsd: true }
   param: { module: collection, action: index }
   requirements: { id: '\d+', slug: '[\-\w\.]+' }
 
@@ -164,16 +164,6 @@ collections:
   url:  /collections/filter/most-recent
   param: { module: collections, action: index }
 
-collection_by_name:
-  url:  /collection/:id/:name
-  param: { module: collection, action: show }
-  requirements: { id: \d+, name: [\-\w+] }
-
-collection_by_id:
-  url:  /collection/:id
-  param: { module: collection, action: show }
-  requirements: { id: \d+ }
-
 collections_home:
   url:  /collections
   param: { module: collection, action: index }
@@ -194,31 +184,11 @@ collectible_remove:
 
 collectible_by_slug:
   url:  /collectible/:id/:slug
-  class: sfPropelRoute
-  options: { model: Collectible, type: object, method: getObjectForRoute }
+  class: cqPropelRoute
+  options: { model: Collectible, type: object, method: getObjectForRoute, statsd: true }
   param: { module: collection, action: collectible }
   requirements: { id: '\d+', slug: '[\-\w\.]+' }
 
-collectible_by_id:
-  url:  /collectible/:id
-  class: sfPropelRoute
-  options: { model: Collectible, type: object, method: getObjectForRoute }
-  param: { module: collection, action: collectible }
-  requirements: { id: \d+ }
-
-collectible_by_id_legacy:
-  url:  /collection/item/:id
-  class: sfPropelRoute
-  options: { model: Collectible, type: object, method: getObjectForRoute }
-  param: { module: collection, action: collectible }
-  requirements: { id: '\d+' }
-
-collectible_by_slug_legacy:
-  url:  /collection/item/:id/:slug
-  class: sfPropelRoute
-  options: { model: Collectible, type: object, method: getObjectForRoute }
-  param: { module: collection, action: collectible }
-  requirements: { id: '\d+', slug: '[\-\w\.]+' }
 
 ### COMMUNITY
 
@@ -230,15 +200,20 @@ community:
   url:   /community
   param: { module: community, action: spotlight }
 
+
 ### VIDEOS
 
 video_playlist:
-  url: /videos/playlist/:playlist_id/:slug
+  url: /videos/playlist/:id/:slug
+  class: cqPropelRoute
+  options: { model: Playlist, type: object, statsd: true }
   param: { module: videos, action: index }
-  requirements: { playlist_id: \d+, slug: '[\-\w\.]+' }
+  requirements: { id: \d+, slug: '[\-\w\.]+' }
 
 video_by_id:
   url: /video/:id/:slug
+  class: cqPropelRoute
+  options: { model: Video, type: object, statsd: true }
   param: { module: videos, action: singleVideo, slug: view }
   requirements: { id: \d+, slug: '[\-\w\.]+' }
 
@@ -463,7 +438,7 @@ aent_landing:
 
 aent_collectible_by_slug:
   url:  /aetn/collectible/:id/:slug
-  class: sfPropelRoute
+  class: cqPropelRoute
   options: { model: Collectible, type: object, method: getObjectForRoute }
   param: { module: aent, action: collectible }
   requirements: { id: '\d+', slug: '[\-\w\.]+' }

@@ -2,26 +2,24 @@
 
 class videosActions extends cqActions
 {
-  /**
-   * Executes index action
-   *
-   */
+
   public function executeIndex(sfWebRequest $request)
   {
-    if (!$request->getParameter('playlist_id'))
+    if (!$request->getParameter('id'))
     {
       $c = new Criteria;
       $c->add(PlaylistPeer::IS_PUBLISHED, true);
       $c->addAscendingOrderByColumn('RAND()');
       $playlist = PlaylistPeer::doSelectOne($c);
 
-      return $this->redirect('@video_playlist?playlist_id='.$playlist->getId().'&slug='.$playlist->getSlug(), 301);
+      return $this->redirect('@video_playlist?id='. $playlist->getId() .'&slug='. $playlist->getSlug(), 301);
     }
     else
     {
-      $playlist = PlaylistPeer::retrieveByPK($request->getParameter('playlist_id'));
+      /** @var $playlist Playlist */
+      $playlist = $this->getRoute()->getObject();
+      $this->forward404Unless($playlist->getIsPublished());
     }
-    $this->forward404Unless($playlist);
 
     $this->videos = $playlist->getPublishedVideos();
     $this->playlist = $playlist;
@@ -52,8 +50,8 @@ class videosActions extends cqActions
 
   public function executeSingleVideo(sfWebRequest $request)
   {
-    $video = VideoPeer::retrieveByPK($request->getParameter('id'));
-    $this->forward404unless($video);
+    /** @var $video Video */
+    $video = $this->getRoute()->getObject();
 
     $c = new Criteria();
     $c->add(PlaylistPeer::IS_PUBLISHED, true);
@@ -99,19 +97,6 @@ class videosActions extends cqActions
     return sfView::SUCCESS;
   }
 
-  // vlist for the collectors videos
-  public function executeVlist()
-  {
-    $playlist = PlaylistPeer::retrieveByPK($this->getRequestParameter('playlist_id'));
-    $this->forward404Unless($playlist);
-
-    $pager = $playlist->getPublishedVideosPager($this->getRequestParameter('page', 1), sfConfig::get('app_pager_video_max'));
-
-    $this->pager = $pager;
-    $this->videos = $pager->getResults();
-    $this->playlist = $playlist;
-  }
-
   public function executeEvents()
   {
     $c = new Criteria();
@@ -127,45 +112,4 @@ class videosActions extends cqActions
     $this->video_pager = $pager;
   }
 
-  public function executeSitemap()
-  {
-    $sitemap = sfSitemapPeer::newInstance('default');
-
-    $item = new sfSitemapItem();
-    $item->initialize(
-      array(
-        'loc' => 'videos/index',
-        'changeFreq' => 'daily',
-        'priority' => 0.5
-      )
-    );
-    $sitemap->addItem($item);
-
-    $c = new Criteria();
-    $c->addSelectColumn(VideoPeer::ID);
-    $c->addSelectColumn(VideoPeer::SLUG);
-    $c->addSelectColumn(VideoPeer::PUBLISHED_AT);
-    $c->add(VideoPeer::IS_PUBLISHED, true);
-    $c->addDescendingOrderByColumn(VideoPeer::ID);
-
-    $stmt = VideoPeer::doSelectStmt($c);
-    while ($row = $stmt->fetch(PDO::FETCH_NUM))
-    {
-      $item = new sfSitemapItem();
-      $item->initialize(
-        array(
-          'loc' => sprintf('@video_by_slug?id=%d&slug=%s', $row[0], $row[1]),
-          'lastMod' => strtotime($row[2]),
-          'changeFreq' => 'weekly',
-          'priority' => 0.1
-        )
-      );
-      $sitemap->addItem($item);
-    }
-
-    $this->renderText($sitemap->asXml());
-
-    return sfView::NONE;
-  }
 }
-

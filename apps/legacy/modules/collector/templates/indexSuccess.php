@@ -122,51 +122,51 @@
   </div>
 
   <div class="span-17 append-bottom last">
-    <?php if ($collector_profile->getCollecting()): ?>
+    <?php if ($collector->getWhatYouCollect()): ?>
       <div style='padding: 3px 0 0 0; margin:0;'>
         <b><?php echo __('I collect:'); ?></b>&nbsp;
-        <span style='color: #66A3B5'><?= strip_tags($collector_profile->getCollecting()); ?></span>
+        <span style='color: #66A3B5'><?= strip_tags($collector->getWhatYouCollect()); ?></span>
       </div>
     <?php endif; ?>
-    <?php if ($collector_profile->getMostSpent()): ?>
+    <?php if ($collector->getMostExpensiveItem()): ?>
       <div style='padding: 3px 0 0 0; margin:0;'>
         <b><?php echo __("The most I've spent on an item:"); ?></b>&nbsp;
-        <span style='color: #66A3B5'>$<?= money_format($collector_profile->getMostSpent(), 2); ?></span>
+        <span style='color: #66A3B5'>$<?= money_format($collector->getMostExpensiveItem(), 2); ?></span>
       </div>
     <?php endif; ?>
-    <?php if ($collector_profile->getAnuallySpent()): ?>
+    <?php if ($collector->getAnnuallySpend()): ?>
       <div style='padding: 3px 0 0 0; margin:0;'>
         <b><?php echo __("Annually I spend about:"); ?></b>&nbsp;
-        <span style='color: #66A3B5'>$<?= money_format($collector_profile->getAnuallySpent(), 2); ?></span>
+        <span style='color: #66A3B5'>$<?= money_format($collector->getAnnuallySpend(), 2); ?></span>
       </div>
     <?php endif; ?>
-    <?php if ($collector_profile->getNewItemEvery()): ?>
+    <?php if ($collector->getNewItemEvery()): ?>
       <div style='padding: 3px 0 0 0; margin:0;'>
         <b><?php echo __("I purchase a new item:"); ?></b>&nbsp;
-        <span style='color: #66A3B5'><?= ucwords($collector_profile->getNewItemEvery()); ?></span>
+        <span style='color: #66A3B5'><?= ucwords($collector->getNewItemEvery()); ?></span>
       </div>
     <?php endif; ?>
   </div>
 
   <div class="span-17 append-bottom last">
-    <?php if ($collector_profile->getAbout()): ?>
+    <?php if ($collector->getAbout()): ?>
     <fieldset>
       <legend><?= __('about %username%', array('%username%'=>$collector)); ?></legend>
-      <?php echo nl2br(IceStatic::cleanText($collector_profile->getAbout(), false, 'a, b, u, i, strong')); ?>
+      <?php echo nl2br(IceStatic::cleanText($collector->getAbout(), false, 'a, b, u, i, strong')); ?>
     </fieldset>
     <?php endif; ?>
 
-    <?php if ($collector_profile->getCollections()): ?>
+    <?php if ($collector->getCollections()): ?>
     <fieldset>
       <legend><?= __("about %username%'s collections", array('%username%'=>$collector)); ?></legend>
-      <?php echo nl2br(IceStatic::cleanText($collector_profile->getCollections(), false, 'a, b, u, i, strong')); ?>
+      <?php echo nl2br(IceStatic::cleanText($collector->getCollections(), false, 'a, b, u, i, strong')); ?>
     </fieldset>
     <?php endif; ?>
 
-    <?php if ($collector_profile->getInterests()): ?>
+    <?php if ($collector->getInterests()): ?>
     <fieldset>
       <legend><?= __("%username%'s interests", array('%username%'=>$collector)); ?></legend>
-      <?php echo nl2br(IceStatic::cleanText($collector_profile->getInterests(), false, 'a, b, u, i, strong')); ?>
+      <?php echo nl2br(IceStatic::cleanText($collector->getInterests(), false, 'a, b, u, i, strong')); ?>
     </fieldset>
     <?php endif; ?>
   </div>
@@ -199,8 +199,8 @@
       <p><?= __('Before you leave, make sure you can find your way back.'); ?></p>
       <p>
         <b><?= __('Direct link:'); ?></b><br>
-        <a href="<?= url_for('@collector_by_id?id='.$collector->getId().'&slug='.$collector->getSlug(), true); ?>" title="<?= $collector->getDisplayName(); ?>">
-          <?= url_for('@collector_by_id?id='.$collector->getId().'&slug='.$collector->getSlug(), true); ?>
+        <a href="<?= url_for('@collector_by_slug?id='.$collector->getId().'&slug='.$collector->getSlug(), true); ?>" title="<?= $collector->getDisplayName(); ?>">
+          <?= url_for('@collector_by_slug?id='.$collector->getId().'&slug='.$collector->getSlug(), true); ?>
         </a>
       </p>
     </fieldset>

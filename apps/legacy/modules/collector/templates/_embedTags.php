@@ -3,7 +3,7 @@
   <li>
     <b><?= __('Share URL'); ?> -</b>
     <small><?= __('Email & IM'); ?></small>
-  <li><input type="text" value="<?= url_for('@collector_by_id?id='.$collector->getId().'&slug='.$collector->getSlug(), true); ?>" style="width: 100%;"></li>
+  <li><input type="text" value="<?= url_for('@collector_by_slug?id='.$collector->getId().'&slug='.$collector->getSlug(), true); ?>" style="width: 100%;"></li>
   <li>&nbsp;</li>
   <li>
     <b><?= __('IMG Code'); ?> -</b>

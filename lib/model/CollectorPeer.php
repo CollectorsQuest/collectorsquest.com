@@ -341,8 +341,6 @@ class CollectorPeer extends BaseCollectorPeer
     $collector_profile->setCollector($collector);
 
     // Save new added fields as per collector and seller
-    $collector->setWhatYouCollect($data['what_you_collect']);
-
     if (!empty($data['what_you_sell']))
     {
       $collector->setWhatYouSell($data['what_you_sell']);
@@ -350,17 +348,14 @@ class CollectorPeer extends BaseCollectorPeer
     if (!empty($data['what_you_collect']))
     {
       $collector->setWhatYouCollect($data['what_you_collect']);
-      $collector_profile->setCollecting($data['what_you_collect']);
     }
     if (!empty($data['annually_spend']))
     {
       $collector->setAnnuallySpend($data['annually_spend']);
-      $collector_profile->setAnuallySpent($data['annually_spend']);
     }
     if (!empty($data['most_expensive_item']))
     {
       $collector->setMostExpensiveItem($data['most_expensive_item']);
-      $collector_profile->setMostSpent($data['most_expensive_item']);
     }
     if (!empty($data['company']))
     {
@@ -410,9 +405,6 @@ class CollectorPeer extends BaseCollectorPeer
     {
       $collector_profile->save();
       $collector->save();
-
-      // Send the profile data to Impermium to analyse
-      $collector->sendToImpermium('CREATE');
 
       // Send the profile data to Defensio to analyse
       $collector->sendToDefensio('CREATE');

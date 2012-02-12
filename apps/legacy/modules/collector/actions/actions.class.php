@@ -77,8 +77,8 @@ class collectorActions extends cqActions
     $this->prependTitle($collector->getDisplayName());
 
     // Building the meta tags
-    $this->getResponse()->addMeta('description', $this->collector_profile->getAbout());
-    $this->getResponse()->addMeta('keywords', $this->collector_profile->getInterests());
+    $this->getResponse()->addMeta('description', $this->collector->getAbout());
+    $this->getResponse()->addMeta('keywords', $this->collector->getInterests());
 
     // Building the geo.* meta tags
     $this->getResponse()->addGeoMeta($collector);
@@ -110,7 +110,7 @@ class collectorActions extends cqActions
       $id   = $collector->getId();
       $slug = $collector->getSlug();
 
-      $this->redirect('@collector_by_id?id='. $id .'&slug='. $slug);
+      $this->redirect('@collector_by_slug?id='. $id .'&slug='. $slug);
     }
 
     $this->redirect('@login');

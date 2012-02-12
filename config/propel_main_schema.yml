@@ -21,12 +21,12 @@ classes:
       email:          { type: varchar, size: 128, index: unique }
       user_type:      { type: char, sqlType: "ENUM('Collector','Seller')", default: "Collector", required: true }
       items_allowed:         integer
-      what_you_collect:      { type: varchar, size: 255 }
-      purchases_per_year:    { type: integer, default: 0 }
-      what_you_sell:         { type: varchar, size: 255 }
-      annually_spend:        { type: float, default: 0 }
-      most_expensive_item:   { type: float, default: 0 }
-      company:               { type: varchar, size: 255 }
+#      what_you_collect:      { type: varchar, size: 255 }
+#      purchases_per_year:    { type: integer, default: 0 }
+#      what_you_sell:         { type: varchar, size: 255 }
+#      annually_spend:        { type: float, default: 0 }
+#      most_expensive_item:   { type: float, default: 0 }
+#      company:               { type: varchar, size: 255 }
       locale:         { type: varchar, size: 5, default: "en_US" }
       score:          { type: integer, default: 0 }
       spam_score:     { type: integer, default: 0 }
@@ -56,13 +56,13 @@ classes:
       country:         varchar(64)
       country_iso3166: varchar(2)
       website:         varchar(128)
-      about:           longvarchar
-      collections:     longvarchar
-      collecting:      varchar(255)
-      most_spent:      integer
-      anually_spent:   integer
-      new_item_every:  varchar(64)
-      interests:       longvarchar
+#      about:           longvarchar
+#      collections:     longvarchar
+#      collecting:      varchar(255)
+#      most_spent:      integer
+#      anually_spent:   integer
+#      new_item_every:  varchar(64)
+#      interests:       longvarchar
       is_featured:     { type: boolean, default: false }
       is_seller:       { type: boolean, default: false }
       is_image_auto:   { type: boolean, default: true }

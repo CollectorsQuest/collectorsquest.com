@@ -88,7 +88,7 @@ function url_for_collector(Collector $collector = null, $absolute = false)
 function route_for_collector(Collector $collector = null)
 {
   return ($collector) ?
-      '@collector_by_id?id='. $collector->getId() .'&slug='. $collector->getSlug() :
+      '@collector_by_slug?id='. $collector->getId() .'&slug='. $collector->getSlug() :
       null;
 }
 

@@ -49,7 +49,7 @@
       <?php echo link_to(__('Videos'), '@videos'); ?>
       <ul>
         <li><?php echo link_to(__('Hot Videos'), '@videos'); ?></li>
-        <li><?php echo link_to(__('Show & Tell'), '@video_playlist?playlist_id=1&slug=show-and-tell'); ?></li>
+        <li><?php echo link_to(__('Show & Tell'), '@video_playlist?id=1&slug=show-and-tell'); ?></li>
       </ul>
     </li>
     <li>

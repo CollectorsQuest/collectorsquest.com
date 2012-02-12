@@ -2,6 +2,7 @@
 
 class Collector extends BaseCollector
 {
+
   protected $profile = null;
 
   public function postSave(PropelPDO $con = null)
@@ -56,7 +57,7 @@ class Collector extends BaseCollector
   {
     if (!$salt = $this->getSalt())
     {
-      $salt = md5(rand(100000, 999999) .'_'. $this->getUsername());
+      $salt = md5(rand(100000, 999999) . '_' . $this->getUsername());
       $this->setSalt($salt);
     }
 
@@ -75,8 +76,10 @@ class Collector extends BaseCollector
         $version = 'v1';
 
         $json = json_encode(array(
-          'version' => $version, 'id' => $this->getId(),
-          'created' => (int) $this->getCreatedAt('U'), 'time' => (int) $time
+          'version' => $version,
+          'id'      => $this->getId(),
+          'created' => (int)$this->getCreatedAt('U'),
+          'time'    => (int)$time
         ));
 
         $hash = sprintf(
@@ -249,7 +252,7 @@ class Collector extends BaseCollector
     $tag_ids = array();
     while ($tag_id = $stmt->fetchColumn(0))
     {
-      $tag_ids[] = (int) $tag_id;
+      $tag_ids[] = (int)$tag_id;
     }
 
     return $tag_ids;
@@ -323,14 +326,14 @@ class Collector extends BaseCollector
   public function sendToImpermium($opration = 'UPDATE')
   {
     $params = array(
-      'user_id' => $this->getId(),
-      'operation' => $opration,
-      'alias' => $this->getDisplayName(),
-      'password_hash' => substr($this->getSha1Password(), 0, 12),
-      'email_identity' => $this->getEmail(),
-      'zip' => $this->getProfile()->getZipPostal(),
-      'user_url' => $this->getProfile()->getWebsiteUrl(),
-      'profile_permalink' => 'http://www.collectorsquest.com/collector/'. $this->getId() .'/'. $this->getSlug()
+      'user_id'           => $this->getId(),
+      'operation'         => $opration,
+      'alias'             => $this->getDisplayName(),
+      'password_hash'     => substr($this->getSha1Password(), 0, 12),
+      'email_identity'    => $this->getEmail(),
+      'zip'               => $this->getProfile()->getZipPostal(),
+      'user_url'          => $this->getProfile()->getWebsiteUrl(),
+      'profile_permalink' => 'http://www.collectorsquest.com/collector/' . $this->getId() . '/' . $this->getSlug()
     );
 
     if (php_sapi_name() !== 'cli')
@@ -338,13 +341,13 @@ class Collector extends BaseCollector
       $params['enduser_ip'] = IceStatic::getUserIpAddress();
       $params['http_headers'] = array(
         "HTTP_ACCEPT_LANGUAGE" => $_SERVER["HTTP_ACCEPT_LANGUAGE"],
-        "HTTP_REFERER" => $_SERVER["HTTP_REFERER"],
-        "HTTP_ACCEPT_CHARSET" => @$_SERVER["HTTP_ACCEPT_CHARSET"],
-        "HTTP_KEEP_ALIVE" => @$_SERVER["HTTP_KEEP_ALIVE"],
+        "HTTP_REFERER"         => $_SERVER["HTTP_REFERER"],
+        "HTTP_ACCEPT_CHARSET"  => @$_SERVER["HTTP_ACCEPT_CHARSET"],
+        "HTTP_KEEP_ALIVE"      => @$_SERVER["HTTP_KEEP_ALIVE"],
         "HTTP_ACCEPT_ENCODING" => $_SERVER["HTTP_ACCEPT_ENCODING"],
-        "HTTP_CONNECTION" => $_SERVER["HTTP_CONNECTION"],
-        "HTTP_ACCEPT" => $_SERVER["HTTP_ACCEPT"],
-        "HTTP_USER_AGENT" => $_SERVER["HTTP_USER_AGENT"]
+        "HTTP_CONNECTION"      => $_SERVER["HTTP_CONNECTION"],
+        "HTTP_ACCEPT"          => $_SERVER["HTTP_ACCEPT"],
+        "HTTP_USER_AGENT"      => $_SERVER["HTTP_USER_AGENT"]
       );
     }
 
@@ -369,22 +372,22 @@ class Collector extends BaseCollector
   public function sendToDefensio($operation = 'UPDATE')
   {
     $content = implode(' ', array(
-      $this->getProfile()->getAbout(),
-      $this->getProfile()->getCollecting(),
-      $this->getProfile()->getCollections(),
-      $this->getProfile()->getInterests()
+      $this->getAbout(),
+      $this->getWhatYouCollect(),
+      $this->getCollections(),
+      $this->getInterests()
     ));
 
     $params = array(
-      'platform' => 'website',
-      'type' => 'other',
-      'author-email' => $this->getEmail(),
-      'author-logged-in' => ($operation == 'UPDATE') ? 'true' : 'false',
-      'author-name' => $this->getDisplayName(),
-      'author-url' => $this->getProfile()->getWebsiteUrl(),
-      'document-permalink' => 'http://www.collectorsquest.com/collector/'. $this->getId() .'/'. $this->getSlug(),
-      'content' => $content,
-      'async' => 'false'
+      'platform'           => 'website',
+      'type'               => 'other',
+      'author-email'       => $this->getEmail(),
+      'author-logged-in'   => ($operation == 'UPDATE') ? 'true' : 'false',
+      'author-name'        => $this->getDisplayName(),
+      'author-url'         => $this->getProfile()->getWebsiteUrl(),
+      'document-permalink' => 'http://www.collectorsquest.com/collector/' . $this->getId() . '/' . $this->getSlug(),
+      'content'            => $content,
+      'async'              => 'false'
     );
 
     if (php_sapi_name() !== 'cli')
@@ -392,14 +395,14 @@ class Collector extends BaseCollector
       $params['author-ip'] = IceStatic::getUserIpAddress();
       $params['referrer'] = $_SERVER["HTTP_REFERER"];
       $params['http-headers'] =
-        "HTTP_ACCEPT_LANGUAGE: ". $_SERVER["HTTP_ACCEPT_LANGUAGE"] ."\n".
-        "HTTP_REFERER: ". $_SERVER["HTTP_REFERER"] ."\n".
-        "HTTP_ACCEPT_CHARSET: ". @$_SERVER["HTTP_ACCEPT_CHARSET"] ."\n".
-        "HTTP_KEEP_ALIVE: ". @$_SERVER["HTTP_KEEP_ALIVE"] ."\n".
-        "HTTP_ACCEPT_ENCODING: ". $_SERVER["HTTP_ACCEPT_ENCODING"] ."\n".
-        "HTTP_CONNECTION: ". $_SERVER["HTTP_CONNECTION"] ."\n".
-        "HTTP_ACCEPT: ". $_SERVER["HTTP_ACCEPT"] ."\n".
-        "HTTP_USER_AGENT: ". $_SERVER["HTTP_USER_AGENT"];
+          "HTTP_ACCEPT_LANGUAGE: " . $_SERVER["HTTP_ACCEPT_LANGUAGE"] . "\n" .
+              "HTTP_REFERER: " . $_SERVER["HTTP_REFERER"] . "\n" .
+              "HTTP_ACCEPT_CHARSET: " . @$_SERVER["HTTP_ACCEPT_CHARSET"] . "\n" .
+              "HTTP_KEEP_ALIVE: " . @$_SERVER["HTTP_KEEP_ALIVE"] . "\n" .
+              "HTTP_ACCEPT_ENCODING: " . $_SERVER["HTTP_ACCEPT_ENCODING"] . "\n" .
+              "HTTP_CONNECTION: " . $_SERVER["HTTP_CONNECTION"] . "\n" .
+              "HTTP_ACCEPT: " . $_SERVER["HTTP_ACCEPT"] . "\n" .
+              "HTTP_USER_AGENT: " . $_SERVER["HTTP_USER_AGENT"];
     }
 
     try
@@ -407,10 +410,14 @@ class Collector extends BaseCollector
       $defensio = cqStatic::getDefensioClient();
       $result = $defensio->postDocument($params);
 
-      if (is_array($result) && (int) $result[0] == 200)
+      if (is_array($result) && (int)$result[0] == 200)
       {
-        $this->setIsSpam((string) $result[1]->allow == 'false' ? true : false);
-        $this->setSpamScore(100 * (float) $result[1]->spaminess);
+        $this->setIsSpam((string)$result[1]->allow == 'false' ? true : false);
+        $this->setSpamScore(100 * (float)$result[1]->spaminess);
+        $this->setProperty('spam.signature', $result[1]->signature);
+        $this->setProperty('spam.classification', $result[1]->classification);
+        $this->setProperty('spam.profanity-match', 'false' == $result[1]['profanity-match'] ? false : true);
+        $this->setProperty('spam.allow', 'false' == $result[1]['allow'] ? false : true);
         $this->save();
       }
     }
@@ -419,6 +426,63 @@ class Collector extends BaseCollector
       ;
     }
 
+  }
+
+  public function markAsSpam()
+  {
+    $this->setIsSpam(true);
+    $this->setSpamScore(100);
+    $this->save();
+
+    $this->sendToDefensioMark(true);
+
+    return $this;
+  }
+
+  public function markAsHam()
+  {
+    $this->setIsSpam(false);
+    $this->setSpamScore(0);
+    $this->save();
+
+    $this->sendToDefensioMark(false);
+
+    return $this;
+  }
+
+  /**
+   * Send to defensio mark as spam|ham
+   *
+   * @param  boolean  $allow
+   * @return boolean
+   */
+  public function sendToDefensioMark($allow)
+  {
+    $params = array(
+      'allow' => $allow ? 'true' : 'false',
+    );
+
+    try
+    {
+      $defensio = cqStatic::getDefensioClient();
+      $result = $defensio->putDocument($this->getProperty('spam.signature'), $params);
+    }
+    catch (DefensioError $e)
+    {
+      $result = null;
+    }
+
+    if (is_array($result) && (int)$result[0] == 200)
+    {
+      $this->setProperty('spam.signature', (string)$result[1]->signature);
+      $this->setProperty('spam.classification', (string)$result[1]->classification);
+      $this->setProperty('spam.profanity-match', 'false' == (string)$result[1]['profanity-match'] ? false : true);
+      $this->setProperty('spam.allow', 'false' == (string)$result[1]['allow'] ? false : true);
+
+      return true;
+    }
+
+    return false;
   }
 
   /**
@@ -440,7 +504,10 @@ class Collector extends BaseCollector
       {
         return $active->relateTo($passive, $action)->save();
       }
-      catch (\Everyman\Neo4j\Exception $e) { ; }
+      catch (\Everyman\Neo4j\Exception $e)
+      {
+        ;
+      }
     }
 
     return false;
@@ -454,24 +521,24 @@ class Collector extends BaseCollector
   {
     /** @var $collections Collection[] */
     if ($collections = $this->getCollections())
-    foreach ($collections as $collection)
-    {
-      $collection->delete($con);
-    }
+      foreach ($collections as $collection)
+      {
+        $collection->delete($con);
+      }
 
     /** @var $collectible_offers CollectibleOffer[] */
     if ($collectible_offers = $this->getCollectibleOffers())
-    foreach ($collectible_offers as $collectible_offer)
-    {
-      $collectible_offer->delete($con);
-    }
+      foreach ($collectible_offers as $collectible_offer)
+      {
+        $collectible_offer->delete($con);
+      }
 
     /** @var $comments Comment[] */
     if ($comments = $this->getComments())
-    foreach ($comments as $comment)
-    {
-      $comment->delete($con);
-    }
+      foreach ($comments as $comment)
+      {
+        $comment->delete($con);
+      }
 
     // Deleting private messages
     $c = new Criteria();
@@ -491,23 +558,29 @@ class Collector extends BaseCollector
 
     /** @var $collector_identifiers CollectorIdentifier[] */
     if ($collector_identifiers = $this->getCollectorIdentifiers($con))
-    foreach ($collector_identifiers as $collector_identifier)
     {
-      $collector_identifier->delete($con);
+      foreach ($collector_identifiers as $collector_identifier)
+      {
+        $collector_identifier->delete($con);
+      }
     }
 
     /** @var $collector_geocaches CollectorGeoCache[] */
     if ($collector_geocaches = $this->getCollectorGeocaches($con))
-    foreach ($collector_geocaches as $collector_geocache)
     {
-      $collector_geocache->delete($con);
+      foreach ($collector_geocaches as $collector_geocache)
+      {
+        $collector_geocache->delete($con);
+      }
     }
 
     /** @var $collector_profiles CollectorProfile[] */
     if ($collector_profiles = $this->getCollectorProfiles($con))
-    foreach ($collector_profiles as $collector_profile)
     {
-      $collector_profile->delete($con);
+      foreach ($collector_profiles as $collector_profile)
+      {
+        $collector_profile->delete($con);
+      }
     }
 
     return parent::preDelete($con);
@@ -530,25 +603,116 @@ class Collector extends BaseCollector
     }
   }
 
+  public function getAnnuallySpend()
+  {
+    return $this->getProperty('about.annually_spend');
+  }
+
+  public function setAnnuallySpend($v)
+  {
+    return $this->setProperty('about.annually_spend', $v);
+  }
+
+  public function getWhatYouCollect()
+  {
+    return $this->getProperty('about.what_you_collect');
+  }
+
+  public function setWhatYouCollect($v)
+  {
+    return $this->setProperty('about.what_you_collect', trim(str_replace(array(',', ',  '), ', ', $v), ', '));
+  }
+
+  public function getWhatYouSell()
+  {
+    return $this->getProperty('about.what_you_sell');
+  }
+
+  public function setWhatYouSell($v)
+  {
+    return $this->setProperty('about.what_you_sell', trim(str_replace(array(',', ',  '), ', ', $v), ', '));
+  }
+
+  public function getPurchasesPerYear()
+  {
+    return $this->getProperty('about.purchases_per_year');
+  }
+
+  public function setPurchasesPerYear($v)
+  {
+    return $this->setProperty('about.purchases_per_year', $v);
+  }
+
+  public function getMostExpensiveItem()
+  {
+    return $this->getProperty('about.most_expensive_item');
+  }
+
+  public function setMostExpensiveItem($v)
+  {
+    return $this->setProperty('about.most_expensive_item', $v);
+  }
+
+  public function getCompany()
+  {
+    return $this->getProperty('about.company');
+  }
+
+  public function setCompany($v)
+  {
+    return $this->setProperty('about.company', $v);
+  }
+
+  public function getNewItemEvery()
+  {
+    return $this->getProperty('about.new_item_every');
+  }
+
+  public function setNewItemEvery($v)
+  {
+    return $this->setProperty('about.new_item_every', $v);
+  }
+
+  public function getAbout()
+  {
+    return $this->getProperty('about.me');
+  }
+
+  public function setAbout($v)
+  {
+    return $this->setProperty('about.me', $v);
+  }
+
+  public function getInterests()
+  {
+    return $this->getProperty('about.interests');
+  }
+
+  public function setInterests($v)
+  {
+    return $this->setProperty('about.interest', $v);
+  }
+
 }
 
 sfPropelBehavior::add(
   'Collector',
-  array('PropelActAsEblobBehavior' => array('column' => 'eblob')
-));
+  array(
+    'PropelActAsEblobBehavior' => array('column' => 'eblob')
+  ));
 
 sfPropelBehavior::add(
   'Collector', array(
     'PropelActAsSluggableBehavior' => array(
-      'columns' => array(
+      'columns'   => array(
         'from' => CollectorPeer::DISPLAY_NAME,
-        'to' => CollectorPeer::SLUG
+        'to'   => CollectorPeer::SLUG
       ),
       'separator' => '-',
       'permanent' => false,
       'lowercase' => true,
-      'ascii' => true,
-      'chars' => 64
+      'ascii'     => true,
+      'chars'     => 64
     )
   )
 );

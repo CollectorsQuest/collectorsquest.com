@@ -131,11 +131,6 @@ class CollectorProfile extends BaseCollectorProfile
     }
   }
 
-  public function getCollecting()
-  {
-  	return trim(str_replace(array(',', ',  '), ', ', parent::getCollecting()), ', ');
-  }
-
   public function setWebsite($v)
   {
     $v = IceWebBrowser::formatUrl($v);
