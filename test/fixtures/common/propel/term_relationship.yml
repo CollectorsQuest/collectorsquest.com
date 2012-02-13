@@ -187,58 +187,74 @@ TermRelationship:
     term_id: Term_1142
     model: Collector
     model_id: '644'
-  TermRelationship_1576:
-    term_id: Term_1290
+  TermRelationship_1529:
+    term_id: Term_1198
     model: Collection
-    model_id: '77'
-  TermRelationship_1577:
-    term_id: Term_1291
+    model_id: '54'
+  TermRelationship_1530:
+    term_id: Term_641
     model: Collection
-    model_id: '77'
-  TermRelationship_1578:
-    term_id: Term_1292
+    model_id: '54'
+  TermRelationship_1531:
+    term_id: Term_1199
     model: Collection
-    model_id: '77'
-  TermRelationship_1579:
-    term_id: Term_1293
+    model_id: '54'
+  TermRelationship_1605:
+    term_id: Term_1315
     model: Collection
-    model_id: '77'
-  TermRelationship_1580:
-    term_id: Term_1294
+    model_id: '86'
+  TermRelationship_1606:
+    term_id: Term_1316
     model: Collection
-    model_id: '77'
-  TermRelationship_1581:
-    term_id: Term_1269
+    model_id: '86'
+  TermRelationship_2017:
+    term_id: Term_1537
     model: Collection
-    model_id: '77'
-  TermRelationship_2324:
-    term_id: Term_1730
+    model_id: '229'
+  TermRelationship_2018:
+    term_id: Term_1199
     model: Collection
-    model_id: '311'
-  TermRelationship_2325:
-    term_id: Term_587
+    model_id: '229'
+  TermRelationship_2374:
+    term_id: Term_1762
     model: Collection
-    model_id: '311'
-  TermRelationship_2326:
-    term_id: Term_236
+    model_id: '342'
+  TermRelationship_2631:
+    term_id: Term_1933
     model: Collection
-    model_id: '311'
-  TermRelationship_14111:
-    term_id: Term_6649
+    model_id: '445'
+  TermRelationship_2993:
+    term_id: Term_2119
+    model: Collection
+    model_id: '595'
+  TermRelationship_2994:
+    term_id: Term_2120
+    model: Collection
+    model_id: '595'
+  TermRelationship_4992:
+    term_id: Term_3280
     model: Collectible
-    model_id: '5209'
-  TermRelationship_14112:
-    term_id: Term_6655
+    model_id: '827'
+  TermRelationship_4993:
+    term_id: Term_3281
     model: Collectible
-    model_id: '5209'
-  TermRelationship_14113:
-    term_id: Term_6660
+    model_id: '827'
+  TermRelationship_13073:
+    term_id: Term_3920
     model: Collectible
-    model_id: '5209'
-  TermRelationship_14114:
-    term_id: Term_6651
+    model_id: '4818'
+  TermRelationship_28114:
+    term_id: Term_2562
     model: Collectible
-    model_id: '5209'
+    model_id: '11028'
+  TermRelationship_28115:
+    term_id: Term_8480
+    model: Collectible
+    model_id: '11028'
+  TermRelationship_28116:
+    term_id: Term_2964
+    model: Collectible
+    model_id: '11028'
   TermRelationship_28371:
     term_id: Term_12165
     model: Collector

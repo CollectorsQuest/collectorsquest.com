@@ -49,6 +49,7 @@ class testGenerateFixturesTask extends sfBaseTask
 
       "DELETE FROM interview_question WHERE collector_interview_id NOT IN (SELECT id FROM collector_interview);",
       "DELETE FROM video_collection_category WHERE collection_category_id NOT IN (SELECT id FROM collection_category);",
+      "UPDATE video_collection_category SET collection_category_id = 1 WHERE collection_category_id = 0 OR collection_category_id IS NULL;",
       "DELETE FROM private_message WHERE sender NOT IN (SELECT id FROM collector);",
       "DELETE FROM comment WHERE collector_id NOT IN (SELECT id FROM collector) AND collector_id IS NOT NULL;",
 
@@ -106,7 +107,7 @@ class testGenerateFixturesTask extends sfBaseTask
       $class = sfInflector::classify($table);
 
       // Temporary skip these tables
-      if (in_array($class, array('Crontab', 'JobQueue', 'JobRun', 'CollectibleForSale', 'PropelMigration'))) {
+      if (in_array($class, array('Crontab', 'JobQueue', 'JobRun', 'CollectibleForSale', 'PropelMigration', 'Xhprof'))) {
         continue;
       }
 
@@ -133,7 +134,11 @@ class testGenerateFixturesTask extends sfBaseTask
       }
 
       $this->logSection('propel', 'Dumping table '. $table .'...');
-      exec('php -d error_reporting=0 ./symfony propel:data-dump --connection="propel" --env="'. $options['env'] .'" --classes="'. $class .'" > test/fixtures/common/propel/'. $table .'.yml');
+      exec(
+        sfToolkit::getPhpCli() . ' -d error_reporting=0 -d display_errors=0 ./symfony propel:data-dump'.
+        ' --connection="propel" --env="'. $options['env'] .'" --classes="'. $class .'"'.
+        ' > test/fixtures/common/propel/'. $table .'.yml'
+      );
     }
 
     $stmt = $archive->prepare("
@@ -153,7 +158,11 @@ class testGenerateFixturesTask extends sfBaseTask
       }
 
       $this->logSection('archive', 'Dumping table '. $table .'...');
-      exec('php -d error_reporting=0 ./symfony propel:data-dump --connection="archive" --env="'. $options['env'] .'" --classes="'. $class .'" > test/fixtures/common/archive/'. $table .'.yml');
+      exec(
+        sfToolkit::getPhpCli() . ' -d error_reporting=0 -d display_errors=0 ./symfony propel:data-dump'.
+        ' --connection="archive" --env="'. $options['env'] .'" --classes="'. $class .'"'.
+        ' > test/fixtures/common/archive/'. $table .'.yml'
+      );
     }
 
     $renames = array(

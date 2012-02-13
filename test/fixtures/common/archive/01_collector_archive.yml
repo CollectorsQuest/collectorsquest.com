@@ -39149,3 +39149,43 @@ CollectorArchive:
     last_seen_at: '2012-02-10 12:38:54'
     updated_at: '2012-02-10 12:39:50'
     created_at: '2012-02-10 12:38:50'
+  CollectorArchive_9487:
+    id: '9487'
+    graph_id: '9611'
+    username: jeryjoys
+    display_name: 'jery joys'
+    slug: jery-joys
+    sha1_password: e6b97a33df9722c44a347020be23e3a778092a02
+    salt: 0d2d04c16393b91ef8e2ba43aecf9e49
+    email: eiveaenlucicakses@yahoo.com
+    user_type: Collector
+    items_allowed: '0'
+    locale: en_US
+    score: '0'
+    spam_score: '99'
+    is_spam: '1'
+    is_public: '1'
+    session_id: fm0jv50ivubj2uf6rrih5sjeo2
+    last_seen_at: '2012-02-13 00:13:26'
+    updated_at: '2012-02-13 00:13:41'
+    created_at: '2012-02-13 00:13:25'
+  CollectorArchive_9488:
+    id: '9488'
+    graph_id: '9612'
+    username: annebancroft
+    display_name: 'anne bancroft'
+    slug: anne-bancroft
+    sha1_password: 7d7289b326161c7360766af044beefa7d647f83d
+    salt: 98925f2e04ab98c3b935435bf2f147d3
+    email: davidchristian4033@yahoo.com
+    user_type: Collector
+    items_allowed: '0'
+    locale: en_US
+    score: '0'
+    spam_score: '70'
+    is_spam: '1'
+    is_public: '1'
+    session_id: 6q3dpovpf8u1bpfprinn2pqhm6
+    last_seen_at: '2012-02-13 04:13:08'
+    updated_at: '2012-02-13 04:13:42'
+    created_at: '2012-02-13 04:13:06'

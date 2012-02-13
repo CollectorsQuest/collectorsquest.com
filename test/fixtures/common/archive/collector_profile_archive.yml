@@ -28234,3 +28234,35 @@ CollectorProfileArchive:
     notifications: Array
     updated_at: '2012-02-10 12:39:49'
     created_at: '2012-02-10 12:38:50'
+  CollectorProfileArchive_9435:
+    id: '9435'
+    collector_id: '9487'
+    collector_type: ''
+    birthday: '1982-04-12'
+    gender: m
+    zip_postal: '24517'
+    country: US
+    website: htcandroidtablet.net/
+    is_featured: '0'
+    is_seller: '0'
+    is_image_auto: '1'
+    preferences: Array
+    notifications: Array
+    updated_at: '2012-02-13 00:13:41'
+    created_at: '2012-02-13 00:13:25'
+  CollectorProfileArchive_9436:
+    id: '9436'
+    collector_id: '9488'
+    collector_type: ''
+    birthday: '1984-05-26'
+    gender: m
+    zip_postal: '90001'
+    country: US
+    website: ''
+    is_featured: '0'
+    is_seller: '0'
+    is_image_auto: '1'
+    preferences: Array
+    notifications: Array
+    updated_at: '2012-02-13 04:13:39'
+    created_at: '2012-02-13 04:13:06'

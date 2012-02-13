@@ -1969,7 +1969,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_534:
     name: pins
-    slug: ''
+    slug: pins
     is_triple: '0'
   iceModelTag_535:
     name: Batgirl
@@ -2101,7 +2101,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_567:
     name: cd
-    slug: ''
+    slug: cd
     is_triple: '0'
   iceModelTag_568:
     name: whale
@@ -5405,7 +5405,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_1455:
     name: stickers
-    slug: ''
+    slug: stickers
     is_triple: '0'
   iceModelTag_1456:
     name: educational
@@ -10349,7 +10349,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_3040:
     name: 'cookie jar'
-    slug: ''
+    slug: cookie-jar
     is_triple: '0'
   iceModelTag_3041:
     name: heads
@@ -17309,7 +17309,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_5350:
     name: 'music box'
-    slug: ''
+    slug: music-box
     is_triple: '0'
   iceModelTag_5351:
     name: 'Punching Bag'
@@ -29149,7 +29149,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_8823:
     name: blu-ray
-    slug: ''
+    slug: blu-ray
     is_triple: '0'
   iceModelTag_8824:
     name: 'vintage lace'

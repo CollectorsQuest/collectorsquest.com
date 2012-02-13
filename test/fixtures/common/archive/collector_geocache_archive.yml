@@ -4243,6 +4243,15 @@ CollectorGeocacheArchive:
     latitude: '33.96979'
     longitude: '-118.24681'
     timezone: America/New_York
+  CollectorGeocacheArchive_7784:
+    id: '7784'
+    collector_id: '7009'
+    country: USA
+    country_iso3166: US
+    address: 'United States'
+    latitude: '37.09024'
+    longitude: '-95.71289'
+    timezone: America/New_York
   CollectorGeocacheArchive_7830:
     id: '7830'
     collector_id: '7117'
@@ -19055,6 +19064,14 @@ CollectorGeocacheArchive:
     address: Australia
     latitude: '-25.27440'
     longitude: '133.77514'
+  CollectorGeocacheArchive_10792:
+    id: '10792'
+    collector_id: '1399'
+    country: Belgium
+    country_iso3166: BE
+    address: Belgium
+    latitude: '50.50389'
+    longitude: '4.46994'
   CollectorGeocacheArchive_10793:
     id: '10793'
     collector_id: '9328'
@@ -19930,3 +19947,23 @@ CollectorGeocacheArchive:
     address: Algeria
     latitude: '28.03389'
     longitude: '1.65963'
+  CollectorGeocacheArchive_10938:
+    id: '10938'
+    collector_id: '9479'
+    country: USA
+    country_iso3166: US
+    state: WI
+    city: Lublin
+    zip_postal: '54447'
+    address: 'Lublin, WI 54447, USA'
+    latitude: '45.09098'
+    longitude: '-90.73667'
+    timezone: America/Chicago
+  CollectorGeocacheArchive_10941:
+    id: '10941'
+    collector_id: '1399'
+    country: Belgium
+    country_iso3166: BE
+    address: Belgium
+    latitude: '50.50389'
+    longitude: '4.46994'
