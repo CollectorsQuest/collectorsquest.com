@@ -151,8 +151,14 @@ class collectionComponents extends cqComponents
   {
     $this->_get_collection();
 
-    if ($this->getUser()->isOwnerOf($this->collection))
+    $collector = $this->getUser()->getCollector();
+
+    if ($collector->isOwnerOf($this->collection))
     {
+      $c = new Criteria();
+      $c->add(CollectionPeer::ID, $this->collection->getId(), Criteria::NOT_EQUAL);
+      $this->collections = $collector->getCollections($c);
+
       $c = new Criteria();
       $c->addAscendingOrderByColumn(CollectiblePeer::POSITION);
       $c->addDescendingOrderByColumn(CollectiblePeer::CREATED_AT);
