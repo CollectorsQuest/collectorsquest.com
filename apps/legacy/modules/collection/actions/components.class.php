@@ -46,13 +46,11 @@ class collectionComponents extends cqComponents
         'route' => 'fancybox_collection_add_collectibles('. $this->collection->getId() .')'
       );
 
-      /**
-        $this->buttons[] = array(
-          'text' => 'Move Collectibles',
-          'icon' => 'shuffle',
-          'route' => 'ajax_load("#contents", "'. url_for('@ajax_collection?section=component&page=collectiblesMove') .'?id='. $this->collection->getId() .'")'
-        );
-      */
+      $this->buttons[] = array(
+        'text' => 'Move Collectibles',
+        'icon' => 'shuffle',
+        'route' => 'ajax_load("#contents", "'. url_for('@ajax_collection?section=component&page=collectiblesMove') .'?id='. $this->collection->getId() .'")'
+      );
 
       $this->buttons[] = array(
         'text' => 'Re-Order Collectibles',
