@@ -1,58 +1,54 @@
 <div class="span-5" style="text-align: right;">
-  <?= cq_label_for($form, 'about', __('Tell us about %username%', array('%username%' => $collector->getDisplayName()))); ?>
+  <?= cq_label_for($form, 'about_me', __('Tell us about yourself')); ?>
   <div style="color: #ccc; font-style: italic;"><?= __('(optional)'); ?></div>
 </div>
 <div class="prepend-1 span-12 last">
-  <?php echo cq_textarea_tag($form, 'about', array('width' => 450, 'height' => 150, 'rich' => false)); ?>
-</div>
-<br clear="all"/><br>
-
-
-<div class="span-5" style="text-align: right;">
-  <?= cq_label_for($form, 'collections', __("Tell us about %username%'s collections", array('%username%'=>$collector->getDisplayName()))); ?>
-  <div style="color: #ccc; font-style: italic;"><?= __('(optional)'); ?></div>
-</div>
-<div class="prepend-1 span-12 last">
-  <?php echo cq_textarea_tag($form, 'collections', array('width' => 450, 'height' => 100, 'rich' => false)); ?>
-</div>
-<br clear="all"/><br>
-
-
-
-
-<div class="span-5" style="text-align: right;">
-  <?= cq_label_for($form, 'interests', __("Tell us about %username%'s interests", array('%username%'=>$collector->getDisplayName()))); ?>
-  <div style="color: #ccc; font-style: italic;"><?= __('(optional)'); ?></div>
-</div>
-<div class="prepend-1 span-12 last">
-  <?php echo cq_textarea_tag($form, 'interests', array('width' => 450, 'height' => 100, 'rich' => false)); ?>
+  <?php echo cq_textarea_tag($form, 'about_me', array('width' => 450, 'height' => 150, 'rich' => false)); ?>
 </div>
 <br clear="all"/><br>
 
 <div class="span-5" style="text-align: right;">
-  <?= cq_label_for($form, 'collecting', __('What do you collect?')); ?>
+  <?= cq_label_for($form, 'about_collections', __("Tell us about your collections")); ?>
   <div style="color: #ccc; font-style: italic;"><?= __('(optional)'); ?></div>
 </div>
 <div class="prepend-1 span-12 last">
-  <?= cq_input_tag($form, 'collecting', array('width' => 450)); ?>
+  <?php echo cq_textarea_tag($form, 'about_collections', array('width' => 450, 'height' => 100, 'rich' => false)); ?>
 </div>
 <br clear="all"/><br>
 
 <div class="span-5" style="text-align: right;">
-  <?= cq_label_for($form, 'most_spent', __('What is the most you&apos;ve spent on an item?')); ?>
+  <?= cq_label_for($form, 'about_interests', __("Tell us about your interests")); ?>
   <div style="color: #ccc; font-style: italic;"><?= __('(optional)'); ?></div>
 </div>
 <div class="prepend-1 span-12 last">
-  <?= cq_input_tag($form, 'most_spent', array('width' => 100)); ?>
-  <?= $form['most_spent']->renderError(); ?>
+  <?php echo cq_textarea_tag($form, 'about_interests', array('width' => 450, 'height' => 100, 'rich' => false)); ?>
 </div>
 <br clear="all"/><br>
 
 <div class="span-5" style="text-align: right;">
-  <?= cq_label_for($form, 'anually_spent', __('How much do you spend annually? (in USD)')); ?>
+  <?= cq_label_for($form, 'about_what_you_collect', __('What do you collect?')); ?>
   <div style="color: #ccc; font-style: italic;"><?= __('(optional)'); ?></div>
 </div>
 <div class="prepend-1 span-12 last">
-  <?= cq_input_tag($form, 'anually_spent', array('width' => 100)); ?>
-  <?= $form['anually_spent']->renderError(); ?>
+  <?= cq_input_tag($form, 'about_what_you_collect', array('width' => 450)); ?>
+</div>
+<br clear="all"/><br>
+
+<div class="span-5" style="text-align: right;">
+  <?= cq_label_for($form, 'about_most_expensive_item', __('What is the most you&apos;ve spent on an item?')); ?>
+  <div style="color: #ccc; font-style: italic;"><?= __('(optional)'); ?></div>
+</div>
+<div class="prepend-1 span-12 last">
+  <?= cq_input_tag($form, 'about_most_expensive_item', array('width' => 100)); ?>
+  <?= $form['about_most_expensive_item']->renderError(); ?>
+</div>
+<br clear="all"/><br>
+
+<div class="span-5" style="text-align: right;">
+  <?= cq_label_for($form, 'about_annually_spend', __('How much do you spend annually? (in USD)')); ?>
+  <div style="color: #ccc; font-style: italic;"><?= __('(optional)'); ?></div>
+</div>
+<div class="prepend-1 span-12 last">
+  <?= cq_input_tag($form, 'about_annually_spend', array('width' => 100)); ?>
+  <?= $form['about_annually_spend']->renderError(); ?>
 </div>

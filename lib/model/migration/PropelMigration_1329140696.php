@@ -1,6 +1,6 @@
 <?php
 
-class PropelMigration_1328805707
+class PropelMigration_1329140696
 {
   /**
    * @param  PropelMigrationManager  $manager
@@ -10,14 +10,14 @@ class PropelMigration_1328805707
     /** @var $pdo PDO */
     $pdo = $manager->getPdoConnection('propel');
 
-    $sql = "INSERT INTO `collector_collection`
+    $sql = "INSERT IGNORE INTO `collector_collection`
             SELECT id, graph_id, collection_category_id, collector_id, `name`, slug, description, num_items, num_views, num_comments, num_ratings,
                    score, is_public, is_featured, comments_on, rating_on, eblob, updated_at, created_at
               FROM `collection`;";
     $pdo->prepare($sql)->execute();
 
     $sql = "INSERT IGNORE INTO `collection_collectible`
-            SELECT `collection_id`, `id`, `score`, `position`, `updated_at`, `created_at` FROM `collectible`;";
+            SELECT `collection_id`, `id`, `score`, `position`, `updated_at`, `created_at` FROM `collectible` WHERE collection_id IS NOT NULL;";
     $pdo->prepare($sql)->execute();
   }
 

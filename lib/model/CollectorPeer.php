@@ -181,6 +181,31 @@ class CollectorPeer extends BaseCollectorPeer
     {
       $collector_profile->save();
       $collector->save();
+
+      if (!empty($data['what_you_sell']))
+      {
+        $collector_profile->setAboutWhatYouSell($data['what_you_sell']);
+      }
+      if (!empty($data['what_you_collect']))
+      {
+        $collector_profile->setAboutWhatYouCollect($data['what_you_collect']);
+      }
+      if (!empty($data['annually_spend']))
+      {
+        $collector_profile->setAboutAnnuallySpend($data['annually_spend']);
+      }
+      if (!empty($data['most_expensive_item']))
+      {
+        $collector_profile->setAboutMostExpensiveItem($data['most_expensive_item']);
+      }
+      if (!empty($data['company']))
+      {
+        $collector_profile->setAboutCompany($data['company']);
+      }
+      if (!empty($data['purchase_per_year']))
+      {
+        $collector_profile->setAboutPurchasesPerYear($data['purchase_per_year']);
+      }
     }
     catch (PropelException $e)
     {
@@ -298,10 +323,11 @@ class CollectorPeer extends BaseCollectorPeer
     return $omSeller;
   }
 
-  /** added by Prakash Panchal 13-APR-2011
-   * deductAllwedItems function.
-   * return object
+  /**
    * @deprecated
+   *
+   * @param  integer $snSellerId
+   * @return boolean|\Collector
    */
   public static function deductAllowedItems($snSellerId)
   {
@@ -319,119 +345,15 @@ class CollectorPeer extends BaseCollectorPeer
     return $omSeller;
   }
 
-  /**
-   * @static
-   *
-   * @param  array  $data
-   * @return Collector|null
-   */
-  public static function saveUserDataFromArray($data = array())
-  {
-    $collector = new Collector();
-    $collector->setUsername($data['username']);
-    $collector->setPassword($data['password']);
-    $collector->setDisplayName($data['display_name']);
-    $collector->setEmail($data['email']);
-
-    if (!empty($data['facebook_id']))
-    {
-      $collector->setFacebookId($data['facebook_id']);
-    }
-
-    $collector_profile = new CollectorProfile();
-    $collector_profile->setCollector($collector);
-
-    // Save new added fields as per collector and seller
-    $collector->setWhatYouCollect($data['what_you_collect']);
-
-    if (!empty($data['what_you_sell']))
-    {
-      $collector->setWhatYouSell($data['what_you_sell']);
-    }
-    if (!empty($data['what_you_collect']))
-    {
-      $collector->setWhatYouCollect($data['what_you_collect']);
-      $collector_profile->setCollecting($data['what_you_collect']);
-    }
-    if (!empty($data['annually_spend']))
-    {
-      $collector->setAnnuallySpend($data['annually_spend']);
-      $collector_profile->setAnuallySpent($data['annually_spend']);
-    }
-    if (!empty($data['most_expensive_item']))
-    {
-      $collector->setMostExpensiveItem($data['most_expensive_item']);
-      $collector_profile->setMostSpent($data['most_expensive_item']);
-    }
-    if (!empty($data['company']))
-    {
-      $collector->setCompany($data['company']);
-    }
-    if (!empty($data['purchase_per_year']))
-    {
-      $collector->setPurchasesPerYear($data['purchase_per_year']);
-    }
-    // End save new fields
-    // All of the profile data is optional, thus make sure to check it is provided
-
-    if (!empty($data['collector_type']))
-    {
-      $collector_profile->setCollectorType($data['collector_type']);
-    }
-    if ($data['birthday']['month'] != '' && $data['birthday']['day'] != '' && $data['birthday']['year'] != '')
-    {
-      $collector_profile->setBirthday($data['birthday']);
-    }
-    if (!empty($data['gender']))
-    {
-      $collector_profile->setGender($data['gender']);
-    }
-    if (!empty($data['zip_postal']))
-    {
-      $collector_profile->setZipPostal($data['zip_postal']);
-    }
-    if (!empty($data['country']))
-    {
-      $collector_profile->setCountry($data['country']);
-    }
-    if (!empty($data['website']))
-    {
-      $collector_profile->setWebsite($data['website']);
-    }
-
-    $collector_profile->setPreferences(array(
-      'show_age' => false, 'msg_on' => true, 'invite_only' => false
-    ));
-
-    $collector_profile->setNotifications(array(
-      'comment' => true, 'buddy' => true, 'message' => true
-    ));
-
-    try
-    {
-      $collector_profile->save();
-      $collector->save();
-
-      // Send the profile data to Defensio to analyse
-      $collector->sendToDefensio('CREATE');
-    }
-    catch (PropelException $e)
-    {
-      echo $e->getMessage();
-      return null;
-    }
-
-    return $collector;
-  }
-
-  public static function retrieveForSelect($q, $limit = 10)
+  public static function retrieveForSelect($q, $limit = 0)
   {
     $criteria = new Criteria();
     $criteria->clearSelectColumns();
     $criteria->addSelectColumn(self::ID);
     $criteria->addSelectColumn(self::DISPLAY_NAME);
+    $criteria->setLimit($limit);
 
-    $criteria->add(self::DISPLAY_NAME, sprintf('%%%s%%', $q), Criteria::LIKE);
+    $criteria->add(self::DISPLAY_NAME, '%'. mysql_real_escape_string($q) .'%', Criteria::LIKE);
 
     return self::doSelectStmt($criteria)->fetchAll(PDO::FETCH_KEY_PAIR);
   }

@@ -137,6 +137,8 @@ class Featured extends BaseFeaturedNestedSet
 
   public function getHomepageCollectible()
   {
+    return array();
+
     $q = new CollectibleQuery();
 
     $pks = explode(',', $this->homepage_collectibles);

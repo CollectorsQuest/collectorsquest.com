@@ -84,7 +84,7 @@ class collectionsActions extends cqActions
     $per_page = ($request->getParameter('show') == 'all') ? 999 : sfConfig::get('app_pager_list_collections_max', 14);
     if (true || $this->getUser()->isAuthenticated()) $per_page += 1;
 
-    $pager = new sfPropelPager('Collection', $per_page);
+    $pager = new sfPropelPager('CollectorCollection', $per_page);
     $pager->setCriteria($c);
 
     // Added By Prakash Panchal On 31-Mar-2011.

@@ -17,7 +17,7 @@ class PrivateMessageForm extends BasePrivateMessageForm
     $this->widgetSchema['receiver'] = new sfWidgetFormPropelSelectMany(array('model' => 'Collector'));
     $this->widgetSchema->setNameFormat('message[%s]');
 
-    $this->validatorSchema['receiver'] = new sfValidatorPropelChoiceMany(array('model' => 'Collector', 'required' => true));
+    $this->validatorSchema['receiver'] = new sfValidatorPropelChoice(array('model' => 'Collector', 'required' => true));
     $this->validatorSchema->setOption('allow_extra_fields', true);
     $this->validatorSchema->setOption('filter_extra_fields', true);
   }

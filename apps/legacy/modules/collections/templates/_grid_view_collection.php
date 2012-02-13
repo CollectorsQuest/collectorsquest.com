@@ -20,7 +20,7 @@ $(document).ready(function()
 {
   $('#grid_view_collection_<?php echo $collection->getId(); ?> .stack').bt(
   {
-    ajaxPath: '<?= url_for('@ajax_collection_snapshot?id='. $collection->getId() .'&collectibles=3'); ?>',
+    ajaxPath: '<?= url_for('@ajax_collection?section=component&page=snapshot&id='. $collection->getId() .'&collectibles=3'); ?>',
     padding: 10,
     width: 250,
     spikeLength: 30,

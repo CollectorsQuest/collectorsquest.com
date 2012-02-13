@@ -54,7 +54,7 @@ class searchActions extends cqActions
       $sphinx->setLimits(0, 12);
       $totals['collections'] = $this->_search_collections($sphinx, $q);
 
-      $pagers['collections'] = new cqPropelPager('Collection', 12);
+      $pagers['collections'] = new cqPropelPager('CollectorCollection', 12);
       $pagers['collections']->setPage(1);
       $pagers['collections']->setNbResults($totals['collections']);
       $pagers['collections']->init();
@@ -186,7 +186,7 @@ class searchActions extends cqActions
     $sphinx->setLimits(($page-1) * 12, $per_page);
     $this->total = $this->_search_collections($sphinx, $q);
 
-    $pager = new cqPropelPager('Collection', $per_page);
+    $pager = new cqPropelPager('CollectorCollection', $per_page);
     $pager->setPage($page);
     $pager->setNbResults($this->total);
     $pager->init();

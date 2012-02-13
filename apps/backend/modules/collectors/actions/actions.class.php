@@ -12,6 +12,7 @@ require_once dirname(__FILE__) . '/../lib/collectorsGeneratorHelper.class.php';
  */
 class collectorsActions extends autoCollectorsActions
 {
+
   /**
    * @param  sfWebRequest  $request
    * @return sfView
@@ -65,6 +66,10 @@ class collectorsActions extends autoCollectorsActions
     return sfView::NONE;
   }
 
+  /**
+   * @param  sfWebRequest  $request
+   * @return string
+   */
   public function executeAutoLogin(sfWebRequest $request)
   {
     $collector = CollectorQuery::create()->findOneById($request->getParameter('id'));
@@ -76,6 +81,48 @@ class collectorsActions extends autoCollectorsActions
     }
 
     return sfView::ERROR;
+  }
+
+  /**
+   * Action MarkAsSpam
+   */
+  public function executeMarkAsSpam()
+  {
+    try
+    {
+      /* @var $collector Collector */
+      $collector = $this->getRoute()->getObject();
+      $collector->markAsSpam();
+
+      $this->getUser()->setFlash('notice', sprintf('Collector "%s" marked as spam', $collector->getUsername()));
+    }
+    catch (Exception $e)
+    {
+      $this->getUser()->setFlash('error', 'There was an error and the operation did not succeed!');
+    }
+
+    $this->redirect('collector');
+  }
+
+  /**
+   * Action MarkAsHam
+   */
+  public function executeMarkAsHam()
+  {
+    try
+    {
+      /* @var $collector Collector */
+      $collector = $this->getRoute()->getObject();
+      $collector->markAsHam();
+
+      $this->getUser()->setFlash('notice', sprintf('Collector "%s" marked as ham', $collector->getUsername()));
+    }
+    catch (Exception $e)
+    {
+      $this->getUser()->setFlash('error', 'There was an error and the operation did not succeed!');
+    }
+
+    $this->redirect('collector');
   }
 
 }

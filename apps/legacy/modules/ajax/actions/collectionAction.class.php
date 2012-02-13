@@ -4,14 +4,13 @@ class collectionAction extends cqAjaxAction
 {
   /**
    * @param  sfWebREquest  $request
-   * @return sfView
+   * @return string
    */
   public function execute($request)
   {
-    /** @var $collection collection */
-
     if ($pk = $request->getParameter('id'))
     {
+      /** @var $collection CollectorCollection */
       $collection = CollectorCollectionPeer::retrieveByPK($pk);
     }
     else if ($pk = $request->getParameter('collectible_id'))
@@ -49,9 +48,8 @@ class collectionAction extends cqAjaxAction
   }
 
   /**
-   * @param sfWebRequest $request
-   *
-   * @return sfView::NONE
+   * @param  sfWebRequest $request
+   * @return string
    */
   protected function executeUploadCollectibles(sfWebRequest $request)
   {
@@ -102,9 +100,8 @@ class collectionAction extends cqAjaxAction
   }
 
   /**
-   * @param sfWebRequest $request
-   *
-   * @return sfView::NONE
+   * @param  sfWebRequest $request
+   * @return string
    */
   protected function executeReorderCollectibles(sfWebRequest $request)
   {
@@ -150,7 +147,10 @@ class collectionAction extends cqAjaxAction
     return sfView::NONE;
   }
 
-  public function executeCollectibleRotate()
+  /**
+   * @return string
+   */
+  protected function executeCollectibleRotate()
   {
     $this->forward404Unless($this->collectible);
 
@@ -163,7 +163,10 @@ class collectionAction extends cqAjaxAction
     return sfView::NONE;
   }
 
-  public function executeCollectibleDelete()
+  /**
+   * @return string
+   */
+  protected function executeCollectibleDelete()
   {
     $this->forward404Unless($this->collectible);
 

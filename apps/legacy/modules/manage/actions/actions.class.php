@@ -75,7 +75,7 @@ class manageActions extends cqActions
 
     $per_page = ($request->getParameter('show') == 'all') ? 999 : sfConfig::get('app_pager_manage_collections_max', 10);
 
-    $pager = new sfPropelPager('Collection', $per_page);
+    $pager = new sfPropelPager('CollectorCollection', $per_page);
     $pager->setCriteria($c);
     $pager->setPeerMethod('doSelectJoinCollector');
     $pager->setPeerCountMethod('doCountJoinCollector');

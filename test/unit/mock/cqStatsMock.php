@@ -10,7 +10,7 @@ class cqStats
   public static function increment($stat, $rate = 1)
   {
     self::$stats[$stat] = isset(self::$stats[$stat])
-      ? self::$paths[$path] + $rate
+      ? self::$paths[$stat] + $rate
       : $rate;
   }
 

@@ -1,3 +1,10 @@
+<?php
+/**
+ * @var  $form  CollectorEditForm
+ * @var  $collector  Collector
+ */
+?>
+
 <style type="text/css">
 .ui-state-active, .ui-widget-content .ui-state-active {
   background: #fff;
@@ -22,9 +29,9 @@
 <form id="form-manage-profile" action="<?= url_for('@manage_profile'); ?>" method="post" enctype="multipart/form-data">
 <div id="profile-tabs" class="ui-tabs ui-widget ui-widget-content ui-corner-all" style="margin-top: -5px; margin-right: -5px; background: none; border: none;">
   <ul class="ui-tabs ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" style="margin-bottom: 5px;">
-     <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#profile-tab-account"><?= __('Account Information'); ?></a></li>
-     <li class="ui-state-default ui-corner-top ui-state-active"><a href="#profile-tab-personal"><?= __('Personal Information'); ?></a></li>
-    <li class="ui-state-default ui-corner-top ui-state-active"><a href="#profile-tab-about"><?= __('About %username%', array('%username%'=>$sf_user->getCollector()->getUsername())); ?></a></li>
+    <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#profile-tab-account"><?= __('Account Information'); ?></a></li>
+    <li class="ui-state-default ui-corner-top ui-state-active"><a href="#profile-tab-personal"><?= __('Personal Information'); ?></a></li>
+    <li class="ui-state-default ui-corner-top ui-state-active"><a href="#profile-tab-about"><?= __('About You'); ?></a></li>
     <!--
     <li style="float: right;">
       <a href="#profile-tab-notifications"><?= __('Notifications'); ?></a>
@@ -43,7 +50,7 @@
   </div>
   <!--
   <div id="profile-tab-notifications">
-    <?php include_partial('manage/profile_notifications', array('form' => $form, 'collector' => $collector)); ?>
+    <?php // include_partial('manage/profile_notifications', array('form' => $form, 'collector' => $collector)); ?>
   </div>
   //-->
 </div>
@@ -62,7 +69,7 @@
 
 <?php cq_javascript_tag(); ?>
 <script type="text/javascript">
-  
+
 $(document).ready(function()
 {
   $("#profile-tabs").tabs();

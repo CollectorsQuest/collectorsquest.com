@@ -1,6 +1,6 @@
 <?php
 
-class PropelMigration_1328798752
+class PropelMigration_1329140679
 {
   /**
    * @param  PropelMigrationManager  $manager

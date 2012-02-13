@@ -23,7 +23,7 @@ $(document).ready(function()
 {
   $('#list_view_collection_<?php echo $collection->getId(); ?> .stack').bt(
   {
-    ajaxPath: '<?= url_for('@ajax_collection_snapshot?id='. $collection->getId() .'&collectibles=5'); ?>',
+    ajaxPath: '<?= url_for('@ajax_collection?section=component&page=snapshot&id='. $collection->getId() .'&collectibles=5'); ?>',
     padding: 10,
     width: 400,
     spikeLength: 30,

@@ -134,9 +134,8 @@ class CollectionDropbox extends CollectorCollection
     return CollectiblePeer::doSelect($c);
   }
 
-  public function countCollectibles(Criteria $criteria = null, $distinct = false, PropelPDO $con = null)
+  public function countCollectibles($criteria = null, $distinct = false, PropelPDO $con = null)
   {
-
     if (null === $this->collCollectibles || null !== $criteria)
     {
       $query = CollectibleQuery::create(null, $criteria);
