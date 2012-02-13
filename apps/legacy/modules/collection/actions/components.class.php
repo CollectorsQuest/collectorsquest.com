@@ -97,11 +97,16 @@ class collectionComponents extends cqComponents
   {
     $this->_get_collection();
 
-    $this->collectibles = $this->collection->getRandomCollectibles(
-      $request->getParameter('collectibles', 3)
-    );
+    if ($this->collection)
+    {
+      $this->collectibles = $this->collection->getRandomCollectibles(
+        $request->getParameter('collectibles', 3)
+      );
 
-    return sfView::SUCCESS;
+      return sfView::SUCCESS;
+    }
+
+    return sfView::NONE;
   }
 
   public function executeSidebarCollectible()
