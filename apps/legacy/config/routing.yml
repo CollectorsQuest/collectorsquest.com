@@ -20,13 +20,6 @@ ajax_editable_load:
   url:   /ajax/editable-load
   param: { module: ajax, action: editableLoad }
 
-ajax_collection_snapshot:
-  url:   /ajax/collection/:id/snapshot
-  class: sfPropelRoute
-  options: { model: Collection, type: object, method: getObjectForRoute }
-  param: { module: ajax, action: collectionSnapshot }
-  requirements: { id: '\d+' }
-
 ajax_collection:
   url:   /ajax/collection/:section/:page.:sf_format
   param: { module: ajax, action: collection, sf_format: html }

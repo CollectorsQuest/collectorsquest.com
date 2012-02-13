@@ -63,14 +63,6 @@ class ajaxActions extends cqActions
     return sfView::NONE;
   }
 
-  public function executeCollectionSnapshot()
-  {
-    $collection = $this->getRoute()->getObject();
-    $this->collectibles = $collection->getRandomCollectibles($this->getRequestParameter('collectibles', 3));
-
-    return sfView::SUCCESS;
-  }
-
   public function executeVideoPlaylistXml()
   {
     $playlist = PlaylistPeer::retrieveByPK($this->getRequestParameter('id'));

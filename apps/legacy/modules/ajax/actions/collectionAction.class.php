@@ -10,9 +10,16 @@ class collectionAction extends cqAjaxAction
   {
     /** @var $collection collection */
 
-    if ($pk = $request->getParameter('id'))
+    if (0 < (int) $pk = $request->getParameter('id'))
     {
       $collection = CollectionPeer::retrieveByPK($pk);
+    }
+    else if ('0' === $pk = $request->getParameter('id'))
+    {
+      if ($collector = $this->getUser()->getCollector())
+      {
+        $collection = $collector->getCollectionDropbox();
+      }
     }
     else if ($pk = $request->getParameter('collectible_id'))
     {

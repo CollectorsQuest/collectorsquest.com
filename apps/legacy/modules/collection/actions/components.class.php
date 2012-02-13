@@ -93,6 +93,17 @@ class collectionComponents extends cqComponents
     return sfView::SUCCESS;
   }
 
+  public function executeSnapshot(sfWebRequest $request)
+  {
+    $this->_get_collection();
+
+    $this->collectibles = $this->collection->getRandomCollectibles(
+      $request->getParameter('collectibles', 3)
+    );
+
+    return sfView::SUCCESS;
+  }
+
   public function executeSidebarCollectible()
   {
     $this->collectible = CollectiblePeer::retrieveByPk($this->getRequestParameter('id'));
