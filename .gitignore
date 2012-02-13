@@ -15,6 +15,7 @@ nbproject
 # project specific ignores
 /config/secure
 /config/databases.yml
+/test/schemas/*.sql
 
 # generated folders
 om
