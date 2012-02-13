@@ -8,11 +8,6 @@ CollectorProfile:
     country: USA
     country_iso3166: US
     website: 'http://www.resonantfish.com'
-    about: 'Staff writer for CQ, NES over-enthusiast, sushi devourer, daytime librarian, former teacher, painter, non-functional robot builder.'
-    collections: 'Infinite and delicious.'
-    collecting: everything.
-    new_item_every: '1 time a month'
-    interests: ''
     is_featured: '0'
     is_image_auto: '0'
     preferences: 'a:3:{s:8:"show_age";b:1;s:6:"msg_on";b:1;s:11:"invite_only";b:0;}'
@@ -28,11 +23,6 @@ CollectorProfile:
     country: USA
     country_iso3166: US
     website: ''
-    about: 'I am a graduate student working on my PhD in geology/paleontology.'
-    collections: 'I was obsessed with dinosaurs as a child and I guess I really never outgrew it.  Eventually I made the transition from playing with dinosaurs to collecting them.  When I discovered antique shops and eBay I started hunting older dinosaur toys.  Its really cool to look at how images of dinosaurs have changed as a result of new paleontological findings.  I don''t just collect dinosaur toys - I collect anything relating to dinosaurs or prehistoric life.  This overlaps with many other categories of collecting: ephemera, books, movies, posters, advertising, comic books, post cards, clothing.  Dinosaurs are everywhere!'
-    collecting: 'Dinosaur and prehistoric animal collectibles'
-    new_item_every: ''
-    interests: 'Geology, paleontology, studying images of prehistory in American popular culture, theatre, playing board games.'
     is_featured: '0'
     is_image_auto: '0'
     preferences: 'a:3:{s:8:"show_age";b:1;s:6:"msg_on";b:1;s:11:"invite_only";b:0;}'
@@ -48,13 +38,6 @@ CollectorProfile:
     country: ''
     country_iso3166: US
     website: inherited-values.com
-    about: "\"Hello, my name is Deanna Dahlsad, and I’m a hoarder.\"  (You say, \"Hello, Deanna,\" just like any other support group member. *wink*) <p><br>\r\n\r\n\r\nSo I'm a hoarder, married to another hoarder, and together we also raise little hoarders.  I write at <a href=\"http://www.inherited-values.com/\" target=\"_blank\">Inherited Values</a>, <a href=\"http://www.kitschy-kitschy-coo.com/\" target=\"_blank\">Kitschy Kitschy Coo</a>, <a href=\"http://www.kitsch-slapped.com/\" target=\"_blank\">Kitsch Slapped</a>, <a href=\"http://thingsyourgrandmotherknew.blogspot.com/\" target=\"_blank\">Things Your Grandmother Knew</a>, previously here at <a href=\"http://www.collectorsquest.com/blog/index.php?author=3\" target=\"_blank\">CQ</a> and numerous other places.  We sell here in the CQ Marketplace and at <a href=\"http://www.wehaveyourcollectibles.com/\" target=\"_blank\">We Have Your Collectibles</a>.<p>\r\n\r\n<a href=\"http://pinkpopulace.blogspot.com/2009/04/vintage-cosmetics-beauty-accessories.html\" target=\"_blank\"><i>Collectors News</i> says</a> I am \"a touchstone of where women have been, what they wore, and how they carried themselves to get there. She is a historian of how powder puffs and nail polish have both ensnared and enshrined the image of womankind.\"<p>\r\n\r\nWant to know anything else?  Just ask me a question & I'll talk your ear off! :)"
-    collections: "The power of the number of three.  It begins with one thing... but once you have three of something, it's official:  It's a collection. <p><br>\r\n\r\nSo, while I normally only photograph things that I'm writing about, I'm going to make an effort to get at least 3 things from each (some?) of my collections here.  Wish me luck. *wink*<p><br>\r\n\r\n\r\nSticking to my Rule of Three, I shall give you three interests:  reading, writing and talking.  If you can read about it, write about it, or talk about it, I'm interested in it and can easily start collecting it.  Hence the problem with hoarding.  And not having much time to photograph or catalog."
-    collecting: 'ephemera, magazines, feminist and women''s stuff, advertising, books, figurines, vintage, retro, kitsch'
-    most_spent: '75'
-    anually_spent: '1000'
-    new_item_every: ''
-    interests: 'Well, you really shouldn''t get me started... I write ''everywhere'' because many things (nearly anything can) interest me (& therefore I have a lot to say!). '
     is_featured: '0'
     is_image_auto: '0'
     preferences: 'a:3:{s:8:"show_age";b:0;s:6:"msg_on";b:1;s:11:"invite_only";b:0;}'
@@ -70,10 +53,6 @@ CollectorProfile:
     country: USA
     country_iso3166: US
     website: ''
-    about: ''
-    collections: ''
-    new_item_every: ''
-    interests: ''
     is_image_auto: '0'
     preferences: 'a:3:{s:8:"show_age";b:1;s:6:"msg_on";b:1;s:11:"invite_only";b:0;}'
     notifications: 'a:3:{s:7:"comment";b:1;s:5:"buddy";b:1;s:7:"message";b:1;}'
@@ -87,13 +66,6 @@ CollectorProfile:
     country: Sweden
     country_iso3166: SE
     website: ''
-    about: 'I''m a 34 year old guy from southern Sweden. I''m married, with two children. '
-    collections: 'I collect Books, Natural History Objects (shells, plants, insects etc), Historical Memorabilia, Stamps and Coins. I tend to view different artefacts as being part of a long chain of history. I marvel when holding, for instance, a roman oil lamp... 2000 years of history just flashes before my eyes. It''s incredible when you consider the astonishing journey that object has made in time and space.'
-    collecting: 'Everything from insects and sea shells to coins, stamps and historical memorabilia.'
-    most_spent: '200'
-    anually_spent: '1500'
-    new_item_every: '2 times a week'
-    interests: ''
     is_image_auto: '0'
     preferences: 'a:3:{s:8:"show_age";b:1;s:6:"msg_on";b:1;s:11:"invite_only";b:0;}'
     notifications: 'a:3:{s:7:"comment";b:1;s:5:"buddy";b:1;s:7:"message";b:1;}'
@@ -108,13 +80,6 @@ CollectorProfile:
     country: USA
     country_iso3166: US
     website: www.blackgemrecords.com
-    about: 'I''ve been a full time record dealer for nearly a decade.  I specialize in the unusual, hard-to-find, private/indie/DIY presses of all genres.  I have over 20,000 LPs and lots of 45s, too.  My web site is called Black Gem Records and I run auctions on eBay under the name "Newjazz".  Here, I''m focusing on oddball record covers (as I do on mey web site: www.blackgemrecords.com), but I sell anything and everything vinyl!'
-    collections: 'Personally, I collect jazz LPs. (I sell tons of ''em, too).  I have about 2000 in my personal collection (about 5000 jazz LPs available for sale).'
-    collecting: RECORDS
-    most_spent: '100'
-    anually_spent: '5000'
-    new_item_every: '5+ times a month'
-    interests: 'Music, politics, philosophy.  I''m a part-time performing free-jazz musician (someone has to be, right)? '
     is_image_auto: '0'
     preferences: 'a:3:{s:8:"show_age";b:1;s:6:"msg_on";b:1;s:11:"invite_only";b:0;}'
     notifications: 'a:3:{s:7:"comment";b:1;s:5:"buddy";b:1;s:7:"message";b:1;}'
@@ -129,13 +94,6 @@ CollectorProfile:
     country: USA
     country_iso3166: US
     website: 'http://cardomain.com/ride/340096'
-    about: 'We collected art for 30 years and filled up two houses. We then collected outdoor art. The logical extension of that was collecting rolling sculpture.'
-    collections: 'Our art collection consists of one-of-a-kind sculpture in wood, metal, glass and fabrics. Our car collection is thematic in that I collect automobiles that are rare and beautiful but have to have the "Continental" name. I even have a boat and bicycles that carry the name.'
-    collecting: 'Art and cars'
-    most_spent: '150000'
-    anually_spent: '20000'
-    new_item_every: '5+ times a year'
-    interests: 'I am an electrician by trade and lighting is a hobby along with automobile restoration. I spend my winters working on projects and spend my summers traveling to Concours d''Elegance to show our cars.'
     is_featured: '0'
     is_image_auto: '0'
     preferences: 'a:3:{s:8:"show_age";b:1;s:6:"msg_on";b:1;s:11:"invite_only";b:0;}'
@@ -150,12 +108,6 @@ CollectorProfile:
     country: 'The Netherlands'
     country_iso3166: NL
     website: ''
-    about: 'I work for the Royal Netherlands Air Force. I have been crazy about cars for as long as I can remember. Ever since I can remember I have had lost of toy-cars. My father used to come home on friday, as he was stationed in Germany, and I would inspect his pockets successfully for a car. The passion has never gone away. '
-    collections: 'I am now especially into moviecars in the big scale but I also have a large collection of 1:87 car models. These are mostly made of plastic and thus do not qualify as diecast.'
-    collecting: 'Diecast 1:18 Moviecars'
-    most_spent: '150'
-    new_item_every: '4 times a month'
-    interests: 'Next to the models I also like movies, which would explain the merging of both in my hobby. In general I am a Scifi fan.'
     is_featured: '0'
     is_image_auto: '0'
     preferences: 'a:3:{s:8:"show_age";b:1;s:6:"msg_on";b:1;s:11:"invite_only";b:0;}'
@@ -170,13 +122,6 @@ CollectorProfile:
     country: Italy
     country_iso3166: IT
     website: ''
-    about: "HI! I am Francesca, 32. I live in Prato, a cool town, close by Florence, in Tuscany [Italy]\r\nTo be honest with you, I have to say that I have an addiction...I love collecting snowglobes!!!!!\r\nAnd I know, I know, I am the worste nightmare of all my best friends: any time they  look at a snowglobe, immediately, and you must believe me, they think about me!!!"
-    collections: "I started collecting snowglobes when I was 10. The first one I got was a a gift by my aunt: a little gufo playing sax. I has keept on collecting several items such as: Christmas, Disney, Towns and Places, Fairies and many others!  I am literally crazy for Nordstrom Snowglobes, and I used to buy them by eBay, because it is pretty hard to find them in Italy nowadays.\r\nI love collecting SG because they look like small worlds, places where everything is quiet beautiful magic and full of peace, quite far from the real world where we live. They give me happiness, tranquillity and make me relaxed. Today, I own 190 snowglobes!"
-    collecting: snowglobes
-    most_spent: '40'
-    anually_spent: '100'
-    new_item_every: '5+ times a year'
-    interests: 'I like architecture (I am an architect!), listening to music, going to the theater and cinema, and also reading.. My favourite book is: The Picture of Dorian Gray written by Oscar Wilde, but I like all books he wrote!'
     is_featured: '0'
     is_image_auto: '0'
     preferences: 'a:3:{s:8:"show_age";b:1;s:6:"msg_on";b:1;s:11:"invite_only";b:0;}'
@@ -192,13 +137,6 @@ CollectorProfile:
     country: ''
     country_iso3166: US
     website: dinosauriana.com
-    about: 'Long time collector of dinosaurs and other animal items'
-    collections: ''
-    collecting: 'Dinosaurs and prehistoric anything'
-    most_spent: '2000'
-    anually_spent: '100'
-    new_item_every: ''
-    interests: 'paleontology,paleoanthropology,paleoart'
     is_featured: '0'
     is_image_auto: '0'
     preferences: 'a:3:{s:8:"show_age";b:1;s:6:"msg_on";b:1;s:11:"invite_only";b:0;}'
@@ -214,11 +152,6 @@ CollectorProfile:
     country: ''
     country_iso3166: US
     website: PoliticalCollectors.com
-    about: 'I''m president of the Theodore Roosevelt Chapter of the American Political Items Collectors and a former member of the board of APIC. I also run the South Florida Political Collectibles Show the last Saturday of February each year in West Palm Beach, Florida. I''m an editor at The Palm Beach Post newspaper.'
-    collections: ''
-    collecting: 'Theodore Roosevelt items'
-    new_item_every: ''
-    interests: 'Political collecting, Penn State University sports.'
     is_featured: '0'
     is_image_auto: '0'
     preferences: 'a:3:{s:8:"show_age";b:1;s:6:"msg_on";b:1;s:11:"invite_only";b:0;}'
@@ -234,13 +167,6 @@ CollectorProfile:
     country: USA
     country_iso3166: US
     website: ''
-    about: 'I love Living Dead Dolls, and I have a collection of 26.  I''m running out of coffin room!'
-    collections: 'I have 2 double packs, and 22 singles.  My ferret enjoys biting my LDD''s feet.  Especially DeeK''s...'
-    collecting: 'Living Dead Dolls'
-    most_spent: '110'
-    anually_spent: '50'
-    new_item_every: '1 time a week'
-    interests: 'I love dead stuff. ( I know i''m weird)  And I love animals ( mostly ferrets), and I am a computer geek.  Oh, I also love music. :)'
     is_featured: '0'
     is_image_auto: '0'
     preferences: 'a:3:{s:8:"show_age";b:1;s:6:"msg_on";b:1;s:11:"invite_only";b:0;}'
@@ -256,13 +182,6 @@ CollectorProfile:
     country: ''
     country_iso3166: US
     website: museumofuncutfunk.com
-    about: 'I''m College Professor who teaches and lectures about the cultural and historical significance of 1970’s Black films. '
-    collections: ''
-    collecting: 'American and International Black movie poster art, animation, comic books, 1970''s Black crime novels, stamps and so muchmore.'
-    most_spent: '1750'
-    anually_spent: '1000'
-    new_item_every: ''
-    interests: "I have placed my collection on my web site called The Museum of UnCut Funk. Also writing a blog. Come check it out at museumofuncutfunk.com\r\n\r\n"
     is_featured: '0'
     is_image_auto: '0'
     preferences: 'a:3:{s:8:"show_age";b:1;s:6:"msg_on";b:1;s:11:"invite_only";b:0;}'
@@ -277,13 +196,6 @@ CollectorProfile:
     country: Romania
     country_iso3166: RO
     website: theboundariesofcollecting.blogspot.com/
-    about: 'I started my collection when I was 3 years old,with nothing more than 20 plastic animals(made in China).After 3 years,I already had 300 animals(made in China),then I went to Greece and found some Schleich retired figurines.Since 2004 I started collecting handpainted animals(which were rare by then)and other objects.Now,I only have 200 plastic animals(china),but I have obtained almost 1000 handpainted toys.'
-    collections: ''
-    collecting: 'toy animals, knights, fantasy creatures and dinosaurs(especialy handpanited), coins, stamps, badges, fossils, gems, medals and napkins'
-    most_spent: '45'
-    anually_spent: '700'
-    new_item_every: ''
-    interests: 'I wish to have a whole collection of animals,then start making dioramas for my future museum.I want to open the Collector''s Museum(maybe in Austria)when I''ll get 20 years old(I''m only 14).I''d love to become a wildlife photographer one day,or maybe a paleontologist.'
     is_featured: '0'
     is_image_auto: '0'
     preferences: 'a:3:{s:8:"show_age";b:1;s:6:"msg_on";b:1;s:11:"invite_only";b:0;}'
@@ -298,13 +210,6 @@ CollectorProfile:
     country: Spain
     country_iso3166: ES
     website: 'http://elcazarrecompensas.blogspot.com'
-    about: 'I''m a journalist from the south of Spain, a hard collector of the cult TV series The X Files and follower of the Superman and others DC heroes Statues. '
-    collections: "The X Files Collection starts on 1994 and it seems never end! \r\nThe Superman Statues is just the very cool items that I found, this just for hobby."
-    collecting: 'The X Files, Superman Statues'
-    most_spent: '695'
-    anually_spent: '800'
-    new_item_every: '2 times a month'
-    interests: 'I think I can''t find any other memorabilia of the The X Files so... It''s time to show all "The X Museum"... '
     is_featured: '0'
     is_image_auto: '0'
     preferences: 'a:3:{s:8:"show_age";b:1;s:6:"msg_on";b:1;s:11:"invite_only";b:0;}'
@@ -348,11 +253,6 @@ CollectorProfile:
     zip_postal: '03451'
     country: US
     website: ''
-    about: "Offering photographic collectibles including 19th & 20th century cameras, lenses, images, and related accessories. Over 25 years of experience dealing in vintage photographica. \r\n\r\nPayment Options: We accept money orders or personal checks (10 day clearance for checks)"
-    collections: ''
-    collecting: ''
-    new_item_every: ''
-    interests: ''
     is_seller: '0'
     is_image_auto: '0'
     preferences: 'a:3:{s:8:"show_age";b:0;s:6:"msg_on";b:1;s:11:"invite_only";b:0;}'
@@ -367,12 +267,6 @@ CollectorProfile:
     zip_postal: '68127'
     country: US
     website: ''
-    about: 'Shabby Chic Picker Chick 4626 Dodge Street Omaha NE 68127 we specialize in Antiques, Collectibles, Repurpose, Estate Sales/Liquidation and Ebay Consignment...'
-    collections: 'Our shop has a variety of items starting back from the early 1800''s through to the 1980''s... our Motto is Recycle-Rethink-Reuse'
-    collecting: 'Unique pottery, antique cameras, furniture, if it catches my eye...it is a keeper'
-    most_spent: '500'
-    new_item_every: ''
-    interests: 'Love the unusual and the odd...'
     is_seller: '0'
     is_image_auto: '0'
     preferences: 'a:3:{s:8:"show_age";b:0;s:6:"msg_on";b:1;s:11:"invite_only";b:0;}'

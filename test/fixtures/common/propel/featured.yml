@@ -222,7 +222,9 @@ Featured:
     tree_left: '1'
     tree_right: '6'
     tree_scope: '23'
-    eblob: 'a:3:{s:5:"title";s:34:"Happy Birthday,  Mr. Pres-i-dent! ";s:13:"homepage_text";s:169:"This week we celebrate President''s Day and it''s politics as usual. Well, we guess it depends what side you''re on. For these collectors, it depends what button you''re on.";s:21:"homepage_collectibles";s:0:"";}'
+    eblob: 'a:3:{s:5:"title";s:34:"Happy Birthday,  Mr. Pres-i-dent! ";s:13:"homepage_text";s:140:"President''s Day is this month, and it''s politics as usual. For some, it doesn''t matter what side you''re on as much as what button you''re on.";s:21:"homepage_collectibles";s:0:"";}'
+    start_date: '2012-02-07'
+    end_date: '2012-05-05'
     position: '0'
     is_active: '1'
   Featured_22:
@@ -2041,16 +2043,6 @@ Featured:
     eblob: 'a:1:{i:0;b:0;}'
     position: '0'
     is_active: '1'
-  Featured_220:
-    featured_type_id: '6'
-    featured_model: Collection
-    featured_id: '974'
-    tree_left: '2'
-    tree_right: '3'
-    tree_scope: '21'
-    eblob: 'a:1:{i:0;b:0;}'
-    position: '0'
-    is_active: '1'
   Featured_221:
     featured_type_id: '6'
     featured_model: Collection
@@ -2089,7 +2081,7 @@ Featured:
     tree_scope: '0'
     eblob: 'a:3:{i:0;b:0;s:5:"title";s:37:"Diorama Week: All The World''s A Stage";s:13:"homepage_text";s:120:"Are you digging our scene? Reality meets fantasy in these mini-themed vignettes. Let''s give a hand to these collectors. ";}'
     start_date: '2012-01-15'
-    end_date: '2012-02-29'
+    end_date: '2012-02-07'
     position: '0'
     is_active: '1'
   Featured_225:

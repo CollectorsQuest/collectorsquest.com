@@ -57465,3 +57465,105 @@ Collectible:
     is_name_automatic: '0'
     created_at: '2012-01-16 13:34:23'
     updated_at: '2012-01-16 13:35:08'
+  Collectible_69060:
+    graph_id: '9317'
+    collector_id: Collector_12
+    name: 'Godzilla Man'
+    slug: godzilla-man
+    description: ''
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-02-06 20:41:42'
+    updated_at: '2012-02-06 20:42:27'
+  Collectible_69061:
+    collector_id: Collector_12
+    name: Minotaur
+    slug: minotaur
+    description: ''
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-02-06 20:41:46'
+    updated_at: '2012-02-06 20:43:29'
+  Collectible_69062:
+    graph_id: '9415'
+    collector_id: Collector_12
+    name: 'Cowboy Bandit'
+    slug: cowboy-bandit
+    description: ''
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-02-06 20:41:48'
+    updated_at: '2012-02-10 17:12:50'
+  Collectible_69063:
+    collector_id: Collector_12
+    name: Cavewoman
+    slug: cavewoman
+    description: ''
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-02-06 20:41:50'
+    updated_at: '2012-02-06 20:43:16'
+  Collectible_69064:
+    collector_id: Collector_12
+    name: Leprechaun
+    slug: leprechaun
+    description: ''
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-02-06 20:41:53'
+    updated_at: '2012-02-06 20:43:09'
+  Collectible_69065:
+    collector_id: Collector_12
+    name: Butcher
+    slug: butcher
+    description: ''
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-02-06 20:41:56'
+    updated_at: '2012-02-06 20:43:02'
+  Collectible_69066:
+    collector_id: Collector_12
+    name: 'Highland Warrior'
+    slug: highland-warrior
+    description: ''
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-02-06 20:42:00'
+    updated_at: '2012-02-06 20:42:56'
+  Collectible_69067:
+    collector_id: Collector_12
+    name: 'Statue of Liberty'
+    slug: statue-of-liberty
+    description: ''
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-02-06 20:42:03'
+    updated_at: '2012-02-06 20:42:49'
+  Collectible_69068:
+    collector_id: Collector_12
+    name: 'Space Babe'
+    slug: space-babe
+    description: ''
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-02-06 20:42:06'
+    updated_at: '2012-02-06 20:42:39'
+  Collectible_69069:
+    collector_id: Collector_12
+    name: 'Grey Alien'
+    slug: grey-alien
+    description: ''
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-02-06 20:42:09'
+    updated_at: '2012-02-06 20:42:34'

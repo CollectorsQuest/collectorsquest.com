@@ -9,16 +9,15 @@ Collector:
     email: collin@collectorsquest.com
     user_type: Seller
     items_allowed: '1000'
-    purchases_per_year: '0'
     locale: en_US
     score: '0'
     spam_score: '5'
     is_spam: '0'
     is_public: '1'
-    session_id: tbnbcs8jkrj4u3ac42f3p46927
-    last_seen_at: '2012-01-31 16:41:44'
+    session_id: dds84qgvmlgrupecbr9jaqbod7
+    last_seen_at: '2012-02-10 17:12:13'
     created_at: '2007-05-31 14:21:52'
-    updated_at: '2012-01-31 16:41:44'
+    updated_at: '2012-02-10 17:12:13'
   Collector_52:
     username: dinocollector
     display_name: Dinocollector
@@ -28,7 +27,6 @@ Collector:
     email: bfplatt@ku.edu
     user_type: Collector
     items_allowed: '0'
-    purchases_per_year: '0'
     locale: en_US
     score: '0'
     spam_score: '5'
@@ -38,23 +36,24 @@ Collector:
     created_at: '2007-06-19 01:15:50'
     updated_at: '2012-01-05 15:06:03'
   Collector_59:
+    graph_id: '9372'
     username: poptart
     display_name: Poptart
     slug: poptart
-    sha1_password: 6314456d348131bc694c65b50d14d72ec85899aa
+    sha1_password: 2c8393a529aaed4b193734d68b1d60ae4403b037
     salt: dcf45611bedf847e93193bdeb5dc89b4
     email: Deanna.Pop.Tart@gmail.com
     user_type: Seller
     items_allowed: '1000'
-    purchases_per_year: '0'
     locale: en_US
     score: '0'
-    spam_score: '5'
-    is_spam: '0'
+    spam_score: '99'
+    is_spam: '1'
     is_public: '1'
-    last_seen_at: '2011-06-24 00:00:00'
+    session_id: qur5m40e3jtjd0or2tb52sgud5
+    last_seen_at: '2012-02-10 17:27:16'
     created_at: '2007-06-24 01:24:56'
-    updated_at: '2012-01-20 15:16:22'
+    updated_at: '2012-02-10 17:27:16'
   Collector_163:
     username: pmurph
     display_name: pmurph
@@ -64,7 +63,6 @@ Collector:
     email: paulmurphy777@yahoo.com
     user_type: Collector
     items_allowed: '0'
-    purchases_per_year: '0'
     locale: en_US
     score: '0'
     spam_score: '5'
@@ -82,7 +80,6 @@ Collector:
     email: collectio@mail.com
     user_type: Collector
     items_allowed: '0'
-    purchases_per_year: '0'
     locale: en_US
     score: '0'
     spam_score: '40'
@@ -100,7 +97,6 @@ Collector:
     email: rselcoe@entouchonline.net
     user_type: Collector
     items_allowed: '0'
-    purchases_per_year: '0'
     locale: en_US
     score: '0'
     spam_score: '5'
@@ -118,7 +114,6 @@ Collector:
     email: barry2952@twmi.rr.com
     user_type: Collector
     items_allowed: '0'
-    purchases_per_year: '0'
     locale: en_US
     score: '0'
     spam_score: '5'
@@ -137,7 +132,6 @@ Collector:
     email: sleeves@home.nl
     user_type: Collector
     items_allowed: '0'
-    purchases_per_year: '0'
     locale: en_US
     score: '0'
     spam_score: '5'
@@ -155,7 +149,6 @@ Collector:
     email: baifrancesca@gmail.com
     user_type: Collector
     items_allowed: '0'
-    purchases_per_year: '0'
     locale: en_US
     score: '0'
     spam_score: '5'
@@ -173,7 +166,6 @@ Collector:
     email: permian123@yahoo.com
     user_type: Seller
     items_allowed: '1000'
-    purchases_per_year: '0'
     locale: en_US
     score: '0'
     spam_score: '5'
@@ -192,7 +184,6 @@ Collector:
     email: TRbuttons@aol.com
     user_type: Seller
     items_allowed: '-3'
-    purchases_per_year: '0'
     locale: en_US
     score: '0'
     spam_score: '5'
@@ -211,7 +202,6 @@ Collector:
     email: brini123@gmail.com
     user_type: Collector
     items_allowed: '0'
-    purchases_per_year: '0'
     locale: en_US
     score: '0'
     spam_score: '5'
@@ -229,7 +219,6 @@ Collector:
     email: tofunky@mac.com
     user_type: Collector
     items_allowed: '0'
-    purchases_per_year: '0'
     locale: en_US
     score: '0'
     spam_score: '5'
@@ -248,7 +237,6 @@ Collector:
     email: mih.nicolae@yahoo.com
     user_type: Collector
     items_allowed: '0'
-    purchases_per_year: '0'
     locale: en_US
     score: '0'
     spam_score: '5'
@@ -267,7 +255,6 @@ Collector:
     email: iscully@hotmail.com
     user_type: Collector
     items_allowed: '0'
-    purchases_per_year: '0'
     locale: en_US
     score: '0'
     spam_score: '5'
@@ -285,7 +272,6 @@ Collector:
     email: distinctivestyles@yahoo.com
     user_type: Collector
     items_allowed: '0'
-    purchases_per_year: '0'
     locale: en_US
     score: '0'
     spam_score: '5'
@@ -304,7 +290,6 @@ Collector:
     email: freeburgh@bellsouth.net
     user_type: Collector
     items_allowed: '0'
-    purchases_per_year: '0'
     locale: en_US
     score: '0'
     spam_score: '5'
@@ -323,7 +308,6 @@ Collector:
     email: kaley523@gmail.com
     user_type: Collector
     items_allowed: '0'
-    purchases_per_year: '0'
     locale: en_US
     score: '0'
     spam_score: '5'
@@ -342,9 +326,6 @@ Collector:
     email: stardust466@juno.com
     user_type: Seller
     items_allowed: '-29'
-    what_you_collect: ''
-    purchases_per_year: '0'
-    what_you_sell: 'photographica & antiques'
     locale: en_US
     score: '0'
     spam_score: '5'
@@ -362,10 +343,6 @@ Collector:
     email: shabbychicpickerchick@hotmail.com
     user_type: Seller
     items_allowed: '-1'
-    what_you_collect: 'Unique pottery, antique cameras, furniture, if it catches my eye...it is a keeper'
-    purchases_per_year: '0'
-    what_you_sell: 'antiques, collectibles, retro you name it I might have it or will find it..'
-    company: 'Shabby Chic Picker Chick Antiques & Collectibles'
     locale: en_US
     score: '0'
     spam_score: '5'

@@ -665,7 +665,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_178:
     name: Egyptian
-    slug: ''
+    slug: egyptian
     is_triple: '0'
   iceModelTag_179:
     name: ELVIS
@@ -1649,7 +1649,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_441:
     name: figurines
-    slug: ''
+    slug: figurines
     is_triple: '0'
   iceModelTag_442:
     name: 'canon 30d'
@@ -10013,7 +10013,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_2951:
     name: 'polar bear'
-    slug: ''
+    slug: polar-bear
     is_triple: '0'
   iceModelTag_2952:
     name: worm
@@ -15505,7 +15505,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_4839:
     name: raven
-    slug: ''
+    slug: raven
     is_triple: '0'
   iceModelTag_4840:
     name: 'the question'
@@ -17209,7 +17209,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_5325:
     name: swan
-    slug: ''
+    slug: swan
     is_triple: '0'
   iceModelTag_5326:
     name: gsdgsdfg
@@ -29225,7 +29225,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_8842:
     name: pyramid
-    slug: ''
+    slug: pyramid
     is_triple: '0'
   iceModelTag_8843:
     name: advent
@@ -33529,7 +33529,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_10266:
     name: hunting
-    slug: ''
+    slug: hunting
     is_triple: '0'
   iceModelTag_10267:
     name: wisconsin
@@ -38385,7 +38385,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_11866:
     name: clairet
-    slug: ''
+    slug: clairet
     is_triple: '0'
   iceModelTag_11868:
     name: 'Nature''s Wonders'
@@ -38669,7 +38669,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_12062:
     name: ZEBU
-    slug: ''
+    slug: zebu
     is_triple: '0'
   iceModelTag_12065:
     name: 'ALL CATTLE'
@@ -39717,7 +39717,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_12378:
     name: 'ancient egypt'
-    slug: ''
+    slug: ancient-egypt
     is_triple: '0'
   iceModelTag_12379:
     name: knights
@@ -40101,7 +40101,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_12474:
     name: baboon
-    slug: ''
+    slug: baboon
     is_triple: '0'
   iceModelTag_12475:
     name: 'australian wildlife'
@@ -41357,7 +41357,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_12788:
     name: 'birds of prey'
-    slug: ''
+    slug: birds-of-prey
     is_triple: '0'
   iceModelTag_12789:
     name: eagles
@@ -41365,7 +41365,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_12790:
     name: 'bold eagle'
-    slug: ''
+    slug: bold-eagle
     is_triple: '0'
   iceModelTag_12791:
     name: calfs
@@ -41645,7 +41645,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_12860:
     name: raptors
-    slug: ''
+    slug: raptors
     is_triple: '0'
   iceModelTag_12861:
     name: 'birds of'
@@ -41845,7 +41845,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_12910:
     name: 'wild horses'
-    slug: ''
+    slug: wild-horses
     is_triple: '0'
   iceModelTag_12911:
     name: 'red panda'
@@ -41869,7 +41869,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_12916:
     name: badger
-    slug: ''
+    slug: badger
     is_triple: '0'
   iceModelTag_12917:
     name: 'African honeybadger'
@@ -41973,7 +41973,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_12942:
     name: 'big apes'
-    slug: ''
+    slug: big-apes
     is_triple: '0'
   iceModelTag_12943:
     name: 'orang utang'
@@ -42149,7 +42149,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_12986:
     name: tortoises
-    slug: ''
+    slug: tortoises
     is_triple: '0'
   iceModelTag_12987:
     name: ActiveHome
@@ -42329,7 +42329,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_13031:
     name: 'grizzly bear'
-    slug: ''
+    slug: grizzly-bear
     is_triple: '0'
   iceModelTag_13032:
     name: mufas
@@ -42957,7 +42957,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_13188:
     name: donkeys
-    slug: ''
+    slug: donkeys
     is_triple: '0'
   iceModelTag_13189:
     name: Pekinese
@@ -43173,7 +43173,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_13242:
     name: chamois
-    slug: ''
+    slug: chamois
     is_triple: '0'
   iceModelTag_13243:
     name: 'Ana Dobrowolska'
@@ -43281,7 +43281,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_13269:
     name: ungulates
-    slug: ''
+    slug: ungulates
     is_triple: '0'
   iceModelTag_13270:
     name: 'K&M'
@@ -43749,7 +43749,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_13386:
     name: 'emperor penguin'
-    slug: ''
+    slug: emperor-penguin
     is_triple: '0'
   iceModelTag_13387:
     name: waxwing
@@ -44121,7 +44121,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_13479:
     name: serval
-    slug: ''
+    slug: serval
     is_triple: '0'
   iceModelTag_13480:
     name: caracal
@@ -44849,7 +44849,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_13673:
     name: reindeer
-    slug: ''
+    slug: reindeer
     is_triple: '0'
   iceModelTag_13674:
     name: slothbear
@@ -46385,7 +46385,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_14057:
     name: caribou
-    slug: ''
+    slug: caribou
     is_triple: '0'
   iceModelTag_14058:
     name: frodo
@@ -47077,7 +47077,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_14230:
     name: kudu
-    slug: ''
+    slug: kudu
     is_triple: '0'
   iceModelTag_14231:
     name: topi
@@ -48609,4 +48609,44 @@ iceModelTag:
   iceModelTag_14669:
     name: mammoths
     slug: mammoths
+    is_triple: '0'
+  iceModelTag_14670:
+    name: 'emile picault'
+    slug: emile-picault
+    is_triple: '0'
+  iceModelTag_14671:
+    name: 'bronze trophy'
+    slug: bronze-trophy
+    is_triple: '0'
+  iceModelTag_14672:
+    name: rugby
+    slug: rugby
+    is_triple: '0'
+  iceModelTag_14673:
+    name: 'football trophy'
+    slug: football-trophy
+    is_triple: '0'
+  iceModelTag_14674:
+    name: footbal
+    slug: footbal
+    is_triple: '0'
+  iceModelTag_14675:
+    name: 'bronze football'
+    slug: bronze-football
+    is_triple: '0'
+  iceModelTag_14676:
+    name: 'bald eagle'
+    slug: bald-eagle
+    is_triple: '0'
+  iceModelTag_14677:
+    name: Münsterländer
+    slug: mnsterlnder
+    is_triple: '0'
+  iceModelTag_14678:
+    name: 'Hermanns tortoise'
+    slug: hermanns-tortoise
+    is_triple: '0'
+  iceModelTag_14679:
+    name: 'Poitou donkey'
+    slug: poitou-donkey
     is_triple: '0'

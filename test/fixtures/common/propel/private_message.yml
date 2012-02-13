@@ -1559,3 +1559,81 @@ PrivateMessage:
     is_marked: '0'
     is_deleted: '0'
     created_at: '2011-07-23 16:56:48'
+  PrivateMessage_8932:
+    thread: d6ed710e1b6c000a06a72d11904b901a
+    sender: '59'
+    receiver: '9453'
+    subject: 'RE: Vintage Rubber Face Black & White Bear'
+    body: "Hello Thaz,<br />\r\n<br />\r\nThis bear is still available. If you'd like to buy him (her?), we can make the sale via PayPal. In order to calculate shipping, I'll need your address. :)"
+    is_rich: '0'
+    is_read: '1'
+    is_replied: '0'
+    is_forwarded: '0'
+    is_marked: '0'
+    is_deleted: '0'
+    created_at: '2012-02-09 17:07:47'
+  PrivateMessage_8934:
+    thread: d6ed710e1b6c000a06a72d11904b901a
+    sender: '59'
+    receiver: '9453'
+    subject: 'RE: Vintage Rubber Face Black & White Bear'
+    body: 'I''m sure it will fit safely in a USPS flat-rate priority box at $11.35, is that alight with you?'
+    is_rich: '0'
+    is_read: '1'
+    is_replied: '0'
+    is_forwarded: '0'
+    is_marked: '0'
+    is_deleted: '0'
+    created_at: '2012-02-09 18:00:41'
+  PrivateMessage_8935:
+    thread: d034df4af9e04819fc7f18006e495bd5
+    sender: '59'
+    receiver: '8285'
+    subject: 'RE: Your collection '
+    body: "Hello Von,<br />\r\n<br />\r\nI don't know anything about them myself, but perhaps I can do a post at the Collectors Quest blog soon... If I find anything ;)"
+    is_rich: '0'
+    is_read: '1'
+    is_replied: '0'
+    is_forwarded: '0'
+    is_marked: '0'
+    is_deleted: '0'
+    created_at: '2012-02-09 18:05:38'
+  PrivateMessage_8937:
+    thread: d6ed710e1b6c000a06a72d11904b901a
+    sender: '59'
+    receiver: '9453'
+    subject: 'RE: Vintage Rubber Face Black & White Bear'
+    body: "The total would be $41.34. You can PayPal it to me at Deanna.Pop.Tart@gmail.com (or, if you send me your email address, I can send you an invoice/payment request).<br />\r\n<br />\r\nTypically I ship within a day or so of receiving payment, pending weekends, holidays, and that sort of thing. I'm pretty fast ;)"
+    is_rich: '0'
+    is_read: '1'
+    is_replied: '0'
+    is_forwarded: '0'
+    is_marked: '0'
+    is_deleted: '0'
+    created_at: '2012-02-09 20:02:58'
+  PrivateMessage_8939:
+    thread: d6ed710e1b6c000a06a72d11904b901a
+    sender: '59'
+    receiver: '9453'
+    subject: 'RE: Vintage Rubber Face Black & White Bear'
+    body: 'Yup, I got it!  And I''ll ship it tomorrow. Should I leave the money details off the packing slip or is it OK?'
+    is_rich: '0'
+    is_read: '1'
+    is_replied: '0'
+    is_forwarded: '0'
+    is_marked: '0'
+    is_deleted: '0'
+    created_at: '2012-02-09 21:25:12'
+  PrivateMessage_8947:
+    thread: d6ed710e1b6c000a06a72d11904b901a
+    sender: '59'
+    receiver: '9453'
+    subject: 'RE: Vintage Rubber Face Black & White Bear'
+    body: 'Delivery confirmation # is 03112550000289009920'
+    is_rich: '0'
+    is_read: '0'
+    is_replied: '0'
+    is_forwarded: '0'
+    is_marked: '0'
+    is_deleted: '0'
+    created_at: '2012-02-10 17:29:50'
