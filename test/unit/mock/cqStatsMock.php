@@ -3,7 +3,7 @@
 /**
  * Mock cqStats class, expand as needed
  */
-class cqStats
+class cqStatsMock
 {
   protected static $stats;
 
