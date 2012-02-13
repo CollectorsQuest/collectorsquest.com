@@ -97,7 +97,7 @@ class CollectorProfile extends BaseCollectorProfile
 
   public function setZip($v)
   {
-    return parent::setZip(strtoupper($v));
+    return parent::setZipPostal(strtoupper($v));
   }
 
   public function getTimeZone()
@@ -113,11 +113,12 @@ class CollectorProfile extends BaseCollectorProfile
 
     switch ($type)
     {
+      case 'casual':
+      default:
+        return '#EFBF81';
+        break;
       case 'occasional':
         return '#4B69B6';
-        break;
-      case 'casual':
-        return '#EFBF81';
         break;
       case 'obsessive':
         return '#8BC3D3';
@@ -261,5 +262,105 @@ class CollectorProfile extends BaseCollectorProfile
         $collector_geocache->save();
       }
     }
+  }
+
+  public function getAboutCollections()
+  {
+    return $this->getProperty('about.collections');
+  }
+
+  public function setAboutCollections($v)
+  {
+    return $this->setProperty('about.collections', $v);
+  }
+
+  public function getAboutAnnuallySpend()
+  {
+    return $this->getProperty('about.annually_spend');
+  }
+
+  public function setAboutAnnuallySpend($v)
+  {
+    return $this->setProperty('about.annually_spend', $v);
+  }
+
+  public function getAboutWhatYouCollect()
+  {
+    return $this->getProperty('about.what_you_collect');
+  }
+
+  public function setAboutWhatYouCollect($v)
+  {
+    return $this->setProperty('about.what_you_collect', trim(str_replace(array(',', ',  '), ', ', $v), ', '));
+  }
+
+  public function getAboutWhatYouSell()
+  {
+    return $this->getProperty('about.what_you_sell');
+  }
+
+  public function setAboutWhatYouSell($v)
+  {
+    return $this->setProperty('about.what_you_sell', trim(str_replace(array(',', ',  '), ', ', $v), ', '));
+  }
+
+  public function getAboutPurchasesPerYear()
+  {
+    return $this->getProperty('about.purchases_per_year');
+  }
+
+  public function setAboutPurchasesPerYear($v)
+  {
+    return $this->setProperty('about.purchases_per_year', $v);
+  }
+
+  public function getAboutMostExpensiveItem()
+  {
+    return $this->getProperty('about.most_expensive_item');
+  }
+
+  public function setAboutMostExpensiveItem($v)
+  {
+    return $this->setProperty('about.most_expensive_item', $v);
+  }
+
+  public function getAboutCompany()
+  {
+    return $this->getProperty('about.company');
+  }
+
+  public function setAboutCompany($v)
+  {
+    return $this->setProperty('about.company', $v);
+  }
+
+  public function getAboutNewItemEvery()
+  {
+    return $this->getProperty('about.new_item_every');
+  }
+
+  public function setAboutNewItemEvery($v)
+  {
+    return $this->setProperty('about.new_item_every', $v);
+  }
+
+  public function getAboutMe()
+  {
+    return $this->getProperty('about.me');
+  }
+
+  public function setAboutMe($v)
+  {
+    return $this->setProperty('about.me', $v);
+  }
+
+  public function getAboutInterests()
+  {
+    return $this->getProperty('about.interests');
+  }
+
+  public function setAboutInterests($v)
+  {
+    return $this->setProperty('about.interests', $v);
   }
 }

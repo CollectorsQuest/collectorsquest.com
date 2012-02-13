@@ -1,11 +1,12 @@
 <?php
 
+/**
+ * @method  Collector  getObject()
+ */
 class CollectorEditForm extends BaseFormPropel
 {
   public function setup()
   {
-    $years = array_combine(range(date('Y') - 100, date('Y')), range(date('Y') - 100, date('Y')));
-
     $this->setWidgets(array(
       'id'             => new sfWidgetFormInputHidden(),
       'photo'          => new sfWidgetFormInputFile(),

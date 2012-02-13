@@ -25,40 +25,38 @@ class PropelMigration_1328807739
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
 
-    $index = 0;
-    while ($collector = $stmt->fetch(PDO::FETCH_ASSOC))
+    while ($profile = $stmt->fetch(PDO::FETCH_ASSOC))
     {
       $pdo->beginTransaction();
 
-      $sql = sprintf('INSERT IGNORE INTO %s
-              (%s, %s, %s)
-              VALUES
-              (?, ?, ?)
-              ', CollectorExtraPropertyPeer::TABLE_NAME,
-        CollectorExtraPropertyPeer::COLLECTOR_ID, CollectorExtraPropertyPeer::PROPERTY_NAME, CollectorExtraPropertyPeer::PROPERTY_VALUE);
+      $sql = sprintf(
+        'REPLACE INTO %s (%s, %s, %s) VALUES (?, ?, ?)',
+        CollectorProfileExtraPropertyPeer::TABLE_NAME, CollectorProfileExtraPropertyPeer::COLLECTOR_PROFILE_ID,
+        CollectorProfileExtraPropertyPeer::PROPERTY_NAME, CollectorProfileExtraPropertyPeer::PROPERTY_VALUE
+      );
 
-      foreach ($fields as $propertyName=> $fieldName)
+      foreach ($fields as $propertyName => $fieldName)
       {
         $propertyStmt = $pdo->prepare($sql);
-        $propertyStmt->execute(array($collector['collector_id'], $propertyName, $collector[$fieldName]));
+        $propertyStmt->execute(array($profile['id'], strtoupper($propertyName), $profile[$fieldName]));
       }
 
-      if (!empty($collector['collecting']))
+      if (!empty($profile['collecting']))
       {
         $propertyStmt = $pdo->prepare($sql);
-        $propertyStmt->execute(array($collector['collector_id'], 'about.what_you_collect', $collector['collecting']));
+        $propertyStmt->execute(array($profile['id'], strtoupper('about.what_you_collect'), $profile['collecting']));
       }
 
-      if (!empty($collector['most_spent']))
+      if (!empty($profile['most_spent']))
       {
         $propertyStmt = $pdo->prepare($sql);
-        $propertyStmt->execute(array($collector['collector_id'], 'about.most_spent', $collector['most_spent']));
+        $propertyStmt->execute(array($profile['id'], strtoupper('about.most_expensive_item'), $profile['most_spent']));
       }
 
-      if (!empty($collector['anually_spent']))
+      if (!empty($profile['anually_spent']))
       {
         $propertyStmt = $pdo->prepare($sql);
-        $propertyStmt->execute(array($collector['collector_id'], 'about.annually_spend', $collector['anually_spent']));
+        $propertyStmt->execute(array($profile['id'], strtoupper('about.annually_spend'), $profile['anually_spent']));
       }
 
       $pdo->commit();

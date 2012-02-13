@@ -13,10 +13,8 @@ class PropelMigration_1328786453
     /* @var $pdo PropelPDO */
     $pdo = $manager->getPdoConnection('propel');
 
-    $pdo->exec('
-      ALTER TABLE `collector_extra_property`
-      ADD UNIQUE KEY `unq_collector_property` (`collector_id`, `property_name`)'
-    );
+    $pdo->exec('TRUNCATE TABLE `collector_extra_property`;');
+    $pdo->exec('TRUNCATE TABLE `collector_profile_extra_property`;');
 
     $pdo->exec('
       DELETE FROM collector_profile
@@ -30,7 +28,7 @@ class PropelMigration_1328786453
         REFERENCES `collector` (`id`)
         ON DELETE CASCADE
         ON UPDATE CASCADE
-      ');
+    ');
 
     $fields = array(
       'about.what_you_collect'    => 'what_you_collect',
@@ -41,27 +39,26 @@ class PropelMigration_1328786453
       'about.company'             => 'company',
     );
 
-    $sql = 'SELECT * FROM collector';
+    $sql = 'SELECT `collector`.*, `collector_profile`.`id` AS `profile_id`
+              FROM `collector` LEFT JOIN `collector_profile` ON (`collector_profile`.`collector_id` = `collector`.`id`)';
 
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
 
-    $index = 0;
     while ($collector = $stmt->fetch(PDO::FETCH_ASSOC))
     {
       $pdo->beginTransaction();
 
-      $sql = sprintf('INSERT IGNORE INTO %s
-              (%s, %s, %s)
-              VALUES
-              (?, ?, ?)
-              ', CollectorExtraPropertyPeer::TABLE_NAME,
-        CollectorExtraPropertyPeer::COLLECTOR_ID, CollectorExtraPropertyPeer::PROPERTY_NAME, CollectorExtraPropertyPeer::PROPERTY_VALUE);
+      $sql = sprintf('
+        INSERT IGNORE INTO %s (%s, %s, %s) VALUES (?, ?, ?)',
+        CollectorProfileExtraPropertyPeer::TABLE_NAME, CollectorProfileExtraPropertyPeer::COLLECTOR_PROFILE_ID,
+        CollectorProfileExtraPropertyPeer::PROPERTY_NAME, CollectorProfileExtraPropertyPeer::PROPERTY_VALUE
+      );
 
-      foreach ($fields as $propertyName=> $fieldName)
+      foreach ($fields as $propertyName => $fieldName)
       {
         $propertyStmt = $pdo->prepare($sql);
-        $propertyStmt->execute(array($collector['id'], $propertyName, $collector[$fieldName]));
+        $propertyStmt->execute(array($collector['profile_id'], strtoupper($propertyName), $collector[$fieldName]));
       }
 
       $pdo->commit();
@@ -82,7 +79,7 @@ class PropelMigration_1328786453
   public function getUpSQL()
   {
     return array(
-      'propel'  => '
+      'propel' => '
         ALTER TABLE `collector`
         DROP `what_you_collect`,
         DROP `purchases_per_year`,
@@ -90,7 +87,7 @@ class PropelMigration_1328786453
         DROP `annually_spend`,
         DROP `most_expensive_item`,
         DROP `company`
-        ',
+      ',
       'archive' => '
         ALTER TABLE `collector_archive`
         DROP `what_you_collect`,
@@ -122,7 +119,7 @@ class PropelMigration_1328786453
   public function getDownSQL()
   {
     return array(
-      'propel'  => '
+      'propel' => '
         ALTER TABLE `collector` ADD
         (
           `what_you_collect` VARCHAR(255),
@@ -132,7 +129,7 @@ class PropelMigration_1328786453
           `most_expensive_item` FLOAT,
           `company` VARCHAR(255)
         );
-        ',
+      ',
       'archive' => '
         ALTER TABLE `collector_archive` ADD
         (
@@ -143,7 +140,7 @@ class PropelMigration_1328786453
           `most_expensive_item` FLOAT,
           `company` VARCHAR(255)
         );
-        ',
+      ',
     );
   }
 

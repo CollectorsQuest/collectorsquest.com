@@ -32,6 +32,10 @@ class Collector extends BaseCollector
     return $graph_id;
   }
 
+  /**
+   * @param  BaseObject $something
+   * @return boolean
+   */
   public function isOwnerOf($something)
   {
     if (is_object($something) && method_exists($something, 'getCollectorId'))
@@ -204,11 +208,13 @@ class Collector extends BaseCollector
     if ($limit != $found = count($collections))
     {
       $limit = $limit - $found;
-      $context = sfContext::getInstance();
 
-      if ($context->getUser()->isAuthenticated())
+      /** @var $sf_user cqUser */
+      $sf_user = sfContext::getInstance()->getUser();
+
+      if ($sf_user->isAuthenticated())
       {
-        $collector = $context->getUser()->getCollector();
+        $collector = $sf_user->getCollector();
         $c = new Criteria();
         $c->add(CollectionPeer::ID, $this->getId(), Criteria::NOT_EQUAL);
         $c->add(CollectionPeer::COLLECTOR_ID, $collector->getId(), Criteria::NOT_EQUAL);
@@ -275,7 +281,7 @@ class Collector extends BaseCollector
 
   public function getCollectorFriends(Criteria $criteria = null)
   {
-    $c = new Criteria();
+    $c = ($criteria !== null) ? clone $criteria : new Criteria();
     $c->add(CollectorFriendPeer::COLLECTOR_ID, $this->getId());
     $c->addJoin(CollectorPeer::ID, CollectorFriendPeer::FRIEND_ID);
 
@@ -303,8 +309,6 @@ class Collector extends BaseCollector
   {
     parent::fromArray($array, $keyType);
 
-    $keys = CollectorPeer::getFieldNames($keyType);
-
     if (!empty($array['password']))
     {
       $this->setPassword($array['password']);
@@ -323,59 +327,13 @@ class Collector extends BaseCollector
     return CollectorGeocachePeer::doSelectOne($criteria);
   }
 
-  public function sendToImpermium($opration = 'UPDATE')
-  {
-    $params = array(
-      'user_id'           => $this->getId(),
-      'operation'         => $opration,
-      'alias'             => $this->getDisplayName(),
-      'password_hash'     => substr($this->getSha1Password(), 0, 12),
-      'email_identity'    => $this->getEmail(),
-      'zip'               => $this->getProfile()->getZipPostal(),
-      'user_url'          => $this->getProfile()->getWebsiteUrl(),
-      'profile_permalink' => 'http://www.collectorsquest.com/collector/' . $this->getId() . '/' . $this->getSlug()
-    );
-
-    if (php_sapi_name() !== 'cli')
-    {
-      $params['enduser_ip'] = IceStatic::getUserIpAddress();
-      $params['http_headers'] = array(
-        "HTTP_ACCEPT_LANGUAGE" => $_SERVER["HTTP_ACCEPT_LANGUAGE"],
-        "HTTP_REFERER"         => $_SERVER["HTTP_REFERER"],
-        "HTTP_ACCEPT_CHARSET"  => @$_SERVER["HTTP_ACCEPT_CHARSET"],
-        "HTTP_KEEP_ALIVE"      => @$_SERVER["HTTP_KEEP_ALIVE"],
-        "HTTP_ACCEPT_ENCODING" => $_SERVER["HTTP_ACCEPT_ENCODING"],
-        "HTTP_CONNECTION"      => $_SERVER["HTTP_CONNECTION"],
-        "HTTP_ACCEPT"          => $_SERVER["HTTP_ACCEPT"],
-        "HTTP_USER_AGENT"      => $_SERVER["HTTP_USER_AGENT"]
-      );
-    }
-
-    try
-    {
-      $impermium = cqStatic::getImpermiumClient();
-      $response = $impermium->api('user/account', $params, sfConfig::get('sf_environment') !== 'prod');
-
-      if (!empty($response['spam_classifier']) && is_array($response['spam_classifier']))
-      {
-        $this->setIsSpam($response['spam_classifier']['label'] == 'spam' ? true : false);
-        $this->setSpamScore(100 * $response['spam_classifier']['score']);
-        $this->save();
-      }
-    }
-    catch (ImpermiumApiException $e)
-    {
-      ;
-    }
-  }
-
   public function sendToDefensio($operation = 'UPDATE')
   {
     $content = implode(' ', array(
-      $this->getAbout(),
-      $this->getWhatYouCollect(),
-      $this->getCollections(),
-      $this->getInterests()
+      $this->getProfile()->getAboutMe(),
+      $this->getProfile()->getAboutWhatYouCollect(),
+      $this->getProfile()->getAboutCollections(),
+      $this->getProfile()->getAboutInterests()
     ));
 
     $params = array(
@@ -395,14 +353,14 @@ class Collector extends BaseCollector
       $params['author-ip'] = IceStatic::getUserIpAddress();
       $params['referrer'] = $_SERVER["HTTP_REFERER"];
       $params['http-headers'] =
-          "HTTP_ACCEPT_LANGUAGE: " . $_SERVER["HTTP_ACCEPT_LANGUAGE"] . "\n" .
-              "HTTP_REFERER: " . $_SERVER["HTTP_REFERER"] . "\n" .
-              "HTTP_ACCEPT_CHARSET: " . @$_SERVER["HTTP_ACCEPT_CHARSET"] . "\n" .
-              "HTTP_KEEP_ALIVE: " . @$_SERVER["HTTP_KEEP_ALIVE"] . "\n" .
-              "HTTP_ACCEPT_ENCODING: " . $_SERVER["HTTP_ACCEPT_ENCODING"] . "\n" .
-              "HTTP_CONNECTION: " . $_SERVER["HTTP_CONNECTION"] . "\n" .
-              "HTTP_ACCEPT: " . $_SERVER["HTTP_ACCEPT"] . "\n" .
-              "HTTP_USER_AGENT: " . $_SERVER["HTTP_USER_AGENT"];
+        "HTTP_ACCEPT_LANGUAGE: " . $_SERVER["HTTP_ACCEPT_LANGUAGE"] . "\n" .
+        "HTTP_REFERER: " . $_SERVER["HTTP_REFERER"] . "\n" .
+        "HTTP_ACCEPT_CHARSET: " . @$_SERVER["HTTP_ACCEPT_CHARSET"] . "\n" .
+        "HTTP_KEEP_ALIVE: " . @$_SERVER["HTTP_KEEP_ALIVE"] . "\n" .
+        "HTTP_ACCEPT_ENCODING: " . $_SERVER["HTTP_ACCEPT_ENCODING"] . "\n" .
+        "HTTP_CONNECTION: " . $_SERVER["HTTP_CONNECTION"] . "\n" .
+        "HTTP_ACCEPT: " . $_SERVER["HTTP_ACCEPT"] . "\n" .
+        "HTTP_USER_AGENT: " . $_SERVER["HTTP_USER_AGENT"];
     }
 
     try
@@ -486,8 +444,8 @@ class Collector extends BaseCollector
   }
 
   /**
-   * @param string $action One of the ['follows', 'likes', 'owns', 'blocks']
-   * @param BaseObject $model
+   * @param  string  $action One of the ['follows', 'likes', 'owns', 'blocks']
+   * @param  BaseObject  $model
    *
    * @return boolean
    */
@@ -601,96 +559,6 @@ class Collector extends BaseCollector
     {
       return parent::__call($m, $a);
     }
-  }
-
-  public function getAnnuallySpend()
-  {
-    return $this->getProperty('about.annually_spend');
-  }
-
-  public function setAnnuallySpend($v)
-  {
-    return $this->setProperty('about.annually_spend', $v);
-  }
-
-  public function getWhatYouCollect()
-  {
-    return $this->getProperty('about.what_you_collect');
-  }
-
-  public function setWhatYouCollect($v)
-  {
-    return $this->setProperty('about.what_you_collect', trim(str_replace(array(',', ',  '), ', ', $v), ', '));
-  }
-
-  public function getWhatYouSell()
-  {
-    return $this->getProperty('about.what_you_sell');
-  }
-
-  public function setWhatYouSell($v)
-  {
-    return $this->setProperty('about.what_you_sell', trim(str_replace(array(',', ',  '), ', ', $v), ', '));
-  }
-
-  public function getPurchasesPerYear()
-  {
-    return $this->getProperty('about.purchases_per_year');
-  }
-
-  public function setPurchasesPerYear($v)
-  {
-    return $this->setProperty('about.purchases_per_year', $v);
-  }
-
-  public function getMostExpensiveItem()
-  {
-    return $this->getProperty('about.most_expensive_item');
-  }
-
-  public function setMostExpensiveItem($v)
-  {
-    return $this->setProperty('about.most_expensive_item', $v);
-  }
-
-  public function getCompany()
-  {
-    return $this->getProperty('about.company');
-  }
-
-  public function setCompany($v)
-  {
-    return $this->setProperty('about.company', $v);
-  }
-
-  public function getNewItemEvery()
-  {
-    return $this->getProperty('about.new_item_every');
-  }
-
-  public function setNewItemEvery($v)
-  {
-    return $this->setProperty('about.new_item_every', $v);
-  }
-
-  public function getAbout()
-  {
-    return $this->getProperty('about.me');
-  }
-
-  public function setAbout($v)
-  {
-    return $this->setProperty('about.me', $v);
-  }
-
-  public function getInterests()
-  {
-    return $this->getProperty('about.interests');
-  }
-
-  public function setInterests($v)
-  {
-    return $this->setProperty('about.interest', $v);
   }
 
 }

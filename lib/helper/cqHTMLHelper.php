@@ -54,7 +54,7 @@ function cq_textarea_tag($form, $field, $options = array())
 
 function cq_select_tag($form, $field, $options = array())
 {
-  $width = (isset($options['width'])) ? $width = $options['width'] : 300;
+  $width = @$options['width'] ?: 300;
 
   echo '<div style="background: #E9E9E9; vertical-align: middle; width: '.$width.'px; padding: 5px;">';
   echo $form[$field]->render(array('choices' => array('test', 'me'), 'style' => 'border: 1px solid #A7A7A7; font-size: 14px; width: '.($width).'px; padding: 2px; margin: 0;'));
@@ -87,7 +87,6 @@ function cq_button($value, $route, $options = array())
          '<span><span>', $value, '</span></span>',
        '</button>';
 }
-
 
 function cq_button_set($buttons, $options = array())
 {
