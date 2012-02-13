@@ -8,7 +8,7 @@ class cqPropelRoute extends sfPropelRoute
     /** @var $object BaseObject */
     $object = parent::getObjectForParameters($parameters);
 
-    if (isset($this->options['statsd']) and true == $this->options['statsd'])
+    if (isset($this->options['statsd']) && $this->options['statsd'] == true)
     {
       cqStatsLogger::viewPropelObject($object);
     }
