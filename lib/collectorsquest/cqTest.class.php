@@ -23,7 +23,7 @@ class cqTest
       if (!empty($databases['test']['propel']['param']['password']))
       {
         $cmd = sprintf(
-          'cat %s/foreign.sql %s/%s.sql | mysql -h 127.0.0.1 -u%s -p%s collectorsquest_test',
+          'cat %s/foreign.sql %s/%s.sql | mysql -h 172.16.183.128 -u%s -p%s collectorsquest_test',
           $schema_data_dir, $schema_data_dir, $table,
           $databases['test']['propel']['param']['username'],
           $databases['test']['propel']['param']['password']
@@ -32,7 +32,7 @@ class cqTest
       else
       {
         $cmd = sprintf(
-          'cat %s/foreign.sql %s/%s.sql | mysql -h 127.0.0.1 -u%s collectorsquest_test',
+          'cat %s/foreign.sql %s/%s.sql | mysql -h 172.16.183.128 -u%s collectorsquest_test',
           $schema_data_dir, $schema_data_dir, $table,
           $databases['test']['propel']['param']['username']
         );

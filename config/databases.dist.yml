@@ -83,27 +83,27 @@ test:
   propel:
     param:
       classname:  DebugPDO
-      dsn:        mysql:dbname=collectorsquest_test;host=127.0.0.1
+      dsn:        mysql:dbname=collectorsquest_test;host=172.16.183.128
       username:   root
       password:
 
   blog:
     param:
       classname:  DebugPDO
-      dsn:        mysql:dbname=collectorsquest_test;host=127.0.0.1
+      dsn:        mysql:dbname=collectorsquest_test;host=172.16.183.128
       username:   root
       password:
 
   icepique:
     param:
       classname:  DebugPDO
-      dsn:        mysql:dbname=collectorsquest_test;host=127.0.0.1
+      dsn:        mysql:dbname=collectorsquest_test;host=172.16.183.128
       username:   root
       password:
 
   archive:
     param:
       classname:  DebugPDO
-      dsn:        mysql:dbname=collectorsquest_test;host=127.0.0.1
+      dsn:        mysql:dbname=collectorsquest_test;host=172.16.183.128
       username:   root
       password:

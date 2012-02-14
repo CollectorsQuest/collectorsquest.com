@@ -28,7 +28,7 @@ class collectibleForSaleActions extends autoCollectibleForSaleActions
     $this->collectible_for_sale = CollectibleForSalePeer::retrieveByPK($this->getRequestParameter('id'));
     $this->forward404Unless($this->collectible_for_sale);
     $this->collectible = $this->collectible_for_sale->getCollectible();
-    $this->omCollectibleOwner = $this->collectible->getCollection()->getCollector();
+    $this->omCollectibleOwner = $this->collectible->getCollector();
 
     $oCriteria = new Criteria();
     $oCriteria->addAscendingOrderByColumn(CollectibleOfferPeer::COLLECTOR_ID);
@@ -63,7 +63,7 @@ class collectibleForSaleActions extends autoCollectibleForSaleActions
     $criteria->addSelectColumn(CollectibleForSalePeer::IS_SHIPPING_FREE);
     $criteria->addSelectColumn(CollectibleForSalePeer::IS_SOLD);
     $criteria->addSelectColumn(CollectibleForSalePeer::CREATED_AT);
-    
+
 //    CollectibleForSalePeer::addSelectColumns($criteria);
 
     $stmt = CollectibleForSalePeer::doSelectStmt($criteria);
@@ -76,9 +76,9 @@ class collectibleForSaleActions extends autoCollectibleForSaleActions
         fputcsv($out, $collectibleForSale);
       }
     }
-    
+
     $stmt->closeCursor();
-    
+
     fclose($out);
     return sfView::NONE;
   }

@@ -90,7 +90,7 @@ class marketplaceInfoActions extends sfActions
     $this->item_for_sale = CollectibleForSalePeer::retrieveByPK($this->getRequestParameter('id'));
     $this->forward404Unless($this->item_for_sale);
     $this->item = $this->item_for_sale->getCollectible();
-    $this->omItemOwner = $this->item->getCollection()->getCollector();
+    $this->omItemOwner = $this->item->getCollector();
 
     $oCriteria = new Criteria();
     $oCriteria->addAscendingOrderByColumn(CollectibleOfferPeer::COLLECTOR_ID);
