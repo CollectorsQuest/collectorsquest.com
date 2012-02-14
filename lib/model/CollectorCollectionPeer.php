@@ -2,11 +2,6 @@
 
 require 'lib/model/om/BaseCollectorCollectionPeer.php';
 
-/**
- * Skeleton subclass for performing query and update operations on the 'collector_collection' table.
- *
- * @package    propel.generator.lib.model
- */
 class CollectorCollectionPeer extends BaseCollectorCollectionPeer
 {
   static public function getObjectForRoute($parameters)

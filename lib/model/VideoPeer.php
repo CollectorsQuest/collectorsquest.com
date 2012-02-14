@@ -1,5 +1,7 @@
 <?php
 
+require 'lib/model/om/BaseVideoPeer.php';
+
 class VideoPeer extends BaseVideoPeer
 {
   public static function getFeaturedVideos($limit = 2)

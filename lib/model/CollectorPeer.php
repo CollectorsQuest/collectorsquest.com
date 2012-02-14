@@ -1,5 +1,7 @@
 <?php
 
+require 'lib/model/om/BaseCollectorPeer.php';
+
 class CollectorPeer extends BaseCollectorPeer
 {
   public static function retrieveBySlug($slug)

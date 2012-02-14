@@ -1,10 +1,7 @@
 <?php
 
-/**
- * Skeleton subclass for performing query and update operations on the 'collectible_for_sale' table.
- *
- * @package    propel.generator.lib.model
- */
+require 'lib/model/om/BaseCollectibleForSalePeer.php';
+
 class CollectibleForSalePeer extends BaseCollectibleForSalePeer
 {
   public static $conditions = array('' => 'Any', 'excellent' => 'Excellent', 'very good' => 'Very Good', 'good' => 'Good', 'fair' => 'Fair', 'poor' => 'Poor');

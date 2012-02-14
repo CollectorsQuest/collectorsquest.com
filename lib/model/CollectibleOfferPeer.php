@@ -1,10 +1,7 @@
 <?php
 
-/**
- * Skeleton subclass for performing query and update operations on the 'collectible_offer' table.
- *
- * @package    propel.generator.lib.model
- */
+require 'lib/model/om/BaseCollectibleOfferPeer.php';
+
 class CollectibleOfferPeer extends BaseCollectibleOfferPeer
 {
   /**

@@ -2,11 +2,6 @@
 
 require 'lib/model/om/BaseCollectorCollection.php';
 
-/**
- * Skeleton subclass for representing a row from the 'collector_collection' table.
- *
- * @package    propel.generator.lib.model
- */
 class CollectorCollection extends BaseCollectorCollection
 {
   public function getGraphId()

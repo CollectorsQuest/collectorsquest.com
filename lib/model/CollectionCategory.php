@@ -1,5 +1,7 @@
 <?php
 
+require 'lib/model/om/BaseCollectionCategory.php';
+
 class CollectionCategory extends BaseCollectionCategory
 {
   public function __toString()

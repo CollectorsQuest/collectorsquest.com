@@ -1,8 +1,9 @@
 <?php
 
+require 'lib/model/om/BaseCollection.php';
+
 class Collection extends BaseCollection
 {
-
   public function getTagString()
   {
     return implode(", ", $this->getTags());

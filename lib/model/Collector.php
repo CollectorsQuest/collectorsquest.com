@@ -1,5 +1,7 @@
 <?php
 
+require 'lib/model/om/BaseCollector.php';
+
 class Collector extends BaseCollector
 {
 
@@ -245,6 +247,16 @@ class Collector extends BaseCollector
     $collections = CollectorCollectionPeer::doSelect($c);
 
     return $collections;
+  }
+
+  public function getCollections($criteria = null, PropelPDO $con = null)
+  {
+    return $this->getCollectorCollections($criteria, $con);
+  }
+
+  public function countCollections(Criteria $criteria = null, $distinct = false, PropelPDO $con = null)
+  {
+    return $this->countCollectorCollections($criteria, $distinct, $con);
   }
 
   public function getTagIds()

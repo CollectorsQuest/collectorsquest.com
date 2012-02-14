@@ -1,16 +1,7 @@
 <?php
 
-/**
- * Skeleton subclass for performing query and update operations on the 'collectible_for_sale' table.
- *
- *
- *
- * You should add additional methods to this class to meet the
- * application requirements.  This class will only be generated as
- * long as it does not already exist in the output directory.
- *
- * @package    propel.generator.lib.model
- */
+require 'lib/model/om/BaseCollectibleForSaleQuery.php';
+
 class CollectibleForSaleQuery extends BaseCollectibleForSaleQuery
 {
   public function filterBySeller($seller = null)
@@ -40,5 +31,3 @@ class CollectibleForSaleQuery extends BaseCollectibleForSaleQuery
   }
 
 }
-
-// CollectibleForSaleQuery
