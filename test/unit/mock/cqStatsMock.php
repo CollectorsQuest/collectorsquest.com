@@ -3,14 +3,14 @@
 /**
  * Mock cqStats class, expand as needed
  */
-class cqStats
+class cqStatsMock
 {
   protected static $stats;
 
   public static function increment($stat, $rate = 1)
   {
     self::$stats[$stat] = isset(self::$stats[$stat])
-      ? self::$paths[$path] + $rate
+      ? self::$paths[$stat] + $rate
       : $rate;
   }
 
