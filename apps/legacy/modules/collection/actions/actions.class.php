@@ -64,6 +64,7 @@ class collectionActions extends cqActions
 
     $this->pager      = $pager;
     $this->display    = $this->getUser()->getAttribute('display', 'grid', 'collectibles');
+    $this->collector  = $collector;
     $this->collection = $collection;
     $this->editable   = $editable;
 
@@ -77,7 +78,7 @@ class collectionActions extends cqActions
 
     if ($collection instanceof CollectionDropbox)
     {
-      if ($collector->isOwnerOf($collection))
+      if ($editable)
       {
         $this->addBreadcrumb('Your Dropbox', null);
       }
@@ -114,18 +115,23 @@ class collectionActions extends cqActions
 
     if ($collection->countCollectibles() == 0)
     {
-      $c = new Criteria();
-      $c->add(CollectorCollectionPeer::IS_PUBLIC, true);
-      if ($collection->getCollectionCategoryId())
-      {
-        $c->add(CollectorCollectionPeer::COLLECTION_CATEGORY_ID, $collection->getCollectionCategoryId());
-      }
-      $c->add(CollectorCollectionPeer::NUM_ITEMS, 4, Criteria::GREATER_EQUAL);
-      $c->addAscendingOrderByColumn(CollectorCollectionPeer::SCORE);
-      $c->addDescendingOrderByColumn(CollectorCollectionPeer::CREATED_AT);
-      $c->setLimit(9);
+      $this->collections = null;
 
-      $this->collections = CollectorCollectionPeer::doSelect($c);
+      if (!($collection instanceof CollectionDropbox) && !$editable)
+      {
+        $c = new Criteria();
+        $c->add(CollectionPeer::IS_PUBLIC, true);
+        if ($collection->getCollectionCategoryId())
+        {
+          $c->add(CollectionPeer::COLLECTION_CATEGORY_ID, $collection->getCollectionCategoryId());
+        }
+        $c->add(CollectionPeer::NUM_ITEMS, 4, Criteria::GREATER_EQUAL);
+        $c->addAscendingOrderByColumn(CollectionPeer::SCORE);
+        $c->addDescendingOrderByColumn(CollectionPeer::CREATED_AT);
+        $c->setLimit(9);
+
+        $this->collections = CollectionPeer::doSelect($c);
+      }
 
       return 'NoCollectibles';
     }
@@ -261,7 +267,7 @@ class collectionActions extends cqActions
 
           if ($form->isValid())
           {
-            $collection = new Collection();
+            $collection = new CollectorCollection();
             $collection->setCollector($this->getUser()->getCollector());
             $collection->setCollectionCategory($collection_category);
             $collection->setName($form->getValue('name'));
