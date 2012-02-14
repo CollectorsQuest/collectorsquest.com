@@ -9,6 +9,7 @@ dev:
     web_debug:              true
     cache:                  false
     etag:                   false
+    logging_enabled:        true
 
 test:
   .settings:
