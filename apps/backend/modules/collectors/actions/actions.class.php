@@ -72,12 +72,15 @@ class collectorsActions extends autoCollectorsActions
    */
   public function executeAutoLogin(sfWebRequest $request)
   {
-    $collector = CollectorQuery::create()->findOneById($request->getParameter('id'));
+    /* @var $collector Collector */
+    $collector = $this->getRoute()->getObject();
 
     if ($collector)
     {
       $hash = $collector->getAutoLoginHash();
-      $this->redirect(sfProjectConfiguration::getActive()->generateFrontendUrl('collector_auto_login', array('hash' => $hash)), 301);
+      $url = sfProjectConfiguration::getActive()->generateFrontendUrl('collector_auto_login', array('hash' => $hash));
+
+      $this->redirect($url, 301);
     }
 
     return sfView::ERROR;

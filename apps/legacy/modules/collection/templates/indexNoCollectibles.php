@@ -7,17 +7,35 @@
 
 <div class="clear" style="height: 20px;">&nbsp;</div>
 <div class="span-17 append-bottom last">
-  <div style="float: left; font-size: 32px; margin-left: 20px; margin-top: -7px; margin-right: 10px; color: #DF912F;">(!)</div>
+  <div style="float: left; font-size: 36px; margin-left: 20px; margin-top: -7px; margin-right: 10px; color: #DF912F;">(!)</div>
   <?php
     if ($sf_user->isOwnerOf($collection))
     {
-      echo __('Your collection is currently empty.<br>');
-      echo __('Please, use the menu on the right and click on <b>"+ Add Collectibles"</b> and upload all pictures.');
+      if ($collection instanceof CollectionDropbox)
+      {
+        echo __('Your Dropbox is currently empty.'), '<br>';
+        echo __('Please, use the menu on the right and click on <b>"+ Add Collectibles"</b> and upload all pictures.');
+      }
+      else
+      {
+        echo __('Your collection is currently empty.'), '<br>';
+        echo __('Please, use the menu on the right and click on <b>"+ Add Collectibles"</b> and upload all pictures.');
+      }
     }
     else
     {
-      echo __('We are sorry but this collection is currently empty.');
-      echo __('If you are interested, you can use <b>"Message Collector"</b> to the right and encourage the collector to upload pictures.');
+      if ($collection instanceof CollectionDropbox)
+      {
+        echo __('We are sorry but the Dropbox of %DisplayName% is currently empty.', array('%DisplayName%' => $collector->getDisplayName()));
+        echo '&nbsp;';
+        echo __('If you are interested, you can use <b>"Message Collector"</b> to the right and encourage the collector to upload pictures.');
+      }
+      else
+      {
+        echo __('We are sorry but this collection is currently empty.');
+        echo __('If you are interested, you can use <b>"Message Collector"</b> to the right and encourage the collector to upload pictures.');
+      }
+
     }
   ?>
 </div>
