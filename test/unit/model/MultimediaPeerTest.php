@@ -1,8 +1,11 @@
 <?php
 
-include(dirname(__FILE__).'/../../bootstrap/model.php');
+include(__DIR__.'/../../bootstrap/model.php');
 
-$t = new lime_test(13, new lime_output_color());
+$t = new lime_test(13, array('output' => new lime_output_color(), 'error_reporting' => true));
+
+// Reset all tables we will be working on
+cqTest::resetTables(array('multimedia'));
 
 $images = array(
   sfConfig::get('sf_test_dir').'/data/multimedia/05620d783231c09402ea1d406d35a58c.jpg',
@@ -28,7 +31,7 @@ $t->diag('::has()');
   $t->is(MultimediaPeer::has($collector, 'image', true), true);
   $t->is(MultimediaPeer::has($collector, 'image', false), false);
 
-  $collectible = CollectiblePeer::retrieveByPK(16222);
+  $collectible = CollectibleQuery::create()->findOne();
 
   $collectible->addMultimedia($images[0], true);
   $collectible->addMultimedia($images[1], false);

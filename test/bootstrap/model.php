@@ -2,5 +2,6 @@
 
 include __DIR__ .'/unit.php';
 
-$application = $configuration->getApplicationConfiguration('frontend', 'test', isset($debug) ? $debug : true);
-$context = sfContext::createInstance($application);
+/** @var $sf_configuration sfProjectConfiguration  */
+$sf_application = $sf_configuration->getApplicationConfiguration('frontend', 'test', isset($debug) ? $debug : true);
+$sf_context = sfContext::createInstance($sf_application);

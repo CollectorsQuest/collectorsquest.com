@@ -1,8 +1,8 @@
 <?php
 
-include(dirname(__FILE__).'/../../bootstrap/model.php');
+include(__DIR__.'/../../bootstrap/model.php');
 
-$t = new lime_test(6, array(new lime_output_color()));
+$t = new lime_test(6, array('output' => new lime_output_color(), 'error_reporting' => true));
 
 cqTest::resetTables(array('collectible', 'collectible_archive'));
 

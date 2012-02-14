@@ -45,12 +45,25 @@ class cqTest
   /**
    * @static
    *
-   * @param  string  $model
+   * @param  string   $model
+   * @param  boolean  $random
+   *
    * @return BaseObject
    */
-  public static function getRandomModelObject($model)
+  public static function getModelObject($model, $random = true)
   {
     $class = sfInflector::classify($model);
+
+    /** @var $q ModelCriteria */
+    if ($q = call_user_func(array($class . 'Query', 'create')))
+    {
+      if ($random === true)
+      {
+        $q->addAscendingOrderByColumn('RAND()');
+      }
+
+      return $q->findOne();
+    }
 
     return null;
   }

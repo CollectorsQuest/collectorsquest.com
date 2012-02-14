@@ -55,7 +55,7 @@ dev:
     class: cqMailer
     param:
       delivery_strategy: single_address
-      delivery_address:  kangov@collectorsquest.com
+      delivery_address:  developers@collectorsquest.com
       transport:
         class: Swift_SmtpTransport
         param:
@@ -83,8 +83,11 @@ test:
     param:
       session_path: %SF_TEST_CACHE_DIR%/sessions
 
+  request:
+    class: cqWebTestRequest
+
   response:
-    class: sfWebResponse
+    class: cqWebTestResponse
     param:
       send_http_headers: false
 
