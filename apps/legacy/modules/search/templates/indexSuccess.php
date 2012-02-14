@@ -224,7 +224,7 @@ $(function()
 
       switch ($tabs[ui.index])
       {
-        <?php if ($pagers['collections']->haveToPaginate()): ?>
+        <?php if ($pagers['collectibles']->haveToPaginate()): ?>
         case 'collectibles':
           $('#collectibles').infinitescroll(opts[0]);
         break;
