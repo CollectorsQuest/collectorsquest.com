@@ -421,18 +421,6 @@ class Collectible extends BaseCollectible
     return parent::preDelete($con);
   }
 
-  public function postDelete(PropelPDO $con = null)
-  {
-    $q = CollectibleQuery::create()
-       ->filterByCollectionId($this->getCollectionId());
-
-    $num_items = $q->count($con);
-    $collection = $this->getCollection($con);
-    $collection->setNumItems($num_items);
-    $collection->save();
-
-    return parent::postDelete($con);
-  }
 }
 
 sfPropelBehavior::add('Collectible', array('IceTaggableBehavior'));

@@ -9,14 +9,6 @@ require 'lib/model/om/BaseCollectorCollection.php';
  */
 class CollectorCollection extends BaseCollectorCollection
 {
-  /**
-   * @return string
-   */
-  public function __toString()
-  {
-    return $this->getName();
-  }
-
   public function getGraphId()
   {
     $graph_id = null;
@@ -56,12 +48,13 @@ class CollectorCollection extends BaseCollectorCollection
    */
   public function setDescription($v, $type = 'markdown')
   {
-    if ($type == 'html')
+    if ('html' == $type)
     {
       $v = IceStatic::cleanText($v, false, 'p, b, u, i, em, strong, h1, h2, h3, h4, h5, h6, div, span, ul, ol, li, blockquote');
       $v = cqMarkdownify::doConvert($v);
     }
 
+    // We should always save the description in Markdown format
     parent::setDescription($v);
   }
 
@@ -72,6 +65,7 @@ class CollectorCollection extends BaseCollectorCollection
    */
   public function getDescription($type = 'html')
   {
+    // By default the description is in Markdown format in the database
     $v = parent::getDescription();
 
     switch ($type)
@@ -80,7 +74,6 @@ class CollectorCollection extends BaseCollectorCollection
         $v = trim(strip_tags($v));
         break;
       case 'html':
-      default:
         $v = cqMarkdown::doConvert($v);
         break;
     }
@@ -88,152 +81,17 @@ class CollectorCollection extends BaseCollectorCollection
     return $v;
   }
 
-  public function getTagString()
-  {
-    return implode(", ", $this->getTags());
-  }
-
-  public function getTagIds()
-  {
-    $c = new Criteria;
-    $c->addSelectColumn(iceModelTaggingPeer::TAG_ID);
-    $c->add(iceModelTaggingPeer::TAGGABLE_ID, $this->getId());
-    $c->add(iceModelTaggingPeer::TAGGABLE_MODEL, 'Collection');
-    $stmt = iceModelTaggingPeer::doSelectStmt($c);
-
-    return $stmt->fetchAll(PDO::FETCH_COLUMN);
-  }
-
-  public function getCollectibleIds()
-  {
-    $c = new Criteria();
-    $c->addSelectColumn(CollectiblePeer::ID);
-    $c->addJoin(CollectiblePeer::ID, CollectionCollectiblePeer::COLLECTIBLE_ID, Criteria::RIGHT_JOIN);
-    $c->add(CollectionCollectiblePeer::COLLECTION_ID, $this->getId());
-    $c->addAscendingOrderByColumn(CollectionCollectiblePeer::POSITION);
-    $c->addAscendingOrderByColumn(CollectiblePeer::CREATED_AT);
-    $stmt = CollectiblePeer::doSelectStmt($c);
-
-    return $stmt->fetchAll(PDO::FETCH_COLUMN);
-  }
-
-  public function getCollectibles($criteria = null, PropelPDO $con = null)
-  {
-    $c = ($criteria instanceof Criteria) ? clone $criteria : new Criteria();
-
-    $c->addJoin(CollectiblePeer::ID, CollectionCollectiblePeer::COLLECTIBLE_ID, Criteria::RIGHT_JOIN);
-    $c->add(CollectionCollectiblePeer::COLLECTION_ID, $this->getId());
-    $c->addAscendingOrderByColumn(CollectionCollectiblePeer::POSITION);
-    $c->addDescendingOrderByColumn(CollectiblePeer::CREATED_AT);
-
-    return parent::getCollectibles($c, $con);
-  }
-
-  public function getRandomCollectibles($limit = 10)
-  {
-    $c = new Criteria();
-    $c->addJoin(CollectiblePeer::ID, CollectionCollectiblePeer::COLLECTIBLE_ID, Criteria::RIGHT_JOIN);
-    $c->add(CollectionCollectiblePeer::COLLECTION_ID, $this->getId());
-    $c->setLimit($limit);
-    $c->addAscendingOrderByColumn('RAND()');
-
-    return CollectiblePeer::doSelect($c);
-  }
-
-  public function getRelatedCollections($limit = 5)
-  {
-    $collections = CollectorCollectionPeer::getRelatedCollections($this, $limit);
-
-    if ($limit != $found = count($collections))
-    {
-      $limit = $limit - $found;
-
-      /** @var $sf_context sfContext */
-      $sf_context = sfContext::getInstance();
-
-      /** @var $sf_user cqUser */
-      $sf_user = $sf_context->getUser();
-
-      if ($sf_context && $sf_user->isAuthenticated())
-      {
-        /** @var $collector Collector */
-        $collector = $sf_user->getCollector();
-
-        $c = new Criteria();
-        $c->add(CollectorCollectionPeer::ID, $this->getId(), Criteria::NOT_EQUAL);
-        $c->add(CollectorCollectionPeer::COLLECTOR_ID, $collector->getId(), Criteria::NOT_EQUAL);
-        $c->addAscendingOrderByColumn('RAND()');
-
-        $collections = array_merge($collections, CollectorCollectionPeer::getRelatedCollections($collector, $limit, $c));
-      }
-    }
-
-    if (0 == count($collections))
-    {
-      $c = new Criteria();
-      $c->add(CollectorCollectionPeer::ID, $this->getId(), Criteria::NOT_EQUAL);
-
-      $collections = CollectorCollectionPeer::getRandomCollections($limit, $c);
-      $rnd_flag = true;
-    }
-
-    return $collections;
-  }
-
-  public function hasThumbnail()
-  {
-    return MultimediaPeer::has($this, 'image', true);
-  }
-
-  public function getThumbnail()
-  {
-    return MultimediaPeer::get($this, 'image', true);
-  }
-
   public function setThumbnail($file)
   {
-    $c = new Criteria();
-    $c->add(MultimediaPeer::MODEL, 'Collection');
-    $c->add(MultimediaPeer::MODEL_ID, $this->getId());
-    $c->add(MultimediaPeer::TYPE, 'image');
-    $c->add(MultimediaPeer::IS_PRIMARY, true);
+    /** @var $multimedia Multimedia */
+    $multimedia = parent::setThumbnail($file);
 
-    MultimediaPeer::doDelete($c);
-
-    if ($multimedia = MultimediaPeer::createMultimediaFromFile($this, $file))
+    if ($multimedia && !$this->getCollector()->hasPhoto())
     {
-      $multimedia->setIsPrimary(true);
-      $multimedia->makeThumb('150x150', 'shave');
-      $multimedia->makeThumb('50x50', 'shave');
-      $multimedia->save();
-
-      // Set a photo for the collector from the collection thumbnail
-      if (!$this->getCollector()->hasPhoto())
-      {
-        $this->getCollector()->setPhoto($multimedia->getAbsolutePath('original'));
-      }
-
-      return true;
+      $this->getCollector()->setPhoto($multimedia->getAbsolutePath('original'));
     }
 
-    return false;
-  }
-
-  public function getCountCollectibles()
-  {
-    return $this->countCollectibles();
-  }
-
-  public function countCollectiblesSince($date = null)
-  {
-    $date = (is_null($date)) ? new DateTime('7 day ago') : new DateTime($date);
-
-    $c = new Criteria();
-    $c->addJoin(CollectiblePeer::ID, CollectionCollectiblePeer::COLLECTIBLE_ID, Criteria::RIGHT_JOIN);
-    $c->add(CollectionCollectiblePeer::COLLECTION_ID, $this->getId());
-    $c->add(CollectiblePeer::CREATED_AT, $date, Criteria::GREATER_EQUAL);
-
-    return CollectiblePeer::doCount($c);
+    return $multimedia;
   }
 
   /**
@@ -253,27 +111,4 @@ class CollectorCollection extends BaseCollectorCollection
     return CollectorCollectionPeer::doSelectStmt($oCriteria);
   }
 
-  /**
-   * @param null|PropelPDO $con
-   *
-   * @return boolean
-   */
-  public function preDelete(PropelPDO $con = null)
-  {
-    /** @var $collectibles Collectible[] */
-    if ($collectibles = $this->getCollectibles())
-    foreach ($collectibles as $collectible)
-    {
-      $collectible->delete($con);
-    }
-
-    /** @var $comments Comment[] */
-    if ($comments = $this->getComments())
-    foreach ($comments as $comment)
-    {
-      $comment->delete($con);
-    }
-
-    return parent::preDelete($con);
-  }
 }

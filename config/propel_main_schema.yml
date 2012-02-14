@@ -161,6 +161,7 @@ classes:
 
     propel_behaviors:
       archivable: { archive_class: CollectionArchive, archived_at_column: archived_at }
+      sluggable: { slug_pattern: "{Name}", permanent: false }
       timestampable:  ~
 
   CollectionCategory:

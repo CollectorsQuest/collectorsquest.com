@@ -2,7 +2,9 @@
 
 include(dirname(__FILE__).'/../../bootstrap/model.php');
 
-$t = new lime_test(5, array(new lime_output_color()));
+$t = new lime_test(6, array(new lime_output_color()));
+
+cqTest::resetTables(array('collectible', 'collectible_archive'));
 
 $t->diag('::setName()');
 
@@ -26,7 +28,6 @@ $t->diag('Setting and getting the slug');
 
   $collectible = new Collectible();
   $collectible->setCollectorId(1);
-  $collectible->setCollectionId(1);
   $collectible->setName('Untitled Item');
   $collectible->setDescription('No description required here');
   $collectible->save();
@@ -35,18 +36,8 @@ $t->diag('Setting and getting the slug');
 
   $collectible = new Collectible();
   $collectible->setCollectorId(1);
-  $collectible->setCollectionId(1);
   $collectible->setName('Untitled Item');
   $collectible->setDescription('No description required here also');
+  $collectible->save();
 
-  try {
-    $collectible->save();
-  }
-  catch (PropelException $e)
-  {
-    var_dump($e->getMessage());
-    if ($e->getMessage() == '')
-    {
-      $t->fail('');
-    }
-  }
+  $t->like($collectible->getSlug(), '/untitled-item-\w+/i');
