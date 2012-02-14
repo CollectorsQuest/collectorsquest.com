@@ -2,7 +2,11 @@
 
 class backendConfiguration extends sfApplicationConfiguration
 {
+  /** @var IcePatternRouting */
   protected $frontendRouting = null;
+
+  /** @var IcePatternRouting */
+  protected $legacyRouting = null;
 
   public function configure()
   {
@@ -11,9 +15,13 @@ class backendConfiguration extends sfApplicationConfiguration
 
   public function generateFrontendUrl($name, $parameters = array())
   {
-    return 'http://'. sfConfig::get('app_www_domain') . $this->getFrontendRouting()->generate($name, $parameters, true);
+    return 'http://'. sfConfig::get('app_www_domain', 'www.collectorsquest.com') .
+           $this->getLegacyRouting()->generate($name, $parameters, true);
   }
 
+  /**
+   * @return IcePatternRouting
+   */
   public function getFrontendRouting()
   {
     if (!$this->frontendRouting)
@@ -27,5 +35,23 @@ class backendConfiguration extends sfApplicationConfiguration
     }
 
     return $this->frontendRouting;
+  }
+
+  /**
+   * @return IcePatternRouting
+   */
+  public function getLegacyRouting()
+  {
+    if (!$this->legacyRouting)
+    {
+      $this->legacyRouting = new IcePatternRouting(new sfEventDispatcher());
+
+      $config = new sfRoutingConfigHandler();
+      $routes = $config->evaluate(array(sfConfig::get('sf_apps_dir').'/legacy/config/routing.yml'));
+
+      $this->legacyRouting->setRoutes($routes);
+    }
+
+    return $this->legacyRouting;
   }
 }
