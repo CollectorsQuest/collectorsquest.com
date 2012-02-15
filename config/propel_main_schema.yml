@@ -179,6 +179,7 @@ classes:
       collectible_id:  { type: integer, required: true, foreignClass: Collectible, foreignReference: id, onDelete: cascade, primaryKey: true }
       score:           { type: integer, default: 0 }
       position:        { type: integer, default: 0 }
+      is_primary:      { type: boolean, default: false }
 
     propel_behaviors:
       timestampable:  ~

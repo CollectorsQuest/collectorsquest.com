@@ -2,6 +2,13 @@
 
 require 'lib/model/om/BaseCollectible.php';
 
+/**
+ * IceTaggableBehavior
+ *
+ * @method array getTags($options = array())
+ * @method array addTag($name)
+ * @method array hasTag($name)
+ */
 class Collectible extends BaseCollectible
 {
   public function getGraphId()
@@ -12,14 +19,21 @@ class Collectible extends BaseCollectible
     {
       $client = cqStatic::getNeo4jClient();
 
-      $node = $client->makeNode();
-      $node->setProperty('model', 'Collectible');
-      $node->setProperty('model_id', $this->getId());
-      $node->save();
+      try
+      {
+        $node = $client->makeNode();
+        $node->setProperty('model', 'Collectible');
+        $node->setProperty('model_id', $this->getId());
+        $node->save();
 
-      $graph_id = $node->getId();
+        $graph_id = $node->getId();
+      }
+      catch(Everyman\Neo4j\Exception $e)
+      {
+        $graph_id = null;
+      }
 
-      $this->setGraphId($node->getId());
+      $this->setGraphId($graph_id);
       $this->save();
     }
 
@@ -122,23 +136,38 @@ class Collectible extends BaseCollectible
     return $collections;
   }
 
+  /**
+   * @return integer | null
+   */
   public function getCollectionId()
   {
-    // @todo
+    return null;
   }
 
+  /**
+   * @param  integer  $v
+   * @return boolean
+   */
   public function setCollectionId($v)
   {
-    // @todo
+    return false;
   }
 
+  /**
+   * @param  PropelPDO  $con
+   * @return Collection | CollectionDropbox
+   */
   public function getCollection(PropelPDO $con = null)
   {
-    $c = new Criteria();
-    $c->addJoin(CollectorCollectionPeer::ID, CollectionCollectiblePeer::COLLECTION_ID, Criteria::LEFT_JOIN);
-    $c->add(CollectionCollectiblePeer::COLLECTIBLE_ID, $this->getId());
+    /** @var $q CollectionQuery */
+    $q = CollectionQuery::create()
+       ->joinCollectionCollectible()
+       ->useCollectionCollectibleQuery()
+         ->filterByCollectible($this)
+         ->filterByIsPrimary(true)
+       ->endUse();
 
-    if (!$collection = CollectorCollectionPeer::doSelectOne($c, $con))
+    if (!$collection = $q->findOne($con))
     {
       $collection = new CollectionDropbox($this->getCollectorId());
     }
@@ -231,9 +260,11 @@ class Collectible extends BaseCollectible
       $multimedia->makeThumb('1024x768', 'bestfit', $queue);
 
       // Here we want to create an optimized thumbnail for the homepage
-      $multimedia->getOrientation() == 'landscape' ?
-          $multimedia->makeThumb('230x150', 'shave', $queue) :
-          $multimedia->makeThumb('170x230', 'shave', $queue);
+      if ($multimedia->getOrientation() == 'landscape') {
+        $multimedia->makeThumb('230x150', 'shave', $queue);
+      } else {
+        $multimedia->makeThumb('170x230', 'shave', $queue);
+      }
 
       $multimedia->save();
 
@@ -333,8 +364,12 @@ class Collectible extends BaseCollectible
     }
     $c->addAscendingOrderByColumn(CustomValuePeer::FIELD_ID);
 
-    $_custom_values = parent::getCustomValues($c, $con);
+    // Initialize the return array
     $custom_values = array();
+
+    /** @var $_custom_values CustomValue[] */
+    $_custom_values = parent::getCustomValues($c, $con);
+
     foreach ($_custom_values as $value)
     {
       $custom_values[$value->getFieldId()] = $value;
@@ -371,23 +406,6 @@ class Collectible extends BaseCollectible
     $c->add(CollectibleForSalePeer::COLLECTIBLE_ID, $this->getId());
 
     return CollectibleForSalePeer::doSelectOne($c);
-  }
-
-  public static function updateItemIsForSale($snCollectibleId, $bIsForSale = true)
-  {
-    $omCollectible = CollectiblePeer::retrieveByPK($snCollectibleId);
-    $omCollectible->setIsForSale($bIsForSale);
-
-    try
-    {
-      $omCollectible->save();
-    }
-    catch (PropelException $e)
-    {
-      return false;
-    }
-
-    return $omCollectible;
   }
 
   /**

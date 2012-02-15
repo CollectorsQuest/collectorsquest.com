@@ -2,6 +2,13 @@
 
 require 'lib/model/om/BaseCollection.php';
 
+/**
+ * IceTaggableBehavior
+ *
+ * @method array getTags($options = array())
+ * @method array addTag($name)
+ * @method array hasTag($name)
+ */
 class Collection extends BaseCollection
 {
   public function getTagString()

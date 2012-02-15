@@ -82,16 +82,17 @@ class CollectionDropbox extends CollectorCollection
     return null;
   }
 
-  public function getCollectibleIds()
+  public function getCollectibleIds($criteria = null, PropelPDO $con = null)
   {
-    $c = new Criteria();
+    $c = ($criteria instanceof Criteria) ? clone $criteria : new Criteria();
+
     $c->addSelectColumn(CollectiblePeer::ID);
     $c->add(CollectiblePeer::COLLECTOR_ID, $this->getCollectorId());
     $c->addJoin(CollectiblePeer::ID, CollectionCollectiblePeer::COLLECTIBLE_ID, Criteria::LEFT_JOIN);
     $c->add(CollectionCollectiblePeer::COLLECTION_ID, null, Criteria::ISNULL);
     $c->addAscendingOrderByColumn(CollectionCollectiblePeer::POSITION);
     $c->addAscendingOrderByColumn(CollectiblePeer::CREATED_AT);
-    $stmt = CollectiblePeer::doSelectStmt($c);
+    $stmt = CollectiblePeer::doSelectStmt($c, $con);
 
     return $stmt->fetchAll(PDO::FETCH_COLUMN);
   }

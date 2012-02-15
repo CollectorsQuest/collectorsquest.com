@@ -41,3 +41,12 @@ $t->diag('Setting and getting the slug');
   $collectible->save();
 
   $t->like($collectible->getSlug(), '/untitled-item-\w+/i');
+
+$t->diag('::getCollection(), ::getCollectionId()');
+
+  $q = CollectibleQuery::create()
+     ->joinCollectionCollectible();
+
+  $collectible = $q->findOne();
+  $t->isa_ok($collectible->getCollection(), 'Collection');
+  $t->isnt($collectible->getCollectionId(), null);
