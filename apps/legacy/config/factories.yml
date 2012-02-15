@@ -69,6 +69,21 @@ dev:
       port: 11211
       persistent: true
 
+  logger:
+    class: sfAggregateLogger
+    param:
+      level: debug
+      loggers:
+        sf_web_debug:
+          class: sfWebDebugLogger
+          param:
+            level: debug
+            condition:       %SF_WEB_DEBUG%
+            xdebug_logging:  false
+            web_debug_class: sfWebDebug
+        sf_file_debug:
+          class: sfNoLogger
+
 cli:
   controller:
     class: sfConsoleController

@@ -186,6 +186,7 @@ function wpcf7_l10n() {
 		'sq' => __( 'Albanian', 'wpcf7' ),
 		'ar' => __( 'Arabic', 'wpcf7' ),
 		'hy_AM' => __( 'Armenian', 'wpcf7' ),
+		'az_AZ' => __( 'Azeri', 'wpcf7' ),
 		'bn_BD' => __( 'Bangla', 'wpcf7' ),
 		'be_BY' => __( 'Belarusian', 'wpcf7' ),
 		'bs' => __( 'Bosnian', 'wpcf7' ),
@@ -248,6 +249,12 @@ function wpcf7_is_rtl() {
 		return is_rtl();
 
 	return false;
+}
+
+function wpcf7_ajax_loader() {
+	$url = wpcf7_plugin_url( 'images/ajax-loader.gif' );
+
+	return apply_filters( 'wpcf7_ajax_loader', $url );
 }
 
 ?>

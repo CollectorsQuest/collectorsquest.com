@@ -17,7 +17,7 @@ class marketplaceActions extends cqActions
   public function executeIndex(sfWebRequest $request)
   {
     $c = new Criteria;
-//    $c->setDistinct();
+    $c->setDistinct();
     $c->addJoin(CollectionCategoryPeer::ID, CollectionPeer::COLLECTION_CATEGORY_ID, Criteria::INNER_JOIN);
     $c->addJoin(CollectionPeer::ID, CollectiblePeer::COLLECTION_ID, Criteria::INNER_JOIN);
     $c->addJoin(CollectiblePeer::ID, CollectibleForSalePeer::COLLECTIBLE_ID, Criteria::INNER_JOIN);
