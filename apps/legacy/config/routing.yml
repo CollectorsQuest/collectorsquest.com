@@ -67,6 +67,7 @@ seller_ajax_save:
 seller_signup:
   url:   /collector/signup/:step
   param: { module: collector, action: signup, step: 1 }
+  requirements: { step: '\d+' }
 
 sellers:
   url:   /sellers
@@ -81,6 +82,7 @@ collector_signup_facebook:
 collector_signup:
   url:   /collector/signup/:step
   param: { module: collector, action: signup, step: 1 }
+  requirements: { step: '\d+' }
 
 collector_auto_login:
   url:  /collector/auto-login/:hash
