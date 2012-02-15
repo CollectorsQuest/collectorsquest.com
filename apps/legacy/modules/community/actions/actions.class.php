@@ -26,13 +26,7 @@ class communityActions extends cqActions
     $this->executeSpotlight($request);
   }
 
-  /**
-   * Executes the spotlight action
-   *
-   * @param sfWebRequest $request A request object
-   * @return string
-   */
-  public function executeSpotlight(sfWebRequest $request)
+  public function executeSpotlight()
   {
     if (!isset($this->featured_week) && method_exists($this->getRoute(), 'getObject'))
     {
@@ -46,10 +40,14 @@ class communityActions extends cqActions
     // Should not happen, but we need to forward to homepage if there is no featured week
     $this->redirectUnless($this->featured_week, '@homepage');
 
-    // get the latest 3 collections
-    $q = CollectionQuery::create()
+    /**
+     * Get some random 3 collections
+     *
+     * @var $q CollectorCollectionQuery
+     */
+    $q = CollectorCollectionQuery::create()
        ->filterByNumItems(4, Criteria::GREATER_EQUAL)
-        ->limit(3)
+       ->limit(3)
        ->addDescendingOrderByColumn('RAND()');
     $this->collections = $q->find();
 
@@ -87,13 +85,7 @@ class communityActions extends cqActions
     return sfView::SUCCESS;
   }
 
-  /**
-   * Executes the spotlight action
-   *
-   * @param sfWebRequest $request A request object
-   * @return string
-   */
-  public function execute15MinutesOfFame(sfWebRequest $request)
+  public function execute15MinutesOfFame()
   {
     $this->addBreadcrumb($this->__('Community'), '@community');
     $this->addBreadcrumb($this->__('Your 15 Minutes of Fame'));

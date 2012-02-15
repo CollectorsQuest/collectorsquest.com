@@ -493,7 +493,7 @@ class marketplaceActions extends cqActions
             {
               $this->oForm->save();
               // Update Collectible isForSale true
-              $omCollectible = Collectible::updateItemIsForSale($request->getParameter('item_id'));
+              $omCollectible = CollectiblePeer::updateItemIsForSale($request->getParameter('item_id'));
               if ($this->oForm->isNew())
               {
                 // Less Allowed Items for sell.

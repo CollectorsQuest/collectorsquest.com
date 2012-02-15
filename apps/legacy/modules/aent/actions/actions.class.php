@@ -108,9 +108,6 @@ class aentActions extends cqActions
     $this->getResponse()->addMeta('description', $collectible->getDescription('stripped'));
     $this->getResponse()->addMeta('keywords', $collectible->getTagString());
 
-    // Building the geo.* meta tags
-    $this->getResponse()->addGeoMeta($collection->getCollector());
-
     // Setting the Canonical URL
     $this->loadHelpers(array('cqLinks'));
     $this->getResponse()->setCanonicalUrl(url_for_collectible($collectible, true));
