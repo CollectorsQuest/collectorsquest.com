@@ -4,7 +4,7 @@ require 'lib/model/om/BaseCollector.php';
 
 class Collector extends BaseCollector
 {
-
+  /** @var CollectorProfile */
   protected $profile = null;
 
   public function postSave(PropelPDO $con = null)
@@ -315,6 +315,11 @@ class Collector extends BaseCollector
   public function isFacebookOnly()
   {
     return ($this->hasFacebook() && preg_match('/^fb(\d+)$/', $this->getUsername()));
+  }
+
+  public function getIsSeller()
+  {
+    return $this->getUserType() == 'Seller';
   }
 
   public function fromArray($array, $keyType = BasePeer::TYPE_PHPNAME)

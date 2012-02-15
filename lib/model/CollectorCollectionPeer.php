@@ -91,6 +91,23 @@ class CollectorCollectionPeer extends BaseCollectorCollectionPeer
 
   /**
    * @static
+   * @param  integer $snIdCollector
+   *
+   * @return PDOStatement
+   */
+  public static function getCollectionAsPerCollector($snIdCollector)
+  {
+    $oCriteria = new Criteria();
+    $oCriteria->addSelectColumn(CollectorCollectionPeer::ID);
+    $oCriteria->addSelectColumn(CollectorCollectionPeer::NAME);
+    $oCriteria->add(CollectorCollectionPeer::COLLECTOR_ID, $snIdCollector);
+    $oCriteria->addAscendingOrderByColumn(CollectorCollectionPeer::NAME);
+
+    return CollectorCollectionPeer::doSelectStmt($oCriteria);
+  }
+
+  /**
+   * @static
    *
    * @param  BaseObject  $object
    * @param  integer     $limit

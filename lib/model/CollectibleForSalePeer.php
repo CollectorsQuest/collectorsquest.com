@@ -4,7 +4,11 @@ require 'lib/model/om/BaseCollectibleForSalePeer.php';
 
 class CollectibleForSalePeer extends BaseCollectibleForSalePeer
 {
-  public static $conditions = array('' => 'Any', 'excellent' => 'Excellent', 'very good' => 'Very Good', 'good' => 'Good', 'fair' => 'Fair', 'poor' => 'Poor');
+  public static $conditions = array(
+    '' => 'Any', 'excellent' => 'Excellent', 'very good' => 'Very Good',
+    'good' => 'Good', 'fair' => 'Fair', 'poor' => 'Poor'
+  );
+
   /**
    * Retrieve collectibles by collector
    *
@@ -16,22 +20,22 @@ class CollectibleForSalePeer extends BaseCollectibleForSalePeer
    */
   public static function doSelectByCollector($collector, $active = null, Criteria $criteria = null)
   {
-    $id = $collector instanceof Collector ? $collector->getId() : (int) $collector;
+    $collector_id = $collector instanceof Collector ? $collector->getId() : (int) $collector;
 
-    if (is_null($criteria))
+    if (null === $criteria)
     {
       $criteria = new Criteria;
     }
-    $criteria->addJoin(CollectibleForSalePeer::COLLECTIBLE_ID, CollectiblePeer::ID);
-    $criteria->addJoin(CollectiblePeer::COLLECTION_ID, CollectionPeer::ID);
 
-    if (!is_null($active))
+    $criteria->addJoin(CollectibleForSalePeer::COLLECTIBLE_ID, CollectiblePeer::ID);
+    $criteria->addJoin(CollectiblePeer::ID, CollectionCollectiblePeer::COLLECTIBLE_ID);
+    $criteria->add(CollectiblePeer::COLLECTOR_ID, $collector_id);
+    $criteria->addDescendingOrderByColumn(CollectibleForSalePeer::ID);
+
+    if (null !== $active)
     {
       $criteria->add(CollectibleForSalePeer::IS_SOLD, !$active);
     }
-
-    $criteria->add(CollectiblePeer::COLLECTOR_ID, $id);
-    $criteria->addDescendingOrderByColumn(CollectibleForSalePeer::ID);
 
     return self::doSelect($criteria);
   }

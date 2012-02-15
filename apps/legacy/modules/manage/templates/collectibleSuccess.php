@@ -6,7 +6,7 @@
 ?>
 <br class="clear" />
 
-<form action="<?php echo url_for('@manage_collectible?id='. $collectible->getId()); ?>" method="post" enctype="multipart/form-data">
+<form action="<?php echo url_for('@manage_collectible_by_slug?id='. $collectible->getId() .'&slug='. $collectible->getSlug()); ?>" method="post" enctype="multipart/form-data">
 
   <?php include_partial('manage/collectible_form', array('form' => $form, 'collectible' => $collectible))  ?>
 

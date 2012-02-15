@@ -6,8 +6,8 @@ require 'lib/model/om/BaseCollectible.php';
  * IceTaggableBehavior
  *
  * @method array getTags($options = array())
- * @method array addTag($name)
- * @method array hasTag($name)
+ * @method boolean addTag($name)
+ * @method boolean hasTag($name)
  */
 class Collectible extends BaseCollectible
 {
@@ -145,12 +145,63 @@ class Collectible extends BaseCollectible
   }
 
   /**
-   * @param  integer  $v
+   * @param  integer  $id
    * @return boolean
    */
-  public function setCollectionId($v)
+  public function setCollectionId($id = null)
   {
-    return false;
+    // Setting the Collection ID to null should be a defualt behavior, thus the 'return true'
+    if (null === $id)
+    {
+      return true;
+    }
+
+    $q = CollectionCollectibleQuery::create()
+       ->filterByCollectible($this)
+       ->filterByIsPrimary(true);
+
+    try
+    {
+      $collection_collectible = $q->findOneOrCreate();
+      $collection_collectible->setCollectionId($id);
+      $collection_collectible->save();
+    }
+    catch (PropelException $e)
+    {
+      return false;
+    }
+
+    return true;
+  }
+
+  /**
+   * @param  Collection|null  $collection
+   * @return boolean
+   */
+  public function setCollection(Collection $collection = null)
+  {
+    // Setting the Collection to null should be a defualt behavior, thus the 'return true'
+    if (null === $collection)
+    {
+      return true;
+    }
+
+    $q = CollectionCollectibleQuery::create()
+       ->filterByCollectible($this)
+       ->filterByIsPrimary(true);
+
+    try
+    {
+      $collection_collectible = $q->findOneOrCreate();
+      $collection_collectible->setCollection($collection);
+      $collection_collectible->save();
+    }
+    catch (PropelException $e)
+    {
+      return false;
+    }
+
+    return true;
   }
 
   /**

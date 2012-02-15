@@ -111,7 +111,12 @@ class collectionComponents extends cqComponents
 
   public function executeSidebarCollectible()
   {
-    $this->collectible = CollectiblePeer::retrieveByPk($this->getRequestParameter('id'));
+    if (!$this->collectible = CollectiblePeer::retrieveByPk($this->getRequestParameter('id')))
+    {
+      return sfView::NONE;
+    }
+
+    // Get the primary Collection
     $collection = $this->collectible->getCollection();
 
     $this->buttons = array(
@@ -202,5 +207,4 @@ class collectionComponents extends cqComponents
       }
     }
   }
-
 }

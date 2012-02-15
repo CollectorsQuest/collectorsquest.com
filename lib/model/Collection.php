@@ -6,8 +6,8 @@ require 'lib/model/om/BaseCollection.php';
  * IceTaggableBehavior
  *
  * @method array getTags($options = array())
- * @method array addTag($name)
- * @method array hasTag($name)
+ * @method boolean addTag($name)
+ * @method boolean hasTag($name)
  */
 class Collection extends BaseCollection
 {
@@ -156,8 +156,38 @@ class Collection extends BaseCollection
   }
 
   /**
-   * @param null|PropelPDO $con
-   *
+   * @param  PropelPDO  $con
+   * @return Collector
+   */
+  public function getCollector(PropelPDO $con = null)
+  {
+    $collector = null;
+
+    if ($collector_collection = $this->getCollectorCollection($con))
+    {
+      $collector = $collector_collection->getCollector($con);
+    }
+
+    return $collector;
+  }
+
+  /**
+   * @return integer
+   */
+  public function getCollectorId()
+  {
+    $id = null;
+
+    if ($collector_collection = $this->getCollectorCollection())
+    {
+      $id = $collector_collection->getCollectorId();
+    }
+
+    return $id;
+  }
+
+  /**
+   * @param  PropelPDO  $con
    * @return boolean
    */
   public function preDelete(PropelPDO $con = null)

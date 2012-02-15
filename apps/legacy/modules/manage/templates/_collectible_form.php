@@ -61,8 +61,8 @@
       <div class="required"><?php echo __('(required)'); ?></div>
     </div>
     <div class="prepend-1 span-13 last">
+      <?php echo cq_input_tag($form['for_sale'], 'price', array('width' => 100)); ?>
       <?php echo $form['for_sale']['price']->renderError(); ?>
-      <?php echo $form['for_sale']['price']->render(); ?>
     </div>
     <div class="clear append-bottom">&nbsp;</div>
 
@@ -71,8 +71,8 @@
       <div class="optional"><?php echo __('(optional)'); ?></div>
     </div>
     <div class="prepend-1 span-13 last">
+      <?php echo cq_input_tag($form['for_sale'], 'quantity', array('width' => 50)); ?>
       <?php echo $form['for_sale']['quantity']->renderError(); ?>
-      <?php echo $form['for_sale']['quantity']->render(); ?>
     </div>
     <div class="clear append-bottom">&nbsp;</div>
 
@@ -81,7 +81,7 @@
       <div class="optional"><?php echo __('(optional)'); ?></div>
     </div>
     <div class="prepend-1 span-13 last">
-      <?php echo $form['for_sale']['condition']; ?>
+      <?php echo cq_select_tag($form['for_sale'], 'condition', array('width' => 200)); ?>
       <?php echo $form['for_sale']['condition']->renderError(); ?>
     </div>
     <div class="clear append-bottom">&nbsp;</div>

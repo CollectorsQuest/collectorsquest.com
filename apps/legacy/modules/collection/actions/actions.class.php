@@ -160,7 +160,6 @@ class collectionActions extends cqActions
     {
       $this->redirect('@aent_collectible_by_slug?id='. $collectible->getId() .'&slug='. $collectible->getSlug(), 301);
     }
-    // end
 
     /**
      * Figure out the previous and the next item in the collection

@@ -37,7 +37,7 @@ class CollectibleEditForm extends BaseCollectibleForm
     unset($this->widgetSchema['position'], $this->widgetSchema['score']);
     unset($this->validatorSchema['position'], $this->validatorSchema['score']);
 
-    if ($collector && $collector->getUserType() == 'Seller')
+    if ($collector->getIsSeller())
     {
       $collectibleForSale = $this->getObject()->getForSaleInformation();
 
@@ -47,9 +47,7 @@ class CollectibleEditForm extends BaseCollectibleForm
         $collectibleForSale->setCollectible($this->getObject());
       }
 
-      $embedForm = new CollectibleForSaleEditForm($collectibleForSale);
-
-      $this->embedForm('for_sale', $embedForm);
+      $this->embedForm('for_sale', new CollectibleForSaleEditForm($collectibleForSale));
     }
   }
 

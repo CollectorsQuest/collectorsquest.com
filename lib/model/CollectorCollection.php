@@ -2,6 +2,13 @@
 
 require 'lib/model/om/BaseCollectorCollection.php';
 
+/**
+ * IceTaggableBehavior
+ *
+ * @method array getTags($options = array())
+ * @method boolean addTag($name)
+ * @method boolean hasTag($name)
+ */
 class CollectorCollection extends BaseCollectorCollection
 {
   public function getGraphId()
@@ -87,23 +94,6 @@ class CollectorCollection extends BaseCollectorCollection
     }
 
     return $multimedia;
-  }
-
-  /**
-   * @static
-   * @param  integer $snIdCollector
-   *
-   * @return PDOStatement
-   */
-  public static function getCollectionAsPerCollector($snIdCollector)
-  {
-    $oCriteria = new Criteria();
-    $oCriteria->addSelectColumn(CollectorCollectionPeer::ID);
-    $oCriteria->addSelectColumn(CollectorCollectionPeer::NAME);
-    $oCriteria->add(CollectorCollectionPeer::COLLECTOR_ID, $snIdCollector);
-    $oCriteria->addAscendingOrderByColumn(CollectorCollectionPeer::NAME);
-
-    return CollectorCollectionPeer::doSelectStmt($oCriteria);
   }
 
 }

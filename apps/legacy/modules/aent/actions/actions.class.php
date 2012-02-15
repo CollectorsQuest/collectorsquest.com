@@ -10,12 +10,12 @@
  */
 class aentActions extends cqActions
 {
- /**
-  * Executes index action
-  *
-  * @param  sfWebRequest  $request A request object
-  * @return string
-  */
+  /**
+   * Executes index action
+   *
+   * @param  sfWebRequest  $request A request object
+   * @return string
+   */
   public function executeIndex(sfWebRequest $request)
   {
     $this->redirect('@aent_landing', 302);
@@ -71,7 +71,7 @@ class aentActions extends cqActions
       7 => '9/11 Memorabilia'
     );
 
-    $this->collectible  = $collectible;
+    $this->collectible = $collectible;
     $this->collectibles = $collectibles;
 
     return sfView::SUCCESS;
@@ -95,7 +95,7 @@ class aentActions extends cqActions
     $this->addBreadcrumb(
       $collectible->getName(), null,
       array(
-        'id' => 'collectible_'.$collectible->getId().'_name',
+        'id' => 'collectible_' . $collectible->getId() . '_name',
         'class' => ($this->getCollector()->isOwnerOf($collectible)) ? 'editable_h1' : ''
       )
     );
