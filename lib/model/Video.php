@@ -2,6 +2,13 @@
 
 require 'lib/model/om/BaseVideo.php';
 
+/**
+ * IceTaggableBehavior
+ *
+ * @method array getTags($options = array())
+ * @method array addTag($name)
+ * @method array hasTag($name)
+ */
 class Video extends BaseVideo
 {
   public function __toString()
