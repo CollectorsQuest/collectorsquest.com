@@ -72,6 +72,8 @@ class CollectibleEditForm extends BaseCollectibleForm
   {
     /** @var $object Collectible */
     $object = parent::save($con);
+
+    /** @var $values array */
     $values = $this->getValues();
 
     $object->setDescription($values['description'], 'html');
