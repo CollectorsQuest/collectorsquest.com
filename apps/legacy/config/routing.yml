@@ -86,6 +86,12 @@ collector_auto_login:
   url:  /collector/auto-login/:hash
   param: { module: general, action: login }
 
+collector_verify_email:
+  url:  /collector/verify-email/:hash
+  class: cqPropelRoute
+  param: { module: general, action: verifyEmail }
+  options: { model: CollectorEmail, type: object }
+
 collector_by_slug:
   url:  /collector/:id/:slug
   class: cqPropelRoute
