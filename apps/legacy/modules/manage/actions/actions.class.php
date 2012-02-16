@@ -90,12 +90,12 @@ class manageActions extends cqActions
 
     // Get the collections of the current collector
     $c = new Criteria();
-    $c->add(CollectionPeer::COLLECTOR_ID, $this->getUser()->getId());
-    $c->addDescendingOrderByColumn(CollectionPeer::CREATED_AT);
+    $c->add(CollectorCollectionPeer::COLLECTOR_ID, $this->getUser()->getId());
+    $c->addDescendingOrderByColumn(CollectorCollectionPeer::CREATED_AT);
 
     $per_page = ($request->getParameter('show') == 'all') ? 999 : sfConfig::get('app_pager_manage_collections_max', 10);
 
-    $pager = new sfPropelPager('Collection', $per_page);
+    $pager = new sfPropelPager('CollectorCollection', $per_page);
     $pager->setCriteria($c);
     $pager->setPeerMethod('doSelectJoinCollector');
     $pager->setPeerCountMethod('doCountJoinCollector');
@@ -146,7 +146,7 @@ class manageActions extends cqActions
     }
     else
     {
-      $collection = CollectionPeer::retrieveByPK($request->getParameter('collection[id]'));
+      $collection = CollectorCollectionPeer::retrieveByPK($request->getParameter('collection[id]'));
     }
     $this->forward404Unless($collection && $this->getUser()->isOwnerOf($collection));
 
@@ -227,11 +227,13 @@ class manageActions extends cqActions
 
     if ($this->getRoute() instanceof sfPropelRoute)
     {
+      /** @var $collectible Collectible */
       $collectible = $this->getRoute()->getObject();
       $collection = $collectible->getCollection();
     }
     else
     {
+      /** @var $collectible Collectible */
       $collectible = CollectiblePeer::retrieveByPK($request->getParameter('id'));
       $collection = $collectible->getCollection();
     }
@@ -414,7 +416,7 @@ class manageActions extends cqActions
     }
 
     $criteria = new Criteria();
-    $criteria->addAscendingOrderByColumn(CollectiblePeer::POSITION);
+    $criteria->addAscendingOrderByColumn(CollectionCollectiblePeer::POSITION);
 
     // We we have passed specific Collectibles to edit
     if ($ids = $request->getParameter('ids', null))
@@ -428,12 +430,14 @@ class manageActions extends cqActions
 
     if ($collection->getId())
     {
-      $criteria->add(CollectiblePeer::COLLECTION_ID, $collection->getId(), Criteria::EQUAL);
+      $criteria->addJoin(CollectiblePeer::ID, CollectionCollectiblePeer::COLLECTIBLE_ID, Criteria::RIGHT_JOIN);
+      $criteria->add(CollectionCollectiblePeer::COLLECTION_ID, $collection->getId());
     }
     else
     {
       $criteria->add(CollectiblePeer::COLLECTOR_ID, $collector->getId(), Criteria::EQUAL);
-      $criteria->add(CollectiblePeer::COLLECTION_ID, null, Criteria::ISNULL);
+      $criteria->addJoin(CollectiblePeer::ID, CollectionCollectiblePeer::COLLECTIBLE_ID, Criteria::LEFT_JOIN);
+      $criteria->add(CollectionCollectiblePeer::COLLECTION_ID, null, Criteria::ISNULL);
     }
 
     $pager = new sfPropelPager('Collectible', sfConfig::get('app_collectibles_edit_per_page', 5));
@@ -463,7 +467,7 @@ class manageActions extends cqActions
         $collector = $this->getUser()->getCollector();
         try
         {
-          foreach ($form->getValues() as $index => $value)
+          foreach ($form->getValues() as $value)
           {
             $collectible = CollectiblePeer::retrieveByPK($value['id']);
             $collectible->setCollectionId($value['collection_id']);

@@ -16,7 +16,7 @@ classes:
       salt:           { type: varchar, size: 32, required: true }
       email:          { type: varchar, size: 128, index: true }
       user_type:      { type: char, sqlType: "ENUM('Collector','Seller')", default: "Collector", required: true }
-      items_allowed:         integer
+      items_allowed:  { type: integer, default: 0 }
       locale:         { type: varchar, size: 5, default: "en_US" }
       score:          { type: integer, default: 0 }
       spam_score:     { type: integer, default: 0 }
@@ -80,7 +80,7 @@ classes:
       id:                      { type: integer, index: true, primaryKey: true, autoIncrement: false }
       graph_id:                { type: integer, required: false, index: index }
       collection_category_id:  { type: integer, index: true }
-      collector_id:            { type: integer, index: true }
+      descendant_class:        { type: varchar, size: 100 }
       name:                    { type: varchar, size: 255, required: true, primaryString: true }
       slug:                    { type: varchar, size: 128 }
       description:             { type: longvarchar, required: true }
@@ -105,14 +105,12 @@ classes:
       id:                { type: integer, index: true, primaryKey: true, autoIncrement: false }
       graph_id:          { type: integer, required: false, index: index }
       collector_id:      { type: integer, index: true }
-      collection_id:     { type: integer, index: true }
       name:              { type: varchar, size: 255, required: true, primaryString: true }
       slug:              { type: varchar, size: 128, index: true }
       description:       { type: longvarchar, required: true }
       num_comments:      { type: integer, default: 0 }
       batch_hash:        { type: varchar, size: 32, index: true }
       score:             { type: integer, default: 0 }
-      position:          { type: integer, default: 0 }
       is_name_automatic: { type: boolean, default: false }
 
       eblob:        { type: longvarchar, default: null }

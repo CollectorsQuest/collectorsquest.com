@@ -1,5 +1,7 @@
 <?php
 
+require 'lib/model/om/BaseCollectorPeer.php';
+
 class CollectorPeer extends BaseCollectorPeer
 {
   public static function retrieveBySlug($slug)
@@ -300,7 +302,8 @@ class CollectorPeer extends BaseCollectorPeer
   {
     $pks = array();
 
-    $collections = CollectionPeer::getRelatedCollections($object, $limit, $criteria);
+    /** @var $collections CollectorCollection[] */
+    $collections = CollectorCollectionPeer::getRelatedCollections($object, $limit, $criteria);
     foreach ($collections as $collection)
     {
       $pks = $collection->getCollectorId();

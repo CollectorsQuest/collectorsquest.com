@@ -37,7 +37,7 @@ generator:
           export: { label: "Export to CSV", action: export }
 
       filter:
-        display: [username, display_name, email, spaminess, is_spam]
+        display: [username, display_name, email, user_type, spaminess, is_spam]
         fields:
           email:
             widgetOptions: { with_empty: false }

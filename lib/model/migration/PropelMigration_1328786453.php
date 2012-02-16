@@ -100,7 +100,7 @@ class PropelMigration_1328786453
     );
   }
 
-  public function preDown($manager)
+  public function preDown()
   {
     return false; //No way back
   }

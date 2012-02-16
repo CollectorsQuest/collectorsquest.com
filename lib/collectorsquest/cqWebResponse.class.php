@@ -2,8 +2,12 @@
 
 class cqWebResponse extends sfWebResponse
 {
+  /** @var string */
   private $_canonical_url = null;
 
+  /**
+   * @param  string  $url
+   */
   public function setCanonicalUrl($url)
   {
     $this->_canonical_url = $url;
@@ -14,15 +18,18 @@ class cqWebResponse extends sfWebResponse
     return $this->_canonical_url;
   }
 
+  /**
+   * @param  Collector  $collector
+   * @return void
+   */
   public function addGeoMeta(Collector $collector = null)
   {
-    if (!$collector instanceof Collector) 
+    if (null === $collector)
     {
-      return false;
+      return;
     }
 
-    $geo_cache = $collector->getProfile()->getGeoCache();
-    if ($geo_cache)
+    if ($geo_cache = $collector->getProfile()->getGeoCache())
     {
       $geo_region = $geo_cache['country_iso3166'];
       if (in_array($geo_region, array('US', 'CA')))

@@ -1,8 +1,10 @@
 <?php
 
-include(dirname(__FILE__).'/../../bootstrap/model.php');
+include(__DIR__.'/../../bootstrap/model.php');
 
-$t = new lime_test(5, new lime_output_color());
+$t = new lime_test(6, array('output' => new lime_output_color(), 'error_reporting' => true));
+
+cqTest::resetTables(array('collectible', 'collectible_archive'));
 
 $t->diag('::setName()');
 
@@ -26,7 +28,6 @@ $t->diag('Setting and getting the slug');
 
   $collectible = new Collectible();
   $collectible->setCollectorId(1);
-  $collectible->setCollectionId(1);
   $collectible->setName('Untitled Item');
   $collectible->setDescription('No description required here');
   $collectible->save();
@@ -35,18 +36,17 @@ $t->diag('Setting and getting the slug');
 
   $collectible = new Collectible();
   $collectible->setCollectorId(1);
-  $collectible->setCollectionId(1);
   $collectible->setName('Untitled Item');
   $collectible->setDescription('No description required here also');
+  $collectible->save();
 
-  try {
-    $collectible->save();
-  }
-  catch (PropelException $e)
-  {
-    var_dump($e->getMessage());
-    if ($e->getMessage() == '')
-    {
-      $t->fail('');
-    }
-  }
+  $t->like($collectible->getSlug(), '/untitled-item-\w+/i');
+
+$t->diag('::getCollection(), ::getCollectionId()');
+
+  $q = CollectibleQuery::create()
+     ->joinCollectionCollectible();
+
+  $collectible = $q->findOne();
+  $t->isa_ok($collectible->getCollection(), 'Collection');
+  $t->isnt($collectible->getCollectionId(), null);

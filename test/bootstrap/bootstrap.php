@@ -5,7 +5,7 @@ $_root_dir = realpath($_test_dir . '/..');
 
 // configuration
 require_once $_root_dir . '/config/ProjectConfiguration.class.php';
-$configuration = ProjectConfiguration::hasActive() ? ProjectConfiguration::getActive() : new ProjectConfiguration(realpath($_root_dir));
+$sf_configuration = ProjectConfiguration::hasActive() ? ProjectConfiguration::getActive() : new ProjectConfiguration(realpath($_root_dir));
 
 // autoloader for sfPHPUnit2Plugin libs
 $autoload = sfSimpleAutoload::getInstance(sfConfig::get('sf_cache_dir') . '/project_autoload.cache');
@@ -17,8 +17,7 @@ $autoload->loadConfiguration(sfFinder::type('file')->name('autoload.yml')->in(ar
 $autoload->register();
 
 // Include Lime
-include_once $configuration->getSymfonyLibDir().'/vendor/lime/lime.php';
-
+include_once $sf_configuration->getSymfonyLibDir().'/vendor/lime/lime.php';
 
 register_shutdown_function(function(){
   sfToolkit::clearDirectory(sfConfig::get('sf_cache_dir'));

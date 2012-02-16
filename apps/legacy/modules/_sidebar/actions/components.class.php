@@ -37,8 +37,8 @@ class _sidebarComponents extends sfComponents
     {
       // Get some random collections
       $c = new Criteria();
-      $c->add(CollectionPeer::NUM_ITEMS, 3, Criteria::GREATER_EQUAL);
-      $this->collections = CollectionPeer::getRandomCollections($this->limit, $c);
+      $c->add(CollectorCollectionPeer::NUM_ITEMS, 3, Criteria::GREATER_EQUAL);
+      $this->collections = CollectorCollectionPeer::getRandomCollections($this->limit, $c);
     }
 
     if (count($this->collections) > 0)

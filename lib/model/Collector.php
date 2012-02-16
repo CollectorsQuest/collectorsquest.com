@@ -1,8 +1,10 @@
 <?php
 
+require 'lib/model/om/BaseCollector.php';
+
 class Collector extends BaseCollector
 {
-
+  /** @var CollectorProfile */
   protected $profile = null;
 
   public function postSave(PropelPDO $con = null)
@@ -194,16 +196,16 @@ class Collector extends BaseCollector
   public function getCollectionCategoryIds()
   {
     $c = new Criteria();
-    $c->addSelectColumn(CollectionPeer::COLLECTION_CATEGORY_ID);
-    $c->add(CollectionPeer::COLLECTOR_ID, $this->getId());
-    $stmt = CollectionPeer::doSelectStmt($c);
+    $c->addSelectColumn(CollectorCollectionPeer::COLLECTION_CATEGORY_ID);
+    $c->add(CollectorCollectionPeer::COLLECTOR_ID, $this->getId());
+    $stmt = CollectorCollectionPeer::doSelectStmt($c);
 
     return $stmt->fetchAll(PDO::FETCH_COLUMN);
   }
 
   public function getRelatedCollections($limit = 10)
   {
-    $collections = CollectionPeer::getRelatedCollections($this, $limit);
+    $collections = CollectorCollectionPeer::getRelatedCollections($this, $limit);
 
     if ($limit != $found = count($collections))
     {
@@ -216,20 +218,20 @@ class Collector extends BaseCollector
       {
         $collector = $sf_user->getCollector();
         $c = new Criteria();
-        $c->add(CollectionPeer::ID, $this->getId(), Criteria::NOT_EQUAL);
-        $c->add(CollectionPeer::COLLECTOR_ID, $collector->getId(), Criteria::NOT_EQUAL);
+        $c->add(CollectorCollectionPeer::ID, $this->getId(), Criteria::NOT_EQUAL);
+        $c->add(CollectorCollectionPeer::COLLECTOR_ID, $collector->getId(), Criteria::NOT_EQUAL);
         $c->addAscendingOrderByColumn('RAND()');
 
-        $collections = array_merge($collections, CollectionPeer::getRelatedCollections($collector, $limit, $c));
+        $collections = array_merge($collections, CollectorCollectionPeer::getRelatedCollections($collector, $limit, $c));
       }
     }
 
     if (0 == count($collections))
     {
       $c = new Criteria();
-      $c->add(CollectionPeer::COLLECTOR_ID, $this->getId(), Criteria::NOT_EQUAL);
+      $c->add(CollectorCollectionPeer::COLLECTOR_ID, $this->getId(), Criteria::NOT_EQUAL);
 
-      $collections = CollectionPeer::getRandomCollections($limit, $c);
+      $collections = CollectorCollectionPeer::getRandomCollections($limit, $c);
     }
 
     return $collections;
@@ -238,13 +240,23 @@ class Collector extends BaseCollector
   public function getRecentCollections($limit = 2)
   {
     $c = new Criteria();
-    $c->add(CollectionPeer::COLLECTOR_ID, $this->getId());
-    $c->addDescendingOrderByColumn(CollectionPeer::UPDATED_AT);
+    $c->add(CollectorCollectionPeer::COLLECTOR_ID, $this->getId());
+    $c->addDescendingOrderByColumn(CollectorCollectionPeer::UPDATED_AT);
     $c->setLimit($limit);
 
-    $collections = CollectionPeer::doSelect($c);
+    $collections = CollectorCollectionPeer::doSelect($c);
 
     return $collections;
+  }
+
+  public function getCollections($criteria = null, PropelPDO $con = null)
+  {
+    return $this->getCollectorCollections($criteria, $con);
+  }
+
+  public function countCollections(Criteria $criteria = null, $distinct = false, PropelPDO $con = null)
+  {
+    return $this->countCollectorCollections($criteria, $distinct, $con);
   }
 
   public function getTagIds()
@@ -303,6 +315,11 @@ class Collector extends BaseCollector
   public function isFacebookOnly()
   {
     return ($this->hasFacebook() && preg_match('/^fb(\d+)$/', $this->getUsername()));
+  }
+
+  public function getIsSeller()
+  {
+    return $this->getUserType() == 'Seller';
   }
 
   public function fromArray($array, $keyType = BasePeer::TYPE_PHPNAME)

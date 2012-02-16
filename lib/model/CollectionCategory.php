@@ -1,5 +1,14 @@
 <?php
 
+require 'lib/model/om/BaseCollectionCategory.php';
+
+/**
+ * IceTaggableBehavior
+ *
+ * @method array getTags($options = array())
+ * @method boolean addTag($name)
+ * @method boolean hasTag($name)
+ */
 class CollectionCategory extends BaseCollectionCategory
 {
   public function __toString()

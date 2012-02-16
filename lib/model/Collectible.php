@@ -1,40 +1,16 @@
 <?php
+
 require 'lib/model/om/BaseCollectible.php';
 
+/**
+ * IceTaggableBehavior
+ *
+ * @method array getTags($options = array())
+ * @method boolean addTag($name)
+ * @method boolean hasTag($name)
+ */
 class Collectible extends BaseCollectible
 {
-  public function save(PropelPDO $con = null)
-  {
-    /**
-     * We need to place the new collectible at the end of the collection
-     * but only if the object is new and position is not specified yet
-     */
-    if ($this->isNew() && !$this->isColumnModified(CollectiblePeer::POSITION))
-    {
-      $q = new CollectibleQuery();
-      $q->addAsColumn('position', sprintf('MAX(%s)', CollectiblePeer::POSITION));
-      $q->filterByCollectionId($this->getCollectionId());
-      $q->setFormatter(ModelCriteria::FORMAT_STATEMENT);
-
-      /** @var $stmt PDOStatement */
-      $stmt = $q->find();
-
-      $position = (int) $stmt->fetch(PDO::FETCH_COLUMN);
-      $this->setPosition($position + 1);
-
-      if ($collection = $this->getCollection($con))
-      {
-        $q = CollectibleQuery::create()
-           ->filterByCollectionId($this->getCollectionId());
-        $num_items = $q->count($con);
-        $collection->setNumItems($num_items);
-        $collection->save();
-      }
-    }
-
-    parent::save($con);
-  }
-
   public function getGraphId()
   {
     $graph_id = null;
@@ -43,14 +19,21 @@ class Collectible extends BaseCollectible
     {
       $client = cqStatic::getNeo4jClient();
 
-      $node = $client->makeNode();
-      $node->setProperty('model', 'Collectible');
-      $node->setProperty('model_id', $this->getId());
-      $node->save();
+      try
+      {
+        $node = $client->makeNode();
+        $node->setProperty('model', 'Collectible');
+        $node->setProperty('model_id', $this->getId());
+        $node->save();
 
-      $graph_id = $node->getId();
+        $graph_id = $node->getId();
+      }
+      catch(Everyman\Neo4j\Exception $e)
+      {
+        $graph_id = null;
+      }
 
-      $this->setGraphId($node->getId());
+      $this->setGraphId($graph_id);
       $this->save();
     }
 
@@ -119,7 +102,7 @@ class Collectible extends BaseCollectible
 
   public function getRelatedCollections($limit = 5, &$rnd_flag = false)
   {
-    $collections = CollectionPeer::getRelatedCollections($this, $limit);
+    $collections = CollectorCollectionPeer::getRelatedCollections($this, $limit);
 
     if ($limit != $found = count($collections))
     {
@@ -133,34 +116,119 @@ class Collectible extends BaseCollectible
       {
         $collector = $sf_user->getCollector();
         $c = new Criteria();
-        $c->add(CollectionPeer::ID, $this->getId(), Criteria::NOT_EQUAL);
-        $c->add(CollectionPeer::COLLECTOR_ID, $collector->getId(), Criteria::NOT_EQUAL);
+        $c->add(CollectorCollectionPeer::ID, $this->getId(), Criteria::NOT_EQUAL);
+        $c->add(CollectorCollectionPeer::COLLECTOR_ID, $collector->getId(), Criteria::NOT_EQUAL);
         $c->addAscendingOrderByColumn('RAND()');
 
-        $collections = array_merge($collections, CollectionPeer::getRelatedCollections($collector, $limit, $c));
+        $collections = array_merge($collections, CollectorCollectionPeer::getRelatedCollections($collector, $limit, $c));
       }
     }
 
     if (0 == count($collections))
     {
       $c = new Criteria();
-      $c->add(CollectionPeer::ID, $this->getCollectionId(), Criteria::NOT_EQUAL);
+      $c->add(CollectorCollectionPeer::ID, $this->getCollectionId(), Criteria::NOT_EQUAL);
 
-      $collections = CollectionPeer::getRandomCollections($limit, $c);
+      $collections = CollectorCollectionPeer::getRandomCollections($limit, $c);
       $rnd_flag = true;
     }
 
     return $collections;
   }
 
+  /**
+   * @return integer | null
+   */
+  public function getCollectionId()
+  {
+    return null;
+  }
+
+  /**
+   * @param  integer  $id
+   * @return boolean
+   */
+  public function setCollectionId($id = null)
+  {
+    // Setting the Collection ID to null should be a defualt behavior, thus the 'return true'
+    if (null === $id)
+    {
+      return true;
+    }
+
+    $q = CollectionCollectibleQuery::create()
+       ->filterByCollectible($this)
+       ->filterByIsPrimary(true);
+
+    try
+    {
+      $collection_collectible = $q->findOneOrCreate();
+      $collection_collectible->setCollectionId($id);
+      $collection_collectible->save();
+    }
+    catch (PropelException $e)
+    {
+      return false;
+    }
+
+    return true;
+  }
+
+  /**
+   * @param  Collection|null  $collection
+   * @return boolean
+   */
+  public function setCollection(Collection $collection = null)
+  {
+    // Setting the Collection to null should be a defualt behavior, thus the 'return true'
+    if (null === $collection)
+    {
+      return true;
+    }
+
+    $q = CollectionCollectibleQuery::create()
+       ->filterByCollectible($this)
+       ->filterByIsPrimary(true);
+
+    try
+    {
+      $collection_collectible = $q->findOneOrCreate();
+      $collection_collectible->setCollection($collection);
+      $collection_collectible->save();
+    }
+    catch (PropelException $e)
+    {
+      return false;
+    }
+
+    return true;
+  }
+
+  /**
+   * @param  PropelPDO  $con
+   * @return Collection | CollectionDropbox
+   */
   public function getCollection(PropelPDO $con = null)
   {
-    if (!$collection = parent::getCollection($con))
+    /** @var $q CollectionQuery */
+    $q = CollectionQuery::create()
+       ->joinCollectionCollectible()
+       ->useCollectionCollectibleQuery()
+         ->filterByCollectible($this)
+         ->filterByIsPrimary(true)
+       ->endUse();
+
+    if (!$collection = $q->findOne($con))
     {
       $collection = new CollectionDropbox($this->getCollectorId());
     }
 
     return $collection;
+  }
+
+  public function getCollectorCollection(PropelPDO $con = null)
+  {
+    return $this->getCollection($con);
   }
 
   public function getCollectionTags()
@@ -243,9 +311,11 @@ class Collectible extends BaseCollectible
       $multimedia->makeThumb('1024x768', 'bestfit', $queue);
 
       // Here we want to create an optimized thumbnail for the homepage
-      $multimedia->getOrientation() == 'landscape' ?
-          $multimedia->makeThumb('230x150', 'shave', $queue) :
-          $multimedia->makeThumb('170x230', 'shave', $queue);
+      if ($multimedia->getOrientation() == 'landscape') {
+        $multimedia->makeThumb('230x150', 'shave', $queue);
+      } else {
+        $multimedia->makeThumb('170x230', 'shave', $queue);
+      }
 
       $multimedia->save();
 
@@ -345,8 +415,12 @@ class Collectible extends BaseCollectible
     }
     $c->addAscendingOrderByColumn(CustomValuePeer::FIELD_ID);
 
-    $_custom_values = parent::getCustomValues($c, $con);
+    // Initialize the return array
     $custom_values = array();
+
+    /** @var $_custom_values CustomValue[] */
+    $_custom_values = parent::getCustomValues($c, $con);
+
     foreach ($_custom_values as $value)
     {
       $custom_values[$value->getFieldId()] = $value;
@@ -385,23 +459,6 @@ class Collectible extends BaseCollectible
     return CollectibleForSalePeer::doSelectOne($c);
   }
 
-  public static function updateItemIsForSale($snCollectibleId, $bIsForSale = true)
-  {
-    $omCollectible = CollectiblePeer::retrieveByPK($snCollectibleId);
-    $omCollectible->setIsForSale($bIsForSale);
-
-    try
-    {
-      $omCollectible->save();
-    }
-    catch (PropelException $e)
-    {
-      return false;
-    }
-
-    return $omCollectible;
-  }
-
   /**
    * @param  null|PropelPDO  $con
    * @return boolean
@@ -433,18 +490,6 @@ class Collectible extends BaseCollectible
     return parent::preDelete($con);
   }
 
-  public function postDelete(PropelPDO $con = null)
-  {
-    $q = CollectibleQuery::create()
-       ->filterByCollectionId($this->getCollectionId());
-
-    $num_items = $q->count($con);
-    $collection = $this->getCollection($con);
-    $collection->setNumItems($num_items);
-    $collection->save();
-
-    return parent::postDelete($con);
-  }
 }
 
 sfPropelBehavior::add('Collectible', array('IceTaggableBehavior'));

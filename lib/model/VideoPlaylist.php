@@ -1,9 +1,11 @@
 <?php
 
+require 'lib/model/om/BaseVideoPlaylist.php';
+
 class VideoPlaylist extends BaseVideoPlaylist
 {
   public function __toString()
   {
-    return $this->getName();
+    return (string) $this->getPlaylist();
   }
 }

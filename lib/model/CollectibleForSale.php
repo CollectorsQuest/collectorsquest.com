@@ -1,10 +1,7 @@
 <?php
 
-/**
- * Skeleton subclass for representing a row from the 'collectible_for_sale' table.
- *
- * @package    propel.generator.lib.model
- */
+require 'lib/model/om/BaseCollectibleForSale.php';
+
 class CollectibleForSale extends BaseCollectibleForSale
 {
   public function getCollector(PropelPDO $con = null)
@@ -20,7 +17,7 @@ class CollectibleForSale extends BaseCollectibleForSale
   public function getOffersCount($activeOnly = null)
   {
     $c = new Criteria();
-    
+
     if (!is_null($activeOnly)) {
       $c->add(CollectibleOfferPeer::STATUS, 'pending', $activeOnly ? Criteria::EQUAL : Criteria::NOT_EQUAL);
     }
@@ -60,20 +57,20 @@ class CollectibleForSale extends BaseCollectibleForSale
 
   /**
    * Retrieve offer which collectible is sold with
-   * 
+   *
    * @return CollectibleOffer
    */
   public function getSoldOffer()
   {
     $criteria = CollectibleOfferPeer::getBackendIsSoldCriteria($this->getId());
-    
+
     return CollectibleOfferPeer::doSelectOne($criteria);
   }
 
   public function getBackendIsSold()
   {
     $criteria = CollectibleOfferPeer::getBackendIsSoldCriteria($this->getId());
-    
+
     return (bool)CollectibleOfferPeer::doCount($criteria);
   }
 

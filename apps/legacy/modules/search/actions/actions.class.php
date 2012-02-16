@@ -54,7 +54,7 @@ class searchActions extends cqActions
       $sphinx->setLimits(0, 12);
       $totals['collections'] = $this->_search_collections($sphinx, $q);
 
-      $pagers['collections'] = new cqPropelPager('Collection', 12);
+      $pagers['collections'] = new cqPropelPager('CollectorCollection', 12);
       $pagers['collections']->setPage(1);
       $pagers['collections']->setNbResults($totals['collections']);
       $pagers['collections']->init();
@@ -109,11 +109,11 @@ class searchActions extends cqActions
     if (empty($totals))
     {
       $c = new Criteria();
-      $c->add(CollectionPeer::IS_PUBLIC, true);
-      $c->addAscendingOrderByColumn(CollectionPeer::SCORE);
+      $c->add(CollectorCollectionPeer::IS_PUBLIC, true);
+      $c->addAscendingOrderByColumn(CollectorCollectionPeer::SCORE);
       $c->setLimit(9);
 
-      $this->collections = CollectionPeer::doSelect($c);
+      $this->collections = CollectorCollectionPeer::doSelect($c);
 
       return 'NoResults';
     }
@@ -186,7 +186,7 @@ class searchActions extends cqActions
     $sphinx->setLimits(($page-1) * 12, $per_page);
     $this->total = $this->_search_collections($sphinx, $q);
 
-    $pager = new cqPropelPager('Collection', $per_page);
+    $pager = new cqPropelPager('CollectorCollection', $per_page);
     $pager->setPage($page);
     $pager->setNbResults($this->total);
     $pager->init();
@@ -401,10 +401,10 @@ class searchActions extends cqActions
         $pks = array_keys($result['matches']);
 
         $c = new Criteria;
-        $c->add(CollectionPeer::ID, $pks, Criteria::IN);
-        $c->addAscendingOrderByColumn(sprintf('FIELD(%s, %s)', CollectionPeer::ID, implode(', ', $pks)));
+        $c->add(CollectorCollectionPeer::ID, $pks, Criteria::IN);
+        $c->addAscendingOrderByColumn(sprintf('FIELD(%s, %s)', CollectorCollectionPeer::ID, implode(', ', $pks)));
 
-        $this->collections = CollectionPeer::doSelect($c);
+        $this->collections = CollectorCollectionPeer::doSelect($c);
       }
     }
 

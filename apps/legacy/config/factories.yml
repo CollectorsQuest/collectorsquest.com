@@ -55,15 +55,12 @@ dev:
     class: cqMailer
     param:
       delivery_strategy: single_address
-      delivery_address:  ysimeonoff@collectorsquest.com
+      delivery_address:  developers@collectorsquest.com
       transport:
         class: Swift_SmtpTransport
         param:
-          host: smtp.gmail.com
-          port: 465
-          username: ysimeonoff@collectorsquest.com
-          password: pass12cq
-          encryption: tls
+          host: localhost
+          port: 25
 
   view_cache:
     class: sfMemcacheCache
@@ -101,8 +98,11 @@ test:
     param:
       session_path: %SF_TEST_CACHE_DIR%/sessions
 
+  request:
+    class: cqWebTestRequest
+
   response:
-    class: sfWebResponse
+    class: cqWebTestResponse
     param:
       send_http_headers: false
 

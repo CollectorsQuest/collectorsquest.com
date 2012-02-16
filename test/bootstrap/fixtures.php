@@ -1,13 +1,14 @@
 <?php
 
-new sfDatabaseManager($configuration);
+/** @var $sf_configuration sfProjectConfiguration */
+new sfDatabaseManager($sf_configuration);
 
 // Set the default culture for the tests
 sfPropel::setDefaultCulture('en');
 
 // Get the Propel connection and temporarily turn off foreign key checks
-$connection = Propel::getConnection('propel');
-$connection->exec('SET FOREIGN_KEY_CHECKS = 0;');
+$sf_connection = Propel::getConnection('propel');
+$sf_connection->exec('SET FOREIGN_KEY_CHECKS = 0;');
 
 $loader = new cqPropelData();
 
@@ -35,7 +36,7 @@ foreach ($files as $file)
     if (class_exists(constant($class.'::PEER')))
     {
       $table = constant(constant($class.'::PEER')."::TABLE_NAME");
-      $connection->exec('TRUNCATE TABLE '. $table);
+      $sf_connection->exec('TRUNCATE TABLE '. $table);
     }
   }
 }
@@ -46,7 +47,7 @@ foreach ($queries as $query)
 {
   if (($query = trim($query)) && stripos($query, 'SET FOREIGN_KEY_CHECKS') === false && substr($query, 0, 1) != '-')
   {
-    $connection->exec($query);
+    $sf_connection->exec($query);
   }
 }
 
@@ -54,4 +55,4 @@ foreach ($queries as $query)
 $loader->loadData(array(sfConfig::get('sf_test_dir').'/fixtures/common'));
 
 // Set the foreign key checks to 1
-$connection->exec('SET FOREIGN_KEY_CHECKS = 1;');
+$sf_connection->exec('SET FOREIGN_KEY_CHECKS = 1;');

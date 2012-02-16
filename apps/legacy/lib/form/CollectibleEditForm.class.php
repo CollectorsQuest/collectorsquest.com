@@ -15,11 +15,11 @@ class CollectibleEditForm extends BaseCollectibleForm
     $this->validatorSchema->setOption('filter_extra_fields', true);
 
     $criteria = new Criteria();
-    $criteria->add(CollectionPeer::COLLECTOR_ID, $collector->getId());
-    $criteria->addAscendingOrderByColumn(CollectionPeer::NAME);
+    $criteria->add(CollectorCollectionPeer::COLLECTOR_ID, $collector->getId());
+    $criteria->addAscendingOrderByColumn(CollectorCollectionPeer::NAME);
 
     $this->widgetSchema['collection_id'] = new sfWidgetFormPropelChoice(array(
-      'model' => 'Collection', 'criteria' => $criteria, 'add_empty' => true
+      'model' => 'CollectorCollection', 'criteria' => $criteria, 'add_empty' => true
     ));
 
     $this->widgetSchema['thumbnail'] = new sfWidgetFormInputFile();
@@ -37,7 +37,7 @@ class CollectibleEditForm extends BaseCollectibleForm
     unset($this->widgetSchema['position'], $this->widgetSchema['score']);
     unset($this->validatorSchema['position'], $this->validatorSchema['score']);
 
-    if ($collector && $collector->getUserType() == 'Seller')
+    if ($collector->getIsSeller())
     {
       $collectibleForSale = $this->getObject()->getForSaleInformation();
 
@@ -47,9 +47,7 @@ class CollectibleEditForm extends BaseCollectibleForm
         $collectibleForSale->setCollectible($this->getObject());
       }
 
-      $embedForm = new CollectibleForSaleEditForm($collectibleForSale);
-
-      $this->embedForm('for_sale', $embedForm);
+      $this->embedForm('for_sale', new CollectibleForSaleEditForm($collectibleForSale));
     }
   }
 
@@ -72,6 +70,8 @@ class CollectibleEditForm extends BaseCollectibleForm
   {
     /** @var $object Collectible */
     $object = parent::save($con);
+
+    /** @var $values array */
     $values = $this->getValues();
 
     $object->setDescription($values['description'], 'html');
@@ -79,7 +79,7 @@ class CollectibleEditForm extends BaseCollectibleForm
     if ($this->getValue('thumbnail'))
     {
       $collection = $object->getCollection();
-      if (!$collection->hasThumbnail())
+      if ($collection && !$collection->hasThumbnail())
       {
         $collection->setThumbnail($this->getValue('thumbnail')->getTempName());
         $collection->save();
