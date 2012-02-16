@@ -10,6 +10,7 @@
  */
 class manageActions extends cqActions
 {
+
   /**
    * @param  sfWebRequest  $request
    * @return string
@@ -34,10 +35,29 @@ class manageActions extends cqActions
         // Clear the Geo Cache
         CollectorGeocacheQuery::create()->filterByCollectorId($collector->getId())->delete();
 
+        $message = 'Your profile/account information was updated.';
+        if ($collectorEmail = $form->getOption('newEmail', false))
+        {
+          $subject = $this->__('You have changed your email at CollectorsQuest.com');
+          $body = $this->getPartial(
+            'emails/collector_email_change',
+            array(
+              'collector'     => $collector,
+              'collectorEmail'=> $collectorEmail
+            )
+          );
+
+          if ($this->sendEmail($form->getValue('email'), $subject, $body))
+
+            $message .= ' Email verification sent to ' . $form->getValue('email');
+        }
+
+        $this->getUser()->setFlash('success', $message);
+
         // Send the profile data to Defensio to analyse
         $collector->sendToDefensio('UPDATE');
 
-        $this->getUser()->setFlash('success', 'Your profile/account information was updated.');
+        $this->redirect('@manage_profile');
       }
       else
       {
@@ -272,7 +292,7 @@ class manageActions extends cqActions
             if ($omItemForSaleForm->getValue('is_ready'))
             {
               $message = $this->__(
-                  'Your collectible has been posted to the Marketplace. Click <a href="%url%">here</a> to view your collectibles for sale!', array('%url%' => $this->generateUrl('manage_marketplace'))
+                'Your collectible has been posted to the Marketplace. Click <a href="%url%">here</a> to view your collectibles for sale!', array('%url%' => $this->generateUrl('manage_marketplace'))
               );
             }
             else
@@ -432,7 +452,7 @@ class manageActions extends cqActions
 
     $form = new ManageCollectiblesForm(array(
       'collectibles' => $pager->getResults(),
-      'collector' => $this->getUser()->getCollector()
+      'collector'    => $this->getUser()->getCollector()
     ));
 
     if ($request->isMethod('post'))
@@ -510,11 +530,11 @@ class manageActions extends cqActions
         {
           $this->redirect(
             'manage_collectibles_by_slug', array(
-              'id' => $collection->getId(),
-              'slug' => $collection->getSlug(),
-              'page' => $pager->getNextPage(),
+              'id'    => $collection->getId(),
+              'slug'  => $collection->getSlug(),
+              'page'  => $pager->getNextPage(),
               'batch' => $request->getParameter('batch'),
-              'ids' => $request->getParameter('ids')
+              'ids'   => $request->getParameter('ids')
             )
           );
         }
@@ -545,8 +565,8 @@ class manageActions extends cqActions
     {
       case 'empty':
         $q = CollectibleQuery::create()
-           ->filterByCollectorId($collector->getId())
-           ->filterByCollectionId(null, Criteria::ISNULL);
+            ->filterByCollectorId($collector->getId())
+            ->filterByCollectionId(null, Criteria::ISNULL);
 
         $q->delete();
 

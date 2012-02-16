@@ -73,6 +73,9 @@ classes:
       salt:          { type: varchar, size: 32, required: true }
       is_verified:   { type: boolean, default: false }
 
+    uniques:
+      unq_collector_email: [collector_id, email]
+
     propel_behaviors:
       timestampable:  ~
 

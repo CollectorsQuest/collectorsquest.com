@@ -9,6 +9,7 @@ class marketplaceComponents extends sfComponents
   public function executeListing($request)
   {
     $c = new Criteria();
+    $c->setDistinct();
     $c->addJoin(CollectibleForSalePeer::COLLECTIBLE_ID, CollectiblePeer::ID);
 
     $search = array();

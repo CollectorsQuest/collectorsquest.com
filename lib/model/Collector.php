@@ -63,7 +63,7 @@ class Collector extends BaseCollector
   {
     if (!$salt = $this->getSalt())
     {
-      $salt = md5(rand(100000, 999999) . '_' . $this->getUsername());
+      $salt = $this->generateSalt();
       $this->setSalt($salt);
     }
 
@@ -370,14 +370,14 @@ class Collector extends BaseCollector
       $params['author-ip'] = IceStatic::getUserIpAddress();
       $params['referrer'] = $_SERVER["HTTP_REFERER"];
       $params['http-headers'] =
-        "HTTP_ACCEPT_LANGUAGE: " . $_SERVER["HTTP_ACCEPT_LANGUAGE"] . "\n" .
-        "HTTP_REFERER: " . $_SERVER["HTTP_REFERER"] . "\n" .
-        "HTTP_ACCEPT_CHARSET: " . @$_SERVER["HTTP_ACCEPT_CHARSET"] . "\n" .
-        "HTTP_KEEP_ALIVE: " . @$_SERVER["HTTP_KEEP_ALIVE"] . "\n" .
-        "HTTP_ACCEPT_ENCODING: " . $_SERVER["HTTP_ACCEPT_ENCODING"] . "\n" .
-        "HTTP_CONNECTION: " . $_SERVER["HTTP_CONNECTION"] . "\n" .
-        "HTTP_ACCEPT: " . $_SERVER["HTTP_ACCEPT"] . "\n" .
-        "HTTP_USER_AGENT: " . $_SERVER["HTTP_USER_AGENT"];
+          "HTTP_ACCEPT_LANGUAGE: " . $_SERVER["HTTP_ACCEPT_LANGUAGE"] . "\n" .
+              "HTTP_REFERER: " . $_SERVER["HTTP_REFERER"] . "\n" .
+              "HTTP_ACCEPT_CHARSET: " . @$_SERVER["HTTP_ACCEPT_CHARSET"] . "\n" .
+              "HTTP_KEEP_ALIVE: " . @$_SERVER["HTTP_KEEP_ALIVE"] . "\n" .
+              "HTTP_ACCEPT_ENCODING: " . $_SERVER["HTTP_ACCEPT_ENCODING"] . "\n" .
+              "HTTP_CONNECTION: " . $_SERVER["HTTP_CONNECTION"] . "\n" .
+              "HTTP_ACCEPT: " . $_SERVER["HTTP_ACCEPT"] . "\n" .
+              "HTTP_USER_AGENT: " . $_SERVER["HTTP_USER_AGENT"];
     }
 
     try
@@ -434,7 +434,7 @@ class Collector extends BaseCollector
   public function sendToDefensioMark($allow)
   {
     $params = array(
-      'allow' => $allow ? 'true' : 'false',
+      'allow'     => $allow ? 'true' : 'false',
     );
 
     try
@@ -447,22 +447,22 @@ class Collector extends BaseCollector
       $result = null;
     }
 
-    if (is_array($result) && (int)$result[0] == 200)
-    {
-      $this->setProperty('spam.signature', (string)$result[1]->signature);
-      $this->setProperty('spam.classification', (string)$result[1]->classification);
-      $this->setProperty('spam.profanity-match', 'false' == (string)$result[1]['profanity-match'] ? false : true);
-      $this->setProperty('spam.allow', 'false' == (string)$result[1]['allow'] ? false : true);
+      if (is_array($result) && (int)$result[0] == 200)
+      {
+        $this->setProperty('spam.signature', (string)$result[1]->signature);
+        $this->setProperty('spam.classification', (string)$result[1]->classification);
+        $this->setProperty('spam.profanity-match', 'false' == (string)$result[1]['profanity-match'] ? false : true);
+        $this->setProperty('spam.allow', 'false' == (string)$result[1]['allow'] ? false : true);
 
       return true;
-    }
+      }
 
     return false;
-  }
+    }
 
   /**
-   * @param  string  $action One of the ['follows', 'likes', 'owns', 'blocks']
-   * @param  BaseObject  $model
+   * @param string $action One of the ['follows', 'likes', 'owns', 'blocks']
+   * @param BaseObject $model
    *
    * @return boolean
    */
@@ -576,6 +576,11 @@ class Collector extends BaseCollector
     {
       return parent::__call($m, $a);
     }
+  }
+
+  public function generateSalt()
+  {
+    return md5(rand(100000, 999999) . '_' . $this->getUsername());
   }
 
 }

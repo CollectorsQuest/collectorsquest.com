@@ -184,6 +184,14 @@ class CollectorPeer extends BaseCollectorPeer
       $collector_profile->save();
       $collector->save();
 
+      $collectorEmail = new CollectorEmail();
+      $collectorEmail->setCollector($collector);
+      $collectorEmail->setEmail($collector->getEmail());
+      $collectorEmail->setSalt($collector->generateSalt());
+      $collectorEmail->setHash($collector->getAutoLoginHash());
+      $collectorEmail->setIsVerified(false);
+      $collectorEmail->save();
+
       if (!empty($data['what_you_sell']))
       {
         $collector_profile->setAboutWhatYouSell($data['what_you_sell']);
