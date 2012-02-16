@@ -32,4 +32,5 @@ class CollectorEmailPeer extends BaseCollectorEmailPeer
 
     return $query->findOne();
   }
+
 }

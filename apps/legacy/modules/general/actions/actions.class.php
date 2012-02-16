@@ -346,4 +346,29 @@ class generalActions extends cqActions
     return sfView::SUCCESS;
   }
 
+  /**
+   * Action VerifyEmail
+   *
+   * @param sfWebRequest $request
+   *
+   */
+  public function executeVerifyEmail(sfWebRequest $request)
+  {
+    /* @var $collectorEmail CollectorEmail */
+    $collectorEmail = $this->getRoute()->getObject();
+    $this->forward404Unless((bool)$collectorEmail);
+
+    $collector = $collectorEmail->getCollector();
+    $collector->setEmail($collectorEmail->getEmail());
+    $collector->save();
+
+    $collectorEmail->setIsVerified(true);
+    $collectorEmail->save();
+
+    $this->getUser()->Authenticate(true, $collector, true);
+
+    $this->getUser()->setFlash('success', 'Your email has been verified.');
+    $this->redirect('@manage_profile');
+  }
+
 }

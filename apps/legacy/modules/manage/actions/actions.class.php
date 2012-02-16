@@ -38,7 +38,7 @@ class manageActions extends cqActions
         $message = 'Your profile/account information was updated.';
         if ($collectorEmail = $form->getOption('newEmail', false))
         {
-          $subject = $this->__('Your new password for CollectorsQuest.com');
+          $subject = $this->__('You have changed your email at CollectorsQuest.com');
           $body = $this->getPartial(
             'emails/collector_email_change',
             array(
