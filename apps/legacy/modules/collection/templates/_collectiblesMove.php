@@ -1,9 +1,28 @@
 <?php
 /**
+ * @var  Collection[]   $collections
  * @var  Collectible[]  $collectibles
  * @var  Collection     $collection
  */
 ?>
+
+<br class="clear" />
+<?php
+  foreach ($collections as $i => $c)
+  {
+    // Show the collection (in grid, list or hybrid view)
+    include_partial(
+      'collections/grid_view_collection',
+      array(
+        'collection' => $c,
+        'culture' => $sf_user->getCulture(),
+        'i' => $i
+      )
+    );
+  }
+?>
+
+<hr/>
 
 <br class="clear" />
 <div id="movable-collectibles" style="margin-left: 40px; margin-right: -10px;">
