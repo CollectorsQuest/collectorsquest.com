@@ -7,6 +7,9 @@
 class myTestFunctional extends sfTestFunctional
 {
 
+  protected $forms_data = array();
+
+
   /**
   * Sign in a user
   *
@@ -125,24 +128,26 @@ class myTestFunctional extends sfTestFunctional
 
 
   /**
-  * Fills a form by name
-  * Can either use values supplied as an array or pre-set fixtures
-  *
-  * @param      string $form_name
-  * @param      array $values
-  *
-  * @return     myTestFunctional
-  */
-  public function fillForm($form_name, $values = null)
+   * Fills a form by name
+   * Can either use values supplied as an array or pre-set fixtures
+   *
+   * @param     string $form_name
+   * @param     array $values
+   *
+   * @return    myTestFunctional
+   */
+  public function fillForm($form_name, $values = null, $fixture_name = null)
   {
     $forms_data = $this->getFormsData();
 
-    if (!isset($forms_data[$form_name]) && !is_array($values))
+    $fixture_name = $fixture_name ?: $form_name;
+
+    if (!isset($forms_data[$fixture_name]) && !is_array($values))
     {
-      throw new sfConfigurationException('No data with which to fill the form');
+      throw new InvalidArgumentException("No data available with which to fill the {$form_name} form");
     }
 
-    foreach (sfToolkit::arrayDeepMerge(isset($forms_data[$form_name]) ? $forms_data[$form_name] : array(), is_array($values) ? $values : array()) as $field_name => $field_value)
+    foreach (sfToolkit::arrayDeepMerge(isset($forms_data[$fixture_name]) ? $forms_data[$fixture_name] : array(), is_array($values) ? $values : array()) as $field_name => $field_value)
     {
       $this->setFormField($form_name, $field_name, $field_value);
     }
