@@ -1,4 +1,10 @@
-<?php /* @var $form sfFormFieldSchema */ ?>
+<?php
+/**
+ * @var $collectible Collectible
+ * @var $form sfFormFieldSchema
+ */
+?>
+
 <?php echo $form->renderHiddenFields() ?>
 
 <div class="span-4" style="text-align: right;">
@@ -54,16 +60,27 @@
 </div>
 <div class="clear append-bottom">&nbsp;</div>
 
-<?php if ($sf_user->hasCredential('seller')): ?>
+<?php if (!empty($form['for_sale'])): ?>
+
+  <?php
+    cq_section_title(
+      __('Marketplace Information') . '&nbsp; - &nbsp;<small style="color: grey;">' .
+      __('If and how you want to sell your collectible') . '</small>',
+      'margin-left: 40px;'
+    );
+  ?>
+  <br class="clear">
+
   <div id="showinmarketplace">
     <div class="span-4" style="text-align: right;">
       <?php echo $form['for_sale']['price']->renderLabel(); ?>
       <div class="required"><?php echo __('(required)'); ?></div>
     </div>
-    <div class="prepend-1 span-13 last">
+    <div class="prepend-1 span-4 last">
       <?php echo cq_input_tag($form['for_sale'], 'price', array('width' => 100)); ?>
       <?php echo $form['for_sale']['price']->renderError(); ?>
     </div>
+    <br><span style="color: grey;">(in United States dollars)</span>
     <div class="clear append-bottom">&nbsp;</div>
 
     <div class="span-4" style="text-align: right;">

@@ -1,8 +1,8 @@
 <?php
 
-function cq_section_title($title)
+function cq_section_title($title, $style = null)
 {
-  echo '<h2 class="section-title clear">', $title, '</h2>';
+  echo '<h2 class="section-title clear" style="'. $style .'">', $title, '</h2>';
 }
 
 function cq_label_for($form, $field, $label = null)
