@@ -149,7 +149,9 @@ class CollectionDropbox extends CollectorCollection
       return $query
         ->filterByCollectorId($this->getCollectorId(), Criteria::EQUAL)
         ->joinWith('CollectionCollectible', Criteria::LEFT_JOIN)
-        ->where('CollectionCollectible.CollectionId IS NULL', null, Criteria::ISNULL)
+        ->useQuery('CollectionCollectible')
+          ->filterBy('CollectionId', null, Criteria::ISNULL)
+        ->endUse()
         ->count($con);
     }
     else
@@ -185,7 +187,7 @@ class CollectionDropbox extends CollectorCollection
 
   public function countCollectiblesSince($date = null)
   {
-    $date = (is_null($date)) ? new DateTime('7 day ago') : new DateTime($date);
+    $date = null === $date ? new DateTime('7 day ago') : new DateTime($date);
 
     $c = new Criteria();
     $c->add(CollectiblePeer::COLLECTOR_ID, $this->getCollectorId());
