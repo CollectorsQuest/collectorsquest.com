@@ -162,7 +162,9 @@ class CollectorPeer extends BaseCollectorPeer
     }
     if (!empty($data['country']))
     {
-      $collector_profile->setCountry($data['country']);
+      $country = sfCultureInfo::getInstance('en')->getCountry($data['country']);
+      $collector_profile->setCountry($country);
+      $collector_profile->setCountryIso3166($data['country']);
     }
     if (!empty($data['website']) && is_string($data['website']))
     {
