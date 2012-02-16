@@ -1,0 +1,6 @@
+TestCollectorStep1:
+  username: test.collector
+  display_name: Test Collector
+  email: "test.collector@example.com"
+  password: password
+  password_again: password

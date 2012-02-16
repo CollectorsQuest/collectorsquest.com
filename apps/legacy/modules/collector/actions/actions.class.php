@@ -181,6 +181,7 @@ class collectorActions extends cqActions
 
       // Bind the POST variables to the form object for validation and sanitation
       $form->bind($params);
+      $this->form = $form; // temporary for functional test
 
       if ($form->isValid())
       {
