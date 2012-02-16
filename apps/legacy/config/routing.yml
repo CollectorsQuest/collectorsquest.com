@@ -64,11 +64,6 @@ seller_ajax_save:
   url:   /seller/ajax/save
   param: { module: seller, action: ajaxSaveData }
 
-seller_signup:
-  url:   /collector/signup/:step
-  param: { module: collector, action: signup, step: 1 }
-  requirements: { step: '\d+' }
-
 sellers:
   url:   /sellers
   param: { module: collectors, action: sellers }
@@ -486,14 +481,6 @@ login:
 logout:
   url:   /logout
   param: { module: general, action: logout }
-
-signup:
-  url:   /signup
-  param: { module: general, action: signup }
-
-password:
-  url:   /password
-  param: { module: general, action: password }
 
 rpx_token:
   url:   /rpx-token
