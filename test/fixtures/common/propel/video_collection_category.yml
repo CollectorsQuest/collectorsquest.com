@@ -47,12 +47,47 @@ VideoCollectionCategory:
     video_id: Video_23
     collection_category_id: CollectionCategory_1
     created_at: '2007-05-27 09:14:08'
+  VideoCollectionCategory_24:
+    video_id: Video_24
+    collection_category_id: CollectionCategory_1
+    created_at: '2008-04-23 12:57:26'
+  VideoCollectionCategory_25:
+    video_id: Video_25
+    collection_category_id: CollectionCategory_1
+    created_at: '2008-04-23 14:04:08'
+  VideoCollectionCategory_31:
+    video_id: Video_31
+    collection_category_id: CollectionCategory_1
+  VideoCollectionCategory_32:
+    video_id: Video_32
+    collection_category_id: CollectionCategory_1
+  VideoCollectionCategory_33:
+    video_id: Video_33
+    collection_category_id: CollectionCategory_1
   VideoCollectionCategory_34:
     video_id: Video_34
     collection_category_id: CollectionCategory_62
+  VideoCollectionCategory_35:
+    video_id: Video_35
+    collection_category_id: CollectionCategory_1
+  VideoCollectionCategory_36:
+    video_id: Video_36
+    collection_category_id: CollectionCategory_1
+  VideoCollectionCategory_37:
+    video_id: Video_37
+    collection_category_id: CollectionCategory_1
+  VideoCollectionCategory_38:
+    video_id: Video_38
+    collection_category_id: CollectionCategory_1
   VideoCollectionCategory_39:
     video_id: Video_39
     collection_category_id: CollectionCategory_65
+  VideoCollectionCategory_40:
+    video_id: Video_40
+    collection_category_id: CollectionCategory_1
+  VideoCollectionCategory_41:
+    video_id: Video_41
+    collection_category_id: CollectionCategory_1
   VideoCollectionCategory_42:
     video_id: Video_44
     collection_category_id: CollectionCategory_61
@@ -83,9 +118,21 @@ VideoCollectionCategory:
   VideoCollectionCategory_51:
     video_id: Video_51
     collection_category_id: CollectionCategory_65
+  VideoCollectionCategory_52:
+    video_id: Video_52
+    collection_category_id: CollectionCategory_1
+  VideoCollectionCategory_53:
+    video_id: Video_53
+    collection_category_id: CollectionCategory_1
   VideoCollectionCategory_54:
     video_id: Video_54
     collection_category_id: CollectionCategory_62
+  VideoCollectionCategory_55:
+    video_id: Video_55
+    collection_category_id: CollectionCategory_1
+  VideoCollectionCategory_56:
+    video_id: Video_56
+    collection_category_id: CollectionCategory_1
   VideoCollectionCategory_67:
     video_id: Video_67
     collection_category_id: CollectionCategory_10
