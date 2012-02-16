@@ -1,9 +1,9 @@
 <?php
 /**
-* Custom functional tester class
-*
-* @package      test
-*/
+ * Custom functional tester class
+ *
+ * @package     test
+ */
 class myTestFunctional extends sfTestFunctional
 {
 
@@ -11,13 +11,13 @@ class myTestFunctional extends sfTestFunctional
 
 
   /**
-  * Sign in a user
-  *
-  * @param      string $username
-  * @param      string $password
-  *
-  * @return     myTestFunctional
-  */
+   * Sign in a user
+   *
+   * @param     string $username
+   * @param     string $password
+   *
+   * @return    myTestFunctional
+   */
   public function login($username, $password, $signin_url = '/login', $signin_form_name = 'signin')
   {
     return $this->
@@ -32,10 +32,10 @@ class myTestFunctional extends sfTestFunctional
   }
 
   /**
-  * Sign out a user
-  *
-  * @return     myTestFunctional
-  */
+   * Sign out a user
+   *
+   * @return    myTestFunctional
+   */
   public function logout($signout_url = '/logout')
   {
     if (!$this->browser->getUser()->isAuthenticated())
@@ -50,13 +50,13 @@ class myTestFunctional extends sfTestFunctional
   }
 
 
- /**
-  * Allows you to load the data for easy filling of forms that is stored in a file or directory, yaml format
-  *
-  * @param      string $filename
-  *
-  * @return     myTestFunctional
-  */
+  /**
+   * Allows you to load the data for easy filling of forms that is stored in a file or directory, yaml format
+   *
+   * @param     string $filename
+   *
+   * @return    myTestFunctional
+   */
   public function loadFormData($filename = null)
   {
     if (!is_file($filename) && '/' != substr($filename, 0, 1))
@@ -78,22 +78,18 @@ class myTestFunctional extends sfTestFunctional
         $this->loadFormDataFromArray($data);
       }
     }
-    else
-    {
-      throw new sfInitializationException(sprintf('You must give an array, a directory or a file to myTestFunctional::loadFormData() (%s given).', $filename));
-    }
 
     return $this;
   }
 
 
- /**
-  * Allows you to set default from data for fast filling as an array of form_name => form data
-  *
-  * @param      array $data
-  *
-  * @return     myTestFunctional
-  */
+  /**
+   * Allows you to set default from data for fast filling as an array of form_name => form data
+   *
+   * @param     array $data
+   *
+   * @return    myTestFunctional
+   */
   public function loadFormDataFromArray($data = array())
   {
     foreach ($data as $form_name => $form_data)
@@ -111,11 +107,11 @@ class myTestFunctional extends sfTestFunctional
 
 
   /**
-  * Returns the form data used for easy filling of web forms.
-  * If no data has been set, the function tries to get it from the fixtures/forms dir
-  *
-  * @return     array $form_data
-  */
+   * Returns the form data used for easy filling of web forms.
+   * If no data has been set, the function tries to get it from the fixtures/forms dir
+   *
+   * @return    array $form_data
+   */
   public function getFormsData()
   {
     if (empty($this->forms_data))
@@ -157,14 +153,14 @@ class myTestFunctional extends sfTestFunctional
 
 
   /**
-  * Sets a form field
-  *
-  * @param      string $form_name
-  * @param      string $field_name
-  * @param      array|string $field_value
-  *
-  * @return     myTestFunctional
-  */
+   * Sets a form field
+   *
+   * @param     string $form_name
+   * @param     string $field_name
+   * @param     array|string $field_value
+
+   * @return    myTestFunctional
+   */
   public function setFormField($form_name, $field_name, $field_value)
   {
     $field_name = false === strpos($field_name, '[') ? sprintf('[%s]', $field_name) : $field_name;
@@ -184,6 +180,5 @@ class myTestFunctional extends sfTestFunctional
 
     return $this;
   }
-
 
 }
