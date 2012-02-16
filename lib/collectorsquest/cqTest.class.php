@@ -98,4 +98,50 @@ class cqTest
   {
     return null;
   }
+
+  /**
+   * Load model fixtures from test/fixtures
+   *
+   * Example usage:
+   * cqTest::loadFixtureDirs(array('legacy/01_first', 'all/02_second')
+   *
+   * Will load files matching:
+   *  - /test/fixtures/legacy/01_first/*.yml
+   *  - /test/fixtures/all/02_second/*.yml
+   *
+   * @param     string|array $dirs You can pass a string for a single file, or an array
+   * @param     PropelPDO $con
+   */
+  public static function loadFixtureDirs($dirs, PropelPDO $con = null)
+  {
+    if (is_array($dirs))
+    {
+      foreach ($dirs as $key => $dir)
+      {
+        $dirs[$key] = sfConfig::get('sf_test_dir') . DIRECTORY_SEPARATOR . 'fixtures' . DIRECTORY_SEPARATOR . $dir;
+      }
+    }
+    elseif (is_string($dirs))
+    {
+      $dirs = sfConfig::get('sf_test_dir') . DIRECTORY_SEPARATOR . 'fixtures' . DIRECTORY_SEPARATOR . $dirs;
+    }
+    else
+    {
+      throw new InvalidArgumentException(sprintf('[Model Unit Test] cqTest::loadFixtureDirs() requires the $dirs parameter to be either array or a string'));
+    }
+
+    if (is_null($con))
+    {
+      $con = Propel::getConnection();
+    }
+
+    $con->prepare('SET FOREIGN_KEY_CHECKS = 0;')->execute();
+
+    // load fixtures; this cleans the database too
+    $loader = new sfPropelData();
+    $loader->loadData($dirs);
+
+    $con->prepare('SET FOREIGN_KEY_CHECKS = 1;')->execute();
+  }
+
 }
