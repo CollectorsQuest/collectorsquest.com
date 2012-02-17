@@ -9,7 +9,8 @@ nbproject
 # symfony folders
 /cache/*
 /log/*
-/data/sql
+/data/sql/*.schema.sql
+/data/sql/sqldb.map
 
 # project specific ignores
 /config/secure
@@ -26,6 +27,7 @@ base
 /plugins/sf*Plugin
 /plugins/ice*Plugin
 /lib/vendor/neo4jphp
+/lib/vendor/faker
 !/plugins/sfPropelORMPlugin
 
 # symlinked folders (when on windows)

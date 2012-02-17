@@ -48,7 +48,7 @@ class manageComponents extends cqComponents
 
   public function executeSidebarCollection()
   {
-    $collection = CollectionPeer::retrieveByPK($this->getRequestParameter('id', $this->getRequestParameter('collection[id]')));
+    $collection = CollectorCollectionPeer::retrieveByPK($this->getRequestParameter('id', $this->getRequestParameter('collection[id]')));
 
     $this->buttons = array(
       0 => array(
@@ -111,7 +111,7 @@ class manageComponents extends cqComponents
     $collector = $this->getCollector();
 
     // Either get the collection by ID, or get the Dropbox
-    if (!$collection = CollectionPeer::retrieveByPK($this->getRequestParameter('id')))
+    if (!$collection = CollectorCollectionPeer::retrieveByPK($this->getRequestParameter('id')))
     {
       $collection = new CollectionDropbox($collector->getId());
     }

@@ -1,8 +1,8 @@
 <?php
 
-function cq_section_title($title)
+function cq_section_title($title, $style = null)
 {
-  echo '<h2 class="section-title clear">', $title, '</h2>';
+  echo '<h2 class="section-title clear" style="'. $style .'">', $title, '</h2>';
 }
 
 function cq_label_for($form, $field, $label = null)
@@ -56,8 +56,13 @@ function cq_select_tag($form, $field, $options = array())
 {
   $width = @$options['width'] ?: 300;
 
+  $options = array_merge(
+    $options,
+    array('style' => 'border: 1px solid #A7A7A7; font-size: 14px; width: '.($width).'px; padding: 2px; margin: 0;')
+  );
+
   echo '<div style="background: #E9E9E9; vertical-align: middle; width: '.$width.'px; padding: 5px;">';
-  echo $form[$field]->render(array('choices' => array('test', 'me'), 'style' => 'border: 1px solid #A7A7A7; font-size: 14px; width: '.($width).'px; padding: 2px; margin: 0;'));
+  echo $form[$field]->render($options);
   echo '</div>';
 }
 

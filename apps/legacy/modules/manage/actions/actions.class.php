@@ -10,6 +10,7 @@
  */
 class manageActions extends cqActions
 {
+
   /**
    * @param  sfWebRequest  $request
    * @return string
@@ -34,10 +35,29 @@ class manageActions extends cqActions
         // Clear the Geo Cache
         CollectorGeocacheQuery::create()->filterByCollectorId($collector->getId())->delete();
 
+        $message = 'Your profile/account information was updated.';
+        if ($collectorEmail = $form->getOption('newEmail', false))
+        {
+          $subject = $this->__('You have changed your email at CollectorsQuest.com');
+          $body = $this->getPartial(
+            'emails/collector_email_change',
+            array(
+              'collector'     => $collector,
+              'collectorEmail'=> $collectorEmail
+            )
+          );
+
+          if ($this->sendEmail($form->getValue('email'), $subject, $body))
+
+            $message .= ' Email verification sent to ' . $form->getValue('email');
+        }
+
+        $this->getUser()->setFlash('success', $message);
+
         // Send the profile data to Defensio to analyse
         $collector->sendToDefensio('UPDATE');
 
-        $this->getUser()->setFlash('success', 'Your profile/account information was updated.');
+        $this->redirect('@manage_profile');
       }
       else
       {
@@ -70,12 +90,12 @@ class manageActions extends cqActions
 
     // Get the collections of the current collector
     $c = new Criteria();
-    $c->add(CollectionPeer::COLLECTOR_ID, $this->getUser()->getId());
-    $c->addDescendingOrderByColumn(CollectionPeer::CREATED_AT);
+    $c->add(CollectorCollectionPeer::COLLECTOR_ID, $this->getUser()->getId());
+    $c->addDescendingOrderByColumn(CollectorCollectionPeer::CREATED_AT);
 
     $per_page = ($request->getParameter('show') == 'all') ? 999 : sfConfig::get('app_pager_manage_collections_max', 10);
 
-    $pager = new sfPropelPager('Collection', $per_page);
+    $pager = new sfPropelPager('CollectorCollection', $per_page);
     $pager->setCriteria($c);
     $pager->setPeerMethod('doSelectJoinCollector');
     $pager->setPeerCountMethod('doCountJoinCollector');
@@ -126,7 +146,7 @@ class manageActions extends cqActions
     }
     else
     {
-      $collection = CollectionPeer::retrieveByPK($request->getParameter('collection[id]'));
+      $collection = CollectorCollectionPeer::retrieveByPK($request->getParameter('collection[id]'));
     }
     $this->forward404Unless($collection && $this->getUser()->isOwnerOf($collection));
 
@@ -153,6 +173,7 @@ class manageActions extends cqActions
 
       if ($form->isValid())
       {
+        /** @var $collection CollectorCollection */
         $collection = $form->getObject();
         $collection->setCollectionCategoryId($form->getValue('collection_category_id'));
         $collection->setName($form->getValue('name'));
@@ -207,11 +228,13 @@ class manageActions extends cqActions
 
     if ($this->getRoute() instanceof sfPropelRoute)
     {
+      /** @var $collectible Collectible */
       $collectible = $this->getRoute()->getObject();
       $collection = $collectible->getCollection();
     }
     else
     {
+      /** @var $collectible Collectible */
       $collectible = CollectiblePeer::retrieveByPK($request->getParameter('id'));
       $collection = $collectible->getCollection();
     }
@@ -237,27 +260,10 @@ class manageActions extends cqActions
 
     $form = new CollectibleEditForm($collectible);
 
-    if ($this->bIsSeller = $this->getUser()->hasCredential('seller'))
-    {
-      $itemForSale = $collectible->getForSaleInformation();
-      if (!$itemForSale)
-      {
-        $itemForSale = new CollectibleForSale();
-        $itemForSale->setCollectibleId($collectible->getId());
-      }
-
-      $omItemForSaleForm = new CollectibleForSaleForm($itemForSale);
-    }
-
     if ($request->isMethod('post'))
     {
       $taintedValues = $request->getParameter('collectible');
       $form->bind($taintedValues, $request->getFiles('collectible'));
-
-      if ($this->bIsSeller && isset($omItemForSaleForm))
-      {
-        $omItemForSaleForm->bind($request->getParameter($omItemForSaleForm->getName()));
-      }
 
       if ($form->isValid())
       {
@@ -270,7 +276,7 @@ class manageActions extends cqActions
             if ($omItemForSaleForm->getValue('is_ready'))
             {
               $message = $this->__(
-                  'Your collectible has been posted to the Marketplace. Click <a href="%url%">here</a> to view your collectibles for sale!', array('%url%' => $this->generateUrl('manage_marketplace'))
+                'Your collectible has been posted to the Marketplace. Click <a href="%url%">here</a> to view your collectibles for sale!', array('%url%' => $this->generateUrl('manage_marketplace'))
               );
             }
             else
@@ -335,13 +341,19 @@ class manageActions extends cqActions
     {
       if ($this->getUser()->hasCredential('seller'))
       {
-        $this->getUser()->setFlash('highlight', $this->__('%username%, want some fast cash? Sell your collectibles today!', array('%username%' => $this->getUser()->getCollector())));
+        $this->getUser()->setFlash(
+          'highlight', $this->__(
+            '%username%, want some fast cash? Sell your collectibles today!',
+            array('%username%' => $this->getUser()->getCollector())
+          )
+        );
       }
       else
       {
         $this->getUser()->setFlash(
           'highlight', sprintf(
-            '%s, do you want to expand your collection? <a href="%s">Buy collectibles today!</a>', $this->getUser()->getDisplayName(), $this->generateUrl('marketplace')
+            '%s, do you want to expand your collection? <a href="%s">Buy collectibles today!</a>',
+            $this->getCollector()->getDisplayName(), $this->generateUrl('marketplace')
           )
         );
       }
@@ -394,7 +406,7 @@ class manageActions extends cqActions
     }
 
     $criteria = new Criteria();
-    $criteria->addAscendingOrderByColumn(CollectiblePeer::POSITION);
+    $criteria->addAscendingOrderByColumn(CollectionCollectiblePeer::POSITION);
 
     // We we have passed specific Collectibles to edit
     if ($ids = $request->getParameter('ids', null))
@@ -408,12 +420,14 @@ class manageActions extends cqActions
 
     if ($collection->getId())
     {
-      $criteria->add(CollectiblePeer::COLLECTION_ID, $collection->getId(), Criteria::EQUAL);
+      $criteria->addJoin(CollectiblePeer::ID, CollectionCollectiblePeer::COLLECTIBLE_ID, Criteria::RIGHT_JOIN);
+      $criteria->add(CollectionCollectiblePeer::COLLECTION_ID, $collection->getId());
     }
     else
     {
       $criteria->add(CollectiblePeer::COLLECTOR_ID, $collector->getId(), Criteria::EQUAL);
-      $criteria->add(CollectiblePeer::COLLECTION_ID, null, Criteria::ISNULL);
+      $criteria->addJoin(CollectiblePeer::ID, CollectionCollectiblePeer::COLLECTIBLE_ID, Criteria::LEFT_JOIN);
+      $criteria->add(CollectionCollectiblePeer::COLLECTION_ID, null, Criteria::ISNULL);
     }
 
     $pager = new sfPropelPager('Collectible', sfConfig::get('app_collectibles_edit_per_page', 5));
@@ -426,10 +440,12 @@ class manageActions extends cqActions
       $this->redirect('@manage_collections');
     }
 
-    $form = new ManageCollectiblesForm(array(
-      'collectibles' => $pager->getResults(),
-      'collector' => $this->getUser()->getCollector()
-    ));
+    $collectibles = new PropelObjectCollection($pager->getResults());
+
+    $form = new ManageCollectiblesForm(
+      $collectibles,
+      array('collector' => $this->getUser()->getCollector(), 'embedded_form_class' => 'CollectibleEditForm')
+    );
 
     if ($request->isMethod('post'))
     {
@@ -443,7 +459,7 @@ class manageActions extends cqActions
         $collector = $this->getUser()->getCollector();
         try
         {
-          foreach ($form->getValues() as $index => $value)
+          foreach ($form->getValues() as $value)
           {
             $collectible = CollectiblePeer::retrieveByPK($value['id']);
             $collectible->setCollectionId($value['collection_id']);
@@ -506,11 +522,11 @@ class manageActions extends cqActions
         {
           $this->redirect(
             'manage_collectibles_by_slug', array(
-              'id' => $collection->getId(),
-              'slug' => $collection->getSlug(),
-              'page' => $pager->getNextPage(),
+              'id'    => $collection->getId(),
+              'slug'  => $collection->getSlug(),
+              'page'  => $pager->getNextPage(),
               'batch' => $request->getParameter('batch'),
-              'ids' => $request->getParameter('ids')
+              'ids'   => $request->getParameter('ids')
             )
           );
         }
@@ -541,8 +557,8 @@ class manageActions extends cqActions
     {
       case 'empty':
         $q = CollectibleQuery::create()
-           ->filterByCollectorId($collector->getId())
-           ->filterByCollectionId(null, Criteria::ISNULL);
+            ->filterByCollectorId($collector->getId())
+            ->filterByCollectionId(null, Criteria::ISNULL);
 
         $q->delete();
 

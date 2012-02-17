@@ -67,6 +67,7 @@ seller_ajax_save:
 seller_signup:
   url:   /collector/signup/:step
   param: { module: collector, action: signup, step: 1 }
+  requirements: { step: '\d+' }
 
 sellers:
   url:   /sellers
@@ -81,10 +82,17 @@ collector_signup_facebook:
 collector_signup:
   url:   /collector/signup/:step
   param: { module: collector, action: signup, step: 1 }
+  requirements: { step: '\d+' }
 
 collector_auto_login:
   url:  /collector/auto-login/:hash
   param: { module: general, action: login }
+
+collector_verify_email:
+  url:  /collector/verify-email/:hash
+  class: cqPropelRoute
+  param: { module: general, action: verifyEmail }
+  options: { model: CollectorEmail, type: object }
 
 collector_by_slug:
   url:  /collector/:id/:slug
@@ -134,7 +142,7 @@ dropbox_by_slug:
 collection_by_slug:
   url:  /collection/:id/:slug
   class: cqPropelRoute
-  options: { model: Collection, type: object, method: getObjectForRoute, statsd: true }
+  options: { model: CollectorCollection, type: object, method: getObjectForRoute, statsd: true }
   param: { module: collection, action: index }
   requirements: { id: '\d+', slug: '[\-\w\.]+' }
 
@@ -355,7 +363,7 @@ manage_collections:
 manage_collection_by_slug:
   url:  /manage/collection/:id/:slug
   class: sfPropelRoute
-  options: { model: Collection, type: object, method: getObjectForRoute }
+  options: { model: CollectorCollection, type: object, method: getObjectForRoute }
   param: { module: manage, action: collection }
   requirements: { id: '\d+', slug: '[\-\w\.]+', sf_method: [get, post] }
 
@@ -371,7 +379,7 @@ manage_collectibles_dropbox:
 manage_collectibles_by_slug:
   url:  /manage/collectibles/:id/:slug
   class: sfPropelRoute
-  options: { model: Collection, type: object, method: getObjectForRoute }
+  options: { model: CollectorCollection, type: object, method: getObjectForRoute }
   params: { module: manage, action: collectibles }
   requirements:
     id: \d+

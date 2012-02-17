@@ -50,7 +50,7 @@ EOF;
       switch ($identifier[0])
       {
         case 'collection':
-          $collection = CollectionPeer::retrieveByPK($identifier[1]);
+          $collection = CollectorCollectionPeer::retrieveByPK($identifier[1]);
           break;
         case 'collectible':
           if ($collectible = CollectiblePeer::retrieveByPK($identifier[1]))

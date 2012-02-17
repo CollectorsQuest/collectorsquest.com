@@ -1,9 +1,11 @@
 <?php
 
+require 'lib/model/om/BaseVideoCollectionCategory.php';
+
 class VideoCollectionCategory extends BaseVideoCollectionCategory
 {
   public function __toString()
   {
-    return $this->getName();
+    return (string) $this->getCollectionCategory();
   }
 }

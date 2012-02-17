@@ -62,9 +62,9 @@ class generalActions extends cqActions
     $this->blog_posts = $blog_posts;
 
     $c = new Criteria();
-    $c->addDescendingOrderByColumn(CollectionPeer::CREATED_AT);
+    $c->addDescendingOrderByColumn(CollectorCollectionPeer::CREATED_AT);
     $c->setLimit(5);
-    $this->latest_collections = CollectionPeer::doSelect($c);
+    $this->latest_collections = CollectorCollectionPeer::doSelect($c);
 
     // Video
     $c = new Criteria();
@@ -91,7 +91,7 @@ class generalActions extends cqActions
     }
 
     // We want to show 100 tags on the bottom of the homepage, mainly for SEO
-    $this->collection_tags = CollectionPeer::getPopularTags(100);
+    $this->collection_tags = CollectorCollectionPeer::getPopularTags(100);
     uksort($this->collection_tags, "strcasecmp");
 
     return sfView::SUCCESS;
@@ -131,6 +131,7 @@ class generalActions extends cqActions
           $this->getUser()->setFlash(
             'success', $this->__('We have sent an email to %email% with your new password.', array('%email%' => $to))
           );
+
           $this->redirect('@login');
         }
         else
@@ -344,6 +345,31 @@ class generalActions extends cqActions
     $this->prependTitle($this->__('Unexpected Error'));
 
     return sfView::SUCCESS;
+  }
+
+  /**
+   * Action VerifyEmail
+   *
+   * @param sfWebRequest $request
+   *
+   */
+  public function executeVerifyEmail(sfWebRequest $request)
+  {
+    /* @var $collectorEmail CollectorEmail */
+    $collectorEmail = $this->getRoute()->getObject();
+    $this->forward404Unless((bool)$collectorEmail);
+
+    $collector = $collectorEmail->getCollector();
+    $collector->setEmail($collectorEmail->getEmail());
+    $collector->save();
+
+    $collectorEmail->setIsVerified(true);
+    $collectorEmail->save();
+
+    $this->getUser()->Authenticate(true, $collector, true);
+
+    $this->getUser()->setFlash('success', 'Your email has been verified.');
+    $this->redirect('@manage_profile');
   }
 
 }

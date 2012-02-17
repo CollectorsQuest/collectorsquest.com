@@ -1,5 +1,14 @@
 <?php
 
+require 'lib/model/om/BaseVideo.php';
+
+/**
+ * IceTaggableBehavior
+ *
+ * @method array getTags($options = array())
+ * @method boolean addTag($name)
+ * @method boolean hasTag($name)
+ */
 class Video extends BaseVideo
 {
   public function __toString()
@@ -15,9 +24,7 @@ class Video extends BaseVideo
 
   public function getPublished()
   {
-    sfLoader::loadHelpers("Asset");
-
-    if($this->getIsPublished())
+    if ($this->getIsPublished())
     {
       return $this->getPublishedAt('m/d/y');
     }

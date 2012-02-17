@@ -11,7 +11,7 @@ if ($featured_week = $form->getObject())
   $ids = $featured_week->getCollectionIds();
   $items = array();
 
-  $collections = CollectionQuery::create()->filterById($ids, Criteria::IN)->find();
+  $collections = CollectorCollectionQuery::create()->filterById($ids, Criteria::IN)->find();
   foreach ($collections as $collection)
   {
     $items[] = get_partial('collections/list_view', array('collection' => $collection));

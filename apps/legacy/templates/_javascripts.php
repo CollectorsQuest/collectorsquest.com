@@ -1,4 +1,7 @@
 <?php
+  // Include the cqcdns.com javascript files
+  ice_include_javascripts();
+
   if ($sf_user->isAuthenticated())
   {
     use_javascript('tiny_mce/jquery.tinymce.js');
@@ -11,13 +14,7 @@
     include_partial('global/authenticated_js');
   }
 
-  sfConfig::set('symfony.asset.javascripts_included', true);
-  $js = @implode(',', array_keys($sf_response->getJavascripts()));
-
-  if (!empty($js))
-  {
-    echo '<script type="text/javascript" src="/combine.php?type=javascript&files='. $js .'&revision='. SVN_REVISION .'"></script>';
-  }
+  cq_include_javascripts();
 ?>
 
 <?php cq_javascript_tag(); ?>

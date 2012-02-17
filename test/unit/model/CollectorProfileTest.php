@@ -1,8 +1,11 @@
 <?php
 
-include(dirname(__FILE__).'/../../bootstrap/model.php');
+include(__DIR__.'/../../bootstrap/model.php');
 
 $t = new lime_test(16, new lime_output_color());
+
+// Reset all tables we will be working on
+cqTest::resetTables(array('collector', 'collector_profile'));
 
 $t->diag('::setWebsite(), ::getWebsite(), ::getWebsiteUrl()');
 
@@ -22,7 +25,7 @@ $t->diag('::setWebsite(), ::getWebsite(), ::getWebsiteUrl()');
 $t->diag('::setBirthday()');
 
   $collector_profile = CollectorProfilePeer::doSelectOne(new Criteria());
-  
+
   $collector_profile->setBirthday('1983-03-25');
   $t->is($collector_profile->getBirthday(DateTime::ISO8601), '1983-03-25T00:00:00-0500', 'Testing for full dates');
 

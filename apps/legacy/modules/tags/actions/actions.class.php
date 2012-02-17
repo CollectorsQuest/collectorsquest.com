@@ -19,7 +19,7 @@ class tagsActions extends cqActions
   public function executeIndex(sfWebRequest $request)
   {
     $this->tags = CollectiblePeer::getPopularTags(100);
-    $this->tags = array_merge(CollectionPeer::getPopularTags(100), $this->tags);
+    $this->tags = array_merge(CollectorCollectionPeer::getPopularTags(100), $this->tags);
     uksort($this->tags, "strcasecmp");
 
     $this->addBreadcrumb('Tag Cloud');
@@ -41,7 +41,7 @@ class tagsActions extends cqActions
     {
       case 'collections':
         $this->url = '@collections_by_tag?tag=';
-        $this->tags = CollectionPeer::getPopularTags(sfConfig::get('app_tag_cloud_max'));
+        $this->tags = CollectorCollectionPeer::getPopularTags(sfConfig::get('app_tag_cloud_max'));
         break;
       case 'collectibles':
         $this->url = '@search?only=collectibles&q=';

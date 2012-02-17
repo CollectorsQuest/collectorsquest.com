@@ -1,17 +1,7 @@
 <?php
 
+require 'lib/model/om/BasePackageTransaction.php';
 
-/**
- * Skeleton subclass for representing a row from the 'package_transaction' table.
- *
- *
- *
- * You should add additional methods to this class to meet the
- * application requirements.  This class will only be generated as
- * long as it does not already exist in the output directory.
- *
- * @package    propel.generator.lib.model
- */
 class PackageTransaction extends BasePackageTransaction
 {
 	/* added by Prakash Panchal 13-APR-2011
@@ -39,6 +29,7 @@ class PackageTransaction extends BasePackageTransaction
 
 		return $oPackageTransaction;
 	}
+
 	/* added by Prakash Panchal 14-APR-2011
 	 * updatePaymentStatus function.
 	 * return object
@@ -59,4 +50,4 @@ class PackageTransaction extends BasePackageTransaction
 
 		return $oPackageTransaction;
 	}
-} // PackageTransaction
+}

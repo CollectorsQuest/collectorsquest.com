@@ -1,5 +1,7 @@
 <?php
 
+require 'lib/model/om/BasePlaylist.php';
+
 class Playlist extends BasePlaylist
 {
   public function __toString()
@@ -14,7 +16,9 @@ class Playlist extends BasePlaylist
     $playlist->addChild('info', htmlentities($this->getDescription()));
     $tracklist = $playlist->addChild('tracklist');
 
+    /** @var $videos Video[] */
     $videos = $this->getPublishedVideos();
+
     foreach ($videos as $video)
     {
       $track = $tracklist->addChild('track');

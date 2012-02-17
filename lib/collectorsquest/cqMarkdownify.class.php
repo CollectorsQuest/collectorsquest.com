@@ -3,12 +3,13 @@
 /**
  * @see cqMarkdownException
  */
-require_once dirname(__FILE__) .'/cqMarkdownException.class.php';
+require_once __DIR__ .'/cqMarkdownException.class.php';
 
 /**
  * @see Markdownify
  */
-require_once sfConfig::get('sf_lib_dir').'/vendor/Markdown/Markdownify.php';
+require_once __DIR__.'/../vendor/Markdown/Markdownify.php';
+
 
 class cqMarkdownify extends Markdownify
 {
@@ -51,7 +52,7 @@ class cqMarkdownify extends Markdownify
     static $class = __CLASS__;
 
     // get parser instance
-    if (!($parser instanceof $class)) 
+    if (!($parser instanceof $class))
     {
       $parser = new $class(MDFY_LINKS_EACH_PARAGRAPH, MDFY_BODYWIDTH, false);
     }

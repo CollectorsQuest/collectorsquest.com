@@ -1,11 +1,8 @@
 <?php
 
-include(dirname(__FILE__).'/../../../bootstrap/model.php');
+include(__DIR__.'/../../../bootstrap/model.php');
 
-$t = new lime_test(5, new lime_output_color());
-
-
-// tests
+$t = new lime_test(5, array('output' => new lime_output_color(), 'error_reporting' => true));
 
 $t->diag('->getPlainPostContent()');
 

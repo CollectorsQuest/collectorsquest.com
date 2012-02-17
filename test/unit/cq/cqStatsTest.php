@@ -3,7 +3,7 @@
 include __DIR__ . '/../../bootstrap/unit.php';
 include __DIR__ . '/../mock/cqStatsMock.php';
 
-$t = new lime_test(5, array(new lime_output_color()));
+$t = new lime_test(5, array('output' => new lime_output_color(), 'error_reporting' => true));
 $t->diag('Testing cqStats');
 
 $t->diag('::view()');

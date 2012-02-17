@@ -1,14 +1,11 @@
 <?php
 
-/**
- * Skeleton subclass for performing query and update operations on the 'collection_category' table.
- *
- * @package    propel.generator.lib.model
- */
+require 'lib/model/om/BaseCollectionCategoryQuery.php';
+
 class CollectionCategoryQuery extends BaseCollectionCategoryQuery
 {
   /**
-   * @param string | CollectionCatregory $category
+   * @param string | CollectionCategory $category
    * @param string $criteria
    *
    * @return CollectionCategoryQuery

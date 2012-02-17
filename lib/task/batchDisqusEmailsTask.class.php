@@ -100,7 +100,7 @@ EOF;
             }
             break;
           case 'collection':
-            if ($collection = CollectionPeer::retrieveByPK($m[3]))
+            if ($collection = CollectorCollectionPeer::retrieveByPK($m[3]))
             {
               $collector = $collection->getCollector();
             }
@@ -112,7 +112,7 @@ EOF;
               // Send the email to the bloggers
               $mailer->send($message);
             }
-            catch (SwiftException $e) { ; }
+            catch (Swift_TransportException $e) { ; }
             break;
         }
 

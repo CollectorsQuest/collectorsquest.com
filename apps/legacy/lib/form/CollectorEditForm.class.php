@@ -50,4 +50,47 @@ class CollectorEditForm extends BaseFormPropel
   {
     return 'Collector';
   }
+
+  public function updateEmailColumn($newEmail)
+  {
+    /* @var $collector Collector */
+    $collector = $this->getObject();
+    $oldEmail = $collector->getEmail();
+
+    if ($newEmail != $oldEmail)
+    {
+      $collectorEmail = CollectorEmailPeer::retrieveByCollectorEmail($collector, $newEmail);
+
+      if (!$collectorEmail)
+      {
+        $collectorEmail = new CollectorEmail();
+        $collectorEmail->setCollector($collector);
+        $collectorEmail->setEmail($newEmail);
+        $collectorEmail->setSalt($collector->generateSalt());
+        $collectorEmail->setHash($collector->getAutoLoginHash());
+        $collectorEmail->setIsVerified(false);
+        $collectorEmail->save();
+
+        $this->setOption('newEmail', $collectorEmail);
+
+        return $oldEmail;
+      }
+      else if (!$collectorEmail->getIsVerified())
+      {
+        $this->setOption('newEmail', $collectorEmail);
+
+        return $oldEmail;
+      }
+      else
+      {
+        $collector->setEmail($newEmail);
+
+        return $newEmail;
+      }
+    }
+
+    return $newEmail;
+  }
+
 }
+
