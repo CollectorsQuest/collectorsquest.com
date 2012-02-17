@@ -27,8 +27,6 @@
       'collector/signupStep'.$snStep,
       array(
         'form' => $form,
-        'amStep1Data' => $amStep1Data,
-        'amStep2Data' => $amStep2Data
       )
     );
   ?>

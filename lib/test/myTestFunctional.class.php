@@ -151,6 +151,32 @@ class myTestFunctional extends sfTestFunctional
     return $this;
   }
 
+  /**
+   * Getter for a specific form fixture
+   *
+   * @param     string $fixture_name
+   * @param     string $field_name
+   * @param     mixed $default
+   * @return    array|scalar
+   */
+  public function getFormFixture($fixture_name, $field_name = null, $default = null)
+  {
+    $forms_data = $this->getFormsData();
+
+    $result = $default;
+
+    if (isset($forms_data[$fixture_name]))
+    {
+      $result = $forms_data[$fixture_name];
+
+      if (isset($field_name) && isset($result[$field_name]))
+      {
+        $result = $result[$field_name];
+      }
+    }
+
+    return $result;
+  }
 
   /**
    * Sets a form field

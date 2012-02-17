@@ -77,7 +77,6 @@
     <div class="clearfix append-bottom">&nbsp;</div>
 
     <?= $form['_csrf_token']; ?>
-    <input type="hidden" name="first_step_data" value="<?= base64_encode(serialize($amStep1Data)); ?>" readonly="readonly"/>
   </form>
 </div>
 

@@ -1,4 +1,4 @@
-TestCollectorStep1:
+TestCollectorSignupStep1Form:
   username: test.collector
   display_name: Test Collector
   email: "test.collector@example.com"

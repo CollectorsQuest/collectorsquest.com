@@ -123,14 +123,62 @@ class collectorActions extends cqActions
   public function executeSignup(sfWebRequest $request)
   {
     // Redirect to the community if already signed up
-    $this->redirectIf($this->getUser()->isAuthenticated(), "@manage_collections");
+    //$this->redirectIf($this->getUser()->isAuthenticated(), "@manage_collections");
 
+    // Get the current form step, default to 1 if not set
     $this->snStep = $request->getParameter('step', 1);
 
-    if ($this->snStep == 1)
+    // if the requested step is not 1 and the user is not authenticated
+    // redirect the page to step 1
+    if (1 != $this->snStep && !$this->getUser()->isAuthenticated())
     {
-      $form = new CollectorSignupStep1Form();
+      $this->redirect($this->getController()->genUrl(array(
+          'sf_route' => 'collector_signup', 'step' => 1
+      )));
     }
+
+    // create the form object based on the current step
+    $formClass = sprintf('CollectorSignupStep%dForm', $this->snStep);
+    $this->form = new $formClass();
+
+    // if request is post
+    if (sfRequest::POST == $request->getMethod())
+    {
+      // and the form is valid
+      $this->form->bind($request->getParameter($this->form->getName()));
+      if ($this->form->isValid())
+      {
+        $values = $this->form->getValues();
+
+        // perform actions for step
+        switch ($this->snStep):
+          case 1:
+            // create user
+            $collector = CollectorPeer::createFromArray($values);
+
+            // authenticate the user
+            $this->getUser()->Authenticate(true, $collector, false);
+
+            // redirect to step 2
+            $this->redirect($this->getController()->genUrl(array(
+                'sf_route' => 'collector_signup', 'step' => 2
+            )));
+            break;
+
+          case 2:
+            break;
+
+          case 3:
+            break;
+
+        endswitch;
+
+
+      } // if form is valid
+    } // if request is post
+
+
+    /* * /
     else if ($this->snStep == 2)
     {
       $form = new CollectorSignupStep2Form();
@@ -236,6 +284,7 @@ class collectorActions extends cqActions
     $this->amStep2Data = $amStep2Data;
     $this->amStep3Data = $amStep3Data;
     $this->form = $form;
+    /* */
 
     $this->buttons = array(
       0 => array(
@@ -244,7 +293,6 @@ class collectorActions extends cqActions
         'route' => '@collector_signup#openid'
       )
     );
-
     $this->addBreadcrumb($this->__('Sign Up for a Collector Account'));
     $this->prependTitle($this->__('Sign Up for a Collector Account'));
 
