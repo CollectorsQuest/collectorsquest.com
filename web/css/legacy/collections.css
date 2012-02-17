@@ -112,12 +112,13 @@
   width: 680px;
   margin: 0 auto 12px auto;
 }
+
 /* movable collectibles */
-.movable-collectibles-wrapper {
+.draggable-collectibles-wrapper {
   width: 100%;
   background: url(./images/legacy/multimedia/CollectionDropbox/drag_drop_assistant.png) no-repeat left top;
 }
-.movable-collectibles-container {
+.draggable-collectibles-container {
   width: 530px;
   margin: 0 auto;
   padding-top: 20px;

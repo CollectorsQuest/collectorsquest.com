@@ -193,12 +193,13 @@ class Collector extends BaseCollector
     return PrivateMessagePeer::doCount($c);
   }
 
-  public function getCollectionCategoryIds()
+  public function getCollectionCategoryIds($criteria = null, PropelPDO $con = null)
   {
-    $c = new Criteria();
+    $c = $criteria instanceof Criteria ? clone $criteria : new Criteria();
+
     $c->addSelectColumn(CollectorCollectionPeer::COLLECTION_CATEGORY_ID);
     $c->add(CollectorCollectionPeer::COLLECTOR_ID, $this->getId());
-    $stmt = CollectorCollectionPeer::doSelectStmt($c);
+    $stmt = CollectorCollectionPeer::doSelectStmt($c, $con);
 
     return $stmt->fetchAll(PDO::FETCH_COLUMN);
   }
@@ -252,6 +253,17 @@ class Collector extends BaseCollector
   public function getCollections($criteria = null, PropelPDO $con = null)
   {
     return $this->getCollectorCollections($criteria, $con);
+  }
+
+  public function getCollectionIds($criteria = null, PropelPDO $con = null)
+  {
+    $c = $criteria instanceof Criteria ? clone $criteria : new Criteria();
+
+    $c->addSelectColumn(CollectorCollectionPeer::ID);
+    $c->add(CollectorCollectionPeer::COLLECTOR_ID, $this->getId());
+    $stmt = CollectorCollectionPeer::doSelectStmt($c, $con);
+
+    return $stmt->fetchAll(PDO::FETCH_COLUMN);
   }
 
   public function countCollections(Criteria $criteria = null, $distinct = false, PropelPDO $con = null)

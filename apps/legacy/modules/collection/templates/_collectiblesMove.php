@@ -15,9 +15,8 @@
     <?php
       foreach ($collections as $i => $c)
       {
-        // Show the collection (in grid, list or hybrid view)
         include_partial(
-          'collection/carousel_view_collection',
+          'collections/carousel_view_collection',
           array(
             'collection' => $c,
             'culture' => $sf_user->getCulture(),
@@ -32,12 +31,12 @@
 </div>
 
 
-<div class="movable-collectibles-wrapper">
-  <div id="movable-collectibles" class="movable-collectibles-container cf">
+<div class="draggable-collectibles-wrapper">
+  <div id="draggable-collectibles" class="draggable-collectibles-container cf">
     <?php
         foreach ($collectibles as $i => $collectible)
         {
-          echo '<div id="collectible-', $collectible->getId(), '" class="span-2 append-bottom thumb-space">',
+          echo '<div id="collectible-', $collectible->getId(), '" data-id="', $collectible->getId() ,'" class="span-2 append-bottom thumb-space">',
                image_tag_collectible($collectible, '75x75', array('style' => 'cursor: move;')),
                '</div>';
         }
@@ -55,37 +54,58 @@
   ?>
 </div>
 
-
 <script type="text/javascript">
 $(document).ready(function()
 {
-  $('#movable-collectibles').sortable(
+  $('#draggable-collectibles div').draggable(
   {
-    items: 'div',
+    containment: '#contents',
     handle: 'img',
     opacity: 0.7,
     revert: true,
-    cursor: 'move',
-
-    update: function()
-    {
-      $.post(
-        '<?php echo url_for('@ajax_collection?section=move&page=collectibles&id='. $collection->getId()); ?>',
-        {
-          items: $('#movable-collectibles').sortable('serialize'),
-          key: 'collectible'
-        }
-      );
-    }
+    cursor: 'move'
   });
 
   $('div.scrollable-big .loading').hide();
   $('div.scrollable-big ul').show();
   $("div.scrollable-big").jCarouselLite(
   {
-    btnNext: "button.nextPage", btnPrev: "button.prevPage",
-    mouseWheel: false, visible: 3, scroll: 2, circular: false, start: 0
+    btnNext: "a.nextPage", btnPrev: "a.prevPage",
+    mouseWheel: true, visible: 3, scroll: 2, circular: true, start: 0
   });
 
+  $("div.grid_view_collection").droppable(
+  {
+    over: function(event, ui)
+    {
+      $(this).addClass("ui-state-highlight");
+    },
+    out: function(event, ui)
+    {
+      $(this).removeClass("ui-state-highlight");
+    },
+    drop: function(event, ui)
+    {
+      $(this).removeClass("ui-state-highlight");
+      ui.draggable.draggable( 'option', 'revert', false );
+
+      $.ajax(
+      {
+        url: '<?php echo url_for('@ajax_collection?section=move&page=collectibles'); ?>',
+        type: 'GET',
+        data: { collectible_id: ui.draggable.data('id'), from: '<?= $collection->getId(); ?>', to: $(this).data('id') },
+        success: function()
+        {
+          ui.draggable.draggable('option', 'revert', false);
+          ui.draggable.hide();
+        },
+        error: function()
+        {
+          ui.draggable.draggable('option', 'revert', true);
+          ui.draggable.show();
+        }
+      });
+    }
+  });
 });
 </script>

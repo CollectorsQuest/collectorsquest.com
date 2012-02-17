@@ -172,12 +172,12 @@ class collectionComponents extends cqComponents
   {
     $this->_get_collection();
 
-    $collector = $this->getUser()->getCollector();
+    $collector = $this->getCollector();
 
     if ($collector->isOwnerOf($this->collection))
     {
       $c = new Criteria();
-      $c->add(CollectionPeer::ID, $this->collection->getId(), Criteria::NOT_EQUAL);
+      $c->add(CollectorCollectionPeer::ID, $this->collection->getId(), Criteria::NOT_EQUAL);
       $this->collections = $collector->getCollections($c);
 
       $c = new Criteria();
