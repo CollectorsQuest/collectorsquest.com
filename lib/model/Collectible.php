@@ -138,11 +138,38 @@ class Collectible extends BaseCollectible
   }
 
   /**
-   * @return integer | null
+   * @return array
+   */
+  public function getCollectionIds()
+  {
+    /** @var $q CollectionQuery */
+    $q = CollectionQuery::create()
+       ->filterByCollectible($this)
+       ->setFormatter(ModelCriteria::FORMAT_STATEMENT)
+       ->addSelectColumn('collection_id');
+
+    /** @var $stmt PDOStatement */
+    $stmt = $q->find();
+
+    return $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
+  }
+
+  /**
+   * @return integer
    */
   public function getCollectionId()
   {
-    return null;
+    /** @var $q CollectionQuery */
+    $q = CollectionQuery::create()
+       ->filterByCollectible($this)
+       ->setFormatter(ModelCriteria::FORMAT_STATEMENT)
+       ->setSingleRecord(true)
+       ->addSelectColumn('collection_id');
+
+    /** @var $stmt PDOStatement */
+    $stmt = $q->find();
+
+    return (int) $stmt->fetchColumn(0);
   }
 
   /**
@@ -213,11 +240,7 @@ class Collectible extends BaseCollectible
   {
     /** @var $q CollectionQuery */
     $q = CollectionQuery::create()
-       ->joinCollectionCollectible()
-       ->useCollectionCollectibleQuery()
-         ->filterByCollectible($this)
-         ->filterByIsPrimary(true)
-       ->endUse();
+       ->filterByCollectible($this);
 
     if (!$collection = $q->findOne($con))
     {
