@@ -4,6 +4,8 @@ class CollectibleForSaleEditForm extends BaseCollectibleForSaleForm
 {
   public function configure()
   {
+    parent::configure();
+
     $this->useFields(array(
       'price',
       'condition',
@@ -14,19 +16,21 @@ class CollectibleForSaleEditForm extends BaseCollectibleForSaleForm
 
     // Get the Collectibles for sale condictions
     $conditions = CollectibleForSalePeer::$conditions;
-
-    // Remove the 'Any' from the array
-    unset($conditions['']);
+    $conditions[''] = '';
 
     $this->setWidget('condition', new sfWidgetFormChoice(array('choices' => $conditions)));
-    $this->setValidator('condition', new sfValidatorChoice(array('choices' => array_keys($conditions))));
+    $this->setValidator('condition', new sfValidatorChoice(array('choices' => array_keys($conditions), 'required' => false)));
 
-    $this->setValidator('price', new cqValidatorPrice(array('required' => false)));
-    $this->getValidator('price')->setOption('required', false);
-
+    $this->setValidator('price', new sfValidatorString(array('required' => false)));
+    $this->setValidator('quantity', new sfValidatorInteger(array('required' => false)));
     $this->setValidator('is_ready', new sfValidatorBoolean(array('required' => false)));
 
-    $this->widgetSchema->setNameFormat('for_sale[%s]');
+    // add a post validator
+    $this->validatorSchema->setPostValidator(
+      new sfValidatorCallback(array('callback' => array($this, 'checkPrice')))
+    );
+
+    $this->widgetSchema->setNameFormat('collectible_for_sale[%s]');
   }
 
   public function bind(array $taintedValues = null, array $taintedFiles = null)
@@ -35,4 +39,25 @@ class CollectibleForSaleEditForm extends BaseCollectibleForSaleForm
 
     parent::bind($taintedValues, $taintedFiles);
   }
+
+  public function checkPrice($validator, $values)
+  {
+    if (!empty($values['is_ready']))
+    {
+      try
+      {
+        $price_validator = new cqValidatorPrice(array('required' => true));
+        $values['price'] = $price_validator->clean($values['price']);
+      }
+      catch (sfValidatorError $error)
+      {
+        // throw an error bound to the price field
+        throw new sfValidatorErrorSchema($validator, array('price' => $error));
+      }
+    }
+
+    // password is correct, return the clean values
+    return $values;
+  }
+
 }
