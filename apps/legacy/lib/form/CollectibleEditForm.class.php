@@ -4,22 +4,19 @@ class CollectibleEditForm extends BaseCollectibleForm
 {
   public function configure()
   {
-    parent::configure();
+    /** @var $collectible Collectible */
+    $collectible = $this->getObject();
 
     /** @var $collector Collector */
-    $collector = $this->getOption('collector', $this->getObject()->getCollector());
-
-    $this->getWidgetSchema()->setFormFormatterName('legacy');
-
-    $this->validatorSchema->setOption('allow_extra_fields', true);
-    $this->validatorSchema->setOption('filter_extra_fields', true);
+    $collector = $this->getOption('collector', $collectible->getCollector());
 
     $criteria = new Criteria();
     $criteria->add(CollectorCollectionPeer::COLLECTOR_ID, $collector->getId());
     $criteria->addAscendingOrderByColumn(CollectorCollectionPeer::NAME);
 
-    $this->widgetSchema['collection_id'] = new sfWidgetFormPropelChoice(array(
-      'model' => 'CollectorCollection', 'criteria' => $criteria, 'add_empty' => true
+    $this->widgetSchema['collection_collectible_list'] = new sfWidgetFormPropelChoice(array(
+      'model' => 'CollectorCollection', 'criteria' => $criteria,
+      'add_empty' => true, 'multiple' => true
     ));
 
     $this->widgetSchema['thumbnail'] = new sfWidgetFormInputFile();
@@ -29,13 +26,6 @@ class CollectibleEditForm extends BaseCollectibleForm
     $this->validatorSchema['tags'] = new sfValidatorPass();
 
     $this->validatorSchema->setPostValidator(new sfValidatorPass());
-
-    unset($this->widgetSchema['graph_id'], $this->validatorSchema['graph_id']);
-    unset($this->widgetSchema['collector_id'], $this->validatorSchema['collector_id']);
-    unset($this->widgetSchema['slug'], $this->validatorSchema['slug']);
-
-    unset($this->widgetSchema['position'], $this->widgetSchema['score']);
-    unset($this->validatorSchema['position'], $this->validatorSchema['score']);
 
     if ($collector->getIsSeller())
     {
@@ -49,6 +39,16 @@ class CollectibleEditForm extends BaseCollectibleForm
 
       $this->embedForm('for_sale', new CollectibleForSaleEditForm($collectibleForSale));
     }
+
+    // Define which fields to use from the base form
+    $this->useFields(array(
+      'collection_collectible_list', 'name', 'description', 'thumbnail', 'tags'
+    ));
+
+    $this->getWidgetSchema()->setFormFormatterName('legacy');
+
+    $this->validatorSchema->setOption('allow_extra_fields', true);
+    $this->validatorSchema->setOption('filter_extra_fields', true);
   }
 
   public function updateDescriptionColumn($value)

@@ -440,10 +440,12 @@ class manageActions extends cqActions
       $this->redirect('@manage_collections');
     }
 
-    $form = new ManageCollectiblesForm(array(
-      'collectibles' => $pager->getResults(),
-      'collector'    => $this->getUser()->getCollector()
-    ));
+    $collectibles = new PropelObjectCollection($pager->getResults());
+
+    $form = new ManageCollectiblesForm(
+      $collectibles,
+      array('collector' => $this->getUser()->getCollector(), 'embedded_form_class' => 'CollectibleEditForm')
+    );
 
     if ($request->isMethod('post'))
     {

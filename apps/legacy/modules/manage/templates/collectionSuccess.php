@@ -1,13 +1,28 @@
+<?php
+/**
+ * @var $collection Collection
+ * @var $form sfFormFieldSchema
+ */
+
+ice_use_javascript('jquery/chosen.js');
+ice_use_stylesheet('jquery/chosen.css');
+
+?>
+
 <br class="clear" />
 
 <form action="<?php echo url_for('@manage_collection_by_slug?id='. $collection->getId().'&slug='. $collection->getSlug()); ?>" method="post" enctype="multipart/form-data">
   <div class="span-4" style="text-align: right;">
-    Category:
+    <?= cq_label_for($form, 'collection_category_id', __('Category:')); ?>
+    <div class="required"><?= __('(required)'); ?></div>
   </div>
   <div class="prepend-1 span-13 last">
-    <?= $collection->getCollectionCategory()->getName(); ?> &nbsp;
-    <?= link_to_function('(change?)', 'fancybox_collection_choose_category()'); ?>
-    <?= $form['collection_category_id']; ?>
+    <?php
+      echo $form['collection_category_id']->render(array(
+        'class' => 'chzn-select', 'style' => 'width: 410px'
+      ));
+    ?>
+    <?php echo $form['collection_category_id']->renderError(); ?>
   </div>
   <div class="clear append-bottom">&nbsp;</div>
 
@@ -69,6 +84,8 @@
 <script type="text/javascript">
 $(function()
 {
+  $("#collection_collection_category_id").chosen();
+
   $('#collection_description').tinymce(
   {
     script_url: '/js/tiny_mce/tiny_mce.js',

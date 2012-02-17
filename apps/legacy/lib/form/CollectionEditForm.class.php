@@ -8,10 +8,10 @@ class CollectionEditForm extends BaseCollectionForm
 
     $this->getWidgetSchema()->setFormFormatterName('legacy');
 
-    $this->validatorSchema['collector_id'] = new sfValidatorPass();
-    $this->validatorSchema['slug'] = new sfValidatorPass();
-
-    $this->widgetSchema['collection_category_id'] = new sfWidgetFormInputHidden();
+    $this->widgetSchema['collection_category_id'] = new sfWidgetFormPropelChoice(array(
+      'model' => 'CollectionCategory', 'add_empty' => false,
+      'order_by' => array('Name', 'Asc'), 'method' => 'getNameWithParent'
+    ));
 
     $this->widgetSchema['thumbnail'] = new sfWidgetFormInputFile();
     $this->validatorSchema['thumbnail'] = new sfValidatorFile(array('required' => false));
@@ -19,7 +19,9 @@ class CollectionEditForm extends BaseCollectionForm
     $this->widgetSchema['tags'] = new sfWidgetFormInput();
     $this->validatorSchema['tags'] = new sfValidatorPass();
 
-    unset($this->widgetSchema['graph_id']);
-    unset($this->validatorSchema['graph_id']);
+    // Define which fields to use from the base form
+    $this->useFields(array(
+      'collection_category_id', 'name', 'description', 'thumbnail', 'tags'
+    ));
   }
 }

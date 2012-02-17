@@ -3,17 +3,26 @@
  * @var $collectible Collectible
  * @var $form sfFormFieldSchema
  */
+
+ice_use_javascript('jquery/chosen.js');
+ice_use_stylesheet('jquery/chosen.css');
+
 ?>
 
 <?php echo $form->renderHiddenFields() ?>
 
 <div class="span-4" style="text-align: right;">
-  <?php echo cq_label_for($form, 'collection_id', __('Collection:')); ?>
+  <?php echo cq_label_for($form, 'collection_collectible_list', __('Collection(s):')); ?>
   <div class="optional"><?php echo __('(optional)'); ?></div>
 </div>
 <div class="prepend-1 span-13 last">
-  <?php echo cq_select_tag($form, 'collection_id'); ?>
-  <?php echo $form['collection_id']->renderError(); ?>
+  <?php
+    echo $form['collection_collectible_list']->render(array(
+      'data-placeholder' => __('Choose one or more of your collections...'),
+      'class' => 'chzn-select', 'style' => 'width: 410px'
+    ));
+  ?>
+  <?php echo $form['collection_collectible_list']->renderError(); ?>
 </div>
 <div class="clear append-bottom">&nbsp;</div>
 
@@ -119,3 +128,12 @@
     <div class="clear append-bottom">&nbsp;</div>
   </div>
 <?php endif; ?>
+
+<?php cq_javascript_tag(); ?>
+<script type="text/javascript">
+  $(function()
+  {
+    $(".chzn-select").chosen();
+  });
+</script>
+<?php cq_end_javascript_tag(); ?>
