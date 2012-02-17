@@ -23,18 +23,15 @@
   <link href="/css/legacy/jquery.css" rel="stylesheet" type="text/css" media="screen, projection"/>
 
   <?php
+
+    // Include the cqcdns.com stylesheets
+    ice_include_stylesheets();
+
     if (has_component_slot('sidebar'))
     {
       use_stylesheet('legacy/sidebar.css');
     }
-
-    sfConfig::set('symfony.asset.stylesheets_included', true);
-    $css = @implode(',', array_keys($sf_response->getStylesheets()));
-
-    if (!empty($css))
-    {
-      echo '<link rel="stylesheet" type="text/css" media="screen" href="/combine.php?type=css&files='. $css .'&revision='. SVN_REVISION .'" />';
-    }
+    cq_include_stylesheets();
   ?>
 
   <!--[if lt IE 8]><link rel="stylesheet" href="/css/legacy/ie.css" type="text/css" media="screen, projection"><![endif]-->
