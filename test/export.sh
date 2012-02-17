@@ -3,7 +3,7 @@
 echo "DROP DATABASE IF EXISTS collectorsquest_test;" | mysql -u root
 echo "CREATE DATABASE collectorsquest_test DEFAULT CHARACTER SET utf8;" | mysql -u root
 
-./symfony propel:build-sql && ./symfony propel:insert-sql --env=test --no-confirmation
+php symfony propel:build-sql && php symfony propel:insert-sql --env=test --no-confirmation
 php -d memory_limit=256M ./symfony propel:data-load --env=test --connection=propel test/fixtures/common/propel
 php -d memory_limit=256M ./symfony propel:data-load --env=test --connection=archive test/fixtures/common/archive
 
