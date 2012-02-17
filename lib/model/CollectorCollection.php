@@ -6,6 +6,7 @@ require 'lib/model/om/BaseCollectorCollection.php';
  * IceTaggableBehavior
  *
  * @method array getTags($options = array())
+ * @method boolean setTags($names)
  * @method boolean addTag($name)
  * @method boolean hasTag($name)
  */

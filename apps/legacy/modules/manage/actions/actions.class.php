@@ -173,6 +173,7 @@ class manageActions extends cqActions
 
       if ($form->isValid())
       {
+        /** @var $collection CollectorCollection */
         $collection = $form->getObject();
         $collection->setCollectionCategoryId($form->getValue('collection_category_id'));
         $collection->setName($form->getValue('name'));
@@ -259,27 +260,10 @@ class manageActions extends cqActions
 
     $form = new CollectibleEditForm($collectible);
 
-    if ($this->bIsSeller = $this->getUser()->hasCredential('seller'))
-    {
-      $itemForSale = $collectible->getForSaleInformation();
-      if (!$itemForSale)
-      {
-        $itemForSale = new CollectibleForSale();
-        $itemForSale->setCollectibleId($collectible->getId());
-      }
-
-      $omItemForSaleForm = new CollectibleForSaleForm($itemForSale);
-    }
-
     if ($request->isMethod('post'))
     {
       $taintedValues = $request->getParameter('collectible');
       $form->bind($taintedValues, $request->getFiles('collectible'));
-
-      if ($this->bIsSeller && isset($omItemForSaleForm))
-      {
-        $omItemForSaleForm->bind($request->getParameter($omItemForSaleForm->getName()));
-      }
 
       if ($form->isValid())
       {
@@ -357,13 +341,19 @@ class manageActions extends cqActions
     {
       if ($this->getUser()->hasCredential('seller'))
       {
-        $this->getUser()->setFlash('highlight', $this->__('%username%, want some fast cash? Sell your collectibles today!', array('%username%' => $this->getUser()->getCollector())));
+        $this->getUser()->setFlash(
+          'highlight', $this->__(
+            '%username%, want some fast cash? Sell your collectibles today!',
+            array('%username%' => $this->getUser()->getCollector())
+          )
+        );
       }
       else
       {
         $this->getUser()->setFlash(
           'highlight', sprintf(
-            '%s, do you want to expand your collection? <a href="%s">Buy collectibles today!</a>', $this->getUser()->getDisplayName(), $this->generateUrl('marketplace')
+            '%s, do you want to expand your collection? <a href="%s">Buy collectibles today!</a>',
+            $this->getCollector()->getDisplayName(), $this->generateUrl('marketplace')
           )
         );
       }
@@ -450,10 +440,12 @@ class manageActions extends cqActions
       $this->redirect('@manage_collections');
     }
 
-    $form = new ManageCollectiblesForm(array(
-      'collectibles' => $pager->getResults(),
-      'collector'    => $this->getUser()->getCollector()
-    ));
+    $collectibles = new PropelObjectCollection($pager->getResults());
+
+    $form = new ManageCollectiblesForm(
+      $collectibles,
+      array('collector' => $this->getUser()->getCollector(), 'embedded_form_class' => 'CollectibleEditForm')
+    );
 
     if ($request->isMethod('post'))
     {

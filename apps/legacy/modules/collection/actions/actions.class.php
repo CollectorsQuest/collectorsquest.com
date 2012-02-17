@@ -39,15 +39,16 @@ class collectionActions extends cqActions
       $collection->save();
     }
 
+    $c = new Criteria();
+    $c->add(CollectiblePeer::COLLECTOR_ID, $collection->getCollectorId());
+
     if ($collection instanceof CollectionDropbox)
     {
-      $c = new Criteria();
       $c->addJoin(CollectiblePeer::ID, CollectionCollectiblePeer::COLLECTIBLE_ID, Criteria::LEFT_JOIN);
       $c->add(CollectionCollectiblePeer::COLLECTION_ID, null, Criteria::ISNULL);
     }
     else
     {
-      $c = new Criteria();
       $c->addJoin(CollectiblePeer::ID, CollectionCollectiblePeer::COLLECTIBLE_ID, Criteria::RIGHT_JOIN);
       $c->add(CollectionCollectiblePeer::COLLECTION_ID, $collection->getId());
     }
