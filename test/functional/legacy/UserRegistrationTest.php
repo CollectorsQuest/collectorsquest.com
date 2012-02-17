@@ -95,4 +95,18 @@ $browser
                       'TestCollectorSignupStep1Form', 'username')
   ))
 
+  /* */
+  ->info('  6. User is not allowed to access secure pages before completing registration')
+  ->get('collector/me')
+  ->with('response')->isRedirected(false)
+  ->with('response')->matches('/Username/')
+
+  ->info('  7. User is allowed to access non-secure pages before completing registration')
+  ->get('/')
+  ->with('request')->begin()
+    ->isParameter('module', 'general')
+    ->isParameter('action', 'index')
+  ->end()
+
+
   /* */;

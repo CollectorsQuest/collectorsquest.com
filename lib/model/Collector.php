@@ -583,6 +583,11 @@ class Collector extends BaseCollector
     return md5(rand(100000, 999999) . '_' . $this->getUsername());
   }
 
+  public function getHasCompletedRegistration()
+  {
+    return false;
+  }
+
 }
 
 sfPropelBehavior::add(
