@@ -43,6 +43,29 @@ classes:
       archivable: { archive_class: CollectibleOfferArchive, archived_at_column: archived_at }
       timestampable:  ~
 
+  ShoppingCart:
+    columns:
+      id:  ~
+      collector_id:      { type: integer, required: false, foreignClass: Collector, foreignReference: id, onDelete: setnull }
+      session_id:        { type: varchar, size: 24, required: false }
+
+    uniques:
+      shopping_cart_U_1: [ collector_id ]
+      shopping_cart_U_2: [ collector_id, session_id ]
+
+    propel_behaviors:
+      timestampable:  ~
+
+  ShoppingCartCollectible:
+    isCrossRef: true
+    columns:
+      shopping_cart_id:  { type: integer, required: true, foreignClass: ShoppingCart, foreignReference: id, onDelete: cascade, primaryKey: true }
+      collectible_id:    { type: integer, required: true, foreignClass: Collectible, foreignReference: id, onDelete: cascade, primaryKey: true }
+      is_active:         { type: boolean, default: true }
+
+    propel_behaviors:
+      timestampable:  ~
+
   Package:
     columns:
       id:  ~
