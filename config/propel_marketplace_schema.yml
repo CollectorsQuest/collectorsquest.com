@@ -59,9 +59,9 @@ classes:
   ShoppingCartCollectible:
     isCrossRef: true
     columns:
-      shopping_cart_id:  { type: integer, required: true, foreignClass: ShoppingCart, foreignReference: id, onDelete: cascade, primaryKey: true }
-      collectible_id:    { type: integer, required: true, foreignClass: Collectible, foreignReference: id, onDelete: cascade, primaryKey: true }
-      is_active:         { type: boolean, default: true }
+      shopping_cart_id:         { type: integer, required: true, foreignClass: ShoppingCart, foreignReference: id, onDelete: cascade, primaryKey: true }
+      collectible_for_sale_id:  { type: integer, required: true, foreignClass: CollectibleForSale, foreignReference: id, onDelete: cascade, primaryKey: true }
+      is_active:                { type: boolean, default: true }
 
     propel_behaviors:
       timestampable:  ~
