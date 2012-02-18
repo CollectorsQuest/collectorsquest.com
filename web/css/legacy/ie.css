@@ -9,7 +9,7 @@ body {
 legend {
   margin-bottom: 20px;
 }
-/* remove horizontal scroll bar problem in IE7 */
+/* remove horizontal scroll bar in IE7 */
 #fb-root {
   *display: none
 }
