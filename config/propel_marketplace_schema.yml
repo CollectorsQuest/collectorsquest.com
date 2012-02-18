@@ -34,7 +34,7 @@ classes:
     columns:
       id:  ~
       collectible_id:           { type: integer, required: true, foreignClass: Collectible, foreignReference: id, onDelete: cascade }
-      collectible_for_sale_id:  { type: integer, required: true, foreignClass: CollectibleForSale, foreignReference: id, onDelete: cascade }
+      collectible_for_sale_id:  { type: integer, required: false, foreignClass: CollectibleForSale, foreignReference: id, onDelete: setnull }
       collector_id:             { type: integer, required: true, foreignClass: Collector, foreignReference: id }
       price:                    { type: float }
       status:                   { type: char, sqlType: "ENUM('pending','counter','rejected','accepted')", required: true }
