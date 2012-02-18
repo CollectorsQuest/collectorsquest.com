@@ -237,14 +237,23 @@ marketplace:
   url: /marketplace
   param: { module: marketplace, action: index }
 
+marketplace_cart:
+  url: /marketplace/cart
+  param: { module: marketplace, action: cart }
+
+marketplace_order:
+  url: /marketplace/order/:step
+  param: { module: marketplace, action: order, step: 1 }
+  requirements: { step: '[1-3]' }
+
 marketplace_make_offer:
-  url: /marketplace/:id/makeOffer
+  url: /marketplace/make-offer/:id
   class: sfPropelRoute
   options: { model: CollectibleForSale, type: object }
   param: { module: marketplace, action: makeOffer }
 
 marketplace_buy_now:
-  url:  /marketplace/:id/buyNow
+  url:  /marketplace/buy-now/:id
   class: sfPropelRoute
   options: { model: CollectibleForSale, type: object }
   param: { module: marketplace, action: buyNow }
@@ -271,7 +280,7 @@ marketplace_item_offer:
   requirements: { id: \d+ }
 
 marketplace_category_by_slug:
-  url: /marketplace/:id/:slug
+  url: /marketplace/category/:id/:slug
   class: sfPropelRoute
   options: { model: CollectionCategory, type: object, method: getObjectForRoute }
   param: { module: marketplace, action: index }
