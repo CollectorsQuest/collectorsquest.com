@@ -4,32 +4,57 @@ require 'lib/model/om/BaseCollectibleForSale.php';
 
 class CollectibleForSale extends BaseCollectibleForSale
 {
+  /**
+   * Proxy method to Collectible::getCollector()
+   *
+   * @param  null|PropelPDO  $con
+   * @return Collector
+   */
   public function getCollector(PropelPDO $con = null)
   {
     return $this->getCollectible($con)->getCollector($con);
   }
 
+  /**
+   * Proxy method to Collectible::getCollection()
+   *
+   * @param  null|PropelPDO  $con
+   * @return Collection|CollectionDropbox
+   */
   public function getCollection(PropelPDO $con = null)
   {
     return $this->getCollectible($con)->getCollection($con);
   }
 
+  /**
+   * Get the number of offers made for this CollectibleForSale
+   *
+   * @param  boolean  $activeOnly
+   * @return integer
+   */
   public function getOffersCount($activeOnly = null)
   {
     $c = new Criteria();
 
-    if (!is_null($activeOnly)) {
+    if (null !== $activeOnly) {
       $c->add(CollectibleOfferPeer::STATUS, 'pending', $activeOnly ? Criteria::EQUAL : Criteria::NOT_EQUAL);
     }
 
     return count($this->getCollectibleOffers($c));
   }
 
+  /**
+   * @param Collector|integer $buyer
+   * @param null $status
+   * @param Criteria|null $criteria
+   *
+   * @return CollectibleOffer
+   */
   public function getCollectibleOfferByBuyer($buyer, $status = null, Criteria $criteria = null)
   {
     $id = $buyer instanceof Collector ? $buyer->getId() : $buyer;
 
-    if (is_null($criteria))
+    if (null === $criteria)
     {
       $criteria = new Criteria();
     }
@@ -37,7 +62,7 @@ class CollectibleForSale extends BaseCollectibleForSale
     $criteria->add(CollectibleOfferPeer::COLLECTIBLE_FOR_SALE_ID, $this->getId());
     $criteria->add(CollectibleOfferPeer::COLLECTOR_ID, $id);
 
-    if (!is_null($status))
+    if (null !== $status)
     {
       $criteria->add(CollectibleOfferPeer::STATUS, $status);
     }
@@ -45,6 +70,9 @@ class CollectibleForSale extends BaseCollectibleForSale
     return CollectibleOfferPeer::doSelectOne($criteria);
   }
 
+  /**
+   * @return integer
+   */
   public function getActiveCollectibleOffersCount()
   {
     $criteria = new Criteria();
