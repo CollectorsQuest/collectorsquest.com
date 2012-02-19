@@ -1,7 +1,7 @@
 <?php $error_reporting = error_reporting(0); ?>
 <?php if ($theme == 1): ?>
 <div class="span-25 last" style="margin: auto; text-align: center;">
-  <div style="width: 242px; float: left; position: relative;">
+  <div style="width: 242px; float: left;">
     <?php
       if ($collectibles[2] instanceof Collectible)
       {
