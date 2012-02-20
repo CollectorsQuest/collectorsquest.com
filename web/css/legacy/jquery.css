@@ -559,12 +559,12 @@ button.ui-button::-moz-focus-inner { border: 0; padding: 0; } /* reset extra pad
 .ui-progressbar .ui-progressbar-value {margin: -1px; height:100%; }
 
 
-.scrollable-big .ui-state-highlight {
+.ui-droppable.ui-state-highlight {
   -webkit-border-radius: 8px;
      -moz-border-radius: 8px;
           border-radius: 8px;
   -moz-background-clip: padding; -webkit-background-clip: padding-box; background-clip: padding-box;
-  background-color: #F7F8E3;
+  background: #FCF4B8 none;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#FCF4B8), to(#FFFFFF));
   background-image: -webkit-linear-gradient(top, #FCF4B8, #FFFFFF);
   background-image:    -moz-linear-gradient(top, #FCF4B8, #FFFFFF);

@@ -13,3 +13,7 @@ legend {
 #fb-root {
   *display: none
 }
+.ui-droppable.ui-state-highlight {
+   background-image: none;
+   background-color: #FCF4B8;
+}
