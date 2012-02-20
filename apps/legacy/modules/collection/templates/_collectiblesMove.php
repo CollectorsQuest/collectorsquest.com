@@ -8,7 +8,7 @@
 ?>
 <br class="clear" />
 
-<div class="slider-wrapper cf ">
+<div class="slider-wrapper cf">
   <a href="#" class="prevPage browse left scrollable-big-buttons"></a>
 <div class="scrollable-big">
   <ul>
@@ -32,6 +32,10 @@
 
 
 <div class="draggable-collectibles-wrapper">
+  <div class="draggable-collectibles-admination">
+   <img src="/images/legacy/drag_drop_animation.gif" width="104" height="73" alt="drag and drop images into collections" />
+   <p>drag and drop<br />images into collections</p>
+  </div>
   <div id="draggable-collectibles" class="draggable-collectibles-container cf">
     <?php
         foreach ($collectibles as $i => $collectible)
