@@ -46,13 +46,11 @@ class collectionComponents extends cqComponents
         'route' => 'fancybox_collection_add_collectibles('. $this->collection->getId() .')'
       );
 
-      /**
-        $this->buttons[] = array(
-          'text' => 'Move Collectibles',
-          'icon' => 'shuffle',
-          'route' => 'ajax_load("#contents", "'. url_for('@ajax_collection?section=component&page=collectiblesMove') .'?id='. $this->collection->getId() .'")'
-        );
-      */
+      $this->buttons[] = array(
+        'text' => 'Move Collectibles',
+        'icon' => 'shuffle',
+        'route' => 'ajax_load("#contents", "'. url_for('@ajax_collection?section=component&page=collectiblesMove') .'?id='. $this->collection->getId() .'")'
+      );
 
       $this->buttons[] = array(
         'text' => 'Re-Order Collectibles',
@@ -174,8 +172,14 @@ class collectionComponents extends cqComponents
   {
     $this->_get_collection();
 
-    if ($this->getUser()->isOwnerOf($this->collection))
+    $collector = $this->getCollector();
+
+    if ($collector->isOwnerOf($this->collection))
     {
+      $c = new Criteria();
+      $c->add(CollectorCollectionPeer::ID, $this->collection->getId(), Criteria::NOT_EQUAL);
+      $this->collections = $collector->getCollections($c);
+
       $c = new Criteria();
       $c->addAscendingOrderByColumn(CollectionCollectiblePeer::POSITION);
       $c->addDescendingOrderByColumn(CollectionCollectiblePeer::CREATED_AT);

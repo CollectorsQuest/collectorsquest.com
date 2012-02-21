@@ -107,3 +107,33 @@
   top: 150px;
   left: 0;
 }
+/* drag&drop slider */
+.slider-wrapper {
+  width: 680px;
+  margin: 0 auto 12px auto;
+}
+
+/* movable collectibles */
+.draggable-collectibles-wrapper {
+  width: 100%;
+}
+.draggable-collectibles-admination {
+  width: 140px;
+  text-align: center;
+  float: left;
+}
+
+.draggable-collectibles-container {
+  width: 530px;
+  float: left;
+  padding-top: 20px;
+  text-align: center;
+}
+
+.thumb-space {
+  padding-right: 12px;
+  padding-left: 12px;
+  float: left;
+  z-index: 100;
+}
+
