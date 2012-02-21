@@ -59,6 +59,11 @@ dev:
     static_domain: "http://static.collectorsquest.dev/"
     multimedia_domain: "http://multimedia.collectorsquest.dev"
 
+  ice_libs:
+    kint:
+      enabled: true
+      path_display_callback: 'Kint::_kintLine'
+
   ice_assets:
     domain: "cqcdns.dev"
 
