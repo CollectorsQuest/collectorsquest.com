@@ -64,6 +64,12 @@ seller_ajax_save:
   url:   /seller/ajax/save
   param: { module: seller, action: ajaxSaveData }
 
+# currently points to the collector signup form
+seller_signup:
+  url:   /collector/signup/:step
+  param: { module: collector, action: signup, step: 1 }
+  requirements: { step: '[1-3]' }
+
 sellers:
   url:   /sellers
   param: { module: collectors, action: sellers }
