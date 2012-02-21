@@ -78,9 +78,14 @@ if ($collectible_for_sale)
 <?php if ($collectible_for_sale and $collectible_for_sale->getIsReady() and (!$sf_user->isAuthenticated() or $sf_user->getCollector()->getId() !== $collectible_for_sale->getCollector()->getId())): ?>
   <div class="rounded buynow" style="float:right; margin-right: 90px;">
     <?php if (!$isSold): ?>
+      <a href="#price">
+        <?php echo ($offerPrice > 0) ? money_format('Buy for <br /> %.2n', (float) $offerPrice) : __('Buy Item'); ?>
+      </a>
+      <?php /*
       <a href="<?php echo url_for('marketplace_buy_now', $collectible_for_sale) ?>">
         <?php echo ($offerPrice > 0) ? money_format('Buy for <br /> %.2n', (float) $offerPrice) : __('Buy Item'); ?>
       </a>
+      */?>
     <?php else: ?>
       <?php echo __('SOLD FOR <br />%price%', array('%price%'=>money_format('%.2n', $collectible_for_sale->getPrice()))); ?>
     <?php endif; ?>

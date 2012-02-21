@@ -107,6 +107,63 @@
   top: 150px;
   left: 0;
 }
+
+/* BUY NOW BOX */
+.buy-now-container {
+  width: 650px;
+  margin: 18px auto 40px auto;
+  padding: 12px;
+  background-color: #fcfbe8;
+  border: 1px solid #d0d0d0;
+  -webkit-border-radius: 10px;
+     -moz-border-radius: 10px;
+          border-radius: 10px;
+  -moz-background-clip: padding; -webkit-background-clip: padding-box; background-clip: padding-box;
+}
+
+.section-title {
+  color: #fa9d00;
+  font-weight: bold;
+}
+.green-text {
+  text-transform: uppercase;
+  color: #7aa100;
+  font-size: 16px;
+  margin: 12px 0 0.2em 0;
+}
+.blue-text {
+  text-transform: uppercase;
+  color: #3671b2;
+  font-size: 16px;
+  margin: 12px 0 0.2em 0;
+}
+.bug-price {
+  font-size: 22px;
+  margin: 0 0 0.2em 0;
+}
+
+.bolder {
+  font-weight: bold;
+}
+.buy-now-container div.center {
+  text-align: center;
+}
+.img-align-vmiddle {
+  vertical-align: middle;
+  padding-right: 6px
+}
+.dist-m20 {
+  margin-top: 50px
+}
+
+.section-title a, .section-title:visited {
+  color:#1D59B4;
+  text-decoration: none;
+}
+.section-title a:hover {
+  text-decoration: underline;
+}
+
 /* drag&drop slider */
 .slider-wrapper {
   width: 680px;
