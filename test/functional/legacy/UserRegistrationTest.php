@@ -11,7 +11,7 @@ $browser = new myTestFunctional(new sfBrowser(), new lime_test(null, new lime_ou
 
 $browser
   ->info('Testing user registration')
-  ->loadFormData('legacy/user_registration_test.yml')
+  ->loadFormFixtures('legacy/user_registration_test.yml')
   ->setTester('propel', 'sfTesterPropel');
 
 

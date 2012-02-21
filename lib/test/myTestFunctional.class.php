@@ -7,7 +7,7 @@
 class myTestFunctional extends sfTestFunctional
 {
 
-  protected $forms_data = array();
+  protected $form_fixtures = array();
 
 
   /**
@@ -57,7 +57,7 @@ class myTestFunctional extends sfTestFunctional
    *
    * @return    myTestFunctional
    */
-  public function loadFormData($filename = null)
+  public function loadFormFixtures($filename = null)
   {
     if (!is_file($filename) && '/' != substr($filename, 0, 1))
     {
@@ -65,17 +65,18 @@ class myTestFunctional extends sfTestFunctional
     }
     if (is_file($filename))
     {
+      $this->info(sprintf('Load form fixtures from file %s', $filename));
       $data = sfYaml::load($filename);
-      $this->loadFormDataFromArray($data);
+      $this->loadFormFixturesFromArray($data);
     }
     else if (is_dir($filename))
     {
       $files = sfFinder::type('file')->name('*.yml')->sort_by_name()->in($filename);
       foreach ($files as $filename)
       {
+        $this->info(sprintf('Load form fixtures from file %s', $filename));
         $data = sfYaml::load($filename);
-
-        $this->loadFormDataFromArray($data);
+        $this->loadFormFixturesFromArray($data);
       }
     }
 
@@ -90,16 +91,17 @@ class myTestFunctional extends sfTestFunctional
    *
    * @return    myTestFunctional
    */
-  public function loadFormDataFromArray($data = array())
+  public function loadFormFixturesFromArray($data = array())
   {
     foreach ($data as $form_name => $form_data)
     {
-      if (isset($this->forms_data[$form_name]))
+      if (isset($this->form_fixtures[$form_name]))
       {
         throw new sfConfigurationException(sprintf('You have already set a form with the name "%s"', $form_name));
       }
 
-      $this->forms_data[$form_name] = $form_data;
+      $this->info(sprintf('Make the form fixture "%s" available to the tester', $form_name));
+      $this->form_fixtures[$form_name] = $form_data;
     }
 
     return $this;
@@ -112,14 +114,9 @@ class myTestFunctional extends sfTestFunctional
    *
    * @return    array $form_data
    */
-  public function getFormsData()
+  public function getFormFixtures()
   {
-    if (empty($this->forms_data))
-    {
-      $this->loadFormData();
-    }
-
-    return $this->forms_data;
+    return $this->form_fixtures;
   }
 
 
@@ -134,16 +131,16 @@ class myTestFunctional extends sfTestFunctional
    */
   public function fillForm($form_name, $values = null, $fixture_name = null)
   {
-    $forms_data = $this->getFormsData();
+    $form_fixtures = $this->getFormFixtures();
 
     $fixture_name = $fixture_name ?: $form_name;
 
-    if (!isset($forms_data[$fixture_name]) && !is_array($values))
+    if (!isset($form_fixtures[$fixture_name]) && !is_array($values))
     {
       throw new InvalidArgumentException("No data available with which to fill the {$form_name} form");
     }
 
-    foreach (sfToolkit::arrayDeepMerge(isset($forms_data[$fixture_name]) ? $forms_data[$fixture_name] : array(), is_array($values) ? $values : array()) as $field_name => $field_value)
+    foreach (sfToolkit::arrayDeepMerge(isset($form_fixtures[$fixture_name]) ? $form_fixtures[$fixture_name] : array(), is_array($values) ? $values : array()) as $field_name => $field_value)
     {
       $this->setFormField($form_name, $field_name, $field_value);
     }
@@ -161,13 +158,13 @@ class myTestFunctional extends sfTestFunctional
    */
   public function getFormFixture($fixture_name, $field_name = null, $default = null)
   {
-    $forms_data = $this->getFormsData();
+    $form_fixtures = $this->getFormFixtures();
 
     $result = $default;
 
-    if (isset($forms_data[$fixture_name]))
+    if (isset($form_fixtures[$fixture_name]))
     {
-      $result = $forms_data[$fixture_name];
+      $result = $form_fixtures[$fixture_name];
 
       if (isset($field_name) && isset($result[$field_name]))
       {
