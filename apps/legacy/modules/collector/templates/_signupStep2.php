@@ -21,7 +21,7 @@
         <div class="required"><?= __('(required)'); ?></div>
       </div>
       <div class="prepend-1 span-6 last">
-        <?php echo cq_select_tag($form, 'collector_type'); ?>
+        <?php echo cq_select_tag($form, 'collector_type', array('style'=>'height: 30px')); ?>
         <span style="color:#FF0000"><?= $form['collector_type']->renderError(); ?></span>
 
         <div id="whatmiContent" style="display:none">
@@ -36,40 +36,40 @@
       <br clear="all"/><br/>
 
       <div class="span-3" style="text-align: right; width:160px;">
-        <?= cq_label_for($form, 'what_you_collect', __('What do you collect?')); ?>
+        <?= cq_label_for($form, 'about_what_you_collect', __('What do you collect?')); ?>
         <div class="required"><?= __('(required)'); ?></div>
       </div>
-      <div class="prepend-1 span-6 last"> <?= cq_input_tag($form, 'what_you_collect', array('width' => 400)); ?>
-        <span style="color:#FF0000"><?= $form['what_you_collect']->renderError(); ?></span></div>
+      <div class="prepend-1 span-6 last"> <?= cq_input_tag($form, 'about_what_you_collect', array('width' => 400)); ?>
+        <span style="color:#FF0000"><?= $form['about_what_you_collect']->renderError(); ?></span></div>
       <br clear="all"/>
       <br>
 
       <div class="span-3"
-           style="text-align: right; width:160px;"> <?= cq_label_for($form, 'purchase_per_year', __('How many times a year do you purchase?')); ?>
+           style="text-align: right; width:160px;"> <?= cq_label_for($form, 'about_purchase_per_year', __('How many times a year do you purchase?')); ?>
         <div class="required"><?= __('(required)'); ?></div>
       </div>
       <div
-          class="prepend-1 span-6 last"> <?= cq_input_tag($form, 'purchase_per_year', array('width' => 400)); ?>
-        <span style="color:#FF0000"><?= $form['purchase_per_year']->renderError(); ?></span></div>
+          class="prepend-1 span-6 last"> <?= cq_input_tag($form, 'about_purchase_per_year', array('width' => 400)); ?>
+        <span style="color:#FF0000"><?= $form['about_purchase_per_year']->renderError(); ?></span></div>
       <br clear="all"/>
       <br>
 
       <div class="span-3"
-           style="text-align: right; width:160px;"> <?= cq_label_for($form, 'most_expensive_item', __('What is the most you ever spent on an item? (in USD):')); ?>
+           style="text-align: right; width:160px;"> <?= cq_label_for($form, 'about_most_expensive_item', __('What is the most you ever spent on an item? (in USD):')); ?>
         <div style="color: #ccc; font-style: italic;"><?= __('(optional)'); ?></div>
       </div>
       <div
-          class="prepend-1 span-6 last"> <?= cq_input_tag($form, 'most_expensive_item', array('width' => 400)); ?>
-        <span style="color:#FF0000"><?= $form['most_expensive_item']->renderError(); ?></span></div>
+          class="prepend-1 span-6 last"> <?= cq_input_tag($form, 'about_most_expensive_item', array('width' => 400)); ?>
+        <span style="color:#FF0000"><?= $form['about_most_expensive_item']->renderError(); ?></span></div>
       <br clear="all"/>
       <br>
 
       <div class="span-3"
-           style="text-align: right; width:160px;"> <?= cq_label_for($form, 'annually_spend', __('How much do you spend annually? (in USD):')); ?>
+           style="text-align: right; width:160px;"> <?= cq_label_for($form, 'about_annually_spend', __('How much do you spend annually? (in USD):')); ?>
         <div style="color: #ccc; font-style: italic;"><?= __('(optional)'); ?></div>
       </div>
-      <div class="prepend-1 span-6 last"> <?= cq_input_tag($form, 'annually_spend', array('width' => 400)); ?>
-        <span style="color:#FF0000"><?= $form['annually_spend']->renderError(); ?></span></div>
+      <div class="prepend-1 span-6 last"> <?= cq_input_tag($form, 'about_annually_spend', array('width' => 400)); ?>
+        <span style="color:#FF0000"><?= $form['about_annually_spend']->renderError(); ?></span></div>
     </fieldset>
     <div class="span-13" style="text-align: right;">
       <?php cq_button_submit(__('Next'), null, 'padding-left: 350px;'); ?>

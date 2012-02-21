@@ -4,7 +4,8 @@ class CollectorProfileEditForm extends BaseCollectorProfileForm
 {
   public function configure()
   {
-    $years = array_combine(range(date('Y') - 100, date('Y')), range(date('Y') - 100, date('Y')));
+    $years = array_combine(range(date('Y') - 100, date('Y')),
+      range(date('Y') - 100, date('Y')));
 
     $this->setWidgets(array(
       'id' => new sfWidgetFormInputHidden(),
@@ -19,6 +20,7 @@ class CollectorProfileEditForm extends BaseCollectorProfileForm
       'about_me' => new sfWidgetFormTextarea(),
       'about_collections' => new sfWidgetFormTextarea(),
       'about_what_you_collect' => new sfWidgetFormInputText(),
+      'about_purchase_per_year'   => new sfWidgetFormInputText(),
       'about_most_expensive_item' => new sfWidgetFormInputText(),
       'about_annually_spend' => new sfWidgetFormInputText(),
       'about_new_item_every' => new sfWidgetFormInputText(),
@@ -38,13 +40,20 @@ class CollectorProfileEditForm extends BaseCollectorProfileForm
       'about_me' => new sfValidatorString(array('required' => false)),
       'about_collections' => new sfValidatorString(array('required' => false)),
       'about_what_you_collect' => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'about_purchase_per_year'   => new sfValidatorNumber(array('required' => false)),
       'about_most_expensive_item' => new sfValidatorNumber(array('min' => 0, 'max' => 2147483647, 'required' => false)),
       'about_annually_spend' => new sfValidatorNumber(array('min' => 0, 'max' => 2147483647, 'required' => false)),
       'about_new_item_every' => new sfValidatorString(array('max_length' => 64, 'required' => false)),
       'about_interests' => new sfValidatorString(array('required' => false)),
     ));
 
-    if ($profile = $this->getObject())
+  }
+
+  public function updateDefaultsFromObject()
+  {
+    parent::updateDefaultsFromObject();
+
+    if (( $profile = $this->getObject() ))
     {
       $this->setDefault('about_me', $profile->getAboutMe());
       $this->setDefault('about_collections', $profile->getAboutCollections());
@@ -58,13 +67,7 @@ class CollectorProfileEditForm extends BaseCollectorProfileForm
 
   public function getCollectorTypeChoices()
   {
-    return array(
-      'casual' => 'Casual',
-      'occasional' => 'Occasional',
-      'serious' => 'Serious',
-      'obsessive' => 'Obsessive',
-      'expert' => 'Expert',
-    );
+    return CollectorProfilePeer::$collector_types;
   }
 
   public function updateObject($values = null)
