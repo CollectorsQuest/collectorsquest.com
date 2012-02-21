@@ -54,8 +54,10 @@ class marketplaceComponents extends sfComponents
 
     if ($category = CollectionCategoryQuery::create()->findOneById($request->getParameter('id', @$search['category_id'])))
     {
-      $c->addJoin(CollectiblePeer::COLLECTION_ID, CollectorCollectionPeer::ID);
       $c->add(CollectorCollectionPeer::COLLECTION_CATEGORY_ID, $category->getId());
+      $c->addJoin(CollectiblePeer::ID, CollectionCollectiblePeer::COLLECTIBLE_ID, Criteria::RIGHT_JOIN);
+      $c->addJoin(CollectionCollectiblePeer::COLLECTION_ID, CollectorCollectionPeer::ID);
+
       if ($category->getParentId() > 0)
       {
         $c->addOr(CollectorCollectionPeer::COLLECTION_CATEGORY_ID, $category->getParentId());
