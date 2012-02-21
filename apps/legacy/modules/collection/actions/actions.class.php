@@ -44,12 +44,12 @@ class collectionActions extends cqActions
 
     if ($collection instanceof CollectionDropbox)
     {
-      $c->addJoin(CollectiblePeer::ID, CollectionCollectiblePeer::COLLECTIBLE_ID, Criteria::RIGHT_JOIN);
+      $c->addJoin(CollectiblePeer::ID, CollectionCollectiblePeer::COLLECTIBLE_ID, Criteria::LEFT_JOIN);
       $c->add(CollectionCollectiblePeer::COLLECTION_ID, null, Criteria::ISNULL);
     }
     else
     {
-      $c->addJoin(CollectiblePeer::ID, CollectionCollectiblePeer::COLLECTIBLE_ID, Criteria::RIGHT_JOIN);
+      $c->addJoin(CollectiblePeer::ID, CollectionCollectiblePeer::COLLECTIBLE_ID);
       $c->add(CollectionCollectiblePeer::COLLECTION_ID, $collection->getId());
     }
 
