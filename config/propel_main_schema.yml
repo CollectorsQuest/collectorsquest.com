@@ -26,6 +26,7 @@ classes:
       spam_score:     { type: integer, default: 0 }
       is_spam:        { type: boolean, default: false }
       is_public:      { type: boolean, default: true }
+      has_completed_registration: { type: boolean, default: false }
       session_id:     { type: varchar, size: 32 }
       last_seen_at:   { type: timestamp }
 
