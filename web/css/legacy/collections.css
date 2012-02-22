@@ -121,10 +121,6 @@
   -moz-background-clip: padding; -webkit-background-clip: padding-box; background-clip: padding-box;
 }
 
-.section-title {
-  color: #fa9d00;
-  font-weight: bold;
-}
 .green-text {
   text-transform: uppercase;
   color: #7aa100;
