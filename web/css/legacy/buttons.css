@@ -69,7 +69,7 @@ a.button:link span,
 a.button:visited span {
   padding: 0 14px 0 0;
   height: 24px;
-  background: url(./images/legacy/buttons/bg_button_right.gif) top right;
+  background: url(/images/legacy/buttons/bg_button_right.gif) top right;
 }
 
 button span span,
@@ -79,7 +79,7 @@ a.button:visited span span {
   padding: 0 0 0 13px;
   height: 24px;
   line-height: 24px;
-  background: #fff url(./images/legacy/buttons/bg_button_left.gif) top left;
+  background: #fff url(/images/legacy/buttons/bg_button_left.gif) top left;
 }
 
 button:hover,
@@ -98,7 +98,7 @@ a.submit span span,
 a.submit:link span span,
 a.submit:visited span span {
   padding-left: 26px;
-  background-image: url(./images/legacy/buttons/bg_button_left_submit.gif);
+  background-image: url(/images/legacy/buttons/bg_button_left_submit.gif);
 }
 
 button.submit:hover,
@@ -116,7 +116,7 @@ a.cancel span span,
 a.cancel:link span span,
 a.cancel:visited span span {
   padding-left: 26px;
-  background-image: url(./images/legacy/buttons/bg_button_left_cancel.gif);
+  background-image: url(/images/legacy/buttons/bg_button_left_cancel.gif);
 }
 
 button.cancel:hover,
@@ -134,7 +134,7 @@ a.edit span span,
 a.edit:link span span,
 a.edit:visited span span {
   padding-left: 26px;
-  background-image: url(./images/legacy/buttons/bg_button_left_edit.gif);
+  background-image: url(/images/legacy/buttons/bg_button_left_edit.gif);
 }
 
 button.edit:hover,
@@ -152,7 +152,7 @@ a.create span span,
 a.create:link span span,
 a.create:visited span span {
   padding-left: 26px;
-  background-image: url(./images/legacy/buttons/bg_button_left_create.gif);
+  background-image: url(/images/legacy/buttons/bg_button_left_create.gif);
 }
 
 button.create:hover,

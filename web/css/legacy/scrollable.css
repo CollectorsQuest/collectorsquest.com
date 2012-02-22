@@ -8,7 +8,7 @@
 
   /* custom decorations */
   border:1px solid #ccc;
-  background:url(./images/legacy/h300.png) repeat-x;
+  background:url(/images/legacy/h300.png) repeat-x;
 }
 
 .scrollable .items {
@@ -95,7 +95,7 @@
 
 /* prev, next, prevPage and nextPage buttons */
 a.browse {
-  background:url(./images/legacy/hori_large.png) no-repeat;
+  background:url(/images/legacy/hori_large.png) no-repeat;
   display:block;
   width:30px;
   height:30px;
@@ -118,7 +118,7 @@ a.left:active   { background-position:-60px 0; }
 
 /* up and down */
 a.up, a.down {
-  background:url(./images/legacy/vert_large.png) no-repeat;
+  background:url(/images/legacy/vert_large.png) no-repeat;
   float: none;
   margin: 10px 50px;
 }

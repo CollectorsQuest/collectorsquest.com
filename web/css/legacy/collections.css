@@ -5,7 +5,7 @@
 }
 
 .collection div.stack {
-  background: url(./images/legacy/stack-small.png);
+  background: url(/images/legacy/stack-small.png);
   width: 56px;
   height: 57px;
   margin-top: 5px;
@@ -23,7 +23,7 @@
 
 .grid_view_collection div.stack,
 .list_view_collection div.stack {
-  background: url(./images/legacy/stack.png);
+  background: url(/images/legacy/stack.png);
   width: 158px;
   height: 159px;
   margin: auto;

@@ -1,4 +1,4 @@
-<?php 
+<?php
 $actions = array(
   'counter' => 'made a counter',
   'buyer_counter' => 'made a counter',
@@ -14,9 +14,9 @@ $actions = array(
   <div id="sf_admin_content">
     <div class="sf_admin_list">
 		<div style="height: 30px;">
-		<div style="text-align: left; background: #AFD85D; padding: 3px; color: #fff; margin-top: 2px; float: left; margin-right: 20px;"> 
+		<div style="text-align: left; background: #AFD85D; padding: 3px; color: #fff; margin-top: 2px; float: left; margin-right: 20px;">
 			<?php echo money_format('%.2n', $collectible_for_sale->getPrice()); ?> </div>
-		<div style='width: 160px; text-align: center; background: #F2F8D5; padding: 3px;margin-top: 2px; float: left;'> 
+		<div style='width: 160px; text-align: center; background: #F2F8D5; padding: 3px;margin-top: 2px; float: left;'>
 			<?php echo $collectible_for_sale->getCondition(); ?> condition </div>
 		</div>
 		<table style="border: 1px solid #DEDEDE;" width="100%">
@@ -35,17 +35,17 @@ $actions = array(
 					<table style="border: 1px solid #DEDEDE;" width="100%">
 			<?php endif; ?>
 			<tr style="background: <?php echo ($i%2==0) ? '#F2F8D5': '#FFFFFF'; ?>">
-				
+
 				<td width="100" style="padding: 5px;"><?php echo $offer->getCreatedAt('%Y-%m-%d'); ?></td>
 				<td width="60" style="padding: 5px;"><?php echo money_format('%.2n', $offer->getPrice()); ?></td>
-        <?php 
+        <?php
         if (in_array($offer->getStatus(), array('counter', 'accepted', 'rejected'))):
           $left = $omCollectibleOwner->getDisplayName();
           $right = $offer->getCollector()->getDisplayName();
-        else: 
+        else:
           $left = $offer->getCollector()->getDisplayName();
           $right = $omCollectibleOwner->getDisplayName();
-        endif; 
+        endif;
         ?>
 				<td style="padding: 5px;" colspan="3">
           <b><?php echo $left ?></b> <?php echo $actions[$offer->getStatus()] ?> offer on <?php echo $right ?> at <?php echo $offer->getUpdatedAt('%Y-%m-%d'); ?>
