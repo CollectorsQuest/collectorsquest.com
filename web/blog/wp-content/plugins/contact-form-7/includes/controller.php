@@ -153,7 +153,7 @@ add_filter( 'widget_text', 'wpcf7_widget_text_filter', 9 );
 function wpcf7_widget_text_filter( $content ) {
 	global $wpcf7;
 
-	if ( ! preg_match( '/\[\s*contact-form(-7)?\s.*?\]/', $content ) )
+	if ( ! preg_match( '/\[[\r\n\t ]*contact-form(-7)?[\r\n\t ].*?\]/', $content ) )
 		return $content;
 
 	$wpcf7->widget_count += 1;
@@ -231,7 +231,7 @@ function wpcf7_enqueue_scripts() {
 	// so we need to deregister it and re-register the latest one
 	wp_deregister_script( 'jquery-form' );
 	wp_register_script( 'jquery-form', wpcf7_plugin_url( 'jquery.form.js' ),
-		array( 'jquery' ), '2.52', true );
+		array( 'jquery' ), '2.96', true );
 
 	$in_footer = true;
 	if ( 'header' === WPCF7_LOAD_JS )
