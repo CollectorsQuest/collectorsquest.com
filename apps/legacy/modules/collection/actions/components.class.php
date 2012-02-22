@@ -35,38 +35,45 @@ class collectionComponents extends cqComponents
       }
 
       $this->buttons[] = array(
-        'text' => 'Edit Collectibles',
-        'icon' => 'pencil',
-        'route' => '@manage_collectibles_by_slug?id='. $this->collection->getId() .'&slug='. $this->collection->getSlug()
-      );
-
-      $this->buttons[] = array(
         'text' => 'Add Collectibles',
         'icon' => 'plus',
         'route' => 'fancybox_collection_add_collectibles('. $this->collection->getId() .')'
       );
 
-      $this->buttons[] = array(
-        'text' => 'Move Collectibles',
-        'icon' => 'shuffle',
-        'route' => 'ajax_load("#contents", "'. url_for('@ajax_collection?section=component&page=collectiblesMove') .'?id='. $this->collection->getId() .'")'
-      );
-
-      $this->buttons[] = array(
-        'text' => 'Re-Order Collectibles',
-        'icon' => 'refresh',
-        'route' => 'ajax_load("#contents", "'. url_for('@ajax_collection?section=component&page=collectiblesReorder') .'?id='. $this->collection->getId() .'")'
-      );
-
-      if ($this->collection instanceof CollectionDropbox)
+      /**
+       * Show these sidebar buttons only if the Collection has Collectibles
+       */
+      if ($this->collection->countCollectibles() > 0)
       {
         $this->buttons[] = array(
-          'text' => 'Empty Dropbox',
-          'icon' => 'trash',
-          'route' => '@manage_dropbox?cmd=empty&encrypt=1',
-          'confirm' => 'This will permanently delete all Collectibles in your Dropbox. Do you want to continue?'
+          'text' => 'Edit Collectibles',
+          'icon' => 'pencil',
+          'route' => '@manage_collectibles_by_slug?id='. $this->collection->getId() .'&slug='. $this->collection->getSlug()
         );
+
+        $this->buttons[] = array(
+          'text' => 'Move Collectibles',
+          'icon' => 'shuffle',
+          'route' => 'ajax_load("#contents", "'. url_for('@ajax_collection?section=component&page=collectiblesMove') .'?id='. $this->collection->getId() .'")'
+        );
+
+        $this->buttons[] = array(
+          'text' => 'Re-Order Collectibles',
+          'icon' => 'refresh',
+          'route' => 'ajax_load("#contents", "'. url_for('@ajax_collection?section=component&page=collectiblesReorder') .'?id='. $this->collection->getId() .'")'
+        );
+
+        if ($this->collection instanceof CollectionDropbox)
+        {
+          $this->buttons[] = array(
+            'text' => 'Empty Dropbox',
+            'icon' => 'trash',
+            'route' => '@manage_dropbox?cmd=empty&encrypt=1',
+            'confirm' => 'This will permanently delete all Collectibles in your Dropbox. Do you want to continue?'
+          );
+        }
       }
+
     }
     else
     {
