@@ -11,6 +11,8 @@ class marketplaceComponents extends sfComponents
     $c = new Criteria();
     $c->setDistinct();
     $c->addJoin(CollectibleForSalePeer::COLLECTIBLE_ID, CollectiblePeer::ID);
+    $c->add(CollectibleForSalePeer::IS_READY, true);
+    $c->add(CollectibleForSalePeer::PRICE, 0, Criteria::GREATER_THAN);
 
     $search = array();
     if ($request->getParameter('page'))
