@@ -34,7 +34,7 @@ classes:
   CollectorProfileArchive:
     columns:
       collector_id:    { type: integer, primaryKey: true}
-      collector_type:  { type: char, sqlType: "ENUM('Collector','Seller')", default: "Collector", required: true }
+      collector_type:  { type: enum, valueSet: "casual, occasional, serious, obsessive, expert", default: casual, required: true }
       birthday:        { type: date }
       gender:          { type: char, sqlType: "ENUM('f','m')" }
       zip_postal:      varchar(10)

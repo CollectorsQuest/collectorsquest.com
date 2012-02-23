@@ -59,11 +59,11 @@ class CollectorProfileEditForm extends BaseCollectorProfileForm
   public function getCollectorTypeChoices()
   {
     return array(
-      'casual' => 'Casual',
-      'occasional' => 'Occasional',
-      'serious' => 'Serious',
-      'obsessive' => 'Obsessive',
-      'expert' => 'Expert',
+      CollectorProfilePeer::COLLECTOR_TYPE_CASUAL => 'Casual',
+      CollectorProfilePeer::COLLECTOR_TYPE_OCCASIONAL => 'Occasional',
+      CollectorProfilePeer::COLLECTOR_TYPE_SERIOUS => 'Serious',
+      CollectorProfilePeer::COLLECTOR_TYPE_OBSESSIVE => 'Obsessive',
+      CollectorProfilePeer::COLLECTOR_TYPE_EXPERT => 'Expert',
     );
   }
 
