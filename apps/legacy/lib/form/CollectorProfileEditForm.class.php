@@ -7,7 +7,7 @@ class CollectorProfileEditForm extends BaseCollectorProfileForm
     $years = array_combine(range(date('Y') - 100, date('Y')), range(date('Y') - 100, date('Y')));
 
     $this->setWidgets(array(
-      'id' => new sfWidgetFormInputHidden(),
+      'collector_id'    => new sfWidgetFormInputHidden(),
       'collector_type' => new sfWidgetFormChoice(array('choices' => $this->getCollectorTypeChoices(), 'expanded' => true)),
 
       'birthday' => new sfWidgetFormDate(array('years' => $years)),
@@ -26,7 +26,7 @@ class CollectorProfileEditForm extends BaseCollectorProfileForm
     ));
 
     $this->setValidators(array(
-      'id' => new sfValidatorPropelChoice(array('model' => 'CollectorProfile', 'column' => 'id', 'required' => true)),
+      'collector_id'    => new sfValidatorPropelChoice(array('model' => 'Collector', 'column' => 'id', 'required' => false)),
       'collector_type' => new sfValidatorChoice(array('choices' => array_keys($this->getCollectorTypeChoices()), 'required' => true)),
 
       'birthday' => new sfValidatorDate(array('required' => false)),
