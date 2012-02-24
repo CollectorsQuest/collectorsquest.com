@@ -2,9 +2,18 @@
 
 class cqJobQueue extends Zend_Queue
 {
+  /** @var array */
   private static $_queue = array();
+
+  /** @var array */
   private static $_databases = array();
 
+  /**
+   * @static
+   *
+   * @param  string  $name
+   * @return cqJobQueue
+   */
   public static function create($name = null)
   {
     if (empty(self::$_queue[$name]))

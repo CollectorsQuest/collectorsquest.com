@@ -16,13 +16,7 @@ classes:
       salt:           { type: varchar, size: 32, required: true }
       email:          { type: varchar, size: 128, index: true }
       user_type:      { type: char, sqlType: "ENUM('Collector','Seller')", default: "Collector", required: true }
-      items_allowed:         integer
-#      what_you_collect:      { type: varchar, size: 255 }
-#      purchases_per_year:    { type: integer, default: 0 }
-#      what_you_sell:         { type: varchar, size: 255 }
-#      annually_spend:        { type: float, default: 0 }
-#      most_expensive_item:   { type: float, default: 0 }
-#      company:               { type: varchar, size: 255 }
+      items_allowed:  { type: integer, default: 0 }
       locale:         { type: varchar, size: 5, default: "en_US" }
       score:          { type: integer, default: 0 }
       spam_score:     { type: integer, default: 0 }
@@ -86,7 +80,7 @@ classes:
       id:                      { type: integer, index: true, primaryKey: true, autoIncrement: false }
       graph_id:                { type: integer, required: false, index: index }
       collection_category_id:  { type: integer, index: true }
-      collector_id:            { type: integer, index: true }
+      descendant_class:        { type: varchar, size: 100 }
       name:                    { type: varchar, size: 255, required: true, primaryString: true }
       slug:                    { type: varchar, size: 128 }
       description:             { type: longvarchar, required: true }
@@ -111,14 +105,12 @@ classes:
       id:                { type: integer, index: true, primaryKey: true, autoIncrement: false }
       graph_id:          { type: integer, required: false, index: index }
       collector_id:      { type: integer, index: true }
-      collection_id:     { type: integer, index: true }
       name:              { type: varchar, size: 255, required: true, primaryString: true }
       slug:              { type: varchar, size: 128, index: true }
       description:       { type: longvarchar, required: true }
       num_comments:      { type: integer, default: 0 }
       batch_hash:        { type: varchar, size: 32, index: true }
       score:             { type: integer, default: 0 }
-      position:          { type: integer, default: 0 }
       is_name_automatic: { type: boolean, default: false }
 
       eblob:        { type: longvarchar, default: null }

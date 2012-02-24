@@ -1,15 +1,15 @@
 <?php
 
-include(dirname(__FILE__).'/../../bootstrap/model.php');
+include(__DIR__.'/../../bootstrap/model.php');
 
-$t = new lime_test(3, new lime_output_color());
+$t = new lime_test(3, array('output' => new lime_output_color(), 'error_reporting' => true));
 
 // Reset all tables we will be working on
-cqTest::resetTables(array('message_template', 'private_message'));
+cqTest::resetTables(array('private_message_template', 'private_message'));
 
 $t->diag('::sendFromTemplate()');
 
-  $message_template = new MessageTemplate();
+  $message_template = new PrivateMessageTemplate();
   $message_template->setSubject('Welcome to CollectorsQuest, {collector.display_name}');
   $message_template->setBody('Hello, {collector.username}, we warmly <a href="{route.collections}">welcome</a> you to CQ.com!');
   $message_template->save();

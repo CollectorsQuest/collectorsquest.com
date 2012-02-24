@@ -1,10 +1,7 @@
 <?php
 
-/**
- * Subclass for representing a row from the 'collector_profile' table.
- *
- * @package lib.model
- */
+require 'lib/model/om/BaseCollectorProfile.php';
+
 class CollectorProfile extends BaseCollectorProfile
 {
   private $location = array();

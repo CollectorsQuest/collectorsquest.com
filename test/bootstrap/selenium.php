@@ -9,11 +9,11 @@
  * Idea taken from bootstrap/functional.php of the lime bootstrap file
  */
 
-require_once dirname(__FILE__) . '/../../../config/ProjectConfiguration.class.php';
+require_once __DIR__ . '/../../../config/ProjectConfiguration.class.php';
 require_once 'PHPUnit/Extensions/SeleniumTestCase.php';
 
 // autoloading does not exist at this point yet, require base classes by hand
-$_phpunitPluginDir = dirname(__FILE__).'/../../../plugins/sfPHPUnit2Plugin';
+$_phpunitPluginDir = __DIR__.'/../../../plugins/sfPHPUnit2Plugin';
 require_once $_phpunitPluginDir . '/lib/test/sfPHPUnitBaseTestCase.class.php';
 require_once $_phpunitPluginDir . '/lib/test/sfPHPUnitBaseSeleniumTestCase.class.php';
 

@@ -1,86 +1,16 @@
 <?php
 
+require 'lib/model/om/BaseCollection.php';
+
+/**
+ * IceTaggableBehavior
+ *
+ * @method array getTags($options = array())
+ * @method boolean addTag($name)
+ * @method boolean hasTag($name)
+ */
 class Collection extends BaseCollection
 {
-  /**
-   * @return string
-   */
-  public function __toString()
-  {
-	return $this->getName();
-  }
-
-  public function getGraphId()
-  {
-    $graph_id = null;
-
-    if (!$this->isNew() && (!$graph_id = parent::getGraphId()))
-    {
-      $client = cqStatic::getNeo4jClient();
-
-      $node = $client->makeNode();
-      $node->setProperty('model', 'Collection');
-      $node->setProperty('model_id', $this->getId());
-      $node->save();
-
-      $graph_id = $node->getId();
-
-      $this->setGraphId($node->getId());
-      $this->save();
-    }
-
-    return $graph_id;
-  }
-
-  /**
-   * @param  string $v
-   * @return void
-   */
-  public function setName($v)
-  {
-    parent::setName(IceStatic::cleanText($v, false, 'none'));
-  }
-
-  /**
-   * Set the description of the collection
-   *
-   * @param  string  $v     The description text itself
-   * @param  string  $type  Can be 'html' or 'markdown'
-   */
-  public function setDescription($v, $type = 'markdown')
-  {
-    if ($type == 'html')
-    {
-      $v = IceStatic::cleanText($v, false, 'p, b, u, i, em, strong, h1, h2, h3, h4, h5, h6, div, span, ul, ol, li, blockquote');
-      $v = cqMarkdownify::doConvert($v);
-    }
-
-    parent::setDescription($v);
-  }
-
-  /**
-   * @param  string  $type Can be 'html' or 'markdown'
-   *
-   * @return string
-   */
-  public function getDescription($type = 'html')
-  {
-    $v = parent::getDescription();
-
-    switch ($type)
-    {
-      case 'stripped':
-        $v = trim(strip_tags($v));
-        break;
-      case 'html':
-      default:
-        $v = cqMarkdown::doConvert($v);
-        break;
-    }
-
-    return $v;
-  }
-
   public function getTagString()
   {
     return implode(", ", $this->getTags());
@@ -97,24 +27,33 @@ class Collection extends BaseCollection
     return $stmt->fetchAll(PDO::FETCH_COLUMN);
   }
 
-  public function getCollectibleIds()
+  public function getCollectibleIds($criteria = null, PropelPDO $con = null)
   {
-    $c = new Criteria();
-    $c->addSelectColumn(CollectiblePeer::ID);
-    $c->add(CollectiblePeer::COLLECTION_ID, $this->getId());
-    $c->addAscendingOrderByColumn(CollectiblePeer::POSITION);
-    $c->addAscendingOrderByColumn(CollectiblePeer::CREATED_AT);
-    $stmt = CollectiblePeer::doSelectStmt($c);
+    /** @var $q CollectibleQuery */
+    $q = CollectibleQuery::create(null, $criteria)
+       ->filterByCollection($this)
+       ->joinWith('CollectionCollectible')
+       ->orderBy('CollectionCollectible.Position', Criteria::ASC)
+       ->orderBy('CreatedAt', Criteria::ASC)
+       ->setFormatter(ModelCriteria::FORMAT_STATEMENT)
+       ->addSelectColumn('Id');
+
+    /** @var $stmt PDOStatement */
+    $stmt = $q->find();
 
     return $stmt->fetchAll(PDO::FETCH_COLUMN);
   }
 
   public function getCollectibles($criteria = null, PropelPDO $con = null)
   {
+    /** @var $c Criteria */
     $c = ($criteria instanceof Criteria) ? clone $criteria : new Criteria();
 
-    $c->addAscendingOrderByColumn(CollectiblePeer::POSITION);
-    $c->addDescendingOrderByColumn(CollectiblePeer::CREATED_AT);
+    if (!$c->getOrderByColumns())
+    {
+      $c->addAscendingOrderByColumn(CollectionCollectiblePeer::POSITION);
+      $c->addDescendingOrderByColumn(CollectiblePeer::CREATED_AT);
+    }
 
     return parent::getCollectibles($c, $con);
   }
@@ -122,45 +61,65 @@ class Collection extends BaseCollection
   public function getRandomCollectibles($limit = 10)
   {
     $c = new Criteria();
-    $c->add(CollectiblePeer::COLLECTION_ID, $this->getId());
-    $c->setLimit($limit);
     $c->addAscendingOrderByColumn('RAND()');
+    $c->setLimit($limit);
 
-    return CollectiblePeer::doSelect($c);
+    return self::getCollectibles($c);
   }
 
   public function getRelatedCollections($limit = 5)
   {
-    $collections = CollectionPeer::getRelatedCollections($this, $limit);
+    $collections = CollectorCollectionPeer::getRelatedCollections($this, $limit);
 
     if ($limit != $found = count($collections))
     {
       $limit = $limit - $found;
-      $context = sfContext::getInstance();
 
-      if ($context && $context->getUser()->isAuthenticated())
+      /** @var $sf_context sfContext */
+      $sf_context = sfContext::getInstance();
+
+      /** @var $sf_user cqUser */
+      $sf_user = $sf_context->getUser();
+
+      if ($sf_context && $sf_user->isAuthenticated())
       {
-        $collector = $context->getUser()->getCollector();
+        /** @var $collector Collector */
+        $collector = $sf_user->getCollector();
 
         $c = new Criteria();
-        $c->add(CollectionPeer::ID, $this->getId(), Criteria::NOT_EQUAL);
-        $c->add(CollectionPeer::COLLECTOR_ID, $collector->getId(), Criteria::NOT_EQUAL);
+        $c->add(CollectorCollectionPeer::ID, $this->getId(), Criteria::NOT_EQUAL);
+        $c->add(CollectorCollectionPeer::COLLECTOR_ID, $collector->getId(), Criteria::NOT_EQUAL);
         $c->addAscendingOrderByColumn('RAND()');
 
-        $collections = array_merge($collections, CollectionPeer::getRelatedCollections($collector, $limit, $c));
+        $collections = array_merge($collections, CollectorCollectionPeer::getRelatedCollections($collector, $limit, $c));
       }
     }
 
     if (0 == count($collections))
     {
       $c = new Criteria();
-      $c->add(CollectionPeer::ID, $this->getId(), Criteria::NOT_EQUAL);
+      $c->add(CollectorCollectionPeer::ID, $this->getId(), Criteria::NOT_EQUAL);
 
-      $collections = CollectionPeer::getRandomCollections($limit, $c);
+      $collections = CollectorCollectionPeer::getRandomCollections($limit, $c);
       $rnd_flag = true;
     }
 
     return $collections;
+  }
+
+  public function getCountCollectibles()
+  {
+    return $this->countCollectibles();
+  }
+
+  public function countCollectiblesSince($date = null)
+  {
+    $date = null === $date ? new DateTime('7 day ago') : new DateTime($date);
+
+    $c = new Criteria();
+    $c->add(CollectiblePeer::CREATED_AT, $date, Criteria::GREATER_EQUAL);
+
+    return $this->countCollectibles($c);
   }
 
   public function hasThumbnail()
@@ -190,54 +149,45 @@ class Collection extends BaseCollection
       $multimedia->makeThumb('50x50', 'shave');
       $multimedia->save();
 
-      // Set a photo for the collector from the collection thumbnail
-      if (!$this->getCollector()->hasPhoto())
-      {
-        $this->getCollector()->setPhoto($multimedia->getAbsolutePath('original'));
-      }
-
-      return true;
+      return $multimedia;
     }
 
     return false;
   }
 
-  public function getCountCollectibles()
-  {
-    return $this->countCollectibles();
-  }
-
-  public function countCollectiblesSince($date = null)
-  {
-    $date = (is_null($date)) ? new DateTime('7 day ago') : new DateTime($date);
-
-    $c = new Criteria();
-    $c->add(CollectiblePeer::COLLECTION_ID, $this->getId());
-    $c->add(CollectiblePeer::CREATED_AT, $date, Criteria::GREATER_EQUAL);
-
-    return CollectiblePeer::doCount($c);
-  }
-
   /**
-   * @static
-   * @param  integer $snIdCollector
-   *
-   * @return PDOStatement
+   * @param  PropelPDO  $con
+   * @return Collector
    */
-	public static function getCollectionAsPerCollector($snIdCollector)
-	{
-		$oCriteria = new Criteria();
-		$oCriteria->addSelectColumn(CollectionPeer::ID);
-		$oCriteria->addSelectColumn(CollectionPeer::NAME);
-		$oCriteria->add(CollectionPeer::COLLECTOR_ID, $snIdCollector);
-		$oCriteria->addAscendingOrderByColumn(CollectionPeer::NAME);
+  public function getCollector(PropelPDO $con = null)
+  {
+    $collector = null;
 
-		return CollectionPeer::doSelectStmt($oCriteria);
-	}
+    if ($collector_collection = $this->getCollectorCollection($con))
+    {
+      $collector = $collector_collection->getCollector($con);
+    }
+
+    return $collector;
+  }
 
   /**
-   * @param null|PropelPDO $con
-   *
+   * @return integer
+   */
+  public function getCollectorId()
+  {
+    $id = null;
+
+    if ($collector_collection = $this->getCollectorCollection())
+    {
+      $id = $collector_collection->getCollectorId();
+    }
+
+    return $id;
+  }
+
+  /**
+   * @param  PropelPDO  $con
    * @return boolean
    */
   public function preDelete(PropelPDO $con = null)
@@ -266,20 +216,3 @@ sfPropelBehavior::add(
   'Collection',
   array('PropelActAsEblobBehavior' => array('column' => 'eblob')
 ));
-
-sfPropelBehavior::add(
-  'Collection',
-  array(
-    'PropelActAsSluggableBehavior' => array(
-      'columns' => array(
-        'from' => CollectionPeer::NAME,
-        'to' => CollectionPeer::SLUG
-      ),
-      'separator' => '-',
-      'permanent' => false,
-      'lowercase' => true,
-      'ascii' => true,
-      'chars' => 128
-    )
-  )
-);

@@ -9,3 +9,11 @@ body {
 legend {
   margin-bottom: 20px;
 }
+/* remove horizontal scroll bar in IE7 */
+#fb-root {
+  *display: none
+}
+.ui-droppable.ui-state-highlight {
+   background-image: none;
+   background-color: #FCF4B8;
+}

@@ -1,16 +1,19 @@
 <?php
 
+require 'lib/model/om/BaseTermPeer.php';
+
 class TermPeer extends BaseTermPeer
 {
-  public static function addTerms($terms, $model)
+  public static function addTerms($terms, BaseObject $model = null)
   {
+    if (null === $model)
+    {
+      return false;
+    }
+
     if (!is_array($terms))
     {
     	$terms = array($terms);
-    }
-    if (!is_object($model))
-    {
-      return;
     }
 
     foreach ($terms as $name)
@@ -38,11 +41,13 @@ class TermPeer extends BaseTermPeer
         $term_relationship->save();
       }
     }
+
+    return true;
   }
 
   public static function getTermIds($object)
   {
-  	if (!is_object($object)) 
+  	if (!is_object($object))
     {
       return array();
     }

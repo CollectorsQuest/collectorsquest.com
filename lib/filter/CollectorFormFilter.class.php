@@ -12,6 +12,9 @@ class CollectorFormFilter extends BaseCollectorFormFilter
 {
   public function configure()
   {
+    $this->widgetSchema['user_type'] = new sfWidgetFormChoice(array(
+      'choices' => array('' => '', 'Collector' => 'Collector', 'Seller' => 'Seller')
+    ));
     $this->widgetSchema['spaminess'] = new sfWidgetFormChoice(array(
       'choices' => array('' => '', 'green' => 'Green', 'yellow' => 'Yellow', 'red' => 'Red')
     ));

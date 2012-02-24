@@ -41,5 +41,20 @@ class CollectiblePeer extends BaseCollectiblePeer
     return iceModelTagPeer::getPopulars($c, array('model' => 'Collectible'));
   }
 
+  public static function updateItemIsForSale($snCollectibleId, $bIsForSale = true)
+  {
+    $omCollectible = self::retrieveByPK($snCollectibleId);
+    $omCollectible->setIsForSale($bIsForSale);
 
+    try
+    {
+      $omCollectible->save();
+    }
+    catch (PropelException $e)
+    {
+      return false;
+    }
+
+    return $omCollectible;
+  }
 }

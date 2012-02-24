@@ -8,11 +8,10 @@ class collectionAction extends cqAjaxAction
    */
   public function execute($request)
   {
-    /** @var $collection collection */
-
     if ($pk = $request->getParameter('id'))
     {
-      $collection = CollectionPeer::retrieveByPK($pk);
+      /** @var $collection CollectorCollection */
+      $collection = CollectorCollectionPeer::retrieveByPK($pk);
     }
     else if ($pk = $request->getParameter('collectible_id'))
     {
@@ -71,10 +70,12 @@ class collectionAction extends cqAjaxAction
       {
         $collectible = new Collectible();
         $collectible->setCollector($collector);
-        $collectible->setCollection($this->collection);
         $collectible->setName($name, true);
         $collectible->setBatchHash($request->getParameter('batch', null));
         $collectible->save();
+
+        // Set the Collection after the collectible has been saved
+        $collectible->setCollection($this->collection);
 
         // Add the image
         if ($multimedia = $collectible->addMultimedia($file['tmp_name'], true, true))
@@ -144,6 +145,56 @@ class collectionAction extends cqAjaxAction
 
     // We do not want the web debug bar on these requests
     sfConfig::set('sf_web_debug', false);
+
+    return sfView::NONE;
+  }
+
+  protected function executeMoveCollectibles(sfWebRequest $request)
+  {
+    $collector = $this->getUser()->getCollector();
+
+    $collectible = CollectibleQuery::create()->findOneById($request->getParameter('collectible_id'));
+    $this->forward404Unless($collector && $collector->isOwnerOf($collectible));
+
+    $collection_id = array(
+      'from'  => (int) $request->getParameter('from'),
+      'to' => (int) $request->getParameter('to')
+    );
+
+    $collection_ids = $collector->getCollectionIds();
+    $collection_ids[] = 0; // Add the "0" for the dropbox collection
+
+    $this->forward404Unless(
+      in_array($collection_id['from'], $collection_ids) &&
+      in_array($collection_id['to'], $collection_ids)
+    );
+
+    if ($collection_id['from'] === 0)
+    {
+      $q = CollectionCollectibleQuery::create()
+         ->filterByCollectionId($collection_id['to'])
+         ->filterByCollectibleId($collectible->getId());
+      $collection_collectible = $q->findOneOrCreate();
+      $collection_collectible->save();
+    }
+    else
+    {
+      CollectionCollectibleQuery::create()
+        ->filterByCollectionId($collection_id['from'])
+        ->filterByCollectibleId($collectible->getId())
+        ->delete();
+
+      if ($collection_id['to'] > 0)
+      {
+        $collection_collectible = new CollectionCollectible();
+        $collection_collectible->setCollectionId($collection_id['to']);
+        $collection_collectible->setCollectibleId($collectible->getId());
+        $collection_collectible->save();
+      }
+    }
+
+    // We do not want the web debug bar on these requests
+    // sfConfig::set('sf_web_debug', false);
 
     return sfView::NONE;
   }

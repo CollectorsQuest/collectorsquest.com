@@ -45,9 +45,9 @@ class PrivateMessagePeer extends BasePrivateMessagePeer
   /**
    * Send a PrivateMessage to the $receiver by taking the subject and body from the MessageTemplate with $template_id
    *
-   * @param  integer|MessageTemplate  $template
-   * @param  integer|Collector        $receiver
-   * @param  integer|Collector        $sender
+   * @param  integer | PrivateMessageTemplate  $template
+   * @param  integer | Collector  $receiver
+   * @param  integer | Collector  $sender
    * @param  array  $options
    *
    * @see PrivateMessagePeer::send()

@@ -5,7 +5,7 @@ then
   cat /tmp/memcached.pid | xargs kill
 fi;
 
-/opt/memcached-1.4.x/bin/memcached -m 64 -p 11311 -u www-data -d -P /tmp/memcached.pid
+/opt/memcached-1.4.x/bin/memcached -m 64 -p 11311 -u nobody -d -P /tmp/memcached.pid
 
 # We need to give enough time for memcached to start
 sleep 2;

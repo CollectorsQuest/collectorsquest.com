@@ -140,7 +140,7 @@ class messagesActions extends cqActions
   public function executeCompose(sfWebRequest $request)
   {
     $post = $request->getParameter('message');
-    $message = PrivateMessagePeer::retrieveByPK($post['id']);
+    $message = PrivateMessagePeer::retrieveByPK(@$post['id']);
 
     // A shortcut for clarity
     $sender = $this->getCollector();
@@ -201,7 +201,7 @@ class messagesActions extends cqActions
       }
       else
       {
-        $pks = $request->getParameter('message[receiver]');
+        $pks = $post['receiver'];
 
         // Set the error message
         $this->getUser()->setFlash(

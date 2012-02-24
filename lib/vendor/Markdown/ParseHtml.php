@@ -22,7 +22,8 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
-class parseHTML {
+class parseHTML
+{
   /**
    * tags which are always empty (<br /> etc.)
    *
@@ -134,7 +135,7 @@ class parseHTML {
    * @var array
    * TODO: what shall we do with <del> and <ins> ?!
    */
-  var $blockElements = array (
+  var $blockElements = array(
     # tag name => <bool> is block
     # block elements
     'address' => true,
@@ -224,13 +225,15 @@ class parseHTML {
     'tt' => false,
     'var' => false,
   );
+
   /**
    * get next node, set $this->html prior!
    *
    * @param void
    * @return bool
    */
-  function nextNode() {
+  function nextNode()
+  {
     if (empty($this->html)) {
       # we are done with parsing the html string
       return false;
@@ -271,7 +274,7 @@ class parseHTML {
       }
       if ($token == '<!DOCTYPE') {
         # doctype
-        $this->setNode('doctype', strpos($this->html, '>')+1);
+        $this->setNode('doctype', strpos($this->html, '>') + 1);
 
         $skipWhitespace = true;
         return true;
@@ -282,7 +285,7 @@ class parseHTML {
         # remove leading <![CDATA[
         $this->html = substr($this->html, 9);
 
-        $this->setNode('text', strpos($this->html, ']]>')+3);
+        $this->setNode('text', strpos($this->html, ']]>') + 3);
 
         # remove trailing ]]> and trim
         $this->node = substr($this->node, 0, -3);
@@ -318,13 +321,15 @@ class parseHTML {
     $skipWhitespace = false;
     return true;
   }
+
   /**
    * parse tag, set tag name and attributes, see if it's a closing tag and so forth...
    *
    * @param void
    * @return bool
    */
-  function parseTag() {
+  function parseTag()
+  {
     static $a_ord, $z_ord, $special_ords;
     if (!isset($a_ord)) {
       $a_ord = ord('a');
@@ -371,10 +376,10 @@ class parseHTML {
     $isEmptyTag = false;
     $attributes = array();
     $currAttrib = '';
-    while (isset($this->html[$pos+1])) {
+    while (isset($this->html[$pos + 1])) {
       $pos++;
       # close tag
-      if ($this->html[$pos] == '>' || $this->html[$pos].$this->html[$pos+1] == '/>') {
+      if ($this->html[$pos] == '>' || $this->html[$pos] . $this->html[$pos + 1] == '/>') {
         if ($this->html[$pos] == '/') {
           $isEmptyTag = true;
           $pos++;
@@ -383,12 +388,12 @@ class parseHTML {
       }
 
       $pos_ord = ord(strtolower($this->html[$pos]));
-      if ( ($pos_ord >= $a_ord && $pos_ord <= $z_ord) || in_array($pos_ord, $special_ords)) {
+      if (($pos_ord >= $a_ord && $pos_ord <= $z_ord) || in_array($pos_ord, $special_ords)) {
         # attribute name
         $currAttrib .= $this->html[$pos];
       } elseif (in_array($this->html[$pos], array(' ', "\t", "\n"))) {
         # drop whitespace
-      } elseif (in_array($this->html[$pos].$this->html[$pos+1], array('="', "='"))) {
+      } elseif (in_array($this->html[$pos] . $this->html[$pos + 1], array('="', "='"))) {
         # get attribute value
         $pos++;
         $await = $this->html[$pos]; # single or double quote
@@ -441,15 +446,18 @@ class parseHTML {
     $this->isBlockElement = $this->blockElements[$tagName];
     return true;
   }
+
   /**
    * handle invalid tags
    *
    * @param void
    * @return void
    */
-  function invalidTag() {
+  function invalidTag()
+  {
     $this->html = substr_replace($this->html, '&lt;', 0, 1);
   }
+
   /**
    * update all vars and make $this->html shorter
    *
@@ -457,7 +465,8 @@ class parseHTML {
    * @param int $pos to which position shall we cut?
    * @return void
    */
-  function setNode($type, $pos) {
+  function setNode($type, $pos)
+  {
     if ($this->nodeType == 'tag') {
       # set tag specific vars to null
       # $type == tag should not be called here
@@ -473,22 +482,26 @@ class parseHTML {
     $this->node = substr($this->html, 0, $pos);
     $this->html = substr($this->html, $pos);
   }
+
   /**
    * check if $this->html begins with $str
    *
    * @param string $str
    * @return bool
    */
-  function match($str) {
+  function match($str)
+  {
     return substr($this->html, 0, strlen($str)) == $str;
   }
+
   /**
    * truncate whitespaces
    *
    * @param void
    * @return void
    */
-  function handleWhitespaces() {
+  function handleWhitespaces()
+  {
     if ($this->keepWhitespace) {
       # <pre> or <code> before...
       return;
@@ -496,21 +509,23 @@ class parseHTML {
     # truncate multiple whitespaces to a single one
     $this->node = preg_replace('#\s+#s', ' ', $this->node);
   }
+
   /**
    * normalize self::node
    *
    * @param void
    * @return void
    */
-  function normalizeNode() {
+  function normalizeNode()
+  {
     $this->node = '<';
     if (!$this->isStartTag) {
-      $this->node .= '/'.$this->tagName.'>';
+      $this->node .= '/' . $this->tagName . '>';
       return;
     }
     $this->node .= $this->tagName;
     foreach ($this->tagAttributes as $name => $value) {
-      $this->node .= ' '.$name.'="'.str_replace('"', '&quot;', $value).'"';
+      $this->node .= ' ' . $name . '="' . str_replace('"', '&quot;', $value) . '"';
     }
     if ($this->isEmptyTag) {
       $this->node .= ' /';
@@ -526,21 +541,22 @@ class parseHTML {
  * @param string $indent optional
  * @return string
  */
-function indentHTML($html, $indent = "  ", $noTagsInCode = false) {
+function indentHTML($html, $indent = "  ", $noTagsInCode = false)
+{
   $parser = new parseHTML;
   $parser->noTagsInCode = $noTagsInCode;
   $parser->html = $html;
   $html = '';
   $last = true; # last tag was block elem
   $indent_a = array();
-  while($parser->nextNode()) {
+  while ($parser->nextNode()) {
     if ($parser->nodeType == 'tag') {
       $parser->normalizeNode();
     }
     if ($parser->nodeType == 'tag' && $parser->isBlockElement) {
       $isPreOrCode = in_array($parser->tagName, array('code', 'pre'));
       if (!$parser->keepWhitespace && !$last && !$isPreOrCode) {
-        $html = rtrim($html)."\n";
+        $html = rtrim($html) . "\n";
       }
       if ($parser->isStartTag) {
         $html .= implode($indent_a);
@@ -560,7 +576,7 @@ function indentHTML($html, $indent = "  ", $noTagsInCode = false) {
       $last = true;
     } else {
       if ($parser->nodeType == 'tag' && $parser->tagName == 'br') {
-        $html .= $parser->node."\n";
+        $html .= $parser->node . "\n";
         $last = true;
         continue;
       } elseif ($last && !$parser->keepWhitespace) {

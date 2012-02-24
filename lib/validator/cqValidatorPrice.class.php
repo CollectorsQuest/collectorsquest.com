@@ -30,39 +30,38 @@ class cqValidatorPrice extends sfValidatorBase
    */
   protected function configure($options = array(), $messages = array())
   {
+    $this->setOption('empty_value', '');
+
+    $this->addOption('min', 0);
+    $this->addOption('max', 1000000);
+    $this->addOption('integer', false);
+
     $this->addMessage('max', '"%value%" must be at most %max%.');
     $this->addMessage('min', '"%value%" must be at least %min%.');
-
-    $this->addOption('min');
-    $this->addOption('max');
-
-    $this->setMessage('invalid', '"%value%" is not a number.');
+    $this->addMessage('invalid', 'The price amount you have specified is not valid');
+    $this->addMessage('required', 'The price amount is required');
   }
 
-  /**
-   * @see sfValidatorBase
-   */
   protected function doClean($value)
   {
-    $value = preg_replace('/[^\d\.]+/', '', $value);
-    
-    if (!is_numeric($value))
+    $clean = str_ireplace(array('o', 'о'), '0', (string) $value);
+    $price = cqStatic::floatval($clean, 2);
+
+    if ($this->getOption('integer') == true)
     {
-      throw new sfValidatorError($this, 'invalid', array('value' => $value));
+      $price = (int) $price;
     }
 
-    $clean = floatval($value);
-
-    if ($this->hasOption('max') && $clean > $this->getOption('max'))
+    if ($this->hasOption('max') && $price > $this->getOption('max'))
     {
       throw new sfValidatorError($this, 'max', array('value' => $value, 'max' => $this->getOption('max')));
     }
 
-    if ($this->hasOption('min') && $clean < $this->getOption('min'))
+    if ($this->hasOption('min') && $price < $this->getOption('min'))
     {
       throw new sfValidatorError($this, 'min', array('value' => $value, 'min' => $this->getOption('min')));
     }
 
-    return $clean;
+    return $price;
   }
 }

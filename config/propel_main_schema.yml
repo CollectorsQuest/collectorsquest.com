@@ -44,7 +44,7 @@ classes:
       id:  ~
       collector_id:    { type: integer, foreignClass: Collector, foreignReference: id, required: true, onDelete: cascade }
       collector_type:  { type: char, sqlType: "ENUM('Collector','Seller')", default: "Collector", required: true }
-      birthday:        date
+      birthday:        { type: date }
       gender:          { type: char, sqlType: "ENUM('f','m')" }
       zip_postal:      varchar(10)
       country:         varchar(64)
@@ -72,6 +72,9 @@ classes:
       hash:          { type: varchar, size: 40, required: true }
       salt:          { type: varchar, size: 32, required: true }
       is_verified:   { type: boolean, default: false }
+
+    uniques:
+      unq_collector_email: [collector_id, email]
 
     propel_behaviors:
       timestampable:  ~
@@ -144,7 +147,6 @@ classes:
       id:  ~
       graph_id:                { type: integer, required: false, index: unique }
       collection_category_id:  { type: integer, foreignClass: CollectionCategory, foreignReference: id, onDelete: setnull }
-      collector_id:            { type: integer, required: true, foreignClass: Collector, foreignReference: id, onDelete: cascade }
       name:                    { type: varchar, size: 255, required: true, primaryString: true }
       slug:                    { type: varchar, size: 128 }
       description:             { type: longvarchar, required: true }
@@ -162,6 +164,7 @@ classes:
 
     propel_behaviors:
       archivable: { archive_class: CollectionArchive, archived_at_column: archived_at }
+      sluggable: { slug_pattern: "{Name}", permanent: false }
       timestampable:  ~
 
   CollectionCategory:
@@ -171,6 +174,25 @@ classes:
       name:       { type: varchar, size: 64, required: true, primaryString: true }
       slug:       { type: varchar, size: 64 }
       score:      { type: integer, default: 0 }
+
+  CollectionCollectible:
+    isCrossRef: true
+    columns:
+      collection_id:   { type: integer, required: true, foreignClass: Collection, foreignReference: id, onDelete: cascade, primaryKey: true }
+      collectible_id:  { type: integer, required: true, foreignClass: Collectible, foreignReference: id, onDelete: cascade, primaryKey: true }
+      score:           { type: integer, default: 0 }
+      position:        { type: integer, default: 0 }
+      is_primary:      { type: boolean, default: false }
+
+    propel_behaviors:
+      timestampable:  ~
+
+  CollectorCollection:
+    columns:
+      collector_id:    { type: integer, required: true, foreignClass: Collector, foreignReference: id, onDelete: cascade }
+
+    propel_behaviors:
+      concrete_inheritance: { extends: collection, copy_data_to_parent: true }
 
   CollectionCategoryField:
     columns:
@@ -188,14 +210,12 @@ classes:
       id:  ~
       graph_id:          { type: integer, required: false, index: unique }
       collector_id:      { type: integer, foreignClass: Collector, foreignReference: id, required: true, onDelete: cascade }
-      collection_id:     { type: integer, foreignClass: Collection, foreignReference: id, required: false, onDelete: setnull }
       name:              { type: varchar, size: 255, required: true, primaryString: true }
       slug:              { type: varchar, size: 128, index: unique }
       description:       { type: longvarchar, required: true }
       num_comments:      { type: integer, default: 0 }
       batch_hash:        { type: varchar, size: 32, index: true }
       score:             { type: integer, default: 0 }
-      position:          { type: integer, default: 0 }
       is_name_automatic: { type: boolean, default: false }
 
       eblob:             { type: longvarchar, default: null }

@@ -29,8 +29,8 @@ class collectorsActions extends cqActions
     // $c->setDistinct();
     // $c->add(CollectorPeer::FACEBOOK_ID, null, Criteria::ISNULL);
     // $c->add(CollectorPeer::USER_TYPE, 'Collector');
-    // $c->addJoin(CollectorPeer::ID, CollectionPeer::COLLECTOR_ID, Criteria::RIGHT_JOIN);
-    // $c->add(CollectionPeer::NUM_ITEMS, 0, Criteria::GREATER_THAN);
+    // $c->addJoin(CollectorPeer::ID, CollectorCollectionPeer::COLLECTOR_ID, Criteria::RIGHT_JOIN);
+    // $c->add(CollectorCollectionPeer::NUM_ITEMS, 0, Criteria::GREATER_THAN);
 
     if ($filter = $request->getParameter('filter'))
     {

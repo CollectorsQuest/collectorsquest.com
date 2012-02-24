@@ -1,22 +1,11 @@
 <?php
 
-/**
- * @author Yanko Simeonoff
- * @since $Date: 2011-06-27 23:44:06 +0300 (Mon, 27 Jun 2011) $
- * @version $Id: CollectibleForSaleEditForm.class.php 2207 2011-06-27 20:44:06Z yanko $
- */
 class CollectibleForSaleEditForm extends BaseCollectibleForSaleForm
 {
-  protected $conditions = array(
-    'excellent' => 'Excellent',
-    'very good' => 'Very Good',
-    'good' => 'Good',
-    'fair' => 'Fair',
-    'poor' => 'Poor'
-  );
-
   public function configure()
   {
+    parent::configure();
+
     $this->useFields(array(
       'price',
       'condition',
@@ -25,16 +14,23 @@ class CollectibleForSaleEditForm extends BaseCollectibleForSaleForm
       'quantity',
     ));
 
-//    $this->setWidget('is_post_at_marketplace', new sfWidgetFormInputCheckbox());
+    // Get the Collectibles for sale condictions
+    $conditions = CollectibleForSalePeer::$conditions;
+    $conditions[''] = '';
+
+    $this->setWidget('condition', new sfWidgetFormChoice(array('choices' => $conditions)));
+    $this->setValidator('condition', new sfValidatorChoice(array('choices' => array_keys($conditions), 'required' => false)));
+
+    $this->setValidator('price', new sfValidatorString(array('required' => false)));
+    $this->setValidator('quantity', new sfValidatorInteger(array('required' => false)));
     $this->setValidator('is_ready', new sfValidatorBoolean(array('required' => false)));
 
-    $this->setWidget('condition', new sfWidgetFormChoice(array('choices' => $this->conditions)));
-    $this->setValidator('condition', new sfValidatorChoice(array('choices' => array_keys($this->conditions))));
+    // add a post validator
+    $this->validatorSchema->setPostValidator(
+      new sfValidatorCallback(array('callback' => array($this, 'checkPrice')))
+    );
 
-    $this->setValidator('price', new cqValidatorPrice(array('required' => false)));
-    $this->getValidator('price')->setOption('required', false);
-
-    $this->widgetSchema->setNameFormat('for_sale[%s]');
+    $this->widgetSchema->setNameFormat('collectible_for_sale[%s]');
   }
 
   public function bind(array $taintedValues = null, array $taintedFiles = null)
@@ -43,4 +39,25 @@ class CollectibleForSaleEditForm extends BaseCollectibleForSaleForm
 
     parent::bind($taintedValues, $taintedFiles);
   }
+
+  public function checkPrice($validator, $values)
+  {
+    if (!empty($values['is_ready']))
+    {
+      try
+      {
+        $price_validator = new cqValidatorPrice(array('required' => true));
+        $values['price'] = $price_validator->clean($values['price']);
+      }
+      catch (sfValidatorError $error)
+      {
+        // throw an error bound to the price field
+        throw new sfValidatorErrorSchema($validator, array('price' => $error));
+      }
+    }
+
+    // password is correct, return the clean values
+    return $values;
+  }
+
 }

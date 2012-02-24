@@ -1,5 +1,7 @@
 <?php
 
+require 'lib/model/om/BaseCollectorPeer.php';
+
 class CollectorPeer extends BaseCollectorPeer
 {
   public static function retrieveBySlug($slug)
@@ -162,7 +164,9 @@ class CollectorPeer extends BaseCollectorPeer
     }
     if (!empty($data['country']))
     {
-      $collector_profile->setCountry($data['country']);
+      $country = sfCultureInfo::getInstance('en')->getCountry($data['country']);
+      $collector_profile->setCountry($country);
+      $collector_profile->setCountryIso3166($data['country']);
     }
     if (!empty($data['website']) && is_string($data['website']))
     {
@@ -181,6 +185,14 @@ class CollectorPeer extends BaseCollectorPeer
     {
       $collector_profile->save();
       $collector->save();
+
+      $collectorEmail = new CollectorEmail();
+      $collectorEmail->setCollector($collector);
+      $collectorEmail->setEmail($collector->getEmail());
+      $collectorEmail->setSalt($collector->generateSalt());
+      $collectorEmail->setHash($collector->getAutoLoginHash());
+      $collectorEmail->setIsVerified(false);
+      $collectorEmail->save();
 
       if (!empty($data['what_you_sell']))
       {
@@ -290,7 +302,8 @@ class CollectorPeer extends BaseCollectorPeer
   {
     $pks = array();
 
-    $collections = CollectionPeer::getRelatedCollections($object, $limit, $criteria);
+    /** @var $collections CollectorCollection[] */
+    $collections = CollectorCollectionPeer::getRelatedCollections($object, $limit, $criteria);
     foreach ($collections as $collection)
     {
       $pks = $collection->getCollectorId();

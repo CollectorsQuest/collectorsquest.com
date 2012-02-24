@@ -1,10 +1,7 @@
 <?php
 
-/**
- * Skeleton subclass for performing query and update operations on the 'collector' table.
- *
- * @package    propel.generator.lib.model
- */
+require 'lib/model/om/BaseCollectorQuery.php';
+
 class CollectorQuery extends BaseCollectorQuery
 {
   public function filterBySpaminess($level, $criteria = Criteria::EQUAL)

@@ -26,13 +26,7 @@ class communityActions extends cqActions
     $this->executeSpotlight($request);
   }
 
-  /**
-   * Executes the spotlight action
-   *
-   * @param sfWebRequest $request A request object
-   * @return string
-   */
-  public function executeSpotlight(sfWebRequest $request)
+  public function executeSpotlight()
   {
     if (!isset($this->featured_week) && method_exists($this->getRoute(), 'getObject'))
     {
@@ -46,12 +40,16 @@ class communityActions extends cqActions
     // Should not happen, but we need to forward to homepage if there is no featured week
     $this->redirectUnless($this->featured_week, '@homepage');
 
-    // get the latest 3 collections
-    $c = new Criteria();
-    $c->add(CollectionPeer::NUM_ITEMS, 4, Criteria::GREATER_EQUAL);
-    $c->addDescendingOrderByColumn('RAND()');
-    $c->setLimit(3);
-    $this->collections = CollectionPeer::doSelectJoinCollector($c);
+    /**
+     * Get some random 3 collections
+     *
+     * @var $q CollectorCollectionQuery
+     */
+    $q = CollectorCollectionQuery::create()
+       ->filterByNumItems(4, Criteria::GREATER_EQUAL)
+       ->limit(3)
+       ->addDescendingOrderByColumn('RAND()');
+    $this->collections = $q->find();
 
     $this->featured_collection = $this->featured_week->getCollections(5);
 
@@ -61,7 +59,7 @@ class communityActions extends cqActions
       $this->featured_collector = $this->featured_collection->getCollector();
 
       $c = new Criteria();
-      $c->addAscendingOrderByColumn(CollectiblePeer::POSITION);
+      $c->addAscendingOrderByColumn(CollectionCollectiblePeer::POSITION);
       $c->setLimit(12);
 
       $this->featured_collectibles = $this->featured_collection->getCollectibles($c);
@@ -87,13 +85,7 @@ class communityActions extends cqActions
     return sfView::SUCCESS;
   }
 
-  /**
-   * Executes the spotlight action
-   *
-   * @param sfWebRequest $request A request object
-   * @return string
-   */
-  public function execute15MinutesOfFame(sfWebRequest $request)
+  public function execute15MinutesOfFame()
   {
     $this->addBreadcrumb($this->__('Community'), '@community');
     $this->addBreadcrumb($this->__('Your 15 Minutes of Fame'));

@@ -41,13 +41,18 @@ class collectorsActions extends autoCollectorsActions
 
     $out = fopen('php://output', 'w');
 
-    $criteria = new Criteria();
+    /* @var $criteria Criteria */
+    $criteria = $this->buildQuery();
     $criteria->clearSelectColumns();
     $criteria->addSelectColumn(CollectorPeer::ID);
     $criteria->addSelectColumn(CollectorPeer::USERNAME);
     $criteria->addSelectColumn(CollectorPeer::DISPLAY_NAME);
     $criteria->addSelectColumn(CollectorPeer::EMAIL);
+    $criteria->addAsColumn('collections', sprintf('COUNT(%s)', CollectorCollectionPeer::ID));
     $criteria->addSelectColumn(CollectorPeer::CREATED_AT);
+    $criteria->addJoin(CollectorPeer::ID, CollectorCollectionPeer::COLLECTOR_ID, Criteria::LEFT_JOIN);
+    $criteria->addGroupByColumn(CollectorCollectionPeer::COLLECTOR_ID);
+    $criteria->addHaving('collections', 0, Criteria::GREATER_THAN);
 
     $stmt = CollectorPeer::doSelectStmt($criteria);
 

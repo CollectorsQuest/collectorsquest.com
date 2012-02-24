@@ -28,16 +28,21 @@ class commentsActions extends cqActions
       {
         if ($comment = $form->doSave())
         {
+          /** @var $collector Collector */
+          $collector = null;
+
+          /** @var $collectible Collectible */
           if ($collectible = $comment->getCollectible())
           {
             $collector = $collectible->getCollector();
           }
+          /** @var $collection CollectorCollection */
           else if ($collection = $comment->getCollection())
           {
             $collector = $collection->getCollector();
           }
 
-          if ($collector)
+          if ($collector !== null)
           {
             if ($email = $collector->getEmail())
             {
@@ -63,7 +68,7 @@ class commentsActions extends cqActions
           }
 
           // Set the success message
-          $this->getUser()->setFlash('success', $this->__('Your comment was posted!', null, 'ice_comments'), true);
+          $this->getUser()->setFlash('success', $this->__('Your comment was posted!', array(), 'ice_comments'), true);
           $referer .= '#comments';
         }
         else
@@ -87,7 +92,7 @@ class commentsActions extends cqActions
     return sfView::ERROR;
   }
 
-  public function executeShortcut(sfWebRequest $request)
+  public function executeShortcut()
   {
     /** @var $comment Comment */
     $comment = $this->getRoute()->getObject();

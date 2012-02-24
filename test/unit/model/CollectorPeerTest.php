@@ -1,11 +1,11 @@
 <?php
 
-include(dirname(__FILE__).'/../../bootstrap/model.php');
+include(__DIR__.'/../../bootstrap/model.php');
 
-$t = new lime_test(8, new lime_output_color());
+$t = new lime_test(7, array('output' => new lime_output_color(), 'error_reporting' => true));
 
 // Reset all tables we will be working on
-cqTest::resetTables(array('collector', 'collector_profile'));
+cqTest::resetTables(array('collector', 'collector_profile', 'collector_email'));
 
 $t->diag('::createFromArray()');
 
@@ -31,11 +31,5 @@ $t->diag('::createFromArray()');
 
 $t->diag('::retrieveByDistance()');
 
-  $pks = CollectorPeer::retrieveByDistance(24712, 50, true);
-  $t->is($pks, array(660, 1372));
-
-  $pks = CollectorPeer::retrieveByDistance(24712, 50, false);
-  $t->is($pks, CollectorPeer::retrieveByPKs(array(660, 1372)));
-
-// Reset all tables we will be working on
-cqTest::resetTables(array('collector', 'collector_profile'));
+  $pks = CollectorPeer::retrieveByDistance(11201, 100, false);
+  $t->is($pks, CollectorPeer::retrieveByPKs(array(1, 4)));

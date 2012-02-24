@@ -24,8 +24,8 @@ class collectionsActions extends cqActions
 
     $c = new Criteria();
     $c->setDistinct();
-    $c->add(CollectionPeer::NUM_ITEMS, 0, Criteria::NOT_EQUAL);
-    $c->addJoin(CollectionPeer::COLLECTOR_ID, CollectorPeer::ID, Criteria::LEFT_JOIN);
+    $c->add(CollectorCollectionPeer::NUM_ITEMS, 0, Criteria::NOT_EQUAL);
+    $c->addJoin(CollectorCollectionPeer::COLLECTOR_ID, CollectorPeer::ID, Criteria::LEFT_JOIN);
 
     if ($filter = $request->getParameter('filter'))
     {
@@ -35,22 +35,22 @@ class collectionsActions extends cqActions
           $this->addBreadcrumb($this->__('Most Popular'));
           $this->prependTitle($this->__('Most Popular'));
 
-          $c->add(CollectionPeer::NUM_VIEWS, 100, Criteria::GREATER_EQUAL);
-          $c->addDescendingOrderByColumn(CollectionPeer::NUM_VIEWS);
+          $c->add(CollectorCollectionPeer::NUM_VIEWS, 100, Criteria::GREATER_EQUAL);
+          $c->addDescendingOrderByColumn(CollectorCollectionPeer::NUM_VIEWS);
           break;
         case 'most-talked-about':
           $this->addBreadcrumb($this->__('Most Talked-About'));
           $this->prependTitle($this->__('Most Talked-About'));
 
-          $c->add(CollectionPeer::NUM_COMMENTS, 0, Criteria::GREATER_THAN);
-          $c->addDescendingOrderByColumn(CollectionPeer::NUM_COMMENTS);
+          $c->add(CollectorCollectionPeer::NUM_COMMENTS, 0, Criteria::GREATER_THAN);
+          $c->addDescendingOrderByColumn(CollectorCollectionPeer::NUM_COMMENTS);
           break;
         case 'most-recent':
         default:
           $this->addBreadcrumb($this->__('Most Recent'));
           $this->prependTitle($this->__('Most Recent'));
 
-          $c->addDescendingOrderByColumn(CollectionPeer::CREATED_AT);
+          $c->addDescendingOrderByColumn(CollectorCollectionPeer::CREATED_AT);
           break;
       }
 
@@ -61,7 +61,7 @@ class collectionsActions extends cqActions
       if ($collector = CollectorPeer::retrieveBySlug($collector_slug))
       {
         $c->add(CollectorPeer::SLUG, $collector_slug);
-        $c->addDescendingOrderByColumn(CollectionPeer::CREATED_AT);
+        $c->addDescendingOrderByColumn(CollectorCollectionPeer::CREATED_AT);
 
         $this->addBreadcrumb(sprintf($this->__('Collections of %s'), $collector->getDisplayName()), '@collections_by_collector='. $collector_slug);
         $this->prependTitle(sprintf($this->__('Collections of %s'), $collector->getDisplayName()));
@@ -70,7 +70,7 @@ class collectionsActions extends cqActions
     else if ($tag = $request->getParameter('tag'))
     {
       $c->add(iceModelTagPeer::NAME, $tag);
-      $c->addJoin(CollectionPeer::ID, iceModelTaggingPeer::TAGGABLE_ID, Criteria::LEFT_JOIN);
+      $c->addJoin(CollectorCollectionPeer::ID, iceModelTaggingPeer::TAGGABLE_ID, Criteria::LEFT_JOIN);
       $c->addJoin(iceModelTaggingPeer::TAG_ID, iceModelTagPeer::ID, Criteria::LEFT_JOIN);
 
       $this->addBreadcrumb(ucwords(strtolower($tag)), '@collections_by_tag='. $tag);
@@ -78,13 +78,13 @@ class collectionsActions extends cqActions
     }
     else
     {
-      $c->addDescendingOrderByColumn(CollectionPeer::UPDATED_AT);
+      $c->addDescendingOrderByColumn(CollectorCollectionPeer::UPDATED_AT);
     }
 
     $per_page = ($request->getParameter('show') == 'all') ? 999 : sfConfig::get('app_pager_list_collections_max', 14);
     if (true || $this->getUser()->isAuthenticated()) $per_page += 1;
 
-    $pager = new sfPropelPager('Collection', $per_page);
+    $pager = new sfPropelPager('CollectorCollection', $per_page);
     $pager->setCriteria($c);
 
     // Added By Prakash Panchal On 31-Mar-2011.

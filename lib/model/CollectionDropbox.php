@@ -1,6 +1,6 @@
 <?php
 
-class CollectionDropbox extends Collection
+class CollectionDropbox extends CollectorCollection
 {
   private $_collector_id = null;
 
@@ -82,15 +82,17 @@ class CollectionDropbox extends Collection
     return null;
   }
 
-  public function getCollectibleIds()
+  public function getCollectibleIds($criteria = null, PropelPDO $con = null)
   {
-    $c = new Criteria();
+    $c = ($criteria instanceof Criteria) ? clone $criteria : new Criteria();
+
     $c->addSelectColumn(CollectiblePeer::ID);
     $c->add(CollectiblePeer::COLLECTOR_ID, $this->getCollectorId());
-    $c->add(CollectiblePeer::COLLECTION_ID, null, Criteria::ISNULL);
-    $c->addAscendingOrderByColumn(CollectiblePeer::POSITION);
+    $c->addJoin(CollectiblePeer::ID, CollectionCollectiblePeer::COLLECTIBLE_ID, Criteria::LEFT_JOIN);
+    $c->add(CollectionCollectiblePeer::COLLECTION_ID, null, Criteria::ISNULL);
+    $c->addAscendingOrderByColumn(CollectionCollectiblePeer::POSITION);
     $c->addAscendingOrderByColumn(CollectiblePeer::CREATED_AT);
-    $stmt = CollectiblePeer::doSelectStmt($c);
+    $stmt = CollectiblePeer::doSelectStmt($c, $con);
 
     return $stmt->fetchAll(PDO::FETCH_COLUMN);
   }
@@ -100,9 +102,10 @@ class CollectionDropbox extends Collection
     $c = ($criteria instanceof Criteria) ? clone $criteria : new Criteria();
 
     $c->add(CollectiblePeer::COLLECTOR_ID, $this->getCollectorId(), Criteria::EQUAL);
-    $c->add(CollectiblePeer::COLLECTION_ID, null, Criteria::ISNULL);
+    $c->addJoin(CollectiblePeer::ID, CollectionCollectiblePeer::COLLECTIBLE_ID, Criteria::LEFT_JOIN);
+    $c->add(CollectionCollectiblePeer::COLLECTION_ID, null, Criteria::ISNULL);
 
-    $c->addAscendingOrderByColumn(CollectiblePeer::POSITION);
+    $c->addAscendingOrderByColumn(CollectionCollectiblePeer::POSITION);
     $c->addDescendingOrderByColumn(CollectiblePeer::CREATED_AT);
 
     if (null === $this->collCollectibles)
@@ -124,14 +127,15 @@ class CollectionDropbox extends Collection
   {
     $c = new Criteria();
     $c->add(CollectiblePeer::COLLECTOR_ID, $this->getCollectorId());
-    $c->add(CollectiblePeer::COLLECTION_ID, null, Criteria::ISNULL);
+    $c->addJoin(CollectiblePeer::ID, CollectionCollectiblePeer::COLLECTIBLE_ID, Criteria::LEFT_JOIN);
+    $c->add(CollectionCollectiblePeer::COLLECTION_ID, null, Criteria::ISNULL);
     $c->setLimit($limit);
     $c->addAscendingOrderByColumn('RAND()');
 
     return CollectiblePeer::doSelect($c);
   }
 
-  public function countCollectibles(Criteria $criteria = null, $distinct = false, PropelPDO $con = null)
+  public function countCollectibles($criteria = null, $distinct = false, PropelPDO $con = null)
   {
     if (null === $this->collCollectibles || null !== $criteria)
     {
@@ -144,7 +148,10 @@ class CollectionDropbox extends Collection
 
       return $query
         ->filterByCollectorId($this->getCollectorId(), Criteria::EQUAL)
-        ->filterByCollectionId(null, Criteria::ISNULL)
+        ->joinWith('CollectionCollectible', Criteria::LEFT_JOIN)
+        ->useQuery('CollectionCollectible')
+          ->filterBy('CollectionId', null, Criteria::ISNULL)
+        ->endUse()
         ->count($con);
     }
     else
@@ -180,11 +187,12 @@ class CollectionDropbox extends Collection
 
   public function countCollectiblesSince($date = null)
   {
-    $date = (is_null($date)) ? new DateTime('7 day ago') : new DateTime($date);
+    $date = null === $date ? new DateTime('7 day ago') : new DateTime($date);
 
     $c = new Criteria();
     $c->add(CollectiblePeer::COLLECTOR_ID, $this->getCollectorId());
-    $c->add(CollectiblePeer::COLLECTION_ID, null, Criteria::ISNULL);
+    $c->addJoin(CollectiblePeer::ID, CollectionCollectiblePeer::COLLECTIBLE_ID, Criteria::LEFT_JOIN);
+    $c->add(CollectionCollectiblePeer::COLLECTION_ID, null, Criteria::ISNULL);
     $c->add(CollectiblePeer::CREATED_AT, $date, Criteria::GREATER_EQUAL);
 
     return CollectiblePeer::doCount($c);

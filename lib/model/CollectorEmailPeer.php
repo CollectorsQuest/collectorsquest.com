@@ -1,21 +1,34 @@
 <?php
 
-
 require 'lib/model/om/BaseCollectorEmailPeer.php';
 
-
-/**
- * Skeleton subclass for performing query and update operations on the 'collector_email' table.
- *
- * 
- *
- * You should add additional methods to this class to meet the
- * application requirements.  This class will only be generated as
- * long as it does not already exist in the output directory.
- *
- * @package    propel.generator.lib.model
- */
 class CollectorEmailPeer extends BaseCollectorEmailPeer
 {
+
+  /**
+   * @static
+   *
+   * @param  Collector|integer  $collector
+   * @param  string   $email
+   * @param  boolean  $verified
+   *
+   * @return CollectorEmail
+   */
+  public static function retrieveByCollectorEmail($collector, $email, $verified = null)
+  {
+    $collectorId = $collector instanceof Collector ? $collector->getId() : $collector;
+
+    /** @var $q CollectorEmailQuery */
+    $q = CollectorEmailQuery::create()
+       ->filterByCollectorId($collectorId)
+       ->filterByEmail($email);
+
+    if (null !== $verified)
+    {
+      $q->filterByIsVerified((bool)$verified);
+    }
+
+    return $q->findOne();
+  }
 
 }

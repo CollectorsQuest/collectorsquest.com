@@ -13,7 +13,7 @@ $(document).ready(function()
     'scriptData': {'_session_id': $.cookie('legacy')},
     'uploader':  '/swf/uploadify.swf', 'expressInstall' : '/swf/install.swf',
     'folder':  '/uploads',
-    'multi':  true, 'auto':  true,
+    'multi':  true, 'auto':  true, 'sizeLimit': 5120,
     'fileDesc':  '<?= __('Please select high quality image files'); ?>',
     'fileExt':  '*.jpg;*.jpeg;*.png;*.gif',
     'cancelImg':  '/images/legacy/cancel.png',

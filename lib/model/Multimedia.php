@@ -38,7 +38,7 @@ class Multimedia extends BaseMultimedia
   {
     $unit = array(' Bytes', ' KB', ' MB', ' GB', ' TB', ' PB', ' EB', ' ZB', ' YB');
     $size = @filesize($this->getAbsolutePath($which));
-    $size = $size ? round($size/pow(1024, ($i = floor(log($size, 1024)))), 2) . $unit[$i] : '0 Bytes';
+    $size = $size ? round($size/pow(1024, ($i = (int) floor(log($size, 1024)))), 2) . $unit[$i] : '0 Bytes';
 
     return $size;
   }
@@ -67,7 +67,7 @@ class Multimedia extends BaseMultimedia
       return false;
     }
 
-    list($width, $height, $type) = @getimagesize($this->getAbsolutePath($which));
+    list(, $height, ) = @getimagesize($this->getAbsolutePath($which));
 
     return (int) $height;
   }
@@ -79,7 +79,7 @@ class Multimedia extends BaseMultimedia
       return false;
     }
 
-    list($width, $height, $type) = @getimagesize($this->getAbsolutePath($which));
+    list($width,,) = @getimagesize($this->getAbsolutePath($which));
 
     return (int) $width;
   }
@@ -87,7 +87,7 @@ class Multimedia extends BaseMultimedia
   /**
    * Return basic pdf information
    *
-   * @return false | array
+   * @return array | boolean
    */
   public function getPDFInfo()
   {
@@ -97,7 +97,7 @@ class Multimedia extends BaseMultimedia
     }
     try
     {
-      if (false) //($pdf = Zend_Pdf::load($this->getAbsolutePath()))
+      if (false && $pdf = Zend_Pdf::load($this->getAbsolutePath()))
       {
         return array(
           'title'    => $pdf->properties['Title'],
@@ -114,10 +114,15 @@ class Multimedia extends BaseMultimedia
     return array();
   }
 
+  /**
+   * @param  BaseObject|string  $model
+   * @param  integer|null       $id
+   */
   public function setModel($model, $id = null)
   {
-    if (is_object($model))
+    if ($model instanceof BaseObject && method_exists($model, 'getId'))
     {
+      /** @var $model BaseObject */
       parent::setModel(get_class($model));
       $this->setModelId($model->getId());
     }
@@ -162,9 +167,15 @@ class Multimedia extends BaseMultimedia
   }
 
   /**
-   *  A proxy method to MultimediaPeer::makeThumb()
+   * A proxy method to MultimediaPeer::makeThumb()
    *
    * @see MultimediaPeer::makeThumb()
+   *
+   * @param  string  $size
+   * @param  string  $method
+   * @param  boolean $queue
+   *
+   * @return string
    */
   public function makeThumb($size, $method = 'shave', $queue = false)
   {
@@ -176,7 +187,7 @@ class Multimedia extends BaseMultimedia
       {
         $queue = cqJobQueue::create('multimedia_thumbs');
         $queue->send(implode(', ', array($this->getId(), $size, $method)));
-        
+
         return true;
       }
       catch (Exception $e) { ; }
@@ -208,12 +219,12 @@ class Multimedia extends BaseMultimedia
         {
           $queue->send(implode(', ', array($this->getId(), $which, $degrees)));
         }
-        
+
         return true;
       }
       catch (Exception $e) { ; }
     }
-    
+
     $src = $this->getAbsolutePath($which);
 
     if ($src)

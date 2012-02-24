@@ -51,7 +51,7 @@ all:
 dev:
   domain_name: "collectorsquest.dev"
   www_domain: "www.collectorsquest.dev"
-  static_domain: "static.collectorsquest.dev"
+  static_domain: "www.collectorsquest.dev"
   multimedia_domain: "multimedia.collectorsquest.dev"
 
   cq:
@@ -59,13 +59,18 @@ dev:
     static_domain: "http://static.collectorsquest.dev/"
     multimedia_domain: "http://multimedia.collectorsquest.dev"
 
+  ice_libs:
+    kint:
+      enabled: true
+      path_display_callback: 'Kint::_kintLine'
+
   ice_assets:
     domain: "cqcdns.dev"
 
 stg:
   domain_name: "collectorsquest.stg"
   www_domain: "www.collectorsquest.stg"
-  static_domain: "static.collectorsquest.stg"
+  static_domain: "www.collectorsquest.stg"
   multimedia_domain: "multimedia.collectorsquest.stg"
 
   cq:
