@@ -2,9 +2,8 @@
 
 /**
  * Updates for user registration
- * Generated on 2012-02-21 07:18:59 by root
  */
-class PropelMigration_1329826739
+class PropelMigration_1330258836
 {
 
 	public function preUp($manager)
@@ -42,6 +41,12 @@ ALTER TABLE `collector` ADD `has_completed_registration` BOOL NOT NULL DEFAULT 0
 UPDATE `collector` SET `has_completed_registration` = 1;
 
 ',
+  'archive' => '
+
+ALTER TABLE `collector_archive` ADD `has_completed_registration` BOOL NOT NULL DEFAULT 0 AFTER `is_public`;
+UPDATE `collector_archive` SET `has_completed_registration` = 1;
+
+',
 );
 	}
 
@@ -57,6 +62,11 @@ UPDATE `collector` SET `has_completed_registration` = 1;
   'propel' => '
 
 ALTER TABLE `collector` DROP `has_completed_registration`;
+
+',
+  'archive' => '
+
+ALTER TABLE `collector_archive` DROP `has_completed_registration`;
 
 ',
 );
