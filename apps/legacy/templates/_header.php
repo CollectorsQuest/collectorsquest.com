@@ -15,7 +15,7 @@
         </ul>
       </div>
     </div>
-    <input id="header-search-box" name="q" tabindex="1" type="text" value="<?= $sf_params->get('q', __('Search for collections or collectibles')); ?>" />
+    <input id="header-search-box" name="q" tabindex="1" type="text" placeholder="<?= $sf_params->get('q', __('Search for collections or collectibles')); ?>" />
   </form>
   <div id="header-account">
     <?php if (!$sf_user->isAuthenticated()): ?>
@@ -56,31 +56,7 @@ $(function()
     document.location.href = '/search/'+ which +'?q='+ $('#header-search-box').val();
   }
 
-  $('#header-search').submit(function()
-  {
-    if ($('#header-search-box').val() == '<?php echo  __('Search for collections or collectibles'); ?>')
-    {
-      $('#header-search-box').val('');
-    }
-
-    return true;
-  });
-
-  $('#header-search-box').focus(function()
-  {
-    if ($(this).val() == '<?php echo  __('Search for collections or collectibles'); ?>')
-    {
-      $(this).val('');
-    }
-  });
-
-  $('#header-search-box').blur(function()
-  {
-    if ($(this).val() == '')
-    {
-      $(this).val('<?php echo  __('Search for collections or collectibles'); ?>');
-    }
-  });
+  $('#header-search-box').placeholder();
 
   $("a#header-login").fancybox(
   {
