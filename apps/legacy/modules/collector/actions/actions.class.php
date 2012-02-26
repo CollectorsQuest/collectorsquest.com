@@ -129,7 +129,7 @@ class collectorActions extends cqActions
     $this->snStep = $request->getParameter('step', 1);
 
     // if the requested step is not 1 and the user is not authenticated
-    // redirect the page to step 1
+    // redirect the user to step 1
     if (1 != $this->snStep && !$this->getUser()->isAuthenticated())
     {
       $this->redirect($this->getController()->genUrl(array(
@@ -137,9 +137,44 @@ class collectorActions extends cqActions
       )));
     }
 
+    if ($this->getUser()->isAuthenticated())
+    {
+      $completedSteps = $this->getUser()->getCollector()
+        ->getSingupNumCompletedSteps();
+      // if the requested step is not step 2, but the user has not yet
+      // completed step 2 then redirect the user to step 2
+      if (2 != $this->snStep && 1 == $completedSteps)
+      {
+        $this->redirect($this->getController()->genUrl(array(
+            'sf_route' => 'collector_signup', 'step' => 2
+        )));
+      }
+
+      if (3 != $this->snStep && 2 == $completedSteps)
+      {
+        $this->redirect($this->getController()->genUrl(array(
+            'sf_route' => 'collector_signup', 'step' => 3
+        )));
+      }
+
+    }
+
     // create the form object based on the current step
     $formClass = sprintf('CollectorSignupStep%dForm', $this->snStep);
-    $this->form = new $formClass();
+
+    switch($this->snStep):
+      // for step 1
+      case 1:
+        // simply create the singup (step 1) form
+        $this->form = new $formClass();
+        break;
+      case 2:
+      case 3:
+        // the form extends CollectorProfileEditForm,
+        // so we add the profile object to it
+        $this->form = new $formClass($this->getUser()->getCollector()->getProfile());
+        break;
+    endswitch;
 
     // if request is post
     if (sfRequest::POST == $request->getMethod())
@@ -150,7 +185,7 @@ class collectorActions extends cqActions
       {
         $values = $this->form->getValues();
 
-        // perform actions for step
+        // perform actions for step and valid form
         switch ($this->snStep):
           case 1:
             // create user
@@ -166,11 +201,20 @@ class collectorActions extends cqActions
             break;
 
           case 2:
+            // update the profile
+            $this->form->save();
+
+            // mark step 2 as completed
+            $this->getUser()->getCollector()->setSingupNumCompletedSteps(2)->save();
+
+            // redirect to step 3
+            $this->redirect($this->getController()->genUrl(array(
+                'sf_route' => 'collector_signup', 'step' => 3
+            )));
             break;
 
           case 3:
             break;
-
         endswitch;
 
 

@@ -70,20 +70,39 @@ class CollectorProfileEditForm extends BaseCollectorProfileForm
     return CollectorProfilePeer::$collector_types;
   }
 
-  public function updateObject($values = null)
+  public function doUpdateObject($values = null)
   {
     /** @var $profile CollectorProfile */
-    $profile = parent::updateObject($values);
+    $profile = $this->getObject();
 
-    $profile->setAboutMe($values['about_me']);
-    $profile->setAboutCollections($values['about_collections']);
-    $profile->setAboutInterests($values['about_interests']);
-    $profile->setAboutWhatYouCollect($values['about_what_you_collect']);
-    $profile->setAboutMostExpensiveItem($values['about_most_expensive_item']);
-    $profile->setAboutAnnuallySpend($values['about_annually_spend']);
-    $profile->setAboutNewItemEvery($values['about_new_item_every']);
-
-    return $profile;
+    if (isset($values['about_me']))
+    {
+      $profile->setAboutMe($values['about_me']);
+    }
+    if (isset($values['about_collections']))
+    {
+      $profile->setAboutCollections($values['about_collections']);
+    }
+    if (isset($values['about_interests']))
+    {
+      $profile->setAboutInterests($values['about_interests']);
+    }
+    if (isset($values['about_what_you_collect']))
+    {
+      $profile->setAboutWhatYouCollect($values['about_what_you_collect']);
+    }
+    if (isset($values['about_most_expensive_item']))
+    {
+      $profile->setAboutMostExpensiveItem($values['about_most_expensive_item']);
+    }
+    if (isset($values['about_annually_spend']))
+    {
+      $profile->setAboutAnnuallySpend($values['about_annually_spend']);
+    }
+    if (isset($values['about_new_item_every']))
+    {
+      $profile->setAboutNewItemEvery($values['about_new_item_every']);
+    }
   }
 
 }

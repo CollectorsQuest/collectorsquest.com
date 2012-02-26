@@ -2,14 +2,18 @@
 
 require 'lib/model/om/BaseCollector.php';
 
+/**
+ * @method     integer getSingupNumCompletedSteps() Return the number of completed signup steps
+ * @method     integer setSingupNumCompletedSteps(integer $v) Set the number of completed signup steps
+ */
 class Collector extends BaseCollector
 {
   /** @var CollectorProfile */
   protected $profile = null;
 
-  public function postSave(PropelPDO $con = null)
+  public function initializeProperties()
   {
-
+    $this->registerProperty('SINGUP_NUM_COMPLETED_STEPS', 1);
   }
 
   public function getGraphId()

@@ -1,6 +1,7 @@
 Collector:
   ivan:
     username: ivan.tanev
+    slug: ivan-tanev
     displayname: Ivan Tanev
     password: ivanpass
     email: vankata.t@example.com
