@@ -16,17 +16,26 @@ class marketplaceActions extends cqActions
    */
   public function executeIndex(sfWebRequest $request)
   {
-    $c = new Criteria;
-    $c->setDistinct();
-    $c->addJoin(CollectionCategoryPeer::ID, CollectorCollectionPeer::COLLECTION_CATEGORY_ID, Criteria::INNER_JOIN);
-    $c->addJoin(CollectorCollectionPeer::ID, CollectiblePeer::COLLECTION_ID, Criteria::INNER_JOIN);
-    $c->addJoin(CollectiblePeer::ID, CollectibleForSalePeer::COLLECTIBLE_ID, Criteria::INNER_JOIN);
-    $c->add(CollectibleForSalePeer::IS_SOLD, false);
-    $c->add(CollectionCategoryPeer::NAME, 'None', Criteria::NOT_EQUAL);
-    $c->addGroupByColumn(CollectionCategoryPeer::ID);
-    $c->addAscendingOrderByColumn(CollectionCategoryPeer::NAME);
+    /** @var $q CollectionCategoryQuery */
+    $q = CollectionCategoryQuery::create()
+       ->distinct()
+       ->filterByName('None', Criteria::NOT_EQUAL)
+       ->orderBy('Name', Criteria::ASC)
+       ->joinCollection()
+       ->useCollectionQuery()
+         ->joinCollectionCollectible()
+         ->useCollectionCollectibleQuery()
+           ->joinCollectible()
+           ->useCollectibleQuery()
+             ->joinCollectibleForSale()
+             ->useCollectibleForSaleQuery()
+               ->filterByIsSold(false)
+             ->endUse()
+           ->endUse()
+         ->endUse()
+       ->endUse();
 
-    $this->categories = CollectionCategoryPeer::doSelect($c);
+    $this->categories = $q->find();
 
     $this->categorySelected = null;
     if ($request->hasParameter('id'))
@@ -113,7 +122,7 @@ class marketplaceActions extends cqActions
       '%seller%' => $seller->getDisplayName(),
       '%buyer%' => $buyer->getDisplayName(),
       '%collection_item%' => $collectible->getName(),
-      '%price%' => money_format('%.2n', $offer->getPrice()),
+      '%price%' => money_format('%.2n', (float) $offer->getPrice()),
       '%image%' => link_to_collectible($collectible, 'image', array('width' => 100, 'height' => 100, 'style' => 'border: 0px;'))
     );
     // New cqMail Added By Prakash Panchal. 7-APR-2011
@@ -172,7 +181,7 @@ class marketplaceActions extends cqActions
           $asMailContent = $ocqMail->replaceMailContent($replacements);
 
           //send mail to user with swift mail functionality(Provided by symfony)
-          $bSendMail = $this->sendEmail($seller->getEmail(), $ssMailSubject, $asMailContent);
+          $this->sendEmail($seller->getEmail(), $ssMailSubject, $asMailContent);
 
           // New Mail Code Added By Prakash Panchal 8-APR-2011
           $ssMailSubject = "Your bought an item at the CQ Marketplace!";
@@ -184,7 +193,7 @@ class marketplaceActions extends cqActions
           $asMailContent = $ocqMail->replaceMailContent($replacements);
 
           //send mail to user with swift mail functionality(Provided by symfony)
-          $bSendMail = $this->sendEmail($buyer->getEmail(), $ssMailSubject, $asMailContent);
+          $this->sendEmail($buyer->getEmail(), $ssMailSubject, $asMailContent);
         }
 
         // Start code for send notification to BUYER's who offer on item which is to be SOLD.
@@ -194,6 +203,8 @@ class marketplaceActions extends cqActions
         $c->add(CollectibleOfferPeer::COLLECTOR_ID, $buyer->getId(), Criteria::NOT_EQUAL);
         $c->add(CollectibleOfferPeer::STATUS, 'rejected', Criteria::NOT_EQUAL);
         $c->addAnd(CollectibleOfferPeer::STATUS, 'accepted', Criteria::NOT_EQUAL);
+
+        /** @var $offers CollectibleOffer[] */
         $offers = CollectibleOfferPeer::doSelect($c);
 
         foreach ($offers as $o)
@@ -239,7 +250,7 @@ class marketplaceActions extends cqActions
           $asMailContent = $ocqMail->replaceMailContent($replacements);
 
           //send mail to user with swift mail functionality(Provided by symfony)
-          $bSendMail = $this->sendEmail($buyer->getEmail(), $ssMailSubject, $asMailContent);
+          $this->sendEmail($buyer->getEmail(), $ssMailSubject, $asMailContent);
         }
         else
         {
@@ -253,7 +264,7 @@ class marketplaceActions extends cqActions
           $asMailContent = $ocqMail->replaceMailContent($replacements);
 
           //send mail to user with swift mail functionality(Provided by symfony)
-          $bSendMail = $this->sendEmail($buyer->getEmail(), $ssMailSubject, $asMailContent);
+          $this->sendEmail($buyer->getEmail(), $ssMailSubject, $asMailContent);
         }
         break;
     }
@@ -266,7 +277,7 @@ class marketplaceActions extends cqActions
   {
     /* @var $collectible_for_sale CollectibleForSale */
     $collectible_for_sale = $this->getRoute()->getObject();
-    $this->forward404Unless($collectible_for_sale);
+    $this->forward404Unless($collectible_for_sale instanceof CollectibleForSale);
 
     $this->forward404Unless($collectible_for_sale->getPrice() == $request->getParameter('offer'));
 
@@ -430,10 +441,10 @@ class marketplaceActions extends cqActions
 
   public function executeBuyNow(sfWebRequest $request)
   {
-    /* @var $collectible CollectibleForSale */
+    /* @var $collectibleForSale CollectibleForSale */
     $collectibleForSale = $this->getRoute()->getObject();
 
-    $this->forward404Unless($collectibleForSale);
+    $this->forward404Unless($collectibleForSale instanceof CollectibleForSale);
 
     $request->setParameter('offer', $collectibleForSale->getPrice());
 
@@ -456,8 +467,11 @@ class marketplaceActions extends cqActions
           $snIdCollection = $request->getParameter('collection_id', 0);
           if ($snIdCollectibleForSale > 0 && $snIdCollection > 0)
           {
-            $this->forward404Unless($omSaleItems = CollectibleForSalePeer::retrieveByPK($snIdCollectibleForSale), sprintf('Object collection item sale does not exist (%s).', $snIdCollectibleForSale));
-            $this->forward404Unless($this->omCollection = CollectorCollectionPeer::retrieveByPK($snIdCollection), sprintf('Object collection does not exist (%s).', $snIdCollection));
+            $omSaleItems = CollectibleForSalePeer::retrieveByPK($snIdCollectibleForSale);
+            $this->omCollection = CollectorCollectionPeer::retrieveByPK($snIdCollection);
+
+            $this->forward404Unless($omSaleItems, sprintf('Object collection item sale does not exist (%s).', $snIdCollectibleForSale));
+            $this->forward404Unless($this->omCollection, sprintf('Object collection does not exist (%s).', $snIdCollection));
 
             $this->oForm = new CollectibleForSaleForm($omSaleItems);
             $this->oCollectionForm = new CollectionForm($this->omCollection);

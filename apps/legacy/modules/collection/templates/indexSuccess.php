@@ -1,3 +1,8 @@
+<?php
+ use_javascript('jquery/carousel.js');
+ use_stylesheet('legacy/scrollable.css');
+?>
+
 <?php if ($sf_user->isOwnerOf($collection)): ?>
 	<span style="margin: 0 0 0 20px; color: #6699CC; font-weight: bold; font-size: 15px;">
     Click on an image below to edit the collectible information <?php echo $sf_user->hasCredential('seller') ? ' and add pricing.' : ''; ?>

@@ -99,7 +99,7 @@ class cqStatic extends IceStatic
     if (null === self::$_neo4j_client)
     {
       $port = sfConfig::get('sf_environment') == 'stg' ? '8484' : '7474';
-      self::$_neo4j_client = new Everyman\Neo4j\Client('localhost', $port);
+      self::$_neo4j_client = new Everyman\Neo4j\Client('cq-neo4j', $port);
     }
 
     return self::$_neo4j_client;

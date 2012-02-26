@@ -5,7 +5,7 @@
 }
 
 .collection div.stack {
-  background: url(./images/legacy/stack-small.png);
+  background: url(/images/legacy/stack-small.png);
   width: 56px;
   height: 57px;
   margin-top: 5px;
@@ -23,7 +23,7 @@
 
 .grid_view_collection div.stack,
 .list_view_collection div.stack {
-  background: url(./images/legacy/stack.png);
+  background: url(/images/legacy/stack.png);
   width: 158px;
   height: 159px;
   margin: auto;
@@ -107,3 +107,86 @@
   top: 150px;
   left: 0;
 }
+
+/* BUY NOW BOX */
+.buy-now-container {
+  width: 650px;
+  margin: 18px auto 40px auto;
+  padding: 12px;
+  background-color: #fcfbe8;
+  border: 1px solid #d0d0d0;
+  -webkit-border-radius: 10px;
+     -moz-border-radius: 10px;
+          border-radius: 10px;
+  -moz-background-clip: padding; -webkit-background-clip: padding-box; background-clip: padding-box;
+}
+
+.green-text {
+  text-transform: uppercase;
+  color: #7aa100;
+  font-size: 16px;
+  margin: 12px 0 0.2em 0;
+}
+.blue-text {
+  text-transform: uppercase;
+  color: #3671b2;
+  font-size: 16px;
+  margin: 12px 0 0.2em 0;
+}
+.bug-price {
+  font-size: 22px;
+  margin: 0 0 0.2em 0;
+}
+
+.bolder {
+  font-weight: bold;
+}
+.buy-now-container div.center {
+  text-align: center;
+}
+.img-align-vmiddle {
+  vertical-align: middle;
+  padding-right: 6px
+}
+.dist-m20 {
+  margin-top: 50px
+}
+
+.section-title a, .section-title:visited {
+  color:#1D59B4;
+  text-decoration: none;
+}
+.section-title a:hover {
+  text-decoration: underline;
+}
+
+/* drag&drop slider */
+.slider-wrapper {
+  width: 680px;
+  margin: 0 auto 12px auto;
+}
+
+/* movable collectibles */
+.draggable-collectibles-wrapper {
+  width: 100%;
+}
+.draggable-collectibles-admination {
+  width: 140px;
+  text-align: center;
+  float: left;
+}
+
+.draggable-collectibles-container {
+  width: 530px;
+  float: left;
+  padding-top: 20px;
+  text-align: center;
+}
+
+.thumb-space {
+  padding-right: 12px;
+  padding-left: 12px;
+  float: left;
+  z-index: 100;
+}
+

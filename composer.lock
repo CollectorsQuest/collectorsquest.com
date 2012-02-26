@@ -1,17 +1,19 @@
 {
-    "hash": "487feaf9e376e8fb2488304280b45cea",
+    "hash": "577d21b6397a82bafcfca009c6269091",
     "packages": [
         {
-            "package": "lib\/vendor\/faker",
-            "version": "master-dev"
+            "package": "lib/vendor/faker",
+            "version": "master-dev",
+            "source-reference": "ab426e0253a1fe41fd6077df86f34fb0a2ca65a8"
         },
         {
-            "package": "lib\/vendor\/neo4jphp",
+            "package": "lib/vendor/neo4jphp",
             "version": "0.0.6"
         },
         {
-            "package": "plugins\/sfGuardPlugin",
+            "package": "plugins/sfGuardPlugin",
             "version": "4.0.2"
         }
-    ]
+    ],
+    "aliases": []
 }

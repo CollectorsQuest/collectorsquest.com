@@ -11,6 +11,8 @@ class marketplaceComponents extends sfComponents
     $c = new Criteria();
     $c->setDistinct();
     $c->addJoin(CollectibleForSalePeer::COLLECTIBLE_ID, CollectiblePeer::ID);
+    $c->add(CollectibleForSalePeer::IS_READY, true);
+    $c->add(CollectibleForSalePeer::PRICE, 0, Criteria::GREATER_THAN);
 
     $search = array();
     if ($request->getParameter('page'))
@@ -54,8 +56,10 @@ class marketplaceComponents extends sfComponents
 
     if ($category = CollectionCategoryQuery::create()->findOneById($request->getParameter('id', @$search['category_id'])))
     {
-      $c->addJoin(CollectiblePeer::COLLECTION_ID, CollectorCollectionPeer::ID);
       $c->add(CollectorCollectionPeer::COLLECTION_CATEGORY_ID, $category->getId());
+      $c->addJoin(CollectiblePeer::ID, CollectionCollectiblePeer::COLLECTIBLE_ID, Criteria::RIGHT_JOIN);
+      $c->addJoin(CollectionCollectiblePeer::COLLECTION_ID, CollectorCollectionPeer::ID);
+
       if ($category->getParentId() > 0)
       {
         $c->addOr(CollectorCollectionPeer::COLLECTION_CATEGORY_ID, $category->getParentId());

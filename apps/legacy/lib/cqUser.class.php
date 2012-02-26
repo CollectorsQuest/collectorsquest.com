@@ -72,7 +72,6 @@ class cqUser extends IceSecurityUser
       $this->addCredential(strtolower($collector->getUserType()));
 
       $this->setAttribute('id', $collector->getId(), 'collector');
-      $this->setAttribute('profile_id', $collector->getProfile()->getId(), 'collector');
       $this->setAttribute('username', $collector->getUsername(), 'collector');
       $this->setAttribute('email', $collector->getEmail(), 'collector');
       $this->setAttribute('user_type', $collector->getUserType(), 'collector');

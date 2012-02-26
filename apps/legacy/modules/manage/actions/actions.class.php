@@ -467,6 +467,11 @@ class manageActions extends cqActions
             $collectible->setDescription($value['description'], 'html');
             $collectible->setTags(is_array($value['tags']) ? implode(', ', $value['tags']) : $value['tags']);
             $collectible->clearCollectibleForSales();
+            // handle collectible-collection M:M relation
+            $collectible->setCollections(CollectionQuery::create()
+              ->filterById($value['collection_collectible_list'], Criteria::IN)
+              ->find()
+            );
             $collectible->save();
 
             if ($value['thumbnail'])

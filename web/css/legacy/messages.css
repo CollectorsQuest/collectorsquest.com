@@ -19,7 +19,7 @@ table.messages tr.unread {
 
 table.messages div.icon {
   margin-top: 3px;
-  background: url(./images/legacy/messages.png) no-repeat;
+  background: url(/images/legacy/messages.png) no-repeat;
   width: 10px; height: 20px;
   background-position: 0 5px;
 }

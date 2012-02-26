@@ -171,7 +171,7 @@ a img {
 /* End Various Tags & Classes*/
 
 blockquote, pre {
-  background: #F4F5F7 url(./images/blog/blockquote.gif) no-repeat scroll 3px 3px;
+  background: #F4F5F7 url(/images/blog/blockquote.gif) no-repeat scroll 3px 3px;
   border: 1px dashed #CCCCCC;
   margin: 5px 0;
   padding: 8px 12px 8px 40px;
@@ -227,7 +227,7 @@ blockquote p, pre p {
 
 .post .date {
   padding-left: 25px;
-  background: url(./images/blog/date-icon.png) no-repeat;
+  background: url(/images/blog/date-icon.png) no-repeat;
 }
 
 .post .comments {
@@ -274,7 +274,7 @@ blockquote p, pre p {
   padding: 3px 0 5px 15px;
   color: #FFFFFF;
   height: 28px;
-  background: url(./images/legacy/sidebar-section-bgr.png) no-repeat;
+  background: url(/images/legacy/sidebar-section-bgr.png) no-repeat;
 }
 
 #widget-blog-categories li a {

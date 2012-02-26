@@ -42,9 +42,8 @@ classes:
   ##
   CollectorProfile:
     columns:
-      id:  ~
-      collector_id:    { type: integer, foreignClass: Collector, foreignReference: id, required: true, onDelete: cascade }
-      collector_type:  { type: char, sqlType: "ENUM('Collector','Seller')", default: "Collector", required: true }
+      collector_id:    { type: integer, primaryKey: true, foreignClass: Collector, foreignReference: id, required: true, onDelete: cascade }
+      collector_type:  { type: enum, valueSet: "casual, occasional, serious, obsessive, expert", default: casual, required: true }
       birthday:        { type: date }
       gender:          { type: char, sqlType: "ENUM('f','m')" }
       zip_postal:      varchar(10)
@@ -56,9 +55,6 @@ classes:
       is_image_auto:   { type: boolean, default: true }
       preferences:     longvarchar
       notifications:   longvarchar
-
-    uniques:
-      collector_profile_U_1: [collector_id]
 
     propel_behaviors:
       archivable: { archive_class: CollectorProfileArchive, archived_at_column: archived_at }

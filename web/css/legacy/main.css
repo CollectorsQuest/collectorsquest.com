@@ -447,7 +447,7 @@ input.maininput {
 }
 
 .buynow a:hover {
-  color: #73BCCC;
+  color: #2E8B57;
 }
 
 .category_item {
@@ -490,4 +490,20 @@ input.maininput {
 
 .grid_view_collection {
   min-height: 248px;
+}
+
+/* Clear Fix for modern browsers */
+.cf:before,
+.cf:after {
+    content:"";
+    display:table;
+}
+
+.cf:after {
+    clear:both;
+}
+
+/* For IE 6/7 (trigger hasLayout) */
+.cf {
+    zoom:1;
 }

@@ -16,12 +16,7 @@
 
     <div class="span-13" style="float: right; text-align: right;">
       <?= link_to('CollectorsQuest.com', '@homepage', array('style' => 'text-decoration: none; color: #666;')); ?>
-      © <?= date('Y'); ?> All rights reserved &nbsp; • &nbsp; Powered by
-      <a href="http://www.symfony-project.org" title="Symfony" rel="nofollow" target="_blank"
-         style="text-decoration: none;">
-        <img src="/images/symfony.gif" style="vertical-align: middle;" alt="Symfony"/>
-      </a>
-      <?= ' @ r'. SVN_REVISION; ?>
+      © <?= date('Y'); ?> All rights reserved &nbsp; • &nbsp; <?= ' @ r'. SVN_REVISION; ?>
     </div>
   </div>
 

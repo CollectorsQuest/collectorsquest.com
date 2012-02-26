@@ -8,7 +8,7 @@ class CollectorProfileEditForm extends BaseCollectorProfileForm
       range(date('Y') - 100, date('Y')));
 
     $this->setWidgets(array(
-      'id' => new sfWidgetFormInputHidden(),
+      'collector_id'    => new sfWidgetFormInputHidden(),
       'collector_type' => new sfWidgetFormChoice(array('choices' => $this->getCollectorTypeChoices(), 'expanded' => true)),
 
       'birthday' => new sfWidgetFormDate(array('years' => $years)),
@@ -28,7 +28,7 @@ class CollectorProfileEditForm extends BaseCollectorProfileForm
     ));
 
     $this->setValidators(array(
-      'id' => new sfValidatorPropelChoice(array('model' => 'CollectorProfile', 'column' => 'id', 'required' => true)),
+      'collector_id'    => new sfValidatorPropelChoice(array('model' => 'Collector', 'column' => 'id', 'required' => false)),
       'collector_type' => new sfValidatorChoice(array('choices' => array_keys($this->getCollectorTypeChoices()), 'required' => true)),
 
       'birthday' => new sfValidatorDate(array('required' => false)),
@@ -67,7 +67,13 @@ class CollectorProfileEditForm extends BaseCollectorProfileForm
 
   public function getCollectorTypeChoices()
   {
-    return CollectorProfilePeer::$collector_types;
+    return array(
+      CollectorProfilePeer::COLLECTOR_TYPE_CASUAL => 'Casual',
+      CollectorProfilePeer::COLLECTOR_TYPE_OCCASIONAL => 'Occasional',
+      CollectorProfilePeer::COLLECTOR_TYPE_SERIOUS => 'Serious',
+      CollectorProfilePeer::COLLECTOR_TYPE_OBSESSIVE => 'Obsessive',
+      CollectorProfilePeer::COLLECTOR_TYPE_EXPERT => 'Expert',
+    );
   }
 
   public function doUpdateObject($values = null)

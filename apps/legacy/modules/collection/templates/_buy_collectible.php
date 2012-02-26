@@ -13,6 +13,47 @@ if ($collectible_for_sale)
   $isSold = $collectible_for_sale->getIsSold() || $collectible_for_sale->getActiveCollectibleOffersCount();
 }
 ?>
+<a name="price" id="price"></a>
+<br clear="all" class="dist-m20">
+
+<?php if ($collectible_for_sale->getPrice() > 0): ?>
+
+  <div class="span-14 prepend-1 clearer">
+    <?= section_title('This item is for sale by ' . link_to_collector($collector, 'text')); ?>
+  </div>
+
+  <div class="buy-now-container cf">
+      <div class="span-5 append-1">
+        Item condition
+        <p class="green-text"><?= strtoupper($collectible_for_sale->getCondition()) . ' CONDITION'; ?></p>
+      </div>
+      <div class="span-5 append-2">
+        <img src="/images/legacy/box-icon-mini.png" width="25" height="19" border="0" alt="" class="img-align-vmiddle" />Shopping cost
+          <?php if ($collectible_for_sale->getIsShippingFree()): ?>
+            <p class="blue-text">Free Shipping</p>
+          <?php endif; ?>
+      </div>
+
+      <div class="span-3 center">
+      <?= form_tag(url_for('marketplace_buy_now', $collectible_for_sale), array('method' => 'GET'));?>
+        <p class="green-text bug-price"><?= money_format('%.2n', $offerPrice); ?></p>
+        <?php if (!$sf_user->isAuthenticated() or $sf_user->getCollector()->getId() !== $collectible_for_sale->getCollector()->getId()): ?>
+                <?php if ($sf_user->isAuthenticated()): ?>
+                  <?php cq_button_submit(__('Buy Now'), null, 'margin: 3px auto 3px auto; text-align: center;'); ?>
+                <?php else: ?>
+                  <?= link_to('Sign in to buy', 'marketplace_buy_now', $collectible_for_sale, array('query_string'=>'goto='.urlencode($sf_request->getUri()), 'title' => 'Sign in to CQ to buy')); ?>
+                <?php endif; ?>
+
+            <?php endif; ?>
+        </form>
+      </div>
+
+  </div>
+<?php endif; ?>
+
+
+
+<?php /* OLD VERSION
 <table width="100%">
   <tr>
     <td style="width: 180px;">
@@ -21,7 +62,7 @@ if ($collectible_for_sale)
       ?>
       <div id="for_sale" style="padding: 10px; padding-top: 20px;">
         <span style="color: #EEA441; font-size: 14px; font-weight: bold;">
-          <div class="section-title"> <?php echo section_title('This item is for sale by ' . link_to_collector($collector, 'text')); ?> </div>
+          <div class="section-title">  <p class="text-orange bolder"><?= section_title('This item is for sale by ' . link_to_collector($collector, 'text')); ?></p></div>
         </span>
         <div style="border: 1px solid #D1D1D1; width: 320px; margin-top: 5px;">
           <?php if ($collectible_for_sale->getPrice() > 0): ?>
@@ -29,7 +70,7 @@ if ($collectible_for_sale)
               <?php echo money_format('%.2n', $offerPrice); ?>
             </div>
             <?php if (!$sf_user->isAuthenticated() or $sf_user->getCollector()->getId() !== $collectible_for_sale->getCollector()->getId()): ?>
-              <div style="display: inline; margin: 0 15%; padding: 5px 0 5px 0;">
+              <div>
                 <?php if ($sf_user->isAuthenticated()): ?>
                   <?php cq_button_submit(__('Buy Now'), null, 'margin-top: 3px; float: right;'); ?>
                 <?php else: ?>
@@ -51,7 +92,7 @@ if ($collectible_for_sale)
       </div>
       </form>
     </td>
-    <?php /*
+
       <td>
       <?php if ($collectible->isForSale()): ?>
       <div class="rounded buynow" style="margin-top: 35px;">
@@ -63,6 +104,7 @@ if ($collectible_for_sale)
       </div>
       <?php endif; ?>
       </td>
-     */ ?>
+
   </tr>
 </table>
+*/?>
