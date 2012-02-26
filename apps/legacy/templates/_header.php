@@ -67,7 +67,7 @@ $(function()
     hideOnContentClick: false,
     overlayOpacity: 0.5,
     autoDimensions: false,
-    width: 410, height: 300,
+    width: 410, height: jQuery.browser.opera && 330 || 300,
     enableEscapeButton: true,
     centerOnScroll: true
   });
