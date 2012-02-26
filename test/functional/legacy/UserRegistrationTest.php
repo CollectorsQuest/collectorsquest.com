@@ -12,7 +12,7 @@ cqTest::resetTables(array(
 cqTest::loadFixtureDirs(array('01_test_collectors'));
 
 
-$browser = new myTestFunctional(new sfBrowser(), new lime_test(null, new lime_output_color()));
+$browser = new cqTestFunctional(new sfBrowser(), new lime_test(null, new lime_output_color()));
 
 $browser
   ->info('Testing user registration:')

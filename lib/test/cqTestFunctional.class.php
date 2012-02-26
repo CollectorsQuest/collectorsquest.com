@@ -4,7 +4,7 @@
  *
  * @package     test
  */
-class myTestFunctional extends sfTestFunctional
+class cqTestFunctional extends sfTestFunctional
 {
 
   protected $form_fixtures = array();
@@ -65,7 +65,7 @@ class myTestFunctional extends sfTestFunctional
     }
     if (is_file($filename))
     {
-      $this->info(sprintf('Load form fixtures from file %s', $filename));
+      $this->info(sprintf('Loading form fixtures from file %s', $filename));
       $data = sfYaml::load($filename);
       $this->loadFormFixturesFromArray($data);
     }
@@ -74,7 +74,7 @@ class myTestFunctional extends sfTestFunctional
       $files = sfFinder::type('file')->name('*.yml')->sort_by_name()->in($filename);
       foreach ($files as $filename)
       {
-        $this->info(sprintf('Load form fixtures from file %s', $filename));
+        $this->info(sprintf('Loading form fixtures from file %s', $filename));
         $data = sfYaml::load($filename);
         $this->loadFormFixturesFromArray($data);
       }
@@ -100,7 +100,7 @@ class myTestFunctional extends sfTestFunctional
         throw new sfConfigurationException(sprintf('You have already set a form with the name "%s"', $form_name));
       }
 
-      $this->info(sprintf('Make the form fixture "%s" available to the tester', $form_name));
+      $this->info(sprintf('Making the form fixture "%s" available to the tester', $form_name));
       $this->form_fixtures[$form_name] = $form_data;
     }
 
