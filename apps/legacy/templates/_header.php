@@ -21,7 +21,10 @@
     <?php if (!$sf_user->isAuthenticated()): ?>
       <a href="<?php echo url_for('@collector_signup'); ?>" id="header-signup"><strong><?php echo  __('Sign up for an Account'); ?></strong></a>
       &nbsp;|&nbsp;
-      <a href="<?php echo url_for('@ajax_login'); ?>" id="header-login" onclick="return false;"><?php echo  __('Sign in to Your Account'); ?></a>
+      <a href="<?php echo url_for('@login'); ?>#ajax-login-tabs" id="header-login" onclick="return false;"><?php echo  __('Sign in to Your Account'); ?></a>
+      <div style="display: none">
+        <?php include_component('ajax', 'loginForm'); ?>
+      </div>
     <?php else: ?>
       <?php echo sprintf(__('Hello again, %s'), '<b>'.$sf_user->getCollector().'</b>'); ?>!
       &nbsp;
@@ -30,6 +33,7 @@
   </div>
   <h4 style="color: #fff; margin-top: 9px;"><?php echo  __("Where hunters gather!™"); ?></h4>
 </div>
+
 
 <?php cq_javascript_tag(); ?>
 <script type="text/javascript">
@@ -65,8 +69,7 @@ $(function()
     autoDimensions: false,
     width: 410, height: 300,
     enableEscapeButton: true,
-    centerOnScroll: true,
-    onComplete: function() { $("#ajax-login-tabs").tabs(); }
+    centerOnScroll: true
   });
 });
 </script>
