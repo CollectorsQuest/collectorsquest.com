@@ -21,6 +21,14 @@ class CollectorSignupStep2Form extends CollectorProfileEditForm
            + parent::getCollectorTypeChoices();
   }
 
+  public function updateDefaultsFromObject()
+  {
+    parent::updateDefaultsFromObject();
+
+    // ignore the default value of "casual" and let the user select the type
+    $this->setDefault('collector_type', null);
+  }
+
   protected function unsetFields()
   {
     unset($this['id']);
