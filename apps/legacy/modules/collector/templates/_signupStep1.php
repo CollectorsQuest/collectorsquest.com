@@ -26,9 +26,9 @@
         <?= cq_label_for($form, 'username', __('Username:')); ?>
         <div class="required"><?= __('(required)'); ?></div>
       </div>
-      <div class="prepend-1 span-6 last">
+      <div class="prepend-1 span-7 last">
         <?= cq_input_tag($form, 'username', array('width' => 400)); ?>
-        <div class="span-6 field-help">Only letters, numbers, periods and underscores allowed. Must start with a letter.</div>
+        <div class="f-h-w field-help">Only letters, numbers, periods and underscores allowed. Must start with a letter.</div>
         <span style="color:#FF0000"><?= $form['username']->renderError(); ?></span>
       </div>
 
@@ -37,7 +37,7 @@
         <?= cq_label_for($form, 'display_name', __('Display Name:')); ?>
         <div class="required"><?= __('(required)'); ?></div>
       </div>
-      <div class="prepend-1 span-6 last">
+      <div class="prepend-1 span-7 last">
         <?= cq_input_tag($form, 'display_name', array('width' => 400)); ?>
         <span style="color:#FF0000"><?= $form['display_name']->renderError(); ?></span>
       </div>
@@ -47,13 +47,13 @@
         <?= cq_label_for($form, 'password', __('Password:')); ?>
         <div class="required"><?= __('(required)'); ?></div>
       </div>
-      <div class="prepend-1 span-6 last"> <?= cq_input_tag($form, 'password', array('width' => 250)); ?> <span style="color:#FF0000"><?= $form['password']->renderError(); ?></span> </div>
+      <div class="prepend-1 span-7 last"> <?= cq_input_tag($form, 'password', array('width' => 250)); ?> <span style="color:#FF0000"><?= $form['password']->renderError(); ?></span> </div>
       <br clear="all"/><br/>
       <div class="span-3" style="text-align: right;">
         <?= cq_label_for($form, 'password_again', __('Confirm Password:')); ?>
         <div class="required"><?= __('(required)'); ?></div>
       </div>
-      <div class="prepend-1 span-6 last">
+      <div class="prepend-1 span-7 last">
         <?= cq_input_tag($form, 'password_again', array('width' => 250)); ?>
         <span style="color:#FF0000"><?= $form['password_again']->renderError(); ?></span>
       </div>
@@ -62,7 +62,7 @@
         <?= cq_label_for($form, 'email', __('E-mail:')); ?>
         <div class="required"><?= __('(required)'); ?></div>
       </div>
-      <div class="prepend-1 span-6 last">
+      <div class="prepend-1 span-7 last">
         <?= cq_input_tag($form, 'email', array('width' => 400)); ?>
         <span style="color:#FF0000"><?= $form['email']->renderError(); ?></span>
       </div>
@@ -85,19 +85,6 @@
           scrolling="no" frameBorder="no" style="width:350px; height:215px;" width="350" height="215"></iframe>
 </div>
 
-
-<style type="text/css">
-  #collectorstep1_password_bar {
-    border: 1px solid #E9E9E9;
-    font-size: 1px;
-    height: 5px;
-    width: 0px;
-  }
-
-  .pstrength-minchar {
-    font-size : 10px;
-  }
-</style>
 
 <?php cq_javascript_tag(); ?>
 <script type="text/javascript">
