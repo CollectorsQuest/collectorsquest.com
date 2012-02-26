@@ -28,6 +28,7 @@
       </div>
       <div class="prepend-1 span-6 last">
         <?= cq_input_tag($form, 'username', array('width' => 400)); ?>
+        <div class="span-6 field-help">Only letters, numbers, periods and underscores allowed. Must start with a letter.</div>
         <span style="color:#FF0000"><?= $form['username']->renderError(); ?></span>
       </div>
 

@@ -20,7 +20,7 @@ $browser
   ->setTester('propel', 'sfTesterPropel');
 
 $browser
-  /* * /
+  /* */
   ->info('  1. Unauthenticated user can access singup step 1 but not 2')
   ->get('/collector/signup')
   ->with('user')->isAuthenticated(false)
@@ -39,7 +39,7 @@ $browser
     ->isParameter('step', 1)
   ->end()
 
-  /* * /
+  /* */
   ->info('  2. Submitting an empty form')
   ->get('/collector/signup')
   ->click('*[type=submit]')
@@ -51,7 +51,7 @@ $browser
     ->isError('email', 'required')
   ->end()
 
-  /* * /
+  /* */
   ->info('  3. Submit form with errorneous data (existing username/email)')
   ->get('/collector/signup')
   ->fillForm('collectorstep1', array(
@@ -68,7 +68,7 @@ $browser
     ->isError('email', 'invalid')
   ->end()
 
-  /* * /
+  /* */
   ->info('  4. Submit form with errorneous data (invalid symbols in username)')
   ->get('/collector/signup')
   ->fillForm('collectorstep1', array(
@@ -150,9 +150,9 @@ $browser
   ->with('response')->isRedirected(true)
   ->followRedirect()
   ->with('request')->begin()
-    ->isparameter('module', 'collector')
-    ->isparameter('action', 'signup')
-    ->isparameter('step', 3)
+    ->isParameter('module', 'collector')
+    ->isParameter('action', 'signup')
+    ->isParameter('step', 3)
   ->end();
 $test_collector = CollectorPeer::retrieveBySlug('test-collector');
 $test_collector_profile = $test_collector->getProfile();
@@ -167,9 +167,9 @@ $browser
   ->with('response')->isRedirected(true)
   ->followRedirect()
    ->with('request')->begin()
-    ->isparameter('module', 'collector')
-    ->isparameter('action', 'signup')
-    ->isparameter('step', 3)
+    ->isParameter('module', 'collector')
+    ->isParameter('action', 'signup')
+    ->isParameter('step', 3)
   ->end()
 
   /* */
@@ -177,8 +177,48 @@ $browser
   ->get('/collector/signup/3')
   ->with('response')->isRedirected(false)
   ->with('request')->begin()
-    ->isparameter('module', 'collector')
-    ->isparameter('action', 'signup')
-    ->isparameter('step', 3)
+    ->isParameter('module', 'collector')
+    ->isParameter('action', 'signup')
+    ->isParameter('step', 3)
   ->end()
+
+  /* */
+  ->info(' 13. Submit an empty form for step 3')
+  ->get('/collector/signup/3')
+  ->click('*[type=submit]')
+  ->with('form')->begin()
+    ->hasErrors(1)
+    ->isError('country')
+  ->end()
+
+
+  /* */
+  ->info(' 14. Submit a proper form for step 3')
+  ->get('/collector/signup/3')
+  ->fillForm('collectorstep3', array(), 'CollectorSignupStep3')
+  ->click('*[type=submit]')
+  ->with('form')->hasErrors(0)
+  ->with('response')->isRedirected(true)
+  ->followRedirect()
+  ->with('response')->isRedirected(false)
+  ->with('request')->begin()
+    ->isParameter('module', 'manage')
+    ->isParameter('action', 'profile')
+  ->end()
+  ->with('propel')->check('Collector', array(
+      'username' => $browser->getFormFixture('CollectorSignupStep1', 'username'),
+      'has_completed_registration' => true,
+  ))
+
+
+  /* */
+  ->info(' 15. After completing singup trying to access it again will redirect to @manage_profile')
+  ->get('/collector/signup')
+  ->with('response')->isRedirected(true)
+  ->followRedirect()
+  ->with('request')->begin()
+    ->isParameter('module', 'manage')
+    ->isParameter('action', 'profile')
+  ->end()
+
   /* */;
