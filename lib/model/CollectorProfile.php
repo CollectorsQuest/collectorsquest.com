@@ -29,6 +29,10 @@ class CollectorProfile extends BaseCollectorProfile
     parent::setBirthday($v);
   }
 
+  /**
+   * @param string|null $now Current date in a compatible format http://www.php.net/manual/en/datetime.formats.date.php
+   * @return integer
+   */
   public function getAge($now = null)
   {
     $birthdate_dt = $this->getBirthday(null);

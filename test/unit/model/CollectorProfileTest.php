@@ -2,7 +2,7 @@
 
 include(__DIR__.'/../../bootstrap/model.php');
 
-$t = new lime_test(12, new lime_output_color());
+$t = new lime_test(18, new lime_output_color());
 
 // Reset all tables we will be working on
 cqTest::resetTables(array('collector', 'collector_profile'));
