@@ -22,7 +22,7 @@
       <a href="<?php echo url_for('@collector_signup'); ?>" id="header-signup"><strong><?php echo  __('Sign up for an Account'); ?></strong></a>
       &nbsp;|&nbsp;
       <a href="<?php echo url_for('@login'); ?>#ajax-login-tabs" id="header-login" onclick="return false;"><?php echo  __('Sign in to Your Account'); ?></a>
-      <div style="display: none">
+      <div class="visuallyhidden">
         <?php include_component('ajax', 'loginForm'); ?>
       </div>
     <?php else: ?>
