@@ -2,6 +2,9 @@
 
 class testGenerateFixturesTask extends sfBaseTask
 {
+  /** @var sfProjectConfiguration */
+  protected $configuration = null;
+
   protected function configure()
   {
     $this->addOptions(array(
@@ -40,7 +43,7 @@ class testGenerateFixturesTask extends sfBaseTask
       "DELETE FROM collector WHERE id NOT IN (". implode(',', $collector_ids) .");",
       "DELETE FROM collector_extra_property WHERE collector_id NOT IN (SELECT id FROM collector);",
       "DELETE FROM collector_profile WHERE collector_id NOT IN (SELECT id FROM collector);",
-      "DELETE FROM collector_profile_extra_property WHERE collector_profile_id NOT IN (SELECT id FROM collector_profile);",
+      "DELETE FROM collector_profile_extra_property WHERE collector_profile_collector_id NOT IN (SELECT collector_id FROM collector_profile);",
       "DELETE FROM collector_friend WHERE collector_id NOT IN (SELECT id FROM collector);",
       "DELETE FROM collector_friend WHERE friend_id NOT IN (SELECT id FROM collector);",
       "DELETE FROM collector_identifier_archive WHERE collector_id NOT IN (SELECT id FROM collector);",
@@ -98,16 +101,22 @@ class testGenerateFixturesTask extends sfBaseTask
     $stmt = $propel->prepare("
       SELECT TABLE_NAME FROM information_schema.tables
       WHERE table_schema = ?
-      AND TABLE_NAME NOT LIKE '%_archive';
+      AND TABLE_NAME NOT LIKE '%_archive'
+      AND TABLE_NAME NOT LIKE 'wp_%'
+      AND TABLE_NAME NOT LIKE 'sk2_%';
     ");
 
     $stmt->execute(array('collectorsquest_'. $options['env']));
     while ($table = $stmt->fetch(PDO::FETCH_COLUMN))
     {
       $class = sfInflector::classify($table);
+      $skip_classes = array(
+        'Crontab', 'JobQueue', 'JobRun', 'CollectibleForSale',
+        'PropelMigration', 'Xhprof', 'Queue', 'Message'
+      );
 
       // Temporary skip these tables
-      if (in_array($class, array('Crontab', 'JobQueue', 'JobRun', 'CollectibleForSale', 'PropelMigration', 'Xhprof'))) {
+      if (in_array($class, $skip_classes)) {
         continue;
       }
 
@@ -151,9 +160,10 @@ class testGenerateFixturesTask extends sfBaseTask
     while ($table = $stmt->fetch(PDO::FETCH_COLUMN))
     {
       $class = sfInflector::classify($table);
+      $skip_classes = array('CollectibleForSaleArchive', 'PropelMigration', 'Queue', 'Message');
 
       // Temporary skip these tables
-      if (in_array($class, array('CollectibleForSaleArchive', 'PropelMigration'))) {
+      if (in_array($class, $skip_classes)) {
         continue;
       }
 

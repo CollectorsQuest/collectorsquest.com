@@ -106,27 +106,6 @@ CollectorGeocache:
     latitude: '37.09024'
     longitude: '-95.71289'
     timezone: America/New_York
-  CollectorGeocache_3950:
-    collector_id: Collector_1317
-    country: Romania
-    country_iso3166: RO
-    address: Romania
-    latitude: '45.94316'
-    longitude: '24.96676'
-  CollectorGeocache_3951:
-    collector_id: Collector_1317
-    country: Romania
-    country_iso3166: RO
-    address: Romania
-    latitude: '45.94316'
-    longitude: '24.96676'
-  CollectorGeocache_3952:
-    collector_id: Collector_1317
-    country: Romania
-    country_iso3166: RO
-    address: Romania
-    latitude: '45.94316'
-    longitude: '24.96676'
   CollectorGeocache_7140:
     collector_id: Collector_6610
     country: USA
@@ -149,3 +128,10 @@ CollectorGeocache:
     latitude: '41.20735'
     longitude: '-96.05204'
     timezone: America/New_York
+  CollectorGeocache_11031:
+    collector_id: Collector_1317
+    country: Romania
+    country_iso3166: RO
+    address: Romania
+    latitude: '45.94316'
+    longitude: '24.96676'
