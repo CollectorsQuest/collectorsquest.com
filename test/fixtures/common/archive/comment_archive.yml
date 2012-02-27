@@ -298,6 +298,13 @@ CommentArchive:
     subject: ''
     body: "hi i want to know how can i purchase this item?\r\nbecase its my first time in this website"
     created_at: '2009-08-02 05:12:55'
+  CommentArchive_1594:
+    id: '1594'
+    collection_id: '1572'
+    collector_id: '591'
+    subject: ''
+    body: 'Ohhhh, what is that small antelope? An eland? Nice.'
+    created_at: '2009-08-02 21:05:21'
   CommentArchive_1614:
     id: '1614'
     collection_id: '1524'
@@ -373,6 +380,13 @@ CommentArchive:
     subject: ''
     body: 'WILL BUY FOR $20  HOW DO I PROCEED?'
     created_at: '2009-08-13 19:58:21'
+  CommentArchive_1714:
+    id: '1714'
+    collection_id: '1572'
+    collector_id: '1317'
+    subject: ''
+    body: 'I think it is a deer.It has the classical branch shaped antlers and a small bushy tail.'
+    created_at: '2009-08-14 08:17:51'
   CommentArchive_1747:
     id: '1747'
     collection_id: '1524'
@@ -448,6 +462,13 @@ CommentArchive:
     subject: ''
     body: "Allo mon ami!\r\nOh my god,so much new stuff here!\r\nPlease let me know when you are adding new pictures,so i can copy them all to my pc please.\r\nFor now i did,and i hope i didn't miss anything,haha.\r\nHow much nice models you have,and as always the Japanese models and Lineol stand out above all the others,although Papo has beautifull models too.\r\nAs you know,i do put new pictures on my site almost every day,but i don't work in species,but box for box to put them here,that is the most simple for me at the moment.\r\nAnyway...there is so much more to collect for me as you showed me here.\r\nThat will be hard work,but nice to do in the coming times ahead!\r\nI see you soon,bye bye,Willy"
     created_at: '2009-08-26 09:17:30'
+  CommentArchive_1857:
+    id: '1857'
+    collection_id: '1572'
+    collector_id: '591'
+    subject: ''
+    body: 'That is one cool looking Tapir :o)'
+    created_at: '2009-08-26 14:27:00'
   CommentArchive_1859:
     id: '1859'
     collection_id: '1686'
@@ -500,6 +521,13 @@ CommentArchive:
     subject: ''
     body: 'Very nice stuff.I like the playvisions and bullyland especially.'
     created_at: '2009-09-01 15:25:32'
+  CommentArchive_1917:
+    id: '1917'
+    collection_id: '1572'
+    collector_id: '1317'
+    subject: ''
+    body: 'Thanks :)'
+    created_at: '2009-09-02 06:50:24'
   CommentArchive_1952:
     id: '1952'
     collection_id: '1686'

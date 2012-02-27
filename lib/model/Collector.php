@@ -4,9 +4,6 @@ require 'lib/model/om/BaseCollector.php';
 
 class Collector extends BaseCollector
 {
-  /** @var CollectorProfile */
-  protected $profile = null;
-
   public function postSave(PropelPDO $con = null)
   {
 
@@ -100,18 +97,17 @@ class Collector extends BaseCollector
   /**
    * @return CollectorProfile
    */
-  public function getProfile()
+  public function getProfile(PropelPDO $con = null)
   {
-    if (!is_null($this->profile))
-    {
-      return $this->profile;
-    }
+    return parent::getCollectorProfile($con);
+  }
 
-    $c = new Criteria();
-    $c->add(CollectorProfilePeer::COLLECTOR_ID, $this->getId());
-    $this->profile = CollectorProfilePeer::doSelectOne($c);
-
-    return $this->profile;
+  /***
+   * @return Collector
+   */
+  public function setProfile(CollectorProfile $v)
+  {
+    return parent::setCollectorProfile($v);
   }
 
   /**
@@ -561,24 +557,12 @@ class Collector extends BaseCollector
       }
     }
 
-    /** @var $collector_profiles CollectorProfile[] */
-    if ($collector_profiles = $this->getCollectorProfiles($con))
-    {
-      foreach ($collector_profiles as $collector_profile)
-      {
-        $collector_profile->delete($con);
-      }
-    }
-
     return parent::preDelete($con);
   }
 
   public function __call($m, $a)
   {
-    $c = new Criteria();
-    $c->add(CollectorProfilePeer::COLLECTOR_ID, $this->getId());
-
-    $profile = CollectorProfilePeer::doSelectOne($c);
+    $profile = $this->getProfile();
 
     if ($profile instanceof CollectorProfile && method_exists($profile, $m))
     {

@@ -362,6 +362,14 @@ CollectorGeocacheArchive:
     latitude: '33.22830'
     longitude: '-86.77180'
     timezone: America/Chicago
+  CollectorGeocacheArchive_1108:
+    id: '1108'
+    collector_id: '2419'
+    country: Singapore
+    country_iso3166: SG
+    address: Singapore
+    latitude: '1.35208'
+    longitude: '103.81984'
   CollectorGeocacheArchive_1112:
     id: '1112'
     collector_id: '2423'
@@ -1684,6 +1692,30 @@ CollectorGeocacheArchive:
     latitude: '37.09024'
     longitude: '-95.71289'
     timezone: America/New_York
+  CollectorGeocacheArchive_3950:
+    id: '3950'
+    collector_id: '1317'
+    country: Romania
+    country_iso3166: RO
+    address: Romania
+    latitude: '45.94316'
+    longitude: '24.96676'
+  CollectorGeocacheArchive_3951:
+    id: '3951'
+    collector_id: '1317'
+    country: Romania
+    country_iso3166: RO
+    address: Romania
+    latitude: '45.94316'
+    longitude: '24.96676'
+  CollectorGeocacheArchive_3952:
+    id: '3952'
+    collector_id: '1317'
+    country: Romania
+    country_iso3166: RO
+    address: Romania
+    latitude: '45.94316'
+    longitude: '24.96676'
   CollectorGeocacheArchive_4026:
     id: '4026'
     collector_id: '4720'
@@ -16363,6 +16395,14 @@ CollectorGeocacheArchive:
     latitude: '40.74833'
     longitude: '-73.99623'
     timezone: America/New_York
+  CollectorGeocacheArchive_10336:
+    id: '10336'
+    collector_id: '8912'
+    country: UK
+    country_iso3166: GB
+    address: 'United Kingdom'
+    latitude: '55.37805'
+    longitude: '-3.43597'
   CollectorGeocacheArchive_10337:
     id: '10337'
     collector_id: '8927'
@@ -17762,6 +17802,15 @@ CollectorGeocacheArchive:
     latitude: '40.75369'
     longitude: '-73.99916'
     timezone: America/New_York
+  CollectorGeocacheArchive_10578:
+    id: '10578'
+    collector_id: '9126'
+    country: USA
+    country_iso3166: US
+    address: 'United States'
+    latitude: '37.09024'
+    longitude: '-95.71289'
+    timezone: America/New_York
   CollectorGeocacheArchive_10579:
     id: '10579'
     collector_id: '9133'
@@ -18394,6 +18443,18 @@ CollectorGeocacheArchive:
     address: 'Evergreen, CO 80439, USA'
     latitude: '39.61849'
     longitude: '-105.43024'
+    timezone: America/New_York
+  CollectorGeocacheArchive_10694:
+    id: '10694'
+    collector_id: '9251'
+    country: USA
+    country_iso3166: US
+    state: ME
+    city: Portland
+    zip_postal: '04101'
+    address: 'Portland, ME 04101, USA'
+    latitude: '43.66300'
+    longitude: '-70.25688'
     timezone: America/New_York
   CollectorGeocacheArchive_10695:
     id: '10695'
@@ -19129,6 +19190,15 @@ CollectorGeocacheArchive:
     address: 'Newfoundland and Labrador, Canada'
     latitude: '53.13551'
     longitude: '-57.66044'
+  CollectorGeocacheArchive_10800:
+    id: '10800'
+    collector_id: '1313'
+    country: Canada
+    country_iso3166: CA
+    state: NL
+    address: 'Newfoundland and Labrador, Canada'
+    latitude: '53.13551'
+    longitude: '-57.66044'
   CollectorGeocacheArchive_10801:
     id: '10801'
     collector_id: '9334'
@@ -19370,6 +19440,14 @@ CollectorGeocacheArchive:
     latitude: '33.96979'
     longitude: '-118.24681'
     timezone: America/New_York
+  CollectorGeocacheArchive_10840:
+    id: '10840'
+    collector_id: '9384'
+    country: China
+    country_iso3166: CN
+    address: China
+    latitude: '35.86166'
+    longitude: '104.19540'
   CollectorGeocacheArchive_10841:
     id: '10841'
     collector_id: '9383'
@@ -19437,6 +19515,16 @@ CollectorGeocacheArchive:
     latitude: '36.86387'
     longitude: '-119.77156'
     timezone: America/Los_Angeles
+  CollectorGeocacheArchive_10848:
+    id: '10848'
+    collector_id: '9395'
+    country: USA
+    country_iso3166: US
+    state: NY
+    address: 'Manhattan, NY 10011, USA'
+    latitude: '40.74650'
+    longitude: '-74.00945'
+    timezone: America/New_York
   CollectorGeocacheArchive_10849:
     id: '10849'
     collector_id: '9393'
@@ -19947,6 +20035,87 @@ CollectorGeocacheArchive:
     address: Algeria
     latitude: '28.03389'
     longitude: '1.65963'
+  CollectorGeocacheArchive_10924:
+    id: '10924'
+    collector_id: '9468'
+    country: Tanzania
+    country_iso3166: TZ
+    address: Tanzania
+    latitude: '-6.36903'
+    longitude: '34.88882'
+  CollectorGeocacheArchive_10926:
+    id: '10926'
+    collector_id: '9469'
+    country: USA
+    country_iso3166: US
+    state: NC
+    city: Raleigh
+    zip_postal: '27617'
+    address: 'Raleigh, NC 27617, USA'
+    latitude: '35.90174'
+    longitude: '-78.75329'
+    timezone: America/New_York
+  CollectorGeocacheArchive_10930:
+    id: '10930'
+    collector_id: '9474'
+    country: USA
+    country_iso3166: US
+    address: 'United States'
+    latitude: '37.09024'
+    longitude: '-95.71289'
+    timezone: America/New_York
+  CollectorGeocacheArchive_10931:
+    id: '10931'
+    collector_id: '9473'
+    country: USA
+    country_iso3166: US
+    state: NC
+    city: Raleigh
+    zip_postal: '27617'
+    address: 'Raleigh, NC 27617, USA'
+    latitude: '35.90174'
+    longitude: '-78.75329'
+    timezone: America/New_York
+  CollectorGeocacheArchive_10932:
+    id: '10932'
+    collector_id: '9472'
+    country: USA
+    country_iso3166: US
+    state: NY
+    address: 'Manhattan, NY 10001, USA'
+    latitude: '40.75369'
+    longitude: '-73.99916'
+    timezone: America/New_York
+  CollectorGeocacheArchive_10933:
+    id: '10933'
+    collector_id: '9475'
+    country: USA
+    country_iso3166: US
+    address: 'United States'
+    latitude: '37.09024'
+    longitude: '-95.71289'
+    timezone: America/New_York
+  CollectorGeocacheArchive_10934:
+    id: '10934'
+    collector_id: '9476'
+    country: USA
+    country_iso3166: US
+    state: CT
+    city: 'New London'
+    zip_postal: '06320'
+    address: 'New London, CT 06320, USA'
+    latitude: '41.36314'
+    longitude: '-72.10607'
+    timezone: America/New_York
+  CollectorGeocacheArchive_10937:
+    id: '10937'
+    collector_id: '9478'
+    country: USA
+    country_iso3166: US
+    address: 'United States'
+    latitude: '37.09024'
+    longitude: '-95.71289'
+    timezone: America/New_York
   CollectorGeocacheArchive_10938:
     id: '10938'
     collector_id: '9479'
@@ -19967,3 +20136,535 @@ CollectorGeocacheArchive:
     address: Belgium
     latitude: '50.50389'
     longitude: '4.46994'
+  CollectorGeocacheArchive_10943:
+    id: '10943'
+    collector_id: '9480'
+    country: Philippines
+    country_iso3166: PH
+    address: Philippines
+    latitude: '12.87972'
+    longitude: '121.77402'
+  CollectorGeocacheArchive_10946:
+    id: '10946'
+    collector_id: '9484'
+    country: USA
+    country_iso3166: US
+    address: 'United States'
+    latitude: '37.09024'
+    longitude: '-95.71289'
+    timezone: America/New_York
+  CollectorGeocacheArchive_10952:
+    id: '10952'
+    collector_id: '9489'
+    country: USA
+    country_iso3166: US
+    state: CA
+    city: 'Beverly Hills'
+    zip_postal: '90210'
+    address: 'Beverly Hills, CA 90210, USA'
+    latitude: '34.10300'
+    longitude: '-118.41047'
+    timezone: America/Los_Angeles
+  CollectorGeocacheArchive_10954:
+    id: '10954'
+    collector_id: '9493'
+    country: USA
+    country_iso3166: US
+    address: 'United States'
+    latitude: '37.09024'
+    longitude: '-95.71289'
+    timezone: America/New_York
+  CollectorGeocacheArchive_10956:
+    id: '10956'
+    collector_id: '9501'
+    country: USA
+    country_iso3166: US
+    state: AL
+    address: 'Alabama, USA'
+    latitude: '32.31823'
+    longitude: '-86.90230'
+    timezone: America/New_York
+  CollectorGeocacheArchive_10958:
+    id: '10958'
+    collector_id: '9498'
+    country: Philippines
+    country_iso3166: PH
+    address: Philippines
+    latitude: '12.87972'
+    longitude: '121.77402'
+  CollectorGeocacheArchive_10961:
+    id: '10961'
+    collector_id: '9395'
+    country: USA
+    country_iso3166: US
+    state: NY
+    address: 'Manhattan, NY 10011, USA'
+    latitude: '40.74650'
+    longitude: '-74.00945'
+    timezone: America/New_York
+  CollectorGeocacheArchive_10964:
+    id: '10964'
+    collector_id: '9508'
+    country: USA
+    country_iso3166: US
+    state: WA
+    city: Seattle
+    zip_postal: '98104'
+    address: 'Seattle, WA 98104, USA'
+    latitude: '47.60156'
+    longitude: '-122.33234'
+    timezone: America/Los_Angeles
+  CollectorGeocacheArchive_10966:
+    id: '10966'
+    collector_id: '9506'
+    country: USA
+    country_iso3166: US
+    state: AL
+    address: 'Alabama, USA'
+    latitude: '32.31823'
+    longitude: '-86.90230'
+    timezone: America/New_York
+  CollectorGeocacheArchive_10967:
+    id: '10967'
+    collector_id: '9505'
+    country: USA
+    country_iso3166: US
+    state: WA
+    city: Seattle
+    zip_postal: '98109'
+    address: 'Seattle, WA 98109, USA'
+    latitude: '47.62886'
+    longitude: '-122.34569'
+    timezone: America/Los_Angeles
+  CollectorGeocacheArchive_10971:
+    id: '10971'
+    collector_id: '9513'
+    country: USA
+    country_iso3166: US
+    state: NY
+    county: Schenectady
+    city: Schenectady
+    address: 'Schenectady, NY, USA'
+    latitude: '42.81424'
+    longitude: '-73.93957'
+    timezone: America/New_York
+  CollectorGeocacheArchive_10972:
+    id: '10972'
+    collector_id: '9515'
+    country: UK
+    country_iso3166: GB
+    address: 'United Kingdom'
+    latitude: '55.37805'
+    longitude: '-3.43597'
+  CollectorGeocacheArchive_10973:
+    id: '10973'
+    collector_id: '9514'
+    country: USA
+    country_iso3166: US
+    state: CA
+    city: 'Los Angeles'
+    address: 'Los Angeles, CA 90001, USA'
+    latitude: '33.96979'
+    longitude: '-118.24681'
+    timezone: America/New_York
+  CollectorGeocacheArchive_10983:
+    id: '10983'
+    collector_id: '9532'
+    country: Austria
+    country_iso3166: AT
+    address: Austria
+    latitude: '47.51623'
+    longitude: '14.55007'
+  CollectorGeocacheArchive_10984:
+    id: '10984'
+    collector_id: '9531'
+    country: USA
+    country_iso3166: US
+    state: WA
+    city: Seattle
+    zip_postal: '98109'
+    address: 'Seattle, WA 98109, USA'
+    latitude: '47.62886'
+    longitude: '-122.34569'
+    timezone: America/Los_Angeles
+  CollectorGeocacheArchive_10985:
+    id: '10985'
+    collector_id: '9530'
+    country: USA
+    country_iso3166: US
+    state: VA
+    city: Altavista
+    zip_postal: '24517'
+    address: 'Altavista, VA 24517, USA'
+    latitude: '37.15833'
+    longitude: '-79.23384'
+    timezone: America/New_York
+  CollectorGeocacheArchive_10986:
+    id: '10986'
+    collector_id: '9529'
+    country: USA
+    country_iso3166: US
+    state: CA
+    city: 'Los Angeles'
+    address: 'Los Angeles, CA 90001, USA'
+    latitude: '33.96979'
+    longitude: '-118.24681'
+    timezone: America/New_York
+  CollectorGeocacheArchive_10989:
+    id: '10989'
+    collector_id: '9526'
+    country: Bangladesh
+    country_iso3166: BD
+    address: Bangladesh
+    latitude: '23.68499'
+    longitude: '90.35633'
+  CollectorGeocacheArchive_10996:
+    id: '10996'
+    collector_id: '9548'
+    country: USA
+    country_iso3166: US
+    state: CA
+    city: 'Los Angeles'
+    address: 'Los Angeles, CA 90001, USA'
+    latitude: '33.96979'
+    longitude: '-118.24681'
+    timezone: America/New_York
+  CollectorGeocacheArchive_10997:
+    id: '10997'
+    collector_id: '9549'
+    country: USA
+    country_iso3166: US
+    state: CA
+    city: 'California City'
+    zip_postal: '93504'
+    address: 'California City, CA 93504, USA'
+    latitude: '35.13000'
+    longitude: '-117.99000'
+    timezone: America/Los_Angeles
+  CollectorGeocacheArchive_10998:
+    id: '10998'
+    collector_id: '9549'
+    country: USA
+    country_iso3166: US
+    state: CA
+    city: 'California City'
+    zip_postal: '93504'
+    address: 'California City, CA 93504, USA'
+    latitude: '35.13000'
+    longitude: '-117.99000'
+    timezone: America/Los_Angeles
+  CollectorGeocacheArchive_11000:
+    id: '11000'
+    collector_id: '9556'
+    country: USA
+    country_iso3166: US
+    state: OH
+    city: Columbus
+    zip_postal: '43201'
+    address: 'Columbus, OH 43201, USA'
+    latitude: '39.99298'
+    longitude: '-83.00122'
+    timezone: America/New_York
+  CollectorGeocacheArchive_11001:
+    id: '11001'
+    collector_id: '9554'
+    address: Antarctica
+    latitude: '-82.86275'
+    longitude: '-135.00000'
+  CollectorGeocacheArchive_11003:
+    id: '11003'
+    collector_id: '9552'
+    country: USA
+    country_iso3166: US
+    state: NY
+    address: 'Manhattan, NY 10001, USA'
+    latitude: '40.75369'
+    longitude: '-73.99916'
+    timezone: America/New_York
+  CollectorGeocacheArchive_11004:
+    id: '11004'
+    collector_id: '9551'
+    country: USA
+    country_iso3166: US
+    state: CA
+    city: 'El Cajon'
+    zip_postal: '92021'
+    address: 'El Cajon, CA 92021, USA'
+    latitude: '32.83244'
+    longitude: '-116.87926'
+    timezone: America/Los_Angeles
+  CollectorGeocacheArchive_11007:
+    id: '11007'
+    collector_id: '9558'
+    country: USA
+    country_iso3166: US
+    address: 'United States'
+    latitude: '37.09024'
+    longitude: '-95.71289'
+    timezone: America/New_York
+  CollectorGeocacheArchive_11008:
+    id: '11008'
+    collector_id: '9554'
+    address: Antarctica
+    latitude: '-82.86275'
+    longitude: '-135.00000'
+  CollectorGeocacheArchive_11009:
+    id: '11009'
+    collector_id: '9566'
+    country: USA
+    country_iso3166: US
+    state: MO
+    address: 'Glenallen, MO 63751, USA'
+    latitude: '37.31858'
+    longitude: '-90.05599'
+    timezone: America/New_York
+  CollectorGeocacheArchive_11011:
+    id: '11011'
+    collector_id: '9564'
+    country: USA
+    country_iso3166: US
+    address: 'United States'
+    latitude: '37.09024'
+    longitude: '-95.71289'
+    timezone: America/New_York
+  CollectorGeocacheArchive_11012:
+    id: '11012'
+    collector_id: '9563'
+    country: USA
+    country_iso3166: US
+    state: VA
+    city: Altavista
+    zip_postal: '24517'
+    address: 'Altavista, VA 24517, USA'
+    latitude: '37.15833'
+    longitude: '-79.23384'
+    timezone: America/New_York
+  CollectorGeocacheArchive_11013:
+    id: '11013'
+    collector_id: '9562'
+    country: Australia
+    country_iso3166: AU
+    address: Australia
+    latitude: '-25.27440'
+    longitude: '133.77514'
+  CollectorGeocacheArchive_11015:
+    id: '11015'
+    collector_id: '9560'
+    country: USA
+    country_iso3166: US
+    address: 'United States'
+    latitude: '37.09024'
+    longitude: '-95.71289'
+    timezone: America/New_York
+  CollectorGeocacheArchive_11016:
+    id: '11016'
+    collector_id: '9559'
+    country: USA
+    country_iso3166: US
+    address: 'United States'
+    latitude: '37.09024'
+    longitude: '-95.71289'
+    timezone: America/New_York
+  CollectorGeocacheArchive_11018:
+    id: '11018'
+    collector_id: '9568'
+    country: Philippines
+    country_iso3166: PH
+    address: Philippines
+    latitude: '12.87972'
+    longitude: '121.77402'
+  CollectorGeocacheArchive_11019:
+    id: '11019'
+    collector_id: '9569'
+    country: 'Åland Islands'
+    country_iso3166: AX
+    address: 'Åland Islands'
+    latitude: '60.33855'
+    longitude: '20.27126'
+  CollectorGeocacheArchive_11020:
+    id: '11020'
+    collector_id: '9570'
+    country: USA
+    country_iso3166: US
+    state: NY
+    address: 'Manhattan, NY 10001, USA'
+    latitude: '40.75369'
+    longitude: '-73.99916'
+    timezone: America/New_York
+  CollectorGeocacheArchive_11021:
+    id: '11021'
+    collector_id: '9571'
+    country: USA
+    country_iso3166: US
+    address: 'United States'
+    latitude: '37.09024'
+    longitude: '-95.71289'
+    timezone: America/New_York
+  CollectorGeocacheArchive_11022:
+    id: '11022'
+    collector_id: '9574'
+    country: Anguilla
+    country_iso3166: AI
+    address: Anguilla
+    latitude: '18.22055'
+    longitude: '-63.06862'
+  CollectorGeocacheArchive_11023:
+    id: '11023'
+    collector_id: '9573'
+    country: USA
+    country_iso3166: US
+    state: NY
+    address: 'Manhattan, NY 10001, USA'
+    latitude: '40.75369'
+    longitude: '-73.99916'
+    timezone: America/New_York
+  CollectorGeocacheArchive_11024:
+    id: '11024'
+    collector_id: '9572'
+    country: USA
+    country_iso3166: US
+    state: CA
+    address: 'Glencoe, CA 95232, USA'
+    latitude: '38.35907'
+    longitude: '-120.59122'
+    timezone: America/New_York
+  CollectorGeocacheArchive_11025:
+    id: '11025'
+    collector_id: '9575'
+    country: USA
+    country_iso3166: US
+    address: 'United States'
+    latitude: '37.09024'
+    longitude: '-95.71289'
+    timezone: America/New_York
+  CollectorGeocacheArchive_11026:
+    id: '11026'
+    collector_id: '9572'
+    country: USA
+    country_iso3166: US
+    state: CA
+    address: 'Glencoe, CA 95232, USA'
+    latitude: '38.35907'
+    longitude: '-120.59122'
+    timezone: America/New_York
+  CollectorGeocacheArchive_11028:
+    id: '11028'
+    collector_id: '9578'
+    country: USA
+    country_iso3166: US
+    state: CA
+    city: 'Beverly Hills'
+    zip_postal: '90210'
+    address: 'Beverly Hills, CA 90210, USA'
+    latitude: '34.10300'
+    longitude: '-118.41047'
+    timezone: America/Los_Angeles
+  CollectorGeocacheArchive_11030:
+    id: '11030'
+    collector_id: '1317'
+    country: Romania
+    country_iso3166: RO
+    address: Romania
+    latitude: '45.94316'
+    longitude: '24.96676'
+  CollectorGeocacheArchive_11032:
+    id: '11032'
+    collector_id: '9581'
+    country: Philippines
+    country_iso3166: PH
+    address: Philippines
+    latitude: '12.87972'
+    longitude: '121.77402'
+  CollectorGeocacheArchive_11033:
+    id: '11033'
+    collector_id: '9582'
+    country: UK
+    country_iso3166: GB
+    address: 'United Kingdom'
+    latitude: '55.37805'
+    longitude: '-3.43597'
+  CollectorGeocacheArchive_11034:
+    id: '11034'
+    collector_id: '9580'
+    country: USA
+    country_iso3166: US
+    state: CA
+    city: 'Redwood City'
+    zip_postal: '94063'
+    address: 'Redwood City, CA 94063, USA'
+    latitude: '37.50216'
+    longitude: '-122.20866'
+    timezone: America/Los_Angeles
+  CollectorGeocacheArchive_11035:
+    id: '11035'
+    collector_id: '9583'
+    country: USA
+    country_iso3166: US
+    state: AZ
+    city: Phoenix
+    zip_postal: '85001'
+    address: 'Phoenix, AZ 85001, USA'
+    latitude: '33.45000'
+    longitude: '-112.07000'
+    timezone: America/New_York
+  CollectorGeocacheArchive_11037:
+    id: '11037'
+    collector_id: '9585'
+    country: USA
+    country_iso3166: US
+    state: OH
+    city: Cleveland
+    zip_postal: '44121'
+    address: 'Cleveland, OH 44121, USA'
+    latitude: '41.52333'
+    longitude: '-81.53221'
+    timezone: America/New_York
+  CollectorGeocacheArchive_11041:
+    id: '11041'
+    collector_id: '9588'
+    country: USA
+    country_iso3166: US
+    address: 'United States'
+    latitude: '37.09024'
+    longitude: '-95.71289'
+    timezone: America/New_York
+  CollectorGeocacheArchive_11042:
+    id: '11042'
+    collector_id: '9591'
+    country: UK
+    country_iso3166: GB
+    address: 'United Kingdom'
+    latitude: '55.37805'
+    longitude: '-3.43597'
+  CollectorGeocacheArchive_11043:
+    id: '11043'
+    collector_id: '9590'
+    country: Australia
+    country_iso3166: AU
+    address: Australia
+    latitude: '-25.27440'
+    longitude: '133.77514'
+  CollectorGeocacheArchive_11044:
+    id: '11044'
+    collector_id: '9589'
+    country: UK
+    country_iso3166: GB
+    address: 'United Kingdom'
+    latitude: '55.37805'
+    longitude: '-3.43597'
+  CollectorGeocacheArchive_11045:
+    id: '11045'
+    collector_id: '9589'
+    country: UK
+    country_iso3166: GB
+    address: 'United Kingdom'
+    latitude: '55.37805'
+    longitude: '-3.43597'
+  CollectorGeocacheArchive_11046:
+    id: '11046'
+    collector_id: '9591'
+    country: UK
+    country_iso3166: GB
+    address: 'United Kingdom'
+    latitude: '55.37805'
+    longitude: '-3.43597'

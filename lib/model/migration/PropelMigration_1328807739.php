@@ -31,7 +31,8 @@ class PropelMigration_1328807739
 
       $sql = sprintf(
         'REPLACE INTO %s (%s, %s, %s) VALUES (?, ?, ?)',
-        CollectorProfileExtraPropertyPeer::TABLE_NAME, CollectorProfileExtraPropertyPeer::COLLECTOR_PROFILE_ID,
+        CollectorProfileExtraPropertyPeer::TABLE_NAME,
+        'collector_profile_extra_property.collector_profile_id',
         CollectorProfileExtraPropertyPeer::PROPERTY_NAME, CollectorProfileExtraPropertyPeer::PROPERTY_VALUE
       );
 

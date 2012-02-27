@@ -4,7 +4,10 @@ include(__DIR__.'/../../bootstrap/model.php');
 
 $t = new lime_test(13, array('output' => new lime_output_color(), 'error_reporting' => true));
 
-cqTest::resetTables(array('collection', 'collection_archive', 'collector_collection'));
+cqTest::resetTables(array(
+  'collection', 'collection_archive',
+  'collector_collection', 'collection_collectible'
+));
 
 $collector = CollectorQuery::create()->findOne();
 

@@ -1,1 +1,17 @@
-{  }
+CollectorExtraProperty:
+  CollectorExtraProperty_257:
+    property_name: SPAM.SIGNATURE
+    property_value: b300a2224e6b41c561cd23
+    collector_id: Collector_1317
+  CollectorExtraProperty_258:
+    property_name: SPAM.CLASSIFICATION
+    property_value: legitimate
+    collector_id: Collector_1317
+  CollectorExtraProperty_259:
+    property_name: SPAM.PROFANITY-MATCH
+    property_value: '1'
+    collector_id: Collector_1317
+  CollectorExtraProperty_260:
+    property_name: SPAM.ALLOW
+    property_value: '1'
+    collector_id: Collector_1317

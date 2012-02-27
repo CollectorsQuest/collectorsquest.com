@@ -15,13 +15,16 @@
         </ul>
       </div>
     </div>
-    <input id="header-search-box" name="q" tabindex="1" type="text" value="<?= $sf_params->get('q', __('Search for collections or collectibles')); ?>" />
+    <input id="header-search-box" name="q" tabindex="1" type="text" placeholder="<?= $sf_params->get('q', __('Search for collections or collectibles')); ?>" />
   </form>
   <div id="header-account">
     <?php if (!$sf_user->isAuthenticated()): ?>
       <a href="<?php echo url_for('@collector_signup'); ?>" id="header-signup"><strong><?php echo  __('Sign up for an Account'); ?></strong></a>
       &nbsp;|&nbsp;
-      <a href="<?php echo url_for('@ajax_login'); ?>" id="header-login" onclick="return false;"><?php echo  __('Sign in to Your Account'); ?></a>
+      <a href="<?php echo url_for('@login'); ?>#ajax-login-tabs" id="header-login" onclick="return false;"><?php echo  __('Sign in to Your Account'); ?></a>
+      <div class="visuallyhidden">
+        <?php include_component('ajax', 'loginForm'); ?>
+      </div>
     <?php else: ?>
       <?php echo sprintf(__('Hello again, %s'), '<b>'.$sf_user->getCollector().'</b>'); ?>!
       &nbsp;
@@ -30,6 +33,7 @@
   </div>
   <h4 style="color: #fff; margin-top: 9px;"><?php echo  __("Where hunters gather!™"); ?></h4>
 </div>
+
 
 <?php cq_javascript_tag(); ?>
 <script type="text/javascript">
@@ -56,41 +60,16 @@ $(function()
     document.location.href = '/search/'+ which +'?q='+ $('#header-search-box').val();
   }
 
-  $('#header-search').submit(function()
-  {
-    if ($('#header-search-box').val() == '<?php echo  __('Search for collections or collectibles'); ?>')
-    {
-      $('#header-search-box').val('');
-    }
-
-    return true;
-  });
-
-  $('#header-search-box').focus(function()
-  {
-    if ($(this).val() == '<?php echo  __('Search for collections or collectibles'); ?>')
-    {
-      $(this).val('');
-    }
-  });
-
-  $('#header-search-box').blur(function()
-  {
-    if ($(this).val() == '')
-    {
-      $(this).val('<?php echo  __('Search for collections or collectibles'); ?>');
-    }
-  });
+  $('#header-search-box').placeholder();
 
   $("a#header-login").fancybox(
   {
     hideOnContentClick: false,
     overlayOpacity: 0.5,
     autoDimensions: false,
-    width: 410, height: 300,
+    width: 410, height: jQuery.browser.opera && 330 || 300,
     enableEscapeButton: true,
-    centerOnScroll: true,
-    onComplete: function() { $("#ajax-login-tabs").tabs(); }
+    centerOnScroll: true
   });
 });
 </script>

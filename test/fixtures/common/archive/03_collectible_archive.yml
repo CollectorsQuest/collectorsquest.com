@@ -1,4 +1,232 @@
 CollectibleArchive:
+  CollectibleArchive_25496:
+    id: '25496'
+    graph_id: '9974'
+    collector_id: '1317'
+    name: 'Mixed Animals 9'
+    slug: mixed-animals-9
+    description: "<p>Glow in the dark Elasmosaurus Recast Stegosaurus Anhinga Corythosaurus Ornitholestes Recast Hyracotherium</p>\n"
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '0'
+    updated_at: '2012-02-23 03:12:50'
+    created_at: '2009-07-15 12:45:47'
+  CollectibleArchive_25497:
+    id: '25497'
+    graph_id: '9973'
+    collector_id: '1317'
+    name: 'Mixed Animals 8'
+    slug: mixed-animals-8
+    description: "<p>Leaf cutter ant Baboon Crocodile baby Beetles Lizards</p>\n"
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '0'
+    updated_at: '2012-02-23 03:12:50'
+    created_at: '2009-07-15 12:45:47'
+  CollectibleArchive_25498:
+    id: '25498'
+    graph_id: '9975'
+    collector_id: '1317'
+    name: 'Mixed Animals 10'
+    slug: mixed-animals-10
+    description: "<p>Fire ant Green Butterfly Stingray Boa Honey bee Lizards</p>\n"
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '0'
+    updated_at: '2012-02-23 03:12:50'
+    created_at: '2009-07-15 12:45:47'
+  CollectibleArchive_25499:
+    id: '25499'
+    graph_id: '9971'
+    collector_id: '1317'
+    name: 'Mixed Animals 6'
+    slug: mixed-animals-6
+    description: "<p>Tree kangaroo Shitzu Green butterfly Long nose turtle Butterfly-fish Lamb Penguin</p>\n"
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '0'
+    updated_at: '2012-02-23 03:12:50'
+    created_at: '2009-07-15 12:52:06'
+  CollectibleArchive_25500:
+    id: '25500'
+    graph_id: '9972'
+    collector_id: '1317'
+    name: 'Mixed Animals 7'
+    slug: mixed-animals-7
+    description: "<p>American tapir Green mantis Red sea star Gecko Anaconda Spider monkey(1998) Lizard</p>\n"
+    num_comments: '2'
+    score: '0'
+    is_name_automatic: '0'
+    updated_at: '2012-02-23 03:12:50'
+    created_at: '2009-07-15 12:52:06'
+  CollectibleArchive_25501:
+    id: '25501'
+    graph_id: '9970'
+    collector_id: '1317'
+    name: 'Mixed Animals 5'
+    slug: mixed-animals-5
+    description: "<p>Duck Dolphin Frog fish Hen with chick Humphback whale Galapagos giant turtle Lizard Tropical spider</p>\n"
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '0'
+    updated_at: '2012-02-23 03:12:50'
+    created_at: '2009-07-15 12:52:06'
+  CollectibleArchive_25502:
+    id: '25502'
+    graph_id: '9968'
+    collector_id: '1317'
+    name: 'Mixed Animals 3'
+    slug: mixed-animals-3
+    description: "<p>Rat Cobra Coral fish Box turtle Ladybug Lobster Sea snake Hypsilophodont Triassic dinosaurus(???)</p>\n"
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '0'
+    updated_at: '2012-02-23 03:12:50'
+    created_at: '2009-07-15 13:00:56'
+  CollectibleArchive_25503:
+    id: '25503'
+    graph_id: '9969'
+    collector_id: '1317'
+    name: 'Mixed Animals 4'
+    slug: mixed-animals-4
+    description: "<p>Panda Water spider Bumble bee Lizard Stag beetle Lonesome George(The Pinta Island tortoise) Leopard ray</p>\n"
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '0'
+    updated_at: '2012-02-23 03:12:50'
+    created_at: '2009-07-15 13:00:56'
+  CollectibleArchive_25504:
+    id: '25504'
+    graph_id: '9967'
+    collector_id: '1317'
+    name: 'Mixed Animals 2'
+    slug: mixed-animals-2
+    description: "<p>Spider wasp Longnose turtle Mud crab Aligator Lizard Centipede Poison dart frog Grasshopper</p>\n"
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '0'
+    updated_at: '2012-02-23 03:12:49'
+    created_at: '2009-07-15 13:00:57'
+  CollectibleArchive_25770:
+    id: '25770'
+    graph_id: '9966'
+    collector_id: '1317'
+    name: 'Mixed Animals 1'
+    slug: mixed-animals-1
+    description: "<p>Pteranodon Horned owl Coral Chimpanzee Pig Goose Spider monkeys Lizard Plesiosaurus Crocodiles</p>\n"
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '0'
+    updated_at: '2012-02-23 03:12:49'
+    created_at: '2009-07-16 08:44:35'
+  CollectibleArchive_25771:
+    id: '25771'
+    graph_id: '9976'
+    collector_id: '1317'
+    name: 'Mixed Animals 11'
+    slug: mixed-animals-11
+    description: "<p>Pidgeons, Alligator, black cat, Scorpion</p>\n"
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '0'
+    updated_at: '2012-02-23 03:12:50'
+    created_at: '2009-07-16 08:57:26'
+  CollectibleArchive_25772:
+    id: '25772'
+    graph_id: '9977'
+    collector_id: '1317'
+    name: 'Mixed Animals 12'
+    slug: mixed-animals-12
+    description: "<p>Proghorn, rooster, pacific crab, chimpanzee, red dragonfly, black triton, yellow butterfly, rhino betle, deer</p>\n"
+    num_comments: '2'
+    score: '0'
+    is_name_automatic: '0'
+    updated_at: '2012-02-23 03:12:50'
+    created_at: '2009-07-16 08:57:26'
+  CollectibleArchive_25773:
+    id: '25773'
+    graph_id: '9982'
+    collector_id: '1317'
+    name: 'Mixed Animals 18'
+    slug: mixed-animals-18
+    description: "<p>Eagle, gavial, bengal cat, beetle, alligator, grasshopper, butterfly-fish</p>\n"
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '0'
+    updated_at: '2012-02-23 03:12:51'
+    created_at: '2009-07-16 09:11:22'
+  CollectibleArchive_25774:
+    id: '25774'
+    graph_id: '9983'
+    collector_id: '1317'
+    name: 'Mixed Animals 17'
+    slug: mixed-animals-17
+    description: "<p>Shovel crab, yellow sea-star, koala, archaeopteryx, croc baby, cocroach</p>\n"
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '0'
+    updated_at: '2012-02-23 03:12:51'
+    created_at: '2009-07-16 09:11:22'
+  CollectibleArchive_25775:
+    id: '25775'
+    graph_id: '9981'
+    collector_id: '1317'
+    name: 'Mixed Animals 16'
+    slug: mixed-animals-16
+    description: "<p>Scorpion, australian adder, coral snakes, roach, horned lizard</p>\n"
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '0'
+    updated_at: '2012-02-23 03:12:50'
+    created_at: '2009-07-16 09:11:23'
+  CollectibleArchive_25776:
+    id: '25776'
+    graph_id: '9978'
+    collector_id: '1317'
+    name: 'Mixed Animals 15'
+    slug: mixed-animals-15
+    description: "<p>Protoceratops, sail agama, red lobsters, dragonfly, yellow salamander morey eel, humming bird, dimetrodon, archaeopteryx, blue sea-star, blue swallow-tail, long-nose turtle, centipede</p>\n"
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '0'
+    updated_at: '2012-02-23 03:12:50'
+    created_at: '2009-07-16 09:18:27'
+  CollectibleArchive_25777:
+    id: '25777'
+    graph_id: '9979'
+    collector_id: '1317'
+    name: 'Mixed Animals 14'
+    slug: mixed-animals-14
+    description: "<p>Agama, volcano lizard, spotted lizard, frog fish, grasshopper Green shinx</p>\n"
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '0'
+    updated_at: '2012-02-23 03:12:50'
+    created_at: '2009-07-16 09:18:27'
+  CollectibleArchive_25778:
+    id: '25778'
+    graph_id: '9980'
+    collector_id: '1317'
+    name: 'Mixed Animals 13'
+    slug: mixed-animals-13
+    description: "<p>Indian rhino, turtle, mantis, beetle, humming bird, butterfly</p>\n"
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '0'
+    updated_at: '2012-02-23 03:12:50'
+    created_at: '2009-07-16 09:18:27'
+  CollectibleArchive_32371:
+    id: '32371'
+    graph_id: '9984'
+    collector_id: '1317'
+    name: 'China bat ray'
+    slug: china-bat-ray
+    description: "<p>Very small figurine.</p>\n"
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '0'
+    updated_at: '2012-02-23 03:15:34'
+    created_at: '2009-11-26 11:21:11'
   CollectibleArchive_56543:
     id: '56543'
     graph_id: '7849'
