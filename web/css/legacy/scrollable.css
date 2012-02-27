@@ -1,5 +1,4 @@
 .scrollable {
-
   /* required settings */
   position:relative;
   overflow:hidden;
@@ -9,7 +8,7 @@
 
   /* custom decorations */
   border:1px solid #ccc;
-  background:url(./images/legacy/h300.png) repeat-x;
+  background:url(/images/legacy/h300.png) repeat-x;
 }
 
 .scrollable .items {
@@ -46,9 +45,57 @@
   float:left;
 }
 
+.scrollable-big {
+  /* required settings */
+  position:relative;
+  overflow:hidden;
+  width: 680px;
+
+  /*padding-right: 11px; */
+
+  /* custom decorations */
+  border:none;
+  background:transparent;
+}
+
+.scrollable-big  .items {
+  /* this cannot be too large */
+  width:20000em;
+  position:absolute;
+  clear:both;
+}
+
+/* single scrollable item */
+.scrollable-big .stack img {
+  float:left;
+  margin: 0px 0 0px 0px;
+  background-color:#fff;
+  padding:0px;
+  border:none;
+  cursor:pointer;
+  /*width: 150px;
+  height: 150px;*/
+
+  -moz-border-radius:4px;
+  -webkit-border-radius:4px;
+}
+
+/* active item */
+.scrollable-big  .active {
+  border:1px solid #000;
+  z-index:9999;
+  position:relative;
+}
+
+/* this makes it possible to add next button beside scrollable */
+.scrollable-big  {
+  float:left;
+}
+
+
 /* prev, next, prevPage and nextPage buttons */
 a.browse {
-  background:url(./images/legacy/hori_large.png) no-repeat;
+  background:url(/images/legacy/hori_large.png) no-repeat;
   display:block;
   width:30px;
   height:30px;
@@ -71,7 +118,7 @@ a.left:active   { background-position:-60px 0; }
 
 /* up and down */
 a.up, a.down {
-  background:url(./images/legacy/vert_large.png) no-repeat;
+  background:url(/images/legacy/vert_large.png) no-repeat;
   float: none;
   margin: 10px 50px;
 }
@@ -89,4 +136,8 @@ a.down:active   { background-position:-60px -30px; }
 /* disabled navigational button */
 a.disabled {
   visibility:hidden !important;
+}
+
+.scrollable-big-buttons {
+  margin: 68px 10px 20px 0 !important;
 }

@@ -61,10 +61,7 @@
 </div>
 <div class="clearfix append-bottom">&nbsp;</div>
 
-<?= $form['id']; ?>
-<?= $form['profile']['id']; ?>
-
-<?= $form['_csrf_token']; ?>
+<?= $form->renderHiddenFields(); ?>
 </form>
 
 <?php cq_javascript_tag(); ?>

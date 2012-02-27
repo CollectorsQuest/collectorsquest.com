@@ -17,7 +17,7 @@ default:
     copyright:    "Copyright (c) 2006-2010 CollectorsQuest.com"
 
   stylesheets:    [legacy/main.css, legacy/menu.css, legacy/buttons.css, legacy/uploadify.css, jquery/fancybox.css, jquery/menu.css]
-  javascripts:    [jquery/cookies.js, jquery/ui.js, jquery/easing.js, jquery/hoverIntent.js, jquery/targets.js, jquery/corners.js, jquery/superfish.js, jquery/menu.js, jquery/fancybox.js]
+  javascripts:    [jquery/cookies.js, jquery/ui.js, jquery/easing.js, jquery/hoverIntent.js, jquery/targets.js, jquery/corners.js, jquery/superfish.js, jquery/menu.js, jquery/fancybox.js, jquery/placeholder.js]
 
   has_layout:     true
   layout:         layout

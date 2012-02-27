@@ -1,5 +1,10 @@
 <?php
 
+function cq_image_tag($source, $options = array())
+{
+  return image_tag(cq_image_src($source), $options);
+}
+
 function cq_image_src($image, $secure = false)
 {
   return 'http://'. sfConfig::get('app_static_domain') .'/images/'. $image;
@@ -17,6 +22,14 @@ function cq_javascript_src($javascript, $secure = false)
 
 function cq_include_stylesheets()
 {
+  // Do not combine or do anything special if not in Production
+  if (SF_ENV != 'prod')
+  {
+    include_stylesheets();
+
+    return;
+  }
+
   $response = sfContext::getInstance()->getResponse();
   sfConfig::set('symfony.asset.stylesheets_included', true);
 
@@ -65,6 +78,14 @@ function cq_include_stylesheets()
 
 function cq_include_javascripts()
 {
+  // Do not combine or do anything special if not in Production
+  if (SF_ENV != 'prod')
+  {
+    include_javascripts();
+
+    return;
+  }
+
   $response = sfContext::getInstance()->getResponse();
   sfConfig::set('symfony.asset.javascripts_included', true);
 

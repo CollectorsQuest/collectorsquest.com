@@ -82,7 +82,7 @@ class WPCF7_ContactForm {
 			'_wpcf7_unit_tag' => $this->unit_tag );
 
 		if ( WPCF7_VERIFY_NONCE )
-			$hidden_fields['_wpnonce'] = wp_create_nonce( $this->unit_tag );
+			$hidden_fields['_wpnonce'] = wpcf7_create_nonce( $this->unit_tag );
 
 		$content = '';
 
@@ -222,8 +222,13 @@ class WPCF7_ContactForm {
 				continue;
 
 			$name = $fe['name'];
-			$pipes = $fe['pipes'];
+
+			if ( ! isset( $_POST[$name] ) )
+				continue;
+
 			$value = $_POST[$name];
+
+			$pipes = $fe['pipes'];
 
 			if ( WPCF7_USE_PIPE && is_a( $pipes, 'WPCF7_Pipes' ) && ! $pipes->zero() ) {
 				if ( is_array( $value) ) {
@@ -330,7 +335,7 @@ class WPCF7_ContactForm {
 	}
 
 	function verify_nonce() {
-		return wp_verify_nonce( $_POST['_wpnonce'], $_POST['_wpcf7_unit_tag'] );
+		return wpcf7_verify_nonce( $_POST['_wpnonce'], $_POST['_wpcf7_unit_tag'] );
 	}
 
 	/* Mail */
@@ -484,7 +489,7 @@ class WPCF7_ContactForm {
 		$values = array();
 
 		foreach ( $tmp_settings as $setting ) {
-			if ( preg_match('/^([a-zA-Z0-9_]+)\s*:(.*)$/', $setting, $matches ) ) {
+			if ( preg_match('/^([a-zA-Z0-9_]+)[\t ]*:(.*)$/', $setting, $matches ) ) {
 				if ( $matches[1] != $name )
 					continue;
 

@@ -4,7 +4,7 @@ Donate link: http://contactform7.com/donate/
 Tags: contact, form, contact form, feedback, email, ajax, captcha, akismet, multilingual
 Requires at least: 3.2
 Tested up to: 3.3.1
-Stable tag: 3.1
+Stable tag: 3.1.1
 
 Just another contact form plugin. Simple but flexible.
 
@@ -28,7 +28,7 @@ It is hard to continue development and support for this plugin without contribut
 * Albanian (sq) - [Olgi Zenullari](http://www.olgizenullari.com/)
 * Arabic (ar) - [Tarek Chaaban](http://www.chaaban.info/), Muhammed Lardi, [Yaser Maadan](http://www.englize.com/)
 * Armenian (hy_AM) - [Emmanuelle Traduction](http://www.translatonline.com/)
-* Azeri (az_AZ) - [Zaur Bayramov](http://bloglayaq.com/)
+* Azerbaijani (az_AZ) - [Zaur Bayramov](http://bloglayaq.com/)
 * Bangla (bn_BD) - [SM Mehdi Akram](http://www.shamokaldarpon.com/)
 * Belarusian (be_BY) - [Igor Dubilei](http://www.iflexion.com/)
 * Bosnian (bs) - [Vedran](http://www.seorabbit.com/)
@@ -49,7 +49,7 @@ It is hard to continue development and support for this plugin without contribut
 * Georgian (ka_GE) - [Nodar Rocko Davituri](http://davituri.com/)
 * German (de_DE) - [Marcel Spitau](http://blog.spitau.de), [Ivan Graf](http://blog.bildergallery.com/)
 * Greek (el) - [Nick Mouratidis](http://www.kepik.gr/), [Pr. friedlich](http://friedlich.wordpress.com/)
-* Hebrew (he_IL) - [Yaron Ofer](http://www.gadgetguru.co.il/)
+* Hebrew (he_IL) - [Yaron Ofer](http://www.gadgetguru.co.il/), [Arik Galansky](http://www.arikg.co.il/)
 * Hindi (hi_IN) - [Tarun Joshi](http://www.readers-cafe.net/), [Ashish](http://outshinesolutions.com/)
 * Hungarian (hu_HU) - [Andras Hirschler](http://hia.itblog.hu/), [János Csárdi-Braunstein](http://blogocska.org/), [Farkas Győző](http://www.sakraft.hu/)
 * Indonesian (Bahasa Indonesia; id_ID) - [Hendry Lee](http://blogbuildingu.com/), [Belajar Seo Indonesia](http://dhany.web.id/panduan-seo)
@@ -112,6 +112,15 @@ Do you have questions or issues with Contact Form 7? Use these support channels 
 1. screenshot-1.png 
 
 == Changelog ==
+
+= 3.1.1 =
+
+* Introduce wpcf7_verify_nonce() and wpcf7_create_nonce() for front-end use. This fixes the wrong nonce issue on cached pages.
+* Preserve new line characters in form shortcode contents to bypass auto-p filter.
+* Use [\r\n\t ] instead of [\s] in regex to prevent issues of checkbox/radio options containing some UTF-8 characters are dropped.
+* Bug fixed: tag generator menu is incorrectly shown on WordPress 3.2.x.
+* The jQuery Form Plugin (jquery.form.js) has been updated to 2.96.
+* Translations for Latvian, Hebrew, German, and Japanese have been updated.
 
 = 3.1 =
 

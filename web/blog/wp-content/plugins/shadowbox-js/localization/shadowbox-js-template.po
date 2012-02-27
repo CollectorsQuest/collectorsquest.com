@@ -1,0 +1,523 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: shadowbox-js\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-03-28 09:46-0600\n"
+"PO-Revision-Date: 2010-03-28 09:46-0600\n"
+"Last-Translator: Matt Martz <matt@sivel.net>\n"
+"Language-Team: Matt Martz <matt@sivel.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: /var/www/trunk/wp-content/plugins/shadowbox-js\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: shadowbox-js.php:146
+#, php-format
+msgid "Shadowbox JS has been automatically deactivated because the file <strong>%s</strong> is missing. Please reinstall the plugin and reactivate."
+msgstr ""
+
+#: inc/admin.php:100
+#: inc/options-page.php:116
+msgid "Show Advanced Configuration"
+msgstr ""
+
+#: inc/admin.php:101
+msgid "Hide Advanced Configuration"
+msgstr ""
+
+#: inc/admin.php:102
+msgid "Do you agree that you are not using FLV support for commercial purposes or have already purchased a license for JW FLV Media Player?"
+msgstr ""
+
+#: inc/admin.php:580
+#: inc/options-page.php:13
+msgid "Shadowbox JS"
+msgstr ""
+
+#: inc/admin.php:595
+msgid "Settings"
+msgstr ""
+
+#: inc/options-page.php:18
+msgid "The URL for shadowbox.js has been overridden. Numerous options on this page will not display when the URL for shadowbox.js has been overriden as they will not have any effect."
+msgstr ""
+
+#: inc/options-page.php:27
+msgid "General"
+msgstr ""
+
+#: inc/options-page.php:28
+msgid "These are general options for the Shadowbox Javascript that tell Shadowbox how to run, how to look and what language to use."
+msgstr ""
+
+#: inc/options-page.php:32
+msgid "Javascript Library"
+msgstr ""
+
+#: inc/options-page.php:36
+msgid "None"
+msgstr ""
+
+#: inc/options-page.php:43
+msgid "Default is None."
+msgstr ""
+
+#: inc/options-page.php:48
+msgid "The URL for shadowbox.js has been overridden. The above setting must match the library/adapter that was chosen when building shadowbox.js or Shadowbox will not function."
+msgstr ""
+
+#: inc/options-page.php:58
+msgid "Language"
+msgstr ""
+
+#: inc/options-page.php:68
+msgid "Default is en."
+msgstr ""
+
+#: inc/options-page.php:73
+msgid "Players"
+msgstr ""
+
+#: inc/options-page.php:84
+msgid "The list of enabled or disabled players. Default is HTML, IFRAME, IMG, QT, SWF and WMP. The FLV option will not be available until you <a href=\"#enableFlv\">enable FLV support</a> as outlined below."
+msgstr ""
+
+#: inc/options-page.php:89
+msgid "Enable FLV Support"
+msgstr ""
+
+#: inc/options-page.php:93
+#: inc/options-page.php:107
+#: inc/options-page.php:124
+#: inc/options-page.php:137
+#: inc/options-page.php:164
+#: inc/options-page.php:177
+#: inc/options-page.php:220
+#: inc/options-page.php:233
+#: inc/options-page.php:276
+#: inc/options-page.php:289
+#: inc/options-page.php:302
+#: inc/options-page.php:375
+#: inc/options-page.php:408
+#: inc/options-page.php:421
+#: inc/options-page.php:434
+#: inc/options-page.php:481
+#: inc/options-page.php:494
+#: inc/options-page.php:511
+#: inc/options-page.php:524
+#: inc/options-page.php:537
+#: inc/options-page.php:581
+#: inc/options-page.php:592
+msgid "true"
+msgstr ""
+
+#: inc/options-page.php:94
+#: inc/options-page.php:108
+#: inc/options-page.php:125
+#: inc/options-page.php:138
+#: inc/options-page.php:165
+#: inc/options-page.php:178
+#: inc/options-page.php:221
+#: inc/options-page.php:234
+#: inc/options-page.php:277
+#: inc/options-page.php:290
+#: inc/options-page.php:303
+#: inc/options-page.php:376
+#: inc/options-page.php:409
+#: inc/options-page.php:422
+#: inc/options-page.php:435
+#: inc/options-page.php:482
+#: inc/options-page.php:495
+#: inc/options-page.php:512
+#: inc/options-page.php:525
+#: inc/options-page.php:538
+#: inc/options-page.php:580
+#: inc/options-page.php:591
+msgid "false"
+msgstr ""
+
+#: inc/options-page.php:97
+msgid "By enabling FLV support you are agreeing to the the <a href=\"http://creativecommons.org/licenses/by-nc-sa/3.0/\">noncommercial license</a> used by JW FLV Media Player. The JW FLV Media Player is licensed under the terms of the <a href=\"http://creativecommons.org/licenses/by-nc-sa/3.0/\">Creative Commons Attribution-Noncommercial-Share Alike 3.0 Unported License</a>. After enabling FLV support you will need to select FLV from the list of players above, and optionally enable automation for FLV links under \"Shadowbox Automation\". Default is false."
+msgstr ""
+
+#: inc/options-page.php:103
+msgid "Enable Smart Loading"
+msgstr ""
+
+#: inc/options-page.php:111
+msgid "Enabling this will only load Shadowbox and its dependencies when needed based on the content of your posts.\tPlease note that when enabling this Shadowbox will not be loaded if rel=\"shadowbox\" is not found in the content of your post(s).  If you experience problems after enabling this, try disabling. Default is false."
+msgstr ""
+
+#: inc/options-page.php:115
+msgid "Advanced Configuration"
+msgstr ""
+
+#: inc/options-page.php:120
+msgid "Animate"
+msgstr ""
+
+#: inc/options-page.php:128
+msgid "Set this false to disable all fancy animations (except fades). This can improve the overall effect on computers with poor performance. Defaults to true."
+msgstr ""
+
+#: inc/options-page.php:133
+msgid "Fade Animations"
+msgstr ""
+
+#: inc/options-page.php:141
+msgid "Set this false to disable all fading animations. Defaults to true."
+msgstr ""
+
+#: inc/options-page.php:146
+msgid "Animation Sequence"
+msgstr ""
+
+#: inc/options-page.php:155
+msgid "The animation sequence to use when resizing Shadowbox. May be either \"wh\" (width first, then height), \"hw\" (height first, then width), or \"sync\" (both simultaneously). Defaults to \"sync\"."
+msgstr ""
+
+#: inc/options-page.php:160
+msgid "Modal"
+msgstr ""
+
+#: inc/options-page.php:168
+msgid "Set this true to disable listening for mouse clicks on the overlay that will close Shadowbox. Defaults to false."
+msgstr ""
+
+#: inc/options-page.php:173
+msgid "Show Overlay"
+msgstr ""
+
+#: inc/options-page.php:181
+msgid "Set this false to disable showing the overlay. Defaults to true."
+msgstr ""
+
+#: inc/options-page.php:186
+msgid "Overlay Color"
+msgstr ""
+
+#: inc/options-page.php:191
+msgid "The color to use for the modal overlay (in hex). Defaults to \"#000\"."
+msgstr ""
+
+#: inc/options-page.php:196
+msgid "Overlay Opacity"
+msgstr ""
+
+#: inc/options-page.php:201
+msgid "The opacity to use for the modal overlay. Defaults to 0.8."
+msgstr ""
+
+#: inc/options-page.php:206
+msgid "Flash Background Color"
+msgstr ""
+
+#: inc/options-page.php:211
+msgid "The default background color to use for Flash movies. Defaults to \"#000000\"."
+msgstr ""
+
+#: inc/options-page.php:216
+msgid "Auto-Play Movies"
+msgstr ""
+
+#: inc/options-page.php:224
+msgid "Set this false to disable automatically playing movies when they are loaded. Defaults to true."
+msgstr ""
+
+#: inc/options-page.php:229
+msgid "Show Movie Controls"
+msgstr ""
+
+#: inc/options-page.php:237
+msgid "Set this false to disable displaying QuickTime and Windows Media player movie control bars. Defaults to true."
+msgstr ""
+
+#: inc/options-page.php:242
+msgid "Slideshow Delay"
+msgstr ""
+
+#: inc/options-page.php:247
+msgid "A delay (in seconds) to use for slideshows. If set to anything other than 0, this value determines an interval at which Shadowbox will automatically proceed to the next piece in the gallery. Defaults to 0."
+msgstr ""
+
+#: inc/options-page.php:252
+msgid "Resize Duration"
+msgstr ""
+
+#: inc/options-page.php:257
+msgid "The duration (in seconds) of the resizing animations. Defaults to 0.55."
+msgstr ""
+
+#: inc/options-page.php:262
+msgid "Fade Duration"
+msgstr ""
+
+#: inc/options-page.php:267
+msgid "The duration (in seconds) of the fade animations. Defaults to 0.35."
+msgstr ""
+
+#: inc/options-page.php:272
+msgid "Display Navigation"
+msgstr ""
+
+#: inc/options-page.php:280
+msgid "Set this false to hide the gallery navigation controls. Defaults to true."
+msgstr ""
+
+#: inc/options-page.php:285
+msgid "Continuous"
+msgstr ""
+
+#: inc/options-page.php:293
+msgid "Set this true to enable \"continuous\" galleries. By default, the galleries will not let a user go before the first image or after the last. Enabling this feature will let the user go directly to the first image in a gallery from the last one by selecting \"Next\". Defaults to false."
+msgstr ""
+
+#: inc/options-page.php:298
+msgid "Display Counter"
+msgstr ""
+
+#: inc/options-page.php:306
+msgid "Set this false to hide the gallery counter. Counters are never displayed on elements that are not part of a gallery. Defaults to true."
+msgstr ""
+
+#: inc/options-page.php:311
+msgid "Counter Type"
+msgstr ""
+
+#: inc/options-page.php:315
+msgid "default"
+msgstr ""
+
+#: inc/options-page.php:316
+msgid "skip"
+msgstr ""
+
+#: inc/options-page.php:319
+msgid "The mode to use for the gallery counter. May be either \"default\" or \"skip\". The default counter is a simple \"1 of 5\" message. The skip counter displays a separate link to each piece in the gallery, enabling quick navigation in large galleries. Defaults to \"default\"."
+msgstr ""
+
+#: inc/options-page.php:324
+msgid "Counter Limit"
+msgstr ""
+
+#: inc/options-page.php:329
+msgid "Limits the number of counter links that will be displayed in a \"skip\" style counter. If the actual number of gallery elements is greater than this value, the counter will be restrained to the elements immediately preceding and following the current element. Defaults to 10."
+msgstr ""
+
+#: inc/options-page.php:334
+msgid "Viewport Padding"
+msgstr ""
+
+#: inc/options-page.php:339
+msgid "The amount of padding (in pixels) to maintain around the edge of the browser window. Defaults to 20."
+msgstr ""
+
+#: inc/options-page.php:344
+msgid "Handle Oversize"
+msgstr ""
+
+#: inc/options-page.php:348
+msgid "none"
+msgstr ""
+
+#: inc/options-page.php:349
+msgid "resize"
+msgstr ""
+
+#: inc/options-page.php:350
+msgid "drag"
+msgstr ""
+
+#: inc/options-page.php:353
+msgid "The mode to use for handling content that is too large for the viewport. May be one of \"none\", \"resize\", or \"drag\" (for images). The \"none\" setting will not alter the image dimensions, though clipping may occur. Setting this to \"resize\" enables on-the-fly resizing of large content. In this mode, the height and width of large, resizable content will be adjusted so that it may still be viewed in its entirety while maintaining its original aspect ratio. The \"drag\" mode will display an oversized image at its original resolution, but will allow the user to drag it within the view to see portions that may be clipped. Defaults to \"resize\"."
+msgstr ""
+
+#: inc/options-page.php:358
+msgid "Handle Unsupported"
+msgstr ""
+
+#: inc/options-page.php:362
+msgid "link"
+msgstr ""
+
+#: inc/options-page.php:363
+msgid "remove"
+msgstr ""
+
+#: inc/options-page.php:366
+msgid "The mode to use for handling unsupported media. May be either \"link\" or \"remove\". Media are unsupported when the browser plugin required to display the media properly is not installed. The link option will display a user-friendly error message with a link to a page where the needed plugin can be downloaded. The remove option will simply remove any unsupported gallery elements from the gallery before displaying it. With this option, if the element is not part of a gallery, the link will simply be followed. Defaults to \"link\"."
+msgstr ""
+
+#: inc/options-page.php:371
+msgid "Auto Dimensions"
+msgstr ""
+
+#: inc/options-page.php:379
+msgid "Set this true to automatically set the initialHeight and initialWidth automatically from the configured object's height and width. Defaults to false."
+msgstr ""
+
+#: inc/options-page.php:384
+msgid "Initial Height"
+msgstr ""
+
+#: inc/options-page.php:389
+msgid "The height of Shadowbox (in pixels) when it first appears on the screen. Defaults to 160."
+msgstr ""
+
+#: inc/options-page.php:394
+msgid "Initial Width"
+msgstr ""
+
+#: inc/options-page.php:399
+msgid "The width of Shadowbox (in pixels) when it first appears on the screen. Defaults to 320."
+msgstr ""
+
+#: inc/options-page.php:404
+msgid "Enable Keys"
+msgstr ""
+
+#: inc/options-page.php:412
+msgid "Set this false to disable keyboard navigation of galleries. Defaults to true."
+msgstr ""
+
+#: inc/options-page.php:417
+msgid "Skip Setup"
+msgstr ""
+
+#: inc/options-page.php:425
+msgid "Set this true to skip Shadowbox.setup() during Shadowbox.init(). For purposes of this plugin you will have to manually add Shadowbox.setup() to the footer of your theme. Defaults to false."
+msgstr ""
+
+#: inc/options-page.php:430
+msgid "Use Sizzle"
+msgstr ""
+
+#: inc/options-page.php:438
+msgid "Set this true to enable loading the <a href=\"http://sizzlejs.com/\">Sizzle.js</a> CSS selector library. Note that if you choose not to use Sizzle you may not use CSS selectors to set up your links. In order to use Sizzle.js you must set Skip Setup to true. Defaults to false."
+msgstr ""
+
+#: inc/options-page.php:443
+msgid "Flash Params"
+msgstr ""
+
+#: inc/options-page.php:448
+msgid "A list of parameters (in a JavaScript object) that will be passed to a flash &lt;object&gt;. For a partial list of available parameters, see <a href=\"http://kb.adobe.com/selfservice/viewContent.do?externalId=tn_12701\">this page</a>. Only one parameter is specified by default: bgcolor. Defaults to {bgcolor:\"#000000\", allowFullScreen:true}."
+msgstr ""
+
+#: inc/options-page.php:453
+msgid "Flash Vars"
+msgstr ""
+
+#: inc/options-page.php:458
+msgid "A list of variables (in a JavaScript object) that will be passed to a flash movie as <a href=\"http://kb.adobe.com/selfservice/viewContent.do?externalId=tn_16417\">FlashVars</a>. Defaults to {}."
+msgstr ""
+
+#: inc/options-page.php:463
+msgid "Flash Version"
+msgstr ""
+
+#: inc/options-page.php:468
+msgid "The minimum Flash version required to play a flash movie (as a string). Defaults to \"9.0.0\"."
+msgstr ""
+
+#: inc/options-page.php:472
+msgid "Shadowbox Automation"
+msgstr ""
+
+#: inc/options-page.php:473
+msgid "These options will give you the capability to have Shadowbox automatically used for all of a certain file type."
+msgstr ""
+
+#: inc/options-page.php:477
+msgid "Image Links"
+msgstr ""
+
+#: inc/options-page.php:485
+#: inc/options-page.php:515
+#: inc/options-page.php:528
+#: inc/options-page.php:541
+msgid "Default is true."
+msgstr ""
+
+#: inc/options-page.php:490
+msgid "FLV Links"
+msgstr ""
+
+#: inc/options-page.php:499
+msgid "Default is false.  To enable this option you must first <a href=\"#enableFlv\">enable FLV support</a>."
+msgstr ""
+
+#: inc/options-page.php:501
+msgid "Default is false."
+msgstr ""
+
+#: inc/options-page.php:507
+msgid "Movie Links"
+msgstr ""
+
+#: inc/options-page.php:520
+msgid "Music Links"
+msgstr ""
+
+#: inc/options-page.php:533
+msgid "YouTube and Google Video Links"
+msgstr ""
+
+#: inc/options-page.php:545
+msgid "Sizes"
+msgstr ""
+
+#: inc/options-page.php:549
+msgid "Generic Video Width"
+msgstr ""
+
+#: inc/options-page.php:554
+msgid "The width of Shadowbox (in pixels) when displaying videos. Defaults to 640."
+msgstr ""
+
+#: inc/options-page.php:559
+msgid "Generic Video Height"
+msgstr ""
+
+#: inc/options-page.php:564
+msgid "The height of Shadowbox (in pixels) when when displaying videos. Defaults to 385."
+msgstr ""
+
+#: inc/options-page.php:569
+msgid "The settings for this plugin have been deleted. The plugin can now be"
+msgstr ""
+
+#: inc/options-page.php:569
+msgid "Deactivate Shadowbox JS"
+msgstr ""
+
+#: inc/options-page.php:569
+msgid "deactivated"
+msgstr ""
+
+#: inc/options-page.php:569
+msgid "If you want to create the settings with their defaults so this plugin can be used again, set \"Reset to Defaults\" to \"true\" and click \"Save Changes\""
+msgstr ""
+
+#: inc/options-page.php:571
+msgid "Resets"
+msgstr ""
+
+#: inc/options-page.php:572
+msgid "These options will allow you to revert the options back to their defaults or to remove the options from the database for a clean uninstall."
+msgstr ""
+
+#: inc/options-page.php:576
+msgid "Reset to Defaults"
+msgstr ""
+
+#: inc/options-page.php:587
+msgid "Delete Options for a Clean Uninstall"
+msgstr ""
+
+#: inc/options-page.php:598
+msgid "Save Changes"
+msgstr ""
+

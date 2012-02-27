@@ -49,7 +49,7 @@ class collectionActions extends cqActions
     }
     else
     {
-      $c->addJoin(CollectiblePeer::ID, CollectionCollectiblePeer::COLLECTIBLE_ID, Criteria::RIGHT_JOIN);
+      $c->addJoin(CollectiblePeer::ID, CollectionCollectiblePeer::COLLECTIBLE_ID);
       $c->add(CollectionCollectiblePeer::COLLECTION_ID, $collection->getId());
     }
 

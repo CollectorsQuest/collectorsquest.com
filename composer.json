@@ -7,6 +7,7 @@
     },
     "repositories": {
         "CollectorsQuest/sfGuardPlugin": {
+            "type": "package",
             "package": {
                 "name": "plugins/sfGuardPlugin",
                 "version": "4.0.2",
@@ -18,6 +19,7 @@
             }
         },
         "Jadell/neo4jphp": {
+            "type": "package",
             "package": {
                 "name": "lib/vendor/neo4jphp",
                 "version": "0.0.6",
@@ -33,6 +35,7 @@
             }
         },
         "fzaninotto/faker": {
+            "type": "package",
             "package": {
                 "name": "lib/vendor/faker",
                 "version": "master-dev",
