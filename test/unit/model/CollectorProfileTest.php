@@ -2,11 +2,11 @@
 
 include(__DIR__.'/../../bootstrap/model.php');
 
-$t = new lime_test(18, new lime_output_color());
+$t = new lime_test(18, array('output' => new lime_output_color(), 'error_reporting' => true));
 
 // Reset all tables we will be working on
 cqTest::resetTables(array('collector', 'collector_profile'));
-cqTest::loadFixtureDirs('01_test_collectors');
+cqTest::loadFixtures('01_test_collectors/');
 
 $t->diag('::setWebsite(), ::getWebsite(), ::getWebsiteUrl()');
 

@@ -4,8 +4,7 @@ include(__DIR__.'/../../bootstrap/model.php');
 
 $t = new lime_test(4, array('output' => new lime_output_color(), 'error_reporting' => true));
 
-// Reset all tables we will be working on
-cqTest::resetTables(array('collector', 'collector_archive'));
+cqTest::resetClasses(array('Collector'));
 
 $t->diag('::setEmail()');
 
