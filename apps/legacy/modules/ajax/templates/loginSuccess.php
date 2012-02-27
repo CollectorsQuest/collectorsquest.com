@@ -5,5 +5,3 @@
  */
 
 include_partial('loginForm', array('form' => $form, 'rpxnow' => $rpxnow));
-
-?>
