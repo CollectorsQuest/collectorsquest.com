@@ -1,0 +1,5 @@
+CollectorProfile:
+  ivan:
+    collector_id: ivan
+    gender: m
+    birthday: 1988-03-13

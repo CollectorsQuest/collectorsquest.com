@@ -29,17 +29,10 @@ class CollectorProfile extends BaseCollectorProfile
     parent::setBirthday($v);
   }
 
-  public function getAge()
+  public function getAge($now = null)
   {
-    $c = new Criteria();
-    $c->addAsColumn("age", "(YEAR(CURRENT_DATE())-YEAR(birthday)-(RIGHT(CURRENT_DATE(),5)<RIGHT(birthday,5)))");
-    $c->addSelectColumn(CollectorProfilePeer::ID);
-    $c->add(CollectorProfilePeer::ID, $this->getId());
-    $c->setLimit(1);
-
-    $stmt = CollectorProfilePeer::doSelectStmt($c);
-
-    return $stmt->fetchColumn(1);
+    $birthdate_dt = $this->getBirthday(null);
+    return $birthdate_dt->diff( new DateTime($now) )->y;
   }
 
   public function getAddress()
