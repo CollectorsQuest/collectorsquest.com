@@ -10,7 +10,7 @@ cqTest::resetTables(array(
   'collectible', 'collectible_for_sale'
 ));
 cqTest::loadFixtures(array(
-  'common/propel/01_collector.yml',
+  '01_test_collectors/',
   '03_test_collectibles/'
 ));
 
