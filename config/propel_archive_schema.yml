@@ -99,6 +99,31 @@ classes:
       created_at:   { type: timestamp }
       archived_at:  { type: timestamp }
 
+  CollectorCollectionArchive:
+    columns:
+      id:                      { type: integer, index: true, primaryKey: true, autoIncrement: false }
+      graph_id:                { type: integer, required: false, index: index }
+      collector_id:            { type: integer, index: true }
+      collection_category_id:  { type: integer, index: true }
+      name:                    { type: varchar, size: 255, required: true, primaryString: true }
+      slug:                    { type: varchar, size: 128 }
+      description:             { type: longvarchar, required: true }
+      num_items:               { type: integer, default: 0 }
+      num_views:               { type: integer, default: 0 }
+      num_comments:            { type: integer, default: 0 }
+      num_ratings:             { type: integer, default: 0 }
+      score:                   { type: integer, default: 0 }
+      is_public:               { type: boolean, default: true }
+      is_featured:             { type: boolean, default: false }
+      comments_on:             { type: boolean, default: true }
+      rating_on:               { type: boolean, default: true }
+
+      eblob:        { type: longvarchar, default: null }
+
+      updated_at:   { type: timestamp }
+      created_at:   { type: timestamp }
+      archived_at:  { type: timestamp }
+
   CollectibleArchive:
     columns:
       id:                { type: integer, index: true, primaryKey: true, autoIncrement: false }
