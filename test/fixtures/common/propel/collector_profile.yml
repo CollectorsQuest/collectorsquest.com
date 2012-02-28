@@ -1,11 +1,10 @@
 CollectorProfile:
   CollectorProfile_12:
     collector_id: Collector_12
-    collector_type: serious
+    collector_type: '2'
     birthday: '1982-01-01'
     gender: m
     zip_postal: '10579'
-    country: USA
     country_iso3166: US
     website: 'http://www.resonantfish.com'
     is_featured: '0'
@@ -14,13 +13,12 @@ CollectorProfile:
     notifications: 'a:3:{s:7:"comment";b:1;s:5:"buddy";b:1;s:7:"message";b:1;}'
     created_at: '2007-05-31 14:21:52'
     updated_at: '2011-06-05 19:49:24'
-  CollectorProfile_49:
+  CollectorProfile_52:
     collector_id: Collector_52
-    collector_type: serious
+    collector_type: '2'
     birthday: '1979-05-20'
     gender: m
     zip_postal: '66046'
-    country: USA
     country_iso3166: US
     website: ''
     is_featured: '0'
@@ -29,13 +27,12 @@ CollectorProfile:
     notifications: 'a:3:{s:7:"comment";b:1;s:5:"buddy";b:1;s:7:"message";b:1;}'
     created_at: '2007-06-19 01:15:50'
     updated_at: '2011-06-05 19:49:24'
-  CollectorProfile_56:
+  CollectorProfile_59:
     collector_id: Collector_59
-    collector_type: expert
+    collector_type: '4'
     birthday: '1920-06-24'
     gender: f
     zip_postal: '58102'
-    country: ''
     country_iso3166: US
     website: inherited-values.com
     is_featured: '0'
@@ -44,13 +41,12 @@ CollectorProfile:
     notifications: 'a:3:{s:7:"comment";b:1;s:5:"buddy";b:1;s:7:"message";b:1;}'
     created_at: '2007-06-24 01:24:56'
     updated_at: '2011-06-24 07:19:56'
-  CollectorProfile_160:
+  CollectorProfile_163:
     collector_id: Collector_163
-    collector_type: casual
+    collector_type: '0'
     birthday: '1969-09-30'
     gender: m
     zip_postal: '11201'
-    country: USA
     country_iso3166: US
     website: ''
     is_image_auto: '0'
@@ -58,12 +54,11 @@ CollectorProfile:
     notifications: 'a:3:{s:7:"comment";b:1;s:5:"buddy";b:1;s:7:"message";b:1;}'
     created_at: '2007-09-15 22:27:59'
     updated_at: '2011-06-05 19:49:24'
-  CollectorProfile_232:
+  CollectorProfile_235:
     collector_id: Collector_235
-    collector_type: serious
+    collector_type: '2'
     birthday: '1974-06-22'
     gender: m
-    country: Sweden
     country_iso3166: SE
     website: ''
     is_image_auto: '0'
@@ -71,13 +66,12 @@ CollectorProfile:
     notifications: 'a:3:{s:7:"comment";b:1;s:5:"buddy";b:1;s:7:"message";b:1;}'
     created_at: '2008-01-02 18:42:45'
     updated_at: '2011-06-05 19:49:24'
-  CollectorProfile_527:
+  CollectorProfile_531:
     collector_id: Collector_531
-    collector_type: expert
+    collector_type: '4'
     birthday: '1962-03-14'
     gender: m
     zip_postal: '77429'
-    country: USA
     country_iso3166: US
     website: www.blackgemrecords.com
     is_image_auto: '0'
@@ -85,13 +79,12 @@ CollectorProfile:
     notifications: 'a:3:{s:7:"comment";b:1;s:5:"buddy";b:1;s:7:"message";b:1;}'
     created_at: '2008-04-06 11:43:49'
     updated_at: '2011-06-05 19:49:23'
-  CollectorProfile_640:
+  CollectorProfile_644:
     collector_id: Collector_644
-    collector_type: obsessive
+    collector_type: '3'
     birthday: '1952-02-09'
     gender: m
     zip_postal: '48335'
-    country: USA
     country_iso3166: US
     website: 'http://cardomain.com/ride/340096'
     is_featured: '0'
@@ -100,12 +93,11 @@ CollectorProfile:
     notifications: 'a:3:{s:7:"comment";b:1;s:5:"buddy";b:1;s:7:"message";b:1;}'
     created_at: '2008-06-24 17:03:11'
     updated_at: '2011-06-05 19:49:23'
-  CollectorProfile_710:
+  CollectorProfile_714:
     collector_id: Collector_714
-    collector_type: serious
+    collector_type: '2'
     birthday: '1963-06-18'
     gender: m
-    country: 'The Netherlands'
     country_iso3166: NL
     website: ''
     is_featured: '0'
@@ -114,12 +106,11 @@ CollectorProfile:
     notifications: 'a:3:{s:7:"comment";b:1;s:5:"buddy";b:1;s:7:"message";b:1;}'
     created_at: '2008-08-23 09:25:20'
     updated_at: '2011-06-05 19:49:23'
-  CollectorProfile_834:
+  CollectorProfile_846:
     collector_id: Collector_846
-    collector_type: serious
+    collector_type: '2'
     birthday: '1976-07-09'
     gender: f
-    country: Italy
     country_iso3166: IT
     website: ''
     is_featured: '0'
@@ -128,13 +119,12 @@ CollectorProfile:
     notifications: 'a:3:{s:7:"comment";b:1;s:5:"buddy";b:1;s:7:"message";b:1;}'
     created_at: '2008-12-12 12:58:56'
     updated_at: '2011-06-05 19:49:23'
-  CollectorProfile_858:
+  CollectorProfile_870:
     collector_id: Collector_870
-    collector_type: expert
+    collector_type: '4'
     birthday: '1987-05-29'
     gender: f
     zip_postal: '92040'
-    country: ''
     country_iso3166: US
     website: dinosauriana.com
     is_featured: '0'
@@ -143,13 +133,12 @@ CollectorProfile:
     notifications: 'a:3:{s:7:"comment";b:1;s:5:"buddy";b:1;s:7:"message";b:1;}'
     created_at: '2008-12-27 23:20:15'
     updated_at: '2010-11-07 15:10:40'
-  CollectorProfile_944:
+  CollectorProfile_963:
     collector_id: Collector_963
-    collector_type: expert
+    collector_type: '4'
     birthday: '1957-10-14'
     gender: m
     zip_postal: '33405'
-    country: ''
     country_iso3166: US
     website: PoliticalCollectors.com
     is_featured: '0'
@@ -158,13 +147,12 @@ CollectorProfile:
     notifications: 'a:3:{s:7:"comment";b:1;s:5:"buddy";b:1;s:7:"message";b:1;}'
     created_at: '2009-02-04 21:13:11'
     updated_at: '2011-06-04 16:05:08'
-  CollectorProfile_1062:
+  CollectorProfile_1082:
     collector_id: Collector_1082
-    collector_type: obsessive
+    collector_type: '3'
     birthday: '1965-09-27'
     gender: f
     zip_postal: '28115'
-    country: USA
     country_iso3166: US
     website: ''
     is_featured: '0'
@@ -173,13 +161,12 @@ CollectorProfile:
     notifications: 'a:3:{s:7:"comment";b:1;s:5:"buddy";b:1;s:7:"message";b:1;}'
     created_at: '2009-03-12 22:00:40'
     updated_at: '2011-06-05 19:49:22'
-  CollectorProfile_1192:
+  CollectorProfile_1212:
     collector_id: Collector_1212
-    collector_type: casual
+    collector_type: '0'
     birthday: '1962-05-20'
     gender: f
     zip_postal: '07069'
-    country: ''
     country_iso3166: US
     website: museumofuncutfunk.com
     is_featured: '0'
@@ -188,12 +175,12 @@ CollectorProfile:
     notifications: 'a:3:{s:7:"comment";b:1;s:5:"buddy";b:1;s:7:"message";b:1;}'
     created_at: '2009-05-03 18:58:54'
     updated_at: '2011-02-05 15:23:28'
-  CollectorProfile_1297:
+  CollectorProfile_1317:
     collector_id: Collector_1317
-    collector_type: obsessive
+    collector_type: '3'
     birthday: '1996-11-25'
     gender: m
-    country: Romania
+    zip_postal: ''
     country_iso3166: RO
     website: theboundariesofcollecting.blogspot.com/
     is_featured: '0'
@@ -201,13 +188,12 @@ CollectorProfile:
     preferences: 'a:3:{s:8:"show_age";b:1;s:6:"msg_on";b:1;s:11:"invite_only";b:0;}'
     notifications: 'a:3:{s:7:"comment";b:1;s:5:"buddy";b:1;s:7:"message";b:1;}'
     created_at: '2009-06-15 15:10:13'
-    updated_at: '2011-06-05 19:49:22'
-  CollectorProfile_1354:
+    updated_at: '2012-02-23 03:11:08'
+  CollectorProfile_1374:
     collector_id: Collector_1374
-    collector_type: serious
+    collector_type: '2'
     birthday: '1982-02-10'
     gender: f
-    country: Spain
     country_iso3166: ES
     website: 'http://elcazarrecompensas.blogspot.com'
     is_featured: '0'
@@ -216,42 +202,40 @@ CollectorProfile:
     notifications: 'a:3:{s:7:"comment";b:1;s:5:"buddy";b:1;s:7:"message";b:1;}'
     created_at: '2009-07-15 07:21:07'
     updated_at: '2011-06-05 19:49:22'
-  CollectorProfile_3606:
+  CollectorProfile_3632:
     collector_id: Collector_3632
-    collector_type: casual
+    collector_type: '0'
     birthday: '1979-06-15'
     gender: f
-    country: USA
     country_iso3166: US
     is_image_auto: '0'
     preferences: 'a:3:{s:8:"show_age";b:0;s:6:"msg_on";b:1;s:11:"invite_only";b:0;}'
     notifications: 'a:3:{s:7:"comment";b:1;s:5:"buddy";b:1;s:7:"message";b:1;}'
     created_at: '2010-06-27 10:19:23'
     updated_at: '2011-06-05 19:49:12'
-  CollectorProfile_4179:
+  CollectorProfile_4208:
     collector_id: Collector_4208
-    collector_type: casual
+    collector_type: '0'
     website: houstonfreeburgcollection.com/
     is_image_auto: '0'
     preferences: 'a:3:{s:8:"show_age";b:0;s:6:"msg_on";b:1;s:11:"invite_only";b:0;}'
     notifications: 'a:3:{s:7:"comment";b:1;s:5:"buddy";b:1;s:7:"message";b:1;}'
     created_at: '2010-09-12 12:04:44'
     updated_at: '2010-09-12 12:04:44'
-  CollectorProfile_4266:
+  CollectorProfile_4295:
     collector_id: Collector_4295
-    collector_type: casual
+    collector_type: '0'
     gender: f
     is_image_auto: '0'
     preferences: 'a:3:{s:8:"show_age";b:0;s:6:"msg_on";b:1;s:11:"invite_only";b:0;}'
     notifications: 'a:3:{s:7:"comment";b:1;s:5:"buddy";b:1;s:7:"message";b:1;}'
     created_at: '2010-09-28 20:51:11'
     updated_at: '2010-09-28 20:51:11'
-  CollectorProfile_6573:
+  CollectorProfile_6610:
     collector_id: Collector_6610
-    collector_type: expert
+    collector_type: '4'
     gender: f
     zip_postal: '03451'
-    country: US
     website: ''
     is_seller: '0'
     is_image_auto: '0'
@@ -259,13 +243,12 @@ CollectorProfile:
     notifications: 'a:3:{s:7:"comment";b:1;s:5:"buddy";b:1;s:7:"message";b:1;}'
     created_at: '2011-06-09 17:51:10'
     updated_at: '2011-06-10 12:28:44'
-  CollectorProfile_6663:
+  CollectorProfile_6700:
     collector_id: Collector_6700
-    collector_type: serious
+    collector_type: '2'
     birthday: '1970-10-06'
     gender: f
     zip_postal: '68127'
-    country: US
     website: ''
     is_seller: '0'
     is_image_auto: '0'

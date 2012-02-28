@@ -10,6 +10,9 @@ class PropelMigration_1329140696
     /** @var $pdo PDO */
     $pdo = $manager->getPdoConnection('propel');
 
+    $sql = "UPDATE `collection_category` SET `id` = '0' WHERE `name` = 'None' AND parent_id = 0;";
+    $pdo->prepare($sql)->execute();
+
     $sql = "INSERT IGNORE INTO `collector_collection`
             SELECT id, graph_id, collection_category_id, collector_id, `name`, slug, description, num_items, num_views, num_comments, num_ratings,
                    score, is_public, is_featured, comments_on, rating_on, eblob, updated_at, created_at

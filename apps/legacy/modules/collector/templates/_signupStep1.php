@@ -70,7 +70,7 @@
     <br clear="all"/>
 
     <div class="span-13" style="text-align: right;">
-      <?php cq_button_submit(__('Next'), null, 'padding-left: 350px;'); ?>
+      <?php cq_button_submit(__('Next'), 'signup-submit', 'padding-left: 350px;'); ?>
     </div>
     <div class="clearfix append-bottom">&nbsp;</div>
 
@@ -86,36 +86,3 @@
 </div>
 
 
-<?php cq_javascript_tag(); ?>
-<script type="text/javascript">
-$(document).ready(function()
-{
-  $('#form-collector-signup-step1').submit(function()
-  {
-    jQuery.ajax(
-    {
-      url: '<?= $ssURL ?>',
-      type: 'POST',
-      dataType: 'html',
-      data: jQuery(this).serialize(),
-      success: function(data, textStatus)
-      {
-        jQuery('#collector_signup_div').html(data);
-      },
-      beforeSend: function(XMLHttpRequest)
-      {
-        jQuery('#indicator1').fadeIn('normal' );
-      },
-      complete: function(XMLHttpRequest, textStatus)
-      {
-        jQuery('#indicator1').fadeOut('normal' );
-      }
-    });
-
-    return false;
-  });
-
-	$('#collectorstep1_password').pstrength();
-});
-</script>
-<?php cq_end_javascript_tag(); ?>

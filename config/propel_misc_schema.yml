@@ -1,0 +1,22 @@
+connection: propel
+noXsd: false
+defaultIdMethod: native
+package: lib.model.misc
+
+classes:
+
+
+  iceGeoCountry:
+    tableName: ice_geo_country
+    phpName: iceModelGeoCountry
+    columns:
+      id:  ~
+      name:       { type: varchar, size: 64, required: true, primaryString: true }
+      slug:       { type: varchar, size: 64, required: true, index: unique }
+      iso3166:    { type: char, size: 2, required: true, index: unique }
+      currency:   { type: char, size: 3, required: true }
+      latitude:   float
+      longitude:  float
+      zoom:       smallint
+    propel_behaviors:
+      sluggable: { slug_pattern: "{Name}", permanent: false }

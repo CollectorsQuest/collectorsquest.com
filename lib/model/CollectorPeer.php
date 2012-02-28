@@ -194,7 +194,7 @@ class CollectorPeer extends BaseCollectorPeer
              GROUP_CONCAT(collector_geocache.zip_postal) AS zip,
              COUNT(DISTINCT collector_geocache.collector_id) AS count
         FROM collector_geocache
-       WHERE collector_geocache.country = 'USA' AND city IS NOT NULL
+       WHERE collector_geocache.country_iso3166 = 'US' AND city IS NOT NULL
        GROUP BY tag
        ORDER BY count DESC, tag DESC
        LIMIT 0, {$max}
@@ -225,16 +225,21 @@ class CollectorPeer extends BaseCollectorPeer
   public static function getCountry2Tags($max = 50)
   {
     $con = Propel::getConnection();
-    $query = "
-      SELECT %s AS tag, COUNT(%s) AS count
+    $query = sprintf("
+      SELECT %s AS tag, COUNT(*) AS count
         FROM %s
+        JOIN %s
+         ON %s = %s
        GROUP BY %s
-       ORDER BY tag, count DESC
+       ORDER BY count DESC
        LIMIT 0, %d
-    ";
-
-    $query = sprintf(
-      $query, CollectorProfilePeer::COUNTRY, CollectorProfilePeer::ID, CollectorProfilePeer::TABLE_NAME, CollectorProfilePeer::COUNTRY, $max
+    ",
+/*select*/    iceModelGeoCountryPeer::NAME,
+/*from*/      CollectorProfilePeer::TABLE_NAME,
+/*join*/      iceModelGeoCountryPeer::TABLE_NAME,
+/*on*/        CollectorProfilePeer::COUNTRY_ISO3166, iceModelGeoCountryPeer::ISO3166,
+/*group by*/  iceModelGeoCountryPeer::NAME,
+/*limit*/      $max
     );
 
     $stmt = $con->prepare($query);

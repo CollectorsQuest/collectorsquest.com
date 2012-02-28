@@ -2,10 +2,11 @@
 
 include(__DIR__.'/../../bootstrap/model.php');
 
-$t = new lime_test(16, new lime_output_color());
+$t = new lime_test(18, array('output' => new lime_output_color(), 'error_reporting' => true));
 
 // Reset all tables we will be working on
-cqTest::resetTables(array('collector', 'collector_profile'));
+cqTest::resetTables(array('collector', 'collector_profile', 'collector_email'));
+cqTest::loadFixtures('01_test_collectors/', false);
 
 $t->diag('::setWebsite(), ::getWebsite(), ::getWebsiteUrl()');
 
@@ -61,3 +62,10 @@ $t->diag('::setGender()');
   $t->is($collector_profile->getGender(), 'f', 'Testing for female');
   $collector_profile->setGender('f');
   $t->is($collector_profile->getGender(), 'f', 'Testing for female');
+
+$t->diag('::getAge()');
+
+  $collector_profile = CollectorPeer::retrieveBySlug('ivan-tanev')->getProfile();
+
+  $t->is($collector_profile->getAge('2012-03-14'), 24, 'getAge() properly calculates age when current time given as argument');
+  $t->isa_ok($collector_profile->getAge(), 'integer', 'Get age will calculate the age to the current system time when no arguments given');

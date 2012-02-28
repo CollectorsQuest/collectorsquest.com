@@ -29,17 +29,24 @@ class CollectorProfile extends BaseCollectorProfile
     parent::setBirthday($v);
   }
 
-  public function getAge()
+  /**
+   * @param string|null $now Current date in a compatible format http://www.php.net/manual/en/datetime.formats.date.php
+   * @return integer
+   */
+  public function getAge($now = null)
   {
-    $c = new Criteria();
-    $c->addAsColumn("age", "(YEAR(CURRENT_DATE())-YEAR(birthday)-(RIGHT(CURRENT_DATE(),5)<RIGHT(birthday,5)))");
-    $c->addSelectColumn(CollectorProfilePeer::ID);
-    $c->add(CollectorProfilePeer::ID, $this->getId());
-    $c->setLimit(1);
+    $birthdate_dt = $this->getBirthday(null);
+    return $birthdate_dt->diff( new DateTime($now) )->y;
+  }
 
-    $stmt = CollectorProfilePeer::doSelectStmt($c);
+  public function getCountry()
+  {
+    if (( $country = $this->geticeModelGeoCountry() ))
+    {
+      return $country->getName();
+    }
 
-    return $stmt->fetchColumn(1);
+    return null;
   }
 
   public function getAddress()
@@ -213,7 +220,6 @@ class CollectorProfile extends BaseCollectorProfile
     if ($collector_geocache = CollectorGeocachePeer::doSelectOne($c))
     {
       $this->geocache = array(
-        'country'         => $collector_geocache->getCountry(),
         'country_iso3166' => $collector_geocache->getCountryIso3166(),
         'state'           => $collector_geocache->getState(),
         'county'          => $collector_geocache->getCounty(),
@@ -228,7 +234,8 @@ class CollectorProfile extends BaseCollectorProfile
     {
       if (empty($this->location))
       {
-        if (in_array($this->getCountry(), array('US', 'USA', 'United States', 'UK', 'United Kingdom', 'CA', 'Canada', 'Australia')))
+        // if USA, United Kingdom, Canada, Australia
+        if (in_array($this->getCountryIso3166(), array('US', 'GB', 'CA', 'AU')))
         {
           $this->location = $this->getZipPostal() .', '. $this->getCountry();
         }
@@ -245,7 +252,6 @@ class CollectorProfile extends BaseCollectorProfile
       {
         $collector_geocache = new CollectorGeocache();
         $collector_geocache->setCollector($this->getCollector());
-        $collector_geocache->setCountry($this->geocache['country']);
         $collector_geocache->setCountryIso3166($this->geocache['country_iso3166']);
         $collector_geocache->setState($this->geocache['state']);
         $collector_geocache->setCounty($this->geocache['county']);

@@ -39,7 +39,6 @@ classes:
       birthday:        { type: date }
       gender:          { type: char, sqlType: "ENUM('f','m')" }
       zip_postal:      varchar(10)
-      country:         varchar(64)
       country_iso3166: varchar(2)
       website:         varchar(128)
       is_featured:     { type: boolean, default: false }
@@ -64,7 +63,6 @@ classes:
     columns:
       id:               { type: integer, index: true, primaryKey: true, autoIncrement: false }
       collector_id:     { type: integer, index: true }
-      country:          { type: char, size: 64 }
       country_iso3166:  { type: char, size: 2 }
       state:            { type: varchar, size: 64 }
       county:           { type: varchar, size: 64 }

@@ -13,7 +13,9 @@ class CollectorSignupStep3Form extends CollectorProfileEditForm
 
   protected function unsetFields()
   {
-    unset($this['id']);
+    parent::unsetFields();
+
+    unset($this['collector_id']);
     unset($this['collector_type']);
     unset($this['about_what_you_collect']);
     unset($this['about_purchase_per_year']);

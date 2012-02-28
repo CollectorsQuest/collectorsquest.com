@@ -72,7 +72,7 @@
         <span style="color:#FF0000"><?= $form['about_annually_spend']->renderError(); ?></span></div>
     </fieldset>
     <div class="span-13" style="text-align: right;">
-      <?php cq_button_submit(__('Next'), null, 'padding-left: 350px;'); ?>
+      <?php cq_button_submit(__('Next'), 'signup-submit', 'padding-left: 350px;'); ?>
     </div>
     <div class="clearfix append-bottom">&nbsp;</div>
 
@@ -86,47 +86,3 @@
   <iframe src="<?= $rpxnow['application_domain']; ?>/openid/embed?token_url=<?= url_for('@rpx_token', true); ?>"
           scrolling="no" frameBorder="no" style="width:350px; height:215px;" width="350" height="215"></iframe>
 </div>
-
-<?php cq_javascript_tag(); ?>
-<script type="text/javascript">
-  $('#form-collector-signup-step2').submit(function()
-  {
-    jQuery.ajax(
-    {
-      url: '<?php echo $ssURL ?>',
-      type: 'POST',
-      dataType: 'html',
-      data: jQuery(this).serialize(),
-      success: function(data, textStatus)
-      {
-        jQuery('#collector_signup_div').html(data);
-      },
-      beforeSend: function(XMLHttpRequest)
-      {
-        jQuery('#indicator1').fadeIn('normal' );
-      },
-      complete: function(XMLHttpRequest, textStatus)
-      {
-        jQuery('#indicator1').fadeOut('normal' );
-      }
-    });
-
-    return false;
-  });
-
-  function callAjax(ssUpdate, ssURL)
-  {
-    jQuery.ajax({
-      update: ssUpdate,
-      type: "POST",
-      url: ssURL,
-      data:jQuery(this.form.elements).serialize(),
-      success: function(data) {
-        jQuery("#" + ssUpdate).html(data);
-      }
-    });
-
-    return false;
-  }
-</script>
-<?php cq_end_javascript_tag(); ?>

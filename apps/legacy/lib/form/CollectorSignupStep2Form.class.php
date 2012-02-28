@@ -31,7 +31,9 @@ class CollectorSignupStep2Form extends CollectorProfileEditForm
 
   protected function unsetFields()
   {
-    unset($this['id']);
+    parent::unsetFields();
+
+    unset($this['collector_id']);
     unset($this['birthday']);
     unset($this['gender']);
     unset($this['zip_postal']);

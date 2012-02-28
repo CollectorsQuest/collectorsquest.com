@@ -49,6 +49,13 @@ class CollectorProfileEditForm extends BaseCollectorProfileForm
 
   }
 
+  protected function unsetFields()
+  {
+    parent::unsetFields();
+
+    unset($this['country_iso3166']);
+  }
+
   public function updateDefaultsFromObject()
   {
     parent::updateDefaultsFromObject();
@@ -62,6 +69,7 @@ class CollectorProfileEditForm extends BaseCollectorProfileForm
       $this->setDefault('about_annually_spend', $profile->getAboutAnnuallySpend());
       $this->setDefault('about_new_item_every', $profile->getAboutNewItemEvery());
       $this->setDefault('about_interests', $profile->getAboutInterests());
+      $this->setDefault('country', $profile->getCountryIso3166());
     }
   }
 
@@ -78,8 +86,14 @@ class CollectorProfileEditForm extends BaseCollectorProfileForm
 
   public function doUpdateObject($values = null)
   {
+    parent::doUpdateObject($values);
+
     /** @var $profile CollectorProfile */
     $profile = $this->getObject();
+    if (isset($values['country']))
+    {
+      $profile->setCountryIso3166($values['country']);
+    }
 
     if (isset($values['about_me']))
     {

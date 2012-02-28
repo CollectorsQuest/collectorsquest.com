@@ -1,7 +1,7 @@
 Playlist:
   Playlist_1:
     title: 'Show & Tell #1 '
-    slug: show-tell-1
+    slug: show-and-tell
     description: 'Various collectors in their element'
     type: Spotlight
     length: '441'
@@ -27,7 +27,7 @@ Playlist:
     created_at: '2008-04-15 21:54:10'
   Playlist_4:
     title: 'Show & Tell #2 '
-    slug: show-tell-2
+    slug: show-and-tell-2
     description: 'Various collectors in their element'
     type: Spotlight
     length: '475'

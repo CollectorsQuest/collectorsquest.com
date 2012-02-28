@@ -3,16 +3,11 @@ $app = 'legacy';
 
 include(__DIR__.'/../../bootstrap/functional.php');
 
-cqTest::resetTables(array(
-    'collector',
-    'collector_extra_property',
-    'collector_profile',
-    'collector_profile_extra_property',
-    'collector_email'));
-cqTest::loadFixtureDirs(array('01_test_collectors'));
+cqTest::resetClasses('Collector');
+cqTest::loadFixtures(array('01_test_collectors'));
 
 
-$browser = new cqTestFunctional(new sfBrowser(), new lime_test(null, new lime_output_color()));
+$browser = new cqTestFunctional(new sfBrowser(), new lime_test(69, new lime_output_color()));
 
 $browser
   ->info('Testing user registration:')
@@ -42,7 +37,12 @@ $browser
   /* */
   ->info('  2. Submitting an empty form')
   ->get('/collector/signup')
-  ->click('*[type=submit]')
+  ->with('request')->begin()
+    ->isParameter('module', 'collector')
+    ->isParameter('action', 'signup')
+    ->isParameter('step', 1)
+  ->end()
+  ->click('button.signup-submit')
   ->with('form')->begin()
     ->hasErrors(4)
     ->isError('username', 'required')
@@ -61,7 +61,7 @@ $browser
       'password' => 'password',
       'password_again' => 'password',
     ))
-  ->click('*[type=submit]')
+  ->click('button.signup-submit')
   ->with('form')->begin()
     ->hasErrors(2)
     ->isError('username', 'invalid')
@@ -74,7 +74,7 @@ $browser
   ->fillForm('collectorstep1', array(
       'username' => '123ivan *tanev',
     ), 'CollectorSignupStep1')
-  ->click('*[type=submit]')
+  ->click('button.signup-submit')
   ->with('form')->begin()
     ->hasErrors(1)
     ->isError('username', 'invalid')
@@ -85,7 +85,7 @@ $browser
   ->info('  5. Submit form with data for new user')
   ->get('/collector/signup')
   ->fillForm('collectorstep1', array(), 'CollectorSignupStep1')
-  ->click('*[type=submit]')
+  ->click('button.signup-submit')
   ->with('form')->hasErrors(0)
   ->with('response')->isRedirected(true)
   ->followRedirect()
@@ -133,7 +133,7 @@ $browser
   /* */
   ->info('  9. Submiting empty step 2 form')
   ->get('/collector/signup/2')
-  ->click('*[type=submit]')
+  ->click('button.signup-submit')
   ->with('form')->begin()
     ->hasErrors(3)
     ->isError('collector_type')
@@ -145,7 +145,7 @@ $browser
   ->info(' 10. Submit proper step2 form')
   ->get('/collector/signup/2')
   ->fillForm('collectorstep2', array(), 'CollectorSignupStep2')
-  ->click('*[type=submit]')
+  ->click('button.signup-submit')
   ->with('form')->hasErrors(0)
   ->with('response')->isRedirected(true)
   ->followRedirect()
@@ -185,7 +185,7 @@ $browser
   /* */
   ->info(' 13. Submit an empty form for step 3')
   ->get('/collector/signup/3')
-  ->click('*[type=submit]')
+  ->click('button.signup-submit')
   ->with('form')->begin()
     ->hasErrors(1)
     ->isError('country')
@@ -196,7 +196,7 @@ $browser
   ->info(' 14. Submit a proper form for step 3')
   ->get('/collector/signup/3')
   ->fillForm('collectorstep3', array(), 'CollectorSignupStep3')
-  ->click('*[type=submit]')
+  ->click('button.signup-submit')
   ->with('form')->hasErrors(0)
   ->with('response')->isRedirected(true)
   ->followRedirect()
@@ -208,9 +208,14 @@ $browser
   ->with('propel')->check('Collector', array(
       'username' => $browser->getFormFixture('CollectorSignupStep1', 'username'),
       'has_completed_registration' => true,
-  ))
+  ));
+$test_collector = CollectorPeer::retrieveBySlug('test-collector');
+$test_collector_profile = $test_collector->getProfile();
+$browser->test()->is($test_collector_profile->getCountryIso3166(),
+  $browser->getFormFixture('CollectorSignupStep3', 'country'),
+  'Collector profile data is successfully set in step 3');
 
-
+$browser
   /* */
   ->info(' 15. After completing singup trying to access it again will redirect to @manage_profile')
   ->get('/collector/signup')

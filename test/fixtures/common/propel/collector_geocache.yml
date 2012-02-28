@@ -1,7 +1,6 @@
 CollectorGeocache:
   CollectorGeocache_10:
     collector_id: Collector_12
-    country: USA
     country_iso3166: US
     state: NY
     county: Putnam
@@ -13,7 +12,6 @@ CollectorGeocache:
     timezone: America/New_York
   CollectorGeocache_32:
     collector_id: Collector_52
-    country: USA
     country_iso3166: US
     state: KS
     county: Douglas
@@ -25,7 +23,6 @@ CollectorGeocache:
     timezone: America/Chicago
   CollectorGeocache_124:
     collector_id: Collector_163
-    country: USA
     country_iso3166: US
     state: NY
     city: Brooklyn
@@ -36,14 +33,12 @@ CollectorGeocache:
     timezone: America/New_York
   CollectorGeocache_158:
     collector_id: Collector_235
-    country: Sweden
     country_iso3166: SE
     address: Sweden
     latitude: '60.12816'
     longitude: '18.64350'
   CollectorGeocache_239:
     collector_id: Collector_644
-    country: USA
     country_iso3166: US
     state: MI
     county: Oakland
@@ -55,14 +50,12 @@ CollectorGeocache:
     timezone: America/New_York
   CollectorGeocache_485:
     collector_id: Collector_1374
-    country: Spain
     country_iso3166: ES
     address: Spain
     latitude: '40.46367'
     longitude: '-3.74922'
   CollectorGeocache_1410:
     collector_id: Collector_531
-    country: USA
     country_iso3166: US
     state: TX
     county: Harris
@@ -74,14 +67,12 @@ CollectorGeocache:
     timezone: America/Chicago
   CollectorGeocache_1490:
     collector_id: Collector_846
-    country: Italy
     country_iso3166: IT
     address: Italy
     latitude: '41.87194'
     longitude: '12.56738'
   CollectorGeocache_1491:
     collector_id: Collector_1082
-    country: USA
     country_iso3166: US
     state: NC
     county: Iredell
@@ -93,43 +84,19 @@ CollectorGeocache:
     timezone: America/New_York
   CollectorGeocache_1586:
     collector_id: Collector_714
-    country: 'The Netherlands'
     country_iso3166: NL
     address: 'The Netherlands'
     latitude: '52.13263'
     longitude: '5.29127'
   CollectorGeocache_2918:
     collector_id: Collector_3632
-    country: USA
     country_iso3166: US
     address: 'United States'
     latitude: '37.09024'
     longitude: '-95.71289'
     timezone: America/New_York
-  CollectorGeocache_3950:
-    collector_id: Collector_1317
-    country: Romania
-    country_iso3166: RO
-    address: Romania
-    latitude: '45.94316'
-    longitude: '24.96676'
-  CollectorGeocache_3951:
-    collector_id: Collector_1317
-    country: Romania
-    country_iso3166: RO
-    address: Romania
-    latitude: '45.94316'
-    longitude: '24.96676'
-  CollectorGeocache_3952:
-    collector_id: Collector_1317
-    country: Romania
-    country_iso3166: RO
-    address: Romania
-    latitude: '45.94316'
-    longitude: '24.96676'
   CollectorGeocache_7140:
     collector_id: Collector_6610
-    country: USA
     country_iso3166: US
     state: NH
     city: Hinsdale
@@ -140,7 +107,6 @@ CollectorGeocache:
     timezone: America/New_York
   CollectorGeocache_8724:
     collector_id: Collector_6700
-    country: USA
     country_iso3166: US
     state: NE
     city: Omaha
@@ -149,3 +115,9 @@ CollectorGeocache:
     latitude: '41.20735'
     longitude: '-96.05204'
     timezone: America/New_York
+  CollectorGeocache_11031:
+    collector_id: Collector_1317
+    country_iso3166: RO
+    address: Romania
+    latitude: '45.94316'
+    longitude: '24.96676'

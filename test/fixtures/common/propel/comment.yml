@@ -1300,13 +1300,6 @@ Comment:
     subject: ''
     body: 'I loved this book when i was twelve years old in 1966 as i have always loved dinosaurs. Sadly its no longer in print. if it were i would buy it again and would recomend it to any dinosaur fan'
     created_at: '2009-08-13 04:24:03'
-  Comment_1714:
-    collection_id: Collection_1572
-    collectible_id: Collectible_25772
-    collector_id: Collector_1317
-    subject: ''
-    body: 'I think it is a deer.It has the classical branch shaped antlers and a small bushy tail.'
-    created_at: '2009-08-14 08:17:51'
   Comment_1737:
     collection_id: Collection_813
     collectible_id: Collectible_18449
@@ -1483,13 +1476,6 @@ Comment:
     subject: ''
     body: 'Thanks for comments.The budgey is very nice.Similar to safari.For some reason,schleich and safari have many things in common.'
     created_at: '2009-09-02 06:22:38'
-  Comment_1917:
-    collection_id: Collection_1572
-    collectible_id: Collectible_25500
-    collector_id: Collector_1317
-    subject: ''
-    body: 'Thanks :)'
-    created_at: '2009-09-02 06:50:24'
   Comment_1919:
     collection_id: Collection_266
     collectible_id: Collectible_4081
@@ -5592,3 +5578,10 @@ Comment:
     body: "Dear,\r\nyour collection is very nice.\r\n\r\nIf you want, like this page on facebook\r\nhttps://www.facebook.com/pages/Snowglobes-snezne-kugle/185456721468232?ref=tn_tnmn\r\n\r\n"
     ip_address: 82.208.203.51
     created_at: '2012-02-10 05:12:36'
+  Comment_14357:
+    collection_id: Collection_1937
+    collectible_id: Collectible_35402
+    collector_id: Collector_1317
+    body: "Sorry, I can't help. Mine is 7 years old or more. :&lt;\r\n"
+    ip_address: 109.99.99.235
+    created_at: '2012-02-23 03:13:54'

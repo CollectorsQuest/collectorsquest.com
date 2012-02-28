@@ -56,11 +56,6 @@ class CollectorSignupStep1Form extends BaseForm
     ));
 
     $this->widgetSchema->setNameFormat('collectorstep1[%s]');
-
-    // $this->validatorSchema->setOption('allow_extra_fields', true);
-    // $this->validatorSchema->setOption('filter_extra_fields', true);
-
-    // $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
   }
 
 }

@@ -15,10 +15,10 @@ Collector:
     is_spam: '0'
     is_public: '1'
     has_completed_registration: '1'
-    session_id: dds84qgvmlgrupecbr9jaqbod7
-    last_seen_at: '2012-02-10 17:12:13'
+    session_id: eovrfp7230nnsuesig2rv4f9j1
+    last_seen_at: '2012-02-23 19:53:53'
     created_at: '2007-05-31 14:21:52'
-    updated_at: '2012-02-10 17:12:13'
+    updated_at: '2012-02-23 19:53:53'
   Collector_52:
     username: dinocollector
     display_name: Dinocollector
@@ -242,6 +242,7 @@ Collector:
     created_at: '2009-05-03 18:58:54'
     updated_at: '2012-01-24 16:01:30'
   Collector_1317:
+    graph_id: '9964'
     username: wildheart
     display_name: Wildheart
     slug: wildheart
@@ -255,11 +256,12 @@ Collector:
     spam_score: '5'
     is_spam: '0'
     is_public: '1'
+    session_id: 4kun66u4e6nvtarioh7q0eog20
     has_completed_registration: '1'
-    session_id: j3b4h3kf33j3lseo4lttbqhc75
-    last_seen_at: '2011-04-06 00:00:00'
+
+    last_seen_at: '2012-02-23 03:03:10'
     created_at: '2009-06-15 15:10:12'
-    updated_at: '2012-01-05 15:56:54'
+    updated_at: '2012-02-23 03:03:19'
   Collector_1374:
     username: duckland
     display_name: Duckland

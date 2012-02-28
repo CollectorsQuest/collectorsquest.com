@@ -16,7 +16,10 @@
       <div class="span-3" style="text-align: right;"> <?php echo  cq_label_for($form, 'birthday', __('Birthday:')); ?>
         <div style="color: #ccc; font-style: italic;"><?php echo  __('(optional)'); ?></div>
       </div>
-      <div class="prepend-1 span-6 last"> <?php echo  $form['birthday']; ?> </div>
+      <div class="prepend-1 span-6 last">
+        <?php echo  $form['birthday']; ?>
+        <span style="color:#FF0000"><?php echo  $form['birthday']->renderError(); ?></span>
+      </div>
       <br clear="all"/>
       <br>
       <div class="span-3" style="text-align: right;"> <?php echo  cq_label_for($form, 'gender', __('Gender:')); ?>
@@ -46,7 +49,7 @@
       <br clear="all"/><br>
     </fieldset>
     <div class="span-13" style="text-align: right;">
-      <?php cq_button_submit(__('Sign up for a Collector Account!'), null, 'padding-left: 350px;'); ?>
+      <?php cq_button_submit(__('Sign up for a Collector Account!'), 'signup-submit', 'padding-left: 350px;'); ?>
     </div>
     <div class="clearfix append-bottom">&nbsp;</div>
 
