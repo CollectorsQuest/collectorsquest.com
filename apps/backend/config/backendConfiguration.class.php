@@ -1,6 +1,8 @@
 <?php
 
-class backendConfiguration extends sfApplicationConfiguration
+require __DIR__ .'/../../../lib/collectorsquest/cqApplicationConfiguration.class.php';
+
+class backendConfiguration extends cqApplicationConfiguration
 {
   /** @var IcePatternRouting */
   protected $frontendRouting = null;
