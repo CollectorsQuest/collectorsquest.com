@@ -426,7 +426,7 @@ class Collector extends BaseCollector
   public function markAsHam()
   {
     $this->setIsSpam(false);
-    $this->setSpamScore(0);
+    $this->setSpamScore(5);
     $this->save();
 
     $this->sendToDefensioMark(true);
