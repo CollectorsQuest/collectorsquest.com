@@ -36,8 +36,8 @@ class PropelMigration_1329298264
       foreach ($collectibles as $i => $collectible)
       {
         $collectible->setPosition($i+1);
-        $collectible->save();
       }
+      $collectibles->save();
     }
   }
 
