@@ -271,7 +271,7 @@ class CollectorPeer extends BaseCollectorPeer
   {
     $con = Propel::getConnection();
     $query = "
-      SELECT %s AS tag, COUNT(%s) AS count
+      SELECT %s AS tag, COUNT(*) AS count
         FROM %s
        GROUP BY %s
        ORDER BY tag, count DESC
@@ -279,7 +279,7 @@ class CollectorPeer extends BaseCollectorPeer
     ";
 
     $query = sprintf(
-      $query, CollectorProfilePeer::COUNTRY, CollectorProfilePeer::ID, CollectorProfilePeer::TABLE_NAME, CollectorProfilePeer::COUNTRY, $max
+      $query, CollectorProfilePeer::COUNTRY, CollectorProfilePeer::TABLE_NAME, CollectorProfilePeer::COUNTRY, $max
     );
 
     $stmt = $con->prepare($query);

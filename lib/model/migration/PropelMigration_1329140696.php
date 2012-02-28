@@ -10,6 +10,9 @@ class PropelMigration_1329140696
     /** @var $pdo PDO */
     $pdo = $manager->getPdoConnection('propel');
 
+    $sql = "UPDATE `collection_category` SET `id` = '0' WHERE `name` = 'None' AND parent_id = 0;";
+    $pdo->prepare($sql)->execute();
+
     $sql = "INSERT IGNORE INTO `collector_collection`
             SELECT id, graph_id, collection_category_id, collector_id, `name`, slug, description, num_items, num_views, num_comments, num_ratings,
                    score, is_public, is_featured, comments_on, rating_on, eblob, updated_at, created_at
@@ -18,6 +21,9 @@ class PropelMigration_1329140696
 
     $sql = "INSERT IGNORE INTO `collection_collectible`
             SELECT `collection_id`, `id`, `score`, `position`, `updated_at`, `created_at` FROM `collectible` WHERE collection_id IS NOT NULL;";
+    $pdo->prepare($sql)->execute();
+
+    $sql = "UPDATE `multimedia` SET `model` = 'CollectorCollection' WHERE `model` = 'Collection'";
     $pdo->prepare($sql)->execute();
   }
 

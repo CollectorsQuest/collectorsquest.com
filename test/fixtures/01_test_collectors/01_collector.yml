@@ -1,0 +1,17 @@
+Collector:
+
+  ivan:
+    username: ivan.tanev
+    slug: ivan-tanev
+    displayname: Ivan Tanev
+    password: ivanpass
+    email: vankata.t@example.com
+    salt: saltysalt
+
+  ivan_ivanov:
+    username: ivan.ivanov
+    slug: ivan-ivanov
+    displayname: Ivan Ivanov
+    password: p4ssw0rd
+    email: ivan.ivanov@example.com
+    salt: 3e98285dd88240cc67ba135e7a24af10

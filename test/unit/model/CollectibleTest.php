@@ -2,9 +2,9 @@
 
 include(__DIR__.'/../../bootstrap/model.php');
 
-$t = new lime_test(6, array('output' => new lime_output_color(), 'error_reporting' => true));
+$t = new lime_test(8, array('output' => new lime_output_color(), 'error_reporting' => true));
 
-cqTest::resetTables(array('collectible', 'collectible_archive'));
+cqTest::resetClasses(array('Collectible'));
 
 $t->diag('::setName()');
 
@@ -47,6 +47,13 @@ $t->diag('::getCollection(), ::getCollectionId()');
   $q = CollectibleQuery::create()
      ->joinCollectionCollectible();
 
-  $collectible = $q->findOne();
-  $t->isa_ok($collectible->getCollection(), 'Collection');
-  $t->isnt($collectible->getCollectionId(), null);
+  if ($collectible = $q->findOne())
+  {
+    $t->isa_ok($collectible->getCollection(), 'Collection');
+    $t->isnt($collectible->getCollectionId(), null);
+  }
+  else
+  {
+    $t->skip('No CollectionCollectible found to test with', 2);
+  }
+

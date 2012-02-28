@@ -2965,7 +2965,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_797:
     name: cat
-    slug: ''
+    slug: cat
     is_triple: '0'
   iceModelTag_798:
     name: kitten
@@ -6773,7 +6773,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_2032:
     name: exercise
-    slug: ''
+    slug: exercise
     is_triple: '0'
   iceModelTag_2033:
     name: 'jack lalane'
@@ -11537,7 +11537,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_3667:
     name: 'dinosaur models'
-    slug: ''
+    slug: dinosaur-models
     is_triple: '0'
   iceModelTag_3668:
     name: publisher
@@ -11749,7 +11749,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_3761:
     name: 'Power Rangers'
-    slug: ''
+    slug: power-rangers
     is_triple: '0'
   iceModelTag_3762:
     name: 'Fisher Price'
@@ -30393,7 +30393,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_9223:
     name: 'handmade crafts'
-    slug: ''
+    slug: handmade-crafts
     is_triple: '0'
   iceModelTag_9224:
     name: 'ostrich eggs'
@@ -40685,7 +40685,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_12620:
     name: smilodon
-    slug: ''
+    slug: smilodon
     is_triple: '0'
   iceModelTag_12621:
     name: 'sue tyrannosaurus rex'
@@ -43325,7 +43325,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_13280:
     name: pre-historic
-    slug: ''
+    slug: pre-historic
     is_triple: '0'
   iceModelTag_13281:
     name: Neanderthaler
@@ -43405,7 +43405,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_13300:
     name: hedgehog
-    slug: ''
+    slug: hedgehog
     is_triple: '0'
   iceModelTag_13301:
     name: coati
@@ -48649,4 +48649,28 @@ iceModelTag:
   iceModelTag_14679:
     name: 'Poitou donkey'
     slug: poitou-donkey
+    is_triple: '0'
+  iceModelTag_14680:
+    name: 'red squirrel'
+    slug: red-squirrel
+    is_triple: '0'
+  iceModelTag_14681:
+    name: 'Toyway Walking with dinosaurs liopleurodon'
+    slug: toyway-walking-with-dinosaurs-liopleurodon
+    is_triple: '0'
+  iceModelTag_14682:
+    name: 'Vantage figurines'
+    slug: vantage-figurines
+    is_triple: '0'
+  iceModelTag_14683:
+    name: 'resistance bands'
+    slug: resistance-bands
+    is_triple: '0'
+  iceModelTag_14684:
+    name: 'fitness bands'
+    slug: fitness-bands
+    is_triple: '0'
+  iceModelTag_14685:
+    name: 'body bands'
+    slug: body-bands
     is_triple: '0'

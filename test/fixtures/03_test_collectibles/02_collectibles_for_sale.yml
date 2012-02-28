@@ -1,0 +1,10 @@
+CollectibleForSale:
+  stamp:
+    collectible_id: stamp
+    price: 1500
+    condition: excellent
+    is_price_negotiable: false
+    is_shipping_free: true
+    is_sold: false
+    is_ready: true
+    quantity: 1
