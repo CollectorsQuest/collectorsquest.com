@@ -4,6 +4,6 @@ index:
   lifetime:    3600
 
 _indexTheme:
-  enabled:     false
+  enabled:     true
   with_layout: false
   lifetime:    60
