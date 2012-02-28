@@ -22,6 +22,9 @@ class PropelMigration_1329140696
     $sql = "INSERT IGNORE INTO `collection_collectible`
             SELECT `collection_id`, `id`, `score`, `position`, `updated_at`, `created_at` FROM `collectible` WHERE collection_id IS NOT NULL;";
     $pdo->prepare($sql)->execute();
+
+    $sql = "UPDATE `multimedia` SET `model` = 'CollectorCollection' WHERE `model` = 'Collection'";
+    $pdo->prepare($sql)->execute();
   }
 
   /**
