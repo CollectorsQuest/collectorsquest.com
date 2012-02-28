@@ -1,6 +1,6 @@
 <?php
 
-require 'lib/model/om/BaseCollectibleOfferPeer.php';
+require 'lib/model/marketplace/om/BaseCollectibleOfferPeer.php';
 
 class CollectibleOfferPeer extends BaseCollectibleOfferPeer
 {
@@ -33,6 +33,12 @@ class CollectibleOfferPeer extends BaseCollectibleOfferPeer
     return self::doSelect($criteria);
   }
 
+  /**
+   * @static
+   *
+   * @param  CollectibleForSale  $collectibleForSale
+   * @return Criteria
+   */
   public static function getBackendIsSoldCriteria($collectibleForSale)
   {
     $criteria = new Criteria();
@@ -46,5 +52,3 @@ class CollectibleOfferPeer extends BaseCollectibleOfferPeer
   }
 
 }
-
-// CollectibleOfferPeer

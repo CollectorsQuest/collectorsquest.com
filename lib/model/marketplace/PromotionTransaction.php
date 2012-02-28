@@ -1,6 +1,6 @@
 <?php
 
-require 'lib/model/om/BasePromotionTransaction.php';
+require 'lib/model/marketplace/om/BasePromotionTransaction.php';
 
 class PromotionTransaction extends BasePromotionTransaction
 {

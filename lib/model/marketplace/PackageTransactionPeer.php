@@ -1,6 +1,6 @@
 <?php
 
-require 'lib/model/om/BasePackageTransactionPeer.php';
+require 'lib/model/marketplace/om/BasePackageTransactionPeer.php';
 
 class PackageTransactionPeer extends BasePackageTransactionPeer
 {

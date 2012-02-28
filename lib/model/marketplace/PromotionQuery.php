@@ -1,6 +1,6 @@
 <?php
 
-require 'lib/model/om/BasePromotionQuery.php';
+require 'lib/model/marketplace/om/BasePromotionQuery.php';
 
 class PromotionQuery extends BasePromotionQuery
 {

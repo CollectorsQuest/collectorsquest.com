@@ -1,6 +1,6 @@
 <?php
 
-require 'lib/model/om/BasePromotionTransactionPeer.php';
+require 'lib/model/marketplace/om/BasePromotionTransactionPeer.php';
 
 class PromotionTransactionPeer extends BasePromotionTransactionPeer
 {

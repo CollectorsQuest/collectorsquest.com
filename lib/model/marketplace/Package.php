@@ -1,6 +1,6 @@
 <?php
 
-require 'lib/model/om/BasePackage.php';
+require 'lib/model/marketplace/om/BasePackage.php';
 
 class Package extends BasePackage
 {

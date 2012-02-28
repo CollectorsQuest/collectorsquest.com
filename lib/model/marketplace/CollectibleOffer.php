@@ -1,6 +1,6 @@
 <?php
 
-require 'lib/model/om/BaseCollectibleOffer.php';
+require 'lib/model/marketplace/om/BaseCollectibleOffer.php';
 
 class CollectibleOffer extends BaseCollectibleOffer
 {

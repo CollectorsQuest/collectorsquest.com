@@ -1,6 +1,6 @@
 <?php
 
-require 'lib/model/om/BaseCollectibleForSale.php';
+require 'lib/model/marketplace/om/BaseCollectibleForSale.php';
 
 class CollectibleForSale extends BaseCollectibleForSale
 {
