@@ -89,7 +89,11 @@ class cqTest
      *
      * which is then piped to "mysql --batch --raw" for maximum performance
      */
-    $cmd = "find ". implode(' ', $files) ." -name '*.sql' | awk '{ print \"source\", $0 }'";
+    if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+      $cmd = "cat ". implode(' ', $files);
+    } else {
+      $cmd = "find ". implode(' ', $files) ." -name '*.sql' | awk '{ print \"source\", $0 }'";
+    }
 
     if (!empty($databases['test']['propel']['param']['password']))
     {
