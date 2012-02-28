@@ -2,14 +2,17 @@
 
 require_once(dirname(__FILE__).'/ProjectConfiguration.class.php');
 
-if (!defined('SVN_REVISION'))
+if (!defined('GIT_REVISION'))
 {
-  if (file_exists(dirname(__FILE__).'/../REVISION'))
+  if (file_exists(dirname(__FILE__).'/../.git/FETCH_HEAD'))
   {
-    define('SVN_REVISION', (int) file_get_contents(dirname(__FILE__).'/../REVISION'));
+    $contents = (string) file_get_contents(dirname(__FILE__).'/../.git/FETCH_HEAD');
+    define('GIT_REVISION', substr($contents, 0, stripos($contents, '		')));
+    define('SVN_REVISION', sprintf("%u", crc32(GIT_REVISION)));
   }
   else
   {
+    define('GIT_REVISION', 1);
     define('SVN_REVISION', 1);
   }
 }
@@ -26,17 +29,47 @@ else if ($_SERVER['SERVER_NAME'] == 'backend.collectorsquest.dev')
   define('SF_ENV', 'dev');
   define('SF_DEBUG', true);
 }
+else if ($_SERVER['SERVER_NAME'] == 'www.collectorsquest.next' || $_SERVER['SERVER_NAME'] == 'collectorsquest.next')
+{
+  define('SF_APP', 'frontend');
+  define('SF_ENV', 'dev');
+  define('SF_DEBUG', true);
+}
+else if ($_SERVER['SERVER_NAME'] == 'backend.collectorsquest.next')
+{
+  define('SF_APP', 'frontend');
+  define('SF_ENV', 'dev');
+  define('SF_DEBUG', true);
+}
+else if ($_SERVER['SERVER_NAME'] == 'www.cqnext.com')
+{
+  define('SF_APP', 'frontend');
+  define('SF_ENV', 'next');
+  define('SF_DEBUG', true);
+}
+else if ($_SERVER['SERVER_NAME'] == 'backend.cqnext.com')
+{
+  define('SF_APP', 'frontend');
+  define('SF_ENV', 'next');
+  define('SF_DEBUG', true);
+}
+else if ($_SERVER['SERVER_NAME'] == 'www.cqstaging.com')
+{
+  define('SF_APP', 'legacy');
+  define('SF_ENV', 'stg');
+  define('SF_DEBUG', true);
+}
+else if ($_SERVER['SERVER_NAME'] == 'backend.cqstaging.com')
+{
+  define('SF_APP', 'legacy');
+  define('SF_ENV', 'stg');
+  define('SF_DEBUG', true);
+}
 else if ($_SERVER['SERVER_NAME'] == 'backend.collectorsquest.com')
 {
   define('SF_APP', 'backend');
   define('SF_ENV', 'prod');
   define('SF_DEBUG', false);
-}
-else if ($_SERVER['SERVER_NAME'] == 'www.collectorsquest.stg')
-{
-  define('SF_APP', 'legacy');
-  define('SF_ENV', 'stg');
-  define('SF_DEBUG', true);
 }
 else
 {

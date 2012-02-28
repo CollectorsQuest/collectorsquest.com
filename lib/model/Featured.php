@@ -137,9 +137,9 @@ class Featured extends BaseFeaturedNestedSet
 
   public function getHomepageCollectible()
   {
-    return array();
-
+    /** @var $q CollectibleQuery */
     $q = new CollectibleQuery();
+    $q->distinct();
 
     $pks = explode(',', $this->homepage_collectibles);
     $pks = array_filter($pks);
@@ -180,16 +180,19 @@ class Featured extends BaseFeaturedNestedSet
       {
         $q->joinCollectionCollectible();
         $q->useQuery('CollectionCollectible')
-          ->filterByCollectionCategoryId($collection_category_pks)
+            ->join('Collection')
+            ->useQuery('Collection')
+              ->filterByCollectionCategoryId($collection_category_pks, Criteria::IN)
+            ->endUse()
           ->endUse();
       }
       if (!empty($collector_pks))
       {
-        $q->filterByCollectorId($collector_pks);
+        $q->filterByCollectorId($collector_pks, Criteria::IN);
       }
       if (!empty($collection_pks))
       {
-        $q->filterByCollectionId($collection_pks);
+        $q->filterByCollectionId($collection_pks, Criteria::IN);
       }
     }
 
