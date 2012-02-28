@@ -47,7 +47,7 @@ classes:
     columns:
       id:  ~
       collector_id:      { type: integer, required: false, foreignClass: Collector, foreignReference: id, onDelete: setnull }
-      session_id:        { type: varchar, size: 24, required: false }
+      session_id:        { type: varchar, size: 32, required: false }
 
     uniques:
       shopping_cart_U_1: [ collector_id ]

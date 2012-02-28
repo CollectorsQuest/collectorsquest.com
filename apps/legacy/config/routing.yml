@@ -231,20 +231,24 @@ events:
   url: /events
   param: { module: videos, action: index }
 
+
+### SHOPPING
+
+shopping_cart:
+  url: /cart
+  param: { module: shopping, action: cart }
+
+shopping_order:
+  url: /cart/order/:step
+  param: { module: shopping, action: order, step: 1 }
+  requirements: { step: '[1-3]' }
+
+
 ### MARKETPLACE
 
 marketplace:
   url: /marketplace
   param: { module: marketplace, action: index }
-
-marketplace_cart:
-  url: /marketplace/cart
-  param: { module: marketplace, action: cart }
-
-marketplace_order:
-  url: /marketplace/order/:step
-  param: { module: marketplace, action: order, step: 1 }
-  requirements: { step: '[1-3]' }
 
 marketplace_make_offer:
   url: /marketplace/make-offer/:id

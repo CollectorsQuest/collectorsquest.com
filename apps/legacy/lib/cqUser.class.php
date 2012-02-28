@@ -140,15 +140,27 @@ class cqUser extends IceSecurityUser
       else
       {
         self::$collector = new Collector();
-        self::$collector->setId(-1);
+        self::$collector->setId(null);
       }
     }
-    else if (self::$collector->getId() == -1 && $this->getAttribute("id", null, "collector") !== null)
+    else if (self::$collector->getId() === null && $this->getAttribute("id", null, "collector") !== null)
     {
       self::$collector = CollectorPeer::retrieveByPK($this->getAttribute("id", null, "collector"));
     }
 
     return self::$collector;
+  }
+
+  public function getShoppingCart()
+  {
+    $q = ShoppingCartQuery::create()
+       ->filterByCollector($this->getCollector())
+       ->filterBySessionId(session_id());
+
+    $shopping_cart = $q->findOneOrCreate();
+    $shopping_cart->save();
+
+    return $shopping_cart;
   }
 
   public function getLogoutUrl($next = null)

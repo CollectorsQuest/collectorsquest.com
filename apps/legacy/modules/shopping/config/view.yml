@@ -1,0 +1,7 @@
+cartSuccess:
+  components:
+    sidebar: [shopping, sidebar]
+
+cartEmpty:
+  components:
+    sidebar: [shopping, sidebar]
