@@ -1,12 +1,20 @@
 <?php
 
-$cache    = true;
 $webdir   = dirname(__FILE__);
 $cachedir = realpath(dirname(__FILE__) . '/../cache');
 $cssdir   = dirname(__FILE__) . '/css';
 $jsdir    = dirname(__FILE__) . '/js';
 
-$revision = intval($_GET['revision']);
+if (isset($_GET['revision']))
+{
+  $cache    = isset($_GET['cache']) ? (bool) $_GET['cache'] : true;
+  $revision = intval($_GET['revision']);
+}
+else
+{
+  $cache    = false;
+  $revision = rand(1, PHP_INT_MAX);
+}
 
 // Determine the directory and type we should use
 switch ($_GET['type'])
@@ -158,7 +166,7 @@ else
 
     if (substr($path, -5) == '.less')
     {
-      require_once(dirname(__FILE__) . '/../lib/vendor/Lessc.class.php');
+      require_once __DIR__ . '/../plugins/iceLibsPlugin/lib/vendor/Lessc.class.php';
 
       $less = new Lessc($path);
       $contents .= "\n\n". $less->parse();
@@ -206,7 +214,7 @@ else
   if (isset($encoding) && $encoding != 'none')
   {
     // Send compressed contents
-    $contents = gzencode($contents, 9, $gzip ? FORCE_GZIP : FORCE_DEFLATE);
+    $contents = gzencode($contents, 9, isset($gzip) && $gzip ? FORCE_GZIP : FORCE_DEFLATE);
     header ("Content-Encoding: " . $encoding);
     header ('Content-Length: ' . strlen($contents));
 
@@ -221,7 +229,7 @@ else
   }
 
   // Store cache
-  if ($cache)
+  if (true === $cache && isset($cachefile))
   {
     file_put_contents($cachedir . '/' . $cachefile, $contents);
   }
