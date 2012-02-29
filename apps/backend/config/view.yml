@@ -1,10 +1,10 @@
 default:
   http_metas:
     content-type: text/html
+    X-UA-Compatible: "chrome=1;IE=edge"
 
   metas:
     title:        "Backend - Collectors Quest"
-    language:     en
     robots:       noindex, nofollow
 
   stylesheets:    [backend/default.css]
