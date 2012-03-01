@@ -64,7 +64,7 @@ ice_use_stylesheet('jquery/chosen.css');
 <div class="prepend-1 span-13 last">
   <?php echo $form['tags']->renderError() ?>
   <div style="background: #E9E9E9; vertical-align: middle; width: 400px; padding: 5px;">
-    <?php echo $form['tags']->render(array('class' => 'tags', 'innerClass' => 'selected')) ?>
+    <?php echo $form['tags']->render(array('class' => 'tags', 'style' => 'display: none', 'innerClass' => 'selected')) ?>
   </div>
 </div>
 <div class="clear append-bottom">&nbsp;</div>
