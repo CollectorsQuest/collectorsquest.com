@@ -1,8 +1,0 @@
-CollectorEmail:
-  ivan:
-    collector_id: ivan
-    email: vankata.t@example.com
-    salt: saltysalt
-    hash: hashyhash
-    is_verified: true
-
