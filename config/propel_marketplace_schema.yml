@@ -61,6 +61,7 @@ classes:
     columns:
       shopping_cart_id:         { type: integer, required: true, foreignClass: ShoppingCart, foreignReference: id, onDelete: cascade, primaryKey: true }
       collectible_for_sale_id:  { type: integer, required: true, foreignClass: CollectibleForSale, foreignReference: id, onDelete: cascade, primaryKey: true }
+      price:                    { type: float }
       is_active:                { type: boolean, default: true }
 
     propel_behaviors:
