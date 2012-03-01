@@ -1,6 +1,6 @@
 <?php
 
-class PropelMigration_1330453732
+class PropelMigration_1330633441
 {
 	public function preUp($manager)
 	{
@@ -55,6 +55,7 @@ class PropelMigration_1330453732
           `shopping_cart_id` INTEGER NOT NULL,
           `collectible_for_sale_id` INTEGER NOT NULL,
           `is_active` TINYINT(1) DEFAULT 1,
+          `price` FLOAT,
           `created_at` DATETIME,
           `updated_at` DATETIME,
           PRIMARY KEY (`shopping_cart_id`,`collectible_for_sale_id`),
