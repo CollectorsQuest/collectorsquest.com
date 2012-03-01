@@ -259,11 +259,11 @@ class collectionActions extends cqActions
         $collection_category = CollectionCategoryPeer::retrieveByPK($request->getParameter('collection_category_id'));
         $this->forward404Unless($collection_category instanceof CollectionCategory);
 
-        $form = new CollectionCreateForm();
+        $form = new CollectorCollectionCreateForm();
         if ($request->isMethod('post'))
         {
-          $taintedValues = $request->getParameter('collection');
-          $form->bind($taintedValues, $request->getFiles('collection'));
+          $form->bind($request->getParameter($form->getName()),
+                      $request->getFiles($form->getName()));
 
           if ($form->isValid())
           {
@@ -291,7 +291,7 @@ class collectionActions extends cqActions
                 $profile->save();
               }
 
-              return $this->redirect('@collection_create?step=3&collection_id='. $collection->getId());
+              $this->redirect('@collection_create?step=3&collection_id='. $collection->getId());
             }
             catch (PropelException $e)
             {
@@ -300,7 +300,6 @@ class collectionActions extends cqActions
           }
           else
           {
-            $this->defaults = $taintedValues;
             $this->getUser()->setFlash('error', 'There were some problems, please take a look below.');
           }
         }

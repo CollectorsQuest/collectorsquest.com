@@ -164,17 +164,15 @@ class manageActions extends cqActions
       }
     }
 
-    $form = new CollectionEditForm($collection);
+    $form = new CollectorCollectionEditForm($collection);
 
     if ($request->isMethod('post'))
     {
-      $taintedValues = $request->getParameter('collection');
-      $form->bind($taintedValues, $request->getFiles('collection'));
+      $form->bind($request->getParameter($form->getName()),
+                  $request->getFiles($form->getName()));
 
       if ($form->isValid())
       {
-        /** @var $collection CollectorCollection */
-        $collection = $form->getObject();
         $collection->setCollectionCategoryId($form->getValue('collection_category_id'));
         $collection->setName($form->getValue('name'));
         $collection->setDescription($form->getValue('description'), 'html');
@@ -191,6 +189,10 @@ class manageActions extends cqActions
           }
 
           $this->getUser()->setFlash("success", $this->__('Changes were saved!'));
+          $this->redirect($this->getController()->genUrl(array(
+              'sf_route' => 'manage_collection_by_slug',
+              'sf_subject' => $collection,
+          )));
         }
         catch (PropelException $e)
         {
@@ -285,13 +287,15 @@ class manageActions extends cqActions
             }
 
             $this->getUser()->setFlash('success', $message);
-            $this->redirect('manage_collectible_by_slug', $form->getObject());
           }
         }
         else
         {
           $this->getUser()->setFlash('success', $this->__('Changes were saved!'));
         }
+
+        // if we save the form the request has to be redirected
+        $this->redirect('manage_collectible_by_slug', $form->getObject());
       }
       else
       {

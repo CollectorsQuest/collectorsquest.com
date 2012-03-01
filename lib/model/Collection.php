@@ -210,7 +210,7 @@ class Collection extends BaseCollection
   }
 }
 
-sfPropelBehavior::add('Collection', array('IceTaggableBehavior'));
+sfPropelBehavior::add('CollectorCollection', array('IceTaggableBehavior'));
 
 sfPropelBehavior::add(
   'Collection',

@@ -2,21 +2,6 @@
 
 require_once(dirname(__FILE__).'/ProjectConfiguration.class.php');
 
-if (!defined('GIT_REVISION'))
-{
-  if (file_exists(dirname(__FILE__).'/../.git/FETCH_HEAD'))
-  {
-    $contents = (string) file_get_contents(dirname(__FILE__).'/../.git/FETCH_HEAD');
-    define('GIT_REVISION', substr($contents, 0, stripos($contents, '		')));
-    define('SVN_REVISION', sprintf("%u", crc32(GIT_REVISION)));
-  }
-  else
-  {
-    define('GIT_REVISION', 1);
-    define('SVN_REVISION', 1);
-  }
-}
-
 if ($_SERVER['SERVER_NAME'] == 'www.collectorsquest.dev' || $_SERVER['SERVER_NAME'] == 'collectorsquest.dev')
 {
   define('SF_APP', 'legacy');
@@ -76,6 +61,26 @@ else
   define('SF_APP', 'legacy');
   define('SF_ENV', 'prod');
   define('SF_DEBUG', false);
+}
+
+if (SF_ENV === 'prod' && !defined('GIT_REVISION'))
+{
+  if (file_exists(dirname(__FILE__).'/../.git/FETCH_HEAD'))
+  {
+    $contents = (string) file_get_contents(dirname(__FILE__).'/../.git/FETCH_HEAD');
+    define('GIT_REVISION', substr($contents, 0, stripos($contents, '		')));
+    define('SVN_REVISION', sprintf("%u", crc32(GIT_REVISION)));
+  }
+  else
+  {
+    define('GIT_REVISION', 1);
+    define('SVN_REVISION', 1);
+  }
+}
+else if (!defined('GIT_REVISION'))
+{
+  define('GIT_REVISION', md5(uniqid('git_revision_', true)));
+  define('SVN_REVISION', rand(1, PHP_INT_MAX));
 }
 
 $configuration = ProjectConfiguration::getApplicationConfiguration(SF_APP, SF_ENV, SF_DEBUG);

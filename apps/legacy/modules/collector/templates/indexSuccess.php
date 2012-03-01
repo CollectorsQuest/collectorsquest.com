@@ -200,7 +200,7 @@
 
   <div class="span-17 append-bottom last">
     <fieldset>
-      <legend><?= __("enjoyed %username% profile?", array('%username%'=>$collector)); ?></legend>
+      <legend><?= __('Enjoyed %username% profile?', array('%username%'=>$collector)); ?></legend>
       <p><?= __('Before you leave, make sure you can find your way back.'); ?></p>
       <p>
         <b><?= __('Direct link:'); ?></b><br>

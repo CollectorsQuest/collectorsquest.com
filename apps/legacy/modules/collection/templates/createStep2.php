@@ -1,6 +1,6 @@
 <?php
   /**
-   * @var  CollectionCreateForm  $form
+   * @var  CollectorCollectionCreateForm  $form
    * @var  CollectionCategory    $collection_category
    */
 
@@ -81,14 +81,7 @@
     <div style="color: #ccc; font-style: italic;"><?= __('(recommended)'); ?></div>
   </div>
   <div class="prepend-1 span-13 last">
-    <?php $tags = !empty($defaults['tags']) ? $defaults['tags'] : $form->getObject()->getTags(); ?>
-    <div style="background: #E9E9E9; vertical-align: middle; width: 400px; padding: 5px;">
-    <select id="collection_tags" name="collection[tags][]">
-      <?php foreach ($tags as $tag): ?>
-      <option value="<?= $tag; ?>" class="selected"><?= $tag; ?></option>
-      <?php endforeach; ?>
-    </select>
-    </div>
+    <?php echo $form['tags']->render(array('class' => 'tags', 'style' => 'display: none', 'innerClass' => 'selected')) ?>
   </div>
   <div class="clear append-bottom">&nbsp;</div>
 
@@ -105,7 +98,7 @@
 <script type="text/javascript">
 $(function()
 {
-  $('#collection_description').tinymce(
+  $('#collector_collection_description').tinymce(
   {
     script_url: '/js/tiny_mce/tiny_mce.js',
     content_css : "/css/legacy/tinymce.css",
@@ -119,7 +112,7 @@ $(function()
     theme_advanced_resizing: true
   });
 
-  $('#collection_tags').fcbkcomplete({
+  $('#collector_collection_tags').fcbkcomplete({
     json_url: '<?= url_for('@ajax_autocomplete?section=tags'); ?>',
     maxshownitems: 10,
     cache: true,
