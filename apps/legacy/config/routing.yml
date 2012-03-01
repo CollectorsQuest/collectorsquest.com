@@ -234,15 +234,28 @@ events:
 
 ### SHOPPING
 
-shopping_cart:
-  url: /cart
-  param: { module: shopping, action: cart }
+shopping_cart_remove:
+  url: /cart/:id/remove
+  param: { module: shopping, action: cart, cmd: remove }
+  requirements: { id: \d+ }
+
+shopping_cart_checkout:
+  url: /cart/checkout
+  param: { module: shopping, action: checkout }
+  requirements: { sf_method: [post] }
+
+shopping_cart_empty:
+  url: /cart/empty
+  param: { module: shopping, action: cart, cmd: empty }
 
 shopping_order:
   url: /cart/order/:step
   param: { module: shopping, action: order, step: 1 }
   requirements: { step: '[1-3]' }
 
+shopping_cart:
+  url: /cart
+  param: { module: shopping, action: cart }
 
 ### MARKETPLACE
 

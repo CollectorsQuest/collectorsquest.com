@@ -9,6 +9,12 @@ class shoppingComponents extends sfComponents
         'text' => 'Keep Shopping',
         'icon' => 'note',
         'route' => '@marketplace'
+      ),
+      1 => array(
+        'text' => 'Empty Shopping Cart',
+        'icon' => 'trash',
+        'route' => '@shopping_cart_empty?encrypt=1',
+        'confirm' => 'This will permanently remove all items from your Shopping Cart. Do you want to continue?'
       )
     );
 

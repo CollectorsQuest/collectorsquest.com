@@ -155,7 +155,7 @@ class cqUser extends IceSecurityUser
   {
     $q = ShoppingCartQuery::create()
        ->filterByCollector($this->getCollector())
-       ->filterBySessionId(session_id());
+       ->filterBySessionId($this->isAuthenticated() ? null : session_id());
 
     $shopping_cart = $q->findOneOrCreate();
     $shopping_cart->save();
