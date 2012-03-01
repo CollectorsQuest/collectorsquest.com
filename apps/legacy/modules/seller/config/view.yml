@@ -8,3 +8,6 @@ packagesSuccess:
   stylesheets: [legacy/forms.css, legacy/package.css]
   components:
     sidebar: []
+
+packages:
+  stylesheets: [legacy/forms.css, legacy/package.css]

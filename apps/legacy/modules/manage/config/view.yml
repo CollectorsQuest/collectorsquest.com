@@ -30,6 +30,9 @@ collectiblesSuccess:
   components:
     sidebar: [manage, sidebarCollectibles]
 
+marketplaceSuccess:
+  stylesheets: [legacy/package.css]
+
 marketplaceEmpty:
   components:
     sidebar: [manage, sidebarMarketplaceEmpty]
