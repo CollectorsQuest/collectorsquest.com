@@ -1,7 +1,7 @@
 all:
   pager:
     list_collectors_max: 9
-    list_collections_max: 14
+    list_collections_max: 15
     list_collectibles_max: 16
     search_collectors_max: 16
     search_collections_max: 12
