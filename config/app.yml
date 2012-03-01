@@ -12,6 +12,9 @@ all:
       secret: "s6nr1ea16fo1br0wn5a31wnzhhazerr8"
       timeout:  3600
 
+  ice_assets:
+    domain: "cqcdns.com"
+
   credentials:
     akismet: "8fd3f2fddbaa"
     google_maps: "ABQIAAAAFWhrOd_LZ8oN4w-vkUWughQAU-WnqYQCO7zppSGvHR51tCrN4xRY0TaQWDhMG_uhoslQtMZplJu3gg"
@@ -66,17 +69,3 @@ dev:
 
   ice_assets:
     domain: "cqcdns.dev"
-
-stg:
-  domain_name: "collectorsquest.stg"
-  www_domain: "www.collectorsquest.stg"
-  static_domain: "www.collectorsquest.stg"
-  multimedia_domain: "multimedia.collectorsquest.stg"
-
-  cq:
-    www_domain: "http://www.collectorsquest.stg"
-    static_domain: "http://static.collectorsquest.stg"
-    multimedia_domain: "http://multimedia.collectorsquest.stg"
-
-  ice_assets:
-    domain: "cqcdns.stg"

@@ -1,13 +1,13 @@
 generator:
   class: IcePropelGenerator
   param:
-    model_class:           Collection
+    model_class:           CollectorCollection
     theme:                 bootstrap
     non_verbose_templates: true
     with_show:             false
-    singular:              Collection
-    plural:                Collections
-    route_prefix:          collection
+    singular:              CollectorCollection
+    plural:                CollectorCollections
+    route_prefix:          collector
     with_propel_route:     1
     actions_base_class:    cqBackendActions
 

@@ -158,7 +158,6 @@ classes:
       eblob: { type: longvarchar, default: null }
 
     propel_behaviors:
-      archivable: { archive_class: CollectionArchive, archived_at_column: archived_at }
       sluggable: { slug_pattern: "{Name}", permanent: false }
       timestampable:  ~
 
@@ -188,6 +187,7 @@ classes:
 
     propel_behaviors:
       concrete_inheritance: { extends: collection, copy_data_to_parent: true }
+      archivable: { archive_class: CollectorCollectionArchive, archived_at_column: archived_at }
 
   CollectionCategoryField:
     columns:

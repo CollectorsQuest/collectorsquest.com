@@ -414,7 +414,7 @@ class Collector extends BaseCollector
     }
     catch (Exception $e)
     {
-      ;
+      $this->log($e->getMessage(), Propel::LOG_WARNING);
     }
 
   }
@@ -425,7 +425,7 @@ class Collector extends BaseCollector
     $this->setSpamScore(100);
     $this->save();
 
-    $this->sendToDefensioMark(true);
+    $this->sendToDefensioMark(false);
 
     return $this;
   }
@@ -433,10 +433,10 @@ class Collector extends BaseCollector
   public function markAsHam()
   {
     $this->setIsSpam(false);
-    $this->setSpamScore(0);
+    $this->setSpamScore(5);
     $this->save();
 
-    $this->sendToDefensioMark(false);
+    $this->sendToDefensioMark(true);
 
     return $this;
   }
@@ -463,18 +463,20 @@ class Collector extends BaseCollector
       $result = null;
     }
 
-      if (is_array($result) && (int)$result[0] == 200)
-      {
-        $this->setProperty('spam.signature', (string)$result[1]->signature);
-        $this->setProperty('spam.classification', (string)$result[1]->classification);
-        $this->setProperty('spam.profanity-match', 'false' == (string)$result[1]['profanity-match'] ? false : true);
-        $this->setProperty('spam.allow', 'false' == (string)$result[1]['allow'] ? false : true);
+    if (is_array($result) && (int)$result[0] == 200)
+    {
+      $this->setIsSpam((string)$result[1]->allow == 'false' ? true : false);
+      $this->setSpamScore(100 * (float)$result[1]->spaminess);
+      $this->setProperty('spam.signature', (string)$result[1]->signature);
+      $this->setProperty('spam.classification', (string)$result[1]->classification);
+      $this->setProperty('spam.profanity-match', 'false' == (string)$result[1]['profanity-match'] ? false : true);
+      $this->setProperty('spam.allow', 'false' == (string)$result[1]['allow'] ? false : true);
 
       return true;
-      }
+    }
 
     return false;
-    }
+  }
 
   /**
    * @param string $action One of the ['follows', 'likes', 'owns', 'blocks']

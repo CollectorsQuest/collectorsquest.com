@@ -130,10 +130,9 @@ class cqTest
    *  - /test/fixtures/all/03_third/*.yml
    *
    * @param     string|array $dirs You can pass a string for a single file, or an array
-   * @param     boolean $delete_current_data If set to true, the data currently set in the database will be deleted;
    * @param     PropelPDO $con
    */
-  public static function loadFixtures($dirs, $delete_current_data = false, PropelPDO $con = null)
+  public static function loadFixtures($dirs, PropelPDO $con = null)
   {
     if (is_array($dirs))
     {
@@ -160,7 +159,6 @@ class cqTest
 
     // load fixtures; this cleans the database too
     $loader = new cqPropelData();
-    $loader->setDeleteCurrentData($delete_current_data);
     $loader->loadData($dirs);
 
     $con->prepare('SET FOREIGN_KEY_CHECKS = 1;')->execute();

@@ -47,7 +47,7 @@ class generalComponents extends sfComponents
     $c->setDistinct();
     $c->addJoin(CollectorCollectionPeer::ID, MultimediaPeer::MODEL_ID);
     $c->add(CollectorCollectionPeer::NUM_ITEMS, 4, Criteria::GREATER_EQUAL);
-    $c->add(MultimediaPeer::MODEL, 'Collection');
+    $c->add(MultimediaPeer::MODEL, 'CollectorCollection');
     $c->add(CollectorCollectionPeer::ID, $themes[$i]['collections'], Criteria::IN);
     $c->setLimit(2);
 
@@ -56,8 +56,6 @@ class generalComponents extends sfComponents
     $c = new Criteria();
     $c->setDistinct();
     $c->add(CollectiblePeer::ID, $themes[$i]['collectibles'], Criteria::IN);
-    $c->addJoin(CollectiblePeer::ID, CollectionCollectiblePeer::COLLECTIBLE_ID, Criteria::RIGHT_JOIN);
-    $c->add(CollectionCollectiblePeer::COLLECTION_ID, CollectorCollectionPeer::ID);
     $c->addJoin(CollectiblePeer::ID, MultimediaPeer::MODEL_ID);
     $c->add(MultimediaPeer::MODEL, 'Collectible');
     $c->addDescendingOrderByColumn(CollectiblePeer::SCORE);

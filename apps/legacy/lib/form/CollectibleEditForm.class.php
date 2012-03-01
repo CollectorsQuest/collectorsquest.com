@@ -22,8 +22,7 @@ class CollectibleEditForm extends BaseCollectibleForm
     $this->widgetSchema['thumbnail'] = new sfWidgetFormInputFile();
     $this->validatorSchema['thumbnail'] = new sfValidatorFile(array('required' => false));
 
-    $this->widgetSchema['tags'] = new sfWidgetFormInput();
-    $this->validatorSchema['tags'] = new sfValidatorPass();
+    $this->setupTagsField();
 
     $this->validatorSchema->setPostValidator(new sfValidatorPass());
 
@@ -49,6 +48,32 @@ class CollectibleEditForm extends BaseCollectibleForm
 
     $this->validatorSchema->setOption('allow_extra_fields', true);
     $this->validatorSchema->setOption('filter_extra_fields', true);
+  }
+
+  protected function setupTagsField()
+  {
+    // pretty ugly hack, but in this case this is the only way
+    // to keep the field's state between requests...
+
+    $tags = $this->getObject()->getTags();
+    if (sfContext::hasInstance())
+    {
+      $request = sfContext::getInstance()->getRequest();
+      if (( $values = $request->getParameter($this->getName()) ))
+      {
+        if (isset($values['tags']))
+        {
+          $tags = $values['tags'];
+        }
+      }
+    }
+
+    $this->widgetSchema['tags'] = new cqWidgetFormChoice(array(
+        'choices' => count($tags) ? array_combine($tags, $tags) : $tags,
+        'multiple' => true,
+    ));
+
+    $this->validatorSchema['tags'] = new sfValidatorPass();
   }
 
   public function updateDescriptionColumn($value)
