@@ -6,6 +6,7 @@ all:
 
     categories:
       Collectors:
+        icon: user
         items:
           Collectors:
             url: collector
@@ -18,6 +19,7 @@ all:
             image: theme/icons/message_config.png
 
       Collections:
+        icon: picture
         items:
           Collections:
             url: collection
@@ -30,6 +32,7 @@ all:
             image: theme/icons/categories.png
 
       Videos:
+        icon: film
         items:
           Videos:
             url: video
@@ -37,6 +40,7 @@ all:
             url: playlist
 
       Marketplace:
+        icon: shopping-cart
         items:
           Marketplace:
             url: marketplace_list
@@ -55,6 +59,7 @@ all:
             image: theme/icons/backup.png
 
       Blog:
+        icon: book
         items:
           Posts:
             url: wp_post
