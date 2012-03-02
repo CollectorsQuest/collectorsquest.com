@@ -34,16 +34,6 @@
 
       <br clear="all"/><br/>
       <div class="span-3" style="text-align: right;">
-        <?= cq_label_for($form, 'display_name', __('Display Name:')); ?>
-        <div class="required"><?= __('(required)'); ?></div>
-      </div>
-      <div class="prepend-1 span-7 last">
-        <?= cq_input_tag($form, 'display_name', array('width' => 400)); ?>
-        <span style="color:#FF0000"><?= $form['display_name']->renderError(); ?></span>
-      </div>
-
-      <br clear="all"/><br/>
-      <div class="span-3" style="text-align: right;">
         <?= cq_label_for($form, 'password', __('Password:')); ?>
         <div class="required"><?= __('(required)'); ?></div>
       </div>
@@ -65,6 +55,16 @@
       <div class="prepend-1 span-7 last">
         <?= cq_input_tag($form, 'email', array('width' => 400)); ?>
         <span style="color:#FF0000"><?= $form['email']->renderError(); ?></span>
+      </div>
+
+      <br clear="all"/><br/>
+      <div class="span-3" style="text-align: right;">
+        <?= cq_label_for($form, 'display_name', __('Display Name:')); ?>
+        <div class="required"><?= __('(required)'); ?></div>
+      </div>
+      <div class="prepend-1 span-7 last">
+        <?= cq_input_tag($form, 'display_name', array('width' => 400)); ?>
+        <span style="color:#FF0000"><?= $form['display_name']->renderError(); ?></span>
       </div>
     </fieldset>
     <br clear="all"/>
