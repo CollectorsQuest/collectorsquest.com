@@ -42,6 +42,18 @@ CollectorGeocacheArchive:
     address: Spain
     latitude: '40.46367'
     longitude: '-3.74922'
+  CollectorGeocacheArchive_198:
+    id: '198'
+    collector_id: '515'
+    country_iso3166: US
+    state: IL
+    county: Vermilion
+    city: Tilton
+    zip_postal: '61833'
+    address: 'Tilton, IL 61833, USA'
+    latitude: '40.09839'
+    longitude: '-87.64578'
+    timezone: America/Chicago
   CollectorGeocacheArchive_344:
     id: '344'
     collector_id: '929'
@@ -588,6 +600,18 @@ CollectorGeocacheArchive:
     address: 'United States, Parañaque City, Philippines'
     latitude: '14.48701'
     longitude: '121.02130'
+  CollectorGeocacheArchive_1377:
+    id: '1377'
+    collector_id: '1142'
+    country_iso3166: US
+    state: NY
+    county: Orleans
+    city: Medina
+    zip_postal: '14103'
+    address: 'Medina, NY 14103, USA'
+    latitude: '43.21564'
+    longitude: '-78.36147'
+    timezone: America/New_York
   CollectorGeocacheArchive_1556:
     id: '1556'
     collector_id: '168'
@@ -883,6 +907,14 @@ CollectorGeocacheArchive:
     address: Ås
     latitude: '57.11667'
     longitude: '13.66667'
+  CollectorGeocacheArchive_2418:
+    id: '2418'
+    collector_id: '3117'
+    country_iso3166: US
+    address: 'United States'
+    latitude: '37.09024'
+    longitude: '-95.71289'
+    timezone: America/New_York
   CollectorGeocacheArchive_2433:
     id: '2433'
     collector_id: '3129'
@@ -2953,6 +2985,13 @@ CollectorGeocacheArchive:
     latitude: '43.08487'
     longitude: '-75.21290'
     timezone: America/New_York
+  CollectorGeocacheArchive_6779:
+    id: '6779'
+    collector_id: '6309'
+    country_iso3166: HK
+    address: '2, Hong Kong'
+    latitude: '22.35512'
+    longitude: '114.20971'
   CollectorGeocacheArchive_6780:
     id: '6780'
     collector_id: '6300'
@@ -16810,6 +16849,16 @@ CollectorGeocacheArchive:
     latitude: '40.75369'
     longitude: '-73.99916'
     timezone: America/New_York
+  CollectorGeocacheArchive_10723:
+    id: '10723'
+    collector_id: '6825'
+    country_iso3166: US
+    state: MI
+    city: 'Marine City'
+    address: 'Marine City, MI 48039, USA'
+    latitude: '42.68988'
+    longitude: '-82.55105'
+    timezone: America/New_York
   CollectorGeocacheArchive_10725:
     id: '10725'
     collector_id: '9286'
@@ -18186,6 +18235,13 @@ CollectorGeocacheArchive:
     address: Philippines
     latitude: '12.87972'
     longitude: '121.77402'
+  CollectorGeocacheArchive_10944:
+    id: '10944'
+    collector_id: '1399'
+    country_iso3166: BE
+    address: Belgium
+    latitude: '50.50389'
+    longitude: '4.46994'
   CollectorGeocacheArchive_10946:
     id: '10946'
     collector_id: '9484'
@@ -18658,3 +18714,112 @@ CollectorGeocacheArchive:
     address: 'United Kingdom'
     latitude: '55.37805'
     longitude: '-3.43597'
+  CollectorGeocacheArchive_11049:
+    id: '11049'
+    collector_id: '9597'
+    country_iso3166: US
+    address: 'United States'
+    latitude: '37.09024'
+    longitude: '-95.71289'
+    timezone: America/New_York
+  CollectorGeocacheArchive_11051:
+    id: '11051'
+    collector_id: '9600'
+    country_iso3166: VI
+    address: 'Virgin Islands'
+    latitude: '18.33577'
+    longitude: '-64.89634'
+  CollectorGeocacheArchive_11052:
+    id: '11052'
+    collector_id: '9599'
+    country_iso3166: US
+    state: CA
+    address: 'Madeline, CA 96119, USA'
+    latitude: '41.00070'
+    longitude: '-120.52606'
+    timezone: America/New_York
+  CollectorGeocacheArchive_11059:
+    id: '11059'
+    collector_id: '9608'
+    country_iso3166: US
+    state: NY
+    county: Schenectady
+    city: Schenectady
+    address: 'Schenectady, NY, USA'
+    latitude: '42.81424'
+    longitude: '-73.93957'
+    timezone: America/New_York
+  CollectorGeocacheArchive_11062:
+    id: '11062'
+    collector_id: '9619'
+    country_iso3166: PH
+    address: Philippines
+    latitude: '12.87972'
+    longitude: '121.77402'
+  CollectorGeocacheArchive_11063:
+    id: '11063'
+    collector_id: '9618'
+    country_iso3166: PH
+    address: Philippines
+    latitude: '12.87972'
+    longitude: '121.77402'
+  CollectorGeocacheArchive_11064:
+    id: '11064'
+    collector_id: '9617'
+    country_iso3166: US
+    state: AR
+    address: 'Arkansas, USA'
+    latitude: '35.20105'
+    longitude: '-91.83183'
+    timezone: America/New_York
+  CollectorGeocacheArchive_11065:
+    id: '11065'
+    collector_id: '9616'
+    country_iso3166: US
+    address: 'United States'
+    latitude: '37.09024'
+    longitude: '-95.71289'
+    timezone: America/New_York
+  CollectorGeocacheArchive_11067:
+    id: '11067'
+    collector_id: '9614'
+    country_iso3166: US
+    address: 'United States'
+    latitude: '37.09024'
+    longitude: '-95.71289'
+    timezone: America/New_York
+  CollectorGeocacheArchive_11068:
+    id: '11068'
+    collector_id: '9613'
+    country_iso3166: CH
+    state: Aargau
+    address: 'Aargau, Switzerland'
+    latitude: '47.38767'
+    longitude: '8.25543'
+  CollectorGeocacheArchive_11075:
+    id: '11075'
+    collector_id: '1399'
+    country_iso3166: BE
+    address: Belgium
+    latitude: '50.50389'
+    longitude: '4.46994'
+  CollectorGeocacheArchive_11076:
+    id: '11076'
+    collector_id: '9639'
+    country_iso3166: US
+    state: NY
+    address: 'Bronx, NY 10467, USA'
+    latitude: '40.87240'
+    longitude: '-73.87131'
+    timezone: America/New_York
+  CollectorGeocacheArchive_11077:
+    id: '11077'
+    collector_id: '9637'
+    country_iso3166: US
+    state: FL
+    city: 'Polk City'
+    zip_postal: '33868'
+    address: 'Polk City, FL 33868, USA'
+    latitude: '28.28806'
+    longitude: '-81.82244'
+    timezone: America/New_York

@@ -222,9 +222,9 @@ Featured:
     tree_left: '1'
     tree_right: '6'
     tree_scope: '23'
-    eblob: 'a:3:{s:5:"title";s:34:"Happy Birthday,  Mr. Pres-i-dent! ";s:13:"homepage_text";s:140:"President''s Day is this month, and it''s politics as usual. For some, it doesn''t matter what side you''re on as much as what button you''re on.";s:21:"homepage_collectibles";s:0:"";}'
+    eblob: 'a:3:{s:5:"title";s:34:"Happy Birthday,  Mr. Pres-i-dent! ";s:13:"homepage_text";s:138:"February is President''s Day, and it''s politics as usual. For some, it doesn''t matter what side you''re on as much as what button you''re on.";s:21:"homepage_collectibles";s:0:"";}'
     start_date: '2012-02-07'
-    end_date: '2012-05-05'
+    end_date: '2012-02-29'
     position: '0'
     is_active: '1'
   Featured_22:
@@ -348,9 +348,11 @@ Featured:
     featured_model: FeaturedWeek
     featured_id: '34'
     tree_left: '1'
-    tree_right: '6'
+    tree_right: '18'
     tree_scope: '34'
-    eblob: 'a:3:{s:5:"title";s:14:"Hakuna Matata!";s:13:"homepage_text";s:189:"CQ is a jungle...a mighty jungle of awesome collectors. This week we are a month away from the 15 year anniversary of the release Disney''s "The Lion King" . Come in and check out our pride!";s:21:"homepage_collectibles";s:0:"";}'
+    eblob: 'a:3:{s:5:"title";s:29:"March comes in like a lion...";s:13:"homepage_text";s:103:"March is finally here, and coming in like a lion! We celebrate the month with our Lion King collectors!";s:21:"homepage_collectibles";s:0:"";}'
+    start_date: '2012-03-01'
+    end_date: '2012-04-01'
     position: '0'
     is_active: '1'
   Featured_33:
@@ -1363,36 +1365,6 @@ Featured:
     eblob: N;
     position: '0'
     is_active: '1'
-  Featured_148:
-    featured_type_id: '6'
-    featured_model: CollectionCategory
-    featured_id: '760'
-    tree_left: '2'
-    tree_right: '7'
-    tree_scope: '32'
-    eblob: N;
-    position: '0'
-    is_active: '1'
-  Featured_149:
-    featured_type_id: '7'
-    featured_model: Collector
-    featured_id: '1117'
-    tree_left: '3'
-    tree_right: '4'
-    tree_scope: '32'
-    eblob: N;
-    position: '0'
-    is_active: '1'
-  Featured_150:
-    featured_type_id: '7'
-    featured_model: Collector
-    featured_id: '1186'
-    tree_left: '5'
-    tree_right: '6'
-    tree_scope: '32'
-    eblob: N;
-    position: '0'
-    is_active: '1'
   Featured_151:
     featured_type_id: '6'
     featured_model: CollectionCategory
@@ -1400,26 +1372,6 @@ Featured:
     tree_left: '2'
     tree_right: '3'
     tree_scope: '33'
-    eblob: N;
-    position: '0'
-    is_active: '1'
-  Featured_152:
-    featured_type_id: '6'
-    featured_model: CollectionCategory
-    featured_id: '764'
-    tree_left: '2'
-    tree_right: '5'
-    tree_scope: '34'
-    eblob: N;
-    position: '0'
-    is_active: '1'
-  Featured_153:
-    featured_type_id: '7'
-    featured_model: Collector
-    featured_id: '453'
-    tree_left: '3'
-    tree_right: '4'
-    tree_scope: '34'
     eblob: N;
     position: '0'
     is_active: '1'
@@ -2131,6 +2083,66 @@ Featured:
     tree_left: '2'
     tree_right: '3'
     tree_scope: '0'
+    eblob: 'a:1:{i:0;b:0;}'
+    position: '0'
+    is_active: '1'
+  Featured_233:
+    featured_type_id: '6'
+    featured_model: Collection
+    featured_id: '3111'
+    tree_left: '8'
+    tree_right: '9'
+    tree_scope: '34'
+    eblob: 'a:1:{i:0;b:0;}'
+    position: '0'
+    is_active: '1'
+  Featured_234:
+    featured_type_id: '6'
+    featured_model: Collection
+    featured_id: '3048'
+    tree_left: '6'
+    tree_right: '7'
+    tree_scope: '34'
+    eblob: 'a:1:{i:0;b:0;}'
+    position: '0'
+    is_active: '1'
+  Featured_235:
+    featured_type_id: '6'
+    featured_model: Collection
+    featured_id: '3012'
+    tree_left: '4'
+    tree_right: '5'
+    tree_scope: '34'
+    eblob: 'a:1:{i:0;b:0;}'
+    position: '0'
+    is_active: '1'
+  Featured_236:
+    featured_type_id: '6'
+    featured_model: Collection
+    featured_id: '1818'
+    tree_left: '2'
+    tree_right: '3'
+    tree_scope: '34'
+    eblob: 'a:1:{i:0;b:0;}'
+    position: '0'
+    is_active: '1'
+  Featured_237:
+    featured_type_id: '6'
+    featured_model: CollectionCategory
+    featured_id: '18'
+    tree_left: '16'
+    tree_right: '17'
+    tree_scope: '34'
+    eblob: 'a:1:{i:0;b:0;}'
+    position: '0'
+    is_active: '1'
+  Featured_238:
+    featured_type_id: '6'
+    featured_model: CollectionCategory
+    featured_id: '772'
+    tree_left: '14'
+    tree_right: '15'
+    tree_scope: '34'
     eblob: 'a:1:{i:0;b:0;}'
     position: '0'
     is_active: '1'
