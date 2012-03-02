@@ -234,11 +234,11 @@ class CollectorPeer extends BaseCollectorPeer
        ORDER BY count DESC
        LIMIT 0, %d
     ",
-/*select*/    iceModelGeoCountryPeer::NAME,
+/*select*/    GeoCountryPeer::NAME,
 /*from*/      CollectorProfilePeer::TABLE_NAME,
-/*join*/      iceModelGeoCountryPeer::TABLE_NAME,
-/*on*/        CollectorProfilePeer::COUNTRY_ISO3166, iceModelGeoCountryPeer::ISO3166,
-/*group by*/  iceModelGeoCountryPeer::NAME,
+/*join*/      GeoCountryPeer::TABLE_NAME,
+/*on*/        CollectorProfilePeer::COUNTRY_ISO3166, GeoCountryPeer::ISO3166,
+/*group by*/  GeoCountryPeer::NAME,
 /*limit*/      $max
     );
 

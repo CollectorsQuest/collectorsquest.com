@@ -41,7 +41,7 @@ class CollectorProfile extends BaseCollectorProfile
 
   public function getCountry()
   {
-    if (( $country = $this->geticeModelGeoCountry() ))
+    if (( $country = $this->getGeoCountry() ))
     {
       return $country->getName();
     }
