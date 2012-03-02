@@ -1,6 +1,0 @@
-connection: propel
-noXsd: false
-defaultIdMethod: native
-package: lib.model.misc
-
-classes:
