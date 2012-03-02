@@ -113,7 +113,7 @@ class testGenerateFixturesTask extends sfBaseTask
       $class = sfInflector::classify($table);
       $skip_classes = array(
         'Crontab', 'JobQueue', 'JobRun', 'CollectibleForSale',
-        'PropelMigration', 'Xhprof', 'Queue', 'Message'
+        'PropelMigration', 'Xhprof', 'Queue', 'Message', 'GeoCountry'
       );
 
       // Temporary skip these tables
@@ -186,7 +186,6 @@ class testGenerateFixturesTask extends sfBaseTask
       'custom_value' => '05_custom_value',
       'sf_guard_user' => '06_sf_guard_user',
       'sf_guard_group' => '06_sf_guard_group',
-      'geo_country' => '07_geo_country',
     );
 
     foreach ($renames as $old => $new)
