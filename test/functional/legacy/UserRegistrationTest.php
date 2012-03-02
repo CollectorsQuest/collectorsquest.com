@@ -6,8 +6,8 @@ include(__DIR__.'/../../bootstrap/functional.php');
 cqTest::resetClasses('Collector');
 cqTest::loadFixtures(array('01_test_collectors'));
 
-
-$browser = new cqTestFunctional(new sfBrowser(), new lime_test(69, new lime_output_color()));
+$t = new lime_test(69, array('output' => new lime_output_color(), 'error_reporting' => true));
+$browser = new cqTestFunctional(new sfBrowser(), $t);
 
 $browser
   ->info('Testing user registration:')
@@ -101,10 +101,10 @@ $browser
 
   /* */
   ->info('  6. User is allowed to access non-secure pages before completing registration')
-  ->get('/')
+  ->get('/community/spotlight')
   ->with('request')->begin()
-    ->isParameter('module', 'general')
-    ->isParameter('action', 'index')
+    ->isParameter('module', 'community')
+    ->isParameter('action', 'spotlight')
   ->end()
 
   /* */
