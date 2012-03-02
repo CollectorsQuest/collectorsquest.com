@@ -1,0 +1,48 @@
+connection:  propel
+noXsd:  false
+defaultIdMethod:  native
+package:  lib.model.plugins.iceGeoLocationPlugin
+encoding:  utf8
+
+classes:
+  GeoCountry:
+    tableName: geo_country
+    phpName: GeoCountry
+    baseClass: iceModelGeoCountry
+    columns:
+      id:  ~
+
+  GeoRegion:
+    tableName: geo_region
+    phpName: GeoRegion
+    baseClass: iceModelGeoRegion
+    columns:
+      id:  ~
+      geo_country_id:  { type: integer, required: true, foreignClass: GeoCountry, foreignReference: id, onDelete: cascade }
+
+  GeoCity:
+    tableName: geo_city
+    phpName: GeoCity
+    baseClass: iceModelGeoCity
+    columns:
+      id:  ~
+      geo_region_id:  { type: integer, required: true, foreignClass: GeoRegion, foreignReference: id, onDelete: cascade }
+
+  GeoArea:
+    tableName: geo_area
+    phpName: GeoArea
+    baseClass: iceModelGeoArea
+    columns:
+      id:  ~
+      geo_region_id:  { type: integer, required: true, foreignClass: GeoRegion, foreignReference: id, onDelete: cascade }
+      geo_city_id:    { type: integer, required: true, foreignClass: GeoCity, foreignReference: id, onDelete: cascade }
+
+  GeoStreet:
+    tableName: geo_street
+    phpName: GeoStreet
+    baseClass: iceModelGeoStreet
+    columns:
+      id:  ~
+      geo_region_id:  { type: integer, required: true, foreignClass: GeoRegion, foreignReference: id, onDelete: cascade }
+      geo_city_id:    { type: integer, required: true, foreignClass: GeoCity, foreignReference: id, onDelete: cascade }
+      geo_area_id:    { type: integer, required: true, foreignClass: GeoArea, foreignReference: id, onDelete: cascade }
