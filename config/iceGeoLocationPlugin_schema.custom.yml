@@ -12,6 +12,9 @@ classes:
     columns:
       id:  ~
 
+    uniques:
+      geo_country_U_2: [iso3166]
+
   GeoRegion:
     tableName: geo_region
     phpName: GeoRegion

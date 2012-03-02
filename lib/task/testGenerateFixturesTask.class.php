@@ -186,6 +186,7 @@ class testGenerateFixturesTask extends sfBaseTask
       'custom_value' => '05_custom_value',
       'sf_guard_user' => '06_sf_guard_user',
       'sf_guard_group' => '06_sf_guard_group',
+      'geo_country' => '07_geo_country',
     );
 
     foreach ($renames as $old => $new)

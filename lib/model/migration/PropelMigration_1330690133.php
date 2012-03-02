@@ -42,18 +42,18 @@ class PropelMigration_1330690133
 DROP TABLE IF EXISTS `geo_country`;
 
 CREATE TABLE `geo_country` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(64) NOT NULL,
-  `slug` varchar(64) NOT NULL,
-  `iso3166` char(2) NOT NULL,
-  `currency` char(3) NOT NULL,
-  `latitude` float DEFAULT NULL,
-  `longitude` float DEFAULT NULL,
-  `zoom` smallint(6) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `geo_country_U_1` (`slug`),
-  UNIQUE KEY `geo_country_U_2` (`iso3166`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+	`id` INTEGER NOT NULL AUTO_INCREMENT,
+	`name` VARCHAR(64) NOT NULL,
+	`slug` VARCHAR(64) NOT NULL,
+	`iso3166` CHAR(2) NOT NULL,
+	`currency` CHAR(3) NOT NULL,
+	`latitude` FLOAT,
+	`longitude` FLOAT,
+	`zoom` SMALLINT,
+	PRIMARY KEY (`id`),
+	UNIQUE INDEX `geo_country_U_1` (`slug`),
+	UNIQUE INDEX `geo_country_U_2` (`iso3166`)
+) ENGINE=InnoDB;
 
 LOCK TABLES `geo_country` WRITE;
 /*!40000 ALTER TABLE `geo_country` DISABLE KEYS */;
