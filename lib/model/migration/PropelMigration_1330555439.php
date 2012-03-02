@@ -35,20 +35,23 @@ class PropelMigration_1330555439
 	public function getUpSQL()
 	{
 		return array (
-  'propel' => '
+      'propel' => '
+        ALTER TABLE `collector` ADD `has_completed_registration` BOOL NOT NULL DEFAULT 0 AFTER `is_public`;
 
-ALTER TABLE `collector` ADD `has_completed_registration` BOOL NOT NULL DEFAULT 0 AFTER `is_public`;
-UPDATE `collector`, `collector_profile`
-SET collector.has_completed_registration = 1
-WHERE collector.id = collector_profile.collector_id
-AND collector_profile.country_iso3166 IS NOT NULL;
+        UPDATE `collector`, `collector_profile`
+           SET collector.has_completed_registration = 1
+         WHERE collector.id = collector_profile.collector_id
+           AND collector_profile.country_iso3166 IS NOT NULL;
+      ',
+      'archive' => '
+        ALTER TABLE `collector_archive` ADD `has_completed_registration` BOOL NOT NULL DEFAULT 0 AFTER `is_public`;
 
-',
-  'archive' => '
-
-ALTER TABLE `collector_archive` ADD `has_completed_registration` BOOL NOT NULL DEFAULT 0 AFTER `is_public`;
-',
-);
+        UPDATE `collector_archive`, `collector_profile_archive`
+           SET collector_archive.has_completed_registration = 1
+         WHERE collector_archive.id = collector_profile_archive.collector_id
+           AND collector_profile_archive.country_iso3166 IS NOT NULL;
+      ',
+    );
 	}
 
 	/**
@@ -60,17 +63,13 @@ ALTER TABLE `collector_archive` ADD `has_completed_registration` BOOL NOT NULL D
 	public function getDownSQL()
 	{
 		return array (
-  'propel' => '
-
-ALTER TABLE `collector` DROP `has_completed_registration`;
-
-',
-  'archive' => '
-
-ALTER TABLE `collector_archive` DROP `has_completed_registration`;
-
-',
-);
+      'propel' => '
+        ALTER TABLE `collector` DROP `has_completed_registration`;
+      ',
+      'archive' => '
+        ALTER TABLE `collector_archive` DROP `has_completed_registration`;
+      ',
+    );
 	}
 
 }

@@ -5,7 +5,7 @@
  * up to version 1330364834.
  * Generated on 2012-02-27 12:47:14 by root
  */
-class PropelMigration_1330364834
+class PropelMigration_1330690134
 {
 
 	public function preUp($manager)
@@ -46,7 +46,7 @@ CREATE INDEX `collector_geocache_FI_2` ON `collector_geocache` (`country_iso3166
 
 ALTER TABLE `collector_geocache` ADD CONSTRAINT `collector_geocache_FK_2`
 	FOREIGN KEY (`country_iso3166`)
-	REFERENCES `ice_geo_country` (`iso3166`);
+	REFERENCES `geo_country` (`iso3166`);
 
 
 ALTER TABLE `collector_profile` CHANGE `country_iso3166` `country_iso3166` CHAR(2);
@@ -62,7 +62,7 @@ CREATE INDEX `collector_profile_FI_2` ON `collector_profile` (`country_iso3166`)
 
 ALTER TABLE `collector_profile` ADD CONSTRAINT `collector_profile_FK_2`
 	FOREIGN KEY (`country_iso3166`)
-	REFERENCES `ice_geo_country` (`iso3166`);
+	REFERENCES `geo_country` (`iso3166`);
 
 SET FOREIGN_KEY_CHECKS = 1;
 ',

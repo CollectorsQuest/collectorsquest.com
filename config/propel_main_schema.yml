@@ -47,7 +47,7 @@ classes:
       birthday:        { type: date }
       gender:          { type: char, sqlType: "ENUM('f','m')" }
       zip_postal:      varchar(10)
-      country_iso3166: { type: CHAR, size: 2, required: false, foreignTable: ice_geo_country, foreignReference: iso3166 }
+      country_iso3166: { type: CHAR, size: 2, required: false, foreignTable: geo_country, foreignReference: iso3166 }
       website:         varchar(128)
       is_featured:     { type: boolean, default: false }
       is_seller:       { type: boolean, default: false }
@@ -106,7 +106,7 @@ classes:
     columns:
       id:  ~
       collector_id:     { type: integer, foreignClass: Collector, foreignReference: id, required: true, onDelete: cascade }
-      country_iso3166:  { type: CHAR, size: 2, required: false, foreignTable: ice_geo_country, foreignReference: iso3166 }
+      country_iso3166:  { type: CHAR, size: 2, required: false, foreignTable: geo_country, foreignReference: iso3166 }
       state:            { type: varchar, size: 64 }
       county:           { type: varchar, size: 64 }
       city:             { type: varchar, size: 64 }

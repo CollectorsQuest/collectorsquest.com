@@ -5,7 +5,7 @@
  * up to version 1330360044.
  * Generated on 2012-02-27 11:27:24 by root
  */
-class PropelMigration_1330360044
+class PropelMigration_1330690133
 {
 
 	public function preUp($manager)
@@ -39,9 +39,9 @@ class PropelMigration_1330360044
 		return array (
   'propel' => <<<EOF
 
-DROP TABLE IF EXISTS `ice_geo_country`;
+DROP TABLE IF EXISTS `geo_country`;
 
-CREATE TABLE `ice_geo_country` (
+CREATE TABLE `geo_country` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(64) NOT NULL,
   `slug` varchar(64) NOT NULL,
@@ -55,10 +55,10 @@ CREATE TABLE `ice_geo_country` (
   UNIQUE KEY `geo_country_U_2` (`iso3166`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-LOCK TABLES `ice_geo_country` WRITE;
-/*!40000 ALTER TABLE `ice_geo_country` DISABLE KEYS */;
+LOCK TABLES `geo_country` WRITE;
+/*!40000 ALTER TABLE `geo_country` DISABLE KEYS */;
 
-INSERT INTO `ice_geo_country` (`id`, `name`, `slug`, `iso3166`, `currency`, `latitude`, `longitude`, `zoom`)
+INSERT INTO `geo_country` (`id`, `name`, `slug`, `iso3166`, `currency`, `latitude`, `longitude`, `zoom`)
 VALUES
 	(1,'Afghanistan','Afghanistan','AF','',0,0,0),
 	(2,'Albania','Albania','AL','ALL',0,0,0),
@@ -313,10 +313,10 @@ EOF
 	public function getDownSQL()
 	{
 		return array (
-  'propel' => '
-    DROP TABLE ice_geo_country;
-',
-);
+      'propel' => '
+        DROP TABLE geo_country;
+      ',
+    );
 	}
 
 }
