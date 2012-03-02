@@ -11,22 +11,42 @@ class cqCompleteRegistrationFilter extends sfFilter
 {
   public function execute($filterChain)
   {
-    if ( $this->context->getUser()->isAuthenticated()
+    /** @var $sf_user cqUser */
+    $sf_user = $this->context->getUser();
+
+    if ( $sf_user->isAuthenticated()
       && $this->currentActionIsSecure()
-      && !$this->context->getUser()->getCollector()->getHasCompletedRegistration() )
+      && !$sf_user->getCollector()->getHasCompletedRegistration() )
     {
       if (sfConfig::get('sf_logging_enabled'))
       {
         $this->context->getEventDispatcher()->notify(new sfEvent($this, 'application.log', array(
-          sprintf('User "%s" has not completed his/her registration,forwarding to "%s/%s"',
-            $this->context->getUser()->getCollector()->getDisplayName(),
+          sprintf('Collector "%s" has not completed his/her registration, forwarding to "%s/%s"',
+            $sf_user->getCollector()->getDisplayName(),
             sfConfig::get('app_signup_module'), sfConfig::get('app_signup_action')
         ))));
       }
 
+      if (1 < $tries = $sf_user->getAttribute('not_completed_registration_tries', 0))
+      {
+        $message = trim('
+          We are sorry but you need to finish your Collector Profile
+          before you can use any of the personalized sections of collectorsquest.com.
+          It *only* takes a minute!
+        ');
+        $sf_user->setFlash('error', $message, true);
+      }
+
+      $sf_user->setAttribute('not_completed_registration_tries', ++$tries);
+
       $this->forwardToSignupAction();
 
       return ;
+    }
+    else if ($sf_user->getCollector()->getHasCompletedRegistration())
+    {
+      // Unset the session variable if set before
+      $sf_user->setAttribute('not_completed_registration_tries', null);
     }
 
     $filterChain->execute();
