@@ -134,7 +134,7 @@ class cqStatic extends IceStatic
    */
   static public function clean($text, $allowed_tags = 'b, u, i, ul, li, strong', $tidy = 0)
   {
-    include_once __DIR__.'/../vendor/htmLawed.php';
+    include_once __DIR__.'/../../plugins/iceLibsPlugin/lib/vendor/htmLawed.php';
 
     return htmLawed(
       $text,
@@ -156,7 +156,8 @@ class cqStatic extends IceStatic
    */
   public static function getAmazonProducts($limit = 5, $keywords = array())
   {
-    require_once __DIR__.'/../vendor/tarzanaws/tarzan.class.php';
+    // TODO: Implement this function with the AWS PHP SDK,
+    // It is installed in /www/libs/aws and should be autoloaded
 
     $products = array();
     $keywords = (is_array($keywords)) ? implode(' ', $keywords) : trim($keywords);
