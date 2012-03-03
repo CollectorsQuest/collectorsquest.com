@@ -327,12 +327,13 @@
   echo input_hidden_tag('no_shipping', 1);
   echo input_hidden_tag('tax', 0);
   echo input_hidden_tag('no_note', '1');
+  echo input_hidden_tag('rm', 2);
   echo input_hidden_tag('business', sfConfig::get("app_paypal_merchant_account"));
   echo input_hidden_tag('currency_code', sfConfig::get("app_paypal_currency"));
   echo input_hidden_tag('currency', sfConfig::get("app_paypal_currency"));
-  echo input_hidden_tag('return', url_for(sfConfig::get("app_paypal_return_url"), true));
-  echo input_hidden_tag('cancel', url_for(sfConfig::get("app_paypal_cancel_url"), true));
-  echo input_hidden_tag('notify_url', url_for(sfConfig::get("app_paypal_notify_url"), true));
+  echo input_hidden_tag('return', url_for1(sfConfig::get("app_paypal_return_url"), true));
+  echo input_hidden_tag('cancel_return', url_for1(sfConfig::get("app_paypal_cancel_url"), true));
+  echo input_hidden_tag('notify_url', url_for1(sfConfig::get("app_paypal_notify_url"), true));
 ?>
 </form>
 <div class="clearfix append-bottom">&nbsp;</div>

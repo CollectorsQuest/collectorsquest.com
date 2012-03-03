@@ -590,4 +590,16 @@ class sellerActions extends cqActions
     return sfView::NONE;
   }
 
+  /**
+   * Action CancelPayment
+   *
+   * @param sfWebRequest $request
+   *
+   */
+  public function executeCancelPayment(sfWebRequest $request)
+  {
+//    var_dump($request->getParameterHolder()->getAll());
+//    die();
+  }
+
 }
