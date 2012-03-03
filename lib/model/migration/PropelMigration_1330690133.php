@@ -53,10 +53,7 @@ CREATE TABLE `geo_country` (
 	PRIMARY KEY (`id`),
 	UNIQUE INDEX `geo_country_U_1` (`slug`),
 	UNIQUE INDEX `geo_country_U_2` (`iso3166`)
-) ENGINE=InnoDB;
-
-LOCK TABLES `geo_country` WRITE;
-/*!40000 ALTER TABLE `geo_country` DISABLE KEYS */;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;;
 
 INSERT INTO `geo_country` (`id`, `name`, `slug`, `iso3166`, `currency`, `latitude`, `longitude`, `zoom`)
 VALUES

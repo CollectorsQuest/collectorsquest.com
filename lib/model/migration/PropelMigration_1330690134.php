@@ -37,47 +37,48 @@ class PropelMigration_1330690134
 	public function getUpSQL()
 	{
 		return array (
-  'propel' => '
-SET FOREIGN_KEY_CHECKS = 0;
+      'propel' => "
+        SET FOREIGN_KEY_CHECKS = 0;
 
-ALTER TABLE `collector_geocache` DROP `country`;
+        ALTER TABLE `collector_geocache` DROP `country`;
 
-CREATE INDEX `collector_geocache_FI_2` ON `collector_geocache` (`country_iso3166`);
+        -- There is no more Serbia ;)
+        UPDATE `collector_geocache` SET `country_iso3166` = 'CS' WHERE `country_iso3166` = 'RS';
 
-ALTER TABLE `collector_geocache` ADD CONSTRAINT `collector_geocache_FK_2`
-	FOREIGN KEY (`country_iso3166`)
-	REFERENCES `geo_country` (`iso3166`);
+        CREATE INDEX `collector_geocache_FI_2` ON `collector_geocache` (`country_iso3166`);
 
+        ALTER TABLE `collector_geocache` ADD CONSTRAINT `collector_geocache_FK_2`
+          FOREIGN KEY (`country_iso3166`)
+          REFERENCES `geo_country` (`iso3166`);
 
-ALTER TABLE `collector_profile` CHANGE `country_iso3166` `country_iso3166` CHAR(2);
+        ALTER TABLE `collector_profile` CHANGE `country_iso3166` `country_iso3166` CHAR(2);
+        UPDATE `collector_profile` SET `country_iso3166` = 'CS' WHERE `country_iso3166` = 'RS';
 
-UPDATE collector_profile
-SET collector_profile.country_iso3166 = collector_profile.country
-WHERE collector_profile.country_iso3166 IS NULL
-  AND length(collector_profile.country) = 2;
+        UPDATE collector_profile
+          SET collector_profile.country_iso3166 = collector_profile.country
+          WHERE collector_profile.country_iso3166 IS NULL
+          AND length(collector_profile.country) = 2;
 
-ALTER TABLE `collector_profile` DROP `country`;
+        ALTER TABLE `collector_profile` DROP `country`;
 
-CREATE INDEX `collector_profile_FI_2` ON `collector_profile` (`country_iso3166`);
+        CREATE INDEX `collector_profile_FI_2` ON `collector_profile` (`country_iso3166`);
 
-ALTER TABLE `collector_profile` ADD CONSTRAINT `collector_profile_FK_2`
-	FOREIGN KEY (`country_iso3166`)
-	REFERENCES `geo_country` (`iso3166`);
+        ALTER TABLE `collector_profile` ADD CONSTRAINT `collector_profile_FK_2`
+          FOREIGN KEY (`country_iso3166`)
+          REFERENCES `geo_country` (`iso3166`);
 
-SET FOREIGN_KEY_CHECKS = 1;
-',
+        SET FOREIGN_KEY_CHECKS = 1;
+      ",
 
+      'archive' => "
+        SET FOREIGN_KEY_CHECKS = 0;
 
-  'archive' => '
-SET FOREIGN_KEY_CHECKS = 0;
+        ALTER TABLE `collector_geocache_archive` DROP `country`;
+        ALTER TABLE `collector_profile_archive` DROP `country`;
 
-ALTER TABLE `collector_geocache_archive` DROP `country`;
-
-ALTER TABLE `collector_profile_archive` DROP `country`;
-
-SET FOREIGN_KEY_CHECKS = 1;
-',
-);
+        SET FOREIGN_KEY_CHECKS = 1;
+      "
+    );
 	}
 
 	/**
