@@ -122,17 +122,19 @@ class collectionAction extends cqAjaxAction
     {
       $pks = array_values($order[$key]);
 
-      $q = new CollectibleQuery();
-      $q->filterByPrimaryKeys($pks);
+      /** @var $q CollectionCollectibleQuery */
+      $q = CollectionCollectibleQuery::create()
+         ->filterByCollection($this->collection)
+         ->filterByCollectibleId($pks, Criteria::IN);
 
-      /** @var $collectibles Collectible[] */
+      /** @var $collectibles CollectionCollectible[] */
       $collectibles = $q->find();
 
       foreach ($collectibles as $collectible)
       {
         foreach ($order[$key] as $position => $pk)
         {
-          if ($collectible->getId() == $pk && $collectible->getPosition() != $position)
+          if ($collectible->getCollectibleId() == $pk && $collectible->getPosition() != $position)
           {
             $collectible->setPosition($position);
             $collectible->save();
