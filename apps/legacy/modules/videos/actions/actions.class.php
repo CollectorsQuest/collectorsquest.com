@@ -67,9 +67,10 @@ class videosActions extends cqActions
     $this->videos = array_merge(array($video), $videos);
     $this->video = $video;
     $this->playlist_xml = '@ajax_video_single_xml?id='. $video->getId();
-    $this->amazon_products = cqStatic::getAmazonProducts(
-      2, array_slice($video->getTags(), rand(0, count($video->getTags())), 2, true)
-    );
+
+    // $this->amazon_products = cqStatic::getAmazonProducts(
+    //   2, array_slice($video->getTags(), rand(0, count($video->getTags())), 2, true)
+    // );
 
     $this->playlists = array();
 
