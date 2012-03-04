@@ -1,0 +1,20 @@
+CollectorCollectionArchive:
+  CollectorCollectionArchive_3125:
+    id: '3125'
+    graph_id: '10289'
+    collector_id: '9597'
+    collection_category_id: '35'
+    name: 'fitness bands'
+    slug: fitness-bands
+    description: "<p>Body-Bands: Resistance Bands Exercise System - use resistance bands for a simple, fast, and effective exercise program. Make fitness easy again and bring balance back to your life.</p>\n\n<p>resistance bands</p>\n\n<p>exercise band</p>\n\n<p>fitness bands</p>\n"
+    num_items: '0'
+    num_views: '13'
+    num_comments: '0'
+    num_ratings: '0'
+    score: '0'
+    is_public: '1'
+    is_featured: '0'
+    comments_on: '1'
+    rating_on: '1'
+    updated_at: '2012-02-28 06:24:24'
+    created_at: '2012-02-24 21:24:23'

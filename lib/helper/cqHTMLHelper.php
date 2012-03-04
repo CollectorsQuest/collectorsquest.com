@@ -16,10 +16,10 @@ function cq_input_tag($form, $field, $options = array())
 
   $options = array_merge(
     $options,
-    array('style' => 'border: 1px solid #A7A7A7; font-size: 16px; height: 23px; width: '.($width-10).'px; padding: 4px; margin: 0;')
+    array('style' => 'border: 1px solid #ceccc2; font-size: 16px; height: 23px; width: '.($width-10).'px; padding: 4px; margin: 0;')
   );
 
-  echo '<div style="background: #E9E9E9; vertical-align: middle; width: '.$width.'px; padding: 5px;">';
+  echo '<div style="background: #edece7; vertical-align: middle; width: '.$width.'px; padding: 5px;">';
   echo $form[$field]->render($options);
   echo '</div>';
 }
@@ -44,10 +44,10 @@ function cq_textarea_tag($form, $field, $options = array())
 
   $options = array_merge(
     $options,
-    array('style' => sprintf('border: 1px solid #A7A7A7; font-size: 14px; height: %dpx; min-height: %dpx; width: %dpx; margin: 0;', $h, $h, $w))
+    array('style' => sprintf('border: 1px solid #ceccc2; font-size: 14px; height: %dpx; min-height: %dpx; width: %dpx; margin: 0;', $h, $h, $w))
   );
 
-  echo sprintf('<div style="background: #E9E9E9; min-height: %dpx; vertical-align: middle; width: %dpx; padding: 5px;">', $height, $width);
+  echo sprintf('<div style="background: #edece7; min-height: %dpx; vertical-align: middle; width: %dpx; padding: 5px;">', $height, $width);
   echo $form[$field]->render($options);
   echo '</div>';
 }
@@ -58,10 +58,10 @@ function cq_select_tag($form, $field, $options = array())
 
   $options = array_merge(
     $options,
-    array('style' => 'border: 1px solid #A7A7A7; font-size: 14px; width: '.($width).'px; padding: 2px; margin: 0;')
+    array('style' => 'border: 1px solid #ceccc2; font-size: 14px; width: '.($width).'px; padding: 2px; margin: 0;')
   );
 
-  echo '<div style="background: #E9E9E9; vertical-align: middle; width: '.$width.'px; padding: 5px;">';
+  echo '<div style="background: #edece7; vertical-align: middle; width: '.$width.'px; padding: 5px;">';
   echo $form[$field]->render($options);
   echo '</div>';
 }

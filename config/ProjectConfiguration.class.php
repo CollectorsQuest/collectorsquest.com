@@ -23,8 +23,9 @@ class ProjectConfiguration extends IceProjectConfiguration
 
     $this->enablePlugins('sfPropelORMPlugin', 'sfGuardPlugin');
     $this->enablePlugins(
-      'iceAssetsPlugin', 'iceBehaviorsPlugin', 'iceLibsPlugin', 'iceTaggablePlugin',
-      'iceBackendPlugin', 'iceJobQueuePlugin', 'iceCrontabPlugin', 'iceSpamControlPlugin'
+      'iceAssetsPlugin', 'iceBehaviorsPlugin', 'iceLibsPlugin',
+      'iceTaggablePlugin', 'iceBackendPlugin', 'iceJobQueuePlugin',
+      'iceCrontabPlugin', 'iceSpamControlPlugin', 'iceGeoLocationPlugin'
     );
 
     sfConfig::add(array(

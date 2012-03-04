@@ -6,7 +6,7 @@
 class cqUser extends IceSecurityUser
 {
   /** @var Collector */
-  private static $collector = null;
+  private $collector = null;
 
   public function __construct(sfEventDispatcher $dispatcher, sfStorage $storage, $options = array())
   {
@@ -65,7 +65,7 @@ class cqUser extends IceSecurityUser
       setCookie('remember', null, 0, '/', str_replace('http://www', '', sfConfig::get('app_www_domain')));
       $_COOKIE['remember'] = null;
 
-      self::$collector = null;
+      $this->collector = null;
     }
     else if ($collector instanceof Collector && $boolean == true)
     {
@@ -82,7 +82,7 @@ class cqUser extends IceSecurityUser
         setCookie('remember', $cookie, time()+60*60*24*14, '/', str_replace('http://www', '', sfConfig::get('app_www_domain')));
       }
 
-      self::$collector = $collector;
+      $this->collector = $collector;
       $this->setAuthenticated(true);
     }
 
@@ -131,11 +131,11 @@ class cqUser extends IceSecurityUser
    */
   public function getCollector()
   {
-    if (!(self::$collector instanceof Collector))
+    if (!($this->collector instanceof Collector))
     {
-      if (self::$collector === null && ($this->getAttribute("id", null, "collector") !== null))
+      if ($this->collector === null && ($this->getAttribute("id", null, "collector") !== null))
       {
-        self::$collector = CollectorPeer::retrieveByPK($this->getAttribute("id", null, "collector"));
+        $this->collector = CollectorPeer::retrieveByPK($this->getAttribute("id", null, "collector"));
       }
       else
       {
@@ -145,10 +145,10 @@ class cqUser extends IceSecurityUser
     }
     else if (self::$collector->getId() === null && $this->getAttribute("id", null, "collector") !== null)
     {
-      self::$collector = CollectorPeer::retrieveByPK($this->getAttribute("id", null, "collector"));
+      $this->collector = CollectorPeer::retrieveByPK($this->getAttribute("id", null, "collector"));
     }
 
-    return self::$collector;
+    return $this->collector;
   }
 
   public function getShoppingCart()

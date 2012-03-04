@@ -22,7 +22,7 @@ class collectorsComponents extends sfComponents
     );
 
     $collector_profile = $this->getUser()->getCollector()->getProfile();
-    if ($collector_profile && in_array($collector_profile->getCountry(), array('United States', 'USA', 'US')))
+    if ($collector_profile && 'US' == $collector_profile->getCountryIso3166())
     {
       $this->buttons[] = array(
         'text' => 'Near You',

@@ -229,13 +229,6 @@ class generalActions extends cqActions
     return $this->redirect(!empty($url) ? $url : '@community');
   }
 
-  public function executePassword()
-  {
-    $this->redirectIf($this->getUser()->isAuthenticated(), "@community");
-
-    return sfView::SUCCESS;
-  }
-
   public function executeRPXToken(sfWebRequest $request)
   {
     $token = $request->getParameter('token');

@@ -14,10 +14,11 @@ Collector:
     spam_score: '5'
     is_spam: '0'
     is_public: '1'
-    session_id: eovrfp7230nnsuesig2rv4f9j1
-    last_seen_at: '2012-02-23 19:53:53'
+    has_completed_registration: '1'
+    session_id: gnnmmiit2vqc8bkmp470hql191
+    last_seen_at: '2012-02-28 06:25:12'
     created_at: '2007-05-31 14:21:52'
-    updated_at: '2012-02-23 19:53:53'
+    updated_at: '2012-02-28 06:25:12'
   Collector_52:
     username: dinocollector
     display_name: Dinocollector
@@ -32,6 +33,7 @@ Collector:
     spam_score: '5'
     is_spam: '0'
     is_public: '1'
+    has_completed_registration: '1'
     last_seen_at: '2011-06-13 00:00:00'
     created_at: '2007-06-19 01:15:50'
     updated_at: '2012-01-05 15:06:03'
@@ -50,6 +52,7 @@ Collector:
     spam_score: '99'
     is_spam: '1'
     is_public: '1'
+    has_completed_registration: '1'
     session_id: qur5m40e3jtjd0or2tb52sgud5
     last_seen_at: '2012-02-10 17:27:16'
     created_at: '2007-06-24 01:24:56'
@@ -68,6 +71,7 @@ Collector:
     spam_score: '5'
     is_spam: '0'
     is_public: '1'
+    has_completed_registration: '1'
     last_seen_at: '2007-11-25 00:00:00'
     created_at: '2007-09-15 22:27:59'
     updated_at: '2012-01-05 15:10:49'
@@ -85,6 +89,7 @@ Collector:
     spam_score: '40'
     is_spam: '0'
     is_public: '1'
+    has_completed_registration: '1'
     last_seen_at: '2009-01-28 00:00:00'
     created_at: '2008-01-02 18:42:45'
     updated_at: '2012-01-05 15:13:44'
@@ -102,6 +107,7 @@ Collector:
     spam_score: '5'
     is_spam: '0'
     is_public: '1'
+    has_completed_registration: '1'
     last_seen_at: '2009-01-01 00:00:00'
     created_at: '2008-04-06 11:43:49'
     updated_at: '2012-01-05 15:25:43'
@@ -119,6 +125,7 @@ Collector:
     spam_score: '5'
     is_spam: '0'
     is_public: '1'
+    has_completed_registration: '1'
     session_id: uk0etad72vq2iul0b0i8idh1i3
     last_seen_at: '2010-10-06 00:00:00'
     created_at: '2008-06-24 17:03:10'
@@ -137,6 +144,7 @@ Collector:
     spam_score: '5'
     is_spam: '0'
     is_public: '1'
+    has_completed_registration: '1'
     last_seen_at: '2009-01-22 00:00:00'
     created_at: '2008-08-23 09:25:20'
     updated_at: '2012-01-05 15:32:53'
@@ -154,6 +162,7 @@ Collector:
     spam_score: '5'
     is_spam: '0'
     is_public: '1'
+    has_completed_registration: '1'
     last_seen_at: '2008-12-21 00:00:00'
     created_at: '2008-12-12 12:58:56'
     updated_at: '2012-01-05 15:38:00'
@@ -171,11 +180,13 @@ Collector:
     spam_score: '5'
     is_spam: '0'
     is_public: '1'
+    has_completed_registration: '1'
     session_id: f70go3q86sv5k6fosja8nanob1
     last_seen_at: '2012-01-04 00:00:00'
     created_at: '2008-12-27 23:20:15'
     updated_at: '2012-01-05 15:39:00'
   Collector_963:
+    graph_id: '11542'
     username: trbuttons
     display_name: Trbuttons
     slug: trbuttons
@@ -189,10 +200,11 @@ Collector:
     spam_score: '5'
     is_spam: '0'
     is_public: '1'
-    session_id: 68tgbaqbqug16250jplgmhfam1
-    last_seen_at: '2011-06-15 00:00:00'
+    has_completed_registration: '1'
+    session_id: sqsvv7d1lgagb05ucnkqk9rcr7
+    last_seen_at: '2012-02-29 21:12:13'
     created_at: '2009-02-04 21:13:10'
-    updated_at: '2012-01-05 15:42:37'
+    updated_at: '2012-02-29 21:12:13'
   Collector_1082:
     username: googlecool97
     display_name: Googlecool97
@@ -207,6 +219,7 @@ Collector:
     spam_score: '5'
     is_spam: '0'
     is_public: '1'
+    has_completed_registration: '1'
     last_seen_at: '2009-06-22 00:00:00'
     created_at: '2009-03-12 22:00:40'
     updated_at: '2012-01-05 15:47:27'
@@ -224,6 +237,7 @@ Collector:
     spam_score: '5'
     is_spam: '0'
     is_public: '1'
+    has_completed_registration: '1'
     session_id: 0bmim9mlsknbelo48cev6iuoj5
     last_seen_at: '2012-01-24 16:01:30'
     created_at: '2009-05-03 18:58:54'
@@ -243,6 +257,7 @@ Collector:
     spam_score: '5'
     is_spam: '0'
     is_public: '1'
+    has_completed_registration: '1'
     session_id: 4kun66u4e6nvtarioh7q0eog20
     last_seen_at: '2012-02-23 03:03:10'
     created_at: '2009-06-15 15:10:12'
@@ -261,6 +276,7 @@ Collector:
     spam_score: '5'
     is_spam: '0'
     is_public: '1'
+    has_completed_registration: '1'
     last_seen_at: '2009-07-21 00:00:00'
     created_at: '2009-07-15 07:21:05'
     updated_at: '2012-01-05 15:59:08'
@@ -278,6 +294,7 @@ Collector:
     spam_score: '5'
     is_spam: '0'
     is_public: '1'
+    has_completed_registration: '1'
     session_id: j3b4h3kf33j3lseo4lttbqhc75
     last_seen_at: '2011-04-06 00:00:00'
     created_at: '2010-06-27 10:19:23'
@@ -296,6 +313,7 @@ Collector:
     spam_score: '5'
     is_spam: '0'
     is_public: '1'
+    has_completed_registration: '0'
     session_id: 02k168r34n7fl3tpvflvasro73
     last_seen_at: '2010-09-12 00:00:00'
     created_at: '2010-09-12 12:04:44'
@@ -314,6 +332,7 @@ Collector:
     spam_score: '5'
     is_spam: '0'
     is_public: '1'
+    has_completed_registration: '0'
     session_id: rc7e7aqdnr8mjbcc6rbgliabl0
     last_seen_at: '2010-09-28 00:00:00'
     created_at: '2010-09-28 20:51:11'
@@ -332,6 +351,7 @@ Collector:
     spam_score: '5'
     is_spam: '0'
     is_public: '1'
+    has_completed_registration: '0'
     last_seen_at: '2011-06-24 00:00:00'
     created_at: '2011-06-09 17:51:10'
     updated_at: '2012-01-06 04:35:32'
@@ -349,6 +369,7 @@ Collector:
     spam_score: '5'
     is_spam: '0'
     is_public: '1'
+    has_completed_registration: '0'
     session_id: b132g7j82p1hg39a2o06upgll0
     last_seen_at: '2011-08-24 00:00:00'
     created_at: '2011-06-13 21:45:21'

@@ -2,31 +2,38 @@
 
 require 'lib/model/om/BaseCollector.php';
 
+/**
+ * @method     integer getSingupNumCompletedSteps() Return the number of completed signup steps
+ * @method     integer setSingupNumCompletedSteps(integer $v) Set the number of completed signup steps
+ */
 class Collector extends BaseCollector
 {
-
-  public function postSave(PropelPDO $con = null)
+  public function initializeProperties()
   {
-
+    $this->registerProperty('SINGUP_NUM_COMPLETED_STEPS', 1);
   }
 
   public function getGraphId()
   {
-    $graph_id = null;
+    $graph_id = parent::getGraphId();
 
-    if (!$this->isNew() && (!$graph_id = parent::getGraphId()))
+    if (!$this->isNew() && null === $graph_id)
     {
-      $client = cqStatic::getNeo4jClient();
+      try {
+        $client = cqStatic::getNeo4jClient();
 
-      $node = $client->makeNode();
-      $node->setProperty('model', 'Collector');
-      $node->setProperty('model_id', $this->getId());
-      $node->save();
+        $node = $client->makeNode();
+        $node->setProperty('model', 'Collector');
+        $node->setProperty('model_id', $this->getId());
+        $node->save();
 
-      $graph_id = $node->getId();
+        $graph_id = $node->getId();
 
-      $this->setGraphId($node->getId());
-      $this->save();
+        $this->setGraphId($node->getId());
+        $this->save();
+      } catch (Exception $e) {
+        // Error when trying to create a new neo4j node
+      }
     }
 
     return $graph_id;

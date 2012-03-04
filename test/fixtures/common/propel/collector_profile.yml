@@ -5,8 +5,7 @@ CollectorProfile:
     birthday: '1982-01-01'
     gender: m
     zip_postal: '10579'
-    country: USA
-    country_iso3166: US
+    country_iso3166: GeoCountry_US
     website: 'http://www.resonantfish.com'
     is_featured: '0'
     is_image_auto: '0'
@@ -20,8 +19,7 @@ CollectorProfile:
     birthday: '1979-05-20'
     gender: m
     zip_postal: '66046'
-    country: USA
-    country_iso3166: US
+    country_iso3166: GeoCountry_US
     website: ''
     is_featured: '0'
     is_image_auto: '0'
@@ -35,8 +33,7 @@ CollectorProfile:
     birthday: '1920-06-24'
     gender: f
     zip_postal: '58102'
-    country: ''
-    country_iso3166: US
+    country_iso3166: GeoCountry_US
     website: inherited-values.com
     is_featured: '0'
     is_image_auto: '0'
@@ -50,8 +47,7 @@ CollectorProfile:
     birthday: '1969-09-30'
     gender: m
     zip_postal: '11201'
-    country: USA
-    country_iso3166: US
+    country_iso3166: GeoCountry_US
     website: ''
     is_image_auto: '0'
     preferences: 'a:3:{s:8:"show_age";b:1;s:6:"msg_on";b:1;s:11:"invite_only";b:0;}'
@@ -63,8 +59,7 @@ CollectorProfile:
     collector_type: '2'
     birthday: '1974-06-22'
     gender: m
-    country: Sweden
-    country_iso3166: SE
+    country_iso3166: GeoCountry_SE
     website: ''
     is_image_auto: '0'
     preferences: 'a:3:{s:8:"show_age";b:1;s:6:"msg_on";b:1;s:11:"invite_only";b:0;}'
@@ -77,8 +72,7 @@ CollectorProfile:
     birthday: '1962-03-14'
     gender: m
     zip_postal: '77429'
-    country: USA
-    country_iso3166: US
+    country_iso3166: GeoCountry_US
     website: www.blackgemrecords.com
     is_image_auto: '0'
     preferences: 'a:3:{s:8:"show_age";b:1;s:6:"msg_on";b:1;s:11:"invite_only";b:0;}'
@@ -91,8 +85,7 @@ CollectorProfile:
     birthday: '1952-02-09'
     gender: m
     zip_postal: '48335'
-    country: USA
-    country_iso3166: US
+    country_iso3166: GeoCountry_US
     website: 'http://cardomain.com/ride/340096'
     is_featured: '0'
     is_image_auto: '0'
@@ -105,8 +98,7 @@ CollectorProfile:
     collector_type: '2'
     birthday: '1963-06-18'
     gender: m
-    country: 'The Netherlands'
-    country_iso3166: NL
+    country_iso3166: GeoCountry_NL
     website: ''
     is_featured: '0'
     is_image_auto: '0'
@@ -119,8 +111,7 @@ CollectorProfile:
     collector_type: '2'
     birthday: '1976-07-09'
     gender: f
-    country: Italy
-    country_iso3166: IT
+    country_iso3166: GeoCountry_IT
     website: ''
     is_featured: '0'
     is_image_auto: '0'
@@ -134,8 +125,7 @@ CollectorProfile:
     birthday: '1987-05-29'
     gender: f
     zip_postal: '92040'
-    country: ''
-    country_iso3166: US
+    country_iso3166: GeoCountry_US
     website: dinosauriana.com
     is_featured: '0'
     is_image_auto: '0'
@@ -149,8 +139,7 @@ CollectorProfile:
     birthday: '1957-10-14'
     gender: m
     zip_postal: '33405'
-    country: ''
-    country_iso3166: US
+    country_iso3166: GeoCountry_US
     website: PoliticalCollectors.com
     is_featured: '0'
     is_image_auto: '0'
@@ -164,8 +153,7 @@ CollectorProfile:
     birthday: '1965-09-27'
     gender: f
     zip_postal: '28115'
-    country: USA
-    country_iso3166: US
+    country_iso3166: GeoCountry_US
     website: ''
     is_featured: '0'
     is_image_auto: '0'
@@ -179,8 +167,7 @@ CollectorProfile:
     birthday: '1962-05-20'
     gender: f
     zip_postal: '07069'
-    country: ''
-    country_iso3166: US
+    country_iso3166: GeoCountry_US
     website: museumofuncutfunk.com
     is_featured: '0'
     is_image_auto: '0'
@@ -194,8 +181,7 @@ CollectorProfile:
     birthday: '1996-11-25'
     gender: m
     zip_postal: ''
-    country: RO
-    country_iso3166: RO
+    country_iso3166: GeoCountry_RO
     website: theboundariesofcollecting.blogspot.com/
     is_featured: '0'
     is_image_auto: '0'
@@ -208,8 +194,7 @@ CollectorProfile:
     collector_type: '2'
     birthday: '1982-02-10'
     gender: f
-    country: Spain
-    country_iso3166: ES
+    country_iso3166: GeoCountry_ES
     website: 'http://elcazarrecompensas.blogspot.com'
     is_featured: '0'
     is_image_auto: '0'
@@ -222,8 +207,7 @@ CollectorProfile:
     collector_type: '0'
     birthday: '1979-06-15'
     gender: f
-    country: USA
-    country_iso3166: US
+    country_iso3166: GeoCountry_US
     is_image_auto: '0'
     preferences: 'a:3:{s:8:"show_age";b:0;s:6:"msg_on";b:1;s:11:"invite_only";b:0;}'
     notifications: 'a:3:{s:7:"comment";b:1;s:5:"buddy";b:1;s:7:"message";b:1;}'
@@ -252,7 +236,7 @@ CollectorProfile:
     collector_type: '4'
     gender: f
     zip_postal: '03451'
-    country: US
+    country_iso3166: GeoCountry_US
     website: ''
     is_seller: '0'
     is_image_auto: '0'
@@ -266,7 +250,7 @@ CollectorProfile:
     birthday: '1970-10-06'
     gender: f
     zip_postal: '68127'
-    country: US
+    country_iso3166: GeoCountry_US
     website: ''
     is_seller: '0'
     is_image_auto: '0'

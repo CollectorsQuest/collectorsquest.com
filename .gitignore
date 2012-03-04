@@ -24,8 +24,7 @@ base
 
 # composer modules
 .composer
-/plugins/sf*Plugin
-/plugins/ice*Plugin
+/plugins/sfGuardPlugin
 /lib/vendor/neo4jphp
 /lib/vendor/faker
 !/plugins/sfPropelORMPlugin

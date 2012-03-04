@@ -39,3 +39,6 @@ all:
     default_image:  gravatar_default.png
     cache_dir_name: g_cache
     cache_expiration: 3 days
+
+  signup_module: collector
+  signup_action: signup

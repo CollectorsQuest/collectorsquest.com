@@ -1,8 +1,12 @@
 <?php
 
+$app = 'backend';
 include(__DIR__.'/../../bootstrap/functional.php');
 
-$browser = new sfTestFunctional(new sfBrowser());
+cqTest::resetClasses(array('Collectible', 'CollectibleCollectible'));
+
+$t = new lime_test(4, array('output' => new lime_output_color(), 'error_reporting' => true));
+$browser = new cqTestFunctional(new sfBrowser(), $t);
 
 $browser->
   get('/collectibles/index')->
@@ -14,6 +18,6 @@ $browser->
 
   with('response')->begin()->
     isStatusCode(200)->
-    checkElement('body', '!/This is a temporary page/')->
+    checkElement('body', '/\d+ results\s+(page 1\/\d+)/')->
   end()
 ;

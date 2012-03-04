@@ -1,5 +1,7 @@
 rendering: ~
 security:  ~
+cqCompleteRegistration:
+  class: cqCompleteRegistrationFilter
 
 IceRequestHistory:
   class: IceRequestHistoryFilter

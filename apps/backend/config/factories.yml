@@ -38,6 +38,11 @@ all:
           password: gHnyU7wZLtYf3n
           encryption: tls
 
+  storage:
+    class: cqSessionStorage
+    param:
+      session_name: backend
+
 dev:
   mailer:
     param:

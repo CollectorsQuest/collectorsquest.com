@@ -1,0 +1,18 @@
+CollectorSignupStep1:
+  username: test.collector
+  display_name: Test Collector
+  email: "test.collector@example.com"
+  password: password
+  password_again: password
+
+CollectorSignupStep2:
+  collector_type: casual
+  about_what_you_collect: Ponies. They are over 9000!
+  about_purchase_per_year: 9001
+  about_most_expensive_item: 1300
+
+CollectorSignupStep3:
+  country: BG
+  zip_postal: 5100
+  website: example.com
+  gender: m

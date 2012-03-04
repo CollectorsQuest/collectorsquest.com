@@ -141,37 +141,16 @@ class CollectorPeer extends BaseCollectorPeer
     $collector->setDisplayName($data['display_name']);
     $collector->setEmail($data['email']);
 
+    /* Temporary disable before tests are written * /
     if (!empty($data['facebook_id']))
     {
       $collector->setFacebookId($data['facebook_id']);
     }
+    /* */
 
     // All of the profile data is optional, thus make sure to check it is provided
     $collector_profile = new CollectorProfile();
     $collector_profile->setCollector($collector);
-
-    if (!empty($data['birthday']) && is_string($data['birthday']))
-    {
-      $collector_profile->setBirthday($data['birthday']);
-    }
-    if (!empty($data['gender']) && is_string($data['gender']))
-    {
-      $collector_profile->setGender($data['gender']);
-    }
-    if (!empty($data['zip_postal']))
-    {
-      $collector_profile->setZipPostal($data['zip_postal']);
-    }
-    if (!empty($data['country']))
-    {
-      $country = sfCultureInfo::getInstance('en')->getCountry($data['country']);
-      $collector_profile->setCountry($country);
-      $collector_profile->setCountryIso3166($data['country']);
-    }
-    if (!empty($data['website']) && is_string($data['website']))
-    {
-      $collector_profile->setWebsite($data['website']);
-    }
 
     $collector_profile->setPreferences(array(
       'show_age' => false, 'msg_on' => true, 'invite_only' => false
@@ -194,30 +173,6 @@ class CollectorPeer extends BaseCollectorPeer
       $collectorEmail->setIsVerified(false);
       $collectorEmail->save();
 
-      if (!empty($data['what_you_sell']))
-      {
-        $collector_profile->setAboutWhatYouSell($data['what_you_sell']);
-      }
-      if (!empty($data['what_you_collect']))
-      {
-        $collector_profile->setAboutWhatYouCollect($data['what_you_collect']);
-      }
-      if (!empty($data['annually_spend']))
-      {
-        $collector_profile->setAboutAnnuallySpend($data['annually_spend']);
-      }
-      if (!empty($data['most_expensive_item']))
-      {
-        $collector_profile->setAboutMostExpensiveItem($data['most_expensive_item']);
-      }
-      if (!empty($data['company']))
-      {
-        $collector_profile->setAboutCompany($data['company']);
-      }
-      if (!empty($data['purchase_per_year']))
-      {
-        $collector_profile->setAboutPurchasesPerYear($data['purchase_per_year']);
-      }
     }
     catch (PropelException $e)
     {
@@ -239,7 +194,7 @@ class CollectorPeer extends BaseCollectorPeer
              GROUP_CONCAT(collector_geocache.zip_postal) AS zip,
              COUNT(DISTINCT collector_geocache.collector_id) AS count
         FROM collector_geocache
-       WHERE collector_geocache.country = 'USA' AND city IS NOT NULL
+       WHERE collector_geocache.country_iso3166 = 'US' AND city IS NOT NULL
        GROUP BY tag
        ORDER BY count DESC, tag DESC
        LIMIT 0, {$max}
@@ -270,16 +225,21 @@ class CollectorPeer extends BaseCollectorPeer
   public static function getCountry2Tags($max = 50)
   {
     $con = Propel::getConnection();
-    $query = "
+    $query = sprintf("
       SELECT %s AS tag, COUNT(*) AS count
         FROM %s
+        JOIN %s
+         ON %s = %s
        GROUP BY %s
-       ORDER BY tag, count DESC
+       ORDER BY count DESC
        LIMIT 0, %d
-    ";
-
-    $query = sprintf(
-      $query, CollectorProfilePeer::COUNTRY, CollectorProfilePeer::TABLE_NAME, CollectorProfilePeer::COUNTRY, $max
+    ",
+/*select*/    GeoCountryPeer::NAME,
+/*from*/      CollectorProfilePeer::TABLE_NAME,
+/*join*/      GeoCountryPeer::TABLE_NAME,
+/*on*/        CollectorProfilePeer::COUNTRY_ISO3166, GeoCountryPeer::ISO3166,
+/*group by*/  GeoCountryPeer::NAME,
+/*limit*/      $max
     );
 
     $stmt = $con->prepare($query);

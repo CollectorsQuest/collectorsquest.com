@@ -14,7 +14,7 @@
     $columns -= (has_component_slot('right-ads')) ? 4 : 0;
   ?>
   <div id="contents" class="span-<?php echo $columns; ?>">
-    <?php if ($sf_user->hasFlash('error')): ?>
+    <?php if (has_slot('flash_error') || $sf_user->hasFlash('error')): ?>
       <div class="ui-state-error ui-corner-tl span-19 last">
         <table style="margin: 0;">
           <tr>

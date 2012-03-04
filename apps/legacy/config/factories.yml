@@ -99,10 +99,10 @@ test:
       session_path: %SF_TEST_CACHE_DIR%/sessions
 
   request:
-    class: cqWebTestRequest
+    class: cqWebRequest
 
   response:
-    class: cqWebTestResponse
+    class: cqWebResponse
     param:
       send_http_headers: false
 
