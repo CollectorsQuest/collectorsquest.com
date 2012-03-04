@@ -59,6 +59,9 @@ class tagsActions extends cqActions
         $this->url = '@search?only=collectors&q=';
         $this->tags = CollectorPeer::getCountry2Tags(sfConfig::get('app_tag_cloud_max'));
         break;
+      case 'index':
+        $this->redirect('tags/collectibles');
+        break;
       default:
         $this->redirect404();
         break;

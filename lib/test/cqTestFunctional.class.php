@@ -15,17 +15,19 @@ class cqTestFunctional extends sfTestFunctional
    *
    * @param     string $username
    * @param     string $password
+   * @param     string $signin_url
+   * @param     string $signin_form_name
    *
-   * @return    myTestFunctional
+   * @return    cqTestFunctional
    */
-  public function login($username, $password, $signin_url = '/login', $signin_form_name = 'signin')
+  public function login($username, $password, $signin_url = '/login', $signin_form_name = null)
   {
     return $this->
       info(sprintf('Signing in user using username "%s" and password "%s"', $username, $password))->
       get($signin_url)->
       setFormField($signin_form_name, 'username', $username)->
       setFormField($signin_form_name, 'password', $password)->
-      click('*[type=submit]')->
+      click('Sign in to Your Account!', array(), array('_with_csrf' => true))->
       with('response')->isRedirected()->
       with('user')->isAuthenticated()
     ;
@@ -34,7 +36,8 @@ class cqTestFunctional extends sfTestFunctional
   /**
    * Sign out a user
    *
-   * @return    myTestFunctional
+   * @param     string $signout_url
+   * @return    cqTestFunctional
    */
   public function logout($signout_url = '/logout')
   {
@@ -42,6 +45,7 @@ class cqTestFunctional extends sfTestFunctional
     {
       self::$test->fail('The current user is not authenticated');
     }
+
     return $this->
       info('Signing out current authenticated user')->
       get($signout_url)->
@@ -55,7 +59,7 @@ class cqTestFunctional extends sfTestFunctional
    *
    * @param     string $filename
    *
-   * @return    myTestFunctional
+   * @return    cqTestFunctional
    */
   public function loadFormFixtures($filename = null)
   {
@@ -89,7 +93,7 @@ class cqTestFunctional extends sfTestFunctional
    *
    * @param     array $data
    *
-   * @return    myTestFunctional
+   * @return    cqTestFunctional
    */
   public function loadFormFixturesFromArray($data = array())
   {
@@ -125,9 +129,10 @@ class cqTestFunctional extends sfTestFunctional
    * Can either use values supplied as an array or pre-set fixtures
    *
    * @param     string $form_name
-   * @param     array $values
+   * @param     array  $values
+   * @param     string $fixture_name
    *
-   * @return    myTestFunctional
+   * @return    cqTestFunctional
    */
   public function fillForm($form_name, $values = null, $fixture_name = null)
   {
@@ -154,7 +159,8 @@ class cqTestFunctional extends sfTestFunctional
    * @param     string $fixture_name
    * @param     string $field_name
    * @param     mixed $default
-   * @return    array|scalar
+   *
+   * @return    array
    */
   public function getFormFixture($fixture_name, $field_name = null, $default = null)
   {
@@ -182,7 +188,7 @@ class cqTestFunctional extends sfTestFunctional
    * @param     string $field_name
    * @param     array|string $field_value
 
-   * @return    myTestFunctional
+   * @return    cqTestFunctional
    */
   public function setFormField($form_name, $field_name, $field_value)
   {
