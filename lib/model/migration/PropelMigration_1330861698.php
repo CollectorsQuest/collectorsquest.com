@@ -48,7 +48,7 @@ CREATE TABLE `geo_country` (
 	PRIMARY KEY (`id`),
 	UNIQUE INDEX `geo_country_U_1` (`slug`),
 	UNIQUE INDEX `geo_country_U_2` (`iso3166`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `geo_country` (`id`, `name`, `slug`, `iso3166`, `currency`, `latitude`, `longitude`, `zoom`)
 VALUES
@@ -292,7 +292,6 @@ VALUES
 	(238,'Zambia','Zambia','ZM','',0,0,0),
 	(239,'Zimbabwe','Zimbabwe','ZW','',0,0,0);
 EOF
-,
 );
 	}
 
