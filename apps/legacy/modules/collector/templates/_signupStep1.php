@@ -19,9 +19,12 @@
 //-->
 
 <?php
-slot('flash_error');
-  echo $form->renderGlobalErrors();
-end_slot();
+if ($form->hasGlobalErrors())
+{
+  slot('flash_error');
+    echo $form->renderGlobalErrors();
+  end_slot();
+}
 ?>
 
 <div id="collector_signup_1">
