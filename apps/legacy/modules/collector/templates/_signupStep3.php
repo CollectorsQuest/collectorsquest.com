@@ -1,4 +1,7 @@
 <?php
+  /** @var $form CollectorSignupStep3Form */
+
+  /** @var $rpxnow array */
   $rpxnow = sfConfig::get('app_credentials_rpxnow');
 
   include_partial(

@@ -1,4 +1,7 @@
 <?php
+  /** @var $form CollectorSignupStep1Form */
+
+  /** @var $rpxnow array */
   $rpxnow = sfConfig::get('app_credentials_rpxnow');
 
   include_partial(
@@ -15,8 +18,13 @@
 </div>
 //-->
 
+<?php
+slot('flash_error');
+  echo $form->renderGlobalErrors();
+end_slot();
+?>
+
 <div id="collector_signup_1">
-  <?php echo $form->renderGlobalErrors(); ?>
   <?php $ssURL = url_for('@collector_signup?step=1'); ?>
   <form action="<?= $ssURL ?>" method="post" id="form-collector-signup-step1">
 

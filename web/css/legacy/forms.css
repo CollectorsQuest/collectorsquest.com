@@ -5,7 +5,7 @@ ul.error_list {
   list-style: none;
 }
 
-ul.error_list li {
+form ul.error_list li {
   margin: 5px 0;
   padding: 2px 4px;
   background-color: #fff1f1;
@@ -21,7 +21,7 @@ ul.error_list li {
 }
 
 .optional, .recommended {
-  color: #ccc; 
+  color: #ccc;
   font-style: italic;
 }
 
@@ -36,7 +36,7 @@ ul.error_list li {
 .pstrength-minchar {
   font-size : 11px;
   color: #696969;
-  padding:0px 0px 0px 6px;   
+  padding:0px 0px 0px 6px;
 }
 
 .field-help {
