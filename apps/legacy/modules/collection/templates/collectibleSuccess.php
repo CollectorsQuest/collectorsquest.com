@@ -75,10 +75,11 @@ if ($collectible_for_sale)
   <a href="<?php echo url_for(sprintf('@collectible_by_slug?id=%d&slug=%s', $next->getId(), $next->getSlug())); ?>" class="nextPage browse right"></a>
 </div>
 
+
 <?php if ($collectible_for_sale and $collectible_for_sale->getIsReady() and (!$sf_user->isAuthenticated() or $sf_user->getCollector()->getId() !== $collectible_for_sale->getCollector()->getId())): ?>
-  <div class="rounded buynow" style="float:right; margin-right: 90px;">
+  <div class="buynow" style="float:right; margin-right: 90px;">
     <?php if (!$isSold): ?>
-      <a href="#price">
+      <a href="#price" class="rounded">
         <?php echo ($offerPrice > 0) ? money_format('Buy for <br /> %.2n', (float) $offerPrice) : __('Buy Item'); ?>
       </a>
       <?php /*

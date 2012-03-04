@@ -372,6 +372,8 @@ input.maininput {
 .rounded {
   -webkit-border-radius: 7px;
   -moz-border-radius: 7px;
+  border-radius: 7px;
+  -moz-background-clip: padding; -webkit-background-clip: padding-box; background-clip: padding-box;
 }
 
 .rounded-bottom {
@@ -431,7 +433,10 @@ input.maininput {
   display: inline-block;
 }
 
-.buynow {
+.buynow a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
   background: #BBDC71;
   color: #fff;
   font-size: 20px;
@@ -441,15 +446,9 @@ input.maininput {
   margin-right: 10px;
 }
 
-.buynow a {
-  color: #fff;
-  text-decoration: none;
-}
-
 .buynow a:hover {
   color: #2E8B57;
 }
-
 .category_item {
   background: #FCFDDE;
   border-bottom: 1px solid #B6CCC0;
