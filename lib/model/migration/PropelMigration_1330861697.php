@@ -3,7 +3,7 @@
 /**
  * Updates for user registration
  */
-class PropelMigration_1330555439
+class PropelMigration_1330861697
 {
 
 	public function preUp($manager)
