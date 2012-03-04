@@ -56,11 +56,11 @@ class collectionActions extends cqActions
     $c->addAscendingOrderByColumn(CollectionCollectiblePeer::POSITION);
     $c->addAscendingOrderByColumn(CollectiblePeer::CREATED_AT);
 
-    $per_page = ($request->getParameter('show') == 'all') ? 999 : sfConfig::get('app_pager_list_collectibles_max', 16);
+    $per_page = sfConfig::get('app_pager_list_collectibles_max', 16);
 
     $pager = new sfPropelPager('Collectible', $per_page);
     $pager->setCriteria($c);
-    $pager->setPage($this->getRequestParameter('page', 1));
+    $pager->setPage('all' == $request->getParameter('show') ? 1 : $this->getRequestParameter('page', 1));
     $pager->init();
 
     $this->pager      = $pager;

@@ -1,11 +1,11 @@
-<br clear="all" /><br />
-
 <?php
 /* @var $pager sfPropelPager */
 /* @var $sf_user cqUser */
+/* @var $sf_request sfWebRequest */
 $offset = 0;
 $collections = $pager->getResults();
 ?>
+<br clear="all" /><br />
 <div id="collections">
   <?php foreach ($collections as $i => $collection): ?>
   <?php
@@ -26,12 +26,12 @@ $collections = $pager->getResults();
 
   <br clear="all" />
 
-  <div class="span-19 last" style="margin-bottom: 25px">
-    <?php include_partial('global/pager', array(
-    'pager'  => $pager,
-    'options'=> array('url'   => '@collections_by_filter?filter=' . $filter)
-  )); ?>
-  </div>
+</div>
+<div id="collections-pager" class="span-19 last" style="margin-bottom: 25px">
+  <?php include_partial('global/pager', array(
+  'pager'  => $pager,
+  'options'=> array('url'   => '@collections_by_filter?filter=' . $filter)
+)); ?>
 </div>
 
 <?php if (!$sf_user->isAuthenticated()): ?>
@@ -39,4 +39,29 @@ $collections = $pager->getResults();
   <?php cq_ad_slot('collectorsquest_com_-_After_Listing_728x90', '728', '90'); ?>
 </div>
 <?php endif; ?>
+<?php if ('all' == $sf_request->getParameter('show')): ?>
+<script type="text/javascript">
+  $(function () {
+    var opts =
+    {
+      navSelector:"div#collections-pager div.pagination",
+      nextSelector:"div#collections-pager div.pagination:last span.next:last a",
+      itemSelector:"div.<?php echo $display ?>_view_collection",
+      contentSelector:'div#collections',
+      loading:{
+        img:'/images/loading.gif',
+        msgText:'<?php echo __('Loading the next page...'); ?>',
+        finishedMsg:'<?php echo __('No more pages to load'); ?>'
+      },
+      loadingMsgRevealSpeed:0,
+      bufferPx:80,
+      extraScrollPx:0,
+      debug:false,
+      animate:false
+    };
 
+    $('#collections').infinitescroll(opts);
+    $('#collections-pager div.pagination').hide();
+  });
+</script>
+<?php endif; ?>

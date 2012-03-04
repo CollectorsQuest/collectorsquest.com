@@ -281,6 +281,9 @@ marketplace_category_by_slug:
 
 ### COMMENTS
 
+comments:
+  url:  /comments/
+
 comment_by_id:
   url:   /comment/:id
   class: sfPropelRoute
