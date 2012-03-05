@@ -1,4 +1,4 @@
-<?php
++<?php
 
 /**
  * collections actions.

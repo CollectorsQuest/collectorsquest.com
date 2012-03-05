@@ -168,8 +168,8 @@ class manageActions extends cqActions
 
     if ($request->isMethod('post'))
     {
-      $form->bind($request->getParameter($form->getName()),
-                  $request->getFiles($form->getName()));
+      $taintedValues = $request->getParameter($form->getName());
+      $form->bind($taintedValues, $request->getFiles($form->getName()));
 
       if ($form->isValid())
       {
@@ -278,7 +278,9 @@ class manageActions extends cqActions
             if ($omItemForSaleForm->getValue('is_ready'))
             {
               $message = $this->__(
-                'Your collectible has been posted to the Marketplace. Click <a href="%url%">here</a> to view your collectibles for sale!', array('%url%' => $this->generateUrl('manage_marketplace'))
+                'Your collectible has been posted to the Marketplace.
+                 Click <a href="%url%">here</a> to view your collectibles for sale!',
+                array('%url%' => $this->generateUrl('manage_marketplace'))
               );
             }
             else

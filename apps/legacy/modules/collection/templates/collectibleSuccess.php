@@ -77,7 +77,7 @@ if ($collectible_for_sale)
 </div>
 
 
-<?php if ($collectible_for_sale and $collectible_for_sale->getIsReady() and (!$sf_user->isAuthenticated() or $sf_user->getCollector()->getId() !== $collectible_for_sale->getCollector()->getId())): ?>
+<?php if ($collectible_for_sale and $collectible_for_sale->getIsReady() and (!$sf_user->isAuthenticated() or !$sf_user->isOwnerOf($collectible_for_sale))): ?>
   <div class="buynow" style="float:right; margin-right: 90px;">
     <?php if (!$isSold): ?>
       <a href="#price" class="rounded">
