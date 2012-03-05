@@ -41,8 +41,12 @@ ice_use_stylesheet('jquery/chosen.css');
   <div class="optional"><?php echo __('(optional)'); ?></div>
 </div>
 <div class="prepend-1 span-13 last">
-  <div style="float: right"><?php echo image_tag_collectible($collectible, '150x150', array('width' => 150, 'height' => 150)); ?></div>
+  <div style="float: right;"><?php echo image_tag_collectible($collectible, '75x75'); ?></div>
   <?php echo $form['thumbnail']->render(); ?>
+  <br/><br/>
+  <div class="span-10" style="color: grey;">
+    All popular image formats are supported but the image file should be less than 5MB in size!
+  </div>
   <?php echo $form['thumbnail']->renderError(); ?>
 </div>
 <div class="clear append-bottom">&nbsp;</div>
