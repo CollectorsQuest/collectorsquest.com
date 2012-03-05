@@ -86,12 +86,26 @@ class CollectorCollection extends BaseCollectorCollection
 
   public function setThumbnail($file)
   {
-    /** @var $multimedia Multimedia */
-    $multimedia = parent::setThumbnail($file);
+    $c = new Criteria();
+    $c->add(MultimediaPeer::MODEL, 'CollectorCollection');
+    $c->add(MultimediaPeer::MODEL_ID, $this->getId());
+    $c->add(MultimediaPeer::TYPE, 'image');
+    $c->add(MultimediaPeer::IS_PRIMARY, true);
 
-    if ($multimedia && !$this->getCollector()->hasPhoto())
+    MultimediaPeer::doDelete($c);
+
+    /** @var $multimedia Multimedia */
+    if ($multimedia = MultimediaPeer::createMultimediaFromFile($this, $file))
     {
-      $this->getCollector()->setPhoto($multimedia->getAbsolutePath('original'));
+      $multimedia->setIsPrimary(true);
+      $multimedia->makeThumb('150x150', 'shave');
+      $multimedia->makeThumb('50x50', 'shave');
+      $multimedia->save();
+
+      if (!$this->getCollector()->hasPhoto())
+      {
+        $this->getCollector()->setPhoto($multimedia->getAbsolutePath('original'));
+      }
     }
 
     return $multimedia;
