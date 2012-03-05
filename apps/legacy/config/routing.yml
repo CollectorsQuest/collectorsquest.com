@@ -249,14 +249,21 @@ shopping_cart_empty:
   url: /cart/empty
   param: { module: shopping, action: cart, cmd: empty }
 
-shopping_order:
-  url: /cart/order/:step
-  param: { module: shopping, action: order, step: 1 }
-  requirements: { step: '[1-3]' }
-
 shopping_cart:
   url: /cart
   param: { module: shopping, action: cart }
+
+shopping_order_paypal:
+  url: /order/:uuid/paypal
+  class: sfPropelRoute
+  options: { model: ShoppingOrder, type: object }
+  param: { module: shopping, action: paypal }
+
+shopping_order_pay:
+  url: /order/:uuid/pay
+  class: sfPropelRoute
+  options: { model: ShoppingOrder, type: object }
+  param: { module: shopping, action: pay }
 
 ### MARKETPLACE
 

@@ -72,7 +72,7 @@ class Collectible extends BaseCollectible
     parent::setDescription($v);
   }
 
-  public function getDescription($type = 'html')
+  public function getDescription($type = 'html', $limit = null)
   {
     $v = parent::getDescription();
 
@@ -87,7 +87,7 @@ class Collectible extends BaseCollectible
         break;
     }
 
-    return $v;
+    return (null !== $limit) ? mb_substr($v, 0, (int) $limit) : $v;
   }
 
   public function getRelatedCollectiblesForSale($limit = 5, &$rnd_flag = false)

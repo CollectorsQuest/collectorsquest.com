@@ -67,6 +67,19 @@ classes:
     propel_behaviors:
       timestampable:  ~
 
+  ShoppingOrder:
+    columns:
+      id:  ~
+      uuid:                         { type: varchar, size: 8 }
+      session_id:                   { type: varchar, size: 32, required: false }
+      shopping_cart_id:             { type: integer, required: true, foreignClass: ShoppingCart, foreignReference: id, onDelete: restrict }
+      collectible_for_sale_id:      { type: integer, required: true, foreignClass: CollectibleForSale, foreignReference: id, onDelete: restrict }
+      collector_id:                 { type: integer, required: false, foreignClass: Collector, foreignReference: id, onDelete: setnull }
+      note_to_seller:               { type: varchar, size: 255 }
+
+    propel_behaviors:
+      timestampable:  ~
+
   Package:
     columns:
       id:  ~

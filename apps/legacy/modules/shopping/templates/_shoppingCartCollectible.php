@@ -16,6 +16,7 @@
       </div>
     </div>
 
+    <form action="<?= url_for('@shopping_cart_checkout'); ?>" method="post">
     <div class="cf"><!--Item-->
       <div class="span-11">
         <div class="cf">
@@ -32,7 +33,12 @@
           </div><!--End Info-->
         </div>
         <div class="cf"><!--Note on the order-->
-          <textarea id="note" class="simple-textarea" name="note" placeholder="If you have any special requests, please specify them here..."></textarea>
+          <?php
+            echo $form['note_to_seller']->render(array(
+              'class' => 'simple-textarea',
+              'placeholder' => 'If you have any special requests, please specify them here...'
+            ));
+          ?>
         </div>
       </div>
       <div class="span-5 last"><!--Prices-->
@@ -51,19 +57,15 @@
           </tr>
           <tr>
             <td colspan="2">
-              Pay with: <img src="/images/legacy/payment/mini-logo-paypal.png" alt="" class="image-taxt-align" />
-            </td>
-          </tr>
-          <tr>
-            <td colspan="2">
-              <form action="<?= url_for('@shopping_cart_checkout'); ?>" method="post">
-                <?= $form->renderHiddenFields(); ?>
-                <button type="submit" class="newbutton red bolder-text" style="padding-top: 5px;">CHECKOUT</button>
-              </form>
+              Pay with: <img src="/images/legacy/payment/mini-logo-paypal.png" alt="" class="image-taxt-align" /><br/><br/>
+              <button type="submit" class="newbutton red bolder-text" style="padding-top: 5px;">CHECKOUT</button>
             </td>
           </tr>
         </table><!--End cost table-->
       </div>
     </div><!--End Item-->
+
+    <?= $form->renderHiddenFields(); ?>
+    </form>
   </div>
 </div>

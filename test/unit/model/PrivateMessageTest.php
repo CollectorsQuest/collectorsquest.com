@@ -2,7 +2,7 @@
 
 include(__DIR__.'/../../bootstrap/model.php');
 
-$t = new lime_test(7, new lime_output_color());
+$t = new lime_test(7, array('output' => new lime_output_color(), 'error_reporting' => true));
 
 $t->diag('::getReplySubject()');
 

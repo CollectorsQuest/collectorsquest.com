@@ -11,12 +11,14 @@ class ShoppingCartCollectibleCheckoutForm extends sfForm
     $this->setWidgets(array(
       'shopping_cart_id'          => new sfWidgetFormInputHidden(),
       'collectible_for_sale_id'   => new sfWidgetFormInputHidden(),
+      'note_to_seller'            => new sfWidgetFormTextarea(),
       '_nonce_token'              => new IceWidgetNonceToken(array('action' => 'checkout', 'salt' => $_salt))
     ));
 
     $this->setValidators(array(
       'shopping_cart_id'         => new sfValidatorPropelChoice(array('model' => 'ShoppingCart', 'column' => 'id', 'required' => true)),
       'collectible_for_sale_id'  => new sfValidatorPropelChoice(array('model' => 'CollectibleForSale', 'column' => 'id', 'required' => true)),
+      'note_to_seller'           => new sfValidatorString(array('required' => false)),
       '_nonce_token'             => new IceValidatorNonceToken(array('action' => 'checkout', 'salt' => $_salt))
     ));
 
