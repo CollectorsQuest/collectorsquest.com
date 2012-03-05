@@ -6,9 +6,9 @@
   <?= $form['photo']; ?>
   <?= $form['photo']->renderError(); ?>
   <br><br>
-  <span style="color: grey; margin-right: 10px;">
-    All popular image formats are supported but the file should be less than 1MB in size!
-  </span>
+  <div class="span-9" style="color: grey;">
+    All popular image formats are supported but the image file should be less than 5MB in size!
+  </div>
 </div>
 
 <br clear="all"/><br>

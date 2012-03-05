@@ -43,6 +43,10 @@ ice_use_stylesheet('jquery/chosen.css');
   <div class="prepend-1 span-13 last">
     <div style="float: right"><?= image_tag_collection($collection, '150x150', array('width' => 75, 'height' => 75)); ?></div>
     <?= $form['thumbnail']; ?>
+    <br/><br/>
+    <div class="span-10" style="color: grey;">
+      All popular image formats are supported but the image file should be less than 5MB in size!
+    </div>
     <?= $form['name']->renderError(); ?>
   </div>
   <div class="clear append-bottom">&nbsp;</div>
