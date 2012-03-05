@@ -139,11 +139,11 @@ class cqUser extends IceSecurityUser
       }
       else
       {
-        self::$collector = new Collector();
-        self::$collector->setId(null);
+        $this->collector = new Collector();
+        $this->collector->setId(null);
       }
     }
-    else if (self::$collector->getId() === null && $this->getAttribute("id", null, "collector") !== null)
+    else if ($this->collector->getId() === null && $this->getAttribute("id", null, "collector") !== null)
     {
       $this->collector = CollectorPeer::retrieveByPK($this->getAttribute("id", null, "collector"));
     }
@@ -161,6 +161,19 @@ class cqUser extends IceSecurityUser
     $shopping_cart->save();
 
     return $shopping_cart;
+  }
+
+  public function getShoppingCartCollectiblesCount()
+  {
+    // We default to zero collectibles in the cart
+    $count = 0;
+
+    if ($shopping_cart = $this->getShoppingCart())
+    {
+      $count = $shopping_cart->countShoppingCartCollectibles();
+    }
+
+    return $count;
   }
 
   public function getLogoutUrl($next = null)

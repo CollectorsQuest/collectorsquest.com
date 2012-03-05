@@ -1,7 +1,12 @@
 <div id="header" class="span-21 prepend-4 rounded-top last">
-  <div style="float: right; margin: 5px 10px -4px 10px;">
+  <div style="float: right; margin: 5px 10px -4px 10px; position: relative;">
     <div style="float: left; margin-top: 5px; margin-right: 10px;">|</div>
-    <?= link_to(image_tag('legacy/payment/header_shopping_cart.png'), '@shopping_cart'); ?>
+    <?= link_to(image_tag('legacy/payment/header_shopping_cart.png', array('style' => 'float: right;')), '@shopping_cart'); ?>
+    <?php if (0 < $k = $sf_user->getShoppingCartCollectiblesCount()): ?>
+    <div class="rounded" style="position: absolute; top: -3px; left: 25px; background: #BADC70;">
+      <?= link_to('&nbsp;&nbsp;'. $k .'&nbsp;&nbsp;', '@shopping_cart', array('style' => 'color: #fff; text-decoration: none; font-weight: bold;')); ?>
+    </div>
+    <?php endif; ?>
   </div>
   <form class="span-8 last" action="<?php echo url_for('@search'); ?>" id="header-search" method="get">
     <div class="header-search-submit">

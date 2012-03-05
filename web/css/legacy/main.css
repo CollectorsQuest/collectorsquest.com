@@ -494,17 +494,17 @@ input.maininput {
 /* Clear Fix for modern browsers */
 .cf:before,
 .cf:after {
-    content:"";
-    display:table;
+  content:"";
+  display:table;
 }
 
 .cf:after {
-    clear:both;
+  clear:both;
 }
 
 /* For IE 6/7 (trigger hasLayout) */
 .cf {
-    zoom:1;
+  zoom:1;
 }
 
 /* Hide only visually, but have it available for screenreaders: h5bp.com/v */

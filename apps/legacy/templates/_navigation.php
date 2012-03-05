@@ -110,13 +110,13 @@
     <div class="span-2 messages">
       <div class="<?php echo ($active == 'messages') ? 'icon active' : 'icon' ?>">
         <img src="/images/s.gif" width="50" height="50" alt="<?= __('Your Messages'); ?>">
-        <?php if ($sf_user->getUnreadMessagesCount() > 0): ?>
-          <div class="notification" style="<?= ($sf_user->getUnreadMessagesCount() > 9) ? 'background-position: 1px 0;' : ''; ?>">
-            <?= $sf_user->getUnreadMessagesCount(); ?>
+        <?php if (0 < $k = $sf_user->getUnreadMessagesCount()): ?>
+          <div class="notification" style="<?php echo ($k > 9) ? 'background-position: 1px 0;' : ''; ?>">
+            <?= $k; ?>
           </div>
         <?php endif; ?>
       </div>
-      <?= link_to(__('Your&nbsp; Messages'), ($sf_user->getUnreadMessagesCount() > 0) ? '@messages_inbox?show=unread' : '@messages_inbox?show=all'); ?>
+      <?= link_to(__('Your&nbsp; Messages'), ($k > 0) ? '@messages_inbox?show=unread' : '@messages_inbox?show=all'); ?>
     </div>
   </div>
 <?php else: ?>
