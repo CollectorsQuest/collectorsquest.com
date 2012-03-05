@@ -57,7 +57,10 @@ class shoppingActions extends cqActions
         {
           try
           {
-            $shopping_cart->addCollectibleForSale($collectible_for_sale);
+            $shopping_cart_collectible = new ShoppingCartCollectible();
+            $shopping_cart_collectible->setCollectibleForSale($collectible_for_sale);
+            $shopping_cart_collectible->setPrice($collectible_for_sale->getPrice());
+            $shopping_cart->addShoppingCartCollectible($shopping_cart_collectible);
             $shopping_cart->save();
 
             $this->getUser()->setFlash('success', $this->__('The collectible was added to your cart.'));
@@ -92,13 +95,15 @@ class shoppingActions extends cqActions
     // Make sure we have fresh data
     ShoppingCartPeer::clearRelatedInstancePool();
 
+    $this->addBreadcrumb($this->__('Shopping Cart'), '@shopping_cart');
+
     if ($shopping_cart->countCollectibleForSales() === 0)
     {
       return 'Empty';
     }
 
     $this->shopping_cart = $shopping_cart;
-    $this->collectibles_for_sale = $shopping_cart->getCollectibleForSales();
+    $this->shopping_cart_collectibles = $shopping_cart->getShoppingCartCollectibles();
 
     return sfView::SUCCESS;
   }
@@ -115,7 +120,7 @@ class shoppingActions extends cqActions
 
       if ($form->isValid())
       {
-        dd('Success');
+        return 'Paypal';
       }
       else
       {
@@ -123,7 +128,7 @@ class shoppingActions extends cqActions
       }
     }
 
-    $this->redirect('@shopping_cart');
+    return $this->redirect('@shopping_cart');
   }
 
   public function executeCheckoutStandard()

@@ -20,4 +20,20 @@ class shoppingComponents extends sfComponents
 
     return sfView::SUCCESS;
   }
+
+  public function executeShoppingCartCollectible()
+  {
+    /** @var $shopping_cart_collectible ShoppingCartCollectible */
+    if (!$shopping_cart_collectible = $this->getVar('shopping_cart_collectible'))
+    {
+      return sfView::NONE;
+    }
+
+    $this->form = new ShoppingCartCollectibleCheckoutForm(array(
+      'shopping_cart_id' => $shopping_cart_collectible->getShoppingCartId(),
+      'collectible_for_sale_id' => $shopping_cart_collectible->getCollectibleForSaleId()
+    ));
+
+    return sfView::SUCCESS;
+  }
 }

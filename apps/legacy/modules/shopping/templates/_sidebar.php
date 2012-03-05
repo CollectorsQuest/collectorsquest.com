@@ -8,5 +8,5 @@
 <div style="padding: 10px;">
   On CollectorsQuest.com, you buy from one seller at a time.
   <br/><br/>
-  If you need help, see our step-by-step checkout guide.
+  If you need help, do not hesitate to contact us for support.
 </div>

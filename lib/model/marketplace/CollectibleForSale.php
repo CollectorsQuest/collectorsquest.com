@@ -15,6 +15,11 @@ class CollectibleForSale extends BaseCollectibleForSale
     return $this->getCollectible($con)->getCollector($con);
   }
 
+  public function getCollectorId(PropelPDO $con = null)
+  {
+    return $this->getCollectible($con)->getCollectorId();
+  }
+
   /**
    * Proxy method to Collectible::getCollection()
    *
