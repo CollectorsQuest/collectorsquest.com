@@ -84,7 +84,15 @@ class cqPatternRouting extends sfPatternRouting
       $string = strtr(base64_encode(gzcompress($string, 9)), '+/', '-_');
       $hash = sprintf("v1;%s;%s", $string, strtr(base64_encode($iv), '+/', '-_'));
 
-      $url = '/ex/'. $hash;
+      if ($absolute === true)
+      {
+        $parts = parse_url($url);
+        $url = $parts['scheme'] .'://'. $parts['host'] .'/ex/'. $hash;
+      }
+      else
+      {
+        $url = '/ex/'. $hash;
+      }
     }
 
     return !empty($url) ? $url : '/';
