@@ -57,7 +57,7 @@ class collectorsActions extends cqActions
           $this->addBreadcrumb($this->__('Near You'));
 
           $collector_profile = $this->getUser()->getCollector()->getProfile();
-          if ($collector_profile && $collector_profile->getCountry() == 'United States')
+          if ($collector_profile && $collector_profile->getCountryIso3166() == 'US')
           {
             $pks = CollectorPeer::retrieveByDistance($collector_profile->getZipPostal(), 50, true);
             $pks = array_diff($pks, array(0 => $this->getUser()->getId()));

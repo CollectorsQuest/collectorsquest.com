@@ -312,6 +312,19 @@ class Collectible extends BaseCollectible
     return str_replace(' ', '+', implode('+', (array) array_slice($keywords, 0, (count($keywords) < 2) ? count($keywords) : 2)));
   }
 
+  public function setThumbnail($file, $queue = false)
+  {
+    $c = new Criteria();
+    $c->add(MultimediaPeer::MODEL, 'Collectible');
+    $c->add(MultimediaPeer::MODEL_ID, $this->getId());
+    $c->add(MultimediaPeer::TYPE, 'image');
+    $c->add(MultimediaPeer::IS_PRIMARY, true);
+
+    MultimediaPeer::doDelete($c);
+
+    return $this->addMultimedia($file, true, $queue);
+  }
+
   public function addMultimedia($file, $primary = false, $queue = false)
   {
     /**

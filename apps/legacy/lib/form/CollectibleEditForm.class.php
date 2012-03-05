@@ -81,16 +81,6 @@ class CollectibleEditForm extends BaseCollectibleForm
     $this->getObject()->setDescription($value, 'html');
   }
 
-  protected function saveFile($field, $filename = null, sfValidatedFile $file = null)
-  {
-    parent::saveFile($field, $filename, $file);
-
-    if ('thumbnail' == $field)
-    {
-      $this->getObject()->addMultimedia($filename, true);
-    }
-  }
-
   public function save($con = null)
   {
     /** @var $object Collectible */
@@ -110,7 +100,7 @@ class CollectibleEditForm extends BaseCollectibleForm
         $collection->save();
       }
 
-      $object->addMultimedia($this->getValue('thumbnail'), true);
+      $object->setThumbnail($this->getValue('thumbnail'));
     }
 
     if ($values['tags'])

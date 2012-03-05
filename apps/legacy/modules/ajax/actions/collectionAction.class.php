@@ -78,7 +78,7 @@ class collectionAction extends cqAjaxAction
         $collectible->setCollection($this->collection);
 
         // Add the image
-        if ($multimedia = $collectible->addMultimedia($file['tmp_name'], true, true))
+        if ($multimedia = $collectible->setThumbnail($file['tmp_name'], true))
         {
           $multimedia->setName($name);
           $multimedia->save();
