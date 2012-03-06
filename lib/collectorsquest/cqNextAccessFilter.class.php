@@ -1,0 +1,91 @@
+<?php
+
+/**
+ * cqNextAccessFilter will auto login any user that has the proper login hash,
+ * checked against the allowed time limit since the hash's generation.
+ *
+ * If the user cannot be logged in, he will be forwarded to the countdown action
+ */
+class cqNextAccessFilter extends sfFilter
+{
+
+  public function execute($filterChain)
+  {
+    /* @var $request sfWebRequest */
+    $request = $this->context->getRequest();
+    /* @var $sf_user cqUser */
+    $sf_user = $this->context->getUser();
+    $param_name = $this->getAutoLoginParameterName();
+
+    // try to login the user if auto login parameter present and hash valid
+    if ( $request->hasParameter($param_name)
+      && ($collector = CollectorPeer::retrieveByHashTimeLimited($request->getParameter($param_name), $this->getAutoLoginTimeLimit()))
+      && $collector->getCqnextAccessAllowed() )
+    {
+      if ($sf_user->Authenticate(true, $collector))
+      {
+        $this->redirectToOriginalRequestUri($request);
+
+        return ;
+      }
+    }
+
+    if (!$sf_user->isAuthenticated() && !$this->currentActionIsCountdown())
+    {
+      $this->forwardToCountdownAction();
+
+      return ;
+    }
+
+    $filterChain->execute();
+  }
+
+
+  protected function forwardToCountdownAction()
+  {
+    $this->context->getController()->forward(
+      $this->getCountdownModuleName(),
+      $this->getCountdownActionName()
+    );
+
+    throw new sfStopException();
+  }
+
+  protected function redirectToOriginalRequestUri(sfWebRequest $request)
+  {
+    $parsed_url = parse_url($request->getUri());
+    $this->context->getController()->redirect($parsed_url['path']);
+
+    throw new sfStopException();
+  }
+
+  protected function currentActionIsCountdown()
+  {
+    /* @var $last_action sfActions */
+    $last_action = $this->context->getController()->getActionStack()->getLastEntry();
+
+    return $last_action->getModuleName() == $this->getCountdownModuleName()
+        && $last_action->getActionName() == $this->getCountdownActionName();
+  }
+
+  protected function getCountdownModuleName()
+  {
+    return sfConfig::get('app_countdown_module');
+  }
+
+  protected function getCountdownActionName()
+  {
+    return sfConfig::get('app_countdown_action');
+  }
+
+  protected function getAutoLoginParameterName()
+  {
+    return sfConfig::get('app_cqnext_auto_login_parameter_name');
+  }
+
+  protected function getAutoLoginTimeLimit()
+  {
+    return sfConfig::get('app_cqnext_auto_login_time_limit');
+  }
+
+}
