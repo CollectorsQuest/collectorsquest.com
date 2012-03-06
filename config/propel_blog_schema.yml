@@ -119,7 +119,6 @@ classes:
     indexes:
       comment_approved_date_gmt: [ comment_approved, comment_date_gmt ]
 
-
   wpCommentMeta:
     tableName: wp_commentmeta
     skipSql: true

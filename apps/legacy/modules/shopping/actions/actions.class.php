@@ -154,102 +154,97 @@ class shoppingActions extends cqActions
     {
       case 'paypal':
       default:
-        $PayPal = new PayPal(array(
-          'APIUsername' => 'kangov_1327417143_biz_api1.collectorsquest.com',
-          'APIPassword' => '1327417177',
-          'APISignature' => 'A..-CRlw0YpkY2B3ut0vv.OPym-eAT-VZrXVgkU8OKXkg-3ddWsYS50Q'
-        ));
 
-        $SECFields = array(
-          'maxamt' => '200.00',
-          'returnurl' => $this->generateUrl('shopping_order_paypal', array('uuid' => $shopping_order->getUuid(), 'cmd' => 'return', 'encrypt' => 1), true),
-          'cancelurl' => $this->generateUrl('shopping_order_paypal', array('uuid' => $shopping_order->getUuid(), 'cmd' => 'cancel', 'encrypt' => 1), true),
-          'reqconfirmshipping' => '1',
-          'noshipping' => '0',
-          'allownote' => '1',
-          'addroverride' => '1',
-          'localecode' => 'en',
-          'skipdetails' => '1',
-          'email' => '', 								// Email address of the buyer as entered during checkout.  PayPal uses this value to pre-fill the PayPal sign-in page.  127 char max.
-          'solutiontype' => 'Mark',
-          'landingpage' => 'Billing',
-          'channeltype' => 'Merchant',
-          'brandname' => 'CollectorsQuest.com',
-          'customerservicenumber' => '555-555-5555',
-          'giftmessageenable' => '0',
-          'giftreceiptenable' => '0',
-          'giftwrapenable' => '0',
-          'buyeremailoptionenable' => '0',
-          'surveyenable' => '0',
-          'allowpushfunding' => '0'
+        $shopping_payment = new ShoppingPayment();
+        $shopping_payment->setSessionId(session_id());
+        $shopping_payment->setShoppingOrderId($shopping_order->getId());
+        $shopping_payment->setProcessor(ShoppingPaymentPeer::PROCESSOR_PAYPAL);
+        $shopping_payment->setStatus(ShoppingPaymentPeer::STATUS_INITIALIZED);
+        $shopping_payment->save();
+
+        $SECFields = $shopping_order->getPaypalSECFields();
+        $SECFields['returnurl'] = $this->generateUrl(
+          'shopping_order_paypal',
+          array('uuid' => $shopping_order->getUuid(), 'cmd' => 'return', 'encrypt' => 1),
+          true
+        );
+        $SECFields['cancelurl'] = $this->generateUrl(
+          'shopping_order_paypal',
+          array('uuid' => $shopping_order->getUuid(), 'cmd' => 'cancel', 'encrypt' => 1),
+          true
         );
 
-        // Basic array of survey choices.  Nothing but the values should go in here.
-        $SurveyChoices = array('Yes', 'No');
+        $shopping_payment->setProperty('paypal.sec_fields', serialize($SECFields));
 
-        $Payments = array();
-        $Payment = array(
-          'amt' => $shopping_order->getTotalAmount() + $shopping_order->getShippingAmount(),
-          'currencycode' => $shopping_order->getCurrency(),
-          'itemamt' => $shopping_order->getTotalAmount(),
-          'shippingamt' => $shopping_order->getShippingAmount(),
-          'desc' => $shopping_order->getDescription(),
-          'custom' => '', 						// Free-form field for your own use.  256 char max.
-          'invnum' => $shopping_order->getUuid(),
-          'notifyurl' => $this->generateUrl('shopping_order_paypal', array('uuid' => $shopping_order->getUuid(), 'cmd' => 'ipn', 'encrypt' => 1), true),
-          'notetext' => $shopping_order->getNoteToSeller(),
-          'allowedpaymentmethod' => 'InstantPaymentOnly',
-          'paymentaction' => 'Sale'
+        $Payments = $shopping_order->getPaypalPayments();
+        $Payments[0]['notifyurl'] = $this->generateUrl(
+          'shopping_order_paypal',
+          array('uuid' => $shopping_order->getUuid(), 'cmd' => 'ipn', 'encrypt' => 1),
+          true
         );
 
-        $PaymentOrderItems = array();
-
-        /** @var $collectible_for_sale CollectibleForSale */
-        $collectible_for_sale = $shopping_order->getCollectibleForSale();
-
-        /** @var $collectible Collectible */
-        $collectible = $collectible_for_sale->getCollectible();
-
-        $Item = array(
-          'name' => $collectible->getName(),
-          'desc' => $collectible->getDescription('stripped', 127),
-          'amt' => $collectible_for_sale->getPrice(),
-          'number' => $collectible_for_sale->getId(),
-          'qty' => '1',
-          'taxamt' => '',
-          'itemurl' => $this->generateUrl('collectible_by_slug', array('id' => $collectible->getId(), 'slug' => $collectible->getSlug()))
-        );
-        array_push($PaymentOrderItems, $Item);
-
-        $Payment['order_items'] = $PaymentOrderItems;
-        array_push($Payments, $Payment);
+        $shopping_payment->setProperty('paypal.payments', serialize($Payments));
+        $shopping_payment->save();
 
         $PayPalRequest = array(
           'SECFields' => $SECFields,
-          'SurveyChoices' => $SurveyChoices,
-          'Payments' => $Payments
+          'Payments' => $Payments,
+          'SurveyChoices' => array('Yes', 'No')
         );
 
-        $result = $PayPal -> SetExpressCheckout($PayPalRequest);
+        $PayPal = cqStatic::getPayPalClient();
+        $result = $PayPal->SetExpressCheckout($PayPalRequest);
 
-        if ($result['ACK'] === 'Success')
+        if (strtolower($result['ACK']) == 'success')
         {
+          $shopping_payment->setStatus(ShoppingPaymentPeer::STATUS_INPROGRESS);
+          $shopping_payment->save();
+
           $this->redirect($result['REDIRECTURL'], 302);
         }
+        else
+        {
+          $shopping_payment->setStatus(ShoppingPaymentPeer::STATUS_FAILED);
+          $shopping_payment->save();
+        }
 
-        dd($result);
-      break;
+        return sfView::ERROR;
+        break;
     }
   }
 
   public function executePaypal(sfWebRequest $request)
   {
+    /** @var $shopping_order ShoppingOrder */
     $shopping_order = $this->getRoute()->getObject();
+
+    /** @var $cmd string */
     $cmd = $request->getParameter('cmd');
 
     switch (strtolower($cmd))
     {
       case 'return':
+        $PayPal = cqStatic::getPayPalClient();
+        $result = $PayPal->GetExpressCheckoutDetails($request->getParameter('token'));
+
+        if ($result['ACK'] == 'Success' && $result['PAYERID'] == $request->getParameter('PayerID'))
+        {
+          $DECPFields = $shopping_order->getPaypalDECFields($result['TOKEN'], $result['PAYERID']);
+          $Payments = $shopping_order->getPaypalPayments();
+
+          $PayPalRequest = array(
+            'DECPFields' => $DECPFields,
+            'Payments' => $Payments
+          );
+
+          $result = $PayPal->DoExpressCheckoutPayment($PayPalRequest);
+          dd($result);
+        }
+        else
+        {
+          return sfView::ERROR;
+        }
+
         break;
       case 'cancel':
         break;

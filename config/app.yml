@@ -73,9 +73,3 @@ dev:
 
   ice_assets:
     domain: "cqcdns.dev"
-
-  paypal:
-    api_username: zecho2_1307375459_biz_api1.mail.bg
-    api_password: 1307375482
-    api_signature: ARGZylcXa9FrdnmIO0iUQs0rR92RAgDpfU7OiYGf5M34hnxegFkGwxD8
-    is_online: false
