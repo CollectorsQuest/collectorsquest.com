@@ -2,12 +2,20 @@
 
 date_default_timezone_set('America/New_York');
 
-$parts = explode('.collectorsquest.', $_SERVER['SERVER_NAME']);
-
-list($app, $env) = $parts;
-if ('new' == $env || 'com' == $env)
+if (!empty($_SERVER['SF_APP']) && !empty($_SERVER['SF_ENV']))
 {
-  $env = 'prod';
+  $app = $_SERVER['SF_APP'];
+  $env = $_SERVER['SF_ENV'];
+}
+else
+{
+  $parts = explode('.collectorsquest.', $_SERVER['SERVER_NAME']);
+
+  list($app, $env) = $parts;
+  if ('new' == $env || 'com' == $env)
+  {
+    $env = 'prod';
+  }
 }
 
 @list(, $type, $size, $filename) = explode('/', $_SERVER['REQUEST_URI']);
