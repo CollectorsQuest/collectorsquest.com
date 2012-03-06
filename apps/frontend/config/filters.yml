@@ -2,6 +2,8 @@
 # http://www.symfony-project.org/reference/1_4/en/12-Filters
 
 rendering: ~
+cqnext_access:
+  class: cqNextAccessFilter
 security:  ~
 
 # insert your own filters here
