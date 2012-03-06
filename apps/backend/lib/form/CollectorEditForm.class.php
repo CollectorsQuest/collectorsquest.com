@@ -7,6 +7,8 @@
  * @subpackage form
  * @author     Kiril Angov
  * @version    SVN: $Id: sfPropelFormTemplate.php 10377 2008-07-21 07:10:32Z dwhittle $
+ *
+ * @method     Collector getObject()
  */
 class CollectorEditForm extends BaseFormPropel
 {
@@ -18,7 +20,8 @@ class CollectorEditForm extends BaseFormPropel
       'password'      => new sfWidgetFormInputText(),
       'email'         => new sfWidgetFormInputText(),
       'photo'         => new sfWidgetFormInputFile(),
-      'is_public'     => new sfWidgetFormInputCheckbox()
+      'is_public'     => new sfWidgetFormInputCheckbox(),
+      'has_cqnext_access' => new sfWidgetFormInputCheckbox(),
     ));
 
     $this->setValidators(array(
@@ -27,7 +30,8 @@ class CollectorEditForm extends BaseFormPropel
       'password'      => new sfValidatorString(array('max_length' => 64, 'required' => false)),
       'email'         => new sfValidatorEmail(array('max_length' => 128, 'required' => true)),
       'photo'         => new sfValidatorFile(array('mime_types' => 'web_images', 'required' => false)),
-      'is_public'     => new sfValidatorBoolean(array('required' => false))
+      'is_public'     => new sfValidatorBoolean(array('required' => false)),
+      'has_cqnext_access' => new sfValidatorBoolean(array('required' => false)),
     ));
 
     $this->validatorSchema->setPostValidator(
@@ -45,4 +49,19 @@ class CollectorEditForm extends BaseFormPropel
   {
     return 'Collector';
   }
+
+  public function updateDefaultsFromObject()
+  {
+    parent::updateDefaultsFromObject();
+
+    $this->setDefault('has_cqnext_access', $this->getObject()->getCqnextAccessAllowed());
+  }
+
+  public function doUpdateObject($values = null)
+  {
+    parent::doUpdateObject($values);
+
+    $this->getObject()->setCqnextAccessAllowed($values['has_cqnext_access']);
+  }
+
 }

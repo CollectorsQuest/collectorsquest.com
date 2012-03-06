@@ -18,6 +18,16 @@ class Collector extends BaseCollector
                             CollectorPeer::PROPERTY_CQNEXT_ACCESS_ALLOWED_DEFAULT_VALUE);
   }
 
+  /**
+   * Property accessor. Always cast the return value to boolean
+   *
+   * @return    boolean
+   */
+  public function getCqnextAccessAllowed()
+  {
+    return (boolean) parent::getCqnextAccessAllowed();
+  }
+
   public function getGraphId()
   {
     $graph_id = parent::getGraphId();
