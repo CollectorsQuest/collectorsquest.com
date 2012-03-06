@@ -4,6 +4,10 @@ require 'lib/model/om/BaseCollectorPeer.php';
 
 class CollectorPeer extends BaseCollectorPeer
 {
+  const PROPERTY_CQNEXT_ACCESS_ALLOWED = 'CQNEXT_ACCESS_ALLOWED';
+  const PROPERTY_CQNEXT_ACCESS_ALLOWED_DEFAULT_VALUE = 0;
+
+
   public static function retrieveBySlug($slug)
   {
     $c = new Criteria();

@@ -20,12 +20,13 @@ generator:
         list_count_collections: { label: Collections }
         list_spaminess: { label: Spaminess }
         list_auto_login: { label: '' }
+        list_cqnext_access: { label: "CQ Next access" }
         created_at: { label: Since, date_format: 'MM/dd/yyyy' }
         is_public: { label: "Public?" }
 
       list:
         title: Collectors
-        display: [id, =username, display_name, email, _list_count_collections, _list_spaminess, created_at]
+        display: [id, =username, display_name, email, _list_count_collections, _list_spaminess, _list_cqnext_access, created_at]
         sort: [created_at, desc]
         object_actions:
           _edit: ~
@@ -33,16 +34,18 @@ generator:
           autologin: { label: "Auto Login", action: autoLogin, params: { target: '_blank' } }
           markAsSpam: { label: "Mark as spam", action: markAsSpam, params: { confirm: "Are you sure you want to mark as spam this collector?" } }
           markAsHam: { label: "Mark as ham", action: markAsHam, params: { confirm: "Are you sure you want to mark as ham this collector?" } }
+          changeCqnextAccessAllowed: { label: "Change CQ Next access allowed", action: changeCqnextAccessAllowed, params: { confirm: "Are you sure you want to change the access allowed to this collector?" } }
         actions:
           export: { label: "Export to CSV", action: export }
 
       filter:
-        display: [username, display_name, email, user_type, spaminess, is_spam]
+        display: [username, display_name, email, user_type, spaminess, is_spam, cqnext_access_allowed]
         fields:
           email:
             widgetOptions: { with_empty: false }
           spaminess: { label: Spaminess }
           is_spam: { label: "Spam?" }
+          cqnext_access_allowed: { label: "CQ Next access?" }
 
       form:
         class: CollectorEditForm

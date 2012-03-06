@@ -133,4 +133,17 @@ class collectorsActions extends autoCollectorsActions
     $this->redirect('collector');
   }
 
+  public function executeChangeCqnextAccessAllowed()
+  {
+    /* @var $collector Collector */
+    $collector = $this->getRoute()->getObject();
+    $collector->setCqnextAccessAllowed(
+      !$collector->getCqnextAccessAllowed()
+    );
+    $collector->save();
+
+    $this->redirect('collector');
+  }
+
+
 }
