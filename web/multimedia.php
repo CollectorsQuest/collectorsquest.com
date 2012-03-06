@@ -21,7 +21,8 @@ else
 @list(, $type, $size, $filename) = explode('/', $_SERVER['REQUEST_URI']);
 if (in_array($type, array('image', 'video')))
 {
-  include_once('/www/libs/symfony-1.4.x/lib/yaml/sfYaml.php');
+  // Include sfYaml from Symfony
+  include_once __DIR__ .'/../lib/vendor/symfony/lib/yaml/sfYaml.php';
 
   $databases = sfYaml::load(__DIR__.'/../config/databases.yml');
 
