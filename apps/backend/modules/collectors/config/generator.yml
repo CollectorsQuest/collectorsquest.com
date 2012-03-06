@@ -37,12 +37,13 @@ generator:
           export: { label: "Export to CSV", action: export }
 
       filter:
-        display: [username, display_name, email, user_type, spaminess, is_spam]
+        display: [username, display_name, email, user_type, spaminess, is_spam, cqnext_access_allowed]
         fields:
           email:
             widgetOptions: { with_empty: false }
           spaminess: { label: Spaminess }
           is_spam: { label: "Spam?" }
+          cqnext_access_allowed: { label: "CQ Next access?" }
 
       form:
         class: CollectorEditForm
