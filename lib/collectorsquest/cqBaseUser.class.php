@@ -61,11 +61,12 @@ class cqBaseUser extends IceSecurityUser
     if ($boolean == false)
     {
       $this->setAuthenticated(false);
-
-      @setCookie('remember', null, 0, '/', str_replace('http://www', '', sfConfig::get('app_www_domain')));
-      $_COOKIE['remember'] = null;
-
       $this->collector = null;
+
+      // remove remember me cookie
+      $expiration_age = sfConfig::get('app_collector_remember_expiration_age', 15 * 24 * 3600);
+      $remember_cookie = sfConfig::get('app_collector_remember_cookie_name', 'cqRemember');
+      sfContext::getInstance()->getResponse()->setCookie($remember_cookie, '', time() - $expiration_age);
     }
     else if ($collector instanceof Collector && $boolean == true)
     {
@@ -76,10 +77,33 @@ class cqBaseUser extends IceSecurityUser
       $this->setAttribute('email', $collector->getEmail(), 'collector');
       $this->setAttribute('user_type', $collector->getUserType(), 'collector');
 
+      // remember?
       if ($remember)
       {
-        $cookie = serialize(array('username' => $collector->getUsername(), 'password' => $collector->getSha1Password()));
-        setCookie('remember', $cookie, time()+60*60*24*14, '/', str_replace('http://www', '', sfConfig::get('app_www_domain')));
+        // remove old keys
+        $c = new Criteria();
+        $expiration_age = sfConfig::get('app_collector_remember_expiration_age', 15 * 24 * 3600);
+        $c->add(CollectorRememberKeyPeer::CREATED_AT, time() - $expiration_age, Criteria::LESS_THAN);
+        CollectorRememberKeyPeer::doDelete($c, $con);
+
+        // remove other keys from this user
+        $c = new Criteria();
+        $c->add(CollectorRememberKeyPeer::COLLECTOR_ID, $collector->getId());
+        CollectorRememberKeyPeer::doDelete($c, $con);
+
+        // generate new keys
+        $key = $this->generateRandomKey();
+
+        // save key
+        $rk = new CollectorRememberKey();
+        $rk->setRememberKey($key);
+        $rk->setCollector($collector);
+        $rk->setIpAddress($_SERVER['REMOTE_ADDR']);
+        $rk->save($con);
+
+        // make key as a cookie
+        $remember_cookie = sfConfig::get('app_collector_remember_cookie_name', 'cqRemember');
+        sfContext::getInstance()->getResponse()->setCookie($remember_cookie, $key, time() + $expiration_age);
       }
 
       $this->collector = $collector;
@@ -96,34 +120,9 @@ class cqBaseUser extends IceSecurityUser
     return true;
   }
 
-  public function isAuthenticated()
+  protected function generateRandomKey($len = 20)
   {
-    $authenticated = parent::isAuthenticated();
-
-    if (!$authenticated)
-    {
-      if (isset($_COOKIE['remember']) && $cookie = $_COOKIE['remember'])
-      {
-        $cookie = @unserialize($cookie);
-
-        $c = new Criteria();
-        $c->add(CollectorPeer::USERNAME, $cookie['username']);
-        $collector = CollectorPeer::doSelectOne($c);
-
-        // collector exists and password OK?
-        if ($collector && $cookie['password'] == $collector->getSha1Password())
-        {
-          $authenticated = $this->Authenticate(true, $collector);
-        }
-        else
-        {
-          setCookie('remember', null, 0, '/');
-          $_COOKIE['remember'] = null;
-        }
-      }
-    }
-
-    return $authenticated;
+    return base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);
   }
 
   /**

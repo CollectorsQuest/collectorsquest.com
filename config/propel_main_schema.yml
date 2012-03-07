@@ -86,7 +86,17 @@ classes:
       created_at:    ~
 
     propel_behaviors:
-      archivable: { archive_class: CollectorIdentifierArchive, archived_at_column: archived_at }
+      archivable:    { archive_class: CollectorIdentifierArchive, archived_at_column: archived_at }
+
+  CollectorRememberKey:
+    columns:
+      collector_id:  { type: integer, foreignClass: Collector, foreignReference: id, required: true, onDelete: cascade }
+      remember_key:  { type: varchar, size: 32 }
+      ip_address:    { type: varchar, size: 50, primaryKey: true }
+      created_at:    ~
+
+    propel_behaviors:
+      symfony:       { form: false, filter: false }
 
   CollectorInterview:
     columns:
