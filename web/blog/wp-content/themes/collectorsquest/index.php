@@ -17,6 +17,12 @@
   }
 ?>
 
+<?php
+  ob_start();
+  wp_head();
+  $head = ob_get_clean();
+?>
+
 <?php ob_start(); ?>
 <?php get_header(); ?>
 
@@ -101,7 +107,10 @@
 <?php endif; ?>
 </div>
 
-<?php get_footer(); ?>
+<?php
+  get_footer();
+  wp_footer();
+?>
 <?php $content = ob_get_clean(); ?>
 
 <?php
@@ -128,7 +137,10 @@
       $domain = 'collectorsquest.dev';
       break;
     case 'stg':
-      $domain = 'collectorsquest.stg';
+      $domain = 'cqstaging.com';
+      break;
+    case 'next':
+      $domain = 'cqnext.com';
       break;
     case 'prod':
     default:
@@ -141,8 +153,8 @@
   );
 
   echo str_replace(
-    array('<!-- Blog Content //-->', '<!-- Blog Sidebar //-->'),
-    array($content, $sidebar),
+    array('<!-- Blog Head //-->', '<!-- Blog Content //-->', '<!-- Blog Sidebar //-->'),
+    array($head, $content, $sidebar),
     $layout
   );
 ?>

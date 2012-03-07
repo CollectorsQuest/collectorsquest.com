@@ -42,7 +42,7 @@ class commentsActions extends cqActions
             $collector = $collection->getCollector();
           }
 
-          if ($collector !== null)
+          if ($collector !== null && !$collector->isOwnerOf($comment))
           {
             if ($email = $collector->getEmail())
             {
