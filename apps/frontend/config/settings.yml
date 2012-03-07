@@ -27,6 +27,11 @@ all:
     # Form security secret (CSRF protection)
     csrf_secret:            qqDHZyX9DuEKyCv7hACqUfPzC86k7JEx
 
+    i18n:                   true
+    default_culture:        en
+    default_timezone:       America/New_York
+    charset:                utf-8
+
     # Output escaping settings
     escaping_strategy:      true
     escaping_method:        ESC_SPECIALCHARS

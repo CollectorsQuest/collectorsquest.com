@@ -4,13 +4,28 @@ require 'lib/model/om/BaseCollector.php';
 
 /**
  * @method     integer getSingupNumCompletedSteps() Return the number of completed signup steps
- * @method     integer setSingupNumCompletedSteps(integer $v) Set the number of completed signup steps
+ * @method     Collector setSingupNumCompletedSteps(integer $v) Set the number of completed signup steps
+ * @method     Collector setCqnextAccessAllowed(boolean $v)
+ * @method     boolean getCqnextAccessAllowed()
  */
 class Collector extends BaseCollector
 {
+
   public function initializeProperties()
   {
     $this->registerProperty('SINGUP_NUM_COMPLETED_STEPS', 1);
+    $this->registerProperty(CollectorPeer::PROPERTY_CQNEXT_ACCESS_ALLOWED,
+                            CollectorPeer::PROPERTY_CQNEXT_ACCESS_ALLOWED_DEFAULT_VALUE);
+  }
+
+  /**
+   * Property accessor. Always cast the return value to boolean
+   *
+   * @return    boolean
+   */
+  public function getCqnextAccessAllowed()
+  {
+    return (boolean) parent::getCqnextAccessAllowed();
   }
 
   public function getGraphId()

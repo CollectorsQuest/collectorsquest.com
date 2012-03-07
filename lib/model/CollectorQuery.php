@@ -22,4 +22,15 @@ class CollectorQuery extends BaseCollectorQuery
 
     return $this;
   }
+
+  public function filterByCqnextAccessAllowed($value)
+  {
+    return $this
+      ->filterByExtraPropertyWithDefault(
+        CollectorPeer::PROPERTY_CQNEXT_ACCESS_ALLOWED,
+        $value,
+        CollectorPeer::PROPERTY_CQNEXT_ACCESS_ALLOWED_DEFAULT_VALUE
+      );
+  }
+
 }

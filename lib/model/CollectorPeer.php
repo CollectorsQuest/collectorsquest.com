@@ -4,6 +4,10 @@ require 'lib/model/om/BaseCollectorPeer.php';
 
 class CollectorPeer extends BaseCollectorPeer
 {
+  const PROPERTY_CQNEXT_ACCESS_ALLOWED = 'CQNEXT_ACCESS_ALLOWED';
+  const PROPERTY_CQNEXT_ACCESS_ALLOWED_DEFAULT_VALUE = 0;
+
+
   public static function retrieveBySlug($slug)
   {
     $c = new Criteria();
@@ -20,10 +24,49 @@ class CollectorPeer extends BaseCollectorPeer
       @list($version, $id, $hmac, $time) = explode(';', $hash);
 
       // Try to get the Collector object
-      if ($collector = self::retrieveByPk($id))
+      if (( $collector = self::retrieveByPk($id) ))
       {
         // Finally check if the $hash is valid
         return $collector->getAutoLoginHash($version, $time) === $hash ? $collector : null;
+      }
+    }
+
+    return null;
+  }
+
+  /**
+   * Retrieve a Collector record only if within the time limit from the hash generation
+   *
+   * @var string $hash
+   * @var string $time_limit strtotime compatible time distance from hash generation time
+   * @var integer $time The current time
+   *
+   * @return Collector|null
+   */
+  public static function retrieveByHashTimeLimited($hash, $time_limit, $time = null)
+  {
+    if (!empty($hash))
+    {
+      if (null === $time)
+      {
+        $time = time();
+      }
+
+      // Split the Hash parts
+      @list($version, $id, $hmac, $time_of_hash) = explode(';', $hash);
+
+      $time_limit_target = strtotime($time_limit, (int)$time_of_hash);
+
+      if ($time_limit_target < $time)
+      {
+        return null;
+      }
+
+      // Try to get the Collector object
+      if (( $collector = self::retrieveByPk($id) ))
+      {
+        // Finally check if the $hash is valid
+        return $collector->getAutoLoginHash($version, $time_of_hash) === $hash ? $collector : null;
       }
     }
 

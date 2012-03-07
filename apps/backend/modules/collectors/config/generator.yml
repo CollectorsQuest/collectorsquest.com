@@ -37,20 +37,24 @@ generator:
           export: { label: "Export to CSV", action: export }
 
       filter:
-        display: [username, display_name, email, user_type, spaminess, is_spam]
+        display: [username, display_name, email, user_type, spaminess, is_spam, cqnext_access_allowed]
         fields:
           email:
             widgetOptions: { with_empty: false }
           spaminess: { label: Spaminess }
           is_spam: { label: "Spam?" }
+          cqnext_access_allowed: { label: "CQ Next access?" }
 
       form:
         class: CollectorEditForm
+        fields:
+          has_cqnext_access:
+            attributes: { class: yes_no }
 
       edit:
         title: Edit Collector <small>(%%USERNAME%%)</small>
         fields:
           password: { label: Password, help: "If you do not want to change the password, leave the field empty" }
-        display: [display_name, email, password, photo, is_public]
+        display: [display_name, email, password, photo, is_public, has_cqnext_access]
 
       new: ~
