@@ -1,9 +1,18 @@
 #!/bin/bash
 
-php symfony propel:build-model && \
-php symfony propel:build-form && \
-php symfony propel:build-filter && \
-php symfony propel:build-sql
+SOURCE="${BASH_SOURCE[0]}"
+while [ -h "$SOURCE" ] ; do SOURCE="$(readlink "$SOURCE")"; done
+DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 
-php symfony cache:clear
+git clean -f -d -X $DIR/../data/sql/*.sql
+git clean -f -d -X $DIR/../lib/model
+git clean -f -d -X $DIR/../lib/form
+git clean -f -d -X $DIR/../lib/filter
+
+php $DIR/../symfony propel:build-model && \
+php $DIR/../symfony propel:build-form && \
+php $DIR/../symfony propel:build-filter && \
+php $DIR/../symfony propel:build-sql
+
+php $DIR/../symfony cache:clear
 
