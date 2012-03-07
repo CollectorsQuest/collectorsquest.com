@@ -37,24 +37,24 @@ class PropelMigration_1331114751
 	public function getUpSQL()
 	{
 		return array (
-  'propel' => '
+      'propel' => '
 
-CREATE TABLE `collector_remember_key`
-(
-	`collector_id` INTEGER NOT NULL,
-	`remember_key` VARCHAR(32),
-	`ip_address` VARCHAR(50) NOT NULL,
-	`created_at` DATETIME,
-	PRIMARY KEY (`ip_address`),
-	INDEX `collector_remember_key_FI_1` (`collector_id`),
-	CONSTRAINT `collector_remember_key_FK_1`
-		FOREIGN KEY (`collector_id`)
-		REFERENCES `collector` (`id`)
-		ON DELETE CASCADE
-) ENGINE=InnoDB;
+        CREATE TABLE `collector_remember_key`
+        (
+          `ip_address` CHAR(15) NOT NULL,
+          `collector_id` INTEGER NOT NULL,
+          `remember_key` CHAR(32),
+          `created_at` DATETIME,
+          PRIMARY KEY (`ip_address`),
+          INDEX `collector_remember_key_FI_1` (`collector_id`),
+          CONSTRAINT `collector_remember_key_FK_1`
+            FOREIGN KEY (`collector_id`)
+            REFERENCES `collector` (`id`)
+            ON DELETE CASCADE
+        ) ENGINE=InnoDB;
 
-',
-);
+      ',
+    );
 	}
 
 	/**
@@ -66,12 +66,10 @@ CREATE TABLE `collector_remember_key`
 	public function getDownSQL()
 	{
 		return array (
-  'propel' => '
-
-DROP TABLE IF EXISTS `collector_remember_key`;
-
-',
-);
+      'propel' => '
+        DROP TABLE IF EXISTS `collector_remember_key`;
+      ',
+    );
 	}
 
 }
