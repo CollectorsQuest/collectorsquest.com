@@ -22,7 +22,7 @@ class cqNextAccessFilter extends sfFilter
       && ($collector = CollectorPeer::retrieveByHashTimeLimited($request->getParameter($param_name), $this->getAutoLoginTimeLimit()))
       && $collector->getCqnextAccessAllowed() )
     {
-      if ($sf_user->Authenticate(true, $collector))
+      if ($sf_user->Authenticate(true, $collector, $remember_me = true))
       {
         $this->redirectToOriginalRequestUri($request);
 
