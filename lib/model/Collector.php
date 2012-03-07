@@ -522,6 +522,21 @@ class Collector extends BaseCollector
   }
 
   /**
+   * Return the shipping rates for this collector, grouped by country
+   *
+   * @param     PropelPDO $con
+   * @return    array
+   *
+   * @see       ShippingRateCollectorQuery::findAndGroupByCountryCode()
+   */
+  public function getShippingRatesByCountry(PropelPDO $con = null)
+  {
+    return ShippingRateCollectorQuery::create()
+      ->filterByCollector($this)
+      ->findAndGroupByCountryCode($con);
+  }
+
+  /**
    * @param  null|PropelPDO  $con
    * @return boolean
    */

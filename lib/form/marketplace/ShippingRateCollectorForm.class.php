@@ -6,6 +6,8 @@
  * @package    CollectorsQuest
  * @subpackage form
  * @author     Collectors
+ *
+ * @method     ShippingRateCollector getObject()
  */
 class ShippingRateCollectorForm extends BaseShippingRateCollectorForm
 {
