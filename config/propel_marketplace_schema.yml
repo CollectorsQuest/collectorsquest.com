@@ -27,6 +27,7 @@ classes:
       archivable: { archive_class: CollectibleForSaleArchive, archived_at_column: archived_at }
       timestampable:  ~
 
+
   ###
   # NOTE: Make SURE to update also CollectibleOfferArchive in archive.schema.yml
   ##
@@ -101,6 +102,28 @@ classes:
     propel_behaviors:
       extra_properties: ~
       timestampable:  ~
+
+  ShippingRate:
+    skipSql: true
+    columns:
+      id:                   ~
+      price_range_min:      { type: integer, required: true }
+      price_range_max:      { type: integer, required: true }
+      amount_in_cents:      { type: integer, required: true }
+      country_iso3166:      { type: char, size: 2, required: false, foreignTable: geo_country, foreignReference: iso3166 } # not set = catch all
+
+  ShippingRateCollector:
+    columns:
+      collector_id:         { type: integer, required: true, foreignClass: Collector, foreignReference: id, onDelete: cascade }
+    propel_behaviors:
+      concrete_inheritance: { extends: shipping_rate, copy_data_to_parent: false }
+
+  ShippingRateCollectible:
+    columns:
+      amount_in_percent:    { type: integer, required: true }
+      collectible_id:       { type: integer, required: true, foreignClass: Collectible, foreignReference: id, onDelete: cascade }
+    propel_behaviors:
+      concrete_inheritance: { extends: shipping_rate, copy_data_to_parent: false }
 
   Package:
     columns:
