@@ -218,15 +218,24 @@ class shoppingActions extends cqActions
 
           $this->redirect($result['REDIRECTURL'], 302);
         }
+        else if ($result['L_ERRORCODE0'] == '10412')
+        {
+          $shopping_payment->setStatus(ShoppingPaymentPeer::STATUS_FAILED);
+          $shopping_payment->save();
+
+          $this->getUser()->setFlash('error', 'You have already paid this order!');
+          $this->redirect('@manage_shopping_order?uuid='. $shopping_order->getUuid());
+        }
         else
         {
           $shopping_payment->setStatus(ShoppingPaymentPeer::STATUS_FAILED);
           $shopping_payment->save();
         }
 
-        return sfView::ERROR;
         break;
     }
+
+    return sfView::ERROR;
   }
 
   public function executePaypal(sfWebRequest $request)
