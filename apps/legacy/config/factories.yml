@@ -9,7 +9,7 @@ all:
       extra_parameters_as_query_string: true
 
   user:
-    class: cqUser
+    class: cqLegacyUser
     param:
       timeout:         86400
       logging:         %SF_LOGGING_ENABLED%

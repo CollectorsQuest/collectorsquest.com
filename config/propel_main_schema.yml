@@ -73,6 +73,7 @@ classes:
       unq_collector_email: [collector_id, email]
 
     propel_behaviors:
+      symfony:        { form: false, filter: false }
       timestampable:  ~
 
   ###
@@ -86,7 +87,18 @@ classes:
       created_at:    ~
 
     propel_behaviors:
-      archivable: { archive_class: CollectorIdentifierArchive, archived_at_column: archived_at }
+      archivable:    { archive_class: CollectorIdentifierArchive, archived_at_column: archived_at }
+      symfony:       { form: false, filter: false }
+
+  CollectorRememberKey:
+    columns:
+      ip_address:    { type: char, size: 15, primaryKey: true }
+      collector_id:  { type: integer, foreignClass: Collector, foreignReference: id, required: true, onDelete: cascade }
+      remember_key:  { type: char, size: 32 }
+      created_at:    ~
+
+    propel_behaviors:
+      symfony:       { form: false, filter: false }
 
   CollectorInterview:
     columns:
@@ -117,7 +129,8 @@ classes:
       timezone:         { type: varchar, size: 128 }
 
     propel_behaviors:
-      archivable: { archive_class: CollectorGeocacheArchive, log_archived_at: false }
+      archivable:  { archive_class: CollectorGeocacheArchive, log_archived_at: false }
+      symfony:     { form: false, filter: false }
 
   CollectorFriend:
     columns:

@@ -1,0 +1,3 @@
+#!/bin/bash
+
+php symfony propel:build-model && php symfony propel:build-form && php symfony propel:build-filter && php symfony propel:build-sql
