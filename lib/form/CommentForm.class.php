@@ -17,7 +17,6 @@ class CommentForm extends BaseCommentForm
     $sf_user = sfContext::getInstance()->getUser();
 
     $is_authenticated = $sf_user->isAuthenticated();
-    $is_facebook_authenticated = $sf_user->isFacebookAuthenticated();
 
     $widgets = array(
       'body' => new sfWidgetFormTextarea(array(), array('rows' => 5, 'cols' => 40)),
@@ -150,6 +149,7 @@ class CommentForm extends BaseCommentForm
 
     $comment = new Comment();
     $comment->fromArray($array, BasePeer::TYPE_FIELDNAME);
+    $comment->save($con);
     $object->addComment($comment);
     $object->save($con);
 
