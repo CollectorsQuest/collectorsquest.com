@@ -44,6 +44,7 @@ class PropelMigration_1330962463
           `collectible_for_sale_id` INTEGER NOT NULL,
           `collector_id` INTEGER,
           `shopping_payment_id` INTEGER,
+          `shipping_country` CHAR(2),
           `note_to_seller` VARCHAR(255),
           `created_at` DATETIME,
           `updated_at` DATETIME,
@@ -52,6 +53,7 @@ class PropelMigration_1330962463
           INDEX `shopping_order_FI_2` (`collectible_for_sale_id`),
           INDEX `shopping_order_FI_3` (`collector_id`),
           INDEX `shopping_order_FI_4` (`shopping_payment_id`),
+          INDEX `shopping_order_FI_5` (`shipping_country`),
           CONSTRAINT `shopping_order_FK_1`
             FOREIGN KEY (`shopping_cart_id`)
             REFERENCES `shopping_cart` (`id`)
@@ -67,7 +69,10 @@ class PropelMigration_1330962463
           CONSTRAINT `shopping_order_FK_4`
             FOREIGN KEY (`shopping_payment_id`)
             REFERENCES `shopping_payment` (`id`)
-            ON DELETE SET NULL
+            ON DELETE SET NULL,
+          CONSTRAINT `shopping_order_FK_5`
+            FOREIGN KEY (`shipping_country`)
+            REFERENCES `geo_country` (`iso3166`)
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
         ALTER TABLE `shopping_order` AUTO_INCREMENT = 1000001;

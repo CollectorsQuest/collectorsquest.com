@@ -19,11 +19,7 @@ class ShoppingOrderPeer extends BaseShoppingOrderPeer
     for ($i = 0; $i < strlen($key); $i++)
     {
       // extract a (multibyte) character from $key
-      if (function_exists('mb_substr')) {
-        $char = mb_substr($key, $i, 1);
-      } else {
-        $char = substr($key, $i, 1);
-      }
+      $char = substr($key, $i, 1);
 
       // Identify its position in $scramble1
       $num = strpos('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ', $char);
@@ -103,11 +99,7 @@ class ShoppingOrderPeer extends BaseShoppingOrderPeer
     for ($i = 0; $i < strlen($key); $i++)
     {
       // extract a (multibyte) character from $key
-      if (function_exists('mb_substr')) {
-        $char = mb_substr($key, $i, 1);
-      } else {
-        $char = substr($key, $i, 1);
-      }
+      $char = substr($key, $i, 1);
 
       // Identify its position in $scramble1
       $num = strpos('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ', $char);

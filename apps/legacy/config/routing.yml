@@ -444,6 +444,16 @@ manage_friends:
   url:   /manage/friends
   param: { module: manage, action: friends }
 
+manage_shopping_order:
+  url:   /manage/order/:uuid
+  class: sfPropelRoute
+  options: { model: ShoppingOrder, type: object }
+  param: { module: manage, action: shoppingOrder }
+
+manage_shopping_orders:
+  url:   /manage/orders
+  param: { module: manage, action: shoppingOrders }
+
 ### EXTERNAL
 
 blog:

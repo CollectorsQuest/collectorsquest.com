@@ -121,12 +121,15 @@ class shoppingActions extends cqActions
       {
         $values = $form->getValues();
 
-        $shopping_order = new ShoppingOrder();
+        $q = ShoppingOrderQuery::create()
+           ->filterByShoppingCart($shopping_cart)
+           ->filterByCollectibleForSaleId($values['collectible_for_sale_id']);
+
+        $shopping_order = $q->findOneOrCreate();
         $shopping_order->setSessionId(session_id());
-        $shopping_order->setShoppingCart($shopping_cart);
-        $shopping_order->setCollectibleForSaleId($values['collectible_for_sale_id']);
         $shopping_order->setCollector($this->getCollector());
-        $shopping_order->setNoteToSeller($values['']);
+        $shopping_order->setShippingCountry($values['shipping_country']);
+        $shopping_order->setNoteToSeller($values['note_to_seller']);
         $shopping_order->save();
 
         $this->redirect('@shopping_order_pay?uuid='. $shopping_order->getUuid() .'&processor=paypal');
@@ -150,6 +153,16 @@ class shoppingActions extends cqActions
     /** @var $shopping_order ShoppingOrder */
     $shopping_order = $this->getRoute()->getObject();
 
+    /** @var $shopping_payment ShoppingPayment */
+    $shopping_payment = $shopping_order->getShoppingPaymentRelatedByShoppingPaymentId();
+
+    // Check if the Order is already completed and redirect appropriately
+    if ($shopping_payment && $shopping_payment->getStatus() == ShoppingPaymentPeer::STATUS_COMPLETED)
+    {
+      $this->getUser()->setFlash('success', 'This order has already been paid');
+      return $this->redirect('@manage_shopping_order?uuid='. $shopping_order->getUuid());
+    }
+
     switch (strtolower($request->getParameter('processor', 'paypal')))
     {
       case 'paypal':
@@ -161,6 +174,9 @@ class shoppingActions extends cqActions
         $shopping_payment->setProcessor(ShoppingPaymentPeer::PROCESSOR_PAYPAL);
         $shopping_payment->setStatus(ShoppingPaymentPeer::STATUS_INITIALIZED);
         $shopping_payment->save();
+
+        $shopping_order->setShoppingPaymentId($shopping_payment->getId(0));
+        $shopping_order->save();
 
         $SECFields = $shopping_order->getPaypalSECFields();
         $SECFields['returnurl'] = $this->generateUrl(
@@ -218,10 +234,13 @@ class shoppingActions extends cqActions
     /** @var $shopping_order ShoppingOrder */
     $shopping_order = $this->getRoute()->getObject();
 
-    /** @var $cmd string */
-    $cmd = $request->getParameter('cmd');
+    /** @var $shopping_payment ShoppingPayment */
+    $shopping_payment = $shopping_order->getShoppingPaymentRelatedByShoppingPaymentId();
 
-    switch (strtolower($cmd))
+    /** @var $cmd string */
+    $cmd = strtolower($request->getParameter('cmd'));
+
+    switch ($cmd)
     {
       case 'return':
         $PayPal = cqStatic::getPayPalClient();
@@ -238,21 +257,36 @@ class shoppingActions extends cqActions
           );
 
           $result = $PayPal->DoExpressCheckoutPayment($PayPalRequest);
-          dd($result);
-        }
-        else
-        {
-          return sfView::ERROR;
+
+          if ($result['ACK'] == 'Success')
+          {
+            // Remove the CollectibleForSale from the shopping cart
+            $q = ShoppingCartCollectibleQuery::create()
+               ->filterByCollectibleForSale($shopping_order->getCollectibleForSale())
+               ->filterByShoppingCart($shopping_order->getShoppingCart());
+            $q->delete();
+
+            $shopping_payment->setStatus(ShoppingPaymentPeer::STATUS_COMPLETED);
+            $shopping_payment->save();
+
+            return $this->redirect('@manage_shopping_order?uuid='. $shopping_order->getUuid());
+          }
         }
 
         break;
       case 'cancel':
+
+        $shopping_payment->setStatus(ShoppingPaymentPeer::STATUS_CANCELLED);
+        $shopping_payment->save();
+
+        $this->getUser()->setFlash('error', 'You cancelled the PayPal payment and your order was not completed!');
+        $this->redirect('@shopping_cart');
         break;
       case 'ipn':
         break;
     }
 
-    return sfView::SUCCESS;
+    return sfView::ERROR;
   }
 
 }

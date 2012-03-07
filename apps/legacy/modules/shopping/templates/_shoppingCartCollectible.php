@@ -19,7 +19,7 @@
     <form action="<?= url_for('@shopping_cart_checkout'); ?>" method="post">
     <div class="cf"><!--Item-->
       <div class="span-11">
-        <div class="cf">
+        <div class="cf" style="min-height: 120px;">
           <div class="span-2 append-10l"><!--Image-->
             <?= image_tag_collectible($shopping_cart_collectible->getCollectible(), '75x75'); ?>
           </div>
@@ -42,7 +42,14 @@
         </div>
       </div>
       <div class="span-5 last"><!--Prices-->
-        <table><!--Start cost table-->
+        <table style="margin-bottom: 0;"><!--Start cost table-->
+          <tr>
+            <td colspan="2">
+              Ship to:<br/>
+              <?= $form['shipping_country']->render(array('style' => 'width: 100%;')); ?>
+            </td>
+          </tr>
+          <tr>
           <tr>
             <td>Price:</td>
             <td><?= money_format('%.2n', (float) $shopping_cart_collectible->getTotalPrice()); ?></td>
@@ -56,9 +63,8 @@
             <td><strong><?= money_format('%.2n', (float) $shopping_cart_collectible->getTotalPrice()); ?></strong></td>
           </tr>
           <tr>
-            <td colspan="2">
-              Pay with: <img src="/images/legacy/payment/mini-logo-paypal.png" alt="" class="image-taxt-align" /><br/><br/>
-              <button type="submit" class="newbutton red bolder-text" style="padding-top: 5px;">CHECKOUT</button>
+            <td colspan="2" style="text-align: center;">
+              <input type="image" src="https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif" title="Check out with PayPal!">
             </td>
           </tr>
         </table><!--End cost table-->

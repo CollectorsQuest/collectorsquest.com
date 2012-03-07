@@ -14,7 +14,7 @@ class CollectorProfileEditForm extends BaseCollectorProfileForm
       'birthday' => new sfWidgetFormDate(array('years' => $years)),
       'gender' => new sfWidgetFormSelect(array('choices' => array('' => "Rather not say", 'f' => 'Female', 'm' => 'Male'))),
       'zip_postal' => new sfWidgetFormInputText(),
-      'country' => new sfWidgetFormI18nSelectCountry(array('add_empty' => true, 'culture' => 'en')),
+      'country' => new sfWidgetFormI18nChoiceCountry(array('add_empty' => true, 'culture' => 'en')),
       'website' => new sfWidgetFormInputText(),
 
       'about_me' => new sfWidgetFormTextarea(),
@@ -34,7 +34,7 @@ class CollectorProfileEditForm extends BaseCollectorProfileForm
       'birthday' => new sfValidatorDate(array('required' => false)),
       'gender' => new sfValidatorChoice(array('choices' => array('f', 'm'), 'required' => false)),
       'zip_postal' => new sfValidatorString(array('max_length' => 10, 'required' => false)),
-      'country' => new sfValidatorString(array('max_length' => 64, 'required' => false)),
+      'country' => new sfValidatorI18nChoiceCountry(array('required' => false)),
       'website' => new sfValidatorString(array('max_length' => 128, 'required' => false)),
 
       'about_me' => new sfValidatorString(array('required' => false)),

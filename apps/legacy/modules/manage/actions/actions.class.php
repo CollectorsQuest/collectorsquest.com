@@ -579,4 +579,23 @@ class manageActions extends cqActions
 
     return $this->redirect('@manage_collections');
   }
+
+  public function executeShoppingOrders()
+  {
+    $q = ShoppingOrderQuery::create()
+       ->filterByCollector($this->getCollector());
+
+    $this->shopping_orders = $q->find();
+
+    return sfView::SUCCESS;
+  }
+
+  public function executeShoppingOrder()
+  {
+    /** @var $shopping_order ShoppingOrder */
+    $shopping_order = $this->getRoute()->getObject();
+    $this->forward404Unless($this->getCollector()->isOwnerOf($shopping_order));
+
+    return sfView::SUCCESS;
+  }
 }

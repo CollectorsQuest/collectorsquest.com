@@ -76,6 +76,7 @@ classes:
       collectible_for_sale_id:      { type: integer, required: true, foreignClass: CollectibleForSale, foreignReference: id, onDelete: restrict }
       collector_id:                 { type: integer, required: false, foreignClass: Collector, foreignReference: id, onDelete: setnull }
       shopping_payment_id:          { type: integer, required: false, foreignClass: ShoppingPayment, foreignReference: id, onDelete: setnull }
+      shipping_country:             { type: char, size: 2, required: false, foreignTable: geo_country, foreignReference: iso3166 }
       note_to_seller:               { type: varchar, size: 255 }
 
     uniques:
@@ -90,7 +91,7 @@ classes:
       shopping_order_id:   { type: integer, required: true, foreignClass: ShoppingOrder, foreignReference: id, onDelete: restrict }
       session_id:          { type: varchar, size: 32, required: false }
       processor:           { type: enum, valueSet: "PayPal, Google, Amazon", default: PayPal, required: true }
-      status:              { type: enum, valueSet: "initialized, inprogress, confirmed, failed, completed", default: initialized, required: true }
+      status:              { type: enum, valueSet: "initialized, inprogress, confirmed, cancelled, failed, completed", default: initialized, required: true }
       currency:            { type: varchar, size: 3 }
       amount_total:        { type: float }
       amount_collectibles: { type: float }
