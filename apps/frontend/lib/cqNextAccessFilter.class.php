@@ -30,7 +30,10 @@ class cqNextAccessFilter extends sfFilter
       }
     }
 
-    if (!$sf_user->isAuthenticated() && !$this->currentActionIsCountdown())
+    // if the current user is not authenticated or is authenticated but does not have cqnext access
+    // and the current action is not countdown
+    if ( !($sf_user->isAuthenticated() && $sf_user->getCollector()->getCqnextAccessAllowed())
+      && !$this->currentActionIsCountdown() )
     {
       $this->forwardToCountdownAction();
 
@@ -39,7 +42,6 @@ class cqNextAccessFilter extends sfFilter
 
     $filterChain->execute();
   }
-
 
   protected function forwardToCountdownAction()
   {
