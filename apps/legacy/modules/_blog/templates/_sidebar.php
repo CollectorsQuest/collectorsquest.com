@@ -120,11 +120,11 @@
       </li>
       <li class="shawn-hennessy">
         <a href="/blog/people/shawn-hennessy/">
-          <img src="/images/blog/avatar-shawn-hennessy.png" alt="Shawn Hennessy" align="left" style="height: 40px; margin-right: 10px; border: 1px solid #BDB7BD;">
+          <img src="/images/blog/avatar-shawn-hennessy.png" alt="M. S. Hennessy" align="left" style="height: 40px; margin-right: 10px; border: 1px solid #BDB7BD;">
         </a>
-        <strong style="font-size: 14px;">Shawn Hennessy</strong> <br>
-        <a href="/blog/people/shawn-hennessy/" title="Bio of blogger Shawn Hennessy">[bio]</a> &nbsp;
-        <a href="/blog/index.php?author=18" title="Shawn Hennessy's articles on collecting...">[articles]</a>
+        <strong style="font-size: 14px;">M. S. Hennessy</strong> <br>
+        <a href="/blog/people/shawn-hennessy/" title="Bio of blogger M. S. Hennessy">[bio]</a> &nbsp;
+        <a href="/blog/index.php?author=18" title="M. S. Hennessy's articles on collecting...">[articles]</a>
         <br clear="all">
       </li>
       <li class="tom-peeling">
