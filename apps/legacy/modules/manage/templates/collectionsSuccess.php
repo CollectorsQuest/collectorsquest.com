@@ -7,7 +7,7 @@
  * @var  CollectionDropbox  $dropbox
  */
 
-if ($pager->getPage() == 1)
+if ($pager->getPage() == 1 && IceGateKeeper::open('dropbox'))
 {
   include_partial(
     'collections/list_view_collection',
