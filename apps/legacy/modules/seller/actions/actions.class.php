@@ -26,12 +26,36 @@ class sellerActions extends cqActions
    */
   public function executePackages(sfWebRequest $request)
   {
-    if (!$this->getUser()->isAuthenticated())
+    $packagesForm = new SellerPackagesForm(array('payment_type'=>'cc'));
+
+    if ($request->isMethod('post'))
     {
-      $this->redirect('@login');
+//      dd($request->getParameterHolder()->getAll());
+//      die();
+
+      $packagesForm->bind($request->getParameter($packagesForm->getName()));
+
+      if ($packagesForm->isValid())
+      {
+        //Process
+      }
+      else {
+//        echo '<pre>';
+//        dd($packagesForm->getErrorSchema()->getErrors());
+//        die();
+      }
     }
 
-    $this->ssAction = ($request->getParameter('type') == 'upgrade') ? '@seller_upgrade_package?id=' : '@seller_become?id=';
+
+    $this->freeSubscription = false;
+    $this->packagesForm = $packagesForm;
+
+    return sfView::SUCCESS;
+
+    //OLD CODE BELOW
+
+
+    $this->targetAction = ($request->getParameter('type') == 'upgrade') ? '@seller_upgrade_package' : '@seller_become';
     $this->bFreeSubscription = 0;
 
     $this->omPackages = PackagePeer::getAllPackages();
@@ -135,7 +159,7 @@ class sellerActions extends cqActions
             {
               if ($omPromotion->getExpiryDate('U') < time())
               {
-                $this->getUser()->setFlash('msg_promotion_code', 'This Promotion code has been expired pleaes use another promo code!');
+                $this->getUser()->setFlash('msg_promotion_code', 'This Promotion code has been expired please use another promo code!');
                 return sfView::SUCCESS;
               }
               else
@@ -188,7 +212,6 @@ class sellerActions extends cqActions
         'user_type' => 'Seller',
         'items_allowed' => 0
       );
-//      $omSeller = CollectorPeer::updateCollectorAsSeller($amSellerInfo);
 
       if ($ssFreePackage == "Free")
       {
@@ -361,7 +384,6 @@ class sellerActions extends cqActions
 
           $this->getUser()->setFlash('msg_payment', 'Your credit card information is invalid!');
           return sfView::SUCCESS;
-          //$this->redirect($this->ssAction.$this->getUser()->getCollector()->getId());
         }
         // ----------------------- End PayPal Code ---------------------------
       }
