@@ -34,7 +34,21 @@ class PropelMigration_1331113289
       'propel' => "
         SET FOREIGN_KEY_CHECKS = 0;
 
+        ALTER TABLE `collectible_offer` DROP INDEX `collectible_offer_FI_2`;
 
+        # We need to remove AUTO_INCREMENT property from ID before dropping the PK
+        ALTER TABLE `collectible_for_sale` CHANGE `id` `id` INTEGER NOT NULL;
+        ALTER TABLE `collectible_for_sale` DROP PRIMARY KEY;
+
+        ALTER TABLE `collectible_for_sale` DROP INDEX `collectible_for_sale_item`;
+        ALTER TABLE `collectible_for_sale` DROP `id`;
+
+        ALTER TABLE `collectible_for_sale` ADD PRIMARY KEY (`collectible_id`);
+
+        ALTER TABLE `collectible_for_sale` ADD CONSTRAINT `collectible_for_sale_FK_1`
+          FOREIGN KEY (`collectible_id`)
+          REFERENCES `collectible` (`id`)
+          ON DELETE CASCADE;
 
         SET FOREIGN_KEY_CHECKS = 1;
       ",

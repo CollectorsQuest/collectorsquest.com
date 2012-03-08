@@ -32,6 +32,8 @@ class PropelMigration_1330899669
 	{
 		return array (
       'propel' => "
+        SET FOREIGN_KEY_CHECKS = 0;
+
         DROP TABLE IF EXISTS `shopping_cart`;
         CREATE TABLE `shopping_cart`
         (
@@ -47,28 +49,38 @@ class PropelMigration_1330899669
             FOREIGN KEY (`collector_id`)
             REFERENCES `collector` (`id`)
             ON DELETE SET NULL
-        ) ENGINE=InnoDB;
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
         DROP TABLE IF EXISTS `shopping_cart_collectible`;
         CREATE TABLE `shopping_cart_collectible`
         (
           `shopping_cart_id` INTEGER NOT NULL,
-          `collectible_for_sale_id` INTEGER NOT NULL,
+          `collectible_id` INTEGER NOT NULL,
+          `price_amount` INTEGER DEFAULT 0 NOT NULL,
+          `price_currency` CHAR(3) DEFAULT 'USD' NOT NULL,
+          `tax_amount` INTEGER DEFAULT 0 NOT NULL,
+          `shipping_country_iso3166` CHAR(2),
+          `shipping_fee_amount` INTEGER DEFAULT 0 NOT NULL,
           `is_active` TINYINT(1) DEFAULT 1,
-          `price` FLOAT,
           `created_at` DATETIME,
           `updated_at` DATETIME,
-          PRIMARY KEY (`shopping_cart_id`,`collectible_for_sale_id`),
-          INDEX `shopping_cart_collectible_FI_2` (`collectible_for_sale_id`),
+          PRIMARY KEY (`shopping_cart_id`,`collectible_id`),
+          INDEX `shopping_cart_collectible_FI_2` (`collectible_id`),
+          INDEX `shopping_cart_collectible_FI_3` (`shipping_country_iso3166`),
           CONSTRAINT `shopping_cart_collectible_FK_1`
             FOREIGN KEY (`shopping_cart_id`)
             REFERENCES `shopping_cart` (`id`)
             ON DELETE CASCADE,
           CONSTRAINT `shopping_cart_collectible_FK_2`
-            FOREIGN KEY (`collectible_for_sale_id`)
-            REFERENCES `collectible_for_sale` (`id`)
-            ON DELETE CASCADE
-        ) ENGINE=InnoDB;
+            FOREIGN KEY (`collectible_id`)
+            REFERENCES `collectible` (`id`)
+            ON DELETE CASCADE,
+          CONSTRAINT `shopping_cart_collectible_FK_3`
+            FOREIGN KEY (`shipping_country_iso3166`)
+            REFERENCES `geo_country` (`iso3166`)
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+        SET FOREIGN_KEY_CHECKS = 1;
       ",
     );
 	}

@@ -29,10 +29,7 @@ class shoppingComponents extends sfComponents
       return sfView::NONE;
     }
 
-    $this->form = new ShoppingCartCollectibleCheckoutForm(array(
-      'shopping_cart_id' => $shopping_cart_collectible->getShoppingCartId(),
-      'collectible_for_sale_id' => $shopping_cart_collectible->getCollectibleForSaleId()
-    ));
+    $this->form = new ShoppingCartCollectibleCheckoutForm($shopping_cart_collectible);
 
     return sfView::SUCCESS;
   }

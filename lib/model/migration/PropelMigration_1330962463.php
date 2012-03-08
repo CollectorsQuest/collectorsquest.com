@@ -39,39 +39,38 @@ class PropelMigration_1330962463
         (
           `id` INTEGER NOT NULL AUTO_INCREMENT,
           `uuid` VARCHAR(8),
-          `session_id` VARCHAR(32),
-          `shopping_cart_id` INTEGER NOT NULL,
-          `collectible_for_sale_id` INTEGER NOT NULL,
           `collector_id` INTEGER,
+          `shopping_cart_id` INTEGER NOT NULL,
+          `collectible_id` INTEGER NOT NULL,
           `shopping_payment_id` INTEGER,
-          `shipping_country` CHAR(2),
+          `shipping_country_iso3166` CHAR(2),
           `note_to_seller` VARCHAR(255),
           `created_at` DATETIME,
           `updated_at` DATETIME,
           PRIMARY KEY (`id`),
-          UNIQUE INDEX `shopping_order_U_1` (`shopping_cart_id`, `collectible_for_sale_id`),
-          INDEX `shopping_order_FI_2` (`collectible_for_sale_id`),
-          INDEX `shopping_order_FI_3` (`collector_id`),
+          UNIQUE INDEX `shopping_order_U_1` (`shopping_cart_id`, `collectible_id`),
+          INDEX `shopping_order_FI_1` (`collector_id`),
+          INDEX `shopping_order_FI_3` (`collectible_id`),
           INDEX `shopping_order_FI_4` (`shopping_payment_id`),
-          INDEX `shopping_order_FI_5` (`shipping_country`),
+          INDEX `shopping_order_FI_5` (`shipping_country_iso3166`),
           CONSTRAINT `shopping_order_FK_1`
-            FOREIGN KEY (`shopping_cart_id`)
-            REFERENCES `shopping_cart` (`id`)
-            ON DELETE RESTRICT,
-          CONSTRAINT `shopping_order_FK_2`
-            FOREIGN KEY (`collectible_for_sale_id`)
-            REFERENCES `collectible_for_sale` (`id`)
-            ON DELETE RESTRICT,
-          CONSTRAINT `shopping_order_FK_3`
             FOREIGN KEY (`collector_id`)
             REFERENCES `collector` (`id`)
             ON DELETE SET NULL,
+          CONSTRAINT `shopping_order_FK_2`
+            FOREIGN KEY (`shopping_cart_id`)
+            REFERENCES `shopping_cart` (`id`)
+            ON DELETE RESTRICT,
+          CONSTRAINT `shopping_order_FK_3`
+            FOREIGN KEY (`collectible_id`)
+            REFERENCES `collectible` (`id`)
+            ON DELETE RESTRICT,
           CONSTRAINT `shopping_order_FK_4`
             FOREIGN KEY (`shopping_payment_id`)
             REFERENCES `shopping_payment` (`id`)
             ON DELETE SET NULL,
           CONSTRAINT `shopping_order_FK_5`
-            FOREIGN KEY (`shipping_country`)
+            FOREIGN KEY (`shipping_country_iso3166`)
             REFERENCES `geo_country` (`iso3166`)
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -85,11 +84,11 @@ class PropelMigration_1330962463
           `session_id` VARCHAR(32),
           `processor` TINYINT DEFAULT 0 NOT NULL,
           `status` TINYINT DEFAULT 0 NOT NULL,
-          `currency` VARCHAR(3),
-          `amount_total` FLOAT,
-          `amount_collectibles` FLOAT,
-          `amount_shipping` FLOAT,
-          `amount_tax` FLOAT,
+          `currency` CHAR(3) DEFAULT 'USD',
+          `amount_total` INTEGER DEFAULT 0 NOT NULL,
+          `amount_collectibles` INTEGER DEFAULT 0 NOT NULL,
+          `amount_shipping` INTEGER DEFAULT 0 NOT NULL,
+          `amount_tax` INTEGER DEFAULT 0 NOT NULL,
           `created_at` DATETIME,
           `updated_at` DATETIME,
           PRIMARY KEY (`id`),

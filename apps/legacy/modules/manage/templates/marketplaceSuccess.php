@@ -1,5 +1,5 @@
 <?php
-/* @var $sf_user cqUser */
+/* @var $sf_user cqBaseUser */
 $isSeller = $sf_user->hasCredential('seller');
 ?>
 <style type="text/css">

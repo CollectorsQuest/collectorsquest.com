@@ -3,7 +3,7 @@
 
 /** @var $collectible Collectible */
 /** @var $sf_context sfContext */
-/** @var $sf_user cqUser */
+/** @var $sf_user cqBaseUser */
 
 /** @var $collectible_for_sale CollectibleForSale */
 $collectible_for_sale = $collectible->getForSaleInformation();

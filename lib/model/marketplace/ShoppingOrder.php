@@ -4,6 +4,10 @@ require 'lib/model/marketplace/om/BaseShoppingOrder.php';
 
 class ShoppingOrder extends BaseShoppingOrder
 {
+
+  /**
+   * @param  null|PropelPDO  $con
+   */
   public function postSave(PropelPDO $con = null)
   {
     parent::postSave($con);
@@ -17,35 +21,52 @@ class ShoppingOrder extends BaseShoppingOrder
     }
   }
 
-  public function getCollectible()
+  /**
+   * @param  null|PropelPDO  $con
+   * @return CollectibleForSale
+   */
+  public function getCollectibleForSale(PropelPDO $con = null)
   {
-    return $this->getCollectibleForSale()->getCollectible();
+    $this->getCollectible($con)->getCollectibleForSale($con);
+  }
+
+  /**
+   * @param  null|PropelPDO  $con
+   * @return ShoppingCartCollectible
+   */
+  public function getShoppingCartCollectible(PropelPDO $con = null)
+  {
+    $q = ShoppingCartCollectibleQuery::create()
+       ->filterByCollectibleId($this->getCollectibleId())
+       ->filterByShoppingCartId($this->getShoppingCartId());
+
+    return $q->findOne($con);
   }
 
   public function getTotalAmount()
   {
-    return $this->getCollectibleForSale()->getPrice();
+    return $this->getShoppingCartCollectible()->getPriceAmount();
   }
 
   public function getCurrency()
   {
-    return 'USD';
+    return $this->getShoppingCartCollectible()->getPriceCurrency();
   }
 
-  public function getShippingAmount()
+  public function getShippingFeeAmount()
   {
-    return '0';
+    return $this->getShoppingCartCollectible()->getShippingFeeAmount();
   }
 
   public function getDescription()
   {
-    return '';
+    return $this->getShoppingCartCollectible()->getDescription();
   }
 
   public function getPaypalSECFields()
   {
     return array(
-      'maxamt' => $this->getTotalAmount() + $this->getShippingAmount(),
+      'maxamt' => $this->getTotalAmount() + $this->getShippingFeeAmount(),
       'reqconfirmshipping' => '1',
       'noshipping' => '0',
       'allownote' => '1',
@@ -81,13 +102,13 @@ class ShoppingOrder extends BaseShoppingOrder
   {
     return array(
       0 => array(
-        'amt' => $this->getTotalAmount() + $this->getShippingAmount(),
+        'amt' => $this->getTotalAmount() + $this->getShippingFeeAmount(),
         'currencycode' => $this->getCurrency(),
         'itemamt' => $this->getTotalAmount(),
-        'shippingamt' => $this->getShippingAmount(),
+        'shippingamt' => $this->getShippingFeeAmount(),
         'desc' => $this->getDescription(),
         'custom' => '',
-        'invnum' => $this->getUuid(),
+        'invnum' => $this->getUuid() .'-'. rand(1,999),
         'notetext' => $this->getNoteToSeller(),
         'allowedpaymentmethod' => 'InstantPaymentOnly',
         'paymentaction' => 'Sale',
@@ -98,20 +119,17 @@ class ShoppingOrder extends BaseShoppingOrder
 
   public function getPaypalItems()
   {
-    /** @var $collectible_for_sale CollectibleForSale */
-    $collectible_for_sale = $this->getCollectibleForSale();
-
     /** @var $collectible Collectible */
     $collectible = $this->getCollectible();
 
     $items = array(
       0 => array(
         'name'   => $collectible->getName(),
-        'desc'   => $collectible->getDescription('stripped', 127),
-        'amt'    => $collectible_for_sale->getPrice(),
-        'number' => $this->getUuid() .'-'. $collectible_for_sale->getId(),
+        'desc'   => $collectible->getDescription('stripped', 85),
+        'amt'    => $this->getShoppingCartCollectible()->getPriceAmount('float'),
+        'number' => $this->getUuid() .'-'. $collectible->getId(),
         'qty'    => '1',
-        'taxamt' => '0'
+        'taxamt' => $this->getShoppingCartCollectible()->getTaxAmount('float')
       )
     );
 
