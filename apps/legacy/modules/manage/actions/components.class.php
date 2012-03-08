@@ -35,13 +35,17 @@ class manageComponents extends cqComponents
         'text' => 'Create a Collection',
         'icon' => 'plus',
         'route' => '@collection_create'
-      ),
-      1 => array(
+      )
+    );
+
+    if (IceGateKeeper::open('dropbox'))
+    {
+      $this->buttons[1] = array(
         'text' => 'Upload Collectibles',
         'icon' => 'arrowthick-1-n',
         'route' => 'fancybox_collection_add_collectibles(0)'
-      )
-    );
+      );
+    }
 
     return sfView::SUCCESS;
   }
