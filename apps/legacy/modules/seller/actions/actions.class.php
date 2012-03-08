@@ -89,7 +89,7 @@ class sellerActions extends cqActions
         $ssFreePackage = '';
         if ($request->getParameter('promo_code') != '')
         {
-          $omPromotion = Promotion::checkPromotionCode($request->getParameter('promo_code'));
+          $omPromotion = PromotionPeer::findByPromotionCode($request->getParameter('promo_code'));
           if ($omPromotion)
           {
             if ($omPromotion->getNoOfTimeUsed() == 0)
@@ -147,7 +147,7 @@ class sellerActions extends cqActions
         $ssFreePackage = '';
         if ($request->getParameter('promo_code') != '')
         {
-          $omPromotion = Promotion::checkPromotionCode($request->getParameter('promo_code'));
+          $omPromotion = PromotionPeer::findByPromotionCode($request->getParameter('promo_code'));
           if ($omPromotion)
           {
             if ($omPromotion->getNoOfTimeUsed() == 0)
@@ -416,7 +416,7 @@ class sellerActions extends cqActions
       // Start Code for when user enter promotion code for get discount.
       if ($request->getParameter('promo_code'))
       {
-        $omPromotion = Promotion::checkPromotionCode($request->getParameter('promo_code'));
+        $omPromotion = PromotionPeer::findByPromotionCode($request->getParameter('promo_code'));
         if ($omPromotion)
         {
           if ($omPromotion->getNoOfTimeUsed() == 0)
