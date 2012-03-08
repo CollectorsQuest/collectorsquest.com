@@ -43,7 +43,8 @@ CREATE TABLE `shipping_rate_collector`
 (
 	`id` INTEGER NOT NULL AUTO_INCREMENT,
 	`collector_id` INTEGER NOT NULL,
-	`country_iso3166` CHAR(2),
+	`country_iso3166` CHAR(2) NOT NULL,
+	`calculation_type` TINYINT NOT NULL,
 	`price_range_min` INTEGER NOT NULL,
 	`price_range_max` INTEGER NOT NULL,
 	`amount_in_cents` INTEGER NOT NULL,
@@ -64,7 +65,8 @@ CREATE TABLE `shipping_rate_collectible`
 (
 	`id` INTEGER NOT NULL AUTO_INCREMENT,
 	`collectible_id` INTEGER NOT NULL,
-	`country_iso3166` CHAR(2),
+	`country_iso3166` CHAR(2) NOT NULL,
+	`calculation_type` TINYINT NOT NULL,
 	`price_range_min` INTEGER NOT NULL,
 	`price_range_max` INTEGER NOT NULL,
 	`amount_in_cents` INTEGER NOT NULL,
@@ -80,6 +82,9 @@ CREATE TABLE `shipping_rate_collectible`
 		FOREIGN KEY (`country_iso3166`)
 		REFERENCES `geo_country` (`iso3166`)
 ) ENGINE=InnoDB;
+
+INSERT INTO geo_country
+VALUES ("", "Wordwide", "wordwide", "ZZ", "USD", NULL, NULL, NULL);
 
 ',
 );
@@ -100,6 +105,8 @@ SET FOREIGN_KEY_CHECKS = 0;
 
 DROP TABLE `shipping_rate_collector`;
 DROP TABLE `shipping_rate_collectible`;
+
+DELETE FROM geo_country WHERE iso3166 = "ZZ";
 
 SET FOREIGN_KEY_CHECKS = 1;
 
