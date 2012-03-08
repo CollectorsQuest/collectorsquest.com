@@ -13,6 +13,9 @@ class ShippingRateCollectibleFormForEmbedding extends ShippingRateCollectibleFor
 
     $this->widgetSchema['collectible_id'] = new sfWidgetFormInputHidden();
     $this->widgetSchema['country_iso3166'] = new sfWidgetFormInputHidden();
+
+    $this->mergePostValidator(new shippingRatePriceRangeValidatorSchema());
+    $this->mergePostValidator(new shippingRateAmountInCentsOrPercentValidatorSchema());
   }
 
   public function getNameForEmbedding()
