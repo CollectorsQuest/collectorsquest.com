@@ -12,4 +12,24 @@ class PackagePeer extends BasePackagePeer
 
 		return PackagePeer::doSelectStmt($oCriteria);
 	}
+
+  /**
+   * @static
+   * @return Package[]
+   */
+  public static function getAllPackagesForSelectGroupedByPlanType()
+  {
+    /* @var $results Package[] */
+    $results = PackageQuery::create()
+        ->filterById(9999, Criteria::LESS_THAN)
+        ->find();
+
+    $packages = array();
+    foreach ($results as $package)
+    {
+      $packages[$package->getPlanType()][$package->getId()] = sprintf('%s - %s', money_format('%.2n', $package->getPackagePrice()), $package->getPackageName());
+    }
+
+    return $packages;
+  }
 }
