@@ -43,7 +43,17 @@
     </td>
     <td width="50%" valign="top">
       <form action="" name="frmpackage" id="frmpackage" method="post">
-        <?php $packagesForm->renderHiddenFields(); ?>
+        <?php
+        $packagesForm->renderHiddenFields();
+// Seller Details
+//        echo input_hidden_tag('user_type', 'Seller');
+//        echo input_hidden_tag('items_allowed');
+//        echo input_hidden_tag('package_price');
+//        echo input_hidden_tag('package_name');
+//        echo input_hidden_tag('free_subscription', $freeSubscription);
+//        echo input_hidden_tag('commit');
+//        echo input_hidden_tag('type', $sf_request->getParameter('type'));
+        ?>
         <table width="100%" border="0" cellspacing="0" cellpadding="0" class="offerright">
           <tr>
             <td>
@@ -52,7 +62,6 @@
                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                   <?php echo $packagesForm['package_id']->renderError(); ?>
                   <?php echo $packagesForm['package_id']->render(); ?>
-                  ?>
                   <tr>
                     <td><h5 class="title_h5">Promotion Code: </h5></td>
                     <td>
@@ -69,27 +78,27 @@
                 <?php if (!$freeSubscription): ?>
                 <?php /* @var $paymentType sfFormField */ ?>
                 <?php echo $packagesForm['payment_type']->render(array('style'=> 'height: 24px;')); ?>
-                ?>
                 <table id="fieldset_cc">
                   <?php echo $packagesForm['card_type']->renderRow() ?>
-                <?php echo $packagesForm['cc_number']->renderRow() ?>
-                <?php echo $packagesForm['expiry_date']->renderRow() ?>
-                <?php echo $packagesForm['cvv_number']->renderRow(); ?>
-                <?php $ccFields = array(
+                  <?php echo $packagesForm['cc_number']->renderRow() ?>
+                  <?php echo $packagesForm['expiry_date']->renderRow() ?>
+                  <?php echo $packagesForm['cvv_number']->renderRow(); ?>
+                  <?php $ccFields = array(
                   'first_name', 'last_name', 'street', 'city', 'state', 'zip', 'country',
                 ); ?>
-                <?php foreach ($ccFields as $field): ?>
+                  <?php foreach ($ccFields as $field): ?>
                   <?php echo $packagesForm[$field]->renderRow(); ?>
                   <?php endforeach; ?>
-                <tr>
-                  <td colspan="2">
-                    <?php if ($packagesForm['term_condition']->hasError()): ?>
-                    <?php echo $packagesForm['term_condition']->renderError() ?>
-                    <?php endif; ?>
-                    <?php echo $packagesForm['term_condition']->render() ?>&nbsp;<label for="<?php echo $packagesForm['term_condition']->renderId() ?>">I accept the
-                    <a href="/blog/terms-and-conditions/" title="terms and conditions" target="_blank">terms and conditions</a> set forth by this site.</label>
-                  </td>
-                </tr>
+                  <tr>
+                    <td colspan="2">
+                      <?php if ($packagesForm['term_condition']->hasError()): ?>
+                      <?php echo $packagesForm['term_condition']->renderError() ?>
+                      <?php endif; ?>
+                      <?php echo $packagesForm['term_condition']->render() ?>&nbsp;<label for="<?php echo $packagesForm['term_condition']->renderId() ?>">I accept the
+                      <a href="/blog/terms-and-conditions/" title="terms and conditions" target="_blank">terms and conditions</a> set forth by this site.</label>
+                    </td>
+                  </tr>
+                </table>
                 <?php if ($sf_user->hasFlash('msg_payment')): ?>
                   <table>
                     <tr>
