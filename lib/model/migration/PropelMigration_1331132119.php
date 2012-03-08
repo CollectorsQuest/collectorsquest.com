@@ -38,20 +38,16 @@ class PropelMigration_1331132119
 	{
 		return array (
   'propel' => '
--- ---------------------------------------------------------------------
--- shipping_rate_collector
--- ---------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `shipping_rate_collector`;
 
 CREATE TABLE `shipping_rate_collector`
 (
 	`id` INTEGER NOT NULL AUTO_INCREMENT,
 	`collector_id` INTEGER NOT NULL,
+	`country_iso3166` CHAR(2),
 	`price_range_min` INTEGER NOT NULL,
 	`price_range_max` INTEGER NOT NULL,
 	`amount_in_cents` INTEGER NOT NULL,
-	`country_iso3166` CHAR(2),
+	`amount_in_percent` INTEGER NOT NULL,
 	PRIMARY KEY (`id`),
 	INDEX `shipping_rate_collector_FI_1` (`collector_id`),
 	INDEX `shipping_rate_collector_I_2` (`country_iso3166`),
@@ -64,20 +60,15 @@ CREATE TABLE `shipping_rate_collector`
 		REFERENCES `geo_country` (`iso3166`)
 ) ENGINE=InnoDB;
 
--- ---------------------------------------------------------------------
--- shipping_rate_collectible
--- ---------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `shipping_rate_collectible`;
-
 CREATE TABLE `shipping_rate_collectible`
 (
 	`id` INTEGER NOT NULL AUTO_INCREMENT,
 	`collectible_id` INTEGER NOT NULL,
+	`country_iso3166` CHAR(2),
 	`price_range_min` INTEGER NOT NULL,
 	`price_range_max` INTEGER NOT NULL,
 	`amount_in_cents` INTEGER NOT NULL,
-	`country_iso3166` CHAR(2),
+	`amount_in_percent` INTEGER NOT NULL,
 	PRIMARY KEY (`id`),
 	INDEX `shipping_rate_collectible_FI_1` (`collectible_id`),
 	INDEX `shipping_rate_collectible_I_2` (`country_iso3166`),
@@ -105,8 +96,12 @@ CREATE TABLE `shipping_rate_collectible`
 		return array (
   'propel' => '
 
-DROP TABLE IF EXISTS `shipping_rate_collecor`;
-DROP TABLE IF EXISTS `shipping_rate_collectible`;
+SET FOREIGN_KEY_CHECKS = 0;
+
+DROP TABLE `shipping_rate_collector`;
+DROP TABLE `shipping_rate_collectible`;
+
+SET FOREIGN_KEY_CHECKS = 1;
 
 ',
 );

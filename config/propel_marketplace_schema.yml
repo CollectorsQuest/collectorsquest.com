@@ -107,10 +107,11 @@ classes:
     skipSql: true
     columns:
       id:                   ~
+      country_iso3166:      { type: char, size: 2, required: false, foreignTable: geo_country, foreignReference: iso3166 } # not set = catch all
       price_range_min:      { type: integer, required: true }
       price_range_max:      { type: integer, required: true }
       amount_in_cents:      { type: integer, required: true }
-      country_iso3166:      { type: char, size: 2, required: false, foreignTable: geo_country, foreignReference: iso3166 } # not set = catch all
+      amount_in_percent:    { type: integer, required: true }
     propel_behaviors:
       symfony:              { form: true, filter: false }
 
@@ -122,7 +123,6 @@ classes:
 
   ShippingRateCollectible:
     columns:
-      amount_in_percent:    { type: integer, required: true }
       collectible_id:       { type: integer, required: true, foreignClass: Collectible, foreignReference: id, onDelete: cascade }
     propel_behaviors:
       concrete_inheritance: { extends: shipping_rate, copy_data_to_parent: false }
