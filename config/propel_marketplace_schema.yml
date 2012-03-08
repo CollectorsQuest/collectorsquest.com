@@ -111,6 +111,8 @@ classes:
       price_range_max:      { type: integer, required: true }
       amount_in_cents:      { type: integer, required: true }
       country_iso3166:      { type: char, size: 2, required: false, foreignTable: geo_country, foreignReference: iso3166 } # not set = catch all
+    propel_behaviors:
+      symfony:              { form: true, filter: false }
 
   ShippingRateCollector:
     columns:
