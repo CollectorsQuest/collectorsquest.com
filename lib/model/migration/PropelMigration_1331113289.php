@@ -35,6 +35,8 @@ class PropelMigration_1331113289
         SET FOREIGN_KEY_CHECKS = 0;
 
         ALTER TABLE `collectible_offer` DROP INDEX `collectible_offer_FI_2`;
+        ALTER TABLE `collectible_offer` DROP FOREIGN KEY `collectible_offer_FK_2`;
+        ALTER TABLE `collectible_offer` DROP `collectible_for_sale_id`;
 
         # We need to remove AUTO_INCREMENT property from ID before dropping the PK
         ALTER TABLE `collectible_for_sale` CHANGE `id` `id` INTEGER NOT NULL;
