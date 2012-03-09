@@ -14,8 +14,11 @@ class shippingRatePriceRangeValidatorSchema extends sfValidatorSchema
        If you want to specify a range of %price_range_min% to infinity, enter
        0 for "price range max"');
 
+    $this->addMessage('price_range_requried',
+      'You must set prince range min and max when calculation type is price range');
+
     $this->addMessage('price_range_not_required',
-      'Price range is not requiret when calculation type is not price range');
+      'Price range is not required when calculation type is not price range');
   }
 
   protected function doClean($values)
@@ -37,6 +40,20 @@ class shippingRatePriceRangeValidatorSchema extends sfValidatorSchema
           )),
           'price_range_max' // the field that the error is added to
         );
+
+        throw $errorSchema;
+      }
+
+      // if neither extreme is set
+      if (0 == $values['price_range_max'] && 0 == $values['price_range_min'])
+      {
+        // throw an error about price range required
+        $errorSchema = new sfValidatorErrorSchema($this);
+        $error = new sfValidatorError($this, 'price_range_required');
+
+        // add the error to both fields
+        $errorSchema->addError($error, 'price_range_min');
+        $errorSchema->addError($error, 'price_range_max');
 
         throw $errorSchema;
       }
