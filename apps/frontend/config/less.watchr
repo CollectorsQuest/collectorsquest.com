@@ -25,7 +25,7 @@ def crawl( path, max_depth=nil, include_directories=false, depth=0, &block )
  end
 end
 
-def lessc(input, output)
+def plessc(input, output)
   print "[" + Time.now.strftime("%I:%M:%S") + "] compiling #{input.inspect}... "
   system "console/plessc #{input} #{output}"
   puts 'done'
@@ -37,12 +37,12 @@ end
 watch ( 'web/less/frontend/.*\.less$' ) {
   crawl('web/less/frontend', 1, false){ |file_path, depth|
     if File.split( file_path )[ 1 ] =~ Regexp.new('^(?!_).*\.less$', true)
-      lessc file_path, file_path.gsub('less', 'css')
+      plessc file_path, file_path.gsub('less', 'css')
     end
   }
 }
 
 watch ( 'web/less/frontend/bootstrap/less/.*\.less$' ) {
-  lessc 'web/less/frontend/bootstrap/less/bootstrap.less',
-        'web/css/frontend/bootstrap.css'
+  plessc 'web/less/frontend/bootstrap/less/bootstrap.less',
+         'web/css/frontend/bootstrap.css'
 }
