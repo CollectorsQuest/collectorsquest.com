@@ -42,6 +42,7 @@ class PropelMigration_1331113289
         ALTER TABLE `collectible_for_sale` CHANGE `id` `id` INTEGER NOT NULL;
         ALTER TABLE `collectible_for_sale` DROP PRIMARY KEY;
 
+        ALTER TABLE `collectible_for_sale` DROP FOREIGN KEY `collectible_for_sale_FK_1`;
         ALTER TABLE `collectible_for_sale` DROP INDEX `collectible_for_sale_item`;
         ALTER TABLE `collectible_for_sale` DROP `id`;
 
