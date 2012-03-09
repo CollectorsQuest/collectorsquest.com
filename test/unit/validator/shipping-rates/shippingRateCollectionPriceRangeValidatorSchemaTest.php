@@ -1,9 +1,9 @@
 <?php
 include_once(dirname(__FILE__).'/../../../bootstrap/unit.php');
-require_once(dirname(__FILE__).'/../../../../lib/validator/shipping-rates/shippingRateCollectionPriceRangeValidator.class.php');
+require_once(dirname(__FILE__).'/../../../../lib/validator/shipping-rates/shippingRateCollectionPriceRangeValidatorSchema.class.php');
 
 $t = new lime_test(8, new lime_output_color());
-$t->diag('Testing /lib/validator/shipping-rates/shippingRateCollectionPriceRangeValidator.class.php');
+$t->diag('Testing /lib/validator/shipping-rates/shippingRateCollectionPriceRangeValidatorSchema.class.php');
 
 $tests = array(
 //array($valid, $embedded_form_names, $values, $test_message)
@@ -93,7 +93,7 @@ $tests = array(
   ), 'validator does not return error for calculation_type different from price_range'),
 );
 
-$v = new shippingRateCollectionPriceRangeValidator(null, array(
+$v = new shippingRateCollectionPriceRangeValidatorSchema(null, array(
     'embedded_form_names' => array(),
 ));
 

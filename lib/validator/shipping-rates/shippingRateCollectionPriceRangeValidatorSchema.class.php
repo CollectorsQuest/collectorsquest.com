@@ -4,7 +4,7 @@
  * shippingRateCollectionPriceRangeValidator validates multiple embedded
  * shippingRate forms if their combined range is valid
  */
-class shippingRateCollectionPriceRangeValidator extends sfValidatorSchema
+class shippingRateCollectionPriceRangeValidatorSchema extends sfValidatorSchema
 {
 
   protected function configure($options = array(), $messages = array())
