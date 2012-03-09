@@ -27,12 +27,14 @@ class aentActions extends cqActions
     $american_pickers = sfConfig::get('app_aent_american_pickers');
 
     $q = CollectibleQuery::create()
+       ->setDistinct()
        ->filterByCollectorId($pawn_stars['collector'])
        ->filterByCollectionId($pawn_stars['collection'])
        ->orderById(Criteria::ASC);
     $ps_collectibles = $q->find();
 
     $q = CollectibleQuery::create()
+       ->setDistinct()
        ->filterByCollectorId($american_pickers['collector'])
        ->filterByCollectionId($american_pickers['collection'])
        ->orderById(Criteria::ASC);
