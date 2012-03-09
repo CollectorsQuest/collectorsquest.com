@@ -71,9 +71,14 @@ class ShippingRatesForCountryCollectionForm extends sfForm
     {
       $this->widgetSchema['country_iso3166'] = new cqWidgetFormPlain(array(
           'content_tag' => 'span',
+          'render_callback' => function($country_code) {
+            $sf_culture = sfContext::getInstance()->getUser()->getCulture();
+            $country = sfCultureInfo::getInstance($sf_culture)->getCountry($country_code);
+            return $country;
+          }
       ));
     }
-
+    $this->widgetSchema['country_iso3166']->setLabel('Country');
     $this->validatorSchema['country_iso3166'] = new sfValidatorPropelChoice(array(
         'model' => 'GeoCountry',
         'column' => 'iso3166',

@@ -64,8 +64,8 @@ class cqWidgetFormPlain extends sfWidgetForm
       ? $this->renderContentTag(
         $this->getOption('content_tag'),
         $this->getOption('escape')
-          ? self::escapeOnce($value)
-          : $value,
+          ? self::escapeOnce($rendered_value)
+          : $rendered_value,
         $attributes)
       : '<br />'; // symfony's default css fucks up without this
 
