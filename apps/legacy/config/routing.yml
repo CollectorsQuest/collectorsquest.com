@@ -72,6 +72,7 @@ seller_callback_ipn:
   url: /seller/ipn
   param: { module: seller, action: callbackIPN }
   options: { extra_parameters_as_query_string: true }
+  requirements: { sf_method: [POST]}
 
 # currently points to the collector signup form
 seller_signup:
