@@ -46,16 +46,3 @@ watch ( 'web/less/frontend/bootstrap/less/.*\.less$' ) {
   lessc 'web/less/frontend/bootstrap/less/bootstrap.less',
         'web/css/frontend/bootstrap.css'
 }
-
-# --------------------------------------------------
-# Signal Handling
-# --------------------------------------------------
-# Ctrl-\
-Signal.trap('QUIT') do
-  puts " --- Compiling all .less files ---\n\n"
-  Dir['**/*.less'].each {|file| lessc file }
-  puts 'all compiled'
-end
-
-# Ctrl-C
-Signal.trap('INT')  { abort("\n") }
