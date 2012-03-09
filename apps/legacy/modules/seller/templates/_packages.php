@@ -1,7 +1,7 @@
 <?php
 $ssAction = @$ssAction ? : '@seller_become?id=';
 $bFreeSubscription = @$bFreeSubscription ? : 0;
-$packages = PackagePeer::doSelectAllGrouppedByPlanType();
+$packages = PackagePeer::getAllPackagesForSelectGroupedByPlanType();
 
 ?>
 <br clear="all" />
@@ -46,12 +46,12 @@ $packages = PackagePeer::doSelectAllGrouppedByPlanType();
               <legend>Choose a Plan</legend>
 
               <?php if ($packages): ?>
-              <?php foreach ($packages as $group=> $packagesGroup): ?>
+              <?php foreach ($packages as $group => $packagesGroup): ?>
                 <?php /* @var $packagesGroup Package[] */ ?>
                 <h5><?php echo __('%plan% Plan', array('%plan%'=> $group)) ?></h5>
                 <ul style="width: 100%;">
-                  <?php foreach ($packagesGroup as $package): ?>
-                  <li><?php echo link_to($package->getPackageName(), '@seller_become?package_id=' . $package->getId()); ?></li>
+                  <?php foreach ($packagesGroup as $id => $package): ?>
+                  <li><?php echo link_to($package, '@seller_become?package_id=' . $id, array('style' => 'text-decoration: none;')); ?></li>
                   <?php endforeach; ?>
                 </ul>
                 <?php endforeach; ?>
