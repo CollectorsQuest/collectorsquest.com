@@ -9,11 +9,14 @@ class ShippingRatesForCountryCollectionForm extends sfForm
     $this->setupCalculationTypeField();
     $this->setupEmbeddedForms();
 
-    $this->mergePostValidator(new cqCopyFieldsToEmbeddedFormValidatorSchema(null, array(
+    $this->mergePostValidator(new cqCopyFieldsToEmbeddedFormValidatorSchema(null,array(
         'fields_to_copy' => array(
             'country_iso3166',
             'calculation_type',
          ),
+        'embedded_form_names' => array_keys($this->embeddedForms),
+    )));
+    $this->mergePostValidator(new shippingRateCollectionPriceRangeValidator(null, array(
         'embedded_form_names' => array_keys($this->embeddedForms),
     )));
 
@@ -24,6 +27,36 @@ class ShippingRatesForCountryCollectionForm extends sfForm
         // do not execute the second validator if the first fails
         'halt_on_error' => true,
     )));
+  }
+
+  /**
+   * Merges a validator with the current post validators.
+   *
+   * Overloaeded to halt on error
+   *
+   * @param sfValidatorBase $validator A validator to be merged
+   */
+  public function mergePostValidator(sfValidatorBase $validator = null)
+  {
+    if (null === $validator)
+    {
+      return;
+    }
+
+    if (null === $this->validatorSchema->getPostValidator())
+    {
+      $this->validatorSchema->setPostValidator($validator);
+    }
+    else
+    {
+      $this->validatorSchema->setPostValidator(new sfValidatorAnd(array(
+        $this->validatorSchema->getPostValidator(),
+        $validator,
+      ), array(
+          // add halt on error to prevent propagation of errors to lower validators
+          'halt_on_error' => true,
+      )));
+    }
   }
 
   public function getNameForEmbedding()
@@ -129,5 +162,6 @@ class ShippingRatesForCountryCollectionForm extends sfForm
         'filter_extra_fields' => false,
     )));
   }
+
 
 }
