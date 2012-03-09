@@ -52,7 +52,7 @@ class collectibleForSaleActions extends autoCollectibleForSaleActions
 
     $criteria = new Criteria();
     $criteria->clearSelectColumns();
-    $criteria->addSelectColumn(CollectibleForSalePeer::ID);
+    $criteria->addSelectColumn(CollectibleForSalePeer::COLLECTIBLE_ID);
     $criteria->addJoin(CollectibleForSalePeer::COLLECTIBLE_ID, CollectiblePeer::ID);
     $criteria->addJoin(CollectiblePeer::COLLECTOR_ID, CollectorPeer::ID);
     $criteria->addSelectColumn(CollectiblePeer::NAME);
