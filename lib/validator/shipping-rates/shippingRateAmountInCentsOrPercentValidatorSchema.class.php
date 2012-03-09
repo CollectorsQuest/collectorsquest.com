@@ -1,7 +1,8 @@
 <?php
 
 /**
- *
+ * The shipping rate form requires either a shipping amount in cents or in
+ * percent is set. Make sure it is :)
  */
 class shippingRateAmountInCentsOrPercentValidatorSchema extends sfValidatorSchema
 {
@@ -12,34 +13,56 @@ class shippingRateAmountInCentsOrPercentValidatorSchema extends sfValidatorSchem
       'You must set either amount in cents or amount in percent!');
     $this->addMessage('both_amounts',
       'You have set both cent and percent amounts. Only one of the two must be set!');
+    $this->addMessage('no_amount_required',
+      'You should not set an amount with your currently selected calculation type');
   }
 
   protected function doClean($values)
   {
-    // if neither amount in cents nor in percent is set throw an error
-    if ( 0 == $values['amount_in_cents'] && 0 == $values['amount_in_percent'])
+    // if calculation_type requires an amount to be set
+    if (in_array($values['calculation_type'], ShippingRatePeer::$calculation_type_amount['required']))
     {
-      $errorSchema = new sfValidatorErrorSchema($this);
-      $error = new sfValidatorError($this, 'missing_amount');
+      // if neither amount in cents nor in percent is set throw an error
+      if ( 0 == $values['amount_in_cents'] && 0 == $values['amount_in_percent'])
+      {
+        $errorSchema = new sfValidatorErrorSchema($this);
+        $error = new sfValidatorError($this, 'missing_amount');
 
-      // add the error to both fields
-      $errorSchema->addError($error, 'amount_in_cents');
-      $errorSchema->addError($error, 'amount_in_percent');
+        // add the error to both fields
+        $errorSchema->addError($error, 'amount_in_cents');
+        $errorSchema->addError($error, 'amount_in_percent');
 
-      throw $errorSchema;
+        throw $errorSchema;
+      }
+
+      // if both amount in cents and in percent is set throw an error
+      if ( 0 != $values['amount_in_cents'] && 0 != $values['amount_in_percent'])
+      {
+        $errorSchema = new sfValidatorErrorSchema($this);
+        $error = new sfValidatorError($this, 'both_amounts');
+
+        // add the error to both fields
+        $errorSchema->addError($error, 'amount_in_cents');
+        $errorSchema->addError($error, 'amount_in_percent');
+
+        throw $errorSchema;
+      }
     }
-
-    // if both amount in cents and in percent is set throw an error
-    if ( 0 != $values['amount_in_cents'] && 0 != $values['amount_in_percent'])
+    // else if calculation_type does not require an amount set
+    if (in_array($values['calculation_type'], ShippingRatePeer::$calculation_type_amount['not-required']))
     {
-      $errorSchema = new sfValidatorErrorSchema($this);
-      $error = new sfValidatorError($this, 'both_amounts');
+      // if both amount in cents and in percent is set throw an error
+      if ( 0 != $values['amount_in_cents'] || 0 != $values['amount_in_percent'])
+      {
+        $errorSchema = new sfValidatorErrorSchema($this);
+        $error = new sfValidatorError($this, 'no_amount_required');
 
-      // add the error to both fields
-      $errorSchema->addError($error, 'amount_in_cents');
-      $errorSchema->addError($error, 'amount_in_percent');
+        // add the error to both fields
+        $errorSchema->addError($error, 'amount_in_cents');
+        $errorSchema->addError($error, 'amount_in_percent');
 
-      throw $errorSchema;
+        throw $errorSchema;
+      }
     }
 
     return $values;
