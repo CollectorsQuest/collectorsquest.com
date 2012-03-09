@@ -27,7 +27,7 @@ end
 
 def plessc(input, output)
   print "[" + Time.now.strftime("%I:%M:%S") + "] compiling #{input.inspect}... "
-  system "console/plessc #{input} #{output}"
+  system "php console/plessc #{input} #{output}"
   puts 'done'
 end
 
