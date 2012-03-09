@@ -32,7 +32,7 @@ $discount = $package->getPackagePrice() - $packageTransaction->getPackagePrice()
   echo input_hidden_tag('currency_code', sfConfig::get("app_paypal_currency"));
   echo input_hidden_tag('currency', sfConfig::get("app_paypal_currency"));
   echo input_hidden_tag('return', url_for1('manage_collections', true));
-  echo input_hidden_tag('cancel_return', url_for1('seller_cancel_payment', true));
+  echo input_hidden_tag('cancel_return', url_for('seller_cancel_payment', array('id'=>$packageTransaction->getId()), true));
   echo input_hidden_tag('notify_url', url_for1('seller_callback_ipn', true));
   ?>
   <input type="submit" value="Continue" style="display: block; margin: 0 auto;" />

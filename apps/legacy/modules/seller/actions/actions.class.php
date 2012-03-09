@@ -797,7 +797,7 @@ class sellerActions extends cqActions
     )
     {
 
-      $promotion->setNoOfTimeUsed($promotion->getNoOfTimeUsed() -1);
+      $promotion->setNoOfTimeUsed($promotion->getNoOfTimeUsed() - 1);
       $promotion->save();
     }
 
@@ -817,7 +817,25 @@ class sellerActions extends cqActions
    */
   public function executeCancelPayment(sfWebRequest $request)
   {
-    dd($request->getParameterHolder()->getAll());
+    $packageTransaction = PackageTransactionQuery::create()
+        ->filterByCollector($this->getCollector())
+        ->filterById($request->getParameter('id'))
+        ->filterByPaymentStatus(PackageTransactionPeer::STATUS_PENDING)
+        ->findOne();
+
+    if ($packageTransaction)
+    {
+      $packageTransaction->setPaymentStatus(PackageTransactionPeer::STATUS_CANCELED);
+      $packageTransaction->save();
+
+      $this->getUser()->setFlash('success', 'Order canceled successfully.');
+    }
+    else
+    {
+      $this->getUser()->setFlash('error', 'There is no active order');
+    }
+
+    $this->redirect('@manage_collections');
   }
 
   /**
