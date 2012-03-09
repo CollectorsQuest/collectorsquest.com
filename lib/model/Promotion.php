@@ -30,14 +30,6 @@ class Promotion extends BasePromotion
 
 		return $omPromotion->getPromotionName();
 	}
-	public static function checkPromotionCode($ssPromotionCode)
-	{
-		$oCriteria = new Criteria();
-		$oCriteria->add(PromotionPeer::PROMOTION_CODE, $ssPromotionCode);
-		$omPromotion = PromotionPeer::doSelectOne($oCriteria);
-
-		return $omPromotion;
-	}
 	public static function deductPromoCodeUsed($snPromotionId)
 	{
 		$omPromotion = PromotionPeer::retrieveByPK($snPromotionId);
