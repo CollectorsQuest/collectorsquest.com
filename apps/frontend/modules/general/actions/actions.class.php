@@ -10,17 +10,13 @@
  */
 class generalActions extends cqFrontendActions
 {
- /**
-  * Executes index action
-  *
-  * @param sfRequest $request A request object
-  */
-  public function executeIndex(sfWebRequest $request)
+
+  public function executeIndex()
   {
-    $this->forward('default', 'module');
+    return sfView::SUCCESS;
   }
 
-  public function executeCountdown(sfWebRequest $request)
+  public function executeCountdown()
   {
     return sfView::SUCCESS;
   }
@@ -42,4 +38,5 @@ class generalActions extends cqFrontendActions
 
     return $this->redirect(!empty($url) ? $url : '@homepage');
   }
+
 }

@@ -4,15 +4,21 @@ require 'lib/model/marketplace/om/BasePackageTransactionPeer.php';
 
 class PackageTransactionPeer extends BasePackageTransactionPeer
 {
-	/* added by Prakash Panchal 19-APR-2011
-	 * checkExpiryDate function.
-	 * return object
-	 */
-	public static function checkExpiryDate($snColloectorId)
+
+  const STATUS_PAID = 'paid';
+  const STATUS_PENDING = 'pending';
+
+  /**
+   * @static
+   * @param $collectorId
+   * @return PackageTransaction
+   */
+  public static function checkExpiryDate($collectorId)
 	{
-		$oCriteria = new Criteria();
-		$oCriteria->add(PackageTransactionPeer::COLLECTOR_ID, $snColloectorId);
-		$oCriteria->addDescendingOrderByColumn(PackageTransactionPeer::ID);
-		return PackageTransactionPeer::doSelectOne($oCriteria);
+		$criteria = new Criteria();
+		$criteria->add(PackageTransactionPeer::COLLECTOR_ID, $collectorId);
+		$criteria->addDescendingOrderByColumn(PackageTransactionPeer::ID);
+
+		return PackageTransactionPeer::doSelectOne($criteria);
 	}
 }

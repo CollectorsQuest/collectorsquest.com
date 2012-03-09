@@ -51,9 +51,9 @@ all:
     url: "https://www.sandbox.paypal.com/cgi-bin/webscr"
     merchant_account: "kangov_1327417143_biz@collectorsquest.com"
 
-    return_url: "general/payment"
-    cancel_url: "seller/cancelPayment"
-    notify_url: "seller/callbackIPN"
+    return_url: "seller/paymentCompleted"
+    cancel_url: seller_cancel_payment
+    notify_url: seller_callback_ipn
 
 dev:
   domain_name: "collectorsquest.dev"

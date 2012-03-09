@@ -7,6 +7,8 @@ class CollectorPeer extends BaseCollectorPeer
   const PROPERTY_CQNEXT_ACCESS_ALLOWED = 'CQNEXT_ACCESS_ALLOWED';
   const PROPERTY_CQNEXT_ACCESS_ALLOWED_DEFAULT_VALUE = 0;
 
+  const TYPE_COLLECTOR = 'Collector';
+  const TYPE_SELLER = 'Seller';
 
   public static function retrieveBySlug($slug)
   {
@@ -196,11 +198,15 @@ class CollectorPeer extends BaseCollectorPeer
     $collector_profile->setCollector($collector);
 
     $collector_profile->setPreferences(array(
-      'show_age' => false, 'msg_on' => true, 'invite_only' => false
+      'show_age'    => false,
+      'msg_on'      => true,
+      'invite_only' => false
     ));
 
     $collector_profile->setNotifications(array(
-      'comment' => true, 'buddy' => true, 'message' => true
+      'comment' => true,
+      'buddy'   => true,
+      'message' => true
     ));
 
     try
@@ -254,7 +260,7 @@ class CollectorPeer extends BaseCollectorPeer
 
       $tags[$row['tag']] = array(
         'count' => $row['count'],
-        'zip' => $zip
+        'zip'   => $zip
       );
     }
 
@@ -323,7 +329,7 @@ class CollectorPeer extends BaseCollectorPeer
   {
     $omSeller = CollectorPeer::retrieveByPK($amSellerInfo['id']);
 
-    $snTotalItemAllowed = ($amSellerInfo['items_allowed'] < 0) ? $amSellerInfo['items_allowed'] : (int) $omSeller->getItemsAllowed() + $amSellerInfo['items_allowed'];
+    $snTotalItemAllowed = ($amSellerInfo['items_allowed'] < 0) ? $amSellerInfo['items_allowed'] : (int)$omSeller->getItemsAllowed() + $amSellerInfo['items_allowed'];
     $omSeller->setUserType($amSellerInfo['user_type']);
     $omSeller->setItemsAllowed($snTotalItemAllowed);
 
@@ -368,7 +374,7 @@ class CollectorPeer extends BaseCollectorPeer
     $criteria->addSelectColumn(self::DISPLAY_NAME);
     $criteria->setLimit($limit);
 
-    $criteria->add(self::DISPLAY_NAME, '%'. mysql_real_escape_string($q) .'%', Criteria::LIKE);
+    $criteria->add(self::DISPLAY_NAME, '%' . mysql_real_escape_string($q) . '%', Criteria::LIKE);
 
     return self::doSelectStmt($criteria)->fetchAll(PDO::FETCH_KEY_PAIR);
   }
