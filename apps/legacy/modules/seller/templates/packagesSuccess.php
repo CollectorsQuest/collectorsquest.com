@@ -102,15 +102,9 @@
                   </tr>
                 </table>
                 <?php if ($sf_user->hasFlash('msg_payment')): ?>
-                  <table>
-                    <tr>
-                      <td colspan="2">
-                        <ul class="error_list">
-                          <li><?php echo $sf_user->getFlash('msg_payment'); ?></li>
-                        </ul>
-                      </td>
-                    </tr>
-                  </table>
+                  <ul class="error_list">
+                    <li><?php echo $sf_user->getFlash('msg_payment'); ?></li>
+                  </ul>
                   <?php endif; ?>
                 <?php endif; ?>
                 <h5 style="margin-top: 10px;">* To avoid interruption of service, annual subscriptions
@@ -126,30 +120,6 @@
     </td>
   </tr>
 </table>
-<form action="<?php echo sfConfig::get("app_paypal_url"); ?>" name="frmpaypal" id="frmpaypal" method="post">
-  <?php
-  // Paypal Details
-  echo input_hidden_tag('item_number');
-  echo input_hidden_tag('item_name');
-  echo input_hidden_tag('custom');
-  echo input_hidden_tag('amount');
-  echo input_hidden_tag('invoice');
-  echo input_hidden_tag('on0');
-  echo input_hidden_tag('cmd', '_xclick');
-  echo input_hidden_tag('shipping', 0);
-  echo input_hidden_tag('shipping2', 0);
-  echo input_hidden_tag('no_shipping', 1);
-  echo input_hidden_tag('tax', 0);
-  echo input_hidden_tag('no_note', '1');
-  echo input_hidden_tag('rm', 2);
-  echo input_hidden_tag('business', sfConfig::get("app_paypal_merchant_account"));
-  echo input_hidden_tag('currency_code', sfConfig::get("app_paypal_currency"));
-  echo input_hidden_tag('currency', sfConfig::get("app_paypal_currency"));
-  echo input_hidden_tag('return', url_for1(sfConfig::get("app_paypal_return_url"), true));
-  echo input_hidden_tag('cancel_return', url_for1(sfConfig::get("app_paypal_cancel_url"), true));
-  echo input_hidden_tag('notify_url', url_for1(sfConfig::get("app_paypal_notify_url"), true));
-  ?>
-</form>
 <div class="clearfix append-bottom">&nbsp;</div>
 <div id="no_update"></div>
 

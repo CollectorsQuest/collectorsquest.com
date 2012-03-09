@@ -140,10 +140,10 @@ class SellerPackagesForm extends sfForm
   protected function getCardTypes()
   {
     return array(
-      'visa'              => 'Visa',
-      'master_card'       => 'MasterCard',
-      'discover'          => 'Discover',
-      'american_express'  => 'American Express'
+      'Visa'              => 'Visa',
+      'MasterCard'        => 'MasterCard',
+      'Discover'          => 'Discover',
+      'Amex'              => 'American Express'
     );
   }
 

@@ -27,11 +27,11 @@ class sellerActions extends cqActions
    */
   public function executePackages(sfWebRequest $request)
   {
-    $packagesForm = new SellerPackagesForm(array(
+    $this->packagesForm = $packagesForm = new SellerPackagesForm(array(
       'payment_type'=> 'cc',
       'package_id'  => $request->getParameter('type')
     ));
-    $freeSubscription = false;
+    $this->freeSubscription = $freeSubscription = false;
 
     $pageTitle = ($request->getParameter('type') == 'upgrade') ? $this->__('Upgrade Your Package') : $this->__('Sell Your Collectibles!');
     $this->addBreadcrumb($pageTitle);
@@ -48,27 +48,31 @@ class sellerActions extends cqActions
         {
           $promotion = $packagesForm->getPromotion();
           $package = $packagesForm->getPackage();
+          $afterDiscountPrice = $package->getPackagePrice();
 
-          if ('Fix' == $promotion->getAmountType())
+          if ($promotion)
           {
-            $afterDiscountPrice = (float)$package->getPackagePrice() - (float)$promotion->getAmount();
-            $discountTypeString = '$';
-          }
-          else
-          {
-            $discount = (float)($package->getPackagePrice() * $promotion->getAmount()) / 100;
-            $afterDiscountPrice = (float)$package->getPackagePrice() - $discount;
-            $discountTypeString = '%';
-          }
-          $freeSubscription = (bool)($afterDiscountPrice <= 0);
+            if ('Fix' == $promotion->getAmountType())
+            {
+              $afterDiscountPrice = (float)$package->getPackagePrice() - (float)$promotion->getAmount();
+              $discountTypeString = '$';
+            }
+            else
+            {
+              $discount = (float)($package->getPackagePrice() * $promotion->getAmount()) / 100;
+              $afterDiscountPrice = (float)$package->getPackagePrice() - $discount;
+              $discountTypeString = '%';
+            }
+            $freeSubscription = (bool)($afterDiscountPrice <= 0);
 
-          if ($freeSubscription)
-          {
-            $this->discountMessage = 'Free Subscription!';
-          }
-          else
-          {
-            $this->discountMessage = sprintf('%d%s discount', $promotion->getAmount(), $discountTypeString);
+            if ($freeSubscription)
+            {
+              $this->discountMessage = 'Free Subscription!';
+            }
+            else
+            {
+              $this->discountMessage = sprintf('%d%s discount', $promotion->getAmount(), $discountTypeString);
+            }
           }
         }
       }
@@ -82,19 +86,202 @@ class sellerActions extends cqActions
           //Need refactoring
           $promotion = $packagesForm->getPromotion();
           $package = $packagesForm->getPackage();
+          $collector = $this->getUser()->getCollector();
+          $afterDiscountPrice = $package->getPackagePrice();
 
-          if ('Fix' == $promotion->getAmountType())
+          if ($promotion)
           {
-            $afterDiscountPrice = (float)$package->getPackagePrice() - (float)$promotion->getAmount();
-            $discountTypeString = '$';
+            //Promo code used. Applying promotion
+            //Promotion should be applied no matter when package will be paid.
+            //TODO: Revert promo code use when cancel payment
+            if ('Fix' == $promotion->getAmountType())
+            {
+              $afterDiscountPrice = (float)$package->getPackagePrice() - (float)$promotion->getAmount();
+              $discountTypeString = '$';
+            }
+            else
+            {
+              $discount = (float)($package->getPackagePrice() * $promotion->getAmount()) / 100;
+              $afterDiscountPrice = (float)$package->getPackagePrice() - $discount;
+              $discountTypeString = '%';
+            }
+            $freeSubscription = (bool)($afterDiscountPrice <= 0);
+
+            // Store Used Promotion Code Info by User.
+            $promoTransactionInfo = array(
+              'promotion_id' => $promotion->getId(),
+              'collector_id' => $collector->getId(),
+              'amount'       => $promotion->getAmount(),
+              'amount_type'  => $promotion->getAmountType(),
+            );
+            $promoTransaction = PromotionTransaction::savePromotionTransaction($promoTransactionInfo);
+
+            $promotion->setNoOfTimeUsed($promotion->getNoOfTimeUsed() - 1);
+            $promotion->save();
+
+            $replacements['%promo_offer%'] = "congratulation You get free subscription"; //Ugly
+          }
+
+          // Save package information with payment status pending while payment successfully done.
+          $packageInfo = array(
+            'collector_id'       => $collector->getId(),
+            'package_id'         => $package->getId(),
+            'max_items_for_sale' => $package->getMaxItemsForSale(),
+            'package_price'      => $package->getPackagePrice(),
+            'payment_status'     => 'pending'
+          );
+          $packageTransaction = PackageTransaction::savePackageTransaction($packageInfo);
+
+          if ($freeSubscription)
+          {
+            // Save package information with payment status paid while payment successfully done.
+            $packageTransaction->setPackagePrice(0.0);
+            $packageTransaction->setPaymentStatus(PackageTransactionPeer::STATUS_PAID);
+            $packageTransaction->save();
+
+            // Update collector become a seller
+            $collector->setUserType(CollectorPeer::TYPE_SELLER);
+            $collector->setItemsAllowed($package->getMaxItemsForSale());
+            $collector->save();
+
+            // Send Mail To Seller
+            $to = $collector->getEmail();
+            $subject = "Thank you for becoming a seller";
+            $body = $this->getPartial(
+              'emails/seller_package_confirmation', array(
+                'collector'     => $collector,
+                'package_name'  => $package->getPackageName(),
+                'package_items' => ($package->getMaxItemsForSale() < 0) ? 'Unlimited' : $package->getMaxItemsForSale(),
+              )
+            );
+
+            // Send off the email to the Seller
+            $this->sendEmail($to, $subject, $body);
+
+            $this->getUser()->setFlash('success', 'You received free subscription');
+            $this->redirect('@manage_collections');
+          }
+          else if ('paypal' == $packagesForm->getValue('payment_type'))
+          {
+            die('pay via paypal');
+          }
+          else if ('cc' == $packagesForm->getValue('payment_type'))
+          {
+            $paypalAPI = new PayPal(array(
+              'Sandbox'      => 'dev' == SF_ENV,
+              'APIUsername'  => sfConfig::get('app_paypal_api_username'),
+              'APIPassword'  => sfConfig::get('app_paypal_api_password'),
+              'APISignature' => sfConfig::get('app_paypal_api_signature'),
+            ));
+
+            $directPaymentFields = array(
+              'paymentaction'    => 'Sale', // How you want to obtain payment.  Authorization indidicates the payment is a basic auth subject to settlement with Auth & Capture.  Sale indicates that this is a final sale for which you are requesting payment.  Default is Sale.
+              'ipaddress'        => $request->getRemoteAddress(),
+              'returnfmfdetails' => '1', // Flag to determine whether you want the results returned by FMF.  1 or 0.  Default is 0.
+            );
+
+            $creditCardDetails = array(
+              'creditcardtype' => $packagesForm->getValue('card_type'),
+              'acct'           => $packagesForm->getValue('cc_number'),
+              'expdate'        => date('mY', strtotime($packagesForm->getValue('expiry_date'))),
+              'cvv2'           => $packagesForm->getValue('cvv_number'),
+            );
+
+            $payerInfo = array(
+              'email'       => $collector->getEmail(),
+//              'payerid'     => '', // Unique PayPal customer ID for payer.
+//              'payerstatus' => '', // Status of payer.  Values are verified or unverified
+//              'business'    => '' // Payer's business name.
+            );
+
+            $billingAddressInfo = array(
+              'street'      => $packagesForm->getValue('street'), // Required.  First street address.
+              'street2'     => '', //Second street address.
+              'city'        => $packagesForm->getValue('city'), // Required.  Name of City.
+              'state'       => $packagesForm->getValue('state'), // Required. Name of State or Province.
+              'countrycode' => $packagesForm->getValue('country'), // Required.  Country code.
+              'zip'         => $packagesForm->getValue('zip'), // Required.  Postal code of payer.
+              'phonenum'    => '' //Phone Number of payer.  20 char max.
+            );
+
+            $paymentDetails = array(
+              'amt'          => $afterDiscountPrice, // Required.  Total amount of order, including shipping, handling, and tax.
+              'currencycode' => sfConfig::get('app_paypal_currency_code', 'USD'), // Required.  Three-letter currency code.  Default is USD.
+              'itemamt'      => $afterDiscountPrice, // Required if you include itemized cart details. (L_AMTn, etc.)  Subtotal of items not including S&H, or tax.
+              'shippingamt'  => 0.00, // Total shipping costs for the order.  If you specify shippingamt, you must also specify itemamt.
+              'handlingamt'  => 0.00, // Total handling costs for the order.  If you specify handlingamt, you must also specify itemamt.
+              'taxamt'       => 0.00, // Required if you specify itemized cart tax details. Sum of tax for all items on the order.  Total sales tax.
+              'desc'         => sprintf('Package %s order', $package->getPackageName()), // Description of the order the customer is purchasing.  127 char max.
+//              'custom'       => 'TEST', // Free-form field for your own use.  256 char max.
+              'invnum'       => $packageTransaction->getId(), // Your own invoice or tracking number
+//              'buttonsource' => '', // An ID code for use by 3rd party apps to identify transactions.
+              'notifyurl'    => $this->generateUrl(sfConfig::get('app_paypal_notify_url'), array(), true) // URL for receiving Instant Payment Notifications.  This overrides what your profile is set to use.
+            );
+
+            $orderItems = array(
+              array(
+                'l_name'                 => $package->getPackageName(), // Item Name.  127 char max.
+//                'l_desc'                 => 'This is a test widget description.', // Item description.  127 char max.
+                'l_amt'                  => $afterDiscountPrice, // Cost of individual item.
+                'l_number'               => $package->getId(), // Item Number.  127 char max.
+                'l_qty'                  => '1', // Item quantity.  Must be any positive integer.
+                'l_taxamt'               => 0, // Item's sales tax amount.
+              )
+            );
+
+            $paypalResult = $paypalAPI->DoDirectPayment(array(
+              'DPFields'       => $directPaymentFields,
+              'CCDetails'      => $creditCardDetails,
+              'PayerName'      => $payerInfo,
+              'BillingAddress' => $billingAddressInfo,
+              'PaymentDetails' => $paymentDetails,
+              'OrderItems'     => $orderItems,
+            ));
+
+            if ('SUCCESS' == strtoupper($paypalResult["ACK"]))
+            {
+              // Save package information with payment status paid while payment successfully done.
+              $packageTransaction->setPaymentStatus(PackageTransactionPeer::STATUS_PAID);
+              $packageTransaction->setPackagePrice($paypalResult['AMT']);
+              $packageTransaction->save();
+
+              $collector->setUserType(CollectorPeer::TYPE_SELLER);
+              $collector->setItemsAllowed($package->getMaxItemsForSale());
+              $collector->save();
+
+              // Send Mail To Seller
+              $to = $collector->getEmail();
+              $subject = "Thank you for becoming a seller";
+              $body = $this->getPartial(
+                'emails/seller_package_confirmation', array(
+                  'collector'     => $collector,
+                  'package_name'  => $package->getPackageName(),
+                  'package_items' => ($package->getMaxItemsForSale() < 0) ? 'Unlimited' : $package->getMaxItemsForSale(),
+                )
+              );
+
+              // Send off the email to the Seller
+              $result = $this->sendEmail($to, $subject, $body);
+
+              $this->getUser()->setFlash('success', 'Payment received');
+              $this->redirect('@manage_collections');
+            }
+            else
+            {
+              $this->sendEmail('developers@collectorsquest.com', 'CC DEBUG', var_export($paypalResult, true));
+
+              $this->getUser()->setFlash('msg_payment', 'Your credit card information is invalid!');
+
+              return sfView::SUCCESS;
+            }
+            // ----------------------- End PayPal Pro Code ---------------------------
           }
           else
           {
-            $discount = (float)($package->getPackagePrice() * $promotion->getAmount()) / 100;
-            $afterDiscountPrice = (float)$package->getPackagePrice() - $discount;
-            $discountTypeString = '%';
+            //This should not happen cause if neither cc or paypal selected form is invalid
+            //Need replace this with test
+            throw new Exception(sprintf('Invalid payment type %s', $packagesForm->getValue('payment_type')));
           }
-          $freeSubscription = (bool)($afterDiscountPrice <= 0);
 
           die('process');
         }
@@ -107,9 +294,6 @@ class sellerActions extends cqActions
 
       }
     }
-
-    $this->freeSubscription = $freeSubscription;
-    $this->packagesForm = $packagesForm;
 
     return sfView::SUCCESS;
 
@@ -264,7 +448,8 @@ class sellerActions extends cqActions
         $this->redirect('@manage_collections');
       }
       else
-      { // While Package is 0 then no need of send to request paypal account.
+      {
+        // While Package is 0 then no need of send to request paypal account.
         // ------------ Start PayPal Code through CURL ------------------------
         $ssExpDateMonth = $request->getParameter('expiry_date_month');
         $ssPadDateMonth = str_pad($ssExpDateMonth, 2, '0', STR_PAD_LEFT);
