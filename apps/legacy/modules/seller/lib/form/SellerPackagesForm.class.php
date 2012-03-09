@@ -10,6 +10,12 @@
 class SellerPackagesForm extends sfForm
 {
 
+  /* @var $promotion Promotion */
+  public $promotion = null;
+
+  /* @var $package Package */
+  public $package = null;
+
   public function configure()
   {
     $expDateYears = range(date('Y'), date('Y') + 10);
@@ -64,7 +70,10 @@ class SellerPackagesForm extends sfForm
       'country'       => new sfValidatorI18nChoiceCountry(array(
         'choices'=> array_keys($this->getCountries()),
       )),
-      'promo_code'    => new sfValidatorCallback(array('callback'=> array($this, 'applyPromoCode'))),
+      'promo_code'    => new sfValidatorCallback(array(
+        'required'=> false,
+        'callback'=> array($this, 'applyPromoCode')
+      )),
       'payment_type'  => new sfValidatorChoice(array('choices'=> array_keys($this->getPaymentTypes()))),
       'card_type'     => new sfValidatorChoice(array('choices'=> array_keys($this->getCardTypes()))),
       'cc_number'     => new sfValidatorString(),
@@ -119,7 +128,7 @@ class SellerPackagesForm extends sfForm
         ->getPrimaryKeys(false);
   }
 
-  public function getPaymentTypes()
+  protected function getPaymentTypes()
   {
     //TODO: Replace with proper labeling
     return array(
@@ -128,7 +137,7 @@ class SellerPackagesForm extends sfForm
     );
   }
 
-  public function getCardTypes()
+  protected function getCardTypes()
   {
     return array(
       'visa'              => 'Visa',
@@ -137,4 +146,85 @@ class SellerPackagesForm extends sfForm
       'american_express'  => 'American Express'
     );
   }
+
+  public function applyPromoCode($validator, $value)
+  {
+    $promo = PromotionPeer::findByPromotionCode($value);
+
+    if (!$promo)
+    {
+      throw new sfValidatorError($validator, 'Invalid promotion code!');
+    }
+
+    if (0 == $promo->getNoOfTimeUsed())
+    {
+      throw new sfValidatorError($validator, 'No of time Used of this promo code is over!');
+    }
+
+    if (time() > $promo->getExpiryDate('U'))
+    {
+      throw new sfValidatorError($validator, 'This Promotion code has been expired!');
+    }
+
+    $this->promotion = $promo;
+
+    return $value;
+  }
+
+  public function setPartialRequirements()
+  {
+    $fields = array('card_type', 'cc_number', 'expiry_date', 'cvv_number', 'first_name', 'last_name', 'street', 'city', 'state', 'zip', 'country', 'term_condition');
+    foreach ($fields as $field)
+    {
+      $this->getValidator($field)->setOption('required', false);
+    }
+  }
+
+  /**
+   * @return Promotion|null
+   */
+  public function getPromotion()
+  {
+    if (null !== $this->promotion)
+    {
+      return $this->promotion;
+    }
+
+    if (!$this->getValue('promo_code'))
+    {
+      return null;
+    }
+
+    $promo = PromotionQuery::create()->findOneByPromotionCode($this->getValue('promo_code'));
+
+    if ($promo)
+    {
+      $this->promotion = $promo;
+    }
+
+    return $this->promotion;
+  }
+
+  public function getPackage()
+  {
+    if (null !== $this->package)
+    {
+      return $this->package;
+    }
+
+    if (!$this->getValue('package_id'))
+    {
+      return null;
+    }
+
+    $package = PackagePeer::retrieveByPK($this->getValue('package_id'));
+
+    if ($package)
+    {
+      $this->package = $package;
+    }
+
+    return $package;
+  }
+
 }

@@ -3,6 +3,7 @@
 /* @var $freeSubscription bool */
 /* @var $sf_request sfWebRequest */
 /* @var $sf_user cqUser */
+/* @var $discountMessage string */
 
 ?>
 <br clear="all" />
@@ -43,17 +44,7 @@
     </td>
     <td width="50%" valign="top">
       <form action="" name="frmpackage" id="frmpackage" method="post">
-        <?php
-        $packagesForm->renderHiddenFields();
-// Seller Details
-//        echo input_hidden_tag('user_type', 'Seller');
-//        echo input_hidden_tag('items_allowed');
-//        echo input_hidden_tag('package_price');
-//        echo input_hidden_tag('package_name');
-//        echo input_hidden_tag('free_subscription', $freeSubscription);
-//        echo input_hidden_tag('commit');
-//        echo input_hidden_tag('type', $sf_request->getParameter('type'));
-        ?>
+        <?php echo $packagesForm->renderHiddenFields(); ?>
         <table width="100%" border="0" cellspacing="0" cellpadding="0" class="offerright">
           <tr>
             <td>
@@ -63,15 +54,26 @@
                   <?php echo $packagesForm['package_id']->renderError(); ?>
                   <?php echo $packagesForm['package_id']->render(); ?>
                   <tr>
-                    <td><h5 class="title_h5">Promotion Code: </h5></td>
+                    <th>Promotion Code:</th>
                     <td>
-                      <?php if ($packagesForm['promo_code']->hasError()): ?>
-                        <?php echo $packagesForm['promo_code']->renderError(); ?><br />
-                      <?php endif; ?>
                       <?php echo $packagesForm['promo_code']->render(); ?>
                       <button type="submit" name="submit" value="applyPromo" class="submit"
                               style="cursor: pointer; border: 1px solid; float: none; display: inline-block;" title="Check promo code">Apply
                       </button>
+                      <?php if (!empty($discountMessage)): ?>
+                      <ul class="error_list">
+                        <li class="success"><?php echo $discountMessage; ?></li>
+                      </ul>
+                      <?php endif; ?>
+                      <?php if ($sf_user->hasFlash('promo')): ?>
+                      <ul class="error_list">
+                        <li><?php echo $sf_user->getFlash('promo'); ?></li>
+                      </ul>
+                      <?php endif; ?>
+                      <?php if ($packagesForm['promo_code']->hasError()): ?>
+                      <br />
+                      <?php echo $packagesForm['promo_code']->renderError(); ?>
+                      <?php endif; ?>
                     </td>
                   </tr>
                 </table>

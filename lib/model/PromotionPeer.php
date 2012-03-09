@@ -17,4 +17,5 @@ class PromotionPeer extends BasePromotionPeer
     return PromotionQuery::create()
         ->findOneByPromotionCode($promoCode);
   }
+
 }
