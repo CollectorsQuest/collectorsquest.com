@@ -2,24 +2,6 @@
 
 class ShippingRatesForCountryCollectionForm extends sfForm
 {
-  protected $country_code;
-  protected $calculation_type;
-  protected $shipping_rates;
-
-  public function __construct(
-    $shipping_rates,
-    $country_code,
-    $calculation_type,
-    $options = array(),
-    $CSRFSecret = null
-  ) {
-
-    $this->country_code = $country_code;
-    $this->shipping_rates = $shipping_rates;
-    $this->calculation_type = $calculation_type;
-
-    parent::__construct(array(), $options, $CSRFSecret);
-  }
 
   public function configure()
   {
@@ -47,15 +29,15 @@ class ShippingRatesForCountryCollectionForm extends sfForm
   public function getNameForEmbedding()
   {
     // if empty country code specified default to ZZ = Unknown Country or Region
-    return 'country_' . ($this->country_code ?: 'zz');
+    return 'country_' . $this->getOption('country_code', 'ZZ');
   }
 
   public function getDefaults()
   {
     $defaults = parent::getDefaults();
     return array_merge(array(
-        'country_iso3166' => $this->country_code,
-        'calculation_type' => $this->calculation_type,
+        'country_iso3166' => $this->getOption('country_code', null),
+        'calculation_type' => $this->getOption('calculation_type'),
     ), $defaults);
   }
 
@@ -109,24 +91,26 @@ class ShippingRatesForCountryCollectionForm extends sfForm
 
   protected function setupEmbeddedForms()
   {
+    $embedded_form_class_name = $this->getEmbeddedFormClassForParentObject(
+      $this->getOption('parent_object')
+    );
     /* @var $shipping_rate ShippingRate */
-    foreach ($this->shipping_rates as $shipping_rate)
+    foreach ($this->getOption('shipping_rates', array()) as $shipping_rate)
     {
-      $form_class_name = $this->getFormClassForShippingRate($shipping_rate);
-      $form = new $form_class_name($shipping_rate);
+      $form = new $embedded_form_class_name($shipping_rate);
 
       $this->embedForm($form->getNameForEmbedding(), $form);
     }
   }
 
-  protected function getFormClassForShippingRate(ShippingRate $shipping_rate)
+  protected function getEmbeddedFormClassForParentObject($object)
   {
-    if ($shipping_rate instanceof ShippingRateCollector)
+    if ($object instanceof Collector)
     {
       return 'ShippingRateCollectorFormForEmbedding';
     }
 
-    if ($shipping_rate instanceof ShippingRateCollectible)
+    if ($object instanceof Collectible)
     {
       return 'ShippingRateCollectibleFormForEmbedding';
     }

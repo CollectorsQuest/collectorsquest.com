@@ -72,11 +72,13 @@ class ShippingRatesCollectionForm extends sfFormPropel
     foreach ($shipping_rates_by_country as $country_code => $shipping_rates)
     {
       $calculation_type = $shipping_rates[0]->getCalculationType();
-      $form = new ShippingRatesForCountryCollectionForm(
-        $shipping_rates,
-        $country_code,
-        $calculation_type
-      );
+      $form = new ShippingRatesForCountryCollectionForm($defaults = array(), array(
+          'parent_object'  => $this->getObject(),
+          'shipping_rates' => $shipping_rates,
+          'country_code'   => $country_code,
+          'calculation_type' => $calculation_type,
+      ));
+
       $this->embedForm($form->getNameForEmbedding(), $form);
     }
   }
