@@ -33,6 +33,10 @@ base
 /web/sf
 /web/sf*Plugin
 
+# stylesheets
+/web/css/frontend/bootstrap.css
+/web/css/frontend/main.css
+
 # Vagrant
 /config/vagrant/.vagrant
 /config/vagrant/platform
