@@ -32,6 +32,10 @@ all:
     default_timezone:       America/New_York
     charset:                utf-8
 
+    enabled_modules:        []
+    standard_helpers:       [Partial, Cache, Form, I18N, iceAssets, cqAssets, cqGeneral, cqImages, cqLinks, cqJavascripts]
+    sf_compat_10:           off
+
     # Output escaping settings
     escaping_strategy:      true
     escaping_method:        ESC_SPECIALCHARS
