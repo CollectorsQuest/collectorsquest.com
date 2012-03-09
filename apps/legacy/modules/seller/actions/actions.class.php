@@ -821,6 +821,48 @@ class sellerActions extends cqActions
   }
 
   /**
+   * Action PaymentCompleted
+   *
+   * @param sfWebRequest $request
+   *
+   */
+  public function executePaymentCompleted(sfWebRequest $request)
+  {
+    $this->redirectUnless($request->hasParameter('payment_status'), '@seller_packages');
+
+    if ('COMPLETED' == strtoupper($request->getParameter('payment_status')))
+    {
+      $packageTransaction = PackageTransactionPeer::retrieveByPK($request->getParameter('item_number'));
+
+      if (!$packageTransaction)
+      {
+        $this->getUser()->setFlash('error', 'Invalid transaction');
+        $this->redirect('@seller_packages'); //Ugly
+      }
+
+      $package = $packageTransaction->getPackage();
+
+      if (!$package)
+      {
+        $this->getUser()->setFlash('error', 'Invalid package');
+        $this->redirect('@seller_packages'); //Ugly
+      }
+
+      $collector = $packageTransaction->getCollector();
+      $collector->setUserType(CollectorPeer::TYPE_SELLER);
+      $collector->setItemsAllowed($package->getMaxItemsForSale());
+      $collector->save();
+
+      $packageTransaction->setPackagePrice($request->getParameter('payment_gross'));
+      $packageTransaction->setPaymentStatus(PackageTransactionPeer::STATUS_PAID);
+      $packageTransaction->save();
+
+      $this->getUser()->setFlash('success', 'Payment completed');
+      $this->redirect('@manage_collections');
+    }
+  }
+
+  /**
    * Action Redirect
    *
    * @param sfWebRequest $request
