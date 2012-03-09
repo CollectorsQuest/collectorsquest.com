@@ -89,6 +89,15 @@ class sellerActions extends cqActions
           $collector = $this->getUser()->getCollector();
           $afterDiscountPrice = $package->getPackagePrice();
 
+          // Save package information with payment status pending while payment successfully done.
+          $packageInfo = array(
+            'collector_id'       => $collector->getId(),
+            'package_id'         => $package->getId(),
+            'max_items_for_sale' => $package->getMaxItemsForSale(),
+            'package_price'      => $package->getPackagePrice(),
+            'payment_status'     => 'pending'
+          );
+
           if ($promotion)
           {
             //Promo code used. Applying promotion
@@ -116,20 +125,14 @@ class sellerActions extends cqActions
             );
             $promoTransaction = PromotionTransaction::savePromotionTransaction($promoTransactionInfo);
 
+            $packageInfo['package_price'] = $afterDiscountPrice;
+
             $promotion->setNoOfTimeUsed($promotion->getNoOfTimeUsed() - 1);
             $promotion->save();
 
             $replacements['%promo_offer%'] = "congratulation You get free subscription"; //Ugly
           }
 
-          // Save package information with payment status pending while payment successfully done.
-          $packageInfo = array(
-            'collector_id'       => $collector->getId(),
-            'package_id'         => $package->getId(),
-            'max_items_for_sale' => $package->getMaxItemsForSale(),
-            'package_price'      => $package->getPackagePrice(),
-            'payment_status'     => 'pending'
-          );
           $packageTransaction = PackageTransaction::savePackageTransaction($packageInfo);
 
           if ($freeSubscription)
@@ -163,7 +166,9 @@ class sellerActions extends cqActions
           }
           else if ('paypal' == $packagesForm->getValue('payment_type'))
           {
-            die('pay via paypal');
+            $this->packageTransaction = $packageTransaction;
+            $this->setTemplate('redirect');
+            return sfView::SUCCESS;
           }
           else if ('cc' == $packagesForm->getValue('payment_type'))
           {
@@ -205,9 +210,9 @@ class sellerActions extends cqActions
             );
 
             $paymentDetails = array(
-              'amt'          => $afterDiscountPrice, // Required.  Total amount of order, including shipping, handling, and tax.
+              'amt'          => $packageTransaction->getPackagePrice(), // Required.  Total amount of order, including shipping, handling, and tax.
               'currencycode' => sfConfig::get('app_paypal_currency_code', 'USD'), // Required.  Three-letter currency code.  Default is USD.
-              'itemamt'      => $afterDiscountPrice, // Required if you include itemized cart details. (L_AMTn, etc.)  Subtotal of items not including S&H, or tax.
+              'itemamt'      => $packageTransaction->getPackagePrice(), // Required if you include itemized cart details. (L_AMTn, etc.)  Subtotal of items not including S&H, or tax.
               'shippingamt'  => 0.00, // Total shipping costs for the order.  If you specify shippingamt, you must also specify itemamt.
               'handlingamt'  => 0.00, // Total handling costs for the order.  If you specify handlingamt, you must also specify itemamt.
               'taxamt'       => 0.00, // Required if you specify itemized cart tax details. Sum of tax for all items on the order.  Total sales tax.
@@ -222,7 +227,7 @@ class sellerActions extends cqActions
               array(
                 'l_name'                 => $package->getPackageName(), // Item Name.  127 char max.
 //                'l_desc'                 => 'This is a test widget description.', // Item description.  127 char max.
-                'l_amt'                  => $afterDiscountPrice, // Cost of individual item.
+                'l_amt'                  => $packageTransaction->getPackagePrice(), // Cost of individual item.
                 'l_number'               => $package->getId(), // Item Number.  127 char max.
                 'l_qty'                  => '1', // Item quantity.  Must be any positive integer.
                 'l_taxamt'               => 0, // Item's sales tax amount.
@@ -282,16 +287,7 @@ class sellerActions extends cqActions
             //Need replace this with test
             throw new Exception(sprintf('Invalid payment type %s', $packagesForm->getValue('payment_type')));
           }
-
-          die('process');
         }
-        else
-        {
-          echo '<pre>';
-          dd($packagesForm->getErrorSchema()->getErrors());
-          die();
-        }
-
       }
     }
 
@@ -822,6 +818,17 @@ class sellerActions extends cqActions
   {
     //    var_dump($request->getParameterHolder()->getAll());
     //    die();
+  }
+
+  /**
+   * Action Redirect
+   *
+   * @param sfWebRequest $request
+   *
+   */
+  public function executeRedirect(sfWebRequest $request)
+  {
+    dd($request, $this->packageTransaction);
   }
 
 }
