@@ -46,8 +46,7 @@ class cqWidgetFormI18nChoiceCountry extends sfWidgetFormChoice
     }
 
     // check the init options
-    // if (isset($options['add_worldwide']) && $options['add_worldwide'])
-    if ($this->getOption('add_worldwide'))
+    if (isset($options['add_worldwide']) && $options['add_worldwide'])
     {
       $_countries['ZZ'] = 'Worldwide';
     }
