@@ -21,9 +21,7 @@ class shippingRatePriceRangeValidatorSchema extends sfValidatorSchema
   protected function doClean($values)
   {
     // if calculation type is price range
-    if (ShippingRatePeer::CALCULATION_TYPE_PRICE_RANGE
-        ==
-        $values['calculation_type'])
+    if (ShippingRatePeer::CALCULATION_TYPE_PRICE_RANGE == $values['calculation_type'])
     {
       // if the value for range max is smaller than that of range min
       // and it is not set to 0 (which we interpret as infinity)

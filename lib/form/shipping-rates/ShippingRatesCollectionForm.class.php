@@ -14,7 +14,8 @@ class ShippingRatesCollectionForm extends sfFormPropel
     if (!in_array(get_class($object), array('Collector', 'Collection')))
     {
       throw new InvalidArgumentException(sprintf(
-        'ShippingFeeCollectionForm exects a Collector or Collectible object, %s given',
+        'ShippingFeeCollectionForm exects a Collector or Collectible object,
+         %s given',
         get_class($object)
       ));
     }
@@ -66,13 +67,15 @@ class ShippingRatesCollectionForm extends sfFormPropel
 
   protected function setupEmbeddedForms()
   {
-    $shipping_fees_by_country = $this->getObject()->getShippingRatesByCountry();
+    $shipping_rates_by_country = $this->getObject()->getShippingRatesByCountry();
 
-    foreach ($shipping_fees_by_country as $country_code => $shipping_rates)
+    foreach ($shipping_rates_by_country as $country_code => $shipping_rates)
     {
+      $calculation_type = $shipping_rates[0]->getCalculationType();
       $form = new ShippingRatesForCountryCollectionForm(
         $shipping_rates,
-        $country_code
+        $country_code,
+        $calculation_type
       );
       $this->embedForm($form->getNameForEmbedding(), $form);
     }
