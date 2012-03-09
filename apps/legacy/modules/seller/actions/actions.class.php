@@ -127,10 +127,6 @@ class sellerActions extends cqActions
 
             $packageInfo['package_price'] = $afterDiscountPrice;
 
-            $promotion->setNoOfTimeUsed($promotion->getNoOfTimeUsed() - 1);
-            $promotion->save();
-
-            $replacements['%promo_offer%'] = "congratulation You get free subscription"; //Ugly
           }
 
           $packageTransaction = PackageTransaction::savePackageTransaction($packageInfo);
@@ -146,6 +142,11 @@ class sellerActions extends cqActions
             $collector->setUserType(CollectorPeer::TYPE_SELLER);
             $collector->setItemsAllowed($package->getMaxItemsForSale());
             $collector->save();
+
+            $promotion->setNoOfTimeUsed($promotion->getNoOfTimeUsed() - 1);
+            $promotion->save();
+
+            $replacements['%promo_offer%'] = "congratulation You get free subscription"; //Ugly
 
             // Send Mail To Seller
             $to = $collector->getEmail();
@@ -167,6 +168,7 @@ class sellerActions extends cqActions
           else if ('paypal' == $packagesForm->getValue('payment_type'))
           {
             $this->packageTransaction = $packageTransaction;
+            $this->promotion = $promotion;
             $this->setTemplate('redirect');
             return sfView::SUCCESS;
           }
@@ -755,55 +757,54 @@ class sellerActions extends cqActions
    */
   public function executeCallbackIPN(sfWebRequest $request)
   {
-    if ($request->isMethod('post'))
+    if ('COMPLETED' != strtoupper($request->getParameter('payment_status')))
     {
-      if ($request->getParameter('payment_status') == "Completed")
-      {
-        // Save package information with payment status paid while payment successfully done.
-        $amPackageInfo = array(
-          'id'             => $request->getParameter('invoice'),
-          'package_price'  => $request->getParameter('mc_gross'),
-          'payment_status' => 'paid'
-        );
-        $omPackageTransaction = PackageTransaction::updatePaymentStatus($amPackageInfo);
-        // Update collector become a seller
-        $amSellerInfo = array(
-          'id'            => $this->getUser()->getCollector()->getId(),
-          'user_type'     => 'Seller',
-          'items_allowed' => $request->getParameter('custom')
-        );
-        $omSeller = CollectorPeer::updateCollectorAsSeller($amSellerInfo);
-
-        // Send Mail To Seller
-        $to = $this->getCollector()->getEmail();
-        $subject = "Thank you for becoming a seller";
-        $body = $this->getPartial(
-          'emails/seller_package_confirmation', array(
-            'collector'     => $this->getCollector(),
-            'package_name'  => $request->getParameter('package_name'),
-            'package_items' => ($request->getParameter('items_allowed') <= 0) ? 'Unlimited' : $request->getParameter('items_allowed')
-          )
-        );
-
-        // Deduct Number of time used promo code.
-        if ($request->getParameter('option_name1') && $request->getParameter('option_name1') > 0)
-        {
-          $omPromotion = Promotion::deductPromoCodeUsed($request->getParameter('option_name1'));
-          if ($omPromotion)
-            $ssDiscount = ($omPromotion->getAmountType() == "Percentage") ? $omPromotion->getAmount() . '%' : 'Fix $' . $omPromotion->getAmount();
-        }
-
-        // Send off the email to the Seller
-        $this->sendEmail($to, $subject, $body);
-
-        $this->redirect('@manage_collections');
-      }
-      else
-      {
-        $this->getUser()->setFlash('msg_package', 'Your Payment not successfully done!');
-        $this->redirect('@seller_become?id=' . $this->getUser()->getCollector()->getId());
-      }
+      $this->getUser()->setFlash('msg_package', 'The payment was not successful!');
+      $this->redirect('@seller_become');
     }
+
+    $this->forward404Unless($request->hasParameter('invoice'));
+
+    $packageTransaction = PackageTransactionPeer::retrieveByPK($request->getParameter('invoice'));
+    $this->forward404Unless((bool)$packageTransaction);
+
+    $collector = $packageTransaction->getCollector();
+    $package = $packageTransaction->getPackage();
+
+    $collector->setUserType(CollectorPeer::TYPE_SELLER);
+    $collector->setItemsAllowed($package->getMaxItemsForSale());
+    $collector->save();
+
+    $packageTransaction->setPackagePrice($request->getParameter('mc_gross'));
+    $packageTransaction->setPaymentStatus(PackageTransactionPeer::STATUS_PAID);
+    $packageTransaction->save();
+
+    // Send Mail To Seller
+    $to = $collector->getEmail();
+    $subject = "Thank you for becoming a seller";
+    $body = $this->getPartial(
+      'emails/seller_package_confirmation', array(
+        'collector'     => $collector,
+        'package_name'  => $package->getPackageName(),
+        'package_items' => ($package->getMaxItemsForSale() <= 0) ? 'Unlimited' : $package->getMaxItemsForSale(),
+      )
+    );
+
+    // Deduct Number of time used promo code.
+    if ($request->getParameter('option_name1') &&
+        $request->getParameter('option_name1') > 0 &&
+        $promotion = PromotionPeer::retrieveByPK($request->getParameter('option_name1'))
+    )
+    {
+
+      $promotion->setNoOfTimeUsed($promotion->getNoOfTimeUsed() - 1);
+      $promotion->save();
+    }
+
+    // Send off the email to the Seller
+    $this->sendEmail($to, $subject, $body);
+
+    $this->redirect('@manage_collections');
 
     return sfView::NONE;
   }
@@ -816,50 +817,25 @@ class sellerActions extends cqActions
    */
   public function executeCancelPayment(sfWebRequest $request)
   {
-    //    var_dump($request->getParameterHolder()->getAll());
-    //    die();
-  }
+    $packageTransaction = PackageTransactionQuery::create()
+        ->filterByCollector($this->getCollector())
+        ->filterById($request->getParameter('id'))
+        ->filterByPaymentStatus(PackageTransactionPeer::STATUS_PENDING)
+        ->findOne();
 
-  /**
-   * Action PaymentCompleted
-   *
-   * @param sfWebRequest $request
-   *
-   */
-  public function executePaymentCompleted(sfWebRequest $request)
-  {
-    $this->redirectUnless($request->hasParameter('payment_status'), '@seller_packages');
-
-    if ('COMPLETED' == strtoupper($request->getParameter('payment_status')))
+    if ($packageTransaction)
     {
-      $packageTransaction = PackageTransactionPeer::retrieveByPK($request->getParameter('item_number'));
-
-      if (!$packageTransaction)
-      {
-        $this->getUser()->setFlash('error', 'Invalid transaction');
-        $this->redirect('@seller_packages'); //Ugly
-      }
-
-      $package = $packageTransaction->getPackage();
-
-      if (!$package)
-      {
-        $this->getUser()->setFlash('error', 'Invalid package');
-        $this->redirect('@seller_packages'); //Ugly
-      }
-
-      $collector = $packageTransaction->getCollector();
-      $collector->setUserType(CollectorPeer::TYPE_SELLER);
-      $collector->setItemsAllowed($package->getMaxItemsForSale());
-      $collector->save();
-
-      $packageTransaction->setPackagePrice($request->getParameter('payment_gross'));
-      $packageTransaction->setPaymentStatus(PackageTransactionPeer::STATUS_PAID);
+      $packageTransaction->setPaymentStatus(PackageTransactionPeer::STATUS_CANCELED);
       $packageTransaction->save();
 
-      $this->getUser()->setFlash('success', 'Payment completed');
-      $this->redirect('@manage_collections');
+      $this->getUser()->setFlash('success', 'Order canceled successfully.');
     }
+    else
+    {
+      $this->getUser()->setFlash('error', 'There is no active order');
+    }
+
+    $this->redirect('@manage_collections');
   }
 
   /**
@@ -870,7 +846,6 @@ class sellerActions extends cqActions
    */
   public function executeRedirect(sfWebRequest $request)
   {
-    dd($request, $this->packageTransaction);
   }
 
 }

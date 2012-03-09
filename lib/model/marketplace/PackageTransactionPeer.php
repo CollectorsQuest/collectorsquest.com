@@ -7,6 +7,7 @@ class PackageTransactionPeer extends BasePackageTransactionPeer
 
   const STATUS_PAID = 'paid';
   const STATUS_PENDING = 'pending';
+  const STATUS_CANCELED = 'canceled';
 
   /**
    * @static
