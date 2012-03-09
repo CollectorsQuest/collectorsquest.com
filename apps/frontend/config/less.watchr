@@ -45,4 +45,6 @@ watch ( 'web/less/frontend/.*\.less$' ) {
 watch ( 'web/less/frontend/bootstrap/less/.*\.less$' ) {
   plessc 'web/less/frontend/bootstrap/less/bootstrap.less',
          'web/css/frontend/bootstrap.css'
+  plessc 'web/less/frontend/bootstrap/less/responsive.less',
+         'web/css/frontend/responsive.css'
 }
