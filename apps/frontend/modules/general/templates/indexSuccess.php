@@ -1,1 +1,0 @@
-<h1> Countdown until CQNEXT is available to all  </h1>
