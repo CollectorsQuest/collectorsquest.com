@@ -63,6 +63,11 @@ class CollectorEditForm extends BaseFormPropel
 
       if (!$collectorEmail)
       {
+        CollectorEmailQuery::create()
+          ->filterByCollector($collector)
+          ->filterByIsVerified(false)
+          ->delete();
+
         $collectorEmail = new CollectorEmail();
         $collectorEmail->setCollector($collector);
         $collectorEmail->setEmail($newEmail);
