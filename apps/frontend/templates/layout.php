@@ -4,7 +4,6 @@
  * @var $sf_context sfContext
  */
 ?>
-
 <!DOCTYPE html>
 <!--[if IE]><![endif]-->
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#">

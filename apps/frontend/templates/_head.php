@@ -24,7 +24,7 @@
   </script>
 
   <?php
-    if (SF_ENV !== 'prod')
+    if (SF_ENV == 'prod')
     {
       include_partial('global/head_analytics');
     }
