@@ -1,16 +1,15 @@
+<?php
+/**
+ * @var $sf_content string
+ * @var $sf_context sfContext
+ */
+?>
+
 <!DOCTYPE html>
 <!--[if IE]><![endif]-->
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#">
 <?php include_partial('global/head'); ?>
 <body>
-  <!-- Include the VML behavior -->
-  <style>v\:image {
-    behavior: url(#default#VML);
-    display: inline-block
-  }</style>
-  <!-- Declare the VML namespace -->
-  <xml:namespace ns="urn:schemas-microsoft-com:vml" prefix="v"/>
-
   <div id="fb-root"></div>
   <script type="text/javascript">
     window.fbAsyncInit = function()
@@ -33,6 +32,17 @@
     }(document));
   </script>
 
-  <?php echo $sf_content ?>
+  <?php echo $sf_content; ?>
+
+  <?php include_partial('global/javascripts'); ?>
+  <?php include_partial('global/ad_slots'); ?>
+
+  <?php
+    cqStats::timing(
+      'collectorsquest.modules.'. $sf_context->getModuleName() .'.'. $sf_context->getActionName(),
+      cqTimer::getInstance()->getElapsedTime()
+    );
+  ?>
+  <!-- Page generated in <?= cqTimer::getInstance()->getElapsedTime(); ?> seconds //-->
 </body>
 </html>
