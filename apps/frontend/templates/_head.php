@@ -21,6 +21,19 @@
     {
       top.location.replace(self.location.toString());
     }
+
+    // name should be "Width" or "Height"
+    function getWindowSize(name)
+    {
+      var docElemProp = window.document.documentElement[ "client" + name ],
+        body = window.document.body;
+
+      return window.document.compatMode === "CSS1Compat" && docElemProp ||
+        body && body[ "client" + name ] || docElemProp;
+    }
+
+    // Modified script based on this function:
+    document.cookie = 'resolution=' + Math.max(getWindowSize("Width"), getWindowSize("Height")) + '; path=/';
   </script>
 
   <?php
