@@ -18,8 +18,8 @@ default:
     coverage:     "Worldwide"
     copyright:    "Copyright (c) 2006-2012 CollectorsQuest.com"
 
-  stylesheets:    [frontend/bootstrap.css]
-  javascripts:    []
+  stylesheets:    [frontend/bootstrap.css, frontend/responsive.css]
+  javascripts:    [frontend/jquery.js]
 
   has_layout:     true
   layout:         layout
