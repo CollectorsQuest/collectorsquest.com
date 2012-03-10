@@ -65,7 +65,7 @@ classes:
       id:  ~
       collector_id:  { type: integer, foreignClass: Collector, foreignReference: id, required: true, onDelete: cascade }
       email:         { type: varchar, size: 128, index: true }
-      hash:          { type: varchar, size: 40, required: true }
+      hash:          { type: varchar, size: 128, required: true }
       salt:          { type: varchar, size: 32, required: true }
       is_verified:   { type: boolean, default: false }
 
