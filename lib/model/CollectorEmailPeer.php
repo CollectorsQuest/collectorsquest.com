@@ -31,4 +31,21 @@ class CollectorEmailPeer extends BaseCollectorEmailPeer
     return $q->findOne();
   }
 
+  /**
+   * Retrieve last collector email change request
+   * @static
+   * @param Collector|int $collector
+   * @param bool $verified
+   * @return CollectorEmail
+   */
+  public static function retrieveLastPending($collector, $verified = false)
+  {
+    $collectorId = $collector instanceof Collector ? $collector->getId() : $collector;
+
+    return CollectorEmailQuery::create()
+        ->filterByCollectorId($collectorId)
+        ->filterByIsVerified($verified)
+        ->orderById('desc')
+        ->findOne();
+  }
 }
