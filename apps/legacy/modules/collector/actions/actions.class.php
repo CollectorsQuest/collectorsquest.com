@@ -225,6 +225,7 @@ class collectorActions extends cqActions
             $collector->setSingupNumCompletedSteps(3)
                       ->setHasCompletedRegistration(true)
                       ->save();
+            $collector->sendToDefensio('UPDATE');
 
             // redirect to step manage profile
             $this->redirect($this->getController()->genUrl(array(
