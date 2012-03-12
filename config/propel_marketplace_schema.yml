@@ -108,7 +108,7 @@ classes:
     columns:
       id:                   ~
       country_iso3166:      { type: char, size: 2, required: true, foreignTable: geo_country, foreignReference: iso3166 } # not set = catch all
-      calculation_type:     { type: enum,    required: true, valueSet: "no_shipping, free_shipping, flat_rate, price_range" }
+      calculation_type:     { type: enum,    required: true, valueSet: "no_shipping, local_pickup, free_shipping, flat_rate, price_range" }
       price_range_min:      { type: integer, required: true }
       price_range_max:      { type: integer, required: true }
       amount_in_cents:      { type: integer, required: true }
