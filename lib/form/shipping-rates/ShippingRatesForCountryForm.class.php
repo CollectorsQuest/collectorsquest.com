@@ -84,9 +84,12 @@ class ShippingRatesForCountryForm extends sfForm
   /**
    * Setup the calculation_type field
    */
-  protected function setupCalculationTypeField()
+  protected function setupCalculationTypeField($calculation_types = null)
   {
-    $calculation_types = ShippingRatePeer::getValueSet(ShippingRatePeer::CALCULATION_TYPE);
+    if (null === $calculation_types)
+    {
+      $calculation_types = ShippingRatePeer::getValueSet(ShippingRatePeer::CALCULATION_TYPE);
+    }
 
     $this->widgetSchema['calculation_type'] = new sfWidgetFormChoice(array(
         'choices' => array_combine($calculation_types, $calculation_types),

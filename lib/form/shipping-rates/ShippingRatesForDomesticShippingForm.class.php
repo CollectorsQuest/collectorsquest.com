@@ -16,6 +16,17 @@ class ShippingRatesForDomesticShippingForm extends ShippingRatesForCountryForm
     $this->widgetSchema['country_iso3166'] = new sfWidgetFormInputHidden();
   }
 
+  protected function setupCalculationTypeField($calculation_types = null)
+  {
+    $calculation_types = ShippingRatePeer::getValueSet(ShippingRatePeer::CALCULATION_TYPE);
+
+    unset($calculation_types[array_search(
+      ShippingRatePeer::CALCULATION_TYPE_NO_SHIPPING,
+      $calculation_types)]);
+
+    parent::setupCalculationTypeField($calculation_types);
+  }
+
   /**
    * The domestic shipping rates form is separate from the per-country shipping
    * form, so we give it a special name
