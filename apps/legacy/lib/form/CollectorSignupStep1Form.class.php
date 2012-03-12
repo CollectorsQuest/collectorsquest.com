@@ -16,12 +16,17 @@ class CollectorSignupStep1Form extends BaseForm
     ));
 
     $this->setValidators(array(
-      'username'       => new sfValidatorRegex(array(
+      'username'       => new sfValidatorRegex(
+        array(
           'pattern'    => '/^(?=^[a-zA-Z])[a-zA-Z0-9\.\_]*$/',
           'min_length' => 3,
           'max_length' => 50,
           'required'   => true,
-      )),
+        ),
+        array(
+          'invalid' => 'Please match the requested format.'
+        )
+      ),
       'password'       => new sfValidatorString(array(
           'min_length' => 6,
           'max_length' => 50,
@@ -30,10 +35,10 @@ class CollectorSignupStep1Form extends BaseForm
       'password_again' => new sfValidatorPass(),
       'display_name'   => new sfValidatorString(array(
           'max_length' => 50,
-          'required' => true
+          'required'   => true
       )),
       'email'          => new sfValidatorEmail(array(
-            'required' => true
+          'required'   => true
       )),
     ));
 
