@@ -52,7 +52,7 @@ class collectorsActions extends autoCollectorsActions
     $criteria->addSelectColumn(CollectorPeer::CREATED_AT);
     $criteria->addJoin(CollectorPeer::ID, CollectorCollectionPeer::COLLECTOR_ID, Criteria::LEFT_JOIN);
     $criteria->addGroupByColumn(CollectorCollectionPeer::COLLECTOR_ID);
-    $criteria->addHaving('collections', 0, Criteria::GREATER_THAN);
+//    $criteria->addHaving('collections', 0, Criteria::GREATER_THAN);
 
     $stmt = CollectorPeer::doSelectStmt($criteria);
 
