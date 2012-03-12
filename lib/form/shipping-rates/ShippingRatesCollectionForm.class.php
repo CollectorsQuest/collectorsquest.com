@@ -57,14 +57,26 @@ class ShippingRatesCollectionForm extends sfFormPropel
    */
   protected function setupEmbeddedForms()
   {
+    // setup domsetic shipping form
     $form = new ShippingRatesForDomesticShippingForm(array(), array(
         'parent_object' => $this->getObject(),
         'shipping_rates' => $this->getObject()->getShippingRatesDomestic(),
-        'tainted_request_values' => $this->getTaintedRequestValue('country_domestic'),
+        'tainted_request_values' =>
+            $this->getTaintedRequestValue('shipping_domestic'),
+    ));
+    $this->embedForm('shipping_domestic', $form);
+
+
+    $form = new ShippingRatesForInternationalShippingForm(array(), array(
+      'parent_object' => $this->getObject(),
+      'shipping_rates' => $this->getObject()->getShippingRatesForCountryCode('ZZ'),
+      'tainted_request_values' =>
+          $this->getTaintedRequestValue('shipping_international'),
     ));
 
-    $this->embedForm($form->getNameForEmbedding(), $form);
+    $this->embedForm('shipping_international', $form);
 
+    /* This functionality is not needed currently * /
     $shipping_rates_by_country = $this->getObject()
       ->getShippingRatesGroupedByCountryCode();
 
@@ -84,6 +96,7 @@ class ShippingRatesCollectionForm extends sfFormPropel
 
       $this->embedForm($form->getNameForEmbedding(), $form);
     }
+    /* */
   }
 
   /**

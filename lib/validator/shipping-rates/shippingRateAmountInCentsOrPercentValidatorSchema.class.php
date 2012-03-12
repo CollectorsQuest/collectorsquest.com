@@ -51,6 +51,13 @@ class shippingRateAmountInCentsOrPercentValidatorSchema extends sfValidatorSchem
     // else if calculation_type does not require an amount set
     if (in_array($values['calculation_type'], ShippingRatePeer::$calculation_type_amount['not-required']))
     {
+      // sometimes the amount fields will not be available;
+      // in this case there is no reason to check it they have values
+      if (!(isset($values['amount_in_cents']) && isset($values['amount_in_percent'])))
+      {
+        return $values;
+      }
+
       // if both amount in cents and in percent is set throw an error
       if ( 0 != $values['amount_in_cents'] || 0 != $values['amount_in_percent'])
       {

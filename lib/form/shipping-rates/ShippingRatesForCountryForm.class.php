@@ -88,16 +88,29 @@ class ShippingRatesForCountryForm extends sfForm
   {
     if (null === $calculation_types)
     {
-      $calculation_types = ShippingRatePeer::getValueSet(ShippingRatePeer::CALCULATION_TYPE);
+      $calculation_types = self::getCalculationTypeValues();
     }
 
+    // add empty option
+    $calculation_types = array(''=>'') + $calculation_types;
+
     $this->widgetSchema['calculation_type'] = new sfWidgetFormChoice(array(
-        'choices' => array_combine($calculation_types, $calculation_types),
+        'choices' => $calculation_types,
     ));
 
     $this->validatorSchema['calculation_type'] = new sfValidatorChoice(array(
-        'choices' => $calculation_types,
+        'choices' => array_keys($calculation_types),
     ));
+  }
+
+  protected static function getCalculationTypeValues()
+  {
+    return array(
+        ShippingRatePeer::CALCULATION_TYPE_FLAT_RATE => 'Flat Rate: Same cost to all buyers',
+        ShippingRatePeer::CALCULATION_TYPE_FREE_SHIPPING => 'Free Shipping: You cover all posting costs',
+        ShippingRatePeer::CALCULATION_TYPE_LOCAL_PICKUP => 'Local Pickup: You offer only local pickup',
+        ShippingRatePeer::CALCULATION_TYPE_NO_SHIPPING => 'No shipping: You do not ship to this country',
+    );
   }
 
   /**
@@ -140,7 +153,7 @@ class ShippingRatesForCountryForm extends sfForm
     }
     else
     {
-      return ShippingRatePeer::DEFAULT_CALCULATION_TYPE;
+      return '';
     }
   }
 
@@ -160,7 +173,10 @@ class ShippingRatesForCountryForm extends sfForm
    */
   protected function setupEmbeddedForms()
   {
-    $this->embedExistingShippingRates();
+    if (!$this->embedExistingShippingRatesForms())
+    {
+      $this->embedNewShippingRateForm();
+    }
   }
 
   /**
@@ -169,7 +185,7 @@ class ShippingRatesForCountryForm extends sfForm
    *
    * @return    integer
    */
-  protected function embedExistingShippingRates()
+  protected function embedExistingShippingRatesForms()
   {
     $shipping_rates = $this->getOption('shipping_rates', array());
     $embedded_form_class_name = $this->getEmbeddedFormClassForParentObject(
@@ -185,6 +201,29 @@ class ShippingRatesForCountryForm extends sfForm
     }
 
     return count($shipping_rates);
+  }
+
+  protected function embedNewShippingRateForm()
+  {
+    // we need to create a new empty one
+    $embedded_form_class_name = $this->getEmbeddedFormClassForParentObject(
+      $this->getParentObject());
+
+    // create a new ShippingRate derived object
+    $shipping_rate_class = $this->getShippingRateDerivedClassForParentObject(
+      $this->getParentObject());
+    $shipping_rate = new $shipping_rate_class();
+
+    // set its defaults
+    /* @var $shipping_rate ShippingRate */
+    $shipping_rate->setCountryIso3166($this->getCountryCodeForDefaults());
+    $related_object_setter_method = $this->getSetterMethodForEmbeddedObject(
+      $this->getParentObject());
+    $shipping_rate->$related_object_setter_method($this->getParentObject());
+
+    // add the new form
+    $form = $this->getNewShippingRateFormForEmbedding($shipping_rate);
+    $this->embedForm('new_shipping_rate', $form);
   }
 
   /**
@@ -204,7 +243,10 @@ class ShippingRatesForCountryForm extends sfForm
     // create and return the form
     return new $embedded_form_class_name($shipping_rate, array_merge(array(
         'current_calculation_type' =>
-            $this->getTaintedRequestValue('calculation_type'),
+            $this->getTaintedRequestValue(
+              'calculation_type',
+              $this->getCalculationTypeForDefaults()
+            ),
       ),
       $options
     ));

@@ -14,6 +14,8 @@ class ShippingRateCollectibleFormForEmbedding extends ShippingRateCollectibleFor
 
     unset ($this['country_iso3166']);
     unset ($this['calculation_type']);
+    unset ($this['price_range_min']);
+    unset ($this['price_range_max']);
 
     $this->setupVisibleFieldsBasedOnCalculationType();
 

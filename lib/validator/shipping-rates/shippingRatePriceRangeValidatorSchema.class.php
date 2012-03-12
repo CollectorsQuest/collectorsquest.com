@@ -61,6 +61,13 @@ class shippingRatePriceRangeValidatorSchema extends sfValidatorSchema
     // if calculation type is not price range
     else
     {
+      // sometimes the price range fields will not be available;
+      // in this case there is no reason to check it they have values
+      if (!(isset($values['price_range_min']) && isset($values['price_range_max'])))
+      {
+        return $values;
+      }
+
       // and one of the price range extremes is set
       if (0 != $values['price_range_max'] || 0 != $values['price_range_min'])
       {

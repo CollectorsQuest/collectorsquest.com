@@ -18,24 +18,15 @@ class ShippingRatesForDomesticShippingForm extends ShippingRatesForCountryForm
 
   protected function setupCalculationTypeField($calculation_types = null)
   {
-    $calculation_types = ShippingRatePeer::getValueSet(ShippingRatePeer::CALCULATION_TYPE);
+    if (null === $calculation_types)
+    {
+      $calculation_types = self::getCalculationTypeValues();
+    }
 
-    unset($calculation_types[array_search(
-      ShippingRatePeer::CALCULATION_TYPE_NO_SHIPPING,
-      $calculation_types)]);
+    // shipping must always be selected for domestic
+    unset($calculation_types[ShippingRatePeer::CALCULATION_TYPE_NO_SHIPPING]);
 
     parent::setupCalculationTypeField($calculation_types);
-  }
-
-  /**
-   * The domestic shipping rates form is separate from the per-country shipping
-   * form, so we give it a special name
-   *
-   * @return    string
-   */
-  public function getNameForEmbedding()
-  {
-    return 'country_domestic';
   }
 
   /**
@@ -66,36 +57,6 @@ class ShippingRatesForDomesticShippingForm extends ShippingRatesForCountryForm
     if ($parent_object instanceof Collectible)
     {
       return $parent_object->getCollector()->getProfile()->getCountryIso3166();
-    }
-  }
-
-  /**
-   * Setup all embedded forms
-   */
-  protected function setupEmbeddedForms()
-  {
-    // if no existing shipping rates were embedded
-    if (!$this->embedExistingShippingRates())
-    {
-      // we need to create a new empty one
-      $embedded_form_class_name = $this->getEmbeddedFormClassForParentObject(
-        $this->getParentObject());
-
-      // create a new ShippingRate derived object
-      $shipping_rate_class = $this->getShippingRateDerivedClassForParentObject(
-        $this->getParentObject());
-      $shipping_rate = new $shipping_rate_class();
-
-      // set its defaults
-      /* @var $shipping_rate ShippingRate */
-      $shipping_rate->setCountryIso3166($this->getCountryCodeForDefaults());
-      $related_object_setter_method = $this->getSetterMethodForEmbeddedObject(
-        $this->getParentObject());
-      $shipping_rate->$related_object_setter_method($this->getParentObject());
-
-      // add the new form
-      $form = $this->getNewShippingRateFormForEmbedding($shipping_rate);
-      $this->embedForm('new_shipping_rate', $form);
     }
   }
 
