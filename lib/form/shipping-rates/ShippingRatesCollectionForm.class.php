@@ -68,7 +68,6 @@ class ShippingRatesCollectionForm extends sfFormPropel
     $shipping_rates_by_country = $this->getObject()
       ->getShippingRatesGroupedByCountryCode();
 
-    /* */
     foreach ($shipping_rates_by_country as $country_code => $shipping_rates)
     {
       $calculation_type = $shipping_rates[0]->getCalculationType();

@@ -44,7 +44,7 @@ class ShippingRateCollectorFormForEmbedding extends ShippingRateCollectorForm
 
   protected function setupVisibleFieldsBasedOnCalculationType()
   {
-    switch($this->getCurrentCalculationType()):
+    switch ($this->getCurrentCalculationType()):
       case (ShippingRatePeer::CALCULATION_TYPE_FLAT_RATE):
         $this->useFields(array(
             'amount_in_cents',

@@ -31,6 +31,7 @@ class ShippingRatesForDomesticShippingForm extends ShippingRatesForCountryForm
    * The domestic shipping rates form is separate from the per-country shipping
    * form, so we give it a special name
    *
+   * @return    string
    */
   public function getNameForEmbedding()
   {
