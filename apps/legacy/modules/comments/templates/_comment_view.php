@@ -1,9 +1,9 @@
 <?php use_helper('Gravatar'); ?>
 <?php use_helper('Date'); ?>
 
-<div class="comment append-bottom clear" id="comment_<?php echo $comment->getId() ?>">
+<div class="comment append-bottom clear" id="comment_<?php echo $comment->getId() ?>" style="min-height: 100px;">
   <div class="span-3 comment_avatar" style="text-align: center;">
-  <?php 
+  <?php
     if ($comment->getCollector() !== null)
     {
       echo link_to_collector($comment->getCollector(), $type = 'image');
@@ -43,4 +43,3 @@
     </blockquote>
   </div>
 </div>
-<br clear="all"><br>

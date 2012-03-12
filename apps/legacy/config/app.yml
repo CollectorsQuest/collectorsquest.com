@@ -1,7 +1,7 @@
 all:
   pager:
     list_collectors_max: 9
-    list_collections_max: 14
+    list_collections_max: 15
     list_collectibles_max: 16
     search_collectors_max: 16
     search_collections_max: 12
@@ -10,6 +10,9 @@ all:
     search_calendar_events_max: 10
     manage_collections_max: 10
     manage_collectibles_max: 16
+
+  comments:
+    per_page: 10
 
   tag:
     cloud_max: 90
@@ -30,8 +33,8 @@ all:
       collector: 6667
       collection: 2841
     american_pickers:
-       collector: 6668
-       collection: 2842
+      collector: 6668
+      collection: 2842
 
   gravatar:
     default_size:   100
@@ -42,3 +45,4 @@ all:
 
   signup_module: collector
   signup_action: signup
+

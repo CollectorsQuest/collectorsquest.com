@@ -1,6 +1,6 @@
 all:
   stylesheets: [legacy/collections.css]
-  javascripts: [legacy/disqus.js, jquery/bt.js]
+  javascripts: [legacy/disqus.js, jquery/bt.js, jquery/infinitescroll.js]
   components:
     sidebar: [collection, sidebar]
 

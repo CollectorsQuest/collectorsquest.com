@@ -6,16 +6,14 @@
       <div style="background: #FAFDE0; border: 1px solid #C7C7C7; padding: 20px; margin-left: 20px; width: 90%;">
         <form action="<?php echo url_for('@marketplace') ?>" method="post">
           <?php
-            echo 'Find Collectibles:<br/>';
-            echo input_tag('search-term', $sf_params->get('search-term'), array('style' => 'width: 370px; font-size: 16px;')) . '&nbsp;&nbsp;&nbsp;';
-            echo submit_tag('Search', array("class" => "button"));
-            echo '<br/><br/>';
             echo 'Price: ' . input_tag('price-min', $sf_params->get('price-min', 'Min'), array('style' => 'width: 50px; text-align: center;')) . ' - ';
             echo input_tag('price-max', $sf_params->get('price-max', 'Max'), array('style' => 'width: 50px; text-align: center;')) . '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
             echo 'Condition: ';
             echo select_tag('condition', options_for_select(array(CollectibleForSalePeer::$conditions), $sf_params->get('condition'))) . '&nbsp;&nbsp;&nbsp;';
             echo 'Listings: ';
             echo select_tag('addtional_listing', options_for_select(array('' => 'Active', 'Sold' => 'Sold', 'All' => 'All'), $sf_params->get('addtional_listing')));
+            echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+            echo submit_tag('Search', array("class" => "button"));
           ?>
         </form>
       </div>

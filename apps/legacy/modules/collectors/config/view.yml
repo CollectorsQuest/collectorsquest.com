@@ -1,4 +1,6 @@
 all:
   stylesheets: [legacy/collections.css, legacy/collectors.css, legacy/tags.css]
+  javascripts: [jquery/infinitescroll.js]
+
   components:
     sidebar: [collectors, sidebar]
