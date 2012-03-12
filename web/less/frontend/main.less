@@ -1,6 +1,58 @@
-@import '_include.less';
+@import "bootstrap/less/variables.less";
 
-.world {
-  text-align: left;
-  text-decoration: none;
+//  Fidex width of wapper to 1200px
+@media (min-width: 1200px) {
+.container-fluid {
+  max-width:860px;
+  margin-left:auto;
+  margin-right:auto;}
+.container-fluid-header-fix,.navbar, footer {
+  max-width:1200px;
+	margin-left:auto;
+	margin-right:auto;}
+}
+
+// Image replacement http://goo.gl/cEMGx
+.ir {
+  font: 0/0 a;
+  text-shadow: none;
+  color: transparent;
+}
+
+// HEADER
+
+
+// TOP INTERCTIVE CONTAINER
+
+
+//WRAPPER, COLUMNS
+.r-column-padding {
+	padding-right: 320px + @fluidGridGutterWidth;
+}
+.fixed-right-column {
+	float: left;
+	margin-left: @fluidGridGutterWidth;
+	margin-right: -320px - @fluidGridGutterWidth;
+	position: relative;
+	width: 300px;
+}
+
+@media screen and ( max-width: 760px ) {
+  .fixed-right-column {
+    display: block;
+    float: none;
+    padding: 0;
+    margin: 0;
+    width: 100% !important;
+  }
+  .r-column-padding {
+    padding-right: 0;
+  }
+}
+
+
+// FOOTER
+
+.footer-color {
+  background-color: #e5f0f6; /* For testing purposes only */
 }
