@@ -39,6 +39,7 @@ class PropelMigration_1331114751
 		return array (
       'propel' => '
 
+        DROP TABLE IF EXISTS `collector_remember_key`;
         CREATE TABLE `collector_remember_key`
         (
           `ip_address` CHAR(15) NOT NULL,
