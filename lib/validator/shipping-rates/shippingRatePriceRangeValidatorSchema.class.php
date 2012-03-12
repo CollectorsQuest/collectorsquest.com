@@ -14,7 +14,7 @@ class shippingRatePriceRangeValidatorSchema extends sfValidatorSchema
        If you want to specify a range of %price_range_min% to infinity, enter
        0 for "price range max"');
 
-    $this->addMessage('price_range_requried',
+    $this->addMessage('price_range_required',
       'You must set prince range min and max when calculation type is price range');
 
     $this->addMessage('price_range_not_required',
