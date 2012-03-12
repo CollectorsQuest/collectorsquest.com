@@ -103,7 +103,7 @@ collector_auto_login:
 collector_verify_email:
   url:  /collector/verify-email/:hash
   class: cqPropelRoute
-  param: { module: general, action: verifyEmail }
+  param: { module: collector, action: verifyEmail }
   options: { model: CollectorEmail, type: object }
 
 collector_by_slug:

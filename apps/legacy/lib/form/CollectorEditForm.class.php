@@ -68,11 +68,14 @@ class CollectorEditForm extends BaseFormPropel
           ->filterByIsVerified(false)
           ->delete();
 
+        // genearte a salt to use in collector_email
+        $salt = $collector->generateSalt();
+
         $collectorEmail = new CollectorEmail();
         $collectorEmail->setCollector($collector);
         $collectorEmail->setEmail($newEmail);
-        $collectorEmail->setSalt($collector->generateSalt());
-        $collectorEmail->setHash($collector->getAutoLoginHash());
+        $collectorEmail->setSalt($salt);
+        $collectorEmail->setHash($collector->getAutoLoginHash(null, null, $salt));
         $collectorEmail->setIsVerified(false);
         $collectorEmail->save();
 

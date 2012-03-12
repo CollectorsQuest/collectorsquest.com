@@ -33,9 +33,11 @@ class CollectorEmailPeer extends BaseCollectorEmailPeer
 
   /**
    * Retrieve last collector email change request
+   *
    * @static
    * @param Collector|int $collector
    * @param bool $verified
+   *
    * @return CollectorEmail
    */
   public static function retrieveLastPending($collector, $verified = false)

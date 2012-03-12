@@ -15,7 +15,21 @@ class PropelMigration_1331421254
 
   public function postUp($manager)
   {
-    // add the post-migration code here
+    $q = CollectorEmailQuery::create()->filterByHash('', Criteria::EQUAL);
+
+    /** @var $collector_emails CollectorEmail[] */
+    $collector_emails = $q->find();
+
+    foreach ($collector_emails as $collector_email)
+    {
+      /** @var $collector Collector */
+      $collector = $collector_email->getCollector();
+      $salt = $collector->generateSalt();
+
+      $collector_email->setSalt($salt);
+      $collector_email->setHash($collector->getAutoLoginHash(null, null, $salt));
+      $collector_email->save();
+    }
   }
 
   public function preDown($manager)
@@ -38,12 +52,12 @@ class PropelMigration_1331421254
   {
     return array(
       'propel' => '
-      INSERT INTO `collector_email`
-      (`collector_id`, `email`, `is_verified`, `created_at`, `updated_at`)
-      SELECT id, email, 1, NOW(), NOW()
-      FROM `collector`
-      WHERE email IS NOT NULL
-      ON DUPLICATE KEY UPDATE is_verified = 1, updated_at = NOW()
+        INSERT INTO `collector_email`
+        (`collector_id`, `email`, `is_verified`, `created_at`, `updated_at`)
+        SELECT id, email, 1, NOW(), NOW()
+        FROM `collector`
+        WHERE email IS NOT NULL
+        ON DUPLICATE KEY UPDATE is_verified = 1, updated_at = NOW()
       ',
     );
   }
@@ -56,8 +70,7 @@ class PropelMigration_1331421254
    */
   public function getDownSQL()
   {
-    return array(
-    );
+    return array();
   }
 
 }
