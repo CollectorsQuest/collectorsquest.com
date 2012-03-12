@@ -705,7 +705,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_190:
     name: marvel
-    slug: ''
+    slug: marvel
     is_triple: '0'
   iceModelTag_191:
     name: lead
@@ -1401,7 +1401,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_374:
     name: 'dc comics'
-    slug: ''
+    slug: dc-comics
     is_triple: '0'
   iceModelTag_375:
     name: 'photogaphy. kodak'
@@ -1537,7 +1537,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_410:
     name: minimates
-    slug: ''
+    slug: minimates
     is_triple: '0'
   iceModelTag_412:
     name: 'TMNT Ninja Turtles'
@@ -1545,7 +1545,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_414:
     name: 'superhero squad'
-    slug: ''
+    slug: superhero-squad
     is_triple: '0'
   iceModelTag_415:
     name: toy
@@ -1761,7 +1761,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_472:
     name: keychain
-    slug: ''
+    slug: keychain
     is_triple: '0'
   iceModelTag_473:
     name: numbers
@@ -1841,7 +1841,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_498:
     name: 'Justice League'
-    slug: ''
+    slug: justice-league
     is_triple: '0'
   iceModelTag_500:
     name: 'C. Brian Kelly'
@@ -1889,7 +1889,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_512:
     name: Heroclix
-    slug: ''
+    slug: heroclix
     is_triple: '0'
   iceModelTag_513:
     name: gaming
@@ -2321,7 +2321,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_623:
     name: 'marvel legends'
-    slug: ''
+    slug: marvel-legends
     is_triple: '0'
   iceModelTag_624:
     name: robot
@@ -2629,7 +2629,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_708:
     name: McDonalds
-    slug: ''
+    slug: mcdonalds
     is_triple: '0'
   iceModelTag_709:
     name: 'Pizza Hut'
@@ -2725,7 +2725,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_736:
     name: wolf
-    slug: ''
+    slug: wolf
     is_triple: '0'
   iceModelTag_737:
     name: egypt
@@ -3413,7 +3413,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_912:
     name: hulk
-    slug: ''
+    slug: hulk
     is_triple: '0'
   iceModelTag_913:
     name: spider-man
@@ -3725,7 +3725,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_995:
     name: HERALD
-    slug: ''
+    slug: herald
     is_triple: '0'
   iceModelTag_996:
     name: 'Mickey XXL'
@@ -3797,7 +3797,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_1013:
     name: 'martian manhunter'
-    slug: ''
+    slug: martian-manhunter
     is_triple: '0'
   iceModelTag_1014:
     name: 'donna troy'
@@ -3845,7 +3845,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_1025:
     name: zombies
-    slug: ''
+    slug: zombies
     is_triple: '0'
   iceModelTag_1026:
     name: 'luke cage'
@@ -4465,7 +4465,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_1183:
     name: 'designer toys'
-    slug: ''
+    slug: designer-toys
     is_triple: '0'
   iceModelTag_1184:
     name: diverse
@@ -4641,7 +4641,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_1227:
     name: she-hulk
-    slug: ''
+    slug: she-hulk
     is_triple: '0'
   iceModelTag_1229:
     name: rhino
@@ -4685,7 +4685,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_1246:
     name: hawkeye
-    slug: ''
+    slug: hawkeye
     is_triple: '0'
   iceModelTag_1247:
     name: wasp
@@ -6545,7 +6545,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_1975:
     name: archery
-    slug: ''
+    slug: archery
     is_triple: '0'
   iceModelTag_1976:
     name: crossbow
@@ -7121,7 +7121,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_2120:
     name: 'star sapphire'
-    slug: ''
+    slug: star-sapphire
     is_triple: '0'
   iceModelTag_2121:
     name: 'hal jorden'
@@ -7769,7 +7769,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_2349:
     name: Ed
-    slug: ''
+    slug: ed
     is_triple: '0'
   iceModelTag_2350:
     name: Rafiki
@@ -8621,7 +8621,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_2571:
     name: canadian
-    slug: ''
+    slug: canadian
     is_triple: '0'
   iceModelTag_2572:
     name: drugstore
@@ -9573,7 +9573,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_2829:
     name: 'marvel comics'
-    slug: ''
+    slug: marvel-comics
     is_triple: '0'
   iceModelTag_2830:
     name: 'war machine'
@@ -9821,7 +9821,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_2902:
     name: minimate
-    slug: ''
+    slug: minimate
     is_triple: '0'
   iceModelTag_2903:
     name: giganta
@@ -10113,7 +10113,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_2981:
     name: 'mighty beanz'
-    slug: ''
+    slug: mighty-beanz
     is_triple: '0'
   iceModelTag_2982:
     name: nazi
@@ -10537,7 +10537,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_3087:
     name: 'teddy bear'
-    slug: ''
+    slug: teddy-bear
     is_triple: '0'
   iceModelTag_3088:
     name: Joseph
@@ -16553,7 +16553,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_5119:
     name: 'dc superheroes'
-    slug: ''
+    slug: dc-superheroes
     is_triple: '0'
   iceModelTag_5120:
     name: 'first apperance'
@@ -16833,7 +16833,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_5219:
     name: skaar
-    slug: ''
+    slug: skaar
     is_triple: '0'
   iceModelTag_5220:
     name: 'mosaic art'
@@ -22485,7 +22485,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_6992:
     name: farm
-    slug: ''
+    slug: farm
     is_triple: '0'
   iceModelTag_6993:
     name: 'farm journal'
@@ -28569,7 +28569,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_8653:
     name: Indians
-    slug: ''
+    slug: indians
     is_triple: '0'
   iceModelTag_8654:
     name: 'Tee Pee'
@@ -34681,7 +34681,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_10666:
     name: raccoon
-    slug: ''
+    slug: raccoon
     is_triple: '0'
   iceModelTag_10667:
     name: chipmunk
@@ -35137,7 +35137,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_10827:
     name: Eaglemoss
-    slug: ''
+    slug: eaglemoss
     is_triple: '0'
   iceModelTag_10829:
     name: 'Disney store'
@@ -37161,7 +37161,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_11477:
     name: 'human figurines'
-    slug: ''
+    slug: human-figurines
     is_triple: '0'
   iceModelTag_11480:
     name: 'St. Andrews'
@@ -39181,7 +39181,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_12224:
     name: pets
-    slug: ''
+    slug: pets
     is_triple: '0'
   iceModelTag_12225:
     name: image
@@ -39569,7 +39569,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_12341:
     name: 'animal replicas'
-    slug: ''
+    slug: animal-replicas
     is_triple: '0'
   iceModelTag_12342:
     name: 'big cats'
@@ -39869,7 +39869,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_12416:
     name: 'wild dogs'
-    slug: ''
+    slug: wild-dogs
     is_triple: '0'
   iceModelTag_12417:
     name: hyena
@@ -41309,7 +41309,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_12776:
     name: 'Texas longhorn'
-    slug: ''
+    slug: texas-longhorn
     is_triple: '0'
   iceModelTag_12777:
     name: Charolais
@@ -41509,7 +41509,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_12826:
     name: St.Bernhard
-    slug: ''
+    slug: stbernhard
     is_triple: '0'
   iceModelTag_12827:
     name: Shar-Pei
@@ -43081,7 +43081,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_13219:
     name: 'red fox'
-    slug: ''
+    slug: red-fox
     is_triple: '0'
   iceModelTag_13220:
     name: Schleic
@@ -43129,7 +43129,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_13231:
     name: uk
-    slug: ''
+    slug: uk
     is_triple: '0'
   iceModelTag_13232:
     name: 'united kingdom'
@@ -43341,7 +43341,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_13284:
     name: farmdog
-    slug: ''
+    slug: farmdog
     is_triple: '0'
   iceModelTag_13285:
     name: beagle
@@ -43349,7 +43349,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_13286:
     name: 'German pointer'
-    slug: ''
+    slug: german-pointer
     is_triple: '0'
   iceModelTag_13287:
     name: 'hunting dogs'
@@ -44765,7 +44765,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_13652:
     name: 'wild west'
-    slug: ''
+    slug: wild-west
     is_triple: '0'
   iceModelTag_13653:
     name: dingo
@@ -45101,7 +45101,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_13736:
     name: Dalmation
-    slug: ''
+    slug: dalmation
     is_triple: '0'
   iceModelTag_13737:
     name: 'Berner Sennendog'
@@ -45801,7 +45801,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_13911:
     name: 'marvel comic'
-    slug: ''
+    slug: marvel-comic
     is_triple: '0'
   iceModelTag_13912:
     name: batmobi
@@ -46537,7 +46537,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_14095:
     name: squinkies
-    slug: ''
+    slug: squinkies
     is_triple: '0'
   iceModelTag_14096:
     name: natgeo
@@ -47177,7 +47177,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_14255:
     name: bobtail
-    slug: ''
+    slug: bobtail
     is_triple: '0'
   iceModelTag_14256:
     name: Sittec
@@ -48673,4 +48673,112 @@ iceModelTag:
   iceModelTag_14685:
     name: 'body bands'
     slug: body-bands
+    is_triple: '0'
+  iceModelTag_14686:
+    name: Swarovski
+    slug: swarovski
+    is_triple: '0'
+  iceModelTag_14687:
+    name: 'wildlife toys'
+    slug: wildlife-toys
+    is_triple: '0'
+  iceModelTag_14688:
+    name: 'Duffy bear'
+    slug: duffy-bear
+    is_triple: '0'
+  iceModelTag_14689:
+    name: MWT
+    slug: mwt
+    is_triple: '0'
+  iceModelTag_14690:
+    name: 'Hidden Mickey'
+    slug: hidden-mickey
+    is_triple: '0'
+  iceModelTag_14691:
+    name: 'Brother Bear'
+    slug: brother-bear
+    is_triple: '0'
+  iceModelTag_14692:
+    name: 'How To Get Rid Of Acne'
+    slug: how-to-get-rid-of-acne
+    is_triple: '0'
+  iceModelTag_14693:
+    name: hawkeye%2C
+    slug: hawkeye2c
+    is_triple: '0'
+  iceModelTag_14694:
+    name: tokidoki
+    slug: tokidoki
+    is_triple: '0'
+  iceModelTag_14695:
+    name: showdown
+    slug: showdown
+    is_triple: '0'
+  iceModelTag_14696:
+    name: hulkling
+    slug: hulkling
+    is_triple: '0'
+  iceModelTag_14697:
+    name: 3age
+    slug: 3age
+    is_triple: '0'
+  iceModelTag_14698:
+    name: 'The Disney Store'
+    slug: the-disney-store
+    is_triple: '0'
+  iceModelTag_14699:
+    name: 'action league'
+    slug: action-league
+    is_triple: '0'
+  iceModelTag_14700:
+    name: 'white lantern'
+    slug: white-lantern
+    is_triple: '0'
+  iceModelTag_14701:
+    name: squatz
+    slug: squatz
+    is_triple: '0'
+  iceModelTag_14702:
+    name: farmhelper
+    slug: farmhelper
+    is_triple: '0'
+  iceModelTag_14703:
+    name: totempoal
+    slug: totempoal
+    is_triple: '0'
+  iceModelTag_14704:
+    name: 'native Americans'
+    slug: native-americans
+    is_triple: '0'
+  iceModelTag_14705:
+    name: campfire
+    slug: campfire
+    is_triple: '0'
+  iceModelTag_14706:
+    name: 'old English sheepdog'
+    slug: old-english-sheepdog
+    is_triple: '0'
+  iceModelTag_14707:
+    name: Playspaces
+    slug: playspaces
+    is_triple: '0'
+  iceModelTag_14708:
+    name: 'Arctic wolf'
+    slug: arctic-wolf
+    is_triple: '0'
+  iceModelTag_14709:
+    name: 'small predators'
+    slug: small-predators
+    is_triple: '0'
+  iceModelTag_14710:
+    name: Thinkway
+    slug: thinkway
+    is_triple: '0'
+  iceModelTag_14711:
+    name: 'Simba%27s Pride'
+    slug: simba27s-pride
+    is_triple: '0'
+  iceModelTag_14712:
+    name: Springbuck
+    slug: springbuck
     is_triple: '0'

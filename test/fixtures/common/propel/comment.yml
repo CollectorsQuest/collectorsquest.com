@@ -5585,3 +5585,45 @@ Comment:
     body: "Sorry, I can't help. Mine is 7 years old or more. :&lt;\r\n"
     ip_address: 109.99.99.235
     created_at: '2012-02-23 03:13:54'
+  Comment_14425:
+    collection_id: Collection_50
+    collectible_id: Collectible_4049
+    author_name: kev
+    author_email: ''
+    author_url: ''
+    body: 'just bought this this book 4 £3. oh i love it have not seen it in say 30 yrs, wow,great book'
+    ip_address: 82.28.240.157
+    created_at: '2012-03-02 20:12:30'
+  Comment_14448:
+    collection_id: Collection_930
+    collectible_id: Collectible_18884
+    author_name: Michele
+    author_email: micheleaparsons@gmail.com
+    author_url: ''
+    body: "Where can I get a set of these?  They're exactly what my son needs for a project he is working on.\r\n\r\nThanks!"
+    ip_address: 75.43.205.122
+    created_at: '2012-03-05 00:29:24'
+  Comment_14458:
+    collection_id: Collection_1383
+    author_name: 'Roberta Rice'
+    author_email: ricesuccess71@yahoo.com
+    author_url: ''
+    body: 'I had these comic books and gave them to my children.  Can I still purchase them and what is the price.  Please respond.'
+    ip_address: 174.79.61.231
+    created_at: '2012-03-07 17:44:35'
+  Comment_14463:
+    collection_id: Collection_12
+    collectible_id: Collectible_149
+    author_name: Jenna
+    author_email: jenna.rose@hotmail.com
+    author_url: ''
+    body: "Hey There! \r\n\r\nMy Fiancée and I Were Going Through Some Old Boxes, From His Grandmother, Who Has Recently Passed Away..\r\n\r\nAnd Have Found, a\r\n\r\n\"Lets Dance With The Villains!! The Batman Theme\"\r\nRecord, 1966, I Believe..\r\n\r\nWondering If You Knew ANY Information On It, \r\nAs I Cannot Find It Anywhere Online!\r\n\r\nHope To Hear Back From You! Thankyou! :)"
+    ip_address: 24.226.54.177
+    created_at: '2012-03-07 23:41:17'
+  Comment_14465:
+    collection_id: Collection_12
+    collectible_id: Collectible_149
+    collector_id: Collector_12
+    body: 'Question answered! http://www.collectorsquest.com/blog/2012/03/08/a-collectors-question-whats-my-batman-record-worth/'
+    ip_address: 207.237.37.24
+    created_at: '2012-03-08 12:46:24'

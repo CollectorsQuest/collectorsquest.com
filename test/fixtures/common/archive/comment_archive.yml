@@ -786,6 +786,15 @@ CommentArchive:
     subject: ''
     body: "I just love this one!\r\nBut i do have it too now, some very good man and friend gave it to me, and i am very happy with it!!!\r\nMerci beaucoup mon ami!!!"
     created_at: '2009-11-26 06:27:32'
+  CommentArchive_2782:
+    id: '2782'
+    collection_id: '1442'
+    collectible_id: '24142'
+    author_name: 'Marsha Hixson'
+    author_email: mllhixson@gmail.com
+    subject: ''
+    body: 'is this item still for sale'
+    created_at: '2009-12-07 15:44:49'
   CommentArchive_2789:
     id: '2789'
     collection_id: '1728'
@@ -1552,6 +1561,16 @@ CommentArchive:
     body: 'Sorry my Stone Cold collection isn''t for sale. That t-shirt I got from Stone Cold himself. You may check eBay. I''m only looking to sell my Bret Hart stuff.'
     ip_address: 173.31.80.157
     created_at: '2010-08-31 17:42:55'
+  CommentArchive_4999:
+    id: '4999'
+    collection_id: '1442'
+    collectible_id: '24089'
+    author_name: Gabriel
+    author_email: gabriel_s777@yahoo.com
+    author_url: ''
+    body: "Looking to buy the plastic pig cookie jar. There is no information on the page. Can you please send me the info to e-mail?\r\n\r\ngabriel_s777@yahoo.com\r\n\r\nThank you ,\r\nGabriel"
+    ip_address: 99.6.97.141
+    created_at: '2010-09-05 13:33:04'
   CommentArchive_5021:
     id: '5021'
     collection_id: '1524'
@@ -1613,6 +1632,15 @@ CommentArchive:
     body: 'Part 1.'
     ip_address: 75.80.13.205
     created_at: '2010-09-21 19:28:23'
+  CommentArchive_5128:
+    id: '5128'
+    collection_id: '1442'
+    author_name: 'j m'
+    author_email: jmichael822@frontier.net
+    author_url: ''
+    body: '............ is that for sale?'
+    ip_address: 96.238.247.141
+    created_at: '2010-09-26 13:42:40'
   CommentArchive_5190:
     id: '5190'
     collection_id: '2385'
@@ -2572,6 +2600,16 @@ CommentArchive:
     body: 'thanks becky.'
     ip_address: 99.148.245.46
     created_at: '2011-06-16 15:20:43'
+  CommentArchive_12033:
+    id: '12033'
+    collection_id: '1442'
+    collectible_id: '23048'
+    author_name: Krista
+    author_email: wright_krista@hotmail.com
+    author_url: ''
+    body: 'Is this for sale? I''m interested, thanks!'
+    ip_address: 68.3.165.189
+    created_at: '2011-06-16 22:51:44'
   CommentArchive_12141:
     id: '12141'
     collection_id: '1647'
@@ -3193,6 +3231,24 @@ CommentArchive:
     body: 'This the biggest eevee plush I own,won this guy on eBay.About 2feet tall,was originally given out as prizes at Six Flag''s,made by play-by-play there another BIG version that about 5feet tall,I have yet to own or see it for sale! but hopefully someday'
     ip_address: 70.243.167.249
     created_at: '2011-11-30 19:30:20'
+  CommentArchive_13796:
+    id: '13796'
+    collection_id: '1442'
+    author_name: Anonymous
+    author_email: ''
+    author_url: ''
+    body: 'More than 20.000 view a DAY. I guess people are getting crazy about cookie jars, or it is all fake…………'
+    ip_address: 76.95.66.37
+    created_at: '2011-12-15 13:04:42'
+  CommentArchive_13797:
+    id: '13797'
+    collection_id: '1442'
+    author_name: Anonymous
+    author_email: ''
+    author_url: ''
+    body: 'Yeah, for 2 years this collection was on display here and no one cared about it but suddenly we have a masses lining up to see a cookie jars…….“ Rebecca Black” on friday '
+    ip_address: 76.95.66.37
+    created_at: '2011-12-15 13:11:54'
   CommentArchive_13845:
     id: '13845'
     collection_id: '2996'
@@ -3235,3 +3291,13 @@ CommentArchive:
     body: 'leading pouch packing machines manufacturer and exporter'
     ip_address: 203.196.133.130
     created_at: '2012-02-03 05:37:10'
+  CommentArchive_14464:
+    id: '14464'
+    collection_id: '1736'
+    collectible_id: '29485'
+    author_name: 'искра '
+    author_email: iskra050881@abv.bg
+    author_url: ''
+    body: "cena  na igra4kata\r\n"
+    ip_address: 212.25.54.103
+    created_at: '2012-03-08 05:19:53'
