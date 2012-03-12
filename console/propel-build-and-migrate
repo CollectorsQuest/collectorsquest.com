@@ -4,6 +4,7 @@ SOURCE="${BASH_SOURCE[0]}"
 while [ -h "$SOURCE" ] ; do SOURCE="$(readlink "$SOURCE")"; done
 DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 
-. $DIR/propel-build
-php $DIR/../symfony propel:migrate
+[[ $1 != '' ]] && env=$1 || env="dev"
 
+. $DIR/propel-build
+php $DIR/../symfony propel:migrate --env=$env
