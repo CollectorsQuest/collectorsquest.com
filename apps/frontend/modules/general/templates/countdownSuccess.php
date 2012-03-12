@@ -16,7 +16,7 @@
   </div>
 </div>
 
-<div class="container-fluid" style="padding-right: 340px;">
+<div class="container-fluid r-column-padding">
   <div class="row-fluid" style="float: left">
     <div class="span12">
 
