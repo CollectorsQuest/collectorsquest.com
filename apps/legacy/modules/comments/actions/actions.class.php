@@ -116,4 +116,16 @@ class commentsActions extends cqActions
 
     $this->redirect($route .'#comment_'. $comment->getId());
   }
+
+  /**
+   * Action CommentList
+   *
+   * @param sfWebRequest $request
+   *
+   */
+  public function executeCommentList(sfWebRequest $request)
+  {
+
+  }
+
 }
