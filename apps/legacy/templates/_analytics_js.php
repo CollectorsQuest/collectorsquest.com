@@ -51,6 +51,6 @@
 <script type="text/javascript">
 //<![CDATA[
   // The server load time for tracking in Google Analytics
-  var server_load_time = <?= ceil(cqTimer::getInstance()->getElapsedTime() * 100); ?>;
+  var server_load_time = <?= ceil(cqTimer::getInstance()->getElapsedTime() * 1000); ?>;
 //]]>
 </script>
