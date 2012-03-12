@@ -425,8 +425,11 @@ manage_friends:
   url:   /manage/friends
   param: { module: manage, action: friends }
 
-### EXTERNAL
+manage_profile_resend_change_email:
+  url:   /manage/email-change/resend
+  param: { module: manage, action: resendEmailChange }
 
+### EXTERNAL
 blog:
   url:  /blog/index.php
 
