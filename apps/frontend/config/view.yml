@@ -13,6 +13,7 @@ default:
     language:     "en"
     verify-v1:    "+PAY5RqU44ztUAkVcbSIFxiqmn8vAgwgEZbJB+kd6a0="
     y_key:        "f4bf8cfd736a1ff1"
+    viewport:     "width=device-width, initial-scale=1.0"
 
     googlebot:    "all, index, follow"
     coverage:     "Worldwide"
