@@ -24,50 +24,76 @@ class manageActions extends cqActions
 
     $collector = $this->getCollector();
     $form = new CollectorEditForm($collector);
+    $shipping_rates_form = new ShippingRatesCollectionForm($collector, array(
+        'tainted_request_values' => $request->getParameter('shipping_rates_collection'),
+    ));
 
     if ($request->isMethod('post'))
     {
-      $form->bind($request->getParameter('collector'), $request->getFiles('collector'));
-      if ($form->isValid())
+      if ($request->hasParameter('collector'))
       {
-        $form->save();
-
-        // Clear the Geo Cache
-        CollectorGeocacheQuery::create()->filterByCollectorId($collector->getId())->delete();
-
-        $message = 'Your profile/account information was updated.';
-        if ($collectorEmail = $form->getOption('newEmail', false))
+        $form->bind($request->getParameter('collector'), $request->getFiles('collector'));
+        if ($form->isValid())
         {
-          $subject = $this->__('You have changed your email at CollectorsQuest.com');
-          $body = $this->getPartial(
-            'emails/collector_email_change',
-            array(
-              'collector'     => $collector,
-              'collectorEmail'=> $collectorEmail
-            )
-          );
+          $form->save();
 
-          if ($this->sendEmail($form->getValue('email'), $subject, $body))
+          // Clear the Geo Cache
+          CollectorGeocacheQuery::create()->filterByCollectorId($collector->getId())->delete();
 
-            $message .= ' Email verification sent to ' . $form->getValue('email');
+          $message = 'Your profile/account information was updated.';
+          if ($collectorEmail = $form->getOption('newEmail', false))
+          {
+            $subject = $this->__('You have changed your email at CollectorsQuest.com');
+            $body = $this->getPartial(
+              'emails/collector_email_change',
+              array(
+                'collector'     => $collector,
+                'collectorEmail'=> $collectorEmail
+              )
+            );
+
+            if ($this->sendEmail($form->getValue('email'), $subject, $body))
+
+              $message .= ' Email verification sent to ' . $form->getValue('email');
+          }
+
+          $this->getUser()->setFlash('success', $message);
+
+          // Send the profile data to Defensio to analyse
+          $collector->sendToDefensio('UPDATE');
+
+          $this->redirect('@manage_profile');
         }
-
-        $this->getUser()->setFlash('success', $message);
-
-        // Send the profile data to Defensio to analyse
-        $collector->sendToDefensio('UPDATE');
-
-        $this->redirect('@manage_profile');
+        else
+        {
+          $this->getUser()->setFlash('error', 'There were some problems, please take a look below.');
+        }
       }
-      else
+
+      if ($collector->getIsSeller() && $request->hasParameter('shipping_rates_collection'))
       {
-        $this->getUser()->setFlash('error', 'There were some problems, please take a look below.');
+        if ($shipping_rates_form->bindAndSave($request->getParameter('shipping_rates_collection')))
+        {
+          $this->getUser()->setFlash('success', 'Your shipping information was updated');
+          $this->redirect('@manage_profile');
+        }
+        else
+        {
+          $this->getUser()->setFlash('error', 'There were some problems, please take a look below.');
+        }
       }
     }
 
     // Make the Form and Collector available in the template
     $this->form = $form;
     $this->collector = $collector;
+
+    if ($collector->getIsSeller())
+    {
+      // only make the shipping rates form available to the template if the
+      // collecto is a seller
+      $this->shipping_rates_form = $shipping_rates_form;
+    }
 
     $this->addBreadcrumb($this->__('Collectors'), '@collectors');
     $this->addBreadcrumb($this->__('Your Profile'));

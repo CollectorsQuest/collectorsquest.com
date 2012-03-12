@@ -10,9 +10,9 @@ class shippingRateAmountInCentsOrPercentValidatorSchema extends sfValidatorSchem
   protected function configure($options = array(), $messages = array())
   {
     $this->addMessage('missing_amount',
-      'You must set either amount in cents or amount in percent!');
+      'You must set either amount in USD or amount in percent!');
     $this->addMessage('both_amounts',
-      'You have set both cent and percent amounts. Only one of the two must be set!');
+      'You have set both USD and percent amounts. Only one of the two must be set!');
     $this->addMessage('no_amount_required',
       'You should not set an amount with your currently selected calculation type');
   }

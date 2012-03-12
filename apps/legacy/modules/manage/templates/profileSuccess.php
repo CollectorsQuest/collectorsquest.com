@@ -26,28 +26,44 @@
 }
 </style>
 
-<form id="form-manage-profile" action="<?= url_for('@manage_profile'); ?>" method="post" enctype="multipart/form-data">
+
 <div id="profile-tabs" class="ui-tabs ui-widget ui-widget-content ui-corner-all" style="margin-top: -5px; margin-right: -5px; background: none; border: none;">
   <ul class="ui-tabs ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" style="margin-bottom: 5px;">
     <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#profile-tab-account"><?= __('Account Information'); ?></a></li>
     <li class="ui-state-default ui-corner-top ui-state-active"><a href="#profile-tab-personal"><?= __('Personal Information'); ?></a></li>
     <li class="ui-state-default ui-corner-top ui-state-active"><a href="#profile-tab-about"><?= __('About You'); ?></a></li>
+    <?php if ($collector->getIsSeller()): ?>
+    <li class="ui-state-default ui-corner-top ui-state-active"><a href="#collector-shipping-rates"><?= __('Shipping Rates'); ?></a></li>
+    <?php endif; ?>
     <!--
     <li style="float: right;">
       <a href="#profile-tab-notifications"><?= __('Notifications'); ?></a>
     </li>
     //-->
-	 </ul>
+  </ul>
 
-	 <div id="profile-tab-account">
-    <?php include_partial('manage/profile_account', array('form' => $form, 'collector' => $collector)); ?>
-	 </div>
-  <div id="profile-tab-personal">
-    <?php include_partial('manage/profile_personal', array('form' => $form['profile'], 'collector' => $collector)); ?>
-  </div>
-	 <div id="profile-tab-about">
-    <?php include_partial('manage/profile_about', array('form' => $form['profile'], 'collector' => $collector)); ?>
-  </div>
+  <form id="form-manage-profile" action="<?= url_for('@manage_profile'); ?>" method="post" enctype="multipart/form-data">
+    <?= $form->renderHiddenFields(); ?>
+
+    <div id="profile-tab-account">
+      <?php include_partial('manage/profile_account', array('form' => $form, 'collector' => $collector)); ?>
+    </div>
+    <div id="profile-tab-personal">
+      <?php include_partial('manage/profile_personal', array('form' => $form['profile'], 'collector' => $collector)); ?>
+    </div>
+    <div id="profile-tab-about">
+      <?php include_partial('manage/profile_about', array('form' => $form['profile'], 'collector' => $collector)); ?>
+    </div>
+  </form>
+
+  <?php if ($collector->getIsSeller()): ?>
+  <form id="form-shipping-rates" action="<?= url_for('@manage_profile') ?>#collector-shipping-rates" method="post" enctype="multipart/form-data">
+    <div id="collector-shipping-rates">
+      <?php include_partial('manage/collector_shipping_rates', array('form' => $shipping_rates_form)); ?>
+    </div>
+  </form>
+  <?php endif; ?>
+
   <!--
   <div id="profile-tab-notifications">
     <?php // include_partial('manage/profile_notifications', array('form' => $form, 'collector' => $collector)); ?>
@@ -55,14 +71,8 @@
   //-->
 </div>
 
-<br clear="all"/><br/><br/>
-<div class="span-12" style="text-align: right;">
-  <?php cq_button_submit(__('Save Changes'), null, 'float: right;'); ?>
-</div>
 <div class="clearfix append-bottom">&nbsp;</div>
 
-<?= $form->renderHiddenFields(); ?>
-</form>
 
 <?php cq_javascript_tag(); ?>
 <script type="text/javascript">

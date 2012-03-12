@@ -57,7 +57,8 @@ class ShippingRateCollectibleFormForEmbedding extends ShippingRateCollectibleFor
       case (ShippingRatePeer::CALCULATION_TYPE_FREE_SHIPPING):
       case (ShippingRatePeer::CALCULATION_TYPE_LOCAL_PICKUP):
       case (ShippingRatePeer::CALCULATION_TYPE_NO_SHIPPING):
-        $this->useFields(array()); // hide all fields
+        // hide all fields
+        $this->useFields(array());
         break;
 
       case (ShippingRatePeer::CALCULATION_TYPE_PRICE_RANGE):
@@ -65,7 +66,8 @@ class ShippingRateCollectibleFormForEmbedding extends ShippingRateCollectibleFor
         break;
 
       default:
-        // show all fields
+        // hide all fields
+        $this->useFields(array());
         break;
 
     endswitch;

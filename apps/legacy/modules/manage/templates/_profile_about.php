@@ -52,3 +52,8 @@
   <?= cq_input_tag($form, 'about_annually_spend', array('width' => 100)); ?>
   <?= $form['about_annually_spend']->renderError(); ?>
 </div>
+
+<br clear="all"/><br/><br/>
+<div class="span-12" style="text-align: right;">
+  <?php cq_button_submit(__('Save Changes'), null, 'float: right;'); ?>
+</div>
