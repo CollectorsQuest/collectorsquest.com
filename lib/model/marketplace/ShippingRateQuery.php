@@ -22,9 +22,8 @@ class ShippingRateQuery extends BaseShippingRateQuery
    *
    * <code>
    * $result = array(
-   *   'bg' => ShippingRate[],
-   *   'us' => ShippingRate[],
-   *   ''   => ShippingRate[], // where no country is set
+   *   'bg' => PropelObjectCollection(ShippingRate[])
+   *   'us' => PropelObjectCollection(ShippingRate[]),
    * );
    * </code>
    *
@@ -44,7 +43,9 @@ class ShippingRateQuery extends BaseShippingRateQuery
 
       if (!isset($results[$country_code]))
       {
-        $results[$country_code] = array();
+        $collection = new PropelObjectCollection();
+        $collection->setModel(get_class($object));
+        $results[$country_code] = $collection;
       }
 
       $results[$country_code][] = $object;
