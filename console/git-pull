@@ -1,0 +1,3 @@
+[[ $1 != '' ]] && branch=$1 || branch="develop"
+
+git pull --ff-only origin $branch
