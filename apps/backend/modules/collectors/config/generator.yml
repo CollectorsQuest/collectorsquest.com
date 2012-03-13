@@ -50,6 +50,8 @@ generator:
         fields:
           has_cqnext_access:
             attributes: { class: yes_no }
+          is_public:
+            attributes: { class: yes_no }
 
       edit:
         title: Edit Collector <small>(%%USERNAME%%)</small>
