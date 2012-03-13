@@ -37,27 +37,7 @@ class ShippingRatesForDomesticShippingForm extends ShippingRatesForCountryForm
    */
   protected function getCountryCodeForDefaults()
   {
-    return $this->getParentObjectCountryCode();
-  }
-
-  /**
-   * Get the country code of the parent object, regardless if it is a
-   * Collector or a Collectible
-   *
-   * @return    string
-   */
-  protected function getParentObjectCountryCode()
-  {
-    $parent_object = $this->getParentObject();
-    if ($parent_object instanceof Collector)
-    {
-      return $parent_object->getProfile()->getCountryIso3166();
-    }
-
-    if ($parent_object instanceof Collectible)
-    {
-      return $parent_object->getCollector()->getProfile()->getCountryIso3166();
-    }
+    return $this->getParentObject()->getDomesticCountryCode();
   }
 
 }

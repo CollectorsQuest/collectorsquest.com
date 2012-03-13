@@ -54,4 +54,27 @@ class ShippingRateQuery extends BaseShippingRateQuery
     return $results;
   }
 
+  /**
+   *
+   * @param     Collector|Collectible $object
+   * @param     string $modelAlias
+   * @param     PropelPDO $con
+   *
+   * @return    ShippingRateQuery
+   */
+  public static function createStubQueryForRelatedObject($object, $modelAlias = null, $con = null)
+  {
+    if ($object instanceof Collector)
+    {
+      return ShippingRateCollectorQuery::create($modelAlias, $con)
+        ->filterByCollector($object);
+    }
+
+    if ($object instanceof Collectible)
+    {
+      return ShippingRateCollectibleQuery::create($modelAlias, $con)
+        ->filterByCollectible($collectible);
+    }
+  }
+
 }

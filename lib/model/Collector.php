@@ -566,6 +566,16 @@ class Collector extends BaseCollector implements ShippingRatesInterface
   }
 
   /**
+   * Return the domestic country code
+   *
+   * @return    string
+   */
+  public function getDomesticCountryCode()
+  {
+    return $this->getProfile()->getCountryIso3166();
+  }
+
+  /**
    * @param  null|PropelPDO  $con
    * @return boolean
    */

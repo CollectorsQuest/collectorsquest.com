@@ -120,6 +120,45 @@ class ShippingRatesCollectionForm extends sfFormPropel
 
     // embedded forms
     $this->saveEmbeddedForms($con);
+
+    $this->saveInternationalDoNotShipToRecords($con);
+  }
+
+  protected function saveInternationalDoNotShipToRecords($con = null)
+  {
+    if (!$this->isValid())
+    {
+      throw $this->getErrorSchema();
+    }
+
+    if (null === $con)
+    {
+      $con = $this->getConnection();
+    }
+
+    $q = ShippingRateQuery::createStubQueryForRelatedObject($this->getObject())
+      ->filterByCalculationType(ShippingRatePeer::CALCULATION_TYPE_NO_SHIPPING)
+      ->filterByCountryIso3166($this->getObject()->getDomesticCountryCode(), Criteria::NOT_EQUAL);
+    $q
+      ->delete($con);
+
+   $values = $this->getValues();
+
+   if (isset($values['shipping_international']['do_not_ship_to']) && is_array($values['shipping_international']['do_not_ship_to']))
+   {
+     $related_object_class = get_class($this->getObject());
+     $shipping_rate_class = 'ShippingRate' . $related_object_class;
+     $related_object_setter = 'set'.$related_object_class;
+
+     foreach ( (array) $values['shipping_international']['do_not_ship_to'] as $country_code )
+     {
+       $shipping_rate = new $shipping_rate_class();
+       $shipping_rate->$related_object_setter($this->getObject());
+       $shipping_rate->setCalculationType(ShippingRatePeer::CALCULATION_TYPE_NO_SHIPPING);
+       $shipping_rate->setCountryIso3166($country_code);
+       $shipping_rate->save($con);
+     }
+   }
   }
 
   /**

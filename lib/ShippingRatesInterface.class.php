@@ -39,4 +39,9 @@ interface ShippingRatesInterface
    * @return    array ShippingRate[]
    */
   public function getShippingRatesDomestic(PropelPDO $con = null);
+
+  /**
+   * @return    string
+   */
+  public function getDomesticCountryCode();
 }

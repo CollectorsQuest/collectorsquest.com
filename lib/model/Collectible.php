@@ -556,6 +556,15 @@ class Collectible extends BaseCollectible
     return $this->getShippingRatesForCountryCode($coutry_code, $con);
   }
 
+  /**
+   * Return the domestic country code
+   *
+   * @return    string
+   */
+  public function getDomesticCountryCode()
+  {
+    return $this->getCollector()->getProfile()->getCountryIso3166();
+  }
 
   /**
    * @param  null|PropelPDO  $con
