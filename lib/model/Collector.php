@@ -8,7 +8,7 @@ require 'lib/model/om/BaseCollector.php';
  * @method     Collector setCqnextAccessAllowed(boolean $v)
  * @method     boolean getCqnextAccessAllowed()
  */
-class Collector extends BaseCollector
+class Collector extends BaseCollector implements ShippingRatesInterface
 {
 
   public function initializeProperties()
@@ -519,6 +519,60 @@ class Collector extends BaseCollector
     }
 
     return false;
+  }
+
+  /**
+   * Get the shipping rates for this collector, grouped by country
+   *
+   * @param     PropelPDO $con
+   * @return    array
+   *
+   * @see       ShippingRateCollectorQuery::findAndGroupByCountryCode()
+   */
+  public function getShippingRatesGroupedByCountryCode(PropelPDO $con = null)
+  {
+    return ShippingRateCollectorQuery::create()
+      ->filterByCollector($this)
+      ->findAndGroupByCountryCode($con);
+  }
+
+  /**
+   * Get shipping rates for a specific country
+   *
+   * @param     string $coutry_code
+   * @param     PropelPDO $con
+   * @return    ShippingRate[]
+   */
+  public function getShippingRatesForCountryCode($coutry_code, PropelPDO $con = null)
+  {
+    return ShippingRateCollectorQuery::create()
+      ->filterByCollector($this)
+      ->filterByCountryIso3166($coutry_code)
+      ->find($con);
+  }
+
+  /**
+   * Get shipping rates for the collector's country
+   *
+   * @param     PropelPDO $con
+   * @return    ShippingRate[]
+   */
+  public function getShippingRatesDomestic(PropelPDO $con = null)
+  {
+    return ShippingRateCollectorQuery::create()
+      ->filterByCollector($this)
+      ->filterByCountryIso3166($this->getProfile()->getCountryIso3166())
+      ->find($con);
+  }
+
+  /**
+   * Return the domestic country code
+   *
+   * @return    string
+   */
+  public function getDomesticCountryCode()
+  {
+    return $this->getProfile()->getCountryIso3166();
   }
 
   /**

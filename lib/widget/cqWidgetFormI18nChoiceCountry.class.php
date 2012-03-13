@@ -10,7 +10,9 @@ class cqWidgetFormI18nChoiceCountry extends sfWidgetFormChoice
    *  * culture:   The culture to use for internationalized strings
    *  * countries: An array of country codes to use (ISO 3166)
    *  * add_empty: Whether to add a first empty value or not (false by default)
-   *               If the option is not a Boolean, the value will be used as the text value
+   *               If the option is not a Boolean, the value will be used as the
+   *               text value
+   *  * add_worldwide: Whether to add "Worldwide" as an option
    *
    * @param array $options     An array of options
    * @param array $attributes  An array of default HTML attributes
@@ -24,6 +26,7 @@ class cqWidgetFormI18nChoiceCountry extends sfWidgetFormChoice
     $this->addOption('culture');
     $this->addOption('countries');
     $this->addOption('add_empty', false);
+    $this->addOption('add_worldwide', false);
 
     // populate choices with all countries
     $culture = isset($options['culture']) ? $options['culture'] : 'en';
@@ -31,7 +34,8 @@ class cqWidgetFormI18nChoiceCountry extends sfWidgetFormChoice
     // get the countries array based on $culture
     $countries = sfCultureInfo::getInstance($culture)->getCountries(isset($options['countries']) ? $options['countries'] : null);
 
-    // We should not allow the 'Unknown or Invalid Region'
+    // We unset the default symfony country code for "Unknown region"
+    // because it will be used for "Wordwide"
     unset($countries['ZZ']);
 
     $_countries = array();
@@ -40,6 +44,13 @@ class cqWidgetFormI18nChoiceCountry extends sfWidgetFormChoice
       $_countries[$special] = $countries[$special];
       unset($countries[$special]);
     }
+
+    // check the init options
+    if (isset($options['add_worldwide']) && $options['add_worldwide'])
+    {
+      $_countries['ZZ'] = 'Worldwide';
+    }
+
     $_countries[] = '-------------------------';
 
     // merge the two parts again into one array
@@ -53,4 +64,5 @@ class cqWidgetFormI18nChoiceCountry extends sfWidgetFormChoice
 
     $this->setOption('choices', $countries);
   }
+
 }

@@ -73,6 +73,11 @@
   <?= $form['website']->renderError(); ?>
 </div>
 
+<br clear="all"/><br/><br/>
+<div class="span-12" style="text-align: right;">
+  <?php cq_button_submit(__('Save Changes'), null, 'float: right;'); ?>
+</div>
+
 <script type="text/javascript">
   jQuery(document).ready(function() {
     jQuery('a#collector_type_help_link').fancybox({

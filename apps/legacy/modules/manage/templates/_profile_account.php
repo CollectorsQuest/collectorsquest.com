@@ -61,3 +61,8 @@
   <?= cq_input_tag($form, 'password_again', array('width' => 250)); ?>
   <?= $form['password_again']->renderError(); ?>
 </div>
+
+<br clear="all"/><br/><br/>
+<div class="span-12" style="text-align: right;">
+  <?php cq_button_submit(__('Save Changes'), null, 'float: right;'); ?>
+</div>
