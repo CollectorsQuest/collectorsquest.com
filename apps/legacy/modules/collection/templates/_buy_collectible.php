@@ -19,7 +19,7 @@ if ($collectible_for_sale)
 <?php if ($collectible_for_sale->getPrice() > 0): ?>
 
   <div class="span-14 prepend-1 clearer">
-    <?= section_title('This item is for sale by ' . link_to_collector($collector, 'text')); ?>
+    <?= cq_section_title('This item is for sale by ' . link_to_collector($collector, 'text')); ?>
   </div>
 
   <div class="buy-now-container cf">
@@ -62,7 +62,7 @@ if ($collectible_for_sale)
       ?>
       <div id="for_sale" style="padding: 10px; padding-top: 20px;">
         <span style="color: #EEA441; font-size: 14px; font-weight: bold;">
-          <div class="section-title">  <p class="text-orange bolder"><?= section_title('This item is for sale by ' . link_to_collector($collector, 'text')); ?></p></div>
+          <div class="section-title">  <p class="text-orange bolder"><?= cq_section_title('This item is for sale by ' . link_to_collector($collector, 'text')); ?></p></div>
         </span>
         <div style="border: 1px solid #D1D1D1; width: 320px; margin-top: 5px;">
           <?php if ($collectible_for_sale->getPrice() > 0): ?>

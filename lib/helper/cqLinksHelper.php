@@ -2,7 +2,7 @@
 
 /** @var cqApplicationConfiguration $configuration */
 $configuration = sfProjectConfiguration::getActive();
-$configuration->loadHelpers(array('Asset', 'Text', 'Url', 'cqGeneral', 'cqImages'));
+$configuration->loadHelpers(array('Asset', 'Text', 'Url', 'cqImages'));
 
 function link_to_collector($object, $type = 'text', $options = array())
 {
