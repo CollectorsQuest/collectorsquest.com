@@ -1,0 +1,13 @@
+sidebar120Success:
+  components:
+    sidebar_120: [global, sidebar120]
+
+sidebar340Success:
+  components:
+    sidebar_120: []
+    sidebar_340: [global, sidebar340]
+
+sidebarNoneSuccess:
+  components:
+    sidebar_120: []
+    sidebar_340: []

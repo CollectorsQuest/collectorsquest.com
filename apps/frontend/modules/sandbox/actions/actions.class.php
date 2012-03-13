@@ -1,0 +1,34 @@
+<?php
+
+/**
+ * general actions.
+ *
+ * @package    CollectorsQuest
+ * @subpackage general
+ * @author     Collectors
+ * @version    SVN: $Id: actions.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
+ */
+class sandboxActions extends cqFrontendActions
+{
+
+  public function executeIndex()
+  {
+    return sfView::SUCCESS;
+  }
+
+  public function executeSidebar340()
+  {
+    return sfView::SUCCESS;
+  }
+
+  public function executeSidebar120()
+  {
+    return sfView::SUCCESS;
+  }
+
+  public function executeSidebarNone()
+  {
+    return sfView::SUCCESS;
+  }
+
+}

@@ -1,0 +1,3 @@
+countdownSuccess:
+  components:
+    sidebar: [global, sidebarFluid]
