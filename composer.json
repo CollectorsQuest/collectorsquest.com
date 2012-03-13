@@ -45,11 +45,24 @@
                     "reference": "ab426e0253a1fe41fd6077df86f34fb0a2ca65a8"
                 }
             }
+        },
+        "Seldaek/monolog": {
+          "type": "package",
+          "package": {
+            "name": "lib/vendor/monolog",
+            "version": "1.0.2",
+            "source": {
+              "url": "git://github.com/Seldaek/monolog.git",
+              "type": "git",
+              "reference": "b704c49a3051536f67f2d39f13568f74615b9922"
+            }
+          }
         }
     },
     "require": {
         "plugins/sfGuardPlugin": "4.0.2",
         "lib/vendor/neo4jphp": "0.0.6",
-        "lib/vendor/faker": "master-dev"
+        "lib/vendor/faker": "master-dev",
+        "lib/vendor/monolog": "1.0.2"
     }
 }
