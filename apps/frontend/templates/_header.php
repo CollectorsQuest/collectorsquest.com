@@ -11,13 +11,13 @@
         <span class="icon-bar"></span>
       </a>
 
-      <div class="nav-collapse collapse" style="height: 0px; ">
+      <div class="nav-collapse collapse" style="height: 0;">
         <ul class="nav">
           <li class="active"><a href="#">HOME</a></li>
-          <li><a href="#">COLLECTIONS</a></li>
-          <li><a href="#">NEWS</a></li>
-          <li><a href="#">VIDEO</a></li>
-          <li><a href="#">MARKET</a></li>
+          <li><?= link_to('COLLECTIONS', 'collections/index'); ?></li>
+          <li><?= link_to('NEWS', 'news/index'); ?></li>
+          <li><?= link_to('VIDEO', 'video/index'); ?></li>
+          <li><?= link_to('MARKET', 'marketplace/index'); ?></li>
         </ul>
       </div><!-- /.nav-collapse -->
     </div>
