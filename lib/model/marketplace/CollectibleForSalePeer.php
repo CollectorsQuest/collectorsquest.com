@@ -30,7 +30,7 @@ class CollectibleForSalePeer extends BaseCollectibleForSalePeer
     $criteria->addJoin(CollectibleForSalePeer::COLLECTIBLE_ID, CollectiblePeer::ID);
     $criteria->addJoin(CollectiblePeer::ID, CollectionCollectiblePeer::COLLECTIBLE_ID);
     $criteria->add(CollectiblePeer::COLLECTOR_ID, $collector_id);
-    $criteria->addDescendingOrderByColumn(CollectibleForSalePeer::ID);
+    $criteria->addDescendingOrderByColumn(CollectibleForSalePeer::COLLECTIBLE_ID);
 
     if (null !== $active)
     {

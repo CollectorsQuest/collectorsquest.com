@@ -231,7 +231,7 @@ class Collector extends BaseCollector implements ShippingRatesInterface
     {
       $limit = $limit - $found;
 
-      /** @var $sf_user cqUser */
+      /** @var $sf_user cqBaseUser */
       $sf_user = sfContext::getInstance()->getUser();
 
       if ($sf_user->isAuthenticated())

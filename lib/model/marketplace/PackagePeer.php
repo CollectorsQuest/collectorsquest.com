@@ -16,19 +16,19 @@ class PackagePeer extends BasePackagePeer
 
   /**
    * @static
-   * @return array
+   * @return Package[]
    */
-  public static function doSelectAllGrouppedByPlanType()
+  public static function getAllPackagesForSelectGroupedByPlanType()
   {
-    $packages = array();
+    /* @var $results Package[] */
     $results = PackageQuery::create()
-        ->filterById(9999, Criteria::LESS_THAN)
-        ->orderByPlanType()
-        ->find();
+      ->filterById(9999, Criteria::LESS_THAN)
+      ->find();
 
+    $packages = array();
     foreach ($results as $package)
     {
-      $packages[$package->getPlanType()][$package->getId()] = $package;
+      $packages[$package->getPlanType()][$package->getId()] = sprintf('%s - %s', money_format('%.2n', $package->getPackagePrice()), $package->getPackageName());
     }
 
     return $packages;

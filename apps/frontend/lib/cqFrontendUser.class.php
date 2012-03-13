@@ -1,5 +1,5 @@
 <?php
 
-class cqUser extends cqBaseUser
+class cqFrontendUser extends cqBaseUser
 {
 }

@@ -12,7 +12,7 @@
         <p class="title" style="margin: 0 0 0.5em 0">Seller <?= link_to_collector($shopping_cart_collectible->getCollector(), 'text'); ?></p>
       </div><!--End Title-->
       <div class="span-6 last"><!--Remove from cart-->
-        <?= link_to('&nbsp;', '@shopping_cart_remove?id='. $shopping_cart_collectible->getCollectibleForSaleId(), array('class' => 'remove-from-cart')); ?>
+        <?= link_to('&nbsp;', '@shopping_cart_remove?id='. $shopping_cart_collectible->getCollectibleId(), array('class' => 'remove-from-cart')); ?>
       </div>
     </div>
 
@@ -23,13 +23,15 @@
           <div class="span-2 append-10l"><!--Image-->
             <?= image_tag_collectible($shopping_cart_collectible->getCollectible(), '75x75'); ?>
           </div>
-          <div class="span-7 last"><!--Info-->
+          <div class="span-8 last"><!--Info-->
             <p class="item-title-sc">
-              <?= $shopping_cart_collectible->getName(); ?>
+              <?= link_to_collectible($shopping_cart_collectible->getCollectible(), 'text'); ?>
+              -
+              <span class="label-condition" style="font-weight: normal; font-size: 80%;">
+                <?= __('%condition% condition', array('%condition%' => $shopping_cart_collectible->getCondition())); ?>
+              </span>
             </p>
-            <p class="label-condition">
-              <?= __('%condition% condition', array('%condition%' => $shopping_cart_collectible->getCondition())); ?>
-            </p>
+            <p><?= $shopping_cart_collectible->getDescription(); ?></p>
           </div><!--End Info-->
         </div>
         <div class="cf"><!--Note on the order-->
@@ -46,21 +48,27 @@
           <tr>
             <td colspan="2">
               Ship to:<br/>
-              <?= $form['shipping_country']->render(array('style' => 'width: 100%;')); ?>
+              <?= $form['country_iso3166']->render(array('style' => 'width: 100%;')); ?>
             </td>
           </tr>
           <tr>
           <tr>
             <td>Price:</td>
-            <td><?= money_format('%.2n', (float) $shopping_cart_collectible->getTotalPrice()); ?></td>
+            <td>
+              <?= money_format('%.2n', (float) $shopping_cart_collectible->getTotalPrice()); ?>
+              <small style="font-size: 80%;"><?= $shopping_cart_collectible->getPriceCurrency(); ?></small>
+            </td>
           </tr>
           <tr>
             <td>Shipping:</td>
             <td>Free</td>
           </tr>
           <tr class="rainbow-dash">
-            <td><strong>Total cost:</strong></td>
-            <td><strong><?= money_format('%.2n', (float) $shopping_cart_collectible->getTotalPrice()); ?></strong></td>
+            <td><strong>Total:</strong></td>
+            <td>
+              <strong><?= money_format('%.2n', (float) $shopping_cart_collectible->getTotalPrice()); ?></strong>
+              <small style="font-size: 80%;"><?= $shopping_cart_collectible->getPriceCurrency(); ?></small>
+            </td>
           </tr>
           <tr>
             <td colspan="2" style="text-align: center;">

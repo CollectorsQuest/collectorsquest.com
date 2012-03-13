@@ -21,7 +21,7 @@ class shoppingActions extends cqActions
 
       case 'remove':
         $c = new Criteria();
-        $c->add(ShoppingCartCollectiblePeer::COLLECTIBLE_FOR_SALE_ID, $request->getParameter('id'));
+        $c->add(ShoppingCartCollectiblePeer::COLLECTIBLE_ID, $request->getParameter('id'));
 
         /** @var $cart_collectible ShoppingCartCollectible */
         if ($cart_collectible = $shopping_cart->getShoppingCartCollectibles($c)->getFirst())
@@ -50,7 +50,6 @@ class shoppingActions extends cqActions
 
         /** @var $q CollectibleForSaleQuery */
         $q = CollectibleForSaleQuery::create()
-           ->filterById($values['id'])
            ->filterByCollectibleId($values['collectible_id']);
 
         if ($collectible_for_sale = $q->findOne())
@@ -58,8 +57,13 @@ class shoppingActions extends cqActions
           try
           {
             $shopping_cart_collectible = new ShoppingCartCollectible();
-            $shopping_cart_collectible->setCollectibleForSale($collectible_for_sale);
-            $shopping_cart_collectible->setPrice($collectible_for_sale->getPrice());
+            $shopping_cart_collectible->setCollectible($collectible_for_sale->getCollectible());
+            $shopping_cart_collectible->setPriceAmount($collectible_for_sale->getPrice() * 1.00);
+            $shopping_cart_collectible->setPriceCurrency('USD');
+            $shopping_cart_collectible->setShippingCountryIso3166('US');
+            $shopping_cart_collectible->setShippingFeeAmount(0);
+            $shopping_cart_collectible->setTaxAmount(0);
+
             $shopping_cart->addShoppingCartCollectible($shopping_cart_collectible);
             $shopping_cart->save();
 
@@ -96,7 +100,7 @@ class shoppingActions extends cqActions
 
     $this->addBreadcrumb($this->__('Shopping Cart'), '@shopping_cart');
 
-    if ($shopping_cart->countCollectibleForSales() === 0)
+    if ($shopping_cart->countCollectibles() === 0)
     {
       return 'Empty';
     }
@@ -123,12 +127,11 @@ class shoppingActions extends cqActions
 
         $q = ShoppingOrderQuery::create()
            ->filterByShoppingCart($shopping_cart)
-           ->filterByCollectibleForSaleId($values['collectible_for_sale_id']);
+           ->filterByCollectibleId($values['collectible_id']);
 
         $shopping_order = $q->findOneOrCreate();
-        $shopping_order->setSessionId(session_id());
         $shopping_order->setCollector($this->getCollector());
-        $shopping_order->setShippingCountry($values['shipping_country']);
+        $shopping_order->setShippingCountryIso3166($values['country_iso3166']);
         $shopping_order->setNoteToSeller($values['note_to_seller']);
         $shopping_order->save();
 
@@ -218,15 +221,24 @@ class shoppingActions extends cqActions
 
           $this->redirect($result['REDIRECTURL'], 302);
         }
+        else if ($result['L_ERRORCODE0'] == '10412')
+        {
+          $shopping_payment->setStatus(ShoppingPaymentPeer::STATUS_FAILED);
+          $shopping_payment->save();
+
+          $this->getUser()->setFlash('error', 'You have already paid this order!');
+          $this->redirect('@manage_shopping_order?uuid='. $shopping_order->getUuid());
+        }
         else
         {
           $shopping_payment->setStatus(ShoppingPaymentPeer::STATUS_FAILED);
           $shopping_payment->save();
         }
 
-        return sfView::ERROR;
         break;
     }
+
+    return sfView::ERROR;
   }
 
   public function executePaypal(sfWebRequest $request)
@@ -262,7 +274,7 @@ class shoppingActions extends cqActions
           {
             // Remove the CollectibleForSale from the shopping cart
             $q = ShoppingCartCollectibleQuery::create()
-               ->filterByCollectibleForSale($shopping_order->getCollectibleForSale())
+               ->filterByCollectible($shopping_order->getCollectible())
                ->filterByShoppingCart($shopping_order->getShoppingCart());
             $q->delete();
 

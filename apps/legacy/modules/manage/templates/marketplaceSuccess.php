@@ -1,5 +1,5 @@
 <?php
-/* @var $sf_user cqUser */
+/* @var $sf_user cqBaseUser */
 $isSeller = $sf_user->hasCredential('seller');
 ?>
 <style type="text/css">
@@ -117,7 +117,7 @@ $isSeller = $sf_user->hasCredential('seller');
             foreach ($collectibles_buying as $offer):
               /* @var $collectible Collectible */
               $collectible = $offer->getCollectible();
-              $collectible_for_sale = $offer->getCollectibleForSale();
+              $collectible_for_sale = $collectible->getCollectibleForSale();
               if (!$collectible_for_sale)
                 continue;
               ?>

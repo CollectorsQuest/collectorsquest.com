@@ -25,7 +25,7 @@ class _blogActions extends cqActions
       $this->addBreadcrumb($this->__('Blog'), '/blog/index.php');
       $this->prependTitle($this->__('Blog'));
     }
-    
+
     if ($data['is_single'] || $data['is_page'])
     {
       if (!empty($data['categories']))
@@ -55,6 +55,9 @@ class _blogActions extends cqActions
       $this->addBreadcrumb($data['tag']);
       $this->prependTitle($data['tag']);
     }
+
+    // We do not want the web debug bar on blog requests
+    sfConfig::set('sf_web_debug', false);
 
     return sfView::SUCCESS;
   }

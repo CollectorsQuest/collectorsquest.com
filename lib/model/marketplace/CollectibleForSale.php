@@ -45,7 +45,7 @@ class CollectibleForSale extends BaseCollectibleForSale
       $c->add(CollectibleOfferPeer::STATUS, 'pending', $activeOnly ? Criteria::EQUAL : Criteria::NOT_EQUAL);
     }
 
-    return count($this->getCollectibleOffers($c));
+    return count($this->getCollectible()->getCollectibleOffers($c));
   }
 
   /**
@@ -64,7 +64,7 @@ class CollectibleForSale extends BaseCollectibleForSale
       $criteria = new Criteria();
     }
 
-    $criteria->add(CollectibleOfferPeer::COLLECTIBLE_FOR_SALE_ID, $this->getId());
+    $criteria->add(CollectibleOfferPeer::COLLECTIBLE_ID, $this->getCollectibleId());
     $criteria->add(CollectibleOfferPeer::COLLECTOR_ID, $id);
 
     if (null !== $status)
@@ -82,7 +82,7 @@ class CollectibleForSale extends BaseCollectibleForSale
   {
     $criteria = new Criteria();
 
-    $criteria->add(CollectibleOfferPeer::COLLECTIBLE_FOR_SALE_ID, $this->getId());
+    $criteria->add(CollectibleOfferPeer::COLLECTIBLE_ID, $this->getCollectibleId());
     $criteria->add(CollectibleOfferPeer::STATUS, array('pending', 'completed'), Criteria::IN);
 
     return CollectibleOfferPeer::doCount($criteria);
@@ -95,14 +95,14 @@ class CollectibleForSale extends BaseCollectibleForSale
    */
   public function getSoldOffer()
   {
-    $criteria = CollectibleOfferPeer::getBackendIsSoldCriteria($this->getId());
+    $criteria = CollectibleOfferPeer::getBackendIsSoldCriteria($this);
 
     return CollectibleOfferPeer::doSelectOne($criteria);
   }
 
   public function getBackendIsSold()
   {
-    $criteria = CollectibleOfferPeer::getBackendIsSoldCriteria($this->getId());
+    $criteria = CollectibleOfferPeer::getBackendIsSoldCriteria($this);
 
     return (bool)CollectibleOfferPeer::doCount($criteria);
   }

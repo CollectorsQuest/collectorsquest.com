@@ -78,7 +78,7 @@ class Collection extends BaseCollection
       /** @var $sf_context sfContext */
       $sf_context = sfContext::getInstance();
 
-      /** @var $sf_user cqUser */
+      /** @var $sf_user cqBaseUser */
       $sf_user = $sf_context->getUser();
 
       if ($sf_context && $sf_user->isAuthenticated())

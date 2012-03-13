@@ -87,7 +87,7 @@ class Collectible extends BaseCollectible
         break;
     }
 
-    return (null !== $limit) ? mb_substr($v, 0, (int) $limit) : $v;
+    return (null !== $limit) ? cqStatic::truncateText($v, (int) $limit, '...', true) : $v;
   }
 
   public function getRelatedCollectiblesForSale($limit = 5, &$rnd_flag = false)
@@ -110,7 +110,7 @@ class Collectible extends BaseCollectible
       $limit = $limit - $found;
       $sf_context = sfContext::getInstance();
 
-      /** @var $sf_user cqUser */
+      /** @var $sf_user cqBaseUser */
       $sf_user = $sf_context->getUser();
 
       if ($sf_context && $sf_user->isAuthenticated())

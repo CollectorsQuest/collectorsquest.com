@@ -31,3 +31,6 @@
 [submodule "plugins/iceGeoLocationPlugin"]
 	path = plugins/iceGeoLocationPlugin
 	url = git@github.com:CollectorsQuest/iceGeoLocationPlugin.git
+[submodule "web/less/frontend/bootstrap"]
+	path = web/less/frontend/bootstrap
+	url = git@github.com:CollectorsQuest/bootstrap.git

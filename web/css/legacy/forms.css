@@ -15,6 +15,12 @@ form ul.error_list li {
   font-size: 12px;
 }
 
+form ul.error_list li.success {
+  background-color: #f1fff1;
+  border: 1px dotted #00d200;
+  color: #00CA00;
+}
+
 .required {
   font-style: italic;
   color: red;

@@ -55,6 +55,15 @@
   <li id="widget-bloggers" class="widget">
     <h2 class="widget-title">Our Bloggers</h2>
     <ul>
+      <li class="alex-rice">
+        <a href="/blog/people/alex-rice">
+          <img src="/images/blog/avatar-alex-rice.png" alt="Alex Rice" align="left" style="height: 40px; margin-right: 10px; border: 1px solid #BDB7BD;">
+        </a>
+        <strong style="font-size: 14px;">Alex Rice</strong> <br>
+        <a href="/blog/people/alex-rice" title="Bio of blogger Alex Rice">[bio]</a> &nbsp;
+        <a href="/blog/index.php?author=19" title="Alex Rice's articles on collecting...">[articles]</a>
+        <br clear="all">
+      </li>
       <li class="brian-rubin">
         <a href="/blog/people/brian-rubin">
           <img src="/images/blog/avatar-brian-rubin.png" alt="Brian Rubin" align="left" style="height: 40px; margin-right: 10px; border: 1px solid #BDB7BD;">
@@ -107,6 +116,15 @@
         <strong style="font-size: 14px;">Joe Szilvagyi</strong> <br>
         <a href="/blog/people/joe-szilvagyi" title="Bio of blogger Joe Szilvagyi">[bio]</a> &nbsp;
         <a href="/blog/index.php?author=17" title="Joe Szilvagyi's articles on collecting...">[articles]</a>
+        <br clear="all">
+      </li>
+      <li class="shawn-hennessy">
+        <a href="/blog/people/shawn-hennessy/">
+          <img src="/images/blog/avatar-shawn-hennessy.png" alt="M. S. Hennessy" align="left" style="height: 40px; margin-right: 10px; border: 1px solid #BDB7BD;">
+        </a>
+        <strong style="font-size: 14px;">M. S. Hennessy</strong> <br>
+        <a href="/blog/people/shawn-hennessy/" title="Bio of blogger M. S. Hennessy">[bio]</a> &nbsp;
+        <a href="/blog/index.php?author=18" title="M. S. Hennessy's articles on collecting...">[articles]</a>
         <br clear="all">
       </li>
       <li class="tom-peeling">

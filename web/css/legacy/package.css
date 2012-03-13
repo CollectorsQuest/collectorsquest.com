@@ -132,3 +132,36 @@ div.text_valign {
 div.text_valignnew {
   line-height: 34px;
 }
+
+ul.packages {
+  list-style: none;
+  padding: 0;
+}
+
+#frmpackage table th {
+  line-height: 30px;
+  text-align: left;
+  font-weight: normal;
+  padding: 0;
+  width: 120px;
+}
+
+#frmpackage input, #packages_card_type, #packages_country {
+  width: 11em;
+}
+
+#frmpackage input[type="radio"], #frmpackage input[type="checkbox"] {
+  width: auto;
+}
+
+#packages_expiry_date_month, #packages_cvv_number {
+  width: 4em;
+}
+
+#packages_expiry_date_year {
+  width: 6em;
+}
+
+#fieldset_cc {
+  display: none;
+}

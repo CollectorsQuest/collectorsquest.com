@@ -5,7 +5,7 @@
  * @method  sfWebController  getController()
  * @method  cqWebResponse    getResponse()
  * @method  cqWebRequest     getRequest()
- * @method  cqUser           getUser()
+ * @method  cqBaseUser       getUser()
  */
 class cqBaseActions extends sfActions
 {

@@ -64,6 +64,17 @@ seller_ajax_save:
   url:   /seller/ajax/save
   param: { module: seller, action: ajaxSaveData }
 
+seller_cancel_payment:
+  url: /seller/payment/cancel/:id
+  param: { module: seller, action: cancelPayment }
+  requirements: { id: '\d+' }
+
+seller_callback_ipn:
+  url: /seller/ipn
+  param: { module: seller, action: callbackIPN }
+  options: { extra_parameters_as_query_string: true }
+  requirements: { sf_method: [POST]}
+
 # currently points to the collector signup form
 seller_signup:
   url:   /collector/signup/:step

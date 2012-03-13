@@ -13,7 +13,8 @@ class cqNextAccessFilter extends sfFilter
   {
     /* @var $request sfWebRequest */
     $request = $this->context->getRequest();
-    /* @var $sf_user cqUser */
+
+    /* @var $sf_user cqBaseUser */
     $sf_user = $this->context->getUser();
     $param_name = $this->getAutoLoginParameterName();
 

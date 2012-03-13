@@ -104,6 +104,8 @@
   <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
   <script type="text/javascript">stLight.options({publisher:'b69d7375-23f2-424c-9d59-f6bf47e9a722'});</script>
   <?php endif; ?>
+
+  <!-- Blog Head //-->
 </head>
 <body>
 <!-- Include the VML behavior -->

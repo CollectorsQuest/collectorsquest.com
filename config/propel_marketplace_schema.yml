@@ -10,8 +10,7 @@ classes:
   ##
   CollectibleForSale:
     columns:
-      id:  ~
-      collectible_id:       { type: integer, required: true, foreignClass: Collectible, foreignReference: id, onDelete: cascade }
+      collectible_id:       { type: integer, primaryKey: true, required: true, foreignClass: Collectible, foreignReference: id, onDelete: cascade }
       price:                { type: float }
       condition:            { type: char, sqlType: "ENUM('excellent','very good','good','fair','poor')", required: true }
       is_price_negotiable:  { type: boolean, default: false }
@@ -19,9 +18,6 @@ classes:
       is_sold:              { type: boolean, default: false }
       is_ready:             { type: boolean, default: false, description: 'Show in the market or no' }
       quantity:             { type: integer, required: true, default: 1 }
-
-    uniques:
-      collectible_for_sale_item: [collectible_id]
 
     propel_behaviors:
       archivable: { archive_class: CollectibleForSaleArchive, archived_at_column: archived_at }
@@ -34,15 +30,14 @@ classes:
   CollectibleOffer:
     columns:
       id:  ~
-      collectible_id:           { type: integer, required: true, foreignClass: Collectible, foreignReference: id, onDelete: cascade }
-      collectible_for_sale_id:  { type: integer, required: false, foreignClass: CollectibleForSale, foreignReference: id, onDelete: setnull }
-      collector_id:             { type: integer, required: true, foreignClass: Collector, foreignReference: id }
-      price:                    { type: float }
-      status:                   { type: char, sqlType: "ENUM('pending','counter','rejected','accepted')", required: true }
+      collectible_id:  { type: integer, required: true, foreignClass: Collectible, foreignReference: id, onDelete: cascade }
+      collector_id:    { type: integer, required: true, foreignClass: Collector, foreignReference: id }
+      price:           { type: float }
+      status:          { type: char, sqlType: "ENUM('pending','counter','rejected','accepted')", required: true }
 
     propel_behaviors:
-      archivable: { archive_class: CollectibleOfferArchive, archived_at_column: archived_at }
-      timestampable:  ~
+      archivable:      { archive_class: CollectibleOfferArchive, archived_at_column: archived_at }
+      timestampable:   ~
 
   ShoppingCart:
     columns:
@@ -60,10 +55,14 @@ classes:
   ShoppingCartCollectible:
     isCrossRef: true
     columns:
-      shopping_cart_id:         { type: integer, required: true, foreignClass: ShoppingCart, foreignReference: id, onDelete: cascade, primaryKey: true }
-      collectible_for_sale_id:  { type: integer, required: true, foreignClass: CollectibleForSale, foreignReference: id, onDelete: cascade, primaryKey: true }
-      price:                    { type: float }
-      is_active:                { type: boolean, default: true }
+      shopping_cart_id:          { type: integer, required: true, foreignClass: ShoppingCart, foreignReference: id, onDelete: cascade, primaryKey: true }
+      collectible_id:            { type: integer, required: true, foreignClass: Collectible, foreignReference: id, onDelete: cascade, primaryKey: true }
+      price_amount:              { type: integer, required: true, default: 0 }
+      price_currency:            { type: char, size: 3, required: true, default: 'USD' }
+      tax_amount:                { type: integer, required: true, default: 0 }
+      shipping_country_iso3166:  { type: char, size: 2, required: false, foreignTable: geo_country, foreignReference: iso3166 }
+      shipping_fee_amount:       { type: integer, required: true, default: 0 }
+      is_active:                 { type: boolean, default: true }
 
     propel_behaviors:
       timestampable:  ~
@@ -71,17 +70,16 @@ classes:
   ShoppingOrder:
     columns:
       id:  ~
-      uuid:                         { type: varchar, size: 8 }
-      session_id:                   { type: varchar, size: 32, required: false }
-      shopping_cart_id:             { type: integer, required: true, foreignClass: ShoppingCart, foreignReference: id, onDelete: restrict }
-      collectible_for_sale_id:      { type: integer, required: true, foreignClass: CollectibleForSale, foreignReference: id, onDelete: restrict }
-      collector_id:                 { type: integer, required: false, foreignClass: Collector, foreignReference: id, onDelete: setnull }
-      shopping_payment_id:          { type: integer, required: false, foreignClass: ShoppingPayment, foreignReference: id, onDelete: setnull }
-      shipping_country:             { type: char, size: 2, required: false, foreignTable: geo_country, foreignReference: iso3166 }
-      note_to_seller:               { type: varchar, size: 255 }
+      uuid:                 { type: varchar, size: 8 }
+      collector_id:         { type: integer, required: false, foreignClass: Collector, foreignReference: id, onDelete: setnull }
+      shopping_cart_id:     { type: integer, required: true, foreignClass: ShoppingCart, foreignReference: id, onDelete: restrict }
+      collectible_id:       { type: integer, required: true, foreignClass: Collectible, foreignReference: id, onDelete: restrict }
+      shopping_payment_id:  { type: integer, required: false, foreignClass: ShoppingPayment, foreignReference: id, onDelete: setnull }
+      shipping_country_iso3166:  { type: char, size: 2, required: false, foreignTable: geo_country, foreignReference: iso3166 }
+      note_to_seller:       { type: varchar, size: 255 }
 
     uniques:
-      shopping_order_U_1: [shopping_cart_id, collectible_for_sale_id]
+      shopping_order_U_1: [shopping_cart_id, collectible_id]
 
     propel_behaviors:
       timestampable:  ~
@@ -93,11 +91,11 @@ classes:
       session_id:          { type: varchar, size: 32, required: false }
       processor:           { type: enum, valueSet: "PayPal, Google, Amazon", default: PayPal, required: true }
       status:              { type: enum, valueSet: "initialized, inprogress, confirmed, cancelled, failed, completed", default: initialized, required: true }
-      currency:            { type: varchar, size: 3 }
-      amount_total:        { type: float }
-      amount_collectibles: { type: float }
-      amount_shipping:     { type: float }
-      amount_tax:          { type: float }
+      currency:            { type: char, size: 3, default: USD }
+      amount_total:        { type: integer, required: true, default: 0 }
+      amount_collectibles: { type: integer, required: true, default: 0 }
+      amount_shipping:     { type: integer, required: true, default: 0 }
+      amount_tax:          { type: integer, required: true, default: 0 }
 
     propel_behaviors:
       extra_properties: ~

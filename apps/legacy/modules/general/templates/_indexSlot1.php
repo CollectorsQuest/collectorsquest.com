@@ -1,6 +1,6 @@
 <?php
 /**
- * @var $sf_user cqUser
+ * @var $sf_user cqBaseUser
  */
 ?>
 

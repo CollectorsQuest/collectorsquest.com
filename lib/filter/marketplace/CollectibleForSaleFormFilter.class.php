@@ -34,7 +34,7 @@ class CollectibleForSaleFormFilter extends BaseCollectibleForSaleFormFilter
         'model' => 'Collector',
         'required' => false,
       )));
-    
+
     $this->setWidget('offers_count', new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes'/*, 0 => 'no'*/))));
     $this->setValidator('offers_count', new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))));
   }
@@ -58,7 +58,7 @@ class CollectibleForSaleFormFilter extends BaseCollectibleForSaleFormFilter
 
     if (isset($isSold))
     {
-      $criteria->addJoin(CollectibleForSalePeer::ID, CollectibleOfferPeer::COLLECTIBLE_FOR_SALE_ID, Criteria::LEFT_JOIN);
+      $criteria->addJoin(CollectibleForSalePeer::COLLECTIBLE_ID, CollectibleOfferPeer::COLLECTIBLE_ID, Criteria::LEFT_JOIN);
 
       if ($isSold)
       {
@@ -79,9 +79,9 @@ class CollectibleForSaleFormFilter extends BaseCollectibleForSaleFormFilter
   public function getFields()
   {
     $fields = parent::getFields();
-    
+
     $fields['price'] = 'Price';
-    
+
     return $fields;
   }
 

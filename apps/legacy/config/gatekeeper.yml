@@ -1,1 +1,11 @@
 all:
+  features:
+    dropbox: false
+
+  pages:
+
+dev:
+  features:
+    dropbox: true
+
+  pages:

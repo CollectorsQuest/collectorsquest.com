@@ -144,8 +144,7 @@ classes:
 
   CollectibleForSaleArchive:
     columns:
-      id:                   { type: integer, index: true, primaryKey: true, autoIncrement: false }
-      collectible_id:       { type: integer, index: true }
+      collectible_id:       { type: integer, index: true, primaryKey: true, autoIncrement: false }
       price:                { type: float }
       condition:            { type: char, sqlType: "ENUM('excellent','very good','good','fair','poor')", required: true }
       is_price_negotiable:  { type: boolean, default: false }
@@ -162,7 +161,6 @@ classes:
     columns:
       id:              { type: integer, index: true, primaryKey: true, autoIncrement: false }
       collectible_id:  { type: integer, index: true }
-      collectible_for_sale_id: { type: integer }
       collector_id:    { type: integer }
       price:           { type: float }
       status:          { type: char, sqlType: "ENUM('pending','counter','rejected','accepted')", required: true }
