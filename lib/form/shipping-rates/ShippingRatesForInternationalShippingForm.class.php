@@ -12,7 +12,8 @@ class ShippingRatesForInternationalShippingForm extends ShippingRatesForCountryF
 
     $current_calculation_type = $this->getTaintedRequestValue('calculation_type',
       $this->getCalculationTypeForDefaults());
-    if (ShippingRatePeer::CALCULATION_TYPE_NO_SHIPPING != $current_calculation_type)
+    if ( $current_calculation_type
+      && ShippingRatePeer::CALCULATION_TYPE_NO_SHIPPING != $current_calculation_type )
     {
       $this->setupDoNotShipToField();
     }
@@ -85,18 +86,6 @@ class ShippingRatesForInternationalShippingForm extends ShippingRatesForCountryF
   protected function getCountryCodeForDefaults()
   {
     return 'ZZ';
-  }
-
-  protected function getCalculationTypeForDefaults()
-  {
-    $calculation_type = parent::getCalculationTypeForDefaults();
-
-    if ('' == $calculation_type)
-    {
-      $calculation_type = ShippingRatePeer::CALCULATION_TYPE_NO_SHIPPING;
-    }
-
-    return $calculation_type;
   }
 
 }
