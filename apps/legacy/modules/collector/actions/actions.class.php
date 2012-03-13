@@ -225,6 +225,7 @@ class collectorActions extends cqActions
             $collector->setSingupNumCompletedSteps(3)
                       ->setHasCompletedRegistration(true)
                       ->save();
+            $collector->sendToDefensio('UPDATE');
 
             // redirect to step manage profile
             $this->redirect($this->getController()->genUrl(array(
@@ -283,4 +284,25 @@ class collectorActions extends cqActions
     return sfView::SUCCESS;
   }
 
+  /**
+   * Action VerifyEmail
+   */
+  public function executeVerifyEmail()
+  {
+    /* @var $collectorEmail CollectorEmail */
+    $collectorEmail = $this->getRoute()->getObject();
+    $this->forward404Unless($collectorEmail instanceof CollectorEmail);
+
+    $collector = $collectorEmail->getCollector();
+    $collector->setEmail($collectorEmail->getEmail());
+    $collector->save();
+
+    $collectorEmail->setIsVerified(true);
+    $collectorEmail->save();
+
+    $this->getUser()->Authenticate(true, $collector, true);
+
+    $this->getUser()->setFlash('success', 'Your email has been verified.');
+    $this->redirect('@manage_profile');
+  }
 }

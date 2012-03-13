@@ -1,4 +1,4 @@
-+<?php
+<?php
 
 /**
  * collections actions.
@@ -10,11 +10,14 @@
  */
 class collectionsActions extends cqActions
 {
- /**
-  * Executes index action
-  *
-  * @param sfRequest $request A request object
-  */
+
+  /**
+   * Executes index action
+   *
+   * @param sfWebRequest $request A request object
+   *
+   * @return string
+   */
   public function executeIndex(sfWebRequest $request)
   {
     $this->addBreadcrumb($this->__('Community'), '@community');
@@ -24,12 +27,12 @@ class collectionsActions extends cqActions
 
     $c = new Criteria();
     $c->setDistinct();
-    $c->add(CollectorCollectionPeer::NUM_ITEMS, 0, Criteria::NOT_EQUAL);
+    $c->add(CollectorCollectionPeer::NUM_ITEMS, 0, Criteria::GREATER_THAN);
     $c->addJoin(CollectorCollectionPeer::COLLECTOR_ID, CollectorPeer::ID, Criteria::LEFT_JOIN);
 
     if ($filter = $request->getParameter('filter'))
     {
-      switch($filter)
+      switch ($filter)
       {
         case 'most-popular':
           $this->addBreadcrumb($this->__('Most Popular'));
@@ -63,7 +66,7 @@ class collectionsActions extends cqActions
         $c->add(CollectorPeer::SLUG, $collector_slug);
         $c->addDescendingOrderByColumn(CollectorCollectionPeer::CREATED_AT);
 
-        $this->addBreadcrumb(sprintf($this->__('Collections of %s'), $collector->getDisplayName()), '@collections_by_collector='. $collector_slug);
+        $this->addBreadcrumb(sprintf($this->__('Collections of %s'), $collector->getDisplayName()), '@collections_by_collector=' . $collector_slug);
         $this->prependTitle(sprintf($this->__('Collections of %s'), $collector->getDisplayName()));
       }
     }
@@ -73,7 +76,7 @@ class collectionsActions extends cqActions
       $c->addJoin(CollectorCollectionPeer::ID, iceModelTaggingPeer::TAGGABLE_ID, Criteria::LEFT_JOIN);
       $c->addJoin(iceModelTaggingPeer::TAG_ID, iceModelTagPeer::ID, Criteria::LEFT_JOIN);
 
-      $this->addBreadcrumb(ucwords(strtolower($tag)), '@collections_by_tag='. $tag);
+      $this->addBreadcrumb(ucwords(strtolower($tag)), '@collections_by_tag=' . $tag);
       $this->prependTitle(ucwords(strtolower($tag)));
     }
     else
@@ -81,14 +84,12 @@ class collectionsActions extends cqActions
       $c->addDescendingOrderByColumn(CollectorCollectionPeer::UPDATED_AT);
     }
 
-    $per_page = ($request->getParameter('show') == 'all') ? 999 : sfConfig::get('app_pager_list_collections_max', 14);
-    if (true || $this->getUser()->isAuthenticated()) $per_page += 1;
-
+    $per_page = sfConfig::get('app_pager_list_collections_max', 15);
     $pager = new sfPropelPager('CollectorCollection', $per_page);
     $pager->setCriteria($c);
+    $pager->setMaxPerPage($per_page);
 
-    // Added By Prakash Panchal On 31-Mar-2011.
-    $snPage = ($this->getRequestParameter('jpage')) ? $this->getRequestParameter('jpage', 1) : $this->getRequestParameter('page', 1);
+    $snPage = $this->getRequestParameter('jpage', $this->getRequestParameter('page', 1));
 
     $pager->setPage($snPage);
     $pager->init();

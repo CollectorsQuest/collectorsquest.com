@@ -9,7 +9,7 @@ include_partial('emails/header');
 </p>
 <p>
   Your email has been changed to <strong><?php echo $collectorEmail->getEmail(); ?></strong> and needs verification
-  <?php echo link_to('here', 'collector_verify_email', array('hash'=>$collectorEmail->getHash()), array('absolute' => true)); ?>.
+  <?php echo link_to('here', 'collector_verify_email', array('hash' => $collectorEmail->getHash()), array('absolute' => true)); ?>.
 </p>
 
 <?php include_partial('emails/footer'); ?>

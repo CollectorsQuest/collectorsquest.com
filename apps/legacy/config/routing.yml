@@ -103,7 +103,7 @@ collector_auto_login:
 collector_verify_email:
   url:  /collector/verify-email/:hash
   class: cqPropelRoute
-  param: { module: general, action: verifyEmail }
+  param: { module: collector, action: verifyEmail }
   options: { model: CollectorEmail, type: object }
 
 collector_by_slug:
@@ -326,6 +326,9 @@ marketplace_category_by_slug:
 
 ### COMMENTS
 
+comments:
+  url:  /comments/
+
 comment_by_id:
   url:   /comment/:id
   class: sfPropelRoute
@@ -465,8 +468,11 @@ manage_shopping_orders:
   url:   /manage/orders
   param: { module: manage, action: shoppingOrders }
 
-### EXTERNAL
+manage_profile_resend_change_email:
+  url:   /manage/email-change/resend
+  param: { module: manage, action: resendEmailChange }
 
+### EXTERNAL
 blog:
   url:  /blog/index.php
 

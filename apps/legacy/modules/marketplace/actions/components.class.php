@@ -2,6 +2,7 @@
 
 class marketplaceComponents extends sfComponents
 {
+
   /**
    * @param  sfWebRequest $request
    * @return string
@@ -42,15 +43,15 @@ class marketplaceComponents extends sfComponents
 
     if ($search['price-max'] && !$search['price-min'])
     {
-      $c->add(CollectibleForSalePeer::PRICE, (float) $search['price-max'], Criteria::LESS_EQUAL);
+      $c->add(CollectibleForSalePeer::PRICE, (float)$search['price-max'], Criteria::LESS_EQUAL);
     }
     if ($search['price-min'] && !$search['price-max'])
     {
-      $c->add(CollectibleForSalePeer::PRICE, (float) $search['price-min'], Criteria::GREATER_EQUAL);
+      $c->add(CollectibleForSalePeer::PRICE, (float)$search['price-min'], Criteria::GREATER_EQUAL);
     }
     if ($search['price-min'] && $search['price-max'])
     {
-      $ssPriceCondition = CollectibleForSalePeer::PRICE . ' >= ' . (float) $search['price-min'] . ' AND ' . CollectibleForSalePeer::PRICE . ' <= ' . (float) $search['price-max'];
+      $ssPriceCondition = CollectibleForSalePeer::PRICE . ' >= ' . (float)$search['price-min'] . ' AND ' . CollectibleForSalePeer::PRICE . ' <= ' . (float)$search['price-max'];
       $c->add(CollectibleForSalePeer::PRICE, $ssPriceCondition, Criteria::CUSTOM);
     }
 
@@ -87,9 +88,17 @@ class marketplaceComponents extends sfComponents
     $pager = new sfPropelPager('CollectibleForSale', 10);
     $pager->setCriteria($c);
 
-    $snPage = ($this->getRequestParameter('jpage')) ? $this->getRequestParameter('jpage', 1) : $this->getRequestParameter('page', 1);
+    if ('all' == $request->getParameter('show'))
+    {
+      $pager->setMaxPerPage(999);
+      $pager->setPage(1);
+    }
+    else
+    {
+      $snPage = ($this->getRequestParameter('jpage')) ? $this->getRequestParameter('jpage', 1) : $this->getRequestParameter('page', 1);
+      $pager->setPage($snPage);
+    }
 
-    $pager->setPage($snPage);
     $pager->init();
 
     $this->pager = $pager;

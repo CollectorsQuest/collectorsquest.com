@@ -32,3 +32,6 @@ generator:
         fields:
           subject:
             widgetOptions: { with_empty: false }
+
+      form:
+        class: BackendCommentForm

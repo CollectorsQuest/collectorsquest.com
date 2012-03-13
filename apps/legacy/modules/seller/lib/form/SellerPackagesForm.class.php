@@ -180,6 +180,20 @@ class SellerPackagesForm extends sfForm
     }
   }
 
+  public function bind(array $taintedValues = null, array $taintedFiles = null)
+  {
+    if (isset($taintedValues['payment_type']) && 'paypal' == $taintedValues['payment_type'])
+    {
+      $fields = array('card_type', 'cc_number', 'expiry_date', 'cvv_number', 'first_name', 'last_name', 'street', 'city', 'state', 'zip', 'country');
+      foreach ($fields as $field)
+      {
+        $this->getValidator($field)->setOption('required', false);
+      }
+    }
+
+    return parent::bind($taintedValues, $taintedFiles);
+  }
+
   /**
    * @return Promotion|null
    */

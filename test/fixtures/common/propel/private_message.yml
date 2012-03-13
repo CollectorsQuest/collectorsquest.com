@@ -1462,7 +1462,7 @@ PrivateMessage:
     subject: 'RE: Need some help'
     body: "I sincerely love the Schleich giraffes!All of them are great!<br />\r\nThe normal pose,eating and drinking ones!"
     is_rich: '0'
-    is_read: '0'
+    is_read: '1'
     is_replied: '0'
     is_forwarded: '0'
     is_marked: '0'

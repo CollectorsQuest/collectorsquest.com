@@ -91,16 +91,12 @@
                   <?php foreach ($ccFields as $field): ?>
                   <?php echo $packagesForm[$field]->renderRow(); ?>
                   <?php endforeach; ?>
-                  <tr>
-                    <td colspan="2">
-                      <?php if ($packagesForm['term_condition']->hasError()): ?>
-                      <?php echo $packagesForm['term_condition']->renderError() ?>
-                      <?php endif; ?>
-                      <?php echo $packagesForm['term_condition']->render() ?>&nbsp;<label for="<?php echo $packagesForm['term_condition']->renderId() ?>">I accept the
-                      <a href="/blog/terms-and-conditions/" title="terms and conditions" target="_blank">terms and conditions</a> set forth by this site.</label>
-                    </td>
-                  </tr>
                 </table>
+                <?php if ($packagesForm['term_condition']->hasError()): ?>
+                <?php echo $packagesForm['term_condition']->renderError() ?>
+                <?php endif; ?>
+                <?php echo $packagesForm['term_condition']->render() ?>&nbsp;<label for="<?php echo $packagesForm['term_condition']->renderId() ?>">I accept the
+                <a href="/blog/terms-and-conditions/" title="terms and conditions" target="_blank">terms and conditions</a> set forth by this site.</label>
                 <?php if ($sf_user->hasFlash('msg_payment')): ?>
                   <ul class="error_list">
                     <li><?php echo $sf_user->getFlash('msg_payment'); ?></li>

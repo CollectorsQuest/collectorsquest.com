@@ -80,6 +80,7 @@ class sellerActions extends cqActions
       {
         $packagesForm->bind($request->getParameter($packagesForm->getName()));
 
+//        dd($request->getParameterHolder()->getAll(), $packagesForm->getErrorSchema()->getErrors());
         if ($packagesForm->isValid())
         {
           //Process

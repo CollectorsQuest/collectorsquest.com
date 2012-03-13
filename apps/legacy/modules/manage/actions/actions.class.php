@@ -216,8 +216,8 @@ class manageActions extends cqActions
 
           $this->getUser()->setFlash("success", $this->__('Changes were saved!'));
           $this->redirect($this->getController()->genUrl(array(
-              'sf_route' => 'manage_collection_by_slug',
-              'sf_subject' => $collection,
+            'sf_route'   => 'manage_collection_by_slug',
+            'sf_subject' => $collection,
           )));
         }
         catch (PropelException $e)
@@ -476,7 +476,10 @@ class manageActions extends cqActions
 
     $form = new ManageCollectiblesForm(
       $collectibles,
-      array('collector' => $this->getUser()->getCollector(), 'embedded_form_class' => 'CollectibleEditForm')
+      array(
+        'collector'           => $this->getUser()->getCollector(),
+        'embedded_form_class' => 'CollectibleEditForm'
+      )
     );
 
     if ($request->isMethod('post'))
@@ -501,8 +504,8 @@ class manageActions extends cqActions
             $collectible->clearCollectibleForSales();
             // handle collectible-collection M:M relation
             $collectible->setCollections(CollectionQuery::create()
-              ->filterById($value['collection_collectible_list'], Criteria::IN)
-              ->find()
+                  ->filterById($value['collection_collectible_list'], Criteria::IN)
+                  ->find()
             );
             $collectible->save();
 
@@ -624,4 +627,40 @@ class manageActions extends cqActions
 
     return sfView::SUCCESS;
   }
+
+  /**
+   * Action ResendEmailChange
+   *
+   * @param sfWebRequest $request
+   *
+   */
+  public function executeResendEmailChange(sfWebRequest $request)
+  {
+    /* @var $collectorEmail CollectorEmail */
+    $collectorEmail = $this->getCollector()->getLastEmailChangeRequest();
+    $this->forward404Unless($collectorEmail instanceof CollectorEmail);
+
+    $collector = $collectorEmail->getCollector();
+
+    $subject = $this->__('You have changed your email at CollectorsQuest.com');
+    $body = $this->getPartial(
+      'emails/collector_email_change',
+      array(
+        'collector'     => $collector,
+        'collectorEmail'=> $collectorEmail
+      )
+    );
+
+    if ($this->sendEmail($collectorEmail->getEmail(), $subject, $body))
+    {
+      $this->getUser()->setFlash('success', 'Email verification sent to ' . $collectorEmail->getEmail());
+    }
+    else
+    {
+      $this->getUser()->setFlash('error', 'Invalid email');
+    }
+
+    $this->redirect('@manage_profile');
+  }
+
 }

@@ -134,7 +134,7 @@ function link_to_collection($object, $type = 'text', $options = array())
       break;
     case 'text':
     default:
-      $link = link_to($title, $options['route'], $options);
+      $link = link_to($title, $options['route'], array_diff_key($options, array('route'=>null)));
       break;
   }
 

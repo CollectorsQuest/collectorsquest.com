@@ -85,6 +85,20 @@ CollectorGeocacheArchive:
     latitude: '40.17875'
     longitude: '-76.18997'
     timezone: America/New_York
+  CollectorGeocacheArchive_431:
+    id: '431'
+    collector_id: '1316'
+    country_iso3166: NO
+    address: Norway
+    latitude: '60.47202'
+    longitude: '8.46895'
+  CollectorGeocacheArchive_494:
+    id: '494'
+    collector_id: '1384'
+    country_iso3166: AU
+    address: '2000, Australia'
+    latitude: '-33.86903'
+    longitude: '151.21024'
   CollectorGeocacheArchive_600:
     id: '600'
     collector_id: '1512'
@@ -612,6 +626,18 @@ CollectorGeocacheArchive:
     latitude: '43.21564'
     longitude: '-78.36147'
     timezone: America/New_York
+  CollectorGeocacheArchive_1424:
+    id: '1424'
+    collector_id: '1274'
+    country_iso3166: US
+    state: AL
+    county: Montgomery
+    city: Montgomery
+    zip_postal: '36109'
+    address: 'Montgomery, AL 36109, USA'
+    latitude: '32.37972'
+    longitude: '-86.24633'
+    timezone: America/Chicago
   CollectorGeocacheArchive_1556:
     id: '1556'
     collector_id: '168'
@@ -1268,6 +1294,20 @@ CollectorGeocacheArchive:
     latitude: '37.09024'
     longitude: '-95.71289'
     timezone: America/New_York
+  CollectorGeocacheArchive_3229:
+    id: '3229'
+    collector_id: '3979'
+    country_iso3166: PT
+    address: Portugal
+    latitude: '39.39987'
+    longitude: '-8.22445'
+  CollectorGeocacheArchive_3230:
+    id: '3230'
+    collector_id: '3979'
+    country_iso3166: PT
+    address: Portugal
+    latitude: '39.39987'
+    longitude: '-8.22445'
   CollectorGeocacheArchive_3247:
     id: '3247'
     collector_id: '3996'
@@ -11997,6 +12037,17 @@ CollectorGeocacheArchive:
     latitude: '34.10300'
     longitude: '-118.41047'
     timezone: America/Los_Angeles
+  CollectorGeocacheArchive_9703:
+    id: '9703'
+    collector_id: '8488'
+    country_iso3166: US
+    state: ID
+    city: Boise
+    zip_postal: '83702'
+    address: 'Boise, ID 83702, USA'
+    latitude: '43.67327'
+    longitude: '-116.15837'
+    timezone: America/New_York
   CollectorGeocacheArchive_9704:
     id: '9704'
     collector_id: '8491'
@@ -18285,6 +18336,16 @@ CollectorGeocacheArchive:
     address: Philippines
     latitude: '12.87972'
     longitude: '121.77402'
+  CollectorGeocacheArchive_10959:
+    id: '10959'
+    collector_id: '9502'
+    country_iso3166: PL
+    state: 'Silesian Voivodeship'
+    county: Katowice
+    city: Katowice
+    address: 'University of Silesia, Bankowa 12, 40-001 Katowice, Poland'
+    latitude: '50.26074'
+    longitude: '19.02846'
   CollectorGeocacheArchive_10961:
     id: '10961'
     collector_id: '9395'
@@ -18714,6 +18775,14 @@ CollectorGeocacheArchive:
     address: 'United Kingdom'
     latitude: '55.37805'
     longitude: '-3.43597'
+  CollectorGeocacheArchive_11048:
+    id: '11048'
+    collector_id: '9594'
+    country_iso3166: US
+    address: 'United States'
+    latitude: '37.09024'
+    longitude: '-95.71289'
+    timezone: America/New_York
   CollectorGeocacheArchive_11049:
     id: '11049'
     collector_id: '9597'
@@ -18748,6 +18817,14 @@ CollectorGeocacheArchive:
     address: 'Schenectady, NY, USA'
     latitude: '42.81424'
     longitude: '-73.93957'
+    timezone: America/New_York
+  CollectorGeocacheArchive_11061:
+    id: '11061'
+    collector_id: '9610'
+    country_iso3166: US
+    address: 'United States'
+    latitude: '37.09024'
+    longitude: '-95.71289'
     timezone: America/New_York
   CollectorGeocacheArchive_11062:
     id: '11062'
@@ -18796,6 +18873,14 @@ CollectorGeocacheArchive:
     address: 'Aargau, Switzerland'
     latitude: '47.38767'
     longitude: '8.25543'
+  CollectorGeocacheArchive_11069:
+    id: '11069'
+    collector_id: '9612'
+    country_iso3166: US
+    address: 'United States'
+    latitude: '37.09024'
+    longitude: '-95.71289'
+    timezone: America/New_York
   CollectorGeocacheArchive_11075:
     id: '11075'
     collector_id: '1399'
@@ -18823,3 +18908,92 @@ CollectorGeocacheArchive:
     latitude: '28.28806'
     longitude: '-81.82244'
     timezone: America/New_York
+  CollectorGeocacheArchive_11079:
+    id: '11079'
+    collector_id: '6825'
+    country_iso3166: US
+    state: MI
+    city: 'Marine City'
+    address: 'Marine City, MI 48039, USA'
+    latitude: '42.68988'
+    longitude: '-82.55105'
+    timezone: America/New_York
+  CollectorGeocacheArchive_11080:
+    id: '11080'
+    collector_id: '1399'
+    country_iso3166: BE
+    address: Belgium
+    latitude: '50.50389'
+    longitude: '4.46994'
+  CollectorGeocacheArchive_11081:
+    id: '11081'
+    collector_id: '9648'
+    country_iso3166: US
+    state: SD
+    city: Fulton
+    zip_postal: '57340'
+    address: 'Fulton, SD 57340, USA'
+    latitude: '43.80745'
+    longitude: '-97.85040'
+    timezone: America/Chicago
+  CollectorGeocacheArchive_11087:
+    id: '11087'
+    collector_id: '9676'
+    country_iso3166: GB
+    address: 'United Kingdom'
+    latitude: '55.37805'
+    longitude: '-3.43597'
+  CollectorGeocacheArchive_11088:
+    id: '11088'
+    collector_id: '9675'
+    address: Antarctica
+    latitude: '-82.86275'
+    longitude: '-135.00000'
+  CollectorGeocacheArchive_11089:
+    id: '11089'
+    collector_id: '9674'
+    country_iso3166: US
+    address: 'United States'
+    latitude: '37.09024'
+    longitude: '-95.71289'
+    timezone: America/New_York
+  CollectorGeocacheArchive_11094:
+    id: '11094'
+    collector_id: '9682'
+    country_iso3166: US
+    state: MD
+    city: Baltimore
+    zip_postal: '21201'
+    address: 'Baltimore, MD 21201, USA'
+    latitude: '39.29634'
+    longitude: '-76.62105'
+    timezone: America/New_York
+  CollectorGeocacheArchive_11095:
+    id: '11095'
+    collector_id: '9687'
+    country_iso3166: US
+    address: 'United States'
+    latitude: '37.09024'
+    longitude: '-95.71289'
+    timezone: America/New_York
+  CollectorGeocacheArchive_11096:
+    id: '11096'
+    collector_id: '9686'
+    country_iso3166: GB
+    address: 'United Kingdom'
+    latitude: '55.37805'
+    longitude: '-3.43597'
+  CollectorGeocacheArchive_11097:
+    id: '11097'
+    collector_id: '9610'
+    country_iso3166: US
+    address: 'United States'
+    latitude: '37.09024'
+    longitude: '-95.71289'
+    timezone: America/New_York
+  CollectorGeocacheArchive_11098:
+    id: '11098'
+    collector_id: '9699'
+    address: Antarctica
+    latitude: '-82.86275'
+    longitude: '-135.00000'

@@ -1,1 +1,161 @@
-{  }
+CollectorEmail:
+  CollectorEmail_579:
+    collector_id: Collector_846
+    email: baifrancesca@gmail.com
+    hash: v1;846;910bac9822c0ddac0079338042343b421
+    salt: 48a54694c3539eddff66ff7d9df0486d
+    is_verified: '1'
+    created_at: '2012-03-12 13:47:47'
+    updated_at: '2012-03-12 13:47:50'
+  CollectorEmail_599:
+    collector_id: Collector_644
+    email: barry2952@twmi.rr.com
+    hash: v1;644;e2c992a4165aafa4ad94de4879e23a282
+    salt: e76f9fd8ef1335e85cbd5b7b34ab9031
+    is_verified: '1'
+    created_at: '2012-03-12 13:47:47'
+    updated_at: '2012-03-12 13:47:51'
+  CollectorEmail_705:
+    collector_id: Collector_52
+    email: bfplatt@ku.edu
+    hash: v1;52;9baad6ff02d7f01531902c8ea7f04cea71
+    salt: 107e6710b7d294c7a8ccb541a82bdc2b
+    is_verified: '1'
+    created_at: '2012-03-12 13:47:47'
+    updated_at: '2012-03-12 13:47:51'
+  CollectorEmail_882:
+    collector_id: Collector_1082
+    email: brini123@gmail.com
+    hash: v1;1082;b0797e672083c0a1ea4d42ec302d5f3e
+    salt: ad8f8ec02b30755a375665802a54f721
+    is_verified: '1'
+    created_at: '2012-03-12 13:47:47'
+    updated_at: '2012-03-12 13:47:52'
+  CollectorEmail_1199:
+    collector_id: Collector_235
+    email: collectio@mail.com
+    hash: v1;235;215d8f06aef73020d374f298e8cbf6e39
+    salt: 59208314161a6bcfd771f0d829ab2d67
+    is_verified: '1'
+    created_at: '2012-03-12 13:47:47'
+    updated_at: '2012-03-12 13:47:53'
+  CollectorEmail_1209:
+    collector_id: Collector_12
+    email: collin@collectorsquest.com
+    hash: v1;12;dcde015502b99dbfa04941b01d0ff20080
+    salt: 6cbf0f27ebaaa8dab436534fbfcf978d
+    is_verified: '1'
+    created_at: '2012-03-12 13:47:47'
+    updated_at: '2012-03-12 13:47:53'
+  CollectorEmail_1467:
+    collector_id: Collector_59
+    email: Deanna.Pop.Tart@gmail.com
+    hash: v1;59;140ddadf0b2301a4a7f3da36b883b7b26b
+    salt: 81b9c4f67ea74adb4c2458829b5663c4
+    is_verified: '1'
+    created_at: '2012-03-12 13:47:47'
+    updated_at: '2012-03-12 13:47:55'
+  CollectorEmail_1582:
+    collector_id: Collector_3632
+    email: distinctivestyles@yahoo.com
+    hash: v1;3632;b3af89f88dd7c30906b12d0d2858dd44
+    salt: 8eae6c874582bac17de1abefcc57ef39
+    is_verified: '1'
+    created_at: '2012-03-12 13:47:47'
+    updated_at: '2012-03-12 13:47:55'
+  CollectorEmail_2028:
+    collector_id: Collector_4208
+    email: freeburgh@bellsouth.net
+    hash: v1;4208;27c7f703e6c9ce28ca40fe96c7eb5314
+    salt: 8c9461dd76dcb539d3a16202678693e5
+    is_verified: '1'
+    created_at: '2012-03-12 13:47:47'
+    updated_at: '2012-03-12 13:47:57'
+  CollectorEmail_2544:
+    collector_id: Collector_1374
+    email: iscully@hotmail.com
+    hash: v1;1374;0d7707517b0383dd7f43a20491e569ab
+    salt: 4c1d223891acfa96b46dc94d354bfaf8
+    is_verified: '1'
+    created_at: '2012-03-12 13:47:47'
+    updated_at: '2012-03-12 13:48:00'
+  CollectorEmail_3085:
+    collector_id: Collector_4295
+    email: kaley523@gmail.com
+    hash: v1;4295;3fd5f0dc675390685fbaaea4a7e54b00
+    salt: d4abb730615fd46a19909ac6619b4bfe
+    is_verified: '1'
+    created_at: '2012-03-12 13:47:47'
+    updated_at: '2012-03-12 13:48:02'
+  CollectorEmail_3925:
+    collector_id: Collector_1317
+    email: mih.nicolae@yahoo.com
+    hash: v1;1317;75193615c084ced027618c9f822fd68e
+    salt: 5343fcfff07408f95a66fcde545f0ac7
+    is_verified: '1'
+    created_at: '2012-03-12 13:47:47'
+    updated_at: '2012-03-12 13:48:06'
+  CollectorEmail_4475:
+    collector_id: Collector_163
+    email: paulmurphy777@yahoo.com
+    hash: v1;163;39de5f73f69dbb32dea872c850e49ef75
+    salt: 383a0e2a69ad310b19281bdaf223ebab
+    is_verified: '1'
+    created_at: '2012-03-12 13:47:47'
+    updated_at: '2012-03-12 13:48:09'
+  CollectorEmail_4509:
+    collector_id: Collector_870
+    email: permian123@yahoo.com
+    hash: v1;870;68d14ae8fe8724cd386d4e67acd6cab0a
+    salt: 069b62c926b329d8decab47a39baee25
+    is_verified: '1'
+    created_at: '2012-03-12 13:47:47'
+    updated_at: '2012-03-12 13:48:09'
+  CollectorEmail_4977:
+    collector_id: Collector_531
+    email: rselcoe@entouchonline.net
+    hash: v1;531;7885ea772a9d164aa2a51bb1fd8802bc4
+    salt: c7ba70fd3c1af8a4204dc955fa7b872b
+    is_verified: '1'
+    created_at: '2012-03-12 13:47:47'
+    updated_at: '2012-03-12 13:48:11'
+  CollectorEmail_5179:
+    collector_id: Collector_6700
+    email: shabbychicpickerchick@hotmail.com
+    hash: v1;6700;0ec1495366ed870d7fa02661e3391726
+    salt: efbbefac46b388c192c229f4abd71399
+    is_verified: '1'
+    created_at: '2012-03-12 13:47:47'
+    updated_at: '2012-03-12 13:48:12'
+  CollectorEmail_5291:
+    collector_id: Collector_714
+    email: sleeves@home.nl
+    hash: v1;714;48c97d49ef479cca90cb41fabd43ef002
+    salt: 7201b940d6b56ff70d64dc1c3a303ae0
+    is_verified: '1'
+    created_at: '2012-03-12 13:47:47'
+    updated_at: '2012-03-12 13:48:13'
+  CollectorEmail_5445:
+    collector_id: Collector_6610
+    email: stardust466@juno.com
+    hash: v1;6610;fca698c2c9d296e46360259d8864181f
+    salt: a993010169834db998e350a1854df487
+    is_verified: '1'
+    created_at: '2012-03-12 13:47:47'
+    updated_at: '2012-03-12 13:48:14'
+  CollectorEmail_5742:
+    collector_id: Collector_1212
+    email: tofunky@mac.com
+    hash: v1;1212;4edcb8f4083048037c59c10b7f21c28a
+    salt: d390ff6fa5c0588720faf3b4868fac89
+    is_verified: '1'
+    created_at: '2012-03-12 13:47:47'
+    updated_at: '2012-03-12 13:48:15'
+  CollectorEmail_5788:
+    collector_id: Collector_963
+    email: TRbuttons@aol.com
+    hash: v1;963;08f3f1558f7051f9d506658ce27fbe9b4
+    salt: bcaa040e54432100bfe0f1acc8ffa3a8
+    is_verified: '1'
+    created_at: '2012-03-12 13:47:47'
+    updated_at: '2012-03-12 13:48:15'

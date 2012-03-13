@@ -1,4 +1,40 @@
 CollectibleArchive:
+  CollectibleArchive_3679:
+    id: '3679'
+    graph_id: '12373'
+    collector_id: '12'
+    name: Hawkeye
+    slug: hawkeye
+    description: "<p>==</p>\n"
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '0'
+    updated_at: '2012-03-05 10:16:39'
+    created_at: '2010-02-14 13:05:47'
+  CollectibleArchive_4555:
+    id: '4555'
+    graph_id: '12396'
+    collector_id: '12'
+    name: 'Zombie Hulk'
+    slug: zombie-hulk
+    description: "<p>Hungriest one there is!</p>\n"
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '0'
+    updated_at: '2012-03-05 10:35:35'
+    created_at: '2010-02-05 06:48:59'
+  CollectibleArchive_10849:
+    id: '10849'
+    graph_id: '12383'
+    collector_id: '12'
+    name: 'Son of Hulk, Skaar.'
+    slug: son-of-hulk-skaar
+    description: "<p>Comes with a sword and a sheathed dagger.</p>\n"
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '0'
+    updated_at: '2012-03-05 10:27:55'
+    created_at: '2010-02-28 16:18:36'
   CollectibleArchive_25496:
     id: '25496'
     graph_id: '9974'
@@ -500,3 +536,16 @@ CollectibleArchive:
     updated_at: '2012-01-17 08:39:08'
     created_at: '2011-12-19 22:22:40'
     archived_at: '2011-12-19 22:23:59'
+  CollectibleArchive_69969:
+    id: '69969'
+    graph_id: '12377'
+    collector_id: '12'
+    name: Collectible-31760
+    slug: collectible-31760
+    description: "<p>666</p>\n"
+    num_comments: '0'
+    batch_hash: 1d634a5215f2689c329cb8314d9fc15c
+    score: '0'
+    is_name_automatic: '0'
+    updated_at: '2012-03-05 10:24:59'
+    created_at: '2012-03-05 10:24:44'

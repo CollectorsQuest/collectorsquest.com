@@ -3,8 +3,8 @@
 require 'lib/model/om/BaseCollector.php';
 
 /**
- * @method     integer getSingupNumCompletedSteps() Return the number of completed signup steps
- * @method     Collector setSingupNumCompletedSteps(integer $v) Set the number of completed signup steps
+ * @method     int getSingupNumCompletedSteps() Return the number of completed signup steps
+ * @method     Collector setSingupNumCompletedSteps(int $v) Set the number of completed signup steps
  * @method     Collector setCqnextAccessAllowed(boolean $v)
  * @method     boolean getCqnextAccessAllowed()
  */
@@ -90,9 +90,10 @@ class Collector extends BaseCollector implements ShippingRatesInterface
     $this->setSha1Password(sha1($salt . $password));
   }
 
-  public function getAutoLoginHash($version = 'v1', $time = null)
+  public function getAutoLoginHash($version = 'v1', $time = null, $salt = null)
   {
     $time = is_numeric($time) ? $time : time();
+    $salt = !empty($salt) ? (string) $salt : $this->getSalt();
 
     switch ($version)
     {
@@ -109,7 +110,7 @@ class Collector extends BaseCollector implements ShippingRatesInterface
         ));
 
         $hash = sprintf(
-          "%s;%d;%s;%d", $version, $this->getId(), hash_hmac('sha1', base64_encode($json), $this->getSalt()), $time
+          "%s;%d;%s;%d", $version, $this->getId(), hash_hmac('sha1', base64_encode($json), $salt), $time
         );
         break;
     }
@@ -655,7 +656,12 @@ class Collector extends BaseCollector implements ShippingRatesInterface
 
   public function generateSalt()
   {
-    return md5(rand(100000, 999999) . '_' . $this->getUsername());
+    return md5($this->getUsername() . '_' . cqStatic::getUniqueId());
+  }
+
+  public function getLastEmailChangeRequest($verified = false)
+  {
+    return CollectorEmailPeer::retrieveLastPending($this, $verified);
   }
 
 }

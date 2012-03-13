@@ -35,6 +35,7 @@ base
 
 # stylesheets
 /web/css/frontend/bootstrap.css
+/web/css/frontend/responsive.css
 /web/css/frontend/main.css
 
 # Vagrant
