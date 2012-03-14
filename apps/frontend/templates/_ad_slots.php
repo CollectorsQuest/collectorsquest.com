@@ -1,5 +1,3 @@
-<?php $slots = $sf_request->getAttribute('slots', array(), 'cq/view/ads'); ?>
-
 <script type="text/javascript" src="//partner.googleadservices.com/gampad/google_service.js"></script>
 <script type="text/javascript">
   GS_googleAddAdSenseService("ca-pub-5542261365602638");
@@ -7,6 +5,7 @@
 </script>
 <script type="text/javascript">
 <?php
+  /** @var $slots array */
   foreach ($slots as $slot)
   {
     echo sprintf('  GA_googleAddSlot("ca-pub-5542261365602638", "%s");'."\n", $slot);

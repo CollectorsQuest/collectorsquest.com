@@ -5,3 +5,13 @@ default:
   enabled:     false
   with_layout: false
   lifetime:    86400
+
+_ad_slots:
+  enabled:     true
+  with_layout: false
+  lifetime:    3600
+
+_javascripts:
+  enabled:     true
+  with_layout: false
+  lifetime:    3600

@@ -36,7 +36,7 @@
   cq_echo_javascripts();
 
   // Include analytics code only in production
-  if (SF_ENV == 'prod')
+  if (sfConfig::get('sf_environment') === 'prod')
   {
     include_partial('global/js/analytics');
   }

@@ -43,8 +43,20 @@
   </div>
   <?php include_component_slot('footer'); ?>
 
-  <?php include_partial('global/javascripts'); ?>
-  <?php include_partial('global/ad_slots'); ?>
+  <?php
+    /** @var $sf_user cqFrontendUser */
+    $sf_cache_key  = (int) $sf_user->getId() .'_';
+    $sf_cache_key .= $sf_user->isAuthenticated() ? 'authenticated' : 'not_authenticated';
+
+    // Include the global javascripts
+    include_partial('global/javascripts', array('sf_cache_key' => $sf_cache_key));
+
+    /** @var $sf_request cqWebRequest */
+    if ($slots = $sf_request->getAttribute('slots', array(), 'cq/view/ads'))
+    {
+      include_partial('global/ad_slots', array('slots' => $slots));
+    }
+  ?>
 
   <?php
     /** @var $sf_context sfContext */
