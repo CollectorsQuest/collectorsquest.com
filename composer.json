@@ -62,7 +62,6 @@
     "require": {
         "plugins/sfGuardPlugin": "4.0.2",
         "lib/vendor/neo4jphp": "0.0.6",
-        "lib/vendor/faker": "master-dev",
-        "lib/vendor/monolog": "master-dev"
+        "lib/vendor/faker": "master-dev"
     }
 }

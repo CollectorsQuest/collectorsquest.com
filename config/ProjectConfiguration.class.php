@@ -10,14 +10,15 @@ IceClassLoader::initialize();
 
 /** Load the namespace for Neo4j client library */
 IceClassLoader::getLoader()->registerNamespaces(array(
-  'Everyman' => __DIR__ . '/../lib/vendor/neo4jphp/lib',
-  'Monolog'  => __DIR__ . '/../lib/vendor/monolog/src',
+  'Everyman' => __DIR__ . '/../lib/vendor/neo4jphp/lib'
 ));
 
 class ProjectConfiguration extends IceProjectConfiguration
 {
   public function setup()
   {
+    parent::setup();
+
     setlocale(LC_ALL, 'en_US.utf8');
 
     iconv_set_encoding('input_encoding', 'UTF-8');

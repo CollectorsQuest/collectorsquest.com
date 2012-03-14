@@ -1,27 +1,11 @@
-# You can find more information about this file on the symfony website:
-# http://www.symfony-project.org/reference/1_4/en/05-Factories
-
-prod:
+next:
   logger:
-    class:   sfMonologLogger
-    param:
-      level:   err
-      handlers:
-        mail:
-          type:         fingers_crossed
-          action_level: crit
-          handler:      buffered
-        buffered:
-          type:    buffer
-          handler: swift
-        swift:
-          type:       swift_mailer
-          from_email: no-reply@collectorsquest.com
-          to_email:   developers@collectorsquest.com
-          subject:    '[Monolog] An Error Occurred!'
-          level:      debug
+    class: sfNoLogger
 
 test:
+  logger:
+    class: sfNoLogger
+
   storage:
     class: sfSessionTestStorage
     param:
@@ -36,12 +20,23 @@ test:
     param:
       delivery_strategy: none
 
-dev:
-  mailer:
-    param:
-      delivery_strategy: none
 
 all:
+  mailer:
+    class: cqMailer
+    param:
+      delivery_strategy: single_address
+      delivery_address:  developers@collectorsquest.com
+      charset: UTF-8
+      transport:
+        class: Swift_SmtpTransport
+        param:
+          host: 'smtp.gmail.com'
+          port: 465
+          username: 'robot@collectorsquest.com'
+          password: 'gHnyU7wZLtYf3n'
+          encryption: tls
+
   routing:
     class: sfPatternRouting
     param:
@@ -82,25 +77,4 @@ all:
             web_debug_class: sfWebDebug
 
         sf_file_debug:
-          class: cqMonologLogger
-          param:
-            level:  err
-            handlers:
-              streamed:
-                type:  stream
-                path:  %SF_LOG_DIR%/%SF_APP%_%SF_ENVIRONMENT%.log
-                level:  debug
-                bubble: true
-#              main:
-#                type:  fingers_crossed
-#                action_level:  crit
-#                handler:  grouped
-#              grouped:
-#                type:  group
-#                members:  [streamed, firefox]
-#              streamed:
-#                type:  stream
-#                path:  %SF_LOG_DIR%/%SF_APP%_%SF_ENVIRONMENT%.log
-#                level:  debug
-#              firefox:
-#                type:  fire_php
+          class: sfNoLogger
