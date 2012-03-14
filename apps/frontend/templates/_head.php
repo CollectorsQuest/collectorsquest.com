@@ -16,6 +16,7 @@
   <link rel="shortcut icon" href="<?php echo image_path('frontend/favicon.ico', true); ?>"/>
   <link rel="icon" type="image/png" href="<?php echo image_path('frontend/favicon.png', true); ?>"/>
 
+  <script src="<?= cq_javascript_src('frontend/modernizr.js'); ?>" type="text/javascript"></script>
   <script type="text/javascript">
     if (top.location != self.location)
     {
