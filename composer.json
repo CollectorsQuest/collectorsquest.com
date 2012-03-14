@@ -50,11 +50,11 @@
           "type": "package",
           "package": {
             "name": "lib/vendor/monolog",
-            "version": "1.0.2",
+            "version": "master-dev",
             "source": {
               "url": "git://github.com/Seldaek/monolog.git",
               "type": "git",
-              "reference": "b704c49a3051536f67f2d39f13568f74615b9922"
+              "reference": "6c15897ac74bd53572328094eacf03fbb7b8bca7"
             }
           }
         }
@@ -63,6 +63,6 @@
         "plugins/sfGuardPlugin": "4.0.2",
         "lib/vendor/neo4jphp": "0.0.6",
         "lib/vendor/faker": "master-dev",
-        "lib/vendor/monolog": "1.0.2"
+        "lib/vendor/monolog": "master-dev"
     }
 }
