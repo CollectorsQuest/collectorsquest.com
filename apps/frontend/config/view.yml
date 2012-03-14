@@ -26,8 +26,6 @@ default:
 
   javascripts:
     - frontend/jquery.js
-    - /assets/js/bootstrap/dropdown.js
-    - /assets/js/bootstrap/collapse.js
 
   components:
     header:  [global, header]
