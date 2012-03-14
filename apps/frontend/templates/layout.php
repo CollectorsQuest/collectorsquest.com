@@ -26,7 +26,12 @@
   </script>
 
   <?php include_component_slot('header'); ?>
-  <div class="container-fluid r-column-padding">
+  <div class="container-fluid fixed-right-column-120">
+  <!--
+  <div class="container-fluid fixed-right-column">
+  <div class="container-fluid">
+  -->
+
     <?php
       /** @var $sf_content string */
       echo $sf_content;
