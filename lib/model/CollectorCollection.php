@@ -63,10 +63,12 @@ class CollectorCollection extends BaseCollectorCollection
 
   /**
    * @param  string  $type Can be 'html' or 'markdown'
+   * @param  integer $limit Limit the number of characters returned,
+   *                        Only honored if $type == 'stripped'
    *
    * @return string
    */
-  public function getDescription($type = 'html')
+  public function getDescription($type = 'html', $limit = 0)
   {
     // By default the description is in Markdown format in the database
     $v = parent::getDescription();
@@ -75,6 +77,7 @@ class CollectorCollection extends BaseCollectorCollection
     {
       case 'stripped':
         $v = trim(strip_tags($v));
+        $v = ($limit > 0) ? cqStatic::truncateText($v, $limit, true, '...') : $v;
         break;
       case 'html':
         $v = cqMarkdown::doConvert($v);

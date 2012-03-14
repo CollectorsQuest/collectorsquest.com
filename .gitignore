@@ -27,6 +27,7 @@ base
 /plugins/sfGuardPlugin
 /lib/vendor/neo4jphp
 /lib/vendor/faker
+/lib/vendor/monolog
 !/plugins/sfPropelORMPlugin
 
 # symlinked folders (when on windows)

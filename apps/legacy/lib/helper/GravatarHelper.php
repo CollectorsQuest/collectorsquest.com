@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ .'/../vendor/GravatarApi.class.php';
+require_once sfConfig::get('sf_lib_dir') . '/vendor/GravatarApi.class.php';
 
 /**
  * Displays a gravatar image for a given email

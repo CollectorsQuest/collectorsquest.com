@@ -47,7 +47,10 @@
 <?php if ($email = $collector->getLastEmailChangeRequest()): ?>
 <br clear="all"/>
 <div class="prepend-6 span-10 last">
-  <p>You have pending email change request. If you didn't receive email click <a href="<?php echo url_for('manage_profile_resend_change_email') ?>">here</a> to resend it.</p>
+  <p>
+    <strong style="color: orange;">(!)</strong> You have a pending email change request. If you didn't receive the email,
+    click <?= link_to('here', '@manage_profile_resend_change_email'); ?> to resend it.
+  </p>
 </div>
 <?php endif; ?>
 <br clear="all"/><br />

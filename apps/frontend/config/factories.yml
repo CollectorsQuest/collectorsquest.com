@@ -3,10 +3,23 @@
 
 prod:
   logger:
-    class:   sfNoLogger
+    class:   sfMonologLogger
     param:
       level:   err
-      loggers: ~
+      handlers:
+        mail:
+          type:         fingers_crossed
+          action_level: crit
+          handler:      buffered
+        buffered:
+          type:    buffer
+          handler: swift
+        swift:
+          type:       swift_mailer
+          from_email: no-reply@collectorsquest.com
+          to_email:   developers@collectorsquest.com
+          subject:    '[Monolog] An Error Occurred!'
+          level:      debug
 
 test:
   storage:
@@ -53,3 +66,41 @@ all:
       logging:         %SF_LOGGING_ENABLED%
       use_flash:       true
       default_culture: %SF_DEFAULT_CULTURE%
+
+  logger:
+    class: sfAggregateLogger
+    param:
+      level: debug
+      loggers:
+
+        sf_web_debug:
+          class: sfWebDebugLogger
+          param:
+            level: debug
+            condition:       %SF_WEB_DEBUG%
+            xdebug_logging:  false
+            web_debug_class: sfWebDebug
+
+        sf_file_debug:
+          class: cqMonologLogger
+          param:
+            level:  err
+            handlers:
+              streamed:
+                type:  stream
+                path:  %SF_LOG_DIR%/%SF_APP%_%SF_ENVIRONMENT%.log
+                level:  debug
+                bubble: true
+#              main:
+#                type:  fingers_crossed
+#                action_level:  crit
+#                handler:  grouped
+#              grouped:
+#                type:  group
+#                members:  [streamed, firefox]
+#              streamed:
+#                type:  stream
+#                path:  %SF_LOG_DIR%/%SF_APP%_%SF_ENVIRONMENT%.log
+#                level:  debug
+#              firefox:
+#                type:  fire_php

@@ -20,7 +20,7 @@
     <?php if ($latest_collector_id != $offer->getCollector()->getId()): ?>
     </table>
     <br>
-    <div style="margin-bottom: 5px;"><?php echo section_title(sprintf('Offers by %s', $offer->getCollector()->getDisplayName())); ?></div>
+    <div style="margin-bottom: 5px;"><?php echo cq_section_title(sprintf('Offers by %s', $offer->getCollector()->getDisplayName())); ?></div>
     <table style="border: 1px solid #DEDEDE;" width="100%">
     <?php endif; ?>
       <tr style="background: <?php echo ($i%2==0) ? '#F2F8D5': '#FFFFFF'; ?>">

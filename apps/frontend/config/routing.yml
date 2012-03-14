@@ -1,5 +1,62 @@
-# You can find more information about this file on the symfony website:
-# http://www.symfony-project.org/reference/1_4/en/10-Routing
+### COLLECTIONS
+
+collections:
+  url:   /collections
+  param: { module: collections, action: index }
+
+collection_by_slug:
+  url:  /collection/:id/:slug
+  class: cqPropelRoute
+  options: { model: CollectorCollection, type: object, method: getObjectForRoute }
+  param: { module: collection, action: index }
+  requirements: { id: '\d+', slug: '[\-\w\.]+' }
+
+collections_by_collector_legacy:
+  url:  /collections/by/:collector_slug
+  class: sfPropelRoute
+  options: { model: Collector, type: object, method: getObjectForRoute }
+  param: { module: collections, action: index }
+  requirements: { collector_slug: '[\-\w\.]+' }
+
+collections_by_collector:
+  url:  /collections/by/:collector_id/:collector_slug
+  class: sfPropelRoute
+  options: { model: Collector, type: object, method: getObjectForRoute }
+  param: { module: collections, action: index }
+  requirements: { collector_id: '\d+', collector_slug: '[\-\w\.]+' }
+
+
+### NEWS
+
+news:
+  url:   /news
+  param: { module: news, action: index }
+
+
+### VIDEO
+
+video:
+  url:   /video
+  param: { module: video, action: index }
+
+
+### MARKETPLACE
+
+marketplace:
+  url: /marketplace
+  param: { module: marketplace, action: index }
+
+marketplace_category_by_slug:
+  url: /marketplace/:id/:slug
+  class: sfPropelRoute
+  options: { model: CollectionCategory, type: object, method: getObjectForRoute }
+  param: { module: marketplace, action: index }
+  requirements:
+    id: \d+
+    sf_method: [GET, POST]
+
+
+### GENERAL
 
 logout:
   url:   /logout
@@ -8,7 +65,7 @@ logout:
 # default rules
 homepage:
   url:   /
-  param: { module: default, action: index }
+  param: { module: general, action: index }
 
 # generic rules
 # please, remove them by adding more specific rules

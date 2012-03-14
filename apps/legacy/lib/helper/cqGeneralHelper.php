@@ -56,25 +56,3 @@ function cq_unescape_tag($tag)
 {
   return str_replace('-', ' ', $tag);
 }
-
-/* Added By Prakash Panchal
- * Date: 31-Mar-2011
- */
-function page_title($title)
-{
-  return sprintf(
-    '<div style="float: left; margin-top: 6px; margin-right: 5px;">%s</div><div class="page-title">%s</div>',
-    image_tag('black-arrow.png'),
-    $title
-  );
-}
-// Added on 5-APR-2011
-function section_title($title)
-{
-  return sprintf(
-    '<div style="float: left; margin-top: 1px; margin-right: 5px;">%s</div><div class="section-title">%s</div>',
-    image_tag('black-arrow.png'),
-    $title
-  );
-}
-/* End */
