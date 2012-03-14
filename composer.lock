@@ -1,5 +1,5 @@
 {
-    "hash": "f9c91da5b9cc7de6523d64b7c9f06df2",
+    "hash": "98fd26e35835f852d8aa748aebd3dfb8",
     "packages": [
         {
             "package": "lib/vendor/faker",
@@ -8,7 +8,8 @@
         },
         {
             "package": "lib/vendor/monolog",
-            "version": "1.0.2"
+            "version": "master-dev",
+            "source-reference": "6c15897ac74bd53572328094eacf03fbb7b8bca7"
         },
         {
             "package": "lib/vendor/neo4jphp",

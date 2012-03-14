@@ -52,19 +52,19 @@ function cq_image_tag($source, $options = array())
   return image_tag(cq_image_src($source), $options);
 }
 
-function cq_image_src($image, $secure = false)
+function cq_image_src($image)
 {
-  return 'http://'. sfConfig::get('app_static_domain') .'/images/'. $image;
+  return '//'. sfConfig::get('app_static_domain') .'/images/'. $image;
 }
 
-function cq_stylesheet_src($stylesheet, $secure = false)
+function cq_stylesheet_src($stylesheet)
 {
-  return 'http://'. sfConfig::get('app_static_domain') .'/css/'. $stylesheet .'?rev='. (defined('SVN_REVISION') ? SVN_REVISION : 0);
+  return '//'. sfConfig::get('app_static_domain') .'/css/'. $stylesheet .'?rev='. (defined('SVN_REVISION') ? SVN_REVISION : 0);
 }
 
-function cq_javascript_src($javascript, $secure = false)
+function cq_javascript_src($javascript)
 {
-  return 'http://'. sfConfig::get('app_static_domain') .'/js/'. $javascript .'?rev='. (defined('SVN_REVISION') ? SVN_REVISION : 0);
+  return '//'. sfConfig::get('app_static_domain') .'/js/'. $javascript .'?rev='. (defined('SVN_REVISION') ? SVN_REVISION : 0);
 }
 
 function cq_include_stylesheets()

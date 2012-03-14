@@ -13,35 +13,14 @@
 
   <?php include_partial('global/head_ie'); ?>
 
-  <link rel="shortcut icon" href="<?php echo image_path('frontend/favicon.ico', true); ?>"/>
-  <link rel="icon" type="image/png" href="<?php echo image_path('frontend/favicon.png', true); ?>"/>
+  <link rel="shortcut icon" href="<?php echo cq_image_src('frontend/favicon.ico', true); ?>"/>
+  <link rel="icon" type="image/png" href="<?php echo cq_image_src('frontend/favicon.png', true); ?>"/>
 
+  <script src="<?= cq_javascript_src('frontend/modernizr.js'); ?>" type="text/javascript"></script>
   <script type="text/javascript">
-    if (top.location != self.location)
-    {
-      top.location.replace(self.location.toString());
-    }
-
-    // name should be "Width" or "Height"
-    function getWindowSize(name)
-    {
-      var docElemProp = window.document.documentElement[ "client" + name ],
-        body = window.document.body;
-
-      return window.document.compatMode === "CSS1Compat" && docElemProp ||
-        body && body[ "client" + name ] || docElemProp;
-    }
-
-    // Modified script based on this function:
-    document.cookie = 'resolution=' + Math.max(getWindowSize("Width"), getWindowSize("Height")) + '; path=/';
+    window._ENV = '<?= sfConfig::get('sf_environment') ?>';
+    Modernizr.load([{ load: '<?= cq_javascript_src('frontend/head.js'); ?>' }]);
   </script>
-
-  <?php
-    if (SF_ENV == 'prod')
-    {
-      include_partial('global/head_analytics');
-    }
-  ?>
 
   <!-- Blog Head //-->
 </head>
