@@ -1,8 +1,5 @@
-
 if (window._ENV === 'prod')
 {
-  var _page_load_start = new Date();
-  var _server_load_time = 0;
   var _gaq = _gaq || [];
 
   window.onload = function()

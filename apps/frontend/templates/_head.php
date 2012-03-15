@@ -19,6 +19,9 @@
   <script src="<?= cq_javascript_src('frontend/modernizr.js'); ?>" type="text/javascript"></script>
   <script type="text/javascript">
     window._ENV = '<?= sfConfig::get('sf_environment') ?>';
+    window._page_load_start = new Date();
+    window._server_load_time = 0;
+
     Modernizr.load([{ load: '<?= cq_javascript_src('frontend/head.js'); ?>' }]);
   </script>
 
