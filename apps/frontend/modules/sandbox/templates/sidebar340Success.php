@@ -1,6 +1,6 @@
 
 <div class="row-fluid wrapper-left">
-  <section id="fluidGridSystem">
+  <section>
     <div class="page-header">
       <h1>Fluid grid system <small>12 responsive, percent-based columns</small></h1>
     </div>
@@ -20,10 +20,16 @@
       <div class="span1">1</div>
       <div class="span1">1</div>
     </div>
-    <div class="row-fluid show-grid">
+    <div class="row show-grid">
       <div class="span4">4</div>
       <div class="span4">4</div>
       <div class="span4">4</div>
+    </div>
+    <div class="row show-grid">
+      <div class="span4">4</div>
+      <div class="span3">3</div>
+      <div class="span2">2</div>
+      <div class="span2">2</div>
     </div>
     <div class="row-fluid show-grid">
       <div class="span4">4</div>
