@@ -13,7 +13,7 @@
 <fieldset class="rpxnow-login clearfix">
   <legend><?= __('Third Party Accounts:'); ?></legend>
   <iframe
-    src="<?= $rpxnow['application_domain']; ?>/openid/embed?token_url=<?= url_for('@rpx_token', true); ?>"
+    src="<?= $rpxnow['application_domain']; ?>openid/embed?token_url=<?= url_for('@rpx_token', true); ?>"
     scrolling="no"
     frameBorder="no"
     style="width:350px; height:220px;"

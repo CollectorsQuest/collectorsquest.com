@@ -101,6 +101,7 @@ class generalActions extends cqFrontendActions
       }
     }
 
+    // forward the user to the homepage after 5 seconds
     $this->getResponse()->addHttpMeta(
       'refresh',
       '5;' . $this->getController()->genUrl('@homepage'));
@@ -125,6 +126,58 @@ class generalActions extends cqFrontendActions
     }
 
     return $this->redirect(!empty($url) ? $url : '@homepage');
+  }
+
+  public function executeRecoverPassword(sfWebRequest $request)
+  {
+    // redirect to homepage if already logged in
+    if ($this->getUser()->isAuthenticated())
+    {
+      return $this->redirect('@homepage');
+    }
+
+    $form = new PasswordRecoveryForm();
+
+    if (sfRequest::POST == $request->getMethod())
+    {
+      $form->bind($request->getParameter($form->getName()));
+
+      if ($form->isValid())
+      {
+        $email = $form->getValue('email');
+        $collector = CollectorQuery::create()->findOneByEmail($email);
+
+        $password = IceStatic::getUniquePassword();
+        $collector->setPassword($password);
+        $collector->save();
+
+        $subject = $this->__('Your new password for CollectorsQuest.com');
+        $body = $this->getPartial(
+          'emails/collector_password_reminder',
+          array('collector' => $collector, 'password' => $password)
+        );
+
+        if ($this->sendEmail($email, $subject, $body))
+        {
+          $this->getUser()->setFlash('success', $this->__(
+            'We have sent an email to %email% with your new password.',
+            array('%email%' => $email)
+          ));
+
+          return $this->redirect('@login');
+        }
+        else
+        {
+          $this->getUser()->setFlash('error', $this->__(
+            'There was a problem sending an email. Please try again a little bit later!'
+          ));
+        }
+      } // valid form
+    } // post request
+
+    $this->form = $form;
+
+    return sfView::SUCCESS;
   }
 
 }
