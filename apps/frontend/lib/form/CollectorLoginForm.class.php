@@ -12,19 +12,15 @@ class CollectorLoginForm extends BaseForm
     ));
 
     $this->setValidators(array(
-      'username'  => new sfValidatorPropelChoice(array(
-          'model' => 'Collector',
-          'column' => 'username',
-          'required' => true
-      )),
-      'password'  => new sfValidatorString(array(
-          'max_length' => 64,
-          'required' => true
-      )),
-      'remember'  => new sfValidatorBoolean()
+      'username'  => new sfValidatorString(),
+      'password'  => new sfValidatorString(),
+      'remember'  => new sfValidatorBoolean(),
     ));
 
-    $this->validatorSchema->setPostValidator(new cqValidatorSchemaCollector());
+    $this->widgetSchema->setNameFormat('login[%s]');
+    $this->mergePostValidator(new cqValidatorSchemaCollector(null, array(
+        'throw_global_error' => true,
+    )));
   }
 
 }

@@ -60,6 +60,20 @@ class CollectorPeer extends BaseCollectorPeer
   }
 
   /**
+   * @param     string $identifier
+   * @param     PropelPDO $con
+   * @return    Collector|null
+   */
+  public static function retrieveByIdentifier($identifier, PropelPDO $con = null)
+  {
+    $c = new Criteria();
+    $c->addJoin(CollectorPeer::ID, CollectorIdentifierPeer::COLLECTOR_ID);
+    $c->add(CollectorIdentifierPeer::IDENTIFIER, $identifier);
+
+    return self::doSelectOne($c, $con);
+  }
+
+  /**
    * Retrieve a Collector record only if within the time limit from the hash generation
    *
    * @param     string $hash

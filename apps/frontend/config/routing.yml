@@ -58,6 +58,14 @@ marketplace_category_by_slug:
 
 ### GENERAL
 
+login:
+  url:   /login
+  param: { module: general, action: login }
+
+rpx_token:
+  url:   /rpx-token
+  param: { module: general, action: RPXTokenLogin }
+
 logout:
   url:   /logout
   param: { module: general, action: logout }

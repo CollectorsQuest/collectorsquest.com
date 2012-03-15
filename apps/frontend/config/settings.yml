@@ -42,3 +42,14 @@ all:
 
     # Logging
     logging_enabled:        false
+
+
+  .actions:
+    error_404_module:       default
+    error_404_action:       error404
+
+    login_module:           general
+    login_action:           login
+
+    secure_module:          general
+    secure_action:          index
