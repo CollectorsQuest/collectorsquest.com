@@ -7,3 +7,10 @@ all:
 
   cqnext_auto_login_parameter_name: "i"
   cqnext_auto_login_time_limit: "+5 minutes"
+
+  credentials:
+    rpxnow:
+      application_domain: "https://cqnext-dev.rpxnow.com/"
+      application_id: "fmbfbkcdfejhcneholpp"
+      api_key: "e5eea7cf89324ccf96c5ef8f1b486024884cc002"
+
