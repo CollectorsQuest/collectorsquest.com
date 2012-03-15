@@ -8,6 +8,18 @@ $table_prefix  = 'wp_';   // Only numbers, letters, and underscores please!
 define('WPLANG', '');
 define('WP_CACHE', true);
 
+/**
+define('WP_ALLOW_MULTISITE', true);
+
+define( 'MULTISITE', true );
+define( 'SUBDOMAIN_INSTALL', false );
+$base = '/blog/';
+define( 'DOMAIN_CURRENT_SITE', 'www.collectorsquest.dev' );
+define( 'PATH_CURRENT_SITE', '/blog/' );
+define( 'SITE_ID_CURRENT_SITE', 1 );
+define( 'BLOG_ID_CURRENT_SITE', 1 );
+**/
+
 /* That's all, stop editing! Happy blogging. */
 
 define('ABSPATH', dirname(__FILE__).'/');

@@ -16,10 +16,9 @@
  Installation:
  ==============================================================================
  1. Upload the full directory into your wp-content/plugins directory
- 2. Make your blog directory writeable OR create two files called sitemap.xml 
-    and sitemap.xml.gz and make them writeable via CHMOD In most cases, your blog directory is already writeable.
- 2. Activate it in the Plugin options
- 3. Edit or publish a post or click on Rebuild Sitemap on the Sitemap Administration Interface
+ 2. Activate the plugin at the plugin administration page
+ 3. Open the plugin configuration page, which is located under Settings -> XML-Sitemap and customize settings like priorities and change frequencies. 
+ 4. The plugin will automatically update your sitemap of you publish a post, so theres nothing more to do :)
   
  
  Additional contributors:
@@ -231,10 +230,6 @@
                         Changed get_bloginfo('siteurl') to get_bloginfo('url') to avoid deprecation warning
                         Changed has_cap(10) to has_cap('level_10') to avoid deprecation warning
                         Fixed wrong SQL statement for author pages (Ticket #1108), thanks to twoenough
- 2010-07-11     3.2.5   Backported Bing ping success fix from beta
-                        Added friendly hint to try out the new beta
- 2010-09-19     3.2.6   Removed YAHOO ping since YAHOO uses bing now
-                        Removed deprecated function call
 
  Maybe Todo:
  ==============================================================================
@@ -243,7 +238,7 @@
  
  License:
  ==============================================================================
- Copyright 2005 - 2009 ARNE BRACHHOLD  (email : himself - arnebrachhold - de)
+ Copyright 2005 - 2010 ARNE BRACHHOLD  (email : himself - arnebrachhold - de)
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
