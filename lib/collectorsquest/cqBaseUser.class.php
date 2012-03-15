@@ -120,7 +120,7 @@ class cqBaseUser extends IceSecurityUser
     return true;
   }
 
-  protected function generateRandomKey($len = 20)
+  protected function generateRandomKey()
   {
     return base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);
   }
