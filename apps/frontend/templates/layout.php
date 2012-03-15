@@ -33,9 +33,14 @@
       $sidebar = 'sidebar_120';
       echo '<div class="container-fluid fixed-right-column-120">';
     }
-    else if (has_component_slot('sidebar_340'))
+    else if (has_component_slot('sidebar_180'))
     {
-      $sidebar = 'sidebar_340';
+      $sidebar = 'sidebar_180';
+      echo '<div class="container-fluid fixed-right-column-180">';
+    }
+    else if (has_component_slot('sidebar_300'))
+    {
+      $sidebar = 'sidebar_300';
       echo '<div class="container-fluid fixed-right-column">';
     }
     else

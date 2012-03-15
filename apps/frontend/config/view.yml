@@ -30,8 +30,9 @@ default:
   components:
     header:  [global, header]
     footer:  [global, footer]
-    sidebar_120: [global, sidebar120]
-    sidebar_340: [global, sidebar340]
+    sidebar_120: []
+    sidebar_180: []
+    sidebar_300: []
 
   has_layout:     true
   layout:         layout
