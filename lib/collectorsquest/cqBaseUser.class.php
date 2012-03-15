@@ -97,22 +97,17 @@ class cqBaseUser extends IceSecurityUser
         $c = new Criteria();
         $expiration_age = sfConfig::get('app_collector_remember_expiration_age', 15 * 24 * 3600);
         $c->add(CollectorRememberKeyPeer::CREATED_AT, time() - $expiration_age, Criteria::LESS_THAN);
-        CollectorRememberKeyPeer::doDelete($c, $con);
-
-        // remove other keys from this user
-        $c = new Criteria();
-        $c->add(CollectorRememberKeyPeer::COLLECTOR_ID, $collector->getId());
-        CollectorRememberKeyPeer::doDelete($c, $con);
+        CollectorRememberKeyPeer::doDelete($c);
 
         // generate new keys
-        $key = $this->generateRandomKey();
+        $key = cqStatic::getUniqueId(32);
 
         // save key
         $rk = new CollectorRememberKey();
         $rk->setRememberKey($key);
         $rk->setCollector($collector);
-        $rk->setIpAddress($_SERVER['REMOTE_ADDR']);
-        $rk->save($con);
+        $rk->setIpAddress(cqStatic::getUserIpAddress());
+        $rk->save();
 
         // make key as a cookie
         $remember_cookie = sfConfig::get('app_collector_remember_cookie_name', 'cqRemember');
@@ -131,11 +126,6 @@ class cqBaseUser extends IceSecurityUser
     }
 
     return true;
-  }
-
-  protected function generateRandomKey()
-  {
-    return base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);
   }
 
   /**

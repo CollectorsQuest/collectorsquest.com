@@ -92,9 +92,10 @@ classes:
 
   CollectorRememberKey:
     columns:
-      ip_address:    { type: char, size: 15, primaryKey: true }
+      id: ~
       collector_id:  { type: integer, foreignClass: Collector, foreignReference: id, required: true, onDelete: cascade }
       remember_key:  { type: char, size: 32 }
+      ip_address:    { type: char, size: 15 }
       created_at:    ~
 
     propel_behaviors:
