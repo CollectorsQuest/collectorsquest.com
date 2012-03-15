@@ -1,10 +1,14 @@
 next:
   logger:
     class: sfNoLogger
+    param:
+      loggers: ~
 
 test:
   logger:
     class: sfNoLogger
+    param:
+      loggers: ~
 
   storage:
     class: sfSessionTestStorage
