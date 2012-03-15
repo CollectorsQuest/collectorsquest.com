@@ -10,8 +10,8 @@
         </div>
         <div class="span10">
           <div class="pull-r">
-            <form class="form-search">
-              <input type="text" class="input-medium search-query">
+            <form action="<?= url_for('@search'); ?>" method="get" class="form-search">
+              <input type="text" name="q" class="input-medium search-query">
               <button type="submit" class="btn">Search</button>
             </form>
           </div>

@@ -32,6 +32,30 @@ manage_profile:
   url:   /manage/profile
   param: { module: default, action: index }
 
+
+### SEARCH
+
+search_collectibles:
+  url:   /search/collectibles
+  param: { module: search, action: collectibles }
+
+search_collections:
+  url:   /search/collections
+  param: { module: search, action: collections }
+
+search_collectors:
+  url:   /search/collectors
+  param: { module: search, action: collectors }
+
+search_blog:
+  url:   /search/blog
+  param: { module: search, action: blog }
+
+search:
+  url:   /search
+  param: { module: search, action: index }
+
+
 ### NEWS
 
 news:
