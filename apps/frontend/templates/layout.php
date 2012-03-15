@@ -25,31 +25,35 @@
     }(document));
   </script>
 
-  <?php include_component_slot('header'); ?>
+  <?php
+    include_component_slot('header');
 
-  <?php if (has_component_slot('sidebar_120')): ?>
-    <div class="container-fluid fixed-right-column-120">
-  <?php elseif (has_component_slot('sidebar_340')): ?>
-    <div class="container-fluid fixed-right-column">
-  <?php else: ?>
-    <div class="container-fluid">
-  <?php endif; ?>
-
-    <?php
+    if (has_component_slot('sidebar_120'))
+    {
+      $sidebar = 'sidebar_120';
+      echo '<div class="container-fluid fixed-right-column-120">';
+    }
+    else if (has_component_slot('sidebar_340'))
+    {
+      $sidebar = 'sidebar_340';
+      echo '<div class="container-fluid fixed-right-column">';
+    }
+    else
+    {
+      $sidebar = null;
+      echo '<div class="container-fluid">';
+    }
       /** @var $sf_content string */
-      echo $sf_content;
+    echo $sf_content;
 
-      if (has_component_slot('sidebar_120'))
-        {
-        include_component_slot('sidebar_120');
-      }
-      else if (has_component_slot('sidebar_340'))
-      {
-        include_component_slot('sidebar_340');
-      }
-    ?>
-  </div>
-  <?php include_component_slot('footer'); ?>
+    if (null !== $sidebar)
+    {
+      include_component_slot($sidebar);
+    }
+    echo '</div>';
+
+    include_component_slot('footer');
+  ?>
 
   <?php
     /** @var $sf_user cqFrontendUser */
