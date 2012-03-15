@@ -6,7 +6,7 @@ $t = new lime_test(18, array('output' => new lime_output_color(), 'error_reporti
 
 // Reset all tables we will be working on
 cqTest::resetTables(array('collector', 'collector_profile', 'collector_email'));
-cqTest::loadFixtures('01_test_collectors/', false);
+cqTest::loadFixtures('01_test_collectors/');
 
 $t->diag('::setWebsite(), ::getWebsite(), ::getWebsiteUrl()');
 

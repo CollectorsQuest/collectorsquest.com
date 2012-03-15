@@ -219,7 +219,7 @@ class generalActions extends cqActions
     /**
      * Handling errors where the $_GET['r'] is double urlencoded()
      */
-    if (substr($url. 0, 13) == 'http%3A%2F%2F')
+    if (substr($url, 0, 13) == 'http%3A%2F%2F')
     {
       $url = urldecode($url);
     }

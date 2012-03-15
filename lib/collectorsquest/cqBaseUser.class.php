@@ -15,6 +15,19 @@ class cqBaseUser extends IceSecurityUser
     self::$_facebook_data = $this->getAttribute('data', null, 'icepique/user/facebook');
   }
 
+  public function getReferer($default)
+  {
+    $referer = $this->getAttribute('referer', $default);
+    $this->getAttributeHolder()->remove('referer');
+
+    return $referer ? $referer : $default;
+  }
+
+  public function setReferer($referer)
+  {
+    $this->setAttribute('referer', $referer);
+  }
+
   /**
    * @return integer
    */
@@ -120,7 +133,7 @@ class cqBaseUser extends IceSecurityUser
     return true;
   }
 
-  protected function generateRandomKey($len = 20)
+  protected function generateRandomKey()
   {
     return base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);
   }

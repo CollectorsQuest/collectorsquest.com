@@ -1,10 +1,8 @@
-next:
-  logger:
-    class: sfNoLogger
-
 test:
   logger:
     class: sfNoLogger
+    param:
+      loggers: ~
 
   storage:
     class: sfSessionTestStorage
@@ -20,7 +18,6 @@ test:
     param:
       delivery_strategy: none
 
-
 all:
   mailer:
     class: cqMailer
@@ -31,10 +28,10 @@ all:
       transport:
         class: Swift_SmtpTransport
         param:
-          host: 'smtp.gmail.com'
+          host: smtp.gmail.com
           port: 465
-          username: 'robot@collectorsquest.com'
-          password: 'gHnyU7wZLtYf3n'
+          username: no-reply@collectorsquest.com
+          password: gHnyU7wZLtYf3n
           encryption: tls
 
   routing:
@@ -61,6 +58,14 @@ all:
       logging:         %SF_LOGGING_ENABLED%
       use_flash:       true
       default_culture: %SF_DEFAULT_CULTURE%
+
+  logger:
+    class: sfNoLogger
+    param:
+      loggers: ~
+
+
+dev:
 
   logger:
     class: sfAggregateLogger

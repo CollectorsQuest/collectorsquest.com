@@ -26,6 +26,12 @@ collections_by_collector:
   requirements: { collector_id: '\d+', collector_slug: '[\-\w\.]+' }
 
 
+### COLLECTORS
+
+manage_profile:
+  url:   /manage/profile
+  param: { module: default, action: index }
+
 ### NEWS
 
 news:
@@ -58,9 +64,25 @@ marketplace_category_by_slug:
 
 ### GENERAL
 
+login:
+  url:   /login
+  param: { module: general, action: login }
+
+auto_login:
+  url:  /auto-login/:hash
+  param: { module: general, action: login }
+
+rpx_token:
+  url:   /rpx-token
+  param: { module: general, action: RPXTokenLogin }
+
 logout:
   url:   /logout
   param: { module: general, action: logout }
+
+recover_password:
+  url:   /recover-password
+  param: { module: general, action: recoverPassword }
 
 # default rules
 homepage:
