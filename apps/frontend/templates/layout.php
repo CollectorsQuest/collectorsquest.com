@@ -25,23 +25,40 @@
     }(document));
   </script>
 
-  <?php include_component_slot('header'); ?>
-  <div class="container-fluid r-column-padding">
-    <?php
-      /** @var $sf_content string */
-      echo $sf_content;
+  <?php
+    include_component_slot('header');
 
-      if (has_component_slot('sidebar_120'))
-        {
-        include_component_slot('sidebar_120');
-      }
-      else if (has_component_slot('sidebar_340'))
-      {
-        include_component_slot('sidebar_340');
-      }
-    ?>
-  </div>
-  <?php include_component_slot('footer'); ?>
+    if (has_component_slot('sidebar_120'))
+    {
+      $sidebar = 'sidebar_120';
+      echo '<div class="container-fluid fixed-right-column-120">';
+    }
+    else if (has_component_slot('sidebar_180'))
+    {
+      $sidebar = 'sidebar_180';
+      echo '<div class="container-fluid fixed-right-column-180">';
+    }
+    else if (has_component_slot('sidebar_300'))
+    {
+      $sidebar = 'sidebar_300';
+      echo '<div class="container-fluid fixed-right-column">';
+    }
+    else
+    {
+      $sidebar = null;
+      echo '<div class="container-fluid">';
+    }
+      /** @var $sf_content string */
+    echo $sf_content;
+
+    if (null !== $sidebar)
+    {
+      include_component_slot($sidebar);
+    }
+    echo '</div>';
+
+    include_component_slot('footer');
+  ?>
 
   <?php
     /** @var $sf_user cqFrontendUser */

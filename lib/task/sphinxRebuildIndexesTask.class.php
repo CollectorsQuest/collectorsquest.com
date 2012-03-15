@@ -44,10 +44,14 @@ EOF;
       }
       else
       {
-        $indexes[] = sprintf('%s_collections', $options['env']);
-        $indexes[] = sprintf('%s_collectors', $options['env']);
-        $indexes[] = sprintf('%s_collectibles', $options['env']);
         $indexes[] = sprintf('%s_blog', $options['env']);
+        $indexes[] = sprintf('%s_blog_normalized', $options['env']);
+        $indexes[] = sprintf('%s_collections', $options['env']);
+        $indexes[] = sprintf('%s_collections_normalized', $options['env']);
+        $indexes[] = sprintf('%s_collectors', $options['env']);
+        $indexes[] = sprintf('%s_collectors_normalized', $options['env']);
+        $indexes[] = sprintf('%s_collectibles', $options['env']);
+        $indexes[] = sprintf('%s_collectibles_normalized', $options['env']);
       }
     }
     else

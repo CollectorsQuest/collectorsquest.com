@@ -1,35 +1,41 @@
 
 <div class="row-fluid" style="float: left">
   <div class="span12">
-    <div class="row-fluid">
-      <div class="span4">
-        <h2>First column</h2>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-        <p><a class="btn" href="#">I need more energy &raquo;</a></p>
-      </div><!--/span-->
-      <div class="span4">
-        <h2>Second column</h2>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-        <p><a class="btn" href="#">More &raquo;</a></p>
-      </div><!--/span-->
-      <div class="span4">
-        <h2>Third column</h2>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-        <p><a class="btn" href="#">More &raquo;</a></p>
-      </div><!--/span-->
-    </div><!--/row-->
-    <div class="row-fluid">
-      <div class="span6">
-        <h2>First column</h2>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-        <p><a class="btn" href="#">I need more energy &raquo;</a></p>
-      </div><!--/span-->
-      <div class="span6">
-        <h2>Second column</h2>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-        <p><a class="btn" href="#">More &raquo;</a></p>
-      </div><!--/span-->
-    </div><!--/row-->
+    <div class="row-fluid show-grid">
+      <div class="span1">1</div>
+      <div class="span1">1</div>
+      <div class="span1">1</div>
+      <div class="span1">1</div>
+      <div class="span1">1</div>
+      <div class="span1">1</div>
+      <div class="span1">1</div>
+      <div class="span1">1</div>
+      <div class="span1">1</div>
+      <div class="span1">1</div>
+      <div class="span1">1</div>
+      <div class="span1">1</div>
+    </div>
+    <div class="row show-grid">
+      <div class="span4">4</div>
+      <div class="span4">4</div>
+      <div class="span4">4</div>
+
+      <div class="span4">4</div>
+      <div class="span3">3</div>
+      <div class="span2">2</div>
+      <div class="span2">2</div>
+    </div>
+    <div class="row-fluid show-grid">
+      <div class="span4">4</div>
+      <div class="span8">8</div>
+    </div>
+    <div class="row-fluid show-grid">
+      <div class="span6">6</div>
+      <div class="span6">6</div>
+    </div>
+    <div class="row-fluid show-grid">
+      <div class="span12">12</div>
+    </div>
   </div><!--/span-->
 </div><!--/row-fluid-->
 

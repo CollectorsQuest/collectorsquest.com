@@ -2,15 +2,37 @@
 
 //  Fidex width of wapper to 1200px
 @media (min-width: 1200px) {
-.container-fluid {
-  max-width:860px;
-  margin-left:auto;
-  margin-right:auto;}
-.container-fluid-header-fix,.navbar, footer {
-  max-width:1200px;
-	margin-left:auto;
-	margin-right:auto;}
+	.container-fluid.fixed-right-column {
+	  max-width:855px;
+	  margin-left:auto;
+	  margin-right:auto;
+	}
+	.container-fluid.fixed-right-column-120 {
+		max-width:1035px;
+		margin-left:auto;
+		margin-right:auto;
+	}
+	.container-fluid {
+	  max-width:1175px;
+		margin-left:auto;
+		margin-right:auto;
+	}
+	.navbar, footer {
+		max-width: 1200px;
+		margin-left:auto;
+		margin-right:auto;
+	}
 }
+
+// hiding .aside
+.container-fluid > .aside {
+	display: none;
+}
+.container-fluid.fixed-right-column > .aside,
+.container-fluid.fixed-right-column-120 > .aside {
+	display: block;
+}
+
 
 // Image replacement http://goo.gl/cEMGx
 .ir {
@@ -20,39 +42,178 @@
 }
 
 // HEADER
-
+.navbar-inner {
+	background-color: #fff;
+	background-image: none;
+	border-radius: 0;
+	box-shadow: none;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+.navbar {
+	margin-bottom: 4px;
+}
 
 // TOP INTERCTIVE CONTAINER
 
 
 //WRAPPER, COLUMNS
-.r-column-padding {
-	padding-right: 320px + @fluidGridGutterWidth;
+.wrapper-left {
+	float: left;
 }
 .fixed-right-column {
+	padding-right: 330px;
+}
+.fixed-right-column > .aside {
 	float: left;
-	margin-left: @fluidGridGutterWidth;
-	margin-right: -320px - @fluidGridGutterWidth;
+	margin-left: 15px;
+	margin-right: -330px;
 	position: relative;
 	width: 300px;
 }
+.fixed-right-column-120 {
+	padding-right: 150px;
+}
+.fixed-right-column-120 > .aside {
+	float: left;
+	margin-left: 15px;
+	margin-right: -150px;
+	position: relative;
+	width: 120px;
+}
+.container-fluid {
+	padding-left: 15px;
 
-@media screen and ( max-width: 760px ) {
-  .fixed-right-column {
+}
+/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
+@media (min-width: 980px) {
+
+}
+@media ( max-width: 768px ) {
+  .aside {
     display: block;
     float: none;
     padding: 0;
-    margin: 0;
+    margin: 0 !important;
     width: 100% !important;
   }
-  .r-column-padding {
+	.fixed-right-column, .fixed-right-column-120 {
     padding-right: 0;
   }
+	.wrapper-left {
+		float: none;
+	}
 }
 
 
 // FOOTER
+.footer-inner {
+	padding: 10px 15px 0;
+}
 
-.footer-color {
+
+
+// TESTING COLORS
+footer {
   background-color: #e5f0f6; /* For testing purposes only */
+}
+.aside {
+	background-color: #ede4d4;
+}
+.container-fluid {
+	background-color: #d7d7d7;
+}
+.navbar-inner {
+	border: 1px solid #efefef;
+	background: #ffffff; /* Old browsers */
+/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjQ3JSIgc3RvcC1jb2xvcj0iI2Y2ZjZmNiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlZGVkZWQiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+	background: -moz-linear-gradient(left,  #ffffff 0%, #f6f6f6 47%, #ededed 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,#ffffff), color-stop(47%,#f6f6f6), color-stop(100%,#ededed)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(left,  #ffffff 0%,#f6f6f6 47%,#ededed 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(left,  #ffffff 0%,#f6f6f6 47%,#ededed 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(left,  #ffffff 0%,#f6f6f6 47%,#ededed 100%); /* IE10+ */
+	background: linear-gradient(left,  #ffffff 0%,#f6f6f6 47%,#ededed 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed',GradientType=1 ); /* IE6-8 */
+
+}
+.pull-r {
+	text-align: right;
+}
+.pull-r:before,
+.pull-r:after {
+	content:"";
+	display:table;
+}
+
+.pull-r:after {
+	clear:both;
+}
+/* For IE 6/7 (trigger hasLayout) */
+.pull-r {
+	zoom:1;
+}
+.navbar .nav {
+	float: right
+}
+ul.nav {
+	background: #7d7e7d; /* Old browsers */
+/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzdkN2U3ZCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwZTBlMGUiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+	background: -moz-linear-gradient(top,  #7d7e7d 0%, #0e0e0e 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#7d7e7d), color-stop(100%,#0e0e0e)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #7d7e7d 0%,#0e0e0e 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #7d7e7d 0%,#0e0e0e 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #7d7e7d 0%,#0e0e0e 100%); /* IE10+ */
+	background: linear-gradient(top,  #7d7e7d 0%,#0e0e0e 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7d7e7d', endColorstr='#0e0e0e',GradientType=0 ); /* IE6-8 */
+
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	-moz-background-clip: padding; -webkit-background-clip: padding-box; background-clip: padding-box;
+}
+.navbar .nav .active > a,
+.navbar .nav .active > a:hover {
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	-moz-background-clip: padding; -webkit-background-clip: padding-box; background-clip: padding-box;
+	background: #45484d; /* Old browsers */
+/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzQ1NDg0ZCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwMDAwMDAiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+	background: -moz-linear-gradient(top,  #45484d 0%, #000000 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#45484d), color-stop(100%,#000000)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #45484d 0%,#000000 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #45484d 0%,#000000 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #45484d 0%,#000000 100%); /* IE10+ */
+	background: linear-gradient(top,  #45484d 0%,#000000 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=0 ); /* IE6-8 */
+
+}
+
+/* Special grid styles
+-------------------------------------------------- */
+.show-grid {
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+.show-grid [class*="span"] {
+	background-color: #eee;
+	text-align: center;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	min-height: 30px;
+	line-height: 30px;
+}
+.show-grid:hover [class*="span"] {
+	background: #ddd;
+}
+.show-grid .show-grid {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+.show-grid .show-grid [class*="span"] {
+	background-color: #ccc;
 }
