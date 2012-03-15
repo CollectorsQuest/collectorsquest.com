@@ -186,18 +186,10 @@ class CollectorPeer extends BaseCollectorPeer
       $collector = self::createFromArray($data);
     }
 
-    if (!$collector_identifier = CollectorIdentifierQuery::create()->findOneByIdentifier($profile['identifier']))
-    {
-      $collector_identifier = new CollectorIdentifier();
-      $collector_identifier->setCollector($collector);
-      $collector_identifier->setIdentifier($profile['identifier']);
-      $collector_identifier->save();
-    }
-    else
-    {
-      $collector_identifier->setCollector($collector);
-      $collector_identifier->save();
-    }
+    $collector_identifier = new CollectorIdentifier();
+    $collector_identifier->setCollector($collector);
+    $collector_identifier->setIdentifier($profile['identifier']);
+    $collector_identifier->save();
 
     return $collector;
   }
