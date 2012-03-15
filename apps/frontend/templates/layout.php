@@ -26,11 +26,14 @@
   </script>
 
   <?php include_component_slot('header'); ?>
-  <div class="container-fluid fixed-right-column-120">
-  <!--
-  <div class="container-fluid fixed-right-column">
-  <div class="container-fluid">
-  -->
+
+  <?php if (has_component_slot('sidebar_120')): ?>
+    <div class="container-fluid fixed-right-column-120">
+  <?php elseif (has_component_slot('sidebar_340')): ?>
+    <div class="container-fluid fixed-right-column">
+  <?php else: ?>
+    <div class="container-fluid">
+  <?php endif; ?>
 
     <?php
       /** @var $sf_content string */
