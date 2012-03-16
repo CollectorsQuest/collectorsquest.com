@@ -178,7 +178,7 @@
     opts[0] = {
       navSelector:"#search-tab-collectibles div.pagination",
       nextSelector:"#search-tab-collectibles div.pagination span.next a",
-      itemSelector:"div#search-collectibles",
+      itemSelector:"div.grid_view_collectible",
       loading:{
         img:'/images/loading.gif',
         msgText:'<?= __('Loading the next page...'); ?>',
@@ -194,7 +194,7 @@
     opts[1] = {
       navSelector:"#search-tab-collections div.pagination",
       nextSelector:"#search-tab-collections div.pagination span.next a",
-      itemSelector:"div#search-collections",
+      itemSelector:"div.grid_view_collection",
       loading:{
         img:'/images/loading.gif',
         msgText:'<?= __('Loading the next page...'); ?>',
@@ -210,7 +210,7 @@
     opts[2] = {
       navSelector:"#search-tab-collectors div.pagination",
       nextSelector:"#search-tab-collectors div.pagination span.next a",
-      itemSelector:"div#search-collectors",
+      itemSelector:"div.grid_view_collector",
       loading:{
         img:'/images/loading.gif',
         msgText:'<?= __('Loading the next page...'); ?>',
@@ -226,7 +226,7 @@
     opts[3] = {
       navSelector:"#search-tab-blog div.pagination",
       nextSelector:"#search-tab-blog div.pagination span.next a",
-      itemSelector:"div#search-blog",
+      itemSelector:"div.list_view_post",
       loading:{
         img:'/images/loading.gif',
         msgText:'<?= __('Loading the next page...'); ?>',
@@ -241,39 +241,38 @@
 
     var $tabs = <?= json_encode($tabs); ?>;
     $("#search-tabs").tabs(
-        {
-          show:function (event, ui) {
-            if (current_tab != null) {
-              opts[current_tab] = $.infinitescroll.opts;
-            }
+    {
+      show:function (event, ui) {
+        if (current_tab != null) {
+          opts[current_tab] = $.infinitescroll.opts;
+        }
 
-            switch ($tabs[ui.index]) {
-            <?php if ($pagers['collectibles']->haveToPaginate()): ?>
-              case 'collectibles':
-                $('#collectibles').infinitescroll(opts[0]);
-                break;
-              <?php endif; ?>
-            <?php if ($pagers['collections']->haveToPaginate()): ?>
-              case 'collections':
-                $('#collections').infinitescroll(opts[1]);
-                break;
-              <?php endif; ?>
-            <?php if ($pagers['collectors']->haveToPaginate()): ?>
-              case 'collectors':
-                $('#collectors').infinitescroll(opts[2]);
-                break;
-              <?php endif; ?>
-            <?php if ($pagers['blog']->haveToPaginate()): ?>
-              case 'blog':
-                $('#blog').infinitescroll(opts[3]);
-                break;
-              <?php endif; ?>
-            }
+        switch ($tabs[ui.index]) {
+        <?php if ($pagers['collectibles']->haveToPaginate()): ?>
+          case 'collectibles':
+            $('#collectibles').infinitescroll(opts[0]);
+            break;
+          <?php endif; ?>
+        <?php if ($pagers['collections']->haveToPaginate()): ?>
+          case 'collections':
+            $('#collections').infinitescroll(opts[1]);
+            break;
+          <?php endif; ?>
+        <?php if ($pagers['collectors']->haveToPaginate()): ?>
+          case 'collectors':
+            $('#collectors').infinitescroll(opts[2]);
+            break;
+          <?php endif; ?>
+        <?php if ($pagers['blog']->haveToPaginate()): ?>
+          case 'blog':
+            $('#blog').infinitescroll(opts[3]);
+            break;
+          <?php endif; ?>
+        }
 
-            current_tab = ui.index;
-          }
-        });
+        current_tab = ui.index;
+      }
+    });
 
-    $('div.pagination').hide();
   });
 </script>

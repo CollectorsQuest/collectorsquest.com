@@ -225,6 +225,7 @@ class searchActions extends cqActions
 
     $pager = new cqPropelPager('Collector', $per_page);
     $pager->setPage($page);
+    $pager->setNbResults($this->total);
     $pager->init();
 
     $this->pager = $pager;
@@ -259,8 +260,9 @@ class searchActions extends cqActions
     $sphinx->setLimits(($page-1) * 12, $per_page);
     $this->total = $this->_search_blog($sphinx, $q);
 
-    $pager = new sfPropelPager('wpPost', $per_page);
+    $pager = new cqPropelPager('wpPost', $per_page);
     $pager->setPage($page);
+    $pager->setNbResults($this->total);
     $pager->init();
 
     $this->pager = $pager;
