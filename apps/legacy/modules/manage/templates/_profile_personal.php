@@ -57,10 +57,11 @@
 
 <div class="span-5" style="text-align: right;">
   <?= cq_label_for($form, 'country', __('Country:')); ?>
-  <div style="color: #ccc; font-style: italic;"><?= __('(optional)'); ?></div>
+  <div class="required"><?= __('(required)'); ?></div>
 </div>
 <div class="prepend-1 span-12 last">
   <?= cq_select_tag($form, 'country'); ?>
+  <?= $form['country']->renderError(); ?>
 </div>
 <br clear="all"/><br />
 
@@ -74,9 +75,10 @@
 </div>
 
 <script type="text/javascript">
-  jQuery(document).ready(function() {
+  jQuery(document).ready(function()
+  {
     jQuery('a#collector_type_help_link').fancybox({
-      titleShow: false,
+      titleShow: false
     });
   })
 </script>

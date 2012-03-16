@@ -28,7 +28,7 @@
 
 <div class="span-5" style="text-align: right;">
   <?= cq_label_for($form, 'display_name', __('Display Name:')); ?>
-  <div style="color: #ccc; font-style: italic;"><?= __('(required)'); ?></div>
+  <div class="required"><?= __('(required)'); ?></div>
 </div>
 <div class="prepend-1 span-12 last">
   <?= cq_input_tag($form, 'display_name', array('width' => 400)); ?>
@@ -38,7 +38,7 @@
 
 <div class="span-5" style="text-align: right;">
   <?= cq_label_for($form, 'email', __('E-mail:')); ?>
-  <div style="color: #ccc; font-style: italic;"><?= __('(required)'); ?></div>
+  <div class="required"><?= __('(required)'); ?></div>
 </div>
 <div class="prepend-1 span-6 last">
   <?= cq_input_tag($form, 'email', array('width' => 400)); ?>
