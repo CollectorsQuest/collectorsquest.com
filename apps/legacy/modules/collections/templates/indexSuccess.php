@@ -28,10 +28,7 @@ $collections = $pager->getResults();
 
 </div>
 <div id="collections-pager" class="span-19 last" style="margin-bottom: 25px">
-  <?php include_partial('global/pager', array(
-  'pager'  => $pager,
-  'options'=> array('url'   => '@collections_by_filter?filter=' . $filter)
-)); ?>
+  <?php include_partial('global/pager', array('pager' => $pager)); ?>
 </div>
 
 <?php if (!$sf_user->isAuthenticated()): ?>
@@ -39,7 +36,8 @@ $collections = $pager->getResults();
   <?php cq_ad_slot('collectorsquest_com_-_After_Listing_728x90', '728', '90'); ?>
 </div>
 <?php endif; ?>
-<?php if ('all' == $sf_request->getParameter('show')): ?>
+
+<?php if ('all' == $sf_request->getParameter('show') && $pager->haveToPaginate()): ?>
 <script type="text/javascript">
   $(function () {
     var opts =

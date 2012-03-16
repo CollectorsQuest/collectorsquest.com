@@ -69,8 +69,9 @@ include_component('comments', 'commentForm', array('object' => $collection));
   include_component('comments', 'commentList', $commentsOptions);
   ?>
 </div>
+
+<?php if ('all' == $sf_request->getParameter('show') && $pager->haveToPaginate()): ?>
 <script type="text/javascript">
-  <?php if ('all' == $sf_request->getParameter('show')): ?>
   $(function () {
     var opts =
     {
@@ -93,28 +94,5 @@ include_component('comments', 'commentForm', array('object' => $collection));
     $('#update_view_collectible').infinitescroll(opts);
     $('#collection-pager div.pagination').hide();
   });
-    <?php else: ?>
-  $(function () {
-    var opts =
-    {
-      navSelector:"div#comments-pager div.pagination",
-      nextSelector:"div#comments-pager div.pagination:last span.next:last a",
-      itemSelector:"div.comment",
-      contentSelector:'div#comments-wrapper',
-      loading:{
-        img:'/images/loading.gif',
-        msgText:'<?php echo __('Loading the next page...'); ?>',
-        finishedMsg:'<?php echo __('No more pages to load'); ?>'
-      },
-      loadingMsgRevealSpeed:0,
-      bufferPx:80,
-      extraScrollPx:0,
-      debug:false,
-      animate:false
-    };
-
-    $('#comments-wrapper').infinitescroll(opts);
-    $('#comments-wrapper div.pagination').hide();
-  });
-    <?php endif; ?>
 </script>
+<?php endif; ?>
