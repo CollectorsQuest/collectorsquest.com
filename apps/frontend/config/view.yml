@@ -17,15 +17,14 @@ default:
 
     googlebot:    "all, index, follow"
     coverage:     "Worldwide"
-    copyright:    "Copyright (c) 2006-2012 CollectorsQuest.com"
+    copyright:    "Copyright (c) 2006-<?php echo date('Y'); ?> CollectorsQuest.com"
 
   stylesheets:
     - frontend/bootstrap.css
     - frontend/responsive.css
     - frontend/main.css
 
-  javascripts:
-    - frontend/jquery.js
+  javascripts: []
 
   components:
     header:  [global, header]
