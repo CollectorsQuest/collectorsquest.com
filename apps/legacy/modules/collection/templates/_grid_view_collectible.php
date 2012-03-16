@@ -15,7 +15,7 @@
     <?php
       echo link_to_function(
         image_tag('icons/black/delete.png', array('style' => 'margin-right: 5px;')),
-        sprintf('ajax_collectible_delete(%d)', $collectible->getId()),
+        sprintf('ajax_collectible_delete(%d, %d)', $collection->getId(), $collectible->getId()),
         array('confirm'=>'Are you sure to delete this item?')
       );
     ?>
