@@ -28,9 +28,26 @@ collections_by_collector:
 
 ### COLLECTORS
 
+collector_by_slug:
+  url:  /collector/:id/:slug
+  class: cqPropelRoute
+  options: { model: Collector, type: object, method: getObjectForRoute, statsd: true }
+  param: { module: collector, action: index }
+  requirements: { id: '\d+', slug: '[\-\w\.]+' }
+
 manage_profile:
   url:   /manage/profile
   param: { module: default, action: index }
+
+
+### COLLECTIBLES
+
+collectible_by_slug:
+  url:  /collectible/:id/:slug
+  class: cqPropelRoute
+  options: { model: Collectible, type: object, method: getObjectForRoute, statsd: true }
+  param: { module: collection, action: collectible }
+  requirements: { id: '\d+', slug: '[\-\w\.]+' }
 
 
 ### SEARCH

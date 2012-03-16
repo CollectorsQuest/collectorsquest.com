@@ -51,7 +51,7 @@ class collectionActions extends cqFrontendActions
 
     $pager = new sfPropelPager('Collectible', $per_page);
     $pager->setCriteria($c);
-    $pager->setPage('all' == $request->getParameter('show') ? 1 : $this->getRequestParameter('page', 1));
+    $pager->setPage($this->getRequestParameter('page', 1));
     $pager->init();
 
     $this->pager      = $pager;
@@ -59,17 +59,9 @@ class collectionActions extends cqFrontendActions
     $this->collector  = $collector;
     $this->collection = $collection;
 
-
     // Building the meta tags
     $this->getResponse()->addMeta('description', $collection->getDescription('stripped'));
     $this->getResponse()->addMeta('keywords', $collection->getTagString());
-
-    // Building the geo.* meta tags
-    $this->getResponse()->addGeoMeta($collection->getCollector());
-
-    // Setting the Canonical URL
-    $this->loadHelpers(array('cqLinks'));
-    $this->getResponse()->setCanonicalUrl(url_for_collection($collection, true));
 
     if ($collection->countCollectibles() == 0)
     {
@@ -96,4 +88,23 @@ class collectionActions extends cqFrontendActions
 
     return sfView::SUCCESS;
   }
+
+  public function executeCollectible(sfWebRequest $request)
+  {
+    $this->forward404Unless($this->getRoute() instanceof sfPropelRoute);
+
+    /** @var $collectible Collectible */
+    $collectible = $this->getRoute()->getObject();
+
+    /** @var $collection Collection */
+    $collection = $collectible->getCollection();
+
+    /** @var $collector Collector */
+    $collector = $collectible->getCollector();
+
+    $this->collectible = $collectible;
+
+    return sfView::SUCCESS;
+  }
+
 }

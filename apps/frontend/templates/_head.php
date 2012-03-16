@@ -16,7 +16,9 @@
   <link rel="shortcut icon" href="<?php echo cq_image_src('frontend/favicon.ico', true); ?>"/>
   <link rel="icon" type="image/png" href="<?php echo cq_image_src('frontend/favicon.png', true); ?>"/>
 
+  <script src="<?= cq_javascript_src('frontend/jquery.js'); ?>" type="text/javascript"></script>
   <script src="<?= cq_javascript_src('frontend/modernizr.js'); ?>" type="text/javascript"></script>
+
   <script type="text/javascript">
     window._ENV = '<?= sfConfig::get('sf_environment') ?>';
     window._page_load_start = new Date();

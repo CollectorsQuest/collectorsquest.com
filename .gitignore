@@ -35,9 +35,8 @@ base
 /web/sf*Plugin
 
 # stylesheets
-/web/css/frontend/bootstrap.css
-/web/css/frontend/responsive.css
-/web/css/frontend/main.css
+/web/css/frontend/*.css
+!/web/css/frontend/ie.css
 
 # Vagrant
 /config/vagrant/.vagrant

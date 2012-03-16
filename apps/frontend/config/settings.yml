@@ -26,11 +26,11 @@ all:
     charset:                utf-8
 
     enabled_modules:        [iceGlobalModule]
-    standard_helpers:       [Partial, Cache, I18N, iceAssets, cqAssets, cqImages, cqLinks, cqJavascripts]
+    standard_helpers:       [Partial, Cache, I18N, iceAssets, cqAssets, cqImages, cqLinks, cqJavascripts, cqHTML]
     sf_compat_10:           off
 
     # Output escaping settings
-    escaping_strategy:      true
+    escaping_strategy:      false
     escaping_method:        ESC_SPECIALCHARS
 
     # Cache settings

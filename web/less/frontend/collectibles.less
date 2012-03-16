@@ -1,0 +1,47 @@
+.collectible_grid_view {
+  margin-left: 24px;
+  margin-bottom: 25px;
+  text-align: center;
+  width: 190px;
+  height: 150px;
+  overflow: hidden;
+  position: relative;
+}
+
+.collectible_grid_view img.thumbnail {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 0;
+}
+
+.collectible_grid_view p {
+  padding: 10px;
+  color: #afafaf;
+  font-weight: bold;
+  font: 10pt "Lucida Grande", Arial, sans-serif;
+  text-align: left;
+}
+
+.collectible_grid_view a {
+  color: #afafaf;
+  text-decoration: none;
+}
+
+.collectible_grid_view .cover {
+  float: left;
+  position: absolute;
+  background: #000;
+  height: 75px;
+  width: 100%;
+  opacity: .8;
+  /* For IE 5-7 */
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+  /* For IE 8 */
+  -MS-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+}
+
+.collectible_grid_view .cover {
+  top: 150px;
+  left: 0;
+}
