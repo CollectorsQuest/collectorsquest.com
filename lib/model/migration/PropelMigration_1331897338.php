@@ -1,8 +1,5 @@
 <?php
 
-/**
- * Migration for fixing collector_profile_extra_property
- */
 class PropelMigration_1331897338
 {
 
