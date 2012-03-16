@@ -19,7 +19,7 @@
 
   <br clear="all" /><br />
   <div class="pagination">
-    <?php include_partial('global/pager', array('pager' => $pager, 'options' => array('url' => $sf_request->getUri()))); ?>
+    <?php include_partial('global/pager', array('pager' => $pager)); ?>
   </div>
 <?php else: ?>
   <p>No collectibles for sale found.</p>
