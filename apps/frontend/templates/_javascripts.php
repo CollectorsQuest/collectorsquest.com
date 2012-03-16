@@ -1,6 +1,13 @@
+<!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="<?= cq_javascript_src('frontend/jquery.js'); ?>"><\/script>')</script>
+
 <?php
   // Include the cqcdns.com javascript files
   ice_include_javascripts();
+
+  // include application JS files
+  cq_include_javascripts();
 
   /** @var $sf_user cqFrontendUser */
   if ($sf_user->isAuthenticated())
@@ -11,17 +18,10 @@
 
     include_partial('global/js/authenticated');
   }
-
-  cq_include_javascripts();
 ?>
 
 <?php cq_javascript_tag(); ?>
 <script type="text/javascript">
-  $(document).ready(function()
-  {
-
-  });
-
   function cq_not_implemented_yet()
   {
     alert('<?php echo __("We are sorry but this feature is not yet available. We are working on the final set of missing functonality.\\n\\nThank you for the understanding. (the CollectorsQuest.com team)"); ?>');
