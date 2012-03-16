@@ -3,7 +3,9 @@
 /* @var $collection Collection */
 /* @var $pager sfPropelPager */
 /* @var $display string */
+/* @var $editable boolean */
 /* @var $sf_request sfWebRequest */
+
 use_javascript('jquery/carousel.js');
 use_stylesheet('legacy/scrollable.css');
 ?>
@@ -22,6 +24,7 @@ use_stylesheet('legacy/scrollable.css');
     include_partial(
       'collection/' . $display . '_view_collectible',
       array(
+        'collection'  => $collection,
         'collectible' => $collectible,
         'editable'    => $editable,
         'culture'     => $sf_user->getCulture(),
@@ -31,6 +34,7 @@ use_stylesheet('legacy/scrollable.css');
   }
   ?>
 </div>
+
 <br class="clear"><br>
 <div id="collection-pager" class="span-19 last" style="margin-bottom: 25px">
   <?php
@@ -75,20 +79,19 @@ include_component('comments', 'commentForm', array('object' => $collection));
   $(function () {
     var opts =
     {
-      navSelector:"div#collection-pager div.pagination",
-      nextSelector:"div#collection-pager div.pagination span.next a",
-      itemSelector:"div.<?php echo $display ?>_view_collectible",
-      contentSelector:'div#update_view_collectible',
-      loading:{
-        img:'/images/loading.gif',
-        msgText:'<?php echo __('Loading the next page...'); ?>',
-        finishedMsg:'<?php echo __('No more pages to load'); ?>'
+      navSelector: "div#collection-pager div.pagination",
+      nextSelector: "div#collection-pager div.pagination span.next a",
+      itemSelector: "div.<?php echo $display ?>_view_collectible",
+      loading: {
+        img: '/images/loading.gif',
+        msgText: '<?php echo __('Loading the next page...'); ?>',
+        finishedMsg: '<?php echo __('No more pages to load'); ?>'
       },
-      loadingMsgRevealSpeed:0,
-      bufferPx:80,
-      extraScrollPx:0,
-      debug:false,
-      animate:false
+      loadingMsgRevealSpeed: 0,
+      bufferPx: 80,
+      extraScrollPx: 0,
+      debug: false,
+      animate: false
     };
 
     $('#update_view_collectible').infinitescroll(opts);

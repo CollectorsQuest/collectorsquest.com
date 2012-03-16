@@ -13,7 +13,7 @@ class collectionAction extends cqAjaxAction
       /** @var $collection CollectorCollection */
       $collection = CollectorCollectionPeer::retrieveByPK($pk);
     }
-    else if ($pk = $request->getParameter('collectible_id'))
+    else if ($pk = $request->getParameter('collection_collectible_id'))
     {
       $collectible = CollectiblePeer::retrieveByPK($pk);
       if ($collectible)
@@ -24,6 +24,11 @@ class collectionAction extends cqAjaxAction
     else
     {
       $collection = null;
+    }
+
+    if ($pk = $request->getParameter('collectible_id'))
+    {
+      $collectible = CollectiblePeer::retrieveByPK($pk);
     }
 
     $section = $request->getParameter('section');
@@ -224,8 +229,20 @@ class collectionAction extends cqAjaxAction
   {
     $this->forward404Unless($this->collectible);
 
-    // Do the delete
-    $this->collectible->delete();
+    if ($this->collection instanceof Collection)
+    {
+      $q = CollectionCollectibleQuery::create()
+         ->filterByCollectionId($this->collection->getId())
+         ->filterByCollectibleId($this->collectible->getId());
+
+      // Do delete the reference in CollectionCollectible only
+      $q->delete();
+    }
+    else
+    {
+      // Do the delete of the actual Collectible
+      $this->collectible->delete();
+    }
 
     // We do not want the web debug bar on these requests
     sfConfig::set('sf_web_debug', false);
