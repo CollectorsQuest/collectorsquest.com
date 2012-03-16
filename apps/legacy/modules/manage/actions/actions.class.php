@@ -570,11 +570,17 @@ class manageActions extends cqActions
     switch ($request->getParameter('cmd'))
     {
       case 'empty':
-        $q = CollectibleQuery::create()
-            ->filterByCollectorId($collector->getId())
-            ->filterByCollectionId(null, Criteria::ISNULL);
+        $c = new Criteria();
+        $c->add(CollectiblePeer::COLLECTOR_ID, $collector->getId());
 
-        $q->delete();
+        $c->addJoin(CollectiblePeer::ID, CollectionCollectiblePeer::COLLECTIBLE_ID, Criteria::LEFT_JOIN);
+        $c->add(CollectionCollectiblePeer::COLLECTION_ID, null, Criteria::ISNULL);
+
+        if ($collectibles = CollectiblePeer::doSelect($c))
+        foreach ($collectibles as $collectible)
+        {
+          $collectible->delete();
+        }
 
         $this->getUser()->setFlash('success', 'Your dropbox was emptied!', true);
         break;
