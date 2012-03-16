@@ -4,7 +4,7 @@
 <!--[if IE 8 ]><html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#" lang="en" class="no-js lt-ie9"><![endif]-->
 <!--[if gt IE 8]><!--><html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#" lang="en" class="no-js"><!--<![endif]-->
 <?php include_partial('global/head'); ?>
-<body>
+<body data-controller="<?php echo $sf_params->get('module'); ?>" data-action="<?php echo $sf_params->get('action'); ?>">
   <div id="fb-root"></div>
   <script type="text/javascript">
     window.fbAsyncInit = function()
