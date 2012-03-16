@@ -247,7 +247,7 @@
           opts[current_tab] = $.infinitescroll.opts;
         }
 
-        switch ($tabs[ui.index]) {
+        switch (false && $tabs[ui.index]) {
         <?php if ($pagers['collectibles']->haveToPaginate()): ?>
           case 'collectibles':
             $('#collectibles').infinitescroll(opts[0]);
