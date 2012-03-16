@@ -6,7 +6,7 @@
 <?php include_partial('global/head'); ?>
 <body data-controller="<?php echo $sf_params->get('module'); ?>" data-action="<?php echo $sf_params->get('action'); ?>">
   <div id="fb-root"></div>
-  <script type="text/javascript">
+  <script>
     window.fbAsyncInit = function()
     {
       FB.init(

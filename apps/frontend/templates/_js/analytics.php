@@ -5,7 +5,7 @@
  */
 ?>
 
-<script type="text/javascript">
+<script>
   Modernizr.load({
     load: ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js'
   });
