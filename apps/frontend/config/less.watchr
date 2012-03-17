@@ -2,21 +2,28 @@
 #
 #   $ watchr apps/frontend/config/less.watchr
 
-load "#{File.dirname(__FILE__)}/../../../lib/watchr.rb"
+load "#{File.dirname(__FILE__)}/../../../plugins/iceLibsPlugin/lib/watchr.rb"
 
 def watchr1
-  crawl('web/less/frontend', 1, false) { |file_path, depth|
-    if File.split( file_path )[ 1 ] =~ Regexp.new('^(?!_).*\.less$', true)
-      plessc file_path, file_path.gsub('less', 'css')
+  web = Pathname.new("#{File.dirname(__FILE__)}/../../../web").realpath.to_s
+
+  crawl(web + "/less/frontend", 1, false) { |file_path, depth|
+    if File.split(file_path)[ 1 ] =~ Regexp.new('^(?!_).*\.less$', true)
+      plessc file_path, file_path.gsub('less', 'css'), web
     end
   }
 end
 
 def watchr2
-  plessc 'web/less/frontend/bootstrap/less/bootstrap.less',
-         'web/css/frontend/bootstrap.css'
-  plessc 'web/less/frontend/bootstrap/less/responsive.less',
-         'web/css/frontend/responsive.css'
+  web = Pathname.new("#{File.dirname(__FILE__)}/../../../web").realpath.to_s
+
+  less = web + "/less/frontend/bootstrap/less/bootstrap.less"
+  css  = web + "/css/frontend/bootstrap.css"
+  lessc less, css, web
+
+  less = web + "/less/frontend/bootstrap/less/responsive.less"
+  css  = web + "/css/frontend/responsive.css"
+  lessc less, css, web
 end
 
 # --------------------------------------------------
@@ -28,10 +35,10 @@ watchr2()
 # --------------------------------------------------
 # Watchr Rules (put the more specific ones at the end of the list)
 # --------------------------------------------------
-watch ( 'web/less/frontend/.*\.less$' ) {
+watch ( "#{File.dirname(__FILE__)}/../../../web/less/frontend/.*\.less$" ) {
   watchr1
 }
 
-watch ( 'web/less/frontend/bootstrap/less/.*\.less$' ) {
+watch ( "#{File.dirname(__FILE__)}/../../../web/less/frontend/bootstrap/less/.*\.less$" ) {
   watchr2
 }
