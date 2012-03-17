@@ -3,8 +3,6 @@
 (function (window, document, $, undefined) {
 "use strict";
 
-
-
 var APP = window.APP = {
   /**
    * Defaults to be used throughout the project
@@ -19,7 +17,7 @@ var APP = window.APP = {
    */
   common:     {
     init:   function() {
-      COMMON.notImplemented();
+      COMMON.notImplementedYet();
       // empty :)
     }
   } // common
@@ -27,7 +25,7 @@ var APP = window.APP = {
 }; // APP
 
 
-var COMMON =  window.COMMON = (function(){
+var COMMON = window.COMMON = (function(){
   "use strict";
 
   function cq_not_implemented_yet()
@@ -39,10 +37,8 @@ var COMMON =  window.COMMON = (function(){
 
   // return object literal
   return {
-    notImplemented: cq_not_implemented_yet
+    notImplementedYet: cq_not_implemented_yet
   }
 }());
-
-
 
 })(this, this.document, jQuery);
