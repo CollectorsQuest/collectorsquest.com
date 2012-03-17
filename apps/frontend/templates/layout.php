@@ -56,7 +56,9 @@
 
     if (null !== $sidebar)
     {
+      echo '<div id="sidebar">';
       include_component_slot($sidebar);
+      echo '</div>';
     }
     echo '</div>';
 
