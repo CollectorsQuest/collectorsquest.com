@@ -36,7 +36,9 @@ class CollectibleEditForm extends BaseCollectibleForm
         $collectibleForSale->setCollectible($this->getObject());
       }
 
-      $this->embedForm('for_sale', new CollectibleForSaleEditForm($collectibleForSale));
+      $for_sale_form = new CollectibleForSaleEditForm($collectibleForSale);
+      unset($for_sale_form['collectible_id']);
+      $this->embedForm('for_sale', $for_sale_form);
     }
 
     // Define which fields to use from the base form
