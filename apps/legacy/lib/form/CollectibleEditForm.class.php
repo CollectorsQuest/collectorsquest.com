@@ -28,7 +28,7 @@ class CollectibleEditForm extends BaseCollectibleForm
 
     if ($collector->getIsSeller())
     {
-      $collectibleForSale = $this->getObject()->getForSaleInformation();
+      $collectibleForSale = $this->getObject()->getCollectibleForSale();
 
       if (!$collectibleForSale)
       {

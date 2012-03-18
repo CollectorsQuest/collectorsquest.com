@@ -323,7 +323,7 @@ class collectionActions extends cqActions
     $collectible = $this->getRoute()->getObject();
     $this->forward404Unless($collectible instanceof Collectible);
 
-    $collectibleForSale = $collectible->getForSaleInformation();
+    $collectibleForSale = $collectible->getCollectibleForSale();
     $this->forward404Unless($collectibleForSale instanceof CollectibleForSale);
 
     $collectibleForSale->delete();
