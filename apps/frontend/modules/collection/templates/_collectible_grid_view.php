@@ -1,30 +1,22 @@
-<?php /** @var $collectible Collectible */ ?>
+<?php
+  /**
+   * @var $collectible Collectible
+   */
+  use_javascript('jquery/mosaic.js');
+?>
 
 <div id="collectible_<?= $collectible->getId(); ?>_grid_view" class="collectible_grid_view">
-  <?= link_to_collectible($collectible, 'image', array('width' => 190, 'height' => 150)); ?>
-  <div class="cover">
+  <?= link_to_collectible($collectible, 'image', array('width' => 190, 'height' => 150, 'class' => 'mosaic-backdrop')); ?>
+  <div class="mosaic-overlay">
     <p><?= link_to_collectible($collectible, 'text'); ?></p>
   </div>
 </div>
 
-<?php cq_javascript_tag(); ?>
-<script type="text/javascript">
+<script>
 $(document).ready(function()
 {
-  $('.collectible_grid_view').ready(function()
-  {
-    $("a, img", this).attr('title', '').attr('alt', '');
-  });
-
-  $('.collectible_grid_view').hover(function()
-  {
-    $(this).attr('title', '');
-    $(".cover", this).stop().animate({top: '85px'}, {queue: false, duration: 160});
-  },
-  function()
-  {
-    $(".cover", this).stop().animate({top: '150px'}, {queue: false, duration: 160});
+  $('.collectible_grid_view').mosaic({
+    animation: 'slide'
   });
 });
 </script>
-<?php cq_end_javascript_tag(); ?>

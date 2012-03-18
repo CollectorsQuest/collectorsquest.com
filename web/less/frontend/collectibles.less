@@ -6,6 +6,11 @@
   height: 150px;
   overflow: hidden;
   position: relative;
+  background:#111 url(/images/frontend/progress.gif) no-repeat center center;
+  border:1px solid #fff;
+  -webkit-box-shadow:0 1px 3px rgba(0,0,0,0.5);
+  -moz-box-shadow:0 1px 3px rgba(0,0,0,0.5);
+  box-shadow:0 1px 3px rgba(0,0,0,0.5);
 }
 
 .collectible_grid_view img.thumbnail {
@@ -28,20 +33,34 @@
   text-decoration: none;
 }
 
-.collectible_grid_view .cover {
-  float: left;
-  position: absolute;
-  background: #000;
-  height: 75px;
-  width: 100%;
-  opacity: .8;
-  /* For IE 5-7 */
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
-  /* For IE 8 */
-  -MS-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+.collectible_grid_view .mosaic-backdrop {
+  display:none;
+  position:absolute;
+  top:0;
+  height:100%;
+  width:100%;
+  background:#111;
 }
 
-.collectible_grid_view .cover {
-  top: 150px;
-  left: 0;
+.collectible_grid_view .mosaic-overlay {
+  display:none;
+  z-index:5;
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:#111;
+
+}
+
+.collectible_grid_view .mosaic-overlay .details {
+  font-family:Arial, Helvetica, sans-serif;
+  color: #fff;
+  font-size: 13px;
+  padding: 3px
+}
+
+.collectible_grid_view .mosaic-overlay {
+  bottom: -75px;
+  height: 75px;
+  background: url(/images/frontend/black.png);
 }
