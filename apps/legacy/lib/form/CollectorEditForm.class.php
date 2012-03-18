@@ -34,6 +34,7 @@ class CollectorEditForm extends BaseFormPropel
     );
 
     $profile = new CollectorProfileEditForm($this->getObject()->getProfile());
+    unset ($profile['collector_id']);
     $this->embedForm('profile', $profile);
 
     $this->widgetSchema->setNameFormat('collector[%s]');
