@@ -283,23 +283,25 @@ marketplace:
   param: { module: marketplace, action: index }
 
 marketplace_make_offer:
-  url: /marketplace/make-offer/:id
+  url: /marketplace/make-offer/:collectible_id
   class: sfPropelRoute
   options: { model: CollectibleForSale, type: object }
   param: { module: marketplace, action: makeOffer }
+  requirements: { collectible_id: \d+ }
 
 marketplace_buy_now:
-  url:  /marketplace/buy-now/:id
+  url:  /marketplace/buy-now/:collectible_id
   class: sfPropelRoute
   options: { model: CollectibleForSale, type: object }
   param: { module: marketplace, action: buyNow }
+  requirements: { collectible_id: \d+ }
 
 marketplace_item_offers:
-  url: /marketplace/:id/offers
+  url: /marketplace/:collectible_id/offers
   class: sfPropelRoute
   options: { model: CollectibleForSale, type: object }
   param: { module: marketplace, action: itemOffers }
-  requirements: { id: \d+ }
+  requirements: { collectible_id: \d+ }
 
 marketplace_counter_offer:
   url: /marketplace/:id/counter-offer
@@ -395,10 +397,6 @@ featured_week:
 manage_profile:
   url:   /manage/profile
   param: { module: manage, action: profile }
-
-manage_preferences:
-  url:   /manage/preferences
-  param: { module: manage, action: preferences }
 
 manage_dropbox:
   url:   /manage/dropbox
