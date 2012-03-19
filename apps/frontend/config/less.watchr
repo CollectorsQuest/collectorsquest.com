@@ -35,10 +35,8 @@ watchr2()
 # --------------------------------------------------
 # Watchr Rules (put the more specific ones at the end of the list)
 # --------------------------------------------------
-watch ( "#{File.dirname(__FILE__)}/../../../web/less/frontend/.*\.less$" ) {
-  watchr1
-}
 
-watch ( "#{File.dirname(__FILE__)}/../../../web/less/frontend/bootstrap/less/.*\.less$" ) {
+watch ("web/less/frontend/.*\.less$") {
+  watchr1
   watchr2
 }
