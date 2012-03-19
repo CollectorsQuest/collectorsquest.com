@@ -16,7 +16,6 @@
           status: true, cookie: true, xfbml: true
         });
     };
-
     // Load the SDK Asynchronously
     (function(d)
     {
@@ -33,61 +32,84 @@
     if (has_component_slot('sidebar_120'))
     {
       $sidebar = 'sidebar_120';
-      echo '<div class="container-fluid fixed-right-column-120">';
+      echo '<div id="content" class="container-fluid fixed-right-120">';
     }
     else if (has_component_slot('sidebar_180'))
     {
       $sidebar = 'sidebar_180';
-      echo '<div class="container-fluid fixed-right-column-180">';
+      echo '<div id="content" class="container-fluid fixed-right-180">';
     }
     else if (has_component_slot('sidebar_300'))
     {
       $sidebar = 'sidebar_300';
-      echo '<div class="container-fluid fixed-right-column">';
+      echo '<div id="content" class="container-fluid fixed-right-300">';
+    }
+    else if (has_component_slot('sidebar_grid_120'))
+    {
+      $sidebar = 'sidebar_grid_120';
+      echo '<div id="content" class="container fixed-right-120">';
+    }
+    else if (has_component_slot('sidebar_grid_180'))
+    {
+      $sidebar = 'sidebar_grid_180';
+      echo '<div id="content" class="container fixed-right-180">';
+    }
+    else if (has_component_slot('sidebar_grid_300'))
+    {
+      $sidebar = 'sidebar_grid_300';
+      echo '<div id="content" class="container fixed-right-300">';
     }
     else
     {
       $sidebar = null;
-      echo '<div class="container-fluid">';
+      echo '<div id="content" class="container-fluid without-column">';
     }
-
     /** @var $sf_content string */
-    echo '<div class="row-fluid wrapper-left">', $sf_content, '</div>';
-
-    if (null !== $sidebar)
-    {
-      echo '<div id="sidebar">';
-      include_component_slot($sidebar);
-      echo '</div>';
-    }
-    echo '</div>';
-
-    include_component_slot('footer');
   ?>
 
-  <?php
-    /** @var $sf_user cqFrontendUser */
-    $sf_cache_key  = (int) $sf_user->getId() .'_';
-    $sf_cache_key .= $sf_user->isAuthenticated() ? 'authenticated' : 'not_authenticated';
+  <div id="main">
+    <?= $sf_content;?>
+  </div><!--/#main-->
 
-    // Include the global javascripts
-    include_partial('global/javascripts', array('sf_cache_key' => $sf_cache_key));
+<?php
+if (null !== $sidebar)
+{
+  echo '<div id="sidebar">';
+  include_component_slot($sidebar);
+  echo '</div>';
+}
+echo '</div>';
+?>
 
-    /** @var $sf_request cqWebRequest */
-    if ($slots = $sf_request->getAttribute('slots', array(), 'cq/view/ads'))
-    {
-      include_partial('global/ad_slots', array('slots' => $slots));
-    }
-  ?>
 
-  <?php
-    /** @var $sf_context sfContext */
+<footer>
+<? include_component_slot('footer'); ?>
+</footer>
 
-    cqStats::timing(
-      'collectorsquest.modules.'. $sf_context->getModuleName() .'.'. $sf_context->getActionName(),
-      cqTimer::getInstance()->getElapsedTime()
-    );
-  ?>
-  <!-- Page generated in <?= cqTimer::getInstance()->getElapsedTime(); ?> seconds //-->
+
+<?php
+/** @var $sf_user cqFrontendUser */
+$sf_cache_key  = (int) $sf_user->getId() .'_';
+$sf_cache_key .= $sf_user->isAuthenticated() ? 'authenticated' : 'not_authenticated';
+
+// Include the global javascripts
+include_partial('global/javascripts', array('sf_cache_key' => $sf_cache_key));
+
+/** @var $sf_request cqWebRequest */
+if ($slots = $sf_request->getAttribute('slots', array(), 'cq/view/ads'))
+{
+  include_partial('global/ad_slots', array('slots' => $slots));
+}
+?>
+
+<?php
+/** @var $sf_context sfContext */
+
+cqStats::timing(
+  'collectorsquest.modules.'. $sf_context->getModuleName() .'.'. $sf_context->getActionName(),
+  cqTimer::getInstance()->getElapsedTime()
+);
+?>
+<!-- Page generated in <?= cqTimer::getInstance()->getElapsedTime(); ?> seconds //-->
 </body>
 </html>
