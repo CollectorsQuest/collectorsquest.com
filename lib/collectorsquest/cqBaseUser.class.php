@@ -6,7 +6,7 @@
 class cqBaseUser extends IceSecurityUser
 {
   /** @var Collector */
-  private $collector = null;
+  protected $collector = null;
 
   public function __construct(sfEventDispatcher $dispatcher, sfStorage $storage, $options = array())
   {
@@ -133,21 +133,18 @@ class cqBaseUser extends IceSecurityUser
    */
   public function getCollector()
   {
-    if (!($this->collector instanceof Collector))
+    if ( !$this->collector
+      && (null !== $id = $this->getAttribute('id', null, 'collector')) )
     {
-      if ($this->collector === null && ($this->getAttribute("id", null, "collector") !== null))
+      $this->collector = CollectorPeer::retrieveByPK($id);
+
+      if (!$this->collector)
       {
-        $this->collector = CollectorPeer::retrieveByPK($this->getAttribute("id", null, "collector"));
+        // the user does not exist anymore in the database
+        $this->Authenticate(false);
+
+        throw new sfException('The collector does not exist anymore in the database.');
       }
-      else
-      {
-        $this->collector = new Collector();
-        $this->collector->setId(-1);
-      }
-    }
-    else if ($this->collector->getId() == -1 && $this->getAttribute("id", null, "collector") !== null)
-    {
-      $this->collector = CollectorPeer::retrieveByPK($this->getAttribute("id", null, "collector"));
     }
 
     return $this->collector;
