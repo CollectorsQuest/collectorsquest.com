@@ -44,21 +44,6 @@
       $sidebar = 'sidebar_300';
       echo '<div id="content" class="container-fluid fixed-right-300">';
     }
-    else if (has_component_slot('sidebar_grid_120'))
-    {
-      $sidebar = 'sidebar_grid_120';
-      echo '<div id="content" class="container fixed-right-120">';
-    }
-    else if (has_component_slot('sidebar_grid_180'))
-    {
-      $sidebar = 'sidebar_grid_180';
-      echo '<div id="content" class="container fixed-right-180">';
-    }
-    else if (has_component_slot('sidebar_grid_300'))
-    {
-      $sidebar = 'sidebar_grid_300';
-      echo '<div id="content" class="container fixed-right-300">';
-    }
     else
     {
       $sidebar = null;
