@@ -68,4 +68,6 @@
       </div><!--/span-->
     </div><!--/row-->
   </div><!--/footer-inner-->
+  <div class="footer-inner">
+
 

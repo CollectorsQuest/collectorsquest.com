@@ -10,20 +10,6 @@ sidebar300Success:
   components:
     sidebar_300: [global, sidebar300]
 
-sidebar120gridSuccess:
-  components:
-    sidebar_grid_120: [global, sidebar120]
-
-sidebar180gridSuccess:
-  components:
-    sidebar_grid_180: [global, sidebar180]
-
-sidebar300gridSuccess:
-  components:
-    sidebar_grid_300: [global, sidebar300]
-
-
-
 sidebarNoneSuccess:
   components:
     sidebar_120: []
