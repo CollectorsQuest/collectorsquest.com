@@ -54,6 +54,8 @@
   ?>
 </div>
 
+<?php include_component('global', 'pagination', array('pager' => $pager, 'options' => array())); ?>
+
 <script>
   $(document).ready(function()
   {
