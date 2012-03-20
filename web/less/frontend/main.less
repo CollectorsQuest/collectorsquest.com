@@ -1,14 +1,21 @@
+@import url(http://fonts.googleapis.com/css?family=Fugaz+One);
+
 @import "bootstrap/less/variables.less";
+@import "menu.less";
 
 body {
 	background:#D9EBF5 url("/images/frontend/background-pattern.png") repeat;
 }
 
-@import url(http://fonts.googleapis.com/css?family=Fugaz+One);
+h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover {
+  text-decoration: none;
+  border-bottom: 1px solid @red;
+}
 
 footer h2 {
 	font-family: 'Fugaz One', cursive;
 	color: #125375;
+	text-shadow: -2px -1px -2px @white;
 }
 
 // Image replacement http://goo.gl/cEMGx
@@ -255,11 +262,11 @@ ul.footer-info-box li.faq {
 }
 
 #content {
-	background-color: #fff;
+	background-color: @white;
 }
 
 footer {
-  background-color: #fff5d5;
+  background-color: @yellowLight;
 }
 
 .pull-r {
@@ -305,8 +312,6 @@ footer {
 .show-grid .show-grid [class*="span"] {
 	background-color: #ccc;
 }
-
-@import "menu.less";
 
 
 //  Fixed width of wrapper up to 1200px
