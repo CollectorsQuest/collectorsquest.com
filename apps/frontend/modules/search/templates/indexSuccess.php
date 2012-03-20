@@ -57,10 +57,11 @@
 <script>
   $(document).ready(function()
   {
-    $('#main row').masonry({
+    $('#main .row').masonry({
       // options
       itemSelector : '.brick',
-      columnWidth : 41.5
+      columnWidth : 200, gutterWidth: 18,
+      isAnimated: true
     });
   });
 </script>
