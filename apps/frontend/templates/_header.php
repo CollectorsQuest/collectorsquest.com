@@ -9,7 +9,7 @@
           <div class="input-append search-header">
             <form action="<?= url_for('@search') ?>" method="get">
               <input name="q" id="headerSearchInput" type="text" size="16" value="<?= $sf_params->get('q'); ?>">
-              <button class="btn btn-large" type="button">Search</button>
+              <button class="btn btn-large" type="submit">Search</button>
             </form>
           </div>
         </div>
@@ -26,11 +26,15 @@
   </div>
   <div class="menu-wrapper cf">
     <ul>
-      <li class="active"><a href="#">HOME</a></li>
-      <li><?= link_to('COLLECTIONS', 'collections/index'); ?></li>
-      <li><?= link_to('NEWS', 'news/index'); ?></li>
-      <li><?= link_to('VIDEO', 'video/index'); ?></li>
-      <li><?= link_to('MARKET', 'marketplace/index'); ?></li>
+      <li class="active">
+        <a href="<?= url_for('@homepage'); ?>">
+          <i class="icon-home icon-white" style="margin-top: 3px;"></i>
+        </a>
+      </li>
+      <li><?= link_to('Collections', 'collections/index'); ?></li>
+      <li><?= link_to('News', 'news/index'); ?></li>
+      <li><?= link_to('Video', 'video/index'); ?></li>
+      <li><?= link_to('Market', 'marketplace/index'); ?></li>
     </ul>
   </div>
 </nav>
