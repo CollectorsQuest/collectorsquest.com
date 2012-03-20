@@ -1,9 +1,12 @@
 @import "bootstrap/less/variables.less";
+
 body {
-	background:#D9EBF5 url("/images/frontend/background-pattern.png") repeat
+	background:#D9EBF5 url("/images/frontend/background-pattern.png") repeat;
 }
+
 @import url(http://fonts.googleapis.com/css?family=Fugaz+One);
-footer h2 { /* For testing only!!!! */
+
+footer h2 {
 	font-family: 'Fugaz One', cursive;
 	color: #125375;
 }
@@ -17,7 +20,7 @@ footer h2 { /* For testing only!!!! */
 
 // HEADER
 header {
-	margin-bottom: 0px;
+	margin-bottom: 0;
 }
 .header-inner {
 	background-color: transparent;
@@ -38,7 +41,7 @@ header > .container {
 }
 
 
-//CF
+// Clear Fix
 
 /* For modern browsers */
 .cf:before,
@@ -57,12 +60,10 @@ header > .container {
 }
 
 
-
-
 // TOP INTERCTIVE CONTAINER
 
 
-//WRAPPER, COLUMNS
+// WRAPPER, COLUMNS
 #main {
 	float: left;
 	width: 100%;
@@ -105,9 +106,9 @@ header > .container {
 	margin-right: -210px;
 }
 .container-fluid, .container {
-	-webkit-box-shadow: 0px 35px 30px rgba(50, 50, 50, 0.5);
-	-moz-box-shadow:    0px 35px 30px rgba(50, 50, 50, 0.5);
-	box-shadow:         0px 35px 30px rgba(50, 50, 50, 0.5);
+	-webkit-box-shadow: 0 35px 30px rgba(50, 50, 50, 0.5);
+	-moz-box-shadow:    0 35px 30px rgba(50, 50, 50, 0.5);
+	box-shadow:         0 35px 30px rgba(50, 50, 50, 0.5);
 	padding-left: 15px;
 }
 
@@ -152,9 +153,9 @@ footer .form-horizontal .controls {
 // FOOTER
 footer {
 	color: #125375;
-	-webkit-box-shadow: 0px 35px 30px rgba(50, 50, 50, 0.5);
-	-moz-box-shadow:    0px 35px 30px rgba(50, 50, 50, 0.5);
-	box-shadow:         0px 35px 30px rgba(50, 50, 50, 0.5);
+	-webkit-box-shadow: 0 35px 30px rgba(50, 50, 50, 0.5);
+	-moz-box-shadow:    0 35px 30px rgba(50, 50, 50, 0.5);
+	box-shadow:         0 35px 30px rgba(50, 50, 50, 0.5);
 }
 footer h2 {
 	font-size: 20px;
@@ -174,8 +175,8 @@ ul.footer-info-box li {
 }
 ul.footer-info-box li:first-child {
 	border-top: none;
-	padding-top: 0px;
-	margin-top: 0px;
+	padding-top: 0;
+	margin-top: 0;
 }
 ul.footer-info-box li.show-off {
 	background: url("/images/frontend/icon_big_box.png") no-repeat left 10px;
@@ -253,17 +254,12 @@ ul.footer-info-box li.faq {
 
 }
 
-
-// TESTING COLORS
-footer {
-  background-color: #fff5d5; /* For testing purposes only */
-}
-
-#sidebar {
-	background-color: #ede4d4;
-}
 #content {
 	background-color: #fff;
+}
+
+footer {
+  background-color: #fff5d5;
 }
 
 .pull-r {
@@ -313,8 +309,7 @@ footer {
 @import "menu.less";
 
 
-
-//  Fidex width of wapper to 1200px
+//  Fixed width of wrapper up to 1200px
 @media (min-width: 979px) and (max-width: 1200px) {
 	.container-fluid.fixed-right-300 {
 		max-width: 680px;
@@ -343,11 +338,21 @@ footer {
 	}
 
 	footer .form-horizontal .controls {
-		margin-left: 0px;
+		margin-left: 0;
 	}
+
 	.input-footer {
 		width: 260px;
 	}
+
+  [class*="span"] {
+    float: left;
+    margin-left: 20px;
+  }
+
+  .row {
+    margin-left: -20px;
+  }
 }
 
 //  Fidex width of wapper from 800 to 1024px
@@ -379,7 +384,7 @@ footer {
 	}
 
 	footer .form-horizontal .controls {
-		margin-left: 0px;
+		margin-left: 0;
 	}
 	.input-footer {
 		width: 200px;
