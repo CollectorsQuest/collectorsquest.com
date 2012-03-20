@@ -8,51 +8,6 @@ footer h2 { /* For testing only!!!! */
 	color: #125375;
 }
 
-//  Fidex width of wapper to 1200px
-@media ( min-width: 1200px ) {
-	.container-fluid.fixed-right-300 {
-	  max-width:855px;
-	  margin-left:auto;
-	  margin-right:auto;
-	}
-	.container-fluid {
-		max-width:1175px;
-		margin-left:auto;
-		margin-right:auto;
-	}
-	.container-fluid.fixed-right-120 {
-		max-width:1035px;
-		margin-left:auto;
-		margin-right:auto;
-	}
-	.container-fluid.fixed-right-180{
-		max-width:975px;
-		margin-left:auto;
-		margin-right:auto;
-	}
-	.container-fluid.without-column {
-		max-width:1170px;
-		margin-left:auto;
-		margin-right:auto;
-	}
-	header, footer, nav {
-		max-width: 1200px;
-		margin-left:auto;
-		margin-right:auto;
-	}
-}
-
-// hiding #sidebar
-.container-fluid > #sidebar {
-	display: none;
-}
-.container-fluid.fixed-right-300 > #sidebar,
-.container-fluid.fixed-right-180 > #sidebar,
-.container-fluid.fixed-right-120 > #sidebar{
-	display: block;
-}
-
-
 // Image replacement http://goo.gl/cEMGx
 .ir {
   font: 0/0 a;
@@ -234,7 +189,7 @@ ul.footer-info-box li.faq {
 //SEARCH FORM
 .search-header .btn-large {
 	padding: 5px 10px;
-	margin-left: -5px;
+	margin-left: -4px;
 	font-size: @baseFontSize + 2px;
 	line-height: normal;
 	-webkit-border-top-right-radius: 7px;
@@ -250,7 +205,6 @@ ul.footer-info-box li.faq {
 	border-top-left-radius: 0;
 	border-bottom-left-radius: 0;
 	-moz-background-clip: padding; -webkit-background-clip: padding-box; background-clip: padding-box;
-	border-left: none;
 }
 .search-header input {
 	width: 160px;
@@ -260,13 +214,10 @@ ul.footer-info-box li.faq {
 	-moz-border-radius-bottomleft: 7px;
 	border-top-left-radius: 7;
 	border-bottom-left-radius: 7px;
-	padding-top: 6px;
+	padding-top: 5px;
 	padding-bottom: 5px;
 	margin-bottom: 0;
-	border-top: 1px solid #b5b8be;
-	border-left: 1px solid #b5b8be;
-	border-bottom: 1px solid #b5b8be;
-	border-right: none;
+	border: 1px solid #cdc6c6;
 }
 
 /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
@@ -359,3 +310,124 @@ footer {
 }
 
 @import "menu.less";
+
+
+
+//  Fidex width of wapper to 1200px
+@media (min-width: 979px) and (max-width: 1200px) {
+	.container-fluid.fixed-right-300 {
+		max-width: 649px;
+		margin-left:auto;
+		margin-right:auto;
+	}
+	.container-fluid.fixed-right-120 {
+		max-width:829px;
+		margin-left:auto;
+		margin-right:auto;
+	}
+	.container-fluid.fixed-right-180{
+		max-width:769px;
+		margin-left:auto;
+		margin-right:auto;
+	}
+	.container-fluid.without-column {
+		max-width:965px;
+		margin-left:auto;
+		margin-right:auto;
+	}
+	nav, footer {
+		max-width: 995px;
+		margin-left:auto;
+		margin-right:auto;
+	}
+
+	footer .form-horizontal .controls {
+		margin-left: 0px;
+	}
+	.input-footer {
+		width: 260px;
+	}
+}
+
+//  Fidex width of wapper from 800 to 1024px
+@media (min-width: 767px) and (max-width: 979px) {
+	.container-fluid.fixed-right-300 {
+		max-width: 422px;
+		margin-left:auto;
+		margin-right:auto;
+	}
+	.container-fluid.fixed-right-120 {
+		max-width:602px;
+		margin-left:auto;
+		margin-right:auto;
+	}
+	.container-fluid.fixed-right-180{
+		max-width:542px;
+		margin-left:auto;
+		margin-right:auto;
+	}
+	nav, footer {
+		max-width: 767px;
+		margin-left:auto;
+		margin-right:auto;
+	}
+
+	footer .form-horizontal .controls {
+		margin-left: 0px;
+	}
+	.input-footer {
+		width: 200px;
+	}
+
+}
+
+//  Under 800px
+@media (max-width: 767px) {
+	.fixed-right-300 {
+		padding-right: 15px;
+	}
+
+}
+
+@media ( min-width: 1200px ) {
+	.container-fluid.fixed-right-300 {
+		max-width:855px;
+		margin-left:auto;
+		margin-right:auto;
+	}
+	.container-fluid {
+		max-width:1175px;
+		margin-left:auto;
+		margin-right:auto;
+	}
+	.container-fluid.fixed-right-120 {
+		max-width:1035px;
+		margin-left:auto;
+		margin-right:auto;
+	}
+	.container-fluid.fixed-right-180{
+		max-width:975px;
+		margin-left:auto;
+		margin-right:auto;
+	}
+	.container-fluid.without-column {
+		max-width:1170px;
+		margin-left:auto;
+		margin-right:auto;
+	}
+	header, footer, nav {
+		max-width: 1200px;
+		margin-left:auto;
+		margin-right:auto;
+	}
+}
+
+// hiding #sidebar
+.container-fluid > #sidebar {
+	display: none;
+}
+.container-fluid.fixed-right-300 > #sidebar,
+.container-fluid.fixed-right-180 > #sidebar,
+.container-fluid.fixed-right-120 > #sidebar{
+	display: block;
+}

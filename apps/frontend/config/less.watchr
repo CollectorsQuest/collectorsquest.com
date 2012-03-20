@@ -9,7 +9,7 @@ def watchr1
 
   crawl(web + "/less/frontend", 1, false) { |file_path, depth|
     if File.split(file_path)[ 1 ] =~ Regexp.new('^(?!_).*\.less$', true)
-      plessc file_path, file_path.gsub('less', 'css'), web
+      lessc file_path, file_path.gsub('less', 'css'), web
     end
   }
 end
