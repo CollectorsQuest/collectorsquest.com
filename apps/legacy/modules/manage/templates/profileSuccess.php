@@ -33,7 +33,7 @@
     <li class="ui-state-default ui-corner-top ui-state-active"><a href="#profile-tab-personal"><?= __('Personal Information'); ?></a></li>
     <li class="ui-state-default ui-corner-top ui-state-active"><a href="#profile-tab-about"><?= __('About You'); ?></a></li>
     <?php if ($collector->getIsSeller()): ?>
-    <li class="ui-state-default ui-corner-top ui-state-active"><a href="#collector-shipping-rates"><?= __('Shipping Rates'); ?></a></li>
+    <li class="ui-state-default ui-corner-top ui-state-active"><a href="#collector-marketplace"><?= __('Marketplace'); ?></a></li>
     <?php endif; ?>
     <!--
     <li style="float: right;">
@@ -57,9 +57,12 @@
   </form>
 
   <?php if ($collector->getIsSeller()): ?>
-  <form id="form-shipping-rates" action="<?= url_for('@manage_profile') ?>#collector-shipping-rates" method="post" enctype="multipart/form-data">
-    <div id="collector-shipping-rates">
-      <?php include_partial('manage/collector_shipping_rates', array('form' => $shipping_rates_form)); ?>
+  <form id="form-shipping-rates" action="<?= url_for('@manage_profile') ?>#collector-marketplace" method="post" enctype="multipart/form-data">
+    <div id="collector-marketplace">
+      <?php include_partial('manage/profile_marketplace', array(
+          'form_shipping_rates' => $shipping_rates_form,
+          'collector_addresses' => $collector_addresses,
+      )); ?>
     </div>
   </form>
   <?php endif; ?>

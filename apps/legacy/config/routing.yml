@@ -456,6 +456,24 @@ manage_friends:
   url:   /manage/friends
   param: { module: manage, action: friends }
 
+manage_collector_address_new:
+  url:    /manage/addresses/new
+  param:  { module: manage, action: addNewAddress }
+
+manage_collector_address_edit:
+  url:    /manage/addresses/:id/edit
+  class:  sfPropelORMRoute
+  options: { model: CollectorAddress, type: object }
+  param:  { module: manage, action: editAddress }
+  requirements: { id: '\d+' }
+
+manage_collector_address_delete:
+  url:    /manage/addresses/:id/delete
+  class:  sfPropelORMRoute
+  options: { model: CollectorAddress, type: object }
+  param:  { module: manage, action: deleteAddress }
+  requirements: { id: '\d+', sf_method: [get, delete] }
+
 manage_shopping_order:
   url:   /manage/order/:uuid
   class: sfPropelRoute

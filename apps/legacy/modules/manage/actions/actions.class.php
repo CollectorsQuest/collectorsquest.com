@@ -87,6 +87,7 @@ class manageActions extends cqActions
     // Make the Form and Collector available in the template
     $this->form = $form;
     $this->collector = $collector;
+    $this->collector_addresses = $collector->getCollectorAddresss();
 
     if ($collector->getIsSeller())
     {
@@ -661,6 +662,81 @@ class manageActions extends cqActions
     }
 
     $this->redirect('@manage_profile');
+  }
+
+  public function executeAddNewAddress(sfWebRequest $request)
+  {
+    $address = new CollectorAddress();
+    $address->setCollector($this->getCollector());
+    $form = new FrontendCollectorAddressForm($address);
+
+    if (sfRequest::POST == $request->getMethod())
+    {
+      if ($form->bindAndSave($request->getParameter($form->getName())))
+      {
+        $this->redirect('@manage_profile#collector-marketplace');
+      }
+    }
+    $this->form = $form;
+
+    $this->addBreadcrumb($this->__('Collectors'), '@collectors');
+    $this->addBreadcrumb($this->__('Your Profile'), '@manage_profile');
+    $this->addBreadcrumb($this->__('Add a new address'));
+
+    $this->prependTitle($this->__('Add a New Address'));
+
+    return sfView::SUCCESS;
+  }
+
+  public function executeEditAddress(sfWebRequest $request)
+  {
+    $address = $this->getRoute()->getObject();
+    $this->forward404Unless($this->getUser()->isOwnerOf($address));
+
+    $form = new FrontendCollectorAddressForm($address);
+
+    if (sfRequest::POST == $request->getMethod())
+    {
+      if ($form->bindAndSave($request->getParameter($form->getName())))
+      {
+        $this->redirect('@manage_profile#collector-marketplace');
+      }
+    }
+
+    $this->form = $form;
+
+    $this->addBreadcrumb($this->__('Collectors'), '@collectors');
+    $this->addBreadcrumb($this->__('Your Profile'), '@manage_profile');
+    $this->addBreadcrumb($this->__('Edit address'));
+
+    $this->prependTitle($this->__('Edit Address'));
+
+    return sfView::SUCCESS;
+  }
+
+  public function executeDeleteAddress(sfWebRequest $request)
+  {
+    $address = $this->getRoute()->getObject();
+    $this->forward404Unless($this->getUser()->isOwnerOf($address));
+
+    if (sfRequest::DELETE == $request->getMethod())
+    {
+      $address->delete();
+      $this->getUser()->setFlash('success',
+        $this->__('You have successfully removed an address from your account.'));
+
+      return $this->redirect('@manage_profile#collector-marketplace');
+    }
+
+    $this->collector_address = $address;
+
+    $this->addBreadcrumb($this->__('Collectors'), '@collectors');
+    $this->addBreadcrumb($this->__('Your Profile'), '@manage_profile');
+    $this->addBreadcrumb($this->__('Confirm address deletion'));
+
+    $this->prependTitle($this->__('Confirm Address Deletion'));
+
+    return sfView::SUCCESS;
   }
 
 }
