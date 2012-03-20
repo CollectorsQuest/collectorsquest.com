@@ -37,9 +37,7 @@ class searchActions extends cqFrontendActions
     self::$_query['sortby'] = $this->getUser()->getAttribute('sortby', isset(self::$_query['q']) ? 'relevance' : 'date', 'adverts');
     self::$_query['order']  = $this->getUser()->getAttribute('order', 'DESC', 'adverts');
 
-    $per_page = ($request->getParameter('show') == 'all') ? 1000 : 15;
-
-    $pager = new cqSphinxPager(self::$_query, $per_page);
+    $pager = new cqSphinxPager(self::$_query, 25);
     $pager->setPage($request->getParameter('page', 1));
     $this->sid = $pager->init();
 

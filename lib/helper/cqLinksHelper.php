@@ -264,3 +264,17 @@ function link_to_blog_post(wpPost $post)
 {
   return link_to($post->getPostTitle(), $post->getPostUrl());
 }
+
+function link_to_blog_author(wpUser $author, $type = 'text', $options = array())
+{
+  switch ($type)
+  {
+    case "image":
+      return link_to(image_tag('blog/avatar-'. str_replace(' ', '-', strtolower($author->getDisplayName())), $options), '/blog/author/'. urlencode($author->getUserLogin()) .'/');
+      break;
+    case "text":
+    default:
+      return link_to($author->getDisplayName(), '/blog/author/'. urlencode($author->getUserLogin()) .'/');
+      break;
+  }
+}

@@ -1,4 +1,5 @@
 indexSuccess:
-  stylesheets: [frontend/collectibles.css]
+  stylesheets: [frontend/collections.css, frontend/collectibles.css, frontend/search.css]
+  javascripts: [jquery/masonry.js]
   components:
     sidebar_300: [search, sidebar]
