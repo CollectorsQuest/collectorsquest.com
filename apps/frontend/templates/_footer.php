@@ -1,4 +1,4 @@
-
+<footer>
   <div class="footer-inner">
     <div class="row-fluid">
       <div class="span4">
@@ -69,5 +69,4 @@
     </div><!--/row-->
   </div><!--/footer-inner-->
   <div class="footer-inner">
-
-
+</footer>

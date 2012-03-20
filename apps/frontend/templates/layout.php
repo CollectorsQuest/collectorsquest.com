@@ -10,11 +10,11 @@
     window.fbAsyncInit = function()
     {
       FB.init(
-        {
-          appId: '',
-          channelUrl: '//<?= sfConfig::get('app_www_domain') ?>/channel.php',
-          status: true, cookie: true, xfbml: true
-        });
+      {
+        appId: '',
+        channelUrl: '//<?= sfConfig::get('app_www_domain') ?>/channel.php',
+        status: true, cookie: true, xfbml: true
+      });
     };
     // Load the SDK Asynchronously
     (function(d)
@@ -28,6 +28,10 @@
 
   <?php
     include_component_slot('header');
+
+    echo '<div id="slot1">';
+      include_component_slot('slot1');
+    echo '</div>';
 
     if (has_component_slot('sidebar_120'))
     {
@@ -49,52 +53,51 @@
       $sidebar = null;
       echo '<div id="content" class="container-fluid without-column">';
     }
-    /** @var $sf_content string */
   ?>
 
   <div id="main">
-    <?= $sf_content;?>
+    <?php
+      /** @var $sf_content string */
+      echo $sf_content;
+    ?>
   </div><!--/#main-->
 
-<?php
-if (null !== $sidebar)
-{
-  echo '<div id="sidebar">';
-  include_component_slot($sidebar);
-  echo '</div>';
-}
-echo '</div>';
-?>
+  <?php
+    if (null !== $sidebar)
+    {
+      echo '<div id="sidebar">';
+      include_component_slot($sidebar);
+      echo '</div>';
+    }
+    echo '</div>';
+  ?>
 
+  <? include_component_slot('footer'); ?>
 
-<footer>
-<? include_component_slot('footer'); ?>
-</footer>
+  <?php
+    /** @var $sf_user cqFrontendUser */
+    $sf_cache_key  = (int) $sf_user->getId() .'_';
+    $sf_cache_key .= $sf_user->isAuthenticated() ? 'authenticated' : 'not_authenticated';
 
+    // Include the global javascripts
+    include_partial('global/javascripts', array('sf_cache_key' => $sf_cache_key));
 
-<?php
-/** @var $sf_user cqFrontendUser */
-$sf_cache_key  = (int) $sf_user->getId() .'_';
-$sf_cache_key .= $sf_user->isAuthenticated() ? 'authenticated' : 'not_authenticated';
+    /** @var $sf_request cqWebRequest */
+    if ($slots = $sf_request->getAttribute('slots', array(), 'cq/view/ads'))
+    {
+      include_partial('global/ad_slots', array('slots' => $slots));
+    }
+  ?>
 
-// Include the global javascripts
-include_partial('global/javascripts', array('sf_cache_key' => $sf_cache_key));
+  <?php
+    /** @var $sf_context sfContext */
 
-/** @var $sf_request cqWebRequest */
-if ($slots = $sf_request->getAttribute('slots', array(), 'cq/view/ads'))
-{
-  include_partial('global/ad_slots', array('slots' => $slots));
-}
-?>
+    cqStats::timing(
+      'collectorsquest.modules.'. $sf_context->getModuleName() .'.'. $sf_context->getActionName(),
+      cqTimer::getInstance()->getElapsedTime()
+    );
+  ?>
 
-<?php
-/** @var $sf_context sfContext */
-
-cqStats::timing(
-  'collectorsquest.modules.'. $sf_context->getModuleName() .'.'. $sf_context->getActionName(),
-  cqTimer::getInstance()->getElapsedTime()
-);
-?>
-<!-- Page generated in <?= cqTimer::getInstance()->getElapsedTime(); ?> seconds //-->
+  <!-- Page generated in <?= cqTimer::getInstance()->getElapsedTime(); ?> seconds //-->
 </body>
 </html>

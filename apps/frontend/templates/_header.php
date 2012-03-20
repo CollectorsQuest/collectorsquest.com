@@ -7,8 +7,10 @@
         </div>
         <div class="span5">
           <div class="input-append search-header">
-            <input id="headerSearchInput" type="text" size="16">
-            <button class="btn btn-large" type="button">Search</button>
+            <form action="<?= url_for('@search') ?>" method="get">
+              <input name="q" id="headerSearchInput" type="text" size="16" value="<?= $sf_params->get('q'); ?>">
+              <button class="btn btn-large" type="button">Search</button>
+            </form>
           </div>
         </div>
         <div class="span4">
