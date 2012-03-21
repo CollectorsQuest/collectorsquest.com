@@ -26,9 +26,9 @@
   </div>
   <div class="menu-wrapper cf">
     <ul>
-      <li class="active">
-        <a href="<?= url_for('@homepage'); ?>">
-          <i class="icon-home icon-white" style="margin-top: 3px;"></i>
+      <li>
+        <a href="<?= url_for('@homepage'); ?>" style="padding: 9px 10px;">
+          <i class="icon-home icon-white"></i>
         </a>
       </li>
       <li><?= link_to('Collections', 'collections/index'); ?></li>
