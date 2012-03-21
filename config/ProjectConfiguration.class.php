@@ -10,7 +10,8 @@ IceClassLoader::initialize();
 
 /** Load the namespace for Neo4j client library */
 IceClassLoader::getLoader()->registerNamespaces(array(
-  'Everyman' => __DIR__ . '/../lib/vendor/neo4jphp/lib'
+    'Everyman' => __DIR__ . '/../lib/vendor/neo4jphp/lib',
+    'Twig' => __DIR__ . '/../lib/vendor/twig/lib',
 ));
 
 class ProjectConfiguration extends IceProjectConfiguration

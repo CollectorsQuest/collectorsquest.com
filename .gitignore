@@ -28,6 +28,7 @@ base
 /lib/vendor/neo4jphp
 /lib/vendor/faker
 /lib/vendor/monolog
+/lib/vendor/twig
 !/plugins/sfPropelORMPlugin
 
 # symlinked folders (when on windows)
