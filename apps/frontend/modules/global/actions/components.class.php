@@ -52,6 +52,9 @@ class globalComponents extends sfComponents
     $options['url'] = rtrim($options['url'], '?&');
     $options['url'] .= (strpos($options["url"], '?') !== false) ? '&' : '?';
 
+    // Set a unique div ID if not provided
+    $options['id'] = !empty($options['id']) ? $options['id'] : 'pagination-'. md5($options['url']);
+
     $this->pager   = $pager;
     $this->options = $options;
 

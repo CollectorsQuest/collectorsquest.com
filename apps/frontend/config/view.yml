@@ -24,7 +24,9 @@ default:
     - frontend/responsive.css
     - frontend/main.css
 
-  javascripts: []
+  javascripts:
+    - /assets/js/bootstrap/buttons.js
+    - /assets/js/bootstrap/dropdown.js
 
   components:
     header:  [global, header]
