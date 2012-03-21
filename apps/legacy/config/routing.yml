@@ -123,6 +123,10 @@ collector_me:
   options: { model: Collector, type: object, method: getObjectForRoute }
   param: { module: collector, action: me }
 
+collector_signup_choice:
+  url: /collector/signupChoice
+  param: { module: collector, action: signupChoice }
+
 collector_by_slug_depreciated:
   url:  /collector/:slug
   class: sfPropelRoute
