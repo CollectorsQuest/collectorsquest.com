@@ -1,4 +1,4 @@
 indexSuccess:
   stylesheets: [frontend/collectibles.css]
   components:
-    sidebar_300: [search, sidebar]
+    sidebar_300: [collection, sidebar]
