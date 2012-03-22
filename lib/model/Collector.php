@@ -131,8 +131,8 @@ class Collector extends BaseCollector
         $json = json_encode(array(
           'version' => $version,
           'id'      => $this->getId(),
-          'created' => (int)$this->getCreatedAt('U'),
-          'time'    => (int)$time
+          'created' => (int) $this->getCreatedAt('U'),
+          'time'    => (int) $time
         ));
 
         $hash = sprintf(

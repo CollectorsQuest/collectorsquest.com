@@ -83,9 +83,9 @@
       {
         echo link_to(
           __('Visit cqnext.com'),
-          'prod' == sfConfig::get('sf_environment')
-            ? 'http://www.cqnext.com/?i='.urlencode($collector->getAutoLoginHash())
-            : 'http://www.collectorsquest.next/?i='.urlencode($collector->getAutoLoginHash()),
+          'dev' != sfConfig::get('sf_environment')
+            ? 'http://www.cqnext.com/?i='. urlencode($collector->getAutoLoginHash())
+            : 'http://www.collectorsquest.next/?i='. urlencode($collector->getAutoLoginHash()),
           array('class' => 'visit-cqnext')
         );
       }
