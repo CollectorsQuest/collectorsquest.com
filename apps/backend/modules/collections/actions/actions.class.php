@@ -28,4 +28,9 @@ class collectionsActions extends autoCollectionsActions
     return $this->renderText(json_encode($collectionCategories));
   }
 
+  protected function buildQuery()
+  {
+    return parent::buildQuery();
+  }
+
 }
