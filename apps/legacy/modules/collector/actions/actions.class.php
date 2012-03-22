@@ -295,15 +295,26 @@ class collectorActions extends cqActions
    }
    /* */
 
-    $this->buttons = array(
-      0 => array(
-        'text'  => 'Use Another Web ID',
-        'icon'  => 'person',
-        'route' => '@collector_signup#openid'
-      )
-    );
-    $this->addBreadcrumb($this->__('Sign Up for a Collector Account'));
-    $this->prependTitle($this->__('Sign Up for a Collector Account'));
+    if ('seller' == $signupType)
+    {
+      $this->buttons = array();
+
+      $this->addBreadcrumb($this->__('Sign Up for a Seller Account'));
+      $this->prependTitle($this->__('Sign Up for a Seller Account'));
+    }
+    else
+    {
+      $this->buttons = array(
+        0 => array(
+          'text'  => 'Use Another Web ID',
+          'icon'  => 'person',
+          'route' => '@collector_signup#openid'
+        )
+      );
+
+      $this->addBreadcrumb($this->__('Sign Up for a Collector Account'));
+      $this->prependTitle($this->__('Sign Up for a Collector Account'));
+    }
 
     return sfView::SUCCESS;
   }
