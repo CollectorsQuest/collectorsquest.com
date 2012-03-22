@@ -4,7 +4,6 @@ indexSuccess:
     - jquery/event.drag.js
     - jquery/event.drop.js
     - jquery/roundabout.js
-    - jquery/roundabout-shapes.js
 
   components:
     slot1: [general, indexCarousel]
