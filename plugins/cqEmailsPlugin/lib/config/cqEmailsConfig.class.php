@@ -38,7 +38,9 @@ class cqEmailsConfig
   {
     if (null === self::$twig_environment)
     {
-      self::$twig_environment = new Twig_Environment(self::getTwigLoader());
+      self::$twig_environment = new Twig_Environment(self::getTwigLoader(), array(
+         'cache' => sfConfig::get('sf_cache_dir') . '/twig/email_templates_cache',
+      ));
     }
 
     return self::$twig_environment;

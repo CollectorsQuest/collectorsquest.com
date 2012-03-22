@@ -2,7 +2,7 @@
 
 require_once dirname(__FILE__) . '/../bootstrap/unit.php';
 
-$t = new lime_test();
+$t = new lime_test(10);
 $t->diag('Testing cqEmailsPlugin/lib/cqEmailTemplate.class.php');
 
 $name_guess = array(
@@ -24,4 +24,4 @@ foreach ($name_guess as $name => $path)
 
 $templ = new cqEmailTemplate('empty_test');
 
-$t->is($templ->render(), 'test');
+$t->is($templ->render(), 'test', 'cqEmailTemplate::render() returns expected result');

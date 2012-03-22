@@ -3,7 +3,7 @@
 $app = 'frontend';
 require_once dirname(__FILE__) . '/../bootstrap/unit.php';
 
-$t = new lime_test();
+$t = new lime_test(3);
 $t->diag('Testing cqEmailsPlugin/lib/config/cqEmailsConfig.class.php');
 
 // this stuff is loaded from fixtures/project/apps/frontend/config/app.yml
