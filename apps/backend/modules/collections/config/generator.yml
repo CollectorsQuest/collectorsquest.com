@@ -33,6 +33,7 @@ generator:
 
       filter:
         display: [name, collection_category_id]
+        class: BackendCollectorCollectionFormFilter
 
       form:
         display: [name, collection_category_id]
