@@ -16,6 +16,8 @@ nbproject
 /config/secure
 /config/databases.yml
 /test/schemas/*.sql
+/plugins/cqEmailsPlugin/test/fixtures/project/cache/*
+/plugins/cqEmailsPlugin/test/fixtures/project/log/*
 
 # generated folders
 om
