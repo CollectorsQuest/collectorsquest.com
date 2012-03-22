@@ -13,4 +13,26 @@ require_once dirname(__FILE__).'/../lib/collectionCategoriesGeneratorHelper.clas
  */
 class collectionCategoriesActions extends autoCollectionCategoriesActions
 {
+
+  /**
+   * Action Parent
+   *
+   * @param sfWebRequest $request
+   *
+   * @return string
+   */
+  public function executeParent(sfWebRequest $request)
+  {
+    $q = $request->getParameter('q');
+    $limit = $request->getParameter('limit', 10);
+
+    $items = CollectionCategoryQuery::create()
+        ->filterByParent("%$q%")
+        ->limit($limit)
+        ->find()
+        ->toKeyValue('Id', 'Name');
+
+    return $this->renderText(json_encode($items));
+  }
+
 }
