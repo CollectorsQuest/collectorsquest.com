@@ -56,7 +56,7 @@ jQuery(document).ready(function() {
                 self.data('active', true);
 
                 //Do data request. Insert your own API logic here.
-                $.getJSON("%s", { q: "ad" }, function(data) {
+                $.getJSON("%s", { q: $(this).val() }, function(data) {
 
                     //set this to true when your callback executes
                     self.data('active',true);
