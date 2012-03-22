@@ -51,3 +51,23 @@
     </ul>
   </div><!--/#carousel-holder-->
 </div><!--/.slot1-inner-->
+
+<script>
+  $(document).ready(function()
+  {
+    $("#sample-roundabout").roundabout({
+      tilt: 0.6,
+      minScale: 0.6,
+      minOpacity: 1,
+      duration: 400,
+      easing: 'easeOutQuad',
+      enableDrag: true,
+      dropEasing: 'easeOutBounce',
+      responsive: true,
+      btnNext: '.next-carousel',
+      btnPrev: '.prev-carousel'
+    }, function() {
+      $(this).fadeTo(500, 1);
+    });
+  });
+</script>
