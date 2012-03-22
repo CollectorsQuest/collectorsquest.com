@@ -41,10 +41,35 @@ class cqEmailsConfig
       self::$twig_environment = new Twig_Environment(self::getTwigLoader(), array(
          'cache' => sfConfig::get('sf_cache_dir') . '/twig/email_templates_cache',
       ));
+
+      self::registerSymfonyHelpers(self::$twig_environment);
     }
 
     return self::$twig_environment;
   }
+
+  protected static function registerSymfonyHelpers(Twig_Environment $env)
+  {
+    $helpers = array(
+        'Tag' => array(
+        ),
+        'Url' => array(
+            'link_to',
+            'url_for',
+        ),
+    );
+
+    $configuration = sfProjectConfiguration::getActive();
+    $configuration->loadHelpers(array_keys($helpers));
+
+    foreach ($helpers as $helper) foreach ($helper as $function)
+    {
+      $env->addFunction($function, new Twig_Function_Function($function, array(
+          'is_safe' => array('html'),
+      )));
+    }
+  }
+
 
 
   public static function getDataForName($name)
