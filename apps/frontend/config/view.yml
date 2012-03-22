@@ -27,6 +27,8 @@ default:
   javascripts:
     - /assets/js/bootstrap/buttons.js
     - /assets/js/bootstrap/dropdown.js
+    - /assets/js/jquery/scrollTo.js
+    - jquery/waypoints.js
 
   components:
     header:  [global, header]

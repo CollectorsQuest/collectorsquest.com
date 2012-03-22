@@ -1,4 +1,5 @@
 indexSuccess:
+  javascripts: [jquery/infinitescroll.js]
   stylesheets: [frontend/collectibles.css]
   components:
     sidebar_300: [collection, sidebar]

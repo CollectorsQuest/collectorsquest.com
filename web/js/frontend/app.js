@@ -15,10 +15,27 @@ var APP = window.APP = {
   /**
    * Common module, executed for every page
    */
-  common:     {
-    init:   function() {
-      COMMON.notImplementedYet();
-      // empty :)
+  common: {
+    init: function()
+    {
+      /**
+       * "Scroll to Top" link on every long page
+       */
+      $('#top-link').topLink({
+        min: 600,
+        fadeSpeed: 500
+      }).click(function(e) {
+        e.preventDefault();
+        $.scrollTo(0,300);
+      });
+
+      $.waypoints.settings.scrollThrottle = 50;
+      $('#footer').waypoint(function(event, direction)
+      {
+        $('#top-link').toggleClass('sticky', direction === "up");
+      }, {
+        offset: '100%'
+      });
     }
   } // common
 

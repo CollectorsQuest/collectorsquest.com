@@ -1,4 +1,4 @@
-<footer>
+<footer id="footer" style="position: relative;">
   <div class="footer-inner">
     <div class="row-fluid">
       <div class="span4">
@@ -68,5 +68,7 @@
       </div><!--/span-->
     </div><!--/row-->
   </div><!--/footer-inner-->
-  <div class="footer-inner">
+  <a id="top-link" href="#" class="btn btn-large sticky">
+    <i class="icon-arrow-up"></i> Scroll<br/> to Top
+  </a>
 </footer>

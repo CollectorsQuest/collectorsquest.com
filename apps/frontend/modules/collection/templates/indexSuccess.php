@@ -9,7 +9,7 @@
 
 <?= cq_page_title($collection, 'by '. link_to_collector($collection->getCollector(), 'text')); ?>
 
-<div class="row">
+<div id="collectibles" class="row">
   <?php
     /** @var $collectible Collectible */
     foreach ($pager->getResults() as $i => $collectible)
@@ -28,3 +28,41 @@
     }
   ?>
 </div>
+
+<div class="row-fluid" style="text-align: center;">
+  <?php
+  include_component(
+    'global', 'pagination',
+    array('pager' => $pager, 'options' => array('id' => 'collectibles-pagination'))
+  );
+  ?>
+</div>
+
+<?php if ($sf_params->get('show') == 'all'): ?>
+<script>
+$(document).ready(function()
+{
+  $('#collectibles').infinitescroll(
+    {
+      navSelector: '#collectibles-pagination',
+      nextSelector: '#collectibles-pagination li.next a',
+      itemSelector: '#collectibles .span4',
+      loading:
+      {
+        finishedMsg: 'No more pages to load.',
+        img: '<?= image_path('frontend/progress.gif'); ?>'
+      },
+      bufferPx: 150
+    },
+    function()
+    {
+      $('.collectible_grid_view').mosaic({
+        animation: 'slide'
+      });
+    });
+
+  // Hide the pagination before infinite scroll does it
+  $('#collectibles-pagination').hide();
+});
+</script>
+<?php endif; ?>
