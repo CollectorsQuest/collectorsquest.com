@@ -197,10 +197,7 @@ class collectorActions extends cqActions
         if ($package = $request->getParameter('package', false))
         {
           $this->getUser()->setAttribute('package', $package, 'registration');
-          $this->redirect($this->getController()->genUrl(array(
-            'sf_route' => 'collector_signup',
-            'step'     => 1
-          )));
+          $this->redirect('@seller_account_information');
         }
         $this->getUser()->setAttribute('package', null, 'registration');
         $this->form = false; //Hack as $this->form is used as required in signupSuccess

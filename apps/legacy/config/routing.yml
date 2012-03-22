@@ -50,6 +50,10 @@ seller_choose_package:
   url:   /seller/signup/1
   param: { module: collector, action: signup, step: 4 }
 
+seller_account_information:
+  url:  /seller/signup/2
+  param: { module: collector, action: signup, step: 1 }
+
 seller_subscribe:
   url:   /seller/subscribe
   param: { module: general, action: comingSoon }

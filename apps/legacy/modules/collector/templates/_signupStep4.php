@@ -16,7 +16,7 @@ include_partial(
     <legend><?php echo $group ?></legend>
     <ul class="unstyled">
       <?php foreach ($packages as $id=> $package): ?>
-      <li><?php echo link_to($package, '@collector_signup?step=4&package=' . $id) ?></li>
+      <li><?php echo link_to($package, '@seller_choose_package?package=' . $id) ?></li>
       <?php endforeach; ?>
     </ul>
   </fieldset>
