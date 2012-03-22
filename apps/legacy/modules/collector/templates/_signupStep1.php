@@ -4,10 +4,23 @@
   /** @var $rpxnow array */
   $rpxnow = sfConfig::get('app_credentials_rpxnow');
 
-  include_partial(
-    'global/wizard_bar',
-    array('steps' => array(1 => __('Account Information'), __('Collector Information'), __('Personal Information')), 'active' => 1)
-  );
+  if('seller' == $sf_user->getAttribute('signup_type', 'collector', 'registration'))
+  {
+    include_partial(
+      'global/wizard_bar',
+      array(
+        'steps'  => array(1 => __('Choose a package'), __('Account Information'), __('Choose how to pay')),
+        'active' => 2
+      )
+    );
+  }
+  else
+  {
+    include_partial(
+      'global/wizard_bar',
+      array('steps' => array(1 => __('Account Information'), __('Collector Information'), __('Personal Information')), 'active' => 1)
+    );
+  }
 ?>
 
 <!--
