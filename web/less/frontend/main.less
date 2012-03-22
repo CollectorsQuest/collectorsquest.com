@@ -2,14 +2,26 @@
 
 @import "bootstrap/less/variables.less";
 @import "menu.less";
+@import "bootstrap/less/mixins.less";
 
 body {
 	background:#D9EBF5 url("/images/frontend/background-pattern.png") repeat;
 }
 
+//SELECTION STYLE
+::selection {background: #D9EBF5;}
+::-moz-selection {background: #D9EBF5;}
+::-webkit-selection {background: #D9EBF5;}
+
+//SPRITES
+.icon_big_box, .icon_big_piggy_bank, .icon_big_question, .logo, .img_carousel_button_previous, .img_carousel_button_next{
+	background: url(/images/frontend/sprites.png) no-repeat;
+}
+
+
 h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover {
-  text-decoration: none;
-  border-bottom: 1px solid @red;
+	text-decoration: none;
+	border-bottom: 1px solid @red;
 }
 
 footer h2 {
@@ -20,11 +32,7 @@ footer h2 {
 
 // Image replacement http://goo.gl/cEMGx
 .ir {
-	border:0;
-	font: 0/0 a;
-	text-shadow: none;
-	color: transparent;
-	background-color: transparent;
+	border:0; font: 0/0 a; text-shadow: none; color: transparent; background-color: transparent;
 }
 
 // HEADER
@@ -202,7 +210,7 @@ ul.footer-info-box li.faq {
 	background-color: @white;
 }
 .slot1-inner {
-	padding: 30px 15px 20px;
+	padding: 30px 15px 10px;
 }
 
 
@@ -241,53 +249,94 @@ ul.footer-info-box li.faq {
 }
 
 // CAROUSEL
-.roundabout-holder { padding: 0; height: 380px; }
-/* .roundabout-moveable-item {
-	height: 310px;
-	width: 520px;
-	cursor: pointer;
-	border: 1px solid red;
+#carousel-holder {
+	position: relative;
 }
-.roundabout-moveable-item h1 {
-	font-size: 11px;
+.carousel_button_next {
+	position: absolute;
+	display: block;
+	top: 45%;
+	right: 0;
+	border: none;
 }
-.roundabout-in-focus { cursor: auto; } */
+.img_carousel_button_next {
+	background-position: -301px -47px ;
+	width: 26px;
+	height: 36px;
+	display: block;
+}
+.carousel_button_previous {
+	position: absolute;
+	display: block;
+	top: 45%;
+	left: 0;
+	border: none;
+}
+.img_carousel_button_previous {
+	background-position: -274px -47px ;
+	width: 26px;
+	height: 36px;
+	display: block;
+	outline: none;
+}
+.img_carousel_button_next:focus, .img_carousel_button_previous:focus {
+	outline: none;
+}
+//.roundabout-in-focus { cursor: auto; }
 
 #sample-roundabout {
-	width: 70%;
+	width: 60%;
+	height: 330px;
 	list-style: none;
 	margin: 0 auto;
 	padding: 0;
-	min-height: 30%;
 	opacity: 0;
 }
 #sample-roundabout li {
-	background-color: #658799;
-	max-height: 320px;
-	max-width: 520px;
-	box-shadow: 0 4px 32px rgba(0, 0, 0, 0.4);
+	width: 74.5%;
+	background-color: transparent;
+	.box-shadow(0 4px 32px rgba(0, 0, 0, 0.4));
 	cursor: pointer;
-	text-align: center;
+	.border-radius(7px);
 }
 #sample-roundabout li.roundabout-in-focus {
 	cursor: auto;
 }
 #sample-roundabout li .wrapper {
-	   padding: 0;
-   }
+	padding: 0;
+	background-color: transparent;
+}
 #sample-roundabout li .wrapper img {
 	width: 100%;
-	height: 100%;
+	.border-radius(7px);
 }
-#sample-roundabout .wrapper h2 {
+.carousel-in-focus-title {
+	position: absolute;
+	z-index: 100;
+	bottom: 8%;
+	width: 92%;
+	padding: 3% 4%;
+	display: block;
+	#translucent > .background(#fff, 0.8);
+}
+li.roundabout-moveable-item span.carousel-in-focus-title {
+	visibility: hidden;
+}
+li.roundabout-in-focus span.carousel-in-focus-title {
+	visibility: visible;
+}
+
+
+#carousel-holder .carousel-in-focus-title h2 {
 	font-size: 1.75em;
 	line-height: 1.1;
 	margin-bottom: 0;
 	padding-bottom: 8px;
-	text-align: center;
-	color: #fff !important;
+	text-align: left;
+	font-family: 'Fugaz One', cursive;
+	color: #125375;
 }
-#sample-roundabout .wrapper h3 {
+#carousel-holder .carousel-in-focus-title h3 {
 	font-size: 1.5em;
 	line-height: 1.1;
 	padding-top: 0;
@@ -295,13 +344,13 @@ ul.footer-info-box li.faq {
 	text-align: center;
 	color: #fff !important;
 }
-#sample-roundabout .wrapper p {
-	margin-top: 4em;
+#carousel-holder .carousel-in-focus-title p {
 	font-size: 1em;
-	text-align: center;
+	text-align: left;
 	width: auto;
-	color: #fff !important;
+	margin: 0;
 }
+
 
 
 /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
@@ -341,7 +390,7 @@ ul.footer-info-box li.faq {
 }
 
 footer {
-  background-color: @yellowLight;
+	background-color: @yellowLight;
 }
 
 .pull-r {
@@ -425,14 +474,18 @@ footer {
 		width: 260px;
 	}
 
-  [class*="span"] {
-    float: left;
-    margin-left: 20px;
-  }
+	[class*="span"] {
+		float: left;
+		margin-left: 20px;
+	}
 
-  .row {
-    margin-left: -20px;
-  }
+	.row {
+		margin-left: -20px;
+	}
+
+	#sample-roundabout {
+		height: 280px;
+	}
 }
 
 //  Fidex width of wapper from 800 to 1024px
@@ -470,12 +523,30 @@ footer {
 		width: 200px;
 	}
 
+	#sample-roundabout {
+		height: 210px;
+	}
 }
 
 //  Under 800px
 @media (max-width: 767px) {
 	.fixed-right-300 {
 		padding-right: 15px;
+	}
+	#sample-roundabout {
+		height: 180px;
+	}
+	.slot1-inner {
+		padding: 15px 10px 5px;
+	}
+	#carousel-holder .carousel-in-focus-title h2 {
+		font-size: 1.4em;
+	}
+	#carousel-holder .carousel-in-focus-title h3 {
+		font-size: 1.1em;
+	}
+	#carousel-holder .carousel-in-focus-title p {
+		font-size: 0.9em;
 	}
 
 }
@@ -511,6 +582,10 @@ footer {
 		margin-left:auto;
 		margin-right:auto;
 	}
+
+//	#sample-roundabout {
+//		height: 210px;
+//	}
 }
 
 // hiding #sidebar

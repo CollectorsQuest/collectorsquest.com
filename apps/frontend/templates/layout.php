@@ -99,5 +99,34 @@
   ?>
 
   <!-- Page generated in <?= cqTimer::getInstance()->getElapsedTime(); ?> seconds //-->
+
+
+  <!-- Carousel -->
+  <script type="text/javascript" src="jquery.easing.js"></script>
+  <script type="text/javascript" src="jquery.event.drag.js"></script>
+  <script type="text/javascript" src="jquery.event.drop.js"></script>
+  <script type="text/javascript" src="jquery.roundabout.min.js"></script>
+  <script type="text/javascript" src="jquery.roundabout-shapes.min.js"></script>
+  <!-- <script type="text/javascript" src="jquery.ba-bbq.js"></script> -->
+  <script type="text/javascript" src="jquery.smooth-scroll.js"></script>
+  
+  <script>
+    $("#sample-roundabout").roundabout({
+     tilt: 0.6,
+      minScale: 0.6,
+      minOpacity: 1,
+      duration: 400,
+      easing: 'easeOutQuad',
+      enableDrag: true,
+      dropEasing: 'easeOutBounce',
+      responsive: true,
+      btnNext: '.next-carousel',
+      btnPrev: '.prev-carousel'
+    }, function() {
+      $(this).fadeTo(500, 1);
+    });
+  </script>
+  <!-- /Carousel -->
+
 </body>
 </html>
