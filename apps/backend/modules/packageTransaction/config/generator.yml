@@ -32,6 +32,7 @@ generator:
         actions: { }
 
       filter:
+        class: BackendPackageTransactionFormFilter
         display: [collector_id, package_id]
 
       form: ~
