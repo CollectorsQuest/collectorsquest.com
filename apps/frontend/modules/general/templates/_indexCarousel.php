@@ -63,7 +63,6 @@
       easing: 'easeOutQuad',
       enableDrag: true,
       dropEasing: 'easeOutBounce',
-      responsive: true,
       btnNext: '.next-carousel',
       btnPrev: '.prev-carousel'
     }, function() {
