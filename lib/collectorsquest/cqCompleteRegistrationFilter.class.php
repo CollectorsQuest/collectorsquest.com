@@ -16,7 +16,8 @@ class cqCompleteRegistrationFilter extends sfFilter
 
     if ( $sf_user->isAuthenticated()
       && $this->currentActionIsSecure()
-      && !$sf_user->getCollector()->getHasCompletedRegistration() )
+      && (!$sf_user->getCollector()->getHasCompletedRegistration() && !$sf_user->getAttribute('package', false, 'registration'))
+    )
     {
       if (sfConfig::get('sf_logging_enabled'))
       {

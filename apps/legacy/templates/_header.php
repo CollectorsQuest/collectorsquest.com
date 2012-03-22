@@ -19,7 +19,7 @@
   </form>
   <div id="header-account">
     <?php if (!$sf_user->isAuthenticated()): ?>
-      <a href="<?php echo url_for('@collector_signup'); ?>" id="header-signup"><strong><?php echo  __('Sign up for an Account'); ?></strong></a>
+      <a href="<?php echo url_for('@collector_signup_choice'); ?>" id="header-signup"><strong><?php echo  __('Sign up for an Account'); ?></strong></a>
       &nbsp;|&nbsp;
       <a href="<?php echo url_for('@login'); ?>#ajax-login-tabs" id="header-login" onclick="return false;"><?php echo  __('Sign in to Your Account'); ?></a>
       <div class="visuallyhidden">
@@ -58,7 +58,7 @@ $(function()
   search = function (which)
   {
     document.location.href = '/search/'+ which +'?q='+ $('#header-search-box').val();
-  }
+  };
 
   $('#header-search-box').placeholder();
 
@@ -68,6 +68,16 @@ $(function()
     overlayOpacity: 0.5,
     autoDimensions: false,
     width: 410, height: jQuery.browser.opera && 330 || 300,
+    enableEscapeButton: true,
+    centerOnScroll: true
+  });
+
+  $("a#header-signup").fancybox(
+  {
+    hideOnContentClick: false,
+    overlayOpacity: 0.5,
+    autoDimensions: false,
+    width: 510, height: jQuery.browser.opera && 270 || 240,
     enableEscapeButton: true,
     centerOnScroll: true
   });
