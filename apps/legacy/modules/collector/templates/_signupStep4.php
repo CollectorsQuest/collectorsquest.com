@@ -10,13 +10,15 @@ include_partial(
 );
 ?>
 
-<div id="sellersignup_2">
-  <?php foreach (PackagePeer::getAllPackagesForSelectGroupedByPlanType() as $group=> $packages): ?>
-  <h3><?php echo $group ?></h3>
-  <ul>
-    <?php foreach ($packages as $id=> $package): ?>
-    <li><?php echo link_to($package, '@collector_signup?step=4&package=' . $id) ?></li>
-    <?php endforeach; ?>
-</ul>
-  <?php endforeach; ?>
+<?php foreach (PackagePeer::getAllPackagesForSelectGroupedByPlanType() as $group=> $packages): ?>
+<div class="prepend-1 span-17 last">
+  <fieldset>
+    <legend><?php echo $group ?></legend>
+    <ul class="unstyled">
+      <?php foreach ($packages as $id=> $package): ?>
+      <li><?php echo link_to($package, '@collector_signup?step=4&package=' . $id) ?></li>
+      <?php endforeach; ?>
+    </ul>
+  </fieldset>
 </div>
+<?php endforeach; ?>
