@@ -361,7 +361,7 @@ class collectorActions extends cqActions
       $this->getUser()->setAttribute('signup_type', $signupType, 'registration');
       $this->getUser()->setAttribute('package', null, 'registration');
 
-      $this->redirect('@collector_signup');
+      $this->redirect('@seller_choose_package');
     }
   }
 

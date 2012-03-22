@@ -46,6 +46,10 @@ ajax_marketplace_listing_by_category:
 
 ### SELLERS
 
+seller_choose_package:
+  url:   /seller/signup/1
+  param: { module: collector, action: signup, step: 4 }
+
 seller_subscribe:
   url:   /seller/subscribe
   param: { module: general, action: comingSoon }
