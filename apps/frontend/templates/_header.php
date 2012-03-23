@@ -21,9 +21,9 @@
 </header>
 
 <nav id="nav" role="navigation">
-  <div class="cq-logo">
-    <a href="/" title="Home page"><img src="/images/frontend/logo.png"></a>
-  </div>
+    <a href="/" alt="Collectors Quest" title="Home page" class="cq-logo logo ir" >
+      Collectors Quest
+    </a>
   <div class="menu-wrapper cf">
     <ul>
       <li>
