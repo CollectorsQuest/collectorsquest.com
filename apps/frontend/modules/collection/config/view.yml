@@ -3,3 +3,11 @@ indexSuccess:
   stylesheets: [frontend/collectibles.css]
   components:
     sidebar_300: [collection, sidebar]
+
+indexNoCollectibles:
+  components:
+    sidebar_300: [collection, sidebar]
+
+collectibleSuccess:
+  components:
+    sidebar_300: [collection, sidebarCollectible]
