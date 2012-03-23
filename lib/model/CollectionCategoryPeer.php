@@ -13,7 +13,7 @@ class CollectionCategoryPeer extends BaseCollectionCategoryPeer
   public static function retrieveForSelect($q, $limit = 10)
   {
     $collectionCategories = CollectionCategoryQuery::create()
-        ->filterByName("%$q%")
+        ->filterByName("%$q%", Criteria::LIKE)
         ->limit($limit)
         ->find()
         ->toKeyValue('Id', 'Name');

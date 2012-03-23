@@ -145,46 +145,4 @@ class collectorsActions extends autoCollectorsActions
     $this->redirect('collector');
   }
 
-  /**
-   * Action Username
-   *
-   * @param sfWebRequest $request
-   *
-   * @return string
-   */
-  public function executeUsername(sfWebRequest $request)
-  {
-    $q = $request->getParameter('q');
-    $limit = $request->getParameter('limit', 10);
-
-    $usernames = CollectorQuery::create()
-        ->filterByUsername("%$q%")
-        ->limit($limit)
-        ->find()
-        ->toKeyValue('Id', 'Username');
-
-    return $this->renderText(json_encode($usernames));
-  }
-
-  /**
-   * Action DisplayName
-   *
-   * @param sfWebRequest $request
-   *
-   * @return string
-   */
-  public function executeDisplayName(sfWebRequest $request)
-  {
-    $q = $request->getParameter('q');
-    $limit = $request->getParameter('limit', 10);
-
-    $names = CollectorQuery::create()
-        ->filterByDisplayName("%$q%")
-        ->limit($limit)
-        ->find()
-        ->toKeyValue('Id', 'DisplayName');
-
-    return $this->renderText(json_encode($names));
-  }
-
 }

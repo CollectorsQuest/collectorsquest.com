@@ -90,7 +90,7 @@ EOF
 
   public function getJavaScripts()
   {
-    return array('/iceAssetsPlugin/js/bootstrap/typeahead.js');
+    return array('/assets/js/bootstrap/typeahead.js');
   }
 
 }
