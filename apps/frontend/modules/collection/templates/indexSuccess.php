@@ -7,7 +7,20 @@
  */
 ?>
 
-<?= cq_page_title($collection, 'by '. link_to_collector($collection->getCollector(), 'text')); ?>
+<div class="row-fluid">
+  <div class="span8">
+    <?= cq_page_title($collection, '<br/>by '. link_to_collector($collection->getCollector(), 'text')); ?>
+  </div>
+  <div class="span4" style="margin-top: 20px; text-align: center;">
+    <br/><strong>Sharing widget goes here</strong>
+  </div>
+</div>
+<div class="row-fluid">
+  <div class="well">
+    <?= cqStatic::linkify($collection->getDescription('html')); ?>
+    <a href="#">Read the whole text</a>
+  </div>
+</div>
 
 <div id="collectibles" class="row">
   <?php
