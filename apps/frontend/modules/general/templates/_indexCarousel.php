@@ -94,6 +94,7 @@
   $(document).ready(function()
   {
     $("#sample-roundabout").roundabout({
+      responsive: true,
       tilt: 0.6,
       minScale: 0.6,
       minOpacity: 1,
