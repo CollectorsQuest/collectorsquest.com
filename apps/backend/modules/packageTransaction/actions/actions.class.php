@@ -14,26 +14,4 @@ require_once dirname(__FILE__).'/../lib/packageTransactionGeneratorHelper.class.
 class packageTransactionActions extends autoPackageTransactionActions
 {
 
-  /**
-   * Action Collector
-   *
-   * @param sfWebRequest $request
-   *
-   * @return string
-   */
-  public function executeCollector(sfWebRequest $request)
-  {
-    $q = $request->getParameter('q');
-    $limit = $request->getParameter('limit', 10);
-
-    $items = CollectorQuery::create()
-        ->filterByDisplayName("%$q%")
-        ->limit($limit)
-        ->find()
-        ->toKeyValue('Id', 'DisplayName')
-        ;
-
-    return $this->renderText(json_encode($items));
-  }
-
 }

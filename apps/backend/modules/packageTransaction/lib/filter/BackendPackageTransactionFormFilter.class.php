@@ -13,12 +13,16 @@ class BackendPackageTransactionFormFilter extends BasePackageTransactionFormFilt
   public function configure()
   {
     $this->getWidget('expiry_date')->setOption('with_empty', false);
+    $this->setupCollectorIdField();
+  }
 
-    $this->widgetSchema['collector_id'] = new bsWidgetFormInputTypeAhead(array(
-      'source' => $this->getOption('url_collector_id', sfContext::getInstance()->getController()->genUrl('packageTransaction/collector')),
+  public function setupCollectorIdField()
+  {
+    $this->widgetSchema['collector_id'] = new BackendWidgetFormModelTypeAhead(array(
+      'field' => CollectorPeer::DISPLAY_NAME,
     ));
 
-    $this->validatorSchema['collector_id'] = new sfValidatorString(array('required'=>false));
+    $this->validatorSchema['collector_id'] = new sfValidatorString(array('required'=> false));
   }
 
   /**
@@ -43,8 +47,8 @@ class BackendPackageTransactionFormFilter extends BasePackageTransactionFormFilt
     {
       $values = trim($values);
       $criteria->useCollectorQuery()
-        ->filterByDisplayName("%$values%")
-        ->endUse();
+          ->filterByDisplayName("%$values%")
+          ->endUse();
     }
 
     return $criteria;
