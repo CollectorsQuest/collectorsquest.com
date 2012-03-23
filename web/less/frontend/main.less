@@ -1,8 +1,8 @@
 @import url(http://fonts.googleapis.com/css?family=Fugaz+One);
 
 @import "bootstrap/less/variables.less";
-@import "menu.less";
 @import "bootstrap/less/mixins.less";
+@import "menu.less";
 
 body {
 	background:#D9EBF5 url("/images/frontend/background-pattern.png") repeat;
@@ -22,12 +22,6 @@ body {
 h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover {
 	text-decoration: none;
 	border-bottom: 1px solid @red;
-}
-
-footer h2 {
-	font-family: 'Fugaz One', cursive;
-	color: #125375;
-	text-shadow: -2px -1px -2px @white;
 }
 
 // H5BP Image Replacement http://goo.gl/cEMGx
@@ -174,13 +168,15 @@ footer .form-horizontal .controls {
 
 // FOOTER
 footer {
-	color: #125375;
+	color: @blueDark;
 	-webkit-box-shadow: 0 35px 30px rgba(50, 50, 50, 0.5);
 	-moz-box-shadow:    0 35px 30px rgba(50, 50, 50, 0.5);
 	box-shadow:         0 35px 30px rgba(50, 50, 50, 0.5);
 }
 footer h2 {
 	font-size: 20px;
+ 	font-family: 'Fugaz One', cursive;
+ 	color: @blueDark;
 }
 .footer-inner {
 	padding: 10px 15px 0;
@@ -534,12 +530,8 @@ footer {
 	}
 
 	#sample-roundabout {
-		width: 680px;
-		height: 310px;
-		border: 1px solid red;
-	}
-	#sample-roundabout li .wrapper img {
-		width: 70%;
+		width: 360px;
+		height: 255px;
 	}
 	#carousel-holder .carousel-in-focus-title h2 {
 		font-size: 1.75em;

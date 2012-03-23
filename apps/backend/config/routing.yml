@@ -1,3 +1,8 @@
+ajax_typeahead:
+  url:   /ajax/typeahead/:section/:page
+  param: { module: ajax, action: typeAhead }
+  requirements: { sf_method: [GET], sf_format: json }
+
 wp_post:
   class: sfPropelORMRouteCollection
   options:

@@ -6,4 +6,9 @@ class collectionComponents extends cqFrontendComponents
   {
     return sfView::SUCCESS;
   }
+
+  public function executeSidebarCollectible()
+  {
+    return sfView::SUCCESS;
+  }
 }

@@ -21,7 +21,8 @@ generator:
         title: Collection Categories
         display: [id, parent, name, tags_string, collections_count, score]
       filter:
-        display: [parent, name]
+        class: BackendCollectionCategoryFormFilter
+        display: [parent_id, name]
       form:
         display: [parent, name, tags, score]
       edit:

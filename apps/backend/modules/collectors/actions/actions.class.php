@@ -145,5 +145,4 @@ class collectorsActions extends autoCollectorsActions
     $this->redirect('collector');
   }
 
-
 }

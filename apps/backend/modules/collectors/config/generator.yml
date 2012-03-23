@@ -37,6 +37,7 @@ generator:
           export: { label: "Export to CSV", action: export }
 
       filter:
+        class: BackendCollectorFormFilter
         display: [username, display_name, email, user_type, spaminess, is_spam, cqnext_access_allowed]
         fields:
           email:

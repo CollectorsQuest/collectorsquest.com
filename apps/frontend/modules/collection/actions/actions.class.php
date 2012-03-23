@@ -103,6 +103,9 @@ class collectionActions extends cqFrontendActions
     $collector = $collectible->getCollector();
 
     $this->collectible = $collectible;
+    $this->collector = $collector;
+    $this->collectible = $collectible;
+    $this->additional_multimedia = $collectible->getMultimedia(false);
 
     return sfView::SUCCESS;
   }
