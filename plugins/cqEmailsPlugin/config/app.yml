@@ -1,5 +1,6 @@
 all:
   cqEmails:
+
     helpers:
       Tag: ~
       Url: [link_to, url_for]

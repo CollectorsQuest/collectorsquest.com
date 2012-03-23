@@ -11,7 +11,9 @@ IceClassLoader::initialize();
 /** Load the namespace for Neo4j client library */
 IceClassLoader::getLoader()->registerNamespaces(array(
     'Everyman' => __DIR__ . '/../lib/vendor/neo4jphp/lib',
-    'Twig' => __DIR__ . '/../lib/vendor/twig/lib',
+));
+IceClassLoader::getLoader()->registerPrefixes(array(
+    'Twig_' => __DIR__ . '/../lib/vendor/twig/lib'
 ));
 
 class ProjectConfiguration extends IceProjectConfiguration
@@ -30,7 +32,8 @@ class ProjectConfiguration extends IceProjectConfiguration
     $this->enablePlugins(
       'iceAssetsPlugin', 'iceBehaviorsPlugin', 'iceLibsPlugin',
       'iceTaggablePlugin', 'iceBackendPlugin', 'iceJobQueuePlugin',
-      'iceCrontabPlugin', 'iceSpamControlPlugin', 'iceGeoLocationPlugin'
+      'iceCrontabPlugin', 'iceSpamControlPlugin', 'iceGeoLocationPlugin',
+      'cqEmailsPlugin'
     );
 
     sfConfig::add(array(
