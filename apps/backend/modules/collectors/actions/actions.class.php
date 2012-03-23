@@ -28,7 +28,7 @@ class collectorsActions extends autoCollectorsActions
    * @param  sfWebRequest  $request
    * @return string
    */
-  public function executeExport(sfWebRequest $request)
+  public function executeExport1(sfWebRequest $request)
   {
     $filename = sprintf('collectors_export_%s.csv', date('Y_m_d_(hi)'));
 

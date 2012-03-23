@@ -157,7 +157,7 @@ collection:
     with_wildcard_routes: true
 
 collector:
-  class: sfPropelRouteCollection
+  class: icePropelRouteCollection
   options:
     model:                Collector
     module:               collectors

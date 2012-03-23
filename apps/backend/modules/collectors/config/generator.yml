@@ -34,7 +34,7 @@ generator:
           markAsSpam: { label: "Mark as spam", action: markAsSpam, params: { confirm: "Are you sure you want to mark as spam this collector?" } }
           markAsHam: { label: "Mark as ham", action: markAsHam, params: { confirm: "Are you sure you want to mark as ham this collector?" } }
         actions:
-          export: { label: "Export to CSV", action: export }
+          export: { label: "Export to CSV", sf_format: xml }
 
       filter:
         class: BackendCollectorFormFilter
