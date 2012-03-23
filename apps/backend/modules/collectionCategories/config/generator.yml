@@ -22,7 +22,7 @@ generator:
         display: [id, parent, name, tags_string, collections_count, score]
       filter:
         class: BackendCollectionCategoryFormFilter
-        display: [parent, name]
+        display: [parent_id, name]
       form:
         display: [parent, name, tags, score]
       edit:

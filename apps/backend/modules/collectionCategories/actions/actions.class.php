@@ -27,7 +27,7 @@ class collectionCategoriesActions extends autoCollectionCategoriesActions
     $limit = $request->getParameter('limit', 10);
 
     $items = CollectionCategoryQuery::create()
-        ->filterByParent("%$q%")
+        ->filterByName("%$q%")
         ->limit($limit)
         ->find()
         ->toKeyValue('Id', 'Name');

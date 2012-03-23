@@ -12,10 +12,35 @@ class BackendCollectionCategoryFormFilter extends BaseCollectionCategoryFormFilt
 {
   public function configure()
   {
-    $this->widgetSchema['parent'] = new bsWidgetFormInputTypeAhead(array(
+    $this->widgetSchema['parent_id'] = new bsWidgetFormInputTypeAhead(array(
       'source' => $this->getOption('url_parent', sfContext::getInstance()->getController()->genUrl('collectionCategories/parent')),
     ));
 
-    $this->validatorSchema['parent'] = new sfValidatorPropelChoice(array('required' => false, 'model' => 'CollectionCategory', 'column' => 'id'));
+    $this->validatorSchema['parent_id'] = new sfValidatorPropelChoice(array('required' => false, 'model' => 'CollectionCategory', 'column' => 'id'));
+  }
+
+  /**
+   * @param CollectionCategoryQuery $criteria
+   * @param string $field
+   * @param string|null $values
+   *
+   * @return ModelCriteria
+   */
+  public function addParentIdColumnCriteria($criteria, $field, $values = null)
+  {
+    $parent = CollectionCategoryQuery::create()->findOneByName($values);
+    $parentId = $parent instanceof CollectionCategory ? $parent->getId() : null;
+
+    return $criteria->filterByParentId($parentId);
+
+    //Next disabled until schema is fixed
+    if (!is_null($values))
+    {
+      $criteria->useCollectionCategoryRelatedByParentIdQuery()
+        ->filterByName($values)
+        ->endUse();
+    }
+
+    return $criteria;
   }
 }
