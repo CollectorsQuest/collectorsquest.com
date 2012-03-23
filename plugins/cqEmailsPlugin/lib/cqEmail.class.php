@@ -1,9 +1,7 @@
 <?php
 
 /**
- * Description of cqEmail
- *
- * @author      Ivan Plamenov Tanev aka Crafty_Shadow @ WEBWORLD.BG <vankata.t@gmail.com>
+ * cqEmail for reasy sending of pre-defined twig email templates
  */
 class cqEmail
 {
@@ -14,6 +12,7 @@ class cqEmail
       'to',
       'subject',
   );
+
   /**
    * @param Swift_Mailer $mailer
    */
@@ -31,14 +30,16 @@ class cqEmail
   }
 
   /**
-   * @param     string $template
+   * @param     string $name the name of the pre-defined email template
    * @param     array $options
+   *
+   * @return    integer number of actually sent emails (recepients + cc + bcc)
    */
-  public function send($template, $options = array())
+  public function send($name, $options = array())
   {
     $options = array_merge(
       array('params' => array()),
-      cqEmailsConfig::getDataForName($template),
+      cqEmailsConfig::getDataForName($name),
       $options);
 
     $missing_params = array_diff($this->mandatory_params, array_keys($options));
@@ -50,22 +51,26 @@ class cqEmail
       ));
     }
 
-    if (!$template instanceof cqEmailTemplate)
+    if (!$name instanceof cqEmailTemplate)
     {
-      $template = new cqEmailTemplate($template, $options);
+      $template = new cqEmailTemplate($name, $options);
+    }
+    else
+    {
+      $template = $name;
     }
 
-    $body = $template->render($options['params']);
+    $rendered_template = $template->render($options['params']);
 
     $message = Swift_Message::newInstance()
       ->setFrom($options['from'])
       ->setTo($options['to'])
       ->setSubject($options['subject'])
       ->setCharset('UTF-8')
-      ->addPart(strip_tags($body), 'text/plain')
-      ->addPart($body, 'text/html');
+      ->addPart(strip_tags($rendered_template), 'text/plain')
+      ->addPart($rendered_template, 'text/html');
 
-    $this->getMailer()->send($message);
+    return $this->getMailer()->send($message);
   }
 
 }

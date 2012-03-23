@@ -1,22 +1,15 @@
 all:
   cqEmails:
+    helpers:
+      Tag: ~
+      Url: [link_to, url_for]
+      Asset: [image_path, image_tag]
+
     defaults:
       from: { "no-reply@collectorsquest.com": "CollectorsQuest.com" }
       replyTo: { "info@collectorsquest.com": "CollectorsQuest.com" }
+
     Collector:
-      successful_registration:
-        subject: "Welcome to collectorsquest!"
-        template_path: collector/successful_registration.html.twig ## not-required, can be computed from name
-        required_params: ['collector']
-
-
-#tempalte_path:
-  #cqEmailsPlugin
-    #L modules
-      #L emails
-        #L templates
-          #L collector
-            #L _successful_registration.php
-#
-#Usage:
-  #cqEmail::send('Colector/successful_registration', array('to' => $collector_email, 'params' => array('collector' => $collector)));
+      password_reminder:
+        subject: "Your new password for CollectorsQuest.com"
+        required_params: [collector, password]

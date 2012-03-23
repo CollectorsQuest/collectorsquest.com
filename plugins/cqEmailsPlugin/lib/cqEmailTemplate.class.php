@@ -1,16 +1,13 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- * Description of cqEmailTemplate
+ * cqEmailTemplate is a convenience wrapper for a Twig template that can
+ * sniff the proper path to the template based on its name and will
+ * make any default params available to the twig template.
  *
- * @package     ???
- * @subpackage  ???
- * @author      Ivan Plamenov Tanev aka Crafty_Shadow @ WEBWORLD.BG <vankata.t@gmail.com>
+ * The template will not be handled to twig for rendering if there are any
+ * missing params that have been defined as mandatory in the template's config,
+ * instead an InvalidArgumentException is thrown
  */
 class cqEmailTemplate
 {
@@ -19,6 +16,15 @@ class cqEmailTemplate
     $path,
     $options;
 
+  /**
+   * Try to guess the path to a twig template based on the email template's name,
+   * for example:
+   *
+   * Collector/sendWelcomeEmail is collector/send_welcome_email.html.twig
+   *
+   * @param     string $name
+   * @return    string
+   */
   public static function guessPathFromName($name)
   {
     $parts = preg_split('#(/|:)#', $name, -1, PREG_SPLIT_NO_EMPTY);
@@ -27,6 +33,12 @@ class cqEmailTemplate
     return implode('/', $parts) . '.html.twig';
   }
 
+  /**
+   * @param     string $name
+   * @param     array $options
+   *
+   * @throws    InvalidArgumentException if the twig template file does not exist
+   */
   public function __construct($name, $options = array())
   {
     $this->name = $name;
@@ -52,11 +64,20 @@ class cqEmailTemplate
     $this->path = $path;
   }
 
+  /**
+   * Try to render the template. If there are mandatory params, first a check
+   * will be performed. If not all mandatory params are present, an exception is thrown
+   *
+   * @param     array $params
+   * @return    string
+   *
+   * @throws    InvalidArgumentException on missing mandatory params
+   */
   public function render($params = array())
   {
     $params = array_merge(
       cqEmailsConfig::getOptionForName($this->name, 'params', array()),
-      isset($options['params']) ? $options['params'] : array(),
+      isset($this->options['params']) ? $this->options['params'] : array(),
       $params);
 
     $missing_required = array_diff(
