@@ -62,4 +62,7 @@ generator:
 
       new: ~
       export:
-        display: [id, username, display_name, email, count_collector_collections, created_at]
+        sort: [id, asc]
+        fields:
+          count_collections: { label: Collections }
+        display: [id, username, display_name, email, count_collections, count_collectibles, created_at]
