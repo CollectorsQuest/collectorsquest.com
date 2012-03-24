@@ -18,16 +18,21 @@ generator:
         title: Collectibles for Sale
         fields:
           created_at: { label: Created, date_format: m/d/y }
-          backend_is_sold: { label: Is Sold, type: Boolean }
+          is_sold: { label: Is Sold, type: Boolean }
           is_price_negotiable: { label: Negotiable, type: Boolean }
           is_shipping_free: { label: Free Shipping, type: Boolean }
           list_sold_at: { label: Sold at }
           offers_count: { label: '# offers' }
           price: { type: Price }
 #          seller: { label: Seller, type: foreignKey }
-        display: [_collectible, condition, price, _seller, is_price_negotiable, is_shipping_free, backend_is_sold, _offers_count, created_at, _list_sold_at, _buyer]
+        display: [_collectible, condition, price, _seller, is_price_negotiable, is_shipping_free, _is_sold, _offers_count, created_at, _list_sold_at, _buyer]
         object_actions: {}
+        actions:
+          _new: ~
+          export: { label: 'Export to CSV' }
       filter:  ~
       form:    ~
       edit:    ~
       new:     ~
+      export:
+        display: [id, collectible.name, condition, price, collector.display_name, is_price_negotiable, is_shipping_free, is_sold, created_at]

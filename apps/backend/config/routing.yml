@@ -27,7 +27,7 @@ collectible_for_sale_export:
   param: { module: collectibleForSale, action: export }
 
 collectible_for_sale:
-  class: sfPropelORMRouteCollection
+  class: icePropelRouteCollection
   options:
     model:                CollectibleForSale
     module:               collectibleForSale
