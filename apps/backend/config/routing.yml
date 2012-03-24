@@ -26,10 +26,6 @@ collectible_for_sale_export:
   url: /collectibleForSale/export
   param: { module: collectibleForSale, action: export }
 
-collector_export:
-  url: /collector/export
-  param: { module: collectors, action: export }
-
 collectible_for_sale:
   class: sfPropelORMRouteCollection
   options:
