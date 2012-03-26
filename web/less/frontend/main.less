@@ -1,11 +1,17 @@
-@import url(http://fonts.googleapis.com/css?family=Fugaz+One);
-
 @import "bootstrap/less/variables.less";
 @import "bootstrap/less/mixins.less";
+
+@import "h5bp.less";
+@import "header.less";
 @import "menu.less";
 
 body {
-	background:#D9EBF5 url("/images/frontend/background-pattern.png") repeat;
+	background: #D9EBF5 url("/images/frontend/background-pattern.png") repeat;
+}
+
+.FugazOne {
+  font-family: 'Fugaz One', cursive;
+  visibility: hidden;
 }
 
 //SELECTION STYLE
@@ -18,61 +24,9 @@ body {
 	background: url(/images/frontend/sprites.png) no-repeat;
 }
 
-
 h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover {
 	text-decoration: none;
 	border-bottom: 1px solid @red;
-}
-
-// H5BP Image Replacement http://goo.gl/cEMGx
-.ir {
-	border:0; font: 0/0 a; text-shadow: none; color: transparent; background-color: transparent;
-}
-
-// HEADER
-header {
-	margin-bottom: 0;
-}
-.header-inner {
-	background-color: transparent;
-	background-image: none;
-	border-radius: 0;
-	box-shadow: none;
-	padding: 15px;
-}
-header > .container {
-	box-shadow: none;
-}
-// LOGO
-.cq-logo {
-	position: absolute;
-	left: 15px;
-	top: -40px;
-	z-index: 1001;
-}
-.logo{
-	background-position: 0 0;
-	width: 220px;
-	height: 102px;
-}
-
-
-// Clear Fix
-
-/* For modern browsers */
-.cf:before,
-.cf:after {
-	content:"";
-	display:table;
-}
-
-.cf:after {
-	clear:both;
-}
-
-/* For IE 6/7 (trigger hasLayout) */
-.cf {
-	zoom:1;
 }
 
 
@@ -675,3 +629,4 @@ footer {
   bottom: -5px;
   top: auto;
 }
+
