@@ -14,16 +14,15 @@
           </div>
         </div>
         <div class="span4">
-          &nbsp;
+          <button class="btn btn-large btn-primary">Primary action</button>
         </div>
       </div>
   </div><!-- /navbar-inner -->
 </header>
 
+<!-- old menu -->
 <nav id="nav" role="navigation">
-  <div class="cq-logo">
-    <a href="/" title="Home page"><img src="/images/frontend/logo.png"></a>
-  </div>
+  <a href="/" alt="Collectors Quest" title="Home page" class="cq-logo logo ir"></a>
   <div class="menu-wrapper cf">
     <ul>
       <li>
@@ -35,23 +34,10 @@
       <li><?= link_to('News', 'news/index'); ?></li>
       <li><?= link_to('Video', 'video/index'); ?></li>
       <li><?= link_to('Market', 'marketplace/index'); ?></li>
-
-      <!--
-      <li id="nav-my-account" class="dropdown pull-right">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Kiril Angov <b class="caret"></b></a>
-        <ul class="dropdown-menu">
-          <li><a href="#">Action</a></li>
-          <li><a href="#">Another action</a></li>
-          <li><a href="#">Something else here</a></li>
-          <li class="divider"></li>
-          <li><a href="#">Separated link</a></li>
-        </ul>
-      </li>
-      //-->
     </ul>
   </div>
 </nav>
-
+<!-- /old menu -->
 <script>
   $(document).ready(function()
   {

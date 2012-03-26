@@ -1,7 +1,7 @@
 <div class="slot1-inner">
   <div id="carousel-holder">
-    <span class="carousel_button_next ir"><a href="#" class="img_carousel_button_next next-carousel" title="Next">Next</a></span>
-    <span class="carousel_button_previous ir"><a href="#" class="img_carousel_button_previous prev-carousel" title="Previous">Prev</a></span>
+    <span class="carousel_next ir"><a href="#" class="button_carousel_next" title="Next">Next</a></span>
+    <span class="carousel_previous ir"><a href="#" class="button_carousel_previous" title="Previous">Prev</a></span>
     <ul id="sample-roundabout">
       <li>
         <div class="wrapper">
@@ -101,9 +101,10 @@
       duration: 400,
       easing: 'easeOutQuad',
       enableDrag: true,
+	    responsive: true,
       dropEasing: 'easeOutBounce',
-      btnNext: '.next-carousel',
-      btnPrev: '.prev-carousel'
+      btnNext: '.button_carousel_next',
+      btnPrev: '.button_carousel_previous'
     }, function() {
       $(this).fadeTo(500, 1);
     });

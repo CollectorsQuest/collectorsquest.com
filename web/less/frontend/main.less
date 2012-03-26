@@ -3,7 +3,7 @@
 
 @import "h5bp.less";
 @import "header.less";
-@import "menu.less";
+@import "menu-old.less";
 
 body {
 	background: #D9EBF5 url("/images/frontend/background-pattern.png") repeat;
@@ -20,7 +20,7 @@ body {
 ::-webkit-selection {background: #D9EBF5;}
 
 //SPRITES
-.icon_big_box, .icon_big_piggy_bank, .icon_big_question, .logo, .img_carousel_button_previous, .img_carousel_button_next{
+.button_carousel_next, .button_carousel_previous, .icon_big_box, .icon_big_piggy_bank, .icon_big_question, .logo{
 	background: url(/images/frontend/sprites.png) no-repeat;
 }
 
@@ -76,9 +76,7 @@ h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover {
 	margin-right: -210px;
 }
 .container-fluid, .container {
-	-webkit-box-shadow: 0 35px 30px rgba(50, 50, 50, 0.5);
-	-moz-box-shadow:    0 35px 30px rgba(50, 50, 50, 0.5);
-	box-shadow:         0 35px 30px rgba(50, 50, 50, 0.5);
+	.box-shadow(0 35px 30px rgba(50, 50, 50, 0.5));
 	padding-left: 15px;
 }
 
@@ -140,25 +138,46 @@ ul.footer-info-box {
 	list-style: none;
 }
 ul.footer-info-box li {
-	padding-left: 65px;
+	padding-left: 0;
 	border-top: 1px dashed #e98c7a;
 	padding-top: 10px;
 	margin-bottom: 20px;
+	.clearfix();
 }
 ul.footer-info-box li:first-child {
 	border-top: none;
 	padding-top: 0;
 	margin-top: 0;
 }
-ul.footer-info-box li.show-off {
-	background: url("/images/frontend/icon_big_box.png") no-repeat left 10px;
+.icon_big_box{
+	background-position: -221px 0;
+	width: 52px;
+	height: 46px;
+	float: left;
+  display: block;
+	margin-top: 4px;
 }
-ul.footer-info-box li.piggy_bank {
-	background: url("/images/frontend/icon_big_piggy_bank.png") no-repeat left 20px;
+.icon_big_piggy_bank{
+	background-position: -221px -47px;
+	width: 52px;
+	height: 46px;
+	float: left;
+	display: block;
+	margin-top: 4px;
 }
-ul.footer-info-box li.faq {
-	background: url("/images/frontend/icon_big_question.png") no-repeat left 20px;
+.icon_big_question{
+	background-position: -274px 0;
+	width: 52px;
+	height: 46px;
+	float: left;
+	display: block;
+	margin-top: 4px;
 }
+.info-box-text {
+	padding-left: 10px;
+	overflow: hidden;
+}
+
 
 //SLOTS
 #slot1 {
@@ -170,6 +189,13 @@ ul.footer-info-box li.faq {
 	padding: 30px 15px 0;
 }
 
+//BUTTONS
+.btn-big {
+	padding: 5px 10px;
+	font-size: @baseFontSize + 3px;
+	line-height: normal;
+//	#gradient > .directional(@startColor, @endColor, @deg)
+}
 
 //SEARCH FORM
 .search-header .btn-large {
@@ -209,34 +235,40 @@ ul.footer-info-box li.faq {
 #carousel-holder {
 	position: relative;
 }
-.carousel_button_next {
+.carousel_next {
 	position: absolute;
 	display: block;
 	top: 45%;
 	right: 0;
 	border: none;
 }
-.img_carousel_button_next {
-	background-position: -301px -47px ;
+.button_carousel_next {
+	background-position: -362px 0;
 	width: 26px;
 	height: 36px;
 	display: block;
 }
-.carousel_button_previous {
+.button_carousel_next:hover {
+	background-position: -362px -38px;
+}
+.carousel_previous {
 	position: absolute;
 	display: block;
 	top: 45%;
 	left: 0;
 	border: none;
 }
-.img_carousel_button_previous {
-	background-position: -274px -47px ;
+.button_carousel_previous {
+	background-position: -327px 0;
 	width: 26px;
 	height: 36px;
 	display: block;
 	outline: none;
 }
-.img_carousel_button_next:focus, .img_carousel_button_previous:focus {
+.button_carousel_previous:hover {
+	background-position: -327px -37px;
+}
+.button_carousel_previous:focus, .button_carousel_next:focus {
 	outline: none;
 }
 //.roundabout-in-focus { cursor: auto; }
@@ -252,9 +284,9 @@ ul.footer-info-box li.faq {
 #sample-roundabout li {
 //	width: 74.5%;
 	width: 520px;
-	height: 310px;
+	height: 309px;
 	background-color: transparent;
-	.box-shadow(0 4px 32px rgba(0, 0, 0, 0.4));
+	.box-shadow(0 0px 9px rgba(59, 45, 44, 1);
 	cursor: pointer;
 	.border-radius(7px);
 }
@@ -272,9 +304,9 @@ ul.footer-info-box li.faq {
 .carousel-in-focus-title {
 	position: absolute;
 	z-index: 100;
-	bottom: 35px;
-	width: 480px;
-	padding: 20px;
+	bottom: 8%;
+	width: 92%;
+	padding: 3% 4%;
 	display: block;
 	#translucent > .background(#fff, 0.8);
 }
@@ -446,6 +478,11 @@ footer {
 		width: 480px;
 		height: 340px;
 	}
+	#sample-roundabout li {
+		width: 484px;
+		height: 286px;
+	}
+
 }
 
 //  Fidex width of wapper from 800 to 1024px
@@ -482,33 +519,15 @@ footer {
 	.input-footer {
 		width: 200px;
 	}
-
 	#sample-roundabout {
-		width: 360px;
-		height: 255px;
+		width: 400px;
+		height: 220px;
 	}
-	#carousel-holder .carousel-in-focus-title h2 {
-		font-size: 1.75em;
-		line-height: 1.1;
-		padding-bottom: 8px;
+	#sample-roundabout li {
+		width: 300px;
+		height: 178px;
 	}
-	#carousel-holder .carousel-in-focus-title h3 {
-		font-size: 1.5em;
-		line-height: 1.1;
 
-	}
-	#carousel-holder .carousel-in-focus-title p {
-		font-size: 1em;
-
-	}
-	li.roundabout-moveable-item{
-		width:  354px;
-		height: 217px;
-	}
-	.carousel-in-focus-title {
-		width:  354px;
-		padding: 5px;
-	}
 
 }
 
@@ -518,19 +537,27 @@ footer {
 		padding-right: 15px;
 	}
 	#sample-roundabout {
-		height: 180px;
+		width: 300px;
+		height: 120px;
+
+	}
+	#sample-roundabout li {
+		width: 190px;
+		height: 112px;
+
 	}
 	.slot1-inner {
-		padding: 0px 10px 0px;
+		padding: 16px 10px 0px;
 	}
 	#carousel-holder .carousel-in-focus-title h2 {
-		font-size: 1.4em;
+		font-size: 1.0em;
 	}
 	#carousel-holder .carousel-in-focus-title h3 {
-		font-size: 1.1em;
+		font-size: 0.8em;
 	}
 	#carousel-holder .carousel-in-focus-title p {
-		font-size: 0.9em;
+		font-size: 0.8em;
+		line-height: 0.8em;
 	}
 
 }
@@ -567,9 +594,6 @@ footer {
 		margin-right:auto;
 	}
 
-//	#sample-roundabout {
-//		height: 210px;
-//	}
 }
 
 // hiding #sidebar
@@ -599,8 +623,8 @@ footer {
   padding: 10px;
   opacity: 0.8;
   z-index: 9998;
-  border-radius: 10px;
-  -moz-border-radius:10px 10px 10px 10px;
+	.border-radius(10px);
+
 }
 
 #infscr-loading img {
