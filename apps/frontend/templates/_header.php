@@ -21,17 +21,18 @@
 
   <div class="navbar">
     <div class="navbar-inner">
-      <div class="container">
+      <div class="container dark-bg">
         <a href="/" alt="Collectors Quest" title="Home page" class="cq-logo logo ir"></a>
-        <ul class="nav">
+        <ul class="nav pull-right">
           <li>
-            <a href="<?= url_for('@homepage'); ?>" style="padding: 9px 10px;">
+            <a href="<?= url_for('@homepage'); ?>" class="home-icon-pos">
               <i class="icon-home icon-white"></i>
             </a>
           </li>
           <li><?= link_to('Collections', 'collections/index'); ?></li>
           <li><?= link_to('News', 'news/index'); ?></li>
           <li><?= link_to('Video', 'video/index'); ?></li>
+          <li><?= link_to('Market', 'marketplace/index'); ?></li>
           <li class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">Dropdown <b class="caret"></b></a>
             <ul class="dropdown-menu">
