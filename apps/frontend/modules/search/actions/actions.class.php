@@ -46,4 +46,9 @@ class searchActions extends cqFrontendActions
 
     return sfView::SUCCESS;
   }
+
+  public function executeAdvanced(sfWebRequest $request)
+  {
+    return sfView::SUCCESS;
+  }
 }
