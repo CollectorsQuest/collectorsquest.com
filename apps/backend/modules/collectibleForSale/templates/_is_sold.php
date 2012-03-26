@@ -8,9 +8,5 @@
 $offer = $CollectibleForSale->getSoldOffer();
 
 if ($offer) {
-  echo '<pre>';
-var_dump($offer);
-echo '</pre>';
-
   echo $offer->getUpdatedAt('m/d/y H:M');
 }
