@@ -359,12 +359,23 @@ class collectorActions extends cqActions
    */
   public function executeSignupChoice(sfWebRequest $request)
   {
+    $signupType = $request->getParameter('type');
+
     if ($this->getUser()->isAuthenticated())
     {
+      if ($signupType == 'seller' && !$this->getUser()->isSeller())
+      {
+        $this->redirect('seller/packages');
+      }
+      else if ($signupType == 'seller')
+      {
+        $this->redirect('@manage_collections');
+      }
+
       $this->redirect('@collector_signup');
     }
 
-    if ($signupType = $request->getParameter('type') and in_array($signupType, array('collector', 'seller')))
+    if (in_array($signupType, array('collector', 'seller')))
     {
       $this->getUser()->setAttribute('signup_type', $signupType, 'registration');
       $this->getUser()->setAttribute('package', null, 'registration');

@@ -5,7 +5,7 @@
     <font size="2"><?= __('Click Here!'); ?></font>
   </div>
 </a>
-<a href="<?php echo url_for('@seller_signup'); ?>" style="color: #666666;">
+<a href="<?php echo url_for('@collector_signup_choice?type=seller'); ?>" style="color: #666666;">
   <div style="float: right;" class="choice_box rounded">
     <?= __('Are you a <br> SELLER?'); ?>
     <br><br>

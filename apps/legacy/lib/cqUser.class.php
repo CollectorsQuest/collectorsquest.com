@@ -39,4 +39,9 @@ class cqUser extends cqBaseUser
     return $this->collector;
   }
 
+  public function isSeller()
+  {
+    return 'seller' === $this->getAttribute('user_type', 'collector', 'collector');
+  }
+
 }
