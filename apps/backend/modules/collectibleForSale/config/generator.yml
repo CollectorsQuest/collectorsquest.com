@@ -17,7 +17,7 @@ generator:
       list:
         title: Collectibles for Sale
         fields:
-          created_at: { label: Created, date_format: m/d/y }
+          created_at: { label: Created, date_format: M/d/y }
           is_sold: { label: Is Sold, type: Boolean }
           is_price_negotiable: { label: Negotiable, type: Boolean }
           is_shipping_free: { label: Free Shipping, type: Boolean }
