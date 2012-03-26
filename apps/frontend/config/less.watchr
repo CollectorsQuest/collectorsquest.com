@@ -17,11 +17,11 @@ end
 def watchr2
   web = Pathname.new("#{File.dirname(__FILE__)}/../../../web").realpath.to_s
 
-  less = web + "/less/frontend/bootstrap/less/bootstrap.less"
+  less = web + "/less/frontend/bootstrap/bootstrap.less"
   css  = web + "/css/frontend/bootstrap.css"
   lessc less, css, web
 
-  less = web + "/less/frontend/bootstrap/less/responsive.less"
+  less = web + "/less/frontend/bootstrap/responsive.less"
   css  = web + "/css/frontend/responsive.css"
   lessc less, css, web
 end
