@@ -6,83 +6,100 @@
       <li>
         <div class="wrapper">
           <img src="/images/frontend/mockups/carousel_1.jpg" alt="">
-          <span class="carousel-in-focus-title">
-            <h2>Too Much Time on His Hands</h2>
-            <p>Almost none of Stephen's 200 clocks are set to the same time. It's enough to drive one cuckoo! <a href="">Watch the interview now.</a></p>
-          </span>
-        </div>
-      </li>
-      <li>
-        <div class="wrapper">
-          <img src="/images/frontend/mockups/carousel_2.jpg" alt="">
-          <span class="carousel-in-focus-title">
-            <h2>Too Much Time on His Hands</h2>
-            <p>Almost none of Stephen's 200 clocks are set to the same time. It's enough to drive one cuckoo! <a href="">Watch the interview now.</a></p>
-          </span>
-        </div>
-      </li>
-
-      <li>
-        <div class="wrapper">
-          <img src="/images/frontend/mockups/carousel_3.jpg" alt="">
-          <span class="carousel-in-focus-title">
-            <h2>Too Much Time on His Hands</h2>
-            <p>Almost none of Stephen's 200 clocks are set to the same time. It's enough to drive one cuckoo! <a href="">Watch the interview now.</a></p>
-          </span>
+          <div class="carousel-in-focus-title-container">
+            <div class="carousel-in-focus-title">
+              <h2>Too Much Time on His Hands</h2>
+              <p>Almost none of Stephen's 200 clocks are set to the same time. It's enough to drive one cuckoo! <a href="">Watch the interview now.</a></p>
+            </div>
+          </div>
         </div>
       </li>
       <li>
         <div class="wrapper">
           <img src="/images/frontend/mockups/carousel_4.jpg" alt="">
-          <span class="carousel-in-focus-title">
-            <h2>Too Much Time on His Hands</h2>
-            <p>Almost none of Stephen's 200 clocks are set to the same time. It's enough to drive one cuckoo! <a href="">Watch the interview now.</a></p>
-          </span>
-        </div>
-      </li>
-      <li>
-        <div class="wrapper">
-          <img src="/images/frontend/mockups/carousel_3.jpg" alt="">
-          <span class="carousel-in-focus-title">
-            <h2>Too Much Time on His Hands</h2>
-            <p>Almost none of Stephen's 200 clocks are set to the same time. It's enough to drive one cuckoo! <a href="">Watch the interview now.</a></p>
-          </span>
-        </div>
-      </li>
-      <li>
-        <div class="wrapper">
-          <img src="/images/frontend/mockups/carousel_2.jpg" alt="">
-          <span class="carousel-in-focus-title">
-            <h2>Too Much Time on His Hands</h2>
-            <p>Almost none of Stephen's 200 clocks are set to the same time. It's enough to drive one cuckoo! <a href="">Watch the interview now.</a></p>
-          </span>
+          <div class="carousel-in-focus-title-container">
+            <div class="carousel-in-focus-title">
+              <h2>Too Much Time on His Hands</h2>
+              <p>Almost none of Stephen's 200 clocks are set to the same time.</p>
+            </div>
+          </div>
         </div>
       </li>
       <li>
         <div class="wrapper">
           <img src="/images/frontend/mockups/carousel_1.jpg" alt="">
-          <span class="carousel-in-focus-title">
-            <h2>Too Much Time on His Hands</h2>
-            <p>Almost none of Stephen's 200 clocks are set to the same time. It's enough to drive one cuckoo! <a href="">Watch the interview now.</a></p>
-          </span>
-        </div>
-      </li>
-      <li>
-        <div class="wrapper">
-          <img src="/images/frontend/mockups/carousel_4.jpg" alt="">
-          <span class="carousel-in-focus-title">
-            <h2>Too Much Time on His Hands</h2>
-            <p>Almost none of Stephen's 200 clocks are set to the same time. It's enough to drive one cuckoo! <a href="">Watch the interview now.</a></p>
-          </span>
+          <div class="carousel-in-focus-title-container">
+            <div class="carousel-in-focus-title">
+              <h2>Too Much Time on His Hands</h2>
+              <p>Almost none of Stephen's 200 clocks are set to the same time. It's enough to drive one cuckoo! <a href="">Watch the interview now.</a></p>
+            </div>
+          </div>
         </div>
       </li>
       <li>
         <div class="wrapper">
           <img src="/images/frontend/mockups/carousel_2.jpg" alt="">
-          <span class="carousel-in-focus-title">
-            <h2>Too Much Time on His Hands</h2>
-            <p>Almost none of Stephen's 200 clocks are set to the same time. It's enough to drive one cuckoo! <a href="">Watch the interview now.</a></p>
-          </span>
+          <div class="carousel-in-focus-title-container">
+            <div class="carousel-in-focus-title">
+              <h2>Too Much Time on His Hands</h2>
+              <p>Almost none of Stephen's 200 clocks are set to the same time. It's enough to drive one cuckoo! <a href="">Watch the interview now.</a></p>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="wrapper">
+          <img src="/images/frontend/mockups/carousel_3.jpg" alt="">
+          <div class="carousel-in-focus-title-container">
+            <div class="carousel-in-focus-title">
+              <h2>Too Much Time on His Hands</h2>
+              <p>Almost none of Stephen's 200 clocks are set to the same time. It's enough to drive one cuckoo! <a href="">Watch the interview now.</a></p>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="wrapper">
+          <img src="/images/frontend/mockups/carousel_4.jpg" alt="">
+          <div class="carousel-in-focus-title-container">
+            <div class="carousel-in-focus-title">
+              <h2>Too Much Time on His Hands</h2>
+              <p>Almost none of Stephen's 200 clocks are set to the same time. It's enough to drive one cuckoo! <a href="">Watch the interview now.</a></p>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="wrapper">
+          <img src="/images/frontend/mockups/carousel_3.jpg" alt="">
+          <div class="carousel-in-focus-title-container">
+            <div class="carousel-in-focus-title">
+              <h2>Too Much Time on His Hands</h2>
+              <p>Almost none of Stephen's 200 clocks are set to the same time. It's enough to drive one cuckoo! <a href="">Watch the interview now.</a></p>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="wrapper">
+          <img src="/images/frontend/mockups/carousel_2.jpg" alt="">
+          <div class="carousel-in-focus-title-container">
+            <div class="carousel-in-focus-title">
+              <h2>Too Much Time on His Hands</h2>
+              <p>Almost none of Stephen's 200 clocks are set to the same time. Almost none of Stephen's 200 clocks are set to the same time. It's enough to drive one cuckoo! <a href="">Watch the interview now.</a></p>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="wrapper">
+          <img src="/images/frontend/mockups/carousel_1.jpg" alt="">
+          <div class="carousel-in-focus-title-container">
+            <div class="carousel-in-focus-title">
+              <h2>Too Much Time on His Hands</h2>
+              <p>Almost none of Stephen's 200 clocks are set to the same time. It's enough to drive one cuckoo! <a href="">Watch the interview now.</a></p>
+            </div>
+          </div>
         </div>
       </li>
 

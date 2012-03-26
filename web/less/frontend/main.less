@@ -11,7 +11,7 @@ body {
 
 .FugazOne {
   font-family: 'Fugaz One', cursive;
-  visibility: hidden;
+//  visibility: hidden;
 }
 
 //SELECTION STYLE
@@ -183,6 +183,7 @@ ul.footer-info-box li:first-child {
 #slot1 {
 	margin: 0 auto;
 	background-color: @white;
+	.box-shadow(0 35px 30px rgba(50, 50, 50, 0.5));
 	.clearfix();
 }
 .slot1-inner {
@@ -242,14 +243,13 @@ ul.footer-info-box li:first-child {
 	position: absolute;
 	display: block;
 	top: 45%;
-	right: 0;
+	right: 30px;
 	border: none;
 }
 .button_carousel_next {
 	background-position: -362px 0;
 	width: 26px;
 	height: 36px;
-  margin-right: 25px;
 	display: block;
 }
 .button_carousel_next:hover {
@@ -267,7 +267,6 @@ ul.footer-info-box li:first-child {
 	width: 26px;
 	height: 36px;
 	display: block;
-	outline: none;
 }
 .button_carousel_previous:hover {
 	background-position: -327px -37px;
@@ -278,7 +277,7 @@ ul.footer-info-box li:first-child {
 //.roundabout-in-focus { cursor: auto; }
 
 #sample-roundabout {
-	width: 700px;
+	width: 670px;
 	height: 360px;
 	list-style: none;
 	margin: 0 auto;
@@ -305,19 +304,21 @@ ul.footer-info-box li:first-child {
 	width: 100%;
 	.border-radius(7px);
 }
-.carousel-in-focus-title {
+.carousel-in-focus-title-container {
 	position: absolute;
 	z-index: 100;
 	bottom: 8%;
-	width: 92%;
-	padding: 3% 4%;
+	width: 100%;
 	display: block;
 	#translucent > .background(#fff, 0.8);
 }
-li.roundabout-moveable-item span.carousel-in-focus-title {
+.carousel-in-focus-title {
+	margin: 3% 4%;
+}
+li.roundabout-moveable-item .carousel-in-focus-title-container  {
 	visibility: hidden;
 }
-li.roundabout-in-focus span.carousel-in-focus-title {
+li.roundabout-in-focus .carousel-in-focus-title-container  {
 	visibility: visible;
 }
 
