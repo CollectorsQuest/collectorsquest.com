@@ -52,17 +52,26 @@
       </div><!--/span-->
       <div class="span4">
         <ul class="footer-info-box">
-          <li class="show-off">
-            <h2 class="FugazOne">Show Off</h2>
-            <p>Share your passion with a world of interested people by organizing your collections with our easy to use tools.</p>
+          <li>
+            <span class="icon_big_box"></span>
+            <div class="info-box-text">
+              <h2 class="FugazOne">Show Off</h2>
+              <p>Share your passion with a world of interested people by organizing your collections with our easy to use tools.</p>
+            </div>
           </li>
-          <li class="piggy_bank">
-            <h2 class="FugazOne">Get Paid</h2>
-            <p>It’s easy to sell an item once you’re a member. Just choose “I’m a seller” during the sign up process.</p>
+          <li>
+            <span class="icon_big_piggy_bank"></span>
+            <div class="info-box-text">
+              <h2 class="FugazOne">Get Paid</h2>
+              <p>It’s easy to sell an item once you’re a member. Just choose “I’m a seller” during the sign up process.</p>
+            </div>
           </li>
-          <li class="faq">
-            <h2 class="FugazOne">Help/FAQ</h2>
-            <p>Want to know how to get more out of your membership? <a href="#">Watch</a> our helpful videos today!</p>
+          <li>
+            <span class="icon_big_question"></span>
+            <div class="info-box-text">
+              <h2 class="FugazOne">Help/FAQ</h2>
+              <p>Want to know how to get more out of your membership? <a href="#">Watch</a> our helpful videos today!</p>
+            </div>
           </li>
         </ul>
       </div><!--/span-->

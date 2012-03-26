@@ -30,7 +30,7 @@ Modernizr.load({
     $('.FugazOne')
       .hide()
       .css({"visibility":"visible"})
-      .fadeIn('fast');
+      .fadeIn('medium');
   }
 });
 
