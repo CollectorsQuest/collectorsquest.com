@@ -11,7 +11,7 @@ body {
 
 .FugazOne {
   font-family: 'Fugaz One', cursive;
-  visibility: hidden;
+//  visibility: hidden;
 }
 
 //SELECTION STYLE
@@ -183,6 +183,7 @@ ul.footer-info-box li:first-child {
 #slot1 {
 	margin: 0 auto;
 	background-color: @white;
+	.box-shadow(0 35px 30px rgba(50, 50, 50, 0.5));
 	.clearfix();
 }
 .slot1-inner {
@@ -202,9 +203,10 @@ ul.footer-info-box li:first-child {
 	padding: 5px 10px;
 	margin-left: -5px;
 	font-size: 14px;
-  font-weight: bold;
-  height: 30px;
-  color: #786767;
+	font-weight: bold;
+	height: 34px;
+	color: #786767;
+	#gradient > .vertical(#e1dede,#cecbcb);
 	line-height: normal;
 	-webkit-border-top-right-radius: 7px;
 	-webkit-border-bottom-right-radius: 7px;
@@ -228,10 +230,11 @@ ul.footer-info-box li:first-child {
 	-moz-border-radius-bottomleft: 7px;
 	border-top-left-radius: 7;
 	border-bottom-left-radius: 7px;
-	padding-top: 5px;
-	padding-bottom: 5px;
+	padding-top: 7px;
+	padding-bottom: 7px;
 	margin-bottom: 0;
 	border: 1px solid #C3C7CB;
+	.box-shadow(inset 2px 2px 2px 1px rgba(0,0,0,.09));
 }
 
 // CAROUSEL
@@ -242,14 +245,13 @@ ul.footer-info-box li:first-child {
 	position: absolute;
 	display: block;
 	top: 45%;
-	right: 0;
+	right: 30px;
 	border: none;
 }
 .button_carousel_next {
 	background-position: -362px 0;
 	width: 26px;
 	height: 36px;
-  margin-right: 25px;
 	display: block;
 }
 .button_carousel_next:hover {
@@ -267,7 +269,6 @@ ul.footer-info-box li:first-child {
 	width: 26px;
 	height: 36px;
 	display: block;
-	outline: none;
 }
 .button_carousel_previous:hover {
 	background-position: -327px -37px;
@@ -278,7 +279,7 @@ ul.footer-info-box li:first-child {
 //.roundabout-in-focus { cursor: auto; }
 
 #sample-roundabout {
-	width: 700px;
+	width: 670px;
 	height: 360px;
 	list-style: none;
 	margin: 0 auto;
@@ -305,19 +306,21 @@ ul.footer-info-box li:first-child {
 	width: 100%;
 	.border-radius(7px);
 }
-.carousel-in-focus-title {
+.carousel-in-focus-title-container {
 	position: absolute;
 	z-index: 100;
 	bottom: 8%;
-	width: 92%;
-	padding: 3% 4%;
+	width: 100%;
 	display: block;
 	#translucent > .background(#fff, 0.8);
 }
-li.roundabout-moveable-item span.carousel-in-focus-title {
+.carousel-in-focus-title {
+	margin: 3% 4%;
+}
+li.roundabout-moveable-item .carousel-in-focus-title-container  {
 	visibility: hidden;
 }
-li.roundabout-in-focus span.carousel-in-focus-title {
+li.roundabout-in-focus .carousel-in-focus-title-container  {
 	visibility: visible;
 }
 
