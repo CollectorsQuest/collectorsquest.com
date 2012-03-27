@@ -111,12 +111,12 @@
   $(document).ready(function()
   {
     $("#sample-roundabout").roundabout({
-      responsive: true,
       tilt: 0.6,
       minScale: 0.6,
       minOpacity: 1,
-      duration: 400,
+      duration: 800,
       easing: 'easeOutQuad',
+      triggerFocusEvents: true,
       enableDrag: true,
 	    responsive: true,
       dropEasing: 'easeOutBounce',
@@ -125,5 +125,20 @@
     }, function() {
       $(this).fadeTo(500, 1);
     });
+
+    $('#sample-roundabout li')
+      .focus(function()
+      {
+        $(this)
+          .find('.carousel-in-focus-title-container')
+          .css({visibility: "visible"})
+          .fadeIn('slow');
+      })
+      .blur(function()
+      {
+        $(this)
+          .find('.carousel-in-focus-title-container')
+          .fadeOut('slow');
+      });
   });
 </script>

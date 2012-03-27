@@ -1,14 +1,5 @@
 <div id="grid_view_collectible_<?php echo  $collectible->getId(); ?>" class="span-4 grid_view_collectible">
-  <?php
-    if (isset($editable) && $editable == true)
-    {
-      echo image_tag_collectible($collectible, '150x150');
-    }
-    else
-    {
-      echo link_to_collectible($collectible, 'image');
-    }
-  ?>
+  <?= link_to_collectible($collectible, 'image'); ?>
 
   <?php if (isset($editable) && $editable == true): ?>
   <div class="cover" style="padding-top: 15px;">
