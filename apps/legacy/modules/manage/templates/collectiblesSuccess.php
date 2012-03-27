@@ -46,7 +46,7 @@
     jQuery('textarea').tinymce(
     {
       script_url: '/js/tiny_mce/tiny_mce.js',
-      content_css : "/css/legacy/tinyMCE.css",
+      content_css : "/css/legacy/tinymce.css",
 
       theme: "advanced",
       theme_advanced_buttons1: "formatselect,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo",

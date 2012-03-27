@@ -506,6 +506,14 @@ feedback:
   url:   /feedback
   param: { module: general, action: feedback }
 
+error_500:
+  url:   /errors/500
+  param: { module: general, action: error50x }
+
+error_404:
+  url:   /errors/404
+  param: { module: general, action: error404 }
+
 homepage:
   url:   /
   param: { module: general, action: index }
