@@ -1,7 +1,7 @@
 <br clear="all"/>
 
 <?php if ($collectors): ?>
-<div id="search-collectors">
+<div id="collectors">
   <?php
     foreach ($collectors as $i => $collector)
     {
@@ -18,12 +18,13 @@
       echo (($i + 1) % 2 == 0) ? '<br clear="all">' : null;
     }
   ?>
+</div>
 <br clear="all"/>
 <?php endif; ?>
 
 <?php
-  include_partial(
-    'global/pager',
-    array('pager' => $pager, 'options' => array('url' => '@search_collectors?q='. $q))
-  );
+include_partial(
+  'global/pager',
+  array('pager' => $pager, 'options' => array('url' => '@search_collectors?q='. $q))
+);
 ?>

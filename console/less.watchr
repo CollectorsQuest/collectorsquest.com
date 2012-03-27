@@ -3,4 +3,4 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 cd $DIR/..
-watchr apps/$1/config/less.watchr
+exec watchr apps/$1/config/less.watchr

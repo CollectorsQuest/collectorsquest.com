@@ -14,7 +14,7 @@ class collectionsActions extends cqActions
   /**
    * Executes index action
    *
-   * @param sfWebRequest $request A request object
+   * @param  sfWebRequest $request A request object
    *
    * @return string
    */

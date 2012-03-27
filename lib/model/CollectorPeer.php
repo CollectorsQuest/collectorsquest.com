@@ -10,15 +10,38 @@ class CollectorPeer extends BaseCollectorPeer
   const TYPE_COLLECTOR = 'Collector';
   const TYPE_SELLER = 'Seller';
 
-  public static function retrieveBySlug($slug)
+  /**
+   * @param     string $username
+   * @param     PropelPDO $con
+   * @return    Collector|null
+   */
+  public static function retrieveByUsername($username, PropelPDO $con = null)
+  {
+    $c = new Criteria();
+    $c->add(self::USERNAME, $username);
+
+    return self::doSelectOne($c, $con);
+  }
+
+  /**
+   * @param     string $slug
+   * @param     PropelPDO $con
+   * @return    Collector|null
+   */
+  public static function retrieveBySlug($slug, PropelPDO $con = null)
   {
     $c = new Criteria();
     $c->add(self::SLUG, $slug);
 
-    return self::doSelectOne($c);
+    return self::doSelectOne($c, $con);
   }
 
-  public static function retrieveByHash($hash)
+  /**
+   * @param     string $hash
+   * @param     PropelPDO $con
+   * @return    Collector|null
+   */
+  public static function retrieveByHash($hash, PropelPDO $con = null)
   {
     if (!empty($hash))
     {
@@ -26,7 +49,7 @@ class CollectorPeer extends BaseCollectorPeer
       @list($version, $id, $hmac, $time) = explode(';', $hash);
 
       // Try to get the Collector object
-      if (( $collector = self::retrieveByPk($id) ))
+      if (( $collector = self::retrieveByPk($id, $con) ))
       {
         // Finally check if the $hash is valid
         return $collector->getAutoLoginHash($version, $time) === $hash ? $collector : null;
@@ -37,13 +60,28 @@ class CollectorPeer extends BaseCollectorPeer
   }
 
   /**
+   * @param     string $identifier
+   * @param     PropelPDO $con
+   * @return    Collector|null
+   */
+  public static function retrieveByIdentifier($identifier, PropelPDO $con = null)
+  {
+    $c = new Criteria();
+    $c->addJoin(CollectorPeer::ID, CollectorIdentifierPeer::COLLECTOR_ID);
+    $c->add(CollectorIdentifierPeer::IDENTIFIER, $identifier);
+
+    return self::doSelectOne($c, $con);
+  }
+
+  /**
    * Retrieve a Collector record only if within the time limit from the hash generation
    *
-   * @var string $hash
-   * @var string $time_limit strtotime compatible time distance from hash generation time
-   * @var integer $time The current time
+   * @param     string $hash
+   * @param     string $time_limit strtotime compatible time distance from hash generation time
+   * @param     integer $time The current time
+   * @param     PropelPDO $con PDO connection object
    *
-   * @return Collector|null
+   * @return    Collector|null
    */
   public static function retrieveByHashTimeLimited($hash, $time_limit, $time = null)
   {
@@ -162,18 +200,13 @@ class CollectorPeer extends BaseCollectorPeer
       $collector = self::createFromArray($data);
     }
 
-    if (!$collector_identifier = CollectorIdentifierQuery::create()->findOneByIdentifier($profile['identifier']))
-    {
-      $collector_identifier = new CollectorIdentifier();
-      $collector_identifier->setCollector($collector);
-      $collector_identifier->setIdentifier($profile['identifier']);
-      $collector_identifier->save();
-    }
-    else
-    {
-      $collector_identifier->setCollector($collector);
-      $collector_identifier->save();
-    }
+    /** @var $q CollectorIdentifierQuery */
+    $q = CollectorIdentifierQuery::create()
+       ->filterByIdentifier($profile['identifier']);
+
+    $collector_identifier = $q->findOneOrCreate();
+    $collector_identifier->setCollector($collector);
+    $collector_identifier->save();
 
     return $collector;
   }

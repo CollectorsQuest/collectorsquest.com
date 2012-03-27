@@ -11,11 +11,20 @@ class cqNextAccessFilter extends sfFilter
 
   public function execute($filterChain)
   {
+    // Do not put restrictions in dev
+    if (SF_ENV === 'dev')
+    {
+      $filterChain->execute();
+
+      return;
+    }
+
     /* @var $request sfWebRequest */
     $request = $this->context->getRequest();
 
     /* @var $sf_user cqBaseUser */
     $sf_user = $this->context->getUser();
+
     $param_name = $this->getAutoLoginParameterName();
 
     // try to login the user if auto login parameter present and hash valid

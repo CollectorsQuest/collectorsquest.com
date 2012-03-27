@@ -13,13 +13,31 @@ default:
     language:     "en"
     verify-v1:    "+PAY5RqU44ztUAkVcbSIFxiqmn8vAgwgEZbJB+kd6a0="
     y_key:        "f4bf8cfd736a1ff1"
+    viewport:     "width=device-width, initial-scale=1.0"
 
     googlebot:    "all, index, follow"
     coverage:     "Worldwide"
-    copyright:    "Copyright (c) 2006-2012 CollectorsQuest.com"
+    copyright:    "Copyright (c) 2006-<?php echo date('Y'); ?> CollectorsQuest.com"
 
-  stylesheets:    [frontend/bootstrap.css]
-  javascripts:    []
+  stylesheets:
+    - frontend/bootstrap.css
+    - frontend/responsive.css
+    - frontend/main.css
+
+  javascripts:
+    - /assets/js/bootstrap/buttons.js
+    - /assets/js/bootstrap/dropdown.js
+    - /assets/js/bootstrap/typeahead.js
+    - /assets/js/jquery/scrollTo.js
+    - jquery/waypoints.js
+
+  components:
+    header:  [global, header]
+    footer:  [global, footer]
+    slot1:   []
+    sidebar_120: []
+    sidebar_180: []
+    sidebar_300: []
 
   has_layout:     true
   layout:         layout

@@ -2,6 +2,7 @@
 
 class collectionActions extends cqActions
 {
+
   /**
    * @param sfWebRequest $request
    * @return string
@@ -58,9 +59,9 @@ class collectionActions extends cqActions
 
     $per_page = sfConfig::get('app_pager_list_collectibles_max', 16);
 
-    $pager = new sfPropelPager('Collectible', $per_page);
+    $pager = new cqPropelPager('Collectible', $per_page);
     $pager->setCriteria($c);
-    $pager->setPage('all' == $request->getParameter('show') ? 1 : $this->getRequestParameter('page', 1));
+    $pager->setPage($this->getRequestParameter('page', 1));
     $pager->init();
 
     $this->pager      = $pager;
@@ -114,7 +115,7 @@ class collectionActions extends cqActions
     $this->loadHelpers(array('cqLinks'));
     $this->getResponse()->setCanonicalUrl(url_for_collection($collection, true));
 
-    if ($collection->countCollectibles() == 0)
+    if ($collection->countCollectibles() == 0 || $pager->getLastPage() < $this->getRequestParameter('page', 1))
     {
       $this->collections = null;
 

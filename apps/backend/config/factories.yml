@@ -61,7 +61,9 @@ dev:
             xdebug_logging:  false
             web_debug_class: sfWebDebug
         sf_file_debug:
-          class: sfNoLogger
+          class: sfFileLogger
+          param:
+            file: %SF_LOG_DIR%/%SF_APP%.log
 
 test:
   storage:

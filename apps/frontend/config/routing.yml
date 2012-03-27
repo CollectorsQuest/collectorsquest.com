@@ -1,14 +1,138 @@
-# You can find more information about this file on the symfony website:
-# http://www.symfony-project.org/reference/1_4/en/10-Routing
+### COLLECTIONS
+
+collections:
+  url:   /collections
+  param: { module: collections, action: index }
+
+collection_by_slug:
+  url:  /collection/:id/:slug
+  class: cqPropelRoute
+  options: { model: CollectorCollection, type: object, method: getObjectForRoute }
+  param: { module: collection, action: index }
+  requirements: { id: '\d+', slug: '[\-\w\.]+' }
+
+collections_by_collector_legacy:
+  url:  /collections/by/:collector_slug
+  class: sfPropelRoute
+  options: { model: Collector, type: object, method: getObjectForRoute }
+  param: { module: collections, action: index }
+  requirements: { collector_slug: '[\-\w\.]+' }
+
+collections_by_collector:
+  url:  /collections/by/:collector_id/:collector_slug
+  class: sfPropelRoute
+  options: { model: Collector, type: object, method: getObjectForRoute }
+  param: { module: collections, action: index }
+  requirements: { collector_id: '\d+', collector_slug: '[\-\w\.]+' }
+
+
+### COLLECTORS
+
+collector_by_slug:
+  url:  /collector/:id/:slug
+  class: cqPropelRoute
+  options: { model: Collector, type: object, method: getObjectForRoute, statsd: true }
+  param: { module: collector, action: index }
+  requirements: { id: '\d+', slug: '[\-\w\.]+' }
+
+manage_profile:
+  url:   /manage/profile
+  param: { module: default, action: index }
+
+
+### COLLECTIBLES
+
+collectible_by_slug:
+  url:  /collectible/:id/:slug
+  class: cqPropelRoute
+  options: { model: Collectible, type: object, method: getObjectForRoute, statsd: true }
+  param: { module: collection, action: collectible }
+  requirements: { id: '\d+', slug: '[\-\w\.]+' }
+
+
+### SEARCH
+
+search_collectibles:
+  url:   /search/collectibles
+  param: { module: search, action: collectibles }
+
+search_collections:
+  url:   /search/collections
+  param: { module: search, action: collections }
+
+search_collectors:
+  url:   /search/collectors
+  param: { module: search, action: collectors }
+
+search_blog:
+  url:   /search/blog
+  param: { module: search, action: blog }
+
+search_advanced:
+  url:   /search/advanced
+  param: { module: search, action: advanced }
+
+search:
+  url:   /search
+  param: { module: search, action: index }
+
+
+### NEWS
+
+news:
+  url:   /news
+  param: { module: news, action: index }
+
+
+### VIDEO
+
+video:
+  url:   /video
+  param: { module: video, action: index }
+
+
+### MARKETPLACE
+
+marketplace:
+  url: /marketplace
+  param: { module: marketplace, action: index }
+
+marketplace_category_by_slug:
+  url: /marketplace/:id/:slug
+  class: sfPropelRoute
+  options: { model: CollectionCategory, type: object, method: getObjectForRoute }
+  param: { module: marketplace, action: index }
+  requirements:
+    id: \d+
+    sf_method: [GET, POST]
+
+
+### GENERAL
+
+login:
+  url:   /login
+  param: { module: general, action: login }
+
+auto_login:
+  url:  /auto-login/:hash
+  param: { module: general, action: login }
+
+rpx_token:
+  url:   /rpx-token
+  param: { module: general, action: RPXTokenLogin }
 
 logout:
   url:   /logout
   param: { module: general, action: logout }
 
+recover_password:
+  url:   /recover-password
+  param: { module: general, action: recoverPassword }
+
 # default rules
 homepage:
   url:   /
-  param: { module: default, action: index }
+  param: { module: general, action: index }
 
 # generic rules
 # please, remove them by adding more specific rules

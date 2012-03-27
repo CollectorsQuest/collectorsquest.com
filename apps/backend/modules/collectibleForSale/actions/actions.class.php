@@ -37,8 +37,9 @@ class collectibleForSaleActions extends autoCollectibleForSaleActions
     $this->offers = CollectibleOfferPeer::doSelect($oCriteria);
   }
 
-  public function executeExport(sfWebRequest $request)
+  public function executeExport1(sfWebRequest $request)
   {
+    sfConfig::set('sf_web_debug', false);
     $filename = sprintf('marketplace_export_%s.csv', date('Y_m_d_(hi)'));
 
     header("Expires: 0");

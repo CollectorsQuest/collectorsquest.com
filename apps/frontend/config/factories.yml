@@ -1,14 +1,9 @@
-# You can find more information about this file on the symfony website:
-# http://www.symfony-project.org/reference/1_4/en/05-Factories
-
-prod:
+test:
   logger:
-    class:   sfNoLogger
+    class: sfNoLogger
     param:
-      level:   err
       loggers: ~
 
-test:
   storage:
     class: sfSessionTestStorage
     param:
@@ -23,12 +18,22 @@ test:
     param:
       delivery_strategy: none
 
-dev:
-  mailer:
-    param:
-      delivery_strategy: none
-
 all:
+  mailer:
+    class: cqMailer
+    param:
+      delivery_strategy: single_address
+      delivery_address:  developers@collectorsquest.com
+      charset: UTF-8
+      transport:
+        class: Swift_SmtpTransport
+        param:
+          host: smtp.gmail.com
+          port: 465
+          username: no-reply@collectorsquest.com
+          password: gHnyU7wZLtYf3n
+          encryption: tls
+
   routing:
     class: sfPatternRouting
     param:
@@ -53,3 +58,28 @@ all:
       logging:         %SF_LOGGING_ENABLED%
       use_flash:       true
       default_culture: %SF_DEFAULT_CULTURE%
+
+  logger:
+    class: sfNoLogger
+    param:
+      loggers: ~
+
+
+dev:
+
+  logger:
+    class: sfAggregateLogger
+    param:
+      level: debug
+      loggers:
+
+        sf_web_debug:
+          class: sfWebDebugLogger
+          param:
+            level: debug
+            condition:       %SF_WEB_DEBUG%
+            xdebug_logging:  false
+            web_debug_class: sfWebDebug
+
+        sf_file_debug:
+          class: sfNoLogger

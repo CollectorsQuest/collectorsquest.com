@@ -2,7 +2,7 @@
 
 /** @var cqApplicationConfiguration $configuration */
 $configuration = sfProjectConfiguration::getActive();
-$configuration->loadHelpers(array('Asset', 'Text', 'Url', 'cqGeneral', 'cqImages'));
+$configuration->loadHelpers(array('Asset', 'Text', 'Url', 'cqImages'));
 
 function link_to_collector($object, $type = 'text', $options = array())
 {
@@ -269,4 +269,18 @@ function url_for_featured_week(Featured $featured_week)
 function link_to_blog_post(wpPost $post)
 {
   return link_to($post->getPostTitle(), $post->getPostUrl());
+}
+
+function link_to_blog_author(wpUser $author, $type = 'text', $options = array())
+{
+  switch ($type)
+  {
+    case "image":
+      return link_to(image_tag('blog/avatar-'. str_replace(' ', '-', strtolower($author->getDisplayName())), $options), '/blog/author/'. urlencode($author->getUserLogin()) .'/');
+      break;
+    case "text":
+    default:
+      return link_to($author->getDisplayName(), '/blog/author/'. urlencode($author->getUserLogin()) .'/');
+      break;
+  }
 }

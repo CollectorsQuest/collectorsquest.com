@@ -6,13 +6,26 @@
 class cqBaseUser extends IceSecurityUser
 {
   /** @var Collector */
-  private $collector = null;
+  protected $collector = null;
 
   public function __construct(sfEventDispatcher $dispatcher, sfStorage $storage, $options = array())
   {
     parent::__construct($dispatcher, $storage, $options);
 
     self::$_facebook_data = $this->getAttribute('data', null, 'icepique/user/facebook');
+  }
+
+  public function getReferer($default)
+  {
+    $referer = $this->getAttribute('referer', $default);
+    $this->getAttributeHolder()->remove('referer');
+
+    return $referer ? $referer : $default;
+  }
+
+  public function setReferer($referer)
+  {
+    $this->setAttribute('referer', $referer);
   }
 
   /**
@@ -84,22 +97,17 @@ class cqBaseUser extends IceSecurityUser
         $c = new Criteria();
         $expiration_age = sfConfig::get('app_collector_remember_expiration_age', 15 * 24 * 3600);
         $c->add(CollectorRememberKeyPeer::CREATED_AT, time() - $expiration_age, Criteria::LESS_THAN);
-        CollectorRememberKeyPeer::doDelete($c, $con);
-
-        // remove other keys from this user
-        $c = new Criteria();
-        $c->add(CollectorRememberKeyPeer::COLLECTOR_ID, $collector->getId());
-        CollectorRememberKeyPeer::doDelete($c, $con);
+        CollectorRememberKeyPeer::doDelete($c);
 
         // generate new keys
-        $key = $this->generateRandomKey();
+        $key = cqStatic::getUniqueId(32);
 
         // save key
         $rk = new CollectorRememberKey();
         $rk->setRememberKey($key);
         $rk->setCollector($collector);
-        $rk->setIpAddress($_SERVER['REMOTE_ADDR']);
-        $rk->save($con);
+        $rk->setIpAddress(cqStatic::getUserIpAddress());
+        $rk->save();
 
         // make key as a cookie
         $remember_cookie = sfConfig::get('app_collector_remember_cookie_name', 'cqRemember');
@@ -120,31 +128,23 @@ class cqBaseUser extends IceSecurityUser
     return true;
   }
 
-  protected function generateRandomKey($len = 20)
-  {
-    return base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);
-  }
-
   /**
    * @return null|Collector
    */
   public function getCollector()
   {
-    if (!($this->collector instanceof Collector))
+    if ( !$this->collector
+      && (null !== $id = $this->getAttribute('id', null, 'collector')) )
     {
-      if ($this->collector === null && ($this->getAttribute("id", null, "collector") !== null))
+      $this->collector = CollectorPeer::retrieveByPK($id);
+
+      if (!$this->collector)
       {
-        $this->collector = CollectorPeer::retrieveByPK($this->getAttribute("id", null, "collector"));
+        // the user does not exist anymore in the database
+        $this->Authenticate(false);
+
+        throw new sfException('The collector does not exist anymore in the database.');
       }
-      else
-      {
-        $this->collector = new Collector();
-        $this->collector->setId(-1);
-      }
-    }
-    else if ($this->collector->getId() == -1 && $this->getAttribute("id", null, "collector") !== null)
-    {
-      $this->collector = CollectorPeer::retrieveByPK($this->getAttribute("id", null, "collector"));
     }
 
     return $this->collector;

@@ -2,13 +2,14 @@
 
 include(__DIR__.'/../../bootstrap/model.php');
 
-$t = new lime_test(7, array('output' => new lime_output_color(), 'error_reporting' => true));
+$t = new lime_test(9, array('output' => new lime_output_color(), 'error_reporting' => true));
 
 // Reset all tables we will be working on
 cqTest::resetTables(array(
   'collector', 'collector_profile',
   'collector_email', 'collector_geocache'
 ));
+cqTest::loadFixtures('01_test_collectors/');
 
 $t->diag('::createFromArray()');
 
@@ -44,3 +45,8 @@ $t->diag('::retrieveByHashTimeLimited()');
 
   $t->isa_ok($collector = CollectorPeer::retrieveByHashTimeLimited($hash, '+5 seconds', $current_time = strtotime('+10 seconds', $time_of_generation)), 'NULL',
     'retrieveByHashTimeLimited returns null when the object has passed its time limit');
+
+$t->diag('::retrieveByUsername()');
+
+  $t->isa_ok(CollectorPeer::retrieveByUsername('ivan.tanev'), 'Collector');
+  $t->isa_ok(CollectorPeer::retrieveByUsername('dfhjFKdhfalfhas'), 'NULL');

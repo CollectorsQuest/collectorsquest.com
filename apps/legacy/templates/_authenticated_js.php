@@ -89,14 +89,14 @@ function fancybox_collection_choose_category()
   return cq_not_implemented_yet();
 }
 
-function ajax_collectible_delete(id)
+function ajax_collectible_delete(collection_id, collectible_id)
 {
   $.ajax(
   {
-    url: "<?php echo url_for('@ajax_collection?section=collectible&page=delete') ?>?collectible_id=" + id,
+    url: "<?php echo url_for('@ajax_collection?section=collectible&page=delete') ?>?id=" + collection_id + "&collectible_id=" + collectible_id,
     success: function()
     {
-      $('#grid_view_collectible_' + id).fadeOut();
+      $('#grid_view_collectible_' + collectible_id).fadeOut();
     }
   });
 

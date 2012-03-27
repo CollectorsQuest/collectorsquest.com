@@ -145,8 +145,9 @@ class Collection extends BaseCollection
     if ($multimedia = MultimediaPeer::createMultimediaFromFile($this, $file))
     {
       $multimedia->setIsPrimary(true);
-      $multimedia->makeThumb('150x150', 'shave');
       $multimedia->makeThumb('50x50', 'shave');
+      $multimedia->makeThumb('150x150', 'shave');
+      $multimedia->makeThumb('190x150', 'shave', false);
       $multimedia->save();
 
       return $multimedia;

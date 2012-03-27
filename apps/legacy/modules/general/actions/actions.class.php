@@ -102,7 +102,7 @@ class generalActions extends cqActions
     // Try to auto-login the collector if a hash was provided
     if ($collector = CollectorPeer::retrieveByHash($request->getParameter('hash')))
     {
-      $this->getUser()->Authenticate(true, $collector, true);
+      $this->getUser()->Authenticate(true, $collector, false);
 
       // redirect to last page
       return $this->redirect($request->getParameter('goto', '@community'));
@@ -219,7 +219,7 @@ class generalActions extends cqActions
     /**
      * Handling errors where the $_GET['r'] is double urlencoded()
      */
-    if (substr($url. 0, 13) == 'http%3A%2F%2F')
+    if (substr($url, 0, 13) == 'http%3A%2F%2F')
     {
       $url = urldecode($url);
     }

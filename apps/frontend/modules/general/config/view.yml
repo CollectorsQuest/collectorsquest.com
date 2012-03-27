@@ -1,0 +1,10 @@
+indexSuccess:
+  javascripts:
+    - jquery/easing.js
+    - jquery/event.drag.js
+    - jquery/event.drop.js
+    - jquery/roundabout.js
+
+  components:
+    slot1: [general, indexCarousel]
+    sidebar_180: [general, indexSidebar]

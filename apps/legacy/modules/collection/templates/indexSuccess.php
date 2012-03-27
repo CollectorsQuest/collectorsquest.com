@@ -3,7 +3,9 @@
 /* @var $collection Collection */
 /* @var $pager sfPropelPager */
 /* @var $display string */
+/* @var $editable boolean */
 /* @var $sf_request sfWebRequest */
+
 use_javascript('jquery/carousel.js');
 use_stylesheet('legacy/scrollable.css');
 ?>
@@ -22,6 +24,7 @@ use_stylesheet('legacy/scrollable.css');
     include_partial(
       'collection/' . $display . '_view_collectible',
       array(
+        'collection'  => $collection,
         'collectible' => $collectible,
         'editable'    => $editable,
         'culture'     => $sf_user->getCulture(),
@@ -31,6 +34,7 @@ use_stylesheet('legacy/scrollable.css');
   }
   ?>
 </div>
+
 <br class="clear"><br>
 <div id="collection-pager" class="span-19 last" style="margin-bottom: 25px">
   <?php
@@ -69,52 +73,29 @@ include_component('comments', 'commentForm', array('object' => $collection));
   include_component('comments', 'commentList', $commentsOptions);
   ?>
 </div>
+
+<?php if ('all' == $sf_request->getParameter('show') && $pager->haveToPaginate()): ?>
 <script type="text/javascript">
-  <?php if ('all' == $sf_request->getParameter('show')): ?>
   $(function () {
     var opts =
     {
-      navSelector:"div#collection-pager div.pagination",
-      nextSelector:"div#collection-pager div.pagination span.next a",
-      itemSelector:"div.<?php echo $display ?>_view_collectible",
-      contentSelector:'div#update_view_collectible',
-      loading:{
-        img:'/images/loading.gif',
-        msgText:'<?php echo __('Loading the next page...'); ?>',
-        finishedMsg:'<?php echo __('No more pages to load'); ?>'
+      navSelector: "div#collection-pager div.pagination",
+      nextSelector: "div#collection-pager div.pagination span.next a",
+      itemSelector: "div.<?php echo $display ?>_view_collectible",
+      loading: {
+        img: '/images/loading.gif',
+        msgText: '<?php echo __('Loading the next page...'); ?>',
+        finishedMsg: '<?php echo __('No more pages to load'); ?>'
       },
-      loadingMsgRevealSpeed:0,
-      bufferPx:80,
-      extraScrollPx:0,
-      debug:false,
-      animate:false
+      loadingMsgRevealSpeed: 0,
+      bufferPx: 80,
+      extraScrollPx: 0,
+      debug: false,
+      animate: false
     };
 
     $('#update_view_collectible').infinitescroll(opts);
     $('#collection-pager div.pagination').hide();
   });
-    <?php else: ?>
-  $(function () {
-    var opts =
-    {
-      navSelector:"div#comments-pager div.pagination",
-      nextSelector:"div#comments-pager div.pagination:last span.next:last a",
-      itemSelector:"div.comment",
-      contentSelector:'div#comments-wrapper',
-      loading:{
-        img:'/images/loading.gif',
-        msgText:'<?php echo __('Loading the next page...'); ?>',
-        finishedMsg:'<?php echo __('No more pages to load'); ?>'
-      },
-      loadingMsgRevealSpeed:0,
-      bufferPx:80,
-      extraScrollPx:0,
-      debug:false,
-      animate:false
-    };
-
-    $('#comments-wrapper').infinitescroll(opts);
-    $('#comments-wrapper div.pagination').hide();
-  });
-    <?php endif; ?>
 </script>
+<?php endif; ?>

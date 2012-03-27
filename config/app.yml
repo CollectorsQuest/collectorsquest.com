@@ -24,11 +24,6 @@ all:
     defensio: "bb85a65a8118c50aa3918cb254a34176"
     dlvrit: "123456789abcdefg"
 
-    rpxnow:
-      application_domain: "https://collectorsquest-dev.rpxnow.com/"
-      application_id: "epghfmlgdcconfbmkmof"
-      api_key: "dabc61cdced770898eccd13f3b9f100e40d46b40"
-
     recaptcha:
       public_key: "6LdACwsAAAAAAE5tZTcYG47Lth2jzxxZeXAbll-Z"
       private_key: "6LdACwsAAAAAAM19l6G0lFk4F560SWvBM2k5M9L0"

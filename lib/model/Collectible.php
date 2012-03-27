@@ -340,6 +340,7 @@ class Collectible extends BaseCollectible
        * we make sure they are not put on the job queue
        */
       $multimedia->makeThumb('150x150', 'shave', false);
+      $multimedia->makeThumb('190x150', 'shave', false);
       $multimedia->makeThumb('485x365', 'shave', false);
       $multimedia->makeThumb('420x1000', 'bestfit', false);
 

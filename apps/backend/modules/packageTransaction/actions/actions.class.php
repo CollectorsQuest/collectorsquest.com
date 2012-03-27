@@ -13,4 +13,5 @@ require_once dirname(__FILE__).'/../lib/packageTransactionGeneratorHelper.class.
  */
 class packageTransactionActions extends autoPackageTransactionActions
 {
+
 }

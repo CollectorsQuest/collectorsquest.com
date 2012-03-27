@@ -79,15 +79,41 @@ class Collector extends BaseCollector implements ShippingRatesInterface
     return ($time == "1999-11-30 00:00:00") ? null : $time;
   }
 
+  /**
+   * @param     string $password
+   * @return    Collector
+   */
   public function setPassword($password)
   {
-    if (!$salt = $this->getSalt())
+    $this->setSha1Password(sha1($this->getSalt() . $password));
+
+    return $this;
+  }
+
+  /**
+   * Check if a password is valid for this collector
+   *
+   * @param     string $password
+   * @return    boolean
+   */
+  public function checkPassword($password)
+  {
+    return sha1($this->getSalt() . $password) == $this->getSha1Password();
+  }
+
+  /**
+   * Get the salt (generate it first if needed)
+   *
+   * @return    string
+   */
+  public function getSalt()
+  {
+    if (null === parent::getSalt())
     {
-      $salt = $this->generateSalt();
-      $this->setSalt($salt);
+      $this->setSalt($this->generateSalt());
     }
 
-    $this->setSha1Password(sha1($salt . $password));
+    return parent::getSalt();
   }
 
   public function getAutoLoginHash($version = 'v1', $time = null, $salt = null)
@@ -105,8 +131,8 @@ class Collector extends BaseCollector implements ShippingRatesInterface
         $json = json_encode(array(
           'version' => $version,
           'id'      => $this->getId(),
-          'created' => (int)$this->getCreatedAt('U'),
-          'time'    => (int)$time
+          'created' => (int) $this->getCreatedAt('U'),
+          'time'    => (int) $time
         ));
 
         $hash = sprintf(

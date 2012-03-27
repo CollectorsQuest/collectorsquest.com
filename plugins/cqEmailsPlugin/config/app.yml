@@ -1,0 +1,16 @@
+all:
+  cqEmails:
+
+    helpers:
+      Tag: ~
+      Url: [link_to, url_for]
+      Asset: [image_path, image_tag]
+
+    defaults:
+      from: { "no-reply@collectorsquest.com": "CollectorsQuest.com" }
+      replyTo: { "info@collectorsquest.com": "CollectorsQuest.com" }
+
+    Collector:
+      password_reminder:
+        subject: "Your new password for CollectorsQuest.com"
+        required_params: [collector, password]

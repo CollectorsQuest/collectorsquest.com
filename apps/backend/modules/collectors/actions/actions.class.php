@@ -28,53 +28,6 @@ class collectorsActions extends autoCollectorsActions
    * @param  sfWebRequest  $request
    * @return string
    */
-  public function executeExport(sfWebRequest $request)
-  {
-    $filename = sprintf('collectors_export_%s.csv', date('Y_m_d_(hi)'));
-
-    header("Expires: 0");
-    header("Cache-control: private");
-    header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
-    header("Content-Description: File Transfer");
-    header('Content-Type: text/csv, charset=UTF-8; encoding=UTF-8');
-    header("Content-disposition: attachment; filename=" . $filename);
-
-    $out = fopen('php://output', 'w');
-
-    /* @var $criteria Criteria */
-    $criteria = $this->buildQuery();
-    $criteria->clearSelectColumns();
-    $criteria->addSelectColumn(CollectorPeer::ID);
-    $criteria->addSelectColumn(CollectorPeer::USERNAME);
-    $criteria->addSelectColumn(CollectorPeer::DISPLAY_NAME);
-    $criteria->addSelectColumn(CollectorPeer::EMAIL);
-    $criteria->addAsColumn('collections', sprintf('COUNT(%s)', CollectorCollectionPeer::ID));
-    $criteria->addSelectColumn(CollectorPeer::CREATED_AT);
-    $criteria->addJoin(CollectorPeer::ID, CollectorCollectionPeer::COLLECTOR_ID, Criteria::LEFT_JOIN);
-    $criteria->addGroupByColumn(CollectorCollectionPeer::COLLECTOR_ID);
-//    $criteria->addHaving('collections', 0, Criteria::GREATER_THAN);
-
-    $stmt = CollectorPeer::doSelectStmt($criteria);
-
-    if ($stmt->rowCount())
-    {
-      /* @var $collectibleForSale CollectibleForSale */
-      while ($collector = $stmt->fetch(PDO::FETCH_NUM))
-      {
-        fputcsv($out, $collector);
-      }
-    }
-
-    $stmt->closeCursor();
-
-    fclose($out);
-    return sfView::NONE;
-  }
-
-  /**
-   * @param  sfWebRequest  $request
-   * @return string
-   */
   public function executeAutoLogin(sfWebRequest $request)
   {
     /* @var $collector Collector */
@@ -144,6 +97,5 @@ class collectorsActions extends autoCollectorsActions
 
     $this->redirect('collector');
   }
-
 
 }

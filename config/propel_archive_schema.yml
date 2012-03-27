@@ -6,7 +6,7 @@ package: lib.model.archive
 classes:
   CollectorArchive:
     columns:
-      id:             { type: integer, index: true, primaryKey: true, autoIncrement: false }
+      id:             { type: integer, primaryKey: true, autoIncrement: false }
       graph_id:       { type: integer, required: false, index: true }
       facebook_id:    { type: varchar, size: 20, index: true }
       username:       { type: varchar, size: 64, required: true }
@@ -53,7 +53,7 @@ classes:
 
   CollectorIdentifierArchive:
     columns:
-      id:            { type: integer, index: true, primaryKey: true, autoIncrement: false }
+      id:            { type: integer, primaryKey: true, autoIncrement: false }
       collector_id:  { type: integer, index: true }
       identifier:    { type: varchar, size: 255, index: true }
       created_at:    { type: timestamp }
@@ -61,7 +61,7 @@ classes:
 
   CollectorGeocacheArchive:
     columns:
-      id:               { type: integer, index: true, primaryKey: true, autoIncrement: false }
+      id:               { type: integer, primaryKey: true, autoIncrement: false }
       collector_id:     { type: integer, index: true }
       country_iso3166:  { type: char, size: 2 }
       state:            { type: varchar, size: 64 }
@@ -75,7 +75,7 @@ classes:
 
   CollectionArchive:
     columns:
-      id:                      { type: integer, index: true, primaryKey: true, autoIncrement: false }
+      id:                      { type: integer, primaryKey: true, autoIncrement: false }
       graph_id:                { type: integer, required: false, index: index }
       collection_category_id:  { type: integer, index: true }
       descendant_class:        { type: varchar, size: 100 }
@@ -100,7 +100,7 @@ classes:
 
   CollectorCollectionArchive:
     columns:
-      id:                      { type: integer, index: true, primaryKey: true, autoIncrement: false }
+      id:                      { type: integer, primaryKey: true, autoIncrement: false }
       graph_id:                { type: integer, required: false, index: index }
       collector_id:            { type: integer, index: true }
       collection_category_id:  { type: integer, index: true }
@@ -125,7 +125,7 @@ classes:
 
   CollectibleArchive:
     columns:
-      id:                { type: integer, index: true, primaryKey: true, autoIncrement: false }
+      id:                { type: integer, primaryKey: true, autoIncrement: false }
       graph_id:          { type: integer, required: false, index: index }
       collector_id:      { type: integer, index: true }
       name:              { type: varchar, size: 255, required: true, primaryString: true }
@@ -159,7 +159,7 @@ classes:
 
   CollectibleOfferArchive:
     columns:
-      id:              { type: integer, index: true, primaryKey: true, autoIncrement: false }
+      id:              { type: integer, primaryKey: true, autoIncrement: false }
       collectible_id:  { type: integer, index: true }
       collector_id:    { type: integer }
       price:           { type: float }
@@ -171,7 +171,7 @@ classes:
 
   CommentArchive:
     columns:
-      id:              { type: integer, index: true, primaryKey: true, autoIncrement: false }
+      id:              { type: integer, primaryKey: true, autoIncrement: false }
       disqus_id:       { type: char, size: 10 }
       parent_id:       { type: char, size: 10 }
       collection_id:   { type: integer, index: true }
@@ -189,7 +189,7 @@ classes:
 
   MultimediaArchive:
     columns:
-      id:           { type: integer, index: true, primaryKey: true, autoIncrement: false }
+      id:           { type: integer, primaryKey: true, autoIncrement: false }
       model:        { type: char, size: 64, required: true }
       model_id:     { type: integer }
       type:         { type: char, sqlType: "ENUM('image','video')", default: image, required: true }

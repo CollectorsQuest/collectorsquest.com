@@ -8,7 +8,6 @@ class CollectorEditForm extends BaseFormPropel
   public function setup()
   {
     $this->setWidgets(array(
-      'id'             => new sfWidgetFormInputHidden(),
       'photo'          => new sfWidgetFormInputFile(),
       'display_name'   => new sfWidgetFormInputText(),
       'email'          => new sfWidgetFormInputText(),
@@ -17,7 +16,6 @@ class CollectorEditForm extends BaseFormPropel
     ));
 
     $this->setValidators(array(
-      'id'             => new sfValidatorPropelChoice(array('model' => 'Collector', 'column' => 'id', 'required' => true)),
       'photo'          => new sfValidatorFile(array('required' => false, 'mime_categories' => 'web_images')),
       'display_name'   => new sfValidatorString(array('max_length' => 50, 'required' => true)),
       'email'          => new sfValidatorEmail(array('required' => true)),
@@ -34,6 +32,7 @@ class CollectorEditForm extends BaseFormPropel
     );
 
     $profile = new CollectorProfileEditForm($this->getObject()->getProfile());
+    unset ($profile['collector_id']);
     $this->embedForm('profile', $profile);
 
     $this->widgetSchema->setNameFormat('collector[%s]');

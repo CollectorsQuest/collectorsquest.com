@@ -4,9 +4,9 @@ Collector:
     username: ivan.tanev
     slug: ivan-tanev
     displayname: Ivan Tanev
+    salt: saltysalt
     password: ivanpass
     email: vankata.t@example.com
-    salt: saltysalt
 
   ivan_ivanov:
     username: ivan.ivanov

@@ -1,0 +1,5 @@
+indexSuccess:
+  stylesheets: [frontend/collections.css, frontend/collectibles.css, frontend/search.css]
+  javascripts: [jquery/masonry.js, jquery/infinitescroll.js]
+  components:
+    sidebar_300: [search, sidebar]

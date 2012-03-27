@@ -111,9 +111,11 @@ function image_tag_collection($collection, $which = '150x150', $options = array(
  */
 function image_tag_collectible($collectible, $which = '150x150', $options = array())
 {
+  $default = sfConfig::get('sf_app') . '/multimedia/Collectible/'. $which .'.png';
+
   if (!$collectible instanceof Collectible)
   {
-    return image_tag('legacy/multimedia/Collectible/'. $which .'.png', $options);
+    return image_tag($default, $options);
   }
 
   $options = array_merge(
@@ -133,7 +135,7 @@ function image_tag_collectible($collectible, $which = '150x150', $options = arra
 
   if (empty($image_tag))
   {
-    $image_tag = image_tag('legacy/multimedia/Collectible/'. $which .'.png', $options);
+    $image_tag = image_tag($default, $options);
   }
 
   return $image_tag;

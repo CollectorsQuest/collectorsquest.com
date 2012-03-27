@@ -1,4 +1,11 @@
 all:
+
+  credentials:
+    rpxnow:
+      application_domain: "https://collectorsquest-dev.rpxnow.com/"
+      application_id: "epghfmlgdcconfbmkmof"
+      api_key: "dabc61cdced770898eccd13f3b9f100e40d46b40"
+
   pager:
     list_collectors_max: 9
     list_collections_max: 15

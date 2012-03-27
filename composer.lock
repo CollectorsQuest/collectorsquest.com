@@ -1,5 +1,5 @@
 {
-    "hash": "577d21b6397a82bafcfca009c6269091",
+    "hash": "595744895ccbe0ff5de343abddffe35c",
     "packages": [
         {
             "package": "lib/vendor/faker",
@@ -9,6 +9,10 @@
         {
             "package": "lib/vendor/neo4jphp",
             "version": "0.0.6"
+        },
+        {
+            "package": "lib/vendor/twig",
+            "version": "1.6.2"
         },
         {
             "package": "plugins/sfGuardPlugin",

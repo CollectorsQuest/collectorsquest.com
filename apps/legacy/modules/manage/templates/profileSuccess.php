@@ -80,6 +80,11 @@
 $(document).ready(function()
 {
   $("#profile-tabs").tabs();
+
+  <?php if ($form['profile']->hasError()): ?>
+    $("#profile-tabs").tabs("select", 1);
+  <?php endif; ?>
+
   $('#collector_password').pstrength();
 });
 </script>
