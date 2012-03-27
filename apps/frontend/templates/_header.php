@@ -8,7 +8,7 @@
         <div class="span5">
           <div class="input-append search-header">
             <form action="<?= url_for('@search') ?>" method="get">
-              <input name="q" id="headerSearchInput" type="text" size="16" value="<?= $sf_params->get('q'); ?>">
+              <input name="q" id="headerSearchInput" data-provide="typeahead" type="text" size="16" value="<?= $sf_params->get('q'); ?>">
               <button class="btn btn-large" type="submit">Search</button>
             </form>
           </div>
@@ -22,7 +22,7 @@
   <div class="navbar">
     <div class="navbar-inner">
       <div class="container dark-bg">
-        <a href="/" alt="Collectors Quest" title="Home page" class="cq-logo logo ir"></a>
+        <a href="/" alt="Collectors Quest" title="Home page" class="cq-logo logo hide-text">Collectors Quest</a>
         <ul class="nav pull-right">
           <li>
             <a href="<?= url_for('@homepage'); ?>" class="home-icon-pos">
