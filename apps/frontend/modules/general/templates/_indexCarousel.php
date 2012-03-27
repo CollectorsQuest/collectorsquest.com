@@ -129,13 +129,16 @@
     $('#sample-roundabout li')
       .focus(function()
       {
-        $(this).find('.carousel-in-focus-title-container')
+        $(this)
+          .find('.carousel-in-focus-title-container')
           .css({visibility: "visible"})
           .fadeIn('slow');
       })
       .blur(function()
       {
-        $(this).find('.carousel-in-focus-title-container').fadeOut('slow');
+        $(this)
+          .find('.carousel-in-focus-title-container')
+          .fadeOut('slow');
       });
   });
 </script>
