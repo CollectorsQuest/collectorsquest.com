@@ -441,9 +441,82 @@ footer {
 	background-color: #ccc;
 }
 
+//  Under 800px
+@media (max-width: 767px) {
+	.fixed-right-300 {
+		padding-right: 15px;
+	}
+	#sample-roundabout {
+		width: 300px;
+		height: 120px;
+
+	}
+	#sample-roundabout li {
+		width: 190px;
+		height: 112px;
+
+	}
+	.slot1-inner {
+		padding: 16px 10px 0px;
+	}
+	#carousel-holder .carousel-in-focus-title h2 {
+		font-size: 1.0em;
+	}
+	#carousel-holder .carousel-in-focus-title h3 {
+		font-size: 0.8em;
+	}
+	#carousel-holder .carousel-in-focus-title p {
+		font-size: 0.8em;
+		line-height: 0.8em;
+	}
+
+}
+//  Fidex width of wapper from 800 to 1024px
+@media (min-width: 767px) and (max-width: 979px) {
+	.container-fluid.fixed-right-300 {
+		max-width: 422px;
+		margin-left:auto;
+		margin-right:auto;
+	}
+	.container-fluid.fixed-right-120 {
+		max-width:602px;
+		margin-left:auto;
+		margin-right:auto;
+	}
+	.container-fluid.fixed-right-180{
+		max-width:542px;
+		margin-left:auto;
+		margin-right:auto;
+	}
+	.container-fluid.without-column {
+		max-width:737px;
+		margin-left:auto;
+		margin-right:auto;
+	}
+	header, footer, nav, #slot1 {
+		max-width: 767px;
+		margin-left:auto;
+		margin-right:auto;
+	}
+
+	footer .form-horizontal .controls {
+		margin-left: 0;
+	}
+	.input-footer {
+		width: 200px;
+	}
+	#sample-roundabout {
+		width: 400px;
+		height: 220px;
+	}
+	#sample-roundabout li {
+		width: 300px;
+		height: 178px;
+	}
+}
 
 //  Fixed width of wrapper up to 1200px
-@media (min-width: 979px) and (max-width: 1200px) {
+@media (min-width: 979px) and (max-width: 1280px) {
 	.container-fluid.fixed-right-300 {
 		max-width: 680px;
 		margin-left:auto;
@@ -498,84 +571,7 @@ footer {
 
 }
 
-//  Fidex width of wapper from 800 to 1024px
-@media (min-width: 767px) and (max-width: 979px) {
-	.container-fluid.fixed-right-300 {
-		max-width: 422px;
-		margin-left:auto;
-		margin-right:auto;
-	}
-	.container-fluid.fixed-right-120 {
-		max-width:602px;
-		margin-left:auto;
-		margin-right:auto;
-	}
-	.container-fluid.fixed-right-180{
-		max-width:542px;
-		margin-left:auto;
-		margin-right:auto;
-	}
-	.container-fluid.without-column {
-		max-width:737px;
-		margin-left:auto;
-		margin-right:auto;
-	}
-	header, footer, nav, #slot1 {
-		max-width: 767px;
-		margin-left:auto;
-		margin-right:auto;
-	}
-
-	footer .form-horizontal .controls {
-		margin-left: 0;
-	}
-	.input-footer {
-		width: 200px;
-	}
-	#sample-roundabout {
-		width: 400px;
-		height: 220px;
-	}
-	#sample-roundabout li {
-		width: 300px;
-		height: 178px;
-	}
-
-
-}
-
-//  Under 800px
-@media (max-width: 767px) {
-	.fixed-right-300 {
-		padding-right: 15px;
-	}
-	#sample-roundabout {
-		width: 300px;
-		height: 120px;
-
-	}
-	#sample-roundabout li {
-		width: 190px;
-		height: 112px;
-
-	}
-	.slot1-inner {
-		padding: 16px 10px 0px;
-	}
-	#carousel-holder .carousel-in-focus-title h2 {
-		font-size: 1.0em;
-	}
-	#carousel-holder .carousel-in-focus-title h3 {
-		font-size: 0.8em;
-	}
-	#carousel-holder .carousel-in-focus-title p {
-		font-size: 0.8em;
-		line-height: 0.8em;
-	}
-
-}
-
-@media ( min-width: 1200px ) {
+@media ( min-width: 1280px ) {
 	.container-fluid.fixed-right-300 {
 		max-width:855px;
 		margin-left:auto;
