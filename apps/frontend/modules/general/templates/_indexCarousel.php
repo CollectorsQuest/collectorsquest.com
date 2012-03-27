@@ -121,7 +121,10 @@
 	    responsive: true,
       dropEasing: 'easeOutBounce',
       btnNext: '.button_carousel_next',
-      btnPrev: '.button_carousel_previous'
+      btnPrev: '.button_carousel_previous',
+      autoplay: true,
+      autoplayDuration: 6000,
+      autoplayPauseOnHover: true
     }, function() {
       $(this).fadeTo(500, 1);
     });
