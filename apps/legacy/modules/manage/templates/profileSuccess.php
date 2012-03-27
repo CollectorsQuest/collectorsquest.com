@@ -32,7 +32,7 @@
     <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#profile-tab-account"><?= __('Account Information'); ?></a></li>
     <li class="ui-state-default ui-corner-top ui-state-active"><a href="#profile-tab-personal"><?= __('Personal Information'); ?></a></li>
     <li class="ui-state-default ui-corner-top ui-state-active"><a href="#profile-tab-about"><?= __('About You'); ?></a></li>
-    <?php if ($collector->getIsSeller()): ?>
+    <?php if (IceGateKeeper::open('shipping_rates') && $collector->getIsSeller()): ?>
     <li class="ui-state-default ui-corner-top ui-state-active"><a href="#collector-marketplace"><?= __('Marketplace'); ?></a></li>
     <?php endif; ?>
     <!--
@@ -56,7 +56,7 @@
     </div>
   </form>
 
-  <?php if ($collector->getIsSeller()): ?>
+  <?php if (IceGateKeeper::open('shipping_rates') && $collector->getIsSeller()): ?>
   <form id="form-shipping-rates" action="<?= url_for('@manage_profile') ?>#collector-marketplace" method="post" enctype="multipart/form-data">
     <div id="collector-marketplace">
       <?php include_partial('manage/profile_marketplace', array(

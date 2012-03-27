@@ -1,4 +1,6 @@
 <div id="header" class="span-21 prepend-4 rounded-top last">
+
+  <?php if (IceGateKeeper::open('shopping_cart')): ?>
   <div style="float: right; margin: 5px 10px -4px 10px; position: relative;">
     <div style="float: left; margin-top: 5px; margin-right: 10px;">|</div>
     <?= link_to(image_tag('legacy/payment/header_shopping_cart.png', array('style' => 'float: right;')), '@shopping_cart'); ?>
@@ -8,6 +10,8 @@
     </div>
     <?php endif; ?>
   </div>
+  <?php endif; ?>
+
   <form class="span-8 last" action="<?php echo url_for('@search'); ?>" id="header-search" method="get">
     <div class="header-search-submit">
       <input alt="Search" class="search_submit" src="/images/legacy/search_icon.png" title="Search" type="image" />

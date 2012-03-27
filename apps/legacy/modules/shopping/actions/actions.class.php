@@ -2,6 +2,11 @@
 
 class shoppingActions extends cqActions
 {
+  public function preExecute()
+  {
+    $this->forward404If(IceGateKeeper::locked('shopping_cart'));
+  }
+
   public function executeCart(sfWebRequest $request)
   {
     $shopping_cart = $this->getUser()->getShoppingCart();

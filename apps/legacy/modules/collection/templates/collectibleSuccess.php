@@ -151,7 +151,14 @@ if ($collectible_for_sale)
 <?php
 if ($collectible->isForSale() and $collectible_for_sale and $collectible_for_sale->getIsReady() and !$isSold)
 {
-  include_partial('collection/buy_collectible', array('collectible' => $collectible, 'collector' => $collector));
+  if (IceGateKeeper::open('shopping_cart'))
+  {
+    include_partial('collection/cart_collectible', array('collectible' => $collectible, 'collector' => $collector));
+  }
+  else
+  {
+    include_partial('collection/buy_collectible', array('collectible' => $collectible, 'collector' => $collector));
+  }
 }
 ?>
 
