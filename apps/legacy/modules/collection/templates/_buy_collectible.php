@@ -7,7 +7,7 @@
  */
 
 /* @var $collectible_for_sale CollectibleForSale */
-$collectible_for_sale = $collectible->getForSaleInformation();
+$collectible_for_sale = $collectible->getCollectibleForSale();
 
 $offerPrice = $collectible_for_sale->getPrice();
 if ($collectible_for_sale)

@@ -6,7 +6,7 @@
 /** @var $sf_user cqBaseUser */
 
 /** @var $collectible_for_sale CollectibleForSale */
-$collectible_for_sale = $collectible->getForSaleInformation();
+$collectible_for_sale = $collectible->getCollectibleForSale();
 
 $offerPrice = 0;
 $isSold = false;

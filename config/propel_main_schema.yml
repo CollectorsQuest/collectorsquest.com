@@ -76,6 +76,20 @@ classes:
       symfony:        { form: false, filter: false }
       timestampable:  ~
 
+  CollectorAddress:
+    columns:
+      id:               ~
+      collector_id:     { type: integer, foreignClass: Collector, foreignReference: id, required: true, onDelete: cascade }
+      full_name:        { type: varchar(255), required: true  }
+      address_line_1:   { type: varchar(255), required: true  }
+      address_line_2:   { type: varchar(255), required: false }
+      city:             { type: varchar(100), required: true  }
+      state_region:     { type: varchar(100), required: false }
+      zip_postcode:     { type: varchar(50),  required: false }
+      country_iso3166:  { type: char, size: 2, required: true, foreignTable: geo_country, foreignReference: iso3166 }
+      phone:            { type: varchar(50),  required: true  }
+      is_primary:       { type: boolean, required: true, default: false }
+
   ###
   # NOTE: Make SURE to update also CollectorIdentifierArchive in archive.schema.yml
   ##

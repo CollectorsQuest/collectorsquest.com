@@ -138,8 +138,9 @@ class ShippingRatesCollectionForm extends sfFormPropel
 
     $q = ShippingRateQuery::createStubQueryForRelatedObject($this->getObject())
       ->filterByCalculationType(ShippingRatePeer::CALCULATION_TYPE_NO_SHIPPING)
-      ->filterByCountryIso3166($this->getObject()->getDomesticCountryCode(), Criteria::NOT_EQUAL);
-    $q
+      ->filterByCountryIso3166(
+        array($this->getObject()->getDomesticCountryCode(), 'ZZ'),
+        Criteria::NOT_IN)
       ->delete($con);
 
    $values = $this->getValues();

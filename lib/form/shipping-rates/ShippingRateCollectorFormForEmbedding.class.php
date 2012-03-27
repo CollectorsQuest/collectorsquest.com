@@ -10,8 +10,8 @@ class ShippingRateCollectorFormForEmbedding extends ShippingRateCollectorForm
   {
     parent::configure();
 
-    $this->widgetSchema['collector_id'] = new sfWidgetFormInputHidden();
-
+    unset ($this['id']);
+    unset ($this['collector_id']);
     unset ($this['country_iso3166']);
     unset ($this['calculation_type']);
     unset ($this['price_range_min']);

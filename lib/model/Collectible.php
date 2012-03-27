@@ -486,18 +486,6 @@ class Collectible extends BaseCollectible
   }
 
   /**
-   *
-   * @return CollectibleForSale
-   */
-  public function getForSaleInformation()
-  {
-    $c = new Criteria();
-    $c->add(CollectibleForSalePeer::COLLECTIBLE_ID, $this->getId());
-
-    return CollectibleForSalePeer::doSelectOne($c);
-  }
-
-  /**
    * Get the shipping rates for this collectible, grouped by country
    *
    * @param     PropelPDO $con
