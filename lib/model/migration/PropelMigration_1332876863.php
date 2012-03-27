@@ -1,6 +1,6 @@
 <?php
 
-class PropelMigration_1331113289
+class PropelMigration_1332876863
 {
 	public function preUp($manager)
 	{
