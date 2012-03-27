@@ -1,5 +1,5 @@
 {
-    "hash": "98fd26e35835f852d8aa748aebd3dfb8",
+    "hash": "0f873e4e139ee3087c577eb7c48771d6",
     "packages": [
         {
             "package": "lib/vendor/faker",
@@ -8,12 +8,15 @@
         },
         {
             "package": "lib/vendor/monolog",
-            "version": "master-dev",
-            "source-reference": "6c15897ac74bd53572328094eacf03fbb7b8bca7"
+            "version": "1.0.2"
         },
         {
             "package": "lib/vendor/neo4jphp",
             "version": "0.0.6"
+        },
+        {
+            "package": "lib/vendor/twig",
+            "version": "1.6.2"
         },
         {
             "package": "plugins/sfGuardPlugin",

@@ -151,13 +151,16 @@ class generalActions extends cqFrontendActions
         $collector->setPassword($password);
         $collector->save();
 
-        $subject = $this->__('Your new password for CollectorsQuest.com');
-        $body = $this->getPartial(
-          'emails/collector_password_reminder',
-          array('collector' => $collector, 'password' => $password)
-        );
+        $cqEmail = new cqEmail($this->getMailer());
+        $sent = $cqEmail->send('Collector/password_reminder', array(
+            'to' => $email,
+            'params' => array(
+              'collector' => $collector,
+              'password' => $password,
+            ),
+        ));
 
-        if ($this->sendEmail($email, $subject, $body))
+        if ($sent)
         {
           $this->getUser()->setFlash('success', $this->__(
             'We have sent an email to %email% with your new password.',
