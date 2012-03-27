@@ -63,6 +63,7 @@ class cqEmailsConfig
   {
     $helpers = sfConfig::get('app_cqEmails_helpers', array());
 
+    /** @var $configuration sfApplicationConfiguration */
     $configuration = sfProjectConfiguration::getActive();
     $configuration->loadHelpers(array_keys($helpers));
 

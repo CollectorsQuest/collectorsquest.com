@@ -88,7 +88,7 @@ class cqEmailTemplate
     {
       throw new InvalidArgumentException(sprintf(
         'cqEmailsPlugin: The template %s has missing mandatory parameters [%s]',
-        $name,
+        $this->name,
         implode(', ', $missing_required)
       ));
     }
