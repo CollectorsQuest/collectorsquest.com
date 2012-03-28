@@ -542,7 +542,7 @@ class Collectible extends BaseCollectible
   {
     $country_code = $this->getCollector()->getProfile()->getCountryIso3166();
 
-    return $this->getShippingRatesForCountryCode($coutry_code, $con);
+    return $this->getShippingRatesForCountryCode($country_code, $con);
   }
 
   /**
@@ -562,14 +562,10 @@ class Collectible extends BaseCollectible
   public function preDelete(PropelPDO $con = null)
   {
     // Deleting collectibles for sale
-    $collectibles_for_sale = $this->getCollectibleForSales();
+    $collectible_for_sale = $this->getCollectibleForSale();
     if (!empty($collectibles_for_sale))
     {
-      /** @var $collectible_for_sale CollectibleForSale */
-      foreach ($collectibles_for_sale as $collectible_for_sale)
-      {
-        $collectible_for_sale->delete($con);
-      }
+      $collectible_for_sale->delete($con);
     }
 
     // Deleting collectibles offers
