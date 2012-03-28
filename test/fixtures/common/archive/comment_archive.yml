@@ -1,16 +1,163 @@
 CommentArchive:
+  CommentArchive_35:
+    id: '35'
+    collection_id: '37'
+    collector_id: '5'
+    body: 'aloha : )'
+    created_at: '2007-06-12 23:04:49'
+  CommentArchive_36:
+    id: '36'
+    collection_id: '37'
+    collector_id: '5'
+    body: 'See also the bulk upload - may be Mark could implement it for www.whalematch.org'
+    created_at: '2007-06-12 23:13:54'
+  CommentArchive_64:
+    id: '64'
+    collection_id: '84'
+    collector_id: '5'
+    body: 'Wow, it''s the first time I see fur figurines... pretty cool ;-)'
+    created_at: '2007-07-02 18:07:24'
+  CommentArchive_66:
+    id: '66'
+    collection_id: '88'
+    collector_id: '59'
+    body: 'I have that (on two CDs -- one is Tom''s, the other a UK dealio from a magazine contact I know there lol).  I just grabbed what was out and about, and that was vinyl.  (CDs are in the van.) I have doubles of some of there here too (I just can''t help myself!)'
+    created_at: '2007-07-02 23:34:21'
+  CommentArchive_67:
+    id: '67'
+    collection_id: '84'
+    collector_id: '59'
+    body: 'If I knew what they were called (there must be a name for them) I''d have scads more, as it is near impossible to do a search for them and find them. For now, I must rely on thrift stores, flea markets and yard sales.  '
+    created_at: '2007-07-02 23:36:03'
+  CommentArchive_68:
+    id: '68'
+    collection_id: '88'
+    collector_id: '5'
+    body: 'So I guess we need to start working on the mp3 uploads ;-)'
+    created_at: '2007-07-02 23:39:59'
+  CommentArchive_70:
+    id: '70'
+    collection_id: '88'
+    collector_id: '59'
+    body: 'Oh, I''ve got those too... Have to make the mixed CDs for those 9 hour road trips!  (Tom never lets me down on a road trip.)'
+    created_at: '2007-07-03 00:35:06'
   CommentArchive_174:
     id: '174'
     collection_id: '183'
     collector_id: '5'
     body: 'I love teddy bears, but I don''t see any here...'
     created_at: '2007-07-31 01:10:11'
+  CommentArchive_264:
+    id: '264'
+    collection_id: '209'
+    collector_id: '67'
+    body: 'Is it just me, or does he seem less than interested? :p'
+    created_at: '2007-08-16 19:48:17'
+  CommentArchive_268:
+    id: '268'
+    collection_id: '87'
+    collector_id: '67'
+    body: 'OK, girl, I did not see this collection coming... lol '
+    created_at: '2007-08-16 19:56:09'
   CommentArchive_291:
     id: '291'
     collection_id: '183'
     collector_id: '155'
     body: 'Love to see them'
     created_at: '2007-09-09 04:59:47'
+  CommentArchive_292:
+    id: '292'
+    collection_id: '241'
+    collector_id: '5'
+    body: 'All of these are amazing! Where did you get them?'
+    created_at: '2007-09-09 05:06:05'
+  CommentArchive_293:
+    id: '293'
+    collection_id: '241'
+    collector_id: '103'
+    body: 'Thanks mate. The Kia Asamiya figurines were bought from a specialty collectors shop in Palmerston North, NZ for around $25NZ'
+    created_at: '2007-09-10 01:10:35'
+  CommentArchive_295:
+    id: '295'
+    collection_id: '241'
+    collector_id: '12'
+    body: 'They were also available through DC Direct in the US for quite a while!'
+    created_at: '2007-09-10 10:25:40'
+  CommentArchive_296:
+    id: '296'
+    collection_id: '238'
+    collector_id: '12'
+    body: 'I know that these are all PR shots released by ToyBiz - do you have any shots of YOUR collection in action? I''d love to see!'
+    created_at: '2007-09-10 10:26:41'
+  CommentArchive_297:
+    id: '297'
+    collection_id: '238'
+    collector_id: '103'
+    body: 'its true. I took a few photos of mine but they didn''t look as good while still in the box.'
+    created_at: '2007-09-10 14:04:10'
+  CommentArchive_341:
+    id: '341'
+    collection_id: '132'
+    collectible_id: '1303'
+    collector_id: '378'
+    body: 'very interesting!'
+    created_at: '2008-02-04 12:55:50'
+  CommentArchive_342:
+    id: '342'
+    collection_id: '299'
+    collector_id: '378'
+    body: 'I saw the 3-d version this winter'
+    created_at: '2008-02-05 11:09:48'
+  CommentArchive_374:
+    id: '374'
+    collection_id: '494'
+    collector_id: '150'
+    subject: ''
+    body: 'Is this just the skin for the head?'
+    created_at: '2008-04-15 00:54:35'
+  CommentArchive_398:
+    id: '398'
+    collection_id: '83'
+    collector_id: '572'
+    subject: ''
+    body: "Nice Genre.very original.I'll keep a look out\r\nfor them."
+    created_at: '2008-05-16 18:30:58'
+  CommentArchive_401:
+    id: '401'
+    collection_id: '528'
+    collector_id: '58'
+    subject: ''
+    body: 'GREAT HARRY POTTER ITEMS REALLY COOL'
+    created_at: '2008-05-20 00:04:24'
+  CommentArchive_429:
+    id: '429'
+    collection_id: '534'
+    collectible_id: '7850'
+    collector_id: '570'
+    subject: ''
+    body: "http://cgi.ebay.com/NEW-SONY-ERICSSON-K800i-K800-SILVER-WORLD-PHONE-b_W0QQitemZ200234330017QQihZ010QQcategoryZ3312QQssPageNameZWDVWQQrdZ1QQcmdZViewItem\r\n\r\nthe phone he used in the movie"
+    created_at: '2008-06-26 12:05:02'
+  CommentArchive_456:
+    id: '456'
+    collection_id: '372'
+    collector_id: '109'
+    subject: ''
+    body: 'this is just AWESOME!!'
+    created_at: '2008-07-06 08:57:38'
+  CommentArchive_469:
+    id: '469'
+    collection_id: '89'
+    collector_id: '644'
+    subject: ''
+    body: 'Wow, nice work. You captured the eyes really well.'
+    created_at: '2008-07-15 21:51:19'
+  CommentArchive_473:
+    id: '473'
+    collection_id: '89'
+    collector_id: '59'
+    subject: ''
+    body: 'Thanks, Barry :)'
+    created_at: '2008-07-21 10:26:02'
   CommentArchive_528:
     id: '528'
     collection_id: '767'
@@ -53,6 +200,14 @@ CommentArchive:
     subject: ''
     body: 'Yes, although one generation removed from the actual originals. A paleontologist friend found the original models in storage at the Philadelphia Academy of Natural Sciences and pulled molds from them. My models are from those molds, which could only survive one pull each. Then new molds were generated from my molds -- and pulls from them are the ones being sold by Mary Odano''s company, Valley Anatomical Preparations in Canoga Park, CA.'
     created_at: '2008-10-19 11:17:59'
+  CommentArchive_561:
+    id: '561'
+    collection_id: '537'
+    collectible_id: '8035'
+    collector_id: '775'
+    subject: ''
+    body: "very beautiful item^^\r\n\r\nA+++"
+    created_at: '2008-10-21 06:57:31'
   CommentArchive_566:
     id: '566'
     collection_id: '767'
@@ -67,6 +222,20 @@ CommentArchive:
     subject: ''
     body: 'Unfortunately, the only one I know of is the one on my shelf. There were plenty of them for sale (I believe for around $.59) at the gift shop when I got this one in 1955. I also have a nice black & white postcard from Rapid City''s Dinosaur Park showing a painted version of this model. By the way, this model was sold as a kind of preview to the life-sized Protoceratops which was still being made when I first visited Dinosaur Park. The model was sculpted by Emmett A. Sullivan, who also made all the full-size figures for the park.'
     created_at: '2008-11-05 12:33:39'
+  CommentArchive_613:
+    id: '613'
+    collection_id: '872'
+    collector_id: '12'
+    subject: ''
+    body: 'Hey cap''n - why are you using my photos for your collection? '
+    created_at: '2008-12-12 14:05:26'
+  CommentArchive_615:
+    id: '615'
+    collection_id: '872'
+    collector_id: '775'
+    subject: ''
+    body: 'because I have also these action figures and your photos are much beautiful ;D'
+    created_at: '2008-12-13 08:30:45'
   CommentArchive_616:
     id: '616'
     collection_id: '767'
@@ -81,6 +250,27 @@ CommentArchive:
     subject: ''
     body: "Yes, you know about three more than I did. Thanks for the information.\r\n\r\nDon"
     created_at: '2008-12-16 00:32:16'
+  CommentArchive_624:
+    id: '624'
+    collection_id: '905'
+    collector_id: '67'
+    subject: ''
+    body: 'Aww, those little ballerinas are sweet!'
+    created_at: '2008-12-22 22:34:09'
+  CommentArchive_625:
+    id: '625'
+    collection_id: '905'
+    collector_id: '67'
+    subject: ''
+    body: 'Incredible!  One one hand it''s a neat concept; on the other why would I even think of putting a match to my lips?!'
+    created_at: '2008-12-22 22:35:15'
+  CommentArchive_626:
+    id: '626'
+    collection_id: '905'
+    collector_id: '67'
+    subject: ''
+    body: 'I''ve always wanted one of these, but the steep prices & similar fears of damaging it have kept a lucite purse with compact just a dream.'
+    created_at: '2008-12-22 22:36:48'
   CommentArchive_647:
     id: '647'
     collection_id: '767'
@@ -179,6 +369,148 @@ CommentArchive:
     subject: ''
     body: 'Second shelf looks to be the Ely Kish/Dinosaurs of China series from Safari Ltd. I see the ROMS on the next shelf down. First shelf looks to be Tsukuda''s 1980s stuff.'
     created_at: '2009-01-01 12:50:52'
+  CommentArchive_665:
+    id: '665'
+    collection_id: '838'
+    collector_id: '877'
+    subject: ''
+    body: "how much is it?\r\n"
+    created_at: '2009-01-03 11:09:03'
+  CommentArchive_671:
+    id: '671'
+    collection_id: '364'
+    collector_id: '59'
+    subject: ''
+    body: 'I tried to read Chariots of The Gods when I was young (a teen, I think), but never made it through it... One day, though... ;)'
+    created_at: '2009-01-08 02:25:55'
+  CommentArchive_672:
+    id: '672'
+    collection_id: '838'
+    collector_id: '59'
+    subject: ''
+    body: 'Sorry, it''s not for sale -- not yet, anyway ;)'
+    created_at: '2009-01-08 02:36:08'
+  CommentArchive_673:
+    id: '673'
+    collection_id: '869'
+    collector_id: '59'
+    subject: ''
+    body: 'Hi Jane, I collect them for the same reason -- my grandma had them out at holiday time :)'
+    created_at: '2009-01-08 17:38:16'
+  CommentArchive_681:
+    id: '681'
+    collection_id: '638'
+    collector_id: '59'
+    subject: ''
+    body: 'It''s hanging on my wall... But if the right offer came in, I''d consider it ;)'
+    created_at: '2009-01-12 22:13:50'
+  CommentArchive_682:
+    id: '682'
+    collection_id: '924'
+    collector_id: '864'
+    subject: ''
+    body: 'She is one of my icons...what a combination of beauty, talent and intelligence.  There will never be another Marilyn!'
+    created_at: '2009-01-13 11:04:15'
+  CommentArchive_726:
+    id: '726'
+    collection_id: '925'
+    collector_id: '935'
+    subject: ''
+    body: 'Simply Gorgeous!'
+    created_at: '2009-02-09 17:27:02'
+  CommentArchive_745:
+    id: '745'
+    collection_id: '1100'
+    collector_id: '1020'
+    subject: ''
+    body: 'cool pic'
+    created_at: '2009-03-03 14:20:58'
+  CommentArchive_749:
+    id: '749'
+    collection_id: '1047'
+    collector_id: '1014'
+    subject: ''
+    body: 'Neat! Never seen a Rafiki collection before!'
+    created_at: '2009-03-03 20:34:01'
+  CommentArchive_842:
+    id: '842'
+    collection_id: '905'
+    author_name: danece
+    author_email: vintagele0pard.dr@gmail.com
+    subject: ''
+    body: ' I would really love to ask you a couple of questions please respond.'
+    created_at: '2009-04-03 15:54:15'
+  CommentArchive_930:
+    id: '930'
+    collection_id: '868'
+    author_name: 'Lorraine Fortin'
+    author_email: lorrainefortin.poncho@hotmail.com
+    subject: ''
+    body: "Hi, I collect soaps too.I have a large collection,near than 1000 soaps.I collect them for the last 15 years.I've just finish to make my internet site to show my collection to the whole world.You can go see my site at the address below but in a short time the address will change when I will have my domain name.It took me five mounths to make my website.You have nice soaps too.If you go see my site sign my Guestbook,i will be happy to have your comments.You can go to:http://www.wix.com/enpassantparlaLorraine/En-passant-par-la-Lorraine\r\n                                                               Thank you      Lorraine"
+    created_at: '2009-04-21 14:42:37'
+  CommentArchive_931:
+    id: '931'
+    collection_id: '868'
+    author_name: 'Lorraine Fortin'
+    author_email: lorrainefortin.poncho@hotmail.com
+    subject: ''
+    body: "The post did not write my good address of website.To go see my soap collection go to:\r\nhttp://www.wix.com/enpassantparlaLorraine/En-passnt-par-la-Lorraine"
+    created_at: '2009-04-21 14:48:10'
+  CommentArchive_932:
+    id: '932'
+    collection_id: '868'
+    author_name: 'Lorraine Fortin'
+    author_email: lorrainefortin.poncho@hotmail.com
+    subject: ''
+    body: 'I really don''t know what happen but you can go on the first address i give you and it work .When by address will change I will let you know.Lorraine'
+    created_at: '2009-04-21 15:07:34'
+  CommentArchive_980:
+    id: '980'
+    collection_id: '1144'
+    author_name: 'Ranjit singh'
+    author_email: singh_ranjit70@hotmail.com
+    subject: ''
+    body: " I have   several hundreds of foreign  Greeting cards received during  the last 60 years of my personal correspondence  worldwide.Want o sell them or exchange against  current ,recent mint stamps \r\n Regards\r\n Ranjit singh\r\n AN/18-c,shalimar bagh\r\n Delhi-110088 india\r\n www.indiatelecards.org"
+    created_at: '2009-05-03 11:13:48'
+  CommentArchive_1024:
+    id: '1024'
+    collection_id: '1144'
+    author_name: 'Lois Hoyt'
+    author_email: Ldh29@aol.com
+    subject: ''
+    body: 'I have a few vintage greeting cards-Valentine''s, Mother''s Day, Anniversary and Birthday that i am interested in selling.  they are from the 40''s and 50''s.'
+    created_at: '2009-05-11 12:48:57'
+  CommentArchive_1025:
+    id: '1025'
+    collection_id: '813'
+    author_name: 'mary arway'
+    author_email: rway922@aol.com
+    subject: ''
+    body: "hi, I am not very good at this, and i hope I am in the correct section..\r\nI am looking for  a vintage piece: plaster plaque, 3 D.. \"The Last Supper\" by Victor ..Creative Arts Inc. circa 1959...... any suggestion would be deeply appreciated...Mary NJ"
+    created_at: '2009-05-11 14:04:37'
+  CommentArchive_1040:
+    id: '1040'
+    collection_id: '666'
+    author_name: 'Janet - TX'
+    author_email: ''
+    subject: ''
+    body: 'I LOVED this book growing up!  I think my Grandmother ahd it.  Great Illustrations and cute poetry.  A good giggle in these times! '
+    created_at: '2009-05-14 15:49:13'
+  CommentArchive_1067:
+    id: '1067'
+    collection_id: '665'
+    author_name: Tiffanee
+    author_email: Mommala76@yahoo.com
+    subject: ''
+    body: 'I have Coo- Coo Series No. 3 from 1925, just wondered where i could buy others'
+    created_at: '2009-05-23 11:37:17'
+  CommentArchive_1079:
+    id: '1079'
+    collection_id: '665'
+    collector_id: '59'
+    subject: ''
+    body: 'Because there are so few of these games and likely only a few collectors, I''ve really only seen them at antique stores... I suppose having other names of these games might help with online searches -- Good luck!'
+    created_at: '2009-05-28 04:46:50'
   CommentArchive_1082:
     id: '1082'
     collection_id: '1065'
@@ -187,6 +519,30 @@ CommentArchive:
     subject: ''
     body: "Amazing collection Kiki!\r\nI am jealous!\r\nWilly"
     created_at: '2009-05-28 18:32:29'
+  CommentArchive_1086:
+    id: '1086'
+    collection_id: '1156'
+    author_name: allie
+    author_email: ''
+    subject: ''
+    body: " i love those webkinz\r\n"
+    created_at: '2009-05-30 00:00:45'
+  CommentArchive_1087:
+    id: '1087'
+    collection_id: '1156'
+    author_name: allie
+    author_email: ''
+    subject: ''
+    body: " i love those webkinz\r\n"
+    created_at: '2009-05-30 00:00:48'
+  CommentArchive_1120:
+    id: '1120'
+    collection_id: '847'
+    author_name: 'Kathy Tuer'
+    author_email: new_york_buty@yahoo.com
+    subject: ''
+    body: 'I am looking for a CED player in good working order.  Anyone out there has one for sale please email me, Thanks.'
+    created_at: '2009-06-04 21:10:56'
   CommentArchive_1134:
     id: '1134'
     collection_id: '1065'
@@ -195,6 +551,14 @@ CommentArchive:
     subject: ''
     body: "Wow such a nice collection of ANIMALS FIGURES, The black Rhino, the Cape Buffalo,White Rhino, Indian Elephant, are amazing,i never saw anything like that.\r\nCongratulations"
     created_at: '2009-06-08 14:30:24'
+  CommentArchive_1160:
+    id: '1160'
+    collection_id: '85'
+    author_name: andrea
+    author_email: ''
+    subject: ''
+    body: 'why doesn''t burger king sell bobble heads????????????/'
+    created_at: '2009-06-13 14:46:11'
   CommentArchive_1165:
     id: '1165'
     collection_id: '1065'
@@ -224,6 +588,20 @@ CommentArchive:
     subject: ''
     body: 'Fantastic set of animals!  Where does one go to acquire these?  I have several of them, which were listed under Britains: The Gaur, the Sable Antelope to name a couple.  If anyone knows where to buy these I would LOVE to know.  Thanks! '
     created_at: '2009-06-16 11:58:02'
+  CommentArchive_1178:
+    id: '1178'
+    collection_id: '974'
+    collector_id: '1320'
+    subject: ''
+    body: "We h ave dolls from hero biulders, and we would like to show them on this website...\r\nDo you know how we go about doing that?"
+    created_at: '2009-06-16 15:49:42'
+  CommentArchive_1179:
+    id: '1179'
+    collection_id: '974'
+    collector_id: '1320'
+    subject: ''
+    body: "We h ave dolls from hero biulders, and we would like to show them on this website...\r\nDo you know how we go about doing that?"
+    created_at: '2009-06-16 15:49:47'
   CommentArchive_1180:
     id: '1180'
     collection_id: '1065'
@@ -231,6 +609,13 @@ CommentArchive:
     subject: ''
     body: 'Nice collection,some figurines are very rare and interesting!I still need some of the species!good luck at collecting!'
     created_at: '2009-06-16 16:03:26'
+  CommentArchive_1219:
+    id: '1219'
+    collection_id: '85'
+    collector_id: '59'
+    subject: ''
+    body: 'Why doesn''t BK just sell the giant heads so we humans could wear them!'
+    created_at: '2009-06-23 17:11:49'
   CommentArchive_1222:
     id: '1222'
     collection_id: '1505'
@@ -238,6 +623,22 @@ CommentArchive:
     subject: ''
     body: 'Nice one! Looks really small.'
     created_at: '2009-06-23 20:12:11'
+  CommentArchive_1315:
+    id: '1315'
+    collection_id: '931'
+    author_name: julie
+    author_email: balde2011@hotmail.com
+    subject: ''
+    body: 'i just love old cookbooks i have around 500 or so anywhere from early 1900 to 1969 neat collection'
+    created_at: '2009-07-05 19:50:01'
+  CommentArchive_1316:
+    id: '1316'
+    collection_id: '931'
+    author_name: julie
+    author_email: balde2011@hotmail.com
+    subject: ''
+    body: 'i just love old cookbooks i have around 500 or so anywhere from early 1900 to 1969 neat collection'
+    created_at: '2009-07-05 19:50:01'
   CommentArchive_1326:
     id: '1326'
     collection_id: '1083'
@@ -246,6 +647,30 @@ CommentArchive:
     subject: ''
     body: "Fantastic collections Christophe!\r\nI was looking around,to see if you had modelnumbers on your Starlux models.\r\nCan you tell me the difference between Starlux and Starlux 53 please?\r\nI had some Starlux in mint condition coming in today,i am very happy with them!\r\nIt was the Cape-buffalo,the blue gnu,the moose,the Malay bear,the marmottes,the otter and the red squirrel.\r\nYou can see the pictures later on,i will put them in my collections,on Lg and i send them to you.\r\nGreetings from Holland,Willy"
     created_at: '2009-07-07 10:33:32'
+  CommentArchive_1327:
+    id: '1327'
+    collection_id: '924'
+    author_name: alyssa
+    author_email: ''
+    subject: ''
+    body: 'omg! i love marilyn monroe and she is so pretty.  she is  great actress and my favorite!!!!'
+    created_at: '2009-07-07 21:10:05'
+  CommentArchive_1351:
+    id: '1351'
+    collection_id: '924'
+    author_name: Yiliana
+    author_email: GraphicsbyUrban@haotmail.com
+    subject: ''
+    body: "Yeah pretty good book But I have only read half of the story\r\nMy book was stolen by I still have the dust jacket lame im looking for a copy I want to finish the story so bad."
+    created_at: '2009-07-12 00:50:32'
+  CommentArchive_1352:
+    id: '1352'
+    collection_id: '924'
+    author_name: Yiliana
+    author_email: GraphicsbyUrban@haotmail.com
+    subject: ''
+    body: "Yeah pretty good book But I have only read half of the story\r\nMy book was stolen by I still have the dust jacket lame im looking for a copy I want to finish the story so bad."
+    created_at: '2009-07-12 00:50:36'
   CommentArchive_1375:
     id: '1375'
     collection_id: '1505'
@@ -260,6 +685,22 @@ CommentArchive:
     subject: ''
     body: 'You are right Wildheart, but it''s not in German, it''s in Dutch for my friend Willybacoman.'
     created_at: '2009-07-13 06:48:39'
+  CommentArchive_1378:
+    id: '1378'
+    collection_id: '847'
+    author_name: Heather
+    author_email: ''
+    subject: ''
+    body: 'I just acquired one from my grandfather yesterday. Decided to research them to possibly make some cash. If you''re interested let me know.'
+    created_at: '2009-07-13 09:20:53'
+  CommentArchive_1413:
+    id: '1413'
+    collection_id: '84'
+    author_name: Dee
+    author_email: adangelm@hotmail.com
+    subject: ''
+    body: 'I have the Squirrels, that look like these.  Can you tell me anything about them?'
+    created_at: '2009-07-14 18:12:58'
   CommentArchive_1481:
     id: '1481'
     collection_id: '1522'
@@ -276,6 +717,43 @@ CommentArchive:
     subject: ''
     body: 'I want to buy this item.Please contact me'
     created_at: '2009-07-25 15:49:56'
+  CommentArchive_1490:
+    id: '1490'
+    collection_id: '118'
+    author_name: 'gino fisher'
+    author_email: gino.fisher@yahoo.com
+    subject: ''
+    body: 'i have this album which is in very very good condition, the cover of the album is just in average condition, but the album itself is in excellent condition...i want to sell it and a host of others if anyone is interested...email me...i have 45''s, 78''s, and a lot of 33 1/3''s'
+    created_at: '2009-07-25 20:05:41'
+  CommentArchive_1492:
+    id: '1492'
+    collection_id: '84'
+    collector_id: '59'
+    subject: ''
+    body: 'Dee, all I know without seeing them is that they are likely kitschy-delicious ;)'
+    created_at: '2009-07-25 22:02:26'
+  CommentArchive_1494:
+    id: '1494'
+    collection_id: '924'
+    collector_id: '59'
+    subject: ''
+    body: 'Yiliana, this book is a bit more salacious than factual (but then again, most Marilyn books are!)  I do think you should be able to get a used copy at Amazon rather inexpensively -- and be able to read the last half!'
+    created_at: '2009-07-25 23:02:57'
+  CommentArchive_1495:
+    id: '1495'
+    collection_id: '931'
+    collector_id: '59'
+    subject: ''
+    body: 'Julie, like most things here, I dare not count -- but I''m pretty sure you have me beat (like an egg for a cake!)  You should list yours here at CQ so that I can see what you all have!'
+    created_at: '2009-07-25 23:04:37'
+  CommentArchive_1523:
+    id: '1523'
+    collection_id: '931'
+    author_name: 'irene talanca'
+    author_email: irene.talanca7@gmail.com
+    subject: ''
+    body: "I have the book that is seen on this page of kate smiths favorite recipes.  Tell me is it worth some money? Let me know please\r\nIrene"
+    created_at: '2009-07-28 20:15:29'
   CommentArchive_1542:
     id: '1542'
     collection_id: '1501'
@@ -364,6 +842,28 @@ CommentArchive:
     subject: ''
     body: 'Hi. I just read that you actually wrote some episodes of "Dino-Riders"!! Pleased to meet you, I just allways loved that show. I''ve been lately researching about the show and I found William Stout was involved in it, also. What did he actually did, did he draw or designed the dinos and weaponry, or something?'
     created_at: '2009-08-10 14:38:25'
+  CommentArchive_1685:
+    id: '1685'
+    collection_id: '931'
+    author_name: Simon
+    author_email: simong@telus.net
+    subject: ''
+    body: "Hi there,\r\n\r\nWell I tried many, grandma remains the best and by far...:-)\r\nI have recommanded it to all my friends and those who likes molasse are saying; where did u get this, so good...\r\nThe sad thing about it, there's none in Kelowna, maybe the all west Canada.\r\nMy mom send it to me from Quebec.\r\n\r\nSimon"
+    created_at: '2009-08-10 23:45:38'
+  CommentArchive_1689:
+    id: '1689'
+    collection_id: '931'
+    collector_id: '59'
+    subject: ''
+    body: "Hi Irene,\r\n\r\nMost ephemera is, in the words of big collectors, auctioneers, etc., \"worthless\" unless it's related to or signed by an historical figure, celebrity, etc.  That said, the cookbook fetches from $5 to $15, depending upon conditions etc.  (I wouldn't take less than $15 for this one; it's in lovely shape.  Then again, I probably wouldn't sell it because it charms me so!) \r\n\r\nIf you found a Kate Smith fan or Swans Down collector who just had to have it, you might get a bit more out of that strong impulse buy... "
+    created_at: '2009-08-11 13:05:52'
+  CommentArchive_1690:
+    id: '1690'
+    collection_id: '931'
+    collector_id: '59'
+    subject: ''
+    body: 'Are you talking about the booklet or the molasses itself?  '
+    created_at: '2009-08-11 13:07:47'
   CommentArchive_1699:
     id: '1699'
     collection_id: '1524'
@@ -387,6 +887,22 @@ CommentArchive:
     subject: ''
     body: 'I think it is a deer.It has the classical branch shaped antlers and a small bushy tail.'
     created_at: '2009-08-14 08:17:51'
+  CommentArchive_1737:
+    id: '1737'
+    collection_id: '813'
+    author_name: 'patty hudson'
+    author_email: rhudson@llcc.edu
+    subject: ''
+    body: 'where would you find another and suggestions???'
+    created_at: '2009-08-17 22:06:16'
+  CommentArchive_1738:
+    id: '1738'
+    collection_id: '595'
+    author_name: 'NICK STONESIFER'
+    author_email: KASTONESIFER@HOTMAIL.COM
+    subject: ''
+    body: 'I HAVE BEEN COLLECTING GARBAGE PAIL KIDS FOR 25 YEARS NOW. FROM LOOKING OVER YOUR CARDS YOU HAVE A MIXTURE OF SERIES 2 THROUGH SERIES 4.SERIES 2 CARDS IF THEY ARE IN MINT CONDITION GO FOR A PRICE OF ABOUT 2.50 A CARD,SERIES 3 FOR ABOUT .75 A CARD,AND SERIES 4 FOR ABOUT .70 A CARD.IF THEY ARE ALL IN MINT CONDITION.SERIES 1 AND 2 AND 10 THROUGH 15 ARE THE MORE VALUBLE CARDS.YOUR SET OF 102 CARDS COULD MAYBE FETCH 30.00 FOR ALL.ONLY IF THEY ARE IN MINT CONDITION.I WOULD BE WILLING TO PAY 25.00 FOR ALL.'
+    created_at: '2009-08-18 11:49:28'
   CommentArchive_1747:
     id: '1747'
     collection_id: '1524'
@@ -403,6 +919,55 @@ CommentArchive:
     subject: ''
     body: 'Hi Dimitra, it''s still for sale, please make an offer. Or contact me privately for sale details, Thanks!'
     created_at: '2009-08-19 02:55:24'
+  CommentArchive_1750:
+    id: '1750'
+    collection_id: '364'
+    collector_id: '59'
+    subject: ''
+    body: 'Review at: http://www.twolia.com/blogs/kitsch-slapped/2009/03/30/goodness-mike-shayne-twinkie/'
+    created_at: '2009-08-19 13:30:52'
+  CommentArchive_1751:
+    id: '1751'
+    collection_id: '364'
+    collector_id: '59'
+    subject: ''
+    body: 'Reviewed here: http://www.twolia.com/blogs/kitsch-slapped/2009/07/16/cheap-thrills-thursday-maybe/'
+    created_at: '2009-08-19 13:36:51'
+  CommentArchive_1752:
+    id: '1752'
+    collection_id: '364'
+    collector_id: '59'
+    subject: ''
+    body: "My review is here:\r\nhttp://www.twolia.com/blogs/kitsch-slapped/2009/05/12/cinderella-nurse-masochistic-nurse-story-disguised-as-modern-romance-circa-1960s/"
+    created_at: '2009-08-19 13:38:25'
+  CommentArchive_1753:
+    id: '1753'
+    collection_id: '1143'
+    collector_id: '59'
+    subject: ''
+    body: "More info here:\r\nhttp://www.twolia.com/blogs/kitsch-slapped/2009/04/01/the-baldknobbers-no-april-fools-joke/"
+    created_at: '2009-08-19 13:44:34'
+  CommentArchive_1754:
+    id: '1754'
+    collection_id: '1666'
+    collector_id: '59'
+    subject: ''
+    body: "More info & scans here:\r\nhttp://www.twolia.com/blogs/kitsch-slapped/2009/03/13/messy-marvin-meets-the-messy-witch/"
+    created_at: '2009-08-19 13:53:27'
+  CommentArchive_1756:
+    id: '1756'
+    collection_id: '595'
+    collector_id: '59'
+    subject: ''
+    body: 'Nick, you and Kelly have your signals crossed... Since June. I also have two buyers interested in just the packaged ones and another in a few of the individual ones. '
+    created_at: '2009-08-19 15:58:27'
+  CommentArchive_1760:
+    id: '1760'
+    collection_id: '813'
+    collector_id: '59'
+    subject: ''
+    body: 'Patty, I''ve not seen her exactly before (blue "Cinderellas I''ve seen a few times).  Best bets are the usual suspects/haunts... antique stores, flea markets & online searches. Prices typically start at about $10 & g up a bit here in the Midwest. (Shipping on chalkware will not be cheap; it shouldn''t be because it''s fragile!)'
+    created_at: '2009-08-19 16:23:41'
   CommentArchive_1767:
     id: '1767'
     collection_id: '1501'
@@ -411,6 +976,14 @@ CommentArchive:
     subject: ''
     body: "is this book for sale?\r\n"
     created_at: '2009-08-20 15:28:31'
+  CommentArchive_1780:
+    id: '1780'
+    collection_id: '1156'
+    author_name: allison
+    author_email: allisonhawk@live.com
+    subject: ''
+    body: ':( i want the magical retriever so bad! i''ve bought 50 packs of the webkinz series 3 cards and had no luck! my parents will not let me get any more!'
+    created_at: '2009-08-22 17:50:28'
   CommentArchive_1791:
     id: '1791'
     collection_id: '1701'
@@ -585,6 +1158,14 @@ CommentArchive:
     subject: ''
     body: 'Is this item still available? I''ll take it!'
     created_at: '2009-09-10 00:22:06'
+  CommentArchive_2056:
+    id: '2056'
+    collection_id: '209'
+    author_name: drypsuggefede
+    author_email: authomith@gmail.com
+    subject: ''
+    body: "MymnWeftWen\r\nrdbg\r\nBiallipifipse\r\nhttp://avkisjk.com - apof"
+    created_at: '2009-09-15 15:25:48'
   CommentArchive_2073:
     id: '2073'
     collection_id: '1501'
@@ -615,6 +1196,20 @@ CommentArchive:
     subject: ''
     body: 'Stone Cold invited me to sit next to him for the whole signing, this picture I was trying to stay out of other fans pictures...Happy happy day!'
     created_at: '2009-10-05 18:14:17'
+  CommentArchive_2275:
+    id: '2275'
+    collection_id: '665'
+    collector_id: '59'
+    subject: ''
+    body: "Review of the game here:\r\nhttp://www.collectorsquest.com/blog/2009/09/28/are-you-game-to-try-tiltin-milton/"
+    created_at: '2009-10-06 06:17:22'
+  CommentArchive_2276:
+    id: '2276'
+    collection_id: '812'
+    collector_id: '59'
+    subject: ''
+    body: 'More about this item here: http://www.collectorsquest.com/blog/2009/10/01/research-collecting-the-flight-383-128-memorial-project/'
+    created_at: '2009-10-06 06:18:44'
   CommentArchive_2286:
     id: '2286'
     collection_id: '1524'
@@ -643,6 +1238,14 @@ CommentArchive:
     subject: ''
     body: 'WOW! You do have a LOT of these guys! Amazing! So many cool figures...'
     created_at: '2009-10-07 20:35:43'
+  CommentArchive_2308:
+    id: '2308'
+    collection_id: '931'
+    author_name: 'Pam Cummings'
+    author_email: cummingsmn@mchsi.com
+    subject: ''
+    body: 'I am doing some research on my grandma''s recipe box and found a copy of CANDY AND HOW! by the Western Beet Sugar Producers/ Nancy Haven. Can you tell me more?'
+    created_at: '2009-10-11 14:53:44'
   CommentArchive_2323:
     id: '2323'
     collection_id: '1524'
@@ -657,6 +1260,13 @@ CommentArchive:
     subject: ''
     body: 'If you accept my offer, how can I pay you, can be by Paypal? Thanks'
     created_at: '2009-10-14 00:44:44'
+  CommentArchive_2327:
+    id: '2327'
+    collection_id: '838'
+    collector_id: '59'
+    subject: ''
+    body: 'Myrtle The Turtle story inside -- see it here: http://www.twolia.com/blogs/kitsch-slapped/2009/10/14/whatjamacallit-wednesday-myrtle-the-turtle/'
+    created_at: '2009-10-14 05:59:06'
   CommentArchive_2354:
     id: '2354'
     collection_id: '1524'
@@ -665,6 +1275,45 @@ CommentArchive:
     subject: ''
     body: 'if you are looking to buy this set of Lion king cards I also have a full set for sale. I can arrange a private auction on ebay if you would like. Just email me and let me know'
     created_at: '2009-10-17 20:13:37'
+  CommentArchive_2359:
+    id: '2359'
+    collection_id: '665'
+    author_name: sylvia
+    author_email: SKLOTZ48@GMAIL.COM
+    subject: ''
+    body: 'I have a COO COO JUVENILE "D" GAME.  NEVER USED. Where could I find more information?  '
+    created_at: '2009-10-18 16:06:41'
+  CommentArchive_2370:
+    id: '2370'
+    collection_id: '665'
+    collector_id: '59'
+    subject: ''
+    body: 'Any info I have on Coo-Coo and related games is in this post: http://www.collectorsquest.com/blog/2008/07/17/going-coo-coo-for-old-stunts/'
+    created_at: '2009-10-19 17:34:50'
+  CommentArchive_2382:
+    id: '2382'
+    collection_id: '595'
+    author_name: 'ryan sturgis'
+    author_email: ''
+    subject: ''
+    body: 'hey for all you garbage pail kids collectors i got some inside info.The garbage pail kids all new series 4 bonus card ''Swarmed Norm'' if you have the card keep it if not try and grab it now while its cheap[ 10 dollars] according to a topps guy they did not print a mass amount of this card as it was a production error so all the bonus boxes sold with Swarmed Norm,thats it.Topps does not have many more stocked in their warehouse like they do all the others.This makes Mr Norm a limited card and soon to be found out a very hard card to get.In the world of GPK the price of this card will sky rocket.  '
+    created_at: '2009-10-21 10:14:38'
+  CommentArchive_2383:
+    id: '2383'
+    collection_id: '595'
+    author_name: 'Chris '
+    author_email: Crteems@hotmail.com
+    subject: ''
+    body: 'I heard about the Swarmed Norm card to.I have 4 factory sealed bonus boxes with Swarmed Norm.A couple shops i buy from already have that card selling for 75.00.The boxes are sold out!!!!!'
+    created_at: '2009-10-21 10:19:45'
+  CommentArchive_2384:
+    id: '2384'
+    collection_id: '595'
+    author_name: 'Tom Anderson'
+    author_email: ''
+    subject: ''
+    body: 'Man i had that Swarmed Norm Bonus box and opened it.I took the card out of the cello to.So i called the comic store i buy alot of my cards from and wouldnt u know all sold out of the box.And he wanted 60 bucks for the single.'
+    created_at: '2009-10-21 10:50:32'
   CommentArchive_2394:
     id: '2394'
     collection_id: '1701'
@@ -680,6 +1329,14 @@ CommentArchive:
     subject: ''
     body: 'Thanks Poptart!  That''s very nice of you to say.  I have everything for sale currently at extremelly low low prices.  if you''d like check out  brians-fishbowl.tripod.com/fishbowl  and let me know if you see anything you''d like!  Brian'
     created_at: '2009-10-24 06:41:40'
+  CommentArchive_2442:
+    id: '2442'
+    collection_id: '931'
+    author_name: 'Nadine Cummings'
+    author_email: cummingsnadine@aol.com
+    subject: ''
+    body: 'Pam - oh how weird! I have that booklet also (Candy and How!) and my last name is Cummings as well :-) I have such fond memories of making the Vinegar Taffy, Panocha, and Divinity recipes from this booklet, and still make them today. My copy has pieces of ancient cellophane tape holding it together and is stained, but I still use it :-)'
+    created_at: '2009-11-01 10:28:35'
   CommentArchive_2453:
     id: '2453'
     collection_id: '1833'
@@ -687,6 +1344,20 @@ CommentArchive:
     subject: ''
     body: "Now that looks like a real nice meercat family together!\r\nIt is meercat manor!"
     created_at: '2009-11-02 22:17:41'
+  CommentArchive_2491:
+    id: '2491'
+    collection_id: '905'
+    collector_id: '59'
+    subject: ''
+    body: 'For more on this collection, please see: http://pinkpopulace.blogspot.com/2009/04/vintage-cosmetics-beauty-accessories.html'
+    created_at: '2009-11-08 04:58:32'
+  CommentArchive_2523:
+    id: '2523'
+    collection_id: '905'
+    collector_id: '59'
+    subject: ''
+    body: 'From Booklet No 5: Popular Stage Types, instructions for  how to make black-face: http://www.twolia.com/blogs/kitsch-slapped/2009/06/10/how-to-make-yourself-a-black-faced-negro/'
+    created_at: '2009-11-08 18:48:42'
   CommentArchive_2541:
     id: '2541'
     collection_id: '1838'
@@ -779,6 +1450,79 @@ CommentArchive:
     subject: ''
     body: 'Colorata.... I''m more and more addict !'
     created_at: '2009-11-10 13:22:47'
+  CommentArchive_2603:
+    id: '2603'
+    collection_id: '869'
+    author_name: 'alli Cara'
+    author_email: scara1589@charter.net
+    subject: ''
+    body: "i love the blue elf!!!!!!!!!   how much is it?\r\n\r\n"
+    created_at: '2009-11-12 20:35:55'
+  CommentArchive_2604:
+    id: '2604'
+    collection_id: '869'
+    author_name: 'alli Cara'
+    author_email: scara1589@charter.net
+    subject: ''
+    body: "i love the blue elf!!!!!!!!!   how much is it?\r\n\r\n"
+    created_at: '2009-11-12 20:36:02'
+  CommentArchive_2624:
+    id: '2624'
+    collection_id: '1854'
+    collector_id: '59'
+    subject: ''
+    body: 'More photos and info about my antique beaded bag here: http://gadaboutmedia.com/becoming-unhinged-over-antique-beaded-purses/'
+    created_at: '2009-11-16 00:44:20'
+  CommentArchive_2627:
+    id: '2627'
+    collection_id: '1854'
+    collector_id: '59'
+    subject: ''
+    body: 'For more about this bag, see my blog here at Collectors'' Quest: http://www.collectorsquest.com/blog/2009/11/16/antique-armor-mesh-bags/'
+    created_at: '2009-11-16 07:14:09'
+  CommentArchive_2628:
+    id: '2628'
+    collection_id: '665'
+    collector_id: '59'
+    subject: ''
+    body: 'For a review of this game & more photos, see my blog post: http://www.twolia.com/blogs/kitsch-slapped/2009/11/11/whatjamacallit-wednesday-soap-opera-challenge-yr-edition/'
+    created_at: '2009-11-16 07:29:32'
+  CommentArchive_2632:
+    id: '2632'
+    collection_id: '867'
+    collector_id: '59'
+    subject: ''
+    body: 'More photos and details in my blog posting: http://gadaboutmedia.com/another-old-yellow-dog-follows-me-home/'
+    created_at: '2009-11-16 18:25:46'
+  CommentArchive_2633:
+    id: '2633'
+    collection_id: '867'
+    collector_id: '59'
+    subject: ''
+    body: 'Additional scans in my Collectors'' Quest blog post: http://www.collectorsquest.com/blog/2009/11/12/the-see-em-walk-dog-takes-me-on-an-ephemera-hunt/'
+    created_at: '2009-11-16 18:43:06'
+  CommentArchive_2648:
+    id: '2648'
+    collection_id: '638'
+    collector_id: '59'
+    subject: ''
+    body: 'See my CQ post on paint by number history http://www.collectorsquest.com/blog/2008/07/06/craft-master-the-history-of-paint-by-numbers/'
+    created_at: '2009-11-19 18:19:49'
+  CommentArchive_2649:
+    id: '2649'
+    collection_id: '638'
+    collector_id: '59'
+    subject: ''
+    body: 'More on vintage paint by numbers - CQ blog post: http://www.collectorsquest.com/blog/2008/07/07/the-why-of-collecting-paint-by-numbers/'
+    created_at: '2009-11-19 18:20:49'
+  CommentArchive_2671:
+    id: '2671'
+    collection_id: '1272'
+    author_name: jonathan
+    author_email: johnboy1251@yahoo.com
+    subject: ''
+    body: 'hello my name is jonathan and i just want to hear the vintage squeaky toy duck just give me a call on my cellphone i have  voice mail i just want to hear the rubber duck squeak 870-9741635'
+    created_at: '2009-11-23 03:36:25'
   CommentArchive_2718:
     id: '2718'
     collection_id: '1647'
@@ -831,6 +1575,14 @@ CommentArchive:
     subject: ''
     body: 'Very nice collection. Congratulation landrover.'
     created_at: '2009-12-09 12:33:57'
+  CommentArchive_2854:
+    id: '2854'
+    collection_id: '1106'
+    author_name: Tinie
+    author_email: a316tinie@aol.com
+    subject: ''
+    body: 'Cool collection!'
+    created_at: '2009-12-11 17:01:40'
   CommentArchive_2866:
     id: '2866'
     collection_id: '1900'
@@ -990,6 +1742,20 @@ CommentArchive:
     subject: ''
     body: "not,I will notice you, if I see again.\r\nare 3 animal (polar bear +2 cub) in only figure\r\n"
     created_at: '2009-12-13 21:33:46'
+  CommentArchive_2967:
+    id: '2967'
+    collection_id: '1735'
+    collector_id: '59'
+    subject: ''
+    body: 'For more on Tigger, check out my blog! http://www.inherited-values.com/2009/12/lessons-in-plush-toys-or-whose-head-is-stuffed-with-sawdust/'
+    created_at: '2009-12-17 08:36:52'
+  CommentArchive_2968:
+    id: '2968'
+    collection_id: '1735'
+    collector_id: '59'
+    subject: ''
+    body: 'For more on straw and sawdust stuffed animals, see my blog post here at CQ: http://www.collectorsquest.com/blog/2009/12/17/sleeping-with-sawdust/'
+    created_at: '2009-12-17 08:40:13'
   CommentArchive_2970:
     id: '2970'
     collection_id: '1522'
@@ -1034,6 +1800,29 @@ CommentArchive:
     subject: ''
     body: 'It''s not me, I find the name in the Safari''s catalog'
     created_at: '2009-12-18 01:21:38'
+  CommentArchive_3001:
+    id: '3001'
+    collection_id: '1143'
+    author_name: Kathy
+    author_email: kvadebon@bellsouth.net
+    subject: ''
+    body: 'I have the above book.  ( Cake baking made easy)  But can anyone tell me what are "Foundation Recipes" are?'
+    created_at: '2009-12-20 17:49:01'
+  CommentArchive_3005:
+    id: '3005'
+    collection_id: '1272'
+    collector_id: '1724'
+    subject: ''
+    body: 'Very cute! I''m new to this site, does the price include shipping?'
+    created_at: '2009-12-21 20:35:32'
+  CommentArchive_3008:
+    id: '3008'
+    collection_id: '1272'
+    author_name: Susie
+    author_email: smay2@gt.rr.com
+    subject: ''
+    body: 'Do you know where I can find a book or website with squeaker toys appraised values?'
+    created_at: '2009-12-22 02:56:03'
   CommentArchive_3010:
     id: '3010'
     collection_id: '1673'
@@ -1050,6 +1839,34 @@ CommentArchive:
     subject: ''
     body: "hello\r\nthe K&M animals...where can I find them an where can I se an entire collectioun?\r\nthanks"
     created_at: '2009-12-22 08:37:17'
+  CommentArchive_3041:
+    id: '3041'
+    collection_id: '506'
+    subject: ''
+    body: ''
+    created_at: '2009-12-25 15:39:32'
+  CommentArchive_3060:
+    id: '3060'
+    collection_id: '1272'
+    collector_id: '59'
+    subject: ''
+    body: 'Hey, Atomic Mamma, no, the shipping is added to the price -- but I''d need your address to quote the exact amount :)'
+    created_at: '2009-12-28 13:06:46'
+  CommentArchive_3063:
+    id: '3063'
+    collection_id: '1143'
+    collector_id: '59'
+    subject: ''
+    body: 'Foundation recipes are like basic recipes -- the foundation for several other recipes. For soups, it would be like a basic chicken broth, a basic creme soup ''stock'', etc. For cakes and baking, it is the basic recipes from which you build to make the cakes, frostings, etc. So you''d make a specific cake, beginning with one of the "foundation" recipes.  Does that make sense?'
+    created_at: '2009-12-28 17:10:58'
+  CommentArchive_3101:
+    id: '3101'
+    collection_id: '868'
+    author_name: joyce
+    author_email: jjeldance@aol.com
+    subject: ''
+    body: 'Do you collect all types of soaps?'
+    created_at: '2009-12-30 20:31:40'
   CommentArchive_3125:
     id: '3125'
     collection_id: '1875'
@@ -1065,6 +1882,14 @@ CommentArchive:
     subject: ''
     body: 'wow!!   how money?     I like toy mandarin duck           please wrtie me, thanks!!!                       my name is matthew crow & Deaf          thanks for toy mandarin duck!!!'
     created_at: '2010-01-03 10:59:39'
+  CommentArchive_3178:
+    id: '3178'
+    collection_id: '838'
+    author_name: 'Candi Hargenrater'
+    author_email: dreamacres1@windstream.net
+    subject: ''
+    body: 'Where do I find the going prices for Hobbies magazines from back in the early 30''s  & up?'
+    created_at: '2010-01-07 21:09:27'
   CommentArchive_3204:
     id: '3204'
     collection_id: '1894'
@@ -1072,6 +1897,14 @@ CommentArchive:
     subject: ''
     body: 'A nice person from DTF'
     created_at: '2010-01-11 05:00:11'
+  CommentArchive_3208:
+    id: '3208'
+    collection_id: '868'
+    author_name: 'Lorraine Fortin'
+    author_email: lorrainefortin.poncho@hotmail.com
+    subject: ''
+    body: "No,I collect soaps with forms like:flowers soaps,dogs soaps,angels soaps,birds soaps,fish soaps,heart soaps and also figurine soaps like:Mickey Mouse,Davy Crockett,Bart  and Omer Simpsons,Betty Boo and many many more.I have now 1000 soaps in my collection.\r\nI have made this website to present my collection to the world.Go see it.In a few months I will have a blog where I will talk to people about my collection and how to take care of soaps.ect."
+    created_at: '2010-01-11 16:39:39'
   CommentArchive_3225:
     id: '3225'
     collection_id: '1569'
@@ -1093,6 +1926,30 @@ CommentArchive:
     subject: ''
     body: 'very interesting figure'
     created_at: '2010-01-14 13:20:22'
+  CommentArchive_3248:
+    id: '3248'
+    collection_id: '1272'
+    author_name: Kat
+    author_email: WhiteFeather_43@yahoo.com
+    subject: ''
+    body: 'I''m looking for a website with appraisal values for dolls from the Sun Rubber Company.  Does anyone know of one?  Thank you SO much :)'
+    created_at: '2010-01-14 21:36:20'
+  CommentArchive_3302:
+    id: '3302'
+    collection_id: '868'
+    author_name: 'Dennis Haas'
+    author_email: ddhaas@cox.net
+    subject: ''
+    body: 'I have a solletion of figures from circa 1950 which I collected as a small boy. Is there a market for them? They are annimals, sports items, cowboys and various other items.'
+    created_at: '2010-01-17 15:21:47'
+  CommentArchive_3327:
+    id: '3327'
+    collection_id: '838'
+    author_name: 'Anna Skulski'
+    author_email: annaskulski@yahoo.com
+    subject: ''
+    body: 'Please tell me the value of a 1918 Cosmopolitan Magazine I own-it''s in good condition.'
+    created_at: '2010-01-18 12:13:53'
   CommentArchive_3383:
     id: '3383'
     collection_id: '1540'
@@ -1165,6 +2022,20 @@ CommentArchive:
     subject: ''
     body: 'beautiful....beautiful ...beautiful.   congratulation,you have very nice reindeer.'
     created_at: '2010-02-07 11:49:59'
+  CommentArchive_3787:
+    id: '3787'
+    collection_id: '1854'
+    collector_id: '877'
+    subject: ''
+    body: "hello!\r\nIs that for sale?\r\nAna"
+    created_at: '2010-02-10 12:41:31'
+  CommentArchive_3788:
+    id: '3788'
+    collection_id: '1854'
+    collector_id: '877'
+    subject: ''
+    body: 'I have anantique purse too, you can see it in my market, it is a silver one, very elegant'
+    created_at: '2010-02-10 12:44:27'
   CommentArchive_3844:
     id: '3844'
     collection_id: '1745'
@@ -1228,6 +2099,38 @@ CommentArchive:
     subject: ''
     body: 'Nice group of feathery dino''s my friend!'
     created_at: '2010-02-14 19:28:16'
+  CommentArchive_3924:
+    id: '3924'
+    collection_id: '838'
+    author_name: Carla
+    author_email: barefootcontessa46@woh.rr.com
+    subject: ''
+    body: 'My husband and  I have some of these was wondering what they would sell for. We have about 2 dozen.'
+    created_at: '2010-02-15 11:46:00'
+  CommentArchive_3927:
+    id: '3927'
+    collection_id: '847'
+    author_name: 'lloyd harvell'
+    author_email: lwh75165@hotmail.com
+    subject: ''
+    body: 'what is players condition?'
+    created_at: '2010-02-16 16:50:40'
+  CommentArchive_3935:
+    id: '3935'
+    collection_id: '847'
+    author_name: Rene
+    author_email: RJam024-pageaccess@yahoo.com
+    subject: ''
+    body: 'I have one that works.  The condition is as well as can be expected for its age.'
+    created_at: '2010-02-18 09:01:09'
+  CommentArchive_3939:
+    id: '3939'
+    collection_id: '905'
+    author_name: 'L. Hughes'
+    author_email: ''
+    subject: ''
+    body: 'Hello - I have two of these kits, one for female & one for male - they also include the plain cardboard box that these boxes came in.  I have been trying to establish some sort of value on them..do you have any idea?  I am interested in selling them but don''t have a clue where to begin.  Any and all help would be wildly appreciated - Thx!'
+    created_at: '2010-02-18 16:35:38'
   CommentArchive_3975:
     id: '3975'
     collection_id: '1540'
@@ -1243,6 +2146,85 @@ CommentArchive:
     subject: ''
     body: "trying to find wolverine animal figures online any help or tips,thanks\r\n"
     created_at: '2010-02-24 01:46:24'
+  CommentArchive_3988:
+    id: '3988'
+    collection_id: '666'
+    author_name: 'marie santiago'
+    author_email: easttxrican86@aol.com
+    subject: ''
+    body: 'I have this book I was wondering if it had any $$$$$value to it ?'
+    created_at: '2010-02-24 17:48:28'
+  CommentArchive_4169:
+    id: '4169'
+    disqus_id: '39532216'
+    parent_id: '37811313'
+    collection_id: '868'
+    author_name: 'Lorraine Fortin'
+    author_email: lorrainefortin.poncho@hotmail.com
+    author_url: 'http://www.en-passant-par-la-lorraine.net/'
+    body: "Hi,this is the new website address: http://www.en-passant-par-la-lorraine.net\r\n"
+    ip_address: 24.203.72.52
+    created_at: '2010-03-13 20:03:00'
+  CommentArchive_4170:
+    id: '4170'
+    disqus_id: '37816288'
+    collection_id: '868'
+    author_name: 'Dennis Haas'
+    author_email: ddhaas@cox.net
+    author_url: ''
+    body: 'I have a solletion of figures from circa 1950 which I collected as a small boy. Is there a market for them? They are annimals, sports items, cowboys and various other items.'
+    ip_address: 255.255.255.255
+    created_at: '2010-01-17 15:21:00'
+  CommentArchive_4171:
+    id: '4171'
+    disqus_id: '37816106'
+    collection_id: '868'
+    author_name: 'Lorraine Fortin'
+    author_email: lorrainefortin.poncho@hotmail.com
+    author_url: ''
+    body: "No,I collect soaps with forms like:flowers soaps,dogs soaps,angels soaps,birds soaps,fish soaps,heart soaps and also figurine soaps like:Mickey Mouse,Davy Crockett,Bart  and Omer Simpsons,Betty Boo and many many more.I have now 1000 soaps in my collection.\r\nI have made this website to present my collection to the world.Go see it.In a few months I will have a blog where I will talk to people about my collection and how to take care of soaps.ect."
+    ip_address: 255.255.255.255
+    created_at: '2010-01-11 16:39:00'
+  CommentArchive_4172:
+    id: '4172'
+    disqus_id: '37811315'
+    collection_id: '868'
+    author_name: 'Lorraine Fortin'
+    author_email: lorrainefortin.poncho@hotmail.com
+    author_url: ''
+    body: 'I really don''t know what happen but you can go on the first address i give you and it work .When by address will change I will let you know.Lorraine'
+    ip_address: 255.255.255.255
+    created_at: '2009-04-21 15:07:00'
+  CommentArchive_4173:
+    id: '4173'
+    disqus_id: '37811314'
+    collection_id: '868'
+    author_name: 'Lorraine Fortin'
+    author_email: lorrainefortin.poncho@hotmail.com
+    author_url: ''
+    body: "The post did not write my good address of website.To go see my soap collection go to:\r\nhttp://www.wix.com/enpassantparlaLorraine/En-passnt-par-la-Lorraine"
+    ip_address: 255.255.255.255
+    created_at: '2009-04-21 14:48:00'
+  CommentArchive_4174:
+    id: '4174'
+    disqus_id: '37811313'
+    collection_id: '868'
+    author_name: 'Lorraine Fortin'
+    author_email: lorrainefortin.poncho@hotmail.com
+    author_url: ''
+    body: "Hi, I collect soaps too.I have a large collection,near than 1000 soaps.I collect them for the last 15 years.I've just finish to make my internet site to show my collection to the whole world.You can go see my site at the address below but in a short time the address will change when I will have my domain name.It took me five mounths to make my website.You have nice soaps too.If you go see my site sign my Guestbook,i will be happy to have your comments.You can go to:http://www.wix.com/enpassantparlaLorraine/En-passant-par-la-Lorraine\r\n                                                               Thank you      Lorraine"
+    ip_address: 255.255.255.255
+    created_at: '2009-04-21 14:42:00'
+  CommentArchive_4175:
+    id: '4175'
+    disqus_id: '39532634'
+    collection_id: '1047'
+    author_name: Ileana
+    author_email: mascruff@aol.com
+    author_url: ''
+    body: 'where can I buy the ceramic Rafiki as above where he''s reading the inside of the coconut?  I bought one for my husband the year the Lion King came out (1994) and recently it broke.  I would love to get another to give him for our 39 wedding anniversary this month.  Thanks!'
+    ip_address: 64.12.112.135
+    created_at: '2010-03-13 20:07:00'
   CommentArchive_4284:
     id: '4284'
     disqus_id: '43793063'
@@ -1358,6 +2340,53 @@ CommentArchive:
     body: "I want to buy this but I don't know how much its worth sorry for the rubbish offer I also don't know how much 50 dollars actually is but I want it its such a brilliant collection\r\n"
     ip_address: 255.255.255.255
     created_at: '2009-10-07 11:58:00'
+  CommentArchive_4393:
+    id: '4393'
+    disqus_id: '48128328'
+    collection_id: '1735'
+    body: "Hey its really nice and so cute\nThanks for these"
+    ip_address: 122.160.181.162
+    created_at: '2010-05-03 07:55:00'
+  CommentArchive_4460:
+    id: '4460'
+    disqus_id: '48621881'
+    collection_id: '847'
+    author_name: russ
+    author_email: walky-talky82@hotmail.com
+    author_url: ''
+    body: 'does anyone have a ced player for sale'
+    ip_address: 69.85.97.115
+    created_at: '2010-05-06 05:40:00'
+  CommentArchive_4461:
+    id: '4461'
+    disqus_id: '37817542'
+    collection_id: '847'
+    author_name: Rene
+    author_email: RJam024-pageaccess@yahoo.com
+    author_url: ''
+    body: 'I have one that works.  The condition is as well as can be expected for its age.'
+    ip_address: 255.255.255.255
+    created_at: '2010-02-18 09:01:00'
+  CommentArchive_4462:
+    id: '4462'
+    disqus_id: '37812280'
+    collection_id: '847'
+    author_name: Heather
+    author_email: no-reply@collectorsquest.com
+    author_url: ''
+    body: 'I just acquired one from my grandfather yesterday. Decided to research them to possibly make some cash. If you''re interested let me know.'
+    ip_address: 255.255.255.255
+    created_at: '2009-07-13 09:20:00'
+  CommentArchive_4463:
+    id: '4463'
+    disqus_id: '37811619'
+    collection_id: '847'
+    author_name: 'Kathy Tuer'
+    author_email: new_york_buty@yahoo.com
+    author_url: ''
+    body: 'I am looking for a CED player in good working order.  Anyone out there has one for sale please email me, Thanks.'
+    ip_address: 255.255.255.255
+    created_at: '2009-06-04 21:10:00'
   CommentArchive_4473:
     id: '4473'
     collection_id: '1833'
@@ -1365,6 +2394,13 @@ CommentArchive:
     body: 'I like this meerkats together picture.'
     ip_address: 202.42.95.72
     created_at: '2010-05-09 22:01:56'
+  CommentArchive_4515:
+    id: '4515'
+    collection_id: '2199'
+    collector_id: '3279'
+    body: 'Great figure. I will be posting several more pictures of the rest of the set. '
+    ip_address: 66.121.73.254
+    created_at: '2010-05-13 12:52:34'
   CommentArchive_4527:
     id: '4527'
     collection_id: '767'
@@ -1372,6 +2408,54 @@ CommentArchive:
     body: 'Thank you, Don!'
     ip_address: 78.128.95.174
     created_at: '2010-05-16 17:21:13'
+  CommentArchive_4528:
+    id: '4528'
+    collection_id: '868'
+    author_name: josh
+    author_email: josh4450@gmail.com
+    author_url: ''
+    body: 'i have some verry old soap for sale its probbly 100years old still in box if interested email for pics josh4450@gmail.com'
+    ip_address: 71.171.21.16
+    created_at: '2010-05-17 02:40:21'
+  CommentArchive_4573:
+    id: '4573'
+    collection_id: '847'
+    author_name: 'Peter McCombie'
+    author_email: playerpete4610@hotmail.com
+    author_url: ''
+    body: "Hi, I actually have two RCA SelectaVision Players for sale right now there are two problem's though I live in Canada and I wan't to sell the whole collection of  450 Disks I only want two dollar's each and there are 75 rare ones and two very rare.  I am open to offers some of these disks I paid $75 dollars for in the 80s and I also have a brand new stylus for one of them I paid $70.00 just for that it kills me that there are collectors in Canada but nobody will tell me where it would take you a year to watch all the movies. Anyway enough whineing if your interested please email playerpete4610@hotmail.com  Peter McCombie\r\n\r\nOshawa Ontario\r\nCanada"
+    ip_address: 173.206.30.250
+    created_at: '2010-06-03 14:07:55'
+  CommentArchive_4594:
+    id: '4594'
+    collection_id: '838'
+    collector_id: '3501'
+    body: 'hey I''m looking for an add on a cosmopolitan magazine where my mother was a model in an "elisabeth Arden" ad, is just of her face, she is wearing a pink head scarf with a white one  wraped on top... I think her head is resting on her hands. let me know if you would have it or if you know someone who would.. thank you'
+    ip_address: 69.196.64.58
+    created_at: '2010-06-10 16:36:27'
+  CommentArchive_4672:
+    id: '4672'
+    collection_id: '1776'
+    collector_id: '3686'
+    body: 'hi i have got small collection im selling  power blster.ninja megazord falcon zord deluxe shogun mega zord titanos and serpentera  all boxed all from 1995  if interested e mail me mrs bashfull@yahoo.co.uk  all excellent condition'
+    ip_address: 90.198.57.29
+    created_at: '2010-07-03 07:06:07'
+  CommentArchive_4696:
+    id: '4696'
+    collection_id: '2287'
+    collector_id: '3746'
+    body: "it is very good collection.\r\n\r\nStock Tips  ||  Sure Shot Tips   ||   Mcx Tips\r\n"
+    ip_address: 122.163.30.37
+    created_at: '2010-07-09 02:35:41'
+  CommentArchive_4700:
+    id: '4700'
+    collection_id: '838'
+    author_name: Robin
+    author_email: robinarizona430@msn.com
+    author_url: ''
+    body: 'McCalls 1927 magazine and Modern Women 1905...what would these be worth?'
+    ip_address: 71.209.227.123
+    created_at: '2010-07-09 18:57:19'
   CommentArchive_4716:
     id: '4716'
     collection_id: '1524'
@@ -1399,6 +2483,15 @@ CommentArchive:
     body: "hi again,\r\ni let a long comment and i meant to leave it for this picture sorry. but please e mail me letting me know how i can buy this and for how much!!!!! please thanks."
     ip_address: 98.220.139.250
     created_at: '2010-07-13 13:15:09'
+  CommentArchive_4725:
+    id: '4725'
+    collection_id: '1272'
+    author_name: 'millissa Birchfield'
+    author_email: millissaw@yahoo.com
+    author_url: ''
+    body: 'I have one of these HO JO''s and he has been my treasured friend since I was born in 1951.. So glad to finally find  something out about Him... Thanks'
+    ip_address: 209.91.107.251
+    created_at: '2010-07-15 17:52:36'
   CommentArchive_4728:
     id: '4728'
     collection_id: '1524'
@@ -1479,6 +2572,13 @@ CommentArchive:
     body: "I would like to purchase the set of T-Rex bookends as you have in this picture.  My son is absolutely dinosaur mad so if you have other dinosaur bookends I would like to see them as well. \r\nCould you please tell me what the cost would be including postage to Australia.\r\n\r\nRegards,\r\nSharon\r\n"
     ip_address: 220.238.174.130
     created_at: '2010-07-25 04:05:49'
+  CommentArchive_4781:
+    id: '4781'
+    collection_id: '1777'
+    collector_id: '3885'
+    body: 'where can i get one of these'
+    ip_address: 75.201.29.126
+    created_at: '2010-07-26 14:51:26'
   CommentArchive_4790:
     id: '4790'
     collection_id: '2171'
@@ -1488,6 +2588,15 @@ CommentArchive:
     body: 'love the t shirt i live in england,can u ship here? how much please get back to me thank u,warriorpirate@hotmail.com'
     ip_address: 77.100.104.130
     created_at: '2010-07-28 17:08:45'
+  CommentArchive_4792:
+    id: '4792'
+    collection_id: '838'
+    author_name: 'Dennis Gillooly'
+    author_email: gilloolyd@tmo.blackberry.net
+    author_url: ''
+    body: 'I have the issue feb. 15,1941 with ab lincoln on the cover what is this worth do you know?'
+    ip_address: 69.0.19.103
+    created_at: '2010-07-29 14:42:40'
   CommentArchive_4793:
     id: '4793'
     collection_id: '767'
@@ -1589,6 +2698,15 @@ CommentArchive:
     body: briana1812@gmail.com
     ip_address: 72.93.122.186
     created_at: '2010-09-08 15:45:39'
+  CommentArchive_5040:
+    id: '5040'
+    collection_id: '931'
+    author_name: 'Diane O''Toole'
+    author_email: dianegerry@bell.net
+    author_url: ''
+    body: "I purchased 2 cartons of molasses with a Grandma Melasse Recettes Favorites as a promotional gift at Costco. Unfortunately\r\nI only speak English. If you have an English copy of this favorite recipes booklet, I would appreciate you sending that to me.\r\nThank you for your kindness!\r\n\r\nDiane O'Toole\r\n485 Gratton St.\r\nSt-Laurent\r\nQC H4M 2E4\r\nCanada"
+    ip_address: 70.51.17.201
+    created_at: '2010-09-12 14:25:13'
   CommentArchive_5053:
     id: '5053'
     collection_id: '767'
@@ -1598,6 +2716,22 @@ CommentArchive:
     body: 'I used to have all of these when I was a kid. It''s a shame I never kept them. The triceratops was done in a brown plastic, much as yours is. The others came in a sort of iridescent purple/brown colour. I do have the monogram re-release of the stegosaur under the Jurassic park label and wish I could get hold of them again (alas: not much chance of that).'
     ip_address: 202.161.6.77
     created_at: '2010-09-15 07:35:08'
+  CommentArchive_5069:
+    id: '5069'
+    collection_id: '1777'
+    collector_id: '4232'
+    body: 'Would you ever consider selling them to an australian???????'
+    ip_address: 10.88.48.253
+    created_at: '2010-09-16 20:08:40'
+  CommentArchive_5076:
+    id: '5076'
+    collection_id: '838'
+    author_name: 'Joe Elliott'
+    author_email: jwe@wk.net
+    author_url: ''
+    body: "I have some hobbies magazines from the 1930's.  Wondered what they are worth.\r\n\r\nThanks "
+    ip_address: 208.66.245.232
+    created_at: '2010-09-18 10:56:51'
   CommentArchive_5077:
     id: '5077'
     collection_id: '767'
@@ -1625,6 +2759,15 @@ CommentArchive:
     body: 'You are very lucky to have one of these as I''m certain no present day firm reproduces them. The originals at Crystal Palace are impressive despite being totally incorrect by today''s standards.'
     ip_address: 124.171.74.242
     created_at: '2010-09-19 07:49:02'
+  CommentArchive_5088:
+    id: '5088'
+    collection_id: '847'
+    author_name: brenda
+    author_email: iluvthe60s@crawler.com
+    author_url: ''
+    body: 'i am looking for a selectavision player. vince @  661-395-0041'
+    ip_address: 69.106.122.22
+    created_at: '2010-09-20 04:46:33'
   CommentArchive_5098:
     id: '5098'
     collection_id: '2385'
@@ -1641,6 +2784,15 @@ CommentArchive:
     body: '............ is that for sale?'
     ip_address: 96.238.247.141
     created_at: '2010-09-26 13:42:40'
+  CommentArchive_5183:
+    id: '5183'
+    collection_id: '1874'
+    author_name: ashleigh
+    author_email: ''
+    author_url: ''
+    body: 'The pin drawing looks just like face off The Human Nature song album cover.'
+    ip_address: 205.173.37.128
+    created_at: '2010-09-28 17:47:39'
   CommentArchive_5190:
     id: '5190'
     collection_id: '2385'
@@ -1740,6 +2892,15 @@ CommentArchive:
     body: "I woould like to buy a Tshirts028-1,version2,and thet sizes midle in US size.\r\nI hope your reply to me about this."
     ip_address: 180.4.146.232
     created_at: '2010-10-24 07:13:36'
+  CommentArchive_5392:
+    id: '5392'
+    collection_id: '813'
+    author_name: 'Jean J'
+    author_email: twodonedriftin@yahoo.com
+    author_url: ''
+    body: "This beautiful chalkware collie is the closest I have seen to one that used to be in my possession during the 1950's and 1960's. My Mom told me it was won by my G'pa at a carnival sometime in the 1930's, and given to my G'ma. From what you know about this one - could that be possible? Also, I am think of writing a nostalgia piece about it and wonder if I could use this photograph for the article? If I can, can you advise how you would want to be credited?\r\nThanks so much. "
+    ip_address: 75.63.148.111
+    created_at: '2010-10-24 11:49:46'
   CommentArchive_5395:
     id: '5395'
     collection_id: '2444'
@@ -1763,6 +2924,15 @@ CommentArchive:
     body: 'These are created by different artists including paleoartist Shane Foulkes and many more. Dinostoreus Company supposedly has their own stile and that is creating some problem with creation of models because all artists have their own unique and individual artistic stile. At my knowledge company always looking for artists who can create new models with conformity to DinoStoreus models style. Models, wooden bases and all metal parts produced, painted and finished in China and shipped to US for sale.'
     ip_address: 75.80.13.205
     created_at: '2010-10-29 21:22:09'
+  CommentArchive_5508:
+    id: '5508'
+    collection_id: '1144'
+    author_name: 'Natalie Rosen'
+    author_email: nrosen1@aol.com
+    author_url: ''
+    body: 'Looking to sell vintage greeting cards from the 30s &amp; 40s'
+    ip_address: 174.48.193.215
+    created_at: '2010-11-06 05:37:41'
   CommentArchive_5554:
     id: '5554'
     collection_id: '2171'
@@ -1818,6 +2988,47 @@ CommentArchive:
     body: 'Thank you. Truly, beauty is in the eye of the beholder. After seeing price tag for this beauty my wife thinks that I am mad.'
     ip_address: 75.80.13.205
     created_at: '2010-11-21 20:50:59'
+  CommentArchive_5661:
+    id: '5661'
+    collection_id: '1272'
+    author_name: Forrest
+    author_email: forrestfootball52@hotmail.com
+    author_url: ''
+    body: 'Hey I found an Alan Jay Clarolyte squeeky toy soldier in an old abandoned house and wondering what its story is it''s revolution style redcoat and musket'
+    ip_address: 209.81.119.34
+    created_at: '2010-11-22 14:48:18'
+  CommentArchive_5750:
+    id: '5750'
+    collection_id: '931'
+    author_name: 'John Souza'
+    author_email: simplythesouzas@att.nett
+    author_url: ''
+    body: "I have come across a KAMKAP cookie press with alot of cookie shapes &amp; original directions!  \r\n  Copyright 1958,plastic barrel , metal top &amp; bottom.   \r\n My big quistion is are there many of these out there?\r\n                                  JS"
+    ip_address: 99.117.180.104
+    created_at: '2010-12-04 12:44:59'
+  CommentArchive_5760:
+    id: '5760'
+    collection_id: '1272'
+    author_name: 'Earlene Embry'
+    author_email: earlene.embry@yahoo.com
+    author_url: ''
+    body: 'This brings back memories of long ago. I can''t remember what year it was, late 40''s early 50''s, I asked my father for Baby Blue Eyes, a doll that was advertised on radio. at that time my father wasn''t working and couldn''t afford to get me the doll. he promised that when he went back to work, he would buy me that doll. After he returned to work, Baby Blue Eyes could not be found. One day he cane home with the Tod-L-Tim doll. I fell in love with that doll and carried it everywhere with me. I grew up, and have no idea what ever happened to the doll but I will never forget it.  '
+    ip_address: 174.32.208.222
+    created_at: '2010-12-06 08:24:29'
+  CommentArchive_5788:
+    id: '5788'
+    collection_id: '2487'
+    collector_id: '4404'
+    body: 'The same thing recently happened to me!  I collected the cards back in the ''90s and found them while cleaning out an old closet a few months ago.  How fun!  I''d love to see more pictures of what you''ve got.  I don''t have any pokemon up here on the site, but I''ve still got so many old toys, cards, and odd Japanese plushies.  Have fun collecting!'
+    ip_address: 108.64.213.187
+    created_at: '2010-12-07 13:17:36'
+  CommentArchive_5789:
+    id: '5789'
+    collection_id: '2490'
+    collector_id: '4404'
+    body: 'Digimon. . . how nostalgic.  I used to watch the television show at 7 am on Saturdays.  I always wanted some Digimon figures, but they were very hard to find.  I think I only have a few stickers and a Japanese Palmon plushie.  I''d love to see the rest of your collection!'
+    ip_address: 108.64.213.187
+    created_at: '2010-12-07 13:19:12'
   CommentArchive_5792:
     id: '5792'
     collection_id: '2171'
@@ -1877,6 +3088,25 @@ CommentArchive:
     body: "Hey Don,\r\n\r\nRemodel your shed to look like a cave. :)\r\n\r\nNice stuff!\r\n\r\nI didn't notice any caveman type figures in your collection.\r\n\r\nI have a 4 Starlux pre-historic figures.\r\n\r\n1- Male standing holding a spear.\r\n1- Male crouching holding a rock and spear.\r\n2- Females with a walking stick with baby on their back. One of the walking sticks is broken.\r\n\r\nIf you want to see them, let me know and I'll email a photo.\r\n\r\nThanks,\r\nVince"
     ip_address: 173.88.171.116
     created_at: '2010-12-16 15:13:39'
+  CommentArchive_5874:
+    id: '5874'
+    collection_id: '1144'
+    author_name: 'Peggy Vendel'
+    author_email: vflossy@comcast.net
+    author_url: ''
+    body: 'I have about 200 or so vintage greeting cards. How do I go about selling them?'
+    ip_address: 98.222.115.213
+    created_at: '2010-12-19 12:45:18'
+  CommentArchive_5890:
+    id: '5890'
+    collection_id: '494'
+    collectible_id: '7186'
+    author_name: 'Alex Apodaca'
+    author_email: ''
+    author_url: ''
+    body: 'by any chance are you going to sell the raphael animatronic skin or keep it?'
+    ip_address: 69.132.128.103
+    created_at: '2010-12-20 23:54:20'
   CommentArchive_5925:
     id: '5925'
     collection_id: '2398'
@@ -1893,6 +3123,13 @@ CommentArchive:
     body: "Does anyone know where to purchase this toy?\r\n\r\nThank you!"
     ip_address: 148.177.1.211
     created_at: '2010-12-28 15:58:31'
+  CommentArchive_5937:
+    id: '5937'
+    collection_id: '521'
+    collector_id: '5023'
+    body: 'CAN I PLEASE  trade u some of my lion king extras please message me back i am a copllector'
+    ip_address: 174.3.163.57
+    created_at: '2010-12-29 22:17:25'
   CommentArchive_5940:
     id: '5940'
     collection_id: '1522'
@@ -1907,6 +3144,24 @@ CommentArchive:
     body: "Thank you. It is a pleasure for me to hear it from Master collector like yourself. \r\n\r\nMarked on belly as: Bullyland. Made in Germany. Does not have a year it was made.  "
     ip_address: 76.95.129.116
     created_at: '2010-12-30 20:52:15'
+  CommentArchive_5978:
+    id: '5978'
+    collection_id: '1272'
+    author_name: cha
+    author_email: ''
+    author_url: ''
+    body: 'how much is this figure??'
+    ip_address: 76.71.207.189
+    created_at: '2011-01-05 23:04:02'
+  CommentArchive_5996:
+    id: '5996'
+    collection_id: '1272'
+    author_name: Steve
+    author_email: stphnseay@gmail.com
+    author_url: ''
+    body: 'How much is the Jolly Jumbo # 480 ?'
+    ip_address: 75.89.113.68
+    created_at: '2011-01-08 17:46:36'
   CommentArchive_6018:
     id: '6018'
     collection_id: '1824'
@@ -1916,6 +3171,68 @@ CommentArchive:
     body: 'If possible I''d like to buy some items.  Please contact me.  I''m interested in more than a few from the one photo I can see. Thx '
     ip_address: 174.254.89.150
     created_at: '2011-01-12 14:00:30'
+  CommentArchive_6019:
+    id: '6019'
+    collection_id: '1272'
+    collector_id: '5143'
+    body: 'I would like to purchase this elephant'
+    ip_address: 71.187.181.213
+    created_at: '2011-01-12 14:29:04'
+  CommentArchive_6025:
+    id: '6025'
+    collection_id: '1047'
+    collector_id: '4404'
+    body: 'awesome!  I love your collection!  I''m a Lion King fan who collects all of the characters.  Turns out most people just like the lions.  However, Rafiki is a huge pleasure to collect - I adore my plushes.  Good luck in the future!'
+    ip_address: 68.8.184.135
+    created_at: '2011-01-13 02:19:42'
+  CommentArchive_6026:
+    id: '6026'
+    collection_id: '1047'
+    collector_id: '4404'
+    body: 'What sort of release is this Rafiki?  What makes him rare?  I cant tell if I''ve seen him before.  I love learning where Lion King plushes are from; you may be my new go-to for Rafiki info :D Thanks!'
+    ip_address: 68.8.184.135
+    created_at: '2011-01-13 02:21:57'
+  CommentArchive_6027:
+    id: '6027'
+    collection_id: '1047'
+    collector_id: '4404'
+    body: "I hope you like messages, because I keep finding new cool things in your collection.\r\n\r\nI think I bought this figure today at a thrift store.  Is he about 3 inches tall?  Could you tell me which set is he from? He's great, very detailed."
+    ip_address: 68.8.184.135
+    created_at: '2011-01-13 02:31:41'
+  CommentArchive_6028:
+    id: '6028'
+    collection_id: '1047'
+    collector_id: '4404'
+    body: 'Holy cow!  Some of those are huge!  Are there bodies attached to those huge Rafiki heads, or are those just pillows? I had no idea they made him so large!  Very cool. Kudos.'
+    ip_address: 68.8.184.135
+    created_at: '2011-01-13 02:34:05'
+  CommentArchive_6153:
+    id: '6153'
+    collection_id: '1272'
+    author_name: Dale
+    author_email: DaleScottEvans2@aol.com
+    author_url: ''
+    body: 'I also have one  wonder whats its worth ???  Id like to sell mine'
+    ip_address: 67.197.104.129
+    created_at: '2011-01-28 15:33:42'
+  CommentArchive_6156:
+    id: '6156'
+    collection_id: '1047'
+    author_name: Riks
+    author_email: ''
+    author_url: ''
+    body: 'Love your Rafiki collection!'
+    ip_address: 168.122.174.27
+    created_at: '2011-01-29 01:53:21'
+  CommentArchive_6160:
+    id: '6160'
+    collection_id: '595'
+    author_name: 'My name is larry(aka)big weda!'
+    author_email: larryworks4you@yahoo.com
+    author_url: ''
+    body: "  I have a pretty cool stack of gp cards \r\nto show --and 73 that are 4 sale anyone would like to \r\ncheck out my collection or buy any of my73 that I have 4 sale drop me an e-mail or call(530-763-4980"
+    ip_address: 24.10.4.251
+    created_at: '2011-01-29 13:03:50'
   CommentArchive_6189:
     id: '6189'
     collection_id: '2596'
@@ -2207,6 +3524,15 @@ CommentArchive:
     body: 'Very nice collection of birds!'
     ip_address: 220.255.17.193
     created_at: '2011-02-18 19:38:06'
+  CommentArchive_6371:
+    id: '6371'
+    collection_id: '1272'
+    author_name: CAT
+    author_email: ''
+    author_url: ''
+    body: 'HOW MUCH ISTHIS TOY WORTH '
+    ip_address: 66.168.108.244
+    created_at: '2011-02-24 01:33:22'
   CommentArchive_6440:
     id: '6440'
     collection_id: '1501'
@@ -2241,6 +3567,49 @@ CommentArchive:
     body: "I am interested in purchasing some of your items.\r\nThey are hard to see because the pictures dont get much bigger. Can you please email you lists of items, pictures and amounts?\r\nThanks,\r\nCarly"
     ip_address: 70.99.146.242
     created_at: '2011-03-10 17:55:53'
+  CommentArchive_6461:
+    id: '6461'
+    collection_id: '1077'
+    author_name: 'vivian galle'
+    author_email: ''
+    author_url: ''
+    body: 'I see no information on this peice. Is it for sale and if so, how much?'
+    ip_address: 184.32.210.189
+    created_at: '2011-03-10 19:33:36'
+  CommentArchive_6497:
+    id: '6497'
+    collection_id: '1272'
+    author_name: 'gabe sanchez'
+    author_email: namaspray@yahoo.com
+    author_url: ''
+    body: "i have many toys if you (?) are at all interested...\r\ni live in eugene, oregon and am still collecting any and all through any and all world disasters, although I DO CARE!!"
+    ip_address: 75.92.146.34
+    created_at: '2011-03-15 17:57:36'
+  CommentArchive_6498:
+    id: '6498'
+    collection_id: '1272'
+    author_name: 'gabe sanchez'
+    author_email: namaspray@yahoo.com
+    author_url: ''
+    body: 'that bum is THE fattest thing I have personally seen in years...'
+    ip_address: 75.92.146.34
+    created_at: '2011-03-15 17:58:43'
+  CommentArchive_6529:
+    id: '6529'
+    collection_id: '1777'
+    collector_id: '5970'
+    body: "would you sell it????\r\n"
+    ip_address: 97.82.19.170
+    created_at: '2011-03-21 02:17:21'
+  CommentArchive_6578:
+    id: '6578'
+    collection_id: '1272'
+    author_name: angie
+    author_email: asmithopie@yahoo.com
+    author_url: ''
+    body: 'I have the same elephant I have had it since I was a baby LOVE HIM any idea how much he is worth?'
+    ip_address: 75.40.26.71
+    created_at: '2011-03-28 20:47:59'
   CommentArchive_6603:
     id: '6603'
     collection_id: '2610'
@@ -2264,6 +3633,24 @@ CommentArchive:
     body: 'Sorry, Sher, I don''t have an extra. However I do have an extra of Design Toscano''s Tyrannosaurus head "wall trophy."'
     ip_address: 99.167.88.209
     created_at: '2011-04-07 12:59:59'
+  CommentArchive_6625:
+    id: '6625'
+    collection_id: '458'
+    author_name: Carrieann
+    author_email: rosemarykoop@comcast.net
+    author_url: 'http://www.bing.com/'
+    body: 'Kudos! What a neat way of thinkign about it.'
+    ip_address: 195.229.181.250
+    created_at: '2011-04-11 23:44:09'
+  CommentArchive_6626:
+    id: '6626'
+    collection_id: '665'
+    author_name: Destrie
+    author_email: rosacruz_abc@yahoo.com.br
+    author_url: 'http://www.bing.com/'
+    body: 'BION I''m ipmrsesed! Cool post!'
+    ip_address: 18.9.62.151
+    created_at: '2011-04-11 23:52:20'
   CommentArchive_6636:
     id: '6636'
     collection_id: '2610'
@@ -2280,6 +3667,15 @@ CommentArchive:
     body: "\r\nBeautiful animal,what size and what brand ?  please\r\n\r\nhe has nice color and nice horns."
     ip_address: 200.116.248.82
     created_at: '2011-04-20 23:19:23'
+  CommentArchive_6692:
+    id: '6692'
+    collection_id: '1272'
+    author_name: lisa
+    author_email: gronbeckklumpp@bellsouth.net
+    author_url: ''
+    body: " I had an elephant such as this once up till I was\r\n\r\n20 years old; i no not what became of him but I put \r\n\r\nhim throught the \"ringer\" I carved his name in his\r\n\r\n in his left ear I wittled on his truck and he \r\n\r\ncame originally w/ metal rolling ball casters that\r\n\r\nstuck up in his feet. My dad removed the casters \r\n\r\nbecause when you removed his head you could stick in\r\n\r\nyour hand an feel the sharp nail-like spears of the \r\n\r\ncasters; he saw me through many a hard-time growing \r\n\r\nup.....absolutely my favorite toy and buddy on rainy\r\n\r\nlonely days.  By the by, the tapestry on his head and\r\n\r\nhis eyes came painted in a variety of many colors."
+    ip_address: 74.245.178.206
+    created_at: '2011-04-21 02:44:18'
   CommentArchive_6705:
     id: '6705'
     collection_id: '2610'
@@ -2308,6 +3704,15 @@ CommentArchive:
     body: 'thanks !'
     ip_address: 99.148.245.192
     created_at: '2011-05-09 16:37:54'
+  CommentArchive_6768:
+    id: '6768'
+    collection_id: '595'
+    author_name: 'Stacy Thomas'
+    author_email: stacy.thomas81@yahoo.com
+    author_url: ''
+    body: 'I have been collecting Garbage pail kid cards every since I was a little girl and I have lots of trading cards so if anyone''s into trading garbage pail kid cards let me know.'
+    ip_address: 96.35.68.223
+    created_at: '2011-05-13 19:27:40'
   CommentArchive_6776:
     id: '6776'
     collection_id: '1501'
@@ -2360,6 +3765,15 @@ CommentArchive:
     body: "AWESOME!!!!\r\n\r\n"
     ip_address: 99.104.146.198
     created_at: '2011-05-19 20:51:46'
+  CommentArchive_6799:
+    id: '6799'
+    collection_id: '867'
+    author_name: Ona
+    author_email: misshahe@yahoo.com
+    author_url: ''
+    body: 'I just found a figurine dog like yours.  Thank you for posting I was unsure what he was made of.  The one I have has an animated face with a HUGE nose.  I am not sure I can upload a photo on here but, if you e-mail me I would be happy to send a photo of him.......or her? misshahe@yahoo.com'
+    ip_address: 209.159.251.98
+    created_at: '2011-05-20 18:44:05'
   CommentArchive_6803:
     id: '6803'
     collection_id: '767'
@@ -2495,6 +3909,15 @@ CommentArchive:
     body: "Wow Orit! What can I say about this photo? A lot! Your one gorgeous Cave Girl! In my opinion you have beat Victoria Vetri from the movie \"When Dinosaurs Ruled the Earth\". I don't know about anyone else, but I think you have also beat Raquel Welsh of \"One Million Years B.C.\" \r\n     Could I ask you what are your measurements? You appear to be well endowed! Please e-mail me! I can't wait to see, and comment on the rest of your cave girl photos!"
     ip_address: 68.202.4.126
     created_at: '2011-05-26 19:56:07'
+  CommentArchive_6859:
+    id: '6859'
+    collection_id: '838'
+    author_name: Roger
+    author_email: rking248@msn.com
+    author_url: ''
+    body: 'Looking for a "cupid column" apparently published in a journal? around 1912, my grandfather met his wife to be after posting an add '
+    ip_address: 75.174.55.198
+    created_at: '2011-05-26 20:28:28'
   CommentArchive_6860:
     id: '6860'
     collection_id: '767'
@@ -2522,6 +3945,15 @@ CommentArchive:
     body: 'I can''t help but notice the tattoo on your tummy! I''m curious, how far does it go down? I wish I could find out!'
     ip_address: 68.202.4.126
     created_at: '2011-05-27 20:21:20'
+  CommentArchive_6961:
+    id: '6961'
+    collection_id: '1704'
+    author_name: Martha
+    author_email: ''
+    author_url: ''
+    body: 'One of my favorite books. Wish I''d kept mine!'
+    ip_address: 24.103.137.114
+    created_at: '2011-05-30 12:10:04'
   CommentArchive_6969:
     id: '6969'
     collection_id: '767'
@@ -2568,6 +4000,15 @@ CommentArchive:
     body: 'sorry , had to do the description here. i got this on a lot on eBay. i did not get this in a happy meal , due to the fact that i was only one mouth old. anyway , he has no flaws.'
     ip_address: 99.148.246.195
     created_at: '2011-06-10 12:31:24'
+  CommentArchive_8304:
+    id: '8304'
+    collection_id: '838'
+    author_name: Wanda
+    author_email: fuzzyfashions@aol.com
+    author_url: ''
+    body: 'Is there any way at all that I could get a copy of this magazine please?  I would love and appreciate it very much! Thank you sincerely, Wanda'
+    ip_address: 70.153.64.65
+    created_at: '2011-06-10 13:57:13'
   CommentArchive_9304:
     id: '9304'
     collection_id: '2839'
@@ -2610,6 +4051,22 @@ CommentArchive:
     body: 'Is this for sale? I''m interested, thanks!'
     ip_address: 68.3.165.189
     created_at: '2011-06-16 22:51:44'
+  CommentArchive_12087:
+    id: '12087'
+    collection_id: '1047'
+    collector_id: '7011'
+    body: 'There is something so deeply -nostalgic- about these old plastic Disney key chains ... I love it! Your Rafiki collection amazes me; I''ve never seen one before! Keep up the great work.'
+    ip_address: 72.194.82.185
+    created_at: '2011-06-23 03:15:11'
+  CommentArchive_12098:
+    id: '12098'
+    collection_id: '1777'
+    author_name: FormulaAj
+    author_email: gang_pimp_weed@yahoo.com
+    author_url: ''
+    body: 'i am looking for a morpher could you email me and tell where i can find one or if you will sell me one and im also looking for the quasar saber'
+    ip_address: 74.177.231.77
+    created_at: '2011-06-24 00:05:38'
   CommentArchive_12141:
     id: '12141'
     collection_id: '1647'
@@ -2664,6 +4121,24 @@ CommentArchive:
     body: 'thanks. but i can''t get them , i mean i will , but when I''m 16 and have my own car ,so i can drive out and purchase them. I''m so sad. but I''ll go pick them up , I''ll tell the lady that save um'' for 3 years. or maybe for my b-day , she could send them to me. but i have a vitani , at least ! i love her so much , and i will take your advice and take good care of her.'
     ip_address: 99.158.45.229
     created_at: '2011-07-12 11:11:33'
+  CommentArchive_12300:
+    id: '12300'
+    collection_id: '595'
+    author_name: russell
+    author_email: russellhollingsworth16@yahoo.com
+    author_url: ''
+    body: 'i have 1120 mint garbage pail kid cards  anyone interested email me at russellhollingsworth16@#yahoo.com'
+    ip_address: 71.14.105.17
+    created_at: '2011-07-12 16:32:12'
+  CommentArchive_12309:
+    id: '12309'
+    collection_id: '685'
+    author_name: Anonymous
+    author_email: ''
+    author_url: ''
+    body: "they are so beautiful\r\n"
+    ip_address: 201.150.128.219
+    created_at: '2011-07-13 16:04:06'
   CommentArchive_12333:
     id: '12333'
     collection_id: '2725'
@@ -2673,6 +4148,15 @@ CommentArchive:
     body: 'on EBAY?'
     ip_address: 76.216.248.227
     created_at: '2011-07-15 00:11:57'
+  CommentArchive_12334:
+    id: '12334'
+    collection_id: '528'
+    author_name: Anonymous
+    author_email: ''
+    author_url: ''
+    body: 'harryo p'
+    ip_address: 112.200.87.169
+    created_at: '2011-07-15 02:06:07'
   CommentArchive_12335:
     id: '12335'
     collection_id: '2725'
@@ -2826,6 +4310,15 @@ CommentArchive:
     body: 'Can you give me your top 5 models please ?'
     ip_address: 81.83.178.194
     created_at: '2011-08-02 11:07:10'
+  CommentArchive_12578:
+    id: '12578'
+    collection_id: '847'
+    author_name: Brent
+    author_email: Brent_Pennisi@hotmail.com
+    author_url: ''
+    body: 'Selling 2 CED players both in working condition. and 500+ titles including classics (godfather,casablanca,the warriors,etc.) looking for best offer.'
+    ip_address: 24.36.111.227
+    created_at: '2011-08-03 21:05:52'
   CommentArchive_12654:
     id: '12654'
     collection_id: '2751'
@@ -2905,6 +4398,24 @@ CommentArchive:
     body: 'Where can I buy this guy??'
     ip_address: 76.190.130.21
     created_at: '2011-08-16 19:31:44'
+  CommentArchive_12724:
+    id: '12724'
+    collection_id: '595'
+    author_name: 'Sarah Staggs'
+    author_email: kiwi.olives@gmail.com
+    author_url: ''
+    body: 'I have just came across 2 books full of Garbage Pail Kids cards starting with series 1 in 1985. Between the 2 books there are about 900-950 cards year 1985- 1987.All are in mint condition. Please email me if anyone is interested in buying them!! Thanks'
+    ip_address: 71.95.231.98
+    created_at: '2011-08-20 17:08:14'
+  CommentArchive_12814:
+    id: '12814'
+    collection_id: '1272'
+    author_name: 'Sue Grau'
+    author_email: DuetteGrace@yahoo.com
+    author_url: ''
+    body: 'I have been looking everywhere for a 1950''s rubber squeaky duck named Drakey the Duck (yellow duck with red clothes and cap).  The only ones I found online were already sold.  It''s just for sentimental reasons...I owned one since I was born but in recent years the rubber melted and began to fall apart, so someone threw it out.  Sure would love a replacement!'
+    ip_address: 76.116.196.208
+    created_at: '2011-08-26 10:22:35'
   CommentArchive_12815:
     id: '12815'
     collection_id: '767'
@@ -2914,6 +4425,24 @@ CommentArchive:
     body: 'te gusta el sexo'
     ip_address: 201.209.172.250
     created_at: '2011-08-26 10:57:52'
+  CommentArchive_12817:
+    id: '12817'
+    collection_id: '685'
+    author_name: TopLPS
+    author_email: ''
+    author_url: ''
+    body: poop.
+    ip_address: 173.206.84.235
+    created_at: '2011-08-26 20:32:40'
+  CommentArchive_12818:
+    id: '12818'
+    collection_id: '685'
+    author_name: Anonymous
+    author_email: ''
+    author_url: ''
+    body: 'they are so beatiful'
+    ip_address: 173.206.84.235
+    created_at: '2011-08-26 20:33:16'
   CommentArchive_12833:
     id: '12833'
     collection_id: '2751'
@@ -3117,6 +4646,33 @@ CommentArchive:
     body: 'Hi,  Sorry, I won''t be trading my UK Kovu and Kiara.  Anything that I''m willing to trade for is marked as "for sale."'
     ip_address: 68.8.186.159
     created_at: '2011-09-13 16:24:43'
+  CommentArchive_12996:
+    id: '12996'
+    collection_id: '685'
+    author_name: Anonymous
+    author_email: ''
+    author_url: ''
+    body: "there not poop shut your mouth\r\n"
+    ip_address: 68.206.142.109
+    created_at: '2011-09-15 19:20:01'
+  CommentArchive_12997:
+    id: '12997'
+    collection_id: '685'
+    author_name: Anonymous
+    author_email: ''
+    author_url: ''
+    body: sorry
+    ip_address: 68.206.142.109
+    created_at: '2011-09-15 19:20:36'
+  CommentArchive_12998:
+    id: '12998'
+    collection_id: '685'
+    author_name: Anonymous
+    author_email: ''
+    author_url: ''
+    body: "my bad i just like them i have over100\r\n"
+    ip_address: 68.206.142.109
+    created_at: '2011-09-15 19:21:38'
   CommentArchive_13024:
     id: '13024'
     collection_id: '2404'
@@ -3133,6 +4689,15 @@ CommentArchive:
     body: 'I am always looking for new items to add to my collection either by buy/trade. Trade options are very simple. Please, take a look at my Prehistoric Mammals Collection and if you have a Prehistoric Mammal figurine that not pictured in my collection, then I am interested in it. Let’s trade. Thanks.'
     ip_address: 24.165.90.131
     created_at: '2011-09-19 02:17:24'
+  CommentArchive_13034:
+    id: '13034'
+    collection_id: '813'
+    author_name: Rebecca
+    author_email: beccabussa@hotmail.com
+    author_url: ''
+    body: 'Could you tell me more about this piece? It looks almost exactly like one I have in my own home. It was given to us by my husband''s grandmother and I''d love to know more about it!'
+    ip_address: 74.140.5.87
+    created_at: '2011-09-20 11:53:25'
   CommentArchive_13055:
     id: '13055'
     collection_id: '2993'
@@ -3140,6 +4705,56 @@ CommentArchive:
     body: "Please, take a look at my wanted list. It is going to be updated often, and if you have any of those and willing to trade/sale, let me know. Thank you for looking. \r\nBest, Guruzen \r\n"
     ip_address: 24.165.95.195
     created_at: '2011-09-22 19:40:50'
+  CommentArchive_13088:
+    id: '13088'
+    collection_id: '1272'
+    author_name: JJ
+    author_email: ''
+    author_url: ''
+    body: "Hello i just saw this on EBAY. Does anyone know what this Rempel doll was called?  he's so cute\r\n\r\nhttp://www.ebay.com/itm/140612028201?ssPageName=STRK:MESELX:IT&amp;_trksid=p3984.m1555.l2649"
+    ip_address: 24.238.82.75
+    created_at: '2011-09-27 09:34:13'
+  CommentArchive_13119:
+    id: '13119'
+    collection_id: '1272'
+    author_name: 'Renee Sullivan'
+    author_email: housespdrs@yahoo.com
+    author_url: ''
+    body: 'I have three of these. I always wondered what they would be valued at. They are in great condition.'
+    ip_address: 107.63.0.213
+    created_at: '2011-10-02 15:10:21'
+  CommentArchive_13157:
+    id: '13157'
+    collection_id: '626'
+    author_name: 'Rose Jones '
+    author_email: bloomingrosevine@gmail.com
+    author_url: 'http://faerie.info'
+    body: 'Love all these pieces - especially the wild man!'
+    ip_address: 98.248.251.220
+    created_at: '2011-10-09 11:42:35'
+  CommentArchive_13178:
+    id: '13178'
+    collection_id: '1777'
+    author_name: ron
+    author_email: bigdragon19862004@yahoo.com
+    author_url: ''
+    body: 'i was wondering how much would u sell the power morpher and power coins and i need a quasar saber u can reach me at my email ill pay the price u ask for plz'
+    ip_address: 24.11.27.126
+    created_at: '2011-10-11 20:19:38'
+  CommentArchive_13216:
+    id: '13216'
+    collection_id: '685'
+    collector_id: '8555'
+    body: 'i love poops they are so beautiful'
+    ip_address: 204.11.186.97
+    created_at: '2011-10-18 09:54:34'
+  CommentArchive_13217:
+    id: '13217'
+    collection_id: '685'
+    collector_id: '8555'
+    body: 'this is my favorite'
+    ip_address: 204.11.186.97
+    created_at: '2011-10-18 09:55:17'
   CommentArchive_13259:
     id: '13259'
     collection_id: '1442'
@@ -3224,6 +4839,58 @@ CommentArchive:
     body: "Oh, I haven't updated this in a while...\r\nI'm busy getting all my stuff together this week, \r\nI really should update this when I'm done, because I do have the English version now :-)\r\nSame as the Japanese and South African CD's."
     ip_address: 84.192.200.125
     created_at: '2011-10-27 09:53:59'
+  CommentArchive_13352:
+    id: '13352'
+    collection_id: '242'
+    collector_id: '8741'
+    body: "Are the items you own for sale\r\n"
+    ip_address: 115.66.50.97
+    created_at: '2011-11-08 06:32:27'
+  CommentArchive_13553:
+    id: '13553'
+    collection_id: '685'
+    author_name: amanda
+    author_email: ''
+    author_url: ''
+    body: 'i love it. it looks so fuzzy. I apreciate that you took the time to post these pics!'
+    ip_address: 69.140.232.136
+    created_at: '2011-11-10 19:36:58'
+  CommentArchive_13567:
+    id: '13567'
+    collection_id: '258'
+    author_name: Prospero99
+    author_email: Prospero992001@yahoo.com
+    author_url: ''
+    body: 'Anybody interested in this?  I have a copy that''s been under glass (framed). Mint condition. '
+    ip_address: 71.251.38.245
+    created_at: '2011-11-12 20:38:29'
+  CommentArchive_13604:
+    id: '13604'
+    collection_id: '847'
+    author_name: tino
+    author_email: tbrat9756@verizon.net
+    author_url: ''
+    body: 'I have 5 CED''s and three of them are Disney and the other two are Paramount I was just wondering if anyone out there knows the value of them. They date from 1972 to 1984. If you know email me at tbrat9756@verizon.net. Thanks!'
+    ip_address: 173.67.80.38
+    created_at: '2011-11-18 21:00:00'
+  CommentArchive_13607:
+    id: '13607'
+    collection_id: '1272'
+    author_name: 'Rita Monaco'
+    author_email: rita.monaco@videotron.ca
+    author_url: ''
+    body: 'About 45 years ago an old neighbor handed me two adjustable rubber figurines, about 6 inches tall. One appears to be a rodeo clownm the other an old cowboy. Made in West Germany. I can''t read the stamps at the bottom of their shoes which, I suppose, would tell me what characters they represent. If anyone can help, I can e-mail you pictures.'
+    ip_address: 96.20.10.78
+    created_at: '2011-11-19 11:09:51'
+  CommentArchive_13680:
+    id: '13680'
+    collection_id: '813'
+    author_name: 'Denise D'
+    author_email: denise262@comcast.net
+    author_url: ''
+    body: 'I have two Robia Ware figurines. 10" tall chalkware. Victorian man and woman. Man is dressed in black tuxedo, woman long black dress with bonnet. She is holding her skirts out to each side.They were my grandmother''s and have Roman Art Company stamp on the bottom. Anyone know anything? Thank you.'
+    ip_address: 67.174.224.250
+    created_at: '2011-11-28 20:51:53'
   CommentArchive_13695:
     id: '13695'
     collection_id: '3037'
@@ -3231,6 +4898,33 @@ CommentArchive:
     body: 'This the biggest eevee plush I own,won this guy on eBay.About 2feet tall,was originally given out as prizes at Six Flag''s,made by play-by-play there another BIG version that about 5feet tall,I have yet to own or see it for sale! but hopefully someday'
     ip_address: 70.243.167.249
     created_at: '2011-11-30 19:30:20'
+  CommentArchive_13700:
+    id: '13700'
+    collection_id: '905'
+    author_name: Lisa
+    author_email: lisa78640@yahoo.com
+    author_url: ''
+    body: 'I have one of the very first mascara''s made by mabaline.  It has never been used and I have the instructions that come with the purchase.  Can some one tell me what its worth?'
+    ip_address: 97.77.98.30
+    created_at: '2011-12-02 13:00:47'
+  CommentArchive_13752:
+    id: '13752'
+    collection_id: '665'
+    author_name: Mike
+    author_email: ''
+    author_url: ''
+    body: "I picked up an old metro book shelf game Paimlico vol-290.\r\nIt came with no instutions,\r\nthere are 6 horses and three glass die.\r\nDoes any one have instution or know how to play it.\r\nThanks for any info you have\r\nPeace Out"
+    ip_address: 65.31.39.59
+    created_at: '2011-12-09 20:01:35'
+  CommentArchive_13795:
+    id: '13795'
+    collection_id: '924'
+    author_name: 'Agnes Johnson'
+    author_email: ajohnson2494@charter.net
+    author_url: ''
+    body: "I have the book Matilyn Monroe Confidential. An Intimate Personal Account by Lena Pepitone, and William Stadiem.Copyright 1979. A Simon and Schuster,\r\nNew York. Do I have a FIND or not. I am looking to sell."
+    ip_address: 97.84.176.156
+    created_at: '2011-12-15 12:22:38'
   CommentArchive_13796:
     id: '13796'
     collection_id: '1442'
@@ -3270,6 +4964,15 @@ CommentArchive:
     body: 'nice collection =]'
     ip_address: 96.246.228.89
     created_at: '2011-12-23 16:50:00'
+  CommentArchive_13920:
+    id: '13920'
+    collection_id: '905'
+    author_name: Dani
+    author_email: wasd83@gmail.com
+    author_url: ''
+    body: 'How can I buy one?'
+    ip_address: 189.62.211.79
+    created_at: '2011-12-27 16:02:24'
   CommentArchive_13925:
     id: '13925'
     collection_id: '3052'
@@ -3284,6 +4987,42 @@ CommentArchive:
     body: 'aww. thanks. still growing.'
     ip_address: 99.171.161.126
     created_at: '2011-12-29 11:09:44'
+  CommentArchive_14147:
+    id: '14147'
+    collection_id: '685'
+    author_name: amber
+    author_email: ''
+    author_url: ''
+    body: 'love it! have you ever heard of a littlest pet shop vending machine? my friend has one like this but it is brown and black.'
+    ip_address: 98.218.125.176
+    created_at: '2012-01-23 10:53:19'
+  CommentArchive_14158:
+    id: '14158'
+    collection_id: '1272'
+    author_name: 'Joe Foster'
+    author_email: ezegojoe@aol.com
+    author_url: ''
+    body: 'I have a cowboy 8" tall stamped "future products" and also stamped maybe "S. Lawson" any information would be appreciated. thanks! joe'
+    ip_address: 65.19.247.157
+    created_at: '2012-01-24 18:17:10'
+  CommentArchive_14174:
+    id: '14174'
+    collection_id: '1272'
+    author_name: deb
+    author_email: debelep56@yahoo.com
+    author_url: ''
+    body: 'I HAVE THIS ELEPHANT AS WELL . I AM WILLING TO SELL BUT HAVE NO IDEA ON IT''S WORTH . IF ANY ONE CAN HELP WOULD BE NICE.THX.'
+    ip_address: 107.2.218.235
+    created_at: '2012-01-27 20:10:47'
+  CommentArchive_14177:
+    id: '14177'
+    collection_id: '1735'
+    author_name: 'Deborah Henry'
+    author_email: henryshens@yahoo.com
+    author_url: ''
+    body: 'I have the same cutie, minus the ribbon.  After spending all afternoon checking out similar "toys", I sure would ask more then $30.00.  You can start high $ and always come down:)'
+    ip_address: 75.200.153.25
+    created_at: '2012-01-28 15:25:33'
   CommentArchive_14222:
     id: '14222'
     collection_id: '3101'
@@ -3291,6 +5030,24 @@ CommentArchive:
     body: 'leading pouch packing machines manufacturer and exporter'
     ip_address: 203.196.133.130
     created_at: '2012-02-03 05:37:10'
+  CommentArchive_14245:
+    id: '14245'
+    collection_id: '931'
+    author_name: Susana
+    author_email: radek.biwat@poczta.onet.pl
+    author_url: 'http://www.facebook.com/profile.php?id=100003405403378'
+    body: 'Super ce noeuvau site ! Les information sont plus claires et les photos donnent vraiment envie. Après une séance shopping aux Flâneries, le passage par City Zèbres est devenu une tradition, mes enfants ne me laissent de toute façon pas le choix Ca leur permet de se défouler, et pour nous, c&#8217;est un bon moment pour décompresser.'
+    ip_address: 58.58.180.134
+    created_at: '2012-02-05 13:25:04'
+  CommentArchive_14265:
+    id: '14265'
+    collection_id: '931'
+    author_name: 'Laurine Branker'
+    author_email: lcaddle@hotmail.com
+    author_url: ''
+    body: "\r\nI purchased 2 cartons of molasses with a Grandma Melasse Recettes Favorites as a promotional gift at Costco. Unfortunately I only speak English, and I am very much interested in trying these recepes. If you have an English copy of this favorite recipes booklet, I would appreciate you sending that to me, or if you can tell me where to find it.  Thanking you,\r\nLaurine Branker"
+    ip_address: 76.68.174.195
+    created_at: '2012-02-06 14:32:48'
   CommentArchive_14464:
     id: '14464'
     collection_id: '1736'
@@ -3301,3 +5058,57 @@ CommentArchive:
     body: "cena  na igra4kata\r\n"
     ip_address: 212.25.54.103
     created_at: '2012-03-08 05:19:53'
+  CommentArchive_14534:
+    id: '14534'
+    collection_id: '291'
+    collectible_id: '4657'
+    author_name: Anonymous
+    author_email: ''
+    author_url: ''
+    body: 'this is fuckin cool'
+    ip_address: 65.31.213.75
+    created_at: '2012-03-18 11:02:16'
+  CommentArchive_14541:
+    id: '14541'
+    collection_id: '868'
+    author_name: Jackie
+    author_email: jackie.scott1973@yahoo.co.uk
+    author_url: ''
+    body: 'Hi, i have a Lux soap, probably 100 years old, in its original packaging, if interested!'
+    ip_address: 77.101.92.189
+    created_at: '2012-03-18 16:50:28'
+  CommentArchive_14566:
+    id: '14566'
+    collection_id: '3142'
+    collector_id: '9851'
+    body: 'Yes, the NFL official website of Chinese Cheap Rodgers Jerseys , Sina Sports NFL broadcast commentary consultant Pei Bin accurately Cheap Jerseys us  predict the score, and recorded in his official blog! Although he predicted 31-24 (Packers wins), and the actual score difference of 1 minute, but the real fans can see it, that two points of additional points is a dead-end steel in the spot after the last successful offensive tactics, how Rodgers Jerseys Size Man can normal play is 24 points, a good grasp of the general trend of the analyst to predict workaholic subtle psychological changes?'
+    ip_address: 184.22.252.51
+    created_at: '2012-03-23 12:22:59'
+  CommentArchive_14567:
+    id: '14567'
+    collection_id: '3142'
+    collector_id: '9851'
+    body: " Cheap Jerseys\r\n Cheap NFL Jerseys\r\n Whosale NFL Jerseys\r\n Cheap MLB Jerseys\r\n Cheap NHL Jerseys\r\n Cheap NBA Jerseys\r\nWholesale MLB Jerseys\r\n Green Bay Packers  \r\n"
+    ip_address: 184.22.252.51
+    created_at: '2012-03-23 12:23:11'
+  CommentArchive_14568:
+    id: '14568'
+    collection_id: '3142'
+    collector_id: '9851'
+    body: "[url=http://www.newestjerseys.com/] Cheap Jerseys[/url]\r\n[url=http://www.newestjerseys.com/nfl-jerseys-c-1044.html] Cheap NFL Jerseys[/url]\r\n[url=http://www.newestjerseys.com/nfl-jerseys-c-1044.html] Whosale NFL Jerseys[/url]\r\n[url=http://www.newestjerseys.com/mlb-jerseys-c-1045.html] Cheap MLB Jerseys[/url]\r\n[url=http://www.newestjerseys.com/nhl-jerseys-c-1046.html] Cheap NHL Jerseys[/url]\r\n[url=http://www.newestjerseys.com/nba-jerseys-c-1047.html] Cheap NBA Jerseys[/url]\r\n[url=http://www.newestjerseys.com/mlb-jerseys-c-1045.html]Wholesale MLB Jerseys[/url]\r\n[url=http://www.newestjerseys.com/nfl-jerseys-green-bay-packers-c-1044_1062.html] Green Bay Packers  [/url]\r\n[url=http://www.newestjerseys.com/nfl-jerseys-green-bay-packers-c-1044_1062.html]Discount NFL Jerseys[/url]\r\n"
+    ip_address: 184.22.252.51
+    created_at: '2012-03-23 12:24:43'
+  CommentArchive_14569:
+    id: '14569'
+    collection_id: '3142'
+    collector_id: '9851'
+    body: "We are a wholesale city. Supply cheap NFL NLB NBA jerseys,buy soccer Jerseys,\r\nhttp://www.newestjerseys.com/ \r\nhttp://www.cheapjerseysstar.com\r\ncheap Polo Shirt,wholesale nike shoes, discount Sunglasses, wholesale hats and caps,wholesale hats and caps, wholesale any clothes,free fast shipping.\r\n"
+    ip_address: 184.22.252.51
+    created_at: '2012-03-23 12:24:56'
+  CommentArchive_14570:
+    id: '14570'
+    collection_id: '3142'
+    collector_id: '9851'
+    body: "http://www.newestjerseys.com/giants-10-eli-manning-blue-super-bowl-xlvi-with-c-patch-stitched-blue-nfl-jersey-p-6444.html\r\nhttp://www.newestjerseys.com/cheap-buy-green-bay-packers-12-aaron-rodgers-super-bowl-xlv-bound-green-team-color-nfl-jersey-p-5388.html\r\nhttp://www.buy-jerseys.us/\r\nhttp://www.cheapjerseysstar.com/\r\n\r\n\r\ncheap mlb jerseys,buy Jerseys,cheap jerseys,wholesale jerseys,Discount jerseys, www.buycheapjerseys.us\r\nCheap MLB Jerseys,Buy Jerseys,Cheap NFL Jerseys,Wholesale Jerseys,www.buycheapjerseys.us\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\nAs a cheap jerseys star we suppy the sports jerseys for US and CA since 2009, we havea a fantastic reputation in cheap jerseys star online, we offer NFL NBA NHL MLB jerseys for all the sports fans. \r\nhttp://www.newestjerseys.com/ \r\nhttp://www.cheapjerseysstar.com\r\n"
+    ip_address: 184.22.252.51
+    created_at: '2012-03-23 12:25:13'

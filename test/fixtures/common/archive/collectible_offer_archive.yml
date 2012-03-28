@@ -1,8 +1,15 @@
 CollectibleOfferArchive:
+  CollectibleOfferArchive_14:
+    id: '14'
+    collectible_id: '12841'
+    collector_id: '896'
+    price: '5'
+    status: accepted
+    updated_at: '2009-01-12 18:45:41'
+    created_at: '2009-01-11 00:33:15'
   CollectibleOfferArchive_30:
     id: '30'
     collectible_id: '24316'
-    collectible_for_sale_id: '1068'
     collector_id: '1332'
     price: '20'
     status: ''
@@ -12,7 +19,6 @@ CollectibleOfferArchive:
   CollectibleOfferArchive_38:
     id: '38'
     collectible_id: '25733'
-    collectible_for_sale_id: '1320'
     collector_id: '1425'
     price: '30'
     status: accepted
@@ -22,7 +28,6 @@ CollectibleOfferArchive:
   CollectibleOfferArchive_55:
     id: '55'
     collectible_id: '25725'
-    collectible_for_sale_id: '1302'
     collector_id: '1525'
     price: '1'
     status: rejected
@@ -32,7 +37,6 @@ CollectibleOfferArchive:
   CollectibleOfferArchive_58:
     id: '58'
     collectible_id: '25715'
-    collectible_for_sale_id: '1331'
     collector_id: '1576'
     price: '50'
     status: pending
@@ -42,7 +46,6 @@ CollectibleOfferArchive:
   CollectibleOfferArchive_61:
     id: '61'
     collectible_id: '25746'
-    collectible_for_sale_id: '1371'
     collector_id: '1576'
     price: '300'
     status: rejected
@@ -52,7 +55,6 @@ CollectibleOfferArchive:
   CollectibleOfferArchive_97:
     id: '97'
     collectible_id: '30574'
-    collectible_for_sale_id: '1493'
     collector_id: '2590'
     price: '50'
     status: pending
@@ -61,7 +63,6 @@ CollectibleOfferArchive:
   CollectibleOfferArchive_104:
     id: '104'
     collectible_id: '24314'
-    collectible_for_sale_id: '1071'
     collector_id: '2644'
     price: '4'
     status: ''
@@ -71,7 +72,6 @@ CollectibleOfferArchive:
   CollectibleOfferArchive_111:
     id: '111'
     collectible_id: '25725'
-    collectible_for_sale_id: '1302'
     collector_id: '2644'
     price: '3'
     status: accepted
@@ -81,7 +81,6 @@ CollectibleOfferArchive:
   CollectibleOfferArchive_120:
     id: '120'
     collectible_id: '23435'
-    collectible_for_sale_id: '721'
     collector_id: '6598'
     price: '25'
     status: pending
@@ -90,7 +89,6 @@ CollectibleOfferArchive:
   CollectibleOfferArchive_168:
     id: '168'
     collectible_id: '61266'
-    collectible_for_sale_id: '2260'
     collector_id: '8026'
     price: '112'
     status: pending
@@ -99,7 +97,6 @@ CollectibleOfferArchive:
   CollectibleOfferArchive_169:
     id: '169'
     collectible_id: '56859'
-    collectible_for_sale_id: '2168'
     collector_id: '8026'
     price: '450'
     status: pending
@@ -108,7 +105,6 @@ CollectibleOfferArchive:
   CollectibleOfferArchive_209:
     id: '209'
     collectible_id: '23875'
-    collectible_for_sale_id: '1180'
     collector_id: '9362'
     price: '15'
     status: pending

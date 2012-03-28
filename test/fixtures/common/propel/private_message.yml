@@ -1637,3 +1637,16 @@ PrivateMessage:
     is_marked: '0'
     is_deleted: '0'
     created_at: '2012-02-10 17:29:50'
+  PrivateMessage_9359:
+    thread: 0880721a9c6841118341d7937dc7231c
+    sender: '59'
+    receiver: '9837'
+    subject: 'RE: Kam-Kap '
+    body: "Hello Ed, <br />\r\n<br />\r\nI'm sorry, but this item is no longer available. I'm trying to see how to move all the old items off of here. If I run into another copy, I'll let you know!"
+    is_rich: '0'
+    is_read: '0'
+    is_replied: '0'
+    is_forwarded: '0'
+    is_marked: '0'
+    is_deleted: '0'
+    created_at: '2012-03-22 16:35:48'

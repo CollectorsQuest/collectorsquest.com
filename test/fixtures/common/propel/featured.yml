@@ -42,9 +42,9 @@ Featured:
     tree_scope: '4'
     eblob: 'a:3:{s:5:"title";s:38:"BARBIE WEEK: Clothing, Cars and Cuties";s:13:"homepage_text";s:107:"Seriously, the girl has everything. Even new careers each year. Take a look at our gorgeous girl on parade.";s:21:"homepage_collectibles";s:5:"10736";}'
     start_date: '2012-03-09'
-    end_date: '2012-05-31'
+    end_date: '2012-05-21'
     position: '0'
-    is_active: '1'
+    is_active: '0'
   Featured_5:
     featured_type_id: '6'
     featured_model: FeaturedWeek
@@ -352,9 +352,9 @@ Featured:
     tree_scope: '34'
     eblob: 'a:3:{s:5:"title";s:29:"March comes in like a lion...";s:13:"homepage_text";s:103:"March is finally here, and coming in like a lion! We celebrate the month with our Lion King collectors!";s:21:"homepage_collectibles";s:0:"";}'
     start_date: '2012-03-01'
-    end_date: '2012-04-01'
+    end_date: '2012-03-01'
     position: '0'
-    is_active: '1'
+    is_active: '0'
   Featured_33:
     featured_type_id: '6'
     featured_model: FeaturedWeek
@@ -441,8 +441,8 @@ Featured:
     tree_right: '10'
     tree_scope: '42'
     eblob: 'a:3:{s:5:"title";s:29:"Camera Week: Strike A Pose...";s:13:"homepage_text";s:135:"Say cheese! This week we''re featuring collectors who love to point and shoot for interesting cameras. They''re ready for their close-up!";s:21:"homepage_collectibles";s:0:"";}'
-    start_date: '2011-09-01'
-    end_date: '2011-10-31'
+    start_date: '2012-03-21'
+    end_date: '2012-10-31'
     position: '0'
     is_active: '1'
   Featured_41:
@@ -1631,26 +1631,6 @@ Featured:
     featured_id: '765'
     tree_left: '2'
     tree_right: '7'
-    tree_scope: '40'
-    eblob: N;
-    position: '0'
-    is_active: '1'
-  Featured_180:
-    featured_type_id: '7'
-    featured_model: Collector
-    featured_id: '1281'
-    tree_left: '3'
-    tree_right: '4'
-    tree_scope: '40'
-    eblob: N;
-    position: '0'
-    is_active: '1'
-  Featured_181:
-    featured_type_id: '7'
-    featured_model: Collector
-    featured_id: '791'
-    tree_left: '5'
-    tree_right: '6'
     tree_scope: '40'
     eblob: N;
     position: '0'

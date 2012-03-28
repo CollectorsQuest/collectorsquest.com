@@ -1,5 +1,6 @@
 Collector:
   Collector_12:
+    graph_id: '13664'
     facebook_id: '501327639'
     username: resonantfish
     display_name: Robotbacon
@@ -15,10 +16,10 @@ Collector:
     is_spam: '0'
     is_public: '1'
     has_completed_registration: '1'
-    session_id: 5t2r9rivenck3r1grhidifdim7
-    last_seen_at: '2012-03-12 09:05:00'
+    session_id: r523uvfdh1priedauqdvbguku7
+    last_seen_at: '2012-03-27 02:37:01'
     created_at: '2007-05-31 14:21:52'
-    updated_at: '2012-03-12 09:05:00'
+    updated_at: '2012-03-27 02:37:01'
   Collector_52:
     username: dinocollector
     display_name: Dinocollector
@@ -53,10 +54,10 @@ Collector:
     is_spam: '0'
     is_public: '1'
     has_completed_registration: '1'
-    session_id: qur5m40e3jtjd0or2tb52sgud5
-    last_seen_at: '2012-02-10 17:27:16'
+    session_id: o6mpuir5jusahrdjbq44u1pd85
+    last_seen_at: '2012-03-22 16:40:12'
     created_at: '2007-06-24 01:24:56'
-    updated_at: '2012-03-03 10:02:27'
+    updated_at: '2012-03-22 16:40:12'
   Collector_163:
     username: pmurph
     display_name: pmurph
@@ -238,10 +239,10 @@ Collector:
     is_spam: '0'
     is_public: '1'
     has_completed_registration: '1'
-    session_id: 0bmim9mlsknbelo48cev6iuoj5
-    last_seen_at: '2012-01-24 16:01:30'
+    session_id: is830inqvlj23ed77fr2kc1085
+    last_seen_at: '2012-03-13 14:06:35'
     created_at: '2009-05-03 18:58:54'
-    updated_at: '2012-01-24 16:01:30'
+    updated_at: '2012-03-13 14:06:35'
   Collector_1317:
     graph_id: '9964'
     username: wildheart
