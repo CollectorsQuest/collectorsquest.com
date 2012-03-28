@@ -15,12 +15,13 @@
         </div>
         <div class="span4">
           <form class="form-inline">
-            <a href="#" class="link_cart">
+            <a href="<?= url_for('@shopping_cart'); ?>" class="link_cart">
               <span class="shopping_cart_inner shopping_cart">
-              <span id="shopping_cart_count">99</span>
-              <!-- Empty cart
-              <span id="shopping_cart_count" class="empty_cart">0</span>
-              -->
+              <?php if (0 < $k = $sf_user->getShoppingCartCollectiblesCount()): ?>
+                <span id="shopping_cart_count"><?= $k; ?></span>
+              <?php else: ?>
+                <span id="shopping_cart_count" class="empty_cart">0</span>
+              <?php endif; ?>
               </span>
             </a>
             <!--<span class="nav-divider"></span>-->

@@ -107,6 +107,39 @@ marketplace_category_by_slug:
     sf_method: [GET, POST]
 
 
+### SHOPPING
+
+shopping_cart_remove:
+  url: /cart/:id/remove
+  param: { module: shopping, action: cart, cmd: remove }
+  requirements: { id: \d+ }
+
+shopping_cart_checkout:
+  url: /cart/checkout
+  param: { module: shopping, action: checkout }
+  requirements: { sf_method: [post] }
+
+shopping_cart_empty:
+  url: /cart/empty
+  param: { module: shopping, action: cart, cmd: empty }
+
+shopping_cart:
+  url: /cart
+  param: { module: shopping, action: cart }
+
+shopping_order_paypal:
+  url: /order/:uuid/paypal
+  class: sfPropelRoute
+  options: { model: ShoppingOrder, type: object }
+  param: { module: shopping, action: paypal }
+
+shopping_order_pay:
+  url: /order/:uuid/pay
+  class: sfPropelRoute
+  options: { model: ShoppingOrder, type: object }
+  param: { module: shopping, action: pay }
+
+
 ### GENERAL
 
 login:
