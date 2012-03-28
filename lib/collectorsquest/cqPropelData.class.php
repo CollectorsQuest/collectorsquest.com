@@ -116,7 +116,7 @@ class cqPropelData extends sfPropelData
         // save the object for future reference
         if (method_exists($obj, 'getPrimaryKey'))
         {
-          $this->object_references[Propel::importClass(constant(constant($class.'::PEER').'::CLASS_DEFAULT')).'_'.$key] = $obj;
+          $this->object_references[$class.'_'.$key] = $obj;
         }
       }
     }
