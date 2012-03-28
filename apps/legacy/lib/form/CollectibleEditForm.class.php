@@ -113,4 +113,42 @@ class CollectibleEditForm extends BaseCollectibleForm
     return $object;
   }
 
+  public function saveCollectionCollectibleList($con = null)
+  {
+    if (!$this->isValid())
+    {
+      throw $this->getErrorSchema();
+    }
+
+    if (!isset($this->widgetSchema['collection_collectible_list']))
+    {
+      // somebody has unset this widget
+      return;
+    }
+
+    if (null === $con)
+    {
+      $con = $this->getConnection();
+    }
+
+    $values = $this->getValue('collection_collectible_list');
+    if (is_array($values))
+    {
+      $c = new Criteria();
+      $c->add(CollectionCollectiblePeer::COLLECTIBLE_ID, $this->object->getPrimaryKey());
+      $c->add(CollectionCollectiblePeer::COLLECTION_ID, $values, Criteria::NOT_IN);
+      CollectionCollectiblePeer::doDelete($c, $con);
+
+      foreach ($values as $value)
+      {
+        $q = CollectionCollectibleQuery::create()
+          ->filterByCollectibleId($this->object->getPrimaryKey())
+          ->filterByCollectionId((int) $value);
+
+        $obj = $q->findOneOrCreate();
+        $obj->save();
+      }
+    }
+  }
+
 }

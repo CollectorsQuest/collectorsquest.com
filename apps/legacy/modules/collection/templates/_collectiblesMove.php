@@ -50,7 +50,7 @@
 <br class="clear">
 <div style="width: 200px; margin:20px auto;">
   <?php
-    echo cq_button(
+    cq_button(
       __('Done moving collectibles...'),
       route_for_collection($collection),
       array('class' => 'submit')
@@ -75,7 +75,9 @@ $(document).ready(function()
   $("div.scrollable-big").jCarouselLite(
   {
     btnNext: "a.nextPage", btnPrev: "a.prevPage",
-    mouseWheel: true, visible: 3, scroll: 2, circular: true, start: 0
+    mouseWheel: true, circular: true, start: 0,
+    visible: <?php echo $collections->count() > 3 ? 3 : $collections->count(); ?>,
+    scroll: <?php echo $collections->count() >= 3 ? 2 : $collections->count(); ?>
   });
 
   $("div.grid_view_collection").droppable(
