@@ -52,7 +52,7 @@ class PropelMigration_1331114751
             FOREIGN KEY (`collector_id`)
             REFERENCES `collector` (`id`)
             ON DELETE CASCADE
-        ) ENGINE=InnoDB;
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
       ',
     );

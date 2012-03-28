@@ -24,50 +24,77 @@ class manageActions extends cqActions
 
     $collector = $this->getCollector();
     $form = new CollectorEditForm($collector);
+    $shipping_rates_form = new ShippingRatesCollectionForm($collector, array(
+        'tainted_request_values' => $request->getParameter('shipping_rates_collection'),
+    ));
 
     if ($request->isMethod('post'))
     {
-      $form->bind($request->getParameter('collector'), $request->getFiles('collector'));
-      if ($form->isValid())
+      if ($request->hasParameter('collector'))
       {
-        $form->save();
-
-        // Clear the Geo Cache
-        CollectorGeocacheQuery::create()->filterByCollectorId($collector->getId())->delete();
-
-        $message = 'Your profile/account information was updated.';
-        if ($collectorEmail = $form->getOption('newEmail', false))
+        $form->bind($request->getParameter('collector'), $request->getFiles('collector'));
+        if ($form->isValid())
         {
-          $subject = $this->__('You have changed your email at CollectorsQuest.com');
-          $body = $this->getPartial(
-            'emails/collector_email_change',
-            array(
-              'collector'     => $collector,
-              'collectorEmail'=> $collectorEmail
-            )
-          );
+          $form->save();
 
-          if ($this->sendEmail($form->getValue('email'), $subject, $body))
+          // Clear the Geo Cache
+          CollectorGeocacheQuery::create()->filterByCollectorId($collector->getId())->delete();
 
-            $message .= ' Email verification sent to ' . $form->getValue('email');
+          $message = 'Your profile/account information was updated.';
+          if ($collectorEmail = $form->getOption('newEmail', false))
+          {
+            $subject = $this->__('You have changed your email at CollectorsQuest.com');
+            $body = $this->getPartial(
+              'emails/collector_email_change',
+              array(
+                'collector'     => $collector,
+                'collectorEmail'=> $collectorEmail
+              )
+            );
+
+            if ($this->sendEmail($form->getValue('email'), $subject, $body))
+
+              $message .= ' Email verification sent to ' . $form->getValue('email');
+          }
+
+          $this->getUser()->setFlash('success', $message);
+
+          // Send the profile data to Defensio to analyse
+          $collector->sendToDefensio('UPDATE');
+
+          $this->redirect('@manage_profile');
         }
-
-        $this->getUser()->setFlash('success', $message);
-
-        // Send the profile data to Defensio to analyse
-        $collector->sendToDefensio('UPDATE');
-
-        $this->redirect('@manage_profile');
+        else
+        {
+          $this->getUser()->setFlash('error', 'There were some problems, please take a look below.');
+        }
       }
-      else
+
+      if ($collector->getIsSeller() && $request->hasParameter('shipping_rates_collection'))
       {
-        $this->getUser()->setFlash('error', 'There were some problems, please take a look below.');
+        if ($shipping_rates_form->bindAndSave($request->getParameter('shipping_rates_collection')))
+        {
+          $this->getUser()->setFlash('success', 'Your shipping information was updated');
+          $this->redirect('@manage_profile');
+        }
+        else
+        {
+          $this->getUser()->setFlash('error', 'There were some problems, please take a look below.');
+        }
       }
     }
 
     // Make the Form and Collector available in the template
     $this->form = $form;
     $this->collector = $collector;
+    $this->collector_addresses = $collector->getCollectorAddresss();
+
+    if ($collector->getIsSeller())
+    {
+      // only make the shipping rates form available to the template if the
+      // collecto is a seller
+      $this->shipping_rates_form = $shipping_rates_form;
+    }
 
     $this->addBreadcrumb($this->__('Collectors'), '@collectors');
     $this->addBreadcrumb($this->__('Your Profile'));
@@ -589,6 +616,25 @@ class manageActions extends cqActions
     return $this->redirect('@manage_collections');
   }
 
+  public function executeShoppingOrders()
+  {
+    $q = ShoppingOrderQuery::create()
+       ->filterByCollector($this->getCollector());
+
+    $this->shopping_orders = $q->find();
+
+    return sfView::SUCCESS;
+  }
+
+  public function executeShoppingOrder()
+  {
+    /** @var $shopping_order ShoppingOrder */
+    $shopping_order = $this->getRoute()->getObject();
+    $this->forward404Unless($this->getCollector()->isOwnerOf($shopping_order));
+
+    return sfView::SUCCESS;
+  }
+
   /**
    * Action ResendEmailChange
    *
@@ -599,7 +645,7 @@ class manageActions extends cqActions
   {
     /* @var $collectorEmail CollectorEmail */
     $collectorEmail = $this->getCollector()->getLastEmailChangeRequest();
-    $this->forward404Unless($collectorEmail);
+    $this->forward404Unless($collectorEmail instanceof CollectorEmail);
 
     $collector = $collectorEmail->getCollector();
 
@@ -622,6 +668,81 @@ class manageActions extends cqActions
     }
 
     $this->redirect('@manage_profile');
+  }
+
+  public function executeAddNewAddress(sfWebRequest $request)
+  {
+    $address = new CollectorAddress();
+    $address->setCollector($this->getCollector());
+    $form = new FrontendCollectorAddressForm($address);
+
+    if (sfRequest::POST == $request->getMethod())
+    {
+      if ($form->bindAndSave($request->getParameter($form->getName())))
+      {
+        $this->redirect('@manage_profile#collector-marketplace');
+      }
+    }
+    $this->form = $form;
+
+    $this->addBreadcrumb($this->__('Collectors'), '@collectors');
+    $this->addBreadcrumb($this->__('Your Profile'), '@manage_profile');
+    $this->addBreadcrumb($this->__('Add a new address'));
+
+    $this->prependTitle($this->__('Add a New Address'));
+
+    return sfView::SUCCESS;
+  }
+
+  public function executeEditAddress(sfWebRequest $request)
+  {
+    $address = $this->getRoute()->getObject();
+    $this->forward404Unless($this->getUser()->isOwnerOf($address));
+
+    $form = new FrontendCollectorAddressForm($address);
+
+    if (sfRequest::POST == $request->getMethod())
+    {
+      if ($form->bindAndSave($request->getParameter($form->getName())))
+      {
+        $this->redirect('@manage_profile#collector-marketplace');
+      }
+    }
+
+    $this->form = $form;
+
+    $this->addBreadcrumb($this->__('Collectors'), '@collectors');
+    $this->addBreadcrumb($this->__('Your Profile'), '@manage_profile');
+    $this->addBreadcrumb($this->__('Edit address'));
+
+    $this->prependTitle($this->__('Edit Address'));
+
+    return sfView::SUCCESS;
+  }
+
+  public function executeDeleteAddress(sfWebRequest $request)
+  {
+    $address = $this->getRoute()->getObject();
+    $this->forward404Unless($this->getUser()->isOwnerOf($address));
+
+    if (sfRequest::DELETE == $request->getMethod())
+    {
+      $address->delete();
+      $this->getUser()->setFlash('success',
+        $this->__('You have successfully removed an address from your account.'));
+
+      return $this->redirect('@manage_profile#collector-marketplace');
+    }
+
+    $this->collector_address = $address;
+
+    $this->addBreadcrumb($this->__('Collectors'), '@collectors');
+    $this->addBreadcrumb($this->__('Your Profile'), '@manage_profile');
+    $this->addBreadcrumb($this->__('Confirm address deletion'));
+
+    $this->prependTitle($this->__('Confirm Address Deletion'));
+
+    return sfView::SUCCESS;
   }
 
 }

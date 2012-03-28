@@ -5,7 +5,7 @@
  *
  * @package    CollectorsQuest
  * @subpackage filter
- * @author     Kiril Angov
+ * @author     Collectors
  */
 class CollectibleOfferFormFilter extends BaseCollectibleOfferFormFilter
 {

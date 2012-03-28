@@ -167,7 +167,11 @@ function route_for_collection(Collection $collection = null)
 function link_to_collectible(Collectible $collectible, $type = 'text', $options = array())
 {
   $options = array_merge(
-    array('width' => 150, 'height' => 150, 'alt' => $collectible->getName(), 'title' => $collectible->getName()),
+    array(
+      'width' => 150, 'height' => 150,
+      'alt' => $collectible->getName(),
+      'title' => $collectible->getName()
+    ),
     $options
   );
 
@@ -182,7 +186,9 @@ function link_to_collectible(Collectible $collectible, $type = 'text', $options 
   {
     case 'image':
       $which = (isset($options['width']) && isset($options['height'])) ? $options['width'].'x'.$options['height'] : '150x150';
-      $link = link_to(image_tag_collectible($collectible, $which, array_merge(array('class' => 'thumbnail'), $options)), $route, $options);
+      $options = array_merge(array('class' => 'thumbnail'), $options);
+
+      $link = link_to(image_tag_collectible($collectible, $which, $options), $route, $options);
       break;
     case 'text':
     default:

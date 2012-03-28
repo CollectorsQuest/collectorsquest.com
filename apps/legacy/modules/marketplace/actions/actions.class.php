@@ -300,7 +300,7 @@ class marketplaceActions extends cqActions
       $c = new Criteria();
       $c->add(CollectibleOfferPeer::COLLECTOR_ID, $buyer->getId());
       $c->add(CollectibleOfferPeer::STATUS, 'pending');
-      $c->add(CollectibleOfferPeer::COLLECTIBLE_FOR_SALE_ID, $collectible_for_sale->getId());
+      $c->add(CollectibleOfferPeer::COLLECTIBLE_ID, $collectible_for_sale->getCollectibleId());
       $offer = CollectibleOfferPeer::doSelectOne($c);
 
       if (!$offer)
@@ -308,7 +308,7 @@ class marketplaceActions extends cqActions
         $offer = new CollectibleOffer();
         $offer->setCollectorId($buyer->getId());
         $offer->setCollectibleId($collectible->getId());
-        $offer->setCollectibleForSaleId($collectible_for_sale->getId());
+        $offer->setCollectibleId($collectible_for_sale->getCollectibleId());
         $offer->setPrice($price);
         $offer->setStatus('pending');
         $offer->save();
@@ -341,7 +341,7 @@ class marketplaceActions extends cqActions
 
         $this->getUser()->setFlash('success', 'The seller has been notified about your intent to buy this item!');
 
-        return $this->redirect('@collectible_by_slug?id=' . $collectible->getId() . '&slug=' . $collectible->getSlug() . '&purchase=1');
+        $this->redirect('@collectible_by_slug?id=' . $collectible->getId() . '&slug=' . $collectible->getSlug() . '&purchase=1');
       }
       else
       {
@@ -433,7 +433,7 @@ class marketplaceActions extends cqActions
         $this->sendEmail($seller->getEmail(), $ssMailSubject, $asMailContent);
       }
 
-      return $this->redirect('marketplace_item_offers', $offer->getCollectibleForSale());
+      $this->redirect('marketplace_item_offers', $offer->getCollectibleForSale());
     }
 
     return sfView::NONE;
@@ -470,7 +470,7 @@ class marketplaceActions extends cqActions
             $omSaleItems = CollectibleForSalePeer::retrieveByPK($snIdCollectibleForSale);
             $this->omCollection = CollectorCollectionPeer::retrieveByPK($snIdCollection);
 
-            $this->forward404Unless($omSaleItems, sprintf('Object collection item sale does not exist (%s).', $snIdCollectibleForSale));
+            $this->forward404Unless($omSaleItems instanceof CollectibleForSale, sprintf('Object collection item sale does not exist (%s).', $snIdCollectibleForSale));
             $this->forward404Unless($this->omCollection, sprintf('Object collection does not exist (%s).', $snIdCollection));
 
             $this->oForm = new CollectibleForSaleForm($omSaleItems);

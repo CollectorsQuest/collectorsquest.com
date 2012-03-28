@@ -11,7 +11,7 @@ class cqCompleteRegistrationFilter extends sfFilter
 {
   public function execute($filterChain)
   {
-    /** @var $sf_user cqUser */
+    /** @var $sf_user cqBaseUser */
     $sf_user = $this->context->getUser();
 
     if ( $sf_user->isAuthenticated()

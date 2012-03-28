@@ -255,6 +255,39 @@ events:
   url: /events
   param: { module: videos, action: index }
 
+
+### SHOPPING
+
+shopping_cart_remove:
+  url: /cart/:id/remove
+  param: { module: shopping, action: cart, cmd: remove }
+  requirements: { id: \d+ }
+
+shopping_cart_checkout:
+  url: /cart/checkout
+  param: { module: shopping, action: checkout }
+  requirements: { sf_method: [post] }
+
+shopping_cart_empty:
+  url: /cart/empty
+  param: { module: shopping, action: cart, cmd: empty }
+
+shopping_cart:
+  url: /cart
+  param: { module: shopping, action: cart }
+
+shopping_order_paypal:
+  url: /order/:uuid/paypal
+  class: sfPropelRoute
+  options: { model: ShoppingOrder, type: object }
+  param: { module: shopping, action: paypal }
+
+shopping_order_pay:
+  url: /order/:uuid/pay
+  class: sfPropelRoute
+  options: { model: ShoppingOrder, type: object }
+  param: { module: shopping, action: pay }
+
 ### MARKETPLACE
 
 marketplace:
@@ -262,23 +295,25 @@ marketplace:
   param: { module: marketplace, action: index }
 
 marketplace_make_offer:
-  url: /marketplace/:id/makeOffer
+  url: /marketplace/make-offer/:collectible_id
   class: sfPropelRoute
   options: { model: CollectibleForSale, type: object }
   param: { module: marketplace, action: makeOffer }
+  requirements: { collectible_id: \d+ }
 
 marketplace_buy_now:
-  url:  /marketplace/:id/buyNow
+  url:  /marketplace/buy-now/:collectible_id
   class: sfPropelRoute
   options: { model: CollectibleForSale, type: object }
   param: { module: marketplace, action: buyNow }
+  requirements: { collectible_id: \d+ }
 
 marketplace_item_offers:
-  url: /marketplace/:id/offers
+  url: /marketplace/:collectible_id/offers
   class: sfPropelRoute
   options: { model: CollectibleForSale, type: object }
   param: { module: marketplace, action: itemOffers }
-  requirements: { id: \d+ }
+  requirements: { collectible_id: \d+ }
 
 marketplace_counter_offer:
   url: /marketplace/:id/counter-offer
@@ -295,7 +330,7 @@ marketplace_item_offer:
   requirements: { id: \d+ }
 
 marketplace_category_by_slug:
-  url: /marketplace/:id/:slug
+  url: /marketplace/category/:id/:slug
   class: sfPropelRoute
   options: { model: CollectionCategory, type: object, method: getObjectForRoute }
   param: { module: marketplace, action: index }
@@ -375,10 +410,6 @@ manage_profile:
   url:   /manage/profile
   param: { module: manage, action: profile }
 
-manage_preferences:
-  url:   /manage/preferences
-  param: { module: manage, action: preferences }
-
 manage_dropbox:
   url:   /manage/dropbox
   param: { module: manage, action: dropbox }
@@ -436,6 +467,34 @@ manage_marketplace:
 manage_friends:
   url:   /manage/friends
   param: { module: manage, action: friends }
+
+manage_collector_address_new:
+  url:    /manage/addresses/new
+  param:  { module: manage, action: addNewAddress }
+
+manage_collector_address_edit:
+  url:    /manage/addresses/:id/edit
+  class:  sfPropelORMRoute
+  options: { model: CollectorAddress, type: object }
+  param:  { module: manage, action: editAddress }
+  requirements: { id: '\d+' }
+
+manage_collector_address_delete:
+  url:    /manage/addresses/:id/delete
+  class:  sfPropelORMRoute
+  options: { model: CollectorAddress, type: object }
+  param:  { module: manage, action: deleteAddress }
+  requirements: { id: '\d+', sf_method: [get, delete] }
+
+manage_shopping_order:
+  url:   /manage/order/:uuid
+  class: sfPropelRoute
+  options: { model: ShoppingOrder, type: object }
+  param: { module: manage, action: shoppingOrder }
+
+manage_shopping_orders:
+  url:   /manage/orders
+  param: { module: manage, action: shoppingOrders }
 
 manage_profile_resend_change_email:
   url:   /manage/email-change/resend

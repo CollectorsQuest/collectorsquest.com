@@ -14,7 +14,7 @@ class CollectorProfileEditForm extends BaseCollectorProfileForm
       'birthday' => new sfWidgetFormDate(array('years' => $years)),
       'gender' => new sfWidgetFormSelect(array('choices' => array('' => "Rather not say", 'f' => 'Female', 'm' => 'Male'))),
       'zip_postal' => new sfWidgetFormInputText(),
-      'country' => new sfWidgetFormI18nSelectCountry(array('add_empty' => true, 'culture' => 'en')),
+      'country' => new sfWidgetFormI18nChoiceCountry(array('add_empty' => true, 'culture' => 'en')),
       'website' => new sfWidgetFormInputText(),
 
       'about_me' => new sfWidgetFormTextarea(),

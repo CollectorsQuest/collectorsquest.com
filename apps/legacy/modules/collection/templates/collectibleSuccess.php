@@ -3,10 +3,10 @@
 
 /** @var $collectible Collectible */
 /** @var $sf_context sfContext */
-/** @var $sf_user cqUser */
+/** @var $sf_user cqBaseUser */
 
 /** @var $collectible_for_sale CollectibleForSale */
-$collectible_for_sale = $collectible->getForSaleInformation();
+$collectible_for_sale = $collectible->getCollectibleForSale();
 
 $offerPrice = 0;
 $isSold = false;
@@ -49,6 +49,7 @@ if ($collectible_for_sale)
     </div>
   <?php endif; ?>
 </div>
+
 <div class="span-8 last" style="padding-top: 10px; margin-right: -25px; margin-bottom: 15px;">
   <a href="<?php echo url_for(sprintf('@collectible_by_slug?id=%d&slug=%s', $previous->getId(), $previous->getSlug())); ?>" class="prevPage browse left"></a>
   <div class="scrollable">
@@ -134,7 +135,7 @@ if ($collectible_for_sale)
 <?php endif; ?>
 
 <?php if (!$sf_user->isOwnerOf($collectible)): ?>
-  <div class="span-18 last" style="padding: 10px; margin-left: 8px;">
+  <div class="span-18 append-bottom last" style="padding: 10px; margin-left: 8px;">
     <fb:like href="<?= $sf_request->getUri(); ?>" send="true" width="728" show_faces="true"></fb:like>
 
     <?php slot('facebook_metas'); ?>
@@ -150,7 +151,14 @@ if ($collectible_for_sale)
 <?php
 if ($collectible->isForSale() and $collectible_for_sale and $collectible_for_sale->getIsReady() and !$isSold)
 {
-  include_partial('collection/buy_collectible', array('collectible' => $collectible, 'collector' => $collector));
+  if (IceGateKeeper::open('shopping_cart'))
+  {
+    include_partial('collection/cart_collectible', array('collectible' => $collectible, 'collector' => $collector));
+  }
+  else
+  {
+    include_partial('collection/buy_collectible', array('collectible' => $collectible, 'collector' => $collector));
+  }
 }
 ?>
 

@@ -72,7 +72,7 @@ class cqStatic extends IceStatic
    */
   static public function getDefensioClient()
   {
-    include_once dirname(__FILE__).'/../vendor/Defensio.class.php';
+    include_once __DIR__.'/../vendor/Defensio.class.php';
 
     return new Defensio(sfConfig::get('app_credentials_defensio'));
   }
@@ -103,6 +103,17 @@ class cqStatic extends IceStatic
     }
 
     return self::$_neo4j_client;
+  }
+
+  static public function getPayPalClient()
+  {
+    include_once __DIR__.'/../vendor/PayPal.class.php';
+
+    return new PayPal(array(
+      'APIUsername' => sfConfig::get('app_paypal_api_username'),
+      'APIPassword' => sfConfig::get('app_paypal_api_password'),
+      'APISignature' => sfConfig::get('app_paypal_api_signature')
+    ));
   }
 
   static public function linkify($text, $shorten = false)

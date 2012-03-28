@@ -13,7 +13,7 @@ class CommentForm extends BaseCommentForm
   {
     parent::setup();
 
-    /** @var $sf_user cqUser */
+    /** @var $sf_user cqBaseUser */
     $sf_user = sfContext::getInstance()->getUser();
 
     $is_authenticated = $sf_user->isAuthenticated();
@@ -66,7 +66,7 @@ class CommentForm extends BaseCommentForm
 
   public function doSave($con = null)
   {
-    /** @var $sf_user cqUser */
+    /** @var $sf_user cqBaseUser */
     $sf_user = sfContext::getInstance()->getUser();
 
     $is_authenticated = $sf_user->isAuthenticated();

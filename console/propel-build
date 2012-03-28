@@ -15,4 +15,3 @@ php $DIR/../symfony propel:build-filter && \
 php $DIR/../symfony propel:build-sql
 
 php $DIR/../symfony cache:clear
-
