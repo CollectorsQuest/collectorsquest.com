@@ -8,13 +8,25 @@
         <div class="span5">
           <div class="input-append search-header">
             <form action="<?= url_for('@search') ?>" method="get">
-              <input name="q" id="headerSearchInput" data-provide="typeahead" type="text" size="16" value="<?= $sf_params->get('q'); ?>">
+              <input name="q" id="headerSearchInput" data-provide="typeahead" autocomplete="off" data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]' type="text" size="16" value="<?= $sf_params->get('q'); ?>">
               <button class="btn btn-large" type="submit">Search</button>
             </form>
           </div>
         </div>
         <div class="span4">
-          <button class="btn btn-large btn-primary">Primary action</button>
+          <form class="form-inline">
+            <a href="#" class="link_cart">
+              <span class="shopping_cart_inner shopping_cart">
+              <span id="shopping_cart_count">99</span>
+              <!-- Empty cart
+              <span id="shopping_cart_count" class="empty_cart">0</span>
+              -->
+              </span>
+            </a>
+            <!--<span class="nav-divider"></span>-->
+            <a href="#">Log In</a> or
+            <button type="submit" class="btn">Sign in</button>
+          </form>
         </div>
       </div>
   </div><!-- /navbar-inner -->
