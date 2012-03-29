@@ -308,4 +308,39 @@ class shoppingActions extends cqFrontendActions
     return sfView::ERROR;
   }
 
+  public function executeTest()
+  {
+    $ap = cqStatic::getPayPaylAdaptivePaymentsClient();
+
+    // Prepare request arrays
+    $BaseAmountList = array();
+    $BaseAmountData = array(
+      'Code' => 'USD', 						// Currency code.
+      'Amount' => '29.99'						// Amount to be converted.
+    );
+    array_push($BaseAmountList, $BaseAmountData);
+
+    $ConvertToCurrencyList = array('EUR', 'AUD', 'CAD');			// Currency Codes
+
+    $PayPalRequestData = array(
+      'BaseAmountList' => $BaseAmountList,
+      'ConvertToCurrencyList' => $ConvertToCurrencyList
+    );
+
+    $response = $ap->ConvertCurrency($PayPalRequestData);
+
+    if (!$ap->APICallSuccessful($response['Ack']))
+    {
+      echo "<b>Error </b>";
+      echo "<pre>";
+      print_r($response);
+      echo "</pre>";
+      exit;
+    }
+
+    $this->responses = $response;
+
+    return sfView::SUCCESS;
+  }
+
 }

@@ -33,22 +33,17 @@ all:
       application_secret: "21b6fb4368bbe3bf4157afe83e6945d4"
 
   paypal:
+    application_id: "APP-80W284485P519543T"
     api_username: "kangov_1327417143_biz_api1.collectorsquest.com"
     api_password: "1327417177"
     api_signature: "A..-CRlw0YpkY2B3ut0vv.OPym-eAT-VZrXVgkU8OKXkg-3ddWsYS50Q"
-    api_url: "https://api-3t.sandbox.paypal.com/nvp"
-    is_online: false
-
-    payment_action: "Sale"
-    currency_code: "USD"
-    payment_method: "doDirectPayment"
 
     url: "https://www.sandbox.paypal.com/cgi-bin/webscr"
     merchant_account: "kangov_1327417143_biz@collectorsquest.com"
 
     return_url: "seller/paymentCompleted"
-    cancel_url: seller_cancel_payment
-    notify_url: seller_callback_ipn
+    cancel_url: "seller_cancel_payment"
+    notify_url: "seller_callback_ipn"
 
 dev:
   domain_name: "collectorsquest.dev"
