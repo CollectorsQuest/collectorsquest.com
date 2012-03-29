@@ -25,8 +25,9 @@
               </span>
             </a>
             <!--<span class="nav-divider"></span>-->
-            <a href="#">Log In</a> or
-            <button type="submit" class="btn">Sign in</button>
+            <?= link_to('Log In', '@login'); ?>
+            or
+            <?= link_to('Sign Up', '@signup', array('class' => 'btn')); ?>
           </form>
         </div>
       </div>

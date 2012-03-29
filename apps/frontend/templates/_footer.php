@@ -15,54 +15,72 @@
       </div><!--/span-->
 
       <div class="span4">
-        <h2 class="FugazOne">Sign Up</h2>
+      <?php if (!$sf_user->isAuthenticated()): ?>
 
-        <form class="form-horizontal">
-          <fieldset>
-            <div class="control-group">
-              <label for="focusedInput" class="control-label">Full name</label>
-              <div class="controls">
-                <input type="text" placeholder="Full name" id="focusedInput" class="input-footer focused">
-              </div>
-            </div>
-            <div class="control-group">
-              <label for="focusedInput" class="control-label">Email</label>
-              <div class="controls">
-                <input type="text" placeholder="Email" id="focusedInput" class="input-footer focused">
-              </div>
-            </div>
-            <div class="control-group">
-              <label for="focusedInput" class="control-label">Password</label>
-              <div class="controls">
-                <input type="text" placeholder="Password" id="focusedInput" class="input-footer focused">
-              </div>
-            </div>
-            <div class="control-group">
-              <label for="focusedInput" class="control-label">Confirm Password</label>
-              <div class="controls">
-                <input type="text" placeholder="Password again…" id="focusedInput" class="input-footer focused">
-              </div>
-            </div>
+        <div id="footer-form-signup">
+          <h2 class="FugazOne">Sign Up</h2>
 
-            <div class="form-actions">
-              <button class="btn btn-primary" type="submit">Submit</button>
-            </div>
-          </fieldset>
-        </form>
+          <form class="form-horizontal">
+            <fieldset>
+              <div class="control-group">
+                <label for="focusedInput" class="control-label">Full name</label>
+                <div class="controls">
+                  <input type="text" placeholder="Full name" id="focusedInput" class="input-footer focused" />
+                </div>
+              </div>
+              <div class="control-group">
+                <label for="focusedInput" class="control-label">Email</label>
+                <div class="controls">
+                  <input type="text" placeholder="Email" id="focusedInput" class="input-footer focused" />
+                </div>
+              </div>
+              <div class="control-group">
+                <label for="focusedInput" class="control-label">Password</label>
+                <div class="controls">
+                  <input type="password" placeholder="Password" id="focusedInput" class="input-footer focused" />
+                </div>
+              </div>
+              <div class="control-group">
+                <label for="focusedInput" class="control-label">Confirm Password</label>
+                <div class="controls">
+                  <input type="password" placeholder="Password again..." id="focusedInput" class="input-footer focused" />
+                </div>
+              </div>
 
-        <div id="footer-form-login">
-          <h2 class="FugazOne">Login</h2>
+              <div class="form-actions">
+                <button class="btn btn-primary" type="submit">Sign Up</button>
+              </div>
+            </fieldset>
+          </form>
+
+          <div id="footer-control-login">
+            Already have an account? <?= link_to('Log In', '@login', array('id' => 'footer-control-login-button')); ?>
+          </div>
+        </div><!-- #footer-form-signup -->
+
+        <div id="footer-form-login" style="display: none">
+          <h2 class="FugazOne">Log In</h2>
           <?= form_tag('@login', array('class' => 'form-horizontal')) ?>
             <fieldset>
               <?= new CollectorLoginForm() ?>
               <div class="form-actions">
-                <input type="submit" class="btn btn-primary" value="Login" />
+                <input type="submit" class="btn btn-primary" value="Log In" />
               </div>
             </fieldset>
           </form>
+
+          <div id="footer-control-signup" style="display: none">
+            Don't have an account yet? <?= link_to('Sign up', '@signup', array('id' => 'footer-control-signup-button')); ?>
+          </div>
         </div> <!-- #footer-form-login -->
 
-      </div><!--/span-->
+      <?php else: ?>
+        <!-- nothing here yet -->
+        <br />
+      <?php endif; ?>
+
+      </div><!-- .span4 -->
+
       <div class="span4">
         <ul class="footer-info-box">
           <li>

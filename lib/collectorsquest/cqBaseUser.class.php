@@ -77,7 +77,7 @@ class cqBaseUser extends IceSecurityUser
       $this->collector = null;
 
       // remove remember me cookie
-      $expiration_age = sfConfig::get('app_collector_remember_expiration_age', 15 * 24 * 3600);
+      $expiration_age = sfConfig::get('app_collector_remember_cookie_expiration_age', 15 * 24 * 3600);
       $remember_cookie = sfConfig::get('app_collector_remember_cookie_name', 'cqRemember');
       sfContext::getInstance()->getResponse()->setCookie($remember_cookie, '', time() - $expiration_age);
     }
@@ -95,7 +95,7 @@ class cqBaseUser extends IceSecurityUser
       {
         // remove old keys
         $c = new Criteria();
-        $expiration_age = sfConfig::get('app_collector_remember_expiration_age', 15 * 24 * 3600);
+        $expiration_age = sfConfig::get('app_collector_remember_cookie_expiration_age', 15 * 24 * 3600);
         $c->add(CollectorRememberKeyPeer::CREATED_AT, time() - $expiration_age, Criteria::LESS_THAN);
         CollectorRememberKeyPeer::doDelete($c);
 

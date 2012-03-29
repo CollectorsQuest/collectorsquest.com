@@ -15,7 +15,9 @@ class CollectorLoginForm extends BaseForm
           'required' => 'required',
           'placeholder' => 'Password'
       )),
-      'remember'  => new sfWidgetFormInputCheckbox(),
+      'remember'  => new sfWidgetFormInputCheckbox(array(
+            'label' => 'Remember me',
+      )),
     ));
 
     $this->setValidators(array(
