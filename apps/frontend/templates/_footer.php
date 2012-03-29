@@ -24,7 +24,7 @@
             <fieldset>
               <?= new CollectorSignupStep1Form(); ?>
               <div class="form-actions">
-                <input type="submit" class="btn btn-primary" value="Log In" />
+                <input type="submit" class="btn btn-primary" value="Sign Up" />
               </div>
             </fieldset>
           </form>
