@@ -162,9 +162,9 @@ recover_password:
   url:   /recover-password
   param: { module: general, action: recoverPassword }
 
-signup:
+collector_signup:
   url:   /signup/:step
-  param: { module: general, action: signup, step: 1 }
+  param: { module: collector, action: signup, step: 1 }
   requirements: { step: '[1-3]' }
 
 # default rules
