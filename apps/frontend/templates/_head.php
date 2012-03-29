@@ -18,7 +18,7 @@
   <link rel="icon" type="image/png" href="<?php echo cq_image_src('frontend/favicon.png', true); ?>"/>
 
   <script>
-    window.cqOptions = {
+    window.cq= {
       ENV: '<?= sfConfig::get('sf_environment') ?>',
       authenticated: <?= $sf_user->isAuthenticated() ? 'true' : 'false'; ?>,
       page_load_start: new Date(),
