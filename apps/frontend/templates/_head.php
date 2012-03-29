@@ -18,10 +18,12 @@
   <link rel="icon" type="image/png" href="<?php echo cq_image_src('frontend/favicon.png', true); ?>"/>
 
   <script>
-    window._ENV = '<?= sfConfig::get('sf_environment') ?>';
-    window._authenticated = <?= $sf_user->isAuthenticated() ? 'true' : 'false'; ?>;
-    window._page_load_start = new Date();
-    window._server_load_time = 0;
+    window.cqOptions = {
+      ENV: '<?= sfConfig::get('sf_environment') ?>',
+      authenticated: <?= $sf_user->isAuthenticated() ? 'true' : 'false'; ?>,
+      page_load_start: new Date(),
+      server_load_time: 0
+    };
 
     // http://stackoverflow.com/a/8567229
     var docready=[],$=function(){return{ready:function(fn){docready.push(fn)}}};

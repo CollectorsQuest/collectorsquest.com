@@ -34,22 +34,23 @@ Modernizr.load({
   }
 });
 
-window.Modernizr.addTest("isProduction", function() {
-  return window._ENV === 'prod';
+window.Modernizr.addTest("isproduction", function() {
+  return window.cqOptions.ENV === 'prod';
 });
-window.Modernizr.addTest("isAuthenticated", function() {
-  return !!window._authenticated;
+window.Modernizr.addTest("isauthenticated", function() {
+  return !!window.cqOptions.authenticated;
 });
 
 // setup page load statistic if in prod environment
-if (Modernizr.isProduction)
+if (Modernizr.isproduction)
 {
   var _gaq = _gaq || [];
 
   window.onload = function ()
   {
     var _page_load_end = new Date(),
-      _page_load_time = _page_load_end.getTime() - _page_load_start.getTime();
+      _page_load_time = _page_load_end.getTime() - window.cqOptions.page_load_start.getTime()
+      _server_load_time = window.cqOptions.server_load_time;
 
     if (_server_load_time > 0)
     {
