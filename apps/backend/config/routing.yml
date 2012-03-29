@@ -81,7 +81,7 @@ package:
     with_wildcard_routes: true
 
 playlist:
-  class: sfPropelRouteCollection
+  class: icePropelRouteCollection
   options:
     model:                Playlist
     module:               playlists
@@ -90,7 +90,7 @@ playlist:
     with_wildcard_routes: true
 
 private_message:
-  class: sfPropelRouteCollection
+  class: icePropelRouteCollection
   options:
     model:                PrivateMessage
     module:               messages
@@ -99,7 +99,7 @@ private_message:
     with_wildcard_routes: true
 
 message_template:
-  class: sfPropelRouteCollection
+  class: icePropelRouteCollection
   options:
     model:                PrivateMessageTemplate
     module:               messageTemplates
@@ -108,7 +108,7 @@ message_template:
     with_wildcard_routes: true
 
 collection_category:
-  class: sfPropelRouteCollection
+  class: icePropelRouteCollection
   options:
     model:                CollectionCategory
     module:               collectionCategories
@@ -117,7 +117,7 @@ collection_category:
     with_wildcard_routes: true
 
 video_playlist:
-  class: sfPropelRouteCollection
+  class: icePropelRouteCollection
   options:
     model:                VideoPlaylist
     module:               videoPlaylists
@@ -126,7 +126,7 @@ video_playlist:
     with_wildcard_routes: true
 
 video:
-  class: sfPropelRouteCollection
+  class: icePropelRouteCollection
   options:
     model:                Video
     module:               videos
@@ -135,7 +135,7 @@ video:
     with_wildcard_routes: true
 
 collectible:
-  class: sfPropelRouteCollection
+  class: icePropelRouteCollection
   options:
     model:                Collectible
     module:               collectibles
@@ -144,7 +144,7 @@ collectible:
     with_wildcard_routes: true
 
 collection:
-  class: sfPropelRouteCollection
+  class: icePropelRouteCollection
   options:
     model:                Collection
     module:               collections
