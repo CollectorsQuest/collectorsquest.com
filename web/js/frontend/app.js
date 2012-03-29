@@ -18,6 +18,8 @@ var APP = window.APP = {
   common: {
     init: function()
     {
+      $(".alert").alert();
+
       /**
        * "Scroll to Top" link on every long page
        */
