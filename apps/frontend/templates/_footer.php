@@ -13,6 +13,7 @@
         <p>Follow us on Facebook</p>
         <p>Follow us on Twitter</p>
       </div><!--/span-->
+
       <div class="span4">
         <h2 class="FugazOne">Sign Up</h2>
 
@@ -48,6 +49,18 @@
             </div>
           </fieldset>
         </form>
+
+        <div id="footer-form-login">
+          <h2 class="FugazOne">Login</h2>
+          <?= form_tag('@login', array('class' => 'form-horizontal')) ?>
+            <fieldset>
+              <?= new CollectorLoginForm() ?>
+              <div class="form-actions">
+                <input type="submit" class="btn btn-primary" value="Login" />
+              </div>
+            </fieldset>
+          </form>
+        </div> <!-- #footer-form-login -->
 
       </div><!--/span-->
       <div class="span4">
