@@ -22,7 +22,7 @@
 <script>
   // Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline
   Modernizr.load([{
-    test : Modernizr.isAuthenticated,
+    test : Modernizr.isauthenticated,
     yep  : '<?= javascript_path('frontend/scripts.authenticated.bundle.' . GIT_REVISION . '.js'); ?>',
     both : '<?= javascript_path('frontend/scripts.common.bundle.' . GIT_REVISION . '.js'); ?>'
   }]);
