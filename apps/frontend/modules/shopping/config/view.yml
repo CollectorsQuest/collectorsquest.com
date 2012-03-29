@@ -1,0 +1,13 @@
+all:
+  stylesheets: [frontend/shopping-cart.css]
+
+cartSuccess:
+  components:
+    sidebar_300: [shopping, sidebar]
+
+cartEmpty:
+  components:
+    sidebar_300: [shopping, sidebar]
+
+checkoutPaypal:
+  has_layout:     false

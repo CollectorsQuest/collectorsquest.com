@@ -2,12 +2,14 @@
   /* @var $form CollectorLoginForm */
 ?>
 
-<div class="main-login-form clearfix">
-  <?= form_tag('@login') ?>
+<?= form_tag('@login', array('class' => 'form-horizontal')) ?>
+  <fieldset>
     <?= $form ?>
-    <input type="submit" value="Login" />
-  </form>
-</div>
+    <div class="form-actions">
+      <input type="submit" class="btn btn-primary" value="Login" />
+    </div>
+  </fieldset>
+</form>
 
 
 <fieldset class="rpxnow-login clearfix">

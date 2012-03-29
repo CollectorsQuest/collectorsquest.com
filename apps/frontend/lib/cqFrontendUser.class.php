@@ -2,10 +2,8 @@
 
 class cqFrontendUser extends cqBaseUser
 {
+
   /**
-   * Stubbed out getCollector method to comply with legacy expectation of returning
-   * a collector with id of "-1" when the collector is no longer present in the DB
-   *
    * @return    Collector
    */
   public function getCollector()
@@ -18,15 +16,40 @@ class cqFrontendUser extends cqBaseUser
       }
       else
       {
-        $this->collector = new Collector();
-        $this->collector->setId(-1);
+        $this->collector = new Collector();;
       }
     }
-    else if ($this->collector->getId() == -1 && $this->getAttribute("id", null, "collector") !== null)
+    else if ($this->collector->getId() == null && $this->getAttribute("id", null, "collector") !== null)
     {
       $this->collector = CollectorPeer::retrieveByPK($this->getAttribute("id", null, "collector"));
     }
 
     return $this->collector;
   }
+
+  public function getShoppingCart()
+  {
+    $q = ShoppingCartQuery::create()
+       ->filterByCollector($this->getCollector())
+       ->filterBySessionId($this->isAuthenticated() ? null : session_id());
+
+    $shopping_cart = $q->findOneOrCreate();
+    $shopping_cart->save();
+
+    return $shopping_cart;
+  }
+
+  public function getShoppingCartCollectiblesCount()
+  {
+    // We default to zero collectibles in the cart
+    $count = 0;
+
+    if ($shopping_cart = $this->getShoppingCart())
+    {
+      $count = $shopping_cart->countShoppingCartCollectibles();
+    }
+
+    return $count;
+  }
+
 }
