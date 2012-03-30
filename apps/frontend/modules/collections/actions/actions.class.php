@@ -6,4 +6,9 @@ class collectionsActions extends cqFrontendActions
   {
     return sfView::SUCCESS;
   }
+
+  public function executeCategory()
+  {
+    return sfView::SUCCESS;
+  }
 }

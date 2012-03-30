@@ -17,9 +17,10 @@ class collectionComponents extends cqFrontendComponents
     /* @var $collectible_for_sale CollectibleForSale */
     $collectible_for_sale = $this->collectible->getCollectibleForSale();
 
-    $this->offerPrice = $collectible_for_sale->getPrice();
     if ($collectible_for_sale)
     {
+      $this->offerPrice = $collectible_for_sale->getPrice();
+
       $offer = $collectible_for_sale->getCollectibleOfferByBuyer($this->getUser()->getId(), 'counter');
       if ($offer)
       {

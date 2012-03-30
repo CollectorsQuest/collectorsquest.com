@@ -1,4 +1,5 @@
 
+<?php if ($collectible->isForSale()): ?>
 <form action="<?= url_for('@shopping_cart'); ?>" method="post">
   <?= $form->renderHiddenFields(); ?>
   <p class="green-text bug-price"><?= money_format('%.2n', (float) $offerPrice); ?></p>
@@ -9,5 +10,7 @@
     }
   ?>
 </form>
+<?php endif; ?>
 
-<div class="well" style="margin-top: 80px;">Sidebar</div>
+<?php include_component('_sidebar', 'widgetRelatedCollections', array('collectible' => $collectible)); ?>
+<?php include_component('_sidebar', 'widgetTagsCloud', array('collectible' => $collectible)); ?>

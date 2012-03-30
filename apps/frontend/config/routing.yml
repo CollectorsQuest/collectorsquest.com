@@ -11,6 +11,13 @@ collection_by_slug:
   param: { module: collection, action: index }
   requirements: { id: '\d+', slug: '[\-\w\.]+' }
 
+collections_by_category:
+  url:  /collections/:id/:slug
+  class: cqPropelRoute
+  options: { model: CollectionCategory, type: object, method: getObjectForRoute }
+  param: { module: collections, action: category }
+  requirements: { id: '\d+', slug: '[\-\w\.]+' }
+
 collections_by_collector_legacy:
   url:  /collections/by/:collector_slug
   class: sfPropelRoute
@@ -138,6 +145,22 @@ shopping_order_pay:
   class: sfPropelRoute
   options: { model: ShoppingOrder, type: object }
   param: { module: shopping, action: pay }
+
+
+### TAGS
+
+tag:
+  url:   /tag/:tag
+  param: { module: search, action: index }
+
+tags:
+  url:   /tags/:which
+  param: { module: tags, action: tagCloud}
+  requirements: { which: '[\-\w\.]+' }
+
+tags_index:
+  url:   /tags
+  param: { module: tags, action: index }
 
 
 ### GENERAL
