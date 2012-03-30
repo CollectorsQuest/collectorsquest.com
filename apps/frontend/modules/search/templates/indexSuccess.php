@@ -12,7 +12,8 @@
   echo cq_page_title('Search results', $title);
 ?>
 
-<div id="search-results" class="row">
+<div class="row">
+  <div id="search-results" class="row-content">
   <?php
     foreach ($pager->getResults() as $i => $object)
     {
@@ -53,6 +54,7 @@
       }
     }
   ?>
+  </div>
 </div>
 
 <div class="row-fluid" style="text-align: center;">

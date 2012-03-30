@@ -22,7 +22,8 @@
   </div>
 </div>
 
-<div id="collectibles" class="row">
+<div class="row">
+  <div id="collectibles" class="row-content">
   <?php
     /** @var $collectible Collectible */
     foreach ($pager->getResults() as $i => $collectible)
@@ -40,6 +41,7 @@
       echo '</div>';
     }
   ?>
+  </div>
 </div>
 
 <div class="row-fluid" style="text-align: center;">
