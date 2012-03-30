@@ -8,3 +8,6 @@ indexSuccess:
   components:
     slot1: [general, indexCarousel]
     sidebar_180: [general, indexSidebar]
+
+countdownSuccess:
+  has_layout: false

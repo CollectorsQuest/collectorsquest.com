@@ -6,7 +6,6 @@
  * @package    CollectorsQuest
  * @subpackage general
  * @author     Collectors
- * @version    SVN: $Id: actions.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
 class generalActions extends cqFrontendActions
 {
@@ -18,6 +17,10 @@ class generalActions extends cqFrontendActions
 
   public function executeCountdown()
   {
+    $launch = new DateTime('2012-05-15');
+    $now = new DateTime();
+    $this->time_left = $launch->diff($now);
+
     return sfView::SUCCESS;
   }
 
@@ -26,7 +29,7 @@ class generalActions extends cqFrontendActions
     // redirect to homepage if already logged in
     if ($this->getUser()->isAuthenticated())
     {
-      return $this->redirect('@homepage');
+      $this->redirect('@homepage');
     }
 
     // Auto login the collector if a hash was provided
@@ -35,7 +38,7 @@ class generalActions extends cqFrontendActions
       $this->getUser()->Authenticate(true, $collector, $remember = false);
 
       // redirect to last page or homepage after login
-      return $this->redirect($request->getParameter('goto', '@homepage'));
+      $this->redirect($request->getParameter('goto', '@homepage'));
     }
 
     $form = new CollectorLoginForm();
@@ -53,7 +56,7 @@ class generalActions extends cqFrontendActions
         );
 
         $welcomePage = $this->getUser()->getReferer('@homepage');
-        return $this->redirect($welcomePage);
+        $this->redirect($welcomePage);
       }
     }
     else
@@ -77,7 +80,9 @@ class generalActions extends cqFrontendActions
   {
     $this->forward404Unless($token = $request->getParameter('token'));
 
+    /** @define "sfConfig::get('sf_lib_dir')" "lib" */
     include_once sfConfig::get('sf_lib_dir') . '/vendor/janrain/engage.auth.lib.php';
+
     $credentials = sfConfig::get('app_credentials_rpxnow');
 
     $result = engage_auth_info($credentials['api_key'], $token, ENGAGE_FORMAT_JSON, true);
@@ -96,8 +101,7 @@ class generalActions extends cqFrontendActions
       if ($collector instanceof Collector)
       {
         $this->getUser()->Authenticate(true, $collector, true);
-
-        return $this->redirect('@homepage');
+        $this->redirect('@homepage');
       }
     }
 
@@ -125,7 +129,7 @@ class generalActions extends cqFrontendActions
       $url = urldecode($url);
     }
 
-    return $this->redirect(!empty($url) ? $url : '@homepage');
+    $this->redirect(!empty($url) ? $url : '@homepage');
   }
 
   public function executeRecoverPassword(sfWebRequest $request)
@@ -133,7 +137,7 @@ class generalActions extends cqFrontendActions
     // redirect to homepage if already logged in
     if ($this->getUser()->isAuthenticated())
     {
-      return $this->redirect('@homepage');
+      $this->redirect('@homepage');
     }
 
     $form = new PasswordRecoveryForm();
@@ -167,7 +171,7 @@ class generalActions extends cqFrontendActions
             array('%email%' => $email)
           ));
 
-          return $this->redirect('@login');
+          $this->redirect('@login');
         }
         else
         {
