@@ -10,7 +10,7 @@
      data-id="<?= $collection->getId(); ?>" class="collection_grid_view">
 
   <div class="stack">
-    <img src="http://placehold.it/180x142" width="180" height="142" class="mosaic-backdrop"/>
+    <?= ice_image_tag_placeholder('180x142', array('class' => 'mosaic-backdrop')); ?>
     <?php link_to_collection($collection, 'image', array('class' => 'mosaic-backdrop')); ?>
     <div class="mosaic-overlay">
       <p class="details">

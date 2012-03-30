@@ -8,7 +8,7 @@
 </div>
 <div class="row-fluid">
   <?php foreach ($categories as $i => $category): ?>
-  <div class="span6" style="margin-left: 0;">
+  <div class="span<?= 12 / $columns ?>" style="margin-left: 0;">
     <?= ($category) ? link_to_collection_category($category, 'text') : ''; ?>
   </div>
   <?php endforeach; ?>

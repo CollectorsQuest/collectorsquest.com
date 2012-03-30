@@ -24,10 +24,10 @@ class _sidebarComponents extends cqFrontendComponents
   public function executeWidgetCollectionCategories()
   {
     // Set the limit of Collections to show
-    $this->limit = $this->getVar('limit') ? $this->getVar('limit') : 30;
+    $this->limit = $this->getVar('limit') ? (int) $this->getVar('limit') : 30;
 
     // Set the number of columns to show
-    $this->columns = $this->getVar('columns') ? $this->getVar('columns') : 2;
+    $this->columns = $this->getVar('columns') ? (int) $this->getVar('columns') : 2;
 
     $q = CollectionCategoryQuery::create()
       ->filterById(0, Criteria::NOT_EQUAL)
