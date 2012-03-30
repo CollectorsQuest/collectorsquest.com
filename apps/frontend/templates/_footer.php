@@ -20,35 +20,11 @@
         <div id="footer-form-signup">
           <h2 class="FugazOne">Sign Up</h2>
 
-          <form class="form-horizontal">
+          <?= form_tag('@collector_signup', array('class' => 'form-horizontal')); ?>
             <fieldset>
-              <div class="control-group">
-                <label for="focusedInput" class="control-label">Full name</label>
-                <div class="controls">
-                  <input type="text" placeholder="Full name" id="focusedInput" class="input-footer focused" />
-                </div>
-              </div>
-              <div class="control-group">
-                <label for="focusedInput" class="control-label">Email</label>
-                <div class="controls">
-                  <input type="text" placeholder="Email" id="focusedInput" class="input-footer focused" />
-                </div>
-              </div>
-              <div class="control-group">
-                <label for="focusedInput" class="control-label">Password</label>
-                <div class="controls">
-                  <input type="password" placeholder="Password" id="focusedInput" class="input-footer focused" />
-                </div>
-              </div>
-              <div class="control-group">
-                <label for="focusedInput" class="control-label">Confirm Password</label>
-                <div class="controls">
-                  <input type="password" placeholder="Password again..." id="focusedInput" class="input-footer focused" />
-                </div>
-              </div>
-
+              <?= new CollectorSignupStep1Form(); ?>
               <div class="form-actions">
-                <button class="btn btn-primary" type="submit">Sign Up</button>
+                <input type="submit" class="btn btn-primary" value="Sign Up" />
               </div>
             </fieldset>
           </form>
@@ -70,7 +46,7 @@
           </form>
 
           <div id="footer-control-signup" style="display: none">
-            Don't have an account yet? <?= link_to('Sign up', '@signup', array('id' => 'footer-control-signup-button')); ?>
+            Don't have an account yet? <?= link_to('Sign up', '@collector_signup', array('id' => 'footer-control-signup-button')); ?>
           </div>
         </div> <!-- #footer-form-login -->
 

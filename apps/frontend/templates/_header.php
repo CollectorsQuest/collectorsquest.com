@@ -27,7 +27,7 @@
             <!--<span class="nav-divider"></span>-->
             <?= link_to('Log In', '@login'); ?>
             or
-            <?= link_to('Sign Up', '@signup', array('class' => 'btn')); ?>
+            <?= link_to('Sign Up', '@collector_signup', array('class' => 'btn')); ?>
           </form>
         </div>
       </div>
