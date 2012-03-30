@@ -25,6 +25,7 @@ default:
     - frontend/main.css
 
   javascripts:
+    - /assets/js/bootstrap/alerts.js
     - /assets/js/bootstrap/buttons.js
     - /assets/js/bootstrap/dropdown.js
     - /assets/js/bootstrap/typeahead.js

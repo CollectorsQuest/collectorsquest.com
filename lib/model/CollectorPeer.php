@@ -79,7 +79,6 @@ class CollectorPeer extends BaseCollectorPeer
    * @param     string $hash
    * @param     string $time_limit strtotime compatible time distance from hash generation time
    * @param     integer $time The current time
-   * @param     PropelPDO $con PDO connection object
    *
    * @return    Collector|null
    */
@@ -247,14 +246,16 @@ class CollectorPeer extends BaseCollectorPeer
       $collector_profile->save();
       $collector->save();
 
-      $collectorEmail = new CollectorEmail();
-      $collectorEmail->setCollector($collector);
-      $collectorEmail->setEmail($collector->getEmail());
-      $collectorEmail->setSalt($collector->generateSalt());
-      $collectorEmail->setHash($collector->getAutoLoginHash());
-      $collectorEmail->setIsVerified(false);
-      $collectorEmail->save();
-
+      if (!empty($data['email']))
+      {
+        $collectorEmail = new CollectorEmail();
+        $collectorEmail->setCollector($collector);
+        $collectorEmail->setEmail($collector->getEmail());
+        $collectorEmail->setSalt($collector->generateSalt());
+        $collectorEmail->setHash($collector->getAutoLoginHash());
+        $collectorEmail->setIsVerified(false);
+        $collectorEmail->save();
+      }
     }
     catch (PropelException $e)
     {

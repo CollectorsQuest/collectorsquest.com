@@ -116,6 +116,23 @@ class cqStatic extends IceStatic
     ));
   }
 
+  /**
+   * @static
+   * @return PayPalAdaptivePayments
+   */
+  static public function getPayPaylAdaptivePaymentsClient()
+  {
+    include_once __DIR__.'/../vendor/PayPalAdaptivePayments.class.php';
+
+    return new PayPalAdaptivePayments(array(
+      'Sandbox'       => sfConfig::get('sf_environment') !== 'prod',
+      'ApplicationID' => sfConfig::get('app_paypal_application_id'),
+      'APIUsername'   => sfConfig::get('app_paypal_api_username'),
+      'APIPassword'   => sfConfig::get('app_paypal_api_password'),
+      'APISignature'  => sfConfig::get('app_paypal_api_signature')
+    ));
+  }
+
   static public function linkify($text, $shorten = false)
   {
     preg_match("/[A-Za-z]+:\/\/[A-Za-z0-9-_]+\.[A-Za-z0-9-_:%&\?\/.=]+/i", $text, $matches);

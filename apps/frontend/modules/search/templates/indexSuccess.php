@@ -1,4 +1,4 @@
-<div id="search-display" class="btn-group"  data-toggle="buttons-radio" style="float: right; margin-top: 25px;">
+<div id="search-display" class="btn-group"  data-toggle="buttons-radio" style="float: right; margin-top: 20px;">
   <button class="btn"><i class="icon-th"></i></button>
   <button class="btn"><i class="icon-th-list"></i></button>
 </div>
@@ -12,7 +12,8 @@
   echo cq_page_title('Search results', $title);
 ?>
 
-<div id="search-results" class="row">
+<div class="row">
+  <div id="search-results" class="row-content">
   <?php
     foreach ($pager->getResults() as $i => $object)
     {
@@ -53,6 +54,7 @@
       }
     }
   ?>
+  </div>
 </div>
 
 <div class="row-fluid" style="text-align: center;">
@@ -73,7 +75,8 @@
       $container.masonry(
       {
         itemSelector : '.brick',
-        columnWidth : 201, gutterWidth: 15
+        columnWidth : 201, gutterWidth: 15,
+        isAnimated: !Modernizr.csstransitions
       });
     });
 
