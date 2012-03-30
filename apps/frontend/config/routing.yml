@@ -32,6 +32,9 @@ collections_by_collector:
   param: { module: collections, action: index }
   requirements: { collector_id: '\d+', collector_slug: '[\-\w\.]+' }
 
+collections_categories:
+  url:  /collections/categories
+  param: { module: collections, action: categories }
 
 ### COLLECTORS
 

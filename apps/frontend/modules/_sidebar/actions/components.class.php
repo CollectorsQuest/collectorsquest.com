@@ -26,12 +26,17 @@ class _sidebarComponents extends cqFrontendComponents
     // Set the limit of Collections to show
     $this->limit = $this->getVar('limit') ? $this->getVar('limit') : 30;
 
+    // Set the number of columns to show
+    $this->columns = $this->getVar('columns') ? $this->getVar('columns') : 2;
+
     $q = CollectionCategoryQuery::create()
       ->filterById(0, Criteria::NOT_EQUAL)
       ->filterByParentId(0, Criteria::EQUAL)
       ->orderByName(Criteria::ASC)
       ->limit($this->limit);
-    $this->categories = $q->find();
+    $categories = $q->find();
+
+    $this->categories = IceFunctions::array_vertical_sort($categories, $this->columns);
 
     return sfView::SUCCESS;
   }
@@ -94,6 +99,11 @@ class _sidebarComponents extends cqFrontendComponents
     }
 
     return sfView::NONE;
+  }
+
+  public function executeWidgetMemberVideos()
+  {
+    return sfView::SUCCESS;
   }
 
 }

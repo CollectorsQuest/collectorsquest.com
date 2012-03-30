@@ -2,7 +2,7 @@
 
 class marketplaceComponents extends cqFrontendComponents
 {
-  public function executeIndexSidebar()
+  public function executeSidebarIndex()
   {
     return sfView::SUCCESS;
   }

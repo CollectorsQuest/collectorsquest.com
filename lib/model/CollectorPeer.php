@@ -79,7 +79,6 @@ class CollectorPeer extends BaseCollectorPeer
    * @param     string $hash
    * @param     string $time_limit strtotime compatible time distance from hash generation time
    * @param     integer $time The current time
-   * @param     PropelPDO $con PDO connection object
    *
    * @return    Collector|null
    */
