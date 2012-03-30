@@ -4,7 +4,7 @@
 }
 
 
-//  Fidex width of wapper under 1024px
+// Fixed wrapper under 1024px
 @media (max-width: 978px) {
 	[class*="span"] {
 		float: left;
@@ -14,7 +14,7 @@
 		margin-left: -20px;
 	}
 
-//Containers
+//CONTAINERS
 	.container-fluid {
 		width: 740px;
 		.margin-auto();
@@ -63,17 +63,25 @@
 		float: none;
 	}
 
-//Elements
+//ELEMENTS
+
+	//Carousel
 	#headerSearchInput {
 		width: 200px;
 	}
 	#sample-roundabout {
-		width: 400px;
-		height: 220px;
+		width: 420px;
+		height: 200px;
 	}
 	#sample-roundabout li {
 		width: 300px;
 		height: 178px;
+	}
+	.carousel_next {
+		right: 10px;
+	}
+	.carousel_previous {
+		left: 5px;
 	}
 }
 
@@ -88,7 +96,7 @@
 		margin-left: -15px;
 	}
 
-//Containers
+//CONTAINERS
 	.container-fluid.fixed-right-300 {
 		width: 620px;
 		.margin-auto();
@@ -110,13 +118,15 @@
 		.margin-auto();
 	}
 
-//Elements
+//ELEMENTS
 	footer .form-horizontal .controls {
 		margin-left: 0;
 	}
 	.input-footer {
 		width: 260px;
 	}
+
+	//Carousel
 	#sample-roundabout {
 		width: 440px;
 		height: 330px;
@@ -128,7 +138,7 @@
 }
 
 @media (min-width: 1210px) {
-//Containers
+//CONTAINERS
 	.container-fluid.fixed-right-300 {
 		max-width: 855px;
 		.margin-auto();
