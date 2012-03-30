@@ -7,7 +7,7 @@ class generalComponents extends cqFrontendComponents
     return sfView::SUCCESS;
   }
 
-  public function executeIndexSidebar()
+  public function executeSidebarIndex()
   {
     return sfView::SUCCESS;
   }

@@ -1,2 +1,2 @@
-<?php echo cq_page_title('Collections'); ?>
+<?php cq_page_title('Collections'); ?>
 

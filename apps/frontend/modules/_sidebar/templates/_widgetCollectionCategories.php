@@ -1,15 +1,15 @@
 <div class="row-fluid" style="border-bottom: 1px dotted red;">
   <div class="span9">
-    <h3 style="color: #125375; font-family: 'Chivo', sans-serif;">Collection Categories</h3>
+    <h3 style="color: #125375; font-family: 'Chivo', sans-serif;">Collections Directory</h3>
   </div>
   <div class="span3" style="padding-top: 5px; text-align: right;">
-    <a href="#">See all >></a>
+    <?= link_to('See all >>', '@collections_categories'); ?>
   </div>
 </div>
 <div class="row-fluid">
-  <ul>
-  <?php foreach ($categories as $category): ?>
-    <li><?= link_to_collection_category($category, 'text'); ?></li>
+  <?php foreach ($categories as $i => $category): ?>
+  <div class="span6" style="margin-left: 0;">
+    <?= ($category) ? link_to_collection_category($category, 'text') : ''; ?>
+  </div>
   <?php endforeach; ?>
-  </ul>
 </div>

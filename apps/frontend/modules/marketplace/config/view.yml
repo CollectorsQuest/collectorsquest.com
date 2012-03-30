@@ -1,3 +1,3 @@
 indexSuccess:
   components:
-    sidebar_300: [marketplace, indexSidebar]
+    sidebar_300: [marketplace, sidebarIndex]

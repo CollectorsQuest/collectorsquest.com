@@ -1,7 +1,7 @@
 indexSuccess:
   components:
-    sidebar_180: [collections, indexSidebar]
+    sidebar_300: [collections, sidebarIndex]
 
 categorySuccess:
   components:
-    sidebar_180: [collections, categorySidebar]
+    sidebar_180: [collections, sidebarCategory]

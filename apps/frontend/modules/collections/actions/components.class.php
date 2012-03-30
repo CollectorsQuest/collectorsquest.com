@@ -2,12 +2,12 @@
 
 class collectionsComponents extends cqFrontendComponents
 {
-  public function executeIndexSidebar()
+  public function executeSidebarIndex()
   {
     return sfView::SUCCESS;
   }
 
-  public function executeCategorySidebar()
+  public function executeSidebarCategory()
   {
     return sfView::SUCCESS;
   }
