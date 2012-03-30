@@ -1,4 +1,4 @@
-<div id="search-display" class="btn-group"  data-toggle="buttons-radio" style="float: right; margin-top: 25px;">
+<div id="search-display" class="btn-group"  data-toggle="buttons-radio" style="float: right; margin-top: 20px;">
   <button class="btn"><i class="icon-th"></i></button>
   <button class="btn"><i class="icon-th-list"></i></button>
 </div>
@@ -73,7 +73,8 @@
       $container.masonry(
       {
         itemSelector : '.brick',
-        columnWidth : 201, gutterWidth: 15
+        columnWidth : 201, gutterWidth: 15,
+        isAnimated: !Modernizr.csstransitions
       });
     });
 
