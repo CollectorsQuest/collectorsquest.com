@@ -18,6 +18,26 @@ test:
     param:
       delivery_strategy: none
 
+
+dev:
+  logger:
+    class: sfAggregateLogger
+    param:
+      level: debug
+      loggers:
+
+        sf_web_debug:
+          class: sfWebDebugLogger
+          param:
+            level: debug
+            condition:       %SF_WEB_DEBUG%
+            xdebug_logging:  false
+            web_debug_class: sfWebDebug
+
+        sf_file_debug:
+          class: sfNoLogger
+
+
 all:
   mailer:
     class: cqMailer
@@ -35,10 +55,13 @@ all:
           encryption: tls
 
   routing:
-    class: sfPatternRouting
+    class: cqPatternRouting
     param:
-      generate_shortest_url:            true
+      generate_shortest_url: true
       extra_parameters_as_query_string: true
+
+  response:
+    class: cqWebResponse
 
   view_cache_manager:
     class: sfViewCacheManager
@@ -63,23 +86,3 @@ all:
     class: sfNoLogger
     param:
       loggers: ~
-
-
-dev:
-
-  logger:
-    class: sfAggregateLogger
-    param:
-      level: debug
-      loggers:
-
-        sf_web_debug:
-          class: sfWebDebugLogger
-          param:
-            level: debug
-            condition:       %SF_WEB_DEBUG%
-            xdebug_logging:  false
-            web_debug_class: sfWebDebug
-
-        sf_file_debug:
-          class: sfNoLogger
