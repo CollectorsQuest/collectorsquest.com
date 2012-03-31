@@ -3,8 +3,7 @@
 	margin-right: auto;
 }
 
-
-// Fixed wrapper under 1024px 978
+// Fixed wrapper under 1024px
 @media (max-width: 996px) {
 
 //CONTAINERS
@@ -35,9 +34,7 @@
 	footer .form-horizontal .controls {
 		margin-left: 0;
 	}
-	.input-footer {
-		width: 200px;
-	}
+
 	#sidebar {
 		display: block;
 		overflow: auto;
@@ -56,9 +53,8 @@
 		float: none;
 	}
   .row-content {
-    margin-left: auto;
-    margin-right: auto;
     width: 665px;
+	  .margin-auto()
   }
 
 //ELEMENTS
@@ -83,7 +79,7 @@
 	}
 }
 
-//  Fixed width of wrapper up to 1200px 979
+//  Fixed width of wrapper up to 1200px
 @media (min-width: 997px) and (max-width: 1209px) {
 
 //CONTAINERS
@@ -113,8 +109,11 @@
 		margin-left: 0;
 	}
 	.input-footer {
-		width: 260px;
+		width: 215px;
 	}
+  .v-center-container-label {
+	  width: 71px!important;
+  }
 
 	//Carousel
 	#sample-roundabout {
@@ -128,7 +127,6 @@
 }
 
 @media (min-width: 1210px) {
-
   .row {
     margin-left: -12px;
   }
@@ -158,6 +156,16 @@
 		max-width: 1200px;
 		.margin-auto();
 	}
+	.input-footer {
+		width: 235px;
+		height: 20px;
+	}
+	footer .control-label br {
+		display: none;
+	}
+	footer .form-horizontal .control-label {
+		float: right;
+	}
 }
 
 // hiding #sidebar
@@ -169,3 +177,5 @@
 .container-fluid.fixed-right-120 > #sidebar{
 	display: block;
 }
+
+
