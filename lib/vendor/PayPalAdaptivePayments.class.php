@@ -2123,7 +2123,7 @@ class PayPalAdaptivePayments extends PayPal
   function GetShippingAddress($DataArray)
   {
     $GetShippingAddressFields = isset($DataArray['GetShippingAddressFields']) ? $DataArray['GetShippingAddressFields'] : array();
-    $Key = isset($GetShippingAddressFields['key']) ? $GetShippingAddressFields['key'] : '';
+    $Key = isset($GetShippingAddressFields['Key']) ? $GetShippingAddressFields['Key'] : '';
 
     // Generate XML Request
     $XMLRequest = '<?xml version="1.0" encoding="utf-8"?>';
