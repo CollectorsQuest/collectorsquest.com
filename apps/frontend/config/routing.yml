@@ -149,6 +149,25 @@ shopping_order_pay:
   options: { model: ShoppingOrder, type: object }
   param: { module: shopping, action: pay }
 
+shopping_paypal_ipn:
+  url: /shopping/paypal-ipn
+  param: { module: shopping, action: paypalIpn }
+  requirements:
+    sf_method: [POST]
+
+
+### MANAGE
+
+manage_shopping_order:
+  url:   /manage/order/:uuid
+  class: sfPropelRoute
+  options: { model: ShoppingOrder, type: object }
+  param: { module: manage, action: shoppingOrder }
+
+manage_shopping_orders:
+  url:   /manage/orders
+  param: { module: manage, action: shoppingOrders }
+
 
 ### TAGS
 

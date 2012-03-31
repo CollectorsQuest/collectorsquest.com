@@ -135,7 +135,7 @@ class shoppingActions extends cqFrontendActions
            ->filterByCollectibleId($values['collectible_id']);
 
         $shopping_order = $q->findOneOrCreate();
-        $shopping_order->setCollector($this->getCollector());
+        $shopping_order->setCollectorId($this->getCollector()->getId());
         $shopping_order->setShippingCountryIso3166($values['country_iso3166']);
         $shopping_order->setNoteToSeller($values['note_to_seller']);
         $shopping_order->save();
@@ -188,45 +188,90 @@ class shoppingActions extends cqFrontendActions
         $shopping_order->setShoppingPaymentId($shopping_payment->getId(0));
         $shopping_order->save();
 
-        $SECFields = $shopping_order->getPaypalSECFields();
-        $SECFields['returnurl'] = $this->generateUrl(
+        $PayRequestFields = $shopping_order->getPaypalPayRequestFields();
+        $PayRequestFields['ReturnURL'] = $this->generateUrl(
           'shopping_order_paypal',
           array('uuid' => $shopping_order->getUuid(), 'cmd' => 'return', 'encrypt' => 1),
           true
         );
-        $SECFields['cancelurl'] = $this->generateUrl(
+        $PayRequestFields['CancelURL'] = $this->generateUrl(
           'shopping_order_paypal',
           array('uuid' => $shopping_order->getUuid(), 'cmd' => 'cancel', 'encrypt' => 1),
           true
         );
+        $PayRequestFields['TrackingID'] = $shopping_payment->getTrackingId();
 
-        $shopping_payment->setProperty('paypal.sec_fields', serialize($SECFields));
+        $shopping_payment->setProperty('paypal.pay_request_fields', serialize($PayRequestFields));
 
-        $Payments = $shopping_order->getPaypalPayments();
-        $Payments[0]['notifyurl'] = $this->generateUrl(
-          'shopping_order_paypal',
-          array('uuid' => $shopping_order->getUuid(), 'cmd' => 'ipn', 'encrypt' => 1),
-          true
-        );
+        $ClientDetailsFields = $shopping_order->getPaypalClientDetailsFields();
+        $shopping_payment->setProperty('paypal.client_details_fields', serialize($ClientDetailsFields));
 
-        $shopping_payment->setProperty('paypal.payments', serialize($Payments));
+        $Receivers = $shopping_order->getPaypalReceivers();
+        $shopping_payment->setProperty('paypal.receivers', serialize($Receivers));
+
+        $SenderIdentifierFields = $shopping_order->getPaypalSenderIdentifierFields();
+        $shopping_payment->setProperty('paypal.sender_identifier_fields', serialize($SenderIdentifierFields));
+
+        $AccountIdentifierFields = $shopping_order->getPaypalAccountIdentifierFields();
+        $shopping_payment->setProperty('paypal.account_identifier_fields', serialize($AccountIdentifierFields));
+
         $shopping_payment->save();
 
         $PayPalRequest = array(
-          'SECFields' => $SECFields,
-          'Payments' => $Payments,
-          'SurveyChoices' => array('Yes', 'No')
+          'PayRequestFields' => $PayRequestFields,
+          'ClientDetailsFields' => $ClientDetailsFields,
+          'FundingTypes' => $shopping_order->getPaypalFundingTypes(),
+          'Receivers' => $Receivers,
+          'SenderIdentifierFields' => $SenderIdentifierFields,
+          'AccountIdentifierFields' => $AccountIdentifierFields
         );
 
-        $PayPal = cqStatic::getPayPalClient();
-        $result = $PayPal->SetExpressCheckout($PayPalRequest);
+        $AdaptivePayments = cqStatic::getPayPaylAdaptivePaymentsClient();
+        $result = $AdaptivePayments->Pay($PayPalRequest);
 
-        if (strtolower($result['ACK']) == 'success')
+        if ($AdaptivePayments->APICallSuccessful($result['Ack']))
         {
+          $shopping_payment->setProperty('paypal.pay_key', $result['PayKey']);
           $shopping_payment->setStatus(ShoppingPaymentPeer::STATUS_INPROGRESS);
           $shopping_payment->save();
 
-          $this->redirect($result['REDIRECTURL'], 302);
+          $this->pay_key = $result['PayKey'];
+
+          // Prepare request arrays
+          $SPOFields = array(
+            'PayKey' => $result['PayKey']
+          );
+
+          $SenderOptions = array(
+            // Boolean.  If true, require the sender to select a shipping address during the embedded payment flow.  Default is false.
+            'RequireShippingAddressSelection' => true
+          );
+
+          $InvoiceData = array(
+            // Total tax associated with the payment.
+            'TotalTax' => $shopping_order->getTotalAmount(),
+            // Total shipping associated with the payment.
+            'TotalShipping' => $shopping_order->getShippingFeeAmount()
+          );
+
+          $PayPalRequest = array(
+            'SPOFields' => $SPOFields,
+            'DisplayOptions' => array(),
+            'InstitutionCustomer' => array(),
+            'SenderOptions' => $SenderOptions,
+            'ReceiverOptions' => array(),
+            'InvoiceData' => $InvoiceData,
+            'InvoiceItems' => array(),
+            'ReceiverIdentifier' => array()
+          );
+
+          // Pass data into class for processing with PayPal and load the response array into $PayPalResult
+          $result = $AdaptivePayments->SetPaymentOptions($PayPalRequest);
+
+          if (!$AdaptivePayments->APICallSuccessful($result['Ack']))
+          {
+            return sfView::ERROR;
+          }
         }
         else if ($result['L_ERRORCODE0'] == '10412')
         {
@@ -238,14 +283,17 @@ class shoppingActions extends cqFrontendActions
         }
         else
         {
+          $shopping_payment->setProperty('paypal.error', serialize($result));
           $shopping_payment->setStatus(ShoppingPaymentPeer::STATUS_FAILED);
           $shopping_payment->save();
+
+          return sfView::ERROR;
         }
 
         break;
     }
 
-    return sfView::ERROR;
+    return sfView::SUCCESS;
   }
 
   public function executePaypal(sfWebRequest $request)
@@ -262,37 +310,27 @@ class shoppingActions extends cqFrontendActions
     switch ($cmd)
     {
       case 'return':
-        $PayPal = cqStatic::getPayPalClient();
-        $result = $PayPal->GetExpressCheckoutDetails($request->getParameter('token'));
 
-        if ($result['ACK'] == 'Success' && $result['PAYERID'] == $request->getParameter('PayerID'))
-        {
-          $DECPFields = $shopping_order->getPaypalDECFields($result['TOKEN'], $result['PAYERID']);
-          $Payments = $shopping_order->getPaypalPayments();
+        $PayPalRequestData = array('PaymentDetailsFields' => array(
+          'PayKey' => $shopping_payment->getProperty('paypal.pay_key'),
+          'TrackingID' => $shopping_payment->getTrackingId()
+        ));
 
-          $PayPalRequest = array(
-            'DECPFields' => $DECPFields,
-            'Payments' => $Payments
-          );
+        $AdaptivePayments = cqStatic::getPayPaylAdaptivePaymentsClient();
+        $result = $AdaptivePayments->PaymentDetails($PayPalRequestData);
 
-          $result = $PayPal->DoExpressCheckoutPayment($PayPalRequest);
+        // Remove the CollectibleForSale from the shopping cart
+        $q = ShoppingCartCollectibleQuery::create()
+           ->filterByCollectible($shopping_order->getCollectible())
+           ->filterByShoppingCart($shopping_order->getShoppingCart());
+        $q->delete();
 
-          if ($result['ACK'] == 'Success')
-          {
-            // Remove the CollectibleForSale from the shopping cart
-            $q = ShoppingCartCollectibleQuery::create()
-               ->filterByCollectible($shopping_order->getCollectible())
-               ->filterByShoppingCart($shopping_order->getShoppingCart());
-            $q->delete();
+        $shopping_payment->setStatus(ShoppingPaymentPeer::STATUS_COMPLETED);
+        $shopping_payment->save();
 
-            $shopping_payment->setStatus(ShoppingPaymentPeer::STATUS_COMPLETED);
-            $shopping_payment->save();
-
-            $this->redirect('@manage_shopping_order?uuid='. $shopping_order->getUuid());
-          }
-        }
-
+        $this->redirect('@manage_shopping_order?uuid='. $shopping_order->getUuid());
         break;
+
       case 'cancel':
 
         $shopping_payment->setStatus(ShoppingPaymentPeer::STATUS_CANCELLED);
@@ -301,46 +339,42 @@ class shoppingActions extends cqFrontendActions
         $this->getUser()->setFlash('error', 'You cancelled the PayPal payment and your order was not completed!');
         $this->redirect('@shopping_cart');
         break;
+
       case 'ipn':
+        // We do not want the web debug bar on IPN requests
+        sfConfig::set('sf_web_debug', false);
+
+        include 'lib/vendor/PayPalIPN.class.php';
+
+        // intantiate the IPN listener
+        $ipn = new PayPalIPN();
+
+        // tell the IPN listener to use the PayPal test sandbox or not
+        $ipn->use_sandbox = sfConfig::get('app_paypal_sandbox', true);
+
+        // try to process the IPN post
+        try
+        {
+          $ipn->requirePostMethod();
+          $verified = $ipn->processIpn();
+        }
+        catch (Exception $e)
+        {
+          $verified = false;
+        }
+
+        if ($verified)
+        {
+          $request->getParameter('payment_status');
+
+          file_put_contents('/tmp/paypal.txt', var_export($_POST, true));
+        }
+
+        return sfView::NONE;
         break;
     }
 
     return sfView::ERROR;
-  }
-
-  public function executeTest()
-  {
-    $ap = cqStatic::getPayPaylAdaptivePaymentsClient();
-
-    // Prepare request arrays
-    $BaseAmountList = array();
-    $BaseAmountData = array(
-      'Code' => 'USD', 						// Currency code.
-      'Amount' => '29.99'						// Amount to be converted.
-    );
-    array_push($BaseAmountList, $BaseAmountData);
-
-    $ConvertToCurrencyList = array('EUR', 'AUD', 'CAD');			// Currency Codes
-
-    $PayPalRequestData = array(
-      'BaseAmountList' => $BaseAmountList,
-      'ConvertToCurrencyList' => $ConvertToCurrencyList
-    );
-
-    $response = $ap->ConvertCurrency($PayPalRequestData);
-
-    if (!$ap->APICallSuccessful($response['Ack']))
-    {
-      echo "<b>Error </b>";
-      echo "<pre>";
-      print_r($response);
-      echo "</pre>";
-      exit;
-    }
-
-    $this->responses = $response;
-
-    return sfView::SUCCESS;
   }
 
 }
