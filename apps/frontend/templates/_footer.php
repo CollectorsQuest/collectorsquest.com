@@ -1,9 +1,3 @@
-<?php
-  $signup_form = new CollectorSignupStep1Form();
-  $login_form  = new CollectorLoginForm();
-?>
-
-
 <footer id="footer">
   <div class="footer-inner">
     <div class="row-fluid">
@@ -29,7 +23,7 @@
         <div id="footer-form-signup">
           <h2 class="FugazOne">Sign Up</h2>
 
-          <?= form_tag('@collector_signup', array('class' => 'form-horizontal form-footer')); ?>
+          <form action="<?= url_for('@collector_signup'); ?>" class="form-horizontal form-footer">
             <?= $signup_form->renderUsing('BootstrapWithRowFluid'); ?>
             <div class="row-fluid row-spacing">
               <div class="span9 top-padding-10">
@@ -50,7 +44,7 @@
 
         <div id="footer-form-login" style="display: none">
           <h2 class="FugazOne">Log In</h2>
-          <?= form_tag('@login', array('class' => 'form-horizontal form-footer')) ?>
+          <form action="<?= url_for('@login'); ?>" class="form-horizontal form-footer">
             <?= $login_form->renderUsing('BootstrapWithRowFluid') ?>
             <div class="row-fluid row-spacing">
               <div class="span9 top-padding-10">
@@ -132,25 +126,29 @@
       </div><!--/span-->
     </div><!--/row-->
   </div><!--/footer-inner-->
-  <a id="top-link" href="#" class="btn btn-large sticky">
-    <i class="icon-arrow-up"></i> Scroll<br/> to Top
-  </a>
+
   <div id="footer-links">
     <div class="footer-links-inner">
       <div class="row-fluid">
         <div class="span7">
           <ul role="footer-links">
-           <li><a href="#">About Us</a></li>
-           <li><a href="#">Terms</a></li>
-           <li><a href="#">RSS</a></li>
-           <li><a href="#">Report an Error</a></li>
-           <li><a href="#">Help/FAQ</a></li>
+            <li><?= link_to('About Us', '@page?slug=about'); ?></li>
+            <li><?= link_to('Contact', '@page?slug=contact-us'); ?></li>
+            <li><?= link_to('Terms', '@page?slug=terms-and-conditions'); ?></li>
+            <li><?= link_to('RSS', '@page?slug=rss-feeds'); ?></li>
+            <li><?= link_to('Help/FAQ', '@page?slug=rss-feeds'); ?></li>
+            <li><?= link_to('Report an Error', '@feedback', array('target' => '_blank', 'style' => 'color: red;')); ?></li>
           </ul>
         </div>
         <div class="span5 textright">
-          CollectorsQuest.com © 2012 All rights reserved
+          <?= link_to('CollectorsQuest.com', '@homepage', array('title' => 'Interactive community and marketplace for the collectible community', 'style' => 'text-decoration: none;')); ?>
+          © <?= date('Y'); ?> All rights reserved &nbsp; • &nbsp; <a href="http://nytm.org/made" title="Made in NY">Made by hand in NY</a>
         </div>
       </div>
     </div>
   </div>
+
+  <a id="top-link" href="#" class="btn btn-large sticky">
+    <i class="icon-arrow-up"></i> Scroll<br/> to Top
+  </a>
 </footer>

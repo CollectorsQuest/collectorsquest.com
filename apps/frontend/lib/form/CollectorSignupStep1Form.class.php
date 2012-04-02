@@ -53,7 +53,7 @@ class CollectorSignupStep1Form extends BaseForm
       'password_again' => new sfValidatorPass(),
       'display_name'   => new sfValidatorString(array(
           'max_length' => 50,
-          'required'   => true
+          'required'   => false
       )),
       'email'          => new sfValidatorEmail(array(
           'required'   => true

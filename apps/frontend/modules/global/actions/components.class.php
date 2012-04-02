@@ -63,6 +63,9 @@ class globalComponents extends sfComponents
 
   public function executeFooter()
   {
+    $this->signup_form = new CollectorSignupFooterForm();
+    $this->login_form  = new CollectorLoginForm();
+
     return sfView::SUCCESS;
   }
 }
