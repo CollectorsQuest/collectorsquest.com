@@ -23,7 +23,6 @@ class CollectorSignupStep1Form extends BaseForm
           'placeholder' => 'Confirm Password'
       )),
       'display_name'    => new sfWidgetFormInputText(array(), array(
-          'required'    => 'required',
           'placeholder' => 'Display Name'
       )),
       'email'           => new sfWidgetFormInputText(array(), array(
