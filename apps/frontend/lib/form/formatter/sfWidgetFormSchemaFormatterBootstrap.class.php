@@ -16,6 +16,7 @@ class sfWidgetFormSchemaFormatterBootstrap extends sfWidgetFormSchemaFormatter
       </div>
     </div>
 ';
+
   protected $helpFormat                  = '<p class="help-block">%help%</p>';
   protected $errorRowFormatForField      = '<li class="help-block">%error%</li>';
   protected $namedErrorRowFormatForField = '<li class="help-block">%name%: %error%</li>';
@@ -23,8 +24,6 @@ class sfWidgetFormSchemaFormatterBootstrap extends sfWidgetFormSchemaFormatter
   protected $errorListFormatInARow    = '<ul class="unstyled alert alert-error">%errors%  </ul>';
   protected $errorListFormatForField  = '<ul class="unstyled">%errors%  </ul>';
 
-  //protected $errorRowFormatInARow      = "%error%";
-  //protected $namedErrorRowFormatInARow = "%name%: %error%";
 
   public function formatRow($label, $field, $errors = array(), $help = '', $hiddenFields = null)
   {
