@@ -18,7 +18,6 @@
 
       <div class="span4">
 
-<?php /* footer-form-signup
         <h2 class="FugazOne">Sign Up</h2>
         <form class="form-horizontal">
         <div class="row-fluid row-spacing">
@@ -67,7 +66,7 @@
         <div class="row-spacing pull-right">
           Already have an account? <a href="#"><strong>Log in</strong></a>
         </div>
-*/ ?>
+
 
 <?php /* footer-control-login
 
@@ -115,45 +114,34 @@
           </div>
         </div>
         <!-- //footer-control-login -->
-*/ ?>
+
         <h2 class="FugazOne">Welcome back, Robotbacon!</h2>
-        <ul class="footer-info-box">
-          <li>
-            <i class="icon_big_email"></i>
-            <div class="info-box-text">
-              <p>You have <a href="#">1 new message</a> in your inbox</p>
-            </div>
+        <ul class="footer-profile-box">
+          <li class="icon_big_email">
+              <p>You have in <a href="#" class="bold-links">your inbox</a></p>
           </li>
-          <li>
-            <i class="icon_big_battery"></i>
-            <div class="info-box-text">
-              <p>Your profile is 50% complete. <a href=""><strong>Add a collection</strong></a> in minutes. (+10%)</p>
-            </div>
+          <li class="icon_big_battery">
+              <p>Your profile is 50% complete. <a href="#" class="bold-links">Add a collection</a> in minutes. (+10%)</p>
           </li>
           <li>
             <div class="row-fluid">
-              <div class="span6">
-                <i class="icon_big_add"></i>
-                <div class="info-box-text">
-                  <p><a href="#"><strong>Upload<br> a photo</strong></a></p>
-                </div>
+              <div class="span6 icon_big_add">
+                  <p><a href="#" class="bold-links">Upload<br> a photo</a></p>
               </div>
-              <div class="span6">
-                <i class="icon_big_organize"></i>
-                <div class="info-box-text">
-                  <p><a href="#"><strong>Organize your<br> collection</strong></a></p>
-                </div>
+              <div class="span6 icon_big_organize">
+                  <p><a href="#" class="bold-links">Organize your<br> collection</a></p>
               </div>
             </div>
           </li>
         </ul>
+
         <div class="row-fluid top-padding-10">
           <div class="span12">
             <button class="btn btn-primary blue" type="submit">My Profile</button>
             <a href="#" title="Forgot your password?">Log Out?</a>
           </div>
         </div>
-
+*/ ?>
       </div><!-- .span4 -->
 
       <div class="span4">
@@ -186,6 +174,24 @@
   <a id="top-link" href="#" class="btn btn-large sticky">
     <i class="icon-arrow-up"></i> Scroll<br/> to Top
   </a>
+  <div id="footer-links">
+    <div class="footer-links-inner">
+      <div class="row-fluid">
+        <div class="span7">
+          <ul role="footer-links">
+           <li><a href="#">About Us</a></li>
+           <li><a href="#">Terms</a></li>
+           <li><a href="#">RSS</a></li>
+           <li><a href="#">Report an Error</a></li>
+           <li><a href="#">Help/FAQ</a></li>
+          </ul>
+        </div>
+        <div class="span5 textright">
+          CollectorsQuest.com © 2012 All rights reserved
+        </div>
+      </div>
+    </div>
+  </div>
 </footer>
 
 
