@@ -1,5 +1,7 @@
 indexSuccess:
+  stylesheets: [frontend/homepage.css]
   javascripts:
+    - jquery/masonry.js
     - jquery/easing.js
     - jquery/event.drag.js
     - jquery/event.drop.js
