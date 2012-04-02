@@ -28,7 +28,7 @@
  * @filesource
  */
 
-require_once __DIR__ . '/Paypal.class.php';
+require_once __DIR__ . '/PayPal.class.php';
 
 class PayPalAdaptivePayments extends PayPal
 {
