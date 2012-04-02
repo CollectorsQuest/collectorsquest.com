@@ -11,3 +11,7 @@ cartEmpty:
 
 checkoutPaypal:
   has_layout:     false
+
+paySuccess:
+  components:
+    sidebar_300: [shopping, sidebar]
