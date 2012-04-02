@@ -1,0 +1,83 @@
+@import "frontend-variables.less";
+@import "bootstrap/mixins.less";
+
+.button_carousel_next, .button_carousel_previous, .icon_big_box, .icon_big_piggy_bank, .icon_big_question, .logo, .shopping_cart, .s-16-icon-facebook, .s-16-icon-google, .s-16-icon-twitter, .icon_big_add, .icon_big_battery, .icon_big_email, .icon_big_organize, .sing-up-now-red, .sing-up-now-rollover {
+	background: url("@{base-url}/sprites.png") no-repeat;
+}
+
+.s-16-icon-facebook, .s-16-icon-google, .s-16-icon-twitter {
+	display: block;
+	display: inline-block;
+	.ie7-inline-block();
+}
+
+.button_carousel_next{
+	background-position: -360px 0;
+	.size(36px, 26px);
+}
+
+.button_carousel_next:hover{
+	background-position: -360px -40px;
+	.size(36px, 26px);
+}
+
+.button_carousel_previous{
+	background-position: -330px 0;
+	.size(36px, 26px);
+}
+
+.button_carousel_previous:hover{
+	background-position: -330px -40px;
+	.size(36px, 26px);
+}
+
+.icon_big_box{
+	background-position: -220px 0;
+	.size(46px, 52px);
+}
+
+.icon_big_piggy_bank{
+	background-position: -220px -47px;
+	.size(46px, 52px);
+}
+
+.icon_big_question{
+	background-position: -275px 0;
+	.size(46px, 52px);
+}
+
+.logo{
+	background-position: 0 0;
+	.size(102px, 220px);
+}
+
+.shopping_cart{
+	background-position: 0 -110px;
+	.size(30px, 32px);
+}
+
+.s-16-icon-facebook{
+	background-position: -400px 0;
+	.square(16px);
+}
+
+.s-16-icon-google{
+	background-position: -400px -25px;
+	.square(16px);
+}
+
+.s-16-icon-twitter{
+	background-position: -400px -50px;
+	.square(16px);
+}
+
+.sing-up-now-red{
+	background-position: -50px -110px ;
+	.size(37px, 120px);
+}
+
+.sing-up-now-red:hover{
+	background-position: -50px -150px ;
+	.size(37px, 120px);
+}
+

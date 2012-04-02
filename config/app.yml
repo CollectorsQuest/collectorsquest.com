@@ -33,17 +33,14 @@ all:
       application_secret: "21b6fb4368bbe3bf4157afe83e6945d4"
 
   paypal:
+    sandbox: true
     application_id: "APP-80W284485P519543T"
     api_username: "kangov_1327417143_biz_api1.collectorsquest.com"
     api_password: "1327417177"
     api_signature: "A..-CRlw0YpkY2B3ut0vv.OPym-eAT-VZrXVgkU8OKXkg-3ddWsYS50Q"
 
-    url: "https://www.sandbox.paypal.com/cgi-bin/webscr"
     merchant_account: "kangov_1327417143_biz@collectorsquest.com"
-
-    return_url: "seller/paymentCompleted"
-    cancel_url: "seller_cancel_payment"
-    notify_url: "seller_callback_ipn"
+    url: "https://www.sandbox.paypal.com/cgi-bin/webscr"
 
 dev:
   domain_name: "collectorsquest.dev"

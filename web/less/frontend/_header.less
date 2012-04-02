@@ -8,7 +8,7 @@ header {
 	background-image: none;
 	border-radius: 0;
 	box-shadow: none;
-	padding: 15px 15px 0;
+	padding: 15px 20px 0 15px;
 }
 
 header > .container {
@@ -23,20 +23,11 @@ header > .container {
 	z-index: 1001;
 }
 
-.logo{
-	background-position: 0 0;
-	width: 220px;
-	height: 102px;
-}
-
 .shopping_cart_inner {
 	display: block;
 	position: relative;
 }
 .shopping_cart {
-	background-position: -285px -72px!important;
-	width: 32px;
-	height: 30px;
 	display: block;
 }
 #shopping_cart_count {
@@ -56,6 +47,7 @@ header > .container {
 }
 a.link_cart{
 	outline: none;
+	vertical-align: middle;
 	display: inline-block;
 	.ie7-inline-block();
 	&:hover {text-decoration: none; outline: 0;}
@@ -65,9 +57,15 @@ a.link_cart{
 
 .nav-divider {
 	border-right: 1px solid #b4b7bc;
-	height: 30px;
+	height: 23px;
 	overflow: hidden;
-	position: absolute;
-	top: 1px;
+	display: inline-block;
+	vertical-align: middle;
 	width: 1px;
+	padding-left: 16px;
+	padding-top: 2px;
+}
+
+.padding-signup {
+	padding-left: 16px;
 }

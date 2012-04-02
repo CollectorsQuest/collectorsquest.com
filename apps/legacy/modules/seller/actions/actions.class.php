@@ -178,7 +178,7 @@ class sellerActions extends cqActions
           else if ('cc' == $packagesForm->getValue('payment_type'))
           {
             $paypalAPI = new PayPal(array(
-              'Sandbox'      => 'dev' == SF_ENV,
+              'Sandbox'      => sfConfig::get('app_paypal_sandbox', true),
               'APIUsername'  => sfConfig::get('app_paypal_api_username'),
               'APIPassword'  => sfConfig::get('app_paypal_api_password'),
               'APISignature' => sfConfig::get('app_paypal_api_signature'),
@@ -225,7 +225,7 @@ class sellerActions extends cqActions
 //              'custom'       => 'TEST', // Free-form field for your own use.  256 char max.
               'invnum'       => $packageTransaction->getId(), // Your own invoice or tracking number
 //              'buttonsource' => '', // An ID code for use by 3rd party apps to identify transactions.
-              'notifyurl'    => $this->generateUrl(sfConfig::get('app_paypal_notify_url'), array(), true) // URL for receiving Instant Payment Notifications.  This overrides what your profile is set to use.
+              'notifyurl'    => $this->generateUrl('seller_callback_ipn', array(), true) // URL for receiving Instant Payment Notifications.  This overrides what your profile is set to use.
             );
 
             $orderItems = array(
