@@ -7,16 +7,17 @@ class CollectorLoginForm extends BaseForm
   {
     $this->setWidgets(array(
       'username'  => new sfWidgetFormInputText(array(
-      ), array(
+          'label' => 'User Name',
+        ), array(
           'required' => 'required',
-          'placeholder' => 'Username',
+          'placeholder' => 'User Name',
       )),
       'password'  => new sfWidgetFormInputPassword(array(), array(
           'required' => 'required',
           'placeholder' => 'Password'
       )),
       'remember'  => new sfWidgetFormInputCheckbox(array(
-            'label' => 'Remember me',
+          'label' => 'Remember me',
       )),
     ));
 

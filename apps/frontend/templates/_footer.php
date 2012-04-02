@@ -1,3 +1,9 @@
+<?php
+  $signup_form = new CollectorSignupStep1Form();
+  $login_form  = new CollectorLoginForm();
+?>
+
+
 <footer id="footer">
   <div class="footer-inner">
     <div class="row-fluid">
@@ -14,108 +20,62 @@
           <p><a href="#"><i class="s-16-icon-facebook ico-16px-alignment"></i> Follow us on Facebook</a></p>
           <p><a href="#" ><i class="s-16-icon-twitter ico-16px-alignment"></i> Follow us on Twitter</a></p>
         </div>
-      </div><!--/span-->
+      </div><!-- .span4 -->
 
       <div class="span4">
 
-        <h2 class="FugazOne">Sign Up</h2>
-        <form class="form-horizontal">
-        <div class="row-fluid row-spacing">
-          <div class="span4 v-center-container-label">
-            <span class="v-center"><label for="focusedInput" class="control-label">Full&nbsp;<br>Name</label></span>
-          </div>
-          <div class="span8"><input type="text" placeholder="Full name" id="focusedInput" class="input-footer focused"></div>
-        </div>
-        <div class="row-fluid row-spacing">
-          <div class="span4 v-center-container-label">
-            <span class="v-center"><label for="focusedInput1" class="control-label">Email</label></span>
-          </div>
-          <div class="span8"><input type="text" placeholder="Email" id="focusedInput1" class="input-footer focused"></div>
-        </div>
-        <div class="row-fluid row-spacing">
-          <div class="span4 v-center-container-label">
-            <span class="v-center"><label for="focusedInput2" class="control-label">Password</label></span>
-          </div>
-          <div class="span8"><input type="text" placeholder="Password" id="focusedInput2" class="input-footer focused"></div>
-        </div>
-        <div class="row-fluid row-spacing">
-          <div class="span4 v-center-container-label">
-            <span class="v-center"><label for="focusedInput3" class="control-label">Confirm Password</label></span>
-          </div>
-          <div class="span8"><input type="text" placeholder="Password again…" id="focusedInput3" class="input-footer focused"></div>
-        </div>
+        <?php if (!$sf_user->isAuthenticated()): ?>
 
-        <div class="row-fluid row-spacing">
-          <div class="span9 top-padding-10">
-            Sign up using&nbsp;
-            <a href="#" rel="tooltip" title="Sign up using facebook" class="s-16-icon-facebook">
-              <i class="hide-text">Sign up using facebook</i>
-            </a>
-            <a href="#" title="Sign up using twitter" class="s-16-icon-twitter">
-              <i class="hide-text">Sign up using twitter</i>
-            </a>
-            <a href="#" title="Sign up using google" class="s-16-icon-google">
-              <i class="hide-text">Sign up using google</i>
-            </a>
-          </div>
-          <div class="span3">
-            <button class="btn btn-primary blue pull-right" type="submit">Submit</button>
-          </div>
-        </div>
-        </form>
-        <div class="row-spacing pull-right">
-          Already have an account? <a href="#"><strong>Log in</strong></a>
-        </div>
+        <div id="footer-form-signup">
+          <h2 class="FugazOne">Sign Up</h2>
 
+          <?= form_tag('@collector_signup', array('class' => 'form-horizontal form-footer')); ?>
+            <?= $signup_form->renderUsing('BootstrapWithRowFluid'); ?>
+            <div class="row-fluid row-spacing">
+              <div class="span9 top-padding-10">
+                <?php include_partial('global/footer_signup_external_buttons'); ?>
+              </div>
+              <div class="span3">
+                <button type="submit" class="btn btn-primary blue pull-right">Submit</button>
+              </div>
+            </div>
+          </form>
 
-<?php /* footer-control-login
+          <div id="footer-control-login">
+            <span class="pull-right">
+              Already have an account? <?= link_to('Log In', '@login', array('id' => 'footer-control-login-button')); ?>
+            </span>
+          </div>
+        </div><!-- #footer-form-signup -->
 
-        <h2 class="FugazOne">Sign In</h2>
-        <form class="form-horizontal">
-        <div class="row-fluid row-spacing">
-          <div class="span4 v-center-container-label">
-            <span class="v-center"><label for="focusedInput1" class="control-label">Email</label></span>
-          </div>
-          <div class="span8"><input type="text" placeholder="Email" id="focusedInput1" class="input-footer focused"></div>
-        </div>
-        <div class="row-fluid row-spacing">
-          <div class="span4 v-center-container-label">
-            <span class="v-center"><label for="focusedInput2" class="control-label">Password</label></span>
-          </div>
-          <div class="span8"><input type="text" placeholder="Password" id="focusedInput2" class="input-footer focused"></div>
-        </div>
+        <div id="footer-form-login" style="display: none">
+          <h2 class="FugazOne">Log In</h2>
+          <?= form_tag('@login', array('class' => 'form-horizontal form-footer')) ?>
+            <?= $login_form->renderUsing('BootstrapWithRowFluid') ?>
+            <div class="row-fluid row-spacing">
+              <div class="span9 top-padding-10">
+                <?php include_partial('global/footer_signup_external_buttons'); ?>
+              </div>
+              <div class="span3">
+                <button type="submit" class="btn btn-primary blue pull-right">Log In</button>
+              </div>
+            </div>
+            <div class="row-fluid">
+              <div class="span12">
+                <span class="pull-right"><?= link_to('Forgot your password?', '@recover_password'); ?></span>
+              </div>
+            </div>
+          </form>
 
-        <div class="row-fluid row-spacing">
-          <div class="span9 top-padding-10">
-            Sign in using&nbsp;
-            <a href="#" rel="tooltip" title="Sign up using facebook" class="s-16-icon-facebook">
-              <i class="hide-text">Sign in using facebook</i>
-            </a>
-            <a href="#" title="Sign up using twitter" class="s-16-icon-twitter">
-              <i class="hide-text">Sign in using twitter</i>
-            </a>
-            <a href="#" title="Sign up using google" class="s-16-icon-google">
-              <i class="hide-text">Sign in using google</i>
-            </a>
+          <div id="footer-control-signup" style="display: none">
+            <span class="pull-right">
+              Don't have an account yet? <?= link_to('Sign up', '@collector_signup', array('id' => 'footer-control-signup-button')); ?>
+            </span>
           </div>
-          <div class="span3">
-            <button class="btn btn-primary blue pull-right" type="submit">Submit</button>
-          </div>
-        </div>
-        </form>
-        <div class="row-fluid">
-          <div class="span12">
-          <a href="#" title="Forgot your password?" class="pull-right">Forgot your password?</a>
-          </div>
-        </div>
-        <div class="row-fluid">
-          <div class="span12 top-padding-double">
-          <p class="pull-right">Not a member yet? <a href="#"><strong>Log up</strong></a><p>
-          </div>
-        </div>
-        <!-- //footer-control-login -->
+        </div> <!-- #footer-form-login -->
 
-        <h2 class="FugazOne">Welcome back, Robotbacon!</h2>
+        <?php else: ?>
+        <h2 class="FugazOne">Welcome back, <?= $sf_user->getCollector()->getDisplayName() ?>!</h2>
         <ul class="footer-profile-box">
           <li class="icon_big_email">
               <p>You have in <a href="#" class="bold-links">your inbox</a></p>
@@ -133,15 +93,16 @@
               </div>
             </div>
           </li>
-        </ul>
+        </ul> <!-- .footer-pofile-box -->
 
         <div class="row-fluid top-padding-10">
           <div class="span12">
             <button class="btn btn-primary blue" type="submit">My Profile</button>
-            <a href="#" title="Forgot your password?">Log Out?</a>
+            <?= link_to('Log out', '@logout'); ?>
           </div>
         </div>
-*/ ?>
+        <?php endif; ?>
+
       </div><!-- .span4 -->
 
       <div class="span4">
@@ -193,46 +154,3 @@
     </div>
   </div>
 </footer>
-
-
-<?php /*
-<?php if (!$sf_user->isAuthenticated()): ?>
-
-<div id="footer-form-signup">
-  <h2 class="FugazOne">Sign Up</h2>
-
-  <?= form_tag('@collector_signup', array('class' => 'form-horizontal')); ?>
-  <fieldset>
-    <?= new CollectorSignupStep1Form(); ?>
-    <div class="form-actions">
-      <input type="submit" class="btn btn-primary" value="Sign Up" />
-    </div>
-  </fieldset>
-  </form>
-
-  <div id="footer-control-login">
-    Already have an account? <?= link_to('Log In', '@login', array('id' => 'footer-control-login-button')); ?>
-  </div>
-</div><!-- #footer-form-signup -->
-
-<div id="footer-form-login" style="display: none">
-  <h2 class="FugazOne">Log In</h2>
-  <?= form_tag('@login', array('class' => 'form-horizontal')) ?>
-  <fieldset>
-    <?= new CollectorLoginForm() ?>
-    <div class="form-actions">
-      <input type="submit" class="btn btn-primary" value="Log In" />
-    </div>
-  </fieldset>
-  </form>
-
-  <div id="footer-control-signup" style="display: none">
-    Don't have an account yet? <?= link_to('Sign up', '@collector_signup', array('id' => 'footer-control-signup-button')); ?>
-  </div>
-</div> <!-- #footer-form-login -->
-
-<?php else: ?>
-<!-- nothing here yet -->
-<br />
-<?php endif; ?>
-*/?>
