@@ -111,7 +111,7 @@ marketplace_category_by_slug:
   url: /marketplace/:id/:slug
   class: sfPropelRoute
   options: { model: CollectionCategory, type: object, method: getObjectForRoute }
-  param: { module: marketplace, action: index }
+  param: { module: marketplace, action: browse }
   requirements:
     id: \d+
     sf_method: [GET, POST]

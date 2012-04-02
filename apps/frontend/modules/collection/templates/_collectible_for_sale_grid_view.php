@@ -1,18 +1,18 @@
 <?php
   /**
-   * @var $collectible Collectible
+   * @var $collectible_for_sale CollectibleForSale
    */
   use_javascript('jquery/mosaic.js');
 ?>
 
-<div id="collectible_<?= $collectible->getId(); ?>_grid_view"
-     data-id="<?= $collectible->getId(); ?>"
+<div id="collectible_for_sale_<?= $collectible_for_sale->getCollectibleId(); ?>_grid_view"
+     data-id="<?= $collectible_for_sale->getCollectibleId(); ?>"
      class="collectible_grid_view" style="margin-bottom: 25px;">
 
   <?= ice_image_tag_placeholder('190x150', array('class' => 'mosaic-backdrop')); ?>
-  <?php link_to_collectible($collectible, 'image', array('width' => 190, 'height' => 150, 'class' => 'mosaic-backdrop')); ?>
+  <?php link_to_collectible($collectible_for_sale->getCollectible(), 'image', array('width' => 190, 'height' => 150, 'class' => 'mosaic-backdrop')); ?>
   <div class="mosaic-overlay">
-    <p><?= link_to_collectible($collectible, 'text'); ?></p>
+    <p><?= link_to_collectible($collectible_for_sale->getCollectible(), 'text'); ?></p>
   </div>
 </div>
 
