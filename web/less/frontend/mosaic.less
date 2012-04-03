@@ -23,18 +23,25 @@
 }
 
 .circle .mosaic-overlay {
-  background:url(/images/frontend/hover-magnify.png) no-repeat center center;
-  opacity:0;
+  background: url(/images/frontend/hover-magnify.png) no-repeat center center;
+  opacity: 0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=00)";
-  filter:alpha(opacity=00);
-  display:none;
+  filter: alpha(opacity=00);
+  display: none;
 }
 
-.fade .mosaic-overlay {
+.fade-black .mosaic-overlay {
   opacity:0;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=00)";
   filter:alpha(opacity=00);
   background:url(/images/frontend/black.png);
+}
+
+.fade-white .mosaic-overlay {
+  opacity:0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=00)";
+  filter:alpha(opacity=00);
+  background:url(/images/frontend/white.png);
 }
 
 .bar .mosaic-overlay {

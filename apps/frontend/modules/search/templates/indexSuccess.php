@@ -38,13 +38,13 @@
         case 'collection':
           echo '<div class="span4 brick" style="height: 165px; float: left;">';
           include_partial(
-            'collection/collection_grid_view',
+            'collection/collection_stack_grid_view',
             array('collection' => $object, 'i' => $i)
           );
           echo '</div>';
           break;
         case 'collector':
-          echo '<div class="span4 brick">';
+          echo '<div class="span4 brick" style="height: 165px; float: left;">';
           include_partial(
             'collector/collector_grid_view',
             array('collector' => $object, 'i' => $i)
