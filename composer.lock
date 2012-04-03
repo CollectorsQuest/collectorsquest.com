@@ -1,10 +1,14 @@
 {
-    "hash": "595744895ccbe0ff5de343abddffe35c",
+    "hash": "08afdd6819f849d65413912926790ad6",
     "packages": [
         {
             "package": "lib/vendor/faker",
             "version": "master-dev",
             "source-reference": "ab426e0253a1fe41fd6077df86f34fb0a2ca65a8"
+        },
+        {
+            "package": "lib/vendor/magnify",
+            "version": "1.0-RC1"
         },
         {
             "package": "lib/vendor/neo4jphp",
