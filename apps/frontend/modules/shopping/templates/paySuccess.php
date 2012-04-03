@@ -1,3 +1,10 @@
+<?php
+include_partial(
+  'global/wizard_bar',
+  array('steps' => array(1 => __('Add to Cart'), __('Payment'), __('Review')) , 'active' => 2)
+);
+?>
+
 <script type="text/javascript" src="//www.paypalobjects.com/js/external/dg.js"></script>
 
 <div style="text-align: center; margin: 100px auto;">

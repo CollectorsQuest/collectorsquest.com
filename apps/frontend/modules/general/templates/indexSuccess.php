@@ -19,7 +19,7 @@
     </div>
     <div class="span6 brick">
       <a href="#">
-      <?= ice_image_tag_flickholdr('291x291'); ?>
+      <?= ice_image_tag_flickholdr('290x290'); ?>
       </a>
     </div>
     <div class="span3 brick">
@@ -86,7 +86,6 @@
     </div>
   </div>
 </div>
-
 
 
 <script>
