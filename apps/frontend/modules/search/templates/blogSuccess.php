@@ -1,6 +1,6 @@
 <?php
   slot('sidebar_300');
-    include_component('search', 'sidebar', array('t' => 'collectible'));
+    include_component('search', 'sidebar', array('t' => 'wp_post'));
   end_slot();
 ?>
 
@@ -18,19 +18,21 @@
   cq_page_title('Collectibles', $title);
 ?>
 
-<div class="row">
-  <div id="search-results" class="row-content">
-    <?php
-    foreach ($pager->getResults() as $i => $collectible)
+<div id="search-results">
+  <div class="row-fluid">
+  <?php
+    foreach ($pager->getResults() as $i => $wp_post)
     {
-      echo '<div class="span4 brick" style="height: 165px; float: left;">';
+      echo '<div class="span6">';
       include_partial(
-        'collection/collectible_'. $display .'_view',
-        array('collectible' => $collectible, 'i' => $i)
+        'news/wp_post_'. $display .'_view',
+        array('wp_post' => $wp_post, 'excerpt' => $pager->getExcerpt($i), 'i' => $i)
       );
       echo '</div>';
+
+      if (($i+1) % 2 == 0) echo '</div><div class="row-fluid">';
     }
-    ?>
+  ?>
   </div>
 </div>
 

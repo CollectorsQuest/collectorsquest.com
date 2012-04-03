@@ -4,6 +4,7 @@ class cqSphinxPager extends sfPager
 {
   private
     $query    = array(),
+    $types    = array(),
     $matches  = array(),
     $excerpts = array(),
     $sid      = null,
@@ -13,11 +14,12 @@ class cqSphinxPager extends sfPager
    * @param  array    $query
    * @param  integer  $maxPerPage
    */
-  public function __construct($query, $maxPerPage = 14)
+  public function __construct($query, $types = array(), $maxPerPage = 14)
   {
     parent::__construct(null, $maxPerPage);
 
     $this->query = $query;
+    $this->types = $types;
   }
 
   /**
@@ -30,7 +32,7 @@ class cqSphinxPager extends sfPager
     $hasMaxRecordLimit = ($this->getMaxRecordLimit() !== false);
     $maxRecordLimit = $this->getMaxRecordLimit();
 
-    $total = self::search($this->query, 'total');
+    $total = self::search($this->query, $this->types, 'total');
     $this->setNbResults($total);
 
     if (($this->getPage() == 0 || $this->getMaxPerPage() == 0))
@@ -67,7 +69,7 @@ class cqSphinxPager extends sfPager
     }
 
     // Populate the matches array
-    $results = self::search($this->query, 'raw');
+    $results = self::search($this->query, $this->types, 'raw');
 
     $this->matches = isset($results['matches']) ? $results['matches'] : array();
     $this->words   = isset($results['words'])   ? $results['words']   : array();
@@ -232,7 +234,7 @@ class cqSphinxPager extends sfPager
 
         // Querying the Sphinx search engine for the total number of docs for $word
         $total = self::search(
-          array_merge($this->query, array('q' => $word)), 'total'
+          array_merge($this->query, array('q' => $word)), $this->types, 'total'
         );
 
         if ($total > 0)
@@ -274,9 +276,10 @@ class cqSphinxPager extends sfPager
    *
    * @return mixed
    */
-  static public function search($query, $return = 'pks')
+  static public function search($query, $types = array(), $return = 'pks')
   {
     $sphinx = self::getSphinxClient();
+    $types  = !empty($types) ? (array) $types : array('collections', 'collectors', 'collectibles', 'blog');
 
     // http://www.sphinxsearch.com/docs/current.html#api-func-setlimits
     if (!empty($query['limits']) && count($query['limits']) == 2)
@@ -326,13 +329,14 @@ class cqSphinxPager extends sfPager
 
     $env = defined('SF_ENV') ? SF_ENV : sfConfig::get('sf_environment');
     $env = str_replace('_debug', '', $env);
-    $indexes = sprintf(
-      '%1$s_collectibles_normalized, %1$s_collections_normalized,
-       %1$s_collectors_normalized, %1$s_blog_normalized',
-      $env
-    );
 
-    $results = $sphinx->query($q, $indexes, 3);
+    $indexes = array();
+    foreach ($types as $type)
+    {
+      $indexes[] = sprintf('%s_%s_normalized', $env, $type);
+    }
+
+    $results = $sphinx->query($q, implode(', ', $indexes), 3);
 
     if ($return == 'raw')
     {
