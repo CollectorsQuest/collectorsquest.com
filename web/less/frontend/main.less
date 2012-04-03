@@ -1,14 +1,15 @@
 @import "bootstrap/variables.less";
 @import "bootstrap/mixins.less";
 
-@import "frontend-variables.less";
+@import "_variables.less";
 @import "_h5bp.less";
 @import "_header.less";
 @import "_menu.less";
-@import "spites.less";
+@import "_wizard.less";
+@import "_spites.less";
 
 body {
-	background: #D9EBF5 url("@{base-url}/background-pattern.png") repeat;
+	background: #D9EBF5 url("@{baseUrl}/background-pattern.png") repeat;
 }
 
 .FugazOne {
@@ -211,7 +212,7 @@ footer h2 {
 }
 
 #footer-links {
-	background: #cdc7c7 url("@{base-url}/background-pattern-footer.png") repeat;
+	background: #cdc7c7 url("@{baseUrl}/background-pattern-footer.png") repeat;
 	.size(38px, 100%);
 }
 .footer-links-inner {
@@ -304,19 +305,19 @@ ul.footer-profile-box li p {
 }
 
 .icon_big_add {
-	background: transparent url("@{base-url}/icon_big_add.png") no-repeat left center;
+	background: transparent url("@{baseUrl}/icon_big_add.png") no-repeat left center;
 }
 
 .icon_big_battery {
-	background: transparent url("@{base-url}/icon_big_battery.png") no-repeat left center;
+	background: transparent url("@{baseUrl}/icon_big_battery.png") no-repeat left center;
 }
 
 .icon_big_email {
-	background: transparent url("@{base-url}/icon_big_email.png") no-repeat left center;
+	background: transparent url("@{baseUrl}/icon_big_email.png") no-repeat left center;
 }
 
 .icon_big_organize {
-	background: transparent url("@{base-url}/icon_big_organize.png") no-repeat center left;
+	background: transparent url("@{baseUrl}/icon_big_organize.png") no-repeat center left;
 }
 
 // Fix vertical align issue in IE7
@@ -517,7 +518,6 @@ li.roundabout-in-focus .carousel-in-focus-title-container {
 	width: auto;
 	margin: 0;
 }
-
 
 .pull-r {
 	text-align: right;

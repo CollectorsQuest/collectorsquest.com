@@ -2,3 +2,8 @@ indexSuccess:
   stylesheets: [frontend/collectibles.css]
   components:
     sidebar_300: [marketplace, sidebarIndex]
+
+browseSuccess:
+  stylesheets: [frontend/collectibles.css]
+  components:
+    sidebar_300: [marketplace, sidebarIndex]

@@ -72,7 +72,7 @@
           </tr>
           <tr>
             <td colspan="2" style="text-align: center;">
-              <input type="image" src="https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif" title="Check out with PayPal!">
+              <input type="submit" name="Checkout" class="btn btn-large" value="Checkout"/>
             </td>
           </tr>
         </table><!--End cost table-->

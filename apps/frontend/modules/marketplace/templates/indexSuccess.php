@@ -42,15 +42,15 @@
 <div class="row">
   <div id="collectibles" class="row-content">
     <?php
-    /** @var $collectible Collectible */
-    foreach ($collectibles as $i => $collectible)
+    /** @var $collectible_for_sale CollectibleForSale */
+    foreach ($collectibles as $i => $collectible_for_sale)
     {
       echo '<div class="span4">';
       // Show the collectible (in grid, list or hybrid view)
       include_partial(
         'collection/collectible_for_sale_grid_view',
         array(
-          'collectible' => $collectible,
+          'collectible_for_sale' => $collectible_for_sale,
           'culture' => (string) $sf_user->getCulture(),
           'i' => (int) $i
         )

@@ -16,9 +16,12 @@
 <div class="row-fluid">
   <?php foreach ($categories as $i => $category): ?>
   <div class="span6" style="margin-left: 0;">
-    <?= ($category) ? link_to_collection_category($category, 'text') : ''; ?>
+    <?php if ($category): ?>
+    <?php echo link_to($category->getName(), 'marketplace_category_by_slug', $category, array('title' => $category->getName())) ?>
+    <?php endif; ?>
   </div>
   <?php endforeach; ?>
+
 </div>
 
 <br/>
