@@ -47,7 +47,7 @@ class collectionActions extends cqFrontendActions
     $c->addAscendingOrderByColumn(CollectionCollectiblePeer::POSITION);
     $c->addAscendingOrderByColumn(CollectiblePeer::CREATED_AT);
 
-    $per_page = sfConfig::get('app_pager_list_collectibles_max', 16);
+    $per_page = sfConfig::get('app_pager_list_collectibles_max', 24);
 
     $pager = new sfPropelPager('Collectible', $per_page);
     $pager->setCriteria($c);

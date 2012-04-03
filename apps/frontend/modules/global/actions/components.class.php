@@ -1,9 +1,11 @@
 <?php
 
-class globalComponents extends sfComponents
+class globalComponents extends cqFrontendComponents
 {
   public function executeHeader()
   {
+    $this->form = new SearchHeaderForm();
+
     return sfView::SUCCESS;
   }
 

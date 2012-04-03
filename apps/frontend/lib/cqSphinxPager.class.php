@@ -3,10 +3,11 @@
 class cqSphinxPager extends sfPager
 {
   private
-    $query   = array(),
-    $matches = array(),
-    $sid     = null,
-    $offset  = null;
+    $query    = array(),
+    $matches  = array(),
+    $excerpts = array(),
+    $sid      = null,
+    $offset   = null;
 
   /**
    * @param  array    $query
@@ -91,6 +92,7 @@ class cqSphinxPager extends sfPager
     if (empty($this->matches)) return array();
 
     $objects         = array();
+    $contents        = array();
     $wp_post_ids     = array();
     $collection_ids  = array();
     $collector_ids   = array();
@@ -129,19 +131,21 @@ class cqSphinxPager extends sfPager
         if (false !== $key = array_search($wp_post->getId() + 100000000, $objects, true))
         {
           $objects[$key] = $wp_post;
+          $contents[$key] = $wp_post->getPostContentStripped();
         }
       }
     }
     if (!empty($collection_ids))
     {
-      /** @var $collections Collection[] */
-      $collections = CollectionQuery::create()->filterById($collection_ids, Criteria::IN)->find();
+      /** @var $collections CollectorCollection[] */
+      $collections = CollectorCollectionQuery::create()->filterById($collection_ids, Criteria::IN)->find();
 
       foreach ($collections as $collection)
       {
         if (false !== $key = array_search($collection->getId() + 200000000, $objects, true))
         {
           $objects[$key] = $collection;
+          $contents[$key] = $collection->getDescription('stripped');
         }
       }
     }
@@ -168,6 +172,7 @@ class cqSphinxPager extends sfPager
         if (false !== $key = array_search($collectible->getId() + 400000000, $objects, true))
         {
           $objects[$key] = $collectible;
+          $contents[$key] = $collectible->getDescription('stripped');
         }
       }
     }
@@ -179,26 +184,33 @@ class cqSphinxPager extends sfPager
       unset($objects[$key]);
     }
 
+    $sphinx = self::getSphinxClient();
+
+    $env = defined('SF_ENV') ? SF_ENV : sfConfig::get('sf_environment');
+    $env = str_replace('_debug', '', $env);
+    $indexes = sprintf('%1$s_blog_normalized', $env);
+
+    $keys = array_keys($contents);
+    if ($excerpts = $sphinx->BuildExcerpts($contents, $indexes, $this->query['q'], array('limit' => 128)))
+    {
+      foreach ($excerpts as $i => $excerpt)
+      if (!empty($excerpt))
+      {
+        $this->excerpts[$keys[$i]] = $excerpt;
+      }
+    }
+
     return $objects;
   }
 
-  /**
-   * @param  int     $limit
-   * @param  string  $culture
-   *
-   * @return array
-   */
-  public function getAttributes($limit = 0, $culture = null)
+  public function getExcerpts()
   {
-    return array();
+    return $this->excerpts;
   }
 
-  /**
-   * @return array
-   */
-  public function getAdvertIds()
+  public function getExcerpt($i)
   {
-    return $this->advert_ids;
+    return isset($this->excerpts[$i]) ? $this->excerpts[$i] : null;
   }
 
   /**
@@ -235,6 +247,7 @@ class cqSphinxPager extends sfPager
 
   /**
    * @param  integer  $v
+   * @return void
    */
   public function setOffset($v)
   {
@@ -304,8 +317,12 @@ class cqSphinxPager extends sfPager
     if (!empty($query['groupby']))
     {
       $sphinx->setGroupBy($query['groupby'], SPH_GROUPBY_ATTR);
-      $sphinx->setGroupDistinct('advert_id');
+      $sphinx->setGroupDistinct('object_id');
     }
+
+    $sphinx->SetFieldWeights(array(
+      'title' => 10,'tags' => 5, 'content' => 1,
+    ));
 
     $env = defined('SF_ENV') ? SF_ENV : sfConfig::get('sf_environment');
     $env = str_replace('_debug', '', $env);
@@ -367,6 +384,8 @@ class cqSphinxPager extends sfPager
   public static function getSphinxClient()
   {
     $sphinx = cqStatic::getSphinxClient();
+
+    $sphinx->SetRankingMode(SPH_RANK_SPH04);
 
     // http://www.sphinxsearch.com/docs/current.html#api-func-setmatchmode
     $sphinx->setMatchMode(SPH_MATCH_EXTENDED2);

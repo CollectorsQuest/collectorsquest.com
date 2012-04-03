@@ -9,7 +9,7 @@
     $sf_params->get('q'),
     format_number_choice('[0] no result|[1] 1 result|(1,+Inf] %1% results', array('%1%' => $pager->getNbResults()), $pager->getNbResults())
   );
-  echo cq_page_title('Search results', $title);
+  cq_page_title('Search results', $title);
 ?>
 
 <div class="row">
@@ -22,23 +22,24 @@
         case 'wppost':
           echo '<div class="span8 brick" style="height: 165px; float: left;">';
           include_partial(
-            'news/wp_post_grid_view',
-            array('wp_post' => $object, 'i' => $i)
+            'news/wp_post_'. $display .'_view',
+            array('wp_post' => $object, 'excerpt' => $pager->getExcerpt($i), 'i' => $i)
           );
           echo '</div>';
           break;
         case 'collectible':
           echo '<div class="span4 brick" style="height: 165px; float: left;">';
           include_partial(
-            'collection/collectible_grid_view',
+            'collection/collectible_'. $display .'_view',
             array('collectible' => $object, 'i' => $i)
           );
           echo '</div>';
           break;
         case 'collection':
+        case 'collectorcollection':
           echo '<div class="span4 brick" style="height: 165px; float: left;">';
           include_partial(
-            'collection/collection_stack_grid_view',
+            'collection/collection_stack_'. $display .'_view',
             array('collection' => $object, 'i' => $i)
           );
           echo '</div>';
@@ -46,7 +47,7 @@
         case 'collector':
           echo '<div class="span4 brick" style="height: 165px; float: left;">';
           include_partial(
-            'collector/collector_grid_view',
+            'collector/collector_'. $display .'_view',
             array('collector' => $object, 'i' => $i)
           );
           echo '</div>';
