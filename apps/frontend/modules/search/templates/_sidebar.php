@@ -1,21 +1,40 @@
-<div class="well" style="padding: 8px 0; margin-top: 80px;">
+<div class="row-fluid" style="margin: 35px auto 5px 15px;">
+  <label for="canonical" class="span3" style="padding-top: 6px;">Direct Link:</label>
+  <input class="span8" id="canonical" style="text" value="http://cq.me/search-results" onclick="this.select();">
+</div>
+
+<div class="well" style="padding: 8px 0;">
   <ul class="nav nav-list">
+    <li class="nav-header">sort by:</li>
+    <li class="active"><a href="#"><i class="icon-ok"></i>&nbsp;Relevance</a></li>
+    <li><a href="#">Most Recent</a></li>
+    <li><a href="#">Most Popular</a></li>
     <li class="nav-header">Filter by type:</li>
     <li>
-      <a href="#" style="padding-left: 37px;">All Types</a>
+      <?= link_to('All Types', '@search?q='. $sf_params->get('q')) ?>
     </li>
-    <li style="color: #999; padding: 3px 22px;">Collections (0)</li>
-    <li><a href="#" style="padding-left: 37px;">Collectors (16)</a></li>
-    <li class="active"><a href="#"><i class="icon-ok"></i>&nbsp;Collectibles (3)</a></li>
-    <li class="active"><a href="#"><i class="icon-ok"></i>&nbsp;News Articles (10)</a></li>
-    <li style="color: #999; padding: 3px 22px;">Video (0)</li>
+    <?php
+      foreach ($types as $key => $params)
+      {
+        $name = $params['name'] .' ('. $params['count'] .')';
 
+        if ($params['active'])
+        {
+          echo '<li class="active"><a href="#"><i class="icon-ok"></i>&nbsp;', $name,'</a></li>';
+        }
+        else
+        {
+          $link = link_to_if($params['count'] > 0, $name, $params['route']);
+          echo '<li>', $link,'</li>';
+        }
+      }
+    ?>
     <li>&nbsp;</li>
     <li class="nav-header">Filter by category:</li>
     <?php foreach ($categories as $category): ?>
       <li>
         <a href="#" style="padding-left: 37px;">
-          <?= $category->getName(); ?> <span style="color: #999;">(<?= rand(10,50); ?>)</span>
+          <?= $category->getName(); ?>
         </a>
       </li>
     <?php endforeach; ?>
