@@ -27,6 +27,38 @@
         <?= ice_image_tag_flickholdr('138x138'); ?>
       </a>
     </div>
+    <div class="span6 brick masonry-blogpost">
+      <div class="masonry-blogpost" style="background: url("www.collectorsquest.com/uploads/blog/2012/04/marathon-breal-silver-cup-spiros-louis-olympics.jpg") no-repeat">
+        <a href="#" class="link">adsasd
+
+        </a>
+      </div>
+    </div>
+    <div class="span3 brick">
+      <a href="#">
+        <?= ice_image_tag_flickholdr('138x138'); ?>
+      </a>
+    </div>
+    <div class="span3 brick">
+      <a href="#">
+        <?= ice_image_tag_flickholdr('138x138'); ?>
+      </a>
+    </div>
+    <div class="span3 brick">
+      <a href="#">
+        <?= ice_image_tag_flickholdr('138x138'); ?>
+      </a>
+    </div>
+    <div class="span3 brick">
+      <a href="#">
+        <?= ice_image_tag_flickholdr('138x138'); ?>
+      </a>
+    </div>
+    <div class="span3 brick">
+      <a href="#">
+        <?= ice_image_tag_flickholdr('138x138'); ?>
+      </a>
+    </div>
     <div class="span3 brick">
       <a href="#">
         <?= ice_image_tag_flickholdr('138x138'); ?>
