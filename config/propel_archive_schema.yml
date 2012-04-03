@@ -78,6 +78,7 @@ classes:
       id:                      { type: integer, primaryKey: true, autoIncrement: false }
       graph_id:                { type: integer, required: false, index: index }
       collection_category_id:  { type: integer, index: true }
+      content_category_id:     { type: integer, index: true }
       descendant_class:        { type: varchar, size: 100 }
       name:                    { type: varchar, size: 255, required: true, primaryString: true }
       slug:                    { type: varchar, size: 128 }
@@ -98,12 +99,26 @@ classes:
       created_at:   { type: timestamp }
       archived_at:  { type: timestamp }
 
+  ContentCategoryArchive:
+    columns:
+      id:                      { type: integer, primaryKey: true, autoIncrement: false }
+      collection_category_id: { type: integer, required: false, index: true }
+      name:         { type: varchar, size: 64, required: true }
+      slug:         { type: varchar, size: 64, required: true }
+      description:  { type: longvarchar, required: false }
+      tree_left:    { type: integer }
+      tree_right:   { type: integer }
+      tree_level:   { type: integer }
+    propel_behaviors:
+      symfony: { form: false, filter: false }
+
   CollectorCollectionArchive:
     columns:
       id:                      { type: integer, primaryKey: true, autoIncrement: false }
       graph_id:                { type: integer, required: false, index: index }
       collector_id:            { type: integer, index: true }
       collection_category_id:  { type: integer, index: true }
+      content_category_id:     { type: integer, index: true }
       name:                    { type: varchar, size: 255, required: true, primaryString: true }
       slug:                    { type: varchar, size: 128 }
       description:             { type: longvarchar, required: true }
