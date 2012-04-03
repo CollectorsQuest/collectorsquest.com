@@ -1,6 +1,6 @@
 <?php
   slot('sidebar_300');
-    include_component('search', 'sidebar', array('t' => 'collectible'));
+    include_component('search', 'sidebar', array('t' => 'collector'));
   end_slot();
 ?>
 
@@ -15,18 +15,18 @@
     $sf_params->get('q'),
     format_number_choice('[0] no result|[1] 1 result|(1,+Inf] %1% results', array('%1%' => $pager->getNbResults()), $pager->getNbResults())
   );
-  cq_page_title('Collectibles', $title);
+  cq_page_title('Collectors', $title);
 ?>
 
 <div class="row">
   <div id="search-results" class="row-content">
     <?php
-    foreach ($pager->getResults() as $i => $collectible)
+    foreach ($pager->getResults() as $i => $collector)
     {
       echo '<div class="span4 brick" style="height: 165px; float: left;">';
       include_partial(
-        'collection/collectible_'. $display .'_view',
-        array('collectible' => $collectible, 'i' => $i)
+        'collector/collector_'. $display .'_view',
+        array('collector' => $collector, 'i' => $i)
       );
       echo '</div>';
     }

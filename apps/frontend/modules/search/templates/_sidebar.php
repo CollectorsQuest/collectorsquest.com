@@ -18,7 +18,7 @@
       {
         $name = $params['name'] .' ('. $params['count'] .')';
 
-        if ($params['active'])
+        if ($params['active'] === true)
         {
           echo '<li class="active"><a href="#"><i class="icon-ok"></i>&nbsp;', $name,'</a></li>';
         }

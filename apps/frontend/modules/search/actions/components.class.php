@@ -45,7 +45,7 @@ class searchComponents extends cqFrontendComponents
       'q' => $q,
       'groupby' => 'object_type'
     );
-    $matches = cqSphinxPager::search($query, 'matches');
+    $matches = cqSphinxPager::search($query, array(), 'matches');
 
     foreach ($matches as $match)
     {

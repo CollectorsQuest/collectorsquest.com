@@ -74,15 +74,15 @@
 
     $container.imagesLoaded(function() {
       $container.masonry(
-      {
-        itemSelector : '.brick',
-        columnWidth : 201, gutterWidth: 15,
-        isAnimated: !Modernizr.csstransitions
-      });
+        {
+          itemSelector : '.brick',
+          columnWidth : 201, gutterWidth: 15,
+          isAnimated: !Modernizr.csstransitions
+        });
     });
 
-    <?php if ($sf_params->get('show') == 'all'): ?>
-      $container.infinitescroll(
+  <?php if ($sf_params->get('show') == 'all'): ?>
+    $container.infinitescroll(
       {
         navSelector: '#search-pagination',
         nextSelector: '#search-pagination li.next a',
@@ -97,6 +97,15 @@
       // trigger Masonry as a callback
       function(selector)
       {
+        $('.fade-white').mosaic();
+        $('.collectible_grid_view').mosaic({
+          animation: 'slide'
+        });
+        $(".mosaic-overlay a.target").bigTarget({
+          hoverClass: 'over',
+          clickZone : 'div:eq(1)'
+        });
+
         // hide new bricks while they are loading
         var $bricks = $(selector).css({ opacity: 0 });
 
@@ -109,8 +118,8 @@
         });
       });
 
-      // Hide the pagination before infinite scroll does it
-      $('#search-pagination').hide();
+    // Hide the pagination before infinite scroll does it
+    $('#search-pagination').hide();
     <?php endif; ?>
   });
 </script>
