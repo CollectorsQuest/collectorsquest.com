@@ -8,7 +8,15 @@ class searchComponents extends cqFrontendComponents
     $t = $this->getRequestParameter('t', $this->getVar('t'));
 
     $types_selected = explode(',', $t);
+    $types_selected = array_filter($types_selected);
+
     $this->types = array(
+      'everything' => array(
+        'name' => 'Everything',
+        'count' => -1,
+        'active' => empty($types_selected),
+        'route' => '@search?q='. $q
+      ),
       'collection' => array(
         'name' => 'Collections',
         'count' => 0,
