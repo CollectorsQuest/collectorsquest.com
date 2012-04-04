@@ -109,15 +109,15 @@
         </div>
       </div>
     </div>
-    <div class="span3 brick">
-      <div class="square">
+    <div class="span6 brick">
+      <div class="wide">
         <a href="#" class="link-brick">
-          <?= ice_image_tag_flickholdr('138x138', array('i' => 2)) ?>
+          <?= ice_image_tag_flickholdr('290x138', array('i' => 2)) ?>
         </a>
         <div class="details" style="word-wrap: break-word;">
           <div class="details-inner">
             <h3>Art Deco Bronze Art Deco Bronze</h3>
-            <p>More than meets the eye ore than meets the eye ore than meets the eye</p>
+            <p>1 More than meets the eye ore than meets the eye ore than meets the eye</p>
           </div>
           <img src="http://www.collectorsquest.next/images/legacy/multimedia/CollectorCollection/50x50.png" width="25" height="25" title="" alt="">          <p>ssdsdsdsdsdsssssssssssssssssssssssssssssssssssssssssssssssssssss</p>
         </div>
@@ -184,9 +184,9 @@
       </div>
     </div>
     <div class="span3 brick">
-      <div class="square">
+      <div class="tall">
         <a href="#" class="link-brick">
-          <?= ice_image_tag_flickholdr('138x138', array('i' => 2)) ?>
+          <?= ice_image_tag_flickholdr('138x290', array('i' => 2)) ?>
         </a>
         <div class="details" style="word-wrap: break-word;">
           <div class="details-inner">
