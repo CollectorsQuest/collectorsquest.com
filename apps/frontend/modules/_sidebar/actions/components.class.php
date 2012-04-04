@@ -101,8 +101,32 @@ class _sidebarComponents extends cqFrontendComponents
     return sfView::NONE;
   }
 
+  /**
+   * TODO: Thrown magnify errors should be handled
+   *
+   * @return string
+   */
   public function executeWidgetMemberVideos()
   {
+    $limit = isset($this->limit) ? (int) $this->limit : sfConfig::get('app_member_videos_per_page', 5);
+
+    $magnify = cqStatic::getMagnifyClient();
+    $this->videos = array();
+
+    if (isset($this->category))
+    {
+      $this->videos = $magnify->getContent()->find($this->category, 1, $limit);
+    }
+    else if (isset($this->tags))
+    {
+      $tags = is_array($this->tags) ? implode(' ', $this->tags) : $this->tags;
+      $this->videos = $magnify->getContent()->find($tags, 1, $limit);
+    }
+    else
+    {
+      $this->videos = $magnify->getContent()->browse(1, $limit);
+    }
+
     return sfView::SUCCESS;
   }
 
