@@ -149,7 +149,7 @@ class manageActions extends cqActions
     }
     else if (count($this->collections) == 0)
     {
-      $this->getUser()->setFlash('highlight', 'You have no collections yet! <a href="' . $this->generateUrl('collection_create') . '">Click here</a> to create one and start selling items.');
+      $this->getUser()->setFlash('highlight', 'You have no collections yet! <a href="' . $this->generateUrl('collection_create') . '">Click here</a> to create one!');
     }
 
     $this->addBreadcrumb($this->__('Collections'), '@collections');
