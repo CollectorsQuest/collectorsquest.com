@@ -18,6 +18,16 @@ class ContentCategoryFormFilter extends BaseContentCategoryFormFilter
         'id_to_make_first' => 0,
     ));
 
+    $this->widgetSchema['ancestor_id'] = new cqWidgetFormPropelChoiceByNestedSet(array(
+        'model' => 'ContentCategory',
+        'add_empty' => true,
+    ));
+    $this->validatorSchema['ancestor_id'] = new sfValidatorPropelChoice(array(
+        'required' => false,
+        'model' => 'ContentCategory',
+        'column' => 'id',
+    ));
+
     $this->unsetFields();
   }
 
@@ -27,4 +37,16 @@ class ContentCategoryFormFilter extends BaseContentCategoryFormFilter
     unset ($this['tree_right']);
     unset ($this['tree_level']);
   }
+
+  public function addAncestorIdColumnCriteria(
+    ContentCategoryQuery $q,
+    $field,
+    $value
+  ) {
+    if (( $ancestor = ContentCategoryPeer::retrieveByPK($value) ))
+    {
+      $q->descendantsOf($ancestor);
+    }
+  }
+
 }
