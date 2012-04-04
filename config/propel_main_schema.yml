@@ -202,7 +202,7 @@ classes:
   ContentCategory:
     columns:
       id: ~
-      collection_category_id: { type: smallint, required: false, foreignClass: CollectionCategory, foreignReference: id, onDelete: setnull }
+      collection_category_id: { type: integer, required: false, foreignClass: CollectionCategory, foreignReference: id, onDelete: setnull }
       name:         { type: varchar, size: 64, required: true, primaryString: true }
       slug:         { type: varchar, size: 64, required: true }
       description:  { type: longvarchar, required: false }
