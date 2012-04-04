@@ -49,8 +49,45 @@
       </div>
     </div>
 
+    <div class="span3 brick">
+      <div class="tall">
+        <a href="#" class="link-brick">
+          <?= ice_image_tag_flickholdr('138x290', array('i' => 2)) ?>
+        </a>
+        <div class="details" style="word-wrap: break-word;">
+          <div class="details-inner">
+            <h3>Art Deco Bronze Art Deco Bronze</h3>
+            <p>More than meets the eye ore than meets the eye ore than meets the eye</p>
+          </div>
+          <img src="http://www.collectorsquest.next/images/legacy/multimedia/CollectorCollection/50x50.png" width="25" height="25" title="" alt="">          <p>ssdsdsdsdsdsssssssssssssssssssssssssssssssssssssssssssssssssssss</p>
+        </div>
+      </div>
+    </div>
+
     <?php
-      for ($i = 9; $i < 22; $i++)
+      for ($i = 9; $i < 12; $i++)
+      {
+        include_partial('general/homepage_collectible', array('collectible' => $collectibles[$i], 'i' => $i));
+      }
+    ?>
+
+    <div class="span6 brick">
+      <div class="wide">
+        <a href="#" class="link-brick">
+          <?= ice_image_tag_flickholdr('290x138', array('i' => 4)) ?>
+        </a>
+        <div class="details" style="word-wrap: break-word;">
+          <div class="details-inner">
+            <h3>Art Deco Bronze Art Deco Bronze</h3>
+            <p>1 More than meets the eye ore than meets the eye ore than meets the eye</p>
+          </div>
+          <img src="http://www.collectorsquest.next/images/legacy/multimedia/CollectorCollection/50x50.png" width="25" height="25" title="" alt="">          <p>ssdsdsdsdsdsssssssssssssssssssssssssssssssssssssssssssssssssssss</p>
+        </div>
+      </div>
+    </div>
+
+    <?php
+      for ($i = 12; $i < 18; $i++)
       {
         include_partial('general/homepage_collectible', array('collectible' => $collectibles[$i], 'i' => $i));
       }
