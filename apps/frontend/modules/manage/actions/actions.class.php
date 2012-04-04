@@ -17,7 +17,7 @@ class manageActions extends cqFrontendActions
 
     // Prepare request arrays
     $GetShippingAddressFields = array(
-      'key' => $shopping_payment->getProperty('paypal.pay_key')
+      'Key' => $shopping_payment->getProperty('paypal.pay_key')
     );
     $PayPalRequestData = array('GetShippingAddressFields' => $GetShippingAddressFields);
 

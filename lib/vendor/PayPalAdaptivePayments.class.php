@@ -2020,7 +2020,7 @@ class PayPalAdaptivePayments extends PayPal
     $XMLRequest .= '</GetFundingPlansRequest>';
 
     // Call the API and load XML response into DOM
-    $XMLResponse = $this->CURLRequest($XMLRequest, 'AdaptiveAccounts', 'GetFundingPlans');
+    $XMLResponse = $this->CURLRequest($XMLRequest, 'AdaptivePayments', 'GetFundingPlans');
     $DOM = new DOMDocument();
     $DOM->loadXML($XMLResponse);
 
@@ -2133,7 +2133,7 @@ class PayPalAdaptivePayments extends PayPal
     $XMLRequest .= '</GetShippingAddressRequest>';
 
     // Call the API and load XML response into DOM
-    $XMLResponse = $this->CURLRequest($XMLRequest, 'AdaptiveAccounts', 'GetShippingAddress');
+    $XMLResponse = $this->CURLRequest($XMLRequest, 'AdaptivePayments', 'GetShippingAddresses');
     $DOM = new DOMDocument();
     $DOM->loadXML($XMLResponse);
 
