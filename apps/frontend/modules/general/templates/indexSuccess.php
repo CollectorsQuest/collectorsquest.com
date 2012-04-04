@@ -14,7 +14,7 @@
       <div class="masonry-blogpost yellow-background">
         <a href="<?= $blog_posts[0]->getPostUrl(); ?>" class="link">
           <h3 class="Chivo" style="line-height: 26px;"><?= $blog_posts[0]->getPostTitle(); ?></h3>
-          <p><?= cqStatic::truncateText($blog_posts[0]->getPostContentStripped(), 350, '...', true); ?></p>
+          <p><?= cqStatic::truncateText($blog_posts[0]->getPlainPostContent(), 350, '...', true); ?></p>
         </a>
         <div class="masonry-blogpost-author">
           <p>
@@ -37,7 +37,7 @@
       <div class="masonry-blogpost blue-background">
         <a href="<?= $blog_posts[1]->getPostUrl(); ?>" class="link">
           <h3 class="Chivo" style="line-height: 26px;"><?= $blog_posts[1]->getPostTitle(); ?></h3>
-          <p><?= cqStatic::truncateText($blog_posts[1]->getPostContentStripped(), 350, '...', true); ?></p>
+          <p><?= cqStatic::truncateText($blog_posts[1]->getPlainPostContent(), 350, '...', true); ?></p>
         </a>
         <div class="masonry-blogpost-author">
           <p>
