@@ -5,49 +5,60 @@
   <div id="homepage" class="row-content">
     <div class="span3 brick">
       <div class="square">
-        <a href="#">
-          <?= ice_image_tag_flickholdr('138x138', array('i' => 8)) ?>
-        </a>
-        <div class="details">
-        <h3>Transformers</h3>
-        <p>More than meets the eye</p>
-        <p>Collin David</p>
-        </div>
-      </div>
-    </div>
-    <div class="span3 brick">
-      <div class="square">
-        <a href="#">
-          <?= ice_image_tag_flickholdr('138x138', array('i' => 3)) ?>
-        </a>
-        <div class="details">
-          <h3>Transformers</h3>
-          <p>More than meets the eye</p>
-          <p>Collin David</p>
-        </div>
-      </div>
-    </div>
-    <div class="span3 brick">
-      <div class="square">
-        <a href="#">
-          <?= ice_image_tag_flickholdr('138x138', array('i' => 1)) ?>
-        </a>
-        <div class="details">
-          <h3>Transformers</h3>
-          <p>More than meets the eye</p>
-          <p>Collin David</p>
-        </div>
-      </div>
-    </div>
-    <div class="span3 brick">
-      <div class="square">
-        <a href="#">
+        <a href="#" class="link-brick">
           <?= ice_image_tag_flickholdr('138x138', array('i' => 2)) ?>
         </a>
-        <div class="details">
-          <h3>Transformers</h3>
-          <p>More than meets the eye</p>
+        <div class="details" style="word-wrap: break-word;">
+          <div class="details-inner">
+            <h3>Art Deco Bronze Art Deco Bronze</h3>
+            <p>More than meets the eye ore than meets the eye ore than meets the eye</p>
+          </div>
+          <img src="http://www.collectorsquest.next/images/legacy/multimedia/CollectorCollection/50x50.png" width="35" height="35" title="" alt="">
           <p>Collin David</p>
+        </div>
+      </div>
+    </div>
+    <div class="span3 brick">
+      <div class="square">
+        <a href="#" class="link-brick">
+          <?= ice_image_tag_flickholdr('138x138', array('i' => 2)) ?>
+        </a>
+        <div class="details" style="word-wrap: break-word;">
+          <div class="details-inner">
+            <h3>Art Deco Bronze Art Deco Bronze Art Deco Bronze Art Deco Bronze</h3>
+            <p>More than meets the eye ore than meets the eye ore than meets the eye</p>
+          </div>
+          <img src="http://www.collectorsquest.next/images/legacy/multimedia/CollectorCollection/50x50.png" width="35" height="35" title="" alt="">
+          <p>Collin David</p>
+        </div>
+      </div>
+    </div>
+    <div class="span3 brick">
+      <div class="square">
+        <a href="#" class="link-brick">
+          <?= ice_image_tag_flickholdr('138x138', array('i' => 2)) ?>
+        </a>
+        <div class="details" style="word-wrap: break-word;">
+          <div class="details-inner">
+            <h3>Art Deco Bronze Art Deco Bronze</h3>
+            <p>More than meets the eye ore than meets the eye ore than meets the eye More than meets the eye ore than meets the eye ore than meets the eye</p>
+          </div>
+          <img src="http://www.collectorsquest.next/images/legacy/multimedia/CollectorCollection/50x50.png" width="35" height="35" title="" alt="">
+          <p>ssdsdsdsdsdsssssssssssssssssssssssssssssssssssssssssssssssssssss</p>
+        </div>
+      </div>
+    </div>
+    <div class="span3 brick">
+      <div class="square">
+        <a href="#" class="link-brick">
+          <?= ice_image_tag_flickholdr('138x138', array('i' => 2)) ?>
+        </a>
+        <div class="details" style="word-wrap: break-word;">
+          <div class="details-inner">
+            <h3>Art Deco Bronze</h3>
+          </div>
+          <img src="http://www.collectorsquest.next/images/legacy/multimedia/CollectorCollection/50x50.png" width="35" height="35" title="" alt="">
+          <p>ssdsdsdsdsdsssssssssssssssssssssssssssssssssssssssssssssssssssss</p>
         </div>
       </div>
     </div>
@@ -74,61 +85,76 @@
     </div>
     <div class="span3 brick">
       <div class="square">
-        <a href="#">
-          <?= ice_image_tag_flickholdr('138x138', array('i' => 8)) ?>
+        <a href="#" class="link-brick">
+          <?= ice_image_tag_flickholdr('138x138', array('i' => 2)) ?>
         </a>
-        <div class="details">
-          <h3>Transformers</h3>
-          <p>More than meets the eye</p>
-          <p>Collin David</p>
+        <div class="details" style="word-wrap: break-word;">
+          <div class="details-inner">
+            <h3>Art Deco Bronze Art Deco Bronze</h3>
+            <p>More than meets the eye ore than meets the eye ore than meets the eye</p>
+          </div>
+          <img src="http://www.collectorsquest.next/images/legacy/multimedia/CollectorCollection/50x50.png" width="35" height="35" title="" alt="">
+          <p>ssdsdsdsdsdsssssssssssssssssssssssssssssssssssssssssssssssssssss</p>
         </div>
       </div>
     </div>
     <div class="span3 brick">
       <div class="square">
-        <a href="#">
-          <?= ice_image_tag_flickholdr('138x138', array('i' => 38)) ?>
+        <a href="#" class="link-brick">
+          <?= ice_image_tag_flickholdr('138x138', array('i' => 2)) ?>
         </a>
-        <div class="details">
-          <h3>Transformers</h3>
-          <p>More than meets the eye</p>
-          <p>Collin David</p>
+        <div class="details" style="word-wrap: break-word;">
+          <div class="details-inner">
+            <h3>Art Deco Bronze Art Deco Bronze</h3>
+            <p>More than meets the eye ore than meets the eye ore than meets the eye</p>
+          </div>
+          <img src="http://www.collectorsquest.next/images/legacy/multimedia/CollectorCollection/50x50.png" width="35" height="35" title="" alt="">
+          <p>ssdsdsdsdsdsssssssssssssssssssssssssssssssssssssssssssssssssssss</p>
         </div>
       </div>
     </div>
     <div class="span3 brick">
       <div class="square">
-        <a href="#">
-          <?= ice_image_tag_flickholdr('138x138', array('i' => 13)) ?>
+        <a href="#" class="link-brick">
+          <?= ice_image_tag_flickholdr('138x138', array('i' => 2)) ?>
         </a>
-        <div class="details">
-          <h3>Transformers</h3>
-          <p>More than meets the eye</p>
-          <p>Collin David</p>
+        <div class="details" style="word-wrap: break-word;">
+          <div class="details-inner">
+            <h3>Art Deco Bronze Art Deco Bronze</h3>
+            <p>More than meets the eye ore than meets the eye ore than meets the eye</p>
+          </div>
+          <img src="http://www.collectorsquest.next/images/legacy/multimedia/CollectorCollection/50x50.png" width="35" height="35" title="" alt="">
+          <p>ssdsdsdsdsdsssssssssssssssssssssssssssssssssssssssssssssssssssss</p>
         </div>
       </div>
     </div>
     <div class="span3 brick">
       <div class="square">
-        <a href="#">
-          <?= ice_image_tag_flickholdr('138x138', array('i' => 8)) ?>
+        <a href="#" class="link-brick">
+          <?= ice_image_tag_flickholdr('138x138', array('i' => 2)) ?>
         </a>
-        <div class="details">
-          <h3>Transformers</h3>
-          <p>More than meets the eye</p>
-          <p>Collin David</p>
+        <div class="details" style="word-wrap: break-word;">
+          <div class="details-inner">
+            <h3>Art Deco Bronze Art Deco Bronze</h3>
+            <p>More than meets the eye ore than meets the eye ore than meets the eye</p>
+          </div>
+          <img src="http://www.collectorsquest.next/images/legacy/multimedia/CollectorCollection/50x50.png" width="35" height="35" title="" alt="">
+          <p>ssdsdsdsdsdsssssssssssssssssssssssssssssssssssssssssssssssssssss</p>
         </div>
       </div>
     </div>
     <div class="span3 brick">
       <div class="square">
-        <a href="#">
-          <?= ice_image_tag_flickholdr('138x138', array('i' => 8)) ?>
+        <a href="#" class="link-brick">
+          <?= ice_image_tag_flickholdr('138x138', array('i' => 2)) ?>
         </a>
-        <div class="details">
-          <h3>Transformers</h3>
-          <p>More than meets the eye</p>
-          <p>Collin David</p>
+        <div class="details" style="word-wrap: break-word;">
+          <div class="details-inner">
+            <h3>Art Deco Bronze Art Deco Bronze</h3>
+            <p>More than meets the eye ore than meets the eye ore than meets the eye</p>
+          </div>
+          <img src="http://www.collectorsquest.next/images/legacy/multimedia/CollectorCollection/50x50.png" width="35" height="35" title="" alt="">
+          <p>ssdsdsdsdsdsssssssssssssssssssssssssssssssssssssssssssssssssssss</p>
         </div>
       </div>
     </div>
@@ -152,85 +178,106 @@
     </div>
     <div class="span3 brick">
       <div class="square">
-        <a href="#">
-          <?= ice_image_tag_flickholdr('138x138', array('i' => 18)) ?>
-        </a>
-        <div class="details">
-          <h3>Transformers</h3>
-          <p>More than meets the eye</p>
-          <p>Collin David</p>
-        </div>
-      </div>
-    </div>
-    <div class="span3 brick">
-      <div class="square">
-        <a href="#">
+        <a href="#" class="link-brick">
           <?= ice_image_tag_flickholdr('138x138', array('i' => 2)) ?>
         </a>
-        <div class="details">
-          <h3>Transformers</h3>
-          <p>More than meets the eye</p>
-          <p>Collin David</p>
+        <div class="details" style="word-wrap: break-word;">
+          <div class="details-inner">
+            <h3>Art Deco Bronze Art Deco Bronze</h3>
+            <p>More than meets the eye ore than meets the eye ore than meets the eye</p>
+          </div>
+          <img src="http://www.collectorsquest.next/images/legacy/multimedia/CollectorCollection/50x50.png" width="35" height="35" title="" alt="">
+          <p>ssdsdsdsdsdsssssssssssssssssssssssssssssssssssssssssssssssssssss</p>
         </div>
       </div>
     </div>
     <div class="span3 brick">
       <div class="square">
-        <a href="#">
-          <?= ice_image_tag_flickholdr('138x138', array('i' => 7)) ?>
+        <a href="#" class="link-brick">
+          <?= ice_image_tag_flickholdr('138x138', array('i' => 2)) ?>
         </a>
-        <div class="details">
-          <h3>Transformers</h3>
-          <p>More than meets the eye</p>
-          <p>Collin David</p>
+        <div class="details" style="word-wrap: break-word;">
+          <div class="details-inner">
+            <h3>Art Deco Bronze Art Deco Bronze</h3>
+            <p>More than meets the eye ore than meets the eye ore than meets the eye</p>
+          </div>
+          <img src="http://www.collectorsquest.next/images/legacy/multimedia/CollectorCollection/50x50.png" width="35" height="35" title="" alt="">
+          <p>ssdsdsdsdsdsssssssssssssssssssssssssssssssssssssssssssssssssssss</p>
         </div>
       </div>
     </div>
     <div class="span3 brick">
       <div class="square">
-        <a href="#">
-          <?= ice_image_tag_flickholdr('138x138', array('i' => 6)) ?>
+        <a href="#" class="link-brick">
+          <?= ice_image_tag_flickholdr('138x138', array('i' => 2)) ?>
         </a>
-        <div class="details">
-          <h3>Transformers</h3>
-          <p>More than meets the eye</p>
-          <p>Collin David</p>
+        <div class="details" style="word-wrap: break-word;">
+          <div class="details-inner">
+            <h3>Art Deco Bronze Art Deco Bronze</h3>
+            <p>More than meets the eye ore than meets the eye ore than meets the eye</p>
+          </div>
+          <img src="http://www.collectorsquest.next/images/legacy/multimedia/CollectorCollection/50x50.png" width="35" height="35" title="" alt="">
+          <p>ssdsdsdsdsdsssssssssssssssssssssssssssssssssssssssssssssssssssss</p>
         </div>
       </div>
     </div>
     <div class="span3 brick">
       <div class="square">
-        <a href="#">
-          <?= ice_image_tag_flickholdr('138x138', array('i' => 5)) ?>
+        <a href="#" class="link-brick">
+          <?= ice_image_tag_flickholdr('138x138', array('i' => 2)) ?>
         </a>
-        <div class="details">
-          <h3>Transformers</h3>
-          <p>More than meets the eye</p>
-          <p>Collin David</p>
+        <div class="details" style="word-wrap: break-word;">
+          <div class="details-inner">
+            <h3>Art Deco Bronze Art Deco Bronze</h3>
+            <p>More than meets the eye ore than meets the eye ore than meets the eye</p>
+          </div>
+          <img src="http://www.collectorsquest.next/images/legacy/multimedia/CollectorCollection/50x50.png" width="35" height="35" title="" alt="">
+          <p>ssdsdsdsdsdsssssssssssssssssssssssssssssssssssssssssssssssssssss</p>
         </div>
       </div>
     </div>
     <div class="span3 brick">
       <div class="square">
-        <a href="#">
-          <?= ice_image_tag_flickholdr('138x138', array('i' => 38)) ?>
+        <a href="#" class="link-brick">
+          <?= ice_image_tag_flickholdr('138x138', array('i' => 2)) ?>
         </a>
-        <div class="details">
-          <h3>Transformers</h3>
-          <p>More than meets the eye</p>
-          <p>Collin David</p>
+        <div class="details" style="word-wrap: break-word;">
+          <div class="details-inner">
+            <h3>Art Deco Bronze Art Deco Bronze</h3>
+            <p>More than meets the eye ore than meets the eye ore than meets the eye</p>
+          </div>
+          <img src="http://www.collectorsquest.next/images/legacy/multimedia/CollectorCollection/50x50.png" width="35" height="35" title="" alt="">
+          <p>ssdsdsdsdsdsssssssssssssssssssssssssssssssssssssssssssssssssssss</p>
         </div>
       </div>
     </div>
     <div class="span3 brick">
       <div class="square">
-        <a href="#">
-          <?= ice_image_tag_flickholdr('138x138', array('i' => 38)) ?>
+        <a href="#" class="link-brick">
+          <?= ice_image_tag_flickholdr('138x138', array('i' => 2)) ?>
         </a>
-        <div class="details">
-          <h3>Transformers</h3>
-          <p>More than meets the eye</p>
-          <p>Collin David</p>
+        <div class="details" style="word-wrap: break-word;">
+          <div class="details-inner">
+            <h3>Art Deco Bronze Art Deco Bronze</h3>
+            <p>More than meets the eye ore than meets the eye ore than meets the eye</p>
+          </div>
+          <img src="http://www.collectorsquest.next/images/legacy/multimedia/CollectorCollection/50x50.png" width="35" height="35" title="" alt="">
+          <p>ssdsdsdsdsdsssssssssssssssssssssssssssssssssssssssssssssssssssss</p>
+        </div>
+      </div>
+    </div>
+    <div class="span3 brick">
+      <div class="square">
+        <a href="#" class="link-brick">
+          <?= ice_image_tag_flickholdr('138x138', array('i' => 2)) ?>
+        </a>
+        <div class="details" style="word-wrap: break-word;">
+          <div class="details-inner">
+            <h3>Art Deco Bronze Art Deco Bronze</h3>
+            <p>More than meets the eye ore than meets the eye ore than meets the eye</p>
+          </div>
+          <img src="http://www.collectorsquest.next/images/legacy/multimedia/CollectorCollection/50x50.png" width="35" height="35" title="" alt="">
+          <p>ssdsdsdsdsdsssssssssssssssssssssssssssssssssssssssssssssssssssss</p>
         </div>
       </div>
     </div>
