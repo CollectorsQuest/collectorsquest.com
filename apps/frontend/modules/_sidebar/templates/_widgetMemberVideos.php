@@ -7,20 +7,23 @@
     <a href="<?php echo sfConfig::get('app_magnify_channel', 'collectors-quest.magnify.net') ?>">See all >></a>
   </div>
 </div>
+<br/>
 <div class="row-fluid">
   <?php foreach ($videos as $video): ?>
   <div>
-    <?php /*
-    <img src="<?php echo $video->getThumbnail() ?>" alt="<?php echo $video->getTitle() ?>" />
-    */ ?>
-    <iframe src="<?php echo $video->getIframeUrl() ?>" frameborder="0" allowTransparency="true" scrolling="no" width="222" height="222"></iframe>
+    <img src="<?php echo $video->getThumbnail() ?>" alt="<?php echo $video->getTitle() ?>" width="120" style="flaot: left;" />
+    <?php echo $video->getTitle() ?>
+    <?php echo $video->getContent(); ?>
+    <?php echo $video->getUpdatedAt() ?>
 
+    <!--
     <p><?php echo $video->getIframeUrl() ?></p>
     <p><?php echo $video->getTitle() ?></p>
 
     <p><?php echo $video->getContent(); ?></p>
 
     <p><?php echo $video->getUpdatedAt() ?></p>
+    //-->
   </div>
   <?php endforeach; ?>
 </div>
