@@ -4,7 +4,7 @@
     <h3 style="color: #125375; font-family: 'Chivo', sans-serif;">Member Videos</h3>
   </div>
   <div class="span3" style="padding-top: 5px; text-align: right;">
-    <?php echo link_to('See all >>', '@collections_categories'); ?>
+    <a href="<?php echo sfConfig::get('app_magnify_channel', 'collectors-quest.magnify.net') ?>">See all >></a>
   </div>
 </div>
 <div class="row-fluid">
@@ -13,7 +13,7 @@
     <?php /*
     <img src="<?php echo $video->getThumbnail() ?>" alt="<?php echo $video->getTitle() ?>" />
     */ ?>
-    <iframe src="<?php echo $video->getIframeUrl() ?>" frameborder="0" allowTransparency="true" scrolling="no" width="320" height="332"></iframe>
+    <iframe src="<?php echo $video->getIframeUrl() ?>" frameborder="0" allowTransparency="true" scrolling="no" width="222" height="222"></iframe>
 
     <p><?php echo $video->getIframeUrl() ?></p>
     <p><?php echo $video->getTitle() ?></p>
