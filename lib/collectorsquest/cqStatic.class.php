@@ -325,4 +325,11 @@ class cqStatic extends IceStatic
     return self::$_browser[$hash];
   }
 
+  public static function getMagnifyClient()
+  {
+    require_once sfConfig::get('sf_lib_dir') . '/vendor/magnify/src/Magnify.php';
+
+    return new Magnify(sfConfig::get('app_magnify_channel'), sfConfig::get('app_magnify_api_key'));
+  }
+
 }

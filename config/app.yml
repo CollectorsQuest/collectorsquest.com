@@ -42,6 +42,10 @@ all:
     merchant_account: "kangov_1327417143_biz@collectorsquest.com"
     url: "https://www.sandbox.paypal.com/cgi-bin/webscr"
 
+  magnify:
+    channel: collectors-quest.magnify.net
+    api_key: K3VQWW33PCMK50HY
+
 dev:
   domain_name: "collectorsquest.dev"
   www_domain: "www.collectorsquest.dev"
