@@ -27,7 +27,7 @@ Modernizr.load({
   load: ('https:' == document.location.protocol ? 'https' : 'http') + '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js',
   complete: function()
   {
-    $('.FugazOne')
+    $('.Chivo, .FugazOne')
       .hide()
       .css({"visibility":"visible"})
       .fadeIn('medium');
