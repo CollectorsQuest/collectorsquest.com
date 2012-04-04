@@ -13,8 +13,8 @@
             <h3>Art Deco Bronze Art Deco Bronze</h3>
             <p>More than meets the eye ore than meets the eye ore than meets the eye</p>
           </div>
-          <img src="http://www.collectorsquest.next/images/legacy/multimedia/CollectorCollection/50x50.png" width="35" height="35" title="" alt="">
-          <p>Collin David</p>
+          <img src="http://www.collectorsquest.next/images/legacy/multimedia/CollectorCollection/50x50.png" width="25" height="25" title="" alt="">
+          <p>Collin David King Kong</p>
         </div>
       </div>
     </div>
@@ -28,8 +28,8 @@
             <h3>Art Deco Bronze Art Deco Bronze Art Deco Bronze Art Deco Bronze</h3>
             <p>More than meets the eye ore than meets the eye ore than meets the eye</p>
           </div>
-          <img src="http://www.collectorsquest.next/images/legacy/multimedia/CollectorCollection/50x50.png" width="35" height="35" title="" alt="">
-          <p>Collin David</p>
+          <img src="http://www.collectorsquest.next/images/legacy/multimedia/CollectorCollection/50x50.png" width="25" height="25" title="" alt="">
+          <p>Annaloveslionking Test</p>
         </div>
       </div>
     </div>
@@ -43,8 +43,7 @@
             <h3>Art Deco Bronze Art Deco Bronze</h3>
             <p>More than meets the eye ore than meets the eye ore than meets the eye More than meets the eye ore than meets the eye ore than meets the eye</p>
           </div>
-          <img src="http://www.collectorsquest.next/images/legacy/multimedia/CollectorCollection/50x50.png" width="35" height="35" title="" alt="">
-          <p>ssdsdsdsdsdsssssssssssssssssssssssssssssssssssssssssssssssssssss</p>
+          <img src="http://www.collectorsquest.next/images/legacy/multimedia/CollectorCollection/50x50.png" width="25" height="25" title="" alt="">          <p>ssdsdsdsdsdsssssssssssssssssssssssssssssssssssssssssssssssssssss</p>
         </div>
       </div>
     </div>
@@ -57,8 +56,7 @@
           <div class="details-inner">
             <h3>Art Deco Bronze</h3>
           </div>
-          <img src="http://www.collectorsquest.next/images/legacy/multimedia/CollectorCollection/50x50.png" width="35" height="35" title="" alt="">
-          <p>ssdsdsdsdsdsssssssssssssssssssssssssssssssssssssssssssssssssssss</p>
+          <img src="http://www.collectorsquest.next/images/legacy/multimedia/CollectorCollection/50x50.png" width="25" height="25" title="" alt="">          <p>Annaloveslionking</p>
         </div>
       </div>
     </div>
@@ -93,8 +91,7 @@
             <h3>Art Deco Bronze Art Deco Bronze</h3>
             <p>More than meets the eye ore than meets the eye ore than meets the eye</p>
           </div>
-          <img src="http://www.collectorsquest.next/images/legacy/multimedia/CollectorCollection/50x50.png" width="35" height="35" title="" alt="">
-          <p>ssdsdsdsdsdsssssssssssssssssssssssssssssssssssssssssssssssssssss</p>
+          <img src="http://www.collectorsquest.next/images/legacy/multimedia/CollectorCollection/50x50.png" width="25" height="25" title="" alt="">          <p>ssdsdsdsdsdsssssssssssssssssssssssssssssssssssssssssssssssssssss</p>
         </div>
       </div>
     </div>
@@ -108,8 +105,7 @@
             <h3>Art Deco Bronze Art Deco Bronze</h3>
             <p>More than meets the eye ore than meets the eye ore than meets the eye</p>
           </div>
-          <img src="http://www.collectorsquest.next/images/legacy/multimedia/CollectorCollection/50x50.png" width="35" height="35" title="" alt="">
-          <p>ssdsdsdsdsdsssssssssssssssssssssssssssssssssssssssssssssssssssss</p>
+          <img src="http://www.collectorsquest.next/images/legacy/multimedia/CollectorCollection/50x50.png" width="25" height="25" title="" alt="">          <p>ssdsdsdsdsdsssssssssssssssssssssssssssssssssssssssssssssssssssss</p>
         </div>
       </div>
     </div>
@@ -123,8 +119,7 @@
             <h3>Art Deco Bronze Art Deco Bronze</h3>
             <p>More than meets the eye ore than meets the eye ore than meets the eye</p>
           </div>
-          <img src="http://www.collectorsquest.next/images/legacy/multimedia/CollectorCollection/50x50.png" width="35" height="35" title="" alt="">
-          <p>ssdsdsdsdsdsssssssssssssssssssssssssssssssssssssssssssssssssssss</p>
+          <img src="http://www.collectorsquest.next/images/legacy/multimedia/CollectorCollection/50x50.png" width="25" height="25" title="" alt="">          <p>ssdsdsdsdsdsssssssssssssssssssssssssssssssssssssssssssssssssssss</p>
         </div>
       </div>
     </div>
@@ -138,8 +133,7 @@
             <h3>Art Deco Bronze Art Deco Bronze</h3>
             <p>More than meets the eye ore than meets the eye ore than meets the eye</p>
           </div>
-          <img src="http://www.collectorsquest.next/images/legacy/multimedia/CollectorCollection/50x50.png" width="35" height="35" title="" alt="">
-          <p>ssdsdsdsdsdsssssssssssssssssssssssssssssssssssssssssssssssssssss</p>
+          <img src="http://www.collectorsquest.next/images/legacy/multimedia/CollectorCollection/50x50.png" width="25" height="25" title="" alt="">          <p>ssdsdsdsdsdsssssssssssssssssssssssssssssssssssssssssssssssssssss</p>
         </div>
       </div>
     </div>
@@ -153,8 +147,7 @@
             <h3>Art Deco Bronze Art Deco Bronze</h3>
             <p>More than meets the eye ore than meets the eye ore than meets the eye</p>
           </div>
-          <img src="http://www.collectorsquest.next/images/legacy/multimedia/CollectorCollection/50x50.png" width="35" height="35" title="" alt="">
-          <p>ssdsdsdsdsdsssssssssssssssssssssssssssssssssssssssssssssssssssss</p>
+          <img src="http://www.collectorsquest.next/images/legacy/multimedia/CollectorCollection/50x50.png" width="25" height="25" title="" alt="">          <p>ssdsdsdsdsdsssssssssssssssssssssssssssssssssssssssssssssssssssss</p>
         </div>
       </div>
     </div>
@@ -186,8 +179,7 @@
             <h3>Art Deco Bronze Art Deco Bronze</h3>
             <p>More than meets the eye ore than meets the eye ore than meets the eye</p>
           </div>
-          <img src="http://www.collectorsquest.next/images/legacy/multimedia/CollectorCollection/50x50.png" width="35" height="35" title="" alt="">
-          <p>ssdsdsdsdsdsssssssssssssssssssssssssssssssssssssssssssssssssssss</p>
+          <img src="http://www.collectorsquest.next/images/legacy/multimedia/CollectorCollection/50x50.png" width="25" height="25" title="" alt="">          <p>ssdsdsdsdsdsssssssssssssssssssssssssssssssssssssssssssssssssssss</p>
         </div>
       </div>
     </div>
@@ -201,8 +193,7 @@
             <h3>Art Deco Bronze Art Deco Bronze</h3>
             <p>More than meets the eye ore than meets the eye ore than meets the eye</p>
           </div>
-          <img src="http://www.collectorsquest.next/images/legacy/multimedia/CollectorCollection/50x50.png" width="35" height="35" title="" alt="">
-          <p>ssdsdsdsdsdsssssssssssssssssssssssssssssssssssssssssssssssssssss</p>
+          <img src="http://www.collectorsquest.next/images/legacy/multimedia/CollectorCollection/50x50.png" width="25" height="25" title="" alt="">          <p>ssdsdsdsdsdsssssssssssssssssssssssssssssssssssssssssssssssssssss</p>
         </div>
       </div>
     </div>
@@ -216,8 +207,7 @@
             <h3>Art Deco Bronze Art Deco Bronze</h3>
             <p>More than meets the eye ore than meets the eye ore than meets the eye</p>
           </div>
-          <img src="http://www.collectorsquest.next/images/legacy/multimedia/CollectorCollection/50x50.png" width="35" height="35" title="" alt="">
-          <p>ssdsdsdsdsdsssssssssssssssssssssssssssssssssssssssssssssssssssss</p>
+          <img src="http://www.collectorsquest.next/images/legacy/multimedia/CollectorCollection/50x50.png" width="25" height="25" title="" alt="">          <p>ssdsdsdsdsdsssssssssssssssssssssssssssssssssssssssssssssssssssss</p>
         </div>
       </div>
     </div>
@@ -231,8 +221,7 @@
             <h3>Art Deco Bronze Art Deco Bronze</h3>
             <p>More than meets the eye ore than meets the eye ore than meets the eye</p>
           </div>
-          <img src="http://www.collectorsquest.next/images/legacy/multimedia/CollectorCollection/50x50.png" width="35" height="35" title="" alt="">
-          <p>ssdsdsdsdsdsssssssssssssssssssssssssssssssssssssssssssssssssssss</p>
+          <img src="http://www.collectorsquest.next/images/legacy/multimedia/CollectorCollection/50x50.png" width="25" height="25" title="" alt="">          <p>ssdsdsdsdsdsssssssssssssssssssssssssssssssssssssssssssssssssssss</p>
         </div>
       </div>
     </div>
@@ -246,8 +235,7 @@
             <h3>Art Deco Bronze Art Deco Bronze</h3>
             <p>More than meets the eye ore than meets the eye ore than meets the eye</p>
           </div>
-          <img src="http://www.collectorsquest.next/images/legacy/multimedia/CollectorCollection/50x50.png" width="35" height="35" title="" alt="">
-          <p>ssdsdsdsdsdsssssssssssssssssssssssssssssssssssssssssssssssssssss</p>
+          <img src="http://www.collectorsquest.next/images/legacy/multimedia/CollectorCollection/50x50.png" width="25" height="25" title="" alt="">          <p>ssdsdsdsdsdsssssssssssssssssssssssssssssssssssssssssssssssssssss</p>
         </div>
       </div>
     </div>
@@ -261,8 +249,7 @@
             <h3>Art Deco Bronze Art Deco Bronze</h3>
             <p>More than meets the eye ore than meets the eye ore than meets the eye</p>
           </div>
-          <img src="http://www.collectorsquest.next/images/legacy/multimedia/CollectorCollection/50x50.png" width="35" height="35" title="" alt="">
-          <p>ssdsdsdsdsdsssssssssssssssssssssssssssssssssssssssssssssssssssss</p>
+          <img src="http://www.collectorsquest.next/images/legacy/multimedia/CollectorCollection/50x50.png" width="25" height="25" title="" alt="">          <p>ssdsdsdsdsdsssssssssssssssssssssssssssssssssssssssssssssssssssss</p>
         </div>
       </div>
     </div>
@@ -276,8 +263,7 @@
             <h3>Art Deco Bronze Art Deco Bronze</h3>
             <p>More than meets the eye ore than meets the eye ore than meets the eye</p>
           </div>
-          <img src="http://www.collectorsquest.next/images/legacy/multimedia/CollectorCollection/50x50.png" width="35" height="35" title="" alt="">
-          <p>ssdsdsdsdsdsssssssssssssssssssssssssssssssssssssssssssssssssssss</p>
+          <img src="http://www.collectorsquest.next/images/legacy/multimedia/CollectorCollection/50x50.png" width="25" height="25" title="" alt="">          <p>ssdsdsdsdsdsssssssssssssssssssssssssssssssssssssssssssssssssssss</p>
         </div>
       </div>
     </div>
