@@ -1,4 +1,4 @@
-<?php /* @var $videos ContentEntry[] */ ?>
+<?php /* @var $videos ContentFeed */ ?>
 <div class="row-fluid" style="border-bottom: 1px dotted red;">
   <div class="span9">
     <h3 style="color: #125375; font-family: 'Chivo', sans-serif;">Member Videos</h3>
@@ -9,6 +9,7 @@
 </div>
 <br/>
 <div class="row-fluid">
+  <?php /* @var $video ContentEntry */ ?>
   <?php foreach ($videos as $video): ?>
   <div>
     <img src="<?php echo $video->getThumbnail() ?>" alt="<?php echo $video->getTitle() ?>" width="120" style="flaot: left;" />
