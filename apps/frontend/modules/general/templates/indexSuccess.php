@@ -1,4 +1,4 @@
-<h2 class="FugazOne blue-title">
+<h2 class="Chivo blue-title">
   &nbsp;&nbsp;Showcase
 </h2>
 <div class="row">

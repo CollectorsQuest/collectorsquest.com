@@ -9,7 +9,7 @@
             <a href="#">Learn more</a>
           </p>
           <div class="row-spacing-footer">
-            <button class="btn btn-primary blue pull-left" type="submit">Contact us</button>
+            <button class="btn btn-primary blue-button pull-left" type="submit">Contact us</button>
           </div>
           <p><a href="#"><i class="s-16-icon-facebook ico-16px-alignment"></i> Follow us on Facebook</a></p>
           <p><a href="#" ><i class="s-16-icon-twitter ico-16px-alignment"></i> Follow us on Twitter</a></p>
@@ -30,7 +30,7 @@
                 <?php include_partial('global/footer_signup_external_buttons'); ?>
               </div>
               <div class="span3">
-                <button type="submit" class="btn btn-primary blue pull-right">Submit</button>
+                <button type="submit" class="btn btn-primary blue-button pull-right">Submit</button>
               </div>
             </div>
           </form>
@@ -51,7 +51,7 @@
                 <?php include_partial('global/footer_signup_external_buttons'); ?>
               </div>
               <div class="span4">
-                <button type="submit" class="btn btn-primary blue pull-right">Log&nbsp;In</button>
+                <button type="submit" class="btn btn-primary blue-button pull-right">Log&nbsp;In</button>
               </div>
             </div>
             <div class="row-fluid">
@@ -91,7 +91,7 @@
 
         <div class="row-fluid top-padding-10">
           <div class="span12">
-            <button class="btn btn-primary blue" type="submit">My Profile</button>
+            <button class="btn btn-primary blue-button" type="submit">My Profile</button>
             <?= link_to('Log out', '@logout'); ?>
           </div>
         </div>
