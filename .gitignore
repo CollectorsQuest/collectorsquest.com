@@ -31,6 +31,7 @@ base
 /lib/vendor/faker
 /lib/vendor/monolog
 /lib/vendor/twig
+/lib/vendor/magnify
 !/plugins/sfPropelORMPlugin
 
 # symlinked folders (when on windows)

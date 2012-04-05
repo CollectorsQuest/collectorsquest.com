@@ -8,11 +8,11 @@
         <div class="span5">
           <div class="input-append search-header">
             <form action="<?= url_for('@search') ?>" method="get">
-              <input name="q" id="headerSearchInput" data-provide="typeahead" autocomplete="off" data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]' type="text" size="16" value="<?= $sf_params->get('q'); ?>">
+              <?= $form['q']->render(array('value' => $sf_params->get('q'), 'autocomplete' => 'off')); ?>
               <button class="btn btn-large" type="submit">Search</button>
             </form>
             <!--
-               <div class="btn-group">
+              <div class="btn-group">
                 <a href="#" class="btn btn-primary">Search</a>
                 <a href="#" data-toggle="dropdown" class="btn btn-primary dropdown-toggle"><span class="caret"></span></a>
                 <ul class="dropdown-menu">

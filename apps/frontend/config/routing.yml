@@ -1,3 +1,10 @@
+### AJAX
+
+ajax_typeahead:
+  url:   /ajax/typeahead/:section/:page
+  param: { module: ajax, action: typeAhead }
+  requirements: { sf_method: [GET], sf_format: json }
+
 ### COLLECTIONS
 
 collections:
@@ -61,6 +68,10 @@ collectible_by_slug:
 
 
 ### SEARCH
+
+search_typeahead:
+  url:   /search/typeahead
+  param: { module: search, action: ajax }
 
 search_collectibles:
   url:   /search/collectibles
@@ -147,13 +158,19 @@ shopping_order_pay:
   url: /order/:uuid/pay
   class: sfPropelRoute
   options: { model: ShoppingOrder, type: object }
-  param: { module: shopping, action: pay }
+  param: { module: shopping, action: orderPay }
 
-shopping_paypal_ipn:
-  url: /shopping/paypal-ipn
-  param: { module: shopping, action: paypalIpn }
-  requirements:
-    sf_method: [POST]
+shopping_order_review:
+  url: /order/:uuid/review
+  class: sfPropelRoute
+  options: { model: ShoppingOrder, type: object }
+  param: { module: shopping, action: orderReview }
+
+shopping_order_error:
+  url: /order/:uuid/error
+  class: sfPropelRoute
+  options: { model: ShoppingOrder, type: object }
+  param: { module: shopping, action: orderError }
 
 
 ### MANAGE

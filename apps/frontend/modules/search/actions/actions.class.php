@@ -5,8 +5,10 @@ class searchActions extends cqFrontendActions
   /** @var array */
   private static $_query = array('filters' => array());
 
-  public function executeIndex(sfWebRequest $request)
+  public function preExecute()
   {
+    $request = $this->getRequest();
+
     if (($sid = $request->getParameter('sid')) && strlen($sid) == 32)
     {
       $_query = $this->getUser()->getAttribute($sid, array(), 'adverts');
@@ -30,25 +32,99 @@ class searchActions extends cqFrontendActions
       $this->redirect('@search_advanced');
     }
 
-    /**
-     * If the user has searched for something specific (self::$_query['q'] is set), then we sort by relevance
-     * All other cases it means the user is browsing through the Adverts and we need to sort by date, latest first
-     */
-    self::$_query['sortby'] = $this->getUser()->getAttribute('sortby', isset(self::$_query['q']) ? 'relevance' : 'date', 'adverts');
-    self::$_query['order']  = $this->getUser()->getAttribute('order', 'DESC', 'adverts');
+    // Setting the user preference for the adverts display type (grid or list)
+    if ($request->getParameter('display'))
+    {
+      switch ($request->getParameter('display'))
+      {
+        case 'grid':
+          $this->getUser()->setAttribute('display', 'grid', 'search');
+          break;
+        case 'list':
+        default:
+          $this->getUser()->setAttribute('display', 'list', 'search');
+          break;
+      }
+    }
+    if ($request->getParameter('sortby'))
+    {
+      $this->getUser()->setAttribute('sortby', $request->getParameter('sortby'), 'search');
+    }
+  }
 
-    $pager = new cqSphinxPager(self::$_query, 25);
+  public function executeIndex(sfWebRequest $request)
+  {
+    $pager = new cqSphinxPager(self::$_query, array(), 24);
     $pager->setPage($request->getParameter('page', 1));
     $this->sid = $pager->init();
 
     $this->pager = $pager;
     $this->total = ($pager->getNbResults() >= 1000) ? '1000+' : $pager->getNbResults();
+    $this->display = $this->getUser()->getAttribute('display', 'grid', 'search');
 
     return sfView::SUCCESS;
   }
 
-  public function executeAdvanced(sfWebRequest $request)
+  public function executeAdvanced()
   {
     return sfView::SUCCESS;
   }
+
+  public function executeCollections(sfWebRequest $request)
+  {
+    $pager = new cqSphinxPager(self::$_query, array('collections'), 24);
+    $pager->setPage($request->getParameter('page', 1));
+    $this->sid = $pager->init();
+
+    $this->pager = $pager;
+    $this->total = ($pager->getNbResults() >= 1000) ? '1000+' : $pager->getNbResults();
+    $this->display = $this->getUser()->getAttribute('display', 'grid', 'search');
+
+    return sfView::SUCCESS;
+  }
+
+  public function executeCollectors(sfWebRequest $request)
+  {
+    $pager = new cqSphinxPager(self::$_query, array('collectors'), 24);
+    $pager->setPage($request->getParameter('page', 1));
+    $this->sid = $pager->init();
+
+    $this->pager = $pager;
+    $this->total = ($pager->getNbResults() >= 1000) ? '1000+' : $pager->getNbResults();
+    $this->display = $this->getUser()->getAttribute('display', 'grid', 'search');
+
+    return sfView::SUCCESS;
+  }
+
+  public function executeCollectibles(sfWebRequest $request)
+  {
+    $pager = new cqSphinxPager(self::$_query, array('collectibles'), 24);
+    $pager->setPage($request->getParameter('page', 1));
+    $this->sid = $pager->init();
+
+    $this->pager = $pager;
+    $this->total = ($pager->getNbResults() >= 1000) ? '1000+' : $pager->getNbResults();
+    $this->display = $this->getUser()->getAttribute('display', 'grid', 'search');
+
+    return sfView::SUCCESS;
+  }
+
+  public function executeBlog(sfWebRequest $request)
+  {
+    $pager = new cqSphinxPager(self::$_query, array('blog'), 24);
+    $pager->setPage($request->getParameter('page', 1));
+    $this->sid = $pager->init();
+
+    $this->pager = $pager;
+    $this->total = ($pager->getNbResults() >= 1000) ? '1000+' : $pager->getNbResults();
+    $this->display = $this->getUser()->getAttribute('display', 'grid', 'search');
+
+    return sfView::SUCCESS;
+  }
+
+  public function executeVideos(sfWebRequest $request)
+  {
+    return sfView::SUCCESS;
+  }
+
 }

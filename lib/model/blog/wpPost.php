@@ -25,12 +25,25 @@ class wpPost extends BasewpPost
 
     if (empty($excerpt))
     {
-      $excerpt = strip_tags(str_replace(
-        array('[/caption]', '[caption', ']'), array('</caption>', '<caption', '>'), $this->getPostContent()
-      ));
+      $excerpt = wpPostPeer::stripShortcodes($this->getPostContent());
     }
 
     return cqStatic::truncateText($excerpt, $length, $truncate_string);
+  }
+
+  public function getPostTitle()
+  {
+    return wpPostPeer::sanitize(parent::getPostTitle());
+  }
+
+  public function getPostContent()
+  {
+    return wpPostPeer::sanitize(parent::getPostContent());
+  }
+
+  public function getPostContentStripped()
+  {
+    return wpPostPeer::stripShortcodes($this->getPostContent());
   }
 
   public function getTags($type = 'string')
@@ -55,7 +68,7 @@ class wpPost extends BasewpPost
 
   public function getPlainPostContent()
   {
-    return trim(strip_tags($this->getPostContent()));
+    return trim(strip_tags($this->getPostContentStripped()));
   }
 
   public function countPostContentWords()

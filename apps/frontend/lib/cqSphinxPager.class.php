@@ -3,20 +3,23 @@
 class cqSphinxPager extends sfPager
 {
   private
-    $query   = array(),
-    $matches = array(),
-    $sid     = null,
-    $offset  = null;
+    $query    = array(),
+    $types    = array(),
+    $matches  = array(),
+    $excerpts = array(),
+    $sid      = null,
+    $offset   = null;
 
   /**
    * @param  array    $query
    * @param  integer  $maxPerPage
    */
-  public function __construct($query, $maxPerPage = 14)
+  public function __construct($query, $types = array(), $maxPerPage = 14)
   {
     parent::__construct(null, $maxPerPage);
 
     $this->query = $query;
+    $this->types = $types;
   }
 
   /**
@@ -29,7 +32,7 @@ class cqSphinxPager extends sfPager
     $hasMaxRecordLimit = ($this->getMaxRecordLimit() !== false);
     $maxRecordLimit = $this->getMaxRecordLimit();
 
-    $total = self::search($this->query, 'total');
+    $total = self::search($this->query, $this->types, 'total');
     $this->setNbResults($total);
 
     if (($this->getPage() == 0 || $this->getMaxPerPage() == 0))
@@ -66,7 +69,7 @@ class cqSphinxPager extends sfPager
     }
 
     // Populate the matches array
-    $results = self::search($this->query, 'raw');
+    $results = self::search($this->query, $this->types, 'raw');
 
     $this->matches = isset($results['matches']) ? $results['matches'] : array();
     $this->words   = isset($results['words'])   ? $results['words']   : array();
@@ -91,6 +94,7 @@ class cqSphinxPager extends sfPager
     if (empty($this->matches)) return array();
 
     $objects         = array();
+    $contents        = array();
     $wp_post_ids     = array();
     $collection_ids  = array();
     $collector_ids   = array();
@@ -129,19 +133,21 @@ class cqSphinxPager extends sfPager
         if (false !== $key = array_search($wp_post->getId() + 100000000, $objects, true))
         {
           $objects[$key] = $wp_post;
+          $contents[$key] = $wp_post->getPostContentStripped();
         }
       }
     }
     if (!empty($collection_ids))
     {
-      /** @var $collections Collection[] */
-      $collections = CollectionQuery::create()->filterById($collection_ids, Criteria::IN)->find();
+      /** @var $collections CollectorCollection[] */
+      $collections = CollectorCollectionQuery::create()->filterById($collection_ids, Criteria::IN)->find();
 
       foreach ($collections as $collection)
       {
         if (false !== $key = array_search($collection->getId() + 200000000, $objects, true))
         {
           $objects[$key] = $collection;
+          $contents[$key] = $collection->getDescription('stripped');
         }
       }
     }
@@ -168,6 +174,7 @@ class cqSphinxPager extends sfPager
         if (false !== $key = array_search($collectible->getId() + 400000000, $objects, true))
         {
           $objects[$key] = $collectible;
+          $contents[$key] = $collectible->getDescription('stripped');
         }
       }
     }
@@ -179,26 +186,33 @@ class cqSphinxPager extends sfPager
       unset($objects[$key]);
     }
 
+    $sphinx = self::getSphinxClient();
+
+    $env = defined('SF_ENV') ? SF_ENV : sfConfig::get('sf_environment');
+    $env = str_replace('_debug', '', $env);
+    $indexes = sprintf('%1$s_blog_normalized', $env);
+
+    $keys = array_keys($contents);
+    if ($excerpts = $sphinx->BuildExcerpts($contents, $indexes, $this->query['q'], array('limit' => 128)))
+    {
+      foreach ($excerpts as $i => $excerpt)
+      if (!empty($excerpt))
+      {
+        $this->excerpts[$keys[$i]] = $excerpt;
+      }
+    }
+
     return $objects;
   }
 
-  /**
-   * @param  int     $limit
-   * @param  string  $culture
-   *
-   * @return array
-   */
-  public function getAttributes($limit = 0, $culture = null)
+  public function getExcerpts()
   {
-    return array();
+    return $this->excerpts;
   }
 
-  /**
-   * @return array
-   */
-  public function getAdvertIds()
+  public function getExcerpt($i)
   {
-    return $this->advert_ids;
+    return isset($this->excerpts[$i]) ? $this->excerpts[$i] : null;
   }
 
   /**
@@ -220,7 +234,7 @@ class cqSphinxPager extends sfPager
 
         // Querying the Sphinx search engine for the total number of docs for $word
         $total = self::search(
-          array_merge($this->query, array('q' => $word)), 'total'
+          array_merge($this->query, array('q' => $word)), $this->types, 'total'
         );
 
         if ($total > 0)
@@ -235,6 +249,7 @@ class cqSphinxPager extends sfPager
 
   /**
    * @param  integer  $v
+   * @return void
    */
   public function setOffset($v)
   {
@@ -261,9 +276,10 @@ class cqSphinxPager extends sfPager
    *
    * @return mixed
    */
-  static public function search($query, $return = 'pks')
+  static public function search($query, $types = array(), $return = 'pks')
   {
     $sphinx = self::getSphinxClient();
+    $types  = !empty($types) ? (array) $types : array('collections', 'collectors', 'collectibles', 'blog');
 
     // http://www.sphinxsearch.com/docs/current.html#api-func-setlimits
     if (!empty($query['limits']) && count($query['limits']) == 2)
@@ -304,18 +320,23 @@ class cqSphinxPager extends sfPager
     if (!empty($query['groupby']))
     {
       $sphinx->setGroupBy($query['groupby'], SPH_GROUPBY_ATTR);
-      $sphinx->setGroupDistinct('advert_id');
+      $sphinx->setGroupDistinct('object_id');
     }
+
+    $sphinx->SetFieldWeights(array(
+      'title' => 10,'tags' => 5, 'content' => 1,
+    ));
 
     $env = defined('SF_ENV') ? SF_ENV : sfConfig::get('sf_environment');
     $env = str_replace('_debug', '', $env);
-    $indexes = sprintf(
-      '%1$s_collectibles_normalized, %1$s_collections_normalized,
-       %1$s_collectors_normalized, %1$s_blog_normalized',
-      $env
-    );
 
-    $results = $sphinx->query($q, $indexes, 3);
+    $indexes = array();
+    foreach ($types as $type)
+    {
+      $indexes[] = sprintf('%s_%s_normalized', $env, $type);
+    }
+
+    $results = $sphinx->query($q, implode(', ', $indexes), 3);
 
     if ($return == 'raw')
     {
@@ -367,6 +388,8 @@ class cqSphinxPager extends sfPager
   public static function getSphinxClient()
   {
     $sphinx = cqStatic::getSphinxClient();
+
+    $sphinx->SetRankingMode(SPH_RANK_SPH04);
 
     // http://www.sphinxsearch.com/docs/current.html#api-func-setmatchmode
     $sphinx->setMatchMode(SPH_MATCH_EXTENDED2);

@@ -12,6 +12,12 @@ class generalActions extends cqFrontendActions
 
   public function executeIndex()
   {
+    // Get the latest Blog post and its first image
+    $this->blog_posts = wpPostPeer::getLatestPosts(2);
+
+    // Get 22 Collectibles
+    $this->collectibles = CollectibleQuery::create()->limit(22)->addDescendingOrderByColumn('RAND()')->find();
+
     return sfView::SUCCESS;
   }
 

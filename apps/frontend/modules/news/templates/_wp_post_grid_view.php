@@ -4,7 +4,7 @@
      data-id="<?= $wp_post->getId(); ?>" class="wp_post_grid_view">
 
   <h3><?php echo link_to_blog_post($wp_post); ?></h3>
-  <blockquote><?php echo $wp_post->getPostExcerpt(128); ?></blockquote>
+  <blockquote><?= !empty($excerpt) ? $excerpt : $wp_post->getPostExcerpt(128); ?></blockquote>
   <?= link_to_blog_author($wp_post->getwpUser(), 'image', array('width' => 35, 'height' => 35, 'style' => 'float: left; margin-right: 10px;')); ?>
   posted by <br/>
   <?= link_to_blog_author($wp_post->getwpUser(), 'text'); ?>

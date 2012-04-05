@@ -158,7 +158,7 @@ class shoppingActions extends cqFrontendActions
 
   }
 
-  public function executePay(sfWebRequest $request)
+  public function executeOrderPay(sfWebRequest $request)
   {
     /** @var $shopping_order ShoppingOrder */
     $shopping_order = $this->getRoute()->getObject();
@@ -199,32 +199,24 @@ class shoppingActions extends cqFrontendActions
           array('uuid' => $shopping_order->getUuid(), 'cmd' => 'cancel', 'encrypt' => 1),
           true
         );
+        $PayRequestFields['IPNNotificationURL'] = $this->generateUrl(
+          'shopping_order_paypal',
+          array('uuid' => $shopping_order->getUuid(), 'cmd' => 'ipn', 'encrypt' => 1),
+          true
+        );
         $PayRequestFields['TrackingID'] = $shopping_payment->getTrackingId();
-
-        $shopping_payment->setProperty('paypal.pay_request_fields', serialize($PayRequestFields));
-
-        $ClientDetailsFields = $shopping_order->getPaypalClientDetailsFields();
-        $shopping_payment->setProperty('paypal.client_details_fields', serialize($ClientDetailsFields));
-
-        $Receivers = $shopping_order->getPaypalReceivers();
-        $shopping_payment->setProperty('paypal.receivers', serialize($Receivers));
-
-        $SenderIdentifierFields = $shopping_order->getPaypalSenderIdentifierFields();
-        $shopping_payment->setProperty('paypal.sender_identifier_fields', serialize($SenderIdentifierFields));
-
-        $AccountIdentifierFields = $shopping_order->getPaypalAccountIdentifierFields();
-        $shopping_payment->setProperty('paypal.account_identifier_fields', serialize($AccountIdentifierFields));
-
-        $shopping_payment->save();
 
         $PayPalRequest = array(
           'PayRequestFields' => $PayRequestFields,
-          'ClientDetailsFields' => $ClientDetailsFields,
+          'ClientDetailsFields' => $shopping_order->getPaypalClientDetailsFields(),
           'FundingTypes' => $shopping_order->getPaypalFundingTypes(),
-          'Receivers' => $Receivers,
-          'SenderIdentifierFields' => $SenderIdentifierFields,
-          'AccountIdentifierFields' => $AccountIdentifierFields
+          'Receivers' => $shopping_order->getPaypalReceivers(),
+          'SenderIdentifierFields' => $shopping_order->getPaypalSenderIdentifierFields(),
+          'AccountIdentifierFields' => $shopping_order->getPaypalAccountIdentifierFields()
         );
+
+        $shopping_payment->setPayPalPayRequest($PayPalRequest);
+        $shopping_payment->save();
 
         $AdaptivePayments = cqStatic::getPayPaylAdaptivePaymentsClient();
         $result = $AdaptivePayments->Pay($PayPalRequest);
@@ -270,6 +262,9 @@ class shoppingActions extends cqFrontendActions
 
           if (!$AdaptivePayments->APICallSuccessful($result['Ack']))
           {
+            $this->shopping_order   = $shopping_order;
+            $this->shopping_payment = $shopping_payment;
+
             return sfView::ERROR;
           }
         }
@@ -287,6 +282,9 @@ class shoppingActions extends cqFrontendActions
           $shopping_payment->setStatus(ShoppingPaymentPeer::STATUS_FAILED);
           $shopping_payment->save();
 
+          $this->shopping_order   = $shopping_order;
+          $this->shopping_payment = $shopping_payment;
+
           return sfView::ERROR;
         }
 
@@ -294,6 +292,39 @@ class shoppingActions extends cqFrontendActions
     }
 
     return sfView::SUCCESS;
+  }
+
+  public function executeOrderReview()
+  {
+    /** @var $shopping_order ShoppingOrder */
+    $shopping_order = $this->getRoute()->getObject();
+
+    /** @var $shopping_payment ShoppingPayment */
+    $shopping_payment = $shopping_order->getShoppingPaymentRelatedByShoppingPaymentId();
+
+    // Check if the Order is already completed and redirect appropriately
+    if (!$shopping_payment || $shopping_payment->getStatus() != ShoppingPaymentPeer::STATUS_COMPLETED)
+    {
+      $this->getUser()->setFlash('error', sprintf('Order <b>%s</b> has not been paid yet!', $shopping_order->getUuid()));
+      $this->redirect('@shopping_order_pay?uuid='. $shopping_order->getUuid());
+    }
+
+    return sfView::SUCCESS;
+  }
+
+  public function executeOrderError()
+  {
+    /** @var $shopping_order ShoppingOrder */
+    $shopping_order = $this->getRoute()->getObject();
+
+    /** @var $shopping_payment ShoppingPayment */
+    $shopping_payment = $shopping_order->getShoppingPaymentRelatedByShoppingPaymentId();
+
+    $this->shopping_order   = $shopping_order;
+    $this->shopping_payment = $shopping_payment;
+
+    $this->setTemplate('orderPay', 'shopping');
+    return sfView::ERROR;
   }
 
   public function executePaypal(sfWebRequest $request)
@@ -319,16 +350,37 @@ class shoppingActions extends cqFrontendActions
         $AdaptivePayments = cqStatic::getPayPaylAdaptivePaymentsClient();
         $result = $AdaptivePayments->PaymentDetails($PayPalRequestData);
 
+        if (!$AdaptivePayments->APICallSuccessful($result['Ack']))
+        {
+          $this->url = '@shopping_order_error?uuid='. $shopping_order->getUuid();
+
+          return 'Redirect';
+        }
+
+        $shopping_payment->setProperty('paypal.payment_details', serialize($result));
+        $shopping_payment->setProperty('paypal.sender_email', $result['SenderEmail']);
+        $shopping_payment->setProperty('paypal.status', $result['Status']);
+        $shopping_payment->save();
+
+        if (strtoupper($result['Status']) !== 'COMPLETED')
+        {
+          $this->getUser()->setFlash('error', sprintf('Order <b>%s</b> has not been paid yet!', $shopping_order->getUuid()));
+          $this->redirect('@shopping_order_pay?uuid='. $shopping_order->getUuid());
+        }
+
+        $shopping_payment->setProperty('paypal.transaction_id', $result['PaymentInfo']['TransactionID']);
+        $shopping_payment->setStatus(ShoppingPaymentPeer::STATUS_COMPLETED);
+        $shopping_payment->save();
+
         // Remove the CollectibleForSale from the shopping cart
         $q = ShoppingCartCollectibleQuery::create()
            ->filterByCollectible($shopping_order->getCollectible())
            ->filterByShoppingCart($shopping_order->getShoppingCart());
         $q->delete();
 
-        $shopping_payment->setStatus(ShoppingPaymentPeer::STATUS_COMPLETED);
-        $shopping_payment->save();
+        $this->url = '@shopping_order_review?uuid='. $shopping_order->getUuid();
 
-        $this->redirect('@manage_shopping_order?uuid='. $shopping_order->getUuid());
+        return 'Redirect';
         break;
 
       case 'cancel':
@@ -336,8 +388,10 @@ class shoppingActions extends cqFrontendActions
         $shopping_payment->setStatus(ShoppingPaymentPeer::STATUS_CANCELLED);
         $shopping_payment->save();
 
-        $this->getUser()->setFlash('error', 'You cancelled the PayPal payment and your order was not completed!');
-        $this->redirect('@shopping_cart');
+        $this->getUser()->setFlash('error', 'You cancelled the PayPal payment and your order was not completed!', true);
+        $this->url = '@shopping_cart';
+
+        return 'Redirect';
         break;
 
       case 'ipn':
