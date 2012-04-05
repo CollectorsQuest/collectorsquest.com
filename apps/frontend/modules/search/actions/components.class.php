@@ -6,6 +6,28 @@ class searchComponents extends cqFrontendComponents
   {
     $q = $this->getRequestParameter('q', $this->getVar('q'));
     $t = $this->getRequestParameter('t', $this->getVar('t'));
+    $s = $this->getRequestParameter('s', $this->getVar('s'));
+
+    // Current URL
+    $url = new IceTypeUrl($this->getRequest()->getUri());
+
+    $this->sortby = array(
+      'most-relevant' => array(
+        'name' => 'Most Relevant',
+        'active' => 'most-relevant' == $s || empty($s),
+        'route' => (string) $url->replaceQueryString('s', 'most-relevant')
+      ),
+      'most-recent' => array(
+        'name' => 'Most Recent',
+        'active' => 'most-recent' == $s,
+        'route' => (string) $url->replaceQueryString('s', 'most-recent')
+      ),
+      'most-popular' => array(
+        'name' => 'Most Popular',
+        'active' => 'most-popular' == $s,
+        'route' => (string) $url->replaceQueryString('s', 'most-popular')
+      ),
+    );
 
     $types_selected = explode(',', $t);
     $types_selected = array_filter($types_selected);
@@ -36,7 +58,7 @@ class searchComponents extends cqFrontendComponents
         'route' => '@search_collectibles?q='. $q
       ),
       'wp_post' => array(
-        'name' => 'News Articles',
+        'name' => 'Blog Articles',
         'count' => 0,
         'active' => in_array('wp_post', $types_selected),
         'route' => '@search_blog?q='. $q
