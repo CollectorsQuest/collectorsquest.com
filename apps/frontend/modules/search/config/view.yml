@@ -9,6 +9,9 @@ collectionsSuccess:
 collectiblesSuccess:
   stylesheets: [frontend/collectibles.css]
 
+videosSuccess:
+  stylesheets: [frontend/videos.css]
+
 indexSuccess:
   stylesheets: [frontend/collections.css, frontend/collectibles.css]
   javascripts: [jquery/masonry.js, jquery/infinitescroll.js]
