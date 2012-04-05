@@ -1,17 +1,10 @@
 all:
   stylesheets: [frontend/shopping-cart.css]
-
-cartSuccess:
-  components:
-    sidebar_300: [shopping, sidebar]
-
-cartEmpty:
   components:
     sidebar_300: [shopping, sidebar]
 
 checkoutPaypal:
-  has_layout:     false
+  has_layout:  false
 
-paySuccess:
-  components:
-    sidebar_300: [shopping, sidebar]
+paypalRedirect:
+  has_layout:  false

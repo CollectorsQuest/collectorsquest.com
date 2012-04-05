@@ -1,7 +1,7 @@
 index:
   enabled:     true
   with_layout: false
-  lifetime:    3600
+  lifetime:    60
 
 _indexTheme:
   enabled:     true

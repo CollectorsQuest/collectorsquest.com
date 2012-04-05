@@ -63,80 +63,6 @@ class ShoppingOrder extends BaseShoppingOrder
     return $this->getShoppingCartCollectible()->getDescription();
   }
 
-  public function getPaypalSECFields()
-  {
-    return array(
-      'maxamt' => $this->getTotalAmount() + $this->getShippingFeeAmount(),
-      'reqconfirmshipping' => '1',
-      'noshipping' => '0',
-      'allownote' => '1',
-      'addroverride' => '1',
-      'localecode' => 'en',
-      'skipdetails' => '1',
-      'email' => '', // Email address of the buyer as entered during checkout.  PayPal uses this value to pre-fill the PayPal sign-in page.  127 char max.
-      'solutiontype' => 'Mark',
-      'landingpage' => 'Billing',
-      'channeltype' => 'Merchant',
-      'brandname' => 'CollectorsQuest.com',
-      'customerservicenumber' => '646-558-6360',
-      'giftmessageenable' => '0',
-      'giftreceiptenable' => '0',
-      'giftwrapenable' => '0',
-      'buyeremailoptionenable' => '0',
-      'surveyenable' => '0',
-      'allowpushfunding' => '0'
-    );
-  }
-
-  public function getPaypalDECFields($token, $payer_id)
-  {
-    return array(
-      'token' => $token,
-      'payerid' => $payer_id,
-      'returnfmfdetails' => '0',
-      'allowedpaymentmethod' => 'InstantPaymentOnly',
-    );
-  }
-
-  public function getPaypalPayments()
-  {
-    return array(
-      0 => array(
-        'amt' => $this->getTotalAmount() + $this->getShippingFeeAmount(),
-        'currencycode' => $this->getCurrency(),
-        'itemamt' => $this->getTotalAmount(),
-        'shippingamt' => $this->getShippingFeeAmount(),
-        'desc' => $this->getDescription(),
-        'custom' => '',
-        'invnum' => $this->getUuid() .'-'. rand(1,999),
-        'notetext' => $this->getNoteToSeller(),
-        'allowedpaymentmethod' => 'InstantPaymentOnly',
-        'paymentaction' => 'Sale',
-        'order_items' => $this->getPaypalItems()
-      )
-    );
-  }
-
-  public function getPaypalItems()
-  {
-    /** @var $collectible Collectible */
-    $collectible = $this->getCollectible();
-
-    $items = array(
-      0 => array(
-        'name'   => $collectible->getName(),
-        'desc'   => $collectible->getDescription('stripped', 85),
-        'amt'    => $this->getShoppingCartCollectible()->getPriceAmount('float'),
-        'number' => $this->getUuid() .'-'. $collectible->getId(),
-        'qty'    => '1',
-        'taxamt' => $this->getShoppingCartCollectible()->getTaxAmount('float')
-      )
-    );
-
-    return $items;
-  }
-
-
 
   public function getPaypalPayRequestFields()
   {
@@ -186,7 +112,7 @@ class ShoppingOrder extends BaseShoppingOrder
       // Receiver's email address. 127 char max.
       'Email' => 'kangov_1327417143_biz@collectorsquest.com',
       // The invoice number for the payment.  127 char max.
-      'InvoiceID' => $this->getUuid() .'-'. rand(1,999),
+      'InvoiceID' => $this->getUuid() .'-'. date('is'),
       // Transaction type.  Values are:  GOODS, SERVICE, PERSONAL, CASHADVANCE, DIGITALGOODS
       'PaymentType' => 'GOODS',
       // The transaction subtype for the payment.
@@ -215,7 +141,7 @@ class ShoppingOrder extends BaseShoppingOrder
   {
     $AccountIdentifierFields = array(
       // Sender's email address.  127 char max.
-      'Email' => 'kangov_1327417552_per@collectorsquest.com',
+      'Email' => '',
       // Sender's phone number.  Numbers only.
       'Phone' => array('CountryCode' => '', 'PhoneNumber' => '', 'Extension' => '')
     );

@@ -85,6 +85,10 @@ search_collectors:
   url:   /search/collectors
   param: { module: search, action: collectors }
 
+search_videos:
+  url:   /search/videos
+  param: { module: search, action: videos }
+
 search_blog:
   url:   /search/blog
   param: { module: search, action: blog }
@@ -158,13 +162,19 @@ shopping_order_pay:
   url: /order/:uuid/pay
   class: sfPropelRoute
   options: { model: ShoppingOrder, type: object }
-  param: { module: shopping, action: pay }
+  param: { module: shopping, action: orderPay }
 
-shopping_paypal_ipn:
-  url: /shopping/paypal-ipn
-  param: { module: shopping, action: paypalIpn }
-  requirements:
-    sf_method: [POST]
+shopping_order_review:
+  url: /order/:uuid/review
+  class: sfPropelRoute
+  options: { model: ShoppingOrder, type: object }
+  param: { module: shopping, action: orderReview }
+
+shopping_order_error:
+  url: /order/:uuid/error
+  class: sfPropelRoute
+  options: { model: ShoppingOrder, type: object }
+  param: { module: shopping, action: orderError }
 
 
 ### MANAGE

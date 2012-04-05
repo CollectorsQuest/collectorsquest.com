@@ -1,7 +1,9 @@
-<div id="search-display" class="btn-group"  data-toggle="buttons-radio" style="float: right; margin-top: 20px;">
-  <button class="btn"><i class="icon-th"></i></button>
-  <button class="btn"><i class="icon-th-list"></i></button>
-</div>
+<?php
+  include_partial(
+    'search/display_toggle',
+    array('url' => $url, 'display' => $display)
+  );
+?>
 
 <?php
   $title = sprintf(
