@@ -160,7 +160,14 @@ class searchActions extends cqFrontendActions
 
   public function executeVideos(sfWebRequest $request)
   {
-    return sfView::SUCCESS;
+    $page = $request->getParameter('page', 1);
+    $perPage = 12; //TODO: Configurable
+
+    $pager = new cqMagnifyPager($request->getParameter('q'), $perPage);
+    $pager->init();
+
+    $this->pager = $pager;
+    $this->display = $this->getUser()->getAttribute('display', 'grid', 'search');
   }
 
 }

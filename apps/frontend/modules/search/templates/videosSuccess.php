@@ -21,7 +21,7 @@
 <div class="row">
   <div id="search-results" class="row-content">
     <?php
-    foreach ($pager->getResults() as $i => $collectible)
+    foreach ($pager->getResults() as $i => $video)
     {
       echo '<div class="span4 brick" style="height: 165px; float: left;">';
       include_partial(
