@@ -55,9 +55,7 @@ class generalActions extends cqActions
     }
 
     $this->blog_post = $blog_post;
-    $this->blog_content = strip_tags(str_replace(
-      array('[/caption]', '[caption', ']'), array('</caption>', '<caption', '>'), $blog_post->getPostContent()
-    ));
+    $this->blog_content = $blog_post->getPlainPostContent();
     $this->blog_image = $blog_image;
     $this->blog_posts = $blog_posts;
 
