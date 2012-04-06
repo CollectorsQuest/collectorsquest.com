@@ -1,5 +1,5 @@
-<h2 class="Chivo blue-title">
-  &nbsp;&nbsp;Showcase
+<h2 class="Chivo red-title">
+  Showcase
 </h2>
 <div class="row">
   <div id="homepage" class="row-content">

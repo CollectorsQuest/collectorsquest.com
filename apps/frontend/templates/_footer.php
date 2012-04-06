@@ -140,7 +140,7 @@
             <li><?= link_to('Report an Error', '@feedback', array('target' => '_blank', 'style' => 'color: red;')); ?></li>
           </ul>
         </div>
-        <div class="span5 textright">
+        <div class="span5 text-right">
           <?= link_to('CollectorsQuest.com', '@homepage', array('title' => 'Interactive community and marketplace for the collectible community', 'style' => 'text-decoration: none;')); ?>
           © <?= date('Y'); ?> All rights reserved &nbsp; • &nbsp; <a href="http://nytm.org/made" title="Made in NY">Made by hand in NY</a>
         </div>
