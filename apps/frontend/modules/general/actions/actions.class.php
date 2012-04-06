@@ -16,7 +16,7 @@ class generalActions extends cqFrontendActions
     $this->blog_posts = wpPostPeer::getLatestPosts(2);
 
     $q = wpPostQuery::create()
-       ->filterByPostType('homepage_showcases')
+       ->filterByPostType('homepage_showcase')
        ->filterByPostStatus('publish')
        ->orderByPostDate(Criteria::DESC)
        ->limit(1);
