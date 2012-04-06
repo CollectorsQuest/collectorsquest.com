@@ -15,8 +15,43 @@ class generalActions extends cqFrontendActions
     // Get the latest Blog post and its first image
     $this->blog_posts = wpPostPeer::getLatestPosts(2);
 
-    // Get 22 Collectibles
-    $this->collectibles = CollectibleQuery::create()->limit(22)->addDescendingOrderByColumn('RAND()')->find();
+    $q = wpPostQuery::create()
+       ->filterByPostType('homepage_showcases')
+       ->filterByPostStatus('publish')
+       ->orderByPostDate(Criteria::DESC)
+       ->limit(1);
+
+    /** @var $themes wpPost[] */
+    $themes = $q->find();
+
+    foreach ($themes as $theme)
+    {
+      $collector_ids = explode(',', $theme->getPostMetaValue('cq_collector_ids'));
+      $collection_ids = explode(',', $theme->getPostMetaValue('cq_collection_ids'));
+      $collectible_ids = explode(',', $theme->getPostMetaValue('cq_collectible_ids'));
+      $video_ids = explode(',', $theme->getPostMetaValue('cq_video_ids'));
+
+      if ($collection_ids)
+      {
+        // Get 2 Collections
+        $q = CollectionQuery::create()
+          ->filterById($collection_ids, Criteria::IN)
+          ->limit(2)
+          ->addAscendingOrderByColumn('FIELD(id, '. implode(',', $collection_ids) .')');
+
+        $this->collections = $q->find();
+      }
+      if ($collectible_ids)
+      {
+        // Get 22 Collectibles
+        $q = CollectibleQuery::create()
+           ->filterById($collectible_ids, Criteria::IN)
+           ->limit(22)
+           ->addAscendingOrderByColumn('FIELD(id, '. implode(',', $collectible_ids) .')');
+
+        $this->collectibles = $q->find();
+      }
+    }
 
     return sfView::SUCCESS;
   }

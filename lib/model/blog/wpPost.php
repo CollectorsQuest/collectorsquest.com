@@ -88,4 +88,16 @@ class wpPost extends BasewpPost
     return mb_strlen(str_replace(' ', '', $this->getPlainPostContent()), 'utf-8');
   }
 
+  public function getPostMetaValue($key)
+  {
+    /** @var $q wpPostMetaQuery */
+    $q = wpPostMetaQuery::create()
+       ->filterBywpPost($this)
+       ->filterByMetaKey($key);
+
+    /** @var $wp_post_meta wpPostMeta */
+    $wp_post_meta = $q->findOne();
+
+    return ($wp_post_meta) ? $wp_post_meta->getMetaValue() : null;
+  }
 }
