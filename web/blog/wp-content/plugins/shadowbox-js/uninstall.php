@@ -1,6 +1,6 @@
 <?php
 /**
- * Uninstalls the shadowbox-js options when an uninstall has been requested 
+ * Uninstalls the shadowbox-js options when an uninstall has been requested
  * from the WordPress admin
  *
  * @package shadowbox-js
