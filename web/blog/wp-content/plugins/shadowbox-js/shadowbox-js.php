@@ -7,7 +7,7 @@
  * users away from the linking page.
  *
  * @author Matt Martz <matt@sivel.net>
- * @version 3.0.3.9
+ * @version 3.0.3.10
  * @package shadowbox-js
  */
 
@@ -15,16 +15,16 @@
 Plugin Name:  Shadowbox JS
 Plugin URI:   http://sivel.net/wordpress/shadowbox-js/
 Description:  A javascript media viewer similar to Lightbox and Thickbox. Supports all types of media, not just images.
-Version:      3.0.3.9
+Version:      3.0.3.10
 Author:       Matt Martz
 Author URI:   http://sivel.net/
 Text Domain:  shadowbox-js
 Domain Path:  shadowbox-js/localization
-License:      LGPL
+License:      GPL
 
-	Shadowbox JS (c) 2008-2011 Matt Martz (http://sivel.net/)
-	Shadowbox JS is released under the GNU General Public License (LGPL)
-	http://www.gnu.org/licenses/lgpl-2.1.txt
+	Shadowbox JS (c) 2008-2012 Matt Martz (http://sivel.net/)
+	Shadowbox JS is released under the GNU General Public License (GPL)
+	http://www.gnu.org/licenses/gpl-2.0.txt
 
 	Shadowbox (c) 2007-2010 Michael J. I. Jackson (http://www.shadowbox-js.com/)
 	Shadowbox is licensed under the Shadowbox.js License version 1.0
@@ -55,7 +55,7 @@ class Shadowbox {
 	 * @since 3.0.0.4
 	 * @var int
 	 */
-	var $version = '3.0.3.9';
+	var $version = '3.0.3.10';
 
 	/**
 	 * Plugin Options Version

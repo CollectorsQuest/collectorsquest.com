@@ -1,10 +1,11 @@
-<h2 class="FugazOne blue-title">
+<h2 class="Chivo blue-title">
   &nbsp;&nbsp;Showcase
 </h2>
 <div class="row">
   <div id="homepage" class="row-content">
     <?php
       for ($i = 0; $i < 4; $i++)
+      if (isset($collectibles[$i]) && $collectibles[$i] instanceof Collectible)
       {
         include_partial('general/homepage_collectible', array('collectible' => $collectibles[$i], 'i' => $i));
       }
@@ -28,6 +29,7 @@
 
     <?php
       for ($i = 4; $i < 9; $i++)
+      if (isset($collectibles[$i]) && $collectibles[$i] instanceof Collectible)
       {
         include_partial('general/homepage_collectible', array('collectible' => $collectibles[$i], 'i' => $i));
       }
@@ -66,6 +68,7 @@
 
     <?php
       for ($i = 9; $i < 12; $i++)
+      if (isset($collectibles[$i]) && $collectibles[$i] instanceof Collectible)
       {
         include_partial('general/homepage_collectible', array('collectible' => $collectibles[$i], 'i' => $i));
       }
@@ -88,6 +91,7 @@
 
     <?php
       for ($i = 12; $i < 18; $i++)
+      if (isset($collectibles[$i]) && $collectibles[$i] instanceof Collectible)
       {
         include_partial('general/homepage_collectible', array('collectible' => $collectibles[$i], 'i' => $i));
       }

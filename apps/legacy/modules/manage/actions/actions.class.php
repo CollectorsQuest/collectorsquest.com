@@ -493,6 +493,7 @@ class manageActions extends cqActions
       if ($form->isValid())
       {
         $collector = $this->getUser()->getCollector();
+
         try
         {
           foreach ($form->getValues() as $value)
@@ -502,12 +503,12 @@ class manageActions extends cqActions
             $collectible->setName($value['name']);
             $collectible->setDescription($value['description'], 'html');
             $collectible->setTags(is_array($value['tags']) ? implode(', ', $value['tags']) : $value['tags']);
-            $collectible->clearCollectibleForSales();
             // handle collectible-collection M:M relation
             $collectible->setCollections(CollectionQuery::create()
                   ->filterById($value['collection_collectible_list'], Criteria::IN)
                   ->find()
             );
+
             $collectible->save();
 
             if ($value['thumbnail'])
@@ -548,7 +549,8 @@ class manageActions extends cqActions
         }
         catch (PropelException $e)
         {
-          // currently just skip the errors
+          // currently just skip the errors //Errors should never be skipped
+          // throw $e;
         }
 
         $this->getUser()->setFlash('success', 'Collectible data saved');

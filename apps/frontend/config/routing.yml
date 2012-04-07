@@ -85,6 +85,10 @@ search_collectors:
   url:   /search/collectors
   param: { module: search, action: collectors }
 
+search_videos:
+  url:   /search/videos
+  param: { module: search, action: videos }
+
 search_blog:
   url:   /search/blog
   param: { module: search, action: blog }

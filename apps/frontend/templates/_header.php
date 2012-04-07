@@ -6,7 +6,7 @@
           &nbsp;
         </div>
         <div class="span5">
-          <div class="input-append search-header">
+          <div class="input-append search-header pull-right">
             <form action="<?= url_for('@search') ?>" method="get">
               <?= $form['q']->render(array('value' => $sf_params->get('q'), 'autocomplete' => 'off')); ?>
               <button class="btn btn-large" type="submit">Search</button>

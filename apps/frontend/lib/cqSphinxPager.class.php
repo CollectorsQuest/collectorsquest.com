@@ -301,7 +301,13 @@ class cqSphinxPager extends sfPager
       case 'date':
         $sphinx->setSortMode(
           SPH_SORT_EXTENDED,
-          sprintf('is_vip DESC, updated_at %s, @relevance DESC', isset($query['order']) ? $query['order'] : 'DESC')
+          sprintf('updated_at %s, @relevance DESC', isset($query['order']) ? strtoupper($query['order']) : 'DESC')
+        );
+        break;
+      case 'popularity':
+        $sphinx->setSortMode(
+          SPH_SORT_EXTENDED,
+          sprintf('score %s, @relevance DESC, updated_at DESC', isset($query['order']) ? strtoupper($query['order']) : 'DESC')
         );
         break;
       case 'relevance':
@@ -311,7 +317,7 @@ class cqSphinxPager extends sfPager
 
         $sphinx->setSortMode(
           SPH_SORT_EXTENDED,
-          sprintf('score DESC, @relevance DESC, created_at %s', isset($query['order']) ? $query['order'] : 'DESC')
+          sprintf('@relevance %s, updated_at DESC', isset($query['order']) ? $query['order'] : 'DESC')
         );
         break;
     }

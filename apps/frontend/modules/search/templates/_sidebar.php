@@ -1,10 +1,20 @@
 <div class="well" style="padding: 8px 0; margin-top: 80px;">
   <ul class="nav nav-list">
 
-    <li class="nav-header">sort by:</li>
-    <li class="active"><a href="#"><i class="icon-ok"></i>&nbsp;Relevance</a></li>
-    <li><a href="#">Most Recent</a></li>
-    <li><a href="#">Most Popular</a></li>
+    <li class="nav-header">Sort by:</li>
+    <?php
+      foreach ($sortby as $key => $params)
+      {
+        if ($params['active'] === true)
+        {
+          echo '<li class="active"><a href="#" rel="nofollow"><i class="icon-ok"></i>&nbsp;', $params['name'],'</a></li>';
+        }
+        else
+        {
+          echo '<li>', link_to($params['name'], $params['route'], array('rel' => 'nofollow')),'</li>';
+        }
+      }
+    ?>
 
     <li class="nav-header">Filter by:</li>
     <?php

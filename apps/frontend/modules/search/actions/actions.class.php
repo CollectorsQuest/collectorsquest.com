@@ -7,25 +7,11 @@ class searchActions extends cqFrontendActions
 
   public function preExecute()
   {
+    parent::preExecute();
+
     $request = $this->getRequest();
 
-    if (($sid = $request->getParameter('sid')) && strlen($sid) == 32)
-    {
-      $_query = $this->getUser()->getAttribute($sid, array(), 'adverts');
-      if (empty($_query) && ($search_history = SearchHistoryQuery::create()->filterBySearchId($sid)->findOne()))
-      {
-        $_query = $search_history->getSearchCriteria();
-      }
-
-      self::$_query = sfToolkit::arrayDeepMerge(self::$_query, IceFunctions::array_filter_recursive($_query));
-    }
-    else
-    {
-      if ($q = $request->getParameter('q'))
-      {
-        self::$_query['q'] = $q;
-      }
-    }
+    self::$_query['q'] = $request->getParameter('q');
 
     if (empty(self::$_query['q']))
     {
@@ -46,9 +32,49 @@ class searchActions extends cqFrontendActions
           break;
       }
     }
-    if ($request->getParameter('sortby'))
+
+    switch ($request->getParameter('s'))
     {
-      $this->getUser()->setAttribute('sortby', $request->getParameter('sortby'), 'search');
+      case 'most-recent':
+        $this->getUser()->setAttribute('sortby', 'date', 'search');
+        $this->getUser()->setAttribute('order', 'desc', 'search');
+        break;
+      case 'most-popular':
+        $this->getUser()->setAttribute('sortby', 'popularity', 'search');
+        $this->getUser()->setAttribute('order', 'desc', 'search');
+        break;
+      case 'most-relevant':
+        $this->getUser()->setAttribute('sortby', 'relevance', 'search');
+        $this->getUser()->setAttribute('order', 'desc', 'search');
+        break;
+      default:
+
+        // For now we have taken this outside the IF statements!
+        $this->getUser()->setAttribute('sortby', $request->getParameter('sortby'), 'search');
+        $this->getUser()->setAttribute('order', $request->getParameter('order'), 'search');
+
+        /**
+          if ($request->getParameter('sortby')) {
+
+          }
+          if ($request->getParameter('order')) {
+
+          }
+        */
+        break;
+    }
+
+    self::$_query['sortby'] = $this->getUser()->getAttribute('sortby', 'relevance', 'search');
+
+    switch (strtoupper($this->getUser()->getAttribute('order', 'desc', 'search')))
+    {
+      case 'ASC':
+        self::$_query['order']  = 'ASC';
+        break;
+      case 'DESC':
+      default:
+        self::$_query['order']  = 'DESC';
+        break;
     }
   }
 
@@ -60,7 +86,9 @@ class searchActions extends cqFrontendActions
 
     $this->pager = $pager;
     $this->total = ($pager->getNbResults() >= 1000) ? '1000+' : $pager->getNbResults();
+
     $this->display = $this->getUser()->getAttribute('display', 'grid', 'search');
+    $this->url = new IceTypeUrl($request->getUri());
 
     return sfView::SUCCESS;
   }
@@ -78,7 +106,9 @@ class searchActions extends cqFrontendActions
 
     $this->pager = $pager;
     $this->total = ($pager->getNbResults() >= 1000) ? '1000+' : $pager->getNbResults();
+
     $this->display = $this->getUser()->getAttribute('display', 'grid', 'search');
+    $this->url = new IceTypeUrl($request->getUri());
 
     return sfView::SUCCESS;
   }
@@ -91,7 +121,9 @@ class searchActions extends cqFrontendActions
 
     $this->pager = $pager;
     $this->total = ($pager->getNbResults() >= 1000) ? '1000+' : $pager->getNbResults();
+
     $this->display = $this->getUser()->getAttribute('display', 'grid', 'search');
+    $this->url = new IceTypeUrl($request->getUri());
 
     return sfView::SUCCESS;
   }
@@ -104,7 +136,9 @@ class searchActions extends cqFrontendActions
 
     $this->pager = $pager;
     $this->total = ($pager->getNbResults() >= 1000) ? '1000+' : $pager->getNbResults();
+
     $this->display = $this->getUser()->getAttribute('display', 'grid', 'search');
+    $this->url = new IceTypeUrl($request->getUri());
 
     return sfView::SUCCESS;
   }
@@ -117,14 +151,23 @@ class searchActions extends cqFrontendActions
 
     $this->pager = $pager;
     $this->total = ($pager->getNbResults() >= 1000) ? '1000+' : $pager->getNbResults();
+
     $this->display = $this->getUser()->getAttribute('display', 'grid', 'search');
+    $this->url = new IceTypeUrl($request->getUri());
 
     return sfView::SUCCESS;
   }
 
   public function executeVideos(sfWebRequest $request)
   {
-    return sfView::SUCCESS;
+    $page = $request->getParameter('page', 1);
+    $perPage = 12; //TODO: Configurable
+
+    $pager = new cqMagnifyPager($request->getParameter('q'), $perPage);
+    $pager->init();
+
+    $this->pager = $pager;
+    $this->display = $this->getUser()->getAttribute('display', 'grid', 'search');
   }
 
 }
