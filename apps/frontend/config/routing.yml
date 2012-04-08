@@ -45,6 +45,10 @@ collections_categories:
 
 ### COLLECTORS
 
+collectors:
+  url:  /collectors
+  param: { module: collectors, action: index }
+
 collector_by_slug:
   url:  /collector/:id/:slug
   class: cqPropelRoute
@@ -65,6 +69,13 @@ collectible_by_slug:
   options: { model: Collectible, type: object, method: getObjectForRoute, statsd: true }
   param: { module: collection, action: collectible }
   requirements: { id: '\d+', slug: '[\-\w\.]+' }
+
+
+### CHANNELS
+
+channels:
+  url:  /channels
+  param: { module: channels, action: index }
 
 
 ### SEARCH
@@ -118,9 +129,9 @@ video:
 
 ### MARKETPLACE
 
-marketplace:
-  url: /marketplace
-  param: { module: marketplace, action: index }
+marketplace_categories:
+  url: /marketplace/categories
+  param: { module: marketplace, action: categories }
 
 marketplace_category_by_slug:
   url: /marketplace/:id/:slug
@@ -131,6 +142,9 @@ marketplace_category_by_slug:
     id: \d+
     sf_method: [GET, POST]
 
+marketplace:
+  url: /marketplace
+  param: { module: marketplace, action: index }
 
 ### SHOPPING
 
