@@ -1,9 +1,36 @@
 <?php cq_page_title('Collections'); ?>
 
-<?php cq_section_title('Explore collections'); ?>
+<?php /* <?php cq_section_title('Explore collections'); ?>*/?>
 
-<div class="row-fluid">
-  <div class="span12">Filters</div>
+<div class="weeks-promo-box">
+  <div class="row-fluid">
+    <div class="span8">
+      <span class="weeks-promo-title">Camera week: Strike a pose</span>
+    </div>
+    <div class="span4 text-right">
+      <a href="#">See previous features &raquo;</a>
+    </div>
+  </div>
+
+  <button class="btn btn-small gray-button see-more-full">See more</button>
+</div>
+
+
+<h2 class="section-title">Explore Collections</h2>
+
+<div class="collection-search-box">
+  <div class="input-append">
+    <div class="btn-group open">
+      <a href="#" class="btn gray-button">Sort By <strong>Collections</strong></a>
+      <a href="#" data-toggle="dropdown" class="btn gray-button dropdown-toggle"><span class="caret"></span></a>
+      <ul class="dropdown-menu">
+        <li><a href="#">Sort By <strong>Collectibles</strong></a></li>
+        <li><a href="#">Sort By <strong>Most Recent</strong></a></li>
+        <li><a href="#">Sort By <strong>Most Wanted</strong></a></li>
+      </ul>
+    </div>
+    <input type="text" size="16" id="appendedPrependedInput" class="sort-by-search"><button type="button" class="btn gray-button"><strong>Search</strong></button>
+  </div>
 </div>
 
 <div class="row">
