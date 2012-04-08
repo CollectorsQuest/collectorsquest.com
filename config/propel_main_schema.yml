@@ -120,6 +120,7 @@ classes:
       id:  ~
       collector_id:            { type: integer, foreignClass: Collector, foreignReference: id, required: false, onDelete: setnull }
       collection_category_id:  { type: integer, foreignClass: CollectionCategory, foreignReference: id, onDelete: setnull }
+      content_category_id:     { type: integer, foreignClass: ContentCategory, foreignReference: id, onDelete: setnull }
       collection_id:           { type: integer, foreignClass: Collection, foreignReference: id, onDelete: setnull }
       title:                   { type: varchar, size: 128, required: true, primaryString: true }
       catch_phrase:            { type: varchar, size: 128, required: true }
@@ -170,6 +171,7 @@ classes:
       id:  ~
       graph_id:                { type: integer, required: false, index: unique }
       collection_category_id:  { type: integer, foreignClass: CollectionCategory, foreignReference: id, onDelete: setnull }
+      content_category_id:     { type: integer, foreignClass: ContentCategory, foreignReference: id, onDelete: setnull, required: false }
       name:                    { type: varchar, size: 255, required: true, primaryString: true }
       slug:                    { type: varchar, size: 128 }
       description:             { type: longvarchar, required: true }
@@ -196,6 +198,17 @@ classes:
       name:       { type: varchar, size: 64, required: true, primaryString: true }
       slug:       { type: varchar, size: 64 }
       score:      { type: integer, default: 0 }
+
+  ContentCategory:
+    columns:
+      id: ~
+      collection_category_id: { type: integer, required: false, foreignClass: CollectionCategory, foreignReference: id, onDelete: setnull }
+      name:         { type: varchar, size: 64, required: true, primaryString: true }
+      slug:         { type: varchar, size: 64, required: true }
+      description:  { type: longvarchar, required: false }
+    propel_behaviors:
+      sluggable:  { slug_pattern: "{Name}", permanent: false }
+      nested_set: ~
 
   CollectionCollectible:
     isCrossRef: true
