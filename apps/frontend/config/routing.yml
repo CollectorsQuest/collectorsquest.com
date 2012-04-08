@@ -5,6 +5,7 @@ ajax_typeahead:
   param: { module: ajax, action: typeAhead }
   requirements: { sf_method: [GET], sf_format: json }
 
+
 ### COLLECTIONS
 
 collections:
@@ -42,6 +43,7 @@ collections_by_collector:
 collections_categories:
   url:  /collections/categories
   param: { module: collections, action: categories }
+
 
 ### COLLECTORS
 
@@ -218,6 +220,14 @@ tags:
 tags_index:
   url:   /tags
   param: { module: tags, action: index }
+
+
+### MESSAGES
+
+messages_inbox:
+  url:    /messages/inbox/:filter
+  param:  { module: messages, action: inbox, filter: all }
+  requirements: { filter: "^(?|all|read|unread)$" }
 
 
 ### GENERAL
