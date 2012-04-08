@@ -12,7 +12,7 @@ body {
 	background: #ecebec url("@{baseUrl}/background-pattern.png") repeat;
 }
 
-.Chivo {
+.Chivo, .custom-font {
   font-family: 'Chivo', cursive;
   visibility: hidden;
 }
@@ -559,7 +559,6 @@ li.roundabout-in-focus .carousel-in-focus-title-container {
 .blue-title {
 	font-size: 20px;
 	color: white;
-	width: 100%;
 	background: #0982C2;
 	margin-bottom: 0;
 }
@@ -567,12 +566,24 @@ li.roundabout-in-focus .carousel-in-focus-title-container {
 	font-size: 20px;
 	text-transform: uppercase;
 	color: white;
-	width: 100%;
 	#gradient > .vertical(#c90000,#b20000);
 	margin-bottom: 0;
 	padding-left: 20px;
 }
-
+.page-header {
+	font-size:20px;
+	font-weight: bold;
+	.custom-font();
+	text-transform: uppercase;
+	color: white;
+	#gradient > .vertical(#c90000,#b20000);
+	margin-bottom: 0;
+	margin-top: 0;
+	padding: 10px 0 10px 20px;
+}
+.page-header h1 {
+	font-size: 20px;
+}
 //ELEMENTS
 .sidebar-ul {
 	margin-bottom: 20px;
