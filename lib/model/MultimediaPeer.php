@@ -253,12 +253,6 @@ class MultimediaPeer extends BaseMultimediaPeer
         $image->setCompression(Imagick::COMPRESSION_JPEG);
         $image->setCompressionQuality(80);
 
-        // Add watermark to the thumbnail
-        if ($width > 300 && $watermark = new Imagick(sfConfig::get('sf_web_dir').'/images/watermark.png'))
-        {
-          self::addWatermark($image, $watermark, 10);
-        }
-
         $image->writeImage($thumb);
         $image->destroy();
 
