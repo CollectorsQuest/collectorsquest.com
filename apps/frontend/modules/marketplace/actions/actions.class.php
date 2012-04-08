@@ -9,6 +9,15 @@ class marketplaceActions extends cqFrontendActions
     $c->addJoin(CollectibleForSalePeer::COLLECTIBLE_ID, CollectiblePeer::ID);
     $c->add(CollectibleForSalePeer::IS_READY, true);
     $c->add(CollectibleForSalePeer::PRICE, 0, Criteria::GREATER_THAN);
+    $c->setLimit(3);
+
+    $this->spotlight = CollectibleForSalePeer::doSelect($c);
+
+    $c = new Criteria();
+    $c->setDistinct();
+    $c->addJoin(CollectibleForSalePeer::COLLECTIBLE_ID, CollectiblePeer::ID);
+    $c->add(CollectibleForSalePeer::IS_READY, true);
+    $c->add(CollectibleForSalePeer::PRICE, 0, Criteria::GREATER_THAN);
     $c->setLimit(12);
 
     $this->collectibles = CollectibleForSalePeer::doSelect($c);
@@ -73,6 +82,11 @@ class marketplaceActions extends cqFrontendActions
 
     $this->pager = $pager;
 
+    return sfView::SUCCESS;
+  }
+
+  public function executeCategories(sfWebRequest $request)
+  {
     return sfView::SUCCESS;
   }
 }

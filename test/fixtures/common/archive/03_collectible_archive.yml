@@ -551,6 +551,18 @@ CollectibleArchive:
     is_name_automatic: '0'
     updated_at: '2012-03-22 16:39:43'
     created_at: '2010-02-27 07:43:12'
+  CollectibleArchive_3358:
+    id: '3358'
+    graph_id: '14053'
+    collector_id: '12'
+    name: 'Kubrick Iron Man'
+    slug: kubrick-iron-man
+    description: "<p>==</p>\n"
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '0'
+    updated_at: '2012-03-29 14:26:49'
+    created_at: '2010-02-26 11:25:42'
   CollectibleArchive_3679:
     id: '3679'
     graph_id: '12373'
@@ -2375,6 +2387,42 @@ CollectibleArchive:
     is_name_automatic: '0'
     updated_at: '2012-03-22 16:39:10'
     created_at: '2010-02-28 07:22:10'
+  CollectibleArchive_10569:
+    id: '10569'
+    graph_id: '14270'
+    collector_id: '12'
+    name: '''Superman'' Series Supergirl'
+    slug: superman-series-supergirl
+    description: "<p>From early DC Direct.</p>\n"
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '0'
+    updated_at: '2012-04-03 16:36:53'
+    created_at: '2010-02-28 08:36:53'
+  CollectibleArchive_10613:
+    id: '10613'
+    graph_id: '14027'
+    collector_id: '12'
+    name: 'Minimate Power Girl'
+    slug: minimate-power-girl
+    description: "<p>--</p>\n"
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '0'
+    updated_at: '2012-03-29 14:09:04'
+    created_at: '2010-02-22 08:53:57'
+  CollectibleArchive_10614:
+    id: '10614'
+    graph_id: '14026'
+    collector_id: '12'
+    name: '''JLU'' Steel'
+    slug: jlu-steel
+    description: "<p>--</p>\n"
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '0'
+    updated_at: '2012-03-29 14:08:36'
+    created_at: '2010-02-23 07:44:10'
   CollectibleArchive_10849:
     id: '10849'
     graph_id: '12383'
@@ -6045,6 +6093,45 @@ CollectibleArchive:
     is_name_automatic: '0'
     updated_at: '2012-03-05 10:24:59'
     created_at: '2012-03-05 10:24:44'
+  CollectibleArchive_70028:
+    id: '70028'
+    graph_id: '12552'
+    collector_id: '12'
+    name: 'Brady bunch set'
+    slug: brady-bunch-set
+    description: "\n"
+    num_comments: '0'
+    batch_hash: f4d9c188dd75ffd94e6ecb254b4ad757
+    score: '0'
+    is_name_automatic: '1'
+    updated_at: '2012-03-08 09:33:08'
+    created_at: '2012-03-08 09:32:59'
+  CollectibleArchive_70029:
+    id: '70029'
+    graph_id: '12553'
+    collector_id: '12'
+    name: 'Brady bunch signatures'
+    slug: brady-bunch-signatures
+    description: "\n"
+    num_comments: '0'
+    batch_hash: f4d9c188dd75ffd94e6ecb254b4ad757
+    score: '0'
+    is_name_automatic: '1'
+    updated_at: '2012-03-08 09:33:08'
+    created_at: '2012-03-08 09:33:00'
+  CollectibleArchive_70030:
+    id: '70030'
+    graph_id: '12554'
+    collector_id: '12'
+    name: 'Brady bunch single card'
+    slug: brady-bunch-single-card
+    description: "\n"
+    num_comments: '0'
+    batch_hash: f4d9c188dd75ffd94e6ecb254b4ad757
+    score: '0'
+    is_name_automatic: '1'
+    updated_at: '2012-03-08 09:33:08'
+    created_at: '2012-03-08 09:33:02'
   CollectibleArchive_70031:
     id: '70031'
     graph_id: '12555'
@@ -6097,3 +6184,42 @@ CollectibleArchive:
     is_name_automatic: '1'
     updated_at: '2012-03-12 16:45:35'
     created_at: '2012-03-08 09:33:07'
+  CollectibleArchive_70588:
+    id: '70588'
+    graph_id: '14037'
+    collector_id: '12'
+    name: Marvel-frenzies-the-mighty-thor-68121
+    slug: marvel-frenzies-the-mighty-thor-68121
+    description: "<p>==</p>\n"
+    num_comments: '0'
+    batch_hash: cb4304ba7bb9462c6b5951ca393cc2b2
+    score: '0'
+    is_name_automatic: '0'
+    updated_at: '2012-03-29 14:17:31'
+    created_at: '2012-03-29 14:17:20'
+  CollectibleArchive_70708:
+    id: '70708'
+    graph_id: '14197'
+    collector_id: '12'
+    name: 'IMG 4730'
+    slug: img-4730
+    description: "<p>ee</p>\n"
+    num_comments: '0'
+    batch_hash: 0f16e508376297abbc5767354d5404bf
+    score: '0'
+    is_name_automatic: '0'
+    updated_at: '2012-04-02 11:07:08'
+    created_at: '2012-04-02 11:06:52'
+  CollectibleArchive_70827:
+    id: '70827'
+    graph_id: '14331'
+    collector_id: '12'
+    name: Collectible-55739
+    slug: collectible-55739
+    description: "\n"
+    num_comments: '0'
+    batch_hash: 816db528df7df6e613df2fff4897027d
+    score: '0'
+    is_name_automatic: '1'
+    updated_at: '2012-04-05 09:58:17'
+    created_at: '2012-04-05 09:58:15'

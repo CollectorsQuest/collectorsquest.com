@@ -6927,14 +6927,6 @@ CollectionCollectible:
     is_primary: '1'
     created_at: '2010-02-26 11:25:47'
     updated_at: '2012-02-28 06:12:05'
-  CollectionCollectible_211_3358:
-    collection_id: Collection_211
-    collectible_id: Collectible_3358
-    score: '0'
-    position: '27'
-    is_primary: '1'
-    created_at: '2010-02-26 11:25:42'
-    updated_at: '2012-02-28 06:12:05'
   CollectionCollectible_211_3359:
     collection_id: Collection_211
     collectible_id: Collectible_3359
@@ -7159,6 +7151,14 @@ CollectionCollectible:
     is_primary: '1'
     created_at: '2010-02-26 05:51:05'
     updated_at: '2012-02-28 06:12:05'
+  CollectionCollectible_211_7301:
+    collection_id: Collection_211
+    collectible_id: Collectible_7301
+    score: '0'
+    position: '32'
+    is_primary: '0'
+    created_at: '2012-03-29 14:29:52'
+    updated_at: '2012-03-29 14:29:52'
   CollectionCollectible_214_3401:
     collection_id: Collection_214
     collectible_id: Collectible_3401
@@ -17063,398 +17063,486 @@ CollectionCollectible:
     is_primary: '1'
     created_at: '2010-03-01 00:23:40'
     updated_at: '2012-02-28 06:12:20'
+  CollectionCollectible_499_1368:
+    collection_id: Collection_499
+    collectible_id: Collectible_1368
+    score: '0'
+    position: '55'
+    is_primary: '0'
+    created_at: '2012-03-29 14:27:37'
+    updated_at: '2012-03-29 14:30:57'
+  CollectionCollectible_499_3355:
+    collection_id: Collection_499
+    collectible_id: Collectible_3355
+    score: '0'
+    position: '43'
+    is_primary: '0'
+    created_at: '2012-03-29 14:27:13'
+    updated_at: '2012-03-29 14:30:57'
+  CollectionCollectible_499_3617:
+    collection_id: Collection_499
+    collectible_id: Collectible_3617
+    score: '0'
+    position: '54'
+    is_primary: '0'
+    created_at: '2012-03-29 14:26:03'
+    updated_at: '2012-03-29 14:26:03'
+  CollectionCollectible_499_4666:
+    collection_id: Collection_499
+    collectible_id: Collectible_4666
+    score: '0'
+    position: '52'
+    is_primary: '0'
+    created_at: '2012-03-29 14:24:28'
+    updated_at: '2012-03-29 14:31:04'
+  CollectionCollectible_499_4686:
+    collection_id: Collection_499
+    collectible_id: Collectible_4686
+    score: '0'
+    position: '51'
+    is_primary: '0'
+    created_at: '2012-03-29 14:23:55'
+    updated_at: '2012-03-29 14:31:04'
   CollectionCollectible_499_7279:
     collection_id: Collection_499
     collectible_id: Collectible_7279
     score: '0'
-    position: '4'
+    position: '3'
     is_primary: '1'
     created_at: '2010-02-15 05:32:43'
-    updated_at: '2012-02-28 06:12:20'
+    updated_at: '2012-03-29 14:30:57'
   CollectionCollectible_499_7280:
     collection_id: Collection_499
     collectible_id: Collectible_7280
     score: '0'
-    position: '20'
+    position: '19'
     is_primary: '1'
     created_at: '2010-02-23 05:54:58'
-    updated_at: '2012-02-28 06:12:20'
+    updated_at: '2012-03-29 14:30:57'
   CollectionCollectible_499_7281:
     collection_id: Collection_499
     collectible_id: Collectible_7281
     score: '0'
-    position: '3'
+    position: '2'
     is_primary: '1'
     created_at: '2010-02-10 18:16:33'
-    updated_at: '2012-02-28 06:12:20'
+    updated_at: '2012-03-29 14:30:57'
   CollectionCollectible_499_7282:
     collection_id: Collection_499
     collectible_id: Collectible_7282
     score: '0'
-    position: '2'
+    position: '1'
     is_primary: '1'
     created_at: '2010-02-28 19:08:16'
-    updated_at: '2012-02-28 06:12:20'
+    updated_at: '2012-03-29 14:30:57'
   CollectionCollectible_499_7283:
     collection_id: Collection_499
     collectible_id: Collectible_7283
     score: '0'
-    position: '22'
+    position: '21'
     is_primary: '1'
     created_at: '2010-02-22 01:24:56'
-    updated_at: '2012-02-28 06:12:20'
+    updated_at: '2012-03-29 14:30:57'
   CollectionCollectible_499_7284:
     collection_id: Collection_499
     collectible_id: Collectible_7284
     score: '0'
-    position: '1'
+    position: '0'
     is_primary: '1'
     created_at: '2010-02-17 08:24:31'
-    updated_at: '2012-02-28 06:12:20'
+    updated_at: '2012-03-29 14:30:57'
   CollectionCollectible_499_7285:
     collection_id: Collection_499
     collectible_id: Collectible_7285
     score: '0'
-    position: '5'
+    position: '4'
     is_primary: '1'
     created_at: '2010-02-22 22:53:26'
-    updated_at: '2012-02-28 06:12:20'
+    updated_at: '2012-03-29 14:30:57'
   CollectionCollectible_499_7286:
     collection_id: Collection_499
     collectible_id: Collectible_7286
     score: '0'
-    position: '9'
+    position: '8'
     is_primary: '1'
     created_at: '2010-02-28 22:43:12'
-    updated_at: '2012-02-28 06:12:20'
+    updated_at: '2012-03-29 14:30:57'
   CollectionCollectible_499_7288:
     collection_id: Collection_499
     collectible_id: Collectible_7288
     score: '0'
-    position: '6'
+    position: '5'
     is_primary: '1'
     created_at: '2010-02-28 22:41:06'
-    updated_at: '2012-02-28 06:12:20'
+    updated_at: '2012-03-29 14:30:57'
   CollectionCollectible_499_7289:
     collection_id: Collection_499
     collectible_id: Collectible_7289
     score: '0'
-    position: '7'
+    position: '6'
     is_primary: '1'
     created_at: '2010-02-28 21:32:36'
-    updated_at: '2012-02-28 06:12:20'
+    updated_at: '2012-03-29 14:30:57'
   CollectionCollectible_499_7290:
     collection_id: Collection_499
     collectible_id: Collectible_7290
     score: '0'
-    position: '8'
+    position: '7'
     is_primary: '1'
     created_at: '2010-02-28 22:40:42'
-    updated_at: '2012-02-28 06:12:20'
+    updated_at: '2012-03-29 14:30:57'
   CollectionCollectible_499_7293:
     collection_id: Collection_499
     collectible_id: Collectible_7293
     score: '0'
-    position: '23'
+    position: '22'
     is_primary: '1'
     created_at: '2010-02-19 06:19:04'
-    updated_at: '2012-02-28 06:12:20'
+    updated_at: '2012-03-29 14:30:57'
   CollectionCollectible_499_7294:
     collection_id: Collection_499
     collectible_id: Collectible_7294
     score: '0'
-    position: '12'
+    position: '11'
     is_primary: '1'
     created_at: '2010-02-27 15:36:02'
-    updated_at: '2012-02-28 06:12:20'
+    updated_at: '2012-03-29 14:30:57'
   CollectionCollectible_499_7295:
     collection_id: Collection_499
     collectible_id: Collectible_7295
     score: '0'
-    position: '10'
+    position: '9'
     is_primary: '1'
     created_at: '2010-02-28 21:40:51'
-    updated_at: '2012-02-28 06:12:20'
+    updated_at: '2012-03-29 14:30:57'
   CollectionCollectible_499_7296:
     collection_id: Collection_499
     collectible_id: Collectible_7296
     score: '0'
-    position: '21'
+    position: '20'
     is_primary: '1'
     created_at: '2010-02-19 06:18:40'
-    updated_at: '2012-02-28 06:12:20'
+    updated_at: '2012-03-29 14:30:57'
   CollectionCollectible_499_7297:
     collection_id: Collection_499
     collectible_id: Collectible_7297
     score: '0'
-    position: '19'
+    position: '18'
     is_primary: '1'
     created_at: '2010-02-19 06:18:36'
-    updated_at: '2012-02-28 06:12:20'
+    updated_at: '2012-03-29 14:30:57'
   CollectionCollectible_499_7298:
     collection_id: Collection_499
     collectible_id: Collectible_7298
     score: '0'
-    position: '14'
+    position: '13'
     is_primary: '1'
     created_at: '2010-02-19 06:18:25'
-    updated_at: '2012-02-28 06:12:20'
+    updated_at: '2012-03-29 14:30:57'
   CollectionCollectible_499_7299:
     collection_id: Collection_499
     collectible_id: Collectible_7299
     score: '0'
-    position: '15'
+    position: '14'
     is_primary: '1'
     created_at: '2010-02-19 06:18:16'
-    updated_at: '2012-02-28 06:12:20'
+    updated_at: '2012-03-29 14:30:57'
   CollectionCollectible_499_7300:
     collection_id: Collection_499
     collectible_id: Collectible_7300
     score: '0'
-    position: '17'
+    position: '16'
     is_primary: '1'
     created_at: '2010-02-19 06:18:10'
-    updated_at: '2012-02-28 06:12:20'
+    updated_at: '2012-03-29 14:30:57'
   CollectionCollectible_499_7301:
     collection_id: Collection_499
     collectible_id: Collectible_7301
     score: '0'
-    position: '11'
+    position: '10'
     is_primary: '1'
     created_at: '2010-02-28 14:54:50'
-    updated_at: '2012-02-28 06:12:20'
+    updated_at: '2012-03-29 14:30:57'
   CollectionCollectible_499_7302:
     collection_id: Collection_499
     collectible_id: Collectible_7302
     score: '0'
-    position: '18'
+    position: '17'
     is_primary: '1'
     created_at: '2010-02-05 05:35:34'
-    updated_at: '2012-02-28 06:12:20'
+    updated_at: '2012-03-29 14:30:57'
   CollectionCollectible_499_7303:
     collection_id: Collection_499
     collectible_id: Collectible_7303
     score: '0'
-    position: '13'
+    position: '12'
     is_primary: '1'
     created_at: '2010-02-24 07:59:58'
-    updated_at: '2012-02-28 06:12:20'
+    updated_at: '2012-03-29 14:30:57'
   CollectionCollectible_499_7304:
     collection_id: Collection_499
     collectible_id: Collectible_7304
     score: '0'
-    position: '16'
+    position: '15'
     is_primary: '1'
     created_at: '2010-02-28 22:40:52'
-    updated_at: '2012-02-28 06:12:20'
+    updated_at: '2012-03-29 14:30:57'
+  CollectionCollectible_499_12264:
+    collection_id: Collection_499
+    collectible_id: Collectible_12264
+    score: '0'
+    position: '56'
+    is_primary: '0'
+    created_at: '2012-03-29 14:28:18'
+    updated_at: '2012-03-29 14:30:57'
   CollectionCollectible_499_37701:
     collection_id: Collection_499
     collectible_id: Collectible_37701
     score: '0'
-    position: '24'
+    position: '23'
     is_primary: '1'
     created_at: '2010-04-01 21:39:41'
-    updated_at: '2012-02-28 06:12:20'
+    updated_at: '2012-03-29 14:30:57'
   CollectionCollectible_499_37702:
     collection_id: Collection_499
     collectible_id: Collectible_37702
     score: '0'
-    position: '25'
+    position: '24'
     is_primary: '1'
     created_at: '2010-04-01 21:44:55'
-    updated_at: '2012-02-28 06:12:20'
+    updated_at: '2012-03-29 14:30:57'
   CollectionCollectible_499_44235:
     collection_id: Collection_499
     collectible_id: Collectible_44235
     score: '0'
-    position: '26'
+    position: '25'
     is_primary: '1'
     created_at: '2010-09-22 21:08:08'
-    updated_at: '2012-02-28 06:12:20'
+    updated_at: '2012-03-29 14:30:57'
   CollectionCollectible_499_44236:
     collection_id: Collection_499
     collectible_id: Collectible_44236
     score: '0'
-    position: '27'
+    position: '26'
     is_primary: '1'
     created_at: '2010-09-22 21:08:12'
-    updated_at: '2012-02-28 06:12:20'
+    updated_at: '2012-03-29 14:30:57'
   CollectionCollectible_499_44237:
     collection_id: Collection_499
     collectible_id: Collectible_44237
     score: '0'
-    position: '28'
+    position: '27'
     is_primary: '1'
     created_at: '2010-09-22 21:08:17'
-    updated_at: '2012-02-28 06:12:20'
+    updated_at: '2012-03-29 14:30:57'
   CollectionCollectible_499_44238:
     collection_id: Collection_499
     collectible_id: Collectible_44238
     score: '0'
-    position: '29'
+    position: '28'
     is_primary: '1'
     created_at: '2010-09-22 21:08:21'
-    updated_at: '2012-02-28 06:12:20'
+    updated_at: '2012-03-29 14:30:57'
   CollectionCollectible_499_44239:
     collection_id: Collection_499
     collectible_id: Collectible_44239
     score: '0'
-    position: '30'
+    position: '29'
     is_primary: '1'
     created_at: '2010-09-22 21:08:24'
-    updated_at: '2012-02-28 06:12:20'
+    updated_at: '2012-03-29 14:30:57'
   CollectionCollectible_499_44241:
     collection_id: Collection_499
     collectible_id: Collectible_44241
     score: '0'
-    position: '31'
+    position: '30'
     is_primary: '1'
     created_at: '2010-09-22 21:08:32'
-    updated_at: '2011-11-10 07:30:42'
+    updated_at: '2012-03-29 14:30:57'
   CollectionCollectible_499_44243:
     collection_id: Collection_499
     collectible_id: Collectible_44243
     score: '0'
-    position: '32'
+    position: '31'
     is_primary: '1'
     created_at: '2010-09-22 21:08:40'
-    updated_at: '2012-02-28 06:12:20'
+    updated_at: '2012-03-29 14:30:57'
   CollectionCollectible_499_44244:
     collection_id: Collection_499
     collectible_id: Collectible_44244
     score: '0'
-    position: '33'
+    position: '32'
     is_primary: '1'
     created_at: '2010-09-22 21:08:44'
-    updated_at: '2012-02-28 06:12:20'
+    updated_at: '2012-03-29 14:30:57'
   CollectionCollectible_499_44245:
     collection_id: Collection_499
     collectible_id: Collectible_44245
     score: '0'
-    position: '34'
+    position: '33'
     is_primary: '1'
     created_at: '2010-09-22 21:08:47'
-    updated_at: '2012-02-28 06:12:20'
+    updated_at: '2012-03-29 14:30:57'
   CollectionCollectible_499_44246:
     collection_id: Collection_499
     collectible_id: Collectible_44246
     score: '0'
-    position: '35'
+    position: '34'
     is_primary: '1'
     created_at: '2010-09-22 21:08:51'
-    updated_at: '2012-02-28 06:12:20'
+    updated_at: '2012-03-29 14:30:57'
   CollectionCollectible_499_44248:
     collection_id: Collection_499
     collectible_id: Collectible_44248
     score: '0'
-    position: '36'
+    position: '35'
     is_primary: '1'
     created_at: '2010-09-22 21:08:58'
-    updated_at: '2012-02-28 06:12:20'
+    updated_at: '2012-03-29 14:30:57'
   CollectionCollectible_499_44249:
     collection_id: Collection_499
     collectible_id: Collectible_44249
     score: '0'
-    position: '37'
+    position: '36'
     is_primary: '1'
     created_at: '2010-09-22 21:09:03'
-    updated_at: '2012-02-28 06:12:20'
+    updated_at: '2012-03-29 14:30:57'
   CollectionCollectible_499_44250:
     collection_id: Collection_499
     collectible_id: Collectible_44250
     score: '0'
-    position: '38'
+    position: '37'
     is_primary: '1'
     created_at: '2010-09-22 21:24:51'
-    updated_at: '2012-02-28 06:12:20'
+    updated_at: '2012-03-29 14:30:57'
   CollectionCollectible_499_44251:
     collection_id: Collection_499
     collectible_id: Collectible_44251
     score: '0'
-    position: '39'
+    position: '38'
     is_primary: '1'
     created_at: '2010-09-22 21:25:00'
-    updated_at: '2012-02-28 06:12:20'
+    updated_at: '2012-03-29 14:30:57'
   CollectionCollectible_499_44252:
     collection_id: Collection_499
     collectible_id: Collectible_44252
     score: '0'
-    position: '40'
+    position: '39'
     is_primary: '1'
     created_at: '2010-09-22 21:25:11'
-    updated_at: '2012-02-28 06:12:20'
+    updated_at: '2012-03-29 14:30:57'
   CollectionCollectible_499_44253:
     collection_id: Collection_499
     collectible_id: Collectible_44253
     score: '0'
-    position: '41'
+    position: '40'
     is_primary: '1'
     created_at: '2010-09-22 21:25:20'
-    updated_at: '2012-02-28 06:12:20'
+    updated_at: '2012-03-29 14:30:57'
   CollectionCollectible_499_44254:
     collection_id: Collection_499
     collectible_id: Collectible_44254
     score: '0'
-    position: '42'
+    position: '41'
     is_primary: '1'
     created_at: '2010-09-22 21:25:29'
-    updated_at: '2012-02-28 06:12:20'
+    updated_at: '2012-03-29 14:30:57'
   CollectionCollectible_499_44255:
     collection_id: Collection_499
     collectible_id: Collectible_44255
     score: '0'
-    position: '43'
+    position: '42'
     is_primary: '1'
     created_at: '2010-09-22 21:25:38'
-    updated_at: '2012-02-28 06:12:20'
+    updated_at: '2012-03-29 14:30:57'
   CollectionCollectible_499_44256:
     collection_id: Collection_499
     collectible_id: Collectible_44256
     score: '0'
-    position: '44'
+    position: '53'
     is_primary: '1'
     created_at: '2010-09-22 21:25:48'
-    updated_at: '2012-02-28 06:12:20'
+    updated_at: '2012-03-29 14:31:04'
   CollectionCollectible_499_44257:
     collection_id: Collection_499
     collectible_id: Collectible_44257
     score: '0'
-    position: '45'
+    position: '44'
     is_primary: '1'
     created_at: '2010-09-22 21:25:58'
-    updated_at: '2012-02-28 06:12:20'
+    updated_at: '2012-03-29 14:31:04'
   CollectionCollectible_499_47041:
     collection_id: Collection_499
     collectible_id: Collectible_47041
     score: '0'
-    position: '46'
+    position: '45'
     is_primary: '1'
     created_at: '2010-11-25 06:42:59'
-    updated_at: '2012-02-28 06:12:20'
+    updated_at: '2012-03-29 14:31:04'
   CollectionCollectible_499_47042:
     collection_id: Collection_499
     collectible_id: Collectible_47042
     score: '0'
-    position: '47'
+    position: '46'
     is_primary: '1'
     created_at: '2010-11-25 06:43:02'
-    updated_at: '2012-02-28 06:12:20'
+    updated_at: '2012-03-29 14:31:04'
   CollectionCollectible_499_47043:
     collection_id: Collection_499
     collectible_id: Collectible_47043
     score: '0'
-    position: '48'
+    position: '47'
     is_primary: '1'
     created_at: '2010-11-25 06:43:05'
-    updated_at: '2012-02-28 06:12:20'
+    updated_at: '2012-03-29 14:31:04'
   CollectionCollectible_499_48147:
     collection_id: Collection_499
     collectible_id: Collectible_48147
     score: '0'
-    position: '49'
+    position: '48'
     is_primary: '1'
     created_at: '2011-01-07 19:05:49'
-    updated_at: '2012-02-28 06:12:20'
+    updated_at: '2012-03-29 14:31:04'
+  CollectionCollectible_499_70182:
+    collection_id: Collection_499
+    collectible_id: Collectible_70182
+    score: '0'
+    position: '49'
+    is_primary: '0'
+    created_at: '2012-03-29 14:15:20'
+    updated_at: '2012-03-29 14:31:04'
+  CollectionCollectible_499_70183:
+    collection_id: Collection_499
+    collectible_id: Collectible_70183
+    score: '0'
+    position: '50'
+    is_primary: '0'
+    created_at: '2012-03-29 14:15:36'
+    updated_at: '2012-03-29 14:31:04'
+  CollectionCollectible_499_70710:
+    collection_id: Collection_499
+    collectible_id: Collectible_70710
+    score: '0'
+    position: '60'
+    is_primary: '0'
+    created_at: '2012-04-02 11:15:12'
+    updated_at: '2012-04-02 11:15:12'
+  CollectionCollectible_499_70711:
+    collection_id: Collection_499
+    collectible_id: Collectible_70711
+    score: '0'
+    position: '61'
+    is_primary: '0'
+    created_at: '2012-04-02 11:15:12'
+    updated_at: '2012-04-02 11:15:12'
+  CollectionCollectible_499_70712:
+    collection_id: Collection_499
+    collectible_id: Collectible_70712
+    score: '0'
+    position: '62'
+    is_primary: '0'
+    created_at: '2012-04-02 11:15:12'
+    updated_at: '2012-04-02 11:15:12'
   CollectionCollectible_501_7313:
     collection_id: Collection_501
     collectible_id: Collectible_7313
@@ -20215,6 +20303,14 @@ CollectionCollectible:
     is_primary: '0'
     created_at: '2012-03-06 11:25:07'
     updated_at: '2012-03-06 11:25:07'
+  CollectionCollectible_642_70728:
+    collection_id: Collection_642
+    collectible_id: Collectible_70728
+    score: '0'
+    position: '37'
+    is_primary: '0'
+    created_at: '2012-04-05 10:03:02'
+    updated_at: '2012-04-05 10:03:02'
   CollectionCollectible_643_9936:
     collection_id: Collection_643
     collectible_id: Collectible_9936
@@ -21295,86 +21391,118 @@ CollectionCollectible:
     is_primary: '1'
     created_at: '2010-02-17 04:03:10'
     updated_at: '2011-11-10 07:25:55'
+  CollectionCollectible_674_5578:
+    collection_id: Collection_674
+    collectible_id: Collectible_5578
+    score: '0'
+    position: '10'
+    is_primary: '0'
+    created_at: '2012-03-29 14:09:22'
+    updated_at: '2012-03-29 14:14:54'
+  CollectionCollectible_674_5846:
+    collection_id: Collection_674
+    collectible_id: Collectible_5846
+    score: '0'
+    position: '6'
+    is_primary: '0'
+    created_at: '2012-03-29 14:11:21'
+    updated_at: '2012-03-29 14:14:54'
   CollectionCollectible_674_10565:
     collection_id: Collection_674
     collectible_id: Collectible_10565
     score: '0'
-    position: '10'
+    position: '4'
     is_primary: '1'
     created_at: '2010-02-28 11:08:01'
-    updated_at: '2012-02-28 06:12:33'
+    updated_at: '2012-03-29 14:14:46'
   CollectionCollectible_674_10566:
     collection_id: Collection_674
     collectible_id: Collectible_10566
     score: '0'
-    position: '1'
+    position: '0'
     is_primary: '1'
     created_at: '2010-02-08 03:27:58'
-    updated_at: '2012-02-28 06:12:33'
+    updated_at: '2012-03-29 14:14:43'
   CollectionCollectible_674_10567:
     collection_id: Collection_674
     collectible_id: Collectible_10567
     score: '0'
-    position: '7'
+    position: '2'
     is_primary: '1'
     created_at: '2010-02-26 17:39:26'
-    updated_at: '2012-02-28 06:12:33'
+    updated_at: '2012-03-29 14:14:46'
   CollectionCollectible_674_10568:
     collection_id: Collection_674
     collectible_id: Collectible_10568
     score: '0'
-    position: '8'
+    position: '3'
     is_primary: '1'
     created_at: '2010-02-27 07:05:15'
-    updated_at: '2012-02-28 06:12:33'
-  CollectionCollectible_674_10569:
-    collection_id: Collection_674
-    collectible_id: Collectible_10569
-    score: '0'
-    position: '9'
-    is_primary: '1'
-    created_at: '2010-02-28 08:36:53'
-    updated_at: '2012-02-28 06:12:33'
+    updated_at: '2012-03-29 14:14:46'
   CollectionCollectible_674_10587:
     collection_id: Collection_674
     collectible_id: Collectible_10587
     score: '0'
-    position: '2'
+    position: '12'
     is_primary: '1'
     created_at: '2010-02-18 06:47:51'
-    updated_at: '2012-02-28 06:12:33'
+    updated_at: '2012-03-29 14:14:46'
   CollectionCollectible_674_10588:
     collection_id: Collection_674
     collectible_id: Collectible_10588
     score: '0'
-    position: '6'
+    position: '13'
     is_primary: '1'
     created_at: '2010-02-26 07:06:04'
-    updated_at: '2012-02-28 06:12:33'
+    updated_at: '2012-03-29 14:14:46'
   CollectionCollectible_674_10612:
     collection_id: Collection_674
     collectible_id: Collectible_10612
     score: '0'
-    position: '3'
+    position: '1'
     is_primary: '1'
     created_at: '2010-02-21 13:44:40'
-    updated_at: '2012-02-28 06:12:33'
-  CollectionCollectible_674_10613:
+    updated_at: '2012-03-29 14:14:43'
+  CollectionCollectible_674_30273:
     collection_id: Collection_674
-    collectible_id: Collectible_10613
-    score: '0'
-    position: '4'
-    is_primary: '1'
-    created_at: '2010-02-22 08:53:57'
-    updated_at: '2012-02-28 06:12:33'
-  CollectionCollectible_674_10614:
-    collection_id: Collection_674
-    collectible_id: Collectible_10614
+    collectible_id: Collectible_30273
     score: '0'
     position: '5'
-    is_primary: '1'
-    created_at: '2010-02-23 07:44:10'
-    updated_at: '2012-02-28 06:12:33'
+    is_primary: '0'
+    created_at: '2012-03-29 14:10:54'
+    updated_at: '2012-03-29 14:14:54'
+  CollectionCollectible_674_32443:
+    collection_id: Collection_674
+    collectible_id: Collectible_32443
+    score: '0'
+    position: '7'
+    is_primary: '0'
+    created_at: '2012-03-29 14:11:56'
+    updated_at: '2012-03-29 14:14:54'
+  CollectionCollectible_674_32448:
+    collection_id: Collection_674
+    collectible_id: Collectible_32448
+    score: '0'
+    position: '8'
+    is_primary: '0'
+    created_at: '2012-03-29 14:12:57'
+    updated_at: '2012-03-29 14:14:54'
+  CollectionCollectible_674_32564:
+    collection_id: Collection_674
+    collectible_id: Collectible_32564
+    score: '0'
+    position: '9'
+    is_primary: '0'
+    created_at: '2012-03-29 14:13:57'
+    updated_at: '2012-03-29 14:14:54'
+  CollectionCollectible_674_38443:
+    collection_id: Collection_674
+    collectible_id: Collectible_38443
+    score: '0'
+    position: '11'
+    is_primary: '0'
+    created_at: '2012-03-29 14:14:19'
+    updated_at: '2012-03-29 14:14:46'
   CollectionCollectible_676_10589:
     collection_id: Collection_676
     collectible_id: Collectible_10589
@@ -42567,6 +42695,14 @@ CollectionCollectible:
     is_primary: '0'
     created_at: '2012-03-05 10:36:56'
     updated_at: '2012-03-05 10:36:56'
+  CollectionCollectible_3131_70709:
+    collection_id: Collection_3131
+    collectible_id: Collectible_70709
+    score: '0'
+    position: '23'
+    is_primary: '0'
+    created_at: '2012-04-02 11:12:36'
+    updated_at: '2012-04-02 11:12:36'
   CollectionCollectible_3141_70178:
     collection_id: Collection_3141
     collectible_id: Collectible_70178
@@ -42639,6 +42775,70 @@ CollectionCollectible:
     is_primary: '0'
     created_at: '2012-03-19 10:40:36'
     updated_at: '2012-03-19 10:40:36'
+  CollectionCollectible_3141_70898:
+    collection_id: Collection_3141
+    collectible_id: Collectible_70898
+    score: '0'
+    position: '31'
+    is_primary: '0'
+    created_at: '2012-04-06 08:27:05'
+    updated_at: '2012-04-06 08:27:05'
+  CollectionCollectible_3141_70899:
+    collection_id: Collection_3141
+    collectible_id: Collectible_70899
+    score: '0'
+    position: '32'
+    is_primary: '0'
+    created_at: '2012-04-06 08:27:05'
+    updated_at: '2012-04-06 08:27:05'
+  CollectionCollectible_3141_70900:
+    collection_id: Collection_3141
+    collectible_id: Collectible_70900
+    score: '0'
+    position: '36'
+    is_primary: '0'
+    created_at: '2012-04-06 08:27:11'
+    updated_at: '2012-04-06 08:27:11'
+  CollectionCollectible_3141_70901:
+    collection_id: Collection_3141
+    collectible_id: Collectible_70901
+    score: '0'
+    position: '37'
+    is_primary: '0'
+    created_at: '2012-04-06 08:27:11'
+    updated_at: '2012-04-06 08:27:11'
+  CollectionCollectible_3141_70902:
+    collection_id: Collection_3141
+    collectible_id: Collectible_70902
+    score: '0'
+    position: '38'
+    is_primary: '0'
+    created_at: '2012-04-06 08:27:11'
+    updated_at: '2012-04-06 08:27:11'
+  CollectionCollectible_3141_70903:
+    collection_id: Collection_3141
+    collectible_id: Collectible_70903
+    score: '0'
+    position: '28'
+    is_primary: '1'
+    created_at: '2012-04-06 08:24:10'
+    updated_at: '2012-04-06 08:24:10'
+  CollectionCollectible_3141_70904:
+    collection_id: Collection_3141
+    collectible_id: Collectible_70904
+    score: '0'
+    position: '29'
+    is_primary: '1'
+    created_at: '2012-04-06 08:24:13'
+    updated_at: '2012-04-06 08:24:13'
+  CollectionCollectible_3141_70905:
+    collection_id: Collection_3141
+    collectible_id: Collectible_70905
+    score: '0'
+    position: '30'
+    is_primary: '1'
+    created_at: '2012-04-06 08:24:16'
+    updated_at: '2012-04-06 08:24:16'
   CollectionCollectible_3145_70327:
     collection_id: Collection_3145
     collectible_id: Collectible_70327
@@ -42715,10 +42915,10 @@ CollectionCollectible:
     collection_id: Collection_3145
     collectible_id: Collectible_70336
     score: '0'
-    position: '21'
+    position: '24'
     is_primary: '0'
-    created_at: '2012-03-26 17:21:43'
-    updated_at: '2012-03-26 17:21:43'
+    created_at: '2012-03-27 20:46:47'
+    updated_at: '2012-03-27 20:46:47'
   CollectionCollectible_3145_70337:
     collection_id: Collection_3145
     collectible_id: Collectible_70337
@@ -42727,3 +42927,403 @@ CollectionCollectible:
     is_primary: '0'
     created_at: '2012-03-26 17:22:10'
     updated_at: '2012-03-26 17:22:10'
+  CollectionCollectible_3147_3350:
+    collection_id: Collection_3147
+    collectible_id: Collectible_3350
+    score: '0'
+    position: '15'
+    is_primary: '0'
+    created_at: '2012-03-29 14:27:03'
+    updated_at: '2012-03-29 14:27:03'
+  CollectionCollectible_3147_3595:
+    collection_id: Collection_3147
+    collectible_id: Collectible_3595
+    score: '0'
+    position: '16'
+    is_primary: '0'
+    created_at: '2012-03-29 14:28:03'
+    updated_at: '2012-03-29 14:28:03'
+  CollectionCollectible_3147_3610:
+    collection_id: Collection_3147
+    collectible_id: Collectible_3610
+    score: '0'
+    position: '14'
+    is_primary: '0'
+    created_at: '2012-03-29 14:25:50'
+    updated_at: '2012-03-29 14:25:50'
+  CollectionCollectible_3147_3670:
+    collection_id: Collection_3147
+    collectible_id: Collectible_3670
+    score: '0'
+    position: '13'
+    is_primary: '0'
+    created_at: '2012-03-29 14:25:00'
+    updated_at: '2012-03-29 14:25:00'
+  CollectionCollectible_3147_4566:
+    collection_id: Collection_3147
+    collectible_id: Collectible_4566
+    score: '0'
+    position: '12'
+    is_primary: '0'
+    created_at: '2012-03-29 14:24:48'
+    updated_at: '2012-03-29 14:24:48'
+  CollectionCollectible_3147_4696:
+    collection_id: Collection_3147
+    collectible_id: Collectible_4696
+    score: '0'
+    position: '11'
+    is_primary: '0'
+    created_at: '2012-03-29 14:23:15'
+    updated_at: '2012-03-29 14:23:15'
+  CollectionCollectible_3147_5892:
+    collection_id: Collection_3147
+    collectible_id: Collectible_5892
+    score: '0'
+    position: '10'
+    is_primary: '0'
+    created_at: '2012-03-29 14:22:36'
+    updated_at: '2012-03-29 14:22:36'
+  CollectionCollectible_3147_7597:
+    collection_id: Collection_3147
+    collectible_id: Collectible_7597
+    score: '0'
+    position: '9'
+    is_primary: '0'
+    created_at: '2012-03-29 14:22:18'
+    updated_at: '2012-03-29 14:22:18'
+  CollectionCollectible_3147_37297:
+    collection_id: Collection_3147
+    collectible_id: Collectible_37297
+    score: '0'
+    position: '6'
+    is_primary: '0'
+    created_at: '2012-03-29 14:20:28'
+    updated_at: '2012-03-29 14:20:28'
+  CollectionCollectible_3147_37302:
+    collection_id: Collection_3147
+    collectible_id: Collectible_37302
+    score: '0'
+    position: '7'
+    is_primary: '0'
+    created_at: '2012-03-29 14:20:46'
+    updated_at: '2012-03-29 14:20:46'
+  CollectionCollectible_3147_37306:
+    collection_id: Collection_3147
+    collectible_id: Collectible_37306
+    score: '0'
+    position: '8'
+    is_primary: '0'
+    created_at: '2012-03-29 14:21:03'
+    updated_at: '2012-03-29 14:21:03'
+  CollectionCollectible_3147_59897:
+    collection_id: Collection_3147
+    collectible_id: Collectible_59897
+    score: '0'
+    position: '5'
+    is_primary: '0'
+    created_at: '2012-03-29 14:19:05'
+    updated_at: '2012-03-29 14:19:05'
+  CollectionCollectible_3147_61216:
+    collection_id: Collection_3147
+    collectible_id: Collectible_61216
+    score: '0'
+    position: '3'
+    is_primary: '0'
+    created_at: '2012-03-29 14:18:35'
+    updated_at: '2012-03-29 14:18:35'
+  CollectionCollectible_3147_65358:
+    collection_id: Collection_3147
+    collectible_id: Collectible_65358
+    score: '0'
+    position: '4'
+    is_primary: '0'
+    created_at: '2012-03-29 14:18:55'
+    updated_at: '2012-03-29 14:18:55'
+  CollectionCollectible_3147_70186:
+    collection_id: Collection_3147
+    collectible_id: Collectible_70186
+    score: '0'
+    position: '2'
+    is_primary: '0'
+    created_at: '2012-03-29 14:18:10'
+    updated_at: '2012-03-29 14:18:10'
+  CollectionCollectible_3150_70719:
+    collection_id: Collection_3150
+    collectible_id: Collectible_70719
+    score: '0'
+    position: '25'
+    is_primary: '0'
+    created_at: '2012-04-02 17:27:46'
+    updated_at: '2012-04-02 17:27:46'
+  CollectionCollectible_3150_70720:
+    collection_id: Collection_3150
+    collectible_id: Collectible_70720
+    score: '0'
+    position: '26'
+    is_primary: '0'
+    created_at: '2012-04-02 17:27:46'
+    updated_at: '2012-04-02 17:27:46'
+  CollectionCollectible_3150_70721:
+    collection_id: Collection_3150
+    collectible_id: Collectible_70721
+    score: '0'
+    position: '16'
+    is_primary: '0'
+    created_at: '2012-04-02 17:26:58'
+    updated_at: '2012-04-02 17:26:58'
+  CollectionCollectible_3150_70722:
+    collection_id: Collection_3150
+    collectible_id: Collectible_70722
+    score: '0'
+    position: '17'
+    is_primary: '0'
+    created_at: '2012-04-02 17:26:58'
+    updated_at: '2012-04-02 17:26:58'
+  CollectionCollectible_3150_70723:
+    collection_id: Collection_3150
+    collectible_id: Collectible_70723
+    score: '0'
+    position: '18'
+    is_primary: '0'
+    created_at: '2012-04-02 17:26:58'
+    updated_at: '2012-04-02 17:26:58'
+  CollectionCollectible_3150_70724:
+    collection_id: Collection_3150
+    collectible_id: Collectible_70724
+    score: '0'
+    position: '6'
+    is_primary: '1'
+    created_at: '2012-04-02 17:22:39'
+    updated_at: '2012-04-02 17:22:39'
+  CollectionCollectible_3150_70725:
+    collection_id: Collection_3150
+    collectible_id: Collectible_70725
+    score: '0'
+    position: '7'
+    is_primary: '1'
+    created_at: '2012-04-02 17:22:42'
+    updated_at: '2012-04-02 17:22:42'
+  CollectionCollectible_3150_70726:
+    collection_id: Collection_3150
+    collectible_id: Collectible_70726
+    score: '0'
+    position: '8'
+    is_primary: '1'
+    created_at: '2012-04-02 17:22:46'
+    updated_at: '2012-04-02 17:22:46'
+  CollectionCollectible_3150_70727:
+    collection_id: Collection_3150
+    collectible_id: Collectible_70727
+    score: '0'
+    position: '9'
+    is_primary: '1'
+    created_at: '2012-04-02 17:22:50'
+    updated_at: '2012-04-02 17:22:50'
+  CollectionCollectible_3150_70728:
+    collection_id: Collection_3150
+    collectible_id: Collectible_70728
+    score: '0'
+    position: '10'
+    is_primary: '1'
+    created_at: '2012-04-02 17:22:52'
+    updated_at: '2012-04-02 17:22:52'
+  CollectionCollectible_3150_70729:
+    collection_id: Collection_3150
+    collectible_id: Collectible_70729
+    score: '0'
+    position: '19'
+    is_primary: '0'
+    created_at: '2012-04-02 17:27:41'
+    updated_at: '2012-04-02 17:27:41'
+  CollectionCollectible_3150_70730:
+    collection_id: Collection_3150
+    collectible_id: Collectible_70730
+    score: '0'
+    position: '20'
+    is_primary: '0'
+    created_at: '2012-04-02 17:27:41'
+    updated_at: '2012-04-02 17:27:41'
+  CollectionCollectible_3150_70731:
+    collection_id: Collection_3150
+    collectible_id: Collectible_70731
+    score: '0'
+    position: '24'
+    is_primary: '0'
+    created_at: '2012-04-02 17:27:46'
+    updated_at: '2012-04-02 17:27:46'
+  CollectionCollectible_3153_70779:
+    collection_id: Collection_3153
+    collectible_id: Collectible_70779
+    score: '0'
+    position: '10'
+    is_primary: '0'
+    created_at: '2012-04-03 16:25:51'
+    updated_at: '2012-04-03 16:25:51'
+  CollectionCollectible_3153_70780:
+    collection_id: Collection_3153
+    collectible_id: Collectible_70780
+    score: '0'
+    position: '15'
+    is_primary: '0'
+    created_at: '2012-04-03 16:25:57'
+    updated_at: '2012-04-03 16:25:57'
+  CollectionCollectible_3153_70781:
+    collection_id: Collection_3153
+    collectible_id: Collectible_70781
+    score: '0'
+    position: '16'
+    is_primary: '0'
+    created_at: '2012-04-03 16:25:57'
+    updated_at: '2012-04-03 16:25:57'
+  CollectionCollectible_3153_70782:
+    collection_id: Collection_3153
+    collectible_id: Collectible_70782
+    score: '0'
+    position: '17'
+    is_primary: '0'
+    created_at: '2012-04-03 16:25:57'
+    updated_at: '2012-04-03 16:25:57'
+  CollectionCollectible_3153_70783:
+    collection_id: Collection_3153
+    collectible_id: Collectible_70783
+    score: '0'
+    position: '18'
+    is_primary: '0'
+    created_at: '2012-04-03 16:25:57'
+    updated_at: '2012-04-03 16:25:57'
+  CollectionCollectible_3153_70784:
+    collection_id: Collection_3153
+    collectible_id: Collectible_70784
+    score: '0'
+    position: '6'
+    is_primary: '1'
+    created_at: '2012-04-03 16:22:36'
+    updated_at: '2012-04-03 16:22:36'
+  CollectionCollectible_3153_70785:
+    collection_id: Collection_3153
+    collectible_id: Collectible_70785
+    score: '0'
+    position: '7'
+    is_primary: '1'
+    created_at: '2012-04-03 16:22:38'
+    updated_at: '2012-04-03 16:22:38'
+  CollectionCollectible_3153_70786:
+    collection_id: Collection_3153
+    collectible_id: Collectible_70786
+    score: '0'
+    position: '8'
+    is_primary: '1'
+    created_at: '2012-04-03 16:22:39'
+    updated_at: '2012-04-03 16:22:39'
+  CollectionCollectible_3153_70787:
+    collection_id: Collection_3153
+    collectible_id: Collectible_70787
+    score: '0'
+    position: '9'
+    is_primary: '1'
+    created_at: '2012-04-03 16:22:40'
+    updated_at: '2012-04-03 16:22:40'
+  CollectionCollectible_3154_3263:
+    collection_id: Collection_3154
+    collectible_id: Collectible_3263
+    score: '0'
+    position: '6'
+    is_primary: '0'
+    created_at: '2012-04-05 10:00:35'
+    updated_at: '2012-04-05 10:00:35'
+  CollectionCollectible_3154_11244:
+    collection_id: Collection_3154
+    collectible_id: Collectible_11244
+    score: '0'
+    position: '5'
+    is_primary: '0'
+    created_at: '2012-04-05 10:00:19'
+    updated_at: '2012-04-05 10:00:19'
+  CollectionCollectible_3154_11248:
+    collection_id: Collection_3154
+    collectible_id: Collectible_11248
+    score: '0'
+    position: '4'
+    is_primary: '0'
+    created_at: '2012-04-05 10:00:04'
+    updated_at: '2012-04-05 10:00:04'
+  CollectionCollectible_3154_14796:
+    collection_id: Collection_3154
+    collectible_id: Collectible_14796
+    score: '0'
+    position: '3'
+    is_primary: '0'
+    created_at: '2012-04-05 09:59:28'
+    updated_at: '2012-04-05 09:59:28'
+  CollectionCollectible_3154_32052:
+    collection_id: Collection_3154
+    collectible_id: Collectible_32052
+    score: '0'
+    position: '7'
+    is_primary: '0'
+    created_at: '2012-04-05 10:00:50'
+    updated_at: '2012-04-05 10:00:50'
+  CollectionCollectible_3154_50169:
+    collection_id: Collection_3154
+    collectible_id: Collectible_50169
+    score: '0'
+    position: '2'
+    is_primary: '0'
+    created_at: '2012-04-05 09:58:43'
+    updated_at: '2012-04-05 09:58:43'
+  CollectionCollectible_3155_70906:
+    collection_id: Collection_3155
+    collectible_id: Collectible_70906
+    score: '0'
+    position: '8'
+    is_primary: '0'
+    created_at: '2012-04-06 08:35:43'
+    updated_at: '2012-04-06 08:35:43'
+  CollectionCollectible_3155_70907:
+    collection_id: Collection_3155
+    collectible_id: Collectible_70907
+    score: '0'
+    position: '9'
+    is_primary: '0'
+    created_at: '2012-04-06 08:35:43'
+    updated_at: '2012-04-06 08:35:43'
+  CollectionCollectible_3155_70908:
+    collection_id: Collection_3155
+    collectible_id: Collectible_70908
+    score: '0'
+    position: '10'
+    is_primary: '0'
+    created_at: '2012-04-06 08:35:43'
+    updated_at: '2012-04-06 08:35:43'
+  CollectionCollectible_3155_70909:
+    collection_id: Collection_3155
+    collectible_id: Collectible_70909
+    score: '0'
+    position: '13'
+    is_primary: '0'
+    created_at: '2012-04-06 08:35:47'
+    updated_at: '2012-04-06 08:35:47'
+  CollectionCollectible_3155_70910:
+    collection_id: Collection_3155
+    collectible_id: Collectible_70910
+    score: '0'
+    position: '14'
+    is_primary: '0'
+    created_at: '2012-04-06 08:35:48'
+    updated_at: '2012-04-06 08:35:48'
+  CollectionCollectible_3155_70911:
+    collection_id: Collection_3155
+    collectible_id: Collectible_70911
+    score: '0'
+    position: '6'
+    is_primary: '1'
+    created_at: '2012-04-06 08:33:51'
+    updated_at: '2012-04-06 08:33:51'
+  CollectionCollectible_3155_70912:
+    collection_id: Collection_3155
+    collectible_id: Collectible_70912
+    score: '0'
+    position: '7'
+    is_primary: '1'
+    created_at: '2012-04-06 08:33:59'
+    updated_at: '2012-04-06 08:33:59'

@@ -508,6 +508,25 @@ CollectorArchive:
     last_seen_at: '2009-01-16 00:00:00'
     updated_at: '2012-03-13 12:04:45'
     created_at: '2008-09-28 08:57:00'
+  CollectorArchive_774:
+    id: '774'
+    graph_id: '14000'
+    username: toys
+    display_name: toys
+    slug: toys
+    sha1_password: 2e74642766caf299df48a5bed78046cf4e69f9ab
+    salt: b61ae8ef29c71a694a50df9f517784f2
+    email: joannterrygallery@yahoo.com
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '5'
+    is_spam: '0'
+    is_public: '1'
+    has_completed_registration: '0'
+    last_seen_at: '2009-01-21 00:00:00'
+    updated_at: '2012-03-28 13:53:02'
+    created_at: '2008-10-18 19:36:38'
   CollectorArchive_787:
     id: '787'
     graph_id: '12733'
@@ -1184,6 +1203,25 @@ CollectorArchive:
     updated_at: '2012-01-17 08:08:36'
     created_at: '2010-01-20 00:46:57'
     archived_at: '2011-09-28 07:40:24'
+  CollectorArchive_2146:
+    id: '2146'
+    graph_id: '14312'
+    username: miniaturecritters
+    display_name: Miniaturecritters
+    slug: miniaturecritters
+    sha1_password: bf09ebcae730fe06935a366961ca0696f7dfc82e
+    salt: 8fcfec0920ec7e54633a83dd32a0b120
+    email: miniaturecritters@gmail.com
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '5'
+    is_spam: '0'
+    is_public: '1'
+    has_completed_registration: '0'
+    last_seen_at: '2010-01-26 00:00:00'
+    updated_at: '2012-04-04 14:42:36'
+    created_at: '2010-01-21 14:07:26'
   CollectorArchive_2155:
     id: '2155'
     graph_id: '163'
@@ -4337,6 +4375,26 @@ CollectorArchive:
     last_seen_at: '2010-10-22 00:00:00'
     updated_at: '2012-03-13 14:17:54'
     created_at: '2010-10-22 11:58:00'
+  CollectorArchive_4487:
+    id: '4487'
+    graph_id: '14338'
+    username: Hypnodr
+    display_name: Hypnodr
+    slug: hypnodr
+    sha1_password: 3df6bdccb071975f99695f2dcd74325dfb70cd71
+    salt: 7eb04878c7f7bf5185311d9864e1115d
+    email: hypnodr@hypnodr.us
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '5'
+    is_spam: '0'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: j3b4h3kf33j3lseo4lttbqhc75
+    last_seen_at: '2011-04-06 00:00:00'
+    updated_at: '2012-04-05 14:27:34'
+    created_at: '2010-10-24 18:56:55'
   CollectorArchive_4493:
     id: '4493'
     graph_id: '293'
@@ -13272,6 +13330,26 @@ CollectorArchive:
     updated_at: '2012-01-17 08:09:13'
     created_at: '2011-08-06 22:16:05'
     archived_at: '2011-09-28 07:34:32'
+  CollectorArchive_7558:
+    id: '7558'
+    graph_id: '14339'
+    username: 4e3eac4d5a0e9
+    display_name: Petie
+    slug: petie
+    sha1_password: 7efc349a449743a88cca2e06167adf874e22dd62
+    salt: 014f354c47bddb953bf4ce6b457e99d4
+    email: petiealfano@yahoo.com
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '5'
+    is_spam: '0'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: j1gumpvc6e33eif7tkdc28mj91
+    last_seen_at: '2011-08-28 00:00:00'
+    updated_at: '2012-04-05 14:29:28'
+    created_at: '2011-08-07 11:16:29'
   CollectorArchive_7560:
     id: '7560'
     graph_id: '717'
@@ -47172,3 +47250,1242 @@ CollectorArchive:
     last_seen_at: '2012-03-26 07:35:25'
     updated_at: '2012-03-26 07:36:21'
     created_at: '2012-03-26 07:35:25'
+  CollectorArchive_9872:
+    id: '9872'
+    graph_id: '13753'
+    username: latindance01
+    display_name: 'Latin Dance Lessons Chatswood'
+    slug: latin-dance-lessons-chatswood
+    sha1_password: 20f95d8dc9cde5dd67992bd2be2c00b7796c9eb3
+    salt: 70fbb19935d1a9cedbae58a346747831
+    email: sydneydanceworld01@gmail.com
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '99'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: eudsg2ij1onl9ha9egl5t2m7u0
+    last_seen_at: '2012-03-26 10:46:02'
+    updated_at: '2012-03-26 10:47:31'
+    created_at: '2012-03-26 10:46:02'
+  CollectorArchive_9873:
+    id: '9873'
+    graph_id: '13754'
+    username: watchfreemoviesonline
+    display_name: watchfreemoviesonline
+    slug: watchfreemoviesonline
+    sha1_password: 33c5483835c587c9caeb5ae52c376b223b905d80
+    salt: 82c31092e5d3b527925338b54256459b
+    email: jamestaylor30@hotmail.co.uk
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '0'
+    is_spam: '0'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: co4aijstk3u5p2fqovci0d96q6
+    last_seen_at: '2012-03-26 11:59:04'
+    updated_at: '2012-03-26 11:59:04'
+    created_at: '2012-03-26 11:56:13'
+  CollectorArchive_9875:
+    id: '9875'
+    graph_id: '13762'
+    username: martinbo
+    display_name: martinbo
+    slug: martinbo
+    sha1_password: 4dbbd9604ce5ca0e007255026d89059524cbd95e
+    salt: 2c0de5aaba8165cc3b4847041a668d03
+    email: TerryMathes93@gmail.com
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '99'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: 02sa1r2v2vf3089o9pauu68bu0
+    last_seen_at: '2012-03-26 15:51:01'
+    updated_at: '2012-03-26 15:52:02'
+    created_at: '2012-03-26 15:51:01'
+  CollectorArchive_9876:
+    id: '9876'
+    graph_id: '13871'
+    username: kadeuriela
+    display_name: 'kade uriela'
+    slug: kade-uriela
+    sha1_password: 77aad2ccf1021411caada76b1aeef4fee422520b
+    salt: 01ed66140b4f76a8844af637075f07e9
+    email: shanenolane@yahoo.com
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '99'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: idhinir3n2kcb6ur0d8l6t5gv6
+    last_seen_at: '2012-03-27 02:20:48'
+    updated_at: '2012-03-27 02:21:27'
+    created_at: '2012-03-27 02:20:48'
+  CollectorArchive_9877:
+    id: '9877'
+    graph_id: '13880'
+    username: raku15mat
+    display_name: 'raku Thomas'
+    slug: raku-thomas
+    sha1_password: cfb6584e1cf35b577d2cce0f194dcc098fe7b15f
+    salt: deb3ba5b43611a215ae44aea9404abac
+    email: raku15mat@yahoo.com
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '0'
+    is_spam: '0'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: 8fad2vlk66dfdusiug6ivbddh7
+    last_seen_at: '2012-03-27 02:40:06'
+    updated_at: '2012-03-27 02:40:06'
+    created_at: '2012-03-27 02:40:06'
+  CollectorArchive_9878:
+    id: '9878'
+    graph_id: '13901'
+    username: darnawl
+    display_name: 'dar nawl'
+    slug: dar-nawl
+    sha1_password: 16aec77a4dd94520fac4c6c74d21d76925d680c8
+    salt: bc66b410b1cf4849ea21d64f5c27918c
+    email: jacksonconnor31@yahoo.com
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '99'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: 2cmo4chntgginp8crdkuha7me2
+    last_seen_at: '2012-03-27 03:09:52'
+    updated_at: '2012-03-27 03:10:33'
+    created_at: '2012-03-27 03:09:52'
+  CollectorArchive_9879:
+    id: '9879'
+    graph_id: '13904'
+    username: 1-loan-for-bad-credit
+    display_name: 1-loan-for-bad-credit
+    slug: 1-loan-for-bad-credit
+    sha1_password: 85693b9eb2d0d83148c931fd831d4af3fe32cee5
+    salt: 584ef3a224b77d797d6849bad1d47e4e
+    email: kali.mcevoy@guglator.com
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '0'
+    is_spam: '0'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: 0hkeh6fhq3307i2gil7qt3ejj6
+    last_seen_at: '2012-03-28 02:29:24'
+    updated_at: '2012-03-28 02:29:24'
+    created_at: '2012-03-27 04:13:56'
+  CollectorArchive_9880:
+    id: '9880'
+    graph_id: '13905'
+    username: 3-loans-for-bad-credit-people
+    display_name: 3-loans-for-bad-credit-people
+    slug: 3-loans-for-bad-credit-people
+    sha1_password: 160e1937b4a3f3f18af48963d7c4bc2f868d4823
+    salt: 78fc718437775c606ced03196e793651
+    email: joseph.shaw@guglator.com
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '0'
+    is_spam: '0'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: g8gftbpnih5jutmgqnkh98jkh3
+    last_seen_at: '2012-03-27 07:18:46'
+    updated_at: '2012-03-27 07:18:46'
+    created_at: '2012-03-27 06:09:00'
+  CollectorArchive_9881:
+    id: '9881'
+    graph_id: '13906'
+    username: nawldar
+    display_name: 'nawl dar'
+    slug: nawl-dar
+    sha1_password: 7044f0723a0fc2317b94c74f629fe6ec1f2117c6
+    salt: 4b0cf8e173074cd25ae22dddb303912c
+    email: jaydencharles44@yahoo.com
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '99'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: b7plqrib625a6hpdq00ctq3ud6
+    last_seen_at: '2012-03-27 06:25:09'
+    updated_at: '2012-03-27 06:25:35'
+    created_at: '2012-03-27 06:25:09'
+  CollectorArchive_9882:
+    id: '9882'
+    graph_id: '13914'
+    username: snhawsnad
+    display_name: 'snhaw snad'
+    slug: snhaw-snad
+    sha1_password: 594f2a9b580d294eecf1e43008ea91e01327678b
+    salt: 093079a8cb7cb65dd7cae0ab17d3c9f2
+    email: peterdravid153@yahoo.com
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '99'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: l9kol980q4u8eaqdr6ge486gi5
+    last_seen_at: '2012-03-27 07:53:45'
+    updated_at: '2012-03-27 07:54:07'
+    created_at: '2012-03-27 07:53:45'
+  CollectorArchive_9883:
+    id: '9883'
+    graph_id: '13915'
+    username: 2-short-term-loans
+    display_name: 2-short-term-loans
+    slug: 2-short-term-loans
+    sha1_password: a3c3866ebbb5756da29f6905861f1bc52ee52893
+    salt: f9c3d426458e93597030294f3ecc744c
+    email: joselyn.foster@guglator.com
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '0'
+    is_spam: '0'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: 56dihoo3o7g4gqpg858mbqo9g2
+    last_seen_at: '2012-03-27 09:17:12'
+    updated_at: '2012-03-27 09:17:12'
+    created_at: '2012-03-27 08:10:22'
+  CollectorArchive_9884:
+    id: '9884'
+    graph_id: '13916'
+    username: carterx3c
+    display_name: 'carter glen'
+    slug: carter-glen
+    sha1_password: b48e4ef1434d5c789a5becef7f6d85ebcb478070
+    salt: b9c84a4984ac57ed40c67082a2f4a65b
+    email: carterglen413@yahoo.com
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '40'
+    is_spam: '0'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: kpkik1hiosl7n5degj6qs0v1t2
+    last_seen_at: '2012-03-27 13:09:32'
+    updated_at: '2012-03-27 13:09:51'
+    created_at: '2012-03-27 13:09:32'
+  CollectorArchive_9885:
+    id: '9885'
+    graph_id: '13917'
+    username: printablecoupons
+    display_name: printablecoupons
+    slug: printablecoupons
+    sha1_password: de16ae33554f2d913613f20914fe79b7e685cbd4
+    salt: 2b8910a2f4e7a80931345893a7bf6f87
+    email: caraturner28@hotmail.co.uk
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '70'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: tlqb3c0s4dko3v35jvifsaq717
+    last_seen_at: '2012-03-28 12:43:10'
+    updated_at: '2012-03-28 12:43:33'
+    created_at: '2012-03-27 14:17:13'
+  CollectorArchive_9889:
+    id: '9889'
+    graph_id: '13990'
+    username: stivesbathroom02
+    display_name: stivesbathroom02
+    slug: stivesbathroom02
+    sha1_password: c803a7636e34b5d544818a90772c63ce3ab8f0af
+    salt: 7f92e28daea646aa23b532c549923271
+    email: stivesbathroomrenovations02@yahoo.com
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '99'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: 72j10q8upl92hg9m0ieb32vpm1
+    last_seen_at: '2012-03-28 00:20:26'
+    updated_at: '2012-03-28 00:24:43'
+    created_at: '2012-03-28 00:20:26'
+  CollectorArchive_9890:
+    id: '9890'
+    graph_id: '13991'
+    username: hunnypot03
+    display_name: hunnypot03
+    slug: hunnypot03
+    sha1_password: f20b679222adab781149198965fbdfe6f66e4268
+    salt: 629befb4531b93d1c0faca521f3041b4
+    email: hunnypot03@gmail.com
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '40'
+    is_spam: '0'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: mnj2vsgleod5q3sqiehn2ir0e0
+    last_seen_at: '2012-03-28 02:01:23'
+    updated_at: '2012-03-28 02:03:11'
+    created_at: '2012-03-28 02:01:23'
+  CollectorArchive_9891:
+    id: '9891'
+    graph_id: '13994'
+    username: mhanes
+    display_name: MildredH
+    slug: mildredh
+    sha1_password: 116657fe6ce9113286e76726935c9b24cf46610f
+    salt: acbdbcf7f4e4864214b72bbcd1e10592
+    email: mildredhanes@gmail.com
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '5'
+    is_spam: '0'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: b3ilc3tkodbhndh1caa71lhcl2
+    last_seen_at: '2012-03-28 03:52:32'
+    updated_at: '2012-03-28 04:05:46'
+    created_at: '2012-03-28 03:52:32'
+  CollectorArchive_9892:
+    id: '9892'
+    graph_id: '13995'
+    username: 3-online-cash-advance
+    display_name: 3-online-cash-advance
+    slug: 3-online-cash-advance
+    sha1_password: 9020a9fc5888da124777f933306e0ede1be8d469
+    salt: 2a0695f7cc5e1756f34f328597e0c88f
+    email: alexus.jester@guglator.com
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '0'
+    is_spam: '0'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: ro0ruc1pn2uimubl6dkpbrlqf7
+    last_seen_at: '2012-03-28 06:42:35'
+    updated_at: '2012-03-28 06:42:35'
+    created_at: '2012-03-28 04:59:17'
+  CollectorArchive_9893:
+    id: '9893'
+    graph_id: '13996'
+    username: nanu16kali
+    display_name: 'Naaz Khan'
+    slug: naaz-khan
+    sha1_password: 77d59c3318c4c1bd3ec98160e921bedcf0727be6
+    salt: 118e1a7240e57674d44398cbdb5fa275
+    email: nanu16kali@yahoo.com
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '99'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: jkjrol5j8gd71ndtqcbf1vipg6
+    last_seen_at: '2012-03-28 05:19:04'
+    updated_at: '2012-03-28 05:19:46'
+    created_at: '2012-03-28 05:19:04'
+  CollectorArchive_9894:
+    id: '9894'
+    graph_id: '13997'
+    username: 21-cash-loan
+    display_name: 21-cash-loan
+    slug: 21-cash-loan
+    sha1_password: 06da66557716b4b20f2901ee10ca357e6ce9ced9
+    salt: e679ced4556b747eeb0362f7f2e893d4
+    email: cloe.wesson@guglator.com
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '0'
+    is_spam: '0'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: rgo304jebaqskgvasojk6vlbg7
+    last_seen_at: '2012-03-29 03:35:35'
+    updated_at: '2012-03-29 03:35:35'
+    created_at: '2012-03-28 07:32:47'
+  CollectorArchive_9898:
+    id: '9898'
+    graph_id: '14008'
+    username: bianc63g
+    display_name: bianc63g
+    slug: bianc63g
+    sha1_password: 1923b9975b504c560568630d20bf19935f57f745
+    salt: c2fb4e420d85d0b68315c5b0896a4c27
+    email: biancagarcia632@yahoo.com
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '60'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: frudld3pslgt6indski41o7652
+    last_seen_at: '2012-03-28 22:17:34'
+    updated_at: '2012-03-28 22:18:12'
+    created_at: '2012-03-28 22:17:34'
+  CollectorArchive_9899:
+    id: '9899'
+    graph_id: '14014'
+    username: 6-cash-advance-loans
+    display_name: 6-cash-advance-loans
+    slug: 6-cash-advance-loans
+    sha1_password: cfa5b83bb93f0749fe75a01e98a82816dba4f659
+    salt: cb333d8c4c4787d3b41fa60208b7fcaa
+    email: theodore.duke@guglator.com
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '0'
+    is_spam: '0'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: ffcuuuo9uo0b4qoue77ef6jvi4
+    last_seen_at: '2012-03-29 07:16:38'
+    updated_at: '2012-03-29 07:16:38'
+    created_at: '2012-03-29 04:57:34'
+  CollectorArchive_9900:
+    id: '9900'
+    graph_id: '14015'
+    username: alexnan9
+    display_name: alexnan9
+    slug: alexnan9
+    sha1_password: 81c894a619836f860aad61c61e4e4e51e3c0c8ee
+    salt: b07b31218e6dac28224be541ea8ff397
+    email: alexnan9@gmail.com
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '90'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: qm0ig73nt9su7f7dt0s80f4vm0
+    last_seen_at: '2012-03-29 05:16:40'
+    updated_at: '2012-03-29 05:16:50'
+    created_at: '2012-03-29 05:16:40'
+  CollectorArchive_9901:
+    id: '9901'
+    graph_id: '14060'
+    username: christosi
+    display_name: christosi
+    slug: christosi
+    sha1_password: 254b00afa3d51ebdfda7ec4bf836e143b5637e3a
+    salt: 864d36a5c87ef6a95775409c424a63c2
+    email: HaileyMeier52@gmail.com
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '99'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: v9njnj7geglir68r6i2u13uau0
+    last_seen_at: '2012-03-29 16:49:47'
+    updated_at: '2012-03-29 16:50:04'
+    created_at: '2012-03-29 16:49:47'
+  CollectorArchive_9903:
+    id: '9903'
+    graph_id: '14061'
+    username: tutuology
+    display_name: tutuology
+    slug: tutuology
+    sha1_password: 10c076c6df24f299f0cbf8daaf8ebfb13357e439
+    salt: f6395f45c22f608168a1253ff7669a8a
+    email: tutuology@yahoo.com
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '99'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: rqdrl9f8pch67evspmu3qhsdo3
+    last_seen_at: '2012-03-29 22:05:25'
+    updated_at: '2012-03-29 22:05:41'
+    created_at: '2012-03-29 22:05:25'
+  CollectorArchive_9904:
+    id: '9904'
+    graph_id: '14062'
+    username: goldspotprice01
+    display_name: goldspotprice01
+    slug: goldspotprice01
+    sha1_password: 0efa94c7e7f2d3d62b06eb50adcd045fea77a716
+    salt: 1ccb331428ea600279850c517c9f1724
+    email: goldspotprice247@gmail.com
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '99'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: ralshvnsgnjcqfee76er2lvif3
+    last_seen_at: '2012-03-29 22:55:53'
+    updated_at: '2012-03-29 22:56:59'
+    created_at: '2012-03-29 22:55:53'
+  CollectorArchive_9905:
+    id: '9905'
+    graph_id: '14063'
+    username: tuna14rat
+    display_name: 'Tom Grill'
+    slug: tom-grill
+    sha1_password: d9b63c9085bedb02bf5b3680bb4ffe2acbe6e0ee
+    salt: 34866e0ceb0e519f628386f102be21c7
+    email: tuna14rat@yahoo.com
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '99'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: amnq3tqr473no124gi9dqmjel1
+    last_seen_at: '2012-03-30 02:46:26'
+    updated_at: '2012-03-30 02:47:48'
+    created_at: '2012-03-30 02:46:26'
+  CollectorArchive_9906:
+    id: '9906'
+    graph_id: '14064'
+    username: tvcmall
+    display_name: 'Tina hale'
+    slug: tina-hale
+    sha1_password: e99301b642c874c6b6d6702eed191e13c6156a93
+    salt: a9fc7dc8f9b9c210b29c193ab20ac384
+    email: coco@tvc-mall.net
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '60'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: 7h4b7v8iv451frulp5i9016470
+    last_seen_at: '2012-03-30 05:18:58'
+    updated_at: '2012-03-30 05:20:17'
+    created_at: '2012-03-30 05:18:58'
+  CollectorArchive_9907:
+    id: '9907'
+    graph_id: '14065'
+    username: 2-no-credit-check-loans
+    display_name: 2-no-credit-check-loans
+    slug: 2-no-credit-check-loans
+    sha1_password: a6373d743e8a2fa787ec282191e580ffb306dd22
+    salt: 8feca7cfd93b78773700382a32d703c5
+    email: layla.dunagan@guglator.com
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '0'
+    is_spam: '0'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: ma92f1v4p93u1fe5kbv4gcjnn4
+    last_seen_at: '2012-03-30 05:44:26'
+    updated_at: '2012-03-30 05:44:27'
+    created_at: '2012-03-30 05:44:26'
+  CollectorArchive_9908:
+    id: '9908'
+    graph_id: '14066'
+    username: 03-bad-credit-personal-loan
+    display_name: 03-bad-credit-personal-loan
+    slug: 03-bad-credit-personal-loan
+    sha1_password: cb5039cd012ca6b4e7004036c54fd34edb8bd6fe
+    salt: c4b560a59b3818ad4fd4e227eaf52412
+    email: jamarion.macarthur@guglator.com
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '99'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: tv5taagrl7uh73178hqmandpi1
+    last_seen_at: '2012-03-30 06:46:55'
+    updated_at: '2012-03-30 06:47:11'
+    created_at: '2012-03-30 06:46:55'
+  CollectorArchive_9909:
+    id: '9909'
+    graph_id: '14067'
+    username: 2-loans-with-bad-credit
+    display_name: 2-loans-with-bad-credit
+    slug: 2-loans-with-bad-credit
+    sha1_password: 2061cf037757a882022525ea455309a8ec32a542
+    salt: dd772552d486d6e1d2868eca1a3b5fed
+    email: tabitha.marsh@guglator.com
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '0'
+    is_spam: '0'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: ghu3uam6bmtroso9hmqjn0vtu4
+    last_seen_at: '2012-03-30 08:18:02'
+    updated_at: '2012-03-30 08:18:02'
+    created_at: '2012-03-30 08:18:02'
+  CollectorArchive_9910:
+    id: '9910'
+    graph_id: '14068'
+    username: JoeAWard
+    display_name: JoeAWard
+    slug: joeaward
+    sha1_password: 10df49faa7088813687b122298e5f4870a954976
+    salt: b90c83e8c65e65affd34311cfab3b8cb
+    email: a85joeward@hotmail.com
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '99'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: oss01n1rqvnipdvcs86gk13sq5
+    last_seen_at: '2012-03-30 10:52:41'
+    updated_at: '2012-03-30 10:54:40'
+    created_at: '2012-03-30 10:52:41'
+  CollectorArchive_9911:
+    id: '9911'
+    graph_id: '14086'
+    username: AlanMSmith43
+    display_name: AlanMSmith43
+    slug: alanmsmith43
+    sha1_password: a78367946edb0a2bcdb00e32787ec25e5a1ee84b
+    salt: ae95ec268b0f88bcbbcf4c097fa1b2fd
+    email: AlanMSmith43@yahoo.com
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '40'
+    is_spam: '0'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: 3qs7l3t0jmivrgab07hm1v6ra6
+    last_seen_at: '2012-03-30 20:15:06'
+    updated_at: '2012-03-30 20:23:35'
+    created_at: '2012-03-30 20:15:06'
+  CollectorArchive_9912:
+    id: '9912'
+    graph_id: '14098'
+    username: justinzmerz8
+    display_name: 'Justin Kooper'
+    slug: justin-kooper
+    sha1_password: 37cf400db493f9dfa57969654b5b04f68efc0b5d
+    salt: 2c85f88bff497f5dde684a77a8f982cd
+    email: justinzmerz8@gmail.com
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '99'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: v026d9thrfh78mk8qch63k7mo7
+    last_seen_at: '2012-03-31 01:44:21'
+    updated_at: '2012-03-31 01:45:48'
+    created_at: '2012-03-31 01:44:21'
+  CollectorArchive_9913:
+    id: '9913'
+    graph_id: '14099'
+    username: Larrywhite
+    display_name: 'Larry white'
+    slug: larry-white
+    sha1_password: 07cf70316b928fb641839e36b8b8a83fc894a49a
+    salt: 752a366960b4b9c48e73d305a41b316d
+    email: evelynbradshaww@gmail.com
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '99'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: 4tknkvpeqhgts1m5geu3i97h44
+    last_seen_at: '2012-03-31 02:07:31'
+    updated_at: '2012-03-31 02:11:32'
+    created_at: '2012-03-31 02:07:31'
+  CollectorArchive_9914:
+    id: '9914'
+    graph_id: '14100'
+    username: 5-bad-credit-loans
+    display_name: 5-bad-credit-loans
+    slug: 5-bad-credit-loans
+    sha1_password: d7efb07a248705fe32cf4053ff6bae652dfed0d9
+    salt: a2d5267a78520dcebef5a0f929c222f6
+    email: leonidas.quinn@guglator.com
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '0'
+    is_spam: '0'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: 015qej6si4kriggsq474sj2mb0
+    last_seen_at: '2012-03-31 04:36:13'
+    updated_at: '2012-03-31 04:36:13'
+    created_at: '2012-03-31 03:16:39'
+  CollectorArchive_9915:
+    id: '9915'
+    graph_id: '14101'
+    username: balancebik17c
+    display_name: balancebik17c
+    slug: balancebik17c
+    sha1_password: ad72d39fd96a5470196f802863f34457ae6b29a4
+    salt: 7ed84655584dda0f2fa49e1e9917169e
+    email: sam4@kajavefurniture.com
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '70'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: f8v9ekduigsljaet18tb6opud1
+    last_seen_at: '2012-03-31 05:21:11'
+    updated_at: '2012-03-31 05:21:35'
+    created_at: '2012-03-31 05:21:11'
+  CollectorArchive_9917:
+    id: '9917'
+    graph_id: '14109'
+    username: chrismat77
+    display_name: chrismat77
+    slug: chrismat77
+    sha1_password: d6d4eac349e522af388f81043b91488154f49996
+    salt: f303966f055207742c5325c2ec4aa9e8
+    email: mattenschris@yahoo.com
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '99'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: b6aoug830avo0r48mfoaoapn30
+    last_seen_at: '2012-04-01 03:43:35'
+    updated_at: '2012-04-01 03:44:30'
+    created_at: '2012-04-01 03:43:35'
+  CollectorArchive_9918:
+    id: '9918'
+    graph_id: '14110'
+    username: temi13reji
+    display_name: 'Pintu peter'
+    slug: pintu-peter
+    sha1_password: b88033dee9fc150b1db89e0117397abc84be6d3e
+    salt: 6053c9c08bddefa7b99c5c6d3badac34
+    email: temi13reji@yahoo.com
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '99'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: rqfceki2c0kaecu3gga8oqmqc2
+    last_seen_at: '2012-04-01 04:24:14'
+    updated_at: '2012-04-01 04:24:14'
+    created_at: '2012-04-01 04:06:48'
+  CollectorArchive_9921:
+    id: '9921'
+    graph_id: '14113'
+    username: kevincostne
+    display_name: kevincostne
+    slug: kevincostne
+    sha1_password: 775c381d8a1e62661d4780b29766d348239d9710
+    salt: 51bb245f7b57bd7a4a2b4edeb86b39f7
+    email: leaondaresamaklika@yahoo.com
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '99'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: rdlgr7tht2gpar5qb91f2le0v3
+    last_seen_at: '2012-04-02 02:04:52'
+    updated_at: '2012-04-02 02:05:10'
+    created_at: '2012-04-02 02:04:52'
+  CollectorArchive_9922:
+    id: '9922'
+    graph_id: '14114'
+    username: 9-loans-for-bad-credit
+    display_name: 9-loans-for-bad-credit
+    slug: 9-loans-for-bad-credit
+    sha1_password: 942ba4129e1aa08f69a913f61cb87ba22516da1d
+    salt: 401ace0a1404fa0778a8affeea72a843
+    email: jason.testa@guglator.com
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '0'
+    is_spam: '0'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: j4v8kibg5qghl2jb3jk8am3654
+    last_seen_at: '2012-04-02 06:56:31'
+    updated_at: '2012-04-02 06:56:31'
+    created_at: '2012-04-02 04:06:12'
+  CollectorArchive_9923:
+    id: '9923'
+    graph_id: '14158'
+    username: 2-loans-for-people-with-bad-credit
+    display_name: 2-loans-for-people-with-bad-credit
+    slug: 2-loans-for-people-with-bad-credit
+    sha1_password: c6306d65459cc2395a8e75e6dc6223227235154e
+    salt: 99d2d1f0e3658b2d7696519c7bf59b89
+    email: yasmin.cruise@guglator.com
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '0'
+    is_spam: '0'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: a2s141n03buhq5d9lslcpvhl81
+    last_seen_at: '2012-04-02 09:31:49'
+    updated_at: '2012-04-02 09:31:49'
+    created_at: '2012-04-02 08:14:04'
+  CollectorArchive_9927:
+    id: '9927'
+    graph_id: '14210'
+    username: JoalEzgo
+    display_name: JoalEzgo
+    slug: joalezgo
+    sha1_password: 28317cdbce3e38038244a7c3e09b954afd7aea1c
+    salt: b11d419de21935907b78ce884077e989
+    email: ezgojoal@yahoo.com
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '0'
+    is_spam: '0'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: sm4t78apa3grk957vf1pqovvm6
+    last_seen_at: '2012-04-02 16:06:33'
+    updated_at: '2012-04-02 16:06:35'
+    created_at: '2012-04-02 16:06:33'
+  CollectorArchive_9928:
+    id: '9928'
+    graph_id: '14211'
+    username: wesleymir
+    display_name: wesleymir
+    slug: wesleymir
+    sha1_password: dbe6da8b36524df4f88e07e27adc9698dd9f1a62
+    salt: 9f0a79e17b4009d89a8b956c05b8a93a
+    email: EveliaNozler27@gmail.com
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '99'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: s0188akuhaos19af0ss5kevmm4
+    last_seen_at: '2012-04-02 16:38:17'
+    updated_at: '2012-04-02 16:38:23'
+    created_at: '2012-04-02 16:38:17'
+  CollectorArchive_9929:
+    id: '9929'
+    graph_id: '14222'
+    username: begwnare
+    display_name: 'begw nare'
+    slug: begw-nare
+    sha1_password: 71d9784a0369fecb9e4af3f1bf2bdeaee41cac5d
+    salt: 7fa472d0c0d2f49c409fd15c58adddfb
+    email: raforiced@yahoo.com
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '99'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: mp423bq8l6ei83m5k39dl4egf6
+    last_seen_at: '2012-04-03 00:14:41'
+    updated_at: '2012-04-03 00:14:57'
+    created_at: '2012-04-03 00:14:41'
+  CollectorArchive_9931:
+    id: '9931'
+    graph_id: '14224'
+    username: micaelah1
+    display_name: micaelah1
+    slug: micaelah1
+    sha1_password: fd91baa28e01c8c06cc02613e25450ed489e2879
+    salt: 3e424493b7d3b50fb9060a3a1cc847ca
+    email: micaelah1@yahoo.com
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '99'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: kp9b7pm73ov368h5ic09vptje0
+    last_seen_at: '2012-04-03 01:16:57'
+    updated_at: '2012-04-03 01:17:22'
+    created_at: '2012-04-03 01:16:57'
+  CollectorArchive_9932:
+    id: '9932'
+    graph_id: '14225'
+    username: sheajuliana1
+    display_name: sheajuliana1
+    slug: sheajuliana1
+    sha1_password: aed3ef57b8b7773bf346c3713f4da5d611f2ce8b
+    salt: 6c5f1b7a7928d8c46491237e46a0fbbf
+    email: sheajuliana1@yahoo.com
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '99'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: i6rkk8esa5c4gavnfsq8cuqu13
+    last_seen_at: '2012-04-03 01:20:11'
+    updated_at: '2012-04-03 01:20:46'
+    created_at: '2012-04-03 01:20:11'
+  CollectorArchive_9933:
+    id: '9933'
+    graph_id: '14226'
+    username: 5-unsecured-loan
+    display_name: 5-unsecured-loan
+    slug: 5-unsecured-loan
+    sha1_password: 78a03d35328849c7f7debe4ff8578f99ce64c181
+    salt: b7629a17ca6b5d3b9ab24dbc79183632
+    email: sam.dearing@guglator.com
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '0'
+    is_spam: '0'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: b8nirhsr09u016194t98tte3f4
+    last_seen_at: '2012-04-04 02:03:10'
+    updated_at: '2012-04-04 02:03:10'
+    created_at: '2012-04-03 02:39:36'
+  CollectorArchive_9934:
+    id: '9934'
+    graph_id: '14227'
+    username: chri18ley
+    display_name: 'Nazani yadav'
+    slug: nazani-yadav
+    sha1_password: 5a555253bedc70fff4f83fb31307ee03fd150a7f
+    salt: 42e74b8c368bca7b7e3cd5209ed45089
+    email: chri18ley@yahoo.com
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '99'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: tp81e7ovtg2ta37rl1f35sc4n6
+    last_seen_at: '2012-04-03 07:04:17'
+    updated_at: '2012-04-03 07:05:12'
+    created_at: '2012-04-03 07:04:17'
+  CollectorArchive_9935:
+    id: '9935'
+    graph_id: '14228'
+    username: 02-fast-cash-loans
+    display_name: 02-fast-cash-loans
+    slug: 02-fast-cash-loans
+    sha1_password: 0c1085bcb63086870107a2a5bfd15343966d7a3c
+    salt: e83f742bf886fc0d7189ef238077f23e
+    email: dakota.rondeau@guglator.com
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '0'
+    is_spam: '0'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: ehh0sbkepdqhdp5k0dbtevfhc5
+    last_seen_at: '2012-04-03 08:27:33'
+    updated_at: '2012-04-03 08:27:33'
+    created_at: '2012-04-03 07:13:37'
+  CollectorArchive_9938:
+    id: '9938'
+    graph_id: '14260'
+    username: containg123
+    display_name: containg
+    slug: containg
+    sha1_password: d09f64887a824aba9e73e2e2447b72df3686cf81
+    salt: 09ad94bef3468f98cf303a12a0f75df3
+    email: containg123@gmail.com
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '99'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: 2qgsnrdltu56t22erk992u8d54
+    last_seen_at: '2012-04-03 12:48:17'
+    updated_at: '2012-04-03 12:48:51'
+    created_at: '2012-04-03 12:48:17'
+  CollectorArchive_9939:
+    id: '9939'
+    graph_id: '14313'
+    username: rpx4f7b3303d7132
+    display_name: CMSycamoreIL
+    slug: cmsycamoreil
+    sha1_password: a5fed57ea98f35c816f96f0c9cd9a7c3f2f31d84
+    salt: 2e6d8f3e1848a302c223eff5a70a0426
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '0'
+    is_spam: '0'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: afjvk52j1g0048f7t47u7u1hm0
+    last_seen_at: '2012-04-03 13:27:31'
+    updated_at: '2012-04-04 14:46:09'
+    created_at: '2012-04-03 13:27:31'
+  CollectorArchive_9940:
+    id: '9940'
+    graph_id: '14261'
+    username: bestvoipphone01
+    display_name: ' Business Voip Phone'
+    slug: business-voip-phone
+    sha1_password: 64d07839e1d27a905ce87d4b6aefb7cc92fea383
+    salt: dc63c0e584e94c71bd960a5778103ddd
+    email: ivoisys01@gmail.com
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '0'
+    is_spam: '0'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: q458u7vvne9debuek41p7lqe70
+    last_seen_at: '2012-04-03 15:14:50'
+    updated_at: '2012-04-03 15:14:50'
+    created_at: '2012-04-03 15:14:50'
+  CollectorArchive_9942:
+    id: '9942'
+    graph_id: '14271'
+    username: FiluMarto
+    display_name: FiluMarto
+    slug: filumarto
+    sha1_password: cab12bf830dc8d75c10369aa6da3c8a581b9f544
+    salt: 7dfd70dfa877ecadc0e4f84ef93db75f
+    email: marto_filu@yahoo.com
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '0'
+    is_spam: '0'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: 7duci1c0fb3k62g070q7u3dop7
+    last_seen_at: '2012-04-03 22:33:03'
+    updated_at: '2012-04-03 22:33:03'
+    created_at: '2012-04-03 22:33:03'
+  CollectorArchive_9943:
+    id: '9943'
+    graph_id: '14272'
+    username: bestvoipphone001
+    display_name: 'Business Voip Phone'
+    slug: business-voip-phone-00d5d2
+    sha1_password: 571a2d3efe724807f856bebb1857c3a7998948e6
+    salt: 4251789ad639a2d3cf3a214f1af880cc
+    email: businessviopphone001@yahoo.com
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '99'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: t7dbia9725vhvaps3js5esooc3
+    last_seen_at: '2012-04-04 01:39:24'
+    updated_at: '2012-04-04 01:39:51'
+    created_at: '2012-04-04 01:39:24'
+  CollectorArchive_9944:
+    id: '9944'
+    graph_id: '14273'
+    username: piny20kat
+    display_name: piny20kat
+    slug: piny20kat
+    sha1_password: 04b13ad55860bab345ae7e97b9cbcf0b56f93a54
+    salt: 56442259f7c4eed4340985ea9ecf1a0f
+    email: piny20kat@yahoo.com
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '99'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: ta0pvid440d26u6n7uaabu2ln2
+    last_seen_at: '2012-04-04 02:27:57'
+    updated_at: '2012-04-04 02:31:03'
+    created_at: '2012-04-04 02:27:57'
+  CollectorArchive_9945:
+    id: '9945'
+    graph_id: '14280'
+    username: shan19kon
+    display_name: 'Nilu Jon'
+    slug: nilu-jon
+    sha1_password: c1659dd29999227b2ec0e0301ff1764f868febe0
+    salt: 3944bfe169ef2faa82282bd8ebfd2c99
+    email: shan19kon@yahoo.com
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '99'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: hm6qa7nllor8p9aopn00ugp0k3
+    last_seen_at: '2012-04-04 04:00:35'
+    updated_at: '2012-04-04 04:01:03'
+    created_at: '2012-04-04 04:00:35'
+  CollectorArchive_9946:
+    id: '9946'
+    graph_id: '14303'
+    username: adrienew
+    display_name: 'adrie new'
+    slug: adrie-new
+    sha1_password: ec264571d7db7089566f44a696ee94fa1d07e03f
+    salt: 148ca8b25cc1fd3f29922d90477d6c98
+    email: miguealelgerogevae@yahoo.com
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '60'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: v76dr348aqo9ec8458kh5j0jl2
+    last_seen_at: '2012-04-04 05:47:06'
+    updated_at: '2012-04-04 05:47:19'
+    created_at: '2012-04-04 05:47:06'
+  CollectorArchive_9947:
+    id: '9947'
+    graph_id: '14304'
+    username: ovaltine678
+    display_name: ovaltine
+    slug: ovaltine
+    sha1_password: 213846f8727c7e7486f206aa5cb8fd5fd678f8b4
+    salt: 72cd2db2791cbe2f2888996105211a92
+    email: ovaltine678@gmail.com
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '99'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: npephcp02a8t7hl96sl5krd1a1
+    last_seen_at: '2012-04-04 07:16:30'
+    updated_at: '2012-04-04 07:16:53'
+    created_at: '2012-04-04 07:16:30'
+  CollectorArchive_9948:
+    id: '9948'
+    graph_id: '14305'
+    username: 24-personal-loans-for-people-with-bad-credit
+    display_name: 24-personal-loans-for-people-with-bad-credit
+    slug: 24-personal-loans-for-people-with-bad-credit
+    sha1_password: 6bd4da05d948ae5069e043ee070aa9f93b19e134
+    salt: ea47fe7f34adbcf89e4288b335858de7
+    email: hugo.maddux@guglator.com
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '0'
+    is_spam: '0'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: b4ghh2o3l2nib32cvp514bufo4
+    last_seen_at: '2012-04-04 07:27:02'
+    updated_at: '2012-04-04 07:27:03'
+    created_at: '2012-04-04 07:27:02'
+  CollectorArchive_9949:
+    id: '9949'
+    graph_id: '14306'
+    username: jerzfeat68
+    display_name: jerzfeat68
+    slug: jerzfeat68
+    sha1_password: d4d1027e8acd7b6943bf985eb67d70be7b449b1d
+    salt: 9a4d5b38ae2670c27a5bf0dd0ed3530e
+    email: jerryfeatherson@yahoo.com
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '99'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: jtjlrgn31126u7fri7vuirfe62
+    last_seen_at: '2012-04-04 07:59:52'
+    updated_at: '2012-04-04 08:00:29'
+    created_at: '2012-04-04 07:59:52'
+  CollectorArchive_9951:
+    id: '9951'
+    graph_id: '14309'
+    username: halronlds
+    display_name: halronlds
+    slug: halronlds
+    sha1_password: 4d252aacdc5f2a540323f2adaf2f7b8e654b34ff
+    salt: 61ade0087131b6ad2f47f790ee62ca45
+    email: LaylaPabst37@gmail.com
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '99'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: 2beje1ase4dishta1qef9sb4v6
+    last_seen_at: '2012-04-04 12:45:02'
+    updated_at: '2012-04-04 12:45:15'
+    created_at: '2012-04-04 12:45:02'
+  CollectorArchive_9953:
+    id: '9953'
+    graph_id: '14311'
+    username: JuanuelMazar
+    display_name: JuanuelMazar
+    slug: juanuelmazar
+    sha1_password: 0f44380ad551bdea576382a7f0984a389163f1aa
+    salt: 204ab5858ff39c2462fda4b8f98500a2
+    email: mazarjuanuel94@yahoo.com
+    user_type: Collector
+    locale: en_US
+    score: '0'
+    spam_score: '0'
+    is_spam: '0'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: sb9s2lu4la1ggr2tdki1tmb3o6
+    last_seen_at: '2012-04-04 14:30:06'
+    updated_at: '2012-04-04 14:30:07'
+    created_at: '2012-04-04 14:30:05'

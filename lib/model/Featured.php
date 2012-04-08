@@ -198,4 +198,73 @@ class Featured extends BaseFeaturedNestedSet
 
     return $q->hasWhereClause() ? $q->findOne() : null;
   }
+
+  /**
+   * @param  integer  $limit
+   * @return PropelObjectCollection | Collectible[]
+   */
+  public function getHomepageCollectibles($limit = 0)
+  {
+    /** @var $q CollectibleQuery */
+    $q = new CollectibleQuery();
+    $q->distinct();
+    $q->limit($limit);
+
+    $pks = explode(',', $this->homepage_collectibles);
+    $pks = array_filter($pks);
+
+    if (!empty($pks))
+    {
+      $q->filterByPrimaryKeys($pks);
+    }
+    else
+    {
+      $collector_pks = $collection_pks = $collection_category_pks = array();
+
+      foreach ($this->getChildren() as $child)
+      {
+        switch($child->getFeaturedModel())
+        {
+          case 'CollectionCategory':
+            $collection_category_pks[] = $child->getFeaturedId();
+
+            foreach ($child->getChildren() as $c)
+            {
+              if ($c->getFeaturedModel() == 'Collector')
+              {
+                $collector_pks[] = $c->getFeaturedId();
+              }
+            }
+            break;
+          case 'Collection':
+            $collection_pks[] = $child->getFeaturedId();
+            break;
+          case 'Collector':
+            $collector_pks[] = $child->getFeaturedId();
+            break;
+        }
+      }
+
+      if (!empty($collection_category_pks))
+      {
+        $q->joinCollectionCollectible();
+        $q->useQuery('CollectionCollectible')
+          ->join('Collection')
+          ->useQuery('Collection')
+          ->filterByCollectionCategoryId($collection_category_pks, Criteria::IN)
+          ->endUse()
+          ->endUse();
+      }
+      if (!empty($collector_pks))
+      {
+        $q->filterByCollectorId($collector_pks, Criteria::IN);
+      }
+      if (!empty($collection_pks))
+      {
+        $q->filterByCollectionId($collection_pks, Criteria::IN);
+      }
+    }
+
+    return $q->hasWhereClause() ? $q->find() : null;
+  }
 }

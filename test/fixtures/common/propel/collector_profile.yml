@@ -6,13 +6,13 @@ CollectorProfile:
     gender: m
     zip_postal: '10579'
     country_iso3166: GeoCountry_US
-    website: 'http://www.resonantfish.com'
+    website: resonantfish.com
     is_featured: '0'
     is_image_auto: '0'
     preferences: 'a:3:{s:8:"show_age";b:1;s:6:"msg_on";b:1;s:11:"invite_only";b:0;}'
     notifications: 'a:3:{s:7:"comment";b:1;s:5:"buddy";b:1;s:7:"message";b:1;}'
     created_at: '2007-05-31 14:21:52'
-    updated_at: '2011-06-05 19:49:24'
+    updated_at: '2012-03-27 09:14:48'
   CollectorProfile_52:
     collector_id: Collector_52
     collector_type: '2'

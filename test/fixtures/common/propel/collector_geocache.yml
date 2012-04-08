@@ -1,15 +1,4 @@
 CollectorGeocache:
-  CollectorGeocache_10:
-    collector_id: Collector_12
-    country_iso3166: GeoCountry_US
-    state: NY
-    county: Putnam
-    city: 'Putnam Valley'
-    zip_postal: '10579'
-    address: 'Putnam Valley, NY 10579, USA'
-    latitude: '41.39138'
-    longitude: '-73.83014'
-    timezone: America/New_York
   CollectorGeocache_32:
     collector_id: Collector_52
     country_iso3166: GeoCountry_US
@@ -121,3 +110,11 @@ CollectorGeocache:
     address: Romania
     latitude: '45.94316'
     longitude: '24.96676'
+  CollectorGeocache_11227:
+    collector_id: Collector_12
+    country_iso3166: GeoCountry_US
+    state: NY
+    address: 'Putnam Valley, NY 10579, USA'
+    latitude: '41.39138'
+    longitude: '-73.83014'
+    timezone: America/New_York
