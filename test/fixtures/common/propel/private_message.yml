@@ -1650,3 +1650,16 @@ PrivateMessage:
     is_marked: '0'
     is_deleted: '0'
     created_at: '2012-03-22 16:35:48'
+  PrivateMessage_9477:
+    thread: 3c78c62b162f57a21507ad06ebe3c937
+    sender: '12'
+    receiver: '9920'
+    subject: 'Thanks for signing up for Collectors Quest!'
+    body: "Afternoon, sir!<br />\r\n<br />\r\nI'm the content manager here at Collectors Quest and your post intrigued me. My mother collects rhinoceros figures, so I immediately took notice!<br />\r\n<br />\r\nIf you're looking to sell your items, I invite you to upload images to our Community section. Many people connect and make deals after they upload their images, so I encourage you to do the same.<br />\r\n<br />\r\nGood luck, sir! I'm sure your collection is quite neat, and we'd all like to see it!<br />\r\n<br />\r\n- Collin @ CQ"
+    is_rich: '0'
+    is_read: '0'
+    is_replied: '0'
+    is_forwarded: '0'
+    is_marked: '0'
+    is_deleted: '0'
+    created_at: '2012-04-04 14:50:10'

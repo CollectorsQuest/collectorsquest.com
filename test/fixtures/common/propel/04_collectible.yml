@@ -4150,6 +4150,7 @@ Collectible:
     created_at: '2010-02-26 05:11:07'
     updated_at: '2011-11-10 07:24:22'
   Collectible_1368:
+    graph_id: '14056'
     collector_id: Collector_12
     name: 'Iron Man'
     slug: iron-man
@@ -4158,7 +4159,7 @@ Collectible:
     score: '0'
     is_name_automatic: '0'
     created_at: '2010-02-22 18:13:59'
-    updated_at: '2011-11-10 07:24:22'
+    updated_at: '2012-03-29 14:27:37'
   Collectible_1369:
     collector_id: Collector_12
     name: 'The Thing'
@@ -4921,6 +4922,7 @@ Collectible:
     created_at: '2010-02-27 19:38:02'
     updated_at: '2011-11-10 07:24:39'
   Collectible_3263:
+    graph_id: '14336'
     collector_id: Collector_12
     name: 'Ridder, Moon Series'
     slug: ridder-moon-series
@@ -4929,7 +4931,7 @@ Collectible:
     score: '0'
     is_name_automatic: '0'
     created_at: '2010-02-26 23:35:00'
-    updated_at: '2011-11-10 07:24:39'
+    updated_at: '2012-04-05 10:00:35'
   Collectible_3264:
     collector_id: Collector_12
     name: 'Flash, 2nd Series'
@@ -5061,6 +5063,7 @@ Collectible:
     created_at: '2010-02-14 23:47:59'
     updated_at: '2011-11-10 07:24:39'
   Collectible_3350:
+    graph_id: '14054'
     collector_id: Collector_12
     name: '3age Mighty Thor'
     slug: 3age-mighty-thor
@@ -5069,7 +5072,7 @@ Collectible:
     score: '0'
     is_name_automatic: '0'
     created_at: '2010-02-16 22:14:08'
-    updated_at: '2011-11-10 07:24:39'
+    updated_at: '2012-03-29 14:27:03'
   Collectible_3351:
     collector_id: Collector_12
     name: '3age Wolverine'
@@ -5112,6 +5115,7 @@ Collectible:
     created_at: '2010-02-13 23:43:09'
     updated_at: '2011-11-10 07:24:39'
   Collectible_3355:
+    graph_id: '14055'
     collector_id: Collector_12
     name: '3age Iron Man'
     slug: 3age-iron-man
@@ -5120,7 +5124,7 @@ Collectible:
     score: '0'
     is_name_automatic: '0'
     created_at: '2010-03-01 01:10:36'
-    updated_at: '2011-11-10 07:24:39'
+    updated_at: '2012-03-29 14:27:13'
   Collectible_3356:
     collector_id: Collector_12
     name: 'Kubrick Spider-Pig'
@@ -5140,16 +5144,6 @@ Collectible:
     score: '0'
     is_name_automatic: '0'
     created_at: '2010-02-26 11:25:47'
-    updated_at: '2011-11-10 07:24:39'
-  Collectible_3358:
-    collector_id: Collector_12
-    name: 'Kubrick Iron Man'
-    slug: kubrick-iron-man
-    description: '=='
-    num_comments: '0'
-    score: '0'
-    is_name_automatic: '0'
-    created_at: '2010-02-26 11:25:42'
     updated_at: '2011-11-10 07:24:39'
   Collectible_3359:
     collector_id: Collector_12
@@ -6122,6 +6116,7 @@ Collectible:
     created_at: '2010-02-26 14:07:08'
     updated_at: '2011-11-10 07:24:41'
   Collectible_3595:
+    graph_id: '14057'
     collector_id: Collector_12
     name: Thor
     slug: thor
@@ -6130,7 +6125,7 @@ Collectible:
     score: '0'
     is_name_automatic: '0'
     created_at: '2010-02-26 14:06:50'
-    updated_at: '2011-11-10 07:24:41'
+    updated_at: '2012-03-29 14:28:03'
   Collectible_3596:
     collector_id: Collector_12
     name: Quicksilver
@@ -6272,15 +6267,16 @@ Collectible:
     created_at: '2010-02-12 15:57:46'
     updated_at: '2011-11-10 07:24:41'
   Collectible_3610:
+    graph_id: '14051'
     collector_id: Collector_12
     name: Thor
-    slug: thor-446958
+    slug: thor-bd31eb
     description: 'Wave 16. Also comes in a bearded, girded-for-war variant.'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
     created_at: '2010-02-26 14:43:54'
-    updated_at: '2011-11-10 07:24:41'
+    updated_at: '2012-03-29 14:25:50'
   Collectible_3612:
     collector_id: Collector_12
     name: Thing
@@ -6332,15 +6328,16 @@ Collectible:
     created_at: '2010-02-20 09:00:23'
     updated_at: '2011-11-10 07:24:41'
   Collectible_3617:
+    graph_id: '14052'
     collector_id: Collector_12
     name: 'Iron Man'
-    slug: iron-man-4e35a5
+    slug: iron-man-b570c5
     description: 'Left to right : Stealth, Classic, Silver Centurion, First Appearance.'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
     created_at: '2010-02-25 23:26:27'
-    updated_at: '2011-11-10 07:24:41'
+    updated_at: '2012-03-29 14:26:03'
   Collectible_3618:
     collector_id: Collector_12
     name: Venom
@@ -6694,15 +6691,16 @@ Collectible:
     created_at: '2010-02-16 20:06:28'
     updated_at: '2011-11-10 07:24:42'
   Collectible_3670:
+    graph_id: '14050'
     collector_id: Collector_12
     name: Thor
-    slug: thor-85df96
+    slug: thor-cbe529
     description: '=='
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
     created_at: '2010-02-11 11:13:40'
-    updated_at: '2011-11-10 07:24:42'
+    updated_at: '2012-03-29 14:25:00'
   Collectible_3671:
     collector_id: Collector_12
     name: 'Iron Man'
@@ -9378,6 +9376,7 @@ Collectible:
     created_at: '2010-02-28 14:08:09'
     updated_at: '2011-11-10 07:24:51'
   Collectible_4566:
+    graph_id: '14049'
     collector_id: Collector_12
     name: 'Thor, Battle Armor'
     slug: thor-battle-armor
@@ -9386,7 +9385,7 @@ Collectible:
     score: '0'
     is_name_automatic: '0'
     created_at: '2010-02-05 01:49:19'
-    updated_at: '2011-11-10 07:24:51'
+    updated_at: '2012-03-29 14:24:48'
   Collectible_4567:
     collector_id: Collector_12
     name: Pyro
@@ -9618,6 +9617,7 @@ Collectible:
     created_at: '2010-02-28 19:43:50'
     updated_at: '2011-11-10 07:24:52'
   Collectible_4666:
+    graph_id: '14048'
     collector_id: Collector_12
     name: 'Zombie Iron Man'
     slug: zombie-iron-man
@@ -9626,7 +9626,7 @@ Collectible:
     score: '0'
     is_name_automatic: '0'
     created_at: '2010-02-27 23:07:45'
-    updated_at: '2011-11-10 07:24:52'
+    updated_at: '2012-03-29 14:24:28'
   Collectible_4667:
     collector_id: Collector_12
     name: Gorgon
@@ -9818,6 +9818,7 @@ Collectible:
     created_at: '2010-02-27 23:05:31'
     updated_at: '2011-11-10 07:24:52'
   Collectible_4686:
+    graph_id: '14047'
     collector_id: Collector_12
     name: 'Hulkbuster Iron Man'
     slug: hulkbuster-iron-man
@@ -9826,7 +9827,7 @@ Collectible:
     score: '0'
     is_name_automatic: '0'
     created_at: '2010-03-01 03:58:50'
-    updated_at: '2011-11-10 07:24:52'
+    updated_at: '2012-03-29 14:23:55'
   Collectible_4687:
     collector_id: Collector_12
     name: Miek
@@ -9920,6 +9921,7 @@ Collectible:
     created_at: '2010-02-18 17:23:27'
     updated_at: '2011-11-10 07:24:52'
   Collectible_4696:
+    graph_id: '14046'
     collector_id: Collector_12
     name: Thunderstrike
     slug: thunderstrike
@@ -9928,7 +9930,7 @@ Collectible:
     score: '0'
     is_name_automatic: '0'
     created_at: '2010-02-28 16:59:59'
-    updated_at: '2011-11-10 07:24:52'
+    updated_at: '2012-03-29 14:23:15'
   Collectible_4697:
     collector_id: Collector_12
     name: 'Captain Britain'
@@ -11469,14 +11471,14 @@ Collectible:
     updated_at: '2011-11-10 07:24:58'
   Collectible_5207:
     collector_id: Collector_12
-    name: 'The Incredibles : Mr. Incredible / Jack Parr'
-    slug: the-incredibles-mr-incredible-jack-parr
+    name: 'The Incredibles : Mr. Incredible / Bob Parr'
+    slug: the-incredibles-mr-incredible-bob-parr
     description: 'Comes with 2 cards and a ring, PLUS a light-up chest emblem!'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
     created_at: '2010-02-28 07:03:09'
-    updated_at: '2011-11-10 07:24:58'
+    updated_at: '2012-04-04 09:11:00'
   Collectible_5209:
     collector_id: Collector_12
     name: 'Ratatouille : Skinner'
@@ -11798,6 +11800,7 @@ Collectible:
     created_at: '2010-01-30 19:28:55'
     updated_at: '2011-11-10 07:25:02'
   Collectible_5578:
+    graph_id: '14028'
     collector_id: Collector_12
     name: 'Power Girl'
     slug: power-girl
@@ -11806,7 +11809,7 @@ Collectible:
     score: '0'
     is_name_automatic: '0'
     created_at: '2010-02-16 06:05:02'
-    updated_at: '2011-11-10 07:25:02'
+    updated_at: '2012-03-29 14:09:22'
   Collectible_5580:
     collector_id: Collector_12
     name: Robin
@@ -13051,15 +13054,16 @@ Collectible:
     created_at: '2010-02-25 23:31:45'
     updated_at: '2011-11-10 07:25:05'
   Collectible_5846:
+    graph_id: '14031'
     collector_id: Collector_12
     name: Supergirl
-    slug: supergirl-ffc5b2
+    slug: supergirl-e2b920
     description: '=='
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
     created_at: '2010-02-15 22:21:11'
-    updated_at: '2011-11-10 07:25:05'
+    updated_at: '2012-03-29 14:11:21'
   Collectible_5847:
     collector_id: Collector_12
     name: Nemesis
@@ -13501,15 +13505,16 @@ Collectible:
     created_at: '2010-02-28 21:44:07'
     updated_at: '2011-11-10 07:25:05'
   Collectible_5892:
+    graph_id: '14045'
     collector_id: Collector_12
     name: Thor
-    slug: thor-1843bf
+    slug: thor-b42b8f
     description: 'I''m pretty sure that he came with a hammer, lost in the bottom of a box somewhere.'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
     created_at: '2010-02-19 18:38:03'
-    updated_at: '2011-11-10 07:25:05'
+    updated_at: '2012-03-29 14:22:36'
   Collectible_5893:
     collector_id: Collector_12
     name: Namor
@@ -15474,15 +15479,16 @@ Collectible:
     created_at: '2010-02-19 06:18:10'
     updated_at: '2011-11-10 07:25:19'
   Collectible_7301:
+    graph_id: '14059'
     collector_id: Collector_12
     name: 'Kubrick Iron Man'
-    slug: kubrick-iron-man-0d810f
+    slug: kubrick-iron-man-de711c
     description: 'Released by Medicom in Japan.'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
     created_at: '2010-02-28 14:54:50'
-    updated_at: '2011-11-10 07:25:19'
+    updated_at: '2012-03-29 14:29:52'
   Collectible_7302:
     collector_id: Collector_12
     name: 'Marvel Legends : Modern Armor'
@@ -16436,15 +16442,16 @@ Collectible:
     created_at: '2010-02-27 15:46:21'
     updated_at: '2011-11-10 07:25:22'
   Collectible_7597:
+    graph_id: '14044'
     collector_id: Collector_12
     name: Thor
-    slug: thor-ac2482
+    slug: thor-ba8e6f
     description: '=='
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
     created_at: '2010-02-19 07:45:42'
-    updated_at: '2011-11-10 07:25:22'
+    updated_at: '2012-03-29 14:22:18'
   Collectible_7598:
     collector_id: Collector_12
     name: Super-Skrull
@@ -20827,16 +20834,6 @@ Collectible:
     is_name_automatic: '0'
     created_at: '2010-02-27 07:05:15'
     updated_at: '2011-11-10 07:25:55'
-  Collectible_10569:
-    collector_id: Collector_12
-    name: '''Superman'' Series Supergirl'
-    slug: superman-series-supergirl
-    description: 'From early DC Direct.'
-    num_comments: '0'
-    score: '0'
-    is_name_automatic: '0'
-    created_at: '2010-02-28 08:36:53'
-    updated_at: '2011-11-10 07:25:55'
   Collectible_10574:
     collector_id: Collector_12
     name: '''Hush'' Huntress'
@@ -21186,26 +21183,6 @@ Collectible:
     score: '0'
     is_name_automatic: '0'
     created_at: '2010-02-21 13:44:40'
-    updated_at: '2011-11-10 07:25:56'
-  Collectible_10613:
-    collector_id: Collector_12
-    name: 'Minimate Power Girl'
-    slug: minimate-power-girl
-    description: --
-    num_comments: '0'
-    score: '0'
-    is_name_automatic: '0'
-    created_at: '2010-02-22 08:53:57'
-    updated_at: '2011-11-10 07:25:56'
-  Collectible_10614:
-    collector_id: Collector_12
-    name: '''JLU'' Steel'
-    slug: jlu-steel
-    description: --
-    num_comments: '0'
-    score: '0'
-    is_name_automatic: '0'
-    created_at: '2010-02-23 07:44:10'
     updated_at: '2011-11-10 07:25:56'
   Collectible_10615:
     collector_id: Collector_12
@@ -22822,6 +22799,7 @@ Collectible:
     created_at: '2010-02-27 21:20:17'
     updated_at: '2011-11-10 07:26:04'
   Collectible_11244:
+    graph_id: '14335'
     collector_id: Collector_12
     name: '''First Appearance'' Riddler'
     slug: first-appearance-riddler
@@ -22830,7 +22808,7 @@ Collectible:
     score: '0'
     is_name_automatic: '0'
     created_at: '2010-02-27 17:33:25'
-    updated_at: '2011-11-10 07:26:04'
+    updated_at: '2012-04-05 10:00:19'
   Collectible_11245:
     collector_id: Collector_12
     name: '''Superfriends'' Black Manta'
@@ -22862,6 +22840,7 @@ Collectible:
     created_at: '2010-02-18 01:07:53'
     updated_at: '2011-11-10 07:26:04'
   Collectible_11248:
+    graph_id: '14334'
     collector_id: Collector_12
     name: '''Hush'' Riddler'
     slug: hush-riddler
@@ -22870,7 +22849,7 @@ Collectible:
     score: '0'
     is_name_automatic: '0'
     created_at: '2010-02-27 08:55:10'
-    updated_at: '2011-11-10 07:26:04'
+    updated_at: '2012-04-05 10:00:04'
   Collectible_11249:
     collector_id: Collector_12
     name: '''Crime Syndicate'' Johnny Quick'
@@ -23742,6 +23721,7 @@ Collectible:
     created_at: '2010-02-28 01:06:00'
     updated_at: '2011-11-10 07:26:09'
   Collectible_12264:
+    graph_id: '14058'
     collector_id: Collector_12
     name: 'Iron Man : Mark I Movie Armor'
     slug: iron-man-mark-i-movie-armor
@@ -23750,7 +23730,7 @@ Collectible:
     score: '0'
     is_name_automatic: '0'
     created_at: '2010-02-26 14:13:26'
-    updated_at: '2011-11-10 07:26:12'
+    updated_at: '2012-03-29 14:28:18'
   Collectible_12265:
     collector_id: Collector_12
     name: 'The Leader'
@@ -26784,6 +26764,7 @@ Collectible:
     created_at: '2008-12-26 16:15:26'
     updated_at: '2011-11-10 07:26:39'
   Collectible_14796:
+    graph_id: '14333'
     collector_id: Collector_12
     name: 'The Riddler : Wave 5'
     slug: the-riddler-wave-5
@@ -26792,7 +26773,7 @@ Collectible:
     score: '0'
     is_name_automatic: '0'
     created_at: '2008-12-26 16:15:27'
-    updated_at: '2011-11-10 07:26:39'
+    updated_at: '2012-04-05 09:59:28'
   Collectible_14797:
     collector_id: Collector_12
     name: 'Amazo : Wave 5'
@@ -33857,6 +33838,7 @@ Collectible:
     created_at: '2009-09-13 22:32:22'
     updated_at: '2011-11-10 07:28:47'
   Collectible_30273:
+    graph_id: '14030'
     collector_id: Collector_12
     name: 'Supergirl (ver. 2)'
     slug: supergirl-ver-2
@@ -33865,7 +33847,7 @@ Collectible:
     score: '0'
     is_name_automatic: '0'
     created_at: '2009-09-13 22:32:22'
-    updated_at: '2011-11-10 07:28:47'
+    updated_at: '2012-03-29 14:10:54'
   Collectible_30274:
     collector_id: Collector_12
     name: 'Lightning Lad'
@@ -36037,6 +36019,7 @@ Collectible:
     created_at: '2009-11-12 14:54:34'
     updated_at: '2011-11-10 07:29:02'
   Collectible_32052:
+    graph_id: '14337'
     collector_id: Collector_12
     name: 'The Riddler (C3)'
     slug: the-riddler-c3
@@ -36045,7 +36028,7 @@ Collectible:
     score: '0'
     is_name_automatic: '0'
     created_at: '2009-11-16 09:00:01'
-    updated_at: '2011-11-10 07:29:03'
+    updated_at: '2012-04-05 10:00:50'
   Collectible_32053:
     collector_id: Collector_12
     name: 'Batman (JLU, C3)'
@@ -37128,6 +37111,7 @@ Collectible:
     created_at: '2009-11-26 21:23:09'
     updated_at: '2011-11-10 07:29:07'
   Collectible_32443:
+    graph_id: '14032'
     collector_id: Collector_12
     name: 'Supergirl I (DCSH)'
     slug: supergirl-i-dcsh
@@ -37136,7 +37120,7 @@ Collectible:
     score: '0'
     is_name_automatic: '0'
     created_at: '2009-11-26 21:23:09'
-    updated_at: '2011-11-10 07:29:07'
+    updated_at: '2012-03-29 14:11:56'
   Collectible_32444:
     collector_id: Collector_12
     name: 'Two-Face (DCSH)'
@@ -37178,6 +37162,7 @@ Collectible:
     created_at: '2009-11-26 21:23:55'
     updated_at: '2011-11-10 07:29:07'
   Collectible_32448:
+    graph_id: '14033'
     collector_id: Collector_12
     name: 'Supergirl II (DCSH)'
     slug: supergirl-ii-dcsh
@@ -37186,7 +37171,7 @@ Collectible:
     score: '0'
     is_name_automatic: '0'
     created_at: '2009-11-26 21:24:26'
-    updated_at: '2011-11-10 07:29:07'
+    updated_at: '2012-03-29 14:12:57'
   Collectible_32449:
     collector_id: Collector_12
     name: 'Shazam! : Wave 6'
@@ -37668,6 +37653,7 @@ Collectible:
     created_at: '2009-11-28 15:02:22'
     updated_at: '2011-11-10 07:29:08'
   Collectible_32564:
+    graph_id: '14034'
     collector_id: Collector_12
     name: 'Power Girl : Wave 10'
     slug: power-girl-wave-10
@@ -37676,7 +37662,7 @@ Collectible:
     score: '0'
     is_name_automatic: '0'
     created_at: '2009-11-28 15:02:22'
-    updated_at: '2011-11-10 07:29:08'
+    updated_at: '2012-03-29 14:13:57'
   Collectible_32565:
     collector_id: Collector_12
     name: 'Beast Boy : Wave 10'
@@ -42229,6 +42215,7 @@ Collectible:
     created_at: '2010-03-23 08:39:21'
     updated_at: '2011-11-10 07:29:52'
   Collectible_37297:
+    graph_id: '14041'
     collector_id: Collector_12
     name: 'Spider-Man (Thor Armor) : 048'
     slug: spider-man-thor-armor-048
@@ -42237,7 +42224,7 @@ Collectible:
     score: '0'
     is_name_automatic: '0'
     created_at: '2010-03-23 08:39:31'
-    updated_at: '2011-11-10 07:29:52'
+    updated_at: '2012-03-29 14:20:28'
   Collectible_37298:
     collector_id: Collector_12
     name: 'Loki : 054'
@@ -42279,6 +42266,7 @@ Collectible:
     created_at: '2010-03-23 08:39:52'
     updated_at: '2011-11-10 07:29:52'
   Collectible_37302:
+    graph_id: '14042'
     collector_id: Collector_12
     name: 'Beta Ray Bill : 023'
     slug: beta-ray-bill-023
@@ -42287,7 +42275,7 @@ Collectible:
     score: '0'
     is_name_automatic: '0'
     created_at: '2010-03-23 08:39:57'
-    updated_at: '2011-11-10 07:29:52'
+    updated_at: '2012-03-29 14:20:46'
   Collectible_37303:
     collector_id: Collector_12
     name: 'Rockey Raccoon : 028'
@@ -42319,6 +42307,7 @@ Collectible:
     created_at: '2010-03-23 08:40:21'
     updated_at: '2011-11-10 07:29:52'
   Collectible_37306:
+    graph_id: '14043'
     collector_id: Collector_12
     name: 'Thor : 016'
     slug: thor-016
@@ -42327,7 +42316,7 @@ Collectible:
     score: '0'
     is_name_automatic: '0'
     created_at: '2010-03-23 08:40:30'
-    updated_at: '2011-11-10 07:29:52'
+    updated_at: '2012-03-29 14:21:03'
   Collectible_37307:
     collector_id: Collector_12
     name: 'Fandral : 018'
@@ -43710,15 +43699,16 @@ Collectible:
     created_at: '2010-04-21 23:37:28'
     updated_at: '2011-11-10 07:30:03'
   Collectible_38443:
+    graph_id: '14035'
     collector_id: Collector_12
     name: 'Power Girl'
-    slug: power-girl-38d36b
-    description: ''
+    slug: power-girl-c8918d
+    description: '=='
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
     created_at: '2010-04-21 23:37:31'
-    updated_at: '2011-11-10 07:30:03'
+    updated_at: '2012-03-29 14:14:19'
   Collectible_38444:
     collector_id: Collector_12
     name: Extant
@@ -45011,6 +45001,7 @@ Collectible:
     created_at: '2010-07-26 22:47:30'
     updated_at: '2011-11-10 07:30:29'
   Collectible_42343:
+    graph_id: '14029'
     collector_id: Collector_12
     name: Galatea
     slug: galatea
@@ -45019,7 +45010,7 @@ Collectible:
     score: '0'
     is_name_automatic: '0'
     created_at: '2010-07-26 22:47:34'
-    updated_at: '2011-11-10 07:30:29'
+    updated_at: '2012-03-29 14:09:31'
   Collectible_42344:
     collector_id: Collector_12
     name: Hawkgirl
@@ -48737,15 +48728,16 @@ Collectible:
     created_at: '2011-02-09 19:33:18'
     updated_at: '2011-11-10 07:31:30'
   Collectible_50169:
+    graph_id: '14332'
     collector_id: Collector_12
     name: 'The Riddler (Classic) - Series 16'
     slug: the-riddler-classic-series-16
-    description: \---|
+    description: \---||
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
     created_at: '2011-02-09 19:33:21'
-    updated_at: '2011-11-10 07:31:30'
+    updated_at: '2012-04-05 09:58:43'
   Collectible_50170:
     collector_id: Collector_12
     name: 'Robin (Modern and Classic variants) - Series 16'
@@ -50680,6 +50672,7 @@ Collectible:
     created_at: '2011-07-15 14:18:58'
     updated_at: '2011-11-30 19:22:45'
   Collectible_59897:
+    graph_id: '14040'
     collector_id: Collector_12
     name: 'The Mighty Thor'
     slug: the-mighty-thor
@@ -50688,7 +50681,7 @@ Collectible:
     score: '0'
     is_name_automatic: '0'
     created_at: '2011-07-15 14:19:02'
-    updated_at: '2011-11-30 19:22:45'
+    updated_at: '2012-03-29 14:19:05'
   Collectible_59898:
     graph_id: '12381'
     collector_id: Collector_12
@@ -50891,15 +50884,16 @@ Collectible:
     created_at: '2011-08-05 22:36:53'
     updated_at: '2011-11-10 07:32:37'
   Collectible_61216:
+    graph_id: '14038'
     collector_id: Collector_12
     name: 'Marvel Frenzies : The Mighty Thor'
     slug: marvel-frenzies-the-mighty-thor
-    description: ''
+    description: '=='
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
     created_at: '2011-08-22 08:26:22'
-    updated_at: '2011-11-10 07:32:40'
+    updated_at: '2012-03-29 14:18:35'
   Collectible_61217:
     collector_id: Collector_12
     name: 'Marvel Frenzies : Wolverine'
@@ -51895,15 +51889,16 @@ Collectible:
     created_at: '2011-11-30 19:13:32'
     updated_at: '2011-11-30 19:21:56'
   Collectible_65358:
+    graph_id: '14039'
     collector_id: Collector_12
     name: 'Series 4 : Thor'
     slug: series-4-thor
-    description: ''
+    description: '=='
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
     created_at: '2011-11-30 19:13:34'
-    updated_at: '2011-11-30 19:22:45'
+    updated_at: '2012-03-29 14:18:55'
   Collectible_65359:
     collector_id: Collector_12
     name: 'Series 4 : Spider-Man'
@@ -52876,42 +52871,6 @@ Collectible:
     is_name_automatic: '0'
     created_at: '2012-03-05 10:36:26'
     updated_at: '2012-03-05 10:36:56'
-  Collectible_70028:
-    graph_id: '12552'
-    collector_id: Collector_12
-    name: 'Brady bunch set'
-    slug: brady-bunch-set
-    description: ''
-    num_comments: '0'
-    batch_hash: f4d9c188dd75ffd94e6ecb254b4ad757
-    score: '0'
-    is_name_automatic: '1'
-    created_at: '2012-03-08 09:32:59'
-    updated_at: '2012-03-08 09:33:08'
-  Collectible_70029:
-    graph_id: '12553'
-    collector_id: Collector_12
-    name: 'Brady bunch signatures'
-    slug: brady-bunch-signatures
-    description: ''
-    num_comments: '0'
-    batch_hash: f4d9c188dd75ffd94e6ecb254b4ad757
-    score: '0'
-    is_name_automatic: '1'
-    created_at: '2012-03-08 09:33:00'
-    updated_at: '2012-03-08 09:33:08'
-  Collectible_70030:
-    graph_id: '12554'
-    collector_id: Collector_12
-    name: 'Brady bunch single card'
-    slug: brady-bunch-single-card
-    description: ''
-    num_comments: '0'
-    batch_hash: f4d9c188dd75ffd94e6ecb254b4ad757
-    score: '0'
-    is_name_automatic: '1'
-    created_at: '2012-03-08 09:33:02'
-    updated_at: '2012-03-08 09:33:08'
   Collectible_70178:
     graph_id: '13107'
     collector_id: Collector_12
@@ -52971,19 +52930,19 @@ Collectible:
     score: '0'
     is_name_automatic: '0'
     created_at: '2012-03-19 10:35:16'
-    updated_at: '2012-03-19 10:39:28'
+    updated_at: '2012-03-29 14:15:20'
   Collectible_70183:
     graph_id: '13115'
     collector_id: Collector_12
     name: 'Iron Man'
-    slug: iron-man-4618f3
+    slug: iron-man-970c32
     description: 'Normal red-and-gold Iron Man.'
     num_comments: '0'
     batch_hash: 69419c41ab5adede87447d8eebe892ea
     score: '0'
     is_name_automatic: '0'
     created_at: '2012-03-19 10:35:22'
-    updated_at: '2012-03-19 10:41:55'
+    updated_at: '2012-03-29 14:15:36'
   Collectible_70184:
     graph_id: '13114'
     collector_id: Collector_12
@@ -53012,14 +52971,14 @@ Collectible:
     graph_id: '13112'
     collector_id: Collector_12
     name: Thor
-    slug: thor-b9558c
+    slug: thor-bf677b
     description: 'The most modern Thor. Does not include a build-a-figure piece, and was originally released as a SDCC exclusive w/ lightning details.'
     num_comments: '0'
     batch_hash: 69419c41ab5adede87447d8eebe892ea
     score: '0'
     is_name_automatic: '0'
     created_at: '2012-03-19 10:35:34'
-    updated_at: '2012-03-19 10:40:36'
+    updated_at: '2012-03-29 14:18:10'
   Collectible_70327:
     graph_id: '13764'
     collector_id: Collector_12
@@ -53103,7 +53062,7 @@ Collectible:
     score: '0'
     is_name_automatic: '0'
     created_at: '2012-03-26 17:12:40'
-    updated_at: '2012-03-26 17:20:39'
+    updated_at: '2012-03-28 11:21:23'
   Collectible_70334:
     graph_id: '13771'
     collector_id: Collector_12
@@ -53139,7 +53098,7 @@ Collectible:
     score: '0'
     is_name_automatic: '0'
     created_at: '2012-03-26 17:12:46'
-    updated_at: '2012-03-26 17:21:43'
+    updated_at: '2012-03-27 20:46:47'
   Collectible_70337:
     graph_id: '13774'
     collector_id: Collector_12
@@ -53152,3 +53111,482 @@ Collectible:
     is_name_automatic: '0'
     created_at: '2012-03-26 17:12:51'
     updated_at: '2012-03-26 17:22:11'
+  Collectible_70709:
+    graph_id: '14198'
+    collector_id: Collector_12
+    name: 'Eraseez Hulk'
+    slug: eraseez-hulk
+    description: 'From Bulls-i-Toy, a Hulk made of erasers!'
+    num_comments: '0'
+    batch_hash: 93bd617bc35cffb577e1de6bf4c12874
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-02 11:12:08'
+    updated_at: '2012-04-02 11:12:36'
+  Collectible_70710:
+    graph_id: '14199'
+    collector_id: Collector_12
+    name: 'Grab Zags Iron Man'
+    slug: grab-zags-iron-man
+    description: 'Mystery pack!'
+    num_comments: '0'
+    batch_hash: 3749d541b386dd5726c9e4d589579ce2
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-02 11:13:06'
+    updated_at: '2012-04-02 11:15:12'
+  Collectible_70711:
+    graph_id: '14200'
+    collector_id: Collector_12
+    name: 'Superhero Adventures Iron Man Mark III'
+    slug: superhero-adventures-iron-man-mark-iii
+    description: 'Packaged with Silver Surfer (Mark III Armor)'
+    num_comments: '0'
+    batch_hash: 3749d541b386dd5726c9e4d589579ce2
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-02 11:13:08'
+    updated_at: '2012-04-02 11:15:12'
+  Collectible_70712:
+    graph_id: '14201'
+    collector_id: Collector_12
+    name: 'Superhero Adventures Iron Man Mark IV'
+    slug: superhero-adventures-iron-man-mark-iv
+    description: 'Packaged with Doctor Doom.'
+    num_comments: '0'
+    batch_hash: 3749d541b386dd5726c9e4d589579ce2
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-02 11:13:13'
+    updated_at: '2012-04-02 11:15:12'
+  Collectible_70719:
+    graph_id: '14213'
+    collector_id: Collector_12
+    name: HazMa
+    slug: hazma
+    description: '=='
+    num_comments: '0'
+    batch_hash: 9073caff192a4367cd5a13ca6e168409
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-02 17:22:34'
+    updated_at: '2012-04-02 17:26:58'
+  Collectible_70720:
+    graph_id: '14214'
+    collector_id: Collector_12
+    name: Astronof
+    slug: astronof
+    description: '=='
+    num_comments: '0'
+    batch_hash: 9073caff192a4367cd5a13ca6e168409
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-02 17:22:35'
+    updated_at: '2012-04-02 17:26:58'
+  Collectible_70721:
+    graph_id: '14215'
+    collector_id: Collector_12
+    name: Killa
+    slug: killa
+    description: '=='
+    num_comments: '0'
+    batch_hash: 9073caff192a4367cd5a13ca6e168409
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-02 17:22:36'
+    updated_at: '2012-04-02 17:26:58'
+  Collectible_70722:
+    graph_id: '14216'
+    collector_id: Collector_12
+    name: Nurz
+    slug: nurz
+    description: '=='
+    num_comments: '0'
+    batch_hash: 9073caff192a4367cd5a13ca6e168409
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-02 17:22:37'
+    updated_at: '2012-04-02 17:26:58'
+  Collectible_70723:
+    graph_id: '14217'
+    collector_id: Collector_12
+    name: Friend
+    slug: friend
+    description: '=='
+    num_comments: '0'
+    batch_hash: 9073caff192a4367cd5a13ca6e168409
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-02 17:22:38'
+    updated_at: '2012-04-02 17:26:58'
+  Collectible_70724:
+    collector_id: Collector_12
+    name: CowCo
+    slug: cowco
+    description: ''
+    num_comments: '0'
+    batch_hash: 9073caff192a4367cd5a13ca6e168409
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-02 17:22:39'
+    updated_at: '2012-04-02 17:28:53'
+  Collectible_70725:
+    collector_id: Collector_12
+    name: Akkiloki
+    slug: akkiloki
+    description: ''
+    num_comments: '0'
+    batch_hash: 9073caff192a4367cd5a13ca6e168409
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-02 17:22:42'
+    updated_at: '2012-04-02 17:28:46'
+  Collectible_70726:
+    collector_id: Collector_12
+    name: Volv
+    slug: volv
+    description: ''
+    num_comments: '0'
+    batch_hash: 9073caff192a4367cd5a13ca6e168409
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-02 17:22:45'
+    updated_at: '2012-04-02 17:28:28'
+  Collectible_70727:
+    collector_id: Collector_12
+    name: Rilla
+    slug: rilla
+    description: ''
+    num_comments: '0'
+    batch_hash: 9073caff192a4367cd5a13ca6e168409
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-02 17:22:50'
+    updated_at: '2012-04-02 17:28:21'
+  Collectible_70728:
+    graph_id: '14221'
+    collector_id: Collector_12
+    name: WGirl
+    slug: wgirl
+    description: '=='
+    num_comments: '0'
+    batch_hash: 9073caff192a4367cd5a13ca6e168409
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-02 17:22:52'
+    updated_at: '2012-04-05 10:03:02'
+  Collectible_70729:
+    graph_id: '14218'
+    collector_id: Collector_12
+    name: McDutch
+    slug: mcdutch
+    description: '=='
+    num_comments: '0'
+    batch_hash: 9073caff192a4367cd5a13ca6e168409
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-02 17:22:53'
+    updated_at: '2012-04-02 17:27:41'
+  Collectible_70730:
+    graph_id: '14219'
+    collector_id: Collector_12
+    name: NYOff
+    slug: nyoff
+    description: '=='
+    num_comments: '0'
+    batch_hash: 9073caff192a4367cd5a13ca6e168409
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-02 17:22:54'
+    updated_at: '2012-04-02 17:27:41'
+  Collectible_70731:
+    graph_id: '14220'
+    collector_id: Collector_12
+    name: Eva
+    slug: eva
+    description: '=='
+    num_comments: '0'
+    batch_hash: 9073caff192a4367cd5a13ca6e168409
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-02 17:22:55'
+    updated_at: '2012-04-02 17:27:41'
+  Collectible_70779:
+    graph_id: '14264'
+    collector_id: Collector_12
+    name: 'Log! for Girls'
+    slug: log-for-girls
+    description: 'Came with regular Stimpy figure.'
+    num_comments: '0'
+    batch_hash: 3a9af94541273e8088857d1433e5219e
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-03 16:22:29'
+    updated_at: '2012-04-03 16:29:32'
+  Collectible_70780:
+    graph_id: '14265'
+    collector_id: Collector_12
+    name: 'Invisible Log!'
+    slug: invisible-log
+    description: 'Came with regular Yak figure.'
+    num_comments: '0'
+    batch_hash: 3a9af94541273e8088857d1433e5219e
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-03 16:22:31'
+    updated_at: '2012-04-03 16:29:15'
+  Collectible_70781:
+    graph_id: '14266'
+    collector_id: Collector_12
+    name: 'Classic Log!'
+    slug: classic-log
+    description: "Came with \"sick\" Stimpy figure.\n"
+    num_comments: '0'
+    batch_hash: 3a9af94541273e8088857d1433e5219e
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-03 16:22:32'
+    updated_at: '2012-04-03 16:27:01'
+  Collectible_70782:
+    graph_id: '14267'
+    collector_id: Collector_12
+    name: 'Singing Log!'
+    slug: singing-log
+    description: 'Came with regular Mr. Horse figure.'
+    num_comments: '0'
+    batch_hash: 3a9af94541273e8088857d1433e5219e
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-03 16:22:34'
+    updated_at: '2012-04-03 16:29:54'
+  Collectible_70783:
+    graph_id: '14268'
+    collector_id: Collector_12
+    name: 'Yule Log!'
+    slug: yule-log
+    description: "Holiday exclusive! This one was a gift from Palisades.\n"
+    num_comments: '0'
+    batch_hash: 3a9af94541273e8088857d1433e5219e
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-03 16:22:35'
+    updated_at: '2012-04-03 16:31:02'
+  Collectible_70784:
+    collector_id: Collector_12
+    name: 'Radioactive Log!'
+    slug: radioactive-log
+    description: 'Special mail-away edition!'
+    num_comments: '0'
+    batch_hash: 3a9af94541273e8088857d1433e5219e
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-03 16:22:36'
+    updated_at: '2012-04-03 16:30:11'
+  Collectible_70785:
+    collector_id: Collector_12
+    name: 'Log! of the Klondike'
+    slug: log-of-the-klondike
+    description: 'Came with "Paranoid" Mr. Horse (in brown suit).'
+    num_comments: '0'
+    batch_hash: 3a9af94541273e8088857d1433e5219e
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-03 16:22:38'
+    updated_at: '2012-04-03 16:27:29'
+  Collectible_70786:
+    collector_id: Collector_12
+    name: 'Secret Agent Log!'
+    slug: secret-agent-log
+    description: 'Came with "Lathered-Up Shaven Yak".'
+    num_comments: '0'
+    batch_hash: 3a9af94541273e8088857d1433e5219e
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-03 16:22:39'
+    updated_at: '2012-04-03 16:27:55'
+  Collectible_70787:
+    collector_id: Collector_12
+    name: 'Log! for Men'
+    slug: log-for-men
+    description: "Came with regular Ren figure.\n"
+    num_comments: '0'
+    batch_hash: 3a9af94541273e8088857d1433e5219e
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-03 16:22:40'
+    updated_at: '2012-04-03 16:28:56'
+  Collectible_70898:
+    graph_id: '14359'
+    collector_id: Collector_12
+    name: 'Arnim Zola'
+    slug: arnim-zola
+    description: 'Build-a-Figure from ML 2012 Series 2... and one of my favorite bad guys! Now, I have to hunt for the variant Red Skull belly-face!'
+    num_comments: '0'
+    batch_hash: 6eef0258843a334f757465434c1f52e6
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-06 08:23:58'
+    updated_at: '2012-04-06 08:27:05'
+  Collectible_70899:
+    graph_id: '14360'
+    collector_id: Collector_12
+    name: 'Captain America (Bucky)'
+    slug: captain-america-bucky
+    description: 'Bucky as Captain America, after Steve Rogers'' death, and return to head of SHIELD.'
+    num_comments: '0'
+    batch_hash: 6eef0258843a334f757465434c1f52e6
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-06 08:24:01'
+    updated_at: '2012-04-06 08:27:05'
+  Collectible_70900:
+    graph_id: '14361'
+    collector_id: Collector_12
+    name: 'Dark Wolverine / Daken (Unmasked)'
+    slug: dark-wolverine-daken-unmasked
+    description: 'Wolverine''s son, in an unmasked variant figure.'
+    num_comments: '0'
+    batch_hash: 6eef0258843a334f757465434c1f52e6
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-06 08:24:02'
+    updated_at: '2012-04-06 14:00:22'
+  Collectible_70901:
+    graph_id: '14362'
+    collector_id: Collector_12
+    name: Drax
+    slug: drax
+    description: 'A green guy with knives. I don''t know too much about the Guardians of the Galaxy.'
+    num_comments: '0'
+    batch_hash: 6eef0258843a334f757465434c1f52e6
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-06 08:24:05'
+    updated_at: '2012-04-06 08:27:05'
+  Collectible_70902:
+    graph_id: '14363'
+    collector_id: Collector_12
+    name: Fantomex
+    slug: fantomex
+    description: 'A character who was cool and then not cool, beacuse X-Men gets way too complicated.'
+    num_comments: '0'
+    batch_hash: 6eef0258843a334f757465434c1f52e6
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-06 08:24:08'
+    updated_at: '2012-04-06 08:27:05'
+  Collectible_70903:
+    collector_id: Collector_12
+    name: 'Madame Masque'
+    slug: madame-masque
+    description: 'A variant figure with Madame Hydra.'
+    num_comments: '0'
+    batch_hash: 6eef0258843a334f757465434c1f52e6
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-06 08:24:10'
+    updated_at: '2012-04-06 08:29:30'
+  Collectible_70904:
+    collector_id: Collector_12
+    name: 'Spider-Man (Future Foundation costume)'
+    slug: spider-man-future-foundation-costume
+    description: "After the death of the Human Torch, Spidey joined the Fantastic Four, who renamed themselves as the Future Foundation... and changed costumes.\n"
+    num_comments: '0'
+    batch_hash: 6eef0258843a334f757465434c1f52e6
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-06 08:24:13'
+    updated_at: '2012-04-06 08:29:05'
+  Collectible_70905:
+    collector_id: Collector_12
+    name: Thunderball
+    slug: thunderball
+    description: "A member of the wrecking crew, and a variant for Piledriver, also in this series. I hope we get he whole team!\n"
+    num_comments: '0'
+    batch_hash: 6eef0258843a334f757465434c1f52e6
+    score: '0'
+    is_name_automatic: '1'
+    created_at: '2012-04-06 08:24:16'
+    updated_at: '2012-04-06 08:28:17'
+  Collectible_70906:
+    graph_id: '14365'
+    collector_id: Collector_12
+    name: 'Shower Girl'
+    slug: shower-girl
+    description: 'With hairbrush, hair dryer and removable towel.'
+    num_comments: '0'
+    batch_hash: 709a6bcf3a2e1aded6eca056270b4126
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-06 08:33:18'
+    updated_at: '2012-04-06 08:35:43'
+  Collectible_70907:
+    graph_id: '14366'
+    collector_id: Collector_12
+    name: Knight
+    slug: knight
+    description: 'With sword, shield & helmet. One of a TON of Playmobil knights.'
+    num_comments: '0'
+    batch_hash: 709a6bcf3a2e1aded6eca056270b4126
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-06 08:33:26'
+    updated_at: '2012-04-06 08:35:43'
+  Collectible_70908:
+    graph_id: '14367'
+    collector_id: Collector_12
+    name: 'Basketball Player'
+    slug: basketball-player-5f0adb
+    description: 'With basketball and wicked afro.'
+    num_comments: '0'
+    batch_hash: 709a6bcf3a2e1aded6eca056270b4126
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-06 08:33:32'
+    updated_at: '2012-04-06 08:35:43'
+  Collectible_70909:
+    graph_id: '14368'
+    collector_id: Collector_12
+    name: 'Egyptian Princess'
+    slug: egyptian-princess
+    description: 'With fan. Goes awesome with the huge Egyptian playsets!'
+    num_comments: '0'
+    batch_hash: 709a6bcf3a2e1aded6eca056270b4126
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-06 08:33:38'
+    updated_at: '2012-04-06 08:35:43'
+  Collectible_70910:
+    graph_id: '14369'
+    collector_id: Collector_12
+    name: 'Asian Pirate'
+    slug: asian-pirate
+    description: 'With sword and nunchuks!'
+    num_comments: '0'
+    batch_hash: 709a6bcf3a2e1aded6eca056270b4126
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-06 08:33:45'
+    updated_at: '2012-04-06 08:35:43'
+  Collectible_70911:
+    collector_id: Collector_12
+    name: 'German Beer Girl'
+    slug: german-beer-girl
+    description: 'Okay, so she''s carrying flowers... but she''s totally a beer chick.'
+    num_comments: '0'
+    batch_hash: 709a6bcf3a2e1aded6eca056270b4126
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-06 08:33:51'
+    updated_at: '2012-04-06 08:36:13'
+  Collectible_70912:
+    collector_id: Collector_12
+    name: 'Evil Mariachi Man'
+    slug: evil-mariachi-man
+    description: 'Awesome guitar and sombrero accessories... but why does he look so mean?'
+    num_comments: '0'
+    batch_hash: 709a6bcf3a2e1aded6eca056270b4126
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-06 08:33:59'
+    updated_at: '2012-04-06 08:36:50'
