@@ -57,7 +57,7 @@ class Multimedia extends BaseMultimedia
       'height' => $height,
       'size'   => $this->getFileSize(),
       'type'   => $type
-   );
+    );
   }
 
   public function getImageHeight($which = 'original')
@@ -117,6 +117,8 @@ class Multimedia extends BaseMultimedia
   /**
    * @param  BaseObject|string  $model
    * @param  integer|null       $id
+   *
+   * @return Multimedia|void
    */
   public function setModel($model, $id = null)
   {
