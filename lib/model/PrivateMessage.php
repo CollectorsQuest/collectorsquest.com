@@ -4,9 +4,10 @@ require 'lib/model/om/BasePrivateMessage.php';
 
 class PrivateMessage extends BasePrivateMessage
 {
+
   /**
-   * @param  Collector $v
-   * @return void
+   * @param     Collector $v
+   * @return    PrivateMessage
    */
   public function setSender($v)
   {
@@ -19,12 +20,12 @@ class PrivateMessage extends BasePrivateMessage
       $id = (int) $v;
     }
 
-    parent::setSender($id);
+    return parent::setSender($id);
   }
 
   /**
-   * @param  Collector $v
-   * @return void
+   * @param     Collector $v
+   * @return    PrivateMessage
    */
   public function setReceiver($v)
   {
@@ -37,27 +38,35 @@ class PrivateMessage extends BasePrivateMessage
       $id = (int) $v;
     }
 
-    parent::setReceiver($id);
+    return parent::setReceiver($id);
   }
 
   /**
-   * @param  string $v
-   * @return void
+   * @param     string $v
+   * @return    PrivateMesage
    */
   public function setSubject($v)
   {
-    parent::setSubject(strip_tags($v));
+    return parent::setSubject(strip_tags($v));
   }
 
+  /**
+   * @param     string $v
+   * @param     boolean $clean
+   * @return    PrivateMessage
+   */
   public function setBody($v, $clean = false)
   {
     $v = trim($v);
     $v = (!$this->getIsRich()) ? nl2br($v) : $v;
     $v = (true === $clean) ? IceStatic::cleanText($v, false, 'b, u, i, strong, br', $this->getIsRich() ? -1 : 0) : $v;
 
-    parent::setBody($v);
+    return parent::setBody($v);
   }
 
+  /**
+   * @return    string
+   */
   public function getReplySubject()
   {
     $subject = "RE: ". $this->getSubject();
@@ -70,6 +79,9 @@ class PrivateMessage extends BasePrivateMessage
     return $subject;
   }
 
+  /**
+   * @return    integer
+   */
   public function getThreadCount()
   {
     $c = new Criteria();
@@ -78,4 +90,21 @@ class PrivateMessage extends BasePrivateMessage
 
     return PrivateMessagePeer::doCount($c);
   }
+
+  /**
+   * Perform pre-save operations
+   *
+   * @param     PropelPDO $con
+   * @return    boolean
+   */
+  public function preSave(PropelPDO $con = null)
+  {
+    if (null === $this->getThread())
+    {
+      $this->setThread(PrivateMessagePeer::generateThread());
+    }
+
+    return parent::preSave($con);
+  }
+
 }
