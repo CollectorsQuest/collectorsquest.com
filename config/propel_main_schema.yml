@@ -290,8 +290,8 @@ classes:
     columns:
       id:  ~
       thread:        { type: varchar, size: 32 }
-      sender:        { type: integer, required: true }
-      receiver:      { type: integer, required: true }
+      sender:        { type: integer, required: true, foreignClass: Collector, foreignReference: id, fkSkipSql: true }
+      receiver:      { type: integer, required: true, foreignClass: Collector, foreignReference: id, fkSkipSql: true }
       subject:       { type: varchar, size: 255, required: true }
       body:          { type: longvarchar, required: true }
       is_rich:       { type: boolean, default: false }
@@ -301,6 +301,8 @@ classes:
       is_marked:     { type: boolean, default: false }
       is_deleted:    { type: boolean, default: false }
       created_at:    ~
+
+
 
   PrivateMessageTemplate:
     columns:

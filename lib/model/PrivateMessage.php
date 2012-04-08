@@ -58,22 +58,6 @@ class PrivateMessage extends BasePrivateMessage
     parent::setBody($v);
   }
 
-  public function getCollectorRelatedBySender()
-  {
-    $c = new Criteria();
-    $c->add(CollectorPeer::ID, $this->getSender());
-
-    return CollectorPeer::doSelectOne($c);
-  }
-
-  public function getCollectorRelatedByReceiver()
-  {
-    $c = new Criteria();
-    $c->add(CollectorPeer::ID, $this->getReceiver());
-
-    return CollectorPeer::doSelectOne($c);
-  }
-
   public function getReplySubject()
   {
     $subject = "RE: ". $this->getSubject();
