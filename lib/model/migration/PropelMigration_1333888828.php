@@ -8,7 +8,7 @@ class PropelMigration_1333888828
 		// add the pre-migration code here
 	}
 
-	public function postUp()
+	public function postUp($manager)
 	{
     $capabilities = array (
       'read' => 'true',
@@ -164,6 +164,8 @@ class PropelMigration_1333888828
       }
     }
 
+
+
     return true;
 	}
 
@@ -185,7 +187,12 @@ class PropelMigration_1333888828
 	 */
 	public function getUpSQL()
 	{
-		return array();
+		return array('propel' => '
+      # This is a fix for InnoDB in MySQL >= 4.1.x
+      # It "suspends judgement" for fkey relationships until are tables are set.
+      SET FOREIGN_KEY_CHECKS = 0;
+      SET FOREIGN_KEY_CHECKS = 1;
+    ');
 	}
 
 	/**
@@ -196,7 +203,12 @@ class PropelMigration_1333888828
 	 */
 	public function getDownSQL()
 	{
-		return array();
+    return array('propel' => '
+      # This is a fix for InnoDB in MySQL >= 4.1.x
+      # It "suspends judgement" for fkey relationships until are tables are set.
+      SET FOREIGN_KEY_CHECKS = 0;
+      SET FOREIGN_KEY_CHECKS = 1;
+    ');
 	}
 
 }
