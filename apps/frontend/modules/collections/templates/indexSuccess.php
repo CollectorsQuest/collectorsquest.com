@@ -1,7 +1,5 @@
 <?php cq_page_title('Collections'); ?>
 
-<?php /* <?php cq_section_title('Explore collections'); ?>*/?>
-
 <div class="weeks-promo-box">
   <div class="row-fluid">
     <div class="span8">
@@ -15,8 +13,7 @@
   <button class="btn btn-small gray-button see-more-full">See more</button>
 </div>
 
-
-<h2 class="section-title">Explore Collections</h2>
+<? cq_section_title('Explore Collections') ?>
 
 <div class="collection-search-box">
   <div class="input-append">

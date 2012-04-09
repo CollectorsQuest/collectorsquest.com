@@ -23,7 +23,6 @@ default:
     - frontend/bootstrap.css
     - frontend/responsive.css
     - frontend/main.css
-    - frontend/sidebar.css
 
   javascripts:
     - /assets/js/bootstrap/alerts.js
