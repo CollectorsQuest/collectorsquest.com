@@ -20,6 +20,12 @@ ajax_editable_load:
   url:   /ajax/editable-load
   param: { module: ajax, action: editableLoad }
 
+ajax_collection_snapshot:
+  url:   /ajax/collection/:id/snapshot
+  param: { module: ajax, action: collection, section: component, page: snapshot }
+  options: { extra_parameters_as_query_string: true }
+  requirements: { sf_format: html }
+
 ajax_collection:
   url:   /ajax/collection/:section/:page.:sf_format
   param: { module: ajax, action: collection, sf_format: html }
