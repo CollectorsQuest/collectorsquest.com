@@ -134,7 +134,7 @@ class CollectibleEditForm extends BaseCollectibleForm
     }
 
     $values = $this->getValue('collection_collectible_list');
-    if (is_array($values))
+    if ($values && is_array($values))
     {
       $c = new Criteria();
       $c->add(CollectionCollectiblePeer::COLLECTIBLE_ID, $this->object->getPrimaryKey());
@@ -144,12 +144,18 @@ class CollectibleEditForm extends BaseCollectibleForm
       foreach ($values as $value)
       {
         $q = CollectionCollectibleQuery::create()
-          ->filterByCollectibleId($this->object->getPrimaryKey())
-          ->filterByCollectionId((int) $value);
+           ->filterByCollectibleId($this->object->getPrimaryKey())
+           ->filterByCollectionId((int) $value);
 
         $obj = $q->findOneOrCreate();
         $obj->save();
       }
+    }
+    else
+    {
+      $c = new Criteria();
+      $c->add(CollectionCollectiblePeer::COLLECTIBLE_ID, $this->object->getPrimaryKey());
+      CollectionCollectiblePeer::doDelete($c, $con);
     }
   }
 

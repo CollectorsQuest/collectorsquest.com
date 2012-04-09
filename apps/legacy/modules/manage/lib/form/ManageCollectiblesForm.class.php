@@ -30,7 +30,7 @@ class ManageCollectiblesForm extends sfFormPropelCollection
       }
     }
 
-    return parent::bind($taintedValues, $taintedFiles);
+    parent::bind($taintedValues, $taintedFiles);
   }
 
 }
