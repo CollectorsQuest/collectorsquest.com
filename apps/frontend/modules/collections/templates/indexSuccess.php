@@ -14,37 +14,37 @@
       <ul class="thumbnails">
         <li class="span6">
           <a href="#">
-            <img alt="" src="http://placehold.it/370x302">
+            <?= ice_image_tag_flickholdr('370x302', array('i' => 4)) ?>
           </a>
         </li>
         <li class="span3">
           <a href="#">
-            <img alt="" src="http://placehold.it/150x150">
+            <?= ice_image_tag_flickholdr('150x150'); ?>
           </a>
         </li>
         <li class="span3">
           <a href="#">
-            <img alt="" src="http://placehold.it/150x150">
+            <?= ice_image_tag_flickholdr('150x150'); ?>
           </a>
         </li>
         <li class="span3">
           <a href="#">
-            <img alt="" src="http://placehold.it/150x150">
+            <?= ice_image_tag_flickholdr('150x150'); ?>
           </a>
         </li>
         <li class="span3">
           <a href="#">
-            <img alt="" src="http://placehold.it/150x150">
+            <?= ice_image_tag_flickholdr('150x150'); ?>
           </a>
         </li>
         <li class="span3 dn">
           <a href="#">
-            <img alt="" src="http://placehold.it/150x150">
+            <?= ice_image_tag_flickholdr('150x150'); ?>
           </a>
         </li>
         <li class="span3 dn">
           <a href="#">
-            <img alt="" src="http://placehold.it/150x150">
+            <?= ice_image_tag_flickholdr('150x150'); ?>
           </a>
         </li>
       </ul>

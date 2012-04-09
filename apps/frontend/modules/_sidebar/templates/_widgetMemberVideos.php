@@ -4,7 +4,7 @@
     <span class="sidebar-title">Member Videos</span>
   </div>
   <div class="span3 text-right">
-    <a href="<?php echo sfConfig::get('app_magnify_channel', 'collectors-quest.magnify.net') ?>">See all &raquo;</a>
+    <a href="<?php echo sfConfig::get('app_magnify_channel', 'collectors-quest.magnify.net') ?>" class="text-v-middle">See all &raquo;</a>
   </div>
 </div>
 <br/>

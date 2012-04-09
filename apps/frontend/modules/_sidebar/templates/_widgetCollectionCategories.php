@@ -3,7 +3,7 @@
     <span class="sidebar-title">Collections Directory</span>
   </div>
   <div class="span3 text-right">
-    <?= link_to('See all &raquo;', '@collections_categories'); ?>
+    <?= link_to('See all &raquo;', '@collections_categories', array('class' => 'text-v-middle')) ?>
   </div>
 </div>
 <?php /* <div class="row-fluid">
