@@ -59,7 +59,7 @@
 
 
 //This Week's Promo
-.weeks-promo-box {
+#weeks-promo-box {
 	background-color: @yelloHighlight;
 	padding: 15px;
 }
@@ -67,9 +67,86 @@
 	.custom-font(20px, 20px, italic, bold);
 	color: @blueDark;
 }
-.weeks-promo-box .text-right a{
+#weeks-promo-box .text-right a{
 	vertical-align: middle;
 }
+#weeks-promo-box .thumbnails > li {
+	margin-bottom: 1px;
+}
+#weeks-promo-box [class*="span"] {
+	float: left;
+	margin-left: 0;
+}
+#weeks-promo-box .span6 {
+	width: 370px;
+	height: 301px;
+	overflow: hidden;
+	padding-right: 1px;
+	margin-right: 1px;
+}
+#weeks-promo-box .thumbnails .span6 img {
+	overflow: hidden;
+	max-width: none;
+}
+#weeks-promo-box .span3 {
+	width: 150px;
+	margin-right: 1px;
+}
+#weeks-promo-box .imageset {
+	margin-left: 0;
+}
+#weeks-promo-box .thumbnails {
+	margin-left: 8px;
+}
+.dn {
+	display: none;
+}
+
+@media (min-width: 997px) and (max-width: 1209px) {
+	#weeks-promo-box .span6 {
+		width: 320px;
+		height: 281px;
+		overflow: hidden;
+		padding-right: 1px;
+		margin-right: 1px;
+	}
+	#weeks-promo-box .thumbnails .span6 img {
+		overflow: hidden;
+		max-width: none;
+	}
+	#weeks-promo-box .span3 {
+		width: 140px;
+		margin-right: 1px;
+	}
+	#weeks-promo-box .imageset {
+		margin-left: 0;
+	}
+	#weeks-promo-box .thumbnails {
+		margin-left: 0px;
+	}
+	.dn {
+		display: none;
+	}
+}
+
+@media (min-width: 1210px) {
+	#weeks-promo-box .span6 {
+		width: 370px;
+		height: 301px;
+		overflow: hidden;
+		padding-right: 1px;
+	}
+	#weeks-promo-box .span3 {
+		width: 150px;
+	}
+	#weeks-promo-box .thumbnails {
+		margin-left: 0px;
+	}
+  .dn {
+	  display: block;
+  }
+}
+
 
 //Collection Search
 
