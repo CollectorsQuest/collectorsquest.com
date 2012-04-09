@@ -8,23 +8,28 @@
   </div>
 </div>
 <br/>
-<div class="row-fluid">
   <?php /* @var $video ContentEntry */ ?>
   <?php foreach ($videos as $video): ?>
-  <div>
-    <img src="<?php echo $video->getThumbnail() ?>" alt="<?php echo $video->getTitle() ?>" width="120" style="flaot: left;" />
-    <?php echo $video->getTitle() ?>
-    <?php echo $video->getContent(); ?>
-    <?php echo $video->getUpdatedAt() ?>
-
-    <!--
-    <p><?php echo $video->getIframeUrl() ?></p>
-    <p><?php echo $video->getTitle() ?></p>
-
-    <p><?php echo $video->getContent(); ?></p>
-
-    <p><?php echo $video->getUpdatedAt() ?></p>
-    //-->
-  </div>
+  <div class="row-fluid bottom-margin">
+      <div class="span5">
+        <a href="<?php echo $video->getIframeUrl() ?>" title="<?php echo $video->getTitle() ?>">
+          <img src="<?php echo $video->getThumbnail() ?>" alt="<?php echo $video->getTitle() ?>" width="120" style="flaot: left;" />
+        </a>
+      </div>
+      <div class="span7 max-height-video-box-sidebar">
+        <div id="sidebar-videos">
+          <span class="title">
+            <a href="<?php echo $video->getIframeUrl() ?>" title="<?php echo $video->getTitle() ?>">
+              <?php echo $video->getTitle() ?>
+            </a>
+          </span>
+          <span class="content">
+            <?php echo $video->getContent(); ?>
+          </span>
+          <span class="updated-at">
+          <?php echo $video->getUpdatedAt() ?>
+          </span>
+        </div>
+      </div>
+    </div>
   <?php endforeach; ?>
-</div>

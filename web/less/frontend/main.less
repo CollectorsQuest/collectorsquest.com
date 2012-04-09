@@ -267,6 +267,12 @@ footer .form-horizontal .controls {
 .row-spacing-double {
 	margin: 12px 0;
 }
+.bottom-margin {
+	margin-bottom: 10px;
+}
+.bottom-margin-double {
+	margin-bottom: 20px;
+}
 .top-padding {
 	padding-top: 7px;
 }
@@ -276,6 +282,7 @@ footer .form-horizontal .controls {
 .top-padding-10 {
 	padding-top: 10px;
 }
+
 
 //column list
 ul.twocolumn {
@@ -572,8 +579,34 @@ a.bold-links {
 	}
 }
 
-
-
+//SIDEBAR
+#sidebar-videos {
+	padding: 10px;
+	.title {
+		font-size: @baseFontSize - 1;
+		line-height: 14px;
+		font-weight: bold;
+		color: @blue;
+		display: block;
+	}
+	.content {
+		font-size: @baseFontSize - 1;
+		line-height: 17px;
+		color: @blueDark;
+		display: block;
+		max-height: 36px;
+		overflow: hidden;
+	 }
+	.updated-at {
+		font-size: @baseFontSize - 2;
+		color: @brown;
+		display: block;
+	}
+}
+.max-height-video-box-sidebar {
+	max-height: 90px;
+	overflow: hidden;
+}
 //ELEMENTS
 .sidebar-ul {
 	margin-bottom: 20px;
