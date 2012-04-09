@@ -31,3 +31,19 @@ CollectorExtraProperty:
     property_name: SPAM.ALLOW
     property_value: '1'
     collector_id: Collector_963
+  CollectorExtraProperty_913:
+    property_name: SPAM.SIGNATURE
+    property_value: 1e6f81d6cf7aa1009822ef
+    collector_id: Collector_12
+  CollectorExtraProperty_914:
+    property_name: SPAM.CLASSIFICATION
+    property_value: spam
+    collector_id: Collector_12
+  CollectorExtraProperty_915:
+    property_name: SPAM.PROFANITY-MATCH
+    property_value: '1'
+    collector_id: Collector_12
+  CollectorExtraProperty_916:
+    property_name: SPAM.ALLOW
+    property_value: '1'
+    collector_id: Collector_12

@@ -1,3 +1,12 @@
+content_category:
+  class: sfPropelORMRouteCollection
+  options:
+    model:                ContentCategory
+    module:               contentCategory
+    prefix_path:          /ContentCategories
+    column:               id
+    with_wildcard_routes: true
+
 ajax_typeahead:
   url:   /ajax/typeahead/:section/:page
   param: { module: ajax, action: typeAhead }

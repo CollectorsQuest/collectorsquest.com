@@ -282,7 +282,7 @@ CollectorProfileExtraProperty:
     collector_profile_collector_id: CollectorProfile_12
   CollectorProfileExtraProperty_38737:
     property_name: ABOUT.NEW_ITEM_EVERY
-    property_value: '1 time a month'
+    property_value: ''
     collector_profile_collector_id: CollectorProfile_12
   CollectorProfileExtraProperty_38738:
     property_name: ABOUT.INTERESTS

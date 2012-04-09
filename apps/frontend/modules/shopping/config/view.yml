@@ -3,6 +3,10 @@ all:
   components:
     sidebar_300: [shopping, sidebar]
 
+cartEmpty:
+  components:
+    sidebar_300: [shopping]
+
 checkoutPaypal:
   has_layout:  false
 

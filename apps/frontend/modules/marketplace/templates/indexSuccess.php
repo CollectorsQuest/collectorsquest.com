@@ -1,44 +1,30 @@
-<div style="margin-top: 10px">&nbsp;</div>
-<div class="row-fluid" style="background: #0982C2;">
-  <div class="span9">
-    <h2 class="Chivo" style="font-size: 18px; color: white;">&nbsp;&nbsp;Market Spotlight</h2>
-  </div>
-  <div class="span3"><a href="#">Link is here>></a></div>
-</div>
+<h1 class="Chivo red-title">Market</h1>
 
 <br/>
-<div class="row-fluid" style="background: #FEF8E0; margin-left: 0; overflow: hidden;">
-  <h2 class="Chivo" style="font-size: 20px; color: #125276; line-height: 46px;">&nbsp;&nbsp;Spotlight on items from the Civil War</h2>
-  <div class="span4" style="width: 31%; margin-left: 10px;">
+<div class="row-fluid" id="marketplace-spotlight" style="background: #FEF8E0; margin-left: 0; overflow: hidden;">
+  <h2 class="Chivo" style="font-size: 20px; font-style: italic; color: #125276; line-height: 46px; padding-left: 15px;">
+    Spotlight on items from the Civil War
+  </h2>
+  <?php foreach ($spotlight as $i => $collectible_for_sale): ?>
+  <div class="span4" style="width: 31%; <?= ($i == 0) ?: 'margin-left: 10px;'; ?>">
     <div class="thumbnail" style="background: white; border: 1px solid #C8BEB2;">
-      <?= ice_image_tag_flickholdr('260x260', array(), 1) ?>
-      <br/>
-      <h4>some text here</h4>
-      <br/>
-      Placerat augue nunc enim nisi auctor? Penatibus, cum sagittis proin ac lacus.
-      Odio scelerisque nunc dis tristique adipiscing tincidunt placerat mus, sit integer in parturient,
-      phasellus proin nec elementum montes mus elit.
-      <br/>
-      <strong>$32.99</strong>
+      <?= ice_image_tag_placeholder('260x260', array(), 1) ?>
+      <h4 style="margin: 5px auto;"><?= link_to_collectible($collectible_for_sale->getCollectible(), 'text', array('class' => 'target')); ?></h4>
+      <p><?= $collectible_for_sale->getCollectible()->getDescription('stripped', 255); ?></p>
+      <div style="float: right; color: #cc0000; font-weight: bold; font-size: 130%; margin: 5px;">
+        <?= money_format('%.2n', (float) $collectible_for_sale->getPrice()); ?>
+      </div>
+      <br/><br/>
     </div>
   </div>
-  <div class="span4" style="width: 31%">
-    <div class="thumbnail" style="background: white; border: 1px solid #C8BEB2;">
-      <?= ice_image_tag_flickholdr('260x260', array(), 2) ?>
-      some text here
-    </div>
-  </div>
-  <div class="span4" style="width: 31%">
-    <div class="thumbnail" style="background: white; border: 1px solid #C8BEB2;">
-      <?= ice_image_tag_flickholdr('260x260', array(), 3) ?>
-      some text here
-    </div>
-  </div>
+  <?php endforeach; ?>
   <div class="span12">&nbsp;</div>
 </div>
 
+<br/>
+<?= link_to(image_tag('banners/040412_show_and_sell_red.gif'), '@collector_signup'); ?>
 
-<? cq_section_title('Discover more items for sale'); ?>
+<? cq_section_title('Discover more items for sale', link_to('see the marketplace', '@marketplace')); ?>
 <div class="row">
   <div id="collectibles" class="row-content">
     <?php
@@ -60,3 +46,13 @@
     ?>
   </div>
 </div>
+
+<script>
+  $(document).ready(function()
+  {
+    $("#marketplace-spotlight a.target").bigTarget({
+      hoverClass: 'over',
+      clickZone : 'div:eq(0)'
+    });
+  });
+</script>

@@ -13,15 +13,27 @@ function cq_section_title($h2, $link = null, $options = array())
 {
   $content = sprintf(<<<EAT
   <div class="span9">
-    <h2 style="color: #CC0000;">%s</h2>
+    <h2 class="Chivo">%s</h2>
   </div>
-  <div class="span3" style="text-align: right; padding-top: 15px;">
-    %s
-  </div>
+  <div class="span3">%s</div>
 EAT
 , $h2, $link);
 
   $options = array_merge(array('class' => 'row-fluid section-header'), $options);
 
+  echo content_tag('div', $content, $options);
+}
+
+function cq_sidebar_title($h3, $link = null, $options = array())
+{
+  $content = sprintf(<<<EAT
+<div class="span8">
+  <h3 class="Chivo">%s</h3>
+</div>
+<div class="span4">%s&nbsp;</div>
+EAT
+, $h3, $link);
+
+  $options = array_merge(array('class' => 'row-fluid sidebar-header'), $options);
   echo content_tag('div', $content, $options);
 }

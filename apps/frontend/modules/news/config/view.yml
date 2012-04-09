@@ -1,0 +1,3 @@
+all:
+  components:
+    sidebar_300: [news, sidebar]

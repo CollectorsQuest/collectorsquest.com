@@ -1,3 +1,6 @@
+@import "bootstrap/variables.less";
+@import "bootstrap/mixins.less";
+
 // Fixed wrapper under 1024px
 @media (max-width: 996px) {
 
@@ -190,4 +193,102 @@
 	padding: 10px;
 	word-wrap: break-word;
 }
+
+// CAROUSEL
+#carousel-holder {
+	position: relative;
+}
+.carousel_next {
+	position: absolute;
+	display: block;
+	top: 45%;
+	right: 30px;
+	border: none;
+}
+.button_carousel_next {
+	display: block;
+}
+.carousel_previous {
+	position: absolute;
+	display: block;
+	top: 45%;
+	left: 25px;
+	border: none;
+}
+.button_carousel_previous {
+	display: block;
+}
+.button_carousel_previous:focus, .button_carousel_next:focus {
+	outline: none;
+}
+//.roundabout-in-focus { cursor: auto; }
+
+#sample-roundabout {
+	.size(360px, 670px);
+	list-style: none;
+	margin: 0 auto;
+	padding: 0;
+	opacity: 0;
+}
+#sample-roundabout li {
+//	width: 74.5%;
+	.size(309px, 520px);
+	background-color: transparent;
+	.box-shadow(0 0px 9px rgba(59, 45, 44, 1));
+	cursor: pointer;
+	.border-radius(7px);
+}
+#sample-roundabout li.roundabout-in-focus {
+	cursor: auto;
+}
+#sample-roundabout li .wrapper {
+	padding: 0;
+	background-color: transparent;
+}
+#sample-roundabout li .wrapper img {
+	width: 100%;
+	.border-radius(7px);
+}
+.carousel-in-focus-title-container {
+	position: absolute;
+	z-index: 100;
+	bottom: 8%;
+	width: 100%;
+	display: block;
+	#translucent > .background(#fff, 0.8);
+}
+.carousel-in-focus-title {
+	margin: 3% 4%;
+}
+li.roundabout-moveable-item .carousel-in-focus-title-container {
+	visibility: hidden;
+}
+li.roundabout-in-focus .carousel-in-focus-title-container {
+	visibility: visible;
+}
+
+#carousel-holder .carousel-in-focus-title h2 {
+	font-size: 1.75em;
+	line-height: 1.1;
+	margin-bottom: 0;
+	padding-bottom: 8px;
+	text-align: left;
+	font-family: 'Chivo', cursive;
+	color: #125375;
+}
+#carousel-holder .carousel-in-focus-title h3 {
+	font-size: 1.5em;
+	line-height: 1.1;
+	padding-top: 0;
+	margin-top: 0;
+	text-align: center;
+	color: #fff !important;
+}
+#carousel-holder .carousel-in-focus-title p {
+	font-size: 1em;
+	text-align: left;
+	width: auto;
+	margin: 0;
+}
+
 

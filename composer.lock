@@ -1,5 +1,5 @@
 {
-    "hash": "c52eae49c968773829ddbe5489931c56",
+    "hash": "c2a36e916b2ef4ac93184b7aab1c8ccd",
     "packages": [
         {
             "package": "lib/vendor/faker",
@@ -12,7 +12,7 @@
         },
         {
             "package": "lib/vendor/neo4jphp",
-            "version": "0.0.6"
+            "version": "0.0.7"
         },
         {
             "package": "lib/vendor/twig",

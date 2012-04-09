@@ -12,7 +12,7 @@ class generalComponents extends cqFrontendComponents
        ->orderByPostDate(Criteria::DESC);
 
     /** @var $wp_posts wpPost[] */
-    $wp_posts = $q->limit(5)->find();
+    $wp_posts = $q->limit(10)->find();
 
     foreach ($wp_posts as $wp_post)
     {

@@ -12,9 +12,11 @@ class CollectionCategoryForm extends BaseCollectionCategoryForm
 {
   public function configure()
   {
-    $this->widgetSchema['parent'] = new sfWidgetFormPropelChoice(array(
-      'model' => 'CollectionCategory', 'add_empty' => true,
-      'order_by' => array('Name', 'asc'), 'query_methods' => array('isParent')
+    $this->widgetSchema['parent'] = new cqWidgetFormPropelChoiceByParentId(array(
+        'model' => 'CollectionCategory',
+        'order_by' => array('Name', 'asc'),
+        'add_empty' => true,
+        'id_to_make_first' => 0,
     ));
     $this->validatorSchema['parent'] = new sfValidatorPropelChoice(array('required' => false, 'model' => 'CollectionCategory', 'column' => 'id'));
     $this->setDefault('parent', $this->getObject()->getParentId());
