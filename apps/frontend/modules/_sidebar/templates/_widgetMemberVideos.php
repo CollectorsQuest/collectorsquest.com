@@ -12,9 +12,12 @@
   <?php foreach ($videos as $video): ?>
   <div class="row-fluid bottom-margin">
       <div class="span5">
-        <a href="<?php echo $video->getIframeUrl() ?>" title="<?php echo $video->getTitle() ?>">
-          <img src="<?php echo $video->getThumbnail() ?>" alt="<?php echo $video->getTitle() ?>" width="120" style="flaot: left;" />
-        </a>
+        <div class="clip-inner">
+            <img src="<?php echo $video->getThumbnail() ?>" alt="<?php echo $video->getTitle() ?>" width="120" style="flaot: left;" />
+          <a href="<?php echo $video->getIframeUrl() ?>" title="<?php echo $video->getTitle() ?>">
+            <span class="sidebar-video-play-button"></span>
+          </a>
+        </div>
       </div>
       <div class="span7 max-height-video-box-sidebar">
         <div id="sidebar-videos">
