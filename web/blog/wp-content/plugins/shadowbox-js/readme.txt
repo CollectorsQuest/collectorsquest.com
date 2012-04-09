@@ -4,7 +4,7 @@ Donate Link: http://sivel.net/donate
 Tags: shadowbox-js, shadowbox, js, javascript, overlay, images, movies, audio, youtube, formatting, links, post, posts, lightbox, thickbox, lightview
 Requires at least: 3.3
 Tested up to: 3.3
-Stable tag: 3.0.3.10
+Stable tag: 3.0.3.9
 
 Shadowbox is an online media vieiwing application similar to Lightbox and Thickbox but with more functionality. Supports all types of media.
 
@@ -24,17 +24,16 @@ Shadowbox is licensed under the terms of the [Shadowbox.js License](http://shado
 
 This plugin also makes use of the [JW FLV Player](http://www.longtailvideo.com/players/jw-flv-player/). JW FLV Player is licensed under the terms of the [Creative Commons Attribution-Noncommercial-Share Alike 3.0 Unported License](http://creativecommons.org/licenses/by-nc-sa/3.0/). If you would like to use JW FLV Player for commercial purposes, you can purchase a license from [https://www.longtailvideo.com/players/order2](https://www.longtailvideo.com/players/order2). 
 
-Neither Shadowbox nor the JW FLV Player are actually included in this plugin. The plugin will ask you to download these files after installation and activation.
-
 Please use the Shadowbox JS [support forum](http://wordpress.org/tags/shadowbox-js) for problems or questions with this plugin. Support questions will be ignored if left as comments on my site, through my contact form or by email. The only supported location for support questions is [http://wordpress.org/tags/shadowbox-js](http://wordpress.org/tags/shadowbox-js). 
 
-This plugin is absolutely not supported when used in combination with the Thesis theme.  Please do not ask for support if you are using such a configuration.
+This plugin is absolutely not supported when used in combination with the Thesis theme.  Please do not ask for support if y
+ou are using such a configuration.
 
 == Installation ==
 
-1. Upload the `shadowbox-js` folder to the `/wp-content/plugins/` directory or install directly through the plugin installer
+1. Upload the `shadowbox-js` folder to the `/wp-content/plugins/` directory or install directly through the plugin installer.
 1. Activate the plugin through the 'Plugins' menu in WordPress or by using the link provided by the plugin installer
-1. Visit the settings page in the Admin at `Settings -> Shadowbox JS` and install the required dependencies
+1. Optional: Visit the settings page in the Admin at `Settings -> Shadowbox JS`
 1. Optional: Activate the 'Shadowbox JS - Use Title from Image' plugin to push the title from 'img' tags onto the parent 'a' tag
 
 == Frequently Asked Questions ==
@@ -63,17 +62,7 @@ Second modify and build as required, then follow the next 2 FAQs for using a cus
 
 You do not necessarily have to do both.  It is possible to only load a custom markup or only a custom css.
 
-= I cannot seem to get the plugin to download the Shadowbox source. What can I do? =
-
-You can follow the steps outlined in the 'How can I use my own shadowbox.js' and 'How can I use my own shadowbox.css?' or you can manually download and extract as explained by the plugin.
-
-= I don't want to downlaod the source from your site at all. How else can I get the source? =
-
-Follow the steps outlined in the 'How can I use my own shadowbox.js' and 'How can I use my own shadowbox.css?'.
-
-= How can I use my own shadowbox.js? =
-
-Download or purchase Shadowbox from http://www.shadowbox-js.com/ and then...
+= How can I use my own custom shadowbox.js? =
 
 This can be accomplished using filters.  You will need to run a filter on 'shadowbox-js'; and here is some sample code to show you how:
 
@@ -86,7 +75,7 @@ add_filter('shadowbox-js', 'custom_shadowbox_js');
 
 Just drop that code, modifying to your needs, in a custom plugin or mu-plugin and enjoy.
 
-= How can I use my own shadowbox.css? =
+= How can I use my own custom shadowbox.css? =
 
 Just as above this can be accomplished using filters.  You will need to run a filter on 'shadowbox-css'; and here is some sample code to show you how:
 
@@ -111,16 +100,6 @@ Check to make sure that you have `<?php wp_head(); ?>` in your themes header.php
 
 Try changing the Javascript Library used by this plugin to something other than 'None' on the Shadowbox JS settings page in the WordPress admin.
 
-= Is this plugin really GPL? =
-
-The plugin itself is GPL, however Shadowbox and JW FLV Player are not GPL.  Without the non GPL Shadowbox component, this plugin cannot function.
-
-Shadowbox is licensed under the terms of the [Shadowbox.js License](http://shadowbox-js.com/LICENSE). This license grants personal, non-commercial users the right to use Shadowbox without paying a fee. It also provides an option for users who wish to use Shadowbox for commercial purposes. You are encouraged to review the terms of the license before using Shadowbox. If you would like to use Shadowbox for commercial purposes, you can purchase a license from [http://www.shadowbox-js.com/](http://www.shadowbox-js.com/).▒
-
-JW FLV Player is licensed under the terms of the [Creative Commons Attribution-Noncommercial-Share Alike 3.0 Unported License](http://creativecommons.org/licenses/by-nc-sa/3.0/). If you would like to use JW FLV Player for commercial purposes, you can purchase a license from [https://www.longtailvideo.com/players/order2](https://www.longtailvideo.com/players/order2).▒
-
-Neither Shadowbox nor the JW FLV Player are actually included in this plugin. The plugin will ask you to download these files after installation and activation.
-
 == Screenshots ==
 
 1. An Image
@@ -134,7 +113,7 @@ Neither Shadowbox nor the JW FLV Player are actually included in this plugin. Th
 1. Delete the previous `shadowbox-js` folder from the `/wp-content/plugins/` directory
 1. Upload the new `shadowbox-js` folder to the `/wp-content/plugins/` directory
 1. Activate the Shadowbox JS plugin
-1. Visit the settings page in the WordPress admin at `Settings -> Shadowbox JS` and install the required dependencies if needed
+1. Optional: Visit the settings page in the WordPress admin at `Settings -> Shadowbox JS`
 
 == Usage ==
 
@@ -154,10 +133,6 @@ Neither Shadowbox nor the JW FLV Player are actually included in this plugin. Th
 7\. If you are using using Shadowbox globally for all images but have an image you do not wish to use Shadowbox on use `rel="nobox"` in your image link.
 
 == Upgrade Notice ==
-
-= 3.0.3.10 =
-
-Removed the upstream Shadowbox JS package from the plugin. As a result, this plugin has been updated to handle downloading the required files for use.
 
 = 3.0.3.9 =
 
@@ -188,9 +163,6 @@ This version adds support to not used the cached shadowbox.js, better smart load
 This version upgrades shadowbox.js to version 3.0.3 from upstream, adds new filters, removes pre WordPress 2.8 compatibility, and removes Ext and Dojo support. Also in this release is a sub plugin to push the title from 'img' tags onto the 'a' tags.
 
 == Changelog ==
-
-= 3.0.3.10 (2012-03-13): =
-* Removed the upstream Shadowbox JS package from the plugin. As a result, this plugin has been updated to handle downloading the required files for use.
 
 = 3.0.3.9 (2011-12-08): =
 * Updates to handle the script enqueueing in WordPress 3.3
