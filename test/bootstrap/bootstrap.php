@@ -1,5 +1,13 @@
 <?php
 
+$_SERVER = array(
+  'SCRIPT_URI'  => 'http://www.example.com',
+  'HTTP_HOST'   => 'www.example.com',
+  'SERVER_NAME' => 'www.example.com',
+  'SCRIPT_NAME' => '/index.php',
+  'PHP_SELF'    => '/index.php'
+);
+
 $_test_dir = realpath(__DIR__ .'/..');
 $_root_dir = realpath($_test_dir . '/..');
 

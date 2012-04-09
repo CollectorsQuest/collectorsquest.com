@@ -10,7 +10,18 @@
  */
 abstract class BaseFormPropel extends sfFormPropel
 {
-  public function setup()
+  public function __construct($object = null, $options = array(), $CSRFSecret = null)
+  {
+    parent::__construct($object, $options, $CSRFSecret);
+    $this->unsetFields();
+  }
+
+  /**
+   * Overload this method and use it to unset widgets/validators like this:
+   *
+   * unset($this['field_name']);
+   */
+  protected function unsetFields()
   {
   }
 }

@@ -24,11 +24,6 @@ all:
     defensio: "bb85a65a8118c50aa3918cb254a34176"
     dlvrit: "123456789abcdefg"
 
-    rpxnow:
-      application_domain: "https://collectorsquest-dev.rpxnow.com/"
-      application_id: "epghfmlgdcconfbmkmof"
-      api_key: "dabc61cdced770898eccd13f3b9f100e40d46b40"
-
     recaptcha:
       public_key: "6LdACwsAAAAAAE5tZTcYG47Lth2jzxxZeXAbll-Z"
       private_key: "6LdACwsAAAAAAM19l6G0lFk4F560SWvBM2k5M9L0"
@@ -38,22 +33,18 @@ all:
       application_secret: "21b6fb4368bbe3bf4157afe83e6945d4"
 
   paypal:
+    sandbox: true
+    application_id: "APP-80W284485P519543T"
     api_username: "kangov_1327417143_biz_api1.collectorsquest.com"
     api_password: "1327417177"
     api_signature: "A..-CRlw0YpkY2B3ut0vv.OPym-eAT-VZrXVgkU8OKXkg-3ddWsYS50Q"
-    api_url: "https://api-3t.sandbox.paypal.com/nvp"
-    is_online: false
 
-    payment_action: "Sale"
-    currency_code: "USD"
-    payment_method: "doDirectPayment"
-
-    url: "https://www.sandbox.paypal.com/cgi-bin/webscr"
     merchant_account: "kangov_1327417143_biz@collectorsquest.com"
+    url: "https://www.sandbox.paypal.com/cgi-bin/webscr"
 
-    return_url: "general/payment"
-    cancel_url: "seller/cancelPayment"
-    notify_url: "seller/callbackIPN"
+  magnify:
+    channel: collectors-quest.magnify.net
+    api_key: K3VQWW33PCMK50HY
 
 dev:
   domain_name: "collectorsquest.dev"
@@ -73,9 +64,3 @@ dev:
 
   ice_assets:
     domain: "cqcdns.dev"
-
-  paypal:
-    api_username: zecho2_1307375459_biz_api1.mail.bg
-    api_password: 1307375482
-    api_signature: ARGZylcXa9FrdnmIO0iUQs0rR92RAgDpfU7OiYGf5M34hnxegFkGwxD8
-    is_online: false

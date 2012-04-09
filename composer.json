@@ -22,15 +22,15 @@
             "type": "package",
             "package": {
                 "name": "lib/vendor/neo4jphp",
-                "version": "0.0.6",
+                "version": "0.0.7",
                 "dist": {
-                    "url": "https://github.com/jadell/neo4jphp/zipball/0.0.6-beta",
+                    "url": "https://github.com/jadell/neo4jphp/zipball/0.0.7-beta",
                     "type": "zip"
                 },
                 "source": {
                     "url": "git://github.com/jadell/neo4jphp.git",
                     "type": "git",
-                    "reference": "ab8b97e4d4a36ca680911c5ea69d77b75d46bd8a"
+                    "reference": "a493f05cce3965fe3a46e5c12b5eea774b6673f5"
                 }
             }
         },
@@ -45,11 +45,49 @@
                     "reference": "ab426e0253a1fe41fd6077df86f34fb0a2ca65a8"
                 }
             }
+        },
+        "Seldaek/monolog": {
+            "type": "package",
+            "package": {
+                "name": "lib/vendor/monolog",
+                "version": "master-dev",
+                "source": {
+                    "url": "git://github.com/Seldaek/monolog.git",
+                    "type": "git",
+                    "reference": "6c15897ac74bd53572328094eacf03fbb7b8bca7"
+                }
+            }
+        },
+        "Twig/twig": {
+            "type": "package",
+            "package": {
+                "name": "lib/vendor/twig",
+                "version": "1.6.2",
+                "source": {
+                    "url":  "git://github.com/fabpot/Twig.git",
+                    "type": "git",
+                    "reference": "v1.6.2"
+                }
+            }
+        },
+        "Magnify": {
+            "type": "package",
+            "package": {
+                "name": "lib/vendor/magnify",
+                "version": "1.0-RC3",
+                "source": {
+                    "url": "git://github.com/zecho/magnify-sdk.git",
+                    "type": "git",
+                    "reference": "3103249adeeeae860090f0ca7b3a20f7dfefca0b"
+                }
+            }
         }
     },
     "require": {
         "plugins/sfGuardPlugin": "4.0.2",
-        "lib/vendor/neo4jphp": "0.0.6",
-        "lib/vendor/faker": "master-dev"
+        "lib/vendor/neo4jphp": "0.0.7",
+        "lib/vendor/faker": "master-dev",
+        "lib/vendor/twig": "1.6.2",
+        "lib/vendor/magnify": "1.0-RC3"
     }
 }

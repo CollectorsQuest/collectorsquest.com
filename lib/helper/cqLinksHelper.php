@@ -2,7 +2,7 @@
 
 /** @var cqApplicationConfiguration $configuration */
 $configuration = sfProjectConfiguration::getActive();
-$configuration->loadHelpers(array('Asset', 'Text', 'Url', 'cqGeneral', 'cqImages'));
+$configuration->loadHelpers(array('Asset', 'Text', 'Url', 'cqImages'));
 
 function link_to_collector($object, $type = 'text', $options = array())
 {
@@ -167,7 +167,11 @@ function route_for_collection(Collection $collection = null)
 function link_to_collectible(Collectible $collectible, $type = 'text', $options = array())
 {
   $options = array_merge(
-    array('width' => 150, 'height' => 150, 'alt' => $collectible->getName(), 'title' => $collectible->getName(), 'class' => 'thumbnail'),
+    array(
+      'width' => 150, 'height' => 150,
+      'alt' => $collectible->getName(),
+      'title' => $collectible->getName()
+    ),
     $options
   );
 
@@ -182,6 +186,8 @@ function link_to_collectible(Collectible $collectible, $type = 'text', $options 
   {
     case 'image':
       $which = (isset($options['width']) && isset($options['height'])) ? $options['width'].'x'.$options['height'] : '150x150';
+      $options = array_merge(array('class' => 'thumbnail'), $options);
+
       $link = link_to(image_tag_collectible($collectible, $which, $options), $route, $options);
       break;
     case 'text':
@@ -263,4 +269,49 @@ function url_for_featured_week(Featured $featured_week)
 function link_to_blog_post(wpPost $post)
 {
   return link_to($post->getPostTitle(), $post->getPostUrl());
+}
+
+function link_to_blog_author(wpUser $author, $type = 'text', $options = array())
+{
+  switch ($type)
+  {
+    case "image":
+      return link_to(image_tag('blog/avatar-'. str_replace(' ', '-', strtolower($author->getDisplayName())), $options), '/blog/author/'. urlencode($author->getUserLogin()) .'/');
+      break;
+    case "text":
+    default:
+      return link_to($author->getDisplayName(), '/blog/author/'. urlencode($author->getUserLogin()) .'/');
+      break;
+  }
+}
+
+function link_to_collection_category(CollectionCategory $category, $type = 'text', $options = array())
+{
+  $options = array_merge(
+    array(
+      'alt' => $category->getName(),
+      'title' => $category->getName()
+    ),
+    $options
+  );
+
+  if (empty($options['width']) || empty($options['height']))
+  {
+    unset($options['width']);
+    unset($options['height']);
+  }
+
+  $route = url_for('collections_by_category', $category);
+  switch ($type)
+  {
+    case 'image':
+      $link = null;
+      break;
+    case 'text':
+    default:
+      $link = link_to($category->getName(), $route, $options);
+      break;
+  }
+
+  return $link;
 }

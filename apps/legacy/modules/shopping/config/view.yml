@@ -1,0 +1,10 @@
+cartSuccess:
+  components:
+    sidebar: [shopping, sidebar]
+
+cartEmpty:
+  components:
+    sidebar: [shopping, sidebar]
+
+checkoutPaypal:
+  has_layout:     false

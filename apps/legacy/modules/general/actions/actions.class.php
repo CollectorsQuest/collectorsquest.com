@@ -55,9 +55,7 @@ class generalActions extends cqActions
     }
 
     $this->blog_post = $blog_post;
-    $this->blog_content = strip_tags(str_replace(
-      array('[/caption]', '[caption', ']'), array('</caption>', '<caption', '>'), $blog_post->getPostContent()
-    ));
+    $this->blog_content = $blog_post->getPlainPostContent();
     $this->blog_image = $blog_image;
     $this->blog_posts = $blog_posts;
 
@@ -102,7 +100,7 @@ class generalActions extends cqActions
     // Try to auto-login the collector if a hash was provided
     if ($collector = CollectorPeer::retrieveByHash($request->getParameter('hash')))
     {
-      $this->getUser()->Authenticate(true, $collector, true);
+      $this->getUser()->Authenticate(true, $collector, false);
 
       // redirect to last page
       return $this->redirect($request->getParameter('goto', '@community'));
@@ -219,7 +217,7 @@ class generalActions extends cqActions
     /**
      * Handling errors where the $_GET['r'] is double urlencoded()
      */
-    if (substr($url. 0, 13) == 'http%3A%2F%2F')
+    if (substr($url, 0, 13) == 'http%3A%2F%2F')
     {
       $url = urldecode($url);
     }
@@ -227,13 +225,6 @@ class generalActions extends cqActions
     $this->getUser()->setFlash('success', $this->__('You have successfully signed out of your account'));
 
     return $this->redirect(!empty($url) ? $url : '@community');
-  }
-
-  public function executePassword()
-  {
-    $this->redirectIf($this->getUser()->isAuthenticated(), "@community");
-
-    return sfView::SUCCESS;
   }
 
   public function executeRPXToken(sfWebRequest $request)
@@ -345,31 +336,6 @@ class generalActions extends cqActions
     $this->prependTitle($this->__('Unexpected Error'));
 
     return sfView::SUCCESS;
-  }
-
-  /**
-   * Action VerifyEmail
-   *
-   * @param sfWebRequest $request
-   *
-   */
-  public function executeVerifyEmail(sfWebRequest $request)
-  {
-    /* @var $collectorEmail CollectorEmail */
-    $collectorEmail = $this->getRoute()->getObject();
-    $this->forward404Unless((bool)$collectorEmail);
-
-    $collector = $collectorEmail->getCollector();
-    $collector->setEmail($collectorEmail->getEmail());
-    $collector->save();
-
-    $collectorEmail->setIsVerified(true);
-    $collectorEmail->save();
-
-    $this->getUser()->Authenticate(true, $collector, true);
-
-    $this->getUser()->setFlash('success', 'Your email has been verified.');
-    $this->redirect('@manage_profile');
   }
 
 }

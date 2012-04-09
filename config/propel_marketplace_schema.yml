@@ -1,0 +1,176 @@
+connection: propel
+noXsd: false
+defaultIdMethod: native
+package: lib.model.marketplace
+
+classes:
+
+  ###
+  # NOTE: Make SURE to update also CollectibleForSaleArchive in archive.schema.yml
+  ##
+  CollectibleForSale:
+    columns:
+      collectible_id:       { type: integer, primaryKey: true, required: true, foreignClass: Collectible, foreignReference: id, onDelete: cascade }
+      price:                { type: float }
+      condition:            { type: char, sqlType: "ENUM('excellent','very good','good','fair','poor')", required: true }
+      is_price_negotiable:  { type: boolean, default: false }
+      is_shipping_free:     { type: boolean, default: false }
+      is_sold:              { type: boolean, default: false }
+      is_ready:             { type: boolean, default: false, description: 'Show in the market or no' }
+      quantity:             { type: integer, required: true, default: 1 }
+
+    propel_behaviors:
+      archivable: { archive_class: CollectibleForSaleArchive, archived_at_column: archived_at }
+      timestampable:  ~
+
+
+  ###
+  # NOTE: Make SURE to update also CollectibleOfferArchive in archive.schema.yml
+  ##
+  CollectibleOffer:
+    columns:
+      id:  ~
+      collectible_id:  { type: integer, required: true, foreignClass: Collectible, foreignReference: id, onDelete: cascade }
+      collector_id:    { type: integer, required: true, foreignClass: Collector, foreignReference: id }
+      price:           { type: float }
+      status:          { type: char, sqlType: "ENUM('pending','counter','rejected','accepted')", required: true }
+
+    propel_behaviors:
+      archivable:      { archive_class: CollectibleOfferArchive, archived_at_column: archived_at }
+      timestampable:   ~
+
+  ShoppingCart:
+    columns:
+      id:  ~
+      collector_id:      { type: integer, required: false, foreignClass: Collector, foreignReference: id, onDelete: setnull }
+      session_id:        { type: varchar, size: 32, required: false }
+
+    uniques:
+      shopping_cart_U_1: [ collector_id ]
+      shopping_cart_U_2: [ collector_id, session_id ]
+
+    propel_behaviors:
+      timestampable:  ~
+
+  ShoppingCartCollectible:
+    isCrossRef: true
+    columns:
+      shopping_cart_id:          { type: integer, required: true, foreignClass: ShoppingCart, foreignReference: id, onDelete: cascade, primaryKey: true }
+      collectible_id:            { type: integer, required: true, foreignClass: Collectible, foreignReference: id, onDelete: cascade, primaryKey: true }
+      price_amount:              { type: integer, required: true, default: 0 }
+      price_currency:            { type: char, size: 3, required: true, default: 'USD' }
+      tax_amount:                { type: integer, required: true, default: 0 }
+      shipping_country_iso3166:  { type: char, size: 2, required: false, foreignTable: geo_country, foreignReference: iso3166 }
+      shipping_fee_amount:       { type: integer, required: true, default: 0 }
+      is_active:                 { type: boolean, default: true }
+
+    propel_behaviors:
+      timestampable:  ~
+
+  ShoppingOrder:
+    columns:
+      id:  ~
+      uuid:                 { type: varchar, size: 8 }
+      collector_id:         { type: integer, required: false, foreignClass: Collector, foreignReference: id, onDelete: setnull }
+      shopping_cart_id:     { type: integer, required: true, foreignClass: ShoppingCart, foreignReference: id, onDelete: restrict }
+      collectible_id:       { type: integer, required: true, foreignClass: Collectible, foreignReference: id, onDelete: restrict }
+      shopping_payment_id:  { type: integer, required: false, foreignClass: ShoppingPayment, foreignReference: id, onDelete: setnull }
+      shipping_country_iso3166:  { type: char, size: 2, required: false, foreignTable: geo_country, foreignReference: iso3166 }
+      note_to_seller:       { type: varchar, size: 255 }
+
+    uniques:
+      shopping_order_U_1: [shopping_cart_id, collectible_id]
+
+    propel_behaviors:
+      timestampable:  ~
+
+  ShoppingPayment:
+    columns:
+      id:  ~
+      shopping_order_id:   { type: integer, required: true, foreignClass: ShoppingOrder, foreignReference: id, onDelete: restrict }
+      session_id:          { type: varchar, size: 32, required: false }
+      processor:           { type: enum, valueSet: "PayPal, Google, Amazon", default: PayPal, required: true }
+      status:              { type: enum, valueSet: "initialized, inprogress, confirmed, cancelled, failed, completed", default: initialized, required: true }
+      currency:            { type: char, size: 3, default: USD }
+      amount_total:        { type: integer, required: true, default: 0 }
+      amount_collectibles: { type: integer, required: true, default: 0 }
+      amount_shipping:     { type: integer, required: true, default: 0 }
+      amount_tax:          { type: integer, required: true, default: 0 }
+
+    propel_behaviors:
+      extra_properties: ~
+      timestampable:  ~
+
+  ShippingRate:
+    skipSql: true
+    columns:
+      id:                   ~
+      country_iso3166:      { type: char, size: 2, required: true, foreignTable: geo_country, foreignReference: iso3166 } # not set = catch all
+      calculation_type:     { type: enum,    required: true, valueSet: "no_shipping, local_pickup, free_shipping, flat_rate, price_range" }
+      price_range_min:      { type: integer, required: true }
+      price_range_max:      { type: integer, required: true }
+      amount_in_cents:      { type: integer, required: true }
+      amount_in_percent:    { type: integer, required: true }
+    propel_behaviors:
+      symfony:              { form: true, filter: false }
+
+  ShippingRateCollector:
+    columns:
+      collector_id:         { type: integer, required: true, foreignClass: Collector, foreignReference: id, onDelete: cascade }
+    propel_behaviors:
+      concrete_inheritance: { extends: shipping_rate, copy_data_to_parent: false }
+
+  ShippingRateCollectible:
+    columns:
+      collectible_id:       { type: integer, required: true, foreignClass: Collectible, foreignReference: id, onDelete: cascade }
+    propel_behaviors:
+      concrete_inheritance: { extends: shipping_rate, copy_data_to_parent: false }
+
+  Package:
+    columns:
+      id:  ~
+      plan_type:            { type: char, sqlType: "ENUM('Casual','Power')", default: NULL, required: true }
+      package_name:         { type: varchar, size: 255, required: true }
+      package_description:  { type: longvarchar }
+      max_items_for_sale:   { type: integer }
+      package_price:        { type: float }
+
+    propel_behaviors:
+      timestampable:  ~
+
+  PackageTransaction:
+    columns:
+      id:  ~
+      package_id:          { type: integer, foreignClass: Package, foreignReference: id, required: true, onDelete: restrict }
+      collector_id:        { type: integer, foreignClass: Collector, foreignReference: id, required: true, onDelete: cascade }
+      payment_status:      { type: varchar, default: pending, size: 255 }
+      max_items_for_sale:  { type: integer }
+      package_price:       { type: float }
+      expiry_date:         { type: timestamp }
+      created_at:  ~
+
+  Promotion:
+    columns:
+      id:  ~
+      promotion_code:   { type: varchar, size: 255, required: true }
+      promotion_name:   { type: varchar, size: 255, required: true }
+      promotion_desc:   { type: longvarchar }
+      amount:           { type: float}
+      amount_type:      { type: char, sqlType: "ENUM('Fix','Percentage')", default: Fix, required: true }
+      no_of_time_used:  { type: integer }
+      expiry_date:      { type: timestamp }
+
+    uniques:
+      promotion_U_I: [promotion_code]
+
+    propel_behaviors:
+      timestampable:  ~
+
+  PromotionTransaction:
+    columns:
+      id:  ~
+      promotion_id:  { type: integer, foreignClass: Promotion, foreignReference: id, required: true, onDelete: restrict }
+      collector_id:  { type: integer, foreignClass: Collector, foreignReference: id, required: true, onDelete: cascade }
+      amount:        { type: float }
+      amount_type:   { type: varchar, default: pending, size: 255 }
+      created_at:  ~

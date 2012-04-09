@@ -1,0 +1,8 @@
+indexSuccess:
+  stylesheets: [frontend/collections.css]
+  components:
+    sidebar_300: [collections, sidebarIndex]
+
+categorySuccess:
+  components:
+    sidebar_180: [collections, sidebarCategory]

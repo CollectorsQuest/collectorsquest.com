@@ -40,6 +40,7 @@ class testGenerateFixturesTask extends sfBaseTask
       "DELETE FROM collector_collection WHERE collector_id NOT IN (". implode(',', $collector_ids) .");",
       "DELETE FROM collection WHERE id NOT IN (SELECT id FROM collector_collection) AND descendant_class = 'CollectorCollection';",
       "DELETE FROM collection_archive WHERE id NOT IN (SELECT id FROM collector_collection) AND descendant_class = 'CollectorCollection';",
+      "DELETE FROM collector_email WHERE collector_id NOT IN (". implode(',', $collector_ids) .");",
       "DELETE FROM collector WHERE id NOT IN (". implode(',', $collector_ids) .");",
       "DELETE FROM collector_extra_property WHERE collector_id NOT IN (SELECT id FROM collector);",
       "DELETE FROM collector_profile WHERE collector_id NOT IN (SELECT id FROM collector);",
@@ -112,7 +113,7 @@ class testGenerateFixturesTask extends sfBaseTask
       $class = sfInflector::classify($table);
       $skip_classes = array(
         'Crontab', 'JobQueue', 'JobRun', 'CollectibleForSale',
-        'PropelMigration', 'Xhprof', 'Queue', 'Message'
+        'PropelMigration', 'Xhprof', 'Queue', 'Message', 'GeoCountry'
       );
 
       // Temporary skip these tables

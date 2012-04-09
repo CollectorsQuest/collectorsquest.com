@@ -14,7 +14,7 @@ else if ($_SERVER['SERVER_NAME'] == 'backend.collectorsquest.dev')
   define('SF_ENV', 'dev');
   define('SF_DEBUG', true);
 }
-else if ($_SERVER['SERVER_NAME'] == 'www.collectorsquest.next' || $_SERVER['SERVER_NAME'] == 'collectorsquest.next')
+else if ($_SERVER['SERVER_NAME'] == 'www.collectorsquest.next' || $_SERVER['SERVER_NAME'] == 'collectorsquest.next' || $_SERVER['SERVER_NAME'] == '92.247.221.137')
 {
   define('SF_APP', 'frontend');
   define('SF_ENV', 'dev');

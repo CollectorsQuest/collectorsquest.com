@@ -78,6 +78,17 @@
           array('class' => 'edit yellow', 'style' => 'float: right; margin-right: 10px;')
         );
       }
+
+      if ($sf_user->getId() == $collector->getId() && $collector->getCqnextAccessAllowed())
+      {
+        echo link_to(
+          __('Visit cqnext.com'),
+          'dev' != sfConfig::get('sf_environment')
+            ? 'http://www.cqnext.com/?i='. urlencode($collector->getAutoLoginHash())
+            : 'http://www.collectorsquest.next/?i='. urlencode($collector->getAutoLoginHash()),
+          array('class' => 'visit-cqnext')
+        );
+      }
     ?>
     <span style="font-size: 24px;"><?= $collector->getDisplayName(); ?></span>
     <span style="font-size: 18px;">

@@ -1,9 +1,15 @@
 <?php
 
-$webdir   = dirname(__FILE__);
-$cachedir = realpath(dirname(__FILE__) . '/../cache');
-$cssdir   = dirname(__FILE__) . '/css';
-$jsdir    = dirname(__FILE__) . '/js';
+$webdir   = __DIR__;
+$cssdir   = __DIR__ . '/css';
+$lessdir  = __DIR__ . '/less';
+$jsdir    = __DIR__ . '/js';
+
+/**
+ * Reuse symfony's test directory
+ * Added benefit: "php ./symfony cc" will clear assets cache also
+ */
+$cachedir = realpath(__DIR__ . '/../cache');
 
 if (isset($_GET['revision']))
 {
@@ -21,6 +27,9 @@ switch ($_GET['type'])
 {
   case 'css':
     $base = realpath($cssdir);
+    break;
+  case 'less':
+    $base = realpath($lessdir);
     break;
   case 'javascript':
     $base = realpath($jsdir);
@@ -51,6 +60,10 @@ while (list(,$element) = each($elements))
   if ('/' == $element[0])
   {
     $path = realpath($webdir . $element);
+  }
+  else if ('less' == $type || ('css' == $type && substr($element, -5) == '.less'))
+  {
+    $path = realpath($lessdir .'/'. $element);
   }
   else
   {
@@ -159,12 +172,16 @@ else
     {
       $path = realpath($webdir . $element);
     }
+    else if ($type == 'css' && substr($element, -5) === '.less')
+    {
+      $path = realpath($lessdir .'/'. $element);
+    }
     else
     {
       $path = realpath($base .'/'. $element);
     }
 
-    if (substr($path, -5) == '.less')
+    if (substr($element, -5) === '.less')
     {
       require_once __DIR__ . '/../plugins/iceLibsPlugin/lib/vendor/Lessc.class.php';
 

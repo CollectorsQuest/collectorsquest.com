@@ -1,5 +1,10 @@
 rendering: ~
+remember_me:
+  class: cqCollectorRememberMeFilter
 security:  ~
+
+cqCompleteRegistration:
+  class: cqCompleteRegistrationFilter
 
 IceRequestHistory:
   class: IceRequestHistoryFilter

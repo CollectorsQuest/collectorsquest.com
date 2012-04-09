@@ -16,7 +16,7 @@
 
     <div class="span-13" style="float: right; text-align: right;">
       <?= link_to('CollectorsQuest.com', '@homepage', array('style' => 'text-decoration: none; color: #666;')); ?>
-      © <?= date('Y'); ?> All rights reserved &nbsp; • &nbsp; <?= ' @ r'. SVN_REVISION; ?>
+      © <?= date('Y'); ?> All rights reserved &nbsp; • &nbsp; <a href="http://nytm.org/made" title="Made in NY">Made by hand in NY</a>
     </div>
   </div>
 

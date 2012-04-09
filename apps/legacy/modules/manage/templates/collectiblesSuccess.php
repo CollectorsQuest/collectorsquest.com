@@ -9,7 +9,7 @@
 
 <br clear="all"/>
 <form action="<?php echo url_for('manage_collectibles_by_slug', $collection).'?page='. $sf_params->get('page', 1).'&batch='. $sf_params->get('batch'); ?>" method="post" enctype="multipart/form-data">
-  <?php echo $form->renderHiddenFields() ?>
+  <?php echo $form['_csrf_token'] ?>
   <?php foreach ($form->getEmbeddedForms() as $index => $subform): ?>
     <?php
       $data = $form->getDefault($index);

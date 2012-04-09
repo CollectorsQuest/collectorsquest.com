@@ -6,15 +6,41 @@ default:
     content-type: text/html
 
   metas:
-    #title:        symfony project
-    #description:  symfony project
-    #keywords:     symfony, project
-    #language:     en
-    #robots:       index, follow
+    title:        "Interactive Community and Marketplace for Collectors - CollectorsQuest.com"
+    robots:       "index, follow"
+    description:  "Collectors' Quest is interactive community and marketplace for the collectible community. Showcase your collections, meet other collectors and buy, sell or trade with others. Find out the latest happenings in your own collectible community."
+    keywords:     "Art, Antiques, Collectible, Collectibles, Collectable, Collectables, Limited Edition, Collector, Collectors, Action Figures, Advertising, Americana,Beer, Books, Bottles, Cars, Christmas,Clocks,Watches, Coins,Notes,Comics,Clothes,Dinosaurs, Disneyana, Dolls, Figurines, Furniture, Games, Glass, Jewelry, Militaria, Models, Motorcycles, Movie, Music, Photography, Photos, Pins, Planes, Pop Culture, Posters, Purses, Rubber Ducks, Sculpture, Shoes, Snowdomes, Sports, Stamps, Stuffed Animals, Toys, Trading Cards, Trains"
+    language:     "en"
+    verify-v1:    "+PAY5RqU44ztUAkVcbSIFxiqmn8vAgwgEZbJB+kd6a0="
+    y_key:        "f4bf8cfd736a1ff1"
+    viewport:     "width=device-width, initial-scale=1.0"
 
-  stylesheets:    [main.css]
+    googlebot:    "all, index, follow"
+    coverage:     "Worldwide"
+    copyright:    "Copyright (c) 2006-<?php echo date('Y'); ?> CollectorsQuest.com"
 
-  javascripts:    []
+  stylesheets:
+    - frontend/bootstrap.css
+    - frontend/responsive.css
+    - frontend/main.css
+
+  javascripts:
+    - /assets/js/bootstrap/alerts.js
+    - /assets/js/bootstrap/buttons.js
+    - /assets/js/bootstrap/dropdown.js
+    - /assets/js/bootstrap/typeahead.js
+    - /assets/js/bootstrap/tooltip.js
+    - /assets/js/jquery/scrollTo.js
+    - /assets/js/jquery/targets.js
+    - jquery/waypoints.js
+
+  components:
+    header:  [global, header]
+    footer:  [global, footer]
+    slot1:   []
+    sidebar_120: []
+    sidebar_180: []
+    sidebar_300: []
 
   has_layout:     true
   layout:         layout

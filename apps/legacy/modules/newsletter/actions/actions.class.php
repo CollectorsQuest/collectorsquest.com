@@ -35,14 +35,19 @@ class newsletterActions extends sfActions
       $newsletterSignup->setName($this->getUser()->getCollector()->getDisplayName());
     }
 
-    $form = new NewsletterSignupForm($newsletterSignup);
+    $form = new FrontendNewsletterSignupForm($newsletterSignup);
 
     if ($request->isMethod('post'))
     {
       if ($form->bindAndSave($request->getParameter($form->getName())))
       {
         $this->getUser()->setFlash('success', 'You have successfuly subscribed.');
-        $this->redirect('collector_by_slug', $this->getUser()->getCollector());
+
+        if ($this->getUser()->isAuthenticated())
+        {
+          $this->redirect('@collector_by_slug', $this->getUser()->getCollector());
+        }
+        $this->redirect('@homepage');
       }
       else
       {

@@ -39,6 +39,16 @@ class CollectorProfile extends BaseCollectorProfile
     return $birthdate_dt->diff( new DateTime($now) )->y;
   }
 
+  public function getCountry()
+  {
+    if (( $country = $this->getGeoCountry() ))
+    {
+      return $country->getName();
+    }
+
+    return null;
+  }
+
   public function getAddress()
   {
     $this->_populateGeoCache();
@@ -210,7 +220,6 @@ class CollectorProfile extends BaseCollectorProfile
     if ($collector_geocache = CollectorGeocachePeer::doSelectOne($c))
     {
       $this->geocache = array(
-        'country'         => $collector_geocache->getCountry(),
         'country_iso3166' => $collector_geocache->getCountryIso3166(),
         'state'           => $collector_geocache->getState(),
         'county'          => $collector_geocache->getCounty(),
@@ -225,7 +234,8 @@ class CollectorProfile extends BaseCollectorProfile
     {
       if (empty($this->location))
       {
-        if (in_array($this->getCountry(), array('US', 'USA', 'United States', 'UK', 'United Kingdom', 'CA', 'Canada', 'Australia')))
+        // if USA, United Kingdom, Canada, Australia
+        if (in_array($this->getCountryIso3166(), array('US', 'GB', 'CA', 'AU')))
         {
           $this->location = $this->getZipPostal() .', '. $this->getCountry();
         }
@@ -242,7 +252,6 @@ class CollectorProfile extends BaseCollectorProfile
       {
         $collector_geocache = new CollectorGeocache();
         $collector_geocache->setCollector($this->getCollector());
-        $collector_geocache->setCountry($this->geocache['country']);
         $collector_geocache->setCountryIso3166($this->geocache['country_iso3166']);
         $collector_geocache->setState($this->geocache['state']);
         $collector_geocache->setCounty($this->geocache['county']);

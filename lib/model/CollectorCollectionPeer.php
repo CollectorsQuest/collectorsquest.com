@@ -48,13 +48,13 @@ class CollectorCollectionPeer extends BaseCollectorCollectionPeer
     return CollectorCollectionPeer::doSelectJoinCollector($c);
   }
 
-  public static function getPopularByCountry($country, $limit = 10, Criteria $criteria = null)
+  public static function getPopularByCountryCode($country_code, $limit = 10, Criteria $criteria = null)
   {
     $c = ($criteria instanceof Criteria) ? clone $criteria : new Criteria();
 
     $c->setDistinct();
     $c->addJoin(CollectorCollectionPeer::COLLECTOR_ID, CollectorProfilePeer::COLLECTOR_ID);
-    $c->add(CollectorProfilePeer::COUNTRY, $country);
+    $c->add(CollectorProfilePeer::COUNTRY_ISO3166, $country_code);
     $c->setLimit($limit);
 
     return CollectorCollectionPeer::doSelectJoinCollector($c);

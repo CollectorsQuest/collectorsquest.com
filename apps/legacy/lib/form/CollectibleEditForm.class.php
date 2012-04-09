@@ -28,7 +28,7 @@ class CollectibleEditForm extends BaseCollectibleForm
 
     if ($collector->getIsSeller())
     {
-      $collectibleForSale = $this->getObject()->getForSaleInformation();
+      $collectibleForSale = $this->getObject()->getCollectibleForSale();
 
       if (!$collectibleForSale)
       {
@@ -36,7 +36,9 @@ class CollectibleEditForm extends BaseCollectibleForm
         $collectibleForSale->setCollectible($this->getObject());
       }
 
-      $this->embedForm('for_sale', new CollectibleForSaleEditForm($collectibleForSale));
+      $for_sale_form = new CollectibleForSaleEditForm($collectibleForSale);
+      unset($for_sale_form['collectible_id']);
+      $this->embedForm('for_sale', $for_sale_form);
     }
 
     // Define which fields to use from the base form
@@ -132,7 +134,7 @@ class CollectibleEditForm extends BaseCollectibleForm
     }
 
     $values = $this->getValue('collection_collectible_list');
-    if (is_array($values))
+    if ($values && is_array($values))
     {
       $c = new Criteria();
       $c->add(CollectionCollectiblePeer::COLLECTIBLE_ID, $this->object->getPrimaryKey());
@@ -142,12 +144,18 @@ class CollectibleEditForm extends BaseCollectibleForm
       foreach ($values as $value)
       {
         $q = CollectionCollectibleQuery::create()
-          ->filterByCollectibleId($this->object->getPrimaryKey())
-          ->filterByCollectionId((int) $value);
+           ->filterByCollectibleId($this->object->getPrimaryKey())
+           ->filterByCollectionId((int) $value);
 
         $obj = $q->findOneOrCreate();
         $obj->save();
       }
+    }
+    else
+    {
+      $c = new Criteria();
+      $c->add(CollectionCollectiblePeer::COLLECTIBLE_ID, $this->object->getPrimaryKey());
+      CollectionCollectiblePeer::doDelete($c, $con);
     }
   }
 

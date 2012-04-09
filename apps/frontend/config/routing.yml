@@ -1,10 +1,264 @@
-# You can find more information about this file on the symfony website:
-# http://www.symfony-project.org/reference/1_4/en/10-Routing
+### AJAX
+
+ajax_typeahead:
+  url:   /ajax/typeahead/:section/:page
+  param: { module: ajax, action: typeAhead }
+  requirements: { sf_method: [GET], sf_format: json }
+
+### COLLECTIONS
+
+collections:
+  url:   /collections
+  param: { module: collections, action: index }
+
+collection_by_slug:
+  url:  /collection/:id/:slug
+  class: cqPropelRoute
+  options: { model: CollectorCollection, type: object, method: getObjectForRoute }
+  param: { module: collection, action: index }
+  requirements: { id: '\d+', slug: '[\-\w\.]+' }
+
+collections_by_category:
+  url:  /collections/:id/:slug
+  class: cqPropelRoute
+  options: { model: CollectionCategory, type: object, method: getObjectForRoute }
+  param: { module: collections, action: category }
+  requirements: { id: '\d+', slug: '[\-\w\.]+' }
+
+collections_by_collector_legacy:
+  url:  /collections/by/:collector_slug
+  class: sfPropelRoute
+  options: { model: Collector, type: object, method: getObjectForRoute }
+  param: { module: collections, action: index }
+  requirements: { collector_slug: '[\-\w\.]+' }
+
+collections_by_collector:
+  url:  /collections/by/:collector_id/:collector_slug
+  class: sfPropelRoute
+  options: { model: Collector, type: object, method: getObjectForRoute }
+  param: { module: collections, action: index }
+  requirements: { collector_id: '\d+', collector_slug: '[\-\w\.]+' }
+
+collections_categories:
+  url:  /collections/categories
+  param: { module: collections, action: categories }
+
+### COLLECTORS
+
+collectors:
+  url:  /collectors
+  param: { module: collectors, action: index }
+
+collector_by_slug:
+  url:  /collector/:id/:slug
+  class: cqPropelRoute
+  options: { model: Collector, type: object, method: getObjectForRoute, statsd: true }
+  param: { module: collector, action: index }
+  requirements: { id: '\d+', slug: '[\-\w\.]+' }
+
+manage_profile:
+  url:   /manage/profile
+  param: { module: default, action: index }
+
+
+### COLLECTIBLES
+
+collectible_by_slug:
+  url:  /collectible/:id/:slug
+  class: cqPropelRoute
+  options: { model: Collectible, type: object, method: getObjectForRoute, statsd: true }
+  param: { module: collection, action: collectible }
+  requirements: { id: '\d+', slug: '[\-\w\.]+' }
+
+
+### CHANNELS
+
+channels:
+  url:  /channels
+  param: { module: channels, action: index }
+
+
+### SEARCH
+
+search_typeahead:
+  url:   /search/typeahead
+  param: { module: search, action: ajax }
+
+search_collectibles:
+  url:   /search/collectibles
+  param: { module: search, action: collectibles }
+
+search_collections:
+  url:   /search/collections
+  param: { module: search, action: collections }
+
+search_collectors:
+  url:   /search/collectors
+  param: { module: search, action: collectors }
+
+search_videos:
+  url:   /search/videos
+  param: { module: search, action: videos }
+
+search_blog:
+  url:   /search/blog
+  param: { module: search, action: blog }
+
+search_advanced:
+  url:   /search/advanced
+  param: { module: search, action: advanced }
+
+search:
+  url:   /search
+  param: { module: search, action: index }
+
+
+### NEWS
+
+news:
+  url:   /news
+  param: { module: news, action: index }
+
+
+### VIDEO
+
+video:
+  url:   /video
+  param: { module: video, action: index }
+
+
+### MARKETPLACE
+
+marketplace_categories:
+  url: /marketplace/categories
+  param: { module: marketplace, action: categories }
+
+marketplace_category_by_slug:
+  url: /marketplace/:id/:slug
+  class: sfPropelRoute
+  options: { model: CollectionCategory, type: object, method: getObjectForRoute }
+  param: { module: marketplace, action: browse }
+  requirements:
+    id: \d+
+    sf_method: [GET, POST]
+
+marketplace:
+  url: /marketplace
+  param: { module: marketplace, action: index }
+
+### SHOPPING
+
+shopping_cart_remove:
+  url: /cart/:id/remove
+  param: { module: shopping, action: cart, cmd: remove }
+  requirements: { id: \d+ }
+
+shopping_cart_checkout:
+  url: /cart/checkout
+  param: { module: shopping, action: checkout }
+  requirements: { sf_method: [post] }
+
+shopping_cart_empty:
+  url: /cart/empty
+  param: { module: shopping, action: cart, cmd: empty }
+
+shopping_cart:
+  url: /cart
+  param: { module: shopping, action: cart }
+
+shopping_order_paypal:
+  url: /order/:uuid/paypal
+  class: sfPropelRoute
+  options: { model: ShoppingOrder, type: object }
+  param: { module: shopping, action: paypal }
+
+shopping_order_pay:
+  url: /order/:uuid/pay
+  class: sfPropelRoute
+  options: { model: ShoppingOrder, type: object }
+  param: { module: shopping, action: orderPay }
+
+shopping_order_review:
+  url: /order/:uuid/review
+  class: sfPropelRoute
+  options: { model: ShoppingOrder, type: object }
+  param: { module: shopping, action: orderReview }
+
+shopping_order_error:
+  url: /order/:uuid/error
+  class: sfPropelRoute
+  options: { model: ShoppingOrder, type: object }
+  param: { module: shopping, action: orderError }
+
+
+### MANAGE
+
+manage_shopping_order:
+  url:   /manage/order/:uuid
+  class: sfPropelRoute
+  options: { model: ShoppingOrder, type: object }
+  param: { module: manage, action: shoppingOrder }
+
+manage_shopping_orders:
+  url:   /manage/orders
+  param: { module: manage, action: shoppingOrders }
+
+
+### TAGS
+
+tag:
+  url:   /tag/:tag
+  param: { module: search, action: index }
+
+tags:
+  url:   /tags/:which
+  param: { module: tags, action: tagCloud}
+  requirements: { which: '[\-\w\.]+' }
+
+tags_index:
+  url:   /tags
+  param: { module: tags, action: index }
+
+
+### GENERAL
+
+login:
+  url:   /login
+  param: { module: general, action: login }
+
+auto_login:
+  url:  /auto-login/:hash
+  param: { module: general, action: login }
+
+rpx_token:
+  url:   /rpx-token
+  param: { module: general, action: RPXTokenLogin }
+
+logout:
+  url:   /logout
+  param: { module: general, action: logout }
+
+recover_password:
+  url:   /recover-password
+  param: { module: general, action: recoverPassword }
+
+collector_signup:
+  url:   /signup/:step
+  param: { module: collector, action: signup, step: 1 }
+  requirements: { step: '[1-3]' }
+
+page:
+  url:   /blog/:slug
+
+feedback:
+  url:   /feedback
+  param: { module: general, action: feedback }
+
 
 # default rules
 homepage:
   url:   /
-  param: { module: default, action: index }
+  param: { module: general, action: index }
 
 # generic rules
 # please, remove them by adding more specific rules

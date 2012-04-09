@@ -1,23 +1,70 @@
 <?php
 
+/**
+ * @see include_http_metas()
+ */
+function cq_include_http_metas()
+{
+  /** @var $response sfWebResponse */
+  $response = sfContext::getInstance()->getResponse();
+
+  foreach ((array) $response->getHttpMetas() as $httpequiv => $value)
+  {
+    echo tag('meta', array('http-equiv' => $httpequiv, 'content' => $value))."\n";
+  }
+}
+
+/**
+ * @see include_metas()
+ */
+function cq_include_metas()
+{
+  /** @var $context sfContext */
+  $context = sfContext::getInstance();
+
+  /** @var $response sfWebResponse */
+  $response = $context->getResponse();
+
+  /** @var $i18n sfI18N */
+  $i18n = sfConfig::get('sf_i18n') ? $context->getI18N() : null;
+
+  $i = 0;
+  foreach ($response->getMetas() as $name => $content)
+  {
+    echo ($i++ > 0) ? '  ' : '';
+    echo tag('meta', array('name' => $name, 'content' => null === $i18n ? $content : $i18n->__($content)))."\n";
+  }
+}
+
+/**
+ * @see include_title()
+ */
+function cq_include_title()
+{
+  /** @var $response sfWebResponse */
+  $response = sfContext::getInstance()->getResponse();
+
+  echo content_tag('title', $response->getTitle())."\n";
+}
+
 function cq_image_tag($source, $options = array())
 {
   return image_tag(cq_image_src($source), $options);
 }
 
-function cq_image_src($image, $secure = false)
+function cq_image_src($image)
 {
-  return 'http://'. sfConfig::get('app_static_domain') .'/images/'. $image;
+  return '//'. sfConfig::get('app_static_domain') .'/images/'. $image;
 }
 
-function cq_stylesheet_src($stylesheet, $secure = false)
+function cq_stylesheet_src($stylesheet)
 {
-  return 'http://'. sfConfig::get('app_static_domain') .'/css/'. $stylesheet .'?rev='. (defined('SVN_REVISION') ? SVN_REVISION : 0);
+  return '//'. sfConfig::get('app_static_domain') .'/css/'. $stylesheet .'?rev='. (defined('SVN_REVISION') ? SVN_REVISION : 0);
 }
 
-function cq_javascript_src($javascript, $secure = false)
+function cq_javascript_src($javascript)
 {
-  return 'http://'. sfConfig::get('app_static_domain') .'/js/'. $javascript .'?rev='. (defined('SVN_REVISION') ? SVN_REVISION : 0);
+  return '//'. sfConfig::get('app_static_domain') .'/js/'. $javascript .'?rev='. (defined('SVN_REVISION') ? SVN_REVISION : 0);
 }
 
 function cq_include_stylesheets()
@@ -30,6 +77,7 @@ function cq_include_stylesheets()
     return;
   }
 
+  /** @var $response sfWebResponse */
   $response = sfContext::getInstance()->getResponse();
   sfConfig::set('symfony.asset.stylesheets_included', true);
 
@@ -86,6 +134,7 @@ function cq_include_javascripts()
     return;
   }
 
+  /** @var $response sfWebResponse */
   $response = sfContext::getInstance()->getResponse();
   sfConfig::set('symfony.asset.javascripts_included', true);
 

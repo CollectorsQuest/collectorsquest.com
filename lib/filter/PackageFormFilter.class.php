@@ -3,9 +3,9 @@
 /**
  * Package filter form.
  *
- * @package    collectornew
+ * @package    CollectorsQuest
  * @subpackage filter
- * @author     Prakash Panchal
+ * @author     Collectors
  */
 class PackageFormFilter extends BasePackageFormFilter
 {

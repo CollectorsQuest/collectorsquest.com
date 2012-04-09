@@ -4,15 +4,44 @@ require 'lib/model/om/BaseCollectorPeer.php';
 
 class CollectorPeer extends BaseCollectorPeer
 {
-  public static function retrieveBySlug($slug)
+  const PROPERTY_CQNEXT_ACCESS_ALLOWED = 'CQNEXT_ACCESS_ALLOWED';
+  const PROPERTY_CQNEXT_ACCESS_ALLOWED_DEFAULT_VALUE = 0;
+
+  const TYPE_COLLECTOR = 'Collector';
+  const TYPE_SELLER = 'Seller';
+
+  /**
+   * @param     string $username
+   * @param     PropelPDO $con
+   * @return    Collector|null
+   */
+  public static function retrieveByUsername($username, PropelPDO $con = null)
+  {
+    $c = new Criteria();
+    $c->add(self::USERNAME, $username);
+
+    return self::doSelectOne($c, $con);
+  }
+
+  /**
+   * @param     string $slug
+   * @param     PropelPDO $con
+   * @return    Collector|null
+   */
+  public static function retrieveBySlug($slug, PropelPDO $con = null)
   {
     $c = new Criteria();
     $c->add(self::SLUG, $slug);
 
-    return self::doSelectOne($c);
+    return self::doSelectOne($c, $con);
   }
 
-  public static function retrieveByHash($hash)
+  /**
+   * @param     string $hash
+   * @param     PropelPDO $con
+   * @return    Collector|null
+   */
+  public static function retrieveByHash($hash, PropelPDO $con = null)
   {
     if (!empty($hash))
     {
@@ -20,10 +49,63 @@ class CollectorPeer extends BaseCollectorPeer
       @list($version, $id, $hmac, $time) = explode(';', $hash);
 
       // Try to get the Collector object
-      if ($collector = self::retrieveByPk($id))
+      if (( $collector = self::retrieveByPk($id, $con) ))
       {
         // Finally check if the $hash is valid
         return $collector->getAutoLoginHash($version, $time) === $hash ? $collector : null;
+      }
+    }
+
+    return null;
+  }
+
+  /**
+   * @param     string $identifier
+   * @param     PropelPDO $con
+   * @return    Collector|null
+   */
+  public static function retrieveByIdentifier($identifier, PropelPDO $con = null)
+  {
+    $c = new Criteria();
+    $c->addJoin(CollectorPeer::ID, CollectorIdentifierPeer::COLLECTOR_ID);
+    $c->add(CollectorIdentifierPeer::IDENTIFIER, $identifier);
+
+    return self::doSelectOne($c, $con);
+  }
+
+  /**
+   * Retrieve a Collector record only if within the time limit from the hash generation
+   *
+   * @param     string $hash
+   * @param     string $time_limit strtotime compatible time distance from hash generation time
+   * @param     integer $time The current time
+   *
+   * @return    Collector|null
+   */
+  public static function retrieveByHashTimeLimited($hash, $time_limit, $time = null)
+  {
+    if (!empty($hash))
+    {
+      if (null === $time)
+      {
+        $time = time();
+      }
+
+      // Split the Hash parts
+      @list($version, $id, $hmac, $time_of_hash) = explode(';', $hash);
+
+      $time_limit_target = strtotime($time_limit, (int)$time_of_hash);
+
+      if ($time_limit_target < $time)
+      {
+        return null;
+      }
+
+      // Try to get the Collector object
+      if (( $collector = self::retrieveByPk($id) ))
+      {
+        // Finally check if the $hash is valid
+        return $collector->getAutoLoginHash($version, $time_of_hash) === $hash ? $collector : null;
       }
     }
 
@@ -117,18 +199,13 @@ class CollectorPeer extends BaseCollectorPeer
       $collector = self::createFromArray($data);
     }
 
-    if (!$collector_identifier = CollectorIdentifierQuery::create()->findOneByIdentifier($profile['identifier']))
-    {
-      $collector_identifier = new CollectorIdentifier();
-      $collector_identifier->setCollector($collector);
-      $collector_identifier->setIdentifier($profile['identifier']);
-      $collector_identifier->save();
-    }
-    else
-    {
-      $collector_identifier->setCollector($collector);
-      $collector_identifier->save();
-    }
+    /** @var $q CollectorIdentifierQuery */
+    $q = CollectorIdentifierQuery::create()
+       ->filterByIdentifier($profile['identifier']);
+
+    $collector_identifier = $q->findOneOrCreate();
+    $collector_identifier->setCollector($collector);
+    $collector_identifier->save();
 
     return $collector;
   }
@@ -141,44 +218,27 @@ class CollectorPeer extends BaseCollectorPeer
     $collector->setDisplayName($data['display_name']);
     $collector->setEmail($data['email']);
 
+    /* Temporary disable before tests are written * /
     if (!empty($data['facebook_id']))
     {
       $collector->setFacebookId($data['facebook_id']);
     }
+    /* */
 
     // All of the profile data is optional, thus make sure to check it is provided
     $collector_profile = new CollectorProfile();
     $collector_profile->setCollector($collector);
 
-    if (!empty($data['birthday']) && is_string($data['birthday']))
-    {
-      $collector_profile->setBirthday($data['birthday']);
-    }
-    if (!empty($data['gender']) && is_string($data['gender']))
-    {
-      $collector_profile->setGender($data['gender']);
-    }
-    if (!empty($data['zip_postal']))
-    {
-      $collector_profile->setZipPostal($data['zip_postal']);
-    }
-    if (!empty($data['country']))
-    {
-      $country = sfCultureInfo::getInstance('en')->getCountry($data['country']);
-      $collector_profile->setCountry($country);
-      $collector_profile->setCountryIso3166($data['country']);
-    }
-    if (!empty($data['website']) && is_string($data['website']))
-    {
-      $collector_profile->setWebsite($data['website']);
-    }
-
     $collector_profile->setPreferences(array(
-      'show_age' => false, 'msg_on' => true, 'invite_only' => false
+      'show_age'    => false,
+      'msg_on'      => true,
+      'invite_only' => false
     ));
 
     $collector_profile->setNotifications(array(
-      'comment' => true, 'buddy' => true, 'message' => true
+      'comment' => true,
+      'buddy'   => true,
+      'message' => true
     ));
 
     try
@@ -186,37 +246,15 @@ class CollectorPeer extends BaseCollectorPeer
       $collector_profile->save();
       $collector->save();
 
-      $collectorEmail = new CollectorEmail();
-      $collectorEmail->setCollector($collector);
-      $collectorEmail->setEmail($collector->getEmail());
-      $collectorEmail->setSalt($collector->generateSalt());
-      $collectorEmail->setHash($collector->getAutoLoginHash());
-      $collectorEmail->setIsVerified(false);
-      $collectorEmail->save();
-
-      if (!empty($data['what_you_sell']))
+      if (!empty($data['email']))
       {
-        $collector_profile->setAboutWhatYouSell($data['what_you_sell']);
-      }
-      if (!empty($data['what_you_collect']))
-      {
-        $collector_profile->setAboutWhatYouCollect($data['what_you_collect']);
-      }
-      if (!empty($data['annually_spend']))
-      {
-        $collector_profile->setAboutAnnuallySpend($data['annually_spend']);
-      }
-      if (!empty($data['most_expensive_item']))
-      {
-        $collector_profile->setAboutMostExpensiveItem($data['most_expensive_item']);
-      }
-      if (!empty($data['company']))
-      {
-        $collector_profile->setAboutCompany($data['company']);
-      }
-      if (!empty($data['purchase_per_year']))
-      {
-        $collector_profile->setAboutPurchasesPerYear($data['purchase_per_year']);
+        $collectorEmail = new CollectorEmail();
+        $collectorEmail->setCollector($collector);
+        $collectorEmail->setEmail($collector->getEmail());
+        $collectorEmail->setSalt($collector->generateSalt());
+        $collectorEmail->setHash($collector->getAutoLoginHash());
+        $collectorEmail->setIsVerified(true);
+        $collectorEmail->save();
       }
     }
     catch (PropelException $e)
@@ -239,7 +277,7 @@ class CollectorPeer extends BaseCollectorPeer
              GROUP_CONCAT(collector_geocache.zip_postal) AS zip,
              COUNT(DISTINCT collector_geocache.collector_id) AS count
         FROM collector_geocache
-       WHERE collector_geocache.country = 'USA' AND city IS NOT NULL
+       WHERE collector_geocache.country_iso3166 = 'US' AND city IS NOT NULL
        GROUP BY tag
        ORDER BY count DESC, tag DESC
        LIMIT 0, {$max}
@@ -256,7 +294,7 @@ class CollectorPeer extends BaseCollectorPeer
 
       $tags[$row['tag']] = array(
         'count' => $row['count'],
-        'zip' => $zip
+        'zip'   => $zip
       );
     }
 
@@ -270,16 +308,21 @@ class CollectorPeer extends BaseCollectorPeer
   public static function getCountry2Tags($max = 50)
   {
     $con = Propel::getConnection();
-    $query = "
+    $query = sprintf("
       SELECT %s AS tag, COUNT(*) AS count
         FROM %s
+        JOIN %s
+         ON %s = %s
        GROUP BY %s
-       ORDER BY tag, count DESC
+       ORDER BY count DESC
        LIMIT 0, %d
-    ";
-
-    $query = sprintf(
-      $query, CollectorProfilePeer::COUNTRY, CollectorProfilePeer::TABLE_NAME, CollectorProfilePeer::COUNTRY, $max
+    ",
+/*select*/    GeoCountryPeer::NAME,
+/*from*/      CollectorProfilePeer::TABLE_NAME,
+/*join*/      GeoCountryPeer::TABLE_NAME,
+/*on*/        CollectorProfilePeer::COUNTRY_ISO3166, GeoCountryPeer::ISO3166,
+/*group by*/  GeoCountryPeer::NAME,
+/*limit*/      $max
     );
 
     $stmt = $con->prepare($query);
@@ -320,7 +363,7 @@ class CollectorPeer extends BaseCollectorPeer
   {
     $omSeller = CollectorPeer::retrieveByPK($amSellerInfo['id']);
 
-    $snTotalItemAllowed = ($amSellerInfo['items_allowed'] < 0) ? $amSellerInfo['items_allowed'] : (int) $omSeller->getItemsAllowed() + $amSellerInfo['items_allowed'];
+    $snTotalItemAllowed = ($amSellerInfo['items_allowed'] < 0) ? $amSellerInfo['items_allowed'] : (int)$omSeller->getItemsAllowed() + $amSellerInfo['items_allowed'];
     $omSeller->setUserType($amSellerInfo['user_type']);
     $omSeller->setItemsAllowed($snTotalItemAllowed);
 
@@ -365,7 +408,7 @@ class CollectorPeer extends BaseCollectorPeer
     $criteria->addSelectColumn(self::DISPLAY_NAME);
     $criteria->setLimit($limit);
 
-    $criteria->add(self::DISPLAY_NAME, '%'. mysql_real_escape_string($q) .'%', Criteria::LIKE);
+    $criteria->add(self::DISPLAY_NAME, '%' . mysql_real_escape_string($q) . '%', Criteria::LIKE);
 
     return self::doSelectStmt($criteria)->fetchAll(PDO::FETCH_KEY_PAIR);
   }

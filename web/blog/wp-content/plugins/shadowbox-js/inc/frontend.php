@@ -105,7 +105,16 @@
 	 */
 	function styles () {
 		$plugin_url = $this->plugin_url ();
-		$shadowbox_css = apply_filters ( 'shadowbox-css' , $plugin_url . '/shadowbox/shadowbox.css' );
+		$uploads = wp_upload_dir ();
+		if ( empty( $uploads['error'] ) && ! empty( $uploads['basedir'] ) ) {
+			$baseurl = $uploads['baseurl'];
+			$basedir = $uploads['basedir'];
+		} else {
+			$baseurl = WP_CONTENT_URL . '/uploads';
+			$basedir = WP_CONTENT_DIR . '/uploads';
+		}
+
+		$shadowbox_css = apply_filters ( 'shadowbox-css' , $baseurl . '/shadowbox-js/src/shadowbox.css' );
 		wp_register_style ( 'shadowbox-css' , $shadowbox_css , false , $this->sbversion , 'screen' );
 		wp_register_style ( 'shadowbox-extras' , apply_filters ( 'shadowbox-extras' , $plugin_url . '/css/extras.css' ) , false , $this->version , 'screen' );
 

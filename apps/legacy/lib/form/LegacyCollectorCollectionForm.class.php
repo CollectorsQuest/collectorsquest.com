@@ -52,6 +52,7 @@ class LegacyCollectorCollectionForm extends BaseCollectorCollectionForm
 
   protected function unsetFields()
   {
+    unset($this['id']);
     unset($this['num_items']);
     unset($this['graph_id']);
     unset($this['num_ratings']);

@@ -1,10 +1,22 @@
 all:
+
+  credentials:
+    rpxnow:
+      application_domain: "https://collectorsquest-dev.rpxnow.com/"
+      application_id: "epghfmlgdcconfbmkmof"
+      api_key: "dabc61cdced770898eccd13f3b9f100e40d46b40"
+
   ice_backend:
     site: "CollectorsQuest.com"
     google_apps_domain: collectorsquest.com
     logo: /images/backend/logo.png
 
     categories:
+      General:
+        items:
+          Categories:
+            url: content_category
+            image: theme/icons/categories.png
       Collectors:
         icon: user
         items:

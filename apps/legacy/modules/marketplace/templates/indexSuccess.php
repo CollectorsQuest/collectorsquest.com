@@ -24,7 +24,7 @@
     <td valign="top" width="25%" style="vertical-align:top;">
         <div style="border: 1px solid #C7C7C7; padding: 20px 0; height: 90px; margin-bottom: 15px; text-align: center;">
           <span style="color: #4A8887; font-weight: bold">POST TO MARKETPLACE</span><br/><br/>
-          <?php echo button_to('Sell Your Collectibles', '@manage_collections', array('style' => 'background:#FAFDE0; border:1px solid #C7C7C7; width:170px; height: 30px; cursor:pointer;')); ?>
+          <?php echo button_to('Sell Your Collectibles', '@collector_signup_choice?type=seller', array('style' => 'background:#FAFDE0; border:1px solid #C7C7C7; width:170px; height: 30px; cursor:pointer;')); ?>
         </div>
       <div style="background: #5592A7; color: #fff; font-weight: bold; padding: 5px; padding-left: 10px;">BROWSE BY CATEGORY</div>
       <?php foreach ($categories as $category): ?>

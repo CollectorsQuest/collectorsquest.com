@@ -72,7 +72,7 @@ class cqStatic extends IceStatic
    */
   static public function getDefensioClient()
   {
-    include_once dirname(__FILE__).'/../vendor/Defensio.class.php';
+    include_once __DIR__.'/../vendor/Defensio.class.php';
 
     return new Defensio(sfConfig::get('app_credentials_defensio'));
   }
@@ -103,6 +103,34 @@ class cqStatic extends IceStatic
     }
 
     return self::$_neo4j_client;
+  }
+
+  static public function getPayPalClient()
+  {
+    include_once __DIR__.'/../vendor/PayPal.class.php';
+
+    return new PayPal(array(
+      'APIUsername' => sfConfig::get('app_paypal_api_username'),
+      'APIPassword' => sfConfig::get('app_paypal_api_password'),
+      'APISignature' => sfConfig::get('app_paypal_api_signature')
+    ));
+  }
+
+  /**
+   * @static
+   * @return PayPalAdaptivePayments
+   */
+  static public function getPayPaylAdaptivePaymentsClient()
+  {
+    include_once __DIR__.'/../vendor/PayPalAdaptivePayments.class.php';
+
+    return new PayPalAdaptivePayments(array(
+      'Sandbox'       => sfConfig::get('sf_environment') !== 'prod',
+      'ApplicationID' => sfConfig::get('app_paypal_application_id'),
+      'APIUsername'   => sfConfig::get('app_paypal_api_username'),
+      'APIPassword'   => sfConfig::get('app_paypal_api_password'),
+      'APISignature'  => sfConfig::get('app_paypal_api_signature')
+    ));
   }
 
   static public function linkify($text, $shorten = false)
@@ -295,6 +323,13 @@ class cqStatic extends IceStatic
     }
 
     return self::$_browser[$hash];
+  }
+
+  public static function getMagnifyClient()
+  {
+    require_once sfConfig::get('sf_lib_dir') . '/vendor/magnify/src/Magnify.php';
+
+    return new Magnify(sfConfig::get('app_magnify_channel'), sfConfig::get('app_magnify_api_key'));
   }
 
 }

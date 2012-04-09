@@ -14,6 +14,7 @@ classes:
       post_date_gmt:          { type: timestamp,    required: true, default: "0000-00-00 00:00:00" }
       post_content:           { type: longvarchar,  required: true  }
       post_title:             { type: longvarchar,  required: true, primaryString: true  }
+      post_category:          { type: integer,      required: true, default: 0 }
       post_excerpt:           { type: longvarchar,  required: true  }
       post_status:            { type: varchar(20),  required: true, default: "publish" }
       comment_status:         { type: varchar(20),  required: true, default: "open" }
@@ -118,7 +119,6 @@ classes:
       user_id:                { type: integer,      required: true, default: 0, foreignClass: wpUser, foreignReference: id }
     indexes:
       comment_approved_date_gmt: [ comment_approved, comment_date_gmt ]
-
 
   wpCommentMeta:
     tableName: wp_commentmeta

@@ -12,9 +12,29 @@ class CollectorFormFilter extends BaseCollectorFormFilter
 {
   public function configure()
   {
+    $this->setupUserTypeField();
+    $this->setupSpaminessField();
+    $this->setupCqnextAccessAllowedField();
+  }
+
+  public function getCollectorTypes()
+  {
+    return array(
+      '' => '',
+      'collector' => 'Collector',
+      'seller' => 'Seller',
+    );
+  }
+
+  protected function setupUserTypeField()
+  {
     $this->widgetSchema['user_type'] = new sfWidgetFormChoice(array(
-      'choices' => array('' => '', 'Collector' => 'Collector', 'Seller' => 'Seller')
+      'choices' => $this->getCollectorTypes(),
     ));
+  }
+
+  protected function setupSpaminessField()
+  {
     $this->widgetSchema['spaminess'] = new sfWidgetFormChoice(array(
       'choices' => array('' => '', 'green' => 'Green', 'yellow' => 'Yellow', 'red' => 'Red')
     ));
@@ -24,12 +44,14 @@ class CollectorFormFilter extends BaseCollectorFormFilter
     ));
   }
 
-  public function getCollectorTypes()
+  protected function setupCqnextAccessAllowedField()
   {
-    return array(
-      '' => '',
-      'Collector' => 'Collector',
-      'Seller' => 'Seller',
-    );
+    $this->widgetSchema['cqnext_access_allowed'] = new sfWidgetFormChoice(array(
+      'choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no')
+    ));
+    $this->validatorSchema['cqnext_access_allowed'] = new sfValidatorChoice(array(
+      'required' => false, 'choices' => array('', 1, 0)
+    ));
   }
+
 }

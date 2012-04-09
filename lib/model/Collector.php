@@ -2,31 +2,53 @@
 
 require 'lib/model/om/BaseCollector.php';
 
-class Collector extends BaseCollector
+/**
+ * @method     int getSingupNumCompletedSteps() Return the number of completed signup steps
+ * @method     Collector setSingupNumCompletedSteps(int $v) Set the number of completed signup steps
+ * @method     Collector setCqnextAccessAllowed(boolean $v)
+ * @method     boolean getCqnextAccessAllowed()
+ */
+class Collector extends BaseCollector implements ShippingRatesInterface
 {
 
-  public function postSave(PropelPDO $con = null)
+  public function initializeProperties()
   {
+    $this->registerProperty('SINGUP_NUM_COMPLETED_STEPS', 1);
+    $this->registerProperty(CollectorPeer::PROPERTY_CQNEXT_ACCESS_ALLOWED,
+                            CollectorPeer::PROPERTY_CQNEXT_ACCESS_ALLOWED_DEFAULT_VALUE);
+  }
 
+  /**
+   * Property accessor. Always cast the return value to boolean
+   *
+   * @return    boolean
+   */
+  public function getCqnextAccessAllowed()
+  {
+    return (boolean) parent::getCqnextAccessAllowed();
   }
 
   public function getGraphId()
   {
-    $graph_id = null;
+    $graph_id = parent::getGraphId();
 
-    if (!$this->isNew() && (!$graph_id = parent::getGraphId()))
+    if (!$this->isNew() && null === $graph_id)
     {
-      $client = cqStatic::getNeo4jClient();
+      try {
+        $client = cqStatic::getNeo4jClient();
 
-      $node = $client->makeNode();
-      $node->setProperty('model', 'Collector');
-      $node->setProperty('model_id', $this->getId());
-      $node->save();
+        $node = $client->makeNode();
+        $node->setProperty('model', 'Collector');
+        $node->setProperty('model_id', $this->getId());
+        $node->save();
 
-      $graph_id = $node->getId();
+        $graph_id = $node->getId();
 
-      $this->setGraphId($node->getId());
-      $this->save();
+        $this->setGraphId($node->getId());
+        $this->save();
+      } catch (Exception $e) {
+        // Error when trying to create a new neo4j node
+      }
     }
 
     return $graph_id;
@@ -57,20 +79,47 @@ class Collector extends BaseCollector
     return ($time == "1999-11-30 00:00:00") ? null : $time;
   }
 
+  /**
+   * @param     string $password
+   * @return    Collector
+   */
   public function setPassword($password)
   {
-    if (!$salt = $this->getSalt())
-    {
-      $salt = $this->generateSalt();
-      $this->setSalt($salt);
-    }
+    $this->setSha1Password(sha1($this->getSalt() . $password));
 
-    $this->setSha1Password(sha1($salt . $password));
+    return $this;
   }
 
-  public function getAutoLoginHash($version = 'v1', $time = null)
+  /**
+   * Check if a password is valid for this collector
+   *
+   * @param     string $password
+   * @return    boolean
+   */
+  public function checkPassword($password)
+  {
+    return sha1($this->getSalt() . $password) == $this->getSha1Password();
+  }
+
+  /**
+   * Get the salt (generate it first if needed)
+   *
+   * @return    string
+   */
+  public function getSalt()
+  {
+    if (null === parent::getSalt())
+    {
+      $this->setSalt($this->generateSalt());
+    }
+
+    return parent::getSalt();
+  }
+
+  public function getAutoLoginHash($version = 'v1', $time = null, $salt = null)
   {
     $time = is_numeric($time) ? $time : time();
+    $salt = !empty($salt) ? (string) $salt : $this->getSalt();
 
     switch ($version)
     {
@@ -82,12 +131,12 @@ class Collector extends BaseCollector
         $json = json_encode(array(
           'version' => $version,
           'id'      => $this->getId(),
-          'created' => (int)$this->getCreatedAt('U'),
-          'time'    => (int)$time
+          'created' => (int) $this->getCreatedAt('U'),
+          'time'    => (int) $time
         ));
 
         $hash = sprintf(
-          "%s;%d;%s;%d", $version, $this->getId(), hash_hmac('sha1', base64_encode($json), $this->getSalt()), $time
+          "%s;%d;%s;%d", $version, $this->getId(), hash_hmac('sha1', base64_encode($json), $salt), $time
         );
         break;
     }
@@ -209,7 +258,7 @@ class Collector extends BaseCollector
     {
       $limit = $limit - $found;
 
-      /** @var $sf_user cqUser */
+      /** @var $sf_user cqBaseUser */
       $sf_user = sfContext::getInstance()->getUser();
 
       if ($sf_user->isAuthenticated())
@@ -500,6 +549,60 @@ class Collector extends BaseCollector
   }
 
   /**
+   * Get the shipping rates for this collector, grouped by country
+   *
+   * @param     PropelPDO $con
+   * @return    array
+   *
+   * @see       ShippingRateCollectorQuery::findAndGroupByCountryCode()
+   */
+  public function getShippingRatesGroupedByCountryCode(PropelPDO $con = null)
+  {
+    return ShippingRateCollectorQuery::create()
+      ->filterByCollector($this)
+      ->findAndGroupByCountryCode($con);
+  }
+
+  /**
+   * Get shipping rates for a specific country
+   *
+   * @param     string $coutry_code
+   * @param     PropelPDO $con
+   * @return    ShippingRate[]
+   */
+  public function getShippingRatesForCountryCode($coutry_code, PropelPDO $con = null)
+  {
+    return ShippingRateCollectorQuery::create()
+      ->filterByCollector($this)
+      ->filterByCountryIso3166($coutry_code)
+      ->find($con);
+  }
+
+  /**
+   * Get shipping rates for the collector's country
+   *
+   * @param     PropelPDO $con
+   * @return    ShippingRate[]
+   */
+  public function getShippingRatesDomestic(PropelPDO $con = null)
+  {
+    return ShippingRateCollectorQuery::create()
+      ->filterByCollector($this)
+      ->filterByCountryIso3166($this->getProfile()->getCountryIso3166())
+      ->find($con);
+  }
+
+  /**
+   * Return the domestic country code
+   *
+   * @return    string
+   */
+  public function getDomesticCountryCode()
+  {
+    return $this->getProfile()->getCountryIso3166();
+  }
+
+  /**
    * @param  null|PropelPDO  $con
    * @return boolean
    */
@@ -579,7 +682,12 @@ class Collector extends BaseCollector
 
   public function generateSalt()
   {
-    return md5(rand(100000, 999999) . '_' . $this->getUsername());
+    return md5($this->getUsername() . '_' . cqStatic::getUniqueId());
+  }
+
+  public function getLastEmailChangeRequest($verified = false)
+  {
+    return CollectorEmailPeer::retrieveLastPending($this, $verified);
   }
 
 }

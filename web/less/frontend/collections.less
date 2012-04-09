@@ -1,0 +1,104 @@
+@import "bootstrap/variables.less";
+@import "bootstrap/mixins.less";
+@import "_variables.less";
+
+.collection_grid_view {
+  height: 160px;
+  overflow: hidden;
+  position: relative;
+}
+
+.collection_grid_view .mosaic-backdrop {
+  width: 190px;
+  height: 150px;
+  margin-left: 3px;
+  margin-top: 3px;
+  border: 1px solid #fff;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.collection_grid_view .mosaic-overlay {
+  width: 190px;
+  height: 150px;
+  margin: 4px;
+}
+
+.collection_grid_view div.stack,
+.collection_list_view div.stack {
+  background: url(/images/frontend/stack.png) no-repeat;
+  width: 201px;
+  height: 155px;
+  padding: 5px 0 0 13px;
+}
+
+.collection_grid_view .stack .mosaic-backdrop {
+  width: 180px;
+  height: 142px;
+  margin: 5px 0 0 0;
+  border: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+.collection_grid_view .stack .mosaic-overlay {
+  width: 180px;
+  height: 142px;
+  margin: 0;
+}
+
+.collection_grid_view .mosaic-overlay .details {
+  margin: 10px;
+}
+
+.fade-white a {
+  color: #5C5C5C;
+}
+
+
+//This Week's Promo
+.weeks-promo-box {
+	background-color: @yelloHighlight;
+	padding: 15px;
+}
+.weeks-promo-title {
+	.custom-font(20px, 20px, italic, bold);
+	color: @blueDark;
+}
+.weeks-promo-box .text-right a{
+	vertical-align: middle;
+}
+
+//Collection Search
+
+.collection-search-box {
+	background-color: #daecf6;
+	padding: 15px;
+	margin-bottom: 15px;
+}
+.collection-search-box .btn-group {
+	float: left;
+	margin-right: -6px;
+}
+.collection-search-box .gray-button, .collection-search-box btn-group a, .collection-search-box .dropdown-menu a {
+	font-size: 12px;
+}
+.collection-search-box .dropdown-menu a {
+	color: #887777;
+	&:hover {
+		background: @yelloHighlight;
+		color: #887777
+	}
+}
+.collection-search-box .dropdown-menu a strong {
+	color: @blue;
+	font-weight: normal;
+}
+.collection-search-box .input-append input {
+	.border-radius(0);
+}
+
+
+

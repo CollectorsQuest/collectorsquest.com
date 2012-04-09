@@ -16,6 +16,8 @@ nbproject
 /config/secure
 /config/databases.yml
 /test/schemas/*.sql
+/plugins/cqEmailsPlugin/test/fixtures/project/cache/*
+/plugins/cqEmailsPlugin/test/fixtures/project/log/*
 
 # generated folders
 om
@@ -24,15 +26,21 @@ base
 
 # composer modules
 .composer
-/plugins/sf*Plugin
-/plugins/ice*Plugin
+/plugins/sfGuardPlugin
 /lib/vendor/neo4jphp
 /lib/vendor/faker
+/lib/vendor/monolog
+/lib/vendor/twig
+/lib/vendor/magnify
 !/plugins/sfPropelORMPlugin
 
 # symlinked folders (when on windows)
 /web/sf
 /web/sf*Plugin
+
+# stylesheets
+/web/css/frontend/*.css
+!/web/css/frontend/ie.css
 
 # Vagrant
 /config/vagrant/.vagrant

@@ -13,4 +13,24 @@ require_once dirname(__FILE__).'/../lib/collectionsGeneratorHelper.class.php';
  */
 class collectionsActions extends autoCollectionsActions
 {
+
+  /**
+   * Action CollectionCategory
+   *
+   * @param sfWebRequest $request
+   *
+   * @return string
+   */
+  public function executeCollectionCategory(sfWebRequest $request)
+  {
+    $collectionCategories = CollectionCategoryPeer::retrieveForSelect($request->getParameter('q'), $request->getParameter('limit'));
+
+    return $this->renderText(json_encode($collectionCategories));
+  }
+
+  protected function buildQuery()
+  {
+    return parent::buildQuery();
+  }
+
 }

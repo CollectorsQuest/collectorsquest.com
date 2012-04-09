@@ -1,0 +1,26 @@
+generator:
+  class: IcePropelGenerator
+  param:
+    model_class:           ContentCategory
+    theme:                 bootstrap
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ContentCategory
+    plural:                ContentCategories
+    route_prefix:          content_category
+    with_propel_route:     1
+    actions_base_class:    cqBackendActions
+
+    config:
+      actions: ~
+      fields:  ~
+      list:
+        display: [id, =name, slug, _ancestors, collection_category]
+        title: Content Categories
+      filter:  ~
+      form:    ~
+      edit:
+        title: Edit Content Category
+      new:
+        title: New Content Category
+      export:  ~

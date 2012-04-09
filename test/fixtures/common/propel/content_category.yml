@@ -1,0 +1,7 @@
+ContentCategory:
+  ContentCategory_1:
+    name: Root
+    slug: root
+    tree_left: '1'
+    tree_right: '2'
+    tree_level: '0'

@@ -15,3 +15,35 @@ CollectorExtraProperty:
     property_name: SPAM.ALLOW
     property_value: '1'
     collector_id: Collector_1317
+  CollectorExtraProperty_325:
+    property_name: SPAM.SIGNATURE
+    property_value: f04d3d4b91fd9e9f4c48ae
+    collector_id: Collector_963
+  CollectorExtraProperty_326:
+    property_name: SPAM.CLASSIFICATION
+    property_value: legitimate
+    collector_id: Collector_963
+  CollectorExtraProperty_327:
+    property_name: SPAM.PROFANITY-MATCH
+    property_value: '1'
+    collector_id: Collector_963
+  CollectorExtraProperty_328:
+    property_name: SPAM.ALLOW
+    property_value: '1'
+    collector_id: Collector_963
+  CollectorExtraProperty_913:
+    property_name: SPAM.SIGNATURE
+    property_value: 1e6f81d6cf7aa1009822ef
+    collector_id: Collector_12
+  CollectorExtraProperty_914:
+    property_name: SPAM.CLASSIFICATION
+    property_value: spam
+    collector_id: Collector_12
+  CollectorExtraProperty_915:
+    property_name: SPAM.PROFANITY-MATCH
+    property_value: '1'
+    collector_id: Collector_12
+  CollectorExtraProperty_916:
+    property_name: SPAM.ALLOW
+    property_value: '1'
+    collector_id: Collector_12

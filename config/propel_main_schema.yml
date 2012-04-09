@@ -26,6 +26,7 @@ classes:
       spam_score:     { type: integer, default: 0 }
       is_spam:        { type: boolean, default: false }
       is_public:      { type: boolean, default: true }
+      has_completed_registration: { type: boolean, default: false }
       session_id:     { type: varchar, size: 32 }
       last_seen_at:   { type: timestamp }
 
@@ -46,8 +47,7 @@ classes:
       birthday:        { type: date }
       gender:          { type: char, sqlType: "ENUM('f','m')" }
       zip_postal:      varchar(10)
-      country:         varchar(64)
-      country_iso3166: varchar(2)
+      country_iso3166: { type: char, size: 2, required: false, foreignTable: geo_country, foreignReference: iso3166 }
       website:         varchar(128)
       is_featured:     { type: boolean, default: false }
       is_seller:       { type: boolean, default: false }
@@ -65,7 +65,7 @@ classes:
       id:  ~
       collector_id:  { type: integer, foreignClass: Collector, foreignReference: id, required: true, onDelete: cascade }
       email:         { type: varchar, size: 128, index: true }
-      hash:          { type: varchar, size: 40, required: true }
+      hash:          { type: varchar, size: 128, required: true }
       salt:          { type: varchar, size: 32, required: true }
       is_verified:   { type: boolean, default: false }
 
@@ -73,7 +73,22 @@ classes:
       unq_collector_email: [collector_id, email]
 
     propel_behaviors:
+      symfony:        { form: false, filter: false }
       timestampable:  ~
+
+  CollectorAddress:
+    columns:
+      id:               ~
+      collector_id:     { type: integer, foreignClass: Collector, foreignReference: id, required: true, onDelete: cascade }
+      full_name:        { type: varchar(255), required: true  }
+      address_line_1:   { type: varchar(255), required: true  }
+      address_line_2:   { type: varchar(255), required: false }
+      city:             { type: varchar(100), required: true  }
+      state_region:     { type: varchar(100), required: false }
+      zip_postcode:     { type: varchar(50),  required: false }
+      country_iso3166:  { type: char, size: 2, required: true, foreignTable: geo_country, foreignReference: iso3166 }
+      phone:            { type: varchar(50),  required: true  }
+      is_primary:       { type: boolean, required: true, default: false }
 
   ###
   # NOTE: Make SURE to update also CollectorIdentifierArchive in archive.schema.yml
@@ -86,13 +101,26 @@ classes:
       created_at:    ~
 
     propel_behaviors:
-      archivable: { archive_class: CollectorIdentifierArchive, archived_at_column: archived_at }
+      archivable:    { archive_class: CollectorIdentifierArchive, archived_at_column: archived_at }
+      symfony:       { form: false, filter: false }
+
+  CollectorRememberKey:
+    columns:
+      id: ~
+      collector_id:  { type: integer, foreignClass: Collector, foreignReference: id, required: true, onDelete: cascade }
+      remember_key:  { type: char, size: 32 }
+      ip_address:    { type: char, size: 15 }
+      created_at:    ~
+
+    propel_behaviors:
+      symfony:       { form: false, filter: false }
 
   CollectorInterview:
     columns:
       id:  ~
       collector_id:            { type: integer, foreignClass: Collector, foreignReference: id, required: false, onDelete: setnull }
       collection_category_id:  { type: integer, foreignClass: CollectionCategory, foreignReference: id, onDelete: setnull }
+      content_category_id:     { type: integer, foreignClass: ContentCategory, foreignReference: id, onDelete: setnull }
       collection_id:           { type: integer, foreignClass: Collection, foreignReference: id, onDelete: setnull }
       title:                   { type: varchar, size: 128, required: true, primaryString: true }
       catch_phrase:            { type: varchar, size: 128, required: true }
@@ -106,8 +134,7 @@ classes:
     columns:
       id:  ~
       collector_id:     { type: integer, foreignClass: Collector, foreignReference: id, required: true, onDelete: cascade }
-      country:          { type: char, size: 64 }
-      country_iso3166:  { type: char, size: 2 }
+      country_iso3166:  { type: char, size: 2, required: false, foreignTable: geo_country, foreignReference: iso3166 }
       state:            { type: varchar, size: 64 }
       county:           { type: varchar, size: 64 }
       city:             { type: varchar, size: 64 }
@@ -118,7 +145,8 @@ classes:
       timezone:         { type: varchar, size: 128 }
 
     propel_behaviors:
-      archivable: { archive_class: CollectorGeocacheArchive, log_archived_at: false }
+      archivable:  { archive_class: CollectorGeocacheArchive, log_archived_at: false }
+      symfony:     { form: false, filter: false }
 
   CollectorFriend:
     columns:
@@ -143,6 +171,7 @@ classes:
       id:  ~
       graph_id:                { type: integer, required: false, index: unique }
       collection_category_id:  { type: integer, foreignClass: CollectionCategory, foreignReference: id, onDelete: setnull }
+      content_category_id:     { type: integer, foreignClass: ContentCategory, foreignReference: id, onDelete: setnull, required: false }
       name:                    { type: varchar, size: 255, required: true, primaryString: true }
       slug:                    { type: varchar, size: 128 }
       description:             { type: longvarchar, required: true }
@@ -169,6 +198,17 @@ classes:
       name:       { type: varchar, size: 64, required: true, primaryString: true }
       slug:       { type: varchar, size: 64 }
       score:      { type: integer, default: 0 }
+
+  ContentCategory:
+    columns:
+      id: ~
+      collection_category_id: { type: integer, required: false, foreignClass: CollectionCategory, foreignReference: id, onDelete: setnull }
+      name:         { type: varchar, size: 64, required: true, primaryString: true }
+      slug:         { type: varchar, size: 64, required: true }
+      description:  { type: longvarchar, required: false }
+    propel_behaviors:
+      sluggable:  { slug_pattern: "{Name}", permanent: false }
+      nested_set: ~
 
   CollectionCollectible:
     isCrossRef: true
@@ -218,44 +258,6 @@ classes:
 
     propel_behaviors:
       archivable: { archive_class: CollectibleArchive, archived_at_column: archived_at }
-      timestampable:  ~
-
-  ###
-  # NOTE: Make SURE to update also CollectibleForSaleArchive in archive.schema.yml
-  ##
-  CollectibleForSale:
-    columns:
-      id:  ~
-      collectible_id:       { type: integer, required: true, foreignClass: Collectible, foreignReference: id, onDelete: cascade }
-      price:                { type: float }
-      condition:            { type: char, sqlType: "ENUM('excellent','very good','good','fair','poor')", required: true }
-      is_price_negotiable:  { type: boolean, default: false }
-      is_shipping_free:     { type: boolean, default: false }
-      is_sold:              { type: boolean, default: false }
-      is_ready:             { type: boolean, default: false, description: 'Show in the market or no' }
-      quantity:             { type: integer, required: true, default: 1 }
-
-    uniques:
-      collectible_for_sale_item: [collectible_id]
-
-    propel_behaviors:
-      archivable: { archive_class: CollectibleForSaleArchive, archived_at_column: archived_at }
-      timestampable:  ~
-
-  ###
-  # NOTE: Make SURE to update also CollectibleOfferArchive in archive.schema.yml
-  ##
-  CollectibleOffer:
-    columns:
-      id:  ~
-      collectible_id:           { type: integer, required: true, foreignClass: Collectible, foreignReference: id, onDelete: cascade }
-      collectible_for_sale_id:  { type: integer, required: true, foreignClass: CollectibleForSale, foreignReference: id, onDelete: cascade }
-      collector_id:             { type: integer, required: true, foreignClass: Collector, foreignReference: id }
-      price:                    { type: float }
-      status:                   { type: char, sqlType: "ENUM('pending','counter','rejected','accepted')", required: true }
-
-    propel_behaviors:
-      archivable: { archive_class: CollectibleOfferArchive, archived_at_column: archived_at }
       timestampable:  ~
 
   ###
@@ -488,55 +490,6 @@ classes:
       end_date:          { type: date }
       position:          { type: tinyint, default: 0 }
       is_active:         { type: boolean, default: true, required: true }
-
-  Package:
-    columns:
-      id:  ~
-      plan_type:            { type: char, sqlType: "ENUM('Casual','Power')", default: NULL, required: true }
-      package_name:         { type: varchar, size: 255, required: true }
-      package_description:  { type: longvarchar }
-      max_items_for_sale:   { type: integer }
-      package_price:        { type: float }
-
-    propel_behaviors:
-      timestampable:  ~
-
-  PackageTransaction:
-    columns:
-      id:  ~
-      package_id:          { type: integer, foreignClass: Package, foreignReference: id, required: true, onDelete: restrict }
-      collector_id:        { type: integer, foreignClass: Collector, foreignReference: id, required: true, onDelete: cascade }
-      payment_status:      { type: varchar, default: pending, size: 255 }
-      max_items_for_sale:  { type: integer }
-      package_price:       { type: float }
-      expiry_date:         { type: timestamp }
-      created_at:  ~
-
-  Promotion:
-    columns:
-      id:  ~
-      promotion_code:   { type: varchar, size: 255, required: true }
-      promotion_name:   { type: varchar, size: 255, required: true }
-      promotion_desc:   { type: longvarchar }
-      amount:           { type: float}
-      amount_type:      { type: char, sqlType: "ENUM('Fix','Percentage')", default: Fix, required: true }
-      no_of_time_used:  { type: integer }
-      expiry_date:      { type: timestamp }
-
-    uniques:
-      promotion_U_I: [promotion_code]
-
-    propel_behaviors:
-      timestampable:  ~
-
-  PromotionTransaction:
-    columns:
-      id:  ~
-      promotion_id:  { type: integer, foreignClass: Promotion, foreignReference: id, required: true, onDelete: restrict }
-      collector_id:  { type: integer, foreignClass: Collector, foreignReference: id, required: true, onDelete: cascade }
-      amount:        { type: float }
-      amount_type:   { type: varchar, default: pending, size: 255 }
-      created_at:  ~
 
   NewsletterSignup:
     columns:

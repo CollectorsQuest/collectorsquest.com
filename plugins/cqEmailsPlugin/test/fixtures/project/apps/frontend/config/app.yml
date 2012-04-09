@@ -1,0 +1,11 @@
+all:
+  cqEmails:
+    Test:
+      test: test
+    defaults:
+      some_default_field: some default val
+    Collector:
+      successful_registration:
+        subject: "Welcome to collectorsquest!"
+        template_path: collector/successful_registration.html.twig ## not-required, can be computed from name
+        required_params: ['collector']

@@ -1,0 +1,10 @@
+default:
+  enabled:     true
+  with_layout: false
+  lifetime:    3600
+
+_widgetFacebookRecommendations:
+  lifetime:    604800
+
+_widgetFacebookLikeBox:
+  lifetime:    604800

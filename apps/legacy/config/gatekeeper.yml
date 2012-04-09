@@ -1,11 +1,13 @@
 all:
+  pages: ~
   features:
     dropbox: false
-
-  pages:
+    shopping_cart: false
+    shipping_rates: false
 
 dev:
+  pages: ~
   features:
     dropbox: true
-
-  pages:
+    shopping_cart: false
+    shipping_rates: false

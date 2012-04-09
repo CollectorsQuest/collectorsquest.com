@@ -60,16 +60,20 @@ class CollectionDropbox extends CollectorCollection
 
   /**
    * @param  string  $type Can be 'html' or 'markdown'
+   * @param  integer $limit
+   *
    * @return string
    */
-  public function getDescription($type = 'html')
+  public function getDescription($type = 'html', $limit = 0)
   {
-    return trim('
+    $description = trim('
       This is your Dropbox! You can upload your collectible images here
       before you decide which collection best fits them.
       You will be able to manage collectible in your Dropbox just like any other
       collectible in your other collections.'
     );
+
+    return ($limit > 0) ? cqStatic::truncateText($description, $limit, true, '...') : $description;
   }
 
   public function getTagString()

@@ -78,7 +78,7 @@ class Collection extends BaseCollection
       /** @var $sf_context sfContext */
       $sf_context = sfContext::getInstance();
 
-      /** @var $sf_user cqUser */
+      /** @var $sf_user cqBaseUser */
       $sf_user = $sf_context->getUser();
 
       if ($sf_context && $sf_user->isAuthenticated())
@@ -145,8 +145,9 @@ class Collection extends BaseCollection
     if ($multimedia = MultimediaPeer::createMultimediaFromFile($this, $file))
     {
       $multimedia->setIsPrimary(true);
-      $multimedia->makeThumb('150x150', 'shave');
       $multimedia->makeThumb('50x50', 'shave');
+      $multimedia->makeThumb('150x150', 'shave');
+      $multimedia->makeThumb('190x150', 'shave', false);
       $multimedia->save();
 
       return $multimedia;
@@ -184,6 +185,21 @@ class Collection extends BaseCollection
     }
 
     return $id;
+  }
+
+  /**
+   * Return the shipping rates for this collector, grouped by country
+   *
+   * @param     PropelPDO $con
+   * @return    array
+   *
+   * @see       ShippingRateCollectorQuery::findAndGroupByCountryCode()
+   */
+  public function getShippingRatesByCountry(PropelPDO $con = null)
+  {
+    return ShippingRateCollectibleQuery::create()
+      ->filterByCollectible($this)
+      ->findAndGroupByCountryCode($con);
   }
 
   /**

@@ -2,18 +2,27 @@
 
 date_default_timezone_set('America/New_York');
 
-$parts = explode('.collectorsquest.', $_SERVER['SERVER_NAME']);
-
-list($app, $env) = $parts;
-if ('new' == $env || 'com' == $env)
+if (!empty($_SERVER['SF_APP']) && !empty($_SERVER['SF_ENV']))
 {
-  $env = 'prod';
+  $app = $_SERVER['SF_APP'];
+  $env = $_SERVER['SF_ENV'];
+}
+else
+{
+  $parts = explode('.collectorsquest.', $_SERVER['SERVER_NAME']);
+
+  list($app, $env) = $parts;
+  if ('new' == $env || 'com' == $env)
+  {
+    $env = 'prod';
+  }
 }
 
 @list(, $type, $size, $filename) = explode('/', $_SERVER['REQUEST_URI']);
 if (in_array($type, array('image', 'video')))
 {
-  include_once('/www/libs/symfony-1.4.x/lib/yaml/sfYaml.php');
+  // Include sfYaml from Symfony
+  include_once __DIR__ .'/../lib/vendor/symfony/lib/yaml/sfYaml.php';
 
   $databases = sfYaml::load(__DIR__.'/../config/databases.yml');
 
