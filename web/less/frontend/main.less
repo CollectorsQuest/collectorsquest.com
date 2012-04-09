@@ -12,10 +12,10 @@ body {
 	background: #ecebec url("@{baseUrl}/background-pattern.png") repeat;
 }
 
-//SELECTION STYLE
-::selection {background: #D9EBF5;}
-::-moz-selection {background: #D9EBF5;}
-::-webkit-selection {background: #D9EBF5;}
+// SELECTION STYLE
+::selection { background: #D9EBF5; }
+::-moz-selection { background: #D9EBF5; }
+::-webkit-selection { background: #D9EBF5; }
 
 // WRAPPER, COLUMNS
 #main {
@@ -28,6 +28,7 @@ body {
 }
 #sidebar {
 	overflow: hidden;
+  margin-top: 10px;
 }
 .fixed-right-300 {
 	padding-right: 330px;
@@ -87,21 +88,41 @@ h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover {
 }
 .section-title {
 	border-bottom: 1px dashed #E98C7A;
-	padding-bottom: 7px;
 	margin-top: 35px;
 	margin-bottom: 15px;
-	.custom-font(20px, 20px, italic, normal);
-	color: @red;
+
+  h2 {
+    .custom-font(20px, 20px, italic, normal);
+    color: @red;
+  }
+
+  .span3 {
+    text-align: right;
+    padding-top: 5px;
+  }
 }
+
+.sidebar-title {
+  border-bottom: 1px dashed #E98C7A;
+  margin-top: 35px;
+  margin-bottom: 15px;
+
+  h3 {
+    .custom-font(20px, 20px, italic, normal);
+    color: @red;
+  }
+
+  .span4 {
+    padding-top: 5px;
+    text-align: right;
+  }
+}
+
 .red-dashes-sidebar {
 	border-bottom: 1px dashed #E98C7A;
 	padding-bottom: 0px;
 	margin-top: 10px;
 	margin-bottom: 8px;
-}
-.sidebar-title {
-	.custom-font(20px, 20px, italic, normal);
-	color: @red;
 }
 
 //vertically-center-text
@@ -563,19 +584,19 @@ a.bold-links {
 	color: white;
 	#gradient > .vertical(#c90000,#b20000);
 	margin-bottom: 0;
-	padding-left: 20px;
+	padding-left: 15px;
 }
-.page-header {
-	.custom-font(20px, 20px, normal, bold);
-	text-transform: uppercase;
-	color: white;
+.page-title {
 	#gradient > .vertical(#c90000,#b20000);
 	margin-bottom: 0;
-	margin-top: 0;
-	padding: 10px 0 10px 20px;
+	margin-top: 10px;
+	padding: 10px 0 10px 15px;
 
   h1 {
-	font-size: 20px;
+    .custom-font(20px, 20px, normal, bold);
+    text-transform: uppercase;
+    color: white;
+	  font-size: 20px;
 	}
 }
 
@@ -610,6 +631,9 @@ a.bold-links {
 .clip-inner {
 	.size(90px,120px);
 	position: relative;
+}
+.clip-inner img {
+	float: left;
 }
 .sidebar-video-play-button {
 	position: absolute;
@@ -707,6 +731,104 @@ a.bold-links {
 	bottom: -5px;
 	top: auto;
 }
+
+// CAROUSEL
+#carousel-holder {
+	position: relative;
+}
+.carousel_next {
+	position: absolute;
+	display: block;
+	top: 45%;
+	right: 30px;
+	border: none;
+}
+.button_carousel_next {
+	display: block;
+}
+.carousel_previous {
+	position: absolute;
+	display: block;
+	top: 45%;
+	left: 25px;
+	border: none;
+}
+.button_carousel_previous {
+	display: block;
+}
+.button_carousel_previous:focus, .button_carousel_next:focus {
+	outline: none;
+}
+//.roundabout-in-focus { cursor: auto; }
+
+#sample-roundabout {
+	.size(360px, 670px);
+	list-style: none;
+	margin: 0 auto;
+	padding: 0;
+	opacity: 0;
+}
+#sample-roundabout li {
+//	width: 74.5%;
+	.size(309px, 520px);
+	background-color: transparent;
+	.box-shadow(0 0px 9px rgba(59, 45, 44, 1));
+	.border-radius(7px);
+	cursor: pointer;
+}
+#sample-roundabout li.roundabout-in-focus {
+	cursor: auto;
+}
+#sample-roundabout li .wrapper {
+	padding: 0;
+	background-color: transparent;
+}
+#sample-roundabout li .wrapper img {
+	width: 100%;
+	.border-radius(7px);
+}
+.carousel-in-focus-title-container {
+	position: absolute;
+	z-index: 100;
+	bottom: 8%;
+	width: 100%;
+	display: block;
+	#translucent > .background(#fff, 0.8);
+}
+.carousel-in-focus-title {
+	margin: 3% 4%;
+}
+li.roundabout-moveable-item .carousel-in-focus-title-container {
+	visibility: hidden;
+}
+li.roundabout-in-focus .carousel-in-focus-title-container {
+	visibility: visible;
+}
+
+#carousel-holder .carousel-in-focus-title h2 {
+	font-size: 1.75em;
+	line-height: 1.1;
+	margin-bottom: 0;
+	padding-bottom: 8px;
+	text-align: left;
+	font-family: 'Chivo', cursive;
+	color: #125375;
+}
+#carousel-holder .carousel-in-focus-title h3 {
+	font-size: 1.5em;
+	line-height: 1.1;
+	padding-top: 0;
+	margin-top: 0;
+	text-align: center;
+	color: #fff !important;
+}
+#carousel-holder .carousel-in-focus-title p {
+	font-size: 1em;
+	text-align: left;
+	width: auto;
+	margin: 0;
+}
+
 
 
 

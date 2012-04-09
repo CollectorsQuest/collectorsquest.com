@@ -10,7 +10,6 @@
  */
 ?>
 		<div class="wrap shadowbox">
-			<div id="icon-options-general" class="icon32"><br /></div>
 			<h2><?php _e( 'Shadowbox JS' , 'shadowbox-js' ); ?></h2>
 			<?php if ( has_filter ( 'shadowbox-js' ) ) : ?>
 			<div id="shadowbox-override" class="notice">
@@ -19,11 +18,6 @@
 						<?php _e( 'The URL for shadowbox.js has been overridden. Numerous options on this page will not display when the URL for shadowbox.js has been overriden as they will not have any effect.' ); ?>
 					</strong>
 				</p>
-			</div>
-			<?php endif; ?>
-			<?php if ( ! empty ( $this->options ) && ! has_filter( 'shadowbox-js' ) ) : ?>
-			<div class="metabox-holder">
-				<?php do_meta_boxes ( 'shadowbox-js' , 'normal' , '' ); ?>
 			</div>
 			<?php endif; ?>
 			<form action="options.php" method="post">

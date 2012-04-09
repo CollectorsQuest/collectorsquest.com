@@ -1,4 +1,4 @@
-<h1 class="Chivo red-title">Market</h1>
+<? cq_page_title('Market') ?>
 
 <br/>
 <div class="row-fluid" id="marketplace-spotlight" style="background: #FEF8E0; margin-left: 0; overflow: hidden;">
