@@ -1,6 +1,6 @@
 <?php cq_page_title('Collections'); ?>
 
-<div id="weeks-promo-box">
+<div class="weeks-promo-box">
   <div class="row-fluid">
     <div class="span8">
       <span class="weeks-promo-title">Camera week: Strike a pose</span>
