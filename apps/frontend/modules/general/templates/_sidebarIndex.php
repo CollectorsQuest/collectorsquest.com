@@ -1,17 +1,12 @@
-  <!-- banner -->
-  <p class="text-center">
-    <a href=""><img src="/images/frontend/mockups/Untitled-1.jpg" /></a>
-  </p><!-- /banner -->
+<p class="text-center">
+  <?= link_to(image_tag('banners/040812_showandsell_180.jpg'), '@collector_signup'); ?>
+</p>
 
-  <div class="sidebar-margin-left">
-  <h3 class="Chivo red-dashes-bottom blue-text">Discover</h3>
-  <ul class="unstyled sidebar-ul">
-    <li><a href="#">Flea Markets</a></li>
-    <li><a href="#">Sports Memorabilia</a></li>
-    <li>Items from Pawn Stars</li>
-    <li><a href="#">Latest News</a></li>
-  </ul>
-  <button type="submit" class="btn btn-micro blue-button">Contact us</button>
-  </div>
-
-
+<? cq_sidebar_title('Discover'); ?>
+<ul class="unstyled sidebar-ul">
+  <li><a href="#">Flea Markets</a></li>
+  <li><a href="#">Sports Memorabilia</a></li>
+  <li><a href="#">Items from Pawn Stars</a></li>
+  <li><a href="#">Latest News</a></li>
+</ul>
+<button type="submit" class="btn btn-micro blue-button">Contact us</button>
