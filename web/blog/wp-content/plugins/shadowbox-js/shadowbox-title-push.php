@@ -13,7 +13,7 @@
 Plugin Name:  Shadowbox JS - Use Title from Image
 Plugin URI:   http://sivel.net/wordpress/shadowbox-js/
 Description:  Push the title attribute from the img tag to the anchor tag
-Version:      3.0.3.10
+Version:      3.0.3.9
 Author:       Matt Martz
 Author URI:   http://sivel.net/
 Text Domain:  shadowbox-js
