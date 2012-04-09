@@ -1,1 +1,1 @@
-<h1 class="Chivo red-title">Latest News</h1>
+<? cq_page_title('Latest News'); ?>

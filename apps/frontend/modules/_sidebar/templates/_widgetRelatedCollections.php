@@ -1,4 +1,5 @@
-<h2><?= __('You May Also Like...'); ?></h2>
+<? cq_sidebar_title('You May Also Like...') ?>
+
 <?php foreach ($collections as $collection): ?>
   <div id="sidebar_collection_<?php echo  $collection->getId(); ?>" class="span-6 collection last">
     <div class="stack">
@@ -16,4 +17,3 @@
   </div>
   <br clear="all">
 <?php endforeach; ?>
-<br class="clear"><br>
