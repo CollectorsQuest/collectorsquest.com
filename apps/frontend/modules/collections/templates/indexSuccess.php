@@ -21,7 +21,7 @@
 <div class="collection-search-box">
   <div class="input-append">
     <div class="btn-group open">
-      <a href="#" class="btn gray-button">Sort By <strong>Collections</strong></a>
+      <div class="append-left-gray">Sort By <strong>Collections</strong></div>
       <a href="#" data-toggle="dropdown" class="btn gray-button dropdown-toggle"><span class="caret"></span></a>
       <ul class="dropdown-menu">
         <li><a href="#">Sort By <strong>Collectibles</strong></a></li>
@@ -48,4 +48,7 @@
     }
     ?>
   </div>
+</div>
+<div class="see-more-under-image-set">
+  <button class="btn btn-small gray-button see-more-full">See more</button>
 </div>

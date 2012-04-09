@@ -60,7 +60,7 @@
 
 //This Week's Promo
 .weeks-promo-box {
-	background-color: #fffaea;
+	background-color: @yelloHighlight;
 	padding: 15px;
 }
 .weeks-promo-title {
@@ -87,8 +87,18 @@
 }
 .collection-search-box .dropdown-menu a {
 	color: #887777;
+	&:hover {
+		background: @yelloHighlight;
+		color: #887777
+	}
 }
 .collection-search-box .dropdown-menu a strong {
 	color: @blue;
 	font-weight: normal;
 }
+.collection-search-box .input-append input {
+	.border-radius(0);
+}
+
+
+

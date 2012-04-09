@@ -1,10 +1,10 @@
 <?php /* @var $videos ContentFeed */ ?>
-<div class="row-fluid" style="border-bottom: 1px dotted red;">
+<div class="row-fluid red-dashes-sidebar top-padding-double">
   <div class="span9">
-    <h3 style="color: #125375; font-family: 'Chivo', sans-serif;">Member Videos</h3>
+    <span class="sidebar-title">Member Videos</span>
   </div>
-  <div class="span3" style="padding-top: 5px; text-align: right;">
-    <a href="<?php echo sfConfig::get('app_magnify_channel', 'collectors-quest.magnify.net') ?>">See all >></a>
+  <div class="span3 text-right">
+    <a href="<?php echo sfConfig::get('app_magnify_channel', 'collectors-quest.magnify.net') ?>">See all &raquo;</a>
   </div>
 </div>
 <br/>
