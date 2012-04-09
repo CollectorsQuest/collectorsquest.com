@@ -27,10 +27,10 @@ EAT
 function cq_sidebar_title($h3, $link = null, $options = array())
 {
   $content = sprintf(<<<EAT
-<div class="span8">
+<div class="span9">
   <h3 class="Chivo">%s</h3>
 </div>
-<div class="span4">%s&nbsp;</div>
+<div class="span3 text-right">%s&nbsp;</div>
 EAT
 , $h3, $link);
 
