@@ -64,8 +64,6 @@ class ShadowboxAdmin extends Shadowbox {
 		add_action ( 'wp_ajax_shadowboxjs' , array ( &$this , 'build_shadowbox' ) );
 		add_action ( 'wp_ajax_nopriv_shadowboxjs' , array ( &$this , 'build_shadowbox' ) );
 
-		add_action ( 'wp_ajax_getshadowboxsrc' , array ( &$this , 'ajax_get_src' ) );
-
 		// Load localizations if available
 		load_plugin_textdomain ( 'shadowbox-js' , false , 'shadowbox-js/localization' );
 
@@ -77,40 +75,6 @@ class ShadowboxAdmin extends Shadowbox {
 
 		// Activate the options page
 		add_action ( 'admin_menu' , array ( &$this , 'add_page' ) ) ;
-
-		add_filter ( 'explain_nonce_getshadowboxcreds' , 'nonce_oops' );
-		add_filter ( 'explain_nonce_getshadowboxsrc' , 'nonce_oops' );
-
-		if ( get_option ( 'shadowbox-js-missing-src' ) )
-			add_action ( 'admin_notices' , array ( &$this , 'missing_src_notice' ) );
-	}
-
-	/**
-	 * Callback function for explaining the failure of a nonce check specific to this plugin
-	 *
-	 * @return string
-	 * @since 3.0.3.10
-	 */
-	function nonce_oops () {
-		return __( "Oops, looks like you landed somewhere you shouldn't be." );
-	}
-
-	/**
-	 * Display an admin notice if the Shadowbox JS source files are missing
-	 *
-	 * @since 3.0.3.10
-	 */
-	function missing_src_notice () {
-		global $hook_suffix;
-		if ( $hook_suffix == $this->options_page_hookname )
-			return;
-
-		$url = menu_page_url ( 'shadowbox-js', false );
-		?>
-		<div class="error">
-			<p><?php _e( sprintf ( "<strong>The Shadowbox JS source files are missing</strong>. Please visit the <a href='%s'>Shadowbox JS Settings page</a> to resolve this issue." , $url ) , 'shadowbox-js' ); ?><p>
-		</div>
-		<?php
 	}
 
 	/**
@@ -137,31 +101,6 @@ class ShadowboxAdmin extends Shadowbox {
 			'advConfHide'	 => __( 'Hide Advanced Configuration' , 'shadowbox-js' ) ,
 			'messageConfirm' => __( 'Do you agree that you are not using FLV support for commercial purposes or have already purchased a license for JW FLV Media Player?' , 'shadowbox-js' )
 		) );
-	}
-
-	/**
-	 * Output JS to listen for button clicks to retrieve the source files.
-	 * This is only used when the user doesn't have to enter credentials for WP_Filesystem.
-	 *
-	 * @since 3.0.3.10
-	 */
-	function admin_footer_js () {
-		?>
-		<script type="text/javascript">
-		/* <![CDATA[ */
-			jQuery('#sbajaxgetsrc').click(function(e) {
-				e.preventDefault();
-				jQuery('#sbgetsrcinfo').load(
-					ajaxurl,
-					{
-						action: 'getshadowboxsrc',
-						_wpnonce: '<?php echo wp_create_nonce ( "getshadowboxsrc" ); ?>'
-					}
-				);
-			});
-		/* ]]> */
-		</script>
-		<?php
 	}
 
 	/**
@@ -416,9 +355,7 @@ class ShadowboxAdmin extends Shadowbox {
 		} else {
 			$this->check_upgrade ();
 		}
-		//$this->build_shadowbox ( true ); // Attempt to build and cache shadowbox.js
-		if ( ! $this->check_for_src_file () )
-			update_option ( 'shadowbox-js-missing-src', true );
+		$this->build_shadowbox ( true ); // Attempt to build and cache shadowbox.js
 	}
 
 	/**
@@ -456,50 +393,7 @@ class ShadowboxAdmin extends Shadowbox {
 	}
 
 	/**
-	 * Check to see whether the user must be prompted for connection details by WP_Filesystem
-	 *
-	 * @since 3.0.3.10
-	 * @return bool
-	 */
-	function can_modify_fs () {
-		ob_start();
-		if ( false !== ( $credentials = request_filesystem_credentials ( '' ) ) ) {
-			ob_end_clean ();
-			return true;
-		} else {
-			ob_end_clean ();
-			return false;
-		}
-	}
-
-	/**
-	 * Check to see if the Shadowbox source files exist and that they are the correct version.
-	 *
-	 * @return bool
-	 * @since 3.0.3.10
-	 */
-	function check_for_src_file () {
-		$uploads = wp_upload_dir ();
-		if ( empty( $uploads['error'] ) && ! empty( $uploads['basedir'] ) )
-			$basedir = $uploads['basedir'];
-		else
-			$basedir = WP_CONTENT_DIR . '/uploads';
-
-		$status = true;
-		if ( ! file_exists ( $basedir . '/shadowbox-js/src/intro.js' ) )
-			$status = false;
-
-		if ( version_compare ( trim ( @file_get_contents ( $basedir . '/shadowbox-js/src/VERSION' ) ) , $this->sbversion ) !== 0 )
-			$status = false;
-
-		if ( $status === false )
-			update_option ( 'shadowbox-js-missing-src', true );
-
-		return $status;
-	}
-
-	/**
-	 * Upgrade options
+	 * Upgrade options 
 	 *
 	 * @return none
 	 * @since 3.0.0.0
@@ -589,7 +483,7 @@ class ShadowboxAdmin extends Shadowbox {
 	 *
 	 * @since 3.0.3
 	 * @param $tofile Boolean write output to file instead of echoing
-	 * @return mixed false if the file could not be built and a string of the file location if successful
+	 * @return none
 	 */
 	function build_shadowbox ( $tofile = false ) {
 		// If the user is filtering the url for shadowbox.js just bail out here
@@ -597,64 +491,54 @@ class ShadowboxAdmin extends Shadowbox {
 			return;
 
 		$plugin_url = $this->plugin_url ();
-		//$plugin_dir = WP_PLUGIN_DIR . '/' . dirname ( $this->plugin_basename );
-
-		$uploads = wp_upload_dir ();
-		if ( empty( $uploads['error'] ) && ! empty( $uploads['basedir'] ) )
-			$basedir = $uploads['basedir'];
-		else
-			$basedir = WP_CONTENT_DIR . '/uploads';
-
-		$shadowbox_dir = "$basedir/shadowbox-js/";
-		$shadowbox_src_dir = "{$shadowbox_dir}src";
+		$plugin_dir = WP_PLUGIN_DIR . '/' . dirname ( $this->plugin_basename );
 
 		// Ouput correct content-type, and caching headers
 		if ( ! $tofile )
 			cache_javascript_headers();
 
-		$output = wp_cache_get ( $this->md5 () , 'shadowbox-js' );
+		$output = '';
 
-		if ( empty ( $output ) ) {
-
-			$output = '';
-
-			// Start build
-			foreach ( array ( 'intro' , 'core' , 'util' ) as $include ) {
-				// Replace S.path with the correct path, so we don't have to rely on autodetection which is broken with this method
-				if ( $include == 'core' )
-					$output .= str_replace ( 'S.path=null;' , "S.path='$plugin_url/shadowbox/';" , file_get_contents ( "$shadowbox_src_dir/$include.js" ) );
-				else
-					$output .= file_get_contents ( "$shadowbox_src_dir/$include.js" );
-			}
-
-			$library = $this->get_option ( 'library' );
-			$output .= file_get_contents ( "$shadowbox_src_dir/adapters/$library.js" );
-
-			foreach ( array ( 'load' , 'plugins' , 'cache' ) as $include )
-				$output .= file_get_contents ( "$shadowbox_src_dir/$include.js" );
-
-			if ( $this->get_option ( 'useSizzle' ) == 'true' && $this->get_option ( 'library' ) != 'jquery' )
-				$output .= file_get_contents ( "$shadowbox_src_dir/find.js" );
-
-			$players = (array) $this->get_option ( 'players' );
-			if ( in_array ( 'flv' , $players ) || in_array ( 'swf' , $players ) )
-				$output .= file_get_contents ( "$shadowbox_src_dir/flash.js" );
-
-			$language = $this->get_option ( 'language' );
-			$output .= file_get_contents ( "$shadowbox_src_dir/languages/$language.js" );
-
-			foreach ( $players as $player )
-				$output .= file_get_contents ( "$shadowbox_src_dir/players/$player.js" );
-
-			foreach ( array ( 'skin' , 'outro' ) as $include )
-				$output .= file_get_contents ( "$shadowbox_src_dir/$include.js" );
-
-			wp_cache_set ( $this->md5 () , 'shadowbox-js' );
-
+		// Start build
+		foreach ( array ( 'intro' , 'core' , 'util' ) as $include ) {
+			// Replace S.path with the correct path, so we don't have to rely on autodetection which is broken with this method
+			if ( $include == 'core' )
+				$output .= str_replace ( 'S.path=null;' , "S.path='$plugin_url/shadowbox/';" , file_get_contents ( "$plugin_dir/shadowbox/$include.js" ) );
+			else
+				$output .= file_get_contents ( "$plugin_dir/shadowbox/$include.js" );
 		}
+
+		$library = $this->get_option ( 'library' );
+		$output .= file_get_contents ( "$plugin_dir/shadowbox/adapters/$library.js" );
+
+		foreach ( array ( 'load' , 'plugins' , 'cache' ) as $include )
+			$output .= file_get_contents ( "$plugin_dir/shadowbox/$include.js" );
+
+		if ( $this->get_option ( 'useSizzle' ) == 'true' && $this->get_option ( 'library' ) != 'jquery' )
+			$output .= file_get_contents ( "$plugin_dir/shadowbox/find.js" );
+
+		$players = (array) $this->get_option ( 'players' );
+		if ( in_array ( 'flv' , $players ) || in_array ( 'swf' , $players ) )
+			$output .= file_get_contents ( "$plugin_dir/shadowbox/flash.js" );
+
+		$language = $this->get_option ( 'language' );
+		$output .= file_get_contents ( "$plugin_dir/shadowbox/languages/$language.js" );
+
+		foreach ( $players as $player )
+			$output .= file_get_contents ( "$plugin_dir/shadowbox/players/$player.js" );
+
+		foreach ( array ( 'skin' , 'outro' ) as $include )
+			$output .= file_get_contents ( "$plugin_dir/shadowbox/$include.js" );
 
 		// if we are supposed to write to a file then do so
 		if ( $tofile && $this->get_option ( 'useCache' ) == 'true' ) {
+			$uploads = wp_upload_dir ();
+			if ( empty( $uploads['error'] ) && ! empty( $uploads['basedir'] ) )
+				$basedir = $uploads['basedir'];
+			else
+				$basedir = WP_CONTENT_DIR . '/uploads';
+
+			$shadowbox_dir = "$basedir/shadowbox-js/";
 			$shadowbox_file = $shadowbox_dir . $this->md5 () . '.js';
 
 			if ( ! is_dir ( $shadowbox_dir ) && is_writable ( $basedir ) )
@@ -668,101 +552,9 @@ class ShadowboxAdmin extends Shadowbox {
 				if ( ( fileperms ( $shadowbox_dir ) & 0777 ) != $chmod )
 					@chmod ( $shadowbox_file , $chmod );
 			}
-
-			if ( ! file_exists ( $shadowbox_file ) )
-				return false;
-			else
-				return $shadowbox_file;
-
 		} else if ( ! $tofile ) { // otherwise just echo (backup call to admin-ajax.php for on the fly building)
 			die ( $output );
 		}
-	}
-
-	/**
-	 * AJAX provileged callback for retrieving the shadowbox source, hands off to ShadowboxAdmin::get_src()
-	 *
-	 * @since 3.0.3.10
-	 */
-	function ajax_get_src () {
-		if ( ! current_user_can ( 'update_plugins' ) || ! check_admin_referer ( 'getshadowboxsrc' ) )
-			die ( __( "Uh, Oh! You've been a bad boy!" , 'shadowbox-js' ) );
-
-		die ( $this->get_src () );
-	}
-
-	/**
-	 * This function will retrieve the shadowbox source via the HTTP API and move the files
-	 * into place using WP_Filesystem
-	 *
-	 * @param string credentials from request_filesystem_credentials()
-	 * @since 3.0.3.10
-	 */
-	function get_src ( $creds = '' ) {
-		global $wp_filesystem;
-
-		if ( empty ( $creds ) )
-			$creds = request_filesystem_credentials ( '' );
-
-		if ( ! WP_Filesystem ( $creds ) )
-			die ( '<p>' . __( 'Could not setup WP_Filesystem' ) . '</p>' );
-
-		echo "<p>" . __( sprintf ( "Downloading source package from <span class='code'>http://dl.sivel.net/wordpress/plugin/shadowbox-js-src.%s.zip</span>&#8230;", $this->sbversion ) , 'shadowbox-js' ) . "</p>";
-		$tempfname = download_url ( "http://dl.sivel.net/wordpress/plugin/shadowbox-js-src.{$this->sbversion}.zip" );
-
-		if ( is_wp_error ( $tempfname ) )
-			die ( "<p>" . __( sprintf ( "Could not download the file (%s)" , $tempfname->get_error_message () ) , 'shadowbox-js' ) . "</p>" );
-
-		if ( ! file_exists ( $tempfname ) )
-			die ( '<p>' . __( 'File downloaded but does not appear to exist, or is unreadable' , 'shadowbox-js' ) . '</p>' );
-
-		$dlmd5response = wp_remote_get ( "http://dl.sivel.net/wordpress/plugin/shadowbox-js-src.{$this->sbversion}.md5" );
-		if ( is_wp_error ( $dlmd5response ) || (int) wp_remote_retrieve_response_code ( $dlmd5response ) !== 200 ) {
-			echo "<p>" . __( sprintf ( "Failed to download the md5 checksum file. Continuing&#8230; (%s)" , $dlmd5response->get_error_message () ) , 'shadowbox-js' ) . "</p>";
-		} else {
-			if ( md5_file ( $tempfname ) != current ( explode ( '  ' , wp_remote_retrieve_body ( $dlmd5response ) ) ) )
-				die ( '<p>' . __( 'MD5 checksum failed. Exiting&#8230;' , 'shadowbox-js' ) . '</p>' );
-		}
-
-		$uploads = wp_upload_dir ();
-		if ( empty ( $uploads['error'] ) && ! empty ( $uploads['basedir'] ) )
-			$basedir = $uploads['basedir'];
-		else
-			$basedir = WP_CONTENT_DIR . '/uploads';
-
-		$basedir = trailingslashit ( untrailingslashit ( $wp_filesystem->find_folder ( dirname ( $basedir ) ) ) ) . basename ( $basedir );
-
-		$srcdir = $basedir . '/shadowbox-js/src';
-
-		$srcfiles = $wp_filesystem->dirlist ( $srcdir );
-		if ( ! empty ( $srcfiles ) ) {
-			echo '<p>' . __( 'Clearing out the current Shadowbox JS source directory&#8230;' , 'shadowbox-js' ) . '</p>';
-			foreach ( $srcfiles as $file )
-				$wp_filesystem->delete ( $srcdir . $file['name'] , true );
-		}
-
-		if ( $wp_filesystem->is_dir ( $srcdir ) ) {
-			echo '<p>' . __( 'Removing the current Shadowbox JS source directory&#8230;' , 'shadowbox-js' ) . '</p>';
-			$wp_filesystem->delete ( $srcdir , true );
-		}
-
-		echo "<p>" . __( sprintf ( "Unpacking the Shadowbox JS source files to <span class='code'>%s</span>&#8230;" , $srcdir ) , 'shadowbox-js' ) . "</p>";
-		$result = unzip_file ( $tempfname , dirname ( $srcdir ) );
-		unlink ( $tempfname );
-
-		if ( $result === true ) {
-			echo '<p>' . __( 'Successfully retrieved and extracted the <strong>Shadowbox JS</strong> source files' , 'shadowbox-js' ) . '</p>';
-			update_option ( 'shadowbox-js-missing-src' , false );
-		} else {
-			die ( "<p>" . __( sprintf ( "Failed to extract the <strong>Shadowbox JS</strong> source files (%s)" , $result->get_error_data () ) , 'shadowbox-js' ) . "</p>" );
-		}
-
-		echo '<p>' . __( 'Attempting to build and cache the compiled shadowbox.js...' , 'shadowbox-js' ) . '</p>';
-		$buildresult = $this->build_shadowbox ( true );
-		if ( $buildresult )
-			echo "<p>" . __( sprintf ( "Successfully built and cached the compiled shadowbox.js to <span class='code'>%s</span>" , $buildresult ) , 'shadowbox-js' ) . "</p>";
-		else
-			echo '<p>' . __( 'Failed to build and cache the compiled shadowbox.js. This is ok, the plugin should still be able to function' , 'shadowbox-js' ) . '</p>';
 	}
 
 	/**
@@ -773,44 +565,12 @@ class ShadowboxAdmin extends Shadowbox {
 	 */
 	function add_page () {
 		if ( current_user_can ( 'manage_options' ) ) {
-			$callback = 'admin_page';
-			if ( isset ( $_GET['sbgetsrc'] ) && (int) $_GET['sbgetsrc'] === 1 )
-				$callback = 'get_src_admin_page';
-
-			$this->options_page_hookname = add_options_page ( __( 'Shadowbox JS' , 'shadowbox-js' ) , __( 'Shadowbox JS' , 'shadowbox-js' ) , 'manage_options' , 'shadowbox-js' , array ( &$this , $callback ) );
+			$this->options_page_hookname = add_options_page ( __( 'Shadowbox JS' , 'shadowbox-js' ) , __( 'Shadowbox JS' , 'shadowbox-js' ) , 'manage_options' , 'shadowbox-js' , array ( &$this , 'admin_page' ) );
 			add_action ( "admin_print_scripts-{$this->options_page_hookname}" , array ( &$this , 'admin_js' ) );
 			add_action ( "admin_print_styles-{$this->options_page_hookname}" , array ( &$this , 'admin_css' ) );
 			add_filter ( "plugin_action_links_{$this->plugin_basename}" , array ( &$this , 'filter_plugin_actions' ) );
-
-			add_action ( "admin_footer-{$this->options_page_hookname}" , array ( &$this , 'admin_footer_js' ) );
-
-			if ( ! $this->check_for_src_file () )
-				add_meta_box ( 'sbgetsrcinfometabox' , __( 'Missing Shadowbox JS Source Files!' , 'shadowbox-js' ) , array ( &$this , 'srcinfo_meta_box' ) , 'shadowbox-js' , 'normal' , 'high' );
+			add_contextual_help($this->options_page_hookname, 'This is Shadowbox JS');
 		}
-	}
-
-	/**
-	 * Callback for the shadowbox-js meta box display, to inform the user that
-	 * the Shadowbox source files must be downloaded
-	 *
-	 * @since 3.0.3.10
-	 */
-	function srcinfo_meta_box () {
-		?>
-		<div id="sbgetsrcinfo">
-			<p><?php _e( '<strong>You are missing the Shadowbox source files. Do you wish to retrieve them? You will likely be unable to use this plugin until you do.</strong>', 'shadowbox-js' ); ?></p>
-			<p><?php _e( sprintf ( '<strong>NOTE:</strong> This action will cause this plugin to download the source from this plugin authors site.<br />
-			If you are concerned about this action "phoning home" you can download the source from<br />
-			<span class="code"><a href="http://dl.sivel.net/wordpress/plugin/shadowbox-js-src.%1$s.zip">http://dl.sivel.net/wordpress/plugin/shadowbox-js-src.%1$s.zip</a></span> and extract to <span class="code">wp-content/uploads/shadowbox-js/src</span>' , $this->sbversion ) , 'shadowbox-js' ); ?></p>
-			<p><?php _e( 'Shadowbox is licensed under the terms of the <a href="http://shadowbox-js.com/LICENSE" target="_blank">Shadowbox.js License</a>. This license grants personal, non-commercial users the right to use Shadowbox without paying a fee. It also provides an option for users who wish to use Shadowbox for commercial purposes. You are encouraged to review the terms of the license before using Shadowbox. If you would like to use Shadowbox for commercial purposes, you can purchase a license from <spann class="code"><a href="http://www.shadowbox-js.com/" target="_blank">http://www.shadowbox-js.com/</a></span>.' ); ?></p>
-			<p><?php _e( 'This plugin also makes use of the <a href="http://www.longtailvideo.com/players/jw-flv-player/" target="_blank">JW FLV Player</a>. JW FLV Player is licensed under the terms of the <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/" target="_blank">Creative Commons Attribution-Noncommercial-Share Alike 3.0 Unported License</a>. If you would like to use JW FLV Player for commercial purposes, you can purchase a license from <span class="code"><a href="https://www.longtailvideo.com/players/order2" target="_blank">https://www.longtailvideo.com/players/order2</a></span>.' ); ?></p>
-			<?php if ( $this->can_modify_fs () ) : ?>
-			<p><a class="button" id="sbajaxgetsrc" href="#"><?php _e( 'Get Shadowbox Source Files' , 'shadowbox-js' ); ?></a></p>
-			<?php else: ?>
-			<p><a class="button" href="<?php echo wp_nonce_url ( add_query_arg ( array ( 'sbgetsrc' => 1 ) , menu_page_url ( 'shadowbox-js' , false ) ) , 'getshadowboxsrc' ); ?>"><?php _e( 'Get Shadowbox Source Files' , 'shadowbox-js' ); ?></a></p>
-			<?php endif; ?>
-		</div>
-		<?php
 	}
 
 	/**
@@ -836,53 +596,5 @@ class ShadowboxAdmin extends Shadowbox {
 		if ( ! @include ( 'options-page.php' ) ) {
 			_e ( sprintf ( '<div id="message" class="updated fade"><p>The options page for the <strong>Shadowbox JS</strong> cannot be displayed.  The file <strong>%s</strong> is missing.  Please reinstall the plugin.</p></div>' , dirname ( __FILE__ ) . '/options-page.php' ) );
 		}
-	}
-
-	/**
-	 * Execute request_filesystem_credentials to get the connection credentials and verify them
-	 *
-	 * @return string
-	 * @since 3.0.3.10
-	 */
-	function request_fs_credentials () {
-		global $wp_filesystem;
-
-		check_admin_referer ( 'getshadowboxsrc' );
-
-		$url = wp_nonce_url ( add_query_arg ( array ( 'sbgetsrc' => 1 ) , menu_page_url ( 'shadowbox-js' , false ) ) , 'getshadowboxsrc' );
-		if ( false === ( $creds = request_filesystem_credentials ( $url , '' , false , false ) ) )
-			return true;
-
-		if ( ! WP_Filesystem ( $creds ) ) {
-			request_filesystem_credentials ( $url , '' , true , false );
-			return true;
-		}
-
-		return $creds;
-	}
-
-	/**
-	 * Admin "options" page callback to handle the retrieval of Shadowbox source when
-	 * filesystem connection credentials were required of the user
-	 *
-	 * @since 3.0.3.10
-	 */
-	function get_src_admin_page () {
-		if ( $this->request_fs_credentials () === true )
-			return;
-
-		check_admin_referer ( 'getshadowboxsrc' );
-		?>
-		<div class="wrap">
-			<div id="icon-options-general" class="icon32"><br /></div>
-			<h2><?php _e( 'Retrieving Shadowbox JS source package' , 'shadowbox-js' ); ?></h2>
-		<?php
-			$this->get_src ( $creds );
-
-			$url = menu_page_url ( 'shadowbox-js' , false );
-		?>
-			<p><a href='<?php echo $url; ?>'><?php _e( 'Return to the Shadowbox JS settings page' , 'shadowbox-js' ); ?></a></p>
-		</div>
-		<?php
 	}
 }
