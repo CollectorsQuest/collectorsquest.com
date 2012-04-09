@@ -229,6 +229,13 @@ messages_inbox:
   param:  { module: messages, action: inbox, filter: all }
   requirements: { filter: "^(?|all|read|unread)$" }
 
+messages_show:
+  url:    /messages/:id/show
+  class:  sfPropelORMRoute
+  param:  { module: messages, action: show }
+  options: { model: PrivateMessage, type: object }
+  requirements: { id: "\d+" }
+
 
 ### GENERAL
 

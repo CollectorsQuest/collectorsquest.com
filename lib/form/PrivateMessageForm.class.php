@@ -10,17 +10,24 @@
  */
 class PrivateMessageForm extends BasePrivateMessageForm
 {
+
   public function configure()
   {
-    $this->widgetSchema['id'] = new sfWidgetFormInputHidden();
     $this->widgetSchema['sender'] = new sfWidgetFormInputHidden();
-    $this->widgetSchema['receiver'] = new sfWidgetFormPropelSelectMany(array('model' => 'Collector'));
-    $this->widgetSchema->setNameFormat('message[%s]');
+    $this->widgetSchema['receiver'] = new sfWidgetFormPropelSelectMany(array(
+        'model' => 'Collector',
+    ));
 
-    $this->validatorSchema['receiver'] = new sfValidatorPropelChoice(
-      array('model' => 'Collector', 'multiple' => true, 'required' => true)
-    );
+    $this->validatorSchema['receiver'] = new sfValidatorPropelChoice(array(
+        'model' => 'Collector',
+        'multiple' => true,
+        'required' => true
+    ));
+
     $this->validatorSchema->setOption('allow_extra_fields', true);
     $this->validatorSchema->setOption('filter_extra_fields', true);
+
+    $this->widgetSchema->setNameFormat('message[%s]');
   }
+
 }

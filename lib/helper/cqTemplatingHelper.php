@@ -7,6 +7,7 @@
  * cq_time_ago_in_words_or_exact_date(strtotime('2012-03-09 09:00:00'), '-7 days')
  * Will return one of the two, if the cutoff date has passed:
  *  - two days, seven hours ago
+ *  - Apr 7, 2012, 3:45 PM
  *
  * @param     integer $from_time The date from which either the time in words will
  *                               be derived, or which will simply be formatted and
@@ -25,7 +26,7 @@
 function time_ago_in_words_or_exact_date(
   $from_time,
   $cutoff_date = '-7 days',
-  $datetime_format = 'On MMM d, yyyy, h:mm:s a',
+  $datetime_format = 'On MMM d, yyyy, h:mm a',
   $now = null
 ) {
   if (null === $now)
