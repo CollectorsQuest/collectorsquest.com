@@ -35,4 +35,34 @@ class CollectionCollectible extends BaseCollectionCollectible
 
     parent::save($con);
   }
+
+  public function getCollector(PropelPDO $con = null)
+  {
+    return $this->getCollectible($con)->getCollector($con);
+  }
+
+  public function getId()
+  {
+    return $this->getCollectibleId();
+  }
+
+  public function setId($v)
+  {
+    $this->setCollectibleId($v);
+  }
+
+  public function getName()
+  {
+    return $this->getCollectible()->getName();
+  }
+
+  public function getSlug()
+  {
+    return $this->getCollectible()->getSlug();
+  }
+
+  public function getIsNameAutomatic()
+  {
+    return $this->getCollectible()->getIsNameAutomatic();
+  }
 }

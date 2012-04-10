@@ -1,5 +1,6 @@
 <?php cq_page_title('Collections'); ?>
 
+<br/>
 <div id="weeks-promo-box">
   <div class="row-fluid">
     <div class="span8">

@@ -1,4 +1,5 @@
-<h2>About Checkout</h2>
+<? cq_sidebar_title('About Checkout', null, array('style' => 'margin-top: 0;')); ?>
+
 <div style="padding: 10px;">
   On CollectorsQuest.com, you buy from one seller at a time.
   <br/><br/>

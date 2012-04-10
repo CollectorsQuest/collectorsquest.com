@@ -103,7 +103,7 @@ function image_tag_collection($collection, $which = '150x150', $options = array(
  *
  * @see image_tag_multimedia()
  *
- * @param  Collectible  $collectible
+ * @param  Collectible|CollectionCollectible  $collectible
  * @param  string       $which
  * @param  array        $options
  *
@@ -112,6 +112,11 @@ function image_tag_collection($collection, $which = '150x150', $options = array(
 function image_tag_collectible($collectible, $which = '150x150', $options = array())
 {
   $default = sfConfig::get('sf_app') . '/multimedia/Collectible/'. $which .'.png';
+
+  if ($collectible instanceof CollectionCollectible)
+  {
+    $collectible = $collectible->getCollectible();
+  }
 
   if (!$collectible instanceof Collectible)
   {

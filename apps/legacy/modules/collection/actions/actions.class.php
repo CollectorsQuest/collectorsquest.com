@@ -59,7 +59,14 @@ class collectionActions extends cqActions
 
     $per_page = sfConfig::get('app_pager_list_collectibles_max', 16);
 
-    $pager = new cqPropelPager('Collectible', $per_page);
+    if ($collection instanceof CollectionDropbox)
+    {
+      $pager = new cqPropelPager('Collectible', $per_page);
+    }
+    else
+    {
+      $pager = new cqPropelPager('CollectionCollectible', $per_page);
+    }
     $pager->setCriteria($c);
     $pager->setPage($this->getRequestParameter('page', 1));
     $pager->init();
@@ -143,11 +150,16 @@ class collectionActions extends cqActions
 
   public function executeCollectible()
   {
-    /** @var $collectible Collectible */
+    /** @var $collectible Collectible|CollectionCollectible */
     $collectible = $this->getRoute()->getObject();
 
     /** @var $collection Collection */
     $collection = $collectible->getCollection();
+
+    if ($collectible instanceof CollectionCollectible)
+    {
+      $collectible = $collectible->getCollectible();
+    }
 
     /** @var $collector Collector */
     $collector = $collectible->getCollector();
@@ -170,26 +182,32 @@ class collectionActions extends cqActions
 
     if (array_search($collectible->getId(), $collectible_ids) - 1 < 0)
     {
-      $this->previous = CollectiblePeer::retrieveByPk(
-        $collectible_ids[count($collectible_ids) - 1]
-      );
+      $q = CollectionCollectibleQuery::create()
+         ->filterByCollection($collection)
+         ->filterByCollectibleId($collectible_ids[count($collectible_ids) - 1]);
+      $this->previous = $q->findOne();
     }
     else
     {
-      $this->previous = CollectiblePeer::retrieveByPk(
-        $collectible_ids[array_search($collectible->getId(), $collectible_ids) - 1]
-      );
+      $q = CollectionCollectibleQuery::create()
+         ->filterByCollection($collection)
+         ->filterByCollectibleId($collectible_ids[array_search($collectible->getId(), $collectible_ids) - 1]);
+      $this->previous = $q->findOne();
     }
 
     if (array_search($collectible->getId(), $collectible_ids) + 1 >= count($collectible_ids))
     {
-      $this->next = CollectiblePeer::retrieveByPk($collectible_ids[0]);
+      $q = CollectionCollectibleQuery::create()
+         ->filterByCollection($collection)
+         ->filterByCollectibleId($collectible_ids[0]);
+      $this->next = $q->findOne();
     }
     else
     {
-      $this->next = CollectiblePeer::retrieveByPk(
-        $collectible_ids[array_search($collectible->getId(), $collectible_ids) + 1]
-      );
+      $q = CollectionCollectibleQuery::create()
+         ->filterByCollection($collection)
+         ->filterByCollectibleId($collectible_ids[array_search($collectible->getId(), $collectible_ids) + 1]);
+      $this->next = $q->findOne();
     }
 
     $this->collector = $collector;
