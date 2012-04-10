@@ -8,7 +8,7 @@ cqTest::resetTables(array(
 ));
 cqTest::loadFixtures('01_test_collectors/');
 
-$t = new lime_test(null, new lime_output_color());
+$t = new lime_test(7, new lime_output_color());
 $t->diag('Testing /lib/validator/cqValidatorCollectorByName.class.php');
 
 $ivan_tanev_id = CollectorQuery::create()
@@ -53,4 +53,24 @@ foreach ($tests as $test)
   {
     $t->is($return, $expected_return,  '::clean() ' . $message);
   }
+}
+
+
+$v = new cqValidatorCollectorByName(array(
+    'return_object' => true,
+));
+
+$t->isa_ok($v->doClean('ivan.tanev'), 'Collector',
+  '::clean() The validator can return the actual Collector object');
+
+
+$v = new cqValidatorCollectorByName(array(
+    'invalid_ids' => array($ivan_tanev_id),
+));
+
+try {
+  $v->clean('ivan.tanev');
+  $t->fail('cqValidatorCollectorByName returns error on disallowed IDs');
+} catch (sfValidatorError $e) {
+  $t->pass('cqValidatorCollectorByName returns error on disallowed IDs');
 }
