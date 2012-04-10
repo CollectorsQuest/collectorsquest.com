@@ -499,7 +499,6 @@ class manageActions extends cqActions
           foreach ($form->getValues() as $value)
           {
             $collectible = CollectiblePeer::retrieveByPK($value['id']);
-            $collectible->setCollectionId($value['collection_id']);
             $collectible->setName($value['name']);
             $collectible->setDescription($value['description'], 'html');
             $collectible->setTags(is_array($value['tags']) ? implode(', ', $value['tags']) : $value['tags']);
@@ -549,6 +548,8 @@ class manageActions extends cqActions
         }
         catch (PropelException $e)
         {
+          dd($e->getMessage());
+
           // currently just skip the errors //Errors should never be skipped
           // throw $e;
         }
