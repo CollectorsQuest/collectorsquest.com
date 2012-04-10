@@ -4,7 +4,10 @@
  */
 ?>
 
-<?= cq_page_title($collectible, 'by '. link_to_collector($collectible->getCollector(), 'text')); ?>
+<h1>
+  <?= $collectible->getName(); ?>
+  <small>by <?= link_to_collector($collectible->getCollector(), 'text'); ?></small>
+</h1>
 
 <!--
   Test with alternate images: http://www.collectorsquest.next/collectible/3515/rkw-teacup
