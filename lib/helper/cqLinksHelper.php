@@ -164,7 +164,14 @@ function route_for_collection(Collection $collection = null)
   return $route;
 }
 
-function link_to_collectible(Collectible $collectible, $type = 'text', $options = array())
+/**
+ * @param  Collectible|CollectionCollectible  $collectible
+ * @param  string  $type
+ * @param  array  $options
+ *
+ * @return string
+ */
+function link_to_collectible($collectible, $type = 'text', $options = array())
 {
   $options = array_merge(
     array(
@@ -199,18 +206,43 @@ function link_to_collectible(Collectible $collectible, $type = 'text', $options 
   return $link;
 }
 
-function url_for_collectible(Collectible $collectible = null, $absolute = false)
+/**
+ * @param  null|Collectible|CollectionCollectible  $collectible
+ * @param  boolean  $absolute
+ *
+ * @return null|string
+ */
+function url_for_collectible($collectible = null, $absolute = false)
 {
   return ($collectible) ?
       url_for(route_for_collectible($collectible), $absolute) :
       null;
 }
 
-function route_for_collectible(Collectible $collectible = null)
+/**
+ * @param  Collectible|CollectionCollectible  $collectible
+ * @return null|string
+ */
+function route_for_collectible($collectible = null)
 {
-  return ($collectible) ?
-      '@collectible_by_slug?id='. $collectible->getId() .'&slug='. $collectible->getSlug() :
-      null;
+  if ($collectible instanceof CollectionCollectible)
+  {
+    $collection_id = $collectible->getCollectionId();
+
+    $id = $collectible->getCollectibleId();
+    $slug = $collectible->getSlug() .'-'. $collection_id;
+  }
+  else if ($collectible instanceof Collectible)
+  {
+    $id = $collectible->getId();
+    $slug = $collectible->getSlug();
+  }
+  else
+  {
+    return null;
+  }
+
+  return '@collectible_by_slug?id='. $id .'&slug='. $slug;
 }
 
 function link_to_video(Video $video, $type = 'text', $options = array())

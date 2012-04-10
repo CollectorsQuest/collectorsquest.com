@@ -4,9 +4,24 @@ require 'lib/model/om/BaseCollectiblePeer.php';
 
 class CollectiblePeer extends BaseCollectiblePeer
 {
+  /**
+   * @static
+   * @param  array  $parameters
+   *
+   * @return Collectible|CollectionCollectible
+   */
   public static function getObjectForRoute($parameters)
   {
     $parameters['id'] = str_replace(array('.html', '.htm'), '', $parameters['id']);
+
+    if (preg_match('/-(\d+)$/i', $parameters['slug'], $m))
+    {
+      $q = CollectionCollectibleQuery::create()
+         ->filterByCollectibleId($parameters['id'])
+         ->filterByCollectionId((int) $m[1]);
+
+      return $q->findOne();
+    }
 
     return self::retrieveByPk($parameters['id']);
   }

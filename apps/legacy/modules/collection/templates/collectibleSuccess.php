@@ -20,20 +20,20 @@ if ($collectible_for_sale)
 <div class="span-11" style="margin: 10px 10px 10px 15px; padding: 5px; background: #F5F8DD; text-align: center;">
   <div id="fancybox-outer">
     <?php
-    echo link_to(
-      image_tag_collectible($collectible, '420x1000', array('max_width' => 420, 'class' => 'magnify', 'style' => 'margin-top: 5px;')), src_tag_collectible($collectible, '1024x768'), array('id' => 'collectible_multimedia_primary')
-    );
+      echo link_to(
+        image_tag_collectible($collectible, '420x1000', array('max_width' => 420, 'class' => 'magnify', 'style' => 'margin-top: 5px;')), src_tag_collectible($collectible, '1024x768'), array('id' => 'collectible_multimedia_primary')
+      );
     ?>
     <?php if ($previous): ?>
       <a id="fancybox-left"
-         href="<?php echo url_for(sprintf('@collectible_by_slug?id=%d&slug=%s', $previous->getId(), $previous->getSlug())); ?>"
+         href="<?= url_for_collectible($previous); ?>"
          style="display: inline;"><span id="fancybox-left-ico" class="fancy-ico"></span></a>
-       <?php endif; ?>
-       <?php if ($next): ?>
+    <?php endif; ?>
+    <?php if ($next): ?>
       <a id="fancybox-right"
-         href="<?php echo url_for(sprintf('@collectible_by_slug?id=%d&slug=%s', $next->getId(), $next->getSlug())); ?>"
+         href="<?= url_for_collectible($next); ?>"
          style="display: inline;"><span id="fancybox-right-ico" class="fancy-ico"></span></a>
-       <?php endif; ?>
+    <?php endif; ?>
   </div>
 
   <?php if (!empty($additional_multimedia)): ?>
@@ -58,7 +58,7 @@ if ($collectible_for_sale)
       <?php
       foreach (array($previous, $next) as $c)
       {
-        if (!$c instanceof Collectible)
+        if (!$c instanceof CollectionCollectible)
           continue;
 
         echo '<li style="margin: 0 0px;">';
