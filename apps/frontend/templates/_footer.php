@@ -27,7 +27,16 @@
             <?= $signup_form->renderUsing('BootstrapWithRowFluid'); ?>
             <div class="row-fluid row-spacing">
               <div class="span9 top-padding-10">
-                <?php include_partial('global/footer_signup_external_buttons'); ?>
+                Sign up using&nbsp;
+                <a href="#" rel="tooltip" title="Sign up using facebook" class="s-16-icon-facebook">
+                  <i class="hide-text">Sign up using facebook</i>
+                </a>
+                <a href="#" title="Sign up using twitter" class="s-16-icon-twitter">
+                  <i class="hide-text">Sign up using twitter</i>
+                </a>
+                <a href="#" title="Sign up using google" class="s-16-icon-google">
+                  <i class="hide-text">Sign up using google</i>
+                </a>
               </div>
               <div class="span3">
                 <button type="submit" class="btn btn-primary blue-button pull-right">Submit</button>
