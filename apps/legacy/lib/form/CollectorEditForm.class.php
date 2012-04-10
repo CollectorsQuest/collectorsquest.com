@@ -9,18 +9,28 @@ class CollectorEditForm extends BaseFormPropel
   public function setup()
   {
     $this->setWidgets(array(
-      'photo' => new sfWidgetFormInputFile(),
-      'display_name' => new sfWidgetFormInputText(),
-      'email' => new sfWidgetFormInputText(),
-      'password' => new sfWidgetFormInputPassword(),
+      'photo'          => new sfWidgetFormInputFile(),
+      'display_name'   => new sfWidgetFormInputText(),
+      'email'          => new sfWidgetFormInputText(),
+      'password'       => new sfWidgetFormInputPassword(),
       'password_again' => new sfWidgetFormInputPassword()
     ));
 
     $this->setValidators(array(
-      'photo' => new sfValidatorFile(array('required' => false, 'mime_categories' => 'web_images')),
-      'display_name' => new sfValidatorString(array('max_length' => 50, 'required' => true)),
-      'email' => new sfValidatorEmail(array('required' => true)),
-      'password' => new sfValidatorString(array('min_length' => 6, 'max_length' => 50, 'required' => false)),
+      'photo'          => new sfValidatorFile(array(
+        'required'        => false,
+        'mime_categories' => 'web_images'
+      )),
+      'display_name'   => new sfValidatorString(array(
+        'max_length' => 50,
+        'required'   => true
+      )),
+      'email'          => new sfValidatorEmail(array('required' => true)),
+      'password'       => new sfValidatorString(array(
+        'min_length' => 6,
+        'max_length' => 50,
+        'required'   => false
+      )),
       'password_again' => new sfValidatorPass()
     ));
 
@@ -31,13 +41,12 @@ class CollectorEditForm extends BaseFormPropel
           array('throw_global_error' => true),
           array('invalid' => 'The two passwords do not match, please enter them again!')
         ),
-        new sfValidatorPropelUnique(array(
-          'model' => 'Collector',
-          'column' => 'email',
+        new sfValidatorCallback(array(
+          'callback'=> array($this, 'emailChange')
         ), array(
-          'invalid' => 'A collector with the same "%column%" already exists.'
-        ))
-      ))
+          'invalid' => 'A collector with the same "%column%" already exists.',
+        )),
+      ), array('halt_on_error'=> true))
     );
 
     $profile = new CollectorProfileEditForm($this->getObject()->getProfile());
@@ -63,7 +72,7 @@ class CollectorEditForm extends BaseFormPropel
   {
     /* @var $collector Collector */
     $collector = $this->getObject();
-    $oldEmail = $collector->getEmail();
+    $oldEmail  = $collector->getEmail();
 
     if ($newEmail != $oldEmail)
     {
@@ -106,6 +115,31 @@ class CollectorEditForm extends BaseFormPropel
     }
 
     return $newEmail;
+  }
+
+  public function emailChange($validator, $values)
+  {
+    $newEmail = $values['email'];
+    if ($newEmail == $this->getObject()->getEmail())
+    {
+      return $values;
+    }
+
+    if (empty($newEmail))
+    {
+      return null;
+    }
+
+    $collector = CollectorEmailQuery::create()
+        ->filterByIsVerified(true)
+        ->findOneByEmail($newEmail);
+
+    if ($collector)
+    {
+      throw new sfValidatorError($validator, 'invalid');
+    }
+
+    return $values;
   }
 
 }
