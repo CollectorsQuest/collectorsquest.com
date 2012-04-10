@@ -41,7 +41,6 @@ class collectionActions extends cqActions
     }
 
     $c = new Criteria();
-    $c->addJoin(CollectiblePeer::ID, CollectionCollectiblePeer::COLLECTIBLE_ID);
     $c->add(CollectiblePeer::COLLECTOR_ID, $collection->getCollectorId());
 
     if ($collection instanceof CollectionDropbox)
@@ -60,7 +59,14 @@ class collectionActions extends cqActions
 
     $per_page = sfConfig::get('app_pager_list_collectibles_max', 16);
 
-    $pager = new cqPropelPager('CollectionCollectible', $per_page);
+    if ($collection instanceof CollectionDropbox)
+    {
+      $pager = new cqPropelPager('Collectible', $per_page);
+    }
+    else
+    {
+      $pager = new cqPropelPager('CollectionCollectible', $per_page);
+    }
     $pager->setCriteria($c);
     $pager->setPage($this->getRequestParameter('page', 1));
     $pager->init();

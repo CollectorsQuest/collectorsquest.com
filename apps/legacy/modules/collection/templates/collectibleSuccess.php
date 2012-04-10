@@ -51,7 +51,7 @@ if ($collectible_for_sale)
 </div>
 
 <div class="span-8 last" style="padding-top: 10px; margin-right: -25px; margin-bottom: 15px;">
-  <a href="<?php echo url_for(sprintf('@collectible_by_slug?id=%d&slug=%s', $previous->getId(), $previous->getSlug())); ?>" class="prevPage browse left"></a>
+  <a href="<?= url_for_collectible($previous); ?>" class="prevPage browse left"></a>
   <div class="scrollable">
     <img src="/images/loading.gif" alt="loading..." class="loading" style="margin: 45px 0 0 90px;"/>
     <ul style="display: none;">
@@ -65,7 +65,7 @@ if ($collectible_for_sale)
         echo link_to_collectible(
           $c, 'image', array(
           'width' => 75, 'height' => 75,
-          'rel' => url_for('@collectible_by_slug?id=' . $c->getId() . '&slug=' . $c->getSlug())
+          'rel' => url_for_collectible($c)
           )
         );
         echo '</li>';
@@ -73,7 +73,7 @@ if ($collectible_for_sale)
       ?>
     </ul>
   </div>
-  <a href="<?php echo url_for(sprintf('@collectible_by_slug?id=%d&slug=%s', $next->getId(), $next->getSlug())); ?>" class="nextPage browse right"></a>
+  <a href="<?= url_for_collectible($next); ?>" class="nextPage browse right"></a>
 </div>
 
 
