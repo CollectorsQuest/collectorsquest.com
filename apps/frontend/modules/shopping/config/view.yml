@@ -12,9 +12,10 @@ checkoutPaypal:
 
 orderPaySuccess:
   components:
-    header: [global, headerStripped]
-    footer: []
-    slot1:  [shopping, slot1Checkout]
+    header:  [global, headerStripped]
+    footer:  []
+    sidebar_300: [shopping, sidebarCheckout]
+    slot1:   [shopping, slot1Checkout]
 
 paypalRedirect:
   has_layout:  false
