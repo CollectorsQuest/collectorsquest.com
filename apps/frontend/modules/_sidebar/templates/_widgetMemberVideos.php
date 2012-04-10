@@ -6,7 +6,7 @@
 ?>
 
 <?
-$link = '<a href="'. sfConfig::get('app_magnify_channel', 'collectors-quest.magnify.net') .'" class="text-v-middle">See all &raquo;</a>';
+$link = '<a href="'. sfConfig::get('app_magnify_channel', 'collectors-quest.magnify.net') .'" class="text-v-middle link-align">See all &raquo;</a>';
 cq_sidebar_title('Member Videos', $link);
 ?>
 

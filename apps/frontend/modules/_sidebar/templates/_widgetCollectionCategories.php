@@ -1,4 +1,4 @@
-<? cq_sidebar_title('Collections Directory', link_to('See all &raquo;', '@collections_categories', array('class' => 'text-v-middle'))); ?>
+<? cq_sidebar_title('Collections Directory', link_to('See all &raquo;', '@collections_categories', array('class' => 'text-v-middle link-align'))); ?>
 
 <ul class="twocolumn cf">
   <?php foreach ($categories as $i => $category): ?>

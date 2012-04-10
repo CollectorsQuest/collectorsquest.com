@@ -7,7 +7,7 @@
       <span class="weeks-promo-title">Camera week: Strike a pose</span>
     </div>
     <div class="span4 text-right">
-      <a href="#">See previous features &raquo;</a>
+      <a href="#" class="link-align">See previous features &raquo;</a>
     </div>
   </div>
   <div class="row imageset">
@@ -17,6 +17,9 @@
           <a href="#">
             <?= ice_image_tag_flickholdr('370x302', array('i' => 4)) ?>
           </a>
+          <span class="white-block">
+           <p>Say cheese! This week we're featuring collectors who love to point and shoot for interesting cameras. They're ready for their close-up!</p>
+          </span>
         </li>
         <li class="span3">
           <a href="#">
