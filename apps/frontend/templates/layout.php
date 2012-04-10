@@ -109,7 +109,10 @@
     echo '</div>';
   ?>
 
-  <? include_component_slot('footer'); ?>
+  <?php
+    include_component_slot('footer');
+    include_partial('global/footer_links');
+  ?>
 
   <?php
     $sf_cache_key  = (int) $sf_user->getId() .'_';

@@ -43,11 +43,11 @@ classes:
     columns:
       id:  ~
       collector_id:      { type: integer, required: false, foreignClass: Collector, foreignReference: id, onDelete: setnull }
-      session_id:        { type: varchar, size: 32, required: false }
+      cookie_uuid:       { type: varchar, size: 32, required: false }
 
     uniques:
       shopping_cart_U_1: [ collector_id ]
-      shopping_cart_U_2: [ collector_id, session_id ]
+      shopping_cart_U_2: [ collector_id, cookie_uuid ]
 
     propel_behaviors:
       timestampable:  ~
@@ -88,7 +88,7 @@ classes:
     columns:
       id:  ~
       shopping_order_id:   { type: integer, required: true, foreignClass: ShoppingOrder, foreignReference: id, onDelete: restrict }
-      session_id:          { type: varchar, size: 32, required: false }
+      cookie_uuid:         { type: varchar, size: 32, required: false }
       processor:           { type: enum, valueSet: "PayPal, Google, Amazon", default: PayPal, required: true }
       status:              { type: enum, valueSet: "initialized, inprogress, confirmed, cancelled, failed, completed", default: initialized, required: true }
       currency:            { type: char, size: 3, default: USD }

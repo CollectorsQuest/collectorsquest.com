@@ -179,7 +179,7 @@ class shoppingActions extends cqFrontendActions
       default:
 
         $shopping_payment = new ShoppingPayment();
-        $shopping_payment->setSessionId(session_id());
+        $shopping_payment->setCookieUuid($this->getUser()->getCookieUuid());
         $shopping_payment->setShoppingOrderId($shopping_order->getId());
         $shopping_payment->setProcessor(ShoppingPaymentPeer::PROCESSOR_PAYPAL);
         $shopping_payment->setStatus(ShoppingPaymentPeer::STATUS_INITIALIZED);

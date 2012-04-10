@@ -31,10 +31,23 @@ class cqFrontendUser extends cqBaseUser
   {
     $q = ShoppingCartQuery::create()
        ->filterByCollector($this->getCollector())
-       ->filterBySessionId($this->isAuthenticated() ? null : session_id());
+       ->filterByCookieUuid($this->isAuthenticated() ? null : $this->getCookieUuid());
 
-    $shopping_cart = $q->findOneOrCreate();
-    $shopping_cart->save();
+    if (!($shopping_cart = $q->findOne()) && $this->isAuthenticated())
+    {
+      if ($shopping_cart = ShoppingCartQuery::create()->findOneByCookieUuid($this->getCookieUuid()))
+      {
+        $shopping_cart->setCollector($this->getCollector());
+        $shopping_cart->setCookieUuid(null);
+        $shopping_cart->save();
+      }
+    }
+
+    if (!$shopping_cart)
+    {
+      $shopping_cart = $q->findOneOrCreate();
+      $shopping_cart->save();
+    }
 
     return $shopping_cart;
   }
@@ -59,12 +72,15 @@ class cqFrontendUser extends cqBaseUser
    */
   public function setUsernameCookie()
   {
+    /** @var $response sfWebResponse */
+    $response = sfContext::getInstance()->getResponse();
+
     if ($this->isAuthenticated())
     {
       // set username cookie
       $expiration_time = sfConfig::get('app_collector_username_cookie_expiration_age', 15 * 24 * 3600);
-      $username_cookie = sfConfig::get('app_collector_username_cookie_name', 'cqUsername');
-      sfContext::getInstance()->getResponse()->setCookie($username_cookie, $this->getCollector()->getUsername(), time() + $expiration_time);
+      $username_cookie = sfConfig::get('app_collector_username_cookie_name', 'cq_username');
+      $response->setCookie($username_cookie, $this->getCollector()->getUsername(), time() + $expiration_time);
 
       return true;
     }
