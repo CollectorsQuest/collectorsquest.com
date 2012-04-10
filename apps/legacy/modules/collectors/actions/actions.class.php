@@ -41,17 +41,11 @@ class collectorsActions extends cqActions
         case "most-popular":
           $this->addBreadcrumb($this->__('Most Popular'));
 
-          $c->useCollectionQuery()
+          $c->useCollectorCollectionQuery()
             ->filterByNumItems(10, Criteria::GREATER_EQUAL)
             ->endUse()
-            ->orderBy('Score', Criteria::DESC);
-          break;
-        case "online-now":
-          $this->addBreadcrumb($this->__('Online Now'));
-
-          $c->addDescendingOrderByColumn(CollectorPeer::LAST_SEEN_AT);
-          $c->add(SessionStoragePeer::SESSION_DATA, '%symfony/user/sfUser/authenticated|b:1%', Criteria::LIKE);
-          $c->addJoin(CollectorPeer::SESSION_ID, SessionStoragePeer::SESSION_ID, Criteria::LEFT_JOIN);
+            ->orderBy('Score', Criteria::DESC)
+            ->distinct();
           break;
         case "near-you":
           $this->addBreadcrumb($this->__('Near You'));
@@ -65,12 +59,6 @@ class collectorsActions extends cqActions
             $c->add(CollectorPeer::ID, $pks, Criteria::IN);
             $c->addAscendingOrderByColumn(sprintf('FIELD(%s, %s)', CollectorPeer::ID, implode(', ', $pks)));
           }
-          break;
-        case "friends":
-          $this->addBreadcrumb($this->__('Friends'));
-
-          $friend_uids = $this->getUser()->getFacebookFriends();
-          $c->add(CollectorPeer::FACEBOOK_ID, $friend_uids, Criteria::IN);
           break;
         case 'sellers':
           $this->addBreadcrumb($this->__('Sellers'));
