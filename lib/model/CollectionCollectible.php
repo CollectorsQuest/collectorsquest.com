@@ -60,4 +60,9 @@ class CollectionCollectible extends BaseCollectionCollectible
   {
     return $this->getCollectible()->getSlug();
   }
+
+  public function getIsNameAutomatic()
+  {
+    return $this->getCollectible()->getIsNameAutomatic();
+  }
 }
