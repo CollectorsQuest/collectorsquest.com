@@ -73,16 +73,29 @@
 #weeks-promo-box .thumbnails > li {
 	margin-bottom: 1px;
 }
-#weeks-promo-box [class*="span"] {
+#weeks-promo-box .imageset [class*="span"] {
 	float: left;
 	margin-left: 0;
 }
-#weeks-promo-box .span6 {
-	width: 370px;
-	height: 301px;
+#weeks-promo-box .thumbnails .span6 {
+	.size(301px, 370px);
 	overflow: hidden;
 	padding-right: 1px;
-	margin-right: 1px;
+	position: relative;
+}
+.white-block {
+	position: absolute;
+	bottom: 45px;
+	width: 340px;
+	padding: 20px 15px;
+	display: block;
+	color: @blueDark;
+	#translucent > .background(white,0.9);
+	bottom-top: 1px solid #b4b0a5;
+	bottom-bottom: 1px solid #b4b0a5;
+}
+.white-block p {
+	margin-bottom: 0;
 }
 #weeks-promo-box .thumbnails .span6 img {
 	overflow: hidden;
@@ -94,6 +107,7 @@
 }
 #weeks-promo-box .imageset {
 	margin-left: 0;
+	margin-bottom: 5px;
 }
 #weeks-promo-box .thumbnails {
 	margin-left: 8px;
@@ -103,9 +117,8 @@
 }
 
 @media (min-width: 997px) and (max-width: 1209px) {
-	#weeks-promo-box .span6 {
-		width: 320px;
-		height: 281px;
+	#weeks-promo-box .thumbnails .span6 {
+		.size(281px, 320px);
 		overflow: hidden;
 		padding-right: 1px;
 		margin-right: 1px;
@@ -114,6 +127,9 @@
 		overflow: hidden;
 		max-width: none;
 		max-height: 282px;
+	}
+	.white-block {
+		width: 291px;
 	}
 	#weeks-promo-box .span3 {
 		width: 140px;
@@ -131,9 +147,8 @@
 }
 
 @media (min-width: 1210px) {
-	#weeks-promo-box .span6 {
-		width: 370px;
-		height: 301px;
+	#weeks-promo-box .thumbnails .span6 {
+		.size(301px, 370px);
 		overflow: hidden;
 		padding-right: 1px;
 	}

@@ -81,6 +81,11 @@ h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover {
 	text-decoration: none;
 	border-bottom: 1px solid @red;
 }
+.link-align {
+	line-height: 13px;
+	padding-top: 6px;
+}
+
 .red-dashes-bottom {
 	border-bottom: 1px dashed #E98C7A;
 	padding-bottom: 12px;
@@ -90,12 +95,10 @@ h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover {
 	border-bottom: 1px dashed #E98C7A;
 	margin-top: 35px;
 	margin-bottom: 15px;
-
   h2 {
     .custom-font(20px, 20px, italic, normal);
     color: @red;
   }
-
   .span3 {
     text-align: right;
     padding-top: 5px;
@@ -106,12 +109,10 @@ h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover {
   border-bottom: 1px dashed #E98C7A;
   margin-top: 35px;
   margin-bottom: 15px;
-
   h3 {
     .custom-font(20px, 20px, italic, normal);
     color: @red;
   }
-
   .span4 {
     padding-top: 5px;
     text-align: right;
@@ -309,10 +310,16 @@ footer .form-horizontal .controls {
 ul.twocolumn {
 	margin-left: 0;
 	margin-bottom:20px;
-	overflow:hidden;
 	list-style-type:none;
 }
 ul.twocolumn li {
+	-moz-column-count: 2;
+	-webkit-columns: 2;
+	-o-columns: 2;
+	columns: 2;
+	width: 140px;
+}
+.no-csscolumns ul.twocolumn li {
 	width:50%;
 	line-height:1.5em;
 	float:left;
