@@ -72,7 +72,7 @@ all:
   storage:
     class: cqSessionStorage
     param:
-      session_name: frontend
+      session_name: cq_frontend
 
   user:
     class: cqFrontendUser
