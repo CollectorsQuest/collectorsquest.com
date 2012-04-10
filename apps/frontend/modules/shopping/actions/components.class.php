@@ -21,6 +21,13 @@ class shoppingComponents extends cqFrontendComponents
     return sfView::SUCCESS;
   }
 
+  public function executeSidebarCheckout()
+  {
+    $this->shopping_order = ShoppingOrderQuery::create()->findOneByUuid($this->getRequestParameter('uuid'));
+
+    return sfView::SUCCESS;
+  }
+
   public function executeShoppingCartCollectible()
   {
     /** @var $shopping_cart_collectible ShoppingCartCollectible */

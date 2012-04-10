@@ -291,6 +291,8 @@ class shoppingActions extends cqFrontendActions
         break;
     }
 
+    $this->shipping_addresses = $this->getCollector()->getCollectorAddresses();
+
     return sfView::SUCCESS;
   }
 
