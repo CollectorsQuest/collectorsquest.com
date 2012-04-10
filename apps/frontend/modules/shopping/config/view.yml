@@ -10,5 +10,11 @@ cartEmpty:
 checkoutPaypal:
   has_layout:  false
 
+orderPaySuccess:
+  components:
+    header: [global, headerStripped]
+    footer: []
+    slot1:  [shopping, slot1Checkout]
+
 paypalRedirect:
   has_layout:  false

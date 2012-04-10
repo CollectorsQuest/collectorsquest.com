@@ -33,4 +33,17 @@ class shoppingComponents extends cqFrontendComponents
 
     return sfView::SUCCESS;
   }
+
+  public function executeSlot1Checkout()
+  {
+    if ($this->getUser()->isAuthenticated())
+    {
+      return sfView::NONE;
+    }
+
+    $this->form = new CollectorLoginForm();
+
+    return sfView::SUCCESS;
+  }
+
 }
