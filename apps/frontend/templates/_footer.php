@@ -23,7 +23,7 @@
         <div id="footer-form-signup">
           <h2 class="Chivo">Sign Up</h2>
 
-          <form action="<?= url_for('@collector_signup'); ?>" class="form-horizontal form-footer">
+          <form action="<?= url_for('@collector_signup'); ?>" method="post" class="form-horizontal form-footer">
             <?= $signup_form->renderUsing('BootstrapWithRowFluid'); ?>
             <div class="row-fluid row-spacing">
               <div class="span9 top-padding-10">
@@ -44,7 +44,7 @@
 
         <div id="footer-form-login" style="display: none">
           <h2 class="Chivo">Log In</h2>
-          <form action="<?= url_for('@login'); ?>" class="form-horizontal form-footer">
+          <form action="<?= url_for('@login'); ?>" class="form-horizontal form-footer" method="post">
             <?= $login_form->renderUsing('BootstrapWithRowFluid') ?>
             <div class="row-fluid row-spacing">
               <div class="span8 top-padding-10">
