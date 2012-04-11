@@ -2,12 +2,23 @@
 @import "bootstrap/mixins.less";
 
 @import "_variables.less";
+@import "_mixins.less";
 @import "_h5bp.less";
 @import "_header.less";
 @import "_menu.less";
 @import "_wizard.less";
 @import "_spites.less";
 
+// FONTS
+.Chivo {
+	font-family: 'Chivo', @sansFontFamily;
+}
+
+.js .webfont {
+  visibility: hidden;
+}
+
+// basic body
 body {
 	background: #ecebec url("@{baseUrl}/background-pattern.png") repeat;
 }
@@ -343,7 +354,6 @@ footer h2 {
 	font-size: 20px;
 	line-height: 20px;
 	padding-bottom: 6px;
-	font-family: 'Chivo', cursive;
 	font-style: italic;
 	color: @blueDark;
 	margin-bottom: 10px;
@@ -818,7 +828,6 @@ li.roundabout-in-focus .carousel-in-focus-title-container {
 	margin-bottom: 0;
 	padding-bottom: 8px;
 	text-align: left;
-	font-family: 'Chivo', cursive;
 	color: #125375;
 }
 #carousel-holder .carousel-in-focus-title h3 {

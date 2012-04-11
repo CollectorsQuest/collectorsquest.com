@@ -4,13 +4,17 @@ require 'lib/model/om/BaseCollectorAddress.php';
 
 class CollectorAddress extends BaseCollectorAddress
 {
-  public function getCountry()
+
+  /**
+   * Return the full name of the collector address' country
+   *
+   * @return    string
+   */
+  public function getCountryName()
   {
-    return 'United States';
+    return $this->getGeoCountry()
+      ? $this->getGeoCountry()->getName()
+      : '';
   }
 
-  public function setCountry($v)
-  {
-
-  }
 }
