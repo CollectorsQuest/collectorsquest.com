@@ -1,10 +1,13 @@
+@import "bootstrap/variables.less";
+@import "_variables.less";
+
 .collectible_grid_view {
   margin-left: 5px;
   width: 190px;
   height: 150px;
   overflow: hidden;
   position: relative;
-  background: #111 url(/images/frontend/progress.gif) no-repeat center center;
+  background: #111 url("@{baseUrl}/progress.gif") no-repeat center center;
   border: 1px solid #fff;
   -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
   -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
@@ -60,5 +63,5 @@
 .collectible_grid_view .mosaic-overlay {
   bottom: -75px;
   height: 75px;
-  background: url(/images/frontend/black.png);
+  background: url("@{baseUrl}/black.png");
 }
