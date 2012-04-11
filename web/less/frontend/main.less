@@ -307,25 +307,26 @@ footer .form-horizontal .controls {
 
 
 //column list
-ul.twocolumn {
+.twocolumn ul {
 	margin-left: 0;
 	margin-bottom:20px;
 	list-style-type:none;
 }
-ul.twocolumn li {
+.csscolumns .twocolumn {
 	-moz-column-count: 2;
-	-webkit-columns: 2;
-	-o-columns: 2;
-	columns: 2;
-	width: 140px;
+	-moz-column-gap: 10px;
+	-webkit-column-count: 2;
+	-webkit-column-gap: 10px;
+	column-count: 2;
+	column-gap: 10px;
 }
-.no-csscolumns ul.twocolumn li {
+.no-csscolumns .twocolumn ul li {
 	width:50%;
 	line-height:1.5em;
 	float:left;
 	display:inline;
 }
-ul.twocolumn li a {
+.twocolumn ul li a {
 	font-size: 12px;
 }
 
