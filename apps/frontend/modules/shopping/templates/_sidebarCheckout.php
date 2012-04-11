@@ -1,14 +1,17 @@
 <? /** @var $shopping_order ShoppingOrder */ ?>
 <?php if ($shopping_order): ?>
+<? cq_sidebar_title('Your Order', null, array('style' => 'margin-top: 0;')); ?>
 <div class="well">
-  <? cq_sidebar_title('Your Order', null, array('style' => 'margin-top: 0;')); ?>
+  <?= ice_image_tag_flickholdr('260x205', array('tags' => array('Bronze', ' Statue', 'Egyptian'), 'i' => 0)); ?>
+  <br/><br/>
   <table style="width: 100%;">
     <tr>
-      <td><h3><?= $shopping_order->getCollectible(); ?></h3></td>
-      <td style="width: 75px; vertical-align: top; text-align: right;"><?= ice_image_tag_flickholdr('75x75') ?></td>
+      <td colspan="2"><h3>
+        <?= link_to_collectible($shopping_order->getCollectible(), 'text', array('target' => '_blank')); ?>
+      </h3></td>
     </tr>
     <tr>
-      <td colspan="2">&nbsp;</td>
+      <td colspan="2"><hr/></td>
     </tr>
     <tr>
       <td>Quantity</td>
@@ -21,9 +24,9 @@
     <tr>
       <td colspan="2"><hr/></td>
     </tr>
-    <tfoot style="font-weight: bold;">
+    <tfoot style="font-weight: bold; font-size: 130%;">
       <tr>
-        <td>TOTAL:</td>
+        <td style="font-variant: small-caps;">Total:</td>
         <td style="text-align: right;"><?= money_format('%.2n', (float) $shopping_order->getTotalAmount()); ?></td>
       </tr>
     </tfoot>

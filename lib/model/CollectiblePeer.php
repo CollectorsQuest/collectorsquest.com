@@ -4,6 +4,7 @@ require 'lib/model/om/BaseCollectiblePeer.php';
 
 class CollectiblePeer extends BaseCollectiblePeer
 {
+
   /**
    * @static
    * @param  array  $parameters
@@ -73,4 +74,5 @@ class CollectiblePeer extends BaseCollectiblePeer
 
     return $omCollectible;
   }
+
 }

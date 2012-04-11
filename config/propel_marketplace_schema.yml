@@ -75,7 +75,18 @@ classes:
       shopping_cart_id:     { type: integer, required: true, foreignClass: ShoppingCart, foreignReference: id, onDelete: restrict }
       collectible_id:       { type: integer, required: true, foreignClass: Collectible, foreignReference: id, onDelete: restrict }
       shopping_payment_id:  { type: integer, required: false, foreignClass: ShoppingPayment, foreignReference: id, onDelete: setnull }
+
+      buyer_email:          { type: varchar, size: 128, index: true }
+
+      shipping_full_name:        { type: varchar(255), required: true  }
+      shipping_phone:            { type: varchar(50),  required: false }
+      shipping_address_line_1:   { type: varchar(255), required: true  }
+      shipping_address_line_2:   { type: varchar(255), required: false }
+      shipping_city:             { type: varchar(100), required: true  }
+      shipping_state_region:     { type: varchar(100), required: false }
+      shipping_zip_postcode:     { type: varchar(50),  required: true }
       shipping_country_iso3166:  { type: char, size: 2, required: false, foreignTable: geo_country, foreignReference: iso3166 }
+
       note_to_seller:       { type: varchar, size: 255 }
 
     uniques:
