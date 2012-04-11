@@ -51,7 +51,7 @@
     <div class="navbar-inner">
       <div class="container dark-bg">
         <?= link_to('Collectors Quest', '@homepage', array('class' => 'cq-logo logo hide-text', 'title' => '')) ?>
-        <ul class="nav pull-right">
+        <ul class="nav">
           <li>
             <a href="<?= url_for('@homepage'); ?>" class="home-icon-pos">
               <i class="icon-home icon-white"></i>
