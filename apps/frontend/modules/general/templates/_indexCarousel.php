@@ -30,7 +30,7 @@
   $(document).ready(function()
   {
     $("#sample-roundabout").roundabout({
-      tilt: 0.6,
+      shape: 'square',
       minScale: 0.6,
       minOpacity: 1,
       duration: 800,

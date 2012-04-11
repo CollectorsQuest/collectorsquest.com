@@ -34,8 +34,8 @@ class generalComponents extends cqFrontendComponents
       }
     }
 
-    // Make sure we display only 10 items
-    $this->carousels = array_slice($this->carousels, 0, 10);
+    // Make sure we display only 8 items
+    $this->carousels = array_slice($this->carousels, 0, 8);
 
     return sfView::SUCCESS;
   }
