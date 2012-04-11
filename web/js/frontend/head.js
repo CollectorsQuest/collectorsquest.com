@@ -11,6 +11,15 @@
            body && body["client" + name] || docElemProp;
   }
 
+  window.cq.helpers = window.cq.helpers || {};
+
+  window.cq.helpers.getWindowWidth = function(){
+    return getWindowSize('Width');
+  };
+  window.cq.helpers.getWindowHeight = function(){
+    return getWindowSize('Height');
+  };
+
   // Modified script based on this function:
   document.cookie = 'resolution=' + Math.max(getWindowSize("Width"), getWindowSize("Height")) + '; path=/';
 }(this, this.document));
