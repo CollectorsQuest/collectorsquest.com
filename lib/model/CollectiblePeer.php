@@ -12,6 +12,7 @@ class CollectiblePeer extends BaseCollectiblePeer
    */
   public static function getObjectForRoute($parameters)
   {
+    $collectible = null;
     $parameters['id'] = str_replace(array('.html', '.htm'), '', $parameters['id']);
 
     if (preg_match('/-(\d+)$/i', $parameters['slug'], $m))
@@ -20,10 +21,10 @@ class CollectiblePeer extends BaseCollectiblePeer
          ->filterByCollectibleId($parameters['id'])
          ->filterByCollectionId((int) $m[1]);
 
-      return $q->findOne();
+      $collectible = $q->findOne();
     }
 
-    return self::retrieveByPk($parameters['id']);
+    return $collectible ? $collectible : self::retrieveByPk($parameters['id']);
   }
 
   public static function getLatest($limit = 18)
