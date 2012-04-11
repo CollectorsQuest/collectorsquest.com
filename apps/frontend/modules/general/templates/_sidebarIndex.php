@@ -9,4 +9,3 @@
   <li><a href="#">Items from Pawn Stars</a></li>
   <li><a href="#">Latest News</a></li>
 </ul>
-<button type="submit" class="btn btn-micro blue-button">Contact us</button>
