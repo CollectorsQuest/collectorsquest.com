@@ -3,19 +3,21 @@ all:
   components:
     sidebar_300: [shopping, sidebar]
 
-cartEmpty:
-  components:
-    sidebar_300: [shopping]
-
 checkoutPaypal:
   has_layout:  false
+
+orderShippingSuccess:
+  components:
+    header:  [global, headerStripped]
+    footer:  []
+    sidebar_300: [shopping, sidebarCheckout]
+    slot1:   [shopping, slot1Shipping]
 
 orderPaySuccess:
   components:
     header:  [global, headerStripped]
     footer:  []
     sidebar_300: [shopping, sidebarCheckout]
-    slot1:   [shopping, slot1Checkout]
 
 paypalRedirect:
   has_layout:  false

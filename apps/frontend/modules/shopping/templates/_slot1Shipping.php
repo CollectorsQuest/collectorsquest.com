@@ -27,7 +27,8 @@
           </button>
         </div>
       </div>
-      <input type="hidden" name="goto" value="<?= $sf_request->getUri(); ?>"/>
+
+      <?= $form->renderHiddenFields(); ?>
     </form>
   </div>
 </div>

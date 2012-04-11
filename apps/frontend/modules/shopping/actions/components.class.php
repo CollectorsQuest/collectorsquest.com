@@ -41,7 +41,7 @@ class shoppingComponents extends cqFrontendComponents
     return sfView::SUCCESS;
   }
 
-  public function executeSlot1Checkout()
+  public function executeSlot1Shipping()
   {
     if ($this->getUser()->isAuthenticated())
     {
@@ -49,6 +49,7 @@ class shoppingComponents extends cqFrontendComponents
     }
 
     $this->form = new CollectorLoginForm();
+    $this->form->setDefault('goto', $this->getRequest()->getUri());
 
     return sfView::SUCCESS;
   }

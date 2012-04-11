@@ -140,7 +140,7 @@ class shoppingActions extends cqFrontendActions
         $shopping_order->setNoteToSeller($values['note_to_seller']);
         $shopping_order->save();
 
-        $this->redirect('@shopping_order_pay?uuid='. $shopping_order->getUuid() .'&processor=paypal');
+        $this->redirect('@shopping_order_shipping?uuid='. $shopping_order->getUuid());
       }
       else
       {
@@ -156,6 +156,21 @@ class shoppingActions extends cqFrontendActions
   public function executeCheckoutStandard()
   {
 
+  }
+
+  public function executeOrderShipping(sfWebRequest $request)
+  {
+    /** @var $shopping_order ShoppingOrder */
+    $shopping_order = $this->getRoute()->getObject();
+
+    /** @var $shopping_payment ShoppingPayment */
+    $shopping_payment = $shopping_order->getShoppingPaymentRelatedByShoppingPaymentId();
+
+    $this->shopping_order     = $shopping_order;
+    $this->shopping_payment   = $shopping_payment;
+    $this->shipping_addresses = $this->getCollector()->getCollectorAddresses();
+
+    return sfView::SUCCESS;
   }
 
   public function executeOrderPay(sfWebRequest $request)
@@ -290,8 +305,6 @@ class shoppingActions extends cqFrontendActions
 
         break;
     }
-
-    $this->shipping_addresses = $this->getCollector()->getCollectorAddresses();
 
     return sfView::SUCCESS;
   }
