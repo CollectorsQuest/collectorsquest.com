@@ -12,7 +12,7 @@ class generalComponents extends cqFrontendComponents
        ->orderByPostDate(Criteria::DESC);
 
     /** @var $wp_posts wpPost[] */
-    $wp_posts = $q->limit(10)->find();
+    $wp_posts = $q->limit(15)->find();
 
     foreach ($wp_posts as $wp_post)
     {
@@ -34,8 +34,8 @@ class generalComponents extends cqFrontendComponents
       }
     }
 
-    // Make sure we display only 5 items
-    $this->carousels = array_slice($this->carousels, 0, 5);
+    // Make sure we display only 10 items
+    $this->carousels = array_slice($this->carousels, 0, 10);
 
     return sfView::SUCCESS;
   }

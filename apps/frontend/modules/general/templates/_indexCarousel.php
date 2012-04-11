@@ -3,10 +3,16 @@
     <span class="carousel_next ir"><a href="#" class="button_carousel_next" title="Next">Next</a></span>
     <span class="carousel_previous ir"><a href="#" class="button_carousel_previous" title="Previous">Prev</a></span>
     <ul id="sample-roundabout">
-      <?php foreach ($carousels as $carousel): ?>
+      <?php foreach ($carousels as $i => $carousel): ?>
       <li>
         <div class="wrapper">
-          <?= image_tag($carousel['image']); ?>
+          <?php
+            if (sfConfig::get('sf_environment') == 'dev') {
+              echo ice_image_tag_flickholdr('520x310', array('i' => $i));
+            } else {
+              echo image_tag($carousel['image']);
+            }
+          ?>
           <div class="carousel-in-focus-title-container">
             <div class="carousel-in-focus-title">
               <h2><?= $carousel['title'] ?></h2>
