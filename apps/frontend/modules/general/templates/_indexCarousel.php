@@ -32,7 +32,7 @@
     var $roundaboutEl = $('#sample-roundabout'),
         originalHtml = $roundaboutEl.html(),
         childInFocus = 0,
-        switchResolutions = [996, 1200];
+        switchResolutions = [996];
 
     /**
      * Find the current resolution index, 0 based, from switchResolutions
@@ -124,6 +124,7 @@
         clearTimeout(resizeTimeout);
       }
       resizeTimeout = setTimeout(onResizeComplete, 200);
+      console.log(window.cq.helpers.getWindowWidth());
     });
 
     // all is in place, setup the roundabout
