@@ -74,21 +74,6 @@
       },function(){
         $roundaboutEl.fadeTo(1000, 1)
       });
-
-      $roundaboutEl
-        .focus(function()
-        {
-          $(this)
-            .find('.carousel-in-focus-title-container')
-            .css({visibility: "visible"})
-            .fadeIn('slow');
-        })
-        .blur(function()
-        {
-          $(this)
-            .find('.carousel-in-focus-title-container')
-            .fadeOut('slow');
-        });
     }; // setup_roundabout
 
     /**
