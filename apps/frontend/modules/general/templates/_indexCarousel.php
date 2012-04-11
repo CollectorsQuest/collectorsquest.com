@@ -32,7 +32,7 @@
     var $roundaboutEl = $('#sample-roundabout'),
         originalHtml = $roundaboutEl.html(),
         childInFocus = 0,
-        switchResolutions = [996, 1200];
+        switchResolutions = [996];
 
     /**
      * Find the current resolution index, 0 based, from switchResolutions
@@ -100,7 +100,7 @@
      * was loaded then destroy the roundabout and recreate it, so that it will
      * use the new dimensions
      */
-    var afterResizeHasEnded = function() {
+    var onResizeComplete = function() {
       if (findCurrentResolutionIndex() !== resolutionIndex) {
         // keep the currenly displayed item
         childInFocus = $roundaboutEl.roundabout('getChildInFocus');
@@ -123,7 +123,8 @@
       if (false !== resizeTimeout) {
         clearTimeout(resizeTimeout);
       }
-      resizeTimeout = setTimeout(afterResizeHasEnded, 200);
+      resizeTimeout = setTimeout(onResizeComplete, 200);
+      console.log(window.cq.helpers.getWindowWidth());
     });
 
     // all is in place, setup the roundabout
