@@ -8,10 +8,6 @@
         <h3><?= $collectible->getName(); ?></h3>
         <p><?= $collectible->getCollection(); ?></p>
       </div>
-      <p>
-        owned by<br/>
-        <?= link_to_collector($collectible->getCollector(), 'text'); ?>
-      </p>
     </div>
   </div>
 </div>

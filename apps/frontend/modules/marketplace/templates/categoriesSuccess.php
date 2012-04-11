@@ -1,1 +1,1 @@
-<h1 class="Chivo red-title">Market Categories</h1>
+<h1 class="Chivo webfont red-title">Market Categories</h1>
