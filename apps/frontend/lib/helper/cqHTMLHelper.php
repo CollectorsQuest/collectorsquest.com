@@ -13,7 +13,7 @@ function cq_section_title($h2, $link = null, $options = array())
 {
   $content = sprintf(<<<EAT
   <div class="span9">
-    <h2 class="Chivo">%s</h2>
+    <h2 class="Chivo webfont">%s</h2>
   </div>
   <div class="span3">%s</div>
 EAT
@@ -28,7 +28,7 @@ function cq_sidebar_title($h3, $link = null, $options = array())
 {
   $content = sprintf(<<<EAT
 <div class="span9">
-  <h3 class="Chivo">%s</h3>
+  <h3 class="Chivo webfont">%s</h3>
 </div>
 <div class="span3 text-right">%s&nbsp;</div>
 EAT

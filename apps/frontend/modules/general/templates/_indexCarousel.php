@@ -15,7 +15,7 @@
           ?>
           <div class="carousel-in-focus-title-container">
             <div class="carousel-in-focus-title">
-              <h2><?= $carousel['title'] ?></h2>
+              <h2 class="Chivo webfont"><?= $carousel['title'] ?></h2>
               <p><?= $carousel['content'] ?></p>
             </div>
           </div>

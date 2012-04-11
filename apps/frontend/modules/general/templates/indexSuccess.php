@@ -1,4 +1,4 @@
-<h2 class="Chivo red-title">
+<h2 class="Chivo webfont red-title">
   Showcase
 </h2>
 <div class="row">
@@ -14,7 +14,7 @@
     <div class="span6 brick masonry-blogpost">
       <div class="masonry-blogpost yellow-background">
         <a href="<?= $blog_posts[0]->getPostUrl(); ?>" class="link">
-          <h3 class="Chivo" style="line-height: 26px;"><?= $blog_posts[0]->getPostTitle(); ?></h3>
+          <h3 class="Chivo webfont" style="line-height: 26px;"><?= $blog_posts[0]->getPostTitle(); ?></h3>
           <p><?= cqStatic::truncateText($blog_posts[0]->getPlainPostContent(), 350, '...', true); ?></p>
         </a>
         <div class="masonry-blogpost-author">
@@ -38,7 +38,7 @@
     <div class="span6 brick masonry-blogpost">
       <div class="masonry-blogpost blue-background">
         <a href="<?= $blog_posts[1]->getPostUrl(); ?>" class="link">
-          <h3 class="Chivo" style="line-height: 26px;"><?= $blog_posts[1]->getPostTitle(); ?></h3>
+          <h3 class="Chivo webfont" style="line-height: 26px;"><?= $blog_posts[1]->getPostTitle(); ?></h3>
           <p><?= cqStatic::truncateText($blog_posts[1]->getPlainPostContent(), 350, '...', true); ?></p>
         </a>
         <div class="masonry-blogpost-author">
