@@ -58,6 +58,16 @@ collector_by_slug:
   param: { module: collector, action: index }
   requirements: { id: '\d+', slug: '[\-\w\.]+' }
 
+collector_dropbox:
+  url:  /collector/dropbox
+  param: { module: collector, action: dropbox }
+
+collector_me:
+  url:  /collector/me
+  class: sfPropelRoute
+  options: { model: Collector, type: object, method: getObjectForRoute }
+  param: { module: collector, action: me }
+
 manage_profile:
   url:   /manage/profile
   param: { module: default, action: index }
@@ -173,6 +183,12 @@ shopping_order_paypal:
   class: sfPropelRoute
   options: { model: ShoppingOrder, type: object }
   param: { module: shopping, action: paypal }
+
+shopping_order_shipping:
+  url: /order/:uuid/shipping
+  class: sfPropelRoute
+  options: { model: ShoppingOrder, type: object }
+  param: { module: shopping, action: orderShipping }
 
 shopping_order_pay:
   url: /order/:uuid/pay

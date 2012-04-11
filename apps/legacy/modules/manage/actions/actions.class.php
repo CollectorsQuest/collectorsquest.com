@@ -87,7 +87,7 @@ class manageActions extends cqActions
     // Make the Form and Collector available in the template
     $this->form = $form;
     $this->collector = $collector;
-    $this->collector_addresses = $collector->getCollectorAddresss();
+    $this->collector_addresses = $collector->getCollectorAddresses();
 
     if ($collector->getIsSeller())
     {
@@ -499,7 +499,6 @@ class manageActions extends cqActions
           foreach ($form->getValues() as $value)
           {
             $collectible = CollectiblePeer::retrieveByPK($value['id']);
-            $collectible->setCollectionId($value['collection_id']);
             $collectible->setName($value['name']);
             $collectible->setDescription($value['description'], 'html');
             $collectible->setTags(is_array($value['tags']) ? implode(', ', $value['tags']) : $value['tags']);
@@ -549,6 +548,8 @@ class manageActions extends cqActions
         }
         catch (PropelException $e)
         {
+          dd($e->getMessage());
+
           // currently just skip the errors //Errors should never be skipped
           // throw $e;
         }

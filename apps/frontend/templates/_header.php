@@ -50,8 +50,8 @@
   <div class="navbar">
     <div class="navbar-inner">
       <div class="container dark-bg">
-        <a href="/" title="Home page" class="cq-logo logo hide-text">Collectors Quest</a>
-        <ul class="nav pull-right">
+        <?= link_to('Collectors Quest', '@homepage', array('class' => 'cq-logo logo hide-text', 'title' => '')) ?>
+        <ul class="nav">
           <li>
             <a href="<?= url_for('@homepage'); ?>" class="home-icon-pos">
               <i class="icon-home icon-white"></i>

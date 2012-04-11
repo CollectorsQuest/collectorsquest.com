@@ -1,4 +1,5 @@
 @import "bootstrap/variables.less";
+@import "_variables.less";
 
 // NAVBAR (FIXED AND STATIC)
 // -------------------------
@@ -37,13 +38,19 @@
 	-webkit-box-shadow: none;
 	-moz-box-shadow: none;
 	box-shadow: none;
+	clear:both;
+	float:left;
+	width:100%;
+	overflow:hidden;
 }
-
 
 .navbar .nav > li {
 	font: 18px Arial;
 	font-variant: small-caps;
 	border-left: 1px solid #033b74;
+	float:left;
+	position:relative;
+	right:50%;
 }
 
 // Links
@@ -80,11 +87,15 @@
 	padding-right: 15px !important;
 }
 .dark-bg {
-	background: transparent url("/images/frontend/dark_gradient_effect_under_logo.png") left no-repeat;
+	background: transparent url("@{baseUrl}/dark_gradient_effect_under_logo.png") left no-repeat;
 }
-.navbar .nav.pull-right {
-	float: left;
-	padding-left: 230px
+.navbar .nav {
+	margin-left: auto !important;
+	margin-right: auto !important;
+	float:left;
+	position:relative;
+	left:50%;
+
 }
 
 
@@ -98,7 +109,7 @@ nav[role="navigation"] ul {
 	margin: 0;
 	padding: 0 0 0 240px;
 	list-style: none;
-	background: url("/images/frontend/bg_logo.png") left no-repeat;
+	background: url("@{baseUrl}/bg_logo.png") left no-repeat;
 }
 nav[role="navigation"] ul li {
 	float: left;

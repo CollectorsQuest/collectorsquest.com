@@ -1,15 +1,59 @@
 <?php cq_page_title('Collections'); ?>
 
-<div class="weeks-promo-box">
+<br/>
+<div id="weeks-promo-box">
   <div class="row-fluid">
     <div class="span8">
       <span class="weeks-promo-title">Camera week: Strike a pose</span>
     </div>
     <div class="span4 text-right">
-      <a href="#">See previous features &raquo;</a>
+      <a href="#" class="link-align">See previous features &raquo;</a>
     </div>
   </div>
-
+  <div class="row imageset">
+    <div class="span-12">
+      <ul class="thumbnails">
+        <li class="span6">
+          <a href="#">
+            <?= ice_image_tag_flickholdr('370x302', array('i' => 4)) ?>
+          </a>
+          <span class="white-block">
+           <p>Say cheese! This week we're featuring collectors who love to point and shoot for interesting cameras. They're ready for their close-up!</p>
+          </span>
+        </li>
+        <li class="span3">
+          <a href="#">
+            <?= ice_image_tag_flickholdr('150x150'); ?>
+          </a>
+        </li>
+        <li class="span3">
+          <a href="#">
+            <?= ice_image_tag_flickholdr('150x150'); ?>
+          </a>
+        </li>
+        <li class="span3">
+          <a href="#">
+            <?= ice_image_tag_flickholdr('150x150'); ?>
+          </a>
+        </li>
+        <li class="span3">
+          <a href="#">
+            <?= ice_image_tag_flickholdr('150x150'); ?>
+          </a>
+        </li>
+        <li class="span3 dn">
+          <a href="#">
+            <?= ice_image_tag_flickholdr('150x150'); ?>
+          </a>
+        </li>
+        <li class="span3 dn">
+          <a href="#">
+            <?= ice_image_tag_flickholdr('150x150'); ?>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
   <button class="btn btn-small gray-button see-more-full">See more</button>
 </div>
 

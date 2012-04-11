@@ -80,6 +80,11 @@ h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover {
 	text-decoration: none;
 	border-bottom: 1px solid @red;
 }
+.link-align {
+	line-height: 13px;
+	padding-top: 6px;
+}
+
 .red-dashes-bottom {
 	border-bottom: 1px dashed #E98C7A;
 	padding-bottom: 12px;
@@ -89,12 +94,10 @@ h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover {
 	border-bottom: 1px dashed #E98C7A;
 	margin-top: 35px;
 	margin-bottom: 15px;
-
   h2 {
     .custom-font(20px, 20px, italic, normal);
     color: @red;
   }
-
   .span3 {
     text-align: right;
     padding-top: 5px;
@@ -105,12 +108,10 @@ h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover {
   border-bottom: 1px dashed #E98C7A;
   margin-top: 35px;
   margin-bottom: 15px;
-
   h3 {
     .custom-font(20px, 20px, italic, normal);
     color: @red;
   }
-
   .span4 {
     padding-top: 5px;
     text-align: right;
@@ -305,19 +306,26 @@ footer .form-horizontal .controls {
 
 
 //column list
-ul.twocolumn {
+.twocolumn ul {
 	margin-left: 0;
 	margin-bottom:20px;
-	overflow:hidden;
 	list-style-type:none;
 }
-ul.twocolumn li {
+.csscolumns .twocolumn {
+	-moz-column-count: 2;
+	-moz-column-gap: 10px;
+	-webkit-column-count: 2;
+	-webkit-column-gap: 10px;
+	column-count: 2;
+	column-gap: 10px;
+}
+.no-csscolumns .twocolumn ul li {
 	width:50%;
 	line-height:1.5em;
 	float:left;
 	display:inline;
 }
-ul.twocolumn li a {
+.twocolumn ul li a {
 	font-size: 12px;
 }
 
@@ -346,7 +354,9 @@ footer h2 {
 
 #footer-links {
 	background: #cdc7c7 url("@{baseUrl}/background-pattern-footer.png") repeat;
+	.box-shadow(0 25px 20px rgba(136, 119, 119, 0.5));
 	.size(38px, 100%);
+	position: relative;
 }
 .footer-links-inner {
 	padding: 12px 2% 0 2%;
@@ -489,7 +499,7 @@ ul.footer-profile-box li p {
 	.clearfix();
 }
 .slot1-inner {
-	padding: 50px 15px 0;
+	padding: 40px 15px 0;
 }
 
 //BUTTONS
@@ -586,15 +596,14 @@ a.bold-links {
 	padding-left: 15px;
 }
 .page-title {
-	.custom-font(20px, 20px, normal, bold);
-	text-transform: uppercase;
-	color: white;
 	#gradient > .vertical(#c90000,#b20000);
 	margin-bottom: 0;
-	margin-top: 0;
-	padding: 10px 0 10px 20px;
+	padding: 10px 0 10px 15px;
 
   h1 {
+    .custom-font(20px, 20px, normal, bold);
+    text-transform: uppercase;
+    color: white;
 	  font-size: 20px;
 	}
 }
@@ -630,6 +639,9 @@ a.bold-links {
 .clip-inner {
 	.size(90px,120px);
 	position: relative;
+}
+.clip-inner img {
+	float: left;
 }
 .sidebar-video-play-button {
 	position: absolute;
@@ -727,6 +739,103 @@ a.bold-links {
 	bottom: -5px;
 	top: auto;
 }
+
+// CAROUSEL
+#carousel-holder {
+	position: relative;
+}
+.carousel_next {
+	position: absolute;
+	display: block;
+	top: 45%;
+	right: 30px;
+	border: none;
+}
+.button_carousel_next {
+	display: block;
+}
+.carousel_previous {
+	position: absolute;
+	display: block;
+	top: 45%;
+	left: 25px;
+	border: none;
+}
+.button_carousel_previous {
+	display: block;
+}
+.button_carousel_previous:focus, .button_carousel_next:focus {
+	outline: none;
+}
+//.roundabout-in-focus { cursor: auto; }
+
+#sample-roundabout {
+	.size(310px, 670px);
+	list-style: none;
+	margin: 0 auto;
+	padding: 0;
+	opacity: 0;
+}
+#sample-roundabout li {
+	.size(310px, 520px);
+	background-color: transparent;
+	.box-shadow(0 0px 9px rgba(59, 45, 44, 1));
+	.border-radius(7px);
+	cursor: pointer;
+}
+#sample-roundabout li.roundabout-in-focus {
+	cursor: auto;
+}
+#sample-roundabout li .wrapper {
+	padding: 0;
+	background-color: transparent;
+}
+#sample-roundabout li .wrapper img {
+	width: 100%;
+	.border-radius(7px);
+}
+.carousel-in-focus-title-container {
+	position: absolute;
+	z-index: 100;
+	bottom: 8%;
+	width: 100%;
+	display: block;
+	#translucent > .background(#fff, 0.8);
+}
+.carousel-in-focus-title {
+	margin: 3% 4%;
+}
+li.roundabout-moveable-item .carousel-in-focus-title-container {
+	visibility: hidden;
+}
+li.roundabout-in-focus .carousel-in-focus-title-container {
+	visibility: visible;
+}
+
+#carousel-holder .carousel-in-focus-title h2 {
+	font-size: 1.75em;
+	line-height: 1.1;
+	margin-bottom: 0;
+	padding-bottom: 8px;
+	text-align: left;
+	font-family: 'Chivo', cursive;
+	color: #125375;
+}
+#carousel-holder .carousel-in-focus-title h3 {
+	font-size: 1.5em;
+	line-height: 1.1;
+	padding-top: 0;
+	margin-top: 0;
+	text-align: center;
+	color: #fff !important;
+}
+#carousel-holder .carousel-in-focus-title p {
+	font-size: 1em;
+	text-align: left;
+	width: auto;
+	margin: 0;
+}
+
 
 
 

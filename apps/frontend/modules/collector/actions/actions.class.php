@@ -7,7 +7,33 @@ class collectorActions extends cqFrontendActions
     return sfView::SUCCESS;
   }
 
-    /**
+  public function executeDropbox()
+  {
+    if ($this->getUser()->isAuthenticated() && ($collector = $this->getCollector()))
+    {
+      $id = $collector->getId();
+      $slug = $collector->getSlug();
+
+      $this->redirect('@dropbox_by_slug?collector_id=' . $id . '&collector_slug=' . $slug);
+    }
+
+    $this->redirect('@login');
+  }
+
+  public function executeMe()
+  {
+    if ($this->getUser()->isAuthenticated() && ($collector = $this->getCollector()))
+    {
+      $id = $collector->getId();
+      $slug = $collector->getSlug();
+
+      $this->redirect('@collector_by_slug?id=' . $id . '&slug=' . $slug);
+    }
+
+    $this->redirect('@login');
+  }
+
+  /**
    * @param  sfWebRequest  $request
    * @return string
    */

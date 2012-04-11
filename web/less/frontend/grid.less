@@ -1,3 +1,5 @@
+@import "bootstrap/mixins.less";
+
 .margin-auto() {
 	margin-left: auto;
 	margin-right: auto;
@@ -27,7 +29,7 @@
 		width: 723px;
 		.margin-auto();
 	}
-	header, footer, nav, #slot1 {
+	header, footer, nav, #slot1, #footer-links {
 		width: 753px;
 		.margin-auto();
 	}
@@ -56,8 +58,10 @@
     width: 665px;
 	  .margin-auto()
   }
-	#content {
-		padding-top: 25px;
+
+  //Nav
+	.navbar .container {
+		margin-left: 85px;
 	}
 
 //ELEMENTS
@@ -67,19 +71,26 @@
 		width: 200px;
 	}
 	#sample-roundabout {
-		width: 420px;
-		height: 180px;
+    .size(240px, 390px);
 	}
 	#sample-roundabout li {
-		width: 300px;
-		height: 178px;
+    .size(240px, 405px);
 	}
+
+  .carousel_next, .carousel_previous {
+    top: 42%;
+  }
+
 	.carousel_next {
-		right: 10px;
+		right: -7px;
 	}
 	.carousel_previous {
-		left: 5px;
+		left: -10px;
 	}
+
+  .carousel-in-focus-title {
+    display: none;
+  }
 
 	.nav-divider {
 		padding-left: 2px;
@@ -88,7 +99,7 @@
 		padding-left: 2px;
 	}
 
-}
+} // @media (max-width: 996px)
 
 //  Fixed width of wrapper up to 1200px
 @media (min-width: 997px) and (max-width: 1209px) {
@@ -110,13 +121,9 @@
 		width: 949px;
 		.margin-auto();
 	}
-	header, footer, nav, #slot1 {
+	header, footer, nav, #slot1, #footer-links {
 		width: 979px;
 		.margin-auto();
-	}
-
-	#content {
-		padding-top: 25px;
 	}
 
 //ELEMENTS
@@ -132,12 +139,7 @@
 
 	//Carousel
 	#sample-roundabout {
-		width: 440px;
-		height: 290px;
-	}
-	#sample-roundabout li {
-		width: 480px;
-		height: 286px;
+    .size(290px, 440px);
 	}
 
   //Collections
@@ -145,8 +147,7 @@
 		width: 355px;
 	}
 
-
-}
+} // @media (min-width: 997px) and (max-width: 1209px)
 
 @media (min-width: 1210px) {
   .row {
@@ -174,7 +175,7 @@
 		max-width: 1170px;
 		.margin-auto();
 	}
-	header, footer, nav, #slot1 {
+	header, footer, nav, #slot1, #footer-links {
 		max-width: 1200px;
 		.margin-auto();
 	}
@@ -193,8 +194,7 @@
 		width: 575px;
 	}
 
-
-}
+} // @media (min-width: 1210px)
 
 // hiding #sidebar
 .container-fluid > #sidebar {

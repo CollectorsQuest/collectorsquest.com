@@ -11,7 +11,7 @@
 <!--[if IE 8 ]><html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#" lang="en" class="no-js lt-ie9"><![endif]-->
 <!--[if gt IE 8]><!--><html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#" lang="en" class="no-js"><!--<![endif]-->
 <?php include_partial('global/head'); ?>
-<body data-controller="<?php echo $sf_params->get('module'); ?>" data-action="<?php echo $sf_params->get('action'); ?>">
+<body id="<?= 'body-'. $sf_params->get('module') .'-'. $sf_params->get('action'); ?>" data-controller="<?= $sf_params->get('module'); ?>" data-action="<?= $sf_params->get('action'); ?>">
   <div id="fb-root"></div>
   <script>
     window.fbAsyncInit = function()
@@ -109,7 +109,10 @@
     echo '</div>';
   ?>
 
-  <? include_component_slot('footer'); ?>
+  <?php
+    include_component_slot('footer');
+    include_partial('global/footer_links');
+  ?>
 
   <?php
     $sf_cache_key  = (int) $sf_user->getId() .'_';

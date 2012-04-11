@@ -72,7 +72,9 @@
           </tr>
           <tr>
             <td colspan="2" style="text-align: center;">
-              <input type="submit" name="Checkout" class="btn btn-large" value="Checkout"/>
+              <button type="submit" name="Checkout" class="btn btn-large btn-checkout" value="Checkout" data-loading-text="loading...">
+                Checkout
+              </button>
             </td>
           </tr>
         </table><!--End cost table-->
@@ -83,3 +85,14 @@
     </form>
   </div>
 </div>
+
+<script>
+  $(document).ready(function()
+  {
+    $('.btn-checkout').button();
+    $('.btn-checkout').click(function()
+    {
+      $(this).button('loading');
+    });
+  });
+</script>

@@ -1,4 +1,4 @@
-<div id="grid_view_collectible_<?php echo  $collectible->getId(); ?>" class="span-4 grid_view_collectible">
+<div id="grid_view_collectible_<?= $collectible->getId(); ?>" class="span-4 grid_view_collectible">
   <?= link_to_collectible($collectible, 'image'); ?>
 
   <?php if (isset($editable) && $editable == true): ?>

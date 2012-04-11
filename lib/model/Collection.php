@@ -34,7 +34,7 @@ class Collection extends BaseCollection
        ->filterByCollection($this)
        ->joinWith('CollectionCollectible')
        ->orderBy('CollectionCollectible.Position', Criteria::ASC)
-       ->orderBy('CreatedAt', Criteria::ASC)
+       ->orderBy('CollectionCollectible.CreatedAt', Criteria::ASC)
        ->setFormatter(ModelCriteria::FORMAT_STATEMENT)
        ->addSelectColumn('Id');
 

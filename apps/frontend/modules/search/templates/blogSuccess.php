@@ -17,8 +17,8 @@
     $sf_params->get('q'),
     format_number_choice('[0] no result|[1] 1 result|(1,+Inf] %1% results', array('%1%' => $pager->getNbResults()), $pager->getNbResults())
   );
-  cq_page_title('Blog Articles', $title);
 ?>
+<h1>Blog Articles <small><?= $title; ?></small></h1>
 
 <div id="search-results">
   <div class="row-fluid">

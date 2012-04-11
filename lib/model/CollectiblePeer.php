@@ -4,11 +4,28 @@ require 'lib/model/om/BaseCollectiblePeer.php';
 
 class CollectiblePeer extends BaseCollectiblePeer
 {
+
+  /**
+   * @static
+   * @param  array  $parameters
+   *
+   * @return Collectible|CollectionCollectible
+   */
   public static function getObjectForRoute($parameters)
   {
+    $collectible = null;
     $parameters['id'] = str_replace(array('.html', '.htm'), '', $parameters['id']);
 
-    return self::retrieveByPk($parameters['id']);
+    if (preg_match('/-(\d+)$/i', $parameters['slug'], $m))
+    {
+      $q = CollectionCollectibleQuery::create()
+         ->filterByCollectibleId($parameters['id'])
+         ->filterByCollectionId((int) $m[1]);
+
+      $collectible = $q->findOne();
+    }
+
+    return $collectible ? $collectible : self::retrieveByPk($parameters['id']);
   }
 
   public static function getLatest($limit = 18)
@@ -57,4 +74,5 @@ class CollectiblePeer extends BaseCollectiblePeer
 
     return $omCollectible;
   }
+
 }

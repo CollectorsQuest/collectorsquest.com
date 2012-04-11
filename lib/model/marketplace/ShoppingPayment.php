@@ -11,7 +11,7 @@ class ShoppingPayment extends BaseShoppingPayment
   {
     if (!$this->isNew())
     {
-      return 'SP-'. $this->getId();
+      return 'SP-'. $this->getId() .'-'. date('is');
     }
 
     return null;

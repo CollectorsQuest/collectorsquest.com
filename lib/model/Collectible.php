@@ -232,6 +232,54 @@ class Collectible extends BaseCollectible
     return true;
   }
 
+  public function setCollections(PropelCollection $collections, PropelPDO $con = null)
+  {
+    $collectionCollectibles = CollectionCollectibleQuery::create()
+      ->filterByCollection($collections)
+      ->filterByCollectible($this)
+      ->find($con);
+
+    $this->collectionsScheduledForDeletion = $this->getCollectionCollectibles()->diff($collectionCollectibles, false);
+    $this->collCollectionCollectibles = $collectionCollectibles;
+
+    foreach ($collections as $collection)
+    {
+      // Fix issue with collection modified by reference
+      if ($collection->isNew())
+      {
+        $this->doAddCollection($collection);
+      }
+      else
+      {
+        $this->addCollection($collection);
+      }
+    }
+
+    $this->collCollections = $collections;
+  }
+
+  /**
+   * Associate a Collection object to this object
+   * through the collection_collectible cross reference table.
+   *
+   * @param      Collection $collection The CollectionCollectible object to relate
+   * @return     void
+   */
+  public function addCollection(Collection $collection)
+  {
+    if ($this->collCollections === null)
+    {
+      $this->collCollections = $this->getCollections();
+    }
+
+    // only add it if the **same** object is not already associated
+    if (!$this->collCollections->contains($collection, false))
+    {
+      $this->doAddCollection($collection);
+      $this->collCollections[]= $collection;
+    }
+  }
+
   /**
    * @param  PropelPDO  $con
    * @return Collection | CollectionDropbox
