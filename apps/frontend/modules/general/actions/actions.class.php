@@ -238,16 +238,6 @@ class generalActions extends cqFrontendActions
       {
         $values = $this->form->getValues();
 
-        dd(array(
-        "f_ip_address" => cqStatic::getUserIpAddress(),
-        "f_javascript_enabled" => $values['f_javascript_enabled'],
-        "f_browser_type" => $values['f_browser_type'],
-        "f_browser_version" => $values['f_browser_version'],
-        "f_browser_color_depth" => $values['f_browser_color_depth'],
-        "f_resolution" => $values['f_resolution'],
-        "f_browser_size" => $values['f_browser_size']
-      ));
-
         $cqEmail = new cqEmail($this->getMailer());
         $sent = $cqEmail->send('internal/feedback', array(
           'to' => 'info@collectorsquest.com',
