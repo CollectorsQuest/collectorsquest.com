@@ -5,6 +5,30 @@ ajax_typeahead:
   param: { module: ajax, action: typeAhead }
   requirements: { sf_method: [GET], sf_format: json }
 
+### A&E
+
+aent_landing:
+  url: /history
+  param: { module: aent, action: landing }
+  requirements: { sf_method: [GET] }
+
+aent_pawn_stars:
+  url: /history/pawn-stars
+  param: { module: aent, action: pawnStars }
+  requirements: { sf_method: [GET] }
+
+aent_american_pickers:
+  url: /history/american-pickers
+  param: { module: aent, action: americanPickers }
+  requirements: { sf_method: [GET] }
+
+aent_collectible_by_slug:
+  url:  /aetn/collectible/:id/:slug
+  class: cqPropelRoute
+  options: { model: Collectible, type: object, method: getObjectForRoute }
+  param: { module: aent, action: collectible }
+  requirements: { id: '\d+', slug: '[\-\w\.]+' }
+
 ### COLLECTIONS
 
 collections:

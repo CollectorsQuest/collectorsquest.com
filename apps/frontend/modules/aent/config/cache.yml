@@ -1,0 +1,14 @@
+landing:
+  enabled:     true
+  with_layout: false
+  lifetime:    3600
+
+pawnStars:
+  enabled:     true
+  with_layout: false
+  lifetime:    3600
+
+americanPickers:
+  enabled:     true
+  with_layout: false
+  lifetime:    3600
