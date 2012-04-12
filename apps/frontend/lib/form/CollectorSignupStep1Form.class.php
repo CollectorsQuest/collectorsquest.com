@@ -6,11 +6,11 @@ class CollectorSignupStep1Form extends BaseForm
   {
     $this->setWidgets(array(
       'username'        => new sfWidgetFormInputText(array(
-          'label'       => 'User Name'
+          'label'       => 'Username'
         ), array(
           'pattern'     => '^(?=^[a-zA-Z])[a-zA-Z0-9\.\_]*$',
           'required'    => 'required',
-          'placeholder' => 'User Name',
+          'placeholder' => 'Username',
       )),
       'password'        => new sfWidgetFormInputPassword(array(), array(
           'required'    => 'required',

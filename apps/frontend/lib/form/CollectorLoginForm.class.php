@@ -7,10 +7,10 @@ class CollectorLoginForm extends BaseForm
   {
     $this->setWidgets(array(
       'username'  => new sfWidgetFormInputText(array(
-          'label' => 'User Name',
+          'label' => 'Username',
         ), array(
           'required' => 'required',
-          'placeholder' => 'User Name',
+          'placeholder' => 'Username',
       )),
       'password'  => new sfWidgetFormInputPassword(array(), array(
           'required' => 'required',
