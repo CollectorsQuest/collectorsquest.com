@@ -94,6 +94,7 @@
         // fade out the current roundabout and regenerate it from the original html
         $roundaboutEl.fadeOut(500, function(){
           $roundaboutEl.html(originalHtml);
+          $roundaboutEl.find('.webfont').css('visibility', 'visible');
           setupRoundabout();
         });
 
