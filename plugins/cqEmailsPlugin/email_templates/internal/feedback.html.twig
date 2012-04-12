@@ -1,0 +1,22 @@
+{% extends "common/internal.html.twig" %}
+
+{% block content %}
+  <b>Page:</b> {{ feedback.page }}<br>
+  <b>Full Name:</b> {{ feedback.fullname }}<br>
+  <b>Email:</b> {{ feedback.email  }}<br>
+  <br><hr>
+
+  <p>
+    <br> {{ feedback.message }}
+  </p>
+
+  <br>
+  <ul>
+    <li> IP Address: {{ browser.f_ip_address }} </li>
+    <li> Javascript Enabled: {{ browser.f_javascript_enabled }} </li>
+    <li> Browser Type: {{ browser.f_browser_type }} </li>
+    <li> Browser Color Depth: {{ browser.f_browser_color_depth }} </li>
+    <li> Resolution: {{ browser.f_resolution }} </li>
+    <li> Browser Size: {{ browser.f_browser_size }} </li>
+  </ul>
+{% endblock %}

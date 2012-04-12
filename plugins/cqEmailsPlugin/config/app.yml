@@ -14,3 +14,8 @@ all:
       password_reminder:
         subject: "Your new password for CollectorsQuest.com"
         required_params: [collector, password]
+
+    internal:
+      feedback:
+        subject: "[Feedback]"
+        required_params: [feedback, browser]
