@@ -94,6 +94,9 @@
         // fade out the current roundabout and regenerate it from the original html
         $roundaboutEl.fadeOut(500, function(){
           $roundaboutEl.html(originalHtml);
+          // we need to manually make webfonts visible, because usually
+          // the js for them will have executed after we have copied the original
+          // html, and the visibility will not be set.
           $roundaboutEl.find('.webfont').css('visibility', 'visible');
           setupRoundabout();
         });
