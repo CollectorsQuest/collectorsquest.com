@@ -9,15 +9,24 @@
             <a href="#">Learn more</a>
           </p>
           <div class="row-spacing-footer">
-            <button class="btn btn-primary blue-button pull-left" type="submit">Contact us</button>
+            <button class="btn btn-primary blue-button pull-left" type="submit">Contact Us</button>
           </div>
-          <p><a href="#"><i class="s-16-icon-facebook ico-16px-alignment"></i> Follow us on Facebook</a></p>
-          <p><a href="#" ><i class="s-16-icon-twitter ico-16px-alignment"></i> Follow us on Twitter</a></p>
+          <p>
+            <a href="http://facebook.com/Collectors.Quest" target="_blank">
+              <i class="s-16-icon-facebook ico-16px-alignment"></i>
+              Follow us on Facebook
+            </a>
+          </p>
+          <p>
+            <a href="http://twitter.com/CollectorsQuest" target="_blank">
+              <i class="s-16-icon-twitter ico-16px-alignment"></i>
+              Follow us on Twitter
+            </a>
+          </p>
         </div>
       </div><!-- .span4 -->
 
       <div class="span4">
-
         <?php if (!$sf_user->isAuthenticated()): ?>
 
         <div id="footer-form-signup">
@@ -72,7 +81,7 @@
         <h2 class="Chivo webfont">Welcome back, <?= $sf_user->getCollector()->getDisplayName() ?>!</h2>
         <ul class="footer-profile-box">
           <li class="icon_big_email">
-              <p>You have in <a href="#" class="bold-links">your inbox</a></p>
+            <p>You have 1 message in <a href="#" class="bold-links">your inbox</a></p>
           </li>
           <li class="icon_big_battery">
               <p>Your profile is 50% complete. <a href="#" class="bold-links">Add a collection</a> in minutes. (+10%)</p>
@@ -80,10 +89,10 @@
           <li>
             <div class="row-fluid">
               <div class="span6 icon_big_add">
-                  <p><a href="#" class="bold-links">Upload<br> a photo</a></p>
+                <p><a href="#" class="bold-links">Upload<br> a photo</a></p>
               </div>
               <div class="span6 icon_big_organize">
-                  <p><a href="#" class="bold-links">Organize your<br> collection</a></p>
+                <p><a href="#" class="bold-links">Organize your<br> collection</a></p>
               </div>
             </div>
           </li>
@@ -105,14 +114,22 @@
             <i class="icon_big_box"></i>
             <div class="info-box-text">
               <h2 class="Chivo webfont">Show Off</h2>
-              <p>Share your passion with a world of interested people by organizing your collections with our easy to use tools.</p>
+              <p>
+                Share your passion with a world of interested people by organizing your
+                collections with our easy to use tools.
+                <?= link_to('Show&nbsp;Off&nbsp;Now', '@collector_signup'); ?>
+              </p>
             </div>
           </li>
           <li>
             <i class="icon_big_piggy_bank"></i>
             <div class="info-box-text">
               <h2 class="Chivo webfont">Get Paid</h2>
-              <p>It’s easy to sell an item once you’re a member. Just choose “I’m a seller” during the sign up process.</p>
+              <p>
+                It's easy to sell an item once you're a member.
+                Just choose "I'm a seller" during the sign up process.
+                <?= link_to('Start&nbsp;Selling&nbsp;Now', '@seller_signup'); ?>
+              </p>
             </div>
           </li>
           <li>

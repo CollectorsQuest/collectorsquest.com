@@ -260,8 +260,6 @@ class generalActions extends cqFrontendActions
             ),
           ),
         ));
-
-
       }
 
       if ($sent)

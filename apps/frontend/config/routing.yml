@@ -90,9 +90,26 @@ collector_me:
   options: { model: Collector, type: object, method: getObjectForRoute }
   param: { module: collector, action: me }
 
+collector_signup:
+  url:   /collector/signup/:step
+  param: { module: collector, action: signup, step: 1 }
+  requirements: { step: '[1-3]' }
+
 manage_profile:
   url:   /manage/profile
   param: { module: default, action: index }
+
+
+### SELLERS
+
+sellers:
+  url:  /sellers
+  param: { module: sellers, action: index }
+
+seller_signup:
+  url:   /seller/signup/:step
+  param: { module: seller, action: signup, step: 1 }
+  requirements: { step: '[1-3]' }
 
 
 ### COLLECTIBLES
@@ -281,11 +298,6 @@ logout:
 recover_password:
   url:   /recover-password
   param: { module: general, action: recoverPassword }
-
-collector_signup:
-  url:   /signup/:step
-  param: { module: collector, action: signup, step: 1 }
-  requirements: { step: '[1-3]' }
 
 page:
   url:   /blog/:slug
