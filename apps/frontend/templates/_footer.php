@@ -78,34 +78,33 @@
         </div> <!-- #footer-form-login -->
 
         <?php else: ?>
-        <h2 class="Chivo webfont">Welcome back, <?= $sf_user->getCollector()->getDisplayName() ?>!</h2>
-        <ul class="footer-profile-box">
+        <h2 class="Chivo webfont no-margin-bottom">Welcome back, <?= $sf_user->getCollector()->getDisplayName() ?>!</h2>
+        <ul class="footer-profile-box cf">
           <li class="icon_big_email">
             <p>You have 1 message in <a href="#" class="bold-links">your inbox</a></p>
           </li>
           <li class="icon_big_battery">
-              <p>Your profile is 50% complete. <a href="#" class="bold-links">Add a collection</a> in minutes. (+10%)</p>
+            <p>Your profile is 50% complete. <a href="#" class="bold-links">Add a collection</a> in minutes. (+10%)</p>
           </li>
-          <li>
-            <div class="row-fluid">
-              <div class="span6 icon_big_add">
-                <p><a href="#" class="bold-links">Upload<br> a photo</a></p>
-              </div>
-              <div class="span6 icon_big_organize">
-                <p><a href="#" class="bold-links">Organize your<br> collection</a></p>
-              </div>
-            </div>
+          <li class="footer-profile-box-h-list">
+            <ul class="row-fluid">
+              <li class="span6 icon_big_add">
+                <a href="#" class="bold-links">Upload a<br> photo</a>
+              </li>
+              <li class="span6 icon_big_organize">
+                <a href="#" class="bold-links">Organize your<br> collection</a>
+              </li>
+            </ul>
           </li>
         </ul> <!-- .footer-pofile-box -->
 
         <div class="row-fluid top-padding-10">
           <div class="span12">
             <button class="btn btn-primary blue-button" type="submit">My Profile</button>
-            <?= link_to('Log out', '@logout'); ?>
+            <b><?= link_to('Log out', '@logout', array('class' => 'spacing-left')); ?></b>
           </div>
         </div>
         <?php endif; ?>
-
       </div><!-- .span4 -->
 
       <div class="span4">
