@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Check if the user has the right to accesss secure actions
+ * Check if the user has the right to access secure actions
  *
  * Because user registration is done in 3 parts, a user should be allowed to access
  * all non-secure pages, but be prompted to complete his/her registration when

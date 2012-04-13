@@ -43,7 +43,7 @@ class cqNextAccessFilter extends sfFilter
     // if the current user is not authenticated or is authenticated but does not have cqnext access
     // and the current action is not countdown
     if ( !($sf_user->isAuthenticated() && $sf_user->getCollector()->getCqnextAccessAllowed())
-      && !$this->currentActionIsCountdown() )
+      && !$this->currentActionIsCountdown() && !$this->currentModuleIsSandbox() )
     {
       $this->forwardToCountdownAction();
 
@@ -69,6 +69,14 @@ class cqNextAccessFilter extends sfFilter
     $this->context->getController()->redirect($parsed_url['path']);
 
     throw new sfStopException();
+  }
+
+  protected function currentModuleIsSandbox()
+  {
+    /* @var $last_action sfActions */
+    $last_action = $this->context->getController()->getActionStack()->getLastEntry();
+
+    return $last_action->getModuleName() == 'sandbox';
   }
 
   protected function currentActionIsCountdown()

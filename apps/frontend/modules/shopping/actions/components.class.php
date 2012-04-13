@@ -21,6 +21,13 @@ class shoppingComponents extends cqFrontendComponents
     return sfView::SUCCESS;
   }
 
+  public function executeSidebarCheckout()
+  {
+    $this->shopping_order = ShoppingOrderQuery::create()->findOneByUuid($this->getRequestParameter('uuid'));
+
+    return sfView::SUCCESS;
+  }
+
   public function executeShoppingCartCollectible()
   {
     /** @var $shopping_cart_collectible ShoppingCartCollectible */
@@ -33,4 +40,18 @@ class shoppingComponents extends cqFrontendComponents
 
     return sfView::SUCCESS;
   }
+
+  public function executeSlot1Shipping()
+  {
+    if ($this->getUser()->isAuthenticated())
+    {
+      return sfView::NONE;
+    }
+
+    $this->form = new CollectorLoginForm();
+    $this->form->setDefault('goto', $this->getRequest()->getUri());
+
+    return sfView::SUCCESS;
+  }
+
 }

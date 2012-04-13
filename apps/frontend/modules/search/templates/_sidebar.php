@@ -1,4 +1,4 @@
-<div class="well" style="padding: 8px 0; margin-top: 80px;">
+<div class="well" style="padding: 8px 0; margin-top: 45px;">
   <ul class="nav nav-list">
 
     <li class="nav-header">Sort by:</li>

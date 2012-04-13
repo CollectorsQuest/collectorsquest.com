@@ -5,6 +5,30 @@ ajax_typeahead:
   param: { module: ajax, action: typeAhead }
   requirements: { sf_method: [GET], sf_format: json }
 
+### A&E
+
+aent_landing:
+  url: /history
+  param: { module: aent, action: landing }
+  requirements: { sf_method: [GET] }
+
+aent_pawn_stars:
+  url: /history/pawn-stars
+  param: { module: aent, action: pawnStars }
+  requirements: { sf_method: [GET] }
+
+aent_american_pickers:
+  url: /history/american-pickers
+  param: { module: aent, action: americanPickers }
+  requirements: { sf_method: [GET] }
+
+aent_collectible_by_slug:
+  url:  /aetn/collectible/:id/:slug
+  class: cqPropelRoute
+  options: { model: Collectible, type: object, method: getObjectForRoute }
+  param: { module: aent, action: collectible }
+  requirements: { id: '\d+', slug: '[\-\w\.]+' }
+
 ### COLLECTIONS
 
 collections:
@@ -56,9 +80,36 @@ collector_by_slug:
   param: { module: collector, action: index }
   requirements: { id: '\d+', slug: '[\-\w\.]+' }
 
+collector_dropbox:
+  url:  /collector/dropbox
+  param: { module: collector, action: dropbox }
+
+collector_me:
+  url:  /collector/me
+  class: sfPropelRoute
+  options: { model: Collector, type: object, method: getObjectForRoute }
+  param: { module: collector, action: me }
+
+collector_signup:
+  url:   /collector/signup/:step
+  param: { module: collector, action: signup, step: 1 }
+  requirements: { step: '[1-3]' }
+
 manage_profile:
   url:   /manage/profile
   param: { module: default, action: index }
+
+
+### SELLERS
+
+sellers:
+  url:  /sellers
+  param: { module: sellers, action: index }
+
+seller_signup:
+  url:   /seller/signup/:step
+  param: { module: seller, action: signup, step: 1 }
+  requirements: { step: '[1-3]' }
 
 
 ### COLLECTIBLES
@@ -172,6 +223,12 @@ shopping_order_paypal:
   options: { model: ShoppingOrder, type: object }
   param: { module: shopping, action: paypal }
 
+shopping_order_shipping:
+  url: /order/:uuid/shipping
+  class: sfPropelRoute
+  options: { model: ShoppingOrder, type: object }
+  param: { module: shopping, action: orderShipping }
+
 shopping_order_pay:
   url: /order/:uuid/pay
   class: sfPropelRoute
@@ -241,11 +298,6 @@ logout:
 recover_password:
   url:   /recover-password
   param: { module: general, action: recoverPassword }
-
-collector_signup:
-  url:   /signup/:step
-  param: { module: collector, action: signup, step: 1 }
-  requirements: { step: '[1-3]' }
 
 page:
   url:   /blog/:slug

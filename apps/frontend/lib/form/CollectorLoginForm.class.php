@@ -7,10 +7,10 @@ class CollectorLoginForm extends BaseForm
   {
     $this->setWidgets(array(
       'username'  => new sfWidgetFormInputText(array(
-          'label' => 'User Name',
+          'label' => 'Username',
         ), array(
           'required' => 'required',
-          'placeholder' => 'User Name',
+          'placeholder' => 'Username',
       )),
       'password'  => new sfWidgetFormInputPassword(array(), array(
           'required' => 'required',
@@ -19,12 +19,14 @@ class CollectorLoginForm extends BaseForm
       'remember'  => new sfWidgetFormInputCheckbox(array(
           'label' => 'Remember me',
       )),
+      'goto' => new sfWidgetFormInputHidden()
     ));
 
     $this->setValidators(array(
       'username'  => new sfValidatorString(),
       'password'  => new sfValidatorString(),
       'remember'  => new sfValidatorBoolean(),
+      'goto'      => new sfValidatorPass(),
     ));
     $this->mergePostValidator(new cqValidatorSchemaCollector(null, array(
         'throw_global_error' => true,

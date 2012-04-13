@@ -2,6 +2,7 @@
 
 /**
  * @method  boolean  isOwnerOf($something)
+ * @method  sfNamespacedParameterHolder  getAttributeHolder()
  */
 class cqBaseUser extends IceSecurityUser
 {
@@ -13,6 +14,14 @@ class cqBaseUser extends IceSecurityUser
     parent::__construct($dispatcher, $storage, $options);
 
     self::$_facebook_data = $this->getAttribute('data', null, 'icepique/user/facebook');
+  }
+
+  public function getCookieUuid()
+  {
+    /** @var $request cqWebRequest */
+    $request = sfContext::getInstance()->getRequest();
+
+    return $request->getCookie('cq_uuid', null);
   }
 
   public function getReferer($default)
@@ -71,6 +80,9 @@ class cqBaseUser extends IceSecurityUser
       $collector = $this->getCollector();
     }
 
+    /** @var $response cqWebResponse */
+    $response = sfContext::getInstance()->getResponse();
+
     if ($boolean == false)
     {
       $this->setAuthenticated(false);
@@ -79,7 +91,7 @@ class cqBaseUser extends IceSecurityUser
       // remove remember me cookie
       $expiration_age = sfConfig::get('app_collector_remember_cookie_expiration_age', 15 * 24 * 3600);
       $remember_cookie = sfConfig::get('app_collector_remember_cookie_name', 'cqRemember');
-      sfContext::getInstance()->getResponse()->setCookie($remember_cookie, '', time() - $expiration_age);
+      $response->setCookie($remember_cookie, '', time() - $expiration_age);
     }
     else if ($collector instanceof Collector && $boolean == true)
     {
@@ -111,7 +123,7 @@ class cqBaseUser extends IceSecurityUser
 
         // make key as a cookie
         $remember_cookie = sfConfig::get('app_collector_remember_cookie_name', 'cqRemember');
-        sfContext::getInstance()->getResponse()->setCookie($remember_cookie, $key, time() + $expiration_age);
+        $response->setCookie($remember_cookie, $key, time() + $expiration_age);
       }
 
       $this->collector = $collector;
@@ -129,7 +141,8 @@ class cqBaseUser extends IceSecurityUser
   }
 
   /**
-   * @return null|Collector
+   * @throws sfException
+   * @return \Collector|null
    */
   public function getCollector()
   {

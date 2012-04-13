@@ -13,3 +13,6 @@ indexSuccess:
 
 countdownSuccess:
   has_layout: false
+
+feedbackSuccess:
+  layout: layout-minimal

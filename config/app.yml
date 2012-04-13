@@ -43,7 +43,7 @@ all:
     url: "https://www.sandbox.paypal.com/cgi-bin/webscr"
 
   magnify:
-    channel: collectors-quest.magnify.net
+    channel: video.collectorsquest.com
     api_key: K3VQWW33PCMK50HY
 
 dev:

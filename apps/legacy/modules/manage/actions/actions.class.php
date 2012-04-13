@@ -87,7 +87,7 @@ class manageActions extends cqActions
     // Make the Form and Collector available in the template
     $this->form = $form;
     $this->collector = $collector;
-    $this->collector_addresses = $collector->getCollectorAddresss();
+    $this->collector_addresses = $collector->getCollectorAddresses();
 
     if ($collector->getIsSeller())
     {

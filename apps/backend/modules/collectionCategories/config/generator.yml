@@ -6,7 +6,7 @@ generator:
     non_verbose_templates: true
     with_show:             false
     singular:              CollectionCategory
-    plural:                CollectionCategorys
+    plural:                CollectionCategories
     route_prefix:          collection_category
     with_propel_route:     1
     actions_base_class:    cqBackendActions

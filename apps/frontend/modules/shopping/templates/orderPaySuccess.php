@@ -1,7 +1,7 @@
 <?php
   include_partial(
     'global/wizard_bar',
-    array('steps' => array(1 => __('Add to Cart'), __('Payment'), __('Review')) , 'active' => 2)
+    array('steps' => array(1 => __('Shipping'), __('PayPal Payment'), __('Review')) , 'active' => 2)
   );
 ?>
 
@@ -18,5 +18,6 @@
   $(document).ready(function()
   {
     var dgFlow = new PAYPAL.apps.DGFlow({ trigger: 'submitBtn' });
+    $('#submitBtn').click();
   });
 </script>
