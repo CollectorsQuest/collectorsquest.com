@@ -242,17 +242,21 @@ class messagesActions extends cqActions
   {
     if ($request->isMethod('post'))
     {
+      $message = $request->getParameter('message');
+
       $c = new Criteria();
-      $c->add(PrivateMessagePeer::THREAD, $request->getParameter('message[thread]'), Criteria::IN);
+      $c->add(PrivateMessagePeer::THREAD, $message['thread'], Criteria::IN);
       $c->add(PrivateMessagePeer::IS_DELETED, false);
       $c->add(PrivateMessagePeer::RECEIVER, $this->getUser()->getId());
 
       $messages = PrivateMessagePeer::doSelect($c);
-      $total = count($request->getParameter('message[thread]'));
+      $total = count($message['thread']);
 
+      $cmd = $request->getParameter('cmd');
       switch (true)
       {
-        case $request->getParameter('cmd[delete]', null) !== null:
+        case isset($cmd['delete']):
+          /** @var $message PrivateMessage */
           foreach ($messages as $message)
           {
             $message->setIsDeleted(true);
@@ -263,7 +267,8 @@ class messagesActions extends cqActions
             "success", sprintf($this->__('You just deleted %d of your inbox messages!'), $total)
           );
           break;
-        case $request->getParameter('cmd[unread]', null) !== null:
+        case isset($cmd['unread']):
+          /** @var $message PrivateMessage */
           foreach ($messages as $message)
           {
             $message->setIsRead(false);
@@ -274,7 +279,8 @@ class messagesActions extends cqActions
             "success", sprintf($this->__('You just marked %d of your inbox messages as unread!'), $total)
           );
           break;
-        case $request->getParameter('cmd[read]', null) !== null:
+        case isset($cmd['read']):
+          /** @var $message PrivateMessage */
           foreach ($messages as $message)
           {
             $message->setIsRead(true);
@@ -288,6 +294,6 @@ class messagesActions extends cqActions
       }
     }
 
-    return $this->redirect('@messages_inbox');
+    $this->redirect('@messages_inbox');
   }
 }
