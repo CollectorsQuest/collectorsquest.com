@@ -45,6 +45,7 @@ all:
   magnify:
     channel: video.collectorsquest.com
     api_key: K3VQWW33PCMK50HY
+    sso_secret_key: ifHiFRaGaMH87b
 
 dev:
   domain_name: "collectorsquest.dev"

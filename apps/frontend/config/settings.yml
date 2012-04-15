@@ -25,7 +25,7 @@ all:
     default_timezone:       America/New_York
     charset:                utf-8
 
-    enabled_modules:        [iceGlobalModule]
+    enabled_modules:        [iceGlobalModule, iceMagnifyAuth]
     standard_helpers:       [Partial, Cache, I18N, iceAssets, cqAssets, cqImages, cqLinks, cqJavascripts, cqHTML]
     sf_compat_10:           off
 
