@@ -28,12 +28,12 @@
         <div class="span4">
           <form class="form-inline pull-right">
             <?php $k = $sf_user->getShoppingCartCollectiblesCount(); ?>
-            <a href="<?= url_for('@shopping_cart'); ?>" class="link_cart" title="<?= (0 < $k) ? 'View your shopping cart' : 'Your shopping cart is empty!'; ?>">
-              <span class="shopping_cart_inner shopping_cart">
+            <a href="<?= url_for('@shopping_cart'); ?>" class="link-cart" title="<?= (0 < $k) ? 'View your shopping cart' : 'Your shopping cart is empty!'; ?>">
+              <span class="shopping-cart-inner shopping-cart">
               <?php if (0 < $k): ?>
-                <span id="shopping_cart_count"><?= $k; ?></span>
+                <span id="shopping-cart-count"><?= $k; ?></span>
               <?php else: ?>
-                <span id="shopping_cart_count" class="empty_cart">0</span>
+                <span id="shopping-cart-count" class="empty-cart">0</span>
               <?php endif; ?>
               </span>
             </a>

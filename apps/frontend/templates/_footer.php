@@ -13,14 +13,12 @@
           </div>
           <p>
             <a href="http://facebook.com/Collectors.Quest" target="_blank">
-              <i class="s-16-icon-facebook ico-16px-alignment"></i>
-              Follow us on Facebook
+              <i class="s-16-icon-facebook social-ico-padding"></i>Follow us on Facebook
             </a>
           </p>
           <p>
             <a href="http://twitter.com/CollectorsQuest" target="_blank">
-              <i class="s-16-icon-twitter ico-16px-alignment"></i>
-              Follow us on Twitter
+              <i class="s-16-icon-twitter social-ico-padding"></i>Follow us on Twitter
             </a>
           </p>
         </div>
@@ -80,18 +78,18 @@
         <?php else: ?>
         <h2 class="Chivo webfont no-margin-bottom">Welcome back, <?= $sf_user->getCollector()->getDisplayName() ?>!</h2>
         <ul class="footer-profile-box cf">
-          <li class="icon_big_email">
+          <li class="icon-big-email">
             <p>You have 1 message in <a href="#" class="bold-links">your inbox</a></p>
           </li>
-          <li class="icon_big_battery">
+          <li class="icon-big-battery">
             <p>Your profile is 50% complete. <a href="#" class="bold-links">Add a collection</a> in minutes. (+10%)</p>
           </li>
           <li class="footer-profile-box-h-list">
             <ul class="row-fluid">
-              <li class="span6 icon_big_add">
+              <li class="span6 icon-big-add">
                 <a href="#" class="bold-links">Upload a<br> photo</a>
               </li>
-              <li class="span6 icon_big_organize">
+              <li class="span6 icon-big-organize">
                 <a href="#" class="bold-links">Organize your<br> collection</a>
               </li>
             </ul>
@@ -110,7 +108,7 @@
       <div class="span4">
         <ul class="footer-info-box">
           <li>
-            <i class="icon_big_box"></i>
+            <i class="big-box-icon"></i>
             <div class="info-box-text">
               <h2 class="Chivo webfont">Show Off</h2>
               <p>
@@ -121,7 +119,7 @@
             </div>
           </li>
           <li>
-            <i class="icon_big_piggy_bank"></i>
+            <i class="big-piggy-bank-icon"></i>
             <div class="info-box-text">
               <h2 class="Chivo webfont">Get Paid</h2>
               <p>
@@ -132,7 +130,7 @@
             </div>
           </li>
           <li>
-            <i class="icon_big_question"></i>
+            <i class="big-question-icon"></i>
             <div class="info-box-text">
               <h2 class="Chivo webfont">Help/FAQ</h2>
               <p>Want to know how to get more out of your membership? <a href="#">Watch</a> our helpful videos today!</p>

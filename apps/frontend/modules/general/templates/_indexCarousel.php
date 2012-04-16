@@ -1,7 +1,7 @@
 <div class="slot1-inner">
   <div id="carousel-holder">
-    <span class="carousel_next ir"><a href="#" class="button_carousel_next" title="Next">Next</a></span>
-    <span class="carousel_previous ir"><a href="#" class="button_carousel_previous" title="Previous">Prev</a></span>
+    <span class="carousel-next ir"><a href="#" class="button-carousel-next" title="Next">Next</a></span>
+    <span class="carousel-previous ir"><a href="#" class="button-carousel-previous" title="Previous">Prev</a></span>
     <ul id="sample-roundabout">
       <?php foreach ($carousels as $i => $carousel): ?>
       <li>
@@ -66,8 +66,8 @@
         enableDrag: true,
         responsive: true,
         dropEasing: 'easeOutBounce',
-        btnNext: '.button_carousel_next',
-        btnPrev: '.button_carousel_previous',
+        btnNext: '.button-carousel-next',
+        btnPrev: '.button-carousel-previous',
         autoplay: true,
         autoplayDuration: 6000,
         autoplayPauseOnHover: true
