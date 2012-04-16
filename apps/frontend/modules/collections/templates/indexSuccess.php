@@ -23,32 +23,32 @@
         </li>
         <li class="span3">
           <a href="#">
-            <?= ice_image_tag_flickholdr('150x150'); ?>
+            <?= ice_image_tag_flickholdr('150x150', array('i' => 11)) ?>
           </a>
         </li>
         <li class="span3">
           <a href="#">
-            <?= ice_image_tag_flickholdr('150x150'); ?>
+            <?= ice_image_tag_flickholdr('150x150', array('i' => 4)) ?>
           </a>
         </li>
         <li class="span3">
           <a href="#">
-            <?= ice_image_tag_flickholdr('150x150'); ?>
+            <?= ice_image_tag_flickholdr('150x150', array('i' => 12)) ?>
           </a>
         </li>
         <li class="span3">
           <a href="#">
-            <?= ice_image_tag_flickholdr('150x150'); ?>
+            <?= ice_image_tag_flickholdr('150x150', array('i' => 3)) ?>
           </a>
         </li>
         <li class="span3 dn">
           <a href="#">
-            <?= ice_image_tag_flickholdr('150x150'); ?>
+            <?= ice_image_tag_flickholdr('150x150', array('i' => 21)) ?>
           </a>
         </li>
         <li class="span3 dn">
           <a href="#">
-            <?= ice_image_tag_flickholdr('150x150'); ?>
+            <?= ice_image_tag_flickholdr('150x150', array('i' => 18)) ?>
           </a>
         </li>
       </ul>
@@ -59,11 +59,13 @@
 
 <? cq_section_title('Explore Collections') ?>
 
-<div class="collection-search-box">
+<div id="sort-search-box">
   <div class="input-append">
     <div class="btn-group open">
       <div class="append-left-gray">Sort By <strong>Collections</strong></div>
-      <a href="#" data-toggle="dropdown" class="btn gray-button dropdown-toggle"><span class="caret"></span></a>
+      <a href="#" data-toggle="dropdown" class="btn gray-button dropdown-toggle">
+        <span class="caret arrow-up"></span><br><span class="caret arrow-down"></span>
+      </a>
       <ul class="dropdown-menu">
         <li><a href="#">Sort By <strong>Collectibles</strong></a></li>
         <li><a href="#">Sort By <strong>Most Recent</strong></a></li>
