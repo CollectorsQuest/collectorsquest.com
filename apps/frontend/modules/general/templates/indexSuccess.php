@@ -14,6 +14,7 @@
     <div class="span6 brick masonry-blogpost">
       <div class="masonry-blogpost yellow-background">
         <a href="<?= $blog_posts[0]->getPostUrl(); ?>" class="link">
+          <div class="blog-img"><?= ice_image_tag_flickholdr('270x270', array('i' => 18)) ?></div>
           <h3 class="Chivo webfont" style="line-height: 26px;"><?= $blog_posts[0]->getPostTitle(); ?></h3>
           <p><?= cqStatic::truncateText($blog_posts[0]->getPlainPostContent(), 350, '...', true); ?></p>
         </a>
