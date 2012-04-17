@@ -5,6 +5,12 @@ ajax_typeahead:
   param: { module: ajax, action: typeAhead }
   requirements: { sf_method: [GET], sf_format: json }
 
+ajax_collections:
+  url:   /ajax/collection/:section/:page.:sf_format
+  param: { module: ajax, action: collections, sf_format: html }
+  options: { extra_parameters_as_query_string: true }
+  requirements: { sf_format: (?:html|json) }
+
 ### A&E
 
 aent_landing:
