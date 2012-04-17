@@ -22,20 +22,27 @@ var APP = window.APP = {
       COMMON.setupScrollToTop();
       COMMON.setupFooterLoginOrSignup();
       COMMON.setupEmailSpellingHelper();
-    }
+    } // init
   }, // common
 
   /**
    * "general" symfony module
    */
   general: {
-    /**
-     * general/index is the homepage
-     */
+    // general/index is the homepage action
     index: function() {
       GENERAL.setupCarousel();
-    }
-  }
+    } // index
+  }, // general
+
+  /**
+   * "search" symfony module
+   */
+  search: {
+    index: function() {
+      SEARCH.setupMasonry();
+    } // index
+  } // search
 
 }; // APP
 
@@ -181,7 +188,7 @@ var GENERAL = window.GENERAL = (function(){
           } else {
             return false; // exit each
           }
-        })
+        });
 
         return index;
       };
@@ -256,6 +263,69 @@ var GENERAL = window.GENERAL = (function(){
 
   }; // GENERAL object literal
 }());
+
+var SEARCH = window.SEARCH = (function(){
+
+  var defaults = {
+    masonry: {
+      add_infinite_scroll: false,
+      loading_image: '/images/frontend/progress.gif'
+    }
+  };
+
+  // return object literal
+  return {
+    setupMasonry: function() {
+      var $container = $('#search-results'),
+          settings = $.extend({}, defaults, cq.settings);
+
+      $container.imagesLoaded(function() {
+        $container.masonry({
+          itemSelector : '.brick',
+          columnWidth : 201, gutterWidth: 15,
+          isAnimated: !Modernizr.csstransitions
+        });
+      });
+
+      $container.infinitescroll({
+          navSelector: '#search-pagination',
+          nextSelector: '#search-pagination li.next a',
+          itemSelector: '.brick',
+          loading: {
+            finishedMsg: 'No more pages to load.',
+            img: settings.masonry.loading_image
+          },
+          bufferPx: 150
+        },
+        // trigger Masonry as a callback
+        function(selector) {
+          $('.fade-white').mosaic();
+          $('.collectible_grid_view').mosaic({
+            animation: 'slide'
+          });
+          $(".mosaic-overlay a.target").bigTarget({
+            hoverClass: 'over',
+            clickZone : 'div:eq(1)'
+          });
+
+          // hide new bricks while they are loading
+          var $bricks = $(selector).css({ opacity: 0 });
+
+          // ensure that images load before adding to masonry layout
+          $bricks.imagesLoaded(function() {
+            // show bricks now that they're ready
+            $bricks.animate({ opacity: 1 });
+            $container.masonry('appended', $bricks, true);
+          });
+        });
+
+      // Hide the pagination before infinite scroll does it
+      $('#search-pagination').hide();
+    } // setupMasonry()
+
+  }; // SEARCH object literal
+}());
+
 
 
 })(this, this.document, jQuery);

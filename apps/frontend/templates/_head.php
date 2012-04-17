@@ -23,7 +23,8 @@
       authenticated: <?= $sf_user->isAuthenticated() ? 'true' : 'false'; ?>,
       page_load_start: new Date(),
       server_load_time: 0,
-      username_cookie: '<?= sfConfig::get('app_collector_username_cookie_name', 'cqUsername'); ?>'
+      username_cookie: '<?= sfConfig::get('app_collector_username_cookie_name', 'cqUsername'); ?>',
+      settings: {}
     };
 
     // http://stackoverflow.com/a/8567229
