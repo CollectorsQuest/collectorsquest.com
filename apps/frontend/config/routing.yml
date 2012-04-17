@@ -228,6 +228,7 @@ shopping_order_shipping:
   class: sfPropelRoute
   options: { model: ShoppingOrder, type: object }
   param: { module: shopping, action: orderShipping }
+  requirements: { sf_method: [get, post] }
 
 shopping_order_pay:
   url: /order/:uuid/pay

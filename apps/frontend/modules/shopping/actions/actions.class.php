@@ -166,6 +166,42 @@ class shoppingActions extends cqFrontendActions
     /** @var $shopping_payment ShoppingPayment */
     $shopping_payment = $shopping_order->getShoppingPaymentRelatedByShoppingPaymentId();
 
+    if ($this->getUser()->isAuthenticated() && $request->getParameter('address_id'))
+    {
+      $q = CollectorAddressQuery::create()
+        ->filterById($request->getParameter('address_id'))
+        ->filterByCollector($this->getCollector());
+
+      if ($collector_address = $q->findOne())
+      {
+        $shopping_order->setShippingAddress($collector_address);
+        $shopping_order->save();
+      }
+    }
+
+    $form = new ShoppingOrderShippingForm($shopping_order);
+
+    if ($request->isMethod('post'))
+    {
+      $form->bind($request->getParameter('shopping_order'));
+
+      if ($form->isValid() && $form->save())
+      {
+        $this->redirect('@shopping_order_pay?uuid='. $shopping_order->getUuid(), 302);
+      }
+
+      else
+      {
+        $this->getUser()->getFlash('error', 'ERROR');
+      }
+    }
+
+    if ($this->getUser()->isAuthenticated() && null === $request->getParameter('address_id', null))
+    {
+      unset($form['shipping_address']);
+    }
+
+    $this->form               = $form;
     $this->shopping_order     = $shopping_order;
     $this->shopping_payment   = $shopping_payment;
     $this->shipping_addresses = $this->getCollector()->getCollectorAddresses();
