@@ -269,7 +269,6 @@ var SEARCH = window.SEARCH = (function(){
   var defaults = {
     masonry: {
       add_infinite_scroll: false,
-      loading_image: '/images/frontend/progress.gif'
     }
   };
 
@@ -287,40 +286,42 @@ var SEARCH = window.SEARCH = (function(){
         });
       });
 
-      $container.infinitescroll({
-          navSelector: '#search-pagination',
-          nextSelector: '#search-pagination li.next a',
-          itemSelector: '.brick',
-          loading: {
-            finishedMsg: 'No more pages to load.',
-            img: settings.masonry.loading_image
+      if (settings.masonry.add_infinite_scroll) {
+        $container.infinitescroll({
+            navSelector: '#search-pagination',
+            nextSelector: '#search-pagination li.next a',
+            itemSelector: '.brick',
+            loading: {
+              finishedMsg: 'No more pages to load.',
+              img: settings.masonry.loading_image
+            },
+            bufferPx: 150
           },
-          bufferPx: 150
-        },
-        // trigger Masonry as a callback
-        function(selector) {
-          $('.fade-white').mosaic();
-          $('.collectible_grid_view').mosaic({
-            animation: 'slide'
-          });
-          $(".mosaic-overlay a.target").bigTarget({
-            hoverClass: 'over',
-            clickZone : 'div:eq(1)'
+          // trigger Masonry as a callback
+          function(selector) {
+            $('.fade-white').mosaic();
+            $('.collectible_grid_view').mosaic({
+              animation: 'slide'
+            });
+            $(".mosaic-overlay a.target").bigTarget({
+              hoverClass: 'over',
+              clickZone : 'div:eq(1)'
+            });
+
+            // hide new bricks while they are loading
+            var $bricks = $(selector).css({ opacity: 0 });
+
+            // ensure that images load before adding to masonry layout
+            $bricks.imagesLoaded(function() {
+              // show bricks now that they're ready
+              $bricks.animate({ opacity: 1 });
+              $container.masonry('appended', $bricks, true);
+            });
           });
 
-          // hide new bricks while they are loading
-          var $bricks = $(selector).css({ opacity: 0 });
-
-          // ensure that images load before adding to masonry layout
-          $bricks.imagesLoaded(function() {
-            // show bricks now that they're ready
-            $bricks.animate({ opacity: 1 });
-            $container.masonry('appended', $bricks, true);
-          });
-        });
-
-      // Hide the pagination before infinite scroll does it
-      $('#search-pagination').hide();
+        // Hide the pagination before infinite scroll does it
+        $('#search-pagination').hide();
+      } // if settings masonry add_infinite_scroll
     } // setupMasonry()
 
   }; // SEARCH object literal
