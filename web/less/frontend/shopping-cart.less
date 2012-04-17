@@ -1,21 +1,22 @@
 @import "bootstrap/variables.less";
 @import "bootstrap/mixins.less";
 @import "_variables.less";
+@import "_mixins.less";
 
-.empty_cart_message {
-	background: transparent url("@{baseUrl}/empty_cart.png") no-repeat;
-	.size(100px,280px);
-	margin: 80px 0 0 120px
-}
-.empty_cart_message p {
-	color: #6c6c6c;
-	font-size: 24px;
-	font-weight: bold;
-	padding-top: 14px;
-	padding-left: 24px;
-}
-.empty_cart_message span {
-	padding-left: 22px;
+.empty-cart-message {
+  background: transparent url("@{baseUrl}/empty_cart.png") no-repeat;
+  .size(100px, 280px);
+  margin: 80px 0 0 120px;
+  p {
+    color: #6c6c6c;
+    font-size: 24px;
+    font-weight: bold;
+    padding-top: 14px;
+    padding-left: 24px;
+  }
+  span {
+    padding-left: 22px;
+  }
 }
 
 #slot1 {
@@ -23,28 +24,59 @@
 }
 
 @media (min-width: 1210px) {
-//DYNAMIC BODY CLASSES
-//shopping-cart
-	#body-shopping-cart header, #body-shopping-cart #footer-links {
-		width: 979px;
-	}
-	#body-shopping-cart .container-fluid.fixed-right-300 {
-		width: 634px;
-	}
-	#body-shopping-cart .container-fluid.fixed-right-120 {
-		width: 814px;
-	}
-	#body-shopping-cart .container-fluid.fixed-right-180{
-		width: 754px;
-	}
-	#body-shopping-cart .container-fluid.without-column {
-		width: 949px;
-	}
-	#body-shopping-cart footer, #body-shopping-cart header ul.nav {
-		display: none;
-	}
-	#body-shopping-cart .v-center-container-label {
-		width: 71px!important;
-	}
+
+  #body-shopping-orderShipping header,
+  #body-shopping-orderShipping footer,
+  #body-shopping-orderShipping #slot1,
+  #body-shopping-orderShipping #footer-links {
+    width: 979px;
+  }
+
+  #body-shopping-orderShipping .container-fluid.fixed-right-300 {
+    width: 634px;
+  }
+
+  #body-shopping-orderShipping .container-fluid.fixed-right-120 {
+    width: 814px;
+  }
+
+  #body-shopping-orderShipping .container-fluid.fixed-right-180 {
+    width: 754px;
+  }
+
+  #body-shopping-orderShipping .container-fluid.without-column {
+    width: 949px;
+  }
+
+  #body-shopping-orderShipping .v-center-container-label {
+    width: 71px !important;
+  }
+
+  #body-shopping-orderPay header,
+  #body-shopping-orderPay footer,
+  #body-shopping-orderPay #slot1,
+  #body-shopping-orderPay #footer-links {
+    width: 979px;
+  }
+
+  #body-shopping-orderPay .container-fluid.fixed-right-300 {
+    width: 634px;
+  }
+
+  #body-shopping-orderPay .container-fluid.fixed-right-120 {
+    width: 814px;
+  }
+
+  #body-shopping-orderPay .container-fluid.fixed-right-180 {
+    width: 754px;
+  }
+
+  #body-shopping-orderPay .container-fluid.without-column {
+    width: 949px;
+  }
+
+  #body-shopping-orderPay .v-center-container-label {
+    width: 71px !important;
+  }
 
 }

@@ -1,7 +1,7 @@
 <div class="slot1-inner">
   <div id="carousel-holder">
-    <span class="carousel_next ir"><a href="#" class="button_carousel_next" title="Next">Next</a></span>
-    <span class="carousel_previous ir"><a href="#" class="button_carousel_previous" title="Previous">Prev</a></span>
+    <span class="carousel-next ir"><a href="#" class="button-carousel-next" title="Next">Next</a></span>
+    <span class="carousel-previous ir"><a href="#" class="button-carousel-previous" title="Previous">Prev</a></span>
     <ul id="sample-roundabout">
       <?php foreach ($carousels as $i => $carousel): ?>
       <li>
@@ -15,7 +15,7 @@
           ?>
           <div class="carousel-in-focus-title-container">
             <div class="carousel-in-focus-title">
-              <h2><?= $carousel['title'] ?></h2>
+              <h2 class="Chivo webfont"><?= $carousel['title'] ?></h2>
               <p><?= $carousel['content'] ?></p>
             </div>
           </div>
@@ -66,29 +66,14 @@
         enableDrag: true,
         responsive: true,
         dropEasing: 'easeOutBounce',
-        btnNext: '.button_carousel_next',
-        btnPrev: '.button_carousel_previous',
+        btnNext: '.button-carousel-next',
+        btnPrev: '.button-carousel-previous',
         autoplay: true,
         autoplayDuration: 6000,
         autoplayPauseOnHover: true
       },function(){
         $roundaboutEl.fadeTo(1000, 1)
       });
-
-      $roundaboutEl
-        .focus(function()
-        {
-          $(this)
-            .find('.carousel-in-focus-title-container')
-            .css({visibility: "visible"})
-            .fadeIn('slow');
-        })
-        .blur(function()
-        {
-          $(this)
-            .find('.carousel-in-focus-title-container')
-            .fadeOut('slow');
-        });
     }; // setup_roundabout
 
     /**
@@ -109,6 +94,10 @@
         // fade out the current roundabout and regenerate it from the original html
         $roundaboutEl.fadeOut(500, function(){
           $roundaboutEl.html(originalHtml);
+          // we need to manually make webfonts visible, because usually
+          // the js for them will have executed after we have copied the original
+          // html, and the visibility will not be set.
+          $roundaboutEl.find('.webfont').css('visibility', 'visible');
           setupRoundabout();
         });
 
@@ -124,7 +113,6 @@
         clearTimeout(resizeTimeout);
       }
       resizeTimeout = setTimeout(onResizeComplete, 200);
-      console.log(window.cq.helpers.getWindowWidth());
     });
 
     // all is in place, setup the roundabout

@@ -1,1 +1,19 @@
-#User-agent: *
+Sitemap: http://www.collectorsquest.com/sitemap.xml
+
+User-Agent: ia_archiver
+crawl-delay: 30
+
+User-Agent: slurp
+crawl-delay: 15
+
+User-Agent: zyborg
+crawl-delay: 30
+
+User-Agent: msnbot
+crawl-delay: 30
+
+User-Agent: *
+Disallow: /ajax/
+Disallow: /backend/
+Disallow: /errors/
+Disallow: /images/

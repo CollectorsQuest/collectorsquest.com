@@ -11,4 +11,12 @@ class collectionsComponents extends cqFrontendComponents
   {
     return sfView::SUCCESS;
   }
+
+  public function executeFeaturedWeekCollectibles()
+  {
+    $q = CollectibleQuery::create()->limit(12);
+    $this->collectibles = $q->find();
+
+    return sfView::SUCCESS;
+  }
 }

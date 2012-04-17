@@ -70,7 +70,7 @@ class generalActions extends cqFrontendActions
     // redirect to homepage if already logged in
     if ($this->getUser()->isAuthenticated())
     {
-      $this->redirect($request->getParameter('goto', '@collector_me'));
+      $this->redirect($request->getParameter('r', '@collector_me'));
     }
 
     // Auto login the collector if a hash was provided
@@ -79,7 +79,7 @@ class generalActions extends cqFrontendActions
       $this->getUser()->Authenticate(true, $collector, $remember = false);
 
       // redirect to last page or homepage after login
-      $this->redirect($request->getParameter('goto', '@collector_me'));
+      $this->redirect($request->getParameter('r', '@collector_me'));
     }
 
     $form = new CollectorLoginForm();
@@ -92,7 +92,7 @@ class generalActions extends cqFrontendActions
         $collector = $form->getValue('collector');
         $this->getUser()->Authenticate(true, $collector, $form->getValue('remember'));
 
-        $goto = $request->getParameter('goto', $form->getValue('goto'));
+        $goto = $request->getParameter('r', $form->getValue('goto'));
         $this->redirect(!empty($goto) ? $goto : $this->getUser()->getReferer('@collector_me'));
       }
     }
@@ -220,6 +220,85 @@ class generalActions extends cqFrontendActions
     } // post request
 
     $this->form = $form;
+
+    return sfView::SUCCESS;
+  }
+
+  public function executeFeedback(sfWebRequest $request)
+  {
+    $this->form = new FeedbackForm();
+    $this->form->setDefault('page', $request->getParameter('page', $request->getReferer()));
+
+    if ($request->isMethod('post'))
+    {
+      $sent = false;
+
+      $this->form->bind($request->getParameter('feedback'));
+      if ($this->form->isValid())
+      {
+        $values = $this->form->getValues();
+
+        $cqEmail = new cqEmail($this->getMailer());
+        $sent = $cqEmail->send('internal/feedback', array(
+          'to' => 'info@collectorsquest.com',
+          'subject' => '[Feedback] '. $values['fullname'],
+          'params' => array(
+            'feedback' => array(
+              'fullname' => $values['fullname'],
+              'email' => $values['email'],
+              'message' => nl2br($values['message']),
+              'page' => urldecode($values['page'])
+            ),
+            'browser' => array(
+              "f_ip_address" => cqStatic::getUserIpAddress(),
+              "f_javascript_enabled" => $values['f_javascript_enabled'],
+              "f_browser_type" => $values['f_browser_type'],
+              "f_browser_version" => $values['f_browser_version'],
+              "f_browser_color_depth" => $values['f_browser_color_depth'],
+              "f_resolution" => $values['f_resolution'],
+              "f_browser_size" => $values['f_browser_size']
+            ),
+          ),
+        ));
+      }
+
+      if ($sent)
+      {
+        $this->getUser()->setFlash('success', $this->__('Thank you for the feedback. If needed, we will get in touch with you within the next business day.', array(), 'flash'));
+      }
+      else
+      {
+        $this->getUser()->setFlash('error', $this->__('There are errors in the fields or some are left empty.', array(), 'flash'));
+      }
+    }
+
+    return sfView::SUCCESS;
+  }
+
+  public function executeComingSoon()
+  {
+    // Building the breadcrumbs and page title
+    $this->addBreadcrumb($this->__('Coming Soon'));
+    $this->prependTitle($this->__('Coming Soon'));
+
+    return sfView::SUCCESS;
+  }
+
+
+  public function executeError404()
+  {
+    // Building the breadcrumbs and page title
+    $this->addBreadcrumb($this->__('Page Not Found'));
+    $this->prependTitle($this->__('Page Not Found'));
+
+    return sfView::SUCCESS;
+  }
+
+  public function executeError50x()
+  {
+    // Building the breadcrumbs and page title
+    $this->addBreadcrumb($this->__('Unexpected Error'));
+    $this->prependTitle($this->__('Unexpected Error'));
 
     return sfView::SUCCESS;
   }

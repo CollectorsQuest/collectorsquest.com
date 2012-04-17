@@ -1,6 +1,7 @@
 @import "bootstrap/variables.less";
 @import "bootstrap/mixins.less";
 @import "_variables.less";
+@import "_mixins.less";
 
 .collection_grid_view {
   height: 160px;
@@ -57,137 +58,160 @@
   color: #5C5C5C;
 }
 
-
 //This Week's Promo
 #weeks-promo-box {
-	background-color: @yelloHighlight;
-	padding: 15px;
+  background-color: @yelloHighlight;
+  padding: 15px;
 }
+
 .weeks-promo-title {
-	.custom-font(20px, 20px, italic, bold);
-	color: @blueDark;
+  .custom-font(20px, 20px, italic, bold);
+  color: @blueDark;
 }
-#weeks-promo-box .text-right a{
-	vertical-align: middle;
+
+#weeks-promo-box .text-right a {
+  vertical-align: middle;
 }
+
 #weeks-promo-box .thumbnails > li {
-	margin-bottom: 1px;
+  margin-bottom: 1px;
 }
+
 #weeks-promo-box .imageset [class*="span"] {
-	float: left;
-	margin-left: 0;
+  float: left;
+  margin-left: 0;
 }
+
 #weeks-promo-box .thumbnails .span6 {
-	.size(301px, 370px);
-	overflow: hidden;
-	padding-right: 1px;
-	position: relative;
+  .size(301px, 370px);
+  overflow: hidden;
+  padding-right: 1px;
+  position: relative;
 }
+
 .white-block {
-	position: absolute;
-	bottom: 45px;
-	width: 340px;
-	padding: 20px 15px;
-	display: block;
-	color: @blueDark;
-	#translucent > .background(white,0.9);
-	bottom-top: 1px solid #b4b0a5;
-	bottom-bottom: 1px solid #b4b0a5;
+  position: absolute;
+  bottom: 45px;
+  width: 340px;
+  padding: 20px 15px;
+  display: block;
+  color: @blueDark;
+  #translucent > .background(white,0.9);
+  bottom-top: 1px solid #b4b0a5;
+  bottom-bottom: 1px solid #b4b0a5;
 }
+
 .white-block p {
-	margin-bottom: 0;
+  margin-bottom: 0;
 }
+
 #weeks-promo-box .thumbnails .span6 img {
-	overflow: hidden;
-	max-width: none;
+  overflow: hidden;
+  max-width: none;
 }
+
 #weeks-promo-box .span3 {
-	width: 150px;
-	margin-right: 1px;
+  width: 150px;
+  margin-right: 1px;
 }
+
 #weeks-promo-box .imageset {
-	margin-left: 0;
-	margin-bottom: 5px;
+  margin-left: 0;
+  margin-bottom: 5px;
 }
+
 #weeks-promo-box .thumbnails {
-	margin-left: 8px;
+  margin-left: 8px;
 }
+
 .dn {
-	display: none;
+  display: none;
 }
 
 @media (min-width: 997px) and (max-width: 1209px) {
-	#weeks-promo-box .thumbnails .span6 {
-		.size(281px, 320px);
-		overflow: hidden;
-		padding-right: 1px;
-		margin-right: 1px;
-	}
-	#weeks-promo-box .thumbnails .span6 img {
-		overflow: hidden;
-		max-width: none;
-		max-height: 282px;
-	}
-	.white-block {
-		width: 291px;
-	}
-	#weeks-promo-box .span3 {
-		width: 140px;
-		margin-right: 1px;
-	}
-	#weeks-promo-box .imageset {
-		margin-left: 0;
-	}
-	#weeks-promo-box .thumbnails {
-		margin-left: 0px;
-	}
-}
+  #weeks-promo-box .thumbnails .span6 {
+    .size(281px, 320px);
+    overflow: hidden;
+    padding-right: 1px;
+    margin-right: 1px;
+  }
 
-@media (min-width: 1210px) {
-	#weeks-promo-box .thumbnails .span6 {
-		.size(301px, 370px);
-		overflow: hidden;
-		padding-right: 1px;
-	}
-	#weeks-promo-box .span3 {
-		width: 150px;
-	}
-	#weeks-promo-box .thumbnails {
-		margin-left: 0px;
-	}
-  .dn {
-	  display: block;
+  #weeks-promo-box .thumbnails .span6 img {
+    overflow: hidden;
+    max-width: none;
+    max-height: 282px;
+  }
+
+  .white-block {
+    width: 291px;
+  }
+
+  #weeks-promo-box .span3 {
+    width: 140px;
+    margin-right: 1px;
+  }
+
+  #weeks-promo-box .imageset {
+    margin-left: 0;
+  }
+
+  #weeks-promo-box .thumbnails {
+    margin-left: 0px;
   }
 }
 
+@media (min-width: 1210px) {
+  #weeks-promo-box .thumbnails .span6 {
+    .size(301px, 370px);
+    overflow: hidden;
+    padding-right: 1px;
+  }
+
+  #weeks-promo-box .span3 {
+    width: 150px;
+  }
+
+  #weeks-promo-box .thumbnails {
+    margin-left: 0px;
+  }
+
+  .dn {
+    display: block;
+  }
+}
 
 //Collection Search
 
 .collection-search-box {
-	background-color: #daecf6;
-	padding: 15px;
-	margin-bottom: 15px;
+  background-color: #daecf6;
+  padding: 15px;
+  margin-bottom: 15px;
 }
+
 .collection-search-box .btn-group {
-	float: left;
-	margin-right: -6px;
+  float: left;
+  margin-right: -6px;
 }
+
 .collection-search-box .gray-button, .collection-search-box btn-group a, .collection-search-box .dropdown-menu a {
-	font-size: 12px;
+  font-size: 12px;
 }
+
 .collection-search-box .dropdown-menu a {
-	color: #887777;
-	&:hover {
-		background: @yelloHighlight;
-		color: #887777
-	}
+  color: #887777;
+  &:hover {
+    background: @yelloHighlight;
+    color: #887777
+  }
 }
+
 .collection-search-box .dropdown-menu a strong {
-	color: @blue;
-	font-weight: normal;
+  color: @blue;
+  font-weight: normal;
 }
+
 .collection-search-box .input-append input {
-	.border-radius(0);
+  .border-radius(0);
 }
 
 

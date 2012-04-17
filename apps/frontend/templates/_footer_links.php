@@ -12,8 +12,8 @@
         </ul>
       </div>
       <div class="span5 text-right">
-        <?= link_to('CollectorsQuest.com', '@homepage', array('title' => 'Interactive community and marketplace for the collectible community', 'style' => 'text-decoration: none;')); ?>
-        © <?= date('Y'); ?> All rights reserved &nbsp; • &nbsp; <a href="http://nytm.org/made" title="Made in NY">Made by hand in NY</a>
+        © <?= date('Y'); ?> Collectors' Quest, Inc. &nbsp; • &nbsp;
+        <a href="http://nytm.org/made" title="Made in NY">Made by hand in NY</a>
       </div>
     </div>
   </div>

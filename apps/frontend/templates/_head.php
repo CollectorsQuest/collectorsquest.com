@@ -1,4 +1,4 @@
-<head>
+
   <meta charset="utf-8" />
   <?php cq_include_http_metas() ?>
   <?php cq_include_metas() ?>
@@ -30,4 +30,3 @@
     var docready=[],$=function(){return{ready:function(fn){docready.push(fn)}}};
   </script>
   <script src="<?= cq_javascript_src('frontend/head.js'); ?>"></script>
-</head>

@@ -1,6 +1,6 @@
 <?php
 
-class ajaxActions extends cqBackendActions
+class ajaxActions extends cqFrontendActions
 {
 
 }

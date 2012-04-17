@@ -2,15 +2,15 @@
 
 class CollectorSignupStep1Form extends BaseForm
 {
-  public function setup()
+  public function configure()
   {
     $this->setWidgets(array(
       'username'        => new sfWidgetFormInputText(array(
-          'label'       => 'User Name'
+          'label'       => 'Username'
         ), array(
           'pattern'     => '^(?=^[a-zA-Z])[a-zA-Z0-9\.\_]*$',
           'required'    => 'required',
-          'placeholder' => 'User Name',
+          'placeholder' => 'Username',
       )),
       'password'        => new sfWidgetFormInputPassword(array(), array(
           'required'    => 'required',
@@ -77,6 +77,13 @@ class CollectorSignupStep1Form extends BaseForm
 
     $this->widgetSchema->setNameFormat('signup_step1[%s]');
     $this->widgetSchema->setFormFormatterName('Bootstrap');
+  }
+
+  public function getJavaScripts()
+  {
+    return array(
+        '/js/jquery/mailcheck.js',
+    );
   }
 
 }

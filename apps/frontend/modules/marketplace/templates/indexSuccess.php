@@ -1,8 +1,8 @@
-<? cq_page_title('Market') ?>
+<?php cq_page_title('Market') ?>
 
 <br/>
 <div class="row-fluid" id="marketplace-spotlight" style="background: #FEF8E0; margin-left: 0; overflow: hidden;">
-  <h2 class="Chivo" style="font-size: 20px; font-style: italic; color: #125276; line-height: 46px; padding-left: 15px;">
+  <h2 class="Chivo webfont" style="font-size: 20px; font-style: italic; color: #125276; line-height: 46px; padding-left: 15px;">
     Spotlight on items from the Civil War
   </h2>
   <?php foreach ($spotlight as $i => $collectible_for_sale): ?>
@@ -27,7 +27,7 @@
 <? cq_section_title('Discover more items for sale', link_to('see the marketplace', '@marketplace')); ?>
 <div class="row">
   <div id="collectibles" class="row-content">
-    <?php
+  <?php
     /** @var $collectible_for_sale CollectibleForSale */
     foreach ($collectibles as $i => $collectible_for_sale)
     {
@@ -43,7 +43,7 @@
       );
       echo '</div>';
     }
-    ?>
+  ?>
   </div>
 </div>
 

@@ -31,8 +31,9 @@ class cqEmail
 
   /**
    * @param     string $name the name of the pre-defined email template
-   * @param     array $options
+   * @param     array  $options
    *
+   * @throws    InvalidArgumentException
    * @return    integer number of actually sent emails (recepients + cc + bcc)
    */
   public function send($name, $options = array())

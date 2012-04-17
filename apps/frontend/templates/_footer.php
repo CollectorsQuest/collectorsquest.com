@@ -1,27 +1,38 @@
+<?php
+  use_javascripts_for_form($signup_form);
+?>
+
 <footer id="footer">
   <div class="footer-inner">
     <div class="row-fluid">
       <div class="span4">
         <div class="aboutus-footer-inner">
-          <h2 class="Chivo">About Collectors’ Quest</h2>
+          <h2 class="Chivo webfont">About Collectors’ Quest</h2>
           <p>
             Collectors’ Quest is an interactive community and marketplace for the passionate collector. Collectors can meet others who share their interests, organize and catalog their collections, as well as buy, sell or trade with others...
             <a href="#">Learn more</a>
           </p>
           <div class="row-spacing-footer">
-            <button class="btn btn-primary blue-button pull-left" type="submit">Contact us</button>
+            <button class="btn btn-primary blue-button pull-left" type="submit">Contact Us</button>
           </div>
-          <p><a href="#"><i class="s-16-icon-facebook ico-16px-alignment"></i> Follow us on Facebook</a></p>
-          <p><a href="#" ><i class="s-16-icon-twitter ico-16px-alignment"></i> Follow us on Twitter</a></p>
+          <p>
+            <a href="http://facebook.com/Collectors.Quest" target="_blank">
+              <i class="s-16-icon-facebook social-ico-padding"></i>Follow us on Facebook
+            </a>
+          </p>
+          <p>
+            <a href="http://twitter.com/CollectorsQuest" target="_blank">
+              <i class="s-16-icon-twitter social-ico-padding"></i>Follow us on Twitter
+            </a>
+          </p>
         </div>
       </div><!-- .span4 -->
 
       <div class="span4">
-
         <?php if (!$sf_user->isAuthenticated()): ?>
 
         <div id="footer-form-signup">
-          <h2 class="Chivo">Sign Up</h2>
+          <h2 class="Chivo webfont">Sign Up</h2>
 
           <form action="<?= url_for('@collector_signup'); ?>" method="post" class="form-horizontal form-footer">
             <?= $signup_form->renderUsing('BootstrapWithRowFluid'); ?>
@@ -43,7 +54,7 @@
         </div><!-- #footer-form-signup -->
 
         <div id="footer-form-login" style="display: none">
-          <h2 class="Chivo">Log In</h2>
+          <h2 class="Chivo webfont">Log In</h2>
           <form action="<?= url_for('@login'); ?>" class="form-horizontal form-footer" method="post">
             <?= $login_form->renderUsing('BootstrapWithRowFluid') ?>
             <div class="row-fluid row-spacing">
@@ -69,56 +80,63 @@
         </div> <!-- #footer-form-login -->
 
         <?php else: ?>
-        <h2 class="Chivo">Welcome back, <?= $sf_user->getCollector()->getDisplayName() ?>!</h2>
-        <ul class="footer-profile-box">
-          <li class="icon_big_email">
-              <p>You have in <a href="#" class="bold-links">your inbox</a></p>
+        <h2 class="Chivo webfont no-margin-bottom">Welcome back, <?= $sf_user->getCollector()->getDisplayName() ?>!</h2>
+        <ul class="footer-profile-box cf">
+          <li class="icon-big-email">
+            <p>You have 1 message in <a href="#" class="bold-links">your inbox</a></p>
           </li>
-          <li class="icon_big_battery">
-              <p>Your profile is 50% complete. <a href="#" class="bold-links">Add a collection</a> in minutes. (+10%)</p>
+          <li class="icon-big-battery">
+            <p>Your profile is 50% complete. <a href="#" class="bold-links">Add a collection</a> in minutes. (+10%)</p>
           </li>
-          <li>
-            <div class="row-fluid">
-              <div class="span6 icon_big_add">
-                  <p><a href="#" class="bold-links">Upload<br> a photo</a></p>
-              </div>
-              <div class="span6 icon_big_organize">
-                  <p><a href="#" class="bold-links">Organize your<br> collection</a></p>
-              </div>
-            </div>
+          <li class="footer-profile-box-h-list">
+            <ul class="row-fluid">
+              <li class="span6 icon-big-add">
+                <a href="#" class="bold-links">Upload a<br> photo</a>
+              </li>
+              <li class="span6 icon-big-organize">
+                <a href="#" class="bold-links">Organize your<br> collection</a>
+              </li>
+            </ul>
           </li>
         </ul> <!-- .footer-pofile-box -->
 
         <div class="row-fluid top-padding-10">
           <div class="span12">
             <button class="btn btn-primary blue-button" type="submit">My Profile</button>
-            <?= link_to('Log out', '@logout'); ?>
+            <b><?= link_to('Log out', '@logout', array('class' => 'spacing-left')); ?></b>
           </div>
         </div>
         <?php endif; ?>
-
       </div><!-- .span4 -->
 
       <div class="span4">
         <ul class="footer-info-box">
           <li>
-            <i class="icon_big_box"></i>
+            <i class="big-box-icon"></i>
             <div class="info-box-text">
-              <h2 class="Chivo">Show Off</h2>
-              <p>Share your passion with a world of interested people by organizing your collections with our easy to use tools.</p>
+              <h2 class="Chivo webfont">Show Off</h2>
+              <p>
+                Share your passion with a world of interested people by organizing your
+                collections with our easy to use tools.
+                <?= link_to('Show&nbsp;Off&nbsp;Now', '@collector_signup'); ?>
+              </p>
             </div>
           </li>
           <li>
-            <i class="icon_big_piggy_bank"></i>
+            <i class="big-piggy-bank-icon"></i>
             <div class="info-box-text">
-              <h2 class="Chivo">Get Paid</h2>
-              <p>It’s easy to sell an item once you’re a member. Just choose “I’m a seller” during the sign up process.</p>
+              <h2 class="Chivo webfont">Get Paid</h2>
+              <p>
+                It's easy to sell an item once you're a member.
+                Just choose "I'm a seller" during the sign up process.
+                <?= link_to('Start&nbsp;Selling&nbsp;Now', '@seller_signup'); ?>
+              </p>
             </div>
           </li>
           <li>
-            <i class="icon_big_question"></i>
+            <i class="big-question-icon"></i>
             <div class="info-box-text">
-              <h2 class="Chivo">Help/FAQ</h2>
+              <h2 class="Chivo webfont">Help/FAQ</h2>
               <p>Want to know how to get more out of your membership? <a href="#">Watch</a> our helpful videos today!</p>
             </div>
           </li>

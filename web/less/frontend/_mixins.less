@@ -1,0 +1,13 @@
+// .custom-font(20px, 20px, italic, bold);
+.custom-font(@size, @lineHeight, @style: normal, @weight: normal){
+  font-size: @size;
+  line-height: @lineHeight;
+  font-style: @style;
+  font-weight: @weight;
+}
+
+.min-height(@height) {
+	height: auto !important;
+	height: @height;
+	max-height: @height;
+}

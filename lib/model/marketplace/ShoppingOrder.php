@@ -63,6 +63,16 @@ class ShoppingOrder extends BaseShoppingOrder
     return $this->getShoppingCartCollectible()->getDescription();
   }
 
+  public function setShippingAddress(CollectorAddress $address)
+  {
+    $this->setShippingFullName($address->getFullName());
+    $this->setShippingAddressLine1($address->getAddressLine1());
+    $this->setShippingAddressLine2($address->getAddressLine2());
+    $this->setShippingCity($address->getCity());
+    $this->setShippingStateRegion($address->getStateRegion());
+    $this->setShippingZipPostcode($address->getZipPostcode());
+    $this->setShippingCountryIso3166($address->getCountryIso3166());
+  }
 
   public function getPaypalPayRequestFields()
   {
