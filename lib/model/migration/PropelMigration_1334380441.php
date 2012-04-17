@@ -26,7 +26,7 @@ class PropelMigration_1334380441
       while ( ($data = fgetcsv($handle)) !== false )
       {
         // for each row, we set the parent category to the root
-        $parent_category_id = $root_category->getId();;
+        $parent_category_id = $root_category->getId();
 
         // and work our way right (data is in parent > child order)
         while ( ($category_name = array_shift($data)) !== null )

@@ -16,7 +16,7 @@ class cqFrontendUser extends cqBaseUser
       }
       else
       {
-        $this->collector = new Collector();;
+        $this->collector = new Collector();
       }
     }
     else if ($this->collector->getId() == null && $this->getAttribute("id", null, "collector") !== null)

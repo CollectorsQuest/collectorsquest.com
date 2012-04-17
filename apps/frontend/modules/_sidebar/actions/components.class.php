@@ -34,9 +34,42 @@ class _sidebarComponents extends cqFrontendComponents
       ->filterByParentId(0, Criteria::EQUAL)
       ->orderByName(Criteria::ASC)
       ->limit($this->limit);
-    $categories = $q->find();
 
-    $this->categories = IceFunctions::array_vertical_sort($categories, $this->columns);
+    $this->categories = $q->find();
+
+    return sfView::SUCCESS;
+  }
+
+  /**
+   * @return string
+   */
+  public function executeWidgetMarketplaceCategories()
+  {
+    // Set the limit of Collections to show
+    $this->limit = $this->getVar('limit') ? (int) $this->getVar('limit') : 30;
+
+    // Set the number of columns to show
+    $this->columns = $this->getVar('columns') ? (int) $this->getVar('columns') : 2;
+
+    /** @var $q CollectionCategoryQuery */
+    $q = CollectionCategoryQuery::create()
+      ->distinct()
+      ->filterByName('None', Criteria::NOT_EQUAL)
+      ->orderBy('Name', Criteria::ASC)
+      ->joinCollection()
+      ->useCollectionQuery()
+        ->joinCollectionCollectible()
+        ->useCollectionCollectibleQuery()
+          ->joinCollectible()
+          ->useCollectibleQuery()
+            ->joinCollectibleForSale()
+            ->useCollectibleForSaleQuery()
+              ->filterByIsSold(false)
+            ->endUse()
+          ->endUse()
+        ->endUse()
+      ->endUse();
+    $this->categories = $q->find();
 
     return sfView::SUCCESS;
   }
@@ -127,6 +160,11 @@ class _sidebarComponents extends cqFrontendComponents
       $this->videos = $magnify->getContent()->browse(1, $limit);
     }
 
+    return sfView::SUCCESS;
+  }
+
+  public function executeWidgetFeaturedSellers()
+  {
     return sfView::SUCCESS;
   }
 

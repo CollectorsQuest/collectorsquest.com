@@ -26,13 +26,15 @@ EAT
 
 function cq_sidebar_title($h3, $link = null, $options = array())
 {
+  $options = array_merge(array('left' => 9, 'right' => 3), $options);
+
   $content = sprintf(<<<EAT
-<div class="span9">
+<div class="span%d">
   <h3 class="Chivo webfont">%s</h3>
 </div>
-<div class="span3 text-right">%s&nbsp;</div>
+<div class="span%d text-right">%s&nbsp;</div>
 EAT
-, $h3, $link);
+, (int) $options['left'], $h3, $options['right'], $link);
 
   $options = array_merge(array('class' => 'row-fluid sidebar-title'), $options);
   echo content_tag('div', $content, $options);
