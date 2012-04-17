@@ -25,6 +25,11 @@
               <i class="s-16-icon-twitter social-ico-padding"></i>Follow us on Twitter
             </a>
           </p>
+          <p>
+            <a href="http://pinterest.com/CollectorsQuest" target="_blank">
+              <i class="s-16-icon-pinterest social-ico-padding"></i>Follow us on Pinterest
+            </a>
+          </p>
         </div>
       </div><!-- .span4 -->
 
