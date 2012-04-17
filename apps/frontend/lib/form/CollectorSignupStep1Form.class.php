@@ -2,7 +2,7 @@
 
 class CollectorSignupStep1Form extends BaseForm
 {
-  public function setup()
+  public function configure()
   {
     $this->setWidgets(array(
       'username'        => new sfWidgetFormInputText(array(
