@@ -68,14 +68,13 @@
     );
   ?>
 </div>
+
 <script>
   $(document).ready(function()
   {
     $.extend(cq.settings, {
       masonry: {
-        //<?php if ($sf_params->get('show') == 'all'): ?>
-        add_infinite_scroll: true,
-        //<?php endif; ?>
+        add_infinite_scroll: <?= ($sf_params->get('show') == 'all') ? 'true' : 'false' ?>,
         loading_image: '<?= image_path('frontend/progress.gif'); ?>'
       }
     })

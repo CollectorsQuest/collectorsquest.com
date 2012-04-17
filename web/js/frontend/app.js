@@ -180,7 +180,7 @@ var GENERAL = window.GENERAL = (function(){
        */
       var findCurrentResolutionIndex = function() {
         var index = 0,
-            currentWidth = cq.helpers.getWindowWidth();
+            currentWidth = window.cq.helpers.getWindowWidth();
 
         $.each(switchResolutions, function(i, resolution){
           if ( currentWidth > resolution ) {
@@ -268,7 +268,7 @@ var SEARCH = window.SEARCH = (function(){
 
   var defaults = {
     masonry: {
-      add_infinite_scroll: false,
+      add_infinite_scroll: false
     }
   };
 
@@ -276,7 +276,7 @@ var SEARCH = window.SEARCH = (function(){
   return {
     setupMasonry: function() {
       var $container = $('#search-results'),
-          settings = $.extend({}, defaults, cq.settings);
+          settings = $.extend({}, defaults, window.cq.settings);
 
       $container.imagesLoaded(function() {
         $container.masonry({

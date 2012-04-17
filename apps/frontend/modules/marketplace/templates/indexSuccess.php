@@ -22,7 +22,9 @@
 </div>
 
 <br/>
-<?= link_to(image_tag('banners/040412_show_and_sell_red.gif'), '@collector_signup'); ?>
+<div class="row" style="text-align: center;">
+  <?= link_to(image_tag('banners/040412_show_and_sell_red.gif'), '@collector_signup'); ?>
+</div>
 
 <? cq_section_title('Discover more items for sale', link_to('see the marketplace', '@marketplace', array('class' => 'text-v-middle link-align'))); ?>
 
