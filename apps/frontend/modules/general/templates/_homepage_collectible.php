@@ -4,10 +4,7 @@
       <?= ice_image_tag_flickholdr('138x138', array('i' => $i)) ?>
     </a>
     <div class="details" style="word-wrap: break-word;">
-      <div class="details-inner">
-        <h3><?= $collectible->getName(); ?></h3>
-        <p><?= $collectible->getCollection(); ?></p>
-      </div>
+      <h3 class="details-inner"><?= $collectible->getName(); ?></h3>
     </div>
   </div>
 </div>
