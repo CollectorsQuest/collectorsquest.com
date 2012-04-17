@@ -109,8 +109,23 @@ function image_tag_collection($collection, $which = '150x150', $options = array(
  *
  * @return string
  */
-function image_tag_collectible($collectible, $which = '150x150', $options = array())
+function image_tag_collectible($collectible, $which = null, $options = array())
 {
+  if ($which === null)
+  {
+    switch (sfConfig::get('sf_app'))
+    {
+      case 'frontend':
+        $which = '190x150';
+        break;
+
+      case 'legacy':
+      default:
+        $which = '150x150';
+        break;
+    }
+  }
+
   $default = sfConfig::get('sf_app') . '/multimedia/Collectible/'. $which .'.png';
 
   if ($collectible instanceof CollectionCollectible)
