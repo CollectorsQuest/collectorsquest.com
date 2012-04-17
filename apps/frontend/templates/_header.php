@@ -40,7 +40,7 @@
             <span class="nav-divider"></span>
             <?php if ($sf_user->isAuthenticated()): ?>
               &nbsp;
-              <?= link_to('My Account', '@collector_me', array('class' => 'btn')); ?>
+              <?= link_to('My Account', '@collector_me', array('class' => 'my-account-btn')); ?>
             <?php else: ?>
               <?= link_to('Log In', '@login', array('class' => 'bold-links padding-signup')); ?>
               &nbsp;or&nbsp;

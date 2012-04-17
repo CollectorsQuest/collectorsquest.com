@@ -95,10 +95,10 @@
           </li>
           <li class="footer-profile-box-h-list">
             <ul class="row-fluid">
-              <li class="span6 icon-big-add">
+              <li class="span6 upload-photo">
                 <a href="#" class="bold-links">Upload a<br> photo</a>
               </li>
-              <li class="span6 icon-big-organize">
+              <li class="span6 organize-collection">
                 <a href="#" class="bold-links">Organize your<br> collection</a>
               </li>
             </ul>
