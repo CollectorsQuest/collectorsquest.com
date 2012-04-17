@@ -9,7 +9,10 @@
   $title = sprintf(
     'for <strong>%s</strong> (%s)',
     $sf_params->get('q'),
-    format_number_choice('[0] no result|[1] 1 result|(1,+Inf] %1% results', array('%1%' => $pager->getNbResults()), $pager->getNbResults())
+    format_number_choice(
+      '[0] no results|[1] 1 result|(1,+Inf] %1% results',
+      array('%1%' => $pager->getNbResults()), $pager->getNbResults()
+    )
   );
 ?>
 <h1>Search results <small><?= $title; ?></small></h1>
