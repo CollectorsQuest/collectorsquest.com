@@ -137,7 +137,10 @@
             <i class="big-question-icon"></i>
             <div class="info-box-text">
               <h2 class="Chivo webfont">Help/FAQ</h2>
-              <p>Want to know how to get more out of your membership? <a href="#">Watch</a> our helpful videos today!</p>
+              <p>
+                Want to know how to get more out of your membership?
+                <a href="#">Read&nbsp;our&nbsp;FAQs&nbsp;now!</a>
+              </p>
             </div>
           </li>
         </ul>
