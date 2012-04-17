@@ -2,7 +2,7 @@
 
 class CollectorSignupStep1Form extends BaseForm
 {
-  public function setup()
+  public function configure()
   {
     $this->setWidgets(array(
       'username'        => new sfWidgetFormInputText(array(
@@ -77,6 +77,13 @@ class CollectorSignupStep1Form extends BaseForm
 
     $this->widgetSchema->setNameFormat('signup_step1[%s]');
     $this->widgetSchema->setFormFormatterName('Bootstrap');
+  }
+
+  public function getJavaScripts()
+  {
+    return array(
+        '/js/jquery/mailcheck.js',
+    );
   }
 
 }

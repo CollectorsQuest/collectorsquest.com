@@ -1,5 +1,6 @@
 @import "bootstrap/variables.less";
 @import "bootstrap/mixins.less";
+@import "bootstrap/utilities.less";
 
 @import "_variables.less";
 @import "_mixins.less";
@@ -313,6 +314,17 @@ footer .form-horizontal .control-label {
   color: #125375;
   float: left;
   text-align: left;
+}
+
+// Email suggestion for .form-horizontal
+.form-horizontal .email-suggestion {
+  .pull-right;
+  a {
+    cursor: pointer;
+    .domain {
+      font-weight: bold;
+    }
+  }
 }
 
 /* IE7 */

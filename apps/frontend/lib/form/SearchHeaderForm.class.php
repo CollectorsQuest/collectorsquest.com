@@ -1,8 +1,8 @@
 <?php
 
-class SearchHeaderForm extends sfForm
+class SearchHeaderForm extends BaseForm
 {
-  public function setup()
+  public function configure()
   {
     $this->setWidgets(array(
       'q' => new bsWidgetFormInputTypeAhead(array(
@@ -15,7 +15,7 @@ class SearchHeaderForm extends sfForm
     ));
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
-
-    parent::setup();
+    $this->disableLocalCSRFProtection();
   }
+
 }

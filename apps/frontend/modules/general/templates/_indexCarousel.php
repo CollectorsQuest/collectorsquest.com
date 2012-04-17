@@ -113,7 +113,6 @@
         clearTimeout(resizeTimeout);
       }
       resizeTimeout = setTimeout(onResizeComplete, 200);
-      console.log(window.cq.helpers.getWindowWidth());
     });
 
     // all is in place, setup the roundabout
