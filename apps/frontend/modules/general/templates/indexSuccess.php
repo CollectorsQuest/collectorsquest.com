@@ -1,4 +1,6 @@
-<h2 class="Chivo webfont red-title">Showcase</h2>
+<div class="header-bar">
+  <h2 class="Chivo webfont">Showcase</h2>
+</div>
 <div class="row">
   <div id="homepage" class="row-content">
     <?php
