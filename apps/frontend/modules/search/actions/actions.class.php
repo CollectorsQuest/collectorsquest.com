@@ -13,11 +13,6 @@ class searchActions extends cqFrontendActions
 
     self::$_query['q'] = $request->getParameter('q');
 
-    if (empty(self::$_query['q']))
-    {
-      $this->redirect('@search_advanced');
-    }
-
     // Setting the user preference for the adverts display type (grid or list)
     if ($request->getParameter('display'))
     {
@@ -85,8 +80,6 @@ class searchActions extends cqFrontendActions
     $this->sid = $pager->init();
 
     $this->pager = $pager;
-    $this->total = ($pager->getNbResults() >= 1000) ? '1000+' : $pager->getNbResults();
-
     $this->display = $this->getUser()->getAttribute('display', 'grid', 'search');
     $this->url = new IceTypeUrl($request->getUri());
 
@@ -105,8 +98,6 @@ class searchActions extends cqFrontendActions
     $this->sid = $pager->init();
 
     $this->pager = $pager;
-    $this->total = ($pager->getNbResults() >= 1000) ? '1000+' : $pager->getNbResults();
-
     $this->display = $this->getUser()->getAttribute('display', 'grid', 'search');
     $this->url = new IceTypeUrl($request->getUri());
 
@@ -120,8 +111,6 @@ class searchActions extends cqFrontendActions
     $this->sid = $pager->init();
 
     $this->pager = $pager;
-    $this->total = ($pager->getNbResults() >= 1000) ? '1000+' : $pager->getNbResults();
-
     $this->display = $this->getUser()->getAttribute('display', 'grid', 'search');
     $this->url = new IceTypeUrl($request->getUri());
 
@@ -135,8 +124,6 @@ class searchActions extends cqFrontendActions
     $this->sid = $pager->init();
 
     $this->pager = $pager;
-    $this->total = ($pager->getNbResults() >= 1000) ? '1000+' : $pager->getNbResults();
-
     $this->display = $this->getUser()->getAttribute('display', 'grid', 'search');
     $this->url = new IceTypeUrl($request->getUri());
 
@@ -150,8 +137,6 @@ class searchActions extends cqFrontendActions
     $this->sid = $pager->init();
 
     $this->pager = $pager;
-    $this->total = ($pager->getNbResults() >= 1000) ? '1000+' : $pager->getNbResults();
-
     $this->display = $this->getUser()->getAttribute('display', 'grid', 'search');
     $this->url = new IceTypeUrl($request->getUri());
 
@@ -160,14 +145,15 @@ class searchActions extends cqFrontendActions
 
   public function executeVideos(sfWebRequest $request)
   {
-    $page = $request->getParameter('page', 1);
-    $perPage = 12; //TODO: Configurable
-
-    $pager = new cqMagnifyPager($request->getParameter('q'), $perPage);
+    $pager = new cqMagnifyPager($request->getParameter('q'), 24);
+    $pager->setPage($request->getParameter('page', 1));
     $pager->init();
 
     $this->pager = $pager;
     $this->display = $this->getUser()->getAttribute('display', 'grid', 'search');
+    $this->url = new IceTypeUrl($request->getUri());
+
+    return sfView::SUCCESS;
   }
 
 }
