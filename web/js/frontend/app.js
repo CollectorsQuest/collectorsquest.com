@@ -22,6 +22,7 @@ var APP = window.APP = {
 
       COMMON.setupScrollToTop();
       COMMON.setupFooterLoginOrSignup();
+      COMMON.setupEmailSpellingHelper();
     }
   } // common
 
@@ -29,7 +30,6 @@ var APP = window.APP = {
 
 
 var COMMON = window.COMMON = (function(){
-  "use strict";
 
   // return object literal
   return {
@@ -52,6 +52,75 @@ var COMMON = window.COMMON = (function(){
           offset: '100%'
       });
     }, // setupScrollToTop
+
+    setupEmailSpellingHelper: function() {
+      var suggestion_html =
+          '<div class="email-suggestion" style="display: none">' +
+             'Did you mean ' +
+             '<a class="email">' +
+                '<span class="address">asf</span>@<span class="domain">gmail.com</span>' +
+             '</a>?' +
+           '</div>';
+
+      // check if js/jquery/mailcheck.js is loaded
+      if ($().mailcheck) {
+        // find input elements of type email
+        $('input[type=email]').each(function() {
+          var $email_el = $(this),
+              $email_el_form = $email_el.parents('form');
+
+          var perform_mailcheck = function($el) {
+            $el.mailcheck({
+              suggested: function(element, suggestion) {
+                // if we have a suggestion by mailcheck, display it
+                var $suggestion = $el.siblings('div.email-suggestion');
+                if (!$suggestion.length) {
+                  $suggestion = $(suggestion_html);
+                  $suggestion.insertAfter($el);
+                }
+                $suggestion.find('.address').html(suggestion.address);
+                $suggestion.find('.domain').html(suggestion.domain);
+                $suggestion.find('a').data('suggested-address', suggestion.full);
+                $el.data('suggestion-shown', true);
+                $suggestion.slideDown(200);
+              },
+              empty: function() {
+                // if the user manually fixes the problem, hide the suggestion
+                var $suggestion = $el.siblings('div.email-suggestion');
+                $el.data('suggestion-shown', false);
+                $suggestion.hide();
+              }
+            });
+          };
+
+          // add delegated click event on the suggestion to fill it in the email filed
+          $email_el_form.on('click', '.email-suggestion a', function() {
+            var $this = $(this);
+            $email_el.val($this.data('suggested-address'));
+            $this.parent('div').hide();
+          })
+          // add an on submit hook to require the user to click 2 times on the submit
+          // button before submitting with an email that may be wrong
+          .on('submit', function(e) {
+            perform_mailcheck($email_el);
+
+            if ($email_el.data('suggestion-shown') && !$email_el_form.data('not-first-submit') ){
+              $email_el_form.data('not-first-submit', true);
+              // possibly add highlight effect?
+              //$email_el.siblings('div.email-suggestion').effect("highlight");
+              return false;
+            }
+
+            return true;
+          });
+
+          // setup blur event - check if the email is ok
+          $email_el.on('blur', function() {
+            perform_mailcheck($email_el);
+          });
+        });
+      }
+    },
 
     setupFooterLoginOrSignup: function() {
       // add events to switch between login and signup form in the footer

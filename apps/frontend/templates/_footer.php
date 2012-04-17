@@ -1,3 +1,7 @@
+<?php
+  use_javascripts_for_form($signup_form);
+?>
+
 <footer id="footer">
   <div class="footer-inner">
     <div class="row-fluid">

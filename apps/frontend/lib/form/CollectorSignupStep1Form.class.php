@@ -79,4 +79,11 @@ class CollectorSignupStep1Form extends BaseForm
     $this->widgetSchema->setFormFormatterName('Bootstrap');
   }
 
+  public function getJavaScripts()
+  {
+    return array(
+        '/js/jquery/mailcheck.js',
+    );
+  }
+
 }
