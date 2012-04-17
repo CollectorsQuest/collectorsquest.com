@@ -28,6 +28,10 @@
   }]);
 </script>
 
+<script>var switchTo5x=true;</script>
+<script src="http://w.sharethis.com/button/buttons.js"></script>
+<script>stLight.options({publisher:'b69d7375-23f2-424c-9d59-f6bf47e9a722'});</script>
+
 <?php
   // Include analytics code only in production
   if (sfConfig::get('sf_environment') === 'prod')
