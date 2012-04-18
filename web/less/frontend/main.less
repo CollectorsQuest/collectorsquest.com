@@ -100,10 +100,7 @@ body {
 #content {
   background-color: @white;
   padding-top: 35px;
-}
-
-footer {
-  background-color: @yellowLight;
+  border-left: 1px solid #ededed;
 }
 
 h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover {
@@ -416,6 +413,8 @@ footer .form-horizontal .controls {
 // FOOTER
 footer {
   color: @blueDark;
+  border-left: 1px solid #ededed;
+  background-color: @yellowLight;
   .box-shadow(0 25px 20px rgba(136, 119, 119, 0.5));
   position: relative;
 }
@@ -632,6 +631,7 @@ ul.footer-profile-box li.icon-big-email p {
 #slot1 {
   margin: 0 auto;
   background-color: @white;
+  border-left: 1px solid #ededed;
   .box-shadow(0 25px 20px rgba(136, 119, 119, 0.5));
   .clearfix();
 }
@@ -998,4 +998,4 @@ li.roundabout-in-focus .carousel-in-focus-title-container {
 
 
 //GRID, media queries
-@import "grid.less";
+@import "_grid.less";
