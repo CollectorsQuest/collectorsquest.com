@@ -19,6 +19,11 @@ class globalComponents extends cqFrontendComponents
     return sfView::SUCCESS;
   }
 
+  public function executeSidebar160()
+  {
+    return sfView::SUCCESS;
+  }
+
   public function executeSidebar180()
   {
     return sfView::SUCCESS;

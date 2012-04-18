@@ -10,6 +10,20 @@
 @import "_wizard.less";
 @import "_spites.less";
 
+// basic body
+body {
+  background: #ecebec url("@{baseUrl}/background-pattern.png") repeat;
+}
+
+a {
+  color: @linkColor;
+  text-decoration: none;
+}
+a:hover {
+  color: @linkColorHover;
+  text-decoration: none;
+}
+
 // FONTS
 .Chivo {
   font-family: 'Chivo', @sansFontFamily;
@@ -17,11 +31,6 @@
 
 .js .webfont {
   visibility: hidden;
-}
-
-// basic body
-body {
-  background: #ecebec url("@{baseUrl}/background-pattern.png") repeat;
 }
 
 // SELECTION STYLE
@@ -76,6 +85,18 @@ body {
   margin-right: -140px;
 }
 
+.fixed-right-160 {
+  padding-right: 199px;
+}
+
+.fixed-right-160 > #sidebar {
+  float: left;
+  position: relative;
+  width: 160px;
+  margin-left: 20px;
+  margin-right: -199px;
+}
+
 .fixed-right-180 {
   padding-right: 219px;
 }
@@ -106,6 +127,7 @@ body {
 h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover {
   text-decoration: none;
   border-bottom: 1px solid @red;
+  color: @blueDark;
 }
 
 .link-align {
@@ -448,7 +470,7 @@ footer h2 {
 #footer-links {
   background: #cdc7c7 url("@{baseUrl}/background-pattern-footer.png") repeat;
   .box-shadow(0 25px 20px rgba(136, 119, 119, 0.5));
-  .size(38px, 100%);
+  .size(40px, 100%);
   position: relative;
 }
 
@@ -686,19 +708,22 @@ a.bold-links {
 //SIDEBAR
 #sidebar-videos {
   padding: 10px;
+  padding-top: 5px;
+
   .title {
     font-size: @baseFontSize - 1;
     line-height: 14px;
     font-weight: bold;
     color: @blue;
     display: block;
+    margin-bottom: 5px;
   }
   .content {
     font-size: @baseFontSize - 1;
     line-height: 17px;
     color: @blueDark;
     display: block;
-    max-height: 36px;
+    max-height: 50px;
     overflow: hidden;
   }
   .updated-at {

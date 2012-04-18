@@ -121,8 +121,7 @@
             <div class="info-box-text">
               <h2 class="Chivo webfont">Show Off</h2>
               <p>
-                Share your passion with a world of interested people by organizing your
-                collections with our easy to use tools.
+                Show your collections to the world! Upload and organize your stuff here.<br/>
                 <?= link_to('Show&nbsp;Off&nbsp;Now', '@collector_signup'); ?>
               </p>
             </div>
@@ -132,19 +131,20 @@
             <div class="info-box-text">
               <h2 class="Chivo webfont">Get Paid</h2>
               <p>
-                It's easy to sell an item once you're a member.
-                Just choose "I'm a seller" during the sign up process.
-                <?= link_to('Start&nbsp;Selling&nbsp;Now', '@seller_signup'); ?>
+                Do you have something you'd like to sell?
+                It's easy! Become a member of Collectors Quest and get started.<br/>
+                <?= link_to('Get&nbsp;Paid&nbsp;Now', '@seller_signup'); ?>
               </p>
             </div>
           </li>
           <li>
             <i class="big-question-icon"></i>
             <div class="info-box-text">
-              <h2 class="Chivo webfont">Help/FAQ</h2>
+              <h2 class="Chivo webfont">Help / FAQ</h2>
               <p>
-                Want to know how to get more out of your membership?
-                <a href="#">Read&nbsp;our&nbsp;FAQs&nbsp;now!</a>
+                Have a question or a concern? Having trouble figuring something out?
+                Get the most out of the site by checking out our FAQs.<br/>
+                <a href="#">Help&nbsp;Now!</a>
               </p>
             </div>
           </li>

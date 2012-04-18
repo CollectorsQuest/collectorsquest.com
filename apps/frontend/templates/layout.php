@@ -47,6 +47,11 @@
       $sidebar = 'sidebar_120';
       echo '<div id="content" class="container-fluid fixed-right-120">';
     }
+    else if (has_component_slot('sidebar_160'))
+    {
+      $sidebar = 'sidebar_160';
+      echo '<div id="content" class="container-fluid fixed-right-160">';
+    }
     else if (has_component_slot('sidebar_180'))
     {
       $sidebar = 'sidebar_180';

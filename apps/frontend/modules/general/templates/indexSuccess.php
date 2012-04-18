@@ -26,7 +26,7 @@
     <div class="span3 brick">
       <div class="tall">
         <a href="#" class="link-brick">
-          <?= ice_image_tag_flickholdr('138x290', array('i' => 2)) ?>
+          <?= ice_image_tag_flickholdr('140x295', array('i' => 2)) ?>
         </a>
         <div class="details" style="word-wrap: break-word;">
           <div class="details-inner">
@@ -49,7 +49,7 @@
     <div class="span6 brick">
       <div class="wide">
         <a href="#" class="link-brick">
-          <?= ice_image_tag_flickholdr('290x138', array('i' => 4)) ?>
+          <?= ice_image_tag_flickholdr('295x140', array('i' => 4)) ?>
         </a>
         <div class="details" style="word-wrap: break-word;">
           <div class="details-inner">
@@ -82,7 +82,7 @@
       $container.masonry(
       {
         itemSelector : '.brick',
-        columnWidth : 138, gutterWidth: 15,
+        columnWidth : 140, gutterWidth: 15,
         isAnimated: !Modernizr.csstransitions
       });
     });
