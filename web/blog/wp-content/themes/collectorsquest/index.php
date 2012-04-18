@@ -1,4 +1,7 @@
 <?php
+  /**
+   * @var $wp_query WP_Query
+   */
 
   $data = array();
 
