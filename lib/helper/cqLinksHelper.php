@@ -188,6 +188,13 @@ function link_to_collectible($collectible, $type = 'text', $options = array())
     unset($options['height']);
   }
 
+  $title = $collectible->getName();
+  if (array_key_exists('truncate', $options) && strlen($title) > $options['truncate'])
+  {
+    $title = truncate_text($title, $options['truncate'], "...", true);
+    unset($options['truncate']);
+  }
+
   $route = route_for_collectible($collectible);
   switch ($type)
   {
@@ -199,7 +206,7 @@ function link_to_collectible($collectible, $type = 'text', $options = array())
       break;
     case 'text':
     default:
-      $link = link_to($collectible->getName(), $route, $options);
+      $link = link_to($title, $route, $options);
       break;
   }
 
