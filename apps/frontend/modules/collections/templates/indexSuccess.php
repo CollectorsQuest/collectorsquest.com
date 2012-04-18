@@ -94,7 +94,7 @@
     {
       echo '<div class="span4" style="margin-bottom: 15px">';
       include_partial(
-        'collection/collection_stack_grid_view',
+        'collection/collection_grid_view',
         array('collection' => $collection, 'i' => $i)
       );
       echo '</div>';

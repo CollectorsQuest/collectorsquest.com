@@ -281,7 +281,7 @@ var SEARCH = window.SEARCH = (function(){
       $container.imagesLoaded(function() {
         $container.masonry({
           itemSelector : '.brick',
-          columnWidth : 201, gutterWidth: 15,
+          columnWidth : 196, gutterWidth: 15,
           isAnimated: !Modernizr.csstransitions
         });
       });
