@@ -38,9 +38,14 @@
               </span>
             </a>
             <span class="nav-divider"></span>
-            <?= link_to('Log In', '@login', array('class' => 'bold-links padding-signup')); ?>
-            &nbsp;or&nbsp;
-            <?= link_to('Sign Up', '@collector_signup', array('class' => 'sing-up-now-btn sing-up-now-red')); ?>
+            <?php if ($sf_user->isAuthenticated()): ?>
+              &nbsp;
+              <?= link_to('My Account', '@collector_me', array('class' => 'my-account-btn')); ?>
+            <?php else: ?>
+              <?= link_to('Log In', '@login', array('class' => 'bold-links padding-signup')); ?>
+              &nbsp;or&nbsp;
+              <?= link_to('Sign Up', '@collector_signup', array('class' => 'sing-up-now-btn sing-up-now-red')); ?>
+            <?php endif; ?>
           </form>
         </div>
       </div>

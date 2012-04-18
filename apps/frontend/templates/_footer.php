@@ -25,6 +25,11 @@
               <i class="s-16-icon-twitter social-ico-padding"></i>Follow us on Twitter
             </a>
           </p>
+          <p>
+            <a href="http://pinterest.com/CollectorsQuest" target="_blank">
+              <i class="s-16-icon-pinterest social-ico-padding"></i>Follow us on Pinterest
+            </a>
+          </p>
         </div>
       </div><!-- .span4 -->
 
@@ -90,10 +95,10 @@
           </li>
           <li class="footer-profile-box-h-list">
             <ul class="row-fluid">
-              <li class="span6 icon-big-add">
+              <li class="span6 upload-photo">
                 <a href="#" class="bold-links">Upload a<br> photo</a>
               </li>
-              <li class="span6 icon-big-organize">
+              <li class="span6 organize-collection">
                 <a href="#" class="bold-links">Organize your<br> collection</a>
               </li>
             </ul>
@@ -137,7 +142,10 @@
             <i class="big-question-icon"></i>
             <div class="info-box-text">
               <h2 class="Chivo webfont">Help/FAQ</h2>
-              <p>Want to know how to get more out of your membership? <a href="#">Watch</a> our helpful videos today!</p>
+              <p>
+                Want to know how to get more out of your membership?
+                <a href="#">Read&nbsp;our&nbsp;FAQs&nbsp;now!</a>
+              </p>
             </div>
           </li>
         </ul>

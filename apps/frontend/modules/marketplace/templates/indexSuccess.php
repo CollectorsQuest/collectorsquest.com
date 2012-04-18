@@ -1,8 +1,8 @@
 <?php cq_page_title('Market') ?>
 
 <br/>
-<div class="row-fluid" id="marketplace-spotlight" style="background: #FEF8E0; margin-left: 0; overflow: hidden;">
-  <h2 class="Chivo webfont" style="font-size: 20px; font-style: italic; color: #125276; line-height: 46px; padding-left: 15px;">
+<div class="row-fluid" id="marketplace-spotlight">
+  <h2 class="Chivo webfont spotlight-title">
     Spotlight on items from the Civil War
   </h2>
   <?php foreach ($spotlight as $i => $collectible_for_sale): ?>
@@ -22,9 +22,28 @@
 </div>
 
 <br/>
-<?= link_to(image_tag('banners/040412_show_and_sell_red.gif'), '@collector_signup'); ?>
+<div class="row" style="text-align: center;">
+  <?= link_to(image_tag('banners/040412_show_and_sell_red.gif'), '@collector_signup'); ?>
+</div>
 
-<? cq_section_title('Discover more items for sale', link_to('see the marketplace', '@marketplace')); ?>
+<? cq_section_title('Discover more items for sale', link_to('see the marketplace', '@marketplace', array('class' => 'text-v-middle link-align'))); ?>
+
+<div id="sort-search-box">
+  <div class="input-append">
+    <div class="btn-group open">
+      <div class="append-left-gray">Sort By <strong>All Prices</strong></div>
+      <a href="#" data-toggle="dropdown" class="btn gray-button dropdown-toggle"><span class="caret"></span></a>
+      <ul class="dropdown-menu">
+        <li><a href="#">Sort By <strong>Under $100</strong></a></li>
+        <li><a href="#">Sort By <strong>$100 - $250</strong></a></li>
+        <li><a href="#">Sort By <strong>Over $250</strong></a></li>
+        <li><a href="#">Sort By <strong>Most Recent</strong></a></li>
+      </ul>
+    </div>
+    <input type="text" size="16" id="appendedPrependedInput" class="sort-by-search"><button type="button" class="btn gray-button"><strong>Search</strong></button>
+  </div>
+</div>
+
 <div class="row">
   <div id="collectibles" class="row-content">
   <?php

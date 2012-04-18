@@ -7,20 +7,28 @@
  */
 ?>
 
-<div class="row-fluid">
-  <div class="span8">
-    <?= cq_page_title($collection, '<br/>by '. link_to_collector($collection->getCollector(), 'text')); ?>
-  </div>
-  <div class="span4" style="margin-top: 20px; text-align: center;">
-    <br/><strong>Sharing widget goes here</strong>
+<?php cq_page_title($collection); ?>
+
+<div class="row-fluid" style="margin-top: 10px;">
+  <div class="well" style="background-color: #e6f2f9; padding: 15px 10px 12px 15px;">
+    By <?= link_to_collector($collection->getCollector()); ?> &nbsp;|&nbsp;
+    <?= $collection->getNumItems(); ?> Collectibles &nbsp;|&nbsp;
+    <?= $collection->getNumViews(); ?> Views
+
+    <div class="pull-right">
+      <span class='st_email'></span>
+      <span class='st_facebook'></span>
+      <span class='st_twitter'></span>
+      <span class='st_pinterest'></span>
+      <span class='st_plusone'></span>
+    </div>
   </div>
 </div>
-<div class="row-fluid">
-  <div class="well">
-    <?= cqStatic::linkify($collection->getDescription('html')); ?>
-    <a href="#">Read the whole text</a>
-  </div>
-</div>
+
+<blockquote>
+  <?= cqStatic::linkify($collection->getDescription('html')); ?>
+  <a href="#">Read the whole text</a>
+</blockquote>
 
 <div class="row">
   <div id="collectibles" class="row-content">

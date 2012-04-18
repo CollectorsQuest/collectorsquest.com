@@ -6,6 +6,14 @@
   font-weight: @weight;
 }
 
+.smooth-font(@deg: 0.000475deg) {
+	-webkit-transform: rotate(@deg);
+     -moz-transform: rotate(@deg);
+      -ms-transform: rotate(@deg);
+       -o-transform: rotate(@deg);
+          transform: rotate(@deg);
+}
+
 .min-height(@height) {
 	height: auto !important;
 	height: @height;
