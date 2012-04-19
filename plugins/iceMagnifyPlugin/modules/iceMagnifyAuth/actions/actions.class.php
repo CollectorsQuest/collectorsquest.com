@@ -21,50 +21,11 @@ class iceMagnifyAuthActions extends sfActions
   public function executeValidate(sfWebRequest $request)
   {
     $response = $this->getResponse();
+    $request->setRequestFormat('xml');
     $this->setLayout(false);
 
     /* @var $collector Collector */
-    $collector  = $this->getUser()->getCollector();
-    $multimedia = $collector->getPhoto();
-    $which      = '100x100';
-    if (!$multimedia->fileExists($which))
-    {
-      $src = sprintf(
-        '%simages/legacy/multimedia/%s/%s.png',
-        sfConfig::get('app_cq_www_domain'),
-        $multimedia->getModel(),
-        $which
-      );
-    }
-    else
-    {
-      $src = sprintf(
-        '%s/%s/%s/%s-%d.%s?%d',
-        sfConfig::get('app_cq_multimedia_domain'),
-        $multimedia->getType(), $which,
-        (!empty($options['slug'])) ? $options['slug'] : strtolower($multimedia->getModel()),
-        $multimedia->getId(), $multimedia->getFileExtension(), $multimedia->getUpdatedAt('U')
-      );
-    }
-
-    /* @var $response cqWebResponse */
-    $response->setHttpHeader('Expires', 0);
-    $response->setHttpHeader('Cache-control', 'private');
-    $response->setHttpHeader('Cache-Control', 'private, must-revalidate, post-check=0, pre-check=0');
-    $response->setHttpHeader('Content-Type', 'application/xml, charset=UTF-8; encoding=UTF-8');
-
-    $xml = <<<XML
-<?xml version="1.0" encoding="UTF-8"?>
-<userinfo>
-  <id>{$collector->getId()}</id>
-  <handle>{$collector->getUsername()}</handle>
-  <email>{$collector->getEmail()}</email>
-  <name>{$collector->getDisplayName()}</name>
-  <photo>{$src}</photo>
-</userinfo>
-XML;
-
-//    return $this->renderText($xml);
+    $this->collector  = $this->getUser()->getCollector();
   }
 
   /**
