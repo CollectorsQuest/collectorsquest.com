@@ -83,6 +83,11 @@ class searchActions extends cqFrontendActions
     $this->display = $this->getUser()->getAttribute('display', 'grid', 'search');
     $this->url = new IceTypeUrl($request->getUri());
 
+    if ($pager->getNbResults() === 0)
+    {
+      return 'NoResults';
+    }
+
     return sfView::SUCCESS;
   }
 

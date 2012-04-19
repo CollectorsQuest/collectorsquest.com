@@ -28,9 +28,8 @@
           </a>
         </span>
         <span class="content">
-          <?= cqStatic::truncateText($video->getContent(), 50) ?>
+          <?= cqStatic::truncateText($video->getContent(), 75) ?>
         </span>
-        <span class="updated-at"><?= $video->getUpdatedAt() ?></span>
     </div>
   </div>
 </div>

@@ -39,6 +39,7 @@ default:
     footer:  [global, footer]
     slot1:   []
     sidebar_120: []
+    sidebar_160: []
     sidebar_180: []
     sidebar_300: []
 

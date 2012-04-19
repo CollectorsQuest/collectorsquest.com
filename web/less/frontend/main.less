@@ -10,6 +10,21 @@
 @import "_wizard.less";
 @import "_spites.less";
 
+// basic body
+body {
+  background: #ecebec url("@{baseUrl}/background-pattern.png") repeat;
+  color: #125375;
+}
+
+a {
+  color: @linkColor;
+  text-decoration: none;
+}
+a:hover {
+  color: @linkColorHover;
+  text-decoration: none;
+}
+
 // FONTS
 .Chivo {
   font-family: 'Chivo', @sansFontFamily;
@@ -17,11 +32,6 @@
 
 .js .webfont {
   visibility: hidden;
-}
-
-// basic body
-body {
-  background: #ecebec url("@{baseUrl}/background-pattern.png") repeat;
 }
 
 // SELECTION STYLE
@@ -53,62 +63,72 @@ body {
 }
 
 .fixed-right-300 {
-  padding-right: 330px;
+  padding-right: 339px;
 }
 
 .fixed-right-300 > #sidebar {
   float: left;
   position: relative;
   width: 300px;
-  margin-left: 15px;
-  margin-right: -330px;
+  margin-left: 20px;
+  margin-right: -320px;
 }
 
 .fixed-right-120 {
-  padding-right: 150px;
+  padding-right: 159px;
 }
 
 .fixed-right-120 > #sidebar {
   float: left;
   position: relative;
   width: 120px;
-  margin-left: 15px;
-  margin-right: -150px;
+  margin-left: 20px;
+  margin-right: -140px;
+}
+
+.fixed-right-160 {
+  padding-right: 199px;
+}
+
+.fixed-right-160 > #sidebar {
+  float: left;
+  position: relative;
+  width: 160px;
+  margin-left: 20px;
+  margin-right: -199px;
 }
 
 .fixed-right-180 {
-  padding-right: 210px;
+  padding-right: 219px;
 }
 
 .fixed-right-180 > #sidebar {
   float: left;
   position: relative;
   width: 180px;
-  margin-left: 15px;
-  margin-right: -210px;
+  margin-left: 20px;
+  margin-right: -200px;
 }
 
 .container-fluid, .container {
   .box-shadow(0 25px 20px rgba(136, 119, 119, 0.5));
-  padding-left: 15px;
+  padding-left: 20px;
 }
 
 .container-fluid.without-column, .container.without-column {
-  padding-right: 15px;
+  padding-right: 20px;
 }
 
 #content {
   background-color: @white;
-  padding-top: 35px;
-}
-
-footer {
-  background-color: @yellowLight;
+  padding-top: 45px;
+  border-left: 1px solid #ededed;
 }
 
 h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover {
   text-decoration: none;
   border-bottom: 1px solid @red;
+  color: @blueDark;
 }
 
 .link-align {
@@ -125,7 +145,7 @@ h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover {
 .section-title {
   border-bottom: 1px dashed #E98C7A;
   margin-top: 35px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   h2 {
     .custom-font(20px, 22px, italic, normal);
 	  .smooth-font();
@@ -209,7 +229,7 @@ select,
 }
 
 .sort-by-search {
-  width: 440px;
+  width: 430px;
 	font-size: 12px;
 	color: @blueDark;
 	z-index: 1;
@@ -258,9 +278,10 @@ select,
 
 .append-left-gray {
   font-size: 14px;
+	text-align: right;
   line-height: 18px;
   color: #887777;
-  padding: 4px 8px 4px 10px;
+  padding: 4px 8px 4px 8px;
   border: 1px solid #d2cccc !important;
   .buttonBackground(#eeecec, #dbd9d9);
   -webkit-border-top-left-radius: 7px;
@@ -416,6 +437,8 @@ footer .form-horizontal .controls {
 // FOOTER
 footer {
   color: @blueDark;
+  border-left: 1px solid #ededed;
+  background-color: @yellowLight;
   .box-shadow(0 25px 20px rgba(136, 119, 119, 0.5));
   position: relative;
 }
@@ -449,7 +472,7 @@ footer h2 {
 #footer-links {
   background: #cdc7c7 url("@{baseUrl}/background-pattern-footer.png") repeat;
   .box-shadow(0 25px 20px rgba(136, 119, 119, 0.5));
-  .size(38px, 100%);
+  .size(40px, 100%);
   position: relative;
 }
 
@@ -632,6 +655,7 @@ ul.footer-profile-box li.icon-big-email p {
 #slot1 {
   margin: 0 auto;
   background-color: @white;
+  border-left: 1px solid #ededed;
   .box-shadow(0 25px 20px rgba(136, 119, 119, 0.5));
   .clearfix();
 }
@@ -686,19 +710,22 @@ a.bold-links {
 //SIDEBAR
 #sidebar-videos {
   padding: 10px;
+  padding-top: 5px;
+
   .title {
     font-size: @baseFontSize - 1;
     line-height: 14px;
     font-weight: bold;
     color: @blue;
     display: block;
+    margin-bottom: 5px;
   }
   .content {
     font-size: @baseFontSize - 1;
     line-height: 17px;
     color: @blueDark;
     display: block;
-    max-height: 36px;
+    max-height: 50px;
     overflow: hidden;
   }
   .updated-at {
@@ -995,7 +1022,9 @@ li.roundabout-in-focus .carousel-in-focus-title-container {
 	background-position: inherit;
 }
 
-
+div.over {
+  cursor: pointer;
+}
 
 //GRID, media queries
-@import "grid.less";
+@import "_grid.less";

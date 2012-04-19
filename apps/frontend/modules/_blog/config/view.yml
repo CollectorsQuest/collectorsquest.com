@@ -1,0 +1,4 @@
+all:
+  components:
+    sidebar_300: [_blog, sidebar]
+  stylesheets: [frontend/blog.css]

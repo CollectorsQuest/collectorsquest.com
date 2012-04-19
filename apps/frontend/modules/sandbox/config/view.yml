@@ -2,6 +2,10 @@ sidebar120Success:
   components:
     sidebar_120: [global, sidebar120]
 
+sidebar160Success:
+  components:
+    sidebar_160: [global, sidebar160]
+
 sidebar180Success:
   components:
     sidebar_180: [global, sidebar180]

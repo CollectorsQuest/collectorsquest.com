@@ -15,7 +15,7 @@
       <ul class="thumbnails">
         <li class="span6">
           <a href="#">
-            <?= ice_image_tag_flickholdr('370x302', array('i' => 4)) ?>
+            <?= ice_image_tag_flickholdr('308x281', array('i' => 4)) ?>
           </a>
           <span class="white-block">
             Say cheese! This week we're featuring collectors who love to point and shoot for interesting cameras. They're ready for their close-up!
@@ -70,7 +70,7 @@
   <div class="input-append">
     <form action="<?= url_for('@search_collections'); ?>" method="post" style="margin: 0;">
     <div class="btn-group">
-      <div class="append-left-gray" style="width: 150px; text-align: right;">Sort by <strong id="sortByName">Most Relevant</strong></div>
+      <div class="append-left-gray">Sort by <strong id="sortByName">Most Relevant</strong></div>
       <a href="#" data-toggle="dropdown" class="btn gray-button dropdown-toggle">
         <span class="caret arrow-up"></span><br><span class="caret arrow-down"></span>
       </a>
@@ -94,7 +94,7 @@
     {
       echo '<div class="span4" style="margin-bottom: 15px">';
       include_partial(
-        'collection/collection_stack_grid_view',
+        'collection/collection_grid_view',
         array('collection' => $collection, 'i' => $i)
       );
       echo '</div>';

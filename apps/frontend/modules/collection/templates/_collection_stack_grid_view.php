@@ -19,7 +19,7 @@
         <?php echo link_to_collector($collection->getCollector(), 'text', array('style' => 'color: #000;')); ?>
       </p>
     </div>
-    <?= ice_image_tag_flickholdr('180x142', array('class' => 'mosaic-backdrop', 'i' => $i)); ?>
+    <?= ice_image_tag_flickholdr('175x138', array('class' => 'mosaic-backdrop', 'i' => $i)); ?>
     <?php link_to_collection($collection, 'image', array('class' => 'mosaic-backdrop')); ?>
   </div>
 </div>
