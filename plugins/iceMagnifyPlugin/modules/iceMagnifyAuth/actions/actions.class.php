@@ -20,12 +20,25 @@ class iceMagnifyAuthActions extends sfActions
    */
   public function executeValidate(sfWebRequest $request)
   {
+    if (!$request->hasParameter('user_id') || !$request->hasParameter('method') ||
+        'getUserInfo' !== $request->getParameter('method')
+    )
+    {
+      return sfView::NONE;
+    }
+
+    $collector = CollectorPeer::retrieveByPK($request->getParameter('user_id'));
+    if (!$collector)
+    {
+      return sfView::NONE;
+    }
+
     $response = $this->getResponse();
     $request->setRequestFormat('xml');
     $this->setLayout(false);
+    $this->collector = $collector;
 
-    /* @var $collector Collector */
-    $this->collector  = $this->getUser()->getCollector();
+    return sfView::SUCCESS;
   }
 
   /**
@@ -43,7 +56,7 @@ class iceMagnifyAuthActions extends sfActions
     {
       throw new Exception('Magnify SSO secret key is not set');
     }
-    $params    = array(
+    $params = array(
       'user_id' => $this->getUser()->getId(),
       'ts'      => time(),
     );
