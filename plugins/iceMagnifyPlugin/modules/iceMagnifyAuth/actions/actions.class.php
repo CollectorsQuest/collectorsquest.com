@@ -20,6 +20,7 @@ class iceMagnifyAuthActions extends sfActions
    */
   public function executeValidate(sfWebRequest $request)
   {
+    sfConfig::set('sf_web_debug', false);
     if (!$request->hasParameter('user_id') || !$request->hasParameter('method') ||
         'getUserInfo' !== $request->getParameter('method')
     )
