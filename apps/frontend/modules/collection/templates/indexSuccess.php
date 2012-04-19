@@ -10,10 +10,10 @@
 <?php cq_page_title($collection); ?>
 
 <div class="row-fluid" style="margin-top: 10px;">
-  <div class="well" style="background-color: #e6f2f9; padding: 15px 10px 12px 15px;">
+  <div style="background-color: #e6f2f9; padding: 10px 0 10px 15px; font-size: 85%;">
     By <?= link_to_collector($collection->getCollector()); ?> &nbsp;|&nbsp;
     <?= $collection->getNumItems(); ?> Collectibles &nbsp;|&nbsp;
-    <?= $collection->getNumViews(); ?> Views
+    <?= number_format($collection->getNumViews()); ?> Views
 
     <div class="pull-right">
       <span class='st_email'></span>
@@ -25,10 +25,9 @@
   </div>
 </div>
 
-<blockquote>
+<div class="cf" style="margin: 20px 0 10px 0;">
   <?= cqStatic::linkify($collection->getDescription('html')); ?>
-  <a href="#">Read the whole text</a>
-</blockquote>
+</div>
 
 <div class="row">
   <div id="collectibles" class="row-content">
@@ -36,17 +35,15 @@
     /** @var $collectible Collectible */
     foreach ($pager->getResults() as $i => $collectible)
     {
-      echo '<div class="', ('list' == $display ? 'span6' : 'span4'), '">';
       // Show the collectible (in grid, list or hybrid view)
       include_partial(
-        'collection/collectible_'. $display .'_view',
+        'collection/collectible_grid_view_square',
         array(
           'collectible' => $collectible,
           'culture' => (string) $sf_user->getCulture(),
           'i' => (int) $i
         )
       );
-      echo '</div>';
     }
   ?>
   </div>
