@@ -68,7 +68,7 @@
 
 <div id="sort-search-box">
   <div class="input-append">
-    <form action="<?= url_for('@search_collections'); ?>" method="post" style="margin: 0;">
+    <form action="<?= url_for('@search_collections'); ?>" method="post">
     <div class="btn-group">
       <div class="append-left-gray">Sort by <strong id="sortByName">Most Relevant</strong></div>
       <a href="#" data-toggle="dropdown" class="btn gray-button dropdown-toggle">

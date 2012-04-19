@@ -968,32 +968,35 @@ li.roundabout-in-focus .carousel-in-focus-title-container {
 	background-color: #daecf6;
 	padding: 15px;
 	margin-bottom: 15px;
- .btn-group {
+
+  .btn-group {
 	float: left;
 	margin-right: -1px;
   }
+	.dropdown-menu a {
+		color: #887777;
+		&:hover {
+			background: @yelloHighlight;
+			color: #887777
+		}
+	}
+	.dropdown-menu a strong {
+		color: @blue;
+		font-weight: normal;
+	}
+	.input-append form {
+		margin: 0;
+	}
+	.input-append input {
+		.border-radius(0);
+	}
 }
 
 #sort-search-box .gray-button, .collection-search-box btn-group a, .collection-search-box .dropdown-menu a {
 	font-size: 12px;
 }
 
-#sort-search-box .dropdown-menu a {
-	color: #887777;
-	&:hover {
-		background: @yelloHighlight;
-		color: #887777
-	}
-}
 
-#sort-search-box .dropdown-menu a strong {
-	color: @blue;
-	font-weight: normal;
-}
-
-#sort-search-box .input-append input {
-	.border-radius(0);
-}
 #sort-search-box .caret.arrow-down {
 	border-top: 5px solid #887777;
 	margin-top: -8px;
