@@ -3,6 +3,9 @@ PATH=/www/bin:/www/vhosts/collectorsquest.com/current/data/bin:/usr/local/zend/b
 MAILTO=cron@collectorsquest.com
 HOME=/www/vhosts/collectorsquest.com/current
 
+# WordPress wp-cron.php
+*/5 * * * *  cd ./web/blog && php wp-cron.php > /dev/null 2>&1
+
 # Crons and Job Queue
 * * * * *  apache  cronic ./symfony cron:jobs --context=collectorsquest --env=prod
 */10 * * * *  apache  cronic ./symfony job-queue:worker --application=frontend --env=prod --context=collectorsquest --port=3060 --deamonize=no
