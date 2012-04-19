@@ -11,13 +11,16 @@ function cq_page_title($h1, $small = null, $options = array())
 
 function cq_section_title($h2, $link = null, $options = array())
 {
+  $default = $link === null ? array('left' => 11, 'right' => 1) : array('left' => 9, 'right' => 3);
+  $options = array_merge($default, $options);
+
   $content = sprintf(<<<EAT
-  <div class="span9">
+  <div class="span%d">
     <h2 class="Chivo webfont">%s</h2>
   </div>
-  <div class="span3">%s</div>
+  <div class="span%d">%s</div>
 EAT
-, $h2, $link);
+, (int) $options['left'], $h2, $options['right'], $link);
 
   $options = array_merge(array('class' => 'row-fluid section-title'), $options);
 
@@ -26,7 +29,8 @@ EAT
 
 function cq_sidebar_title($h3, $link = null, $options = array())
 {
-  $options = array_merge(array('left' => 9, 'right' => 3), $options);
+  $default = $link === null ? array('left' => 11, 'right' => 1) : array('left' => 9, 'right' => 3);
+  $options = array_merge($default, $options);
 
   $content = sprintf(<<<EAT
 <div class="span%d">

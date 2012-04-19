@@ -109,15 +109,21 @@ class _sidebarComponents extends cqFrontendComponents
     return sfView::NONE;
   }
 
-  public function executeWidgetTagsCloud()
+  public function executeWidgetTags()
   {
+    $this->title = $this->getVar('title') ? $this->getVar('title') : 'Tags';
     $this->tags = $this->getVar('tags') ? $this->getVar('tags') : array();
 
     // Set the limit of Tags to show
     $this->limit = $this->getVar('limit') ? $this->getVar('limit') : 0;
 
+    /** @var $collection Collection */
+    if ($collection = $this->getVar('collection'))
+    {
+      $this->tags = $collection->getTags();
+    }
     /** @var $collectible Collectible */
-    if ($collectible = $this->getVar('collectible'))
+    else if ($collectible = $this->getVar('collectible'))
     {
       $this->tags = $collectible->getTags();
     }
@@ -146,25 +152,56 @@ class _sidebarComponents extends cqFrontendComponents
     $magnify = cqStatic::getMagnifyClient();
     $this->videos = array();
 
-    if (isset($this->category))
+    try
     {
-      $this->videos = $magnify->getContent()->find($this->category, 1, $limit);
+      if (isset($this->category))
+      {
+        $this->videos = $magnify->getContent()->find($this->category, 1, $limit);
+      }
+      else if (isset($this->tags))
+      {
+        $tags = is_array($this->tags) ? implode(' ', $this->tags) : $this->tags;
+        $this->videos = $magnify->getContent()->find($tags, 1, $limit);
+      }
+      else
+      {
+        $this->videos = $magnify->getContent()->browse(1, $limit);
+      }
     }
-    else if (isset($this->tags))
+    catch (MagnifyException $e)
     {
-      $tags = is_array($this->tags) ? implode(' ', $this->tags) : $this->tags;
-      $this->videos = $magnify->getContent()->find($tags, 1, $limit);
+      return sfView::NONE;
     }
-    else
+
+    return sfView::SUCCESS;
+  }
+
+  public function executeWidgetCollector()
+  {
+    /** @var $collector Collector */
+    $collector = $this->getVar('collector');
+
+    // Set the limit of Collections to show
+    $this->limit = $this->getVar('limit') ? (int) $this->getVar('limit') : 3;
+
+    if (!$collector instanceof Collector)
     {
-      $this->videos = $magnify->getContent()->browse(1, $limit);
+      return sfView::NONE;
     }
+
+    $c = new Criteria();
+    $c->addDescendingOrderByColumn(CollectorCollectionPeer::CREATED_AT);
+    $c->setLimit($this->limit);
+    $this->collections = $collector->getCollectorCollections($c);
 
     return sfView::SUCCESS;
   }
 
   public function executeWidgetFeaturedSellers()
   {
+    // Set the limit of other Collections to show
+    $this->limit = $this->getVar('limit') ? (int) $this->getVar('limit') : 0;
+
     return sfView::SUCCESS;
   }
 

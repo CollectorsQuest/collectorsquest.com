@@ -2,8 +2,14 @@
 
 class collectionComponents extends cqFrontendComponents
 {
+
   public function executeSidebar()
   {
+    if (!$this->collection = CollectorCollectionPeer::retrieveByPk($this->getRequestParameter('id')))
+    {
+      return sfView::NONE;
+    }
+
     return sfView::SUCCESS;
   }
 
@@ -33,4 +39,5 @@ class collectionComponents extends cqFrontendComponents
 
     return sfView::SUCCESS;
   }
+
 }
