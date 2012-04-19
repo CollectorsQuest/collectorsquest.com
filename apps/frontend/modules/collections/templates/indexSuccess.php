@@ -15,7 +15,7 @@
       <ul class="thumbnails">
         <li class="span6">
           <a href="#">
-            <?= ice_image_tag_flickholdr('308x281', array('i' => 4)) ?>
+            <?= ice_image_tag_flickholdr('370x301', array('i' => 4)) ?>
           </a>
           <span class="white-block">
             Say cheese! This week we're featuring collectors who love to point and shoot for interesting cameras. They're ready for their close-up!
@@ -80,7 +80,7 @@
         <li><a href="javascript:" class="sortBy" data-name="Most Popular" data-sort="most-popular">Sort by <strong>Most Popular</strong></a></li>
       </ul>
     </div>
-    <input type="text" name="q" id="appendedPrependedInput" class="sort-by-search"><button type="submit" class="btn gray-button"><strong>Search</strong></button>
+    <input type="text" name="q" id="appendedPrependedInput" class="input-sort-by"><button type="submit" class="btn gray-button"><strong>Search</strong></button>
     <input type="hidden" name="s" id="sortByValue" value="most-relevant">
     </form>
   </div>

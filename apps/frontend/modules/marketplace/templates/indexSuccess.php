@@ -40,7 +40,7 @@
         <li><a href="#">Sort By <strong>Most Recent</strong></a></li>
       </ul>
     </div>
-    <input type="text" size="16" id="appendedPrependedInput" class="sort-by-search"><button type="button" class="btn gray-button"><strong>Search</strong></button>
+    <input type="text" size="16" id="appendedPrependedInput" class="input-sort-by"><button type="button" class="btn gray-button"><strong>Search</strong></button>
   </div>
 </div>
 
