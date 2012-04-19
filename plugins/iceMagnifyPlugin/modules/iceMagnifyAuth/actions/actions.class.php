@@ -20,7 +20,9 @@ class iceMagnifyAuthActions extends sfActions
    */
   public function executeValidate(sfWebRequest $request)
   {
+    $response = $this->getResponse();
     $this->setLayout(false);
+
     /* @var $collector Collector */
     $collector  = $this->getUser()->getCollector();
     $multimedia = $collector->getPhoto();
@@ -46,7 +48,6 @@ class iceMagnifyAuthActions extends sfActions
     }
 
     /* @var $response cqWebResponse */
-    $response = $this->getResponse();
     $response->setHttpHeader('Expires', 0);
     $response->setHttpHeader('Cache-control', 'private');
     $response->setHttpHeader('Cache-Control', 'private, must-revalidate, post-check=0, pre-check=0');
@@ -63,7 +64,7 @@ class iceMagnifyAuthActions extends sfActions
 </userinfo>
 XML;
 
-    return $this->renderText($xml);
+//    return $this->renderText($xml);
   }
 
   /**
@@ -75,8 +76,7 @@ XML;
    */
   public function executeIdentity(sfWebRequest $request)
   {
-    $action    = $this->getContext()->getController()->genUrl('ice_magnify_sso_identity', false);
-    $url       = 'http://' . sfConfig::get('app_magnify_channel') . $action; //'http://video.collectorsquest.next/sso/validate';
+    $url       = 'http://' . sfConfig::get('app_magnify_channel') . '/login/sso'; //'http://video.collectorsquest.next/sso/validate';
     $secretKey = sfConfig::get('app_magnify_sso_secret_key', false);
     if (!$secretKey)
     {
