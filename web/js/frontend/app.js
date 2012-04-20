@@ -18,6 +18,12 @@ var APP = window.APP = {
   common: {
     init: function() {
       $(".alert").alert();
+      $('.fade-white').mosaic();
+
+      $("a.target").bigTarget({
+        hoverClass: 'over',
+        clickZone: 'div.link'
+      });
 
       COMMON.setupScrollToTop();
       COMMON.setupFooterLoginOrSignup();

@@ -109,137 +109,153 @@
   }
 }
 
-
 #homepage {
   margin-top: 15px;
-	h3 {
-		line-height: 18px;
-	}
-	.span3 {
-	width: 140px;
-	margin-bottom: 15px;
-	}
-	.span6 {
-		width: 295px;
-		margin-bottom: 15px;
-	}
-	.masonry-blogpost {
-		.square(291px);
-		position: relative;
-		.link {
-			display: inline-block;
-			overflow: hidden;
-			color: #125375;
-			.size(210px, 260px);
-			padding: 10px 15px 15px 15px;
-			text-decoration: none;
-			z-index: 10;
-			zoom: 1;
-			p {
-				font-size: 18px;
-				line-height: 25px;
-			}
-			h3 {
-				color: #125375;
-				&:hover {
-					color: #0A82C2;
-				}
-			}
-		}
-	}
-	.yellow-background {
-		border: 2px solid #CFE0E9;
-	}
-	.blue-background {
-		background: #CFE0E9;
-	}
+
+  h3 {
+    line-height: 18px;
+  }
+
+  .span3 {
+    width: 140px;
+    margin-bottom: 15px;
+  }
+  .span6 {
+    width: 295px;
+    margin-bottom: 15px;
+  }
+
+  .masonry-blogpost {
+    .square(291px);
+    position: relative;
+    margin-bottom: 19px;
+
+    .link {
+      display: inline-block;
+      overflow: hidden;
+      color: #125375;
+      .size(210px, 260px);
+      padding: 10px 15px 15px 15px;
+      text-decoration: none;
+      z-index: 10;
+      zoom: 1;
+
+      p {
+        font-size: 18px;
+        line-height: 25px;
+      }
+
+      h3 {
+        color: #125375;
+        &:hover {
+          color: #0A82C2;
+        }
+      }
+    }
+  }
+
+  .yellow-background {
+    border: 2px solid #CFE0E9;
+  }
+
+  .blue-background {
+    background: #CFE0E9;
+  }
 }
 
 #homepage .details {
-	padding: 10px;
-	word-wrap: break-word;
-	p {
-		overflow: hidden;
-		line-height: 11px;
-		font-size: 11px;
-	}
-	img {
-		float: left;
-		margin-right: 4px;
-		border: 1px solid #dbdbdb;
-	}
-	.details-inner p {
-		font-size: 13px;
-		line-height: 16px;
-		margin-bottom: 0;
-	}
+  padding: 10px;
+  word-wrap: break-word;
+
+  p {
+    overflow: hidden;
+    line-height: 11px;
+    font-size: 11px;
+  }
+
+  img {
+    float: left;
+    margin-right: 4px;
+    border: 1px solid #dbdbdb;
+  }
+
+  .details-inner p {
+    font-size: 13px;
+    line-height: 16px;
+    margin-bottom: 0;
+  }
 }
 
 #homepage .square, #homepage .tall, #homepage .wide {
-	position: relative;
-	background: none repeat scroll 0 0 white;
-	color: #125375;
-	text-align: left;
-	cursor: pointer;
-	overflow: hidden;
+  position: relative;
+  background: none repeat scroll 0 0 white;
+  color: #125375;
+  text-align: left;
+  cursor: pointer;
+  overflow: hidden;
 }
 
 #homepage .tall {
-	.size(295px, 140px);
-	.details-inner {
-		height: auto !important;
-		height: 240px;
-		max-height: 240px;
-		overflow: hidden;
-		margin-bottom: 8px;
-	}
+  .size(295px, 140px);
+
+  .details-inner {
+    height: auto !important;
+    height: 240px;
+    max-height: 240px;
+    overflow: hidden;
+    margin-bottom: 8px;
+  }
 }
 
 #homepage .square {
-	.square(140px);
-	.details-inner {
-		height: auto !important;
-		height: 88px;
-		max-height: 88px;
-		overflow: hidden;
-		margin-bottom: 8px;
-	}
+  .square(140px);
+
+  .details-inner {
+    height: auto !important;
+    height: 88px;
+    max-height: 88px;
+    overflow: hidden;
+    margin-bottom: 8px;
+  }
 }
 
 #homepage .wide {
-	.size(140px, 295px);
-	.details-inner {
-		height: auto !important;
-		height: 90px;
-		max-height: 90px;
-		overflow: hidden;
-		margin-bottom: 8px;
-	}
+  .size(140px, 295px);
+
+  .details-inner {
+    height: auto !important;
+    height: 90px;
+    max-height: 90px;
+    overflow: hidden;
+    margin-bottom: 8px;
+  }
 }
 
 #homepage .masonry-blogpost-author {
   position: absolute;
   bottom: 0;
-	.size(40px, 270px);
+  .size(40px, 270px);
   padding: 4px 10px;
-	img {
-		float: left;
-		margin-right: 10px;
-		border: 1px solid #efefef;
-	}
+
+  img {
+    float: left;
+    margin-right: 10px;
+    border: 1px solid #efefef;
+  }
 }
 
 #homepage .blog-img {
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	.square(280px);
-	padding: 10px 0 0 10px;
-	background-color: @white;
-	z-index: 100;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  .square(280px);
+  padding: 10px 0 0 10px;
+  background-color: @white;
+  z-index: 100;
 }
+
 #homepage .masonry-blogpost:hover .blog-img {
-	display:none;
+  display: none;
 }
 
 #homepage .link-brick img {

@@ -7,7 +7,10 @@
       for ($i = 0; $i < 4; $i++)
       if (isset($collectibles[$i]) && $collectibles[$i] instanceof Collectible)
       {
-        include_partial('general/homepage_collectible', array('collectible' => $collectibles[$i], 'i' => $i));
+        include_partial(
+          'collection/collectible_grid_view_square_small',
+          array('collectible' => $collectibles[$i], 'i' => $i)
+        );
       }
     ?>
 
@@ -17,7 +20,10 @@
       for ($i = 4; $i < 9; $i++)
       if (isset($collectibles[$i]) && $collectibles[$i] instanceof Collectible)
       {
-        include_partial('general/homepage_collectible', array('collectible' => $collectibles[$i], 'i' => $i));
+        include_partial(
+          'collection/collectible_grid_view_square_small',
+          array('collectible' => $collectibles[$i], 'i' => $i)
+        );
       }
     ?>
 
@@ -42,7 +48,10 @@
       for ($i = 9; $i < 12; $i++)
       if (isset($collectibles[$i]) && $collectibles[$i] instanceof Collectible)
       {
-        include_partial('general/homepage_collectible', array('collectible' => $collectibles[$i], 'i' => $i));
+        include_partial(
+          'collection/collectible_grid_view_square_small',
+          array('collectible' => $collectibles[$i], 'i' => $i)
+        );
       }
     ?>
 
@@ -65,10 +74,12 @@
       for ($i = 12; $i < 18; $i++)
       if (isset($collectibles[$i]) && $collectibles[$i] instanceof Collectible)
       {
-        include_partial('general/homepage_collectible', array('collectible' => $collectibles[$i], 'i' => $i));
+        include_partial(
+          'collection/collectible_grid_view_square_small',
+          array('collectible' => $collectibles[$i], 'i' => $i)
+        );
       }
     ?>
-
   </div>
 </div>
 
@@ -81,7 +92,7 @@
     {
       $container.masonry(
       {
-        itemSelector : '.brick',
+        itemSelector : '.brick, .span3, .span6',
         columnWidth : 140, gutterWidth: 15,
         isAnimated: !Modernizr.csstransitions
       });

@@ -1,13 +1,17 @@
 <div class="row">
   <?php
     /** @var $collectibles Collectible[] */
-    foreach ($collectibles as $i => $collectible):
+    foreach ($collectibles as $i => $collectible)
+    {
+      // Show the collectible (in grid, list or hybrid view)
+      include_partial(
+        'collection/collectible_grid_view_square_small',
+        array(
+          'collectible' => $collectible,
+          'culture' => (string) $sf_user->getCulture(),
+          'i' => (int) $i
+        )
+      );
+    }
   ?>
-    <div class="span3 expanded-images-inner">
-      <a href="<?= url_for_collectible($collectible); ?>">
-        <?= ice_image_tag_flickholdr('140x140', array('i' => $i)); ?>
-        <?php image_tag_collectible($collectible); ?>
-      </a>
-    </div>
-  <?php endforeach; ?>
 </div>

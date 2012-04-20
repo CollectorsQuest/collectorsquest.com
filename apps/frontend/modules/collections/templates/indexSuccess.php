@@ -1,71 +1,9 @@
 <?php cq_page_title('Collections'); ?>
 
 <br/>
-<div id="weeks-promo-box">
-  <div class="row-fluid">
-    <div class="span8">
-      <span class="weeks-promo-title Chivo webfont">Camera week: Strike a pose</span>
-    </div>
-    <div class="span4 text-right">
-      <a href="#" class="link-align">See previous features &raquo;</a>
-    </div>
-  </div>
-  <div class="row imageset">
-    <div class="span-12">
-      <ul class="thumbnails">
-        <li class="span6">
-          <a href="#">
-            <?= ice_image_tag_flickholdr('308x301', array('i' => 14)) ?>
-          </a>
-          <span class="white-block">
-            Say cheese! This week we're featuring collectors who love to point and shoot for interesting cameras. They're ready for their close-up!
-          </span>
-        </li>
-        <li class="span3">
-          <a href="#">
-            <?= ice_image_tag_flickholdr('140x140', array('i' => 11)) ?>
-          </a>
-        </li>
-        <li class="span3">
-          <a href="#">
-            <?= ice_image_tag_flickholdr('140x140', array('i' => 4)) ?>
-          </a>
-        </li>
-        <li class="span3">
-          <a href="#">
-            <?= ice_image_tag_flickholdr('140x140', array('i' => 12)) ?>
-          </a>
-        </li>
-        <li class="span3">
-          <a href="#">
-            <?= ice_image_tag_flickholdr('140x140', array('i' => 3)) ?>
-          </a>
-        </li>
-        <li class="span3 dn">
-          <a href="#">
-            <?= ice_image_tag_flickholdr('140x140', array('i' => 21)) ?>
-          </a>
-        </li>
-        <li class="span3 dn">
-          <a href="#">
-            <?= ice_image_tag_flickholdr('140x140', array('i' => 18)) ?>
-          </a>
-        </li>
-      </ul>
-    </div>
+<?php include_component('collections', 'featuredWeek'); ?>
 
-
-  </div>
-  <button class="btn btn-small gray-button see-more-full"
-          id="seemore-featured-week"
-          data-url="<?= url_for('@ajax_collections?section=component&page=featuredWeekCollectibles') ?>"
-          data-target="#weeks-promo-box div.imageset">
-    See more
-  </button>
-</div>
-
-<? cq_section_title('Explore Collections') ?>
-
+<?php cq_section_title('Explore Collections') ?>
 <div id="sort-search-box">
   <div class="input-append">
     <form action="<?= url_for('@search_collections'); ?>" method="post">
@@ -109,26 +47,14 @@
 </div>
 
 <script>
-  $(document).ready(function()
+$(document).ready(function()
+{
+  $('.dropdown-toggle').dropdown();
+
+  $('.dropdown-menu a.sortBy').click(function()
   {
-    $('.dropdown-toggle').dropdown();
-
-    $('.dropdown-menu a.sortBy').click(function()
-    {
-      $('#sortByName').html($(this).data('name'));
-      $('#sortByValue').val($(this).data('sort'));
-    });
-
-    $('#seemore-featured-week').click(function()
-    {
-      var $button = $(this);
-
-      $.get($button.data('url'), function(data)
-      {
-        $($button.data('target')).append(data);
-      },'html');
-
-      $(this).hide();
-    });
+    $('#sortByName').html($(this).data('name'));
+    $('#sortByValue').val($(this).data('sort'));
   });
+});
 </script>
