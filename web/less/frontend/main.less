@@ -186,6 +186,7 @@ h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover {
 
 .v-center-container-label {
   display: table !important;
+	width: 71px !important;
   height: 28px;
 }
 
@@ -218,23 +219,6 @@ select,
   .border-radius(5px);
 }
 
-.see-more-full {
-  width: 100%
-}
-
-.see-more-under-image-set {
-  padding-left: 6px;
-  padding-right: 10px;
-  margin-bottom: 20px;
-}
-
-.sort-by-search {
-  width: 430px;
-	font-size: 12px;
-	color: @blueDark;
-	z-index: 1;
-}
-
 .blue-button {
   font-size: 14px;
   font-weight: bold;
@@ -261,8 +245,8 @@ select,
 .gray-button {
   font-size: 14px;
   color: #887777;
-  padding: 4px 14px 4px;
-  border: 1px solid #d2cccc !important;
+  padding: 4px 14px;
+  border: 1px solid #d2cccc;
   .buttonBackground(#eeecec, #dbd9d9);
   .border-radius(7px);
   text-shadow: none;
@@ -277,19 +261,14 @@ select,
 }
 
 .append-left-gray {
-  font-size: 14px;
-	text-align: right;
+  font-size: 12px;
   line-height: 18px;
+	text-align: right;
   color: #887777;
-  padding: 4px 8px 4px 8px;
-  border: 1px solid #d2cccc !important;
+  padding: 3px 8px 3px 8px;
+  border: 1px solid #b5b7bd!important;
   .buttonBackground(#eeecec, #dbd9d9);
-  -webkit-border-top-left-radius: 7px;
-  -webkit-border-bottom-left-radius: 7px;
-  -moz-border-radius-topleft: 7px;
-  -moz-border-radius-bottomleft: 7px;
-  border-top-left-radius: 7px;
-  border-bottom-left-radius: 7px;
+	.border-radius(6px 0 0 6px);
   text-shadow: none;
   float: left;
   position: relative;
@@ -297,6 +276,33 @@ select,
   margin-bottom: 0;
   display: inline-block;
   vertical-align: middle;
+}
+
+.see-more-full {
+	width: 100%;
+	padding: 5px 14px;
+	margin-top: 5px;
+}
+.see-less-full {
+	width: 100%;
+	padding: 5px 14px;
+	margin-top: 7px;
+}
+
+.see-more-under-image-set {
+	padding-left: 6px;
+	padding-right: 10px;
+	margin-bottom: 20px;
+}
+
+.input-sort-by {
+	width: 350px;
+	font-size: 12px;
+	color: @blueDark;
+	z-index: 1;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	margin-bottom: 2px!important;
 }
 
 .btn-micro {
@@ -317,7 +323,7 @@ input[type="submit"].btn.btn-micro {
 // FORMS
 // Float the labels left
 .form-footer input, .form-footer textarea .form-footer select {
-  width: 140px;
+  width: 215px;
 }
 
 .form-footer input[type=checkbox] {
@@ -366,7 +372,7 @@ footer .form-actions {
 }
 
 footer .form-horizontal .controls {
-  margin-left: 120px;
+  margin-left: 0;
 }
 
 .aboutus-footer-inner {
@@ -887,7 +893,7 @@ a.bold-links {
 //.roundabout-in-focus { cursor: auto; }
 
 #sample-roundabout {
-  .size(310px, 670px);
+	.size(290px, 440px);
   list-style: none;
   margin: 0 auto;
   padding: 0;
@@ -966,34 +972,39 @@ li.roundabout-in-focus .carousel-in-focus-title-container {
 
 #sort-search-box {
 	background-color: #daecf6;
-	padding: 15px;
+	padding: 15px 15px 13px 15px;
 	margin-bottom: 15px;
- .btn-group {
+
+  .btn-group {
 	float: left;
 	margin-right: -1px;
   }
+	.dropdown-menu a {
+		color: #887777;
+		strong {
+			color: @blue;
+			font-weight: normal;
+		}
+		&:hover {
+			background: @yelloHighlight;
+			color: #887777
+		}
+	}
+	.input-append form {
+		margin: 0;
+	}
+	.input-append input {
+		.border-radius(0);
+	}
+	input, textarea, select, .uneditable-input, button, append-left-gray, .gray-button.dropdown-toggle {
+		border: 1px solid #b5b7bd;
+	}
 }
 
 #sort-search-box .gray-button, .collection-search-box btn-group a, .collection-search-box .dropdown-menu a {
 	font-size: 12px;
 }
 
-#sort-search-box .dropdown-menu a {
-	color: #887777;
-	&:hover {
-		background: @yelloHighlight;
-		color: #887777
-	}
-}
-
-#sort-search-box .dropdown-menu a strong {
-	color: @blue;
-	font-weight: normal;
-}
-
-#sort-search-box .input-append input {
-	.border-radius(0);
-}
 #sort-search-box .caret.arrow-down {
 	border-top: 5px solid #887777;
 	margin-top: -8px;
@@ -1012,14 +1023,17 @@ li.roundabout-in-focus .carousel-in-focus-title-container {
 	.size(16px, 8px);
 	display: block;
 	margin-top: 0px;
-	padding-top: 6px;
-	padding-right: 5px;
-	padding-left: 5px;
+	padding: 5px 5px 3px 5px;
 	z-index: 10;
 }
 #sort-search-box .btn-group > .dropdown-toggle {
 	border-radius: 0 0 0 0;
 	background-position: inherit;
+}
+#sort-search-box .input-append button.gray-button {
+		margin-bottom: 2px;
+		padding-top: 3px;
+		padding-bottom: 3px;
 }
 
 div.over {

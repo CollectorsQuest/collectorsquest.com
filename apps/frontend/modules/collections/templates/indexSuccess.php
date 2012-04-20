@@ -15,7 +15,7 @@
       <ul class="thumbnails">
         <li class="span6">
           <a href="#">
-            <?= ice_image_tag_flickholdr('308x281', array('i' => 4)) ?>
+            <?= ice_image_tag_flickholdr('308x301', array('i' => 14)) ?>
           </a>
           <span class="white-block">
             Say cheese! This week we're featuring collectors who love to point and shoot for interesting cameras. They're ready for their close-up!
@@ -23,32 +23,32 @@
         </li>
         <li class="span3">
           <a href="#">
-            <?= ice_image_tag_flickholdr('150x150', array('i' => 11)) ?>
+            <?= ice_image_tag_flickholdr('140x140', array('i' => 11)) ?>
           </a>
         </li>
         <li class="span3">
           <a href="#">
-            <?= ice_image_tag_flickholdr('150x150', array('i' => 4)) ?>
+            <?= ice_image_tag_flickholdr('140x140', array('i' => 4)) ?>
           </a>
         </li>
         <li class="span3">
           <a href="#">
-            <?= ice_image_tag_flickholdr('150x150', array('i' => 12)) ?>
+            <?= ice_image_tag_flickholdr('140x140', array('i' => 12)) ?>
           </a>
         </li>
         <li class="span3">
           <a href="#">
-            <?= ice_image_tag_flickholdr('150x150', array('i' => 3)) ?>
+            <?= ice_image_tag_flickholdr('140x140', array('i' => 3)) ?>
           </a>
         </li>
         <li class="span3 dn">
           <a href="#">
-            <?= ice_image_tag_flickholdr('150x150', array('i' => 21)) ?>
+            <?= ice_image_tag_flickholdr('140x140', array('i' => 21)) ?>
           </a>
         </li>
         <li class="span3 dn">
           <a href="#">
-            <?= ice_image_tag_flickholdr('150x150', array('i' => 18)) ?>
+            <?= ice_image_tag_flickholdr('140x140', array('i' => 18)) ?>
           </a>
         </li>
       </ul>
@@ -68,7 +68,7 @@
 
 <div id="sort-search-box">
   <div class="input-append">
-    <form action="<?= url_for('@search_collections'); ?>" method="post" style="margin: 0;">
+    <form action="<?= url_for('@search_collections'); ?>" method="post">
     <div class="btn-group">
       <div class="append-left-gray">Sort by <strong id="sortByName">Most Relevant</strong></div>
       <a href="#" data-toggle="dropdown" class="btn gray-button dropdown-toggle">
@@ -80,7 +80,7 @@
         <li><a href="javascript:" class="sortBy" data-name="Most Popular" data-sort="most-popular">Sort by <strong>Most Popular</strong></a></li>
       </ul>
     </div>
-    <input type="text" name="q" id="appendedPrependedInput" class="sort-by-search"><button type="submit" class="btn gray-button"><strong>Search</strong></button>
+    <input type="text" name="q" id="appendedPrependedInput" class="input-sort-by"><button type="submit" class="btn gray-button"><strong>Search</strong></button>
     <input type="hidden" name="s" id="sortByValue" value="most-relevant">
     </form>
   </div>
