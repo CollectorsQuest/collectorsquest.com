@@ -16,6 +16,8 @@
         <li><a href="javascript:" class="sortBy" data-name="Most Relevant" data-sort="most-relevant">Sort by <strong>Most Relevant</strong></a></li>
         <li><a href="javascript:" class="sortBy" data-name="Most Recent" data-sort="most-recent">Sort by <strong>Most Recent</strong></a></li>
         <li><a href="javascript:" class="sortBy" data-name="Most Popular" data-sort="most-popular">Sort by <strong>Most Popular</strong></a></li>
+        <li><a href="javascript:" class="sortBy" data-name="Collections" data-sort="collections">Sort by <strong>Collections</strong></a></li>
+        <li><a href="javascript:" class="sortBy" data-name="Collectibles" data-sort="collectibles">Sort by <strong>Collectibles</strong></a></li>
       </ul>
     </div>
     <input type="text" name="q" id="appendedPrependedInput" class="input-sort-by"><button type="submit" class="btn gray-button"><strong>Search</strong></button>
@@ -24,18 +26,16 @@
   </div>
 </div>
 
-<div class="row">
+<div class="row" style="margin-left: -12px;">
   <div id="collections" class="row-content">
   <?php
     /** @var $collections Collection[] */
     foreach ($collections as $i => $collection)
     {
-      echo '<div class="span4" style="margin-bottom: 15px">';
       include_partial(
-        'collection/collection_grid_view',
+        'collection/collection_grid_view_square_small',
         array('collection' => $collection, 'i' => $i)
       );
-      echo '</div>';
     }
   ?>
   </div>
