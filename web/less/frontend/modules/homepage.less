@@ -1,6 +1,115 @@
 @import "../_variables.less";
 @import "../_mixins.less";
 
+#sample-roundabout {
+  .size(290px, 440px);
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  opacity: 0;
+
+  li {
+    .size(310px, 520px);
+    background-color: transparent;
+    .box-shadow(0 0px 9px rgba(59, 45, 44, 1));
+    .border-radius(7px);
+    cursor: pointer;
+  }
+
+  li.roundabout-in-focus {
+    cursor: auto;
+  }
+
+  li .wrapper {
+    padding: 0;
+    background-color: transparent;
+  }
+
+  li .wrapper img {
+    width: 100%;
+    .border-radius(7px);
+  }
+}
+
+#carousel-holder {
+  position: relative;
+
+  .carousel-next {
+    position: absolute;
+    display: block;
+    top: 45%;
+    right: 30px;
+    border: none;
+  }
+
+  .button-carousel-next {
+    display: block;
+  }
+
+  .carousel-previous {
+    position: absolute;
+    display: block;
+    top: 45%;
+    left: 25px;
+    border: none;
+  }
+
+  .button-carousel-previous {
+    display: block;
+  }
+
+  .button-carousel-previous:focus, .button-carousel-next:focus {
+    outline: none;
+  }
+
+  .carousel-in-focus-title-container {
+    position: absolute;
+    z-index: 100;
+    bottom: 8%;
+    width: 100%;
+    display: block;
+    #translucent > .background(#fff, 0.8);
+  }
+
+  .carousel-in-focus-title {
+    margin: 3% 4%;
+  }
+
+  li.roundabout-moveable-item .carousel-in-focus-title-container {
+    display: none;
+  }
+
+  li.roundabout-in-focus .carousel-in-focus-title-container {
+    display: block
+  }
+
+  .carousel-in-focus-title h2 {
+    font-size: 1.75em;
+    line-height: 1.1;
+    margin-bottom: 0;
+    padding-bottom: 8px;
+    text-align: left;
+    color: #125375;
+  }
+
+  .carousel-in-focus-title h3 {
+    font-size: 1.5em;
+    line-height: 1.1;
+    padding-top: 0;
+    margin-top: 0;
+    text-align: center;
+    color: #fff !important;
+  }
+
+  .carousel-in-focus-title p {
+    font-size: 1em;
+    text-align: left;
+    width: auto;
+    margin: 0;
+  }
+}
+
+
 #homepage {
   margin-top: 15px;
 	h3 {
@@ -145,4 +254,3 @@
   opacity: 0.1;
   filter: alpha(opacity=10);
 }
-

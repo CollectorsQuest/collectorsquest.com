@@ -1,20 +1,21 @@
-@import "bootstrap/variables.less";
 @import "_variables.less";
 @import "_mixins.less";
 
-#wizard .wizard {
-  background: @grayLighter;
-  color: @gray;
-  padding: 8px 0 6px 0;
-}
+#wizard {
+  .wizard {
+    background: @grayLighter;
+    color: @gray;
+    padding: 8px 0 6px 0;
+  }
 
-#wizard .wizard.active {
-  background: @yellowLight;
-  color: @black;
-}
+  .wizard.active {
+    background: @yellowLight;
+    color: @black;
+  }
 
-#wizard .wizard_separator {
-  background: url('@{baseUrl}/wizard_separator.png') no-repeat;
-  background-position: center;
-  height: 32px;
+  .wizard_separator {
+    background: url('@{baseUrl}/wizard_separator.png') no-repeat;
+    background-position: center;
+    height: 32px;
+  }
 }
