@@ -145,7 +145,7 @@ class _sidebarComponents extends cqFrontendComponents
    *
    * @return string
    */
-  public function executeWidgetMemberVideos()
+  public function executeWidgetMagnifyVideos()
   {
     $limit = isset($this->limit) ? (int) $this->limit : sfConfig::get('app_member_videos_per_page', 5);
 
