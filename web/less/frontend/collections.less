@@ -15,10 +15,6 @@
   height: 150px;
   margin-left: 3px;
   margin-top: 3px;
-//  border: 1px solid #fff;
-//  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-//  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-//  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 .collection_grid_view .mosaic-overlay {
@@ -62,71 +58,69 @@
 //This Week's Promo
 
 #weeks-promo-box {
-	background-color: @yelloHighlight;
-	padding: 18px 15px 15px 15px;
-	.text-right a {
-  vertical-align: middle;
+  background-color: @yelloHighlight;
+  padding: 15px;
+  .text-right a {
+    vertical-align: middle;
   }
-	.thumbnails {
-		margin-left: 0px;
-		li {
-			margin-bottom: 1px;
-		}
-		.span6 {
-			.size(281px, 308px);
-			overflow: hidden;
-			position: relative;
-			img {
-				overflow: hidden;
-				max-width: none;
-			}
-		}
-	}
-	.span3 {
-		width: 140px;
-		padding-left: 1px;
-	}
-	.imageset {
-		margin-left: 0;
-		.row {
-			margin-left: -10px;
-		}
-	}
-	.imageset [class*="span"] {
-	float: left;
-	margin-left: 0;
+  .thumbnails {
+    margin-left: 0px;
+    li {
+      margin-bottom: 1px;
+    }
+    .span6 {
+      .size(281px, 308px);
+      overflow: hidden;
+      position: relative;
+      img {
+        overflow: hidden;
+        max-width: none;
+      }
+    }
   }
+  .span3 {
+    width: 140px;
+    padding-left: 1px;
+  }
+  .imageset {
+    margin-left: 0;
+    .row {
+      margin-left: -10px;
+    }
+  }
+  .imageset [class*="span"] {
+    float: left;
+    margin-left: 0;
+  }
+
 }
 
 .white-block {
-	position: absolute;
-	bottom: 45px;
-	width: 291px;
-	padding: 15px;
-	display: block;
-	color: @blueDark;
-	#translucent > .background(white,0.9);
-	bottom-top: 1px solid #b4b0a5;
-	bottom-bottom: 1px solid #b4b0a5;
-	p {
-		margin-bottom: 0;
-	}
+  position: absolute;
+  bottom: 45px;
+  width: 291px;
+  padding: 15px;
+  display: block;
+  color: @blueDark;
+  #translucent > .background(white,0.9);
+  bottom-top: 1px solid #b4b0a5;
+  bottom-bottom: 1px solid #b4b0a5;
+  p {
+    margin-bottom: 0;
+  }
 }
 
 .weeks-promo-title {
-	.custom-font(20px, 20px, italic, bold);
-	.smooth-font();
-	color: @blueDark;
+  .custom-font(20px, 20px, italic, bold);
+  .smooth-font();
+  color: @blueDark;
 }
 
 .expanded-images-inner {
-	margin: 0 0 10px 10px!important;
-	padding-left: 0!important;
+  margin: 0 0 10px 10px !important;
+  padding-left: 0 !important;
 }
 
 .dn {
   display: none;
 }
-
-
-
