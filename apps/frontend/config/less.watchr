@@ -30,10 +30,6 @@ def watchr3
   less = web + "/less/frontend/bootstrap/bootstrap.less"
   css  = web + "/css/frontend/bootstrap.css"
   lessc less, css, web
-
-  less = web + "/less/frontend/bootstrap/responsive.less"
-  css  = web + "/css/frontend/responsive.css"
-  lessc less, css, web
 end
 
 # --------------------------------------------------
