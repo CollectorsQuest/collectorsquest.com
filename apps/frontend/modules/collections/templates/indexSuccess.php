@@ -15,7 +15,7 @@
       <ul class="thumbnails">
         <li class="span6">
           <a href="#">
-            <?= ice_image_tag_flickholdr('370x301', array('i' => 4)) ?>
+            <?= ice_image_tag_flickholdr('308x301', array('i' => 14)) ?>
           </a>
           <span class="white-block">
             Say cheese! This week we're featuring collectors who love to point and shoot for interesting cameras. They're ready for their close-up!
@@ -23,32 +23,32 @@
         </li>
         <li class="span3">
           <a href="#">
-            <?= ice_image_tag_flickholdr('150x150', array('i' => 11)) ?>
+            <?= ice_image_tag_flickholdr('140x140', array('i' => 11)) ?>
           </a>
         </li>
         <li class="span3">
           <a href="#">
-            <?= ice_image_tag_flickholdr('150x150', array('i' => 4)) ?>
+            <?= ice_image_tag_flickholdr('140x140', array('i' => 4)) ?>
           </a>
         </li>
         <li class="span3">
           <a href="#">
-            <?= ice_image_tag_flickholdr('150x150', array('i' => 12)) ?>
+            <?= ice_image_tag_flickholdr('140x140', array('i' => 12)) ?>
           </a>
         </li>
         <li class="span3">
           <a href="#">
-            <?= ice_image_tag_flickholdr('150x150', array('i' => 3)) ?>
+            <?= ice_image_tag_flickholdr('140x140', array('i' => 3)) ?>
           </a>
         </li>
         <li class="span3 dn">
           <a href="#">
-            <?= ice_image_tag_flickholdr('150x150', array('i' => 21)) ?>
+            <?= ice_image_tag_flickholdr('140x140', array('i' => 21)) ?>
           </a>
         </li>
         <li class="span3 dn">
           <a href="#">
-            <?= ice_image_tag_flickholdr('150x150', array('i' => 18)) ?>
+            <?= ice_image_tag_flickholdr('140x140', array('i' => 18)) ?>
           </a>
         </li>
       </ul>
