@@ -1,5 +1,4 @@
 @import "_variables.less";
-@import "_mixins.less";
 
 .collection_grid_view
 {
@@ -48,5 +47,27 @@
       height: 138px;
       margin: 0;
     }
+  }
+}
+
+.collection_grid_view_square_small {
+  height: 140px;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 15px;
+
+  .mosaic-backdrop {
+    width: 140px;
+    height: 140px;
+  }
+
+  .mosaic-overlay {
+    width: 140px;
+    height: 140px;
+  }
+
+  .mosaic-overlay .details {
+    padding: 10px;
+    font-size: 130%;
   }
 }
