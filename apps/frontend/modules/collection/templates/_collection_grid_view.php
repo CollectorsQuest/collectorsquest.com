@@ -4,7 +4,6 @@
    * @var $i integer
    */
   use_javascript('jquery/mosaic.js');
-  use_stylesheet('frontend/mosaic.css');
 ?>
 
 <div id="collection_<?= $collection->getId(); ?>_grid_view"

@@ -1,10 +1,9 @@
 <?php
-/**
- * @var $video ContentEntry
- * @var $i integer
- */
-use_javascript('jquery/mosaic.js');
-use_stylesheet('frontend/mosaic.css');
+  /**
+   * @var $video ContentEntry
+   * @var $i integer
+   */
+  use_javascript('jquery/mosaic.js');
 ?>
 
 <div id="video_<?= $video->id; ?>_grid_view"

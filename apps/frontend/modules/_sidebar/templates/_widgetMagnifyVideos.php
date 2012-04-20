@@ -6,8 +6,8 @@
 ?>
 
 <?php
-  $link = '<a href="'. sfConfig::get('app_magnify_channel', 'video.collectorsquest.com') .'" class="text-v-middle link-align">See all &raquo;</a>';
-  cq_sidebar_title('Now Playing', $link);
+  $link = '<a href="'. sfConfig::get('app_magnify_channel', 'video.collectorsquest.com') .'" class="text-v-middle link-align">See all video &raquo;</a>';
+  cq_sidebar_title('Now Playing', $link, array('left' => 8, 'right' => 4));
 ?>
 
 <?php foreach ($videos as $video): ?>
