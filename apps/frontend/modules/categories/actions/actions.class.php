@@ -1,12 +1,9 @@
 <?php
 
-class collectionsActions extends cqFrontendActions
+class categoriesActions extends cqFrontendActions
 {
-
   public function executeIndex()
   {
-    $this->collections = CollectionQuery::create()->limit(16)->find();
-
     return sfView::SUCCESS;
   }
 
@@ -14,7 +11,12 @@ class collectionsActions extends cqFrontendActions
   {
     $this->category = $this->getRoute()->getObject();
 
+    $q = CollectionQuery::create()
+       ->filterByCollectionCategory($this->category)
+       ->limit(16);
+
+    $this->collections = $q->find();
+
     return sfView::SUCCESS;
   }
-
 }

@@ -1,12 +1,22 @@
 <?php
 
-function cq_page_title($h1, $small = null, $options = array())
+function cq_page_title($h1, $link = null, $options = array())
 {
-  $small = (is_string($small) && !empty($small)) ? content_tag('small', (string) $small) : null;
-  $h1 = content_tag('h1', (string) $h1 . ($small ? '&nbsp;' . $small : ''), array('class' => 'Chivo webfont'));
-  $options = array_merge(array('class' => 'header-bar'), $options);
+  $default = $link === null ? array('left' => 11, 'right' => 1) : array('left' => 8, 'right' => 4);
+  $options = array_merge($default, $options);
 
-  echo content_tag('div', $h1, $options);
+  $content = sprintf(<<<EAT
+  <div class="span%d">
+    <h1 class="Chivo webfont">%s</h1>
+  </div>
+  <div class="span%d text-right">%s</div>
+EAT
+, (int) $options['left'], $h1, (int) $options['right'], $link);
+
+  unset($options['left'], $options['right']);
+  $options = array_merge(array('class' => 'row-fluid header-bar'), $options);
+
+  echo content_tag('div', $content, $options);
 }
 
 function cq_section_title($h2, $link = null, $options = array())
@@ -18,10 +28,11 @@ function cq_section_title($h2, $link = null, $options = array())
   <div class="span%d">
     <h2 class="Chivo webfont">%s</h2>
   </div>
-  <div class="span%d">%s</div>
+  <div class="span%d text-right">%s</div>
 EAT
 , (int) $options['left'], $h2, $options['right'], $link);
 
+  unset($options['left'], $options['right']);
   $options = array_merge(array('class' => 'row-fluid section-title'), $options);
 
   echo content_tag('div', $content, $options);
@@ -33,13 +44,15 @@ function cq_sidebar_title($h3, $link = null, $options = array())
   $options = array_merge($default, $options);
 
   $content = sprintf(<<<EAT
-<div class="span%d">
-  <h3 class="Chivo webfont">%s</h3>
-</div>
-<div class="span%d text-right">%s&nbsp;</div>
+  <div class="span%d">
+    <h3 class="Chivo webfont">%s</h3>
+  </div>
+  <div class="span%d text-right">%s&nbsp;</div>
 EAT
 , (int) $options['left'], $h3, $options['right'], $link);
 
+  unset($options['left'], $options['right']);
   $options = array_merge(array('class' => 'row-fluid sidebar-title'), $options);
+
   echo content_tag('div', $content, $options);
 }

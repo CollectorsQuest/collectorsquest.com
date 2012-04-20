@@ -1,6 +1,5 @@
-<div class="header-bar">
-  <h2 class="Chivo webfont">Showcase</h2>
-</div>
+<?php cq_page_title('Showcase') ?>
+
 <div class="row">
   <div id="homepage" class="row-content">
     <?php
