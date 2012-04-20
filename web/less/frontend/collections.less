@@ -60,121 +60,65 @@
 }
 
 //This Week's Promo
+
 #weeks-promo-box {
-  background-color: @yelloHighlight;
-  padding: 18px 15px 15px 15px;
-}
-
-.weeks-promo-title {
-  .custom-font(20px, 20px, italic, bold);
-	.smooth-font();
-  color: @blueDark;
-}
-
-#weeks-promo-box .text-right a {
+	background-color: @yelloHighlight;
+	padding: 18px 15px 15px 15px;
+	.text-right a {
   vertical-align: middle;
-}
-
-#weeks-promo-box .thumbnails > li {
-  margin-bottom: 1px;
-}
-
-#weeks-promo-box .imageset [class*="span"] {
-  float: left;
-  margin-left: 0;
-}
-
-#weeks-promo-box .thumbnails .span6 {
-  .size(301px, 370px);
-  overflow: hidden;
-  position: relative;
+  }
+	.thumbnails > li {
+		margin-bottom: 1px;
+	}
+	.thumbnails .span6 {
+		.size(281px, 308px);
+		overflow: hidden;
+		position: relative;
+		img {
+			overflow: hidden;
+			max-width: none;
+		}
+	}
+	.span3 {
+		width: 140px;
+		padding-left: 1px;
+	}
+	.imageset {
+		margin-left: 0;
+		margin-bottom: 6px;
+	}
+	.imageset [class*="span"] {
+	float: left;
+	margin-left: 0;
+  }
+	.thumbnails {
+		margin-left: 0px;
+	}
 }
 
 .white-block {
   position: absolute;
   bottom: 45px;
-  width: 340px;
+  width: 291px;
   padding: 15px;
   display: block;
   color: @blueDark;
   #translucent > .background(white,0.9);
   bottom-top: 1px solid #b4b0a5;
   bottom-bottom: 1px solid #b4b0a5;
-}
-
-.white-block p {
+	p {
   margin-bottom: 0;
+	}
 }
 
-#weeks-promo-box .thumbnails .span6 img {
-  overflow: hidden;
-  max-width: none;
-}
-
-#weeks-promo-box .span3 {
-  width: 150px;
-  padding-left: 1px;
-}
-
-#weeks-promo-box .imageset {
-  margin-left: 0;
-  margin-bottom: 6px;
-}
-
-#weeks-promo-box .thumbnails {
-  margin-left: 8px;
+.weeks-promo-title {
+	.custom-font(20px, 20px, italic, bold);
+	.smooth-font();
+	color: @blueDark;
 }
 
 .dn {
   display: none;
-}
-
-@media (min-width: 997px) and (max-width: 1209px) {
-  #weeks-promo-box .thumbnails .span6 {
-    .size(281px, 308px);
-    overflow: hidden;
-  }
-
-  #weeks-promo-box .thumbnails .span6 img {
-    overflow: hidden;
-    max-width: none;
-    max-height: 282px;
-  }
-
-  .white-block {
-    width: 291px;
-  }
-
-  #weeks-promo-box .span3 {
-    width: 140px;
-  }
-
-  #weeks-promo-box .imageset {
-    margin-left: 0;
-  }
-
-  #weeks-promo-box .thumbnails {
-    margin-left: 0px;
-  }
-}
-
-@media (min-width: 1210px) {
-  #weeks-promo-box .thumbnails .span6 {
-    .size(301px, 358px);
-    overflow: hidden;
-  }
-
-  #weeks-promo-box .span3 {
-    width: 150px;
-  }
-
-  #weeks-promo-box .thumbnails {
-    margin-left: 0px;
-  }
-
-  .dn {
-    display: block;
-  }
 }
 
 
