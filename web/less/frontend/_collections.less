@@ -1,0 +1,61 @@
+@import "bootstrap/variables.less";
+@import "bootstrap/mixins.less";
+@import "_variables.less";
+@import "_mixins.less";
+
+.collection_grid_view {
+  margin-top: 2px;
+  height: 160px;
+  overflow: hidden;
+  position: relative;
+}
+
+.collection_grid_view .mosaic-backdrop {
+  width: 190px;
+  height: 150px;
+  margin-left: 3px;
+  margin-top: 3px;
+}
+
+.collection_grid_view .mosaic-overlay {
+  width: 190px;
+  height: 150px;
+  margin: 3px;
+}
+
+.collection_grid_view div.stack,
+.collection_list_view div.stack {
+  background: url("@{baseUrl}/stack.png") no-repeat;
+  width: 196px;
+  height: 151px;
+  padding: 5px 0 0 13px;
+}
+
+.collection_grid_view .stack .mosaic-backdrop {
+  width: 175px;
+  height: 138px;
+  margin: 5px 0 0 0;
+  border: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+.collection_grid_view .stack .mosaic-overlay {
+  width: 175px;
+  height: 138px;
+  margin: 0;
+}
+
+.collection_grid_view .mosaic-overlay .details {
+  margin: 10px;
+}
+
+.fade-white a {
+  color: #5C5C5C;
+}
+
+
+.dn {
+  display: none;
+}

@@ -10,10 +10,4 @@
       </a>
     </div>
   <?php endforeach; ?>
-  <button class="btn btn-small gray-button see-less-full"
-          id="seeless-featured-week"
-          data-url="<?= url_for('@ajax_collections?section=component&page=featuredWeekCollectibles') ?>"
-          data-target="#weeks-promo-box div.imageset">
-    See less
-  </button>
 </div>
