@@ -20,7 +20,7 @@ class marketplaceActions extends cqFrontendActions
     $c->add(CollectibleForSalePeer::PRICE, 0, Criteria::GREATER_THAN);
     $c->setLimit(12);
 
-    $this->collectibles = CollectibleForSalePeer::doSelect($c);
+    $this->collectibles_for_sale = CollectibleForSalePeer::doSelect($c);
 
     return sfView::SUCCESS;
   }
