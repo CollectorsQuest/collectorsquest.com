@@ -525,7 +525,7 @@
 .makeColumn(@columns: 1) {
   float: left;
   margin-left: @gridGutterWidth;
-  width: (@gridColumnWidth * @columns) + (@gridGutterWidth * (@columns - 1));
+  width: round(@gridColumnWidth * @columns) + (@gridGutterWidth * (@columns - 1));
 }
 
 // The Grid
@@ -546,11 +546,11 @@
     .offsetX (0) {}
 
     .offset (@columns) {
-      margin-left: (@gridColumnWidth * @columns) + (@gridGutterWidth * (@columns - 1)) + (@gridGutterWidth * 2);
+      margin-left: round(@gridColumnWidth * @columns) + (@gridGutterWidth * (@columns - 1)) + (@gridGutterWidth * 2);
     }
 
     .span (@columns) {
-      width: (@gridColumnWidth * @columns) + (@gridGutterWidth * (@columns - 1));
+      width: round(@gridColumnWidth * @columns) + (@gridGutterWidth * (@columns - 1));
     }
 
     .row {
