@@ -4,7 +4,7 @@ MAILTO=cron@collectorsquest.com
 HOME=/www/vhosts/collectorsquest.com/current
 
 # WordPress wp-cron.php
- */5  *  *  *  *  cd ./web/blog && php wp-cron.php > /dev/null 2>&1
+ */5  *  *  *  *  apache  cronic php ./web/blog/wp-cron.php
 
 # Crons and Job Queue
 #    *  *  *  *  *  apache  cronic ./symfony cron:jobs --context=collectorsquest --env=prod
