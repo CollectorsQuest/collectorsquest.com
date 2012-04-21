@@ -1,0 +1,24 @@
+@import "bootstrap/utilities.less";
+
+.pull-r {
+  text-align: right;
+}
+
+.pull-r:before,
+.pull-r:after {
+  content: "";
+  display: table;
+}
+
+.pull-r:after {
+  clear: both;
+}
+
+/* For IE 6/7 (trigger hasLayout) */
+.pull-r {
+  zoom: 1;
+}
+
+.dn {
+  display: none;
+}

@@ -1,5 +1,7 @@
+all:
+  stylesheets: [frontend/modules/collections.css]
+
 indexSuccess:
-  stylesheets: [frontend/collections.css]
   components:
     sidebar_300: [collections, sidebarIndex]
 

@@ -1,4 +1,4 @@
-<? cq_sidebar_title('You May Also Like...') ?>
+<?php cq_sidebar_title('Related Collections') ?>
 
 <?php foreach ($collections as $collection): ?>
   <div id="sidebar_collection_<?php echo  $collection->getId(); ?>" class="span-6 collection last">

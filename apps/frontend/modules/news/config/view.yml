@@ -1,3 +1,4 @@
 all:
+  stylesheets: [frontend/modules/news.css]
   components:
     sidebar_300: [news, sidebar]

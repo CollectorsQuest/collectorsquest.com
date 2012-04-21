@@ -40,25 +40,21 @@
         <li><a href="#">Sort By <strong>Most Recent</strong></a></li>
       </ul>
     </div>
-    <input type="text" size="16" id="appendedPrependedInput" class="sort-by-search"><button type="button" class="btn gray-button"><strong>Search</strong></button>
+    <input type="text" size="16" id="appendedPrependedInput" class="input-sort-by"><button type="button" class="btn gray-button"><strong>Search</strong></button>
   </div>
 </div>
 
 <div class="row">
   <div id="collectibles" class="row-content">
   <?php
-    /** @var $collectible_for_sale CollectibleForSale */
-    foreach ($collectibles as $i => $collectible_for_sale)
+    /** @var $collectibles_for_sale CollectibleForSale[] */
+    foreach ($collectibles_for_sale as $i => $collectible_for_sale)
     {
       echo '<div class="span4">';
       // Show the collectible (in grid, list or hybrid view)
       include_partial(
         'collection/collectible_for_sale_grid_view',
-        array(
-          'collectible_for_sale' => $collectible_for_sale,
-          'culture' => (string) $sf_user->getCulture(),
-          'i' => (int) $i
-        )
+        array('collectible_for_sale' => $collectible_for_sale, 'i' => (int) $i)
       );
       echo '</div>';
     }

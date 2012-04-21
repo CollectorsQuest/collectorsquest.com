@@ -6,8 +6,12 @@
 ?>
 
 <?php
-  $link = '<a href="'. sfConfig::get('app_magnify_channel', 'collectors-quest.magnify.net') .'" class="text-v-middle link-align">See all &raquo;</a>';
-  cq_sidebar_title('Member Videos', $link);
+  $link = link_to(
+    'See all video &raquo;',
+    'http://'. sfConfig::get('app_magnify_channel', 'video.collectorsquest.com'),
+    array('class' => 'text-v-middle link-align')
+  );
+  cq_sidebar_title('Now Playing', $link, array('left' => 8, 'right' => 4));
 ?>
 
 <?php foreach ($videos as $video): ?>

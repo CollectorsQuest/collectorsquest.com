@@ -12,5 +12,16 @@
 </form>
 <?php endif; ?>
 
-<?php include_component('_sidebar', 'widgetRelatedCollections', array('collectible' => $collectible)); ?>
-<?php include_component('_sidebar', 'widgetTagsCloud', array('collectible' => $collectible)); ?>
+<?php
+  include_component(
+    '_sidebar', 'widgetRelatedCollections',
+    array('collectible' => $collectible)
+  );
+?>
+
+<?php
+  include_component(
+    '_sidebar', 'widgetTags',
+    array('collectible' => $collectible, 'title' => 'Tags for this Item')
+  );
+?>

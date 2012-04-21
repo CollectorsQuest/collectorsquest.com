@@ -1,0 +1,10 @@
+all:
+  stylesheets: [frontend/modules/categories.css]
+
+indexSuccess:
+  components:
+    sidebar_300: [categories, sidebar]
+
+categorySuccess:
+  components:
+    sidebar_300: [categories, sidebarCategory]

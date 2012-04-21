@@ -3,20 +3,24 @@ PATH=/www/bin:/www/vhosts/collectorsquest.com/current/data/bin:/usr/local/zend/b
 MAILTO=cron@collectorsquest.com
 HOME=/www/vhosts/collectorsquest.com/current
 
+# WordPress wp-cron.php
+ */5  *  *  *  *  apache  cronic php ./web/blog/wp-cron.php
+
 # Crons and Job Queue
-* * * * *  apache  cronic ./symfony cron:jobs --context=collectorsquest --env=prod
-*/10 * * * *  apache  cronic ./symfony job-queue:worker --application=frontend --env=prod --context=collectorsquest --port=3060 --deamonize=no
-*/10 * * * *  apache  cronic ./symfony job-queue:worker --application=frontend --env=prod --context=collectorsquest --port=3061 --deamonize=no
+#    *  *  *  *  *  apache  cronic ./symfony cron:jobs --context=collectorsquest --env=prod
+# */10  *  *  *  *  apache  cronic ./symfony job-queue:worker --application=frontend --env=prod --context=collectorsquest --port=3060 --deamonize=no
+# */10  *  *  *  *  apache  cronic ./symfony job-queue:worker --application=frontend --env=prod --context=collectorsquest --port=3061 --deamonize=no
 
 # Rotation of the Symfony logs
-01 00 * * *  apache  cronic ./symfony log:rotate backend prod >/dev/null 2>&1
-01 00 * * *  apache  cronic ./symfony log:rotate frontend prod >/dev/null 2>&1
-01 00 * * *  apache  cronic ./symfony log:rotate legacy prod >/dev/null 2>&1
+  01 00  *  *  *  apache  cronic ./symfony log:rotate backend prod
+  01 00  *  *  *  apache  cronic ./symfony log:rotate frontend prod
+  01 00  *  *  *  apache  cronic ./symfony log:rotate legacy prod
 
-*   * * * *  apache  solo -silent -port=2050 ./symfony batch:process-job-queue --env=prod --application=legacy --queue=multimedia_thumbs
-30  * * * *  apache  solo -silent -port=2051 ./symfony batch:process-job-queue --env=prod --application=legacy --queue=multimedia_colors
-*/2 * * * *  apache  solo -silent -port=2052 ./symfony batch:process-job-queue --env=prod --application=legacy --queue=multimedia_rotate
+   *  *  *  *  *  apache  solo -silent -port=2050 ./symfony batch:process-job-queue --env=prod --application=legacy --queue=multimedia_thumbs
+  30  *  *  *  *  apache  solo -silent -port=2051 ./symfony batch:process-job-queue --env=prod --application=legacy --queue=multimedia_colors
+ */2  *  *  *  *  apache  solo -silent -port=2052 ./symfony batch:process-job-queue --env=prod --application=legacy --queue=multimedia_rotate
 
 # Sphinx indexes
-*/5 * * * *  apache  solo -silent -port=2037 ./symfony sphinx:rebuild-indexes --env=prod >/dev/null 2>&1
-# 30,31,32,33,34,35,36,37,38,39 06 * * *  apache  solo -silent -port=2037 ./symfony sphinx:rebuild-indexes --delta=no --env=prod >/dev/null 2>&1
+ */5  *  *  *  *  root  cronic solo -silent -port=2037 ./symfony sphinx:rebuild-indexes --env=prod --delta=yes
+*/10  *  *  *  *  root  cronic solo -silent -port=2037 ./symfony sphinx:rebuild-indexes --env=prod
+# 30,31,32,33,34,35,36,37,38,39 06 * * *  root  cronic solo -silent -port=2037 ./symfony sphinx:rebuild-indexes --delta=no --env=prod >/dev/null 2>&1

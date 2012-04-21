@@ -25,7 +25,7 @@ class wpPost extends BasewpPost
 
     if (empty($excerpt))
     {
-      $excerpt = wpPostPeer::stripShortcodes($this->getPostContent());
+      $excerpt = strip_tags($this->getPostContentStripped());
     }
 
     return cqStatic::truncateText($excerpt, $length, $truncate_string);

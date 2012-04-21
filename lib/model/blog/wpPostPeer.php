@@ -122,6 +122,9 @@ class wpPostPeer extends BasewpPostPeer
     // ,
     $content = preg_replace('~\x2C\xD0\x92~', ',', $content);
 
+    // Â (http://stackoverflow.com/questions/1461907/html-encoding-issues-character-showing-up-instead-of-nbsp)
+    $content = preg_replace('~Â ~', '&nbsp;', $content);
+
     return $content;
   }
 }

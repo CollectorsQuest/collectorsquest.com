@@ -54,6 +54,16 @@ class Collector extends BaseCollector implements ShippingRatesInterface
     return $graph_id;
   }
 
+  public function getCollectorId()
+  {
+    return $this->getId();
+  }
+
+  public function getCollectorSlug()
+  {
+    return $this->getSlug();
+  }
+
   /**
    * @param  BaseObject $something
    * @return boolean
