@@ -83,7 +83,7 @@ EOF;
       if (!get_current_user() || get_current_user() == 'root' || get_current_user() == 'vagrant')
       {
         chown($conf, 'sphinx');
-        $cmd = 'sudo -u sphinx '. $cmd;
+        $cmd = 'su --shell=/bin/bash --session-command="'. $cmd .'" sphinx &';
       }
 
       // Run the command
