@@ -26,7 +26,7 @@ all:
     charset:                utf-8
 
     enabled_modules:        [iceGlobalModule]
-    standard_helpers:       [Partial, Cache, I18N, iceAssets, cqAssets, cqImages, cqLinks, cqJavascripts, cqHTML]
+    standard_helpers:       [Partial, Cache, I18N, Date, iceAssets, cqAssets, cqImages, cqLinks, cqJavascripts, cqHTML]
     sf_compat_10:           off
 
     # Output escaping settings

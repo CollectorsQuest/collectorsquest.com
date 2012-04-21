@@ -222,6 +222,21 @@ class _sidebarComponents extends cqFrontendComponents
     return $this->_sidebar_if(count($this->collectibles_for_sale) > 0);
   }
 
+  public function executeWidgetBlogPosts()
+  {
+    // Set the limit of other Collections to show
+    $this->limit = $this->getVar('limit') ? (int) $this->getVar('limit') : 0;
+
+    $q = wpPostQuery::create()
+      ->filterByPostType('post')
+      ->filterByPostStatus('publish')
+      ->orderByPostDate(Criteria::DESC)
+      ->limit($this->limit);
+    $this->wp_posts = $q->find();
+
+    return $this->_sidebar_if(count($this->wp_posts) > 0);
+  }
+
   private function _sidebar_if($condition = false)
   {
     if ($condition)
