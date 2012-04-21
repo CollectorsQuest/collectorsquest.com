@@ -69,10 +69,6 @@ collections_by_collector:
   param: { module: collections, action: index }
   requirements: { collector_id: '\d+', collector_slug: '[\-\w\.]+' }
 
-collections_categories:
-  url:  /collections/categories
-  param: { module: collections, action: categories }
-
 ### COLLECTORS
 
 collectors:
@@ -284,7 +280,22 @@ tags_index:
   param: { module: tags, action: index }
 
 
+### CONTENT CATEGORIES
+
+content_category:
+  url:  /category/:id/:slug
+  class: cqPropelRoute
+  options: { model: CollectionCategory, type: object, method: getObjectForRoute }
+  param: { module: categories, action: category }
+  requirements: { id: '\d+', slug: '[\-\w\.]+' }
+
+content_categories:
+  url:  /categories
+  param: { module: categories, action: index }
+
+
 ### GENERAL
+
 
 login:
   url:   /login

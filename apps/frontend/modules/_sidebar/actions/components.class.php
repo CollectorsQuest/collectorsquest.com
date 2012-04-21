@@ -34,10 +34,30 @@ class _sidebarComponents extends cqFrontendComponents
       ->filterByParentId(0, Criteria::EQUAL)
       ->orderByName(Criteria::ASC)
       ->limit($this->limit);
-
     $this->categories = $q->find();
 
-    return sfView::SUCCESS;
+    return $this->_sidebar_if(count($this->categories) > 0);
+  }
+
+  /**
+   * @return string
+   */
+  public function executeWidgetContentCategories()
+  {
+    // Set the limit of Categories to show
+    $this->limit = $this->getVar('limit') ? (int) $this->getVar('limit') : 30;
+
+    // Set the number of columns to show
+    $this->columns = $this->getVar('columns') ? (int) $this->getVar('columns') : 2;
+
+    $q = CollectionCategoryQuery::create()
+      ->filterById(0, Criteria::NOT_EQUAL)
+      ->filterByParentId(0, Criteria::EQUAL)
+      ->orderByName(Criteria::ASC)
+      ->limit($this->limit);
+    $this->categories = $q->find();
+
+    return $this->_sidebar_if(count($this->categories) > 0);
   }
 
   /**
@@ -71,7 +91,7 @@ class _sidebarComponents extends cqFrontendComponents
       ->endUse();
     $this->categories = $q->find();
 
-    return sfView::SUCCESS;
+    return $this->_sidebar_if(count($this->categories) > 0);
   }
 
   /**
@@ -97,16 +117,7 @@ class _sidebarComponents extends cqFrontendComponents
       $this->collections = CollectorCollectionPeer::getRandomCollections($this->limit, $c);
     }
 
-    if (count($this->collections) > 0)
-    {
-      return sfView::SUCCESS;
-    }
-    else if ($this->fallback && method_exists($this, 'execute'.$this->fallback))
-    {
-      echo get_component('_sidebar', $this->fallback, $this->getVarHolder()->getAll());
-    }
-
-    return sfView::NONE;
+    return $this->_sidebar_if(count($this->collections) > 0);
   }
 
   public function executeWidgetTags()
@@ -128,16 +139,7 @@ class _sidebarComponents extends cqFrontendComponents
       $this->tags = $collectible->getTags();
     }
 
-    if (count($this->tags) > 0)
-    {
-      return sfView::SUCCESS;
-    }
-    else if ($this->fallback && method_exists($this, 'execute'.$this->fallback))
-    {
-      echo get_component('_sidebar', $this->fallback, $this->getVarHolder()->getAll());
-    }
-
-    return sfView::NONE;
+    return $this->_sidebar_if(count($this->tags) > 0);
   }
 
   /**
@@ -156,7 +158,7 @@ class _sidebarComponents extends cqFrontendComponents
     {
       if (isset($this->category))
       {
-        $this->videos = $magnify->getContent()->find($this->category, 1, $limit);
+        $this->videos = $magnify->getContent()->find($this->category->getName(), 1, $limit);
       }
       else if (isset($this->tags))
       {
@@ -173,7 +175,7 @@ class _sidebarComponents extends cqFrontendComponents
       return sfView::NONE;
     }
 
-    return sfView::SUCCESS;
+    return $this->_sidebar_if((int) $this->videos->totalResults > 0);
   }
 
   public function executeWidgetCollector()
@@ -186,15 +188,19 @@ class _sidebarComponents extends cqFrontendComponents
 
     if (!$collector instanceof Collector)
     {
-      return sfView::NONE;
+      $c = new Criteria();
+      $c->addDescendingOrderByColumn(CollectorCollectionPeer::CREATED_AT);
+      $c->setLimit($this->limit);
+      $this->collections = $collector->getCollectorCollections($c);
+
+      return sfView::SUCCESS;
+    }
+    else if ($this->fallback && method_exists($this, 'execute'.$this->fallback))
+    {
+      echo get_component('_sidebar', $this->fallback, $this->getVarHolder()->getAll());
     }
 
-    $c = new Criteria();
-    $c->addDescendingOrderByColumn(CollectorCollectionPeer::CREATED_AT);
-    $c->setLimit($this->limit);
-    $this->collections = $collector->getCollectorCollections($c);
-
-    return sfView::SUCCESS;
+    return sfView::NONE;
   }
 
   public function executeWidgetFeaturedSellers()
@@ -202,7 +208,32 @@ class _sidebarComponents extends cqFrontendComponents
     // Set the limit of other Collections to show
     $this->limit = $this->getVar('limit') ? (int) $this->getVar('limit') : 0;
 
-    return sfView::SUCCESS;
+    return $this->_sidebar_if(count($this->sellers) > 0);
+  }
+
+  public function executeWidgetCollectiblesForSale()
+  {
+    // Set the limit of other Collections to show
+    $this->limit = $this->getVar('limit') ? (int) $this->getVar('limit') : 0;
+
+    $q = CollectibleForSaleQuery::create()->limit($this->limit);
+    $this->collectibles_for_sale = $q->find();
+
+    return $this->_sidebar_if(count($this->collectibles_for_sale) > 0);
+  }
+
+  private function _sidebar_if($condition = false)
+  {
+    if ($condition)
+    {
+      return sfView::SUCCESS;
+    }
+    else if ($this->fallback && method_exists($this, 'execute'.$this->fallback))
+    {
+      echo get_component('_sidebar', $this->fallback, $this->getVarHolder()->getAll());
+    }
+
+    return sfView::NONE;
   }
 
 }

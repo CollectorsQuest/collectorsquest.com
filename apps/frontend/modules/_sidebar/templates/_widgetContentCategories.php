@@ -11,7 +11,7 @@
       /** @var $categories CollectionCategory[] */
       foreach ($categories as $i => $category):
     ?>
-    <li><?= ($category) ? link_to_collection_category($category, 'text') : ''; ?></li>
+    <li><?= ($category) ? link_to_content_category($category, 'text') : ''; ?></li>
     <?php endforeach; ?>
   </ul>
 </div>
