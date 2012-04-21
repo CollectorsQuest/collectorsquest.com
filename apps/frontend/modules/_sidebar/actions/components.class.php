@@ -158,7 +158,7 @@ class _sidebarComponents extends cqFrontendComponents
     {
       if (isset($this->category))
       {
-        $this->videos = $magnify->getContent()->find($this->category->getName(), 1, $limit);
+        $this->videos = $magnify->getContent()->find($this->category->getSlug(), 1, $limit);
       }
       else if (isset($this->tags))
       {
