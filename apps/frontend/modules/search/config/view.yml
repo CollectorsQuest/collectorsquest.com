@@ -7,3 +7,7 @@ indexSuccess:
   javascripts: [jquery/masonry.js, jquery/infinitescroll.js]
   components:
     sidebar_300: [search, sidebar]
+
+indexNoResults:
+  components:
+    sidebar_300: [search, sidebar]

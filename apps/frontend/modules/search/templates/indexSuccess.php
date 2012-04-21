@@ -67,7 +67,7 @@
   <?php
     include_component(
       'global', 'pagination',
-      array('pager' => $pager, 'options' => array('id' => 'search-pagination'))
+      array('pager' => $pager, 'options' => array('id' => 'search-pagination', 'show_all' => true))
     );
   ?>
 </div>

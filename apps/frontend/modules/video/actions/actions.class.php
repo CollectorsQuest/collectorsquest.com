@@ -4,6 +4,6 @@ class videoActions extends cqFrontendActions
 {
   public function executeIndex()
   {
-    return sfView::SUCCESS;
+    $this->redirect('http://'. sfConfig::get('app_magnify_channel', 'video.collectorsquest.com'), 301);
   }
 }
