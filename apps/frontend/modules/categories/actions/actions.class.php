@@ -7,15 +7,18 @@ class categoriesActions extends cqFrontendActions
     return sfView::SUCCESS;
   }
 
-  public function executeCategory()
+  public function executeCategory(sfWebRequest $request)
   {
     $this->category = $this->getRoute()->getObject();
 
-    $q = CollectionQuery::create()
-       ->filterByCollectionCategory($this->category)
-       ->limit(16);
+    $q = CollectorCollectionQuery::create()
+       ->filterByCollectionCategory($this->category);
 
-    $this->collections = $q->find();
+    $pager = new PropelModelPager($q, 16);
+    $pager->setPage($request->getParameter('page', 1));
+    $pager->init();
+
+    $this->pager = $pager;
 
     return sfView::SUCCESS;
   }

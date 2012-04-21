@@ -14,7 +14,7 @@ class cqSphinxPager extends sfPager
    * @param  array    $query
    * @param  integer  $maxPerPage
    */
-  public function __construct($query, $types = array(), $maxPerPage = 14)
+  public function __construct($query, $types = array(), $maxPerPage = 24)
   {
     parent::__construct(null, $maxPerPage);
 

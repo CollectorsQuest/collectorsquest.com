@@ -50,12 +50,12 @@
 </div>
 
 <div class="row-fluid" style="text-align: center;">
-  <?php
+<?php
   include_component(
     'global', 'pagination',
-    array('pager' => $pager, 'options' => array('id' => 'collectibles-pagination'))
+    array('pager' => $pager, 'options' => array('id' => 'collectibles-pagination', 'show_all' => true))
   );
-  ?>
+?>
 </div>
 
 <?php if ($sf_params->get('show') == 'all'): ?>
