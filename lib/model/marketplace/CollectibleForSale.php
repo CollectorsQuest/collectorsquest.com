@@ -5,6 +5,31 @@ require 'lib/model/marketplace/om/BaseCollectibleForSale.php';
 class CollectibleForSale extends BaseCollectibleForSale
 {
   /**
+   * Proxy method to Collectible::getName()
+   *
+   * @param  null|\PropelPDO  $con
+   * @return string
+   */
+  public function getName(PropelPDO $con = null)
+  {
+    return $this->getCollectible($con)->getName();
+  }
+
+  /**
+   * Proxy method to Collectible::getDescription()
+   *
+   * @param  string   $type
+   * @param  integer  $limit
+   * @param  null|PropelPDO  $con
+   *
+   * @return string
+   */
+  public function getDescription($type = 'html', $limit = 0, PropelPDO $con = null)
+  {
+    return $this->getCollectible($con)->getDescription($type, $limit);
+  }
+
+  /**
    * Proxy method to Collectible::getCollector()
    *
    * @param  null|PropelPDO  $con

@@ -208,6 +208,13 @@ class _sidebarComponents extends cqFrontendComponents
     // Set the limit of other Collections to show
     $this->limit = $this->getVar('limit') ? (int) $this->getVar('limit') : 0;
 
+    $this->title = $this->getVar('title') ? $this->getVar('title') : 'Featured Sellers';
+
+    $q = CollectorQuery::create()
+       ->filterByUserType(CollectorPeer::TYPE_SELLER)
+       ->limit(2);
+    $this->sellers = $q->find();
+
     return $this->_sidebar_if(count($this->sellers) > 0);
   }
 

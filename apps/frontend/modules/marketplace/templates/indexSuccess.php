@@ -5,18 +5,18 @@
     Spotlight on items from the Civil War
   </h2>
   <?php foreach ($spotlight as $i => $collectible_for_sale): ?>
-  <div class="span4">
+  <div class="span4 link">
     <div class="thumbnail">
       <div class="spotlight-thumb">
         <?= ice_image_tag_placeholder('180x180', array(), 1) ?>
-        <span>AFFORDABLE</span>
+        <span>Affordable</span>
       </div>
       <div class="spotlight-text">
         <h4><?= link_to_collectible($collectible_for_sale->getCollectible(), 'text', array('class' => 'target')); ?></h4>
         <p><?= $collectible_for_sale->getCollectible()->getDescription('stripped', 120); ?></p>
       </div>
       <div class="spotlight-price">
-        <?= money_format('%.2n', (float) $collectible_for_sale->getPrice()); ?>
+        <?= money_format('%.2n', (float) $collectible_for_sale->getPrice()); ?>&nbsp;&nbsp;
       </div>
     </div>
   </div>
@@ -28,7 +28,7 @@
   <?= link_to(image_tag('banners/040412_show_and_sell_red.gif'), '@collector_signup'); ?>
 </div>
 
-<? cq_section_title('Discover more items for sale', link_to('see the marketplace', '@marketplace', array('class' => 'text-v-middle link-align'))); ?>
+<?php cq_section_title('Discover more items for sale'); ?>
 
 <div id="sort-search-box">
   <div class="input-append">
@@ -53,92 +53,15 @@
 <div id="items-for-sale">
   <div class="row">
     <ul class="thumbnails">
+      <?php foreach ($collectibles_for_sale as $i => $collectible_for_sale): ?>
       <li class="span3">
         <a class="thumbnail" href="#">
-          <img src="http://placehold.it/131x128" alt="">
-          <p>Transformer - Perfect...</p>
-          <span>$212,000</span>
+          <img src="http://placehold.it/131x131" alt="">
+          <p><?= cqStatic::truncateText($collectible_for_sale->getName(), 20); ?></p>
+          <span><?= money_format('%.2n', (float) $collectible_for_sale->getPrice()); ?></span>
         </a>
       </li>
-      <li class="span3">
-        <a class="thumbnail" href="#">
-          <img src="http://placehold.it/131x128" alt="">
-          <p>Transformer - Perfect...</p>
-          <span>$212,000</span>
-        </a>
-      </li>
-      <li class="span3">
-        <a class="thumbnail" href="#">
-          <img src="http://placehold.it/131x128" alt="">
-          <p>Transformer - Perfect...</p>
-          <span>$212,000</span>
-        </a>
-      </li>
-      <li class="span3">
-        <a class="thumbnail" href="#">
-          <img src="http://placehold.it/131x128" alt="">
-          <p>Transformer - Perfect...</p>
-          <span>$212,000</span>
-        </a>
-      </li>
-      <li class="span3">
-        <a class="thumbnail" href="#">
-          <img src="http://placehold.it/131x128" alt="">
-          <p>Transformer - Perfect...</p>
-          <span>$212,000</span>
-        </a>
-      </li>
-      <li class="span3">
-        <a class="thumbnail" href="#">
-          <img src="http://placehold.it/131x128" alt="">
-          <p>Transformer - Perfect...</p>
-          <span>$212,000</span>
-        </a>
-      </li>
-      <li class="span3">
-        <a class="thumbnail" href="#">
-          <img src="http://placehold.it/131x128" alt="">
-          <p>Transformer - Perfect...</p>
-          <span>$212,000</span>
-        </a>
-      </li>
-      <li class="span3">
-        <a class="thumbnail" href="#">
-          <img src="http://placehold.it/131x128" alt="">
-          <p>Transformer - Perfect...</p>
-          <span>$212,000</span>
-        </a>
-      </li>
+      <?php endforeach; ?>
     </ul>
   </div>
 </div>
-
-<?php /*
-<div class="row">
-  <div id="collectibles" class="row-content">
-  <?php
-    // @var $collectibles_for_sale CollectibleForSale[]
-    foreach ($collectibles_for_sale as $i => $collectible_for_sale)
-    {
-      echo '<div class="span4">';
-      // Show the collectible (in grid, list or hybrid view)
-      include_partial(
-        'collection/collectible_for_sale_grid_view',
-        array('collectible_for_sale' => $collectible_for_sale, 'i' => (int) $i)
-      );
-      echo '</div>';
-    }
-  ?>
-  </div>
-</div>
-*/?>
-
-<script>
-  $(document).ready(function()
-  {
-    $("#marketplace-spotlight a.target").bigTarget({
-      hoverClass: 'over',
-      clickZone : 'div:eq(0)'
-    });
-  });
-</script>

@@ -18,7 +18,7 @@ class marketplaceActions extends cqFrontendActions
     $c->addJoin(CollectibleForSalePeer::COLLECTIBLE_ID, CollectiblePeer::ID);
     $c->add(CollectibleForSalePeer::IS_READY, true);
     $c->add(CollectibleForSalePeer::PRICE, 0, Criteria::GREATER_THAN);
-    $c->setLimit(12);
+    $c->setLimit(16);
 
     $this->collectibles_for_sale = CollectibleForSalePeer::doSelect($c);
 
