@@ -40,6 +40,7 @@ base
 
 # stylesheets
 /web/css/frontend/*.css
+/web/css/frontend/modules/*.css
 !/web/css/frontend/ie.css
 
 # Vagrant

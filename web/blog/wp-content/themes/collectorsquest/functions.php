@@ -42,7 +42,6 @@ function editorial_custom_post_type_init()
     'supports' => array('title', 'editor')
   ));
 
-  // Fire this during init
   register_post_type('homepage_carousel', array(
     'labels' => array(
       'name' => _x('Homepage Carousel', 'post type general name'),
@@ -68,7 +67,6 @@ function editorial_custom_post_type_init()
     'supports' => array('title', 'editor', 'thumbnail')
   ));
 
-  // Fire this during init
   register_post_type('homepage_showcase', array(
     'labels' => array(
       'name' => _x('Homepage Showcase', 'post type general name'),
@@ -92,6 +90,31 @@ function editorial_custom_post_type_init()
     'query_var' => false,
     'menu_position' => 100,
     'supports' => array('title', 'custom-fields')
+  ));
+
+  register_post_type('collectors_question', array(
+    'labels' => array(
+      'name' => _x('Collectors\' Question', 'post type general name'),
+      'singular_name' => _x('Question', 'post type singular name'),
+      'add_new' => _x('Add New', 'Question'),
+      'add_new_item' => __('Add New Question'),
+      'edit_item' => __('Edit Question'),
+      'new_item' => __('New Question'),
+      'view_item' => __('View Question'),
+      'search_items' => __('Search Questions'),
+      'not_found' =>  __('No Questions found'),
+      'not_found_in_trash' => __('No Questions found in Trash'),
+      'parent_item_colon' => ''
+    ),
+    'public' => true,
+    'show_ui' => true,
+    'capability_type' => 'editorial',
+    'capabilities' => $capabilities,
+    'hierarchical' => false,
+    'rewrite' => false,
+    'query_var' => false,
+    'menu_position' => 100,
+    'supports' => array('title', 'editor', 'custom-fields', 'thumbnail')
   ));
 }
 

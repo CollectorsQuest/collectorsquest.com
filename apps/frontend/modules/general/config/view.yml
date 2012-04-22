@@ -1,5 +1,8 @@
+all:
+  stylesheets: [frontend/modules/general.css]
+
 indexSuccess:
-  stylesheets: [frontend/homepage.css]
+  stylesheets: [frontend/modules/homepage.css]
   javascripts:
     - jquery/masonry.js
     - jquery/easing.js

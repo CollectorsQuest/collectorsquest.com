@@ -71,9 +71,16 @@ class searchComponents extends cqFrontendComponents
       ),
     );
 
-    $magnify = cqStatic::getMagnifyClient();
-    $results = $magnify->getContent()->find($q);
-    $this->types['video']['count'] = $results->getTotalResults();
+    try
+    {
+      $magnify = cqStatic::getMagnifyClient();
+      $results = $magnify->getContent()->find($q);
+      $this->types['video']['count'] = $results->getTotalResults();
+    }
+    catch (MagnifyException $e)
+    {
+      $this->types['video']['count'] = 0;
+    }
 
     $query = array(
       'q' => $q,

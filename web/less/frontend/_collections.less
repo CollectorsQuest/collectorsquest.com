@@ -1,0 +1,73 @@
+@import "_variables.less";
+
+.collection_grid_view
+{
+  margin-top: 2px;
+  height: 160px;
+  overflow: hidden;
+  position: relative;
+
+  .mosaic-backdrop {
+    width: 190px;
+    height: 150px;
+    margin-left: 3px;
+    margin-top: 3px;
+  }
+
+  .mosaic-overlay
+  {
+    width: 190px;
+    height: 150px;
+    margin: 3px;
+
+    .details {
+      margin: 10px;
+    }
+  }
+
+  .stack
+  {
+    background: url("@{baseUrl}/stack.png") no-repeat;
+    width: 196px;
+    height: 151px;
+    padding: 5px 0 0 13px;
+
+    .mosaic-backdrop {
+      width: 175px;
+      height: 138px;
+      margin: 5px 0 0 0;
+      border: none;
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+      box-shadow: none;
+    }
+
+    .mosaic-overlay {
+      width: 175px;
+      height: 138px;
+      margin: 0;
+    }
+  }
+}
+
+.collection_grid_view_square_small {
+  height: 140px;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 15px;
+
+  .mosaic-backdrop {
+    width: 140px;
+    height: 140px;
+  }
+
+  .mosaic-overlay {
+    width: 140px;
+    height: 140px;
+  }
+
+  .mosaic-overlay .details {
+    padding: 10px;
+    font-size: 130%;
+  }
+}

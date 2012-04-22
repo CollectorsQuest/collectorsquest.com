@@ -1,5 +1,5 @@
 all:
-  stylesheets: [frontend/shopping-cart.css]
+  stylesheets: [frontend/modules/shopping.css]
   components:
     sidebar_300: [shopping, sidebar]
 

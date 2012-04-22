@@ -39,7 +39,7 @@ class globalComponents extends cqFrontendComponents
     /** @var $pager sfPropelPager */
     $pager = $this->getVar('pager');
 
-    if (!$pager instanceof sfPager) {
+    if (!$pager instanceof sfPager && !$pager instanceof PropelModelPager) {
       return sfView::NONE;
     }
 

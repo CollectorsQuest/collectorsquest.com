@@ -11,6 +11,11 @@ class searchActions extends cqFrontendActions
 
     $request = $this->getRequest();
 
+    if ($tag = $request->getParameter('tag'))
+    {
+      $request->setParameter('q', $tag);
+    }
+
     self::$_query['q'] = $request->getParameter('q');
 
     // Setting the user preference for the adverts display type (grid or list)

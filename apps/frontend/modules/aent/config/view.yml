@@ -1,0 +1,7 @@
+americanPickersSuccess:
+  components:
+    sidebar_300: [aent, sidebarAmericanPickers]
+
+pawnStarsSuccess:
+  components:
+    sidebar_300: [aent, sidebarPawnStars]

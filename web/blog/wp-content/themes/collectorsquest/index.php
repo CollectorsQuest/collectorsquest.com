@@ -71,7 +71,7 @@
           <span class="st_twitter_hcount" displayText="Tweet"></span><span class="st_facebook_hcount" displayText="Share"></span>
         </div>
         <?php endif; ?>
-        <span class="date"><?php the_time('m.d.y') ?> &nbsp; <a href="/blog/author/<?php the_author_login(); ?>" alt="Click for Bio" title="Click for Bio">by <?php the_author() ?></a></span>
+        <span class="date"><?php the_time('m.d.y') ?> &nbsp; <a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ) ?>" title="<?php the_author() ?>'s articles on collecting...">by <?php the_author() ?></a></span>
         <div class="fixed">&nbsp;</div>
       </div>
       <div class="entry">

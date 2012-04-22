@@ -1,13 +1,11 @@
-@import "bootstrap/variables.less";
 @import "_variables.less";
-@import "_mixins.less";
 
 // NAVBAR (FIXED AND STATIC)
 // -------------------------
 
 // COMMON STYLES
 // -------------
-//TOP MENU
+// TOP MENU
 
 .navbar {
   margin-bottom: 0;
@@ -35,7 +33,7 @@
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
-  min-height: 44px;
+  min-height: 42px;
 }
 
 .navbar .container {
@@ -61,17 +59,18 @@
 
 // Links
 .navbar .nav > li > a {
-  padding: 13px 19px 12px;
-  line-height: 19px;
+  padding: 12px 16px 10px 16px;
+  line-height: 20px;
   color: @navbarLinkColor;
   text-shadow: -1px -1px 1px rgba(42, 44, 42, 1);
 }
 
-// Hover
+// Hover and Active
+.navbar .nav > li.active > a,
 .navbar .nav > li > a:hover {
   color: @navbarLinkColorHover;
   background: rgb(32, 147, 195); /* Old browsers */
-/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+  /* IE9 SVG, needs conditional override of 'filter' to 'none' */
   background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzIwOTNjMyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9Ijk2JSIgc3RvcC1jb2xvcj0iIzA5NzFiYSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9Ijk5JSIgc3RvcC1jb2xvcj0iIzA0NDM3ZSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgPC9saW5lYXJHcmFkaWVudD4KICA8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2dyYWQtdWNnZy1nZW5lcmF0ZWQpIiAvPgo8L3N2Zz4=);
   background: -moz-linear-gradient(top, rgba(32, 147, 195, 1) 0%, rgba(9, 113, 186, 1) 96%, rgba(4, 67, 126, 1) 99%); /* FF3.6+ */
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(32, 147, 195, 1)), color-stop(96%, rgba(9, 113, 186, 1)), color-stop(99%, rgba(4, 67, 126, 1))); /* Chrome,Safari4+ */
@@ -139,7 +138,7 @@ nav[role="navigation"] ul li a {
   float: left;
   display: block;
   margin: 0;
-  padding: 9px 15px;
+  padding: 8px 15px;
   color: #fff;
   text-decoration: none;
   border: none;
