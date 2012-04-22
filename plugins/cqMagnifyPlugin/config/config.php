@@ -23,7 +23,7 @@
  * Id: $Id$
  */
 
-if (in_array('iceMagnifyAuth', sfConfig::get('sf_enabled_modules', array())))
+if (in_array('cqMagnifyAuth', sfConfig::get('sf_enabled_modules', array())))
 {
-  $this->dispatcher->connect('routing.load_configuration', array('iceMagnifyRouting', 'listenToRoutingLoadConfigurationEvent'));
+  $this->dispatcher->connect('routing.load_configuration', array('cqMagnifyRouting', 'listenToRoutingLoadConfigurationEvent'));
 }

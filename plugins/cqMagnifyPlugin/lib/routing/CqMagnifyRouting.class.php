@@ -16,7 +16,7 @@
  */
 
 /**
- * Filename: iceMagnifyRouting.class.php
+ * Filename: cqMagnifyRouting.class.php
  *
  * Put some description here
  *
@@ -24,19 +24,28 @@
  * @since 4/15/12
  * Id: $Id$
  */
-class iceMagnifyRouting
+class cqMagnifyRouting
 {
 
   public static function listenToRoutingLoadConfigurationEvent(sfEvent $event)
   {
+    /** @var $subject sfPatternRouting */
     $subject = $event->getSubject();
-    $subject->prependRoute('ice_magnify_sso_validate', new sfRoute('/sso/validate', array(
-      'module'=> 'iceMagnifyAuth',
+
+    /**
+     * Add the /sso/validate route
+     */
+    $subject->prependRoute('cq_magnify_sso_validate', new sfRoute('/sso/validate', array(
+      'module'=> 'cqMagnifyAuth',
       'action'=> 'validate'
-    ), array('sf_method'=> 'post')));
-    $subject->prependRoute('ice_magnify_sso_identity', new sfRoute('/sso/identity', array(
-      'module'=> 'iceMagnifyAuth',
-      'action'=> 'identity'
+    ), array('sf_method' => 'get')));
+
+    /**
+     * Add the /sso/identity route
+     */
+    $subject->prependRoute('cq_magnify_sso_identity', new sfRoute('/sso/identity', array(
+      'module' => 'cqMagnifyAuth',
+      'action' => 'identity'
     )));
   }
 }

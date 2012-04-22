@@ -253,7 +253,11 @@ function src_tag_multimedia($multimedia, $which, $options = array())
 
   if (!$multimedia->fileExists($which))
   {
-    $src = sfConfig::get('sf_app') .'/multimedia/'. $multimedia->getModel() .'/'. $which .'.png';
+    $src = sprintf(
+      '%s/images/%s/multimedia/%s/%s.png',
+      rtrim(sfConfig::get('app_cq_www_domain'), '/'), sfConfig::get('sf_app'),
+      $multimedia->getModel(), $which
+    );
   }
   else
   {
