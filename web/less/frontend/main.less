@@ -261,21 +261,22 @@ select,
 }
 
 .append-left-gray {
+	position: relative;
+	width: 120px;
+	float: left;
+	text-align: center;
+	margin-left: 0;
+	margin-bottom: 0;
+	display: inline-block;
+	vertical-align: middle;
   font-size: 12px;
   line-height: 18px;
-	text-align: right;
   color: #887777;
   padding: 3px 8px 3px 8px;
   border: 1px solid #b5b7bd!important;
   .buttonBackground(#eeecec, #dbd9d9);
 	.border-radius(6px 0 0 6px);
   text-shadow: none;
-  float: left;
-  position: relative;
-  margin-left: 0;
-  margin-bottom: 0;
-  display: inline-block;
-  vertical-align: middle;
 }
 
 .see-more-full {
@@ -375,8 +376,12 @@ input[type="submit"].btn.btn-micro {
 //column list
 .twocolumn ul {
   margin-left: 0;
-  margin-bottom: 20px;
+  margin-bottom: 0px;
   list-style-type: none;
+
+	li a {
+		font-size: 12px;
+	}
 }
 
 .csscolumns .twocolumn {
@@ -395,9 +400,6 @@ input[type="submit"].btn.btn-micro {
   display: inline;
 }
 
-.twocolumn ul li a {
-  font-size: 12px;
-}
 
 //SLOTS
 #slot1 {
@@ -578,21 +580,21 @@ a.bold-links {
   top: -70px;
   font-variant: small-caps;
   white-space: nowrap;
-}
 
-#top-link i {
+	i {
   font-size: 40px;
   float: left;
   margin-top: -2px;
   margin-right: 10px;
+	}
+	&.sticky {
+		position: fixed;
+		right: 10px;
+		bottom: -5px;
+		top: auto;
+	}
 }
 
-#top-link.sticky {
-  position: fixed;
-  right: 10px;
-  bottom: -5px;
-  top: auto;
-}
 
 //Search bar
 
