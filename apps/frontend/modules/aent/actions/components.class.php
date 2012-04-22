@@ -2,6 +2,16 @@
 
 class aentComponents extends sfComponents
 {
+  public function executeSidebarAmericanPickers()
+  {
+    return sfView::SUCCESS;
+  }
+
+  public function executeSidebarPawnStars()
+  {
+    return sfView::SUCCESS;
+  }
+
   public function executeCollectible()
   {
     /** @var $collectible Collectible */
