@@ -1,0 +1,27 @@
+@import "../_variables.less";
+@import "../_mixins.less";
+
+.private-message-thread {
+  th.from-col {
+    width: 25%;
+  }
+
+  th.message-col {
+  }
+}
+
+.private-messages-list {
+
+  .not-read {
+    font-weight: bold;
+  }
+
+  .message-col  {
+    a {
+      color: @grayDark;
+    }
+    span {
+      color: @grayLight;
+    }
+  }
+}

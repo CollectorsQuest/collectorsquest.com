@@ -1,44 +1,34 @@
 <?php
 
-require 'lib/model/om/BasePrivateMessage.php';
-
 class PrivateMessage extends BasePrivateMessage
 {
 
   /**
-   * @param     Collector $v
+   * @param     int|Collector $v
    * @return    PrivateMessage
    */
   public function setSender($v)
   {
     if ($v instanceof Collector)
     {
-      $id = $v->getId();
-    }
-    else
-    {
-      $id = (int) $v;
+      $v = $v->getId();
     }
 
-    return parent::setSender($id);
+    return parent::setSender($v);
   }
 
   /**
-   * @param     Collector $v
+   * @param     int|Collector $v
    * @return    PrivateMessage
    */
   public function setReceiver($v)
   {
     if ($v instanceof Collector)
     {
-      $id = $v->getId();
-    }
-    else
-    {
-      $id = (int) $v;
+      $v = $v->getId();
     }
 
-    return parent::setReceiver($id);
+    return parent::setReceiver($v);
   }
 
   /**

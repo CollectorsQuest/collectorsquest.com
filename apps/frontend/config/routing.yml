@@ -302,12 +302,20 @@ messages_inbox:
   param:  { module: messages, action: inbox, filter: all }
   requirements: { filter: "^(?|all|read|unread)$" }
 
+messages_sent:
+  url:    /messages/sent
+  param:  { module: messages, action: sent, filter: all }
+
 messages_show:
-  url:    /messages/:id/show
+  url:    /messages/:thread/show
   class:  sfPropelORMRoute
   param:  { module: messages, action: show }
   options: { model: PrivateMessage, type: object }
-  requirements: { id: "\d+" }
+  requirements: { thread: "\w{32}" }
+
+messages_compose:
+  url:    /messages/compose
+  param:  { module: messages, action: compose }
 
 
 ### GENERAL
