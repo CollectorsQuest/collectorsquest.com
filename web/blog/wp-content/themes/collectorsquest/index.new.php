@@ -106,7 +106,7 @@ get_header();
       </div>
       <?php else: ?>
 
-      <div class="post p-<?php echo $count; if ($count>2) : echo ' p-small'; endif; if ($count %4 == 0): echo ' last'; endif; ?>" id="post-<?php the_ID(); ?>">
+      <div class="post p-<?php echo $count; if ($count>2) : echo ' p-small'; endif; if ($count %6 == 0): echo ' last'; endif; ?>" id="post-<?php the_ID(); ?>">
         <div class="entry-genre"><a href="" title="">Genre</a><?php //the_category() ?></div>
         <?php if (is_single()): ?>
         <h2><?php the_title() ?></h2>
@@ -221,7 +221,7 @@ ob_start();
   <ul id="widgets" class="span-5">
     <li id="widget-bloggers" class="widget">
       <h3 class="widget-title">Our Bloggers</h3>
-      <ul>
+     <ul>
         <li class="alex-rice">
           <a href="/blog/people/alex-rice">
             <img src="/images/blog/avatar-alex-rice.png" alt="Alex Rice" align="left" style="height: 40px; margin-right: 10px; border: 1px solid #BDB7BD;">
@@ -314,6 +314,46 @@ ob_start();
         </li>
       </ul>
     </li>
+<?php
+      $display_admins = false;
+      $order_by = 'display_name'; // 'nicename', 'email', 'url', 'registered', 'display_name', or 'post_count'
+      $role = 'author'; // 'subscriber', 'contributor', 'editor', 'author' - leave blank for 'all'
+      $avatar_size = 32;
+      $hide_empty = true; // hides authors with zero posts
+
+      if(!empty($display_admins)) {
+      $blogusers = get_users('orderby='.$order_by.'&role='.$role);
+      } else {
+      $admins = get_users('role=administrator');
+      $exclude = array();
+      foreach($admins as $ad) {
+      $exclude[] = $ad->ID;
+      }
+      $exclude = implode(',', $exclude);
+      $blogusers = get_users('exclude='.$exclude.'&orderby='.$order_by.'&role='.$role);
+      }
+      $authors = array();
+      foreach ($blogusers as $bloguser) {
+      $user = get_userdata($bloguser->ID);
+      if(!empty($hide_empty)) {
+      $numposts = count_user_posts($user->ID);
+      if($numposts < 1) continue;
+      }
+      $authors[] = (array) $user;
+      }
+
+      echo '<ul class="author-list">';
+      foreach($authors as $author) {
+        $display_name = $author['data']->display_name;
+        $avatar = get_avatar($author['ID'], $avatar_size);
+        $author_posts_url = get_author_posts_url($author['ID']);
+        $author_profile_url = get_the_author_meta( 'user_url', $author['ID'] );
+      echo '<li><a href="', $author_profile_url, '">', $avatar , '</a><strong>'.$display_name.'</strong><br /><a href="', $author_profile_url, '" class="author-link">[Bio]</a> <a href="', $author_posts_url, '" class="contributor-link">[Articles]</a></li>';
+      echo '';
+
+      }
+      echo '</ul>'; ?>
+
     <!-- Blog Sidebar //-->
   </ul>
 
