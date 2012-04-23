@@ -21,36 +21,8 @@ else if (is_tag())
 
 
 ob_start();
-wp_head(); ?>
-
-<style>
-  .search-header input, .search-header textarea { /* add to main.less*/
-    width: 200px;
-    -webkit-border-top-left-radius: 7px;
-    -webkit-border-bottom-left-radius: 7px;
-    -moz-border-radius-topleft: 7px;
-    -moz-border-radius-bottomleft: 7px;
-    border-top-left-radius: 7px;
-    border-bottom-left-radius: 7px;
-    padding-top: 7px;
-    padding-bottom: 7px;
-    margin-bottom: 0;
-    border: 1px solid #C3C7CB;
-    -webkit-box-shadow: inset 2px 2px 2px 2px rgba(0, 0, 0, 0.07);
-    -moz-box-shadow: inset 2px 2px 2px 2px rgba(0, 0, 0, 0.07);
-    box-shadow: inset 2px 2px 2px 2px rgba(0, 0, 0, 0.07);
-    -webkit-box-shadow: inset 2px 2px 2px 2px rgba(0, 0, 0, 0.07);
-    -moz-box-shadow: inset 2px 2px 2px 2px rgba(0, 0, 0, 0.07);
-    box-shadow: inset 2px 2px 2px 2px rgba(0, 0, 0, 0.07);
-  }
-
-
-</style>
-
-
-<?php
+wp_head();
 $head = ob_get_clean();
-
 
 
 ob_start();
