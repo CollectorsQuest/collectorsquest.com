@@ -54,7 +54,9 @@
       <td class="select-col dont-linkify">
         <input type="checkbox" name="ids[]" value="<?= $message->getId() ?>" class="<?= $message->getIsRead() ? 'read' : 'unread' ?>" />
       </td>
-      <td class="sender-col"><?= $message->getCollectorRelatedBySender(); ?></td>
+      <td class="sender-col">
+          <?= link_to_collector($message->getCollectorRelatedBySender()); ?>
+      </td>
       <td class="message-col">
         <?= link_to($message->getSubject(), array(
           'sf_route' => 'messages_show',
