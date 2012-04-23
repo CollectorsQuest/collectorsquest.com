@@ -23,15 +23,15 @@ class cqMagnifyAuthActions extends sfActions
     // Turn off web debug
     sfConfig::set('sf_web_debug', false);
 
-    $q = CollectorQuery::create()
-       ->filterByExtraProperty('magnify.sso_signature', $request->getParameter('signature'));
+    $q         = CollectorQuery::create()
+        ->filterByExtraProperty('magnify.sso_signature', $request->getParameter('signature'));
     $collector = $q->findOne();
 
     /**
      * Check if there is a Collector with that signature and
      * if the timestamp is not too much in the past (1 hour)
      */
-    if (!$collector || (int) $collector->getProperty('magnify.sso_timestamp') < time() - 3600)
+    if (!$collector || (int)$collector->getProperty('magnify.sso_timestamp') < time() - 3600)
     {
       return sfView::NONE;
     }
@@ -59,14 +59,19 @@ class cqMagnifyAuthActions extends sfActions
    */
   public function executeIdentity()
   {
+    $redirectUrl = $this->getController()->genUrl('@cq_magnify_sso_identity', true);
+
+    $this->redirectUnless($this->getUser()->isAuthenticated(), '@login?r=' . $redirectUrl);
+
     /** @var $collector Collector */
     $collector = $this->getUser()->getCollector();
 
-    $url = 'http://' . sfConfig::get('app_magnify_channel') . '/login/sso';
+    $url       = 'http://' . sfConfig::get('app_magnify_channel') . '/login/sso';
     $secretKey = sfConfig::get('app_magnify_sso_secret_key', null);
     $timestamp = time();
 
-    if (!$secretKey) {
+    if (!$secretKey)
+    {
       throw new Exception('Magnify SSO secret key is not set');
     }
 
