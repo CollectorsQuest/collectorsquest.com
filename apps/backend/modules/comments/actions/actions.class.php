@@ -43,4 +43,40 @@ class commentsActions extends autoCommentsActions
     $this->redirect('@comment');
   }
 
+  /**
+   * Action UpdateContent
+   *
+   * @param sfWebRequest $request
+   *
+   * @return string
+   */
+  public function executeUpdateContent(sfWebRequest $request)
+  {
+    $id      = $request->getParameter('id', false);
+    $content = $request->getParameter('content');
+
+    if (!$id)
+    {
+      return $this->renderText(json_encode(array(
+        'status' => 'fail',
+        'message'=> 'Invalid ID',
+      )));
+    }
+
+    $comment = CommentPeer::retrieveByPK($id);
+
+    if (!$comment)
+    {
+      return $this->renderText(json_encode(array(
+        'status' => 'fail',
+        'message'=> 'Comment not found',
+      )));
+    }
+
+    $comment->setBody($content);
+    $comment->save();
+
+    return $this->renderText(json_encode(array('status'=> 'success')));
+  }
+
 }
