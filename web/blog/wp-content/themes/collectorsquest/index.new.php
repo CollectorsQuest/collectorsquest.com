@@ -93,7 +93,9 @@ get_header();
         <?php endif; ?>
 
         <div class="entry-image">
-          <img src="http://placekitten.com/<?php if (is_singular()) : echo '620'; elseif ($count==0||$count==1||$count==2) : echo '300'; elseif ($count>2) : echo '140'; endif; ?>/<?php if (is_singular()) : echo '440'; elseif ($count==0) : echo '360'; elseif ($count==1||$count==2) : echo '130'; elseif ($count>2) : echo '100'; endif; ?>" alt="" />
+          <?php if (!is_single()) : ?><a href="<?php the_permalink() ?>"><?php endif; ?>
+            <img src="http://placekitten.com/<?php if (is_singular()) : echo '620'; elseif ($count==0||$count==1||$count==2) : echo '300'; elseif ($count>2) : echo '140'; endif; ?>/<?php if (is_singular()) : echo '440'; elseif ($count==0) : echo '360'; elseif ($count==1||$count==2) : echo '130'; elseif ($count>2) : echo '100'; endif; ?>" alt="" />
+          <?php if (!is_single()) : ?></a><?php endif; ?>
           <?php if (is_single()): ?>
           <p class="wp-caption-text">This is a caption.</p>
           <div id="entry-image-box"></div>
