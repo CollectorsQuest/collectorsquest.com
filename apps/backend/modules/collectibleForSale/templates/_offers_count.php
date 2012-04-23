@@ -6,8 +6,8 @@
  */
 /* @var $CollectibleForSale CollectibleForSale */
 echo link_to_if(
-  $CollectibleForSale->getActiveCollectibleOffersCount(), 
-  $CollectibleForSale->getActiveCollectibleOffersCount(), 
-  'item_offers', 
-  array('id'=>$CollectibleForSale->getId())
-    );
+  $CollectibleForSale->getActiveCollectibleOffersCount(),
+  $CollectibleForSale->getActiveCollectibleOffersCount(),
+  'item_offers',
+  array('id'=> $CollectibleForSale->getCollectibleId())
+);
