@@ -26,6 +26,11 @@ class CollectibleEditForm extends BaseCollectibleForm
 
     $this->validatorSchema->setPostValidator(new sfValidatorPass());
 
+    // Define which fields to use from the base form
+    $this->useFields(array(
+      'collection_collectible_list', 'name', 'description', 'thumbnail', 'tags'
+    ));
+
     if ($collector->getIsSeller())
     {
       $collectibleForSale = $this->getObject()->getCollectibleForSale();
@@ -40,11 +45,6 @@ class CollectibleEditForm extends BaseCollectibleForm
       unset($for_sale_form['collectible_id']);
       $this->embedForm('for_sale', $for_sale_form);
     }
-
-    // Define which fields to use from the base form
-    $this->useFields(array(
-      'collection_collectible_list', 'name', 'description', 'thumbnail', 'tags'
-    ));
 
     $this->getWidgetSchema()->setFormFormatterName('legacy');
 
