@@ -9,6 +9,11 @@
 class messagesActions extends cqFrontendActions
 {
 
+  public function executeIndex()
+  {
+    return $this->redirect('@messages_inbox');
+  }
+
   public function executeInbox(sfWebRequest $request)
   {
     // possible values: all, read, unread
