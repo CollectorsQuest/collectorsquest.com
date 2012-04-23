@@ -46,7 +46,16 @@ var APP = window.APP = {
     index: function() {
       SEARCH.setupMasonry();
     } // index
-  } // search
+  }, // search
+
+  /**
+   * "messages" symfony module
+   */
+  messages: {
+    init: function(action) {
+      $('.nav-private-messages #' + action).addClass('active');
+    } // init
+  } // messages
 
 }; // APP
 
