@@ -25,9 +25,7 @@ var APP = window.APP = {
         clickZone: 'div.link'
       });
 
-      COMMON.setupScrollToTop();
-      COMMON.setupFooterLoginOrSignup();
-      COMMON.setupEmailSpellingHelper();
+      COMMON.setupProjectWideHelpers();
     } // init
   }, // common
 
@@ -57,6 +55,12 @@ var COMMON = window.COMMON = (function(){
 
   // return object literal
   return {
+    setupProjectWideHelpers: function() {
+      COMMON.setupScrollToTop();
+      COMMON.setupFooterLoginOrSignup();
+      COMMON.setupEmailSpellingHelper();
+      COMMON.linkifyTables();
+    },
     setupScrollToTop: function() {
       /**
        * "Scroll to Top" link on every long page
@@ -165,7 +169,16 @@ var COMMON = window.COMMON = (function(){
         // and set the username to the value of the cookie
         $('#login_username').val($.cookie(window.cq.username_cookie));
       }
-    } // setupFooterLoginOrSignup()
+    }, // setupFooterLoginOrSignup()
+
+    linkifyTables: function() {
+      // make all table rows with class "linkify" clickable links ;)
+      var $link_table_rows = $('table').find('tr.linkify');
+
+      $link_table_rows.find('td:not(.dont-linkify)').on('click', function() {
+          window.location = $(this).parent().data('url');
+      });
+    } // linkifyTables
 
   }; // COMMON object literal
 }());
