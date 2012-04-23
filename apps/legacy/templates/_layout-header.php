@@ -9,7 +9,7 @@
   <?php $facebook = sfConfig::get('app_credentials_facebook'); ?>
 
   <meta property="fb:app_id" content="<?= $facebook['application_id']; ?>"/>
-  <meta property="og:site_name" content="Collectors' Quest - Where Hunters Gather"/>
+  <meta property="og:site_name" content="Collectors Quest - Where Hunters Gather"/>
   <?php if ($sf_response->getCanonicalUrl()): ?>
   <meta property="og:url" content="<?php echo $sf_response->getCanonicalUrl(); ?>"/>
   <?php endif; ?>

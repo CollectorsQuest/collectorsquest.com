@@ -256,7 +256,7 @@ class collectionActions extends cqActions
     // Building the breadcrumbs
     $this->addBreadcrumb($this->__('Community'), '@community');
     $this->addBreadcrumb($this->__('Collections'), '@collections');
-    $this->addBreadcrumb($this->__("Add Your Collection to Collectors' Quest"));
+    $this->addBreadcrumb($this->__("Add Your Collection to Collectors Quest"));
 
     switch ($request->getParameter('step', 1))
     {

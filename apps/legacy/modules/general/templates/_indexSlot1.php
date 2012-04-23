@@ -59,12 +59,12 @@
   </div>
 <?php else: ?>
   <div class="span-12 last" style="text-align: center; padding-top: 5px;">
-    <a href="http://www.facebook.com/pages/Collectors-Quest/119338990397" target="_blank" title="Follow Collectors' Quest on Facebook">
-      <img src="/images/icons/facebook-follow.png" width="165" height="52" alt="Follow Collectors' Quest on Facebook">
+    <a href="http://www.facebook.com/pages/Collectors-Quest/119338990397" target="_blank" title="Follow Collectors Quest on Facebook">
+      <img src="/images/icons/facebook-follow.png" width="165" height="52" alt="Follow Collectors Quest on Facebook">
     </a>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="http://twitter.com/collectorsquest" target="_blank" title="Follow Collectors' Quest on Twitter">
-      <img src="/images/icons/twitter-follow.png" width="165" height="52" alt="Follow Collectors' Quest on Twitter">
+    <a href="http://twitter.com/collectorsquest" target="_blank" title="Follow Collectors Quest on Twitter">
+      <img src="/images/icons/twitter-follow.png" width="165" height="52" alt="Follow Collectors Quest on Twitter">
     </a>
   </div>
 <?php endif; ?>

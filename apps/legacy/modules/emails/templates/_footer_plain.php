@@ -1,2 +1,2 @@
 Best,
-The Collectors' Quest Team
+The Collectors Quest Team
