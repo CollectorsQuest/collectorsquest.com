@@ -31,7 +31,8 @@ generator:
           _new: ~
           export: { label: 'Export to CSV' }
       filter:  ~
-      form:    ~
+      form:
+        display: [collectible_id, price, condition, is_price_negotiable, is_shipping_free, is_sold, is_ready, quantity]
       edit:    ~
       new:     ~
       export:

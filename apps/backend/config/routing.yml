@@ -44,6 +44,11 @@ comment:
     column:               id
     with_wildcard_routes: true
 
+comment_ajax_update_content:
+  url: /comments/update_content
+  param: { module: comments, action: updateContent }
+  requirements: { sf_method: [POST], sf_format: json }
+
 promotion_transaction:
   class: sfPropelORMRouteCollection
   options:

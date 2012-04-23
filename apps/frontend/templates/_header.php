@@ -56,10 +56,17 @@
       <div class="container dark-bg">
         <?= link_to('Collectors Quest', '@homepage', array('class' => 'cq-logo logo hide-text', 'title' => 'Home')) ?>
         <ul class="nav">
-          <li><?= link_to('Collections', 'collections/index'); ?></li>
-          <li><?= link_to('News', 'news/index'); ?></li>
-          <li><?= link_to('Video', 'video/index'); ?></li>
-          <li><?= link_to('Market', 'marketplace/index'); ?></li>
+          <?php $class = in_array($sf_params->get('module'), array('collection', 'collections')) ? 'active' : null; ?>
+          <li class="<?= $class ?>"><?= link_to('Collections', 'collections/index'); ?></li>
+
+          <?php $class = in_array($sf_params->get('module'), array('news', '_blog')) ? 'active' : null; ?>
+          <li class="<?= $class ?>"><?= link_to('News', 'news/index'); ?></li>
+
+          <?php $class = in_array($sf_params->get('module'), array('video', '_magnify')) ? 'active' : null; ?>
+          <li class="<?= $class ?>"><?= link_to('Video', 'video/index'); ?></li>
+
+          <?php $class = in_array($sf_params->get('module'), array('marketplace')) ? 'active' : null; ?>
+          <li class="<?= $class ?>"><?= link_to('Market', 'marketplace/index'); ?></li>
         </ul>
       </div>
     </div>

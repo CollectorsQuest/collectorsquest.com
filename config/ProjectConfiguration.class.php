@@ -29,12 +29,12 @@ class ProjectConfiguration extends IceProjectConfiguration
     iconv_set_encoding('internal_encoding', 'UTF-8');
 
     $this->enablePlugins('sfPropelORMPlugin', 'sfGuardPlugin');
-    $this->enablePlugins(
+    $this->enablePlugins(array(
       'iceAssetsPlugin', 'iceBehaviorsPlugin', 'iceLibsPlugin',
       'iceTaggablePlugin', 'iceBackendPlugin', 'iceJobQueuePlugin',
       'iceCrontabPlugin', 'iceSpamControlPlugin', 'iceGeoLocationPlugin',
-      'cqEmailsPlugin'
-    );
+      'cqEmailsPlugin', 'cqMagnifyPlugin',
+    ));
 
     sfConfig::add(array(
       'sf_upload_dir' => '/www/vhosts/collectorsquest.com/shared/uploads',

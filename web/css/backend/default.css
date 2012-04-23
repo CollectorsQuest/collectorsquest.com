@@ -11,3 +11,16 @@
 #sf_admin_container .sf_admin_list_td_list_spaminess {
   text-align: center;
 }
+
+.sf_admin_list_td_body {
+  width: 300px;
+}
+
+.sf_admin_list_td_created_at {
+  width: 100px;
+}
+
+button#inline-save {
+  display: block;
+  margin: 5px 10px 10px;
+}

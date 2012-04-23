@@ -158,7 +158,7 @@ class _sidebarComponents extends cqFrontendComponents
     {
       if (isset($this->category))
       {
-        $this->videos = $magnify->getContent()->find($this->category->getName(), 1, $limit);
+        $this->videos = $magnify->getContent()->find($this->category->getSlug(), 1, $limit);
       }
       else if (isset($this->tags))
       {
@@ -208,6 +208,13 @@ class _sidebarComponents extends cqFrontendComponents
     // Set the limit of other Collections to show
     $this->limit = $this->getVar('limit') ? (int) $this->getVar('limit') : 0;
 
+    $this->title = $this->getVar('title') ? $this->getVar('title') : 'Featured Sellers';
+
+    $q = CollectorQuery::create()
+       ->filterByUserType(CollectorPeer::TYPE_SELLER)
+       ->limit(2);
+    $this->sellers = $q->find();
+
     return $this->_sidebar_if(count($this->sellers) > 0);
   }
 
@@ -220,6 +227,21 @@ class _sidebarComponents extends cqFrontendComponents
     $this->collectibles_for_sale = $q->find();
 
     return $this->_sidebar_if(count($this->collectibles_for_sale) > 0);
+  }
+
+  public function executeWidgetBlogPosts()
+  {
+    // Set the limit of other Collections to show
+    $this->limit = $this->getVar('limit') ? (int) $this->getVar('limit') : 0;
+
+    $q = wpPostQuery::create()
+      ->filterByPostType('post')
+      ->filterByPostStatus('publish')
+      ->orderByPostDate(Criteria::DESC)
+      ->limit($this->limit);
+    $this->wp_posts = $q->find();
+
+    return $this->_sidebar_if(count($this->wp_posts) > 0);
   }
 
   private function _sidebar_if($condition = false)

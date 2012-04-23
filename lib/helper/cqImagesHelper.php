@@ -41,20 +41,26 @@ function image_tag_collector($collector, $which = '100x100', $options = array())
 /**
  * @param Collector $collector
  * @param string $which
+ * @param array $options
  *
  * @return null|string
  */
-function src_tag_collector($collector, $which = '100x100')
+function src_tag_collector($collector, $which = '100x100', $options = array())
 {
   $default = '/images/'. sfConfig::get('sf_app') .'/multimedia/Collector/'. $which .'.png';
 
   if (!($collector instanceof Collector))
   {
+    if (isset($options['absolute']) && true === $options['absolute'])
+    {
+      $default = sfConfig::get('app_cq_multimedia_domain') . $default;
+    }
+
     return $default;
   }
 
   $multimedia = $collector->getPhoto();
-  $src_tag = src_tag_multimedia($multimedia, $which);
+  $src_tag    = src_tag_multimedia($multimedia, $which, $options);
 
   if (empty($src_tag))
   {
@@ -247,7 +253,11 @@ function src_tag_multimedia($multimedia, $which, $options = array())
 
   if (!$multimedia->fileExists($which))
   {
-    $src = sfConfig::get('sf_app') .'/multimedia/'. $multimedia->getModel() .'/'. $which .'.png';
+    $src = sprintf(
+      '%s/images/%s/multimedia/%s/%s.png',
+      rtrim(sfConfig::get('app_cq_www_domain'), '/'), sfConfig::get('sf_app'),
+      $multimedia->getModel(), $which
+    );
   }
   else
   {
