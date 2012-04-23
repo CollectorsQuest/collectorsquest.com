@@ -1,4 +1,4 @@
-<?php cq_page_title('Market') ?>
+<?php cq_page_title('Market'); ?>
 
 <div class="row-fluid" id="marketplace-spotlight">
   <h2 class="spotlight-title Chivo webfont">

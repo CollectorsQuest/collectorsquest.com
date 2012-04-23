@@ -672,6 +672,68 @@ div.over {
   .border-radius(7px);
 }
 
+//
+
+#items-for-sale {
+	.thumbnails {
+		margin-left: 0;
+
+		a {
+			border: 1px solid @boxBorder;
+			font-size: 12px;
+			.box-shadow(none);
+			.border-radius(0);
+			&:hover {
+				background-color: white;
+				border: 1px solid @blue;
+				.border-radius(0);
+			}
+			p {
+				font-size: 12px;
+				margin-bottom: 2px;
+				padding: 5px 2px 0 2px;
+			}
+			span {
+				font-weight: bold;
+				color: @blueDark;
+				display: block;
+				text-align: right;
+				padding-right: 2px;
+			}
+		}
+		.thumbnail {
+			padding: 5px 4px 7px 4px;
+		}
+	}
+}
+
+
+//brand pages
+.promo-space {
+	margin-bottom: 15px;
+}
+
+#show-items {
+
+	.row {
+		margin-left: 0;
+	}
+	.span4 {
+		.square(190px);
+		margin: 20px 0 0 25px;
+	}
+	.thumbnails {
+		margin-left: -25px;
+		margin-bottom: 0;
+	}
+	.thumbnail {
+		.border-radius(0);
+		.box-shadow(none);
+		border: none;
+		padding: 0;
+	}
+}
+
 @import "_mosaic.less";
 @import "_collections.less";
 @import "_collectibles.less";
