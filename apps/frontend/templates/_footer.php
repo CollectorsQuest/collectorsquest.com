@@ -9,7 +9,11 @@
         <div class="aboutus-footer-inner">
           <h2 class="Chivo webfont">About Collectors Quest</h2>
           <p>
-            Collectors Quest is an interactive community and marketplace for the passionate collector. Collectors can meet others who share their interests, organize and catalog their collections, as well as buy, sell or trade with others...
+            At Collectors Quest, you can meet and talk with your fellow collectors,
+            upload and organize your own collections, see other collections from around the world,
+            join special collecting groups, find hidden treasures to purchase,
+            sell stuff to passionate collectors, and get global news about the vast world of collecting.
+            If you collect it, you’ll find it here at Collectors Quest — where hunters gather!<br/>
             <a href="#">Learn more</a>
           </p>
           <div class="row-spacing-footer">
@@ -122,7 +126,7 @@
               <h2 class="Chivo webfont">Show Off</h2>
               <p>
                 Show your collections to the world! Upload and organize your stuff here.<br/>
-                <?= link_to('Show&nbsp;Off&nbsp;Now', '@collector_signup'); ?>
+                <?= link_to('Show&nbsp;Off&nbsp;Now!', '@collector_signup'); ?>
               </p>
             </div>
           </li>
@@ -133,7 +137,7 @@
               <p>
                 Do you have something you'd like to sell?
                 It's easy! Become a member of Collectors Quest and get started.<br/>
-                <?= link_to('Get&nbsp;Paid&nbsp;Now', '@seller_signup'); ?>
+                <?= link_to('Get&nbsp;Paid&nbsp;Now!', '@seller_signup'); ?>
               </p>
             </div>
           </li>
