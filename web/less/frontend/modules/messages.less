@@ -16,16 +16,26 @@
 }
 
 .private-messages-list {
-  .not-read {
+  .unread {
     font-weight: bold;
   }
-  .message-col  {
+  .sender-col {
+    width: 25%;
+  }
+  .message-col {
     a {
       color: @grayDark;
     }
     span {
       color: @grayLight;
     }
+    small {
+      font-size: 77%;
+    }
   }
+}
+
+.private-messages-list-select {
+  padding-right: 10px;
 }
 

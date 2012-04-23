@@ -55,6 +55,27 @@ var APP = window.APP = {
     init: function(action) {
       $('.nav-private-messages #' + action).addClass('active');
     },
+    inbox: function() {
+      $('.private-messages-list-select .dropdown-toggle').dropdown();
+      $('.private-messages-list-select .dropdown-menu a').on('click', function(e) {
+        var $checkboxes = $('.private-messages-list input[type=checkbox]');
+
+        switch ($(this).data('select')) {
+          case 'all':
+            $checkboxes.attr('checked', 'checked');
+            break;
+          case 'none':
+            $checkboxes.attr('checked', false);
+            break;
+          case 'read':
+            $checkboxes.attr('checked', false).filter('.read').attr('checked', 'checked');
+            break;
+          case 'unread':
+            $checkboxes.attr('checked', false).filter('.unread').attr('checked', 'checked');
+            break;
+        }
+      })
+    },
     show: function() {
       $('#message_body').elastic();
     },
