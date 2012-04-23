@@ -111,4 +111,31 @@ class messagesActions extends cqFrontendActions
     return sfView::SUCCESS;
   }
 
+  public function executeBatchActions(sfWebRequest $request)
+  {
+    // possible keys: mark_as_read, mark_as_unread, delete
+    $action = $request->getParameter('batch_action');
+
+    $q = PrivateMessageQuery::create()
+      ->filterByPrimaryKeys($request->getParameter('ids'))
+      ->filterByCollectorRelatedByReceiver($this->getCollector());
+
+    if (isset($action['mark_as_read']))
+    {
+      $q->update(array('IsRead' => true));
+    }
+
+    if (isset($action['mark_as_unread']))
+    {
+      $q->update(array('IsRead' => false));
+    }
+
+    if (isset($action['delete']))
+    {
+      $q->update(array('IsDeleted' => true));
+    }
+
+    return $this->redirect('@messages_inbox');
+  }
+
 }

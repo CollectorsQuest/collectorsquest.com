@@ -3,11 +3,13 @@
   /** @var $filter_by string read|unread|all */ $filter_by;
 ?>
 
-<div class="control-group clearfix">
+<?= form_tag('@messages_batch_actions'); ?>
+<?php slot('message-controls'); ?>
+<div class="private-messages-list-actions control-group clearfix">
   <div class="btn-group pull-left">
-    <button class="btn">Mark as Read</button>
-    <button class="btn">Mark as Unread</button>
-    <button class="btn">Delete</button>
+    <input type="submit" class="btn" name="batch_action[mark_as_read]" value="Mark as Read" />
+    <input type="submit" class="btn" name="batch_action[mark_as_unread]" value="Mark as Unread" />
+    <input type="submit" class="btn" name="batch_action[delete]" value="Delete" />
   </div>
 
   <div class="pull-right btn-group">
@@ -16,6 +18,9 @@
     <?= link_to('Read', '@messages_inbox?filter=read', array('class' => 'btn '.('read' == $filter_by ? 'active' : '') )); ?>
   </div> <!-- .pull-right -->
 </div> <!-- .control-group -->
+<?php end_slot(); ?>
+
+<?php include_slot('message-controls'); ?>
 
 <table class="private-messages-list table table-striped table-bordered table-condensed">
   <tbody>
@@ -27,7 +32,7 @@
           'sf_subject' => $message,
         )); ?>"
     >
-      <td class="select-col dont-linkify"><input type="checkbox" name="ids" value="<?= $message->getId() ?>" /></td>
+      <td class="select-col dont-linkify"><input type="checkbox" name="ids[]" value="<?= $message->getId() ?>" /></td>
       <td class="sender-col"><?= $message->getCollectorRelatedBySender(); ?></td>
       <td class="message-col">
         <?= link_to($message->getSubject(), array(
@@ -46,3 +51,9 @@
   <?php endif; ?>
   </tbody>
 </table>
+
+<?php if (count($messages) > 25): ?>
+  <?php include_slot('message-controls'); ?>
+<?php endif; ?>
+
+</form>

@@ -317,6 +317,10 @@ messages_compose:
   url:    /messages/compose
   param:  { module: messages, action: compose }
 
+messages_batch_actions:
+  url:   /messages/batch-actions
+  param: { module: messages, action: batchActions }
+
 
 ### GENERAL
 
