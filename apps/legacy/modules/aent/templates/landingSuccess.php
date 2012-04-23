@@ -148,7 +148,7 @@
       <div style="background-color: #f5f8dd; padding: 5px;">
         <div class="box">
           <h2 style="font-size: 18px; font-weight: bold; padding-left: 15px; background: white url('/images/legacy/black-arrow.png') 0 6px no-repeat;">
-            Top Collections from Collectors’ Quest
+            Top Collections from Collectors Quest
           </h2>
           <br clear="all">
           <?php foreach ($featured as $i => $f): ?>

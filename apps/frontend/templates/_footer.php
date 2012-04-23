@@ -7,9 +7,9 @@
     <div class="row-fluid">
       <div class="span4">
         <div class="aboutus-footer-inner">
-          <h2 class="Chivo webfont">About Collectors’ Quest</h2>
+          <h2 class="Chivo webfont">About Collectors Quest</h2>
           <p>
-            Collectors’ Quest is an interactive community and marketplace for the passionate collector. Collectors can meet others who share their interests, organize and catalog their collections, as well as buy, sell or trade with others...
+            Collectors Quest is an interactive community and marketplace for the passionate collector. Collectors can meet others who share their interests, organize and catalog their collections, as well as buy, sell or trade with others...
             <a href="#">Learn more</a>
           </p>
           <div class="row-spacing-footer">
