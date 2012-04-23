@@ -31,3 +31,4 @@
     var docready=[],$=function(){return{ready:function(fn){docready.push(fn)}}};
   </script>
   <script src="<?= cq_javascript_src('frontend/head.js'); ?>"></script>
+  <script src="//nexus.ensighten.com/aetn/Bootstrap.js"></script>
