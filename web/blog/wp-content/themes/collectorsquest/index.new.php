@@ -51,12 +51,30 @@ get_header();
     <h1 class="Chivo webfont" style="visibility: visible; "><?php the_author() ?></h1>
   </div>
 </div>
-<?php endif; ?>
+<?php endif;
+
+$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+
+?>
 
 
 <div id="blog-contents" class="<?php if(is_singular()): echo 'singular'; else : echo 'not-singular'; endif; ?>">
   <?php if (have_posts()) : ?>
-  <?php $count = 0; ?>
+  <?php
+
+  if($paged>1):
+    $count = 9;
+  else :
+    $count = 0;
+  endif;
+
+  if ($paged==2) :
+    query_posts('offset=7&posts_per_page=8');
+  elseif ($paged>2) :
+    query_posts('offset='. (($paged*8)-9) .'&posts_per_page=8');
+  endif;
+
+  ?>
   <?php while (have_posts()) : the_post(); ?>
     <?php
     if (is_single() || is_page())
@@ -83,8 +101,8 @@ get_header();
         <?php the_content('Read the rest of this entry &raquo;'); ?>
       </div>
       <?php else: ?>
-
-      <div class="post p-<?php echo $count; if ($count>2) : echo ' p-small'; endif; if ($count %6 == 0): echo ' last'; endif; ?>" id="post-<?php the_ID(); ?>">
+<?php if ($paged==1) : $row = $count %6 ; elseif ($paged>1) : $row = $count %4; endif; ?>
+      <div class="post p-<?php echo $count; if ($count>2) : echo ' p-small'; endif; if ($row == 0): echo ' last'; endif; ?>" id="post-<?php the_ID(); ?>">
         <div class="entry-genre"><a href="" title="">Genre</a><?php //the_category() ?></div>
         <?php if (is_single()): ?>
         <h2><?php the_title() ?></h2>
@@ -152,25 +170,25 @@ get_header();
       <div class="permalinklink">Permalink: <a href="<?php the_permalink(); ?>"><?php the_permalink() ?></a></div>
       <?php endif; ?>
 
-    <!-- <div class="navigation">
+    <div class="navigation">
       <div class="lt">
         <?php echo next_posts_link('older posts') ?>
       </div>
       <div class="rt">
         <?php echo previous_posts_link('newer posts') ?>
       </div>
-    </div> -->
+    </div>
 
     <?php if (is_front_page()||is_archive()): ?>
       <!-- <button class="btn btn-small gray-button see-more-full" id="seemore-posts" data-url="/blog/page/2" data-target=".post">
         See more
-      </button>-->
+      </button>
       <a id="json_click_handler" href="#">
         Click here to do JSON request! We'll get the 10 most recent posts as JSON
       </a>
 
 
-      <div id="json_response_box"></div>
+      <div id="json_response_box"></div>-->
 
       <?php endif; ?>
 
@@ -309,6 +327,47 @@ echo str_replace(
   array($head, $content, $sidebar, $wpfooter),
   $layout
 );
+
+
+
+/**
+ * Initialization. Add our script if needed on this page.
+ */
+function cq_is_init() {
+  global $wp_query;
+
+  // Add code to index pages.
+  if( !is_singular() ) {
+    // Queue JS and CSS
+    wp_enqueue_script(
+      'cq-load-posts',
+      '/wp-content/themes/collectorsquest/js/load-posts.js',
+      array('jquery'),
+      '1.0',
+      true
+    );
+
+    // What page are we on? And what is the pages limit?
+    $max = $wp_query->max_num_pages;
+    $paged = ( get_query_var('paged') > 1 ) ? get_query_var('paged') : 1;
+
+    // Add some parameters for the JS.
+    wp_localize_script(
+      'cq-load-posts',
+      'cq',
+      array(
+        'startPage' => $paged,
+        'maxPages' => $max,
+        'nextLink' => next_posts($max, false)
+      )
+    );
+
+  }
+}
+add_action('template_redirect', 'cq_is_init');
+
+
+
 
 
 
