@@ -79,6 +79,7 @@ class messagesActions extends cqFrontendActions
   {
     $form = new ComposePrivateMessageForm($sender = $this->getCollector());
     $form->setDefault('receiver', $request->getParameter('to'));
+    $form->setDefault('subject', $request->getParameter('subject'));
 
     if (sfRequest::POST == $request->getMethod())
     {
