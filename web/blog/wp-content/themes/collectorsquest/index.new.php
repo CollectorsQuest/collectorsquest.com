@@ -67,10 +67,16 @@ get_header();
     <a href="/blog/">Back to News Landing Page &rarr;</a>
   </div>
 </div>
-<?php else: ?>
+<?php elseif (is_front_page()): ?>
 <div class="row-fluid header-bar">
   <div class="span11">
     <h1 class="Chivo webfont" style="visibility: visible; ">Latest News</h1>
+  </div>
+</div>
+<?php elseif (is_author()): ?>
+<div class="row-fluid header-bar">
+  <div class="span11">
+    <h1 class="Chivo webfont" style="visibility: visible; "><?php the_author() ?></h1>
   </div>
 </div>
 <?php endif; ?>
@@ -211,6 +217,8 @@ get_header();
 ob_start();
 ?>
 
+
+
 <div id="sidebar">
 
   <img src="/images/iab/300x250.gif">
@@ -221,125 +229,33 @@ ob_start();
   <ul id="widgets" class="span-5">
     <li id="widget-bloggers" class="widget">
       <h3 class="widget-title">Our Bloggers</h3>
-     <ul>
-        <li class="alex-rice">
-          <a href="/blog/people/alex-rice">
-            <img src="/images/blog/avatar-alex-rice.png" alt="Alex Rice" align="left" style="height: 40px; margin-right: 10px; border: 1px solid #BDB7BD;">
-          </a>
-          <strong style="font-size: 14px;">Alex Rice</strong> <br>
-          <a href="/blog/people/alex-rice" title="Bio of blogger Alex Rice">[bio]</a> &nbsp;
-          <a href="/blog/index.php?author=19" title="Alex Rice's articles on collecting...">[articles]</a>
-          <br clear="all">
-        </li>
-        <li class="brian-rubin">
-          <a href="/blog/people/brian-rubin">
-            <img src="/images/blog/avatar-brian-rubin.png" alt="Brian Rubin" align="left" style="height: 40px; margin-right: 10px; border: 1px solid #BDB7BD;">
-          </a>
-          <strong style="font-size: 14px;">Brian Rubin</strong> <br>
-          <a href="/blog/people/brian-rubin" title="Bio of blogger Brian Rubin">[bio]</a> &nbsp;
-          <a href="/blog/index.php?author=14" title="Brian Rubin's articles on collecting...">[articles]</a>
-          <br clear="all">
-        </li>
-        <li class="collin-david">
-          <a href="/blog/people/collin-david" title="Bio of blogger Collin David">
-            <img src="/images/blog/avatar-collin-david.png" alt="Collin David" align="left" style="height: 40px; margin-right: 10px; border: 1px solid #BDB7BD;">
-          </a>
-          <strong style="font-size: 14px;">Collin David</strong> <br>
-          <a href="/blog/people/collin-david" title="Bio of blogger Collin David">[bio]</a> &nbsp;
-          <a href="/blog/index.php?author=7" title="Collin David's articles on collecting...">[articles]</a>
-          <br clear="all">
-        </li>
-        <li class="dean-ferber">
-          <a href="/blog/people/dean-ferber">
-            <img src="/images/blog/avatar-dean-ferber.png" alt="Dean Ferber" align="left" style="height: 40px; margin-right: 10px; border: 1px solid #BDB7BD;">
-          </a>
-          <strong style="font-size: 14px;">Dean Ferber</strong> <br>
-          <a href="/blog/people/dean-ferber">[bio]</a> &nbsp;
-          <a href="/blog/index.php?author=9">[articles]</a>
-          <br clear="all">
-        </li>
-        <li class="deanna-dahlsad">
-          <a href="/blog/people/deanna-dahlsad">
-            <img src="/images/blog/avatar-deanna-dahlsad.png" alt="Deanna Dahlsad" align="left" style="height: 40px; margin-right: 10px; border: 1px solid #BDB7BD;">
-          </a>
-          <strong style="font-size: 14px;">Deanna Dahlsad</strong> <br>
-          <a href="/blog/people/deanna-dahlsad">[bio]</a> &nbsp;
-          <a href="/blog/index.php?author=3">[articles]</a>
-          <br clear="all">
-        </li>
-        <li class="derek-dahlsad">
-          <a href="/blog/people/derek-dahlsad">
-            <img src="/images/blog/avatar-derek-dahlsad.png" alt="Derek Dahlsad" align="left" style="height: 40px; margin-right: 10px; border: 1px solid #BDB7BD;">
-          </a>
-          <strong style="font-size: 14px;">Derek Dahlsad</strong> <br>
-          <a href="/blog/people/derek-dahlsad">[bio]</a> &nbsp;
-          <a href="/blog/index.php?author=4">[articles]</a>
-          <br clear="all">
-        </li>
-        <li class="joe-szilvagyi">
-          <a href="/blog/people/joe-szilvagyi">
-            <img src="/images/blog/avatar-joe-szilvagyi.png" alt="Joe Szilvagyi" align="left" style="height: 40px; margin-right: 10px; border: 1px solid #BDB7BD;">
-          </a>
-          <strong style="font-size: 14px;">Joe Szilvagyi</strong> <br>
-          <a href="/blog/people/joe-szilvagyi" title="Bio of blogger Joe Szilvagyi">[bio]</a> &nbsp;
-          <a href="/blog/index.php?author=17" title="Joe Szilvagyi's articles on collecting...">[articles]</a>
-          <br clear="all">
-        </li>
-        <li class="shawn-hennessy">
-          <a href="/blog/people/shawn-hennessy/">
-            <img src="/images/blog/avatar-shawn-hennessy.png" alt="M. S. Hennessy" align="left" style="height: 40px; margin-right: 10px; border: 1px solid #BDB7BD;">
-          </a>
-          <strong style="font-size: 14px;">M. S. Hennessy</strong> <br>
-          <a href="/blog/people/shawn-hennessy/" title="Bio of blogger M. S. Hennessy">[bio]</a> &nbsp;
-          <a href="/blog/index.php?author=18" title="M. S. Hennessy's articles on collecting...">[articles]</a>
-          <br clear="all">
-        </li>
-        <li class="tom-peeling">
-          <a href="/blog/people/tom-peeling">
-            <img src="/images/blog/avatar-tom-peeling.png" alt="Tom Peeling" align="left" style="height: 40px; margin-right: 10px; border: 1px solid #BDB7BD;">
-          </a>
-          <strong style="font-size: 14px;">Tom Peeling</strong> <br>
-          <a href="/blog/people/tom-peeling" title="Bio of blogger Tom Peeling">[bio]</a> &nbsp;
-          <a href="/blog/index.php?author=15" title="Tom Peeling's articles on collecting...">[articles]</a>
-          <br clear="all">
-        </li>
-        <li class="val-ubell">
-          <a href="/blog/people/val-ubell">
-            <img src="/images/blog/avatar-val-ubell.png" alt="Val Ubell" align="left" style="height: 40px; margin-right: 10px; border: 1px solid #BDB7BD;">
-          </a>
-          <strong style="font-size: 14px;">Val Ubell</strong> <br>
-          <a href="/blog/people/val-ubell">[bio]</a> &nbsp;
-          <a href="/blog/index.php?author=8">[articles]</a>
-          <br clear="all">
-        </li>
-      </ul>
-    </li>
+
 <?php
       $display_admins = false;
       $order_by = 'display_name'; // 'nicename', 'email', 'url', 'registered', 'display_name', or 'post_count'
       $role = 'author'; // 'subscriber', 'contributor', 'editor', 'author' - leave blank for 'all'
-      $avatar_size = 32;
+      $avatar_size = 40;
       $hide_empty = true; // hides authors with zero posts
 
       if(!empty($display_admins)) {
-      $blogusers = get_users('orderby='.$order_by.'&role='.$role);
+        $blogusers = get_users('orderby='.$order_by.'&role='.$role);
       } else {
-      $admins = get_users('role=administrator');
-      $exclude = array();
+        $admins = get_users('role=administrator');
+        $exclude = array();
       foreach($admins as $ad) {
-      $exclude[] = $ad->ID;
+        $exclude[] = $ad->ID;
       }
       $exclude = implode(',', $exclude);
-      $blogusers = get_users('exclude='.$exclude.'&orderby='.$order_by.'&role='.$role);
+        $blogusers = get_users('exclude='.$exclude.'&orderby='.$order_by.'&role='.$role);
       }
       $authors = array();
       foreach ($blogusers as $bloguser) {
-      $user = get_userdata($bloguser->ID);
+        $user = get_userdata($bloguser->ID);
       if(!empty($hide_empty)) {
-      $numposts = count_user_posts($user->ID);
+        $numposts = count_user_posts($user->ID);
       if($numposts < 1) continue;
       }
-      $authors[] = (array) $user;
+        $authors[] = (array) $user;
       }
 
       echo '<ul class="author-list">';
@@ -348,16 +264,19 @@ ob_start();
         $avatar = get_avatar($author['ID'], $avatar_size);
         $author_posts_url = get_author_posts_url($author['ID']);
         $author_profile_url = get_the_author_meta( 'user_url', $author['ID'] );
-      echo '<li><a href="', $author_profile_url, '">', $avatar , '</a><strong>'.$display_name.'</strong><br /><a href="', $author_profile_url, '" class="author-link">[Bio]</a> <a href="', $author_posts_url, '" class="contributor-link">[Articles]</a></li>';
+        $nice_name = get_the_author_meta( 'user_nicename', $author['ID'] );
+      echo '<li><a href="', $author_profile_url, '">', $avatar , '</a><strong>'.$display_name.'</strong><br /><a href="/blog/people/', $nice_name, '" class="author-link">[Bio]</a> <a href="', $author_posts_url, '" class="contributor-link">[Articles]</a></li>';
       echo '';
 
       }
       echo '</ul>'; ?>
-
+  </li>
     <!-- Blog Sidebar //-->
   </ul>
 
 </div><!-- end #sidebar -->
+
+
 
 <?php
 
