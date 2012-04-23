@@ -49,7 +49,9 @@ class ComposePrivateMessageForm extends PrivateMessageForm
     else
     {
       // if no, then allow the user to input the receiver
-      $this->widgetSchema['receiver'] = new sfWidgetFormInputText();
+      $this->widgetSchema['receiver'] = new bsWidgetFormInputTypeAhead(array(
+        'source' => '/ajax/typeahead/messages/compose'
+      ));
     }
 
     $this->validatorSchema['receiver'] = new cqValidatorCollectorByName(array(

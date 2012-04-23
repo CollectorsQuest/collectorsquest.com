@@ -2,11 +2,16 @@
 @import "../_mixins.less";
 
 .private-message-thread {
-  th.from-col {
-    width: 25%;
-  }
-
-  th.message-col {
+  .form-horizontal {
+    .control-label {
+      width: 90px;
+    }
+    .controls {
+      margin-left: 100px;
+    }
+    .form-actions {
+      padding-left: 100px;
+    }
   }
 }
 
@@ -14,7 +19,6 @@
   .not-read {
     font-weight: bold;
   }
-
   .message-col  {
     a {
       color: @grayDark;
@@ -24,3 +28,4 @@
     }
   }
 }
+

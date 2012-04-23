@@ -2,15 +2,11 @@
   /* @var $message  PrivateMessage   */ $message;
   /* @var $messages PrivateMessage[] */ $messages;
   /* @var $reply_form ComposePrivateMessageForm */ $reply_form;
+
+  use_javascript('/js/jquery/elastic.js');
 ?>
 
 <table class="private-message-thread table table-striped table-bordered">
-  <thead>
-    <tr>
-      <th class="from-col">From</th>
-      <th class="message-col">Message</th>
-    </tr>
-  </thead>
   <tbody>
   <?php foreach ($messages as $message):
     $sender = $message->getCollectorRelatedBySender();
@@ -47,11 +43,14 @@
     <tr>
       <td colspan="">Write a reply</td>
       <td class="">
-        <?= form_tag('@messages_compose', array('class' => 'form-horizontal')) ?>
+        <?= form_tag('@messages_compose', array('class' => 'form-private-message-reply form-horizontal')) ?>
           <fieldset>
-            <?= $reply_form->renderUsing('Bootstrap'); ?>
+            <?= $reply_form->renderUsing('Bootstrap', array(
+                'subject' => array('class' => 'span7'),
+                'body'    => array('class' => 'span7', 'rows' => 6),
+            )); ?>
             <div class="form-actions">
-              <input type="submit" class="btn btn-primary" value="Send" />
+              <input type="submit" class="btn btn-primary" value="Send reply" />
             </div>
           </fieldset>
         </form>

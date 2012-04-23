@@ -21,4 +21,17 @@ class typeAheadAction extends IceAjaxAction
     return $this->output($categories);
   }
 
+  protected function executeMessagesCompose(sfWebRequest $request)
+  {
+    $q = $request->getParameter('q');
+    $limit = $request->getParameter('limit', 10);
+
+    $collectors = CollectorQuery::create()
+      ->filterByUsername("%$q%", Criteria::LIKE)
+      ->limit($limit)
+      ->select('Username')
+      ->find()->getArrayCopy();
+
+    return $this->output($collectors);
+  }
 }

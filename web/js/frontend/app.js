@@ -36,7 +36,7 @@ var APP = window.APP = {
     // general/index is the homepage action
     index: function() {
       GENERAL.setupCarousel();
-    } // index
+    }
   }, // general
 
   /**
@@ -45,7 +45,7 @@ var APP = window.APP = {
   search: {
     index: function() {
       SEARCH.setupMasonry();
-    } // index
+    }
   }, // search
 
   /**
@@ -54,7 +54,13 @@ var APP = window.APP = {
   messages: {
     init: function(action) {
       $('.nav-private-messages #' + action).addClass('active');
-    } // init
+    },
+    show: function() {
+      $('#message_body').elastic();
+    },
+    compose: function() {
+      $('#message_body').elastic();
+    }
   } // messages
 
 }; // APP
