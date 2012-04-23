@@ -53,17 +53,22 @@
       </li>
     </ul>
   </div>
+  <div class="top-margin-double">
+    <button class="btn btn-small gray-button see-more-full" id="see-more-collections">
+      See more
+    </button>
+  </div>
 </div>
 
 <div class="row-fluid sidebar-title">
   <div class="span7">
-    <h3 class="Chivo webfont" style="visibility: visible;">
+    <h3 class="Chivo webfont">
       Featured Items For Sale
     </h3>
   </div>
   <div class="span5 text-right">
     <a href="/collectors" class="text-v-middle link-align">
-      Browse profiles »
+      See all items for sale »
     </a>&nbsp;
   </div>
 </div>

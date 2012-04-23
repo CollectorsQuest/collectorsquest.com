@@ -296,6 +296,10 @@ select,
 	margin-bottom: 20px;
 }
 
+#body-aent-pawnStars .see-more-full {
+	margin-top: 0;
+}
+
 .input-sort-by {
 	width: 345px;
 	font-size: 12px;
@@ -355,6 +359,10 @@ input[type="submit"].btn.btn-micro {
 
 .bottom-margin-double {
   margin-bottom: 20px;
+}
+
+.top-margin-double {
+	margin-top: 20px;
 }
 
 .top-padding {
@@ -503,6 +511,35 @@ a.bold-links {
   background: transparent url("@{baseUrl}/play-button.png") no-repeat center center;
   z-index: 10;
 }
+
+//SIDEBAR
+#programming-notes {
+	padding: 2px 0 15px 0;
+	font-size: @baseFontSize - 1;
+
+	.row-fluid {
+		margin-bottom: 10px;
+	}
+	.content_container {
+		padding-top: 8px;
+		padding-left: 4px;
+	}
+	p {
+		font-size: @baseFontSize - 1;
+		line-height: 14px;
+		color: @blueDark;
+		margin-bottom: 0px;
+	}
+	a {
+		font-size: @baseFontSize - 1;
+		color: @blue;
+	}
+	.fix-height-text-block {
+		max-height: 90px;
+		overflow: hidden;
+	}
+}
+
 
 //ELEMENTS
 .sidebar-ul {
