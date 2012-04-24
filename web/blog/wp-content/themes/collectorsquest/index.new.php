@@ -60,21 +60,23 @@ $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 
 <div id="blog-contents" class="<?php if(is_singular()): echo 'singular'; else : echo 'not-singular'; endif; ?>">
   <?php if (have_posts()) : ?>
-  <?php
 
+  <?php
   if($paged>1):
     $count = 9;
   else :
     $count = 0;
   endif;
 
+  $lastclass = 0;
+
   if ($paged==2) :
     query_posts('offset=7&posts_per_page=8');
   elseif ($paged>2) :
     query_posts('offset='. (($paged*8)-9) .'&posts_per_page=8');
   endif;
-
   ?>
+
   <?php while (have_posts()) : the_post(); ?>
     <?php
     if (is_single() || is_page())
@@ -101,8 +103,16 @@ $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
         <?php the_content('Read the rest of this entry &raquo;'); ?>
       </div>
       <?php else: ?>
-<?php if ($paged==1) : $row = $count %6 ; elseif ($paged>1) : $row = $count %4; endif; ?>
-      <div class="post p-<?php echo $count; if ($count>2) : echo ' p-small'; endif; if ($row == 0): echo ' last'; endif; ?>" id="post-<?php the_ID(); ?>">
+
+      <?php
+      if ($paged==1) :
+        $lastcount = 6 ;
+      elseif ($paged>1) :
+        $lastcount=3;
+      endif;
+      ?>
+
+      <div class="post p-<?php echo $count; if ($count>2) : echo ' p-small'; endif; if ($lastclass == $lastcount) : $lastclass = 0; echo ' last'; else : $lastclass++; endif; ?>" id="post-<?php the_ID(); ?>">
         <div class="entry-genre"><a href="" title="">Genre</a><?php //the_category() ?></div>
         <?php if (is_single()): ?>
         <h2><?php the_title() ?></h2>
@@ -263,6 +273,43 @@ ob_start();
       }
       echo '</ul>'; ?>
   </li>
+
+  <li id="widget-other-news" class="widget">
+
+    <div class="row-fluid sidebar-title">
+      <div class="span8">
+        <h3 class="Chivo webfont" style="visibility: visible;">In Other News</h3>
+      </div>
+      <div class="span4 text-right">
+        <a href="/blog" class="text-v-middle link-align">See all news »</a>&nbsp;
+      </div>
+    </div>
+
+
+      <?php if (is_single()) : $offset = 0; else : $offset = 7; endif; ?>
+      <?php query_posts('offset='.$offset.'&showposts=3'); ?>
+
+      <?php while (have_posts()) : the_post(); ?>
+      <div class="row-fluid">
+        <h4 style="margin-bottom: 5px;">
+          <a href="<?php the_permalink() ?>"><?php the_title(); ?></a>
+        </h4>
+      </div>
+
+      <span class="content"><?php $length=100; $longString=get_the_excerpt('...more'); $truncated = substr($longString,0,strpos($longString,' ',$length)); echo '<p>'.$truncated.'... <a href="'.get_permalink().'">more</a></p>'; ?>
+</span>
+
+      <small style="font-size: 80%">posted by <?php the_author_posts_link() ?> <span style="color: grey"><?php the_date() ?></span></small>
+
+      <?php endwhile;?>
+
+
+
+
+
+
+  </li>
+
     <!-- Blog Sidebar //-->
   </ul>
 
