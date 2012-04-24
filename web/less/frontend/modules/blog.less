@@ -1,11 +1,14 @@
+@import "../_variables.less";
+@import "../_mixins.less";
+
 #body-_blog-index #main {width:620px !important}
 #entry-image-box, #entry-image-box-button, .not-singular .entry-meta, .stArrow, #networkedblogs_nwidget_container  {display: none !important}
 h2 a:hover {border-bottom: 0px}
-.back-nav a {color:#ffffff;}
+.back-nav a {color:@white}
 .entry-genre {text-transform: uppercase;}
-.entry-genre a, .wp-caption-text, .entry-meta .meta-text { font:9pt arial;color:#887777;}
-.entry-genre a:hover {color:#cc0000}
-.entry-meta {padding: 6px;background-color: #e6f2f9; margin: 10px 0;width:609px;color:#333}
+.entry-genre a, .wp-caption-text, .entry-meta .meta-text { font:9pt arial;color:@brown;}
+.entry-genre a:hover {color:@red}
+.entry-meta {padding: 6px;background-color: #e6f2f9; margin: 10px 0;width:609px;color:@grayDark}
 .entry-meta .meta-text, .entry .wp-caption-text {margin-left:10px;margin-top:8px;}
 .author-image, .entry-meta span, .entry-meta, #commentform, .permalinklink, .p-tag, .author-list .avatar {float: left;}
 .entry .wp-caption-text {text-align:left;}
@@ -16,8 +19,8 @@ h2 a:hover {border-bottom: 0px}
 .wp-caption-text {margin-top:8px;margin-bottom: 0}
 .navigation {clear:both;padding:10px 0}
 .entry-share {margin-top:6px;}
-.p-tag {background: #e7e4e4; padding: 0 10px; color: #887777;line-height: 24px; margin: 5px;}
-.p-tag a {color:#333;}
+.p-tag {background: #e7e4e4; padding: 0 10px; color: @brown;line-height: 24px; margin: 5px;}
+.p-tag a {color:@grayDark;}
 #widget-bloggers ul, #widgets, .author-list {margin-left:0;margin-top:20px}
 #widget-bloggers, .author-list {list-style:none}
 #widget-bloggers ul li, .author-list li {margin-bottom:20px}
