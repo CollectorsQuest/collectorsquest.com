@@ -32,6 +32,16 @@ class typeAheadAction extends IceAjaxAction
       ->select('Username')
       ->find()->getArrayCopy();
 
+    if (empty($collectors))
+    {
+      // try to find by display name instead
+      $collectors = CollectorQuery::create()
+        ->filterByDisplayName("%$q%", Criteria::LIKE)
+        ->limit($limit)
+        ->select('DisplayName')
+        ->find()->getArrayCopy();
+    }
+
     return $this->output($collectors);
   }
 }
