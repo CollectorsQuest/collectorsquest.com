@@ -372,13 +372,13 @@ switch (SF_ENV)
     break;
 }
 
-$layout = file_get_contents(
-  "http://www.collectorsquest.next/_blog/index?_session_id=". $_COOKIE['legacy'] ."&key=". $key .'&env='. SF_ENV
-);
-
 /*$layout = file_get_contents(
-  "http://www.". $domain ."/_blog/index?_session_id=". $_COOKIE['cq_frontend'] ."&key=". $key .'&env='. SF_ENV
+  "http://www.collectorsquest.next/_blog/index?_session_id=". $_COOKIE['legacy'] ."&key=". $key .'&env='. SF_ENV
 ); */
+
+$layout = file_get_contents(
+  "http://www.". $domain ."/_blog/index?_session_id=". $_COOKIE['cq_frontend'] ."&key=". $key .'&env='. SF_ENV
+);
 
 
 
