@@ -28,6 +28,9 @@ if (SF_ENV === 'dev')
   define('DB_PASSWORD', '');
   define('DB_HOST', 'localhost');
 
+  define('WPLANG', 'en');
+  define('WP_CACHE', false);
+
   define('AUTH_KEY',         'kY?,$GZNiOk$= ?#OW|,-1PuP6DXI=#Lff-R,}9I90<l<YqK5Q904<UoxF}gs6s=');
   define('SECURE_AUTH_KEY',  '<GdO)poK3Asj/|+fMW-);1N2{k?PbP|K#gDUZya~9`/<YPG:4G35KW&F[8WF%S@r');
   define('LOGGED_IN_KEY',    'Ee7[c-Z_awlOYCx%;L$/c}z(}ib&W|9Ix/-K{0ai&h$m gjzS0{xeTJhFX%[Pxm*');
