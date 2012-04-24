@@ -700,6 +700,54 @@ class Collector extends BaseCollector implements ShippingRatesInterface
     return CollectorEmailPeer::retrieveLastPending($this, $verified);
   }
 
+  /**
+   * Sets new limit of max collectibles for sale
+   *
+   * @param $collectiblesForSale
+   * @return Collector
+   * @todo add tests
+   */
+  public function addCollectiblesForSaleLimit($collectiblesForSale)
+  {
+    $newLimit = $collectiblesForSale < 0 ? 10000 : ($this->getItemsAllowed() + $collectiblesForSale);
+    $this->setItemsAllowed($newLimit);
+    $this->setMaxCollectiblesForSale($newLimit);
+
+    return $this;
+  }
+
+  /**
+   * Recalculates max collectibles for sale based on currently active packages
+   *
+   * @return Collector
+   *
+   * @todo add tests
+   */
+  public function updateCollectiblesForSaleLimit()
+  {
+    /* @var $activePackageTransactions PackageTransaction[] */
+    $activePackageTransactions = PackageTransactionQuery::create()
+        ->filterByCollector($this)
+        ->filterByExpiryDate(time(), Criteria::GREATER_THAN)
+        ->find()
+        ;
+
+    $collectiblesForSale = 0;
+    foreach ($activePackageTransactions as $packageTransaction)
+    {
+      if ($packageTransaction->getMaxItemsForSale() < 0)
+      {
+        $collectiblesForSale = 10000;
+        break;
+      }
+      $collectiblesForSale += $packageTransaction->getMaxItemsForSale();
+    }
+
+    $this->setMaxCollectiblesForSale($collectiblesForSale);
+
+    return $this;
+  }
+
 }
 
 sfPropelBehavior::add(

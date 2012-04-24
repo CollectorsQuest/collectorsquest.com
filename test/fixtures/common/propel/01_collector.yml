@@ -10,16 +10,17 @@ Collector:
     email: collin@collectorsquest.com
     user_type: Seller
     items_allowed: '1000'
+    max_collectibles_for_sale: '0'
     locale: en_US
     score: '0'
     spam_score: '50'
     is_spam: '1'
     is_public: '1'
     has_completed_registration: '1'
-    session_id: o8odou7s641o0c6nad4937tq73
-    last_seen_at: '2012-04-06 05:47:03'
+    session_id: 0liteubtcg7f7ht4csktssnlt7
+    last_seen_at: '2012-04-20 12:13:11'
     created_at: '2007-05-31 14:21:52'
-    updated_at: '2012-04-06 05:47:03'
+    updated_at: '2012-04-20 12:13:11'
   Collector_52:
     username: dinocollector
     display_name: Dinocollector
@@ -29,6 +30,7 @@ Collector:
     email: bfplatt@ku.edu
     user_type: Collector
     items_allowed: '0'
+    max_collectibles_for_sale: '0'
     locale: en_US
     score: '0'
     spam_score: '5'
@@ -48,6 +50,7 @@ Collector:
     email: Deanna.Pop.Tart@gmail.com
     user_type: Seller
     items_allowed: '1000'
+    max_collectibles_for_sale: '0'
     locale: en_US
     score: '0'
     spam_score: '5'
@@ -67,6 +70,7 @@ Collector:
     email: paulmurphy777@yahoo.com
     user_type: Collector
     items_allowed: '0'
+    max_collectibles_for_sale: '0'
     locale: en_US
     score: '0'
     spam_score: '5'
@@ -85,6 +89,7 @@ Collector:
     email: collectio@mail.com
     user_type: Collector
     items_allowed: '0'
+    max_collectibles_for_sale: '0'
     locale: en_US
     score: '0'
     spam_score: '40'
@@ -103,6 +108,7 @@ Collector:
     email: rselcoe@entouchonline.net
     user_type: Collector
     items_allowed: '0'
+    max_collectibles_for_sale: '0'
     locale: en_US
     score: '0'
     spam_score: '5'
@@ -121,6 +127,7 @@ Collector:
     email: barry2952@twmi.rr.com
     user_type: Collector
     items_allowed: '0'
+    max_collectibles_for_sale: '0'
     locale: en_US
     score: '0'
     spam_score: '5'
@@ -140,6 +147,7 @@ Collector:
     email: sleeves@home.nl
     user_type: Collector
     items_allowed: '0'
+    max_collectibles_for_sale: '0'
     locale: en_US
     score: '0'
     spam_score: '5'
@@ -158,6 +166,7 @@ Collector:
     email: baifrancesca@gmail.com
     user_type: Collector
     items_allowed: '0'
+    max_collectibles_for_sale: '0'
     locale: en_US
     score: '0'
     spam_score: '5'
@@ -168,6 +177,7 @@ Collector:
     created_at: '2008-12-12 12:58:56'
     updated_at: '2012-01-05 15:38:00'
   Collector_870:
+    graph_id: '15604'
     username: dinoobcessed
     display_name: Dinoobcessed
     slug: dinoobcessed
@@ -176,16 +186,17 @@ Collector:
     email: permian123@yahoo.com
     user_type: Seller
     items_allowed: '1000'
+    max_collectibles_for_sale: '0'
     locale: en_US
     score: '0'
     spam_score: '5'
     is_spam: '0'
     is_public: '1'
     has_completed_registration: '1'
-    session_id: f70go3q86sv5k6fosja8nanob1
-    last_seen_at: '2012-01-04 00:00:00'
+    session_id: s9k4ds8vk73q5c0lm7subrk834
+    last_seen_at: '2012-04-17 00:23:45'
     created_at: '2008-12-27 23:20:15'
-    updated_at: '2012-01-05 15:39:00'
+    updated_at: '2012-04-17 00:24:23'
   Collector_963:
     graph_id: '11542'
     username: trbuttons
@@ -196,6 +207,7 @@ Collector:
     email: TRbuttons@aol.com
     user_type: Seller
     items_allowed: '-3'
+    max_collectibles_for_sale: '0'
     locale: en_US
     score: '0'
     spam_score: '5'
@@ -215,6 +227,7 @@ Collector:
     email: brini123@gmail.com
     user_type: Collector
     items_allowed: '0'
+    max_collectibles_for_sale: '0'
     locale: en_US
     score: '0'
     spam_score: '5'
@@ -233,6 +246,7 @@ Collector:
     email: tofunky@mac.com
     user_type: Collector
     items_allowed: '0'
+    max_collectibles_for_sale: '0'
     locale: en_US
     score: '0'
     spam_score: '5'
@@ -253,6 +267,7 @@ Collector:
     email: mih.nicolae@yahoo.com
     user_type: Collector
     items_allowed: '0'
+    max_collectibles_for_sale: '0'
     locale: en_US
     score: '0'
     spam_score: '5'
@@ -272,6 +287,7 @@ Collector:
     email: iscully@hotmail.com
     user_type: Collector
     items_allowed: '0'
+    max_collectibles_for_sale: '0'
     locale: en_US
     score: '0'
     spam_score: '5'
@@ -290,6 +306,7 @@ Collector:
     email: distinctivestyles@yahoo.com
     user_type: Collector
     items_allowed: '0'
+    max_collectibles_for_sale: '0'
     locale: en_US
     score: '0'
     spam_score: '5'
@@ -309,6 +326,7 @@ Collector:
     email: freeburgh@bellsouth.net
     user_type: Collector
     items_allowed: '0'
+    max_collectibles_for_sale: '0'
     locale: en_US
     score: '0'
     spam_score: '5'
@@ -328,6 +346,7 @@ Collector:
     email: kaley523@gmail.com
     user_type: Collector
     items_allowed: '0'
+    max_collectibles_for_sale: '0'
     locale: en_US
     score: '0'
     spam_score: '5'
@@ -347,6 +366,7 @@ Collector:
     email: stardust466@juno.com
     user_type: Seller
     items_allowed: '-29'
+    max_collectibles_for_sale: '0'
     locale: en_US
     score: '0'
     spam_score: '5'
@@ -365,6 +385,7 @@ Collector:
     email: shabbychicpickerchick@hotmail.com
     user_type: Seller
     items_allowed: '-1'
+    max_collectibles_for_sale: '0'
     locale: en_US
     score: '0'
     spam_score: '5'

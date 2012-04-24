@@ -1,0 +1,709 @@
+wpTermTaxonomy:
+  wpTermTaxonomy_1:
+    term_id: wpTerm_1
+    taxonomy: category
+    description: ''
+    parent: '0'
+    count: '144'
+  wpTermTaxonomy_5:
+    term_id: wpTerm_5
+    taxonomy: category
+    description: ''
+    parent: '0'
+    count: '277'
+  wpTermTaxonomy_6:
+    term_id: wpTerm_6
+    taxonomy: category
+    description: ''
+    parent: '0'
+    count: '1371'
+  wpTermTaxonomy_7:
+    term_id: wpTerm_7
+    taxonomy: category
+    description: ''
+    parent: '0'
+    count: '359'
+  wpTermTaxonomy_22:
+    term_id: wpTerm_22
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '6'
+  wpTermTaxonomy_31:
+    term_id: wpTerm_31
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '114'
+  wpTermTaxonomy_32:
+    term_id: wpTerm_32
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '140'
+  wpTermTaxonomy_59:
+    term_id: wpTerm_59
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '44'
+  wpTermTaxonomy_143:
+    term_id: wpTerm_143
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '25'
+  wpTermTaxonomy_146:
+    term_id: wpTerm_146
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '21'
+  wpTermTaxonomy_213:
+    term_id: wpTerm_213
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '88'
+  wpTermTaxonomy_276:
+    term_id: wpTerm_276
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '58'
+  wpTermTaxonomy_436:
+    term_id: wpTerm_436
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '19'
+  wpTermTaxonomy_563:
+    term_id: wpTerm_563
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '16'
+  wpTermTaxonomy_564:
+    term_id: wpTerm_564
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '6'
+  wpTermTaxonomy_667:
+    term_id: wpTerm_667
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '13'
+  wpTermTaxonomy_672:
+    term_id: wpTerm_672
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '8'
+  wpTermTaxonomy_691:
+    term_id: wpTerm_691
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '2'
+  wpTermTaxonomy_1109:
+    term_id: wpTerm_1109
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '3'
+  wpTermTaxonomy_1228:
+    term_id: wpTerm_1227
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '3'
+  wpTermTaxonomy_1344:
+    term_id: wpTerm_1343
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '64'
+  wpTermTaxonomy_1448:
+    term_id: wpTerm_1447
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '18'
+  wpTermTaxonomy_1528:
+    term_id: wpTerm_1527
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '8'
+  wpTermTaxonomy_1557:
+    term_id: wpTerm_1556
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '17'
+  wpTermTaxonomy_1761:
+    term_id: wpTerm_1760
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '10'
+  wpTermTaxonomy_1796:
+    term_id: wpTerm_1795
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '110'
+  wpTermTaxonomy_1831:
+    term_id: wpTerm_1830
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '2'
+  wpTermTaxonomy_1906:
+    term_id: wpTerm_1905
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '7'
+  wpTermTaxonomy_2474:
+    term_id: wpTerm_2472
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '7'
+  wpTermTaxonomy_2524:
+    term_id: wpTerm_2522
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '3'
+  wpTermTaxonomy_2539:
+    term_id: wpTerm_2537
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '9'
+  wpTermTaxonomy_2662:
+    term_id: wpTerm_2660
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '3'
+  wpTermTaxonomy_2927:
+    term_id: wpTerm_2925
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '2'
+  wpTermTaxonomy_3001:
+    term_id: wpTerm_2999
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '7'
+  wpTermTaxonomy_3334:
+    term_id: wpTerm_3331
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '43'
+  wpTermTaxonomy_3335:
+    term_id: wpTerm_3332
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '36'
+  wpTermTaxonomy_3351:
+    term_id: wpTerm_3348
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '2'
+  wpTermTaxonomy_3587:
+    term_id: wpTerm_3584
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '2'
+  wpTermTaxonomy_3593:
+    term_id: wpTerm_3590
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '8'
+  wpTermTaxonomy_3637:
+    term_id: wpTerm_3634
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '17'
+  wpTermTaxonomy_3922:
+    term_id: wpTerm_3918
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '5'
+  wpTermTaxonomy_4104:
+    term_id: wpTerm_4099
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '3'
+  wpTermTaxonomy_4186:
+    term_id: wpTerm_4181
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '2'
+  wpTermTaxonomy_4377:
+    term_id: wpTerm_4372
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '3'
+  wpTermTaxonomy_4505:
+    term_id: wpTerm_4500
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '2'
+  wpTermTaxonomy_4618:
+    term_id: wpTerm_4613
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '7'
+  wpTermTaxonomy_4658:
+    term_id: wpTerm_4653
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '15'
+  wpTermTaxonomy_4869:
+    term_id: wpTerm_4864
+    taxonomy: category
+    description: ''
+    parent: '0'
+    count: '114'
+  wpTermTaxonomy_4910:
+    term_id: wpTerm_4905
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '2'
+  wpTermTaxonomy_4920:
+    term_id: wpTerm_4915
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '5'
+  wpTermTaxonomy_5133:
+    term_id: wpTerm_5128
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '2'
+  wpTermTaxonomy_5161:
+    term_id: wpTerm_5156
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '1'
+  wpTermTaxonomy_5162:
+    term_id: wpTerm_5157
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '1'
+  wpTermTaxonomy_5163:
+    term_id: wpTerm_5158
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '4'
+  wpTermTaxonomy_5164:
+    term_id: wpTerm_5159
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '1'
+  wpTermTaxonomy_5165:
+    term_id: wpTerm_5160
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '1'
+  wpTermTaxonomy_5166:
+    term_id: wpTerm_5161
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '10'
+  wpTermTaxonomy_5167:
+    term_id: wpTerm_5162
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '3'
+  wpTermTaxonomy_5168:
+    term_id: wpTerm_5163
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '1'
+  wpTermTaxonomy_5169:
+    term_id: wpTerm_5164
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '1'
+  wpTermTaxonomy_5170:
+    term_id: wpTerm_5165
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '8'
+  wpTermTaxonomy_5171:
+    term_id: wpTerm_5166
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '1'
+  wpTermTaxonomy_5172:
+    term_id: wpTerm_5167
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '1'
+  wpTermTaxonomy_5173:
+    term_id: wpTerm_5168
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '4'
+  wpTermTaxonomy_5174:
+    term_id: wpTerm_5169
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '1'
+  wpTermTaxonomy_5175:
+    term_id: wpTerm_5170
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '1'
+  wpTermTaxonomy_5176:
+    term_id: wpTerm_5171
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '4'
+  wpTermTaxonomy_5177:
+    term_id: wpTerm_5172
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '4'
+  wpTermTaxonomy_5178:
+    term_id: wpTerm_5173
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '1'
+  wpTermTaxonomy_5179:
+    term_id: wpTerm_5174
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '1'
+  wpTermTaxonomy_5180:
+    term_id: wpTerm_5175
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '5'
+  wpTermTaxonomy_5181:
+    term_id: wpTerm_5176
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '1'
+  wpTermTaxonomy_5182:
+    term_id: wpTerm_5177
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '1'
+  wpTermTaxonomy_5183:
+    term_id: wpTerm_5178
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '1'
+  wpTermTaxonomy_5184:
+    term_id: wpTerm_5179
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '1'
+  wpTermTaxonomy_5185:
+    term_id: wpTerm_5180
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '1'
+  wpTermTaxonomy_5186:
+    term_id: wpTerm_5181
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '1'
+  wpTermTaxonomy_5187:
+    term_id: wpTerm_5182
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '1'
+  wpTermTaxonomy_5188:
+    term_id: wpTerm_5183
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '1'
+  wpTermTaxonomy_5189:
+    term_id: wpTerm_5184
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '2'
+  wpTermTaxonomy_5190:
+    term_id: wpTerm_5185
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '1'
+  wpTermTaxonomy_5191:
+    term_id: wpTerm_5186
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '2'
+  wpTermTaxonomy_5192:
+    term_id: wpTerm_5187
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '1'
+  wpTermTaxonomy_5193:
+    term_id: wpTerm_5188
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '1'
+  wpTermTaxonomy_5194:
+    term_id: wpTerm_5189
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '1'
+  wpTermTaxonomy_5195:
+    term_id: wpTerm_5190
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '2'
+  wpTermTaxonomy_5196:
+    term_id: wpTerm_5191
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '1'
+  wpTermTaxonomy_5197:
+    term_id: wpTerm_5192
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '1'
+  wpTermTaxonomy_5198:
+    term_id: wpTerm_5193
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '1'
+  wpTermTaxonomy_5199:
+    term_id: wpTerm_5194
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '1'
+  wpTermTaxonomy_5200:
+    term_id: wpTerm_5195
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '1'
+  wpTermTaxonomy_5201:
+    term_id: wpTerm_5196
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '1'
+  wpTermTaxonomy_5202:
+    term_id: wpTerm_5197
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '1'
+  wpTermTaxonomy_5203:
+    term_id: wpTerm_5198
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '3'
+  wpTermTaxonomy_5204:
+    term_id: wpTerm_5199
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '1'
+  wpTermTaxonomy_5205:
+    term_id: wpTerm_5200
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '3'
+  wpTermTaxonomy_5206:
+    term_id: wpTerm_5201
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '1'
+  wpTermTaxonomy_5207:
+    term_id: wpTerm_5202
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '1'
+  wpTermTaxonomy_5208:
+    term_id: wpTerm_5203
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '1'
+  wpTermTaxonomy_5209:
+    term_id: wpTerm_5204
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '5'
+  wpTermTaxonomy_5210:
+    term_id: wpTerm_5205
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '3'
+  wpTermTaxonomy_5211:
+    term_id: wpTerm_5206
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '1'
+  wpTermTaxonomy_5212:
+    term_id: wpTerm_5207
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '1'
+  wpTermTaxonomy_5213:
+    term_id: wpTerm_5208
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '1'
+  wpTermTaxonomy_5214:
+    term_id: wpTerm_5209
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '2'
+  wpTermTaxonomy_5215:
+    term_id: wpTerm_5210
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '1'
+  wpTermTaxonomy_5216:
+    term_id: wpTerm_5211
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '1'
+  wpTermTaxonomy_5217:
+    term_id: wpTerm_5212
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '1'
+  wpTermTaxonomy_5218:
+    term_id: wpTerm_5213
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '1'
+  wpTermTaxonomy_5219:
+    term_id: wpTerm_5214
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '1'
+  wpTermTaxonomy_5229:
+    term_id: wpTerm_5224
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '1'
+  wpTermTaxonomy_5230:
+    term_id: wpTerm_5225
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '1'
+  wpTermTaxonomy_5231:
+    term_id: wpTerm_5226
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '3'
+  wpTermTaxonomy_5232:
+    term_id: wpTerm_5227
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '1'
+  wpTermTaxonomy_5233:
+    term_id: wpTerm_5228
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '1'
+  wpTermTaxonomy_5234:
+    term_id: wpTerm_5229
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '1'
+  wpTermTaxonomy_5235:
+    term_id: wpTerm_5230
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '1'
+  wpTermTaxonomy_5236:
+    term_id: wpTerm_5231
+    taxonomy: post_tag
+    description: ''
+    parent: '0'
+    count: '1'

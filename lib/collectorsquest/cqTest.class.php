@@ -224,4 +224,23 @@ class cqTest
     return null;
   }
 
+  /**
+   * @static
+   *
+   * @param string $username
+   * @return bool|int
+   */
+  public static function allowCqnext($username)
+  {
+    $collector = CollectorPeer::retrieveByUsername($username);
+
+    if (!$collector)
+    {
+      return false;
+    }
+
+    $collector->setCqnextAccessAllowed(true);
+
+    return $collector->save();
+  }
 }

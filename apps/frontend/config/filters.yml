@@ -2,7 +2,6 @@
 # http://www.symfony-project.org/reference/1_4/en/12-Filters
 
 rendering: ~
-
 remember_me:
   class: cqCollectorRememberMeFilter
 cqnext_access:
@@ -10,6 +9,7 @@ cqnext_access:
 uuid:
   class: cqUuidFilter
 
-security:  ~
+security:
+  class: cqSecurityFilter
 cache:     ~
 execution: ~

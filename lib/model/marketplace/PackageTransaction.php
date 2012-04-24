@@ -50,4 +50,22 @@ class PackageTransaction extends BasePackageTransaction
 
 		return $oPackageTransaction;
 	}
+
+  /**
+   * @return PackageTransaction
+   * @todo add tests
+   */
+  public function confirmPayment()
+  {
+    $this->setPaymentStatus(PackageTransactionPeer::STATUS_PAID);
+    $this->save();
+
+    /* @var $collector Collector */
+    $collector = $this->getCollector();
+    $collector->setUserType(CollectorPeer::TYPE_SELLER);
+    $collector->updateCollectiblesForSaleLimit();
+    $collector->save();
+
+    return $this;
+  }
 }

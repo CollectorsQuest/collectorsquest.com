@@ -5786,6 +5786,7 @@ Collectible:
     created_at: '2010-02-23 09:58:52'
     updated_at: '2011-11-10 07:24:41'
   Collectible_3554:
+    graph_id: '15678'
     collector_id: Collector_12
     name: 'The Happiest Girl in the World'
     slug: the-happiest-girl-in-the-world
@@ -5794,7 +5795,7 @@ Collectible:
     score: '0'
     is_name_automatic: '0'
     created_at: '2010-02-15 02:23:26'
-    updated_at: '2011-11-10 07:24:41'
+    updated_at: '2012-04-20 12:38:13'
   Collectible_3555:
     collector_id: Collector_12
     name: 'The Child and the Sorcerors'
@@ -6016,6 +6017,7 @@ Collectible:
     created_at: '2010-02-28 00:38:39'
     updated_at: '2011-11-10 07:24:41'
   Collectible_3584:
+    graph_id: '14590'
     collector_id: Collector_12
     name: 'The Flash'
     slug: the-flash
@@ -6024,7 +6026,7 @@ Collectible:
     score: '0'
     is_name_automatic: '0'
     created_at: '2010-02-25 12:32:17'
-    updated_at: '2011-11-10 07:24:41'
+    updated_at: '2012-04-09 16:51:21'
   Collectible_3585:
     collector_id: Collector_12
     name: 'Green Lantern'
@@ -8107,13 +8109,13 @@ Collectible:
   Collectible_4048:
     collector_id: Collector_52
     name: 'Jurassic Park toys'
-    slug: jurassic-park-toys-3640e6
+    slug: jurassic-park-toys-8cfb73
     description: 'This is the JP Jungle Explorer, original T. rex, and Lost World Bull T. rex.'
     num_comments: '3'
     score: '0'
     is_name_automatic: '0'
     created_at: '2010-02-26 19:01:55'
-    updated_at: '2011-12-20 16:17:30'
+    updated_at: '2012-04-11 23:42:13'
   Collectible_4049:
     collector_id: Collector_52
     name: 'Dinosaurs and Other Prehistoric Reptiles'
@@ -11932,6 +11934,7 @@ Collectible:
     created_at: '2010-02-25 16:20:26'
     updated_at: '2011-11-10 07:25:03'
   Collectible_5611:
+    graph_id: '14591'
     collector_id: Collector_12
     name: 'The Flash (Jay Garrick)'
     slug: the-flash-jay-garrick
@@ -11940,7 +11943,7 @@ Collectible:
     score: '0'
     is_name_automatic: '0'
     created_at: '2010-02-12 09:32:55'
-    updated_at: '2011-11-10 07:25:03'
+    updated_at: '2012-04-09 16:51:57'
   Collectible_5612:
     collector_id: Collector_12
     name: Wildcat
@@ -14128,15 +14131,16 @@ Collectible:
     created_at: '2010-02-26 15:14:42'
     updated_at: '2011-11-10 07:25:12'
   Collectible_6591:
+    graph_id: '14599'
     collector_id: Collector_12
     name: 'The Flash'
-    slug: the-flash-71171f
+    slug: the-flash-f76978
     description: '... a neat piece that depicts The Flash as he appears in ''Crisis on Infinite Earths'', sacrificing himself to save the world.'
     num_comments: '1'
     score: '0'
     is_name_automatic: '0'
     created_at: '2010-03-01 03:04:56'
-    updated_at: '2011-11-10 07:25:12'
+    updated_at: '2012-04-09 16:55:48'
   Collectible_6592:
     collector_id: Collector_12
     name: 'Liberty Belle'
@@ -15580,6 +15584,7 @@ Collectible:
     created_at: '2010-02-25 13:42:38'
     updated_at: '2011-11-10 07:25:19'
   Collectible_7311:
+    graph_id: '14598'
     collector_id: Collector_12
     name: 'Reverse Flash'
     slug: reverse-flash
@@ -15588,7 +15593,7 @@ Collectible:
     score: '0'
     is_name_automatic: '0'
     created_at: '2010-01-25 12:32:02'
-    updated_at: '2011-11-10 07:25:19'
+    updated_at: '2012-04-09 16:55:34'
   Collectible_7312:
     collector_id: Collector_12
     name: Parasite
@@ -20513,16 +20518,6 @@ Collectible:
     is_name_automatic: '0'
     created_at: '2010-02-28 22:46:13'
     updated_at: '2011-11-10 07:25:49'
-  Collectible_10087:
-    collector_id: Collector_12
-    name: 'Minimate Flash (Jay Garrick)'
-    slug: minimate-flash-jay-garrick
-    description: 'The original Flash!'
-    num_comments: '0'
-    score: '0'
-    is_name_automatic: '0'
-    created_at: '2010-02-27 01:08:44'
-    updated_at: '2011-11-10 07:25:49'
   Collectible_10338:
     collector_id: Collector_52
     name: 'Disney Animal Kingdom McDonalds Premium'
@@ -21233,16 +21228,6 @@ Collectible:
     score: '0'
     is_name_automatic: '0'
     created_at: '2010-02-24 18:14:37'
-    updated_at: '2011-11-10 07:25:56'
-  Collectible_10620:
-    collector_id: Collector_12
-    name: '''Superfriends'' Flash'
-    slug: superfriends-flash
-    description: '=='
-    num_comments: '0'
-    score: '0'
-    is_name_automatic: '0'
-    created_at: '2010-02-27 05:17:59'
     updated_at: '2011-11-10 07:25:56'
   Collectible_10621:
     collector_id: Collector_12
@@ -22851,15 +22836,16 @@ Collectible:
     created_at: '2010-02-27 08:55:10'
     updated_at: '2012-04-05 10:00:04'
   Collectible_11249:
+    graph_id: '14597'
     collector_id: Collector_12
     name: '''Crime Syndicate'' Johnny Quick'
     slug: crime-syndicate-johnny-quick
-    description: '=='
+    description: 'Earth-2''s version of The Flash, but evil!'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
     created_at: '2010-02-28 19:20:05'
-    updated_at: '2011-11-10 07:26:04'
+    updated_at: '2012-04-09 16:55:13'
   Collectible_11250:
     collector_id: Collector_12
     name: '''Justice'' Lex Luthor'
@@ -24615,13 +24601,13 @@ Collectible:
   Collectible_12706:
     collector_id: Collector_52
     name: 'Tyrannosaurus toy'
-    slug: tyrannosaurus-toy-fb0a67
+    slug: tyrannosaurus-toy-d044d1
     description: 'I don''t know who made this toy, but its kinda nice.'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
     created_at: '2008-10-26 23:16:21'
-    updated_at: '2011-11-10 07:26:16'
+    updated_at: '2012-04-11 02:46:35'
   Collectible_12707:
     collector_id: Collector_52
     name: 'Allosaurus toy'
@@ -36101,15 +36087,16 @@ Collectible:
     created_at: '2009-11-16 09:01:52'
     updated_at: '2011-11-10 07:29:04'
   Collectible_32060:
+    graph_id: '14602'
     collector_id: Collector_12
     name: 'The Flash (JLU, C3)'
     slug: the-flash-jlu-c3
-    description: --
+    description: 'Relatively rare figure which came with a LEGO-like construction vehicle.'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
     created_at: '2009-11-16 09:01:52'
-    updated_at: '2011-11-10 07:29:04'
+    updated_at: '2012-04-09 16:56:57'
   Collectible_32061:
     collector_id: Collector_12
     name: 'Darkseid (JLU, C3)'
@@ -36261,15 +36248,16 @@ Collectible:
     created_at: '2009-11-22 16:57:21'
     updated_at: '2011-11-10 07:29:05'
   Collectible_32193:
+    graph_id: '14601'
     collector_id: Collector_12
-    name: 'Flash : Wave 7'
-    slug: flash-wave-7
+    name: 'Flash : DCUC Wave 7'
+    slug: flash-dcuc-wave-7
     description: --
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
     created_at: '2009-11-22 16:58:28'
-    updated_at: '2011-11-10 07:29:05'
+    updated_at: '2012-04-09 16:56:31'
   Collectible_32194:
     collector_id: Collector_12
     name: 'Big Barda : Wave 7'
@@ -36291,15 +36279,16 @@ Collectible:
     created_at: '2009-11-22 16:58:29'
     updated_at: '2011-11-10 07:29:05'
   Collectible_32196:
+    graph_id: '14600'
     collector_id: Collector_12
-    name: 'Kid Flash : Wave 7'
-    slug: kid-flash-wave-7
+    name: 'Kid Flash : DCUC Wave 7'
+    slug: kid-flash-dcuc-wave-7
     description: --
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
     created_at: '2009-11-22 16:58:46'
-    updated_at: '2011-11-10 07:29:05'
+    updated_at: '2012-04-09 16:56:18'
   Collectible_32197:
     collector_id: Collector_12
     name: 'Blue Beetle : Wave 7'
@@ -43449,15 +43438,16 @@ Collectible:
     created_at: '2010-04-21 23:36:15'
     updated_at: '2011-11-10 07:30:03'
   Collectible_38418:
+    graph_id: '14596'
     collector_id: Collector_12
     name: 'The Flashes'
     slug: the-flashes
-    description: --
+    description: 'Really, really cool Heroclix piece!'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
     created_at: '2010-04-21 23:36:18'
-    updated_at: '2011-11-10 07:30:03'
+    updated_at: '2012-04-09 16:54:17'
   Collectible_38419:
     collector_id: Collector_12
     name: 'Harley Quinn &amp; Poison Ivy'
@@ -43771,15 +43761,16 @@ Collectible:
     created_at: '2010-04-21 23:37:47'
     updated_at: '2011-11-10 07:30:03'
   Collectible_38450:
+    graph_id: '14595'
     collector_id: Collector_12
     name: 'Black Flash'
     slug: black-flash
-    description: ''
+    description: 'Scary death-Flash as a Heropclix piece!'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
     created_at: '2010-04-21 23:37:50'
-    updated_at: '2011-11-10 07:30:03'
+    updated_at: '2012-04-09 16:53:59'
   Collectible_38832:
     collector_id: Collector_1317
     name: 'Procon Airdale Terrier'
@@ -47542,15 +47533,16 @@ Collectible:
     created_at: '2010-10-28 23:51:41'
     updated_at: '2011-11-10 07:30:55'
   Collectible_46140:
+    graph_id: '14589'
     collector_id: Collector_12
     name: 'DC Squatz : The Flash'
     slug: dc-squatz-the-flash
-    description: ''
+    description: '=='
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
     created_at: '2010-10-28 23:51:42'
-    updated_at: '2011-11-10 07:30:55'
+    updated_at: '2012-04-09 16:47:44'
   Collectible_46141:
     collector_id: Collector_12
     name: 'DC Squatz : Gorilla Grodd'
@@ -48045,15 +48037,16 @@ Collectible:
     created_at: '2010-12-27 00:06:12'
     updated_at: '2011-11-10 07:31:06'
   Collectible_47513:
+    graph_id: '14594'
     collector_id: Collector_12
     name: 'Bary Allen (Flash)'
     slug: bary-allen-flash
-    description: ''
+    description: 'Heroclix piece.'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
     created_at: '2010-12-27 00:06:13'
-    updated_at: '2011-11-10 07:31:06'
+    updated_at: '2012-04-09 16:53:33'
   Collectible_47514:
     collector_id: Collector_12
     name: Batman
@@ -48960,15 +48953,16 @@ Collectible:
     created_at: '2011-04-05 22:40:52'
     updated_at: '2011-12-14 10:34:48'
   Collectible_52443:
+    graph_id: '14593'
     collector_id: Collector_12
     name: Flash
-    slug: flash-5db4c9
-    description: '=='
+    slug: flash-2f33ec
+    description: 'Action League, first version.'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
     created_at: '2011-04-05 22:40:55'
-    updated_at: '2011-12-14 10:34:55'
+    updated_at: '2012-04-09 16:52:59'
   Collectible_52444:
     collector_id: Collector_12
     name: 'The Demon Etrigan'
@@ -50312,6 +50306,7 @@ Collectible:
     created_at: '2011-06-21 23:07:41'
     updated_at: '2011-11-10 07:32:17'
   Collectible_57342:
+    graph_id: '14588'
     collector_id: Collector_12
     name: 'Flash (Blue Lantern) - Wave 17'
     slug: flash-blue-lantern-wave-17
@@ -50320,7 +50315,7 @@ Collectible:
     score: '0'
     is_name_automatic: '0'
     created_at: '2011-11-10 07:32:17'
-    updated_at: '2011-11-10 07:32:17'
+    updated_at: '2012-04-09 16:47:25'
   Collectible_58227:
     collector_id: Collector_12
     name: 'Arkham Asylum Batman (DC Direct)'
@@ -51138,14 +51133,14 @@ Collectible:
     updated_at: '2012-03-08 11:41:16'
   Collectible_62429:
     collector_id: Collector_12
-    name: '"Batman Incorporated" Batman'
-    slug: batman-incorporated-batman-0be570
+    name: 'Flashpoint Batman'
+    slug: flashpoint-batman
     description: "From DC Direct.\n"
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
     created_at: '2011-09-15 22:20:40'
-    updated_at: '2011-11-10 07:32:47'
+    updated_at: '2012-04-09 10:05:15'
   Collectible_62793:
     collector_id: Collector_12
     name: Owlman
@@ -51207,15 +51202,16 @@ Collectible:
     created_at: '2011-09-29 12:09:28'
     updated_at: '2011-11-10 07:32:52'
   Collectible_63034:
+    graph_id: '14587'
     collector_id: Collector_12
     name: 'The Flash (Golden Age, Jay Garrick)'
     slug: the-flash-golden-age-jay-garrick
-    description: ''
+    description: '=='
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
     created_at: '2011-09-29 12:09:32'
-    updated_at: '2011-11-10 07:32:52'
+    updated_at: '2012-04-09 16:47:06'
   Collectible_63035:
     collector_id: Collector_12
     name: 'Hawkman (Golden Age)'
@@ -52020,15 +52016,16 @@ Collectible:
     created_at: '2011-12-14 10:32:01'
     updated_at: '2011-12-14 10:34:55'
   Collectible_65585:
+    graph_id: '14586'
     collector_id: Collector_12
     name: 'Flash (second version)'
     slug: flash-second-version
-    description: ''
+    description: '=='
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
     created_at: '2011-12-14 10:32:07'
-    updated_at: '2011-12-14 10:34:55'
+    updated_at: '2012-04-09 16:46:50'
   Collectible_65586:
     collector_id: Collector_12
     name: Deadman
@@ -52261,15 +52258,16 @@ Collectible:
     created_at: '2011-12-29 09:34:43'
     updated_at: '2011-12-29 09:35:32'
   Collectible_66946:
+    graph_id: '14585'
     collector_id: Collector_12
     name: 'The Flash (Second Version)'
     slug: the-flash-second-version
-    description: ''
+    description: '=='
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
     created_at: '2011-12-29 09:34:45'
-    updated_at: '2011-12-29 09:35:26'
+    updated_at: '2012-04-09 16:46:28'
   Collectible_66995:
     collector_id: Collector_12
     name: 'LEGO Super Heroes Batman 4526 (Without Wings)'
@@ -52662,15 +52660,16 @@ Collectible:
     created_at: '2012-01-16 13:34:01'
     updated_at: '2012-01-16 13:35:54'
   Collectible_68590:
+    graph_id: '14584'
     collector_id: Collector_12
     name: 'White Lantern Flash'
     slug: white-lantern-flash
-    description: ''
+    description: '=='
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
     created_at: '2012-01-16 13:34:06'
-    updated_at: '2012-01-16 13:35:47'
+    updated_at: '2012-04-09 16:48:38'
   Collectible_68591:
     collector_id: Collector_12
     name: 'Catwoman (Golden Age)'
@@ -53111,18 +53110,6 @@ Collectible:
     is_name_automatic: '0'
     created_at: '2012-03-26 17:12:51'
     updated_at: '2012-03-26 17:22:11'
-  Collectible_70709:
-    graph_id: '14198'
-    collector_id: Collector_12
-    name: 'Eraseez Hulk'
-    slug: eraseez-hulk
-    description: 'From Bulls-i-Toy, a Hulk made of erasers!'
-    num_comments: '0'
-    batch_hash: 93bd617bc35cffb577e1de6bf4c12874
-    score: '0'
-    is_name_automatic: '0'
-    created_at: '2012-04-02 11:12:08'
-    updated_at: '2012-04-02 11:12:36'
   Collectible_70710:
     graph_id: '14199'
     collector_id: Collector_12
@@ -53590,3 +53577,2381 @@ Collectible:
     is_name_automatic: '0'
     created_at: '2012-04-06 08:33:59'
     updated_at: '2012-04-06 08:36:50'
+  Collectible_70966:
+    graph_id: '14477'
+    collector_id: Collector_12
+    name: Batman
+    slug: batman-f8015b
+    description: 'Batman, full-on chest version!'
+    num_comments: '0'
+    batch_hash: 9f8b44dd47bb77c1eb7dd8d39930b103
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-09 10:02:03'
+    updated_at: '2012-04-09 10:03:03'
+  Collectible_70967:
+    graph_id: '14478'
+    collector_id: Collector_12
+    name: 'Captain America'
+    slug: captain-america-3d1604
+    description: '!!!'
+    num_comments: '0'
+    batch_hash: 9f8b44dd47bb77c1eb7dd8d39930b103
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-09 10:02:05'
+    updated_at: '2012-04-09 10:03:03'
+  Collectible_70968:
+    graph_id: '14479'
+    collector_id: Collector_12
+    name: 'Green Lantern'
+    slug: green-lantern-365160
+    description: 'Hal Jordan edition.'
+    num_comments: '0'
+    batch_hash: 9f8b44dd47bb77c1eb7dd8d39930b103
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-09 10:02:06'
+    updated_at: '2012-04-09 10:03:03'
+  Collectible_70969:
+    graph_id: '14480'
+    collector_id: Collector_12
+    name: Thor
+    slug: thor-5d2757
+    description: '=='
+    num_comments: '0'
+    batch_hash: 9f8b44dd47bb77c1eb7dd8d39930b103
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-09 10:02:08'
+    updated_at: '2012-04-09 10:03:03'
+  Collectible_70973:
+    graph_id: '14572'
+    collector_id: Collector_12
+    name: 'Iron Man Eraseez'
+    slug: iron-man-eraseez
+    description: 'War Machine, Iron Man & Stealth Iron Man!'
+    num_comments: '0'
+    batch_hash: 4222d4f225d0319ae4900256f7da3629
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-09 16:24:25'
+    updated_at: '2012-04-09 16:26:04'
+  Collectible_70974:
+    graph_id: '14573'
+    collector_id: Collector_12
+    name: 'Hulk Eraseez'
+    slug: hulk-eraseez
+    description: 'Red Hulk (Rulk), Green Hulk & Grey Hulk!'
+    num_comments: '0'
+    batch_hash: 47eab722cf33230a7889557f41defc8c
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-09 16:28:05'
+    updated_at: '2012-04-09 16:28:58'
+  Collectible_70976:
+    graph_id: '14575'
+    collector_id: Collector_12
+    name: 'White Lantern Batman'
+    slug: white-lantern-batman
+    description: "From DC Direct and exclusive to one convention, this was my holy grail for about 6 months until I finally found an eBay auction which ended at 50 bucks, instead of the usual $100+ price! Not sure if he's coming out of the package just yet!\n"
+    num_comments: '0'
+    batch_hash: faaf9e4772a9aad8addf78eea492c50e
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-09 16:31:12'
+    updated_at: '2012-04-09 16:32:37'
+  Collectible_70977:
+    graph_id: '14576'
+    collector_id: Collector_12
+    name: 'Batman (Flashpoint)'
+    slug: batman-flashpoint
+    description: 'From the Action League Flashpoint wave.'
+    num_comments: '0'
+    batch_hash: 643f7c5e946e541003c36b5cce8a1e7e
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-09 16:36:25'
+    updated_at: '2012-04-09 16:43:22'
+  Collectible_70978:
+    graph_id: '14577'
+    collector_id: Collector_12
+    name: 'Project Superman'
+    slug: project-superman
+    description: 'From Flashpoint / Action League.'
+    num_comments: '0'
+    batch_hash: 643f7c5e946e541003c36b5cce8a1e7e
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-09 16:36:29'
+    updated_at: '2012-04-09 16:44:04'
+  Collectible_70979:
+    graph_id: '14578'
+    collector_id: Collector_12
+    name: 'Aquaman (Flashpoint)'
+    slug: aquaman-flashpoint
+    description: 'Action League / Flashpoint Aquaman!'
+    num_comments: '0'
+    batch_hash: 643f7c5e946e541003c36b5cce8a1e7e
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-09 16:36:34'
+    updated_at: '2012-04-09 16:44:38'
+  Collectible_70980:
+    graph_id: '14579'
+    collector_id: Collector_12
+    name: 'Citizen Cold'
+    slug: citizen-cold
+    description: 'From Flashpoint / Action League.'
+    num_comments: '0'
+    batch_hash: 643f7c5e946e541003c36b5cce8a1e7e
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-09 16:36:38'
+    updated_at: '2012-04-09 16:44:57'
+  Collectible_70981:
+    graph_id: '14580'
+    collector_id: Collector_12
+    name: 'The Flash (translucent)'
+    slug: the-flash-translucent
+    description: 'From the Action League Flashpoint wave.'
+    num_comments: '0'
+    batch_hash: 643f7c5e946e541003c36b5cce8a1e7e
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-09 16:36:42'
+    updated_at: '2012-04-09 16:45:32'
+  Collectible_70982:
+    graph_id: '14581'
+    collector_id: Collector_12
+    name: 'Wonder Woman (Flashpoint)'
+    slug: wonder-woman-flashpoint
+    description: 'Action League Wonder Woman, Flashpoint Version.'
+    num_comments: '0'
+    batch_hash: 643f7c5e946e541003c36b5cce8a1e7e
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-09 16:36:45'
+    updated_at: '2012-04-09 16:49:39'
+  Collectible_70983:
+    graph_id: '14582'
+    collector_id: Collector_12
+    name: 'Element Girl'
+    slug: element-girl
+    description: ''
+    num_comments: '0'
+    batch_hash: 643f7c5e946e541003c36b5cce8a1e7e
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-09 16:36:49'
+    updated_at: '2012-04-09 16:50:32'
+  Collectible_70984:
+    graph_id: '14583'
+    collector_id: Collector_12
+    name: Cyborg
+    slug: cyborg-c30936
+    description: ''
+    num_comments: '0'
+    batch_hash: 643f7c5e946e541003c36b5cce8a1e7e
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-09 16:36:53'
+    updated_at: '2012-04-09 16:50:27'
+  Collectible_71023:
+    graph_id: '14654'
+    collector_id: Collector_12
+    name: 'Woman w/ Orange Shirt'
+    slug: woman-w-orange-shirt
+    description: 'Probably from a Wedding set.'
+    num_comments: '0'
+    batch_hash: 7592cd578d7daabe5cb7687c96088da2
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:04:31'
+    updated_at: '2012-04-10 12:06:02'
+  Collectible_71024:
+    graph_id: '14655'
+    collector_id: Collector_12
+    name: 'Egyptian Warrior'
+    slug: egyptian-warrior
+    description: 'From one of the many Egypt sets.'
+    num_comments: '0'
+    batch_hash: 7592cd578d7daabe5cb7687c96088da2
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:04:34'
+    updated_at: '2012-04-10 12:06:02'
+  Collectible_71025:
+    graph_id: '14656'
+    collector_id: Collector_12
+    name: Executioner
+    slug: executioner
+    description: 'Sold as a single-pack.'
+    num_comments: '0'
+    batch_hash: 7592cd578d7daabe5cb7687c96088da2
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:04:38'
+    updated_at: '2012-04-10 12:06:02'
+  Collectible_71026:
+    graph_id: '14657'
+    collector_id: Collector_12
+    name: 'Desert Person'
+    slug: desert-person
+    description: 'Probably from one of the many Egypt sets.'
+    num_comments: '0'
+    batch_hash: 7592cd578d7daabe5cb7687c96088da2
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:04:43'
+    updated_at: '2012-04-10 12:06:02'
+  Collectible_71027:
+    graph_id: '14658'
+    collector_id: Collector_12
+    name: 'Egyptian Person'
+    slug: egyptian-person
+    description: '=='
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:06:46'
+    updated_at: '2012-04-10 12:11:56'
+  Collectible_71028:
+    graph_id: '14659'
+    collector_id: Collector_12
+    name: 'Egyptian Royalty'
+    slug: egyptian-royalty
+    description: '=='
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:06:49'
+    updated_at: '2012-04-10 12:11:56'
+  Collectible_71029:
+    graph_id: '14660'
+    collector_id: Collector_12
+    name: 'Child in Formalwear'
+    slug: child-in-formalwear
+    description: 'From a Wedding set.'
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:06:52'
+    updated_at: '2012-04-10 12:11:56'
+  Collectible_71030:
+    graph_id: '14661'
+    collector_id: Collector_12
+    name: 'Egyptian Warrior'
+    slug: egyptian-warrior-33d2e6
+    description: '=='
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:06:55'
+    updated_at: '2012-04-10 12:11:56'
+  Collectible_71031:
+    graph_id: '14662'
+    collector_id: Collector_12
+    name: Skeleton
+    slug: skeleton
+    description: 'Found in many pirate sets. Some glow!'
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:06:58'
+    updated_at: '2012-04-10 12:11:56'
+  Collectible_71032:
+    graph_id: '14663'
+    collector_id: Collector_12
+    name: 'Formal Gentleman'
+    slug: formal-gentleman
+    description: 'From a Wedding set.'
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:07:01'
+    updated_at: '2012-04-10 12:12:55'
+  Collectible_71033:
+    graph_id: '14664'
+    collector_id: Collector_12
+    name: 'White Knight'
+    slug: white-knight
+    description: '=='
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:07:04'
+    updated_at: '2012-04-10 12:12:55'
+  Collectible_71034:
+    graph_id: '14665'
+    collector_id: Collector_12
+    name: 'White-Bearded Pirate'
+    slug: white-bearded-pirate
+    description: '=='
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:07:08'
+    updated_at: '2012-04-10 12:12:55'
+  Collectible_71035:
+    graph_id: '14666'
+    collector_id: Collector_12
+    name: 'Egyptian Female'
+    slug: egyptian-female
+    description: '=='
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:07:11'
+    updated_at: '2012-04-10 12:12:55'
+  Collectible_71036:
+    graph_id: '14667'
+    collector_id: Collector_12
+    name: Mermaid
+    slug: mermaid-4e92eb
+    description: '=='
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:07:14'
+    updated_at: '2012-04-10 12:12:55'
+  Collectible_71037:
+    graph_id: '14668'
+    collector_id: Collector_12
+    name: 'Formal Gentleman'
+    slug: formal-gentleman-62a0c8
+    description: 'From a Wedding set.'
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:07:16'
+    updated_at: '2012-04-10 12:13:43'
+  Collectible_71038:
+    graph_id: '14669'
+    collector_id: Collector_12
+    name: 'Blue Knight'
+    slug: blue-knight
+    description: '=='
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:07:20'
+    updated_at: '2012-04-10 12:13:43'
+  Collectible_71039:
+    graph_id: '14670'
+    collector_id: Collector_12
+    name: 'Egyptian Warrior'
+    slug: egyptian-warrior-d3241e
+    description: '=='
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:07:24'
+    updated_at: '2012-04-10 12:13:43'
+  Collectible_71040:
+    graph_id: '14671'
+    collector_id: Collector_12
+    name: Pirate
+    slug: pirate-b664c6
+    description: '=='
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:07:28'
+    updated_at: '2012-04-10 12:13:43'
+  Collectible_71041:
+    graph_id: '14672'
+    collector_id: Collector_12
+    name: 'Blond Viking'
+    slug: blond-viking
+    description: '=='
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:07:31'
+    updated_at: '2012-04-10 12:13:43'
+  Collectible_71042:
+    graph_id: '14673'
+    collector_id: Collector_12
+    name: 'Man in Loud Shirt'
+    slug: man-in-loud-shirt
+    description: 'What''s this guy thinking?'
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:07:35'
+    updated_at: '2012-04-10 12:14:35'
+  Collectible_71043:
+    graph_id: '14674'
+    collector_id: Collector_12
+    name: 'SCUBA Diver'
+    slug: scuba-diver
+    description: '=='
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:07:38'
+    updated_at: '2012-04-10 12:14:35'
+  Collectible_71044:
+    graph_id: '14675'
+    collector_id: Collector_12
+    name: 'Gator Poacher'
+    slug: gator-poacher
+    description: '=='
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:07:41'
+    updated_at: '2012-04-10 12:14:35'
+  Collectible_71045:
+    graph_id: '14676'
+    collector_id: Collector_12
+    name: 'Redhead Viking'
+    slug: redhead-viking
+    description: '=='
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:07:43'
+    updated_at: '2012-04-10 12:14:35'
+  Collectible_71046:
+    graph_id: '14677'
+    collector_id: Collector_12
+    name: Pirate
+    slug: pirate-a8a7e3
+    description: '=='
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:07:47'
+    updated_at: '2012-04-10 12:14:35'
+  Collectible_71047:
+    graph_id: '14678'
+    collector_id: Collector_12
+    name: 'SCUBA Diver'
+    slug: scuba-diver-ea3cb2
+    description: '=='
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:07:50'
+    updated_at: '2012-04-10 12:15:19'
+  Collectible_71048:
+    graph_id: '14679'
+    collector_id: Collector_12
+    name: Pirate
+    slug: pirate-2db3a3
+    description: '=='
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:07:53'
+    updated_at: '2012-04-10 12:15:19'
+  Collectible_71049:
+    graph_id: '14680'
+    collector_id: Collector_12
+    name: 'Dragon Knight'
+    slug: dragon-knight
+    description: '=='
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:07:56'
+    updated_at: '2012-04-10 12:15:19'
+  Collectible_71050:
+    graph_id: '14681'
+    collector_id: Collector_12
+    name: 'Woman in Yellow Dress'
+    slug: woman-in-yellow-dress
+    description: '=='
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:07:59'
+    updated_at: '2012-04-10 12:15:19'
+  Collectible_71051:
+    graph_id: '14682'
+    collector_id: Collector_12
+    name: Elf
+    slug: elf
+    description: '=='
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:08:02'
+    updated_at: '2012-04-10 12:15:19'
+  Collectible_71052:
+    graph_id: '14683'
+    collector_id: Collector_12
+    name: 'Formal Man w/ Mustache'
+    slug: formal-man-w-mustache
+    description: 'The classiest guy in the set.'
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:08:05'
+    updated_at: '2012-04-10 12:16:05'
+  Collectible_71053:
+    graph_id: '14684'
+    collector_id: Collector_12
+    name: Bride
+    slug: bride
+    description: '=='
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:08:07'
+    updated_at: '2012-04-10 12:16:05'
+  Collectible_71054:
+    graph_id: '14685'
+    collector_id: Collector_12
+    name: 'Diver in Yellow Suit'
+    slug: diver-in-yellow-suit
+    description: '=='
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:08:11'
+    updated_at: '2012-04-10 12:16:05'
+  Collectible_71055:
+    graph_id: '14686'
+    collector_id: Collector_12
+    name: 'Formal Child'
+    slug: formal-child
+    description: '=='
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:08:15'
+    updated_at: '2012-04-10 12:16:05'
+  Collectible_71056:
+    graph_id: '14687'
+    collector_id: Collector_12
+    name: 'Elf w/ Black Hair'
+    slug: elf-w-black-hair
+    description: '=='
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:08:18'
+    updated_at: '2012-04-10 12:16:05'
+  Collectible_71057:
+    graph_id: '14688'
+    collector_id: Collector_12
+    name: Knight
+    slug: knight-f649b3
+    description: '=='
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:08:21'
+    updated_at: '2012-04-10 12:16:47'
+  Collectible_71058:
+    graph_id: '14689'
+    collector_id: Collector_12
+    name: Chef
+    slug: chef-53d750
+    description: 'From a Wedding set.'
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:08:24'
+    updated_at: '2012-04-10 12:16:47'
+  Collectible_71059:
+    graph_id: '14690'
+    collector_id: Collector_12
+    name: 'Egyptian Woman'
+    slug: egyptian-woman
+    description: '=='
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:08:27'
+    updated_at: '2012-04-10 12:16:47'
+  Collectible_71060:
+    graph_id: '14691'
+    collector_id: Collector_12
+    name: 'Formal Child'
+    slug: formal-child-ced3b9
+    description: '=='
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:08:30'
+    updated_at: '2012-04-10 12:16:47'
+  Collectible_71061:
+    graph_id: '14692'
+    collector_id: Collector_12
+    name: 'Egyptian Warrior'
+    slug: egyptian-warrior-c763f4
+    description: '=='
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:08:32'
+    updated_at: '2012-04-10 12:16:47'
+  Collectible_71062:
+    graph_id: '14693'
+    collector_id: Collector_12
+    name: 'Bearded Cowboy'
+    slug: bearded-cowboy
+    description: '=='
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:08:37'
+    updated_at: '2012-04-10 12:17:34'
+  Collectible_71063:
+    graph_id: '14694'
+    collector_id: Collector_12
+    name: 'Pirate w/ Green Hat'
+    slug: pirate-w-green-hat
+    description: '=='
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:08:40'
+    updated_at: '2012-04-10 12:17:34'
+  Collectible_71064:
+    graph_id: '14695'
+    collector_id: Collector_12
+    name: 'Aqualung Diver'
+    slug: aqualung-diver
+    description: '=='
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:08:44'
+    updated_at: '2012-04-10 12:17:34'
+  Collectible_71065:
+    graph_id: '14696'
+    collector_id: Collector_12
+    name: Firefighter
+    slug: firefighter
+    description: '=='
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:08:46'
+    updated_at: '2012-04-10 12:17:34'
+  Collectible_71066:
+    graph_id: '14697'
+    collector_id: Collector_12
+    name: 'Red Knight'
+    slug: red-knight
+    description: '=='
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:08:50'
+    updated_at: '2012-04-10 12:17:34'
+  Collectible_71067:
+    graph_id: '14698'
+    collector_id: Collector_12
+    name: 'Man in Top Hat'
+    slug: man-in-top-hat
+    description: '=='
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:08:54'
+    updated_at: '2012-04-10 12:18:26'
+  Collectible_71068:
+    graph_id: '14699'
+    collector_id: Collector_12
+    name: 'Female Child'
+    slug: female-child
+    description: '=='
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:08:57'
+    updated_at: '2012-04-10 12:18:26'
+  Collectible_71069:
+    graph_id: '14700'
+    collector_id: Collector_12
+    name: 'Pirate w/ Black Beard'
+    slug: pirate-w-black-beard
+    description: '=='
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:09:00'
+    updated_at: '2012-04-10 12:18:26'
+  Collectible_71070:
+    graph_id: '14701'
+    collector_id: Collector_12
+    name: 'Red Pirate'
+    slug: red-pirate
+    description: '=='
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:09:03'
+    updated_at: '2012-04-10 12:18:26'
+  Collectible_71071:
+    graph_id: '14702'
+    collector_id: Collector_12
+    name: 'Executioner w/ Red Hood'
+    slug: executioner-w-red-hood
+    description: '=='
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:09:05'
+    updated_at: '2012-04-10 12:18:26'
+  Collectible_71072:
+    graph_id: '14703'
+    collector_id: Collector_12
+    name: Pirate
+    slug: pirate-e0a84c
+    description: '=='
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:09:09'
+    updated_at: '2012-04-10 12:19:08'
+  Collectible_71073:
+    graph_id: '14704'
+    collector_id: Collector_12
+    name: Sherriff
+    slug: sherriff
+    description: '=='
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:09:12'
+    updated_at: '2012-04-10 12:19:08'
+  Collectible_71074:
+    graph_id: '14705'
+    collector_id: Collector_12
+    name: 'Female Child'
+    slug: female-child-727368
+    description: '=='
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:09:15'
+    updated_at: '2012-04-10 12:19:08'
+  Collectible_71075:
+    graph_id: '14706'
+    collector_id: Collector_12
+    name: 'Coast Guard'
+    slug: coast-guard-651fab
+    description: '=='
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:09:18'
+    updated_at: '2012-04-10 12:19:08'
+  Collectible_71076:
+    graph_id: '14707'
+    collector_id: Collector_12
+    name: 'Egyptian Bandit'
+    slug: egyptian-bandit
+    description: '=='
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:09:20'
+    updated_at: '2012-04-10 12:19:08'
+  Collectible_71077:
+    graph_id: '14708'
+    collector_id: Collector_12
+    name: 'Egyptian Bandit'
+    slug: egyptian-bandit-65fbaf
+    description: '=='
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:09:22'
+    updated_at: '2012-04-10 12:19:50'
+  Collectible_71078:
+    graph_id: '14709'
+    collector_id: Collector_12
+    name: 'Egyptian Man'
+    slug: egyptian-man
+    description: '=='
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:09:25'
+    updated_at: '2012-04-10 12:19:50'
+  Collectible_71079:
+    graph_id: '14710'
+    collector_id: Collector_12
+    name: 'Egyptian Bandit'
+    slug: egyptian-bandit-864483
+    description: '=='
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:09:27'
+    updated_at: '2012-04-10 12:19:50'
+  Collectible_71080:
+    graph_id: '14711'
+    collector_id: Collector_12
+    name: Bandito
+    slug: bandito
+    description: '=='
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:09:38'
+    updated_at: '2012-04-10 12:19:50'
+  Collectible_71081:
+    graph_id: '14712'
+    collector_id: Collector_12
+    name: 'Dragonfly Fairy'
+    slug: dragonfly-fairy
+    description: '=='
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:09:43'
+    updated_at: '2012-04-10 12:19:50'
+  Collectible_71082:
+    graph_id: '14713'
+    collector_id: Collector_12
+    name: 'Pirate w/ Green Skull'
+    slug: pirate-w-green-skull
+    description: '=='
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:09:46'
+    updated_at: '2012-04-10 12:20:32'
+  Collectible_71083:
+    graph_id: '14714'
+    collector_id: Collector_12
+    name: Boxer
+    slug: boxer-ec3f29
+    description: '=='
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:09:49'
+    updated_at: '2012-04-10 12:20:32'
+  Collectible_71084:
+    graph_id: '14715'
+    collector_id: Collector_12
+    name: Teenager
+    slug: teenager
+    description: '=='
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:09:51'
+    updated_at: '2012-04-10 12:20:32'
+  Collectible_71085:
+    graph_id: '14716'
+    collector_id: Collector_12
+    name: 'Flower Princess'
+    slug: flower-princess
+    description: '=='
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:09:55'
+    updated_at: '2012-04-10 12:20:32'
+  Collectible_71086:
+    graph_id: '14717'
+    collector_id: Collector_12
+    name: 'Tree Gnome'
+    slug: tree-gnome
+    description: 'Found at a tag sale!'
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:09:57'
+    updated_at: '2012-04-10 12:20:32'
+  Collectible_71087:
+    graph_id: '14718'
+    collector_id: Collector_12
+    name: 'Black Knight'
+    slug: black-knight-1c3c73
+    description: '=='
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:10:00'
+    updated_at: '2012-04-10 12:21:28'
+  Collectible_71088:
+    graph_id: '14719'
+    collector_id: Collector_12
+    name: 'Desert King'
+    slug: desert-king
+    description: 'Found at a tag sale, possibly incomplete.'
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:10:04'
+    updated_at: '2012-04-10 12:21:28'
+  Collectible_71089:
+    graph_id: '14720'
+    collector_id: Collector_12
+    name: 'Rocker Dude'
+    slug: rocker-dude
+    description: --
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:10:07'
+    updated_at: '2012-04-10 12:21:28'
+  Collectible_71090:
+    graph_id: '14721'
+    collector_id: Collector_12
+    name: 'Dark Wizard'
+    slug: dark-wizard
+    description: 'Found at a tag sale, missing his beard!'
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:10:11'
+    updated_at: '2012-04-10 12:21:28'
+  Collectible_71091:
+    graph_id: '14722'
+    collector_id: Collector_12
+    name: 'Asian Man'
+    slug: asian-man
+    description: 'Found at a tag sale, probably incomplete!'
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:10:14'
+    updated_at: '2012-04-10 12:21:28'
+  Collectible_71092:
+    graph_id: '14723'
+    collector_id: Collector_12
+    name: Knight
+    slug: knight-88dbdb
+    description: 'Not sure where this guy came from!'
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:10:17'
+    updated_at: '2012-04-10 12:21:59'
+  Collectible_71093:
+    graph_id: '14724'
+    collector_id: Collector_12
+    name: 'Female Child'
+    slug: female-child-61b3c7
+    description: 'Another mystery figure of unknown origin!'
+    num_comments: '0'
+    batch_hash: 69976a4c555c90c6f57dd8324a84b9e7
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-10 12:10:19'
+    updated_at: '2012-04-10 12:21:59'
+  Collectible_71358:
+    graph_id: '15656'
+    collector_id: Collector_12
+    name: 'Invincible Iron Man #85'
+    slug: invincible-iron-man-85-eeb595
+    description: ''
+    num_comments: '0'
+    batch_hash: 62192f90b09a8414229ec4bd37d1e4a9
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:10:43'
+    updated_at: '2012-04-20 12:13:39'
+  Collectible_71359:
+    graph_id: '15657'
+    collector_id: Collector_12
+    name: 'Invicible Iron Man #79'
+    slug: invicible-iron-man-79
+    description: ''
+    num_comments: '0'
+    batch_hash: 62192f90b09a8414229ec4bd37d1e4a9
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:10:47'
+    updated_at: '2012-04-20 12:14:31'
+  Collectible_71360:
+    graph_id: '15658'
+    collector_id: Collector_12
+    name: 'Invicible Iron Man #84'
+    slug: invicible-iron-man-84
+    description: ''
+    num_comments: '0'
+    batch_hash: 62192f90b09a8414229ec4bd37d1e4a9
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:10:51'
+    updated_at: '2012-04-20 12:14:39'
+  Collectible_71361:
+    graph_id: '15659'
+    collector_id: Collector_12
+    name: 'Invicible Iron Man #94'
+    slug: invicible-iron-man-94
+    description: ''
+    num_comments: '0'
+    batch_hash: 62192f90b09a8414229ec4bd37d1e4a9
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:10:55'
+    updated_at: '2012-04-20 12:14:45'
+  Collectible_71362:
+    graph_id: '15660'
+    collector_id: Collector_12
+    name: 'Invicible Iron Man #91'
+    slug: invicible-iron-man-91
+    description: ''
+    num_comments: '0'
+    batch_hash: 62192f90b09a8414229ec4bd37d1e4a9
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:10:59'
+    updated_at: '2012-04-20 12:14:54'
+  Collectible_71363:
+    collector_id: Collector_12
+    name: 'Invicible Iron Man #78'
+    slug: invicible-iron-man-78
+    description: ''
+    num_comments: '0'
+    batch_hash: 62192f90b09a8414229ec4bd37d1e4a9
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:11:02'
+    updated_at: '2012-04-20 12:15:00'
+  Collectible_71364:
+    collector_id: Collector_12
+    name: 'Invicible Iron Man #103'
+    slug: invicible-iron-man-103
+    description: ''
+    num_comments: '0'
+    batch_hash: 62192f90b09a8414229ec4bd37d1e4a9
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:11:06'
+    updated_at: '2012-04-20 12:15:07'
+  Collectible_71365:
+    collector_id: Collector_12
+    name: 'Marvel Feature #12 : The Thing &amp; Iron Man'
+    slug: marvel-feature-12-the-thing-amp-iron-man
+    description: ''
+    num_comments: '0'
+    batch_hash: 62192f90b09a8414229ec4bd37d1e4a9
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:11:10'
+    updated_at: '2012-04-20 12:15:24'
+  Collectible_71366:
+    collector_id: Collector_12
+    name: 'Giant-Size Iron Man #1'
+    slug: giant-size-iron-man-1
+    description: ''
+    num_comments: '0'
+    batch_hash: 62192f90b09a8414229ec4bd37d1e4a9
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:11:14'
+    updated_at: '2012-04-20 12:15:33'
+  Collectible_71367:
+    collector_id: Collector_12
+    name: 'Super-Villain Team-Up #9 : Dr. Doom &amp; The Savage Sub-Mariner'
+    slug: super-villain-team-up-9-dr-doom-amp-the-savage-sub-mariner
+    description: ''
+    num_comments: '0'
+    batch_hash: 62192f90b09a8414229ec4bd37d1e4a9
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:11:18'
+    updated_at: '2012-04-20 12:15:56'
+  Collectible_71368:
+    collector_id: Collector_12
+    name: 'Iron First #14 (Sabretooth''s first appearance!)'
+    slug: iron-first-14-sabretooths-first-appearance
+    description: ''
+    num_comments: '0'
+    batch_hash: 62192f90b09a8414229ec4bd37d1e4a9
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:11:21'
+    updated_at: '2012-04-20 12:16:11'
+  Collectible_71369:
+    collector_id: Collector_12
+    name: 'Luke Cage, Power Man #38'
+    slug: luke-cage-power-man-38-5156f6
+    description: ''
+    num_comments: '0'
+    batch_hash: 62192f90b09a8414229ec4bd37d1e4a9
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:11:25'
+    updated_at: '2012-04-20 12:16:24'
+  Collectible_71370:
+    collector_id: Collector_12
+    name: 'Luke Cage, Power Man #48'
+    slug: luke-cage-power-man-48
+    description: ''
+    num_comments: '0'
+    batch_hash: 62192f90b09a8414229ec4bd37d1e4a9
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:11:29'
+    updated_at: '2012-04-20 12:16:29'
+  Collectible_71371:
+    collector_id: Collector_12
+    name: 'Luke Cage, Power Man #46'
+    slug: luke-cage-power-man-46
+    description: ''
+    num_comments: '0'
+    batch_hash: 62192f90b09a8414229ec4bd37d1e4a9
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:11:33'
+    updated_at: '2012-04-20 12:16:35'
+  Collectible_71372:
+    collector_id: Collector_12
+    name: 'Marvel Premiere #25 : Iron Fist'
+    slug: marvel-premiere-25-iron-fist
+    description: ''
+    num_comments: '0'
+    batch_hash: 62192f90b09a8414229ec4bd37d1e4a9
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:11:37'
+    updated_at: '2012-04-20 12:16:48'
+  Collectible_71373:
+    collector_id: Collector_12
+    name: 'Luke Cage, Power Man #34'
+    slug: luke-cage-power-man-34
+    description: ''
+    num_comments: '0'
+    batch_hash: 62192f90b09a8414229ec4bd37d1e4a9
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:11:40'
+    updated_at: '2012-04-20 12:16:57'
+  Collectible_71374:
+    collector_id: Collector_12
+    name: 'Luke Cage, Power Man #44'
+    slug: luke-cage-power-man-44
+    description: ''
+    num_comments: '0'
+    batch_hash: 62192f90b09a8414229ec4bd37d1e4a9
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:11:44'
+    updated_at: '2012-04-20 12:17:02'
+  Collectible_71375:
+    collector_id: Collector_12
+    name: 'Luke Cage, Power Man #25'
+    slug: luke-cage-power-man-25
+    description: ''
+    num_comments: '0'
+    batch_hash: 62192f90b09a8414229ec4bd37d1e4a9
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:11:48'
+    updated_at: '2012-04-20 12:17:08'
+  Collectible_71376:
+    collector_id: Collector_12
+    name: 'Power Man &amp; Iron Fist #51'
+    slug: power-man-amp-iron-fist-51
+    description: ''
+    num_comments: '0'
+    batch_hash: 62192f90b09a8414229ec4bd37d1e4a9
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:11:52'
+    updated_at: '2012-04-20 12:17:20'
+  Collectible_71377:
+    collector_id: Collector_12
+    name: 'Iron Fist #4'
+    slug: iron-fist-4
+    description: ''
+    num_comments: '0'
+    batch_hash: 62192f90b09a8414229ec4bd37d1e4a9
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:11:56'
+    updated_at: '2012-04-20 12:17:28'
+  Collectible_71378:
+    collector_id: Collector_12
+    name: 'Luke Cage, Power Man #21'
+    slug: luke-cage-power-man-21-d0cbd5
+    description: ''
+    num_comments: '0'
+    batch_hash: 62192f90b09a8414229ec4bd37d1e4a9
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:11:59'
+    updated_at: '2012-04-20 12:17:33'
+  Collectible_71379:
+    collector_id: Collector_12
+    name: 'Marvel Two-In-One #13 : The Thing &amp; Power Man'
+    slug: marvel-two-in-one-13-the-thing-amp-power-man
+    description: ''
+    num_comments: '0'
+    batch_hash: 62192f90b09a8414229ec4bd37d1e4a9
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:12:03'
+    updated_at: '2012-04-20 12:17:50'
+  Collectible_71380:
+    collector_id: Collector_12
+    name: 'The Amazing Spider-Man #148'
+    slug: the-amazing-spider-man-148
+    description: ''
+    num_comments: '0'
+    batch_hash: 62192f90b09a8414229ec4bd37d1e4a9
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:12:07'
+    updated_at: '2012-04-20 12:18:08'
+  Collectible_71381:
+    collector_id: Collector_12
+    name: 'The Amazing Spider-Man #137'
+    slug: the-amazing-spider-man-137
+    description: ''
+    num_comments: '0'
+    batch_hash: 62192f90b09a8414229ec4bd37d1e4a9
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:12:11'
+    updated_at: '2012-04-20 12:18:14'
+  Collectible_71382:
+    collector_id: Collector_12
+    name: 'The Amazing Spider-Man #154'
+    slug: the-amazing-spider-man-154
+    description: ''
+    num_comments: '0'
+    batch_hash: 62192f90b09a8414229ec4bd37d1e4a9
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:12:14'
+    updated_at: '2012-04-20 12:18:21'
+  Collectible_71383:
+    collector_id: Collector_12
+    name: 'The Amazing Spider-Man #162'
+    slug: the-amazing-spider-man-162
+    description: ''
+    num_comments: '0'
+    batch_hash: 62192f90b09a8414229ec4bd37d1e4a9
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:12:18'
+    updated_at: '2012-04-20 12:18:30'
+  Collectible_71384:
+    collector_id: Collector_12
+    name: 'The Amazing Spider-Man #127'
+    slug: the-amazing-spider-man-127
+    description: ''
+    num_comments: '0'
+    batch_hash: 62192f90b09a8414229ec4bd37d1e4a9
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:12:22'
+    updated_at: '2012-04-20 12:18:36'
+  Collectible_71385:
+    collector_id: Collector_12
+    name: 'The Amazing Spider-Man #155'
+    slug: the-amazing-spider-man-155
+    description: ''
+    num_comments: '0'
+    batch_hash: 62192f90b09a8414229ec4bd37d1e4a9
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:12:26'
+    updated_at: '2012-04-20 12:18:42'
+  Collectible_71386:
+    collector_id: Collector_12
+    name: 'The Amazing Spider-Man #147'
+    slug: the-amazing-spider-man-147
+    description: ''
+    num_comments: '0'
+    batch_hash: 62192f90b09a8414229ec4bd37d1e4a9
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:12:30'
+    updated_at: '2012-04-20 12:18:49'
+  Collectible_71387:
+    collector_id: Collector_12
+    name: 'The Amazing Spider-Man #143'
+    slug: the-amazing-spider-man-143
+    description: ''
+    num_comments: '0'
+    batch_hash: 62192f90b09a8414229ec4bd37d1e4a9
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:12:34'
+    updated_at: '2012-04-20 12:19:00'
+  Collectible_71388:
+    collector_id: Collector_12
+    name: 'The Amazing Spider-Man #159'
+    slug: the-amazing-spider-man-159
+    description: ''
+    num_comments: '0'
+    batch_hash: 62192f90b09a8414229ec4bd37d1e4a9
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:12:38'
+    updated_at: '2012-04-20 12:19:07'
+  Collectible_71389:
+    collector_id: Collector_12
+    name: 'The Amazing Spider-Man #152'
+    slug: the-amazing-spider-man-152
+    description: ''
+    num_comments: '0'
+    batch_hash: 62192f90b09a8414229ec4bd37d1e4a9
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:12:42'
+    updated_at: '2012-04-20 12:19:13'
+  Collectible_71390:
+    collector_id: Collector_12
+    name: 'The Amazing Spider-Man #183'
+    slug: the-amazing-spider-man-183
+    description: ''
+    num_comments: '0'
+    batch_hash: 62192f90b09a8414229ec4bd37d1e4a9
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:12:45'
+    updated_at: '2012-04-20 12:19:19'
+  Collectible_71391:
+    collector_id: Collector_12
+    name: 'The Amazing Spider-Man #161'
+    slug: the-amazing-spider-man-161
+    description: ''
+    num_comments: '0'
+    batch_hash: 62192f90b09a8414229ec4bd37d1e4a9
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:12:49'
+    updated_at: '2012-04-20 12:19:26'
+  Collectible_71392:
+    graph_id: '15661'
+    collector_id: Collector_12
+    name: 'Marvel Double Feature #12 : Captain America &amp; Iron Man'
+    slug: marvel-double-feature-12-captain-america-amp-iron-man
+    description: ''
+    num_comments: '0'
+    batch_hash: 73d14a8cca88264493d55457e6167bfe
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:13:24'
+    updated_at: '2012-04-20 12:19:42'
+  Collectible_71393:
+    graph_id: '15662'
+    collector_id: Collector_12
+    name: 'Prince Namor, The Sub-Mariner #18'
+    slug: prince-namor-the-sub-mariner-18
+    description: ''
+    num_comments: '0'
+    batch_hash: 73d14a8cca88264493d55457e6167bfe
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:13:28'
+    updated_at: '2012-04-20 12:19:58'
+  Collectible_71394:
+    graph_id: '15663'
+    collector_id: Collector_12
+    name: 'Prince Namor, The Sub-Mariner #19'
+    slug: prince-namor-the-sub-mariner-19
+    description: ''
+    num_comments: '0'
+    batch_hash: 73d14a8cca88264493d55457e6167bfe
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:13:32'
+    updated_at: '2012-04-20 12:20:05'
+  Collectible_71395:
+    graph_id: '15664'
+    collector_id: Collector_12
+    name: 'The Invaders #24'
+    slug: the-invaders-24
+    description: ''
+    num_comments: '0'
+    batch_hash: 73d14a8cca88264493d55457e6167bfe
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:13:36'
+    updated_at: '2012-04-20 12:20:15'
+  Collectible_71396:
+    graph_id: '15665'
+    collector_id: Collector_12
+    name: 'The Invaders #15'
+    slug: the-invaders-15
+    description: ''
+    num_comments: '0'
+    batch_hash: 73d14a8cca88264493d55457e6167bfe
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:13:40'
+    updated_at: '2012-04-20 12:20:20'
+  Collectible_71397:
+    collector_id: Collector_12
+    name: 'Giant-Size Invaders #1'
+    slug: giant-size-invaders-1
+    description: ''
+    num_comments: '0'
+    batch_hash: 73d14a8cca88264493d55457e6167bfe
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:13:43'
+    updated_at: '2012-04-20 12:20:27'
+  Collectible_71398:
+    collector_id: Collector_12
+    name: 'Super-Villain Team-Up #11 : Dr. Doom &amp; Red Skull'
+    slug: super-villain-team-up-11-dr-doom-amp-red-skull
+    description: ''
+    num_comments: '0'
+    batch_hash: 73d14a8cca88264493d55457e6167bfe
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:13:47'
+    updated_at: '2012-04-20 12:20:46'
+  Collectible_71399:
+    collector_id: Collector_12
+    name: 'The Invaders #13'
+    slug: the-invaders-13
+    description: ''
+    num_comments: '0'
+    batch_hash: 73d14a8cca88264493d55457e6167bfe
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:13:51'
+    updated_at: '2012-04-20 12:20:53'
+  Collectible_71400:
+    collector_id: Collector_12
+    name: 'Captain America &amp; The Falcon #178'
+    slug: captain-america-amp-the-falcon-178
+    description: ''
+    num_comments: '0'
+    batch_hash: 73d14a8cca88264493d55457e6167bfe
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:13:55'
+    updated_at: '2012-04-20 12:21:10'
+  Collectible_71401:
+    collector_id: Collector_12
+    name: 'Captain America &amp; The Falcon #207'
+    slug: captain-america-amp-the-falcon-207
+    description: ''
+    num_comments: '0'
+    batch_hash: 73d14a8cca88264493d55457e6167bfe
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:13:59'
+    updated_at: '2012-04-20 12:21:20'
+  Collectible_71402:
+    collector_id: Collector_12
+    name: 'Captain America &amp; The Falcon #190'
+    slug: captain-america-amp-the-falcon-190
+    description: ''
+    num_comments: '0'
+    batch_hash: 73d14a8cca88264493d55457e6167bfe
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:14:03'
+    updated_at: '2012-04-20 12:21:25'
+  Collectible_71403:
+    collector_id: Collector_12
+    name: 'Captain America &amp; The Falcon #177'
+    slug: captain-america-amp-the-falcon-177
+    description: ''
+    num_comments: '0'
+    batch_hash: 73d14a8cca88264493d55457e6167bfe
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:14:06'
+    updated_at: '2012-04-20 12:21:31'
+  Collectible_71404:
+    collector_id: Collector_12
+    name: 'Daredevil &amp; The Black Widow #98'
+    slug: daredevil-amp-the-black-widow-98
+    description: ''
+    num_comments: '0'
+    batch_hash: 73d14a8cca88264493d55457e6167bfe
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:14:10'
+    updated_at: '2012-04-20 12:21:47'
+  Collectible_71405:
+    collector_id: Collector_12
+    name: 'Davedevil, The Man Without Fear #149'
+    slug: davedevil-the-man-without-fear-149
+    description: ''
+    num_comments: '0'
+    batch_hash: 73d14a8cca88264493d55457e6167bfe
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:14:14'
+    updated_at: '2012-04-20 12:22:06'
+  Collectible_71406:
+    collector_id: Collector_12
+    name: 'Davedevil, The Man Without Fear #134'
+    slug: davedevil-the-man-without-fear-134
+    description: ''
+    num_comments: '0'
+    batch_hash: 73d14a8cca88264493d55457e6167bfe
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:14:18'
+    updated_at: '2012-04-20 12:22:13'
+  Collectible_71407:
+    collector_id: Collector_12
+    name: 'Davedevil, The Man Without Fear #59'
+    slug: davedevil-the-man-without-fear-59
+    description: ''
+    num_comments: '0'
+    batch_hash: 73d14a8cca88264493d55457e6167bfe
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:14:22'
+    updated_at: '2012-04-20 12:22:22'
+  Collectible_71408:
+    collector_id: Collector_12
+    name: 'Davedevil, The Man Without Fear #32'
+    slug: davedevil-the-man-without-fear-32
+    description: ''
+    num_comments: '0'
+    batch_hash: 73d14a8cca88264493d55457e6167bfe
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:14:25'
+    updated_at: '2012-04-20 12:22:29'
+  Collectible_71409:
+    collector_id: Collector_12
+    name: 'Davedevil, The Man Without Fear #132'
+    slug: davedevil-the-man-without-fear-132
+    description: ''
+    num_comments: '0'
+    batch_hash: 73d14a8cca88264493d55457e6167bfe
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:14:29'
+    updated_at: '2012-04-20 12:22:34'
+  Collectible_71410:
+    collector_id: Collector_12
+    name: 'Davedevil, The Man Without Fear #80'
+    slug: davedevil-the-man-without-fear-80
+    description: ''
+    num_comments: '0'
+    batch_hash: 73d14a8cca88264493d55457e6167bfe
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:14:33'
+    updated_at: '2012-04-20 12:22:40'
+  Collectible_71411:
+    collector_id: Collector_12
+    name: 'Davedevil, The Man Without Fear #143'
+    slug: davedevil-the-man-without-fear-143
+    description: ''
+    num_comments: '0'
+    batch_hash: 73d14a8cca88264493d55457e6167bfe
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:14:36'
+    updated_at: '2012-04-20 12:22:46'
+  Collectible_71412:
+    collector_id: Collector_12
+    name: 'Davedevil, The Man Without Fear #144'
+    slug: davedevil-the-man-without-fear-144
+    description: ''
+    num_comments: '0'
+    batch_hash: 73d14a8cca88264493d55457e6167bfe
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:14:40'
+    updated_at: '2012-04-20 12:22:51'
+  Collectible_71413:
+    collector_id: Collector_12
+    name: 'Marvel Adventure #3 featuring Daredevil'
+    slug: marvel-adventure-3-featuring-daredevil
+    description: ''
+    num_comments: '0'
+    batch_hash: 73d14a8cca88264493d55457e6167bfe
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:14:44'
+    updated_at: '2012-04-20 12:23:05'
+  Collectible_71414:
+    collector_id: Collector_12
+    name: 'Marvel Adventure #6 featuring Daredevil'
+    slug: marvel-adventure-6-featuring-daredevil
+    description: ''
+    num_comments: '0'
+    batch_hash: 73d14a8cca88264493d55457e6167bfe
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:14:49'
+    updated_at: '2012-04-20 12:23:20'
+  Collectible_71415:
+    collector_id: Collector_12
+    name: 'Marvel''s Greatest Comics #45'
+    slug: marvels-greatest-comics-45
+    description: ''
+    num_comments: '0'
+    batch_hash: 73d14a8cca88264493d55457e6167bfe
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:14:53'
+    updated_at: '2012-04-20 12:23:38'
+  Collectible_71416:
+    collector_id: Collector_12
+    name: 'Fantastic Four #163'
+    slug: fantastic-four-163
+    description: ''
+    num_comments: '0'
+    batch_hash: 73d14a8cca88264493d55457e6167bfe
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:14:56'
+    updated_at: '2012-04-20 12:23:53'
+  Collectible_71417:
+    collector_id: Collector_12
+    name: 'Fantastic Four #52'
+    slug: fantastic-four-52
+    description: ''
+    num_comments: '0'
+    batch_hash: 73d14a8cca88264493d55457e6167bfe
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:15:00'
+    updated_at: '2012-04-20 12:24:05'
+  Collectible_71418:
+    collector_id: Collector_12
+    name: 'Super-Villain Team-Up #5 : Dr. Doom &amp; Sub-Mariner'
+    slug: super-villain-team-up-5-dr-doom-amp-sub-mariner
+    description: ''
+    num_comments: '0'
+    batch_hash: 73d14a8cca88264493d55457e6167bfe
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:15:04'
+    updated_at: '2012-04-20 12:24:53'
+  Collectible_71419:
+    collector_id: Collector_12
+    name: 'Super-Villain Team-Up #7 : Dr. Doom &amp; Sub-Mariner'
+    slug: super-villain-team-up-7-dr-doom-amp-sub-mariner
+    description: ''
+    num_comments: '0'
+    batch_hash: 73d14a8cca88264493d55457e6167bfe
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:15:08'
+    updated_at: '2012-04-20 12:25:08'
+  Collectible_71420:
+    collector_id: Collector_12
+    name: 'Giant-Size Fantastc Four #5'
+    slug: giant-size-fantastc-four-5
+    description: ''
+    num_comments: '0'
+    batch_hash: 73d14a8cca88264493d55457e6167bfe
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:15:12'
+    updated_at: '2012-04-20 12:25:22'
+  Collectible_71421:
+    collector_id: Collector_12
+    name: 'Marvel''s Greatest Comics #63'
+    slug: marvels-greatest-comics-63
+    description: ''
+    num_comments: '0'
+    batch_hash: 73d14a8cca88264493d55457e6167bfe
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:15:16'
+    updated_at: '2012-04-20 12:25:38'
+  Collectible_71422:
+    collector_id: Collector_12
+    name: 'Marvel''s Greatest Comics #59'
+    slug: marvels-greatest-comics-59
+    description: ''
+    num_comments: '0'
+    batch_hash: 73d14a8cca88264493d55457e6167bfe
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:15:19'
+    updated_at: '2012-04-20 12:25:45'
+  Collectible_71423:
+    collector_id: Collector_12
+    name: 'Fantastic Four Annual #11'
+    slug: fantastic-four-annual-11
+    description: ''
+    num_comments: '0'
+    batch_hash: 73d14a8cca88264493d55457e6167bfe
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:15:23'
+    updated_at: '2012-04-20 12:26:02'
+  Collectible_71424:
+    collector_id: Collector_12
+    name: 'Marvel Two-In-One #18 : The Thing &amp; The Scarecrow'
+    slug: marvel-two-in-one-18-the-thing-amp-the-scarecrow
+    description: ''
+    num_comments: '0'
+    batch_hash: 73d14a8cca88264493d55457e6167bfe
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:15:27'
+    updated_at: '2012-04-20 12:26:29'
+  Collectible_71425:
+    collector_id: Collector_12
+    name: 'Fantastic Four #139'
+    slug: fantastic-four-139
+    description: ''
+    num_comments: '0'
+    batch_hash: 73d14a8cca88264493d55457e6167bfe
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:15:31'
+    updated_at: '2012-04-20 12:26:45'
+  Collectible_71426:
+    collector_id: Collector_12
+    name: 'Fantastic Four #170'
+    slug: fantastic-four-170
+    description: ''
+    num_comments: '0'
+    batch_hash: 73d14a8cca88264493d55457e6167bfe
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:15:35'
+    updated_at: '2012-04-20 12:26:55'
+  Collectible_71427:
+    graph_id: '15666'
+    collector_id: Collector_12
+    name: 'The Human Fly #11'
+    slug: the-human-fly-11-8dcd48
+    description: ''
+    num_comments: '0'
+    batch_hash: 4fa830d285084c1d8ca6fad1406dec0f
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:16:05'
+    updated_at: '2012-04-20 12:27:04'
+  Collectible_71428:
+    graph_id: '15667'
+    collector_id: Collector_12
+    name: 'The Avengers #90'
+    slug: the-avengers-90
+    description: ''
+    num_comments: '0'
+    batch_hash: 4fa830d285084c1d8ca6fad1406dec0f
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:16:08'
+    updated_at: '2012-04-20 12:27:15'
+  Collectible_71429:
+    graph_id: '15668'
+    collector_id: Collector_12
+    name: 'The Avengers, Earth''s Mightiest Heroes #161'
+    slug: the-avengers-earths-mightiest-heroes-161
+    description: ''
+    num_comments: '0'
+    batch_hash: 4fa830d285084c1d8ca6fad1406dec0f
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:16:12'
+    updated_at: '2012-04-20 12:27:32'
+  Collectible_71430:
+    graph_id: '15669'
+    collector_id: Collector_12
+    name: 'The Avengers, Earth''s Mightiest Heroes #140'
+    slug: the-avengers-earths-mightiest-heroes-140
+    description: ''
+    num_comments: '0'
+    batch_hash: 4fa830d285084c1d8ca6fad1406dec0f
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:16:16'
+    updated_at: '2012-04-20 12:27:42'
+  Collectible_71431:
+    graph_id: '15670'
+    collector_id: Collector_12
+    name: 'The Avengers, Earth''s Mightiest Heroes #144'
+    slug: the-avengers-earths-mightiest-heroes-144
+    description: ''
+    num_comments: '0'
+    batch_hash: 4fa830d285084c1d8ca6fad1406dec0f
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:16:20'
+    updated_at: '2012-04-20 12:27:47'
+  Collectible_71432:
+    collector_id: Collector_12
+    name: 'The Avengers #40'
+    slug: the-avengers-40
+    description: ''
+    num_comments: '0'
+    batch_hash: 4fa830d285084c1d8ca6fad1406dec0f
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:16:23'
+    updated_at: '2012-04-20 12:27:56'
+  Collectible_71433:
+    collector_id: Collector_12
+    name: 'The Avengers, Earth''s Mightiest Heroes #134'
+    slug: the-avengers-earths-mightiest-heroes-134
+    description: ''
+    num_comments: '0'
+    batch_hash: 4fa830d285084c1d8ca6fad1406dec0f
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:16:27'
+    updated_at: '2012-04-20 12:28:04'
+  Collectible_71434:
+    collector_id: Collector_12
+    name: 'Marvel Triple Action #30'
+    slug: marvel-triple-action-30-7112fc
+    description: ''
+    num_comments: '0'
+    batch_hash: 4fa830d285084c1d8ca6fad1406dec0f
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:16:31'
+    updated_at: '2012-04-20 12:28:18'
+  Collectible_71435:
+    collector_id: Collector_12
+    name: 'Marvel Triple Action #29'
+    slug: marvel-triple-action-29
+    description: ''
+    num_comments: '0'
+    batch_hash: 4fa830d285084c1d8ca6fad1406dec0f
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:16:35'
+    updated_at: '2012-04-20 12:28:26'
+  Collectible_71436:
+    collector_id: Collector_12
+    name: 'Marvel Triple Action #28'
+    slug: marvel-triple-action-28
+    description: ''
+    num_comments: '0'
+    batch_hash: 4fa830d285084c1d8ca6fad1406dec0f
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:16:39'
+    updated_at: '2012-04-20 12:28:31'
+  Collectible_71437:
+    collector_id: Collector_12
+    name: 'Marvel Triple Action #10'
+    slug: marvel-triple-action-10-d8516d
+    description: ''
+    num_comments: '0'
+    batch_hash: 4fa830d285084c1d8ca6fad1406dec0f
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:16:43'
+    updated_at: '2012-04-20 12:28:36'
+  Collectible_71438:
+    collector_id: Collector_12
+    name: 'Marvel Triple Action #24 (starring The Avengers)'
+    slug: marvel-triple-action-24-starring-the-avengers
+    description: ''
+    num_comments: '0'
+    batch_hash: 4fa830d285084c1d8ca6fad1406dec0f
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:16:46'
+    updated_at: '2012-04-20 12:28:50'
+  Collectible_71439:
+    collector_id: Collector_12
+    name: 'Ghost Rider #31'
+    slug: ghost-rider-31-0cc996
+    description: ''
+    num_comments: '0'
+    batch_hash: 4fa830d285084c1d8ca6fad1406dec0f
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:16:50'
+    updated_at: '2012-04-20 12:28:58'
+  Collectible_71440:
+    collector_id: Collector_12
+    name: 'Ghost Rider #14'
+    slug: ghost-rider-14
+    description: ''
+    num_comments: '0'
+    batch_hash: 4fa830d285084c1d8ca6fad1406dec0f
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:16:54'
+    updated_at: '2012-04-20 12:29:05'
+  Collectible_71441:
+    collector_id: Collector_12
+    name: 'Ghost Rider #11'
+    slug: ghost-rider-11
+    description: ''
+    num_comments: '0'
+    batch_hash: 4fa830d285084c1d8ca6fad1406dec0f
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:16:58'
+    updated_at: '2012-04-20 12:29:12'
+  Collectible_71442:
+    collector_id: Collector_12
+    name: 'Ghostly Tales from the Haunted House'
+    slug: ghostly-tales-from-the-haunted-house
+    description: ''
+    num_comments: '0'
+    batch_hash: 4fa830d285084c1d8ca6fad1406dec0f
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:17:01'
+    updated_at: '2012-04-20 12:29:27'
+  Collectible_71443:
+    collector_id: Collector_12
+    name: 'Strange Tales #185 (featuring Dr. Strange)'
+    slug: strange-tales-185-featuring-dr-strange
+    description: ''
+    num_comments: '0'
+    batch_hash: 4fa830d285084c1d8ca6fad1406dec0f
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:17:05'
+    updated_at: '2012-04-20 12:29:40'
+  Collectible_71444:
+    collector_id: Collector_12
+    name: 'Vault of Evil #23'
+    slug: vault-of-evil-23
+    description: ''
+    num_comments: '0'
+    batch_hash: 4fa830d285084c1d8ca6fad1406dec0f
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:17:09'
+    updated_at: '2012-04-20 12:29:49'
+  Collectible_71445:
+    collector_id: Collector_12
+    name: 'The Tomb of Dracula #50'
+    slug: the-tomb-of-dracula-50
+    description: ''
+    num_comments: '0'
+    batch_hash: 4fa830d285084c1d8ca6fad1406dec0f
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:17:13'
+    updated_at: '2012-04-20 12:29:57'
+  Collectible_71446:
+    collector_id: Collector_12
+    name: 'Marvel Super-Heroes #53 : featuring The Hulk &amp; Sub-Mariner'
+    slug: marvel-super-heroes-53-featuring-the-hulk-amp-sub-mariner
+    description: ''
+    num_comments: '0'
+    batch_hash: 4fa830d285084c1d8ca6fad1406dec0f
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:17:17'
+    updated_at: '2012-04-20 12:30:20'
+  Collectible_71447:
+    collector_id: Collector_12
+    name: 'Marvel Super-Heroes #46 : featuring The Hulk &amp; Sub-Mariner'
+    slug: marvel-super-heroes-46-featuring-the-hulk-amp-sub-mariner
+    description: ''
+    num_comments: '0'
+    batch_hash: 4fa830d285084c1d8ca6fad1406dec0f
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:17:21'
+    updated_at: '2012-04-20 12:30:35'
+  Collectible_71448:
+    collector_id: Collector_12
+    name: 'Tales to Astonish #83 : featuring The Hulk &amp; Sub-Mariner'
+    slug: tales-to-astonish-83-featuring-the-hulk-amp-sub-mariner
+    description: ''
+    num_comments: '0'
+    batch_hash: 4fa830d285084c1d8ca6fad1406dec0f
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:17:24'
+    updated_at: '2012-04-20 12:31:00'
+  Collectible_71449:
+    collector_id: Collector_12
+    name: 'The Incredible Hulk #212'
+    slug: the-incredible-hulk-212-1ba6c1
+    description: ''
+    num_comments: '0'
+    batch_hash: 4fa830d285084c1d8ca6fad1406dec0f
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:17:28'
+    updated_at: '2012-04-20 12:31:15'
+  Collectible_71450:
+    collector_id: Collector_12
+    name: 'Marvel Super-Heroes #63 : featuting The Incredible Hulk'
+    slug: marvel-super-heroes-63-featuting-the-incredible-hulk
+    description: ''
+    num_comments: '0'
+    batch_hash: 4fa830d285084c1d8ca6fad1406dec0f
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:17:32'
+    updated_at: '2012-04-20 12:31:32'
+  Collectible_71451:
+    collector_id: Collector_12
+    name: 'The Incredible Hulk #210'
+    slug: the-incredible-hulk-210
+    description: ''
+    num_comments: '0'
+    batch_hash: 4fa830d285084c1d8ca6fad1406dec0f
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:17:36'
+    updated_at: '2012-04-20 12:31:38'
+  Collectible_71452:
+    collector_id: Collector_12
+    name: 'Marvel Super-Heroes #56 : featuring The Incredible Hulk'
+    slug: marvel-super-heroes-56-featuring-the-incredible-hulk
+    description: ''
+    num_comments: '0'
+    batch_hash: 4fa830d285084c1d8ca6fad1406dec0f
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:17:40'
+    updated_at: '2012-04-20 12:31:50'
+  Collectible_71453:
+    collector_id: Collector_12
+    name: 'The Incredible Hulk 204'
+    slug: the-incredible-hulk-204
+    description: ''
+    num_comments: '0'
+    batch_hash: 4fa830d285084c1d8ca6fad1406dec0f
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:17:44'
+    updated_at: '2012-04-20 12:31:56'
+  Collectible_71454:
+    collector_id: Collector_12
+    name: 'The Defenders #48'
+    slug: the-defenders-48
+    description: ''
+    num_comments: '0'
+    batch_hash: 4fa830d285084c1d8ca6fad1406dec0f
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:17:47'
+    updated_at: '2012-04-20 12:32:06'
+  Collectible_71455:
+    collector_id: Collector_12
+    name: 'The Defenders #55'
+    slug: the-defenders-55
+    description: ''
+    num_comments: '0'
+    batch_hash: 4fa830d285084c1d8ca6fad1406dec0f
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:17:52'
+    updated_at: '2012-04-20 12:32:15'
+  Collectible_71456:
+    collector_id: Collector_12
+    name: 'The Defenders #49'
+    slug: the-defenders-49-2b1e53
+    description: ''
+    num_comments: '0'
+    batch_hash: 4fa830d285084c1d8ca6fad1406dec0f
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:17:56'
+    updated_at: '2012-04-20 12:32:22'
+  Collectible_71457:
+    collector_id: Collector_12
+    name: 'Marvel Chillers #4 : featuring Tigra the Were-Woman'
+    slug: marvel-chillers-4-featuring-tigra-the-were-woman
+    description: ''
+    num_comments: '0'
+    batch_hash: 4fa830d285084c1d8ca6fad1406dec0f
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:18:00'
+    updated_at: '2012-04-20 12:32:42'
+  Collectible_71458:
+    collector_id: Collector_12
+    name: 'Marvel Two-in-One #10 : featuring The Thing &amp; Black Widow'
+    slug: marvel-two-in-one-10-featuring-the-thing-amp-black-widow
+    description: ''
+    num_comments: '0'
+    batch_hash: 4fa830d285084c1d8ca6fad1406dec0f
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:18:04'
+    updated_at: '2012-04-20 12:33:02'
+  Collectible_71459:
+    collector_id: Collector_12
+    name: 'Marvel Tales #58 : starring Spider-Man'
+    slug: marvel-tales-58-starring-spider-man
+    description: ''
+    num_comments: '0'
+    batch_hash: 4fa830d285084c1d8ca6fad1406dec0f
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:18:07'
+    updated_at: '2012-04-20 12:33:14'
+  Collectible_71460:
+    collector_id: Collector_12
+    name: 'Marvel Spotlight #32 : featuring Spider-Woman (first appearance)'
+    slug: marvel-spotlight-32-featuring-spider-woman-first-appearance
+    description: ''
+    num_comments: '0'
+    batch_hash: 4fa830d285084c1d8ca6fad1406dec0f
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:18:11'
+    updated_at: '2012-04-20 12:33:36'
+  Collectible_71461:
+    collector_id: Collector_12
+    name: 'Marvel Premiere #26 : featuring Hercules'
+    slug: marvel-premiere-26-featuring-hercules
+    description: ''
+    num_comments: '0'
+    batch_hash: 4fa830d285084c1d8ca6fad1406dec0f
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:18:15'
+    updated_at: '2012-04-20 12:33:53'
+  Collectible_71462:
+    collector_id: Collector_12
+    name: 'Marvel Premiere #34 : featuring The Mark of Kane'
+    slug: marvel-premiere-34-featuring-the-mark-of-kane
+    description: ''
+    num_comments: '0'
+    batch_hash: 4fa830d285084c1d8ca6fad1406dec0f
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:18:19'
+    updated_at: '2012-04-20 12:34:06'
+  Collectible_71463:
+    collector_id: Collector_12
+    name: 'The New Captain Marvel #54'
+    slug: the-new-captain-marvel-54
+    description: ''
+    num_comments: '0'
+    batch_hash: 4fa830d285084c1d8ca6fad1406dec0f
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:18:23'
+    updated_at: '2012-04-20 12:34:21'
+  Collectible_71464:
+    collector_id: Collector_12
+    name: 'Ms. Marvel #7'
+    slug: ms-marvel-7
+    description: ''
+    num_comments: '0'
+    batch_hash: 4fa830d285084c1d8ca6fad1406dec0f
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:18:27'
+    updated_at: '2012-04-20 12:34:31'
+  Collectible_71465:
+    collector_id: Collector_12
+    name: 'Ms. Marvel #8'
+    slug: ms-marvel-8
+    description: ''
+    num_comments: '0'
+    batch_hash: 4fa830d285084c1d8ca6fad1406dec0f
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:18:30'
+    updated_at: '2012-04-20 12:34:39'
+  Collectible_71466:
+    collector_id: Collector_12
+    name: 'Ms. Marvel #5'
+    slug: ms-marvel-5-f2cdf7
+    description: ''
+    num_comments: '0'
+    batch_hash: 4fa830d285084c1d8ca6fad1406dec0f
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:18:34'
+    updated_at: '2012-04-20 12:34:44'
+  Collectible_71467:
+    collector_id: Collector_12
+    name: 'Ms. Marvel #13'
+    slug: ms-marvel-13-be1cba
+    description: ''
+    num_comments: '0'
+    batch_hash: 4fa830d285084c1d8ca6fad1406dec0f
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:18:38'
+    updated_at: '2012-04-20 12:34:48'
+  Collectible_71468:
+    collector_id: Collector_12
+    name: 'The Man Called Nova #3'
+    slug: the-man-called-nova-3
+    description: ''
+    num_comments: '0'
+    batch_hash: 4fa830d285084c1d8ca6fad1406dec0f
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:18:42'
+    updated_at: '2012-04-20 12:34:59'
+  Collectible_71469:
+    collector_id: Collector_12
+    name: 'The Man Called Nova #17'
+    slug: the-man-called-nova-17
+    description: ''
+    num_comments: '0'
+    batch_hash: 4fa830d285084c1d8ca6fad1406dec0f
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:18:46'
+    updated_at: '2012-04-20 12:35:04'
+  Collectible_71470:
+    collector_id: Collector_12
+    name: 'The Man Called Nova #16'
+    slug: the-man-called-nova-16-3ba7e6
+    description: ''
+    num_comments: '0'
+    batch_hash: 4fa830d285084c1d8ca6fad1406dec0f
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:18:50'
+    updated_at: '2012-04-20 12:35:09'
+  Collectible_71471:
+    collector_id: Collector_12
+    name: 'The Man Called Nova #4'
+    slug: the-man-called-nova-4-bf2211
+    description: ''
+    num_comments: '0'
+    batch_hash: 4fa830d285084c1d8ca6fad1406dec0f
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:18:53'
+    updated_at: '2012-04-20 12:35:14'
+  Collectible_71472:
+    collector_id: Collector_12
+    name: 'Rawhide Kid #141'
+    slug: rawhide-kid-141
+    description: ''
+    num_comments: '0'
+    batch_hash: 4fa830d285084c1d8ca6fad1406dec0f
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:18:57'
+    updated_at: '2012-04-20 12:35:22'
+  Collectible_71473:
+    collector_id: Collector_12
+    name: 'Black Goliath #2'
+    slug: black-goliath-2
+    description: ''
+    num_comments: '0'
+    batch_hash: 4fa830d285084c1d8ca6fad1406dec0f
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:19:01'
+    updated_at: '2012-04-20 12:35:34'
+  Collectible_71474:
+    collector_id: Collector_12
+    name: 'Black Goliath #3'
+    slug: black-goliath-3
+    description: ''
+    num_comments: '0'
+    batch_hash: 4fa830d285084c1d8ca6fad1406dec0f
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:19:05'
+    updated_at: '2012-04-20 12:35:39'
+  Collectible_71475:
+    collector_id: Collector_12
+    name: 'Omega the Unknown #10'
+    slug: omega-the-unknown-10
+    description: ''
+    num_comments: '0'
+    batch_hash: 4fa830d285084c1d8ca6fad1406dec0f
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:19:09'
+    updated_at: '2012-04-20 12:35:49'
+  Collectible_71476:
+    collector_id: Collector_12
+    name: 'Howard the Duck #1'
+    slug: howard-the-duck-1
+    description: ''
+    num_comments: '0'
+    batch_hash: 4fa830d285084c1d8ca6fad1406dec0f
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:19:13'
+    updated_at: '2012-04-20 12:35:57'
+  Collectible_71477:
+    collector_id: Collector_12
+    name: 'Arrgh! #4'
+    slug: arrgh-4
+    description: ''
+    num_comments: '0'
+    batch_hash: 4fa830d285084c1d8ca6fad1406dec0f
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:19:16'
+    updated_at: '2012-04-20 12:36:03'
+  Collectible_71478:
+    collector_id: Collector_12
+    name: 'Marvel Premiere #36 : 3-D Man'
+    slug: marvel-premiere-36-3-d-man
+    description: ''
+    num_comments: '0'
+    batch_hash: 4fa830d285084c1d8ca6fad1406dec0f
+    score: '0'
+    is_name_automatic: '0'
+    created_at: '2012-04-19 21:19:20'
+    updated_at: '2012-04-20 12:14:11'

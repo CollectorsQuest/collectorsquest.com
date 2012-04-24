@@ -177,12 +177,13 @@ class sellerActions extends cqActions
           }
           else if ('cc' == $packagesForm->getValue('payment_type'))
           {
-            $paypalAPI = new PayPal(array(
-              'Sandbox'      => sfConfig::get('app_paypal_sandbox', true),
-              'APIUsername'  => sfConfig::get('app_paypal_api_username'),
-              'APIPassword'  => sfConfig::get('app_paypal_api_password'),
-              'APISignature' => sfConfig::get('app_paypal_api_signature'),
-            ));
+            $paypalAPI = cqStatic::getPayPalClient();
+//            $paypalAPI = new PayPal(array(
+//              'Sandbox'      => sfConfig::get('app_paypal_sandbox', true),
+//              'APIUsername'  => sfConfig::get('app_paypal_api_username'),
+//              'APIPassword'  => sfConfig::get('app_paypal_api_password'),
+//              'APISignature' => sfConfig::get('app_paypal_api_signature'),
+//            ));
 
             $directPaymentFields = array(
               'paymentaction'    => 'Sale', // How you want to obtain payment.  Authorization indidicates the payment is a basic auth subject to settlement with Auth & Capture.  Sale indicates that this is a final sale for which you are requesting payment.  Default is Sale.
@@ -199,9 +200,6 @@ class sellerActions extends cqActions
 
             $payerInfo = array(
               'email'       => $collector->getEmail(),
-//              'payerid'     => '', // Unique PayPal customer ID for payer.
-//              'payerstatus' => '', // Status of payer.  Values are verified or unverified
-//              'business'    => '' // Payer's business name.
             );
 
             $billingAddressInfo = array(
@@ -247,6 +245,8 @@ class sellerActions extends cqActions
               'PaymentDetails' => $paymentDetails,
               'OrderItems'     => $orderItems,
             ));
+
+//            dd($paypalResult);
 
             if ('SUCCESS' == strtoupper($paypalResult["ACK"]))
             {

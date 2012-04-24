@@ -152,12 +152,14 @@ classes:
   PackageTransaction:
     columns:
       id:  ~
-      package_id:          { type: integer, foreignClass: Package, foreignReference: id, required: true, onDelete: restrict }
-      collector_id:        { type: integer, foreignClass: Collector, foreignReference: id, required: true, onDelete: cascade }
-      payment_status:      { type: varchar, default: pending, size: 255 }
-      max_items_for_sale:  { type: integer }
-      package_price:       { type: float }
-      expiry_date:         { type: timestamp }
+      package_id:               { type: integer, foreignClass: Package, foreignReference: id, required: true, onDelete: restrict }
+      collector_id:             { type: integer, foreignClass: Collector, foreignReference: id, required: true, onDelete: cascade }
+      payment_status:           { type: varchar, default: pending, size: 255 }
+      max_items_for_sale:       { type: integer }
+      package_price:            { type: float }
+      discount:                 { type: float, required: false, sqlType: 'float unsigned' }
+      promotion_transaction_id: { type: integer, required: false, foreignClass: PromotionTransaction, foreignReference: id, onDelete: restrict }
+      expiry_date:              { type: timestamp }
       created_at:  ~
 
   Promotion:

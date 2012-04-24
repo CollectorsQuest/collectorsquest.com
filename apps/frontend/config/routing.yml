@@ -268,6 +268,23 @@ manage_shopping_orders:
   param: { module: manage, action: shoppingOrders }
 
 
+### SELLER
+
+seller_packages:
+  url:   /seller/packages
+  param: { module: seller, action: packages }
+
+seller_cancel_payment:
+  url: /seller/payment/cancel/:id
+  param: { module: seller, action: cancelPayment }
+  requirements: { id: '\d+' }
+
+seller_callback_ipn:
+  url: /seller/ipn
+  param: { module: seller, action: callbackIPN }
+  options: { extra_parameters_as_query_string: true }
+  requirements: { sf_method: [POST]}
+
 ### TAGS
 
 tag:

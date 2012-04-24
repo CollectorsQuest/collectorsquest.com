@@ -2,7 +2,7 @@
 
 require_once(dirname(__FILE__).'/ProjectConfiguration.class.php');
 
-if ($_SERVER['SERVER_NAME'] == 'www.collectorsquest.dev' || $_SERVER['SERVER_NAME'] == 'collectorsquest.dev' || $_SERVER['SERVER_NAME'] == 'zecho.dyndns-home.com')
+if ($_SERVER['SERVER_NAME'] == 'www.collectorsquest.dev' || $_SERVER['SERVER_NAME'] == 'collectorsquest.dev')
 {
   define('SF_APP', 'legacy');
   define('SF_ENV', 'dev');
@@ -14,7 +14,7 @@ else if ($_SERVER['SERVER_NAME'] == 'backend.collectorsquest.dev')
   define('SF_ENV', 'dev');
   define('SF_DEBUG', true);
 }
-else if ($_SERVER['SERVER_NAME'] == 'www.collectorsquest.next' || $_SERVER['SERVER_NAME'] == 'collectorsquest.next' || $_SERVER['SERVER_NAME'] == '92.247.221.137')
+else if ($_SERVER['SERVER_NAME'] == 'www.collectorsquest.next' || $_SERVER['SERVER_NAME'] == 'collectorsquest.next' || $_SERVER['SERVER_NAME'] == '92.247.221.137'  || $_SERVER['SERVER_NAME'] == 'zecho.dyndns-home.com')
 {
   define('SF_APP', 'frontend');
   define('SF_ENV', 'dev');

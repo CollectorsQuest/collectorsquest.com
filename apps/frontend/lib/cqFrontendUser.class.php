@@ -30,8 +30,13 @@ class cqFrontendUser extends cqBaseUser
   public function getShoppingCart()
   {
     $q = ShoppingCartQuery::create()
-       ->filterByCollector($this->getCollector())
        ->filterByCookieUuid($this->isAuthenticated() ? null : $this->getCookieUuid());
+
+    if ($collector = $this->getCollector()) {
+      $q->filterByCollector($collector);
+    } else {
+      $q->filterByCollectorId(null, Criteria::ISNULL);
+    }
 
     if (!($shopping_cart = $q->findOne()) && $this->isAuthenticated())
     {

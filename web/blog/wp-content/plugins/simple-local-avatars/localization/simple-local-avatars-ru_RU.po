@@ -57,4 +57,7 @@ msgstr "Локальный аватар"
 #. Description of the plugin/theme
 msgid "Adds an avatar upload field to user profiles if the current user has media permissions. Generates requested sizes on demand just like Gravatar! Simple and lightweight."
 msgstr "Добавить закачку аватара к профилю пользователя, если у текущего пользователя есть полномочия. Генерировать такие же размеры, как на Gravatar-е. Просто и легко."
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9c9250c808a60c097eb7a663cae5f592de3139c9

@@ -95,6 +95,48 @@ CommentArchive:
     collector_id: '103'
     body: 'its true. I took a few photos of mine but they didn''t look as good while still in the box.'
     created_at: '2007-09-10 14:04:10'
+  CommentArchive_305:
+    id: '305'
+    collection_id: '260'
+    collector_id: '109'
+    body: 'what an awsome collection! You must be very proud!!  '
+    created_at: '2007-10-02 19:49:35'
+  CommentArchive_306:
+    id: '306'
+    collection_id: '260'
+    collector_id: '2'
+    body: 'My attention was split equally between the figures and the books behind them :)'
+    created_at: '2007-10-03 00:32:16'
+  CommentArchive_307:
+    id: '307'
+    collection_id: '260'
+    collector_id: '2'
+    body: 'And that some really successful shot! You have to make a picture of all your toys like this...'
+    created_at: '2007-10-03 00:33:51'
+  CommentArchive_308:
+    id: '308'
+    collection_id: '260'
+    collector_id: '59'
+    body: 'Love this!  I''ve never managed to see this movie all the way through -- something always happens (kids, a phone call, or even an unintentional nap).'
+    created_at: '2007-10-04 04:34:06'
+  CommentArchive_309:
+    id: '309'
+    collection_id: '260'
+    collector_id: '59'
+    body: 'That''s it; I officially hate you :p'
+    created_at: '2007-10-04 04:36:39'
+  CommentArchive_310:
+    id: '310'
+    collection_id: '260'
+    collector_id: '12'
+    body: 'Which Iron Man figure is this? I don''t believe I''m familiar with it!'
+    created_at: '2007-10-04 08:32:30'
+  CommentArchive_320:
+    id: '320'
+    collection_id: '260'
+    collector_id: '68'
+    body: 'Too cool!'
+    created_at: '2007-11-14 19:46:32'
   CommentArchive_341:
     id: '341'
     collection_id: '132'
@@ -115,6 +157,62 @@ CommentArchive:
     subject: ''
     body: 'Is this just the skin for the head?'
     created_at: '2008-04-15 00:54:35'
+  CommentArchive_386:
+    id: '386'
+    collection_id: '260'
+    collector_id: '572'
+    subject: ''
+    body: 'Thats Sweet.Totally jealous.'
+    created_at: '2008-05-16 17:25:11'
+  CommentArchive_387:
+    id: '387'
+    collection_id: '260'
+    collector_id: '572'
+    subject: ''
+    body: "Cowabunga! I cant wait to get my Pin Up Collection posted.\r\nNot as risque as your stuff though.RIP RUSS."
+    created_at: '2008-05-16 17:27:29'
+  CommentArchive_388:
+    id: '388'
+    collection_id: '260'
+    collector_id: '572'
+    subject: ''
+    body: "Just a bunch of innocent 50's teens getting ready for a party....\r\nlittle did they know.LOL.Nice piece."
+    created_at: '2008-05-16 17:31:31'
+  CommentArchive_389:
+    id: '389'
+    collection_id: '260'
+    collector_id: '572'
+    subject: ''
+    body: "Great Composition.Great title.\r\nJealous again."
+    created_at: '2008-05-16 17:33:29'
+  CommentArchive_390:
+    id: '390'
+    collection_id: '260'
+    collector_id: '572'
+    subject: ''
+    body: AWESOME!!!!!
+    created_at: '2008-05-16 17:35:03'
+  CommentArchive_391:
+    id: '391'
+    collection_id: '260'
+    collector_id: '572'
+    subject: ''
+    body: 'Love the Magic of the Moment in this one.'
+    created_at: '2008-05-16 17:39:32'
+  CommentArchive_392:
+    id: '392'
+    collection_id: '260'
+    collector_id: '572'
+    subject: ''
+    body: "A Trifecta!!!!!!!!\r\nPriceless."
+    created_at: '2008-05-16 17:40:43'
+  CommentArchive_393:
+    id: '393'
+    collection_id: '260'
+    collector_id: '572'
+    subject: ''
+    body: 'irish McCalla?Say no More!'
+    created_at: '2008-05-16 17:41:51'
   CommentArchive_398:
     id: '398'
     collection_id: '83'
@@ -432,6 +530,13 @@ CommentArchive:
     subject: ''
     body: 'Neat! Never seen a Rafiki collection before!'
     created_at: '2009-03-03 20:34:01'
+  CommentArchive_751:
+    id: '751'
+    collection_id: '1095'
+    collector_id: '1014'
+    subject: ''
+    body: 'Stuff ooks cool, you need to take some better pics so we can see it all!'
+    created_at: '2009-03-03 20:38:02'
   CommentArchive_842:
     id: '842'
     collection_id: '905'
@@ -464,6 +569,21 @@ CommentArchive:
     subject: ''
     body: 'I really don''t know what happen but you can go on the first address i give you and it work .When by address will change I will let you know.Lorraine'
     created_at: '2009-04-21 15:07:34'
+  CommentArchive_934:
+    id: '934'
+    collection_id: '1218'
+    author_name: Joe
+    author_email: jkmorale@att.net
+    subject: ''
+    body: 'Thats a lotto ducks.. But...Wheres Zorro Duck..".Love that Zorro Duck"'
+    created_at: '2009-04-22 01:00:41'
+  CommentArchive_937:
+    id: '937'
+    collection_id: '1218'
+    collector_id: '1125'
+    subject: ''
+    body: 'Zorro is there-he''s just incognito as a plain yellow duck.'
+    created_at: '2009-04-22 10:13:41'
   CommentArchive_980:
     id: '980'
     collection_id: '1144'
@@ -472,6 +592,68 @@ CommentArchive:
     subject: ''
     body: " I have   several hundreds of foreign  Greeting cards received during  the last 60 years of my personal correspondence  worldwide.Want o sell them or exchange against  current ,recent mint stamps \r\n Regards\r\n Ranjit singh\r\n AN/18-c,shalimar bagh\r\n Delhi-110088 india\r\n www.indiatelecards.org"
     created_at: '2009-05-03 11:13:48'
+  CommentArchive_1002:
+    id: '1002'
+    collection_id: '1203'
+    author_name: sara
+    author_email: ''
+    subject: ''
+    body: 'your pictures are awsome. I would quess that you would do anything to get a good picture. Well you are doing a good job!'
+    created_at: '2009-05-06 22:59:42'
+  CommentArchive_1003:
+    id: '1003'
+    collection_id: '1203'
+    author_name: sara
+    author_email: ''
+    subject: ''
+    body: 'your pictures are awsome. I would quess that you would do anything to get a good picture. Well you are doing a good job!'
+    created_at: '2009-05-06 22:59:46'
+  CommentArchive_1006:
+    id: '1006'
+    collection_id: '1203'
+    author_name: Digicolleen
+    author_email: Digicolleen@aol.com
+    subject: ''
+    body: 'Thanks Sara! I have a good time with it :)'
+    created_at: '2009-05-07 00:33:30'
+  CommentArchive_1012:
+    id: '1012'
+    collection_id: '1215'
+    author_name: Joe
+    author_email: jkmorale@att.net
+    subject: ''
+    body: 'The Devil you say!!!!'
+    created_at: '2009-05-08 23:21:16'
+  CommentArchive_1013:
+    id: '1013'
+    collection_id: '1218'
+    author_name: Joe
+    author_email: ''
+    subject: ''
+    body: 'He He He...Sneekie little bugger........ZD'
+    created_at: '2009-05-08 23:25:03'
+  CommentArchive_1014:
+    id: '1014'
+    collection_id: '1218'
+    author_name: Joe
+    author_email: ''
+    subject: ''
+    body: 'AHHHH    Thank youverymuch.......Immm all shook up!!'
+    created_at: '2009-05-08 23:30:08'
+  CommentArchive_1015:
+    id: '1015'
+    collection_id: '1218'
+    collector_id: '1125'
+    subject: ''
+    body: 'Ok-I''ll have Zorro on there tomorrow.'
+    created_at: '2009-05-09 17:11:04'
+  CommentArchive_1016:
+    id: '1016'
+    collection_id: '1215'
+    collector_id: '1125'
+    subject: ''
+    body: Devilicious!
+    created_at: '2009-05-09 17:11:51'
   CommentArchive_1024:
     id: '1024'
     collection_id: '1144'
@@ -1150,6 +1332,21 @@ CommentArchive:
     subject: ''
     body: "Hi,\r\ncould you give me more information about this product?\r\nbecause we don't have this in France,\r\nAnd could you low the price ? :-S \r\n"
     created_at: '2009-09-06 20:18:35'
+  CommentArchive_1990:
+    id: '1990'
+    collection_id: '1208'
+    author_name: 'bud products'
+    author_email: budproduct@gmail.com
+    subject: ''
+    body: 'love your work Digicolleen ! beautiful photos of some beautiful ducks..cheers BUD'
+    created_at: '2009-09-09 00:31:44'
+  CommentArchive_1996:
+    id: '1996'
+    collection_id: '1208'
+    collector_id: '1125'
+    subject: ''
+    body: 'Thanks! I actually have more (some of the new ones and a couple of Cancer Research UK ducks)-I need to post them when I get some time. Haha. Love the Buds :)'
+    created_at: '2009-09-09 07:27:38'
   CommentArchive_2000:
     id: '2000'
     collection_id: '1524'
@@ -1466,6 +1663,22 @@ CommentArchive:
     subject: ''
     body: "i love the blue elf!!!!!!!!!   how much is it?\r\n\r\n"
     created_at: '2009-11-12 20:36:02'
+  CommentArchive_2606:
+    id: '2606'
+    collection_id: '1214'
+    author_name: excilettalere
+    author_email: adansutton1998@gmail.com
+    subject: ''
+    body: 'Hey pepole I would like to maintain hello i like meet new pepole, and share stuff with them'
+    created_at: '2009-11-13 01:16:48'
+  CommentArchive_2613:
+    id: '2613'
+    collection_id: '1214'
+    author_name: digicolleen
+    author_email: digicolleen@yahoo.com
+    subject: ''
+    body: 'What do you collect? Ducks?'
+    created_at: '2009-11-14 04:05:15'
   CommentArchive_2624:
     id: '2624'
     collection_id: '1854'
@@ -1473,6 +1686,14 @@ CommentArchive:
     subject: ''
     body: 'More photos and info about my antique beaded bag here: http://gadaboutmedia.com/becoming-unhinged-over-antique-beaded-purses/'
     created_at: '2009-11-16 00:44:20'
+  CommentArchive_2625:
+    id: '2625'
+    collection_id: '1214'
+    author_name: goatsanonee
+    author_email: streamtvonline@gmail.com
+    subject: ''
+    body: 'What''s up each, I''m redone to the forum and moral wanted to bid hey.'
+    created_at: '2009-11-16 04:27:59'
   CommentArchive_2627:
     id: '2627'
     collection_id: '1854'
@@ -1515,6 +1736,14 @@ CommentArchive:
     subject: ''
     body: 'More on vintage paint by numbers - CQ blog post: http://www.collectorsquest.com/blog/2008/07/07/the-why-of-collecting-paint-by-numbers/'
     created_at: '2009-11-19 18:20:49'
+  CommentArchive_2663:
+    id: '2663'
+    collection_id: '1214'
+    author_name: goatsanonee
+    author_email: julieauerbachx@gmail.com
+    subject: ''
+    body: 'What''s up the unhurt the time at herculean, I''m redone to the forum and unbiased wanted to transfer the data over hey.'
+    created_at: '2009-11-22 06:45:00'
   CommentArchive_2671:
     id: '2671'
     collection_id: '1272'
@@ -1530,6 +1759,14 @@ CommentArchive:
     subject: ''
     body: "I just love this one!\r\nBut i do have it too now, some very good man and friend gave it to me, and i am very happy with it!!!\r\nMerci beaucoup mon ami!!!"
     created_at: '2009-11-26 06:27:32'
+  CommentArchive_2735:
+    id: '2735'
+    collection_id: '1214'
+    author_name: Walaelene
+    author_email: taniadavidson0@gmail.com
+    subject: ''
+    body: 'Hey pepole I would like to up hello i like thrill latest pepole, and note compress with them'
+    created_at: '2009-11-28 13:08:10'
   CommentArchive_2782:
     id: '2782'
     collection_id: '1442'
@@ -1890,6 +2127,14 @@ CommentArchive:
     subject: ''
     body: 'Where do I find the going prices for Hobbies magazines from back in the early 30''s  & up?'
     created_at: '2010-01-07 21:09:27'
+  CommentArchive_3189:
+    id: '3189'
+    collection_id: '1219'
+    author_name: Christine
+    author_email: ''
+    subject: ''
+    body: 'When did you get this? I''ve only seen solid colored ducks at Bath and body works. I love ducks and I want this :D'
+    created_at: '2010-01-09 18:18:49'
   CommentArchive_3204:
     id: '3204'
     collection_id: '1894'
@@ -1905,6 +2150,20 @@ CommentArchive:
     subject: ''
     body: "No,I collect soaps with forms like:flowers soaps,dogs soaps,angels soaps,birds soaps,fish soaps,heart soaps and also figurine soaps like:Mickey Mouse,Davy Crockett,Bart  and Omer Simpsons,Betty Boo and many many more.I have now 1000 soaps in my collection.\r\nI have made this website to present my collection to the world.Go see it.In a few months I will have a blog where I will talk to people about my collection and how to take care of soaps.ect."
     created_at: '2010-01-11 16:39:39'
+  CommentArchive_3209:
+    id: '3209'
+    collection_id: '1219'
+    author_name: DIGICOLLEEN
+    author_email: DIGICOLLEEN@AOL.COM
+    subject: ''
+    body: 'Alot of them are older ducks. Bath and Body works had some metallic ones and some with snowflakes on them recently.'
+    created_at: '2010-01-11 21:23:52'
+  CommentArchive_3218:
+    id: '3218'
+    collection_id: '1028'
+    subject: ''
+    body: ''
+    created_at: '2010-01-12 15:45:43'
   CommentArchive_3225:
     id: '3225'
     collection_id: '1569'
@@ -1934,6 +2193,29 @@ CommentArchive:
     subject: ''
     body: 'I''m looking for a website with appraisal values for dolls from the Sun Rubber Company.  Does anyone know of one?  Thank you SO much :)'
     created_at: '2010-01-14 21:36:20'
+  CommentArchive_3252:
+    id: '3252'
+    collection_id: '1208'
+    author_name: marjon
+    author_email: ''
+    subject: ''
+    body: "thats amazing!\r\ni collect them all...\r\nI"
+    created_at: '2010-01-15 11:22:25'
+  CommentArchive_3254:
+    id: '3254'
+    collection_id: '1208'
+    author_name: digicolleen
+    author_email: ''
+    subject: ''
+    body: 'You have to go to JUSTDUCKS.COM. They have tons of these Bud Ducks!'
+    created_at: '2010-01-15 18:54:19'
+  CommentArchive_3293:
+    id: '3293'
+    collection_id: '260'
+    collector_id: '2031'
+    subject: ''
+    body: 'great collection! keep up the good work'
+    created_at: '2010-01-17 08:24:09'
   CommentArchive_3302:
     id: '3302'
     collection_id: '868'
@@ -2417,6 +2699,15 @@ CommentArchive:
     body: 'i have some verry old soap for sale its probbly 100years old still in box if interested email for pics josh4450@gmail.com'
     ip_address: 71.171.21.16
     created_at: '2010-05-17 02:40:21'
+  CommentArchive_4532:
+    id: '4532'
+    collection_id: '1219'
+    author_name: Jackie
+    author_email: ''
+    author_url: ''
+    body: 'I am amazed! i have a ton on Bath and Body works ducks. Over 30. But I do not have the long necked ones, like the white one and the teal one. I also do not have the vampire. Is there any way to get the ducks I''m missing, (like those) now- because they aren''t selling them in the store anymore, they''ve moved on.'
+    ip_address: 68.37.167.245
+    created_at: '2010-05-19 17:30:18'
   CommentArchive_4573:
     id: '4573'
     collection_id: '847'
@@ -2433,6 +2724,15 @@ CommentArchive:
     body: 'hey I''m looking for an add on a cosmopolitan magazine where my mother was a model in an "elisabeth Arden" ad, is just of her face, she is wearing a pink head scarf with a white one  wraped on top... I think her head is resting on her hands. let me know if you would have it or if you know someone who would.. thank you'
     ip_address: 69.196.64.58
     created_at: '2010-06-10 16:36:27'
+  CommentArchive_4614:
+    id: '4614'
+    collection_id: '1208'
+    author_name: Tiffany
+    author_email: td_disco_diva@hotmail.com
+    author_url: ''
+    body: 'Does anyone know where i can get one of these ducks?'
+    ip_address: 86.162.2.178
+    created_at: '2010-06-18 18:45:03'
   CommentArchive_4672:
     id: '4672'
     collection_id: '1776'
@@ -2501,6 +2801,15 @@ CommentArchive:
     body: 'Man this is great. If you are selling this I would love an email to see a price. Thanks!!'
     ip_address: 76.23.73.42
     created_at: '2010-07-18 20:35:47'
+  CommentArchive_4731:
+    id: '4731'
+    collection_id: '1208'
+    author_name: fishbone
+    author_email: rinat.spam@gmail.com
+    author_url: ''
+    body: 'if anybody''s selling one - please let me know. the only Bud duck I''m missing..'
+    ip_address: 86.144.70.78
+    created_at: '2010-07-19 16:37:45'
   CommentArchive_4747:
     id: '4747'
     collection_id: '1522'
@@ -2536,6 +2845,15 @@ CommentArchive:
     body: 'ill take this for $5'
     ip_address: 99.146.26.95
     created_at: '2010-07-22 15:47:03'
+  CommentArchive_4754:
+    id: '4754'
+    collection_id: '1217'
+    author_name: duckquackfever
+    author_email: ''
+    author_url: ''
+    body: "I started collecting over a year ago and have amassed a pretty large flock so far.\r\nI have to admit at first I was disappointed that so many of the ducks come in small sizes and I prefer the larger ones.\r\nBut, all in all, I love all my little duckies and they can stay here as long as they want to."
+    ip_address: 72.148.34.189
+    created_at: '2010-07-22 21:14:18'
   CommentArchive_4759:
     id: '4759'
     collection_id: '1524'
@@ -2618,6 +2936,24 @@ CommentArchive:
     body: 'Sorry, again, not for sale. This painting also has personal meaning for me. Back in the late 1970s Nestor and I were trying to get a new comic book series going with the character (and her sabertoothed cat) depicted in the painting. Alas, it never happened -- other than the painting.'
     ip_address: 99.167.88.209
     created_at: '2010-07-29 19:27:01'
+  CommentArchive_4800:
+    id: '4800'
+    collection_id: '1207'
+    author_name: Brenda
+    author_email: bc.harlow@verizon.net
+    author_url: ''
+    body: 'Looking for Mrs. Duckbells rubba duck - need for wedding by Aug 21.'
+    ip_address: 141.152.78.153
+    created_at: '2010-07-31 23:03:58'
+  CommentArchive_4817:
+    id: '4817'
+    collection_id: '1216'
+    author_name: Olivia
+    author_email: ''
+    author_url: ''
+    body: 'Oh my, this little ducky is so cute. I don''t know why, but I think this is my favorite of all the Infantino/Garanimals ducks. You have a great collection.'
+    ip_address: 76.101.232.137
+    created_at: '2010-08-03 21:45:33'
   CommentArchive_4884:
     id: '4884'
     collection_id: '767'
@@ -2670,6 +3006,15 @@ CommentArchive:
     body: 'Sorry my Stone Cold collection isn''t for sale. That t-shirt I got from Stone Cold himself. You may check eBay. I''m only looking to sell my Bret Hart stuff.'
     ip_address: 173.31.80.157
     created_at: '2010-08-31 17:42:55'
+  CommentArchive_4992:
+    id: '4992'
+    collection_id: '1220'
+    author_name: me
+    author_email: ''
+    author_url: ''
+    body: OMG!
+    ip_address: 99.164.62.218
+    created_at: '2010-09-03 21:05:46'
   CommentArchive_4999:
     id: '4999'
     collection_id: '1442'
@@ -2775,6 +3120,15 @@ CommentArchive:
     body: 'Part 1.'
     ip_address: 75.80.13.205
     created_at: '2010-09-21 19:28:23'
+  CommentArchive_5112:
+    id: '5112'
+    collection_id: '1095'
+    author_name: 'rowel peco'
+    author_email: rowel8474@yahoo.com
+    author_url: ''
+    body: 'give me some of your collection . i like some of figure thank you,,, rowel'
+    ip_address: 112.201.160.26
+    created_at: '2010-09-24 08:20:18'
   CommentArchive_5128:
     id: '5128'
     collection_id: '1442'
@@ -2876,6 +3230,15 @@ CommentArchive:
     body: 'Part 8'
     ip_address: 75.80.13.205
     created_at: '2010-10-11 15:12:32'
+  CommentArchive_5281:
+    id: '5281'
+    collection_id: '1208'
+    author_name: KOOKOOKASIDY
+    author_email: ''
+    author_url: ''
+    body: 'AWWWWW SOOOOOO cute !!!!!! my old fifth grade teacher used to collect rubber ducks! she had all of them i mean really it was a contest to see who could find a duck she didn''t own. then she would buy it! ohhh...... i don''t think she had this one. I''ll give her a call!'
+    ip_address: 206.192.83.98
+    created_at: '2010-10-12 16:32:26'
   CommentArchive_5284:
     id: '5284'
     collection_id: '767'
@@ -2924,6 +3287,15 @@ CommentArchive:
     body: 'These are created by different artists including paleoartist Shane Foulkes and many more. Dinostoreus Company supposedly has their own stile and that is creating some problem with creation of models because all artists have their own unique and individual artistic stile. At my knowledge company always looking for artists who can create new models with conformity to DinoStoreus models style. Models, wooden bases and all metal parts produced, painted and finished in China and shipped to US for sale.'
     ip_address: 75.80.13.205
     created_at: '2010-10-29 21:22:09'
+  CommentArchive_5487:
+    id: '5487'
+    collection_id: '1220'
+    author_name: Rebecca
+    author_email: beckiekev@concast.net
+    author_url: ''
+    body: 'Where can I get this skeleton?  My twin daughters would like this for their birthday.'
+    ip_address: 67.168.106.184
+    created_at: '2010-11-02 16:50:11'
   CommentArchive_5508:
     id: '5508'
     collection_id: '1144'
@@ -3144,6 +3516,13 @@ CommentArchive:
     body: "Thank you. It is a pleasure for me to hear it from Master collector like yourself. \r\n\r\nMarked on belly as: Bullyland. Made in Germany. Does not have a year it was made.  "
     ip_address: 76.95.129.116
     created_at: '2010-12-30 20:52:15'
+  CommentArchive_5976:
+    id: '5976'
+    collection_id: '1220'
+    collector_id: '1125'
+    body: "That particular skeleton duck is nearly impossible to find because it came out over 5 years ago. However-there are many other skeleton ducks out there:\r\n\r\nhttp://squeakyducks.com/store/xray.html\r\n\r\nThat's one of them. If you want to know where to find others...email me: digicolleen[at]AOL.com."
+    ip_address: 208.120.229.21
+    created_at: '2011-01-05 20:41:54'
   CommentArchive_5978:
     id: '5978'
     collection_id: '1272'
@@ -3206,6 +3585,15 @@ CommentArchive:
     body: 'Holy cow!  Some of those are huge!  Are there bodies attached to those huge Rafiki heads, or are those just pillows? I had no idea they made him so large!  Very cool. Kudos.'
     ip_address: 68.8.184.135
     created_at: '2011-01-13 02:34:05'
+  CommentArchive_6111:
+    id: '6111'
+    collection_id: '1028'
+    author_name: iin
+    author_email: ''
+    author_url: ''
+    body: exciting.......
+    ip_address: 119.252.163.242
+    created_at: '2011-01-19 21:26:42'
   CommentArchive_6153:
     id: '6153'
     collection_id: '1272'
@@ -3601,6 +3989,15 @@ CommentArchive:
     body: "would you sell it????\r\n"
     ip_address: 97.82.19.170
     created_at: '2011-03-21 02:17:21'
+  CommentArchive_6539:
+    id: '6539'
+    collection_id: '1215'
+    author_name: 'julielani Chang'
+    author_email: jlani@pacbell.net
+    author_url: ''
+    body: 'Where can I find 40 of these blue devils ducks ?'
+    ip_address: 68.125.99.116
+    created_at: '2011-03-23 20:27:16'
   CommentArchive_6578:
     id: '6578'
     collection_id: '1272'
@@ -3927,6 +4324,15 @@ CommentArchive:
     body: "I have collected a lot of Dino stuff, but I never did see the snow globes! I would love to get an unobstructed view of Christine's globes behind the Dino snow globes. Did any photos of her get taken without the snow globes in the way?\r\n\r\n"
     ip_address: 68.202.4.126
     created_at: '2011-05-26 21:09:27'
+  CommentArchive_6862:
+    id: '6862'
+    collection_id: '1218'
+    author_name: Anonymous
+    author_email: katti.chatty@hotmail.com
+    author_url: ''
+    body: 'I have to have this duck! Where can I find it?'
+    ip_address: 69.225.93.212
+    created_at: '2011-05-27 01:36:30'
   CommentArchive_6867:
     id: '6867'
     collection_id: '2714'
@@ -3972,6 +4378,33 @@ CommentArchive:
     body: 'My brother had one of these ceramic Anyklosaurus, shown in photo! Does anyone know where I might be able to get one? Thanks for photo and manufacturer name!'
     ip_address: 68.202.4.126
     created_at: '2011-06-06 15:35:12'
+  CommentArchive_7191:
+    id: '7191'
+    collection_id: '1218'
+    author_name: collector550
+    author_email: ''
+    author_url: ''
+    body: "awesome duck!!!\r\ni want one!"
+    ip_address: 98.185.227.201
+    created_at: '2011-06-06 16:30:08'
+  CommentArchive_7193:
+    id: '7193'
+    collection_id: '1218'
+    author_name: collector550
+    author_email: ''
+    author_url: ''
+    body: "where do you get all these cool ducks?!?\r\ni love that collar."
+    ip_address: 98.185.227.201
+    created_at: '2011-06-06 16:35:36'
+  CommentArchive_7194:
+    id: '7194'
+    collection_id: '1218'
+    author_name: collector550
+    author_email: ''
+    author_url: ''
+    body: 'i want one! (i am a ship captain)'
+    ip_address: 98.185.227.201
+    created_at: '2011-06-06 16:38:38'
   CommentArchive_7336:
     id: '7336'
     collection_id: '2724'
@@ -4301,6 +4734,36 @@ CommentArchive:
     body: "thanks !\r\n"
     ip_address: 99.158.47.139
     created_at: '2011-07-27 22:39:08'
+  CommentArchive_12517:
+    id: '12517'
+    collection_id: '1214'
+    author_name: Kaya
+    author_email: redskywalker33@hotmail.com
+    author_url: ''
+    body: "Hello,\r\nI just wanted to know a little about this duck, i found this in my grandmothers things. its the same exact one here, made by Lanco. Are these worth anything, should i let the kids play with him? They want to so bad haha. hopefully i will hear back from you.\r\nthank you for your time.\r\n\r\nKaya"
+    ip_address: 50.41.140.111
+    created_at: '2011-07-28 12:00:55'
+  CommentArchive_12520:
+    id: '12520'
+    collection_id: '1214'
+    collector_id: '1125'
+    body: "Hey Kaya!\r\n\r\nIf it looks exactly like this one (with blue eyes), it can be found pretty easily. I do have another duck that looks like this one with red eyes instead of blue eyes. It was made in the 60's and is more valuable. Actually, Lanco has been producing a lot of ducks here lately. You can see them here:\r\n\r\nhttp://www.duckshop.de/Marken/Lanco/Lanco-Quietscheentchen/\r\n\r\nBut-yeah-the little stand up duck with blue eyes can be found in lots of little gift and souvenir shops these days so it's probably safe to let your kids play with it :) Hope that helps."
+    ip_address: 208.120.229.21
+    created_at: '2011-07-28 14:05:58'
+  CommentArchive_12521:
+    id: '12521'
+    collection_id: '1214'
+    collector_id: '1125'
+    body: "Hey Kaya!\r\n\r\nIf it looks exactly like this one (with blue eyes), it can be found pretty easily. I do have another duck that looks like this one with red eyes instead of blue eyes. It was made in the 60's and is more valuable. Actually, Lanco has been producing a lot of ducks here lately. You can see them here:\r\n\r\nhttp://www.duckshop.de/Marken/Lanco/Lanco-Quietscheentchen/\r\n\r\nBut-yeah-the little stand up duck with blue eyes can be found in lots of little gift and souvenir shops these days so it's probably safe to let your kids play with it :) Hope that helps."
+    ip_address: 208.120.229.21
+    created_at: '2011-07-28 14:06:35'
+  CommentArchive_12522:
+    id: '12522'
+    collection_id: '1214'
+    collector_id: '1125'
+    body: 'Hello everyone. Disregard the comment below. I posted it on the wrong photo and I can''t figure out how to delete it. It has to do with another duckie. Haha.'
+    ip_address: 208.120.229.21
+    created_at: '2011-07-28 14:11:27'
   CommentArchive_12561:
     id: '12561'
     collection_id: '2435'
@@ -4310,6 +4773,22 @@ CommentArchive:
     body: 'Can you give me your top 5 models please ?'
     ip_address: 81.83.178.194
     created_at: '2011-08-02 11:07:10'
+  CommentArchive_12568:
+    id: '12568'
+    collection_id: '1218'
+    author_name: Amelia
+    author_email: ''
+    author_url: ''
+    body: 'hey, can you ask your sister where she got it?'
+    ip_address: 96.42.147.179
+    created_at: '2011-08-02 19:33:04'
+  CommentArchive_12569:
+    id: '12569'
+    collection_id: '1218'
+    collector_id: '1125'
+    body: 'Yes! She got it at Pricehot.com. You can also find this duck and other fruit ducks at Justducks.org. and Duckshop.de. Hope that helps!'
+    ip_address: 208.120.229.21
+    created_at: '2011-08-02 23:36:19'
   CommentArchive_12578:
     id: '12578'
     collection_id: '847'
@@ -4319,6 +4798,22 @@ CommentArchive:
     body: 'Selling 2 CED players both in working condition. and 500+ titles including classics (godfather,casablanca,the warriors,etc.) looking for best offer.'
     ip_address: 24.36.111.227
     created_at: '2011-08-03 21:05:52'
+  CommentArchive_12588:
+    id: '12588'
+    collection_id: '1218'
+    author_name: Amelia
+    author_email: ''
+    author_url: ''
+    body: "Amelia again\r\n  well, i had trouble with both, justducks.org had no search bar and i looked through everything, and duckshop.de. was a problem because i think it was in German and i don't speak German."
+    ip_address: 96.42.147.179
+    created_at: '2011-08-04 14:13:34'
+  CommentArchive_12610:
+    id: '12610'
+    collection_id: '1218'
+    collector_id: '1125'
+    body: 'Wow! I went back to try and find that duck. It was on both websites at one time, but I guess they no longer have them! Pricehot.com has them....except the strawberry one is out of stock! It may be a little hard to find because it came out in 2007. Pricehot may get more in stock....maybe write them and ask if they will restock it. The company that makes the duck is called "Fuz Ducks." I wish I could be of more help!'
+    ip_address: 208.120.229.21
+    created_at: '2011-08-06 14:57:48'
   CommentArchive_12654:
     id: '12654'
     collection_id: '2751'
@@ -4389,6 +4884,29 @@ CommentArchive:
     body: '*Trade options are very simple. Please, take a look at my Prehistoric Mammals Collection and if you have a Mammal animal that not pictured in my collection, then I am interested in it. Let’s trade. Thanks. '
     ip_address: 68.15.13.131
     created_at: '2011-08-09 21:57:21'
+  CommentArchive_12664:
+    id: '12664'
+    collection_id: '1218'
+    collector_id: '1125'
+    body: "Amelia! Duckshop is going to have a duck that looks very similar to the strawberry one coming out in Sept. Here is a picture:\r\n\r\nhttps://www.facebook.com/media/set/?set=a.10150340211535086.395915.301488705085&amp;type=1\r\n\r\nIt's not as hard as you think to navigate it eventhough it's in German. I order ducks from there quite often and I don't know a word of German :)"
+    ip_address: 208.120.229.21
+    created_at: '2011-08-10 14:10:02'
+  CommentArchive_12682:
+    id: '12682'
+    collection_id: '1218'
+    author_name: Amelia
+    author_email: ''
+    author_url: ''
+    body: 'well, its me Amelia (again) the ducks do look cute but i also want the fuz duck one. thanks for your help!!'
+    ip_address: 96.42.147.179
+    created_at: '2011-08-12 16:35:42'
+  CommentArchive_12683:
+    id: '12683'
+    collection_id: '1218'
+    collector_id: '1125'
+    body: 'I''ll keep an eye out for the Strawberry Fuz Duck. If I come across one, I''ll let you know!'
+    ip_address: 208.120.229.21
+    created_at: '2011-08-12 21:00:21'
   CommentArchive_12704:
     id: '12704'
     collection_id: '2595'
@@ -4479,6 +4997,15 @@ CommentArchive:
     body: 'Black Howler Monkee'
     ip_address: 217.121.186.82
     created_at: '2011-08-27 19:58:27'
+  CommentArchive_12840:
+    id: '12840'
+    collection_id: '1218'
+    author_name: Amelia
+    author_email: ''
+    author_url: ''
+    body: 'again, me, and thank you for your help'
+    ip_address: 96.42.147.179
+    created_at: '2011-08-28 12:22:08'
   CommentArchive_12872:
     id: '12872'
     collection_id: '2596'
@@ -4639,6 +5166,22 @@ CommentArchive:
     body: 'All collectables here are for trade. PM for more if you interested. Thank you.'
     ip_address: 67.49.28.27
     created_at: '2011-09-08 23:26:54'
+  CommentArchive_12965:
+    id: '12965'
+    collection_id: '1208'
+    author_name: Maggie
+    author_email: ''
+    author_url: ''
+    body: 'I love rubber ducks! My parents don''t understand I am turning 12 so maybe in my job somedfay I wil collect rubber ducks! How should I tell my parents? Sometimes I get the little ones in grocdery store machines... haha! :)'
+    ip_address: 216.195.7.206
+    created_at: '2011-09-10 10:10:36'
+  CommentArchive_12972:
+    id: '12972'
+    collection_id: '1208'
+    collector_id: '1125'
+    body: "Maggie, if you go to Duckplanet.com you will see people of all ages collect ducks. It is a website for people who collect ducks. Everyone pretty much collects something....shoes, stamps, music, snowglobes, etc. Why not ducks? After all, there are some that are highly collectable and worth lots of money...like the old vintage ducks. Also check out this video of the world record holder of rubber duck collectors:\r\n\r\nhttp://www.youtube.com/watch?v=wqUYCB4Pjj8\r\n\r\nPretty cool, huh?"
+    ip_address: 76.15.161.179
+    created_at: '2011-09-11 18:27:31'
   CommentArchive_12983:
     id: '12983'
     collection_id: '2725'
@@ -4943,6 +5486,22 @@ CommentArchive:
     body: 'Yeah, for 2 years this collection was on display here and no one cared about it but suddenly we have a masses lining up to see a cookie jars…….“ Rebecca Black” on friday '
     ip_address: 76.95.66.37
     created_at: '2011-12-15 13:11:54'
+  CommentArchive_13812:
+    id: '13812'
+    collection_id: '1218'
+    author_name: Kellyp
+    author_email: cinnamon029@gmail.com
+    author_url: ''
+    body: 'I''m looking to find how much this duck is worth?? I have one to sell. I can''t find a price on him any where. Would you email me and let me know. Thanks.----kellyp'
+    ip_address: 107.38.208.26
+    created_at: '2011-12-18 03:27:49'
+  CommentArchive_13819:
+    id: '13819'
+    collection_id: '1218'
+    collector_id: '1125'
+    body: 'Your best bet would be to put the Southwest Airline duck on Ebay so people can bid on it. I''ve seen quite a few of them around, but they are still not the easiest of ducks to find. It could go from $5 and up. Hope that helps.'
+    ip_address: 208.120.229.199
+    created_at: '2011-12-18 14:54:25'
   CommentArchive_13845:
     id: '13845'
     collection_id: '2996'
@@ -4957,6 +5516,27 @@ CommentArchive:
     body: 'I have a Simba koosh like that one too, it''s so cute! I''m ''hunting'' for the other ones as well, but they were never sold here in the Netherlands so thank you ebay! Hopefully i''ll find them on ebay one day and have the money to spend at the same time. ;-)'
     ip_address: 82.170.228.209
     created_at: '2011-12-20 12:50:38'
+  CommentArchive_13847:
+    id: '13847'
+    collection_id: '3012'
+    collector_id: '9051'
+    body: 'Aww... so cute! I have the Kovu and Kiara variety of these plushies. :-)'
+    ip_address: 82.170.228.209
+    created_at: '2011-12-20 12:51:56'
+  CommentArchive_13849:
+    id: '13849'
+    collection_id: '3012'
+    collector_id: '9051'
+    body: 'I''m still hunting for this plushie as well. Originally it came as a set with Kovu and Nuka. Sometimes i''ll find them on ebay but the sellers ask really high prices for them unfortunately. :-( It''s the only Nuka and Vitani merchandise i''ve ever found online.'
+    ip_address: 82.170.228.209
+    created_at: '2011-12-20 12:54:58'
+  CommentArchive_13850:
+    id: '13850'
+    collection_id: '3012'
+    collector_id: '5497'
+    body: 'thanks. and really ? i love kovu and kiara. i hope to own them one day. i will add some more to my lion king collection later.'
+    ip_address: 76.202.17.227
+    created_at: '2011-12-20 12:56:33'
   CommentArchive_13901:
     id: '13901'
     collection_id: '2996'
@@ -4964,6 +5544,15 @@ CommentArchive:
     body: 'nice collection =]'
     ip_address: 96.246.228.89
     created_at: '2011-12-23 16:50:00'
+  CommentArchive_13910:
+    id: '13910'
+    collection_id: '3012'
+    author_name: Anonymous
+    author_email: ''
+    author_url: ''
+    body: ' I was being stupid! I gave this exact toy to the poor kids! Heck? I''m mad! '
+    ip_address: 24.238.43.147
+    created_at: '2011-12-24 17:44:32'
   CommentArchive_13920:
     id: '13920'
     collection_id: '905'
@@ -4980,6 +5569,13 @@ CommentArchive:
     body: 'By collecting all 23 pieces of INVICTA (British Museum of Natural History) prehistoric animal’s collection, I am hereby joining my fellow collectors’ club of full line of Invicta models owners. Thank you for looking.'
     ip_address: 67.49.28.26
     created_at: '2011-12-27 19:54:56'
+  CommentArchive_13952:
+    id: '13952'
+    collection_id: '3012'
+    collector_id: '5497'
+    body: 'i''m so sorry . maybe walmart will still have them and you can buy them.'
+    ip_address: 99.171.161.126
+    created_at: '2011-12-29 11:07:08'
   CommentArchive_13953:
     id: '13953'
     collection_id: '2996'
@@ -4987,6 +5583,15 @@ CommentArchive:
     body: 'aww. thanks. still growing.'
     ip_address: 99.171.161.126
     created_at: '2011-12-29 11:09:44'
+  CommentArchive_14082:
+    id: '14082'
+    collection_id: '1208'
+    author_name: 'Jennifer everitt'
+    author_email: Jleveritt@bell.net
+    author_url: ''
+    body: 'I have the Bud Luxury Duck if anyones looking for one!'
+    ip_address: 70.52.152.178
+    created_at: '2012-01-17 09:01:45'
   CommentArchive_14147:
     id: '14147'
     collection_id: '685'
@@ -5023,6 +5628,15 @@ CommentArchive:
     body: 'I have the same cutie, minus the ribbon.  After spending all afternoon checking out similar "toys", I sure would ask more then $30.00.  You can start high $ and always come down:)'
     ip_address: 75.200.153.25
     created_at: '2012-01-28 15:25:33'
+  CommentArchive_14213:
+    id: '14213'
+    collection_id: '1214'
+    author_name: Sakareya
+    author_email: suerek@lv-hungarolingua.de
+    author_url: 'http://www.facebook.com/profile.php?id=100003405401082'
+    body: 'Gems form the inenrtet&#8230;[...]very few websites that happen to be detailed below, from our point of view are undoubtedly well worth checking out[...]…&#8230;'
+    ip_address: 184.72.8.139
+    created_at: '2012-02-02 10:16:14'
   CommentArchive_14222:
     id: '14222'
     collection_id: '3101'
@@ -5048,6 +5662,46 @@ CommentArchive:
     body: "\r\nI purchased 2 cartons of molasses with a Grandma Melasse Recettes Favorites as a promotional gift at Costco. Unfortunately I only speak English, and I am very much interested in trying these recepes. If you have an English copy of this favorite recipes booklet, I would appreciate you sending that to me, or if you can tell me where to find it.  Thanking you,\r\nLaurine Branker"
     ip_address: 76.68.174.195
     created_at: '2012-02-06 14:32:48'
+  CommentArchive_14367:
+    id: '14367'
+    collection_id: '3012'
+    collector_id: '8912'
+    body: 'I have the Nuka that matches! No Kovu or Vitani though :( I''d love to have the Vitani considering she''s the only one available at all'
+    ip_address: 82.9.208.122
+    created_at: '2012-02-23 18:12:26'
+  CommentArchive_14386:
+    id: '14386'
+    collection_id: '521'
+    collectible_id: '14925'
+    collector_id: '9601'
+    body: "I never understood why everyone says this one is so rare? :o\r\nI see it on Ebay just as frequently as I see for example the sitting Applause Simba. (The one you described as shiny) I love it though. And I always follow Ebay to get my own. "
+    ip_address: 85.164.126.4
+    created_at: '2012-02-26 04:09:17'
+  CommentArchive_14406:
+    id: '14406'
+    collection_id: '1216'
+    author_name: courtney
+    author_email: just.me.1985@live.ca
+    author_url: ''
+    body: 'i love all of these ducks, and i want to add them to my daughters collection. where can i get them at?'
+    ip_address: 142.227.100.15
+    created_at: '2012-02-28 12:42:34'
+  CommentArchive_14407:
+    id: '14407'
+    collection_id: '1216'
+    collector_id: '1125'
+    body: 'You can get these ducks at Walmart for a buck each. Spring is a good time to find rubber ducks in most stores, as a matter of fact. Easter is duckie season :)'
+    ip_address: 76.15.161.21
+    created_at: '2012-02-28 15:12:08'
+  CommentArchive_14411:
+    id: '14411'
+    collection_id: '1028'
+    author_name: Lynn
+    author_email: Lynnk2353@gmail.com
+    author_url: ''
+    body: 'HOW MUCH FOR MENS AND WOMANS SET:  tRINITY KNOT WEDDING RING: DIAMOND COMFORT'
+    ip_address: 173.242.85.54
+    created_at: '2012-02-29 19:11:58'
   CommentArchive_14464:
     id: '14464'
     collection_id: '1736'
@@ -5212,3 +5866,145 @@ CommentArchive:
     body: "http://www.newestjerseys.com/giants-10-eli-manning-blue-super-bowl-xlvi-with-c-patch-stitched-blue-nfl-jersey-p-6444.html\r\nhttp://www.newestjerseys.com/cheap-buy-green-bay-packers-12-aaron-rodgers-super-bowl-xlv-bound-green-team-color-nfl-jersey-p-5388.html\r\nhttp://www.buy-jerseys.us/\r\nhttp://www.cheapjerseysstar.com/\r\n\r\n\r\ncheap mlb jerseys,buy Jerseys,cheap jerseys,wholesale jerseys,Discount jerseys, www.buycheapjerseys.us\r\nCheap MLB Jerseys,Buy Jerseys,Cheap NFL Jerseys,Wholesale Jerseys,www.buycheapjerseys.us\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\nAs a cheap jerseys star we suppy the sports jerseys for US and CA since 2009, we havea a fantastic reputation in cheap jerseys star online, we offer NFL NBA NHL MLB jerseys for all the sports fans. \r\nhttp://www.newestjerseys.com/ \r\nhttp://www.cheapjerseysstar.com\r\n"
     ip_address: 184.22.252.51
     created_at: '2012-03-23 12:25:13'
+  CommentArchive_14720:
+    id: '14720'
+    collection_id: '180'
+    collector_id: '9601'
+    body: "<strong>jewelry outlet</strong><br />\n<strong>Pandora</strong><br />\n<strong>Pandora Jewelry</strong><br />\n<strong>cheap Pandora Jewelry</strong><br />\n<strong>buy Pandora Jewelry</strong><br />\n"
+    ip_address: 60.169.78.19
+    created_at: '2012-04-09 18:24:33'
+  CommentArchive_14736:
+    id: '14736'
+    collection_id: '1707'
+    collectible_id: '28894'
+    author_name: Lat
+    author_email: ''
+    author_url: ''
+    body: 'Lateralus album'
+    ip_address: 99.146.24.241
+    created_at: '2012-04-10 20:36:54'
+  CommentArchive_14740:
+    id: '14740'
+    collection_id: '1208'
+    author_name: bogdan
+    author_email: bogdan@violet.ro
+    author_url: ''
+    body: 'i want to buy the Luxury Duck (aka LV Duck) please contact me at bogdan@violet.ro'
+    ip_address: 10.0.0.109
+    created_at: '2012-04-11 03:11:18'
+  CommentArchive_14745:
+    id: '14745'
+    collection_id: '3048'
+    collectible_id: '66251'
+    collector_id: '9937'
+    body: 'WOW!!!! To have a collection like that is my life long ambition. I only have over 60 items in my collection'
+    ip_address: 86.140.103.91
+    created_at: '2012-04-11 14:04:38'
+  CommentArchive_14747:
+    id: '14747'
+    collection_id: '478'
+    collectible_id: '7116'
+    collector_id: '9601'
+    body: "<strong>roll forming machine</strong><br />\n<strong>forming machine</strong><br />\n<strong>pipe welding line</strong><br />\n<strong>cut to length line</strong><br />\n<strong>slitting line</strong><br />\n"
+    ip_address: 222.186.24.92
+    created_at: '2012-04-11 16:42:45'
+  CommentArchive_14750:
+    id: '14750'
+    collection_id: '55'
+    collectible_id: '4048'
+    author_name: 'Justin campbell'
+    author_email: justin_19082003@yahoo.com
+    author_url: ''
+    body: 'i''m looking to buy a thrasher Trex .'
+    ip_address: 69.245.214.68
+    created_at: '2012-04-11 23:42:13'
+  CommentArchive_14775:
+    id: '14775'
+    collection_id: '478'
+    collectible_id: '7116'
+    collector_id: '9601'
+    body: '<strong>ugg</strong><br /><strong>ugg boots</strong><strong>ugg boots outlet</strong><br /><strong>ugg outlet</strong><br /><strong>uggs</strong><strong>cheap ugg adirondack tall boots</strong><strong>cheap ugg bailey button triplet boots</strong><strong>men ugg boots sale</strong><br /><strong>ugg corinth boots</strong><strong>discount ugg slippers</strong>'
+    ip_address: 222.186.24.92
+    created_at: '2012-04-16 08:40:40'
+  CommentArchive_14776:
+    id: '14776'
+    collection_id: '2410'
+    author_name: Anonymous
+    author_email: ''
+    author_url: ''
+    body: 'Can i have your prehistoric and extinct mammal toy collection. '
+    ip_address: 77.86.121.81
+    created_at: '2012-04-16 15:22:49'
+  CommentArchive_14777:
+    id: '14777'
+    collection_id: '2410'
+    author_name: Sonya
+    author_email: ''
+    author_url: ''
+    body: '…and what R U going to do with it? Put it in box and keep it under bed? At least she is nice enough to share with all of us here…'
+    ip_address: 24.165.91.67
+    created_at: '2012-04-16 17:07:58'
+  CommentArchive_14791:
+    id: '14791'
+    collection_id: '2410'
+    author_name: Anonymous
+    author_email: ''
+    author_url: ''
+    body: 'Can i have your prehistoric and extinct mammal toy collection. '
+    ip_address: 24.165.91.67
+    created_at: '2012-04-17 13:35:06'
+  CommentArchive_14792:
+    id: '14792'
+    collection_id: '2410'
+    author_name: Anonymous
+    author_email: ''
+    author_url: ''
+    body: 'Can i have your prehistoric and extinct mammal toy collection. '
+    ip_address: 24.165.91.67
+    created_at: '2012-04-17 13:35:23'
+  CommentArchive_14793:
+    id: '14793'
+    collection_id: '2410'
+    author_name: Anonymous
+    author_email: ''
+    author_url: ''
+    body: 'Can i have your prehistoric and extinct mammal toy collection. '
+    ip_address: 24.165.91.67
+    created_at: '2012-04-17 13:35:36'
+  CommentArchive_14809:
+    id: '14809'
+    collection_id: '1323'
+    author_name: 'Lucy Sparacio'
+    author_email: fluffylu@verizon.net
+    author_url: ''
+    body: 'Would like to sell some old toasters dating back to early 1900''s.  Please contact me.'
+    ip_address: 173.72.115.224
+    created_at: '2012-04-19 14:27:31'
+  CommentArchive_14810:
+    id: '14810'
+    collection_id: '1323'
+    author_name: 'Lucy Sparacio'
+    author_email: fluffylu@verizon.net
+    author_url: ''
+    body: 'Would like to sell some old toasters dating back to early 1900''s.  Please contact me.'
+    ip_address: 173.72.115.224
+    created_at: '2012-04-19 14:27:31'
+  CommentArchive_14811:
+    id: '14811'
+    collection_id: '1323'
+    author_name: 'Lucy Sparacio'
+    author_email: fluffylu@verizon.net
+    author_url: ''
+    body: 'Would like to sell some old toasters dating back to early 1900''s.  Please contact me.'
+    ip_address: 173.72.115.224
+    created_at: '2012-04-19 14:27:31'
+  CommentArchive_14829:
+    id: '14829'
+    collection_id: '424'
+    collectible_id: '6201'
+    author_name: ViTjelvemette
+    author_email: ''
+    author_url: 'http://www.hats4sale2012.com/'
+    body: 'Christian Louboutin red sole shoes just about develop into one of the most widely used single item of this year,Just about each party and awards sceremony, some celebrities will pick out them to walk through the Red Carpet.<br />which makes Christian Louboutin one of the fashion icons,Christian Louboutin is known as a native of parisians, he liked to design a number of shoes drawings from childhood and he began to practice for Charles Jourdan in 1970`s,Just after operating for Chanel and Yves Saint Laurent for 10 years! Christian Louboutin began his personal career by opening the initial shop with his personal name in Paris in 1991,In 1992! he catched the red nail enamel his assitant was using and paint the sole on the draft in red,As a result, Christian Louboutin came into getting,He soon applied for a patent for the red sole shoes,Christian Louboutin mentioned! "the fiery red is developed to tell people that this pair of shoes are my work,The ladies with these shoes can catch extra sights from guys." Not long soon after the initial store opened in Pairs! Caroline. the princess of Morocco. fell in really like with these red sole shoes,Then. a heat wave from the red-soled shoes was set off in Hollywood. it going through 18 years but still survived,There happen to be also low tides in Christian Louboutin''s style career.In 2003! he got inspiration when in journey and developed a series of bags.But they do not sell great right after becoming introduced for the marketplace.Obviously, he doesn''t be concerned at all!Christian Louboutin when mentioned. "It''s my biggest habit to try new design! and success or not is not important, I just enjoy the fun of it." Louboutin says the key to his success in designing shoes is that to combine the comfortable shoebody plus the sexy shape with each other perfectly,"Much of my inspiration originates from the feelings of my life; I am not applied towards the fast pace of urban life,For those who slow down your pace, life will take you by surprise."'
+    ip_address: 59.58.137.40
+    created_at: '2012-04-20 04:49:53'
