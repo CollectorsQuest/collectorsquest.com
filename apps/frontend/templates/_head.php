@@ -18,7 +18,7 @@
   <link rel="icon" type="image/png" href="<?php echo cq_image_src('frontend/favicon.png', true); ?>"/>
 
   <script>
-    window.cq= {
+    window.cq = {
       ENV: '<?= sfConfig::get('sf_environment') ?>',
       authenticated: <?= $sf_user->isAuthenticated() ? 'true' : 'false'; ?>,
       page_load_start: new Date(),
@@ -31,3 +31,6 @@
     var docready=[],$=function(){return{ready:function(fn){docready.push(fn)}}};
   </script>
   <script src="<?= cq_javascript_src('frontend/head.js'); ?>"></script>
+
+  <!-- A&E Networks javascript code (tracking, analytics, etc) //-->
+  <script src="//nexus.ensighten.com/aetn/Bootstrap.js"></script>

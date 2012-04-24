@@ -5,8 +5,8 @@
 
 <div id="spotlight-sidebar">
   <div class="spotlight-inner">
-    <div class="thumbnails-inner">
-      <ul class="thumbnails cf">
+    <div class="thumbnails-inner cf">
+      <ul class="thumbnails">
         <li class="span2">
           <a href="#" class="thumbnail">
             <img src="http://placehold.it/54x54" alt="">
@@ -54,8 +54,8 @@
 
 <div id="spotlight-sidebar">
   <div class="spotlight-inner">
-    <div class="thumbnails-inner">
-      <ul class="thumbnails cf">
+    <div class="thumbnails-inner cf">
+      <ul class="thumbnails">
         <li class="span2">
           <a href="#" class="thumbnail">
             <img src="http://placehold.it/54x54" alt="">

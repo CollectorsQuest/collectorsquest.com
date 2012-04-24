@@ -1,1 +1,1 @@
-<? cq_page_title('American Pickers'); ?>
+<?php cq_page_title('American Pickers'); ?>
