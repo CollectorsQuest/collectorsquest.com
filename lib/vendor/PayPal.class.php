@@ -69,7 +69,7 @@ class PayPal
     $this->APIMode = isset($DataArray['APIMode']) ? $DataArray['APIMode'] : 'Signature';
     $this->APIButtonSource = 'AngellEYE_PHPClass';
     $this->PathToCertKeyPEM = __DIR__ .'/../../config/secure/paypal.pem';
-    $this->SSL = $_SERVER['SERVER_PORT'] == '443' ? true : false;
+    $this->SSL = isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == '443' ? true : false;
     $this->APISubject = isset($DataArray['APISubject']) ? $DataArray['APISubject'] : '';
 
     if ($this->Sandbox || $this->BetaSandbox) {
