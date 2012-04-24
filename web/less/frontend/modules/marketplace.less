@@ -89,10 +89,11 @@
 	}
 	.span2 {
 		.square(54px);
-		margin: 5px 0 7px 4px;
+		margin: 5px 0 4px 4px;
 	}
 	.thumbnails {
 		margin-left: 2px;
+		margin-bottom: 5px;
 
 		a {
 		.box-shadow(none);
@@ -101,16 +102,20 @@
 			background-color: white;
 			border: 1px solid @blue;
 			.border-radius(0);
+
 		}
 		}
 	}
 	.thumbnail {
-		padding: 2px;
 		border: none;
-		.border-radius(7px);
+		padding: 0;
+		&:hover img {
+			max-width: 48px;
+			max-height: 46px;
+		}
 	}
 	.seller {
-		margin: 0 8px 7px 8px;
+		margin: 8px 8px 7px 8px;
 
 		p {
 			margin: 2px 0;
