@@ -24,8 +24,6 @@
   }(jQuery, this, this.document));
 </script>
 
-  <!-- WP Footer //-->
-
 <?php
   // Include the cqcdns.com javascript files
   ice_include_javascripts();

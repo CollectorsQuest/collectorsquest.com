@@ -107,6 +107,8 @@
     }
   ?>
 
+  <!-- Blog Footer //-->
+
   <?php
     cqStats::timing(
       'collectorsquest.modules.'. $sf_context->getModuleName() .'.'. $sf_context->getActionName(),

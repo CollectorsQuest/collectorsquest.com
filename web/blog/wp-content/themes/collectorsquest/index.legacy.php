@@ -118,7 +118,7 @@
 
 <?php
   ob_start();
-  get_sidebar();
+  get_sidebar('legacy');
   $sidebar = ob_get_clean();
 ?>
 
@@ -141,9 +141,6 @@
       break;
     case 'stg':
       $domain = 'cqstaging.com';
-      break;
-    case 'next':
-      $domain = 'cqnext.com';
       break;
     case 'prod':
     default:

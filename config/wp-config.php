@@ -4,13 +4,17 @@ if (defined('DB_NAME') && defined('DB_USER') && defined('DB_PASSWORD')) {
   return;
 }
 
-if (!defined('SF_ENV') && $_SERVER['HTTP_HOST'] == 'www.collectorsquest.dev')
+if (!defined('SF_ENV') && ($_SERVER['HTTP_HOST'] == 'www.collectorsquest.dev' || $_SERVER['HTTP_HOST'] == 'www.collectorsquest.next'))
 {
   define('SF_ENV', 'dev');
 }
-else if (!defined('SF_ENV') && $_SERVER['HTTP_HOST'] == 'www.collectorsquest.stg')
+else if (!defined('SF_ENV') && $_SERVER['HTTP_HOST'] == 'www.cqstaging.com')
 {
-  define('SF_ENV', 'staging');
+  define('SF_ENV', 'stg');
+}
+else if (!defined('SF_ENV') && $_SERVER['HTTP_HOST'] == 'www.cqnext.com')
+{
+  define('SF_ENV', 'next');
 }
 else if (!defined('SF_ENV'))
 {
