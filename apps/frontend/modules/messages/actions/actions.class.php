@@ -102,6 +102,15 @@ class messagesActions extends cqFrontendActions
 
         $message = PrivateMessagePeer::send($receiver, $sender, $message_data);
 
+        $cqEmail = new cqEmail($this->getMailer());
+        $sent = $cqEmail->send('Messages/private_message_notification', array(
+            'to' => $receiver->getEmail(),
+            'params' => array(
+              'sender' => $sender,
+              'receiver' => $receiver,
+            ),
+        ));
+
         $this->redirect('messages_show', $message);
       }
       else
@@ -127,17 +136,17 @@ class messagesActions extends cqFrontendActions
       ->filterByPrimaryKeys($request->getParameter('ids'))
       ->filterByCollectorRelatedByReceiver($this->getCollector());
 
-    if (isset($action['mark_as_read']))
-    {
-      $q->update(array('IsRead' => true));
-    }
-
     if (isset($action['mark_as_unread']))
     {
       $q->update(array('IsRead' => false));
     }
 
-    if (isset($action['delete']))
+    else if (isset($action['mark_as_read']))
+    {
+      $q->update(array('IsRead' => true));
+    }
+
+    else if (isset($action['delete']))
     {
       $q->update(array('IsDeleted' => true));
     }
