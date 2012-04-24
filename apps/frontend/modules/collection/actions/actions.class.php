@@ -110,4 +110,8 @@ class collectionActions extends cqFrontendActions
     return sfView::SUCCESS;
   }
 
+  public function executeCreate()
+  {
+    return sfView::SUCCESS;
+  }
 }

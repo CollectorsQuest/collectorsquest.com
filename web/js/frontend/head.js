@@ -38,13 +38,17 @@ WebFontConfig = {
     // we need to manually display each font as it is loaded
     switch(fontFamily) {
       case 'Chivo':
-        $('.Chivo').css('visibility', 'visible');
+        $(document).ready(function() {
+          $('.Chivo').css('visibility', 'visible');
+        });
         break;
     }
   },
   inactive: function() {
     // none of our fonts managed to load, so simply display as is
-    $('.webfont').css('visibility', 'visible');
+    $(document).ready(function() {
+      $('.webfont').css('visibility', 'visible');
+    });
   }
 
 };
@@ -58,7 +62,9 @@ Modernizr.load({
       // if loading of google web font library failed
       if (!window.WebFont) {
         // make the elements styled with web font visible anyways
-        $('.webfont').css('visibility', 'visible');
+        $(document).ready(function() {
+          $('.webfont').css('visibility', 'visible');
+        });
       }
     };
 

@@ -2,8 +2,9 @@
 
 <br/>
 <i class="icon-exclamation-sign" style="float: left; font-size: 46px; margin-right: 10px; color: #DF912F;"></i>
-We're sorry, but your search returned no relevant results!
-Try your search again using less words and/or remove any numbers you might have in there.
+Sorry! We can't find anything that matches your search.
+Try a broader search, or browse around for other neat stuff.
+(Or you can <?= link_to('upload something new', '@collection_create'); ?> to the site!)
 
 <div class="row-fluid" style="margin-top: 50px;">
   <div class="span4 thumbnail link">
