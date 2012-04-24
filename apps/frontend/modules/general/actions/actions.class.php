@@ -156,7 +156,7 @@ class generalActions extends cqFrontendActions
     $this->getUser()->setFlash('success',
       $this->__('You have successfully signed out of your account'));
 
-    $url = $request->getParameter('goto', $this->getRequest()->getReferer());
+    $url = $request->getParameter('goto');
 
     /**
      * Handling errors where the $_GET['goto'] is double urlencoded()
