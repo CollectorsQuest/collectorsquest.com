@@ -65,7 +65,11 @@ class ComposePrivateMessageForm extends PrivateMessageForm
   protected function setupThreadField()
   {
     $this->widgetSchema['thread'] = new sfWidgetFormInputHidden();
-    $this->validatorSchema['thread'] = new sfValidatorPass();
+    $this->validatorSchema['thread'] = new sfValidatorPropelChoice(array(
+        'required' => false,
+        'model'    => 'PrivateMessage',
+        'column'   => 'thread',
+    ));
   }
 
   protected function updateDefaultsFromObject()
