@@ -60,7 +60,7 @@
           <li class="<?= $class ?>"><?= link_to('Collections', 'collections/index'); ?></li>
 
           <?php $class = in_array($sf_params->get('module'), array('news', '_blog')) ? 'active' : null; ?>
-          <li class="<?= $class ?>"><?= link_to('News', 'news/index'); ?></li>
+          <li class="<?= $class ?>"><?= link_to('Blog', 'blog/index'); ?></li>
 
           <?php $class = in_array($sf_params->get('module'), array('video', '_magnify')) ? 'active' : null; ?>
           <li class="<?= $class ?>"><?= link_to('Video', 'video/index'); ?></li>
