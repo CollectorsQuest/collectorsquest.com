@@ -73,7 +73,7 @@ class messagesActions extends cqFrontendActions
 
     $this->messages = $messages;
     $this->reply_form = new ComposePrivateMessageForm(
-      $this->getCollector(), $message->getThread()
+      $this->getCollector(), $this->getUser(), $message->getThread()
     );
     $this->reply_form->setDefault('subject', $messages->getLast()->getReplySubject());
 
@@ -82,7 +82,7 @@ class messagesActions extends cqFrontendActions
 
   public function executeCompose(sfWebRequest $request)
   {
-    $form = new ComposePrivateMessageForm($sender = $this->getCollector());
+    $form = new ComposePrivateMessageForm($sender = $this->getCollector(), $this->getUser());
     $form->setDefault('receiver', $request->getParameter('to'));
     $form->setDefault('subject', $request->getParameter('subject'));
 
@@ -92,15 +92,7 @@ class messagesActions extends cqFrontendActions
 
       if ($form->isValid())
       {
-        $message_data = array(
-            'subject' => $form->getValue('subject'),
-            'body' => $form->getValue('body'),
-            'thread' => $form->getValue('thread'),
-        );
-        /* @var Collector */
-        $receiver = $form->getValue('receiver');
-
-        $message = PrivateMessagePeer::send($receiver, $sender, $message_data);
+        $form->save();
 
         $cqEmail = new cqEmail($this->getMailer());
         $sent = $cqEmail->send('Messages/private_message_notification', array(
@@ -111,7 +103,7 @@ class messagesActions extends cqFrontendActions
             ),
         ));
 
-        $this->redirect('messages_show', $message);
+        $this->redirect('messages_show', $form->getObject());
       }
       else
       {

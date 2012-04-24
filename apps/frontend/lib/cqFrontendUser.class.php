@@ -3,6 +3,8 @@
 class cqFrontendUser extends cqBaseUser
 {
 
+  const PRIVATE_MESSAGES_SENT_COUNT_KEY = 'private_messages_sent_count';
+
   /**
    * @return    Collector
    */
