@@ -17,7 +17,7 @@ jQuery(document).ready(function($) {
     // Insert the "More Posts" link.
     $('#blog-contents')
       .append('<div class="cq-placeholder-'+ pageNum +'"></div>')
-      .append('<p id="cq-load-posts"><a href="#">Load More Posts</a></p>');
+      .append('<p id="cq-load-posts"><a href="#" class="btn btn-small gray-button see-more-full">See more</a></p>');
 
     // Remove the traditional navigation.
     $('.navigation').remove();
@@ -47,7 +47,7 @@ jQuery(document).ready(function($) {
 
           // Update the button message.
           if(pageNum <= max) {
-            $('#cq-load-posts a').text('Load More Posts');
+            $('#cq-load-posts a').text('See More');
           } else {
             $('#cq-load-posts a').text('No more posts to load.');
           }
