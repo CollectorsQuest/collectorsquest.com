@@ -191,8 +191,6 @@ class messagesActions extends cqActions
       }
       else
       {
-        $pks = $post['receiver'];
-
         // Set the error message
         $this->getUser()->setFlash(
           "error", $this->__("There is a problem with sending your message.")
