@@ -1,1 +1,1 @@
-<? cq_page_title('History'); ?>
+<?php cq_page_title('History'); ?>
