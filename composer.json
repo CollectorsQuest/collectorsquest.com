@@ -76,7 +76,7 @@
                 "name": "lib/vendor/magnify",
                 "version": "1.0-RC5",
                 "source": {
-                    "url": "git://github.com/zecho/magnify-sdk.git",
+                    "url": "git://github.com/CollectorsQuest/magnify-sdk.git",
                     "type": "git",
                     "reference": "122399d5a03131fba3cc5d994004522c8fc9359a"
                 }
