@@ -225,12 +225,26 @@ ob_start();
 
   <img src="/images/iab/300x250.gif">
 
-  <h3>Tags</h3>
+  <div class="row-fluid sidebar-title">
+    <div class="span8">
+      <h3 class="Chivo webfont" style="visibility: visible;">Tags</h3>
+    </div>
+   <!-- <div class="span4 text-right">
+      <a href="/blog" class="text-v-middle link-align">See all news »</a>&nbsp;
+    </div>-->
+  </div>
   <p><?php the_tags('<ul class="cf" style="list-style: none; padding: 0; margin: 0;"><li class="rounded p-tag">','</li><li class="rounded p-tag">','</li></ul>'); ?></p>
 
   <ul id="widgets" class="span-5">
     <li id="widget-bloggers" class="widget">
-      <h3 class="widget-title">Our Bloggers</h3>
+      <div class="row-fluid sidebar-title">
+        <div class="span8">
+          <h3 class="Chivo webfont" style="visibility: visible;">Our Bloggers</h3>
+        </div>
+        <!--<div class="span4 text-right">
+          <a href="/blog" class="text-v-middle link-align">See all news »</a>&nbsp;
+        </div>-->
+      </div>
 
 <?php
       $display_admins = false;
