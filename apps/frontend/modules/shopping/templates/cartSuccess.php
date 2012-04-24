@@ -5,7 +5,6 @@
  */
 ?>
 
-<br/>
 <?php
   foreach ($shopping_cart_collectibles as $shopping_cart_collectible)
   {
