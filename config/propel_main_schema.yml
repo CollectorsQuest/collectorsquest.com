@@ -21,6 +21,7 @@ classes:
       email:          { type: varchar, size: 128, index: unique }
       user_type:      { type: char, sqlType: "ENUM('Collector','Seller')", default: "Collector", required: true }
       items_allowed:  { type: integer, default: 0 }
+      max_collectibles_for_sale: { type: integer, default: 0 }
       locale:         { type: varchar, size: 5, default: "en_US" }
       score:          { type: integer, default: 0 }
       spam_score:     { type: integer, default: 0 }

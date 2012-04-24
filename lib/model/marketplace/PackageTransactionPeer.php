@@ -22,4 +22,49 @@ class PackageTransactionPeer extends BasePackageTransactionPeer
 
 		return PackageTransactionPeer::doSelectOne($criteria);
 	}
+
+  /**
+   * @static
+   * @param Collector $collector
+   * @param Package $package
+   * @param null|Promotion $promotion
+   * @return \PackageTransaction
+   *
+   * @todo unit tests
+   */
+  public static function newTransaction(Collector $collector, Package $package, Promotion $promotion = null)
+  {
+    $transaction = new PackageTransaction();
+    $transaction->setCollector($collector);
+    $transaction->setPackage($package);
+    $transaction->setExpiryDate(strtotime('+1 year'));
+    $transaction->setMaxItemsForSale($package->getMaxItemsForSale());
+
+    $priceWithDiscount = $package->getPackagePrice();
+    if (!is_null($promotion))
+    {
+      if (PromotionPeer::DISCOUNT_FIXED == $promotion->getAmountType())
+      {
+        $discount = (float)$promotion->getAmount();
+        $discountTypeString = '$';
+      }
+      else
+      {
+        $discount = (float)($package->getPackagePrice() * $promotion->getAmount()) / 100;
+        $discountTypeString = '%';
+      }
+      $priceWithDiscount = (float)$package->getPackagePrice() - $discount;
+
+      $promoTransaction = PromotionTransactionPeer::newTransaction($collector, $promotion, $discount, $promotion->getAmountType());
+
+      $transaction->setPromotionTransaction($promoTransaction);
+      $transaction->setDiscount($discount); //Keep it here even if prices change
+    }
+
+    $transaction->setPackagePrice($priceWithDiscount);
+    $transaction->setPaymentStatus($priceWithDiscount ? self::STATUS_PENDING : self::STATUS_PAID);
+    $transaction->save();
+
+    return $transaction;
+  }
 }

@@ -6,7 +6,6 @@ package: lib.model.blog
 classes:
   wpPost:
     tableName: wp_posts
-    skipSql: true
     columns:
       id:                     ~
       post_author:            { type: integer,      required: true, default: 0, foreignClass: wpUser, foreignReference: id }
@@ -26,7 +25,7 @@ classes:
       post_modified:          { type: timestamp,    required: true, default: "0000-00-00 00:00:00" }
       post_modified_gmt:      { type: timestamp,    required: true, default: "0000-00-00 00:00:00" }
       post_content_filtered:  { type: longvarchar,  required: true  }
-      post_parent:            { type: integer,      required: false, default: 0, foreignClass: wpPost, foreignReference: id }
+      post_parent:            { type: integer,      required: false, default: 0 }
       guid:                   { type: varchar(255), required: true  }
       menu_order:             { type: integer,      required: true, default: 0 }
       post_type:              { type: varchar(100), required: true, default: "post" }
@@ -37,7 +36,6 @@ classes:
 
   wpPostMeta:
     tableName: wp_postmeta
-    skipSql: true
     columns:
       meta_id:                { type: integer,      required: true,  primaryKey: true, autoIncrement: true }
       post_id:                { type: integer,      required: true,  default: 0, foreignClass: wpPost, foreignReference: id }
@@ -46,7 +44,6 @@ classes:
 
   wpUser:
     tableName: wp_users
-    skipSql: true
     columns:
       id:                     ~
       user_login:             { type: varchar(60),  required: true  }
@@ -61,7 +58,6 @@ classes:
 
   wpUserMeta:
     tableName: wp_usermeta
-    skipSql: true
     columns:
       umeta_id:               { type: integer,      required: true,  primaryKey: true, default: null, auto_increment: true }
       user_id:                { type: integer,      required: true,  default: 0, foreignClass: wpUsers, foreignReference: id }
@@ -70,7 +66,6 @@ classes:
 
   wpTerm:
     tableName: wp_terms
-    skipSql: true
     columns:
       term_id:                { type: integer,      required: true, primaryKey: true, autoIncrement: true }
       name:                   { type: varchar(55),  required: true  }
@@ -79,7 +74,6 @@ classes:
 
   wpTermRelationship:
     tableName: wp_term_relationships
-    skipSql: true
     columns:
       object_id:              { type: integer,      required: true, default: 0, primaryKey: true }
       term_taxonomy_id:       { type: integer,      required: true, default: 0, primaryKey: true, foreignClass: wpTermTaxonomy, foreignReference: term_taxonomy_id }
@@ -87,7 +81,6 @@ classes:
 
   wpTermTaxonomy:
     tableName: wp_term_taxonomy
-    skipSql: true
     columns:
       term_taxonomy_id:       { type: integer,      required: true, primaryKey: true, autoIncrement: true }
       term_id:                { type: integer,      required: true, foreignClass: wpTerm, foreignReference: term_id }
@@ -100,7 +93,6 @@ classes:
 
   wpComment:
     tableName: wp_comments
-    skipSql: true
     columns:
       comment_id:             { type: integer,      required: true, primaryKey: true, autoIncrement: true }
       comment_post_id:        { type: integer,      required: true, default: 0, foreignClass: wpPost, foreignReference: id }
@@ -122,7 +114,6 @@ classes:
 
   wpCommentMeta:
     tableName: wp_commentmeta
-    skipSql: true
     columns:
       meta_id:                { type: integer,      required: true,  primaryKey: true,  autoIncrement: true }
       comment_id:             { type: integer,      required: true,  foreignClass: wpComment, foreignReference: comment_id }
@@ -131,7 +122,6 @@ classes:
 
   wpOption:
     tableName: wp_options
-    skipSql: true
     columns:
       option_id:              { type: integer,      required: true, primaryKey: true, auto_increment: true }
       blog_id:                { type: integer,      required: true, primaryKey: true, default: 0 }
@@ -141,7 +131,6 @@ classes:
 
   wpLink:
     tableName: wp_links
-    skipSql: true
     columns:
       link_id:                { type: integer,      required: true, default: null, primaryKey: true,	auto_increment: true }
       link_url:               { type: varchar(255), required: true  }

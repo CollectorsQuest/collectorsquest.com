@@ -24,7 +24,7 @@ $browser
   ->end()
   ->with('response')->begin()
     ->isStatusCode(200)
-    ->checkElement('body', '/countdown/i')
+    ->checkElement('h1', '/The New CollectorsQuest.com!/i')
   ->end();
 
   /* */
@@ -43,7 +43,7 @@ $browser
   ->end()
   ->with('response')->begin()
     ->isStatusCode(200)
-    ->checkElement('body', '!/countdown/i')
+    ->checkElement('h1', '!/The New CollectorsQuest.com!/i')
   ->end()
   ->logout()
   ->with('response')->isRedirected(true)
@@ -57,6 +57,6 @@ $browser
   ->with('response')->isRedirected(false)
   ->with('response')->begin()
     ->isStatusCode(200)
-    ->checkElement('body', '/countdown/i')
+    ->checkElement('h1', '/The New CollectorsQuest.com!/i')
   ->end();
 

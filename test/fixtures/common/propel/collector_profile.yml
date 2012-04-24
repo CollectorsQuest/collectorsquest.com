@@ -126,13 +126,13 @@ CollectorProfile:
     gender: f
     zip_postal: '92040'
     country_iso3166: GeoCountry_US
-    website: dinosauriana.com
+    website: dinotropolis2.blogspot.com/
     is_featured: '0'
     is_image_auto: '0'
     preferences: 'a:3:{s:8:"show_age";b:1;s:6:"msg_on";b:1;s:11:"invite_only";b:0;}'
     notifications: 'a:3:{s:7:"comment";b:1;s:5:"buddy";b:1;s:7:"message";b:1;}'
     created_at: '2008-12-27 23:20:15'
-    updated_at: '2010-11-07 15:10:40'
+    updated_at: '2012-04-17 00:25:42'
   CollectorProfile_963:
     collector_id: Collector_963
     collector_type: '4'

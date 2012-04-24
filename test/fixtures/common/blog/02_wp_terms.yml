@@ -1,0 +1,473 @@
+wpTerm:
+  wpTerm_1:
+    name: uncategorized
+    slug: uncategorized
+    term_group: '0'
+  wpTerm_5:
+    name: events
+    slug: events
+    term_group: '0'
+  wpTerm_6:
+    name: 'collecting fyi'
+    slug: collecting-fyi
+    term_group: '0'
+  wpTerm_7:
+    name: reviews
+    slug: reviews
+    term_group: '0'
+  wpTerm_22:
+    name: Americana
+    slug: americana
+    term_group: '0'
+  wpTerm_31:
+    name: 'action figures'
+    slug: action-figures
+    term_group: '0'
+  wpTerm_32:
+    name: collectibles
+    slug: collectibles
+    term_group: '0'
+  wpTerm_59:
+    name: history
+    slug: history
+    term_group: '0'
+  wpTerm_143:
+    name: auctions
+    slug: auctions
+    term_group: '0'
+  wpTerm_146:
+    name: auction
+    slug: auction
+    term_group: '0'
+  wpTerm_213:
+    name: toys
+    slug: toys
+    term_group: '0'
+  wpTerm_276:
+    name: Batman
+    slug: batman
+    term_group: '0'
+  wpTerm_436:
+    name: Mezco
+    slug: mezco
+    term_group: '0'
+  wpTerm_563:
+    name: LEGO
+    slug: lego
+    term_group: '0'
+  wpTerm_564:
+    name: Joker
+    slug: joker
+    term_group: '0'
+  wpTerm_667:
+    name: baseball
+    slug: baseball
+    term_group: '0'
+  wpTerm_672:
+    name: TOPPS
+    slug: topps
+    term_group: '0'
+  wpTerm_691:
+    name: gift
+    slug: gift
+    term_group: '0'
+  wpTerm_1109:
+    name: Chinese
+    slug: chinese
+    term_group: '0'
+  wpTerm_1227:
+    name: autograph
+    slug: autograph
+    term_group: '0'
+  wpTerm_1343:
+    name: 'DC Comics'
+    slug: dc-comics
+    term_group: '0'
+  wpTerm_1447:
+    name: film
+    slug: film
+    term_group: '0'
+  wpTerm_1527:
+    name: 'Wonder Woman'
+    slug: wonder-woman
+    term_group: '0'
+  wpTerm_1556:
+    name: Superman
+    slug: superman
+    term_group: '0'
+  wpTerm_1760:
+    name: robots
+    slug: robots
+    term_group: '0'
+  wpTerm_1795:
+    name: DVD
+    slug: dvd
+    term_group: '0'
+  wpTerm_1830:
+    name: Organ
+    slug: organ
+    term_group: '0'
+  wpTerm_1905:
+    name: comedy
+    slug: comedy
+    term_group: '0'
+  wpTerm_2472:
+    name: 'gold coin'
+    slug: gold-coin
+    term_group: '0'
+  wpTerm_2522:
+    name: Catwoman
+    slug: catwoman
+    term_group: '0'
+  wpTerm_2537:
+    name: 'baseball cards'
+    slug: baseball-cards
+    term_group: '0'
+  wpTerm_2660:
+    name: theft
+    slug: theft
+    term_group: '0'
+  wpTerm_2925:
+    name: carousel
+    slug: carousel
+    term_group: '0'
+  wpTerm_2999:
+    name: robot
+    slug: robot
+    term_group: '0'
+  wpTerm_3331:
+    name: numismatism
+    slug: numismatism
+    term_group: '0'
+  wpTerm_3332:
+    name: 'coin collecting'
+    slug: coin-collecting
+    term_group: '0'
+  wpTerm_3348:
+    name: 'Vintage Cars'
+    slug: vintage-cars
+    term_group: '0'
+  wpTerm_3584:
+    name: sitcom
+    slug: sitcom
+    term_group: '0'
+  wpTerm_3590:
+    name: posters
+    slug: posters
+    term_group: '0'
+  wpTerm_3634:
+    name: tv
+    slug: tv
+    term_group: '0'
+  wpTerm_3918:
+    name: Titanic
+    slug: titanic
+    term_group: '0'
+  wpTerm_4099:
+    name: autographed
+    slug: autographed
+    term_group: '0'
+  wpTerm_4181:
+    name: motorcycle
+    slug: motorcycle
+    term_group: '0'
+  wpTerm_4372:
+    name: 1980s
+    slug: 1980s
+    term_group: '0'
+  wpTerm_4500:
+    name: automobilia
+    slug: automobilia
+    term_group: '0'
+  wpTerm_4613:
+    name: diecast
+    slug: diecast
+    term_group: '0'
+  wpTerm_4653:
+    name: blu-ray
+    slug: blu-ray
+    term_group: '0'
+  wpTerm_4864:
+    name: 'news and nuggets'
+    slug: news-and-nuggets
+    term_group: '0'
+  wpTerm_4905:
+    name: scandal
+    slug: scandal
+    term_group: '0'
+  wpTerm_4915:
+    name: pinball
+    slug: pinball
+    term_group: '0'
+  wpTerm_5128:
+    name: 'musical instruments'
+    slug: musical-instruments
+    term_group: '0'
+  wpTerm_5156:
+    name: police
+    slug: police
+    term_group: '0'
+  wpTerm_5157:
+    name: artifact
+    slug: artifact
+    term_group: '0'
+  wpTerm_5158:
+    name: 'Tim Tebow'
+    slug: tim-tebow
+    term_group: '0'
+  wpTerm_5159:
+    name: 'Topps Supreme Football Cards'
+    slug: topps-supreme-football-cards
+    term_group: '0'
+  wpTerm_5160:
+    name: 'Tim Tebow Precision Comeback Autographs'
+    slug: tim-tebow-precision-comeback-autographs
+    term_group: '0'
+  wpTerm_5161:
+    name: NFL
+    slug: nfl
+    term_group: '0'
+  wpTerm_5162:
+    name: 'Denver Broncos'
+    slug: denver-broncos
+    term_group: '0'
+  wpTerm_5163:
+    name: 'JO Sports'
+    slug: jo-sports
+    term_group: '0'
+  wpTerm_5164:
+    name: 'Jarrod Oldridge'
+    slug: jarrod-oldridge
+    term_group: '0'
+  wpTerm_5165:
+    name: 'game jerseys'
+    slug: game-jerseys
+    term_group: '0'
+  wpTerm_5166:
+    name: 'Chicago Bears'
+    slug: chicago-bears
+    term_group: '0'
+  wpTerm_5167:
+    name: 'Baltimore Ravens'
+    slug: baltimore-ravens
+    term_group: '0'
+  wpTerm_5168:
+    name: 'New York Giants'
+    slug: new-york-giants
+    term_group: '0'
+  wpTerm_5169:
+    name: 'Michael Coe'
+    slug: michael-coe
+    term_group: '0'
+  wpTerm_5170:
+    name: 'Osi Umenyiora'
+    slug: osi-umenyiora
+    term_group: '0'
+  wpTerm_5171:
+    name: 'Major League Baseball'
+    slug: major-league-baseball
+    term_group: '0'
+  wpTerm_5172:
+    name: 'New York Mets'
+    slug: new-york-mets
+    term_group: '0'
+  wpTerm_5173:
+    name: 'Shea Stadium'
+    slug: shea-stadium
+    term_group: '0'
+  wpTerm_5174:
+    name: 'Citi Field'
+    slug: citi-field
+    term_group: '0'
+  wpTerm_5175:
+    name: MLB
+    slug: mlb
+    term_group: '0'
+  wpTerm_5176:
+    name: 'Mr. Met'
+    slug: mr-met
+    term_group: '0'
+  wpTerm_5177:
+    name: 'Keith Hernandez'
+    slug: keith-hernandez
+    term_group: '0'
+  wpTerm_5178:
+    name: mustache
+    slug: mustache
+    term_group: '0'
+  wpTerm_5179:
+    name: 'classic rock'
+    slug: classic-rock
+    term_group: '0'
+  wpTerm_5180:
+    name: ac/dc
+    slug: acdc
+    term_group: '0'
+  wpTerm_5181:
+    name: 'real steel'
+    slug: real-steel
+    term_group: '0'
+  wpTerm_5182:
+    name: 'hugh jackman'
+    slug: hugh-jackman
+    term_group: '0'
+  wpTerm_5183:
+    name: 'United States Postal Service'
+    slug: united-states-postal-service
+    term_group: '0'
+  wpTerm_5184:
+    name: lawsuit
+    slug: lawsuit
+    term_group: '0'
+  wpTerm_5185:
+    name: 'Hank Aaron'
+    slug: hank-aaron
+    term_group: '0'
+  wpTerm_5186:
+    name: 'Joe DiMaggio'
+    slug: joe-dimaggio
+    term_group: '0'
+  wpTerm_5187:
+    name: 'Mickey Mantle'
+    slug: mickey-mantle
+    term_group: '0'
+  wpTerm_5188:
+    name: 'Anthony Johnson'
+    slug: anthony-johnson
+    term_group: '0'
+  wpTerm_5189:
+    name: 'Derrick Coleman'
+    slug: derrick-coleman
+    term_group: '0'
+  wpTerm_5190:
+    name: 'earthworm jim'
+    slug: earthworm-jim
+    term_group: '0'
+  wpTerm_5191:
+    name: 'action figues'
+    slug: action-figues
+    term_group: '0'
+  wpTerm_5192:
+    name: annelids
+    slug: annelids
+    term_group: '0'
+  wpTerm_5193:
+    name: Barcelona
+    slug: barcelona
+    term_group: '0'
+  wpTerm_5194:
+    name: soccer
+    slug: soccer
+    term_group: '0'
+  wpTerm_5195:
+    name: 'Eric Abidal'
+    slug: eric-abidal
+    term_group: '0'
+  wpTerm_5196:
+    name: cancer
+    slug: cancer
+    term_group: '0'
+  wpTerm_5197:
+    name: 'Rolex Daytona'
+    slug: rolex-daytona
+    term_group: '0'
+  wpTerm_5198:
+    name: 'New England Patriots'
+    slug: new-england-patriots
+    term_group: '0'
+  wpTerm_5199:
+    name: 'Eli Manning'
+    slug: eli-manning
+    term_group: '0'
+  wpTerm_5200:
+    name: 'Peyton Manning'
+    slug: peyton-manning
+    term_group: '0'
+  wpTerm_5201:
+    name: 'Tom Brady'
+    slug: tom-brady
+    term_group: '0'
+  wpTerm_5202:
+    name: NFC
+    slug: nfc
+    term_group: '0'
+  wpTerm_5203:
+    name: championship
+    slug: championship
+    term_group: '0'
+  wpTerm_5204:
+    name: 'Super Bowl'
+    slug: super-bowl
+    term_group: '0'
+  wpTerm_5205:
+    name: 'Super Bowl XLVI'
+    slug: super-bowl-xlvi
+    term_group: '0'
+  wpTerm_5206:
+    name: rematch
+    slug: rematch
+    term_group: '0'
+  wpTerm_5207:
+    name: 'football helmet'
+    slug: football-helmet
+    term_group: '0'
+  wpTerm_5208:
+    name: BMW
+    slug: bmw
+    term_group: '0'
+  wpTerm_5209:
+    name: 'Andy Warhol'
+    slug: andy-warhol
+    term_group: '0'
+  wpTerm_5210:
+    name: 'Roy Lichtenstein'
+    slug: roy-lichtenstein
+    term_group: '0'
+  wpTerm_5211:
+    name: 'Frank Stella'
+    slug: frank-stella
+    term_group: '0'
+  wpTerm_5212:
+    name: 'Jenny Holzer'
+    slug: jenny-holzer
+    term_group: '0'
+  wpTerm_5213:
+    name: minichamps
+    slug: minichamps
+    term_group: '0'
+  wpTerm_5214:
+    name: 'scale models'
+    slug: scale-models
+    term_group: '0'
+  wpTerm_5224:
+    name: Mercedes-Benz
+    slug: mercedes-benz
+    term_group: '0'
+  wpTerm_5225:
+    name: 300SL
+    slug: 300sl
+    term_group: '0'
+  wpTerm_5226:
+    name: racing
+    slug: racing
+    term_group: '0'
+  wpTerm_5227:
+    name: 'Mille Miglia'
+    slug: mille-miglia
+    term_group: '0'
+  wpTerm_5228:
+    name: Uhlenhaut
+    slug: uhlenhaut
+    term_group: '0'
+  wpTerm_5229:
+    name: Milhous
+    slug: milhous
+    term_group: '0'
+  wpTerm_5230:
+    name: mechanical
+    slug: mechanical
+    term_group: '0'
+  wpTerm_5231:
+    name: 'carnival collectibles'
+    slug: carnival-collectibles
+    term_group: '0'

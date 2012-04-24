@@ -27,27 +27,38 @@ class testGenerateFixturesTask extends sfBaseTask
     /** @var $archive PropelPDO */
     $archive = $databaseManager->getDatabase('archive')->getConnection();
 
-    $collector_ids = array(531, 52, 1082, 3632, 6610, 1374, 12, 714, 235, 870, 1317, 163, 963, 644, 59, 4208, 6700, 1212, 4295, 846, 9367);
+    $collector_ids = array(
+      531, 52, 1082, 3632, 6610, 1374, 12, 714, 235, 870, 1317,
+      163, 963, 644, 59, 4208, 6700, 1212, 4295, 846, 9367
+    );
 
     /** @var $sqls array */
     $sqls = array();
 
     $sqls['propel'] = array(
+      "SET FOREIGN_KEY_CHECKS = 0;",
+
+      "TRUNCATE TABLE `shopping_payment_extra_property`;",
+      "TRUNCATE TABLE `shopping_payment`;",
+      "TRUNCATE TABLE `shopping_order`;",
+      "TRUNCATE TABLE `shopping_cart_collectible`;",
+      "TRUNCATE TABLE `shopping_cart`;",
+
       "DELETE FROM collectible_offer WHERE collector_id NOT IN (". implode(',', $collector_ids) .");",
       "DELETE FROM collectible WHERE collector_id NOT IN (". implode(',', $collector_ids) .");",
-      "DELETE FROM collectible_archive WHERE collector_id NOT IN (". implode(',', $collector_ids) .");",
       "DELETE FROM collection_collectible WHERE collectible_id NOT IN (SELECT id FROM collectible)",
       "DELETE FROM collector_collection WHERE collector_id NOT IN (". implode(',', $collector_ids) .");",
       "DELETE FROM collection WHERE id NOT IN (SELECT id FROM collector_collection) AND descendant_class = 'CollectorCollection';",
-      "DELETE FROM collection_archive WHERE id NOT IN (SELECT id FROM collector_collection) AND descendant_class = 'CollectorCollection';",
       "DELETE FROM collector_email WHERE collector_id NOT IN (". implode(',', $collector_ids) .");",
       "DELETE FROM collector WHERE id NOT IN (". implode(',', $collector_ids) .");",
-      "DELETE FROM collector_extra_property WHERE collector_id NOT IN (SELECT id FROM collector);",
       "DELETE FROM collector_profile WHERE collector_id NOT IN (SELECT id FROM collector);",
       "DELETE FROM collector_profile_extra_property WHERE collector_profile_collector_id NOT IN (SELECT collector_id FROM collector_profile);",
+      "DELETE FROM collector_extra_property WHERE collector_id NOT IN (SELECT id FROM collector);",
+      "DELETE FROM collector_geocache WHERE collector_id NOT IN (SELECT id FROM collector);",
+      "DELETE FROM collector_remember_key WHERE collector_id NOT IN (SELECT id FROM collector);",
+      "DELETE FROM collector_identifier WHERE collector_id NOT IN (SELECT id FROM collector);",
       "DELETE FROM collector_friend WHERE collector_id NOT IN (SELECT id FROM collector);",
       "DELETE FROM collector_friend WHERE friend_id NOT IN (SELECT id FROM collector);",
-      "DELETE FROM collector_identifier_archive WHERE collector_id NOT IN (SELECT id FROM collector);",
       "DELETE FROM collector_interview WHERE collector_id NOT IN (SELECT id FROM collector);",
       "DELETE FROM collector_interview WHERE collection_id NOT IN (SELECT id FROM collection);",
 
@@ -56,7 +67,10 @@ class testGenerateFixturesTask extends sfBaseTask
       "UPDATE video_collection_category SET collection_category_id = 1 WHERE collection_category_id = 0 OR collection_category_id IS NULL;",
       "DELETE FROM private_message WHERE sender NOT IN (SELECT id FROM collector);",
       "DELETE FROM comment WHERE collector_id NOT IN (SELECT id FROM collector) AND collector_id IS NOT NULL;",
+      "DELETE FROM comment WHERE collection_id NOT IN (SELECT id FROM collection) AND collection_id IS NOT NULL;",
+      "DELETE FROM comment WHERE collectible_id NOT IN (SELECT id FROM collectible) AND collectible_id IS NOT NULL;",
 
+      "DELETE FROM collectible_offer WHERE collector_id NOT IN (SELECT collector.id FROM collector);",
       "DELETE FROM collectible_offer WHERE collectible_id NOT IN (SELECT collectible.id FROM collectible JOIN (SELECT collectible.id FROM collectible ORDER BY RAND() LIMIT 25) AS c WHERE collectible.id = c.id);",
       "DELETE FROM collectible_for_sale WHERE collectible_id NOT IN (SELECT collectible.id FROM collectible JOIN (SELECT collectible.id FROM collectible ORDER BY RAND() LIMIT 25) AS c WHERE collectible.id = c.id);",
 
@@ -75,15 +89,62 @@ class testGenerateFixturesTask extends sfBaseTask
       "DELETE FROM term_relationship WHERE `model` = 'Collection' AND `model_id` NOT IN (SELECT collection.id FROM collection JOIN (SELECT collection.id FROM collection ORDER BY RAND() LIMIT 10) AS c WHERE collection.id = c.id);",
       "DELETE FROM term_relationship WHERE `model` = 'Collectible' AND `model_id` NOT IN (SELECT collectible.id FROM collectible JOIN (SELECT collectible.id FROM collectible ORDER BY RAND() LIMIT 10) AS c WHERE collectible.id = c.id);",
 
+      "DELETE FROM package_transaction WHERE collector_id NOT IN (SELECT id FROM collector);",
+      "DELETE FROM promotion_transaction WHERE collector_id NOT IN (SELECT id FROM collector);",
+
+      "DELETE FROM shopping_order WHERE collector_id NOT IN (SELECT id FROM collector);",
+      "DELETE FROM shopping_cart WHERE collector_id NOT IN (SELECT id FROM collector);",
+      "DELETE FROM shipping_rate_collector WHERE collector_id NOT IN (SELECT id FROM collector);",
+
       "TRUNCATE TABLE `resource_entry`;",
       "TRUNCATE TABLE `resource_category`;",
-      "TRUNCATE TABLE `sf_guard_remember_key`;"
+      "TRUNCATE TABLE `sf_guard_remember_key`;",
+
+      "SET FOREIGN_KEY_CHECKS = 1;",
     );
 
     $sqls['archive'] = array(
+      "SET FOREIGN_KEY_CHECKS = 0;",
       "DELETE FROM collectible_archive WHERE collector_id NOT IN (". implode(',', $collector_ids) .");",
       "DELETE FROM collection_archive WHERE id NOT IN (SELECT id FROM collector_collection) AND descendant_class = 'CollectorCollection';",
       "DELETE FROM collector_identifier_archive WHERE collector_id NOT IN (". implode(',', $collector_ids) .");",
+      "SET FOREIGN_KEY_CHECKS = 1;"
+    );
+
+    $wp_post_ids = array(
+      3621, 14559, 14570, 14597, 14621, 14629, 14658, 14680, 14689, 14704,
+      14633, 14725, 14722, 14733, 14742, 14763, 14822, 14819, 14897, 14901
+    );
+
+    $stmt = $propel->prepare("
+      SELECT ID FROM `wp_posts`
+       WHERE `post_type` IN ('cms_slot', 'homepage_carousel', 'homepage_showcase', 'collectors_question')
+    ");
+    $stmt->execute(array('collectorsquest_'. $options['env']));
+    while ($ID = $stmt->fetch(PDO::FETCH_COLUMN))
+    {
+      $wp_post_ids[] = (int) $ID;
+    }
+
+    $sqls['blog'] = array(
+      "SET FOREIGN_KEY_CHECKS = 0;",
+      "DROP TABLE IF EXISTS `wp_bad_behavior`;",
+      "DROP TABLE IF EXISTS `wp_postrank`;",
+      "DROP TABLE IF EXISTS `wp_sk2_spams`;",
+      "DROP TABLE IF EXISTS `wp_sk2_logs`;",
+      "DROP TABLE IF EXISTS `wp_sph_counter`;",
+      "DROP TABLE IF EXISTS `wp_sph_stats`;",
+      "TRUNCATE TABLE `wp_links`;",
+      "TRUNCATE TABLE `wp_comments`;",
+      "TRUNCATE TABLE `wp_commentmeta`;",
+      "DELETE FROM `wp_options` WHERE `option_id` > 50;",
+      "DELETE FROM `wp_posts` WHERE `ID` NOT IN (". implode(',', $wp_post_ids) .") AND `post_type` <> 'attachment';",
+      "DELETE FROM `wp_posts` WHERE `post_parent` <> 0 AND `post_parent` NOT IN (". implode(',', $wp_post_ids) .");",
+      "DELETE FROM `wp_postmeta` WHERE `post_id` NOT IN (SELECT ID FROM `wp_posts`);",
+      "DELETE FROM `wp_term_relationships` WHERE `object_id` NOT IN (SELECT ID FROM `wp_posts`);",
+      "DELETE FROM `wp_term_taxonomy` WHERE `term_taxonomy_id` NOT IN (SELECT `term_taxonomy_id` FROM `wp_term_relationships`);",
+      "DELETE FROM `wp_terms` WHERE `term_id` NOT IN (SELECT `term_id` FROM `wp_term_taxonomy`);",
+      "SET FOREIGN_KEY_CHECKS = 1;"
     );
 
     $this->log('Minimizing the export data by selectively deleting most of it.');
@@ -97,8 +158,14 @@ class testGenerateFixturesTask extends sfBaseTask
     {
       $archive->exec($sql);
     }
+    foreach ($sqls['blog'] as $sql)
+    {
+      $archive->exec($sql);
+    }
 
-
+    /**
+     * Propel
+     */
     $stmt = $propel->prepare("
       SELECT TABLE_NAME FROM information_schema.tables
       WHERE table_schema = ?
@@ -151,6 +218,9 @@ class testGenerateFixturesTask extends sfBaseTask
       );
     }
 
+    /**
+     * Archive
+     */
     $stmt = $archive->prepare("
       SELECT TABLE_NAME FROM information_schema.tables
       WHERE table_schema = ?
@@ -176,6 +246,31 @@ class testGenerateFixturesTask extends sfBaseTask
       );
     }
 
+    /**
+     * Blog
+     */
+    $stmt = $archive->prepare("
+      SELECT TABLE_NAME FROM information_schema.tables
+      WHERE table_schema = ?
+      AND TABLE_NAME LIKE 'wp_%';
+    ");
+
+    $stmt->execute(array('collectorsquest_'. $options['env']));
+    while ($table = $stmt->fetch(PDO::FETCH_COLUMN))
+    {
+      $class = sfInflector::classify(rtrim($table, 's'));
+
+      $this->logSection('blog', 'Dumping table '. $table .'...');
+      exec(
+        sfToolkit::getPhpCli() . ' -d error_reporting=0 -d display_errors=0 ./symfony propel:data-dump'.
+          ' --connection="blog" --env="'. $options['env'] .'" --classes="'. $class .'"'.
+          '| sed "s/'. ucfirst($class) .'/'. lcfirst($class) .'/g" > test/fixtures/common/blog/'. $table .'.yml'
+      );
+    }
+
+    /**
+     * Rename fixtures for import order
+     */
     $renames = array(
       'collector' => '01_collector',
       'collection_category' => '01_collection_category',
@@ -197,6 +292,9 @@ class testGenerateFixturesTask extends sfBaseTask
       );
     }
 
+    /**
+     * Rename fixtures for import order
+     */
     $renames = array(
       'collector_archive' => '01_collector_archive',
       'collection_archive' => '02_collection_archive',
@@ -209,6 +307,25 @@ class testGenerateFixturesTask extends sfBaseTask
         'mv '.
           __DIR__ .'/../../test/fixtures/common/archive/'. $old .'.yml '.
           __DIR__ .'/../../test/fixtures/common/archive/'. $new .'.yml'
+      );
+    }
+
+    /**
+     * Rename fixtures for import order
+     */
+    $renames = array(
+      'wp_users' => '01_wp_users',
+      'wp_terms' => '02_wp_terms',
+      'wp_term_taxonomy' => '03_wp_term_taxonomy',
+      'wp_posts' => '04_wp_posts'
+    );
+
+    foreach ($renames as $old => $new)
+    {
+      exec(
+        'mv '.
+          __DIR__ .'/../../test/fixtures/common/blog/'. $old .'.yml '.
+          __DIR__ .'/../../test/fixtures/common/blog/'. $new .'.yml'
       );
     }
   }

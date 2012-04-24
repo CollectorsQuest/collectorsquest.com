@@ -49,7 +49,11 @@ You can also use `get_simple_local_avatar()` (with the same arguments) to retrei
 * Optimization for WordPress 3.2 / 3.3 (substitutes deprecated function)
 
 = 1.3 =
+<<<<<<< HEAD
 * Avatar file name saved as "user-display-name_avatar" (or other image extension) 
+=======
+* Avatar file name saved as "user-display-name_avatar" (or other image extension)
+>>>>>>> 9c9250c808a60c097eb7a663cae5f592de3139c9
 * Russian localization added
 * Assorted minor code optimizations
 

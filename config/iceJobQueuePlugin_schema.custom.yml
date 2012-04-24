@@ -1,4 +1,4 @@
-connection: icepique
+connection: queue
 noXsd: false
 defaultIdMethod: native
 package: plugins.iceJobQueuePlugin.lib.model

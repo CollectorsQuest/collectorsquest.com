@@ -2255,6 +2255,18 @@ CollectibleArchive:
     is_name_automatic: '0'
     updated_at: '2012-03-22 16:39:19'
     created_at: '2010-02-19 08:16:37'
+  CollectibleArchive_10087:
+    id: '10087'
+    graph_id: '14603'
+    collector_id: '12'
+    name: 'Minimate Flash (Jay Garrick)'
+    slug: minimate-flash-jay-garrick
+    description: "<p>The original Flash!</p>\n"
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '0'
+    updated_at: '2012-04-09 16:59:03'
+    created_at: '2010-02-27 01:08:44'
   CollectibleArchive_10400:
     id: '10400'
     graph_id: '13479'
@@ -2423,6 +2435,18 @@ CollectibleArchive:
     is_name_automatic: '0'
     updated_at: '2012-03-29 14:08:36'
     created_at: '2010-02-23 07:44:10'
+  CollectibleArchive_10620:
+    id: '10620'
+    graph_id: '14592'
+    collector_id: '12'
+    name: '''Superfriends'' Flash'
+    slug: superfriends-flash
+    description: "<p>==</p>\n"
+    num_comments: '0'
+    score: '0'
+    is_name_automatic: '0'
+    updated_at: '2012-04-09 16:52:26'
+    created_at: '2010-02-27 05:17:59'
   CollectibleArchive_10849:
     id: '10849'
     graph_id: '12383'
@@ -6210,6 +6234,19 @@ CollectibleArchive:
     is_name_automatic: '0'
     updated_at: '2012-04-02 11:07:08'
     created_at: '2012-04-02 11:06:52'
+  CollectibleArchive_70709:
+    id: '70709'
+    graph_id: '14198'
+    collector_id: '12'
+    name: 'Eraseez Hulk'
+    slug: eraseez-hulk
+    description: "<p>From Bulls-i-Toy, a Hulk made of erasers!</p>\n"
+    num_comments: '0'
+    batch_hash: 93bd617bc35cffb577e1de6bf4c12874
+    score: '0'
+    is_name_automatic: '0'
+    updated_at: '2012-04-02 11:12:36'
+    created_at: '2012-04-02 11:12:08'
   CollectibleArchive_70827:
     id: '70827'
     graph_id: '14331'
@@ -6223,3 +6260,16 @@ CollectibleArchive:
     is_name_automatic: '1'
     updated_at: '2012-04-05 09:58:17'
     created_at: '2012-04-05 09:58:15'
+  CollectibleArchive_70975:
+    id: '70975'
+    graph_id: '14574'
+    collector_id: '12'
+    name: 'IMG 4763'
+    slug: img-4763
+    description: "\n"
+    num_comments: '0'
+    batch_hash: 3cd33948363925c474f5204aaa602b35
+    score: '0'
+    is_name_automatic: '1'
+    updated_at: '2012-04-09 16:29:49'
+    created_at: '2012-04-09 16:29:44'

@@ -56,4 +56,7 @@ msgstr "Simple Local Avatars"
 #. Description of the plugin/theme
 msgid "Adds an avatar upload field to user profiles if the current user has media permissions. Generates requested sizes on demand just like Gravatar! Simple and lightweight."
 msgstr "Legger til et felt for opplasting av lokale profilbilder dersom brukeren har rettigheter til å redigere media. Genererer riktig størrelse ved behov akkurat som Gravatar! Enkelt og greit."
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9c9250c808a60c097eb7a663cae5f592de3139c9

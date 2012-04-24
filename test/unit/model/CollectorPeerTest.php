@@ -29,7 +29,7 @@ $t->diag('::createFromArray()');
 $t->diag('::retrieveByDistance()');
 
   $pks = CollectorPeer::retrieveByDistance(11201, 100, false);
-  $t->is($pks, CollectorPeer::retrieveByPKs(array(1, 4)));
+  $t->is($pks, CollectorPeer::retrieveByPKs(array(1, 4, 13)));
 
 $t->diag('::retrieveByHashTimeLimited()');
 

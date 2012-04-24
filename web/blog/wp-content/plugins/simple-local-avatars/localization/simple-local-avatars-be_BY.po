@@ -57,4 +57,7 @@ msgstr "Лакальны аватар"
 #. Description of the plugin/theme
 msgid "Adds an avatar upload field to user profiles if the current user has media permissions. Generates requested sizes on demand just like Gravatar! Simple and lightweight."
 msgstr "Дадаць запампоўку аватара да профіля карыстача, калі ў бягучага карыстача ёсць паўнамоцтвы. Генераваць такія ж памеры, як на Gravatar-е. Проста і лёгка."
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9c9250c808a60c097eb7a663cae5f592de3139c9

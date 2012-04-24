@@ -110,7 +110,36 @@ CollectorGeocache:
     address: Romania
     latitude: '45.94316'
     longitude: '24.96676'
-  CollectorGeocache_11227:
+  CollectorGeocache_11313:
+    collector_id: Collector_963
+    country_iso3166: GeoCountry_US
+    state: FL
+    city: 'West Palm Beach'
+    zip_postal: '33405'
+    address: 'West Palm Beach, FL 33405, USA'
+    latitude: '26.66550'
+    longitude: '-80.05908'
+    timezone: America/New_York
+  CollectorGeocache_11347:
+    collector_id: Collector_59
+    country_iso3166: GeoCountry_US
+    state: ND
+    city: Fargo
+    address: 'Fargo, ND 58102, USA'
+    latitude: '46.92234'
+    longitude: '-96.84013'
+    timezone: America/New_York
+  CollectorGeocache_11356:
+    collector_id: Collector_1212
+    country_iso3166: GeoCountry_US
+    state: NJ
+    city: Watchung
+    zip_postal: '07069'
+    address: 'Watchung, NJ 07069, USA'
+    latitude: '40.64510'
+    longitude: '-74.43498'
+    timezone: America/New_York
+  CollectorGeocache_11443:
     collector_id: Collector_12
     country_iso3166: GeoCountry_US
     state: NY
@@ -118,3 +147,13 @@ CollectorGeocache:
     latitude: '41.39138'
     longitude: '-73.83014'
     timezone: America/New_York
+  CollectorGeocache_11495:
+    collector_id: Collector_870
+    country_iso3166: GeoCountry_US
+    state: CA
+    city: Lakeside
+    zip_postal: '92040'
+    address: 'Lakeside, CA 92040, USA'
+    latitude: '32.87653'
+    longitude: '-116.91459'
+    timezone: America/Los_Angeles

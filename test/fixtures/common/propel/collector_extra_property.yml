@@ -33,7 +33,7 @@ CollectorExtraProperty:
     collector_id: Collector_963
   CollectorExtraProperty_913:
     property_name: SPAM.SIGNATURE
-    property_value: 1e6f81d6cf7aa1009822ef
+    property_value: 89f8553dee5b088cde05f4
     collector_id: Collector_12
   CollectorExtraProperty_914:
     property_name: SPAM.CLASSIFICATION
@@ -45,5 +45,25 @@ CollectorExtraProperty:
     collector_id: Collector_12
   CollectorExtraProperty_916:
     property_name: SPAM.ALLOW
+    property_value: '1'
+    collector_id: Collector_12
+  CollectorExtraProperty_1645:
+    property_name: SPAM.SIGNATURE
+    property_value: 6e3c9fd38234b563e78f39
+    collector_id: Collector_870
+  CollectorExtraProperty_1646:
+    property_name: SPAM.CLASSIFICATION
+    property_value: legitimate
+    collector_id: Collector_870
+  CollectorExtraProperty_1647:
+    property_name: SPAM.PROFANITY-MATCH
+    property_value: '1'
+    collector_id: Collector_870
+  CollectorExtraProperty_1648:
+    property_name: SPAM.ALLOW
+    property_value: '1'
+    collector_id: Collector_870
+  CollectorExtraProperty_1778:
+    property_name: CQNEXT_ACCESS_ALLOWED
     property_value: '1'
     collector_id: Collector_12

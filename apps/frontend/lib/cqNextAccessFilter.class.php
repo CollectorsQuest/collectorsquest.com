@@ -11,8 +11,8 @@ class cqNextAccessFilter extends sfFilter
 
   public function execute($filterChain)
   {
-    // Do not put restrictions in dev
-    if (SF_ENV === 'dev')
+    // Do not put restrictions in certain environments
+    if (in_array(SF_ENV, array('dev', 'test')))
     {
       $filterChain->execute();
 
