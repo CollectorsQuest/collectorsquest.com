@@ -246,7 +246,7 @@ ob_start();
         </div>-->
       </div>
 
-<?php
+    <?php
       $display_admins = false;
       $order_by = 'display_name'; // 'nicename', 'email', 'url', 'registered', 'display_name', or 'post_count'
       $role = 'author'; // 'subscriber', 'contributor', 'editor', 'author' - leave blank for 'all'
@@ -285,7 +285,8 @@ ob_start();
       echo '';
 
       }
-      echo '</ul>'; ?>
+      echo '</ul>';
+    ?>
   </li>
 
   <li id="widget-other-news" class="widget">
@@ -299,28 +300,20 @@ ob_start();
       </div>
     </div>
 
-
       <?php if (is_single()) : $offset = 0; else : $offset = 7; endif; ?>
       <?php query_posts('offset='.$offset.'&showposts=3'); ?>
 
       <?php while (have_posts()) : the_post(); ?>
-      <div class="row-fluid">
+      <div class="row-fluid bottom-margin">
         <h4 style="margin-bottom: 5px;">
           <a href="<?php the_permalink() ?>"><?php the_title(); ?></a>
         </h4>
+        <span class="content">
+          <?php $length=100; $longString=get_the_excerpt('...more'); $truncated = substr($longString,0,strpos($longString,' ',$length)); echo $truncated.'... ' //.'... <a href="'.get_permalink().'">more</a>'; ?>
+        </span>
+        <small style="font-size: 80%">posted by <?php the_author_posts_link() ?> <span style="color: grey"><?php echo human_time_diff( get_the_time('U'), current_time('timestamp') ) . ' ago'; ?></span></small>
       </div>
-
-      <span class="content"><?php $length=100; $longString=get_the_excerpt('...more'); $truncated = substr($longString,0,strpos($longString,' ',$length)); echo '<p>'.$truncated.'... <a href="'.get_permalink().'">more</a></p>'; ?>
-</span>
-
-      <small style="font-size: 80%">posted by <?php the_author_posts_link() ?> <span style="color: grey"><?php echo human_time_diff( get_the_time('U'), current_time('timestamp') ) . ' ago'; ?></span></small>
-
       <?php endwhile;?>
-
-
-
-
-
 
   </li>
 
@@ -394,45 +387,6 @@ echo str_replace(
   array($head, $content, $sidebar, $wpfooter),
   $layout
 );
-
-
-
-/**
- * Initialization. Add our script if needed on this page.
- */
-function cq_is_init() {
-  global $wp_query;
-
-  // Add code to index pages.
-  if( !is_singular() ) {
-    // Queue JS and CSS
-    wp_enqueue_script(
-      'cq-load-posts',
-      '/wp-content/themes/collectorsquest/js/load-posts.js',
-      array('jquery'),
-      '1.0',
-      true
-    );
-
-    // What page are we on? And what is the pages limit?
-    $max = $wp_query->max_num_pages;
-    $paged = ( get_query_var('paged') > 1 ) ? get_query_var('paged') : 1;
-
-    // Add some parameters for the JS.
-    wp_localize_script(
-      'cq-load-posts',
-      'cq',
-      array(
-        'startPage' => $paged,
-        'maxPages' => $max,
-        'nextLink' => next_posts($max, false)
-      )
-    );
-
-  }
-}
-add_action('template_redirect', 'cq_is_init');
-
 
 
 
