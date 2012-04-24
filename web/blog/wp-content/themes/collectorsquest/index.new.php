@@ -299,7 +299,7 @@ ob_start();
       <span class="content"><?php $length=100; $longString=get_the_excerpt('...more'); $truncated = substr($longString,0,strpos($longString,' ',$length)); echo '<p>'.$truncated.'... <a href="'.get_permalink().'">more</a></p>'; ?>
 </span>
 
-      <small style="font-size: 80%">posted by <?php the_author_posts_link() ?> <span style="color: grey"><?php the_date() ?></span></small>
+      <small style="font-size: 80%">posted by <?php the_author_posts_link() ?> <span style="color: grey"><?php echo human_time_diff( get_the_time('U'), current_time('timestamp') ) . ' ago'; ?></span></small>
 
       <?php endwhile;?>
 
@@ -366,8 +366,14 @@ switch (SF_ENV)
 }
 
 $layout = file_get_contents(
-  "http://www.". $domain ."/_blog/index?_session_id=". $_COOKIE['cq_frontend'] ."&key=". $key .'&env='. SF_ENV
+  "http://www.collectorsquest.next/_blog/index?_session_id=". $_COOKIE['legacy'] ."&key=". $key .'&env='. SF_ENV
 );
+
+/*$layout = file_get_contents(
+  "http://www.". $domain ."/_blog/index?_session_id=". $_COOKIE['cq_frontend'] ."&key=". $key .'&env='. SF_ENV
+); */
+
+
 
 echo str_replace(
   array('<!-- Blog Head //-->', '<!-- Blog Content //-->', '<!-- Blog Sidebar //-->', '<!-- WP Footer //-->'),
