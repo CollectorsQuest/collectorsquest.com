@@ -172,7 +172,7 @@ if ($_SERVER['HTTP_HOST'] == 'www.collectorsquest.dev' || $_SERVER['HTTP_HOST'] 
   /**
    * Initialization. Add our script if needed on this page.
    */
- function cq_is_init() {
+ function cq_ajax_posts() {
    global $wp_query;
 
    // Add code to index pages.
@@ -203,6 +203,6 @@ if ($_SERVER['HTTP_HOST'] == 'www.collectorsquest.dev' || $_SERVER['HTTP_HOST'] 
 
    }
  }
-add_action('template_redirect', 'cq_is_init');
+add_action('template_redirect', 'cq_ajax_posts');
 
 }
