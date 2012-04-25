@@ -52,11 +52,11 @@
 
 <?php $paged = (get_query_var('paged')) ? get_query_var('paged') : 1; ?>
 
-<div id="blog-contents" class="<?php if (is_singular()): echo 'singular'; else : echo 'not-singular'; endif; if (is_front_page()) : echo ' news-front'; endif; ?>">
+<div id="blog-contents" class="<?php if (is_front_page()) : echo ' news-front'; elseif (is_singular()) : echo 'singular'; else : echo 'not-singular'; endif; ?>">
   <?php if (have_posts()) : ?>
 
   <?php
-    $count = ($paged > 1) ? 9 : 0;
+    $count = ($paged > 1) ? 9 : 1;
     $lastclass = 0;
 
     if ($paged == 2) {
@@ -106,7 +106,7 @@
       ?>
 
       <div class="post p-<?php
-        echo $count; if ($count > 2) :
+        echo $count; if ($count > 3) :
           echo ' p-small';
         endif;
         if ($lastclass == $lastcount) :
@@ -114,13 +114,14 @@
           echo ' last';
         else : $lastclass++;
         endif;
+        echo (++$j % 2 == 0) ? ' even' : ' odd';
         ?>" id="post-<?php the_ID(); ?>">
 
         <?php if (is_front_page() || is_single()) : ?><div class="entry-genre"><a href="" title="">Genre</a><?php //the_category() ?></div><?php endif; ?>
 
         <?php if (is_single()): ?>
           <h2><?php the_title() ?></h2>
-        <?php elseif (is_front_page() && $count == 0) : ?>
+        <?php elseif (is_front_page() && $count == 1) : ?>
           <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
         <?php endif; ?>
 
@@ -131,20 +132,20 @@
               <img src="http://placekitten.com/<?php
                 if (is_singular()) :
                   echo '620';
-                elseif (is_front_page() && $count == 0 || is_front_page() && $count == 1 || is_front_page() && $count == 2) :
+                elseif (is_front_page() && $count == 1 || is_front_page() && $count == 2 || is_front_page() && $count == 3) :
                   echo '300';
-                elseif ($count > 2) :
+                elseif ($count > 3) :
                   echo '140';
                 else :
                   echo '140';
                 endif; ?>/<?php
                 if (is_singular()) :
                   echo '440';
-                elseif (is_front_page() && $count == 0) :
+                elseif (is_front_page() && $count == 1) :
                   echo '360';
-                elseif (is_front_page() && $count == 1 || is_front_page() && $count == 2) :
+                elseif (is_front_page() && $count == 2 || is_front_page() && $count == 3) :
                   echo '130';
-                elseif (is_front_page() && $count > 2) :
+                elseif (is_front_page() && $count > 3) :
                   echo '100';
                 else :
                   echo '140';
@@ -164,7 +165,7 @@
 
         <?php if (is_archive()) : ?><div class="entry-genre"><a href="" title="">Genre</a><?php //the_category() ?></div><?php endif; ?>
 
-        <?php if ((is_front_page() && $count > 0) || is_archive()) : ?>
+        <?php if ((is_front_page() && $count > 1) || is_archive()) : ?>
           <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
         <?php endif; ?>
 
@@ -193,9 +194,9 @@
       if (is_single()) :
          the_content();
       elseif (is_front_page()) :
-        if ($count == 0) :
+        if ($count == 1) :
           $length = 300;
-        elseif ($count == 1 || $count == 2) :
+        elseif ($count == 2 || $count == 3) :
           $length = 100;
         endif;
         $longString = get_the_excerpt('... more');
@@ -210,7 +211,7 @@
           <?php endif; ?>
         </div>
 
-        <?php if ((is_front_page() && $count == 0) || is_single()) : ?>
+        <?php if ((is_front_page() && $count == 1) || is_single()) : ?>
         <div class="entry-footer">
           <p><?php the_tags(); ?></p>
 
