@@ -9,6 +9,9 @@
 @import "_spites.less";
 @import "_grid.less";
 @import "_footer.less";
+@import "_mosaic.less";
+@import "_forms.less";
+
 
 // basic body
 body {
@@ -23,6 +26,21 @@ a {
 a:hover {
   color: @linkColorHover;
   text-decoration: none;
+}
+
+h1 {
+  .custom-font(24px, 30px, normal);
+  .smooth-font();
+}
+h1 small {
+  font-size: 16px;
+}
+h2 {
+  .custom-font(22px, 36px, normal);
+  .smooth-font();
+}
+h2 small {
+  font-size: 14px;
 }
 
 // FONTS
@@ -771,7 +789,6 @@ div.over {
 	}
 }
 
-@import "_mosaic.less";
 @import "_collections.less";
 @import "_collectibles.less";
 @import "_videos.less";

@@ -72,7 +72,7 @@ class globalComponents extends cqFrontendComponents
     $mark = !empty($params) ? '&' : '';
 
     // Set a unique div ID if not provided
-    $options['id'] = !empty($options['id']) ? $options['id'] : 'pagination-'. md5($options['url']);
+    $options['id'] = !empty($options['id']) ? $options['id'] : 'pagination-'. md5($url);
 
     $this->pager   = $pager;
     $this->options = $options;
