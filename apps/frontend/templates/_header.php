@@ -63,16 +63,16 @@
         <?= link_to('Collectors Quest', '@homepage', array('class' => 'cq-logo logo hide-text', 'title' => 'Home')) ?>
         <ul class="nav">
           <?php $class = in_array($sf_params->get('module'), array('collection', 'collections')) ? 'active' : null; ?>
-          <li class="<?= $class ?>"><?= link_to('Collections', 'collections/index'); ?></li>
+          <li class="<?= $class ?>"><?= link_to('Collections', '@collections'); ?></li>
 
           <?php $class = in_array($sf_params->get('module'), array('news', '_blog')) ? 'active' : null; ?>
-          <li class="<?= $class ?>"><?= link_to('Blog', 'blog/index'); ?></li>
+          <li class="<?= $class ?>"><?= link_to('Blog', '@blog'); ?></li>
 
           <?php $class = in_array($sf_params->get('module'), array('video', '_magnify')) ? 'active' : null; ?>
-          <li class="<?= $class ?>"><?= link_to('Video', 'video/index'); ?></li>
+          <li class="<?= $class ?>"><?= link_to('Video', '@video'); ?></li>
 
           <?php $class = in_array($sf_params->get('module'), array('marketplace')) ? 'active' : null; ?>
-          <li class="<?= $class ?>"><?= link_to('Market', 'marketplace/index'); ?></li>
+          <li class="<?= $class ?>"><?= link_to('Market', '@marketplace'); ?></li>
         </ul>
       </div>
     </div>

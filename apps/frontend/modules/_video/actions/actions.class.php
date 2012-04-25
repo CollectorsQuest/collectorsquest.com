@@ -1,6 +1,6 @@
 <?php
 
-class videoActions extends cqFrontendActions
+class _videoActions extends cqFrontendActions
 {
   public function executeIndex()
   {

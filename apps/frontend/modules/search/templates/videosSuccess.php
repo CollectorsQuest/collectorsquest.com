@@ -30,7 +30,7 @@
     {
       echo '<div class="span4 brick" style="height: 165px; float: left;">';
       include_partial(
-        'video/video_'. $display .'_view',
+        '_video/video_'. $display .'_view',
         array('video' => $video, 'i' => $i)
       );
       echo '</div>';

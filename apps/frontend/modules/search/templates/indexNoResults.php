@@ -13,7 +13,7 @@ Try a broader search, or browse around for other neat stuff.
   </div>
   <div class="span4 thumbnail link">
     <i class="icon icon-facetime-video" style="font-size: 55px; float: left; margin: 5px 10px;"></i>
-    <h3 style="margin: 5px;"><?= link_to('Explore Videos', 'video/index', array('class' => 'target')) ?></h3>
+    <h3 style="margin: 5px;"><?= link_to('Explore Videos', '@video', array('class' => 'target')) ?></h3>
   </div>
   <div class="span4 thumbnail link">
     <i class="icon icon-shopping-cart" style="font-size: 55px; float: left; margin: 5px 10px;"></i>

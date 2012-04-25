@@ -177,12 +177,16 @@ news:
   url:   /news
   param: { module: news, action: index }
 
+blog:
+  url:   /blog
+  param: { module: _blog, action: index }
+
 
 ### VIDEO
 
 video:
   url:   /video
-  param: { module: video, action: index }
+  param: { module: _video, action: index }
 
 
 ### MARKETPLACE
