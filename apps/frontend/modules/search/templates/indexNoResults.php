@@ -1,4 +1,4 @@
-<h1>Search results <small>for <?= $sf_params->get('q') ?> (no results)</small></h1>
+<h1 class="Chivo webfont">Search results <small>for <?= $sf_params->get('q') ?> (no results)</small></h1>
 
 <br/>
 <i class="icon-exclamation-sign" style="float: left; font-size: 46px; margin-right: 10px; color: #DF912F;"></i>

@@ -15,7 +15,7 @@
     )
   );
 ?>
-<h1>Search results <small><?= $title; ?></small></h1>
+<h1 class="Chivo webfont">Search results <small><?= $title; ?></small></h1>
 
 <div class="row">
   <div id="search-results" class="row-content">

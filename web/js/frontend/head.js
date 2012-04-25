@@ -56,19 +56,9 @@ Modernizr.load({
   load: ('https:' == document.location.protocol ? 'https' : 'http') + '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js',
   complete: function()
   {
-    // sometimes the complete event fires before the browser has had the chance
-    // to execute webfont.js - that's why we put our test on a short timer
-    var testWebFontLibrary = function() {
-      // if loading of google web font library failed
-      if (!window.WebFont) {
-        // make the elements styled with web font visible anyways
-        $(document).ready(function() {
-          $('.webfont').css('visibility', 'visible');
-        });
-      }
-    };
-
-    setTimeout(testWebFontLibrary, 100);
+    $(document).ready(function() {
+      $('.webfont').css('visibility', 'visible');
+    });
   }
 });
 
