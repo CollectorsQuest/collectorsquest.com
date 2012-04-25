@@ -88,7 +88,10 @@
         <h2 class="Chivo webfont no-margin-bottom">Welcome back, <?= $sf_user->getCollector()->getDisplayName() ?>!</h2>
         <ul class="footer-profile-box cf">
           <li class="icon-big-email">
-            <p>You have 1 message in <a href="#" class="bold-links">your inbox</a></p>
+            <p>
+              You have 1 message in
+              <?= link_to('your inbox', '@messages_inbox', array('class' => 'bold-links')); ?>
+            </p>
           </li>
           <li class="icon-big-battery">
             <p>Your profile is 50% complete. <a href="#" class="bold-links">Add a collection</a> in minutes. (+10%)</p>
@@ -99,7 +102,7 @@
                 <a href="#" class="bold-links">Upload a<br> photo</a>
               </li>
               <li class="span6 organize-collection">
-                <a href="#" class="bold-links">Organize your<br> collection</a>
+                <a href="#" class="bold-links">Organize your<br> collections</a>
               </li>
             </ul>
           </li>
