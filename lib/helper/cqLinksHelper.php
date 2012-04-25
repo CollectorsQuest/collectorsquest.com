@@ -23,7 +23,7 @@ function cq_link_to()
       $arguments[2] = array();
     }
 
-    if (cqLinksUtil::getInstance()->isSecureRoute($arguments[1]))
+    if (cqLinkUtils::getInstance()->isSecureRoute($arguments[1]))
     {
       _add_requires_login_class_to_options($arguments[2]);
     }
@@ -37,7 +37,7 @@ function cq_link_to()
       $arguments[2] = array();
     }
 
-    if (cqLinksUtil::getInstance()->isSecureRoute($arguments[1]))
+    if (cqLinkUtils::getInstance()->isSecureRoute($arguments[1]))
     {
       _add_requires_login_class_to_options($arguments[2]);
     }

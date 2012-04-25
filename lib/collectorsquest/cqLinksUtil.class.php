@@ -3,7 +3,7 @@
 /**
  * Util class used with cqLinksHelper
  */
-class cqLinksUtil
+class cqLinkUtils
 {
   /** @var cqLinksUtil */
   protected static $instance = null;
