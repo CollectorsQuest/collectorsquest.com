@@ -43,9 +43,7 @@
     </legend>
 
     <br/>
-    <?php if ($sf_user->isAuthenticated()): ?>
     <div class="row-fluid">
-
       <?php if (count($shipping_addresses) > 0): ?>
       <div class="span4">
         <?php foreach ($shipping_addresses as $shipping_address): ?>
@@ -70,7 +68,6 @@
         <?= $form['shipping_address'] ?>
       </div>
     </div>
-    <?php endif; ?>
   </fieldset>
 
   <div class="well" style="text-align: center; margin-top: 40px;">

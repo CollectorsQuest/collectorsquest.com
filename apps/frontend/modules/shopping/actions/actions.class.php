@@ -200,8 +200,10 @@ class shoppingActions extends cqFrontendActions
       }
     }
 
+    /**
+     * Create the Shopping Order form
+     */
     $form = new ShoppingOrderShippingForm($shopping_order);
-    $form->setDefault('buyer_email', $this->getCollector()->getEmail());
 
     if ($request->isMethod('post') && '' !== $request->getParameter('new_address', null))
     {
@@ -209,6 +211,23 @@ class shoppingActions extends cqFrontendActions
 
       if ($form->isValid() && $form->save())
       {
+        /**
+         * We need to save the shipping address if the user is Authenticated
+         */
+        if ($this->getUser()->isAuthenticated())
+        {
+          $shipping_address = $form->getValue('shipping_address');
+          if (!$shipping_address['address_id'])
+          {
+            unset($shipping_address['address_id']);
+
+            $collector_address = new CollectorAddress();
+            $collector_address->setCollector($this->getCollector());
+            $collector_address->fromArray($shipping_address, BasePeer::TYPE_FIELDNAME);
+            $collector_address->save();
+          }
+        }
+
         $this->redirect('@shopping_order_pay?uuid='. $shopping_order->getUuid(), 302);
       }
       else if (!$form->getValue('shipping_address'))
@@ -261,12 +280,12 @@ class shoppingActions extends cqFrontendActions
 
         $shopping_payment = new ShoppingPayment();
         $shopping_payment->setCookieUuid($this->getUser()->getCookieUuid());
-        $shopping_payment->setShoppingOrderId($shopping_order->getId());
+        $shopping_payment->setShoppingOrder($shopping_order);
         $shopping_payment->setProcessor(ShoppingPaymentPeer::PROCESSOR_PAYPAL);
         $shopping_payment->setStatus(ShoppingPaymentPeer::STATUS_INITIALIZED);
         $shopping_payment->save();
 
-        $shopping_order->setShoppingPaymentId($shopping_payment->getId(0));
+        $shopping_order->setShoppingPaymentId($shopping_payment->getId());
         $shopping_order->save();
 
         $PayRequestFields = $shopping_order->getPaypalPayRequestFields();

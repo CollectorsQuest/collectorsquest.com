@@ -27,7 +27,7 @@ class ShoppingOrder extends BaseShoppingOrder
    */
   public function getCollectibleForSale(PropelPDO $con = null)
   {
-    $this->getCollectible($con)->getCollectibleForSale($con);
+    return $this->getCollectible($con)->getCollectibleForSale($con);
   }
 
   /**
@@ -43,14 +43,22 @@ class ShoppingOrder extends BaseShoppingOrder
     return $q->findOne($con);
   }
 
-  public function getTotalAmount()
-  {
-    return $this->getShoppingCartCollectible()->getPriceAmount();
-  }
-
   public function getCurrency()
   {
     return $this->getShoppingCartCollectible()->getPriceCurrency();
+  }
+
+  public function getTotalAmount()
+  {
+    return bcadd(
+      $this->getCollectiblesAmount(),
+      $this->getShippingFeeAmount()
+    );
+  }
+
+  public function getCollectiblesAmount()
+  {
+    return $this->getShoppingCartCollectible()->getPriceAmount();
   }
 
   public function getShippingFeeAmount()
@@ -118,7 +126,7 @@ class ShoppingOrder extends BaseShoppingOrder
     $Receivers = array();
     $Receiver = array(
       // Required.  Amount to be paid to the receiver.
-      'Amount' => $this->getTotalAmount() + $this->getShippingFeeAmount(),
+      'Amount' => $this->getTotalAmount(),
       // Receiver's email address. 127 char max.
       'Email' => 'kangov_1327417143_biz@collectorsquest.com',
       // The invoice number for the payment.  127 char max.

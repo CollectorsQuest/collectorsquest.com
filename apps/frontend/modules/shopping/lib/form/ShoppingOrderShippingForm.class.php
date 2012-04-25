@@ -33,7 +33,7 @@ class ShoppingOrderShippingForm extends BaseForm
     // Try to figure out the default buyer email
     $buyer_email = $this->shopping_order->getBuyerEmail() ?
       $this->shopping_order->getBuyerEmail() :
-      $sf_user->getAttribute('buyer_email', null, 'shopping');
+      $sf_user->getAttribute('buyer_email', $sf_user->getCollector()->getEmail(), 'shopping');
 
     $this->setDefaults(array(
       'buyer_email' => $buyer_email,

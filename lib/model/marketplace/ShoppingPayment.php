@@ -17,6 +17,22 @@ class ShoppingPayment extends BaseShoppingPayment
     return null;
   }
 
+  public function setShoppingOrder(ShoppingOrder $shopping_order)
+  {
+    /**
+     * Set the shopping_order_id
+     */
+    $this->setShoppingOrderId($shopping_order->getId());
+
+    /**
+     * Set all the money amounts
+     */
+    $this->setAmountTotal($shopping_order->getTotalAmount());
+    $this->setAmountShippingFee($shopping_order->getShippingFeeAmount());
+    $this->setAmountCollectibles($shopping_order->getCollectiblesAmount());
+    $this->setAmountTax(0);
+  }
+
   /**
    * @param  array  $request
    * @return void
