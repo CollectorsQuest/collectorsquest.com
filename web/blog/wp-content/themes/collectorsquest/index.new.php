@@ -105,31 +105,61 @@
         }
       ?>
 
-      <div
-        class="post p-<?php echo $count; if ($count > 2) : echo ' p-small'; endif; if ($lastclass == $lastcount) : $lastclass = 0;
-          echo ' last'; else : $lastclass++; endif; ?>" id="post-<?php the_ID(); ?>">
+      <div class="post p-<?php
+        echo $count; if ($count > 2) :
+          echo ' p-small';
+        endif;
+        if ($lastclass == $lastcount) :
+          $lastclass = 0;
+          echo ' last';
+        else : $lastclass++;
+        endif;
+        ?>" id="post-<?php the_ID(); ?>">
+
         <div class="entry-genre"><a href="" title="">Genre</a><?php //the_category() ?></div>
+
         <?php if (is_single()): ?>
-        <h2><?php the_title() ?></h2>
-        <?php elseif ($count == 0) : ?>
-        <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+          <h2><?php the_title() ?></h2>
+        <?php elseif (is_front_page() && $count == 0) : ?>
+          <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
         <?php endif; ?>
 
         <div class="entry-image">
-          <?php if (!is_single()) : ?><a href="<?php the_permalink() ?>"><?php endif; ?>
-          <img
-            src="http://placekitten.com/<?php if (is_singular()) : echo '620'; elseif ($count == 0 || $count == 1 || $count == 2) : echo '300'; elseif ($count > 2) : echo '140'; endif; ?>/<?php if (is_singular()) : echo '440'; elseif ($count == 0) : echo '360'; elseif ($count == 1 || $count == 2) : echo '130'; elseif ($count > 2) : echo '100'; endif; ?>"
-            alt=""/>
-          <?php if (!is_single()) : ?></a><?php endif; ?>
-          <?php if (is_single()): ?>
-          <p class="wp-caption-text">This is a caption.</p>
-          <div id="entry-image-box"></div>
-          <div id="entry-image-box-button"><a href=""><i class="icon-resize-full"></i>Expand</a></div>
+          <?php if (!is_single()) : ?>
+            <a href="<?php the_permalink() ?>">
           <?php endif; ?>
+              <img src="http://placekitten.com/<?php
+                if (is_singular()) :
+                  echo '620';
+                elseif ($count == 0 || $count == 1 || $count == 2) :
+                  echo '300';
+                elseif ($count > 2) :
+                  echo '140';
+                endif; ?>/<?php
+                if (is_singular()) :
+                  echo '440';
+                elseif ($count == 0) :
+                  echo '360';
+                elseif ($count == 1 || $count == 2) :
+                  echo '130';
+                elseif ($count > 2) :
+                  echo '100';
+                endif;
+                ?>" alt=""/>
+          <?php if (!is_single()) : ?>
+            </a>
+          <?php endif; ?>
+
+          <?php if (is_single()): ?>
+            <p class="wp-caption-text">This is a caption.</p>
+            <div id="entry-image-box"></div>
+            <div id="entry-image-box-button"><a href=""><i class="icon-resize-full"></i>Expand</a></div>
+          <?php endif; ?>
+
         </div>
 
         <?php if ($count > 0) : ?>
-        <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+          <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
         <?php endif; ?>
 
         <div class="entry-meta">
@@ -175,10 +205,13 @@
       </div><!-- end .post -->
 
       <?php endif; ?>
+
     <?php $count++; ?>
+
     <?php endwhile; ?>
 
   <?php if (!is_page()): ?>
+
     <?php comments_template(); ?>
 
     <?php if (is_single()) : ?>
@@ -193,19 +226,6 @@
         <?php previous_posts_link('newer posts') ?>
       </div>
     </div>
-
-    <?php if (is_front_page() || is_archive()): ?>
-      <!-- <button class="btn btn-small gray-button see-more-full" id="seemore-posts" data-url="/blog/page/2" data-target=".post">
-        See more
-      </button>
-      <a id="json_click_handler" href="#">
-        Click here to do JSON request! We'll get the 10 most recent posts as JSON
-      </a>
-
-
-      <div id="json_response_box"></div>-->
-
-      <?php endif; ?>
 
     <?php endif; ?>
 
