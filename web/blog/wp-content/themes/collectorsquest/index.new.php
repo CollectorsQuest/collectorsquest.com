@@ -120,9 +120,9 @@
         <?php if (is_front_page() || is_single()) : ?><div class="entry-genre"><a href="" title="">Genre</a><?php //the_category() ?></div><?php endif; ?>
 
         <?php if (is_single()): ?>
-          <h2><?php the_title() ?></h2>
+          <h2 class="entry-title"><?php the_title() ?></h2>
         <?php elseif (is_front_page() && $count == 1) : ?>
-          <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+          <h2 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
         <?php endif; ?>
 
         <div class="entry-image">
@@ -166,7 +166,7 @@
         <?php if (is_archive()) : ?><div class="entry-genre"><a href="" title="">Genre</a><?php //the_category() ?></div><?php endif; ?>
 
         <?php if ((is_front_page() && $count > 1) || is_archive()) : ?>
-          <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+          <h2 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
         <?php endif; ?>
 
         <div class="entry-meta">
@@ -252,7 +252,7 @@
 
   <?php else : ?>
 
-  <h2>Not Found</h2>
+  <h2 class="entry-title">Not Found</h2>
   <p>Sorry, but you are looking for something that isn't here.</p>
 
   <?php endif; ?>
