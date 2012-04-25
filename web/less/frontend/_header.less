@@ -56,6 +56,7 @@ header > .container {
 a.link-cart {
 	outline: none;
 	vertical-align: middle;
+  margin-top: 4px;
 	display: inline-block;
 	.ie7-inline-block();
 	&:hover {
@@ -75,7 +76,7 @@ a.link-cart {
 	vertical-align: middle;
 	width: 1px;
 	padding-left: 16px;
-	padding-top: 2px;
+	padding-top: 4px;
 }
 
 .padding-signup {
@@ -103,30 +104,27 @@ a.sing-up-now-btn, a.my-account-btn {
   margin-left: 12px;
 }
 
-.search-header .btn-large {
-	padding: 5px 10px;
-	margin-left: -5px;
+.header-inner .btn-large {
+	padding: 8px 10px;
 	font-size: 14px;
 	font-weight: bold;
-	height: 34px;
 	color: #786767;
 	#gradient > .vertical(#e1dede,#cecbcb);
 	line-height: normal;
-	-webkit-border-top-right-radius: 7px;
-	-webkit-border-bottom-right-radius: 7px;
-	-moz-border-radius-topright: 7px;
-	-moz-border-radius-bottomright: 7px;
-	border-top-right-radius: 7px;
-	border-bottom-right-radius: 7px;
-	-webkit-border-top-left-radius: 0;
-	-webkit-border-bottom-left-radius: 0;
-	-moz-border-radius-topleft: 0;
-	-moz-border-radius-bottomleft: 0;
-	border-top-left-radius: 0;
-	border-bottom-left-radius: 0;
+  .border-radius(7px);
 	-moz-background-clip: padding;
 	-webkit-background-clip: padding-box;
 	background-clip: padding-box;
+}
+
+.search-header .btn-large {
+  margin-left: -5px;
+  -webkit-border-top-left-radius: 0;
+  -webkit-border-bottom-left-radius: 0;
+  -moz-border-radius-topleft: 0;
+  -moz-border-radius-bottomleft: 0;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
 }
 
 .search-header input {
@@ -144,7 +142,7 @@ a.sing-up-now-btn, a.my-account-btn {
 	.box-shadow(inset 2px 2px 2px 2px rgba(0, 0, 0, .07));
 }
 
-.search-header .btn:hover {
+.header-inner .btn:hover {
 	.transition(none);
 	background: #e1dddd;
 	background-position: 0;

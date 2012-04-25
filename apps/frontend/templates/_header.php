@@ -9,44 +9,51 @@
               <?= $form['q']->render(array('value' => $sf_params->get('q'), 'autocomplete' => 'off', 'required' => 'required')); ?>
               <button class="btn btn-large" type="submit">Search</button>
             </form>
-            <!--
-              <div class="btn-group">
-                <a href="#" class="btn btn-primary">Search</a>
-                <a href="#" data-toggle="dropdown" class="btn btn-primary dropdown-toggle"><span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Collectibles</li>
-                  <li><a href="#">Collections</li>
-                  <li><a href="#">Collectors</a></li>
-                  <li><a href="#">Blog post</a></li>
-                  <li class="divider"></li>
-                  <li><a href="#"><i class="i"></i> Advanced Search</a></li>
-                </ul>
-              </div>
-            -->
           </div>
         </div>
-        <div class="span4">
-          <form class="form-inline pull-right">
-            <?php $k = $sf_user->getShoppingCartCollectiblesCount(); ?>
-            <a href="<?= url_for('@shopping_cart'); ?>" class="link-cart" title="<?= (0 < $k) ? 'View your shopping cart' : 'Your shopping cart is empty!'; ?>">
-              <span class="shopping-cart-inner shopping-cart">
-              <?php if (0 < $k): ?>
-                <span id="shopping-cart-count"><?= $k; ?></span>
-              <?php else: ?>
-                <span id="shopping-cart-count" class="empty-cart">0</span>
-              <?php endif; ?>
-              </span>
-            </a>
-            <span class="nav-divider"></span>
-            <?php if ($sf_user->isAuthenticated()): ?>
-              &nbsp;
-              <?= link_to('My Account', '@collector_me', array('class' => 'my-account-btn')); ?>
+        <div class="span3 pull-right" style="float: right;">
+          <?php $k = $sf_user->getShoppingCartCollectiblesCount(); ?>
+          <a href="<?= url_for('@shopping_cart'); ?>" class="link-cart" title="<?= (0 < $k) ? 'View your shopping cart' : 'Your shopping cart is empty!'; ?>">
+            <span class="shopping-cart-inner shopping-cart">
+            <?php if (0 < $k): ?>
+              <span id="shopping-cart-count"><?= $k; ?></span>
             <?php else: ?>
-              <?= link_to('Log In', '@login', array('class' => 'bold-links padding-signup')); ?>
-              &nbsp;or&nbsp;
-              <?= link_to('Sign Up', '@collector_signup', array('class' => 'sing-up-now-btn sing-up-now-red')); ?>
+              <span id="shopping-cart-count" class="empty-cart">0</span>
             <?php endif; ?>
-          </form>
+            </span>
+          </a>
+          &nbsp;
+          <span class="nav-divider"></span>
+          <?php if ($sf_user->isAuthenticated()): ?>
+            &nbsp;
+            <div id="menu-my-account" class="btn-group dropdown" style="float: right;">
+              <a class="btn btn-large dropdown-toggle" data-toggle="dropdown" href="#menu-my-account">
+                My Account &nbsp;<span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu" style="min-width: 123px;">
+                <li>
+                  <a href="<?= url_for('@collector_me'); ?>" title="Go to your CollectorsQuest.com profile!">
+                    <i class="icon icon-user"></i> My Profile
+                  </a>
+                </li>
+                <li>
+                  <a href="<?= url_for('@messages_inbox'); ?>" title="Go to your CollectorsQuest.com inbox!">
+                    <i class="icon icon-envelope"></i> My Inbox
+                  </a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                  <a href="<?= url_for('@logout'); ?>" title="Log Out from your CollectorsQuest.com account!">
+                    <i class="icon icon-signout"></i> Log Out
+                  </a>
+                </li>
+              </ul>
+            </div>
+          <?php else: ?>
+            <?= link_to('Log In', '@login', array('class' => 'bold-links padding-signup')); ?>
+            &nbsp;or&nbsp;
+            <?= link_to('Sign Up', '@collector_signup', array('class' => 'sing-up-now-btn sing-up-now-red')); ?>
+          <?php endif; ?>
         </div>
       </div>
   </div><!-- /navbar-inner -->

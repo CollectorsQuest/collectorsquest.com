@@ -18,6 +18,7 @@ var APP = window.APP = {
   common: {
     init: function() {
       $(".alert").alert();
+      $('.dropdown-toggle').dropdown();
       $('.fade-white').mosaic();
 
       $("a.target").bigTarget({
