@@ -8,6 +8,7 @@
  */
 class cqNextAccessFilter extends sfFilter
 {
+  const SESSION_ACCESS_KEY = 'keep_cqnext_access';
 
   public function execute($filterChain)
   {
@@ -34,6 +35,7 @@ class cqNextAccessFilter extends sfFilter
     {
       if ($sf_user->Authenticate(true, $collector, $remember_me = true))
       {
+        $this->userAddSessionAccess($sf_user);
         $this->redirectToOriginalRequestUri($request);
 
         return ;
@@ -43,7 +45,8 @@ class cqNextAccessFilter extends sfFilter
     // if the current user is not authenticated or is authenticated but does not have cqnext access
     // and the current action is not countdown
     if ( !($sf_user->isAuthenticated() && $sf_user->getCollector()->getCqnextAccessAllowed())
-      && !$this->currentActionIsCountdown() && !$this->currentModuleIsSandbox() )
+      && !$this->currentActionIsCountdown() && !$this->currentModuleIsSandbox()
+      && !$this->userHasSessionAccess($sf_user))
     {
       $this->forwardToCountdownAction();
 
@@ -51,6 +54,16 @@ class cqNextAccessFilter extends sfFilter
     }
 
     $filterChain->execute();
+  }
+
+  protected function userHasSessionAccess(sfUser $sf_user)
+  {
+    return $sf_user->getAttribute(self::SESSION_ACCESS_KEY, false, 'cq_next_access_filter');
+  }
+
+  protected function userAddSessionAccess(sfUser $sf_user)
+  {
+    $sf_user->setAttribute(self::SESSION_ACCESS_KEY, true, 'cq_next_access_filter');
   }
 
   protected function forwardToCountdownAction()

@@ -264,4 +264,12 @@ class cqTestFunctional extends sfTestFunctional
     return $this;
   }
 
+  /**
+   * Clear the current session
+   */
+  public function clearSession()
+  {
+    $this->browser->shutdown();
+  }
+
 }
