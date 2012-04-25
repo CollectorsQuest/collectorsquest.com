@@ -52,7 +52,7 @@
 
 <?php $paged = (get_query_var('paged')) ? get_query_var('paged') : 1; ?>
 
-<div id="blog-contents" class="<?php if (is_singular()): echo 'singular'; else : echo 'not-singular'; endif; ?>">
+<div id="blog-contents" class="<?php if (is_singular()): echo 'singular'; else : echo 'not-singular'; endif; if (is_front_page()) : echo ' news-front'; endif; ?>">
   <?php if (have_posts()) : ?>
 
   <?php
@@ -116,7 +116,7 @@
         endif;
         ?>" id="post-<?php the_ID(); ?>">
 
-        <div class="entry-genre"><a href="" title="">Genre</a><?php //the_category() ?></div>
+        <?php if (is_front_page() || is_single()) : ?><div class="entry-genre"><a href="" title="">Genre</a><?php //the_category() ?></div><?php endif; ?>
 
         <?php if (is_single()): ?>
           <h2><?php the_title() ?></h2>
@@ -131,19 +131,23 @@
               <img src="http://placekitten.com/<?php
                 if (is_singular()) :
                   echo '620';
-                elseif ($count == 0 || $count == 1 || $count == 2) :
+                elseif (is_front_page() && $count == 0 || is_front_page() && $count == 1 || is_front_page() && $count == 2) :
                   echo '300';
                 elseif ($count > 2) :
+                  echo '140';
+                else :
                   echo '140';
                 endif; ?>/<?php
                 if (is_singular()) :
                   echo '440';
-                elseif ($count == 0) :
+                elseif (is_front_page() && $count == 0) :
                   echo '360';
-                elseif ($count == 1 || $count == 2) :
+                elseif (is_front_page() && $count == 1 || is_front_page() && $count == 2) :
                   echo '130';
-                elseif ($count > 2) :
+                elseif (is_front_page() && $count > 2) :
                   echo '100';
+                else :
+                  echo '140';
                 endif;
                 ?>" alt=""/>
           <?php if (!is_single()) : ?>
@@ -158,7 +162,9 @@
 
         </div>
 
-        <?php if ($count > 0) : ?>
+        <?php if (is_archive()) : ?><div class="entry-genre"><a href="" title="">Genre</a><?php //the_category() ?></div><?php endif; ?>
+
+        <?php if ((is_front_page() && $count > 0) || is_archive()) : ?>
           <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
         <?php endif; ?>
 
@@ -182,15 +188,29 @@
         </div>
 
         <div class="entry">
-          <?php if (is_single()) : the_content('Read the rest of this entry &raquo;'); ?>
-          <?php elseif ($count < 3) : if ($count == 0): $length = 300; else : $length = 100; endif;
-          $longString = get_the_excerpt('Read the rest of this entry &raquo;');
+          <?php
+
+      if (is_single()) :
+         the_content();
+      elseif (is_front_page()) :
+        if ($count == 0) :
+          $length = 300;
+        elseif ($count == 1 || $count == 2) :
+          $length = 100;
+        endif;
+        $longString = get_the_excerpt('... more');
+        $truncated = substr($longString, 0, strpos($longString, ' ', $length));
+        echo '<p>' . $truncated . '... <a href="' . get_permalink() . '">more</a></p>';
+      else :
+        $length = 200;
+        $longString = get_the_excerpt('... more');
           $truncated = substr($longString, 0, strpos($longString, ' ', $length));
-          echo '<p>' . $truncated . '... <a href="' . get_permalink() . '">more</a></p>'; ?>
+          echo '<p>' . $truncated . '... <a href="' . get_permalink() . '">more</a></p>';
+          ?>
           <?php endif; ?>
         </div>
 
-        <?php if ($count == 0 || is_single()) : ?>
+        <?php if ((is_front_page() && $count == 0) || is_single()) : ?>
         <div class="entry-footer">
           <p><?php the_tags(); ?></p>
 
