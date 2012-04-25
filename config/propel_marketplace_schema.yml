@@ -107,7 +107,7 @@ classes:
       currency:            { type: char, size: 3, default: USD }
       amount_total:        { type: integer, required: true, default: 0 }
       amount_collectibles: { type: integer, required: true, default: 0 }
-      amount_shipping:     { type: integer, required: true, default: 0 }
+      amount_shipping_fee: { type: integer, required: true, default: 0 }
       amount_tax:          { type: integer, required: true, default: 0 }
 
     propel_behaviors:
