@@ -1,5 +1,5 @@
 {
-    "hash": "4c8bd71ecb5f6b02602fe9aa1a740908",
+    "hash": "22deb025506e80e0317e9b49e8efbf3b",
     "packages": [
         {
             "package": "lib/vendor/faker",
@@ -24,7 +24,5 @@
         }
     ],
     "packages-dev": null,
-    "aliases": [
-
-    ]
+    "aliases": []
 }
