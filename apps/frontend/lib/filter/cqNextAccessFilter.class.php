@@ -26,6 +26,9 @@ class cqNextAccessFilter extends sfFilter
     /* @var $sf_user cqBaseUser */
     $sf_user = $this->context->getUser();
 
+    /* @var $last_action sfActions */
+    $last_action = $this->context->getController()->getActionStack()->getLastEntry();
+
     $param_name = $this->getAutoLoginParameterName();
 
     // try to login the user if auto login parameter present and hash valid
@@ -45,8 +48,8 @@ class cqNextAccessFilter extends sfFilter
     // if the current user is not authenticated or is authenticated but does not have cqnext access
     // and the current action is not countdown
     if ( !($sf_user->isAuthenticated() && $sf_user->getCollector()->getCqnextAccessAllowed())
-      && !$this->currentActionIsCountdown() && !$this->currentModuleIsSandbox()
-      && !$this->userHasSessionAccess($sf_user))
+      && !in_array($last_action->getModuleName(), array('sandbox', '_blog', '_video'))
+      && !$this->currentActionIsCountdown() && !$this->userHasSessionAccess($sf_user))
     {
       $this->forwardToCountdownAction();
 
@@ -82,14 +85,6 @@ class cqNextAccessFilter extends sfFilter
     $this->context->getController()->redirect($parsed_url['path']);
 
     throw new sfStopException();
-  }
-
-  protected function currentModuleIsSandbox()
-  {
-    /* @var $last_action sfActions */
-    $last_action = $this->context->getController()->getActionStack()->getLastEntry();
-
-    return $last_action->getModuleName() == 'sandbox';
   }
 
   protected function currentActionIsCountdown()

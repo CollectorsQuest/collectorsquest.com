@@ -29,24 +29,40 @@
               <a class="btn btn-large dropdown-toggle" data-toggle="dropdown" href="#menu-my-account">
                 My Account &nbsp;<span class="caret"></span>
               </a>
-              <ul class="dropdown-menu" style="min-width: 123px;">
-                <li>
-                  <a href="<?= url_for('@collector_me'); ?>" title="Go to your CollectorsQuest.com profile!">
-                    <i class="icon icon-user"></i> My Profile
-                  </a>
-                </li>
-                <li>
-                  <a href="<?= url_for('@messages_inbox'); ?>" title="Go to your CollectorsQuest.com inbox!">
-                    <i class="icon icon-envelope"></i> My Inbox
-                  </a>
-                </li>
-                <li class="divider"></li>
-                <li>
-                  <a href="<?= url_for('@logout'); ?>" title="Log Out from your CollectorsQuest.com account!">
-                    <i class="icon icon-signout"></i> Log Out
-                  </a>
-                </li>
-              </ul>
+              <?php if ($sf_params->get('module') === '_video'): ?>
+                <ul class="dropdown-menu" style="min-width: 123px;">
+                  <li>
+                    <a href="<?= url_for('@collector_me'); ?>" title="Go to your CollectorsQuest.com profile!">
+                      <i class="icon icon-user"></i> My Profile
+                    </a>
+                  </li>
+                  <li class="divider"></li>
+                  <li>
+                    <a href="<?= url_for('@logout'); ?>" title="Log Out from your CollectorsQuest.com account!">
+                      <i class="icon icon-signout"></i> Log Out
+                    </a>
+                  </li>
+                </ul>
+              <?php else: ?>
+                <ul class="dropdown-menu" style="min-width: 123px;">
+                  <li>
+                    <a href="<?= url_for('@collector_me'); ?>" title="Go to your CollectorsQuest.com profile!">
+                      <i class="icon icon-user"></i> My Profile
+                    </a>
+                  </li>
+                  <li>
+                    <a href="<?= url_for('@messages_inbox'); ?>" title="Go to your CollectorsQuest.com inbox!">
+                      <i class="icon icon-envelope"></i> My Inbox
+                    </a>
+                  </li>
+                  <li class="divider"></li>
+                  <li>
+                    <a href="<?= url_for('@logout'); ?>" title="Log Out from your CollectorsQuest.com account!">
+                      <i class="icon icon-signout"></i> Log Out
+                    </a>
+                  </li>
+                </ul>
+              <?php endif; ?>
             </div>
           <?php else: ?>
             <?= link_to('Log In', '@login', array('class' => 'bold-links padding-signup')); ?>
@@ -63,16 +79,16 @@
         <?= link_to('Collectors Quest', '@homepage', array('class' => 'cq-logo logo hide-text', 'title' => 'Home')) ?>
         <ul class="nav">
           <?php $class = in_array($sf_params->get('module'), array('collection', 'collections')) ? 'active' : null; ?>
-          <li class="<?= $class ?>"><?= link_to('Collections', 'collections/index'); ?></li>
+          <li class="<?= $class ?>"><?= link_to('Collections', '@collections'); ?></li>
 
           <?php $class = in_array($sf_params->get('module'), array('news', '_blog')) ? 'active' : null; ?>
-          <li class="<?= $class ?>"><?= link_to('Blog', 'blog/index'); ?></li>
+          <li class="<?= $class ?>"><?= link_to('Blog', '@blog'); ?></li>
 
-          <?php $class = in_array($sf_params->get('module'), array('video', '_magnify')) ? 'active' : null; ?>
-          <li class="<?= $class ?>"><?= link_to('Video', 'video/index'); ?></li>
+          <?php $class = in_array($sf_params->get('module'), array('_video')) ? 'active' : null; ?>
+          <li class="<?= $class ?>"><?= link_to('Video', '@video'); ?></li>
 
           <?php $class = in_array($sf_params->get('module'), array('marketplace')) ? 'active' : null; ?>
-          <li class="<?= $class ?>"><?= link_to('Market', 'marketplace/index'); ?></li>
+          <li class="<?= $class ?>"><?= link_to('Market', '@marketplace'); ?></li>
         </ul>
       </div>
     </div>
