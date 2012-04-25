@@ -5,6 +5,10 @@ all:
   cqnext_auto_login_parameter_name: "i"
   cqnext_auto_login_time_limit: "+5 minutes"
 
+  private_messages:
+    # require the user to input a captcha every N outgoing messages
+    require_captcha_threshold: 5
+
 dev:
   domain_name: "collectorsquest.next"
   www_domain: "www.collectorsquest.next"

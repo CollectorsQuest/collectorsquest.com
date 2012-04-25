@@ -1,0 +1,5 @@
+all:
+  stylesheets: [frontend/modules/messages.css]
+
+  components:
+    sidebar_180: [messages, sidebar]

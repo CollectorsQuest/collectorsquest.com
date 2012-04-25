@@ -18,6 +18,7 @@ var APP = window.APP = {
   common: {
     init: function() {
       $(".alert").alert();
+      $('.dropdown-toggle').dropdown();
       $('.fade-white').mosaic();
 
       $("a.target").bigTarget({
@@ -25,9 +26,7 @@ var APP = window.APP = {
         clickZone: 'div.link'
       });
 
-      COMMON.setupScrollToTop();
-      COMMON.setupFooterLoginOrSignup();
-      COMMON.setupEmailSpellingHelper();
+      COMMON.setupProjectWideHelpers();
     } // init
   }, // common
 
@@ -38,7 +37,7 @@ var APP = window.APP = {
     // general/index is the homepage action
     index: function() {
       GENERAL.setupCarousel();
-    } // index
+    }
   }, // general
 
   /**
@@ -47,8 +46,44 @@ var APP = window.APP = {
   search: {
     index: function() {
       SEARCH.setupMasonry();
-    } // index
-  } // search
+    }
+  }, // search
+
+  /**
+   * "messages" symfony module
+   */
+  messages: {
+    init: function(action) {
+      $('.nav-private-messages #' + action).addClass('active');
+    },
+    inbox: function() {
+      $('.private-messages-list-select .dropdown-toggle').dropdown();
+      $('.private-messages-list-select .dropdown-menu a').on('click', function(e) {
+        var $checkboxes = $('.private-messages-list input[type=checkbox]');
+
+        switch ($(this).data('select')) {
+          case 'all':
+            $checkboxes.attr('checked', 'checked');
+            break;
+          case 'none':
+            $checkboxes.attr('checked', false);
+            break;
+          case 'read':
+            $checkboxes.attr('checked', false).filter('.read').attr('checked', 'checked');
+            break;
+          case 'unread':
+            $checkboxes.attr('checked', false).filter('.unread').attr('checked', 'checked');
+            break;
+        }
+      })
+    },
+    show: function() {
+      $('#message_body').elastic();
+    },
+    compose: function() {
+      $('#message_body').elastic();
+    }
+  } // messages
 
 }; // APP
 
@@ -57,6 +92,12 @@ var COMMON = window.COMMON = (function(){
 
   // return object literal
   return {
+    setupProjectWideHelpers: function() {
+      COMMON.setupScrollToTop();
+      COMMON.setupFooterLoginOrSignup();
+      COMMON.setupEmailSpellingHelper();
+      COMMON.linkifyTables();
+    },
     setupScrollToTop: function() {
       /**
        * "Scroll to Top" link on every long page
@@ -165,7 +206,16 @@ var COMMON = window.COMMON = (function(){
         // and set the username to the value of the cookie
         $('#login_username').val($.cookie(window.cq.username_cookie));
       }
-    } // setupFooterLoginOrSignup()
+    }, // setupFooterLoginOrSignup()
+
+    linkifyTables: function() {
+      // make all table rows with class "linkify" clickable links ;)
+      var $link_table_rows = $('table').find('tr.linkify');
+
+      $link_table_rows.find('td:not(.dont-linkify)').on('click', function() {
+          window.location = $(this).parent().data('url');
+      });
+    } // linkifyTables
 
   }; // COMMON object literal
 }());

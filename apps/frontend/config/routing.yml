@@ -73,6 +73,7 @@ collections_by_collector:
   param: { module: collections, action: index }
   requirements: { collector_id: '\d+', collector_slug: '[\-\w\.]+' }
 
+
 ### COLLECTORS
 
 collectors:
@@ -315,8 +316,34 @@ content_categories:
   param: { module: categories, action: index }
 
 
-### GENERAL
+### MESSAGES
 
+messages_inbox:
+  url:    /messages/inbox/:filter
+  param:  { module: messages, action: inbox, filter: all }
+  requirements: { filter: "^(?|all|read|unread)$" }
+
+messages_sent:
+  url:    /messages/sent
+  param:  { module: messages, action: sent, filter: all }
+
+messages_show:
+  url:    /messages/:thread/show
+  class:  sfPropelORMRoute
+  param:  { module: messages, action: show }
+  options: { model: PrivateMessage, type: object }
+  requirements: { thread: "\w{32}" }
+
+messages_compose:
+  url:    /messages/compose
+  param:  { module: messages, action: compose }
+
+messages_batch_actions:
+  url:   /messages/batch-actions
+  param: { module: messages, action: batchActions }
+
+
+### GENERAL
 
 login:
   url:   /login
