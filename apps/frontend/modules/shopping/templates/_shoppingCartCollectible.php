@@ -10,7 +10,7 @@
     <div class="row-fluid">
       <div class="row-fluid line-under-title">
         <div class="span11"><!-- Title-->
-          <p class="seller-link">Seller <?= link_to_collector($shopping_cart_collectible->getCollector(), 'text'); ?></p>
+          <p class="seller-link">Order from <?= link_to_collector($shopping_cart_collectible->getCollector(), 'text'); ?></p>
         </div><!-- /Title-->
         <div class="span1"><!-- Remove from cart-->
           <div class="pull-right">
@@ -54,26 +54,33 @@
               <tr>
               <tr>
                 <td>Price:</td>
-                <td>
+                <td style="text-align: right;">
                   <?= money_format('%.2n', (float) $shopping_cart_collectible->getTotalPrice()); ?>
                   <small style="font-size: 80%;"><?= $shopping_cart_collectible->getPriceCurrency(); ?></small>
                 </td>
               </tr>
               <tr>
                 <td>Shipping:</td>
-                <td>Free</td>
+                <td style="text-align: right;">
+                  <?php if ($shopping_cart_collectible->getShippingFeeAmount() > 0): ?>
+                    <?= money_format('%.2n', (float) $shopping_cart_collectible->getShippingFeeAmount()); ?>
+                    <small style="font-size: 80%;"><?= $shopping_cart_collectible->getPriceCurrency(); ?></small>
+                  <?php else: ?>
+                    Free
+                  <?php endif; ?>
+                </td>
               </tr>
               <tr class="rainbow-dash">
                 <td><strong>Total:</strong></td>
-                <td>
+                <td style="text-align: right;">
                   <strong><?= money_format('%.2n', (float) $shopping_cart_collectible->getTotalPrice()); ?></strong>
-                  <small style="font-size: 80%;"><?= $shopping_cart_collectible->getPriceCurrency(); ?></small>
+                  <small style="font-size: 80%; font-weight: bold;"><?= $shopping_cart_collectible->getPriceCurrency(); ?></small>
                 </td>
               </tr>
               <tr>
                 <td colspan="2" style="text-align: center;">
-                  <button type="submit" name="Checkout" class="btn btn-large btn-danger" value="Checkout" data-loading-text="loading...">
-                    Checkout
+                  <button type="submit" name="Checkout" class="btn btn-large btn-danger" value="Checkout" style="width: 100%;">
+                    Checkout with PayPal
                   </button>
                 </td>
               </tr>
@@ -85,13 +92,3 @@
     </div>
   </div><!-- /shopping-cart-container-item -->
 <!-- </div> /shadow-->
-<script>
-  $(document).ready(function()
-  {
-    $('.btn-checkout').button();
-    $('.btn-checkout').click(function()
-    {
-      $(this).button('loading');
-    });
-  });
-</script>

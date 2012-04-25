@@ -40,11 +40,12 @@ class ShoppingOrderShippingForm extends BaseForm
       'buyer_phone' => $this->shopping_order->getShippingPhone()
     ));
 
-    $this->widgetSchema->setFormFormatterName('BootstrapWithRowFluid');
+    $this->widgetSchema->setFormFormatterName('Bootstrap');
     $this->widgetSchema->setNameFormat('shopping_order[%s]');
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
 
     $defaults = array(
+      'address_id' =>$this->shopping_order->getShippingAddressId(),
       'full_name' => $this->shopping_order->getShippingFullName(),
       'address_line_1' => $this->shopping_order->getShippingAddressLine1(),
       'address_line_2' => $this->shopping_order->getShippingAddressLine2(),
@@ -75,10 +76,23 @@ class ShoppingOrderShippingForm extends BaseForm
 
     $shipping_address = new ShippingAddressForm();
     $shipping_address->setDefaults($defaults);
-    //$shipping_address->widgetSchema->setFormFormatterName('BootstrapWithRowFluid');
-    $this->embedForm('shipping_address', $shipping_address);
+    $shipping_address->widgetSchema->setFormFormatterName('Bootstrap');
+    $this->embedForm('shipping_address', $shipping_address, '%content%');
 
     parent::setup();
+  }
+
+
+  public function configure()
+  {
+    $this->widgetSchema['buyer_email']->setLabel('Email Address');
+    $this->widgetSchema['buyer_phone']->setLabel('Telephone Number');
+
+    $this->validatorSchema['buyer_email']->setMessage('required',
+      'Your email address is used to send you an order confirmation');
+
+    $this->validatorSchema['buyer_email']->setMessage('invalid',
+      'This email address does not seem to be valid format');
   }
 
   public function save()

@@ -29,13 +29,12 @@ class cqFrontendUser extends cqBaseUser
 
   public function getShoppingCart()
   {
-    $q = ShoppingCartQuery::create()
-       ->filterByCookieUuid($this->isAuthenticated() ? null : $this->getCookieUuid());
+    $q = ShoppingCartQuery::create();
 
-    if ($collector = $this->getCollector()) {
-      $q->filterByCollector($collector);
+    if ($this->isAuthenticated()) {
+      $q->filterByCollector($this->getCollector());
     } else {
-      $q->filterByCollectorId(null, Criteria::ISNULL);
+      $q->filterByCookieUuid($this->getCookieUuid());
     }
 
     if (!($shopping_cart = $q->findOne()) && $this->isAuthenticated())
@@ -43,7 +42,6 @@ class cqFrontendUser extends cqBaseUser
       if ($shopping_cart = ShoppingCartQuery::create()->findOneByCookieUuid($this->getCookieUuid()))
       {
         $shopping_cart->setCollector($this->getCollector());
-        $shopping_cart->setCookieUuid(null);
         $shopping_cart->save();
       }
     }

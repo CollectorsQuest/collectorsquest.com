@@ -21,7 +21,7 @@ class cqUuidFilter extends sfFilter
     if (!$uuid = $request->getCookie('cq_uuid'))
     {
       $uuid = cqStatic::getUniqueId(32);
-      $response->setCookie('cq_uuid', $uuid, strtotime('+1 year'), '.'. sfConfig::get('app_domain_name'));
+      $response->setCookie('cq_uuid', $uuid, strtotime('+1 year'), '/', '.'. sfConfig::get('app_domain_name'));
     }
 
     $filterChain->execute();

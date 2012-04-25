@@ -21,7 +21,7 @@
     )
   );
 ?>
-<h1>Collections <small><?= $title; ?></small></h1>
+<h1 class="Chivo webfont">Collections <small><?= $title; ?></small></h1>
 
 <div class="row">
   <div id="search-results" class="row-content">

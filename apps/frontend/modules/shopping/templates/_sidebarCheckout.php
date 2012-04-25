@@ -1,6 +1,5 @@
 <?php /** @var $shopping_order ShoppingOrder */ ?>
 <?php if ($shopping_order): ?>
-<?php cq_sidebar_title('Your Order', null, array('style' => 'margin-top: 0;')); ?>
 <div class="well">
   <?= ice_image_tag_flickholdr('260x205', array('tags' => array('Bronze', ' Statue', 'Egyptian'), 'i' => 0)); ?>
   <br/><br/>

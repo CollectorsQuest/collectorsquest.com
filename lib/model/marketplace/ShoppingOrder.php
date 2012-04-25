@@ -105,7 +105,7 @@ class ShoppingOrder extends BaseShoppingOrder
       // Sender's geographic location
       'GeoLocation' => '',
       // A sub-identification of the application.  127 char max.
-      'Model' => '',
+      'Model' => 'Order',
       // Your organization's name or ID
       'PartnerName' => 'Collectors Quest, Inc.'
     );
