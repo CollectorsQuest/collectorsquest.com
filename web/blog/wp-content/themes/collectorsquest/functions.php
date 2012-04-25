@@ -198,41 +198,24 @@ if ($_SERVER['HTTP_HOST'] == 'www.collectorsquest.dev' || $_SERVER['HTTP_HOST'] 
 
   add_action('template_redirect', 'cq_ajax_posts');
 
-  /**
-   * Initialization.
-   */
-  function cq_is_init()
-  {
-    global $wp_query;
+  function catch_that_image() {
+    global $post, $posts;
+    $first_img = '';
+    ob_start();
+    ob_end_clean();
+    $output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
+    $first_img = $matches [1] [0];
 
-    // Add code to index pages.
-    if (!is_singular())
-    {
-      // Queue JS and CSS
-      wp_enqueue_script(
-        'cq-load-posts',
-        '/wp-content/themes/collectorsquest/js/load-posts.js',
-        array('jquery'),
-        '1.0',
-        true
-      );
-
-      // What page are we on? And what is the pages limit?
-      $max = $wp_query->max_num_pages;
-      $paged = (get_query_var('paged') > 1) ? get_query_var('paged') : 1;
-
-      // Add some parameters for the JS.
-      wp_localize_script(
-        'cq-load-posts',
-        'cq',
-        array(
-          'startPage' => $paged,
-          'maxPages'  => $max,
-          'nextLink'  => next_posts($max, false)
-        )
-      );
+    if(empty($first_img)){ //Defines a default image
+      $first_img = "/images/default.jpg";
     }
+    return $first_img;
   }
 
-  add_action('template_redirect', 'cq_is_init');
+
+
 }
+
+
+
+
