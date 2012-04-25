@@ -11,7 +11,7 @@
             </form>
           </div>
         </div>
-        <div class="span3 pull-right" style="float: right;">
+        <div class="span4 pull-right" style="float: right; text-align: right; padding-top: 2px;">
           <?php $k = $sf_user->getShoppingCartCollectiblesCount(); ?>
           <a href="<?= url_for('@shopping_cart'); ?>" class="link-cart" title="<?= (0 < $k) ? 'View your shopping cart' : 'Your shopping cart is empty!'; ?>">
             <span class="shopping-cart-inner shopping-cart">
@@ -22,11 +22,10 @@
             <?php endif; ?>
             </span>
           </a>
-          &nbsp;
           <span class="nav-divider"></span>
           <?php if ($sf_user->isAuthenticated()): ?>
             &nbsp;
-            <div id="menu-my-account" class="btn-group dropdown" style="float: right;">
+            <div id="menu-my-account" class="btn-group dropdown" style="float: right; text-align: left; margin-top: -2px;">
               <a class="btn btn-large dropdown-toggle" data-toggle="dropdown" href="#menu-my-account">
                 My Account &nbsp;<span class="caret"></span>
               </a>
@@ -52,7 +51,7 @@
           <?php else: ?>
             <?= link_to('Log In', '@login', array('class' => 'bold-links padding-signup')); ?>
             &nbsp;or&nbsp;
-            <?= link_to('Sign Up', '@collector_signup', array('class' => 'sing-up-now-btn sing-up-now-red')); ?>
+            <?= link_to('&nbsp;', '@collector_signup', array('class' => 'sing-up-now-btn sing-up-now-red')); ?>
           <?php endif; ?>
         </div>
       </div>
