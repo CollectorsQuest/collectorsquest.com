@@ -108,7 +108,7 @@ class Collector extends BaseCollector implements ShippingRatesInterface
    */
   public function checkPassword($password)
   {
-    return sha1($this->getSalt() . $password) == $this->getSha1Password();
+    return sha1($this->getSalt() . $password) === $this->getSha1Password();
   }
 
   /**
