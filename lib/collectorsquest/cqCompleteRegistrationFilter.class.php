@@ -14,6 +14,18 @@ class cqCompleteRegistrationFilter extends sfFilter
     /** @var $sf_user cqBaseUser */
     $sf_user = $this->context->getUser();
 
+    /**
+     * The Collector can get deleted while logged in
+     * so check for that use case before everything else
+     */
+    if ($sf_user->isAuthenticated() && !$sf_user->getCollector())
+    {
+      $sf_user->Authenticate(false);
+      $filterChain->execute();
+
+      return;
+    }
+
     if ( $sf_user->isAuthenticated()
       && $this->currentActionIsSecure()
       && (!$sf_user->getCollector()->getHasCompletedRegistration() && !$sf_user->getAttribute('package', false, 'registration'))
