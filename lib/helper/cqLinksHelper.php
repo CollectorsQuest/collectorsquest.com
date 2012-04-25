@@ -4,6 +4,53 @@
 $configuration = sfProjectConfiguration::getActive();
 $configuration->loadHelpers(array('Asset', 'Text', 'Url', 'cqImages'));
 
+/**
+ * Wrapper around link_to that will add a "requires-login" class
+ * to the returned link if the target route is secure
+ *
+ * @see link_to()
+ */
+function cq_link_to()
+{
+  // for BC with 1.1
+  $arguments = func_get_args();
+
+  if ( empty($arguments[1]) || is_array($arguments[1])
+    || '@' == substr($arguments[1], 0, 1) || false !== strpos($arguments[1], '/'))
+  {
+    if (!array_key_exists(2, $arguments))
+    {
+      $arguments[2] = array();
+    }
+
+    if (cqLinksUtil::getInstance()->isSecureRoute($arguments[1]))
+    {
+      _add_requires_login_class_to_options($arguments[2]);
+    }
+
+    return call_user_func_array('link_to1', $arguments);
+  }
+  else
+  {
+    if (!array_key_exists(2, $arguments))
+    {
+      $arguments[2] = array();
+    }
+
+    if (cqLinksUtil::getInstance()->isSecureRoute($arguments[1]))
+    {
+      _add_requires_login_class_to_options($arguments[2]);
+    }
+
+    return call_user_func_array('link_to2', $arguments);
+  }
+}
+
+function _add_requires_login_class_to_options(&$options)
+{
+  $options['class'] = isset($options['class']) ? $options['class']. ' requires-login' : 'requires-login';
+}
+
 function link_to_collector($object, $type = 'text', $options = array())
 {
   if ($object instanceof Collectible)
