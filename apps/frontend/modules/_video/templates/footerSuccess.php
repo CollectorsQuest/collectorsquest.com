@@ -16,11 +16,11 @@
 </head>
 <body id="<?= 'body-'. $sf_params->get('module') .'-'. $sf_params->get('action'); ?>" data-controller="<?= $sf_params->get('module'); ?>" data-action="<?= $sf_params->get('action'); ?>">
   <?php
-    include_component_slot('footer');
-    include_partial('global/footer_links');
-
     $sf_cache_key  = (int) $sf_user->getId() .'_';
     $sf_cache_key .= $sf_user->isAuthenticated() ? 'authenticated' : 'not_authenticated';
+
+    include_component_slot('footer', array('sf_cache_key' => $sf_cache_key));
+    include_partial('global/footer_links');
 
     // Include the global javascripts
     include_partial('global/javascripts', array('sf_cache_key' => $sf_cache_key));

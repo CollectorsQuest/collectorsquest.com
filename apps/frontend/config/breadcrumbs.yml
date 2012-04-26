@@ -1,0 +1,43 @@
+# http://www.symfony-project.org/plugins/sfOrmBreadcrumbsPlugin/1_0_5?tab=plugin_readme
+
+ice_propel_breadcrumbs:
+  _root: { name: 'Home' }
+  _separator: ' → '
+  _lost: ''
+  _default_case: 'ucwords'
+
+  _blog:
+    index: [{ name: 'Blog', route: blog }]
+
+  _video:
+    index: [{ name: 'Video', route: video }]
+
+  general:
+    index: [{ name: 'Home', route: homepage }]
+
+  collections:
+    index: [{ name: 'Collections', route: collections }]
+
+  marketplace:
+    index: [{ name: 'Maket', route: marketplace }]
+
+  search:
+    index: [{ name: 'Search Results', route: search }]
+    collections:
+      - { name: 'Search', route: search }
+      - { name: 'Collections', route: search_collections }
+    collectors:
+      - { name: 'Search', route: search }
+      - { name: 'Collectors', route: search_collectors }
+    collectibles:
+      - { name: 'Search', route: search }
+      - { name: 'Collectibles', route: search_collectibles }
+    collectiblesForSale:
+      - { name: 'Search', route: search }
+      - { name: 'Collectibles For Sale', route: search_collectibles_for_Sale }
+    blog:
+      - { name: 'Search', route: search }
+      - { name: 'Blog Articles', route: search_blog }
+    video:
+      - { name: 'Search', route: search }
+      - { name: 'Video', route: search_video }

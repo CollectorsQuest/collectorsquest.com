@@ -14,6 +14,11 @@ class globalComponents extends cqFrontendComponents
     return sfView::SUCCESS;
   }
 
+  public function executeBreadcrumbs()
+  {
+    return sfView::SUCCESS;
+  }
+
   public function executeSidebar120()
   {
     return sfView::SUCCESS;
@@ -87,6 +92,11 @@ class globalComponents extends cqFrontendComponents
     $this->signup_form = new CollectorSignupFooterForm();
     $this->login_form  = new CollectorLoginForm();
 
+    return sfView::SUCCESS;
+  }
+
+  public function executeEmpty()
+  {
     return sfView::SUCCESS;
   }
 }

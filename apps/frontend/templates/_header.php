@@ -6,13 +6,12 @@
         <div class="span5">
           <div class="input-append search-header pull-right">
             <form action="<?= url_for('@search') ?>" method="get">
-              <?= $form['q']->render(array('value' => $sf_params->get('q'), 'autocomplete' => 'off')); ?>
+              <?= $form['q']->render(array('value' => $q, 'autocomplete' => 'off')); ?>
               <button class="btn btn-large" type="submit">Search</button>
             </form>
           </div>
         </div>
         <div class="span4 pull-right" style="float: right; text-align: right; padding-top: 2px;">
-          <?php $k = $sf_user->getShoppingCartCollectiblesCount(); ?>
           <a href="<?= url_for('@shopping_cart'); ?>" class="link-cart" title="<?= (0 < $k) ? 'View your shopping cart' : 'Your shopping cart is empty!'; ?>">
             <span class="shopping-cart-inner shopping-cart">
             <?php if (0 < $k): ?>
@@ -87,7 +86,7 @@
           <?php $class = in_array($sf_params->get('module'), array('_video')) ? 'active' : null; ?>
           <li class="<?= $class ?>"><?= link_to('Video', '@video'); ?></li>
 
-          <?php $class = in_array($sf_params->get('module'), array('marketplace')) ? 'active' : null; ?>
+          <?php $class = in_array($sf_params->get('module'), array('marketplace', 'shopping')) ? 'active' : null; ?>
           <li class="<?= $class ?>"><?= link_to('Market', '@marketplace'); ?></li>
         </ul>
       </div>

@@ -75,6 +75,11 @@ class aentActions extends cqFrontendActions
     return sfView::SUCCESS;
   }
 
+  public function executeStorageWars()
+  {
+    return sfView::SUCCESS;
+  }
+
   public function executeCollectible()
   {
     /** @var $collectible Collectible */

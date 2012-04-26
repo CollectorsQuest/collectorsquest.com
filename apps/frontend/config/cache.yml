@@ -11,7 +11,19 @@ _ad_slots:
   with_layout: false
   lifetime:    3600
 
+_header:
+  enabled:     true
+  contextual:  true
+  with_layout: false
+  lifetime:    300
+
 _javascripts:
   enabled:     true
+  contextual:  true
   with_layout: false
   lifetime:    3600
+
+_footer:
+  enabled:     true
+  with_layout: false
+  lifetime:    300

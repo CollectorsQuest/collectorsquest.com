@@ -33,16 +33,16 @@
 <div id="sort-search-box">
   <div class="input-append">
     <form action="" method="post">
-      <div class="btn-group open">
-        <div class="append-left-gray">Sort By <strong>All Prices</strong></div>
+      <div class="btn-group">
+        <div class="append-left-gray">Sort By <strong id="sortByName">All Prices</strong></div>
         <a href="#" data-toggle="dropdown" class="btn gray-button dropdown-toggle">
           <span class="caret arrow-up"></span><br><span class="caret arrow-down"></span>
         </a>
         <ul class="dropdown-menu">
-          <li><a href="#">Sort By <strong>Under $100</strong></a></li>
-          <li><a href="#">Sort By <strong>$100 - $250</strong></a></li>
-          <li><a href="#">Sort By <strong>Over $250</strong></a></li>
-          <li><a href="#">Sort By <strong>Most Recent</strong></a></li>
+          <li><a href="javascript:" class="sortBy" data-name="Under $100" data-sort="under-100">Sort by <strong>Under $100</strong></a></li>
+          <li><a href="javascript:" class="sortBy" data-name="$100 - $250" data-sort="100-200">Sort by <strong>$100 - $250</strong></a></li>
+          <li><a href="javascript:" class="sortBy" data-name="Over $250" data-sort="over-250">Sort by <strong>Over $250</strong></a></li>
+          <li><a href="javascript:" class="sortBy" data-name="Most Recent" data-sort="most-recent">Sort by <strong>Most Recent</strong></a></li>
         </ul>
       </div>
       <input type="text" size="16" id="appendedPrependedInput" class="input-sort-by"><button type="button" class="btn gray-button"><strong>Search</strong></button>
@@ -51,17 +51,35 @@
 </div>
 
 <div id="items-for-sale">
-  <div class="row">
-    <ul class="thumbnails">
-      <?php foreach ($collectibles_for_sale as $i => $collectible_for_sale): ?>
-      <li class="span3">
-        <a class="thumbnail" href="#">
-          <img src="http://placehold.it/131x131" alt="">
-          <p><?= cqStatic::truncateText($collectible_for_sale->getName(), 20); ?></p>
-          <span><?= money_format('%.2n', (float) $collectible_for_sale->getPrice()); ?></span>
-        </a>
-      </li>
-      <?php endforeach; ?>
-    </ul>
+  <div class="row thumbnails">
+    <?php
+      /** @var $collectibles_for_sale CollectibleForSale[] */
+      foreach ($collectibles_for_sale as $i => $collectible_for_sale)
+      {
+        include_partial(
+          'marketplace/collectible_for_sale_grid_view_square_small',
+          array('collectible_for_sale' => $collectible_for_sale, 'i' => $i)
+        );
+      }
+    ?>
   </div>
+  <button class="btn btn-small gray-button see-more-full"
+          id="seemore-featured-week"
+          data-url="<?= url_for('@ajax_collections?section=component&page=featuredWeekCollectibles') ?>"
+          data-target="#weeks-promo-box div.imageset">
+    See more
+  </button>
 </div>
+
+<script>
+$(document).ready(function()
+{
+  $('.dropdown-toggle').dropdown();
+
+  $('.dropdown-menu a.sortBy').click(function()
+  {
+    $('#sortByName').html($(this).data('name'));
+    $('#sortByValue').val($(this).data('sort'));
+  });
+});
+</script>

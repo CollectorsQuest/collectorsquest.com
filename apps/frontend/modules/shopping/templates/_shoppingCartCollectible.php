@@ -80,7 +80,7 @@
               <tr>
                 <td colspan="2" style="text-align: center;">
                   <button type="submit" name="Checkout" class="btn btn-large btn-danger" value="Checkout" style="width: 100%;">
-                    Checkout with PayPal
+                    Proceed to Checkout
                   </button>
                 </td>
               </tr>
