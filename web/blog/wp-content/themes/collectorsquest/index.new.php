@@ -183,7 +183,8 @@
           <?php if (!is_single()) : ?>
             <a href="<?php the_permalink() ?>">
           <?php endif; ?>
-              <img src="<?php echo $image_url; //http://placekitten.com/ ?><?php echo $img_w ?>/<?php echo $img_h ?>" alt=""/>
+            <!--  <img src="<?php echo $image_url; //http://placekitten.com/ ?><?php echo $img_w ?>/<?php echo $img_h ?>" alt=""/> -->
+              <img src="/blog/wp-content/themes/collectorsquest/timthumb.php?src=<?php echo $image_url; //http://placekitten.com/ ?>&w=<?php echo $img_w ?>&h=<?php echo $img_h ?>&zc=1" alt=""/>
           <?php if (!is_single()) : ?>
             </a>
           <?php endif; ?>
