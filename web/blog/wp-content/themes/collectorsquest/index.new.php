@@ -59,12 +59,11 @@
     $count = ($paged > 1) ? 9 : 1;
     $lastclass = 0;
 
-    if ($paged == 2) {
+    if ($paged == 2) :
       query_posts('offset=7&posts_per_page=8');
-    }
-    elseif ($paged > 2) {
+    elseif ($paged > 2) :
       query_posts('offset=' . (($paged * 8) - 9) . '&posts_per_page=8');
-    }
+    endif;
   ?>
 
   <?php while (have_posts()) : the_post(); ?>
@@ -126,31 +125,65 @@
         <?php endif; ?>
 
         <div class="entry-image">
+
+          <?php
+          $image_id = get_post_thumbnail_id();
+          $image_url = wp_get_attachment_image_src($image_id,'full');
+          $image_url = $image_url[0];
+
+          if (!$image_url) :
+            $args = array(
+              'post_parent' => $post->ID,
+              'post_type' => 'attachment',
+              'post_mime_type' => 'image',
+              'orderby' => 'menu_order',
+              'order' => 'ASC',
+              'offset' => '0',
+              'numberposts' => 1
+            );
+
+            $images = get_posts($args);
+
+            if ( count( $images ) > 0 ) :
+              $image_url = wp_get_attachment_url($images[0]->ID);
+            else :
+              $image_url = catch_that_image();
+            endif;
+          endif;
+
+
+          ?>
+
+
+
+          <?php
+          if (is_single()) :
+            $img_w = '620';
+            $img_h = '440';
+          elseif (is_front_page() && $count == 1 || is_front_page() && $count == 2 || is_front_page() && $count == 3) :
+            $img_w = '300';
+          elseif (is_front_page() && $count > 3) :
+            $img_w = '140';
+            $img_h = '100';
+          else :
+            $img_w = '140';
+            $img_h = '140';
+          endif;
+          ?>
+
+          <?php
+          if (is_front_page() && $count == 1) :
+            $img_h = '360';
+          elseif (is_front_page() && $count == 2 || is_front_page() && $count == 3) :
+            $img_h = '130';
+          endif;
+          ?>
+
+
           <?php if (!is_single()) : ?>
             <a href="<?php the_permalink() ?>">
           <?php endif; ?>
-              <img src="http://placekitten.com/<?php
-                if (is_singular()) :
-                  echo '620';
-                elseif (is_front_page() && $count == 1 || is_front_page() && $count == 2 || is_front_page() && $count == 3) :
-                  echo '300';
-                elseif ($count > 3) :
-                  echo '140';
-                else :
-                  echo '140';
-                endif; ?>/<?php
-                if (is_singular()) :
-                  echo '440';
-                elseif (is_front_page() && $count == 1) :
-                  echo '360';
-                elseif (is_front_page() && $count == 2 || is_front_page() && $count == 3) :
-                  echo '130';
-                elseif (is_front_page() && $count > 3) :
-                  echo '100';
-                else :
-                  echo '140';
-                endif;
-                ?>" alt=""/>
+              <img src="<?php echo $image_url; //http://placekitten.com/ ?><?php echo $img_w ?>/<?php echo $img_h ?>" alt=""/>
           <?php if (!is_single()) : ?>
             </a>
           <?php endif; ?>
@@ -172,7 +205,7 @@
         <div class="entry-meta">
           <a class="author-image" href="<?php echo get_author_posts_url(get_the_author_meta('ID')) ?>"
              title="<?php the_author() ?>'s articles on collecting...">
-            <img src="http://placekitten.com/33/33" alt="" width="33" height="33"/>
+            <?php echo get_avatar(get_the_author_meta('ID'),33) //<img src="http://placekitten.com/33/33" alt="" width="33" height="33"/> ?>
           </a>
             <span class="meta-text">
               By <a href="<?php echo get_author_posts_url(get_the_author_meta('ID')) ?>"
