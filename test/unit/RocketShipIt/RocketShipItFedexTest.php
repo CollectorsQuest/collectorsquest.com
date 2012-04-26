@@ -28,4 +28,20 @@ $rate->setParameter('weight','5');
 
 $response = $rate->getSimpleRates();
 
-$t->is(count($response), 6, 'Fedex returns 6 separate simple rates');
+$t->ok(isset($response['FIRST_OVERNIGHT']),
+  'All expected simple rates are returned');
+
+$t->ok(isset($response['PRIORITY_OVERNIGHT']),
+  'All expected simple rates are returned');
+
+$t->ok(isset($response['STANDARD_OVERNIGHT']),
+  'All expected simple rates are returned');
+
+$t->ok(isset($response['FEDEX_2_DAY']),
+  'All expected simple rates are returned');
+
+$t->ok(isset($response['FEDEX_EXPRESS_SAVER']),
+  'All expected simple rates are returned');
+
+$t->ok(isset($response['FEDEX_GROUND']),
+  'All expected simple rates are returned');
