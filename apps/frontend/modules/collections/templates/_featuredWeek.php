@@ -47,6 +47,7 @@ $(document).ready(function()
   $('#seemore-featured-week').click(function()
   {
     var $button = $(this);
+    $button.html('loading...');
 
     $.get($button.data('url'), function(data)
     {
@@ -57,9 +58,9 @@ $(document).ready(function()
         hoverClass: 'over',
         clickZone : 'div.link'
       });
-    },'html');
 
-    $(this).hide();
+      $(this).hide();
+    },'html');
   });
 });
 </script>

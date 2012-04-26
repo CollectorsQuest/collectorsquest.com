@@ -49,10 +49,7 @@ else
     // Show the collection (in grid, list or hybrid view)
     include_partial(
       'collections/grid_view_collection',
-      array(
-        'collection' => $collection,
-        'culture' => $sf_user->getCulture(), 'i' => $i
-      )
+      array('collection' => $collection, 'i' => $i)
     );
 
     echo (($i + 1) % 3 == 0) ? '<br clear="all">' : null;
