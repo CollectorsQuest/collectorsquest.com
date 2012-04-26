@@ -21,8 +21,12 @@
  * everytime you download a new version
 */
 define ('VERSION', '2.8.10');																		// Version of this script
-//Load a config file if it exists. Otherwise, use the values below
-if( file_exists(dirname(__FILE__) . '/timthumb-config.php'))	require_once('timthumb-config.php');
+
+define ('FILE_CACHE_DIRECTORY', '/www/vhosts/collectorsquest.com/current/web/uploads/blog/cache');
+// What to put at the end of all files in the cache directory so we can identify them
+define ('FILE_CACHE_SUFFIX', '.thumb.txt');
+define ('FILE_CACHE_PREFIX', 'thumb');
+
 if(! defined('DEBUG_ON') )					define ('DEBUG_ON', false);								// Enable debug logging to web server error log (STDERR)
 if(! defined('DEBUG_LEVEL') )				define ('DEBUG_LEVEL', 1);								// Debug level 1 is less noisy and 3 is the most noisy
 if(! defined('MEMORY_LIMIT') )				define ('MEMORY_LIMIT', '30M');							// Set PHP memory limit
