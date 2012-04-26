@@ -52,13 +52,16 @@
 
 <div id="items-for-sale">
   <div class="row thumbnails">
-    <?php foreach ($collectibles_for_sale as $i => $collectible_for_sale): ?>
-    <div class="span3 thumbnail link">
-      <img src="http://placehold.it/131x131" alt="">
-      <p><?= link_to_collectible($collectible_for_sale->getCollectible(), 'text', array('class' => 'target', 'truncate' => 20)); ?></p>
-      <span><?= money_format('%.2n', (float) $collectible_for_sale->getPrice()); ?></span>
-    </div>
-    <?php endforeach; ?>
+    <?php
+      /** @var $collectibles_for_sale CollectibleForSale[] */
+      foreach ($collectibles_for_sale as $i => $collectible_for_sale)
+      {
+        include_partial(
+          'marketplace/collectible_for_sale_grid_view_square_small',
+          array('collectible_for_sale' => $collectible_for_sale, 'i' => $i)
+        );
+      }
+    ?>
   </div>
   <button class="btn btn-small gray-button see-more-full"
           id="seemore-featured-week"

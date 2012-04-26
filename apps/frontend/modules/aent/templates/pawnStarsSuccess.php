@@ -74,36 +74,16 @@
 </div>
 
 <div id="items-for-sale">
-  <div class="row">
-    <ul class="thumbnails">
-      <li class="span3">
-        <a class="thumbnail" href="#">
-          <img src="http://placehold.it/131x128" alt="">
-          <p>Transformer - Perfect...</p>
-          <span>$212,000</span>
-        </a>
-      </li>
-      <li class="span3">
-        <a class="thumbnail" href="#">
-          <img src="http://placehold.it/131x128" alt="">
-          <p>Transformer - Perfect...</p>
-          <span>$212,000</span>
-        </a>
-      </li>
-      <li class="span3">
-        <a class="thumbnail" href="#">
-          <img src="http://placehold.it/131x128" alt="">
-          <p>Transformer - Perfect...</p>
-          <span>$212,000</span>
-        </a>
-      </li>
-      <li class="span3">
-        <a class="thumbnail" href="#">
-          <img src="http://placehold.it/131x128" alt="">
-          <p>Transformer - Perfect...</p>
-          <span>$212,000</span>
-        </a>
-      </li>
-    </ul>
+  <div class="row thumbnails">
+    <?php
+    /** @var $collectibles_for_sale CollectibleForSale[] */
+    foreach ($collectibles_for_sale as $i => $collectible_for_sale)
+    {
+      include_partial(
+        'marketplace/collectible_for_sale_grid_view_square_small',
+        array('collectible_for_sale' => $collectible_for_sale, 'i' => $i)
+      );
+    }
+    ?>
   </div>
 </div>
