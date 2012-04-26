@@ -421,9 +421,9 @@ class timthumb {
       $html .= '<li>' . htmlentities($err) . '</li>';
     }
     $html .= '</ul>';
-    echo '<h1>A TimThumb error has occured</h1>The following error(s) occured:<br />' . $html . '<br />';
-    echo '<br />Query String : ' . htmlentities ($_SERVER['QUERY_STRING']);
-    echo '<br />TimThumb version : ' . VERSION . '</pre>';
+    echo '<h1>The following error(s) occured:</h1><p>' . $html . '</p><hr /><address></address>';
+    //echo '<br />Query String : ' . htmlentities ($_SERVER['QUERY_STRING']);
+    //echo '<br />TimThumb version : ' . VERSION . '</pre>';
   }
   protected function serveInternalImage(){
     $this->debug(3, "Local image path is $this->localImage");
