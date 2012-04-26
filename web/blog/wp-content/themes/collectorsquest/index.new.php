@@ -222,11 +222,10 @@
         </div>
 
         <div class="entry">
-          <?php
-
+      <?php
       if (is_single()) :
          the_content();
-      elseif (is_front_page()) :
+      elseif (is_front_page() && ($count < 4)) :
         if ($count == 1) :
           $length = 300;
         elseif ($count == 2 || $count == 3) :
@@ -235,13 +234,14 @@
         $longString = get_the_excerpt('... more');
         $truncated = substr($longString, 0, strpos($longString, ' ', $length));
         echo '<p>' . $truncated . '... <a href="' . get_permalink() . '">more</a></p>';
-      else :
+      elseif (is_archive()) :
         $length = 200;
         $longString = get_the_excerpt('... more');
-          $truncated = substr($longString, 0, strpos($longString, ' ', $length));
-          echo '<p>' . $truncated . '... <a href="' . get_permalink() . '">more</a></p>';
-          ?>
-          <?php endif; ?>
+        $truncated = substr($longString, 0, strpos($longString, ' ', $length));
+        echo '<p>' . $truncated . '... <a href="' . get_permalink() . '">more</a></p>';
+      endif;
+
+      ?>
         </div>
 
         <?php if ((is_front_page() && $count == 1) || is_single()) : ?>
