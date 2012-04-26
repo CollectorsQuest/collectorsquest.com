@@ -9,6 +9,14 @@ all:
     # require the user to input a captcha every N outgoing messages
     require_captcha_threshold: 5
 
+  aent:
+    pawn_stars:
+      collector: 6667
+      collection: 2841
+    american_pickers:
+      collector: 6668
+      collection: 2842
+
 dev:
   domain_name: "collectorsquest.next"
   www_domain: "www.collectorsquest.next"

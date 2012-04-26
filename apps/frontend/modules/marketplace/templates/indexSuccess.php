@@ -8,7 +8,12 @@
   <div class="span4 link">
     <div class="thumbnail">
       <div class="spotlight-thumb">
-        <?= ice_image_tag_placeholder('180x180', array(), 1) ?>
+        <?php
+          echo image_tag_collectible(
+            $collectible_for_sale->getCollectible(), '190x190',
+            array('width' => 180, 'height' => 180)
+          );
+        ?>
         <span>Affordable</span>
       </div>
       <div class="spotlight-text">

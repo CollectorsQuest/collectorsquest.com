@@ -5,18 +5,27 @@ $configuration = sfProjectConfiguration::getActive();
 $configuration->loadHelpers(array('Asset', 'Text', 'Url', 'cqImages'));
 
 /**
+ * @param array $options
+ */
+function _cq_add_requires_login_class_to_options(&$options)
+{
+  $options['class'] = isset($options['class']) ? $options['class']. ' requires-login' : 'requires-login';
+}
+
+/**
  * Wrapper around link_to that will add a "requires-login" class
  * to the returned link if the target route is secure
  *
  * @see link_to()
+ * @return mixed
  */
 function cq_link_to()
 {
   // for BC with 1.1
   $arguments = func_get_args();
 
-  if ( empty($arguments[1]) || is_array($arguments[1])
-    || '@' == substr($arguments[1], 0, 1) || false !== strpos($arguments[1], '/'))
+  if (empty($arguments[1]) || is_array($arguments[1]) ||
+      '@' == substr($arguments[1], 0, 1) || false !== strpos($arguments[1], '/'))
   {
     if (!array_key_exists(2, $arguments))
     {
@@ -25,7 +34,7 @@ function cq_link_to()
 
     if (cqLinkUtils::getInstance()->isSecureRoute($arguments[1]))
     {
-      _add_requires_login_class_to_options($arguments[2]);
+      _cq_add_requires_login_class_to_options($arguments[2]);
     }
 
     return call_user_func_array('link_to1', $arguments);
@@ -39,16 +48,11 @@ function cq_link_to()
 
     if (cqLinkUtils::getInstance()->isSecureRoute($arguments[1]))
     {
-      _add_requires_login_class_to_options($arguments[2]);
+      _cq_add_requires_login_class_to_options($arguments[2]);
     }
 
     return call_user_func_array('link_to2', $arguments);
   }
-}
-
-function _add_requires_login_class_to_options(&$options)
-{
-  $options['class'] = isset($options['class']) ? $options['class']. ' requires-login' : 'requires-login';
 }
 
 function link_to_collector($object, $type = 'text', $options = array())
@@ -247,9 +251,14 @@ function link_to_collectible($collectible, $type = 'text', $options = array())
   {
     case 'image':
       $which = (isset($options['width']) && isset($options['height'])) ? $options['width'].'x'.$options['height'] : '150x150';
-      $options = array_merge(array('class' => 'thumbnail'), $options);
 
-      $link = link_to(image_tag_collectible($collectible, $which, $options), $route, $options);
+      if (sfConfig::get('sf_app') == 'legacy') {
+        $_options = array_merge(array('class' => 'thumbnail'), $options);
+      } else {
+        $_options = array();
+      }
+
+      $link = link_to(image_tag_collectible($collectible, $which, $_options), $route, $options);
       break;
     case 'text':
     default:
