@@ -77,7 +77,7 @@
       <div class="container dark-bg">
         <?= link_to('Collectors Quest', '@homepage', array('class' => 'cq-logo logo hide-text', 'title' => 'Home')) ?>
         <ul class="nav">
-          <?php $class = in_array($sf_params->get('module'), array('collection', 'collections')) ? 'active' : null; ?>
+          <?php $class = in_array($sf_params->get('module'), array('collection', 'collections', 'aent')) ? 'active' : null; ?>
           <li class="<?= $class ?>"><?= link_to('Collections', '@collections'); ?></li>
 
           <?php $class = in_array($sf_params->get('module'), array('news', '_blog')) ? 'active' : null; ?>
