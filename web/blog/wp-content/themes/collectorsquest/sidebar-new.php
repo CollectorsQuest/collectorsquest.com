@@ -39,7 +39,9 @@
           $exclude[] = $ad->ID;
         }
         $exclude = implode(',', $exclude);
-        $blogusers = get_users('exclude=' . $exclude . '&orderby=' . $order_by . '&role=' . $role);
+        $exclude = str_replace(",7", "", $exclude);
+        echo $exclude;
+        $blogusers = get_users('exclude=' . $exclude . ',13,11');
       }
       $authors = array();
       foreach ($blogusers as $bloguser) {
