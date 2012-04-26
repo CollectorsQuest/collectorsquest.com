@@ -3,7 +3,7 @@ dev:
     error_reporting:        <?php echo (E_ALL | E_STRICT)."\n" ?>
     web_debug:              true
     logging_enabled:        true
-    cache:                  true
+    cache:                  false
     etag:                   false
 
 test:
