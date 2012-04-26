@@ -86,7 +86,7 @@
           <?php $class = in_array($sf_params->get('module'), array('_video')) ? 'active' : null; ?>
           <li class="<?= $class ?>"><?= link_to('Video', '@video'); ?></li>
 
-          <?php $class = in_array($sf_params->get('module'), array('marketplace')) ? 'active' : null; ?>
+          <?php $class = in_array($sf_params->get('module'), array('marketplace', 'shopping')) ? 'active' : null; ?>
           <li class="<?= $class ?>"><?= link_to('Market', '@marketplace'); ?></li>
         </ul>
       </div>
