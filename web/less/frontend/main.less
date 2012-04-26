@@ -148,7 +148,7 @@ h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover {
 
 #content {
   background-color: @white;
-  padding-top: 45px;
+  padding-top: 40px;
   padding-bottom: 20px;
   border-left: 1px solid #ededed;
 }
@@ -429,6 +429,20 @@ input[type="submit"].btn.btn-micro {
   display: inline;
 }
 
+// BREADCRUMBS
+#breadcrumbs {
+  margin: 0 auto;
+  margin-bottom: -40px;
+  background-color: @white;
+  border-left: 1px solid #ededed;
+  .box-shadow(0 25px 20px rgba(136, 119, 119, 0.5));
+  .clearfix();
+
+  .breadcrumbs-inner {
+    padding: 15px 20px 32px 0;
+  }
+}
+
 //SLOTS
 #slot1 {
   margin: 0 auto;
@@ -436,10 +450,10 @@ input[type="submit"].btn.btn-micro {
   border-left: 1px solid #ededed;
   .box-shadow(0 25px 20px rgba(136, 119, 119, 0.5));
   .clearfix();
-}
 
-.slot1-inner {
-  padding: 40px 15px 0;
+  .slot1-inner {
+    padding: 40px 15px 0;
+  }
 }
 
 //BUTTONS

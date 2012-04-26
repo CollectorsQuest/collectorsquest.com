@@ -46,9 +46,19 @@
       'sf_cache_key' => $sf_cache_key .'-'. md5(serialize(array($sf_params->get('q'), $sf_user->getShoppingCartCollectiblesCount())))
     ));
 
-    echo '<div id="slot1">';
-      include_component_slot('slot1', array('sf_cache_key' => $sf_cache_key));
-    echo '</div>';
+    if (has_component_slot('breadcrumbs'))
+    {
+      echo '<div id="breadcrumbs">';
+        include_component_slot('breadcrumbs');
+      echo '</div>';
+    }
+
+    if (has_component_slot('slot1'))
+    {
+      echo '<div id="slot1">';
+        include_component_slot('slot1', array('sf_cache_key' => $sf_cache_key));
+      echo '</div>';
+    }
 
     if (has_component_slot('sidebar_120'))
     {

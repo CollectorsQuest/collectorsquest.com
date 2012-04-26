@@ -10,8 +10,9 @@ orderShippingSuccess:
   components:
     header:  [global, headerStripped]
     footer:  []
-    sidebar_300: [shopping, sidebarCheckout]
+    breadcrumbs: []
     slot1:   [shopping, slot1Shipping]
+    sidebar_300: [shopping, sidebarCheckout]
 
 orderPaySuccess:
   components:
