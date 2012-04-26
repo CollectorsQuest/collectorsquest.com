@@ -3,7 +3,7 @@ dev:
     error_reporting:        <?php echo (E_ALL | E_STRICT)."\n" ?>
     web_debug:              true
     logging_enabled:        true
-    cache:                  false
+    cache:                  true
     etag:                   false
 
 test:
@@ -16,9 +16,9 @@ test:
 all:
   .settings:
     logging_enabled:        false
+    web_debug:              false
+    cache:                  true
     no_script_name:         true
-    # Form security secret (CSRF protection)
-    csrf_secret:            qqDHZyX9DuEKyCv7hACqUfPzC86k7JEx
 
     i18n:                   true
     default_culture:        en
@@ -33,12 +33,11 @@ all:
     escaping_strategy:      false
     escaping_method:        ESC_SPECIALCHARS
 
+    # Form security secret (CSRF protection)
+    csrf_secret:            qqDHZyX9DuEKyCv7hACqUfPzC86k7JEx
+
     # Cache settings
     lazy_cache_key:         true
-
-    # Logging
-    logging_enabled:        false
-
 
   .actions:
     error_404_module:       default

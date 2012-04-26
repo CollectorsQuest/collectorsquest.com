@@ -1,9 +1,13 @@
 <?php
-/**
- * @var  $sf_user     cqFrontendUser
- * @var  $sf_params   sfParameterHolder
- * @var  $sf_context  sfContext
- */
+  /**
+   * @var  $sf_user     cqFrontendUser
+   * @var  $sf_params   sfParameterHolder
+   * @var  $sf_context  sfContext
+   */
+
+  /** @var $sf_cache_key string */
+  $sf_cache_key  = (int) $sf_user->getId() .'_';
+  $sf_cache_key .= $sf_user->isAuthenticated() ? 'authenticated' : 'not_authenticated';
 ?>
 <!doctype html>
 <!--[if lt IE 7 ]><html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#" lang="en" class="no-js lt-ie9 lt-ie8 lt-ie7"><![endif]-->
@@ -36,10 +40,14 @@
   </script>
 
   <?php
-    include_component_slot('header');
+    include_component_slot('header', array(
+      'q' => $sf_params->get('q'),
+      'k' => $sf_user->getShoppingCartCollectiblesCount(),
+      'sf_cache_key' => $sf_cache_key .'-'. md5(serialize(array($sf_params->get('q'), $sf_user->getShoppingCartCollectiblesCount())))
+    ));
 
     echo '<div id="slot1">';
-      include_component_slot('slot1');
+      include_component_slot('slot1', array('sf_cache_key' => $sf_cache_key));
     echo '</div>';
 
     if (has_component_slot('sidebar_120'))
@@ -82,20 +90,15 @@
     if (null !== $sidebar)
     {
       echo '<div id="sidebar">';
-      include_component_slot($sidebar);
+      include_component_slot($sidebar, array('sf_cache_key' => $sf_cache_key));
       echo '</div>';
     }
     echo '</div>';
   ?>
 
   <?php
-    include_component_slot('footer');
+    include_component_slot('footer', array('sf_cache_key' => $sf_cache_key));
     include_partial('global/footer_links');
-  ?>
-
-  <?php
-    $sf_cache_key  = (int) $sf_user->getId() .'_';
-    $sf_cache_key .= $sf_user->isAuthenticated() ? 'authenticated' : 'not_authenticated';
 
     // Include the global javascripts
     include_partial('global/javascripts', array('sf_cache_key' => $sf_cache_key));
