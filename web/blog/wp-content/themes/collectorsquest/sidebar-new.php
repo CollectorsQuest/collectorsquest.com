@@ -40,7 +40,7 @@
         }
         $exclude = implode(',', $exclude);
         $exclude = str_replace(",7", "", $exclude);
-        $blogusers = get_users('exclude=' . $exclude . ',13,11');
+        $blogusers = get_users('exclude=' . $exclude . ',6,13,11');
       }
       $authors = array();
       foreach ($blogusers as $bloguser) {
