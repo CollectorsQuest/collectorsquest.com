@@ -183,14 +183,28 @@
           <?php if (!is_single()) : ?>
             <a href="<?php the_permalink() ?>">
           <?php endif; ?>
+
+          <?php $image_attributes = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID), 'full' ); ?>
+
+          <?php if ($image_attributes[1]>=500) : ?>
             <!--  <img src="<?php echo $image_url; //http://placekitten.com/ ?><?php echo $img_w ?>/<?php echo $img_h ?>" alt=""/> -->
-              <img src="/blog/wp-content/themes/collectorsquest/thumb.php?src=<?php echo $image_url; //http://placekitten.com/ ?>&w=<?php echo $img_w ?>&h=<?php echo $img_h ?>&zc=1" alt=""/>
+            <img src="/blog/wp-content/themes/collectorsquest/thumb.php?src=<?php echo $image_url; //http://placekitten.com/ ?>&w=<?php echo $img_w ?>&h=<?php echo $img_h ?>&zc=1" alt=""/>
+          <?php
+            $thumbnail_id    = get_post_thumbnail_id($post->ID);
+            $thumbnail_image = get_posts(array('p' => $thumbnail_id, 'post_type' => 'attachment'));
+
+            if ($thumbnail_image && isset($thumbnail_image[0])) :
+              echo '<p class="wp-caption-text">'.$thumbnail_image[0]->post_excerpt.'</p>';
+            endif;
+          ?>
+
+          <?php endif; ?>
+
           <?php if (!is_single()) : ?>
             </a>
           <?php endif; ?>
 
           <?php if (is_single()): ?>
-            <p class="wp-caption-text">This is a caption.</p>
             <div id="entry-image-box"></div>
             <div id="entry-image-box-button"><a href=""><i class="icon-resize-full"></i>Expand</a></div>
           <?php endif; ?>
