@@ -169,8 +169,8 @@ if ($_SERVER['HTTP_HOST'] == 'www.collectorsquest.dev' || $_SERVER['HTTP_HOST'] 
    */
   function cq_ajax_posts()
   {
-    global $wp_query;
 
+  global $wp_query;
     // Add code to index pages.
     if (!is_singular())
     {
