@@ -5,13 +5,13 @@
  */
 class cqLinkUtils
 {
-  /** @var cqLinksUtil */
+  /** @var cqLinkUtils */
   protected static $instance = null;
 
   /**
    * Get an instance of the class
    *
-   * @return cqLinksUtil
+   * @return cqLinkUtils
    */
   public static function getInstance()
   {
@@ -29,7 +29,7 @@ class cqLinkUtils
    */
   protected $security = array();
 
-  /** @var cached module security configs */
+  /** @var array Cached module security configs */
   protected $modules_security = array();
 
   /**
@@ -80,8 +80,9 @@ class cqLinkUtils
    * the "all" value for the module is returned.
    * If there is none, the application-wide security setting is returned
    *
-   * @param     type $module
-   * @param     type $action
+   * @param     string $module
+   * @param     string $action
+   *
    * @return    boolean
    */
   public function isSecureModuleAction($module, $action)
@@ -96,11 +97,13 @@ class cqLinkUtils
   /**
    * Try to asses if a route is secured
    *
-   * @param     mixed $parameters
-   * @return    boolean
-   *
    * @see       sfWebController::genUrl()
    * @see       sfWebController::convertUrlStringToParameters()
+   *
+   * @param     mixed $parameters
+   *
+   * @throws    Exception
+   * @return    boolean
    */
   public function isSecureRoute($parameters = array())
   {
@@ -124,7 +127,7 @@ class cqLinkUtils
         // now relative urls are 100% pointing to our application,
         // and in this case we throw an exception
         throw new Exception(sprintf(
-          '[cqLinksUtil] Cannot asses if a route is secure for relative routes "%s"',
+          '[cqLinkUtils] Cannot asses if a route is secure for relative routes "%s"',
           $parameters
         ));
       }
@@ -141,7 +144,10 @@ class cqLinkUtils
         $parameters = substr($parameters, 0, $pos);
       }
 
-      list($route, $parameters) = sfContext::getInstance()->getController()->convertUrlStringToParameters($parameters);
+      /** @var $sf_controller sfWebController */
+      $sf_controller = sfContext::getInstance()->getController();
+
+      list($route, $parameters) = $sf_controller->convertUrlStringToParameters($parameters);
     }
     else if (is_array($parameters))
     {
@@ -164,7 +170,7 @@ class cqLinkUtils
       if (!isset($routes[$route]))
       {
         throw new Exception(sprintf(
-          '[cqLinksUtil] No route "%s" is defined in routing.yml',
+          '[cqLinkUtils] No route "%s" is defined in routing.yml',
           $route
         ));
       }

@@ -5,8 +5,6 @@ class collectionsActions extends cqFrontendActions
 
   public function executeIndex()
   {
-    $this->collections = CollectionQuery::create()->limit(16)->find();
-
     return sfView::SUCCESS;
   }
 

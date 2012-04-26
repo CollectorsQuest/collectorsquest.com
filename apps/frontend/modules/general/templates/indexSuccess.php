@@ -8,7 +8,7 @@
       {
         include_partial(
           'collection/collectible_grid_view_square_small',
-          array('collectible' => $collectibles[$i], 'i' => $i)
+          array('collectible' => $collectibles[$i], 'i' => $collectibles[$i]->getId())
         );
       }
     ?>
@@ -21,7 +21,7 @@
       {
         include_partial(
           'collection/collectible_grid_view_square_small',
-          array('collectible' => $collectibles[$i], 'i' => $i)
+          array('collectible' => $collectibles[$i], 'i' => $collectibles[$i]->getId())
         );
       }
     ?>
@@ -49,7 +49,7 @@
       {
         include_partial(
           'collection/collectible_grid_view_square_small',
-          array('collectible' => $collectibles[$i], 'i' => $i)
+          array('collectible' => $collectibles[$i], 'i' => $collectibles[$i]->getId())
         );
       }
     ?>
@@ -75,7 +75,7 @@
       {
         include_partial(
           'collection/collectible_grid_view_square_small',
-          array('collectible' => $collectibles[$i], 'i' => $i)
+          array('collectible' => $collectibles[$i], 'i' => $collectibles[$i]->getId())
         );
       }
     ?>
