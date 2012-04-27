@@ -46,7 +46,7 @@
 <?php } elseif (is_author()) { ?>
 <div class="row-fluid header-bar">
   <div class="span11">
-    <h1 class="Chivo webfont" style="visibility: visible; "><?php the_author() ?></h1>
+    <h1 class="Chivo webfont" style="visibility: visible; ">Blogger: <?php the_author() ?></h1>
   </div>
 </div>
 <?php } ?>
@@ -64,7 +64,7 @@ $lastclass = 0;
 
 
 
-<div id="blog-contents" class="<?php if (is_front_page()) : echo ' news-front'; elseif (is_singular()) : echo 'singular'; else : echo 'not-singular'; endif; ?>">
+<div id="blog-contents" class="<?php if (is_front_page()) : echo 'news-front'; elseif (is_singular()) : echo 'singular'; else : echo 'not-singular'; endif; ?>">
 
 <?php if (have_posts()) : ?>
 
@@ -132,7 +132,7 @@ $lastclass = 0;
 
         ?>" id="post-<?php the_ID(); ?>">
 
-        <?php if (is_front_page() || is_single()) : ?>
+        <?php if (is_single()) : ?>
           <div class="entry-genre"><a href="" title="">Genre</a><?php //the_category() ?></div>
         <?php endif; ?>
 
@@ -201,7 +201,7 @@ $lastclass = 0;
 
           <?php if (is_single() && $image_attributes[1] >= 620) : ?>
             <!--  <img src="<?php echo $image_url; //http://placekitten.com/ ?><?php echo $img_w ?>/<?php echo $img_h ?>" alt=""/> -->
-            <img src="/blog/wp-content/themes/collectorsquest/thumb.php?src=<?php echo $image_url; ?>&w=<?php echo $img_w ?>&h=<?php echo $img_h ?>&zc=1" alt=""/>
+            <img src="/blog/wp-content/themes/collectorsquest/thumb.php?src=<?php echo $image_url; ?>&w=<?php echo $img_w ?>&h=<?php echo $img_h ?>&zc=1&a=t" alt=""/>
             <?php
             $thumbnail_id = get_post_thumbnail_id($post->ID);
             $thumbnail_image = get_posts(array('p' => $thumbnail_id, 'post_type' => 'attachment'));
@@ -212,7 +212,7 @@ $lastclass = 0;
             ?>
 
           <?php elseif (is_front_page() || is_archive()) : ?>
-          <img src="/blog/wp-content/themes/collectorsquest/thumb.php?src=<?php echo $image_url; ?>&w=<?php echo $img_w ?>&h=<?php echo $img_h ?>&zc=1" alt=""/>
+          <img src="/blog/wp-content/themes/collectorsquest/thumb.php?src=<?php echo $image_url; ?>&w=<?php echo $img_w ?>&h=<?php echo $img_h ?>&zc=1&a=t" alt=""/>
           <?php endif; ?>
 
           <?php if (!is_single()) : ?>
@@ -226,7 +226,7 @@ $lastclass = 0;
 
         </div>
 
-        <?php if (is_archive()) : ?>
+        <?php if (is_front_page() || is_archive()) : ?>
           <div class="entry-genre"><a href="" title="">Genre</a><?php //the_category() ?></div>
         <?php endif; ?>
 
@@ -234,41 +234,47 @@ $lastclass = 0;
           <h2 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
         <?php endif; ?>
 
-        <?php if (is_single()) : ?>
         <div class="entry-meta">
           <a class="author-image" href="<?php echo get_author_posts_url(get_the_author_meta('ID')) ?>"
              title="<?php the_author() ?>'s articles on collecting...">
-            <?php echo get_avatar(get_the_author_meta('ID'),33) //<img src="http://placekitten.com/33/33" alt="" width="33" height="33"/> ?>
+
+            <?php
+            if (is_single()) {
+              $size = 33;
+            }
+            else {
+              $size = 16;
+            }
+            ?>
+
+            <?php echo get_avatar(get_the_author_meta('ID'),$size) //<img src="http://placekitten.com/33/33" alt="" width="33" height="33"/> ?>
           </a>
           <span class="meta-text">
             By <a href="<?php echo get_author_posts_url(get_the_author_meta('ID')) ?>"
                   title="<?php the_author() ?>'s articles on collecting..."><?php the_author() ?></a> | Posted <?php the_date('M d, Y') ?>
             at <?php the_time('g:i a') ?>
           </span>
+          <?php if (is_single()) : ?>
           <div class="entry-share pull-right">
             <span class='st_email_hcount'></span>
             <span class='st_facebook_hcount'></span>
             <span class='st_twitter_hcount'></span>
             <span class='st_pinterest_hcount'></span>
           </div>
+          <?php endif; ?>
         </div>
-        <?php endif; ?>
+
 
         <div class="entry">
           <?php
           if (is_single()) :
              the_content();
-          elseif (is_front_page() && ($count < 4)) :
+          elseif (is_front_page()||is_archive()) :
             if ($count == 1) :
               $length = 300;
-            elseif ($count == 2 || $count == 3) :
-              $length = 100;
+            else :
+              $length = 200;
             endif;
-            $longString = get_the_excerpt('... more');
-            $truncated = substr($longString, 0, strpos($longString, ' ', $length));
-            echo '<p>' . $truncated . '... <a href="' . get_permalink() . '">more</a></p>';
-          elseif (is_archive()) :
-            $length = 200;
             $longString = get_the_excerpt('... more');
             $truncated = substr($longString, 0, strpos($longString, ' ', $length));
             echo '<p>' . $truncated . '... <a href="' . get_permalink() . '">more</a></p>';
