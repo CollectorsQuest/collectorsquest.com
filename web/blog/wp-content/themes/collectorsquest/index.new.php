@@ -250,8 +250,8 @@ $lastclass = 0;
             </a>
 
             By <a href="<?php echo get_author_posts_url(get_the_author_meta('ID')) ?>"
-                  title="<?php the_author() ?>'s articles on collecting..."><?php the_author() ?></a> <span class="entry-date">| Posted <?php the_date('M d, Y') ?>
-            at <?php the_time('g:i a') ?></span>
+                  title="<?php the_author() ?>'s articles on collecting..."><?php the_author() ?></a> <!-- <span class="entry-date">| Posted <?php the_date('M d, Y') ?>
+            at <?php the_time('g:i a') ?></span> -->
           </span>
 
           <?php if (is_single()) : ?>
