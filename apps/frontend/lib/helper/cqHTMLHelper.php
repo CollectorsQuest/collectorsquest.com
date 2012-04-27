@@ -21,7 +21,7 @@ EAT
 
 function cq_section_title($h2, $link = null, $options = array())
 {
-  $default = $link === null ? array('left' => 11, 'right' => 1) : array('left' => 9, 'right' => 3);
+  $default = $link === null ? array('left' => 11, 'right' => 1) : array('left' => 8, 'right' => 4);
   $options = array_merge($default, $options);
 
   $content = sprintf(<<<EAT

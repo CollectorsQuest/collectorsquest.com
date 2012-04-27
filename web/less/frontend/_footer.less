@@ -87,50 +87,50 @@ footer {
     list-style: none;
     margin-right: 3%;
     margin-left: 5%;
-  }
 
-  ul.footer-info-box li {
-    padding-left: 0;
-    padding-top: 18px;
-    margin-bottom: 15px;
-    padding-right: 2%;
-    background: url("@{baseUrl}/red-dotted-line.png") repeat-x top;
-    .clearfix();
-  }
+	  li {
+		  padding-left: 0;
+		  padding-top: 18px;
+		  margin-bottom: 15px;
+		  padding-right: 2%;
+		  background: url("@{baseUrl}/red-dotted-line.png") repeat-x top;
+		  .clearfix();
 
-  ul.footer-info-box li:first-child {
-    background: none;
-    padding-top: 0;
-    margin-top: 0;
+		  &:first-child {
+			  background: none;
+			  padding-top: 0;
+			  margin-top: 0;
+		  }
+	  }
   }
-
   .info-box-text {
     padding-left: 15px;
     overflow: hidden;
-  }
 
-  .info-box-text h2 {
-    margin-bottom: 0;
+	  h2 {
+		  margin-bottom: 0;
+	  }
   }
 
   ul.footer-profile-box {
     list-style: none;
     margin-right: 3%;
     margin-left: 0;
+
+	  li {
+		  margin-bottom: 2px;
+		  padding-top: 15px;
+		  padding-bottom: 15px;
+		  padding-left: 20%;
+		  .min-height(46px);
+		  width: 80%;
+
+		  p {
+		  margin-bottom: 0;
+	    }
+	  }
   }
 
-  ul.footer-profile-box li {
-    margin-bottom: 2px;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    padding-left: 20%;
-    .min-height(46px);
-    width: 80%
-  }
-
-  ul.footer-profile-box li p {
-    margin-bottom: 0;
-  }
 
   ul.footer-profile-box li.footer-profile-box-h-list {
     padding-left: 0;
@@ -231,31 +231,28 @@ footer {
     margin: 0;
     padding: 0;
     list-style: none;
-  }
 
-  ul[role="footer-links"] li {
-    float: left;
-    margin: 0;
-    padding: 0;
-    font: 11px Arial;
-  }
-
-  ul[role="footer-links"] li:first-child {
-    border-left: none;
-  }
-
-  ul[role="footer-links"] li a {
-    float: left;
-    display: block;
-    margin: 0;
-    padding: 2px 9px 0 9px;
-    color: @blue;
-    text-decoration: none;
-    border: none;
-    position: relative;
-  }
-
-  ul[role="footer-links"] li a:hover {
-    color: @blueDark;
+	  li {
+		  float: left;
+		  margin: 0;
+		  padding: 0;
+		  font: 11px Arial;
+		  &:first-child {
+			  border-left: none;
+		  }
+		  a {
+			  float: left;
+			  display: block;
+			  margin: 0;
+			  padding: 2px 9px 0 9px;
+			  color: @blue;
+			  text-decoration: none;
+			  border: none;
+			  position: relative;
+			  &:hover {
+				  color: @blueDark;
+			  }
+		  }
+	  }
   }
 }

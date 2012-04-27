@@ -12,7 +12,7 @@
       '<i>'. $collector->getCollectorType() .'</i>'
     ); ?>
     <p style="margin-top: 10px;">
-      <?= link_to('Send a message »', 'homepage', array('to' => $collector->getId())); ?>
+      <?= link_to('Send a message &raquo;', 'homepage', array('to' => $collector->getId())); ?>
     </p>
   </div>
 </div>
@@ -20,7 +20,7 @@
 <br/>
 <div>
   Other collections by <?= $collector; ?><br/>
-  <?= link_to('View all collections »', 'collections_by_collector', $collector); ?>
+  <?= link_to('View all collections &raquo;', 'collections_by_collector', $collector); ?>
 </div>
 
 <?php foreach ($collections as $collection): ?>

@@ -21,7 +21,7 @@
 </div>
 
 <?php
-  $link = link_to('See all items for sale »', '@marketplace', array('class' => 'text-v-middle link-align'));
+  $link = link_to('See all items for sale  &raquo;', '@marketplace', array('class' => 'text-v-middle link-align'));
   cq_section_title('Featured Items For Sale', $link);
 ?>
 

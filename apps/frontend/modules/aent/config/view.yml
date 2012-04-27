@@ -1,3 +1,6 @@
+all:
+  stylesheets: [frontend/modules/collections.css]
+
 americanPickersSuccess:
   components:
     sidebar_300: [aent, sidebarAmericanPickers]
@@ -5,3 +8,7 @@ americanPickersSuccess:
 pawnStarsSuccess:
   components:
     sidebar_300: [aent, sidebarPawnStars]
+
+collectibleSuccess:
+  components:
+    sidebar_300: [aent, sidebarPawnStarsBrandItem]
