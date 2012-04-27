@@ -392,11 +392,10 @@ class Collectible extends BaseCollectible
       $multimedia->makeThumb('420x1000', 'bestfit', false);
       $multimedia->makeThumb('610x1000', 'bestfit', false);
 
-      $queue = false;
-
       // The rest of the thumnails are not immediately used so they can be deferred
       $multimedia->makeThumb('75x75', 'shave', $queue);
       $multimedia->makeThumb('190x150', 'shave', $queue);
+      $multimedia->makeThumb('260x205', 'shave', $queue);
       $multimedia->makeThumb('1024x768', 'bestfit', $queue);
 
       // Here we want to create an optimized thumbnail for the homepage
