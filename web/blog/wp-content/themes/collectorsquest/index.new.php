@@ -171,11 +171,11 @@ if ($paged == 2) {
           if (is_single()) :
             $img_w = '620';
             $img_h = '440';
-          elseif (is_front_page() && $count == 1 || is_front_page() && $count == 2 || is_front_page() && $count == 3) :
+          elseif (is_front_page() && $count == 1) :
             $img_w = '300';
-          elseif (is_front_page() && $count > 3) :
+          elseif (is_front_page() && $count > 1) :
             $img_w = '140';
-            $img_h = '100';
+            $img_h = '140';
           else :
             $img_w = '140';
             $img_h = '140';
@@ -184,9 +184,9 @@ if ($paged == 2) {
 
           <?php
           if (is_front_page() && $count == 1) :
-            $img_h = '360';
+            $img_h = '300';
           elseif (is_front_page() && $count == 2 || is_front_page() && $count == 3) :
-            $img_h = '130';
+            $img_h = '140';
           endif;
           ?>
 
@@ -196,9 +196,9 @@ if ($paged == 2) {
 
           <?php $image_attributes = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID), 'full' ); ?>
 
-          <?php if ($image_attributes[1] >= 620) : ?>
+          <?php if (is_single() && $image_attributes[1] >= 620) : ?>
             <!--  <img src="<?php echo $image_url; //http://placekitten.com/ ?><?php echo $img_w ?>/<?php echo $img_h ?>" alt=""/> -->
-            <img src="/blog/wp-content/themes/collectorsquest/thumb.php?src=<?php echo $image_url; ?>&w=<?php echo $img_w ?>&h=<?php echo $img_h ?>&zc=1" alt=""/>
+            <img src="/blog/wp-content/themes/collectorsquest/thumb.php?src=http://placekitten.com/700/700<?php   //echo $image_url; ?>&w=<?php echo $img_w ?>&h=<?php echo $img_h ?>&zc=1" alt=""/>
             <?php
             $thumbnail_id = get_post_thumbnail_id($post->ID);
             $thumbnail_image = get_posts(array('p' => $thumbnail_id, 'post_type' => 'attachment'));
@@ -207,6 +207,9 @@ if ($paged == 2) {
               echo '<p class="wp-caption-text">'.$thumbnail_image[0]->post_excerpt.'</p>';
             endif;
             ?>
+        <?php elseif (is_front_page() || is_archive()) : ?>
+          <img src="/blog/wp-content/themes/collectorsquest/thumb.php?src=http://placekitten.com/700/700<?php   //echo $image_url; ?>&w=<?php echo $img_w ?>&h=<?php echo $img_h ?>&zc=1" alt=""/>
+
 
           <?php endif; ?>
 
@@ -261,8 +264,7 @@ if ($paged == 2) {
             $longString = get_the_excerpt('... more');
             $truncated = substr($longString, 0, strpos($longString, ' ', $length));
             echo '<p>' . $truncated . '... <a href="' . get_permalink() . '">more</a></p>';
-          endif;
-            if (is_archive()) :
+          elseif (is_archive()) :
             $length = 200;
             $longString = get_the_excerpt('... more');
             $truncated = substr($longString, 0, strpos($longString, ' ', $length));
