@@ -201,7 +201,7 @@ $lastclass = 0;
 
           <?php if (is_single() && $image_attributes[1] >= 620) : ?>
             <!--  <img src="<?php echo $image_url; //http://placekitten.com/ ?><?php echo $img_w ?>/<?php echo $img_h ?>" alt=""/> -->
-            <img src="/blog/wp-content/themes/collectorsquest/thumb.php?src=http://placekitten.com/700/700<?php   //echo $image_url; ?>&w=<?php echo $img_w ?>&h=<?php echo $img_h ?>&zc=1" alt=""/>
+            <img src="/blog/wp-content/themes/collectorsquest/thumb.php?src=<?php echo $image_url; ?>&w=<?php echo $img_w ?>&h=<?php echo $img_h ?>&zc=1" alt=""/>
             <?php
             $thumbnail_id = get_post_thumbnail_id($post->ID);
             $thumbnail_image = get_posts(array('p' => $thumbnail_id, 'post_type' => 'attachment'));
@@ -212,7 +212,7 @@ $lastclass = 0;
             ?>
 
           <?php elseif (is_front_page() || is_archive()) : ?>
-          <img src="/blog/wp-content/themes/collectorsquest/thumb.php?src=http://placekitten.com/700/700<?php   //echo $image_url; ?>&w=<?php echo $img_w ?>&h=<?php echo $img_h ?>&zc=1" alt=""/>
+          <img src="/blog/wp-content/themes/collectorsquest/thumb.php?src=<?php echo $image_url; ?>&w=<?php echo $img_w ?>&h=<?php echo $img_h ?>&zc=1" alt=""/>
           <?php endif; ?>
 
           <?php if (!is_single()) : ?>
