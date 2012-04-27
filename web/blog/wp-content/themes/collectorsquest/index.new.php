@@ -31,10 +31,10 @@
 <?php if (is_single()) { ?>
 <div class="row-fluid header-bar">
   <div class="span7">
-    <h1 class="Chivo webfont" style="visibility: visible; ">News Article</h1>
+    <h1 class="Chivo webfont" style="visibility: visible; ">Blog Post</h1>
   </div>
   <div class="back-nav span5">
-    <a href="/blog/">Back to News Landing Page &rarr;</a>
+    <a href="/blog/">Back to Latest News &rarr;</a>
   </div>
 </div>
 <?php } elseif (is_front_page()) { ?>
@@ -133,7 +133,7 @@ $lastclass = 0;
         ?>" id="post-<?php the_ID(); ?>">
 
         <?php if (is_single()) : ?>
-          <div class="entry-genre"><a href="" title="">Genre</a><?php //the_category() ?></div>
+          <!-- <div class="entry-genre"><a href="" title=""><?php the_category() ?></a></div> -->
         <?php endif; ?>
 
         <?php if (is_single()) : ?>
@@ -225,7 +225,7 @@ $lastclass = 0;
         </div>
 
         <?php if (is_front_page() || is_archive()) : ?>
-          <div class="entry-genre"><a href="" title="">Genre</a><?php //the_category() ?></div>
+          <!-- <div class="entry-genre"><a href="" title=""><?php the_category() ?></a></div> -->
         <?php endif; ?>
 
         <?php if ((is_front_page()) || is_archive()) : ?>
@@ -285,8 +285,14 @@ $lastclass = 0;
 
           <p><?php the_tags(); ?></p>
 
-          <div class="entry-share">
+          <!-- <div class="entry-share">
             <span class='st_sharethis_custom'>Share This</span>
+          </div> -->
+          <div class="entry-share pull-right">
+            <span class='st_email_hcount'></span>
+            <span class='st_facebook_hcount'></span>
+            <span class='st_twitter_hcount'></span>
+            <span class='st_pinterest_hcount'></span>
           </div>
           <!--  <iframe src="http://www.facebook.com/plugins/like.php?href=<?php the_permalink(); ?>&amp;layout=standard&amp;show_faces=true&amp;width=728&amp;action=like&amp;font=trebuchet+ms&amp;colorscheme=light&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:728px; height:80px;" allowTransparency="true"></iframe>
             <?php comments_popup_link('Add a comment &#187;', '1 Comment &#187;', '% Comments &#187;'); ?> -->

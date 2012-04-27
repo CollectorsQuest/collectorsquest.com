@@ -1,7 +1,7 @@
 <div id="sidebar">
 
   <img src="/images/iab/300x250.gif">
-
+<?php if (!is_front_page()) : ?>
   <div class="row-fluid sidebar-title">
     <div class="span8">
       <h3 class="Chivo webfont" style="visibility: visible;">Tags</h3>
@@ -11,8 +11,8 @@
     </div>-->
   </div>
   <p><?php the_tags('<ul class="cf" style="list-style: none; padding: 0; margin: 0;"><li class="rounded p-tag">','</li><li class="rounded p-tag">','</li></ul>'); ?></p>
-
-  <ul id="widgets" class="span-5">
+<?php endif; ?>
+  <ul id="widgets">
     <li id="widget-bloggers" class="widget">
       <div class="row-fluid sidebar-title">
         <div class="span8">
@@ -67,6 +67,7 @@
       ?>
     </li>
 
+    <?php if (!is_front_page()) : ?>
     <li id="widget-other-news" class="widget">
 
       <div class="row-fluid sidebar-title">
@@ -93,6 +94,7 @@
       </div>
       <?php } ?>
     </li>
+  <?php endif; ?>
 
     <!-- Blog Sidebar //-->
   </ul>
