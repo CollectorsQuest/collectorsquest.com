@@ -169,8 +169,8 @@ if ($_SERVER['HTTP_HOST'] == 'www.collectorsquest.dev' || $_SERVER['HTTP_HOST'] 
    */
   function cq_ajax_posts()
   {
-    global $wp_query;
 
+  global $wp_query;
     // Add code to index pages.
     if (!is_singular())
     {
@@ -211,6 +211,24 @@ if ($_SERVER['HTTP_HOST'] == 'www.collectorsquest.dev' || $_SERVER['HTTP_HOST'] 
     }
     return $first_img;
   }
+
+  add_filter('pre_get_posts', 'filter_homepage_posts');
+  function filter_homepage_posts($query) {
+
+  $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+
+  if ($paged==1) {
+      $limit_number_of_posts = 7;
+  } else {
+      $limit_number_of_posts = 8;
+  }
+
+  //$query->set('offset', $offset);
+  $query->set('posts_per_page', $limit_number_of_posts);
+
+  return $query;
+  }
+
 
 
 

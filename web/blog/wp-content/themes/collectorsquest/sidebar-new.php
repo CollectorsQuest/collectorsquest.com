@@ -40,7 +40,7 @@
         }
         $exclude = implode(',', $exclude);
         $exclude = str_replace(",7", "", $exclude);
-        $blogusers = get_users('exclude=' . $exclude . ',13,11');
+        $blogusers = get_users('exclude=' . $exclude . ',6,13,11');
       }
       $authors = array();
       foreach ($blogusers as $bloguser) {
@@ -79,9 +79,9 @@
       </div>
 
       <?php if (is_single()) : $offset = 0; else : $offset = 7; endif; ?>
-      <?php query_posts('offset=' . $offset . '&showposts=3'); ?>
+      <?php $postss = get_posts("showposts=3"); ?>
 
-      <?php while (have_posts()) : the_post(); ?>
+      <?php foreach($postss as $post) { setup_postdata($post); ?>
       <div class="row-fluid bottom-margin">
         <h4 style="margin-bottom: 5px;">
           <a href="<?php the_permalink() ?>"><?php the_title(); ?></a>
@@ -91,8 +91,7 @@
         </span>
         <small style="font-size: 80%">posted by <?php the_author_posts_link() ?> <span style="color: grey"><?php echo human_time_diff( get_the_time('U'), current_time('timestamp') ) . ' ago'; ?></span></small>
       </div>
-      <?php endwhile;?>
-
+      <?php } ?>
     </li>
 
     <!-- Blog Sidebar //-->
