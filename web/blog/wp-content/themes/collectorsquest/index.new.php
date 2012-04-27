@@ -233,25 +233,27 @@ $lastclass = 0;
         <?php endif; ?>
 
         <div class="entry-meta">
-          <a class="author-image" href="<?php echo get_author_posts_url(get_the_author_meta('ID')) ?>"
-             title="<?php the_author() ?>'s articles on collecting...">
-
-            <?php
-            if (is_single()) {
-              $size = 33;
-            }
-            else {
-              $size = 16;
-            }
-            ?>
-
-            <?php echo get_avatar(get_the_author_meta('ID'),$size) //<img src="http://placekitten.com/33/33" alt="" width="33" height="33"/> ?>
-          </a>
           <span class="meta-text">
+            <a class="author-image" href="<?php echo get_author_posts_url(get_the_author_meta('ID')) ?>"
+               title="<?php the_author() ?>'s articles on collecting...">
+
+              <?php
+              if (is_single()) {
+                $size = 33;
+              }
+              else {
+                $size = 16;
+              }
+              ?>
+
+              <?php echo get_avatar(get_the_author_meta('ID'),$size) //<img src="http://placekitten.com/33/33" alt="" width="33" height="33"/> ?>
+            </a>
+
             By <a href="<?php echo get_author_posts_url(get_the_author_meta('ID')) ?>"
-                  title="<?php the_author() ?>'s articles on collecting..."><?php the_author() ?></a> | Posted <?php the_date('M d, Y') ?>
-            at <?php the_time('g:i a') ?>
+                  title="<?php the_author() ?>'s articles on collecting..."><?php the_author() ?></a> <span class="entry-date">| Posted <?php the_date('M d, Y') ?>
+            at <?php the_time('g:i a') ?></span>
           </span>
+
           <?php if (is_single()) : ?>
           <div class="entry-share pull-right">
             <span class='st_email_hcount'></span>
@@ -260,6 +262,7 @@ $lastclass = 0;
             <span class='st_pinterest_hcount'></span>
           </div>
           <?php endif; ?>
+
         </div>
 
 

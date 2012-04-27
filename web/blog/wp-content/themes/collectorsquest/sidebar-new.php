@@ -27,7 +27,7 @@
       $display_admins = false;
       $order_by = 'display_name'; // 'nicename', 'email', 'url', 'registered', 'display_name', or 'post_count'
       $role = 'author'; // 'subscriber', 'contributor', 'editor', 'author' - leave blank for 'all'
-      $avatar_size = 40;
+      $avatar_size = 60;
       $hide_empty = true; // hides authors with zero posts
 
       if (!empty($display_admins)) {
@@ -59,7 +59,8 @@
         $author_posts_url = get_author_posts_url($author['ID']);
         $author_profile_url = get_the_author_meta('user_url', $author['ID']);
         $nice_name = get_the_author_meta('user_nicename', $author['ID']);
-        echo '<li><a href="', $author_profile_url, '">', $avatar, '</a><strong>' . $display_name . '</strong><br /><a href="/blog/people/', $nice_name, '" class="author-link">[Bio]</a> <a href="', $author_posts_url, '" class="contributor-link">[Articles]</a></li>';
+        //echo '<li><a href="', $author_profile_url, '">', $avatar, '</a><strong>' . $display_name . '</strong><br /><a href="/blog/people/', $nice_name, '" class="author-link">[Bio]</a> <a href="', $author_posts_url, '" class="contributor-link">[Articles]</a></li>';
+        echo '<li><a href="', $author_posts_url, '">', $avatar, '<span class="author-name">' . $display_name . '</span></a>';
         echo '';
 
       }
