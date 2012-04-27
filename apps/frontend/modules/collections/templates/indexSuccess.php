@@ -26,7 +26,7 @@
   </div>
 </div>
 
-<div class="row" style="margin-left: -12px;">
+<div class="row collections-container">
   <div id="collections" class="row-content">
   <?php
     /** @var $collections Collection[] */
