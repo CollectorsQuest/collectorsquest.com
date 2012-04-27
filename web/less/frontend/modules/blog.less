@@ -5,7 +5,7 @@
   width: 620px !important
 }
 
-#entry-image-box, #entry-image-box-button, .not-singular .entry-meta, .news-front .entry-meta, .stArrow, #networkedblogs_nwidget_container {
+#entry-image-box, #entry-image-box-button, .stArrow, #networkedblogs_nwidget_container {
   display: none !important
 }
 
@@ -30,17 +30,9 @@ h2 a:hover {
   color: @red
 }
 
-.entry-meta {
-  padding: 6px;
-  background-color: #e6f2f9;
-  margin: 10px 0;
-  width: 609px;
-  color: #333
-}
-
 .entry-meta .meta-text, .entry .wp-caption-text {
   margin-left: 10px;
-  margin-top: 8px;
+  margin-top: 10px;
 }
 
 .author-image, .entry-meta span, .entry-meta, #commentform, .permalinklink, .p-tag, .author-list .avatar {
@@ -119,13 +111,14 @@ margin-bottom: 10px;
   margin-right: 20px
 }
 
-#seemore-posts {
-  margin-top: 20px
-}
-
 .back-nav {
   line-height: 20px
 }
+
+.see-more-full {
+  width:95%;
+  margin:20px 0
+  }
 
 .st_sharethis_custom {
   background: url("/blog/wp-content/themes/collectorsquest/img/share-button.jpg") no-repeat scroll left top transparent;
@@ -141,14 +134,15 @@ margin-bottom: 10px;
 
 .news-front {
   h2 {
-    font-size: 10pt;
+    /*font-size: 10pt;
     line-height: 14pt;
-    margin-top: 10px
+    margin-top: 10px switching layout*/
   }
   .post {
     float: left;
     border-top: 1px dashed #cccccc;
-    margin-top: 20px;
+    width:100%; /*     margin-top: 20px;  switch layout*/
+    padding:20px 0 /* switch layout*/
   }
   .p-1 h2 {
     float: right;
@@ -170,11 +164,12 @@ margin-bottom: 10px;
   .p-1 {
     position: relative;
     margin-top: 20px;
-    margin-bottom: 15px
+    margin-bottom: 15px;
+    padding-top:0
   }
   .p-2, .p-3 {
     float: left;
-    width: 300px
+    /*width: 300px switching layout*/
   }
   .p-2 .entry-image, .p-3 .entry-image {
     width:140px;
@@ -185,15 +180,15 @@ margin-bottom: 10px;
     margin-top: 0px;
   }
   .p-3 {
-    margin-left: 20px;
+    /*margin-left: 20px; switching layout*/
   }
   .p-4 {
   clear:left
   }
-  .p-small {
+  /*.p-small {
     width: 140px;
     margin-right: 20px
-  }
+  }  switching layout*/
   .last {
     margin-right: 0
   }
@@ -206,17 +201,18 @@ margin-bottom: 10px;
   .p-1 .entry-genre {
     margin-top: 8px
   }
+  .entry-meta {
+      padding: 6px;
+      background-color: #e6f2f9;
+      margin: 10px 0;
+      width: 609px;
+      color: #333
+    }
   .entry-footer {
     display: block;
     clear: both;
   }
 }
-
-.see-more-full {
-  width:95%;
-  margin:20px 0
-  }
-
 
 .not-singular {
   .post h2 {
@@ -244,3 +240,12 @@ margin-bottom: 10px;
 }
 
 
+.not-singular, .news-front {
+  .entry-meta {
+    margin-bottom:5px
+    }
+  .meta-text {
+    width:430px;
+    margin:5px !important
+    }
+}
