@@ -37,15 +37,22 @@
     /** @var $collectible Collectible */
     foreach ($pager->getResults() as $i => $collectible)
     {
-      // Show the collectible (in grid, list or hybrid view)
-      include_partial(
-        'collection/collectible_grid_view_square',
-        array(
-          'collectible' => $collectible,
-          'culture' => (string) $sf_user->getCulture(),
-          'i' => (int) $i
-        )
-      );
+      if ($collectible->isForSale())
+      {
+        // Show the collectible (in grid, list or hybrid view)
+        include_partial(
+          'marketplace/collectible_for_sale_grid_view_square',
+          array('collectible_for_sale' => $collectible->getCollectibleForSale(), 'i' => (int) $i)
+        );
+      }
+      else
+      {
+        // Show the collectible (in grid, list or hybrid view)
+        include_partial(
+          'collection/collectible_grid_view_square',
+          array('collectible' => $collectible, 'i' => (int) $i)
+        );
+      }
     }
   ?>
   </div>

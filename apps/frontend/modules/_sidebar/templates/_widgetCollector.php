@@ -1,3 +1,10 @@
+<?php
+/**
+ * @var $collector Collector
+ * @var $collections Collection[]
+ */
+?>
+
 <?php cq_sidebar_title(sprintf('About %s', $collector->getDisplayName()), null); ?>
 
 <div class="row-fluid">
@@ -8,8 +15,8 @@
     <?= link_to_collector($collector, 'text'); ?>
     <?php echo sprintf(
       __('is %s %s collector'),
-      in_array(strtolower(substr($collector->getCollectorType(), 0, 1)), array('a', 'e', 'i', 'o')) ? 'an' : 'a',
-      '<i>'. $collector->getCollectorType() .'</i>'
+      in_array(strtolower(substr($collector->getProfile()->getCollectorType(), 0, 1)), array('a', 'e', 'i', 'o')) ? 'an' : 'a',
+      '<i>'. $collector->getProfile()->getCollectorType() .'</i>'
     ); ?>
     <p style="margin-top: 10px;">
       <?= link_to('Send a message &raquo;', 'homepage', array('to' => $collector->getId())); ?>
@@ -17,13 +24,14 @@
   </div>
 </div>
 
-<br/>
-<div>
-  Other collections by <?= $collector; ?><br/>
-  <?= link_to('View all collections &raquo;', 'collections_by_collector', $collector); ?>
-</div>
+<?php if (count($collections) > 0): ?>
+  <br style="clear: all;"/>
+  <div>
+    Other collections by <?= $collector; ?><br/>
+    <?= link_to('View all collections &raquo;', 'collections_by_collector', $collector); ?>
+  </div>
 
-<?php foreach ($collections as $collection): ?>
+  <?php foreach ($collections as $collection): ?>
   <div style="border: 1px solid #dcd7d7; margin-top: 10px;">
     <div style="border: 1px solid #f2f1f1; padding: 10px;">
     <p><?= link_to_collection($collection, 'text'); ?></p>
@@ -40,4 +48,5 @@
     ?>
       </div>
   </div>
-<?php endforeach; ?>
+  <?php endforeach; ?>
+<?php endif; ?>
