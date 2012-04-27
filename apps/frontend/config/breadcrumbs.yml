@@ -1,7 +1,7 @@
 # http://www.symfony-project.org/plugins/sfOrmBreadcrumbsPlugin/1_0_5?tab=plugin_readme
 
 ice_propel_breadcrumbs:
-  _root: { name: 'Home' }
+  _root: { name: 'Home', route: homepage }
   _separator: ' → '
   _lost: ''
   _default_case: 'ucwords'
@@ -16,7 +16,7 @@ ice_propel_breadcrumbs:
     index: [{ name: 'Home', route: homepage }]
 
   aent:
-    americanPickers: [{ name: 'American Pickers', route: aetn_american_pickers }]
+    americanPickers: [{ name: 'As Seen on American Pickers', route: aetn_american_pickers, case: none }]
     pawnStars: [{ name: 'Pawn Stars', route: aetn_pawn_stars }]
     storageWars: [{ name: 'Storage Wars', route: aetn_storage_wars }]
     collectible:
