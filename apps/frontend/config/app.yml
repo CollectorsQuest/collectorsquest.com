@@ -9,7 +9,7 @@ all:
     # require the user to input a captcha every N outgoing messages
     require_captcha_threshold: 5
 
-  aent:
+  aetn:
     pawn_stars:
       collector: 6667
       collection: 2841

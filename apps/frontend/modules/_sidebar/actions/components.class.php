@@ -186,11 +186,20 @@ class _sidebarComponents extends cqFrontendComponents
     // Set the limit of Collections to show
     $this->limit = $this->getVar('limit') ? (int) $this->getVar('limit') : 3;
 
-    if (!$collector instanceof Collector)
+    if ($collector instanceof Collector)
     {
       $c = new Criteria();
       $c->addDescendingOrderByColumn(CollectorCollectionPeer::CREATED_AT);
       $c->setLimit($this->limit);
+
+      /** @var $collection Collection */
+      $collection = $this->getVar('collection');
+
+      if ($collection instanceof BaseObject)
+      {
+        $c->add(CollectorCollectionPeer::ID, $collection->getId(), Criteria::NOT_EQUAL);
+      }
+
       $this->collections = $collector->getCollectorCollections($c);
 
       return sfView::SUCCESS;

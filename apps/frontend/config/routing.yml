@@ -13,22 +13,27 @@ ajax_collections:
 
 ### A&E
 
-aent_landing:
+aetn_landing:
   url: /history
   param: { module: aent, action: landing }
   requirements: { sf_method: [GET] }
 
-aent_pawn_stars:
-  url: /history/pawn-stars
-  param: { module: aent, action: pawnStars }
-  requirements: { sf_method: [GET] }
-
-aent_american_pickers:
+aetn_american_pickers:
   url: /history/american-pickers
   param: { module: aent, action: americanPickers }
   requirements: { sf_method: [GET] }
 
-aent_collectible_by_slug:
+aetn_pawn_stars:
+  url: /history/pawn-stars
+  param: { module: aent, action: pawnStars }
+  requirements: { sf_method: [GET] }
+
+aetn_storage_wars:
+  url: /history/storage-wars
+  param: { module: aent, action: storageWars }
+  requirements: { sf_method: [GET] }
+
+aetn_collectible_by_slug:
   url:  /aetn/collectible/:id/:slug
   class: cqPropelRoute
   options: { model: Collectible, type: object, method: getObjectForRoute }
