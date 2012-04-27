@@ -14,8 +14,10 @@ class Collector extends BaseCollector implements ShippingRatesInterface
   public function initializeProperties()
   {
     $this->registerProperty('SINGUP_NUM_COMPLETED_STEPS', 1);
-    $this->registerProperty(CollectorPeer::PROPERTY_CQNEXT_ACCESS_ALLOWED,
-                            CollectorPeer::PROPERTY_CQNEXT_ACCESS_ALLOWED_DEFAULT_VALUE);
+    $this->registerProperty(
+      CollectorPeer::PROPERTY_CQNEXT_ACCESS_ALLOWED,
+      CollectorPeer::PROPERTY_CQNEXT_ACCESS_ALLOWED_DEFAULT_VALUE
+    );
   }
 
   /**

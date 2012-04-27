@@ -25,8 +25,8 @@ class aentComponents extends sfComponents
     /** @var $collection Collection */
     $collection = $collectible->getCollection();
 
-    $pawn_stars = sfConfig::get('app_aent_pawn_stars');
-    $american_pickers = sfConfig::get('app_aent_american_pickers');
+    $pawn_stars = sfConfig::get('app_aetn_pawn_stars');
+    $american_pickers = sfConfig::get('app_aetn_american_pickers');
 
     /** @var $q CollectibleQuery */
     $q = CollectibleQuery::create()

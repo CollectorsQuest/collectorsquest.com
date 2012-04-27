@@ -15,35 +15,44 @@
     <?= $collection->getNumItems(); ?> Collectibles &nbsp;|&nbsp;
     <?= number_format($collection->getNumViews()); ?> Views
 
-    <div class="pull-right">
-      <span class='st_email'></span>
-      <span class='st_facebook'></span>
-      <span class='st_twitter'></span>
-      <span class='st_pinterest'></span>
-      <span class='st_plusone'></span>
+    <div class="pull-right" style="margin-top: -2px; margin-right: 5px;">
+      <span class='st_email_button' displayText="Mail"></span>
+      <span class='st_facebook_button'></span>
+      <span class='st_twitter_button'></span>
+      <span class='st_pinterest_button'></span>
     </div>
   </div>
 </div>
 
-<div class="cf" style="margin: 20px 0 10px 0;">
+<?php if ($pager->getPage() === 1): ?>
+<div class="cf" style="margin-top: 20px;">
   <?= cqStatic::linkify($collection->getDescription('html')); ?>
 </div>
+<?php endif; ?>
 
+<br/>
 <div class="row">
   <div id="collectibles" class="row-content">
   <?php
     /** @var $collectible Collectible */
     foreach ($pager->getResults() as $i => $collectible)
     {
-      // Show the collectible (in grid, list or hybrid view)
-      include_partial(
-        'collection/collectible_grid_view_square',
-        array(
-          'collectible' => $collectible,
-          'culture' => (string) $sf_user->getCulture(),
-          'i' => (int) $i
-        )
-      );
+      if ($collectible->isForSale())
+      {
+        // Show the collectible (in grid, list or hybrid view)
+        include_partial(
+          'marketplace/collectible_for_sale_grid_view_square',
+          array('collectible_for_sale' => $collectible->getCollectibleForSale(), 'i' => (int) $i)
+        );
+      }
+      else
+      {
+        // Show the collectible (in grid, list or hybrid view)
+        include_partial(
+          'collection/collectible_grid_view_square',
+          array('collectible' => $collectible, 'i' => (int) $i)
+        );
+      }
     }
   ?>
   </div>

@@ -41,7 +41,10 @@
   }]);
 </script>
 
-<script>var switchTo5x=true;</script>
+<script>
+  var switchTo5x = true;
+  var __st_loadLate = true;
+</script>
 <script src="http://w.sharethis.com/button/buttons.js"></script>
 <script>stLight.options({publisher:'b69d7375-23f2-424c-9d59-f6bf47e9a722'});</script>
 
