@@ -15,7 +15,7 @@
   </div>
   <div class="span6 text-right">
     <a href="/collectors" class="text-v-middle link-align">
-      Go to episode guide »
+      Go to episode guide &raquo;
     </a>
   </div>
 </div>
@@ -28,7 +28,7 @@
         </a>
     </div>
     <div class="span9 fix-height-text-block">
-      <div class="content_container">
+      <div class="content-container">
           <p>
             Monday, March 26, 2012  8/7c
           </p>
@@ -45,7 +45,7 @@
       </a>
     </div>
     <div class="span9 fix-height-text-block">
-      <div class="content_container">
+      <div class="content-container">
         <p>
           Monday, March 26, 2012  8/7c
         </p>
@@ -62,7 +62,7 @@
       </a>
     </div>
     <div class="span9 fix-height-text-block">
-      <div class="content_container">
+      <div class="content-container">
         <p>
           Monday, March 26, 2012  8/7c
         </p>
