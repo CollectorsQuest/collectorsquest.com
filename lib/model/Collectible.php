@@ -388,12 +388,15 @@ class Collectible extends BaseCollectible
        * we make sure they are not put on the job queue
        */
       $multimedia->makeThumb('150x150', 'shave', false);
-      $multimedia->makeThumb('190x150', 'shave', false);
-      $multimedia->makeThumb('485x365', 'shave', false);
+      $multimedia->makeThumb('190x190', 'shave', false);
       $multimedia->makeThumb('420x1000', 'bestfit', false);
+      $multimedia->makeThumb('610x1000', 'bestfit', false);
+
+      $queue = false;
 
       // The rest of the thumnails are not immediately used so they can be deferred
       $multimedia->makeThumb('75x75', 'shave', $queue);
+      $multimedia->makeThumb('190x150', 'shave', $queue);
       $multimedia->makeThumb('1024x768', 'bestfit', $queue);
 
       // Here we want to create an optimized thumbnail for the homepage

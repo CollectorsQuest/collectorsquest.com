@@ -24,7 +24,24 @@
   </div>
 </div>
 
-<?php if (count($collections) > 0): ?>
+<?php if ($message === true): ?>
+<div class="row-fluid" style="margin-top: 10px;">
+  <div style="background-color: #e6f2f9; padding: 6px;">
+    <form action="" method="post" style="margin-bottom: 0;" id="form-private-message">
+      <input type="hidden" name="message[receiver]" value="<?= $collector->getUsername(); ?>">
+      <input type="hidden" name="message[subject]" value="Regarding your item: <?= addslashes($collectible->getName()); ?>">
+      <textarea name="message[body]" style="width: 97%; margin-bottom: 0;" placeholder="Send a message to <?= $collector; ?>"></textarea>
+      <div style="text-align: center; display: none; margin: 10px 0 5px 0;" id="buttons-private-message">
+        <button type="button" class="btn cancel" value="cancel">cancel</button>
+         &nbsp; - or - &nbsp;
+        <input type="submit" class="btn btn-primary" value="Send the Message">
+      </div>
+    </form>
+  </div>
+</div>
+<?php endif; ?>
+
+<?php if (!empty($collections) && count($collections) > 0): ?>
   <br style="clear: all;"/>
   <div>
     Other collections by <?= $collector; ?><br/>
@@ -50,3 +67,20 @@
   </div>
   <?php endforeach; ?>
 <?php endif; ?>
+
+<script>
+  $(document).ready(function()
+  {
+    $('#form-private-message textarea').focus(function()
+    {
+      $(this).css('height', '100px');
+      $('#buttons-private-message').slideDown();
+    });
+
+    $('#buttons-private-message .cancel').click(function()
+    {
+      $('#buttons-private-message').slideUp();
+      $('#form-private-message textarea').css('height', 'auto');
+    });
+  });
+</script>
