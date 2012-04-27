@@ -1,5 +1,7 @@
 all:
-  stylesheets: [frontend/modules/collections.css]
+  stylesheets:
+    - frontend/modules/aetn.css
+    - frontend/modules/collections.css
 
 americanPickersSuccess:
   components:
