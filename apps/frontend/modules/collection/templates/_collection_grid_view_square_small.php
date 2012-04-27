@@ -13,6 +13,6 @@
       <?= link_to_collection($collection, 'text', array('class' => 'target', 'truncate' => 30)); ?>
     </p>
   </div>
-  <?= ice_image_tag_flickholdr('140x140', array('i' => $i, 'class' => 'mosaic-backdrop')); ?>
+  <?= ice_image_tag_flickholdr('140x140', array('i' => $collection->getId(), 'class' => 'mosaic-backdrop')); ?>
   <?php link_to_collection($collection, 'image', array('width' => 140, 'height' => 140, 'class' => 'mosaic-backdrop')); ?>
 </div>

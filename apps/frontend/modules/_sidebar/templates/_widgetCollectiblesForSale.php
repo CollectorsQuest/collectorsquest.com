@@ -16,7 +16,7 @@
   <div style="border: 1px solid #dcd7d7; margin-top: 10px;">
     <div style="border: 1px solid #f2f1f1; padding: 2px;">
       <div class="span3">
-        <?= ice_image_tag_flickholdr('60x60', array('i' => $i)); ?>
+        <?= ice_image_tag_flickholdr('60x60', array('i' => $collectible_for_sale->getCollectibleId())); ?>
         <?php link_to_collectible($collectible_for_sale->getCollectible(), 'image', array('width' => 60, 'height' => 60)); ?>
       </div>
       <div class="span9" style="padding-top: 5px;">

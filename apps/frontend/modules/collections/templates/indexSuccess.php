@@ -6,7 +6,7 @@
 <?php cq_section_title('Explore Collections') ?>
 <div id="sort-search-box">
   <div class="input-append">
-    <form action="<?= url_for('@search_collections'); ?>" method="post">
+    <form action="<?= url_for('@search_collections'); ?>" method="post" id="form-explore-collections">
     <div class="btn-group">
       <div class="append-left-gray">Sort by <strong id="sortByName">Most Relevant</strong></div>
       <a href="#" data-toggle="dropdown" class="btn gray-button dropdown-toggle">
@@ -16,8 +16,6 @@
         <li><a href="javascript:" class="sortBy" data-name="Most Relevant" data-sort="most-relevant">Sort by <strong>Most Relevant</strong></a></li>
         <li><a href="javascript:" class="sortBy" data-name="Most Recent" data-sort="most-recent">Sort by <strong>Most Recent</strong></a></li>
         <li><a href="javascript:" class="sortBy" data-name="Most Popular" data-sort="most-popular">Sort by <strong>Most Popular</strong></a></li>
-        <li><a href="javascript:" class="sortBy" data-name="Collections" data-sort="collections">Sort by <strong>Collections</strong></a></li>
-        <li><a href="javascript:" class="sortBy" data-name="Collectibles" data-sort="collectibles">Sort by <strong>Collectibles</strong></a></li>
       </ul>
     </div>
     <input type="text" name="q" id="appendedPrependedInput" class="input-sort-by"><button type="submit" class="btn gray-button"><strong>Search</strong></button>
@@ -28,22 +26,8 @@
 
 <div class="row collections-container">
   <div id="collections" class="row-content">
-  <?php
-    /** @var $collections Collection[] */
-    foreach ($collections as $i => $collection)
-    {
-      include_partial(
-        'collection/collection_grid_view_square_small',
-        array('collection' => $collection, 'i' => $i)
-      );
-    }
-  ?>
+    <?php include_component('collections', 'exploreCollections'); ?>
   </div>
-</div>
-<div class="see-more-under-image-set">
-  <button class="btn btn-small gray-button see-more-full" id="see-more-collections">
-    See more
-  </button>
 </div>
 
 <script>
@@ -55,6 +39,21 @@ $(document).ready(function()
   {
     $('#sortByName').html($(this).data('name'));
     $('#sortByValue').val($(this).data('sort'));
+  });
+
+  var $url = '<?= url_for('@ajax_collections?section=component&page=exploreCollections') ?>';
+  var $form = $('#form-explore-collections');
+
+  $('#form-explore-collections').submit(function()
+  {
+    $('#collections').fadeOut();
+
+    $.post($url +'?p=1', $form.serialize(), function(data)
+    {
+      $('#collections').html(data).fadeIn();
+    },'html');
+
+    return false;
   });
 });
 </script>

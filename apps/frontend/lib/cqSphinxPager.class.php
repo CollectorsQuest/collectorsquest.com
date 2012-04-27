@@ -193,8 +193,9 @@ class cqSphinxPager extends sfPager
     $indexes = sprintf('%1$s_blog_normalized', $env);
 
     $keys = array_keys($contents);
-    if ($excerpts = $sphinx->BuildExcerpts($contents, $indexes, $this->query['q'], array('limit' => 128)))
-    {
+    if (!empty($this->query['q']) &&
+       ($excerpts = $sphinx->BuildExcerpts($contents, $indexes, $this->query['q'], array('limit' => 128)))
+    ) {
       foreach ($excerpts as $i => $excerpt)
       if (!empty($excerpt))
       {
