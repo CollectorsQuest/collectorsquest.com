@@ -57,13 +57,11 @@
 $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 $count = ($paged > 1) ? 9 : 1;
 $lastclass = 0;
+//wp_reset_query();
 
-if ($paged == 2) {
-  query_posts('offset=7&posts_per_page=8');
-} elseif ($paged > 2) {
-  query_posts('offset=' . (($paged * 8) - 9) . '&posts_per_page=8');
-}
 ?>
+
+
 
 
 <div id="blog-contents" class="<?php if (is_front_page()) : echo ' news-front'; elseif (is_singular()) : echo 'singular'; else : echo 'not-singular'; endif; ?>">
@@ -73,7 +71,8 @@ if ($paged == 2) {
   <?php while (have_posts()) : the_post(); ?>
 
     <?php
-      wp_reset_query(); //for ajax post loading
+
+  wp_reset_query(); //for ajax post loading
 
       if (is_single() || is_page())
       {
