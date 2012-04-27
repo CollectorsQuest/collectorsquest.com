@@ -12,6 +12,11 @@ class aentComponents extends sfComponents
     return sfView::SUCCESS;
   }
 
+  public function executeSidebarPawnStarsBrandItem()
+  {
+    return sfView::SUCCESS;
+  }
+
   public function executeCollectible()
   {
     /** @var $collectible Collectible */
