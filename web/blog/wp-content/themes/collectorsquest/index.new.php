@@ -138,8 +138,6 @@ $lastclass = 0;
 
         <?php if (is_single()) : ?>
           <h2 class="entry-title"><?php the_title() ?></h2>
-        <?php elseif (is_front_page() && $count == 1) : ?>
-          <h2 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
         <?php endif; ?>
 
         <div class="entry-image">
@@ -201,7 +199,7 @@ $lastclass = 0;
 
           <?php if (is_single() && $image_attributes[1] >= 620) : ?>
             <!--  <img src="<?php echo $image_url; //http://placekitten.com/ ?><?php echo $img_w ?>/<?php echo $img_h ?>" alt=""/> -->
-            <img src="/blog/wp-content/themes/collectorsquest/thumb.php?src=<?php echo $image_url; ?>&w=<?php echo $img_w ?>&h=<?php echo $img_h ?>&zc=1&a=t" alt=""/>
+            <img src="/blog/wp-content/themes/collectorsquest/thumb.php?src=<?php echo $image_url; //'http://placekitten.com/700/700'; ?>&w=<?php echo $img_w ?>&h=<?php echo $img_h ?>&zc=1&a=t" alt=""/>
             <?php
             $thumbnail_id = get_post_thumbnail_id($post->ID);
             $thumbnail_image = get_posts(array('p' => $thumbnail_id, 'post_type' => 'attachment'));
@@ -212,7 +210,7 @@ $lastclass = 0;
             ?>
 
           <?php elseif (is_front_page() || is_archive()) : ?>
-          <img src="/blog/wp-content/themes/collectorsquest/thumb.php?src=<?php echo $image_url; ?>&w=<?php echo $img_w ?>&h=<?php echo $img_h ?>&zc=1&a=t" alt=""/>
+          <img src="/blog/wp-content/themes/collectorsquest/thumb.php?src=<?php echo $image_url; //'http://placekitten.com/700/700'; ?>&w=<?php echo $img_w ?>&h=<?php echo $img_h ?>&zc=1&a=t" alt=""/>
           <?php endif; ?>
 
           <?php if (!is_single()) : ?>
@@ -230,7 +228,7 @@ $lastclass = 0;
           <div class="entry-genre"><a href="" title="">Genre</a><?php //the_category() ?></div>
         <?php endif; ?>
 
-        <?php if ((is_front_page() && $count > 1) || is_archive()) : ?>
+        <?php if ((is_front_page()) || is_archive()) : ?>
           <h2 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
         <?php endif; ?>
 
