@@ -624,14 +624,17 @@ a {
 
 	.row-fluid {
 		margin-bottom: 10px;
-	.inner-border {
-		border: 1px solid #afa4a4;
-		.clearfix();
-		padding: 3px 7px 3px 3px;
+		.inner-border {
+			border: 1px solid #afa4a4;
+			.clearfix();
+			padding: 3px 7px 3px 3px;
+			&:hover {
+				border-color: @blue;
+			}
 
-		.span9 {
-			margin-left: 4px;
-		}
+			.span9 {
+				margin-left: 4px;
+			}
 	}
 	}
 	.fix-height-text-block {
@@ -809,7 +812,7 @@ a {
 	margin: 30px 0 40px 0;
 }
 .user-comments {
-	margin: 10px 25px;
+	margin: 10px 25px 10px 0;
 
 	.user-comment {
 		margin-bottom: 10px;
@@ -872,27 +875,55 @@ a {
 }
 .bubble {
 	position: relative;
-	padding: 6px;
-	margin: 0 0 0 5px;
-	color: #000;
-	.border-radius(6px);
+	background: none repeat scroll 0 0 #FFFFFF;
 	border: 1px solid #b8adad;
+	.border-radius(6px);
+	margin: 0 0 0 5px;
+	padding: 6px;
 
+	&:before {
+		border-color: #b8adad transparent;
+		border-style: solid;
+		border-width: 20px 20px 0;
+		bottom: -20px;
+		content: "";
+		display: block;
+		left: 10px;
+		position: absolute;
+		width: 0;
+	}
+	&:after {
+		border-color: #FFFFFF transparent;
+		border-style: solid;
+		border-width: 13px 13px 0;
+		bottom: -13px;
+		content: "";
+		display: block;
+		left: 47px;
+		position: absolute;
+		width: 0;
+	}
+	&.left {
+		margin-left: 10px;
+	}
+
+	&.left:before {
+		border-color: transparent #b8adad;
+		border-width: 7px 10px 7px 0;
+		bottom: auto;
+		left: -10px;
+		top: 15px;
+	}
 	&.left:after {
-		top: 16px;
-		left: -50px;
+		border-color: transparent #FFFFFF;
+		border-width: 6px 10px 6px 0;
 		bottom: auto;
-		border-width: 5px 10px 50px 0;
-		border-color: transparent #b8adad;
-	}
-	&.right:after {
+		left: -9px;
 		top: 16px;
-		right: -50px;
-		bottom: auto;
-		left: auto;
-		border-width: 5px 10px 50px 0;
-		border-color: transparent #b8adad;
 	}
+
+
+
 }
 
 

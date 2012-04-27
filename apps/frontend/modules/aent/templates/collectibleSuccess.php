@@ -1,4 +1,4 @@
-<div class="banners-620 bottom-margin-more">
+<div class="banners-620 bottom-margin-double">
   <img src="/images/banners/040412_pawnstars_620x67.jpg" alt="">
 </div>
 <?php cq_page_title('9-shot LeMat Revolver'); ?>
@@ -33,7 +33,7 @@
   </div>
   <div class="user-comments">
     <div class="row-fluid user-comment">
-      <div class="span2">
+      <div class="span2 text-right">
         <a href="#">
           <img src="http://placehold.it/65x65" alt="">
         </a>
@@ -47,7 +47,7 @@
       </div>
     </div>
     <div class="row-fluid user-comment">
-      <div class="span2">
+      <div class="span2 text-right">
         <a href="#">
           <img src="http://placehold.it/65x65" alt="">
         </a>
