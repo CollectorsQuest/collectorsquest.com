@@ -199,7 +199,7 @@ $lastclass = 0;
 
           <?php if (is_single() && $image_attributes[1] >= 620) : ?>
             <!--  <img src="<?php echo $image_url; //http://placekitten.com/ ?><?php echo $img_w ?>/<?php echo $img_h ?>" alt=""/> -->
-            <img src="/blog/wp-content/themes/collectorsquest/thumb.php?src=<?php echo $image_url; //'http://placekitten.com/700/700'; ?>&w=<?php echo $img_w ?>&h=<?php echo $img_h ?>&zc=1&a=t" alt=""/>
+            <img src="/blog/wp-content/themes/collectorsquest/thumb.php?src=<?php echo $image_url;  //echo 'http://placekitten.com/700/700'; ?>&w=<?php echo $img_w ?>&h=<?php echo $img_h ?>&zc=1&a=t" alt=""/>
             <?php
             $thumbnail_id = get_post_thumbnail_id($post->ID);
             $thumbnail_image = get_posts(array('p' => $thumbnail_id, 'post_type' => 'attachment'));
@@ -210,7 +210,7 @@ $lastclass = 0;
             ?>
 
           <?php elseif (is_front_page() || is_archive()) : ?>
-          <img src="/blog/wp-content/themes/collectorsquest/thumb.php?src=<?php echo $image_url; //'http://placekitten.com/700/700'; ?>&w=<?php echo $img_w ?>&h=<?php echo $img_h ?>&zc=1&a=t" alt=""/>
+          <img src="/blog/wp-content/themes/collectorsquest/thumb.php?src=<?php echo $image_url;; // //'http://placekitten.com/700/700' ?>&w=<?php echo $img_w ?>&h=<?php echo $img_h ?>&zc=1&a=t" alt=""/>
           <?php endif; ?>
 
           <?php if (!is_single()) : ?>
@@ -256,11 +256,28 @@ $lastclass = 0;
           </span>
 
           <?php if (is_single()) : ?>
+
           <div class="entry-share pull-right">
+
             <span class='st_email_hcount'></span>
             <span class='st_facebook_hcount'></span>
             <span class='st_twitter_hcount'></span>
+            <span class='st_googleplus_hcount'></span>
             <span class='st_pinterest_hcount'></span>
+
+            <!-- AddThis Button BEGIN
+            <div class="addthis_toolbox addthis_default_style">
+              <a class="addthis_button_email"></a>
+              <a class="addthis_button_facebook_like" fb:like:layout="button_count" fb:like:width="40"></a>
+              <a class="addthis_button_tweet" tw:twitter:data-count="none"></a>
+              <a class="addthis_button_google_plusone" g:plusone:size="medium" g:plusone:annotation="none"></a>
+              <a class="addthis_button_pinterest_pinit" pi:pinit:media="http://YOUR-DOMAIN.com/IMAGE.jpg" pi:pinit:layout="horizontal"></a>
+
+
+            </div>
+            <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=cq"></script>
+            AddThis Button END -->
+
           </div>
           <?php endif; ?>
 
@@ -286,9 +303,9 @@ $lastclass = 0;
 
         <?php if ((is_front_page() && $count == 1) || is_single()) : ?>
         <div class="entry-footer">
-
+        <?php if (is_front_page() && $count == 1) : ?>
           <p><?php the_tags(); ?></p>
-
+        <?php endif; ?>
           <!-- <div class="entry-share">
             <span class='st_sharethis_custom'>Share This</span>
           </div> -->
@@ -296,6 +313,7 @@ $lastclass = 0;
             <span class='st_email_hcount'></span>
             <span class='st_facebook_hcount'></span>
             <span class='st_twitter_hcount'></span>
+            <span class='st_googleplus_hcount'></span>
             <span class='st_pinterest_hcount'></span>
           </div>
           <!--  <iframe src="http://www.facebook.com/plugins/like.php?href=<?php the_permalink(); ?>&amp;layout=standard&amp;show_faces=true&amp;width=728&amp;action=like&amp;font=trebuchet+ms&amp;colorscheme=light&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:728px; height:80px;" allowTransparency="true"></iframe>
