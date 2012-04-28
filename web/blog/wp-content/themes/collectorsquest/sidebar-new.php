@@ -13,6 +13,7 @@
   <p><?php the_tags('<ul class="cf" style="list-style: none; padding: 0; margin: 0;"><li class="rounded p-tag">','</li><li class="rounded p-tag">','</li></ul>'); ?></p>
 <?php endif; ?>
   <ul id="widgets">
+    <?php if(is_front_page()) : ?>
     <li id="widget-bloggers" class="widget">
       <div class="row-fluid sidebar-title">
         <div class="span8">
@@ -67,6 +68,7 @@
       echo '</ul>';
       ?>
     </li>
+<?php endif; ?>
 
     <?php if (!is_front_page()) : ?>
     <li id="widget-other-news" class="widget">
