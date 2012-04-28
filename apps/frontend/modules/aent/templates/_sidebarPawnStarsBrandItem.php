@@ -107,7 +107,7 @@
         </a>
       </div>
       <div class="span9 fix-height-text-block">
-        <div class="content-scontainer">
+        <div class="content-container">
           <a href="#" title="1863 Copper Token">
             1863 Copper Token
           </a>
