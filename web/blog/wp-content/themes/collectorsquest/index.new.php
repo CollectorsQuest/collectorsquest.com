@@ -31,10 +31,10 @@
 <?php if (is_single()) { ?>
 <div class="row-fluid header-bar">
   <div class="span7">
-    <h1 class="Chivo webfont" style="visibility: visible; ">News Article</h1>
+    <h1 class="Chivo webfont" style="visibility: visible; ">Blog Post</h1>
   </div>
   <div class="back-nav span5">
-    <a href="/blog/">Back to News Landing Page &rarr;</a>
+    <a href="/blog/">Back to Latest News &rarr;</a>
   </div>
 </div>
 <?php } elseif (is_front_page()) { ?>
@@ -46,7 +46,7 @@
 <?php } elseif (is_author()) { ?>
 <div class="row-fluid header-bar">
   <div class="span11">
-    <h1 class="Chivo webfont" style="visibility: visible; "><?php the_author() ?></h1>
+    <h1 class="Chivo webfont" style="visibility: visible; ">Blogger: <?php the_author() ?></h1>
   </div>
 </div>
 <?php } ?>
@@ -64,7 +64,7 @@ $lastclass = 0;
 
 
 
-<div id="blog-contents" class="<?php if (is_front_page()) : echo ' news-front'; elseif (is_singular()) : echo 'singular'; else : echo 'not-singular'; endif; ?>">
+<div id="blog-contents" class="<?php if (is_front_page()) : echo 'news-front'; elseif (is_singular()) : echo 'singular'; else : echo 'not-singular'; endif; ?>">
 
 <?php if (have_posts()) : ?>
 
@@ -132,14 +132,12 @@ $lastclass = 0;
 
         ?>" id="post-<?php the_ID(); ?>">
 
-        <?php if (is_front_page() || is_single()) : ?>
-          <div class="entry-genre"><a href="" title="">Genre</a><?php //the_category() ?></div>
+        <?php if (is_single()) : ?>
+          <!-- <div class="entry-genre"><a href="" title=""><?php the_category() ?></a></div> -->
         <?php endif; ?>
 
         <?php if (is_single()) : ?>
           <h2 class="entry-title"><?php the_title() ?></h2>
-        <?php elseif (is_front_page() && $count == 1) : ?>
-          <h2 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
         <?php endif; ?>
 
         <div class="entry-image">
@@ -201,7 +199,7 @@ $lastclass = 0;
 
           <?php if (is_single() && $image_attributes[1] >= 620) : ?>
             <!--  <img src="<?php echo $image_url; //http://placekitten.com/ ?><?php echo $img_w ?>/<?php echo $img_h ?>" alt=""/> -->
-            <img src="/blog/wp-content/themes/collectorsquest/thumb.php?src=<?php echo $image_url; ?>&w=<?php echo $img_w ?>&h=<?php echo $img_h ?>&zc=1" alt=""/>
+            <img src="/blog/wp-content/themes/collectorsquest/thumb.php?src=<?php echo $image_url;  //echo 'http://placekitten.com/700/700'; ?>&w=<?php echo $img_w ?>&h=<?php echo $img_h ?>&zc=1&a=t" alt=""/>
             <?php
             $thumbnail_id = get_post_thumbnail_id($post->ID);
             $thumbnail_image = get_posts(array('p' => $thumbnail_id, 'post_type' => 'attachment'));
@@ -212,7 +210,7 @@ $lastclass = 0;
             ?>
 
           <?php elseif (is_front_page() || is_archive()) : ?>
-          <img src="/blog/wp-content/themes/collectorsquest/thumb.php?src=<?php echo $image_url; ?>&w=<?php echo $img_w ?>&h=<?php echo $img_h ?>&zc=1" alt=""/>
+          <img src="/blog/wp-content/themes/collectorsquest/thumb.php?src=<?php echo $image_url; //'http://placekitten.com/700/700'; ?>&w=<?php echo $img_w ?>&h=<?php echo $img_h ?>&zc=1&a=t" alt=""/>
           <?php endif; ?>
 
           <?php if (!is_single()) : ?>
@@ -226,49 +224,75 @@ $lastclass = 0;
 
         </div>
 
-        <?php if (is_archive()) : ?>
-          <div class="entry-genre"><a href="" title="">Genre</a><?php //the_category() ?></div>
+        <?php if (is_front_page() || is_archive()) : ?>
+          <!-- <div class="entry-genre"><a href="" title=""><?php the_category() ?></a></div> -->
         <?php endif; ?>
 
-        <?php if ((is_front_page() && $count > 1) || is_archive()) : ?>
+        <?php if ((is_front_page()) || is_archive()) : ?>
           <h2 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
         <?php endif; ?>
 
-        <?php if (is_single()) : ?>
         <div class="entry-meta">
-          <a class="author-image" href="<?php echo get_author_posts_url(get_the_author_meta('ID')) ?>"
-             title="<?php the_author() ?>'s articles on collecting...">
-            <?php echo get_avatar(get_the_author_meta('ID'),33) //<img src="http://placekitten.com/33/33" alt="" width="33" height="33"/> ?>
-          </a>
           <span class="meta-text">
+            <a class="author-image" href="<?php echo get_author_posts_url(get_the_author_meta('ID')) ?>"
+               title="<?php the_author() ?>'s articles on collecting...">
+
+              <?php
+              if (is_single()) {
+                $size = 33;
+              }
+              else {
+                $size = 16;
+              }
+              ?>
+
+              <?php echo get_avatar(get_the_author_meta('ID'),$size) //<img src="http://placekitten.com/33/33" alt="" width="33" height="33"/> ?>
+            </a>
+            <span class="author-info">
             By <a href="<?php echo get_author_posts_url(get_the_author_meta('ID')) ?>"
-                  title="<?php the_author() ?>'s articles on collecting..."><?php the_author() ?></a> | Posted <?php the_date('M d, Y') ?>
-            at <?php the_time('g:i a') ?>
+                  title="<?php the_author() ?>'s articles on collecting..."><?php the_author() ?></a> <!-- <span class="entry-date">| Posted <?php the_date('M d, Y') ?>
+            at <?php the_time('g:i a') ?></span> -->
+            </span>
           </span>
+
+          <?php if (is_single()) : ?>
+
           <div class="entry-share pull-right">
+
+            <!-- ShareThis Button BEGIN
             <span class='st_email_hcount'></span>
             <span class='st_facebook_hcount'></span>
             <span class='st_twitter_hcount'></span>
+            <span class='st_googleplus_hcount'></span>
             <span class='st_pinterest_hcount'></span>
+            ShareThis Button BEGIN -->
+
+            <!-- AddThis Button BEGIN -->
+            <div class="addthis_toolbox addthis_default_style">
+              <a class="addthis_button_email"></a>
+              <a class="addthis_button_facebook_like" fb:like:layout="button_count" fb:like:width="40"></a>
+              <a class="addthis_button_tweet" tw:twitter:data-count="none"></a>
+              <a class="addthis_button_google_plusone" g:plusone:size="medium" g:plusone:annotation="none"></a>
+              <a class="addthis_button_pinterest_pinit" pi:pinit:media="http://YOUR-DOMAIN.com/IMAGE.jpg" pi:pinit:layout="horizontal"></a>
+            </div>
+            <!-- AddThis Button END -->
+
           </div>
+          <?php endif; ?>
+
         </div>
-        <?php endif; ?>
+
 
         <div class="entry">
           <?php
           if (is_single()) :
              the_content();
-          elseif (is_front_page() && ($count < 4)) :
+          elseif (is_front_page()||is_archive()) :
             if ($count == 1) :
               $length = 300;
-            elseif ($count == 2 || $count == 3) :
-              $length = 100;
+            else :
+              $length = 200;
             endif;
-            $longString = get_the_excerpt('... more');
-            $truncated = substr($longString, 0, strpos($longString, ' ', $length));
-            echo '<p>' . $truncated . '... <a href="' . get_permalink() . '">more</a></p>';
-          elseif (is_archive()) :
-            $length = 200;
             $longString = get_the_excerpt('... more');
             $truncated = substr($longString, 0, strpos($longString, ' ', $length));
             echo '<p>' . $truncated . '... <a href="' . get_permalink() . '">more</a></p>';
@@ -278,11 +302,30 @@ $lastclass = 0;
 
         <?php if ((is_front_page() && $count == 1) || is_single()) : ?>
         <div class="entry-footer">
-
+        <?php if (is_front_page() && $count == 1) : ?>
           <p><?php the_tags(); ?></p>
-
-          <div class="entry-share">
+        <?php endif; ?>
+          <!-- <div class="entry-share">
             <span class='st_sharethis_custom'>Share This</span>
+          </div> -->
+          <div class="entry-share pull-right">
+            <!-- ShareThis Button BEGIN
+            <span class='st_email_hcount'></span>
+            <span class='st_facebook_hcount'></span>
+            <span class='st_twitter_hcount'></span>
+            <span class='st_googleplus_hcount'></span>
+            <span class='st_pinterest_hcount'></span>
+            ShareThis Button BEGIN -->
+
+            <!-- AddThis Button BEGIN -->
+            <div class="addthis_toolbox addthis_default_style">
+              <a class="addthis_button_email"></a>
+              <a class="addthis_button_facebook_like" fb:like:layout="button_count" fb:like:width="40"></a>
+              <a class="addthis_button_tweet" tw:twitter:data-count="none"></a>
+              <a class="addthis_button_google_plusone" g:plusone:size="medium" g:plusone:annotation="none"></a>
+              <a class="addthis_button_pinterest_pinit" pi:pinit:media="http://YOUR-DOMAIN.com/IMAGE.jpg" pi:pinit:layout="horizontal"></a>
+            </div>
+            <!-- AddThis Button END -->
           </div>
           <!--  <iframe src="http://www.facebook.com/plugins/like.php?href=<?php the_permalink(); ?>&amp;layout=standard&amp;show_faces=true&amp;width=728&amp;action=like&amp;font=trebuchet+ms&amp;colorscheme=light&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:728px; height:80px;" allowTransparency="true"></iframe>
             <?php comments_popup_link('Add a comment &#187;', '1 Comment &#187;', '% Comments &#187;'); ?> -->

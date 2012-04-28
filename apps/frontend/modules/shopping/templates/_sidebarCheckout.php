@@ -1,7 +1,7 @@
 <?php /** @var $shopping_order ShoppingOrder */ ?>
 <?php if ($shopping_order): ?>
 <div class="well">
-  <?= ice_image_tag_flickholdr('260x205', array('tags' => array('Bronze', ' Statue', 'Egyptian'), 'i' => 0)); ?>
+  <?= image_tag_collectible($shopping_order->getCollectible(), '260x205'); ?>
   <br/><br/>
   <table style="width: 100%;">
     <tr>

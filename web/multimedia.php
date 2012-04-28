@@ -16,6 +16,10 @@ else
   {
     $env = 'prod';
   }
+  else if ($env == 'next')
+  {
+    $env = 'dev';
+  }
 }
 
 @list(, $type, $size, $filename) = explode('/', $_SERVER['REQUEST_URI']);

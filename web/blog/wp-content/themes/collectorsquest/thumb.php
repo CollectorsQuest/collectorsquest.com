@@ -255,7 +255,7 @@ class timthumb {
           }
         }
         if(! $allowed){
-          return $this->error("You may not fetch images from that site. To enable this site in timthumb, you can either add it to \$ALLOWED_SITES and set ALLOW_EXTERNAL=true. Or you can set ALLOW_ALL_EXTERNAL_SITES=true, depending on your security needs.");
+          return $this->error("You may not fetch images from that site.");
         }
       }
     }
@@ -858,7 +858,7 @@ class timthumb {
       if(is_file($file)){
         return $this->realpath($file);
       }
-      return $this->error("Could not find your website document root and the file specified doesn't exist in timthumbs directory. We don't support serving files outside timthumb's directory without a document root for security reasons.");
+      return $this->error("Could not find your website document root and the file specified doesn't exist in the directory. We don't support serving files outside timthumb's directory without a document root for security reasons.");
     } //Do not go past this point without docRoot set
 
     //Try src under docRoot
@@ -926,7 +926,7 @@ class timthumb {
   }
   protected function serveWebshot(){
     $this->debug(3, "Starting serveWebshot");
-    $instr = "Please follow the instructions at http://code.google.com/p/timthumb/ to set your server up for taking website screenshots.";
+    $instr = "Please follow the instructions to set your server up for taking website screenshots.";
     if(! is_file(WEBSHOT_CUTYCAPT)){
       return $this->error("CutyCapt is not installed. $instr");
     }
@@ -1018,7 +1018,7 @@ class timthumb {
   protected function serveCacheFile(){
     $this->debug(3, "Serving {$this->cachefile}");
     if(! is_file($this->cachefile)){
-      $this->error("serveCacheFile called in timthumb but we couldn't find the cached file.");
+      $this->error("serveCacheFile called in thumb but we couldn't find the cached file.");
       return false;
     }
     $fp = fopen($this->cachefile, 'rb');
@@ -1130,7 +1130,7 @@ class timthumb {
     }
   }
   protected function sanityFail($msg){
-    return $this->error("There is a problem in the timthumb code. Message: Please report this error at <a href='http://code.google.com/p/timthumb/issues/list'>timthumb's bug tracking page</a>: $msg");
+    return $this->error("There is a problem in the code. Message: Please report this error: $msg");
   }
   protected function getMimeType($file){
     $info = getimagesize($file);

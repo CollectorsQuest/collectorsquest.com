@@ -1,7 +1,7 @@
 <div id="sidebar">
 
   <img src="/images/iab/300x250.gif">
-
+<?php if (!is_front_page()) : ?>
   <div class="row-fluid sidebar-title">
     <div class="span8">
       <h3 class="Chivo webfont" style="visibility: visible;">Tags</h3>
@@ -11,8 +11,9 @@
     </div>-->
   </div>
   <p><?php the_tags('<ul class="cf" style="list-style: none; padding: 0; margin: 0;"><li class="rounded p-tag">','</li><li class="rounded p-tag">','</li></ul>'); ?></p>
-
-  <ul id="widgets" class="span-5">
+<?php endif; ?>
+  <ul id="widgets">
+    <?php if(is_front_page()) : ?>
     <li id="widget-bloggers" class="widget">
       <div class="row-fluid sidebar-title">
         <div class="span8">
@@ -27,7 +28,7 @@
       $display_admins = false;
       $order_by = 'display_name'; // 'nicename', 'email', 'url', 'registered', 'display_name', or 'post_count'
       $role = 'author'; // 'subscriber', 'contributor', 'editor', 'author' - leave blank for 'all'
-      $avatar_size = 40;
+      $avatar_size = 60;
       $hide_empty = true; // hides authors with zero posts
 
       if (!empty($display_admins)) {
@@ -59,14 +60,17 @@
         $author_posts_url = get_author_posts_url($author['ID']);
         $author_profile_url = get_the_author_meta('user_url', $author['ID']);
         $nice_name = get_the_author_meta('user_nicename', $author['ID']);
-        echo '<li><a href="', $author_profile_url, '">', $avatar, '</a><strong>' . $display_name . '</strong><br /><a href="/blog/people/', $nice_name, '" class="author-link">[Bio]</a> <a href="', $author_posts_url, '" class="contributor-link">[Articles]</a></li>';
+        //echo '<li><a href="', $author_profile_url, '">', $avatar, '</a><strong>' . $display_name . '</strong><br /><a href="/blog/people/', $nice_name, '" class="author-link">[Bio]</a> <a href="', $author_posts_url, '" class="contributor-link">[Articles]</a></li>';
+        echo '<li><a href="', $author_posts_url, '">', $avatar, '<span class="author-name">' . $display_name . '</span></a>';
         echo '';
 
       }
       echo '</ul>';
       ?>
     </li>
+<?php endif; ?>
 
+    <?php if (!is_front_page()) : ?>
     <li id="widget-other-news" class="widget">
 
       <div class="row-fluid sidebar-title">
@@ -74,7 +78,7 @@
           <h3 class="Chivo webfont" style="visibility: visible;">In Other News</h3>
         </div>
         <div class="span4 text-right">
-          <a href="/blog" class="text-v-middle link-align">See all news »</a>&nbsp;
+          <a href="/blog" class="text-v-middle link-align">See all posts »</a>&nbsp;
         </div>
       </div>
 
@@ -93,6 +97,7 @@
       </div>
       <?php } ?>
     </li>
+  <?php endif; ?>
 
     <!-- Blog Sidebar //-->
   </ul>

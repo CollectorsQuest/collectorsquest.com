@@ -1,4 +1,4 @@
-<?= $title ?>
+<?php cq_sidebar_title($title) ?>
 <ul class="cf" style="list-style: none; padding: 0; margin: 0;">
 <?php
   foreach ($tags as $tag)

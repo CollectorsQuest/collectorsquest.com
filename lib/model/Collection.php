@@ -148,6 +148,7 @@ class Collection extends BaseCollection
       $multimedia->makeThumb('50x50', 'shave');
       $multimedia->makeThumb('150x150', 'shave');
       $multimedia->makeThumb('190x150', 'shave', false);
+      $multimedia->makeThumb('190x190', 'shave', false);
       $multimedia->save();
 
       return $multimedia;
