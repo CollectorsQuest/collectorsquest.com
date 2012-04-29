@@ -1,10 +1,10 @@
 <?php
-  if ($_SERVER['HTTP_HOST'] == 'www.collectorsquest.next' || $_SERVER['HTTP_HOST'] == 'www.cqnext.com')
-  {
-    require_once "index.new.php";
-  }
-  else
-  {
-    require_once "index.legacy.php";
-  }
-?>
+
+if (SF_APP === 'frontend')
+{
+  require_once "index.new.php";
+}
+else
+{
+  require_once "index.legacy.php";
+}

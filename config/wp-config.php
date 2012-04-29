@@ -4,22 +4,7 @@ if (defined('DB_NAME') && defined('DB_USER') && defined('DB_PASSWORD')) {
   return;
 }
 
-if (!defined('SF_ENV') && ($_SERVER['HTTP_HOST'] == 'www.collectorsquest.dev' || $_SERVER['HTTP_HOST'] == 'www.collectorsquest.next'))
-{
-  define('SF_ENV', 'dev');
-}
-else if (!defined('SF_ENV') && $_SERVER['HTTP_HOST'] == 'www.cqstaging.com')
-{
-  define('SF_ENV', 'stg');
-}
-else if (!defined('SF_ENV') && $_SERVER['HTTP_HOST'] == 'www.cqnext.com')
-{
-  define('SF_ENV', 'next');
-}
-else if (!defined('SF_ENV'))
-{
-  define('SF_ENV', 'prod');
-}
+require __DIR__ .'/bootstrap.php';
 
 if (SF_ENV === 'dev')
 {
@@ -27,9 +12,6 @@ if (SF_ENV === 'dev')
   define('DB_USER', 'root');
   define('DB_PASSWORD', '');
   define('DB_HOST', 'localhost');
-
-  define('WPLANG', 'en');
-  define('WP_CACHE', false);
 
   define('AUTH_KEY',         'kY?,$GZNiOk$= ?#OW|,-1PuP6DXI=#Lff-R,}9I90<l<YqK5Q904<UoxF}gs6s=');
   define('SECURE_AUTH_KEY',  '<GdO)poK3Asj/|+fMW-);1N2{k?PbP|K#gDUZya~9`/<YPG:4G35KW&F[8WF%S@r');
