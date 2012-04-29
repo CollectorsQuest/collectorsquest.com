@@ -390,7 +390,7 @@ class Collectible extends BaseCollectible
       $multimedia->makeThumb('150x150', 'shave', false);
       $multimedia->makeThumb('190x190', 'shave', false);
       $multimedia->makeThumb('420x1000', 'bestfit', false);
-      $multimedia->makeThumb('610x1000', 'bestfit', false);
+      $multimedia->makeThumb('620x1000', 'bestfit', false);
 
       // The rest of the thumnails are not immediately used so they can be deferred
       $multimedia->makeThumb('75x75', 'shave', $queue);
