@@ -1,26 +1,14 @@
 <?php
 
-date_default_timezone_set('America/New_York');
+require __DIR__ .'/../config/bootstrap.php';
 
-if (!empty($_SERVER['SF_APP']) && !empty($_SERVER['SF_ENV']))
-{
-  $app = $_SERVER['SF_APP'];
-  $env = $_SERVER['SF_ENV'];
-}
-else
-{
-  $parts = explode('.collectorsquest.', $_SERVER['SERVER_NAME']);
+// Set the location of the shared/ directory
+$shared = (SF_ENV === 'dev') ?
+  '/www/vhosts/collectorsquest.dev/shared' :
+  '/www/vhosts/collectorsquest.com/shared';
 
-  list($app, $env) = $parts;
-  if ('new' == $env || 'com' == $env)
-  {
-    $env = 'prod';
-  }
-  else if ($env == 'next')
-  {
-    $env = 'dev';
-  }
-}
+// Set the location of teh web/ directory
+$web = $_SERVER['DOCUMENT_ROOT'];
 
 @list(, $type, $size, $filename) = explode('/', $_SERVER['REQUEST_URI']);
 if (in_array($type, array('image', 'video')))
@@ -28,7 +16,7 @@ if (in_array($type, array('image', 'video')))
   // Include sfYaml from Symfony
   include_once __DIR__ .'/../lib/vendor/symfony/lib/yaml/sfYaml.php';
 
-  $databases = sfYaml::load(__DIR__.'/../config/databases.yml');
+  $databases = sfYaml::load(__DIR__ .'/../config/databases.yml');
 
   if (empty($databases['prod']))
   {
@@ -40,12 +28,13 @@ if (in_array($type, array('image', 'video')))
   }
 
   $dbh = new PDO(
-    $databases[$env]['propel']['param']['dsn'],
-    $databases[$env]['propel']['param']['username'],
-    $databases[$env]['propel']['param']['password']
+    $databases[SF_ENV]['propel']['param']['dsn'],
+    $databases[SF_ENV]['propel']['param']['username'],
+    $databases[SF_ENV]['propel']['param']['password']
   );
 
   preg_match('/-(\d+)\.(jpg|flv)/i', $filename, $m);
+
   if (isset($m[1]) && ctype_digit($m[1]))
   {
     $stmt = $dbh->prepare("SELECT * FROM `multimedia` WHERE `id` = ? AND `type` = ? LIMIT 1");
@@ -56,7 +45,8 @@ if (in_array($type, array('image', 'video')))
 
       $path  = '/uploads/'. $row['model'] .'/'. date_format(new DateTime($row['created_at']), 'Y/m/d');
 
-      $extension = array_shift(explode('?', end(explode('.', $filename))));
+      $extension = @array_shift(explode('?', end(explode('.', $filename))));
+      $original = implode('.', array($path .'/'. $row['md5'], 'original', $extension));
       $path = implode('.', array($path .'/'. $row['md5'], $size, $extension));
 
       switch ($type)
@@ -70,21 +60,30 @@ if (in_array($type, array('image', 'video')))
           break;
       }
 
-      if (is_readable('/www/vhosts/collectorsquest.com/shared'. $path))
+      // Does the multimedia exist? (we want to avoid extra stat() calls)
+      $is_readable = is_readable($shared . $path);
+
+      if ($type === 'image' && !$is_readable && is_readable($shared . $original))
+      {
+        $thumb = MultimediaPeer::makeThumb($shared . $original, $size);
+        $thumb && copy($thumb, $shared . $path) && ($is_readable = true);
+      }
+
+      if ($is_readable)
       {
         // Send Content-Type and the X-SendFile header
         header("Content-Type: ". $content_type);
-        header("X-SendFile: /www/vhosts/collectorsquest.com/shared". $path);
+        header("X-SendFile: ". $shared . $path);
 
         exit;
       }
       else
       {
-        $path  = '/images/legacy/multimedia/'. $row['model'] .'/'. $size .'.png';
+        $path  = '/images/'. SF_APP .'/multimedia/'. $row['model'] .'/'. $size .'.png';
 
         // Send Content-Type and the X-SendFile header
         header("Content-Type: image/png");
-        header("X-SendFile: ". __DIR__ . $path);
+        header("X-SendFile: ". $web . $path);
 
         exit;
       }

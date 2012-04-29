@@ -150,13 +150,6 @@ function image_tag_collectible($collectible, $which = null, $options = array())
   );
 
   $multimedia = $collectible->getMultimedia(true);
-
-  // A special case for the times when the $which size does not exist
-  if ($multimedia && !$multimedia->fileExists($which))
-  {
-    $multimedia->makeThumb($which, 'shave');
-  }
-
   $image_tag = image_tag_multimedia($multimedia, $which, $options);
 
   if (empty($image_tag))
@@ -251,24 +244,13 @@ function src_tag_multimedia($multimedia, $which, $options = array())
     return null;
   }
 
-  if (!$multimedia->fileExists($which))
-  {
-    $src = sprintf(
-      '%s/images/%s/multimedia/%s/%s.png',
-      rtrim(sfConfig::get('app_cq_www_domain'), '/'), sfConfig::get('sf_app'),
-      $multimedia->getModel(), $which
-    );
-  }
-  else
-  {
-    $src = sprintf(
-      '%s/%s/%s/%s-%d.%s?%d',
-      sfConfig::get('app_cq_multimedia_domain'),
-      $multimedia->getType(), $which,
-      (!empty($options['slug'])) ? $options['slug'] : strtolower($multimedia->getModel()),
-      $multimedia->getId(), $multimedia->getFileExtension(), $multimedia->getUpdatedAt('U')
-    );
-  }
+  $src = sprintf(
+    '%s/%s/%s/%s-%d.%s?%d',
+    sfConfig::get('app_cq_multimedia_domain'),
+    $multimedia->getType(), $which,
+    (!empty($options['slug'])) ? $options['slug'] : strtolower($multimedia->getModel()),
+    $multimedia->getId(), $multimedia->getFileExtension(), $multimedia->getUpdatedAt('U')
+  );
 
   return $src;
 }
