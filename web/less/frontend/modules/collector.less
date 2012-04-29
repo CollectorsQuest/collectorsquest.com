@@ -1,0 +1,51 @@
+@import "../_variables.less";
+@import "../_mixins.less";
+
+
+#user-collections {
+
+	.link-user-collection {
+		display: block;
+		margin: 7px 6px 4px 6px;
+		font-size: 12px;
+	}
+	.row {
+		margin-left: -20px;
+
+		.span4 {
+			width: 193px;
+			margin-left: 20px;
+			margin-bottom: 20px;
+		}
+	}
+
+	.thumbnails {
+		margin-left: 0px;
+		margin-bottom: 0;
+
+		.span4 {
+			border: none;
+			width: 55px;
+			margin-left: 6px;
+			margin-bottom: 6px;
+			font-size: 12px;
+			.box-shadow(none);
+			.border-radius(0);
+		}
+		&:hover {
+				background-color: white;
+				border: none;
+				.border-radius(0);
+			}
+			span4:first-child {
+				margin-left: 0;
+			}
+		.thumbnail {
+			.box-shadow(none);
+			.border-radius(0);
+			border: none;
+			padding: 0;
+		}
+	}
+}
+

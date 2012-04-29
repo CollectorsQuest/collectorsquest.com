@@ -75,144 +75,326 @@ cq_section_title('Robotbacon’s Items for Sale', $link);
 <?php cq_section_title('Robotbacon’s Collections'); ?>
 
 <div id="user-collections">
-  <div class="row-fluid">
-    <div class="span3">
+  <div class="row">
+    <div class="span4">
       <div class="user-collections-inner">
-        <a href="#">LOG! From Blammo!</a>
+        <span class="link-user-collection">
+          <a href="#">LOG! From Blammo!</a>
+        </span>
         <ul class="thumbnails">
           <li class="span4">
-            <a href="#" class="thumbnail">
+            <a href="#" class="thumbnail" title="LOG! From Blammo!">
               <img src="http://placehold.it/55x55" alt="">
             </a>
           </li>
           <li class="span4">
-            <a href="#" class="thumbnail">
+            <a href="#" class="thumbnail" title="LOG! From Blammo!">
               <img src="http://placehold.it/55x55" alt="">
             </a>
           </li>
           <li class="span4">
-            <a href="#" class="thumbnail">
+            <a href="#" class="thumbnail" title="LOG! From Blammo!">
               <img src="http://placehold.it/55x55" alt="">
             </a>
           </li>
           <li class="span4">
-            <a href="#" class="thumbnail">
+            <a href="#" class="thumbnail" title="LOG! From Blammo!">
               <img src="http://placehold.it/55x55" alt="">
             </a>
           </li>
           <li class="span4">
-            <a href="#" class="thumbnail">
+            <a href="#" class="thumbnail" title="LOG! From Blammo!">
               <img src="http://placehold.it/55x55" alt="">
             </a>
           </li>
           <li class="span4">
-            <a href="#" class="thumbnail">
+            <a href="#" class="thumbnail" title="LOG! From Blammo!">
               <img src="http://placehold.it/55x55" alt="">
             </a>
           </li>
           <li class="span4">
-            <a href="#" class="thumbnail">
+            <a href="#" class="thumbnail" title="LOG! From Blammo!">
               <img src="http://placehold.it/55x55" alt="">
             </a>
           </li>
           <li class="span4">
-            <a href="#" class="thumbnail">
+            <a href="#" class="thumbnail" title="LOG! From Blammo!">
               <img src="http://placehold.it/55x55" alt="">
             </a>
           </li>
           <li class="span4">
-            <a href="#" class="thumbnail">
+            <a href="#" class="thumbnail" title="LOG! From Blammo!">
               <img src="http://placehold.it/55x55" alt="">
             </a>
-          </li>
-        </ul>
-
-        <ul>
-          <li>
-            <img src="http://placehold.it/55x55" alt="">
-          </li>
-          <li>
-            <img src="http://placehold.it/55x55" alt="">
-          </li>
-          <li>
-            <img src="http://placehold.it/55x55" alt="">
-          </li>
-          <li>
-            <img src="http://placehold.it/55x55" alt="">
-          </li>
-          <li>
-            <img src="http://placehold.it/55x55" alt="">
-          </li>
-          <li>
-            <img src="http://placehold.it/55x55" alt="">
-          </li>
-          <li>
-            <img src="http://placehold.it/55x55" alt="">
-          </li>
-          <li>
-            <img src="http://placehold.it/55x55" alt="">
-          </li>
-          <li>
-            <img src="http://placehold.it/55x55" alt="">
           </li>
         </ul>
       </div>
     </div>
-    <div class="span3">
+    <div class="span4">
       <div class="user-collections-inner">
-        <a href="#">LOG! From Blammo!</a>
-        <ul>
-          <li>
-            <img src="http://placehold.it/55x55" alt="">
+        <span class="link-user-collection">
+          <a href="#">LOG! From Blammo!</a>
+        </span>
+        <ul class="thumbnails">
+          <li class="span4">
+            <a href="#" class="thumbnail" title="LOG! From Blammo!">
+              <img src="http://placehold.it/55x55" alt="">
+            </a>
           </li>
-          <li>
-            <img src="http://placehold.it/55x55" alt="">
+          <li class="span4">
+            <a href="#" class="thumbnail" title="LOG! From Blammo!">
+              <img src="http://placehold.it/55x55" alt="">
+            </a>
           </li>
-          <li>
-            <img src="http://placehold.it/55x55" alt="">
+          <li class="span4">
+            <a href="#" class="thumbnail" title="LOG! From Blammo!">
+              <img src="http://placehold.it/55x55" alt="">
+            </a>
           </li>
-          <li>
-            <img src="http://placehold.it/55x55" alt="">
+          <li class="span4">
+            <a href="#" class="thumbnail" title="LOG! From Blammo!">
+              <img src="http://placehold.it/55x55" alt="">
+            </a>
           </li>
-          <li>
-            <img src="http://placehold.it/55x55" alt="">
+          <li class="span4">
+            <a href="#" class="thumbnail" title="LOG! From Blammo!">
+              <img src="http://placehold.it/55x55" alt="">
+            </a>
           </li>
-          <li>
-            <img src="http://placehold.it/55x55" alt="">
+          <li class="span4">
+            <a href="#" class="thumbnail" title="LOG! From Blammo!">
+              <img src="http://placehold.it/55x55" alt="">
+            </a>
           </li>
-          <li>
-            <img src="http://placehold.it/55x55" alt="">
+          <li class="span4">
+            <a href="#" class="thumbnail" title="LOG! From Blammo!">
+              <img src="http://placehold.it/55x55" alt="">
+            </a>
           </li>
-          <li>
-            <img src="http://placehold.it/55x55" alt="">
+          <li class="span4">
+            <a href="#" class="thumbnail" title="LOG! From Blammo!">
+              <img src="http://placehold.it/55x55" alt="">
+            </a>
+          </li>
+          <li class="span4">
+            <a href="#" class="thumbnail" title="LOG! From Blammo!">
+              <img src="http://placehold.it/55x55" alt="">
+            </a>
           </li>
         </ul>
       </div>
+    </div>    <div class="span4">
+    <div class="user-collections-inner">
+        <span class="link-user-collection">
+          <a href="#">LOG! From Blammo!</a>
+        </span>
+      <ul class="thumbnails">
+        <li class="span4">
+          <a href="#" class="thumbnail" title="LOG! From Blammo!">
+            <img src="http://placehold.it/55x55" alt="">
+          </a>
+        </li>
+        <li class="span4">
+          <a href="#" class="thumbnail" title="LOG! From Blammo!">
+            <img src="http://placehold.it/55x55" alt="">
+          </a>
+        </li>
+        <li class="span4">
+          <a href="#" class="thumbnail" title="LOG! From Blammo!">
+            <img src="http://placehold.it/55x55" alt="">
+          </a>
+        </li>
+        <li class="span4">
+          <a href="#" class="thumbnail" title="LOG! From Blammo!">
+            <img src="http://placehold.it/55x55" alt="">
+          </a>
+        </li>
+        <li class="span4">
+          <a href="#" class="thumbnail" title="LOG! From Blammo!">
+            <img src="http://placehold.it/55x55" alt="">
+          </a>
+        </li>
+        <li class="span4">
+          <a href="#" class="thumbnail" title="LOG! From Blammo!">
+            <img src="http://placehold.it/55x55" alt="">
+          </a>
+        </li>
+        <li class="span4">
+          <a href="#" class="thumbnail" title="LOG! From Blammo!">
+            <img src="http://placehold.it/55x55" alt="">
+          </a>
+        </li>
+        <li class="span4">
+          <a href="#" class="thumbnail" title="LOG! From Blammo!">
+            <img src="http://placehold.it/55x55" alt="">
+          </a>
+        </li>
+        <li class="span4">
+          <a href="#" class="thumbnail" title="LOG! From Blammo!">
+            <img src="http://placehold.it/55x55" alt="">
+          </a>
+        </li>
+      </ul>
     </div>
-    <div class="span3">
+  </div>    <div class="span4">
       <div class="user-collections-inner">
-        <a href="#">LOG! From Blammo!</a>
-        <ul>
-          <li>
-            <img src="http://placehold.it/55x55" alt="">
+        <span class="link-user-collection">
+          <a href="#">LOG! From Blammo!</a>
+        </span>
+        <ul class="thumbnails">
+          <li class="span4">
+            <a href="#" class="thumbnail" title="LOG! From Blammo!">
+              <img src="http://placehold.it/55x55" alt="">
+            </a>
           </li>
-          <li>
-            <img src="http://placehold.it/55x55" alt="">
+          <li class="span4">
+            <a href="#" class="thumbnail" title="LOG! From Blammo!">
+              <img src="http://placehold.it/55x55" alt="">
+            </a>
           </li>
-          <li>
-            <img src="http://placehold.it/55x55" alt="">
+          <li class="span4">
+            <a href="#" class="thumbnail" title="LOG! From Blammo!">
+              <img src="http://placehold.it/55x55" alt="">
+            </a>
           </li>
-          <li>
-            <img src="http://placehold.it/55x55" alt="">
+          <li class="span4">
+            <a href="#" class="thumbnail" title="LOG! From Blammo!">
+              <img src="http://placehold.it/55x55" alt="">
+            </a>
+          </li>
+          <li class="span4">
+            <a href="#" class="thumbnail" title="LOG! From Blammo!">
+              <img src="http://placehold.it/55x55" alt="">
+            </a>
+          </li>
+          <li class="span4">
+            <a href="#" class="thumbnail" title="LOG! From Blammo!">
+              <img src="http://placehold.it/55x55" alt="">
+            </a>
+          </li>
+          <li class="span4">
+            <a href="#" class="thumbnail" title="LOG! From Blammo!">
+              <img src="http://placehold.it/55x55" alt="">
+            </a>
+          </li>
+          <li class="span4">
+            <a href="#" class="thumbnail" title="LOG! From Blammo!">
+              <img src="http://placehold.it/55x55" alt="">
+            </a>
+          </li>
+          <li class="span4">
+            <a href="#" class="thumbnail" title="LOG! From Blammo!">
+              <img src="http://placehold.it/55x55" alt="">
+            </a>
           </li>
         </ul>
       </div>
-    </div>
-    <div class="span3">
-sdf
-    </div>
-    <div class="span3">
-sdf
+    </div>    <div class="span4">
+      <div class="user-collections-inner">
+        <span class="link-user-collection">
+          <a href="#">LOG! From Blammo!</a>
+        </span>
+        <ul class="thumbnails">
+          <li class="span4">
+            <a href="#" class="thumbnail" title="LOG! From Blammo!">
+              <img src="http://placehold.it/55x55" alt="">
+            </a>
+          </li>
+          <li class="span4">
+            <a href="#" class="thumbnail" title="LOG! From Blammo!">
+              <img src="http://placehold.it/55x55" alt="">
+            </a>
+          </li>
+          <li class="span4">
+            <a href="#" class="thumbnail" title="LOG! From Blammo!">
+              <img src="http://placehold.it/55x55" alt="">
+            </a>
+          </li>
+          <li class="span4">
+            <a href="#" class="thumbnail" title="LOG! From Blammo!">
+              <img src="http://placehold.it/55x55" alt="">
+            </a>
+          </li>
+          <li class="span4">
+            <a href="#" class="thumbnail" title="LOG! From Blammo!">
+              <img src="http://placehold.it/55x55" alt="">
+            </a>
+          </li>
+          <li class="span4">
+            <a href="#" class="thumbnail" title="LOG! From Blammo!">
+              <img src="http://placehold.it/55x55" alt="">
+            </a>
+          </li>
+          <li class="span4">
+            <a href="#" class="thumbnail" title="LOG! From Blammo!">
+              <img src="http://placehold.it/55x55" alt="">
+            </a>
+          </li>
+          <li class="span4">
+            <a href="#" class="thumbnail" title="LOG! From Blammo!">
+              <img src="http://placehold.it/55x55" alt="">
+            </a>
+          </li>
+          <li class="span4">
+            <a href="#" class="thumbnail" title="LOG! From Blammo!">
+              <img src="http://placehold.it/55x55" alt="">
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>    <div class="span4">
+      <div class="user-collections-inner">
+        <span class="link-user-collection">
+          <a href="#">LOG! From Blammo!</a>
+        </span>
+        <ul class="thumbnails">
+          <li class="span4">
+            <a href="#" class="thumbnail" title="LOG! From Blammo!">
+              <img src="http://placehold.it/55x55" alt="">
+            </a>
+          </li>
+          <li class="span4">
+            <a href="#" class="thumbnail" title="LOG! From Blammo!">
+              <img src="http://placehold.it/55x55" alt="">
+            </a>
+          </li>
+          <li class="span4">
+            <a href="#" class="thumbnail" title="LOG! From Blammo!">
+              <img src="http://placehold.it/55x55" alt="">
+            </a>
+          </li>
+          <li class="span4">
+            <a href="#" class="thumbnail" title="LOG! From Blammo!">
+              <img src="http://placehold.it/55x55" alt="">
+            </a>
+          </li>
+          <li class="span4">
+            <a href="#" class="thumbnail" title="LOG! From Blammo!">
+              <img src="http://placehold.it/55x55" alt="">
+            </a>
+          </li>
+          <li class="span4">
+            <a href="#" class="thumbnail" title="LOG! From Blammo!">
+              <img src="http://placehold.it/55x55" alt="">
+            </a>
+          </li>
+          <li class="span4">
+            <a href="#" class="thumbnail" title="LOG! From Blammo!">
+              <img src="http://placehold.it/55x55" alt="">
+            </a>
+          </li>
+          <li class="span4">
+            <a href="#" class="thumbnail" title="LOG! From Blammo!">
+              <img src="http://placehold.it/55x55" alt="">
+            </a>
+          </li>
+          <li class="span4">
+            <a href="#" class="thumbnail" title="LOG! From Blammo!">
+              <img src="http://placehold.it/55x55" alt="">
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>
