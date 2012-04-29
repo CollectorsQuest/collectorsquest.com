@@ -123,7 +123,7 @@
     FB.init(
     {
       appId: '<?= $facebook['application_id']; ?>',
-      channelUrl: '//<?= sfConfig::get('app_www_domain') ?>/channel.php',
+      channelUrl: '//<?= sfConfig::get('app_www_domain') ?>/fb_xdcomm.php',
       status: true, cookie: true, xfbml: true
     });
   };
