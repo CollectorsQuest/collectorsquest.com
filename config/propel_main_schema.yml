@@ -250,8 +250,9 @@ classes:
       name:              { type: varchar, size: 255, required: true, primaryString: true }
       slug:              { type: varchar, size: 128, index: unique }
       description:       { type: longvarchar, required: true }
-      num_comments:      { type: integer, default: 0 }
       batch_hash:        { type: varchar, size: 32, index: true }
+      num_views:         { type: integer, default: 0 }
+      num_comments:      { type: integer, default: 0 }
       score:             { type: integer, default: 0 }
       is_name_automatic: { type: boolean, default: false }
 

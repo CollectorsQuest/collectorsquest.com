@@ -175,6 +175,12 @@ class collectionActions extends cqActions
       $this->redirect('@aent_collectible_by_slug?id='. $collectible->getId() .'&slug='. $collectible->getSlug(), 301);
     }
 
+    if (!$this->getCollector()->isOwnerOf($collectible))
+    {
+      $collectible->setNumViews($collection->getNumViews() + 1);
+      $collectible->save();
+    }
+
     /**
      * Figure out the previous and the next item in the collection
      */
