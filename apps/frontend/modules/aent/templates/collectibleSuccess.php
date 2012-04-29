@@ -1,16 +1,26 @@
 <div class="banners-620 bottom-margin-double">
-  <img src="/images/banners/040412_pawnstars_620x67.jpg" alt="">
+  <?php
+    if ($brand === 'Pawn Stars')
+    {
+      echo '<img src="/images/banners/040412_pawnstars_620x67.jpg" alt="">';
+    }
+  ?>
 </div>
-<?php cq_page_title('9-shot LeMat Revolver'); ?>
+<?php cq_page_title($collectible->getName()); ?>
 
 <div class="brand-item">
-  <img src="/images/frontend/mockups/BrandItem_PawnStars.jpg" alt="9-shot LeMat Revolver">
+  <?= image_tag_collectible($collectible, '620x370'); ?>
 </div>
 
 <div class="info-blue-box bottom-margin-double">
   <div class="row-fluid">
     <div class="span6">
-      XXXX Views
+      <?php
+        echo format_number_choice(
+          '[0] no views yet|[1] 1 View|(1,+Inf] %1% Views',
+          array('%1%' => number_format($collectible->getNumViews())), $collectible->getNumViews()
+        );
+      ?>
     </div>
     <div class="span6 text-right">
       <a href="#" class="btn btn-mini-share btn-lightblue-middle">
@@ -76,13 +86,11 @@
 
 </div>
 
-
-Permalink: <a href="http://collectorsquest.com/item/23456">http://collectorsquest.com/item/23456</a>
-
+Permalink: <?= url_for_collectible($collectible, true) ?>
 
 <?php
-$link = link_to('See all related collectibles &raquo;', '@marketplace', array('class' => 'text-v-middle link-align'));
-cq_section_title('Showcase', $link);
+  $link = link_to('See all related collectibles &raquo;', '@marketplace', array('class' => 'text-v-middle link-align'));
+  cq_section_title('Showcase', $link);
 ?>
 
 <div class="row collections-container">

@@ -92,34 +92,26 @@
   .clearfix();
   margin: 35px 0;
 
-  p {
-    font-size: 12px;
+  .tags {
+    line-height: 14px;
+    color: @brown;
+    vertical-align: middle;
+    display: inline-block;
+    white-space: nowrap;
+    background-color: @grayNormal;
+    margin-right: 10px;
+    margin-bottom: 7px;
+    padding: 6px 14px 6px;
+    .border-radius(5px);
   }
-}
-.tags {
-  font-size: @baseFontSize * .846;
-  font-weight: bold;
-  line-height: 14px;
-  color: @brown;
-  vertical-align: middle;
-  display: inline-block;
-  white-space: nowrap;
-  text-shadow: 0 -1px 0 rgba(0,0,0,.25);
-  background-color: @grayNormal;
-  margin-right: 10px;
-  margin-bottom: 7px;
-}
-.tags {
-  padding: 6px 14px 5px;
-  .border-radius(5px);
-}
 
-a {
-  &.tags:hover {
-    color: @red;
-    text-decoration: none;
-    cursor: pointer;
-    background-color: #e2b6b6
+  a {
+    &.tags:hover {
+      color: @red;
+      text-decoration: none;
+      cursor: pointer;
+      background-color: #e2b6b6
+    }
   }
 }
 

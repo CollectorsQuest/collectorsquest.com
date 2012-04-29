@@ -97,7 +97,7 @@ class _sidebarComponents extends cqFrontendComponents
   /**
    * @return string
    */
-  public function executeWidgetRelatedCollections()
+  public function executeWidgetCollections()
   {
     $this->collections = $this->getVar('collections') ? $this->getVar('collections') : array();
 
@@ -253,6 +253,25 @@ class _sidebarComponents extends cqFrontendComponents
     $this->wp_posts = $q->find();
 
     return $this->_sidebar_if(count($this->wp_posts) > 0);
+  }
+
+  public function executeWidgetCollectionCollectibles()
+  {
+    // Set the limit of other Collections to show
+    $this->collection = $this->getVar('collection') ? $this->getVar('collection') : null;
+
+    // Set the limit of other Collections to show
+    $this->limit = $this->getVar('limit') ? (int) $this->getVar('limit') : 4;
+
+    if ($this->collection)
+    {
+      $q = CollectionCollectibleQuery::create()
+        ->filterByCollection($this->collection)
+        ->limit($this->limit);
+      $this->collectibles = $q->find();
+    }
+
+    return $this->_sidebar_if(count($this->collectibles) > 0);
   }
 
   private function _sidebar_if($condition = false)

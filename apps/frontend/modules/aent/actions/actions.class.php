@@ -96,32 +96,20 @@ class aentActions extends cqFrontendActions
     /** @var $collection Collection */
     $collection = $collectible->getCollection();
 
+    $american_pickers = sfConfig::get('app_aetn_american_pickers');
+    $pawn_stars = sfConfig::get('app_aetn_pawn_stars');
+    $storage_wars = sfConfig::get('app_aetn_storage_wars');
+
+    if ($collection->getId() === $american_pickers['collection']) {
+      $this->brand = 'American Pickers';
+    } else if ($collection->getId() === $pawn_stars['collection']) {
+      $this->brand = 'Pawn Stars';
+    } else if ($collection->getId() === $storage_wars['collection']) {
+      $this->brand = 'Storage Wars';
+    }
+
     $this->collectible = $collectible;
-
-    $this->loadHelpers('cqLinks');
-
-    // Building the breadcrumbs
-    $this->addBreadcrumb($this->__('Collections'), '@collections');
-    $this->addBreadcrumb($collection->getName(), route_for_collection($collection), array('limit' => 38));
-    $this->addBreadcrumb(
-      $collectible->getName(), null,
-      array(
-        'id' => 'collectible_' . $collectible->getId() . '_name',
-        'class' => ($this->getCollector()->isOwnerOf($collectible)) ? 'editable_h1' : ''
-      )
-    );
-
-    // Building the title
-    $this->prependTitle($collection->getName());
-    $this->prependTitle($collectible->getName());
-
-    // Building the meta tags
-    $this->getResponse()->addMeta('description', $collectible->getDescription('stripped'));
-    $this->getResponse()->addMeta('keywords', $collectible->getTagString());
-
-    // Setting the Canonical URL
-    $this->loadHelpers(array('cqLinks'));
-    $this->getResponse()->setCanonicalUrl(url_for_collectible($collectible, true));
+    $this->collection = $collection;
 
     return sfView::SUCCESS;
   }

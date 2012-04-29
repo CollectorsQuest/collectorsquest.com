@@ -13,4 +13,4 @@ pawnStarsSuccess:
 
 collectibleSuccess:
   components:
-    sidebar_300: [aent, sidebarPawnStarsBrandItem]
+    sidebar_300: [aent, sidebarCollectible]

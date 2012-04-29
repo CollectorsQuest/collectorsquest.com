@@ -37,7 +37,7 @@
 
 <?php
   include_component(
-    '_sidebar', 'widgetRelatedCollections',
+    '_sidebar', 'widgetCollections',
     array('collectible' => $collectible)
   );
 ?>

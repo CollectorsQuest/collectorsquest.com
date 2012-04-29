@@ -12,7 +12,7 @@
 
 <?php
   include_component(
-    '_sidebar', 'widgetRelatedCollections',
+    '_sidebar', 'widgetCollections',
     array('collection' => $collection, 'limit' => 5)
   );
 ?>
