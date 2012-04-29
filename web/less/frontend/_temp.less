@@ -202,9 +202,14 @@
 		min-height: 14px;
 		height: 14px;
 	}
+  a {
+	  display: inline-block;
+	  line-height: 14px;
+	  vertical-align: middle;
+  }
 }
 
-.btn-mail {
+.btn-lightblue {
 	.buttonBackground(#ddecf5, #cddce3);
 	border: 1px solid #90c7e3;
 	color: @blue;
@@ -216,4 +221,27 @@
 		text-decoration: none;
 		border: 1px solid #60a6ca;
 	}
+}
+.mail-icon-mini, .add-icon-middle, .share-icon-middle {
+	display: inline-block;
+	line-height: 12px;
+}
+.add-icon-middle, .share-icon-middle {
+	vertical-align: bottom;
+}
+
+.btn-mini-share {
+	font-size: 10px;
+	line-height: 12px;
+	padding: 2px 6px 0 6px;
+}
+.btn-mini-social {
+	font-size: 10px;
+	line-height: 10px;
+	padding: 0 1px 0 2px;
+	height: 16px;
+}
+.btn-lightblue-middle {
+	.btn-lightblue();
+	padding-bottom: 2px;
 }

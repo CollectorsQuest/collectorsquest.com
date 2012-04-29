@@ -4,19 +4,19 @@
       XXXX Views
     </div>
     <div class="span8 text-right">
-      <a href="#" class="btn btn-mini btn-mail">
-        <i class="icon-trash icon-white"></i> Delete
+      <a href="#" class="btn btn-mini-share btn-lightblue">
+        <i class="mail-icon-mini"></i> Mail
       </a>
-      <a target="_blank" href="http://facebook.com/Collectors.Quest">
+      <a class="btn-mini-social" href="http://facebook.com/Collectors.Quest" target="_blank" >
         <i class="s-16-icon-facebook social-ico-padding"></i>
       </a>
-      <a target="_blank" href="http://twitter.com/CollectorsQuest">
+      <a class="btn-mini-social" href="http://twitter.com/CollectorsQuest" target="_blank" >
         <i class="s-16-icon-twitter social-ico-padding"></i>
       </a>
-      <a target="_blank" href="#">
+      <a class="btn-mini-social" href="#" target="_blank" >
         <i class="s-16-icon-google social-ico-padding"></i>
       </a>
-      <a target="_blank" href="http://pinterest.com/CollectorsQuest">
+      <a class="btn-mini-social" href="http://pinterest.com/CollectorsQuest" target="_blank">
         <i class="s-16-icon-pinterest social-ico-padding"></i>
       </a>
     </div>

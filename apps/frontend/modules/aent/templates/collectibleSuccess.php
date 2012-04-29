@@ -7,12 +7,19 @@
   <img src="/images/frontend/mockups/BrandItem_PawnStars.jpg" alt="9-shot LeMat Revolver">
 </div>
 
-<div id="action-area" class="row-fluid">
-  <div class="span6">
-    XX Comments   |    XXXX Views   |    In XXX wanted lists
-  </div>
-  <div class="span6">
-
+<div class="info-blue-box bottom-margin-double">
+  <div class="row-fluid">
+    <div class="span6">
+      XXXX Views
+    </div>
+    <div class="span6 text-right">
+      <a href="#" class="btn btn-mini-share btn-lightblue-middle">
+        <i class="add-icon-middle"></i> Add this item to your most wanted list
+      </a>
+      <a href="#" class="btn btn-mini-share btn-lightblue-middle">
+        <i class="share-icon-middle"></i> Share
+      </a>
+    </div>
   </div>
 </div>
 
