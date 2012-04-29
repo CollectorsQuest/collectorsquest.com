@@ -93,11 +93,28 @@ var COMMON = window.COMMON = (function(){
   // return object literal
   return {
     setupProjectWideHelpers: function() {
+      COMMON.setupModalLoginRegistrationDialog();
       COMMON.setupScrollToTop();
       COMMON.setupFooterLoginOrSignup();
       COMMON.setupEmailSpellingHelper();
       COMMON.linkifyTables();
     },
+    setupModalLoginRegistrationDialog: function() {
+      var $holder = $('#modal-login-holder');
+
+      $holder.modal({
+        backdrop: true,
+        keyboard: true,
+        show: false
+      });
+
+      $('a.requires-login').on('click', function(e) {
+        $holder.modal('show');
+
+        e.preventDefault();
+        return false;
+      });
+    }, // setupModalLoginRegistrationDialog
     setupScrollToTop: function() {
       /**
        * "Scroll to Top" link on every long page

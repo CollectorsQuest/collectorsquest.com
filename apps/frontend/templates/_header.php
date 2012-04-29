@@ -64,7 +64,7 @@
               <?php endif; ?>
             </div>
           <?php else: ?>
-            <?= link_to('Log In', '@login', array('class' => 'bold-links padding-signup')); ?>
+            <?= link_to('Log In', '@login', array('class' => 'requires-login bold-links padding-signup')); ?>
             &nbsp;or&nbsp;
             <?= link_to('&nbsp;', '@collector_signup', array('class' => 'sing-up-now-btn sing-up-now-red')); ?>
           <?php endif; ?>
