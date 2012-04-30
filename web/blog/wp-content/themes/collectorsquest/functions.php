@@ -243,11 +243,6 @@ if ($_SERVER['HTTP_HOST'] == 'www.collectorsquest.dev' || $_SERVER['HTTP_HOST'] 
 
   require_once 'lib/widgets/widgets.php';
 
-  if ( function_exists('register_sidebar') )
-    register_sidebar();
-
-
-
 }
 
 
