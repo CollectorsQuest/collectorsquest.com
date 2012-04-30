@@ -22,7 +22,7 @@ class generalActions extends cqActions
     $pattern = '/<img[^>]+src[\\s=\'"]+([^"\'>\\s]+)/is';
     $blog_image = null;
 
-    $q = new MultimediaQuery();
+    $q = new iceModelMultimediaQuery();
     $q->filterByModel('wpPost')
       ->filterByModelId($blog_post->getId())
       ->filterByType('image')
@@ -37,18 +37,18 @@ class generalActions extends cqActions
       {
         if (IceWebBrowser::isUrl($match[1]))
         {
-          $blog_image = MultimediaPeer::createMultimediaFromUrl($blog_post, $match[1]);
+          $blog_image = iceModelMultimediaPeer::createMultimediaFromUrl($blog_post, $match[1]);
         }
         else
         {
           $filename = sfConfig::get('sf_web_dir') . '/' . $match[1];
-          $blog_image = MultimediaPeer::createMultimediaFromFile($blog_post, $filename);
+          $blog_image = iceModelMultimediaPeer::createMultimediaFromFile($blog_post, $filename);
         }
 
-        if ($blog_image instanceof Multimedia)
+        if ($blog_image instanceof iceModelMultimedia)
         {
           $blog_image->setIsPrimary(true);
-          $blog_image->makeThumb('300x225', 'shave');
+          $blog_image->makeThumb(300, 225, 'top', false);
           $blog_image->save();
         }
       }

@@ -11,6 +11,10 @@ require 'lib/model/om/BaseCollection.php';
  */
 class Collection extends BaseCollection
 {
+  public
+    $_multimedia = array(),
+    $_counts = array();
+
   public function getTagString()
   {
     return implode(", ", $this->getTags());
@@ -122,41 +126,6 @@ class Collection extends BaseCollection
     return $this->countCollectibles($c);
   }
 
-  public function hasThumbnail()
-  {
-    return MultimediaPeer::has($this, 'image', true);
-  }
-
-  public function getThumbnail()
-  {
-    return MultimediaPeer::get($this, 'image', true);
-  }
-
-  public function setThumbnail($file)
-  {
-    $c = new Criteria();
-    $c->add(MultimediaPeer::MODEL, 'Collection');
-    $c->add(MultimediaPeer::MODEL_ID, $this->getId());
-    $c->add(MultimediaPeer::TYPE, 'image');
-    $c->add(MultimediaPeer::IS_PRIMARY, true);
-
-    MultimediaPeer::doDelete($c);
-
-    if ($multimedia = MultimediaPeer::createMultimediaFromFile($this, $file))
-    {
-      $multimedia->setIsPrimary(true);
-      $multimedia->makeThumb('50x50', 'shave');
-      $multimedia->makeThumb('150x150', 'shave');
-      $multimedia->makeThumb('190x150', 'shave', false);
-      $multimedia->makeThumb('190x190', 'shave', false);
-      $multimedia->save();
-
-      return $multimedia;
-    }
-
-    return false;
-  }
-
   /**
    * @param  PropelPDO  $con
    * @return Collector
@@ -226,10 +195,3 @@ class Collection extends BaseCollection
     return parent::preDelete($con);
   }
 }
-
-sfPropelBehavior::add('CollectorCollection', array('IceTaggableBehavior'));
-
-sfPropelBehavior::add(
-  'Collection',
-  array('PropelActAsEblobBehavior' => array('column' => 'eblob')
-));

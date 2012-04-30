@@ -329,7 +329,7 @@ class aentComponents extends sfComponents
       $this->title = null;
     }
 
-    if ($videos = $collectible->getMultimedia(false, 'video'))
+    if ($videos = $collectible->getMultimedia(1, 'video', false))
     {
       $this->video = $videos[0];
     }

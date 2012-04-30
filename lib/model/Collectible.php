@@ -12,6 +12,10 @@ require 'lib/model/om/BaseCollectible.php';
  */
 class Collectible extends BaseCollectible
 {
+  public
+    $_multimedia = array(),
+    $_counts = array();
+
   public function getGraphId()
   {
     $graph_id = null;
@@ -300,7 +304,7 @@ class Collectible extends BaseCollectible
 
   public function getCollectorCollection(PropelPDO $con = null)
   {
-    return $this->getCollection($con);
+    return $this->getCollection($con)->getCollectorCollection($con);
   }
 
   public function getCollectionTags()
@@ -360,102 +364,32 @@ class Collectible extends BaseCollectible
     return str_replace(' ', '+', implode('+', (array) array_slice($keywords, 0, (count($keywords) < 2) ? count($keywords) : 2)));
   }
 
+  /**
+   * @dericated
+   *
+   * @param $file
+   * @param bool $queue
+   *
+   * @return mixed
+   */
   public function setThumbnail($file, $queue = false)
   {
-    $c = new Criteria();
-    $c->add(MultimediaPeer::MODEL, 'Collectible');
-    $c->add(MultimediaPeer::MODEL_ID, $this->getId());
-    $c->add(MultimediaPeer::TYPE, 'image');
-    $c->add(MultimediaPeer::IS_PRIMARY, true);
-
-    MultimediaPeer::doDelete($c);
-
-    return $this->addMultimedia($file, true, $queue);
-  }
-
-  public function addMultimedia($file, $primary = false, $queue = false)
-  {
-    /**
-     * @todo: We need to allow multimedia to be not primary and handle the case where there is already a primary
-     *        multimedia for this collectible and when the first multimedia is always primary
-     */
-    if ($multimedia = MultimediaPeer::createMultimediaFromFile($this, $file))
-    {
-      $multimedia->setIsPrimary($primary);
-
-      /**
-       * We need to have the two main thumbnails available as soon as the object is saved so
-       * we make sure they are not put on the job queue
-       */
-      $multimedia->makeThumb('150x150', 'shave', false);
-      $multimedia->makeThumb('190x190', 'shave', false);
-      $multimedia->makeThumb('420x1000', 'bestfit', false);
-      $multimedia->makeThumb('620x1000', 'bestfit', false);
-
-      // The rest of the thumnails are not immediately used so they can be deferred
-      $multimedia->makeThumb('75x75', 'shave', $queue);
-      $multimedia->makeThumb('190x150', 'shave', $queue);
-      $multimedia->makeThumb('260x205', 'shave', $queue);
-      $multimedia->makeThumb('1024x768', 'bestfit', $queue);
-
-      // Here we want to create an optimized thumbnail for the homepage
-      if ($multimedia->getOrientation() == 'landscape') {
-        $multimedia->makeThumb('230x150', 'shave', $queue);
-      } else {
-        $multimedia->makeThumb('170x230', 'shave', $queue);
-      }
-
-      $multimedia->save();
-
-      return $multimedia;
-    }
-
-    return null;
-  }
-
-  public function getMultimedia($primary = null, $type = 'image')
-  {
-    $c = new Criteria();
-    $c->add(MultimediaPeer::MODEL, 'Collectible');
-    $c->add(MultimediaPeer::MODEL_ID, $this->getId());
-    $c->add(MultimediaPeer::TYPE, $type);
-
-    if (is_bool($primary))
-    {
-      $c->add(MultimediaPeer::IS_PRIMARY, $primary);
-    }
-
-    return ($primary == true) ? MultimediaPeer::doSelectOne($c) : MultimediaPeer::doSelect($c);
-  }
-
-  public function hasMultimedia()
-  {
-    $c = new Criteria();
-    $c->add(MultimediaPeer::MODEL, 'Collectible');
-    $c->add(MultimediaPeer::MODEL_ID, $this->getId());
-
-    return MultimediaPeer::doCount($c) > 0;
+    return $this->setPrimaryImage($file);
   }
 
   public function rotateMultimedia($is_primary = true, $queue = false)
   {
-    $multimedia = $this->getMultimedia($is_primary);
+    /** @var $multimedia Multimedia[] */
+    $multimedia = $this->getMultimedia(0, 'image', $is_primary);
+
     if ($multimedia && !is_array($multimedia))
     {
       $multimedia = array($multimedia);
     }
 
-    /** @var $m Multimedia */
     foreach ($multimedia as $m)
     {
-      $m->rotate('150x150', 90, false);
-      $m->rotate('420x1000', 90, false);
-
-      $m->rotate('75x75', 90, $queue);
-      $m->rotate('1024x768', 90, $queue);
-      $m->getOrientation() == 'landscape' ?
-          $m->rotate('230x150', 90, $queue) :
-          $m->rotate('170x230', 90, $queue);
+      $m->rotate('original', 90);
     }
 
     return true;
@@ -606,6 +540,43 @@ class Collectible extends BaseCollectible
   }
 
   /**
+   * For each Multimedia that is added to the Advert, this method will be called
+   * to take care of creating the right thumnail sizes
+   *
+   * @param  iceModelMultimedia  $multimedia
+   * @param  array $options
+   *
+   * @throws InvalidArgumentException
+   * @return void
+   */
+  public function createMultimediaThumbs(iceModelMultimedia $multimedia, $options = array())
+  {
+    $watermark = isset($options['watermark']) ? (boolean) $options['watermark'] : false;
+
+    /**
+     * We need to have the four main thumbnails available as soon as the object is saved so
+     * we make sure they are not put on the job queue
+     */
+    $multimedia->makeThumb(150, 150, 'scale', false);
+    $multimedia->makeCustomThumb(190, 190, '190x190', 'scale', false);
+    $multimedia->makeCustomThumb('420!', '0', '420!x0', 'top', $watermark);
+    $multimedia->makeCustomThumb('620!', '19:15', '620!x19:15', 'top', $watermark);
+
+    // The rest of the thumnails are not immediately used so they can be deferred
+    $multimedia->makeCustomThumb(75, 75, '75x75', 'top', false);
+    $multimedia->makeCustomThumb(190, 150, '190x150', 'top', false);
+    $multimedia->makeCustomThumb(260, 205, '260x205', 'top', $watermark);
+    $multimedia->makeCustomThumb(1024, 768, '1024x768', 'scale', $watermark);
+
+    // Here we want to create an optimized thumbnail for the homepage
+    if ($multimedia->getOrientation() == 'landscape') {
+      $multimedia->makeCustomThumb(230, 150, '230x150', 'center', $watermark);
+    } else {
+      $multimedia->makeCustomThumb(170, 230, '170x230', 'center', $watermark);
+    }
+  }
+
+  /**
    * @param  null|PropelPDO  $con
    * @return boolean
    */
@@ -634,6 +605,7 @@ class Collectible extends BaseCollectible
 
 }
 
+sfPropelBehavior::add('Collectible', array('IceMultimediaBehavior'));
 sfPropelBehavior::add('Collectible', array('IceTaggableBehavior'));
 
 sfPropelBehavior::add(

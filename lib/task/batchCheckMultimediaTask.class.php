@@ -20,14 +20,14 @@ class batchCheckMultimediaTask extends sfBaseTask
     $databaseManager = new sfDatabaseManager($this->configuration);
     $connection = $databaseManager->getDatabase($options['connection'])->getConnection();
 
-    /** @var $collections Collection[] */
-    $collections = CollectionQuery::create()->setFormatter(ModelCriteria::FORMAT_ON_DEMAND);
+    /** @var $collections CollectorCollection[] */
+    $collections = CollectorCollectionQuery::create()->setFormatter(ModelCriteria::FORMAT_ON_DEMAND);
     foreach ($collections as $collection)
     {
       $this->log('Checking collection: ['. $collection->getId() .'] '. $collection->getName() .'...');
 
       $sizes = array('original', '150x150', '50x50');
-      $multimedia = MultimediaPeer::get($collection, 'image');
+      $multimedia = $collection->getPrimaryImage();
 
       /** @var $multimedia Multimedia[] */
       foreach ($multimedia as $m)

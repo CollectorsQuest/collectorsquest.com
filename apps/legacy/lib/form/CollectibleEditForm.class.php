@@ -95,7 +95,7 @@ class CollectibleEditForm extends BaseCollectibleForm
 
     if ($this->getValue('thumbnail'))
     {
-      $collection = $object->getCollection();
+      $collection = $object->getCollectorCollection();
       if ($collection && !$collection->hasThumbnail())
       {
         $collection->setThumbnail($this->getValue('thumbnail')->getTempName());
