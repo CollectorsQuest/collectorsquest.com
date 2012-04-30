@@ -15,7 +15,7 @@ generator:
       actions: ~
       fields:  ~
       list:
-        display: [id, =name, slug, _ancestors, collection_category]
+        display: [id, =name, slug, _ancestors, _collection_category]
         title: Content Categories
         actions:
           export: { label: "Export to CSV", sf_format: csv }
