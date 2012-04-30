@@ -244,6 +244,25 @@ if ($_SERVER['HTTP_HOST'] == 'www.collectorsquest.dev' || $_SERVER['HTTP_HOST'] 
     return $user_contactmethods;
   }
 
+
+
+  require_once "/lib/widgets/widgets.php";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 
