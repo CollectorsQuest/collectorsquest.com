@@ -203,23 +203,3 @@ classes:
 
       created_at:      { type: timestamp }
       archived_at:     { type: timestamp }
-
-  MultimediaArchive:
-    columns:
-      id:           { type: integer, primaryKey: true, autoIncrement: false }
-      model:        { type: char, size: 64, required: true }
-      model_id:     { type: integer }
-      type:         { type: char, sqlType: "ENUM('image','video')", default: image, required: true }
-      name:         { type: varchar, size: 128 }
-      md5:          { type: char, size: 32, required: true }
-      colors:       { type: varchar(128) }
-      orientation:  { type: char, sqlType: "ENUM('landscape','portrait')", default: landscape }
-      source:       { type: varchar(255) }
-      is_primary:   { type: boolean, default: false }
-
-      updated_at:   { type: timestamp }
-      created_at:   { type: timestamp }
-      archived_at:  { type: timestamp }
-
-    indexes:
-      multimedia_I_1: [model, model_id]
