@@ -1,9 +1,23 @@
-<?php cq_ad_slot('300x250', 300, 250) ?>
-<br>
-<img src="/images/banners/040412_pawnstars_sidebar_banner_02.jpg" alt="">
-<br><br>
-<img src="/images/banners/040412_pawnstars_sidebar_banner_03.jpg" alt="">
+<div class="banner-sidebar-top">
+  <?php cq_ad_slot('300x250', 300, 250) ?>
+</div>
 
+<div class="banner-sidebar-promo-300-90">
+  <a href="#">
+    <img src="/images/banners/storage-wars-banner.jpg" alt="">
+    <span>
+      Check out items seen on Storage Wars
+    </span>
+  </a>
+</div>
+<div class="banner-sidebar-promo-300-90">
+  <a href="#">
+    <img src="/images/banners/american-pickers-banner.jpg" alt="">
+    <span>
+      Check out items seen on American Pickers
+    </span>
+  </a>
+</div>
 <?php include_component('_sidebar', 'widgetMagnifyVideos'); ?>
 
 
