@@ -43,7 +43,7 @@
     <div class="span11">
       <h1 class="Chivo webfont" style="visibility: visible; ">Blogger: <?php the_author() ?></h1>
     </div>
-
+</div>
   <!-- This sets the $curauth variable -->
 
   <?php $curauth = (isset($_GET['author_name'])) ? get_user_by('slug', $author_name) : get_userdata(intval($author)); ?>
@@ -67,7 +67,10 @@
       <?php $categorydesc = category_description(); if ( !empty($categorydesc) ) echo apply_filters( 'archive_meta', '<div class="archive-meta">' . $categorydesc . '</div>' ); ?>
     </div>
   <?php } ?>
+
+<?php if (!is_author()) : ?>
 </div>
+<?php endif; ?>
 
 
 <?php
