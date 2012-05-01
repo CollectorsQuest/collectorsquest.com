@@ -13,6 +13,5 @@
       <?= link_to_collectible($collectible, 'text', array('class' => 'target', 'truncate' => 30)); ?>
     </p>
   </div>
-  <?= ice_image_tag_flickholdr('140x140', array('i' => $collectible->getId(), 'class' => 'mosaic-backdrop')); ?>
-  <?php link_to_collectible($collectible, 'image', array('width' => 140, 'height' => 140, 'class' => 'mosaic-backdrop')); ?>
+  <?= link_to_collectible($collectible, 'image', array('width' => 140, 'height' => 140, 'class' => 'mosaic-backdrop')); ?>
 </div>

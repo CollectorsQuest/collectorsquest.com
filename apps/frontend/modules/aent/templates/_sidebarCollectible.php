@@ -30,6 +30,6 @@
 <?php
   include_component(
     '_sidebar', 'widgetMagnifyVideos',
-    array('collectible' => $collectible, 'limit' => 5)
+    array('collectible' => $collectible, 'limit' => 3)
   );
 ?>
