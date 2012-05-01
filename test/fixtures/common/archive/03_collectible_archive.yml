@@ -6,6 +6,7 @@ CollectibleArchive:
     name: 'Yellow Momma Sheep With Baby Lamb'
     slug: yellow-momma-sheep-with-baby-lamb
     description: "<p>\"Momma\" has a bow-tie? Oh well, baby lambie doesn't care. One of those vintage ceramic sets where they are to be chained together, but only a chain remains on the baby (so there could be more pieces to this set.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -18,6 +19,7 @@ CollectibleArchive:
     name: 'Kitschy Ceramic Deer'
     slug: kitschy-ceramic-deer
     description: "<p>Also with a bow-tie (also red with white polka dots) and has a loop for a chain, so I'm hoping to find more to go with this guy at thrift shops.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -30,6 +32,7 @@ CollectibleArchive:
     name: 'Another Yellow Lamb Figurine'
     slug: another-yellow-lamb-figurine
     description: "<p>Looks like the others but this one has a softer color and softer texture than the other set. And the feet are painted gold.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -42,6 +45,7 @@ CollectibleArchive:
     name: 'Large Poodle Figurine'
     slug: large-poodle-figurine
     description: "<p>Lots of white rabbit fur, big blue glass eyes. This was the first piece in this collection and remains the premier piece. (And why not?)</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -54,6 +58,7 @@ CollectibleArchive:
     name: 'Retro White Cat Figurine'
     slug: retro-white-cat-figurine
     description: "<p>This was the second piece in this collection. This kitty has some fur issues, and is missing one of her aqua-blue rhinestone eyes. But I love her.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -66,6 +71,7 @@ CollectibleArchive:
     name: 'Three Royal Blue Dogs (Mom &amp; Pups)'
     slug: three-royal-blue-dogs-mom-amp-pups
     description: "<p>Momma's the only one with the white rabbit fur appliques, but doesn't it just pop?! All three pieces have metal loops for chains to run through, but no chain was found with them.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -78,6 +84,7 @@ CollectibleArchive:
     name: 'Vintage Donkey'
     slug: vintage-donkey
     description: "<p>this donkey has just a tuft of rabbit fur atop his head, crowning his sad but sweet face.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -90,6 +97,7 @@ CollectibleArchive:
     name: 'Vintage Classy Cat'
     slug: vintage-classy-cat
     description: "<p>I call her Frenchie because she's quite glamorous. Lots of hand painting along with a bit of rabbit fur applique for her tail. Ooh la la!</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -102,6 +110,7 @@ CollectibleArchive:
     name: 'Vintage Dog Nodder Head'
     slug: vintage-dog-nodder-head
     description: "<p>An older nodder, of some generic type of dog.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -114,6 +123,7 @@ CollectibleArchive:
     name: 'Stitch Bobble Head/Nodder'
     slug: stitch-bobble-head-nodder
     description: "<p>A Disney fast food toy. I'm not proud of it or anything, but I like Stitch. :p</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -126,6 +136,7 @@ CollectibleArchive:
     name: 'Brother Bear Moose Nodder Booble Head'
     slug: brother-bear-moose-nodder-booble-head
     description: "<p>Don't ask me which moose from the Disney flick it is... But I'm old enough to remember The Great White North, and young enough to like bobble heads -- so, take off 'ey. (I do have the other moose too.)</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -138,6 +149,7 @@ CollectibleArchive:
     name: 'Vintage Black Cat Nodder'
     slug: vintage-black-cat-nodder
     description: "<p>This is actually one of my favorite bobble heads (ssh, don't tell the others). It appears to be a quality piece, with nice not easily flaking flocking, green glass (I think) eyes, and even a golden collar. It is heavily weighted so if our van had a dashboard... (Bah. Then she would just get faded.)</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -150,6 +162,7 @@ CollectibleArchive:
     name: 'Burger King Bobble Head'
     slug: burger-king-bobble-head
     description: "<p>I love, Love, LOVE the 'new' Burger King with the giant head. If anyone can get me one of the real ones used in commercials, I'd be eternally grateful. (Hubby will wear it. I promise!)</p>\n"
+    num_views: '0'
     num_comments: '2'
     score: '0'
     is_name_automatic: '0'
@@ -162,6 +175,7 @@ CollectibleArchive:
     name: 'The People That Time Forgot'
     slug: the-people-that-time-forgot
     description: "<p>Ace Science Fiction Classic F-220</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -174,6 +188,7 @@ CollectibleArchive:
     name: 'Land of Terror'
     slug: land-of-terror
     description: "<p>Ace Science Fiction Classic F-256</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -186,6 +201,7 @@ CollectibleArchive:
     name: 'Tanar of Pellucidar'
     slug: tanar-of-pellucidar
     description: "<p>Ace Science Fiction Classic F-171</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -198,6 +214,7 @@ CollectibleArchive:
     name: 'The Chessmen of Mars'
     slug: the-chessmen-of-mars
     description: "<p>Ace Science Fiction Classic F-170</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -210,6 +227,7 @@ CollectibleArchive:
     name: Pellucidar
     slug: pellucidar
     description: "<p>Ace Science Fiction Classic F-158</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -222,6 +240,7 @@ CollectibleArchive:
     name: 'Savage Pellucidar'
     slug: savage-pellucidar
     description: "<p>Ace Science Fiction Classic F-280</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -234,6 +253,7 @@ CollectibleArchive:
     name: 'Old Celluliod Stork'
     slug: old-celluliod-stork
     description: "<p>He carries a baby swaddled in a ribbon. (Stork has one broken toe. I sold the perfect one :sigh:) Stands just under 7 inches tall.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -246,6 +266,7 @@ CollectibleArchive:
     name: 'The Littlest Stork Book'
     slug: the-littlest-stork-book
     description: "<p>By Charles Tazewell, author of The Littlest Angel. Illustrated by Katherine Evans.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -258,6 +279,7 @@ CollectibleArchive:
     name: 'I Who Have Nothing'
     slug: i-who-have-nothing
     description: "<p>Tom Jones, I [Who Have Nothing] and Stop Breaking My Heart.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -270,6 +292,7 @@ CollectibleArchive:
     name: 'Don''t Let Our Dreams Die Young'
     slug: dont-let-our-dreams-die-young
     description: "<p>Tom Jones goes country (1983).</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -282,6 +305,7 @@ CollectibleArchive:
     name: 'Say You''ll Stay Until Tomorrow'
     slug: say-youll-stay-until-tomorrow
     description: "<p>LP, Epic, 1977</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -294,6 +318,7 @@ CollectibleArchive:
     name: 'Tom Jones, Live in Las Vegas'
     slug: tom-jones-live-in-las-vegas
     description: "<p>Live, from The Flamingo, baby.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -306,6 +331,7 @@ CollectibleArchive:
     name: 'What A Night'
     slug: what-a-night
     description: "<p>Cover features swanky glass chess set, drinks for two and a cross nestled in Tom's chest hair. Hello, 1977!</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -318,6 +344,7 @@ CollectibleArchive:
     name: 'The Tom Jones Fever Zone'
     slug: the-tom-jones-fever-zone
     description: "<p>Is it hot in here, or is it just me? Naw, it's the Tom Jones Fever Zone!</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -330,6 +357,7 @@ CollectibleArchive:
     name: Fragment
     slug: fragment
     description: "<p>A piece of drywall, broken to look like a fragment, then painted to look like it came from some ancient ruin (Mayan), I found this at an indoor fleamarket and had to buy it (mainly so I wouldn't feel so bad when I copied the idea later on -- 12 years later, I still haven't gone about it).</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -342,6 +370,7 @@ CollectibleArchive:
     name: 'Chief Joseph'
     slug: chief-joseph
     description: "<p>I did the sketch in high school art class (the old 'use a grid to enlarge) based on a photo of Chief Joseph (I will fight no more forever) in a National Geographic Magazine. More than a decade later I matted &amp; finished it. Pencil sketch on heavy board and a rusty-brown matting, with chicken wire and then surrounded by a huge (the piece is over 39 inches tall) grapevine wreath with dream catcher 'stitches' with pheasant feathers woven in. (There were more feathers, but cats have, over time, carried a few of the feathers off.) Don't sweat it if you don't get this piece; most people don't.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -354,6 +383,7 @@ CollectibleArchive:
     name: 'African (Or African American) Woman Pastels'
     slug: african-or-african-american-woman-pastels
     description: "<p>The very first joint purchase hubby and I ever made was when we bought a huge old portfolio of an art student's sketches. This was one of the magnificent pieces found inside. We put her in one of the large antique wooden frames I (naturally) just had laying around. (She is stunning but very difficult to photograph -- the old glass has many imperfections so there's no way for me to avoid reflections. Poo.)</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -366,6 +396,7 @@ CollectibleArchive:
     name: 'Jesus On Velvet'
     slug: jesus-on-velvet
     description: "<p>Can't call yourself a lover of kitsch and not own stunning paint on velvet!</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -378,6 +409,7 @@ CollectibleArchive:
     name: 'Deer Art Study'
     slug: deer-art-study
     description: "<p>The very first joint purchase hubby and I ever made was when we bought a huge old portfolio of an art student's sketches. This is one of the animal studies (several in a series).</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -390,6 +422,7 @@ CollectibleArchive:
     name: 'Mares Running Their Colts, by C.W. Anderson'
     slug: mares-running-their-colts-by-cw-anderson
     description: "<p>Still in the original frame and matt. Signed/numbered (but it's too high on the wall for me to reach -- remind me, and I'll get the ladder out). I've had this since I was a kid (likely a spendy $1 at the time) and I've noticed the prints they sell now have the horses running the other way</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -402,6 +435,7 @@ CollectibleArchive:
     name: 'Vintage Blonde Pastel (Framed)'
     slug: vintage-blonde-pastel-framed
     description: "<p>The very first joint purchase hubby and I ever made was when we bought a huge old portfolio of an art student's sketches. This was another one of the magnificent pieces found inside -- very pinup-esque. We put her in one of the large antique wooden frames I (naturally) just had laying around.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -414,6 +448,7 @@ CollectibleArchive:
     name: 'Horse Sketch'
     slug: horse-sketch
     description: "<p>A sketch I did. (This is just the sketch; it is matted and framed and can partially be seen with Chief Joseph.)</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -426,6 +461,7 @@ CollectibleArchive:
     name: 'Nikko, Wolf Sketch'
     slug: nikko-wolf-sketch
     description: "<p>This is a sketch of Nikko, a wolf at a preserve in Greendale, Wisconsin. As an artist, I was given special access to view and photograph the wolves. Nikko and a 2 others did 'meet' me snout to hand through a fence -- others warned me to guard my camera lens (so their rough tongues don't destroy it), but I was too busy peeing my pants with delight to care and told them all so. Nikko is also the wolf featured on special Wisconsin license plates (to benefit the Endangered Resources Fund at the Wisconsin Department of Natural Resources). A bit of Nikko can be spotted, framed, in the Chief Joseph photo.</p>\n"
+    num_views: '0'
     num_comments: '2'
     score: '0'
     is_name_automatic: '0'
@@ -438,6 +474,7 @@ CollectibleArchive:
     name: 'More Trini Lopez at PJ''s'
     slug: more-trini-lopez-at-pjs
     description: "<p>Recorded Live! By Popular Demand! Reprise R-6103 Oh, Lonesome Me Never On Sunday Heart Of My Heart Corazon De Melon Go Into The Mountains If You Want To Be Happy Walk Right In Lonesome Traveler Green, Green Goody Goody Yeah Kansas City</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -450,6 +487,7 @@ CollectibleArchive:
     name: 'More Trini Lopez at PJ''s'
     slug: more-trini-lopez-at-pjs-124b58
     description: "<p>This LP is Stereo, Reprise ST-6103 Recorded Live! By Popular Demand! Oh, Lonesome Me Never On Sunday Heart Of My Heart Corazon De Melon Go Into The Mountains If You Want To Be Happy Walk Right In Lonesome Traveler Green, Green Goody Goody Yeah Kansas City</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -462,6 +500,7 @@ CollectibleArchive:
     name: 'Trini Lopez &amp; Johnny Tores'
     slug: trini-lopez-amp-johnny-tores
     description: "<p>Crown Records, Stereo CST 349 Sinner Not A Saint, Where Can My Baby Be, Rosta, Only In My Dreams, If, When The Saints Go Marching In, Cielito Lindo, Down By The Riverside, La Bamaba, The Hammer</p>\n"
+    num_views: '0'
     num_comments: '1'
     score: '0'
     is_name_automatic: '0'
@@ -474,6 +513,7 @@ CollectibleArchive:
     name: 'Vintage Stork Photo'
     slug: vintage-stork-photo
     description: "<p>So what if it's stuffed, the beak is menacing!</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -486,6 +526,7 @@ CollectibleArchive:
     name: 'I''ll leave my happy home for you'
     slug: ill-leave-my-happy-home-for-you
     description: "<p>So says the front of the postcard, anyway. Printed in Germany. No. 14 No date/no stamp or postmark.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -498,6 +539,7 @@ CollectibleArchive:
     name: 'Is the left one right, or is the right one left?'
     slug: is-the-left-one-right-or-is-the-right-one-left
     description: "<p>Oiy, the problems when you go a courtin'. No marks for maker, just the number 33. Postmarked July, 1911.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -510,6 +552,7 @@ CollectibleArchive:
     name: 'Pining Away'
     slug: pining-away
     description: "<p>A pretty pair of portraits. In the first panel, she speaks into the phone, \"When will I see you?\" and in the second he replies, \"I will call on you to-night.\" Lovely floral border. Theochrom No. 1125. Printed in Germany. Postmarked 1909.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -522,6 +565,7 @@ CollectibleArchive:
     name: 'More Pining'
     slug: more-pining
     description: "<p>In the first panel, she sits waiting by the telephone, \"This is the time he generally rings me up.\" In the second, he sits at his desk, \"I guess, I ring her up.\" More floral border on this Theochrom Serie No 1125. (Printed in Germany.) Postmarked 1908.</p>\n"
+    num_views: '0'
     num_comments: '1'
     score: '0'
     is_name_automatic: '0'
@@ -534,6 +578,7 @@ CollectibleArchive:
     name: 'Canoedling -- In The Afternoon'
     slug: canoedling-in-the-afternoon
     description: "<p>I don't make 'em up folks -- I just find 'em. Copyright 1909, L.R. Conwell, N.Y. #2 (Has 365 on back.) Postmarked 1911.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -546,6 +591,7 @@ CollectibleArchive:
     name: 'Trini Lopez On The Move'
     slug: trini-lopez-on-the-move
     description: "<p>Contains: Jailor, Bring Me Water; Ya-Ya; Jalisco; This Little Girl Of Mine; Bye Bye Love; El Rancho Grande. Reprise RS-6112</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -558,6 +604,7 @@ CollectibleArchive:
     name: 'Kubrick Iron Man'
     slug: kubrick-iron-man
     description: "<p>==</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -570,6 +617,7 @@ CollectibleArchive:
     name: Hawkeye
     slug: hawkeye
     description: "<p>==</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -582,6 +630,7 @@ CollectibleArchive:
     name: 'Purple Elephant with Red Bowtie'
     slug: purple-elephant-with-red-bowtie
     description: "<p>Another ceramic piece, with a chain to attach it to the (missing) babies. A gift from my mommie. :)</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -594,6 +643,7 @@ CollectibleArchive:
     name: 'Merry Widow Waltz'
     slug: merry-widow-waltz
     description: "<p>Merry Widow Waltz, with Ukelele Chords, Guitar Chords, and Special Hawaiian Guitar Chorus, lyrics by Carl Field, music by Franz Lehar, 1935, Calumet Music Co. The previous owner of The Merry Widow Waltz felt that Jesse Crawford, \"Poet of the Organ\", needed a beard and mustache. Who am I to argue? See more scans here: http://www.kitschy-kitschy-coo.com/index.php?content=450</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -606,6 +656,7 @@ CollectibleArchive:
     name: 'Igloo, Oggle Woggle Goo'
     slug: igloo-oggle-woggle-goo
     description: "<p>copyright 1939, Harry Tenney Inc, New York. Features a photo of Shep Fields along with a cute graphic of a silhouetted couple inside an igloo. Words by Irving Taylor, music by Vic Mizzy. For more on this rare gem in sheet music, including lyrics, see here: http://www.kitschy-kitschy-coo.com/index.php?content=449</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -618,6 +669,7 @@ CollectibleArchive:
     name: 'Jolly Darkies Carnival Sketches'
     slug: jolly-darkies-carnival-sketches
     description: "<p>\"Jolly Darkies\" by Karl Bechter. This sheet music art features two seated men in blackface, dressed in finery, tamborine at their feet. One has his voice raised in song as he plays the banjo, the other has his head lowered and he keeps the rhythm on spoons. A unique piece of Black Americana. Measures 12.25 x 9 inches, covers &amp; one 'insert' page. Carnival Sketches series 5003, Theodore Pressor Co. © 1925 Wilhelmina Goerdeler.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -630,6 +682,7 @@ CollectibleArchive:
     name: 'Samson Agonistes Score'
     slug: samson-agonistes-score
     description: "<p>A mysterious copy of Robert Starer's work \"Samson Agonistes,\" written as a ballet for choreographer Martha Graham and first performed in 1960. While the actual music on each page appears hand-written, this seems to be a photocopy reproduction of the original. The book is marked in several places, \"Return All Material To Leeds Music Corp, 322 West 48th St N.Y.C.\", but this one apparently did not make it home.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -642,6 +695,7 @@ CollectibleArchive:
     name: 'Tip Toe Through The Tulips With Me'
     slug: tip-toe-through-the-tulips-with-me
     description: "<p>Classic roaring 20's flapper era sheet music. Tip Toe Through The Tulips With Me, lyrics by Al Dubin, music by Joe Burke, and published by M. Witmark &amp; Sons, copyright 1929. From The Gold Diggers of Broadway, a Warner Bros Vitaphone Talking Picture (Warner Bros &amp; Vitaphone Singing Pictures / First National &amp; Vitaphone Singing Pictures), this sheet music features Winnie Lightner, Ann Pennington, Nick Lucas, Lilyan Tashman, Conway Tearle, and Nancy Welford.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -654,6 +708,7 @@ CollectibleArchive:
     name: 'Music, Maestro, Please'
     slug: music-maestro-please
     description: "<p>Music, Maestro, Please, As Presented in The Orchid Room of Hollywood Hotel, by Raymond Paige, Frances Langford, Frank Parker, Anne Jamison and Louella Parsons. (Yes, that Louella Parsons!) Words by Herb Magidson, music by Allie Wrubel. Copyright 1938, Irving Berlin Inc.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -666,6 +721,7 @@ CollectibleArchive:
     name: Shoo!
     slug: shoo
     description: "<p>Antique postcard (postmark 1908) where a couple uses a broom (among other objects) to chase a stork with a delivery away from their window. Only credits are the Nuttall sig &amp; 1001 A.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -678,6 +734,7 @@ CollectibleArchive:
     name: 'Zombie Hulk'
     slug: zombie-hulk
     description: "<p>Hungriest one there is!</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -690,6 +747,7 @@ CollectibleArchive:
     name: 'The Stars Are Ours! by Andre Norton'
     slug: the-stars-are-ours-by-andre-norton
     description: "<p>ACE, 1954 As seen here: http://www.collectorsquest.com/blog/2008/01/10/thirteen-vintage-paperback-books/</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -702,6 +760,7 @@ CollectibleArchive:
     name: 'The Case of the Fan-Dancer’s Horse'
     slug: the-case-of-the-fan-dancers-horse
     description: "<p>A Perry Mason murder mystery, a Pocket Book Mystery, by Erle Stanley Gardner (first thus, June, 1952). As seen here: http://www.collectorsquest.com/blog/2008/01/10/thirteen-vintage-paperback-books/</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -714,6 +773,7 @@ CollectibleArchive:
     name: 'On Becoming A Woman'
     slug: on-becoming-a-woman
     description: "<p>“A frank, modern discussion of everything a teen-age girl wants and needs to know,” by Mary McGee Williams &amp; Irene Kane, with an introduction by Louise Bates Ames of the Gesell Institute; copyright 1958, 1959, 1969, Dell Publishing Co., Inc. As seen here: http://www.collectorsquest.com/blog/2008/01/10/thirteen-vintage-paperback-books/</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -726,6 +786,7 @@ CollectibleArchive:
     name: 'As My World Still Turns - Signed!'
     slug: as-my-world-still-turns-signed
     description: "<p>America’s Soap Opera Queen Reveals Her Life Of Love &amp; Heartbreak — On &amp; Off The Screen, copyright 1995 Eileen Fulton, Desmond Atholl &amp; Michael Cherkinian, St. Martin’s Paperbacks. As seen here: http://www.collectorsquest.com/blog/2008/01/10/thirteen-vintage-paperback-books/</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -738,6 +799,7 @@ CollectibleArchive:
     name: 'The Soap Opera Syndrome'
     slug: the-soap-opera-syndrome
     description: "<p>The Soap Opera Syndrome, The Drive For Drama &amp; Excitement In Women’s Lives, by Joy Davidson, PhD; copyright 1988, Berkley.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -750,6 +812,7 @@ CollectibleArchive:
     name: 'The Indian Tipi'
     slug: the-indian-tipi
     description: "<p>The Indian Tipi, It’s History Construction, And Use, by Reginald &amp; Gladys Laubin (Tatanka Wanjila na Wiyaka Wastewin), December, 1975 Ballantine printing.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -762,6 +825,7 @@ CollectibleArchive:
     name: 'The Advertising Man'
     slug: the-advertising-man
     description: "<p>The Advertising Man, by Jack Dillon, Fawcett Crest Book, copyright 1972.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -774,6 +838,7 @@ CollectibleArchive:
     name: 'Sadie Shapiro’s Knitting Book'
     slug: sadie-shapiros-knitting-book
     description: "<p>Sadie Shapiro’s Knitting Book, “A hilarious, touching novel by Robert Kimmel Smith”, 1973, Fawcett Crest.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -786,6 +851,7 @@ CollectibleArchive:
     name: 'They Went Thataway'
     slug: they-went-thataway
     description: "<p>They Went Thataway, From Tom Mix to Tonto — the cowboy movies and the men who made them — where are they now? by James Horowitz, first Ballantine edition, January, 1978.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -798,6 +864,7 @@ CollectibleArchive:
     name: 'A Redhead For Mike Shayne'
     slug: a-redhead-for-mike-shayne
     description: "<p>A Redhead For Mike Shayne, a Mike Shayne Mystery, copyright 1964, (this is the first Dell printing, November, 1972) As seen here: http://www.collectorsquest.com/blog/2008/01/10/thirteen-vintage-paperback-books/</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -810,6 +877,7 @@ CollectibleArchive:
     name: 'The Wendy Dilemma'
     slug: the-wendy-dilemma
     description: "<p>The Wendy Dilemma, When Women Stop Mothering Their Men, by Dr. Dan Kiley, author of The Peter Pan Syndrome, 1984, Avon. As seen here: http://www.collectorsquest.com/blog/2008/01/10/thirteen-vintage-paperback-books/</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -822,6 +890,7 @@ CollectibleArchive:
     name: 'The Book of Rack The Healer'
     slug: the-book-of-rack-the-healer
     description: "<p>The Book of Rack The Healer, by Zach Hughes, Award Books, 1973, originally appeared in Worlds of IF, August &amp; October, 1972. As seen here: http://www.collectorsquest.com/blog/2008/01/10/thirteen-vintage-paperback-books/</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -834,6 +903,7 @@ CollectibleArchive:
     name: 'The Coven'
     slug: the-coven
     description: "<p>The Coven, “A sensational novel of Washington intrigue and witchcraft by Watergate conspirator E. Howard Hunt writing as David St. John”. (Fawcett Crest, printed October, 1973) As seen here: http://www.collectorsquest.com/blog/2008/01/10/thirteen-vintage-paperback-books/</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -846,6 +916,7 @@ CollectibleArchive:
     name: 'Gods, Demons and Space Chariots'
     slug: gods-demons-and-space-chariots
     description: "<p>By Eric Norman, Lancer, 1970</p>\n"
+    num_views: '0'
     num_comments: '1'
     score: '0'
     is_name_automatic: '0'
@@ -858,6 +929,7 @@ CollectibleArchive:
     name: 'Card A Bull v Men'
     slug: card-a-bull-v-men
     description: "<p>Tis said though man may be a fool, He hat more sense than an animule; But man for a date with impatiently roman, While a bull doth wait till the cows come home. ESCO 1941</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -870,6 +942,7 @@ CollectibleArchive:
     name: 'Card B Garters'
     slug: card-b-garters
     description: "<p>A tricky jane, I'll tell the world Is little Minne Marters; She wears a smile on rosy lips And mouse traps on her garters. ESCO 1941</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -882,6 +955,7 @@ CollectibleArchive:
     name: 'Card C Duncecap'
     slug: card-c-duncecap
     description: "<p>A serious thought for today, Is one that may cause us dismay, Just what are the forces That bring little horses, If all of the horses say \"nay\"? ESCO 1941</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -894,6 +968,7 @@ CollectibleArchive:
     name: 'Card D Girls - Tree'
     slug: card-d-girls-tree
     description: "<p>I think that I shall never see A girl refuse a meal that's free. A girl whose hungry eyes aren't fixed Upon a drink that's being mixed; A girl who doesn't like to wear A lot of junk to match her hair. Girls like these are loved by me, For who in hell would kiss a tree?</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -906,6 +981,7 @@ CollectibleArchive:
     name: 'Card E Ice v Heat'
     slug: card-e-ice-v-heat
     description: "<p>I don't want an iceman husband I'd get chills from his cold feet; What I want is a red hot fireman To exhaust me with the heat.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -918,6 +994,7 @@ CollectibleArchive:
     name: 'Card F Mama'
     slug: card-f-mama
     description: "<p>Mama waited up for her And met her at the door. Her hair was in an awful mess, Her skirt trailed on the floor. Mama gave her hell that night But daughter wasn't sad. For what she did, her Ma had done And that accounts for Dad.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -930,6 +1007,7 @@ CollectibleArchive:
     name: 'Vintage Risque Linen Postcard No 80'
     slug: vintage-risque-linen-postcard-no-80
     description: "<p>The difference between a mouse and a bathing beauty One harms the cheese, the other charms the hes</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -942,6 +1020,7 @@ CollectibleArchive:
     name: 'Where Did You Spend Your Last Vacation?'
     slug: where-did-you-spend-your-last-vacation
     description: "<p>Mom says: Time we was gettin' a son-in-law Pa. Daughter (with baby) says: Paw -- I'd Druther have that cute Mr (name \"Livley\" written in). \"Livley, of course, refers to the person sent too ;) MWM # HB602</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -954,6 +1033,7 @@ CollectibleArchive:
     name: 'Lady Mechanics'
     slug: lady-mechanics
     description: "<p>Sign on wall says: We employ only lady mechanics. Man in red sports car says, to pair of shapely legs sticking out from under the car, \"Yes -- I know thats the third time you have adjusted it -- but its not just right yet.\" MWM # GC424</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -966,6 +1046,7 @@ CollectibleArchive:
     name: 'GPK 118'
     slug: gpk-118
     description: "<p>118a is Half-Nelson, 118b is Glandular Angela</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -978,6 +1059,7 @@ CollectibleArchive:
     name: 'GPK 86'
     slug: gpk-86
     description: "<p>86 a is Horsey Henry, 86b is Galloping Glen.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -990,6 +1072,7 @@ CollectibleArchive:
     name: 'GPK 55'
     slug: gpk-55
     description: "<p>55a Hairy Gary, 55b Brutal Brad</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1002,6 +1085,7 @@ CollectibleArchive:
     name: 'GPK 82'
     slug: gpk-82
     description: "<p>82a Slain Wayne, 82b Ventilated Vinnie</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1014,6 +1098,7 @@ CollectibleArchive:
     name: 'GPK 63'
     slug: gpk-63
     description: "<p>63a Spacey Stacy, 63b Janet Planet</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1026,6 +1111,7 @@ CollectibleArchive:
     name: 'GPK 85'
     slug: gpk-85
     description: "<p>85a Stuck Chuck, 85b, Pinned Lynn</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1038,6 +1124,7 @@ CollectibleArchive:
     name: 'GPK 56'
     slug: gpk-56
     description: "<p>56a Hairy Carrie, 56b Brutal Bridget</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1050,6 +1137,7 @@ CollectibleArchive:
     name: 'GPK 67'
     slug: gpk-67
     description: "<p>67a Phony Lisa, 67b Mona Loser</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1062,6 +1150,7 @@ CollectibleArchive:
     name: 'GPK 98'
     slug: gpk-98
     description: "<p>98a Charlotte Web, 98b Didi T.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1074,6 +1163,7 @@ CollectibleArchive:
     name: 'GPK 119'
     slug: gpk-119
     description: "<p>119a Ned Head, 119b Still Jill</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1086,6 +1176,7 @@ CollectibleArchive:
     name: 'GPK 65'
     slug: gpk-65
     description: "<p>65a Shrunken Ed, 65b Cheeky Charles.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1098,6 +1189,7 @@ CollectibleArchive:
     name: 'GPK 71'
     slug: gpk-71
     description: "<p>71a Odd Todd, 71b Bent Ben</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1110,6 +1202,7 @@ CollectibleArchive:
     name: 'GPK 81'
     slug: gpk-81
     description: "<p>81a Split Kit, 81b Mixed-Up Mitch</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1122,6 +1215,7 @@ CollectibleArchive:
     name: 'GPK 74'
     slug: gpk-74
     description: "<p>74a Mark Bark, 74b Kennel Kenny</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1134,6 +1228,7 @@ CollectibleArchive:
     name: 'GPK 104'
     slug: gpk-104
     description: "<p>104a Silent Sandy, 104b Barren Aaron</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1146,6 +1241,7 @@ CollectibleArchive:
     name: 'GPK 84'
     slug: gpk-84
     description: "<p>84a Joe Blow, 84b Rod Wad</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1158,6 +1254,7 @@ CollectibleArchive:
     name: 'GPK 42'
     slug: gpk-42
     description: "<p>42a Patty Putty, 42b Muggin' Megan</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1170,6 +1267,7 @@ CollectibleArchive:
     name: 'GPK 93'
     slug: gpk-93
     description: "<p>93a Drew Blood, 93b Bustin' Dustin</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1182,6 +1280,7 @@ CollectibleArchive:
     name: 'GPK 69'
     slug: gpk-69
     description: "<p>69b Sara Slime</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1194,6 +1293,7 @@ CollectibleArchive:
     name: 'GPK 78'
     slug: gpk-78
     description: "<p>78a Wrinkled Rita, 78b Ancient Annie</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1206,6 +1306,7 @@ CollectibleArchive:
     name: 'GPK 73'
     slug: gpk-73
     description: "<p>73a Gorgeous George, 73b Dollar Bill</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1218,6 +1319,7 @@ CollectibleArchive:
     name: 'GPK 50'
     slug: gpk-50
     description: "<p>50a Mad Donna, 50b Nutty Nicole</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1230,6 +1332,7 @@ CollectibleArchive:
     name: 'GPK 80'
     slug: gpk-80
     description: "<p>80a Tattoo Lou, 80b Art Gallery</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1242,6 +1345,7 @@ CollectibleArchive:
     name: 'GPK 48'
     slug: gpk-48
     description: "<p>48a Tongue Tied Tim, 48b Marty Mouthful</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1254,6 +1358,7 @@ CollectibleArchive:
     name: 'GPK 89'
     slug: gpk-89
     description: "<p>89a Hurt Curt, 89b Pat Splat</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1266,6 +1371,7 @@ CollectibleArchive:
     name: 'GPK 107'
     slug: gpk-107
     description: "<p>107a Totem Paula, 107b Tatum Pole</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1278,6 +1384,7 @@ CollectibleArchive:
     name: 'GPK 109'
     slug: gpk-109
     description: "<p>109a Toady Terry, 109b Croakin' Colin</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1290,6 +1397,7 @@ CollectibleArchive:
     name: 'GPK 51'
     slug: gpk-51
     description: "<p>51b Brett Sweat</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1302,6 +1410,7 @@ CollectibleArchive:
     name: 'GPK 49'
     slug: gpk-49
     description: "<p>49b Fran Fran</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1314,6 +1423,7 @@ CollectibleArchive:
     name: 'GPK 76'
     slug: gpk-76
     description: "<p>76b Pourin' Lauren</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1326,6 +1436,7 @@ CollectibleArchive:
     name: 'GPK 124'
     slug: gpk-124
     description: "<p>124a Hugh Mungous, 124b King-Size Kevin</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1338,6 +1449,7 @@ CollectibleArchive:
     name: 'GPK 103'
     slug: gpk-103
     description: "<p>103a Wriggley Rene, 103b Curly Carla</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1350,6 +1462,7 @@ CollectibleArchive:
     name: 'GPK 60'
     slug: gpk-60
     description: "<p>60a Prickly Rick, 60b Cactus Carol</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1362,6 +1475,7 @@ CollectibleArchive:
     name: 'GPK 112'
     slug: gpk-112
     description: "<p>112a Frank N. Stein, 112b Undead Jed</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1374,6 +1488,7 @@ CollectibleArchive:
     name: 'GPK 58'
     slug: gpk-58
     description: "<p>58a Cracked Jack, 58b Soft Boiled Sam</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1386,6 +1501,7 @@ CollectibleArchive:
     name: 'GPK 52'
     slug: gpk-52
     description: "<p>52a Dirty Harry, 52b Rob Slob</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1398,6 +1514,7 @@ CollectibleArchive:
     name: 'GPK 83'
     slug: gpk-83
     description: "<p>83a Ugh Lee, 83bSumo Sid</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1410,6 +1527,7 @@ CollectibleArchive:
     name: 'GPK 88'
     slug: gpk-88
     description: "<p>88a Dinah Saur, 88b Farrah Fossil</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1422,6 +1540,7 @@ CollectibleArchive:
     name: 'GPK 94'
     slug: gpk-94
     description: "<p>94a Bruised Lee, 94b Karate Kate</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1434,6 +1553,7 @@ CollectibleArchive:
     name: 'GPK 62'
     slug: gpk-62
     description: "<p>62b Chris Hiss</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1446,6 +1566,7 @@ CollectibleArchive:
     name: 'GPK 59'
     slug: gpk-59
     description: "<p>59a Clogged Duane, 59b Bye Bye Bobby</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1458,6 +1579,7 @@ CollectibleArchive:
     name: 'GPK 66'
     slug: gpk-66
     description: "<p>66a Matt Ratt, 66b Rachel Rodent</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1470,6 +1592,7 @@ CollectibleArchive:
     name: 'GPK 43'
     slug: gpk-43
     description: "<p>43a Smelly Kelly, 43b Doug Plug</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1482,6 +1605,7 @@ CollectibleArchive:
     name: 'GPK 101'
     slug: gpk-101
     description: "<p>101a Mushy Marsha, 101b Basking Robin</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1494,6 +1618,7 @@ CollectibleArchive:
     name: 'GPK 123'
     slug: gpk-123
     description: "<p>123a Glooey Gabe, 123b Sticky Rick</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1506,6 +1631,7 @@ CollectibleArchive:
     name: 'GPK 92'
     slug: gpk-92
     description: "<p>92a Marvin Gardens, 92b Spittin' Spencer</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1518,6 +1644,7 @@ CollectibleArchive:
     name: 'GPK 110'
     slug: gpk-110
     description: "<p>110a Snooty Sam, 110b U.S. Arnie</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1530,6 +1657,7 @@ CollectibleArchive:
     name: 'GPK 117'
     slug: gpk-117
     description: "<p>117a Rocky N. Roll, 117b Les Vegas</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1542,6 +1670,7 @@ CollectibleArchive:
     name: 'GPK 105'
     slug: gpk-105
     description: "<p>105a Juicy Jessica, 105b Green Dean</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1554,6 +1683,7 @@ CollectibleArchive:
     name: 'GPK 111'
     slug: gpk-111
     description: "<p>111a Target Margaret, 111b Bullseye Barry</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1566,6 +1696,7 @@ CollectibleArchive:
     name: 'GPK 44'
     slug: gpk-44
     description: "<p>44a Sy Clops, 44b One-Eyed Jack</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1578,6 +1709,7 @@ CollectibleArchive:
     name: 'GPK 47'
     slug: gpk-47
     description: "<p>47a Disgustin' Justin, 47b Vile Kyle</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1590,6 +1722,7 @@ CollectibleArchive:
     name: 'GPK 91'
     slug: gpk-91
     description: "<p>91a Blake Flake, 91b Hippie Skippy</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1602,6 +1735,7 @@ CollectibleArchive:
     name: 'GPK 95'
     slug: gpk-95
     description: "<p>95a Grim Jim, 95b Beth Death</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1614,6 +1748,7 @@ CollectibleArchive:
     name: 'GPK 122'
     slug: gpk-122
     description: "<p>122a Broad Maud, 122b Large Marge</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1626,6 +1761,7 @@ CollectibleArchive:
     name: 'GPK 97'
     slug: gpk-97
     description: "<p>97a Punchy Perry, 97b Creamed Keith</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1638,6 +1774,7 @@ CollectibleArchive:
     name: 'GPK 100'
     slug: gpk-100
     description: "<p>100a Ali Gator, 100b Marshy Marshall</p>\n"
+    num_views: '0'
     num_comments: '1'
     score: '0'
     is_name_automatic: '0'
@@ -1650,6 +1787,7 @@ CollectibleArchive:
     name: 'GPK 121'
     slug: gpk-121
     description: "<p>121a Apple Cory, 121b Dwight Bite</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1662,6 +1800,7 @@ CollectibleArchive:
     name: 'GPK 138'
     slug: gpk-138
     description: "<p>138b Outerspace Chase</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1674,6 +1813,7 @@ CollectibleArchive:
     name: 'GPK 106'
     slug: gpk-106
     description: "<p>106a Fowl Raoul, 106b Mack Quack</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1686,6 +1826,7 @@ CollectibleArchive:
     name: 'GPK 102'
     slug: gpk-102
     description: "<p>102a Mugged Marcus, 102b Kayo'd Cody</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1698,6 +1839,7 @@ CollectibleArchive:
     name: 'GPK 161'
     slug: gpk-161
     description: "<p>161b Hy Gene</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1710,6 +1852,7 @@ CollectibleArchive:
     name: 'GPK 142'
     slug: gpk-142
     description: "<p>142b Hunted Hunter</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1722,6 +1865,7 @@ CollectibleArchive:
     name: 'GPK 147'
     slug: gpk-147
     description: "<p>147a Amazin' Grace, 147b Muscular Molly</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1734,6 +1878,7 @@ CollectibleArchive:
     name: 'GPK 46'
     slug: gpk-46
     description: "<p>46a Rappin' Ron, 46b Ray Gun</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1746,6 +1891,7 @@ CollectibleArchive:
     name: 'GPK 68'
     slug: gpk-68
     description: "<p>68a Oliver Twisted</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1758,6 +1904,7 @@ CollectibleArchive:
     name: 'GPK 139'
     slug: gpk-139
     description: "<p>139a Double Iris</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1770,6 +1917,7 @@ CollectibleArchive:
     name: 'GPK 160'
     slug: gpk-160
     description: "<p>160b Formalde Heidi</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1782,6 +1930,7 @@ CollectibleArchive:
     name: 'GPK 131'
     slug: gpk-131
     description: "<p>131a Stuffed Stephen, 131b Rutherford B. Hay</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1794,6 +1943,7 @@ CollectibleArchive:
     name: 'GPK 79'
     slug: gpk-79
     description: "<p>79a Sewer Sue</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1806,6 +1956,7 @@ CollectibleArchive:
     name: 'GPK 156'
     slug: gpk-156
     description: "<p>156b Brett Vet</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1818,6 +1969,7 @@ CollectibleArchive:
     name: 'GPK 134'
     slug: gpk-134
     description: "<p>134b Walt Witless</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1830,6 +1982,7 @@ CollectibleArchive:
     name: 'GPK 135'
     slug: gpk-135
     description: "<p>135b Marty Gras</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1842,6 +1995,7 @@ CollectibleArchive:
     name: 'GPK 116'
     slug: gpk-116
     description: "<p>116a EErie Eric, 116b Berserk Kirk</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1854,6 +2008,7 @@ CollectibleArchive:
     name: 'GPK 125'
     slug: gpk-125
     description: "<p>125b Woody Alan</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1866,6 +2021,7 @@ CollectibleArchive:
     name: 'GPK 128'
     slug: gpk-128
     description: "<p>128b Low Cal</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1878,6 +2034,7 @@ CollectibleArchive:
     name: 'GPK 96'
     slug: gpk-96
     description: "<p>96a Distorted Dot, 96b Mirror Imogene</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1890,6 +2047,7 @@ CollectibleArchive:
     name: 'GPK 114'
     slug: gpk-114
     description: "<p>114a Starrin' Darrin, 114b Peepin' Tom</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1902,6 +2060,7 @@ CollectibleArchive:
     name: 'GPK 120'
     slug: gpk-120
     description: "<p>120a Babbling Brooke, 120b Jelly Kelly</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1914,6 +2073,7 @@ CollectibleArchive:
     name: 'GPK 61'
     slug: gpk-61
     description: "<p>61a Jolly Roger, 61b Pegleg Peter</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1926,6 +2086,7 @@ CollectibleArchive:
     name: 'GPK 87'
     slug: gpk-87
     description: "<p>87a Hot Head Harvey, 87b Roy Bot</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1938,6 +2099,7 @@ CollectibleArchive:
     name: 'GPK 132'
     slug: gpk-132
     description: "<p>132a Bony Tony</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1950,6 +2112,7 @@ CollectibleArchive:
     name: 'GPK 148'
     slug: gpk-148
     description: "<p>148a Turned-On Tara</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1962,6 +2125,7 @@ CollectibleArchive:
     name: 'GPK 108'
     slug: gpk-108
     description: "<p>108a Smelly Sally, 108b Fishy Phyllis</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1974,6 +2138,7 @@ CollectibleArchive:
     name: 'GPK 136'
     slug: gpk-136
     description: "<p>136a Swollen Sue Ellen</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1986,6 +2151,7 @@ CollectibleArchive:
     name: 'GPK 130'
     slug: gpk-130
     description: "<p>130a Nicky Hickey</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1998,6 +2164,7 @@ CollectibleArchive:
     name: 'GPK 162'
     slug: gpk-162
     description: "<p>162a Yicchy Mickey</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2010,6 +2177,7 @@ CollectibleArchive:
     name: 'GPK 75'
     slug: gpk-75
     description: "<p>75a Off-The-Wall Paul, 75b Zach Plaque</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2022,6 +2190,7 @@ CollectibleArchive:
     name: 'GPK 53'
     slug: gpk-53
     description: "<p>53a Jolted Joe, 53b Live Mike</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2034,6 +2203,7 @@ CollectibleArchive:
     name: 'GPK 57'
     slug: gpk-57
     description: "<p>57a Tommy Gun, 57b Dead Fred</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2046,6 +2216,7 @@ CollectibleArchive:
     name: 'GPK 64'
     slug: gpk-64
     description: "<p>64b Luke Warm</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2058,6 +2229,7 @@ CollectibleArchive:
     name: 'GPK 77'
     slug: gpk-77
     description: "<p>77a Ghastly Ashley, 77b Acne Amy</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2070,6 +2242,7 @@ CollectibleArchive:
     name: 'GPK 54'
     slug: gpk-54
     description: "<p>54a Fryin' Ryan, 54b Charred Chad</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2082,6 +2255,7 @@ CollectibleArchive:
     name: 'GPK 72'
     slug: gpk-72
     description: "<p>72a Mad Max, 72b Brainy Brian</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2094,6 +2268,7 @@ CollectibleArchive:
     name: 'GPK 113'
     slug: gpk-113
     description: "<p>113a Alice Island, 113b Liberty Libby</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2106,6 +2281,7 @@ CollectibleArchive:
     name: 'GPK 70'
     slug: gpk-70
     description: "<p>70a Bad Breath Seth, 70b Foul Phil</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2118,6 +2294,7 @@ CollectibleArchive:
     name: 'GPK 115'
     slug: gpk-115
     description: "<p>115a Warmin' Norman, 115b Well Done Sheldon</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2130,6 +2307,7 @@ CollectibleArchive:
     name: 'GPK 159'
     slug: gpk-159
     description: "<p>159a Catty Kathy</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2142,6 +2320,7 @@ CollectibleArchive:
     name: 'GPK 90'
     slug: gpk-90
     description: "<p>90a Stoned Sean, 90b Thick Vic</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2154,6 +2333,7 @@ CollectibleArchive:
     name: 'GPK 99'
     slug: gpk-99
     description: "<p>99a Beaky Becky, 99b Picky Mickey</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2166,6 +2346,7 @@ CollectibleArchive:
     name: 'GPK 141'
     slug: gpk-141
     description: "<p>141a Ashley Can</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2178,6 +2359,7 @@ CollectibleArchive:
     name: 'GPK 45'
     slug: gpk-45
     description: "<p>45a Leaky Lindsay, 45b Messy Tessy</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2190,6 +2372,7 @@ CollectibleArchive:
     name: 'Sailor Iris'
     slug: sailor-iris
     description: "<p>Sailor Iris</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2202,6 +2385,7 @@ CollectibleArchive:
     name: 'Poseidon''s Adventure'
     slug: poseidons-adventure
     description: "<p>Altered art; Poseidon has his own surprise.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2214,6 +2398,7 @@ CollectibleArchive:
     name: 'Save That Pig!'
     slug: save-that-pig
     description: "<p>Altered art piece in which a man (now) saves a pig from a flood.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2226,6 +2411,7 @@ CollectibleArchive:
     name: 'Craft Master NA 3022 Wild Ducks Return'
     slug: craft-master-na-3022-wild-ducks-return
     description: "<p>In box, unpainted. Copyright 1963</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2238,6 +2424,7 @@ CollectibleArchive:
     name: 'Craft Master Circus Ride PBN'
     slug: craft-master-circus-ride-pbn
     description: "<p>Circus Ride, Craft Master Catalog Series Gallery II. Small, 6x12. One of a pair in the kit.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2250,6 +2437,7 @@ CollectibleArchive:
     name: 'Picture Craft PBN Mountain Road'
     slug: picture-craft-pbn-mountain-road
     description: "<p>Mountain Road, a paint by number featuring a bear walking along a road with (surprise!) mountains, was one of Picture Craft's Original Catalog Series of 36 kits. It was painted in oils, on canvas (not board) and was lovingly framed by the original owner.</p>\n"
+    num_views: '0'
     num_comments: '1'
     score: '0'
     is_name_automatic: '0'
@@ -2262,6 +2450,7 @@ CollectibleArchive:
     name: 'Minimate Flash (Jay Garrick)'
     slug: minimate-flash-jay-garrick
     description: "<p>The original Flash!</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2274,6 +2463,7 @@ CollectibleArchive:
     name: 'Active Games &amp; Contests Book'
     slug: active-games-amp-contests-book
     description: "<p>1935 hardcover book by Bernard Mason, PhD, and Elmer D. Mitchell, PhD. Published by A.S. Barnes &amp; Company.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2286,6 +2476,7 @@ CollectibleArchive:
     name: 'Hallmark Book of Card Parties'
     slug: hallmark-book-of-card-parties
     description: "<p>1965 booklet by Hallmark, prepared with the editors of Good Housekeeping, with menus &amp; recipes, hostess hints, games &amp; party themes, etc.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2298,6 +2489,7 @@ CollectibleArchive:
     name: '1932 Cokesbury Party Book'
     slug: 1932-cokesbury-party-book
     description: "<p>Hardcover book by Arthur M. Depew: 52 planned parties with 600 games and stunts.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2310,6 +2502,7 @@ CollectibleArchive:
     name: 'The Puerto Rican Rum Host and Hostess Book'
     slug: the-puerto-rican-rum-host-and-hostess-book
     description: "<p>1956 booklet promoting the Rums of Puerto Rico.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2322,6 +2515,7 @@ CollectibleArchive:
     name: '1934 Cokesbury Stunt Book'
     slug: 1934-cokesbury-stunt-book
     description: "<p>600 Stunts For Gay Occasions. Hardcover in dust jacket. By Arthur M. Depew, wartime printing.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2334,6 +2528,7 @@ CollectibleArchive:
     name: 'What Shall I Be?'
     slug: what-shall-i-be
     description: "<p>What Shall I Be? The Exciting Game of Career Girls, Edition Two, © 1976 by Selchow &amp; Righter Co., game #33. Also see: http://www.collectorsquest.com/blog/2007/11/11/a-review-of-what-shall-i-be-the-exciting-game-of-career-girls/</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2346,6 +2541,7 @@ CollectibleArchive:
     name: 'NFL All-Pro Football'
     slug: nfl-all-pro-football
     description: "<p>NFL All-Pro Football, an official National Football League game, made by Ideal, game # 2520-5, from 1967. Also see: http://www.collectorsquest.com/blog/2007/07/26/40-years-later-the-all-pro-football-game-finds-a-new-fan/</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2358,6 +2554,7 @@ CollectibleArchive:
     name: 'Vintage Coo Coo! Stunt Game'
     slug: vintage-coo-coo-stunt-game
     description: "<p>Coo Coo, \"The Game that Gingers up the Gang\" and \"Puts Pep In Parties\"; Peg-Way, Herbert Specialty Mfg. Co., Chicago. (Apparently dates to 1921.) Also see: http://www.collectorsquest.com/blog/2008/07/17/going-coo-coo-for-old-stunts/</p>\n"
+    num_views: '0'
     num_comments: '4'
     score: '0'
     is_name_automatic: '0'
@@ -2370,6 +2567,7 @@ CollectibleArchive:
     name: 'On Becoming A Woman'
     slug: on-becoming-a-woman
     description: "<p>“A frank, modern discussion of everything a teen-age girl wants and needs to know,” by Mary McGee Williams &amp; Irene Kane, with an introduction by Louise Bates Ames of the Gesell Institute; copyright 1958, 1959, 1969, Dell Publishing Co., Inc.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2382,6 +2580,7 @@ CollectibleArchive:
     name: 'Your Manners Are Showing'
     slug: your-manners-are-showing
     description: "<p>The Handbook of Teen-Age Know-How, written &amp; illustrated by Betty Betz, verses by Anne Clark. 1946, Grosset &amp; Dunlap. See scans here: http://www.kitschy-kitschy-coo.com/2008/07/teen-age-know-how-from-1946.html</p>\n"
+    num_views: '0'
     num_comments: '2'
     score: '0'
     is_name_automatic: '0'
@@ -2394,6 +2593,7 @@ CollectibleArchive:
     name: 'True Womanhood'
     slug: true-womanhood
     description: "<p>Preface etc. dated 1877; title page missing.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2406,6 +2606,7 @@ CollectibleArchive:
     name: '''Superman'' Series Supergirl'
     slug: superman-series-supergirl
     description: "<p>From early DC Direct.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2418,6 +2619,7 @@ CollectibleArchive:
     name: 'Minimate Power Girl'
     slug: minimate-power-girl
     description: "<p>--</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2430,6 +2632,7 @@ CollectibleArchive:
     name: '''JLU'' Steel'
     slug: jlu-steel
     description: "<p>--</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2442,6 +2645,7 @@ CollectibleArchive:
     name: '''Superfriends'' Flash'
     slug: superfriends-flash
     description: "<p>==</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2454,6 +2658,7 @@ CollectibleArchive:
     name: 'Son of Hulk, Skaar.'
     slug: son-of-hulk-skaar
     description: "<p>Comes with a sword and a sheathed dagger.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2466,6 +2671,7 @@ CollectibleArchive:
     name: 'Dear Gay Head (You''re Asking Me?)'
     slug: dear-gay-head-youre-asking-me
     description: "<p>\"Questions from the Mail Box answered by GAY HEAD\" Illustrated by William Sakren, Scholastic Book Services, third printing, November 1965 More info here: http://xrl.us/ou9xe</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2478,6 +2684,7 @@ CollectibleArchive:
     name: 'Vintage Donkey With Partial Fur'
     slug: vintage-donkey-with-partial-fur
     description: "<p>I call her Bray-Bray The Donkay; but I have no idea what the manufacturer called this vintage donkey figurine. It has a gold foil Ries label; marked hand painted &amp; Japan.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2490,6 +2697,7 @@ CollectibleArchive:
     name: 'Palace Club Postcard'
     slug: palace-club-postcard
     description: "<p>A retro postcard, unused, from Reno. (I have two of these to spare!)</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2502,6 +2710,7 @@ CollectibleArchive:
     name: 'F Troop Postcard 1967'
     slug: f-troop-postcard-1967
     description: "<p>An over-sized postcard from Harrah's in Reno promoting TV's \"F Troop\" (Forrest Tucker, Larry Storch, Ken Berry) in the Headliner Room. Back promos future talent: Don Adams (with mini pic), Jim Nabors, George Kirby/Kim Siters, Bobby Darin (with mini pic), Debbie Reynolds, &amp; Wayne Newton. (I have a few of these -- all unused &amp; nifty.)</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2514,6 +2723,7 @@ CollectibleArchive:
     name: 'TWA In-Flight Card For Convair 880'
     slug: twa-in-flight-card-for-convair-880
     description: "<p>The laminated in-flight instruction card for TWA's 880 jet, P/N 4928 (4-64).</p>\n"
+    num_views: '0'
     num_comments: '1'
     score: '0'
     is_name_automatic: '0'
@@ -2526,6 +2736,7 @@ CollectibleArchive:
     name: 'Brochure For The Terminal Tower Observatory'
     slug: brochure-for-the-terminal-tower-observatory
     description: "<p>From the 60s, I think, Cleveland's claim to big building fame. I have several of these old brochures in crisp and clean conditions.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2538,6 +2749,7 @@ CollectibleArchive:
     name: '1962 Menu From The Lockerbie House Hotel'
     slug: 1962-menu-from-the-lockerbie-house-hotel
     description: "<p>Typed in green on card stock; dated for Monday, July 30, 1962.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2550,6 +2762,7 @@ CollectibleArchive:
     name: 'Retro Hoover Dam And Lake Mead Postcard'
     slug: retro-hoover-dam-and-lake-mead-postcard
     description: "<p>An unused postcard featuring Bonanza Air Lines.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2562,6 +2775,7 @@ CollectibleArchive:
     name: '1960 Rome Olympics Map'
     slug: 1960-rome-olympics-map
     description: "<p>From the Automobilia Club D'Italia. XVII Olimpiade, Roma</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2574,6 +2788,7 @@ CollectibleArchive:
     name: '1967 Great Lakes Shakespeare Festival'
     slug: 1967-great-lakes-shakespeare-festival
     description: "<p>These small paper calendar of plays must have been given out like candy in the summer of '67 as the box of travel stuff has lots of these.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2586,6 +2801,7 @@ CollectibleArchive:
     name: 'Retro Dodger Stadium Postcard'
     slug: retro-dodger-stadium-postcard
     description: "<p>Home of the Los Angeles Dodgers 1966 National League Champions. Unused.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2598,6 +2814,7 @@ CollectibleArchive:
     name: '1962 Prince Of Wales Hotel Menu'
     slug: 1962-prince-of-wales-hotel-menu
     description: "<p>Typed in blue on card stock with the hotel's nifty crown logo. Dated 3/8/62.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2610,6 +2827,7 @@ CollectibleArchive:
     name: 'Retro Cleveland Ohio Greyhound Terminal Postcard'
     slug: retro-cleveland-ohio-greyhound-terminal-postcard
     description: "<p>So cool, I can almost smell the exhaust from the buses.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2622,6 +2840,7 @@ CollectibleArchive:
     name: 'Pat Boone &amp; Amin Brothers Postcard'
     slug: pat-boone-amp-amin-brothers-postcard
     description: "<p>Playing in the Circus Room Theater Restaurant of John Ascuaga's Nugget in Reno. Unused &amp; minty (and I have an extra one to share/trade/sell)</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2634,6 +2853,7 @@ CollectibleArchive:
     name: 'Retro Pink Table Topper'
     slug: retro-pink-table-topper
     description: "<p>Minimum charge for sitting at the table was $6.50 plus tax, per person -- I have no idea where this was, but from the 1960s.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2646,6 +2866,7 @@ CollectibleArchive:
     name: 'Retro Reno Arch Postcard'
     slug: retro-reno-arch-postcard
     description: "<p>Love all the retro neon signs on this postcard. Unused.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2658,6 +2879,7 @@ CollectibleArchive:
     name: 'Instant Replay The Green Bay Diary of Jerry Kramer'
     slug: instant-replay-the-green-bay-diary-of-jerry-kramer
     description: "<p>Paperback copy of \"Instant Replay: The Green Bay Diary of Jerry Kramer\", edited by Dick Schapp, photographs by John and Vernon J. Biever. Signet Book,© 1968, third printing. Out of print classic for NFL and Packer fans. Conditions: Modest wear, sound binding, no markings. Pages are yellowing due to age.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2670,6 +2892,7 @@ CollectibleArchive:
     name: 'Vintage Chalkware Tom the Piper''s Son'
     slug: vintage-chalkware-tom-the-pipers-son
     description: "<p>A vintage chalkware piece, circa 1940's (no later than the 50's is our best guess), this is Tom Tom The Piper's Son. Complete with portly pig and prancing pup -- they are on the run! An estate find, this piece has a few paint flakes, a flea bite and a chip at the base (by the word 'Son') We've taken many close-up photos, so please look at them. In our opinion these do not detract from this rare bit of nursery rhyme history, but rather add charm and authenticity to the piece. The winner will be proud to display this whimsical figurine. No marks for maker. Stands 6.25 inches tall. Base is 4 inches in diameter.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2682,6 +2905,7 @@ CollectibleArchive:
     name: 'Giant Plaster German Shepherd'
     slug: giant-plaster-german-shepherd
     description: "<p>A GSD with broken off ears.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2694,6 +2918,7 @@ CollectibleArchive:
     name: 'Plaster Mermaids'
     slug: plaster-mermaids
     description: "<p>A pair of mermaids on the wall.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2706,6 +2931,7 @@ CollectibleArchive:
     name: 'Floral Plaster Wall Hangings'
     slug: floral-plaster-wall-hangings
     description: "<p>Plaster/chalk floral wall grouping in kitchen.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2718,6 +2944,7 @@ CollectibleArchive:
     name: 'Small Red Chalk Dog'
     slug: small-red-chalk-dog
     description: "<p>Just a funny little pup.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2730,6 +2957,7 @@ CollectibleArchive:
     name: 'Pair Of Vintage Cala Lily Chalk Lamps'
     slug: pair-of-vintage-cala-lily-chalk-lamps
     description: "<p>An estate find, these pretty pair of boudoir lamps are made of chalk or plaster molded &amp; painted to look like cala lilies. Nearly 13 inches tall (to top of fixture), 5 inches side at the base, about 6 inches wide at the sides part of the floral arrangement. Yes, the lamps work! These lamps are primarily antique white (creme colored), with each lily having it's center painted a warm yellow. Oval bases are painted metalic gold, as are several accents on the lilies. These are not the cold representations of cala lilies done in the 80's -- these are warm &amp; feminine. They are finished, front &amp; back, so there is no 'bad side' to hide! Conditions: Use, vintage item, but no chips, cracks or repairs. One of the lamps has this spot, which is not a chip. It appears to be a manufacturing flaw, an extra drop of paint, &amp; we show it so you can see it. These are quite charming lamps, &amp; very unique. They would be wonderful in homes with romantic or shabby n chic decors -- they are feminine, but not overly frilly.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2742,6 +2970,7 @@ CollectibleArchive:
     name: 'Pair of White Poodle Head Plaques'
     slug: pair-of-white-poodle-head-plaques
     description: "<p>A pretty pair of poodle pups in plaster (say that 5 times faster!) Made by Miller Studio Inc, dated 1978. (Stamped along the top edge.) French poodle heads in white with black &amp; gold painted accents like the gold collars; one male, one female. Each is 6 inches tall. The male is missing his 'staple' hanger</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2754,6 +2983,7 @@ CollectibleArchive:
     name: 'Antique Chalkware Grecian Relief Vase'
     slug: antique-chalkware-grecian-relief-vase
     description: "<p>Old chalkware vase, with a classic Grecian relief design. Chipped paint, a few cracks, and one arm broken off. To me it just adds to the authenticity and charm of an old piece. May date from the 1870’s, or considering the resurgence of such designs, perhaps from the 1920’s or 30’s. (I say it feels like the 1800’s, but then I just love it.)</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2766,6 +2996,7 @@ CollectibleArchive:
     name: 'Bertha &amp; Tina Postcard'
     slug: bertha-amp-tina-postcard
     description: "<p>John Ascuaga's Nugget (Sparks East Reno) postcard featuring the elephants Bertha &amp; Tina, presented by C.J. Madison and assisted by Diane Olson on stage in the Circus Room Theater Restaurant.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2778,6 +3009,7 @@ CollectibleArchive:
     name: 'Harrah''s Club Receipt '
     slug: harrahs-club-receipt
     description: "<p>A receipt from Harrah's, Reno; presumably from a hat check or ? Circa 1960's.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2790,6 +3022,7 @@ CollectibleArchive:
     name: 'Hit Me Easy Nevada Postcard'
     slug: hit-me-easy-nevada-postcard
     description: "<p>A retro Nevada gaming postcard.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2802,6 +3035,7 @@ CollectibleArchive:
     name: 'Movieland Wax Museum Brochure'
     slug: movieland-wax-museum-brochure
     description: "<p>A retro advertising piece, circa 1960's.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2814,6 +3048,7 @@ CollectibleArchive:
     name: 'Jan Murray Plus The Chessmen Postcard'
     slug: jan-murray-plus-the-chessmen-postcard
     description: "<p>A promo postcard for Jan Murray and The Chessmen at Harolds \"All New 7th Floor Fun Room\". Over-sized, unused, circa 1960's.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2826,6 +3061,7 @@ CollectibleArchive:
     name: '1961 BEA "About Your Flight" Booklet'
     slug: 1961-bea-about-your-flight-booklet
     description: "<p>BEA booklet for the Comet 4B, BEA/2503/1500M/June 1961/Form No. T754. Flight instructions, ads, maps.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2838,6 +3074,7 @@ CollectibleArchive:
     name: '1961 Maxim''s Booklet'
     slug: 1961-maxims-booklet
     description: "<p>It's In French, has ads, and I own it. :p</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2850,6 +3087,7 @@ CollectibleArchive:
     name: 'Yamashiro Skyroom Napkin'
     slug: yamashiro-skyroom-napkin
     description: "<p>On \"Hollywood Hill\" Circa 1960's</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2862,6 +3100,7 @@ CollectibleArchive:
     name: 'Marineland Brochure, 1966'
     slug: marineland-brochure-1966
     description: "<p>Your Fun Never Stops at Marineland Of the Pacific: World's Only 3-ring Sea Circus. Brochure dated 1966.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2874,6 +3113,7 @@ CollectibleArchive:
     name: '1963 Seattle Brochure'
     slug: 1963-seattle-brochure
     description: "<p>Featuring the Space Needle, of course.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2886,6 +3126,7 @@ CollectibleArchive:
     name: 'Retro Mexico Mazatlan Travel Brochure'
     slug: retro-mexico-mazatlan-travel-brochure
     description: "<p>No dates, but lots of swanky 60's chicks in bikinis.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2898,6 +3139,7 @@ CollectibleArchive:
     name: '1967 Sands Hotel Domino Tournament'
     slug: 1967-sands-hotel-domino-tournament
     description: "<p>Promo brochure for the first annual domino tournament at the Sands; dated April 28-30, 1967.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2910,6 +3152,7 @@ CollectibleArchive:
     name: 'Ida Sweet As Apple Cider'
     slug: ida-sweet-as-apple-cider
     description: "<p>1920</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2922,6 +3165,7 @@ CollectibleArchive:
     name: 'Hobbyswap Contact 1953'
     slug: hobbyswap-contact-1953
     description: "<p>Hobbyswap Contacts, Published for Swappers, Collectors and Hobbyists, is a Directory and Journal of The American Federation of Hobby Exchange Clubs. Co-Publisher, Nels C, Christiansen, 2007 N. California Avenue, Chicago 47, Ill, U.S.A. This is Vol 18, No 2, Whole No 68; October - November - December, 1953</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2934,6 +3178,7 @@ CollectibleArchive:
     name: 'Better Living Magazine October, 1954'
     slug: better-living-magazine-october-1954
     description: "<p>Better Living Magazine, Vol 4, No 10, October, 1954 issue, published by Mass Market Publications, Inc, NY. Stories include: 62 Bright Ideas for Breakfast Coats in the News Under $60 And yes, it still has it's Clip-And-Save Guide to Wall Coverings. (Wo0t!)</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2946,6 +3191,7 @@ CollectibleArchive:
     name: 'Pack-o-Fun February, 1971'
     slug: pack-o-fun-february-1971
     description: "<p>Pack-o-Fun, The Only Scrap-Craft Magazine, from February, 1971, Volume 20, Number 6. This issue features (surprise!) Valentine's Day crafts and other fun for February with an emphasis on creative uses for scraps. (Think \"Creative Recycling\" and \"Altered Arts\" for everyone, from kids to grandma.)</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2958,6 +3204,7 @@ CollectibleArchive:
     name: 'McCall''s Christmas Make-it Book 1958'
     slug: mccalls-christmas-make-it-book-1958
     description: "<p>\"This is our first McCall's Christmas Make-It Book.\" \"Directions for 169 items. Free toy patterns.\" Copyright 1958.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2970,6 +3217,7 @@ CollectibleArchive:
     name: 'True Confessions, January 1936'
     slug: true-confessions-january-1936
     description: "<p>Rochelle Hudson on the cover; lead story \"Has Every Girl a Price?\" Also \"Elaine Barrie's Own Story of Barrymore Love\"</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2982,6 +3230,7 @@ CollectibleArchive:
     name: 'True Confessions, March 1935'
     slug: true-confessions-march-1935
     description: "<p>Miriam Hopkins cover; featured story \"The Abandoned Bride\"</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -2994,6 +3243,7 @@ CollectibleArchive:
     name: 'True Confessions, February 1942'
     slug: true-confessions-february-1942
     description: "<p>What Gloria Vanderbilt Wants Of Men; My Sin Was Loving Him</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3006,6 +3256,7 @@ CollectibleArchive:
     name: '1978 Women''s Circle Magazine'
     slug: 1978-womens-circle-magazine
     description: "<p>May, 1978 issue.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3018,6 +3269,7 @@ CollectibleArchive:
     name: 'Liberty Magazine, 1941'
     slug: liberty-magazine-1941
     description: "<p>February 22, 1941 with cover feature: \"Why Hitler Thinks He Will Die This Year\"</p>\n"
+    num_views: '0'
     num_comments: '3'
     score: '0'
     is_name_automatic: '0'
@@ -3030,6 +3282,7 @@ CollectibleArchive:
     name: '1890 Peterson''s Magazine'
     slug: 1890-petersons-magazine
     description: "<p>December issue -- I just love the cover: \"Terms: Two Dollars A-Year Invariably In Advance\"</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3042,6 +3295,7 @@ CollectibleArchive:
     name: 'Farm Journal and Farmer''s Wife Magazine'
     slug: farm-journal-and-farmers-wife-magazine
     description: "<p>February 1943</p>\n"
+    num_views: '0'
     num_comments: '1'
     score: '0'
     is_name_automatic: '0'
@@ -3054,6 +3308,7 @@ CollectibleArchive:
     name: 'First Issue Of Good Housekeeping Needlecraft'
     slug: first-issue-of-good-housekeeping-needlecraft
     description: "<p>Fall-Winter 1968-69</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3066,6 +3321,7 @@ CollectibleArchive:
     name: 'McCall''s Needlework &amp; Crafts 1978'
     slug: mccalls-needlework-amp-crafts-1978
     description: "<p>The spring '78 issue.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3078,6 +3334,7 @@ CollectibleArchive:
     name: 'Collie Figurines'
     slug: collie-figurines
     description: "<p>A vintage pair of collie pups -- the one on the right is one of very few figurines I saved since my childhood.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3090,6 +3347,7 @@ CollectibleArchive:
     name: 'My Pal Electric Eye Doggie'
     slug: my-pal-electric-eye-doggie
     description: "<p>A damaged vintage plastic nite lite. You can read more about him here at Collectors' Quest here: http://xrl.us/oz83a</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3102,6 +3360,7 @@ CollectibleArchive:
     name: 'Mechanical Toy Dog'
     slug: mechanical-toy-dog
     description: "<p>This poor old boy doesn't work anymore -- which is why I could afford him ;)</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3114,6 +3373,7 @@ CollectibleArchive:
     name: 'Vintage Copper Tooled Hunting Dog'
     slug: vintage-copper-tooled-hunting-dog
     description: "<p>Framed copper tooling piece of a pointer or other hunting dog; probably handmade from a kit.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3126,6 +3386,7 @@ CollectibleArchive:
     name: 'My Scooby-Doo Kitchen Stuff'
     slug: my-scooby-doo-kitchen-stuff
     description: "<p>Assorted Scooby-Doo collectibles in my kitchen. I wrote about them here at Collectors' Quest -- click to read it here: http://xrl.us/oz83i</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3138,6 +3399,7 @@ CollectibleArchive:
     name: 'Collie Painting'
     slug: collie-painting
     description: "<p>Original art -- a thrift store purchase made once I accepted that I was collecting dogs ;)</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3150,6 +3412,7 @@ CollectibleArchive:
     name: 'Antique Harlequin Great Dane'
     slug: antique-harlequin-great-dane
     description: "<p>An estate sale find of a spotted (Harlequin) Great Dane dog.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3162,6 +3425,7 @@ CollectibleArchive:
     name: 'Medium Plaster Collie'
     slug: medium-plaster-collie
     description: "<p>This old piece feels almost like composition, but I think it's just plaster; rather light for it's size.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3174,6 +3438,7 @@ CollectibleArchive:
     name: 'Giant Hollow Plaster Collie'
     slug: giant-hollow-plaster-collie
     description: "<p>The largest dog in my collection -- please see my dog collection for more: http://www.collectorsquest.com/collection/867/dogs-that-don-t-fit-in-anywhere-else.html</p>\n"
+    num_views: '0'
     num_comments: '1'
     score: '0'
     is_name_automatic: '0'
@@ -3186,6 +3451,7 @@ CollectibleArchive:
     name: 'The Evil Twins'
     slug: the-evil-twins
     description: "<p>Twin soap girls -- that scare me.</p>\n"
+    num_views: '0'
     num_comments: '6'
     score: '0'
     is_name_automatic: '0'
@@ -3198,6 +3464,7 @@ CollectibleArchive:
     name: 'Little Lulu Soap'
     slug: little-lulu-soap
     description: "<p>Figural soap of comic character Little Lulu.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3210,6 +3477,7 @@ CollectibleArchive:
     name: 'The Maniacal Brother Soap'
     slug: the-maniacal-brother-soap
     description: "<p>He's up to something... The last of the sinister sibling soaps. (So far!)</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3222,6 +3490,7 @@ CollectibleArchive:
     name: 'Soap Farm Animals'
     slug: soap-farm-animals
     description: "<p>A figural cow and a figural pig soap. Moo. Oink.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3234,6 +3503,7 @@ CollectibleArchive:
     name: 'Bear Soap'
     slug: bear-soap
     description: "<p>Because he's (nearly) white, I call him a polar bear.</p>\n"
+    num_views: '0'
     num_comments: '1'
     score: '0'
     is_name_automatic: '0'
@@ -3246,6 +3516,7 @@ CollectibleArchive:
     name: 'Vintage Felt Christmas Elves'
     slug: vintage-felt-christmas-elves
     description: "<p>Felt bodies with plastic faces. My grandma had these and I compulsively buy them when cheap.</p>\n"
+    num_views: '0'
     num_comments: '3'
     score: '0'
     is_name_automatic: '0'
@@ -3258,6 +3529,7 @@ CollectibleArchive:
     name: 'S &amp; P Imps'
     slug: s-amp-p-imps
     description: "<p>A pair of old salt &amp; pepper shakers... I call them imps because I don't know what they are -- they look like they are up to something!</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3270,6 +3542,7 @@ CollectibleArchive:
     name: 'Vintage Pixie With Ponytail'
     slug: vintage-pixie-with-ponytail
     description: "<p>This ceramic pixie (or child) has hair in an absurd style, esp for the position.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3282,6 +3555,7 @@ CollectibleArchive:
     name: 'Holiday Elf'
     slug: holiday-elf
     description: "<p>Another retro felt elf -- who stands guard against an evil soap twin.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3294,6 +3568,7 @@ CollectibleArchive:
     name: 'Vintage Batlin Elf'
     slug: vintage-batlin-elf
     description: "<p>This isn't an elf per se, but one piece in my Batlin Jack &amp; The Beanstalk set which I'll be uploading shortly. This is the holder for the ashtrays (when they are removed, you can put a pack of cigs inside).</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3306,6 +3581,7 @@ CollectibleArchive:
     name: 'Retro Plastic Elf With Lyre'
     slug: retro-plastic-elf-with-lyre
     description: "<p>Most of these retro plastic elves with fabric clothing have musical instruments.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3318,6 +3594,7 @@ CollectibleArchive:
     name: 'Vintage Ceramic Elf On Mushroom'
     slug: vintage-ceramic-elf-on-mushroom
     description: "<p>This vintage figurine has a glossy glaze everywhere but his white face, which is matte.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3330,6 +3607,7 @@ CollectibleArchive:
     name: 'Retro Plastic Elf Also With Lyre'
     slug: retro-plastic-elf-also-with-lyre
     description: "<p>This elf or pixie is quite Asian looking. He also of plastic, has a lyre, fabric clothing, and 'pearl' rings too.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3342,6 +3620,7 @@ CollectibleArchive:
     name: 'Vintage Chalkware Horse Bookends'
     slug: vintage-chalkware-horse-bookends
     description: "<p>A pair of vintage plaster horse bookends.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3354,6 +3633,7 @@ CollectibleArchive:
     name: 'Vintage Powder Compacts'
     slug: vintage-powder-compacts
     description: "<p>Several of my vintage compacts and my Lucite box purse with built-in compact.</p>\n"
+    num_views: '0'
     num_comments: '1'
     score: '0'
     is_name_automatic: '0'
@@ -3366,6 +3646,7 @@ CollectibleArchive:
     name: 'Vintage Lucite Box Purse'
     slug: vintage-lucite-box-purse
     description: "<p>My vintage Lucite box purse open, showing the built-in compact. (On of my favorite vintage pieces that I'm terrified to use for fear I'll crack it or worse.)</p>\n"
+    num_views: '0'
     num_comments: '1'
     score: '0'
     is_name_automatic: '0'
@@ -3378,6 +3659,7 @@ CollectibleArchive:
     name: 'Richard Hudnut Vanity Items'
     slug: richard-hudnut-vanity-items
     description: "<p>Richard Hudnut items: Jarvaise dusting powder (cardboard boxed variety) and a tube of Three Flowers cleansing cream (with box)</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3390,6 +3672,7 @@ CollectibleArchive:
     name: 'Retro Kitschy Vinyl Mary Kay Bag'
     slug: retro-kitschy-vinyl-mary-kay-bag
     description: "<p>A Mary Kay consultant's bag that I have used both as a purse and in the bathroom to hold guest/hand towels -- among other things ;)</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3402,6 +3685,7 @@ CollectibleArchive:
     name: 'Assorted Vanity &amp; Beauty Items'
     slug: assorted-vanity-amp-beauty-items
     description: "<p>An Estee Lauder Knowing bag used at the launch of the Knowing fragrance (not a GWP bag; I worked the counter at Field's when Knowing was launched and these bags were counter displays. I saved one and keep old letters from my grandparents in them.) Along with it are 4 loose power refills (paper/cardboard), an antique powder bottle, and an antique wooden handled hair iron for making curls.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3414,6 +3698,7 @@ CollectibleArchive:
     name: 'Retro Almay Match Lips Lipstick Matchbook'
     slug: retro-almay-match-lips-lipstick-matchbook
     description: "<p>This is so ephemeral that I can barely stand it! It's a paper matchbook with matchheads of \"Stay-Tru\" Almay lipstick. You have two views; open and closed. I'm not sure how these survived (mostly intact; one 'strike' is missing), but I love it!</p>\n"
+    num_views: '0'
     num_comments: '1'
     score: '0'
     is_name_automatic: '0'
@@ -3426,6 +3711,7 @@ CollectibleArchive:
     name: 'Vintage Max Factor Stage Make-up Kit'
     slug: vintage-max-factor-stage-make-up-kit
     description: "<p>A boxed Max Factor \"Male Stage Make-up Kit\" for students. In the original cardboard boy there are the old makeup supplies (grease paint, powder, rouge etc.) and lovely ephemera, including the original sales receipt from the Max Factor Make-Up Studio dated 5-26-52 (sold for $2, $2.47 with taxes). Also vintage training pamphlets: Max Factor's Hints On The Art of Makeup. I have 1 thru 9 (minus #8 -- but two copies of #7 lol) The booklets have a copyright of 1961.</p>\n"
+    num_views: '0'
     num_comments: '3'
     score: '0'
     is_name_automatic: '0'
@@ -3438,6 +3724,7 @@ CollectibleArchive:
     name: 'Marilyn With Stuffed Tiger'
     slug: marilyn-with-stuffed-tiger
     description: "<p>An 8 x 10 glossy, numbered M-M-110.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3450,6 +3737,7 @@ CollectibleArchive:
     name: 'Marilyn Monroe, Fur Coat'
     slug: marilyn-monroe-fur-coat
     description: "<p>8 x 10 photo MM-151</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3462,6 +3750,7 @@ CollectibleArchive:
     name: 'Marilyn Monroe, Fur '
     slug: marilyn-monroe-fur
     description: "<p>A classic black &amp; white 8 x 10.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3474,6 +3763,7 @@ CollectibleArchive:
     name: 'Marilyn Monroe Doll In Box'
     slug: marilyn-monroe-doll-in-box
     description: "<p>A gift from my mom, How To Marry A Millionaire doll in box. Part of The Marilyn Monroe Movie Collection by Tristar, # 5014, 1982 20th Century FoxShown with a Gene doll (those dolls to be listed in another collection later).</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3486,6 +3776,7 @@ CollectibleArchive:
     name: 'Lana Turner Postcard Sized Photo'
     slug: lana-turner-postcard-sized-photo
     description: "<p>Colorized photo.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3498,6 +3789,7 @@ CollectibleArchive:
     name: 'Ginger Rogers Postcard'
     slug: ginger-rogers-postcard
     description: "<p>Black &amp; white postcard, postmarked 1952</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3510,6 +3802,7 @@ CollectibleArchive:
     name: 'Small June Allyson Photo'
     slug: small-june-allyson-photo
     description: "<p>Think \"year book sized\". Black &amp; white. Has \"June Allyson\" written on the front -- with the \"y\" inked over as an \"i\". June was billed both as June Allyson and June Allison. (Yup, the lady from the Depends commercials.)</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3522,6 +3815,7 @@ CollectibleArchive:
     name: 'Signed Julie Strain Photo'
     slug: signed-julie-strain-photo
     description: "<p>Personalized &amp; sent to me by Julie after a phone interview.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3534,6 +3828,7 @@ CollectibleArchive:
     name: 'Shirley Temple Postcard'
     slug: shirley-temple-postcard
     description: "<p>Colorized postcard of the pinup version of Shirley Temple. Postmarked 1950.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3546,6 +3841,7 @@ CollectibleArchive:
     name: 'Betti Page Tiki Bar Photo'
     slug: betti-page-tiki-bar-photo
     description: "<p>Super color photo of Betti Page with a wild retro bar-thang goin' on! Love this!</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3558,6 +3854,7 @@ CollectibleArchive:
     name: 'Jean Harlow Photo Print'
     slug: jean-harlow-photo-print
     description: "<p>A vintage color promo photo with printed 'signature' of the legend.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3570,6 +3867,7 @@ CollectibleArchive:
     name: 'Black &amp; White Vera Ellen Photo'
     slug: black-amp-white-vera-ellen-photo
     description: "<p>Promotional postcard-sized photo of Vera Ellen (printed 'signature').</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3582,6 +3880,7 @@ CollectibleArchive:
     name: 'Signed Sophia Loren Photo'
     slug: signed-sophia-loren-photo
     description: "<p>Stunning &amp; sexy 8 x 10 black &amp; white glossy (AGFA Prestige Paper photo print) of Sophia Loren -- signed!</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3594,6 +3893,7 @@ CollectibleArchive:
     name: 'Vintage B/W Virginia Mayo Photo'
     slug: vintage-b-w-virginia-mayo-photo
     description: "<p>Black &amp; white, postcard-sized promo photo.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3606,6 +3906,7 @@ CollectibleArchive:
     name: 'Vintage Susan Peters Photo'
     slug: vintage-susan-peters-photo
     description: "<p>Postcard-sized, colorized, photo of Susan Peters.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3618,6 +3919,7 @@ CollectibleArchive:
     name: 'Vintage Colorized Photo Of Linda Darnell'
     slug: vintage-colorized-photo-of-linda-darnell
     description: "<p>Postcard-sized photo of the lovely Linda.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3630,6 +3932,7 @@ CollectibleArchive:
     name: 'Vintage Hedy Lamarr Photo'
     slug: vintage-hedy-lamarr-photo
     description: "<p>Colorized, postcard-sized photo of the beautiful and brilliant Hedy Lamarr.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3642,6 +3945,7 @@ CollectibleArchive:
     name: 'Marilyn (Steinem Book)'
     slug: marilyn-steinem-book
     description: "<p>Text by Gloria Steinem, photographs by George Barris. Coffee table book. First ed. 1986</p>\n"
+    num_views: '0'
     num_comments: '1'
     score: '0'
     is_name_automatic: '0'
@@ -3654,6 +3958,7 @@ CollectibleArchive:
     name: 'Marilyn Monroe: Confidential'
     slug: marilyn-monroe-confidential
     description: "<p>The controversial book by Lena Pepitone &amp; William Stadiem \"An Intimate Personal Account\" Hardcover, with dustjacket. 1979 Book Club Edition.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3666,6 +3971,7 @@ CollectibleArchive:
     name: 'Crypt 33: The Saga of Marilyn Monroe'
     slug: crypt-33-the-saga-of-marilyn-monroe
     description: "<p>\"The Final Word\" Hardcover, with dustjacket, 1993, 1st edition. By Adela Gregory &amp; Milo Speriglio</p>\n"
+    num_views: '0'
     num_comments: '3'
     score: '0'
     is_name_automatic: '0'
@@ -3678,6 +3984,7 @@ CollectibleArchive:
     name: 'Another B/W Marilyn Photo'
     slug: another-b-w-marilyn-photo
     description: "<p>with the boys Numbered MM-137, 8 x 10 glossy.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3690,6 +3997,7 @@ CollectibleArchive:
     name: 'Marilyn In Black Lace'
     slug: marilyn-in-black-lace
     description: "<p>Glossy 8 x 10</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3702,6 +4010,7 @@ CollectibleArchive:
     name: 'Marilyn Showgirl Costume'
     slug: marilyn-showgirl-costume
     description: "<p>Another 8 x 10 black &amp; white glossy photo # M-83</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3714,6 +4023,7 @@ CollectibleArchive:
     name: 'American Cookery Boston Cooking School Magazine'
     slug: american-cookery-boston-cooking-school-magazine
     description: "<p>The June-July 1925 issue (Vol XXX, No 1), of \"American Cookery\", formerly \"The Boston Cooking-School Magazine of Culinary Science and Domestic Economics\". Published by The Bostong Cooking School Magazine Co, Boston Mass. Articles include: Summer Celebrations, Macaroni, Long or Short. Cookery--An Ancient Art, Bride's Cakes, Remembered Rooms, menus and recipes and furniture tips. Many black and white photos and illustrations too. Along with the recipes, there are many old ads for baking powders, food products, etc. Measures 9.5 x 6.75 inches, 80 pages. Conditions: Covers are separate, but the staple binding is secure. Minimal wear to pages.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3726,6 +4036,7 @@ CollectibleArchive:
     name: 'Betty Crocker''s New Picture Cook Book'
     slug: betty-crockers-new-picture-cook-book
     description: "<p>Betty Crocker book, printed in 1950 (my dear Grandma's copy -- has her additional tips scripted by recipes!)</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3738,6 +4049,7 @@ CollectibleArchive:
     name: '3 Vintage Recipe Booklets from Western Beet Sugar'
     slug: 3-vintage-recipe-booklets-from-western-beet-sugar
     description: "<p>These three vintage booklets were produced by the Western Beet Sugar Producers, Inc, circa 1940's - 1950's. All three are by Nancy Haven, of the Consumer Service Department. Titles: Fashions in Frostings Well Preserved Just Desserts Each measures 5 x 3 inches. Conditions: Virtually like new!</p>\n"
+    num_views: '0'
     num_comments: '2'
     score: '0'
     is_name_automatic: '0'
@@ -3750,6 +4062,7 @@ CollectibleArchive:
     name: 'My Party Book of Tested Chocolate Recipes 1938'
     slug: my-party-book-of-tested-chocolate-recipes-1938
     description: "<p>My Party Book of Tested Chocolate Recipes, Easy Desserts and Refreshments with America's Favorite Flavor, Frances Lee Barton, 1938, General Foods. Second Printing Staple bound booklet, measuring 7 x 5.25 inches, with 26 pages (plus covers) featuring chocolate receipes to promote Baker's Chocolate and Bakers Cocoa, as featured inside the back cover. Black &amp; white, includes photos and illustrations. Conditions: Front bottom corner torn, as shown. No writings (even the 'write your name' spot is blank!). Spine is worn, small tear at spine bottom, but sound &amp; intact. Nifty!</p>\n"
+    num_views: '0'
     num_comments: '3'
     score: '0'
     is_name_automatic: '0'
@@ -3762,6 +4075,7 @@ CollectibleArchive:
     name: 'Sentry Foods Julia Child Program Guides Recipes'
     slug: sentry-foods-julia-child-program-guides-recipes
     description: "<p>This lot includes three promotional program guides or cookbooks as well as a signed letter from Sentry Food Stores, Waukesha, Wisconsin, as listed and shown. Weekly Program Guide, Weekly Program Recipes, brought to you by WMVS, Channel 10 Milwaukee, and Sentry Food Stores. These program guides include the date &amp; description of the cooking shows and of course Julia Child's recipes for the shows. They measure 8.5 x 10.5 inches, are staple bound, with approx 58 pages. The French Chef Julia Child, 1966-197 Television Season (Sixth Series) The French Chef Julia Child, 1966-197 Television Season (Sixth Series Continues Plus Seventh Series) \"The Best of Julia\" French Cooking 1967-1968 All three books have some cover wear, a few chips on corners etc, however the staple bindings &amp; all pages are intact. The do have notes neatly scripted inside in various places, as well as a few note pages 'included' by the previous owner. The letter is on Sentry Food Stores stationary, from the offices located at1200 W. Sunset Drive, Waukesha, Wisconsin, and is dated October, 27, 1967. It is to Mrs. Joe Rakum, thanking her for her comments on the French Chef Program, and mentioning that they are including the recipe booklet. It is signed Thomas E. Manders, Marketing Services Manager -- signed ie -- so perhaps the secretary? The letter is in wonderful shape, with some edge chipping as it was stored tucked inside one of the guides.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3774,6 +4088,7 @@ CollectibleArchive:
     name: 'EHP Waterless Cookbook'
     slug: ehp-waterless-cookbook
     description: "<p>Nutritious Cooking The Waterless Way, a promotional cookbook for the \"scientific\" stainless steel cookware.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3786,6 +4101,7 @@ CollectibleArchive:
     name: 'Blue Ribbon Recipes - Amarillo Garden Club'
     slug: blue-ribbon-recipes-amarillo-garden-club
     description: "<p>The Amarillo Garden Club's Blue Ribbon Recipes book - the classic fund raiser cookbook, with lots of ads too (local as well as Borden's, Swans Down etc.)</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3798,6 +4114,7 @@ CollectibleArchive:
     name: 'Night Club Nurse'
     slug: night-club-nurse
     description: "<p>By Rose Dana</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3810,6 +4127,7 @@ CollectibleArchive:
     name: 'Leota Foreman, R.N.'
     slug: leota-foreman-rn
     description: "<p>By Peggy Gaddis</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3822,6 +4140,7 @@ CollectibleArchive:
     name: 'Cinderella Nurse'
     slug: cinderella-nurse
     description: "<p>By Jane Converse</p>\n"
+    num_views: '0'
     num_comments: '1'
     score: '0'
     is_name_automatic: '0'
@@ -3834,6 +4153,7 @@ CollectibleArchive:
     name: 'Woolies For Babies #224'
     slug: woolies-for-babies-224
     description: "<p>Copyright 1945 The Spool Cotton Company, distributors of J &amp; P Coats, Clark's O.N.T., Chadwick's Red Heart &amp; Crown Zippers</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3846,6 +4166,7 @@ CollectibleArchive:
     name: 'Old &amp; New Favorites by Special Request'
     slug: old-amp-new-favorites-by-special-request
     description: "<p>Vintage patterns and instructions for crocheting doilies and other linens; copyright 1947 The Spool Cotton Company, distributors for J&amp;P Coats, Clark's, Chadwick's Red Heart. First Edition, H-6025 C-14 1047</p>\n"
+    num_views: '0'
     num_comments: '1'
     score: '0'
     is_name_automatic: '0'
@@ -3858,6 +4179,7 @@ CollectibleArchive:
     name: 'Vintage Bride''s Party Book'
     slug: vintage-brides-party-book
     description: "<p>Published by Dennison, the book covers announcements, bridal showers, bridal parties, wedding day, anniversaries, baby showers etc. Crafty &amp; kitschy.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3870,6 +4192,7 @@ CollectibleArchive:
     name: 'Little White Lies Sheet Music Dick Haymes'
     slug: little-white-lies-sheet-music-dick-haymes
     description: "<p>Sung by Dick Haymes on Decca Record No. 24280 Little White Lies Sheet Music. Copyright 1930 Published By: Bergman, Vocco and Conn, Inc. Lyric &amp; Music By: Walter Donaldson Conditions: Some cover scuffs, previous owner's name/initials as shown in photo; no rips, chips or tears.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3882,6 +4205,7 @@ CollectibleArchive:
     name: 'Bowling Pin Storks'
     slug: bowling-pin-storks
     description: "<p>A family of storks made from small wooden pieces that look like bowling pins. Metal legs, wooden stand. Kitschy vintage stork goodness.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3894,6 +4218,7 @@ CollectibleArchive:
     name: 'Retro Great Northern Railway Back Care Booklet'
     slug: retro-great-northern-railway-back-care-booklet
     description: "<p>\"Care of the Back; Industrial Edition\" William K. Ishmael, MD FACP &amp; Howard B. Shorbe, MD FACS, copyright 1962 J.P. Lippincott Co. (July 1964 reprint). Distributed by Safety Department with Approval of Abbott Skinner, MD, Chief Medical Officer Great Northern Railway Company. Cartoons by Ken Colgan. Railroad item. 24 pages</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3906,6 +4231,7 @@ CollectibleArchive:
     name: 'Women''s Guide To Household Emergencies'
     slug: womens-guide-to-household-emergencies
     description: "<p>A 1973 Reader's Digest dealio.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3918,6 +4244,7 @@ CollectibleArchive:
     name: '1941 Jayne''s Almanac'
     slug: 1941-jaynes-almanac
     description: "<p>Copyright 1940 Dr. D. Jayne &amp; Son, Inc. Philadelphia, PA</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3930,6 +4257,7 @@ CollectibleArchive:
     name: '1964 Laughs &amp; Chuckles'
     slug: 1964-laughs-amp-chuckles
     description: "<p>Another Reader's Digest dealio</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3942,6 +4270,7 @@ CollectibleArchive:
     name: 'Because You''re Ill'
     slug: because-youre-ill
     description: "<p>Vintage Get Well card.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3954,6 +4283,7 @@ CollectibleArchive:
     name: 'Antique Card With Lobster'
     slug: antique-card-with-lobster
     description: "<p>You can find out more about this card here: http://www.collectorsquest.com/blog/2009/03/15/save-the-ephemera-save-the-world-maybe/</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3966,6 +4296,7 @@ CollectibleArchive:
     name: 'Thank You For Your Sympathy'
     slug: thank-you-for-your-sympathy
     description: "<p>An old card thanking a person for their expression of sympathy.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3978,6 +4309,7 @@ CollectibleArchive:
     name: 'Vintage Birth Announcement'
     slug: vintage-birth-announcement
     description: "<p>Announcing the arrival... 1943</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -3990,6 +4322,7 @@ CollectibleArchive:
     name: 'Japanese Love Song'
     slug: japanese-love-song
     description: "<p>copyright 1900, words by “Anon”, music by Clayton Thomas aka Salome Thomas Cade aka Nellie Salome Thomas, and dedicated to Madame Alberto Randegger. See more, including lyrics, here: http://xrl.us/bekez6</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4002,6 +4335,7 @@ CollectibleArchive:
     name: 'The Naughty Little Clock'
     slug: the-naughty-little-clock
     description: "<p>Copyright 1899; music by Reginald De Koven, lyrics by Harry B. Smith. (My copy of the sheet music states that the copyright was assigned 1930 to Theodore Presser Co.) See more, including lyrics, at my blog here: http://twoliablog.com/kitsch-slapped/2009/03/09/the-naughty-little-clock/</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4014,6 +4348,7 @@ CollectibleArchive:
     name: 'It’s a Dog''s Life'
     slug: its-a-dogs-life
     description: "<p>By Robert Cunningham (photographs by Ed Bry, illustrations by Ted Cornell, published by The Theodore Roosevelt Nature and History Association; circa 1980) See more here: http://twoliablog.com/kitsch-slapped/2009/03/09/please-do-not-feed-or-molest-prairie-dogs/</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4026,6 +4361,7 @@ CollectibleArchive:
     name: '(I Got Spurs) Jingle Jangle Jingle'
     slug: i-got-spurs-jingle-jangle-jingle
     description: "<p>Copyright 1942, Paramount Music Corporation. Words by Frank Loesser, Music by Jooseph J. Lilley. Dedicated to the Pico Stables, Burbank, California</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4038,6 +4374,7 @@ CollectibleArchive:
     name: 'Ham &amp; Eggs -- A "Comic Male Quartette"'
     slug: ham-amp-eggs-a-comic-male-quartette
     description: "<p>By John Martin, arranged by Fred K. Huffer. Copyright 1917 The Chart Music Publishing Co., Chicago. Lyrics are here: http://www.collectorsquest.com/blog/2009/03/16/filling-in-the-blanks-with-sheet-music/</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4050,6 +4387,7 @@ CollectibleArchive:
     name: 'The Tale of The Dachshund'
     slug: the-tale-of-the-dachshund
     description: "<p>A humorous song by Harvey B. Gaul, copyright 1923 by Harold Flammer, Inc.,</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4062,6 +4400,7 @@ CollectibleArchive:
     name: 'Vintage Snow White Knock-Off'
     slug: vintage-snow-white-knock-off
     description: "<p>This old chalk piece was likely a carnival prize, and her Disney look is likely no accident either. Yes, that's silver glitter you see as 'buttons' etc.</p>\n"
+    num_views: '0'
     num_comments: '2'
     score: '0'
     is_name_automatic: '0'
@@ -4074,6 +4413,7 @@ CollectibleArchive:
     name: 'Musical Recitations by Helen Wing: Little Chink'
     slug: musical-recitations-by-helen-wing-little-chink
     description: "<p>Words by Mildred Merryman; copyright 1926, by Teo. Presser Co. More info, including lyrics here: http://twoliablog.com/kitsch-slapped/2009/03/18/you-can%e2%80%99t-judge-a-racist-nun-by-her-habit-part-three-or-the-little-chink-in-sisters-armor-2/</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4086,6 +4426,7 @@ CollectibleArchive:
     name: 'Quick Magazine March 27 1950'
     slug: quick-magazine-march-27-1950
     description: "<p>Weekly from Cowles Magazines, Inc. Jack Benny on cover.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4098,6 +4439,7 @@ CollectibleArchive:
     name: 'Quick Magazine October 31 1949'
     slug: quick-magazine-october-31-1949
     description: "<p>Cowles Magazines, Inc., Princess Margaret Rose on cover.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4110,6 +4452,7 @@ CollectibleArchive:
     name: 'Quick Magazine July 31 1950'
     slug: quick-magazine-july-31-1950
     description: "<p>Cowles Magazines, Inc., President Truman on cover.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4122,6 +4465,7 @@ CollectibleArchive:
     name: 'Quick Magazine November 21 1949'
     slug: quick-magazine-november-21-1949
     description: "<p>Cowles Magazines, Inc., Esther Williams &amp; baby on cover</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4134,6 +4478,7 @@ CollectibleArchive:
     name: 'Mike Shayne: The Homicidal Virgin'
     slug: mike-shayne-the-homicidal-virgin
     description: "<p>The Homicidal Virgin, a Mike Shayne Mystery, by Brett Halliday. This is the 1967 \"New Edition\" published by Dell -- the original is copyrighted 1960. Cover illustration by Robert McGinnis.</p>\n"
+    num_views: '0'
     num_comments: '1'
     score: '0'
     is_name_automatic: '0'
@@ -4146,6 +4491,7 @@ CollectibleArchive:
     name: '1976 Parker Brothers Happy Days Game'
     slug: 1976-parker-brothers-happy-days-game
     description: "<p>Happy Days, “Fonzie’s Real Cool Game By Parker Brothers”, © 1976 Paramount Pictures Corporation. I've posted a review here: http://twolia.com/blogs/kitsch-slapped/2009/04/06/has-fonzies-real-cool-happy-days-game-jumped-the-shark/</p>\n"
+    num_views: '0'
     num_comments: '1'
     score: '0'
     is_name_automatic: '0'
@@ -4158,6 +4504,7 @@ CollectibleArchive:
     name: '1985 Leonard Weisgard Circus Animals'
     slug: 1985-leonard-weisgard-circus-animals
     description: "<p>Folder with 6 decorative color prints by the Leonard Weisgard, the Caldecott award-winning illustrator of more than 200 children’s books, copyright 1958 Penn Prints. Minimal wear to corners on folder; all prints are wonderful!</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4170,6 +4517,7 @@ CollectibleArchive:
     name: 'Eddy''s Bread Good Ideas Vintage Booklet'
     slug: eddys-bread-good-ideas-vintage-booklet
     description: "<p>A vintage promotional booklet from Eddy's Bread, \"Good Ideas: An Interesting Collection Made By Eddy's that good bread in the bright gingham wrapper.\"</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4182,6 +4530,7 @@ CollectibleArchive:
     name: '1947 Archer-Hoyne Savings &amp; Loan Household Hints'
     slug: 1947-archer-hoyne-savings-amp-loan-household-hints
     description: "<p>1003 Household Hints &amp; Work Savers, \"A treasury of clever, practical ways to save money, time and work in every department of daily living.\" Edited by Michael Gore. Copyright 1947, The Handbook Library; Archer-Hoyne Federal Savings &amp; Loan Association of Chicago (3517 S. Archer Avenue, Chicago 9, Illinois)</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4194,6 +4543,7 @@ CollectibleArchive:
     name: '25 Ghosts Puzzle Game'
     slug: 25-ghosts-puzzle-game
     description: "<p>Plastic figural jigsaw puzzle of \"25 different ghostly shapes that fit together in a mysterious maze.!\" Copyright 1969, Lakeside Toys, Division of Lakeside Industries Inc., Minneapolis, Minn. Series No. 8309 Made in Hong Kong. Pieces marked copyright 1967 LII Made In Hong Kong. Completed \"washable plastic\" pieces fit inside a black plastic frame. Original box. Some tape marks, scuffs, and hole punch on bottom of box. One piece as a very small \"chip\" at the tip. (See photo.) Box measures approx. 5.5 inches X 9 inches</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4206,6 +4556,7 @@ CollectibleArchive:
     name: 'Jolly Jumbo Elephant Squeeze-Me Toy'
     slug: jolly-jumbo-elephant-squeeze-me-toy
     description: "<p>A very large rubber squeaky toy, this pink elephant stands 9 inches tall, about 10 inches long. Marked The Sun Rubber Company, 1961, on both the back of the movable head and on the tummy. Though not marked with his name, this is Jolly Jumbo, #480. Jolly wears a hot pink circus-type headdress with details (lace or fine chain) in metallic paint, including along his forehead. Jolly is also roll-y -- he has wheels on the bottoms of his four feet. While Jolly Jumbo no longer squeaks (we can hear the squeaker rolling about inside), he rolls on his clear glass \"marble\" wheels just fine. A very unique and adorable find, that's for sure! Conditions: Minimal signs of wear; his colors are bright and cheery. Again, he doesn't squeak (don't know if you can repair that? We didn't want to decapitate him to find out, so we'll leave that for the collector who has a clue.) No damages to plastic or rubber. Really a spiffy elephant awaiting a collector to show him off as he deserves.</p>\n"
+    num_views: '0'
     num_comments: '5'
     score: '0'
     is_name_automatic: '0'
@@ -4218,6 +4569,7 @@ CollectibleArchive:
     name: 'Vintage Squeaky Toy Duck'
     slug: vintage-squeaky-toy-duck
     description: "<p>Cute rubber ducky -- one molded piece. Squeak vent is round with a square grid -- yes, it squeaks! There are molded/sculpted wings, painted features. Stands about 5 inches tall. Back of head has M. Dep. with elephant logo, Made In Italy. Some modest wear to paint. (See photos).</p>\n"
+    num_views: '0'
     num_comments: '1'
     score: '0'
     is_name_automatic: '0'
@@ -4230,6 +4582,7 @@ CollectibleArchive:
     name: 'Vintage Squeaky Toy Elephant'
     slug: vintage-squeaky-toy-elephant
     description: "<p>Yes, he squeaks! Stamped Made In Japan on belly; no maker marks.Head turns. Measures approx 8.5 inches tall. Round squeaker hole with square or \"X\" vents. Some wear to paint, \"dent\" on back of head - behind one ear. See photos.</p>\n"
+    num_views: '0'
     num_comments: '2'
     score: '0'
     is_name_automatic: '0'
@@ -4242,6 +4595,7 @@ CollectibleArchive:
     name: 'Vintage DAKIN Donald Duck, Large with Tag'
     slug: vintage-dakin-donald-duck-large-with-tag
     description: "<p>This is the large (7.75 inches tall) version. He is made of a hard vinyl type material except head which is a soft vinyl. Donald's head, legs and arms move/are poseable. The orange paper tag reads: Donald Duck © Walt Disney Productions on one side, and R. Dakin &amp; Co, San Francisco, No 2244, Product of Hong Kong on the other. On the bottom of his flippers it reads: WALT DISNEY PRODUCTIONS, R. DAKIN &amp; COMPANY, PRODUCT OF HONG KONG On the back of his head is this: WALT DISNEY PRODUCTIONS The tag on the jacket reads: R. Dakin &amp; Company, San Francisco, California, Product of Hong Kong. He is in excellent condition, save for sun fading of his jacket. I don't believe he has ever been played with. No date, circa late 60's early 70's.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4254,6 +4608,7 @@ CollectibleArchive:
     name: '1980 Radio Shack Catalog'
     slug: 1980-radio-shack-catalog
     description: "<p>No. 315 Full of retro geek &amp; gadget goodness.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4266,6 +4621,7 @@ CollectibleArchive:
     name: 'Star Gift Book (Knit, Crochet, Tat)'
     slug: star-gift-book-knit-crochet-tat
     description: "<p>Book # 31, copyright 1944, American Thread Company</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4278,6 +4634,7 @@ CollectibleArchive:
     name: 'Profitable Hobbies Magazine'
     slug: profitable-hobbies-magazine
     description: "<p>March, 1951 issue; art room circulation copy (boards/cloth binding/library-type markings)</p>\n"
+    num_views: '0'
     num_comments: '3'
     score: '0'
     is_name_automatic: '0'
@@ -4290,6 +4647,7 @@ CollectibleArchive:
     name: 'Kate Smith''s Favorite Recipes'
     slug: kate-smiths-favorite-recipes
     description: "<p>Promotional booklet for Swans Down - Calumet; form 4096, © 1939, General Foods Corp. Back cover has promo for the Kate Smith Hour on CBS.</p>\n"
+    num_views: '0'
     num_comments: '2'
     score: '0'
     is_name_automatic: '0'
@@ -4302,6 +4660,7 @@ CollectibleArchive:
     name: '101 Recipes Grandma''s Molasses'
     slug: 101-recipes-grandmas-molasses
     description: "<p>Grandma's Old Fashioned Molasses, 1944 American Molasses Company</p>\n"
+    num_views: '0'
     num_comments: '3'
     score: '0'
     is_name_automatic: '0'
@@ -4314,6 +4673,7 @@ CollectibleArchive:
     name: 'Modern Woman Magazine'
     slug: modern-woman-magazine
     description: "<p>Ice Industry publication (Wisconsin Ice &amp; Coal Co. on back). Volume 9, Number 8, 1941</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4326,6 +4686,7 @@ CollectibleArchive:
     name: 'Modern Woman Magazine V10 n5'
     slug: modern-woman-magazine-v10-n5
     description: "<p>Publication from the ice industry, Wisconsin Ice &amp; Coal Co. printed on back. 1941</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4338,6 +4699,7 @@ CollectibleArchive:
     name: 'Modern Trends No 303'
     slug: modern-trends-no-303
     description: "<p>Coats &amp; Clark's ONT Modern Trends Book # 303, copyright 1954, featuring hairpin lace, crochet and Swedish weaving -- home and decor styles. Note front cover differs from back cover.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4350,6 +4712,7 @@ CollectibleArchive:
     name: 'Star Nylon Book No 99'
     slug: star-nylon-book-no-99
     description: "<p>Copyright 1953, The American Thread Company. Heavily promoting nylon threads.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4362,6 +4725,7 @@ CollectibleArchive:
     name: 'Modern Screen, March 1970'
     slug: modern-screen-march-1970
     description: "<p>Retro tabloid magazine.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4374,6 +4738,7 @@ CollectibleArchive:
     name: 'Top Secret, October 1959'
     slug: top-secret-october-1959
     description: "<p>Vintage tabloid magazine.</p>\n"
+    num_views: '0'
     num_comments: '1'
     score: '0'
     is_name_automatic: '0'
@@ -4386,6 +4751,7 @@ CollectibleArchive:
     name: 'Beautiful Womanhood, November 1923'
     slug: beautiful-womanhood-november-1923
     description: "<p>Edited by Mrs. Bernarr MacFadden.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4398,6 +4764,7 @@ CollectibleArchive:
     name: 'Powder Puff Pussy-Cats'
     slug: powder-puff-pussy-cats
     description: "<p>Mom with her babies chained to her. Mom is missing 1/2 her whiskers -- but she has her original tag. Pink, floofy fur and rhinestone eyes, what's not to love? Made by Kreiss &amp; Company, Japan.</p>\n"
+    num_views: '0'
     num_comments: '2'
     score: '0'
     is_name_automatic: '0'
@@ -4410,6 +4777,7 @@ CollectibleArchive:
     name: 'February 1965 Cosmopolitan Magazine'
     slug: february-1965-cosmopolitan-magazine
     description: "<p>Retro women's mag goodness.</p>\n"
+    num_views: '0'
     num_comments: '1'
     score: '0'
     is_name_automatic: '0'
@@ -4422,6 +4790,7 @@ CollectibleArchive:
     name: 'Old Stuff, May/June 1975'
     slug: old-stuff-may-june-1975
     description: "<p>A publication which proudly boasted \"All paper in this copy of OLD STUFF is 100% recycled.\" Something which was almost equally true of the content printed on the paper, for all the stuff is indeed old articles etc. from antique publications -- save for the obligatory letters to the editor (called \"Correspondence\") and classified ad section (called \"Collectors Market\").</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4434,6 +4803,7 @@ CollectibleArchive:
     name: 'The Workbasket June 1952'
     slug: the-workbasket-june-1952
     description: "<p>Vol 17, Number 9</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4446,6 +4816,7 @@ CollectibleArchive:
     name: 'The Workbasket May 1952'
     slug: the-workbasket-may-1952
     description: "<p>Vol 17, No 8</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4458,6 +4829,7 @@ CollectibleArchive:
     name: 'Workbench August 1976'
     slug: workbench-august-1976
     description: "<p>Retro DIY publication</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4470,6 +4842,7 @@ CollectibleArchive:
     name: 'The Workbasket January 1952'
     slug: the-workbasket-january-1952
     description: "<p>Vol 17, #4</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4482,6 +4855,7 @@ CollectibleArchive:
     name: 'The Workbasket February 1952'
     slug: the-workbasket-february-1952
     description: "<p>Vol 17 # 5</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4494,6 +4868,7 @@ CollectibleArchive:
     name: 'Newsweek June 26, 1950'
     slug: newsweek-june-26-1950
     description: "<p>Gloria Swanson, \"The Great Comeback\" on cover</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4506,6 +4881,7 @@ CollectibleArchive:
     name: 'Workbench December 1977'
     slug: workbench-december-1977
     description: "<p>Holiday issue.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4518,6 +4894,7 @@ CollectibleArchive:
     name: 'True The Men''s Magazine December 1960'
     slug: true-the-mens-magazine-december-1960
     description: "<p>A Fawcett Publication</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4530,6 +4907,7 @@ CollectibleArchive:
     name: 'Cook''s Choice Cuisine'
     slug: cooks-choice-cuisine
     description: "<p>1986 Fremont Luthern Church Cookbook, Red Oak-Nymon (Iowa)</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4542,6 +4920,7 @@ CollectibleArchive:
     name: '200 Classic Cake Recipes (3)'
     slug: 200-classic-cake-recipes-3
     description: "<p>Culinary Arts Institute, 1969</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4554,6 +4933,7 @@ CollectibleArchive:
     name: 'Are You Hungry Tonight?'
     slug: are-you-hungry-tonight
     description: "<p>Elvis' Favorite Recipes, Hardcover w/dustjacket. Copyright 1992.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4566,6 +4946,7 @@ CollectibleArchive:
     name: 'Wisc. Conservation Bulletin Nov. 1948'
     slug: wisc-conservation-bulletin-nov-1948
     description: "<p>Published monthly by the Wisconsin Conservation department. Vol. 13, No. 11, November, 1948</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4578,6 +4959,7 @@ CollectibleArchive:
     name: 'Family Circle Great Ideas, July 1981'
     slug: family-circle-great-ideas-july-1981
     description: "<p>109 Fashions &amp; Crafts, Vol. 7, No. 5</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4590,6 +4972,7 @@ CollectibleArchive:
     name: 'Wisc. Conservation Bulletin Oct. 1948'
     slug: wisc-conservation-bulletin-oct-1948
     description: "<p>Published monthly by the Wisconsin Conservation department.</p>\n"
+    num_views: '0'
     num_comments: '9'
     score: '0'
     is_name_automatic: '0'
@@ -4602,6 +4985,7 @@ CollectibleArchive:
     name: 'Wisc. Conservation Bulletin Nov. 1948'
     slug: wisc-conservation-bulletin-nov-1948
     description: "<p>Monthly by the Wisconsin Conservation department.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4614,6 +4998,7 @@ CollectibleArchive:
     name: 'Pot Luck'
     slug: pot-luck
     description: "<p>Compiled by Wednesday Informal Group of the Women's Fellowship First Church in Cambridge, Congregational, Cambride, Mass; printing by Marion T. Blake, drawings by Florence J. Grant. Reprinted 1951 (first printing 1946)</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4626,6 +5011,7 @@ CollectibleArchive:
     name: 'Parker Brothers Careers #66'
     slug: parker-brothers-careers-66
     description: "<p>copyrights of 1971, 1976, &amp; 1979 Review: ttp://www.twolia.com/blogs/kitsch-slapped/2009/06/08/the-199-career-changethe-199-career-change/ Other editions of the game: http://www.collectorsquest.com/blog/2009/06/08/parker-brothers-careers-games/</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4638,6 +5024,7 @@ CollectibleArchive:
     name: 'Vintage Metro Mfg Co Bingo Game'
     slug: vintage-metro-mfg-co-bingo-game
     description: "<p>\"pocket-sized\" portable \"Bookgames\" Bingo in case More info here: http://www.collectorsquest.com/blog/2009/05/24/bingo-anyone/</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4650,6 +5037,7 @@ CollectibleArchive:
     name: 'Porcelain On Steel Cookware Cookbook'
     slug: porcelain-on-steel-cookware-cookbook
     description: "<p>\"Good Eating &amp; Easy Cooking With New Porcelain On Steel Cookware\" Undated; no company name either, but boasts of \"heat-resistant Bakelite handles and knobs.\"</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4662,6 +5050,7 @@ CollectibleArchive:
     name: 'Honey Recipes From The Bee Hive!'
     slug: honey-recipes-from-the-bee-hive
     description: "<p>No date.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4674,6 +5063,7 @@ CollectibleArchive:
     name: 'Favorite Christmas Recipes 1960'
     slug: favorite-christmas-recipes-1960
     description: "<p>From the Wisconsin Power &amp; Light Company, November-December, 1960</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4686,6 +5076,7 @@ CollectibleArchive:
     name: 'Angostura Cook Book 1968'
     slug: angostura-cook-book-1968
     description: "<p>\"From Everyday To Gourmet\"</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4698,6 +5089,7 @@ CollectibleArchive:
     name: 'The Workbasket April 1952'
     slug: the-workbasket-april-1952
     description: "<p>Vol 17, No. 7</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4710,6 +5102,7 @@ CollectibleArchive:
     name: 'Teddy Bear &amp; Friends April 1998'
     slug: teddy-bear-amp-friends-april-1998
     description: "<p>A cover I couldn't refuse, featuring Cooperstown Bear's Emmett Kelly Teddy Bear. I wrote about it here: http://www.collectorsquest.com/blog/2009/06/11/the-un-bear-able-appeal-of-jointed-mohair-you-cant-get-your-paws-on/</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4722,6 +5115,7 @@ CollectibleArchive:
     name: 'Vintage Bottoms-Up Game'
     slug: vintage-bottoms-up-game
     description: "<p>Circa 1940's, by E. S. Lowe Co. This game features game pieces with pig butts (squeal!) See more here: http://www.collectorsquest.com/blog/2009/06/22/vintage-game-nerd-alert-bottoms-up/</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4734,6 +5128,7 @@ CollectibleArchive:
     name: 'Retro Electronic Mall Madness'
     slug: retro-electronic-mall-madness
     description: "<p>Milton Bradley #4047 (long &amp; short box versions), 1989, 1996 Review and more photos here: http://ow.ly/h70u</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4746,6 +5141,7 @@ CollectibleArchive:
     name: 'Mixed Animals 9'
     slug: mixed-animals-9
     description: "<p>Glow in the dark Elasmosaurus Recast Stegosaurus Anhinga Corythosaurus Ornitholestes Recast Hyracotherium</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4758,6 +5154,7 @@ CollectibleArchive:
     name: 'Mixed Animals 8'
     slug: mixed-animals-8
     description: "<p>Leaf cutter ant Baboon Crocodile baby Beetles Lizards</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4770,6 +5167,7 @@ CollectibleArchive:
     name: 'Mixed Animals 10'
     slug: mixed-animals-10
     description: "<p>Fire ant Green Butterfly Stingray Boa Honey bee Lizards</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4782,6 +5180,7 @@ CollectibleArchive:
     name: 'Mixed Animals 6'
     slug: mixed-animals-6
     description: "<p>Tree kangaroo Shitzu Green butterfly Long nose turtle Butterfly-fish Lamb Penguin</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4794,6 +5193,7 @@ CollectibleArchive:
     name: 'Mixed Animals 7'
     slug: mixed-animals-7
     description: "<p>American tapir Green mantis Red sea star Gecko Anaconda Spider monkey(1998) Lizard</p>\n"
+    num_views: '0'
     num_comments: '2'
     score: '0'
     is_name_automatic: '0'
@@ -4806,6 +5206,7 @@ CollectibleArchive:
     name: 'Mixed Animals 5'
     slug: mixed-animals-5
     description: "<p>Duck Dolphin Frog fish Hen with chick Humphback whale Galapagos giant turtle Lizard Tropical spider</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4818,6 +5219,7 @@ CollectibleArchive:
     name: 'Mixed Animals 3'
     slug: mixed-animals-3
     description: "<p>Rat Cobra Coral fish Box turtle Ladybug Lobster Sea snake Hypsilophodont Triassic dinosaurus(???)</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4830,6 +5232,7 @@ CollectibleArchive:
     name: 'Mixed Animals 4'
     slug: mixed-animals-4
     description: "<p>Panda Water spider Bumble bee Lizard Stag beetle Lonesome George(The Pinta Island tortoise) Leopard ray</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4842,6 +5245,7 @@ CollectibleArchive:
     name: 'Mixed Animals 2'
     slug: mixed-animals-2
     description: "<p>Spider wasp Longnose turtle Mud crab Aligator Lizard Centipede Poison dart frog Grasshopper</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4854,6 +5258,7 @@ CollectibleArchive:
     name: 'Mixed Animals 1'
     slug: mixed-animals-1
     description: "<p>Pteranodon Horned owl Coral Chimpanzee Pig Goose Spider monkeys Lizard Plesiosaurus Crocodiles</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4866,6 +5271,7 @@ CollectibleArchive:
     name: 'Mixed Animals 11'
     slug: mixed-animals-11
     description: "<p>Pidgeons, Alligator, black cat, Scorpion</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4878,6 +5284,7 @@ CollectibleArchive:
     name: 'Mixed Animals 12'
     slug: mixed-animals-12
     description: "<p>Proghorn, rooster, pacific crab, chimpanzee, red dragonfly, black triton, yellow butterfly, rhino betle, deer</p>\n"
+    num_views: '0'
     num_comments: '2'
     score: '0'
     is_name_automatic: '0'
@@ -4890,6 +5297,7 @@ CollectibleArchive:
     name: 'Mixed Animals 18'
     slug: mixed-animals-18
     description: "<p>Eagle, gavial, bengal cat, beetle, alligator, grasshopper, butterfly-fish</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4902,6 +5310,7 @@ CollectibleArchive:
     name: 'Mixed Animals 17'
     slug: mixed-animals-17
     description: "<p>Shovel crab, yellow sea-star, koala, archaeopteryx, croc baby, cocroach</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4914,6 +5323,7 @@ CollectibleArchive:
     name: 'Mixed Animals 16'
     slug: mixed-animals-16
     description: "<p>Scorpion, australian adder, coral snakes, roach, horned lizard</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4926,6 +5336,7 @@ CollectibleArchive:
     name: 'Mixed Animals 15'
     slug: mixed-animals-15
     description: "<p>Protoceratops, sail agama, red lobsters, dragonfly, yellow salamander morey eel, humming bird, dimetrodon, archaeopteryx, blue sea-star, blue swallow-tail, long-nose turtle, centipede</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4938,6 +5349,7 @@ CollectibleArchive:
     name: 'Mixed Animals 14'
     slug: mixed-animals-14
     description: "<p>Agama, volcano lizard, spotted lizard, frog fish, grasshopper Green shinx</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4950,6 +5362,7 @@ CollectibleArchive:
     name: 'Mixed Animals 13'
     slug: mixed-animals-13
     description: "<p>Indian rhino, turtle, mantis, beetle, humming bird, butterfly</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4962,6 +5375,7 @@ CollectibleArchive:
     name: 'Q*bert Board Game'
     slug: qbert-board-game
     description: "<p>Parker Brothers Q*bert, \"a board game based on the exciting arcade game.\" #0142, © 1983, Gottlieb &amp; Co.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4974,6 +5388,7 @@ CollectibleArchive:
     name: 'Yellow Dog With Yarn Ears'
     slug: yellow-dog-with-yarn-ears
     description: "<p>OK, so Mr. Yellow Yarn Ears has made of yarn, not fur; but he fits in the collection in my mind.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4986,6 +5401,7 @@ CollectibleArchive:
     name: 'Rempel Mfg Brooklyn Bum Toy'
     slug: rempel-mfg-brooklyn-bum-toy
     description: "<p>Made by Rempel Manufacturing, Akron, Ohio for the 1949 Brooklyn Dodgers baseball team/fans. Stands (yes, he does stand by himself) just under 7 inches tall. Research says this particular baseball mascot \"bum\" is named Ho Jo and he was designed by Fred G Reinert around 1949. Still squeaks!</p>\n"
+    num_views: '0'
     num_comments: '3'
     score: '0'
     is_name_automatic: '0'
@@ -4998,6 +5414,7 @@ CollectibleArchive:
     name: 'So Many Books'
     slug: so-many-books
     description: "<p>So Many Books: Reading and Publishing in an Age of Abundance by Gabriel Zaid, translated by Natasha Wimmer (2003) Reviewed at: http://www.twolia.com/blogs/kitsch-slapped/2009/08/19/so-many-books-so-little-time/</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5010,6 +5427,7 @@ CollectibleArchive:
     name: 'I Like It Here by Kingsley Amis'
     slug: i-like-it-here-by-kingsley-amis
     description: "<p>© 1958, Ballantine Books, First Printing, August, 1971</p>\n"
+    num_views: '0'
     num_comments: '1'
     score: '0'
     is_name_automatic: '0'
@@ -5022,6 +5440,7 @@ CollectibleArchive:
     name: 'Souvenir book for The Baldknobbers'
     slug: souvenir-book-for-the-baldknobbers
     description: "<p>The Baldknobbers Hillbilly Jamboree Show, “a tradition in Ozark Mountain Country”– the 25th Anniversary Edition</p>\n"
+    num_views: '0'
     num_comments: '1'
     score: '0'
     is_name_automatic: '0'
@@ -5034,6 +5453,7 @@ CollectibleArchive:
     name: 'Messy Marvin Meets The Messy Witch'
     slug: messy-marvin-meets-the-messy-witch
     description: "<p>a retro Hershey’s promotional comic story book featuring Messy Marvin, copyright 1979</p>\n"
+    num_views: '0'
     num_comments: '1'
     score: '0'
     is_name_automatic: '0'
@@ -5046,6 +5466,7 @@ CollectibleArchive:
     name: 'Vintage Saalfield: Piggy''s Coloring Book'
     slug: vintage-saalfield-piggys-coloring-book
     description: "<p>Piggy's Coloring Book, Saalfield Publishing Company. No year. Saalfield # 336 ~ cost of only 5 cents! Art on cover credited as Mager. Measures 8 x 5.5 inches. Condition Bottom front cover corner missing (please view photo). A few pages are colored. Secure staple binding, no rust. Pages starting to tan with age. Overall very nice for an old child's coloring book.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5058,6 +5479,7 @@ CollectibleArchive:
     name: 'Vintage Wooden Recipe Scrapbook'
     slug: vintage-wooden-recipe-scrapbook
     description: "<p>Wooden boards with black &amp; white painted domestic kitchen scene. Plastic rings in 3-ring punch-esque holes with fragile old paper to glue &amp; write recipes in. Four pages with glued recipes -- loose, no longer attached to rings. Lots of blank (and tanning) pages. Measures approximately 10 x 8 inches.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5070,6 +5492,7 @@ CollectibleArchive:
     name: 'Art of the Potter by William Bowyer Honey'
     slug: art-of-the-potter-by-william-bowyer-honey
     description: "<p>The Art of the Potter: A Book for the Collector and Connoisseur by William Bowyer Honey, Beechhurst Press, 1955. Concise and invaluable manual for the collector and connoisseur of pottery. I. Introduction: The Collector and the Community II. Notes on the Technique and Aesthetics of Pottery, including materials, process, form, decoration, figure modeling &amp; color. III. Three types of Excellence in Pottery, including Corean Wares of the Yi Dynasty, the beginnings of Porcelain in Europe &amp; Modern English Pottery &amp; porcelain. And an Index. Many black &amp; white photos of pottery pieces -- 160 plates. Some names, periods and makers included: prehistoric pottery, Doulton &amp; Co., Lambeth, Joseph Bourne &amp; Son, Perian, Greek, Italian, Faenza, Staffordshire, African, Thuringian, Chinese, Ludwigsburg, Meissen, figurines, tableware, earthenware, Wedgewood and many more. First U.S. edition. Hardcover, measuring nearly 10 inches x 6.25 inches, 111 pages. Sound binding, minimal wear to boards. Free ned pages starting to tan. Old price written on inside front flap of jacket. No other writings or markings found. Dustjacket has chips, please see photo &amp; contact if you have questions!</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5082,6 +5505,7 @@ CollectibleArchive:
     name: '1950s Full Apron Pattern'
     slug: 1950s-full-apron-pattern
     description: "<p>Advance printed pattern number 8163 Full apron, with bib top and full pockets, circa 1950s. Pattern is cut, but in fine shape. All pieces &amp; instruction sheet included. Size Medium</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5094,6 +5518,7 @@ CollectibleArchive:
     name: 'Adorable Vintage Girls Dress Pattern'
     slug: adorable-vintage-girls-dress-pattern
     description: "<p>Butterick number 4215 - a one-piece girls dress with inverted pleats in front &amp; back. Options: A high yoke with either a high scoop neckline or a large Peter Pan collar, A short or full lenght sleeves. She'll be even more adorable than ever! Size 3, breast 22. Conditions: Complete &amp; neat. Cut, but does not appear used. Envelope is also in lovely shape. Authentic vintage pattern, not a copy!</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5106,6 +5531,7 @@ CollectibleArchive:
     name: 'Simplicity Toddler''s Bathing Suits &amp; Cover Up'
     slug: simplicity-toddlers-bathing-suits-amp-cover-up
     description: "<p>Charming collection of toddler beachwear: Girls' Bathing Suit (top &amp; panties), Boy's Bathing Suit (shorts), and Overblouse (coverup). Simplicity pattern No 6520, © 1968, Toddler Size 2. Pattern is complete, including transfer for the fish applique.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5118,6 +5544,7 @@ CollectibleArchive:
     name: 'Smurf King for a Day Smurf Puppet Book'
     slug: smurf-king-for-a-day-smurf-puppet-book
     description: "<p>Smurf King for a Day: a Puppet Book copyright 1983 by Peyo The PaPa Smurf puppet is attached to the back cover of the book. There is a die-cut opening on all of the pages which the fabric puppet appears through. Harcover book with thicker pages, measures 7 1/4 x 9 1/4 inches. Conditions: Gently used condition. A nice find for the collector!</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5130,6 +5557,7 @@ CollectibleArchive:
     name: 'Vintage Sun Rubber Squeaky Doll Tod-L-Tim'
     slug: vintage-sun-rubber-squeaky-doll-tod-l-tim
     description: "<p>Tod-L-Tim has molded painted hair, a one-piece bodysuit or underwear, socks &amp; shoes. His brown eyes are plastic inserts, his mouth his opened. The details on this Tod-L doll are really nice, even if the relatively 'sloppy' mold lines are rather obvious. Still soft, no tears &amp; still squeaks! Tim needs a bath, but it's been a long time since he's had proper care. Measures 10.25 inches tall. On the bottom of this right foot it reads: TOD-L-TIM © The Sun Rubber Co, Barberton, O (for Ohio) U.S.A.</p>\n"
+    num_views: '0'
     num_comments: '1'
     score: '0'
     is_name_automatic: '0'
@@ -5142,6 +5570,7 @@ CollectibleArchive:
     name: 'Dollspart Catalog 1977-1978'
     slug: dollspart-catalog-1977-1978
     description: "<p>Dollspart, Anything and Everything for Dolls, catalog, 1977-1978. Inventory/stock numbers and black and white images for 'anything and everything for dolls' in '77 and '78. Includes wigs, doll house miniatures furniture kits, pressed faces, antique doll replicas, reproduction kits, doll shoes, doll clothes, glass eyes, stuffed bodies etc., as well as bisque, composition and china parts. Nifty for the collector, creator, and repair person to identify parts. Top right corner crease/fold, previous owner's name on front cover, otherwise very clean and bright. Sound binding.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5154,6 +5583,7 @@ CollectibleArchive:
     name: 'Vintage Hollywood Doll Lucky Star Box &amp; Booklet'
     slug: vintage-hollywood-doll-lucky-star-box-amp-booklet
     description: "<p>Lovely box for Hollywood Dolls, with pretty blue stars &amp; the company logo printed on it. If you've got the doll, you want the box! The box &amp; paper insert are the only parts included - no doll! Box measures 7.25 x 7.25 x 2.75 inches. It has the original silver lable with hot pink print which reads: A Hollywood Doll, Hollywood Lucky Star Series, Reg Trade Mark, with Horoscope for Saggittarius, Nov 22 to Dec 21, copyright 1944 by Hollwydoo Doll Mfg. Co, Glendale 1, California. The paper insert measures 5 x 3.5 inches, and lists all the series (presumably) of the time.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5166,6 +5596,7 @@ CollectibleArchive:
     name: 'Vintage Hollywood Doll Storybook - Fur Trim &amp; Muff'
     slug: vintage-hollywood-doll-storybook-fur-trim-amp-muff
     description: "<p>A very pretty hard plastic doll with working sleep eyes, painted eyelashes and shoes, in a lovely detailed outfit. She is 5 inches tall, has a pretty blonde hair, painted lips &amp; lashes, and her arms &amp; legs are jointed. Her tummy is 'pudgey' not slim. She is 5 inches tall, has a pretty blonde hair, painted lips &amp; lashes, and her arms &amp; legs are jointed. Her tummy is 'pudgey' not slim. Condition No cracks or breaks, limbs head &amp; eyes all move appropriately. Her hair is mussed, but not damaged. Her little underpants are still taped, held together with a pin. On the bottoms of her little white painted shoes, a penciled number 7 on one, 0 on the other. No other flaws found.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5178,6 +5609,7 @@ CollectibleArchive:
     name: 'Vintage Little Dressmaker Box'
     slug: vintage-little-dressmaker-box
     description: "<p>The box for the Little Dressmaker kit. Made by De Luxe Game Corp, New York, the kit was considered an educational toy to teach young girls how to sew and make clothing - by making clothing for dolls. De Luxe Game Corp # 7131 - we are not certain of the year of this vintage item, dates range from the 30's to 50's. The box resembles a suitcase, with a latch &amp; handle. This is for the box only - as collectors, we cannot bear to toss out boxes. Knowing we would scream in agony if someone threw away boxes for our goodies, we won't be ressponsible for the screams of others! Conditions: Hinge is intact (so this box is in one piece!), the latch works, the metal handle is also intact &amp; strong. Bottom of the box has grease pencil writing (only 10 characters). There are some broken corners on the box lid, along with scuffs &amp; paper lifts where the cardboard shows through. One tear on the lid, near latch (shown in the photo.) The graphics are bright &amp; charming. Please view the photos, and ask questions!</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5190,6 +5622,7 @@ CollectibleArchive:
     name: 'Retro Liddle Kiddle Doll?'
     slug: retro-liddle-kiddle-doll
     description: "<p>I think this dear it a Liddle Kiddle, however, she is not marked Mattel, but rather just has \"Made in Hong Kong\" on her back. There are no markings/information on the back of her head, and she wears the plastic panties which I did not wish to remove. She has auburn hair, blue eyes (looking to her right), and one pink blush marking on her right cheek. She stands just under 3 inches tall. Conditions: Head turns, plastic intact, one small 'smudge' on her left cheek. Her hair looks as if it was originally in a ponytail, but seems fine.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5202,6 +5635,7 @@ CollectibleArchive:
     name: 'Vintage Embroidered Wool Felt Baby Booties'
     slug: vintage-embroidered-wool-felt-baby-booties
     description: "<p>This sweet pair of baby booties has lots of nice details. A soft cream color with pretty pastel floral embroidery along the top. Made of of wool felt, these booties have suede sole bottoms, ivory laces, and metal eyelets. Conditions: The right bootie has a few areas where moths had a picnic (see photo below), but properly placed on a doll, they may never be noticed. Slight wear to soles and tips of toes. No odor problems. Stuffed with tissue, these booties have been well cared for at the estate we found them at. Circa 1940's is our best guess.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5214,6 +5648,7 @@ CollectibleArchive:
     name: 'Antique Horsman Can''t Break Em Doll'
     slug: antique-horsman-cant-break-em-doll
     description: "<p>This antique composition doll has a sawdust stuffed cloth body and jointed legs. We think this blue stripped outfit is the orginal. (It is held at the nape of the neck with a pin.) On the back of the neck this doll is marked EIH © 1911. After some thorough research, we believe this to be one of the Horsman Can't Break 'Em character dolls -- and also the first in the Gold Medal Baby series, its face having been created by Helen Fox Trowbridge. This head was sculpted in 1911 using her own one-year-old son, Mason Jr., as the model. This was the first time, the first in the series that Horsman called the Gold Medal Baby, that this mold was used. The doll measures 12 inches. We've taken lots of photos to show conditions, including the broken fingertips on the right hand, the wear on the left foot (likely from some child's sucking, and the wear on the head. All the joints are flexible and move nicely. Overall, we are impressed with this old fragile doll's beauty &amp; charm -- and we hope you are too because he needs a loving home!</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5226,6 +5661,7 @@ CollectibleArchive:
     name: 'Original Jane West Figure Marx 1965'
     slug: original-jane-west-figure-marx-1965
     description: "<p>Jane West figure, turquoise with blond hair (red headband). This is the original \"short face\" version made by Marx in 1965. Vintage Jane West Action Figure Jane comes with her skirt and vest. She needs a bath has some scuffs (dusty trail and all that), and her skirt has a larger tear than the original opening, but it still fits and the waistband closes, but she's in good shape.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5238,6 +5674,7 @@ CollectibleArchive:
     name: 'What Do Doozers Do? ~ Fraggle Rock Book'
     slug: what-do-doozers-do-fraggle-rock-book
     description: "<p>A Fraggle Rock Book Starring Jim Henson's Muppets: What Do Doozers Do?, by Michaela Muntean, pictures by Sue Venning, copyright 1984 Muppet Press, Holt, Rinehart &amp; Winston, New York. Hardcover, 8.25 square inches. Highly collectible book! Conditions Modest wear to covers, sound binding. A few scuff marks inside front board, but no writings or rips. Nice!</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5250,6 +5687,7 @@ CollectibleArchive:
     name: 'Ruth Dixon Little Friends ~ Real Live Animal Book'
     slug: ruth-dixon-little-friends-real-live-animal-book
     description: "<p>Sit down, this is so cute, you won't be able to stand it! Little Friends: Kittens, Puppies, Bunnies, written by Ruth Dixon, photographs by Rie Gaddis, copyright 1951 by Rand McNally &amp; Company, Chicago. This is the 'U.S.A. Edition of 1962.' Elf Book # 8408 (8408:25 on back) Absolutely adorable illustrations ~ I mean, just look at 'em! Why are those pictures so darn cute?! Glad you asked! They are so darn adorable because this is one of the books from the series using real photographs ~ A Real Live Animal Book. \"The remarkable photographs of real, live animals in LITTLE FRIENDS: KITTENS, PUPPIES, BUNNIES were made by the well-known photographer, Miss Rie Gaddis. It was only by use of unlimited patience and extremely genlte care with the animals at all tmes that Miss Gaddiss was able to achieve these unusual pictures.\" (That's how they used to say 'No animals were harmed in the production of this book!) Anyway, this book ~ and the other one we have listed now ~ can be yours to treasure, either as an old lost friend, or a new one! Condition Preivious owner's name inside front cover ('Blake' in what looks like colored pencil). No other marks. No rips. Crisp pages, but they are starting to tan with age. Sound binding. Minimal wear to cover boards. In super collectible shape!</p>\n"
+    num_views: '0'
     num_comments: '1'
     score: '0'
     is_name_automatic: '0'
@@ -5262,6 +5700,7 @@ CollectibleArchive:
     name: 'Harvey the Invisible Rabbit Coloring Book'
     slug: harvey-the-invisible-rabbit-coloring-book
     description: "<p>Harvey the Invisible Rabbit's Own Coloring Book, Authorized Edition, The Saalfield Publishing Company, Akron, Ohio, New York. A cute coloring book based upon the character from the Jimmy Stewart movie -- or, as printed on the title page: \"HARVEY is an invisible rabbit, but he can be seen in this book by all good children! HARVEY is 6 feet, 1 1/2 inches tall with his ears down! HARVEY has come straight from New York City where he is the leading character in the Pulitzer Prize Play written by Mary Chase. In that play he delights hundreds of thousands of people. Now he comes to delight children all over this land in this brand new coloring book!\" Measures 15 x 9 inches. Conditions: Cover wear, including tears, mostly on back cover, please view photos. Most pages are colored. Staple bound, but not all pages are secure. No credits for artist; no year or copyright listed. The cover has a '3' printed on it, lower left -- where the tear is, so the number likely is not complete. Based on the text quoted above, this seems to predate the film. Please, contact us with questions!</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5274,6 +5713,7 @@ CollectibleArchive:
     name: 'Workbench Nov-Dec 1967'
     slug: workbench-nov-dec-1967
     description: "<p>Workbench magazine, November-December, 1967</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5286,6 +5726,7 @@ CollectibleArchive:
     name: 'Esquire December 1965'
     slug: esquire-december-1965
     description: "<p>Esquire magazine, 1965, December issue.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5298,6 +5739,7 @@ CollectibleArchive:
     name: 'Almquist Engineering Co Catalog 1959'
     slug: almquist-engineering-co-catalog-1959
     description: "<p>Almquist Equipment of Champions, 1959, Almquist Engineering Co., Inc, Milford PA. Minor wear to covers, some chipping at page edges, sound binding, no writings found.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5310,6 +5752,7 @@ CollectibleArchive:
     name: 'Almquist Engineering Co Catalog 1960'
     slug: almquist-engineering-co-catalog-1960
     description: "<p>Almquist Equipment of Champions, 1960, Almquist Engineering Co., Inc, Milford PA. Minor wear to covers, some chipping at page edges, sound binding, no writings found.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5322,6 +5765,7 @@ CollectibleArchive:
     name: 'Chefmaster Catalog'
     slug: chefmaster-catalog
     description: "<p>Chefmaster Food Decorating Supplies, Catalog No. 10</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5334,6 +5778,7 @@ CollectibleArchive:
     name: 'Cake Baking Made Easy With Airy Fairy'
     slug: cake-baking-made-easy-with-airy-fairy
     description: "<p>\"Delicious Cakes for Every Occasion from 6 Foundation Recipes\" from Airy Fairy Cake Flour, Priscilla Proving Plant, copyright 1932, Commander Larabee Corporation, Minneapolis, Minn.</p>\n"
+    num_views: '0'
     num_comments: '2'
     score: '0'
     is_name_automatic: '0'
@@ -5346,6 +5791,7 @@ CollectibleArchive:
     name: 'Haggadah for The American Family'
     slug: haggadah-for-the-american-family
     description: "<p>English Service With Directions (Separate complete Hebrew Service Included, starting from the Right Side) Copyright 1958, 1963 and 1966 by Martin Berkowitz, Rabbi, Temple Adath Israel of the Main Line, Merion, Pennsylvania. Some advertising from Standard Brands Incorporated, NY. (I have two copies, in very clean conditions; sound staple binding.)</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5358,6 +5804,7 @@ CollectibleArchive:
     name: 'Popular Mechanics June 1957'
     slug: popular-mechanics-june-1957
     description: "<p>Cover feature articles: What owners say about the '57 Buick, How to guard your home from windstorms, Read \"We Chase the Jets on Film\"</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5370,6 +5817,7 @@ CollectibleArchive:
     name: 'Wee Wisdom July 1964'
     slug: wee-wisdom-july-1964
     description: "<p>My mom gave me this because of the Great Dane on the cover ;)</p>\n"
+    num_views: '0'
     num_comments: '1'
     score: '0'
     is_name_automatic: '0'
@@ -5382,6 +5830,7 @@ CollectibleArchive:
     name: 'Tex Motion Picture Cover'
     slug: tex-motion-picture-cover
     description: "<p>Tex, by S.E. Hinton, with film cover featuring Matt Dillon on motorcycle. August 1982 Laurel-Leaf paperback edition.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5394,6 +5843,7 @@ CollectibleArchive:
     name: 'Airs Above The Ground'
     slug: airs-above-the-ground
     description: "<p>Gothic romance by Mary Stewart, copyright 1965, 6th Fawcett Crest printing April 1970.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5406,6 +5856,7 @@ CollectibleArchive:
     name: 'Your Frigidaire Recipes'
     slug: your-frigidaire-recipes
     description: "<p>Prepared by Home Economics Department, Frigidaire Division, General Motors Sales Corporation, Dayton, Ohio, copyright 1937.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5418,6 +5869,7 @@ CollectibleArchive:
     name: 'Creative Cooking with Cottage Cheese'
     slug: creative-cooking-with-cottage-cheese
     description: "<p>From the American Dairy Association Test Kitchen, G442-A</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5430,6 +5882,7 @@ CollectibleArchive:
     name: 'Kam-Kap "Kook-Put" Cook Book'
     slug: kam-kap-kook-put-cook-book
     description: "<p>Three k's in the title, rather creepy...</p>\n"
+    num_views: '0'
     num_comments: '1'
     score: '0'
     is_name_automatic: '0'
@@ -5442,6 +5895,7 @@ CollectibleArchive:
     name: 'Vintage Squeaky Toy Made In Taiwan'
     slug: vintage-squeaky-toy-made-in-taiwan
     description: "<p>Rubber squeaky toy, marked made in Taiwan. I think, due to the spots, it's a baby cheetah (or, it could be a fanciful mouse), wearing a bow tie. Stands 5 1/2 inches tall. Squeaks, but hole cover missing (see other photos). Paint rubbings &amp; wear, but cute &amp; rare enough to display.</p>\n"
+    num_views: '0'
     num_comments: '1'
     score: '0'
     is_name_automatic: '0'
@@ -5454,6 +5908,7 @@ CollectibleArchive:
     name: 'Vintage Alan Jay Clarolyte Tiger With Bottle'
     slug: vintage-alan-jay-clarolyte-tiger-with-bottle
     description: "<p>Vintage Clarolyte rubber squeaky toy by Alan Jay (marked on back, see other photos). Baby tiger holding a baby bottle -- looks a lot like a baby Tony the Tiger! Stands 7.25 inches tall. Still squeaks, but squeaker hole covering is no longer perfect. Signs of wear, including paint rubbings; see photos and ask questions.</p>\n"
+    num_views: '0'
     num_comments: '1'
     score: '0'
     is_name_automatic: '0'
@@ -5466,6 +5921,7 @@ CollectibleArchive:
     name: 'Retro Sawdust Stuffed Flirty Octopus!'
     slug: retro-sawdust-stuffed-flirty-octopus
     description: "<p>What a wild, flirty female octopus! She winks, she's got kissy lips, a jaunty hat, and a seed bead necklace too! Velvety red sawdust stuffed retro octopus with applique facial features. Some of her legs contain wires, so you can pose them! Appears as if the top of her hat is missing a 'lid' (perhaps she flipped it with all that flirting?) so you can see the top of her head. One tentacle has worn/threadbare spot. Green stitch on raised tentacle suggests she may have once held something. Otherwise, modest signs of wear/age. Measures approximately 5 inches tall.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5478,6 +5934,7 @@ CollectibleArchive:
     name: 'Vintage Rubber Face Black &amp; White Bear'
     slug: vintage-rubber-face-black-amp-white-bear
     description: "<p>Little plus bear with an adorable rubber or masked face with molded lines for more hair/fur and other facial features. 'She' has black eyes (with blue shadow/shading), which peer to her left. The mouth is slightly open, showing some teeth. This vintage plush or stuffed bear has no tags, so I don't know who made her -- Knickerbocker, Rushton, or My Toy maybe? -- but if you do, please do tell! She has been repaired/resewn at the back of her neck. Red satin ribbon appears original. Painting in nice shape, fur is soft. Does sit by herself too. Approximately 8 inches tall.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5490,6 +5947,7 @@ CollectibleArchive:
     name: 'Big Toe Joe'
     slug: big-toe-joe
     description: "<p>Retro handmade doll. Folk art? Maybe. But a well-loved toy for sure.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5502,6 +5960,7 @@ CollectibleArchive:
     name: 'How To Be Your Own Decorator'
     slug: how-to-be-your-own-decorator
     description: "<p>By Helen Koues, Director of Good Housekeeping Studio, copyright 1926 by Good Housekeeping Magazine, second edition, printed April, 1927,</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5514,6 +5973,7 @@ CollectibleArchive:
     name: 'Family Circle, February, 1970'
     slug: family-circle-february-1970
     description: "<p>February, 1970 issue of Family Circle</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5526,6 +5986,7 @@ CollectibleArchive:
     name: 'The Dude, September, 1961'
     slug: the-dude-september-1961
     description: "<p>The Dude: The Magazine Devoted To Pleasure</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5538,6 +5999,7 @@ CollectibleArchive:
     name: 'Cosmopolitan, June, 1988'
     slug: cosmopolitan-june-1988
     description: "<p>Cosmo</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5550,6 +6012,7 @@ CollectibleArchive:
     name: 'Tiltin'' Milton'
     slug: tiltin-milton
     description: "<p>The Tiltin' Milton Game, copyright 1968, Ideal Toy Corp, # 2352-3</p>\n"
+    num_views: '0'
     num_comments: '1'
     score: '0'
     is_name_automatic: '0'
@@ -5562,6 +6025,7 @@ CollectibleArchive:
     name: 'Star Doily Book # 137'
     slug: star-doily-book-137
     description: "<p>American Thread Company's Star Doily Book No. 137, originally old for 10 cents. Novelty, Conventional, Ruffle, Pansy, &amp; other Flower patterns. Clean, sound binding!</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5574,6 +6038,7 @@ CollectibleArchive:
     name: 'Table Topics No 185'
     slug: table-topics-no-185
     description: "<p>Table Topics, book No. 185, patterns for crocheting tablecloths; copyright 1942, The Spool Cotton Company. Summer Snowflake Iris Arrangement Page Polka Dots Sunburst Splendour Spinning Wheel Good Companions (doilies) Country Cousin (placemats) Memory Lane Salute to the Pineapple (41 inch \"snack party\" size and 72 inch \"Festive Family Party\" size) Flower Fable Today's Heritage Spring Fantasy Four Leaf Clover Early American At Your Service! (serving tray cloth) Trailing Vine (linen centered bridge table cloth) Lady Bountiful Martha Washington 31 pages, sound stable binding, no marks other than on the cover.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5586,6 +6051,7 @@ CollectibleArchive:
     name: 'Laces &amp; Edgings #199'
     slug: laces-amp-edgings-199
     description: "<p>The Spool Cotton Company (J. &amp; P. Coats, Clark's O.N. T), Laces And Edgings, Book No. 199, copyright 1943 (H-4427 C-20) Patterns for crocheting and knitting fine lace and edging for linens; 23 pages. Cover has separated &amp; is split, a few small chips, some small pencil markings, and other signs of wear.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5598,6 +6064,7 @@ CollectibleArchive:
     name: 'White Antique Beaded Bag With Long Fringe'
     slug: white-antique-beaded-bag-with-long-fringe
     description: "<p>This dreamy creamy white antique hand beaded bag is a square 4 1/2 by 4 /12/ inches, but it's placed into the frame on an angle so that it looks diamond shaped. Very long 3 inch beaded fringes. Glass beads are clear over white thread (silk lining). The frame is embossed with leaves -- and the clasps are acorns!</p>\n"
+    num_views: '0'
     num_comments: '1'
     score: '0'
     is_name_automatic: '0'
@@ -5610,6 +6077,7 @@ CollectibleArchive:
     name: 'Antique Armor Mesh Bag'
     slug: antique-armor-mesh-bag
     description: "<p>1902'-ish mesh bag with a round frame opening and mirror inside ornate embossed lid fro which a long cylindrical pouch (4 1/2 inches of metal mesh) hangs.</p>\n"
+    num_views: '0'
     num_comments: '2'
     score: '0'
     is_name_automatic: '0'
@@ -5622,6 +6090,7 @@ CollectibleArchive:
     name: 'Y&amp;R Soap Opera Challenge Game'
     slug: yampr-soap-opera-challenge-game
     description: "<p>1987 Soap Opera Challenge; this particular game in the series by The United States Playing Card Company is based on television’s The Young and the Restless daytime soap.</p>\n"
+    num_views: '0'
     num_comments: '1'
     score: '0'
     is_name_automatic: '0'
@@ -5634,6 +6103,7 @@ CollectibleArchive:
     name: 'Retro Flocked Plastic Dog Bank'
     slug: retro-flocked-plastic-dog-bank
     description: "<p>He may not be incredibly rare or perfect, but this old dog begged to follow me home. The plastic red stopper at the bottom to get the change out states it was made in Hong Kong; foil tag says the piece was hand painted. Bright plastic eyes. He measures 6.5 inches tall. Looks like a Cocker Spaniel to me.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5646,6 +6116,7 @@ CollectibleArchive:
     name: 'Vintage Composition Dog'
     slug: vintage-composition-dog
     description: "<p>Unusually large (to me anyway) 5 inch high yellow (lab?) dog made of composition.</p>\n"
+    num_views: '0'
     num_comments: '2'
     score: '0'
     is_name_automatic: '0'
@@ -5658,6 +6129,7 @@ CollectibleArchive:
     name: 'Vintage Ad Piece For See ''em Walk Dog (Toy)'
     slug: vintage-ad-piece-for-see-em-walk-dog-toy
     description: "<p>Vintage ad flyer/insert for See 'em Walk Dog, pull-toy dog by Noma Electric Corporation, product number 756.</p>\n"
+    num_views: '0'
     num_comments: '1'
     score: '0'
     is_name_automatic: '0'
@@ -5670,6 +6142,7 @@ CollectibleArchive:
     name: 'China bat ray'
     slug: china-bat-ray
     description: "<p>Very small figurine.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5682,6 +6155,7 @@ CollectibleArchive:
     name: 'Menopausal Women Nostalgic for Choice'
     slug: menopausal-women-nostalgic-for-choice
     description: "<p>Unknown maker, organization, or date.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5694,6 +6168,7 @@ CollectibleArchive:
     name: 'Retro 80s Michael Jackson Pin'
     slug: retro-80s-michael-jackson-pin
     description: "<p>One of my authentic MJ items from back in the day, this pin back button features Michael sporting a Jheri curl and a yellow bow tie.</p>\n"
+    num_views: '0'
     num_comments: '1'
     score: '0'
     is_name_automatic: '0'
@@ -5706,6 +6181,7 @@ CollectibleArchive:
     name: 'Vintage British Bobby Pin'
     slug: vintage-british-bobby-pin
     description: "<p>I'm rather sure this old police man pin is celluloid. On his raised hand you can still make out the word \"Stop.\" Marked Japan; about 1.5 inches long.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5718,6 +6194,7 @@ CollectibleArchive:
     name: '1954 General Drivers &amp; Helpers Union Pin'
     slug: 1954-general-drivers-amp-helpers-union-pin
     description: "<p>Vintage General Drivers and Helpers Union pin-back button, dated October-November-December, 1954</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5730,6 +6207,7 @@ CollectibleArchive:
     name: 'Armour Star Laughing Boy Pinback'
     slug: armour-star-laughing-boy-pinback
     description: "<p>All Right Laughing Boy with clown, inside is printed with Armour Star, Franks, with the \"Open fire\" flavor! (Very shiny gold, so it's difficult to photograph.)</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5742,6 +6220,7 @@ CollectibleArchive:
     name: 'We Build It Here Milwaukee Pin'
     slug: we-build-it-here-milwaukee-pin
     description: "<p>Pin-back button promoting Milwaukee as the \"construction capital of the world.\"</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5754,6 +6233,7 @@ CollectibleArchive:
     name: 'You''re Just Jealous'
     slug: youre-just-jealous
     description: "<p>Because the little voices talk to me.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5766,6 +6246,7 @@ CollectibleArchive:
     name: 'Dull Women Have Immaculate Homes'
     slug: dull-women-have-immaculate-homes
     description: "<p>Handmade pin-back button.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5778,6 +6259,7 @@ CollectibleArchive:
     name: 'Walden Books Yoda Pin'
     slug: walden-books-yoda-pin
     description: "<p>From my days as a Walden Books bookseller, a square Read You Will pin-back button.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5790,6 +6272,7 @@ CollectibleArchive:
     name: 'My Sawedust Stuffed Tiger, Tigger'
     slug: my-sawedust-stuffed-tiger-tigger
     description: "<p>My old pal.</p>\n"
+    num_views: '0'
     num_comments: '1'
     score: '0'
     is_name_automatic: '0'
@@ -5802,6 +6285,7 @@ CollectibleArchive:
     name: 'Vintage Yellowstone Park Souvenir Bear'
     slug: vintage-yellowstone-park-souvenir-bear
     description: "<p>This poor old guy is stuffed with straw. He's got bells that go jingle-jangle-jingle :)</p>\n"
+    num_views: '0'
     num_comments: '1'
     score: '0'
     is_name_automatic: '0'
@@ -5814,6 +6298,7 @@ CollectibleArchive:
     name: 'Vintage Sawdust Stuffed Dog'
     slug: vintage-sawdust-stuffed-dog
     description: "<p>He could be a sort of terrier, but he's like my mutt... Might be mohair.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5826,6 +6311,7 @@ CollectibleArchive:
     name: 'Squirrel With Nut'
     slug: squirrel-with-nut
     description: "<p>This time, I'm not the nut!</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5838,6 +6324,7 @@ CollectibleArchive:
     name: 'ANTIQUE EP MAGIC LANTERN OUTFIT WITH SLIDES &amp; BOX  c1880'
     slug: antique-ep-magic-lantern-outfit-with-slides-amp-box-c1880
     description: "<p>Early EP Magic Lantern outfit c1880's. Brass lens looks clear, has bronze toned paw feet. Stands approximately 13 inches high with chimney. Burner needs wicks &amp; fuel tank resolder. Comes with 10 viewable glass slides in need of edge rebinding. Has worn original box with label inside cover.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5851,6 +6338,7 @@ CollectibleArchive:
     name: 'LEITZ LEICA IIIa 35mm RANGEFINDER CAMERA W/ ELMAR LENS c1938'
     slug: leitz-leica-iiia-35mm-rangefinder-camera-w-elmar-lens-c1938
     description: "<p>A clean pre WWII Leica IIIa 35mm film rangefinder camera. Serial #269944 (circa 1938). Body shows wear, rubs, a few small dings, areas of light brassing. Has complete body covering. Rangefinder is in good working order &amp; shutter is operating smoothly. Nice Elmar 5cm f3.5 lens, Serial #278301 (circa 1936), clean barrel &amp; optics, no fungus. Comes with metal Leica front cap &amp; worn Leica leather case.  </p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5864,6 +6352,7 @@ CollectibleArchive:
     name: 'KODAK SIGNET 35 1950''s RETRO 35mm RANGEFINDER CAMERA'
     slug: kodak-signet-35-1950s-retro-35mm-rangefinder-camera
     description: "<p>A clean Kodak Signet 35 rangefinder camera from the 1950's. Serial #172324. In overall excellent condition, no dings, and has complete body covering. Rangefinder in good working order. Shutter responding, not tested with film. Clean Ektar 44mm f3.5 lens with Serial #RR1120L.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5877,6 +6366,7 @@ CollectibleArchive:
     name: 'EARLY WOODEN EASTMAN KODAK CAMERA TRIPOD W/ BALL HEAD c1900'
     slug: early-wooden-eastman-kodak-camera-tripod-w-ball-head-c1900
     description: "<p>A sturdy, well made wood &amp; brass camera tripod marked \"Eastman Kodak Company Patent Applied For\", circa early 1900's. Uncommon version with lever type leg locks, 4 section legs. All locks &amp; clamps are in good working order. Stands approximately 54 inches high fully extended. Very nice original finish. Rare early brass ball head included with 1/4 20 mounting threads.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5890,6 +6380,7 @@ CollectibleArchive:
     name: 'VOIGTLANDER VITESSA N 35mm RF CAMERA w/ SKOPAR, CASE &amp; IB c1954'
     slug: voigtlander-vitessa-n-35mm-rf-camera-w-skopar-case-amp-ib-c1954
     description: "<p><strong>A clean Voigtlander Vitessa N (134) 35mm rangefinder camera. No dings or dents, a few minor bright marks. Shutter &amp; advance plunger mechanism is in good working order. Advance/shutter setting plunger has leather glued on top of button. Viewfinder has good brightness, but rangefinder focusing spot is not visible. Camera does focus smoothly with front standard &amp; distance indicator dial moving properly. Synchro Compur shutter is in good working order, not tested with film. Voigtlander Color Skopar 50mm f3.5 lens, Serial #3820490, looks clear, no fungus. Camera comes with original leather case, worn but complete owner's manual, and product brochure. Offered as found.</strong></p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5903,6 +6394,7 @@ CollectibleArchive:
     name: 'NIKON F 35mm SLR CAMERA W/ STANDARD PRISM &amp; NIKKOR LENS'
     slug: nikon-f-35mm-slr-camera-w-standard-prism-amp-nikkor-lens
     description: "<p>A Nikon F 35mm SLR camera with standard eye level prism and Nikkor Q 135mm f3.5 lens. Camera shows Serial #6863780 and is in overall very good condition. No dings or dents, complete body covering with some light rubs &amp; bright marks overall. Shutter has smooth response. Standard prism has ex. appearance, only a few light rubs and a small area of separation visible in peak. Nikkor lens has serial #754858 with ex. cosmetics, no dings or dents, smooth focus, shows light film on aperture blades which are still responding nicely. Lens glass looks clean, clear, and fungus free. Comes with body cap for camera &amp; rear cap for lens.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5916,6 +6408,7 @@ CollectibleArchive:
     name: 'MINOX B SUBMINIATURE SPY CAMERA W/ CASE &amp; CHAIN '
     slug: minox-b-subminiature-spy-camera-w-case-amp-chain
     description: "<p>A Minox B subminature camera with leather case &amp; measuring chain. Serial #664416. Appearance is near mint, no dings or dents, and very clean. Shutter &amp; meter are showing good response. Complan 15mm lens looks clear. Collector grade example.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5929,6 +6422,7 @@ CollectibleArchive:
     name: 'MCINTOSH MC-30 POWER AMP TUBE AMPLIFIER A-116-B c1960''s'
     slug: mcintosh-mc-30-power-amp-tube-amplifier-a-116-b-c1960s
     description: "<p>Here is a well preserved classic McIntosh Model MC-30 Type A-116-B 30 watt mono amplifier, Serial #12547. Amp is clean with exterior showing some light pitting to chrome &amp; some wear/pitting to finish on transformer covers. Has recently been completely gone through &amp; professionally serviced. Amp will arrive with copy of service receipt and set to plug in &amp; use. Hard to find in ready-to-go working condition.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5942,6 +6436,7 @@ CollectibleArchive:
     name: 'PAILLARD BOLEX H-16M 16mm MOVIE CAMERA &amp; BERTHIOT ZOOM c1962 '
     slug: paillard-bolex-h-16m-16mm-movie-camera-amp-berthiot-zoom-c1962
     description: "<p>An uncommon Bolex H-16M 16mm movie camera, Serial #186216, with a Som Berthiot Pan-Cinor 17-85mm f2 zoom lens. Lens is also marked \"Bte' S.G.D.G.\" Camera is in excellent cosmetic condition, no dings or dents. Motor runs smoothly, untested with film. Lens has overall ex. barrel cosmetics, only a few small areas of wear mainly on edges &amp; high points. Glass looks clear &amp; fungus free. Zoom and focus operate smoothly. Has reflex finder with diopter adjustment &amp; rubber eye cup.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5955,6 +6450,7 @@ CollectibleArchive:
     name: 'IMG 2849'
     slug: img-2849
     description: "\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '1'
@@ -5968,6 +6464,7 @@ CollectibleArchive:
     name: 'IMG 2848'
     slug: img-2848
     description: "\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '1'
@@ -5981,6 +6478,7 @@ CollectibleArchive:
     name: 'Green Goblin'
     slug: green-goblin-aa68cc
     description: "<p>with translucent variant.</p>\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5994,6 +6492,7 @@ CollectibleArchive:
     name: 'IMG 3009'
     slug: img-3009
     description: "\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '1'
@@ -6007,6 +6506,7 @@ CollectibleArchive:
     name: 'IMG 3010'
     slug: img-3010
     description: "\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '1'
@@ -6020,6 +6520,7 @@ CollectibleArchive:
     name: 'IMG 3274'
     slug: img-3274
     description: "\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '1'
@@ -6033,6 +6534,7 @@ CollectibleArchive:
     name: 'IMG 3273'
     slug: img-3273
     description: "\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '1'
@@ -6046,6 +6548,7 @@ CollectibleArchive:
     name: 'IMG 3271'
     slug: img-3271
     description: "\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '1'
@@ -6059,6 +6562,7 @@ CollectibleArchive:
     name: 'IMG 3270'
     slug: img-3270
     description: "\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '1'
@@ -6072,6 +6576,7 @@ CollectibleArchive:
     name: 'IMG 3269'
     slug: img-3269
     description: "\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '1'
@@ -6085,6 +6590,7 @@ CollectibleArchive:
     name: 'IMG 3436'
     slug: img-3436
     description: "\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '1'
@@ -6098,6 +6604,7 @@ CollectibleArchive:
     name: 'IMG 3607'
     slug: img-3607
     description: "\n"
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '1'
@@ -6111,8 +6618,9 @@ CollectibleArchive:
     name: Collectible-31760
     slug: collectible-31760
     description: "<p>666</p>\n"
-    num_comments: '0'
     batch_hash: 1d634a5215f2689c329cb8314d9fc15c
+    num_views: '0'
+    num_comments: '0'
     score: '0'
     is_name_automatic: '0'
     updated_at: '2012-03-05 10:24:59'
@@ -6124,8 +6632,9 @@ CollectibleArchive:
     name: 'Brady bunch set'
     slug: brady-bunch-set
     description: "\n"
-    num_comments: '0'
     batch_hash: f4d9c188dd75ffd94e6ecb254b4ad757
+    num_views: '0'
+    num_comments: '0'
     score: '0'
     is_name_automatic: '1'
     updated_at: '2012-03-08 09:33:08'
@@ -6137,8 +6646,9 @@ CollectibleArchive:
     name: 'Brady bunch signatures'
     slug: brady-bunch-signatures
     description: "\n"
-    num_comments: '0'
     batch_hash: f4d9c188dd75ffd94e6ecb254b4ad757
+    num_views: '0'
+    num_comments: '0'
     score: '0'
     is_name_automatic: '1'
     updated_at: '2012-03-08 09:33:08'
@@ -6150,8 +6660,9 @@ CollectibleArchive:
     name: 'Brady bunch single card'
     slug: brady-bunch-single-card
     description: "\n"
-    num_comments: '0'
     batch_hash: f4d9c188dd75ffd94e6ecb254b4ad757
+    num_views: '0'
+    num_comments: '0'
     score: '0'
     is_name_automatic: '1'
     updated_at: '2012-03-08 09:33:08'
@@ -6163,8 +6674,9 @@ CollectibleArchive:
     name: 'Brady bunch trading cards'
     slug: brady-bunch-trading-cards
     description: "\n"
-    num_comments: '0'
     batch_hash: f4d9c188dd75ffd94e6ecb254b4ad757
+    num_views: '0'
+    num_comments: '0'
     score: '0'
     is_name_automatic: '1'
     updated_at: '2012-03-08 09:33:08'
@@ -6176,8 +6688,9 @@ CollectibleArchive:
     name: 'Marvel rittenhouse hulk'
     slug: marvel-rittenhouse-hulk
     description: "\n"
-    num_comments: '0'
     batch_hash: f4d9c188dd75ffd94e6ecb254b4ad757
+    num_views: '0'
+    num_comments: '0'
     score: '0'
     is_name_automatic: '1'
     updated_at: '2012-03-08 09:33:08'
@@ -6189,8 +6702,9 @@ CollectibleArchive:
     name: 'Marvel rittenhouse storm 1'
     slug: marvel-rittenhouse-storm-1
     description: "\n"
-    num_comments: '0'
     batch_hash: f4d9c188dd75ffd94e6ecb254b4ad757
+    num_views: '0'
+    num_comments: '0'
     score: '0'
     is_name_automatic: '1'
     updated_at: '2012-03-12 16:45:36'
@@ -6202,8 +6716,9 @@ CollectibleArchive:
     name: 'Marvel rittenhouse storm 2'
     slug: marvel-rittenhouse-storm-2
     description: "\n"
-    num_comments: '0'
     batch_hash: f4d9c188dd75ffd94e6ecb254b4ad757
+    num_views: '0'
+    num_comments: '0'
     score: '0'
     is_name_automatic: '1'
     updated_at: '2012-03-12 16:45:35'
@@ -6215,8 +6730,9 @@ CollectibleArchive:
     name: Marvel-frenzies-the-mighty-thor-68121
     slug: marvel-frenzies-the-mighty-thor-68121
     description: "<p>==</p>\n"
-    num_comments: '0'
     batch_hash: cb4304ba7bb9462c6b5951ca393cc2b2
+    num_views: '0'
+    num_comments: '0'
     score: '0'
     is_name_automatic: '0'
     updated_at: '2012-03-29 14:17:31'
@@ -6228,8 +6744,9 @@ CollectibleArchive:
     name: 'IMG 4730'
     slug: img-4730
     description: "<p>ee</p>\n"
-    num_comments: '0'
     batch_hash: 0f16e508376297abbc5767354d5404bf
+    num_views: '0'
+    num_comments: '0'
     score: '0'
     is_name_automatic: '0'
     updated_at: '2012-04-02 11:07:08'
@@ -6241,8 +6758,9 @@ CollectibleArchive:
     name: 'Eraseez Hulk'
     slug: eraseez-hulk
     description: "<p>From Bulls-i-Toy, a Hulk made of erasers!</p>\n"
-    num_comments: '0'
     batch_hash: 93bd617bc35cffb577e1de6bf4c12874
+    num_views: '0'
+    num_comments: '0'
     score: '0'
     is_name_automatic: '0'
     updated_at: '2012-04-02 11:12:36'
@@ -6254,8 +6772,9 @@ CollectibleArchive:
     name: Collectible-55739
     slug: collectible-55739
     description: "\n"
-    num_comments: '0'
     batch_hash: 816db528df7df6e613df2fff4897027d
+    num_views: '0'
+    num_comments: '0'
     score: '0'
     is_name_automatic: '1'
     updated_at: '2012-04-05 09:58:17'
@@ -6267,8 +6786,9 @@ CollectibleArchive:
     name: 'IMG 4763'
     slug: img-4763
     description: "\n"
-    num_comments: '0'
     batch_hash: 3cd33948363925c474f5204aaa602b35
+    num_views: '0'
+    num_comments: '0'
     score: '0'
     is_name_automatic: '1'
     updated_at: '2012-04-09 16:29:49'
