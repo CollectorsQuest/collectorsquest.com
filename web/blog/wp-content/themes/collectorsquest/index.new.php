@@ -65,14 +65,14 @@
 <?php } elseif (is_category()) { ?>
 <div class="row-fluid header-bar">
   <div class="span11">
-    <h1 class="Chivo webfont" style="visibility: visible; "><?php _e( 'Category Archives:', 'collectorsquest' ) ?> <span><?php single_cat_title() ?></span></h1>
+    <h1 class="Chivo webfont" style="visibility: visible; "><?php _e( 'Category Archive:', 'collectorsquest' ) ?> <span><?php single_cat_title() ?></span></h1>
       <?php $categorydesc = category_description(); if ( !empty($categorydesc) ) echo apply_filters( 'archive_meta', '<div class="archive-meta">' . $categorydesc . '</div>' ); ?>
   </div>
 </div>
 <?php } elseif (is_tag()) { ?>
 <div class="row-fluid header-bar">
   <div class="span11">
-    <h1 class="Chivo webfont" style="visibility: visible; "><?php _e( 'Tag Archives:', 'your-theme' ) ?> <span><?php single_tag_title() ?></span></h1>
+    <h1 class="Chivo webfont" style="visibility: visible; "><?php _e( 'Tag Archive:', 'your-theme' ) ?> <span><?php single_tag_title() ?></span></h1>
     <?php $categorydesc = category_description(); if ( !empty($categorydesc) ) echo apply_filters( 'archive_meta', '<div class="archive-meta">' . $categorydesc . '</div>' ); ?>
   </div>
 </div>
