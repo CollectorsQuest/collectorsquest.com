@@ -62,7 +62,7 @@ class CQ_Our_Bloggers_widget extends WP_Widget {
       $display_admins = false;
       $order_by = 'display_name'; // 'nicename', 'email', 'url', 'registered', 'display_name', or 'post_count'
       $role = 'author'; // 'subscriber', 'contributor', 'editor', 'author' - leave blank for 'all'
-      $avatar_size = 60;
+      $avatar_size = 40;
       $hide_empty = true; // hides authors with zero posts
 
       if (!empty($display_admins)) {
