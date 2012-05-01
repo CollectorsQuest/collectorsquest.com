@@ -1,146 +1,130 @@
 @import "../_variables.less";
 @import "../_mixins.less";
 
+
+#entry-image-box, #entry-image-box-button, .stArrow, #networkedblogs_nwidget_container, img#wpstats {
+	display: none !important
+}
 #body-_blog-index #main {
-  width: 620px !important
+	width: 620px !important
 }
-
-#entry-image-box, #entry-image-box-button, .stArrow, #networkedblogs_nwidget_container {
-  display: none !important
-}
-
 h2 a:hover {
-  border-bottom: 0px
+	border-bottom: 0px
 }
-
 .back-nav a {
-  color: @white;
-}
+	color: @white;
 
+}
 .entry-genre {
-  text-transform: uppercase;
-}
+	text-transform: uppercase;
 
+}
 .entry-genre a, .wp-caption-text, .entry-meta .meta-text {
-  font: 9pt arial !important;
-  color: #887777;
-}
+	font: 9pt arial !important;
+	color: #887777;
 
+}
 .entry-genre a:hover {
-  color: @red
-}
+	color: @red;
 
-.entry .wp-caption-text {
-  margin-left: 10px;
-  margin-top: 10px;
-  text-align: left
 }
-
 .author-image, #commentform, .permalinklink, .p-tag, .author-list .avatar, .meta-text, .p-1 .entry-footer p {
-  float: left;
-}
+	float: left;
 
-.alignright, .back-nav {
-  text-align: right
 }
-
 .alignright {
-  float: right;
-  margin-bottom: 10px;
-  margin-left:10px
+	float: right;
+	margin-bottom: 10px;
+	margin-left:10px;
+	text-align: right
 }
-
 .alignleft {
-  float: left;
-  margin-bottom: 10px;
-  margin-right:10px
+	float: left;
+	margin-bottom: 10px;
+	margin-right:10px
 }
-
 .aligncenter {
-  margin:0 auto;
-  margin-bottom: 10px;
-}
+	margin:0 auto;
+	margin-bottom: 10px;
 
+}
 .alignleft .wp-caption-text, .aligncenter .wp-caption-text {
-  margin-left: 0;
-}
+	margin-left: 0;
 
+}
 .wp-caption-text {
-  margin-top: 8px;
-  margin-bottom: 0
-}
+	margin: 8px 0 10px 0;
+	text-align: left;
 
+}
 .navigation {
-  clear: both;
-  padding: 10px 0
+	clear: both;
+	padding: 10px 0
 }
-
 .entry-share {
-  margin-top: 5px;
-}
+	margin-top: 5px;
 
+}
 .p-tag {
-  background: #e7e4e4;
-  padding: 0 10px;
-  color: #887777;
-  line-height: 24px;
-  margin: 5px;
-}
+	background: #e7e4e4;
+	padding: 0 10px;
+	color: #887777;
+	line-height: 24px;
+	margin: 5px;
 
+}
 .p-tag a {
-  color: #333;
-}
+	color: #333;
 
+}
 #widget-bloggers ul, #widgets, .author-list {
-  margin-left: 0;
-  margin-top: 20px
+	margin-left: 0;
+	margin-top: 20px
 }
-
 #widget-bloggers, .author-list {
-  list-style: none
+	list-style: none
 }
-
 #widget-bloggers ul li, .author-list li {
-  margin-bottom: 20px
+	margin-bottom: 20px
 }
-
 .author-list .avatar, .author-link {
-  margin-right: 20px
+	margin-right: 20px
 }
-
 .back-nav {
-  line-height: 20px
+	line-height: 20px;
+	text-align: right
 }
-
 .see-more-full {
-  width:95%;
-  margin:20px 0
-  }
-
-.st_sharethis_custom {
-  background: url("/blog/wp-content/themes/collectorsquest/img/share-button.jpg") no-repeat scroll left top transparent;
-  clear: none;
-  display: block;
-  height: 20px;
-  margin-left: 320px;
-  text-indent: -99999px;
-  width: 60px;
-  cursor: pointer;
+	width:95%;
+	margin:20px 0
 }
+.st_sharethis_custom {
+	background: url("/blog/wp-content/themes/collectorsquest/img/share-button.jpg") no-repeat scroll left top transparent;
+	clear: none;
+	display: block;
+	height: 20px;
+	margin-left: 320px;
+	text-indent: -99999px;
+	width: 60px;
+	cursor: pointer;
+
+}
+
 
 
 .news-front {
-  h2 {
+  .entry-title {
     line-height:28px;
-  }
+    }
+  .entry-image {
+    width:140px;
+    margin-right:20px;
+    float:left
+    }
   .post {
     float: left;
     border-top: 1px dashed #cccccc;
-    width:100%;
-    padding:10px 0
-  }
-  .p-1 {
-    padding-top:20px
+    width:100%;  padding:10px 0
     }
   .p-1 h2 {
     float: right;
@@ -148,85 +132,72 @@ h2 a:hover {
     font-size: 20pt;
     line-height: 24pt;
     width: 300px
-  }
+    }
   .p-1 .entry-image {
     float: left;
     margin-right: 20px;
     padding-top: 10px;
     width:300px
-  }
+    }
   .p-1 .entry-genre {
-    margin-top: 6px;
+    margin-top: 8px;
     position: absolute;
     left: 320px;
-  }
+    }
   .p-1 .meta-text {
     width:280px;
-  }
+    }
   .p-1 {
+    padding-top:20px;
     border-top:none;
     position: relative;
     margin-top: 10px;
     margin-bottom: 15px;
     padding-top:0
-  }
+    }
   .p-1 .entry, .p-1 .entry-footer {
     float:left;
     width:300px
-  }
-
+    }
   .p-2, .p-3 {
     float: left;
-  }
-  .entry-image {
-    width:140px;
-    margin-right:20px;
-    float:left
-  }
+    }
   .p-2 h2, .p-3 h2 {
     margin-top: 0px;
-  }
-  .p-3 {
-  }
-  .p-4 {
-  clear:left
-  }
+    }
   .last {
     margin-right: 0
-  }
-  .p-9, .p-13 {
-  clear:left
-  }
+    }
+  .p-4, .p-9, .p-13 {
+    clear:left
+    }
 }
 
 .singular {
   h2 {
     margin-top: 20px
-  }
-  .entry, .entry p {
-      font-size: 14px;
-      line-height: 20px;
     }
-  .p-1 .entry-genre {
-    margin-top: 8px
-  }
+  .entry, .entry p {
+    font-size: 14px;
+    line-height: 20px;
+    }
   .entry-meta {
-      padding: 6px;
-      background-color: #e6f2f9;
-      margin: 10px 0;
-      width: 609px;
-      color: #333;
-      float: left
+    padding: 6px;
+    background-color: #e6f2f9;
+    margin: 10px 0;
+    width: 609px;
+    color: #333;
+    float: left
     }
   .entry-footer {
     display: block;
     clear: both;
-  }
+    }
   .author-info {
     float:left;
     margin-top:10px;
     margin-left:10px;
-  }
+    }
 }
 
 .not-singular {
@@ -238,7 +209,6 @@ h2 a:hover {
     padding:10px 0 0 0;
     border-bottom:1px dashed #ccc
     }
-
   .entry-image {
     width:140px;
     float:left;
@@ -248,11 +218,9 @@ h2 a:hover {
     margin:0  0 10px 0
     }
   .author-image {
-  margin-top:-2px
-  }
-
+    margin-top:-2px
+    }
 }
-
 
 .not-singular, .news-front {
   .meta-text {
@@ -263,53 +231,35 @@ h2 a:hover {
     margin-right:5px;
     margin-top:-2px
     }
-
   .post h2, .entry {
     width:460px;
     float:left
     }
 }
 
-.author-list li {
-  float:left;
-  width:100%
-  }
 
-
-
-.author-name {
-  float: left;
-  font-size: 14pt;
-  margin-top: 18px;
-  }
 
 
 .addthis_button_facebook_like {
   width: 46px;
   overflow: hidden;
   margin-top:2px
-}
+  }
 .addthis_button_tweet {
   width: 54px;
   overflow: hidden;
   margin-top:2px
-}
+  }
 .addthis_button_pinterest_pinit {
   width: 50px;
   height: 24px
-}
+  }
 .addthis_button_google_plusone {
-margin-top:2px
-}
+  margin-top:2px
+  }
 .addthis_button_email {
-margin-top:4px
-}
-
-// http://wordpress.org/support/topic/avoid-wp-stats-little-face-at-the-bottom-of-my-pages
-img#wpstats {
-  display:none
-}
-
+  margin-top:4px
+  }
 
 #author-info-box {
   float:left;
@@ -317,26 +267,35 @@ img#wpstats {
   margin-top:20px;
   padding-bottom:20px;
   border-bottom:1px dashed #cccccc
-}
+  }
+.author-list li {
+  float:left;
+  width:100%
+  }
+.author-name {
+  float: left;
+  font-size: 14pt;
+  margin-top: 18px;
+  }
 .author-avatar {
   float:left;
   margin:0 20px 20px 0
-}
+  }
 .author-bio {
   float:left;
   width:460px;
   }
 
-
 .header-bar h1 span {
-            -moz-transform: rotate(0.000475deg);
-            color: #fff;
-            font-size: 20px;
-            font-style: italic;
-            font-weight: normal;
-            line-height: 22px;
-            text-transform:capitalize;
-        }
+  -moz-transform: rotate(0.000475deg);
+  color: #fff;
+  font-size: 20px;
+  font-style: italic;
+  font-weight: normal;
+  line-height: 22px;
+  text-transform:capitalize;
+  }
+
 .sidebar-title {
   margin-top:20px !important
-}
+  }
