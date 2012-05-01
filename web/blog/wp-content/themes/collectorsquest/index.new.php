@@ -27,68 +27,54 @@
 
 ?>
 
-
-<?php if (is_single()) { ?>
 <div class="row-fluid header-bar">
-  <div class="span7">
-    <h1 class="Chivo webfont" style="visibility: visible; ">Blog Post</h1>
-  </div>
-  <div class="back-nav span5">
-    <a href="/blog/">Back to Latest News &rarr;</a>
-  </div>
-</div>
-<?php } elseif (is_front_page()) { ?>
-<div class="row-fluid header-bar">
-  <div class="span11">
-    <h1 class="Chivo webfont" style="visibility: visible; ">Latest News</h1>
-  </div>
-</div>
-<?php } elseif (is_author()) { ?>
-<div class="row-fluid header-bar">
-  <div class="span11">
-    <h1 class="Chivo webfont" style="visibility: visible; ">Blogger: <?php the_author() ?></h1>
-  </div>
-</div>
+  <?php if (is_single()) { ?>
+    <div class="span7">
+      <h1 class="Chivo webfont" style="visibility: visible; ">Blog Post</h1>
+    </div>
+    <div class="back-nav span5">
+      <a href="/blog/">Back to Latest News &rarr;</a>
+    </div>
+  <?php } elseif (is_front_page()) { ?>
+    <div class="span11">
+      <h1 class="Chivo webfont" style="visibility: visible; ">Latest News</h1>
+    </div>
+  <?php } elseif (is_author()) { ?>
+    <div class="span11">
+      <h1 class="Chivo webfont" style="visibility: visible; ">Blogger: <?php the_author() ?></h1>
+    </div>
 
-<!-- This sets the $curauth variable -->
+  <!-- This sets the $curauth variable -->
 
-<?php $curauth = (isset($_GET['author_name'])) ? get_user_by('slug', $author_name) : get_userdata(intval($author)); ?>
+  <?php $curauth = (isset($_GET['author_name'])) ? get_user_by('slug', $author_name) : get_userdata(intval($author)); ?>
 
-<div id="author-info-box">
-  <div class="author-avatar">
-    <?php echo get_avatar(get_the_author_meta('ID'),140) //<img src="http://placekitten.com/33/33" alt="" width="33" height="33"/> ?>
+  <div id="author-info-box">
+    <div class="author-avatar">
+      <?php echo get_avatar(get_the_author_meta('ID'),140) //<img src="http://placekitten.com/33/33" alt="" width="33" height="33"/> ?>
+    </div>
+    <div class="author-bio">
+      <?php echo $curauth->user_description; ?>
+    </div>
   </div>
-  <div class="author-bio">
-    <?php echo $curauth->user_description; ?>
-  </div>
-</div>
-<?php } elseif (is_category()) { ?>
-<div class="row-fluid header-bar">
-  <div class="span11">
-    <h1 class="Chivo webfont" style="visibility: visible; "><?php _e( 'Category Archive:', 'collectorsquest' ) ?> <span><?php single_cat_title() ?></span></h1>
+  <?php } elseif (is_category()) { ?>
+    <div class="span11">
+      <h1 class="Chivo webfont" style="visibility: visible; "><?php _e( 'Category Archive:', 'collectorsquest' ) ?> <span><?php single_cat_title() ?></span></h1>
+        <?php $categorydesc = category_description(); if ( !empty($categorydesc) ) echo apply_filters( 'archive_meta', '<div class="archive-meta">' . $categorydesc . '</div>' ); ?>
+    </div>
+  <?php } elseif (is_tag()) { ?>
+    <div class="span11">
+      <h1 class="Chivo webfont" style="visibility: visible; "><?php _e( 'Tag Archive:', 'your-theme' ) ?> <span><?php single_tag_title() ?></span></h1>
       <?php $categorydesc = category_description(); if ( !empty($categorydesc) ) echo apply_filters( 'archive_meta', '<div class="archive-meta">' . $categorydesc . '</div>' ); ?>
-  </div>
+    </div>
+  <?php } ?>
 </div>
-<?php } elseif (is_tag()) { ?>
-<div class="row-fluid header-bar">
-  <div class="span11">
-    <h1 class="Chivo webfont" style="visibility: visible; "><?php _e( 'Tag Archive:', 'your-theme' ) ?> <span><?php single_tag_title() ?></span></h1>
-    <?php $categorydesc = category_description(); if ( !empty($categorydesc) ) echo apply_filters( 'archive_meta', '<div class="archive-meta">' . $categorydesc . '</div>' ); ?>
-  </div>
-</div>
-<?php } ?>
-
 
 
 <?php
 $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 $count = ($paged > 1) ? 9 : 1;
 $lastclass = 0;
-//wp_reset_query();
-
 ?>
-
-
 
 
 <div id="blog-contents" class="<?php if (is_front_page()) : echo 'news-front'; elseif (is_singular()) : echo 'singular'; else : echo 'not-singular'; endif; ?>">
@@ -99,7 +85,7 @@ $lastclass = 0;
 
     <?php
 
-  wp_reset_query(); //for ajax post loading
+      wp_reset_query(); //for ajax post loading
 
       if (is_single() || is_page())
       {
@@ -161,9 +147,7 @@ $lastclass = 0;
 
         <?php if (is_single()) : ?>
           <!-- <div class="entry-genre"><a href="" title=""><?php the_category() ?></a></div> -->
-        <?php endif; ?>
 
-        <?php if (is_single()) : ?>
           <h2 class="entry-title"><?php the_title() ?></h2>
         <?php endif; ?>
 
@@ -253,9 +237,7 @@ $lastclass = 0;
 
         <?php if (is_front_page() || is_archive()) : ?>
           <!-- <div class="entry-genre"><a href="" title=""><?php the_category() ?></a></div> -->
-        <?php endif; ?>
 
-        <?php if ((is_front_page()) || is_archive()) : ?>
           <h2 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
         <?php endif; ?>
 
