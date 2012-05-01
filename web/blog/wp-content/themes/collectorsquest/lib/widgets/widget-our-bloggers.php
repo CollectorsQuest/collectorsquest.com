@@ -36,7 +36,6 @@ class CQ_Our_Bloggers_widget extends WP_Widget {
       //echo $before_title . $title . $after_title;
     ?>
 
-    <li id="widget-bloggers" class="widget">
       <div class="row-fluid sidebar-title">
         <div class="span8">
           <h3 class="Chivo webfont" style="visibility: visible;"><?php echo $title ?></h3>
@@ -85,13 +84,13 @@ class CQ_Our_Bloggers_widget extends WP_Widget {
         $author_profile_url = get_the_author_meta('user_url', $author['ID']);
         $nice_name = get_the_author_meta('user_nicename', $author['ID']);
         //echo '<li><a href="', $author_profile_url, '">', $avatar, '</a><strong>' . $display_name . '</strong><br /><a href="/blog/people/', $nice_name, '" class="author-link">[Bio]</a> <a href="', $author_posts_url, '" class="contributor-link">[Articles]</a></li>';
-        echo '<li><a href="', $author_posts_url, '">', $avatar, '<span class="author-name">' . $display_name . '</span></a>';
+        echo '<li><a href="', $author_posts_url, '">', $avatar, '<span class="author-name">' . $display_name . '</span></a></li>';
         echo '';
 
       }
       echo '</ul>';
       ?>
-    </li>
+
 
   <?php
     echo $after_widget;

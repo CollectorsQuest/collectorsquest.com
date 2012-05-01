@@ -36,8 +36,6 @@ class CQ_Other_News_widget extends WP_Widget {
       //echo $before_title . $title . $after_title;
     ?>
 
-    <li id="widget-other-news" class="widget">
-
       <div class="row-fluid sidebar-title">
         <div class="span8">
           <h3 class="Chivo webfont" style="visibility: visible;"><?php echo $title ?></h3>
@@ -63,7 +61,6 @@ class CQ_Other_News_widget extends WP_Widget {
         <small style="font-size: 80%">posted by <?php the_author_posts_link() ?> <span style="color: grey"><?php echo human_time_diff( get_the_time('U'), current_time('timestamp') ) . ' ago'; ?></span></small>
       </div>
       <?php } ?>
-    </li>
 
   <?php
     echo $after_widget;
