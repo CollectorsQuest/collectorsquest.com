@@ -437,7 +437,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_117:
     name: ceramic
-    slug: ''
+    slug: ceramic
     is_triple: '0'
   iceModelTag_118:
     name: 'rabbit fur'
@@ -781,7 +781,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_213:
     name: matchbox
-    slug: ''
+    slug: matchbox
     is_triple: '0'
   iceModelTag_214:
     name: Dispensers
@@ -1873,7 +1873,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_507:
     name: Car
-    slug: ''
+    slug: car
     is_triple: '0'
   iceModelTag_509:
     name: Barris
@@ -2469,7 +2469,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_667:
     name: MPC
-    slug: ''
+    slug: mpc
     is_triple: '0'
   iceModelTag_668:
     name: habitat
@@ -2581,7 +2581,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_695:
     name: milk
-    slug: ''
+    slug: milk
     is_triple: '0'
   iceModelTag_696:
     name: tribal
@@ -2601,7 +2601,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_701:
     name: Marx
-    slug: ''
+    slug: marx
     is_triple: '0'
   iceModelTag_702:
     name: 'ASHTON DRAKE'
@@ -2657,7 +2657,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_715:
     name: 'Toy Story'
-    slug: ''
+    slug: toy-story
     is_triple: '0'
   iceModelTag_716:
     name: Dennys
@@ -3453,7 +3453,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_922:
     name: pixar
-    slug: ''
+    slug: pixar
     is_triple: '0'
   iceModelTag_923:
     name: 'nina simone'
@@ -3921,7 +3921,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_1045:
     name: bottle
-    slug: ''
+    slug: bottle
     is_triple: '0'
   iceModelTag_1046:
     name: lotion
@@ -4145,7 +4145,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_1103:
     name: 'Winnie the pooh'
-    slug: ''
+    slug: winnie-the-pooh
     is_triple: '0'
   iceModelTag_1104:
     name: Pooh
@@ -7597,7 +7597,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_2306:
     name: Ford
-    slug: ''
+    slug: ford
     is_triple: '0'
   iceModelTag_2307:
     name: Models
@@ -8209,7 +8209,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_2461:
     name: truck
-    slug: ''
+    slug: truck
     is_triple: '0'
   iceModelTag_2462:
     name: 'fire engine'
@@ -8965,7 +8965,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_2660:
     name: ink
-    slug: ''
+    slug: ink
     is_triple: '0'
   iceModelTag_2661:
     name: 'body art'
@@ -10141,7 +10141,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_2988:
     name: bullseye
-    slug: ''
+    slug: bullseye
     is_triple: '0'
   iceModelTag_2989:
     name: 'Sgt. Pepper'
@@ -10633,11 +10633,11 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_3127:
     name: beer
-    slug: ''
+    slug: beer
     is_triple: '0'
   iceModelTag_3128:
     name: soda
-    slug: ''
+    slug: soda
     is_triple: '0'
   iceModelTag_3129:
     name: porcelin
@@ -10665,11 +10665,11 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_3135:
     name: Greyhound
-    slug: ''
+    slug: greyhound
     is_triple: '0'
   iceModelTag_3136:
     name: Bus
-    slug: ''
+    slug: bus
     is_triple: '0'
   iceModelTag_3137:
     name: 'Old Crow'
@@ -14045,7 +14045,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_4414:
     name: 'yogi bear'
-    slug: ''
+    slug: yogi-bear
     is_triple: '0'
   iceModelTag_4415:
     name: 'bean bag toss'
@@ -14169,7 +14169,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_4449:
     name: whiskey
-    slug: ''
+    slug: whiskey
     is_triple: '0'
   iceModelTag_4450:
     name: 'four roses'
@@ -16949,7 +16949,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_5256:
     name: teapot
-    slug: ''
+    slug: teapot
     is_triple: '0'
   iceModelTag_5257:
     name: brooch
@@ -18117,7 +18117,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_5579:
     name: Ferrari
-    slug: ''
+    slug: ferrari
     is_triple: '0'
   iceModelTag_5580:
     name: 'Lenny Sabino'
@@ -18513,11 +18513,11 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_5705:
     name: diecast
-    slug: ''
+    slug: diecast
     is_triple: '0'
   iceModelTag_5706:
     name: 'Matchbox Lesney'
-    slug: ''
+    slug: matchbox-lesney
     is_triple: '0'
   iceModelTag_5707:
     name: 'Avon Hot Wheels'
@@ -19205,7 +19205,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_5987:
     name: Opel
-    slug: ''
+    slug: opel
     is_triple: '0'
   iceModelTag_5988:
     name: Mustang
@@ -19661,7 +19661,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_6168:
     name: Mercedes
-    slug: ''
+    slug: mercedes
     is_triple: '0'
   iceModelTag_6169:
     name: Sauber
@@ -22089,7 +22089,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_6889:
     name: Fiat
-    slug: ''
+    slug: fiat
     is_triple: '0'
   iceModelTag_6890:
     name: 4x4
@@ -22293,7 +22293,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_6940:
     name: Jeep
-    slug: ''
+    slug: jeep
     is_triple: '0'
   iceModelTag_6941:
     name: Limited
@@ -22817,7 +22817,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_7080:
     name: Junglebook
-    slug: ''
+    slug: junglebook
     is_triple: '0'
   iceModelTag_7081:
     name: jack
@@ -22849,7 +22849,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_7088:
     name: Ariel
-    slug: ''
+    slug: ariel
     is_triple: '0'
   iceModelTag_7089:
     name: 'the little mermaid'
@@ -23001,7 +23001,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_7128:
     name: sebastian
-    slug: ''
+    slug: sebastian
     is_triple: '0'
   iceModelTag_7129:
     name: 'Dinosaurs Toys'
@@ -25161,7 +25161,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_7730:
     name: Cadillac
-    slug: ''
+    slug: cadillac
     is_triple: '0'
   iceModelTag_7731:
     name: 'Gold Records'
@@ -25405,7 +25405,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_7791:
     name: 'new ray'
-    slug: ''
+    slug: new-ray
     is_triple: '0'
   iceModelTag_7792:
     name: 'grand national gnx'
@@ -28393,7 +28393,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_8608:
     name: narragansett
-    slug: ''
+    slug: narragansett
     is_triple: '0'
   iceModelTag_8609:
     name: lager
@@ -29249,7 +29249,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_8848:
     name: Ceramics
-    slug: ''
+    slug: ceramics
     is_triple: '0'
   iceModelTag_8849:
     name: 'West German'
@@ -33165,7 +33165,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_10149:
     name: Wade
-    slug: ''
+    slug: wade
     is_triple: '0'
   iceModelTag_10150:
     name: Sylvac
@@ -35281,7 +35281,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_10935:
     name: shelf
-    slug: ''
+    slug: shelf
     is_triple: '0'
   iceModelTag_10936:
     name: 'curio cabinet'
@@ -37337,7 +37337,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_11533:
     name: aristocats
-    slug: ''
+    slug: aristocats
     is_triple: '0'
   iceModelTag_11534:
     name: deluxe
@@ -37357,7 +37357,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_11538:
     name: fantasia
-    slug: ''
+    slug: fantasia
     is_triple: '0'
   iceModelTag_11543:
     name: The
@@ -42685,7 +42685,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_13120:
     name: 'Virginia Whitetail deer'
-    slug: ''
+    slug: virginia-whitetail-deer
     is_triple: '0'
   iceModelTag_13121:
     name: softies
@@ -43861,7 +43861,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_13414:
     name: 'pride rock'
-    slug: ''
+    slug: pride-rock
     is_triple: '0'
   iceModelTag_13415:
     name: dream
@@ -44133,7 +44133,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_13482:
     name: 'Tom Major'
-    slug: ''
+    slug: tom-major
     is_triple: '0'
   iceModelTag_13483:
     name: 'oran utan'
@@ -44201,7 +44201,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_13499:
     name: treefrog
-    slug: ''
+    slug: treefrog
     is_triple: '0'
   iceModelTag_13500:
     name: 'freshwater turtle'
@@ -45021,7 +45021,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_13716:
     name: '101 dalmatians'
-    slug: ''
+    slug: 101-dalmatians
     is_triple: '0'
   iceModelTag_13717:
     name: 'animal alley'
@@ -46973,7 +46973,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_14204:
     name: TM
-    slug: ''
+    slug: tm
     is_triple: '0'
   iceModelTag_14205:
     name: shrew-mole
@@ -47241,7 +47241,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_14271:
     name: breyer
-    slug: ''
+    slug: breyer
     is_triple: '0'
   iceModelTag_14272:
     name: brey
@@ -49341,4 +49341,176 @@ iceModelTag:
   iceModelTag_14852:
     name: 'Disney %22Cub Simba%22 %22hand puppet%22 plush %22lion king%22 stuffed animal%22 toy'
     slug: disney-22cub-simba22-22hand-puppet22-plush-22lion-king22-stuffed-animal22-toy
+    is_triple: '0'
+  iceModelTag_14853:
+    name: 'Joy Toy'
+    slug: joy-toy
+    is_triple: '0'
+  iceModelTag_14854:
+    name: Duchesse
+    slug: duchesse
+    is_triple: '0'
+  iceModelTag_14855:
+    name: 'Thomas O%27Malley'
+    slug: thomas-o27malley
+    is_triple: '0'
+  iceModelTag_14856:
+    name: 'Lightning McQueen'
+    slug: lightning-mcqueen
+    is_triple: '0'
+  iceModelTag_14857:
+    name: 'The Junglebook'
+    slug: the-junglebook
+    is_triple: '0'
+  iceModelTag_14858:
+    name: Baloo
+    slug: baloo
+    is_triple: '0'
+  iceModelTag_14859:
+    name: 'Beauty and the Beast'
+    slug: beauty-and-the-beast
+    is_triple: '0'
+  iceModelTag_14860:
+    name: Arielle
+    slug: arielle
+    is_triple: '0'
+  iceModelTag_14861:
+    name: Perdita
+    slug: perdita
+    is_triple: '0'
+  iceModelTag_14862:
+    name: Perdy
+    slug: perdy
+    is_triple: '0'
+  iceModelTag_14863:
+    name: Trudi
+    slug: trudi
+    is_triple: '0'
+  iceModelTag_14864:
+    name: Schildkröt
+    slug: schildkrt
+    is_triple: '0'
+  iceModelTag_14865:
+    name: 'Lady and the Tramp'
+    slug: lady-and-the-tramp
+    is_triple: '0'
+  iceModelTag_14866:
+    name: Tramp
+    slug: tramp
+    is_triple: '0'
+  iceModelTag_14867:
+    name: 'Emperator angelfish'
+    slug: emperator-angelfish
+    is_triple: '0'
+  iceModelTag_14868:
+    name: 'gentoo penguin'
+    slug: gentoo-penguin
+    is_triple: '0'
+  iceModelTag_14869:
+    name: 'Galapagos penguin'
+    slug: galapagos-penguin
+    is_triple: '0'
+  iceModelTag_14870:
+    name: 'Humboldt penguin'
+    slug: humboldt-penguin
+    is_triple: '0'
+  iceModelTag_14871:
+    name: 'chinstrap penguin'
+    slug: chinstrap-penguin
+    is_triple: '0'
+  iceModelTag_14872:
+    name: 'rockhopper penguin'
+    slug: rockhopper-penguin
+    is_triple: '0'
+  iceModelTag_14873:
+    name: 'South-African penguin'
+    slug: south-african-penguin
+    is_triple: '0'
+  iceModelTag_14874:
+    name: Macrauchenia
+    slug: macrauchenia
+    is_triple: '0'
+  iceModelTag_14875:
+    name: 'American eagle owl'
+    slug: american-eagle-owl
+    is_triple: '0'
+  iceModelTag_14876:
+    name: ceatatians
+    slug: ceatatians
+    is_triple: '0'
+  iceModelTag_14877:
+    name: HMV
+    slug: hmv
+    is_triple: '0'
+  iceModelTag_14878:
+    name: noddy
+    slug: noddy
+    is_triple: '0'
+  iceModelTag_14879:
+    name: Bengo
+    slug: bengo
+    is_triple: '0'
+  iceModelTag_14880:
+    name: 'tv pets'
+    slug: tv-pets
+    is_triple: '0'
+  iceModelTag_14881:
+    name: rhode
+    slug: rhode
+    is_triple: '0'
+  iceModelTag_14882:
+    name: island
+    slug: island
+    is_triple: '0'
+  iceModelTag_14883:
+    name: ri
+    slug: ri
+    is_triple: '0'
+  iceModelTag_14884:
+    name: providence
+    slug: providence
+    is_triple: '0'
+  iceModelTag_14885:
+    name: bottle%2C
+    slug: bottle2c
+    is_triple: '0'
+  iceModelTag_14886:
+    name: acl
+    slug: acl
+    is_triple: '0'
+  iceModelTag_14887:
+    name: spur%2C
+    slug: spur2c
+    is_triple: '0'
+  iceModelTag_14888:
+    name: medicine%2C
+    slug: medicine2c
+    is_triple: '0'
+  iceModelTag_14889:
+    name: soda%2C
+    slug: soda2c
+    is_triple: '0'
+  iceModelTag_14890:
+    name: 'bottle%2C seltzer'
+    slug: bottle2c-seltzer
+    is_triple: '0'
+  iceModelTag_14891:
+    name: drug
+    slug: drug
+    is_triple: '0'
+  iceModelTag_14892:
+    name: Beswick
+    slug: beswick
+    is_triple: '0'
+  iceModelTag_14893:
+    name: Lesney
+    slug: lesney
+    is_triple: '0'
+  iceModelTag_14894:
+    name: camper
+    slug: camper
+    is_triple: '0'
+  iceModelTag_14895:
+    name: 'Rolls Royce'
+    slug: rolls-royce
     is_triple: '0'
