@@ -37,7 +37,7 @@ else if (function_exists('dynamic_sidebar'))
   }
 
   if(!is_active_widget( '', '', 'CQ_Our_Bloggers_widget')){
-    the_widget('CQ_Our_Bloggers', $args, $instance);
+    the_widget('CQ_Our_Bloggers_widget', $args, $instance);
   }
 
 }
