@@ -21,7 +21,7 @@
       </div>
       <div class="span9" style="padding-top: 5px;">
         <?= link_to_collectible($collectible_for_sale->getCollectible(), 'text', array('class' => 'target')); ?><br/>
-        <?= cqStatic::truncateText($collectible_for_sale->getCollectible()->getDescription(), 35); ?><br/>
+        <?= cqStatic::truncateText($collectible_for_sale->getCollectible()->getDescription('stripped'), 35); ?><br/>
         <span style="float: right; font-weight: bold; margin-right: 5px;">$45.56</span>
       </div>
       <br clear="all"/>
