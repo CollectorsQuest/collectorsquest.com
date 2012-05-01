@@ -1,9 +1,14 @@
-<div id="sidebar">
-<?php if (is_page()) : ?>
-  <?php if (function_exists('dynamic_sidebar')) dynamic_sidebar('static-page-sidebar'); ?>
-<?php elseif (is_singular()): ?>
-  <?php if (function_exists('dynamic_sidebar')) dynamic_sidebar('singular-sidebar'); ?>
-<?php else : ?>
-  <?php if (function_exists('dynamic_sidebar')) dynamic_sidebar('non-singular-sidebar'); ?>
-<?php endif; ?>
-</div>
+<?php
+
+if (is_page() && function_exists('dynamic_sidebar'))
+{
+  dynamic_sidebar('static-page-sidebar');
+}
+else if (is_singular() && function_exists('dynamic_sidebar'))
+{
+  dynamic_sidebar('singular-sidebar');
+}
+else if (function_exists('dynamic_sidebar'))
+{
+  dynamic_sidebar('non-singular-sidebar');
+}

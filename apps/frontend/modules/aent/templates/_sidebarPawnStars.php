@@ -25,7 +25,7 @@
 <div class="row-fluid sidebar-title">
   <div class="span6">
     <h3 class="Chivo webfont">
-      When to Watch
+      More Pawn Stars
     </h3>
   </div>
   <div class="span6 text-right">

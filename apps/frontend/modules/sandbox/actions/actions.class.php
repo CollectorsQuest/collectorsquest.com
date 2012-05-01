@@ -41,4 +41,9 @@ class sandboxActions extends cqFrontendActions
     return sfView::SUCCESS;
   }
 
+  public function executeComments()
+  {
+    return sfView::SUCCESS;
+  }
+
 }

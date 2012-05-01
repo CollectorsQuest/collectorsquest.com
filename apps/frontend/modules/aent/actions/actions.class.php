@@ -108,6 +108,7 @@ class aentActions extends cqFrontendActions
       $this->brand = 'Storage Wars';
     }
 
+    $this->related_collectibles = $collectible->getRelatedCollectibles(8);
     $this->collectible = $collectible;
     $this->collection = $collection;
 
