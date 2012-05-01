@@ -1,4 +1,4 @@
-<div class="info-blue-box bottom-margin-double">
+<div class="statistics-share-panel bottom-margin-double">
   <div class="row-fluid">
     <div class="span4">
       <ul>

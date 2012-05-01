@@ -78,8 +78,52 @@ cq_page_title(
 <br style="clear:both;"/>
 <?php endif; ?>
 
+<div id="collectible-items">
+  <ul class="thumbnails">
+    <!-- with alternate images  -->
+    <li class="span9">
+      <a href="#" class="thumbnail">
+        <img src="http://placehold.it/620x620" alt="">
+      </a>
+    </li>
+    <li class="span3">
+      <a href="#" class="thumbnail">
+        <img src="http://placehold.it/137x137" alt="">
+      </a>
+    </li>
+    <li class="span3">
+      <a href="#" class="thumbnail">
+        <img src="http://placehold.it/137x137" alt="">
+      </a>
+    </li>
+    <li class="span3">
+      <a href="#" class="thumbnail">
+        <img src="http://placehold.it/137x137" alt="">
+      </a>
+    </li>
+    <!-- :)
+    <li class="span3">
+      <a href="#" class="thumbnail">
+        <img src="http://placehold.it/137x137" alt="">
+      </a>
+    </li>
+    <li class="span3">
+      <a href="#" class="thumbnail">
+        <img src="http://placehold.it/137x137" alt="">
+      </a>
+    </li>
+    -->
+    <!-- without alternate images
+    <li class="span12">
+      <a href="#" class="thumbnail">
+        <img src="http://placehold.it/620x476" alt="">
+      </a>
+    </li>
+    -->
+  </ul>
+</div>
 
-<div class="info-blue-box bottom-margin-double">
+<div class="statistics-share-panel bottom-margin-double">
   <div class="row-fluid">
     <div class="span4">
       <ul>

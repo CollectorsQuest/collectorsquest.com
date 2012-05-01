@@ -198,7 +198,7 @@
 	margin-bottom: 0;
 }
 
-.info-blue-box {
+.statistics-share-panel {
 	background-color: @lightBlue;
 	padding: 8px 10px 14px 10px;
 	font-size: 10px;
@@ -252,10 +252,16 @@
 	&:hover {
 		background-position: 0 0;
 		.transition(none);
-		.buttonBackground(#cddce3, #ddecf5);
-		color: @blue;
+		.reset-filter();
+		#gradient > .vertical-three-colors(#278fc7, #0974ad, 50%, #278fc7);
+		*background-color: #278fc7;
+		color: white;
 		text-decoration: none;
 		border: 1px solid #60a6ca;
+	}
+	&:active,
+	&.active {
+		background-color: darken(#278fc7, 10%) e("\9");
 	}
 }
 .mail-icon-mini, .add-icon-middle, .share-icon-middle {
