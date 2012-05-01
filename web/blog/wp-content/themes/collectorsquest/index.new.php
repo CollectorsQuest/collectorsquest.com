@@ -5,10 +5,13 @@
 
   $data = array();
 
+  $data['the_id'] = get_the_ID();
   $data['is_page'] = is_page();
   $data['is_single'] = is_single();
   $data['is_category'] = is_category();
   $data['is_tag'] = is_tag();
+  $data['is_front_page'] = is_front_page();
+  $data['is_author'] = is_author();
 
   if (is_category()) {
     $data['category'] = $wp_query->get_queried_object()->name;

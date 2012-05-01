@@ -3022,7 +3022,7 @@ wpPost:
     menu_order: '0'
     post_type: post
     post_mime_type: ''
-    comment_count: '1'
+    comment_count: '0'
   wpPost_14589:
     post_author: wpUser_7
     post_date: '2012-01-02 07:56:50'

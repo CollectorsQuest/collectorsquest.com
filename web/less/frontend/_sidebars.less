@@ -196,52 +196,84 @@
 }
 
 #items-for-sale-sidebar {
-  padding: 2px 0 15px 0;
-  font-size: @baseFontSize - 1;
+	padding: 2px 0 15px 0;
+	font-size: @baseFontSize - 1;
 
-  .row-fluid {
-    margin-bottom: 10px;
-    .inner-border {
-      border: 1px solid #afa4a4;
-      .clearfix();
-      padding: 3px 7px 3px 3px;
+	.row-fluid {
+		margin-bottom: 10px;
+		.inner-border {
+			border: 1px solid #afa4a4;
+			.clearfix();
+			padding: 3px 7px 3px 3px;
+			&:hover {
+				border-color: @blue;
+			}
 
-      .span9 {
-        margin-left: 4px;
-      }
-    }
-  }
-  .fix-height-text-block {
-    max-height: 56px;
-    overflow: hidden;
+			.span9 {
+				margin-left: 4px;
+			}
+		}
+	}
+	.fix-height-text-block {
+		max-height: 56px;
+		overflow: hidden;
 
-  }
-  .content-container {
-    padding-top: 4px;
-    padding-left: 0;
+	}
+	.content-container {
+		padding-top: 4px;
+		padding-left: 0;
 
-    p {
-      font-size: @baseFontSize - 1;
-      line-height: 14px;
-      color: @blueDark;
-      margin-bottom: 0;
-      height: 15px;
-      overflow: hidden;
-    }
-    a {
-      font-size: @baseFontSize - 1;
-      color: @blue;
-      line-height: 14px;
-      height: 15px;
-      overflow: hidden;
-      display: block;
-    }
-    .price {
-      margin-top: 2px;
-      font-weight: bold;
-      color: @blueDark;
-      text-align: right;
-      display: block;
-    }
-  }
+		p {
+			font-size: @baseFontSize - 1;
+			line-height: 14px;
+			color: @blueDark;
+			margin-bottom: 0;
+			height: 15px;
+			overflow: hidden;
+		}
+		a.target {
+			font-size: @baseFontSize - 1;
+			color: @blue;
+			margin-bottom: 6px;
+			line-height: 14px;
+			height: 15px;
+			overflow: hidden;
+			display: block;
+		}
+		.price {
+			margin-top: 2px;
+			font-weight: bold;
+			color: @blueDark;
+			text-align: right;
+			display: block;
+		}
+	}
+}
+
+
+//banners
+.banner-sidebar-top {
+	margin-bottom: 35px;
+}
+
+.banner-sidebar-promo-300-90 {
+	margin-bottom: 30px;
+
+	span {
+		.size(14px, 100%);
+		display: block;
+		text-align: center;
+		font-size: 14px;
+		letter-spacing: -0.4px;
+		font-weight: bold;
+		line-height: 18px;
+		padding-top: 2px;
+		padding-bottom: 6px;
+		background-color: #0a82c2;
+		color: white;
+
+	}
+	&:hover span {
+		#gradient > .vertical(#d22020, #b30101);
+	}
 }
