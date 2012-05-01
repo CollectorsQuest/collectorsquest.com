@@ -27,8 +27,6 @@ class CQ_Tags_widget extends WP_Widget {
    */
   public function widget( $args, $instance ) { ?>
 
-  <?php if (!is_front_page()) : ?>
-
     <?php
     extract( $args );
     $title = apply_filters( 'widget_title', $instance['title'] );
@@ -53,8 +51,6 @@ class CQ_Tags_widget extends WP_Widget {
 
   <?php
     echo $after_widget;
-
-    endif;
 
   }
 
