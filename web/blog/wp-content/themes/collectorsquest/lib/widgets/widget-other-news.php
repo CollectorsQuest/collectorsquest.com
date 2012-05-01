@@ -47,10 +47,10 @@ class CQ_Other_News_widget extends WP_Widget {
 
       <?php endif; ?>
 
-      <?php if (is_single()) : $offset = 0; else : $offset = 7; endif; ?>
-      <?php $postss = get_posts("showposts=3"); ?>
+      <?php global $post; //if (is_single()) : $offset = 0; else : $offset = 7; endif; ?>
+      <?php $posts = get_posts("showposts=3"); ?>
 
-      <?php foreach($postss as $post) { setup_postdata($post); ?>
+      <?php foreach($posts as $post) { setup_postdata($post); ?>
       <div class="row-fluid bottom-margin">
         <h4 style="margin-bottom: 5px;">
           <a href="<?php the_permalink() ?>"><?php the_title(); ?></a>
