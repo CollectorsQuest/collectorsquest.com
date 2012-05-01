@@ -23,7 +23,7 @@
           <div class="content-container">
           <?= link_to_collectible($collectible_for_sale->getCollectible(), 'text', array('class' => 'target')); ?>
           <p>
-            <?= cqStatic::truncateText($collectible_for_sale->getCollectible()->getDescription(), 35); ?>
+            <?= cqStatic::truncateText($collectible_for_sale->getCollectible()->getDescription('stripped'), 35); ?>
           </p>
           <span class="price">$45.56</span>
           </div>
