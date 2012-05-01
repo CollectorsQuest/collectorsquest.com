@@ -242,3 +242,43 @@
 	}
 }
 
+#information-box {
+	background-color: @yelloHighlight;
+	padding: 15px;
+}
+
+
+.shipping-rates {
+	border: 1px solid #cfc9c9;
+	width: 100%;
+	margin-top: 20px;
+	margin-bottom: 10px;
+
+
+	th {
+		color: @brown;
+		text-align: left;
+		padding: 3px 6px;
+		text-size: 12px;
+	}
+  td {
+	  padding: 3px 6px;
+  }
+	tr.dotted-line-brown {
+		background: url("@{baseUrl}/table-line-dotted.png") repeat-x bottom;
+		text-transform: uppercase;
+		font-size: 10px;
+	}
+}
+
+#price-container {
+	.clearfix();
+}
+.price-large {
+	color: @blueDark;
+	font-size: 24px;
+	display: block;
+	font-weight: bold;
+	margin-top: 35px;
+	margin-bottom: 10px;
+}

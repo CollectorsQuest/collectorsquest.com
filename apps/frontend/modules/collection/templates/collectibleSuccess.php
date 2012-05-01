@@ -158,7 +158,7 @@ cq_page_title(
   </div>
 </div>
 
-<div class="about-item-info">
+<div class="item-description">
   <p><strong>Akkilioki Peecol</strong>, Limited edition Peecol by eboy for Kidrobot<p>
   <p>This arctic princess loves listening to Bjork and hitting the slopes on her snowboard when she isn't too busy studying for school. For kicks, visit her <a href="#">MySpace page! </a></p>
 </div>
@@ -213,3 +213,73 @@ cq_page_title(
 
 Permalink: <span class="lightblue"><?= url_for_collectible($collectible, true) ?></span>
 
+
+<!-- sale items -->
+<div class="item-description">
+  <h2 class="Chivo webfont">
+    Akkiloki Peecol, 1st (Limited) edition Peecol by eboy for Kidrobot
+  </h2>
+  <p>This arctic princess loves listening to Bjork and hitting the slopes on her snowboard when she isn't too busy studying for school. For kicks, visit her <a href="#">MySpace page</a>! Akkiloki is opened, but comes with the original box.</p>
+  <p>
+  Size: 3.5 Inches/9 cm<br>
+  Material: ABS plastic<br>
+  Box Size: 4.5 x 2.5 x 1.6 inches<br>
+  Box Weight: 1.6 oz<br>
+  </p>
+  <span class="item-condition">Condition:</span> Like new</span>
+</div>
+
+
+<table class="shipping-rates">
+  <thead>
+    <tr class="shipping-dest">
+      <th colspan="5">
+        <strong>Shipping from:</strong> <span class="darkblue">Portland, OR, USA</span>
+      </th>
+    </tr>
+    <tr class="dotted-line-brown">
+      <th>METHOD</th>
+      <th>SHIP TO</th>
+      <th>COST</th>
+      <th>WITH ANOTHER ITEM</th>
+      <th>ESTIMATED DELIVERY</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>USPS</td>
+      <td>United States</td>
+      <td>$3.00</td>
+      <td>$2.00</td>
+      <td>5-7 days</td>
+    </tr>
+    <tr>
+      <td>USPS</td>
+      <td>Everywhere Else</td>
+      <td>$15.00</td>
+      <td>$10.00</td>
+      <td>2-3 weeks</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<div id="information-box">
+  <p>Have a question about shippng? <a href="#">Send a message to Robotbacon »</a></p>
+  <p>Return Policy: If you are unhappy with the item, I accept returns or exchanges for purchased items within 30 days of the shipping date. Please email me within 7 days of receiving your order to arrange for a refund or exchange. Returns or exchanges made without prior notification may not be processed. Product must be returned in the same condition as it was received. Shipping charges are non-refundable and are full responsiblity of customer. Your refund will be issued when return items are received. In case of receiving damaged item, please return the item (you will be compensated for shipping costs).</p>
+  <p>Payment: I accept payment through PayPal, Moneybookers, money order and bank transfer. I greatly appreciate prompt payment and/or prompt communication regarding payment. I will not ship until payment has been received.</p>
+</div>
+
+<div id="price-container">
+  <span class="price-large">
+    $25.00
+  </span>
+  <button type="submit" class="btn btn-primary btn-large" value="Add Item to Cart">
+    <i class="icon icon-shopping-cart" style="font-size: 18px; padding-right: 10px; margin-right: 5px; border-right: 1px solid gray;"></i>
+    Add Item to Cart
+  </button>
+</div>
+
+<div class="t-b-margin">
+  Permalink: <span class="lightblue"><?= url_for_collectible($collectible, true) ?></span>
+</div>
