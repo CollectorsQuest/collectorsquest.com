@@ -45,6 +45,18 @@ class CQ_Other_News_widget extends WP_Widget {
         </div>
       </div>
 
+      <?php else : ?>
+
+    <div class="row-fluid sidebar-title">
+      <div class="span8">
+        <h3 class="Chivo webfont" style="visibility: visible;">In Other News</h3>
+      </div>
+      <div class="span4 text-right">
+        <a href="/blog" class="text-v-middle link-align">See all posts »</a>&nbsp;
+      </div>
+    </div>
+
+
       <?php endif; ?>
 
       <?php global $post; //if (is_single()) : $offset = 0; else : $offset = 7; endif; ?>

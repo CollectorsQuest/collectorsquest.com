@@ -45,6 +45,17 @@ class CQ_Our_Bloggers_widget extends WP_Widget {
         </div>-->
       </div>
 
+    <?php else : ?>
+
+    <div class="row-fluid sidebar-title">
+      <div class="span8">
+        <h3 class="Chivo webfont" style="visibility: visible;">Our Bloggers</h3>
+      </div>
+      <!--<div class="span4 text-right">
+        <a href="/blog" class="text-v-middle link-align">See all news »</a>&nbsp;
+      </div>-->
+    </div>
+
     <?php endif; ?>
 
       <?php
