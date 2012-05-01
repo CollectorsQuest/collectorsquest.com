@@ -15,12 +15,24 @@
 <div class="info-blue-box bottom-margin-double">
   <div class="row-fluid">
     <div class="span6">
-      <?php
-        echo format_number_choice(
-          '[0] no views yet|[1] 1 View|(1,+Inf] %1% Views',
-          array('%1%' => number_format($collectible->getNumViews())), $collectible->getNumViews()
-        );
-      ?>
+      <ul>
+        <li>
+          <span>XX Comments</span>
+        </li>
+        <li>
+         <span>
+           <?php
+            echo format_number_choice(
+              '[0] no views yet|[1] 1 View|(1,+Inf] %1% Views',
+              array('%1%' => number_format($collectible->getNumViews())), $collectible->getNumViews()
+            );
+            ?>
+         </span>
+        </li>
+        <li>
+          <span>In XXX wanted lists</span>
+        </li>
+      </ul>
     </div>
     <div class="span6 text-right">
       <a href="#" class="btn btn-mini-share btn-lightblue-middle">
@@ -86,7 +98,7 @@
 
 </div>
 
-Permalink: <?= url_for_collectible($collectible, true) ?>
+Permalink: <span class="lightblue"><?= url_for_collectible($collectible, true) ?></span>
 
 <?php
   $link = link_to('See all related collectibles &raquo;', '@marketplace', array('class' => 'text-v-middle link-align'));
