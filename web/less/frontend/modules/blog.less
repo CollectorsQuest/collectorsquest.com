@@ -22,7 +22,7 @@ h2 a:hover {
 }
 
 .entry-genre a, .wp-caption-text, .entry-meta .meta-text {
-  font: 9pt arial;
+  font: 9pt arial !important;
   color: #887777;
 }
 
@@ -61,7 +61,7 @@ h2 a:hover {
   margin-bottom: 10px;
 }
 
-.alignleft .wp-caption-text {
+.alignleft .wp-caption-text, .aligncenter .wp-caption-text {
   margin-left: 0;
 }
 
@@ -139,6 +139,9 @@ h2 a:hover {
     width:100%;
     padding:10px 0
   }
+  .p-1 {
+    padding-top:20px
+    }
   .p-1 h2 {
     float: right;
     margin-top: 10px;
@@ -200,6 +203,10 @@ h2 a:hover {
   h2 {
     margin-top: 20px
   }
+  .entry, .entry p {
+      font-size: 14px;
+      line-height: 20px;
+    }
   .p-1 .entry-genre {
     margin-top: 8px
   }
@@ -243,9 +250,6 @@ h2 a:hover {
   .entry {
     margin:0  0 10px 0
     }
-.p-1 {
-  padding-top:20px
-  }
   .author-image {
   margin-top:-2px
   }
@@ -258,19 +262,17 @@ h2 a:hover {
     width:460px;
     margin:6px 0 !important
     }
+  .author-image {
+    margin-right:5px;
+    margin-top:-2px
+    }
 }
-.author-info {
-  margin-left:10px;
-}
+
 .author-list li {
   float:left;
   width:100%
   }
 
-.news-front .author-image {
-  margin-right:4px;
-  margin-top:-2px
-  }
 
 
 .author-name {
@@ -305,3 +307,20 @@ margin-top:4px
 img#wpstats {
   display:none
 }
+
+
+#author-info-box {
+  float:left;
+  width:100%;
+  margin-top:20px;
+  padding-bottom:20px;
+  border-bottom:1px dashed #cccccc
+}
+.author-avatar {
+  float:left;
+  margin:0 20px 20px 0
+}
+.author-bio {
+  float:left;
+  width:460px;
+  }

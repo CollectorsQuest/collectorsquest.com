@@ -49,6 +49,19 @@
     <h1 class="Chivo webfont" style="visibility: visible; ">Blogger: <?php the_author() ?></h1>
   </div>
 </div>
+
+<!-- This sets the $curauth variable -->
+
+<?php $curauth = (isset($_GET['author_name'])) ? get_user_by('slug', $author_name) : get_userdata(intval($author)); ?>
+
+<div id="author-info-box">
+  <div class="author-avatar">
+    <?php echo get_avatar(get_the_author_meta('ID'),140) //<img src="http://placekitten.com/33/33" alt="" width="33" height="33"/> ?>
+  </div>
+  <div class="author-bio">
+    <?php echo $curauth->user_description; ?>
+  </div>
+</div>
 <?php } ?>
 
 
