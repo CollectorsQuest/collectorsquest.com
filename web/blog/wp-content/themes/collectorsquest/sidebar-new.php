@@ -1,105 +1,45 @@
-<div id="sidebar">
+<?php
 
-  <img src="/images/iab/300x250.gif">
-<?php if (!is_front_page()) : ?>
-  <div class="row-fluid sidebar-title">
-    <div class="span8">
-      <h3 class="Chivo webfont" style="visibility: visible;">Tags</h3>
-    </div>
-    <!-- <div class="span4 text-right">
-      <a href="/blog" class="text-v-middle link-align">See all news »</a>&nbsp;
-    </div>-->
-  </div>
-  <p><?php the_tags('<ul class="cf" style="list-style: none; padding: 0; margin: 0;"><li class="rounded p-tag">','</li><li class="rounded p-tag">','</li></ul>'); ?></p>
-<?php endif; ?>
-  <ul id="widgets">
-    <?php if(is_front_page()) : ?>
-    <li id="widget-bloggers" class="widget">
-      <div class="row-fluid sidebar-title">
-        <div class="span8">
-          <h3 class="Chivo webfont" style="visibility: visible;">Our Bloggers</h3>
-        </div>
-        <!--<div class="span4 text-right">
-          <a href="/blog" class="text-v-middle link-align">See all news »</a>&nbsp;
-        </div>-->
-      </div>
+if (is_page() && function_exists('dynamic_sidebar'))
+{
+  dynamic_sidebar('static-page-sidebar');
 
-      <?php
-      $display_admins = false;
-      $order_by = 'display_name'; // 'nicename', 'email', 'url', 'registered', 'display_name', or 'post_count'
-      $role = 'author'; // 'subscriber', 'contributor', 'editor', 'author' - leave blank for 'all'
-      $avatar_size = 60;
-      $hide_empty = true; // hides authors with zero posts
+  if(!is_active_widget( '', '', 'WP_Pages_Widget')){
+    the_widget('WP_Pages_Widget', $args, $instance);
+  }
 
-      if (!empty($display_admins)) {
-        $blogusers = get_users('orderby=' . $order_by . '&role=' . $role);
-      } else {
-        $admins = get_users('role=administrator');
-        $exclude = array();
-        foreach ($admins as $ad) {
-          $exclude[] = $ad->ID;
-        }
-        $exclude = implode(',', $exclude);
-        $exclude = str_replace(",7", "", $exclude);
-        $blogusers = get_users('exclude=' . $exclude . ',6,13,11');
-      }
-      $authors = array();
-      foreach ($blogusers as $bloguser) {
-        $user = get_userdata($bloguser->ID);
-        if (!empty($hide_empty)) {
-          $numposts = count_user_posts($user->ID);
-          if ($numposts < 1) continue;
-        }
-        $authors[] = (array)$user;
-      }
 
-      echo '<ul class="author-list">';
-      foreach ($authors as $author) {
-        $display_name = $author['data']->display_name;
-        $avatar = get_avatar($author['ID'], $avatar_size);
-        $author_posts_url = get_author_posts_url($author['ID']);
-        $author_profile_url = get_the_author_meta('user_url', $author['ID']);
-        $nice_name = get_the_author_meta('user_nicename', $author['ID']);
-        //echo '<li><a href="', $author_profile_url, '">', $avatar, '</a><strong>' . $display_name . '</strong><br /><a href="/blog/people/', $nice_name, '" class="author-link">[Bio]</a> <a href="', $author_posts_url, '" class="contributor-link">[Articles]</a></li>';
-        echo '<li><a href="', $author_posts_url, '">', $avatar, '<span class="author-name">' . $display_name . '</span></a>';
-        echo '';
+}
+else if (is_singular() && function_exists('dynamic_sidebar'))
+{
+  dynamic_sidebar('singular-sidebar');
 
-      }
-      echo '</ul>';
-      ?>
-    </li>
-<?php endif; ?>
+  if(!is_active_widget( '', '', 'CQ_300x250ad_widget')){
+    the_widget('CQ_300x250ad_widget', $args, $instance);
+  }
 
-    <?php if (!is_front_page()) : ?>
-    <li id="widget-other-news" class="widget">
+  if(!is_active_widget( '', '', 'CQ_Tags_widget')){
+    the_widget('CQ_Tags_widget', $args, $instance);
+  }
 
-      <div class="row-fluid sidebar-title">
-        <div class="span8">
-          <h3 class="Chivo webfont" style="visibility: visible;">In Other News</h3>
-        </div>
-        <div class="span4 text-right">
-          <a href="/blog" class="text-v-middle link-align">See all posts »</a>&nbsp;
-        </div>
-      </div>
+  if(!is_active_widget( '', '', 'CQ_Other_News_widget')){
+    the_widget('CQ_Other_News_widget', $args, $instance);
+  }
 
-      <?php if (is_single()) : $offset = 0; else : $offset = 7; endif; ?>
-      <?php $postss = get_posts("showposts=3"); ?>
 
-      <?php foreach($postss as $post) { setup_postdata($post); ?>
-      <div class="row-fluid bottom-margin">
-        <h4 style="margin-bottom: 5px;">
-          <a href="<?php the_permalink() ?>"><?php the_title(); ?></a>
-        </h4>
-        <span class="content">
-          <?php $length=100; $longString=get_the_excerpt('...more'); $truncated = substr($longString,0,strpos($longString,' ',$length)); echo $truncated.'... ' //.'... <a href="'.get_permalink().'">more</a>'; ?>
-        </span>
-        <small style="font-size: 80%">posted by <?php the_author_posts_link() ?> <span style="color: grey"><?php echo human_time_diff( get_the_time('U'), current_time('timestamp') ) . ' ago'; ?></span></small>
-      </div>
-      <?php } ?>
-    </li>
-  <?php endif; ?>
+}
+else if (function_exists('dynamic_sidebar'))
+{
+  dynamic_sidebar('non-singular-sidebar');
 
-    <!-- Blog Sidebar //-->
-  </ul>
+  if(!is_active_widget( '', '', 'CQ_300x250ad_widget')){
+    the_widget('CQ_300x250ad_widget', $args, $instance);
+  }
 
-</div><!-- end #sidebar -->
+  if(!is_active_widget( '', '', 'CQ_Our_Bloggers_widget')){
+    the_widget('CQ_Our_Bloggers_widget', $args, $instance);
+  }
+
+}
+
+

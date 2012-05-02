@@ -1,6 +1,6 @@
 <?php
 
-$ancestors =  $ContentCategory->getAncestors();
+$ancestors = $ContentCategory->getAncestors();
 
 $ancestor_links = array_map(function($content_category) {
   return link_to($content_category, array(

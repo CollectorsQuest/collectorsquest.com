@@ -23,3 +23,9 @@ sidebarNoneSuccess:
     sidebar_180: []
     sidebar_300: []
 
+
+searchSuccess:
+  stylesheets: [frontend/modules/search.css]
+  javascripts: [jquery/masonry.js, jquery/infinitescroll.js]
+  components:
+    sidebar_300: [global, sidebar300]

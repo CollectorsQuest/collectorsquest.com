@@ -41,3 +41,5 @@
     array('collectible' => $collectible)
   );
 ?>
+
+Related Items for Sale

@@ -94,6 +94,18 @@ class Collectible extends BaseCollectible
     return (null !== $limit) ? cqStatic::truncateText($v, (int) $limit, '...', true) : $v;
   }
 
+  public function getRelatedCollectibles($limit = 8, &$rnd_flag = false)
+  {
+    /** @var $q CollectibleQuery */
+    $q = CollectibleQuery::create()
+      ->limit($limit)
+      ->addAscendingOrderByColumn('RAND()');
+
+    $rnd_flag = true;
+
+    return $q->find();
+  }
+
   public function getRelatedCollectiblesForSale($limit = 5, &$rnd_flag = false)
   {
     /** @var $q CollectibleForSaleQuery */
@@ -101,6 +113,8 @@ class Collectible extends BaseCollectible
       ->joinWith('Collectible')
       ->limit($limit)
       ->addAscendingOrderByColumn('RAND()');
+
+    $rnd_flag = true;
 
     return $q->find();
   }

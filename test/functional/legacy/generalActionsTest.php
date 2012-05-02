@@ -16,9 +16,9 @@ $browser->
 
   with('response')->begin()->
     isStatusCode(200)->
-    checkElement('h2', '/ARTICLES/')->
-    checkElement('h2', '/VIDEOS/')->
-    checkElement('h2', '/FEATURED WEEK/')->
+    checkElement('h2', '/ARTICLES/', array('position' => 0))->
+    checkElement('h2', '/VIDEOS/', array('position' => 1))->
+    checkElement('h2', '/FEATURED WEEK/', array('position' => 2))->
     checkElement('#footer', '/Made by hand in NY/')->
   end()
 ;

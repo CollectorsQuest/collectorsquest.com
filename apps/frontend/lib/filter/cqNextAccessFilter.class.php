@@ -13,7 +13,7 @@ class cqNextAccessFilter extends sfFilter
   public function execute($filterChain)
   {
     // Do not put restrictions in certain environments
-    if (in_array(SF_ENV, array('dev', 'test')))
+    if (in_array(SF_ENV, array('dev', 'test')) && !defined('TEST_CQ_NEXT_ACCESS_FILTER'))
     {
       $filterChain->execute();
 

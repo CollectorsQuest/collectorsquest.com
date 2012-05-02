@@ -494,6 +494,27 @@ CollectorArchive:
     last_seen_at: '2008-04-28 00:00:00'
     updated_at: '2012-03-13 11:57:44'
     created_at: '2008-04-15 19:38:41'
+  CollectorArchive_545:
+    id: '545'
+    graph_id: '15783'
+    facebook_id: '1196970219'
+    username: fb1196970219
+    display_name: 'Peter Cook'
+    slug: peter-cook
+    sha1_password: 33c6c660c0a3da277e3f4da1be44902c5a0710a4
+    salt: cfd8951bbf26b1e44e10bb27833af082
+    user_type: Collector
+    max_collectibles_for_sale: '0'
+    locale: en_US
+    score: '0'
+    spam_score: '5'
+    is_spam: '0'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: cla7hl9n02rjjolh9i80qsagu7
+    last_seen_at: '2012-04-25 11:58:21'
+    updated_at: '2012-04-25 11:58:37'
+    created_at: '2008-04-19 13:36:33'
   CollectorArchive_559:
     id: '559'
     graph_id: '25'
@@ -515,6 +536,26 @@ CollectorArchive:
     updated_at: '2012-01-17 08:08:30'
     created_at: '2008-05-05 07:29:09'
     archived_at: '2011-06-13 12:52:01'
+  CollectorArchive_615:
+    id: '615'
+    graph_id: '15786'
+    username: mikaplexus
+    display_name: Mikaplexus
+    slug: mikaplexus
+    sha1_password: f4fdeae78003cc8ed6f7805b6baa02508c616949
+    salt: 823bfe9295b8881083c9f696317af3bc
+    email: mikaplexus@yahoo.com
+    user_type: Collector
+    max_collectibles_for_sale: '0'
+    locale: en_US
+    score: '0'
+    spam_score: '5'
+    is_spam: '0'
+    is_public: '1'
+    has_completed_registration: '1'
+    last_seen_at: '2009-01-21 00:00:00'
+    updated_at: '2012-04-25 15:55:54'
+    created_at: '2008-06-07 22:23:44'
   CollectorArchive_632:
     id: '632'
     graph_id: '12718'
@@ -535,6 +576,26 @@ CollectorArchive:
     last_seen_at: '2008-10-01 00:00:00'
     updated_at: '2012-03-13 12:00:03'
     created_at: '2008-06-16 23:47:00'
+  CollectorArchive_662:
+    id: '662'
+    graph_id: '15792'
+    username: kike117
+    display_name: Kike117
+    slug: kike117
+    sha1_password: b1571f79eee61a73fe86fab5becc543e0d06c59c
+    salt: 4671177a7af1eb8a7e3ae892f172b60a
+    email: bacara_at@hotmail.com
+    user_type: Collector
+    max_collectibles_for_sale: '0'
+    locale: en_US
+    score: '0'
+    spam_score: '5'
+    is_spam: '0'
+    is_public: '1'
+    has_completed_registration: '1'
+    last_seen_at: '2009-01-21 00:00:00'
+    updated_at: '2012-04-25 15:59:54'
+    created_at: '2008-07-10 19:53:48'
   CollectorArchive_754:
     id: '754'
     graph_id: '12731'
@@ -716,6 +777,26 @@ CollectorArchive:
     last_seen_at: '2009-01-23 00:00:00'
     updated_at: '2012-03-14 10:33:08'
     created_at: '2009-01-23 14:38:38'
+  CollectorArchive_969:
+    id: '969'
+    graph_id: '15791'
+    username: oinkyman
+    display_name: Oinkyman
+    slug: oinkyman
+    sha1_password: df828f7e85789086809300985e09b07fc6b90a53
+    salt: eb7a300809be7b61b903739f0e3e5537
+    email: lsroque@epldtventus.com
+    user_type: Collector
+    max_collectibles_for_sale: '0'
+    locale: en_US
+    score: '0'
+    spam_score: '5'
+    is_spam: '0'
+    is_public: '1'
+    has_completed_registration: '1'
+    last_seen_at: '2009-02-06 00:00:00'
+    updated_at: '2012-04-25 15:59:40'
+    created_at: '2009-02-06 09:36:32'
   CollectorArchive_970:
     id: '970'
     graph_id: '14510'
@@ -900,6 +981,26 @@ CollectorArchive:
     updated_at: '2012-01-17 08:08:30'
     created_at: '2009-05-28 16:19:58'
     archived_at: '2011-06-13 12:52:14'
+  CollectorArchive_1292:
+    id: '1292'
+    graph_id: '15790'
+    username: stardrops_
+    display_name: Stardrops_
+    slug: stardrops_
+    sha1_password: 56342a7932cd8bfdb0b7c6662cd3f00440c289f0
+    salt: e5c5be044c3ff581eedb864a2635bb80
+    email: MikagamiTokiya7@hotmail.com
+    user_type: Collector
+    max_collectibles_for_sale: '0'
+    locale: en_US
+    score: '0'
+    spam_score: '5'
+    is_spam: '0'
+    is_public: '0'
+    has_completed_registration: '1'
+    last_seen_at: '2012-04-25 15:59:18'
+    updated_at: '2012-04-25 15:59:23'
+    created_at: '2009-06-01 12:37:50'
   CollectorArchive_1299:
     id: '1299'
     graph_id: '12771'
@@ -1004,6 +1105,26 @@ CollectorArchive:
     last_seen_at: '2009-06-30 00:00:00'
     updated_at: '2012-03-13 13:18:26'
     created_at: '2009-06-30 05:05:57'
+  CollectorArchive_1466:
+    id: '1466'
+    graph_id: '15789'
+    username: tiger6666
+    display_name: Tiger6666
+    slug: tiger6666
+    sha1_password: e69676af516bd0dbbce96eedcc5f909e20cefa65
+    salt: 20a47e7a3818332804247d215b37db18
+    email: Tiger6666@netzero.net
+    user_type: Collector
+    max_collectibles_for_sale: '0'
+    locale: en_US
+    score: '0'
+    spam_score: '5'
+    is_spam: '0'
+    is_public: '1'
+    has_completed_registration: '1'
+    last_seen_at: '2009-08-25 00:00:00'
+    updated_at: '2012-04-25 15:58:21'
+    created_at: '2009-08-19 21:28:17'
   CollectorArchive_1471:
     id: '1471'
     graph_id: '13162'
@@ -1046,6 +1167,26 @@ CollectorArchive:
     updated_at: '2012-01-17 08:08:36'
     created_at: '2009-09-07 16:25:54'
     archived_at: '2012-01-05 17:18:06'
+  CollectorArchive_1528:
+    id: '1528'
+    graph_id: '15787'
+    username: milotik
+    display_name: milotik
+    slug: milotik
+    sha1_password: dbf1c436599a2e1f4e356893d0b4f07c5751c4e8
+    salt: a5f167235045d9e95ff95c5392aa3f94
+    email: brujacachita@yahoo.com.ar
+    user_type: Collector
+    max_collectibles_for_sale: '0'
+    locale: en_US
+    score: '0'
+    spam_score: '5'
+    is_spam: '0'
+    is_public: '1'
+    has_completed_registration: '1'
+    last_seen_at: '2009-09-13 00:00:00'
+    updated_at: '2012-04-25 15:56:09'
+    created_at: '2009-09-13 19:47:31'
   CollectorArchive_1616:
     id: '1616'
     graph_id: '147'
@@ -5453,6 +5594,27 @@ CollectorArchive:
     updated_at: '2012-01-17 08:08:46'
     created_at: '2010-12-21 01:58:51'
     archived_at: '2011-09-28 07:40:24'
+  CollectorArchive_4979:
+    id: '4979'
+    graph_id: '15784'
+    username: 'Hugo lozano'
+    display_name: hugogo
+    slug: hugogo-975a3f
+    sha1_password: 4134e5abf2ee3ae4de6a5f1202c881f6da6cf7b6
+    salt: 9b89680712a7c18fadae4b754ee90fca
+    email: hugogo1+4979@mac.com
+    user_type: Collector
+    max_collectibles_for_sale: '0'
+    locale: en_US
+    score: '0'
+    spam_score: '5'
+    is_spam: '0'
+    is_public: '1'
+    has_completed_registration: '1'
+    session_id: 4ot0d5dbkmbf857p85fkpn0925
+    last_seen_at: '2010-12-25 00:00:00'
+    updated_at: '2012-04-25 12:16:39'
+    created_at: '2010-12-25 05:04:33'
   CollectorArchive_4992:
     id: '4992'
     graph_id: '320'
@@ -5847,6 +6009,27 @@ CollectorArchive:
     updated_at: '2012-01-17 08:08:47'
     created_at: '2011-04-30 10:57:25'
     archived_at: '2012-01-09 07:15:20'
+  CollectorArchive_6253:
+    id: '6253'
+    graph_id: '15785'
+    username: PinkyPhantom
+    display_name: Katy
+    slug: katy
+    sha1_password: fd35be99f91b91344de248e0ac3825b0dd6d27f1
+    salt: d6eb301845e7af5673109d1ab8115b2e
+    email: katetumova2@inbox.lv
+    user_type: Collector
+    max_collectibles_for_sale: '0'
+    locale: en_US
+    score: '0'
+    spam_score: '5'
+    is_spam: '0'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: 7kk1dndr5s07ea416p8rar49j3
+    last_seen_at: '2012-04-25 12:17:31'
+    updated_at: '2012-04-25 12:17:52'
+    created_at: '2011-05-02 11:31:14'
   CollectorArchive_6255:
     id: '6255'
     graph_id: '334'
@@ -52599,3 +52782,735 @@ CollectorArchive:
     last_seen_at: '2012-04-20 02:04:16'
     updated_at: '2012-04-20 02:05:22'
     created_at: '2012-04-20 02:04:15'
+  CollectorArchive_10107:
+    id: '10107'
+    graph_id: '15685'
+    username: TestDfdf
+    display_name: Test
+    slug: test-995f70
+    sha1_password: db9af0d63c1ff19fc7a36c495bbc5a2714646afa
+    salt: 42b0e9be7b765a52624d73330472a4bf
+    email: test@gmail.com
+    user_type: Collector
+    max_collectibles_for_sale: '0'
+    locale: en_US
+    score: '0'
+    spam_score: '0'
+    is_spam: '0'
+    is_public: '1'
+    has_completed_registration: '0'
+    session_id: cd98a3mi5astl9h8dqe4t9j993
+    last_seen_at: '2012-04-20 17:53:41'
+    updated_at: '2012-04-20 18:02:06'
+    created_at: '2012-04-20 17:53:41'
+  CollectorArchive_10108:
+    id: '10108'
+    graph_id: '15686'
+    username: lysyl
+    display_name: lysyl
+    slug: lysyl
+    sha1_password: a55e9752350b0ffa2cfd6672476688380b27b91a
+    salt: dc2884ba5fdf1fb4271c6df87c9eba36
+    email: lysylalsagon@gmail.com
+    user_type: Collector
+    max_collectibles_for_sale: '0'
+    locale: en_US
+    score: '0'
+    spam_score: '99'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '1'
+    session_id: v2jf20c7g40cd69gdv4lckhaa1
+    last_seen_at: '2012-04-21 02:27:20'
+    updated_at: '2012-04-21 02:30:41'
+    created_at: '2012-04-21 02:27:20'
+  CollectorArchive_10109:
+    id: '10109'
+    graph_id: '15687'
+    username: sophia852
+    display_name: sophia852
+    slug: sophia852
+    sha1_password: 2c6849a4d1114b596556f1ecaaf0ebecd595cfac
+    salt: 47f763be049308886de5ad4522047548
+    email: sophiacarter852@yahoo.com
+    user_type: Collector
+    max_collectibles_for_sale: '0'
+    locale: en_US
+    score: '0'
+    spam_score: '99'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '1'
+    session_id: 698tp5f05vuh7rgmfgfje9s346
+    last_seen_at: '2012-04-21 04:41:31'
+    updated_at: '2012-04-21 04:44:49'
+    created_at: '2012-04-21 04:41:31'
+  CollectorArchive_10110:
+    id: '10110'
+    graph_id: '15688'
+    username: pranmaniaa
+    display_name: pranmaniaa
+    slug: pranmaniaa
+    sha1_password: 47af251b18f6320d5bc4a0e47b7d23ef2aaf024a
+    salt: 3f6918ea56232493b5e425fcf11dc886
+    email: pranmaniaa@yahoo.in
+    user_type: Collector
+    max_collectibles_for_sale: '0'
+    locale: en_US
+    score: '0'
+    spam_score: '5'
+    is_spam: '0'
+    is_public: '1'
+    has_completed_registration: '1'
+    session_id: eibrhssm4akthgj8rqknierrf0
+    last_seen_at: '2012-04-21 11:45:50'
+    updated_at: '2012-04-21 11:47:38'
+    created_at: '2012-04-21 11:45:50'
+  CollectorArchive_10111:
+    id: '10111'
+    graph_id: '15689'
+    username: Stephenhussy
+    display_name: 'Stephen Hussy'
+    slug: stephen-hussy
+    sha1_password: 5fa33bc9979d7d5861086c077a4dd17e42ef3332
+    salt: c2c1e2d249c7a4f22f2b6579365fb60f
+    email: stephenhussy@gmail.com
+    user_type: Collector
+    max_collectibles_for_sale: '0'
+    locale: en_US
+    score: '0'
+    spam_score: '99'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '1'
+    last_seen_at: '2012-04-21 14:12:36'
+    updated_at: '2012-04-21 14:12:36'
+    created_at: '2012-04-21 14:00:43'
+  CollectorArchive_10112:
+    id: '10112'
+    graph_id: '15692'
+    username: joygates
+    display_name: joygates
+    slug: joygates
+    sha1_password: 8056ca44ab5c7b5a4e32e13a5102ffe182643f4c
+    salt: b6b2128c519ada28fd149d7afaa5b200
+    email: joygates23@gmail.com
+    user_type: Collector
+    max_collectibles_for_sale: '0'
+    locale: en_US
+    score: '0'
+    spam_score: '99'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '1'
+    session_id: me6ck4p95vqnggt96baolq9ji4
+    last_seen_at: '2012-04-22 06:05:09'
+    updated_at: '2012-04-22 06:29:52'
+    created_at: '2012-04-22 06:05:09'
+  CollectorArchive_10113:
+    id: '10113'
+    graph_id: '15693'
+    username: katmaniaa
+    display_name: katmaniaa
+    slug: katmaniaa
+    sha1_password: bf8080cdce3536bc02d8f939d8d67050090893e9
+    salt: e05906435aa37a9b4bd80945c6024e75
+    email: katmaniaa@yahoo.in
+    user_type: Collector
+    max_collectibles_for_sale: '0'
+    locale: en_US
+    score: '0'
+    spam_score: '5'
+    is_spam: '0'
+    is_public: '1'
+    has_completed_registration: '1'
+    session_id: jcpcmeg8re9n7baciv67unu1r1
+    last_seen_at: '2012-04-22 06:40:59'
+    updated_at: '2012-04-22 06:51:26'
+    created_at: '2012-04-22 06:40:58'
+  CollectorArchive_10117:
+    id: '10117'
+    graph_id: '15744'
+    username: mokamoka
+    display_name: moka
+    slug: moka
+    sha1_password: 6a898df35c8c937243dba13254eddbe5b3eb46a7
+    salt: 483b7d87a7ce10936abb6492879b91e3
+    email: moka20120203@gmail.com
+    user_type: Collector
+    max_collectibles_for_sale: '0'
+    locale: en_US
+    score: '0'
+    spam_score: '99'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '1'
+    session_id: c6usfdiomkdon7uip7n1f0d4v0
+    last_seen_at: '2012-04-22 21:30:37'
+    updated_at: '2012-04-22 21:32:33'
+    created_at: '2012-04-22 21:30:37'
+  CollectorArchive_10118:
+    id: '10118'
+    graph_id: '15745'
+    username: clifordevans
+    display_name: clifordevans
+    slug: clifordevans
+    sha1_password: 223d2fc1d56c4b968657d61ddce3c7cf51e9a6b6
+    salt: 73e2cda5453b758d2160ebfbf5f4537b
+    email: clifordevans@gmail.com
+    user_type: Collector
+    max_collectibles_for_sale: '0'
+    locale: en_US
+    score: '0'
+    spam_score: '99'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '1'
+    session_id: mv852h2k51ok46354vhvs7j7k1
+    last_seen_at: '2012-04-23 04:17:44'
+    updated_at: '2012-04-23 04:22:29'
+    created_at: '2012-04-23 04:17:44'
+  CollectorArchive_10120:
+    id: '10120'
+    graph_id: '15755'
+    username: yene9tek
+    display_name: 'Gotam Shing'
+    slug: gotam-shing
+    sha1_password: ac947ed4eaf33846609a593ad584aba0f45c6c40
+    salt: 43ff5a567eebf47da72446f5aac092bf
+    email: yene9tek@yahoo.com
+    user_type: Collector
+    max_collectibles_for_sale: '0'
+    locale: en_US
+    score: '0'
+    spam_score: '99'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '1'
+    session_id: js1tg53i0qm7vhkh02omh827d6
+    last_seen_at: '2012-04-24 02:03:14'
+    updated_at: '2012-04-24 02:05:55'
+    created_at: '2012-04-24 02:03:14'
+  CollectorArchive_10121:
+    id: '10121'
+    graph_id: '15756'
+    username: businessvoipphone02
+    display_name: 'Business Voip Phone'
+    slug: business-voip-phone
+    sha1_password: b9c169747d29da73f016a861d40e010917e82a2f
+    salt: ea3143d9ae486ef048099d8cc9109a6a
+    email: ivoisys02@gmail.com
+    user_type: Collector
+    max_collectibles_for_sale: '0'
+    locale: en_US
+    score: '0'
+    spam_score: '99'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '1'
+    session_id: cmto02nor62oc3ngf46gu6hj33
+    last_seen_at: '2012-04-24 02:14:35'
+    updated_at: '2012-04-24 02:16:39'
+    created_at: '2012-04-24 02:14:35'
+  CollectorArchive_10122:
+    id: '10122'
+    graph_id: '15757'
+    username: a5instantloans
+    display_name: a5instantloans
+    slug: a5instantloans
+    sha1_password: d72b6bc9b5e934778cd77228dde1e175fa907698
+    salt: de6c7d0843b6cc3db3aa2d5b832c451e
+    email: desiree.rossman@guglator.com
+    user_type: Collector
+    max_collectibles_for_sale: '0'
+    locale: en_US
+    score: '0'
+    spam_score: '99'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '1'
+    session_id: bs33ca4b9dpq1bl6jkljjnldn0
+    last_seen_at: '2012-04-24 07:34:11'
+    updated_at: '2012-04-24 07:34:24'
+    created_at: '2012-04-24 03:01:59'
+  CollectorArchive_10123:
+    id: '10123'
+    graph_id: '15758'
+    username: jennygreen06
+    display_name: jennygreen06
+    slug: jennygreen06
+    sha1_password: 4f8f6fe167eb098d1ccca135d61638e231a2363e
+    salt: 491c87c2b6669afdbf962a0690917993
+    email: jennygreen06@yahoo.com
+    user_type: Collector
+    max_collectibles_for_sale: '0'
+    locale: en_US
+    score: '0'
+    spam_score: '50'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '1'
+    session_id: bevhoa3hqda3lo7s36c8hdhp66
+    last_seen_at: '2012-04-24 04:12:50'
+    updated_at: '2012-04-24 04:15:25'
+    created_at: '2012-04-24 04:12:50'
+  CollectorArchive_10124:
+    id: '10124'
+    graph_id: '15759'
+    username: torontocondo11
+    display_name: torontocondo11
+    slug: torontocondo11
+    sha1_password: 467042f1c19d1caface6beb7841e6294f531cecd
+    salt: b91d7857e72c7e779f905791e62fef60
+    email: torontocompanies11@gmail.com
+    user_type: Collector
+    max_collectibles_for_sale: '0'
+    locale: en_US
+    score: '0'
+    spam_score: '99'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '1'
+    session_id: u30hp9novd3h2e0d42df5usjd4
+    last_seen_at: '2012-04-24 05:52:02'
+    updated_at: '2012-04-24 05:55:57'
+    created_at: '2012-04-24 05:52:02'
+  CollectorArchive_10125:
+    id: '10125'
+    graph_id: '15760'
+    username: kojot866
+    display_name: kojot866
+    slug: kojot866
+    sha1_password: 79f80b341c4d4d6d67abb2a42d94d04bac5cb661
+    salt: 9d5f1ccd8fc163786593e78b994113b5
+    email: kojot866@o2.pl
+    user_type: Collector
+    max_collectibles_for_sale: '0'
+    locale: en_US
+    score: '0'
+    spam_score: '40'
+    is_spam: '0'
+    is_public: '1'
+    has_completed_registration: '1'
+    last_seen_at: '2012-04-24 08:47:47'
+    updated_at: '2012-04-24 08:47:47'
+    created_at: '2012-04-24 08:46:15'
+  CollectorArchive_10126:
+    id: '10126'
+    graph_id: '15774'
+    username: advia
+    display_name: advia
+    slug: advia
+    sha1_password: 31ed876144f0a349ff7226e5c9b15269983e9a1f
+    salt: 0879cfbe033e09786832886e1ff47773
+    email: vanessa@advia.com.au
+    user_type: Collector
+    max_collectibles_for_sale: '0'
+    locale: en_US
+    score: '0'
+    spam_score: '99'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '1'
+    session_id: cp7b2nbhck9uqu8fi3ejmov1f6
+    last_seen_at: '2012-04-24 18:23:18'
+    updated_at: '2012-04-24 18:25:44'
+    created_at: '2012-04-24 18:23:18'
+  CollectorArchive_10127:
+    id: '10127'
+    graph_id: '15775'
+    username: jakeeh1972
+    display_name: jake_ehlinger@yahoo.com
+    slug: jake_ehlingeryahoocom
+    sha1_password: bf72349bcb25a1cb1d096b4372148d0d38440aa5
+    salt: d210f5f60c5a50b5dfca5ff9607bd3eb
+    email: jake_ehlinger@yahoo.com
+    user_type: Collector
+    max_collectibles_for_sale: '0'
+    locale: en_US
+    score: '0'
+    spam_score: '60'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '1'
+    session_id: 8t5fj6s4kj58ncupimt3jr3d41
+    last_seen_at: '2012-04-25 01:29:35'
+    updated_at: '2012-04-25 01:30:34'
+    created_at: '2012-04-25 01:29:35'
+  CollectorArchive_10128:
+    id: '10128'
+    graph_id: '15776'
+    username: aikidoyoga02
+    display_name: 'Aikido Yoga'
+    slug: aikido-yoga
+    sha1_password: ba1c171d2dd10ec692ea7bb276c392b7acd3dfbf
+    salt: 01c338551924cfee3112927bab206d97
+    email: worldaikidoyoga02@gmail.com
+    user_type: Collector
+    max_collectibles_for_sale: '0'
+    locale: en_US
+    score: '0'
+    spam_score: '50'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '1'
+    session_id: sacma19mgejn3vtf72grlr3ap2
+    last_seen_at: '2012-04-25 01:46:03'
+    updated_at: '2012-04-25 01:47:21'
+    created_at: '2012-04-25 01:46:02'
+  CollectorArchive_10129:
+    id: '10129'
+    graph_id: '15777'
+    username: calypso222
+    display_name: calypso222
+    slug: calypso222
+    sha1_password: ad87bc0294af186e8f1abada9a951ce5458bfac2
+    salt: 606cfd2c852e20f042dd0be77a46b426
+    email: diaries221@hotmail.com
+    user_type: Collector
+    max_collectibles_for_sale: '0'
+    locale: en_US
+    score: '0'
+    spam_score: '99'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '1'
+    session_id: 6f99n419291o3eug730rk5sv73
+    last_seen_at: '2012-04-25 03:26:12'
+    updated_at: '2012-04-25 03:27:51'
+    created_at: '2012-04-25 03:26:12'
+  CollectorArchive_10130:
+    id: '10130'
+    graph_id: '15778'
+    username: a25personalloanswithbadcredit
+    display_name: a25personalloanswithbadcredit
+    slug: a25personalloanswithbadcredit
+    sha1_password: 7e84eac73f4754f170d7c7cbd153c66c40a763a5
+    salt: cc6ab9640592dc9d69c9f53bdf31fd61
+    email: angie.bedell@guglator.com
+    user_type: Collector
+    max_collectibles_for_sale: '0'
+    locale: en_US
+    score: '0'
+    spam_score: '99'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '1'
+    session_id: 2jhdqdb3nqhda5bh4dpp0bfgp4
+    last_seen_at: '2012-04-25 08:51:15'
+    updated_at: '2012-04-25 08:51:24'
+    created_at: '2012-04-25 03:28:50'
+  CollectorArchive_10132:
+    id: '10132'
+    graph_id: '15782'
+    username: jheitz
+    display_name: 'jessica heitz'
+    slug: jessica-heitz
+    sha1_password: 66f2f7da5c7e05042de3d81e912c04c2d402dd18
+    salt: bd813ad277c926d0ad7be5f24f704ecd
+    email: jessicaheitz05@gmail.com
+    user_type: Collector
+    max_collectibles_for_sale: '0'
+    locale: en_US
+    score: '0'
+    spam_score: '99'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '1'
+    session_id: lj5pp31prfakq7t8osb30kffr2
+    last_seen_at: '2012-04-25 09:41:30'
+    updated_at: '2012-04-25 09:42:23'
+    created_at: '2012-04-25 09:41:29'
+  CollectorArchive_10136:
+    id: '10136'
+    graph_id: '15837'
+    username: walterhust
+    display_name: 'walter hust'
+    slug: walter-hust
+    sha1_password: 8cc4c046b636d9c57550cc40053ade7a647f1e02
+    salt: bca842f1f03d625e4a18818ff2a921a1
+    email: runthhussey@yahoo.com
+    user_type: Collector
+    max_collectibles_for_sale: '0'
+    locale: en_US
+    score: '0'
+    spam_score: '50'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '1'
+    session_id: l1mqnusmdcuh8mcbl7pje48bo4
+    last_seen_at: '2012-04-26 01:07:58'
+    updated_at: '2012-04-26 01:08:50'
+    created_at: '2012-04-26 01:07:58'
+  CollectorArchive_10137:
+    id: '10137'
+    graph_id: '15840'
+    username: adamcord07
+    display_name: adamcord07
+    slug: adamcord07
+    sha1_password: c85d70fe674b9c4f559d8bd87e19406af221fbeb
+    salt: 240e3d13ae4d98416b5999f10a041527
+    email: adamcord1985@rocketmail.com
+    user_type: Collector
+    max_collectibles_for_sale: '0'
+    locale: en_US
+    score: '0'
+    spam_score: '5'
+    is_spam: '0'
+    is_public: '1'
+    has_completed_registration: '1'
+    session_id: oboocmeand9lfmvhh3go87q1k1
+    last_seen_at: '2012-04-26 03:41:37'
+    updated_at: '2012-04-26 03:46:07'
+    created_at: '2012-04-26 03:41:37'
+  CollectorArchive_10138:
+    id: '10138'
+    graph_id: '15839'
+    username: a5samedayloans
+    display_name: a5samedayloans
+    slug: a5samedayloans
+    sha1_password: 06df161e235ac22c22e7c890f99d485449b8c08d
+    salt: c55e6b8b55389cf88864e70445b1e061
+    email: lily.kratz@guglator.com
+    user_type: Collector
+    max_collectibles_for_sale: '0'
+    locale: en_US
+    score: '0'
+    spam_score: '99'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '1'
+    session_id: tf1li69sl0t8hlkvlgdt620ib7
+    last_seen_at: '2012-04-26 07:52:59'
+    updated_at: '2012-04-26 07:53:14'
+    created_at: '2012-04-26 03:45:20'
+  CollectorArchive_10139:
+    id: '10139'
+    graph_id: '15841'
+    username: frenchvisra
+    display_name: 'french visra'
+    slug: french-visra
+    sha1_password: 0fb1f7dba14b12b88117060a86cbe0bbde14fc79
+    salt: 88e340b5b4b2b73d9bdd940495dee3f2
+    email: darestiondavid@yahoo.com
+    user_type: Collector
+    max_collectibles_for_sale: '0'
+    locale: en_US
+    score: '0'
+    spam_score: '99'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '1'
+    session_id: ffrticpn6kmp7odav1ki75aug4
+    last_seen_at: '2012-04-26 07:03:02'
+    updated_at: '2012-04-26 07:04:19'
+    created_at: '2012-04-26 07:03:02'
+  CollectorArchive_10144:
+    id: '10144'
+    graph_id: '15854'
+    username: qldfirstaid
+    display_name: qldfirstaid
+    slug: qldfirstaid
+    sha1_password: d9dc379820f1561b33937bba6a00d6e3228d846d
+    salt: a3b9c3e0a7ff45ed1f293f110646088d
+    email: qldfirstaid@yahoo.com
+    user_type: Collector
+    max_collectibles_for_sale: '0'
+    locale: en_US
+    score: '0'
+    spam_score: '99'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '1'
+    session_id: r37ms8d50vss6oslpisbqojlq4
+    last_seen_at: '2012-04-26 20:38:18'
+    updated_at: '2012-04-26 20:40:13'
+    created_at: '2012-04-26 20:38:18'
+  CollectorArchive_10145:
+    id: '10145'
+    graph_id: '15876'
+    username: a26personalloansprivatelenders
+    display_name: a26personalloansprivatelenders
+    slug: a26personalloansprivatelenders
+    sha1_password: 279bde406db9bec62aac23d618f788e76d6a3fa2
+    salt: 382253fe2c73c64f73045f9513e3d9b0
+    email: holly.philpott@guglator.com
+    user_type: Collector
+    max_collectibles_for_sale: '0'
+    locale: en_US
+    score: '0'
+    spam_score: '5'
+    is_spam: '0'
+    is_public: '1'
+    has_completed_registration: '1'
+    session_id: bh163vb2hp8m1ek893j9l5d7e4
+    last_seen_at: '2012-04-27 04:10:56'
+    updated_at: '2012-04-27 04:11:19'
+    created_at: '2012-04-27 04:10:56'
+  CollectorArchive_10147:
+    id: '10147'
+    graph_id: '15878'
+    username: smoore
+    display_name: 'Sandra Moore'
+    slug: sandra-moore
+    sha1_password: e0790196516d789f4649658714968772d4249a20
+    salt: 590d74bc099ad94e77239ad6f1e05ce3
+    email: sandramoore84@yahoo.com
+    user_type: Collector
+    max_collectibles_for_sale: '0'
+    locale: en_US
+    score: '0'
+    spam_score: '99'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '1'
+    session_id: qkjcc0mo78167qcq5gnn5gbv05
+    last_seen_at: '2012-04-27 08:20:12'
+    updated_at: '2012-04-27 08:21:09'
+    created_at: '2012-04-27 08:20:12'
+  CollectorArchive_10149:
+    id: '10149'
+    graph_id: '15880'
+    username: a2guaranteedonlinepersonalloans
+    display_name: a2guaranteedonlinepersonalloans
+    slug: a2guaranteedonlinepersonalloans
+    sha1_password: 2837b4aa28e8104500f8d9d32cb769e1fd178bb2
+    salt: c7d43498d08793df32e6b1afefbdcdb0
+    email: eliana.sutphin@guglator.com
+    user_type: Collector
+    max_collectibles_for_sale: '0'
+    locale: en_US
+    score: '0'
+    spam_score: '99'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '1'
+    session_id: 1a2grlt9neoea9a29rpa69sut5
+    last_seen_at: '2012-04-27 11:54:21'
+    updated_at: '2012-04-27 11:54:34'
+    created_at: '2012-04-27 11:10:38'
+  CollectorArchive_10160:
+    id: '10160'
+    graph_id: '15923'
+    username: nursesonly
+    display_name: nursesonly
+    slug: nursesonly
+    sha1_password: 606fc2ddae2a11522f84a1aadc7ffdae82e126f4
+    salt: 29f115a11219fcb882133b0d4dc49540
+    email: nurses.only@yahoo.com
+    user_type: Collector
+    max_collectibles_for_sale: '0'
+    locale: en_US
+    score: '0'
+    spam_score: '99'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '1'
+    session_id: 821fr6mpdjpuu7fptvtb01arh2
+    last_seen_at: '2012-04-28 21:30:29'
+    updated_at: '2012-04-28 21:32:35'
+    created_at: '2012-04-28 21:30:29'
+  CollectorArchive_10167:
+    id: '10167'
+    graph_id: '16016'
+    username: simi6yen
+    display_name: 'sunil Smith'
+    slug: sunil-smith
+    sha1_password: c182558f147f4cfc9fe962477533186a3875895c
+    salt: 31e5839dc71f85386fe576739f782bca
+    email: simi6yen@yahoo.com
+    user_type: Collector
+    max_collectibles_for_sale: '0'
+    locale: en_US
+    score: '0'
+    spam_score: '99'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '1'
+    session_id: lf7bj1adumcvft2kaujv412rv0
+    last_seen_at: '2012-04-30 04:25:41'
+    updated_at: '2012-04-30 04:27:20'
+    created_at: '2012-04-30 04:25:41'
+  CollectorArchive_10169:
+    id: '10169'
+    graph_id: '16018'
+    username: a3privatelenders
+    display_name: a3privatelenders
+    slug: a3privatelenders
+    sha1_password: dbdbdb714065f0245546971be9d4fdaf943f86e6
+    salt: 502432514a11efadd2a177c4c2a687ed
+    email: darryl.burkhalter@guglator.com
+    user_type: Collector
+    max_collectibles_for_sale: '0'
+    locale: en_US
+    score: '0'
+    spam_score: '99'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '1'
+    session_id: v9ck5de985fbc54rarncv2ja71
+    last_seen_at: '2012-04-30 08:19:02'
+    updated_at: '2012-04-30 08:19:12'
+    created_at: '2012-04-30 06:30:37'
+  CollectorArchive_10171:
+    id: '10171'
+    graph_id: '16048'
+    username: jery3hari
+    display_name: 'sunil Smith'
+    slug: sunil-smith-ab0b47
+    sha1_password: 169349627b8d71e5a1ddd3bc6bb9e15af9d22ee4
+    salt: c778196069ea10f50db825b17c5b3fde
+    email: jery3hari@yahoo.com
+    user_type: Collector
+    max_collectibles_for_sale: '0'
+    locale: en_US
+    score: '0'
+    spam_score: '99'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '1'
+    session_id: fctpnbgs6p3l8m6kjqqq7lg6h6
+    last_seen_at: '2012-04-30 08:33:14'
+    updated_at: '2012-04-30 08:35:12'
+    created_at: '2012-04-30 08:33:14'
+  CollectorArchive_10175:
+    id: '10175'
+    graph_id: '16102'
+    username: Joseph1
+    display_name: 'Joseph Billy'
+    slug: joseph-billy
+    sha1_password: ec5e07c2cdfa62ed1310998ce3b6c273ba39b5b4
+    salt: c19cdbe875b4726275f214d8f94351ee
+    email: allbart051@gmail.com
+    user_type: Collector
+    max_collectibles_for_sale: '0'
+    locale: en_US
+    score: '0'
+    spam_score: '99'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '1'
+    last_seen_at: '2012-04-30 21:28:26'
+    updated_at: '2012-04-30 21:28:26'
+    created_at: '2012-04-30 21:16:54'
+  CollectorArchive_10178:
+    id: '10178'
+    graph_id: '16105'
+    username: pira12tomu
+    display_name: 'sunil Smith'
+    slug: sunil-smith-dc3316
+    sha1_password: 2ce0b51cc0e4e490fb33e67f31740517367c4bfa
+    salt: ae6a0a9f61e1c66da95ef81feb18be97
+    email: pira12tomu@yahoo.com
+    user_type: Collector
+    max_collectibles_for_sale: '0'
+    locale: en_US
+    score: '0'
+    spam_score: '99'
+    is_spam: '1'
+    is_public: '1'
+    has_completed_registration: '1'
+    session_id: 337fj39m3ifg5m03brph1si152
+    last_seen_at: '2012-05-01 04:19:48'
+    updated_at: '2012-05-01 04:22:54'
+    created_at: '2012-05-01 04:19:48'

@@ -2,7 +2,7 @@
   <?php
     if ($brand === 'Pawn Stars')
     {
-      echo '<img src="/images/banners/040412_pawnstars_620x67.jpg" alt="">';
+      echo link_to(image_tag('banners/040412_pawnstars_620x67.jpg'), '@aetn_pawn_stars');
     }
   ?>
 </div>
@@ -12,15 +12,27 @@
   <?= image_tag_collectible($collectible, '620x370'); ?>
 </div>
 
-<div class="info-blue-box bottom-margin-double">
+<div class="statistics-share-panel bottom-margin-double">
   <div class="row-fluid">
     <div class="span6">
-      <?php
-        echo format_number_choice(
-          '[0] no views yet|[1] 1 View|(1,+Inf] %1% Views',
-          array('%1%' => number_format($collectible->getNumViews())), $collectible->getNumViews()
-        );
-      ?>
+      <ul>
+        <li>
+          <span>XX Comments</span>
+        </li>
+        <li>
+         <span>
+           <?php
+            echo format_number_choice(
+              '[0] no views yet|[1] 1 View|(1,+Inf] %1% Views',
+              array('%1%' => number_format($collectible->getNumViews())), $collectible->getNumViews()
+            );
+            ?>
+         </span>
+        </li>
+        <li>
+          <span>In XXX wanted lists</span>
+        </li>
+      </ul>
     </div>
     <div class="span6 text-right">
       <a href="#" class="btn btn-mini-share btn-lightblue-middle">
@@ -34,8 +46,7 @@
 </div>
 
 <div class="item-info">
-  <p>9-shot LeMat revolver used by the Confederate Army, American, c. 1856-1865<br>Weight, 3.1 lb unloaded. Length 13.25 in.<p>
-  <p>On <a href="#">Guns Blazing</a>, premiere date 02/20/2012, viewers prepared for battle with the Pawn Stars as one of the rarest guns in American history pops into the shop. A 9-shot LeMat revolver used by the Confederate Army, Rick charges into this deal with guns blazing. Only about 2,900 of these unique sidearms (also known as the "Grape Shot Revolver”) were produced. It was developed in New Orleans in 1856 by Dr. Jean Alexander Le Mat, whose manufacturing effort was backed by P.G.T. Beauregard, a general in the Confederate Army.</p>
+  <?= $collectible->getDescription('html'); ?>
 </div>
 
 <div id="comments">
@@ -83,34 +94,26 @@
       See all XX comments
     </button>
   </div>
-
 </div>
 
-Permalink: <?= url_for_collectible($collectible, true) ?>
+Permalink: <span class="lightblue"><?= url_for_collectible($collectible, true) ?></span>
 
 <?php
   $link = link_to('See all related collectibles &raquo;', '@marketplace', array('class' => 'text-v-middle link-align'));
   cq_section_title('Showcase', $link);
 ?>
 
-<div class="row collections-container">
-  <div id="collections" class="row-content">
-    <?php
-    /** @var $collections Collection[] */
-    foreach ($collections as $i => $collection)
+<div class="row">
+  <div id="collectibles" class="row-content">
+  <?php
+    /** @var $related_collectibles Collectible[] */
+    foreach ($related_collectibles as $i => $collectible)
     {
       include_partial(
-        'collection/collection_grid_view_square_small',
-        array('collection' => $collection, 'i' => $i)
+        'collection/collectible_grid_view_square_small',
+        array('collectible' => $collectible, 'i' => $i)
       );
     }
-    ?>
+  ?>
   </div>
 </div>
-<div class="see-more-under-image-set">
-  <button class="btn btn-small gray-button see-more-full" id="see-more-collections">
-    See more
-  </button>
-</div>
-
-
