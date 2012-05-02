@@ -1,6 +1,6 @@
 <?php
 
-if (is_page() && function_exists('dynamic_sidebar') && dynamic_sidebar('static-page-sidebar'))
+if (is_page() && function_exists('dynamic_sidebar') && is_active_sidebar('static-page-sidebar'))
 {
   dynamic_sidebar('static-page-sidebar');
 }
@@ -11,7 +11,7 @@ else if (is_page())
 
 
 
-if (is_singular() && function_exists('dynamic_sidebar') && dynamic_sidebar('singular-sidebar'))
+if (is_singular() && function_exists('dynamic_sidebar') && is_active_sidebar('singular-sidebar'))
 {
   dynamic_sidebar('singular-sidebar');
 }
@@ -24,11 +24,11 @@ else if (is_singular())
 
 
 
-if (function_exists('dynamic_sidebar') && dynamic_sidebar('non-singular-sidebar'))
+if (function_exists('dynamic_sidebar') && is_active_sidebar('non-singular-sidebar'))
 {
   dynamic_sidebar('non-singular-sidebar');
 }
-else
+else if (!dynamic_sidebar('non-singular-sidebar'))
 {
   the_widget('CQ_300x250ad_widget', $args, $instance);
   the_widget('CQ_Our_Bloggers_widget', $args, $instance);
