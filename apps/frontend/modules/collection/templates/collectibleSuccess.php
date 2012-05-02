@@ -274,9 +274,9 @@ Permalink: <span class="lightblue"><?= url_for_collectible($collectible, true) ?
   <span class="price-large">
     $25.00
   </span>
-  <button type="submit" class="btn btn-primary btn-large" value="Add Item to Cart">
-    <i class="icon icon-shopping-cart" style="font-size: 18px; padding-right: 10px; margin-right: 5px; border-right: 1px solid gray;"></i>
-    Add Item to Cart
+  <button type="submit" class="btn btn-primary blue-button" value="Add Item to Cart">
+    <i class="add-to-card-button"></i>
+    <span>Add Item to Cart</span>
   </button>
 </div>
 
