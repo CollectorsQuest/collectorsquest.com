@@ -93,6 +93,7 @@ class messagesActions extends cqFrontendActions
       if ($form->isValid())
       {
         $form->save();
+        $receiver = $form->getValue('receiver');
 
         $cqEmail = new cqEmail($this->getMailer());
         $sent = $cqEmail->send('Messages/private_message_notification', array(
