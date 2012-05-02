@@ -18,20 +18,14 @@ classes:
       model:       { type: char, size: 64, required: true }
       model_id:    { type: integer }
       type:        { type: char, sqlType: "ENUM('image','video','pdf')", default: image, required: true }
-      name:        { type: char, size: 128, required: true, primaryString: true }
-      slug:        { type: char, size: 128, required: true, index: unique }
+      name:        { type: char, size: 128, required: false, primaryString: true }
+      slug:        { type: char, size: 128, required: false, index: true }
       md5:         { type: char, size: 32, required: true }
       colors:      { type: varchar(128) }
       orientation: { type: char, sqlType: "ENUM('landscape','portrait')", default: landscape }
       source:      { type: varchar(255), required: false }
       is_primary:  { type: boolean, sqlType: "BOOL", default: false }
       position:    { type: smallint, sqlType: "SMALLINT UNSIGNED", default: 65535 }
-
-    indexes:
-      multimedia_I_1: [model, model_id]
-
-    uniques:
-      multimedia_U_2: [model, model_id, md5]
 
     propel_behaviors:
       archivable: { archive_class: MultimediaArchive, archived_at_column: archived_at }
@@ -45,7 +39,7 @@ classes:
       model_id:     { type: integer }
       type:         { type: char, sqlType: "ENUM('image','video','pdf')", default: image, required: true }
       name:         { type: varchar, size: 128 }
-      slug:         { type: char, size: 128, required: true, index: unique }
+      slug:         { type: char, size: 128 }
       md5:          { type: char, size: 32, required: true }
       colors:       { type: varchar(128) }
       orientation:  { type: char, sqlType: "ENUM('landscape','portrait')", default: landscape }

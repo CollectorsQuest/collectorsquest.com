@@ -41,7 +41,7 @@ ice_use_stylesheet('jquery/chosen.css');
     <div class="optional"><?= __('(optional)'); ?></div>
   </div>
   <div class="prepend-1 span-13 last">
-    <div style="float: right"><?= image_tag_collection($collection, '150x150', array('width' => 75, 'height' => 75)); ?></div>
+    <div style="float: right"><?= image_tag_collection($collection, 'thumb', array('width' => 75, 'height' => 75)); ?></div>
     <?= $form['thumbnail']; ?>
     <br/><br/>
     <div class="span-10" style="color: grey;">

@@ -5,10 +5,10 @@
 ?>
 
 <?php
-cq_page_title(
-  $collectible->getName(),
-  link_to('Back to Collection &raquo;', '@content_categories')
-);
+  cq_page_title(
+    $collectible->getName(),
+    link_to('Back to Collection &raquo;', url_for_collection($collection))
+  );
 ?>
 
 
@@ -21,35 +21,32 @@ cq_page_title(
 <div class="row-fluid" xmlns="http://www.w3.org/1999/html">
   <?php
     $span = 10;
-    if (empty($additional_multimedia))
+    if (true || empty($additional_multimedia))
     {
       $span += 2;
     }
   ?>
   <div class="span<?= $span; ?>">
-    <div class="thumbnail" style="text-align: center;">
-      <?php ice_image_tag_placeholder('504x398') ?>
-      <?= ice_image_tag_flickholdr('620x490', array('tags' => array('Teacup', 'china', 'old'), 'i' => 1)) ?>
-      <?php
-        link_to(
-          image_tag_collectible(
-            $collectible, '610x1000',
-            array('width' => 610, 'class' => 'magnify')
-          ),
-          src_tag_collectible($collectible, 'original'),
-          array('id' => 'collectible_multimedia_primary', 'target' => '_blank')
-        );
-      ?>
-    </div>
+    <?php ice_image_tag_placeholder('504x398') ?>
+    <?php ice_image_tag_flickholdr('620x490', array('tags' => array('Teacup', 'china', 'old'), 'i' => 1)) ?>
+    <?php
+      echo link_to(
+        image_tag_collectible(
+          $collectible, '620x0',
+          array('width' => 620, 'height' => '', 'class' => 'magnify')
+        ),
+        src_tag_collectible($collectible, 'original'),
+        array('id' => 'collectible_multimedia_primary', 'target' => '_blank')
+      );
+    ?>
   </div>
 
-  <?php if (!empty($additional_multimedia)): ?>
-  <div class="span2" style="padding-top: 5px;">
+  <?php if (false && !empty($additional_multimedia)): ?>
+  <div class="span2">
     <?php foreach ($additional_multimedia as $i => $m): ?>
     <a class="zoom" href="<?php echo src_tag_multimedia($m, '1024x768'); ?>" title="<?php echo $m->getName(); ?>" onClick="return false;">
-      <?= ice_image_tag_flickholdr('100x100', array('tags' => array('Teacup', 'china', 'old'), 'i' => $i+2)) ?>
-      <?php image_tag_multimedia($m, '100x100', array('title' => $m->getName())); ?>
-      <br/><br/>
+      <?php ice_image_tag_flickholdr('100x100', array('tags' => array('Teacup', 'china', 'old'), 'i' => $i+2, 'style' => 'margin-bottom: 12px;')) ?>
+      <?= image_tag_multimedia($m, '100x100', array('title' => $m->getName(), 'style' => 'margin-bottom: 12px;')); ?>
     </a>
     <?php endforeach; ?>
   </div>

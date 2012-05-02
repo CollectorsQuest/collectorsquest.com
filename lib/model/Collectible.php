@@ -571,16 +571,20 @@ class Collectible extends BaseCollectible
      * We need to have the four main thumbnails available as soon as the object is saved so
      * we make sure they are not put on the job queue
      */
-    $multimedia->makeThumb(150, 150, 'scale', false);
-    $multimedia->makeCustomThumb(190, 190, '190x190', 'scale', false);
-    $multimedia->makeCustomThumb('420!', '0', '420!x0', 'top', $watermark);
-    $multimedia->makeCustomThumb('620!', '19:15', '620!x19:15', 'top', $watermark);
+    $multimedia->makeThumb(150, 150, 'top', false);
+    $multimedia->makeCustomThumb(190, 190, '190x190', 'top', false);
+    $multimedia->makeCustomThumb(620, 0, '620x0', 'resize', $watermark);
 
     // The rest of the thumnails are not immediately used so they can be deferred
     $multimedia->makeCustomThumb(75, 75, '75x75', 'top', false);
     $multimedia->makeCustomThumb(190, 150, '190x150', 'top', false);
     $multimedia->makeCustomThumb(260, 205, '260x205', 'top', $watermark);
-    $multimedia->makeCustomThumb(1024, 768, '1024x768', 'scale', $watermark);
+
+    /**
+     * Legacy application
+     */
+    $multimedia->makeCustomThumb(420, 0, '420x0', 'resize', $watermark);
+    $multimedia->makeCustomThumb(1024, 768, '1024x768', 'resize', $watermark);
 
     // Here we want to create an optimized thumbnail for the homepage
     if ($multimedia->getOrientation() == 'landscape') {

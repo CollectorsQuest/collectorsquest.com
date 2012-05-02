@@ -221,7 +221,8 @@ class cqTest
    */
   private static function getFakeModelObject($model)
   {
-    return null;
+    /** @todo: Implement the real Faking */
+    return self::getModelObject($model, true);
   }
 
   /**
