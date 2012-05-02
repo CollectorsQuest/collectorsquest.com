@@ -64,8 +64,8 @@
       <h1 class="Chivo webfont" style="visibility: visible; ">Blogger: <span><?php the_author() ?></span></h1>
     </div>
 </div>
-  <!-- This sets the $curauth variable -->
 
+  <!-- This sets the $curauth variable -->
   <?php $curauth = (isset($_GET['author_name'])) ? get_user_by('slug', $author_name) : get_userdata(intval($author)); ?>
 
   <div id="author-info-box">
@@ -208,19 +208,9 @@ $lastclass = 0;
             $img_h = '440';
           elseif (is_front_page() && $count == 1) :
             $img_w = '300';
-          elseif (is_front_page() && $count > 1) :
-            $img_w = '140';
-            $img_h = '140';
+            $img_h = '300';
           else :
             $img_w = '140';
-            $img_h = '140';
-          endif;
-          ?>
-
-          <?php
-          if (is_front_page() && $count == 1) :
-            $img_h = '300';
-          elseif (is_front_page() && $count == 2 || is_front_page() && $count == 3) :
             $img_h = '140';
           endif;
           ?>
@@ -229,23 +219,21 @@ $lastclass = 0;
             <a href="<?php the_permalink() ?>">
           <?php endif; ?>
 
-          <?php $image_attributes = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID), 'full' ); ?>
+            <?php $image_attributes = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID), 'full' ); ?>
 
-          <?php if (is_single() && $image_attributes[1] >= 620) : ?>
-            <!--  <img src="<?php echo $image_url; //http://placekitten.com/ ?><?php echo $img_w ?>/<?php echo $img_h ?>" alt=""/> -->
-            <img src="/blog/wp-content/themes/collectorsquest/thumb.php?src=<?php echo $image_url;  //echo 'http://placekitten.com/700/700'; ?>&w=<?php echo $img_w ?>&h=<?php echo $img_h ?>&zc=1&a=t" alt=""/>
-            <?php
-            $thumbnail_id = get_post_thumbnail_id($post->ID);
-            $thumbnail_image = get_posts(array('p' => $thumbnail_id, 'post_type' => 'attachment'));
+            <?php if (is_single() && $image_attributes[1] >= 620) : ?>
+              <img src="/blog/wp-content/themes/collectorsquest/thumb.php?src=<?php echo $image_url;  //echo 'http://placekitten.com/700/700'; ?>&w=<?php echo $img_w ?>&h=<?php echo $img_h ?>&zc=1&a=t" alt=""/>
+              <?php
+              $thumbnail_id = get_post_thumbnail_id($post->ID);
+              $thumbnail_image = get_posts(array('p' => $thumbnail_id, 'post_type' => 'attachment'));
+              if ($thumbnail_image && isset($thumbnail_image[0])) :
+                echo '<p class="wp-caption-text">'.$thumbnail_image[0]->post_excerpt.'</p>';
+              endif;
+              ?>
 
-            if ($thumbnail_image && isset($thumbnail_image[0])) :
-              echo '<p class="wp-caption-text">'.$thumbnail_image[0]->post_excerpt.'</p>';
-            endif;
-            ?>
-
-          <?php elseif (is_front_page() || is_archive()) : ?>
-          <img src="/blog/wp-content/themes/collectorsquest/thumb.php?src=<?php echo $image_url; //'http://placekitten.com/700/700'; ?>&w=<?php echo $img_w ?>&h=<?php echo $img_h ?>&zc=1&a=t" alt=""/>
-          <?php endif; ?>
+            <?php elseif (is_front_page() || is_archive()) : ?>
+            <img src="/blog/wp-content/themes/collectorsquest/thumb.php?src=<?php echo $image_url; //'http://placekitten.com/700/700'; ?>&w=<?php echo $img_w ?>&h=<?php echo $img_h ?>&zc=1&a=t" alt=""/>
+            <?php endif; ?>
 
           <?php if (!is_single()) : ?>
             </a>
@@ -260,7 +248,6 @@ $lastclass = 0;
 
         <?php if (is_front_page() || is_archive()) : ?>
           <!-- <div class="entry-genre"><a href="" title=""><?php the_category() ?></a></div> -->
-
           <h2 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
         <?php endif; ?>
 
@@ -269,15 +256,7 @@ $lastclass = 0;
             <a class="author-image" href="<?php echo get_author_posts_url(get_the_author_meta('ID')) ?>"
                title="<?php the_author() ?>'s articles on collecting...">
 
-              <?php
-              if (is_single()) {
-                $size = 33;
-              }
-              else {
-                $size = 16;
-              }
-              ?>
-
+              <?php if (is_single()) { $size = 33; } else { $size = 16; } ?>
               <?php echo get_avatar(get_the_author_meta('ID'),$size) //<img src="http://placekitten.com/33/33" alt="" width="33" height="33"/> ?>
             </a>
             <span class="author-info">
@@ -288,9 +267,7 @@ $lastclass = 0;
           </span>
 
           <?php if (is_single()) : ?>
-
           <div class="entry-share pull-right">
-
             <!-- ShareThis Button BEGIN
             <span class='st_email_hcount'></span>
             <span class='st_facebook_hcount'></span>
@@ -308,10 +285,8 @@ $lastclass = 0;
               <a class="addthis_button_pinterest_pinit" pi:pinit:media="http://YOUR-DOMAIN.com/IMAGE.jpg" pi:pinit:layout="horizontal"></a>
             </div>
             <!-- AddThis Button END -->
-
           </div>
           <?php endif; ?>
-
         </div>
 
 
@@ -404,12 +379,12 @@ $lastclass = 0;
 
 <?php
   ob_start();
-    get_sidebar('new');
+  get_sidebar('new');
   $sidebar = ob_get_clean();
 
   ob_start();
-    get_footer();
-    wp_footer();
+  get_footer();
+  wp_footer();
   $footer = ob_get_clean();
 ?>
 
