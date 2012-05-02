@@ -119,25 +119,42 @@ classes:
     columns:
       id:                   ~
       country_iso3166:      { type: char, size: 2, required: true, foreignTable: geo_country, foreignReference: iso3166 } # not set = catch all
-      calculation_type:     { type: enum,    required: true, valueSet: "no_shipping, local_pickup, free_shipping, flat_rate, price_range" }
-      price_range_min:      { type: integer, required: true }
-      price_range_max:      { type: integer, required: true }
-      amount_in_cents:      { type: integer, required: true }
-      amount_in_percent:    { type: integer, required: true }
+      calculation_type:     { type: enum,    required: true, valueSet: "no_shipping, local_pickup, free_shipping, flat_rate, calculated_shipping" }
     propel_behaviors:
       symfony:              { form: true, filter: false }
 
   ShippingRateCollector:
     columns:
       collector_id:         { type: integer, required: true, foreignClass: Collector, foreignReference: id, onDelete: cascade }
+    uniques:
+      collector_country:    [collector_id, country_iso3166]
     propel_behaviors:
       concrete_inheritance: { extends: shipping_rate, copy_data_to_parent: false }
 
   ShippingRateCollectible:
     columns:
       collectible_id:       { type: integer, required: true, foreignClass: Collectible, foreignReference: id, onDelete: cascade }
+    uniques:
+      collectible_country:  [collectible_id, country_iso3166]
     propel_behaviors:
       concrete_inheritance: { extends: shipping_rate, copy_data_to_parent: false }
+
+  ShippingRateCarrierService:
+    isCrossRef:             true
+    columns:
+      shipping_rate_id:     { type: integer, required: true, foreignClass: ShippingRate, foreignReference: id, onDelete: cascade, primaryKey: true }
+      shipping_carrier_service_id: { type: integer, required: true, foreignClass: ShippingCarrierService, foreignReference: id, onDelete: cascade, primaryKey: true }
+
+  ShippingCarrierService:
+    columns:
+      id:                   ~
+      carrier:              { type: varchar(50),  required: true, index: true }
+      # key as defined by RocketShipIt
+      key:                  { type: varchar(255), required: true }
+      name:                 { type: varchar(255), required: true }
+      flat_rate_cents:      { type: integer,      required: false }
+      is_international:     { type: boolean,      required: true, default: false }
+      is_free_shipping:     { type: boolean,      required: true, default: false }
 
   Package:
     columns:

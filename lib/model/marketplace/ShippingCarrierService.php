@@ -1,11 +1,11 @@
 <?php
 
 
-require 'lib/model/marketplace/om/BaseShippingRatePeer.php';
+require 'lib/model/marketplace/om/BaseShippingCarrierService.php';
 
 
 /**
- * Skeleton subclass for performing query and update operations on the 'shipping_rate' table.
+ * Skeleton subclass for representing a row from the 'shipping_carrier_service' table.
  *
  *
  *
@@ -15,9 +15,6 @@ require 'lib/model/marketplace/om/BaseShippingRatePeer.php';
  *
  * @package    propel.generator.lib.model.marketplace
  */
-class ShippingRatePeer extends BaseShippingRatePeer
-{
-
-  const DEFAULT_CALCULATION_TYPE = self::CALCULATION_TYPE_FLAT_RATE;
+class ShippingCarrierService extends BaseShippingCarrierService {
 
 }
