@@ -15,11 +15,11 @@ interface ShippingRatesInterface
    * @return    array
    *            <code>
    *            array(
-   *              'country_code' => ShippingRate[]
+   *              'country_code' => ShippingRate
    *            );
    *            </code>
    */
-  public function getShippingRatesGroupedByCountryCode(PropelPDO $con = null);
+  public function getShippingRatesByCountryCode(PropelPDO $con = null);
 
   /**
    * Return the shipping rates for a particular country
@@ -27,21 +27,22 @@ interface ShippingRatesInterface
    * @param     string $country_code
    * @param     PropelPDO $con
    *
-   * @return    array ShippingRate[]
+   * @return    ShippingRate
    */
-  public function getShippingRatesForCountryCode($coutry_code, PropelPDO $con = null);
+  public function getShippingRateForCountryCode($coutry_code, PropelPDO $con = null);
 
   /**
    * Return the shipping rates for the collector's country
    *
    * @param     PropelPDO $con
    *
-   * @return    array ShippingRate[]
+   * @return    ShippingRate
    */
-  public function getShippingRatesDomestic(PropelPDO $con = null);
+  public function getShippingRateDomestic(PropelPDO $con = null);
 
   /**
    * @return    string
    */
   public function getDomesticCountryCode();
+
 }

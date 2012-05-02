@@ -18,43 +18,6 @@ class ShippingRateQuery extends BaseShippingRateQuery
 {
 
   /**
-   * Find the shipping rates and group them by country:
-   *
-   * <code>
-   * $result = array(
-   *   'bg' => PropelObjectCollection(ShippingRate[])
-   *   'us' => PropelObjectCollection(ShippingRate[]),
-   * );
-   * </code>
-   *
-   * @param     PropelPDO $con
-   * @return    array
-   */
-  public function findAndGroupByCountryCode(PropelPDO $con = null)
-  {
-    /* @var $object ShippingRate */
-
-    $objects = $this->find($con);
-    $results = array();
-
-    foreach ($objects as $object)
-    {
-      $country_code = $object->getCountryIso3166();
-
-      if (!isset($results[$country_code]))
-      {
-        $collection = new PropelObjectCollection();
-        $collection->setModel(get_class($object));
-        $results[$country_code] = $collection;
-      }
-
-      $results[$country_code][] = $object;
-    }
-
-    return $results;
-  }
-
-  /**
    *
    * @param     Collector|Collectible $object
    * @param     string $modelAlias

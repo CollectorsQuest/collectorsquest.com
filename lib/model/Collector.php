@@ -564,15 +564,15 @@ class Collector extends BaseCollector implements ShippingRatesInterface
    * Get the shipping rates for this collector, grouped by country
    *
    * @param     PropelPDO $con
-   * @return    array
+   * @return    array ShippingRate[]
    *
    * @see       ShippingRateCollectorQuery::findAndGroupByCountryCode()
    */
-  public function getShippingRatesGroupedByCountryCode(PropelPDO $con = null)
+  public function getShippingRatesByCountryCode(PropelPDO $con = null)
   {
     return ShippingRateCollectorQuery::create()
       ->filterByCollector($this)
-      ->findAndGroupByCountryCode($con);
+      ->find($con)->getArrayCopy('CountryIso3166');
   }
 
   /**
@@ -580,28 +580,28 @@ class Collector extends BaseCollector implements ShippingRatesInterface
    *
    * @param     string $coutry_code
    * @param     PropelPDO $con
-   * @return    ShippingRate[]
+   * @return    ShippingRate
    */
-  public function getShippingRatesForCountryCode($coutry_code, PropelPDO $con = null)
+  public function getShippingRateForCountryCode($coutry_code, PropelPDO $con = null)
   {
     return ShippingRateCollectorQuery::create()
       ->filterByCollector($this)
       ->filterByCountryIso3166($coutry_code)
-      ->find($con);
+      ->findOne($con);
   }
 
   /**
    * Get shipping rates for the collector's country
    *
    * @param     PropelPDO $con
-   * @return    ShippingRate[]
+   * @return    ShippingRate
    */
-  public function getShippingRatesDomestic(PropelPDO $con = null)
+  public function getShippingRateDomestic(PropelPDO $con = null)
   {
     return ShippingRateCollectorQuery::create()
       ->filterByCollector($this)
-      ->filterByCountryIso3166($this->getProfile()->getCountryIso3166())
-      ->find($con);
+      ->filterByCountryIso3166($this->getDomesticCountryCode())
+      ->findOne($con);
   }
 
   /**

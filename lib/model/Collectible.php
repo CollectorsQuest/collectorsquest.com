@@ -553,19 +553,17 @@ class Collectible extends BaseCollectible
    * Get the shipping rates for this collectible, grouped by country
    *
    * @param     PropelPDO $con
-   * @return    array
    *
-   * @see       ShippingRateCollectorQuery::findAndGroupByCountryCode()
+   * @return    ShippingRate[] An array of ShippingRate objects
+   *            indexed by country code
    */
-  public function getShippingRatesGroupedByCountryCode(PropelPDO $con = null)
+  public function getShippingRatesByCountryCode(PropelPDO $con = null)
   {
     return array_merge(
-      ShippingRateCollectorQuery::create()
-        ->filterByCollector($this)
-        ->findAndGroupByCountryCode($con),
+      $this->getCollector()->getShippingRatesByCountryCode(),
       ShippingRateCollectibleQuery::create()
-        ->filterByCollectible($this)
-        ->findAndGroupByCountryCode($con)
+        ->filterByCollectibleId($this->getId())
+        ->find($con)->getArrayCopy('CountryIso3166')
     );
   }
 
@@ -574,26 +572,19 @@ class Collectible extends BaseCollectible
    *
    * @param     string $coutry_code
    * @param     PropelPDO $con
-   * @return    ShippingRate[]
+   *
+   * @return    ShippingRate
    */
-  public function getShippingRatesForCountryCode($coutry_code, PropelPDO $con = null)
+  public function getShippingRateForCountryCode($coutry_code, PropelPDO $con = null)
   {
-    // get all shipping rates by country,
-    // because they hold the combination of base collector shipping rates
-    // plus any specific collectible shipping rates set for this object
-    $shipping_rates_by_country = $this->getShippingRatesGroupedByCountryCode($con);
-
-    // if we have a shipping fee set for this country
-    if (isset($shipping_rates_by_country[$coutry_code]))
-    {
-      // return it
-      return $shipping_rates_by_country[$coutry_code];
-    }
-    else
-    {
-      // otherwize return an empty array
-      return array();
-    }
+    return ShippingRateCollectibleQuery::create()
+        ->filterByCollectibleId($this->getId())
+        ->filterByCountryIso3166($country_code)
+        ->findOne($con)
+      ?: ShippingRateCollectorQuery::create()
+        ->filterByCollectorId($this->getCollectorId())
+        ->filterByCountryIso3166($country_code)
+        ->findOne($con);
   }
 
   /**
@@ -604,9 +595,8 @@ class Collectible extends BaseCollectible
    */
   public function getShippingRatesDomestic(PropelPDO $con = null)
   {
-    $country_code = $this->getCollector()->getProfile()->getCountryIso3166();
-
-    return $this->getShippingRatesForCountryCode($country_code, $con);
+    return $this->getShippingRatesForCountryCode(
+      $this->getDomesticCountryCode(), $con);
   }
 
   /**
