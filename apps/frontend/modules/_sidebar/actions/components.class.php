@@ -183,6 +183,10 @@ class _sidebarComponents extends cqFrontendComponents
     /** @var $collector Collector */
     $collector = $this->getVar('collector');
 
+    $this->title = $this->getVar('title') ?
+      $this->getVar('title') :
+      sprintf('About %s', $collector->getDisplayName());
+
     // Set the limit of Collections to show
     $this->limit = $this->getVar('limit') !== null ? (int) $this->getVar('limit') : 3;
 
@@ -216,10 +220,10 @@ class _sidebarComponents extends cqFrontendComponents
 
   public function executeWidgetFeaturedSellers()
   {
+    $this->title = $this->getVar('title') ? $this->getVar('title') : 'Featured Sellers';
+
     // Set the limit of other Collections to show
     $this->limit = $this->getVar('limit') ? (int) $this->getVar('limit') : 0;
-
-    $this->title = $this->getVar('title') ? $this->getVar('title') : 'Featured Sellers';
 
     $q = CollectorQuery::create()
        ->filterByUserType(CollectorPeer::TYPE_SELLER)
@@ -231,6 +235,8 @@ class _sidebarComponents extends cqFrontendComponents
 
   public function executeWidgetCollectiblesForSale()
   {
+    $this->title = $this->getVar('title') ? $this->getVar('title') : 'Collectibles for Sale';
+
     // Set the limit of other Collections to show
     $this->limit = $this->getVar('limit') ? (int) $this->getVar('limit') : 0;
 
@@ -242,6 +248,8 @@ class _sidebarComponents extends cqFrontendComponents
 
   public function executeWidgetBlogPosts()
   {
+    $this->title = $this->getVar('title') ? $this->getVar('title') : 'In Other News';
+
     // Set the limit of other Collections to show
     $this->limit = $this->getVar('limit') ? (int) $this->getVar('limit') : 0;
 

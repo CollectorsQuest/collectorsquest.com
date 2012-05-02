@@ -20,20 +20,13 @@ class collectionComponents extends cqFrontendComponents
       return sfView::NONE;
     }
 
-    /* @var $collectible_for_sale CollectibleForSale */
-    $collectible_for_sale = $this->collectible->getCollectibleForSale();
-
-    if ($collectible_for_sale)
+    if ($this->collectible->isForSale())
     {
-      $this->offerPrice = $collectible_for_sale->getPrice();
+      /* @var $collectible_for_sale CollectibleForSale */
+      $collectible_for_sale = $this->collectible->getCollectibleForSale();
 
-      $offer = $collectible_for_sale->getCollectibleOfferByBuyer($this->getUser()->getId(), 'counter');
-      if ($offer)
-      {
-        $this->offerPrice = $offer->getPrice();
-      }
-      $this->isSold = $collectible_for_sale->getIsSold() || $collectible_for_sale->getActiveCollectibleOffersCount();
-
+      $this->isSold = $collectible_for_sale->getIsSold() || $collectible_for_sale->getActiveCollectibleOffersCount() == 0;
+      $this->collectible_for_sale = $collectible_for_sale;
       $this->form = new CollectibleForSaleBuyForm($collectible_for_sale);
     }
 

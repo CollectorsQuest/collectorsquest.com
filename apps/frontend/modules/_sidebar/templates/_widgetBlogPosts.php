@@ -9,7 +9,7 @@
     'See all news &raquo;', 'blog/index',
     array('class' => 'text-v-middle link-align')
   );
-  cq_sidebar_title('In Other News', $link, array('left' => 8, 'right' => 4));
+  cq_sidebar_title($title, $link, array('left' => 8, 'right' => 4));
 ?>
 
 <?php foreach ($wp_posts as $wp_post): ?>

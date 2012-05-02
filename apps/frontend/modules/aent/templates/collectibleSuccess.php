@@ -36,11 +36,9 @@
          ?>
          </span>
         </li>
-        <!--
-          <li>
-            <span>In XXX wanted lists</span>
-          </li>
-        //-->
+        <li>
+          <span>In XXX wanted lists</span>
+        </li>
       </ul>
     </div>
     <div class="span6 text-right">

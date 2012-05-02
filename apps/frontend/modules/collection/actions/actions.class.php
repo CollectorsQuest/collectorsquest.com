@@ -172,10 +172,20 @@ class collectionActions extends cqFrontendActions
       $this->next = $q->findOne();
     }
 
+    if ($collectible->isForSale())
+    {
+      /* @var $collectible_for_sale CollectibleForSale */
+      $collectible_for_sale = $collectible->getCollectibleForSale();
+      $this->isSold = $collectible_for_sale->getIsSold() || $collectible_for_sale->getActiveCollectibleOffersCount() == 0;
+
+      $this->collectible_for_sale = $collectible_for_sale;
+      $this->form = new CollectibleForSaleBuyForm($collectible_for_sale);
+    }
+
+    $this->collector = $collector;
     $this->collection = $collection;
     $this->collectible = $collectible;
-    $this->collector = $collector;
-    $this->additional_multimedia = $collectible->getMultimedia(false);
+    $this->additional_multimedia = $collectible->getMultimedia(0, 'image', false);
 
     return sfView::SUCCESS;
   }

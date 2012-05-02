@@ -1,11 +1,12 @@
 <?php
 /**
- * @var $collector Collector
- * @var $collections Collection[]
+ * @var  $title  string
+ * @var  $collector  Collector
+ * @var  $collections  Collection[]
  */
 ?>
 
-<?php cq_sidebar_title(sprintf('About %s', $collector->getDisplayName()), null); ?>
+<?php cq_sidebar_title($title, null); ?>
 
 <div class="row-fluid">
   <div class="span3">
