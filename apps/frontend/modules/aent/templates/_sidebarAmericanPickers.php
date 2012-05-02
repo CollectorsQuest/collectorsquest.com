@@ -22,15 +22,13 @@
 
 
 <div class="row-fluid sidebar-title">
-  <div class="span6">
+  <div class="span11">
     <h3 class="Chivo webfont">
       More American Pickers
     </h3>
   </div>
-  <div class="span6 text-right">
-    <a href="/collectors" class="text-v-middle link-align">
-      Go to episode guide &raquo;
-    </a>
+  <div class="span1 text-right">
+    &nbsp;
   </div>
 </div>
 

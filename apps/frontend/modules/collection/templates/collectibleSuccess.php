@@ -1,6 +1,12 @@
 <?php
 /**
- * @var $collectible  Collectible
+ * @var  $sf_user  cqFrontendUser
+ *
+ * @var  $collector    Collector
+ * @var  $collection   Collection
+ * @var  $collectible  Collectible
+ *
+ * @var  $additional_multimedia iceModelMultimedia[]
  */
 ?>
 
@@ -10,7 +16,6 @@
     link_to('Back to Collection &raquo;', url_for_collection($collection))
   );
 ?>
-
 
 <!--
   Test with alternate images: http://www.collectorsquest.next/collectible/3515/rkw-teacup
@@ -53,7 +58,7 @@
   <?php endif; ?>
 </div>
 
-<br clear="all">
+<br style="clear: both;">
 <div class="statistics-share-panel bottom-margin-double">
   <div class="row-fluid">
     <div class="span4">
@@ -113,56 +118,8 @@
 <br style="clear:both;"/>
 <?php endif; ?>
 
-<div id="comments">
-  <div class="add-comment">
-    <div class="input-append post-comment">
-      <form method="post" action="comment">
-        <input type="text" id="c" data-provide="comment" autocomplete="off" name="c">
-        <button type="submit" class="btn btn-large">Comment</button>
-        <a class="upload-photo" title="Add a photo">&nbsp;</a>
-      </form>
-    </div>
-  </div>
-  <div class="user-comments">
-    <div class="row-fluid user-comment">
-      <div class="span2 text-right">
-        <a href="#">
-          <img src="http://placehold.it/65x65" alt="">
-        </a>
-      </div>
-      <div class="span10">
-        <p class="bubble left">
-          <a href="#" class="username">RobotBacon Wow!</a>
-          That gun is a real rarity.  I don't think the south produced much in the way of weaponry, so that is a good find!
-          <span class="comment-time">2 hours ago</span>
-        </p>
-      </div>
-    </div>
-    <div class="row-fluid user-comment">
-      <div class="span2 text-right">
-        <a href="#">
-          <img src="http://placehold.it/65x65" alt="">
-        </a>
-      </div>
-      <div class="span10">
-        <p class="bubble left">
-          <a href="#" class="username">RobotBacon Wow!</a>
-          That gun is a real rarity.  I don't think the south produced much in the way of weaponry, so that is a good find!
-          <span class="comment-time">2 hours ago</span>
-        </p>
-      </div>
-    </div>
-  </div>
-  <div class="see-more-under-image-set">
-    <button class="btn btn-small gray-button see-more-full" id="see-more-comments">
-      See all XX comments
-    </button>
-  </div>
-
-</div>
-
+<?php include_partial('sandbox/comments'); ?>
 Permalink: <span class="lightblue"><?= url_for_collectible($collectible, true) ?></span>
-
 
 <!-- sale items -->
 <div class="item-description">
@@ -176,7 +133,7 @@ Permalink: <span class="lightblue"><?= url_for_collectible($collectible, true) ?
   Box Size: 4.5 x 2.5 x 1.6 inches<br>
   Box Weight: 1.6 oz<br>
   </p>
-  <span class="item-condition">Condition:</span> Like new</span>
+  <span class="item-condition">Condition:</span> Like new
 </div>
 
 

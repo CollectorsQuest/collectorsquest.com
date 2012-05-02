@@ -255,7 +255,7 @@ function link_to_collectible($collectible, $type = 'text', $options = array())
       if (sfConfig::get('sf_app') == 'legacy') {
         $_options = array_merge(array('class' => 'thumbnail'), $options);
       } else {
-        $_options = array();
+        $_options = $options;
       }
 
       $link = link_to(image_tag_collectible($collectible, $which, $_options), $route, $options);
