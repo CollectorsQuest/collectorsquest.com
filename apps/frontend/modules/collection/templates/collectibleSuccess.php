@@ -17,7 +17,7 @@ cq_page_title(
   Test without alternate images: http://collectorsquest.next/collectible/70081/space-set
 //-->
 
-
+<br/>
 <div class="row-fluid" xmlns="http://www.w3.org/1999/html">
   <?php
     $span = 10;
@@ -28,11 +28,13 @@ cq_page_title(
   ?>
   <div class="span<?= $span; ?>">
     <div class="thumbnail" style="text-align: center;">
+      <?php ice_image_tag_placeholder('504x398') ?>
+      <?= ice_image_tag_flickholdr('620x490', array('tags' => array('Teacup', 'china', 'old'), 'i' => 1)) ?>
       <?php
-        echo link_to(
+        link_to(
           image_tag_collectible(
             $collectible, '610x1000',
-            array('max_width' => 610, 'class' => 'magnify')
+            array('width' => 610, 'class' => 'magnify')
           ),
           src_tag_collectible($collectible, 'original'),
           array('id' => 'collectible_multimedia_primary', 'target' => '_blank')
@@ -42,10 +44,11 @@ cq_page_title(
   </div>
 
   <?php if (!empty($additional_multimedia)): ?>
-  <div class="span2">
-    <?php foreach ($additional_multimedia as $m): ?>
+  <div class="span2" style="padding-top: 5px;">
+    <?php foreach ($additional_multimedia as $i => $m): ?>
     <a class="zoom" href="<?php echo src_tag_multimedia($m, '1024x768'); ?>" title="<?php echo $m->getName(); ?>" onClick="return false;">
-      <?php echo image_tag_multimedia($m, '100x100', array('max_width' => 85, 'title' => $m->getName())); ?>
+      <?= ice_image_tag_flickholdr('100x100', array('tags' => array('Teacup', 'china', 'old'), 'i' => $i+2)) ?>
+      <?php image_tag_multimedia($m, '100x100', array('title' => $m->getName())); ?>
       <br/><br/>
     </a>
     <?php endforeach; ?>
@@ -53,76 +56,7 @@ cq_page_title(
   <?php endif; ?>
 </div>
 
-<?php if ($collectible->getDescription('stripped')): ?>
-<br style="clear:both;"/>
-<div class="row-fluid">
-  <h3>
-    <?php
-    if ($sf_user->isOwnerOf($collectible))
-    {
-      echo __('This is what you said about this collectible:');
-    }
-    else
-    {
-      echo sprintf(__('What %s says about this collectible:'), link_to_collector($collectible, 'text'));
-    }
-    ?>
-  </h3>
-  <br style="clear:both;"/>
-  <div>
-    <dd id="collectible_<?= $collectible->getId(); ?>_description"
-        style="border-left: 2px solid #eee; padding-left: 15px; font-size: 14px;"
-      ><?= $collectible->getDescription('html'); ?></dd>
-  </div>
-</div>
-<br style="clear:both;"/>
-<?php endif; ?>
-
-<div id="collectible-items">
-  <ul class="thumbnails">
-    <!-- with alternate images  -->
-    <li class="span9">
-      <a href="#" class="thumbnail">
-        <img src="http://placehold.it/620x620" alt="">
-      </a>
-    </li>
-    <li class="span3">
-      <a href="#" class="thumbnail">
-        <img src="http://placehold.it/137x137" alt="">
-      </a>
-    </li>
-    <li class="span3">
-      <a href="#" class="thumbnail">
-        <img src="http://placehold.it/137x137" alt="">
-      </a>
-    </li>
-    <li class="span3">
-      <a href="#" class="thumbnail">
-        <img src="http://placehold.it/137x137" alt="">
-      </a>
-    </li>
-    <!-- :)
-    <li class="span3">
-      <a href="#" class="thumbnail">
-        <img src="http://placehold.it/137x137" alt="">
-      </a>
-    </li>
-    <li class="span3">
-      <a href="#" class="thumbnail">
-        <img src="http://placehold.it/137x137" alt="">
-      </a>
-    </li>
-    -->
-    <!-- without alternate images
-    <li class="span12">
-      <a href="#" class="thumbnail">
-        <img src="http://placehold.it/620x476" alt="">
-      </a>
-    </li>
-    -->
-  </ul>
-</div>
-
+<br clear="all">
 <div class="statistics-share-panel bottom-margin-double">
   <div class="row-fluid">
     <div class="span4">
@@ -158,10 +92,29 @@ cq_page_title(
   </div>
 </div>
 
+<?php if ($collectible->getDescription('stripped')): ?>
 <div class="item-description">
-  <p><strong>Akkilioki Peecol</strong>, Limited edition Peecol by eboy for Kidrobot<p>
-  <p>This arctic princess loves listening to Bjork and hitting the slopes on her snowboard when she isn't too busy studying for school. For kicks, visit her <a href="#">MySpace page! </a></p>
+  <h3>
+  <?php
+    if ($sf_user->isOwnerOf($collectible))
+    {
+      echo __('This is what you said about this collectible:');
+    }
+    else
+    {
+      echo sprintf(__('What %s says about this collectible:'), link_to_collector($collectible, 'text'));
+    }
+  ?>
+  </h3>
+  <br style="clear:both;"/>
+  <div>
+    <dd id="collectible_<?= $collectible->getId(); ?>_description"
+        style="border-left: 2px solid #eee; padding-left: 15px; font-size: 14px;"
+      ><?= $collectible->getDescription('html'); ?></dd>
+  </div>
 </div>
+<br style="clear:both;"/>
+<?php endif; ?>
 
 <div id="comments">
   <div class="add-comment">

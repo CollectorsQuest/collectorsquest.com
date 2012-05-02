@@ -45,12 +45,24 @@ class CQ_Other_News_widget extends WP_Widget {
         </div>
       </div>
 
+      <?php else : ?>
+
+    <div class="row-fluid sidebar-title">
+      <div class="span8">
+        <h3 class="Chivo webfont" style="visibility: visible;">In Other News</h3>
+      </div>
+      <div class="span4 text-right">
+        <a href="/blog" class="text-v-middle link-align">See all posts »</a>&nbsp;
+      </div>
+    </div>
+
+
       <?php endif; ?>
 
-      <?php if (is_single()) : $offset = 0; else : $offset = 7; endif; ?>
-      <?php $postss = get_posts("showposts=3"); ?>
+      <?php global $post; //if (is_single()) : $offset = 0; else : $offset = 7; endif; ?>
+      <?php $posts = get_posts("showposts=3"); ?>
 
-      <?php foreach($postss as $post) { setup_postdata($post); ?>
+      <?php foreach($posts as $post) { setup_postdata($post); ?>
       <div class="row-fluid bottom-margin">
         <h4 style="margin-bottom: 5px;">
           <a href="<?php the_permalink() ?>"><?php the_title(); ?></a>
