@@ -57,8 +57,6 @@ class cqValidatorCollectorByName extends sfValidatorString
     }
 
     $collector = $collectors->getFirst();
-
-
     if (!$collector)
     {
       throw new sfValidatorError($this, 'collecotor_not_found', array(
