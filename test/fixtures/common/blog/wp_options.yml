@@ -3,7 +3,7 @@ wpOption:
     option_id: '1'
     blog_id: '0'
     option_name: siteurl
-    option_value: 'http://www.collectorsquest.dev/blog'
+    option_value: 'http://www.collectorsquest.next/blog'
     autoload: yes
   wpOption_2_0_blogname:
     option_id: '2'
@@ -219,7 +219,7 @@ wpOption:
     option_id: '40'
     blog_id: '0'
     option_name: home
-    option_value: 'http://www.collectorsquest.dev/blog'
+    option_value: 'http://www.collectorsquest.next/blog'
     autoload: yes
   wpOption_41_0_category_base:
     option_id: '41'

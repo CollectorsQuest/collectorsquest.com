@@ -31,3 +31,6 @@
 [submodule "plugins/iceGeoLocationPlugin"]
 	path = plugins/iceGeoLocationPlugin
 	url = git@github.com:CollectorsQuest/iceGeoLocationPlugin.git
+[submodule "plugins/iceMultimediaPlugin"]
+	path = plugins/iceMultimediaPlugin
+	url = git@github.com:CollectorsQuest/iceMultimediaPlugin.git

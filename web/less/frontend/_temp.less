@@ -70,6 +70,10 @@
 	margin-left: 5px;
 }
 
+#body-collection-collectible #comments {
+	margin-top: 15px;
+}
+
 .bubble {
 	position: relative;
 	background: none repeat scroll 0 0 #FFFFFF;
@@ -149,6 +153,7 @@
 //profile page
 #public-profile-info {
 	margin-top: 20px;
+	min-height: 138px;
 
 	.profile-info {
 		background-color: @yelloBackground;
@@ -188,14 +193,15 @@
 	margin: 45px 0 25px 0;
 }
 
+
 #body-collector-index #sidebar .section-title {
 	margin-top: 0;
 	margin-bottom: 0;
 }
 
-.info-blue-box {
+.statistics-share-panel {
 	background-color: @lightBlue;
-	padding: 10px 10px 12px 10px;
+	padding: 8px 10px 14px 10px;
 	font-size: 10px;
 
 	[class*="span"] {
@@ -207,6 +213,37 @@
 	  line-height: 14px;
 	  vertical-align: middle;
   }
+	ul {
+		float: left;
+		margin: 5px 0 0 0;
+		padding: 0;
+		list-style: none;
+
+		li {
+			float: left;
+			margin: 0;
+			padding: 0;
+			font: 10px Arial;
+			border-left: 1px solid #83a8bb;
+			&:first-child {
+				border-left: none;
+			}
+			a, span {
+				float: left;
+				display: block;
+				margin: 0;
+				padding: 0 9px 0 9px;
+				color: @blueDark;
+				text-decoration: none;
+				border: none;
+				position: relative;
+				line-height: 10px;
+				&:hover {
+					color: @blue;
+				}
+			}
+		}
+	}
 }
 
 .btn-lightblue {
@@ -216,10 +253,16 @@
 	&:hover {
 		background-position: 0 0;
 		.transition(none);
-		.buttonBackground(#cddce3, #ddecf5);
-		color: @blue;
+		.reset-filter();
+		#gradient > .vertical-three-colors(#278fc7, #0974ad, 50%, #278fc7);
+		*background-color: #278fc7;
+		color: white;
 		text-decoration: none;
 		border: 1px solid #60a6ca;
+	}
+	&:active,
+	&.active {
+		background-color: darken(#278fc7, 10%) e("\9");
 	}
 }
 .mail-icon-mini, .add-icon-middle, .share-icon-middle {
@@ -235,13 +278,35 @@
 	line-height: 12px;
 	padding: 2px 6px 0 6px;
 }
+.btn-mini-share2 {
+	font-size: 10px;
+	line-height: 12px;
+	padding: 2px 8px 0 8px;
+}
 .btn-mini-social {
 	font-size: 10px;
 	line-height: 10px;
-	padding: 0 1px 0 2px;
+	margin: 0 1px 0 2px;
 	height: 16px;
+}
+.btn-mini-social, .btn-mini-share2 {
+	&:hover {
+		.border-radius(3px);
+		.box-shadow(0px 0px 3px 1px rgba(30, 126, 205, 0.6));
+		border: none;
+	}
 }
 .btn-lightblue-middle {
 	.btn-lightblue();
 	padding-bottom: 2px;
+}
+.btn-mini-share2 .add-icon-middle {
+	margin-bottom: 1px;
+}
+
+.add-to-card-button {
+	display: inline-block;
+	vertical-align: text-top;
+	padding-right: 6px;
+	border-right: 1px solid #5fa9d0;
 }

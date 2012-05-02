@@ -11,21 +11,24 @@
   );
 ?>
 
+<div id="items-for-sale-sidebar">
 <?php foreach ($collectibles_for_sale as $i => $collectible_for_sale): ?>
-<div class="row-fluid link">
-  <div style="border: 1px solid #dcd7d7; margin-top: 10px;">
-    <div style="border: 1px solid #f2f1f1; padding: 2px;">
-      <div class="span3">
-        <?= ice_image_tag_flickholdr('60x60', array('i' => $collectible_for_sale->getCollectibleId())); ?>
-        <?php link_to_collectible($collectible_for_sale->getCollectible(), 'image', array('width' => 60, 'height' => 60)); ?>
-      </div>
-      <div class="span9" style="padding-top: 5px;">
-        <?= link_to_collectible($collectible_for_sale->getCollectible(), 'text', array('class' => 'target')); ?><br/>
-        <?= cqStatic::truncateText($collectible_for_sale->getCollectible()->getDescription(), 35); ?><br/>
-        <span style="float: right; font-weight: bold; margin-right: 5px;">$45.56</span>
-      </div>
-      <br clear="all"/>
+  <div class="row-fluid">
+    <div class="inner-border">
+        <div class="span3">
+          <?= ice_image_tag_flickholdr('60x60', array('i' => $collectible_for_sale->getCollectibleId())); ?>
+          <?php link_to_collectible($collectible_for_sale->getCollectible(), 'image', array('width' => 60, 'height' => 60)); ?>
+        </div>
+        <div class="span9 fix-height-text-block">
+          <div class="content-container">
+          <?= link_to_collectible($collectible_for_sale->getCollectible(), 'text', array('class' => 'target')); ?>
+          <p>
+            <?= cqStatic::truncateText($collectible_for_sale->getCollectible()->getDescription('stripped'), 35); ?>
+          </p>
+          <span class="price">$45.56</span>
+          </div>
+         </div>
     </div>
   </div>
-</div>
 <?php endforeach; ?>
+</div>

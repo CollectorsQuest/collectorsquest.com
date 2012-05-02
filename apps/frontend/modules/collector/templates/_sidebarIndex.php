@@ -1,7 +1,9 @@
-<div class="info-blue-box bottom-margin-double">
+<div class="statistics-share-panel bottom-margin-double">
   <div class="row-fluid">
     <div class="span4">
-      XXXX Views
+      <ul>
+        <li><a href="#">XXXX Views</a></li>
+      </ul>
     </div>
     <div class="span8 text-right">
       <a href="#" class="btn btn-mini-share btn-lightblue">

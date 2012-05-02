@@ -195,7 +195,6 @@ if ($_SERVER['HTTP_HOST'] == 'www.collectorsquest.dev' || $_SERVER['HTTP_HOST'] 
       );
     }
   }
-
   add_action('template_redirect', 'cq_ajax_posts');
 
   function catch_that_image() {
@@ -229,8 +228,20 @@ if ($_SERVER['HTTP_HOST'] == 'www.collectorsquest.dev' || $_SERVER['HTTP_HOST'] 
   return $query;
   }
 
+  add_filter('user_contactmethods', 'my_user_contactmethods');
+  function my_user_contactmethods($user_contactmethods){
 
+    //unset($user_contactmethods['yim']);
+    //unset($user_contactmethods['aim']);
+    //unset($user_contactmethods['jabber']);
 
+    $user_contactmethods['twitter'] = 'Twitter Username';
+    $user_contactmethods['facebook'] = 'Facebook Username';
+
+    return $user_contactmethods;
+  }
+
+  require_once 'lib/widgets/widgets.php';
 
 }
 

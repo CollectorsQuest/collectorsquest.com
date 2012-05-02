@@ -5,10 +5,13 @@
 
   $data = array();
 
+  $data['the_id'] = get_the_ID();
   $data['is_page'] = is_page();
   $data['is_single'] = is_single();
   $data['is_category'] = is_category();
   $data['is_tag'] = is_tag();
+  $data['is_front_page'] = is_front_page();
+  $data['is_author'] = is_author();
 
   if (is_category()) {
     $data['category'] = $wp_query->get_queried_object()->name;
@@ -16,6 +19,23 @@
   else if (is_tag()) {
     $data['tag'] = $wp_query->get_queried_object()->name;
   }
+
+  $home = array('name' => 'blog', 'url' => '/blog');
+  $url = $_SERVER["REQUEST_URI"];
+
+  if (is_front_page()) {$crumbs = array($home );}
+  elseif (is_tag()) {$crumbs = array($home, array('name' => 'Tag Archive: '.single_tag_title("", false), $url));}
+  elseif (is_category()) {$crumbs = array($home, array('name' => single_cat_title("", false), $url));}
+  elseif (is_single()) {$crumbs = array($home, array('name' => get_the_author_meta('display_name'), 'url' => '/blog/author/'.get_the_author_meta('nicename')),array('name' => get_the_title(), 'url' => null));}
+  elseif (is_author()) {$crumbs = array($home, array('name' => 'Archive for '.get_the_author_meta('display_name'), $url));}
+  elseif (is_day()) {$crumbs = array($home, array('name' => "Archive for ". the_time('F jS, Y'), $url));}
+  elseif (is_month()) {$crumbs = array($home, array('name' => "Archive for ". the_time('F, Y'), $url));}
+  elseif (is_year()) {$crumbs = array($home, array('name' => "Archive for ". the_time('Y'), $url));}
+  elseif (isset($_GET['paged']) && !empty($_GET['paged'])) {echo "Blog Archives";}
+  elseif (is_search()) {$crumbs = array($home, array('name' => "Search Results", $url));}
+
+  $data['breadcrumbs'] = $crumbs;
+
 
   ob_start();
   wp_head();
@@ -27,41 +47,57 @@
 
 ?>
 
+<div class="row-fluid header-bar">
+  <?php if (is_single()) { ?>
+    <div class="span7">
+      <h1 class="Chivo webfont" style="visibility: visible; ">Blog Post</h1>
+    </div>
+    <div class="back-nav span5">
+      <a href="/blog/">Back to Latest News &rarr;</a>
+    </div>
+  <?php } elseif (is_front_page()) { ?>
+    <div class="span11">
+      <h1 class="Chivo webfont" style="visibility: visible; ">Latest News</h1>
+    </div>
+  <?php } elseif (is_author()) { ?>
+    <div class="span11">
+      <h1 class="Chivo webfont" style="visibility: visible; ">Blogger: <?php the_author() ?></h1>
+    </div>
+</div>
+  <!-- This sets the $curauth variable -->
 
-<?php if (is_single()) { ?>
-<div class="row-fluid header-bar">
-  <div class="span7">
-    <h1 class="Chivo webfont" style="visibility: visible; ">Blog Post</h1>
-  </div>
-  <div class="back-nav span5">
-    <a href="/blog/">Back to Latest News &rarr;</a>
-  </div>
-</div>
-<?php } elseif (is_front_page()) { ?>
-<div class="row-fluid header-bar">
-  <div class="span11">
-    <h1 class="Chivo webfont" style="visibility: visible; ">Latest News</h1>
-  </div>
-</div>
-<?php } elseif (is_author()) { ?>
-<div class="row-fluid header-bar">
-  <div class="span11">
-    <h1 class="Chivo webfont" style="visibility: visible; ">Blogger: <?php the_author() ?></h1>
-  </div>
-</div>
-<?php } ?>
+  <?php $curauth = (isset($_GET['author_name'])) ? get_user_by('slug', $author_name) : get_userdata(intval($author)); ?>
 
+  <div id="author-info-box">
+    <div class="author-avatar">
+      <?php echo get_avatar(get_the_author_meta('ID'),140) //<img src="http://placekitten.com/33/33" alt="" width="33" height="33"/> ?>
+    </div>
+    <div class="author-bio">
+      <?php echo $curauth->user_description; ?>
+    </div>
+  </div>
+  <?php } elseif (is_category()) { ?>
+    <div class="span11">
+      <h1 class="Chivo webfont" style="visibility: visible; "><?php _e( 'Category Archive:', 'collectorsquest' ) ?> <span><?php single_cat_title() ?></span></h1>
+        <?php $categorydesc = category_description(); if ( !empty($categorydesc) ) echo apply_filters( 'archive_meta', '<div class="archive-meta">' . $categorydesc . '</div>' ); ?>
+    </div>
+  <?php } elseif (is_tag()) { ?>
+    <div class="span11">
+      <h1 class="Chivo webfont" style="visibility: visible; "><?php _e( 'Tag Archive:', 'your-theme' ) ?> <span><?php single_tag_title() ?></span></h1>
+      <?php $categorydesc = category_description(); if ( !empty($categorydesc) ) echo apply_filters( 'archive_meta', '<div class="archive-meta">' . $categorydesc . '</div>' ); ?>
+    </div>
+  <?php } ?>
+
+<?php if (!is_author()) : ?>
+</div>
+<?php endif; ?>
 
 
 <?php
 $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 $count = ($paged > 1) ? 9 : 1;
 $lastclass = 0;
-//wp_reset_query();
-
 ?>
-
-
 
 
 <div id="blog-contents" class="<?php if (is_front_page()) : echo 'news-front'; elseif (is_singular()) : echo 'singular'; else : echo 'not-singular'; endif; ?>">
@@ -72,7 +108,7 @@ $lastclass = 0;
 
     <?php
 
-  wp_reset_query(); //for ajax post loading
+      wp_reset_query(); //for ajax post loading
 
       if (is_single() || is_page())
       {
@@ -134,9 +170,7 @@ $lastclass = 0;
 
         <?php if (is_single()) : ?>
           <!-- <div class="entry-genre"><a href="" title=""><?php the_category() ?></a></div> -->
-        <?php endif; ?>
 
-        <?php if (is_single()) : ?>
           <h2 class="entry-title"><?php the_title() ?></h2>
         <?php endif; ?>
 
@@ -226,9 +260,7 @@ $lastclass = 0;
 
         <?php if (is_front_page() || is_archive()) : ?>
           <!-- <div class="entry-genre"><a href="" title=""><?php the_category() ?></a></div> -->
-        <?php endif; ?>
 
-        <?php if ((is_front_page()) || is_archive()) : ?>
           <h2 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
         <?php endif; ?>
 
