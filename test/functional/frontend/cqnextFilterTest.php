@@ -1,4 +1,7 @@
 <?php
+
+define('TEST_CQ_NEXT_ACCESS_FILTER', true);
+
 $app = 'frontend';
 include(dirname(__FILE__).'/../../bootstrap/functional.php');
 

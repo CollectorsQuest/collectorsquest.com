@@ -17,7 +17,7 @@ class CollectorsquestJobQueueCallbacks extends IceJobQueueCallbacks
   {
     $this->initialize($job, $parameters);
 
-    $q = MultimediaQuery::create()
+    $q = iceModelMultimediaQuery::create()
        ->setFormatter(ModelCriteria::FORMAT_ON_DEMAND)
        ->filterByCreatedAt(strtotime('yesterday'), Criteria::GREATER_EQUAL)
        ->filterByCreatedAt(strtotime('today'), Criteria::LESS_THAN);

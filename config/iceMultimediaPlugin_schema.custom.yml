@@ -1,0 +1,55 @@
+connection:  propel
+noXsd:  false
+defaultIdMethod:  native
+package:  lib.model.plugins.iceMultimediaPlugin
+encoding:  utf8
+
+classes:
+
+  ###
+  # NOTE: Make SURE to update also MultimediaArchive
+  ##
+  Multimedia:
+    phpName: Multimedia
+    tableName: multimedia
+    baseClass: iceModelMultimedia
+    columns:
+      id:  ~
+      model:       { type: char, size: 64, required: true }
+      model_id:    { type: integer }
+      type:        { type: char, sqlType: "ENUM('image','video','pdf')", default: image, required: true }
+      name:        { type: char, size: 128, required: false, primaryString: true }
+      slug:        { type: char, size: 128, required: false, index: true }
+      md5:         { type: char, size: 32, required: true }
+      colors:      { type: varchar(128) }
+      orientation: { type: char, sqlType: "ENUM('landscape','portrait')", default: landscape }
+      source:      { type: varchar(255), required: false }
+      is_primary:  { type: boolean, sqlType: "BOOL", default: false }
+      position:    { type: smallint, sqlType: "SMALLINT UNSIGNED", default: 65535 }
+
+    propel_behaviors:
+      archivable: { archive_class: MultimediaArchive, archived_at_column: archived_at }
+      timestampable:  ~
+
+
+  MultimediaArchive:
+    columns:
+      id:           { type: integer, primaryKey: true, autoIncrement: false }
+      model:        { type: char, size: 64, required: true }
+      model_id:     { type: integer }
+      type:         { type: char, sqlType: "ENUM('image','video','pdf')", default: image, required: true }
+      name:         { type: varchar, size: 128 }
+      slug:         { type: char, size: 128 }
+      md5:          { type: char, size: 32, required: true }
+      colors:       { type: varchar(128) }
+      orientation:  { type: char, sqlType: "ENUM('landscape','portrait')", default: landscape }
+      source:       { type: varchar(255) }
+      is_primary:   { type: boolean, default: false }
+      position:     { type: smallint, sqlType: "SMALLINT UNSIGNED", default: 65535 }
+
+      updated_at:   { type: timestamp }
+      created_at:   { type: timestamp }
+      archived_at:  { type: timestamp }
+
+    indexes:
+      multimedia_I_1: [model, model_id]

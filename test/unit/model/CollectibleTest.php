@@ -26,16 +26,14 @@ $t->diag('::setDescription()');
 
 $t->diag('Setting and getting the slug');
 
-  $collectible = new Collectible();
-  $collectible->setCollectorId(1);
+  $collectible = cqTest::getNewModelObject('Collectible');
   $collectible->setName('Untitled Item');
   $collectible->setDescription('No description required here');
   $collectible->save();
 
   $collectible->delete();
 
-  $collectible = new Collectible();
-  $collectible->setCollectorId(1);
+  $collectible = cqTest::getNewModelObject('Collectible');
   $collectible->setName('Untitled Item');
   $collectible->setDescription('No description required here also');
   $collectible->save();
@@ -57,3 +55,18 @@ $t->diag('::getCollection(), ::getCollectionId()');
     $t->skip('No CollectionCollectible found to test with', 2);
   }
 
+$t->diag('::setThumbnail()');
+
+  $collectible = cqTest::getModelObject('Collectible');
+  $collectible->setThumbnail(sfConfig::get('sf_test_dir') .'/data/multimedia/movie-mark-03-armor-33130.jpg');
+  $collectible->save();
+
+  /** @var $multimedia iceModelMultimedia */
+  $multimedia = $collectible->getPrimaryImage();
+
+  $t->is($multimedia->fileExists('75x75'), true);
+  $t->is($multimedia->fileExists('thumb'), true);
+  $t->is($multimedia->fileExists('190x150'), true);
+  $t->is($multimedia->fileExists('190x190'), true);
+  $t->is($multimedia->fileExists('260x205'), true);
+  $t->is($multimedia->fileExists('620x0'), true);

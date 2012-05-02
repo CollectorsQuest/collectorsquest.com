@@ -149,7 +149,7 @@ function image_tag_collectible($collectible, $which = null, $options = array())
     $options
   );
 
-  $multimedia = $collectible->getMultimedia(true);
+  $multimedia = $collectible->getPrimaryImage();
   $image_tag = image_tag_multimedia($multimedia, $which, $options);
 
   if (empty($image_tag))
@@ -168,7 +168,7 @@ function image_tag_collectible($collectible, $which = null, $options = array())
  */
 function src_tag_collectible($collectible, $which = '150x150')
 {
-  $multimedia = $collectible->getMultimedia(true);
+  $multimedia = $collectible->getPrimaryImage();
   $src_tag = src_tag_multimedia($multimedia, $which);
 
   if (empty($src_tag))
@@ -182,7 +182,7 @@ function src_tag_collectible($collectible, $which = '150x150')
 /**
  * Returns an HTML image tag of the multimedia object
  *
- * @param  Multimedia  $multimedia  The multimedia object
+ * @param  iceModelMultimedia  $multimedia  The multimedia object
  * @param  string      $which       ['thumbnail', 'original', 'WIDTHxHEIGHT']
  * @param  array       $options     Options for the <img> HTML element
  *
@@ -192,7 +192,7 @@ function src_tag_collectible($collectible, $which = '150x150')
  */
 function image_tag_multimedia($multimedia, $which, $options = array())
 {
-  if (is_null($multimedia) || !($multimedia instanceof Multimedia))
+  if (is_null($multimedia) || !($multimedia instanceof iceModelMultimedia))
   {
     return null;
   }
@@ -231,15 +231,15 @@ function image_tag_multimedia($multimedia, $which, $options = array())
 }
 
 /**
- * @param  Multimedia  $multimedia
+ * @param  iceModelMultimedia  $multimedia
  * @param  string      $which
  * @param  array       $options
  *
  * @return null|string
  */
-function src_tag_multimedia($multimedia, $which, $options = array())
+function src_tag_multimedia($multimedia, $which = 'thumb', $options = array())
 {
-  if (!$multimedia instanceof Multimedia)
+  if (!$multimedia instanceof iceModelMultimedia)
   {
     return null;
   }
@@ -249,7 +249,7 @@ function src_tag_multimedia($multimedia, $which, $options = array())
     sfConfig::get('app_cq_multimedia_domain'),
     $multimedia->getType(), $which,
     (!empty($options['slug'])) ? $options['slug'] : strtolower($multimedia->getModel()),
-    $multimedia->getId(), $multimedia->getFileExtension(), $multimedia->getUpdatedAt('U')
+    $multimedia->getId(), $multimedia->getFileExtension(), $multimedia->getCreatedAt('U')
   );
 
   return $src;

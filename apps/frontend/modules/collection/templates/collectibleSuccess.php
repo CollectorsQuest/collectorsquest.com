@@ -5,10 +5,10 @@
 ?>
 
 <?php
-cq_page_title(
-  $collectible->getName(),
-  link_to('Back to Collection &raquo;', '@content_categories')
-);
+  cq_page_title(
+    $collectible->getName(),
+    link_to('Back to Collection &raquo;', url_for_collection($collection))
+  );
 ?>
 
 
@@ -27,29 +27,26 @@ cq_page_title(
     }
   ?>
   <div class="span<?= $span; ?>">
-    <div class="thumbnail" style="text-align: center;">
-      <?php ice_image_tag_placeholder('504x398') ?>
-      <?= ice_image_tag_flickholdr('620x490', array('tags' => array('Teacup', 'china', 'old'), 'i' => 1)) ?>
-      <?php
-        link_to(
-          image_tag_collectible(
-            $collectible, '610x1000',
-            array('width' => 610, 'class' => 'magnify')
-          ),
-          src_tag_collectible($collectible, 'original'),
-          array('id' => 'collectible_multimedia_primary', 'target' => '_blank')
-        );
-      ?>
-    </div>
+    <?php ice_image_tag_placeholder('504x398') ?>
+    <?php ice_image_tag_flickholdr('620x490', array('tags' => array('Teacup', 'china', 'old'), 'i' => 1)) ?>
+    <?php
+      echo link_to(
+        image_tag_collectible(
+          $collectible, '620x0',
+          array('width' => 620, 'height' => '', 'class' => 'magnify')
+        ),
+        src_tag_collectible($collectible, 'original'),
+        array('id' => 'collectible_multimedia_primary', 'target' => '_blank')
+      );
+    ?>
   </div>
 
   <?php if (!empty($additional_multimedia)): ?>
-  <div class="span2" style="padding-top: 5px;">
+  <div class="span2">
     <?php foreach ($additional_multimedia as $i => $m): ?>
     <a class="zoom" href="<?php echo src_tag_multimedia($m, '1024x768'); ?>" title="<?php echo $m->getName(); ?>" onClick="return false;">
-      <?= ice_image_tag_flickholdr('100x100', array('tags' => array('Teacup', 'china', 'old'), 'i' => $i+2)) ?>
-      <?php image_tag_multimedia($m, '100x100', array('title' => $m->getName())); ?>
-      <br/><br/>
+      <?php ice_image_tag_flickholdr('100x100', array('tags' => array('Teacup', 'china', 'old'), 'i' => $i+2, 'style' => 'margin-bottom: 12px;')) ?>
+      <?= image_tag_multimedia($m, '100x100', array('title' => $m->getName(), 'style' => 'margin-bottom: 12px;')); ?>
     </a>
     <?php endforeach; ?>
   </div>
@@ -227,9 +224,9 @@ Permalink: <span class="lightblue"><?= url_for_collectible($collectible, true) ?
   <span class="price-large">
     $25.00
   </span>
-  <button type="submit" class="btn btn-primary btn-large" value="Add Item to Cart">
-    <i class="icon icon-shopping-cart" style="font-size: 18px; padding-right: 10px; margin-right: 5px; border-right: 1px solid gray;"></i>
-    Add Item to Cart
+  <button type="submit" class="btn btn-primary blue-button" value="Add Item to Cart">
+    <i class="add-to-card-button"></i>
+    <span>Add Item to Cart</span>
   </button>
 </div>
 

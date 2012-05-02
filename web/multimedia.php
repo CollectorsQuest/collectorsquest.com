@@ -65,8 +65,8 @@ if (in_array($type, array('image', 'video')))
 
       if ($type === 'image' && !$is_readable && is_readable($shared . $original))
       {
-        $thumb = MultimediaPeer::makeThumb($shared . $original, $size);
-        $thumb && copy($thumb, $shared . $path) && ($is_readable = true);
+        $thumb = iceModelMultimediaPeer::makeThumb($shared . $original, $size, 'top', false);
+        $thumb && $thumb->saveAs($shared . $path, 'image/jpeg') && ($is_readable = true);
       }
 
       if ($is_readable)

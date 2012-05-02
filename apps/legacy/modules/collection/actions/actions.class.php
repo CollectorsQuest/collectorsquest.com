@@ -218,7 +218,7 @@ class collectionActions extends cqActions
 
     $this->collector = $collector;
     $this->collectible = $collectible;
-    $this->additional_multimedia = $collectible->getMultimedia(false);
+    $this->additional_multimedia = $collectible->getMultimedia(0, 'image', false);
 
     $c = new Criteria();
     $c->add(CollectionCollectiblePeer::COLLECTIBLE_ID, $collectible->getId(), Criteria::NOT_EQUAL);

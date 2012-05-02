@@ -50,7 +50,7 @@ if($bSeller):
 					  </div>
 					<br />
 					<div>
-						<div style="float: right"><?php echo image_tag_collection($omCollection, '150x150', array('width' => 75, 'height' => 75)); ?></div>
+						<div style="float: right"><?php echo image_tag_collection($omCollection, 'thumb', array('width' => 75, 'height' => 75)); ?></div>
 						<font class="helvetica-green-12"> <?php echo $oCollectionForm['thumbnail']->renderLabel(); ?></font>
 					</div>
 					<div class="x-form-field-wrap" id="ext-gen7">

@@ -16,7 +16,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2007-06-01 04:53:37'
-    updated_at: '2012-05-01 05:40:24'
+    updated_at: '2012-05-01 06:48:12'
     descendant_class: CollectorCollection
   Collection_12:
     graph_id: '10693'
@@ -26,7 +26,7 @@ Collection:
     slug: batman-a-phenalia
     description: "<p>A collection of various non-figural, Batman-related things I've somehow accumulated. The figures are located in another collection here!</p>\n"
     num_items: '24'
-    num_views: '3835'
+    num_views: '3837'
     num_comments: '4'
     num_ratings: '0'
     score: '0'
@@ -35,7 +35,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2007-06-01 07:37:23'
-    updated_at: '2012-05-01 04:21:48'
+    updated_at: '2012-05-01 05:39:15'
     descendant_class: CollectorCollection
   Collection_17:
     graph_id: '10757'
@@ -73,7 +73,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2007-06-02 22:16:01'
-    updated_at: '2012-05-01 05:41:38'
+    updated_at: '2012-05-01 06:49:17'
     descendant_class: CollectorCollection
   Collection_22:
     graph_id: '10488'
@@ -130,7 +130,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2010-01-11 22:16:19'
-    updated_at: '2012-05-01 05:42:02'
+    updated_at: '2012-05-01 06:49:40'
     descendant_class: CollectorCollection
   Collection_46:
     graph_id: '10786'
@@ -168,7 +168,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2007-06-19 10:17:29'
-    updated_at: '2012-05-01 05:39:54'
+    updated_at: '2012-05-01 06:47:46'
     descendant_class: CollectorCollection
   Collection_48:
     graph_id: '10746'
@@ -216,7 +216,7 @@ Collection:
     slug: dinosaur-magazines
     description: "<p>Magazines featuring dinosaurs and other prehistoric animals</p>\n"
     num_items: '8'
-    num_views: '3164'
+    num_views: '3165'
     num_comments: '0'
     num_ratings: '0'
     score: '0'
@@ -225,7 +225,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-05-16 15:33:07'
-    updated_at: '2012-05-01 05:39:08'
+    updated_at: '2012-05-01 06:47:03'
     descendant_class: CollectorCollection
   Collection_52:
     graph_id: '10690'
@@ -235,7 +235,7 @@ Collection:
     slug: sinclair-oil-collectibles
     description: "<p>The Sinclair Oil Company began using a dinosaur as its logo in 1930 and has continued to use dinosaurs to promote its products.</p>\n"
     num_items: '20'
-    num_views: '15523'
+    num_views: '15525'
     num_comments: '19'
     num_ratings: '0'
     score: '0'
@@ -244,7 +244,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2007-06-20 01:48:17'
-    updated_at: '2012-05-01 01:34:15'
+    updated_at: '2012-05-01 05:12:04'
     descendant_class: CollectorCollection
   Collection_53:
     graph_id: '10510'
@@ -254,7 +254,7 @@ Collection:
     slug: dinosaur-comic-books
     description: "<p>Comic books featuring artwork of dinosaurs and other prehistoric animals.</p>\n"
     num_items: '29'
-    num_views: '4597'
+    num_views: '4598'
     num_comments: '2'
     num_ratings: '0'
     score: '0'
@@ -263,7 +263,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-05-16 15:28:39'
-    updated_at: '2012-05-01 05:39:06'
+    updated_at: '2012-05-01 06:47:00'
     descendant_class: CollectorCollection
   Collection_54:
     graph_id: '11220'
@@ -301,7 +301,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2010-01-25 14:15:17'
-    updated_at: '2012-05-01 05:39:35'
+    updated_at: '2012-05-01 06:47:26'
     descendant_class: CollectorCollection
   Collection_56:
     graph_id: '11919'
@@ -387,7 +387,7 @@ Collection:
     slug: dinosaur-pressed-pennies
     description: "<p>Prehistoric-themed elongated coins from museums and other attractions.</p>\n"
     num_items: '6'
-    num_views: '1768'
+    num_views: '1769'
     num_comments: '5'
     num_ratings: '0'
     score: '0'
@@ -396,7 +396,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2007-06-28 11:20:11'
-    updated_at: '2012-05-01 04:52:53'
+    updated_at: '2012-05-01 06:00:38'
     descendant_class: CollectorCollection
   Collection_77:
     graph_id: '10816'
@@ -434,7 +434,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2007-06-30 13:45:39'
-    updated_at: '2012-05-01 05:39:04'
+    updated_at: '2012-05-01 06:46:58'
     descendant_class: CollectorCollection
   Collection_136:
     graph_id: '10456'
@@ -472,7 +472,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2007-07-21 00:12:40'
-    updated_at: '2012-05-01 05:41:38'
+    updated_at: '2012-05-01 06:49:17'
     descendant_class: CollectorCollection
   Collection_156:
     graph_id: '10987'
@@ -482,7 +482,7 @@ Collection:
     slug: eclectic-amp-interesting-vinyl
     description: "<p>As well as collecting some musically thrilling and interesting records, I also collect the worst of the worst. Anything too lame to ever find its way onto CD, anything so niche that no one cares, anything otherwise ignored. Also, good stuff too!</p>\n"
     num_items: '34'
-    num_views: '3219'
+    num_views: '3222'
     num_comments: '4'
     num_ratings: '0'
     score: '0'
@@ -491,7 +491,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2007-07-23 21:48:06'
-    updated_at: '2012-05-01 02:05:55'
+    updated_at: '2012-05-01 06:07:42'
     descendant_class: CollectorCollection
   Collection_186:
     graph_id: '10528'
@@ -510,7 +510,7 @@ Collection:
     comments_on: '0'
     rating_on: '1'
     created_at: '2007-07-31 20:31:25'
-    updated_at: '2012-05-01 05:40:33'
+    updated_at: '2012-05-01 06:48:20'
     descendant_class: CollectorCollection
   Collection_199:
     graph_id: '11005'
@@ -548,7 +548,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2007-08-04 01:15:31'
-    updated_at: '2012-05-01 05:39:46'
+    updated_at: '2012-05-01 06:47:39'
     descendant_class: CollectorCollection
   Collection_210:
     graph_id: '11247'
@@ -586,7 +586,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2007-08-07 01:23:13'
-    updated_at: '2012-05-01 05:41:38'
+    updated_at: '2012-05-01 06:49:17'
     descendant_class: CollectorCollection
   Collection_214:
     graph_id: '11284'
@@ -662,7 +662,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2007-08-24 23:45:19'
-    updated_at: '2012-05-01 05:41:38'
+    updated_at: '2012-05-01 06:49:17'
     descendant_class: CollectorCollection
   Collection_231:
     graph_id: '11332'
@@ -738,7 +738,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2007-09-14 00:38:16'
-    updated_at: '2012-05-01 05:41:49'
+    updated_at: '2012-05-01 06:49:31'
     descendant_class: CollectorCollection
   Collection_252:
     graph_id: '11529'
@@ -757,7 +757,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2007-09-14 00:47:33'
-    updated_at: '2012-05-01 05:41:30'
+    updated_at: '2012-05-01 06:49:11'
     descendant_class: CollectorCollection
   Collection_255:
     graph_id: '11410'
@@ -776,7 +776,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2007-09-15 22:38:42'
-    updated_at: '2012-05-01 05:39:16'
+    updated_at: '2012-05-01 06:47:09'
     descendant_class: CollectorCollection
   Collection_259:
     graph_id: '11914'
@@ -805,7 +805,7 @@ Collection:
     slug: great-sci-fi-paperback-covers
     description: "<p>While I haven't yet read a majority of these, I'm attracted to these neat paperback covers from the pre-suck era.</p>\n"
     num_items: '40'
-    num_views: '4739'
+    num_views: '4740'
     num_comments: '0'
     num_ratings: '0'
     score: '0'
@@ -814,7 +814,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2007-10-09 22:52:44'
-    updated_at: '2012-05-01 04:37:46'
+    updated_at: '2012-05-01 05:38:21'
     descendant_class: CollectorCollection
   Collection_265:
     graph_id: '11787'
@@ -833,7 +833,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2007-10-14 13:00:57'
-    updated_at: '2012-05-01 05:39:03'
+    updated_at: '2012-05-01 06:46:56'
     descendant_class: CollectorCollection
   Collection_266:
     graph_id: '10799'
@@ -852,7 +852,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2007-10-18 09:00:51'
-    updated_at: '2012-05-01 05:39:54'
+    updated_at: '2012-05-01 06:47:46'
     descendant_class: CollectorCollection
   Collection_279:
     graph_id: '11448'
@@ -890,7 +890,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2007-11-17 23:29:33'
-    updated_at: '2012-05-01 05:41:40'
+    updated_at: '2012-05-01 06:49:20'
     descendant_class: CollectorCollection
   Collection_283:
     graph_id: '11480'
@@ -909,7 +909,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2007-11-19 19:29:22'
-    updated_at: '2012-05-01 05:41:28'
+    updated_at: '2012-05-01 06:49:10'
     descendant_class: CollectorCollection
   Collection_291:
     graph_id: '10877'
@@ -947,7 +947,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2007-12-01 20:18:08'
-    updated_at: '2012-05-01 05:42:09'
+    updated_at: '2012-05-01 06:49:47'
     descendant_class: CollectorCollection
   Collection_294:
     graph_id: '10620'
@@ -985,7 +985,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2007-12-11 22:37:59'
-    updated_at: '2012-05-01 05:41:48'
+    updated_at: '2012-05-01 06:49:30'
     descendant_class: CollectorCollection
   Collection_304:
     graph_id: '10244'
@@ -995,7 +995,7 @@ Collection:
     slug: dc-superheroes-universe-batman-amp-green-lantern-classics
     description: "<p>A set of articulated characters from the DC Universe, made by Mattel and sculpted by the Four Horsemen. Collect all of the figures in a wave and you can build an additional character!</p>\n"
     num_items: '232'
-    num_views: '17972'
+    num_views: '17973'
     num_comments: '4'
     num_ratings: '0'
     score: '0'
@@ -1004,7 +1004,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2010-02-23 22:59:58'
-    updated_at: '2012-05-01 04:42:32'
+    updated_at: '2012-05-01 05:54:03'
     descendant_class: CollectorCollection
   Collection_311:
     graph_id: '10904'
@@ -1042,7 +1042,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2008-01-09 16:03:10'
-    updated_at: '2012-05-01 05:40:25'
+    updated_at: '2012-05-01 06:48:13'
     descendant_class: CollectorCollection
   Collection_365:
     graph_id: '11208'
@@ -1061,7 +1061,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2008-01-14 10:44:13'
-    updated_at: '2012-05-01 05:39:30'
+    updated_at: '2012-05-01 06:47:22'
     descendant_class: CollectorCollection
   Collection_381:
     graph_id: '8808'
@@ -1080,7 +1080,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-11-22 14:56:34'
-    updated_at: '2012-05-01 05:41:30'
+    updated_at: '2012-05-01 06:49:11'
     descendant_class: CollectorCollection
   Collection_390:
     graph_id: '8809'
@@ -1099,7 +1099,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-09-13 00:18:41'
-    updated_at: '2012-05-01 05:41:30'
+    updated_at: '2012-05-01 06:49:11'
     descendant_class: CollectorCollection
   Collection_397:
     graph_id: '8807'
@@ -1204,7 +1204,7 @@ Collection:
     slug: cool-album-covers
     description: "<p>I first started sending pictures of oddball record covers for friends and a few customers, mostly for fun.  After a while, interest began growing and I started a web site, Black Gem Records, at www.blackgemrecords.com.  </p>\n\n<p>It's still fun, and now everything's available for purchase, too.  Thousands of unique items - from the best (and worst) album covers to some beautiful cover art, too!   </p>\n\n<p>So come in and have a look.  Here's a small sample of what's inside:</p>\n"
     num_items: '26'
-    num_views: '3626'
+    num_views: '3629'
     num_comments: '4'
     num_ratings: '0'
     score: '0'
@@ -1213,7 +1213,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2008-04-06 12:01:23'
-    updated_at: '2012-05-01 05:40:21'
+    updated_at: '2012-05-01 06:48:09'
     descendant_class: CollectorCollection
   Collection_499:
     graph_id: '11194'
@@ -1232,7 +1232,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2008-04-10 21:50:33'
-    updated_at: '2012-05-01 05:41:39'
+    updated_at: '2012-05-01 06:49:18'
     descendant_class: CollectorCollection
   Collection_501:
     graph_id: '11339'
@@ -1251,7 +1251,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2008-04-13 15:58:46'
-    updated_at: '2012-05-01 05:41:54'
+    updated_at: '2012-05-01 06:49:35'
     descendant_class: CollectorCollection
   Collection_511:
     graph_id: '10893'
@@ -1261,7 +1261,7 @@ Collection:
     slug: re-ment-miniatures
     description: "<p>A great collection of Japanese miniatures.</p>\n"
     num_items: '18'
-    num_views: '3972'
+    num_views: '3975'
     num_comments: '3'
     num_ratings: '0'
     score: '0'
@@ -1270,7 +1270,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2008-04-24 16:13:04'
-    updated_at: '2012-05-01 05:39:56'
+    updated_at: '2012-05-01 06:47:48'
     descendant_class: CollectorCollection
   Collection_515:
     graph_id: '11056'
@@ -1280,7 +1280,7 @@ Collection:
     slug: marvel-mighty-beanz-2004
     description: "<p>A series of weighted 'beans' featuring the images of Marvel characters. Many series were produced with different properties.</p>\n"
     num_items: '43'
-    num_views: '8287'
+    num_views: '8288'
     num_comments: '6'
     num_ratings: '0'
     score: '0'
@@ -1289,7 +1289,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2008-04-29 20:26:14'
-    updated_at: '2012-05-01 05:41:38'
+    updated_at: '2012-05-01 06:49:17'
     descendant_class: CollectorCollection
   Collection_516:
     graph_id: '8814'
@@ -1299,7 +1299,7 @@ Collection:
     slug: spawn-series-33-the-age-of-pharaohs
     description: "<p>The 33rd series of Spawn figures, which includes 6 figures in an Egyptian theme.</p>\n"
     num_items: '3'
-    num_views: '1536'
+    num_views: '1537'
     num_comments: '0'
     num_ratings: '0'
     score: '0'
@@ -1308,7 +1308,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2008-05-01 00:50:19'
-    updated_at: '2012-04-30 19:19:18'
+    updated_at: '2012-05-01 05:57:20'
     descendant_class: CollectorCollection
   Collection_527:
     graph_id: '10884'
@@ -1327,7 +1327,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2008-05-10 00:31:41'
-    updated_at: '2012-05-01 05:41:48'
+    updated_at: '2012-05-01 06:49:30'
     descendant_class: CollectorCollection
   Collection_548:
     graph_id: '11026'
@@ -1337,7 +1337,7 @@ Collection:
     slug: narnia-prince-caspian-action-figures
     description: "<p>A collection of 3.75\" scale action figures from the movie Chronicles of Narnia : Prince Caspian, including a large collection of heroes and a few villians. Most have accessories and action figures, and are in scale with one another.</p>\n"
     num_items: '13'
-    num_views: '4794'
+    num_views: '4795'
     num_comments: '2'
     num_ratings: '0'
     score: '0'
@@ -1346,7 +1346,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2008-05-24 20:28:23'
-    updated_at: '2012-05-01 05:41:48'
+    updated_at: '2012-05-01 06:49:30'
     descendant_class: CollectorCollection
   Collection_563:
     graph_id: '10872'
@@ -1394,7 +1394,7 @@ Collection:
     slug: continental-collection
     description: "<p>I collect all things \"Continental\". </p>\n"
     num_items: '7'
-    num_views: '1151'
+    num_views: '1152'
     num_comments: '0'
     num_ratings: '0'
     score: '0'
@@ -1403,7 +1403,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2008-06-24 17:17:53'
-    updated_at: '2012-05-01 05:39:01'
+    updated_at: '2012-05-01 06:46:55'
     descendant_class: CollectorCollection
   Collection_618:
     graph_id: '10871'
@@ -1422,7 +1422,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2008-06-25 16:15:32'
-    updated_at: '2012-05-01 05:39:00'
+    updated_at: '2012-05-01 06:46:53'
     descendant_class: CollectorCollection
   Collection_619:
     graph_id: '10347'
@@ -1460,7 +1460,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2008-06-30 18:27:25'
-    updated_at: '2012-05-01 05:42:21'
+    updated_at: '2012-05-01 06:49:58'
     descendant_class: CollectorCollection
   Collection_630:
     graph_id: '11560'
@@ -1470,7 +1470,7 @@ Collection:
     slug: another-pez-collection
     description: "<p>I started consciously collecting Pez after I went to a Pez Convention in 2007. Since then, I've just collected things I like!</p>\n"
     num_items: '29'
-    num_views: '2512'
+    num_views: '2513'
     num_comments: '1'
     num_ratings: '0'
     score: '0'
@@ -1479,7 +1479,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-09-13 00:20:51'
-    updated_at: '2012-05-01 05:03:25'
+    updated_at: '2012-05-01 05:58:46'
     descendant_class: CollectorCollection
   Collection_635:
     graph_id: '10947'
@@ -1498,7 +1498,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2008-07-05 22:50:39'
-    updated_at: '2012-05-01 05:41:34'
+    updated_at: '2012-05-01 06:49:14'
     descendant_class: CollectorCollection
   Collection_637:
     graph_id: '10664'
@@ -1536,7 +1536,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2008-07-10 13:00:56'
-    updated_at: '2012-05-01 05:42:20'
+    updated_at: '2012-05-01 06:49:58'
     descendant_class: CollectorCollection
   Collection_642:
     graph_id: '11064'
@@ -1546,7 +1546,7 @@ Collection:
     slug: wonder-woman-action-figures
     description: "<p>A collection of figures of Wonder Woman.</p>\n"
     num_items: '30'
-    num_views: '4134'
+    num_views: '4135'
     num_comments: '0'
     num_ratings: '0'
     score: '0'
@@ -1555,7 +1555,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2008-07-10 15:30:30'
-    updated_at: '2012-04-30 13:10:58'
+    updated_at: '2012-05-01 05:59:11'
     descendant_class: CollectorCollection
   Collection_643:
     graph_id: '11596'
@@ -1574,7 +1574,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2008-07-10 16:18:10'
-    updated_at: '2012-05-01 05:38:58'
+    updated_at: '2012-05-01 06:46:51'
     descendant_class: CollectorCollection
   Collection_649:
     graph_id: '11318'
@@ -1650,7 +1650,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2008-07-19 17:01:40'
-    updated_at: '2012-05-01 05:41:34'
+    updated_at: '2012-05-01 06:49:14'
     descendant_class: CollectorCollection
   Collection_674:
     graph_id: '11321'
@@ -1764,7 +1764,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2008-08-22 08:27:18'
-    updated_at: '2012-05-01 05:38:58'
+    updated_at: '2012-05-01 06:46:51'
     descendant_class: CollectorCollection
   Collection_709:
     graph_id: '11477'
@@ -1783,7 +1783,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2008-08-23 09:43:39'
-    updated_at: '2012-05-01 05:42:18'
+    updated_at: '2012-05-01 06:49:56'
     descendant_class: CollectorCollection
   Collection_710:
     graph_id: '11077'
@@ -1812,7 +1812,7 @@ Collection:
     slug: dc-comics-villains
     description: "<p>A whole mess of DC Comics bad guys!</p>\n"
     num_items: '51'
-    num_views: '3605'
+    num_views: '3606'
     num_comments: '2'
     num_ratings: '0'
     score: '0'
@@ -1821,7 +1821,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2008-08-24 14:34:20'
-    updated_at: '2012-05-01 04:02:10'
+    updated_at: '2012-05-01 05:59:48'
     descendant_class: CollectorCollection
   Collection_748:
     graph_id: '11094'
@@ -1831,7 +1831,7 @@ Collection:
     slug: september-5th-weekend-haul
     description: "<p>It was a good weekend for me and my dinosaur collection.  On Friday I received a box of dinosaur toys in the mail from my father in law (he knows I collect them and he buys them for me when he comes across them).  On Saturday I went to an estate sale that had some dinosaur toys.  And also on Saturday my wife was at a garage sale and found a huge box full of dinosaur toys!  On Sunday I returned to the estate sale to pick up some more dinosaur toys that I passed on the day before - they were half price on Sunday!  Total amount I spent for everything you see here: $13.50</p>\n"
     num_items: '50'
-    num_views: '2728'
+    num_views: '2729'
     num_comments: '4'
     num_ratings: '0'
     score: '0'
@@ -1840,7 +1840,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2008-09-07 10:29:28'
-    updated_at: '2012-04-30 14:16:17'
+    updated_at: '2012-05-01 06:00:14'
     descendant_class: CollectorCollection
   Collection_777:
     graph_id: '11725'
@@ -1859,7 +1859,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2008-10-03 21:07:24'
-    updated_at: '2012-05-01 05:41:52'
+    updated_at: '2012-05-01 06:49:34'
     descendant_class: CollectorCollection
   Collection_778:
     graph_id: '11735'
@@ -1878,7 +1878,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2008-10-03 21:10:41'
-    updated_at: '2012-05-01 05:41:48'
+    updated_at: '2012-05-01 06:49:30'
     descendant_class: CollectorCollection
   Collection_787:
     graph_id: '12061'
@@ -1935,7 +1935,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2008-11-09 10:55:05'
-    updated_at: '2012-05-01 05:41:28'
+    updated_at: '2012-05-01 06:49:10'
     descendant_class: CollectorCollection
   Collection_841:
     graph_id: '11372'
@@ -1954,7 +1954,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2008-11-26 00:25:36'
-    updated_at: '2012-05-01 05:42:25'
+    updated_at: '2012-05-01 06:50:03'
     descendant_class: CollectorCollection
   Collection_843:
     graph_id: '11080'
@@ -1973,7 +1973,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-11-22 14:52:07'
-    updated_at: '2012-05-01 05:41:53'
+    updated_at: '2012-05-01 06:49:35'
     descendant_class: CollectorCollection
   Collection_844:
     graph_id: '10609'
@@ -2002,7 +2002,7 @@ Collection:
     slug: jurassic-park-iii-dino-packs-dinosaurs
     description: "<p>This collection provides information about the Jurassic Park III Dino Packs dinosaur toys, a short-lived series of miniature figures that I think are very underrated.</p>\n"
     num_items: '12'
-    num_views: '2803'
+    num_views: '2804'
     num_comments: '0'
     num_ratings: '0'
     score: '0'
@@ -2011,7 +2011,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2008-12-03 11:44:46'
-    updated_at: '2012-05-01 05:42:02'
+    updated_at: '2012-05-01 06:49:40'
     descendant_class: CollectorCollection
   Collection_876:
     graph_id: '11962'
@@ -2021,7 +2021,7 @@ Collection:
     slug: nordstrom-snowglobes
     description: "<p>Little winter fairies</p>\n"
     num_items: '7'
-    num_views: '1321'
+    num_views: '1322'
     num_comments: '0'
     num_ratings: '0'
     score: '0'
@@ -2030,7 +2030,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2008-12-12 16:16:47'
-    updated_at: '2012-04-30 20:23:51'
+    updated_at: '2012-05-01 06:01:39'
     descendant_class: CollectorCollection
   Collection_877:
     graph_id: '11133'
@@ -2078,7 +2078,7 @@ Collection:
     slug: miscellaneous-1
     description: "<p>fairy, dancer, strange items...</p>\n"
     num_items: '10'
-    num_views: '139078'
+    num_views: '139081'
     num_comments: '0'
     num_ratings: '0'
     score: '0'
@@ -2087,7 +2087,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2008-12-13 12:52:44'
-    updated_at: '2012-05-01 05:39:57'
+    updated_at: '2012-05-01 06:47:48'
     descendant_class: CollectorCollection
   Collection_882:
     graph_id: '11380'
@@ -2125,7 +2125,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2008-12-13 19:43:11'
-    updated_at: '2012-05-01 05:42:08'
+    updated_at: '2012-05-01 06:49:45'
     descendant_class: CollectorCollection
   Collection_911:
     graph_id: '11634'
@@ -2182,7 +2182,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-02-05 22:09:17'
-    updated_at: '2012-05-01 05:39:51'
+    updated_at: '2012-05-01 06:47:43'
     descendant_class: CollectorCollection
   Collection_1035:
     graph_id: '11523'
@@ -2201,7 +2201,7 @@ Collection:
     comments_on: '1'
     rating_on: '0'
     created_at: '2009-03-02 13:09:28'
-    updated_at: '2012-05-01 05:40:28'
+    updated_at: '2012-05-01 06:48:15'
     descendant_class: CollectorCollection
   Collection_1036:
     graph_id: '10525'
@@ -2230,7 +2230,7 @@ Collection:
     slug: living-dead-dolls-1
     description: "<p>Living Dead Dolls take up 50% of my life.  Im totally obsessed with these cute little zombie dolls!</p>\n"
     num_items: '3'
-    num_views: '117463'
+    num_views: '117469'
     num_comments: '0'
     num_ratings: '0'
     score: '0'
@@ -2239,7 +2239,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-03-12 22:12:24'
-    updated_at: '2012-05-01 04:27:05'
+    updated_at: '2012-05-01 05:55:53'
     descendant_class: CollectorCollection
   Collection_1168:
     graph_id: '10716'
@@ -2315,7 +2315,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-05-03 19:28:40'
-    updated_at: '2012-05-01 05:39:33'
+    updated_at: '2012-05-01 06:47:24'
     descendant_class: CollectorCollection
   Collection_1299:
     graph_id: '11894'
@@ -2334,7 +2334,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-05-04 20:07:13'
-    updated_at: '2012-05-01 05:38:56'
+    updated_at: '2012-05-01 06:46:50'
     descendant_class: CollectorCollection
   Collection_1300:
     graph_id: '12076'
@@ -2353,7 +2353,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-05-04 20:24:47'
-    updated_at: '2012-05-01 05:39:04'
+    updated_at: '2012-05-01 06:46:58'
     descendant_class: CollectorCollection
   Collection_1301:
     graph_id: '11703'
@@ -2372,7 +2372,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-05-04 20:59:35'
-    updated_at: '2012-05-01 05:39:16'
+    updated_at: '2012-05-01 06:47:10'
     descendant_class: CollectorCollection
   Collection_1302:
     graph_id: '10820'
@@ -2448,7 +2448,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-05-17 23:45:07'
-    updated_at: '2012-05-01 05:42:02'
+    updated_at: '2012-05-01 06:49:40'
     descendant_class: CollectorCollection
   Collection_1372:
     graph_id: '11706'
@@ -2467,7 +2467,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-05-24 23:45:06'
-    updated_at: '2012-05-01 05:38:55'
+    updated_at: '2012-05-01 06:46:49'
     descendant_class: CollectorCollection
   Collection_1383:
     graph_id: '10903'
@@ -2486,7 +2486,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-05-29 00:08:26'
-    updated_at: '2012-05-01 05:38:56'
+    updated_at: '2012-05-01 06:46:50'
     descendant_class: CollectorCollection
   Collection_1395:
     graph_id: '11308'
@@ -2505,7 +2505,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-05-30 11:07:21'
-    updated_at: '2012-05-01 05:38:55'
+    updated_at: '2012-05-01 06:46:49'
     descendant_class: CollectorCollection
   Collection_1402:
     graph_id: '11161'
@@ -2543,7 +2543,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-06-12 22:13:24'
-    updated_at: '2012-05-01 05:41:53'
+    updated_at: '2012-05-01 06:49:35'
     descendant_class: CollectorCollection
   Collection_1452:
     graph_id: '10601'
@@ -2572,7 +2572,7 @@ Collection:
     slug: my-wild-animals
     description: "<p>My wildlife collection!(not ubdated)</p>\n"
     num_items: '17'
-    num_views: '3221'
+    num_views: '3223'
     num_comments: '3'
     num_ratings: '0'
     score: '0'
@@ -2581,7 +2581,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-07-14 14:31:51'
-    updated_at: '2012-05-01 04:24:40'
+    updated_at: '2012-05-01 05:41:44'
     descendant_class: CollectorCollection
   Collection_1458:
     graph_id: '11797'
@@ -2591,7 +2591,7 @@ Collection:
     slug: farm-life
     description: "<p>Waited too much for other collections?Here they are:farm animals!</p>\n"
     num_items: '10'
-    num_views: '1349'
+    num_views: '1350'
     num_comments: '0'
     num_ratings: '0'
     score: '0'
@@ -2600,7 +2600,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-07-14 13:16:36'
-    updated_at: '2012-04-29 19:42:54'
+    updated_at: '2012-05-01 05:41:56'
     descendant_class: CollectorCollection
   Collection_1460:
     graph_id: '11672'
@@ -2657,7 +2657,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-06-20 00:32:58'
-    updated_at: '2012-05-01 05:42:01'
+    updated_at: '2012-05-01 06:49:40'
     descendant_class: CollectorCollection
   Collection_1506:
     graph_id: '11786'
@@ -2695,7 +2695,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-06-22 18:10:16'
-    updated_at: '2012-05-01 05:39:04'
+    updated_at: '2012-05-01 06:46:58'
     descendant_class: CollectorCollection
   Collection_1534:
     graph_id: '11691'
@@ -2752,7 +2752,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-07-10 21:22:42'
-    updated_at: '2012-05-01 05:41:29'
+    updated_at: '2012-05-01 06:49:10'
     descendant_class: CollectorCollection
   Collection_1554:
     graph_id: '11360'
@@ -2771,7 +2771,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-07-11 18:34:26'
-    updated_at: '2012-05-01 05:38:56'
+    updated_at: '2012-05-01 06:46:50'
     descendant_class: CollectorCollection
   Collection_1570:
     graph_id: '12192'
@@ -2790,7 +2790,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-07-15 07:56:48'
-    updated_at: '2012-05-01 05:39:39'
+    updated_at: '2012-05-01 06:47:28'
     descendant_class: CollectorCollection
   Collection_1598:
     graph_id: '11976'
@@ -2809,7 +2809,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-07-23 22:34:33'
-    updated_at: '2012-05-01 05:42:09'
+    updated_at: '2012-05-01 06:49:46'
     descendant_class: CollectorCollection
   Collection_1646:
     graph_id: '11255'
@@ -2828,7 +2828,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-07-31 14:10:41'
-    updated_at: '2012-05-01 05:42:17'
+    updated_at: '2012-05-01 06:49:54'
     descendant_class: CollectorCollection
   Collection_1681:
     graph_id: '10478'
@@ -2904,7 +2904,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-08-26 10:28:03'
-    updated_at: '2012-05-01 05:38:56'
+    updated_at: '2012-05-01 06:46:50'
     descendant_class: CollectorCollection
   Collection_1713:
     graph_id: '11258'
@@ -2923,7 +2923,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-12-15 11:15:25'
-    updated_at: '2012-05-01 05:42:13'
+    updated_at: '2012-05-01 06:49:51'
     descendant_class: CollectorCollection
   Collection_1714:
     graph_id: '11139'
@@ -2961,7 +2961,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-12-29 14:27:33'
-    updated_at: '2012-05-01 05:42:13'
+    updated_at: '2012-05-01 06:49:51'
     descendant_class: CollectorCollection
   Collection_1716:
     graph_id: '11620'
@@ -2999,7 +2999,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2010-01-18 13:28:42'
-    updated_at: '2012-05-01 05:42:13'
+    updated_at: '2012-05-01 06:49:51'
     descendant_class: CollectorCollection
   Collection_1720:
     graph_id: '12120'
@@ -3037,7 +3037,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-12-15 10:26:12'
-    updated_at: '2012-05-01 05:42:13'
+    updated_at: '2012-05-01 06:49:51'
     descendant_class: CollectorCollection
   Collection_1723:
     graph_id: '11257'
@@ -3056,7 +3056,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2010-02-03 09:11:35'
-    updated_at: '2012-05-01 05:42:13'
+    updated_at: '2012-05-01 06:49:51'
     descendant_class: CollectorCollection
   Collection_1724:
     graph_id: '11021'
@@ -3066,7 +3066,7 @@ Collection:
     slug: hippos-and-tapirs
     description: "<p>Water loving mammals,including the gentle tapirs and the fiersome hippopotamas.There may be others on the way.</p>\n"
     num_items: '6'
-    num_views: '2064'
+    num_views: '2065'
     num_comments: '0'
     num_ratings: '0'
     score: '0'
@@ -3075,7 +3075,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2010-02-03 09:17:59'
-    updated_at: '2012-05-01 05:42:13'
+    updated_at: '2012-05-01 06:49:51'
     descendant_class: CollectorCollection
   Collection_1725:
     graph_id: '11175'
@@ -3113,7 +3113,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-09-01 15:21:43'
-    updated_at: '2012-05-01 05:42:13'
+    updated_at: '2012-05-01 06:49:51'
     descendant_class: CollectorCollection
   Collection_1731:
     graph_id: '11555'
@@ -3151,7 +3151,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-12-29 15:10:41'
-    updated_at: '2012-05-01 05:42:13'
+    updated_at: '2012-05-01 06:49:51'
     descendant_class: CollectorCollection
   Collection_1733:
     graph_id: '10737'
@@ -3189,7 +3189,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-09-10 06:07:03'
-    updated_at: '2012-05-01 05:42:21'
+    updated_at: '2012-05-01 06:49:59'
     descendant_class: CollectorCollection
   Collection_1760:
     graph_id: '11549'
@@ -3199,7 +3199,7 @@ Collection:
     slug: playmobil-home
     description: "<p>A set of toys that depicts a suburban lifestyle, meant to be used in the much larger 'Suburban House' playset.</p>\n"
     num_items: '46'
-    num_views: '1557'
+    num_views: '1558'
     num_comments: '0'
     num_ratings: '0'
     score: '0'
@@ -3208,7 +3208,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-09-13 23:19:30'
-    updated_at: '2012-05-01 03:36:54'
+    updated_at: '2012-05-01 05:44:24'
     descendant_class: CollectorCollection
   Collection_1789:
     graph_id: '12127'
@@ -3227,7 +3227,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-09-29 20:26:25'
-    updated_at: '2012-05-01 05:41:49'
+    updated_at: '2012-05-01 06:49:31'
     descendant_class: CollectorCollection
   Collection_1790:
     graph_id: '11799'
@@ -3322,7 +3322,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2010-02-09 10:45:51'
-    updated_at: '2012-05-01 05:42:13'
+    updated_at: '2012-05-01 06:49:51'
     descendant_class: CollectorCollection
   Collection_1806:
     graph_id: '10179'
@@ -3332,7 +3332,7 @@ Collection:
     slug: lions-1
     description: "<p>The king of the beasts and his family.Many more on the way!</p>\n"
     num_items: '10'
-    num_views: '211211'
+    num_views: '211224'
     num_comments: '0'
     num_ratings: '0'
     score: '0'
@@ -3341,7 +3341,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-10-31 15:36:53'
-    updated_at: '2012-05-01 05:00:43'
+    updated_at: '2012-05-01 06:09:52'
     descendant_class: CollectorCollection
   Collection_1807:
     graph_id: '10375'
@@ -3360,7 +3360,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-10-13 15:12:03'
-    updated_at: '2012-05-01 05:42:13'
+    updated_at: '2012-05-01 06:49:51'
     descendant_class: CollectorCollection
   Collection_1808:
     graph_id: '10560'
@@ -3398,7 +3398,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2010-02-06 04:04:14'
-    updated_at: '2012-05-01 05:42:13'
+    updated_at: '2012-05-01 06:49:51'
     descendant_class: CollectorCollection
   Collection_1812:
     graph_id: '11141'
@@ -3417,7 +3417,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-10-14 02:15:00'
-    updated_at: '2012-05-01 05:42:13'
+    updated_at: '2012-05-01 06:49:51'
     descendant_class: CollectorCollection
   Collection_1813:
     graph_id: '11755'
@@ -3427,7 +3427,7 @@ Collection:
     slug: girrafes-and-okapis
     description: "<p>There will be many more.</p>\n"
     num_items: '5'
-    num_views: '1079'
+    num_views: '1080'
     num_comments: '1'
     num_ratings: '0'
     score: '0'
@@ -3436,7 +3436,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2010-02-13 13:42:15'
-    updated_at: '2012-05-01 05:42:13'
+    updated_at: '2012-05-01 06:49:51'
     descendant_class: CollectorCollection
   Collection_1829:
     graph_id: '8806'
@@ -3455,7 +3455,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-10-30 19:59:45'
-    updated_at: '2012-05-01 05:42:25'
+    updated_at: '2012-05-01 06:50:03'
     descendant_class: CollectorCollection
   Collection_1830:
     graph_id: '10440'
@@ -3465,7 +3465,7 @@ Collection:
     slug: leopards-jaguars-and-cheetahs
     description: "<p>Including the big spotted cats,but also the elusive ocelot.There are still many more items on the way!</p>\n"
     num_items: '28'
-    num_views: '3434'
+    num_views: '3436'
     num_comments: '2'
     num_ratings: '0'
     score: '0'
@@ -3474,7 +3474,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-10-31 15:59:31'
-    updated_at: '2012-04-30 21:46:56'
+    updated_at: '2012-05-01 05:55:00'
     descendant_class: CollectorCollection
   Collection_1831:
     graph_id: '12112'
@@ -3493,7 +3493,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2010-02-14 15:32:48'
-    updated_at: '2012-05-01 05:42:13'
+    updated_at: '2012-05-01 06:49:51'
     descendant_class: CollectorCollection
   Collection_1832:
     graph_id: '10801'
@@ -3531,7 +3531,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-11-28 20:42:09'
-    updated_at: '2012-05-01 05:38:56'
+    updated_at: '2012-05-01 06:46:50'
     descendant_class: CollectorCollection
   Collection_1847:
     graph_id: '10744'
@@ -3550,7 +3550,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-11-12 14:54:34'
-    updated_at: '2012-05-01 05:39:33'
+    updated_at: '2012-05-01 06:47:24'
     descendant_class: CollectorCollection
   Collection_1861:
     graph_id: '11925'
@@ -3588,7 +3588,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-12-29 15:09:39'
-    updated_at: '2012-05-01 05:42:13'
+    updated_at: '2012-05-01 06:49:51'
     descendant_class: CollectorCollection
   Collection_1863:
     graph_id: '11147'
@@ -3607,7 +3607,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2010-02-03 13:16:14'
-    updated_at: '2012-05-01 05:42:13'
+    updated_at: '2012-05-01 06:49:51'
     descendant_class: CollectorCollection
   Collection_1864:
     graph_id: '11447'
@@ -3626,7 +3626,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2010-02-21 08:39:28'
-    updated_at: '2012-05-01 05:42:13'
+    updated_at: '2012-05-01 06:49:51'
     descendant_class: CollectorCollection
   Collection_1865:
     graph_id: '11014'
@@ -3664,7 +3664,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2010-02-14 15:28:12'
-    updated_at: '2012-05-01 05:42:13'
+    updated_at: '2012-05-01 06:49:51'
     descendant_class: CollectorCollection
   Collection_1868:
     graph_id: '10427'
@@ -3721,7 +3721,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-11-28 21:08:52'
-    updated_at: '2012-05-01 05:38:56'
+    updated_at: '2012-05-01 06:46:50'
     descendant_class: CollectorCollection
   Collection_1871:
     graph_id: '11813'
@@ -3740,7 +3740,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-12-14 14:54:59'
-    updated_at: '2012-05-01 05:42:13'
+    updated_at: '2012-05-01 06:49:51'
     descendant_class: CollectorCollection
   Collection_1872:
     graph_id: '11905'
@@ -3778,7 +3778,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2010-02-06 04:02:43'
-    updated_at: '2012-05-01 05:42:18'
+    updated_at: '2012-05-01 06:49:55'
     descendant_class: CollectorCollection
   Collection_1884:
     graph_id: '11150'
@@ -3797,7 +3797,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2010-01-31 04:10:02'
-    updated_at: '2012-05-01 05:42:13'
+    updated_at: '2012-05-01 06:49:51'
     descendant_class: CollectorCollection
   Collection_1892:
     graph_id: '11276'
@@ -3864,7 +3864,7 @@ Collection:
     slug: goats
     description: "<p>There are more items to come!</p>\n"
     num_items: '7'
-    num_views: '967'
+    num_views: '968'
     num_comments: '0'
     num_ratings: '0'
     score: '0'
@@ -3873,7 +3873,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2009-12-14 15:30:03'
-    updated_at: '2012-05-01 05:42:13'
+    updated_at: '2012-05-01 06:49:51'
     descendant_class: CollectorCollection
   Collection_1908:
     graph_id: '11896'
@@ -3902,7 +3902,7 @@ Collection:
     slug: dinosaurs-1
     description: "<p>From the mighty T-rex to the small Leptoceratops,this section contains dozens of species of dinosaurs.Watch from time to time for new items!</p>\n"
     num_items: '48'
-    num_views: '209035'
+    num_views: '209047'
     num_comments: '1'
     num_ratings: '0'
     score: '0'
@@ -3911,7 +3911,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2010-02-28 06:38:50'
-    updated_at: '2012-05-01 05:01:30'
+    updated_at: '2012-05-01 06:02:09'
     descendant_class: CollectorCollection
   Collection_1941:
     graph_id: '10160'
@@ -3921,7 +3921,7 @@ Collection:
     slug: dogs-1
     description: "<p>Watch from time to time for new items!</p>\n"
     num_items: '58'
-    num_views: '414719'
+    num_views: '414820'
     num_comments: '2'
     num_ratings: '0'
     score: '0'
@@ -3930,7 +3930,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2010-02-21 08:33:14'
-    updated_at: '2012-05-01 05:07:25'
+    updated_at: '2012-05-01 06:11:33'
     descendant_class: CollectorCollection
   Collection_1961:
     graph_id: '12422'
@@ -3949,7 +3949,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2010-01-11 22:32:33'
-    updated_at: '2012-05-01 05:41:18'
+    updated_at: '2012-05-01 06:49:00'
     descendant_class: CollectorCollection
   Collection_1977:
     graph_id: '10882'
@@ -3987,7 +3987,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2010-01-28 04:20:30'
-    updated_at: '2012-05-01 05:42:14'
+    updated_at: '2012-05-01 06:49:52'
     descendant_class: CollectorCollection
   Collection_2016:
     graph_id: '11595'
@@ -4006,7 +4006,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2010-02-03 13:53:14'
-    updated_at: '2012-05-01 05:42:17'
+    updated_at: '2012-05-01 06:49:55'
     descendant_class: CollectorCollection
   Collection_2017:
     graph_id: '10878'
@@ -4025,7 +4025,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2010-01-29 03:59:39'
-    updated_at: '2012-05-01 05:42:17'
+    updated_at: '2012-05-01 06:49:55'
     descendant_class: CollectorCollection
   Collection_2020:
     graph_id: '11008'
@@ -4035,7 +4035,7 @@ Collection:
     slug: prehistoric-mammals-and-birds
     description: "<p>Watch from time to time for new items!</p>\n"
     num_items: '18'
-    num_views: '3066'
+    num_views: '3067'
     num_comments: '0'
     num_ratings: '0'
     score: '0'
@@ -4044,7 +4044,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2010-02-03 13:09:27'
-    updated_at: '2012-04-30 15:59:58'
+    updated_at: '2012-05-01 05:56:39'
     descendant_class: CollectorCollection
   Collection_2040:
     graph_id: '11393'
@@ -4063,7 +4063,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2010-02-03 13:38:34'
-    updated_at: '2012-05-01 05:42:08'
+    updated_at: '2012-05-01 06:49:46'
     descendant_class: CollectorCollection
   Collection_2041:
     graph_id: '12108'
@@ -4082,7 +4082,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2010-02-03 13:48:48'
-    updated_at: '2012-05-01 05:42:14'
+    updated_at: '2012-05-01 06:49:52'
     descendant_class: CollectorCollection
   Collection_2043:
     graph_id: '11278'
@@ -4120,7 +4120,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2010-03-10 14:40:17'
-    updated_at: '2012-05-01 05:42:17'
+    updated_at: '2012-05-01 06:49:55'
     descendant_class: CollectorCollection
   Collection_2142:
     graph_id: '11182'
@@ -4158,7 +4158,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2010-03-28 01:20:06'
-    updated_at: '2012-05-01 05:41:29'
+    updated_at: '2012-05-01 06:49:10'
     descendant_class: CollectorCollection
   Collection_2157:
     graph_id: '11349'
@@ -4177,7 +4177,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2010-04-02 21:18:36'
-    updated_at: '2012-05-01 05:41:39'
+    updated_at: '2012-05-01 06:49:18'
     descendant_class: CollectorCollection
   Collection_2180:
     graph_id: '11462'
@@ -4196,7 +4196,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2010-04-16 23:29:47'
-    updated_at: '2012-05-01 05:42:10'
+    updated_at: '2012-05-01 06:49:48'
     descendant_class: CollectorCollection
   Collection_2186:
     graph_id: '11285'
@@ -4206,7 +4206,7 @@ Collection:
     slug: heroclix-brave-amp-the-bold
     description: "<p>A set of Heroclix pieces released in April of 2010 based on characters from DC Comics.</p>\n"
     num_items: '35'
-    num_views: '2149'
+    num_views: '2150'
     num_comments: '0'
     num_ratings: '0'
     score: '0'
@@ -4215,7 +4215,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2010-04-21 23:35:40'
-    updated_at: '2012-05-01 05:42:09'
+    updated_at: '2012-05-01 06:49:47'
     descendant_class: CollectorCollection
   Collection_2211:
     graph_id: '11801'
@@ -4234,7 +4234,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2010-05-21 13:11:23'
-    updated_at: '2012-05-01 05:39:33'
+    updated_at: '2012-05-01 06:47:24'
     descendant_class: CollectorCollection
   Collection_2274:
     graph_id: '11120'
@@ -4272,7 +4272,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2010-08-22 11:39:25'
-    updated_at: '2012-05-01 05:38:57'
+    updated_at: '2012-05-01 06:46:51'
     descendant_class: CollectorCollection
   Collection_2373:
     graph_id: '11929'
@@ -4291,7 +4291,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2010-09-12 12:15:51'
-    updated_at: '2012-05-01 05:38:59'
+    updated_at: '2012-05-01 06:46:52'
     descendant_class: CollectorCollection
   Collection_2395:
     graph_id: '12301'
@@ -4310,7 +4310,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2010-09-28 21:01:24'
-    updated_at: '2012-05-01 05:42:22'
+    updated_at: '2012-05-01 06:49:59'
     descendant_class: CollectorCollection
   Collection_2456:
     graph_id: '10588'
@@ -4320,7 +4320,7 @@ Collection:
     slug: dc-universe-squatz
     description: "<p>Series one of DC Squatz from WIld Planet includes 13 different DC Comics characters, sold in two packs. Some are mystery figures, while some are revealed one the packaging. Place a Squatz in the warm water and the outer shell fizzes away, revealing the 1\" figure inside.</p>\n"
     num_items: '23'
-    num_views: '2164'
+    num_views: '2165'
     num_comments: '1'
     num_ratings: '0'
     score: '0'
@@ -4329,7 +4329,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2010-10-28 23:51:19'
-    updated_at: '2012-05-01 04:37:10'
+    updated_at: '2012-05-01 05:55:20'
     descendant_class: CollectorCollection
   Collection_2520:
     graph_id: '11184'
@@ -4424,7 +4424,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2011-06-10 12:10:16'
-    updated_at: '2012-05-01 05:41:28'
+    updated_at: '2012-05-01 06:49:09'
     descendant_class: CollectorCollection
   Collection_2818:
     graph_id: '12191'
@@ -4452,7 +4452,7 @@ Collection:
     slug: batmobiles-1
     description: "<p>A small collection of Batmobiles from many sources, with a thousand holt grails still left to find!</p>\n"
     num_items: '13'
-    num_views: '131531'
+    num_views: '131547'
     num_comments: '0'
     num_ratings: '0'
     score: '0'
@@ -4461,7 +4461,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2011-06-30 20:18:58'
-    updated_at: '2012-05-01 05:42:18'
+    updated_at: '2012-05-01 06:49:56'
     descendant_class: CollectorCollection
   Collection_2942:
     graph_id: '11052'
@@ -4480,7 +4480,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2011-07-15 14:18:24'
-    updated_at: '2012-05-01 05:41:38'
+    updated_at: '2012-05-01 06:49:18'
     descendant_class: CollectorCollection
   Collection_2972:
     graph_id: '11190'
@@ -4499,7 +4499,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2011-08-22 08:25:54'
-    updated_at: '2012-05-01 05:41:38'
+    updated_at: '2012-05-01 06:49:18'
     descendant_class: CollectorCollection
   Collection_2973:
     graph_id: '12244'
@@ -4518,7 +4518,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2011-08-24 20:06:13'
-    updated_at: '2012-05-01 05:39:42'
+    updated_at: '2012-05-01 06:47:32'
     descendant_class: CollectorCollection
   Collection_3061:
     graph_id: '11847'
@@ -4537,7 +4537,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2011-12-19 22:20:36'
-    updated_at: '2012-05-01 05:41:29'
+    updated_at: '2012-05-01 06:49:10'
     descendant_class: CollectorCollection
   Collection_3075:
     graph_id: '10677'
@@ -4632,7 +4632,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2012-03-19 10:34:45'
-    updated_at: '2012-05-01 05:41:38'
+    updated_at: '2012-05-01 06:49:18'
     descendant_class: CollectorCollection
   Collection_3145:
     graph_id: '13763'
@@ -4689,7 +4689,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2012-04-02 17:22:21'
-    updated_at: '2012-05-01 05:41:29'
+    updated_at: '2012-05-01 06:49:10'
     descendant_class: CollectorCollection
   Collection_3153:
     graph_id: '14263'
@@ -4708,7 +4708,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2012-04-03 16:22:17'
-    updated_at: '2012-05-01 05:41:29'
+    updated_at: '2012-05-01 06:49:10'
     descendant_class: CollectorCollection
   Collection_3154:
     graph_id: '14330'
@@ -4746,7 +4746,7 @@ Collection:
     comments_on: '1'
     rating_on: '1'
     created_at: '2012-04-06 08:33:03'
-    updated_at: '2012-05-01 05:42:21'
+    updated_at: '2012-05-01 06:49:59'
     descendant_class: CollectorCollection
   Collection_3164:
     graph_id: '15655'

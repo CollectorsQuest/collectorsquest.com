@@ -140,7 +140,7 @@
       if ($collections[0] instanceof Collection)
       {
         echo link_to(image_tag_collection(
-          $collections[0], '150x150',
+          $collections[0], 'thumb',
           array('width' => 150, 'height' => 150, 'style' => 'float: left; margin: 3px 4px 3px 3px;')
         ), route_for_collection($collections[0]));
       }
@@ -156,7 +156,7 @@
       if ($collections[1] instanceof Collection)
       {
         echo link_to(image_tag_collection(
-          $collections[1], '150x150',
+          $collections[1], 'thumb',
           array('width' => 150, 'height' => 150, 'style' => 'float: left; margin: 3px 4px 3px 3px;')
         ), route_for_collection($collections[1]));
       }

@@ -131,9 +131,50 @@ class collectionActions extends cqFrontendActions
       $this->redirect('@aetn_collectible_by_slug?id='. $collectible->getId() .'&slug='. $collectible->getSlug(), 301);
     }
 
+    if (!$this->getCollector()->isOwnerOf($collectible))
+    {
+      $collectible->setNumViews($collection->getNumViews() + 1);
+      $collectible->save();
+    }
+
+    /**
+     * Figure out the previous and the next item in the collection
+     */
+    $collectible_ids = $collection->getCollectibleIds();
+
+    if (array_search($collectible->getId(), $collectible_ids) - 1 < 0)
+    {
+      $q = CollectionCollectibleQuery::create()
+        ->filterByCollection($collection)
+        ->filterByCollectibleId($collectible_ids[count($collectible_ids) - 1]);
+      $this->previous = $q->findOne();
+    }
+    else
+    {
+      $q = CollectionCollectibleQuery::create()
+        ->filterByCollection($collection)
+        ->filterByCollectibleId($collectible_ids[array_search($collectible->getId(), $collectible_ids) - 1]);
+      $this->previous = $q->findOne();
+    }
+
+    if (array_search($collectible->getId(), $collectible_ids) + 1 >= count($collectible_ids))
+    {
+      $q = CollectionCollectibleQuery::create()
+        ->filterByCollection($collection)
+        ->filterByCollectibleId($collectible_ids[0]);
+      $this->next = $q->findOne();
+    }
+    else
+    {
+      $q = CollectionCollectibleQuery::create()
+        ->filterByCollection($collection)
+        ->filterByCollectibleId($collectible_ids[array_search($collectible->getId(), $collectible_ids) + 1]);
+      $this->next = $q->findOne();
+    }
+
+    $this->collection = $collection;
     $this->collectible = $collectible;
     $this->collector = $collector;
-    $this->collectible = $collectible;
     $this->additional_multimedia = $collectible->getMultimedia(false);
 
     return sfView::SUCCESS;
