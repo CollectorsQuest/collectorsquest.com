@@ -21,7 +21,7 @@
 <div class="row-fluid" xmlns="http://www.w3.org/1999/html">
   <?php
     $span = 10;
-    if (true || empty($additional_multimedia))
+    if (empty($additional_multimedia))
     {
       $span += 2;
     }
@@ -41,7 +41,7 @@
     ?>
   </div>
 
-  <?php if (false && !empty($additional_multimedia)): ?>
+  <?php if (!empty($additional_multimedia)): ?>
   <div class="span2">
     <?php foreach ($additional_multimedia as $i => $m): ?>
     <a class="zoom" href="<?php echo src_tag_multimedia($m, '1024x768'); ?>" title="<?php echo $m->getName(); ?>" onClick="return false;">
