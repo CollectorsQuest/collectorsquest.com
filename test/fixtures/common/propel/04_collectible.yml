@@ -180,7 +180,7 @@ Collectible:
     name: 'Batman buttons'
     slug: batman-buttons
     description: 'A collection of buttons, including Batman. Many have unfortunately fallen off and vanished over the years, but Batman dominates the satchel!'
-    num_views: '50'
+    num_views: '47'
     num_comments: '1'
     score: '0'
     is_name_automatic: '0'
@@ -191,7 +191,7 @@ Collectible:
     name: 'Batman original drawing'
     slug: batman-original-drawing
     description: 'An original Batman pencil drawing by Ron Adrian (Flash, Supergirl, Birds of Prey).'
-    num_views: '61'
+    num_views: '58'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -323,7 +323,7 @@ Collectible:
     name: 'Ikea Plush Octopus'
     slug: ikea-plush-octopus
     description: 'Okay, so it has only 5 legs, but a friend got this from Ikea for me! A lovely plush octo. Or, as the case may be, quinto.'
-    num_views: '196'
+    num_views: '193'
     num_comments: '1'
     score: '0'
     is_name_automatic: '0'
@@ -719,7 +719,7 @@ Collectible:
     name: '''Whisper'' print by Dave McKean [signed]'
     slug: whisper-print-by-dave-mckean-signed
     description: 'Extremely limited edition print. This was probably my first LARGE purchase ever on eBay, almost 200 bucks on my minimum-wage job, but I knew I''d never see it again. And I haven''t. 180 / 201, signed.'
-    num_views: '192'
+    num_views: '189'
     num_comments: '1'
     score: '0'
     is_name_automatic: '0'
@@ -1005,7 +1005,7 @@ Collectible:
     name: 'Toy Street Land of the Dinosaurs playset'
     slug: toy-street-land-of-the-dinosaurs-playset
     description: 'This playset was made from recasts of Marx and MPC toys in 1992. I think the only original thing about it is the playmat.'
-    num_views: '724'
+    num_views: '721'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1016,7 +1016,7 @@ Collectible:
     name: 'AAA Dinosaur toys'
     slug: aaa-dinosaur-toys
     description: 'These toys are made by a company known by the initials AAA. I think these are some of the earliest AAA toys, probably from the 1970s.'
-    num_views: '789'
+    num_views: '786'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1027,7 +1027,7 @@ Collectible:
     name: 'Bendos Tumba'
     slug: bendos-tumba
     description: 'This is Bendos version of a Tyrannosaurus'
-    num_views: '515'
+    num_views: '512'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1082,7 +1082,7 @@ Collectible:
     name: 'BC Builders Triceratops'
     slug: bc-builders-triceratops
     description: 'Hey it was on clearance at Toys R Us!'
-    num_views: '574'
+    num_views: '571'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1093,7 +1093,7 @@ Collectible:
     name: 'Dinomite Board Game'
     slug: dinomite-board-game
     description: 'I believe this board game was created by a kid in the 80s.'
-    num_views: '268'
+    num_views: '265'
     num_comments: '1'
     score: '0'
     is_name_automatic: '0'
@@ -1148,7 +1148,7 @@ Collectible:
     name: 'Monopoly Junior Dig''n Dinos Board Game'
     slug: monopoly-junior-dign-dinos-board-game
     description: 'Instead of properties you get cards about different dinosaurs, so its educational.'
-    num_views: '134'
+    num_views: '128'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1247,7 +1247,7 @@ Collectible:
     name: 'The World of Dinosaurs'
     slug: the-world-of-dinosaurs
     description: 'This stamp set was released in 1997. The art is by James Gurney, the author of Dinotopia.'
-    num_views: '70'
+    num_views: '67'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1456,7 +1456,7 @@ Collectible:
     name: 'Sinclair Bank'
     slug: sinclair-bank
     description: 'I believe these green plastic banks were given away for free in the 1960s at Sinclair gas stations.'
-    num_views: '576'
+    num_views: '573'
     num_comments: '2'
     score: '0'
     is_name_automatic: '0'
@@ -1599,7 +1599,7 @@ Collectible:
     name: 'ROM dinosaurs'
     slug: rom-dinosaurs-446158
     description: 'These figures were produced for the Royal Ontario Museum in the late 1970s'
-    num_views: '522'
+    num_views: '519'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1676,7 +1676,7 @@ Collectible:
     name: 'Jurassic Park toy cards'
     slug: jurassic-park-toy-cards
     description: 'These cards came with Jurassic Park toys.'
-    num_views: '308'
+    num_views: '305'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1830,7 +1830,7 @@ Collectible:
     name: 'Imaginext Dinosaurs'
     slug: imaginext-dinosaurs
     description: 'Hammer, Wings, Basher, and Shreds.'
-    num_views: '1747'
+    num_views: '1744'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1863,7 +1863,7 @@ Collectible:
     name: 'Dinosaur socks'
     slug: dinosaur-socks
     description: 'Socks with a free little toy!'
-    num_views: '68'
+    num_views: '65'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -1918,7 +1918,7 @@ Collectible:
     name: 'Jurassic Park the Ride poncho'
     slug: jurassic-park-the-ride-poncho
     description: 'Warning you may get wet!'
-    num_views: '69'
+    num_views: '66'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4371,7 +4371,7 @@ Collectible:
     name: 'Go Bots Airplane'
     slug: go-bots-airplane
     description: 'An A-10 Warthog? I still have the card.'
-    num_views: '65'
+    num_views: '62'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4503,7 +4503,7 @@ Collectible:
     name: Iceman
     slug: iceman
     description: ''
-    num_views: '145'
+    num_views: '139'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4558,7 +4558,7 @@ Collectible:
     name: 'Silver Surfer'
     slug: silver-surfer
     description: ''
-    num_views: '264'
+    num_views: '261'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4614,7 +4614,7 @@ Collectible:
     name: Phoenix
     slug: phoenix
     description: 'Jean Grey as the Phoenix... this is the only figure I have a problem with. She has a kind of horse-face thing going on.'
-    num_views: '159'
+    num_views: '156'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4625,7 +4625,7 @@ Collectible:
     name: Blade
     slug: blade
     description: ''
-    num_views: '136'
+    num_views: '133'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4769,7 +4769,7 @@ Collectible:
     name: 'Robot Pez'
     slug: robot-pez
     description: '... from Meet the Robinsons! This pack actually came with Cola and Raspberry Pez, which was quite a pleasant surprise. I''m so accustomed to orange, lemon, and so on.'
-    num_views: '19'
+    num_views: '16'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4824,7 +4824,7 @@ Collectible:
     name: 'Danny Elfman : So-Lo'
     slug: danny-elfman-so-lo
     description: 'An Oingo Boingo record released as a Danny Elfman ''solo'' album due to contract disputes & regulations. A great album nonetheless. Danny, come back to rock!'
-    num_views: '3'
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -4901,7 +4901,7 @@ Collectible:
     name: 'Zubin Mehta : Star Wars &amp; Close Encounters'
     slug: zubin-mehta-star-wars-amp-close-encounters
     description: ''
-    num_views: '13'
+    num_views: '10'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5033,7 +5033,7 @@ Collectible:
     name: Hawaii
     slug: hawaii
     description: ''
-    num_views: '3'
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5143,7 +5143,7 @@ Collectible:
     name: 'Carnegie Collection dinosaurs'
     slug: carnegie-collection-dinosaurs
     description: 'Corythosaurus, Spinosaurus, and baby Apatosaurus from the Carnegie Collection'
-    num_views: '138'
+    num_views: '135'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5154,7 +5154,7 @@ Collectible:
     name: 'Dinosaur watering can'
     slug: dinosaur-watering-can
     description: 'I''ve never seen a dinosaur watering can before!'
-    num_views: '119'
+    num_views: '113'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5220,7 +5220,7 @@ Collectible:
     name: 'Dinosaur toy set'
     slug: dinosaur-toy-set
     description: 'Two sets of dinosaur toys from 1999'
-    num_views: '141'
+    num_views: '138'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5253,7 +5253,7 @@ Collectible:
     name: 'Small dinosaur toys'
     slug: small-dinosaur-toys-297b72
     description: 'Made from Tim Mee, Ajax, and MPC molds'
-    num_views: '129'
+    num_views: '126'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5518,7 +5518,7 @@ Collectible:
     name: 'Robin, 2nd Series'
     slug: robin-2nd-series
     description: '=='
-    num_views: '58'
+    num_views: '55'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5540,7 +5540,7 @@ Collectible:
     name: '3age Thing'
     slug: 3age-thing
     description: '=='
-    num_views: '88'
+    num_views: '85'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5664,7 +5664,7 @@ Collectible:
     name: 'Kubrick Storm'
     slug: kubrick-storm
     description: '=='
-    num_views: '36'
+    num_views: '33'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5675,7 +5675,7 @@ Collectible:
     name: 'Kubrick Nightcrawler'
     slug: kubrick-nightcrawler
     description: 'A rare, but not super-rare, Kubrick.'
-    num_views: '95'
+    num_views: '92'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5697,7 +5697,7 @@ Collectible:
     name: 'Kubrick Juggernaut'
     slug: kubrick-juggernaut
     description: '=='
-    num_views: '59'
+    num_views: '56'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5708,7 +5708,7 @@ Collectible:
     name: 'Kubrick Daredevil'
     slug: kubrick-daredevil
     description: '=='
-    num_views: '40'
+    num_views: '37'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5741,7 +5741,7 @@ Collectible:
     name: 'Kubrick Carnage'
     slug: kubrick-carnage
     description: '=='
-    num_views: '89'
+    num_views: '86'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5752,7 +5752,7 @@ Collectible:
     name: 'Kubrick Jean Grey'
     slug: kubrick-jean-grey
     description: 'Why they chose to slap some huge plastic boobs onto this one, I''ll never know. I mean, they just DREW them onto Storm.'
-    num_views: '38'
+    num_views: '35'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5774,7 +5774,7 @@ Collectible:
     name: 'Kubrick Spider-Man'
     slug: kubrick-spider-man
     description: '... comes with a suction cup for wall-hanging action!'
-    num_views: '61'
+    num_views: '58'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5785,7 +5785,7 @@ Collectible:
     name: 'Kubrick Dr. Doom'
     slug: kubrick-dr-doom
     description: 'Packed one in 24 boxes.'
-    num_views: '92'
+    num_views: '89'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5807,7 +5807,7 @@ Collectible:
     name: 'Kubrick Apocalypse'
     slug: kubrick-apocalypse
     description: '=='
-    num_views: '42'
+    num_views: '39'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5829,7 +5829,7 @@ Collectible:
     name: 'Kubrick Venom'
     slug: kubrick-venom
     description: '=='
-    num_views: '46'
+    num_views: '43'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5840,7 +5840,7 @@ Collectible:
     name: 'Kubrick Iceman'
     slug: kubrick-iceman
     description: '=='
-    num_views: '61'
+    num_views: '58'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5873,7 +5873,7 @@ Collectible:
     name: 'Kubrick Hobgoblin'
     slug: kubrick-hobgoblin
     description: '=='
-    num_views: '80'
+    num_views: '77'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5884,7 +5884,7 @@ Collectible:
     name: 'Kubrick Human Torch'
     slug: kubrick-human-torch
     description: '=='
-    num_views: '37'
+    num_views: '34'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5895,7 +5895,7 @@ Collectible:
     name: 'Kubrick Spider-Clone'
     slug: kubrick-spider-clone
     description: 'Really? Spider-Clone? Instead of, like... Beast?'
-    num_views: '36'
+    num_views: '33'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5906,7 +5906,7 @@ Collectible:
     name: 'Kubrick Professer Xavier'
     slug: kubrick-professer-xavier
     description: '... it''s pronounced ''ZAYVIER'', not ''EX-AVIER'', guys.'
-    num_views: '39'
+    num_views: '36'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5928,7 +5928,7 @@ Collectible:
     name: 'Kubrick Punisher'
     slug: kubrick-punisher
     description: '=='
-    num_views: '57'
+    num_views: '54'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5939,7 +5939,7 @@ Collectible:
     name: 'Kubrick Cyclops'
     slug: kubrick-cyclops
     description: '=='
-    num_views: '36'
+    num_views: '33'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5950,7 +5950,7 @@ Collectible:
     name: 'Kubrick Colossus'
     slug: kubrick-colossus
     description: '=='
-    num_views: '38'
+    num_views: '35'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5961,7 +5961,7 @@ Collectible:
     name: 'Kubrick Wolverine II'
     slug: kubrick-wolverine-ii
     description: 'What''s a line of anything involved with Marvel without many Wolverines in various costumes?'
-    num_views: '91'
+    num_views: '88'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -5983,7 +5983,7 @@ Collectible:
     name: 'Sinclair Letterpress Blocks'
     slug: sinclair-letterpress-blocks
     description: 'These are Sinclair letterpress blocks. I''m not sure if they originally belonged to a printer or a dealer - I got them at an antique mall.'
-    num_views: '155'
+    num_views: '152'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -6082,7 +6082,7 @@ Collectible:
     name: 'Sinclair Dinoland Ankylosaurus'
     slug: sinclair-dinoland-ankylosaurus
     description: 'This is the Ankylosaurus from the 64-65 World''s Fair. I believe this slide is taken from the cross-country tour that followed the fair.'
-    num_views: '346'
+    num_views: '343'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -6126,7 +6126,7 @@ Collectible:
     name: 'Sinclair Dinoland Corythosaurus and Ornitholestes'
     slug: sinclair-dinoland-corythosaurus-and-ornitholestes
     description: 'This slide shows the Corythosaurus and Ornitholestes from Sinclair Dinoland at the 64-65 World''s Fair.'
-    num_views: '236'
+    num_views: '233'
     num_comments: '2'
     score: '0'
     is_name_automatic: '0'
@@ -6148,7 +6148,7 @@ Collectible:
     name: 'Sinclair Dinoland Tyrannosaurus'
     slug: sinclair-dinoland-tyrannosaurus-621eb3
     description: 'This is a slide of the Sinclair Dinoland Tyrannosaurus. Today you can see him in Glen Rose, Texas.'
-    num_views: '334'
+    num_views: '331'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -6159,7 +6159,7 @@ Collectible:
     name: 'Sinclair Dinoland Stegosaurus'
     slug: sinclair-dinoland-stegosaurus
     description: 'This slide shows the Stegosaurus from the Sinclair Dinoland exhibit at the 64-65 NY World''s Fair.'
-    num_views: '229'
+    num_views: '226'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -6170,7 +6170,7 @@ Collectible:
     name: 'Sinclair Dinosaur Stamp Album'
     slug: sinclair-dinosaur-stamp-album
     description: 'This stamp album is from 1935'
-    num_views: '435'
+    num_views: '432'
     num_comments: '5'
     score: '0'
     is_name_automatic: '0'
@@ -6214,7 +6214,7 @@ Collectible:
     name: 'TTV : Bee in a Jar'
     slug: ttv-bee-in-a-jar
     description: 'Insects are also a dominant item in my artwork and photography - I especially like how the TTV starts to warp the shape of the bottle around the edges.'
-    num_views: '11'
+    num_views: '8'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -6446,7 +6446,7 @@ Collectible:
     name: 'SRG small Stegosaurus'
     slug: srg-small-stegosaurus
     description: 'This is the small SRG Stegosaurus'
-    num_views: '103'
+    num_views: '100'
     num_comments: '1'
     score: '0'
     is_name_automatic: '0'
@@ -6457,7 +6457,7 @@ Collectible:
     name: 'SRG small Tyrannosaurus'
     slug: srg-small-tyrannosaurus
     description: 'This is the small SRG Tyrannosaurus'
-    num_views: '82'
+    num_views: '79'
     num_comments: '1'
     score: '0'
     is_name_automatic: '0'
@@ -6490,7 +6490,7 @@ Collectible:
     name: 'SRG small Dimetrodon'
     slug: srg-small-dimetrodon
     description: 'This is the small SRG Dimetrodon.'
-    num_views: '81'
+    num_views: '78'
     num_comments: '1'
     score: '0'
     is_name_automatic: '0'
@@ -6512,7 +6512,7 @@ Collectible:
     name: 'Linemar Elegant Miniatures Dinosaurs'
     slug: linemar-elegant-miniatures-dinosaurs
     description: 'These miniature dinosaur figures were made by Linemar in Japan in the 1960s. The series was called Elegant Miniatures and included many animals, not just dinosaurs. I''m pretty sure this is all but one of the prehistoric figures. The prehistoric figures are based on Marx plastic toys and I have read that Linemar was somehow related to the Marx toy company.'
-    num_views: '180'
+    num_views: '177'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -6589,7 +6589,7 @@ Collectible:
     name: 'Captain America'
     slug: captain-america
     description: 'Comes with removable mask and shield.'
-    num_views: '70'
+    num_views: '67'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -6600,7 +6600,7 @@ Collectible:
     name: 'Kang vs. Captain America packaged'
     slug: kang-vs-captain-america-packaged
     description: '=='
-    num_views: '88'
+    num_views: '82'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -6811,7 +6811,7 @@ Collectible:
     name: 'Wonder Man'
     slug: wonder-man
     description: 'Wave 16.'
-    num_views: '56'
+    num_views: '53'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -6822,7 +6822,7 @@ Collectible:
     name: 'Silver Sable'
     slug: silver-sable
     description: 'With gun accessory.'
-    num_views: '38'
+    num_views: '35'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -6866,7 +6866,7 @@ Collectible:
     name: Nightcrawler
     slug: nightcrawler-89fd83
     description: 'Semi-rare, from the Giant Sized X-Men box set.'
-    num_views: '187'
+    num_views: '184'
     num_comments: '1'
     score: '0'
     is_name_automatic: '0'
@@ -7001,7 +7001,7 @@ Collectible:
     name: She-Hulk
     slug: she-hulk-981e4b
     description: '... I have a secret crush on She-Hulk. Minimate!'
-    num_views: '44'
+    num_views: '41'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -7100,7 +7100,7 @@ Collectible:
     name: Kingpin
     slug: kingpin
     description: 'Using a shell of obesity, Kingpin is an interesting figure.'
-    num_views: '41'
+    num_views: '38'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -7133,7 +7133,7 @@ Collectible:
     name: Storm
     slug: storm-906c91
     description: 'From Giant Sized X-Men box set & Ultimate Storm.'
-    num_views: '48'
+    num_views: '45'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -7233,7 +7233,7 @@ Collectible:
     name: 'Og Son of Fire Radio Premiums'
     slug: og-son-of-fire-radio-premiums
     description: 'Og and Ru lead premiums from the 1930s radio show Og Son of Fire.'
-    num_views: '76'
+    num_views: '73'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -7310,7 +7310,7 @@ Collectible:
     name: 'Namor, the Sub-Mariner'
     slug: namor-the-sub-mariner
     description: 'Namor doesn''t get too many figures made of him.'
-    num_views: '77'
+    num_views: '74'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -7321,7 +7321,7 @@ Collectible:
     name: 'Super Skrull'
     slug: super-skrull-b15bc5
     description: 'Again, I love the Super Skrull! The more, the better.'
-    num_views: '71'
+    num_views: '68'
     num_comments: '1'
     score: '0'
     is_name_automatic: '0'
@@ -7343,7 +7343,7 @@ Collectible:
     name: 'Invisible Woman'
     slug: invisible-woman
     description: 'Note the neat, clear feet!'
-    num_views: '56'
+    num_views: '53'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -7354,7 +7354,7 @@ Collectible:
     name: 'Ghost Rider'
     slug: ghost-rider-2e819a
     description: 'Nothing says ''adorable'' like a flaming skull face.'
-    num_views: '59'
+    num_views: '56'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -7388,7 +7388,7 @@ Collectible:
     name: Magneto
     slug: magneto-d443df
     description: 'Because genocide is an all-ages affair.'
-    num_views: '57'
+    num_views: '54'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -7399,7 +7399,7 @@ Collectible:
     name: 'Silver Surfer'
     slug: silver-surfer-87f49b
     description: '=='
-    num_views: '55'
+    num_views: '52'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -7454,7 +7454,7 @@ Collectible:
     name: Beast
     slug: beast-3e7272
     description: 'Thankfully, a classic beast and not a newfangled one.'
-    num_views: '59'
+    num_views: '56'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -8182,7 +8182,7 @@ Collectible:
     name: 'Case of JPIII CamoXtreme toys'
     slug: case-of-jpiii-camoxtreme-toys
     description: 'This is a case of Jurassic Park III CamoXtreme toys that I have not unpacked. They were the last series of JPIII toys released. Only the sides of the individual cards are showing, but you can tell from the packaging that there is 1 Night Velociraptor, 2 Jungle Spinosaurus, and 3 Arctic Tyrannosaurus. This is how all the cases were packed, making the Night raptor the rarest, the spino 2nd rarest, and the t-rex the most common.'
-    num_views: '928'
+    num_views: '925'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -8215,7 +8215,7 @@ Collectible:
     name: 'The Land Before Time: The Big Freeze display'
     slug: the-land-before-time-the-big-freeze-display
     description: 'This is from one of the gazillion sequels to The Land Before Time.'
-    num_views: '85'
+    num_views: '82'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -8292,7 +8292,7 @@ Collectible:
     name: 'Jurassic Park Jr Double Trouble Dinos'
     slug: jurassic-park-jr-double-trouble-dinos
     description: 'Double Trouble Dinos: a Dilophosaurus and an Ankylosaurus'
-    num_views: '1042'
+    num_views: '1039'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -8314,7 +8314,7 @@ Collectible:
     name: 'SRG large Triceratops'
     slug: srg-large-triceratops
     description: 'Has a broken horn :('
-    num_views: '90'
+    num_views: '87'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -8336,7 +8336,7 @@ Collectible:
     name: 'SRG small Trachodon'
     slug: srg-small-trachodon
     description: 'This is the small SRG Trachodon'
-    num_views: '113'
+    num_views: '107'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -8391,7 +8391,7 @@ Collectible:
     name: Thanos
     slug: thanos
     description: 'A huge, super-sized figure of Thanos, wearing the Infinity Gauntlet!'
-    num_views: '325'
+    num_views: '322'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -8402,7 +8402,7 @@ Collectible:
     name: 'Hot Wheels Service Station'
     slug: hot-wheels-service-station
     description: 'This playset folds up'
-    num_views: '3008'
+    num_views: '3005'
     num_comments: '2'
     score: '0'
     is_name_automatic: '0'
@@ -8413,7 +8413,7 @@ Collectible:
     name: 'Auburn Toys'
     slug: auburn-toys
     description: 'This race car and fire truck are made by Auburn'
-    num_views: '241'
+    num_views: '238'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -8457,7 +8457,7 @@ Collectible:
     name: 'Survive Jurassic Park Live Contest entry'
     slug: survive-jurassic-park-live-contest-entry
     description: 'This is a shelf display from KMart. It is for a Jurassic Park III contest and had a pad of entry forms. All the entry forms were gone and an employee was taking it off the shelf to throw it away so I asked if I could have it.'
-    num_views: '98'
+    num_views: '95'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -8788,7 +8788,7 @@ Collectible:
     name: 'Dinosaur Mural Post Card'
     slug: dinosaur-mural-post-card
     description: 'This post card is of a mural at the Sam Noble Museum in Norman, Oklahoma.'
-    num_views: '31'
+    num_views: '28'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -8876,7 +8876,7 @@ Collectible:
     name: 'SRG Large Dimetrodon'
     slug: srg-large-dimetrodon
     description: 'This is the large Dimetrodon from SRG'
-    num_views: '71'
+    num_views: '68'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -9404,7 +9404,7 @@ Collectible:
     name: 'Dinosaur in a Haystack'
     slug: dinosaur-in-a-haystack
     description: 'Collection of writings by Stephen Jay Gould'
-    num_views: '76'
+    num_views: '73'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -9503,7 +9503,7 @@ Collectible:
     name: 'Lost World Lip Balm'
     slug: lost-world-lip-balm
     description: 'Lost World lip balm!'
-    num_views: '50'
+    num_views: '47'
     num_comments: '1'
     score: '0'
     is_name_automatic: '0'
@@ -9713,7 +9713,7 @@ Collectible:
     name: Hawkeye
     slug: hawkeye-5d4392
     description: 'Marvel Classic Figurine Collection from Eaglemoss'
-    num_views: '185'
+    num_views: '182'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -9724,7 +9724,7 @@ Collectible:
     name: Punisher
     slug: punisher-508391
     description: '=='
-    num_views: '125'
+    num_views: '122'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -9735,7 +9735,7 @@ Collectible:
     name: 'White Queen'
     slug: white-queen
     description: '... aka Emma Frost'
-    num_views: '144'
+    num_views: '138'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -9856,7 +9856,7 @@ Collectible:
     name: 'Ornitholestes illustration'
     slug: ornitholestes-illustration
     description: 'Ornitholestes from the Scholastic set.'
-    num_views: '27'
+    num_views: '24'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -9911,7 +9911,7 @@ Collectible:
     name: 'Marvel Girl'
     slug: marvel-girl
     description: 'with two flamey-hand accessories.'
-    num_views: '41'
+    num_views: '38'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -9966,7 +9966,7 @@ Collectible:
     name: Cyclops
     slug: cyclops-9eecc4
     description: '... in his ''Astonishing'' outfit, I believe.'
-    num_views: '57'
+    num_views: '54'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -9977,7 +9977,7 @@ Collectible:
     name: 'Brood Queen'
     slug: brood-queen
     description: 'Collect all 8 figures from this set and assemble the large Brood Queen figure!'
-    num_views: '64'
+    num_views: '61'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -10021,7 +10021,7 @@ Collectible:
     name: 'Namor the Sub-Mariner'
     slug: namor-the-sub-mariner-63d073
     description: '... with Atlantean staff. And wingy feet.'
-    num_views: '38'
+    num_views: '35'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -10341,7 +10341,7 @@ Collectible:
     name: Storm
     slug: storm-dd9fb2
     description: '=='
-    num_views: '67'
+    num_views: '64'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -10352,7 +10352,7 @@ Collectible:
     name: 'Iceman, Transforming'
     slug: iceman-transforming
     description: '=='
-    num_views: '60'
+    num_views: '57'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -10385,7 +10385,7 @@ Collectible:
     name: 'Black Panther'
     slug: black-panther-bdd716
     description: '=='
-    num_views: '85'
+    num_views: '82'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -10407,7 +10407,7 @@ Collectible:
     name: 'Dr. Strange'
     slug: dr-strange
     description: '=='
-    num_views: '52'
+    num_views: '49'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -10418,7 +10418,7 @@ Collectible:
     name: 'Modern X-Men'
     slug: modern-x-men
     description: 'Including (L to R, back row) : Archangel, Gambit, Iceman, (middle row) Cyclops, Colossus, (front row) Jean grey, Professor X, Beast. First Appearance versions of some of these characters also appear in this set.'
-    num_views: '386'
+    num_views: '383'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -10462,7 +10462,7 @@ Collectible:
     name: 'Silver Savage'
     slug: silver-savage
     description: 'A warrior incarnation of the Silver Surfer'
-    num_views: '226'
+    num_views: '223'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -10473,7 +10473,7 @@ Collectible:
     name: 'Unus the Unstoppable'
     slug: unus-the-unstoppable
     description: 'Archenermy of the Inhumans!'
-    num_views: '122'
+    num_views: '119'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -10495,7 +10495,7 @@ Collectible:
     name: 'The Wrecker'
     slug: the-wrecker
     description: '=='
-    num_views: '97'
+    num_views: '94'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -10572,7 +10572,7 @@ Collectible:
     name: 'The Leader'
     slug: the-leader-a33bd9
     description: 'Archenemy of The Hulk'
-    num_views: '88'
+    num_views: '85'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -10606,7 +10606,7 @@ Collectible:
     name: Maverick
     slug: maverick
     description: --
-    num_views: '60'
+    num_views: '57'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -10617,7 +10617,7 @@ Collectible:
     name: 'Strong Guy'
     slug: strong-guy
     description: '=='
-    num_views: '114'
+    num_views: '111'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -10628,7 +10628,7 @@ Collectible:
     name: BOX
     slug: box
     description: '=='
-    num_views: '80'
+    num_views: '77'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -10705,7 +10705,7 @@ Collectible:
     name: 'Living Monolith'
     slug: living-monolith
     description: Super-Rare
-    num_views: '63'
+    num_views: '60'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -10760,7 +10760,7 @@ Collectible:
     name: Brood
     slug: brood
     description: 'A small sward of Brood.'
-    num_views: '72'
+    num_views: '69'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -10782,7 +10782,7 @@ Collectible:
     name: 'Devil Dinosaur and Moon Boy'
     slug: devil-dinosaur-and-moon-boy
     description: 'Classic Jack Kirby characters!'
-    num_views: '165'
+    num_views: '162'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -10862,7 +10862,7 @@ Collectible:
     name: Danger
     slug: danger-1013d8
     description: '=='
-    num_views: '56'
+    num_views: '53'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -10873,7 +10873,7 @@ Collectible:
     name: Zzzax
     slug: zzzax
     description: '=='
-    num_views: '73'
+    num_views: '70'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -10929,7 +10929,7 @@ Collectible:
     name: 'Captain Britain'
     slug: captain-britain
     description: '=='
-    num_views: '25'
+    num_views: '22'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -10995,7 +10995,7 @@ Collectible:
     name: 'Iron Widow'
     slug: iron-widow
     description: 'Black Widow in Iron Man designed armor.'
-    num_views: '128'
+    num_views: '125'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -11061,7 +11061,7 @@ Collectible:
     name: Patriot
     slug: patriot
     description: 'Another complicated member of the Young Avengers.'
-    num_views: '35'
+    num_views: '32'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -11105,7 +11105,7 @@ Collectible:
     name: Abomination
     slug: abomination
     description: '=='
-    num_views: '78'
+    num_views: '75'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -11127,7 +11127,7 @@ Collectible:
     name: Starfox
     slug: starfox
     description: '=='
-    num_views: '31'
+    num_views: '28'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -11138,7 +11138,7 @@ Collectible:
     name: Stature
     slug: stature
     description: '=='
-    num_views: '32'
+    num_views: '29'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -11160,7 +11160,7 @@ Collectible:
     name: 'Molecule Man'
     slug: molecule-man
     description: '=='
-    num_views: '27'
+    num_views: '24'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -11171,7 +11171,7 @@ Collectible:
     name: 'Dragon Man'
     slug: dragon-man
     description: 'Mutant creation of Dr. Doom'
-    num_views: '42'
+    num_views: '39'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -11193,7 +11193,7 @@ Collectible:
     name: 'Moon Knight'
     slug: moon-knight
     description: '=='
-    num_views: '39'
+    num_views: '36'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -11260,7 +11260,7 @@ Collectible:
     name: Ronin
     slug: ronin
     description: '=='
-    num_views: '30'
+    num_views: '27'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -11315,7 +11315,7 @@ Collectible:
     name: 'Luke Cage'
     slug: luke-cage
     description: 'Power Man! Ultimate version.'
-    num_views: '29'
+    num_views: '26'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -11337,7 +11337,7 @@ Collectible:
     name: Spitfire
     slug: spitfire
     description: '=='
-    num_views: '27'
+    num_views: '24'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -11370,7 +11370,7 @@ Collectible:
     name: 'Captain Britain'
     slug: captain-britain-818089
     description: 'Ultimate version.'
-    num_views: '37'
+    num_views: '34'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -11392,7 +11392,7 @@ Collectible:
     name: 'Blazing Skull'
     slug: blazing-skull
     description: '=='
-    num_views: '33'
+    num_views: '30'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -11447,7 +11447,7 @@ Collectible:
     name: Quicksilver
     slug: quicksilver-83829c
     description: 'Classic version, super-rare.'
-    num_views: '38'
+    num_views: '35'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -11866,7 +11866,7 @@ Collectible:
     name: Devil
     slug: devil
     description: 'Comes with pitchfork.'
-    num_views: '373'
+    num_views: '370'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -11899,7 +11899,7 @@ Collectible:
     name: 'Sally (Version 2)'
     slug: sally-version-2
     description: 'The first release of Sally is exceptionally rare, so I settled for this second one, which is arguably better due to the inclusion of her sewing machine. Possibly one of the best accessories ever.'
-    num_views: '325'
+    num_views: '322'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -11943,7 +11943,7 @@ Collectible:
     name: 'Undersea Gal'
     slug: undersea-gal
     description: 'I adore all mer-things. The Undersea Gal comes with her pool and a table. her torso also detaches so she can rest comfortably inside her pool.'
-    num_views: '353'
+    num_views: '350'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -12020,7 +12020,7 @@ Collectible:
     name: 'The Witches'
     slug: the-witches
     description: 'The two witches featured in the film, both include broomsticks & real hair.'
-    num_views: '383'
+    num_views: '380'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -12119,7 +12119,7 @@ Collectible:
     name: Lizard
     slug: lizard
     description: '=='
-    num_views: '130'
+    num_views: '124'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -12130,7 +12130,7 @@ Collectible:
     name: 'Captain Britain'
     slug: captain-britain-f30383
     description: '=='
-    num_views: '111'
+    num_views: '108'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -12141,7 +12141,7 @@ Collectible:
     name: Polaris
     slug: polaris
     description: '=='
-    num_views: '136'
+    num_views: '130'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -12263,7 +12263,7 @@ Collectible:
     name: Nova
     slug: nova
     description: '=='
-    num_views: '140'
+    num_views: '137'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -12296,7 +12296,7 @@ Collectible:
     name: 'The Penguin : Wave 1'
     slug: the-penguin-wave-1
     description: 'Enemy of Batman, comes with an umbrella and a bomb attachment.'
-    num_views: '121'
+    num_views: '118'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -12505,7 +12505,7 @@ Collectible:
     name: 'The Seven Crystal Balls'
     slug: the-seven-crystal-balls
     description: 'Swedish edition of the French original "Les 7 Boules de cristal".'
-    num_views: '12'
+    num_views: '9'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -12535,7 +12535,7 @@ Collectible:
     collector_id: Collector_235
     name: '???'
     description: 'I''m sad to say I know very little about birds, and I haven''t had time to check what species the birds are. If you are a bird buff - feel free to drop me a line. I need all the help I can get!'
-    num_views: '3'
+    num_views: '0'
     num_comments: '1'
     score: '0'
     is_name_automatic: '0'
@@ -12654,7 +12654,7 @@ Collectible:
     name: 'Ratatouille : Emile'
     slug: ratatouille-emile
     description: '5" tall, speaks three phrases.'
-    num_views: '168'
+    num_views: '165'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -27398,7 +27398,7 @@ Collectible:
     name: 'Artemis : Wave 4'
     slug: artemis-wave-4
     description: 'Artemis is the Wonder Woman variant. Comes with bow.'
-    num_views: '95'
+    num_views: '92'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -27410,7 +27410,7 @@ Collectible:
     name: 'Wonder Woman : Wave 4'
     slug: wonder-woman-wave-4
     description: 'Comes with axe & shield, from DC Universe Classics.'
-    num_views: '192'
+    num_views: '189'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -27795,7 +27795,7 @@ Collectible:
     name: 'The Fifth Doctor : Classics Series 1'
     slug: the-fifth-doctor-classics-series-1
     description: 'Comes with Sonic Screwdriver'
-    num_views: '33'
+    num_views: '30'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -28015,7 +28015,7 @@ Collectible:
     name: '3 Dino Packs Dinosaurs'
     slug: 3-dino-packs-dinosaurs
     description: 'These are the contents of one of my Dino Packs: Spinosaurus, Dilophosaurus, and Baby T-rex.'
-    num_views: '290'
+    num_views: '287'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -28026,7 +28026,7 @@ Collectible:
     name: '3 More Dino Packs Dinosaurs'
     slug: 3-more-dino-packs-dinosaurs
     description: 'These are the contents of another Dino Pack: Stegosaurus, Velociraptor, and Ankylosaurus.'
-    num_views: '242'
+    num_views: '239'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -28037,7 +28037,7 @@ Collectible:
     name: 'Dino Packs Instructions'
     slug: dino-packs-instructions
     description: 'This is part of the instruction sheet from the Dino Packs. It shows all of the dinosaur figures that were available. According to the sheet there were 18 available to collect: Dilophosaur, Tyrannosaurus Rex, Baby Tyrannosaurus Rex, Velociraptor, Spinosaurus, Compsognathus, Dimetrodon, Triceratops, Baby Triceratops, Stegosaurus, Baby Stegosaurus, Chasmosaurus, Brachiosaur, Pachycephalosaurus, Parasaurolophus, Ankylasaurus [sic], Pteranodon, and Gallimimus'
-    num_views: '204'
+    num_views: '201'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -28081,7 +28081,7 @@ Collectible:
     name: 'Jurassic Park III Helicopter'
     slug: jurassic-park-iii-helicopter
     description: 'Jurassic Park III Helicopter with Net and Triceratops.'
-    num_views: '260'
+    num_views: '257'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -28092,7 +28092,7 @@ Collectible:
     name: 'Jurassic Park III Capture Transport'
     slug: jurassic-park-iii-capture-transport
     description: 'Jurassic Park III Capture Transport with Velociraptor.'
-    num_views: '268'
+    num_views: '265'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -28103,7 +28103,7 @@ Collectible:
     name: 'Jurassic Park III Pickup Truck'
     slug: jurassic-park-iii-pickup-truck
     description: 'Pickup Truck with Capture Rod and Pteranodon.'
-    num_views: '310'
+    num_views: '307'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -28147,7 +28147,7 @@ Collectible:
     name: 'Abin Sur : Toys R Us 2-Pack'
     slug: abin-sur-toys-r-us-2-pack
     description: 'Came with an extra Hal Jordan, exclusive to TRU.'
-    num_views: '186'
+    num_views: '180'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -28191,7 +28191,7 @@ Collectible:
     name: 'B''Wana Beast'
     slug: bwana-beast-4456bc
     description: '=='
-    num_views: '78'
+    num_views: '75'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -28257,7 +28257,7 @@ Collectible:
     name: 'Shadow Thief'
     slug: shadow-thief
     description: --
-    num_views: '58'
+    num_views: '55'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -28411,7 +28411,7 @@ Collectible:
     name: 'Christmas Snowglobe'
     slug: christmas-snowglobe-48695f
     description: 'White SG'
-    num_views: '3'
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -28609,7 +28609,7 @@ Collectible:
     name: '3 cime di Lavaredo'
     slug: 3-cime-di-lavaredo
     description: Mountains
-    num_views: '3'
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -28631,7 +28631,7 @@ Collectible:
     name: Holland
     slug: holland-50bdb5
     description: 'Carla''s Gift'
-    num_views: '3'
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -28840,7 +28840,7 @@ Collectible:
     name: 'Violet Fairy'
     slug: violet-fairy
     description: Fairy
-    num_views: '3'
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -28884,7 +28884,7 @@ Collectible:
     name: Tinkerbell
     slug: tinkerbell-b31ed0
     description: Crystal
-    num_views: '16'
+    num_views: '13'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -28961,7 +28961,7 @@ Collectible:
     name: Disney
     slug: disney-aaffe9
     description: 'Pluto, Mulan, Moogly'
-    num_views: '26'
+    num_views: '23'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -29038,7 +29038,7 @@ Collectible:
     name: 'Lilo, Pumba'
     slug: lilo-pumba
     description: disney
-    num_views: '44'
+    num_views: '41'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -29203,7 +29203,7 @@ Collectible:
     name: 'Batman : Boots'
     slug: batman-boots
     description: 'Batman''s leathery boots, complete with zippers for easy removal.'
-    num_views: '59'
+    num_views: '56'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -29225,7 +29225,7 @@ Collectible:
     name: 'Batman : Portrait'
     slug: batman-portrait
     description: 'The removable rubber cowl looks excellent in person, and conforms to the features of the head realistically.'
-    num_views: '29'
+    num_views: '26'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -29346,7 +29346,7 @@ Collectible:
     name: 'Unknown dinosaur figure'
     slug: unknown-dinosaur-figure
     description: 'This is a small silver dinosaur figure. Is it a cereal/Cracker Jack prize? I don''t know. Ok...after searching around I think this one was made by Best Plastic in the 1960s.'
-    num_views: '307'
+    num_views: '304'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -29368,7 +29368,7 @@ Collectible:
     name: 'Toysmith Tyrannosaurus'
     slug: toysmith-tyrannosaurus
     description: 'Fully articulated Tyrannosaurus toy. You can still find these toys for sale at certain stores.'
-    num_views: '672'
+    num_views: '669'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -29379,7 +29379,7 @@ Collectible:
     name: 'Metallo : Wave 5 Collect-and-Connect'
     slug: metallo-wave-5-collect-and-connect
     description: 'Constructed from 5 different Wal-Mart exclusive figures. Has removable chest panel with kryptonite inside.'
-    num_views: '88'
+    num_views: '85'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -29412,7 +29412,7 @@ Collectible:
     name: 'The Atom : Wave 5'
     slug: the-atom-wave-5
     description: '=='
-    num_views: '48'
+    num_views: '45'
     num_comments: '2'
     score: '0'
     is_name_automatic: '0'
@@ -29677,7 +29677,7 @@ Collectible:
     name: 'XII : Ipos'
     slug: xii-ipos
     description: 'http://en.wikipedia.org/wiki/Ipos'
-    num_views: '135'
+    num_views: '132'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -29875,7 +29875,7 @@ Collectible:
     name: 'TR/Fairbanks jugate with capitol pin'
     slug: tr-fairbanks-jugate-with-capitol-pin
     description: '<p>1 1/4 inch campaign button</p>'
-    num_views: '47'
+    num_views: '44'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -29974,7 +29974,7 @@ Collectible:
     name: 'TR late career pin'
     slug: tr-late-career-pin
     description: 'Theodore Roosevelt pinback'
-    num_views: '47'
+    num_views: '44'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -30150,7 +30150,7 @@ Collectible:
     name: 'whole collection'
     slug: whole-collection-3df8f3
     description: 'Thunderbeasts schleich bullyland dinoriders procon store display discovery channel V-Rex battat pv'
-    num_views: '139'
+    num_views: '136'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -30172,7 +30172,7 @@ Collectible:
     name: 'Large Toy Lineup 3'
     slug: large-toy-lineup-3
     description: 'large toy lineup 3'
-    num_views: '104'
+    num_views: '101'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -30227,7 +30227,7 @@ Collectible:
     name: 'Gorgonops with Prey '
     slug: gorgonops-with-prey
     description: 'gorgonops with prey 2'
-    num_views: '124'
+    num_views: '121'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -30315,7 +30315,7 @@ Collectible:
     name: 'Prehistoric Mammals 2'
     slug: prehistoric-mammals-2
     description: 'prehistoric mammals 2'
-    num_views: '386'
+    num_views: '380'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -30469,7 +30469,7 @@ Collectible:
     name: 'The Graveyard Gang'
     slug: the-graveyard-gang
     description: '( Left to right) DeeK, Jasper( on top), Alison Crux, and greGory who got cut off.'
-    num_views: '23'
+    num_views: '20'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -30711,7 +30711,7 @@ Collectible:
     name: 'Deep Sea Fish Right 2'
     slug: deep-sea-fish-right-2
     description: 'Angler fish v1 Dangle fish loosejaw loosjaw dragon fish viper fish'
-    num_views: '123'
+    num_views: '120'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -30722,7 +30722,7 @@ Collectible:
     name: 'H.S. Brumms Flat Metal Large Pcs'
     slug: hs-brumms-flat-metal-large-pcs
     description: 'Diplodocus and Baluchatherium'
-    num_views: '3'
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -30755,7 +30755,7 @@ Collectible:
     name: 'H.S.Brumms Flat Metal Mammals'
     slug: hsbrumms-flat-metal-mammals
     description: 'Brumms mammals'
-    num_views: '15'
+    num_views: '12'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -30788,7 +30788,7 @@ Collectible:
     name: 'Walking With Prehistoric Beasts 2'
     slug: walking-with-prehistoric-beasts-2
     description: 'walking with prehistoric beasts schleich bullyland saber tooths'
-    num_views: '190'
+    num_views: '187'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -30931,7 +30931,7 @@ Collectible:
     name: 'Black Animation'
     slug: black-animation-668da5
     description: 'The Museum of UnCut Funk Collection includes original production drawings and cels and limited edition cels from the 1970’s,1980’s and 1990’s. Please visit The Museum of UnCut Funk to see our Black Animation Collection and read our animation blogs.'
-    num_views: '27'
+    num_views: '24'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -31008,7 +31008,7 @@ Collectible:
     name: 'Blacks on Stamps '
     slug: blacks-on-stamps
     description: 'The Museum of UnCut Funk Collection includes The Black Heritage Series from the USPS and other stamps featuring Blacks on them. Please visit The Museum of UnCut Funk to read our stamp collecting blog.'
-    num_views: '3'
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -31690,7 +31690,7 @@ Collectible:
     name: '4446 : Baby Gators Captured!'
     slug: 4446-baby-gators-captured
     description: 'A very strange accessory : a clear cage for baby gators!'
-    num_views: '57'
+    num_views: '54'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -31844,7 +31844,7 @@ Collectible:
     name: 'Tyrant #1'
     slug: tyrant-1
     description: '1'
-    num_views: '101'
+    num_views: '98'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -31877,7 +31877,7 @@ Collectible:
     name: '4296 : The Wedding Crowd, Illuminated'
     slug: 4296-the-wedding-crowd-illuminated
     description: 'The stained glass windows allow for the passage of a great warm light - really great for neat photos! Of course, only the bride, groom and priest came with the set.'
-    num_views: '75'
+    num_views: '72'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -31921,7 +31921,7 @@ Collectible:
     name: '4296 : Superhero Secret Ceremony'
     slug: 4296-superhero-secret-ceremony
     description: 'The Playmobil Church is a pretty great scale for your 3 3/4" figures, also!'
-    num_views: '80'
+    num_views: '77'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -32262,7 +32262,7 @@ Collectible:
     name: '4298 : Bridal Couple &amp; More'
     slug: 4298-bridal-couple-amp-more
     description: 'The Bridal Couple comes together when added to other Wedding accessories.'
-    num_views: '59'
+    num_views: '56'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -32295,7 +32295,7 @@ Collectible:
     name: '4298 : Bridal Couple &amp; Wedding Cake Pieces'
     slug: 4298-bridal-couple-amp-wedding-cake-pieces
     description: 'A whole lot of little pieces to assemble the cake.'
-    num_views: '88'
+    num_views: '85'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -32306,7 +32306,7 @@ Collectible:
     name: '4298 : Bridal Couple &amp; Wedding Cake'
     slug: 4298-bridal-couple-amp-wedding-cake-65bae2
     description: Boxed.
-    num_views: '57'
+    num_views: '54'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -32581,7 +32581,7 @@ Collectible:
     name: 'Black Cowboys'
     slug: black-cowboys
     description: 'Golden Legacy Comic'
-    num_views: '62'
+    num_views: '59'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -32691,7 +32691,7 @@ Collectible:
     name: 'Frederick Douglass'
     slug: frederick-douglass-59e297
     description: 'Golden Legacy Comic'
-    num_views: '29'
+    num_views: '26'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -32713,7 +32713,7 @@ Collectible:
     name: 'Men of Action: White, Wilkins &amp; Marshall'
     slug: men-of-action-white-wilkins-amp-marshall
     description: 'Golden Legacy Comic'
-    num_views: '25'
+    num_views: '22'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -32878,7 +32878,7 @@ Collectible:
     name: 'Mr. Bean''s facial expressions'
     slug: mr-beans-facial-expressions
     description: 'The eye-articulation system allows for some amazing emotiveness.'
-    num_views: '225'
+    num_views: '222'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -32922,7 +32922,7 @@ Collectible:
     name: 'Mr. Bean dances'
     slug: mr-bean-dances-335b0d
     description: 'The clothing and joints allow for some very realistic scenes.'
-    num_views: '49'
+    num_views: '46'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -32933,7 +32933,7 @@ Collectible:
     name: 'Mr. Bean comparison'
     slug: mr-bean-comparison
     description: 'A comparison shot between Mr. Bean & Sideshow Toys'' Agent Scully.'
-    num_views: '66'
+    num_views: '63'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -32955,7 +32955,7 @@ Collectible:
     name: 'Mr. Bean poses'
     slug: mr-bean-poses
     description: '=='
-    num_views: '54'
+    num_views: '51'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -32966,7 +32966,7 @@ Collectible:
     name: 'Mr. Bean poses'
     slug: mr-bean-poses-5064eb
     description: '=='
-    num_views: '53'
+    num_views: '50'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -32988,7 +32988,7 @@ Collectible:
     name: 'Mr. Bean''s expressions'
     slug: mr-beans-expressions
     description: '=='
-    num_views: '66'
+    num_views: '63'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -33153,7 +33153,7 @@ Collectible:
     name: 'right side of mountain'
     slug: right-side-of-mountain
     description: 'right side of mountain'
-    num_views: '81'
+    num_views: '78'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -33164,7 +33164,7 @@ Collectible:
     name: 'Right side'
     slug: right-side
     description: reptiles
-    num_views: '84'
+    num_views: '81'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -33252,7 +33252,7 @@ Collectible:
     name: 'Mountain long view'
     slug: mountain-long-view
     description: 'long view of mountain'
-    num_views: '95'
+    num_views: '92'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -33352,7 +33352,7 @@ Collectible:
     name: 'apes and carnivores'
     slug: apes-and-carnivores
     description: 'schleich and papo:hyena is retired (schleich),chimps are from chleich,wooly monkey is safari toob,red fox-schleich,desert fox-K&M,arctic fox-K&M,pandas-papo,polar bear-schleich,orngutan and gorrila are both schleich retired,golden tamarin(front)-safari toob,seal pup s K&M'
-    num_views: '275'
+    num_views: '272'
     num_comments: '2'
     score: '0'
     is_name_automatic: '0'
@@ -33442,7 +33442,7 @@ Collectible:
     name: 'reptiles and birds'
     slug: reptiles-and-birds
     description: 'golden canary-bullyland,crocodile-schleich(retred),red macaw-schleich(retired),swimming penguin-K&M,toucan-schleich(retired),hauk-schleich(retired),crested pidgeon(blue one)-china,hornbill(left of canary)-china,barn owlfront)-procon,great owl(back)-schleich retired,california condor-K&M,seagull-bullyland(retired),vulture-papo,small turtle-schleich,blue foted booby-safari ltd toob'
-    num_views: '328'
+    num_views: '325'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -33475,7 +33475,7 @@ Collectible:
     name: 'Hold on!We are only 2 little girls!!!!'
     slug: hold-onwe-are-only-2-little-girls
     description: 'donkeys and dogs swan'
-    num_views: '49'
+    num_views: '46'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -33629,7 +33629,7 @@ Collectible:
     name: 'Raptor 1'
     slug: raptor-1
     description: 'Jurassic Park: Raptor no. 1 of 2'
-    num_views: '82'
+    num_views: '79'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -33662,7 +33662,7 @@ Collectible:
     name: 'Raptors Attack 4'
     slug: raptors-attack-4
     description: 'Jurassic Park: Raptors Attack no. 4 of 4'
-    num_views: '68'
+    num_views: '65'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -33717,7 +33717,7 @@ Collectible:
     name: 'Jurassic Park 3'
     slug: jurassic-park-3
     description: 'Jurassic Park 3 of 4'
-    num_views: '117'
+    num_views: '114'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -33772,7 +33772,7 @@ Collectible:
     name: 'Return to Jurassic Park 3'
     slug: return-to-jurassic-park-3
     description: 'Return to Jurassic Park 3'
-    num_views: '74'
+    num_views: '71'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -34025,7 +34025,7 @@ Collectible:
     name: 'Superman vs Muhammad Ali'
     slug: superman-vs-muhammad-ali
     description: 'The Museum of UnCut Funk is working through profound sadness over the passing of Michael Jackson. We honor him in this blog with a quick look at his career as a comic book character from the collection of the Curator. Please visit The Museum of UnCut Funk to read more on our Comic Tribute to Michael Jackson. www.koolcatshipchicksblog.com.'
-    num_views: '72'
+    num_views: '69'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -34036,7 +34036,7 @@ Collectible:
     name: 'Rock and Roll Ciomics'
     slug: rock-and-roll-ciomics
     description: 'The Museum of UnCut Funk is working through profound sadness over the passing of Michael Jackson. We honor him in this blog with a quick look at his career as a comic book character from the collection of the Curator. Please visit The Museum of UnCut Funk to read more on our Comic Tribute to Michael Jackson. www.koolcatshipchicksblog.com.'
-    num_views: '67'
+    num_views: '64'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -34058,7 +34058,7 @@ Collectible:
     name: 'Longshot Comics'
     slug: longshot-comics
     description: 'The Museum of UnCut Funk is working through profound sadness over the passing of Michael Jackson. We honor him in this blog with a quick look at his career as a comic book character from the collection of the Curator. Please visit The Museum of UnCut Funk to read more on our Comic Tribute to Michael Jackson. www.koolcatshipchicksblog.com.'
-    num_views: '65'
+    num_views: '62'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -34069,7 +34069,7 @@ Collectible:
     name: 'Papo Spinosaurus Prototype'
     slug: papo-spinosaurus-prototype
     description: "papo spinosaurs prototype\n\nallo and spino pair $200"
-    num_views: '175'
+    num_views: '172'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -34080,7 +34080,7 @@ Collectible:
     name: 'Papo Spinosaurus Proto'
     slug: papo-spinosaurus-proto
     description: 'papo spinosaurus proto'
-    num_views: '124'
+    num_views: '121'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -34091,7 +34091,7 @@ Collectible:
     name: 'Subway Land of the Lost Cup'
     slug: subway-land-of-the-lost-cup
     description: 'This is a cup from Subway from The Land of the Lost.'
-    num_views: '124'
+    num_views: '121'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -34113,7 +34113,7 @@ Collectible:
     name: 'Wild Safari Dinosaurs'
     slug: wild-safari-dinosaurs-174a1f
     description: 'Tyrannosaurus and Ceratosaurus'
-    num_views: '91'
+    num_views: '88'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -34124,7 +34124,7 @@ Collectible:
     name: 'Pterosaur lamp'
     slug: pterosaur-lamp
     description: 'I''ve actually been looking for one of these for a while'
-    num_views: '53'
+    num_views: '50'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -34245,7 +34245,7 @@ Collectible:
     name: 'Large Tyrannosaurus'
     slug: large-tyrannosaurus
     description: 'Large articulated toy'
-    num_views: '78'
+    num_views: '75'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -34300,7 +34300,7 @@ Collectible:
     name: 'Dino Magic'
     slug: dino-magic
     description: 'Skeleton figures from the Dino Magic set'
-    num_views: '188'
+    num_views: '185'
     num_comments: '1'
     score: '0'
     is_name_automatic: '0'
@@ -34311,7 +34311,7 @@ Collectible:
     name: 'McDonalds toy'
     slug: mcdonalds-toy-0d1317
     description: 'From Night at the Museum'
-    num_views: '126'
+    num_views: '123'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -34388,7 +34388,7 @@ Collectible:
     name: 'Chap Mei Tyrannosaurus'
     slug: chap-mei-tyrannosaurus
     description: 'Couldn''t find any others'
-    num_views: '120'
+    num_views: '114'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -34476,7 +34476,7 @@ Collectible:
     name: 'Barry Anderson'
     slug: barry-anderson
     description: 'For SDCC 2009 & Mezco''s Mez-Itz art show.'
-    num_views: '3'
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -34553,7 +34553,7 @@ Collectible:
     name: 'Guy Davis'
     slug: guy-davis
     description: 'For SDCC 2009 & Mezco''s Mez-Itz art show.'
-    num_views: '3'
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -34641,7 +34641,7 @@ Collectible:
     name: 'A Comic Tribute to Michael Jackson'
     slug: a-comic-tribute-to-michael-jackson
     description: 'The Museum of UnCut Funk is working through profound sadness over the passing of Michael Jackson. We honor him in this blog with a quick look at his career as a comic book character from the collection of the Curator. Please visit The Museum of UnCut Funk to read more on our Comic Tribute to Michael Jackson. www.koolcatshipchicksblog.com.'
-    num_views: '54'
+    num_views: '51'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -34663,7 +34663,7 @@ Collectible:
     name: 'A Comic Tribute to Michael Jackson'
     slug: a-comic-tribute-to-michael-jackson-2072ba
     description: 'The Museum of UnCut Funk is working through profound sadness over the passing of Michael Jackson. We honor him in this blog with a quick look at his career as a comic book character from the collection of the Curator. Please visit The Museum of UnCut Funk to read more on our Comic Tribute to Michael Jackson. www.koolcatshipchicksblog.com.'
-    num_views: '40'
+    num_views: '37'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -34707,7 +34707,7 @@ Collectible:
     name: 'Jackson Five Animation'
     slug: jackson-five-animation-8cf907
     description: 'The Museum of UnCut Funk Collection includes original production drawings and cels and limited edition cels from the 1970’s,1980’s and 1990’s. The Curator''s collection included original production cels from the The Jackson Five cartoon series. To see more of the collection please visit The Museum of UnCut Funk. www.museumofuncutfunk.com.'
-    num_views: '342'
+    num_views: '339'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -34817,7 +34817,7 @@ Collectible:
     name: 'Mulder &amp; Scully'' Barbie Edition '
     slug: mulder-amp-scully-barbie-edition
     description: 'For the X Files movie Fight the Future from Mattel.'
-    num_views: '79'
+    num_views: '76'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -34839,7 +34839,7 @@ Collectible:
     name: 'A Comic Tribute to Michael Jackson'
     slug: a-comic-tribute-to-michael-jackson-3d86f8
     description: 'The Museum of UnCut Funk is working through profound sadness over the passing of Michael Jackson. We honor him in this blog with a quick look at his career as a comic book character from the collection of the Curator. Please visit The Museum of UnCut Funk to read more on our Comic Tribute to Michael Jackson. www.koolcatshipchicksblog.com.'
-    num_views: '37'
+    num_views: '34'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -34883,7 +34883,7 @@ Collectible:
     name: 'small dinosaur and prehistoric animal figures 2'
     slug: small-dinosaur-and-prehistoric-animal-figures-2
     description: 'pic 2'
-    num_views: '51'
+    num_views: '48'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -34916,7 +34916,7 @@ Collectible:
     name: 'Small dinosaur and prehistoric animal figures 5'
     slug: small-dinosaur-and-prehistoric-animal-figures-5
     description: 'pic 5'
-    num_views: '214'
+    num_views: '208'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -34938,7 +34938,7 @@ Collectible:
     name: 'Small dinosaur and prehistoric animal figures 7'
     slug: small-dinosaur-and-prehistoric-animal-figures-7
     description: 'pic 7'
-    num_views: '72'
+    num_views: '69'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -34960,7 +34960,7 @@ Collectible:
     name: 'Small dinosaur and prehistoric animal figures 9'
     slug: small-dinosaur-and-prehistoric-animal-figures-9
     description: 'pic 9'
-    num_views: '68'
+    num_views: '65'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -34971,7 +34971,7 @@ Collectible:
     name: 'Small dinosaur and prehistoric animal figures 10'
     slug: small-dinosaur-and-prehistoric-animal-figures-10
     description: 'pic 10'
-    num_views: '67'
+    num_views: '64'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -34982,7 +34982,7 @@ Collectible:
     name: 'Small dinosaur and prehistoric animal figures 11'
     slug: small-dinosaur-and-prehistoric-animal-figures-11
     description: 'pic 11'
-    num_views: '112'
+    num_views: '109'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -35125,7 +35125,7 @@ Collectible:
     name: 'Robot Devil'
     slug: robot-devil
     description: 'With solid gold fiddle. 1/96 ratio, the rarest piece.'
-    num_views: '1022'
+    num_views: '1019'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -35158,7 +35158,7 @@ Collectible:
     name: 'Futurama Minis case : Open'
     slug: futurama-minis-case-open
     description: '=='
-    num_views: '140'
+    num_views: '137'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -35444,7 +35444,7 @@ Collectible:
     name: 'Play Visions binturong'
     slug: play-visions-binturong
     description: 'Excellent replica made by Play Visions in 1996.Nice details even at this small size.Unique figurine representing this animal.'
-    num_views: '130'
+    num_views: '127'
     num_comments: '1'
     score: '0'
     is_name_automatic: '0'
@@ -35466,7 +35466,7 @@ Collectible:
     name: 'Schleich raccoon'
     slug: schleich-raccoon
     description: 'Introduced in 2009.'
-    num_views: '82'
+    num_views: '79'
     num_comments: '1'
     score: '0'
     is_name_automatic: '0'
@@ -35532,7 +35532,7 @@ Collectible:
     name: 'AAA raccoon baby'
     slug: aaa-raccoon-baby
     description: 'The mother is BIG.'
-    num_views: '54'
+    num_views: '51'
     num_comments: '1'
     score: '0'
     is_name_automatic: '0'
@@ -35917,7 +35917,7 @@ Collectible:
     name: 'Schleich peregrin falkon'
     slug: schleich-peregrin-falkon
     description: 'Retired(1999-2003).One of my first figurines.'
-    num_views: '88'
+    num_views: '82'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -35928,7 +35928,7 @@ Collectible:
     name: 'Bullyland vulture'
     slug: bullyland-vulture
     description: 'Part of the Birds collection.Made in Germany.'
-    num_views: '74'
+    num_views: '71'
     num_comments: '1'
     score: '0'
     is_name_automatic: '0'
@@ -35939,7 +35939,7 @@ Collectible:
     name: 'Schleich bald eagle'
     slug: schleich-bald-eagle
     description: 'Not as good as the retired model.'
-    num_views: '43'
+    num_views: '40'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -36093,7 +36093,7 @@ Collectible:
     name: '4340 : Pyramid (Boxed)'
     slug: 4340-pyramid-boxed
     description: 'Gigantic playset with openable sides, a pharaoh, treasures, guards, and many secret passages and trap doors. Very awesome.'
-    num_views: '122'
+    num_views: '119'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -36192,7 +36192,7 @@ Collectible:
     name: 'Egyptian sets combined'
     slug: egyptian-sets-combined
     description: ''
-    num_views: '78'
+    num_views: '75'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -36247,7 +36247,7 @@ Collectible:
     name: '4247 : Two Robbers'
     slug: 4247-two-robbers
     description: --
-    num_views: '71'
+    num_views: '68'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -36423,7 +36423,7 @@ Collectible:
     name: '4240 : Pyramid stones'
     slug: 4240-pyramid-stones
     description: 'Very interestingly, the Pyramid set comes with genuine polished stones as treasure!'
-    num_views: '178'
+    num_views: '175'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -36478,7 +36478,7 @@ Collectible:
     name: '4340 : Pyramid'
     slug: 4340-pyramid
     description: 'Unadorned, with one side open.'
-    num_views: '215'
+    num_views: '212'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -36489,7 +36489,7 @@ Collectible:
     name: '4245 : Warriors'
     slug: 4245-warriors-1c574f
     description: --
-    num_views: '48'
+    num_views: '45'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -36511,7 +36511,7 @@ Collectible:
     name: '4245 : Warriors pieces'
     slug: 4245-warriors-pieces
     description: --
-    num_views: '64'
+    num_views: '61'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -36555,7 +36555,7 @@ Collectible:
     name: '4340 : Pyramid, second level trap doors'
     slug: 4340-pyramid-second-level-trap-doors
     description: 'One panel slides open with an internal button and knocks out some wall panels, and one reveals scorpions and a drop into the inner tomb.'
-    num_views: '159'
+    num_views: '156'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -36775,7 +36775,7 @@ Collectible:
     name: '4340 : Pyramid with rotating door'
     slug: 4340-pyramid-with-rotating-door-3e96b2
     description: '=='
-    num_views: '150'
+    num_views: '147'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -36819,7 +36819,7 @@ Collectible:
     name: 'George Perez Batman'
     slug: george-perez-batman-30127d
     description: 'From the ''History of the DC Universe'' line'
-    num_views: '152'
+    num_views: '149'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -37138,7 +37138,7 @@ Collectible:
     name: 'Hal Jordan (Pilot)'
     slug: hal-jordan-pilot
     description: 'SDCC 2009 Exclusive.'
-    num_views: '44'
+    num_views: '41'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -37182,7 +37182,7 @@ Collectible:
     name: Tala
     slug: tala
     description: '=='
-    num_views: '45'
+    num_views: '42'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -37249,7 +37249,7 @@ Collectible:
     name: '4288 : Laundry Room'
     slug: 4288-laundry-room-81216d
     description: 'Some convenient shelves and an opening washer.'
-    num_views: '14'
+    num_views: '11'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -37260,7 +37260,7 @@ Collectible:
     name: '4285 : Family Bathroom'
     slug: 4285-family-bathroom-786c95
     description: 'Toilet, sink, many different accessories!'
-    num_views: '14'
+    num_views: '11'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -37304,7 +37304,7 @@ Collectible:
     name: '4284 : Master Bedroom'
     slug: 4284-master-bedroom-743439
     description: '=='
-    num_views: '12'
+    num_views: '9'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -37359,7 +37359,7 @@ Collectible:
     name: '4283 : Kitchen'
     slug: 4283-kitchen-84159e
     description: 'All of the myriad bits!'
-    num_views: '25'
+    num_views: '22'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -37524,7 +37524,7 @@ Collectible:
     name: '4284 : Master Bedroom'
     slug: 4284-master-bedroom-a0adbd
     description: 'The bits!'
-    num_views: '21'
+    num_views: '15'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -37601,7 +37601,7 @@ Collectible:
     name: '4283 : Kitchen'
     slug: 4283-kitchen-62d941
     description: '=='
-    num_views: '32'
+    num_views: '29'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -37667,7 +37667,7 @@ Collectible:
     name: '4283 : Kitchen'
     slug: 4283-kitchen-031984
     description: '=='
-    num_views: '24'
+    num_views: '21'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -37722,7 +37722,7 @@ Collectible:
     name: '4284 : Master Bedroom'
     slug: 4284-master-bedroom-191afd
     description: '=='
-    num_views: '14'
+    num_views: '11'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -38393,7 +38393,7 @@ Collectible:
     name: 'New Ray giant anteater'
     slug: new-ray-giant-anteater
     description: 'The pose is excellent.It ravages a termite mound.It also has it''s tongue out.The only thing I don''t like is the blue line across the back.Nice figurine,created in 1996 and part of the zoo sets.'
-    num_views: '79'
+    num_views: '76'
     num_comments: '1'
     score: '0'
     is_name_automatic: '0'
@@ -38470,7 +38470,7 @@ Collectible:
     name: 'New Ray Thomson''s gazelles'
     slug: new-ray-thomsons-gazelles
     description: 'One of them is missing the horns.They were both males.They apear to be running from a cheetah.(1996)'
-    num_views: '86'
+    num_views: '83'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -38580,7 +38580,7 @@ Collectible:
     name: 'Playset boy and girl'
     slug: playset-boy-and-girl
     description: 'Made in 195,these guys are some of my first toys.'
-    num_views: '3'
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -38635,7 +38635,7 @@ Collectible:
     name: 'Schleich wildebeest calf'
     slug: schleich-wildebeest-calf
     description: 'New for 2009.'
-    num_views: '88'
+    num_views: '85'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -38668,7 +38668,7 @@ Collectible:
     name: 'Bullyland Grants antelope'
     slug: bullyland-grants-antelope
     description: 'Retired.Made in Germany.'
-    num_views: '86'
+    num_views: '83'
     num_comments: '3'
     score: '0'
     is_name_automatic: '0'
@@ -38690,7 +38690,7 @@ Collectible:
     name: 'Bullyland blue wildebeest'
     slug: bullyland-blue-wildebeest
     description: 'Retired.Made in Germany.'
-    num_views: '82'
+    num_views: '76'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -38767,7 +38767,7 @@ Collectible:
     name: 'Schleich llama'
     slug: schleich-llama
     description: 'There is also the Horst version.'
-    num_views: '74'
+    num_views: '71'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -38899,7 +38899,7 @@ Collectible:
     name: 'Schleich European red deer stag'
     slug: schleich-european-red-deer-stag
     description: 'The colouring is boring.Very large for a deer.He was introduced in 2003.'
-    num_views: '48'
+    num_views: '45'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -38976,7 +38976,7 @@ Collectible:
     name: 'Schleich Virginia white-tailed deer doe'
     slug: schleich-virginia-white-tailed-deer-doe
     description: 'Introduced in 2003.'
-    num_views: '26'
+    num_views: '23'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -38998,7 +38998,7 @@ Collectible:
     name: 'Schleich giraffe drinking'
     slug: schleich-giraffe-drinking
     description: 'New for 2009.Have you seen that schleich changed the girrafes eyes after they introduced the two new ones.Again I think too many giraffes.Schleich needs better ideas.'
-    num_views: '66'
+    num_views: '63'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -39163,7 +39163,7 @@ Collectible:
     name: 'Papo lion'
     slug: papo-lion
     description: 'One of the best figurines ever produced.The mane is very realistic.It has the typycal cat paws and nice whiskers.'
-    num_views: '138'
+    num_views: '135'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -39262,7 +39262,7 @@ Collectible:
     name: 'Schleich leopard'
     slug: schleich-leopard
     description: Retired(2003-2007).
-    num_views: '102'
+    num_views: '99'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -39471,7 +39471,7 @@ Collectible:
     name: 'Apache Chief'
     slug: apache-chief
     description: --
-    num_views: '38'
+    num_views: '35'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -39570,7 +39570,7 @@ Collectible:
     name: 'Untitled Item'
     slug: untitled-item-9335ff
     description: ''
-    num_views: '33'
+    num_views: '30'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -39592,7 +39592,7 @@ Collectible:
     name: 'Teddy next to walking with Cavemen Prop'
     slug: teddy-next-to-walking-with-cavemen-prop
     description: "Size comparison of Teddy with Walking with Cavemen early production foam head prop\n\ncaveman pre production $300"
-    num_views: '85'
+    num_views: '79'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -39716,7 +39716,7 @@ Collectible:
     name: 'Man-Bat (The Batman, C3)'
     slug: man-bat-the-batman-c3
     description: ''
-    num_views: '100'
+    num_views: '97'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -39793,7 +39793,7 @@ Collectible:
     name: 'Robin (C3)'
     slug: robin-c3
     description: --
-    num_views: '69'
+    num_views: '66'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -39804,7 +39804,7 @@ Collectible:
     name: 'Batman (Batglider, C3)'
     slug: batman-batglider-c3
     description: 'Comes with Catwoman & half-interchangeable costume.'
-    num_views: '74'
+    num_views: '71'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -40048,7 +40048,7 @@ Collectible:
     name: 'Chemo : Wave 9 Collect-and-Connect'
     slug: chemo-wave-9-collect-and-connect
     description: '=='
-    num_views: '56'
+    num_views: '53'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -40092,7 +40092,7 @@ Collectible:
     name: 'Mantis (Robot) : Wave 9'
     slug: mantis-robot-wave-9
     description: --
-    num_views: '38'
+    num_views: '35'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -40224,7 +40224,7 @@ Collectible:
     name: 'Schleich killer whale(orca)'
     slug: schleich-killer-whaleorca
     description: Retired(2005-2008).
-    num_views: '151'
+    num_views: '148'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -40268,7 +40268,7 @@ Collectible:
     name: 'Schleich blue whale'
     slug: schleich-blue-whale
     description: Retired(2005-2008).
-    num_views: '598'
+    num_views: '595'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -40279,7 +40279,7 @@ Collectible:
     name: 'Play Visions beluga'
     slug: play-visions-beluga
     description: 'Introduced in 1994.Scale 1:25.'
-    num_views: '163'
+    num_views: '160'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -40378,7 +40378,7 @@ Collectible:
     name: 'Schleich blue marlin'
     slug: schleich-blue-marlin
     description: Retired(2005-2007).
-    num_views: '96'
+    num_views: '93'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -40389,7 +40389,7 @@ Collectible:
     name: 'Bullyland cowfish'
     slug: bullyland-cowfish
     description: 'Retired.Part of the tropical fish collection.Made in Germany.'
-    num_views: '22'
+    num_views: '19'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -40400,7 +40400,7 @@ Collectible:
     name: 'Bullyland moorish idol'
     slug: bullyland-moorish-idol
     description: 'Retired.Part of the tropical fish collection.Made in Germany.'
-    num_views: '20'
+    num_views: '17'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -40477,7 +40477,7 @@ Collectible:
     name: 'China stingray'
     slug: china-stingray
     description: 'Made in China.'
-    num_views: '100'
+    num_views: '97'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -40488,7 +40488,7 @@ Collectible:
     name: 'Schleich whale shark'
     slug: schleich-whale-shark-3d7271
     description: 'Scale 1:32.Introduced in 2006.Made in Portugal.'
-    num_views: '168'
+    num_views: '165'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -40499,7 +40499,7 @@ Collectible:
     name: 'Schleich spotted eagle ray'
     slug: schleich-spotted-eagle-ray
     description: Retired(2005-2008).
-    num_views: '103'
+    num_views: '100'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -40631,7 +40631,7 @@ Collectible:
     name: 'K&amp;M portueguese man-of-war'
     slug: kampm-portueguese-man-of-war
     description: 'Made by K&M international in China.'
-    num_views: '24'
+    num_views: '21'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -40830,7 +40830,7 @@ Collectible:
     name: 'Scarecrow (DCSH)'
     slug: scarecrow-dcsh
     description: --
-    num_views: '74'
+    num_views: '71'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -40841,7 +40841,7 @@ Collectible:
     name: 'Bane (DCSH)'
     slug: bane-dcsh
     description: --
-    num_views: '135'
+    num_views: '132'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -40952,7 +40952,7 @@ Collectible:
     name: 'Batman (Stealth, DCSH)'
     slug: batman-stealth-dcsh
     description: --
-    num_views: '87'
+    num_views: '84'
     num_comments: '1'
     score: '0'
     is_name_automatic: '0'
@@ -41392,7 +41392,7 @@ Collectible:
     name: 'Batman (movie colors) : Wave 10'
     slug: batman-movie-colors-wave-10
     description: 'Comes with bat-computer and batarang.'
-    num_views: '92'
+    num_views: '89'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -41426,7 +41426,7 @@ Collectible:
     name: 'The Joker : Wave 10'
     slug: the-joker-wave-10
     description: 'Comes with mallet, cane, cards and fish.'
-    num_views: '92'
+    num_views: '89'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -41437,7 +41437,7 @@ Collectible:
     name: 'Man-Bat : Wave 10'
     slug: man-bat-wave-10
     description: '=='
-    num_views: '68'
+    num_views: '62'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -41448,7 +41448,7 @@ Collectible:
     name: 'Robotman : Wave 10'
     slug: robotman-wave-10
     description: --
-    num_views: '84'
+    num_views: '81'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -41679,7 +41679,7 @@ Collectible:
     name: 'The Museum of UnCut Funk Collection'
     slug: the-museum-of-uncut-funk-collection-8fafb9
     description: 'Original production cel from Hey Good Lookin''.'
-    num_views: '3'
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -41965,7 +41965,7 @@ Collectible:
     name: 'Schleich brown hen'
     slug: schleich-brown-hen-0ef295
     description: 'New for 2009.'
-    num_views: '17'
+    num_views: '14'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -42031,7 +42031,7 @@ Collectible:
     name: 'Schleich Falabella pony'
     slug: schleich-falabella-pony
     description: 'Introduced in 2004.'
-    num_views: '51'
+    num_views: '48'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -42042,7 +42042,7 @@ Collectible:
     name: 'Schleich riding pony'
     slug: schleich-riding-pony
     description: Retired(2005-2008).
-    num_views: '57'
+    num_views: '54'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -42141,7 +42141,7 @@ Collectible:
     name: 'Schleich Shetland pony foal'
     slug: schleich-shetland-pony-foal
     description: 'Introduced in 2006.'
-    num_views: '47'
+    num_views: '44'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -42152,7 +42152,7 @@ Collectible:
     name: 'Schleich Appaloosa stallion'
     slug: schleich-appaloosa-stallion
     description: 'The newer colour variant.Retired(2003-2008).'
-    num_views: '191'
+    num_views: '188'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -42163,7 +42163,7 @@ Collectible:
     name: 'Schleich Shetland pony'
     slug: schleich-shetland-pony
     description: 'There are 2 colour variants.New for 2006.'
-    num_views: '81'
+    num_views: '78'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -42196,7 +42196,7 @@ Collectible:
     name: 'Azrael (DCSH)'
     slug: azrael-dcsh
     description: '=='
-    num_views: '81'
+    num_views: '78'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -42658,7 +42658,7 @@ Collectible:
     name: 'Bullyland Sydney funnel-web spider'
     slug: bullyland-sydney-funnel-web-spider
     description: 'Atrax is written on the figurine.New for 2009.Made in Germany.'
-    num_views: '147'
+    num_views: '144'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -42669,7 +42669,7 @@ Collectible:
     name: 'AAA barrel-eye fish(spookfish)'
     slug: aaa-barrel-eye-fishspookfish
     description: 'Lantern fish is written on the figurine.It glows in the dark.'
-    num_views: '68'
+    num_views: '65'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -42702,7 +42702,7 @@ Collectible:
     name: 'Safari nine-banded armadillo'
     slug: safari-nine-banded-armadillo
     description: 'Part of the desert toob.'
-    num_views: '91'
+    num_views: '88'
     num_comments: '1'
     score: '0'
     is_name_automatic: '0'
@@ -42735,7 +42735,7 @@ Collectible:
     name: 'Parasite (DCSH)'
     slug: parasite-dcsh
     description: --
-    num_views: '59'
+    num_views: '56'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -42900,7 +42900,7 @@ Collectible:
     name: 'Schleich Boer billy goat'
     slug: schleich-boer-billy-goat
     description: Retired(2002-2009).
-    num_views: '27'
+    num_views: '24'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -43307,7 +43307,7 @@ Collectible:
     name: 'K&amp;M platypus'
     slug: kampm-platypus
     description: 'My second platypus.'
-    num_views: '15'
+    num_views: '12'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -43351,7 +43351,7 @@ Collectible:
     name: 'Schleich Quarter horse '
     slug: schleich-quarter-horse-3f45b9
     description: Retired(2001-2008).
-    num_views: '85'
+    num_views: '82'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -43439,7 +43439,7 @@ Collectible:
     name: 'Fame Master lionfish'
     slug: fame-master-lionfish
     description: 'It is a 3D puzzle,part of the sealife series made by Fame Master ltd.'
-    num_views: '23'
+    num_views: '20'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -43747,7 +43747,7 @@ Collectible:
     name: 'Schleich dalmatian puppy'
     slug: schleich-dalmatian-puppy
     description: 'Introduced in 2007.Scale 1:12.'
-    num_views: '129'
+    num_views: '126'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -43813,7 +43813,7 @@ Collectible:
     name: 'Schleich dalmatian lying'
     slug: schleich-dalmatian-lying
     description: 'This is the old colour variant(1997-2007).Scale 1:12.'
-    num_views: '78'
+    num_views: '75'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -44022,7 +44022,7 @@ Collectible:
     name: 'Compend of Geology'
     slug: compend-of-geology
     description: 'A geology textbook from 1898 - it contains many things that are now known to be incorrect.'
-    num_views: '29'
+    num_views: '26'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -44033,7 +44033,7 @@ Collectible:
     name: 'USGS Barometer'
     slug: usgs-barometer
     description: 'This antique anaroid barometer is engraved USGS (United States Geological Survey). I believe it is from the turn of the 20th century, but I''m not sure. Its definitely from before 1920. Barometers were used when mapping mountains because they measure pressure changes that occur with changes in elevation.'
-    num_views: '26'
+    num_views: '23'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -44132,7 +44132,7 @@ Collectible:
     name: 'Shark : Wave 11'
     slug: shark-wave-11
     description: '=='
-    num_views: '52'
+    num_views: '49'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -44198,7 +44198,7 @@ Collectible:
     name: 'Wild Safari Nigersaurus'
     slug: wild-safari-nigersaurus-2d93c6
     description: '(side view)Introduced in 2009.Made by Safari ltd. whitin the Wild Safari series.'
-    num_views: '182'
+    num_views: '179'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -44231,7 +44231,7 @@ Collectible:
     name: 'Bullyland Pteranodon Sternbergi'
     slug: bullyland-pteranodon-sternbergi
     description: 'Scale 1:30.Made in Germany.Part of the Stuttgart Natural History Museum Collection. Discontinued in 2009.'
-    num_views: '154'
+    num_views: '151'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -44242,7 +44242,7 @@ Collectible:
     name: 'Schleich Anhanguera'
     slug: schleich-anhanguera-d5965f
     description: 'Part of the Dinosaur babies series.Retired(2007-2008).'
-    num_views: '163'
+    num_views: '160'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -44462,7 +44462,7 @@ Collectible:
     name: 'Safari Oviraptor'
     slug: safari-oviraptor
     description: 'Part of the Carnegie collection made by Safari ltd.Introduced in 2005.'
-    num_views: '213'
+    num_views: '210'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -44638,7 +44638,7 @@ Collectible:
     name: 'Safari Tapejara'
     slug: safari-tapejara
     description: 'Part of the Wild Safari series.Introduced in 2009.'
-    num_views: '159'
+    num_views: '156'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -44781,7 +44781,7 @@ Collectible:
     name: 'Schleich vet'
     slug: schleich-vet
     description: 'Introduced in 2007.'
-    num_views: '3'
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -44858,7 +44858,7 @@ Collectible:
     name: 'Safari Saltasaurus'
     slug: safari-saltasaurus-88e7de
     description: 'Part of the Carnegie collection made by Safari ltd. Introduced in 1996.'
-    num_views: '190'
+    num_views: '187'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -44935,7 +44935,7 @@ Collectible:
     name: 'Bullyland Trilobite'
     slug: bullyland-trilobite
     description: 'Part of the Fossil series.Made in Germany.'
-    num_views: '110'
+    num_views: '107'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -44946,7 +44946,7 @@ Collectible:
     name: 'Jurassic Park Dilophosaurus'
     slug: jurassic-park-dilophosaurus
     description: 'Original action figurine inspired by the Jurassic Park movie.'
-    num_views: '202'
+    num_views: '199'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -45089,7 +45089,7 @@ Collectible:
     name: 'Schleich African elephant cow'
     slug: schleich-african-elephant-cow
     description: 'Introduced in 2005.'
-    num_views: '120'
+    num_views: '117'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -45144,7 +45144,7 @@ Collectible:
     name: 'Schleich hippopotamus male'
     slug: schleich-hippopotamus-male
     description: 'Introduced in 1996.'
-    num_views: '136'
+    num_views: '133'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -45166,7 +45166,7 @@ Collectible:
     name: 'Schleich hippopotamus female'
     slug: schleich-hippopotamus-female
     description: Retired(1991-2004).
-    num_views: '324'
+    num_views: '321'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -45309,7 +45309,7 @@ Collectible:
     name: 'Schleich farmer'
     slug: schleich-farmer-ba560b
     description: 'Introduced in 2009.'
-    num_views: '3'
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -45320,7 +45320,7 @@ Collectible:
     name: 'Schleich farmer''s wife'
     slug: schleich-farmers-wife-a0456f
     description: 'Introduced in 2009.'
-    num_views: '7'
+    num_views: '4'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -45375,7 +45375,7 @@ Collectible:
     name: 'New Ray jardinieres'
     slug: new-ray-jardinieres
     description: 'Sunflowers and tulips.Part of a set with dog figurines and dog accesories.'
-    num_views: '3'
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -45672,7 +45672,7 @@ Collectible:
     name: 'Procon Agustinia'
     slug: procon-agustinia-fd02c8
     description: 'Introduced in 2007.'
-    num_views: '176'
+    num_views: '173'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -45705,7 +45705,7 @@ Collectible:
     name: 'Procon Nothronychus'
     slug: procon-nothronychus
     description: 'Introduced in 2008.'
-    num_views: '176'
+    num_views: '173'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -45959,7 +45959,7 @@ Collectible:
     name: 'Copperhead : Wave 12'
     slug: copperhead-wave-12
     description: --
-    num_views: '57'
+    num_views: '54'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -45970,7 +45970,7 @@ Collectible:
     name: 'Eclipso : Wave 12'
     slug: eclipso-wave-12
     description: --
-    num_views: '61'
+    num_views: '58'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -45981,7 +45981,7 @@ Collectible:
     name: 'Desaad : Wave 12'
     slug: desaad-wave-12
     description: '=='
-    num_views: '65'
+    num_views: '62'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -46003,7 +46003,7 @@ Collectible:
     name: 'Dr. Mid-Nite : Wave 12'
     slug: dr-mid-nite-wave-12
     description: 'Comes with ''Hooty the Owl'' accessory.'
-    num_views: '89'
+    num_views: '86'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -46036,7 +46036,7 @@ Collectible:
     name: '!BkydsB!!2k~$(KGrHqYOKj!Esnp9V4IvBLZDCWrYn!~~ 35'
     slug: bkydsb2kkgrhqyokjesnp9v4ivblzdcwryn-35
     description: ''
-    num_views: '12'
+    num_views: '9'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -46058,7 +46058,7 @@ Collectible:
     name: '!Bke!vDwBmk~$(KGrHqQOKi4EsmspPhygBL(r1GE2JQ~~ 35'
     slug: bkevdwbmkkgrhqqoki4esmspphygblr1ge2jq-35
     description: ''
-    num_views: '18'
+    num_views: '15'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -46355,7 +46355,7 @@ Collectible:
     name: 'Penance : 043'
     slug: penance-043
     description: '=='
-    num_views: '77'
+    num_views: '74'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -46388,7 +46388,7 @@ Collectible:
     name: 'Venus : 052'
     slug: venus-052
     description: '=='
-    num_views: '35'
+    num_views: '32'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -46410,7 +46410,7 @@ Collectible:
     name: 'Phyla-Vell : 042'
     slug: phyla-vell-042
     description: '=='
-    num_views: '70'
+    num_views: '67'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -46444,7 +46444,7 @@ Collectible:
     name: 'Molly Hayes : 041'
     slug: molly-hayes-041
     description: '=='
-    num_views: '37'
+    num_views: '34'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -46455,7 +46455,7 @@ Collectible:
     name: 'Gertrude Yorkes &amp; Old Lace : 058'
     slug: gertrude-yorkes-amp-old-lace-058
     description: '=='
-    num_views: '47'
+    num_views: '44'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -46511,7 +46511,7 @@ Collectible:
     name: 'Enchantress : 011'
     slug: enchantress-011
     description: '=='
-    num_views: '25'
+    num_views: '22'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -46523,7 +46523,7 @@ Collectible:
     name: 'Thor : 016'
     slug: thor-016
     description: '=='
-    num_views: '32'
+    num_views: '29'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -46556,7 +46556,7 @@ Collectible:
     name: 'Namora : 024'
     slug: namora-024
     description: '=='
-    num_views: '27'
+    num_views: '24'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -46567,7 +46567,7 @@ Collectible:
     name: 'Moondragon : 027'
     slug: moondragon-027
     description: '=='
-    num_views: '20'
+    num_views: '17'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -46578,7 +46578,7 @@ Collectible:
     name: 'Balder : 017'
     slug: balder-017
     description: '=='
-    num_views: '27'
+    num_views: '24'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -46589,7 +46589,7 @@ Collectible:
     name: 'Malekith : 009'
     slug: malekith-009
     description: '=='
-    num_views: '30'
+    num_views: '27'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -46611,7 +46611,7 @@ Collectible:
     name: 'Kingpin : 002'
     slug: kingpin-002
     description: '=='
-    num_views: '27'
+    num_views: '24'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -46633,7 +46633,7 @@ Collectible:
     name: 'Marvel Boy : 007'
     slug: marvel-boy-007
     description: '=='
-    num_views: '27'
+    num_views: '24'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -46732,7 +46732,7 @@ Collectible:
     name: 'Fire Demons : 015'
     slug: fire-demons-015
     description: --
-    num_views: '29'
+    num_views: '26'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -47007,7 +47007,7 @@ Collectible:
     name: 'Arch Bogal'
     slug: arch-bogal
     description: '=='
-    num_views: '126'
+    num_views: '123'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -47051,7 +47051,7 @@ Collectible:
     name: Deathfacer
     slug: deathfacer
     description: --
-    num_views: '73'
+    num_views: '70'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -47139,7 +47139,7 @@ Collectible:
     name: 'Safari hen with chicks'
     slug: safari-hen-with-chicks
     description: 'Part of the Barnyard Buddies series.'
-    num_views: '18'
+    num_views: '15'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -47227,7 +47227,7 @@ Collectible:
     name: 'Colorata Cheetah'
     slug: colorata-cheetah
     description: 'Made by Colorata Japan.'
-    num_views: '110'
+    num_views: '107'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -47238,7 +47238,7 @@ Collectible:
     name: 'Safari snow leopard'
     slug: safari-snow-leopard
     description: 'Part of the Wild Safari series.'
-    num_views: '119'
+    num_views: '116'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -47304,7 +47304,7 @@ Collectible:
     name: 'Papo Komodo dragon'
     slug: papo-komodo-dragon
     description: 'Introduced in 2009.'
-    num_views: '100'
+    num_views: '97'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -47381,7 +47381,7 @@ Collectible:
     name: 'Procon Styracosaurus'
     slug: procon-styracosaurus-0d13eb
     description: 'Made by Procon Collecta.'
-    num_views: '179'
+    num_views: '176'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -47502,7 +47502,7 @@ Collectible:
     name: 'Aerial Attack Mega Bloks'
     slug: aerial-attack-mega-bloks
     description: 'A small building set with Iron Man in Mark IV armor.'
-    num_views: '106'
+    num_views: '103'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -47734,7 +47734,7 @@ Collectible:
     name: 'Cosmi : Meltdown at Megalopolis'
     slug: cosmi-meltdown-at-megalopolis
     description: 'Sealed, MIP in both cassette & diskette forms!'
-    num_views: '25'
+    num_views: '22'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -48178,7 +48178,7 @@ Collectible:
     name: 'Schleich Brachiosaurus baby'
     slug: schleich-brachiosaurus-baby
     description: 'Introduced in 2003.Part of the Dinosaur babies series.'
-    num_views: '207'
+    num_views: '204'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -48189,7 +48189,7 @@ Collectible:
     name: 'Schleich Shetland pony'
     slug: schleich-shetland-pony-32d499
     description: 'Introduced in 2010.'
-    num_views: '49'
+    num_views: '46'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -48442,7 +48442,7 @@ Collectible:
     name: '009'
     slug: '009'
     description: ''
-    num_views: '35'
+    num_views: '32'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -48497,7 +48497,7 @@ Collectible:
     name: '008'
     slug: 008-0d6b10
     description: ''
-    num_views: '3'
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -48541,7 +48541,7 @@ Collectible:
     name: 'Papo oviraptor'
     slug: papo-oviraptor
     description: 'Introduced in 2010,even though the model was created and sold far earlier in France.'
-    num_views: '236'
+    num_views: '233'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -48563,7 +48563,7 @@ Collectible:
     name: 'Papo jaguar'
     slug: papo-jaguar-d62e4a
     description: 'Introduced in 2009.'
-    num_views: '120'
+    num_views: '117'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -48596,7 +48596,7 @@ Collectible:
     name: 'Mihnea photo 2009 194'
     slug: mihnea-photo-2009-194
     description: ''
-    num_views: '62'
+    num_views: '59'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -48783,7 +48783,7 @@ Collectible:
     name: 'Papo Henry VIII'
     slug: papo-henry-viii
     description: 'Bought from the Tower of London.'
-    num_views: '49'
+    num_views: '46'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -48948,7 +48948,7 @@ Collectible:
     name: 'Schleich brown rooster'
     slug: schleich-brown-rooster-50d313
     description: 'Retired(1984-1998).Made in Germany.'
-    num_views: '23'
+    num_views: '20'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -49091,7 +49091,7 @@ Collectible:
     name: 'Schleich phoenix'
     slug: schleich-phoenix
     description: Retired(2004-2008).
-    num_views: '143'
+    num_views: '140'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -49587,7 +49587,7 @@ Collectible:
     name: 'Schleich Great Dane female'
     slug: schleich-great-dane-female
     description: 'Introduced in 2010.'
-    num_views: '111'
+    num_views: '108'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -49642,7 +49642,7 @@ Collectible:
     name: 'Papo Pachyrinosaurus'
     slug: papo-pachyrinosaurus
     description: 'Introduced in 2010.Top view.'
-    num_views: '190'
+    num_views: '187'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -49675,7 +49675,7 @@ Collectible:
     name: PP
     slug: pp-c39187
     description: 'Panoramic size comparison.'
-    num_views: '131'
+    num_views: '128'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -49708,7 +49708,7 @@ Collectible:
     name: 'Papo koala'
     slug: papo-koala-060943
     description: 'Comparison with Schleich man.'
-    num_views: '26'
+    num_views: '23'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -49719,7 +49719,7 @@ Collectible:
     name: 'Papo Koala'
     slug: papo-koala-aed216
     description: 'Comparison with Schleich man.'
-    num_views: '11'
+    num_views: '5'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -49785,7 +49785,7 @@ Collectible:
     name: 'Schleich acrobatics set'
     slug: schleich-acrobatics-set-6d8568
     description: 'Comparison with Schleich man.'
-    num_views: '39'
+    num_views: '36'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -49796,7 +49796,7 @@ Collectible:
     name: DSC03005
     slug: dsc03005
     description: ''
-    num_views: '40'
+    num_views: '37'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -49807,7 +49807,7 @@ Collectible:
     name: DSC03007
     slug: dsc03007
     description: ''
-    num_views: '36'
+    num_views: '33'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -49829,7 +49829,7 @@ Collectible:
     name: 'Schleich riding set'
     slug: schleich-riding-set
     description: 'Introduced in 2008.'
-    num_views: '53'
+    num_views: '50'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -49895,7 +49895,7 @@ Collectible:
     name: 'Both Satchmos'
     slug: both-satchmos
     description: 'Aren''t they nice?'
-    num_views: '152'
+    num_views: '149'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -49906,7 +49906,7 @@ Collectible:
     name: DSC03021
     slug: dsc03021
     description: ''
-    num_views: '95'
+    num_views: '92'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -50027,7 +50027,7 @@ Collectible:
     name: DSC00478
     slug: dsc00478
     description: ''
-    num_views: '3'
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -50038,7 +50038,7 @@ Collectible:
     name: DSC00479
     slug: dsc00479
     description: ''
-    num_views: '3'
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -50060,7 +50060,7 @@ Collectible:
     name: DSC00481
     slug: dsc00481
     description: ''
-    num_views: '3'
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -50192,7 +50192,7 @@ Collectible:
     name: DSC00493
     slug: dsc00493
     description: ''
-    num_views: '6'
+    num_views: '0'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -50313,7 +50313,7 @@ Collectible:
     name: 'Schleich beluga'
     slug: schleich-beluga-4547c9
     description: 'What a cute face!'
-    num_views: '103'
+    num_views: '100'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -50346,7 +50346,7 @@ Collectible:
     name: AOR2.248
     slug: aor2248
     description: ''
-    num_views: '14'
+    num_views: '11'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -50357,7 +50357,7 @@ Collectible:
     name: AOR3.68-1
     slug: aor368-1
     description: ''
-    num_views: '8'
+    num_views: '5'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -50885,7 +50885,7 @@ Collectible:
     name: 'Black Sun'
     slug: black-sun
     description: ''
-    num_views: '20'
+    num_views: '17'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -51149,7 +51149,7 @@ Collectible:
     name: 'Love Truth Peace by Steve Sachs'
     slug: love-truth-peace-by-steve-sachs
     description: ''
-    num_views: '21'
+    num_views: '18'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -51336,7 +51336,7 @@ Collectible:
     name: 'The White Rabbit before'
     slug: the-white-rabbit-before
     description: ''
-    num_views: '15'
+    num_views: '12'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -52416,7 +52416,7 @@ Collectible:
     name: 'DC Squatz : Batman revealed!'
     slug: dc-squatz-batman-revealed
     description: ''
-    num_views: '59'
+    num_views: '56'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -52526,7 +52526,7 @@ Collectible:
     name: '008'
     slug: 008-402295
     description: ''
-    num_views: '11'
+    num_views: '8'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -52714,7 +52714,7 @@ Collectible:
     name: 'Martian Manhunter (variant) - Series 15'
     slug: martian-manhunter-variant-series-15
     description: 'By Mattel.'
-    num_views: '61'
+    num_views: '58'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -52803,7 +52803,7 @@ Collectible:
     name: Aquaman
     slug: aquaman-9a43b7
     description: ''
-    num_views: '46'
+    num_views: '43'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -53478,7 +53478,7 @@ Collectible:
     name: 'Green Lantern Sinestro'
     slug: green-lantern-sinestro-9c5c9e
     description: ''
-    num_views: '43'
+    num_views: '40'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -53533,7 +53533,7 @@ Collectible:
     name: 'Bane - Series 16'
     slug: bane-series-16
     description: \---|
-    num_views: '36'
+    num_views: '33'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -53544,7 +53544,7 @@ Collectible:
     name: 'The Creeper - Series 16'
     slug: the-creeper-series-16
     description: \---|
-    num_views: '30'
+    num_views: '27'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -53600,7 +53600,7 @@ Collectible:
     name: 'Robin (Modern and Classic variants) - Series 16'
     slug: robin-modern-and-classic-variants-series-16
     description: \---|
-    num_views: '82'
+    num_views: '79'
     num_comments: '1'
     score: '0'
     is_name_automatic: '0'
@@ -53611,7 +53611,7 @@ Collectible:
     name: 'Stel : GLC Ser. 2 Collect-and-Connect'
     slug: stel-glc-ser-2-collect-and-connect
     description: --
-    num_views: '57'
+    num_views: '54'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -53644,7 +53644,7 @@ Collectible:
     name: 'B''Dg : GLC Ser. 2'
     slug: bdg-glc-ser-2
     description: --
-    num_views: '44'
+    num_views: '41'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -53699,7 +53699,7 @@ Collectible:
     name: 'Naut Kei Loi : GLC Ser. 2'
     slug: naut-kei-loi-glc-ser-2
     description: --
-    num_views: '38'
+    num_views: '35'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -53710,7 +53710,7 @@ Collectible:
     name: 'Medphyll : GLC Ser. 2'
     slug: medphyll-glc-ser-2
     description: --
-    num_views: '37'
+    num_views: '34'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -53721,7 +53721,7 @@ Collectible:
     name: 'Sodam Yet : GLC Ser. 2'
     slug: sodam-yet-glc-ser-2
     description: --
-    num_views: '43'
+    num_views: '40'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -53743,7 +53743,7 @@ Collectible:
     name: 'Gorilla Grodd'
     slug: gorilla-grodd-d5ee91
     description: '=='
-    num_views: '36'
+    num_views: '33'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -53877,7 +53877,7 @@ Collectible:
     name: Wildcat
     slug: wildcat-d8ed53
     description: '=='
-    num_views: '35'
+    num_views: '29'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -53921,7 +53921,7 @@ Collectible:
     name: 'B''wana Beast'
     slug: bwana-beast-111b7d
     description: '=='
-    num_views: '24'
+    num_views: '18'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -53943,7 +53943,7 @@ Collectible:
     name: 'Gentleman Ghost &amp; Horse'
     slug: gentleman-ghost-amp-horse
     description: 'Solid version. Clear and translucent versions also exist.'
-    num_views: '47'
+    num_views: '44'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -53954,7 +53954,7 @@ Collectible:
     name: 'Clock King'
     slug: clock-king-6f4196
     description: '=='
-    num_views: '36'
+    num_views: '33'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -53965,7 +53965,7 @@ Collectible:
     name: 'Black Lightning'
     slug: black-lightning-4af92e
     description: '=='
-    num_views: '30'
+    num_views: '27'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -53987,7 +53987,7 @@ Collectible:
     name: 'Green Lantern Hal Jordan'
     slug: green-lantern-hal-jordan-84fa13
     description: '=='
-    num_views: '18'
+    num_views: '12'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -53998,7 +53998,7 @@ Collectible:
     name: Wotan
     slug: wotan
     description: '=='
-    num_views: '32'
+    num_views: '29'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -54020,7 +54020,7 @@ Collectible:
     name: Superman
     slug: superman-98cb6f
     description: '=='
-    num_views: '25'
+    num_views: '22'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -54064,7 +54064,7 @@ Collectible:
     name: Bizarro
     slug: bizarro-7e1a0b
     description: 'w/ kryptonite'
-    num_views: '16'
+    num_views: '13'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'
@@ -54218,7 +54218,7 @@ Collectible:
     name: 'Sinestro Corps Low'
     slug: sinestro-corps-low-f5d645
     description: '=='
-    num_views: '37'
+    num_views: '31'
     num_comments: '0'
     score: '0'
     is_name_automatic: '0'

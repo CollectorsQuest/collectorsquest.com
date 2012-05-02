@@ -878,7 +878,7 @@ wpUsermeta:
     umeta_id: '275'
     user_id: wpUser_1
     meta_key: wp_user-settings-time
-    meta_value: '1331148208'
+    meta_value: '1335882216'
   wpUsermeta_276:
     umeta_id: '276'
     user_id: wpUser_11
@@ -953,12 +953,12 @@ wpUsermeta:
     umeta_id: '326'
     user_id: wpUser_1
     meta_key: wp_dashboard_quick_press_last_post_id
-    meta_value: '21144'
+    meta_value: '21662'
   wpUsermeta_274:
     umeta_id: '274'
     user_id: wpUser_1
     meta_key: wp_user-settings
-    meta_value: 'editor=tinymce&align=center&imgsize=full&m0=c&m1=o&m2=c&m3=c&m4=o&m5=c&m6=c&m7=c&m8=c&m9=c&hidetb=1&wplink=0'
+    meta_value: 'editor=html&align=center&imgsize=full&m0=c&m1=o&m2=c&m3=c&m4=o&m5=c&m6=c&m7=c&m8=c&m9=c&hidetb=1&wplink=0&urlbutton=none'
   wpUsermeta_262:
     umeta_id: '262'
     user_id: wpUser_1

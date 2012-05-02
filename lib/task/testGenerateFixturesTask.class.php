@@ -240,10 +240,13 @@ class testGenerateFixturesTask extends sfBaseTask
         continue;
       }
 
+      // Exception for multimedia_archive table
+      $connection = ($class == 'MultimediaArchive') ? 'propel' : 'archive';
+
       $this->logSection('archive', 'Dumping table '. $table .'...');
       exec(
         sfToolkit::getPhpCli() . ' -d error_reporting=0 -d display_errors=0 ./symfony propel:data-dump'.
-        ' --connection="archive" --env="'. $options['env'] .'" --classes="'. $class .'"'.
+        ' --connection="'. $connection .'" --env="'. $options['env'] .'" --classes="'. $class .'"'.
         ' > test/fixtures/common/archive/'. $table .'.yml'
       );
     }
