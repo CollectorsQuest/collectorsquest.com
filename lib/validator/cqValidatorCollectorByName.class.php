@@ -33,6 +33,8 @@ class cqValidatorCollectorByName extends sfValidatorString
 
     $this->addMessage('collecotor_not_found',
       'No collector matching "%value%" was found');
+    $this->addMessage('collector_ambiguous',
+      'More than one collector matching "%value%" was found');
     $this->addMessage('collector_invalid_id',
       'The "%value%" collector is disallowed for this field');
   }
@@ -41,11 +43,21 @@ class cqValidatorCollectorByName extends sfValidatorString
   {
     $value = parent::doClean($value);
 
-    $collector = CollectorQuery::create()
+    $collectors = CollectorQuery::create()
       ->filterByUsername($value)
       ->_or()
       ->filterByDisplayName($value)
-      ->findOne();
+      ->find();
+
+    if (count($collectors) > 1)
+    {
+      throw new sfValidatorError($this, 'collector_ambiguous', array(
+          'value' => $value,
+      ));
+    }
+
+    $collector = $collectors->getFirst();
+
 
     if (!$collector)
     {
