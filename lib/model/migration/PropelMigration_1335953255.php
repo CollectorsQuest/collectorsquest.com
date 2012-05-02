@@ -1,6 +1,6 @@
 <?php
 
-class PropelMigration_1335780512
+class PropelMigration_1335953255
 {
 
   /**
