@@ -222,6 +222,7 @@ function image_tag_multimedia($multimedia, $which, $options = array())
     $options['height'] = $h;
   }
 
+  $options = array_filter($options);
   $src = src_tag_multimedia($multimedia, $which, $options);
 
   // Unsetting all options which should not make it to the html <img/> tag

@@ -17,21 +17,30 @@
     <div class="span6">
       <ul>
         <li>
-          <span>XX Comments</span>
+          <span>
+          <?php
+            echo format_number_choice(
+              '[0] no comments yet|[1] 1 Comment|(1,+Inf] %1% Comments',
+              array('%1%' => number_format($collectible->getNumComments())), $collectible->getNumComments()
+            );
+          ?>
+          </span>
         </li>
         <li>
          <span>
-           <?php
-            echo format_number_choice(
-              '[0] no views yet|[1] 1 View|(1,+Inf] %1% Views',
-              array('%1%' => number_format($collectible->getNumViews())), $collectible->getNumViews()
-            );
-            ?>
+         <?php
+           echo format_number_choice(
+             '[0] no views yet|[1] 1 View|(1,+Inf] %1% Views',
+             array('%1%' => number_format($collectible->getNumViews())), $collectible->getNumViews()
+           );
+         ?>
          </span>
         </li>
-        <li>
-          <span>In XXX wanted lists</span>
-        </li>
+        <!--
+          <li>
+            <span>In XXX wanted lists</span>
+          </li>
+        //-->
       </ul>
     </div>
     <div class="span6 text-right">
@@ -49,53 +58,7 @@
   <?= $collectible->getDescription('html'); ?>
 </div>
 
-<div id="comments">
-  <div class="add-comment">
-    <div class="input-append post-comment">
-      <form method="post" action="comment">
-        <input type="text" id="c" data-provide="comment" autocomplete="off" name="c">
-        <button type="submit" class="btn btn-large">Comment</button>
-        <a class="upload-photo" title="Add a photo">&nbsp;</a>
-      </form>
-    </div>
-  </div>
-  <div class="user-comments">
-    <div class="row-fluid user-comment">
-      <div class="span2 text-right">
-        <a href="#">
-          <img src="http://placehold.it/65x65" alt="">
-        </a>
-      </div>
-      <div class="span10">
-        <p class="bubble left">
-          <a href="#" class="username">RobotBacon Wow!</a>
-          That gun is a real rarity.  I don't think the south produced much in the way of weaponry, so that is a good find!
-          <span class="comment-time">2 hours ago</span>
-        </p>
-      </div>
-    </div>
-    <div class="row-fluid user-comment">
-      <div class="span2 text-right">
-        <a href="#">
-          <img src="http://placehold.it/65x65" alt="">
-        </a>
-      </div>
-      <div class="span10">
-        <p class="bubble left">
-          <a href="#" class="username">RobotBacon Wow!</a>
-          That gun is a real rarity.  I don't think the south produced much in the way of weaponry, so that is a good find!
-          <span class="comment-time">2 hours ago</span>
-        </p>
-      </div>
-    </div>
-  </div>
-  <div class="see-more-under-image-set">
-    <button class="btn btn-small gray-button see-more-full" id="see-more-comments">
-      See all XX comments
-    </button>
-  </div>
-</div>
-
+<?php include_partial('sandbox/comments'); ?>
 Permalink: <span class="lightblue"><?= url_for_collectible($collectible, true) ?></span>
 
 <?php
