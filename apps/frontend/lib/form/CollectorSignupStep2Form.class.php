@@ -2,7 +2,6 @@
 
 class CollectorSignupStep2Form extends CollectorProfileEditForm
 {
-
   public function configure()
   {
     parent::configure();

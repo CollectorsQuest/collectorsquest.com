@@ -30,6 +30,24 @@ class collectionActions extends cqFrontendActions
       $collector  = $collection->getCollector();
     }
 
+    /**
+     * Special checks for the Collectibles of A&E
+     */
+    $pawn_stars = sfConfig::get('app_aetn_pawn_stars');
+    $american_pickers = sfConfig::get('app_aetn_american_pickers');
+
+    if (in_array($collection->getId(), array($pawn_stars['collection'], $american_pickers['collection'])))
+    {
+      if ($collection->getId() == $pawn_stars['collection'])
+      {
+        $this->redirect('@aetn_pawn_stars', 301);
+      }
+      else if ($collection->getId() == $american_pickers['collection'])
+      {
+        $this->redirect('@aetn_american_pickers', 301);
+      }
+    }
+
     $c = new Criteria();
     $c->add(CollectiblePeer::COLLECTOR_ID, $collection->getCollectorId());
 
@@ -102,6 +120,17 @@ class collectionActions extends cqFrontendActions
     /** @var $collector Collector */
     $collector = $collectible->getCollector();
 
+    /**
+     * Special checks for the Collectibles of A&E
+     */
+    $pawn_stars = sfConfig::get('app_aetn_pawn_stars');
+    $american_pickers = sfConfig::get('app_aetn_american_pickers');
+
+    if (in_array($collection->getId(), array($pawn_stars['collection'], $american_pickers['collection'])))
+    {
+      $this->redirect('@aetn_collectible_by_slug?id='. $collectible->getId() .'&slug='. $collectible->getSlug(), 301);
+    }
+
     $this->collectible = $collectible;
     $this->collector = $collector;
     $this->collectible = $collectible;
@@ -110,4 +139,8 @@ class collectionActions extends cqFrontendActions
     return sfView::SUCCESS;
   }
 
+  public function executeCreate()
+  {
+    return sfView::SUCCESS;
+  }
 }

@@ -1,0 +1,132 @@
+<?php
+
+class ShoppingOrderShippingForm extends BaseForm
+{
+  /**
+   * @var null|ShoppingOrder
+   */
+  private $shopping_order = null;
+
+  public function __construct(ShoppingOrder $shopping_order, $defaults = array(), $options = array())
+  {
+    // Set the current ShoppingOrder
+    $this->shopping_order = $shopping_order;
+
+    parent::__construct($defaults, $options);
+  }
+
+  public function setup()
+  {
+    /** @var $sf_user cqFrontendUser */
+    $sf_user = sfContext::getInstance()->getUser();
+
+    $this->setWidgets(array(
+      'buyer_email'  => new sfWidgetFormInputText(),
+      'buyer_phone'  => new sfWidgetFormInputText()
+    ));
+
+    $this->setValidators(array(
+      'buyer_email'  => new sfValidatorEmail(array('max_length' => 128, 'required' => true)),
+      'buyer_phone'  => new sfValidatorString(array('max_length' => 50, 'required' => false)),
+    ));
+
+    // Try to figure out the default buyer email
+    $buyer_email = $this->shopping_order->getBuyerEmail() ?
+      $this->shopping_order->getBuyerEmail() :
+      $sf_user->getAttribute('buyer_email', $sf_user->getCollector()->getEmail(), 'shopping');
+
+    $this->setDefaults(array(
+      'buyer_email' => $buyer_email,
+      'buyer_phone' => $this->shopping_order->getShippingPhone()
+    ));
+
+    $this->widgetSchema->setFormFormatterName('Bootstrap');
+    $this->widgetSchema->setNameFormat('shopping_order[%s]');
+    $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
+
+    $defaults = array(
+      'address_id' =>$this->shopping_order->getShippingAddressId(),
+      'full_name' => $this->shopping_order->getShippingFullName(),
+      'address_line_1' => $this->shopping_order->getShippingAddressLine1(),
+      'address_line_2' => $this->shopping_order->getShippingAddressLine2(),
+      'city' => $this->shopping_order->getShippingCity(),
+      'state_region' => $this->shopping_order->getShippingStateRegion(),
+      'zip_postcode' => $this->shopping_order->getShippingZipPostcode(),
+      'country_iso3166' => $this->shopping_order->getShippingCountryIso3166()
+    );
+
+    // If not authenticated, try to set the defaults from the session
+    if (!$sf_user->isAuthenticated())
+    {
+      $session_defaults = (array) $sf_user->getAttribute(
+        'shipping_address', array(), 'shopping'
+      );
+
+      $use_session_defaults = isset($session_defaults['country_iso3166']) && ($session_defaults['country_iso3166'] == $defaults['country_iso3166']);
+      foreach (array_keys($defaults) as $key)
+      {
+        if (!empty($defaults[$key]) && $key !== 'country_iso3166')
+        {
+          $use_session_defaults = false;
+          break;
+        }
+      }
+      $defaults = $use_session_defaults ? $session_defaults : $defaults;
+    }
+
+    $shipping_address = new ShippingAddressForm();
+    $shipping_address->setDefaults($defaults);
+    $shipping_address->widgetSchema->setFormFormatterName('Bootstrap');
+    $this->embedForm('shipping_address', $shipping_address, '%content%');
+
+    parent::setup();
+  }
+
+
+  public function configure()
+  {
+    $this->widgetSchema['buyer_email']->setLabel('Email Address');
+    $this->widgetSchema['buyer_phone']->setLabel('Telephone Number');
+
+    $this->validatorSchema['buyer_email']->setMessage('required',
+      'Your email address is used to send you an order confirmation');
+
+    $this->validatorSchema['buyer_email']->setMessage('invalid',
+      'This email address does not seem to be valid format');
+  }
+
+  public function save()
+  {
+    $values = $this->getValues();
+    $shipping_address = $values['shipping_address'];
+
+    $this->shopping_order->setBuyerEmail($values['buyer_email']);
+    $this->shopping_order->setShippingFullName($shipping_address['full_name']);
+    $this->shopping_order->setShippingPhone($values['buyer_phone']);
+    $this->shopping_order->setShippingAddressLine1($shipping_address['address_line_1']);
+    $this->shopping_order->setShippingAddressLine2($shipping_address['address_line_2']);
+    $this->shopping_order->setShippingCity($shipping_address['city']);
+    $this->shopping_order->setShippingStateRegion($shipping_address['state_region']);
+    $this->shopping_order->setShippingZipPostcode($shipping_address['zip_postcode']);
+    $this->shopping_order->setShippingCountryIso3166($shipping_address['country_iso3166']);
+
+    try {
+      $this->shopping_order->save();
+
+      /** @var $sf_user cqFrontendUser */
+      $sf_user = sfContext::getInstance()->getUser();
+
+      // Save the buyer email address for later purchases
+      $sf_user->setAttribute('buyer_email', $values['buyer_email'], 'shopping');
+
+      // Save the shipping address for later purchases
+      $sf_user->setAttribute('shipping_address', $shipping_address, 'shopping');
+
+      return true;
+    }
+    catch (PropelException $e)
+    {
+      return false;
+    }
+  }
+}

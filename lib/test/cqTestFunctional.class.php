@@ -34,6 +34,36 @@ class cqTestFunctional extends sfTestFunctional
   }
 
   /**
+   * Sign in a user at next
+   *
+   * @param     string $username
+   * @param     string $password
+   * @param     string $signin_url
+   * @param     string $signin_form_name
+   *
+   * @return    cqTestFunctional
+   */
+  public function loginNext($username, $password, $signin_url = '/login', $signin_form_name = null)
+  {
+    return $this->
+      info(sprintf('Signing in user using username "%s" and password "%s"', $username, $password))->
+      get($signin_url)->
+      with('response')->
+        click('Login', array('login'=>array(
+          'username'=>$username,
+          'password'=>$password,
+        )))->
+      with('response')->begin()->
+          isRedirected()->
+          followRedirect()->
+      end()->
+      with('user')->
+          isAuthenticated()
+    ;
+  }
+
+
+  /**
    * Sign out a user
    *
    * @param     string $signout_url
@@ -49,6 +79,30 @@ class cqTestFunctional extends sfTestFunctional
     return $this->
       info('Signing out current authenticated user')->
       get($signout_url)->
+      with('user')->isAuthenticated(false)
+    ;
+  }
+
+  /**
+   * Sign out a user
+   *
+   * @param     string $signout_url
+   * @return    cqTestFunctional
+   */
+  public function logoutNext($signout_url = '/logout')
+  {
+    if (!$this->browser->getUser()->isAuthenticated())
+    {
+      self::$test->fail('The current user is not authenticated');
+    }
+
+    return $this->
+      info('Signing out current authenticated user')->
+      get($signout_url)->
+      with('response')->begin()->
+        isRedirected()->
+        followRedirect()->
+      end()->
       with('user')->isAuthenticated(false)
     ;
   }
@@ -208,6 +262,14 @@ class cqTestFunctional extends sfTestFunctional
     }
 
     return $this;
+  }
+
+  /**
+   * Clear the current session
+   */
+  public function clearSession()
+  {
+    $this->browser->shutdown();
   }
 
 }

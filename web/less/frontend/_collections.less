@@ -1,0 +1,147 @@
+@import "_variables.less";
+
+.collection_grid_view {
+	margin-top: 2px;
+	height: 160px;
+	overflow: hidden;
+	position: relative;
+
+	.mosaic-backdrop {
+		width: 190px;
+		height: 150px;
+		margin-left: 3px;
+		margin-top: 3px;
+	}
+
+	.mosaic-overlay {
+		width: 190px;
+		height: 150px;
+		margin: 3px;
+
+		.details {
+			margin: 10px;
+		}
+	}
+
+	.stack {
+		background: url("@{baseUrl}/stack.png") no-repeat;
+		width: 196px;
+		height: 151px;
+		padding: 5px 0 0 13px;
+
+		.mosaic-backdrop {
+			width: 175px;
+			height: 138px;
+			margin: 5px 0 0 0;
+			border: none;
+			-webkit-box-shadow: none;
+			-moz-box-shadow: none;
+			box-shadow: none;
+		}
+
+		.mosaic-overlay {
+			width: 175px;
+			height: 138px;
+			margin: 0;
+		}
+	}
+}
+
+.collection_grid_view_square_small {
+	height: 140px;
+	overflow: hidden;
+	position: relative;
+	margin-bottom: 15px;
+
+	.mosaic-backdrop {
+		width: 140px;
+		height: 140px;
+	}
+
+	.mosaic-overlay {
+		width: 140px;
+		height: 140px;
+	}
+
+	.mosaic-overlay .details {
+		padding: 10px;
+		font-size: 130%;
+	}
+}
+
+.collections-container {
+	margin-left: -12px;
+}
+
+.item-info {
+	margin: 35px 0;
+}
+
+.item-description {
+	margin: 10px 0;
+
+	.item-condition {
+		font-weight: bold;
+	}
+	h2 {
+		color: @red;
+		.custom-font(20px, 22px, italic, normal);
+		margin-bottom: 12px;
+	}
+}
+
+#user-collections {
+
+	.user-collections-inner {
+		border: 1px solid #f2f0f0;
+		.border-radius(2px);
+		height: 212px;
+	}
+}
+
+.personal-info-sidebar {
+	color: @blueDark;
+	font-size: 12px;
+	margin: 10px 0;
+}
+
+.other-items-sidebar {
+	width: 100%;
+	margin-bottom: 10px;
+
+	span {
+		padding-left: 5px;
+		margin-bottom: 5px;
+		display: block;
+	}
+	.thumbnails-inner {
+		.clearfix();
+	}
+	.span3 {
+		.square(70px);
+		margin: 0 0 4px 4px;
+	}
+	.thumbnails {
+		margin-left: 0;
+		margin-bottom: 5px;
+
+		a {
+			.box-shadow(none);
+			&:hover {
+				padding: 3px;
+				background-color: white;
+				border: 1px solid @blue;
+				.border-radius(0);
+
+			}
+		}
+	}
+	.thumbnail {
+		border: none;
+		padding: 0;
+		&:hover img {
+			max-width: 64px;
+			max-height: 62px;
+		}
+	}
+}

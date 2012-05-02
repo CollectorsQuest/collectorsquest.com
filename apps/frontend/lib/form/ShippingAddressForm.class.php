@@ -1,0 +1,37 @@
+<?php
+
+class ShippingAddressForm extends CollectorAddressForm
+{
+  public function setup()
+  {
+    $this->setWidgets(array(
+      'full_name'       => new sfWidgetFormInputText(),
+      'address_line_1'  => new sfWidgetFormInputText(),
+      'address_line_2'  => new sfWidgetFormInputText(),
+      'city'            => new sfWidgetFormInputText(),
+      'state_region'    => new sfWidgetFormInputText(),
+      'zip_postcode'    => new sfWidgetFormInputText(),
+      'country_iso3166' => new cqWidgetFormI18nChoiceCountry(array('add_empty' => false)),
+
+      'address_id' => new sfWidgetFormInputHidden(),
+    ));
+
+    $this->setValidators(array(
+      'full_name'       => new sfValidatorString(array('max_length' => 255)),
+      'address_line_1'  => new sfValidatorString(array('max_length' => 255)),
+      'address_line_2'  => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'city'            => new sfValidatorString(array('max_length' => 100)),
+      'state_region'    => new sfValidatorString(array('max_length' => 100, 'required' => false)),
+      'zip_postcode'    => new sfValidatorString(array('max_length' => 50, 'required' => false)),
+      'country_iso3166' => new sfValidatorPropelChoice(array('model' => 'GeoCountry', 'column' => 'iso3166')),
+
+      'address_id' => new sfValidatorPropelChoice(
+        array('model' => 'CollectorAddress', 'column' => 'id', 'required' => false)
+      ),
+    ));
+
+    $this->widgetSchema->setNameFormat('shipping_address[%s]');
+    $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
+  }
+
+}

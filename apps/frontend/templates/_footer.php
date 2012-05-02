@@ -1,11 +1,19 @@
+<?php
+  use_javascripts_for_form($signup_form);
+?>
+
 <footer id="footer">
   <div class="footer-inner">
     <div class="row-fluid">
       <div class="span4">
         <div class="aboutus-footer-inner">
-          <h2 class="Chivo webfont">About Collectors’ Quest</h2>
+          <h2 class="Chivo webfont">About Collectors Quest</h2>
           <p>
-            Collectors’ Quest is an interactive community and marketplace for the passionate collector. Collectors can meet others who share their interests, organize and catalog their collections, as well as buy, sell or trade with others...
+            At Collectors Quest, you can meet and talk with your fellow collectors,
+            upload and organize your own collections, see other collections from around the world,
+            join special collecting groups, find hidden treasures to purchase,
+            sell stuff to passionate collectors, and get global news about the vast world of collecting.
+            If you collect it, you’ll find it here at Collectors Quest — where hunters gather!<br/>
             <a href="#">Learn more</a>
           </p>
           <div class="row-spacing-footer">
@@ -13,14 +21,17 @@
           </div>
           <p>
             <a href="http://facebook.com/Collectors.Quest" target="_blank">
-              <i class="s-16-icon-facebook ico-16px-alignment"></i>
-              Follow us on Facebook
+              <i class="s-16-icon-facebook social-ico-padding"></i>Follow us on Facebook
             </a>
           </p>
           <p>
             <a href="http://twitter.com/CollectorsQuest" target="_blank">
-              <i class="s-16-icon-twitter ico-16px-alignment"></i>
-              Follow us on Twitter
+              <i class="s-16-icon-twitter social-ico-padding"></i>Follow us on Twitter
+            </a>
+          </p>
+          <p>
+            <a href="http://pinterest.com/CollectorsQuest" target="_blank">
+              <i class="s-16-icon-pinterest social-ico-padding"></i>Follow us on Pinterest
             </a>
           </p>
         </div>
@@ -80,19 +91,22 @@
         <?php else: ?>
         <h2 class="Chivo webfont no-margin-bottom">Welcome back, <?= $sf_user->getCollector()->getDisplayName() ?>!</h2>
         <ul class="footer-profile-box cf">
-          <li class="icon_big_email">
-            <p>You have 1 message in <a href="#" class="bold-links">your inbox</a></p>
+          <li class="icon-big-email">
+            <p>
+              You have 1 message in
+              <?= link_to('your inbox', '@messages_inbox', array('class' => 'bold-links')); ?>
+            </p>
           </li>
-          <li class="icon_big_battery">
+          <li class="icon-big-battery">
             <p>Your profile is 50% complete. <a href="#" class="bold-links">Add a collection</a> in minutes. (+10%)</p>
           </li>
           <li class="footer-profile-box-h-list">
             <ul class="row-fluid">
-              <li class="span6 icon_big_add">
+              <li class="span6 upload-photo">
                 <a href="#" class="bold-links">Upload a<br> photo</a>
               </li>
-              <li class="span6 icon_big_organize">
-                <a href="#" class="bold-links">Organize your<br> collection</a>
+              <li class="span6 organize-collection">
+                <a href="#" class="bold-links">Organize your<br> collections</a>
               </li>
             </ul>
           </li>
@@ -110,32 +124,35 @@
       <div class="span4">
         <ul class="footer-info-box">
           <li>
-            <i class="icon_big_box"></i>
+            <i class="big-box-icon"></i>
             <div class="info-box-text">
               <h2 class="Chivo webfont">Show Off</h2>
               <p>
-                Share your passion with a world of interested people by organizing your
-                collections with our easy to use tools.
-                <?= link_to('Show&nbsp;Off&nbsp;Now', '@collector_signup'); ?>
+                Show your collections to the world! Upload and organize your stuff here.<br/>
+                <?= link_to('Show&nbsp;Off&nbsp;Now!', '@collector_signup'); ?>
               </p>
             </div>
           </li>
           <li>
-            <i class="icon_big_piggy_bank"></i>
+            <i class="big-piggy-bank-icon"></i>
             <div class="info-box-text">
               <h2 class="Chivo webfont">Get Paid</h2>
               <p>
-                It's easy to sell an item once you're a member.
-                Just choose "I'm a seller" during the sign up process.
-                <?= link_to('Start&nbsp;Selling&nbsp;Now', '@seller_signup'); ?>
+                Do you have something you'd like to sell?
+                It's easy! Become a member of Collectors Quest and get started.<br/>
+                <?= link_to('Get&nbsp;Paid&nbsp;Now!', '@seller_signup'); ?>
               </p>
             </div>
           </li>
           <li>
-            <i class="icon_big_question"></i>
+            <i class="big-question-icon"></i>
             <div class="info-box-text">
-              <h2 class="Chivo webfont">Help/FAQ</h2>
-              <p>Want to know how to get more out of your membership? <a href="#">Watch</a> our helpful videos today!</p>
+              <h2 class="Chivo webfont">Help / FAQ</h2>
+              <p>
+                Have a question or a concern? Having trouble figuring something out?
+                Get the most out of the site by checking out our FAQs.<br/>
+                <a href="#">Get&nbsp;Help&nbsp;Now!</a>
+              </p>
             </div>
           </li>
         </ul>

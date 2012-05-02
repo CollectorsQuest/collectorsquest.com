@@ -6,12 +6,13 @@
   // // The Gaber-Irish Markup based unobstructive DOM-ready execution
   // http://www.viget.com/inspire/extending-paul-irishs-comprehensive-dom-ready-execution/
   var UTIL = {
-    exec: function( controller, action ) {
+    exec: function( controller, action, report_action ) {
       var ns = window.APP,
-          action = ( action === undefined ) ? "init" : action;
+          action = ( action === undefined ) ? "init" : action
+          report_action = ( report_action === undefined) ? '' : report_action;
 
       if ( controller !== "" && ns[controller] && typeof ns[controller][action] === "function" ) {
-        ns[controller][action]();
+        ns[controller][action](report_action);
       }
     },
 
@@ -21,7 +22,7 @@
           action = body.getAttribute( "data-action" );
 
       UTIL.exec( "common" );
-      UTIL.exec( controller );
+      UTIL.exec( controller, "init", action);
       UTIL.exec( controller, action );
 
       UTIL.controller = controller;

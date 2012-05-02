@@ -2,9 +2,10 @@ all:
   cqEmails:
 
     helpers:
-      Tag: ~
+      Tag: ~ # only load the helper, do not make functions from it available in twig
       Url: [link_to, url_for]
       Asset: [image_path, image_tag]
+      cqLinks: [link_to_collector, link_to_collection, link_to_collectible]
 
     defaults:
       from: { "no-reply@collectorsquest.com": "CollectorsQuest.com" }
@@ -14,6 +15,11 @@ all:
       password_reminder:
         subject: "Your new password for CollectorsQuest.com"
         required_params: [collector, password]
+
+    Messages:
+      private_message_notification:
+        subject: "You have a new message from {{ sender.displayName }}"
+        required_params: [sender, receiver]
 
     internal:
       feedback:

@@ -6,7 +6,11 @@
     top.location.replace('<?= url_for($url); ?>');
   </script>
 </head>
-<body>
-  <h1>If this page does not redirect <a href="<?= url_for($url); ?>" target="_top">Click Here</a></h1>
+<body style="background: #fff;">
+<div>
+  <div style="width: 80%; margin: auto;">
+    <h1>If this page does not redirect <a href="<?= url_for($url); ?>" target="_top">click here</a></h1>
+  </div>
+</div>
 </body>
 </html>

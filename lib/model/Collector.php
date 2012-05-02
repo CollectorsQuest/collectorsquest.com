@@ -14,8 +14,10 @@ class Collector extends BaseCollector implements ShippingRatesInterface
   public function initializeProperties()
   {
     $this->registerProperty('SINGUP_NUM_COMPLETED_STEPS', 1);
-    $this->registerProperty(CollectorPeer::PROPERTY_CQNEXT_ACCESS_ALLOWED,
-                            CollectorPeer::PROPERTY_CQNEXT_ACCESS_ALLOWED_DEFAULT_VALUE);
+    $this->registerProperty(
+      CollectorPeer::PROPERTY_CQNEXT_ACCESS_ALLOWED,
+      CollectorPeer::PROPERTY_CQNEXT_ACCESS_ALLOWED_DEFAULT_VALUE
+    );
   }
 
   /**
@@ -52,6 +54,16 @@ class Collector extends BaseCollector implements ShippingRatesInterface
     }
 
     return $graph_id;
+  }
+
+  public function getCollectorId()
+  {
+    return $this->getId();
+  }
+
+  public function getCollectorSlug()
+  {
+    return $this->getSlug();
   }
 
   /**
@@ -98,7 +110,7 @@ class Collector extends BaseCollector implements ShippingRatesInterface
    */
   public function checkPassword($password)
   {
-    return sha1($this->getSalt() . $password) == $this->getSha1Password();
+    return sha1($this->getSalt() . $password) === $this->getSha1Password();
   }
 
   /**
@@ -688,6 +700,54 @@ class Collector extends BaseCollector implements ShippingRatesInterface
   public function getLastEmailChangeRequest($verified = false)
   {
     return CollectorEmailPeer::retrieveLastPending($this, $verified);
+  }
+
+  /**
+   * Sets new limit of max collectibles for sale
+   *
+   * @param $collectiblesForSale
+   * @return Collector
+   * @todo add tests
+   */
+  public function addCollectiblesForSaleLimit($collectiblesForSale)
+  {
+    $newLimit = $collectiblesForSale < 0 ? 10000 : ($this->getItemsAllowed() + $collectiblesForSale);
+    $this->setItemsAllowed($newLimit);
+    $this->setMaxCollectiblesForSale($newLimit);
+
+    return $this;
+  }
+
+  /**
+   * Recalculates max collectibles for sale based on currently active packages
+   *
+   * @return Collector
+   *
+   * @todo add tests
+   */
+  public function updateCollectiblesForSaleLimit()
+  {
+    /* @var $activePackageTransactions PackageTransaction[] */
+    $activePackageTransactions = PackageTransactionQuery::create()
+        ->filterByCollector($this)
+        ->filterByExpiryDate(time(), Criteria::GREATER_THAN)
+        ->find()
+        ;
+
+    $collectiblesForSale = 0;
+    foreach ($activePackageTransactions as $packageTransaction)
+    {
+      if ($packageTransaction->getMaxItemsForSale() < 0)
+      {
+        $collectiblesForSale = 10000;
+        break;
+      }
+      $collectiblesForSale += $packageTransaction->getMaxItemsForSale();
+    }
+
+    $this->setMaxCollectiblesForSale($collectiblesForSale);
+
+    return $this;
   }
 
 }

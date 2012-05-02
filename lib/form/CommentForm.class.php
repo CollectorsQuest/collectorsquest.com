@@ -83,7 +83,12 @@ class CommentForm extends BaseCommentForm
     }
 
     $token = $this->getValue('token');
-    $object = self::retrieveFromToken($token);
+
+    // Stop right here if we cannot retrieve the $object
+    if (!$object = self::retrieveFromToken($token))
+    {
+      return false;
+    }
 
     $array = array('body' => IceStatic::cleanText($this->getValue('body')), 'ip_address' => $ip_adress);
 

@@ -1,1 +1,33 @@
-{  }
+ShippingRateCollector:
+  ShippingRateCollector_51:
+    collector_id: Collector_12
+    country_iso3166: GeoCountry_US
+    calculation_type: '0'
+    price_range_min: '0'
+    price_range_max: '0'
+    amount_in_cents: '0'
+    amount_in_percent: '0'
+  ShippingRateCollector_52:
+    collector_id: Collector_12
+    country_iso3166: GeoCountry_ZZ
+    calculation_type: '0'
+    price_range_min: '0'
+    price_range_max: '0'
+    amount_in_cents: '0'
+    amount_in_percent: '0'
+  ShippingRateCollector_128:
+    collector_id: Collector_870
+    country_iso3166: GeoCountry_US
+    calculation_type: '0'
+    price_range_min: '0'
+    price_range_max: '0'
+    amount_in_cents: '0'
+    amount_in_percent: '0'
+  ShippingRateCollector_129:
+    collector_id: Collector_870
+    country_iso3166: GeoCountry_ZZ
+    calculation_type: '0'
+    price_range_min: '0'
+    price_range_max: '0'
+    amount_in_cents: '0'
+    amount_in_percent: '0'

@@ -1,5 +1,5 @@
 {
-    "hash": "c2a36e916b2ef4ac93184b7aab1c8ccd",
+    "hash": "22deb025506e80e0317e9b49e8efbf3b",
     "packages": [
         {
             "package": "lib/vendor/faker",
@@ -8,7 +8,7 @@
         },
         {
             "package": "lib/vendor/magnify",
-            "version": "1.0-RC3"
+            "version": "1.0-RC5"
         },
         {
             "package": "lib/vendor/neo4jphp",
@@ -23,5 +23,6 @@
             "version": "4.0.2"
         }
     ],
+    "packages-dev": null,
     "aliases": []
 }

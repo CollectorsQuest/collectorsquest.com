@@ -11,6 +11,8 @@ $_SERVER = array(
 $_test_dir = realpath(__DIR__ .'/..');
 $_root_dir = realpath($_test_dir . '/..');
 
+define('SF_ENV', 'test');
+
 // configuration
 require_once $_root_dir . '/config/ProjectConfiguration.class.php';
 $sf_configuration = ProjectConfiguration::hasActive() ? ProjectConfiguration::getActive() : new ProjectConfiguration(realpath($_root_dir));

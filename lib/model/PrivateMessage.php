@@ -1,79 +1,62 @@
 <?php
 
-require 'lib/model/om/BasePrivateMessage.php';
-
 class PrivateMessage extends BasePrivateMessage
 {
+
   /**
-   * @param  Collector $v
-   * @return void
+   * @param     int|Collector $v
+   * @return    PrivateMessage
    */
   public function setSender($v)
   {
     if ($v instanceof Collector)
     {
-      $id = $v->getId();
-    }
-    else
-    {
-      $id = (int) $v;
+      $v = $v->getId();
     }
 
-    parent::setSender($id);
+    return parent::setSender($v);
   }
 
   /**
-   * @param  Collector $v
-   * @return void
+   * @param     int|Collector $v
+   * @return    PrivateMessage
    */
   public function setReceiver($v)
   {
     if ($v instanceof Collector)
     {
-      $id = $v->getId();
-    }
-    else
-    {
-      $id = (int) $v;
+      $v = $v->getId();
     }
 
-    parent::setReceiver($id);
+    return parent::setReceiver($v);
   }
 
   /**
-   * @param  string $v
-   * @return void
+   * @param     string $v
+   * @return    PrivateMesage
    */
   public function setSubject($v)
   {
-    parent::setSubject(strip_tags($v));
+    return parent::setSubject(strip_tags($v));
   }
 
+  /**
+   * @param     string $v
+   * @param     boolean $clean
+   * @return    PrivateMessage
+   */
   public function setBody($v, $clean = false)
   {
     $v = trim($v);
     $v = (!$this->getIsRich()) ? nl2br($v) : $v;
     $v = (true === $clean) ? IceStatic::cleanText($v, false, 'b, u, i, strong, br', $this->getIsRich() ? -1 : 0) : $v;
 
-    parent::setBody($v);
+    return parent::setBody($v);
   }
 
-  public function getCollectorRelatedBySender()
-  {
-    $c = new Criteria();
-    $c->add(CollectorPeer::ID, $this->getSender());
-
-    return CollectorPeer::doSelectOne($c);
-  }
-
-  public function getCollectorRelatedByReceiver()
-  {
-    $c = new Criteria();
-    $c->add(CollectorPeer::ID, $this->getReceiver());
-
-    return CollectorPeer::doSelectOne($c);
-  }
-
+  /**
+   * @return    string
+   */
   public function getReplySubject()
   {
     $subject = "RE: ". $this->getSubject();
@@ -86,6 +69,9 @@ class PrivateMessage extends BasePrivateMessage
     return $subject;
   }
 
+  /**
+   * @return    integer
+   */
   public function getThreadCount()
   {
     $c = new Criteria();
@@ -94,4 +80,21 @@ class PrivateMessage extends BasePrivateMessage
 
     return PrivateMessagePeer::doCount($c);
   }
+
+  /**
+   * Perform pre-save operations
+   *
+   * @param     PropelPDO $con
+   * @return    boolean
+   */
+  public function preSave(PropelPDO $con = null)
+  {
+    if (null === $this->getThread())
+    {
+      $this->setThread(PrivateMessagePeer::generateThread());
+    }
+
+    return parent::preSave($con);
+  }
+
 }

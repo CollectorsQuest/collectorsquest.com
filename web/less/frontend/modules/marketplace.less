@@ -1,0 +1,137 @@
+@import "../_variables.less";
+@import "../_mixins.less";
+
+// Market
+
+#marketplace-spotlight
+{
+	background-color: @yelloHighlight;
+	padding: 15px 0 10px 0;
+	margin-top: 20px;
+	font-size:12px;
+
+	.span4 {
+		width: 190px;
+		margin-left: 10px;
+		margin-right: 5px;
+	}
+
+	.spotlight-title {
+		.custom-font(20px, 22px, italic, bold);
+		.smooth-font();
+		padding: 0 0 10px 10px;
+		color: @blueDark;
+	}
+
+	.thumbnail {
+		.border-radius(0);
+		border-color: #c9beb1;
+		background-color: white;
+		padding: 3px 3px 10px 3px;
+
+		h4 {
+			margin: 0;
+			font-size: 12px;
+		}
+		.spotlight-thumb {
+			position: relative;
+			overflow: hidden;
+			width: 181px;
+			margin-left: 1px;
+			img {
+				margin-top: 1px;
+			}
+
+			span {
+				position: absolute;
+				top: 24px;
+				right: -32px;
+				display: block;
+				line-height: 20px;
+        text-transform: uppercase;
+				letter-spacing: 0.04em;
+        font-weight: bold;
+        font-size: 10.5px;
+				background: @blueDark;
+				color: white;
+				text-align: center;
+				.size(20px, 138px);
+				.transform(rotate(45deg));
+			}
+		}
+		.spotlight-text {
+			padding: 10px 5px 0 5px;
+			height: 108px;
+			overflow: hidden;
+			p {
+				font-size:12px;
+				margin-bottom: 0;
+			}
+		}
+		.spotlight-price {
+			text-align: right;
+			font-weight: bold;
+			color: @blueDark;
+			margin-top: 5px;
+		}
+	}
+}
+
+.featured-sellers {
+	width: 100%;
+	margin-bottom: 10px;
+
+	.spotlight-inner {
+		border: 1px solid @boxBorder;
+	}
+	.thumbnails-inner {
+		background-color: @yelloHighlight;
+		.clearfix();
+	}
+	.span2 {
+		.square(54px);
+		margin: 5px 0 4px 4px;
+	}
+	.thumbnails {
+		margin-left: 2px;
+		margin-bottom: 5px;
+
+		a {
+		.box-shadow(none);
+		&:hover {
+			padding: 3px;
+			background-color: white;
+			border: 1px solid @blue;
+			.border-radius(0);
+
+		}
+		}
+	}
+	.thumbnail {
+		border: none;
+		padding: 0;
+		&:hover img {
+			max-width: 48px;
+			max-height: 46px;
+		}
+	}
+	.seller {
+		margin: 8px 8px 7px 8px;
+
+		p {
+			margin: 2px 0;
+			line-height: 16px;
+		}
+	}
+}
+
+//Animation
+#marketplace-spotlight .thumbnail {
+	.transition(all 0.2s ease-in-out 0s);
+	&:hover {
+		.transform(scale(1.05));
+		.box-shadow(0 0 8px rgba(0, 0, 0, 0.5));
+	}
+}
+
+

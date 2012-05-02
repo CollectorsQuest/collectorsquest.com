@@ -1,15 +1,13 @@
 <?php
-  /**
-   * @var $collection Collection
-   * @var $i integer
-   */
-  use_javascript('jquery/mosaic.js');
-  use_stylesheet('frontend/mosaic.css');
+/**
+ * @var $collection Collection
+ * @var $i integer
+ */
 ?>
 
 <div id="collection_<?= $collection->getId(); ?>_grid_view"
      data-id="<?= $collection->getId(); ?>"
-     class="collection_grid_view fade-white">
+     class="collection_grid_view fade-white link">
 
   <div class="stack">
     <div class="mosaic-overlay">
@@ -19,18 +17,7 @@
         <?php echo link_to_collector($collection->getCollector(), 'text', array('style' => 'color: #000;')); ?>
       </p>
     </div>
-    <?= ice_image_tag_flickholdr('180x142', array('class' => 'mosaic-backdrop', 'i' => $i)); ?>
+    <?= ice_image_tag_flickholdr('175x138', array('class' => 'mosaic-backdrop', 'i' => $collection->getId())); ?>
     <?php link_to_collection($collection, 'image', array('class' => 'mosaic-backdrop')); ?>
   </div>
 </div>
-
-<script>
-  $(document).ready(function()
-  {
-    $('.fade-white').mosaic();
-    $(".mosaic-overlay a.target").bigTarget({
-      hoverClass: 'over',
-      clickZone : 'div:eq(0)'
-    });
-  });
-</script>

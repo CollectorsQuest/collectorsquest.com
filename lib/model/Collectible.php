@@ -90,6 +90,18 @@ class Collectible extends BaseCollectible
     return (null !== $limit) ? cqStatic::truncateText($v, (int) $limit, '...', true) : $v;
   }
 
+  public function getRelatedCollectibles($limit = 8, &$rnd_flag = false)
+  {
+    /** @var $q CollectibleQuery */
+    $q = CollectibleQuery::create()
+      ->limit($limit)
+      ->addAscendingOrderByColumn('RAND()');
+
+    $rnd_flag = true;
+
+    return $q->find();
+  }
+
   public function getRelatedCollectiblesForSale($limit = 5, &$rnd_flag = false)
   {
     /** @var $q CollectibleForSaleQuery */
@@ -97,6 +109,8 @@ class Collectible extends BaseCollectible
       ->joinWith('Collectible')
       ->limit($limit)
       ->addAscendingOrderByColumn('RAND()');
+
+    $rnd_flag = true;
 
     return $q->find();
   }
@@ -388,12 +402,14 @@ class Collectible extends BaseCollectible
        * we make sure they are not put on the job queue
        */
       $multimedia->makeThumb('150x150', 'shave', false);
-      $multimedia->makeThumb('190x150', 'shave', false);
-      $multimedia->makeThumb('485x365', 'shave', false);
+      $multimedia->makeThumb('190x190', 'shave', false);
       $multimedia->makeThumb('420x1000', 'bestfit', false);
+      $multimedia->makeThumb('620x1000', 'bestfit', false);
 
       // The rest of the thumnails are not immediately used so they can be deferred
       $multimedia->makeThumb('75x75', 'shave', $queue);
+      $multimedia->makeThumb('190x150', 'shave', $queue);
+      $multimedia->makeThumb('260x205', 'shave', $queue);
       $multimedia->makeThumb('1024x768', 'bestfit', $queue);
 
       // Here we want to create an optimized thumbnail for the homepage

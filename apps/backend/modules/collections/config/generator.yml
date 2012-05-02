@@ -35,6 +35,12 @@ generator:
         display: [name, collection_category_id]
         class: BackendCollectorCollectionFormFilter
 
+      export:
+        sort: [id, asc]
+        fields:
+          count_collectibles: { label: Collectibles }
+        display: [id, collection_category_parent, collection_category, collector, name, count_collectibles, created_at]
+
       form:
         display: [name, collection_category_id]
 

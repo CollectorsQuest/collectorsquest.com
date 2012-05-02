@@ -12,6 +12,9 @@ class cqEmailsConfig
   /** @var Twig_Environment */
   static $twig_environment;
 
+  /** @var Twig_Environment */
+  static $twig_string_environment;
+
   /**
    * @return    string
    */
@@ -52,6 +55,18 @@ class cqEmailsConfig
     }
 
     return self::$twig_environment;
+  }
+
+  public static function getTwigStringEnvironment()
+  {
+    if (null === self::$twig_string_environment)
+    {
+      self::$twig_string_environment = new Twig_Environment(new Twig_Loader_String());
+
+      self::registerSymfonyHelpers(self::$twig_string_environment);
+    }
+
+    return self::$twig_string_environment;
   }
 
   /**

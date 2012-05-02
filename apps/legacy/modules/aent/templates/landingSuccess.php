@@ -1,8 +1,8 @@
 <?php slot('slot_1'); ?>
 <div class="span-12 last" style="text-align: center; padding-top: 5px;">
-  <a href="http://www.facebook.com/pages/Collectors-Quest/119338990397" target="_blank" title="Follow Collectors' Quest on Facebook"><img src="/images/icons/facebook-follow.png" width="165" height="52" alt="Follow Collectors' Quest on Facebook"></a>
+  <a href="http://www.facebook.com/pages/Collectors-Quest/119338990397" target="_blank" title="Follow Collectors Quest on Facebook"><img src="/images/icons/facebook-follow.png" width="165" height="52" alt="Follow Collectors' Quest on Facebook"></a>
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <a href="http://twitter.com/collectorsquest" target="_blank" title="Follow Collectors' Quest on Twitter"><img src="/images/icons/twitter-follow.png" width="165" height="52" alt="Follow Collectors' Quest on Twitter"></a>
+  <a href="http://twitter.com/collectorsquest" target="_blank" title="Follow Collectors Quest on Twitter"><img src="/images/icons/twitter-follow.png" width="165" height="52" alt="Follow Collectors Quest on Twitter"></a>
 </div>
 <?php end_slot(); ?>
 
@@ -148,7 +148,7 @@
       <div style="background-color: #f5f8dd; padding: 5px;">
         <div class="box">
           <h2 style="font-size: 18px; font-weight: bold; padding-left: 15px; background: white url('/images/legacy/black-arrow.png') 0 6px no-repeat;">
-            Top Collections from Collectors’ Quest
+            Top Collections from Collectors Quest
           </h2>
           <br clear="all">
           <?php foreach ($featured as $i => $f): ?>

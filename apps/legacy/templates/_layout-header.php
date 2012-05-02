@@ -9,7 +9,7 @@
   <?php $facebook = sfConfig::get('app_credentials_facebook'); ?>
 
   <meta property="fb:app_id" content="<?= $facebook['application_id']; ?>"/>
-  <meta property="og:site_name" content="Collectors' Quest - Where Hunters Gather"/>
+  <meta property="og:site_name" content="Collectors Quest - Where Hunters Gather"/>
   <?php if ($sf_response->getCanonicalUrl()): ?>
   <meta property="og:url" content="<?php echo $sf_response->getCanonicalUrl(); ?>"/>
   <?php endif; ?>
@@ -123,7 +123,7 @@
     FB.init(
     {
       appId: '<?= $facebook['application_id']; ?>',
-      channelUrl: '//<?= sfConfig::get('app_www_domain') ?>/channel.php',
+      channelUrl: '//<?= sfConfig::get('app_www_domain') ?>/fb_xdcomm.php',
       status: true, cookie: true, xfbml: true
     });
   };

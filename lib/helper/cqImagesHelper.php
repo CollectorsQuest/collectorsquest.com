@@ -19,7 +19,7 @@ function image_tag_collector($collector, $which = '100x100', $options = array())
 {
   if (!($collector instanceof Collector))
   {
-    return image_tag('legacy/multimedia/Collector/'. $which .'.png', $options);
+    return image_tag(sfConfig::get('sf_app') .'/multimedia/Collector/'. $which .'.png', $options);
   }
 
   $options = array_merge(
@@ -32,7 +32,7 @@ function image_tag_collector($collector, $which = '100x100', $options = array())
 
   if (empty($image_tag))
   {
-    $image_tag = image_tag('legacy/multimedia/Collector/'. $which .'.png', $options);
+    $image_tag = image_tag(sfConfig::get('sf_app') .'/multimedia/Collector/'. $which .'.png', $options);
   }
 
   return $image_tag;
@@ -41,20 +41,26 @@ function image_tag_collector($collector, $which = '100x100', $options = array())
 /**
  * @param Collector $collector
  * @param string $which
+ * @param array $options
  *
  * @return null|string
  */
-function src_tag_collector($collector, $which = '100x100')
+function src_tag_collector($collector, $which = '100x100', $options = array())
 {
-  $default = '/images/legacy/multimedia/Collector/'. $which .'.png';
+  $default = '/images/'. sfConfig::get('sf_app') .'/multimedia/Collector/'. $which .'.png';
 
   if (!($collector instanceof Collector))
   {
+    if (isset($options['absolute']) && true === $options['absolute'])
+    {
+      $default = sfConfig::get('app_cq_multimedia_domain') . $default;
+    }
+
     return $default;
   }
 
   $multimedia = $collector->getPhoto();
-  $src_tag = src_tag_multimedia($multimedia, $which);
+  $src_tag    = src_tag_multimedia($multimedia, $which, $options);
 
   if (empty($src_tag))
   {
@@ -79,7 +85,7 @@ function image_tag_collection($collection, $which = '150x150', $options = array(
 {
   if (is_null($collection) || !($collection instanceof Collection))
   {
-    return image_tag('legacy/multimedia/'. get_class($collection) .'/'. $which .'.png');
+    return image_tag(sfConfig::get('sf_app') .'/multimedia/'. get_class($collection) .'/'. $which .'.png');
   }
 
   $options = array_merge(
@@ -92,7 +98,7 @@ function image_tag_collection($collection, $which = '150x150', $options = array(
 
   if (empty($image_tag))
   {
-    $image_tag = image_tag('legacy/multimedia/'. get_class($collection) .'/'. $which .'.png', $options);
+    $image_tag = image_tag(sfConfig::get('sf_app') .'/multimedia/'. get_class($collection) .'/'. $which .'.png', $options);
   }
 
   return $image_tag;
@@ -109,8 +115,23 @@ function image_tag_collection($collection, $which = '150x150', $options = array(
  *
  * @return string
  */
-function image_tag_collectible($collectible, $which = '150x150', $options = array())
+function image_tag_collectible($collectible, $which = null, $options = array())
 {
+  if ($which === null)
+  {
+    switch (sfConfig::get('sf_app'))
+    {
+      case 'frontend':
+        $which = '190x150';
+        break;
+
+      case 'legacy':
+      default:
+        $which = '150x150';
+        break;
+    }
+  }
+
   $default = sfConfig::get('sf_app') . '/multimedia/Collectible/'. $which .'.png';
 
   if ($collectible instanceof CollectionCollectible)
@@ -129,13 +150,6 @@ function image_tag_collectible($collectible, $which = '150x150', $options = arra
   );
 
   $multimedia = $collectible->getMultimedia(true);
-
-  // A special case for the times when the $which size does not exist
-  if ($multimedia && !$multimedia->fileExists($which))
-  {
-    $multimedia->makeThumb($which, 'shave');
-  }
-
   $image_tag = image_tag_multimedia($multimedia, $which, $options);
 
   if (empty($image_tag))
@@ -159,7 +173,7 @@ function src_tag_collectible($collectible, $which = '150x150')
 
   if (empty($src_tag))
   {
-    $src_tag = '/images/legacy/multimedia/Collectible/'. $which .'.png';
+    $src_tag = '/images/'. sfConfig::get('sf_app') .'/multimedia/Collectible/'. $which .'.png';
   }
 
   return $src_tag;
@@ -230,20 +244,13 @@ function src_tag_multimedia($multimedia, $which, $options = array())
     return null;
   }
 
-  if (!$multimedia->fileExists($which))
-  {
-    $src = 'legacy/multimedia/'. $multimedia->getModel() .'/'. $which .'.png';
-  }
-  else
-  {
-    $src = sprintf(
-      '%s/%s/%s/%s-%d.%s?%d',
-      sfConfig::get('app_cq_multimedia_domain'),
-      $multimedia->getType(), $which,
-      (!empty($options['slug'])) ? $options['slug'] : strtolower($multimedia->getModel()),
-      $multimedia->getId(), $multimedia->getFileExtension(), $multimedia->getUpdatedAt('U')
-    );
-  }
+  $src = sprintf(
+    '%s/%s/%s/%s-%d.%s?%d',
+    sfConfig::get('app_cq_multimedia_domain'),
+    $multimedia->getType(), $which,
+    (!empty($options['slug'])) ? $options['slug'] : strtolower($multimedia->getModel()),
+    $multimedia->getId(), $multimedia->getFileExtension(), $multimedia->getUpdatedAt('U')
+  );
 
   return $src;
 }

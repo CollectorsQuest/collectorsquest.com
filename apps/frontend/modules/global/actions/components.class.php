@@ -14,7 +14,17 @@ class globalComponents extends cqFrontendComponents
     return sfView::SUCCESS;
   }
 
+  public function executeBreadcrumbs()
+  {
+    return sfView::SUCCESS;
+  }
+
   public function executeSidebar120()
+  {
+    return sfView::SUCCESS;
+  }
+
+  public function executeSidebar160()
   {
     return sfView::SUCCESS;
   }
@@ -34,7 +44,7 @@ class globalComponents extends cqFrontendComponents
     /** @var $pager sfPropelPager */
     $pager = $this->getVar('pager');
 
-    if (!$pager instanceof sfPager) {
+    if (!$pager instanceof sfPager && !$pager instanceof PropelModelPager) {
       return sfView::NONE;
     }
 
@@ -44,26 +54,35 @@ class globalComponents extends cqFrontendComponents
     $options['title'] = (!empty($options['title']) && stripos($options['title'], '%d')) ? $options['title'] : __('Page %d');
     $options['page_param'] = @$options['page_param'] ?: 'page';
 
-    // Remove any "page=\d+" from the URL
-    $options['url'] = preg_replace(
-      '/(\?|&)?' . $options['page_param'] . '=\d+/iu', '',
-      @$options['url'] ?: $this->getRequest()->getUri()
-    );
+    $url          = isset($options['url']) ? $options['url'] : $this->getRequest()->getUri();
+    $questionMark = strpos($url, '?');
+    $params       = array();
+    if (false !== $questionMark)
+    {
+      $queryStr = substr($url, $questionMark + 1);
+      $url      = substr($url, 0, $questionMark);
+      foreach (explode('&', $queryStr) as $param)
+      {
+        $item = explode('=', $param);
+        //Remove any 'page' and 'show' keys
+        if (in_array($item[0], array($options['page_param'], 'show')))
+        {
+          continue;
+        }
+        $params[$item[0]] = $item[1];
+      }
+    }
 
-    // Remove any "show=all" from the URL
-    $options['url'] = preg_replace(
-      '/(\?|&)show=all(\?|&|$)/iu', '$1',
-      @$options['url'] ?: $this->getRequest()->getUri()
-    );
-
-    $options['url'] = rtrim($options['url'], '?&');
-    $options['url'] .= (strpos($options["url"], '?') !== false) ? '&' : '?';
+    $url .= '?' . http_build_query($params);
+    $mark = !empty($params) ? '&' : '';
 
     // Set a unique div ID if not provided
-    $options['id'] = !empty($options['id']) ? $options['id'] : 'pagination-'. md5($options['url']);
+    $options['id'] = !empty($options['id']) ? $options['id'] : 'pagination-'. md5($url);
 
     $this->pager   = $pager;
     $this->options = $options;
+    $this->url = $url;
+    $this->mark = $mark;
 
     return sfView::SUCCESS;
   }
@@ -73,6 +92,11 @@ class globalComponents extends cqFrontendComponents
     $this->signup_form = new CollectorSignupFooterForm();
     $this->login_form  = new CollectorLoginForm();
 
+    return sfView::SUCCESS;
+  }
+
+  public function executeEmpty()
+  {
     return sfView::SUCCESS;
   }
 }

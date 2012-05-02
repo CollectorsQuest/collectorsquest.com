@@ -74,11 +74,11 @@
             "type": "package",
             "package": {
                 "name": "lib/vendor/magnify",
-                "version": "1.0-RC3",
+                "version": "1.0-RC5",
                 "source": {
-                    "url": "git://github.com/zecho/magnify-sdk.git",
+                    "url": "git://github.com/CollectorsQuest/magnify-sdk.git",
                     "type": "git",
-                    "reference": "3103249adeeeae860090f0ca7b3a20f7dfefca0b"
+                    "reference": "122399d5a03131fba3cc5d994004522c8fc9359a"
                 }
             }
         }
@@ -88,6 +88,6 @@
         "lib/vendor/neo4jphp": "0.0.7",
         "lib/vendor/faker": "master-dev",
         "lib/vendor/twig": "1.6.2",
-        "lib/vendor/magnify": "1.0-RC3"
+        "lib/vendor/magnify": "1.0-RC5"
     }
 }

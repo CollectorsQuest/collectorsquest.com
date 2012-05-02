@@ -1,7 +1,7 @@
 <?php /* @var $field sfFormField */ ?>
 <h2 style="text-align: center;">Find the Best of What People are Collecting.</h2>
-<p style="margin-left: 10px;">Sign up with <strong>Collectors' Quest</strong> for regular updates about the neatest new collectibles, as well as in-depth information about collecting classic items.</p>
-<p style="margin-left: 10px;"><strong>Collectors' Quest</strong> is your one-stop shop to find out about the things you don't want to miss out on, from vintage ephemera and art to the coolest new superhero stuff. Follow the most current collecting trends and find out what your fellow collectors are passionate about by becoming part of our growing community!</p>
+<p style="margin-left: 10px;">Sign up with <strong>Collectors Quest</strong> for regular updates about the neatest new collectibles, as well as in-depth information about collecting classic items.</p>
+<p style="margin-left: 10px;"><strong>Collectors Quest</strong> is your one-stop shop to find out about the things you don't want to miss out on, from vintage ephemera and art to the coolest new superhero stuff. Follow the most current collecting trends and find out what your fellow collectors are passionate about by becoming part of our growing community!</p>
 <form action="" method="post">
   <?php echo $form->renderHiddenFields() ?>
   <?php foreach ($form as $name => $field): ?>

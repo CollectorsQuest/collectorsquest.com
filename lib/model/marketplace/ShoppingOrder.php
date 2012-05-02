@@ -27,7 +27,7 @@ class ShoppingOrder extends BaseShoppingOrder
    */
   public function getCollectibleForSale(PropelPDO $con = null)
   {
-    $this->getCollectible($con)->getCollectibleForSale($con);
+    return $this->getCollectible($con)->getCollectibleForSale($con);
   }
 
   /**
@@ -43,14 +43,22 @@ class ShoppingOrder extends BaseShoppingOrder
     return $q->findOne($con);
   }
 
-  public function getTotalAmount()
-  {
-    return $this->getShoppingCartCollectible()->getPriceAmount();
-  }
-
   public function getCurrency()
   {
     return $this->getShoppingCartCollectible()->getPriceCurrency();
+  }
+
+  public function getTotalAmount()
+  {
+    return bcadd(
+      $this->getCollectiblesAmount(),
+      $this->getShippingFeeAmount()
+    );
+  }
+
+  public function getCollectiblesAmount()
+  {
+    return $this->getShoppingCartCollectible()->getPriceAmount();
   }
 
   public function getShippingFeeAmount()
@@ -63,6 +71,16 @@ class ShoppingOrder extends BaseShoppingOrder
     return $this->getShoppingCartCollectible()->getDescription();
   }
 
+  public function setShippingAddress(CollectorAddress $address)
+  {
+    $this->setShippingFullName($address->getFullName());
+    $this->setShippingAddressLine1($address->getAddressLine1());
+    $this->setShippingAddressLine2($address->getAddressLine2());
+    $this->setShippingCity($address->getCity());
+    $this->setShippingStateRegion($address->getStateRegion());
+    $this->setShippingZipPostcode($address->getZipPostcode());
+    $this->setShippingCountryIso3166($address->getCountryIso3166());
+  }
 
   public function getPaypalPayRequestFields()
   {
@@ -95,7 +113,7 @@ class ShoppingOrder extends BaseShoppingOrder
       // Sender's geographic location
       'GeoLocation' => '',
       // A sub-identification of the application.  127 char max.
-      'Model' => '',
+      'Model' => 'Order',
       // Your organization's name or ID
       'PartnerName' => 'Collectors Quest, Inc.'
     );
@@ -108,7 +126,7 @@ class ShoppingOrder extends BaseShoppingOrder
     $Receivers = array();
     $Receiver = array(
       // Required.  Amount to be paid to the receiver.
-      'Amount' => $this->getTotalAmount() + $this->getShippingFeeAmount(),
+      'Amount' => $this->getTotalAmount(),
       // Receiver's email address. 127 char max.
       'Email' => 'kangov_1327417143_biz@collectorsquest.com',
       // The invoice number for the payment.  127 char max.

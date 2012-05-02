@@ -5,24 +5,35 @@ ajax_typeahead:
   param: { module: ajax, action: typeAhead }
   requirements: { sf_method: [GET], sf_format: json }
 
+ajax_collections:
+  url:   /ajax/collection/:section/:page.:sf_format
+  param: { module: ajax, action: collections, sf_format: html }
+  options: { extra_parameters_as_query_string: true }
+  requirements: { sf_format: (?:html|json) }
+
 ### A&E
 
-aent_landing:
+aetn_landing:
   url: /history
   param: { module: aent, action: landing }
   requirements: { sf_method: [GET] }
 
-aent_pawn_stars:
-  url: /history/pawn-stars
-  param: { module: aent, action: pawnStars }
-  requirements: { sf_method: [GET] }
-
-aent_american_pickers:
+aetn_american_pickers:
   url: /history/american-pickers
   param: { module: aent, action: americanPickers }
   requirements: { sf_method: [GET] }
 
-aent_collectible_by_slug:
+aetn_pawn_stars:
+  url: /history/pawn-stars
+  param: { module: aent, action: pawnStars }
+  requirements: { sf_method: [GET] }
+
+aetn_storage_wars:
+  url: /history/storage-wars
+  param: { module: aent, action: storageWars }
+  requirements: { sf_method: [GET] }
+
+aetn_collectible_by_slug:
   url:  /aetn/collectible/:id/:slug
   class: cqPropelRoute
   options: { model: Collectible, type: object, method: getObjectForRoute }
@@ -34,6 +45,10 @@ aent_collectible_by_slug:
 collections:
   url:   /collections
   param: { module: collections, action: index }
+
+collection_create:
+  url:   /collection/create
+  param: { module: collection, action: create }
 
 collection_by_slug:
   url:  /collection/:id/:slug
@@ -63,9 +78,6 @@ collections_by_collector:
   param: { module: collections, action: index }
   requirements: { collector_id: '\d+', collector_slug: '[\-\w\.]+' }
 
-collections_categories:
-  url:  /collections/categories
-  param: { module: collections, action: categories }
 
 ### COLLECTORS
 
@@ -170,12 +182,16 @@ news:
   url:   /news
   param: { module: news, action: index }
 
+blog:
+  url:   /blog
+  param: { module: _blog, action: index }
+
 
 ### VIDEO
 
 video:
   url:   /video
-  param: { module: video, action: index }
+  param: { module: _video, action: index }
 
 
 ### MARKETPLACE
@@ -228,6 +244,7 @@ shopping_order_shipping:
   class: sfPropelRoute
   options: { model: ShoppingOrder, type: object }
   param: { module: shopping, action: orderShipping }
+  requirements: { sf_method: [get, post] }
 
 shopping_order_pay:
   url: /order/:uuid/pay
@@ -261,6 +278,23 @@ manage_shopping_orders:
   param: { module: manage, action: shoppingOrders }
 
 
+### SELLER
+
+seller_packages:
+  url:   /seller/packages
+  param: { module: seller, action: packages }
+
+seller_cancel_payment:
+  url: /seller/payment/cancel/:id
+  param: { module: seller, action: cancelPayment }
+  requirements: { id: '\d+' }
+
+seller_callback_ipn:
+  url: /seller/ipn
+  param: { module: seller, action: callbackIPN }
+  options: { extra_parameters_as_query_string: true }
+  requirements: { sf_method: [POST]}
+
 ### TAGS
 
 tag:
@@ -275,6 +309,47 @@ tags:
 tags_index:
   url:   /tags
   param: { module: tags, action: index }
+
+
+### CONTENT CATEGORIES
+
+content_category:
+  url:  /category/:id/:slug
+  class: cqPropelRoute
+  options: { model: CollectionCategory, type: object, method: getObjectForRoute }
+  param: { module: categories, action: category }
+  requirements: { id: '\d+', slug: '[\-\w\.]+' }
+
+content_categories:
+  url:  /categories
+  param: { module: categories, action: index }
+
+
+### MESSAGES
+
+messages_inbox:
+  url:    /messages/inbox/:filter
+  param:  { module: messages, action: inbox, filter: all }
+  requirements: { filter: "^(?|all|read|unread)$" }
+
+messages_sent:
+  url:    /messages/sent
+  param:  { module: messages, action: sent, filter: all }
+
+messages_show:
+  url:    /messages/:thread/show
+  class:  sfPropelORMRoute
+  param:  { module: messages, action: show }
+  options: { model: PrivateMessage, type: object }
+  requirements: { thread: "\w{32}" }
+
+messages_compose:
+  url:    /messages/compose
+  param:  { module: messages, action: compose }
+
+messages_batch_actions:
+  url:   /messages/batch-actions
+  param: { module: messages, action: batchActions }
 
 
 ### GENERAL

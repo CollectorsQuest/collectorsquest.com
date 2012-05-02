@@ -1,0 +1,16 @@
+all:
+  stylesheets:
+    - frontend/modules/aetn.css
+    - frontend/modules/collections.css
+
+americanPickersSuccess:
+  components:
+    sidebar_300: [aent, sidebarAmericanPickers]
+
+pawnStarsSuccess:
+  components:
+    sidebar_300: [aent, sidebarPawnStars]
+
+collectibleSuccess:
+  components:
+    sidebar_300: [aent, sidebarCollectible]

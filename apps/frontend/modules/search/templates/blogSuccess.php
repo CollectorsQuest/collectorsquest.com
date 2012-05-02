@@ -15,10 +15,13 @@
   $title = sprintf(
     'for <strong>%s</strong> (%s)',
     $sf_params->get('q'),
-    format_number_choice('[0] no result|[1] 1 result|(1,+Inf] %1% results', array('%1%' => $pager->getNbResults()), $pager->getNbResults())
+    format_number_choice(
+      '[0] no results|[1] 1 result|(1,+Inf] %1% results',
+      array('%1%' => $pager->getNbResults()), $pager->getNbResults()
+    )
   );
 ?>
-<h1>Blog Articles <small><?= $title; ?></small></h1>
+<h1 class="Chivo webfont">Blog Articles <small><?= $title; ?></small></h1>
 
 <div id="search-results">
   <div class="row-fluid">
@@ -39,10 +42,9 @@
 </div>
 
 <div class="row-fluid" style="text-align: center;">
-  <?php
+<?php
   include_component(
-    'global', 'pagination',
-    array('pager' => $pager, 'options' => array('id' => 'search-pagination'))
+    'global', 'pagination', array('pager' => $pager)
   );
-  ?>
+?>
 </div>

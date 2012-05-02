@@ -4,73 +4,86 @@ class aentActions extends cqFrontendActions
 {
   public function executeIndex()
   {
-    $this->redirect('@aent_landing', 302);
+    $this->redirect('@aetn_landing', 302);
   }
 
   public function executeLanding()
   {
-    $pawn_stars = sfConfig::get('app_aent_pawn_stars');
-    $american_pickers = sfConfig::get('app_aent_american_pickers');
-
-    $q = CollectibleQuery::create()
-       ->setDistinct()
-       ->filterByCollectorId($pawn_stars['collector'])
-       ->filterByCollectionId($pawn_stars['collection'])
-       ->orderById(Criteria::ASC);
-    $ps_collectibles = $q->find();
-
-    $q = CollectibleQuery::create()
-       ->setDistinct()
-       ->filterByCollectorId($american_pickers['collector'])
-       ->filterByCollectionId($american_pickers['collection'])
-       ->orderById(Criteria::ASC);
-    $ap_collectibles = $q->find();
-
-    $collectible = array();
-    $collectible[1] = $ps_collectibles[3];
-    $collectible[2] = $ps_collectibles[1];
-    $collectible[3] = $ps_collectibles[2];
-
-    $collectible[4] = $ap_collectibles[1];
-    $collectible[5] = $ap_collectibles[0];
-    $collectible[6] = $ap_collectibles[8];
-
-    $collectibles = array();
-    $collectibles[1] = array($ps_collectibles[0], $ps_collectibles[6]);
-    $collectibles[2] = array($ps_collectibles[7], $ps_collectibles[8]);
-    $collectibles[3] = array($ps_collectibles[4], $ps_collectibles[5]);
-
-    $collectibles[4] = array($ap_collectibles[2], $ap_collectibles[3]);
-    $collectibles[5] = array($ap_collectibles[5], $ap_collectibles[4]);
-    $collectibles[6] = array($ap_collectibles[6], $ap_collectibles[7]);
-
-    $this->featured = CollectibleQuery::create()->filterById(
-      array(3964, 11789, 9305, 5342, 13721, 15667, 46313, 8932), Criteria::IN
-    )->find();
-
-    $this->featured_texts = array(
-      0 => "50's and 60's Pop Culture",
-      1 => 'Historic Antiques',
-      2 => 'Vintage Star Wars Action Figures',
-      3 => 'Vintage Lunchboxes',
-      4 => 'Dinosaur Dioramas',
-      5 => 'Vintage Camera',
-      6 => 'Blaction - Black Action Figures',
-      7 => '9/11 Memorabilia'
-    );
-
-    $this->collectible = $collectible;
-    $this->collectibles = $collectibles;
-
     return sfView::SUCCESS;
   }
 
   public function executeAmericanPickers()
   {
+    $american_pickers = sfConfig::get('app_aetn_american_pickers');
+
+    $q = CollectibleQuery::create()
+      ->distinct()
+      ->filterByCollectorId($american_pickers['collector'])
+      ->filterByCollectionId($american_pickers['collection'])
+      ->orderById(Criteria::ASC);
+    $this->collectibles = $q->find();
+
+    $collectible_ids = array(
+      56402, 56180, 56206, 56090, 56398, 56091,
+      56663, 56680, 56599, 56094, 23304, 56859,
+      56540, 56759, 56761, 22184, 56063, 56760,
+      56544, 56590, 56596, 56593, 56591, 56598,
+      56175, 56028, 56534, 56030, 56616, 56618,
+      56395, 56622, 11132, 56035, 56619, 56034,
+      56762, 56382, 56757, 23705, 56381, 51400,
+      56784, 23054, 56400, 56753, 20207, 56393,
+      56753, 56681, 56380, 51391, 56664, 56662,
+    );
+    shuffle($collectible_ids);
+
+    /** @var $q CollectibleForSaleQuery */
+    $q = CollectibleForSaleQuery::create()
+      ->filterByCollectibleId($collectible_ids, Criteria::IN)
+      ->joinWith('Collectible')->useQuery('Collectible')->endUse()
+      ->limit(8)
+      ->addAscendingOrderByColumn('FIELD(collectible_id, '. implode(',', $collectible_ids) .')');
+    $this->collectibles_for_sale = $q->find();
+
     return sfView::SUCCESS;
   }
 
   public function executePawnStars()
+  {
+    $pawn_stars = sfConfig::get('app_aetn_pawn_stars');
+
+    $q = CollectibleQuery::create()
+      ->distinct()
+      ->filterByCollectorId($pawn_stars['collector'])
+      ->filterByCollectionId($pawn_stars['collection'])
+      ->orderById(Criteria::ASC);
+    $this->collectibles = $q->find();
+
+    $collectible_ids = array(
+      56600, 56597, 56543, 56088, 56396, 56393,
+      56599,  2308, 56600, 56545, 56189, 56676,
+      56210, 22181, 56509, 56065, 56063, 56029,
+      55530, 56579, 33493, 56573, 15630, 56577,
+      56078, 56081, 56528, 56514, 56530, 56080,
+      28379, 56403, 56262, 56195, 23662, 56263,
+      56684, 56214, 56630, 56077, 56684, 56632,
+      56541, 56388, 56186, 56075, 56072, 56074,
+      56079, 56082, 56103, 56066, 56371, 56213,
+      56684, 56683, 56761, 56661,
+    );
+    shuffle($collectible_ids);
+
+    /** @var $q CollectibleForSaleQuery */
+    $q = CollectibleForSaleQuery::create()
+      ->filterByCollectibleId($collectible_ids, Criteria::IN)
+      ->joinWith('Collectible')->useQuery('Collectible')->endUse()
+      ->limit(8)
+      ->addAscendingOrderByColumn('FIELD(collectible_id, '. implode(',', $collectible_ids) .')');
+    $this->collectibles_for_sale = $q->find();
+
+    return sfView::SUCCESS;
+  }
+
+  public function executeStorageWars()
   {
     return sfView::SUCCESS;
   }
@@ -83,32 +96,21 @@ class aentActions extends cqFrontendActions
     /** @var $collection Collection */
     $collection = $collectible->getCollection();
 
+    $american_pickers = sfConfig::get('app_aetn_american_pickers');
+    $pawn_stars = sfConfig::get('app_aetn_pawn_stars');
+    $storage_wars = sfConfig::get('app_aetn_storage_wars');
+
+    if ($collection->getId() === $american_pickers['collection']) {
+      $this->brand = 'American Pickers';
+    } else if ($collection->getId() === $pawn_stars['collection']) {
+      $this->brand = 'Pawn Stars';
+    } else if ($collection->getId() === $storage_wars['collection']) {
+      $this->brand = 'Storage Wars';
+    }
+
+    $this->related_collectibles = $collectible->getRelatedCollectibles(8);
     $this->collectible = $collectible;
-
-    $this->loadHelpers('cqLinks');
-
-    // Building the breadcrumbs
-    $this->addBreadcrumb($this->__('Collections'), '@collections');
-    $this->addBreadcrumb($collection->getName(), route_for_collection($collection), array('limit' => 38));
-    $this->addBreadcrumb(
-      $collectible->getName(), null,
-      array(
-        'id' => 'collectible_' . $collectible->getId() . '_name',
-        'class' => ($this->getCollector()->isOwnerOf($collectible)) ? 'editable_h1' : ''
-      )
-    );
-
-    // Building the title
-    $this->prependTitle($collection->getName());
-    $this->prependTitle($collectible->getName());
-
-    // Building the meta tags
-    $this->getResponse()->addMeta('description', $collectible->getDescription('stripped'));
-    $this->getResponse()->addMeta('keywords', $collectible->getTagString());
-
-    // Setting the Canonical URL
-    $this->loadHelpers(array('cqLinks'));
-    $this->getResponse()->setCanonicalUrl(url_for_collectible($collectible, true));
+    $this->collection = $collection;
 
     return sfView::SUCCESS;
   }

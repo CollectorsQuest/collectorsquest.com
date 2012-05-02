@@ -1,0 +1,123 @@
+@import "bootstrap/utilities.less";
+
+.dn {
+  display: none;
+}
+
+div.over {
+  cursor: pointer;
+}
+
+.rounded {
+  .border-radius(7px);
+}
+
+.v-center-container {
+  display: table;
+}
+
+.v-center-container-label {
+  display: table !important;
+  width: 71px !important;
+  height: 28px;
+}
+
+.v-center {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-v-middle {
+  vertical-align: middle;
+}
+
+// Resets
+.row-spacing {
+  margin: 7px 0;
+  &-double {
+    margin: 12px 0;
+  }
+}
+
+.top-margin {
+  margin-top: 10px;
+  &-double {
+    margin-top: 20px;
+  }
+}
+
+.bottom-margin {
+  margin-bottom: 10px;
+  &-double {
+    margin-bottom: 20px;
+  }
+}
+
+.top-padding {
+  padding-top: 7px;
+		&-10 {
+		  padding-top: 10px;
+		}
+		&-double {
+		  padding-top: 15px;
+		}
+}
+
+.bottom-padding {
+  padding-bottom: 10px;
+  &-double {
+    padding-bottom: 20px;
+  }
+}
+
+.t-b-margin {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	&-35 {
+	margin-top: 35px;
+	margin-bottom: 35px;
+	}
+}
+
+.spacing-left {
+  margin-left: 10px;
+}
+
+//column list
+.twocolumn ul {
+  margin-left: 0;
+  margin-bottom: 0;
+  list-style-type: none;
+
+  li a {
+    font-size: 12px;
+  }
+}
+
+.csscolumns .twocolumn {
+  -moz-column-count: 2;
+  -moz-column-gap: 10px;
+  -webkit-column-count: 2;
+  -webkit-column-gap: 10px;
+  column-count: 2;
+  column-gap: 10px;
+}
+
+.no-csscolumns .twocolumn ul li {
+  width: 50%;
+  line-height: 1.5em;
+  float: left;
+  display: inline;
+}

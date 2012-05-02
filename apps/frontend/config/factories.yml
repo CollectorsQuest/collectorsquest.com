@@ -43,7 +43,7 @@ all:
     class: cqMailer
     param:
       delivery_strategy: single_address
-      delivery_address:  developers@collectorsquest.com
+      delivery_address:  ysimeonoff@collectorsquest.com
       charset: UTF-8
       transport:
         class: Swift_SmtpTransport

@@ -62,11 +62,13 @@ class cqEmail
     }
 
     $rendered_template = $template->render($options['params']);
+    $rendered_subject = cqEmailsConfig::getTwigStringEnvironment()
+      ->render($options['subject'], $options['params']);
 
     $message = Swift_Message::newInstance()
       ->setFrom($options['from'])
       ->setTo($options['to'])
-      ->setSubject($options['subject'])
+      ->setSubject($rendered_subject)
       ->setCharset('UTF-8')
       ->addPart(strip_tags($rendered_template), 'text/plain')
       ->addPart($rendered_template, 'text/html');

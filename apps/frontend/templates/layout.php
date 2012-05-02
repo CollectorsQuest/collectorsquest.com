@@ -1,9 +1,13 @@
 <?php
-/**
- * @var  $sf_user     cqFrontendUser
- * @var  $sf_params   sfParameterHolder
- * @var  $sf_context  sfContext
- */
+  /**
+   * @var  $sf_user     cqFrontendUser
+   * @var  $sf_params   sfParameterHolder
+   * @var  $sf_context  sfContext
+   */
+
+  /** @var $sf_cache_key string */
+  $sf_cache_key  = (int) $sf_user->getId() .'_';
+  $sf_cache_key .= $sf_user->isAuthenticated() ? 'authenticated' : 'not_authenticated';
 ?>
 <!doctype html>
 <!--[if lt IE 7 ]><html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#" lang="en" class="no-js lt-ie9 lt-ie8 lt-ie7"><![endif]-->
@@ -12,6 +16,8 @@
 <!--[if gt IE 8]><!--><html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#" lang="en" class="no-js"><!--<![endif]-->
 <head>
   <?php include_partial('global/head'); ?>
+
+  <!-- Blog Head //-->
 </head>
 <body id="<?= 'body-'. $sf_params->get('module') .'-'. $sf_params->get('action'); ?>" data-controller="<?= $sf_params->get('module'); ?>" data-action="<?= $sf_params->get('action'); ?>">
   <div id="fb-root"></div>
@@ -21,7 +27,7 @@
       FB.init(
       {
         appId: '',
-        channelUrl: '//<?= sfConfig::get('app_www_domain') ?>/channel.php',
+        channelUrl: '//<?= sfConfig::get('app_www_domain') ?>/fb_xdcomm.php',
         status: true, cookie: true, xfbml: true
       });
     };
@@ -36,16 +42,35 @@
   </script>
 
   <?php
-    include_component_slot('header');
+    include_component_slot('header', array(
+      'q' => $sf_params->get('q'),
+      'k' => $sf_user->getShoppingCartCollectiblesCount(),
+      'sf_cache_key' => $sf_cache_key .'-'. md5(serialize(array($sf_params->get('q'), $sf_user->getShoppingCartCollectiblesCount())))
+    ));
 
-    echo '<div id="slot1">';
-      include_component_slot('slot1');
-    echo '</div>';
+    if (has_component_slot('breadcrumbs'))
+    {
+      echo '<div id="breadcrumbs">';
+        include_component_slot('breadcrumbs');
+      echo '</div>';
+    }
+
+    if (has_component_slot('slot1'))
+    {
+      echo '<div id="slot1">';
+        include_component_slot('slot1', array('sf_cache_key' => $sf_cache_key));
+      echo '</div>';
+    }
 
     if (has_component_slot('sidebar_120'))
     {
       $sidebar = 'sidebar_120';
       echo '<div id="content" class="container-fluid fixed-right-120">';
+    }
+    else if (has_component_slot('sidebar_160'))
+    {
+      $sidebar = 'sidebar_160';
+      echo '<div id="content" class="container-fluid fixed-right-160">';
     }
     else if (has_component_slot('sidebar_180'))
     {
@@ -77,20 +102,16 @@
     if (null !== $sidebar)
     {
       echo '<div id="sidebar">';
-      include_component_slot($sidebar);
+      include_component_slot($sidebar, array('sf_cache_key' => $sf_cache_key));
       echo '</div>';
     }
     echo '</div>';
   ?>
 
   <?php
-    include_component_slot('footer');
+    include_component_slot('footer', array('sf_cache_key' => $sf_cache_key));
     include_partial('global/footer_links');
-  ?>
-
-  <?php
-    $sf_cache_key  = (int) $sf_user->getId() .'_';
-    $sf_cache_key .= $sf_user->isAuthenticated() ? 'authenticated' : 'not_authenticated';
+    include_component('ajax', 'loginPopup');
 
     // Include the global javascripts
     include_partial('global/javascripts', array('sf_cache_key' => $sf_cache_key));
@@ -101,6 +122,8 @@
       include_partial('global/ad_slots', array('slots' => $slots));
     }
   ?>
+
+  <!-- Blog Footer //-->
 
   <?php
     cqStats::timing(

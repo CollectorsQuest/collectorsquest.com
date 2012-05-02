@@ -1,58 +1,90 @@
-<? cq_page_title('Market') ?>
+<?php cq_page_title('Market'); ?>
 
-<br/>
-<div class="row-fluid" id="marketplace-spotlight" style="background: #FEF8E0; margin-left: 0; overflow: hidden;">
-  <h2 class="Chivo webfont" style="font-size: 20px; font-style: italic; color: #125276; line-height: 46px; padding-left: 15px;">
+<div class="row-fluid" id="marketplace-spotlight">
+  <h2 class="spotlight-title Chivo webfont">
     Spotlight on items from the Civil War
   </h2>
   <?php foreach ($spotlight as $i => $collectible_for_sale): ?>
-  <div class="span4" style="width: 31%; <?= ($i == 0) ?: 'margin-left: 10px;'; ?>">
-    <div class="thumbnail" style="background: white; border: 1px solid #C8BEB2;">
-      <?= ice_image_tag_placeholder('260x260', array(), 1) ?>
-      <h4 style="margin: 5px auto;"><?= link_to_collectible($collectible_for_sale->getCollectible(), 'text', array('class' => 'target')); ?></h4>
-      <p><?= $collectible_for_sale->getCollectible()->getDescription('stripped', 255); ?></p>
-      <div style="float: right; color: #cc0000; font-weight: bold; font-size: 130%; margin: 5px;">
-        <?= money_format('%.2n', (float) $collectible_for_sale->getPrice()); ?>
+  <div class="span4 link">
+    <div class="thumbnail">
+      <div class="spotlight-thumb">
+        <?php
+          echo image_tag_collectible(
+            $collectible_for_sale->getCollectible(), '190x190',
+            array('width' => 180, 'height' => 180)
+          );
+        ?>
+        <span>Affordable</span>
       </div>
-      <br/><br/>
+      <div class="spotlight-text">
+        <h4><?= link_to_collectible($collectible_for_sale->getCollectible(), 'text', array('class' => 'target')); ?></h4>
+        <p><?= $collectible_for_sale->getCollectible()->getDescription('stripped', 120); ?></p>
+      </div>
+      <div class="spotlight-price">
+        <?= money_format('%.2n', (float) $collectible_for_sale->getPrice()); ?>&nbsp;&nbsp;
+      </div>
     </div>
   </div>
   <?php endforeach; ?>
-  <div class="span12">&nbsp;</div>
 </div>
 
 <br/>
-<?= link_to(image_tag('banners/040412_show_and_sell_red.gif'), '@collector_signup'); ?>
+<div class="banners-620">
+  <?= link_to(image_tag('banners/040412_show_and_sell_red.gif'), '@collector_signup'); ?>
+</div>
 
-<? cq_section_title('Discover more items for sale', link_to('see the marketplace', '@marketplace')); ?>
-<div class="row">
-  <div id="collectibles" class="row-content">
-    <?php
-    /** @var $collectible_for_sale CollectibleForSale */
-    foreach ($collectibles as $i => $collectible_for_sale)
-    {
-      echo '<div class="span4">';
-      // Show the collectible (in grid, list or hybrid view)
-      include_partial(
-        'collection/collectible_for_sale_grid_view',
-        array(
-          'collectible_for_sale' => $collectible_for_sale,
-          'culture' => (string) $sf_user->getCulture(),
-          'i' => (int) $i
-        )
-      );
-      echo '</div>';
-    }
-    ?>
+<?php cq_section_title('Discover more items for sale'); ?>
+
+<div id="sort-search-box">
+  <div class="input-append">
+    <form action="" method="post">
+      <div class="btn-group">
+        <div class="append-left-gray">Sort By <strong id="sortByName">All Prices</strong></div>
+        <a href="#" data-toggle="dropdown" class="btn gray-button dropdown-toggle">
+          <span class="caret arrow-up"></span><br><span class="caret arrow-down"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a href="javascript:" class="sortBy" data-name="Under $100" data-sort="under-100">Sort by <strong>Under $100</strong></a></li>
+          <li><a href="javascript:" class="sortBy" data-name="$100 - $250" data-sort="100-200">Sort by <strong>$100 - $250</strong></a></li>
+          <li><a href="javascript:" class="sortBy" data-name="Over $250" data-sort="over-250">Sort by <strong>Over $250</strong></a></li>
+          <li><a href="javascript:" class="sortBy" data-name="Most Recent" data-sort="most-recent">Sort by <strong>Most Recent</strong></a></li>
+        </ul>
+      </div>
+      <input type="text" size="16" id="appendedPrependedInput" class="input-sort-by"><button type="button" class="btn gray-button"><strong>Search</strong></button>
+      </form>
   </div>
 </div>
 
+<div id="items-for-sale">
+  <div class="row thumbnails">
+    <?php
+      /** @var $collectibles_for_sale CollectibleForSale[] */
+      foreach ($collectibles_for_sale as $i => $collectible_for_sale)
+      {
+        include_partial(
+          'marketplace/collectible_for_sale_grid_view_square_small',
+          array('collectible_for_sale' => $collectible_for_sale, 'i' => $i)
+        );
+      }
+    ?>
+  </div>
+  <button class="btn btn-small gray-button see-more-full"
+          id="seemore-featured-week"
+          data-url="<?= url_for('@ajax_collections?section=component&page=featuredWeekCollectibles') ?>"
+          data-target="#weeks-promo-box div.imageset">
+    See more
+  </button>
+</div>
+
 <script>
-  $(document).ready(function()
+$(document).ready(function()
+{
+  $('.dropdown-toggle').dropdown();
+
+  $('.dropdown-menu a.sortBy').click(function()
   {
-    $("#marketplace-spotlight a.target").bigTarget({
-      hoverClass: 'over',
-      clickZone : 'div:eq(0)'
-    });
+    $('#sortByName').html($(this).data('name'));
+    $('#sortByValue').val($(this).data('sort'));
   });
+});
 </script>

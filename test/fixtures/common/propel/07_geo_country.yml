@@ -1911,3 +1911,11 @@ GeoCountry:
     latitude: '0'
     longitude: '0'
     zoom: '0'
+  GeoCountry_ZZ:
+    name: Worldwide
+    slug: worldwide
+    iso3166: ZZ
+    currency: 'USD'
+    latitude: '0'
+    longitude: '0'
+    zoom: '0'

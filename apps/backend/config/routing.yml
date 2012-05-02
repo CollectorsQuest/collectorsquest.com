@@ -1,12 +1,3 @@
-content_category:
-  class: sfPropelORMRouteCollection
-  options:
-    model:                ContentCategory
-    module:               contentCategory
-    prefix_path:          /ContentCategories
-    column:               id
-    with_wildcard_routes: true
-
 ajax_typeahead:
   url:   /ajax/typeahead/:section/:page
   param: { module: ajax, action: typeAhead }
@@ -52,6 +43,11 @@ comment:
     prefix_path:          /comments
     column:               id
     with_wildcard_routes: true
+
+comment_ajax_update_content:
+  url: /comments/update_content
+  param: { module: comments, action: updateContent }
+  requirements: { sf_method: [POST], sf_format: json }
 
 promotion_transaction:
   class: sfPropelORMRouteCollection
@@ -113,6 +109,15 @@ message_template:
     model:                PrivateMessageTemplate
     module:               messageTemplates
     prefix_path:          /messageTemplates
+    column:               id
+    with_wildcard_routes: true
+
+content_category:
+  class: icePropelRouteCollection
+  options:
+    model:                ContentCategory
+    module:               contentCategory
+    prefix_path:          /ContentCategories
     column:               id
     with_wildcard_routes: true
 

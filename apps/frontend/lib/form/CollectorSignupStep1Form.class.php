@@ -2,7 +2,7 @@
 
 class CollectorSignupStep1Form extends BaseForm
 {
-  public function setup()
+  public function configure()
   {
     $this->setWidgets(array(
       'username'        => new sfWidgetFormInputText(array(
@@ -41,22 +41,32 @@ class CollectorSignupStep1Form extends BaseForm
           'required'   => true,
         ),
         array(
-          'invalid' => 'You have disallowed symbols in your username',
+          'invalid'    => 'Only letters, numbers, periods and underscores allowed. Must start with a letter.',
+          'max_length' => 'The username "%value%" is too long (%max_length% characters max).',
+          'min_length' => 'The username "%value%" is too short (%min_length% characters min).',
         )
       ),
-      'password'       => new sfValidatorString(array(
+      'password'       => new sfValidatorString(
+        array(
           'min_length' => 6,
           'max_length' => 50,
           'required'   => true,
-      )),
+         ), array(
+          'max_length' => 'The password is too long (%max_length% characters max).',
+          'min_length' => 'The password is too short (%min_length% characters min).',
+       )),
       'password_again' => new sfValidatorPass(),
       'display_name'   => new sfValidatorString(array(
           'max_length' => 50,
           'required'   => false
       )),
-      'email'          => new sfValidatorEmail(array(
+      'email'          => new sfValidatorEmail(
+        array(
           'required'   => true
-      )),
+        ), array(
+          'invalid'    => 'This email address is invalid.',
+
+        )),
     ));
 
     $this->mergePostValidator(new sfValidatorPropelUnique(
@@ -77,6 +87,13 @@ class CollectorSignupStep1Form extends BaseForm
 
     $this->widgetSchema->setNameFormat('signup_step1[%s]');
     $this->widgetSchema->setFormFormatterName('Bootstrap');
+  }
+
+  public function getJavaScripts()
+  {
+    return array(
+        '/js/jquery/mailcheck.js',
+    );
   }
 
 }

@@ -43,9 +43,9 @@ class CollectibleOfferPeer extends BaseCollectibleOfferPeer
   {
     $criteria = new Criteria();
 
-    $id = $collectibleForSale instanceof CollectibleForSale ? $collectibleForSale->getId() : $collectibleForSale;
+    $id = $collectibleForSale instanceof CollectibleForSale ? $collectibleForSale->getCollectibleId() : $collectibleForSale;
 
-    $criteria->add(CollectibleOfferPeer::COLLECTIBLE_FOR_SALE_ID, $id);
+    $criteria->add(CollectibleOfferPeer::COLLECTIBLE_ID, $id);
     $criteria->add(CollectibleOfferPeer::STATUS, array('accepted'), Criteria::IN);
 
     return $criteria;

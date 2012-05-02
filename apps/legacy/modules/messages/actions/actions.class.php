@@ -102,30 +102,20 @@ class messagesActions extends cqActions
       $message->save();
     }
 
-    if ($message->getThread())
+    $c = new Criteria();
+    $c->add(PrivateMessagePeer::THREAD, $message->getThread());
+    $c->addAscendingOrderByColumn(PrivateMessagePeer::CREATED_AT);
+
+    $messages = PrivateMessagePeer::doSelect($c);
+
+    // Make sure we mark all messages in the thread as read
+    foreach($messages as $m)
     {
-      $c = new Criteria();
-      $c->add(PrivateMessagePeer::THREAD, $message->getThread());
-      $c->addAscendingOrderByColumn(PrivateMessagePeer::CREATED_AT);
-
-      $messages = PrivateMessagePeer::doSelect($c);
-
-      // Make sure we mark all messages in the thread as read
-      foreach($messages as $m)
+      if (!$this->getUser()->isOwnerOf($m))
       {
-        if (!$this->getUser()->isOwnerOf($m))
-        {
-          $m->setIsRead(true);
-          $m->save();
-        }
+        $m->setIsRead(true);
+        $m->save();
       }
-    }
-    else
-    {
-      $message->setThread(PrivateMessagePeer::generateThread());
-      $message->save();
-
-      $messages = array($this->message);
     }
 
     $this->message  = $message;
@@ -201,8 +191,6 @@ class messagesActions extends cqActions
       }
       else
       {
-        $pks = $post['receiver'];
-
         // Set the error message
         $this->getUser()->setFlash(
           "error", $this->__("There is a problem with sending your message.")

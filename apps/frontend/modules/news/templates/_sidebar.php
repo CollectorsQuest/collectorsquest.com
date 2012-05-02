@@ -3,4 +3,4 @@
 <br/>
 <?= link_to(image_tag('banners/040412_channels_300_blue.gif'), '@channels'); ?>
 
-<? cq_sidebar_title('Explore Channels', null); ?>
+<?php cq_sidebar_title('Explore Channels', null); ?>

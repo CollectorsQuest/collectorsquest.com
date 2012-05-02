@@ -2,7 +2,24 @@
 
 include(__DIR__.'/../../bootstrap/model.php');
 
-$t = new lime_test(7, array('output' => new lime_output_color(), 'error_reporting' => true));
+$t = new lime_test(10, array('output' => new lime_output_color(), 'error_reporting' => true));
+
+cqTest::resetClasses(array('PrivagteMessage'));
+
+$t->diag('::preSave()');
+  $message = new PrivateMessage();
+  $message->save();
+  $t->isa_ok($message->getThread(), 'string',
+    '::preSave() sets a random thread identifier if none provided');
+  $t->is(strlen($message->getThread()), 32,
+    '::preSave() sets a random thread identifier if none provided');
+
+  $message = new PrivateMessage();
+  $message->setThread('testytestidentifieryeah');
+  $message->save();
+  $t->is('testytestidentifieryeah', $message->getThread(),
+    '::preSave() does not overwrite the thread identifier if already set');
+
 
 $t->diag('::getReplySubject()');
 

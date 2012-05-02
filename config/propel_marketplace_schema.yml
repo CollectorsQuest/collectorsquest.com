@@ -71,6 +71,7 @@ classes:
     columns:
       id:  ~
       uuid:                 { type: varchar, size: 8 }
+      seller_id:            { type: integer, required: false, foreignClass: Collector, foreignReference: id, onDelete: setnull }
       collector_id:         { type: integer, required: false, foreignClass: Collector, foreignReference: id, onDelete: setnull }
       shopping_cart_id:     { type: integer, required: true, foreignClass: ShoppingCart, foreignReference: id, onDelete: restrict }
       collectible_id:       { type: integer, required: true, foreignClass: Collectible, foreignReference: id, onDelete: restrict }
@@ -78,6 +79,7 @@ classes:
 
       buyer_email:          { type: varchar, size: 128, index: true }
 
+      shipping_address_id:       { type: integer, required: false, foreignClass: CollectorAddress, foreignReference: id, onDelete: setnull }
       shipping_full_name:        { type: varchar(255), required: true  }
       shipping_phone:            { type: varchar(50),  required: false }
       shipping_address_line_1:   { type: varchar(255), required: true  }
@@ -105,7 +107,7 @@ classes:
       currency:            { type: char, size: 3, default: USD }
       amount_total:        { type: integer, required: true, default: 0 }
       amount_collectibles: { type: integer, required: true, default: 0 }
-      amount_shipping:     { type: integer, required: true, default: 0 }
+      amount_shipping_fee: { type: integer, required: true, default: 0 }
       amount_tax:          { type: integer, required: true, default: 0 }
 
     propel_behaviors:
@@ -152,12 +154,14 @@ classes:
   PackageTransaction:
     columns:
       id:  ~
-      package_id:          { type: integer, foreignClass: Package, foreignReference: id, required: true, onDelete: restrict }
-      collector_id:        { type: integer, foreignClass: Collector, foreignReference: id, required: true, onDelete: cascade }
-      payment_status:      { type: varchar, default: pending, size: 255 }
-      max_items_for_sale:  { type: integer }
-      package_price:       { type: float }
-      expiry_date:         { type: timestamp }
+      package_id:               { type: integer, foreignClass: Package, foreignReference: id, required: true, onDelete: restrict }
+      collector_id:             { type: integer, foreignClass: Collector, foreignReference: id, required: true, onDelete: cascade }
+      payment_status:           { type: varchar, default: pending, size: 255 }
+      max_items_for_sale:       { type: integer }
+      package_price:            { type: float }
+      discount:                 { type: float, required: false, sqlType: 'float unsigned' }
+      promotion_transaction_id: { type: integer, required: false, foreignClass: PromotionTransaction, foreignReference: id, onDelete: restrict }
+      expiry_date:              { type: timestamp }
       created_at:  ~
 
   Promotion:

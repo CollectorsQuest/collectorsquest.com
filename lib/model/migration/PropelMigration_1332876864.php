@@ -79,7 +79,7 @@ CREATE TABLE `shipping_rate_collectible`
 ) ENGINE=InnoDB;
 
 INSERT INTO geo_country
-VALUES ("", "Wordwide", "wordwide", "ZZ", "USD", NULL, NULL, NULL);
+VALUES ("", "Worldwide", "worldwide", "ZZ", "USD", NULL, NULL, NULL);
 
 ',
 );

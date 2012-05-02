@@ -9,6 +9,7 @@ class shoppingActions extends cqFrontendActions
 
   public function executeCart(sfWebRequest $request)
   {
+    /** @var $shopping_cart ShoppingCart */
     $shopping_cart = $this->getUser()->getShoppingCart();
     $this->forward404Unless($shopping_cart instanceof ShoppingCart);
 
@@ -130,13 +131,32 @@ class shoppingActions extends cqFrontendActions
       {
         $values = $form->getValues();
 
+        $shipping_address = new CollectorAddress();
+        $shipping_address->setCountryIso3166($values['country_iso3166']);
+
+        /** @var $collectible_for_sale CollectibleForSale */
+        $collectible_for_sale = CollectibleForSaleQuery::create()
+          ->findOneByCollectibleId($values['collectible_id']);
+
+        /**
+         * @todo: We need to check here:
+         *          1. If this CollectibleForSale is still for sale
+         *          2. If the Collector is not trying to buy his own items
+         */
+        if (!$collectible_for_sale)
+        {
+          $this->getUser()->setFlash('error', 'There was a problem processing the request');
+          $this->redirect('@shopping_cart');
+        }
+
         $q = ShoppingOrderQuery::create()
            ->filterByShoppingCart($shopping_cart)
-           ->filterByCollectibleId($values['collectible_id']);
+           ->filterByCollectibleId($collectible_for_sale->getCollectibleId());
 
         $shopping_order = $q->findOneOrCreate();
+        $shopping_order->setSellerId($collectible_for_sale->getCollectorId());
         $shopping_order->setCollectorId($this->getCollector()->getId());
-        $shopping_order->setShippingCountryIso3166($values['country_iso3166']);
+        $shopping_order->setShippingAddress($shipping_address);
         $shopping_order->setNoteToSeller($values['note_to_seller']);
         $shopping_order->save();
 
@@ -166,6 +186,71 @@ class shoppingActions extends cqFrontendActions
     /** @var $shopping_payment ShoppingPayment */
     $shopping_payment = $shopping_order->getShoppingPaymentRelatedByShoppingPaymentId();
 
+    if ($this->getUser()->isAuthenticated() && $request->getParameter('address_id'))
+    {
+      $q = CollectorAddressQuery::create()
+        ->filterById($request->getParameter('address_id'))
+        ->filterByCollector($this->getCollector());
+
+      if ($collector_address = $q->findOne())
+      {
+        $shopping_order->setShippingAddress($collector_address);
+        $shopping_order->setShippingAddressId($request->getParameter('address_id'));
+        $shopping_order->save();
+      }
+    }
+
+    /**
+     * Create the Shopping Order form
+     */
+    $form = new ShoppingOrderShippingForm($shopping_order);
+
+    if ($request->isMethod('post') && '' !== $request->getParameter('new_address', null))
+    {
+      $form->bind($request->getParameter('shopping_order'));
+
+      if ($form->isValid() && $form->save())
+      {
+        /**
+         * We need to save the shipping address if the user is Authenticated
+         */
+        if ($this->getUser()->isAuthenticated())
+        {
+          $shipping_address = $form->getValue('shipping_address');
+          if (!$shipping_address['address_id'])
+          {
+            unset($shipping_address['address_id']);
+
+            $collector_address = new CollectorAddress();
+            $collector_address->setCollector($this->getCollector());
+            $collector_address->fromArray($shipping_address, BasePeer::TYPE_FIELDNAME);
+            $collector_address->save();
+          }
+        }
+
+        $this->redirect('@shopping_order_pay?uuid='. $shopping_order->getUuid(), 302);
+      }
+      else if (!$form->getValue('shipping_address'))
+      {
+        $this->getUser()->setFlash('error', 'You need to select an address or add a new one');
+      }
+    }
+
+    if ($request->getParameter('shopping_order'))
+    {
+      $defaults = $request->getParameter('shopping_order');
+
+      // If the user has selected to add new address we need to clear 'shipping_address' fields
+      if ('' === $request->getParameter('new_address', null))
+      {
+        unset($defaults['shipping_address']);
+      }
+
+      $defaults['country_iso3166'] = $form->getDefault('country_iso3166');
+      $form->setDefaults($defaults);
+    }
+
+    $this->form               = $form;
     $this->shopping_order     = $shopping_order;
     $this->shopping_payment   = $shopping_payment;
     $this->shipping_addresses = $this->getCollector()->getCollectorAddresses();
@@ -195,12 +280,12 @@ class shoppingActions extends cqFrontendActions
 
         $shopping_payment = new ShoppingPayment();
         $shopping_payment->setCookieUuid($this->getUser()->getCookieUuid());
-        $shopping_payment->setShoppingOrderId($shopping_order->getId());
+        $shopping_payment->setShoppingOrder($shopping_order);
         $shopping_payment->setProcessor(ShoppingPaymentPeer::PROCESSOR_PAYPAL);
         $shopping_payment->setStatus(ShoppingPaymentPeer::STATUS_INITIALIZED);
         $shopping_payment->save();
 
-        $shopping_order->setShoppingPaymentId($shopping_payment->getId(0));
+        $shopping_order->setShoppingPaymentId($shopping_payment->getId());
         $shopping_order->save();
 
         $PayRequestFields = $shopping_order->getPaypalPayRequestFields();

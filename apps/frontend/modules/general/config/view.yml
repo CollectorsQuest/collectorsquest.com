@@ -1,5 +1,8 @@
+all:
+  stylesheets: [frontend/modules/general.css]
+
 indexSuccess:
-  stylesheets: [frontend/homepage.css]
+  stylesheets: [frontend/modules/homepage.css]
   javascripts:
     - jquery/masonry.js
     - jquery/easing.js
@@ -8,8 +11,9 @@ indexSuccess:
     - jquery/roundabout.js
 
   components:
+    breadcrumbs: []
     slot1: [general, indexCarousel]
-    sidebar_180: [general, sidebarIndex]
+    sidebar_160: [general, sidebarIndex]
 
 countdownSuccess:
   has_layout: false

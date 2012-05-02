@@ -7,50 +7,64 @@
  */
 ?>
 
-<div class="row-fluid">
-  <div class="span8">
-    <?= cq_page_title($collection, '<br/>by '. link_to_collector($collection->getCollector(), 'text')); ?>
-  </div>
-  <div class="span4" style="margin-top: 20px; text-align: center;">
-    <br/><strong>Sharing widget goes here</strong>
-  </div>
-</div>
-<div class="row-fluid">
-  <div class="well">
-    <?= cqStatic::linkify($collection->getDescription('html')); ?>
-    <a href="#">Read the whole text</a>
+<?php cq_page_title($collection); ?>
+
+<div class="row-fluid" style="margin-top: 10px;">
+  <div style="background-color: #e6f2f9; padding: 10px 0 10px 15px; font-size: 85%;">
+    By <?= link_to_collector($collection->getCollector()); ?> &nbsp;|&nbsp;
+    <?= $collection->getNumItems(); ?> Collectibles &nbsp;|&nbsp;
+    <?= number_format($collection->getNumViews()); ?> Views
+
+    <div class="pull-right" style="margin-top: -2px; margin-right: 5px;">
+      <span class='st_email_button' displayText="Mail"></span>
+      <span class='st_facebook_button'></span>
+      <span class='st_twitter_button'></span>
+      <span class='st_pinterest_button'></span>
+    </div>
   </div>
 </div>
 
+<?php if ($pager->getPage() === 1): ?>
+<div class="cf" style="margin-top: 20px;">
+  <?= cqStatic::linkify($collection->getDescription('html')); ?>
+</div>
+<?php endif; ?>
+
+<br/>
 <div class="row">
   <div id="collectibles" class="row-content">
   <?php
     /** @var $collectible Collectible */
     foreach ($pager->getResults() as $i => $collectible)
     {
-      echo '<div class="', ('list' == $display ? 'span6' : 'span4'), '">';
-      // Show the collectible (in grid, list or hybrid view)
-      include_partial(
-        'collection/collectible_'. $display .'_view',
-        array(
-          'collectible' => $collectible,
-          'culture' => (string) $sf_user->getCulture(),
-          'i' => (int) $i
-        )
-      );
-      echo '</div>';
+      if ($collectible->isForSale())
+      {
+        // Show the collectible (in grid, list or hybrid view)
+        include_partial(
+          'marketplace/collectible_for_sale_grid_view_square',
+          array('collectible_for_sale' => $collectible->getCollectibleForSale(), 'i' => (int) $i)
+        );
+      }
+      else
+      {
+        // Show the collectible (in grid, list or hybrid view)
+        include_partial(
+          'collection/collectible_grid_view_square',
+          array('collectible' => $collectible, 'i' => (int) $i)
+        );
+      }
     }
   ?>
   </div>
 </div>
 
 <div class="row-fluid" style="text-align: center;">
-  <?php
+<?php
   include_component(
     'global', 'pagination',
-    array('pager' => $pager, 'options' => array('id' => 'collectibles-pagination'))
+    array('pager' => $pager, 'options' => array('id' => 'collectibles-pagination', 'show_all' => true))
   );
-  ?>
+?>
 </div>
 
 <?php if ($sf_params->get('show') == 'all'): ?>

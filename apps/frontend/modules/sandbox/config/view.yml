@@ -1,6 +1,13 @@
+all:
+  stylesheets: [frontend/modules/sandbox.css]
+
 sidebar120Success:
   components:
     sidebar_120: [global, sidebar120]
+
+sidebar160Success:
+  components:
+    sidebar_160: [global, sidebar160]
 
 sidebar180Success:
   components:
@@ -16,3 +23,9 @@ sidebarNoneSuccess:
     sidebar_180: []
     sidebar_300: []
 
+
+searchSuccess:
+  stylesheets: [frontend/modules/search.css]
+  javascripts: [jquery/masonry.js, jquery/infinitescroll.js]
+  components:
+    sidebar_300: [global, sidebar300]

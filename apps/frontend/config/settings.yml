@@ -16,29 +16,28 @@ test:
 all:
   .settings:
     logging_enabled:        false
+    web_debug:              false
+    cache:                  true
     no_script_name:         true
-    # Form security secret (CSRF protection)
-    csrf_secret:            qqDHZyX9DuEKyCv7hACqUfPzC86k7JEx
 
     i18n:                   true
     default_culture:        en
     default_timezone:       America/New_York
     charset:                utf-8
 
-    enabled_modules:        [iceGlobalModule]
-    standard_helpers:       [Partial, Cache, I18N, iceAssets, cqAssets, cqImages, cqLinks, cqJavascripts, cqHTML]
+    enabled_modules:        [iceGlobalModule, cqMagnifyAuth]
+    standard_helpers:       [Partial, Cache, I18N, Date, iceAssets, cqAssets, cqImages, cqLinks, cqJavascripts, cqTemplating, cqHTML]
     sf_compat_10:           off
 
     # Output escaping settings
     escaping_strategy:      false
     escaping_method:        ESC_SPECIALCHARS
 
+    # Form security secret (CSRF protection)
+    csrf_secret:            qqDHZyX9DuEKyCv7hACqUfPzC86k7JEx
+
     # Cache settings
     lazy_cache_key:         true
-
-    # Logging
-    logging_enabled:        false
-
 
   .actions:
     error_404_module:       default

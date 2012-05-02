@@ -21,6 +21,11 @@ class sandboxActions extends cqFrontendActions
     return sfView::SUCCESS;
   }
 
+  public function executeSidebar160()
+  {
+    return sfView::SUCCESS;
+  }
+
   public function executeSidebar180()
   {
     return sfView::SUCCESS;
@@ -32,6 +37,16 @@ class sandboxActions extends cqFrontendActions
   }
 
   public function executeSidebarNone()
+  {
+    return sfView::SUCCESS;
+  }
+
+  public function executeComments()
+  {
+    return sfView::SUCCESS;
+  }
+
+  public function executeSearch()
   {
     return sfView::SUCCESS;
   }

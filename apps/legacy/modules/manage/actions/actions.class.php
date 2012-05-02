@@ -548,8 +548,6 @@ class manageActions extends cqActions
         }
         catch (PropelException $e)
         {
-          dd($e->getMessage());
-
           // currently just skip the errors //Errors should never be skipped
           // throw $e;
         }

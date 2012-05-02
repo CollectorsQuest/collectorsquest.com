@@ -35,7 +35,7 @@ class cqWidgetFormI18nChoiceCountry extends sfWidgetFormChoice
     $countries = sfCultureInfo::getInstance($culture)->getCountries(isset($options['countries']) ? $options['countries'] : null);
 
     // We unset the default symfony country code for "Unknown region"
-    // because it will be used for "Wordwide"
+    // because it will be used for "Worldwide"
     unset($countries['ZZ']);
 
     $_countries = array();

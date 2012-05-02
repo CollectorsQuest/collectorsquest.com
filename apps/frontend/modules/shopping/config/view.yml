@@ -1,5 +1,5 @@
 all:
-  stylesheets: [frontend/shopping-cart.css]
+  stylesheets: [frontend/modules/shopping.css]
   components:
     sidebar_300: [shopping, sidebar]
 
@@ -10,8 +10,9 @@ orderShippingSuccess:
   components:
     header:  [global, headerStripped]
     footer:  []
-    sidebar_300: [shopping, sidebarCheckout]
+    breadcrumbs: []
     slot1:   [shopping, slot1Shipping]
+    sidebar_300: [shopping, sidebarCheckout]
 
 orderPaySuccess:
   components:

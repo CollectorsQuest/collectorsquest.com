@@ -25,7 +25,7 @@ all:
     default_timezone:       America/New_York
     charset:                utf-8
 
-    enabled_modules:        [cqAjax, cqCollectors, cqCollections, cqSearch, sfExternalLink]
+    enabled_modules:        [cqAjax, cqCollectors, cqCollections, cqSearch, cqMagnifyAuth, sfExternalLink]
     standard_helpers:       [Partial, Cache, Form, I18N, iceAssets, cqAssets, cqGeneral, cqImages, cqLinks, cqJavascripts, cqHTML]
     sf_compat_10:           off
 

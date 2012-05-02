@@ -38,8 +38,9 @@ class PrivateMessagePeer extends BasePrivateMessagePeer
     // It is important to set the is_rich before setting the body because it depends on that option
     $message->setIsRich(isset($options['rich']) ? $options['rich'] : false);
     $message->setBody($body, isset($options['clean']) ? $options['clean'] : true);
+    $message->save();
 
-    return $message->save() ? $message : null;
+    return $message;
   }
 
   /**

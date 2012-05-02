@@ -3,6 +3,8 @@
 class cqFrontendUser extends cqBaseUser
 {
 
+  const PRIVATE_MESSAGES_SENT_COUNT_KEY = 'private_messages_sent_count';
+
   /**
    * @return    Collector
    */
@@ -16,7 +18,7 @@ class cqFrontendUser extends cqBaseUser
       }
       else
       {
-        $this->collector = new Collector();;
+        $this->collector = new Collector();
       }
     }
     else if ($this->collector->getId() == null && $this->getAttribute("id", null, "collector") !== null)
@@ -29,16 +31,19 @@ class cqFrontendUser extends cqBaseUser
 
   public function getShoppingCart()
   {
-    $q = ShoppingCartQuery::create()
-       ->filterByCollector($this->getCollector())
-       ->filterByCookieUuid($this->isAuthenticated() ? null : $this->getCookieUuid());
+    $q = ShoppingCartQuery::create();
+
+    if ($this->isAuthenticated()) {
+      $q->filterByCollector($this->getCollector());
+    } else {
+      $q->filterByCookieUuid($this->getCookieUuid());
+    }
 
     if (!($shopping_cart = $q->findOne()) && $this->isAuthenticated())
     {
       if ($shopping_cart = ShoppingCartQuery::create()->findOneByCookieUuid($this->getCookieUuid()))
       {
         $shopping_cart->setCollector($this->getCollector());
-        $shopping_cart->setCookieUuid(null);
         $shopping_cart->save();
       }
     }

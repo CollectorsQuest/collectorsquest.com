@@ -1,8 +1,7 @@
-<? /** @var $shopping_order ShoppingOrder */ ?>
+<?php /** @var $shopping_order ShoppingOrder */ ?>
 <?php if ($shopping_order): ?>
-<? cq_sidebar_title('Your Order', null, array('style' => 'margin-top: 0;')); ?>
 <div class="well">
-  <?= ice_image_tag_flickholdr('260x205', array('tags' => array('Bronze', ' Statue', 'Egyptian'), 'i' => 0)); ?>
+  <?= image_tag_collectible($shopping_order->getCollectible(), '260x205'); ?>
   <br/><br/>
   <table style="width: 100%;">
     <tr>
@@ -34,7 +33,7 @@
 </div>
 <?php endif; ?>
 
-<? cq_sidebar_title('Checkout Help', null, array('style' => 'margin-top: 0;')); ?>
+<?php cq_sidebar_title('Checkout Help', null, array('style' => 'margin-top: 0;')); ?>
 
 <div style="padding: 10px;">
   <ul>

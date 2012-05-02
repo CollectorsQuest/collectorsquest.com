@@ -28,8 +28,15 @@ class bsWidgetFormInputTypeAhead extends sfWidgetFormInput
     $attributes['data-provide'] = 'typeahead';
     $attributes['autocomplete'] = 'off';
 
-    $source = $this->options['source'];
-    $typeAheadOptions = array_intersect_key($this->options, array_flip(array('items', 'matcher', 'sorter', 'highlighter')));
+    $source = $this->getOption('source');
+    $typeAheadOptions = array();
+    foreach (array('items', 'matcher', 'sorter', 'highlighter') as $option)
+    {
+      if ($this->getOption($option))
+      {
+        $typeAheadOptions[$option] = $this->getOption($option);
+      }
+    }
 
     return parent::render($name, $value, $attributes, $errors)
         . sprintf(<<<EOF
@@ -37,7 +44,7 @@ class bsWidgetFormInputTypeAhead extends sfWidgetFormInput
 <script type="text/javascript">
 $(document).ready(function()
 {
-  $('#%s').typeahead().on('keyup', function(ev)
+  $('#%s').typeahead(%s).on('keyup', function(ev)
   {
     ev.stopPropagation();
     ev.preventDefault();
@@ -84,6 +91,7 @@ $(document).ready(function()
 
 EOF
           , $this->generateId($name),
+          json_encode($typeAheadOptions),
           is_array($source) ? json_encode($source) : $source
         );
   }

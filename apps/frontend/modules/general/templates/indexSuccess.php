@@ -1,60 +1,37 @@
-<h2 class="Chivo webfont red-title">
-  Showcase
-</h2>
+<?php cq_page_title("Now on Display: Check out these collectors' items!") ?>
+
 <div class="row">
   <div id="homepage" class="row-content">
     <?php
       for ($i = 0; $i < 4; $i++)
       if (isset($collectibles[$i]) && $collectibles[$i] instanceof Collectible)
       {
-        include_partial('general/homepage_collectible', array('collectible' => $collectibles[$i], 'i' => $i));
+        include_partial(
+          'collection/collectible_grid_view_square_small',
+          array('collectible' => $collectibles[$i], 'i' => $collectibles[$i]->getId())
+        );
       }
     ?>
 
-    <div class="span6 brick masonry-blogpost">
-      <div class="masonry-blogpost yellow-background">
-        <a href="<?= $blog_posts[0]->getPostUrl(); ?>" class="link">
-          <h3 class="Chivo webfont" style="line-height: 26px;"><?= $blog_posts[0]->getPostTitle(); ?></h3>
-          <p><?= cqStatic::truncateText($blog_posts[0]->getPlainPostContent(), 350, '...', true); ?></p>
-        </a>
-        <div class="masonry-blogpost-author">
-          <p>
-            <?= link_to_blog_author($blog_posts[0]->getwpUser(), 'image', array('width' => 35, 'height' => 35, 'style' => 'float: left; margin-right: 10px;')); ?>
-            posted by<br>
-            <?= link_to_blog_author($blog_posts[0]->getwpUser(), 'text'); ?>
-          </p>
-        </div>
-      </div>
-    </div>
+    <?php include_partial('general/homepage_blogpost', array('blog_post' => $blog_posts[0])); ?>
 
     <?php
       for ($i = 4; $i < 9; $i++)
       if (isset($collectibles[$i]) && $collectibles[$i] instanceof Collectible)
       {
-        include_partial('general/homepage_collectible', array('collectible' => $collectibles[$i], 'i' => $i));
+        include_partial(
+          'collection/collectible_grid_view_square_small',
+          array('collectible' => $collectibles[$i], 'i' => $collectibles[$i]->getId())
+        );
       }
     ?>
 
-    <div class="span6 brick masonry-blogpost">
-      <div class="masonry-blogpost blue-background">
-        <a href="<?= $blog_posts[1]->getPostUrl(); ?>" class="link">
-          <h3 class="Chivo webfont" style="line-height: 26px;"><?= $blog_posts[1]->getPostTitle(); ?></h3>
-          <p><?= cqStatic::truncateText($blog_posts[1]->getPlainPostContent(), 350, '...', true); ?></p>
-        </a>
-        <div class="masonry-blogpost-author">
-          <p>
-            <?= link_to_blog_author($blog_posts[1]->getwpUser(), 'image', array('width' => 35, 'height' => 35, 'style' => 'float: left; margin-right: 10px;')); ?>
-            posted by<br>
-            <?= link_to_blog_author($blog_posts[1]->getwpUser(), 'text'); ?>
-          </p>
-        </div>
-      </div>
-    </div>
+    <?php include_partial('general/homepage_blogpost', array('blog_post' => $blog_posts[1])); ?>
 
     <div class="span3 brick">
       <div class="tall">
         <a href="#" class="link-brick">
-          <?= ice_image_tag_flickholdr('138x290', array('i' => 2)) ?>
+          <?= ice_image_tag_flickholdr('140x295', array('i' => 2)) ?>
         </a>
         <div class="details" style="word-wrap: break-word;">
           <div class="details-inner">
@@ -70,14 +47,17 @@
       for ($i = 9; $i < 12; $i++)
       if (isset($collectibles[$i]) && $collectibles[$i] instanceof Collectible)
       {
-        include_partial('general/homepage_collectible', array('collectible' => $collectibles[$i], 'i' => $i));
+        include_partial(
+          'collection/collectible_grid_view_square_small',
+          array('collectible' => $collectibles[$i], 'i' => $collectibles[$i]->getId())
+        );
       }
     ?>
 
     <div class="span6 brick">
       <div class="wide">
         <a href="#" class="link-brick">
-          <?= ice_image_tag_flickholdr('290x138', array('i' => 4)) ?>
+          <?= ice_image_tag_flickholdr('295x140', array('i' => 4)) ?>
         </a>
         <div class="details" style="word-wrap: break-word;">
           <div class="details-inner">
@@ -93,10 +73,12 @@
       for ($i = 12; $i < 18; $i++)
       if (isset($collectibles[$i]) && $collectibles[$i] instanceof Collectible)
       {
-        include_partial('general/homepage_collectible', array('collectible' => $collectibles[$i], 'i' => $i));
+        include_partial(
+          'collection/collectible_grid_view_square_small',
+          array('collectible' => $collectibles[$i], 'i' => $collectibles[$i]->getId())
+        );
       }
     ?>
-
   </div>
 </div>
 
@@ -109,8 +91,8 @@
     {
       $container.masonry(
       {
-        itemSelector : '.brick',
-        columnWidth : 138, gutterWidth: 15,
+        itemSelector : '.brick, .span3, .span6',
+        columnWidth : 140, gutterWidth: 15,
         isAnimated: !Modernizr.csstransitions
       });
     });

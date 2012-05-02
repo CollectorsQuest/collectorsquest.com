@@ -4,18 +4,7 @@ if (defined('DB_NAME') && defined('DB_USER') && defined('DB_PASSWORD')) {
   return;
 }
 
-if (!defined('SF_ENV') && $_SERVER['HTTP_HOST'] == 'www.collectorsquest.dev')
-{
-  define('SF_ENV', 'dev');
-}
-else if (!defined('SF_ENV') && $_SERVER['HTTP_HOST'] == 'www.collectorsquest.stg')
-{
-  define('SF_ENV', 'staging');
-}
-else if (!defined('SF_ENV'))
-{
-  define('SF_ENV', 'prod');
-}
+require __DIR__ .'/bootstrap.php';
 
 if (SF_ENV === 'dev')
 {
