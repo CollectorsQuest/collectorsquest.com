@@ -83,8 +83,18 @@ class messagesActions extends cqFrontendActions
   public function executeCompose(sfWebRequest $request)
   {
     $form = new ComposePrivateMessageForm($sender = $this->getCollector(), $this->getUser());
-    $form->setDefault('receiver', $request->getParameter('to'));
     $form->setDefault('subject', $request->getParameter('subject'));
+
+    // If "to" param is numeric, try to add corresponding Collector username as default
+    $to = $request->getParameter('to');
+    if (is_numeric($to) && $receiver = CollectorPeer::retrieveByPK($to))
+    {
+      $form->setDefault('receiver', $receiver->getUsername());
+    }
+    else
+    {
+      $form->setDefault('receiver', $to);
+    }
 
     if (sfRequest::POST == $request->getMethod())
     {
@@ -93,6 +103,7 @@ class messagesActions extends cqFrontendActions
       if ($form->isValid())
       {
         $form->save();
+        $receiver = $form->getValue('receiver');
 
         $cqEmail = new cqEmail($this->getMailer());
         $sent = $cqEmail->send('Messages/private_message_notification', array(
