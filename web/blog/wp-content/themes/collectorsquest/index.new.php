@@ -61,7 +61,7 @@
     </div>
   <?php } elseif (is_author()) { ?>
     <div class="span11">
-      <h1 class="Chivo webfont" style="visibility: visible; ">Blogger: <?php the_author() ?></h1>
+      <h1 class="Chivo webfont" style="visibility: visible; ">Blogger: <span><?php the_author() ?></span></h1>
     </div>
 </div>
   <!-- This sets the $curauth variable -->
