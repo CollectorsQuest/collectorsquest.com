@@ -48,7 +48,11 @@
 ?>
 
 <div class="row-fluid header-bar">
-  <?php if (is_single()) { ?>
+  <?php if (is_page()) { ?>
+  <div class="span11">
+    <h1 class="Chivo webfont" style="visibility: visible; "><?php the_title() ?></h1>
+  </div>
+  <?php } elseif (is_single()) { ?>
     <div class="span7">
       <h1 class="Chivo webfont" style="visibility: visible; ">Blog Post</h1>
     </div>
