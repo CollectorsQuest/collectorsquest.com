@@ -248,7 +248,7 @@ if ($_SERVER['HTTP_HOST'] == 'www.collectorsquest.dev' || $_SERVER['HTTP_HOST'] 
     if (is_front_page() && $count == 1) :
       return 50;
     else :
-      return 34;
+      return 30;
     endif;
 
   }
