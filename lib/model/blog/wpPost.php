@@ -4,6 +4,10 @@ require 'lib/model/blog/om/BasewpPost.php';
 
 class wpPost extends BasewpPost
 {
+  public
+    $_multimedia = array(),
+    $_counts = array();
+
   public function getRelatedCollections($limit = 2)
   {
     return CollectorCollectionPeer::getPopularByTag($this->getTags('array'), $limit);
@@ -44,6 +48,24 @@ class wpPost extends BasewpPost
   public function getPostContentStripped()
   {
     return wpPostPeer::stripShortcodes($this->getPostContent());
+  }
+
+  public function getPostThumbnail()
+  {
+    if ($thumbnail_id = $this->getPostMetaValue('_thumbnail_id'))
+    {
+      $q = wpPostMetaQuery::create()
+        ->filterByPostId($thumbnail_id)
+        ->filterByMetaKey('_wp_attached_file');
+
+      /** @var $wp_post_meta wpPostMeta */
+      if ($wp_post_meta = $q->findOne())
+      {
+        return '/uploads/blog/' . $wp_post_meta->getMetaValue();
+      }
+    }
+
+    return null;
   }
 
   public function getTags($type = 'string')
@@ -100,4 +122,48 @@ class wpPost extends BasewpPost
 
     return ($wp_post_meta) ? $wp_post_meta->getMetaValue() : null;
   }
+
+  /**
+   * This is needed for IceMultimediaBehavior to work correctly
+   *
+   * @param string $name
+   * @return null
+   */
+  public function getEblobElement($name)
+  {
+    return null;
+  }
+
+  /**
+   * @param  string  $name
+   * @param  null    $element
+   *
+   * @return boolean
+   */
+  public function setEblobElement($name, $element = null)
+  {
+    return false;
+  }
+
+  /**
+   * For each Multimedia that is added to the Advert, this method will be called
+   * to take care of creating the right thumnail sizes
+   *
+   * @param  iceModelMultimedia  $multimedia
+   * @param  array $options
+   *
+   * @throws InvalidArgumentException
+   * @return void
+   */
+  public function createMultimediaThumbs(iceModelMultimedia $multimedia, $options = array())
+  {
+    /**
+     * We need to have the four main thumbnails available as soon as the object is saved so
+     * we make sure they are not put on the job queue
+     */
+    $multimedia->makeThumb(300, 225, 'top', false);
+    $multimedia->makeCustomThumb(270, 270, '270x270', 'center', false);
+  }
 }
+
+sfPropelBehavior::add('wpPost', array('IceMultimediaBehavior'));

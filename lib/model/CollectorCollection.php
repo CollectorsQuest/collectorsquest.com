@@ -82,7 +82,7 @@ class CollectorCollection extends BaseCollectorCollection
     {
       case 'stripped':
         $v = trim(strip_tags($v));
-        $v = ($limit > 0) ? cqStatic::truncateText($v, $limit, true, '...') : $v;
+        $v = ($limit > 0) ? cqStatic::truncateText($v, $limit, '...', true) : $v;
         break;
       case 'html':
         $v = cqMarkdown::doConvert($v);
