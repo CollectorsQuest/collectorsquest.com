@@ -19,6 +19,7 @@ Options +FollowSymLinks +ExecCGI
 
 <IfModule pagespeed_module>
   ModPagespeedDisallow */combine.php*
+  ModPagespeedEnableFilters collapse_whitespace,combine_css,combine_javascript
 </IfModule>
 
 
