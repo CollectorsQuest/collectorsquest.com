@@ -59,7 +59,7 @@ $(document).ready(function()
         clickZone : 'div.link'
       });
 
-      $(this).hide();
+      $button.hide();
     },'html');
   });
 });

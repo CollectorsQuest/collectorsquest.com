@@ -13,7 +13,8 @@
 <?php
   cq_page_title(
     $collectible->getName(),
-    link_to('Back to Collection &raquo;', url_for_collection($collection))
+    link_to('Back to Collection &raquo;', url_for_collection($collection)),
+    array('left' => 9, 'right' => 3)
   );
 ?>
 
@@ -32,8 +33,6 @@
     }
   ?>
   <div class="span<?= $span; ?>" style="text-align: center;">
-    <?php ice_image_tag_placeholder('504x398') ?>
-    <?php ice_image_tag_flickholdr('620x490', array('tags' => array('Teacup', 'china', 'old'), 'i' => 1)) ?>
     <?php
       echo link_to(
         image_tag_collectible(
@@ -107,9 +106,8 @@
 <br style="clear:both;"/>
 <?php endif; ?>
 
-<?php if ($collectible_for_sale): ?>
+<?php if (isset($collectible_for_sale) && $collectible_for_sale instanceof CollectibleForSale): ?>
   <!-- sale items -->
-
   <span class="item-condition">Condition:</span> Like new
 
   <table class="shipping-rates">

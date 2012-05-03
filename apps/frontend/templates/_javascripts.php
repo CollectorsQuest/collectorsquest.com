@@ -41,14 +41,7 @@
   }]);
 </script>
 
-<script>
-  var switchTo5x = true;
-  var __st_loadLate = true;
-</script>
-<script src="http://w.sharethis.com/button/buttons.js"></script>
-<script>stLight.options({publisher:'b69d7375-23f2-424c-9d59-f6bf47e9a722'});</script>
-
-<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js"></script>
+<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4fa2c6240b775d05"></script>
 
 <?php
   // Include analytics code only in production

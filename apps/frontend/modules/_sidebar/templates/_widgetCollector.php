@@ -2,6 +2,7 @@
 /**
  * @var  $title  string
  * @var  $collector  Collector
+ * @var  $collectible Collectible
  * @var  $collections  Collection[]
  */
 ?>
@@ -20,15 +21,16 @@
       '<i>'. $collector->getProfile()->getCollectorType() .'</i>'
     ); ?>
     <p style="margin-top: 10px;">
-      <?= link_to('Send a message &raquo;', 'homepage', array('to' => $collector->getId())); ?>
+      <?= cqStatic::truncateText($collector->getProfile()->getAboutMe(), 60, '...', true); ?>
+      <a href="<?= url_for_collector($collector) ?>" title="<?= $collector->getDisplayName() ?> on Collectors Quest">[see profile]</a>
     </p>
   </div>
 </div>
 
-<?php if ($message === true): ?>
+<?php if (isset($message) && $message === true): ?>
 <div class="row-fluid" style="margin-top: 10px;">
   <div style="background-color: #e6f2f9; padding: 6px;">
-    <form action="" method="post" style="margin-bottom: 0;" id="form-private-message">
+    <form action="<?= url_for('@messages_compose?to='. $collector->getUsername()); ?>" method="post" style="margin-bottom: 0;" id="form-private-message">
       <input type="hidden" name="message[receiver]" value="<?= $collector->getUsername(); ?>">
       <input type="hidden" name="message[subject]" value="Regarding your item: <?= addslashes($collectible->getName()); ?>">
       <textarea name="message[body]" style="width: 97%; margin-bottom: 0;" placeholder="Send a message to <?= $collector; ?>"></textarea>
@@ -43,7 +45,7 @@
 <?php endif; ?>
 
 <?php if (!empty($collections) && count($collections) > 0): ?>
-  <br style="clear: all;"/>
+  <br style="clear: both;"/>
   <div>
     Other collections by <?= $collector; ?><br/>
     <?= link_to('View all collections &raquo;', 'collections_by_collector', $collector); ?>

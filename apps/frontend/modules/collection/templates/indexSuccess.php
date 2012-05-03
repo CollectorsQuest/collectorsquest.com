@@ -10,17 +10,32 @@
 <?php cq_page_title($collection); ?>
 
 <div class="row-fluid" style="margin-top: 10px;">
-  <div style="background-color: #e6f2f9; padding: 10px 0 10px 15px; font-size: 85%;">
-    By <?= link_to_collector($collection->getCollector()); ?> &nbsp;|&nbsp;
-    <?= $collection->getNumItems(); ?> Collectibles &nbsp;|&nbsp;
-    <?= number_format($collection->getNumViews()); ?> Views
+  <div class="well-blue">
+    By <?= link_to_collector($collection->getCollector(), 'text'); ?>
+    &nbsp;|&nbsp;
+    <?php
+      echo format_number_choice(
+        '[0] no collectibles yet|[1] 1 Collectible|(1,+Inf] %1% Collectibles',
+        array('%1%' => number_format($collection->getNumItems())), $collection->getNumItems()
+      );
+    ?>
+    &nbsp;|&nbsp;
+    <?php
+      echo format_number_choice(
+        '[0] no views yet|[1] 1 View|(1,+Inf] %1% Views',
+        array('%1%' => number_format($collection->getNumViews())), $collection->getNumViews()
+      );
+    ?>
 
-    <div class="pull-right" style="margin-top: -2px; margin-right: 5px;">
-      <span class='st_email_button' displayText="Mail"></span>
-      <span class='st_facebook_button'></span>
-      <span class='st_twitter_button'></span>
-      <span class='st_pinterest_button'></span>
+    <!-- AddThis Button BEGIN -->
+    <div class="addthis_toolbox addthis_default_style pull-right">
+      <a class="addthis_button_email"></a>
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count" fb:like:width="40"></a>
+      <a class="addthis_button_tweet" tw:twitter:data-count="none"></a>
+      <a class="addthis_button_google_plusone" g:plusone:size="medium" g:plusone:annotation="none"></a>
+      <a class="addthis_button_pinterest_pinit" pi:pinit:media="<?= image_tag_collection($collection, 'original'); ?>" pi:pinit:layout="horizontal"></a>
     </div>
+    <!-- AddThis Button END -->
   </div>
 </div>
 

@@ -16,6 +16,13 @@
       <?= link_to_collector($collection->getCollector(), 'text', array('style' => 'color: #000;')); ?>
     </p>
   </div>
-  <?= ice_image_tag_flickholdr('190x150', array('class' => 'mosaic-backdrop', 'i' => $collection->getId())); ?>
-  <?php link_to_collection($collection, 'image', array('class' => 'mosaic-backdrop')); ?>
+  <?php
+    echo link_to_collection(
+      $collection, 'image',
+      array(
+        'width' => 190, 'height' => 150,
+        'class' => 'mosaic-backdrop'
+      )
+    );
+  ?>
 </div>
