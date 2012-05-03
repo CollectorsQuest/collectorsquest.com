@@ -178,7 +178,7 @@ $lastclass = 0;
           <h2 class="entry-title"><?php the_title() ?></h2>
         <?php endif; ?>
 
-        <div class="entry-image <?php if (is_front_page() && $count==1): echo "span5"; elseif (!is_single()) : echo  "span3"; endif; ?>">
+        <div class="entry-image <?php if (is_front_page() && $count==1): echo "span6"; elseif (!is_single()) : echo  "span3"; endif; ?>">
 
           <?php
           $image_id = get_post_thumbnail_id();
