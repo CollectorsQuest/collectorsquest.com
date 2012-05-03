@@ -58,7 +58,7 @@ class CQ_Tags_widget extends WP_Widget {
     </div>
 
       <?php endif; ?>
-  <p><?php the_tags('<ul class="cf" style="list-style: none; padding: 0; margin: 0;"><li class="rounded p-tag">','</li><li class="rounded p-tag">','</li></ul>'); ?></p>
+  <p><?php the_tags('<ul class="cf" style="list-style: none; padding: 0; margin: 0;"><li>','</li><li>','</li></ul>'); ?></p>
 
   <?php
     echo $after_widget;
