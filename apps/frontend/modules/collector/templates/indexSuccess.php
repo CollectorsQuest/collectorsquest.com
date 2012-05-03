@@ -50,20 +50,20 @@ cq_section_title('Robotbacon’s Items for Sale', $link);
 <div id="items-for-sale">
   <div class="row thumbnails">
     <div class="span3 thumbnail link">
-      <img src="http://assets.cqcdns.dev/placeholdr.php?x=131x131/ccc/969696.png&amp;text=">
+      <img src="http://placehold.it/131x131/ccc/969696.png&amp;text=">
       <p><a href="#" class="target" title="2046">2046</a></p>
       <span>$5.00</span>
     </div>
     <div class="span3 thumbnail link">
-      <img src="http://assets.cqcdns.dev/placeholdr.php?x=131x131/ccc/969696.png&amp;text=">  <p><a href="/collectible/220/movements-in-american-history" class="target" title="Movements in American History" alt="Movements in American History" height="150" width="150">Movements in...</a></p>
+      <img src="http://placehold.it/131x131/ccc/969696.png&amp;text=">  <p><a href="/collectible/220/movements-in-american-history" class="target" title="Movements in American History" alt="Movements in American History" height="150" width="150">Movements in...</a></p>
       <span>$45.00</span>
     </div>
     <div class="span3 thumbnail link">
-      <img src="http://assets.cqcdns.dev/placeholdr.php?x=131x131/ccc/969696.png&amp;text=">  <p><a href="/collectible/221/poor-richards-almanack-by-benjamin-franklin" class="target" title="Poor Richard's Almanack by Benjamin Franklin" alt="Poor Richard's Almanack by Benjamin Franklin" height="150" width="150">Poor Richard's...</a></p>
+      <img src="http://placehold.it/131x131/ccc/969696.png&amp;text=">  <p><a href="/collectible/221/poor-richards-almanack-by-benjamin-franklin" class="target" title="Poor Richard's Almanack by Benjamin Franklin" alt="Poor Richard's Almanack by Benjamin Franklin" height="150" width="150">Poor Richard's...</a></p>
       <span>$35.00</span>
     </div>
     <div class="span3 thumbnail link">
-      <img src="http://assets.cqcdns.dev/placeholdr.php?x=131x131/ccc/969696.png&amp;text=">  <p><a href="/collectible/245/blue-egg" truncate="20" class="target" title="Blue Egg" alt="Blue Egg" height="150" width="150">Blue Egg</a></p>
+      <img src="http://placehold.it/131x131/ccc/969696.png&amp;text=">  <p><a href="/collectible/245/blue-egg" truncate="20" class="target" title="Blue Egg" alt="Blue Egg" height="150" width="150">Blue Egg</a></p>
       <span>$20.00</span>
     </div>
   </div>

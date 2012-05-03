@@ -16,11 +16,10 @@ Options +FollowSymLinks +ExecCGI
   </FilesMatch>
 </IfModule>
 
-
 <IfModule pagespeed_module>
   ModPagespeedDisallow */combine.php*
+  ModPagespeedEnableFilters collapse_whitespace,combine_css,combine_javascript,rewrite_images
 </IfModule>
-
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
