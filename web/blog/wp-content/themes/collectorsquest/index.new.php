@@ -25,7 +25,7 @@
 
   if (is_front_page()) { $crumbs = array( $home ); }
   elseif (is_tag()) { $crumbs = array( $home, array('name' => 'Tag Archive: '.single_tag_title("", false), $url)); }
-  elseif (is_category()) { $crumbs = array( $home, array('name' => single_cat_title("", false), $url)); }
+  elseif (is_category()) { $crumbs = array( $home, array('name' => 'Category Archive: '.single_cat_title("", false), $url)); }
   elseif (is_single()) { $crumbs = array( $home, array('name' => get_the_author_meta('display_name'), 'url' => '/blog/author/'.get_the_author_meta('nicename')),array('name' => get_the_title(), 'url' => null)); }
   elseif (is_author()) { $crumbs = array( $home, array('name' => 'Archive for '.get_the_author_meta('display_name'), $url)); }
   elseif (is_day()) { $crumbs = array( $home, array('name' => "Archive for ". the_time('F jS, Y'), $url)); }
@@ -170,7 +170,7 @@ $lastclass = 0;
 
         echo (++$e % 2 == 0) ? ' even' : ' odd';
 
-        ?>" id="post-<?php the_ID(); ?>">
+        ?> row-fluid" id="post-<?php the_ID(); ?>">
 
         <?php if (is_single()) : ?>
           <!-- <div class="entry-genre"><a href="" title=""><?php the_category() ?></a></div> -->
@@ -178,7 +178,7 @@ $lastclass = 0;
           <h2 class="entry-title"><?php the_title() ?></h2>
         <?php endif; ?>
 
-        <div class="entry-image">
+        <div class="entry-image <?php if (is_front_page() && $count==1): echo "span5"; elseif (!is_single()) : echo  "span3"; endif; ?>">
 
           <?php
           $image_id = get_post_thumbnail_id();
@@ -252,10 +252,10 @@ $lastclass = 0;
 
         <?php if (is_front_page() || is_archive()) : ?>
           <!-- <div class="entry-genre"><a href="" title=""><?php the_category() ?></a></div> -->
-          <h2 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+          <h2 class="entry-title <?php if (is_front_page() && $count==1): echo "span6"; elseif (!is_single()) : echo  "span9"; endif; ?>"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
         <?php endif; ?>
 
-        <div class="entry-meta">
+        <div class="entry-meta <?php if (is_front_page() && $count==1): echo "span6"; elseif (!is_single()) : echo  "span9"; else : echo "span12";  endif; ?>">
           <span class="meta-text">
             <a class="author-image" href="<?php echo get_author_posts_url(get_the_author_meta('ID')) ?>"
                title="<?php the_author() ?>'s articles on collecting...">
@@ -271,7 +271,7 @@ $lastclass = 0;
           </span>
 
           <?php if (is_single()) : ?>
-          <div class="entry-share pull-right">
+          <div class="entry-share pull-right <?php if (is_front_page() && $count==1): echo "span6"; endif; ?>">
             <!-- ShareThis Button BEGIN
             <span class='st_email_hcount'></span>
             <span class='st_facebook_hcount'></span>
@@ -294,12 +294,12 @@ $lastclass = 0;
         </div>
 
 
-        <div class="entry">
+        <div class="entry <?php if (is_front_page() && $count==1): echo "span6"; elseif (!is_single()) : echo  "span9"; endif; ?>">
           <?php
           if (is_single()) :
              the_content();
           elseif (is_front_page()||is_archive()) :
-            if ($count == 1) :
+            if (is_front_page() && $count == 1) :
               $length = 300;
             else :
               $length = 200;
@@ -312,7 +312,7 @@ $lastclass = 0;
         </div>
 
         <?php if ((is_front_page() && $count == 1) || is_single()) : ?>
-        <div class="entry-footer">
+        <div class="entry-footer <?php if (is_front_page() && $count==1): echo "span6"; else : echo "span12"; endif; ?>">
         <?php if (is_front_page() && $count == 1) : ?>
           <p><?php the_tags(); ?></p>
         <?php endif; ?>
@@ -359,14 +359,18 @@ $lastclass = 0;
      <div class="permalinklink">Permalink: <a href="<?php the_permalink(); ?>"><?php the_permalink() ?></a></div>
     <?php endif; ?>
 
-    <div class="navigation">
-      <div class="lt">
-        <?php next_posts_link('older posts') ?>
-      </div>
-      <div class="rt">
-        <?php previous_posts_link('newer posts') ?>
-      </div>
-    </div>
+    <?php if ( is_archive() && $wp_query->max_num_pages > 1 ) : ?>
+    <div id="nav-below" class="navigation">
+      <div class="nav-previous"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'collectorsquest' ) ); ?></div>
+      <div class="nav-next"><?php previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'collectorsquest' ) ); ?></div>
+    </div><!-- #nav-below -->
+    <?php else : ?>
+    <!--<div id="nav-below" class="navigation">
+      <div class="nav-previous"><?php previous_post_link( '%link', '<div class="header-bar footer-nav Chivo webfont">PREVIOUS</div><span class="meta-nav">' . _x( '&larr;', 'Previous post link', 'twentyten' ) . '</span> %title' ); ?></div>
+      <div class="nav-next"><?php next_post_link( '%link', '<div class="header-bar footer-nav Chivo webfont">NEXT</div> %title <span class="meta-nav">' . _x( '&rarr;', 'Next post link', 'twentyten' ) . '</span>' ); ?></div>
+    </div> #nav-below -->
+    <?php endif; ?>
+
 
     <?php endif; ?>
 
