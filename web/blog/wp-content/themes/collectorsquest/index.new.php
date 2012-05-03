@@ -299,14 +299,7 @@ $lastclass = 0;
           if (is_single()) :
              the_content();
           elseif (is_front_page()||is_archive()) :
-            if (is_front_page() && $count == 1) :
-              $length = 300;
-            else :
-              $length = 200;
-            endif;
-            $longString = get_the_excerpt('... more');
-            $truncated = substr($longString, 0, strpos($longString, ' ', $length));
-            echo '<p>' . $truncated . '... <a href="' . get_permalink() . '">more</a></p>';
+            echo '<p>'.get_the_excerpt().'</p>';
           endif;
           ?>
         </div>
