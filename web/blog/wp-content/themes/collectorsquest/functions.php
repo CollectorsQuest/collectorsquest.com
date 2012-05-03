@@ -241,7 +241,28 @@ if ($_SERVER['HTTP_HOST'] == 'www.collectorsquest.dev' || $_SERVER['HTTP_HOST'] 
     return $user_contactmethods;
   }
 
+
+  add_filter('excerpt_length', 'my_excerpt_length');
+  function my_excerpt_length($length) {
+
+    if (is_front_page() && $count == 1) :
+      return 50;
+    else :
+      return 34;
+    endif;
+
+  }
+
+  // Puts link in excerpts more tag
+  function new_excerpt_more($more) {
+    global $post;
+    return '... <a class="moretag" href="'. get_permalink($post->ID) . '">more</a>';
+  }
+  add_filter('excerpt_more', 'new_excerpt_more');
+
+
   require_once 'lib/widgets/widgets.php';
+
 
 }
 
