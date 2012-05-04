@@ -211,14 +211,14 @@ if ($_SERVER['HTTP_HOST'] == 'www.collectorsquest.dev' || $_SERVER['HTTP_HOST'] 
     return $first_img;
   }
 
-  add_filter('pre_get_posts', 'filter_homepage_posts');
+ // add_filter('pre_get_posts', 'filter_homepage_posts');
   function filter_homepage_posts($query) {
 
   $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 
-  if ($paged==1) {
+  if (!is_admin() && $paged==1) {
       $limit_number_of_posts = 7;
-  } else {
+  } elseif (!is_admin()) {
       $limit_number_of_posts = 8;
   }
 
