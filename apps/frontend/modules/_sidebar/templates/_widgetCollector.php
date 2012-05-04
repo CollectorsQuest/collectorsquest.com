@@ -14,21 +14,26 @@
     <?= link_to_collector($collector, 'image', array('width' => 60, 'height' => 60)); ?>
   </div>
   <div class="span8">
-    <?= link_to_collector($collector, 'text'); ?>
-    <?php echo sprintf(
-      __('is %s %s collector'),
-      in_array(strtolower(substr($collector->getProfile()->getCollectorType(), 0, 1)), array('a', 'e', 'i', 'o')) ? 'an' : 'a',
-      '<i>'. $collector->getProfile()->getCollectorType() .'</i>'
-    ); ?>
-    <p style="margin-top: 10px;">
-      <?= cqStatic::truncateText($collector->getProfile()->getAboutMe(), 60, '...', true); ?>
-      <a href="<?= url_for_collector($collector) ?>" title="<?= $collector->getDisplayName() ?> on Collectors Quest">[see profile]</a>
-    </p>
+    <h4><?= link_to_collector($collector, 'text'); ?></h4>
+    <ul>
+      <li>
+        <?php
+        echo sprintf(
+          '%s %s collector',
+          in_array(strtolower(substr($collector->getCollectorType(), 0, 1)), array('a', 'e', 'i', 'o')) ? 'An' : 'A',
+          '<strong>'. $collector->getCollectorType() .'</strong>'
+        );
+        ?>
+      </li>
+      <li>
+        From <?= $collector->getProfile()->getCountry(); ?>
+      </li>
+    </ul>
   </div>
 </div>
 
 <?php if (isset($message) && $message === true): ?>
-<div class="row-fluid" style="margin-top: 10px;">
+<div class="row-fluid">
   <div style="background-color: #e6f2f9; padding: 6px;">
     <form action="<?= url_for('@messages_compose?to='. $collector->getUsername()); ?>" method="post" style="margin-bottom: 0;" id="form-private-message">
       <input type="hidden" name="message[receiver]" value="<?= $collector->getUsername(); ?>">
