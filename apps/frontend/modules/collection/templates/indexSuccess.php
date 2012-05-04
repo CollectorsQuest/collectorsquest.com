@@ -39,6 +39,7 @@
   </div>
 </div>
 
+
 <?php if ($pager->getPage() === 1): ?>
 <div class="cf" style="margin-top: 20px;">
   <?= cqStatic::linkify($collection->getDescription('html')); ?>

@@ -2,7 +2,9 @@
   <div class="row-fluid">
     <div class="span4">
       <ul>
-        <li><a href="#">XXXX Views</a></li>
+        <li>
+          <a href="#">XXXX Views</a>
+        </li>
       </ul>
     </div>
     <div class="span8 text-right">
