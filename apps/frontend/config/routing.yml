@@ -6,10 +6,21 @@ ajax_typeahead:
   requirements: { sf_method: [GET], sf_format: json }
 
 ajax_collections:
-  url:   /ajax/collection/:section/:page.:sf_format
+  url:   /ajax/collections/:section/:page.:sf_format
   param: { module: ajax, action: collections, sf_format: html }
   options: { extra_parameters_as_query_string: true }
   requirements: { sf_format: (?:html|json) }
+
+ajax_collectors:
+  url:   /ajax/collectors/:section/:page.:sf_format
+  param: { module: ajax, action: collectors, sf_format: html }
+  options: { extra_parameters_as_query_string: true }
+  requirements: { sf_format: (?:html|json) }
+
+ajax_collector:
+  url:   /ajax/collector/:section/:page
+  param: { module: collector, action: ajax, sf_format: html }
+  requirements: { sf_method: [GET], sf_format: (?:html|json) }
 
 ### A&E
 

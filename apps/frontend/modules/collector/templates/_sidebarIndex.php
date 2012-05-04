@@ -28,15 +28,13 @@
 </div>
 
 
-<?php cq_section_title('More About Robotbacon'); ?>
-
+<?php cq_section_title('More About '. $collector->getDisplayName()); ?>
 <div class="personal-info-sidebar">
-  <p>I am a staff writer for CQ, NES over-enthusiast, sushi devourer, daytime librarian, former teacher, painter, non-functional robot builder.</p>
-  <p>My collections are: Infinite and delicious.</p>
-  <p>From: The US</p>
+  <p><?= $profile->getProperty('about.me'); ?></p>
+  <p><strong>About my collections:</strong> <?= $profile->getProperty('about.collections'); ?></p>
 </div>
 
-<?php cq_section_title('Robotbacon’s Most Wanted'); ?>
+<?php cq_section_title($collector->getDisplayName() .'\'s Most Wanted'); ?>
 <div class="other-items-sidebar top-margin">
   <div class="thumbnails-inner">
     <ul class="thumbnails">

@@ -2,8 +2,13 @@
 
 class collectorActions extends cqFrontendActions
 {
-  public function executeIndex()
+  public function executeIndex(sfWebRequest $request)
   {
+    /** @var $collector Collector */
+    $collector = $this->getRoute()->getObject();
+
+    $this->collector = $collector;
+
     return sfView::SUCCESS;
   }
 
