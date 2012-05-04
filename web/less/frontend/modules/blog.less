@@ -32,7 +32,7 @@ h2 a:hover
 	margin-top:5px;
 }
 
-.entry .wp-caption-text
+.entry-content .wp-caption-text
 {
 	margin-left:10px;
 	margin-top:10px;
@@ -127,7 +127,7 @@ h2 a:hover
 }
 
 .p-tag:hover {
-  color: #000;
+  color: @black;
 }
 .widget
 {
@@ -313,6 +313,11 @@ h2 a:hover
     height:300px
   }
 
+  .p-1 .entry-share
+  {
+    width:72%
+  }
+
   .p-1 .entry-genre
   {
     left:320px;
@@ -334,7 +339,7 @@ h2 a:hover
     margin-top:8px
   }
 
-  .entry,.entry p
+  .entry-content,.entry-content p
   {
     font-size:14px;
     line-height:20px;
@@ -373,7 +378,11 @@ h2 a:hover
   .post
   {
     border-bottom:1px dashed #ccc;
-    padding:10px 0 0
+    padding:10px 0
+  }
+  .entry-content p
+  {
+    margin-bottom: 0
   }
 
 }

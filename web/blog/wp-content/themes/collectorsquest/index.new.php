@@ -99,7 +99,7 @@
 
 <?php
 $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-$count = ($paged > 1) ? 9 : 1;
+$count = ($paged > 1) ? 8 : 1;
 $lastclass = 0;
 ?>
 
@@ -283,10 +283,10 @@ $lastclass = 0;
             <!-- AddThis Button BEGIN -->
             <div class="addthis_toolbox addthis_default_style">
               <a class="addthis_button_email"></a>
-              <a class="addthis_button_facebook_like" fb:like:layout="button_count" fb:like:width="40"></a>
+              <a class="addthis_button_facebook_like" fb:like:layout="button_count" fb:like:width="42"></a>
               <a class="addthis_button_tweet" tw:twitter:data-count="none"></a>
               <a class="addthis_button_google_plusone" g:plusone:size="medium" g:plusone:annotation="none"></a>
-              <a class="addthis_button_pinterest_pinit" pi:pinit:media="<?php echo 'http://'.$_SERVER['SERVER_NAME']. $image_url; ?>" pi:pinit:layout="horizontal"></a>
+              <a class="addthis_button_pinterest_pinit" pi:pinit:media="<?php echo bloginfo('url'). $image_url; ?>" pi:pinit:layout="horizontal"></a>
             </div>
             <!-- AddThis Button END -->
           </div>
@@ -294,7 +294,7 @@ $lastclass = 0;
         </div>
 
 
-        <div class="entry <?php if (is_front_page() && $count==1): echo "span6"; elseif (!is_single()) : echo  "span9"; endif; ?>">
+        <div class="entry-content <?php if (is_front_page() && $count==1): echo "span6"; elseif (!is_single()) : echo  "span9"; endif; ?>">
           <?php
           if (is_single()) :
              the_content();
@@ -324,10 +324,10 @@ $lastclass = 0;
             <!-- AddThis Button BEGIN -->
             <div class="addthis_toolbox addthis_default_style">
               <a class="addthis_button_email"></a>
-              <a class="addthis_button_facebook_like" fb:like:layout="button_count" fb:like:width="40"></a>
+              <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
               <a class="addthis_button_tweet" tw:twitter:data-count="none"></a>
               <a class="addthis_button_google_plusone" g:plusone:size="medium" g:plusone:annotation="none"></a>
-              <a class="addthis_button_pinterest_pinit" pi:pinit:media="<?php echo 'http://'.$_SERVER['SERVER_NAME']. $image_url; ?>" pi:pinit:layout="horizontal"></a>
+              <a class="addthis_button_pinterest_pinit" pi:pinit:media="<?php echo bloginfo('url'). $image_url; ?>" pi:pinit:class="pin-it-button" pi:pinit:count-layout="horizontal"></a>
             </div>
             <!-- AddThis Button END -->
           </div>
