@@ -25,7 +25,7 @@
       switch (strtolower(get_class($object)))
       {
         case 'wppost':
-          echo '<div class="span8 brick" style="height: 165px; float: left;">';
+          echo '<div class="span12 brick" style="height: 165px; float: left;">';
           include_partial(
             'news/wp_post_'. $display .'_view',
             array('wp_post' => $object, 'excerpt' => $pager->getExcerpt($i), 'i' => $i)
@@ -50,9 +50,9 @@
           echo '</div>';
           break;
         case 'collector':
-          echo '<div class="span4 brick" style="height: 165px; float: left;">';
+          echo '<div class="span8 brick" style="height: 165px; float: left;">';
           include_partial(
-            'collector/collector_'. $display .'_view',
+            'collector/collector_'. $display .'_view_span8',
             array('collector' => $object, 'i' => $i)
           );
           echo '</div>';
