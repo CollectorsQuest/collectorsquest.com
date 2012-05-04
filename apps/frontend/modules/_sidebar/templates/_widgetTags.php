@@ -1,5 +1,5 @@
 <div class="tags-container-sidebar">
-  <p><?= $title; ?></p>
+  <?php cq_sidebar_title($title, null); ?>
   <?php
     foreach ($tags as $tag)
     {

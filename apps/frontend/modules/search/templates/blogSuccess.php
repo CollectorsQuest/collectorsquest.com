@@ -30,7 +30,7 @@
     {
       echo '<div class="span6">';
       include_partial(
-        'news/wp_post_'. $display .'_view',
+        '_blog/wp_post_'. $display .'_view',
         array('wp_post' => $wp_post, 'excerpt' => $pager->getExcerpt($i), 'i' => $i)
       );
       echo '</div>';

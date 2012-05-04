@@ -160,7 +160,10 @@ class cqSphinxPager extends sfPager
       {
         if (false !== $key = array_search($collector->getId() + 300000000, $objects, true))
         {
+          $profile = $collector->getProfile();
+
           $objects[$key] = $collector;
+          $contents[$key] = implode('. ', array($profile->getProperty('about.me'), $profile->getProperty('about.collections')));
         }
       }
     }
@@ -190,11 +193,11 @@ class cqSphinxPager extends sfPager
 
     $env = defined('SF_ENV') ? SF_ENV : sfConfig::get('sf_environment');
     $env = str_replace('_debug', '', $env);
-    $indexes = sprintf('%1$s_blog_normalized', $env);
+    $index = sprintf('%1$s_blog_normalized', $env);
 
     $keys = array_keys($contents);
     if (!empty($this->query['q']) &&
-       ($excerpts = $sphinx->BuildExcerpts($contents, $indexes, $this->query['q'], array('limit' => 128)))
+       ($excerpts = $sphinx->BuildExcerpts($contents, $index, $this->query['q'], array('limit' => 140)))
     ) {
       foreach ($excerpts as $i => $excerpt)
       if (!empty($excerpt))

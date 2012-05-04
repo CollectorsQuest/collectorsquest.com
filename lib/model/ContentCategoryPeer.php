@@ -2,6 +2,7 @@
 
 require 'lib/model/om/BaseContentCategoryPeer.php';
 
-class ContentCategoryPeer extends BaseContentCategoryPeer {
+class ContentCategoryPeer extends BaseContentCategoryPeer
+{
 
 }

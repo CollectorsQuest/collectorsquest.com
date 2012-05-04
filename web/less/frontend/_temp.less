@@ -222,17 +222,14 @@
 		li {
 			float: left;
 			margin: 0;
-			padding: 0;
+			padding: 0 9px 0 9px;
 			font: 10px Arial;
 			border-left: 1px solid #83a8bb;
 			&:first-child {
 				border-left: none;
 			}
 			a, span {
-				float: left;
-				display: block;
 				margin: 0;
-				padding: 0 9px 0 9px;
 				color: @blueDark;
 				text-decoration: none;
 				border: none;
@@ -265,11 +262,11 @@
 		background-color: darken(#278fc7, 10%) e("\9");
 	}
 }
-.mail-icon-mini, .add-icon-middle, .share-icon-middle {
+.mail-icon-mini, .add-icon-medium, .share-icon-medium {
 	display: inline-block;
 	line-height: 12px;
 }
-.add-icon-middle, .share-icon-middle {
+.add-icon-medium, .share-icon-medium {
 	vertical-align: bottom;
 }
 
@@ -289,14 +286,14 @@
 	margin: 0 1px 0 2px;
 	height: 16px;
 }
-.btn-mini-social, .btn-mini-share2 {
+.btn-mini-social {
 	&:hover {
 		.border-radius(3px);
 		.box-shadow(0px 0px 3px 1px rgba(30, 126, 205, 0.6));
 		border: none;
 	}
 }
-.btn-lightblue-middle {
+.btn-lightblue-medium {
 	.btn-lightblue();
 	padding-bottom: 2px;
 }

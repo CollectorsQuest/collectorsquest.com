@@ -104,7 +104,7 @@ class sellerActions extends cqFrontendActions
             }
 
             $this->getUser()->setFlash('success', 'You received free subscription');
-            $this->redirect('@manage_profile');
+            $this->redirect('@mycq');
           }
           else if ('paypal' == $packagesForm->getValue('payment_type'))
           {
@@ -218,7 +218,7 @@ class sellerActions extends cqFrontendActions
               }
 
               $this->getUser()->setFlash('success', 'Payment received');
-              $this->redirect('@manage_profile');
+              $this->redirect('@mycq');
             }
             else
             {
@@ -273,7 +273,7 @@ class sellerActions extends cqFrontendActions
       $this->getUser()->setFlash('error', 'There is no active order');
     }
 
-    $this->redirect('@manage_profile');
+    $this->redirect('@mycq');
   }
 
   /**
@@ -330,7 +330,7 @@ class sellerActions extends cqFrontendActions
       $promotion->save();
     }
 
-    $this->redirect('@manage_collections');
+    $this->redirect('@mycq_collections');
   }
 
 }

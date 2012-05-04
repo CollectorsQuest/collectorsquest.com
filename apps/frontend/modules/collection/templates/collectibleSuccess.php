@@ -13,7 +13,8 @@
 <?php
   cq_page_title(
     $collectible->getName(),
-    link_to('Back to Collection &raquo;', url_for_collection($collection))
+    link_to('Back to Collection &raquo;', url_for_collection($collection)),
+    array('left' => 9, 'right' => 3)
   );
 ?>
 
@@ -32,8 +33,6 @@
     }
   ?>
   <div class="span<?= $span; ?>" style="text-align: center;">
-    <?php ice_image_tag_placeholder('504x398') ?>
-    <?php ice_image_tag_flickholdr('620x490', array('tags' => array('Teacup', 'china', 'old'), 'i' => 1)) ?>
     <?php
       echo link_to(
         image_tag_collectible(
@@ -63,23 +62,21 @@
     <div class="span4">
       <ul>
         <li>
-          <span>
           <?php
             echo format_number_choice(
               '[0] no views yet|[1] 1 View|(1,+Inf] %1% Views',
               array('%1%' => number_format($collectible->getNumViews())), $collectible->getNumViews()
             );
           ?>
-          </span>
         </li>
         <li>
-          <span>In XXX wanted lists</span>
+          In XXX wanted lists
         </li>
       </ul>
     </div>
     <div class="span8 text-right">
       <a href="#" class="btn btn-mini-share2 btn-lightblue">
-        <i class="add-icon-middle"></i> Add to your want list
+        <i class="add-icon-medium"></i> Add to your want list
       </a>
       <a href="#" class="btn btn-mini-share btn-lightblue">
         <i class="mail-icon-mini"></i> Mail
@@ -104,13 +101,11 @@
 <div class="item-description">
   <?= $collectible->getDescription('html'); ?>
 </div>
-<br style="clear:both;"/>
 <?php endif; ?>
 
-<?php if ($collectible_for_sale): ?>
+<?php if (isset($collectible_for_sale) && $collectible_for_sale instanceof CollectibleForSale): ?>
   <!-- sale items -->
-
-  <span class="item-condition">Condition:</span> Like new
+  <span class="item-condition"><strong>Condition:</strong> Like new</span>
 
   <table class="shipping-rates">
     <thead>
@@ -147,7 +142,7 @@
 
 
   <div id="information-box">
-    <p>Have a question about shippng? <?= cq_link_to(sprintf('Send a message to %s »', $collector->getDisplayName()), '@messages_compose?to='. $collector->getUsername()); ?></p>
+    <p>Have a question about shipping? <?= cq_link_to(sprintf('Send a message to %s »', $collector->getDisplayName()), '@messages_compose?to='. $collector->getUsername()); ?></p>
     <p>Return Policy: If you are unhappy with the item, I accept returns or exchanges for purchased items within 30 days of the shipping date. Please email me within 7 days of receiving your order to arrange for a refund or exchange. Returns or exchanges made without prior notification may not be processed. Product must be returned in the same condition as it was received. Shipping charges are non-refundable and are full responsiblity of customer. Your refund will be issued when return items are received. In case of receiving damaged item, please return the item (you will be compensated for shipping costs).</p>
     <p>Payment: I accept payment through PayPal, Moneybookers, money order and bank transfer. I greatly appreciate prompt payment and/or prompt communication regarding payment. I will not ship until payment has been received.</p>
   </div>

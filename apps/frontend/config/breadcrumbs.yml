@@ -24,8 +24,11 @@ ice_propel_breadcrumbs:
       - { name: %name%, route: aetn_collectible_by_slug, model: true }
 
   collection:
+    index:
+      - { name: %name%, route: collection_by_slug, model: true }
     collectible:
       - { name: %Collection%, route: collection_by_slug, model: true, subobject: Collection }
+      - { name: %name%, route: collectible_by_slug, model: true }
 
   collections:
     index: [{ name: 'Collections', route: collections }]

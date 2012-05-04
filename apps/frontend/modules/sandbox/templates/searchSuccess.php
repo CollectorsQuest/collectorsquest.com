@@ -2,10 +2,43 @@
 
 <div class="row">
 <div id="search-results" class="row-content">
-<div class="span4 brick" style="height: 165px; float: left;">
-  <div id="collector_2737_grid_view"
-       data-id="2737" class="collector_grid_view">
-    Collector Grid View
+<div class="span8 brick" style="height: 145px; float: left;">
+  <div id="collector_2737_grid_view" data-id="2737" class="collector_grid_view">
+
+    <div class="row-fluid">
+      <div class="span9">
+        <div class="row-fluid profile-info">
+          <div class="span3">
+            <img src="http://placehold.it/64x64" alt="">
+          </div>
+          <div class="span9">
+            <h2>Robotbacon</h2>
+            <ul>
+              <li>
+                An <strong>Expert</strong> collector
+              </li>
+              <li>
+                from the United States
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="span12 about">
+          I am a staff writer for CQ, NES over-enthusiast, sushi devourer, daytime librarian, former teacher, painter, non-functional robot builder.
+        </div>
+      </div>
+      <div class="span3">
+        <span class="stat-area bottom-margin">
+          102
+          <span>COLLECTIONS</span>
+        </span>
+        <span class="stat-area">
+          2,345
+          <span>ITEMS</span>
+        </span>
+      </div>
+    </div>
+
   </div>
 </div><div class="span4 brick" style="height: 165px; float: left;">
   <div id="collectible_61624_grid_view"

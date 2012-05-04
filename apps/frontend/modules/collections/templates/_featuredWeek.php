@@ -4,7 +4,7 @@
       <span class="weeks-promo-title Chivo webfont">Camera week: Strike a pose</span>
     </div>
     <div class="span4 text-right">
-      <a href="#" class="link-align">See previous features &raquo;</a>
+      &nbsp;
     </div>
   </div>
 
@@ -59,7 +59,7 @@ $(document).ready(function()
         clickZone : 'div.link'
       });
 
-      $(this).hide();
+      $button.hide();
     },'html');
   });
 });

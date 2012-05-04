@@ -17,36 +17,32 @@
     <div class="span6">
       <ul>
         <li>
-          <span>
           <?php
             echo format_number_choice(
               '[0] no comments yet|[1] 1 Comment|(1,+Inf] %1% Comments',
               array('%1%' => number_format($collectible->getNumComments())), $collectible->getNumComments()
             );
           ?>
-          </span>
         </li>
         <li>
-         <span>
          <?php
            echo format_number_choice(
              '[0] no views yet|[1] 1 View|(1,+Inf] %1% Views',
              array('%1%' => number_format($collectible->getNumViews())), $collectible->getNumViews()
            );
          ?>
-         </span>
         </li>
         <li>
-          <span>In XXX wanted lists</span>
+          In XXX wanted lists
         </li>
       </ul>
     </div>
     <div class="span6 text-right">
       <a href="#" class="btn btn-mini-share btn-lightblue-middle">
-        <i class="add-icon-middle"></i> Add this item to your most wanted list
+        <i class="add-icon-medium"></i> Add this item to your most wanted list
       </a>
       <a href="#" class="btn btn-mini-share btn-lightblue-middle">
-        <i class="share-icon-middle"></i> Share
+        <i class="add-icon-medium"></i> Share
       </a>
     </div>
   </div>

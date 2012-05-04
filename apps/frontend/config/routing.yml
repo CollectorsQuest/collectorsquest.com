@@ -107,10 +107,6 @@ collector_signup:
   param: { module: collector, action: signup, step: 1 }
   requirements: { step: '[1-3]' }
 
-manage_profile:
-  url:   /manage/profile
-  param: { module: default, action: index }
-
 
 ### SELLERS
 
@@ -176,11 +172,7 @@ search:
   param: { module: search, action: index }
 
 
-### NEWS
-
-news:
-  url:   /news
-  param: { module: news, action: index }
+### BLOG
 
 blog:
   url:   /blog
@@ -265,17 +257,91 @@ shopping_order_error:
   param: { module: shopping, action: orderError }
 
 
-### MANAGE
+### MY CQ
 
-manage_shopping_order:
-  url:   /manage/order/:uuid
+mycq_profile:
+  url:   /mycq/profile
+  param: { module: mycq, action: profile }
+
+mycq_dropbox:
+  url:   /mycq/dropbox
+  param: { module: mycq, action: dropbox }
+
+mycq_collections:
+  url:   /mycq/collections
+  param: { module: mycq, action: collections }
+
+mycq_collection_by_slug:
+  url:  /mycq/collection/:id/:slug
+  class: sfPropelRoute
+  options: { model: CollectorCollection, type: object, method: getObjectForRoute }
+  param: { module: mycq, action: collection }
+  requirements: { id: '\d+', slug: '[\-\w\.]+', sf_method: [get, post] }
+
+mycq_collectibles_dropbox:
+  url:  /mycq/collectibles/0/dropbox
+  params: { module: mycq, action: collectibles }
+
+mycq_collectibles_by_slug:
+  url:  /mycq/collectibles/:id/:slug
+  class: sfPropelRoute
+  options: { model: CollectorCollection, type: object, method: getObjectForRoute }
+  params: { module: mycq, action: collectibles }
+  requirements:
+    id: \d+
+    slug: '[\-\w\.]+'
+    sf_method: [get, post]
+
+mycq_collectible_by_slug:
+  url:  /mycq/collectible/:id/:slug
+  class: sfPropelRoute
+  options: { model: Collectible, type: object, method: getObjectForRoute }
+  param: { module: mycq, action: collectible }
+  requirements: { id: '\d+', slug: '[\-\w\.]+', sf_method: [get, post] }
+
+mycq_marketplace:
+  url:   /mycq/marketplace
+  param: { module: mycq, action: marketplace }
+
+mycq_wanted:
+  url:   /mycq/wanted
+  param: { module: mycq, action: wanted }
+
+mycq_friends:
+  url:   /mycq/friends
+  param: { module: mycq, action: friends }
+
+mycq_collector_address_new:
+  url:    /mycq/addresses/new
+  param:  { module: mycq, action: addNewAddress }
+
+mycq_collector_address_edit:
+  url:    /mycq/addresses/:id/edit
+  class:  sfPropelORMRoute
+  options: { model: CollectorAddress, type: object }
+  param:  { module: mycq, action: editAddress }
+  requirements: { id: '\d+' }
+
+mycq_collector_address_delete:
+  url:    /mycq/addresses/:id/delete
+  class:  sfPropelORMRoute
+  options: { model: CollectorAddress, type: object }
+  param:  { module: mycq, action: deleteAddress }
+  requirements: { id: '\d+', sf_method: [get, delete] }
+
+mycq_shopping_order:
+  url:   /mycq/order/:uuid
   class: sfPropelRoute
   options: { model: ShoppingOrder, type: object }
-  param: { module: manage, action: shoppingOrder }
+  param: { module: mycq, action: shoppingOrder }
 
-manage_shopping_orders:
-  url:   /manage/orders
-  param: { module: manage, action: shoppingOrders }
+mycq_shopping_orders:
+  url:   /mycq/orders
+  param: { module: mycq, action: shoppingOrders }
+
+mycq:
+  url:   /mycq
+  param: { module: mycq, action: index }
 
 
 ### SELLER
@@ -316,7 +382,7 @@ tags_index:
 content_category:
   url:  /category/:id/:slug
   class: cqPropelRoute
-  options: { model: CollectionCategory, type: object, method: getObjectForRoute }
+  options: { model: ContentCategory, type: object }
   param: { module: categories, action: category }
   requirements: { id: '\d+', slug: '[\-\w\.]+' }
 

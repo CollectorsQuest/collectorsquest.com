@@ -1,5 +1,5 @@
 
-<?php if ($collectible_for_sale): ?>
+<?php if (isset($collectible_for_sale) && $collectible_for_sale instanceof CollectibleForSale): ?>
 <form action="<?= url_for('@shopping_cart'); ?>" method="post">
 
   <div id="price-container">
