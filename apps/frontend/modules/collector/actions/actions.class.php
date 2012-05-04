@@ -42,7 +42,7 @@ class collectorActions extends cqFrontendActions
     // Redirect to the community if already signed up
     $this->redirectIf($this->getUser()->isAuthenticated()
           && $this->getUser()->getCollector()->getHasCompletedRegistration(),
-         '@manage_profile');
+         '@mycq');
 
     /* * /
     if (!$this->getUser()->isAuthenticated() && !$this->getUser()->getAttribute('signup_type', false, 'registration'))
@@ -189,7 +189,7 @@ class collectorActions extends cqFrontendActions
 
             // redirect to step manage profile
             $this->redirect($this->getController()->genUrl(array(
-              'sf_route' => 'manage_profile'
+              'sf_route' => 'mycq'
             )));
             break;
 

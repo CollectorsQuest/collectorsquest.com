@@ -27,7 +27,7 @@ $discount = $package->getPackagePrice() - $packageTransaction->getPackagePrice()
   <input type="hidden" name="business" value="<?php echo sfConfig::get('app_paypal_merchant_account') ?>" />
   <input type="hidden" name="currency_code" value="<?php echo sfConfig::get('app_paypal_currency') ?>" />
   <input type="hidden" name="currency" value="<?php echo sfConfig::get('app_paypal_currency') ?>" />
-  <input type="hidden" name="return" value="<?php echo url_for1('manage_profile', true) ?>" />
+  <input type="hidden" name="return" value="<?php echo url_for1('mycql', true) ?>" />
   <input type="hidden" name="cancel_return" value="<?php echo url_for('seller_cancel_payment', array('id'=> $packageTransaction->getId()), true) ?>" />
   <input type="hidden" name="notify_url" value="<?php echo url_for1('seller_callback_ipn', true) ?>" />
 
