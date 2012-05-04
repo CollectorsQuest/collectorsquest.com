@@ -2,16 +2,16 @@
 
 <div class="row">
 <div id="search-results" class="row-content">
-<div class="span8 brick" style="height: 165px; float: left;">
+<div class="span8 brick" style="height: 145px; float: left;">
   <div id="collector_2737_grid_view" data-id="2737" class="collector_grid_view">
 
     <div class="row-fluid">
       <div class="span9">
         <div class="row-fluid profile-info">
-          <div class="span4">
-            <img src="http://placehold.it/130x130" alt="">
+          <div class="span3">
+            <img src="http://placehold.it/64x64" alt="">
           </div>
-          <div class="span8">
+          <div class="span9">
             <h2>Robotbacon</h2>
             <ul>
               <li>
@@ -23,12 +23,12 @@
             </ul>
           </div>
         </div>
-        <div class="span12">
+        <div class="span12 about">
           I am a staff writer for CQ, NES over-enthusiast, sushi devourer, daytime librarian, former teacher, painter, non-functional robot builder.
         </div>
       </div>
       <div class="span3">
-        <span class="stat-area bottom-margin-double">
+        <span class="stat-area bottom-margin">
           102
           <span>COLLECTIONS</span>
         </span>
@@ -39,12 +39,6 @@
       </div>
     </div>
 
-
-
-
-    <a href="#" class="thumbnail" title="LOG! From Blammo!">
-      <img src="http://placehold.it/64x64" alt="">
-    </a>
   </div>
 </div><div class="span4 brick" style="height: 165px; float: left;">
   <div id="collectible_61624_grid_view"
