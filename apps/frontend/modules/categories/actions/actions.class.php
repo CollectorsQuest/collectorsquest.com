@@ -50,7 +50,8 @@ class categoriesActions extends cqFrontendActions
     }
 
     $q = CollectorCollectionQuery::create()
-       ->filterByCollectionCategory($this->category);
+       ->filterByContentCategory($this->category)
+       ->orderByUpdatedAt(Criteria::DESC);
 
     $pager = new PropelModelPager($q, $this->collectors_question !== null ? 16 : 36);
     $pager->setPage($request->getParameter('page', 1));

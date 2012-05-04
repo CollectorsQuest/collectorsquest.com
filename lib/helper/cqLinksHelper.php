@@ -411,8 +411,7 @@ function link_to_collection_category(CollectionCategory $category, $type = 'text
   return $link;
 }
 
-
-function link_to_content_category(CollectionCategory $category, $type = 'text', $options = array())
+function link_to_content_category(ContentCategory $category, $type = 'text', $options = array())
 {
   $options = array_merge(
     array(

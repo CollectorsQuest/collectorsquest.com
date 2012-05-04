@@ -386,7 +386,7 @@ tags_index:
 content_category:
   url:  /category/:id/:slug
   class: cqPropelRoute
-  options: { model: CollectionCategory, type: object, method: getObjectForRoute }
+  options: { model: ContentCategory, type: object }
   param: { module: categories, action: category }
   requirements: { id: '\d+', slug: '[\-\w\.]+' }
 

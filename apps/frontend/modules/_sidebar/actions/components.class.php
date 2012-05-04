@@ -63,6 +63,33 @@ class _sidebarComponents extends cqFrontendComponents
   /**
    * @return string
    */
+  public function executeWidgetPopularTopics()
+  {
+    // Set the limit of Categories to show
+    $this->limit = $this->getVar('limit') ? (int) $this->getVar('limit') : 30;
+
+    // Set the number of columns to show
+    $this->columns = $this->getVar('columns') ? (int) $this->getVar('columns') : 2;
+
+    $ids = array(
+      2684, 2834, 3085, 3204, 3358, 3459,
+      3569, 3820, 3893, 4109, 4248, 4366,
+      4444, 4495, 4594, 4855, 4955, 5526,
+      5735, 5736, 6068, 6159, 4903
+    );
+
+    $q = ContentCategoryQuery::create()
+      ->filterById($ids, Criteria::IN)
+      ->orderByName(Criteria::ASC)
+      ->limit($this->limit);
+    $this->categories = $q->find();
+
+    return $this->_sidebar_if(count($this->categories) > 0);
+  }
+
+  /**
+   * @return string
+   */
   public function executeWidgetMarketplaceCategories()
   {
     // Set the limit of Collections to show

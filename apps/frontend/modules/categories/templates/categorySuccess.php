@@ -11,7 +11,7 @@
 <?php
   cq_page_title(
     $category->getName(),
-    link_to('Back to Categories &raquo;', '@content_categories')
+    link_to('Back to Collections &raquo;', '@collections')
   );
 ?>
 
@@ -52,7 +52,8 @@
     </div>
   </div>
 
-  <br/><br/><br/>
+  <br/><br/>
+  <?php include_partial('sandbox/comments'); ?>
 
 <?php else: ?>
 
