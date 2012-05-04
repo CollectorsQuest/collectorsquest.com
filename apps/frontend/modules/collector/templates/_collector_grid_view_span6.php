@@ -27,7 +27,11 @@
       </ul>
     </div>
     <div class="span12 about">
-      <?= cqStatic::truncateText($collector->getProfile()->getAboutMe(), 140, '...', true) ?>
+    <?php
+      echo !empty($excerpt) ?
+        $excerpt :
+        cqStatic::truncateText($collector->getProfile()->getAboutMe(), 140, '...', true);
+    ?>
     </div>
   </div>
 </div>

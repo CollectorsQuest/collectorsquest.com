@@ -172,11 +172,7 @@ search:
   param: { module: search, action: index }
 
 
-### NEWS
-
-news:
-  url:   /news
-  param: { module: news, action: index }
+### BLOG
 
 blog:
   url:   /blog

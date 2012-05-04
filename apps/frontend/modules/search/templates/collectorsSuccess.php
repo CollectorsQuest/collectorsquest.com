@@ -31,7 +31,7 @@
       echo '<div class="span6 brick" style="height: 165px; float: left;">';
       include_partial(
         'collector/collector_'. $display .'_view_span6',
-        array('collector' => $collector, 'i' => $i)
+        array('collector' => $collector, 'excerpt' => $pager->getExcerpt($i), 'i' => $i)
       );
       echo '</div>';
     }
