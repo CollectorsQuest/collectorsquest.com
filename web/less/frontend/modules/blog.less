@@ -1,253 +1,207 @@
 @import "../_variables.less";
 @import "../_mixins.less";
 
-#body-_blog-index #main
+#main
 {
-	width:620px !important;
+	width:620px !important
 }
 
 #entry-image-box,#entry-image-box-button,.stArrow,#networkedblogs_nwidget_container,img#wpstats
 {
-	display:none !important;
+	display:none !important
 }
 
 h2 a:hover
 {
-	border-bottom:0;
+	border-bottom:0
 }
 
 .entry-genre
 {
-	text-transform:uppercase;
+	text-transform:uppercase
 }
 
 .entry-genre a,.wp-caption-text,.entry-meta .meta-text
 {
-	color:#877;
-	font:9pt arial !important;
+	color:@brown;
+	font:9pt arial !important
 }
 
 .entry-share
 {
-	margin-top:5px;
+	margin-top:5px
 }
 
 .entry-content .wp-caption-text
 {
 	margin-left:10px;
 	margin-top:10px;
-	text-align:left;
+	text-align:left
 }
 
 .author-image,#commentform,.permalinklink,.p-tag,.author-list .avatar,.meta-text,.p-1 .entry-footer p,.not-singular
 {
-	float:left;
+	float:left
 }
 
 .alignright,.back-nav,.nav-next
 {
-	text-align:right;
+	text-align:right
 }
 
 .alignleft
 {
 	float:left;
 	margin-bottom:20px;
-	margin-right:20px;
+	margin-right:20px
 }
 
 .alignright
 {
 	float:right;
 	margin-bottom:20px;
-	margin-left:20px;
+	margin-left:20px
 }
 
 .aligncenter
 {
-	margin:0 auto 20px;
+	margin:0 auto 20px
 }
 
 .wp-caption-text
 {
 	margin-bottom:0;
-	margin-top:8px;
+	margin-top:8px
 }
 
 .alignleft .wp-caption-text,.aligncenter .wp-caption-text
 {
 	margin-left:0;
-	margin-right:10px;
+	margin-right:10px
 }
 
 .aligncenter .wp-caption-text,.gallery-caption
 {
-	text-align:center !important;
+	text-align:center !important
 }
 
 .wp-caption.alignleft
 {
 	margin-bottom:10px;
-	margin-right:10px;
+	margin-right:10px
 }
 
 .wp-caption.alignright
 {
 	margin-bottom:10px;
-	margin-left:10px;
+	margin-left:10px
 }
 
 .gallery .wp-caption-text,a .aligncenter
 {
-	display:block;
-}
-
-.footer-nav
-{
-	font-size:20px;
-	font-weight:700;
-	color:@white;
-	margin-bottom:10px;
-	padding:10px;
-}
-
-.navigation
-{
-	clear:both;
-	padding:10px 0;
+	display:block
 }
 
 .p-tag
 {
-	background:#e7e4e4;
-	color:#877;
+	background:@grayNormal;
+	color:@gray;
 	line-height:24px;
 	margin:5px;
-	padding:0 10px;
+	padding:0 10px
 }
 
-.p-tag:hover {
-  color: @black;
-}
-.widget
+.p-tag:hover
 {
-	margin-bottom:20px !important;
+	color:@black
 }
 
-#widget-bloggers ul,#widgets,.author-list
+.author-list
 {
-	margin-left:0;
-	margin-top:20px;
+	margin-left:0
 }
 
 #widget-bloggers,.author-list
 {
-	list-style:none;
+	list-style:none
 }
 
-#widget-bloggers ul li,.author-list li
+.author-list .avatar
 {
-	margin-bottom:20px;
-}
-
-.author-list .avatar,.author-link
-{
-	margin-right:20px;
-}
-
-.author-list li
-{
-	float:left;
-	width:100%;
+	margin-right:20px
 }
 
 .author-list a
 {
-	color:@blueDark;
+	color:@blueDark
 }
 
 .author-name
 {
 	float:left;
 	font-weight:700;
-	margin-top:12px;
+	margin-top:12px
 }
 
 #author-info-box
 {
-	border-bottom:1px dashed #ccc;
-	float:left;
-	margin-top:20px;
-	padding-bottom:20px;
-	width:100%;
-}
-
-.author-avatar
-{
-	float:left;
-	margin:0 20px 20px 0;
-}
-
-.author-bio
-{
-	float:left;
-	width:460px;
+	border-bottom:1px dashed @grayNormal;
+	padding-bottom:20px
 }
 
 .back-nav a
 {
 	color:@white;
-	line-height:20px;
+	line-height:20px
 }
 
 .see-more-full
 {
 	width:95%;
-	margin:20px 0;
+	margin:20px 0
 }
 
 .header-bar h1 span
 {
-	-moz-transform:rotate(0.000475deg);
-	color:#fff;
+	color:@white;
 	font-size:20px;
 	font-style:italic;
 	font-weight:400;
 	line-height:22px;
-	text-transform:capitalize;
+	text-transform:capitalize
 }
 
 .entry-genre a:hover,.author-list a:hover
 {
-	color:@red;
+	color:@red
 }
 
 .nav > li > a:hover
 {
-	background-color:#e6f2f9;
+	background-color:#e6f2f9
 }
 
 .nav-tabs > li > a
 {
-	font-size:12pt;
-}
-
-.nav-previous,.nav-next
-{
-	width:50%;
-	float:left;
+	font-size:12pt
 }
 
 .sub-page-list
 {
 	float:left !important;
-	margin-left:0 !important;
+	margin-left:0 !important
 }
 
 .page
 {
-	margin-top:20px;
+	margin-top:20px
 }
+
+.sidebar-title
+{
+	margin-top:25px !important
+}
+
 
 .news-front {
   h2
@@ -257,15 +211,14 @@ h2 a:hover
 
   .post
   {
-    border-top:1px dashed #ccc;
-    padding:10px 0;
+    border-top:1px dashed @grayNormal;
+    padding:10px 0
   }
 
   .p-1
   {
     border-top:none;
     margin-bottom:15px;
-    margin-top:10px;
     padding-top:0;
     position:relative
   }
@@ -273,13 +226,11 @@ h2 a:hover
   .p-1 h2
   {
     font-size:20pt;
-    line-height:36px;
-    margin-top:10px;
+    line-height:36px
   }
 
   .p-1 .entry-image
   {
-    padding-top:10px;
     height:300px
   }
 
@@ -294,14 +245,12 @@ h2 a:hover
     margin-top:6px;
     position:absolute
   }
-
 }
 
 .singular {
   h2
   {
-    font-size:20pt;
-    margin-top:20px
+    font-size:20pt
   }
 
   .p-1 .entry-genre
@@ -313,22 +262,15 @@ h2 a:hover
   {
     font-size:14px;
     line-height:20px;
-    text-align: justify
+    text-align:justify
   }
 
-  .entry-meta, .entry-footer
+  .entry-meta,.entry-footer
   {
     background-color:@lightBlue;
     color:@grayDark;
-    float:left;
     margin:10px 0;
-    padding:6px;
-  }
-
-  .entry-footer
-  {
-    clear:both;
-    display:block
+    padding:6px
   }
 
   .author-info
@@ -347,16 +289,15 @@ h2 a:hover
 
   .post
   {
-    border-bottom:1px dashed #ccc;
+    border-bottom:1px dashed @grayNormal;
     padding:10px 0
   }
+
   .entry-content p
   {
-    margin-bottom: 0
+    margin-bottom:0
   }
-
 }
-
 
 .not-singular, .news-front {
   .meta-text
@@ -372,7 +313,7 @@ h2 a:hover
 
   .entry-image
   {
-  height: 140px
+    height:140px
   }
 }
 
