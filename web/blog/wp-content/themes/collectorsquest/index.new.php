@@ -69,14 +69,16 @@
     </div>
 </div>
 
+  <br />
+
   <!-- This sets the $curauth variable -->
   <?php $curauth = (isset($_GET['author_name'])) ? get_user_by('slug', $author_name) : get_userdata(intval($author)); ?>
 
-  <div id="author-info-box">
-    <div class="author-avatar">
+  <div id="author-info-box" class="row-fluid">
+    <div class="author-avatar span3">
       <?php echo get_avatar(get_the_author_meta('ID'),140) //<img src="http://placekitten.com/33/33" alt="" width="33" height="33"/> ?>
     </div>
-    <div class="author-bio">
+    <div class="author-bio span9">
       <?php echo $curauth->user_description; ?>
     </div>
   </div>
@@ -94,8 +96,9 @@
 
 <?php if (!is_author()) : ?>
 </div>
-<?php endif; ?>
 
+<br />
+<?php endif; ?>
 
 <?php
 $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
