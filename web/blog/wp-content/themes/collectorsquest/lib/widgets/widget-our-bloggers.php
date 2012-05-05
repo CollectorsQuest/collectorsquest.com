@@ -95,7 +95,7 @@ class CQ_Our_Bloggers_widget extends WP_Widget {
         $author_profile_url = get_the_author_meta('user_url', $author['ID']);
         $nice_name = get_the_author_meta('user_nicename', $author['ID']);
         //echo '<li><a href="', $author_profile_url, '">', $avatar, '</a><strong>' . $display_name . '</strong><br /><a href="/blog/people/', $nice_name, '" class="author-link">[Bio]</a> <a href="', $author_posts_url, '" class="contributor-link">[Articles]</a></li>';
-        echo '<li class="row-fluid"><a href="', $author_posts_url, '">', $avatar, '<span class="author-name">' . $display_name . '</span></a></li>';
+        echo '<li class="row-fluid bottom-margin"><a href="', $author_posts_url, '">', $avatar, '<span class="author-name">' . $display_name . '</span></a></li>';
         echo '';
 
       }
