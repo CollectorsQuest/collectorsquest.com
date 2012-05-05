@@ -11,6 +11,10 @@ pawnStarsSuccess:
   components:
     sidebar_300: [aent, sidebarPawnStars]
 
+storageWarsSuccess:
+  components:
+    sidebar_300: [aent, sidebarStorageWars]
+
 collectibleSuccess:
   components:
     sidebar_300: [aent, sidebarCollectible]

@@ -1,6 +1,10 @@
 <div class="banners-620 bottom-margin-double">
   <?php
-    if ($brand === 'Pawn Stars')
+    if ($brand === 'American Pickers')
+    {
+      echo link_to(image_tag('banners/040412_americanpickers_620x67.jpg'), '@aetn_american_pickers');
+    }
+    else if ($brand === 'Pawn Stars')
     {
       echo link_to(image_tag('banners/040412_pawnstars_620x67.jpg'), '@aetn_pawn_stars');
     }

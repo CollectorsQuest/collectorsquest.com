@@ -13,6 +13,11 @@ class aentComponents extends sfComponents
     return sfView::SUCCESS;
   }
 
+  public function executeSidebarStorageWars()
+  {
+    return sfView::SUCCESS;
+  }
+
   public function executeSidebarCollectible()
   {
     if (!$this->collectible = CollectiblePeer::retrieveByPk($this->getRequestParameter('id')))
