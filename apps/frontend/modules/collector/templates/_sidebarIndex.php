@@ -1,3 +1,10 @@
+<?php
+/**
+ * @var  $collector  Collector
+ * @var  $profile    CollectorProfile
+ */
+?>
+
 <div class="statistics-share-panel bottom-margin-double">
   <div class="row-fluid">
     <div class="span4">
@@ -34,70 +41,9 @@
   <p><strong>About my collections:</strong> <?= $profile->getProperty('about.collections'); ?></p>
 </div>
 
-<?php cq_section_title($collector->getDisplayName() .'\'s Most Wanted'); ?>
-<div class="other-items-sidebar top-margin">
-  <div class="thumbnails-inner">
-    <ul class="thumbnails">
-      <li class="span3">
-        <a href="#" class="thumbnail">
-          <img src="http://placehold.it/70x70" alt="">
-        </a>
-      </li>
-      <li class="span3">
-        <a href="#" class="thumbnail">
-          <img src="http://placehold.it/70x70" alt="">
-        </a>
-      </li>
-      <li class="span3">
-        <a href="#" class="thumbnail">
-          <img src="http://placehold.it/70x70" alt="">
-        </a>
-      </li>
-      <li class="span3">
-        <a href="#" class="thumbnail">
-          <img src="http://placehold.it/70x70" alt="">
-        </a>
-      </li>
-      <li class="span3">
-        <a href="#" class="thumbnail">
-          <img src="http://placehold.it/70x70" alt="">
-        </a>
-      </li>
-      <li class="span3">
-        <a href="#" class="thumbnail">
-          <img src="http://placehold.it/70x70" alt="">
-        </a>
-      </li>
-      <li class="span3">
-        <a href="#" class="thumbnail">
-          <img src="http://placehold.it/70x70" alt="">
-        </a>
-      </li>
-      <li class="span3">
-        <a href="#" class="thumbnail">
-          <img src="http://placehold.it/70x70" alt="">
-        </a>
-      </li>
-      <li class="span3">
-        <a href="#" class="thumbnail">
-          <img src="http://placehold.it/70x70" alt="">
-        </a>
-      </li>
-      <li class="span3">
-        <a href="#" class="thumbnail">
-          <img src="http://placehold.it/70x70" alt="">
-        </a>
-      </li>
-      <li class="span3">
-        <a href="#" class="thumbnail">
-          <img src="http://placehold.it/70x70" alt="">
-        </a>
-      </li>
-      <li class="span3">
-        <a href="#" class="thumbnail">
-          <img src="http://placehold.it/70x70" alt="">
-        </a>
-      </li>
-    </ul>
-  </div><!-- /.thumbnails-inner -->
-</div><!-- /#spotlight-sidebar -->
+<?php
+//  include_component(
+//    '_sidebar', 'widgetCollectorMostWanted',
+//    array('collector' => $collector)
+//  );
+?>

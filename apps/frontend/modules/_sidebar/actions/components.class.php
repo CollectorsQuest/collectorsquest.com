@@ -243,6 +243,28 @@ class _sidebarComponents extends cqFrontendComponents
     return sfView::NONE;
   }
 
+  public function executeWidgetCollectorMostWanted()
+  {
+    /** @var $collector Collector */
+    $collector = $this->getVar('collector');
+
+    // Set the limit of Collections to show
+    $this->limit = $this->getVar('limit') !== null ? (int) $this->getVar('limit') : 3;
+
+    if ($collector instanceof Collector)
+    {
+      $this->title = $this->getVar('title') ?: $collector->getDisplayName() ."'s Most Wanted";
+
+      return sfView::SUCCESS;
+    }
+    else if ($this->fallback && method_exists($this, 'execute'.$this->fallback))
+    {
+      echo get_component('_sidebar', $this->fallback, $this->getVarHolder()->getAll());
+    }
+
+    return sfView::NONE;
+  }
+
   public function executeWidgetFeaturedSellers()
   {
     $this->title = $this->getVar('title') ?: 'Featured Sellers';
