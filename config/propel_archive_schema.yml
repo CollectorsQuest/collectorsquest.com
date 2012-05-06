@@ -42,6 +42,7 @@ classes:
       zip_postal:      varchar(10)
       country_iso3166: varchar(2)
       website:         varchar(128)
+      num_views:       { type: integer, default: 0 }
       is_featured:     { type: boolean, default: false }
       is_seller:       { type: boolean, default: false }
       is_image_auto:   { type: boolean, default: true }
