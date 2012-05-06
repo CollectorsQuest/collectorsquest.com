@@ -8,3 +8,4 @@ DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 
 git pull --ff-only origin $branch
 cd $DIR/.. && exec watchr -l apps/frontend/config/less.watchr
+cd $DIR/.. && php symfony cache:clear
