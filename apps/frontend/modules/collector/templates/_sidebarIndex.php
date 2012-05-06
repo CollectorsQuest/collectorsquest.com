@@ -7,38 +7,33 @@
 
 <div class="statistics-share-panel bottom-margin-double">
   <div class="row-fluid">
-    <div class="span4">
-      <ul>
-        <li>
-          <a href="#">XXXX Views</a>
-        </li>
-      </ul>
+    <div class="span5" style="padding-top: 3px;">
+      <?php
+        echo format_number_choice(
+          '[0] no views yet|[1] 1 View|(1,+Inf] %1% Views',
+          array('%1%' => number_format($profile->getNumViews())), $profile->getNumViews()
+        );
+      ?>
     </div>
-    <div class="span8 text-right">
-      <a href="#" class="btn btn-mini-share btn-lightblue">
-        <i class="mail-icon-mini"></i> Mail
-      </a>
-      <a class="btn-mini-social" href="http://facebook.com/Collectors.Quest" target="_blank" >
-        <i class="s-16-icon-facebook social-ico-padding"></i>
-      </a>
-      <a class="btn-mini-social" href="http://twitter.com/CollectorsQuest" target="_blank" >
-        <i class="s-16-icon-twitter social-ico-padding"></i>
-      </a>
-      <a class="btn-mini-social" href="#" target="_blank" >
-        <i class="s-16-icon-google social-ico-padding"></i>
-      </a>
-      <a class="btn-mini-social" href="http://pinterest.com/CollectorsQuest" target="_blank">
-        <i class="s-16-icon-pinterest social-ico-padding"></i>
-      </a>
+    <div class="span7 addthis_toolbox addthis_default_style pull-right" style="text-align: right;">
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count" fb:like:width="40"></a>
+      <a class="addthis_button_tweet" tw:twitter:data-count="none"></a>
+      <a class="addthis_button_google_plusone" g:plusone:size="medium" g:plusone:annotation="none"></a>
     </div>
   </div>
 </div>
 
-
 <?php cq_section_title('More About '. $collector->getDisplayName()); ?>
 <div class="personal-info-sidebar">
-  <p><?= $profile->getProperty('about.me'); ?></p>
-  <p><strong>About my collections:</strong> <?= $profile->getProperty('about.collections'); ?></p>
+  <?php if ($text = $profile->getProperty('about.me')): ?>
+    <p><strong>About me:</strong> <?= $text; ?></p>
+  <?php endif; ?>
+  <?php if ($text = $profile->getProperty('about.collections')): ?>
+    <p><strong>My collections:</strong> <?= $text; ?></p>
+  <?php endif; ?>
+  <?php if ($text = $profile->getProperty('about.interests')): ?>
+    <p><strong>My interests:</strong> <?= $text; ?></p>
+  <?php endif; ?>
 </div>
 
 <?php

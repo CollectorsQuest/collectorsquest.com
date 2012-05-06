@@ -1,6 +1,29 @@
 <?php
-  $link = link_to('See all »', '@collections_by_collector?collector_id='. $collector->getId() .'&collector_slug='. $collector->getSlug());
-  cq_section_title($collector->getDisplayName() .'\'s Latest Collections', $link);
+/**
+ * @var  $pager        sfPropelPager
+ * @var  $collector    Collector
+ * @var  $collection   CollectorCollection
+ * @var  $collectible  Collectible
+ */
+?>
+
+<?php
+  if ($pager->haveToPaginate())
+  {
+    $link = link_to(
+      'See all »',
+      '@collections_by_collector?collector_id='. $collector->getId() .'&collector_slug='. $collector->getSlug()
+    );
+
+    $title = $collector->getDisplayName() ."'s Latest Collections";
+  }
+  else
+  {
+    $link = null;
+    $title = $collector->getDisplayName() ."'s Collections";
+  }
+
+  cq_section_title($title, $link);
 ?>
 
 <div id="user-collections">

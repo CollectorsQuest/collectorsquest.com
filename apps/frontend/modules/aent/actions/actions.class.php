@@ -16,6 +16,18 @@ class aentActions extends cqFrontendActions
   {
     $american_pickers = sfConfig::get('app_aetn_american_pickers');
 
+    $collection = CollectorCollectionQuery::create()->findOneById($american_pickers['collection']);
+    $this->forward404Unless($collection instanceof CollectorCollection);
+
+    /**
+     * Increment the number of views
+     */
+    if (!$this->getCollector()->isOwnerOf($collection))
+    {
+      $collection->setNumViews($collection->getNumViews() + 1);
+      $collection->save();
+    }
+
     $q = CollectibleQuery::create()
       ->distinct()
       ->filterByCollectorId($american_pickers['collector'])
@@ -50,6 +62,18 @@ class aentActions extends cqFrontendActions
   public function executePawnStars()
   {
     $pawn_stars = sfConfig::get('app_aetn_pawn_stars');
+
+    $collection = CollectorCollectionQuery::create()->findOneById($pawn_stars['collection']);
+    $this->forward404Unless($collection instanceof CollectorCollection);
+
+    /**
+     * Increment the number of views
+     */
+    if (!$this->getCollector()->isOwnerOf($collection))
+    {
+      $collection->setNumViews($collection->getNumViews() + 1);
+      $collection->save();
+    }
 
     $q = CollectibleQuery::create()
       ->distinct()
@@ -106,6 +130,15 @@ class aentActions extends cqFrontendActions
       $this->brand = 'Pawn Stars';
     } else if ($collection->getId() === $storage_wars['collection']) {
       $this->brand = 'Storage Wars';
+    }
+
+    /**
+     * Increment the number of views
+     */
+    if (!$this->getCollector()->isOwnerOf($collectible))
+    {
+      $collectible->setNumViews($collection->getNumViews() + 1);
+      $collectible->save();
     }
 
     $this->related_collectibles = $collectible->getRelatedCollectibles(8);

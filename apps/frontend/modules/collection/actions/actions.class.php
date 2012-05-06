@@ -48,6 +48,12 @@ class collectionActions extends cqFrontendActions
       }
     }
 
+    if (!$this->getCollector()->isOwnerOf($collection))
+    {
+      $collection->setNumViews($collection->getNumViews() + 1);
+      $collection->save();
+    }
+
     $c = new Criteria();
     $c->add(CollectiblePeer::COLLECTOR_ID, $collection->getCollectorId());
 
@@ -131,6 +137,9 @@ class collectionActions extends cqFrontendActions
       $this->redirect('@aetn_collectible_by_slug?id='. $collectible->getId() .'&slug='. $collectible->getSlug(), 301);
     }
 
+    /**
+     * Increment the number of views
+     */
     if (!$this->getCollector()->isOwnerOf($collectible))
     {
       $collectible->setNumViews($collection->getNumViews() + 1);

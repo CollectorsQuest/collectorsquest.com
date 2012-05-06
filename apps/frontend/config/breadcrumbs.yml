@@ -1,6 +1,4 @@
-# http://www.symfony-project.org/plugins/sfOrmBreadcrumbsPlugin/1_0_5?tab=plugin_readme
-
-ice_propel_breadcrumbs:
+ice_breadcrumbs:
   _root: { name: 'Home', route: homepage }
   _separator: ' → '
   _lost: ''
@@ -20,18 +18,24 @@ ice_propel_breadcrumbs:
     pawnStars: [{ name: 'Pawn Stars' }]
     storageWars: [{ name: 'Storage Wars' }]
     collectible:
-      - { name: %Collection%, route: collection_by_slug, model: true, subobject: Collection }
-      - { name: %name%, model: true }
+      - { name: '%Collection%', route: collection_by_slug, model: true, subobject: Collection }
+      - { name: '%Name%', model: true }
 
   collection:
     index:
-      - { name: %name%, model: true }
+      - { name: '%Name%', model: true }
     collectible:
-      - { name: %Collection%, model: true, route: collection_by_slug, subobject: Collection }
-      - { name: %name%, model: true }
+      - { name: '%Collection%', model: true, route: collection_by_slug, subobject: Collection }
+      - { name: '%Name%', model: true }
 
   collections:
     index: [{ name: 'Collections' }]
+
+  collector:
+    index:
+      - { name: 'Collector %DisplayName%', model: true }
+    signup:
+      - { name: 'Signup' }
 
   marketplace:
     index: [{ name: 'Maket' }]

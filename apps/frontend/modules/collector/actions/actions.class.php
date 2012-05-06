@@ -7,7 +7,20 @@ class collectorActions extends cqFrontendActions
     /** @var $collector Collector */
     $collector = $this->getRoute()->getObject();
 
+    /** @var $profile CollectorProfile */
+    $profile = $collector->getProfile();
+
+    /**
+     * Increment the number of views
+     */
+    if (!$this->getCollector()->isOwnerOf($collector))
+    {
+      $profile->setNumViews($profile->getNumViews() + 1);
+      $profile->save();
+    }
+
     $this->collector = $collector;
+    $this->profile   = $profile;
 
     return sfView::SUCCESS;
   }

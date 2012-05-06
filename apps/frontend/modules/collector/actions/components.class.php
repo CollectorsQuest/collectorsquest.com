@@ -24,7 +24,7 @@ class collectorComponents extends cqFrontendComponents
 
     $c = new Criteria();
     $c->setDistinct();
-    $c->addJoin(CollectiblePeer::ID, CollectibleForSalePeer::COLLECTIBLE_ID, Criteria::LEFT_JOIN);
+    $c->addJoin(CollectiblePeer::ID, CollectibleForSalePeer::COLLECTIBLE_ID, Criteria::RIGHT_JOIN);
     $c->add(CollectiblePeer::COLLECTOR_ID, $collector->getId());
     $c->addDescendingOrderByColumn(CollectibleForSalePeer::UPDATED_AT);
 

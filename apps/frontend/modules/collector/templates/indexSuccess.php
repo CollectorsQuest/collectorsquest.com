@@ -1,37 +1,42 @@
-<?php cq_page_title('Collector Profile Page'); ?>
+<div class="row-fluid header-bar">
+  <div class="span9">
+    <h1 class="Chivo webfont" style="margin-left: 145px;"><?= $collector->getDisplayName() ?></h1>
+  </div>
+  <div class="span3 text-right">
+    <?= ($sf_user->isOwnerOf($collector)) ? link_to('Edit Your Profile →', '@mycq_profile') : '&nbsp;'; ?>
+  </div>
+</div>
 
 <div id="public-profile-info">
   <div class="row-fluid">
     <div class="span9">
       <div class="row-fluid profile-info">
-        <div class="span4 thumbnail" style="margin-top: -55px; background: white;">
-          <img src="http://placehold.it/135x200" alt="">
-          <? image_tag_collector($collector, '130x130') ?>
+        <div class="span4 thumbnail" style="margin-top: -55px; background: #fff;">
+          <?= image_tag_collector($collector, '235x315') ?>
         </div>
         <div class="span8">
-          <h1>Robotbacon is a serious collector</h1>
+          <ul style="margin-top: 10px;">
+            <li>
+              <?php
+              echo sprintf(
+                '%s %s collector',
+                in_array(strtolower(substr($collector->getCollectorType(), 0, 1)), array('a', 'e', 'i', 'o')) ? 'An' : 'A',
+                '<strong>'. $collector->getCollectorType() .'</strong>'
+              );
+              ?>
+            </li>
+            <li>
+              From <?= $collector->getProfile()->getCountry(); ?>
+            </li>
+          </ul>
           <p><strong>Collecting:</strong>
-            <a href="#">Slide Puzzles</a>,
-            <a href="#">Books on American History that center around the American Revolution</a>,
-            <a href="#">Stone Eggs</a>,
-            <a href="#">1920's and 1930's furniture</a>
-
-            <!--
-            Slide Puzzles, Books on American History that center around the American Revolution, Stone Eggs, 1920's and 1930's furniture
-            -->
-
-            <!--
-            <a href="#" class="tags">Slide Puzzles</a>
-            <a href="#" class="tags">Books on American History that center around the American Revolution</a>
-            <a href="#" class="tags">Stone Eggs</a>
-            <a href="#" class="tags">1920's and 1930's furniture</a>
-            -->
+            <?= $profile->getProperty('about.what_you_collect')?>
           </p>
         </div>
       </div>
     </div>
     <div class="span3">
-      <span class="stat-area bottom-margin-double">
+      <span class="stat-area bottom-margin-double" style="padding-bottom: 5px;">
       <?php
         $count = $collector->countCollections();
         echo format_number_choice(
@@ -40,7 +45,7 @@
         );
       ?>
       </span>
-      <span class="stat-area">
+      <span class="stat-area" style="padding-bottom: 5px;">
       <?php
         $count = $collector->countCollectibles();
         echo format_number_choice(
