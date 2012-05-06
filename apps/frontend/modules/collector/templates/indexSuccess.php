@@ -12,7 +12,7 @@
     <div class="span9">
       <div class="row-fluid profile-info">
         <div class="span4 thumbnail" style="margin-top: -55px; background: #fff;">
-          <?= image_tag_collector($collector, '235x315') ?>
+          <?= image_tag_collector($collector, '235x315', array('max_width' => 138, 'max_height' => 185)) ?>
         </div>
         <div class="span8">
           <ul style="margin-top: 10px;">
