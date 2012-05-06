@@ -65,4 +65,14 @@ class CollectionCollectible extends BaseCollectionCollectible
   {
     return $this->getCollectible()->getIsNameAutomatic();
   }
+
+  public function setNumViews($v)
+  {
+    return $this->getCollectible()->setNumViews($v);
+  }
+
+  public function getNumViews()
+  {
+    return $this->getCollectible()->getNumViews();
+  }
 }
