@@ -1,13 +1,13 @@
 <?php
 
 /**
- * ShippingRateCarrierService form.
+ * ShippingReference form.
  *
  * @package    CollectorsQuest
  * @subpackage form
  * @author     Collectors
  */
-class ShippingRateCarrierServiceForm extends BaseShippingRateCarrierServiceForm
+class ShippingReferenceForm extends BaseShippingReferenceForm
 {
   public function configure()
   {

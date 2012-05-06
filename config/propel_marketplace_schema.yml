@@ -114,47 +114,31 @@ classes:
       extra_properties: ~
       timestampable:  ~
 
-  ShippingRate:
-    skipSql: true
+  ShippingReference:
     columns:
       id:                   ~
-      country_iso3166:      { type: char, size: 2, required: true, foreignTable: geo_country, foreignReference: iso3166 } # not set = catch all
-      calculation_type:     { type: enum,    required: true, valueSet: "no_shipping, local_pickup, free_shipping, flat_rate, calculated_shipping" }
-    propel_behaviors:
-      symfony:              { form: true, filter: false }
-
-  ShippingRateCollector:
-    columns:
-      collector_id:         { type: integer, required: true, foreignClass: Collector, foreignReference: id, onDelete: cascade }
+      model:                { type: char,    size: 64, required: true }
+      model_id:             { type: integer, required: true }
+      country_iso3166:      { type: char,    size: 2, required: true, foreignTable: geo_country, foreignReference: iso3166 } # ZZ = international
+      shipping_type:        { type: enum,    required: true, valueSet: "no_shipping, local_pickup_only, flat_rate, calculated_shipping" }
     uniques:
-      collector_country:    [collector_id, country_iso3166]
-    propel_behaviors:
-      concrete_inheritance: { extends: shipping_rate, copy_data_to_parent: false }
+      foreign_model_country: [ model, model_id, country_iso3166 ]
 
-  ShippingRateCollectible:
+  ShippingRate:
     columns:
-      collectible_id:       { type: integer, required: true, foreignClass: Collectible, foreignReference: id, onDelete: cascade }
-    uniques:
-      collectible_country:  [collectible_id, country_iso3166]
-    propel_behaviors:
-      concrete_inheritance: { extends: shipping_rate, copy_data_to_parent: false }
-
-  ShippingRateCarrierService:
-    isCrossRef:             true
-    columns:
-      shipping_rate_id:     { type: integer, required: true, foreignClass: ShippingRate, foreignReference: id, onDelete: cascade, primaryKey: true }
-      shipping_carrier_service_id: { type: integer, required: true, foreignClass: ShippingCarrierService, foreignReference: id, onDelete: cascade, primaryKey: true }
+      id:                   ~
+      shipping_reference_id: { type: integer, required: true, foreignClass: ShippingReference, foreignReference: id, onDelete: cascade }
+      shipping_carrier_service_id: { type: integer, required: true, foreignClass: ShippingCarrierService, foreignReference: id, onDelete: cascade }
+      flat_rate_in_cents:   { type: integer, required: false }
+      is_free_shipping:     { type: boolean, required: true, default: false }
 
   ShippingCarrierService:
     columns:
       id:                   ~
-      carrier:              { type: varchar(50),  required: true, index: true }
-      # key as defined by RocketShipIt
-      key:                  { type: varchar(255), required: true }
-      name:                 { type: varchar(255), required: true }
-      flat_rate_cents:      { type: integer,      required: false }
+      carrier:              { type: enum,         required: true, valueSet: "Fedex" }
+      service_name:         { type: varchar(255), required: true }
+      service_key:          { type: varchar(255), required: true }
       is_international:     { type: boolean,      required: true, default: false }
-      is_free_shipping:     { type: boolean,      required: true, default: false }
 
   Package:
     columns:
