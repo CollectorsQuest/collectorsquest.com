@@ -33,11 +33,23 @@
 </div>
 
 <?php if (isset($message) && $message === true): ?>
+<?php
+  $subject = null;
+
+  if (isset($collectible))
+  {
+    $subject = 'Regarding your item: '. addslashes($collectible->getName());
+  }
+  else if (isset($collection))
+  {
+    $subject = 'Regarding your collection: '. addslashes($collection->getName());
+  }
+?>
 <div class="row-fluid">
   <div style="background-color: #e6f2f9; padding: 6px;">
     <form action="<?= url_for('@messages_compose?to='. $collector->getUsername()); ?>" method="post" style="margin-bottom: 0;" id="form-private-message">
       <input type="hidden" name="message[receiver]" value="<?= $collector->getUsername(); ?>">
-      <input type="hidden" name="message[subject]" value="Regarding your item: <?= addslashes($collectible->getName()); ?>">
+      <input type="hidden" name="message[subject]" value="<?= $subject; ?>">
       <textarea name="message[body]" style="width: 97%; margin-bottom: 0;" placeholder="Send a message to <?= $collector; ?>"></textarea>
       <div style="text-align: center; display: none; margin: 10px 0 5px 0;" id="buttons-private-message">
         <button type="button" class="btn cancel" value="cancel">cancel</button>

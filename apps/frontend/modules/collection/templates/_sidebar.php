@@ -3,7 +3,11 @@
 <?php
   include_component(
     '_sidebar', 'widgetCollector',
-    array('collector' => $collection->getCollector(), 'collection' => $collection, 'limit' => 3)
+    array(
+      'collector' => $collection->getCollector(),
+      'collection' => $collection,
+      'limit' => 3, 'message' => true
+    )
   );
 ?>
 

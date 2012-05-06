@@ -16,43 +16,43 @@ ice_propel_breadcrumbs:
     index: [{ name: 'Home', route: homepage }]
 
   aent:
-    americanPickers: [{ name: 'As Seen on American Pickers', route: aetn_american_pickers, case: none }]
-    pawnStars: [{ name: 'Pawn Stars', route: aetn_pawn_stars }]
-    storageWars: [{ name: 'Storage Wars', route: aetn_storage_wars }]
+    americanPickers: [{ name: 'As Seen on American Pickers' }]
+    pawnStars: [{ name: 'Pawn Stars' }]
+    storageWars: [{ name: 'Storage Wars' }]
     collectible:
       - { name: %Collection%, route: collection_by_slug, model: true, subobject: Collection }
-      - { name: %name%, route: aetn_collectible_by_slug, model: true }
+      - { name: %name%, model: true }
 
   collection:
     index:
-      - { name: %name%, route: collection_by_slug, model: true }
+      - { name: %name%, model: true }
     collectible:
-      - { name: %Collection%, route: collection_by_slug, model: true, subobject: Collection }
-      - { name: %name%, route: collectible_by_slug, model: true }
+      - { name: %Collection%, model: true, route: collection_by_slug, subobject: Collection }
+      - { name: %name%, model: true }
 
   collections:
-    index: [{ name: 'Collections', route: collections }]
+    index: [{ name: 'Collections' }]
 
   marketplace:
-    index: [{ name: 'Maket', route: marketplace }]
+    index: [{ name: 'Maket' }]
 
   search:
     index: [{ name: 'Search Results', route: search }]
     collections:
       - { name: 'Search', route: search }
-      - { name: 'Collections', route: search_collections }
+      - { name: 'Collections' }
     collectors:
       - { name: 'Search', route: search }
-      - { name: 'Collectors', route: search_collectors }
+      - { name: 'Collectors' }
     collectibles:
       - { name: 'Search', route: search }
-      - { name: 'Collectibles', route: search_collectibles }
+      - { name: 'Collectibles' }
     collectiblesForSale:
       - { name: 'Search', route: search }
-      - { name: 'Collectibles For Sale', route: search_collectibles_for_Sale }
+      - { name: 'Collectibles For Sale' }
     blog:
       - { name: 'Search', route: search }
-      - { name: 'Blog Articles', route: search_blog }
+      - { name: 'Blog Articles' }
     video:
       - { name: 'Search', route: search }
-      - { name: 'Video', route: search_video }
+      - { name: 'Video' }

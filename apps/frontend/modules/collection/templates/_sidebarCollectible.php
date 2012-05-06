@@ -38,19 +38,19 @@
 ?>
 
 <?php
-  include_component(
-    '_sidebar', 'widgetCollections',
-    array('collectible' => $collectible)
-  );
+include_component(
+  '_sidebar', 'widgetCollectiblesForSale',
+  array(
+    'title' => 'Related Items for Sale',
+    'collectible' => $collectible, 'limit' => 3
+  )
+);
 ?>
 
 
 <?php
   include_component(
-    '_sidebar', 'widgetCollectiblesForSale',
-    array(
-      'title' => 'Related Items for Sale',
-      'collectible' => $collectible, 'limit' => 3
-    )
+    '_sidebar', 'widgetCollections',
+    array('collectible' => $collectible)
   );
 ?>

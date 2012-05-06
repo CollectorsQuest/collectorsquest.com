@@ -213,7 +213,7 @@ class _sidebarComponents extends cqFrontendComponents
     $this->title = $this->getVar('title') ?: 'About the Collector';
 
     // Set the limit of Collections to show
-    $this->limit = (int) $this->getVar('limit') ?: 3;
+    $this->limit = $this->getVar('limit') !== null ? (int) $this->getVar('limit') : 3;
 
     if ($collector instanceof Collector)
     {

@@ -69,30 +69,19 @@
             );
           ?>
         </li>
-        <li>
-          In XXX wanted lists
-        </li>
+        <!--
+          <li>In XXX wanted lists</li>
+        //-->
       </ul>
     </div>
     <div class="span8 text-right">
-      <a href="#" class="btn btn-mini-share2 btn-lightblue">
-        <i class="add-icon-medium"></i> Add to your want list
-      </a>
-      <a href="#" class="btn btn-mini-share btn-lightblue">
-        <i class="mail-icon-mini"></i> Mail
-      </a>
-      <a class="btn-mini-social" href="http://facebook.com/Collectors.Quest" target="_blank" >
-        <i class="s-16-icon-facebook social-ico-padding"></i>
-      </a>
-      <a class="btn-mini-social" href="http://twitter.com/CollectorsQuest" target="_blank" >
-        <i class="s-16-icon-twitter social-ico-padding"></i>
-      </a>
-      <a class="btn-mini-social" href="#" target="_blank" >
-        <i class="s-16-icon-google social-ico-padding"></i>
-      </a>
-      <a class="btn-mini-social" href="http://pinterest.com/CollectorsQuest" target="_blank">
-        <i class="s-16-icon-pinterest social-ico-padding"></i>
-      </a>
+      <!-- AddThis Button BEGIN -->
+      <a class="addthis_button_email"></a>
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count" fb:like:width="40"></a>
+      <a class="addthis_button_tweet" tw:twitter:data-count="none"></a>
+      <a class="addthis_button_google_plusone" g:plusone:size="medium" g:plusone:annotation="none"></a>
+      <a class="addthis_button_pinterest_pinit" pi:pinit:media="<?= image_tag_collectible($collectible, 'original'); ?>" pi:pinit:layout="horizontal"></a>
+      <!-- AddThis Button END -->
     </div>
   </div>
 </div>
