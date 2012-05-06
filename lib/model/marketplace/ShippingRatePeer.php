@@ -18,6 +18,4 @@ require 'lib/model/marketplace/om/BaseShippingRatePeer.php';
 class ShippingRatePeer extends BaseShippingRatePeer
 {
 
-  const DEFAULT_CALCULATION_TYPE = self::CALCULATION_TYPE_FLAT_RATE;
-
 }

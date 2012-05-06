@@ -7,7 +7,7 @@ require 'lib/model/marketplace/om/BaseShippingReferenceQuery.php';
 /**
  * Skeleton subclass for performing query and update operations on the 'shipping_reference' table.
  *
- * 
+ *
  *
  * You should add additional methods to this class to meet the
  * application requirements.  This class will only be generated as
@@ -15,6 +15,44 @@ require 'lib/model/marketplace/om/BaseShippingReferenceQuery.php';
  *
  * @package    propel.generator.lib.model.marketplace
  */
-class ShippingReferenceQuery extends BaseShippingReferenceQuery {
+class ShippingReferenceQuery extends BaseShippingReferenceQuery
+{
+
+  /**
+   * Filter based on Collector
+   *
+   * @param     Collector|int $collector
+   * @return    ShippingReferenceQuery
+   */
+  public function filterByCollector($collector)
+  {
+    if ($collector instanceof Collector)
+    {
+      $collector = $collector->getId();
+    }
+
+    return $this
+      ->filterByModel('Collector')
+      ->filterByModelId($collector);
+  }
+
+  /**
+   * Filter based on Collectible
+   *
+   * @param     Collectible|int $collector
+   * @return    ShippingReferenceQuery
+   */
+  public function filterByCollectible($collectible)
+  {
+    if ($collectible instanceof Collectible)
+    {
+      $collectible = $collectible->getId();
+    }
+
+    return $this
+      ->filterByModel('Collectible')
+      ->filterByModelId($collectible);
+  }
+
 
 }
