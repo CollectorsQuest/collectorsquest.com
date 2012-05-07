@@ -20,7 +20,8 @@ class ShippingRateForm extends BaseShippingRateForm
   protected function setupFlatRateInCentsField()
   {
     $this->widgetSchema['flat_rate_in_cents'] = new cqWidgetFormInputCentsToUsd(array(
-      'label' => 'Cost',
+        'label' => 'Cost',
+        'show_zero_as_empty' => true,
     ));
     $this->validatorSchema['flat_rate_in_cents'] = new cqValidatorUSDtoCents();
   }
@@ -28,7 +29,7 @@ class ShippingRateForm extends BaseShippingRateForm
   protected function setupShippingCarrierServiceIdField()
   {
     $this->widgetSchema['shipping_carrier_service_id'] = new sfWidgetFormSelect(array(
-      'choices' => $this->getShippingCarrierServiceIdChoices(new Criteria()),
+        'choices' => $this->getShippingCarrierServiceIdChoices(new Criteria()),
     ));
   }
 
@@ -39,10 +40,10 @@ class ShippingRateForm extends BaseShippingRateForm
 
     foreach ($shipping_services as $shipping_service)
     {
-      $choices[$shipping_service->getCarrier()][] = $shipping_service;
+      $choices[$shipping_service->getCarrier()][$shipping_service->getId()] = $shipping_service;
     }
 
-    return $choices;
+    return array('' => '-') + $choices;
   }
 
 }

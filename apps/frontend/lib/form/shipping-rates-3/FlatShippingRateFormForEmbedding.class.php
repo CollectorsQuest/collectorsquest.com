@@ -7,13 +7,10 @@ class FlatShippingRateFormForEmbedding extends ShippingRateFormForEmbeddig
   {
     parent::configure();
 
-    foreach ($this->validatorSchema->getFields() as $field)
-    {
-      $field->setOption('required', false);
-    }
+    $this->validatorSchema['flat_rate_in_cents']->setOption('required', false);
 
-    $this->mergePostValidator(new FlatShippingRateFormForEmbeddingValidatorSchema(null, array(
-    )));
+    $this->mergePostValidator(
+      new FlatShippingRateFormForEmbeddingValidatorSchema(null));
   }
 
 }

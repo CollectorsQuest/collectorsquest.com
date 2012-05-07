@@ -3,7 +3,6 @@
 class CalculatedShippingRateFormForEmbedding extends ShippingRateFormForEmbeddig
 {
 
-
   public function unsetFields()
   {
     parent::unsetFields();

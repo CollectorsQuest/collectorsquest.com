@@ -13,7 +13,7 @@ class FlatShippingRateFormForEmbeddingValidatorSchema extends sfValidatorSchema
 
   protected function doClean($values)
   {
-    if (isset($values['shipping_carrier_service_id']))
+    if ($values['shipping_carrier_service_id'])
     {
       if (0 == $values['flat_rate_in_cents'] && !$values['is_free_shipping'])
       {
@@ -26,6 +26,12 @@ class FlatShippingRateFormForEmbeddingValidatorSchema extends sfValidatorSchema
 
         throw $errorSchema;
       }
+    }
+
+    // if free shipping is set flat rate is 0
+    if ($values['is_free_shipping'])
+    {
+      $values['flat_rate_in_cents'] = 0;
     }
 
     return $values;

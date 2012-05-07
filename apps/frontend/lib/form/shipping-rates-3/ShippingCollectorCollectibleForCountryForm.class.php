@@ -55,6 +55,9 @@ class ShippingCollectorCollectibleForCountryForm extends ShippingReferenceForm
 
     $this->validatorSchema->setOption('allow_extra_fields', true);
     $this->validatorSchema->setOption('filter_extra_fields', true);
+
+    $this->mergePostValidator(
+      new ShippingCollectorCollectibleForCountryFormValidatorSchema(null));
   }
 
   protected function unsetFields()
@@ -88,8 +91,8 @@ class ShippingCollectorCollectibleForCountryForm extends ShippingReferenceForm
   {
     return array(
         ShippingReferencePeer::SHIPPING_TYPE_FLAT_RATE => 'Flat Rate: Same cost to all buyers',
-        ShippingReferencePeer::SHIPPING_TYPE_LOCAL_PICKUP_ONLY => 'Local Pickup: You offer only local pickup',
         ShippingReferencePeer::SHIPPING_TYPE_CALCULATED_SHIPPING => 'Calculated: Cost varies by byer location',
+        ShippingReferencePeer::SHIPPING_TYPE_LOCAL_PICKUP_ONLY => 'Local Pickup: You offer only local pickup',
         ShippingReferencePeer::SHIPPING_TYPE_NO_SHIPPING => 'No shipping: You do not ship to this country',
     );
   }
@@ -122,6 +125,49 @@ class ShippingCollectorCollectibleForCountryForm extends ShippingReferenceForm
       !$this->getObject()->isNew()
         ? $this->getObject()->getShippingType()
         : '');
+  }
+
+  protected function doSave($con = null)
+  {
+
+    // embedded forms
+    if (null === $con)
+    {
+      $con = $this->getConnection();
+    }
+
+    $this->getObject()->clearShippingRates();
+    $this->updateObject();
+
+    // this is Propel specific
+    if(isset($this->getObject()->markForDeletion))
+    {
+      $this->getObject()->delete($con);
+    }
+    else
+    {
+      $this->getObject()->save($con);
+    }
+
+    $this->saveEmbeddedForms($con);
+  }
+
+  public function saveEmbeddedForms($con = null, $forms = null)
+  {
+    if (null === $forms)
+    {
+      $shipping_rates_collection = $this->getValue('shipping_rates');
+      $forms = $this->embeddedForms;
+      foreach ($this->embeddedForms['shipping_rates'] as $name => $form)
+      {
+        if (!isset($shipping_rates_collection[$name]))
+        {
+          unset($forms['shipping_rates'][$name]);
+        }
+      }
+    }
+
+    return parent::saveEmbeddedForms($con, $forms);
   }
 
   /**

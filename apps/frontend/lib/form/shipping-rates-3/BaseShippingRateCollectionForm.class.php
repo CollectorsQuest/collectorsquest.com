@@ -36,7 +36,8 @@ abstract class BaseShippingRateCollectionForm extends sfForm
 
     $form = new $form_class($shipping_rate, array(
         // allow the form to be empty if we have at least 1 shipping rate set
-        'empty_allowed' => count($this->shipping_reference->getShippingRates()),
+        'allow_empty' => !!count($this->shipping_reference->getShippingRates(new Criteria())),
+        'is_new' => true,
     ));
     $form->widgetSchema->setFormFormatterName('Bootstrap');
 
