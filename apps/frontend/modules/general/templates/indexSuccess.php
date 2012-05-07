@@ -1,4 +1,4 @@
-<?php cq_page_title("Now on Display: Check out these collectors' items!") ?>
+<?php cq_page_title("Now on Display") ?>
 
 <div class="row">
   <div id="homepage" class="row-content">

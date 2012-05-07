@@ -186,11 +186,45 @@ class _sidebarComponents extends cqFrontendComponents
 
     try
     {
-      if (isset($this->category))
+      if (isset($this->category) && $this->category instanceof BaseObject)
       {
         $this->videos = $magnify->getContent()->find($this->category->getSlug(), 1, $this->limit);
       }
-      else if (isset($this->playlist))
+      else if (isset($this->collectible) && $this->collectible instanceof BaseObject)
+      {
+        if (!$tags = $this->collectible->getTags())
+        {
+          $vq = (string) $tags[array_rand($tags, 1)];
+          if ($videos = $magnify->getContent()->find($vq, 1, $this->limit))
+          foreach ($videos as $video)
+          {
+            $this->videos[] = $video;
+          }
+        }
+
+        if (count($this->videos) < $this->limit)
+        {
+          $q = ContentCategoryQuery::create()
+             ->joinCollection()
+             ->useCollectionQuery()
+               ->joinCollectionCollectible()
+               ->useCollectionCollectibleQuery()
+                 ->filterByCollectible($this->collectible)
+               ->endUse()
+             ->endUse();
+
+          if ($content_categories = $q->find()->toKeyValue('id', 'slug'))
+          {
+            $vq = (string) $content_categories[array_rand($content_categories, 1)];
+            if ($videos = $magnify->getContent()->find($vq, 1, $this->limit - count($this->videos)))
+            foreach ($videos as $video)
+            {
+              $this->videos[] = $video;
+            }
+          }
+        }
+      }
+      else if (isset($this->playlist) && is_string($this->playlist))
       {
         $this->videos = $magnify->getContent()->find(
           Utf8::slugify($this->playlist, '-', true, true), 1, $this->limit
@@ -198,8 +232,8 @@ class _sidebarComponents extends cqFrontendComponents
       }
       else if (!empty($this->tags))
       {
-        $tags = is_array($this->tags) ? implode(' ', $this->tags) : $this->tags;
-        $this->videos = $magnify->getContent()->find($tags, 1, $this->limit);
+        $vq = is_array($this->tags) ? (string) $this->tags[array_rand($this->tags, 1)] : (string) $this->tags;
+        $this->videos = $magnify->getContent()->find($vq, 1, $this->limit);
       }
       else
       {
@@ -211,7 +245,7 @@ class _sidebarComponents extends cqFrontendComponents
       return sfView::NONE;
     }
 
-    return $this->_sidebar_if((int) $this->videos->totalResults > 0);
+    return $this->_sidebar_if($this->videos);
   }
 
   public function executeWidgetCollector()
