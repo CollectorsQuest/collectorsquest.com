@@ -57,9 +57,9 @@
 
     if (has_component_slot('slot1'))
     {
-      echo '<div id="slot1">';
+      echo '<div class="slots-container"><div id="slot1">';
         include_component_slot('slot1', array('sf_cache_key' => $sf_cache_key));
-      echo '</div>';
+      echo '</div></div>';
     }
 
     if (has_component_slot('sidebar_120'))

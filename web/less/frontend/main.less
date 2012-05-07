@@ -254,15 +254,20 @@ input[type="submit"].btn.btn-micro {
 
 //SLOTS
 #slot1 {
+	position: relative;
+	z-index: 300px;
 	margin: 0 auto;
 	background-color: @white;
-	border-left: 1px solid #ededed;
-	.box-shadow(0 25px 20px rgba(136, 119, 119, 0.5));
 	.clearfix();
 
 	.slot1-inner {
 		padding: 40px 15px 0;
 	}
+}
+
+.slots-container {
+	.box-shadow(0 25px 20px rgba(136, 119, 119, 0.5));
+	border-left: 1px solid #ededed;
 }
 
 //BUTTONS
@@ -294,10 +299,16 @@ a.bold-links {
 	}
 
 	[class*="span"] {
-		min-height: 0;
+	min-height: 0;
 		padding: 8px 15px;
 	}
 
+	.span9 {
+		padding: 8px 0 8px 15px;
+	}
+	.span3 {
+		padding: 8px 15px 8px 0;
+	}
 	.text-right {
 		padding-top: 10px;
     white-space: nowrap;
