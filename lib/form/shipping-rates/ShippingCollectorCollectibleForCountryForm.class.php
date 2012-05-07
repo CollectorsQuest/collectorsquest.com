@@ -18,6 +18,7 @@ class ShippingCollectorCollectibleForCountryForm extends ShippingReferenceForm
   public function __construct(
     $related_object,
     $country_code,
+    $tainted_request_values,
     $options = array(),
     $CSRFSecret = null
   ) {
@@ -32,6 +33,7 @@ class ShippingCollectorCollectibleForCountryForm extends ShippingReferenceForm
 
     $this->related_object = $related_object;
     $this->country_code = $country_code;
+    $options['tainted_request_values'] = $tainted_request_values;
 
     // we need to set the object here because of sfFormPropel::__construct checks
     $this->object = $this->getOrCreateShippingReferenceFromRelatedObject();
