@@ -4,23 +4,13 @@ class marketplaceActions extends cqFrontendActions
 {
   public function executeIndex()
   {
-    $c = new Criteria();
-    $c->setDistinct();
-    $c->addJoin(CollectibleForSalePeer::COLLECTIBLE_ID, CollectiblePeer::ID);
-    $c->add(CollectibleForSalePeer::IS_READY, true);
-    $c->add(CollectibleForSalePeer::PRICE, 0, Criteria::GREATER_THAN);
-    $c->setLimit(3);
+    $q = CollectibleForSaleQuery::create()
+      ->joinCollectible()
+      ->isForSale()
+      ->orderByUpdatedAt(Criteria::DESC);
 
-    $this->spotlight = CollectibleForSalePeer::doSelect($c);
-
-    $c = new Criteria();
-    $c->setDistinct();
-    $c->addJoin(CollectibleForSalePeer::COLLECTIBLE_ID, CollectiblePeer::ID);
-    $c->add(CollectibleForSalePeer::IS_READY, true);
-    $c->add(CollectibleForSalePeer::PRICE, 0, Criteria::GREATER_THAN);
-    $c->setLimit(16);
-
-    $this->collectibles_for_sale = CollectibleForSalePeer::doSelect($c);
+    $this->spotlight = $q->limit(3)->find();
+    $this->collectibles_for_sale = $q->limit(12)->find();
 
     return sfView::SUCCESS;
   }
@@ -31,8 +21,9 @@ class marketplaceActions extends cqFrontendActions
 
     $q = CollectibleForSaleQuery::create()
        ->joinCollectible()
-       ->filterByIsReady(true)
-       ->filterByPrice(0, Criteria::GREATER_THAN);
+       ->filterByContentCategoryWithChildren($content_category)
+       ->isForSale()
+       ->orderByUpdatedAt(Criteria::DESC);
 
     $search = array();
     if ($request->getParameter('page'))
@@ -48,35 +39,6 @@ class marketplaceActions extends cqFrontendActions
     {
       $q->filterByCondition($search['condition']);
     }
-
-    /**
-    if ($category = CollectionCategoryQuery::create()->findOneById($request->getParameter('id', @$search['category_id'])))
-    {
-      $c->add(CollectorCollectionPeer::COLLECTION_CATEGORY_ID, $category->getId());
-      $c->addJoin(CollectiblePeer::ID, CollectionCollectiblePeer::COLLECTIBLE_ID, Criteria::RIGHT_JOIN);
-      $c->addJoin(CollectionCollectiblePeer::COLLECTION_ID, CollectorCollectionPeer::ID);
-
-      if ($category->getParentId() > 0)
-      {
-        $c->addOr(CollectorCollectionPeer::COLLECTION_CATEGORY_ID, $category->getParentId());
-      }
-    }
-
-
-    if ($search['addtional_listing'] = $this->getRequestParameter('addtional_listing', @$search['addtional_listing']))
-    {
-      if ($search['addtional_listing'] == "Sold")
-      {
-        $c->add(CollectibleForSalePeer::IS_SOLD, true);
-        $c->addDescendingOrderByColumn(CollectibleForSalePeer::UPDATED_AT);
-      }
-    }
-    else
-    {
-      $c->add(CollectibleForSalePeer::IS_SOLD, false);
-      $c->addDescendingOrderByColumn(CollectibleForSalePeer::CREATED_AT);
-    }
-    */
 
     $pager = new PropelModelPager($q, 18);
     $pager->setPage($this->getRequestParameter('page', 1));

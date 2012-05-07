@@ -285,11 +285,14 @@ class _sidebarComponents extends cqFrontendComponents
   {
     $this->title = $this->getVar('title') ?: 'Collectibles for Sale';
 
-    // Set the limit of other Collections to show
+    // Set the limit of Collectibles For Sale to show
     $this->limit = (int) $this->getVar('limit') ?: 0;
 
-    $q = CollectibleForSaleQuery::create()->limit($this->limit);
-    $this->collectibles_for_sale = $q->find();
+    $q = CollectibleForSaleQuery::create()
+      ->isForSale()
+      ->orderByUpdatedAt(Criteria::DESC);
+
+    $this->collectibles_for_sale = $q->limit($this->limit)->find();
 
     return $this->_sidebar_if(count($this->collectibles_for_sale) > 0);
   }

@@ -28,3 +28,12 @@
   ?>
   </div>
 </div>
+
+<div class="row-fluid" style="text-align: center;">
+<?php
+  include_component(
+    'global', 'pagination',
+    array('pager' => $pager, 'options' => array('id' => 'collectibles-for-sale-pagination'))
+  );
+?>
+</div>

@@ -163,12 +163,13 @@ classes:
   CollectibleForSaleArchive:
     columns:
       collectible_id:       { type: integer, index: true, primaryKey: true, autoIncrement: false }
-      price:                { type: float }
+      price_amount:         { type: integer, required: true, default: 0 }
+      price_currency:       { type: char, size: 3, required: true, default: 'USD' }
       condition:            { type: char, sqlType: "ENUM('excellent','very good','good','fair','poor')", required: true }
       is_price_negotiable:  { type: boolean, default: false }
       is_shipping_free:     { type: boolean, default: false }
+      is_ready:             { type: boolean, default: false, description: 'Show in the market or not' }
       is_sold:              { type: boolean, default: false }
-      is_ready:             { type: boolean, default: false, description: 'Show in the market or no' }
       quantity:             { type: integer, required: true, default: 1 }
 
       updated_at:   { type: timestamp }
