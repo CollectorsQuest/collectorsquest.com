@@ -1,3 +1,1 @@
-<div class="header-bar">
-  <h1 class="Chivo webfont">Market Categories</h1>
-</div>
+<?php cq_page_title('Market Categories');

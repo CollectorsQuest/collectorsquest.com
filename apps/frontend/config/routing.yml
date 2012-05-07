@@ -206,7 +206,7 @@ marketplace_categories:
 marketplace_category_by_slug:
   url: /marketplace/:id/:slug
   class: sfPropelRoute
-  options: { model: CollectionCategory, type: object, method: getObjectForRoute }
+  options: { model: ContentCategory, type: object }
   param: { module: marketplace, action: browse }
   requirements:
     id: \d+

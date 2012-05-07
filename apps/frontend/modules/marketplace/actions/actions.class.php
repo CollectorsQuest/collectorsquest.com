@@ -27,6 +27,8 @@ class marketplaceActions extends cqFrontendActions
 
   public function executeBrowse(sfWebRequest $request)
   {
+    $content_category = $this->getRoute()->getObject();
+
     $q = CollectibleForSaleQuery::create()
        ->joinCollectible()
        ->filterByIsReady(true)
@@ -76,11 +78,12 @@ class marketplaceActions extends cqFrontendActions
     }
     */
 
-    $pager = new PropelModelPager($q, 10);
+    $pager = new PropelModelPager($q, 18);
     $pager->setPage($this->getRequestParameter('page', 1));
     $pager->init();
 
     $this->pager = $pager;
+    $this->content_category = $content_category;
 
     return sfView::SUCCESS;
   }

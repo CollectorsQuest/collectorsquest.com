@@ -99,9 +99,10 @@ class _sidebarComponents extends cqFrontendComponents
     $this->columns = (int) $this->getVar('columns') ?: 2;
 
     /** @var $q CollectionCategoryQuery */
-    $q = CollectionCategoryQuery::create()
+    $q = ContentCategoryQuery::create()
       ->distinct()
       ->filterByName('None', Criteria::NOT_EQUAL)
+      ->filterByTreeLevel(array(1, 2))
       ->orderBy('Name', Criteria::ASC)
       ->joinCollection()
       ->useCollectionQuery()
