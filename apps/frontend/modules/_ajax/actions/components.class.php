@@ -1,6 +1,6 @@
 <?php
 
-class ajaxComponents extends cqFrontendComponents
+class _ajaxComponents extends cqFrontendComponents
 {
   public function executeLoginPopup()
   {

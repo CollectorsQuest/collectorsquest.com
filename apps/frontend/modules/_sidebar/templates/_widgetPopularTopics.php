@@ -1,6 +1,6 @@
 <?php
   cq_sidebar_title(
-    'Popular Topics',
+    'Popular Categories',
     link_to('See all &raquo;', '@content_categories', array('class' => 'text-v-middle link-align'))
   );
 ?>

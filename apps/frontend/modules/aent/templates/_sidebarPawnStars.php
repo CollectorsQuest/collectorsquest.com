@@ -19,8 +19,12 @@
   </a>
 </div>
 
-<?php include_component('_sidebar', 'widgetMagnifyVideos'); ?>
-
+<?php
+  include_component(
+    '_sidebar', 'widgetMagnifyVideos',
+    array('playlist' => 'Pawn Stars')
+  );
+?>
 
 <div class="row-fluid sidebar-title">
   <div class="span11">
