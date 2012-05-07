@@ -211,7 +211,7 @@ if ($_SERVER['HTTP_HOST'] == 'www.collectorsquest.dev' || $_SERVER['HTTP_HOST'] 
     return $first_img;
   }
 
- // add_filter('pre_get_posts', 'filter_homepage_posts');
+  // add_filter('pre_get_posts', 'filter_homepage_posts');
   function filter_homepage_posts($query) {
 
   $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
@@ -241,22 +241,32 @@ if ($_SERVER['HTTP_HOST'] == 'www.collectorsquest.dev' || $_SERVER['HTTP_HOST'] 
     return $user_contactmethods;
   }
 
-
-  add_filter('excerpt_length', 'my_excerpt_length');
-  function my_excerpt_length($length) {
-
-    if (is_front_page() && $count == 1) :
-      return 50;
-    else :
-      return 30;
-    endif;
-
+  // multiple excerpt lengths
+  function cq_excerptlength_firstpost($length) {
+    return 64;
+  }
+  function cq_excerptlength_archive($length) {
+    return 32;
+  }
+  function cq_excerpt($length_callback='', $more_callback='') {
+    global $post;
+    if(function_exists($length_callback)){
+      add_filter('excerpt_length', $length_callback);
+    }
+    if(function_exists($more_callback)){
+      add_filter('excerpt_more', $more_callback);
+    }
+    $output = get_the_excerpt();
+    $output = apply_filters('wptexturize', $output);
+    $output = apply_filters('convert_chars', $output);
+    $output = '<p>'.$output.'</p>';
+    echo $output;
   }
 
   // Puts link in excerpts more tag
   function new_excerpt_more($more) {
     global $post;
-    return '... <a class="moretag" href="'. get_permalink($post->ID) . '">more</a>';
+    return '...&nbsp;<a class="moretag" href="'. get_permalink($post->ID) . '">more</a>';
   }
   add_filter('excerpt_more', 'new_excerpt_more');
 
@@ -274,6 +284,8 @@ if ($_SERVER['HTTP_HOST'] == 'www.collectorsquest.dev' || $_SERVER['HTTP_HOST'] 
 
   require_once 'lib/widgets/widgets.php';
 
+  include_once 'lib/metaboxes/setup.php';
+  include_once 'lib/metaboxes/thumbs-spec.php';
 
 }
 

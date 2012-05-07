@@ -65,7 +65,7 @@
     </div>
   <?php } elseif (is_author()) { ?>
     <div class="span11">
-      <h1 class="Chivo webfont" style="visibility: visible; ">Blogger: <span><?php the_author() ?></span></h1>
+      <h1 class="Chivo webfont" style="visibility: visible; ">Blogger:&nbsp;&nbsp;<span><?php the_author() ?></span></h1>
     </div>
 </div>
 
@@ -229,7 +229,21 @@ $lastclass = 0;
             <?php $image_attributes = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID), 'full' ); ?>
 
             <?php if (is_single() && $image_attributes[1] >= 620) : ?>
-              <img src="/blog/wp-content/themes/collectorsquest/thumb.php?src=<?php echo $image_url;  //echo 'http://placekitten.com/700/700'; ?>&w=<?php echo $img_w ?>&h=<?php echo $img_h ?>&zc=1&a=t" alt=""/>
+          <?php
+          global $custom_thumbs_mb;
+          $custom_thumbs_mb->the_field('cq_thumb_align');
+
+if ($custom_thumbs_mb->get_the_value() == "top") {
+  $a="t";
+}
+elseif ($custom_thumbs_mb->get_the_value() == "middle") {
+$a="m";
+}  else {
+
+       $a="b";
+          }
+          ?>
+              <img src="/blog/wp-content/themes/collectorsquest/thumb.php?src=<?php echo $image_url;  //echo 'http://placekitten.com/700/700'; ?>&w=<?php echo $img_w ?>&h=<?php echo $img_h ?>&zc=1&a=<?php echo $a; ?>" alt=""/>
               <?php
               $thumbnail_id = get_post_thumbnail_id($post->ID);
               $thumbnail_image = get_posts(array('p' => $thumbnail_id, 'post_type' => 'attachment'));
@@ -302,7 +316,13 @@ $lastclass = 0;
           if (is_single()) :
              the_content();
           elseif (is_front_page()||is_archive()) :
-            echo '<p>'.get_the_excerpt().'</p>';
+
+            if (is_front_page() && $count == 1) :
+              cq_excerpt('cq_excerptlength_firstpost');
+            else :
+              cq_excerpt('cq_excerptlength_archive');
+            endif;
+
           endif;
           ?>
         </div>
@@ -315,6 +335,7 @@ $lastclass = 0;
           <!-- <div class="entry-share">
             <span class='st_sharethis_custom'>Share This</span>
           </div> -->
+          <?php if (is_single()) : ?>
           <div class="entry-share pull-right">
             <!-- ShareThis Button BEGIN
             <span class='st_email_hcount'></span>
@@ -334,6 +355,7 @@ $lastclass = 0;
             </div>
             <!-- AddThis Button END -->
           </div>
+          <?php endif; ?>
           <!--  <iframe src="http://www.facebook.com/plugins/like.php?href=<?php the_permalink(); ?>&amp;layout=standard&amp;show_faces=true&amp;width=728&amp;action=like&amp;font=trebuchet+ms&amp;colorscheme=light&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:728px; height:80px;" allowTransparency="true"></iframe>
             <?php comments_popup_link('Add a comment &#187;', '1 Comment &#187;', '% Comments &#187;'); ?> -->
         </div>
