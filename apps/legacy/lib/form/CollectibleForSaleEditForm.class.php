@@ -7,7 +7,6 @@ class CollectibleForSaleEditForm extends BaseCollectibleForSaleForm
     parent::configure();
 
     $this->useFields(array(
-      'price',
       'condition',
       'is_shipping_free',
       'is_ready',
@@ -21,7 +20,10 @@ class CollectibleForSaleEditForm extends BaseCollectibleForSaleForm
     $this->setWidget('condition', new sfWidgetFormChoice(array('choices' => $conditions)));
     $this->setValidator('condition', new sfValidatorChoice(array('choices' => array_keys($conditions), 'required' => false)));
 
+    $this->setWidget('price', new sfWidgetFormInputText());
     $this->setValidator('price', new sfValidatorString(array('required' => false)));
+    $this->setDefault('price', $this->getObject()->getPrice());
+
     $this->setValidator('quantity', new sfValidatorInteger(array('required' => false)));
     $this->setValidator('is_ready', new sfValidatorBoolean(array('required' => false)));
 
@@ -40,13 +42,18 @@ class CollectibleForSaleEditForm extends BaseCollectibleForSaleForm
     parent::bind($taintedValues, $taintedFiles);
   }
 
+  public function updatePriceColumn($v)
+  {
+    $this->getObject()->setPrice($v);
+  }
+
   public function checkPrice($validator, $values)
   {
     if (!empty($values['is_ready']))
     {
       try
       {
-        $price_validator = new cqValidatorPrice(array('required' => true));
+        $price_validator = new cqValidatorPrice(array('required' => true, 'min' => 1));
         $values['price'] = $price_validator->clean($values['price']);
       }
       catch (sfValidatorError $error)
