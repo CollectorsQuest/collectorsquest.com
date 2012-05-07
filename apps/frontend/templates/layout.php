@@ -111,7 +111,7 @@
   <?php
     include_component_slot('footer', array('sf_cache_key' => $sf_cache_key));
     include_partial('global/footer_links');
-    include_component('ajax', 'loginPopup');
+    include_component('_ajax', 'loginPopup');
 
     // Include the global javascripts
     include_partial('global/javascripts', array('sf_cache_key' => $sf_cache_key));
