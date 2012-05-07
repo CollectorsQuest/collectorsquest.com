@@ -78,7 +78,8 @@
     $.extend(cq.settings, {
       masonry: {
         add_infinite_scroll: <?= ($sf_params->get('show') == 'all') ? 'true' : 'false' ?>,
-        loading_image: '<?= image_path('frontend/progress.gif'); ?>'
+        loading_image: '<?= image_path('frontend/progress.gif'); ?>',
+        loading_text: 'Loading more results...'
       }
     })
   });

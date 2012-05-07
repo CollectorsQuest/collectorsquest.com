@@ -365,6 +365,7 @@ var SEARCH = window.SEARCH = (function(){
             nextSelector: '#search-pagination li.next a',
             itemSelector: '.brick',
             loading: {
+              msgText: (settings.masonry.loading_text) ? settings.masonry.loading_text : 'Loading...',
               finishedMsg: 'No more pages to load.',
               img: settings.masonry.loading_image
             },
