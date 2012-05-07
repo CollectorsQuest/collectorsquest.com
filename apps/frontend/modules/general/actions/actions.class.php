@@ -44,7 +44,7 @@ class generalActions extends cqFrontendActions
     $q = wpPostQuery::create()
        ->filterByPostType('homepage_showcase')
        ->filterByPostStatus('publish')
-       ->orderByPostDate(Criteria::DESC)
+       ->addAscendingOrderByColumn('RAND()')
        ->limit(1);
 
     /** @var $themes wpPost[] */
@@ -59,6 +59,8 @@ class generalActions extends cqFrontendActions
 
       if ($collection_ids)
       {
+        shuffle($collection_ids);
+
         // Get 2 Collections
         $q = CollectorCollectionQuery::create()
           ->filterById($collection_ids, Criteria::IN)
@@ -69,6 +71,8 @@ class generalActions extends cqFrontendActions
       }
       if ($collectible_ids)
       {
+        shuffle($collectible_ids);
+
         // Get 22 Collectibles
         $q = CollectibleQuery::create()
            ->filterById($collectible_ids, Criteria::IN)
@@ -309,7 +313,6 @@ class generalActions extends cqFrontendActions
 
     return sfView::SUCCESS;
   }
-
 
   public function executeError404()
   {
