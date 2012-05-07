@@ -128,7 +128,7 @@ classes:
     columns:
       id:                   ~
       shipping_reference_id: { type: integer, required: true, foreignClass: ShippingReference, foreignReference: id, onDelete: cascade }
-      shipping_carrier_service_id: { type: integer, required: true, foreignClass: ShippingCarrierService, foreignReference: id, onDelete: cascade }
+      shipping_carrier_service_id: { type: integer, required: false, foreignClass: ShippingCarrierService, foreignReference: id, onDelete: cascade }
       flat_rate_in_cents:   { type: integer, required: false }
       is_free_shipping:     { type: boolean, required: true, default: false }
 

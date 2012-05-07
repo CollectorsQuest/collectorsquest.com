@@ -74,11 +74,8 @@ class ShippingCollectorCollectibleForCountryForm extends ShippingReferenceForm
   {
     if (null === $shipping_types)
     {
-      $shipping_types = self::getShippingTypeValues();
+      $shipping_types = self::getShippingTypeChoices();
     }
-
-    // add empty option
-    $shipping_types = array(''=>'') + $shipping_types;
 
     $this->widgetSchema['shipping_type'] = new sfWidgetFormChoice(array(
         'choices' => $shipping_types,
@@ -89,13 +86,13 @@ class ShippingCollectorCollectibleForCountryForm extends ShippingReferenceForm
     ));
   }
 
-  protected static function getShippingTypeValues()
+  protected static function getShippingTypeChoices()
   {
     return array(
+        '' => '',
         ShippingReferencePeer::SHIPPING_TYPE_FLAT_RATE => 'Flat Rate: Same cost to all buyers',
-        ShippingReferencePeer::SHIPPING_TYPE_CALCULATED_SHIPPING => 'Calculated: Cost varies by byer location',
+        ShippingReferencePeer::SHIPPING_TYPE_CALCULATED_SHIPPING => 'Calculated: Cost varies by buyer location',
         ShippingReferencePeer::SHIPPING_TYPE_LOCAL_PICKUP_ONLY => 'Local Pickup: You offer only local pickup',
-        ShippingReferencePeer::SHIPPING_TYPE_NO_SHIPPING => 'No shipping: You do not ship to this country',
     );
   }
 

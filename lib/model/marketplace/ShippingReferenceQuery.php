@@ -54,5 +54,23 @@ class ShippingReferenceQuery extends BaseShippingReferenceQuery
       ->filterByModelId($collectible);
   }
 
+  /**
+   * @param     Collector|Collectible $object
+   * @return    ShippingReferenceQuery
+   */
+  public function filterByModelObject($object)
+  {
+    if (!in_array(get_class($object), array('Collector', 'Collectible')))
+    {
+      throw new Exception(sprintf(
+        'You can only filter on Collector or Collectible object. You tried to filter on "%s".',
+        is_object($object) ? get_class($object) : gettype($object)
+      ));
+    }
+
+    return $this
+      ->filterByModel(get_class($object))
+      ->filterByModelId($object->getPrimaryKey());
+  }
 
 }

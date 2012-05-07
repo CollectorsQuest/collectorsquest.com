@@ -43,6 +43,14 @@ class ShippingReference extends BaseShippingReference
    */
   public function setModelObject(BaseObject $object)
   {
+    if (!in_array(get_class($object), array('Collector', 'Collectible')))
+    {
+      throw new Exception(sprintf(
+        'You can only add a Collector or Collectible object to a ShippingReference. You tried to add "%s".',
+        is_object($object) ? get_class($object) : gettype($object)
+      ));
+    }
+
     $this->setModel(get_class($object));
     $this->setModelId($object->getPrimaryKey());
 
