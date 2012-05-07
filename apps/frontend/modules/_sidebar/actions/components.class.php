@@ -177,7 +177,9 @@ class _sidebarComponents extends cqFrontendComponents
    */
   public function executeWidgetMagnifyVideos()
   {
-    $limit =  (int) $this->getVar('limit') ?: 5;
+    $this->limit = (int) $this->getVar('limit') ?: 5;
+
+    $this->tags = $this->getVar('tags') ?: array();
 
     $magnify = cqStatic::getMagnifyClient();
     $this->videos = array();
@@ -186,16 +188,22 @@ class _sidebarComponents extends cqFrontendComponents
     {
       if (isset($this->category))
       {
-        $this->videos = $magnify->getContent()->find($this->category->getSlug(), 1, $limit);
+        $this->videos = $magnify->getContent()->find($this->category->getSlug(), 1, $this->limit);
       }
-      else if (isset($this->tags))
+      else if (isset($this->playlist))
+      {
+        $this->videos = $magnify->getContent()->find(
+          Utf8::slugify($this->playlist, '-', true, true), 1, $this->limit
+        );
+      }
+      else if (!empty($this->tags))
       {
         $tags = is_array($this->tags) ? implode(' ', $this->tags) : $this->tags;
-        $this->videos = $magnify->getContent()->find($tags, 1, $limit);
+        $this->videos = $magnify->getContent()->find($tags, 1, $this->limit);
       }
       else
       {
-        $this->videos = $magnify->getContent()->browse(1, $limit);
+        $this->videos = $magnify->getContent()->browse(1, $this->limit);
       }
     }
     catch (MagnifyException $e)
