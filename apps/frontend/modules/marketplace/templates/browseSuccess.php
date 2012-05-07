@@ -1,43 +1,39 @@
-<br/><br/>
-<fieldset>
-  <form action="<?php echo url_for('@marketplace') ?>" method="post">
-    Price: <input type="text" name="price[min]" style="width: 80px;"/> - <input type="text" name="price[max]" style="width: 80px;">
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    Condition:
-    <select name="condition" id="condition" style="width: 150px;">
-      <option value="" selected="selected">Any</option>
-      <option value="excellent">Excellent</option>
-      <option value="very good">Very Good</option>
-      <option value="good">Good</option>
-      <option value="fair">Fair</option>
-      <option value="poor">Poor</option>
-    </select>
-    <br/>
-    Listings:
-    <select name="addtional_listing" id="addtional_listing">
-      <option value="" selected="selected">Active</option>
-      <option value="Sold">Sold</option>
-      <option value="All">All</option>
-    </select>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <input type="submit" name="commit" value="Search" class="button">
-  </form>
-</fieldset>
+<?php
+/**
+ * @var $content_category ContentCategory
+ * @var $pager sfPropelPager
+ */
+?>
 
-<div class="row">
+<?php
+  cq_page_title(
+    $content_category->getName(),
+    link_to('Back to Market &raquo;', '@marketplace')
+  );
+?>
+
+<br/>
+<div class="row" style="margin-left: -13px;">
   <div id="collectibles" class="row-content">
-    <?php
+  <?php
     /** @var $collectible_for_sale CollectibleForSale */
     foreach ($pager->getResults() as $i => $collectible_for_sale)
     {
-      echo '<div class="span4">';
       // Show the collectible (in grid, list or hybrid view)
       include_partial(
-        'marketplace/collectible_for_sale_grid_view',
+        'marketplace/collectible_for_sale_grid_view_square',
         array('collectible_for_sale' => $collectible_for_sale, 'i' => (int) $i)
       );
-      echo '</div>';
     }
-    ?>
+  ?>
   </div>
+</div>
+
+<div class="row-fluid" style="text-align: center;">
+<?php
+  include_component(
+    'global', 'pagination',
+    array('pager' => $pager, 'options' => array('id' => 'collectibles-for-sale-pagination'))
+  );
+?>
 </div>

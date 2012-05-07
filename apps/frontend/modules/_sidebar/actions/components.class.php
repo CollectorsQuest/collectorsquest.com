@@ -99,9 +99,10 @@ class _sidebarComponents extends cqFrontendComponents
     $this->columns = (int) $this->getVar('columns') ?: 2;
 
     /** @var $q CollectionCategoryQuery */
-    $q = CollectionCategoryQuery::create()
+    $q = ContentCategoryQuery::create()
       ->distinct()
       ->filterByName('None', Criteria::NOT_EQUAL)
+      ->filterByTreeLevel(array(1, 2))
       ->orderBy('Name', Criteria::ASC)
       ->joinCollection()
       ->useCollectionQuery()
@@ -176,25 +177,67 @@ class _sidebarComponents extends cqFrontendComponents
    */
   public function executeWidgetMagnifyVideos()
   {
-    $limit =  (int) $this->getVar('limit') ?: 5;
+    $this->limit = (int) $this->getVar('limit') ?: 5;
+
+    $this->tags = $this->getVar('tags') ?: array();
 
     $magnify = cqStatic::getMagnifyClient();
     $this->videos = array();
 
     try
     {
-      if (isset($this->category))
+      if (isset($this->category) && $this->category instanceof BaseObject)
       {
-        $this->videos = $magnify->getContent()->find($this->category->getSlug(), 1, $limit);
+        $this->videos = $magnify->getContent()->find($this->category->getSlug(), 1, $this->limit);
       }
-      else if (isset($this->tags))
+      else if (isset($this->collectible) && $this->collectible instanceof BaseObject)
       {
-        $tags = is_array($this->tags) ? implode(' ', $this->tags) : $this->tags;
-        $this->videos = $magnify->getContent()->find($tags, 1, $limit);
+        if (!$tags = $this->collectible->getTags())
+        {
+          $vq = (string) $tags[array_rand($tags, 1)];
+          if ($videos = $magnify->getContent()->find($vq, 1, $this->limit))
+          foreach ($videos as $video)
+          {
+            $this->videos[] = $video;
+          }
+        }
+
+        if (count($this->videos) < $this->limit)
+        {
+          $q = ContentCategoryQuery::create()
+             ->joinCollection()
+             ->useCollectionQuery()
+               ->joinCollectionCollectible()
+               ->useCollectionCollectibleQuery()
+                 ->filterByCollectible($this->collectible)
+               ->endUse()
+             ->endUse();
+
+          if ($content_categories = $q->find()->toKeyValue('id', 'slug'))
+          {
+            $vq = (string) $content_categories[array_rand($content_categories, 1)];
+            if ($videos = $magnify->getContent()->find($vq, 1, $this->limit - count($this->videos)))
+            foreach ($videos as $video)
+            {
+              $this->videos[] = $video;
+            }
+          }
+        }
+      }
+      else if (isset($this->playlist) && is_string($this->playlist))
+      {
+        $this->videos = $magnify->getContent()->find(
+          Utf8::slugify($this->playlist, '-', true, true), 1, $this->limit
+        );
+      }
+      else if (!empty($this->tags))
+      {
+        $vq = is_array($this->tags) ? (string) $this->tags[array_rand($this->tags, 1)] : (string) $this->tags;
+        $this->videos = $magnify->getContent()->find($vq, 1, $this->limit);
       }
       else
       {
-        $this->videos = $magnify->getContent()->browse(1, $limit);
+        $this->videos = $magnify->getContent()->browse(1, $this->limit);
       }
     }
     catch (MagnifyException $e)
@@ -202,7 +245,7 @@ class _sidebarComponents extends cqFrontendComponents
       return sfView::NONE;
     }
 
-    return $this->_sidebar_if((int) $this->videos->totalResults > 0);
+    return $this->_sidebar_if($this->videos);
   }
 
   public function executeWidgetCollector()
@@ -284,11 +327,14 @@ class _sidebarComponents extends cqFrontendComponents
   {
     $this->title = $this->getVar('title') ?: 'Collectibles for Sale';
 
-    // Set the limit of other Collections to show
+    // Set the limit of Collectibles For Sale to show
     $this->limit = (int) $this->getVar('limit') ?: 0;
 
-    $q = CollectibleForSaleQuery::create()->limit($this->limit);
-    $this->collectibles_for_sale = $q->find();
+    $q = CollectibleForSaleQuery::create()
+      ->isForSale()
+      ->orderByUpdatedAt(Criteria::DESC);
+
+    $this->collectibles_for_sale = $q->limit($this->limit)->find();
 
     return $this->_sidebar_if(count($this->collectibles_for_sale) > 0);
   }

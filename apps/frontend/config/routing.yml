@@ -2,18 +2,18 @@
 
 ajax_typeahead:
   url:   /ajax/typeahead/:section/:page
-  param: { module: ajax, action: typeAhead }
+  param: { module: _ajax, action: typeAhead }
   requirements: { sf_method: [GET], sf_format: json }
 
 ajax_collections:
   url:   /ajax/collections/:section/:page.:sf_format
-  param: { module: ajax, action: collections, sf_format: html }
+  param: { module: _ajax, action: collections, sf_format: html }
   options: { extra_parameters_as_query_string: true }
   requirements: { sf_format: (?:html|json) }
 
 ajax_collectors:
   url:   /ajax/collectors/:section/:page.:sf_format
-  param: { module: ajax, action: collectors, sf_format: html }
+  param: { module: _ajax, action: collectors, sf_format: html }
   options: { extra_parameters_as_query_string: true }
   requirements: { sf_format: (?:html|json) }
 
@@ -206,7 +206,7 @@ marketplace_categories:
 marketplace_category_by_slug:
   url: /marketplace/:id/:slug
   class: sfPropelRoute
-  options: { model: CollectionCategory, type: object, method: getObjectForRoute }
+  options: { model: ContentCategory, type: object }
   param: { module: marketplace, action: browse }
   requirements:
     id: \d+

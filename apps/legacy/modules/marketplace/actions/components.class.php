@@ -13,7 +13,7 @@ class marketplaceComponents extends sfComponents
     $c->setDistinct();
     $c->addJoin(CollectibleForSalePeer::COLLECTIBLE_ID, CollectiblePeer::ID);
     $c->add(CollectibleForSalePeer::IS_READY, true);
-    $c->add(CollectibleForSalePeer::PRICE, 0, Criteria::GREATER_THAN);
+    $c->add(CollectibleForSalePeer::PRICE_AMOUNT, 0, Criteria::GREATER_THAN);
 
     $search = array();
     if ($request->getParameter('page'))
@@ -43,16 +43,16 @@ class marketplaceComponents extends sfComponents
 
     if ($search['price-max'] && !$search['price-min'])
     {
-      $c->add(CollectibleForSalePeer::PRICE, (float)$search['price-max'], Criteria::LESS_EQUAL);
+      $c->add(CollectibleForSalePeer::PRICE_AMOUNT, ((float) $search['price-max'] * 100), Criteria::LESS_EQUAL);
     }
     if ($search['price-min'] && !$search['price-max'])
     {
-      $c->add(CollectibleForSalePeer::PRICE, (float)$search['price-min'], Criteria::GREATER_EQUAL);
+      $c->add(CollectibleForSalePeer::PRICE_AMOUNT, ((float) $search['price-min'] * 100), Criteria::GREATER_EQUAL);
     }
     if ($search['price-min'] && $search['price-max'])
     {
-      $ssPriceCondition = CollectibleForSalePeer::PRICE . ' >= ' . (float)$search['price-min'] . ' AND ' . CollectibleForSalePeer::PRICE . ' <= ' . (float)$search['price-max'];
-      $c->add(CollectibleForSalePeer::PRICE, $ssPriceCondition, Criteria::CUSTOM);
+      $ssPriceCondition = CollectibleForSalePeer::PRICE_AMOUNT . ' >= ' . ((float) $search['price-min'] * 100) . ' AND ' . CollectibleForSalePeer::PRICE_AMOUNT . ' <= ' . ((float) $search['price-max'] * 100);
+      $c->add(CollectibleForSalePeer::PRICE_AMOUNT, $ssPriceCondition, Criteria::CUSTOM);
     }
 
     if ($category = CollectionCategoryQuery::create()->findOneById($request->getParameter('id', @$search['category_id'])))

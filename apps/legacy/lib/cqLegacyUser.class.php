@@ -46,10 +46,12 @@ class cqLegacyUser extends cqBaseUser
 
   public function getShoppingCart()
   {
+    /** @var $q ShoppingCartQuery */
     $q = ShoppingCartQuery::create()
-      ->filterByCollector($this->getCollector())
-      ->filterBySessionId($this->isAuthenticated() ? null : session_id());
+       ->filterByCollector($this->getCollector())
+       ->filterBySessionId($this->isAuthenticated() ? null : session_id());
 
+    /** @var $shopping_cart ShoppingCart */
     $shopping_cart = $q->findOneOrCreate();
     $shopping_cart->save();
 

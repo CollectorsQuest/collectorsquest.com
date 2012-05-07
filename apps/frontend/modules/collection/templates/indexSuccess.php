@@ -94,6 +94,7 @@ $(document).ready(function()
       itemSelector: '#collectibles .span4',
       loading:
       {
+        msgText: 'Loading more collectibles...',
         finishedMsg: 'No more pages to load.',
         img: '<?= image_path('frontend/progress.gif'); ?>'
       },
