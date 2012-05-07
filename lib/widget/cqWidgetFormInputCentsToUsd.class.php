@@ -13,7 +13,7 @@ class cqWidgetFormInputCentsToUsd extends sfWidgetFormInputText
     // otherwize display it as is
     if (!count($errors) && !(isset($attributes['convert']) && false != $attributes['convert']))
     {
-      $value = $value / 100;
+      $value = bcdiv($value, 100, 2);
       unset ($attributes['convert']);
     }
 

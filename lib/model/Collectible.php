@@ -615,6 +615,11 @@ class Collectible extends BaseCollectible
    */
   public function preDelete(PropelPDO $con = null)
   {
+    // Delete shipping references manually because no actual FK exists
+    ShippingReferenceQuery::create()
+      ->filterByCollectible($this)
+      ->delete($con);
+
     // Deleting collectibles for sale
     $collectible_for_sale = $this->getCollectibleForSale();
     if (!empty($collectibles_for_sale))

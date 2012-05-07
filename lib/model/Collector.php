@@ -609,6 +609,11 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
    */
   public function preDelete(PropelPDO $con = null)
   {
+    // Delete shipping references manually, because no actual FK exists
+    ShippingReferenceQuery::create()
+      ->filterByCollector($this)
+      ->delete($con);
+
     /** @var $collections Collection[] */
     if ($collections = $this->getCollections())
       foreach ($collections as $collection)

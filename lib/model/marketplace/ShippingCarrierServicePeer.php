@@ -15,25 +15,4 @@
 class ShippingCarrierServicePeer extends BaseShippingCarrierServicePeer
 {
 
-  /**
-   * @var array Some calculation types require an amount to be set, and some do not.
-   *            This public static variable holds an array describing it:
-   * <code>
-   *   array(
-   *     'require' => CALCULATION_TYPE_VALUE[],
-   *     'not-require => CALCULATION_TYPE_VALUE[]
-   *   );
-   * </code>
-   */
-  public static $calculation_type_amount = array(
-      'required' => array(
-          ShippingRatePeer::CALCULATION_TYPE_FLAT_RATE,
-      ),
-      'not-required' => array(
-          ShippingRatePeer::CALCULATION_TYPE_FREE_SHIPPING,
-          ShippingRatePeer::CALCULATION_TYPE_NO_SHIPPING,
-          ShippingRatePeer::CALCULATION_TYPE_LOCAL_PICKUP,
-      )
-  );
-
 }

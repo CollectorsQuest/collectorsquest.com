@@ -136,7 +136,7 @@ classes:
     columns:
       id:                   ~
       carrier:              { type: enum,         required: true, valueSet: "Fedex" }
-      service_name:         { type: varchar(255), required: true }
+      service_name:         { type: varchar(255), required: true, primaryString: true }
       service_key:          { type: varchar(255), required: true }
       is_international:     { type: boolean,      required: true, default: false }
 
