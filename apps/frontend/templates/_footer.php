@@ -102,7 +102,7 @@
           </li>
           <li class="footer-profile-box-h-list">
             <ul class="row-fluid">
-              <li class="span6 upload-photo">
+              <li class="span6 add-collectible-img">
                 <a href="#" class="bold-links">Upload a<br> photo</a>
               </li>
               <li class="span6 organize-collection">
