@@ -6,5 +6,5 @@ if (SF_APP === 'frontend')
 }
 else
 {
-  require_once "index.legacy.php";
+  require_once "index.new.php";
 }
