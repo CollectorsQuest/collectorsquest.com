@@ -1,7 +1,15 @@
+<?php
+/**
+ * @var $collectibles Collectible[]
+ * @var $collection Collection
+ * @var $featured_week Featured
+ */
+?>
+
 <div id="weeks-promo-box">
   <div class="row-fluid">
     <div class="span8">
-      <span class="weeks-promo-title Chivo webfont">Camera week: Strike a pose</span>
+      <span class="weeks-promo-title Chivo webfont"><?= $featured_week->title ?></span>
     </div>
     <div class="span4 text-right">
       &nbsp;
@@ -13,10 +21,10 @@
       <ul class="thumbnails">
         <li class="span6">
           <a href="#">
-            <?= ice_image_tag_flickholdr('308x301', array('i' => 14)) ?>
+            <?= image_tag_collection($collection, '308x301'); ?>
           </a>
           <span class="white-block">
-            Say cheese! This week we're featuring collectors who love to point and shoot for interesting cameras. They're ready for their close-up!
+            <?= $featured_week->homepage_text; ?>
           </span>
         </li>
         <?php foreach ($collectibles as $i => $collectible): ?>
@@ -35,7 +43,6 @@
 
   <button class="btn btn-small gray-button see-more-full"
           id="seemore-featured-week"
-          data-url="<?= url_for('@ajax_collections?section=component&page=featuredWeekCollectibles') ?>"
           data-target="#weeks-promo-box div.imageset">
     See more
   </button>
@@ -46,10 +53,11 @@ $(document).ready(function()
 {
   $('#seemore-featured-week').click(function()
   {
+    var $url = '<?= url_for('@ajax_collections?section=component&page=featuredWeekCollectibles&collection_id='. $collection->getId()) ?>';
     var $button = $(this);
     $button.html('loading...');
 
-    $.get($button.data('url'), function(data)
+    $.get($url, function(data)
     {
       $($button.data('target')).append(data);
 

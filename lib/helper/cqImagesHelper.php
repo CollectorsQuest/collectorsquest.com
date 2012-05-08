@@ -85,7 +85,8 @@ function image_tag_collection($collection, $which = '150x150', $options = array(
 {
   if (is_null($collection) || !($collection instanceof Collection))
   {
-    return image_tag(sfConfig::get('sf_app') .'/multimedia/'. get_class($collection) .'/'. $which .'.png');
+    $class = is_object($collection) ? get_class($collection) : 'Collection';
+    return image_tag(sfConfig::get('sf_app') .'/multimedia/'. $class .'/'. $which .'.png');
   }
 
   $options = array_merge(
