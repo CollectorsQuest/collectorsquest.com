@@ -439,9 +439,46 @@ $a="m";
     "http://www." . $domain . "/_blog/index?_session_id=" . $_COOKIE['cq_frontend'] . "&key=" . $key . '&env=' . SF_ENV
   );
 
-  echo str_replace(
+  $layout = str_replace(
     array('<!-- Blog Head //-->', '<!-- Blog Content //-->', '<!-- Blog Sidebar //-->', '<!-- Blog Footer //-->'),
     array($head, $content, $sidebar, $footer),
     $layout
   );
+
+
+  if (is_singular()) {
+    $sidebar = "singular-sidebar";
+  }
+  elseif (is_page()) {
+    $sidebar = "static-page-sidebar";
+  }
+  else {
+    $sidebar = "non-singular-sidebar";
+  }
+
+  $widgets = get_option('sidebars_widgets');
+
+  foreach ($widgets[$sidebar] as $widget) {
+    ob_start();
+    $widget = substr($widget,0,strrpos($widget,'-'));
+    the_widget($widget, $args, $instance);
+    $widgout = ob_get_clean();
+    $array[] = $widgout;
+  }
+
+  echo str_replace(
+    array(
+      '<!-- Blog Sidebar Widget1 //-->',
+      '<!-- Blog Sidebar Widget2 //-->',
+      '<!-- Blog Sidebar Widget3 //-->',
+      '<!-- Blog Sidebar Widget4 //-->',
+      '<!-- Blog Sidebar Widget5 //-->',
+      '<!-- Blog Sidebar Widget6 //-->',
+      '<!-- Blog Sidebar Widget7 //-->',
+      '<!-- Blog Sidebar Widget8 //-->',
+      '<!-- Blog Sidebar Widget9 //-->'),
+    $array,
+    $layout
+  );
+
 ?>
