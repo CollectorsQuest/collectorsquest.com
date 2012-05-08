@@ -4,7 +4,7 @@
 /**
  * Adds CQ_Our_Bloggers_widget widget.
  */
-class CQ_Our_Bloggers_widget extends WP_Widget {
+class cq_our_bloggers_widget extends WP_Widget {
 
   /**
    * Register widget with WordPress.
@@ -150,4 +150,4 @@ class CQ_Our_Bloggers_widget extends WP_Widget {
 } // class CQ_Our_Bloggers_widget
 
 // register Foo_Widget widget
-add_action( 'widgets_init', create_function( '', 'register_widget( "CQ_Our_Bloggers_widget" );' ) );
+add_action( 'widgets_init', create_function( '', 'register_widget( "cq_our_bloggers_widget" );' ) );

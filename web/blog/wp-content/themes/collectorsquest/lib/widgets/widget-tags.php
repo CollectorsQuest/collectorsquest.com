@@ -4,7 +4,7 @@
 /**
  * Adds CQ_Tags_widget widget.
  */
-class CQ_Tags_widget extends WP_Widget {
+class cq_tags_widget extends WP_Widget {
 
   /**
    * Register widget with WordPress.
@@ -107,4 +107,4 @@ class CQ_Tags_widget extends WP_Widget {
 } // class CQ_Tags_widget
 
 // register Foo_Widget widget
-add_action( 'widgets_init', create_function( '', 'register_widget( "CQ_Tags_widget" );' ) );
+add_action( 'widgets_init', create_function( '', 'register_widget( "cq_tags_widget" );' ) );
