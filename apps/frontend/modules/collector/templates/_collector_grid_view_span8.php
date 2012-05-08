@@ -38,7 +38,7 @@
       </div>
     </div>
     <div class="span3">
-      <span class="stat-area bottom-margin">
+      <span class="stat-area spacer-bottom">
         <?php
           $count = $collector->countCollections();
           echo format_number_choice(

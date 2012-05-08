@@ -14,18 +14,41 @@ class collectionsComponents extends cqFrontendComponents
 
   public function executeFeaturedWeek()
   {
-    $q = CollectibleQuery::create()->limit(4);
-    $this->collectibles = $q->find();
+    // Featured Week
+    if (!$this->featured_week = FeaturedPeer::getCurrentFeatured(FeaturedPeer::TYPE_FEATURED_WEEK))
+    {
+      $this->featured_week = FeaturedPeer::getLatestFeatured(FeaturedPeer::TYPE_FEATURED_WEEK);
+    }
+    if ($this->featured_week instanceof Featured)
+    {
+      $collection_ids = $this->featured_week->getCollectionIds();
+      $this->collection = $this->featured_week->getCollections(1);
 
-    return sfView::SUCCESS;
+      if ($this->collection)
+      {
+        $q = CollectionCollectibleQuery::create()
+          ->filterByCollection($this->collection)
+          ->limit(4);
+        $this->collectibles = $q->find();
+      }
+    }
+
+    return $this->collection ? sfView::SUCCESS : sfView::NONE;
   }
 
   public function executeFeaturedWeekCollectibles()
   {
-    $q = CollectibleQuery::create()->limit(12);
-    $this->collectibles = $q->find();
+    $collection = CollectorCollectionQuery::create()->findOneById($this->getRequestParameter('collection_id'));
 
-    return sfView::SUCCESS;
+    if ($collection instanceof CollectorCollection)
+    {
+      $q = CollectibleQuery::create()
+        ->offset(4)
+        ->limit(12);
+      $this->collectibles = $q->find();
+    }
+
+    return $this->collectibles ? sfView::SUCCESS : sfView::NONE;
   }
 
   public function executeExploreCollections()

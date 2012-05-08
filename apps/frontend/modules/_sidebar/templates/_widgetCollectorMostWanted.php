@@ -6,7 +6,7 @@
 
 <?php cq_section_title($title); ?>
 
-<div class="other-items-sidebar top-margin">
+<div class="other-items-sidebar spacer-top">
   <div class="thumbnails-inner">
     <ul class="thumbnails">
       <li class="span3">

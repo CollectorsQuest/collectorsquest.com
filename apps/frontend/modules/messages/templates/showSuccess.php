@@ -18,7 +18,7 @@
         <br/>
         <span><?= time_ago_in_words_or_exact_date($message->getCreatedAt()); ?></span>
         <br/>
-        <div class="top-padding"><?= link_to_collector($sender, 'image'); ?></div>
+        <div class="spacer-inner-top-7"><?= link_to_collector($sender, 'image'); ?></div>
       </td>
       <td class="subject"> <?= $message->getSubject(); ?></td>
     </tr>

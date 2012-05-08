@@ -10,13 +10,7 @@
  */
 ?>
 
-<?php
-  cq_page_title(
-    $collectible->getName(),
-    link_to('Back to Collection &raquo;', url_for_collection($collection)),
-    array('left' => 9, 'right' => 3)
-  );
-?>
+<?php cq_page_title($collectible->getName(), null); ?>
 
 <!--
   Test with alternate images: http://www.collectorsquest.next/collectible/3515/rkw-teacup
@@ -57,7 +51,7 @@
 </div>
 
 <br style="clear: both;">
-<div class="statistics-share-panel bottom-margin-double">
+<div class="statistics-share-panel spacer-bottom-20">
   <div class="row-fluid">
     <div class="span4">
       <ul>
@@ -159,6 +153,6 @@
 
 <?php endif; ?>
 
-<div class="t-b-margin">
+<div class="spacer">
   Permalink: <span class="lightblue"><?= url_for_collectible($collectible, true) ?></span>
 </div>

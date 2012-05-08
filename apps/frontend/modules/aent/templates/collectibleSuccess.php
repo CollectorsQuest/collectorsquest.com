@@ -1,4 +1,4 @@
-<div class="banners-620 bottom-margin-double">
+<div class="banners-620 spacer-bottom-20">
   <?php
     if ($brand === 'American Pickers')
     {
@@ -16,7 +16,7 @@
   <?= image_tag_collectible($collectible, '620x370'); ?>
 </div>
 
-<div class="statistics-share-panel bottom-margin-double">
+<div class="statistics-share-panel spacer-bottom-20">
   <div class="row-fluid">
     <div class="span6">
       <ul>

@@ -13,7 +13,7 @@
 ?>
 
 <?php foreach ($wp_posts as $wp_post): ?>
-<div class="row-fluid bottom-margin">
+<div class="row-fluid spacer-bottom">
   <h4 style="margin-bottom: 5px;">
     <a href="<?= $wp_post->getPostUrl(); ?>" class="link">
       <?= cqStatic::truncateText($wp_post->getPostTitle(), 75) ?>
