@@ -130,9 +130,7 @@ class Featured extends BaseFeaturedNestedSet
     if (!empty($collector_pks))            $q->filterByCollectorId($collector_pks, Criteria::IN);
     if (!empty($collection_category_pks))  $q->filterByCollectionCategoryId($collection_category_pks, Criteria::IN);
 
-    $q->limit($limit);
-
-    return $q->find();
+    return $limit === 1 ? $q->findOne() : $q->limit($limit)->find();
   }
 
   public function getHomepageCollectible()
