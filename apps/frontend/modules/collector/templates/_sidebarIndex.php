@@ -5,7 +5,7 @@
  */
 ?>
 
-<div class="statistics-share-panel bottom-margin-double">
+<div class="statistics-share-panel spacer-bottom-20">
   <div class="row-fluid">
     <div class="span5" style="padding-top: 3px;">
       <?php

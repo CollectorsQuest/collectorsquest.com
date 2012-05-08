@@ -28,7 +28,7 @@
         </div>
       </div>
       <div class="span3">
-        <span class="stat-area bottom-margin">
+        <span class="stat-area spacer-bottom">
           102
           <span>COLLECTIONS</span>
         </span>

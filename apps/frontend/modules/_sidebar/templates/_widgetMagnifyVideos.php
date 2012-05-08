@@ -15,7 +15,7 @@
 ?>
 
 <?php foreach ($videos as $video): ?>
-<div class="row-fluid bottom-margin">
+<div class="row-fluid spacer-bottom">
   <div class="span5">
     <div class="clip-inner">
       <a href="<?= $video->getIframeUrl() ?>" title="<?= $video->getTitle() ?>">

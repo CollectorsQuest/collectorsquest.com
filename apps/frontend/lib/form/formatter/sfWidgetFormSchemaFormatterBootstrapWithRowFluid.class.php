@@ -6,7 +6,7 @@
 class sfWidgetFormSchemaFormatterBootstrapWithRowFluid extends sfWidgetFormSchemaFormatterBootstrap
 {
   protected $rowFormat = '
-    <div class="row-fluid row-spacing %error_class%">
+    <div class="row-fluid spacer-7 %error_class%">
       <div class="span4 v-center-container-label">
         <span class="v-center">%label%</span>
       </div>
