@@ -11,7 +11,7 @@ class CQ_Our_Bloggers_widget extends WP_Widget {
    */
   public function __construct() {
     parent::__construct(
-      'CQ_Our_Bloggers_widget', // Base ID
+      'cq_our_bloggers_widget', // Base ID
       'CQ Bloggers', // Name
       array( 'description' => __( 'This is the "Our Bloggers" widget.', 'text_domain' ), ) // Args
     );

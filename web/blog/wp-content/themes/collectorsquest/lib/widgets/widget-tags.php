@@ -11,7 +11,7 @@ class CQ_Tags_widget extends WP_Widget {
    */
   public function __construct() {
     parent::__construct(
-      'CQ_Tags_widget', // Base ID
+      'cq_tags_widget', // Base ID
       'CQ Tags', // Name
       array( 'description' => __( 'This is the tag widget.', 'text_domain' ), ) // Args
     );

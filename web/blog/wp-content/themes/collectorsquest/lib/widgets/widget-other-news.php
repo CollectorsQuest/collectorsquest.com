@@ -11,7 +11,7 @@ class CQ_Other_News_widget extends WP_Widget {
    */
   public function __construct() {
     parent::__construct(
-      'CQ_Other_News_widget', // Base ID
+      'cq_other_news_widget', // Base ID
       'CQ In Other News', // Name
       array( 'description' => __( 'This is the Other News" widget.', 'text_domain' ), ) // Args
     );

@@ -11,7 +11,7 @@ class CQ_300x250ad_widget extends WP_Widget {
    */
   public function __construct() {
     parent::__construct(
-      'CQ_300x250ad_widget', // Base ID
+      'cq_300x250ad_widget', // Base ID
       'CQ 300x250 Advertisement', // Name
       array( 'description' => __( 'This is the 300x250 ad unit.', 'text_domain' ), ) // Args
     );

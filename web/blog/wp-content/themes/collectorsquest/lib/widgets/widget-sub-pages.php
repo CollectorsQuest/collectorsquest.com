@@ -11,7 +11,7 @@ class CQ_Sub_Pages_widget extends WP_Widget {
    */
   public function __construct() {
     parent::__construct(
-      'CQ_Sub_Pages_widget', // Base ID
+      'cq_sub_pages_widget', // Base ID
       'CQ Sub-Pages', // Name
       array( 'description' => __( 'This is the sub-page widget.', 'text_domain' ), ) // Args
     );
