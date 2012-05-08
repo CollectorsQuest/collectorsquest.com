@@ -14,6 +14,9 @@ if ($total > $i)
 
     $text = $title = $item->getText();
     $uri = $item->getUri();
+    if (isset($options['title'])) {
+      $title = $options['title'];
+    }
 
     if (isset($options['limit']) && is_numeric($options['limit']))
     {

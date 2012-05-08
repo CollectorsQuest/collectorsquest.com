@@ -69,9 +69,9 @@ class generalComponents extends sfComponents
     return sfView::SUCCESS;
   }
 
-  public function executeBreadcrumbs()
+  public function executeBreadcrumbs(sfWebRequest $request)
   {
-    $breadcrumbs = cqBreadcrumbs::getInstance();
+    $breadcrumbs = IceBreadcrumbs::getInstance($this->getContext());
 
     if (isset($this->root))
     {

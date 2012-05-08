@@ -230,7 +230,7 @@ class collectionActions extends cqActions
 
     // Building the breadcrumbs
     $this->addBreadcrumb($this->__('Collections'), '@collections');
-    $this->addBreadcrumb( $collection->getName(), route_for_collection($collection), array('limit' => 38));
+    $this->addBreadcrumb( $collection->getName(), route_for_collection($collection), array('limit' => 28));
     $this->addBreadcrumb(
       $collectible->getName(), null,
       array(
