@@ -229,20 +229,15 @@ $lastclass = 0;
             <?php $image_attributes = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID), 'full' ); ?>
 
             <?php if (is_single() && $image_attributes[1] >= 620) : ?>
-          <?php
-          global $custom_thumbs_mb;
-          $custom_thumbs_mb->the_field('cq_thumb_align');
-
-if ($custom_thumbs_mb->get_the_value() == "top") {
-  $a="t";
-}
-elseif ($custom_thumbs_mb->get_the_value() == "middle") {
-$a="m";
-}  else {
-
-       $a="b";
-          }
-          ?>
+              <?php
+                global $custom_thumbs_mb;
+                $custom_thumbs_mb->the_field('cq_thumb_align');
+                $ct = $custom_thumbs_mb->get_the_value();
+                if ($ct == "top") { $a="t"; }
+                elseif ($ct == "middle") { $a="m"; }
+                elseif ($ct == "bottom") { $a="b"; }
+                else { $a="t"; }
+              ?>
               <img src="/blog/wp-content/themes/collectorsquest/thumb.php?src=<?php echo $image_url;  //echo 'http://placekitten.com/700/700'; ?>&w=<?php echo $img_w ?>&h=<?php echo $img_h ?>&zc=1&a=<?php echo $a; ?>" alt=""/>
               <?php
               $thumbnail_id = get_post_thumbnail_id($post->ID);
