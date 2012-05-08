@@ -9,7 +9,7 @@
 <div id="weeks-promo-box">
   <div class="row-fluid">
     <div class="span8">
-      <span class="weeks-promo-title Chivo webfont">Camera week: Strike a pose</span>
+      <span class="weeks-promo-title Chivo webfont"><?= $featured_week->title ?></span>
     </div>
     <div class="span4 text-right">
       &nbsp;
