@@ -50,7 +50,7 @@ class categoriesActions extends cqFrontendActions
     }
 
     $q = CollectorCollectionQuery::create()
-       ->filterByContentCategory($this->category)
+       ->filterByContentCategoryWithDescendants($this->category)
        ->orderByUpdatedAt(Criteria::DESC);
 
     $pager = new PropelModelPager($q, $this->collectors_question !== null ? 16 : 36);

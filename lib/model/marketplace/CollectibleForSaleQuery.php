@@ -121,7 +121,7 @@ class CollectibleForSaleQuery extends BaseCollectibleForSaleQuery
    * @return CollectibleForSaleQuery
    * @throws PropelException
    */
-  public function filterByContentCategoryWithChildren($content_category, $comparison = null)
+  public function filterByContentCategoryWithDescendants($content_category, $comparison = null)
   {
     /** @var $content_category ContentCategory */
     if ($content_category instanceof ContentCategory)
@@ -145,7 +145,7 @@ class CollectibleForSaleQuery extends BaseCollectibleForSaleQuery
         $q
           ->addUsingAlias(CollectionPeer::CONTENT_CATEGORY_ID, $content_category->getId(), Criteria::EQUAL)
           ->_or()
-          ->addUsingAlias(CollectionPeer::CONTENT_CATEGORY_ID, $content_category->getChildren()->toKeyValue('PrimaryKey', 'Id'), Criteria::IN);
+          ->addUsingAlias(CollectionPeer::CONTENT_CATEGORY_ID, $content_category->getDescendants()->toKeyValue('PrimaryKey', 'Id'), Criteria::IN);
       }
 
       $q
