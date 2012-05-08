@@ -10,13 +10,7 @@
  */
 ?>
 
-<?php
-  cq_page_title(
-    $collectible->getName(),
-    link_to('Back to Collection &raquo;', url_for_collection($collection)),
-    array('left' => 9, 'right' => 3)
-  );
-?>
+<?php cq_page_title($collectible->getName(), null); ?>
 
 <!--
   Test with alternate images: http://www.collectorsquest.next/collectible/3515/rkw-teacup
