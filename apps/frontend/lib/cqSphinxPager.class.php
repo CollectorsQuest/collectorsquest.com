@@ -326,6 +326,78 @@ class cqSphinxPager extends sfPager
         break;
     }
 
+    if (!empty($query['filters']) && is_array($query['filters']))
+    {
+      $pks = null;
+
+      foreach ($query['filters'] as $name => $values)
+      {
+        if (substr($name, -4) == '_min' && !isset($query['filters'][substr($name, 0, -4)]['min']))
+        {
+          $query['filters'][substr($name, 0, -4)]['min'] = $values;
+          unset($query['filters'][$name]);
+        }
+        else if (substr($name, -4) == '_max' && !isset($query['filters'][substr($name, 0, -4)]['max']))
+        {
+          $query['filters'][substr($name, 0, -4)]['max'] = $values;
+          unset($query['filters'][$name]);
+        }
+      }
+
+      foreach ($query['filters'] as $name => $values)
+      {
+
+        if ($name == 'images')
+        {
+          if (in_array($values, array('yes', 'no')))
+          {
+            $sphinx->setFilter('num_images', array(0), ($values == 'yes') ? true : false);
+          }
+        }
+        else
+        {
+          // Make sure we exclude values less than 0
+          if (is_numeric($values) && (int) $values < 0)
+          {
+            $values = 0;
+          }
+
+          $values = !is_array($values) ? array($values) : $values;
+          $values = IceFunctions::array_filter_recursive($values);
+
+          foreach ($values as $k => $v)
+          {
+            if (!is_numeric($v) && !is_array($v))
+            {
+              unset($values[$k]);
+            }
+          }
+
+          if (!empty($values) && (isset($values['min']) || isset($values['max'])))
+          {
+            if (!isset($values['min']) || (int) $values['min'] < 0)  $values['min'] = 0;
+            if (!isset($values['max']) || (int) $values['max'] <= 0) $values['max'] = PHP_INT_MAX;
+
+            $sphinx->setFilterRange($name, (int) $values['min'], (int) $values['max']);
+          }
+          else if (!empty($values))
+          {
+            $sphinx->setFilter($name, $values);
+          }
+        }
+      }
+
+      if (!empty($pks) && is_array($pks))
+      {
+        // http://www.sphinxsearch.com/forum/view.html?id=527
+        $sphinx->setFilter('object_id', array_slice($pks, 0, 4096));
+      }
+      else if (is_array($pks))
+      {
+        $sphinx->setFilter('object_id', array(0));
+      }
+    }
+
     // http://www.sphinxsearch.com/docs/current.html#api-func-setgroupby
     if (!empty($query['groupby']))
     {

@@ -158,6 +158,10 @@ search_collectibles:
   url:   /search/collectibles
   param: { module: search, action: collectibles }
 
+search_collectibles_for_sale:
+  url:   /search/collectibles-for-sale
+  param: { module: search, action: collectiblesForSale }
+
 search_collections:
   url:   /search/collections
   param: { module: search, action: collections }

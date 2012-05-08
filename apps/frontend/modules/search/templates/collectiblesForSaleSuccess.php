@@ -1,14 +1,14 @@
 <?php
   slot('sidebar_300');
-    include_component('search', 'sidebar', array('t' => 'collectible'));
+    include_component('search', 'sidebar', array('t' => 'collectible_for_sale'));
   end_slot();
 ?>
 
 <?php
-  include_partial(
-    'search/display_toggle',
-    array('url' => $url, 'display' => $display)
-  );
+include_partial(
+  'search/display_toggle',
+  array('url' => $url, 'display' => $display)
+);
 ?>
 
 <?php
@@ -21,7 +21,7 @@
     )
   );
 ?>
-<h1 class="Chivo webfont">Collectibles <small><?= $title; ?></small></h1>
+<h1 class="Chivo webfont">Collectibles for Sale <small><?= $title; ?></small></h1>
 
 <div class="row">
   <div id="search-results" class="row-content">
@@ -29,8 +29,8 @@
     foreach ($pager->getResults() as $i => $collectible)
     {
       include_partial(
-        'collection/collectible_'. $display .'_view_square',
-        array('collectible' => $collectible, 'i' => $i)
+        'marketplace/collectible_for_sale_'. $display .'_view_square',
+        array('collectible_for_sale' => $collectible->getCollectibleForSale(), 'i' => $i)
       );
     }
   ?>

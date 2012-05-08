@@ -18,7 +18,7 @@
     <?php
       echo link_to_collectible(
         $collectible_for_sale->getCollectible(), 'text',
-        array('class' => 'target', 'truncate' => 20)
+        array('class' => 'target', 'truncate' => 18)
       );
     ?>
     <strong class="pull-right"><?= money_format('%.2n', (float) $collectible_for_sale->getPrice()); ?></strong>

@@ -57,6 +57,12 @@ class searchComponents extends cqFrontendComponents
         'active' => in_array('collectible', $types_selected),
         'route' => '@search_collectibles?q='. $q
       ),
+      'collectible_for_sale' => array(
+        'name' => 'Collectibles for Sale',
+        'count' => 0,
+        'active' => in_array('collectible_for_sale', $types_selected),
+        'route' => '@search_collectibles_for_sale?q='. $q
+      ),
       'wp_post' => array(
         'name' => 'Blog Articles',
         'count' => 0,
@@ -82,6 +88,9 @@ class searchComponents extends cqFrontendComponents
       $this->types['video']['count'] = 0;
     }
 
+    /**
+     * Get the number of matches for everything but Collectibles for Sale
+     */
     $query = array(
       'q' => $q,
       'groupby' => 'object_type'
@@ -93,12 +102,17 @@ class searchComponents extends cqFrontendComponents
       $this->types[$match['attrs']['object_type']]['count'] = $match['attrs']['@distinct'];
     }
 
-    $q = CollectionCategoryQuery::create()
-      ->filterById(0, Criteria::NOT_EQUAL)
-      ->filterByParentId(0, Criteria::EQUAL)
-      ->orderByName(Criteria::ASC)
-      ->limit(30);
-    $this->categories = $q->find();
+    /**
+     * Get the number of matches for Collectibles for Sale
+     */
+    $query = array(
+      'q' => $q,
+      'filters' => array(
+        'object_type' => 'collectible',
+        'uint1' => 1
+      )
+    );
+    $this->types['collectible_for_sale']['count'] = cqSphinxPager::search($query, array(), 'total');
 
     return sfView::SUCCESS;
   }
