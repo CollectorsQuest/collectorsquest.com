@@ -102,7 +102,6 @@ class ShippingCollectorCollectibleInternationalForm extends ShippingCollectorCol
        $shipping_reference->setCountryIso3166($country_code);
        $shipping_reference->save($con);
      }
-
    }
   }
 
