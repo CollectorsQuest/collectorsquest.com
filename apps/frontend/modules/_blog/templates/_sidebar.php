@@ -37,6 +37,12 @@ else if ($data['is_page'])
 else
 {
   echo '<!-- Blog Sidebar Widget1 //-->';
+
+  include_component(
+    '_sidebar', 'widgetCollectiblesForSale',
+    array('wp_post' => $wp_post, 'limit' => 3)
+  );
+
   echo '<!-- Blog Sidebar Widget2 //-->';
   echo '<!-- Blog Sidebar Widget3 //-->';
   echo '<!-- Blog Sidebar Widget4 //-->';
