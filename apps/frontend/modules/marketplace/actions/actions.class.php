@@ -21,7 +21,7 @@ class marketplaceActions extends cqFrontendActions
 
     $q = CollectibleForSaleQuery::create()
        ->joinCollectible()
-       ->filterByContentCategoryWithChildren($content_category)
+       ->filterByContentCategoryWithDescendants($content_category)
        ->isForSale()
        ->orderByUpdatedAt(Criteria::DESC);
 
