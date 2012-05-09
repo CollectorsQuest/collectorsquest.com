@@ -82,6 +82,11 @@
       <?php echo $curauth->user_description; ?>
     </div>
   </div>
+  <div class="row-fluid section-title">
+    <div class="span12">
+      <h2 class="Chivo webfont"><?php echo $curauth->first_name ?>'s Recent Posts</h2>
+    </div>
+  </div>
   <?php } elseif (is_category()) { ?>
     <div class="span11">
       <h1 class="Chivo webfont" style="visibility: visible; "><?php _e( 'Category Archive:', 'collectorsquest' ) ?> <span><?php single_cat_title() ?></span></h1>
