@@ -47,7 +47,7 @@ class cq_sub_pages_widget extends WP_Widget {
     ?>
 
     <div class="row-fluid sidebar-title">
-      <div class="span8">
+      <div class="span12">
         <h3 class="Chivo webfont" style="visibility: visible;"><?php echo $title1; ?></h3>
       </div>
      <!-- <div class="span4 text-right">
@@ -58,7 +58,7 @@ class cq_sub_pages_widget extends WP_Widget {
       <?php else : ?>
 
     <div class="row-fluid sidebar-title">
-      <div class="span8">
+      <div class="span12">
         <h3 class="Chivo webfont" style="visibility: visible;"><?php echo $title1; //Other News?></h3>
       </div>
       <!-- <div class="span4 text-right">
