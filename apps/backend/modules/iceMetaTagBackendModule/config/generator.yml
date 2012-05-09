@@ -1,0 +1,26 @@
+generator:
+  class: IcePropelGenerator
+  param:
+    model_class:           iceModelMetaTag
+    theme:                 bootstrap
+    non_verbose_templates: true
+    with_show:             false
+    singular:              iceModelMetaTag
+    plural:                iceModelMetaTags
+    route_prefix:          ice_model_meta_tag
+    with_propel_route:     1
+    actions_base_class:    cqBackendActions
+
+    config:
+      actions: ~
+      fields:  ~
+      list:
+        title: Meta Tags
+      filter:
+        display: [url]
+      form:
+        display: [url, parameters, en_US]
+      edit:
+        title: Edit Meta Tags
+      new:
+        title: New Meta Tags

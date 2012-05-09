@@ -405,10 +405,6 @@ $a="m";
 
 <?php
   ob_start();
-  get_sidebar('new');
-  $sidebar = ob_get_clean();
-
-  ob_start();
   get_footer();
   wp_footer();
   $footer = ob_get_clean();
@@ -440,8 +436,8 @@ $a="m";
   );
 
   $layout = str_replace(
-    array('<!-- Blog Head //-->', '<!-- Blog Content //-->', '<!-- Blog Sidebar //-->', '<!-- Blog Footer //-->'),
-    array($head, $content, $sidebar, $footer),
+    array('<!-- Blog Head //-->', '<!-- Blog Content //-->', '<!-- Blog Footer //-->'),
+    array($head, $content, $footer),
     $layout
   );
 
@@ -456,8 +452,10 @@ $a="m";
     $sidebar = "non-singular-sidebar";
   }
 
+  $array = array();
   $widgets = get_option('sidebars_widgets');
 
+  if (is_array($widgets[$sidebar]))
   foreach ($widgets[$sidebar] as $widget) {
     ob_start();
     $widget = substr($widget,0,strrpos($widget,'-'));
@@ -465,6 +463,9 @@ $a="m";
     $widgout = ob_get_clean();
     $array[] = $widgout;
   }
+
+  // Make sure the array has at least 9 elements
+  $array = array_pad($array, 9, '');
 
   echo str_replace(
     array(

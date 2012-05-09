@@ -24,7 +24,7 @@ all:
     default_timezone:       America/New_York
     charset:                utf-8
 
-    enabled_modules:        [sfGuardAuth, sfGuardUser, sfGuardPermission, sfGuardGroup, iceBackendModule]
+    enabled_modules:        [sfGuardAuth, sfGuardUser, sfGuardPermission, sfGuardGroup, iceBackendModule, iceMetaTagBackendModule]
     standard_helpers:       [Partial, Cache, I18N, Text, iceAssets, iceJavascript, iceBackend, cqAssets, cqImages, cqJavascripts]
     sf_compat_10:           off
 
