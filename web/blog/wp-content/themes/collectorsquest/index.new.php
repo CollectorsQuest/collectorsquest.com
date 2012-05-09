@@ -442,7 +442,7 @@ $lastclass = 0;
   );
 
 
-  if (is_singular()) {
+  if (is_single()) {
     $sidebar = "singular-sidebar";
   }
   elseif (is_page()) {
