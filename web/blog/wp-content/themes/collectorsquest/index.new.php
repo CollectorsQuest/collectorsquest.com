@@ -456,6 +456,7 @@ $a="m";
     $sidebar = "non-singular-sidebar";
   }
 
+  $array = array();
   $widgets = get_option('sidebars_widgets');
 
   if (is_array($widgets[$sidebar]))
@@ -466,6 +467,9 @@ $a="m";
     $widgout = ob_get_clean();
     $array[] = $widgout;
   }
+
+  // Make sure the array has at least 9 elements
+  $array = array_pad($array, 9, '');
 
   echo str_replace(
     array(
