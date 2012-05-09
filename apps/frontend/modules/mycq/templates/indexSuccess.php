@@ -76,7 +76,6 @@
 </div>
 
 <div id="cp-tabs">
-  <div class="tabbable">
     <ul class="nav nav-tabs">
       <li class="active">
         <a href="#tab1" data-toggle="tab">Show Items for Sale</a>
@@ -86,7 +85,7 @@
       </li>
     </ul>
     <div class="tab-content">
-      <div class="tab-pane" id="tab1">
+      <div class="tab-pane active" id="tab1">
         <div class="tab-content-inner">
           <div class="row-fluid sidebar-title">
             <div class="span9 link-align">
@@ -208,37 +207,160 @@
 
           <div id="cp-collectibles-for-sale">
             <div class="row thumbnails">
+
               <div class="span4 thumbnail link">
-                <a href="#">
-                  <img src="http://placehold.it/64x64" alt="">
-                </a>
-                <div class="add-white-icon drop-zone"></div>
-                <div class="add-white-icon drop-zone"></div>
+                <div class="collectibles-container">
+                  <a href="#">
+                    <img src="http://placehold.it/64x64" alt="">
+                  </a>
+                  <div class="add-white-icon drop-zone"></div>
+                  <div class="add-white-icon drop-zone"></div>
+                </div>
+                <span>Test text-overflow: ellipsis text-overflow: ellipsis </span>
+                <div class="prices">$32.00</div>
+              </div>
+
+              <div class="span4 thumbnail link">
+                <div class="collectibles-container">
+                  <a href="#">
+                    <img src="http://placehold.it/64x64" alt="">
+                  </a>
+                  <div class="add-white-icon drop-zone"></div>
+                  <div class="add-white-icon drop-zone"></div>
+                </div>
+                <span>Test text-overflow: ellipsis text-overflow: ellipsis </span>
+                <div class="prices">$32.00</div>
+              </div>
+
+              <div class="span4 thumbnail link">
+                <div class="collectibles-container">
+                  <a href="#">
+                    <img src="http://placehold.it/64x64" alt="">
+                  </a>
+                  <div class="add-white-icon drop-zone"></div>
+                  <div class="add-white-icon drop-zone"></div>
+                </div>
+                <span>Test text-overflow: ellipsis text-overflow: ellipsis </span>
+                <div class="prices">$32.00</div>
+              </div>
+
+              <div class="span4 thumbnail link">
+                <div class="collectibles-container">
+                  <a href="#">
+                    <img src="http://placehold.it/64x64" alt="">
+                  </a>
+                  <div class="add-white-icon drop-zone"></div>
+                  <div class="add-white-icon drop-zone"></div>
+                </div>
+                <span>Test text-overflow: ellipsis text-overflow: ellipsis </span>
+                <div class="prices">$32.00</div>
+              </div>
+
+              <div class="span4 thumbnail link">
+                <div class="collectibles-container">
+                  <div class="add-white-icon drop-zone"></div>
+                  <div class="add-white-icon drop-zone"></div>
+                  <div class="add-white-icon drop-zone"></div>
+                </div>
                 <span>Transformer - Perfect Condition</span>
                 <div class="prices">$32.00</div>
               </div>
 
-
               <div class="span4 thumbnail link">
-                <div class="row-fluid spacer-inner-top-15">
+                <div class="row-fluid spacer-inner-top-20">
                   <div class="span5">
                     <div class="add-white-icon create-collection pull-right"></div>
                   </div>
                   <div class="span7">
-                    <p class="create-collection-text">Create a new sale listing by clicking here</p>
+                    <a href="#" class="create-collection-text">Create a new sale listing by clicking here</a>
                   </div>
                 </div>
               </div>
+
             </div>
           </div>
+
 
           <a href="#" class="btn btn-small gray-button see-more-button">
             See more
           </a>
 
+          <div id="Remove me" class="spacer-top-25">
+            <!-- No Items to sort OR for sale -->
+
+            <div id="cp-collections">
+              <div class="row thumbnails">
+                <div class="span12 thumbnail link no-collections-box">
+                  <span class="Chivo webfont info-no-collectibles-for-sale">
+                    Got something to sell? List your collectibles for a small fee.
+                  </span>
+
+                  <div class="row-fluid">
+                    <div class="span8">
+                      <span class="Chivo webfont bolder-title spacer-inner-l">
+                        Casual Sellers
+                      </span>
+                    </div>
+                    <div class="span4">
+                      <span class="Chivo webfont bolder-title">
+                        POWER Sellers
+                      </span>
+                    </div>
+                  </div>
+                  <div class="buttons-inner">
+                    <div class="row-fluid">
+                      <div class="span4">
+                        <button type="submit" class="btn btn-primary blue-button pull-left">1 Item</button>
+                        <span>$2.50</span>
+                      </div>
+                      <div class="span4">
+                        <button type="submit" class="btn btn-primary blue-button pull-left">15 Items</button>
+                        <span>$30.00</span>
+                      </div>
+                      <div class="span4">
+                        <button type="submit" class="btn btn-primary blue-button pull-left">1000 Items</button>
+                        <span>$150.00</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="buttons-inner">
+                    <div class="row-fluid">
+                      <div class="span4">
+                        <button type="submit" class="btn btn-primary blue-button pull-left">5 Items</button>
+                        <span>$11.25</span>
+                      </div>
+                      <div class="span4">
+                        <button type="submit" class="btn btn-primary blue-button pull-left">25 Items</button>
+                        <span>$41.50</span>
+                      </div>
+                      <div class="span4">
+                        <button type="submit" class="btn btn-primary blue-button pull-left">Unlimited</button>
+                        <span>$250.00</span>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="span4 thumbnail link">
+                  <div class="row-fluid spacer-inner-top-15">
+                    <div class="span5">
+                      <div class="add-white-icon create-collection pull-right"></div>
+                    </div>
+                    <div class="span7">
+                      <a href="#" class="create-collection-text">Create a new collection by clicking here</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- /No Items to sort OR for sale -->
+          </div><!-- /#remove me -->
+
+
         </div><!-- /.tab-content-inner -->
       </div>
-      <div class="tab-pane active" id="tab2">
+      <div class="tab-pane" id="tab2">
         <div class="tab-content-inner">
           <div class="row-fluid sidebar-title">
             <div class="span9 link-align">
@@ -436,7 +558,7 @@
                     <div class="add-white-icon create-collection pull-right"></div>
                   </div>
                   <div class="span7">
-                    <p class="create-collection-text">Create a new collection by clicking here</p>
+                    <a href="#" class="create-collection-text">Create a new collection by clicking here</a>
                   </div>
                 </div>
               </div>
@@ -447,10 +569,36 @@
             See more
           </a>
 
+          <div id="Remove me..." class="spacer-top-25">
+            <!-- No Collection Uploaded -->
+
+            <div id="cp-collections">
+              <div class="row thumbnails">
+                <div class="span12 thumbnail link no-collections-box">
+                  <span class="Chivo webfont info-no-collections-uploaded">
+                    Share your collection with the community today!<br>
+                    Upload then sort your collectibles to get started.
+                  </span>
+                </div>
+                <div class="span4 thumbnail link">
+                  <div class="row-fluid spacer-inner-top-15">
+                    <div class="span5">
+                      <div class="add-white-icon create-collection pull-right"></div>
+                    </div>
+                    <div class="span7">
+                      <a href="#" class="create-collection-text">Create a new collection by clicking here</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- /No Collection Uploaded -->
+          </div><!-- /#remove me -->
+
         </div><!-- /.tab-content-inner -->
       </div>
     </div><!-- /.tab-content -->
-  </div>
 </div>
 
 

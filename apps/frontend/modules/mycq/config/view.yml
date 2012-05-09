@@ -1,2 +1,2 @@
 all:
-  stylesheets: [frontend/modules/manage.css]
+  stylesheets: [frontend/modules/mycq.css]

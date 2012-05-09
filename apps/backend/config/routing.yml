@@ -18,7 +18,7 @@ featured_weeks:
   options:
     model:                Featured
     module:               featuredWeeks
-    prefix_path:          /featured-weeks
+    prefix_path:          /featuredWeeks
     column:               id
     with_wildcard_routes: true
 

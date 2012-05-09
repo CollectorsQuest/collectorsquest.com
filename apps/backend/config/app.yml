@@ -17,6 +17,12 @@ all:
           Categories:
             url: content_category
             image: theme/icons/categories.png
+          Featured Weeks:
+            url: featured_weeks
+          Comments:
+            url: comment
+            image: theme/icons/language.png
+
       Collectors:
         icon: user
         items:
@@ -77,11 +83,7 @@ all:
             url: wp_post
             image: theme/icons/addedit.png
 
-      Everything Else:
+      SEO:
         items:
-          Featured Weeks:
-            url: featured_weeks
-
-          Comments:
-            url: comment
-            image: theme/icons/language.png
+          Meta Tags:
+            url: ice_model_meta_tag

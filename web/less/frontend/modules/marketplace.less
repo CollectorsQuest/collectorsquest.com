@@ -5,7 +5,7 @@
 
 #marketplace-spotlight
 {
-	background-color: @yelloHighlight;
+	background-color: @yellowHighlight;
 	padding: 15px 0 10px 0;
 	margin-top: 20px;
 	font-size:12px;
@@ -49,14 +49,14 @@
 				display: block;
 				line-height: 20px;
         text-transform: uppercase;
-				letter-spacing: 0.04em;
+				letter-spacing: 0.07em;
         font-weight: bold;
-        font-size: 10.5px;
+        font-size: 11px;
 				background: @blueDark;
 				color: white;
 				text-align: center;
 				.size(20px, 138px);
-				.transform(rotate(45deg));
+				.transform(rotate(45deg)translate3d(0, 0, 0));
 			}
 		}
 		.spotlight-text {
@@ -85,7 +85,7 @@
 		border: 1px solid @boxBorder;
 	}
 	.thumbnails-inner {
-		background-color: @yelloHighlight;
+		background-color: @yellowHighlight;
 		.clearfix();
 	}
 	.span2 {
@@ -129,9 +129,8 @@
 #marketplace-spotlight .thumbnail {
 	.transition(all 0.2s ease-in-out 0s);
 	&:hover {
-		.transform(scale(1.05));
+		.transform(scale(1.05)translate3d(0, 0, 0));
 		.box-shadow(0 0 8px rgba(0, 0, 0, 0.5));
 	}
 }
-
 
