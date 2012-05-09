@@ -217,6 +217,7 @@ class CollectorPeer extends BaseCollectorPeer
     $collector->setPassword($data['password']);
     $collector->setDisplayName($data['display_name']);
     $collector->setEmail($data['email']);
+    $collector->setUserType(isset($data['seller']) && !!$data['seller'] ? 'Seller' : 'Collector');
 
     /* Temporary disable before tests are written * /
     if (!empty($data['facebook_id']))
