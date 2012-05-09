@@ -8,6 +8,7 @@ if ($total > $i)
   echo '<div id="breadcrumbs" class="span-12" style="margin-top: -50px; padding: 5px;">';
   echo '<small>', __('Back to:'), '</small>&nbsp;';
 
+  /** @var $item IceBreadcrumbsItem */
   foreach ($items as $item)
   {
     $options = $item->getOptions();

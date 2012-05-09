@@ -28,11 +28,10 @@ class aentActions extends cqFrontendActions
       $collection->save();
     }
 
-    $q = CollectibleQuery::create()
-      ->distinct()
-      ->filterByCollectorId($american_pickers['collector'])
+    $q = CollectionCollectibleQuery::create()
       ->filterByCollectionId($american_pickers['collection'])
-      ->orderById(Criteria::ASC);
+      ->orderByPosition(Criteria::ASC)
+      ->orderByUpdatedAt(Criteria::ASC);
     $this->collectibles = $q->find();
 
     $collectible_ids = array(
@@ -75,11 +74,10 @@ class aentActions extends cqFrontendActions
       $collection->save();
     }
 
-    $q = CollectibleQuery::create()
-      ->distinct()
-      ->filterByCollectorId($pawn_stars['collector'])
+    $q = CollectionCollectibleQuery::create()
       ->filterByCollectionId($pawn_stars['collection'])
-      ->orderById(Criteria::ASC);
+      ->orderByPosition(Criteria::ASC)
+      ->orderByUpdatedAt(Criteria::ASC);
     $this->collectibles = $q->find();
 
     $collectible_ids = array(
