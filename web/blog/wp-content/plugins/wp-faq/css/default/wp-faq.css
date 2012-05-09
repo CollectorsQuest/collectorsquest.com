@@ -1,0 +1,145 @@
+/******* FRONT END CSS ******/
+
+/* BEGIN General Elements */
+
+form.wpfaq {
+	text-align: left;
+	width: 100%;
+}
+
+table.wpfaq {
+	width: 100%;
+}
+
+/* END General Elements */
+/* BEGIN Search Form */
+
+div.wpfaqsearch {
+	display: block;
+	margin: 20px 0 10px 0;
+}
+
+div.wpfaqsearchform {
+	
+}
+
+div.wpfawsearchformi {
+	
+}
+
+/* END Search Form */
+/* BEGIN Ask/Submission Form */
+
+.wpfaqaskform {
+	
+}
+
+textarea.wpfaqask, input.wpfaqask, input.wpfaqcaptchacode {
+	border: 1px #999999 solid;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+}
+
+textarea.wpfaqask {
+	width: 100%;
+}
+
+/* END Ask/Submission Form */
+/* BEGIN Questions */
+
+div.wpfaqquestions {
+	
+}
+
+/** NO ACCORDION **/
+
+h4.wpfaqtoggle {
+	display: block;
+	cursor: pointer;
+	/*margin: 0 0 10px 0;*/
+	margin: 0 0 0 0 !important;
+	padding: 0 0 10px 20px;
+	background: none;
+	font-weight: bold;
+}
+
+div.wpfaqcontent {
+	margin: 0 0 0 20px;
+	padding: 0 0 0 0;
+}
+
+div.wpfaqcontenti {
+	margin: 0 0 20px 0;
+	padding: 0 0 0 0;
+}
+
+/** WITH ACCORDION **/
+
+div.wpfaqacc, div.wpfaq {
+	display: block;
+	margin: 15px 0 10px 0;
+}
+
+div.wpfaqacc h4.wpfaqacctoggle {
+	display: block;
+	cursor: pointer;
+	/*margin: 0 0 10px 0;*/
+	margin: 0 0 0 0 !important;
+	padding: 0 0 10px 0;
+	font-weight: bold;
+}
+
+h4.wpfaqacctoggle:focus {
+	border: none;
+}
+
+div.wpfaqacc h4.wpfaqacctoggle a {
+	text-decoration: none;
+	display: block;
+	padding: 0 0 0 20px;
+	background: none;
+}
+
+div.wpfaqacc h4.wpfaqacctoggle a:hover {
+	text-decoration: none;
+	background: none;
+}
+
+div.wpfaqacc div.wpfaqacccontent {
+	margin: 0 0 0 20px;
+	padding: 0 0 0 0;
+}
+
+div.wpfaqacc div.wpfaqacccontenti {
+	margin: 0 0 20px 0;
+}
+
+div.wpfaqacccontenti p, div.wpfaqcontenti p {
+	margin: 0 0 10px 0 !important;
+}
+
+/* END Questions */
+/* BEGIN Misc */
+
+p.wpfaqsubmit {
+	margin: 0 0 0 0;
+}
+
+p.wpfaqerror, span.wpfaqerror, small.wpfaqerror, .wpfaqerror {
+	color: red !important;
+	font-style: italic;
+}
+
+.wpfaqred {
+	color: red !important;
+}
+
+.wpfaqgrn {
+	color: green !important;
+}
+
+.wpfaqitalic {
+	font-style: italic;
+}
+
+/* END Misc */

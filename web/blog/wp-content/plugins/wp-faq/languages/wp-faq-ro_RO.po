@@ -1,0 +1,1907 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WordPress FAQs plugin v1.2.6\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-11-15 11:56+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Antonie Potgieter <antonie@tribulant.com>\n"
+"Language-Team: Richard Vencu <richard.vencu@richardconsulting.ro>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-Country: SOUTH AFRICA\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2\n"
+"X-Poedit-Basepath: .\n"
+"X-Textdomain-Support: yes\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+# @ wp-faq
+#: ../wp-faq-ajax.php:29
+msgid "Sorry... you do not have the permission to access this page"
+msgstr "Ne cerem scuze dar nu vă permitem să accesați această pagină"
+
+# @ wp-faq
+#: ../wp-faq-ajax.php:42
+#, fuzzy
+msgid "Class method \""
+msgstr "Metoda clasei \"\" nu există"
+
+# @ wp-faq
+#: ../wp-faq-ajax.php:98
+#: ../wp-faq-ajax.php:211
+#: ../wp-faq-ajax.php:249
+msgid "No data was posted"
+msgstr "Nu au fost trimise date"
+
+# @ wp-faq
+#: ../wp-faq-ajax.php:99
+msgid "No identification number was passed, please try again"
+msgstr "Nu a fost trimis nici un număr de identificare, vă rugăm încercați din nou"
+
+# @ wp-faq
+#: ../wp-faq-ajax.php:102
+msgid "Please fill in your email address"
+msgstr "Vă rugăm completați adresa de email"
+
+# @ wp-faq
+#: ../wp-faq-ajax.php:103
+msgid "Please fill in a valid email address"
+msgstr "Vă rugăm introduceți o adresă de email validă"
+
+# @ wp-faq
+#: ../wp-faq-ajax.php:106
+#: ../models/question.php:85
+msgid "Please fill in a question"
+msgstr "Vă rugăm completați o întrebare"
+
+# @ wp-faq
+#: ../wp-faq-ajax.php:107
+msgid "No FAQ group was specified"
+msgstr "Nu a fost specificat nici un grup FAQ"
+
+# @ wp-faq
+#: ../wp-faq-ajax.php:110
+msgid "FAQ group cannot be read"
+msgstr "Grupul FAQ nu poate fi citit"
+
+# @ wp-faq
+#: ../wp-faq-ajax.php:116
+msgid "Please fill in the code in the image."
+msgstr "Vă rugăm completați codul din imagine"
+
+# @ wp-faq
+#: ../wp-faq-ajax.php:117
+msgid "Your code does not match the code in the image."
+msgstr "Codul introdus nu se potrivește cu cel din imagine."
+
+# @ wp-faq
+#: ../wp-faq-ajax.php:121
+msgid "Please login before submitting questions"
+msgstr "Vă rugăm autentificați-vă înainte de a trimite întrebări"
+
+# @ wp-faq
+#: ../wp-faq-ajax.php:124
+#: ../wp-faq-ajax.php:129
+#: ../models/question.php:86
+msgid "Please fill in an answer"
+msgstr "Vp rugăm completați un răspuns"
+
+# @ wp-faq
+#: ../wp-faq-ajax.php:143
+#: ../wp-faq-ajax.php:153
+msgid "New FAQ Question"
+msgstr "Întrebare FAQ nouă"
+
+# @ wp-faq
+#: ../wp-faq-ajax.php:164
+msgid "Question Asked"
+msgstr "Întrebarea trimisă"
+
+# @ wp-faq
+#: ../wp-faq-ajax.php:171
+msgid "Your question has been submitted for answering"
+msgstr "Întrebarea dumneavoastră a fost trimisă pentru a se obține un răspuns"
+
+# @ wp-faq
+#: ../wp-faq-ajax.php:173
+msgid "Your question cannot be saved. Please try again"
+msgstr "Întrebarea dumneavoastră nu poate fi salvată. Vă rugăm reîncercați"
+
+# @ wp-faq
+#: ../wp-faq-ajax.php:206
+msgid "Groups have been ordered"
+msgstr "Grupurile au fost ordonate"
+
+# @ wp-faq
+#: ../wp-faq-ajax.php:208
+msgid "No sortable items are available"
+msgstr "Nu există articole sortabile"
+
+# @ wp-faq
+#: ../wp-faq-ajax.php:232
+#: ../wp-faq-ajax.php:243
+#, fuzzy
+msgid "Questions have been ordered."
+msgstr "Întrebările au fost ordonate"
+
+# @ wp-faq
+#: ../wp-faq-ajax.php:234
+#, fuzzy
+msgid "No sortable items are available."
+msgstr "Nu există articole sortabile"
+
+# @ wp-faq
+#: ../wp-faq-ajax.php:275
+msgid "Related questions have been updated"
+msgstr "Întrebările relaționate au fost actualizate"
+
+# @ wp-faq
+#: ../wp-faq-plugin.php:250
+#: ../wp-faq.php:433
+msgid "Please fill in a serial key"
+msgstr "Vă rugăm completați cheia"
+
+# @ wp-faq
+#: ../wp-faq-plugin.php:253
+#: ../wp-faq.php:436
+msgid "Serial key is invalid, please try again"
+msgstr "Cheia este invalidă, vă rugăm încercați din nou"
+
+#: ../wp-faq-plugin.php:334
+msgid "Continue Reading..."
+msgstr ""
+
+#: ../wp-faq-plugin.php:924
+msgid "FAQ plugin images (do not remove)"
+msgstr ""
+
+#: ../wp-faq-plugin.php:925
+msgid "This is a placeholder for the FAQ plugin images. You may edit and reuse this post but do not remove it."
+msgstr ""
+
+#: ../wp-faq-plugin.php:1123
+msgid "Rendering of \""
+msgstr ""
+
+# @ wp-faq
+#: ../wp-faq-plugin.php:1126
+msgid "No file was specified for rendering"
+msgstr "Nu a fost specificat nici un fișier pentru rendering"
+
+# @ wp-faq
+#: ../wp-faq.php:239
+#: ../wp-faq.php:395
+msgid "FAQs"
+msgstr "Întrebări FAQ"
+
+# @ wp-faq
+#: ../wp-faq.php:240
+msgid "Overview"
+msgstr "Prezentare generală"
+
+# @ wp-faq
+#: ../wp-faq.php:241
+msgid "Configuration"
+msgstr "Configurație"
+
+# @ wp-faq
+#: ../wp-faq.php:242
+msgid "Groups"
+msgstr "Grupuri"
+
+# @ wp-faq
+#: ../wp-faq.php:243
+msgid "Save a Group"
+msgstr "Salvare grup"
+
+# @ wp-faq
+#: ../wp-faq.php:244
+msgid "Questions"
+msgstr "Întrebări"
+
+# @ wp-faq
+#: ../wp-faq.php:245
+msgid "Save a Question"
+msgstr "Salvare întrebare"
+
+# @ wp-faq
+#: ../wp-faq.php:248
+msgid "Support &amp; Help"
+msgstr "Suport și Ajutor"
+
+# @ wp-faq
+#: ../wp-faq.php:265
+msgid "FAQ Group"
+msgstr "Grup FAQ"
+
+# @ wp-faq
+#: ../wp-faq.php:266
+msgid "WordPress Post/Page"
+msgstr "Pagină/articol WP"
+
+# @ wp-faq
+#: ../wp-faq.php:267
+msgid "Save FAQ"
+msgstr "Salvare FAQ"
+
+# @ wp-faq
+#: ../wp-faq.php:280
+msgid "Save Settings"
+msgstr "Salvare setări"
+
+# @ wp-faq
+#: ../wp-faq.php:281
+msgid "Sections"
+msgstr "Secțiuni"
+
+# @ wp-faq
+#: ../wp-faq.php:284
+msgid "WordPress Related"
+msgstr "Relative la WordPress"
+
+# @ wp-faq
+#: ../wp-faq.php:287
+msgid "General Configuration"
+msgstr "Configurație generală"
+
+# @ wp-faq
+#: ../wp-faq.php:288
+msgid "Ask Questions Settings"
+msgstr "Setări adăugare întrebări"
+
+# @ wp-faq
+#: ../wp-faq.php:289
+msgid "Questions Settings"
+msgstr "Setări întrebări"
+
+# @ wp-faq
+#: ../wp-faq.php:290
+msgid "Accordion Settings"
+msgstr "Setări acordeon"
+
+# @ wp-faq
+#: ../wp-faq.php:291
+#, fuzzy
+msgid "Theme &amp; Custom CSS"
+msgstr "Utilizare CSS personalizat"
+
+# @ wp-faq
+#: ../wp-faq.php:358
+msgid "Please fill in a serial key for the FAQ plugin to continue use."
+msgstr "Vă rugăm completați cheia serială pentru a continua să utilizați modulul."
+
+# @ wp-faq
+#: ../wp-faq.php:359
+msgid "Submit Serial Key"
+msgstr "Trimtere cheie serială"
+
+# @ wp-faq
+#: ../wp-faq.php:393
+msgid "Frequently asked questions in your sidebar(s)"
+msgstr "FAQ în sidebar"
+
+# @ wp-faq
+#: ../wp-faq.php:416
+msgid "Serial Key"
+msgstr "Cheie"
+
+#: ../wp-faq.php:468
+msgid "There is a new version of "
+msgstr ""
+
+# @ wp-faq
+#: ../wp-faq.php:485
+#, fuzzy
+msgid "FAQs Overview"
+msgstr "Prezentare generală"
+
+#: ../wp-faq.php:602
+msgid "You have <b>"
+msgstr ""
+
+# @ wp-faq
+#: ../wp-faq.php:622
+msgid "Group has been successfully saved"
+msgstr "Grupul a fost salvat cu succes"
+
+# @ wp-faq
+#: ../wp-faq.php:655
+msgid "Group cannot be read"
+msgstr "Grupul nu poate fi citit"
+
+# @ wp-faq
+#: ../wp-faq.php:659
+#: ../wp-faq.php:676
+#: ../models/groups_post.php:59
+msgid "No group was specified"
+msgstr "Nu a fost specificat nici un grup"
+
+# @ wp-faq
+#: ../wp-faq.php:669
+msgid "Group and all its questions have been removed"
+msgstr "Grupul și întrebările sale au fost eliminate"
+
+# @ wp-faq
+#: ../wp-faq.php:672
+msgid "Group cannot be removed"
+msgstr "Grupul nu poate fi eliminat"
+
+# @ wp-faq
+#: ../wp-faq.php:695
+msgid "Selected groups have been removed"
+msgstr "Grupurile selectate au fost eliminate"
+
+# @ wp-faq
+#: ../wp-faq.php:704
+msgid "Selected groups have been activated"
+msgstr "Grupurile selectate au fost activate"
+
+# @ wp-faq
+#: ../wp-faq.php:713
+msgid "Selected groups have been deactivated"
+msgstr "Grupurile selectate au fost dezactivate"
+
+# @ wp-faq
+#: ../wp-faq.php:718
+#: ../wp-faq.php:918
+msgid "No bulk action was selected"
+msgstr "Nu a fost selectată nici o acțiune"
+
+# @ wp-faq
+#: ../wp-faq.php:722
+msgid "No groups were selected"
+msgstr "Nu a fost selectat nici un grup"
+
+# @ wp-faq
+#: ../wp-faq.php:773
+msgid "Please create a group first"
+msgstr "Vă rugăm să creați mai întâi un grup"
+
+# @ wp-faq
+#: ../wp-faq.php:780
+msgid "Question has been successfully saved"
+msgstr "Întrebarea a fost salvată cu succes"
+
+# @ wp-faq
+#: ../wp-faq.php:783
+msgid "Question cannot be saved"
+msgstr "Întrebarea nu poate fi salvată"
+
+# @ wp-faq
+#: ../wp-faq.php:834
+msgid "Question has been removed"
+msgstr "Întrebarea a fost eliminată"
+
+# @ wp-faq
+#: ../wp-faq.php:837
+msgid "Question cannot be removed"
+msgstr "Întrebarea nu poate fi eliminată"
+
+# @ wp-faq
+#: ../wp-faq.php:841
+#: ../wp-faq.php:864
+#: ../models/questions_group.php:62
+#: ../models/questions_post.php:59
+msgid "No question was specified"
+msgstr "Nu a fost specificată nici o întrebare"
+
+# @ wp-faq
+#: ../wp-faq.php:860
+msgid "Question cannot be read"
+msgstr "Întrebarea nu poate fi cititiă"
+
+# @ wp-faq
+#: ../wp-faq.php:881
+msgid "Selected questions have been removed"
+msgstr "Întrebările selectate au fost eliminate"
+
+# @ wp-faq
+#: ../wp-faq.php:891
+msgid "Selected questions have been successfully moved"
+msgstr "Întrebările selectate au fost mutate cu succes"
+
+# @ wp-faq
+#: ../wp-faq.php:894
+msgid "No group was selected to move to"
+msgstr "Nu a fost selectat nici un grup de destinație"
+
+# @ wp-faq
+#: ../wp-faq.php:904
+msgid "Selected questions have been marked as approved"
+msgstr "Întrebările selectate au fost marcate ca aprobate"
+
+# @ wp-faq
+#: ../wp-faq.php:913
+msgid "Selected questions have been marked as unapproved"
+msgstr "Întrebările selectate au fost marcate ca neaprobate"
+
+# @ wp-faq
+#: ../wp-faq.php:922
+msgid "No questions have been selected"
+msgstr "Nu a fost selectată nici o întrebare"
+
+# @ wp-faq
+#: ../wp-faq.php:981
+#, fuzzy
+msgid "All FAQ group and question posts/pages have been resaved."
+msgstr "Toate paginile/articolele grupurilor FAQ au fost resalvate"
+
+# @ wp-faq
+#: ../wp-faq.php:984
+#, fuzzy
+msgid "No FAQ groups are available."
+msgstr "Nu este disponibil nici un grup FAQ"
+
+# @ wp-faq
+#: ../wp-faq.php:1010
+msgid "Configuration settings have been saved"
+msgstr "Configurația a fost salvată"
+
+# @ wp-faq
+#: ../helpers/db.php:408
+msgid "Question Answered"
+msgstr "Întrebarea a primit răspuns"
+
+# @ wp-faq
+#: ../helpers/form.php:152
+msgid "Select"
+msgstr "Selectare"
+
+# @ wp-faq
+#: ../js/tinymce/dialog.php:25
+msgid "Insert FAQs"
+msgstr "Introducere FAQ"
+
+# @ wp-faq
+#: ../js/tinymce/dialog.php:134
+msgid "Universal"
+msgstr "Universal"
+
+# @ wp-faq
+#: ../js/tinymce/dialog.php:135
+#: ../js/tinymce/dialog.php:199
+#: ../js/tinymce/dialog.php:217
+#: ../js/tinymce/dialog.php:237
+#: ../js/tinymce/dialog.php:256
+msgid "Group"
+msgstr "Grup"
+
+# @ wp-faq
+#: ../js/tinymce/dialog.php:136
+#: ../js/tinymce/dialog.php:178
+#: ../js/tinymce/dialog.php:268
+msgid "Question"
+msgstr "Întrebare"
+
+# @ wp-faq
+#: ../js/tinymce/dialog.php:147
+msgid "Insert"
+msgstr "Inserare"
+
+# @ wp-faq
+#: ../js/tinymce/dialog.php:149
+msgid "Groups List"
+msgstr "Listă grupuri"
+
+# @ wp-faq
+#: ../js/tinymce/dialog.php:150
+msgid "All Questions"
+msgstr "Toate întrebările"
+
+# @ wp-faq
+#: ../js/tinymce/dialog.php:151
+msgid "Search Box"
+msgstr "Câmp căutare"
+
+# @ wp-faq
+#: ../js/tinymce/dialog.php:152
+msgid "Ask Box"
+msgstr "Câmp întrebare"
+
+# @ wp-faq
+#: ../js/tinymce/dialog.php:169
+#, fuzzy
+msgid "Sort"
+msgstr "Shortcode"
+
+#: ../js/tinymce/dialog.php:172
+msgid "Ascending"
+msgstr ""
+
+#: ../js/tinymce/dialog.php:173
+msgid "Descending"
+msgstr ""
+
+#: ../js/tinymce/dialog.php:175
+msgid "BY"
+msgstr ""
+
+# @ wp-faq
+#: ../js/tinymce/dialog.php:177
+msgid "ID"
+msgstr "ID"
+
+# @ wp-faq
+#: ../js/tinymce/dialog.php:179
+#, fuzzy
+msgid "Group ID"
+msgstr "Grup"
+
+# @ wp-faq
+#: ../js/tinymce/dialog.php:180
+#, fuzzy
+msgid "Created Date"
+msgstr "Creat"
+
+# @ wp-faq
+#: ../js/tinymce/dialog.php:181
+#, fuzzy
+msgid "Modified Date"
+msgstr "Modificat"
+
+# @ wp-faq
+#: ../js/tinymce/dialog.php:193
+msgid "Groups Menu"
+msgstr "Meniu grupuri"
+
+# @ wp-faq
+#: ../js/tinymce/dialog.php:195
+msgid "Include a groups dropdown menu"
+msgstr "Includere meniu grupuri (dropdown)"
+
+# @ wp-faq
+#: ../js/tinymce/dialog.php:202
+#: ../js/tinymce/dialog.php:220
+#: ../js/tinymce/dialog.php:240
+msgid "Select a Group"
+msgstr "Selectare grup"
+
+# @ wp-faq
+#: ../js/tinymce/dialog.php:259
+#, fuzzy
+msgid "- Select a Group -"
+msgstr "Selectare grup"
+
+# @ wp-faq
+#: ../js/tinymce/dialog.php:264
+#, fuzzy
+msgid "loading..."
+msgstr "încărcare"
+
+# @ wp-faq
+#: ../js/tinymce/dialog.php:271
+#, fuzzy
+msgid "- Select a Group first -"
+msgstr "Mai întâi selectați un grup"
+
+# @ wp-faq
+#: ../models/group.php:88
+msgid "Please fill in a name for this group"
+msgstr "Vă rugăm completați un nume pentru acest grup"
+
+# @ wp-faq
+#: ../models/group.php:90
+msgid "Please specify whether admin notification is required"
+msgstr "Vă rugăm specificați dacă sunt necesare notificările către admin"
+
+# @ wp-faq
+#: ../models/group.php:91
+msgid "Please fill in correct email"
+msgstr "Vă rugăm completați o adresă email validă"
+
+# @ wp-faq
+#: ../models/group.php:94
+msgid "Please specify whether a search box should be provided"
+msgstr "Vă rugăm specificați dacă trebuie afișat un câmp pentru căutare"
+
+# @ wp-faq
+#: ../models/group.php:95
+msgid "Please choose whether or not to show a groups dropdown menu"
+msgstr "Vă rugăm alegeți dacă se afișează sau nu un meniu pentru grupuri (dropdown)"
+
+# @ wp-faq
+#: ../models/group.php:97
+msgid "Please specify whether a submission box should be shown"
+msgstr "Vă rugăm specificați dacă se afișează un formulat de trimitere întrebări noi"
+
+# @ wp-faq
+#: ../models/group.php:98
+msgid "Please fill in at least one keyword"
+msgstr "Vă rugăm completați cel puțin un cuvânt cheie"
+
+# @ wp-faq
+#: ../models/group.php:100
+msgid "No post/page action was specified"
+msgstr "Nu a fost specificată nici o acțiune"
+
+# @ wp-faq
+#: ../models/group.php:102
+msgid "Please fill in a title for this post/page"
+msgstr "Vă rugăm completați titlul acestei pagini/articol"
+
+# @ wp-faq
+#: ../models/groups_post.php:60
+#: ../models/questions_group.php:63
+#: ../models/questions_post.php:60
+msgid "No post/page was specified"
+msgstr "Nu a fost specificată nici o pagină/articol"
+
+# @ wp-faq
+#: ../models/question.php:87
+msgid "Please choose a group"
+msgstr "Vă rugăm alegeți un grup"
+
+# @ wp-faq
+#: ../models/question.php:90
+msgid "Please select whether or not a post/page should be created"
+msgstr "Vă rugăm selectați dacă trebuie creată sau nu o pagină sau un articol WP"
+
+# @ wp-faq
+#: ../models/question.php:93
+#: ../models/question.php:95
+msgid "Please fill in a post/page title"
+msgstr "Vă rugăm completați titlul paginii/articolului WP"
+
+# @ wp-faq
+#: ../models/question.php:96
+msgid "Please select a parent page"
+msgstr "Vă rugăm selectați o pagină părinte"
+
+#: ../models/questions_group.php:69
+msgid "This question/group association already exists."
+msgstr ""
+
+# @ wp-faq
+#: ../models/questions_question.php:60
+#: ../tags/1.4.3.1/models/questions_question.php:60
+msgid "No related question was specified"
+msgstr "Nu a fost specificată nici o întrebare relaționată"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/wp-faq-ajax.php:231
+msgid "Questions have been ordered"
+msgstr "Întrebările au fost ordonate"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/wp-faq.php:269
+msgid "Custom CSS"
+msgstr "CSS personalizat"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/wp-faq.php:898
+msgid "All FAQ group posts/pages have been resaved"
+msgstr "Toate paginile/articolele grupurilor FAQ au fost resalvate"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/wp-faq.php:901
+msgid "No FAQ groups are available"
+msgstr "Nu este disponibil nici un grup FAQ"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/vendors/class.paginate.php:162
+msgid "Displaying"
+msgstr "Se afișează"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/vendors/class.paginate.php:162
+msgid "of"
+msgstr "din"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/index.php:20
+#: ../tags/1.4.3.1/views/admin/index.php:26
+msgid "Module/Section"
+msgstr "Modul/secțiune"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/index.php:21
+#: ../tags/1.4.3.1/views/admin/index.php:27
+msgid "Count"
+msgstr "Contor"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/index.php:32
+msgid "Question Groups"
+msgstr "Grupuri întrebări"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/index.php:36
+msgid "Manage FAQ Groups"
+msgstr "Administrare grupuri FAQ"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/index.php:40
+msgid "FAQ Questions"
+msgstr "Întrebări FAQ"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/index.php:44
+msgid "Manage FAQ Questions"
+msgstr "Administrare întrebări FAQ"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/settings.php:12
+msgid "FAQs Configuration"
+msgstr "Configurație FAQ"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/submitserial.php:5
+msgid "You need to fill in a serial key to continue using the FAQ plugin."
+msgstr "Trebuie să completați o cheie pentru a putea continua să utilizați acest modul FAQ."
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/submitserial.php:6
+msgid "Please obtain a serial key from the downloads section in your Tribulant Software account."
+msgstr "Vă rugăm obțineți o cheie serială din secțiunea de descărcări de la contul dumneavoastră de la Tribulant Software."
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/submitserial.php:7
+msgid "Once in the downloads section, click the KEY icon to request a serial key."
+msgstr "Odată ajuns în secțiunea descărcări, apăsați icoana KEY pentru a solicita cheia."
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/submitserial.php:8
+msgid "Downloads Section"
+msgstr "Secțiune descărcare"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/submitserial.php:19
+msgid "Serial Key:"
+msgstr "Cheie:"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/submitserial.php:20
+msgid "Your current serial is valid and working."
+msgstr "Cheia serială curentă este validă și funcționează."
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/submitserial.php:23
+msgid "The serial key is valid and you can now continue using the FAQ plugin. Thank you for your business and support!"
+msgstr "Cheia serială este validă și puteți continua să utilizați acest modul FAQ. Vă mulțumim pentru afacere și suport!"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/submitserial.php:24
+msgid "Apply Serial and Close Window"
+msgstr "Aplicare cheie și închidere fereastră"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/support.php:3
+msgid "Below are some useful links that will help you with the product"
+msgstr "Mai jos sunt câteva linkuri utile care vă vor ajuta cu acest produs"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/support.php:5
+msgid "Product Page"
+msgstr "Pagină produs"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/support.php:6
+msgid "Documentation"
+msgstr "Documentație"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/support.php:7
+msgid "Submit a Ticket"
+msgstr "Trimitere tichet"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/widget.php:3
+msgid "Title"
+msgstr "Titlu"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/widget.php:10
+msgid "Display"
+msgstr "Afișare"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/widget.php:11
+msgid "FAQ Groups"
+msgstr "Grupuri FAQ"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/index.php:2
+msgid "Manage FAQs Groups"
+msgstr "Administrare grupuri FAQ"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/index.php:2
+msgid "Add New"
+msgstr "Adăugare"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/index.php:7
+msgid "question groups"
+msgstr "grupuri întrebări"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/index.php:10
+msgid "Show All"
+msgstr "Afișare totală"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/index.php:10
+msgid "Show all FAQ groups"
+msgstr "Afișare completă grupuri FAQ"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/index.php:12
+msgid "Show Paging"
+msgstr "Paginare"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/index.php:12
+msgid "Show paginated FAQ groups"
+msgstr "Afișare paginată grupuri FAQ"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/index.php:16
+msgid "A to Z"
+msgstr "A la Z"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/index.php:18
+msgid "Z to A"
+msgstr "Z la A"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/index.php:22
+msgid "New to Old"
+msgstr "Nou la Vechi"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/index.php:24
+msgid "Old to New"
+msgstr "Vechi la Nou"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/index.php:29
+msgid "Search Groups"
+msgstr "Căutare grupuri"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:2
+msgid "Are you sure you wish to execute this action on the selected groups?"
+msgstr "Sigur doriți să executați această acțiune asupra grupurilor selectate?"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:5
+#: ../tags/1.4.3.1/views/admin/groups/order.php:2
+msgid "Order Groups"
+msgstr "Ordonare grupuri"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:7
+msgid "Bulk Actions"
+msgstr "Acțiuni în masă"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:8
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:52
+msgid "Delete"
+msgstr "Eliminare"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:9
+msgid "Activate"
+msgstr "Activare"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:10
+msgid "Deactivate"
+msgstr "Dezactivare"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:12
+msgid "Apply"
+msgstr "Aplică"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:21
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:33
+#: ../tags/1.4.3.1/views/admin/groups/save.php:10
+msgid "Name"
+msgstr "Nume"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:23
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:35
+msgid "Status"
+msgstr "Stare"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:24
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:36
+msgid "Modified"
+msgstr "Modificat"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:25
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:37
+msgid "Post/Page"
+msgstr "Pagină/Articol"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:26
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:38
+msgid "Shortcode"
+msgstr "Shortcode"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:51
+msgid "Edit"
+msgstr "Editare"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:52
+msgid "Are you sure you want to delete this group?"
+msgstr "Sigur doriți să eliminați acest grup?"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:53
+msgid "View"
+msgstr "Vizualizare"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:54
+msgid "Order Questions"
+msgstr "Ordonare întrebări"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:57
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:62
+msgid "none"
+msgstr "nimic"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:58
+#: ../tags/1.4.3.1/views/admin/groups/save.php:88
+msgid "Active"
+msgstr "Activ"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:58
+#: ../tags/1.4.3.1/views/admin/groups/save.php:88
+msgid "Inactive"
+msgstr "Inactiv"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:76
+msgid "Per Page"
+msgstr "Per pagină"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:79
+msgid "groups"
+msgstr "grupuri"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:104
+msgid "No FAQ groups were found"
+msgstr "Nu am găsit nici un grup FAQ"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/order.php:4
+msgid "&larr; Back to Groups"
+msgstr "&larr; Înapoi la grupuri"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/order.php:7
+msgid "Drag and drop the groups below to sort them."
+msgstr "Apăsați și deplasați grupurile de mai jos pentru a le ordona."
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/order.php:8
+msgid "You can embed this list of groups into a post/page with"
+msgstr "Puteți insera lista grupurilor într-o pagină/articol cu"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/order.php:9
+msgid "This order of the FAQ groups is used for the sidebar widget(s) as well."
+msgstr "Această ordine a grupurilor FAQ va fi folosită și în sidebar."
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/order.php:37
+msgid "No groups were found. Only groups with posts/pages will be shown here."
+msgstr "Nu am găsit nici un grup. Aici sunt afișate numai grupurile cu pagini/articole asociate."
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/save.php:13
+msgid "the name of your group for identification purposes"
+msgstr "numele grupului cu scop de identificare"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/save.php:25
+msgid "Admin Notifications"
+msgstr "Notificare admin"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/save.php:27
+#: ../tags/1.4.3.1/views/admin/groups/save.php:52
+#: ../tags/1.4.3.1/views/admin/groups/save.php:80
+msgid "On"
+msgstr "Pornit"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/save.php:27
+#: ../tags/1.4.3.1/views/admin/groups/save.php:52
+#: ../tags/1.4.3.1/views/admin/groups/save.php:80
+msgid "Off"
+msgstr "Oprit"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/save.php:29
+msgid "receive an email notification when a new question has been asked for this group specifically"
+msgstr "primiți o notificare prin email atunci când a fost trimisă o întrebare nouă pentru un grup specific"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/save.php:38
+msgid "Admin Email"
+msgstr "Email admin"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/save.php:41
+msgid "fill in a single, valid email address"
+msgstr "completați o singură adresă validă de email"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/save.php:54
+msgid "places a search box above the group questions on the front-end"
+msgstr "plasează un formular de căutare deasupra întrebărilor grupului"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/save.php:64
+msgid "Show Groups Menu"
+msgstr "Afișare meniu grupuri"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/save.php:66
+msgid "Yes"
+msgstr "Da"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/save.php:66
+#: ../tags/1.4.3.1/views/admin/groups/save.php:109
+msgid "No"
+msgstr "Nu"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/save.php:68
+msgid "show a dropdown with other groups to search within"
+msgstr "afișare dropdown cu alte grupuri în care să se caute"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/save.php:82
+msgid "places a submission box below the group questions for users/members to ask questions"
+msgstr "plasează un formular de trimitere sub întrebările grupului pentru ca utilizatorii/membrii să trimită întrebări noi"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/save.php:86
+msgid "Active Status"
+msgstr "Stare activare"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/save.php:90
+msgid "deactivating a group will prevent its questions from being shown on the front-end"
+msgstr "dezactivarea unui grup va preveni afișarea întrebărilor care îi aparțin"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/save.php:94
+msgid "Keywords/Tags"
+msgstr "Cuvinte cheie / Etichete"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/save.php:97
+msgid "separate keywords/tags with commas eg. group, keyword, faqs"
+msgstr "separați cuvintele cheie și etichetele cu virgulă, exemplu grup, cuvânt cheie, întrebări"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/save.php:107
+msgid "Save WordPress Post/Page"
+msgstr "Salvare pagină/articol WP"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/save.php:109
+msgid "Post"
+msgstr "Articol WP"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/save.php:109
+msgid "Page"
+msgstr "Pagină WP"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/save.php:127
+msgid "would you like to have a WordPress post/page saved & maintained for this group? (recommended)"
+msgstr "doriți ca o pagină/articol WP să fie salvată și întreținută pentru acest grup? (recomandat)"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/save.php:139
+msgid "Post/Page Title"
+msgstr "Titlu pagină/articol WP"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/save.php:142
+msgid "WordPress post/page title as it will appear on the front-end"
+msgstr "Titlul paginii/articolului WP care va fi afișat vizitatorilor"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/save.php:152
+msgid "Page Parent"
+msgstr "Părinte pagină"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/save.php:155
+msgid "Main (no parent)"
+msgstr "Principal (fără părinte)"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/save.php:167
+msgid "Save Group"
+msgstr "Salvare grup"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/view.php:4
+msgid "&larr; All Groups"
+msgstr "&larr; Toate grupurile"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/view.php:11
+msgid "Change Group"
+msgstr "Modificare grup"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/view.php:12
+msgid "Delete Group"
+msgstr "Eliminare grup"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/view.php:12
+msgid "Are you sure you wish to permanently remove this group?"
+msgstr "Sigur doriți să eliminați acest grup?"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/view.php:19
+#: ../tags/1.4.3.1/views/admin/groups/view.php:25
+msgid "Field"
+msgstr "Câmp"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/view.php:20
+#: ../tags/1.4.3.1/views/admin/groups/view.php:26
+msgid "Value"
+msgstr "Valoare"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/view.php:49
+msgid "Created"
+msgstr "Creat"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/view.php:57
+msgid "Total Questions"
+msgstr "Total întrebări"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/groups/view.php:60
+#: ../tags/1.4.3.1/views/admin/metaboxes/question-group.php:7
+#: ../tags/1.4.3.1/views/admin/questions/index.php:7
+#: ../tags/1.4.3.1/views/admin/questions/loop.php:20
+#: ../tags/1.4.3.1/views/admin/questions/loop.php:124
+msgid "questions"
+msgstr "întrebări"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/metaboxes/question-pp.php:2
+msgid "Create a Post/Page"
+msgstr "Creare pagină/articol WP"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/question-pp.php:56
+msgid "Post Categories"
+msgstr ""
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/metaboxes/question-pp.php:61
+#, fuzzy
+msgid "Select All"
+msgstr "Selectare"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/metaboxes/question-pp.php:69
+#, fuzzy
+msgid "No categories are available."
+msgstr "Nu există articole sortabile"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/metaboxes/question-submit.php:5
+#: ../tags/1.4.3.1/views/admin/questions/loop.php:68
+#: ../tags/1.4.3.1/views/admin/questions/loop.php:80
+msgid "Approved"
+msgstr "Aprobat"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/metaboxes/question-submit.php:13
+#, fuzzy
+msgid "Notify User:"
+msgstr "Notificare utilizatori"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/question-submit.php:18
+msgid "User Email:"
+msgstr ""
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/metaboxes/question-submit.php:30
+msgid "Save Question"
+msgstr "Salvare întrebare"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-accordion.php:4
+msgid "Questions Bullet"
+msgstr "Bulină întrebări"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-accordion.php:14
+msgid "Sliding Accordion"
+msgstr "Acordeon"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-accordion.php:27
+msgid "Active Question"
+msgstr "Întrebare activă"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-accordion.php:30
+msgid "the question/item to open automatically. type the number. eg. \"1\". type \"0\" to leave all closed"
+msgstr "pentru deschiderea automată a întrebării. introduceți numărul ex.  \"1\". introduceți \"0\" pentru a lăsa totul închis"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-accordion.php:34
+msgid "Sliding Event"
+msgstr "Eveniment alunecare acordeon"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-accordion.php:36
+msgid "Mouse Over"
+msgstr "Maus peste"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-accordion.php:37
+msgid "Mouse Click"
+msgstr "Clic maus"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-accordion.php:38
+msgid "event that triggers the opening/closing action"
+msgstr "evenimente care vor activa închiderea sau deschiderea"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-accordion.php:49
+msgid "Open/Close Answers"
+msgstr "Închidere/Deschidere răspunsuri"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-accordion.php:51
+msgid "All answers open"
+msgstr "Toate răspunsurile deschise"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-accordion.php:52
+msgid "Click to open/close answers"
+msgstr "Clic pentru a deschide/închide răspunsurile"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-ask.php:3
+msgid "Capture Email Address"
+msgstr "Capturare adresă email"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-ask.php:7
+msgid "require an email address from a user when submitting a question"
+msgstr "solicită o adresă email a utilizatorului la trimiterea unei întrebări noi"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-ask.php:16
+msgid "Notify When Answered"
+msgstr "Notificare la primire răspuns"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-ask.php:20
+msgid "send an email notification to the user when the question has been answered"
+msgstr "trimite o notificare prin email utilizatorului atunci când întrebarea primește răspuns"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-customcss.php:4
+msgid "Use Custom CSS"
+msgstr "Utilizare CSS personalizat"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-general.php:4
+msgid "Permission To Ask Questions"
+msgstr "Permisiuni pentru trimitere întrebări"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-general.php:6
+msgid "Registered Members"
+msgstr "Membri înregistrați"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-general.php:7
+msgid "All Users/Visitors"
+msgstr "Toți utilizatorii/vizitatorii"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-general.php:8
+msgid "the type of users who are allowed to submit new questions on the front-end"
+msgstr "tipul de utilizatori care au permisiunea să trimită întrebări noi"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-general.php:16
+msgid "receive an email notification when a new question has been asked"
+msgstr "primiți o notificare prin email atunci când este trimisă o nouă întrebare"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-general.php:29
+msgid "you may specify multiple email recipients, each separated by a comma"
+msgstr "puteți specifica adrese de email multiple, separate prin virgulă"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-general.php:39
+msgid "Admin Actions on Front"
+msgstr "Acțiuni administrare în frontend"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-general.php:43
+msgid "turn this on to show \"Edit\" and \"Delete\" links on the front-end for groups and questions"
+msgstr "porniți această setare pentru a afișa linkuri pentru \"Editare\" și \"Eliminare\" în frontend la grupuri și la întrebări"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-general.php:47
+msgid "Search Context"
+msgstr "Căutare context"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-general.php:49
+msgid "Questions Only"
+msgstr "Doar întrebări"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-general.php:50
+msgid "Questions and Answers"
+msgstr "Întrebări și răspunsuri"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-general.php:54
+msgid "Use Captcha for Questions"
+msgstr "Utilizare CAPTCHA pentru întrebări"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-general.php:60
+msgid "you need to install and activate the <a target=\"_blank\" href=\"http://wordpress.org/extend/plugins/really-simple-captcha/\">Really Simple Captcha plugin</a>."
+msgstr "trebuie să instalați și să activați <a target=\"_blank\" href=\"http://wordpress.org/extend/plugins/really-simple-captcha/\">modulul Really Simple Captcha</a>."
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-general.php:63
+msgid "requires captcha image input upon submitting questions to the FAQ."
+msgstr "solicită imagine CAPTCHA la trimiterea unei întrebări FAQ noi."
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-questions.php:4
+msgid "Show Related Questions"
+msgstr "Afișare întrebări relaționate"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-questions.php:8
+msgid "should specified related questions be shown on individual question posts/pages?"
+msgstr "doriți să afișați întrebările relaționate pe paginile individuale ale întrebărilor?"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-questions.php:12
+msgid "Show Excerpts"
+msgstr "Afișare extrase"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-questions.php:16
+msgid "show excerpt of questions in the list for questions with a post/page (link to post/page)"
+msgstr "afișare extras întrebare în lista întrebărilor din pagină (link la pagină/articol)"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-questions.php:26
+msgid "Read More Link Text"
+msgstr ""
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-questions.php:29
+msgid "Text of the read more link when a question excerpt is shown."
+msgstr ""
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-submit.php:5
+msgid "Order/Sort Groups"
+msgstr "Ordonare/Sortare grupuri"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-submit.php:5
+msgid "Order/sort your FAQ groups"
+msgstr "Ordonare/Sortare grupuri FAQ"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-submit.php:8
+msgid "Resave Group Posts/Pages"
+msgstr "Actualizare pagini/articole grupuri"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-submit.php:8
+msgid "Are you sure you wish to check and reset all pages/posts created by FAQ groups?"
+msgstr "Sigur doriți să verificați și să resetați toate paginile/articolele create pentru grupurile FAQ?"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-submit.php:14
+msgid "Save Configuration"
+msgstr "Salvare configurație"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-wprelated.php:4
+msgid "User Access Level"
+msgstr "Nivel acces utilizator"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-wprelated.php:12
+msgid "Contributor"
+msgstr "Contributor"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-wprelated.php:15
+msgid "Authors"
+msgstr "Autori"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-wprelated.php:18
+msgid "Editors"
+msgstr "Editori"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-wprelated.php:21
+msgid "Administrators"
+msgstr "Administratori"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-wprelated.php:33
+msgid "subscriber role cannot use the FAQ plugin"
+msgstr "rolul abonat nu poate utiliza modulull FAQ"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-wprelated.php:37
+msgid "Images Post ID"
+msgstr ""
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-wprelated.php:40
+msgid "Post to use for saving the FAQ plugin images through the media uploader."
+msgstr ""
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/questions/index.php:10
+msgid "Show all FAQ questions"
+msgstr "Afișarea tuturor întrebărilor FAQ"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/questions/index.php:12
+msgid "Show paginated FAQ questions"
+msgstr "Afișarea paginată a întrebărilor FAQ"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/questions/index.php:29
+msgid "Search Questions"
+msgstr "Căutare întrebări"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/questions/loop.php:2
+msgid "Are you sure you wish to execute this action on the selected questions?"
+msgstr "Sigur doriți să executați această acțiune asupra întrebărilor selectate?"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/questions/loop.php:8
+msgid "Move to group..."
+msgstr "Mutare în grupul..."
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/questions/loop.php:9
+msgid "Set as Approved"
+msgstr "Setare ca aprobat"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/questions/loop.php:10
+msgid "Set as Unapproved"
+msgstr "Setare ca NE-aprobat"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/questions/loop.php:17
+msgid "Select Group"
+msgstr "Selectare grup"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/questions/loop.php:32
+msgid "Show Approved Only"
+msgstr "Afișare numai aprobate"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/questions/loop.php:33
+msgid "Show Unapproved Only"
+msgstr "Afișare numai neaprobate"
+
+# @ default
+#: ../tags/1.4.3.1/views/admin/questions/loop.php:39
+msgid "- All Groups -"
+msgstr "- Toate grupurile -"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/questions/loop.php:72
+#: ../tags/1.4.3.1/views/admin/questions/loop.php:84
+msgid "Date"
+msgstr "Dată"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/questions/loop.php:98
+msgid "Are you sure you want to delete this question?"
+msgstr "Sigur doriți să eliminați această întrebare?"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/questions/loop.php:99
+#: ../tags/1.4.3.1/views/admin/questions/related.php:2
+#: ../tags/1.4.3.1/views/admin/questions/related.php:12
+msgid "Related Questions"
+msgstr "Întrebări relaționate"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/questions/loop.php:148
+#, fuzzy
+msgid "No questions were found, please add one."
+msgstr "Nu am găsit nici o întrebare. Vă rugăm"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/questions/order.php:4
+msgid "&larr; Back to Group"
+msgstr "&larr; Înapoi la grup"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/questions/order.php:6
+msgid "Drag and drop the questions below to order them"
+msgstr "Apăsați și deplasați întrebările de mai jos pentru a le ordona"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/questions/order.php:33
+#: ../tags/1.4.3.1/views/admin/questions/related.php:55
+msgid "No questions were found"
+msgstr "Nu am găsit întrebări potrivite căutării"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/questions/related.php:5
+msgid "Drag and drop questions related to: "
+msgstr "Apăsați și deplasați întrebările relaționate cu:"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/questions/related.php:16
+msgid "Drag and drop related questions here"
+msgstr "Apăsați și deplasați întrebările relaționate aici"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/questions/related.php:50
+msgid "Drag and drop unrelated questions here"
+msgstr "Apăsați și deplasați întrebările care nu sunt relaționate aici"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/admin/questions/save.php:40
+msgid "Word count"
+msgstr "Contor cuvinte"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/default/askbox.php:1
+msgid "Ask a Question"
+msgstr "Adăugați o întrebare"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/default/askbox.php:2
+msgid "Use the form below to ask a question"
+msgstr "Utilizați formularul următor pentru a trimite o întrebare nouă"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/default/askbox.php:11
+msgid "Email Address"
+msgstr "Adresa dumneavoastră de email"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/default/askbox.php:19
+msgid "Your Question"
+msgstr "Întrebarea dumneavoastră"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/default/askbox.php:33
+msgid "Please fill in the code below:"
+msgstr "Vă rugăm completați codul din imagine:"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/default/askbox.php:40
+msgid "Ask Question"
+msgstr "Trimite"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/default/searchbox.php:1
+msgid "Search the FAQs"
+msgstr "Căutare în întrebări"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/default/searchbox.php:2
+msgid "Use the form below to search the FAQs"
+msgstr "Utilizați formularul următor pentru a căuta în întrebări"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/default/searchbox.php:15
+msgid "Search for"
+msgstr "Căutare pentru"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/default/searchbox.php:18
+msgid "in"
+msgstr "în"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/default/searchbox.php:21
+msgid "the entire FAQ"
+msgstr "FAQ completă"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/default/searchbox.php:32
+msgid "Search"
+msgstr "Căutare"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/default/searchbox.php:33
+msgid "loading"
+msgstr "încărcare"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/default/groups/view.php:9
+msgid "Edit Group"
+msgstr "Editare grup"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/default/groups/view.php:9
+msgid "Change the details of this group"
+msgstr "Modificare detalii pentru acest grup"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/default/groups/view.php:10
+msgid "Are you sure you wish to remove this group and all its questions?"
+msgstr "Sigur doriți să eliminați acest grup și toate întrebările sale?"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/default/questions/loop.php:29
+#: ../tags/1.4.3.1/views/default/questions/loop.php:79
+#: ../tags/1.4.3.1/views/default/questions/loop.php:107
+#: ../tags/1.4.3.1/views/default/questions/view.php:11
+msgid "Edit Question"
+msgstr "Editare întrebare"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/default/questions/loop.php:30
+#: ../tags/1.4.3.1/views/default/questions/loop.php:80
+#: ../tags/1.4.3.1/views/default/questions/loop.php:108
+#: ../tags/1.4.3.1/views/default/questions/view.php:12
+msgid "Delete Question"
+msgstr "Eliminare întrebare"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/default/questions/loop.php:30
+msgid "Are you sure you wish to remove this question permanently?"
+msgstr "Sigur doriți să eliminați această întrebare?"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/default/questions/loop.php:80
+#: ../tags/1.4.3.1/views/default/questions/loop.php:108
+msgid "Are you sure you wish to permanently remove this question?"
+msgstr "Sigur doriți să eliminați această întrebare?"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/default/questions/view.php:12
+msgid "Are you sure you wish to permanently delete this question?"
+msgstr "Sigur doriți să eliminați această întrebare?"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/default/questions/view.php:33
+msgid "Related FAQs"
+msgstr "FAQ relaționate"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/email/ask.php:2
+msgid "Thank you for submitting your question:"
+msgstr "Vă mulțumim că ați trimis întrebarea:"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/email/ask.php:7
+msgid "The administrator will answer and approve the question shortly."
+msgstr "Administratorul vă va răspunde și va aproba întrebarea în scurt timp."
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/email/ask.php:8
+msgid "You may be notified by email when the question has been answered/changed."
+msgstr "Este posibil să fiți notificat prin email atunci când se publică sau se modifică răspunsul la întrebare."
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/email/notify.php:2
+msgid "The question you asked previously has been answered by the administrator."
+msgstr "Întrebarea trimisă anterior a primit un răspuns de la administrator."
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/email/notify.php:6
+msgid "Question:"
+msgstr "Întrebare:"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/email/notify.php:11
+msgid "Answer:"
+msgstr "Răspuns:"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/email/question.php:2
+msgid "A new FAQ question has been submitted"
+msgstr "Am recepționat o întrebare nouă la pagina FAQ"
+
+# @ wp-faq
+#: ../tags/1.4.3.1/views/email/question.php:7
+msgid "Follow the URL below to answer and approve the question"
+msgstr "Urmăriți linkul de mai jos pentru a răspunde și a aproba întrebarea"
+
+# @ wp-faq
+#: ../tags/1.4.5/views/admin/widget.php:22
+#, fuzzy
+msgid "Number"
+msgstr "Nume"
+
+#: ../tags/1.4.5/views/admin/widget.php:27
+#: ../tags/1.4.5/views/admin/widget.php:36
+msgid "Order"
+msgstr ""
+
+#: ../tags/1.4.5/views/admin/widget.php:32
+msgid "by"
+msgstr ""
+
+# @ wp-faq
+#: ../tags/1.4.5/views/admin/metaboxes/settings-accordion.php:42
+#, fuzzy
+msgid "Collapsible Questions"
+msgstr "Total întrebări"
+
+#: ../tags/1.4.5/views/admin/metaboxes/settings-accordion.php:44
+#: ../tags/1.4.5/views/admin/metaboxes/settings-questions.php:6
+msgid "Enabled"
+msgstr ""
+
+#: ../tags/1.4.5/views/admin/metaboxes/settings-accordion.php:45
+#: ../tags/1.4.5/views/admin/metaboxes/settings-questions.php:7
+msgid "Disabled"
+msgstr ""
+
+#: ../tags/1.4.5/views/admin/metaboxes/settings-accordion.php:46
+msgid "Enable this to allow questions to be closed when clicked again."
+msgstr ""
+
+#: ../tags/1.4.5/views/admin/metaboxes/settings-customcss.php:4
+msgid "Theme Folder"
+msgstr ""
+
+#: ../tags/1.4.5/views/admin/metaboxes/settings-customcss.php:12
+msgid "Select the folder inside \"wp-checkout/views/\" to take shop view files from. eg. \"default\""
+msgstr ""
+
+#: ../tags/1.4.5/views/admin/metaboxes/settings-customcss.php:17
+msgid "Use Theme Style File?"
+msgstr ""
+
+#: ../tags/1.4.5/views/admin/metaboxes/settings-customcss.php:21
+msgid "This will load a style.css file inside the theme folder above."
+msgstr ""
+
+#: ../tags/1.4.5/views/admin/metaboxes/settings-questions.php:4
+msgid "Apply the_content Filter"
+msgstr ""
+
+#: ../tags/1.4.5/views/admin/metaboxes/settings-questions.php:8
+msgid "Turn this on to parse answers through \"the_content\" filter used by 3rd party plugins."
+msgstr ""
+
+# @ wp-faq
+#: ../tags/1.4.5/views/admin/metaboxes/settings-submit.php:8
+#, fuzzy
+msgid "Resave Posts/Pages"
+msgstr "Actualizare pagini/articole grupuri"
+
+# @ wp-faq
+#: ../tags/1.4.5/views/admin/metaboxes/settings-submit.php:8
+#, fuzzy
+msgid "Resave Group and Question Posts/Pages"
+msgstr "Actualizare pagini/articole grupuri"
+
+# @ wp-faq
+#: ../tags/1.4.5/views/admin/questions/loop.php:5
+#, fuzzy
+msgid "Change the order of all questions."
+msgstr "Utilizați formularul următor pentru a trimite o întrebare nouă"
+
+# @ wp-faq
+#: ../tags/1.4.5/views/admin/questions/order.php:7
+#, fuzzy
+msgid "&larr; Back to Questions"
+msgstr "&larr; Înapoi la grupuri"
+
+#: ../tags/1.4.5/views/admin/questions/order.php:13
+msgid "This changes the order of questions inside this group for the <code>[wpfaqgroup id=\""
+msgstr ""
+
+#: ../tags/1.4.5/views/admin/questions/order.php:15
+msgid "This changes the order of all questions for the <code>[wpfaqs]</code> shortcode."
+msgstr ""
+
+# @ wp-faq
+#: ../tags/1.4.6/views/admin/dashboard-widget.php:2
+#, fuzzy
+msgid "Groups &amp; Questions"
+msgstr "Adăugați o întrebare"
+
+# @ wp-faq
+#: ../tags/1.4.6/views/admin/dashboard-widget.php:15
+#, fuzzy
+msgid "Approved Questions"
+msgstr "Ordonare întrebări"
+
+# @ wp-faq
+#: ../tags/1.4.6/views/admin/dashboard-widget.php:19
+#, fuzzy
+msgid "Unapproved Questions"
+msgstr "Salvare întrebare"
+
+# @ wp-faq
+#: ../tags/1.4.6/views/admin/dashboard-widget.php:26
+#, fuzzy
+msgid "Latest Questions"
+msgstr "Întrebări relaționate"
+
+#: ../tags/1.4.6/views/admin/dashboard-widget.php:41
+msgid "There are no questions yet!"
+msgstr ""
+
+# @ wp-faq
+#: ../tags/1.4.6/views/admin/dashboard-widget.php:42
+#, fuzzy
+msgid "Add a Question"
+msgstr "Adăugați o întrebare"
+
+#: ../tags/1.4.6/views/admin/submitserial.php:16
+msgid "Cancel"
+msgstr ""
+
+#: ../tags/1.4.6/views/admin/submitserial.php:23
+msgid "Close"
+msgstr ""
+
+#: ../tags/1.4.6/views/admin/metaboxes/settings-customcss.php:12
+msgid "Select the folder inside \"wp-faq/views/\" to take shop view files from. eg. \"default\""
+msgstr ""
+
+# @ wp-faq
+#: ../tags/1.4.6/views/email/question.php:2
+#, fuzzy
+msgid "A new FAQ question has been submitted:"
+msgstr "Am recepționat o întrebare nouă la pagina FAQ"
+
+#: ../tags/1.4.6/views/email/question.php:11
+msgid "The email of this user is:"
+msgstr ""
+
+# @ wp-faq
+#, fuzzy
+#~ msgid ""
+#~ "would you like to have a WordPress post/page saved & maintained for this "
+#~ "group?"
+#~ msgstr ""
+#~ "doriți ca o pagină/articol WP să fie salvată și întreținută pentru acest "
+#~ "grup? (recomandat)"

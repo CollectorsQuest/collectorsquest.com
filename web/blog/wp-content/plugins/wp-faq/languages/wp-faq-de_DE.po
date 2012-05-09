@@ -1,0 +1,1553 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WordPress FAQ plugin\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-11-15 11:06+0200\n"
+"PO-Revision-Date: 2011-11-15 11:13+0200\n"
+"Last-Translator: Antonie Potgieter <antonie@tribulant.com>\n"
+"Language-Team: webalytics <info@webalytics.de>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;__;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-Language: german\n"
+"X-Poedit-Country: Germany\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../wp-faq-ajax.php:29
+msgid "Sorry... you do not have the permission to access this page"
+msgstr "Sie verfügen nicht über die nötige Berechtigung, diese Seite anzuzeigen"
+
+#: ../wp-faq-ajax.php:42
+msgid "Class method \""
+msgstr "Klassenmethode \""
+
+#: ../wp-faq-ajax.php:98
+#: ../wp-faq-ajax.php:211
+#: ../wp-faq-ajax.php:249
+msgid "No data was posted"
+msgstr "Keine Daten veröffentlicht"
+
+#: ../wp-faq-ajax.php:99
+msgid "No identification number was passed, please try again"
+msgstr "Es wurde keine ID übergeben. Bitte versuchen Sie es erneut."
+
+#: ../wp-faq-ajax.php:102
+msgid "Please fill in your email address"
+msgstr "Bitte geben Sie Ihre E-Mail-Adresse an."
+
+#: ../wp-faq-ajax.php:103
+msgid "Please fill in a valid email address"
+msgstr "Bitte geben Sie eine gültige E-Mail-Adresse an."
+
+#: ../wp-faq-ajax.php:106
+#: ../models/question.php:85
+msgid "Please fill in a question"
+msgstr "Bitte geben Sie eine Frage ein."
+
+#: ../wp-faq-ajax.php:107
+msgid "No FAQ group was specified"
+msgstr "Es wurde keine Gruppe angegeben."
+
+#: ../wp-faq-ajax.php:110
+msgid "FAQ group cannot be read"
+msgstr "Die Gruppe kann nicht ausgelesen werden."
+
+#: ../wp-faq-ajax.php:116
+msgid "Please fill in the code in the image."
+msgstr "Bitte geben Sie die Zeichen im Captcha ein."
+
+#: ../wp-faq-ajax.php:117
+msgid "Your code does not match the code in the image."
+msgstr "Ihre Eingabe entspricht nicht dem Captcha."
+
+#: ../wp-faq-ajax.php:121
+msgid "Please login before submitting questions"
+msgstr "Bitte melden Sie sich zuerst an, bevor Sie Fragen übermitteln."
+
+#: ../wp-faq-ajax.php:124
+#: ../wp-faq-ajax.php:129
+#: ../models/question.php:86
+msgid "Please fill in an answer"
+msgstr "Bitte geben Sie eine Antwort ein."
+
+#: ../wp-faq-ajax.php:143
+#: ../wp-faq-ajax.php:153
+msgid "New FAQ Question"
+msgstr "Neue Frage in den FAQs"
+
+#: ../wp-faq-ajax.php:164
+msgid "Question Asked"
+msgstr "Gestelle Frage"
+
+#: ../wp-faq-ajax.php:171
+msgid "Your question has been submitted for answering"
+msgstr "Ihre Frage wurde zur Beantwortung an das Team gesendet."
+
+#: ../wp-faq-ajax.php:173
+msgid "Your question cannot be saved. Please try again"
+msgstr "Ihre Frage kann nicht gespeichert werden. Bitte versuchen Sie es erneut."
+
+#: ../wp-faq-ajax.php:206
+msgid "Groups have been ordered"
+msgstr "Die Reihenfolge der Gruppen wurde geändert."
+
+#: ../wp-faq-ajax.php:208
+msgid "No sortable items are available"
+msgstr "Es sind keine Elemente vorhanden, deren Reihenfolge geändert werden kann"
+
+#: ../wp-faq-ajax.php:232
+#: ../wp-faq-ajax.php:243
+msgid "Questions have been ordered."
+msgstr "Reihenfolge geändert"
+
+#: ../wp-faq-ajax.php:234
+msgid "No sortable items are available."
+msgstr "Es sind keine Elemente vorhanden, deren Reihenfolge geändert werden kann."
+
+#: ../wp-faq-ajax.php:275
+msgid "Related questions have been updated"
+msgstr "Die verwandten Fragen wurden aktualisiert"
+
+#: ../wp-faq-plugin.php:260
+#: ../wp-faq.php:426
+msgid "Please fill in a serial key"
+msgstr "Bitte geben Sie einen Serial Key ein"
+
+#: ../wp-faq-plugin.php:263
+#: ../wp-faq.php:429
+msgid "Serial key is invalid, please try again"
+msgstr "Der eingegebene Serial Key ist ungültig. Bitte versuchen Sie es erneut."
+
+#: ../wp-faq-plugin.php:344
+msgid "Continue Reading..."
+msgstr "Einlesen fortsetzen..."
+
+#: ../wp-faq-plugin.php:934
+msgid "FAQ plugin images (do not remove)"
+msgstr "FAQ-Plug-In Images (nicht löschen)"
+
+#: ../wp-faq-plugin.php:935
+msgid "This is a placeholder for the FAQ plugin images. You may edit and reuse this post but do not remove it."
+msgstr "Das ist ein Platzhalter für FAQ-Plug-In-Images. Sie können diesen Post bearbeiten bzw. wiederverwenden, dürfen ihn aber nicht löschen."
+
+#: ../wp-faq-plugin.php:1131
+#, fuzzy
+msgid "Rendering of \""
+msgstr "Darstellung von \""
+
+#: ../wp-faq-plugin.php:1134
+msgid "No file was specified for rendering"
+msgstr "Es wurde keine Datei zur Darstellung ausgewählt"
+
+#: ../wp-faq.php:232
+#: ../wp-faq.php:388
+msgid "FAQs"
+msgstr "FAQs"
+
+#: ../wp-faq.php:233
+msgid "Overview"
+msgstr "Überblick"
+
+#: ../wp-faq.php:234
+msgid "Configuration"
+msgstr "Einstellungen"
+
+#: ../wp-faq.php:235
+msgid "Groups"
+msgstr "Gruppen"
+
+#: ../wp-faq.php:236
+msgid "Save a Group"
+msgstr "Gruppe erstellen/bearbeiten"
+
+#: ../wp-faq.php:237
+msgid "Questions"
+msgstr "Fragen"
+
+#: ../wp-faq.php:238
+msgid "Save a Question"
+msgstr "Frage erstellen/bearbeiten"
+
+#: ../wp-faq.php:241
+msgid "Support &amp; Help"
+msgstr "Support & Hilfe"
+
+#: ../wp-faq.php:258
+msgid "FAQ Group"
+msgstr "Gruppe"
+
+#: ../wp-faq.php:259
+msgid "WordPress Post/Page"
+msgstr "WordPress Post/Seite"
+
+#: ../wp-faq.php:260
+msgid "Save FAQ"
+msgstr "Frage speichern"
+
+#: ../wp-faq.php:273
+msgid "Save Settings"
+msgstr "Einstellungen speichern"
+
+#: ../wp-faq.php:274
+msgid "Sections"
+msgstr "Abschnitte"
+
+#: ../wp-faq.php:277
+msgid "WordPress Related"
+msgstr "WordPress bezogen"
+
+#: ../wp-faq.php:280
+msgid "General Configuration"
+msgstr "Allgemeine Einstellungen"
+
+#: ../wp-faq.php:281
+msgid "Ask Questions Settings"
+msgstr "Einstellungen \"Fragen stellen\""
+
+#: ../wp-faq.php:282
+msgid "Questions Settings"
+msgstr "Einstellungen \"Fragen\""
+
+#: ../wp-faq.php:283
+msgid "Accordion Settings"
+msgstr "Einstellungen \"Akkordeon\""
+
+#: ../wp-faq.php:284
+msgid "Theme &amp; Custom CSS"
+msgstr "Theme & benutzerdefiniertes CSS"
+
+#: ../wp-faq.php:351
+msgid "Please fill in a serial key for the FAQ plugin to continue use."
+msgstr "Geben Sie den Serial Key an, um das FAQ-Plug-In verwenden zu können"
+
+#: ../wp-faq.php:352
+msgid "Submit Serial Key"
+msgstr "Serial Key eingeben"
+
+#: ../wp-faq.php:386
+msgid "Frequently asked questions in your sidebar(s)"
+msgstr "Zeigen Sie FAQs in Ihrer Sidebar"
+
+#: ../wp-faq.php:409
+msgid "Serial Key"
+msgstr "Serial Key"
+
+#: ../wp-faq.php:461
+msgid "There is a new version of "
+msgstr "Es ist eine neue Version verfügbar von"
+
+#: ../wp-faq.php:478
+#, fuzzy
+msgid "FAQs Overview"
+msgstr "Überblick"
+
+#: ../wp-faq.php:595
+msgid "You have <b>"
+msgstr "Sie haben <b>"
+
+#: ../wp-faq.php:615
+msgid "Group has been successfully saved"
+msgstr "Die Gruppe wurde erfolgreich erstellt"
+
+#: ../wp-faq.php:648
+msgid "Group cannot be read"
+msgstr "Gruppe kann nicht eingelesen werden"
+
+#: ../wp-faq.php:652
+#: ../wp-faq.php:669
+#: ../models/groups_post.php:59
+msgid "No group was specified"
+msgstr "Es wurde keine Gruppe angegeben"
+
+#: ../wp-faq.php:662
+msgid "Group and all its questions have been removed"
+msgstr "Die Gruppe und alle darin enthaltenen Fragen wurden gelöscht."
+
+#: ../wp-faq.php:665
+msgid "Group cannot be removed"
+msgstr "Die Gruppe kann nicht gelöscht werden."
+
+#: ../wp-faq.php:688
+msgid "Selected groups have been removed"
+msgstr "Die markierten Gruppen wurden gelöscht."
+
+#: ../wp-faq.php:697
+msgid "Selected groups have been activated"
+msgstr "Die markierten Gruppen wurden aktiviert."
+
+#: ../wp-faq.php:706
+msgid "Selected groups have been deactivated"
+msgstr "Die markierten Gruppen wurden deaktiviert."
+
+#: ../wp-faq.php:711
+#: ../wp-faq.php:911
+msgid "No bulk action was selected"
+msgstr "Es wurde keine Aktion durchgeführt."
+
+#: ../wp-faq.php:715
+msgid "No groups were selected"
+msgstr "Sie haben keine Gruppe ausgewählt."
+
+#: ../wp-faq.php:766
+msgid "Please create a group first"
+msgstr "Bitte erstellen Sie zuerst eine Gruppe."
+
+#: ../wp-faq.php:773
+msgid "Question has been successfully saved"
+msgstr "Änderungen wurden gespeichert"
+
+#: ../wp-faq.php:776
+msgid "Question cannot be saved"
+msgstr "Speichern nicht möglich"
+
+#: ../wp-faq.php:827
+msgid "Question has been removed"
+msgstr "Frage wurde gelöscht"
+
+#: ../wp-faq.php:830
+msgid "Question cannot be removed"
+msgstr "Frage konnte nicht gelöscht werden"
+
+#: ../wp-faq.php:834
+#: ../wp-faq.php:857
+#: ../models/questions_group.php:62
+#: ../models/questions_post.php:59
+msgid "No question was specified"
+msgstr "Keine Frage ausgewählt"
+
+#: ../wp-faq.php:853
+msgid "Question cannot be read"
+msgstr "Frage konnte nicht eingelesen werden"
+
+#: ../wp-faq.php:874
+msgid "Selected questions have been removed"
+msgstr "Die ausgewählten Fragen wurden gelöscht"
+
+#: ../wp-faq.php:884
+msgid "Selected questions have been successfully moved"
+msgstr "Die ausgewählten Fragen wurden erfolgreich verschoben"
+
+#: ../wp-faq.php:887
+msgid "No group was selected to move to"
+msgstr "Es wurde keine Gruppe ausgewählt"
+
+#: ../wp-faq.php:897
+msgid "Selected questions have been marked as approved"
+msgstr "Die ausgewählten Fragen wurden als \"freigegeben\" gekennzeichnet"
+
+#: ../wp-faq.php:906
+msgid "Selected questions have been marked as unapproved"
+msgstr "Die ausgewählten Fragen wurden als \"nicht freigegeben\" gekennzeichnet"
+
+#: ../wp-faq.php:915
+msgid "No questions have been selected"
+msgstr "Es wurden keine Fragen ausgewählt"
+
+#: ../wp-faq.php:974
+msgid "All FAQ group and question posts/pages have been resaved."
+msgstr "Die Posts/Seiten von Gruppen und Fragen wurden erneut gespeichert."
+
+#: ../wp-faq.php:977
+msgid "No FAQ groups are available."
+msgstr "Es sind keine Gruppen verfügbar"
+
+#: ../wp-faq.php:1003
+msgid "Configuration settings have been saved"
+msgstr "Die Einstellungen wurden gespeichert"
+
+#: ../helpers/db.php:408
+msgid "Question Answered"
+msgstr "Frage beantwortet"
+
+#: ../helpers/form.php:152
+msgid "Select"
+msgstr "Auswahl"
+
+#: ../js/tinymce/dialog.php:25
+msgid "Insert FAQs"
+msgstr "FAQs einfügen"
+
+#: ../js/tinymce/dialog.php:134
+msgid "Universal"
+msgstr "Allgemein"
+
+#: ../js/tinymce/dialog.php:135
+#: ../js/tinymce/dialog.php:199
+#: ../js/tinymce/dialog.php:217
+#: ../js/tinymce/dialog.php:237
+#: ../js/tinymce/dialog.php:256
+msgid "Group"
+msgstr "Gruppe"
+
+#: ../js/tinymce/dialog.php:136
+#: ../js/tinymce/dialog.php:178
+#: ../js/tinymce/dialog.php:268
+msgid "Question"
+msgstr "Frage"
+
+#: ../js/tinymce/dialog.php:147
+msgid "Insert"
+msgstr "Einfügen"
+
+#: ../js/tinymce/dialog.php:149
+msgid "Groups List"
+msgstr "Gruppenliste"
+
+#: ../js/tinymce/dialog.php:150
+msgid "All Questions"
+msgstr "Alle Fragen"
+
+#: ../js/tinymce/dialog.php:151
+msgid "Search Box"
+msgstr "Suchfeld"
+
+#: ../js/tinymce/dialog.php:152
+msgid "Ask Box"
+msgstr "Fragefeld"
+
+#: ../js/tinymce/dialog.php:169
+msgid "Sort"
+msgstr "Sortierung"
+
+#: ../js/tinymce/dialog.php:172
+msgid "Ascending"
+msgstr "aufsteigend"
+
+#: ../js/tinymce/dialog.php:173
+msgid "Descending"
+msgstr "absteigend"
+
+#: ../js/tinymce/dialog.php:175
+msgid "BY"
+msgstr "nach"
+
+#: ../js/tinymce/dialog.php:177
+msgid "ID"
+msgstr "ID"
+
+#: ../js/tinymce/dialog.php:179
+msgid "Group ID"
+msgstr "Gruppen-ID"
+
+#: ../js/tinymce/dialog.php:180
+msgid "Created Date"
+msgstr "Erstellungsdatum"
+
+#: ../js/tinymce/dialog.php:181
+msgid "Modified Date"
+msgstr "Änderungsdatum"
+
+#: ../js/tinymce/dialog.php:193
+msgid "Groups Menu"
+msgstr "Gruppenmenü"
+
+#: ../js/tinymce/dialog.php:195
+msgid "Include a groups dropdown menu"
+msgstr "Gruppen Kombinationsfeld inkludieren"
+
+#: ../js/tinymce/dialog.php:202
+#: ../js/tinymce/dialog.php:220
+#: ../js/tinymce/dialog.php:240
+msgid "Select a Group"
+msgstr "Gruppe auswählen"
+
+#: ../js/tinymce/dialog.php:259
+msgid "- Select a Group -"
+msgstr "- Gruppe auswählen -"
+
+#: ../js/tinymce/dialog.php:264
+msgid "loading..."
+msgstr "einlesen..."
+
+#: ../js/tinymce/dialog.php:271
+msgid "- Select a Group first -"
+msgstr "- zuerst Gruppe auswählen -"
+
+#: ../models/group.php:88
+msgid "Please fill in a name for this group"
+msgstr "Bitte vergeben Sie einen aussagekräftigen Namen für die Gruppe"
+
+#: ../models/group.php:90
+msgid "Please specify whether admin notification is required"
+msgstr "Bitte  geben Sie an, ob eine Admin Benachrichtigung erforderlich ist."
+
+#: ../models/group.php:91
+msgid "Please fill in correct email"
+msgstr "Bitte geben Sie eine gültige E-Mail-Adresse an."
+
+#: ../models/group.php:94
+msgid "Please specify whether a search box should be provided"
+msgstr "Bitte geben Sie an, ob ein Suchfeld angezeigt werden soll"
+
+#: ../models/group.php:95
+msgid "Please choose whether or not to show a groups dropdown menu"
+msgstr "Bitte wählen Sie aus, ob das Kombinationsfeld einer Gruppe angezeigt werden soll oder nicht."
+
+#: ../models/group.php:97
+msgid "Please specify whether a submission box should be shown"
+msgstr "Bitte geben Sie an, ob ein Fragefeld angezeigt werden soll."
+
+#: ../models/group.php:98
+msgid "Please fill in at least one keyword"
+msgstr "Bitte geben Sie mindestens ein Keyword ein."
+
+#: ../models/group.php:100
+msgid "No post/page action was specified"
+msgstr "Es wurde keine Aktion zu Post/Seite ausgewählt."
+
+#: ../models/group.php:102
+msgid "Please fill in a title for this post/page"
+msgstr "Bitte geben Sie für diesen Post bzw. diese Seite einen Titel an."
+
+#: ../models/groups_post.php:60
+#: ../models/questions_group.php:63
+#: ../models/questions_post.php:60
+msgid "No post/page was specified"
+msgstr "Es wurde kein Post bzw. keine Seite ausgewählt."
+
+#: ../models/question.php:87
+msgid "Please choose a group"
+msgstr "Bitte wählen Sie eine Gruppe aus."
+
+#: ../models/question.php:90
+msgid "Please select whether or not a post/page should be created"
+msgstr "Bitte geben Sie an, ob ein Post bzw. eine Seite erstellt werden soll."
+
+#: ../models/question.php:93
+#: ../models/question.php:95
+msgid "Please fill in a post/page title"
+msgstr "Bitte geben Sie für diesen Post bzw. diese Seite einen Titel an."
+
+#: ../models/question.php:96
+msgid "Please select a parent page"
+msgstr "Bitte wählen Sie eine übergeordnete Seite aus."
+
+#: ../models/questions_group.php:69
+msgid "This question/group association already exists."
+msgstr "Diese Frage/Gruppe ist bereits vorhanden."
+
+#: ../models/questions_question.php:60
+#: ../tags/1.4.3.1/models/questions_question.php:60
+msgid "No related question was specified"
+msgstr "Es wurde keine verwandte Frage angegeben."
+
+#: ../tags/1.4.3.1/wp-faq-ajax.php:231
+#, fuzzy
+msgid "Questions have been ordered"
+msgstr "Reihenfolge geändert"
+
+#: ../tags/1.4.3.1/wp-faq.php:269
+#, fuzzy
+msgid "Custom CSS"
+msgstr "Verwende eigene CSS-Datei"
+
+#: ../tags/1.4.3.1/wp-faq.php:898
+#, fuzzy
+msgid "All FAQ group posts/pages have been resaved"
+msgstr "Die Posts/Seiten von Gruppen und Fragen wurden erneut gespeichert."
+
+#: ../tags/1.4.3.1/wp-faq.php:901
+#, fuzzy
+msgid "No FAQ groups are available"
+msgstr "Es sind keine Gruppen verfügbar"
+
+#: ../tags/1.4.3.1/vendors/class.paginate.php:162
+msgid "Displaying"
+msgstr "Anzeigen"
+
+#: ../tags/1.4.3.1/vendors/class.paginate.php:162
+msgid "of"
+msgstr "von"
+
+#: ../tags/1.4.3.1/views/admin/index.php:20
+#: ../tags/1.4.3.1/views/admin/index.php:26
+msgid "Module/Section"
+msgstr "Modul/Bereich"
+
+#: ../tags/1.4.3.1/views/admin/index.php:21
+#: ../tags/1.4.3.1/views/admin/index.php:27
+msgid "Count"
+msgstr "Anzahl"
+
+#: ../tags/1.4.3.1/views/admin/index.php:32
+msgid "Question Groups"
+msgstr "Fragegruppen"
+
+#: ../tags/1.4.3.1/views/admin/index.php:36
+msgid "Manage FAQ Groups"
+msgstr "Gruppen verwalten"
+
+#: ../tags/1.4.3.1/views/admin/index.php:40
+msgid "FAQ Questions"
+msgstr "Fragen"
+
+#: ../tags/1.4.3.1/views/admin/index.php:44
+msgid "Manage FAQ Questions"
+msgstr "Fragen verwalten"
+
+#: ../tags/1.4.3.1/views/admin/settings.php:12
+msgid "FAQs Configuration"
+msgstr "Einstellungen"
+
+#: ../tags/1.4.3.1/views/admin/submitserial.php:5
+msgid "You need to fill in a serial key to continue using the FAQ plugin."
+msgstr "Sie müssen einen Serial Key eingeben, um das FAQ-Plug-In benutzen zu können."
+
+#: ../tags/1.4.3.1/views/admin/submitserial.php:6
+msgid "Please obtain a serial key from the downloads section in your Tribulant Software account."
+msgstr "Bitte besorgen Sie sich einen Serial Key im Downloadbereich Ihres Tribulant Software Kontos."
+
+#: ../tags/1.4.3.1/views/admin/submitserial.php:7
+msgid "Once in the downloads section, click the KEY icon to request a serial key."
+msgstr "Sobald Sie sich im Downloadbereich befinden, klicken Sie auf das KEY-Icon, um den Serial Key zu erstellen."
+
+#: ../tags/1.4.3.1/views/admin/submitserial.php:8
+msgid "Downloads Section"
+msgstr "Downloadbereich"
+
+#: ../tags/1.4.3.1/views/admin/submitserial.php:19
+msgid "Serial Key:"
+msgstr "Serial Key:"
+
+#: ../tags/1.4.3.1/views/admin/submitserial.php:20
+msgid "Your current serial is valid and working."
+msgstr "Ihr Serial Key ist gültig und funktional."
+
+#: ../tags/1.4.3.1/views/admin/submitserial.php:23
+msgid "The serial key is valid and you can now continue using the FAQ plugin. Thank you for your business and support!"
+msgstr "Der angegebene Serial Key ist gültig. Sie können das FAQ-Plug-In  jetzt nutzen."
+
+#: ../tags/1.4.3.1/views/admin/submitserial.php:24
+msgid "Apply Serial and Close Window"
+msgstr "Fenster schließen"
+
+#: ../tags/1.4.3.1/views/admin/support.php:3
+msgid "Below are some useful links that will help you with the product"
+msgstr "Nachfolgend finden Sie einige nützliche Links, die Ihnen bei der Benutzung des Produkts helfen."
+
+#: ../tags/1.4.3.1/views/admin/support.php:5
+msgid "Product Page"
+msgstr "Produkt Webseite (englisch)"
+
+#: ../tags/1.4.3.1/views/admin/support.php:6
+msgid "Documentation"
+msgstr "Handbuch (englisch)"
+
+#: ../tags/1.4.3.1/views/admin/support.php:7
+msgid "Submit a Ticket"
+msgstr "Öffnen eines Tickets (englisch)"
+
+#: ../tags/1.4.3.1/views/admin/widget.php:3
+msgid "Title"
+msgstr "Titel"
+
+#: ../tags/1.4.3.1/views/admin/widget.php:10
+msgid "Display"
+msgstr "Anzeigen"
+
+#: ../tags/1.4.3.1/views/admin/widget.php:11
+msgid "FAQ Groups"
+msgstr "Gruppen"
+
+#: ../tags/1.4.3.1/views/admin/groups/index.php:2
+msgid "Manage FAQs Groups"
+msgstr "Gruppen verwalten"
+
+#: ../tags/1.4.3.1/views/admin/groups/index.php:2
+msgid "Add New"
+msgstr "Hinzufügen"
+
+#: ../tags/1.4.3.1/views/admin/groups/index.php:7
+msgid "question groups"
+msgstr "Fragegruppen"
+
+#: ../tags/1.4.3.1/views/admin/groups/index.php:10
+msgid "Show All"
+msgstr "Zeige alle"
+
+#: ../tags/1.4.3.1/views/admin/groups/index.php:10
+msgid "Show all FAQ groups"
+msgstr "Zeige alle Gruppen"
+
+#: ../tags/1.4.3.1/views/admin/groups/index.php:12
+msgid "Show Paging"
+msgstr "Seitennavigation anzeigen"
+
+#: ../tags/1.4.3.1/views/admin/groups/index.php:12
+msgid "Show paginated FAQ groups"
+msgstr "Seitennavigation in Gruppen anzeigen"
+
+#: ../tags/1.4.3.1/views/admin/groups/index.php:16
+msgid "A to Z"
+msgstr "A bis Z"
+
+#: ../tags/1.4.3.1/views/admin/groups/index.php:18
+msgid "Z to A"
+msgstr "Z bis A"
+
+#: ../tags/1.4.3.1/views/admin/groups/index.php:22
+msgid "New to Old"
+msgstr "neueste zuerst"
+
+#: ../tags/1.4.3.1/views/admin/groups/index.php:24
+msgid "Old to New"
+msgstr "älteste zuerst"
+
+#: ../tags/1.4.3.1/views/admin/groups/index.php:29
+msgid "Search Groups"
+msgstr "Gruppe durchsuchen"
+
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:2
+msgid "Are you sure you wish to execute this action on the selected groups?"
+msgstr "Sind Sie sicher, dass Sie diese Aktion bei den ausgewählten Gruppen durchführen möchten?"
+
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:5
+#: ../tags/1.4.3.1/views/admin/groups/order.php:2
+msgid "Order Groups"
+msgstr "Reihenfolge ändern"
+
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:7
+msgid "Bulk Actions"
+msgstr "Aktion wählen"
+
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:8
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:52
+msgid "Delete"
+msgstr "Löschen"
+
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:9
+msgid "Activate"
+msgstr "aktivieren"
+
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:10
+msgid "Deactivate"
+msgstr "deaktivieren"
+
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:12
+msgid "Apply"
+msgstr "Übernehmen"
+
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:21
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:33
+#: ../tags/1.4.3.1/views/admin/groups/save.php:10
+msgid "Name"
+msgstr "Name"
+
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:23
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:35
+msgid "Status"
+msgstr "Status"
+
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:24
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:36
+msgid "Modified"
+msgstr "geändert"
+
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:25
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:37
+msgid "Post/Page"
+msgstr "Post/Seite"
+
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:26
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:38
+msgid "Shortcode"
+msgstr "Verknüpfung"
+
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:51
+msgid "Edit"
+msgstr "Bearbeiten"
+
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:52
+msgid "Are you sure you want to delete this group?"
+msgstr "Sind Sie sicher, dass Sie die Gruppe löschen möchten?"
+
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:53
+msgid "View"
+msgstr "Anzeigen"
+
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:54
+msgid "Order Questions"
+msgstr "Reihenfolge ändern"
+
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:57
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:62
+msgid "none"
+msgstr "kein"
+
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:58
+#: ../tags/1.4.3.1/views/admin/groups/save.php:88
+msgid "Active"
+msgstr "aktiviert"
+
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:58
+#: ../tags/1.4.3.1/views/admin/groups/save.php:88
+msgid "Inactive"
+msgstr "deaktiviert"
+
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:76
+msgid "Per Page"
+msgstr "pro Seite"
+
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:79
+msgid "groups"
+msgstr "Gruppen"
+
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:104
+msgid "No FAQ groups were found"
+msgstr "Keine Gruppen vorhanden"
+
+#: ../tags/1.4.3.1/views/admin/groups/order.php:4
+msgid "&larr; Back to Groups"
+msgstr "&larr; zurück zu den Gruppen"
+
+#: ../tags/1.4.3.1/views/admin/groups/order.php:7
+msgid "Drag and drop the groups below to sort them."
+msgstr "Ändern Sie die Reihenfolge der untenstehenden Gruppen mittels Drag & Drop."
+
+#: ../tags/1.4.3.1/views/admin/groups/order.php:8
+msgid "You can embed this list of groups into a post/page with"
+msgstr "Sie können diese Gruppe in Posts/Seiten mit folgendem Code einfügen: "
+
+#: ../tags/1.4.3.1/views/admin/groups/order.php:9
+msgid "This order of the FAQ groups is used for the sidebar widget(s) as well."
+msgstr "Die Reihenfolge der Gruppen wird ebenfalls im Sidebar-Widget berücksichtigt."
+
+#: ../tags/1.4.3.1/views/admin/groups/order.php:37
+msgid "No groups were found. Only groups with posts/pages will be shown here."
+msgstr "Es wurden keine passenden Gruppen gefunden. Nur Gruppen mit Posts/Seiten werden hier aufgeführt."
+
+#: ../tags/1.4.3.1/views/admin/groups/save.php:13
+msgid "the name of your group for identification purposes"
+msgstr "Geben Sie hier einen aussagekräftigen Namen für die Gruppe an"
+
+#: ../tags/1.4.3.1/views/admin/groups/save.php:25
+msgid "Admin Notifications"
+msgstr "Admin-Benachrichtigung"
+
+#: ../tags/1.4.3.1/views/admin/groups/save.php:27
+#: ../tags/1.4.3.1/views/admin/groups/save.php:52
+#: ../tags/1.4.3.1/views/admin/groups/save.php:80
+msgid "On"
+msgstr "an"
+
+#: ../tags/1.4.3.1/views/admin/groups/save.php:27
+#: ../tags/1.4.3.1/views/admin/groups/save.php:52
+#: ../tags/1.4.3.1/views/admin/groups/save.php:80
+msgid "Off"
+msgstr "aus"
+
+#: ../tags/1.4.3.1/views/admin/groups/save.php:29
+msgid "receive an email notification when a new question has been asked for this group specifically"
+msgstr "Sendet eine Nachricht per E-Mail an den Admin, sobald eine neue Frage in dieser Gruppe gestellt wurde."
+
+#: ../tags/1.4.3.1/views/admin/groups/save.php:38
+msgid "Admin Email"
+msgstr "Admin E-Mail-Adresse"
+
+#: ../tags/1.4.3.1/views/admin/groups/save.php:41
+msgid "fill in a single, valid email address"
+msgstr "Bitte geben Sie eine einzelne gültige E-Mail-Adresse an"
+
+#: ../tags/1.4.3.1/views/admin/groups/save.php:54
+msgid "places a search box above the group questions on the front-end"
+msgstr "Platziert ein Suchfeld oberhalb der Fragen im Frontend und ermöglicht, die Fragen zu durchsuchen"
+
+#: ../tags/1.4.3.1/views/admin/groups/save.php:64
+msgid "Show Groups Menu"
+msgstr "Gruppenmenü anzeigen"
+
+#: ../tags/1.4.3.1/views/admin/groups/save.php:66
+msgid "Yes"
+msgstr "ja"
+
+#: ../tags/1.4.3.1/views/admin/groups/save.php:66
+#: ../tags/1.4.3.1/views/admin/groups/save.php:109
+msgid "No"
+msgstr "nein"
+
+#: ../tags/1.4.3.1/views/admin/groups/save.php:68
+msgid "show a dropdown with other groups to search within"
+msgstr "Kombinationsfeld mit anderen Gruppen zum Durchsuchen anzeigen"
+
+#: ../tags/1.4.3.1/views/admin/groups/save.php:82
+msgid "places a submission box below the group questions for users/members to ask questions"
+msgstr "Platziert ein Fragefeld unterhalb der Fragen im Frontend und ermöglicht den Benutzern/Mitgliedern, Fragen zu stellen"
+
+#: ../tags/1.4.3.1/views/admin/groups/save.php:86
+msgid "Active Status"
+msgstr "Status"
+
+#: ../tags/1.4.3.1/views/admin/groups/save.php:90
+msgid "deactivating a group will prevent its questions from being shown on the front-end"
+msgstr "Das Deaktivieren der Gruppe verhindert die Anzeige der Fragen im Frontend"
+
+#: ../tags/1.4.3.1/views/admin/groups/save.php:94
+msgid "Keywords/Tags"
+msgstr "Keywords/Tags"
+
+#: ../tags/1.4.3.1/views/admin/groups/save.php:97
+msgid "separate keywords/tags with commas eg. group, keyword, faqs"
+msgstr "Trennen Sie Keywords bzw. Tags durch Komma (z. B. Gruppe, Keyword, FAQs)"
+
+#: ../tags/1.4.3.1/views/admin/groups/save.php:107
+msgid "Save WordPress Post/Page"
+msgstr "Erstellen von WordPress Post oder Seite"
+
+#: ../tags/1.4.3.1/views/admin/groups/save.php:109
+msgid "Post"
+msgstr "Post"
+
+#: ../tags/1.4.3.1/views/admin/groups/save.php:109
+msgid "Page"
+msgstr "Seite"
+
+#: ../tags/1.4.3.1/views/admin/groups/save.php:127
+msgid "would you like to have a WordPress post/page saved & maintained for this group? (recommended)"
+msgstr "Möchten Sie einen Post bzw. eine Seite in WordPress für diese Gruppe einrichten? (empfohlen)"
+
+#: ../tags/1.4.3.1/views/admin/groups/save.php:139
+msgid "Post/Page Title"
+msgstr "Post-/Seiten-Titel"
+
+#: ../tags/1.4.3.1/views/admin/groups/save.php:142
+msgid "WordPress post/page title as it will appear on the front-end"
+msgstr "Post-/Seiten-Titel (wird im Frontend angezeigt)"
+
+#: ../tags/1.4.3.1/views/admin/groups/save.php:152
+msgid "Page Parent"
+msgstr "übergeordnete Seite"
+
+#: ../tags/1.4.3.1/views/admin/groups/save.php:155
+msgid "Main (no parent)"
+msgstr "Hauptseite (keine Übergeordnete)"
+
+#: ../tags/1.4.3.1/views/admin/groups/save.php:167
+msgid "Save Group"
+msgstr "Speichern"
+
+#: ../tags/1.4.3.1/views/admin/groups/view.php:4
+msgid "&larr; All Groups"
+msgstr "&larr; alle Gruppen"
+
+#: ../tags/1.4.3.1/views/admin/groups/view.php:11
+msgid "Change Group"
+msgstr "Gruppe bearbeiten"
+
+#: ../tags/1.4.3.1/views/admin/groups/view.php:12
+msgid "Delete Group"
+msgstr "Gruppe löschen"
+
+#: ../tags/1.4.3.1/views/admin/groups/view.php:12
+msgid "Are you sure you wish to permanently remove this group?"
+msgstr "Sind Sie sicher, dass Sie die Gruppe löschen möchten?"
+
+#: ../tags/1.4.3.1/views/admin/groups/view.php:19
+#: ../tags/1.4.3.1/views/admin/groups/view.php:25
+msgid "Field"
+msgstr "Feld"
+
+#: ../tags/1.4.3.1/views/admin/groups/view.php:20
+#: ../tags/1.4.3.1/views/admin/groups/view.php:26
+msgid "Value"
+msgstr "Wert"
+
+#: ../tags/1.4.3.1/views/admin/groups/view.php:49
+msgid "Created"
+msgstr "erstellt"
+
+#: ../tags/1.4.3.1/views/admin/groups/view.php:57
+msgid "Total Questions"
+msgstr "Summe"
+
+#: ../tags/1.4.3.1/views/admin/groups/view.php:60
+#: ../tags/1.4.3.1/views/admin/metaboxes/question-group.php:7
+#: ../tags/1.4.3.1/views/admin/questions/index.php:7
+#: ../tags/1.4.3.1/views/admin/questions/loop.php:20
+#: ../tags/1.4.3.1/views/admin/questions/loop.php:124
+msgid "questions"
+msgstr "Fragen"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/question-pp.php:2
+msgid "Create a Post/Page"
+msgstr "Erstelle Post/Seite?"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/question-pp.php:56
+msgid "Post Categories"
+msgstr "Post-Kategorien"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/question-pp.php:61
+msgid "Select All"
+msgstr "alle markieren"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/question-pp.php:69
+msgid "No categories are available."
+msgstr "Keine Kategorien verfügbar."
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/question-submit.php:5
+#: ../tags/1.4.3.1/views/admin/questions/loop.php:68
+#: ../tags/1.4.3.1/views/admin/questions/loop.php:80
+msgid "Approved"
+msgstr "Freigegeben"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/question-submit.php:13
+msgid "Notify User:"
+msgstr "Benachrichtigung Nutzer"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/question-submit.php:18
+msgid "User Email:"
+msgstr "E-Mal-Adresse Nutzer"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/question-submit.php:30
+msgid "Save Question"
+msgstr "Speichern"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-accordion.php:4
+msgid "Questions Bullet"
+msgstr "Aufzählungszeichen für Fragen"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-accordion.php:14
+msgid "Sliding Accordion"
+msgstr "Akkordeon-Effekt"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-accordion.php:27
+msgid "Active Question"
+msgstr "Aktivierte Frage"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-accordion.php:30
+msgid "the question/item to open automatically. type the number. eg. \"1\". type \"0\" to leave all closed"
+msgstr "Die Frage bzw. das Element, welches automatisch geöffnet wird (z. B. \"1\"). Geben Sie \"0\" an, um alle ungeöffnet anzuzeigen."
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-accordion.php:34
+msgid "Sliding Event"
+msgstr "Ereignis \"Akkordeon Effekt\""
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-accordion.php:36
+msgid "Mouse Over"
+msgstr "Hover"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-accordion.php:37
+msgid "Mouse Click"
+msgstr "Klick"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-accordion.php:38
+msgid "event that triggers the opening/closing action"
+msgstr "Ereignis, welches den Akkordeon-Effekt auslöst (öffnen und schließen)"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-accordion.php:49
+msgid "Open/Close Answers"
+msgstr "Antworten öffnen/schließen"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-accordion.php:51
+msgid "All answers open"
+msgstr "alle offenen Fragen"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-accordion.php:52
+msgid "Click to open/close answers"
+msgstr "Klicken zum Öffnen/Schließen der Antworten "
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-ask.php:3
+msgid "Capture Email Address"
+msgstr "E-Mail-Adresse erforderlich"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-ask.php:7
+msgid "require an email address from a user when submitting a question"
+msgstr "Erfordert eine E-Mail-Adresse des fragestellenden Nutzers"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-ask.php:16
+msgid "Notify When Answered"
+msgstr "Benachrichtigung bei Antwort"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-ask.php:20
+msgid "send an email notification to the user when the question has been answered"
+msgstr "Versenden einer Benachrichtigung per E-Mail an den Nutzer, sobald eine Antwort auf seine Frage vorliegt"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-customcss.php:4
+msgid "Use Custom CSS"
+msgstr "Verwende eigene CSS-Datei"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-general.php:4
+msgid "Permission To Ask Questions"
+msgstr "Berechtigung, Fragen zu stellen"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-general.php:6
+msgid "Registered Members"
+msgstr "Registrierte Nutzer"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-general.php:7
+msgid "All Users/Visitors"
+msgstr "alle Nutzer/Besucher"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-general.php:8
+msgid "the type of users who are allowed to submit new questions on the front-end"
+msgstr "Nutzertyp, der Fragen im Frontend stellen darf."
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-general.php:16
+msgid "receive an email notification when a new question has been asked"
+msgstr "Versand einer Benachrichtigung per E-Mail, sobald eine neue Frage gestellt wurde"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-general.php:29
+msgid "you may specify multiple email recipients, each separated by a comma"
+msgstr "Angabe mehrerer E-Mail-Adressen durch Komma getrennt"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-general.php:39
+msgid "Admin Actions on Front"
+msgstr "Admin Aktionselemente im Frontend"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-general.php:43
+msgid "turn this on to show \"Edit\" and \"Delete\" links on the front-end for groups and questions"
+msgstr "Einschalten, um \"bearbeiten\" und \"löschen\" bei Fragen und Gruppen im Frontend anzuzeigen"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-general.php:47
+msgid "Search Context"
+msgstr "Kontextsuche"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-general.php:49
+msgid "Questions Only"
+msgstr "nur Fragen"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-general.php:50
+msgid "Questions and Answers"
+msgstr "Fragen und Antworten"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-general.php:54
+msgid "Use Captcha for Questions"
+msgstr "Captcha bei Fragen verwenden"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-general.php:60
+msgid "you need to install and activate the <a target=\"_blank\" href=\"http://wordpress.org/extend/plugins/really-simple-captcha/\">Really Simple Captcha plugin</a>."
+msgstr "Sie müssen zuerst das Plugin <a target=\"_blank\" href=\"http://wordpress.org/extend/plugins/really-simple-captcha/\">Really Simple Captcha</a> installieren."
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-general.php:63
+msgid "requires captcha image input upon submitting questions to the FAQ."
+msgstr "Erfordert die Eingabe der Captcha-Zeichenfolge bevor eine Frage abgesendet werden kann."
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-questions.php:4
+msgid "Show Related Questions"
+msgstr "Verwandte Fragen anzeigen"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-questions.php:8
+msgid "should specified related questions be shown on individual question posts/pages?"
+msgstr "Sollen weitere inhaltsbezogene Fragen auf Post/Seiten von individuellen Fragen angezeigt werden?"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-questions.php:12
+msgid "Show Excerpts"
+msgstr "Anzeigen der Auszüge"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-questions.php:16
+msgid "show excerpt of questions in the list for questions with a post/page (link to post/page)"
+msgstr "Anzeigen von Auszügen der Fragen in der Fragenliste auf einer Seite bzw. in einem Post (mit Link zur Seite bzw. zum Post)"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-questions.php:26
+msgid "Read More Link Text"
+msgstr "Weiterlesen Link Text"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-questions.php:29
+msgid "Text of the read more link when a question excerpt is shown."
+msgstr "Text für den Weiterlesen-Link, wenn der Fragenauszug angezeigt wird."
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-submit.php:5
+msgid "Order/Sort Groups"
+msgstr "Gruppen sortieren / Reihenfolge ändern"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-submit.php:5
+msgid "Order/sort your FAQ groups"
+msgstr "Gruppen sortieren / Reihenfolge ändern"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-submit.php:8
+#, fuzzy
+msgid "Resave Group Posts/Pages"
+msgstr "erneutes Speichern der Posts/Seiten"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-submit.php:8
+msgid "Are you sure you wish to check and reset all pages/posts created by FAQ groups?"
+msgstr "Sind Sie sicher, dass Sie alle Seiten/Post, die durch Gruppen erstellt wurden, zurücksetzen wollen?"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-submit.php:14
+msgid "Save Configuration"
+msgstr "Einstellungen speichern"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-wprelated.php:4
+msgid "User Access Level"
+msgstr "Benutzerzugriffsstufe"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-wprelated.php:12
+msgid "Contributor"
+msgstr "Mitarbeiter"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-wprelated.php:15
+msgid "Authors"
+msgstr "Autoren"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-wprelated.php:18
+msgid "Editors"
+msgstr "Redakteure"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-wprelated.php:21
+msgid "Administrators"
+msgstr "Administratoren"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-wprelated.php:33
+msgid "subscriber role cannot use the FAQ plugin"
+msgstr "Abonnenten haben keinen Zugriff auf das FAQ Plugin"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-wprelated.php:37
+msgid "Images Post ID"
+msgstr "Images Post ID"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-wprelated.php:40
+msgid "Post to use for saving the FAQ plugin images through the media uploader."
+msgstr "Post der zum Speichern der FAQ Plugin Bilder genutzt wird, die durch den Media Uploader gesendet wurden. "
+
+#: ../tags/1.4.3.1/views/admin/questions/index.php:10
+msgid "Show all FAQ questions"
+msgstr "Zeige alle Fragen"
+
+#: ../tags/1.4.3.1/views/admin/questions/index.php:12
+msgid "Show paginated FAQ questions"
+msgstr "Seitennavigation in Fragen anzeigen"
+
+#: ../tags/1.4.3.1/views/admin/questions/index.php:29
+msgid "Search Questions"
+msgstr "Fragen durchsuchen"
+
+#: ../tags/1.4.3.1/views/admin/questions/loop.php:2
+msgid "Are you sure you wish to execute this action on the selected questions?"
+msgstr "Sind Sie sicher, dass Sie diese Aktion bei allen ausgewählten Fragen durchführen möchten?"
+
+#: ../tags/1.4.3.1/views/admin/questions/loop.php:8
+msgid "Move to group..."
+msgstr "in Gruppe verschieben..."
+
+#: ../tags/1.4.3.1/views/admin/questions/loop.php:9
+msgid "Set as Approved"
+msgstr "auf \"freigegeben\" setzen"
+
+#: ../tags/1.4.3.1/views/admin/questions/loop.php:10
+msgid "Set as Unapproved"
+msgstr "auf \"nicht freigegeben\" setzen"
+
+#: ../tags/1.4.3.1/views/admin/questions/loop.php:17
+msgid "Select Group"
+msgstr "Gruppe auswählen"
+
+#: ../tags/1.4.3.1/views/admin/questions/loop.php:32
+msgid "Show Approved Only"
+msgstr "nur \"freigegebene\" anzeigen"
+
+#: ../tags/1.4.3.1/views/admin/questions/loop.php:33
+msgid "Show Unapproved Only"
+msgstr "nur \"nicht freigegebene\" anzeigen"
+
+#: ../tags/1.4.3.1/views/admin/questions/loop.php:39
+msgid "- All Groups -"
+msgstr "- alle Gruppen -"
+
+#: ../tags/1.4.3.1/views/admin/questions/loop.php:72
+#: ../tags/1.4.3.1/views/admin/questions/loop.php:84
+msgid "Date"
+msgstr "Datum"
+
+#: ../tags/1.4.3.1/views/admin/questions/loop.php:98
+msgid "Are you sure you want to delete this question?"
+msgstr "Sind Sie sicher, dass Sie diese Frage löschen möchten?"
+
+#: ../tags/1.4.3.1/views/admin/questions/loop.php:99
+#: ../tags/1.4.3.1/views/admin/questions/related.php:2
+#: ../tags/1.4.3.1/views/admin/questions/related.php:12
+msgid "Related Questions"
+msgstr "Verwandte Fragen"
+
+#: ../tags/1.4.3.1/views/admin/questions/loop.php:148
+msgid "No questions were found, please add one."
+msgstr "Es wurden keine Fragen gefunden."
+
+#: ../tags/1.4.3.1/views/admin/questions/order.php:4
+msgid "&larr; Back to Group"
+msgstr "&larr; zurück zur Gruppe"
+
+#: ../tags/1.4.3.1/views/admin/questions/order.php:6
+msgid "Drag and drop the questions below to order them"
+msgstr "Ändern Sie die Reihenfolge der Fragen mittels Drag & Drop."
+
+#: ../tags/1.4.3.1/views/admin/questions/order.php:33
+#: ../tags/1.4.3.1/views/admin/questions/related.php:55
+msgid "No questions were found"
+msgstr "Es wurden keine Fragen gefunden."
+
+#: ../tags/1.4.3.1/views/admin/questions/related.php:5
+msgid "Drag and drop questions related to: "
+msgstr "Weisen Sie verwandte Fragen mittels Drag & Drop der nachstehenden Frage zu:"
+
+#: ../tags/1.4.3.1/views/admin/questions/related.php:16
+msgid "Drag and drop related questions here"
+msgstr "Verwandte Fragen hierher ziehen"
+
+#: ../tags/1.4.3.1/views/admin/questions/related.php:50
+msgid "Drag and drop unrelated questions here"
+msgstr "Nicht verwandte Fragen hierher ziehen"
+
+#: ../tags/1.4.3.1/views/admin/questions/save.php:40
+msgid "Word count"
+msgstr "Wortanzahl"
+
+#: ../tags/1.4.3.1/views/default/askbox.php:1
+msgid "Ask a Question"
+msgstr "Stellen Sie Ihre Frage"
+
+#: ../tags/1.4.3.1/views/default/askbox.php:2
+msgid "Use the form below to ask a question"
+msgstr "Nutzen Sie das nachstehende Formular, um Ihre Frage zu stellen."
+
+#: ../tags/1.4.3.1/views/default/askbox.php:11
+msgid "Email Address"
+msgstr "Ihre E-Mail-Adresse"
+
+#: ../tags/1.4.3.1/views/default/askbox.php:19
+msgid "Your Question"
+msgstr "Ihre Frage"
+
+#: ../tags/1.4.3.1/views/default/askbox.php:33
+msgid "Please fill in the code below:"
+msgstr "Bitte tragen Sie den Code im untenstehenden Feld ein:"
+
+#: ../tags/1.4.3.1/views/default/askbox.php:40
+msgid "Ask Question"
+msgstr "Frage absenden"
+
+#: ../tags/1.4.3.1/views/default/searchbox.php:1
+msgid "Search the FAQs"
+msgstr "Durchsuchen der FAQs"
+
+#: ../tags/1.4.3.1/views/default/searchbox.php:2
+msgid "Use the form below to search the FAQs"
+msgstr "Nutzen Sie das untenstehende Feld, um die Fragen zu durchsuchen."
+
+#: ../tags/1.4.3.1/views/default/searchbox.php:15
+msgid "Search for"
+msgstr "suche nach"
+
+#: ../tags/1.4.3.1/views/default/searchbox.php:18
+msgid "in"
+msgstr "in"
+
+#: ../tags/1.4.3.1/views/default/searchbox.php:21
+msgid "the entire FAQ"
+msgstr "allen Fragen"
+
+#: ../tags/1.4.3.1/views/default/searchbox.php:32
+msgid "Search"
+msgstr "Suchen"
+
+#: ../tags/1.4.3.1/views/default/searchbox.php:33
+msgid "loading"
+msgstr "einlesen"
+
+#: ../tags/1.4.3.1/views/default/groups/view.php:9
+msgid "Edit Group"
+msgstr "Gruppe bearbeiten"
+
+#: ../tags/1.4.3.1/views/default/groups/view.php:9
+msgid "Change the details of this group"
+msgstr "Ändern der Gruppendetails"
+
+#: ../tags/1.4.3.1/views/default/groups/view.php:10
+msgid "Are you sure you wish to remove this group and all its questions?"
+msgstr "Sind Sie sicher, dass Sie diese Gruppe mit allen darin enthaltenen Fragen löschen möchten?"
+
+#: ../tags/1.4.3.1/views/default/questions/loop.php:29
+#: ../tags/1.4.3.1/views/default/questions/loop.php:79
+#: ../tags/1.4.3.1/views/default/questions/loop.php:107
+#: ../tags/1.4.3.1/views/default/questions/view.php:11
+msgid "Edit Question"
+msgstr "Frage bearbeiten"
+
+#: ../tags/1.4.3.1/views/default/questions/loop.php:30
+#: ../tags/1.4.3.1/views/default/questions/loop.php:80
+#: ../tags/1.4.3.1/views/default/questions/loop.php:108
+#: ../tags/1.4.3.1/views/default/questions/view.php:12
+msgid "Delete Question"
+msgstr "Frage löschen"
+
+#: ../tags/1.4.3.1/views/default/questions/loop.php:30
+msgid "Are you sure you wish to remove this question permanently?"
+msgstr "Sind Sie sicher, dass Sie diese Frage löschen möchten?"
+
+#: ../tags/1.4.3.1/views/default/questions/loop.php:80
+#: ../tags/1.4.3.1/views/default/questions/loop.php:108
+msgid "Are you sure you wish to permanently remove this question?"
+msgstr "Sind Sie sicher, dass Sie diese Frage löschen möchten?"
+
+#: ../tags/1.4.3.1/views/default/questions/view.php:12
+msgid "Are you sure you wish to permanently delete this question?"
+msgstr "Sind Sie sicher, dass Sie diese Frage löschen möchten?"
+
+#: ../tags/1.4.3.1/views/default/questions/view.php:33
+msgid "Related FAQs"
+msgstr "verwandte Fragen"
+
+#: ../tags/1.4.3.1/views/email/ask.php:2
+msgid "Thank you for submitting your question:"
+msgstr "Vielen Dank für die Übermittlung Ihrer Frage:"
+
+#: ../tags/1.4.3.1/views/email/ask.php:7
+msgid "The administrator will answer and approve the question shortly."
+msgstr "Ihre Frage wird schnellstmöglich beantwortet."
+
+#: ../tags/1.4.3.1/views/email/ask.php:8
+msgid "You may be notified by email when the question has been answered/changed."
+msgstr "Sie werden per E-Mail benachrichtigt, sobald Ihre Frage beantwortet wurde."
+
+#: ../tags/1.4.3.1/views/email/notify.php:2
+msgid "The question you asked previously has been answered by the administrator."
+msgstr "Die Frage, die Sie uns gestellt haben, wurde beantwortet."
+
+#: ../tags/1.4.3.1/views/email/notify.php:6
+msgid "Question:"
+msgstr "Frage:"
+
+#: ../tags/1.4.3.1/views/email/notify.php:11
+msgid "Answer:"
+msgstr "Antwort:"
+
+#: ../tags/1.4.3.1/views/email/question.php:2
+msgid "A new FAQ question has been submitted"
+msgstr "Eine neue Frage wurde zur Beantwortung abgeschickt."
+
+#: ../tags/1.4.3.1/views/email/question.php:7
+msgid "Follow the URL below to answer and approve the question"
+msgstr "Klicken Sie auf den nachfolgenden Link, um die Frage beantworten zu können und freizugeben."
+
+#: ../tags/1.4.5/views/admin/widget.php:22
+msgid "Number"
+msgstr "Anzahl"
+
+#: ../tags/1.4.5/views/admin/widget.php:27
+#: ../tags/1.4.5/views/admin/widget.php:36
+msgid "Order"
+msgstr "Sortierung"
+
+#: ../tags/1.4.5/views/admin/widget.php:32
+msgid "by"
+msgstr "nach"
+
+#: ../tags/1.4.5/views/admin/metaboxes/settings-accordion.php:42
+msgid "Collapsible Questions"
+msgstr "Fragen zuklappbar"
+
+#: ../tags/1.4.5/views/admin/metaboxes/settings-accordion.php:44
+#: ../tags/1.4.5/views/admin/metaboxes/settings-questions.php:6
+msgid "Enabled"
+msgstr "aktiviert"
+
+#: ../tags/1.4.5/views/admin/metaboxes/settings-accordion.php:45
+#: ../tags/1.4.5/views/admin/metaboxes/settings-questions.php:7
+msgid "Disabled"
+msgstr "deaktiviert"
+
+#: ../tags/1.4.5/views/admin/metaboxes/settings-accordion.php:46
+msgid "Enable this to allow questions to be closed when clicked again."
+msgstr "Aktivieren, um das zuklappen einer Frage durch erneutes Klicken zu ermöglichen"
+
+#: ../tags/1.4.5/views/admin/metaboxes/settings-customcss.php:4
+msgid "Theme Folder"
+msgstr "Theme Verzeichnis"
+
+#: ../tags/1.4.5/views/admin/metaboxes/settings-customcss.php:12
+#, fuzzy
+msgid "Select the folder inside \"wp-checkout/views/\" to take shop view files from. eg. \"default\""
+msgstr "Wählen Sie einen Eintrag aus, der sich im Verzeichnis \"wp-faq/views/\" befindet, z. B. \"default\""
+
+#: ../tags/1.4.5/views/admin/metaboxes/settings-customcss.php:17
+msgid "Use Theme Style File?"
+msgstr "Verwende CSS-Datei aus Theme"
+
+#: ../tags/1.4.5/views/admin/metaboxes/settings-customcss.php:21
+msgid "This will load a style.css file inside the theme folder above."
+msgstr "Bewirkt das Laden der CSS-Datei aus dem oben genannten Ordner"
+
+#: ../tags/1.4.5/views/admin/metaboxes/settings-questions.php:4
+msgid "Apply the_content Filter"
+msgstr "Zuweisen des \"the_content\" Filters"
+
+#: ../tags/1.4.5/views/admin/metaboxes/settings-questions.php:8
+msgid "Turn this on to parse answers through \"the_content\" filter used by 3rd party plugins."
+msgstr "Aktivieren, um die Verarbeitung von Antworten mit dem \"the_content\" Filter durch Drittanbieter-Plug-Ins zu ermöglichen"
+
+#: ../tags/1.4.5/views/admin/metaboxes/settings-submit.php:8
+msgid "Resave Posts/Pages"
+msgstr "erneutes Speichern der Posts/Seiten"
+
+#: ../tags/1.4.5/views/admin/metaboxes/settings-submit.php:8
+msgid "Resave Group and Question Posts/Pages"
+msgstr "erneutes Speichern der Posts/Seiten von Gruppen und Fragen"
+
+#: ../tags/1.4.5/views/admin/questions/loop.php:5
+msgid "Change the order of all questions."
+msgstr "Reihenfolge aller Fragen ändern"
+
+#: ../tags/1.4.5/views/admin/questions/order.php:7
+msgid "&larr; Back to Questions"
+msgstr "&larr; zurück zu den Fragen"
+
+#: ../tags/1.4.5/views/admin/questions/order.php:13
+msgid "This changes the order of questions inside this group for the <code>[wpfaqgroup id=\""
+msgstr "Das ändert die Reihenfolge der Fragen innerhalb dieser Gruppe für <code>[wpfaqgroup id=\""
+
+#: ../tags/1.4.5/views/admin/questions/order.php:15
+msgid "This changes the order of all questions for the <code>[wpfaqs]</code> shortcode."
+msgstr "Die Änderung wirkt sich auf alle Fragen mit der Verknüpfung  <code>[wpfaqs]</code> aus."
+
+#: ../tags/1.4.6/views/admin/dashboard-widget.php:2
+#, fuzzy
+msgid "Groups &amp; Questions"
+msgstr "Stellen Sie Ihre Frage"
+
+#: ../tags/1.4.6/views/admin/dashboard-widget.php:15
+#, fuzzy
+msgid "Approved Questions"
+msgstr "Reihenfolge ändern"
+
+#: ../tags/1.4.6/views/admin/dashboard-widget.php:19
+#, fuzzy
+msgid "Unapproved Questions"
+msgstr "Speichern"
+
+#: ../tags/1.4.6/views/admin/dashboard-widget.php:26
+#, fuzzy
+msgid "Latest Questions"
+msgstr "Verwandte Fragen"
+
+#: ../tags/1.4.6/views/admin/dashboard-widget.php:41
+#, fuzzy
+msgid "There are no questions yet!"
+msgstr "Es ist eine neue Version verfügbar von"
+
+#: ../tags/1.4.6/views/admin/dashboard-widget.php:42
+#, fuzzy
+msgid "Add a Question"
+msgstr "Stellen Sie Ihre Frage"
+
+#: ../tags/1.4.6/views/admin/submitserial.php:16
+msgid "Cancel"
+msgstr ""
+
+#: ../tags/1.4.6/views/admin/submitserial.php:23
+msgid "Close"
+msgstr ""
+
+#: ../tags/1.4.6/views/admin/metaboxes/settings-customcss.php:12
+msgid "Select the folder inside \"wp-faq/views/\" to take shop view files from. eg. \"default\""
+msgstr "Wählen Sie einen Eintrag aus, der sich im Verzeichnis \"wp-faq/views/\" befindet, z. B. \"default\""
+
+#: ../tags/1.4.6/views/email/question.php:2
+#, fuzzy
+msgid "A new FAQ question has been submitted:"
+msgstr "Eine neue Frage wurde zur Beantwortung abgeschickt."
+
+#: ../tags/1.4.6/views/email/question.php:11
+msgid "The email of this user is:"
+msgstr ""
+
