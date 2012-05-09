@@ -37,43 +37,29 @@
 
 <div id="sort-search-box">
   <div class="input-append">
-    <form action="" method="post">
+    <form action="<?= url_for('@search_collectibles_for_sale'); ?>" method="post" id="form-discover-collectibles">
       <div class="btn-group">
-        <div class="append-left-gray">Sort By <strong id="sortByName">All Prices</strong></div>
+        <div class="append-left-gray">Sort By <strong id="sortByName">Most Recent</strong></div>
         <a href="#" data-toggle="dropdown" class="btn gray-button dropdown-toggle">
           <span class="caret arrow-up"></span><br><span class="caret arrow-down"></span>
         </a>
         <ul class="dropdown-menu">
+          <li><a href="javascript:" class="sortBy" data-name="Most Recent" data-sort="most-recent">Sort by <strong>Most Recent</strong></a></li>
           <li><a href="javascript:" class="sortBy" data-name="Under $100" data-sort="under-100">Sort by <strong>Under $100</strong></a></li>
           <li><a href="javascript:" class="sortBy" data-name="$100 - $250" data-sort="100-200">Sort by <strong>$100 - $250</strong></a></li>
           <li><a href="javascript:" class="sortBy" data-name="Over $250" data-sort="over-250">Sort by <strong>Over $250</strong></a></li>
-          <li><a href="javascript:" class="sortBy" data-name="Most Recent" data-sort="most-recent">Sort by <strong>Most Recent</strong></a></li>
         </ul>
       </div>
-      <input type="text" size="16" id="appendedPrependedInput" class="input-sort-by"><button type="button" class="btn gray-button"><strong>Search</strong></button>
+      <input name="q" type="text" size="16" id="appendedPrependedInput" class="input-sort-by"><button type="submit" class="btn gray-button"><strong>Search</strong></button>
+      <input type="hidden" name="s" id="sortByValue" value="most-recent">
       </form>
   </div>
 </div>
 
 <div id="items-for-sale">
-  <div class="row thumbnails">
-    <?php
-      /** @var $collectibles_for_sale CollectibleForSale[] */
-      foreach ($collectibles_for_sale as $i => $collectible_for_sale)
-      {
-        include_partial(
-          'marketplace/collectible_for_sale_grid_view_square_small',
-          array('collectible_for_sale' => $collectible_for_sale, 'i' => $i)
-        );
-      }
-    ?>
+  <div id="collectibles" class="row thumbnails">
+    <?php include_component('marketplace', 'discoverCollectiblesForSale'); ?>
   </div>
-  <button class="btn btn-small gray-button see-more-full"
-          id="seemore-featured-week"
-          data-url="<?= url_for('@ajax_collections?section=component&page=featuredWeekCollectibles') ?>"
-          data-target="#weeks-promo-box div.imageset">
-    See more
-  </button>
 </div>
 
 <script>
@@ -85,6 +71,21 @@ $(document).ready(function()
   {
     $('#sortByName').html($(this).data('name'));
     $('#sortByValue').val($(this).data('sort'));
+  });
+
+  var $url = '<?= url_for('@ajax_marketplace?section=component&page=discoverCollectiblesForSale') ?>';
+  var $form = $('#form-discover-collectibles');
+
+  $form.submit(function()
+  {
+    $('#collectibles').fadeOut();
+
+    $.post($url +'?p=1', $form.serialize(), function(data)
+    {
+      $('#collectibles').html(data).fadeIn();
+    },'html');
+
+    return false;
   });
 });
 </script>
