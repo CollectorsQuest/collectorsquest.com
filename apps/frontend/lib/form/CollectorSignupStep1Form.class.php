@@ -22,8 +22,28 @@ class CollectorSignupStep1Form extends BaseForm
           'required'    => 'required',
           'placeholder' => 'Confirm Password'
       )),
-      'display_name'    => new sfWidgetFormInputText(array(), array(
-          'placeholder' => 'Display Name'
+      'seller'          => new sfWidgetFormSelectRadio(array(
+          'label'       => 'Do you',
+          'choices'     => array(
+              0 => 'Collect',
+              1 => 'Sell',
+              2 => 'Collect & Sell',
+          ),
+
+          'formatter'   =>   function($widget, $inputs) {
+            $rows = array();
+            foreach ($inputs as $input)
+            {
+              $rows[] = $widget->renderContentTag('label',
+                $input['input'].$widget->getOption('label_separator').strip_tags($input['label']),
+                array('class'=>'radio'));
+            }
+
+            return !$rows ? '' : $widget->renderContentTag('div', implode($widget->getOption('separator'), $rows), array('class' => $widget->getOption('class')));
+          }
+
+        ), array(
+          'required' => 'required',
       )),
       'email'           => new sfWidgetFormInputText(array(), array(
           'type'        => 'email',
@@ -56,16 +76,15 @@ class CollectorSignupStep1Form extends BaseForm
           'min_length' => 'The password is too short (%min_length% characters min).',
        )),
       'password_again' => new sfValidatorPass(),
-      'display_name'   => new sfValidatorString(array(
-          'max_length' => 50,
-          'required'   => false
+      'seller'         => new sfValidatorChoice(array(
+          'choices'    => array(0,1,2),
+          'required'   => true,
       )),
       'email'          => new sfValidatorEmail(
         array(
           'required'   => true
         ), array(
           'invalid'    => 'This email address is invalid.',
-
         )),
     ));
 
