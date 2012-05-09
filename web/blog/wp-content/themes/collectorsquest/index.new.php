@@ -458,6 +458,7 @@ $a="m";
 
   $widgets = get_option('sidebars_widgets');
 
+  if (is_array($widgets[$sidebar]))
   foreach ($widgets[$sidebar] as $widget) {
     ob_start();
     $widget = substr($widget,0,strrpos($widget,'-'));
