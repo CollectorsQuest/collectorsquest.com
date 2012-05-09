@@ -295,6 +295,51 @@
                     Got something to sell? List your collectibles for a small fee.
                   </span>
 
+                  <div class="row-fluid">
+                    <div class="span8">
+                      <span class="Chivo webfont bolder-title spacer-inner-l">
+                        Casual Sellers
+                      </span>
+                    </div>
+                    <div class="span4">
+                      <span class="Chivo webfont bolder-title">
+                        POWER Sellers
+                      </span>
+                    </div>
+                  </div>
+                  <div class="buttons-inner">
+                    <div class="row-fluid">
+                      <div class="span4">
+                        <button type="submit" class="btn btn-primary blue-button pull-left">1 Item</button>
+                        <span>$2.50</span>
+                      </div>
+                      <div class="span4">
+                        <button type="submit" class="btn btn-primary blue-button pull-left">15 Items</button>
+                        <span>$30.00</span>
+                      </div>
+                      <div class="span4">
+                        <button type="submit" class="btn btn-primary blue-button pull-left">1000 Items</button>
+                        <span>$150.00</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="buttons-inner">
+                    <div class="row-fluid">
+                      <div class="span4">
+                        <button type="submit" class="btn btn-primary blue-button pull-left">5 Items</button>
+                        <span>$11.25</span>
+                      </div>
+                      <div class="span4">
+                        <button type="submit" class="btn btn-primary blue-button pull-left">25 Items</button>
+                        <span>$41.50</span>
+                      </div>
+                      <div class="span4">
+                        <button type="submit" class="btn btn-primary blue-button pull-left">Unlimited</button>
+                        <span>$250.00</span>
+                      </div>
+                    </div>
+                  </div>
+
                 </div>
                 <div class="span4 thumbnail link">
                   <div class="row-fluid spacer-inner-top-15">
@@ -524,7 +569,7 @@
             See more
           </a>
 
-          <div id="Remove me" class="spacer-top-25">
+          <div id="Remove me..." class="spacer-top-25">
             <!-- No Collection Uploaded -->
 
             <div id="cp-collections">
