@@ -368,6 +368,24 @@ a.add-new-items-button {
 	}
 }
 
+.no-collections-uploaded-box {
+	background-color: @yellowLight !important;
+	border: none;
+	border-top: 1px solid @yellowLight;
+	border-bottom: 1px solid @yellowLight;
+	.box-shadow(none);
+	.border-radius(0);
+	height: 91px;
+
+	.info-no-collections-uploaded {
+		color: @blueDark;
+		.custom-font(20px, 30px, italic, normal);
+		display: block;
+		margin: 15px 20px 10px;
+		letter-spacing: 0.04em;
+	}
+}
+
 
 #collectibles-to-sort {
 	.thumbnails {
@@ -399,9 +417,15 @@ a.add-new-items-button {
 
 .buttons-inner {
 	margin: 5px 0 5px 15px;
+	.blue-button {
+		width: 104px;
+	}
 }
 
-
+.plan-price {
+	display: inline-block;
+	margin: 10px 0 0 20px;
+}
 
 
 

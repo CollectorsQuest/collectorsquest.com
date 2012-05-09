@@ -295,7 +295,7 @@
                     Got something to sell? List your collectibles for a small fee.
                   </span>
 
-                  <div class="row-fluid">
+                  <div class="row-fluid spacer-bottom-15">
                     <div class="span8">
                       <span class="Chivo webfont bolder-title spacer-inner-l">
                         Casual Sellers
@@ -311,15 +311,15 @@
                     <div class="row-fluid">
                       <div class="span4">
                         <button type="submit" class="btn btn-primary blue-button pull-left">1 Item</button>
-                        <span>$2.50</span>
+                        <span class="plan-price">$2.50</span>
                       </div>
                       <div class="span4">
                         <button type="submit" class="btn btn-primary blue-button pull-left">15 Items</button>
-                        <span>$30.00</span>
+                        <span class="plan-price">$30.00</span>
                       </div>
                       <div class="span4">
                         <button type="submit" class="btn btn-primary blue-button pull-left">1000 Items</button>
-                        <span>$150.00</span>
+                        <span class="plan-price">$150.00</span>
                       </div>
                     </div>
                   </div>
@@ -327,15 +327,15 @@
                     <div class="row-fluid">
                       <div class="span4">
                         <button type="submit" class="btn btn-primary blue-button pull-left">5 Items</button>
-                        <span>$11.25</span>
+                        <span class="plan-price">$11.25</span>
                       </div>
                       <div class="span4">
                         <button type="submit" class="btn btn-primary blue-button pull-left">25 Items</button>
-                        <span>$41.50</span>
+                        <span class="plan-price">$41.50</span>
                       </div>
                       <div class="span4">
                         <button type="submit" class="btn btn-primary blue-button pull-left">Unlimited</button>
-                        <span>$250.00</span>
+                        <span class="plan-price">$250.00</span>
                       </div>
                     </div>
                   </div>
@@ -574,7 +574,7 @@
 
             <div id="cp-collections">
               <div class="row thumbnails">
-                <div class="span12 thumbnail link no-collections-box">
+                <div class="span12 thumbnail link no-collections-uploaded-box">
                   <span class="Chivo webfont info-no-collections-uploaded">
                     Share your collection with the community today!<br>
                     Upload then sort your collectibles to get started.
