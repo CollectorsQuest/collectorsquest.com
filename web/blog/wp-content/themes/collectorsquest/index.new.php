@@ -405,10 +405,6 @@ $a="m";
 
 <?php
   ob_start();
-  get_sidebar('new');
-  $sidebar = ob_get_clean();
-
-  ob_start();
   get_footer();
   wp_footer();
   $footer = ob_get_clean();
@@ -440,8 +436,8 @@ $a="m";
   );
 
   $layout = str_replace(
-    array('<!-- Blog Head //-->', '<!-- Blog Content //-->', '<!-- Blog Sidebar //-->', '<!-- Blog Footer //-->'),
-    array($head, $content, $sidebar, $footer),
+    array('<!-- Blog Head //-->', '<!-- Blog Content //-->', '<!-- Blog Footer //-->'),
+    array($head, $content, $footer),
     $layout
   );
 
