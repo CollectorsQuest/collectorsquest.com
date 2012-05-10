@@ -1,2 +1,4 @@
 all:
   stylesheets: [frontend/modules/mycq.css]
+  components:
+    slot1: [mycq, navigation]

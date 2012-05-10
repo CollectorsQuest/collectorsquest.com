@@ -63,9 +63,9 @@ class cq_sub_pages_widget extends WP_Widget {
       <?php endif; ?>
 
   <?php if($post->post_parent): ?>
-    <?php $children = wp_list_pages('depth=1&title_li=&child_of='.$post->post_parent.'&echo=0'); ?>
+    <?php $children = wp_list_pages('depth=2&title_li=&child_of='.$post->post_parent.'&echo=0'); ?>
     <?php else: ?>
-    <?php $children = wp_list_pages('depth=1&title_li=&child_of='.$post->ID.'&echo=0'); ?>
+    <?php $children = wp_list_pages('depth=2&title_li=&child_of='.$post->ID.'&echo=0'); ?>
     <?php endif; ?>
   <?php if ($children) : ?>
   <?php $children = str_replace('current_page_item', 'active', $children); ?>

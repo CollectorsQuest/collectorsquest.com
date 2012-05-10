@@ -108,11 +108,14 @@ var COMMON = window.COMMON = (function(){
         show: false
       });
 
-      $('a.requires-login').on('click', function(e) {
-        $holder.modal('show');
+      $('.requires-login').on('click', function(e) {
+        if (!window.cq.authenticated) {
+          $holder.modal('show');
 
-        e.preventDefault();
-        return false;
+          e.preventDefault();
+          return false
+        }
+        return true;
       });
     }, // setupModalLoginRegistrationDialog
     setupScrollToTop: function() {

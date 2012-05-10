@@ -18,6 +18,14 @@ class _blogActions extends cqFrontendActions
       $this->data = zend_shm_cache_fetch($key);
     }
 
+    if (isset($this->data['breadcrumbs']) && is_array($this->data['breadcrumbs']))
+    {
+      foreach ($this->data['breadcrumbs'] as $breadcrumb)
+      {
+        $this->addBreadcrumb($breadcrumb['name'], @$breadcrumb['url']);
+      }
+    }
+
     $this->getResponse()->setTitle($this->data['title']);
 
     return sfView::SUCCESS;
