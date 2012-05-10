@@ -45,33 +45,27 @@ class cq_sub_pages_widget extends WP_Widget {
     if ( ! empty( $title ) ) :
       //echo $before_title . $title . $after_title;
     ?>
-
+<!--
     <div class="row-fluid sidebar-title">
       <div class="span12">
         <h3 class="Chivo webfont" style="visibility: visible;"><?php echo $title1; ?></h3>
       </div>
-     <!-- <div class="span4 text-right">
-        <a href="/blog" class="text-v-middle link-align">See all news »</a>&nbsp;
-      </div>-->
     </div>
-
+-->
       <?php else : ?>
-
+<!--
     <div class="row-fluid sidebar-title">
       <div class="span12">
         <h3 class="Chivo webfont" style="visibility: visible;"><?php echo $title1; //Other News?></h3>
       </div>
-      <!-- <div class="span4 text-right">
-        <a href="/blog" class="text-v-middle link-align">See all news »</a>&nbsp;
-      </div> -->
     </div>
-
+-->
       <?php endif; ?>
 
   <?php if($post->post_parent): ?>
-    <?php $children = wp_list_pages('title_li=&child_of='.$post->post_parent.'&echo=0'); ?>
+    <?php $children = wp_list_pages('depth=1&title_li=&child_of='.$post->post_parent.'&echo=0'); ?>
     <?php else: ?>
-    <?php $children = wp_list_pages('title_li=&child_of='.$post->ID.'&echo=0'); ?>
+    <?php $children = wp_list_pages('depth=1&title_li=&child_of='.$post->ID.'&echo=0'); ?>
     <?php endif; ?>
   <?php if ($children) : ?>
   <?php $children = str_replace('current_page_item', 'active', $children); ?>
