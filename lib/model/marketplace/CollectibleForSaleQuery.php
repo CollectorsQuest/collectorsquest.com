@@ -65,53 +65,17 @@ class CollectibleForSaleQuery extends BaseCollectibleForSaleQuery
    * @param string $comparison
    *
    * @return CollectibleForSaleQuery
-   * @throws PropelException
    */
   public function filterByContentCategory($content_category, $comparison = null)
   {
-    if ($content_category instanceof ContentCategory)
-    {
-      /** @var $content_category ContentCategory */
-
-      $this
-        ->joinCollectible()
-        ->useCollectibleQuery()
-          ->joinCollectionCollectible()
-          ->useCollectionCollectibleQuery()
-            ->joinCollection()
-            ->useCollectionQuery()
-              ->addUsingAlias(CollectionPeer::CONTENT_CATEGORY_ID, $content_category->getId(), $comparison)
-            ->endUse()
+    return $this
+      ->useCollectibleQuery()
+        ->useCollectionCollectibleQuery()
+          ->useCollectionQuery()
+            ->filterByContentCategory($content_category, $comparison)
           ->endUse()
-        ->endUse();
-    }
-    elseif ($content_category instanceof PropelCollection)
-    {
-      /** @var $content_category PropelCollection */
-
-      if (null === $comparison)
-      {
-        $comparison = Criteria::IN;
-      }
-
-      $this
-        ->joinCollectible()
-        ->useCollectibleQuery()
-          ->joinCollectionCollectible()
-          ->useCollectionCollectibleQuery()
-            ->joinCollection()
-            ->useCollectionQuery()
-              ->addUsingAlias(CollectionPeer::CONTENT_CATEGORY_ID, $content_category->toKeyValue('PrimaryKey', 'Id'), $comparison)
-            ->endUse()
-          ->endUse()
-        ->endUse();
-    }
-    else
-    {
-      throw new PropelException('filterByContentCategory() only accepts arguments of type ContentCategory or PropelCollection');
-    }
-
-    return $this;
+        ->endUse()
+      ->endUse();
   }
 
   /**
@@ -119,52 +83,21 @@ class CollectibleForSaleQuery extends BaseCollectibleForSaleQuery
    * @param string $comparison
    *
    * @return CollectibleForSaleQuery
-   * @throws PropelException
    */
-  public function filterByContentCategoryWithDescendants($content_category, $comparison = null)
+  public function filterByContentCategoryWithChildren($content_category, $comparison = null)
   {
-    /** @var $content_category ContentCategory */
-    if ($content_category instanceof ContentCategory)
-    {
-      $q = $this
-        ->joinCollectible()
-        ->useCollectibleQuery()
-          ->joinCollectionCollectible()
-          ->useCollectionCollectibleQuery()
-            ->joinCollection()
-            ->useCollectionQuery();
-
-      if ($comparison === Criteria::NOT_EQUAL || $comparison === Criteria::NOT_IN)
-      {
-        $q->addUsingAlias(CollectionPeer::CONTENT_CATEGORY_ID, $content_category->getId(), Criteria::NOT_EQUAL);
-        if ($children = $content_category->getChildren())
-        {
-          $q->addUsingAlias(CollectionPeer::CONTENT_CATEGORY_ID, $children->toKeyValue('PrimaryKey', 'Id'), Criteria::NOT_IN);
-        }
-      }
-      else
-      {
-        $q->addUsingAlias(CollectionPeer::CONTENT_CATEGORY_ID, $content_category->getId(), Criteria::EQUAL);
-
-        if ($descendants = $content_category->getDescendants())
-        {
-          $q
-            ->_or()
-            ->addUsingAlias(CollectionPeer::CONTENT_CATEGORY_ID, $descendants->toKeyValue('PrimaryKey', 'Id'), Criteria::IN);
-        }
-      }
-
-      $q
-            ->endUse()
+    return $this
+      ->useCollectibleQuery()
+        ->useCollectionCollectibleQuery()
+          ->useCollectionQuery()
+            ->filterByContentCategory(
+              ContentCategoryQuery::create()
+                ->descendantsOfObjectIncluded($content_category)->find(),
+              $comparison
+            )
           ->endUse()
-        ->endUse();
-    }
-    else
-    {
-      throw new PropelException('filterByContentCategory() only accepts arguments of type ContentCategory');
-    }
-
-    return $this;
+        ->endUse()
+      ->endUse();
   }
 
   /**
