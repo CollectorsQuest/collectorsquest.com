@@ -22,16 +22,21 @@ class CollectorCollectionQuery extends BaseCollectorCollectionQuery
 
       if ($comparison === Criteria::NOT_EQUAL || $comparison === Criteria::NOT_IN)
       {
-        $q
-          ->addUsingAlias(CollectionPeer::CONTENT_CATEGORY_ID, $content_category->getId(), Criteria::NOT_EQUAL)
-          ->addUsingAlias(CollectionPeer::CONTENT_CATEGORY_ID, $content_category->getChildren()->toKeyValue('PrimaryKey', 'Id'), Criteria::NOT_IN);
+        $q->addUsingAlias(CollectionPeer::CONTENT_CATEGORY_ID, $content_category->getId(), Criteria::NOT_EQUAL);
+        if ($children = $content_category->getChildren())
+        {
+          $q->addUsingAlias(CollectionPeer::CONTENT_CATEGORY_ID, $children->toKeyValue('PrimaryKey', 'Id'), Criteria::NOT_IN);
+        }
       }
       else
       {
-        $q
-          ->addUsingAlias(CollectionPeer::CONTENT_CATEGORY_ID, $content_category->getId(), Criteria::EQUAL)
-          ->_or()
-          ->addUsingAlias(CollectionPeer::CONTENT_CATEGORY_ID, $content_category->getDescendants()->toKeyValue('PrimaryKey', 'Id'), Criteria::IN);
+        $q->addUsingAlias(CollectionPeer::CONTENT_CATEGORY_ID, $content_category->getId(), Criteria::EQUAL);
+        if ($descendants = $content_category->getDescendants())
+        {
+          $q
+            ->_or()
+            ->addUsingAlias(CollectionPeer::CONTENT_CATEGORY_ID, $descendants->toKeyValue('PrimaryKey', 'Id'), Criteria::IN);
+        }
       }
 
       $q->endUse();
