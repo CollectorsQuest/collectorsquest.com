@@ -5,9 +5,8 @@ add_theme_support('post-thumbnails');
 
 /** @see http://blurback.com/post/1479456356/permissions-with-wordpress-custom-post-types */
 
-add_action('init', 'editorial_custom_post_type_init');
-
-function editorial_custom_post_type_init()
+add_action('init', 'cq_custom_post_type_init');
+function cq_custom_post_type_init()
 {
   $capabilities = array(
     'publish_posts'          => 'publish_editorials',
@@ -116,6 +115,81 @@ function editorial_custom_post_type_init()
     'menu_position'   => 100,
     'supports'        => array('title', 'editor', 'custom-fields', 'thumbnail')
   ));
+
+  register_post_type('featured_week', array(
+    'labels' => array(
+      'name'               => _x('Featured Week', 'post type general name'),
+      'singular_name'      => _x('Featured Week', 'post type singular name'),
+      'add_new'            => _x('Add New', 'Featured Week'),
+      'add_new_item'       => __('Add New Featured Week'),
+      'edit_item'          => __('Edit Featured Week'),
+      'new_item'           => __('New Featured Week'),
+      'view_item'          => __('View Featured Week'),
+      'search_items'       => __('Search Featured Weeks'),
+      'not_found'          => __('No Featured Weeks found'),
+      'not_found_in_trash' => __('No Featured Weeks found in Trash'),
+      'parent_item_colon'  => ''
+    ),
+    'public'          => true,
+    'show_ui'         => true,
+    'capability_type' => 'editorial',
+    'capabilities'    => $capabilities,
+    'hierarchical'    => false,
+    'rewrite'         => false,
+    'query_var'       => false,
+    'menu_position'   => 100,
+    'supports'        => array('title', 'editor', 'custom-fields', 'thumbnail')
+  ));
+
+  register_post_type('marketplace_explore', array(
+    'labels' => array(
+      'name'               => _x('Random Items for Sale', 'post type general name'),
+      'singular_name'      => _x('Random Item for Sale', 'post type singular name'),
+      'add_new'            => _x('Add New', 'Random Item'),
+      'add_new_item'       => __('Add New Random Item'),
+      'edit_item'          => __('Edit Random Item'),
+      'new_item'           => __('New Random Item for Sale'),
+      'view_item'          => __('View Random Items for Sale'),
+      'search_items'       => __('Search Random Items for Sale'),
+      'not_found'          => __('No Random Items for Sale found'),
+      'not_found_in_trash' => __('No Random Items for Sale found in Trash'),
+      'parent_item_colon'  => ''
+    ),
+    'public'          => true,
+    'show_ui'         => true,
+    'capability_type' => 'editorial',
+    'capabilities'    => $capabilities,
+    'hierarchical'    => false,
+    'rewrite'         => false,
+    'query_var'       => false,
+    'menu_position'   => 100,
+    'supports'        => array('title', 'custom-fields')
+  ));
+
+  register_post_type('marketplace_featured', array(
+    'labels' => array(
+      'name'               => _x('Featured Items for Sale', 'post type general name'),
+      'singular_name'      => _x('Featured Item for Sale', 'post type singular name'),
+      'add_new'            => _x('Add New', 'Featured Item'),
+      'add_new_item'       => __('Add New Featured Item'),
+      'edit_item'          => __('Edit Featured Item'),
+      'new_item'           => __('New Featured Item for Sale'),
+      'view_item'          => __('View Featured Items for Sale'),
+      'search_items'       => __('Search Featured Items for Sale'),
+      'not_found'          => __('No Featured Items for Sale found'),
+      'not_found_in_trash' => __('No Featured Items for Sale found in Trash'),
+      'parent_item_colon'  => ''
+    ),
+    'public'          => true,
+    'show_ui'         => true,
+    'capability_type' => 'editorial',
+    'capabilities'    => $capabilities,
+    'hierarchical'    => false,
+    'rewrite'         => false,
+    'query_var'       => false,
+    'menu_position'   => 100,
+    'supports'        => array('title', 'custom-fields')
+  ));
 }
 
 
@@ -162,6 +236,8 @@ function map_meta_cap_editorial($caps, $cap, $user_id, $args)
   /* Return the capabilities required by the user. */
   return $caps;
 }
+
+
 
 if ($_SERVER['HTTP_HOST'] == 'www.collectorsquest.dev' || $_SERVER['HTTP_HOST'] == 'www.collectorsquest.next' || $_SERVER['HTTP_HOST'] == 'www.cqnext.com') {
   /**
@@ -281,6 +357,27 @@ if ($_SERVER['HTTP_HOST'] == 'www.collectorsquest.dev' || $_SERVER['HTTP_HOST'] 
   }
   add_filter('the_tags','add_class_the_tags',10,1);
 
+  function add_fixed_sidebar() { ?>
+
+  <script type="text/javascript" src="/blog/wp-content/themes/collectorsquest/js/jquery-scrolltofixed-min.js"></script>
+
+  <script>
+
+    $(document).ready(function() {
+      $('#sidebar').scrollToFixed({
+        marginTop: 10,
+        limit: $('#footer').offset().top - 600
+      });
+    });
+
+
+  </script>
+
+  <?php }
+  add_action('wp_footer','add_fixed_sidebar');
+
+
+
 
   require_once 'lib/widgets/widgets.php';
 
@@ -288,7 +385,4 @@ if ($_SERVER['HTTP_HOST'] == 'www.collectorsquest.dev' || $_SERVER['HTTP_HOST'] 
   include_once 'lib/metaboxes/thumbs-spec.php';
 
 }
-
-
-
 
