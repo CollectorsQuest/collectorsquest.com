@@ -336,3 +336,13 @@ h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover
   border-bottom: none;
   color:@red
 }
+
+ul.sub-page-list li ul
+{
+  display: none;
+}
+ul.sub-page-list li.active ul, ul.sub-page-list li.current_page_ancestor ul
+{
+  display: block;
+  list-style:none
+}
