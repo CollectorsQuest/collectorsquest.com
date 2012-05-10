@@ -27,6 +27,8 @@ class cq_tags_widget extends WP_Widget {
    */
   public function widget( $args, $instance ) { ?>
 
+  <div class="tags-container-sidebar">
+
     <?php
     extract( $args );
     $title = apply_filters( 'widget_title', $instance['title'] );
@@ -59,6 +61,8 @@ class cq_tags_widget extends WP_Widget {
 
       <?php endif; ?>
   <p><?php the_tags('<ul class="cf" style="list-style: none; padding: 0; margin: 0;"><li>','</li><li>','</li></ul>'); ?></p>
+
+  </div>
 
   <?php
     echo $after_widget;

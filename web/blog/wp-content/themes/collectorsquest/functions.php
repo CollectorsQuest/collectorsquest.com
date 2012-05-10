@@ -349,7 +349,7 @@ if ($_SERVER['HTTP_HOST'] == 'www.collectorsquest.dev' || $_SERVER['HTTP_HOST'] 
   function add_class_the_tags($html){
     if (is_single()) {
       $postid = get_the_ID();
-      $html = str_replace('<a','<a class="rounded p-tag"',$html);
+      $html = str_replace('<a','<a class="tags"',$html);
       return $html;
     } else {
       return $html;
