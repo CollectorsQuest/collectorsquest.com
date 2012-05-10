@@ -5,6 +5,7 @@
 
   $data = array();
 
+  $data['title'] = wp_title('', false);
   $data['the_id'] = get_the_ID();
   $data['is_page'] = is_page();
   $data['is_single'] = is_single();
