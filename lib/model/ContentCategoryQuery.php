@@ -16,6 +16,11 @@ class ContentCategoryQuery extends BaseContentCategoryQuery
       ->filterByTreeLevel(1);
   }
 
+  /**
+   * Filter on only categories that have a related collectible for sale
+   *
+   * @return    ContentCategoryQuery
+   */
   public function withCollectiblesForSale()
   {
     return $this
@@ -30,6 +35,18 @@ class ContentCategoryQuery extends BaseContentCategoryQuery
       ->endUse()
       ->groupBy('Id')
     ;
+  }
+
+  /**
+   * Filter on only categories that have a related collection
+   *
+   * @return    ContentCategoryQuery
+   */
+  public function withCollections()
+  {
+    return $this
+      ->innerJoinCollection()
+      ->groupBy('Id');
   }
 
   /**

@@ -12,8 +12,6 @@ class marketplaceActions extends cqFrontendActions
     $this->spotlight = $q->limit(3)->find();
     $this->collectibles_for_sale = $q->limit(12)->find();
 
-
-
     return sfView::SUCCESS;
   }
 
