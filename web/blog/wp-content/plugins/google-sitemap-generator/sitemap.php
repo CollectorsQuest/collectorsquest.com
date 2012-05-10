@@ -1,15 +1,15 @@
 <?php
 
 /*
- $Id: sitemap.php 477227 2011-12-18 19:06:37Z arnee $
+ $Id: sitemap.php 540315 2012-05-05 18:19:14Z arnee $
 
  Google XML Sitemaps Generator for WordPress
  ==============================================================================
- 
+
  This generator will create a sitemaps.org compliant sitemap of your WordPress blog.
 
  For additional details like installation instructions, please check the readme.txt and documentation.txt files.
- 
+
  Have fun!
    Arne
 
@@ -18,12 +18,31 @@
  Plugin Name: Google XML Sitemaps
  Plugin URI: http://www.arnebrachhold.de/redir/sitemap-home/
  Description: This plugin will generate a special XML sitemap which will help search engines like Google, Yahoo, Bing and Ask.com to better index your blog.
- Version: 4.0beta8
+ Version: 4.0beta9
  Author: Arne Brachhold
  Author URI: http://www.arnebrachhold.de/
  Text Domain: sitemap
  Domain Path: /lang/
- 
+
+
+ Copyright 2005 - 2012 ARNE BRACHHOLD  (email : himself - arnebrachhold - de)
+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+ Please see license.txt for the full license.
+
 */
 
 /**
@@ -37,18 +56,20 @@ function sm_Setup() {
 	$fail = false;
 
 	//Check minimum PHP requirements, which is 5.1 at the moment.
-	if(version_compare(PHP_VERSION, "5.1", "<")) {
+	if (version_compare(PHP_VERSION, "5.1", "<")) {
 		add_action('admin_notices', 'sm_AddPhpVersionError');
 		$fail = true;
 	}
 
-	//Check minimum WP requirements, which is 2.9 at the moment.
-	if(version_compare($GLOBALS["wp_version"], "2.9", "<")) {
+	//Check minimum WP requirements, which is 3.3 at the moment.
+	if (version_compare($GLOBALS["wp_version"], "3.3", "<")) {
 		add_action('admin_notices', 'sm_AddWpVersionError');
 		$fail = true;
 	}
 
-	if(!$fail) require_once(trailingslashit(dirname(__FILE__)) . "sitemap-loader.php");
+	if (!$fail) {
+		require_once(trailingslashit(dirname(__FILE__)) . "sitemap-loader.php");
+	}
 }
 
 /**
@@ -58,7 +79,7 @@ function sm_Setup() {
  * @since 4.0
  */
 function sm_AddWpVersionError() {
-	echo "<div id='sm-version-error' class='error fade'><p><strong>" . __('Your WordPress version is too old for XML Sitemaps.', 'sitemap') . "</strong><br /> " . sprintf(__('Unfortunately this release of Google XML Sitemaps requires at least WordPress 2.9. You are using Wordpress %2$s, which is out-dated and insecure. Please upgrade or go to <a href="%1$s">active plugins</a> and deactivate the Google XML Sitemaps plugin to hide this message. You can download an older version of this plugin from the <a href="%3$s">plugin website</a>.', 'sitemap'), "plugins.php?plugin_status=active", $GLOBALS["wp_version"], "http://www.arnebrachhold.de/redir/sitemap-home/") . "</p></div>";
+	echo "<div id='sm-version-error' class='error fade'><p><strong>" . __('Your WordPress version is too old for XML Sitemaps.', 'sitemap') . "</strong><br /> " . sprintf(__('Unfortunately this release of Google XML Sitemaps requires at least WordPress %4$s. You are using Wordpress %2$s, which is out-dated and insecure. Please upgrade or go to <a href="%1$s">active plugins</a> and deactivate the Google XML Sitemaps plugin to hide this message. You can download an older version of this plugin from the <a href="%3$s">plugin website</a>.', 'sitemap'), "plugins.php?plugin_status=active", $GLOBALS["wp_version"], "http://www.arnebrachhold.de/redir/sitemap-home/","3.3") . "</p></div>";
 }
 
 /**
@@ -68,7 +89,7 @@ function sm_AddWpVersionError() {
  * @since 4.0
  */
 function sm_AddPhpVersionError() {
-	echo "<div id='sm-version-error' class='error fade'><p><strong>" . __('Your PHP version is too old for XML Sitemaps.', 'sitemap') . "</strong><br /> " . sprintf(__('Unfortunately this release of Google XML Sitemaps requires at least PHP 5.1. You are using PHP %2$s, which is out-dated and insecure. Please ask your web host to update your PHP installation or go to <a href="%1$s">active plugins</a> and deactivate the Google XML Sitemaps plugin to hide this message. You can download an older version of this plugin from the <a href="%3$s">plugin website</a>.', 'sitemap'), "plugins.php?plugin_status=active", PHP_VERSION, "http://www.arnebrachhold.de/redir/sitemap-home/") . "</p></div>";
+	echo "<div id='sm-version-error' class='error fade'><p><strong>" . __('Your PHP version is too old for XML Sitemaps.', 'sitemap') . "</strong><br /> " . sprintf(__('Unfortunately this release of Google XML Sitemaps requires at least PHP %4$s. You are using PHP %2$s, which is out-dated and insecure. Please ask your web host to update your PHP installation or go to <a href="%1$s">active plugins</a> and deactivate the Google XML Sitemaps plugin to hide this message. You can download an older version of this plugin from the <a href="%3$s">plugin website</a>.', 'sitemap'), "plugins.php?plugin_status=active", PHP_VERSION, "http://www.arnebrachhold.de/redir/sitemap-home/","5.1") . "</p></div>";
 }
 
 /**
@@ -83,7 +104,7 @@ function sm_GetInitFile() {
 }
 
 //Don't do anything if this file was called directly
-if(defined('ABSPATH') && defined('WPINC') && !class_exists("GoogleSitemapGeneratorLoader", false)) {
+if (defined('ABSPATH') && defined('WPINC') && !class_exists("GoogleSitemapGeneratorLoader", false)) {
 	sm_Setup();
 }
 
