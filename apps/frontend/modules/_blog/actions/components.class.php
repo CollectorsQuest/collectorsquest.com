@@ -24,4 +24,20 @@ class _blogComponents extends cqFrontendComponents
       $this->wp_user = wpUserQuery::create()->findOneById($this->data['the_id']);
     }
   }
+
+  public function executeBreadcrumbs()
+  {
+    $key = $this->getRequestParameter('key');
+
+    if (function_exists('xcache_get'))
+    {
+      $this->data = xcache_get($key);
+    }
+    else
+    {
+      $this->data = zend_shm_cache_fetch($key);
+    }
+
+    return sfView::SUCCESS;
+  }
 }

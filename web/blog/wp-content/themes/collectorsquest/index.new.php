@@ -20,22 +20,10 @@
     $data['tag'] = $wp_query->get_queried_object()->name;
   }
 
-  $home = array('name' => 'blog', 'url' => '/blog');
-  $url = $_SERVER["REQUEST_URI"];
+  require_once __DIR__ .'/../../plugins/wordpress-seo/frontend/class-breadcrumbs.php';
 
-  if (is_front_page()) { $crumbs = array( $home ); }
-  elseif (is_tag()) { $crumbs = array( $home, array('name' => 'Tag Archive: '.single_tag_title("", false), $url)); }
-  elseif (is_category()) { $crumbs = array( $home, array('name' => 'Category Archive: '.single_cat_title("", false), $url)); }
-  elseif (is_single()) { $crumbs = array( $home, array('name' => get_the_author_meta('display_name'), 'url' => '/blog/author/'.get_the_author_meta('nicename')),array('name' => get_the_title(), 'url' => null)); }
-  elseif (is_author()) { $crumbs = array( $home, array('name' => 'Archive for '.get_the_author_meta('display_name'), $url)); }
-  elseif (is_day()) { $crumbs = array( $home, array('name' => "Archive for ". the_time('F jS, Y'), $url)); }
-  elseif (is_month()) { $crumbs = array( $home, array('name' => "Archive for ". the_time('F, Y'), $url)); }
-  elseif (is_year()) { $crumbs = array( $home, array('name' => "Archive for ". the_time('Y'), $url)); }
-  elseif (isset( $_GET['paged']) && !empty( $_GET['paged'])) {echo "Blog Archives"; }
-  elseif (is_search()) { $crumbs = array( $home, array('name' => "Search Results", $url)); }
-
-  $data['breadcrumbs'] = $crumbs;
-
+  $wpseo_bc = new WPSEO_Breadcrumbs();
+  $data['breadcrumbs'] = $wpseo_bc->breadcrumb(null, null, false);
 
   ob_start();
   wp_head();

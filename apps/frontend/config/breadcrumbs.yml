@@ -4,9 +4,6 @@ ice_breadcrumbs:
   _lost: ''
   _default_case: 'ucwords'
 
-  _blog:
-    index: [{ name: 'Blog', route: blog }]
-
   _video:
     index: [{ name: 'Video', route: video }]
 
