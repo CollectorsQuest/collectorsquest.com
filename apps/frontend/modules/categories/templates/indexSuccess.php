@@ -6,10 +6,10 @@
   ?>
 
   <div class="span3">
-    <h2><?= link_to($category, 'marketplace_category_by_slug', $category); ?></h2>
+    <h2><?= link_to_content_category($category); ?></h2>
 
     <?php foreach ($category->getChildren(ContentCategoryQuery::create()->withCollections()->orderBy('Name')) as $child_category): ?>
-      <?php $level2_links[] = link_to($child_category, 'marketplace_category_by_slug', $child_category); ?>
+      <?php $level2_links[] =  link_to_content_category($child_category); ?>
     <?php endforeach; ?>
     <?php echo implode(', ', $level2_links); ?>
   </div>
