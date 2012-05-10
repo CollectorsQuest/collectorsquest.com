@@ -1,0 +1,5 @@
+_navigation:
+  enabled:     true
+  contextual:  true
+  with_layout: false
+  lifetime:    300
