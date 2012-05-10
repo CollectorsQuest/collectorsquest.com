@@ -1,0 +1,1587 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WordPress FAQ plugin\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-11-15 11:39+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Antonie Potgieter <antonie@tribulant.com>\n"
+"Language-Team: Visar Uruqi <visar.uruqi@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-Country: SOUTH AFRICA\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../wp-faq-ajax.php:29
+msgid "Sorry... you do not have the permission to access this page"
+msgstr "Na falni... ju nuk keni privilegje të mjaftueshme për t'ju qasur kësaj faqe"
+
+#: ../wp-faq-ajax.php:42
+msgid "Class method \""
+msgstr "Class method \""
+
+#: ../wp-faq-ajax.php:98
+#: ../wp-faq-ajax.php:211
+#: ../wp-faq-ajax.php:249
+msgid "No data was posted"
+msgstr "Asnjë e dhënë nuk është postuar"
+
+#: ../wp-faq-ajax.php:99
+msgid "No identification number was passed, please try again"
+msgstr "Asnjë numër identifikimi nuk është kopjuar, ju lutem provoni më vonë"
+
+#: ../wp-faq-ajax.php:102
+msgid "Please fill in your email address"
+msgstr "Ju lutem plotësoni email adresën tuaj"
+
+#: ../wp-faq-ajax.php:103
+msgid "Please fill in a valid email address"
+msgstr "Ju lutem plotësoni një adresë valide"
+
+#: ../wp-faq-ajax.php:106
+#: ../models/question.php:85
+msgid "Please fill in a question"
+msgstr "Ju lutem plotësoni pyetjen"
+
+#: ../wp-faq-ajax.php:107
+msgid "No FAQ group was specified"
+msgstr "Asnjë FAQ grup nuk është speciffikuar"
+
+#: ../wp-faq-ajax.php:110
+msgid "FAQ group cannot be read"
+msgstr "Grupi i FAQ-it nuk mund të lexohet"
+
+#: ../wp-faq-ajax.php:116
+msgid "Please fill in the code in the image."
+msgstr "Ju lutem plotësoni kodin në imazh"
+
+#: ../wp-faq-ajax.php:117
+msgid "Your code does not match the code in the image."
+msgstr "Kodi juaj nuk është i njëjtë me kodin në imazh"
+
+#: ../wp-faq-ajax.php:121
+msgid "Please login before submitting questions"
+msgstr "Ju lutem kyquni para se të shkruani pyetje"
+
+#: ../wp-faq-ajax.php:124
+#: ../wp-faq-ajax.php:129
+#: ../models/question.php:86
+msgid "Please fill in an answer"
+msgstr "Ju lutem plotësoni përgjigjjen"
+
+#: ../wp-faq-ajax.php:143
+#: ../wp-faq-ajax.php:153
+msgid "New FAQ Question"
+msgstr "Një pyetje e re për FAQ"
+
+#: ../wp-faq-ajax.php:164
+msgid "Question Asked"
+msgstr "Një pyetje është ngritur"
+
+#: ../wp-faq-ajax.php:171
+msgid "Your question has been submitted for answering"
+msgstr "Pyetja juaj është deleguar për tu përgjigjur"
+
+#: ../wp-faq-ajax.php:173
+msgid "Your question cannot be saved. Please try again"
+msgstr "Pyetja juaj nuk mund të ruhet. Ju lutem provoni edhe një herë"
+
+#: ../wp-faq-ajax.php:206
+msgid "Groups have been ordered"
+msgstr "Grupet janë renditur"
+
+#: ../wp-faq-ajax.php:208
+msgid "No sortable items are available"
+msgstr "Asnjë element i sortueshëm nuk është në dispozicion"
+
+#: ../wp-faq-ajax.php:232
+#: ../wp-faq-ajax.php:243
+#, fuzzy
+msgid "Questions have been ordered."
+msgstr "Pyetjet janë renditur"
+
+#: ../wp-faq-ajax.php:234
+#, fuzzy
+msgid "No sortable items are available."
+msgstr "Asnjë element i sortueshëm nuk është në dispozicion"
+
+#: ../wp-faq-ajax.php:275
+msgid "Related questions have been updated"
+msgstr "Pytjet relevante janë ndryshuar"
+
+#: ../wp-faq-plugin.php:250
+#: ../wp-faq.php:433
+#, fuzzy
+msgid "Please fill in a serial key"
+msgstr "Ju lutem plotësoni përgjigjjen"
+
+#: ../wp-faq-plugin.php:253
+#: ../wp-faq.php:436
+#, fuzzy
+msgid "Serial key is invalid, please try again"
+msgstr "Asnjë numër identifikimi nuk është kopjuar, ju lutem provoni më vonë"
+
+#: ../wp-faq-plugin.php:334
+msgid "Continue Reading..."
+msgstr ""
+
+#: ../wp-faq-plugin.php:924
+msgid "FAQ plugin images (do not remove)"
+msgstr ""
+
+#: ../wp-faq-plugin.php:925
+msgid "This is a placeholder for the FAQ plugin images. You may edit and reuse this post but do not remove it."
+msgstr ""
+
+#: ../wp-faq-plugin.php:1123
+msgid "Rendering of \""
+msgstr "Rendering of \""
+
+#: ../wp-faq-plugin.php:1126
+msgid "No file was specified for rendering"
+msgstr "Asnjë fajll nuk është cekur për renderim"
+
+#: ../wp-faq.php:239
+#: ../wp-faq.php:395
+msgid "FAQs"
+msgstr "FAQs"
+
+#: ../wp-faq.php:240
+msgid "Overview"
+msgstr "Pamje përmbledhëse"
+
+#: ../wp-faq.php:241
+msgid "Configuration"
+msgstr "Konfigurimi"
+
+#: ../wp-faq.php:242
+msgid "Groups"
+msgstr "Grupet"
+
+#: ../wp-faq.php:243
+msgid "Save a Group"
+msgstr "Ruaj një grup"
+
+#: ../wp-faq.php:244
+msgid "Questions"
+msgstr "Pytjet"
+
+#: ../wp-faq.php:245
+msgid "Save a Question"
+msgstr "Ruaj një pyetje"
+
+#: ../wp-faq.php:248
+msgid "Support &amp; Help"
+msgstr "Përkrahja &amp; Ndihma"
+
+#: ../wp-faq.php:265
+msgid "FAQ Group"
+msgstr "FAQ Grupi"
+
+#: ../wp-faq.php:266
+msgid "WordPress Post/Page"
+msgstr "Wordpress Artikull/Faqe"
+
+#: ../wp-faq.php:267
+msgid "Save FAQ"
+msgstr "Ruaj FAQ"
+
+#: ../wp-faq.php:280
+msgid "Save Settings"
+msgstr "Ruaj vetitë"
+
+#: ../wp-faq.php:281
+msgid "Sections"
+msgstr "Seksionet"
+
+#: ../wp-faq.php:284
+msgid "WordPress Related"
+msgstr "Wordpress relevante"
+
+#: ../wp-faq.php:287
+msgid "General Configuration"
+msgstr "Konfigurime gjenerale"
+
+#: ../wp-faq.php:288
+msgid "Ask Questions Settings"
+msgstr "Shtro pyetje vetitë"
+
+#: ../wp-faq.php:289
+msgid "Questions Settings"
+msgstr "Pyetje vetitë"
+
+#: ../wp-faq.php:290
+msgid "Accordion Settings"
+msgstr "Accordion vetitë"
+
+#: ../wp-faq.php:291
+#, fuzzy
+msgid "Theme &amp; Custom CSS"
+msgstr "Përdor Custom CSS"
+
+#: ../wp-faq.php:358
+#, fuzzy
+msgid "Please fill in a serial key for the FAQ plugin to continue use."
+msgstr "Ju lutem plotësoni një titull për këtë artikull/faqe"
+
+#: ../wp-faq.php:359
+#, fuzzy
+msgid "Submit Serial Key"
+msgstr "Vendos një tiketë"
+
+#: ../wp-faq.php:393
+msgid "Frequently asked questions in your sidebar(s)"
+msgstr "Pyetjet më të shpeshta në sidebar-in tuj"
+
+#: ../wp-faq.php:416
+msgid "Serial Key"
+msgstr ""
+
+#: ../wp-faq.php:468
+msgid "There is a new version of "
+msgstr "Ekziston një version i ri i "
+
+#: ../wp-faq.php:485
+#, fuzzy
+msgid "FAQs Overview"
+msgstr "Pamje përmbledhëse"
+
+#: ../wp-faq.php:602
+msgid "You have <b>"
+msgstr "Ju keni <b>"
+
+#: ../wp-faq.php:622
+msgid "Group has been successfully saved"
+msgstr "Grupi është ruajtur me sukses"
+
+#: ../wp-faq.php:655
+msgid "Group cannot be read"
+msgstr "Grupi nuk mund të lexohet"
+
+#: ../wp-faq.php:659
+#: ../wp-faq.php:676
+#: ../models/groups_post.php:59
+msgid "No group was specified"
+msgstr "Asnjë grup nuk është cekur"
+
+#: ../wp-faq.php:669
+msgid "Group and all its questions have been removed"
+msgstr "Grupi dhe të gjitha pyetjet përkatëse janë fshirë"
+
+#: ../wp-faq.php:672
+msgid "Group cannot be removed"
+msgstr "Grupi nuk mund të fshihet"
+
+#: ../wp-faq.php:695
+msgid "Selected groups have been removed"
+msgstr "Grupet e selektuara janë fshirë"
+
+#: ../wp-faq.php:704
+msgid "Selected groups have been activated"
+msgstr "Grupet e selektuara janë aktivizuar"
+
+#: ../wp-faq.php:713
+msgid "Selected groups have been deactivated"
+msgstr "Grupet e selektuara janë deaktivizuar"
+
+#: ../wp-faq.php:718
+#: ../wp-faq.php:918
+msgid "No bulk action was selected"
+msgstr "Asnjë aksion bulk nuk është selektuar"
+
+#: ../wp-faq.php:722
+msgid "No groups were selected"
+msgstr "Asnjë grup nuk ishte selektuar"
+
+#: ../wp-faq.php:773
+msgid "Please create a group first"
+msgstr "Ju lutem krijoni një grup së pari"
+
+#: ../wp-faq.php:780
+msgid "Question has been successfully saved"
+msgstr "Pyetja është ruajtur me sukses"
+
+#: ../wp-faq.php:783
+msgid "Question cannot be saved"
+msgstr "Pyetja nuk mund të ruhet"
+
+#: ../wp-faq.php:834
+msgid "Question has been removed"
+msgstr "Pyetja është fshirë"
+
+#: ../wp-faq.php:837
+msgid "Question cannot be removed"
+msgstr "Pyetja nuk mund të fshihet"
+
+#: ../wp-faq.php:841
+#: ../wp-faq.php:864
+#: ../models/questions_group.php:62
+#: ../models/questions_post.php:59
+msgid "No question was specified"
+msgstr "Asnjë pyetje nuk ishte cekur"
+
+#: ../wp-faq.php:860
+msgid "Question cannot be read"
+msgstr "Pyetja nuk mund të lexohet"
+
+#: ../wp-faq.php:881
+msgid "Selected questions have been removed"
+msgstr "Pyetjet e selektuara janë fshirë"
+
+#: ../wp-faq.php:891
+msgid "Selected questions have been successfully moved"
+msgstr "Pyetjet e selektuara janë zhvendosur me sukses"
+
+#: ../wp-faq.php:894
+msgid "No group was selected to move to"
+msgstr "Asnjë grup nuk është selektuar për tu zhvendosur"
+
+#: ../wp-faq.php:904
+msgid "Selected questions have been marked as approved"
+msgstr "Pyetjet e selektuara janë cilsuar si të aprovuara"
+
+#: ../wp-faq.php:913
+msgid "Selected questions have been marked as unapproved"
+msgstr "Pyetjet e selektuara janë cilsuar si JO të aprovuara"
+
+#: ../wp-faq.php:922
+msgid "No questions have been selected"
+msgstr "Asnjë pyetje nuk është selektuar"
+
+#: ../wp-faq.php:981
+#, fuzzy
+msgid "All FAQ group and question posts/pages have been resaved."
+msgstr "Të gjitha FAQ grupet e artikujve/faqeve janë ruajtur përsëri"
+
+#: ../wp-faq.php:984
+#, fuzzy
+msgid "No FAQ groups are available."
+msgstr "Asnjë FAQ grup nuk është i pranishëm"
+
+#: ../wp-faq.php:1010
+msgid "Configuration settings have been saved"
+msgstr "Vetitë e konfigurimit janë ruajtur"
+
+#: ../helpers/db.php:408
+msgid "Question Answered"
+msgstr "Pyetja është përgjigjur"
+
+#: ../helpers/form.php:152
+msgid "Select"
+msgstr "Zgjedh"
+
+#: ../js/tinymce/dialog.php:25
+msgid "Insert FAQs"
+msgstr "Inserto FAQ-e"
+
+#: ../js/tinymce/dialog.php:134
+msgid "Universal"
+msgstr "Universal"
+
+#: ../js/tinymce/dialog.php:135
+#: ../js/tinymce/dialog.php:199
+#: ../js/tinymce/dialog.php:217
+#: ../js/tinymce/dialog.php:237
+#: ../js/tinymce/dialog.php:256
+msgid "Group"
+msgstr "Grup"
+
+#: ../js/tinymce/dialog.php:136
+#: ../js/tinymce/dialog.php:178
+#: ../js/tinymce/dialog.php:268
+msgid "Question"
+msgstr "Pyetje"
+
+#: ../js/tinymce/dialog.php:147
+msgid "Insert"
+msgstr "Inserto"
+
+#: ../js/tinymce/dialog.php:149
+msgid "Groups List"
+msgstr "Lista e grupeve"
+
+#: ../js/tinymce/dialog.php:150
+msgid "All Questions"
+msgstr "Të gjitha pyetjet"
+
+#: ../js/tinymce/dialog.php:151
+msgid "Search Box"
+msgstr "Kutia e kërkimit"
+
+#: ../js/tinymce/dialog.php:152
+msgid "Ask Box"
+msgstr "Kutia e pyetjeve"
+
+#: ../js/tinymce/dialog.php:169
+#, fuzzy
+msgid "Sort"
+msgstr "Kod i shkurtër"
+
+#: ../js/tinymce/dialog.php:172
+msgid "Ascending"
+msgstr ""
+
+#: ../js/tinymce/dialog.php:173
+msgid "Descending"
+msgstr ""
+
+#: ../js/tinymce/dialog.php:175
+msgid "BY"
+msgstr ""
+
+#: ../js/tinymce/dialog.php:177
+msgid "ID"
+msgstr "ID"
+
+#: ../js/tinymce/dialog.php:179
+#, fuzzy
+msgid "Group ID"
+msgstr "Grup"
+
+#: ../js/tinymce/dialog.php:180
+#, fuzzy
+msgid "Created Date"
+msgstr "E krijuar"
+
+#: ../js/tinymce/dialog.php:181
+#, fuzzy
+msgid "Modified Date"
+msgstr "i modifikuar"
+
+#: ../js/tinymce/dialog.php:193
+msgid "Groups Menu"
+msgstr "Menyja e grupeve"
+
+#: ../js/tinymce/dialog.php:195
+msgid "Include a groups dropdown menu"
+msgstr "Fute dropdown meny-n e grupeve"
+
+#: ../js/tinymce/dialog.php:202
+#: ../js/tinymce/dialog.php:220
+#: ../js/tinymce/dialog.php:240
+msgid "Select a Group"
+msgstr "Selekto grupin"
+
+#: ../js/tinymce/dialog.php:259
+#, fuzzy
+msgid "- Select a Group -"
+msgstr "Selekto grupin"
+
+#: ../js/tinymce/dialog.php:264
+#, fuzzy
+msgid "loading..."
+msgstr "duke procesuar"
+
+#: ../js/tinymce/dialog.php:271
+#, fuzzy
+msgid "- Select a Group first -"
+msgstr "Së pari zgjedhe një grup"
+
+#: ../models/group.php:88
+msgid "Please fill in a name for this group"
+msgstr "Ju lutem zgjedhni një emër për këtë grup"
+
+#: ../models/group.php:90
+#, fuzzy
+msgid "Please specify whether admin notification is required"
+msgstr "Ju lutem specifikoni se a duhet një kuti kërkimi të përfshihet apo jo"
+
+#: ../models/group.php:91
+#, fuzzy
+msgid "Please fill in correct email"
+msgstr "Ju lutem plotësoni email adresën tuaj"
+
+#: ../models/group.php:94
+msgid "Please specify whether a search box should be provided"
+msgstr "Ju lutem specifikoni se a duhet një kuti kërkimi të përfshihet apo jo"
+
+#: ../models/group.php:95
+msgid "Please choose whether or not to show a groups dropdown menu"
+msgstr "Ju lutem zgjedhni se a duhet të përfshihet një dropdown menu e grupeve apo jo"
+
+#: ../models/group.php:97
+msgid "Please specify whether a submission box should be shown"
+msgstr "Ju lutem specifikoni se a duhet të përfshihet një submission box "
+
+#: ../models/group.php:98
+msgid "Please fill in at least one keyword"
+msgstr "Ju lutem plotësoni së paku një fjalë kyçëse"
+
+#: ../models/group.php:100
+msgid "No post/page action was specified"
+msgstr "Asnjë artikull/faqe aksion/veprim nuk është specifikuar"
+
+#: ../models/group.php:102
+msgid "Please fill in a title for this post/page"
+msgstr "Ju lutem plotësoni një titull për këtë artikull/faqe"
+
+#: ../models/groups_post.php:60
+#: ../models/questions_group.php:63
+#: ../models/questions_post.php:60
+msgid "No post/page was specified"
+msgstr "Asnjë artikull/faqe nuk është cekur"
+
+#: ../models/question.php:87
+msgid "Please choose a group"
+msgstr "Ju lutem zgjedhni një grup"
+
+#: ../models/question.php:90
+msgid "Please select whether or not a post/page should be created"
+msgstr "Ju lutem zgjedhni nëse një artikull/faqe duhet të krijohet"
+
+#: ../models/question.php:93
+#: ../models/question.php:95
+msgid "Please fill in a post/page title"
+msgstr "Ju lutem plotësoni titullin për artikull/faqe "
+
+#: ../models/question.php:96
+msgid "Please select a parent page"
+msgstr "Ju lutem zjedhni një faqe prind"
+
+#: ../models/questions_group.php:69
+msgid "This question/group association already exists."
+msgstr ""
+
+#: ../models/questions_question.php:60
+#: ../tags/1.4.3.1/models/questions_question.php:60
+msgid "No related question was specified"
+msgstr "Asnjë pyetje relevante nuk është specifikuar"
+
+#: ../tags/1.4.3.1/wp-faq-ajax.php:231
+msgid "Questions have been ordered"
+msgstr "Pyetjet janë renditur"
+
+#: ../tags/1.4.3.1/wp-faq.php:269
+msgid "Custom CSS"
+msgstr "Custom CSS"
+
+#: ../tags/1.4.3.1/wp-faq.php:898
+msgid "All FAQ group posts/pages have been resaved"
+msgstr "Të gjitha FAQ grupet e artikujve/faqeve janë ruajtur përsëri"
+
+#: ../tags/1.4.3.1/wp-faq.php:901
+msgid "No FAQ groups are available"
+msgstr "Asnjë FAQ grup nuk është i pranishëm"
+
+#: ../tags/1.4.3.1/vendors/class.paginate.php:162
+msgid "Displaying"
+msgstr "Duke e shfaqur"
+
+#: ../tags/1.4.3.1/vendors/class.paginate.php:162
+msgid "of"
+msgstr "prej"
+
+#: ../tags/1.4.3.1/views/admin/index.php:20
+#: ../tags/1.4.3.1/views/admin/index.php:26
+msgid "Module/Section"
+msgstr "Modul/Seksion"
+
+#: ../tags/1.4.3.1/views/admin/index.php:21
+#: ../tags/1.4.3.1/views/admin/index.php:27
+msgid "Count"
+msgstr "Numrator"
+
+#: ../tags/1.4.3.1/views/admin/index.php:32
+msgid "Question Groups"
+msgstr "Grupe pyetjesh"
+
+#: ../tags/1.4.3.1/views/admin/index.php:36
+msgid "Manage FAQ Groups"
+msgstr "Menaxho grupet e FAQ-it"
+
+#: ../tags/1.4.3.1/views/admin/index.php:40
+msgid "FAQ Questions"
+msgstr "FAQ pyetjesh"
+
+#: ../tags/1.4.3.1/views/admin/index.php:44
+msgid "Manage FAQ Questions"
+msgstr "Menaxho pyetjet e FAQ-it"
+
+#: ../tags/1.4.3.1/views/admin/settings.php:12
+msgid "FAQs Configuration"
+msgstr "Konfigurimi i FAQ-it"
+
+#: ../tags/1.4.3.1/views/admin/submitserial.php:5
+msgid "You need to fill in a serial key to continue using the FAQ plugin."
+msgstr ""
+
+#: ../tags/1.4.3.1/views/admin/submitserial.php:6
+msgid "Please obtain a serial key from the downloads section in your Tribulant Software account."
+msgstr ""
+
+#: ../tags/1.4.3.1/views/admin/submitserial.php:7
+msgid "Once in the downloads section, click the KEY icon to request a serial key."
+msgstr ""
+
+#: ../tags/1.4.3.1/views/admin/submitserial.php:8
+msgid "Downloads Section"
+msgstr ""
+
+#: ../tags/1.4.3.1/views/admin/submitserial.php:19
+msgid "Serial Key:"
+msgstr ""
+
+#: ../tags/1.4.3.1/views/admin/submitserial.php:20
+msgid "Your current serial is valid and working."
+msgstr ""
+
+#: ../tags/1.4.3.1/views/admin/submitserial.php:23
+msgid "The serial key is valid and you can now continue using the FAQ plugin. Thank you for your business and support!"
+msgstr ""
+
+#: ../tags/1.4.3.1/views/admin/submitserial.php:24
+msgid "Apply Serial and Close Window"
+msgstr ""
+
+#: ../tags/1.4.3.1/views/admin/support.php:3
+msgid "Below are some useful links that will help you with the product"
+msgstr "Më poshtë janë disa linqe të dobishme që do të ju ndihmojnë me këtë produkt"
+
+#: ../tags/1.4.3.1/views/admin/support.php:5
+msgid "Product Page"
+msgstr "Faqja e produktit"
+
+#: ../tags/1.4.3.1/views/admin/support.php:6
+msgid "Documentation"
+msgstr "Dokumentacioni"
+
+#: ../tags/1.4.3.1/views/admin/support.php:7
+msgid "Submit a Ticket"
+msgstr "Vendos një tiketë"
+
+#: ../tags/1.4.3.1/views/admin/widget.php:3
+msgid "Title"
+msgstr "Titulli"
+
+#: ../tags/1.4.3.1/views/admin/widget.php:10
+msgid "Display"
+msgstr "Shfaq"
+
+#: ../tags/1.4.3.1/views/admin/widget.php:11
+msgid "FAQ Groups"
+msgstr "FAQ Grupet"
+
+#: ../tags/1.4.3.1/views/admin/groups/index.php:2
+msgid "Manage FAQs Groups"
+msgstr "Menagjo Grupet e FAQ-it"
+
+#: ../tags/1.4.3.1/views/admin/groups/index.php:2
+msgid "Add New"
+msgstr "Shto të ri"
+
+#: ../tags/1.4.3.1/views/admin/groups/index.php:7
+msgid "question groups"
+msgstr "Gurpe pyetjesh"
+
+#: ../tags/1.4.3.1/views/admin/groups/index.php:10
+msgid "Show All"
+msgstr "Shfaq të gjitha"
+
+#: ../tags/1.4.3.1/views/admin/groups/index.php:10
+msgid "Show all FAQ groups"
+msgstr "Shfaq të gjitha FAQ grupet"
+
+#: ../tags/1.4.3.1/views/admin/groups/index.php:12
+msgid "Show Paging"
+msgstr "Shfaq Paging"
+
+#: ../tags/1.4.3.1/views/admin/groups/index.php:12
+msgid "Show paginated FAQ groups"
+msgstr "Shfaq grupet e FAQ-eve si paginated"
+
+#: ../tags/1.4.3.1/views/admin/groups/index.php:16
+msgid "A to Z"
+msgstr "A deri në Z"
+
+#: ../tags/1.4.3.1/views/admin/groups/index.php:18
+msgid "Z to A"
+msgstr "Z deri A"
+
+#: ../tags/1.4.3.1/views/admin/groups/index.php:22
+msgid "New to Old"
+msgstr "E Re deri te e vjetra"
+
+#: ../tags/1.4.3.1/views/admin/groups/index.php:24
+msgid "Old to New"
+msgstr "Prej të vjetri deri te i riu"
+
+#: ../tags/1.4.3.1/views/admin/groups/index.php:29
+msgid "Search Groups"
+msgstr "Grupe të kërkimit"
+
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:2
+msgid "Are you sure you wish to execute this action on the selected groups?"
+msgstr "A je i sigurt që dëshironi ta ekzekutoni këtë komandë në grupet e selektuara?"
+
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:5
+#: ../tags/1.4.3.1/views/admin/groups/order.php:2
+msgid "Order Groups"
+msgstr "Rendit grupet"
+
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:7
+msgid "Bulk Actions"
+msgstr "Bulk Aksione"
+
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:8
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:52
+msgid "Delete"
+msgstr "Fshije"
+
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:9
+msgid "Activate"
+msgstr "Aktivizo"
+
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:10
+msgid "Deactivate"
+msgstr "Deaktivizo"
+
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:12
+msgid "Apply"
+msgstr "Apliko"
+
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:21
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:33
+#: ../tags/1.4.3.1/views/admin/groups/save.php:10
+msgid "Name"
+msgstr "Emri"
+
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:23
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:35
+msgid "Status"
+msgstr "Statusi"
+
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:24
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:36
+msgid "Modified"
+msgstr "i modifikuar"
+
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:25
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:37
+msgid "Post/Page"
+msgstr "Artikull/Faqe"
+
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:26
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:38
+msgid "Shortcode"
+msgstr "Kod i shkurtër"
+
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:51
+msgid "Edit"
+msgstr "Edito"
+
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:52
+msgid "Are you sure you want to delete this group?"
+msgstr "A jeni i sigurt se dëshironi ta fshini këtë grup?"
+
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:53
+msgid "View"
+msgstr "Pamja"
+
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:54
+msgid "Order Questions"
+msgstr "Rendit pyetjet"
+
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:57
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:62
+msgid "none"
+msgstr "asnjë"
+
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:58
+#: ../tags/1.4.3.1/views/admin/groups/save.php:88
+msgid "Active"
+msgstr "Aktive"
+
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:58
+#: ../tags/1.4.3.1/views/admin/groups/save.php:88
+msgid "Inactive"
+msgstr "Jo Aktive"
+
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:76
+msgid "Per Page"
+msgstr "Për Faqe"
+
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:79
+msgid "groups"
+msgstr "grupet"
+
+#: ../tags/1.4.3.1/views/admin/groups/loop.php:104
+msgid "No FAQ groups were found"
+msgstr "Asnjë grup i FAQ-ve nuk është gjetur"
+
+#: ../tags/1.4.3.1/views/admin/groups/order.php:4
+msgid "&larr; Back to Groups"
+msgstr "&larr; Kthehu te grupet"
+
+#: ../tags/1.4.3.1/views/admin/groups/order.php:7
+msgid "Drag and drop the groups below to sort them."
+msgstr "Drag & Drop grupet poshtë për ti sortuar"
+
+#: ../tags/1.4.3.1/views/admin/groups/order.php:8
+msgid "You can embed this list of groups into a post/page with"
+msgstr "Ju mund ta ngjitni këtë listë të grupeve në artikull/faqe me"
+
+#: ../tags/1.4.3.1/views/admin/groups/order.php:9
+msgid "This order of the FAQ groups is used for the sidebar widget(s) as well."
+msgstr "Kjo renditje e FAQ grupeve përdoret edhe në sidebar widget's"
+
+#: ../tags/1.4.3.1/views/admin/groups/order.php:37
+msgid "No groups were found. Only groups with posts/pages will be shown here."
+msgstr "Asnjë grup nuk është gjetur. Vetëm grupet me artikuj/faqe do të shfaqen këtu."
+
+#: ../tags/1.4.3.1/views/admin/groups/save.php:13
+msgid "the name of your group for identification purposes"
+msgstr "emri i grupit tuaj për qëllime identifikimi"
+
+#: ../tags/1.4.3.1/views/admin/groups/save.php:25
+msgid "Admin Notifications"
+msgstr "Admin Njoftimet"
+
+#: ../tags/1.4.3.1/views/admin/groups/save.php:27
+#: ../tags/1.4.3.1/views/admin/groups/save.php:52
+#: ../tags/1.4.3.1/views/admin/groups/save.php:80
+msgid "On"
+msgstr "On"
+
+#: ../tags/1.4.3.1/views/admin/groups/save.php:27
+#: ../tags/1.4.3.1/views/admin/groups/save.php:52
+#: ../tags/1.4.3.1/views/admin/groups/save.php:80
+msgid "Off"
+msgstr "Off"
+
+#: ../tags/1.4.3.1/views/admin/groups/save.php:29
+#, fuzzy
+msgid "receive an email notification when a new question has been asked for this group specifically"
+msgstr "prano një email notifikues kur një pyetje e re është shtruar"
+
+#: ../tags/1.4.3.1/views/admin/groups/save.php:38
+msgid "Admin Email"
+msgstr "Admin Emial"
+
+#: ../tags/1.4.3.1/views/admin/groups/save.php:41
+#, fuzzy
+msgid "fill in a single, valid email address"
+msgstr "Ju lutem plotësoni një adresë valide"
+
+#: ../tags/1.4.3.1/views/admin/groups/save.php:54
+msgid "places a search box above the group questions on the front-end"
+msgstr "vendos një kuti kërkimi përmbi grupin e pyetjeve në front-end"
+
+#: ../tags/1.4.3.1/views/admin/groups/save.php:64
+msgid "Show Groups Menu"
+msgstr "Shfaq Menyn e grupeve"
+
+#: ../tags/1.4.3.1/views/admin/groups/save.php:66
+msgid "Yes"
+msgstr "Po"
+
+#: ../tags/1.4.3.1/views/admin/groups/save.php:66
+#: ../tags/1.4.3.1/views/admin/groups/save.php:109
+msgid "No"
+msgstr "No"
+
+#: ../tags/1.4.3.1/views/admin/groups/save.php:68
+msgid "show a dropdown with other groups to search within"
+msgstr "shfaq një dropdown me grupe tjera për të kërkuar"
+
+#: ../tags/1.4.3.1/views/admin/groups/save.php:82
+msgid "places a submission box below the group questions for users/members to ask questions"
+msgstr "vendos një submission kuti poshtë pyetjeve për user-a/member-s për të shtruar pyetje"
+
+#: ../tags/1.4.3.1/views/admin/groups/save.php:86
+msgid "Active Status"
+msgstr "Status Active"
+
+#: ../tags/1.4.3.1/views/admin/groups/save.php:90
+msgid "deactivating a group will prevent its questions from being shown on the front-end"
+msgstr "deaktivizimi i një grupi do të parandaloj pyetjet përkatëse nga të shfaqurit në front-end"
+
+#: ../tags/1.4.3.1/views/admin/groups/save.php:94
+msgid "Keywords/Tags"
+msgstr "Fjalë kyçëse/Tags"
+
+#: ../tags/1.4.3.1/views/admin/groups/save.php:97
+msgid "separate keywords/tags with commas eg. group, keyword, faqs"
+msgstr "ndaj keywords/tagjet me presje psh. grup, fjalë kyçe, faq"
+
+#: ../tags/1.4.3.1/views/admin/groups/save.php:107
+msgid "Save WordPress Post/Page"
+msgstr "Ruaj Wordpress Artikull/Faqe"
+
+#: ../tags/1.4.3.1/views/admin/groups/save.php:109
+msgid "Post"
+msgstr "Artikull"
+
+#: ../tags/1.4.3.1/views/admin/groups/save.php:109
+msgid "Page"
+msgstr "Faqe"
+
+#: ../tags/1.4.3.1/views/admin/groups/save.php:127
+#, fuzzy
+msgid "would you like to have a WordPress post/page saved & maintained for this group? (recommended)"
+msgstr "A dëshironi ta keni një wordpress artikull/faqe të ruajtur & mirëmbajtur për këtë grup?"
+
+#: ../tags/1.4.3.1/views/admin/groups/save.php:139
+msgid "Post/Page Title"
+msgstr "Artikull/Faqe Titull"
+
+#: ../tags/1.4.3.1/views/admin/groups/save.php:142
+msgid "WordPress post/page title as it will appear on the front-end"
+msgstr "Wordpress artikull/faqe titulli që do të shfaqet në front-end"
+
+#: ../tags/1.4.3.1/views/admin/groups/save.php:152
+msgid "Page Parent"
+msgstr "Faqja prind"
+
+#: ../tags/1.4.3.1/views/admin/groups/save.php:155
+msgid "Main (no parent)"
+msgstr "Kryesore (pa prind)"
+
+#: ../tags/1.4.3.1/views/admin/groups/save.php:167
+msgid "Save Group"
+msgstr "Ruaj Grupin"
+
+#: ../tags/1.4.3.1/views/admin/groups/view.php:4
+msgid "&larr; All Groups"
+msgstr "&larr; Të gjitha grupet"
+
+#: ../tags/1.4.3.1/views/admin/groups/view.php:11
+msgid "Change Group"
+msgstr "Ndrysho Grupin"
+
+#: ../tags/1.4.3.1/views/admin/groups/view.php:12
+msgid "Delete Group"
+msgstr "Fshije Grupin"
+
+#: ../tags/1.4.3.1/views/admin/groups/view.php:12
+msgid "Are you sure you wish to permanently remove this group?"
+msgstr "A jeni i sigurt ju dëshironi ta fshini përgjithmonë këtë grup?"
+
+#: ../tags/1.4.3.1/views/admin/groups/view.php:19
+#: ../tags/1.4.3.1/views/admin/groups/view.php:25
+msgid "Field"
+msgstr "Fusha"
+
+#: ../tags/1.4.3.1/views/admin/groups/view.php:20
+#: ../tags/1.4.3.1/views/admin/groups/view.php:26
+msgid "Value"
+msgstr "Vlera"
+
+#: ../tags/1.4.3.1/views/admin/groups/view.php:49
+msgid "Created"
+msgstr "E krijuar"
+
+#: ../tags/1.4.3.1/views/admin/groups/view.php:57
+msgid "Total Questions"
+msgstr "Total pyetjet"
+
+#: ../tags/1.4.3.1/views/admin/groups/view.php:60
+#: ../tags/1.4.3.1/views/admin/metaboxes/question-group.php:7
+#: ../tags/1.4.3.1/views/admin/questions/index.php:7
+#: ../tags/1.4.3.1/views/admin/questions/loop.php:20
+#: ../tags/1.4.3.1/views/admin/questions/loop.php:124
+msgid "questions"
+msgstr "pyetjet"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/question-pp.php:2
+msgid "Create a Post/Page"
+msgstr "Krijo një artikull/faqe"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/question-pp.php:56
+msgid "Post Categories"
+msgstr ""
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/question-pp.php:61
+#, fuzzy
+msgid "Select All"
+msgstr "Zgjedh"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/question-pp.php:69
+#, fuzzy
+msgid "No categories are available."
+msgstr "Asnjë element i sortueshëm nuk është në dispozicion"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/question-submit.php:5
+#: ../tags/1.4.3.1/views/admin/questions/loop.php:68
+#: ../tags/1.4.3.1/views/admin/questions/loop.php:80
+msgid "Approved"
+msgstr "E aprovuar"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/question-submit.php:13
+#, fuzzy
+msgid "Notify User:"
+msgstr "Lajmëro User-in"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/question-submit.php:18
+msgid "User Email:"
+msgstr ""
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/question-submit.php:30
+msgid "Save Question"
+msgstr "Rauj pyetje"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-accordion.php:4
+msgid "Questions Bullet"
+msgstr "Bullet-i i pyetjeve"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-accordion.php:14
+msgid "Sliding Accordion"
+msgstr "Sliding Accordion"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-accordion.php:27
+msgid "Active Question"
+msgstr "Pyetjet aktive"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-accordion.php:30
+msgid "the question/item to open automatically. type the number. eg. \"1\". type \"0\" to leave all closed"
+msgstr "pyetja/elemtni për ta hapur automatikisht. shkruani numrin. psh. \"1\". type \"0\" për ti lënë të gjitha të mbyllura"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-accordion.php:34
+msgid "Sliding Event"
+msgstr "Sliding Event"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-accordion.php:36
+msgid "Mouse Over"
+msgstr "Mouse Over"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-accordion.php:37
+msgid "Mouse Click"
+msgstr "Mouse Click"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-accordion.php:38
+msgid "event that triggers the opening/closing action"
+msgstr "ngjarja që reagon në hapjen/mbylljen e aksioni"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-accordion.php:49
+msgid "Open/Close Answers"
+msgstr "Hap/Mbyll përgjigjjet"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-accordion.php:51
+msgid "All answers open"
+msgstr "Të gjitha përgjigjjet e mbyllura"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-accordion.php:52
+msgid "Click to open/close answers"
+msgstr "Kliko për ta hapur/mbyllur përgjigjjen"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-ask.php:3
+msgid "Capture Email Address"
+msgstr "Kap Email adresën"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-ask.php:7
+msgid "require an email address from a user when submitting a question"
+msgstr "kërko një email adresë prej një user-i kur shtron pyetje"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-ask.php:16
+msgid "Notify When Answered"
+msgstr "Lajmëro kur kompletohet përgjigjja"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-ask.php:20
+msgid "send an email notification to the user when the question has been answered"
+msgstr "dërgo një email lajmërues tek shfrytzuesi kur pyetja është përgjigjur"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-customcss.php:4
+msgid "Use Custom CSS"
+msgstr "Përdor Custom CSS"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-general.php:4
+msgid "Permission To Ask Questions"
+msgstr "Leje për të shruar pyetje"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-general.php:6
+msgid "Registered Members"
+msgstr "Anëtarë të regjistruar"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-general.php:7
+msgid "All Users/Visitors"
+msgstr "Të gjithë User-at/Vizitorët"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-general.php:8
+msgid "the type of users who are allowed to submit new questions on the front-end"
+msgstr "tipi i shfrytëzuesve që janë të lejuar për të shtruar pyetje në front-end"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-general.php:16
+msgid "receive an email notification when a new question has been asked"
+msgstr "prano një email notifikues kur një pyetje e re është shtruar"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-general.php:29
+msgid "you may specify multiple email recipients, each separated by a comma"
+msgstr "ju mund të specifikoni shumë email adresa, secila e ndarë me presje"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-general.php:39
+msgid "Admin Actions on Front"
+msgstr "Aksionet e Administratorit në Front"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-general.php:43
+msgid "turn this on to show \"Edit\" and \"Delete\" links on the front-end for groups and questions"
+msgstr "kliko këtë për ta shfaqur \"Edito\" dhe \"Fshije\" linqet në front-end për grupet dhe pyetjet"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-general.php:47
+msgid "Search Context"
+msgstr "Konteksti i kërkimit"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-general.php:49
+msgid "Questions Only"
+msgstr "Vetëm pyetjet"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-general.php:50
+msgid "Questions and Answers"
+msgstr "Pyetjet dhe përgjigjjet"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-general.php:54
+msgid "Use Captcha for Questions"
+msgstr "Përdor Captcha për pyetjet"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-general.php:60
+msgid "you need to install and activate the <a target=\"_blank\" href=\"http://wordpress.org/extend/plugins/really-simple-captcha/\">Really Simple Captcha plugin</a>."
+msgstr "ju duhet ta instaloni dhe aktivizoni <a target=\"_blank\" href=\"http://wordpress.org/extend/plugins/really-simple-captcha/\">Really Simple Captcha plugin</a>."
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-general.php:63
+msgid "requires captcha image input upon submitting questions to the FAQ."
+msgstr "requires captcha image input upon submitting questions to the FAQ."
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-questions.php:4
+msgid "Show Related Questions"
+msgstr "Shfaq Pyetjet Relevante"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-questions.php:8
+msgid "should specified related questions be shown on individual question posts/pages?"
+msgstr "a duhet të shfaqen pyetjet relevante të zgjedhura në pyetjet individuale artikuj/faqe?"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-questions.php:12
+msgid "Show Excerpts"
+msgstr "Shfaq Exerpts"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-questions.php:16
+msgid "show excerpt of questions in the list for questions with a post/page (link to post/page)"
+msgstr "shfaq excerpt të pyetjes në listën e pyetjeve me një artikull/faqe (link në artikull/faqe)"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-questions.php:26
+msgid "Read More Link Text"
+msgstr ""
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-questions.php:29
+msgid "Text of the read more link when a question excerpt is shown."
+msgstr ""
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-submit.php:5
+msgid "Order/Sort Groups"
+msgstr "Rendit/Sorto Grupet"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-submit.php:5
+msgid "Order/sort your FAQ groups"
+msgstr "Rendit/Sorto FAQ grupet tuaja"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-submit.php:8
+msgid "Resave Group Posts/Pages"
+msgstr "Ruaj përsëri grup aritkuj/faqe"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-submit.php:8
+msgid "Are you sure you wish to check and reset all pages/posts created by FAQ groups?"
+msgstr "A jeni i sigurt se dëshironi ti resetoni të gjitha faqet/artikujt të krijuara nga FAQ grupet?"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-submit.php:14
+msgid "Save Configuration"
+msgstr "Ruaj konfigurimin"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-wprelated.php:4
+msgid "User Access Level"
+msgstr "Niveli i çasshmërisë së shfrytzuesit"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-wprelated.php:12
+msgid "Contributor"
+msgstr "Kontribues"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-wprelated.php:15
+msgid "Authors"
+msgstr "Autorët"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-wprelated.php:18
+msgid "Editors"
+msgstr "Editorët"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-wprelated.php:21
+msgid "Administrators"
+msgstr "Administratorët"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-wprelated.php:33
+msgid "subscriber role cannot use the FAQ plugin"
+msgstr "subscriber role nuk mund ta përdor FAQ plugin-in"
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-wprelated.php:37
+msgid "Images Post ID"
+msgstr ""
+
+#: ../tags/1.4.3.1/views/admin/metaboxes/settings-wprelated.php:40
+msgid "Post to use for saving the FAQ plugin images through the media uploader."
+msgstr ""
+
+#: ../tags/1.4.3.1/views/admin/questions/index.php:10
+msgid "Show all FAQ questions"
+msgstr "Shfaq të gjitha FAQ pyetjet"
+
+#: ../tags/1.4.3.1/views/admin/questions/index.php:12
+msgid "Show paginated FAQ questions"
+msgstr "Shfaq paginated FAQ pyetjet"
+
+#: ../tags/1.4.3.1/views/admin/questions/index.php:29
+msgid "Search Questions"
+msgstr "Kërko pyetje"
+
+#: ../tags/1.4.3.1/views/admin/questions/loop.php:2
+msgid "Are you sure you wish to execute this action on the selected questions?"
+msgstr "A jeni i sigurt se dëshironi ta ekzekutoni këtë aksion në pyetjen e zgjedhur?"
+
+#: ../tags/1.4.3.1/views/admin/questions/loop.php:8
+msgid "Move to group..."
+msgstr "Zhvendos te grupi..."
+
+#: ../tags/1.4.3.1/views/admin/questions/loop.php:9
+msgid "Set as Approved"
+msgstr "Vendos si të aprovuar"
+
+#: ../tags/1.4.3.1/views/admin/questions/loop.php:10
+msgid "Set as Unapproved"
+msgstr "Vendos si Jo të aprovuar"
+
+#: ../tags/1.4.3.1/views/admin/questions/loop.php:17
+msgid "Select Group"
+msgstr "Zgjedh Grup"
+
+#: ../tags/1.4.3.1/views/admin/questions/loop.php:32
+msgid "Show Approved Only"
+msgstr "Shfaq vetëm të aprovuarat"
+
+#: ../tags/1.4.3.1/views/admin/questions/loop.php:33
+msgid "Show Unapproved Only"
+msgstr "Shfaq vetëm të pa aprovuarat"
+
+#: ../tags/1.4.3.1/views/admin/questions/loop.php:39
+msgid "- All Groups -"
+msgstr "- Të gjitha grupet - "
+
+#: ../tags/1.4.3.1/views/admin/questions/loop.php:72
+#: ../tags/1.4.3.1/views/admin/questions/loop.php:84
+msgid "Date"
+msgstr "Data"
+
+#: ../tags/1.4.3.1/views/admin/questions/loop.php:98
+msgid "Are you sure you want to delete this question?"
+msgstr "A jeni i sigurt se dëshironi ta fshini këtë pyetje?"
+
+#: ../tags/1.4.3.1/views/admin/questions/loop.php:99
+#: ../tags/1.4.3.1/views/admin/questions/related.php:2
+#: ../tags/1.4.3.1/views/admin/questions/related.php:12
+msgid "Related Questions"
+msgstr "Pyetjet relevante"
+
+#: ../tags/1.4.3.1/views/admin/questions/loop.php:148
+#, fuzzy
+msgid "No questions were found, please add one."
+msgstr "Asnjë pyetje nuk është gjetur. Ju lutem"
+
+#: ../tags/1.4.3.1/views/admin/questions/order.php:4
+msgid "&larr; Back to Group"
+msgstr "&larr; Kthehu te grupi"
+
+#: ../tags/1.4.3.1/views/admin/questions/order.php:6
+msgid "Drag and drop the questions below to order them"
+msgstr "Drag & drop pyetjet më poshtë për ti renditur"
+
+#: ../tags/1.4.3.1/views/admin/questions/order.php:33
+#: ../tags/1.4.3.1/views/admin/questions/related.php:55
+msgid "No questions were found"
+msgstr "Asnjë pyetje nuk është gjetur"
+
+#: ../tags/1.4.3.1/views/admin/questions/related.php:5
+msgid "Drag and drop questions related to: "
+msgstr "Drag & drop pyetjet relevante tek: "
+
+#: ../tags/1.4.3.1/views/admin/questions/related.php:16
+msgid "Drag and drop related questions here"
+msgstr "Drag & drop pyetjet relevante këtu"
+
+#: ../tags/1.4.3.1/views/admin/questions/related.php:50
+#, fuzzy
+msgid "Drag and drop unrelated questions here"
+msgstr "Drag & drop pyetjet relevante këtu"
+
+#: ../tags/1.4.3.1/views/admin/questions/save.php:40
+msgid "Word count"
+msgstr "Numrator i fjalëve"
+
+#: ../tags/1.4.3.1/views/default/askbox.php:1
+msgid "Ask a Question"
+msgstr "Shtro pyetje"
+
+#: ../tags/1.4.3.1/views/default/askbox.php:2
+msgid "Use the form below to ask a question"
+msgstr "Përdor formën më poshtë për të shtruar pyetje"
+
+#: ../tags/1.4.3.1/views/default/askbox.php:11
+msgid "Email Address"
+msgstr "Email adresa"
+
+#: ../tags/1.4.3.1/views/default/askbox.php:19
+msgid "Your Question"
+msgstr "Pyetja juaj"
+
+#: ../tags/1.4.3.1/views/default/askbox.php:33
+msgid "Please fill in the code below:"
+msgstr "Ju lutem plotësoni kodin më poshtë:"
+
+#: ../tags/1.4.3.1/views/default/askbox.php:40
+msgid "Ask Question"
+msgstr "Shtro pyetje"
+
+#: ../tags/1.4.3.1/views/default/searchbox.php:1
+msgid "Search the FAQs"
+msgstr "Kërko FAQ-in"
+
+#: ../tags/1.4.3.1/views/default/searchbox.php:2
+msgid "Use the form below to search the FAQs"
+msgstr "Përdor formën më poshtë për të kërkuar FAQ-in"
+
+#: ../tags/1.4.3.1/views/default/searchbox.php:15
+msgid "Search for"
+msgstr "kërko për"
+
+#: ../tags/1.4.3.1/views/default/searchbox.php:18
+msgid "in"
+msgstr "në"
+
+#: ../tags/1.4.3.1/views/default/searchbox.php:21
+msgid "the entire FAQ"
+msgstr "komplet FAQ-i"
+
+#: ../tags/1.4.3.1/views/default/searchbox.php:32
+msgid "Search"
+msgstr "Kërko"
+
+#: ../tags/1.4.3.1/views/default/searchbox.php:33
+msgid "loading"
+msgstr "duke procesuar"
+
+#: ../tags/1.4.3.1/views/default/groups/view.php:9
+msgid "Edit Group"
+msgstr "Edito grupin"
+
+#: ../tags/1.4.3.1/views/default/groups/view.php:9
+msgid "Change the details of this group"
+msgstr "Ndrysho detajet e këtij grupi"
+
+#: ../tags/1.4.3.1/views/default/groups/view.php:10
+msgid "Are you sure you wish to remove this group and all its questions?"
+msgstr "A jeni i sigurt se dëshironi ta largoni këtë grup dhe të gjitha pyetjet?"
+
+#: ../tags/1.4.3.1/views/default/questions/loop.php:29
+#: ../tags/1.4.3.1/views/default/questions/loop.php:79
+#: ../tags/1.4.3.1/views/default/questions/loop.php:107
+#: ../tags/1.4.3.1/views/default/questions/view.php:11
+msgid "Edit Question"
+msgstr "Edito pyetje"
+
+#: ../tags/1.4.3.1/views/default/questions/loop.php:30
+#: ../tags/1.4.3.1/views/default/questions/loop.php:80
+#: ../tags/1.4.3.1/views/default/questions/loop.php:108
+#: ../tags/1.4.3.1/views/default/questions/view.php:12
+msgid "Delete Question"
+msgstr "Fshije pyetjen"
+
+#: ../tags/1.4.3.1/views/default/questions/loop.php:30
+msgid "Are you sure you wish to remove this question permanently?"
+msgstr "A jeni i sigurt ju dëshironi ta fshini këtë pyetje?"
+
+#: ../tags/1.4.3.1/views/default/questions/loop.php:80
+#: ../tags/1.4.3.1/views/default/questions/loop.php:108
+msgid "Are you sure you wish to permanently remove this question?"
+msgstr "A jeni i sigurt se dëshironi ta fshini përgjithmonë këtë pyetje?"
+
+#: ../tags/1.4.3.1/views/default/questions/view.php:12
+msgid "Are you sure you wish to permanently delete this question?"
+msgstr "A jeni i sigurt se dëshironi ta fshini përgjithmoni këtë pyetje?"
+
+#: ../tags/1.4.3.1/views/default/questions/view.php:33
+msgid "Related FAQs"
+msgstr "FAQ-e relevante"
+
+#: ../tags/1.4.3.1/views/email/ask.php:2
+msgid "Thank you for submitting your question:"
+msgstr "Ju falemnderit që shtruat pyetjen:"
+
+#: ../tags/1.4.3.1/views/email/ask.php:7
+msgid "The administrator will answer and approve the question shortly."
+msgstr "Administratori do të përgjigjet dhe do ta aprovon pyetjen shumë shpejt."
+
+#: ../tags/1.4.3.1/views/email/ask.php:8
+msgid "You may be notified by email when the question has been answered/changed."
+msgstr "Ju mund të lajmëroheni me email kur pyetja të jetë përgjigjur/ndryshuar."
+
+#: ../tags/1.4.3.1/views/email/notify.php:2
+msgid "The question you asked previously has been answered by the administrator."
+msgstr "Pyetja që keni shtruar më herët është përgjigjur nga administratori."
+
+#: ../tags/1.4.3.1/views/email/notify.php:6
+msgid "Question:"
+msgstr "Pyetje:"
+
+#: ../tags/1.4.3.1/views/email/notify.php:11
+msgid "Answer:"
+msgstr "Përgjigjje:"
+
+#: ../tags/1.4.3.1/views/email/question.php:2
+msgid "A new FAQ question has been submitted"
+msgstr "Një pyetje e re është shtruar"
+
+#: ../tags/1.4.3.1/views/email/question.php:7
+msgid "Follow the URL below to answer and approve the question"
+msgstr "Përcjelle URL-in më poshtë për tju përgjigjur dhe aprovuar këtë pyetje"
+
+#: ../tags/1.4.5/views/admin/widget.php:22
+#, fuzzy
+msgid "Number"
+msgstr "Emri"
+
+#: ../tags/1.4.5/views/admin/widget.php:27
+#: ../tags/1.4.5/views/admin/widget.php:36
+msgid "Order"
+msgstr ""
+
+#: ../tags/1.4.5/views/admin/widget.php:32
+msgid "by"
+msgstr ""
+
+#: ../tags/1.4.5/views/admin/metaboxes/settings-accordion.php:42
+#, fuzzy
+msgid "Collapsible Questions"
+msgstr "Total pyetjet"
+
+#: ../tags/1.4.5/views/admin/metaboxes/settings-accordion.php:44
+#: ../tags/1.4.5/views/admin/metaboxes/settings-questions.php:6
+msgid "Enabled"
+msgstr ""
+
+#: ../tags/1.4.5/views/admin/metaboxes/settings-accordion.php:45
+#: ../tags/1.4.5/views/admin/metaboxes/settings-questions.php:7
+msgid "Disabled"
+msgstr ""
+
+#: ../tags/1.4.5/views/admin/metaboxes/settings-accordion.php:46
+msgid "Enable this to allow questions to be closed when clicked again."
+msgstr ""
+
+#: ../tags/1.4.5/views/admin/metaboxes/settings-customcss.php:4
+msgid "Theme Folder"
+msgstr ""
+
+#: ../tags/1.4.5/views/admin/metaboxes/settings-customcss.php:12
+msgid "Select the folder inside \"wp-checkout/views/\" to take shop view files from. eg. \"default\""
+msgstr ""
+
+#: ../tags/1.4.5/views/admin/metaboxes/settings-customcss.php:17
+msgid "Use Theme Style File?"
+msgstr ""
+
+#: ../tags/1.4.5/views/admin/metaboxes/settings-customcss.php:21
+msgid "This will load a style.css file inside the theme folder above."
+msgstr ""
+
+#: ../tags/1.4.5/views/admin/metaboxes/settings-questions.php:4
+msgid "Apply the_content Filter"
+msgstr ""
+
+#: ../tags/1.4.5/views/admin/metaboxes/settings-questions.php:8
+msgid "Turn this on to parse answers through \"the_content\" filter used by 3rd party plugins."
+msgstr ""
+
+#: ../tags/1.4.5/views/admin/metaboxes/settings-submit.php:8
+#, fuzzy
+msgid "Resave Posts/Pages"
+msgstr "Ruaj përsëri grup aritkuj/faqe"
+
+#: ../tags/1.4.5/views/admin/metaboxes/settings-submit.php:8
+#, fuzzy
+msgid "Resave Group and Question Posts/Pages"
+msgstr "Ruaj përsëri grup aritkuj/faqe"
+
+#: ../tags/1.4.5/views/admin/questions/loop.php:5
+#, fuzzy
+msgid "Change the order of all questions."
+msgstr "Përdor formën më poshtë për të shtruar pyetje"
+
+#: ../tags/1.4.5/views/admin/questions/order.php:7
+#, fuzzy
+msgid "&larr; Back to Questions"
+msgstr "&larr; Kthehu te grupet"
+
+#: ../tags/1.4.5/views/admin/questions/order.php:13
+msgid "This changes the order of questions inside this group for the <code>[wpfaqgroup id=\""
+msgstr ""
+
+#: ../tags/1.4.5/views/admin/questions/order.php:15
+msgid "This changes the order of all questions for the <code>[wpfaqs]</code> shortcode."
+msgstr ""
+
+#: ../tags/1.4.6/views/admin/dashboard-widget.php:2
+#, fuzzy
+msgid "Groups &amp; Questions"
+msgstr "Shtro pyetje"
+
+#: ../tags/1.4.6/views/admin/dashboard-widget.php:15
+#, fuzzy
+msgid "Approved Questions"
+msgstr "Rendit pyetjet"
+
+#: ../tags/1.4.6/views/admin/dashboard-widget.php:19
+#, fuzzy
+msgid "Unapproved Questions"
+msgstr "Rauj pyetje"
+
+#: ../tags/1.4.6/views/admin/dashboard-widget.php:26
+#, fuzzy
+msgid "Latest Questions"
+msgstr "Pyetjet relevante"
+
+#: ../tags/1.4.6/views/admin/dashboard-widget.php:41
+#, fuzzy
+msgid "There are no questions yet!"
+msgstr "Ekziston një version i ri i "
+
+#: ../tags/1.4.6/views/admin/dashboard-widget.php:42
+#, fuzzy
+msgid "Add a Question"
+msgstr "Shtro pyetje"
+
+#: ../tags/1.4.6/views/admin/submitserial.php:16
+msgid "Cancel"
+msgstr ""
+
+#: ../tags/1.4.6/views/admin/submitserial.php:23
+msgid "Close"
+msgstr ""
+
+#: ../tags/1.4.6/views/admin/metaboxes/settings-customcss.php:12
+msgid "Select the folder inside \"wp-faq/views/\" to take shop view files from. eg. \"default\""
+msgstr ""
+
+#: ../tags/1.4.6/views/email/question.php:2
+#, fuzzy
+msgid "A new FAQ question has been submitted:"
+msgstr "Një pyetje e re është shtruar"
+
+#: ../tags/1.4.6/views/email/question.php:11
+msgid "The email of this user is:"
+msgstr ""
+
+#~ msgid ""
+#~ "would you like to have a WordPress post/page saved & maintained for this "
+#~ "group?"
+#~ msgstr ""
+#~ "A dëshironi ta keni një wordpress artikull/faqe të ruajtur & mirëmbajtur "
+#~ "për këtë grup?"
+
+#~ msgid "add one"
+#~ msgstr "shto një"

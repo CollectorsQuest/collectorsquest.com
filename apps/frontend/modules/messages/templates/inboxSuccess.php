@@ -7,7 +7,7 @@
 
 <?= form_tag('@messages_batch_actions'); ?>
 <?php slot('message-controls'); ?>
-<div class="private-messages-list-select control-group pull-left clearfix">
+<div class="private-messages-list-select control-group pull-left cf">
   <div class="btn-group ">
     <button class="btn dropdown-toggle" data-toggle="dropdown">
       Select

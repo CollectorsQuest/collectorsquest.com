@@ -322,9 +322,7 @@
                         <span class="plan-price">$150.00</span>
                       </div>
                     </div>
-                  </div>
-                  <div class="buttons-inner">
-                    <div class="row-fluid">
+                    <div class="row-fluid spacer-top">
                       <div class="span4">
                         <button type="submit" class="btn btn-primary blue-button pull-left">5 Items</button>
                         <span class="plan-price">$11.25</span>

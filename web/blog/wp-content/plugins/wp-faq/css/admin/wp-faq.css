@@ -1,0 +1,139 @@
+
+/* BEG Dashboard Widget */
+#wpfaq_dashboard_widget p.sub, #wpfaq_dashboard_widget .table, #wpfaq_dashboard_widget .versions {
+    margin: -12px;
+}
+#wpfaq_dashboard_widget .inside {
+    font-size: 12px;
+    padding-top: 20px;
+}
+#wpfaq_dashboard_widget p.sub {
+    color: #8F8F8F;
+    font-size: 14px;
+    left: 15px;
+    padding: 5px 0 15px;
+    position: absolute;
+    top: -17px;
+}
+#wpfaq_dashboard_widget .table {
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+#wpfaq_dashboard_widget .table_content {
+    border-top: 1px solid #ECECEC;
+    float: left;
+    width: 45%;
+}
+#wpfaq_dashboard_widget .table_discussion {
+    border-top: 1px solid #ECECEC;
+    float: right;
+    width: 45%;
+}
+#wpfaq_dashboard_widget table td {
+    padding: 3px 0;
+    white-space: nowrap;
+}
+#wpfaq_dashboard_widget table tr.first td {
+    border-top: medium none;
+}
+#wpfaq_dashboard_widget td.b {
+    font-family: Georgia,"Times New Roman","Bitstream Charter",Times,serif;
+    font-size: 14px;
+    padding-right: 6px;
+    text-align: right;
+    width: 1%;
+}
+#wpfaq_dashboard_widget td.b a {
+    font-size: 18px;
+}
+#wpfaq_dashboard_widget td.b a:hover {
+    color: #D54E21;
+}
+#wpfaq_dashboard_widget .t {
+    color: #777777;
+    font-size: 12px;
+    padding-right: 12px;
+    padding-top: 6px;
+}
+#wpfaq_dashboard_widget .t a {
+    white-space: nowrap;
+}
+#wpfaq_dashboard_widget .spam {
+    color: red;
+}
+#wpfaq_dashboard_widget .waiting {
+    color: #E66F00;
+}
+#wpfaq_dashboard_widget .approved {
+    color: green;
+}
+#wpfaq_dashboard_widget .versions {
+    clear: both;
+    padding: 6px 10px 12px;
+}
+#wpfaq_dashboard_widget .versions .b {
+    font-weight: bold;
+}
+#wpfaq_dashboard_widget a.button {
+    clear: right;
+    float: right;
+    position: relative;
+    top: -5px;
+}
+/* END Dashboard Widget */
+
+
+.wpfaqred {
+	color: red;
+}
+
+.wpfaqgrn {
+	color: green;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+span.wpfaqerror, div.wpfaqerror, li.wpfaqerror, p.wpfaqerror, .wpfaqerror {
+	color: #FF0000 !important;
+}
+
+
+.sortableHelper {
+	background-color: red;
+	opacity: 0.3;
+	border: 1px #ff0000 solid;
+	z-index:1;
+    width: 85%;
+    margin: 3px 0px;
+    padding: 2px 5px 2px 5px;
+	display: block;
+    border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+} 
+
+.wpfaqlineitem {
+	list-style: none;
+	margin: 3px 0px;
+	padding: 2px 5px 2px 5px;
+	background-color: #F1F1F1;
+	border:1px solid #B2B2B2;
+	cursor: move;
+	vertical-align: middle !important;
+	display: block;
+    border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	width:85%;
+}
+
+.alignright {
+	text-align: right !important;
+}
+
+.aligncenter {
+	text-align: center !important;
+}
