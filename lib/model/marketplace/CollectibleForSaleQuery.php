@@ -84,7 +84,7 @@ class CollectibleForSaleQuery extends BaseCollectibleForSaleQuery
    *
    * @return CollectibleForSaleQuery
    */
-  public function filterByContentCategoryWithChildren($content_category, $comparison = null)
+  public function filterByContentCategoryWithDescendants($content_category, $comparison = null)
   {
     return $this
       ->useCollectibleQuery()
