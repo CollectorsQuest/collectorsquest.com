@@ -142,7 +142,7 @@ class collectorActions extends cqActions
 
     if (!$this->getUser()->isAuthenticated() && !$this->getUser()->getAttribute('signup_type', false, 'registration'))
     {
-      $this->redirect('collector/signupChoice');
+      $this->redirect('@collector_signup_choice');
     }
 
     $signupType = $this->getUser()->getAttribute('signup_type', null, 'registration');
@@ -377,7 +377,7 @@ class collectorActions extends cqActions
     {
       if ($signupType == 'seller' && !$this->getUser()->isSeller())
       {
-        $this->redirect('seller/packages');
+        $this->redirect('@seller_upgrade_package');
       }
       else if ($signupType == 'seller')
       {
