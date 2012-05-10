@@ -357,7 +357,9 @@ if ($_SERVER['HTTP_HOST'] == 'www.collectorsquest.dev' || $_SERVER['HTTP_HOST'] 
   }
   add_filter('the_tags','add_class_the_tags',10,1);
 
-  function add_fixed_sidebar() { ?>
+  function add_fixed_sidebar() {
+
+    if (is_page()) : ?>
 
   <script type="text/javascript" src="/blog/wp-content/themes/collectorsquest/js/jquery-scrolltofixed-min.js"></script>
 
@@ -373,7 +375,11 @@ if ($_SERVER['HTTP_HOST'] == 'www.collectorsquest.dev' || $_SERVER['HTTP_HOST'] 
 
   </script>
 
-  <?php }
+  <?php
+
+      endif;
+
+    }
   add_action('wp_footer','add_fixed_sidebar');
 
 
