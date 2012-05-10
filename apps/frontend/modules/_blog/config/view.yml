@@ -1,7 +1,7 @@
 all:
   stylesheets: [frontend/modules/blog.css]
   components:
-    # breadcrumbs: [_blog, breadcrumbs]
+    breadcrumbs: [_blog, breadcrumbs]
     sidebar_300: [_blog, sidebar]
 
 indexSuccess:

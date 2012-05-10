@@ -21,48 +21,57 @@
     $data['tag'] = $wp_query->get_queried_object()->name;
   }
 
-  require_once __DIR__ .'/../../plugins/wordpress-seo/frontend/class-breadcrumbs.php';
+  if (function_exists('bcn_display'))
+  {
+    $data['breadcrumbs'] = bcn_display(true);
+  }
+  else if (file_exists(__DIR__ .'/../../plugins/wordpress-seo/frontend/class-breadcrumbs.php'))
+  {
+    require_once __DIR__ .'/../../plugins/wordpress-seo/frontend/class-breadcrumbs.php';
 
-  $wpseo_bc = new WPSEO_Breadcrumbs();
-  //$data['breadcrumbs'] = $wpseo_bc->breadcrumb(null, null, false);
+    $wpseo_bc = new WPSEO_Breadcrumbs();
+    $data['breadcrumbs'] = $wpseo_bc->breadcrumb(null, null, false);
+  }
+  else
+  {
+    $home = array('name' => 'Blog', 'url' => '/blog');
+    $url = $_SERVER["REQUEST_URI"];
+    $crumbs = array($home);
 
-  $home = array('name' => 'Blog', 'url' => '/blog');
-  $url = $_SERVER["REQUEST_URI"];
-  $crumbs = array($home);
+    if (is_tag()) {
+      $crumbs[] = array('name' => 'Tag Archive: '. single_tag_title("", false), $url);
+    }
+    elseif (is_category()) {
+      $crumbs[] = array('name' => 'Category Archive: '. single_cat_title("", false), $url);
+    }
+    elseif (is_single()) {
+      $crumbs[] = array(
+        'name' => get_the_author_meta('display_name'),
+        'url' => '/blog/author/'. get_the_author_meta('nicename')
+      );
+      $crumbs[] = array('name' => get_the_title(), 'url' => null);
+    }
+    elseif (is_author()) {
+      $crumbs[] = array('name' => 'Archive for '. get_the_author_meta('display_name'), $url);
+    }
+    elseif (is_day()) {
+      $crumbs[] = array('name' => "Archive for ". the_time('F jS, Y'), $url);
+    }
+    elseif (is_month()) {
+      $crumbs[] = array('name' => "Archive for ". the_time('F, Y'), $url);
+    }
+    elseif (is_year()) {
+      $crumbs[] = array('name' => "Archive for ". the_time('Y'), $url);
+    }
+    elseif (isset( $_GET['paged']) && !empty( $_GET['paged'])) {
+      $crumbs[] = array('name' => "Blog Archives");
+    }
+    elseif (is_search()) {
+      $crumbs[] = array('name' => "Search Results", $url);
+    }
 
-  if (is_tag()) {
-    $crumbs[] = array('name' => 'Tag Archive: '. single_tag_title("", false), $url);
+    $data['breadcrumbs'] = $crumbs;
   }
-  elseif (is_category()) {
-    $crumbs[] = array('name' => 'Category Archive: '. single_cat_title("", false), $url);
-  }
-  elseif (is_single()) {
-    $crumbs[] = array(
-      'name' => get_the_author_meta('display_name'),
-      'url' => '/blog/author/'. get_the_author_meta('nicename')
-    );
-    $crumbs[] = array('name' => get_the_title(), 'url' => null);
-  }
-  elseif (is_author()) {
-    $crumbs[] = array('name' => 'Archive for '. get_the_author_meta('display_name'), $url);
-  }
-  elseif (is_day()) {
-    $crumbs[] = array('name' => "Archive for ". the_time('F jS, Y'), $url);
-  }
-  elseif (is_month()) {
-    $crumbs[] = array('name' => "Archive for ". the_time('F, Y'), $url);
-  }
-  elseif (is_year()) {
-    $crumbs[] = array('name' => "Archive for ". the_time('Y'), $url);
-  }
-  elseif (isset( $_GET['paged']) && !empty( $_GET['paged'])) {
-    $crumbs[] = array('name' => "Blog Archives");
-  }
-  elseif (is_search()) {
-    $crumbs[] = array('name' => "Search Results", $url);
-  }
-
-  $data['breadcrumbs'] = $crumbs;
 
   ob_start();
   wp_head();
