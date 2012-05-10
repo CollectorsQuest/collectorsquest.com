@@ -384,11 +384,11 @@ if ($_SERVER['HTTP_HOST'] == 'www.collectorsquest.dev' || $_SERVER['HTTP_HOST'] 
 
 
 
-
   require_once 'lib/widgets/widgets.php';
 
   include_once 'lib/metaboxes/setup.php';
   include_once 'lib/metaboxes/thumbs-spec.php';
+  include_once 'lib/metaboxes/collectorsquestion-spec.php';
 
 }
 
