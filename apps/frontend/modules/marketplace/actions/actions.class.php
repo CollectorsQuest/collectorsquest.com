@@ -20,7 +20,6 @@ class marketplaceActions extends cqFrontendActions
     $content_category = $this->getRoute()->getObject();
 
     $q = CollectibleForSaleQuery::create()
-       ->joinCollectible()
        ->filterByContentCategoryWithDescendants($content_category)
        ->isForSale()
        ->orderByUpdatedAt(Criteria::DESC);
@@ -52,6 +51,12 @@ class marketplaceActions extends cqFrontendActions
 
   public function executeCategories(sfWebRequest $request)
   {
+    $this->level1_categories = ContentCategoryQuery::create()
+      ->childrenOfRoot()
+      ->withCollectiblesForSale()
+      ->orderBy('Name')
+      ->find();
+
     return sfView::SUCCESS;
   }
 }

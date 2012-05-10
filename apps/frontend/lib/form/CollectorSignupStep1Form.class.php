@@ -22,33 +22,33 @@ class CollectorSignupStep1Form extends BaseForm
           'required'    => 'required',
           'placeholder' => 'Confirm Password'
       )),
-      'seller'          => new sfWidgetFormSelectRadio(array(
-          'label'       => 'Do you',
-          'choices'     => array(
-              0 => 'Collect',
-              1 => 'Sell',
-              2 => 'Collect & Sell',
-          ),
-
-          'formatter'   =>   function($widget, $inputs) {
-            $rows = array();
-            foreach ($inputs as $input)
-            {
-              $rows[] = $widget->renderContentTag('label',
-                $input['input'].$widget->getOption('label_separator').strip_tags($input['label']),
-                array('class'=>'radio'));
-            }
-
-            return !$rows ? '' : $widget->renderContentTag('div', implode($widget->getOption('separator'), $rows), array('class' => $widget->getOption('class')));
-          }
-
-        ), array(
-          'required' => 'required',
-      )),
       'email'           => new sfWidgetFormInputText(array(), array(
           'type'        => 'email',
           'required'    => 'required',
           'placeholder' => 'Email'
+      )),
+      'seller'          => new sfWidgetFormSelectRadio(array(
+        'label'       => 'Choose one',
+        'choices'     => array(
+          0 => 'I Collect',
+          1 => 'I Sell',
+          2 => 'I Collect and Sell',
+        ),
+
+        'formatter'   =>   function($widget, $inputs) {
+          $rows = array();
+          foreach ($inputs as $input)
+          {
+            $rows[] = $widget->renderContentTag('label',
+              $input['input'].$widget->getOption('label_separator').strip_tags($input['label']),
+              array('class'=>'radio'));
+          }
+
+          return !$rows ? '' : $widget->renderContentTag('div', implode($widget->getOption('separator'), $rows), array('class' => $widget->getOption('class')));
+        }
+
+      ), array(
+        'required' => 'required',
       )),
     ));
 

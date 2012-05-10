@@ -4,6 +4,12 @@ class categoriesActions extends cqFrontendActions
 {
   public function executeIndex()
   {
+    $this->level1_categories = ContentCategoryQuery::create()
+      ->childrenOfRoot()
+      ->withCollections()
+      ->orderBy('Name')
+      ->find();
+
     return sfView::SUCCESS;
   }
 
