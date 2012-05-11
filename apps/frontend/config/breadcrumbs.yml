@@ -9,6 +9,9 @@ ice_breadcrumbs:
 
   general:
     index: [{ name: 'Home', route: homepage }]
+    feedback: [{ name: 'Feedback' }]
+    recoverPassword: [{ name: 'Recover password' }]
+    login: [{ name: 'Login' }]
 
   aent:
     americanPickers: [{ name: 'As Seen on American Pickers' }]
