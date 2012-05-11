@@ -1,44 +1,7 @@
-<div class="row-fluid header-bar">
-  <div class="span9">
-    <h1 class="Chivo webfont">ROBOTBACON’S  PROFILE</h1>
-  </div>
-  <div class="span3 text-right">
-    <a href="#">log off &raquo;</a>
-  </div>
-</div>
 
-<div id="profile-subnavbar" class="navbar">
-  <div class="navbar-inner">
-    <div class="container">
-      <div class="nav-collapse">
-        <ul class="nav">
-          <li class="active"><a href="#">Home</a></li>
-          <li><a href="#">Profile</a></li>
-          <li class="dropdown open">
-            <a data-toggle="dropdown" class="dropdown-toggle" href="#">Inbox (2) <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
-              <li class="divider"></li>
-              <li class="nav-header">Nav header</li>
-              <li><a href="#">Separated link</a></li>
-              <li><a href="#">One more separated link</a></li>
-            </ul>
-          </li>
-          <li><a href="#">Collections (102)</a></li>
-          <li><a href="#">Store (34)</a></li>
-          <li><a href="#">Wanted (58)</a></li>
-        </ul>
-      </div><!-- /.nav-collapse -->
-    </div>
-  </div><!-- /navbar-inner -->
-</div>
-
-
-<div class="row-fluid cp-collector-info">
+<div class="row-fluid mycq-collector-info">
   <div class="span2">
-    <div class="cp-collector-avatar">
+    <div class="mycq-collector-avatar">
       <img src="http://placehold.it/140x140" alt="">
       <span>Serious Collector</span>
     </div>
@@ -75,7 +38,7 @@
   </div>
 </div>
 
-<div id="cp-tabs">
+<div id="mycq-tabs">
     <ul class="nav nav-tabs">
       <li class="active">
         <a href="#tab1" data-toggle="tab">Show Items for Sale</a>
@@ -96,7 +59,7 @@
             </div>
           </div>
 
-          <div id="collectibles-to-sort">
+          <div class="collectibles-to-sort">
             <ul class="thumbnails">
               <li class="span2">
                 <a href="#" class="thumbnail">
@@ -182,7 +145,7 @@
               <h3 class="Chivo webfont">My Items for Sale (34)</h3>
             </div>
             <div class="span7">
-              <div id="sort-search-box-mini">
+              <div class="mycq-sort-search-box">
                 <div class="input-append">
                   <form id="form-explore-collections" method="post" action="/search/collections">
                     <div class="btn-group">
@@ -205,7 +168,7 @@
           </div>
 
 
-          <div id="cp-collectibles-for-sale">
+          <div class="mycq-collectibles-for-sale">
             <div class="row thumbnails">
 
               <div class="span4 thumbnail link">
@@ -288,7 +251,7 @@
           <div id="Remove me" class="spacer-top-25">
             <!-- No Items to sort OR for sale -->
 
-            <div id="cp-collections">
+            <div class="mycq-collections">
               <div class="row thumbnails">
                 <div class="span12 thumbnail link no-collections-box">
                   <span class="Chivo webfont info-no-collectibles-for-sale">
@@ -369,7 +332,7 @@
             </div>
           </div>
 
-          <div id="collectibles-to-sort">
+          <div class="collectibles-to-sort">
             <ul class="thumbnails">
               <li class="span2">
                 <a href="#" class="thumbnail">
@@ -455,7 +418,7 @@
               <h3 class="Chivo webfont">My Collections (102)</h3>
             </div>
             <div class="span7">
-              <div id="sort-search-box-mini">
+              <div class="mycq-sort-search-box">
                 <div class="input-append">
                   <form id="form-explore-collections" method="post" action="/search/collections">
                     <div class="btn-group">
@@ -478,7 +441,7 @@
           </div>
 
 
-          <div id="cp-collections">
+          <div class="mycq-collections">
             <div class="row thumbnails">
               <div class="span4 thumbnail link">
                 <span>LOG! From Blammo!</span>
@@ -570,7 +533,7 @@
           <div id="Remove me..." class="spacer-top-25">
             <!-- No Collection Uploaded -->
 
-            <div id="cp-collections">
+            <div class="mycq-collections">
               <div class="row thumbnails">
                 <div class="span12 thumbnail link no-collections-uploaded-box">
                   <span class="Chivo webfont info-no-collections-uploaded">

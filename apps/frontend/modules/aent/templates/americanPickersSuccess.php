@@ -1,5 +1,5 @@
 <div class="promo-space">
-  <img src="/images/banners/040412_promo_space_banner2.jpg" alt="">
+  <img src="/images/banners/040412_promo_space_banner2.jpg" alt="Check out items seen on American Pickers">
 </div>
 <?php cq_page_title('As seen on American Pickers'); ?>
 

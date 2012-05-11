@@ -9,6 +9,9 @@ ice_breadcrumbs:
 
   general:
     index: [{ name: 'Home', route: homepage }]
+    feedback: [{ name: 'Feedback' }]
+    recoverPassword: [{ name: 'Recover password' }]
+    login: [{ name: 'Login' }]
 
   aent:
     americanPickers: [{ name: 'As Seen on American Pickers' }]
@@ -17,6 +20,7 @@ ice_breadcrumbs:
     collectible:
       - { name: '%Collection%', route: collection_by_slug, model: true, subobject: Collection }
       - { name: '%Name%', model: true }
+    landing: [{ name: 'History' }]
 
   collection:
     index:
@@ -24,18 +28,38 @@ ice_breadcrumbs:
     collectible:
       - { name: '%Collection%', model: true, route: collection_by_slug, subobject: Collection }
       - { name: '%Name%', model: true }
+    create:
+      - { name: 'Collections' }
+      - { name: 'Create' }
 
   collections:
     index: [{ name: 'Collections' }]
+    category:
+      - { name: 'Collections', route: collections }
+      - { name: '%Name%', model: true, title: 'Category %Name%' }
+    collector:
+      - { name: 'Collections', route: collections }
+      - { name: 'by %DisplayName%', model: true, title: 'Collections by %DisplayName%' }
 
   collector:
     index:
-      - { name: 'Collector %DisplayName%', model: true }
+      - { name: 'Collectors', route: collectors }
+      - { name: '%DisplayName%', model: true }
     signup:
+      - { name: 'Collectors', route: collectors }
       - { name: 'Signup' }
 
+  collectors:
+    index: [{ name: 'Collectors' }]
+
   marketplace:
-    index: [{ name: 'Maket' }]
+    index: [{ name: 'Marketplace' }]
+    categories:
+      - { name: 'Marketplace', route: marketplace }
+      - { name: 'Categories' }
+    browse:
+      - { name: 'Marketplace', route: marketplace }
+      - { name: '%Name%', model: true }
 
   search:
     index: [{ name: 'Search Results', route: search }]
@@ -57,3 +81,25 @@ ice_breadcrumbs:
     video:
       - { name: 'Search', route: search }
       - { name: 'Video' }
+
+  categories:
+    index: [{ name: 'Categories' }]
+    category:
+      - { name: '%Name%', model: true, title: 'Category: %Name%' }
+
+  messages:
+    _prepend:
+      - { name: 'Messages', route: messages_inbox }
+    inbox:
+      - { name: 'Inbox' }
+    compose:
+      - { name: 'Compose new message' }
+    sent:
+      - { name: 'Sent messages' }
+    show:
+      - { name: 'Read message' }
+
+  seller:
+    index: [{ name: Seller }]
+    packages:
+      - { name: 'Seller packages' }

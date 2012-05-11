@@ -102,19 +102,28 @@ var COMMON = window.COMMON = (function(){
     setupModalLoginRegistrationDialog: function() {
       var $holder = $('#modal-login-holder');
 
-      $holder.modal({
-        backdrop: true,
-        keyboard: true,
-        show: false
-      });
-
       $('.requires-login').on('click', function(e) {
+        var $this = $(this);
+        // execute the modal JS if not already executed
+        undefined === $holder.data('modal') || $holder.modal({
+          backdrop: true,
+          keyboard: true,
+          show: false
+        });
+
         if (!window.cq.authenticated) {
           $holder.modal('show');
+
+          if (undefined !== $this.data('login-title')) {
+            $holder.find('h1').html($this.data('login-title')).show();
+          } else {
+            $holder.find('h1').hide();
+          }
 
           e.preventDefault();
           return false
         }
+
         return true;
       });
     }, // setupModalLoginRegistrationDialog

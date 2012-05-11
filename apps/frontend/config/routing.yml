@@ -93,7 +93,7 @@ collections_by_collector:
   url:  /collections/by/:collector_id/:collector_slug
   class: sfPropelRoute
   options: { model: Collector, type: object, method: getObjectForRoute }
-  param: { module: collections, action: index }
+  param: { module: collections, action: collector }
   requirements: { collector_id: '\d+', collector_slug: '[\-\w\.]+' }
 
 

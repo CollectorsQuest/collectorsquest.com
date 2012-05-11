@@ -42,10 +42,10 @@
       </ul>
     </div>
     <div class="span6 text-right">
-      <a href="#" class="btn btn-mini-share btn-lightblue-middle">
+      <a href="#" class="btn btn-mini-share btn-lightblue-medium">
         <i class="add-icon-medium"></i> Add this item to your most wanted list
       </a>
-      <a href="#" class="btn btn-mini-share btn-lightblue-middle">
+      <a href="#" class="btn btn-mini-share btn-lightblue-medium">
         <i class="add-icon-medium"></i> Share
       </a>
     </div>
