@@ -8,3 +8,7 @@ indexSuccess:
 categorySuccess:
   components:
     sidebar_180: [collections, sidebarCategory]
+
+collectorSuccess:
+  components:
+    sidebar_180: [collections, sidebarCategory]
