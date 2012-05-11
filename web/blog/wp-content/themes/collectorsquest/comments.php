@@ -42,7 +42,7 @@
         <p>You are logged in as <a href="<?php echo get_option('siteurl'); ?>/wp-admin/profile.php"><?php echo $user_identity; ?></a>. <a href="<?php echo get_option('siteurl'); ?>/wp-login.php?action=logout" title="Log out of this account">Logout &raquo;</a></p>
 
         <?php else : ?>
-        <div class="row-fluid">
+        <div class="row-fluid comment-option-wrap">
           <p class="span4">
             <input class="span12" type="text" align="left" name="author" id="author" value="<?php echo $comment_author; ?>" size="22" tabindex="5" />
             <label for="author"><small>Name <?php if ($req) echo "(required)"; ?></small></label>
@@ -56,8 +56,8 @@
 
         <!--<p><small><strong>XHTML:</strong> You can use these tags: <?php echo allowed_tags(); ?></small></p>-->
 
-        <!-- <p><textarea name="comment" id="comment" rows="10" colspan="3"></textarea></p> -->
-        <input class="input-append" type="text" id="c" data-provide="comment" autocomplete="off" name="comment">
+        <textarea class="input-append" name="comment" id="c" rows="10" colspan="3" style="width: 476px; height: 23px;"></textarea>
+        <!-- <input class="input-append" type="text" id="c" data-provide="comment" autocomplete="off" name="comment">
 
         <!--<p><input name="submit" type="submit" id="submit" tabindex="5" value="Submit Comment" />-->
         <button type="submit" class="btn btn-large">Comment</button>
@@ -65,14 +65,26 @@
 
         <input type="hidden" name="comment_post_ID" value="<?php echo $id; ?>" />
 
-        </p>
+          <div class="comment-option-wrap">
         <?php do_action('comment_form', $post->ID); ?>
-
+          </div>
         <div class="cf"></div>
 
       </form>
     </div>
   </div>
+
+  <script>
+    $(document).ready(function()
+    {
+      $('.post-comment textarea').focus(function()
+      {
+        $(this).css('height', '50px');
+        $('.post-comment button').css('height', '60px');
+        $('.comment-option-wrap').slideDown();
+      });
+    });
+  </script>
 
   <?php if ( !$user_ID ) : ?>
 
