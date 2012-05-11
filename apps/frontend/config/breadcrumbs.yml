@@ -86,3 +86,15 @@ ice_breadcrumbs:
     index: [{ name: 'Categories' }]
     category:
       - { name: '%Name%', model: true, title: 'Category: %Name%' }
+
+  messages:
+    _prepend:
+      - { name: 'Messages', route: messages_inbox }
+    inbox:
+      - { name: 'Inbox' }
+    compose:
+      - { name: 'Compose new message' }
+    sent:
+      - { name: 'Sent messages' }
+    show:
+      - { name: 'Read message' }
