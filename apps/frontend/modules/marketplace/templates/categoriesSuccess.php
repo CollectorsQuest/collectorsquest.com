@@ -1,11 +1,11 @@
 <?php cq_page_title('Market Categories'); ?>
 
-<div class="row">
+<div id="all-market-categories" class="row">
   <?php foreach ($level1_categories as $k => $category):
     $level2_links = array();
   ?>
 
-  <div class="span3">
+  <div class="span4">
     <h2><?= link_to($category, 'marketplace_category_by_slug', $category); ?></h2>
 
     <?php foreach ($category->getChildren(ContentCategoryQuery::create()->withCollectiblesForSale()->orderBy('Name')) as $child_category): ?>
