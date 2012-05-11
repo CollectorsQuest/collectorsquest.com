@@ -26,6 +26,16 @@ class collectionsActions extends cqFrontendActions
   {
     $this->collector = $this->getRoute()->getObject();
 
+    $q = CollectorCollectionQuery::create()
+        ->filterByCollector($this->collector)
+        ->orderByUpdatedAt(Criteria::DESC);
+
+    $pager = new PropelModelPager($q, 36);
+    $pager->setPage($request->getParameter('page', 1));
+    $pager->init();
+
+    $this->pager = $pager;
+
     return sfView::SUCCESS;
   }
 
