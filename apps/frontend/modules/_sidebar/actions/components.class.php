@@ -218,7 +218,7 @@ class _sidebarComponents extends cqFrontendComponents
       return sfView::NONE;
     }
 
-    return $this->_sidebar_if($this->videos);
+    return $this->_sidebar_if(count($this->videos) > 0);
   }
 
   public function executeWidgetCollector()

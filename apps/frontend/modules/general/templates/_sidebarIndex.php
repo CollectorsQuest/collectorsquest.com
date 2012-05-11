@@ -1,5 +1,6 @@
 <p class="text-center">
-  <?= link_to(image_tag('banners/040812_showandsell_160.jpg'), '@collector_signup'); ?>
+  <?php cq_dart_slot('160x600', 'homepage', null, 'sidebar') ?>
+  <?php // link_to(image_tag('banners/040812_showandsell_160.jpg'), '@collector_signup'); ?>
 </p>
 
 <?php cq_sidebar_title('Discover'); ?>

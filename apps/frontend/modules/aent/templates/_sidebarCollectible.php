@@ -1,5 +1,21 @@
+<?php
+/**
+ * @var $brand string
+ * @var $collectible Collectible
+ */
+?>
+
 <div class="banner-sidebar-top">
-  <?php cq_ad_slot('300x250', 300, 250) ?>
+  <?php
+    if ($brand === 'American Pickers')
+    {
+      cq_dart_slot('300x250', 'collections', 'americanpickers', 'sidebar');
+    }
+    else if ($brand === 'Pawn Stars')
+    {
+      cq_dart_slot('300x250', 'collections', 'pawnstars', 'sidebar');
+    }
+  ?>
 </div>
 
 <?php
@@ -36,7 +52,7 @@
 //-->
 <div class="banner-sidebar-promo-300-90">
   <a href="<?= url_for('@aetn_american_pickers'); ?>" title="Check out items seen on American Pickers">
-    <img src="/images/banners/american-pickers-banner.jpg" alt="">
+    <img src="/images/banners/american-pickers-banner.jpg" alt="Check out items seen on American Pickers">
     <span>
       Check out items seen on American Pickers
     </span>

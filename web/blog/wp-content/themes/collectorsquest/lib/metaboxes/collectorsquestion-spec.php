@@ -2,12 +2,12 @@
 
 $custom_thumbs_mb = new WPAlchemy_MetaBox(array
 (
-	'id' => '_collectors_question_details',
-	'title' => 'Collectors\' Question Details',
+	'id' => '_collectors_question_info',
+	'title' => 'Collectors\' Question Info',
 	'template' => get_stylesheet_directory() . '/lib/metaboxes/collectorsquestion-meta.php',
   'types' => array('collectors_question'),
-  'context' => 'side',
-  'priority' => 'low',
+  'context' => 'normal',
+  'priority' => 'high',
 ));
 
 /* eof */

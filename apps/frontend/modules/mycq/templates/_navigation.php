@@ -6,17 +6,18 @@
 ?>
 
 <div style="margin: 20px; margin-top: 0;">
-  <?php cq_page_title($collector->getDisplayName() ."'s Profile", link_to('log off &raquo;', '@logout')); ?>
+  <?php
+    $links = link_to('Log Out', '@logout') .
+             '<span style="color: #fff;">&nbsp; | &nbsp;</span>'.
+             link_to('View Public Profile →', '@collector_me');
+    cq_page_title($collector->getDisplayName() ."'s Profile", $links);
+  ?>
 
   <div id="profile-subnavbar" class="navbar">
     <div class="navbar-inner">
       <div class="container">
         <div class="nav-collapse">
           <ul class="nav">
-            <?php
-              $active = in_array($sf_params->get('action'), array('index')) ? 'active' : null;
-              echo '<li class="'. $active .'">', link_to('Home', '@mycq'), '</li>';
-            ?>
             <?php
               $active = in_array($sf_params->get('action'), array('profile')) ? 'active' : null;
               echo '<li class="'. $active .'">', link_to('Profile', '@mycq_profile'), '</li>';

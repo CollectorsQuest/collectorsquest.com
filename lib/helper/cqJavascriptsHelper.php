@@ -59,6 +59,29 @@ function cq_ad_slot($slot, $width, $height, $delayed = false)
   }
 }
 
+function cq_dart_slot($size, $zone1 = 'other', $zone2 = null, $pos = null)
+{
+  list($width, $height) = explode('x', $size);
+
+  $src = sprintf(
+    'http://ad.doubleclick.net/adj/aetn.hist.cq/%s;s1=%s;s2=%s;kw=;test=;aetn=ad;pos=%s;dcopt=%s;sz=%s',
+    $zone1, $zone1, $zone2, $pos, ($pos === 'top') ? 'ist' : null, $size
+  );
+
+  $href = sprintf(
+    'http://ad.doubleclick.net/jump/aetn.hist.cq/%s;s1=%s;s2=%s;kw=;test=;aetn=ad;pos=%s;sz=%s',
+    $zone1, $zone1, $zone2, $pos, $size
+  );
+
+  include_partial(
+    'global/js/dart_slot',
+    array(
+      'src' => $src, 'href' => $href,
+      'width' => (int) $width, 'height' => (int) $height
+    )
+  );
+}
+
 function cq_javascript_tag()
 {
   /** @var $request sfWebRequest */
