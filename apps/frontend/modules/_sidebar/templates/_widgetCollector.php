@@ -50,7 +50,7 @@
     <form action="<?= url_for('@messages_compose?to='. $collector->getUsername()); ?>" method="post" style="margin-bottom: 0;" id="form-private-message">
       <input type="hidden" name="message[receiver]" value="<?= $collector->getUsername(); ?>">
       <input type="hidden" name="message[subject]" value="<?= $subject; ?>">
-      <textarea class="requires-login" name="message[body]" style="width: 97%; margin-bottom: 0;" placeholder="Send a message to <?= $collector; ?>"></textarea>
+      <textarea class="requires-login" data-login-title="Create an account to contact the seller of this item."  name="message[body]" style="width: 97%; margin-bottom: 0;" placeholder="Send a message to <?= $collector; ?>"></textarea>
       <div style="text-align: center; display: none; margin: 10px 0 5px 0;" id="buttons-private-message">
         <button type="button" class="btn cancel" value="cancel">cancel</button>
          &nbsp; - or - &nbsp;

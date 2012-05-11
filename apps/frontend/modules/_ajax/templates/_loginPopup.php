@@ -1,10 +1,12 @@
 <div id="modal-login-holder" class="modal fade">
   <div class="modal-header">
+    <button class="close" data-dismiss="modal">×</button>
     <ul class="nav nav-pills">
       <li class="active"><a href="#modal-login-username-pane" data-toggle="tab">Collectors' Quest</a></li>
       <li><a href="#modal-login-openid-pane" data-toggle="tab">OpenID</a></li>
-      <li class="pull-right"><a href="#modal-sign-up-pane" data-toggle="tab">Sign up!</a></li>
+      <li class="pull-right spacer-right"><a href="#modal-sign-up-pane" data-toggle="tab">Sign up!</a></li>
     </ul>
+    <h1 class="header-text" style="display: none;"></h1>
   </div>
 
   <div class="modal-body">

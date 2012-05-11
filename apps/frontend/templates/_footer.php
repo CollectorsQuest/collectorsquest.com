@@ -115,7 +115,7 @@
         <div class="row-fluid spacer-inner-top">
           <div class="span12">
             <button class="btn btn-primary blue-button" type="submit">My Profile</button>
-            <b><?= link_to('Log out', '@logout', array('class' => 'spacing-left')); ?></b>
+            <b><?= link_to('Log out', '@logout', array('class' => 'spacer-left')); ?></b>
           </div>
         </div>
         <?php endif; ?>
