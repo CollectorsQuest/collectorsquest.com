@@ -1,5 +1,5 @@
 <div class="banner-sidebar-top">
-  <?php cq_ad_slot('300x250', 300, 250) ?>
+  <?php cq_dart_slot('300x250', 'collections', 'pawnstars', 'sidebar') ?>
 </div>
 
 <!--

@@ -59,6 +59,30 @@ function cq_ad_slot($slot, $width, $height, $delayed = false)
   }
 }
 
+function cq_dart_slot($size, $zone1 = 'other', $zone2 = null, $pos = null)
+{
+  static $_dart_ord = null;
+
+  if ($_dart_ord === null) {
+    $_dart_ord = rand(0, PHP_INT_MAX);
+  }
+
+  list($width, $height) = explode('x', $size);
+
+  $src = sprintf(
+    'http://ad.doubleclick.net/adj/aetn.hist.cq/%s;s1=%s;s2=%s;kw=;test=;aetn=ad;pos=%s;dcopt=%s;sz=%s',
+    $zone1, $zone1, $zone2, $pos, ($pos === 'top') ? 'ist' : null, $size
+  );
+
+  include_partial(
+    'global/js/dart_slot',
+    array(
+      'ord' => $_dart_ord, 'src' => $src,
+      'width' => $width, 'height' => $height
+    )
+  );
+}
+
 function cq_javascript_tag()
 {
   /** @var $request sfWebRequest */

@@ -1,4 +1,4 @@
-<?php cq_ad_slot('300x250', 300, 250) ?>
+<?php cq_dart_slot('300x250', 'collections', 'landing', 'sidebar') ?>
 
 <?php
 cq_sidebar_title(
