@@ -20,7 +20,7 @@
         <br/>
         <div class="spacer-inner-top-7"><?= link_to_collector($sender, 'image'); ?></div>
       </td>
-      <td class="subject"> <?= $message->getSubject(); ?></td>
+      <td class="subject"><b><?= $message->getSubject(); ?></b></td>
     </tr>
     <tr>
       <td class="message"><?php

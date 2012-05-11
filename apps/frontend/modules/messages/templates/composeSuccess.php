@@ -12,7 +12,7 @@
         'body'    => array('class' => 'span7', 'rows' => 6),
     )); ?>
     <div class="form-actions">
-      <input type="submit" class="btn btn-primary" value="Send" />
+      <input type="submit" class="btn btn-primary blue-button" value="Send" />
     </div>
   </fieldset>
 </form>

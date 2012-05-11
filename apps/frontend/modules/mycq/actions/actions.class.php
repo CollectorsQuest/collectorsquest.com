@@ -4,7 +4,7 @@ class mycqActions extends cqFrontendActions
 {
   public function executeIndex()
   {
-    return sfView::SUCCESS;
+    $this->redirect('@mycq_profile');
   }
 
   public function executeProfile()
@@ -14,6 +14,8 @@ class mycqActions extends cqFrontendActions
 
   public function executeCollections()
   {
+    $this->collector = $this->getUser()->getCollector();
+
     return sfView::SUCCESS;
   }
 
