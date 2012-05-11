@@ -98,3 +98,8 @@ ice_breadcrumbs:
       - { name: 'Sent messages' }
     show:
       - { name: 'Read message' }
+
+  seller:
+    index: [{ name: Seller }]
+    packages:
+      - { name: 'Seller packages' }
