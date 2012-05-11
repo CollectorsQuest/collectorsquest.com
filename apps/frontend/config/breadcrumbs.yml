@@ -38,11 +38,12 @@ ice_breadcrumbs:
       - { name: 'Collections', route: collections }
       - { name: 'by %DisplayName%', model: true, title: 'Collections by %DisplayName%' }
 
-
   collector:
     index:
-      - { name: 'Collector %DisplayName%', model: true }
+      - { name: 'Collectors', route: collectors }
+      - { name: '%DisplayName%', model: true }
     signup:
+      - { name: 'Collectors', route: collectors }
       - { name: 'Signup' }
 
   marketplace:
