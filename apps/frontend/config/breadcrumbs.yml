@@ -25,9 +25,18 @@ ice_breadcrumbs:
     collectible:
       - { name: '%Collection%', model: true, route: collection_by_slug, subobject: Collection }
       - { name: '%Name%', model: true }
+    create:
+      - { name: 'Collections' }
+      - { name: 'Create' }
 
   collections:
     index: [{ name: 'Collections' }]
+    category:
+      - { name: 'Collections', route: collections }
+      - { name: '%Name%', model: true, title: 'Category %Name%' }
+    collector:
+      - { name: 'Collections', route: collections }
+      - { name: 'by %DisplayName%', model: true, title: 'Collections by %DisplayName%' }
 
 
   collector:
