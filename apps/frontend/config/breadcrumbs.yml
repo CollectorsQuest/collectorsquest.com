@@ -46,6 +46,9 @@ ice_breadcrumbs:
       - { name: 'Collectors', route: collectors }
       - { name: 'Signup' }
 
+  collectors:
+    index: [{ name: 'Collectors' }]
+
   marketplace:
     index: [{ name: 'Marketplace' }]
     categories:
