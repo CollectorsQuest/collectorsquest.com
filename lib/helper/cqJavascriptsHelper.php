@@ -61,12 +61,6 @@ function cq_ad_slot($slot, $width, $height, $delayed = false)
 
 function cq_dart_slot($size, $zone1 = 'other', $zone2 = null, $pos = null)
 {
-  static $_dart_ord = null;
-
-  if ($_dart_ord === null) {
-    $_dart_ord = rand(0, PHP_INT_MAX);
-  }
-
   list($width, $height) = explode('x', $size);
 
   $src = sprintf(
@@ -74,11 +68,16 @@ function cq_dart_slot($size, $zone1 = 'other', $zone2 = null, $pos = null)
     $zone1, $zone1, $zone2, $pos, ($pos === 'top') ? 'ist' : null, $size
   );
 
+  $href = sprintf(
+    'http://ad.doubleclick.net/jump/aetn.hist.cq/%s;s1=%s;s2=%s;kw=;test=;aetn=ad;pos=%s;sz=%s',
+    $zone1, $zone1, $zone2, $pos, $size
+  );
+
   include_partial(
     'global/js/dart_slot',
     array(
-      'ord' => $_dart_ord, 'src' => $src,
-      'width' => $width, 'height' => $height
+      'src' => $src, 'href' => $href,
+      'width' => (int) $width, 'height' => (int) $height
     )
   );
 }
