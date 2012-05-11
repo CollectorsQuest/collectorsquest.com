@@ -116,6 +116,81 @@ function cq_custom_post_type_init()
     'supports'        => array('title', 'editor', 'custom-fields', 'thumbnail')
   ));
 
+  register_post_type('marketplace_explore', array(
+    'labels' => array(
+      'name'               => _x('Marketplace Explore', 'post type general name'),
+      'singular_name'      => _x('Collectibles', 'post type singular name'),
+      'add_new'            => _x('Add New', 'Collectible'),
+      'add_new_item'       => __('Add New Collectible'),
+      'edit_item'          => __('Edit Collectible'),
+      'new_item'           => __('New Collectible'),
+      'view_item'          => __('View Collectibles'),
+      'search_items'       => __('Search Collectibles'),
+      'not_found'          => __('No Collectibles found'),
+      'not_found_in_trash' => __('No Collectibles found in Trash'),
+      'parent_item_colon'  => ''
+    ),
+    'public'          => true,
+    'show_ui'         => true,
+    'capability_type' => 'editorial',
+    'capabilities'    => $capabilities,
+    'hierarchical'    => false,
+    'rewrite'         => false,
+    'query_var'       => false,
+    'menu_position'   => 100,
+    'supports'        => array('title', 'custom-fields')
+  ));
+
+  register_post_type('marketplace_featured', array(
+    'labels' => array(
+      'name'               => _x('Marketplace Featured', 'post type general name'),
+      'singular_name'      => _x('Featured Collectible', 'post type singular name'),
+      'add_new'            => _x('Add New', 'Featured Collectible'),
+      'add_new_item'       => __('Add New Featured Collectible'),
+      'edit_item'          => __('Edit Featured Collectible'),
+      'new_item'           => __('New Featured Collectible'),
+      'view_item'          => __('View Featured Collectible'),
+      'search_items'       => __('Search Featured Collectible'),
+      'not_found'          => __('No Featured Collectibles found'),
+      'not_found_in_trash' => __('No Featured Collectibles found in Trash'),
+      'parent_item_colon'  => ''
+    ),
+    'public'          => true,
+    'show_ui'         => true,
+    'capability_type' => 'editorial',
+    'capabilities'    => $capabilities,
+    'hierarchical'    => false,
+    'rewrite'         => false,
+    'query_var'       => false,
+    'menu_position'   => 100,
+    'supports'        => array('title','custom-fields')
+  ));
+
+  register_post_type('collections_explore', array(
+    'labels' => array(
+      'name'               => _x('Collections Explore', 'post type general name'),
+      'singular_name'      => _x('Collections', 'post type singular name'),
+      'add_new'            => _x('Add New', 'Collection'),
+      'add_new_item'       => __('Add New Collection'),
+      'edit_item'          => __('Edit Collection'),
+      'new_item'           => __('New Collection'),
+      'view_item'          => __('View Collection'),
+      'search_items'       => __('Search Collections'),
+      'not_found'          => __('No Collections found'),
+      'not_found_in_trash' => __('No Collections found in Trash'),
+      'parent_item_colon'  => ''
+    ),
+    'public'          => true,
+    'show_ui'         => true,
+    'capability_type' => 'editorial',
+    'capabilities'    => $capabilities,
+    'hierarchical'    => false,
+    'rewrite'         => false,
+    'query_var'       => false,
+    'menu_position'   => 100,
+    'supports'        => array('title')
+  ));
+
   register_post_type('featured_week', array(
     'labels' => array(
       'name'               => _x('Featured Week', 'post type general name'),
@@ -141,18 +216,18 @@ function cq_custom_post_type_init()
     'supports'        => array('title', 'editor', 'custom-fields', 'thumbnail')
   ));
 
-  register_post_type('marketplace_explore', array(
+  register_post_type('seller_spotlight', array(
     'labels' => array(
-      'name'               => _x('Random Items for Sale', 'post type general name'),
-      'singular_name'      => _x('Random Item for Sale', 'post type singular name'),
-      'add_new'            => _x('Add New', 'Random Item'),
-      'add_new_item'       => __('Add New Random Item'),
-      'edit_item'          => __('Edit Random Item'),
-      'new_item'           => __('New Random Item for Sale'),
-      'view_item'          => __('View Random Items for Sale'),
-      'search_items'       => __('Search Random Items for Sale'),
-      'not_found'          => __('No Random Items for Sale found'),
-      'not_found_in_trash' => __('No Random Items for Sale found in Trash'),
+      'name'               => _x('Seller Spotlight', 'post type general name'),
+      'singular_name'      => _x('Featured Seller', 'post type singular name'),
+      'add_new'            => _x('Add New', 'Featured Seller'),
+      'add_new_item'       => __('Add New Featured Seller'),
+      'edit_item'          => __('Edit Featured Seller'),
+      'new_item'           => __('New Featured Seller'),
+      'view_item'          => __('View Featured Seller'),
+      'search_items'       => __('Search Featured Seller'),
+      'not_found'          => __('No Featured Sellers found'),
+      'not_found_in_trash' => __('No Featured Sellers found in Trash'),
       'parent_item_colon'  => ''
     ),
     'public'          => true,
@@ -163,32 +238,7 @@ function cq_custom_post_type_init()
     'rewrite'         => false,
     'query_var'       => false,
     'menu_position'   => 100,
-    'supports'        => array('title', 'custom-fields')
-  ));
-
-  register_post_type('marketplace_featured', array(
-    'labels' => array(
-      'name'               => _x('Featured Items for Sale', 'post type general name'),
-      'singular_name'      => _x('Featured Item for Sale', 'post type singular name'),
-      'add_new'            => _x('Add New', 'Featured Item'),
-      'add_new_item'       => __('Add New Featured Item'),
-      'edit_item'          => __('Edit Featured Item'),
-      'new_item'           => __('New Featured Item for Sale'),
-      'view_item'          => __('View Featured Items for Sale'),
-      'search_items'       => __('Search Featured Items for Sale'),
-      'not_found'          => __('No Featured Items for Sale found'),
-      'not_found_in_trash' => __('No Featured Items for Sale found in Trash'),
-      'parent_item_colon'  => ''
-    ),
-    'public'          => true,
-    'show_ui'         => true,
-    'capability_type' => 'editorial',
-    'capabilities'    => $capabilities,
-    'hierarchical'    => false,
-    'rewrite'         => false,
-    'query_var'       => false,
-    'menu_position'   => 100,
-    'supports'        => array('title', 'custom-fields')
+    'supports'        => array('title')
   ));
 }
 
@@ -240,11 +290,9 @@ function map_meta_cap_editorial($caps, $cap, $user_id, $args)
 
 
 if ($_SERVER['HTTP_HOST'] == 'www.collectorsquest.dev' || $_SERVER['HTTP_HOST'] == 'www.collectorsquest.next' || $_SERVER['HTTP_HOST'] == 'www.cqnext.com') {
-  /**
-   * Initialization. Add our script if needed on this page.
-   */
-  function cq_ajax_posts()
-  {
+
+  // ajax post loading
+  function cq_ajax_posts() {
 
   global $wp_query;
     // Add code to index pages.
@@ -383,12 +431,8 @@ if ($_SERVER['HTTP_HOST'] == 'www.collectorsquest.dev' || $_SERVER['HTTP_HOST'] 
   add_action('wp_footer','add_fixed_sidebar');
 
 
-
   require_once 'lib/widgets/widgets.php';
-
   include_once 'lib/metaboxes/setup.php';
-  include_once 'lib/metaboxes/thumbs-spec.php';
-  include_once 'lib/metaboxes/collectorsquestion-spec.php';
 
 }
 
