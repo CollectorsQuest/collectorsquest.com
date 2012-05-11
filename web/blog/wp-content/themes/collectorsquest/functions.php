@@ -287,6 +287,34 @@ function map_meta_cap_editorial($caps, $cap, $user_id, $args)
   return $caps;
 }
 
+// hide permalinks on custom post types
+add_action('admin_head', 'hide_edit_permalinks_admin_css');
+function hide_edit_permalinks_admin_css() {
+
+  global $typenow;
+  if ($typenow != 'post' && $typenow != 'page') :
+
+  ?>
+  <style type="text/css">
+    <!--
+    #titlediv
+    {
+      margin-bottom: 10px;
+    }
+    #edit-slug-box
+    {
+      display: none;
+    }
+    -->
+  </style>
+  <?php
+
+  endif;
+
+}
+
+
+
 
 
 if ($_SERVER['HTTP_HOST'] == 'www.collectorsquest.dev' || $_SERVER['HTTP_HOST'] == 'www.collectorsquest.next' || $_SERVER['HTTP_HOST'] == 'www.cqnext.com') {
