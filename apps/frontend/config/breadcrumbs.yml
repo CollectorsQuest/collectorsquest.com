@@ -17,6 +17,7 @@ ice_breadcrumbs:
     collectible:
       - { name: '%Collection%', route: collection_by_slug, model: true, subobject: Collection }
       - { name: '%Name%', model: true }
+    landing: [{ name: 'History' }]
 
   collection:
     index:
@@ -27,6 +28,7 @@ ice_breadcrumbs:
 
   collections:
     index: [{ name: 'Collections' }]
+
 
   collector:
     index:
@@ -65,5 +67,6 @@ ice_breadcrumbs:
       - { name: 'Video' }
 
   categories:
+    index: [{ name: 'Categories' }]
     category:
       - { name: '%Name%', model: true, title: 'Category: %Name%' }
