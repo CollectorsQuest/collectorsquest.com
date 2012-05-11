@@ -15,4 +15,18 @@ class collectionsActions extends cqFrontendActions
     return sfView::SUCCESS;
   }
 
+  /**
+   * Action Collector
+   *
+   * @param sfWebRequest $request
+   *
+   * @return string
+   */
+  public function executeCollector(sfWebRequest $request)
+  {
+    $this->collector = $this->getRoute()->getObject();
+
+    return sfView::SUCCESS;
+  }
+
 }
