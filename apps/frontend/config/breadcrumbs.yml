@@ -35,7 +35,13 @@ ice_breadcrumbs:
       - { name: 'Signup' }
 
   marketplace:
-    index: [{ name: 'Maket' }]
+    index: [{ name: 'Marketplace' }]
+    categories:
+      - { name: 'Marketplace', route: marketplace }
+      - { name: 'Categories' }
+    browse:
+      - { name: 'Marketplace', route: marketplace }
+      - { name: '%Name%', model: true }
 
   search:
     index: [{ name: 'Search Results', route: search }]
@@ -57,3 +63,7 @@ ice_breadcrumbs:
     video:
       - { name: 'Search', route: search }
       - { name: 'Video' }
+
+  categories:
+    category:
+      - { name: '%Name%', model: true, title: 'Category: %Name%' }
