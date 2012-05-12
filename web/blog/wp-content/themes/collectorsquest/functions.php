@@ -287,6 +287,34 @@ function map_meta_cap_editorial($caps, $cap, $user_id, $args)
   return $caps;
 }
 
+// hide permalinks on custom post types
+add_action('admin_head', 'hide_edit_permalinks_admin_css');
+function hide_edit_permalinks_admin_css() {
+
+  global $typenow;
+  if ($typenow != 'post' && $typenow != 'page') :
+
+  ?>
+  <style type="text/css">
+    <!--
+    #titlediv
+    {
+      margin-bottom: 10px;
+    }
+    #edit-slug-box
+    {
+      display: none;
+    }
+    -->
+  </style>
+  <?php
+
+  endif;
+
+}
+
+
+
 
 
 if ($_SERVER['HTTP_HOST'] == 'www.collectorsquest.dev' || $_SERVER['HTTP_HOST'] == 'www.collectorsquest.next' || $_SERVER['HTTP_HOST'] == 'www.cqnext.com') {
@@ -387,13 +415,14 @@ if ($_SERVER['HTTP_HOST'] == 'www.collectorsquest.dev' || $_SERVER['HTTP_HOST'] 
     echo $output;
   }
 
-  // Puts link in excerpts more tag
+  // puts link in excerpts more tag
   function new_excerpt_more($more) {
     global $post;
     return '...&nbsp;<a class="moretag" href="'. get_permalink($post->ID) . '">more</a>';
   }
   add_filter('excerpt_more', 'new_excerpt_more');
 
+  // adds link class for global styles
   function add_class_the_tags($html){
     if (is_single()) {
       $postid = get_the_ID();
@@ -405,6 +434,7 @@ if ($_SERVER['HTTP_HOST'] == 'www.collectorsquest.dev' || $_SERVER['HTTP_HOST'] 
   }
   add_filter('the_tags','add_class_the_tags',10,1);
 
+  // fixed sidebar on static pages
   function add_fixed_sidebar() {
 
     if (is_page()) : ?>
@@ -430,7 +460,7 @@ if ($_SERVER['HTTP_HOST'] == 'www.collectorsquest.dev' || $_SERVER['HTTP_HOST'] 
     }
   add_action('wp_footer','add_fixed_sidebar');
 
-
+  // includes for widgets/metaboxes
   require_once 'lib/widgets/widgets.php';
   include_once 'lib/metaboxes/setup.php';
 
