@@ -57,7 +57,7 @@ EAT
   }
 
   unset($options['left'], $options['right']);
-  $options = array_merge(array('class' => 'row-fluid section-title'), $options);
+  $options = array_merge(array('class' => 'row-fluid section-title spacer-top-35'), $options);
 
   echo content_tag('div', $content, $options);
 }
