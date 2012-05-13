@@ -24,8 +24,14 @@
 }
 
 .private-messages-list {
+
+  tbody tr.unread:hover td {
+    background-color: @yellowBackground;
+  }
+
   .unread {
     font-weight: bold;
+    background: @yellowSolarized;
   }
   .sender-col {
     width: 25%;
