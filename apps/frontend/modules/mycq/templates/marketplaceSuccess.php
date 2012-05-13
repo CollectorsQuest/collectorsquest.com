@@ -1,7 +1,7 @@
 
-<?php include_component('mycq', 'snapshot'); ?>
+<?php //include_component('mycq', 'snapshot'); ?>
 
-<div id="cp-tabs">
+<div id="mycq-tabs">
 <ul class="nav nav-tabs">
   <li class="active">
     <a href="#tab1" data-toggle="tab">Collectibles for Sale</a>
@@ -99,7 +99,7 @@
       <h3 class="Chivo webfont">My Items for Sale (34)</h3>
     </div>
     <div class="span7">
-      <div class="mycq-sort-search-box-mini">
+      <div class="mycq-sort-search-box">
         <div class="input-append">
           <form id="form-explore-collections" method="post" action="/search/collections">
             <div class="btn-group">
