@@ -6,7 +6,11 @@
   <li class="active">
     <a href="#tab1" data-toggle="tab">Show Collections</a>
   </li>
-  <a href="#" class="add-new-items-button pull-right">&nbsp;</a>
+  <li class="pull-right styles-reset">
+    <span>
+      <a href="#" class="add-new-items-button pull-right">&nbsp;</a>
+    </span>
+  </li>
 </ul>
 <div class="tab-content">
 <div class="tab-pane active" id="tab1">
