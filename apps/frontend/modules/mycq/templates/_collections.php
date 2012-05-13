@@ -21,13 +21,13 @@
           );
         }
       ?>
-      <div class="add-white-icon drop-zone"></div>
+      <i class="add-white-icon drop-zone"></i>
     </div>
     <?php endforeach; ?>
     <div class="span4 thumbnail link">
       <div class="row-fluid spacer-inner-top-15">
         <div class="span5">
-          <div class="add-white-icon create-collection pull-right"></div>
+          <i class="add-white-icon create-collection pull-right"></i>
         </div>
         <div class="span7">
           <a href="#" class="create-collection-text target">Create a new collection by clicking here</a>
