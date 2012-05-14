@@ -130,7 +130,7 @@
     </div>
   <?php } elseif (is_tag()) { ?>
     <div class="span11">
-      <h1 class="Chivo webfont" style="visibility: visible; "><?php _e( 'Tag Archive:', 'your-theme' ) ?> <span><?php single_tag_title() ?></span></h1>
+      <h1 class="Chivo webfont" style="visibility: visible; "><?php _e( 'Related News:', 'collectorsquest' ) ?> <span><?php single_tag_title() ?></span></h1>
       <?php $categorydesc = category_description(); if ( !empty($categorydesc) ) echo apply_filters( 'archive_meta', '<div class="archive-meta">' . $categorydesc . '</div>' ); ?>
     </div>
   <?php } ?>
@@ -407,10 +407,12 @@ $lastclass = 0;
 
   <?php if (!is_page()): ?>
 
+    <div id="comments">
     <?php comments_template(); ?>
+    </div>
 
     <?php if (is_single()) : ?>
-     <div class="permalinklink">Permalink: <a href="<?php the_permalink(); ?>"><?php the_permalink() ?></a></div>
+     <div class="perlinknklink">Permalink: <a href="<?php the_permalink(); ?>"><?php the_permalink() ?></a></div>
     <?php endif; ?>
 
     <?php if ( is_archive() && $wp_query->max_num_pages > 1 ) : ?>
