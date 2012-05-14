@@ -316,19 +316,11 @@ class generalActions extends cqFrontendActions
 
   public function executeError404()
   {
-    // Building the breadcrumbs and page title
-    $this->addBreadcrumb($this->__('Page Not Found'));
-    $this->prependTitle($this->__('Page Not Found'));
-
     return sfView::SUCCESS;
   }
 
   public function executeError50x()
   {
-    // Building the breadcrumbs and page title
-    $this->addBreadcrumb($this->__('Unexpected Error'));
-    $this->prependTitle($this->__('Unexpected Error'));
-
     return sfView::SUCCESS;
   }
 
