@@ -585,13 +585,6 @@ class Collectible extends BaseCollectible
      */
     $multimedia->makeCustomThumb(420, 0, '420x0', 'resize', $watermark);
     $multimedia->makeCustomThumb(1024, 768, '1024x768', 'resize', $watermark);
-
-    // Here we want to create an optimized thumbnail for the homepage
-    if ($multimedia->getOrientation() == 'landscape') {
-      $multimedia->makeCustomThumb(230, 150, '230x150', 'center', $watermark);
-    } else {
-      $multimedia->makeCustomThumb(170, 230, '170x230', 'center', $watermark);
-    }
   }
 
   /**
