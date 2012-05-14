@@ -129,17 +129,17 @@ class collectionActions extends cqActions
       if (!($collection instanceof CollectionDropbox) && !$editable)
       {
         $c = new Criteria();
-        $c->add(CollectionPeer::IS_PUBLIC, true);
+        $c->add(CollectorCollectionPeer::IS_PUBLIC, true);
         if ($collection->getCollectionCategoryId())
         {
-          $c->add(CollectionPeer::COLLECTION_CATEGORY_ID, $collection->getCollectionCategoryId());
+          $c->add(CollectorCollectionPeer::COLLECTION_CATEGORY_ID, $collection->getCollectionCategoryId());
         }
-        $c->add(CollectionPeer::NUM_ITEMS, 4, Criteria::GREATER_EQUAL);
-        $c->addAscendingOrderByColumn(CollectionPeer::SCORE);
-        $c->addDescendingOrderByColumn(CollectionPeer::CREATED_AT);
+        $c->add(CollectorCollectionPeer::NUM_ITEMS, 4, Criteria::GREATER_EQUAL);
+        $c->addAscendingOrderByColumn(CollectorCollectionPeer::SCORE);
+        $c->addDescendingOrderByColumn(CollectorCollectionPeer::CREATED_AT);
         $c->setLimit(9);
 
-        $this->collections = CollectionPeer::doSelect($c);
+        $this->collections = CollectorCollectionPeer::doSelect($c);
       }
 
       return 'NoCollectibles';
