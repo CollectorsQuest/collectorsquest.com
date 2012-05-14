@@ -101,7 +101,7 @@
           <?php foreach ($featured as $i => $f): ?>
             <div class="span-5" style="margin-right: 25px; margin-left: 10px; margin-bottom: 40px;">
               <a href="<?= url_for_collection($f); ?>">
-                <?= image_tag_collection($f, 'thumb', array('style' => 'width: 75px; height: 75px; float: left; margin-right: 10px;')); ?>
+                <?= image_tag_collection($f, '150x150', array('style' => 'width: 75px; height: 75px; float: left; margin-right: 10px;')); ?>
                 <?= $f->getName(); ?>
               </a>
           </div>

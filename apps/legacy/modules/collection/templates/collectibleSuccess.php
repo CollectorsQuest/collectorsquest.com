@@ -41,7 +41,7 @@ if ($collectible_for_sale)
       <?php foreach ($additional_multimedia as $m): ?>
         <div class="span-3 alternative" style="margin-left: 25px; margin-top: 10px; margin-bottom: 25px; width: 100px; height: 100px;">
           <a class="zoom" href="<?php echo src_tag_multimedia($m, '1024x768'); ?>" title="<?php echo $m->getName(); ?>" onClick="return false;">
-            <?php echo image_tag_multimedia($m, 'thumb', array('width' => 100, 'title' => $m->getName())); ?>
+            <?php echo image_tag_multimedia($m, '150x150', array('width' => 100, 'title' => $m->getName())); ?>
           </a>
           <?php echo image_tag('legacy/zoom.png', array('class' => 'zoom-overlay')); ?>
         </div>
@@ -142,7 +142,7 @@ if ($collectible_for_sale)
       <meta property="og:title" content="<?php echo htmlspecialchars($collectible->getName(), ENT_QUOTES) ?>" />
       <meta property="og:type" content="product" />
       <?php if ($multimedia = $collectible->getPrimaryImage()): ?>
-        <meta property="og:image" content="<?= src_tag_multimedia($multimedia, 'thumb'); ?>" />
+        <meta property="og:image" content="<?= src_tag_multimedia($multimedia, '150x150'); ?>" />
       <?php endif; ?>
     <?php end_slot(); ?>
   </div>
