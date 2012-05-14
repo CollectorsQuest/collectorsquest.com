@@ -20,3 +20,7 @@ countdownSuccess:
 
 feedbackSuccess:
   layout: layout-minimal
+
+error404Success:
+  components:
+    sidebar_160: [general, sidebarIndex]

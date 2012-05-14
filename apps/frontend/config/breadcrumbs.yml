@@ -9,9 +9,11 @@ ice_breadcrumbs:
 
   general:
     index: [{ name: 'Home', route: homepage }]
-    feedback: [{ name: 'Feedback' }]
-    recoverPassword: [{ name: 'Recover password' }]
     login: [{ name: 'Login' }]
+    recoverPassword: [{ name: 'Recover password' }]
+    feedback: [{ name: 'Feedback' }]
+    error404: [{ name: 'This page isn’t here anymore' }]
+    error50x: [{ name: 'Unexpected Error' }]
 
   aent:
     americanPickers: [{ name: 'As Seen on American Pickers' }]

@@ -1,6 +1,7 @@
+<?php if ($pager->getNbResults() > 0): ?>
 <div class="mycq-collections">
   <div class="row thumbnails">
-    <?php foreach ($collections as $collection): ?>
+    <?php foreach ($pager->getResults() as $collection): ?>
     <div class="span4 thumbnail link">
       <span>
         <?php
@@ -21,13 +22,13 @@
           );
         }
       ?>
-      <div class="add-white-icon drop-zone"></div>
+      <i class="add-white-icon drop-zone"></i>
     </div>
     <?php endforeach; ?>
     <div class="span4 thumbnail link">
       <div class="row-fluid spacer-inner-top-15">
-        <div class="span5">
-          <div class="add-white-icon create-collection pull-right"></div>
+        <div class="span4 add-white-icon-big" style="margin-left: 20px;">
+          <i class="icon-plus icon-white"></i>
         </div>
         <div class="span7">
           <a href="#" class="create-collection-text target">Create a new collection by clicking here</a>
@@ -37,6 +38,41 @@
   </div>
 </div>
 
+<?php if ($pager->haveToPaginate()): ?>
 <a href="#" class="btn btn-small gray-button see-more-button">
   See more
 </a>
+<?php endif; ?>
+
+<?php else: ?>
+
+<div class="spacer-top-25">
+  <!-- No Collection Uploaded -->
+
+  <div class="mycq-collections">
+    <div class="row thumbnails">
+      <div class="span12 thumbnail link no-collections-uploaded-box">
+        <span class="Chivo webfont info-no-collections-uploaded">
+          Share your collection with the community today!<br>
+          Upload then sort your collectibles to get started.
+        </span>
+      </div>
+      <div class="span4 thumbnail link">
+        <div class="row-fluid spacer-inner-top-15">
+          <div class="span4 add-white-icon-big" style="margin-left: 20px;">
+            <i class="icon-plus icon-white"></i>
+          </div>
+          <div class="span7">
+            <a href="#" class="create-collection-text target">
+              Create a new collection by clicking here
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- /No Collection Uploaded -->
+</div>
+
+<?php endif; ?>

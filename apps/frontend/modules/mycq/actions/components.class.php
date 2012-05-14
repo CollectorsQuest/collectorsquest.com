@@ -30,9 +30,21 @@ class mycqComponents extends cqFrontendComponents
 
   public function executeCollections()
   {
-    $c = new Criteria();
-    $c->setLimit(7);
-    $this->collections = $this->getCollector()->getCollectorCollections($c);
+    $this->collector = $this->getVar('collector') ?: $this->getUser()->getCollector();
+
+    $q = CollectorCollectionQuery::create()
+      ->filterByCollector($this->collector)
+      ->orderByCreatedAt(Criteria::DESC);
+
+    if ($this->getRequestParameter('q'))
+    {
+      $q->search($this->getRequestParameter('q'));
+    }
+
+    $pager = new PropelModelPager($q, 7);
+    $pager->setPage($this->getRequestParameter('p', 1));
+    $pager->init();
+    $this->pager = $pager;
 
     return sfView::SUCCESS;
   }

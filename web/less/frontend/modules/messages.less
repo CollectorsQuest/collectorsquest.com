@@ -24,8 +24,14 @@
 }
 
 .private-messages-list {
+
+  tbody tr.unread:hover td {
+    background-color: @yellowBackground;
+  }
+
   .unread {
     font-weight: bold;
+    background: @yellowSolarized;
   }
   .sender-col {
     width: 25%;
@@ -53,7 +59,7 @@
 }
 
 .checkbox-arrow {
-	margin: 0px 4px 0 10px;
+	margin: 0 4px 0 10px;
 }
 
 .private-messages-list .avatar
@@ -84,6 +90,11 @@
 	border-top: none;
 }
 
+td.sender {
+	width: 100px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
 
 td.subject {
 	background-color: #ffffff !important;
@@ -94,3 +105,20 @@ td.message {
 	border: none;
 	border-left: 1px solid #ddd;
 }
+
+.reply-form {
+	margin-left: 120px;
+}
+
+.reply-form-title {
+	display: block;
+	font-weight: bold;
+	color: @blueDark;
+	font-size: 14px;
+	margin: 10px 0 20px 160px;
+}
+
+.nav-pills > .active > a, .nav-pills > .active > a:hover {
+	#gradient > .vertical(@btnPrimaryBackground, @btnPrimaryBackgroundHighlight);
+}
+

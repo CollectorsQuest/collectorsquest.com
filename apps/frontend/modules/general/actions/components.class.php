@@ -32,6 +32,14 @@ class generalComponents extends cqFrontendComponents
 
   public function executeSidebarIndex()
   {
+    $q = wpPostQuery::create()
+      ->filterByPostType('cms_slot')
+      ->filterByPostStatus('publish')
+      ->filterByPostExcerpt('c4bf2d50-9daa-11e1-a8b0-0800200c9a66')
+      ->orderByPostDate(Criteria::DESC);
+
+    $this->cms_slot1 = $q->findOne();
+
     return sfView::SUCCESS;
   }
 }

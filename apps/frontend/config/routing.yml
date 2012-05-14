@@ -28,6 +28,12 @@ ajax_marketplace:
   options: { extra_parameters_as_query_string: true }
   requirements: { sf_format: (?:html|json) }
 
+ajax_mycq:
+  url:   /ajax/mycq/:section/:page.:sf_format
+  param: { module: mycq, action: ajax, sf_format: html }
+  options: { extra_parameters_as_query_string: true }
+  requirements: { sf_format: (?:html|json) }
+
 
 ### A&E
 

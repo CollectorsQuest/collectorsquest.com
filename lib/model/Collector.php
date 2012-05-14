@@ -118,6 +118,19 @@ class Collector extends BaseCollector implements ShippingRatesInterface
   }
 
   /**
+   * @return    string
+   */
+  public function getDisplayName()
+  {
+    if (!$display_name = parent::getDisplayName())
+    {
+      $display_name = $this->getUsername();
+    }
+
+    return $display_name;
+  }
+
+  /**
    * Get the salt (generate it first if needed)
    *
    * @return    string
@@ -751,6 +764,7 @@ class Collector extends BaseCollector implements ShippingRatesInterface
     $watermark = isset($options['watermark']) ? (boolean) $options['watermark'] : false;
 
     $multimedia->makeThumb(100, 100, 'center', false);
+    $multimedia->makeCustomThumb(150, 150, '150x150', 'center', false);
     $multimedia->makeCustomThumb(235, 315, '235x315', 'top', $watermark);
   }
 

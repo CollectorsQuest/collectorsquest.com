@@ -21,4 +21,14 @@ class CollectorCollectionQuery extends BaseCollectorCollectionQuery
         )
       ->endUse();
   }
+
+  public function search($v)
+  {
+    return $this
+      ->useCollectionQuery()
+        ->filterByName('%'. $v .'%', Criteria::LIKE)
+        ->_or()
+        ->filterByDescription('%'. $v .'%', Criteria::LIKE)
+      ->endUse();
+  }
 }
