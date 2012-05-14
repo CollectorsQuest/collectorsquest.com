@@ -52,16 +52,41 @@ class generalActions extends cqFrontendActions
 
     foreach ($themes as $theme)
     {
-      $collector_ids = explode(',', $theme->getPostMetaValue('cq_collector_ids'));
-      $collection_ids = explode(',', $theme->getPostMetaValue('cq_collection_ids'));
-      $collectible_ids = explode(',', $theme->getPostMetaValue('cq_collectible_ids'));
-      $video_ids = explode(',', $theme->getPostMetaValue('cq_video_ids'));
+      $values = unserialize($theme->getPostMetaValue('_homepage_showcase_items'));
+
+      // Initialize the arrays
+      $collector_ids = $collection_ids = $collectible_ids = $video_ids = array();
+
+      if (!empty($values['cq_collector_ids']))
+      {
+        $collector_ids = explode(',', $values['cq_collector_ids']);
+        $collector_ids = array_map('trim', $collector_ids);
+      }
+      if (!empty($values['cq_collection_ids']))
+      {
+        $collection_ids = explode(',', $values['cq_collection_ids']);
+        $collection_ids = array_map('trim', $collection_ids);
+      }
+      if (!empty($values['cq_collectible_ids']))
+      {
+        $collectible_ids = explode(',', $values['cq_collectible_ids']);
+        $collectible_ids = array_map('trim', $collectible_ids);
+      }
+      if (!empty($values['magnify_video_ids']))
+      {
+        $video_ids = explode(',', $values['magnify_video_ids']);
+        $video_ids = array_map('trim', $video_ids);
+      }
 
       if ($collection_ids)
       {
         shuffle($collection_ids);
 
-        // Get 2 Collections
+        /**
+         * Get 2 Collections
+         *
+         * @var $q CollectorCollectionQuery
+         */
         $q = CollectorCollectionQuery::create()
           ->filterById($collection_ids, Criteria::IN)
           ->limit(2)
@@ -73,7 +98,11 @@ class generalActions extends cqFrontendActions
       {
         shuffle($collectible_ids);
 
-        // Get 22 Collectibles
+        /**
+         * Get 22 Collectibles
+         *
+         * @var $q CollectibleQuery
+         */
         $q = CollectibleQuery::create()
            ->filterById($collectible_ids, Criteria::IN)
            ->limit(22)
