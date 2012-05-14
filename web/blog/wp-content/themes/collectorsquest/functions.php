@@ -38,7 +38,7 @@ function cq_custom_post_type_init()
     'rewrite'         => false,
     'query_var'       => false,
     'menu_position'   => 100,
-    'supports'        => array('title', 'title', 'editor')
+    'supports'        => array('title', 'excerpt', 'editor')
   ));
 
   register_post_type('homepage_carousel', array(
@@ -472,7 +472,7 @@ if ($_SERVER['HTTP_HOST'] == 'www.collectorsquest.dev' || $_SERVER['HTTP_HOST'] 
 
   // includes for widgets/metaboxes
   require_once __DIR__.'/lib/widgets/widgets.php';
-  include_once __DIR__.'lib/metaboxes/setup.php';
+  include_once __DIR__.'/lib/metaboxes/setup.php';
 
 }
 
