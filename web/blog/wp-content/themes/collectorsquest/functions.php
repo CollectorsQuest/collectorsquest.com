@@ -38,7 +38,7 @@ function cq_custom_post_type_init()
     'rewrite'         => false,
     'query_var'       => false,
     'menu_position'   => 100,
-    'supports'        => array('title', 'excerpt', 'editor')
+    'supports'        => array('title', 'editor')
   ));
 
   register_post_type('homepage_carousel', array(
@@ -294,7 +294,7 @@ function hide_edit_permalinks_admin_css() {
   global $typenow;
   if ($typenow != 'post' && $typenow != 'page') :
 
-  ?>
+    ?>
   <style type="text/css">
     <!--
     #titlediv
@@ -315,9 +315,9 @@ function hide_edit_permalinks_admin_css() {
 
 
 // ajax post loading
-function cq_ajax_posts() {
+function cq_ajax_posts_comments() {
 
-global $wp_query;
+  global $wp_query;
   // Add code to index pages.
   if (!is_singular())
   {
@@ -341,47 +341,69 @@ global $wp_query;
       )
     );
   }
-}
-add_action('template_redirect', 'cq_ajax_posts');
+  elseif (is_single())
+  {
+    // Queue JS and CSS
+    wp_enqueue_script(
+      'cq-load-comments', '/wp-content/themes/collectorsquest/js/load-comments.js',
+      array('jquery'), '1.0', true
+    );
+    global $post;
+    // What page are we on? And what is the pages limit?
+    $max = 10;
+    $paged = get_comment_pages_count() > 1 && get_option( 'page_comments' );
 
-function catch_that_image()
-{
-  global $post;
+    $comments = get_comments($post->ID);
+    global $wp_query;
+    $re = get_query_var('cpage');
+    $pl = get_previous_comments_link();
+
+    $count = preg_match('/href=(["\"])(.*?)\1/', $pl, $match);
+    if ($count === FALSE)
+      $prev = ('not found\n');
+    else
+      $prev = $match[2];
+
+
+    // Add some parameters for the JS.
+    wp_localize_script(
+      'cq-load-comments', 'cq',
+      array(
+        'startPage' => 1,
+        'maxPages'  => 10,
+        'nextLink'  => $prev
+      )
+    );
+  }
+}
+add_action('template_redirect', 'cq_ajax_posts_comments');
+
+function catch_that_image() {
+  global $post, $posts;
   $first_img = '';
   ob_start();
   ob_end_clean();
-  if (preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches))
-  {
-    $first_img = $matches[1][0];
-  }
+  $output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
+  $first_img = $matches [1] [0];
 
-  // Defines a default image
-  if(empty($first_img))
-  {
+  if(empty($first_img)){ //Defines a default image
     $first_img = "/images/default.jpg";
   }
-
   return $first_img;
 }
 
 // add_filter('pre_get_posts', 'filter_homepage_posts');
-/**
- * @param $query WP_Query
- * @return mixed
- */
-function filter_homepage_posts($query)
-{
+function filter_homepage_posts($query) {
+
   $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 
   if (!is_admin() && $paged==1) {
     $limit_number_of_posts = 7;
   } elseif (!is_admin()) {
     $limit_number_of_posts = 8;
-  } else {
-    $limit_number_of_posts = 8;
   }
 
-  // $query->set('offset', $offset);
+  //$query->set('offset', $offset);
   $query->set('posts_per_page', $limit_number_of_posts);
 
   return $query;
@@ -401,13 +423,14 @@ function my_user_contactmethods($user_contactmethods){
 }
 
 // multiple excerpt lengths
-function cq_excerptlength_firstpost() {
+function cq_excerptlength_firstpost($length) {
   return 64;
 }
-function cq_excerptlength_archive() {
+function cq_excerptlength_archive($length) {
   return 32;
 }
 function cq_excerpt($length_callback='', $more_callback='') {
+  global $post;
   if(function_exists($length_callback)){
     add_filter('excerpt_length', $length_callback);
   }
@@ -422,7 +445,7 @@ function cq_excerpt($length_callback='', $more_callback='') {
 }
 
 // puts link in excerpts more tag
-function new_excerpt_more() {
+function new_excerpt_more($more) {
   global $post;
   return '...&nbsp;<a class="moretag" href="'. get_permalink($post->ID) . '">more</a>';
 }
@@ -431,6 +454,7 @@ add_filter('excerpt_more', 'new_excerpt_more');
 // adds link class for global styles
 function add_class_the_tags($html){
   if (is_single()) {
+    $postid = get_the_ID();
     $html = str_replace('<a','<a class="tags"',$html);
     return $html;
   } else {
@@ -444,24 +468,52 @@ function add_fixed_sidebar() {
 
   if (is_page()) : ?>
 
-<script type="text/javascript" src="/blog/wp-content/themes/collectorsquest/js/jquery-scrolltofixed-min.js"></script>
+  <script type="text/javascript" src="/blog/wp-content/themes/collectorsquest/js/jquery-scrolltofixed-min.js"></script>
 
-<script>
-  $(document).ready(function() {
-    $('#sidebar').scrollToFixed({
-      marginTop: 10,
-      limit: $('#footer').offset().top - 600
+  <script>
+
+    $(document).ready(function() {
+      $('#sidebar').scrollToFixed({
+        marginTop: 10,
+        limit: $('#footer').offset().top - 600
+      });
     });
-  });
-</script>
 
-<?php
 
-    endif;
+  </script>
 
-  }
+  <?php
+
+  endif;
+
+}
 add_action('wp_footer','add_fixed_sidebar');
 
 // includes for widgets/metaboxes
-require_once __DIR__.'/lib/widgets/widgets.php';
-include_once __DIR__.'/lib/metaboxes/setup.php';
+require_once 'lib/widgets/widgets.php';
+include_once 'lib/metaboxes/setup.php';
+
+// comment template
+function cq_comment($comment, $args, $depth) {
+  $GLOBALS['comment'] = $comment; ?>
+  <div <?php comment_class(); ?> id="div-comment-<?php comment_ID() ?>">
+    <div id="div-comment-<?php comment_ID() ?>" class="row-fluid user-comment">
+      <div class="span2 text-right">
+        <a href="#">
+          <?php echo get_avatar( $comment->comment_author_email, 65 ); ?>
+        </a>
+      </div>
+      <div class="span10">
+        <p class="bubble left">
+          <a href="#" class="username"><?php comment_author_link() ?></a>
+          <?php if ($comment->comment_approved == '0') : ?>
+          <em>Your comment is awaiting moderation.</em>
+          <?php endif; ?>
+          <br />
+          <?php echo $comment->comment_content; ?>
+          <span class="comment-time"><a href="#comment-<?php comment_ID() ?>" title=""><?php comment_date('F jS, Y') ?> at <?php comment_time() ?></a> <?php edit_comment_link('edit','',''); ?></span>
+        </p>
+      </div>
+    </div>
+  <?php
+  }
