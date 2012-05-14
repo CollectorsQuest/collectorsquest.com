@@ -181,6 +181,25 @@ function src_tag_collectible($collectible, $which = '150x150')
 }
 
 /**
+ * @param  wpPost  $wp_post
+ * @param  string  $which
+ *
+ * @return null|string
+ */
+function image_tag_wp_post($wp_post, $which = '150x150')
+{
+  list($width, $height) = explode('x', $which);
+
+  if (!$src = $wp_post->getPostThumbnail())
+  {
+    $src = '/images/'. sfConfig::get('sf_app') .'/multimedia/wpPost/'. $which .'.png';
+  }
+
+  return image_tag($src, array('width' => $width, 'height' => $height));
+}
+
+
+/**
  * Returns an HTML image tag of the multimedia object
  *
  * @param  iceModelMultimedia  $multimedia  The multimedia object
