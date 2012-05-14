@@ -490,8 +490,8 @@ function add_fixed_sidebar() {
 add_action('wp_footer','add_fixed_sidebar');
 
 // includes for widgets/metaboxes
-require_once __DIR__ .'lib/widgets/widgets.php';
-include_once __DIR__ .'lib/metaboxes/setup.php';
+require_once __DIR__ .'/lib/widgets/widgets.php';
+include_once __DIR__ .'/lib/metaboxes/setup.php';
 
 // comment template
 function cq_comment($comment, $args, $depth) {
