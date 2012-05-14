@@ -21,7 +21,7 @@ if ($collectible_for_sale)
   <div id="fancybox-outer">
     <?php
       echo link_to(
-        image_tag_collectible($collectible, '420!x0', array('class' => 'magnify', 'style' => 'margin-top: 5px;')), src_tag_collectible($collectible, '1024x768'), array('id' => 'collectible_multimedia_primary')
+        image_tag_collectible($collectible, '420x0', array('class' => 'magnify', 'style' => 'margin-top: 5px;')), src_tag_collectible($collectible, '1024x768'), array('id' => 'collectible_multimedia_primary')
       );
     ?>
     <?php if ($previous): ?>
