@@ -61,7 +61,6 @@
 
         <!--<p><input name="submit" type="submit" id="submit" tabindex="5" value="Submit Comment" />-->
         <button type="submit" class="btn btn-large">Comment</button>
-        <a class="upload-photo" title="Add a photo">&nbsp;</a>
 
         <input type="hidden" name="comment_post_ID" value="<?php echo $id; ?>" />
 
