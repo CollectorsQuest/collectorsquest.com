@@ -6,8 +6,8 @@
   <div class="row-fluid">
     <div class="span2">
       <small>View as:</small>
-      <a href="#" class="grid-view active">&nbsp;</a>
-      <a href="#" class="list_view">&nbsp;</a>
+      <a href="#" title="grid view" class="grid-view active">&nbsp;</a>
+      <a href="#" title="switch to list view" class="list_view">&nbsp;</a>
     </div>
     <div class="span3">
       <small>Showing 1-25 of 58 Wanted Items</small>
@@ -134,8 +134,251 @@
   <div class="row-fluid">
     <div class="span2">
       <small>View as:</small>
-      <a href="#" class="grid-view active">&nbsp;</a>
-      <a href="#" class="list_view">&nbsp;</a>
+      <a href="#" title="grid view" class="grid-view active">&nbsp;</a>
+      <a href="#" title="switch to list view" class="list_view">&nbsp;</a>
+    </div>
+    <div class="span3">
+      <small>Showing 1-25 of 58 Wanted Items</small>
+    </div>
+    <div class="span7">
+      <div class="pagination pull-right">
+        <ul>
+          <li><a href="#">Prev</a></li>
+          <li class="active">
+            <a href="#">1</a>
+          </li>
+          <li><a href="#">2</a></li>
+          <li><a href="#">3</a></li>
+          <li><a href="#">Next</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div id="list-view">
+
+  <div class="row-fluid">
+    <div class="span6">
+      <div class="row-fluid">
+        <div class="span2">
+          <a href="#" title="">
+            <img alt="" src="http://placehold.it/60x60">
+          </a>
+        </div>
+        <div class="span10">
+          <span class="price-collectible">
+            <a href="#">
+              Name of collectible Name of collectible Name of collectible Name of collectible Name of collectible Name of collectible
+            </a>
+          </span>
+          <span class="price-collectible">
+            $25.00
+          </span>
+          <span class="description-collectible">
+            Descriptions should be capped at 45 character...Descriptions should be capped at 45 character...
+          </span>
+          <span class="tags-collectible">
+            Tags: <a href="#">peecol</a> <a href="#">figures</a> <a href="#">eboy</a> <a href="#">kidrobot</a> <a href="#">peecol</a> <a href="#">figures</a> <a href="#">eboy</a> <a href="#">kidrobot</a> <a href="#">peecol</a> <a href="#">figures</a> <a href="#">eboy</a> <a href="#">kidrobot</a>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="span6">
+      <div class="row-fluid">
+        <div class="span2">
+          <a href="#" title="">
+            <img alt="" src="http://placehold.it/60x60">
+          </a>
+        </div>
+        <div class="span10">
+          <span class="price-collectible">
+            <a href="#">
+              Name of collectible
+            </a>
+          </span>
+          <span class="price-collectible">
+            $25.00
+          </span>
+          <span class="description-collectible">
+            Descriptions should be capped at 45 character...
+          </span>
+          <span class="tags-collectible">
+            Tags: <a href="#">peecol</a> <a href="#">figures</a> <a href="#">eboy</a> <a href="#">kidrobot</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row-fluid">
+    <div class="span6">
+      <div class="row-fluid">
+        <div class="span2">
+          <a href="#" title="">
+            <img alt="" src="http://placehold.it/60x60">
+          </a>
+        </div>
+        <div class="span10">
+          <span class="price-collectible">
+            <a href="#">
+              Name of collectible Name of collectible Name of collectible Name of collectible Name of collectible Name of collectible
+            </a>
+          </span>
+          <span class="price-collectible">
+            $25.00
+          </span>
+          <span class="description-collectible">
+            Descriptions should be capped at 45 character...Descriptions should be capped at 45 character...
+          </span>
+          <span class="tags-collectible">
+            Tags: <a href="#">peecol</a> <a href="#">figures</a> <a href="#">eboy</a> <a href="#">kidrobot</a> <a href="#">peecol</a> <a href="#">figures</a> <a href="#">eboy</a> <a href="#">kidrobot</a> <a href="#">peecol</a> <a href="#">figures</a> <a href="#">eboy</a> <a href="#">kidrobot</a>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="span6">
+      <div class="row-fluid">
+        <div class="span2">
+          <a href="#" title="">
+            <img alt="" src="http://placehold.it/60x60">
+          </a>
+        </div>
+        <div class="span10">
+          <span class="price-collectible">
+            <a href="#">
+              Name of collectible
+            </a>
+          </span>
+          <span class="price-collectible">
+            $25.00
+          </span>
+          <span class="description-collectible">
+            Descriptions should be capped at 45 character...
+          </span>
+          <span class="tags-collectible">
+            Tags: <a href="#">peecol</a> <a href="#">figures</a> <a href="#">eboy</a> <a href="#">kidrobot</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row-fluid">
+    <div class="span6">
+      <div class="row-fluid">
+        <div class="span2">
+          <a href="#" title="">
+            <img alt="" src="http://placehold.it/60x60">
+          </a>
+        </div>
+        <div class="span10">
+          <span class="price-collectible">
+            <a href="#">
+              Name of collectible Name of collectible Name of collectible Name of collectible Name of collectible Name of collectible
+            </a>
+          </span>
+          <span class="price-collectible">
+            $25.00
+          </span>
+          <span class="description-collectible">
+            Descriptions should be capped at 45 character...Descriptions should be capped at 45 character...
+          </span>
+          <span class="tags-collectible">
+            Tags: <a href="#">peecol</a> <a href="#">figures</a> <a href="#">eboy</a> <a href="#">kidrobot</a> <a href="#">peecol</a> <a href="#">figures</a> <a href="#">eboy</a> <a href="#">kidrobot</a> <a href="#">peecol</a> <a href="#">figures</a> <a href="#">eboy</a> <a href="#">kidrobot</a>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="span6">
+      <div class="row-fluid">
+        <div class="span2">
+          <a href="#" title="">
+            <img alt="" src="http://placehold.it/60x60">
+          </a>
+        </div>
+        <div class="span10">
+          <span class="price-collectible">
+            <a href="#">
+              Name of collectible
+            </a>
+          </span>
+          <span class="price-collectible">
+            $25.00
+          </span>
+          <span class="description-collectible">
+            Descriptions should be capped at 45 character...
+          </span>
+          <span class="tags-collectible">
+            Tags: <a href="#">peecol</a> <a href="#">figures</a> <a href="#">eboy</a> <a href="#">kidrobot</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row-fluid">
+    <div class="span6">
+      <div class="row-fluid">
+        <div class="span2">
+          <a href="#" title="">
+            <img alt="" src="http://placehold.it/60x60">
+          </a>
+        </div>
+        <div class="span10">
+          <span class="price-collectible">
+            <a href="#">
+              Name of collectible Name of collectible Name of collectible Name of collectible Name of collectible Name of collectible
+            </a>
+          </span>
+          <span class="price-collectible">
+            $25.00
+          </span>
+          <span class="description-collectible">
+            Descriptions should be capped at 45 character...Descriptions should be capped at 45 character...
+          </span>
+          <span class="tags-collectible">
+            Tags: <a href="#">peecol</a> <a href="#">figures</a> <a href="#">eboy</a> <a href="#">kidrobot</a> <a href="#">peecol</a> <a href="#">figures</a> <a href="#">eboy</a> <a href="#">kidrobot</a> <a href="#">peecol</a> <a href="#">figures</a> <a href="#">eboy</a> <a href="#">kidrobot</a>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="span6">
+      <div class="row-fluid">
+        <div class="span2">
+          <a href="#" title="">
+            <img alt="" src="http://placehold.it/60x60">
+          </a>
+        </div>
+        <div class="span10">
+          <span class="price-collectible">
+            <a href="#">
+              Name of collectible
+            </a>
+          </span>
+          <span class="price-collectible">
+            $25.00
+          </span>
+          <span class="description-collectible">
+            Descriptions should be capped at 45 character...
+          </span>
+          <span class="tags-collectible">
+            Tags: <a href="#">peecol</a> <a href="#">figures</a> <a href="#">eboy</a> <a href="#">kidrobot</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="blue-action-bar spacer-12">
+  <div class="row-fluid">
+    <div class="span2">
+      <small>View as:</small>
+      <a href="#" title="grid view" class="grid-view active">&nbsp;</a>
+      <a href="#" title="switch to list view" class="list_view">&nbsp;</a>
     </div>
     <div class="span3">
       <small>Showing 1-25 of 58 Wanted Items</small>
