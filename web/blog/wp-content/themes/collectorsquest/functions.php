@@ -38,7 +38,7 @@ function cq_custom_post_type_init()
     'rewrite'         => false,
     'query_var'       => false,
     'menu_position'   => 100,
-    'supports'        => array('title', 'editor')
+    'supports'        => array('title', 'title', 'editor')
   ));
 
   register_post_type('homepage_carousel', array(
@@ -349,35 +349,47 @@ if ($_SERVER['HTTP_HOST'] == 'www.collectorsquest.dev' || $_SERVER['HTTP_HOST'] 
   }
   add_action('template_redirect', 'cq_ajax_posts');
 
-  function catch_that_image() {
-    global $post, $posts;
+  function catch_that_image()
+  {
+    global $post;
     $first_img = '';
     ob_start();
     ob_end_clean();
-    $output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
-    $first_img = $matches [1] [0];
+    if (preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches))
+    {
+      $first_img = $matches[1][0];
+    }
 
-    if(empty($first_img)){ //Defines a default image
+    // Defines a default image
+    if(empty($first_img))
+    {
       $first_img = "/images/default.jpg";
     }
+
     return $first_img;
   }
 
   // add_filter('pre_get_posts', 'filter_homepage_posts');
-  function filter_homepage_posts($query) {
+  /**
+   * @param $query WP_Query
+   * @return mixed
+   */
+  function filter_homepage_posts($query)
+  {
+    $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 
-  $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-
-  if (!is_admin() && $paged==1) {
+    if (!is_admin() && $paged==1) {
       $limit_number_of_posts = 7;
-  } elseif (!is_admin()) {
+    } elseif (!is_admin()) {
       $limit_number_of_posts = 8;
-  }
+    } else {
+      $limit_number_of_posts = 8;
+    }
 
-  //$query->set('offset', $offset);
-  $query->set('posts_per_page', $limit_number_of_posts);
+    // $query->set('offset', $offset);
+    $query->set('posts_per_page', $limit_number_of_posts);
 
-  return $query;
+    return $query;
   }
 
   add_filter('user_contactmethods', 'my_user_contactmethods');
@@ -394,14 +406,13 @@ if ($_SERVER['HTTP_HOST'] == 'www.collectorsquest.dev' || $_SERVER['HTTP_HOST'] 
   }
 
   // multiple excerpt lengths
-  function cq_excerptlength_firstpost($length) {
+  function cq_excerptlength_firstpost() {
     return 64;
   }
-  function cq_excerptlength_archive($length) {
+  function cq_excerptlength_archive() {
     return 32;
   }
   function cq_excerpt($length_callback='', $more_callback='') {
-    global $post;
     if(function_exists($length_callback)){
       add_filter('excerpt_length', $length_callback);
     }
@@ -416,7 +427,7 @@ if ($_SERVER['HTTP_HOST'] == 'www.collectorsquest.dev' || $_SERVER['HTTP_HOST'] 
   }
 
   // puts link in excerpts more tag
-  function new_excerpt_more($more) {
+  function new_excerpt_more() {
     global $post;
     return '...&nbsp;<a class="moretag" href="'. get_permalink($post->ID) . '">more</a>';
   }
@@ -425,7 +436,6 @@ if ($_SERVER['HTTP_HOST'] == 'www.collectorsquest.dev' || $_SERVER['HTTP_HOST'] 
   // adds link class for global styles
   function add_class_the_tags($html){
     if (is_single()) {
-      $postid = get_the_ID();
       $html = str_replace('<a','<a class="tags"',$html);
       return $html;
     } else {
@@ -461,8 +471,8 @@ if ($_SERVER['HTTP_HOST'] == 'www.collectorsquest.dev' || $_SERVER['HTTP_HOST'] 
   add_action('wp_footer','add_fixed_sidebar');
 
   // includes for widgets/metaboxes
-  require_once 'lib/widgets/widgets.php';
-  include_once 'lib/metaboxes/setup.php';
+  require_once __DIR__.'/lib/widgets/widgets.php';
+  include_once __DIR__.'lib/metaboxes/setup.php';
 
 }
 
