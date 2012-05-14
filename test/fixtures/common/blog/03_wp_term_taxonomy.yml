@@ -10,7 +10,7 @@ wpTermTaxonomy:
     taxonomy: category
     description: ''
     parent: '0'
-    count: '275'
+    count: '276'
   wpTermTaxonomy_6:
     term_id: wpTerm_6
     taxonomy: category

@@ -5,9 +5,8 @@ add_theme_support('post-thumbnails');
 
 /** @see http://blurback.com/post/1479456356/permissions-with-wordpress-custom-post-types */
 
-add_action('init', 'editorial_custom_post_type_init');
-
-function editorial_custom_post_type_init()
+add_action('init', 'cq_custom_post_type_init');
+function cq_custom_post_type_init()
 {
   $capabilities = array(
     'publish_posts'          => 'publish_editorials',
@@ -39,7 +38,7 @@ function editorial_custom_post_type_init()
     'rewrite'         => false,
     'query_var'       => false,
     'menu_position'   => 100,
-    'supports'        => array('title', 'editor')
+    'supports'        => array('title', 'excerpt', 'editor')
   ));
 
   register_post_type('homepage_carousel', array(
@@ -116,6 +115,131 @@ function editorial_custom_post_type_init()
     'menu_position'   => 100,
     'supports'        => array('title', 'editor', 'custom-fields', 'thumbnail')
   ));
+
+  register_post_type('marketplace_explore', array(
+    'labels' => array(
+      'name'               => _x('Marketplace Explore', 'post type general name'),
+      'singular_name'      => _x('Collectibles', 'post type singular name'),
+      'add_new'            => _x('Add New', 'Collectible'),
+      'add_new_item'       => __('Add New Collectible'),
+      'edit_item'          => __('Edit Collectible'),
+      'new_item'           => __('New Collectible'),
+      'view_item'          => __('View Collectibles'),
+      'search_items'       => __('Search Collectibles'),
+      'not_found'          => __('No Collectibles found'),
+      'not_found_in_trash' => __('No Collectibles found in Trash'),
+      'parent_item_colon'  => ''
+    ),
+    'public'          => true,
+    'show_ui'         => true,
+    'capability_type' => 'editorial',
+    'capabilities'    => $capabilities,
+    'hierarchical'    => false,
+    'rewrite'         => false,
+    'query_var'       => false,
+    'menu_position'   => 100,
+    'supports'        => array('title', 'custom-fields')
+  ));
+
+  register_post_type('marketplace_featured', array(
+    'labels' => array(
+      'name'               => _x('Marketplace Featured', 'post type general name'),
+      'singular_name'      => _x('Featured Collectible', 'post type singular name'),
+      'add_new'            => _x('Add New', 'Featured Collectible'),
+      'add_new_item'       => __('Add New Featured Collectible'),
+      'edit_item'          => __('Edit Featured Collectible'),
+      'new_item'           => __('New Featured Collectible'),
+      'view_item'          => __('View Featured Collectible'),
+      'search_items'       => __('Search Featured Collectible'),
+      'not_found'          => __('No Featured Collectibles found'),
+      'not_found_in_trash' => __('No Featured Collectibles found in Trash'),
+      'parent_item_colon'  => ''
+    ),
+    'public'          => true,
+    'show_ui'         => true,
+    'capability_type' => 'editorial',
+    'capabilities'    => $capabilities,
+    'hierarchical'    => false,
+    'rewrite'         => false,
+    'query_var'       => false,
+    'menu_position'   => 100,
+    'supports'        => array('title','custom-fields')
+  ));
+
+  register_post_type('collections_explore', array(
+    'labels' => array(
+      'name'               => _x('Collections Explore', 'post type general name'),
+      'singular_name'      => _x('Collections', 'post type singular name'),
+      'add_new'            => _x('Add New', 'Collection'),
+      'add_new_item'       => __('Add New Collection'),
+      'edit_item'          => __('Edit Collection'),
+      'new_item'           => __('New Collection'),
+      'view_item'          => __('View Collection'),
+      'search_items'       => __('Search Collections'),
+      'not_found'          => __('No Collections found'),
+      'not_found_in_trash' => __('No Collections found in Trash'),
+      'parent_item_colon'  => ''
+    ),
+    'public'          => true,
+    'show_ui'         => true,
+    'capability_type' => 'editorial',
+    'capabilities'    => $capabilities,
+    'hierarchical'    => false,
+    'rewrite'         => false,
+    'query_var'       => false,
+    'menu_position'   => 100,
+    'supports'        => array('title')
+  ));
+
+  register_post_type('featured_week', array(
+    'labels' => array(
+      'name'               => _x('Featured Week', 'post type general name'),
+      'singular_name'      => _x('Featured Week', 'post type singular name'),
+      'add_new'            => _x('Add New', 'Featured Week'),
+      'add_new_item'       => __('Add New Featured Week'),
+      'edit_item'          => __('Edit Featured Week'),
+      'new_item'           => __('New Featured Week'),
+      'view_item'          => __('View Featured Week'),
+      'search_items'       => __('Search Featured Weeks'),
+      'not_found'          => __('No Featured Weeks found'),
+      'not_found_in_trash' => __('No Featured Weeks found in Trash'),
+      'parent_item_colon'  => ''
+    ),
+    'public'          => true,
+    'show_ui'         => true,
+    'capability_type' => 'editorial',
+    'capabilities'    => $capabilities,
+    'hierarchical'    => false,
+    'rewrite'         => false,
+    'query_var'       => false,
+    'menu_position'   => 100,
+    'supports'        => array('title', 'editor', 'custom-fields', 'thumbnail')
+  ));
+
+  register_post_type('seller_spotlight', array(
+    'labels' => array(
+      'name'               => _x('Seller Spotlight', 'post type general name'),
+      'singular_name'      => _x('Featured Seller', 'post type singular name'),
+      'add_new'            => _x('Add New', 'Featured Seller'),
+      'add_new_item'       => __('Add New Featured Seller'),
+      'edit_item'          => __('Edit Featured Seller'),
+      'new_item'           => __('New Featured Seller'),
+      'view_item'          => __('View Featured Seller'),
+      'search_items'       => __('Search Featured Seller'),
+      'not_found'          => __('No Featured Sellers found'),
+      'not_found_in_trash' => __('No Featured Sellers found in Trash'),
+      'parent_item_colon'  => ''
+    ),
+    'public'          => true,
+    'show_ui'         => true,
+    'capability_type' => 'editorial',
+    'capabilities'    => $capabilities,
+    'hierarchical'    => false,
+    'rewrite'         => false,
+    'query_var'       => false,
+    'menu_position'   => 100,
+    'supports'        => array('title')
+  ));
 }
 
 
@@ -163,12 +287,40 @@ function map_meta_cap_editorial($caps, $cap, $user_id, $args)
   return $caps;
 }
 
+// hide permalinks on custom post types
+add_action('admin_head', 'hide_edit_permalinks_admin_css');
+function hide_edit_permalinks_admin_css() {
+
+  global $typenow;
+  if ($typenow != 'post' && $typenow != 'page') :
+
+  ?>
+  <style type="text/css">
+    <!--
+    #titlediv
+    {
+      margin-bottom: 10px;
+    }
+    #edit-slug-box
+    {
+      display: none;
+    }
+    -->
+  </style>
+  <?php
+
+  endif;
+
+}
+
+
+
+
+
 if ($_SERVER['HTTP_HOST'] == 'www.collectorsquest.dev' || $_SERVER['HTTP_HOST'] == 'www.collectorsquest.next' || $_SERVER['HTTP_HOST'] == 'www.cqnext.com') {
-  /**
-   * Initialization. Add our script if needed on this page.
-   */
-  function cq_ajax_posts()
-  {
+
+  // ajax post loading
+  function cq_ajax_posts() {
 
   global $wp_query;
     // Add code to index pages.
@@ -197,35 +349,47 @@ if ($_SERVER['HTTP_HOST'] == 'www.collectorsquest.dev' || $_SERVER['HTTP_HOST'] 
   }
   add_action('template_redirect', 'cq_ajax_posts');
 
-  function catch_that_image() {
-    global $post, $posts;
+  function catch_that_image()
+  {
+    global $post;
     $first_img = '';
     ob_start();
     ob_end_clean();
-    $output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
-    $first_img = $matches [1] [0];
+    if (preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches))
+    {
+      $first_img = $matches[1][0];
+    }
 
-    if(empty($first_img)){ //Defines a default image
+    // Defines a default image
+    if(empty($first_img))
+    {
       $first_img = "/images/default.jpg";
     }
+
     return $first_img;
   }
 
-  add_filter('pre_get_posts', 'filter_homepage_posts');
-  function filter_homepage_posts($query) {
+  // add_filter('pre_get_posts', 'filter_homepage_posts');
+  /**
+   * @param $query WP_Query
+   * @return mixed
+   */
+  function filter_homepage_posts($query)
+  {
+    $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 
-  $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-
-  if ($paged==1) {
+    if (!is_admin() && $paged==1) {
       $limit_number_of_posts = 7;
-  } else {
+    } elseif (!is_admin()) {
       $limit_number_of_posts = 8;
-  }
+    } else {
+      $limit_number_of_posts = 8;
+    }
 
-  //$query->set('offset', $offset);
-  $query->set('posts_per_page', $limit_number_of_posts);
+    // $query->set('offset', $offset);
+    $query->set('posts_per_page', $limit_number_of_posts);
 
-  return $query;
+    return $query;
   }
 
   add_filter('user_contactmethods', 'my_user_contactmethods');
@@ -241,10 +405,74 @@ if ($_SERVER['HTTP_HOST'] == 'www.collectorsquest.dev' || $_SERVER['HTTP_HOST'] 
     return $user_contactmethods;
   }
 
-  require_once 'lib/widgets/widgets.php';
+  // multiple excerpt lengths
+  function cq_excerptlength_firstpost() {
+    return 64;
+  }
+  function cq_excerptlength_archive() {
+    return 32;
+  }
+  function cq_excerpt($length_callback='', $more_callback='') {
+    if(function_exists($length_callback)){
+      add_filter('excerpt_length', $length_callback);
+    }
+    if(function_exists($more_callback)){
+      add_filter('excerpt_more', $more_callback);
+    }
+    $output = get_the_excerpt();
+    $output = apply_filters('wptexturize', $output);
+    $output = apply_filters('convert_chars', $output);
+    $output = '<p>'.$output.'</p>';
+    echo $output;
+  }
+
+  // puts link in excerpts more tag
+  function new_excerpt_more() {
+    global $post;
+    return '...&nbsp;<a class="moretag" href="'. get_permalink($post->ID) . '">more</a>';
+  }
+  add_filter('excerpt_more', 'new_excerpt_more');
+
+  // adds link class for global styles
+  function add_class_the_tags($html){
+    if (is_single()) {
+      $html = str_replace('<a','<a class="tags"',$html);
+      return $html;
+    } else {
+      return $html;
+    }
+  }
+  add_filter('the_tags','add_class_the_tags',10,1);
+
+  // fixed sidebar on static pages
+  function add_fixed_sidebar() {
+
+    if (is_page()) : ?>
+
+  <script type="text/javascript" src="/blog/wp-content/themes/collectorsquest/js/jquery-scrolltofixed-min.js"></script>
+
+  <script>
+
+    $(document).ready(function() {
+      $('#sidebar').scrollToFixed({
+        marginTop: 10,
+        limit: $('#footer').offset().top - 600
+      });
+    });
+
+
+  </script>
+
+  <?php
+
+      endif;
+
+    }
+  add_action('wp_footer','add_fixed_sidebar');
+
+  // includes for widgets/metaboxes
+  require_once __DIR__.'/lib/widgets/widgets.php';
+  include_once __DIR__.'/lib/metaboxes/setup.php';
 
 }
-
-
-
 

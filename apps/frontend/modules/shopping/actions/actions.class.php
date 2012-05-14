@@ -270,7 +270,7 @@ class shoppingActions extends cqFrontendActions
     if ($shopping_payment && $shopping_payment->getStatus() == ShoppingPaymentPeer::STATUS_COMPLETED)
     {
       $this->getUser()->setFlash('success', 'This order has already been paid');
-      $this->redirect('@manage_shopping_order?uuid='. $shopping_order->getUuid());
+      $this->redirect('@mycq_shopping_order?uuid='. $shopping_order->getUuid());
     }
 
     switch (strtolower($request->getParameter('processor', 'paypal')))
@@ -374,7 +374,7 @@ class shoppingActions extends cqFrontendActions
           $shopping_payment->save();
 
           $this->getUser()->setFlash('error', 'You have already paid this order!');
-          $this->redirect('@manage_shopping_order?uuid='. $shopping_order->getUuid());
+          $this->redirect('@mycq_shopping_order?uuid='. $shopping_order->getUuid());
         }
         else
         {

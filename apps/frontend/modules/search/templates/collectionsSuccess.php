@@ -30,7 +30,7 @@
     {
       echo '<div class="span4 brick" style="height: 165px; float: left;">';
       include_partial(
-        'collection/collection_stack_'. $display .'_view',
+        'collection/collection_'. $display .'_view',
         array('collection' => $collection, 'i' => $i)
       );
       echo '</div>';

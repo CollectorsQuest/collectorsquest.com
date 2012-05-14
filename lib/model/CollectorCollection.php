@@ -12,6 +12,11 @@ require 'lib/model/om/BaseCollectorCollection.php';
  */
 class CollectorCollection extends BaseCollectorCollection
 {
+  public
+    $_multimedia = array(),
+    $_counts = array();
+
+
   public function getGraphId()
   {
     $graph_id = null;
@@ -77,7 +82,7 @@ class CollectorCollection extends BaseCollectorCollection
     {
       case 'stripped':
         $v = trim(strip_tags($v));
-        $v = ($limit > 0) ? cqStatic::truncateText($v, $limit, true, '...') : $v;
+        $v = ($limit > 0) ? cqStatic::truncateText($v, $limit, '...', true) : $v;
         break;
       case 'html':
         $v = cqMarkdown::doConvert($v);
@@ -87,31 +92,62 @@ class CollectorCollection extends BaseCollectorCollection
     return $v;
   }
 
-  public function setThumbnail($file)
+  public function getLatestCollectibles($limit)
   {
     $c = new Criteria();
-    $c->add(MultimediaPeer::MODEL, 'CollectorCollection');
-    $c->add(MultimediaPeer::MODEL_ID, $this->getId());
-    $c->add(MultimediaPeer::TYPE, 'image');
-    $c->add(MultimediaPeer::IS_PRIMARY, true);
+    $c->add(CollectionCollectiblePeer::COLLECTION_ID, $this->getId());
+    $c->addDescendingOrderByColumn(CollectionCollectiblePeer::POSITION);
+    $c->addDescendingOrderByColumn(CollectionCollectiblePeer::UPDATED_AT);
+    $c->setLimit($limit);
 
-    MultimediaPeer::doDelete($c);
+    return CollectionCollectiblePeer::doSelect($c);
+  }
 
-    /** @var $multimedia Multimedia */
-    if ($multimedia = MultimediaPeer::createMultimediaFromFile($this, $file))
-    {
-      $multimedia->setIsPrimary(true);
-      $multimedia->makeThumb('150x150', 'shave');
-      $multimedia->makeThumb('50x50', 'shave');
-      $multimedia->save();
+  public function setThumbnail($file)
+  {
+    return $this->setPrimaryImage($file);
+  }
 
-      if (!$this->getCollector()->hasPhoto())
-      {
-        $this->getCollector()->setPhoto($multimedia->getAbsolutePath('original'));
-      }
-    }
+  public function hasThumbnail()
+  {
+    return $this->getPrimaryImage() ? true : false;
+  }
 
-    return $multimedia;
+  public function getThumbnail()
+  {
+    return $this->getPrimaryImage();
+  }
+
+  /**
+   * For each Multimedia that is added to the Advert, this method will be called
+   * to take care of creating the right thumnail sizes
+   *
+   * @param  iceModelMultimedia  $multimedia
+   * @param  array $options
+   *
+   * @throws InvalidArgumentException
+   * @return void
+   */
+  public function createMultimediaThumbs(iceModelMultimedia $multimedia, $options = array())
+  {
+    $watermark = isset($options['watermark']) ? (boolean) $options['watermark'] : false;
+
+    /**
+     * We need to have the two main thumbnails available as soon as the object is saved so
+     * we make sure they are not put on the job queue
+     */
+    $multimedia->makeThumb(150, 150, 'center', $watermark);
+    $multimedia->makeCustomThumb(50, 50, '50x50', 'center', false);
+    $multimedia->makeCustomThumb(190, 150, '190x150', 'center', $watermark);
+    $multimedia->makeCustomThumb(190, 190, '190x190', 'center', $watermark);
   }
 
 }
+
+sfPropelBehavior::add('CollectorCollection', array('IceMultimediaBehavior'));
+sfPropelBehavior::add('CollectorCollection', array('IceTaggableBehavior'));
+
+sfPropelBehavior::add(
+  'CollectorCollection',
+  array('PropelActAsEblobBehavior' => array('column' => 'eblob')
+));

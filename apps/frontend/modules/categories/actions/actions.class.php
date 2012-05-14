@@ -4,6 +4,12 @@ class categoriesActions extends cqFrontendActions
 {
   public function executeIndex()
   {
+    $this->level1_categories = ContentCategoryQuery::create()
+      ->childrenOfRoot()
+      ->withCollections()
+      ->orderBy('Name')
+      ->find();
+
     return sfView::SUCCESS;
   }
 
@@ -50,7 +56,8 @@ class categoriesActions extends cqFrontendActions
     }
 
     $q = CollectorCollectionQuery::create()
-       ->filterByCollectionCategory($this->category);
+       ->filterByContentCategoryWithDescendants($this->category)
+       ->orderByUpdatedAt(Criteria::DESC);
 
     $pager = new PropelModelPager($q, $this->collectors_question !== null ? 16 : 36);
     $pager->setPage($request->getParameter('page', 1));

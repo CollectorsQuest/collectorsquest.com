@@ -4,14 +4,14 @@
 /**
  * Adds CQ_Tags_widget widget.
  */
-class CQ_Tags_widget extends WP_Widget {
+class cq_tags_widget extends WP_Widget {
 
   /**
    * Register widget with WordPress.
    */
   public function __construct() {
     parent::__construct(
-      'CQ_Tags_widget', // Base ID
+      'cq_tags_widget', // Base ID
       'CQ Tags', // Name
       array( 'description' => __( 'This is the tag widget.', 'text_domain' ), ) // Args
     );
@@ -26,6 +26,8 @@ class CQ_Tags_widget extends WP_Widget {
    * @param array $instance Saved values from database.
    */
   public function widget( $args, $instance ) { ?>
+
+
 
     <?php
     extract( $args );
@@ -58,7 +60,9 @@ class CQ_Tags_widget extends WP_Widget {
     </div>
 
       <?php endif; ?>
-  <p><?php the_tags('<ul class="cf" style="list-style: none; padding: 0; margin: 0;"><li class="rounded p-tag">','</li><li class="rounded p-tag">','</li></ul>'); ?></p>
+  <div class="tags-container-sidebar">
+  <p><?php the_tags('<ul class="cf" style="list-style: none; padding: 0; margin: 0;"><li>','</li><li>','</li></ul>'); ?></p>
+  </div>
 
   <?php
     echo $after_widget;
@@ -107,4 +111,4 @@ class CQ_Tags_widget extends WP_Widget {
 } // class CQ_Tags_widget
 
 // register Foo_Widget widget
-add_action( 'widgets_init', create_function( '', 'register_widget( "CQ_Tags_widget" );' ) );
+add_action( 'widgets_init', create_function( '', 'register_widget( "cq_tags_widget" );' ) );

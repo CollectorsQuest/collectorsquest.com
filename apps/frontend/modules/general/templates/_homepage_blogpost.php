@@ -1,7 +1,7 @@
 <div class="span6 brick masonry-blogpost">
   <div class="masonry-blogpost yellow-background">
     <a href="<?= $blog_post->getPostUrl(); ?>" class="link">
-      <div class="blog-img"><?= ice_image_tag_flickholdr('270x270', array('i' => rand(1,20))) ?></div>
+      <div class="blog-img"><?= image_tag_multimedia($blog_post->getPrimaryImage(), '270x270'); ?></div>
       <h3 class="Chivo webfont" style="line-height: 26px;"><?= $blog_post->getPostTitle(); ?></h3>
       <p><?= cqStatic::truncateText($blog_post->getPlainPostContent(), 350, '...', true); ?></p>
     </a>

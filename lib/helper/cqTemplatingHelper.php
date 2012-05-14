@@ -26,7 +26,7 @@
 function time_ago_in_words_or_exact_date(
   $from_time,
   $cutoff_date = '-7 days',
-  $datetime_format = 'On MMM d, yyyy, h:mm a',
+  $datetime_format = 'On MMM d, yyyy',
   $now = null
 ) {
   if (null === $now)

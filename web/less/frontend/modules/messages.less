@@ -1,6 +1,14 @@
 @import "../_variables.less";
 @import "../_mixins.less";
 
+#breadcrumbs {
+  margin-bottom: 0;
+}
+
+#content {
+  padding-top: 10px;
+}
+
 .private-message-thread {
   .form-horizontal {
     .control-label {
@@ -16,8 +24,14 @@
 }
 
 .private-messages-list {
+
+  tbody tr.unread:hover td {
+    background-color: @yellowBackground;
+  }
+
   .unread {
     font-weight: bold;
+    background: @yellowSolarized;
   }
   .sender-col {
     width: 25%;
@@ -37,5 +51,74 @@
 
 .private-messages-list-select {
   padding-right: 10px;
+}
+
+.btn-cq {
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.checkbox-arrow {
+	margin: 0 4px 0 10px;
+}
+
+.private-messages-list .avatar
+{
+	float: left;
+	border:1px solid #ececec;
+	padding:4px;
+	background-color:white;
+	margin-right: 6px
+}
+
+.show-all-text {
+	display: block;
+	margin: 6px 12px 0 0;
+}
+
+.not-read td {
+	background-color: #D9EDF7 !important;
+	color: @blueDark;
+}
+
+.table-condensed th, .table-condensed td {
+	padding: 8px 5px;
+}
+
+.form-actions {
+	background-color: @lightBlue;
+	border-top: none;
+}
+
+td.sender {
+	width: 100px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+td.subject {
+	background-color: #ffffff !important;
+	height: 34px;
+}
+
+td.message {
+	border: none;
+	border-left: 1px solid #ddd;
+}
+
+.reply-form {
+	margin-left: 120px;
+}
+
+.reply-form-title {
+	display: block;
+	font-weight: bold;
+	color: @blueDark;
+	font-size: 14px;
+	margin: 10px 0 20px 160px;
+}
+
+.nav-pills > .active > a, .nav-pills > .active > a:hover {
+	#gradient > .vertical(@btnPrimaryBackground, @btnPrimaryBackgroundHighlight);
 }
 

@@ -1,36 +1,56 @@
 <?php
 /**
- * @var $collector Collector
- * @var $collections Collection[]
+ * @var  $title  string
+ * @var  $collector  Collector
+ * @var  $collectible Collectible
+ * @var  $collections  Collection[]
  */
 ?>
 
-<?php cq_sidebar_title(sprintf('About %s', $collector->getDisplayName()), null); ?>
+<?php cq_sidebar_title($title, null); ?>
 
 <div class="row-fluid">
   <div class="span3">
     <?= link_to_collector($collector, 'image', array('width' => 60, 'height' => 60)); ?>
   </div>
   <div class="span8">
-    <?= link_to_collector($collector, 'text'); ?>
-    <?php echo sprintf(
-      __('is %s %s collector'),
-      in_array(strtolower(substr($collector->getProfile()->getCollectorType(), 0, 1)), array('a', 'e', 'i', 'o')) ? 'an' : 'a',
-      '<i>'. $collector->getProfile()->getCollectorType() .'</i>'
-    ); ?>
-    <p style="margin-top: 10px;">
-      <?= link_to('Send a message &raquo;', 'homepage', array('to' => $collector->getId())); ?>
-    </p>
+    <h4><?= link_to_collector($collector, 'text'); ?></h4>
+    <ul>
+      <li>
+        <?php
+        echo sprintf(
+          '%s %s collector',
+          in_array(strtolower(substr($collector->getCollectorType(), 0, 1)), array('a', 'e', 'i', 'o')) ? 'An' : 'A',
+          '<strong>'. $collector->getCollectorType() .'</strong>'
+        );
+        ?>
+      </li>
+      <li>
+        From <?= $collector->getProfile()->getCountry(); ?>
+      </li>
+    </ul>
   </div>
 </div>
 
-<?php if ($message === true): ?>
-<div class="row-fluid" style="margin-top: 10px;">
+<?php if (isset($message) && $message === true): ?>
+<?php
+  $subject = null;
+
+  if (isset($collectible))
+  {
+    $subject = 'Regarding your item: '. addslashes($collectible->getName());
+  }
+  else if (isset($collection))
+  {
+    $subject = 'Regarding your collection: '. addslashes($collection->getName());
+  }
+?>
+<div class="row-fluid">
   <div style="background-color: #e6f2f9; padding: 6px;">
-    <form action="" method="post" style="margin-bottom: 0;" id="form-private-message">
+    <form action="<?= url_for('@messages_compose?to='. $collector->getUsername()); ?>" method="post" style="margin-bottom: 0;" id="form-private-message">
       <input type="hidden" name="message[receiver]" value="<?= $collector->getUsername(); ?>">
-      <input type="hidden" name="message[subject]" value="Regarding your item: <?= addslashes($collectible->getName()); ?>">
-      <textarea name="message[body]" style="width: 97%; margin-bottom: 0;" placeholder="Send a message to <?= $collector; ?>"></textarea>
+      <input type="hidden" name="message[subject]" value="<?= $subject; ?>">
+      <textarea class="requires-login" data-login-title="Create an account to contact the seller of this item."  name="message[body]" style="width: 97%; margin-bottom: 0;" placeholder="Send a message to <?= $collector; ?>"></textarea>
       <div style="text-align: center; display: none; margin: 10px 0 5px 0;" id="buttons-private-message">
         <button type="button" class="btn cancel" value="cancel">cancel</button>
          &nbsp; - or - &nbsp;
@@ -42,7 +62,7 @@
 <?php endif; ?>
 
 <?php if (!empty($collections) && count($collections) > 0): ?>
-  <br style="clear: all;"/>
+  <br style="clear: both;"/>
   <div>
     Other collections by <?= $collector; ?><br/>
     <?= link_to('View all collections &raquo;', 'collections_by_collector', $collector); ?>

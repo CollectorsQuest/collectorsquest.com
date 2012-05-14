@@ -47,10 +47,11 @@ EOF;
           {
             list($pk, $size, $method) = explode(', ', $message->body);
 
-            if ($multimedia = MultimediaPeer::retrieveByPK($pk))
+            if ($multimedia = iceModelMultimediaPeer::retrieveByPK($pk))
             {
               try {
-                $multimedia->makeThumb($size, $method, false);
+                list($width, $height) = explode('x', $size);
+                $multimedia->makeThumb($width, $height, $method, false);
               }
               catch (Exception $e) { ; }
             }
@@ -62,10 +63,10 @@ EOF;
           $messages = $queue->receive(10);
           foreach ($messages as $message)
           {
-            if (($multimedia = MultimediaPeer::retrieveByPK((int) $message->body)) && !$multimedia->getColors())
+            if (($multimedia = iceModelMultimediaPeer::retrieveByPK((int) $message->body)) && !$multimedia->getColors())
             {
               try {
-                $colors = MultimediaPeer::getImageColors($multimedia->getAbsolutePath('original'));
+                $colors = iceModelMultimediaPeer::getImageColors($multimedia->getAbsolutePath('original'));
 
                 $multimedia->setColors($colors);
                 $multimedia->save();
@@ -82,7 +83,7 @@ EOF;
           {
             list($pk, $size, $degrees) = explode(', ', $message->body);
 
-            if ($multimedia = MultimediaPeer::retrieveByPK($pk))
+            if ($multimedia = iceModelMultimediaPeer::retrieveByPK($pk))
             {
               try {
                 $multimedia->rotate($size, $degrees, false);

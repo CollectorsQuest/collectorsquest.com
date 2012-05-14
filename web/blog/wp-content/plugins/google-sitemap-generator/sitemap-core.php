@@ -1,7 +1,7 @@
 <?php
 /*
- 
- $Id: sitemap-core.php 477227 2011-12-18 19:06:37Z arnee $
+
+ $Id: sitemap-core.php 541051 2012-05-07 19:33:15Z arnee $
 
 */
 
@@ -1265,7 +1265,7 @@ final class GoogleSitemapGenerator {
 	/**
 	 * Returns the additional pages
 	 * @since 4.0
-	 * @return array
+	 * @return GoogleSitemapGeneratorPage[]
 	 */
 	function GetPages() {
 		return $this->pages;
@@ -1336,14 +1336,9 @@ final class GoogleSitemapGenerator {
 	 */
 	public function GetPluginUrl() {
 
-		//Try to use WP API if possible, introduced in WP 2.6
-		if(function_exists('plugins_url')) return trailingslashit(plugins_url(basename(dirname(__FILE__))));
+		$url = trailingslashit(plugins_url("", __FILE__));
 
-		//Try to find manually... can't work if wp-content was renamed or is redirected
-		$path = dirname(__FILE__);
-		$path = str_replace("\\", "/", $path);
-		$path = trailingslashit(get_bloginfo('wpurl')) . trailingslashit(substr($path, strpos($path, "wp-content/")));
-		return $path;
+		return $url;
 	}
 
 	/**
@@ -1425,8 +1420,8 @@ final class GoogleSitemapGenerator {
 
 		$res = true;
 
-		if(file_exists($f = $path . "sitemap.xml")) if(!rename($f, $f . ".bak")) $res = false;
-		if(file_exists($f = $path . "sitemap.xml.gz")) if(!rename($f, $f . ".bak")) $res = false;
+		if(file_exists($f = $path . "sitemap.xml"))     if(!rename($f, $path . "sitemap.backup.xml")) $res = false;
+		if(file_exists($f = $path . "sitemap.xml.gz"))  if(!rename($f, $path . "sitemap.backup.xml.gz")) $res = false;
 
 		return $res;
 	}

@@ -140,6 +140,21 @@ class searchActions extends cqFrontendActions
     return sfView::SUCCESS;
   }
 
+  public function executeCollectiblesForSale(sfWebRequest $request)
+  {
+    self::$_query['filters']['uint1'] = 1;
+
+    $pager = new cqSphinxPager(self::$_query, array('collectibles'), 24);
+    $pager->setPage($request->getParameter('page', 1));
+    $this->sid = $pager->init();
+
+    $this->pager = $pager;
+    $this->display = $this->getUser()->getAttribute('display', 'grid', 'search');
+    $this->url = new IceTypeUrl($request->getUri());
+
+    return sfView::SUCCESS;
+  }
+
   public function executeBlog(sfWebRequest $request)
   {
     $pager = new cqSphinxPager(self::$_query, array('blog'), 24);

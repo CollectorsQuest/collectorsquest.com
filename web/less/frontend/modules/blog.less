@@ -1,354 +1,370 @@
 @import "../_variables.less";
 @import "../_mixins.less";
 
-#body-_blog-index #main {
-  width: 620px !important
+#entry-image-box,#entry-image-box-button,.stArrow,#networkedblogs_nwidget_container,img#wpstats
+{
+	display:none !important
 }
 
-#entry-image-box, #entry-image-box-button, .stArrow, #networkedblogs_nwidget_container {
-  display: none !important
+h2 a:hover
+{
+	border-bottom:0
 }
 
-h2 a:hover {
-  border-bottom: 0px
+.entry-genre
+{
+	text-transform:uppercase
 }
 
-.back-nav a {
-  color: @white;
+.entry-genre a,.wp-caption-text,.entry-meta .meta-text
+{
+	color:@brown;
+	font:9pt arial !important
 }
 
-.entry-genre {
-  text-transform: uppercase;
+.entry-share
+{
+	margin-top:5px
 }
 
-.entry-genre a, .wp-caption-text, .entry-meta .meta-text {
-  font: 9pt arial !important;
-  color: #887777;
+.entry-content .wp-caption-text
+{
+	margin-left:10px;
+	margin-top:10px;
+	text-align:left
 }
 
-.entry-genre a:hover {
-  color: @red
+.author-image,.permalinklink,.p-tag,.author-list .avatar,.meta-text,.p-1 .entry-footer p,.not-singular
+{
+	float:left
 }
 
-.entry .wp-caption-text {
-  margin-left: 10px;
-  margin-top: 10px;
-  text-align: left
+.alignright,.back-nav,.nav-next
+{
+	text-align:right
 }
 
-.author-image, #commentform, .permalinklink, .p-tag, .author-list .avatar, .meta-text, .p-1 .entry-footer p {
-  float: left;
+.alignleft
+{
+	float:left;
+	margin-bottom:20px;
+	margin-right:20px
 }
 
-.alignright, .back-nav {
-  text-align: right
+.alignright
+{
+	float:right;
+	margin-bottom:20px;
+	margin-left:20px
 }
 
-.alignright {
-  float: right;
-  margin-bottom: 10px;
-  margin-left:10px
+.aligncenter
+{
+	margin:0 auto 20px
 }
 
-.alignleft {
-  float: left;
-  margin-bottom: 10px;
-  margin-right:10px
+.wp-caption-text
+{
+	margin-bottom:0;
+	margin-top:8px
 }
 
-.aligncenter, a .aligncenter {
-  margin:0 auto;
-  margin-bottom: 10px;
+.alignleft .wp-caption-text,.aligncenter .wp-caption-text
+{
+	margin-left:0;
+	margin-right:10px
 }
 
-.alignleft .wp-caption-text, .aligncenter .wp-caption-text {
-  margin-left: 0;
+.aligncenter .wp-caption-text,.gallery-caption
+{
+	text-align:center !important
 }
 
-.gallery .wp-caption-text, .aligncenter .wp-caption-text {
-  text-align:center !important;
-  }
-.aligncenter .wp-caption-text {
-  margin-right:10px
-}
-.wp-caption-text {
-  margin-top: 8px;
-  margin-bottom: 0
+.wp-caption.alignleft
+{
+	margin-bottom:10px;
+	margin-right:10px
 }
 
-.navigation {
-  clear: both;
-  padding: 10px 0
+.wp-caption.alignright
+{
+	margin-bottom:10px;
+	margin-left:10px
 }
 
-.entry-share {
-  margin-top: 5px;
+.gallery .wp-caption-text,a .aligncenter
+{
+	display:block
 }
 
-.p-tag {
-  background: #e7e4e4;
-  padding: 0 10px;
-  color: #887777;
-  line-height: 24px;
-  margin: 5px;
+.bottom-margin
+{
+  margin-bottom:10px
 }
 
-.p-tag a {
-  color: #333;
+.author-list
+{
+	margin-left:0
 }
 
-#widget-bloggers ul, #widgets, .author-list {
-  margin-left: 0;
-  margin-top: 20px
+#widget-bloggers,.author-list
+{
+	list-style:none
 }
 
-#widget-bloggers, .author-list {
-  list-style: none
+.author-list .avatar
+{
+	margin-right:20px
 }
 
-#widget-bloggers ul li, .author-list li {
-  margin-bottom: 20px
+.author-list a
+{
+	color:@blueDark
 }
 
-.author-list .avatar, .author-link {
-  margin-right: 20px
+.author-name
+{
+	float:left;
+	font-weight:700;
+	margin-top:12px
 }
 
-.back-nav {
-  line-height: 20px
+.back-nav a
+{
+	color:@white;
+	line-height:20px
 }
 
-.see-more-full {
-  width:95%;
-  margin:20px 0
-  }
+.see-more-full
+{
+	width:95%;
+	margin:20px 0
+}
 
-.st_sharethis_custom {
-  background: url("/blog/wp-content/themes/collectorsquest/img/share-button.jpg") no-repeat scroll left top transparent;
-  clear: none;
-  display: block;
-  height: 20px;
-  margin-left: 320px;
-  text-indent: -99999px;
-  width: 60px;
-  cursor: pointer;
+.header-bar h1 span
+{
+	color:@white;
+	font-size:20px;
+	font-style:italic;
+	font-weight:400;
+	line-height:22px;
+	text-transform:capitalize
+}
+
+.entry-genre a:hover,.author-list a:hover
+{
+	color:@red
+}
+
+.nav > li > a:hover
+{
+	background-color:@lightBlue
+}
+
+.nav-tabs > li > a
+{
+	font-size:12pt
+}
+
+.sub-page-list
+{
+	float:left !important;
+	margin-left:0 !important
+}
+
+.sidebar-title
+{
+	margin-top:25px !important
 }
 
 
 .news-front {
-  h2 {
-    line-height:28px;
-  }
-  .post {
-    float: left;
-    border-top: 1px dashed #cccccc;
-    width:100%;
-    padding:10px 0
-  }
-  .p-1 {
-    padding-top:20px
-    }
-  .p-1 h2 {
-    float: right;
-    margin-top: 10px;
-    font-size: 20pt;
-    line-height: 36px;
-    width: 300px
-  }
-  .p-1 .entry-image {
-    float: left;
-    margin-right: 20px;
-    padding-top: 10px;
-    width:300px
-  }
-  .p-1 .entry-genre {
-    margin-top: 6px;
-    position: absolute;
-    left: 320px;
-  }
-  .p-1 .meta-text {
-    width:280px;
-  }
-  .p-1 {
-    border-top:none;
-    position: relative;
-    margin-top: 10px;
-    margin-bottom: 15px;
-    padding-top:0
-  }
-  .p-1 .entry, .p-1 .entry-footer {
-    float:left;
-    width:300px
+  h2
+  {
+    line-height:28px
   }
 
-  .p-2, .p-3 {
-    float: left;
+  .post
+  {
+    border-top:1px dashed @grayNormal;
+    padding:10px 0
   }
-  .entry-image {
-    width:140px;
-    margin-right:20px;
-    float:left
+
+  .p-1
+  {
+    border-top:none;
+    margin-bottom:15px;
+    padding-top:0;
+    position:relative
   }
-  .p-2 h2, .p-3 h2 {
-    margin-top: 0px;
+
+  .p-1 h2
+  {
+    font-size:20pt;
+    line-height:36px
   }
-  .p-3 {
+
+  .p-1 .entry-image
+  {
+    height:300px
   }
-  .p-4 {
-  clear:left
+
+  .p-1 .entry-share
+  {
+    width:72%
   }
-  .last {
-    margin-right: 0
-  }
-  .p-9, .p-13 {
-  clear:left
+
+  .p-1 .entry-genre
+  {
+    left:320px;
+    margin-top:6px;
+    position:absolute
   }
 }
 
 .singular {
-  h2 {
-    margin-top: 20px;
+  .entry-title
+  {
     font-size:20pt
   }
-  .entry, .entry p {
-      font-size: 14px;
-      line-height: 20px;
-    }
-  .p-1 .entry-genre {
-    margin-top: 8px
+
+  .p-1 .entry-genre
+  {
+    margin-top:8px
   }
-  .entry-meta {
-      padding: 6px;
-      background-color: #e6f2f9;
-      margin: 10px 0;
-      width: 609px;
-      color: #333;
-      float: left
-    }
-  .entry-footer {
-    display: block;
-    clear: both;
+
+  .entry-content,.entry-content p
+  {
+    font-size:14px;
+    line-height:20px;
+    text-align:justify
   }
-  .author-info {
+
+  .entry-meta,.entry-footer
+  {
+    background-color:@lightBlue;
+    color:@grayDark;
+    margin:10px 0;
+    padding:6px
+  }
+
+  .author-info
+  {
     float:left;
-    margin-top:10px;
     margin-left:10px;
+    margin-top:10px
+  }
+  .entry-image {
+    margin-top:10px
   }
 }
 
 .not-singular {
-  .post h2 {
-    line-height:23pt;
-    }
-  .post {
-    float:left;
-    padding:10px 0 0 0;
-    border-bottom:1px dashed #ccc
-    }
-
-  .entry-image {
-    width:140px;
-    float:left;
-    margin:0 20px 10px 0
-    }
-  .entry {
-    margin:0  0 10px 0
-    }
-  .author-image {
-  margin-top:-2px
+  .post h2
+  {
+    line-height:23pt
   }
 
-}
+  .post
+  {
+    border-bottom:1px dashed @grayNormal;
+    padding:10px 0
+  }
 
+  .entry-content p
+  {
+    margin-bottom:0
+  }
+}
 
 .not-singular, .news-front {
-  .meta-text {
-    width:460px;
+  .meta-text
+  {
     margin:6px 0 !important
-    }
-  .author-image {
+  }
+
+  .author-image
+  {
     margin-right:5px;
     margin-top:-2px
-    }
-
-  .post h2, .entry {
-    width:460px;
-    float:left
-    }
-}
-
-.author-list li {
-  float:left;
-  width:100%
   }
 
-
-
-.author-name {
-  float: left;
-  font-weight: bold;
-  margin-top: 12px
+  .entry-image
+  {
+    height:140px
   }
-.author-list a {
-  color: @blueDark
-}
-.author-list a:hover {
-  color: @red
-}
-
-.addthis_button_facebook_like {
-  width: 46px;
-  overflow: hidden;
-  margin-top:2px
-}
-.addthis_button_tweet {
-  width: 54px;
-  overflow: hidden;
-  margin-top:2px
-}
-.addthis_button_pinterest_pinit {
-  width: 50px;
-  height: 24px
-}
-.addthis_button_google_plusone {
-margin-top:2px
-}
-.addthis_button_email {
-margin-top:4px
-}
-
-// http://wordpress.org/support/topic/avoid-wp-stats-little-face-at-the-bottom-of-my-pages
-img#wpstats {
-  display:none
 }
 
 
-#author-info-box {
-  float:left;
-  width:100%;
-  margin-top:20px;
-  padding-bottom:20px;
-  border-bottom:1px dashed #cccccc
+.widget_cq_sub_pages_widget
+{
+  margin-top:52px
 }
-.author-avatar {
-  float:left;
-  margin:0 20px 20px 0
+
+#main
+{
+  margin-right:20px
 }
-.author-bio {
-  float:left;
-  width:460px;
-  }
+
+.fixed-right-300 > #sidebar
+{
+  margin-left:0
+}
+
+textarea.wpfaqask
+{
+  width:99%
+}
+
+.wpfaqquestions a:hover
+{
+  border-bottom:none
+}
+
+.tags-container-sidebar
+{
+  margin-top:0
+}
+.tags-container-sidebar .tags
+{
+  float:left
+}
 
 
-.header-bar h1 span {
-            -moz-transform: rotate(0.000475deg);
-            color: #fff;
-            font-size: 20px;
-            font-style: italic;
-            font-weight: normal;
-            line-height: 22px;
-            text-transform:capitalize;
-        }
-.sidebar-title {
-  margin-top:20px !important
+h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover
+{
+  border-bottom: none;
+  color:@red
 }
+
+ul.sub-page-list li ul
+{
+  display: none;
+}
+ul.sub-page-list li.active ul, ul.sub-page-list li.current_page_ancestor ul
+{
+  display: block;
+  list-style:none
+}
+
+.comment-subscription-form label, .comment-subscription-form input
+{
+  float:left
+}
+
+.comment-subscription-form input
+{
+  clear:left
+}
+
+.comment-subscription-form label
+{
+  margin-top:2px;
+  margin-left:5px
+}
+.post-comment input {
+  margin-bottom:0px
+}
+
+.comment-option-wrap {display:none}
+.post-comment textarea {border-radius:5px 0 0 5px}

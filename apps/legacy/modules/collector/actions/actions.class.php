@@ -32,6 +32,18 @@ class collectorActions extends cqActions
     /** @var $collector Collector */
     $collector = $this->getRoute()->getObject();
 
+    /** @var $profile CollectorProfile */
+    $profile = $collector->getCollectorProfile();
+
+    /**
+     * Increment the number of views
+     */
+    if (!$this->getCollector()->isOwnerOf($collector))
+    {
+      $profile->setNumViews($profile->getNumViews() + 1);
+      $profile->save();
+    }
+
     /**
      * Special checks for the Collectibles of A&E
      */
@@ -57,7 +69,7 @@ class collectorActions extends cqActions
     $this->addBreadcrumb($collector->getDisplayName());
 
     $this->collector = $collector;
-    $this->collector_profile = $collector->getProfile();
+    $this->collector_profile = $profile;
 
     $this->related_collections = $collector->getRelatedCollections(10, $this->rnd_flag);
     $this->count_collections = $collector->countCollectorCollections();
@@ -130,7 +142,7 @@ class collectorActions extends cqActions
 
     if (!$this->getUser()->isAuthenticated() && !$this->getUser()->getAttribute('signup_type', false, 'registration'))
     {
-      $this->redirect('collector/signupChoice');
+      $this->redirect('@collector_signup_choice');
     }
 
     $signupType = $this->getUser()->getAttribute('signup_type', null, 'registration');
@@ -365,7 +377,7 @@ class collectorActions extends cqActions
     {
       if ($signupType == 'seller' && !$this->getUser()->isSeller())
       {
-        $this->redirect('seller/packages');
+        $this->redirect('@seller_upgrade_package');
       }
       else if ($signupType == 'seller')
       {

@@ -6,12 +6,20 @@
 
 <div class="span3 thumbnail link">
   <?php
-    link_to_collectible(
+    echo link_to_collectible(
       $collectible_for_sale->getCollectible(), 'image',
-      array('width' => 131, 'height' => 131)
+      array('width' => 150, 'height' => 150, 'max_width' => 132, 'max_height' => 132)
     );
   ?>
-  <?= ice_image_tag_placeholder('131x131'); ?>
-  <p><?= link_to_collectible($collectible_for_sale->getCollectible(), 'text', array('class' => 'target', 'truncate' => 20)); ?></p>
-  <span><?= money_format('%.2n', (float) $collectible_for_sale->getPrice()); ?></span>
+  <p>
+    <?php
+      echo link_to_collectible(
+        $collectible_for_sale->getCollectible(), 'text',
+        array('class' => 'target', 'truncate' => 20)
+      );
+    ?>
+  </p>
+  <span>
+    <?= money_format('%.2n', (float) $collectible_for_sale->getPrice()); ?>
+  </span>
 </div>

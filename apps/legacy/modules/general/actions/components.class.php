@@ -45,9 +45,9 @@ class generalComponents extends sfComponents
 
     $c = new Criteria();
     $c->setDistinct();
-    $c->addJoin(CollectorCollectionPeer::ID, MultimediaPeer::MODEL_ID);
+    $c->addJoin(CollectorCollectionPeer::ID, iceModelMultimediaPeer::MODEL_ID);
     $c->add(CollectorCollectionPeer::NUM_ITEMS, 4, Criteria::GREATER_EQUAL);
-    $c->add(MultimediaPeer::MODEL, 'CollectorCollection');
+    $c->add(iceModelMultimediaPeer::MODEL, 'CollectorCollection');
     $c->add(CollectorCollectionPeer::ID, $themes[$i]['collections'], Criteria::IN);
     $c->setLimit(2);
 
@@ -56,8 +56,8 @@ class generalComponents extends sfComponents
     $c = new Criteria();
     $c->setDistinct();
     $c->add(CollectiblePeer::ID, $themes[$i]['collectibles'], Criteria::IN);
-    $c->addJoin(CollectiblePeer::ID, MultimediaPeer::MODEL_ID);
-    $c->add(MultimediaPeer::MODEL, 'Collectible');
+    $c->addJoin(CollectiblePeer::ID, iceModelMultimediaPeer::MODEL_ID);
+    $c->add(iceModelMultimediaPeer::MODEL, 'Collectible');
     $c->addDescendingOrderByColumn(CollectiblePeer::SCORE);
     $c->setLimit(18);
 
@@ -69,9 +69,9 @@ class generalComponents extends sfComponents
     return sfView::SUCCESS;
   }
 
-  public function executeBreadcrumbs()
+  public function executeBreadcrumbs(sfWebRequest $request)
   {
-    $breadcrumbs = cqBreadcrumbs::getInstance();
+    $breadcrumbs = IceBreadcrumbs::getInstance($this->getContext());
 
     if (isset($this->root))
     {

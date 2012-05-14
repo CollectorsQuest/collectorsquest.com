@@ -1,4 +1,5 @@
 Sitemap: http://www.collectorsquest.com/sitemap.xml
+Sitemap: http://www.collectorsquest.com/blog/sitemap.xml
 
 User-Agent: ia_archiver
 crawl-delay: 30
@@ -13,6 +14,8 @@ User-Agent: msnbot
 crawl-delay: 30
 
 User-Agent: *
+Disallow: /blog/wp-admin/
+Disallow: /blog/wp-includes/
 Disallow: /ajax/
 Disallow: /backend/
 Disallow: /errors/

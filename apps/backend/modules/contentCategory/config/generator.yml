@@ -13,13 +13,15 @@ generator:
 
     config:
       actions: ~
-      fields:  ~
+      fields:
+        num_collections: { label: Collections (desc) }
       list:
-        display: [id, =name, slug, _ancestors, _collection_category]
+        display: [id, =name, _ancestors, _collection_category, _num_collections]
         title: Content Categories
         actions:
           export: { label: "Export to CSV", sf_format: csv }
-      filter:  ~
+      filter:
+        display: [collection_category_id, name, ancestor_id]
 
       export:
         sort: [id, asc]

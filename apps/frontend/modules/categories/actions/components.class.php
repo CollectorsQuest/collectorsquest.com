@@ -10,7 +10,7 @@ class categoriesComponents extends cqFrontendComponents
 
   public function executeSidebarCategory()
   {
-    if (!$this->category = CollectionCategoryPeer::retrieveByPk($this->getRequestParameter('id')))
+    if (!$this->category = ContentCategoryPeer::retrieveByPk($this->getRequestParameter('id')))
     {
       return sfView::NONE;
     }

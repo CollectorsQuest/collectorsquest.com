@@ -255,7 +255,7 @@ function link_to_collectible($collectible, $type = 'text', $options = array())
       if (sfConfig::get('sf_app') == 'legacy') {
         $_options = array_merge(array('class' => 'thumbnail'), $options);
       } else {
-        $_options = array();
+        $_options = $options;
       }
 
       $link = link_to(image_tag_collectible($collectible, $which, $_options), $route, $options);
@@ -411,8 +411,7 @@ function link_to_collection_category(CollectionCategory $category, $type = 'text
   return $link;
 }
 
-
-function link_to_content_category(CollectionCategory $category, $type = 'text', $options = array())
+function link_to_content_category(ContentCategory $category, $type = 'text', $options = array())
 {
   $options = array_merge(
     array(

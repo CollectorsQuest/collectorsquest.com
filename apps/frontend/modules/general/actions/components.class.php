@@ -15,23 +15,13 @@ class generalComponents extends cqFrontendComponents
     $wp_posts = $q->limit(15)->find();
 
     foreach ($wp_posts as $wp_post)
+    if ($image = $wp_post->getPostThumbnail())
     {
-      if ($thumbnail_id = $wp_post->getPostMetaValue('_thumbnail_id'))
-      {
-        $q = wpPostMetaQuery::create()
-           ->filterByPostId($thumbnail_id)
-           ->filterByMetaKey('_wp_attached_file');
-
-        /** @var $wp_post_meta wpPostMeta */
-        if ($wp_post_meta = $q->findOne())
-        {
-          $this->carousels[] = array(
-            'image' => '/uploads/blog/' . $wp_post_meta->getMetaValue(),
-            'title' => $wp_post->getPostTitle(),
-            'content' => $wp_post->getPostContent()
-          );
-        }
-      }
+      $this->carousels[] = array(
+        'image' => $image,
+        'title' => $wp_post->getPostTitle(),
+        'content' => $wp_post->getPostContent()
+      );
     }
 
     // Make sure we display only 8 items
@@ -42,6 +32,14 @@ class generalComponents extends cqFrontendComponents
 
   public function executeSidebarIndex()
   {
+    $q = wpPostQuery::create()
+      ->filterByPostType('cms_slot')
+      ->filterByPostStatus('publish')
+      ->filterByPostExcerpt('c4bf2d50-9daa-11e1-a8b0-0800200c9a66')
+      ->orderByPostDate(Criteria::DESC);
+
+    $this->cms_slot1 = $q->findOne();
+
     return sfView::SUCCESS;
   }
 }

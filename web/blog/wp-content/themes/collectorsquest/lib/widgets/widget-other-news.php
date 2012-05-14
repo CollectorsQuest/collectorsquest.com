@@ -4,14 +4,14 @@
 /**
  * Adds CQ_Other_News_widget widget.
  */
-class CQ_Other_News_widget extends WP_Widget {
+class cq_other_news_widget extends WP_Widget {
 
   /**
    * Register widget with WordPress.
    */
   public function __construct() {
     parent::__construct(
-      'CQ_Other_News_widget', // Base ID
+      'cq_other_news_widget', // Base ID
       'CQ In Other News', // Name
       array( 'description' => __( 'This is the Other News" widget.', 'text_domain' ), ) // Args
     );
@@ -121,4 +121,4 @@ class CQ_Other_News_widget extends WP_Widget {
 } // class CQ_Other_News_widget
 
 // register Foo_Widget widget
-add_action( 'widgets_init', create_function( '', 'register_widget( "CQ_Other_News_widget" );' ) );
+add_action( 'widgets_init', create_function( '', 'register_widget( "cq_other_news_widget" );' ) );

@@ -15,3 +15,11 @@ Collector:
     password: p4ssw0rd
     email: ivan.ivanov@example.com
     salt: 3e98285dd88240cc67ba135e7a24af10
+
+  ivan_ivanov2:
+    username: ivan.ivanov2
+    slug: ivan-ivanov2
+    displayname: Ivan Ivanov
+    password: p4ssw0rd2
+    email: ivan.ivanov2@example.com
+    salt: 3e98285dd88240cc67ba135e7a24af11

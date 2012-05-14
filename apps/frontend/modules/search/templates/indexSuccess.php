@@ -25,15 +25,15 @@
       switch (strtolower(get_class($object)))
       {
         case 'wppost':
-          echo '<div class="span8 brick" style="height: 165px; float: left;">';
+          echo '<div class="span8 brick" style="height: 165px;">';
           include_partial(
-            'news/wp_post_'. $display .'_view',
+            '_blog/wp_post_'. $display .'_view',
             array('wp_post' => $object, 'excerpt' => $pager->getExcerpt($i), 'i' => $i)
           );
           echo '</div>';
           break;
         case 'collectible':
-          echo '<div class="span4 brick" style="height: 165px; float: left;">';
+          echo '<div class="span4 brick" style="height: 165px;">';
           include_partial(
             'collection/collectible_'. $display .'_view',
             array('collectible' => $object, 'i' => $i)
@@ -42,18 +42,18 @@
           break;
         case 'collection':
         case 'collectorcollection':
-          echo '<div class="span4 brick" style="height: 165px; float: left;">';
+          echo '<div class="span4 brick" style="height: 165px;">';
           include_partial(
             'collection/collection_stack_'. $display .'_view',
-            array('collection' => $object, 'i' => $i)
+            array('collection' => $object, 'excerpt' => $pager->getExcerpt($i), 'i' => $i)
           );
           echo '</div>';
           break;
         case 'collector':
-          echo '<div class="span4 brick" style="height: 165px; float: left;">';
+          echo '<div class="span8 brick" style="height: 165px;">';
           include_partial(
-            'collector/collector_'. $display .'_view',
-            array('collector' => $object, 'i' => $i)
+            'collector/collector_'. $display .'_view_span8',
+            array('collector' => $object, 'excerpt' => $pager->getExcerpt($i), 'i' => $i)
           );
           echo '</div>';
           break;
@@ -78,7 +78,8 @@
     $.extend(cq.settings, {
       masonry: {
         add_infinite_scroll: <?= ($sf_params->get('show') == 'all') ? 'true' : 'false' ?>,
-        loading_image: '<?= image_path('frontend/progress.gif'); ?>'
+        loading_image: '<?= image_path('frontend/progress.gif'); ?>',
+        loading_text: 'Loading more results...'
       }
     })
   });

@@ -31,6 +31,9 @@ function cq_include_metas()
   $i = 0;
   foreach ($response->getMetas() as $name => $content)
   {
+    // Do not display empty meta tags
+    if ($content === '' || $content === null) continue;
+
     echo ($i++ > 0) ? '  ' : '';
     echo tag('meta', array('name' => $name, 'content' => null === $i18n ? $content : $i18n->__($content)))."\n";
   }
@@ -44,7 +47,17 @@ function cq_include_title()
   /** @var $response sfWebResponse */
   $response = sfContext::getInstance()->getResponse();
 
-  echo content_tag('title', $response->getTitle())."\n";
+  /** @var $title string */
+  $title = $response->getTitle();
+
+  echo $title ? content_tag('title', $title)."\n" : null;
+}
+
+function cq_htmLaw_tag($html, $config = array())
+{
+  require_once __DIR__ .'/../../plugins/iceLibsPlugin/lib/vendor/HtmLawed.php';
+
+  return htmLawed($html, $config);
 }
 
 function cq_image_tag($source, $options = array())

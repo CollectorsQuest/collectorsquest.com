@@ -18,9 +18,9 @@
         <br/>
         <span><?= time_ago_in_words_or_exact_date($message->getCreatedAt()); ?></span>
         <br/>
-        <div class="top-padding"><?= link_to_collector($sender, 'image'); ?></div>
+        <div class="spacer-inner-top-7"><?= link_to_collector($sender, 'image'); ?></div>
       </td>
-      <td class="subject"> <?= $message->getSubject(); ?></td>
+      <td class="subject"><b><?= $message->getSubject(); ?></b></td>
     </tr>
     <tr>
       <td class="message"><?php
@@ -39,22 +39,19 @@
       ?></td>
     </tr>
   <?php endforeach; ?>
-
-    <tr>
-      <td colspan="">Write a reply</td>
-      <td class="">
-        <?= form_tag('@messages_compose', array('class' => 'form-private-message-reply form-horizontal')) ?>
-          <fieldset>
-            <?= $reply_form->renderUsing('Bootstrap', array(
-                'subject' => array('class' => 'span7'),
-                'body'    => array('class' => 'span7', 'rows' => 6),
-            )); ?>
-            <div class="form-actions">
-              <input type="submit" class="btn btn-primary" value="Send reply" />
-            </div>
-          </fieldset>
-        </form>
-      </td>
-    </tr>
 </table>
 
+<div class="reply-form">
+  <span class="reply-form-title">Write a reply</span>
+  <?= form_tag('@messages_compose', array('class' => 'form-private-message-reply form-horizontal')) ?>
+  <fieldset>
+    <?= $reply_form->renderUsing('Bootstrap', array(
+    'subject' => array('class' => 'span7'),
+    'body'    => array('class' => 'span7', 'rows' => 6),
+  )); ?>
+    <div class="form-actions">
+      <input type="submit" class="btn btn-primary" value="Send reply" />
+    </div>
+  </fieldset>
+  </form>
+</div>

@@ -39,7 +39,7 @@ h1 {
 }
 
 h2 {
-	.custom-font(22px, 36px, normal);
+	.custom-font(22px, 36px, normal, normal);
 	.smooth-font();
 
 	small {
@@ -47,7 +47,7 @@ h2 {
 	}
 }
 
-h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover {
+h1 a:hover, h2 a:hover {
 	text-decoration: none;
 	border-bottom: 1px solid @red;
 	color: @blueDark;
@@ -96,12 +96,13 @@ h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover {
 
 .section-title {
 	background: url("@{baseUrl}/red-dotted-line.png") repeat-x bottom;
-	margin-top: 35px;
+	margin-top: 0;
 	margin-bottom: 10px;
 	h2 {
 		.custom-font(20px, 22px, italic, normal);
 		.smooth-font();
 		color: @red;
+		letter-spacing: 0.01em;
 	}
 	.span3 {
 		text-align: right;
@@ -187,6 +188,12 @@ select,
 	margin-top: 5px;
 }
 
+.see-more-button {
+	width: 96%;
+	padding: 5px 2%;
+	margin-top: 5px;
+}
+
 .see-less-full {
 	width: 100%;
 	padding: 5px 14px;
@@ -254,15 +261,20 @@ input[type="submit"].btn.btn-micro {
 
 //SLOTS
 #slot1 {
+	position: relative;
+	z-index: 300px;
 	margin: 0 auto;
 	background-color: @white;
-	border-left: 1px solid #ededed;
-	.box-shadow(0 25px 20px rgba(136, 119, 119, 0.5));
 	.clearfix();
 
 	.slot1-inner {
 		padding: 40px 15px 0;
 	}
+}
+
+.slots-container {
+	.box-shadow(0 25px 20px rgba(136, 119, 119, 0.5));
+	border-left: 1px solid #ededed;
 }
 
 //BUTTONS
@@ -294,12 +306,19 @@ a.bold-links {
 	}
 
 	[class*="span"] {
-		min-height: 0;
+	min-height: 0;
 		padding: 8px 15px;
 	}
 
+	.span9 {
+		padding: 8px 0 8px 15px;
+	}
+	.span3 {
+		padding: 8px 15px 8px 0;
+	}
 	.text-right {
 		padding-top: 10px;
+    white-space: nowrap;
 	}
 }
 
@@ -435,7 +454,7 @@ a.bold-links {
 			font-weight: normal;
 		}
 		&:hover {
-			background: @yelloHighlight;
+			background: @yellowHighlight;
 			color: #887777
 		}
 	}
@@ -488,6 +507,46 @@ a.bold-links {
 	margin-bottom: 2px;
 	padding-top: 3px;
 	padding-bottom: 3px;
+}
+
+.well-blue {
+  background-color: @lightBlue;
+  padding: 10px 5px 10px 15px;
+  font-size: 85%;
+
+  .addthis_toolbox {
+    margin-top: -3px;
+  }
+}
+
+.addthis_button_facebook_like
+{
+  margin-top:2px;
+  overflow:hidden;
+  width:46px;
+}
+
+.addthis_button_tweet
+{
+  margin-top:2px;
+  overflow:hidden;
+  width:54px;
+}
+
+.addthis_button_pinterest_pinit
+{
+  height:24px;
+  width:50px;
+}
+
+.addthis_button_google_plusone
+{
+  margin-top:2px;
+}
+
+.addthis_button_email
+{
+  margin-top:4px;
 }
 
 @import "_collections.less";

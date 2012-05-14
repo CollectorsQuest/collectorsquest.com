@@ -10,6 +10,10 @@ require 'lib/model/om/BaseCollector.php';
  */
 class Collector extends BaseCollector implements ShippingRatesInterface
 {
+  public
+    $_multimedia = array(),
+    $_counts = array();
+
 
   public function initializeProperties()
   {
@@ -114,6 +118,19 @@ class Collector extends BaseCollector implements ShippingRatesInterface
   }
 
   /**
+   * @return    string
+   */
+  public function getDisplayName()
+  {
+    if (!$display_name = parent::getDisplayName())
+    {
+      $display_name = $this->getUsername();
+    }
+
+    return $display_name;
+  }
+
+  /**
    * Get the salt (generate it first if needed)
    *
    * @return    string
@@ -179,7 +196,7 @@ class Collector extends BaseCollector implements ShippingRatesInterface
    */
   public function hasPhoto()
   {
-    return MultimediaPeer::has($this, 'image', true);
+    return $this->getPrimaryImage() ? true : false;
   }
 
   /**
@@ -189,31 +206,12 @@ class Collector extends BaseCollector implements ShippingRatesInterface
    */
   public function getPhoto()
   {
-    return MultimediaPeer::get($this, 'image', true);
+    return $this->getPrimaryImage();
   }
 
   public function setPhoto($file)
   {
-    $c = new Criteria();
-    $c->add(MultimediaPeer::MODEL, 'Collector');
-    $c->add(MultimediaPeer::MODEL_ID, $this->getId());
-    $c->add(MultimediaPeer::TYPE, 'image');
-    $c->add(MultimediaPeer::IS_PRIMARY, true);
-
-    // OK to delete any past primary multimedia
-    MultimediaPeer::doDelete($c);
-
-    if ($multimedia = MultimediaPeer::createMultimediaFromFile($this, $file))
-    {
-      $multimedia->setIsPrimary(true);
-      $multimedia->makeThumb('100x100', 'shave');
-      $multimedia->makeThumb('235x315', 'shave');
-      $multimedia->save();
-
-      return true;
-    }
-
-    return false;
+    return $this->setPrimaryImage($file);
   }
 
   public function getMessagesCount()
@@ -750,7 +748,28 @@ class Collector extends BaseCollector implements ShippingRatesInterface
     return $this;
   }
 
+
+  /**
+   * For each Multimedia that is added to the Advert, this method will be called
+   * to take care of creating the right thumnail sizes
+   *
+   * @param  iceModelMultimedia  $multimedia
+   * @param  array $options
+   *
+   * @throws InvalidArgumentException
+   * @return void
+   */
+  public function createMultimediaThumbs(iceModelMultimedia $multimedia, $options = array())
+  {
+    $watermark = isset($options['watermark']) ? (boolean) $options['watermark'] : false;
+
+    $multimedia->makeThumb(100, 100, 'center', false);
+    $multimedia->makeCustomThumb(235, 315, '235x315', 'top', $watermark);
+  }
+
 }
+
+sfPropelBehavior::add('Collector', array('IceMultimediaBehavior'));
 
 sfPropelBehavior::add(
   'Collector',

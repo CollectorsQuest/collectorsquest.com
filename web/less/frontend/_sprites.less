@@ -1,6 +1,6 @@
 @import "_variables.less";
 
-.logo, .s-16-icon-facebook, .s-16-icon-google, .s-16-icon-twitter, .s-16-icon-pinterest, .sing-up-now-red, .big-add-icon, .big-add-icon, .big-battery-icon, .big-box-icon, .big-email-icon, .big-organize-icon, .big-piggy-bank-icon, .shopping-cart, .button-carousel-next, .button-carousel-previous, .big-question-icon, .my-account-btn, .remove-item, .upload-photo, .mail-icon-mini, .add-icon-middle, .share-icon-middle, .add-to-card-button {
+.logo, .s-16-icon-facebook, .s-16-icon-google, .s-16-icon-twitter, .s-16-icon-pinterest, .sing-up-now-red, .big-add-icon, .big-add-icon, .big-battery-icon, .big-box-icon, .big-email-icon, .big-organize-icon, .big-piggy-bank-icon, .shopping-cart, .button-carousel-next, .button-carousel-previous, .big-question-icon, .my-account-btn, .remove-item, .upload-photo, .mail-icon-mini, .add-icon-medium, .share-icon-medium, .add-to-card-button, .add-new-items-button, .gray-arrow, .add-white-icon, .checkbox-arrow, .gray-arrow-up, .grid-view, .list_view, .buy-credits-button, .add-white-icon-big, .remove-collectible {
 	background: url("@{baseUrl}/sprites.png") no-repeat;
 }
 
@@ -145,25 +145,112 @@
 	background-position: -425px -155px;
 }
 
-.add-icon-middle{
+.btn-lightblue:hover .share-icon-medium{
+	background-position: -425px -185px;
+}
+
+
+.add-icon-medium{
 	background-position: -424px -200px;
 	.square(12px);
 }
 
-.btn-lightblue:hover .share-icon-middle{
-	background-position: -425px -185px;
+.btn-lightblue-medium:hover .add-icon-medium, .btn-lightblue:hover .add-icon-medium{
+	background-position: -424px -215px;
 }
 
-.share-icon-middle{
+.share-icon-medium{
 	background-position: -425px -170px;
 	.square(12px);
-}
-
-.btn-lightblue:hover .add-icon-middle{
-	background-position: -424px -215px;
 }
 
 .add-to-card-button{
 	background-position: -400px -240px;
 	.size(18px, 20px);
 }
+
+.add-new-items-button{
+	background-position: 0 -338px;
+	.size(29px, 193px);
+
+	&:hover {
+		background-position: 0 -309px;
+	}
+	&:active {
+		background-position: 0 -280px;
+	}
+}
+
+.gray-arrow{
+	background-position: -280px -150px;
+	.size(38px, 40px);
+}
+
+.add-white-icon{
+	background-position: -142px -118px;
+	//.size(36px, 43px);
+}
+
+.checkbox-arrow{
+	background-position: -400px -280px;
+	.size(20px, 13px);
+}
+
+.gray-arrow-up{
+	background-position: -280px -200px;
+	.size(38px, 40px);
+}
+
+.grid-view{
+	background-position: -233px -280px;
+	.square(28px);
+
+	&:hover {
+		background-position: -261px -280px;
+	}
+	&:active {
+		background-position: -205px -280px;
+	}
+	&.active {
+		background-position: -205px -280px;
+	}
+}
+
+
+.list_view{
+	background-position: -328px -280px;
+	.square(28px);
+
+	&:hover {
+		background-position: -356px -280px;
+	}
+	&:active {
+		background-position: -300px -280px;
+	}
+	&.active {
+		background-position: -300px -280px;
+	}
+}
+
+.buy-credits-button{
+	background-position: 0 -428px;
+	.size(29px, 192px);
+
+	&:hover {
+		background-position: 0 -399px;
+	}
+	&:active {
+		background-position: 0 -370px;
+	}
+}
+
+.add-white-icon-big{
+	background-position: -140px -205px;
+	.size(60px, 68px);
+}
+
+.remove-collectible{
+	background-position: -430px -290px;
+	.size(10px, 12px);
+}
+

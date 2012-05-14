@@ -20,7 +20,7 @@
             <button class="btn btn-primary blue-button pull-left" type="submit">Contact Us</button>
           </div>
           <p>
-            <a href="http://facebook.com/Collectors.Quest" target="_blank">
+            <a href="http://www.facebook.com/pages/Collectors-Quest/119338990397" target="_blank">
               <i class="s-16-icon-facebook social-ico-padding"></i>Follow us on Facebook
             </a>
           </p>
@@ -45,8 +45,8 @@
 
           <form action="<?= url_for('@collector_signup'); ?>" method="post" class="form-horizontal form-footer">
             <?= $signup_form->renderUsing('BootstrapWithRowFluid'); ?>
-            <div class="row-fluid row-spacing">
-              <div class="span9 top-padding-10">
+            <div class="row-fluid spacer-7">
+              <div class="span9 spacer-inner-top">
                 <?php include_partial('global/footer_signup_external_buttons'); ?>
               </div>
               <div class="span3">
@@ -66,8 +66,8 @@
           <h2 class="Chivo webfont">Log In</h2>
           <form action="<?= url_for('@login'); ?>" class="form-horizontal form-footer" method="post">
             <?= $login_form->renderUsing('BootstrapWithRowFluid') ?>
-            <div class="row-fluid row-spacing">
-              <div class="span8 top-padding-10">
+            <div class="row-fluid spacer-7">
+              <div class="span8 spacer-inner-top">
                 <?php include_partial('global/footer_signup_external_buttons'); ?>
               </div>
               <div class="span4">
@@ -102,7 +102,7 @@
           </li>
           <li class="footer-profile-box-h-list">
             <ul class="row-fluid">
-              <li class="span6 upload-photo">
+              <li class="span6 add-collectible-img">
                 <a href="#" class="bold-links">Upload a<br> photo</a>
               </li>
               <li class="span6 organize-collection">
@@ -112,10 +112,10 @@
           </li>
         </ul> <!-- .footer-pofile-box -->
 
-        <div class="row-fluid top-padding-10">
+        <div class="row-fluid spacer-inner-top">
           <div class="span12">
             <button class="btn btn-primary blue-button" type="submit">My Profile</button>
-            <b><?= link_to('Log out', '@logout', array('class' => 'spacing-left')); ?></b>
+            <b><?= link_to('Log out', '@logout', array('class' => 'spacer-left')); ?></b>
           </div>
         </div>
         <?php endif; ?>

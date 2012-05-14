@@ -48,6 +48,12 @@ class collectionActions extends cqFrontendActions
       }
     }
 
+    if (!$this->getCollector()->isOwnerOf($collection))
+    {
+      $collection->setNumViews($collection->getNumViews() + 1);
+      $collection->save();
+    }
+
     $c = new Criteria();
     $c->add(CollectiblePeer::COLLECTOR_ID, $collection->getCollectorId());
 
@@ -131,10 +137,64 @@ class collectionActions extends cqFrontendActions
       $this->redirect('@aetn_collectible_by_slug?id='. $collectible->getId() .'&slug='. $collectible->getSlug(), 301);
     }
 
-    $this->collectible = $collectible;
+    /**
+     * Increment the number of views
+     */
+    if (!$this->getCollector()->isOwnerOf($collectible))
+    {
+      $collectible->setNumViews($collection->getNumViews() + 1);
+      $collectible->save();
+    }
+
+    /**
+     * Figure out the previous and the next item in the collection
+     */
+    $collectible_ids = $collection->getCollectibleIds();
+
+    if (array_search($collectible->getId(), $collectible_ids) - 1 < 0)
+    {
+      $q = CollectionCollectibleQuery::create()
+        ->filterByCollection($collection)
+        ->filterByCollectibleId($collectible_ids[count($collectible_ids) - 1]);
+      $this->previous = $q->findOne();
+    }
+    else
+    {
+      $q = CollectionCollectibleQuery::create()
+        ->filterByCollection($collection)
+        ->filterByCollectibleId($collectible_ids[array_search($collectible->getId(), $collectible_ids) - 1]);
+      $this->previous = $q->findOne();
+    }
+
+    if (array_search($collectible->getId(), $collectible_ids) + 1 >= count($collectible_ids))
+    {
+      $q = CollectionCollectibleQuery::create()
+        ->filterByCollection($collection)
+        ->filterByCollectibleId($collectible_ids[0]);
+      $this->next = $q->findOne();
+    }
+    else
+    {
+      $q = CollectionCollectibleQuery::create()
+        ->filterByCollection($collection)
+        ->filterByCollectibleId($collectible_ids[array_search($collectible->getId(), $collectible_ids) + 1]);
+      $this->next = $q->findOne();
+    }
+
+    if ($collectible->isForSale())
+    {
+      /* @var $collectible_for_sale CollectibleForSale */
+      $collectible_for_sale = $collectible->getCollectibleForSale();
+      $this->isSold = $collectible_for_sale->getIsSold() || $collectible_for_sale->getActiveCollectibleOffersCount() == 0;
+
+      $this->collectible_for_sale = $collectible_for_sale;
+      $this->form = new CollectibleForSaleBuyForm($collectible_for_sale);
+    }
+
     $this->collector = $collector;
+    $this->collection = $collection;
     $this->collectible = $collectible;
-    $this->additional_multimedia = $collectible->getMultimedia(false);
+    $this->additional_multimedia = $collectible->getMultimedia(0, 'image', false);
 
     return sfView::SUCCESS;
   }

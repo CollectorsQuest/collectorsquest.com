@@ -4,5 +4,3 @@
     link_to('Back to Collections &raquo;', '@collections')
   );
 ?>
-
-

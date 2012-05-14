@@ -30,6 +30,20 @@ class CollectibleForSale extends BaseCollectibleForSale
   }
 
   /**
+   * @depricated
+   * @return float
+   */
+  public function getPrice()
+  {
+    return bcdiv($this->getPriceAmount(), 100);
+  }
+
+  public function setPrice($v)
+  {
+    $this->setPriceAmount((int) bcmul($v, 100));
+  }
+
+  /**
    * Proxy method to Collectible::getCollector()
    *
    * @param  null|PropelPDO  $con

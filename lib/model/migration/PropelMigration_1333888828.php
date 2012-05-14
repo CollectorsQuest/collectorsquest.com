@@ -86,7 +86,7 @@ class PropelMigration_1333888828
       $image = null;
       foreach ($collectibles as $collectible)
       {
-        if (!$multimedia = $collectible->getMultimedia(true, 'image'))
+        if (!$multimedia = $collectible->getPrimaryImage())
         {
           continue;
         }
@@ -106,11 +106,10 @@ class PropelMigration_1333888828
 
         if ($width >= 520 && $height >= 310)
         {
-          if ($thumb = MultimediaPeer::makeThumb($original, '520x310', 'shave'))
+          if ($thumb = iceModelMultimediaPeer::makeThumb($original, '520x310', 'center', false))
           {
-            $image = sfConfig::get('sf_upload_dir') . '/blog/2012/04/'. md5_file($thumb) .'.jpg';
-            copy($thumb, $image);
-            unlink($thumb);
+            $image = sfConfig::get('sf_upload_dir') . '/blog/2012/04/'. md5_file($thumb->getFilename()) .'.jpg';
+            $thumb->saveAs($image, 'image/jpeg');
 
             break;
           }

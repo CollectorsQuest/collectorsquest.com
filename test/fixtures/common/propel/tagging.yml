@@ -33071,3 +33071,11 @@ iceModelTagging:
     tag_id: iceModelTag_14893
     taggable_model: CollectorCollection
     taggable_id: '3176'
+  iceModelTagging_175189:
+    tag_id: iceModelTag_5970
+    taggable_model: CollectorCollection
+    taggable_id: '3178'
+  iceModelTagging_175190:
+    tag_id: iceModelTag_905
+    taggable_model: CollectorCollection
+    taggable_id: '3179'

@@ -3,12 +3,15 @@
 
 // Market
 
-#marketplace-spotlight
-{
-	background-color: @yelloHighlight;
+#marketplace-spotlight {
+	background-color: @yellowHighlight;
 	padding: 15px 0 10px 0;
 	margin-top: 20px;
 	font-size:12px;
+
+	.thumbnail:hover {
+		border: 1px solid @blue;
+	}
 
 	.span4 {
 		width: 190px;
@@ -49,14 +52,14 @@
 				display: block;
 				line-height: 20px;
         text-transform: uppercase;
-				letter-spacing: 0.04em;
+				letter-spacing: 0.07em;
         font-weight: bold;
-        font-size: 10.5px;
+        font-size: 11px;
 				background: @blueDark;
 				color: white;
 				text-align: center;
 				.size(20px, 138px);
-				.transform(rotate(45deg));
+				.transform(rotate(45deg)translate3d(0, 0, 0));
 			}
 		}
 		.spotlight-text {
@@ -85,7 +88,7 @@
 		border: 1px solid @boxBorder;
 	}
 	.thumbnails-inner {
-		background-color: @yelloHighlight;
+		background-color: @yellowHighlight;
 		.clearfix();
 	}
 	.span2 {
@@ -125,13 +128,26 @@
 	}
 }
 
-//Animation
-#marketplace-spotlight .thumbnail {
-	.transition(all 0.2s ease-in-out 0s);
-	&:hover {
-		.transform(scale(1.05));
-		.box-shadow(0 0 8px rgba(0, 0, 0, 0.5));
+#all-market-categories {
+	margin-top: 20px;
+
+	.span4 {
+		margin-bottom: 20px;
+
+		a {
+			color: @blue;
+			line-height: 20px;
+			&:hover {
+				border-bottom: 1px solid @red;
+			}
+		}
+		h2 {
+			line-height: 28px;
+			margin-bottom: 15px;
+		}
+		h2 a {
+			color: @blueDark;
+			line-height: 28px;
+		}
 	}
 }
-
-

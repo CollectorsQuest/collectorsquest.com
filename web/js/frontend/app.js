@@ -102,17 +102,29 @@ var COMMON = window.COMMON = (function(){
     setupModalLoginRegistrationDialog: function() {
       var $holder = $('#modal-login-holder');
 
-      $holder.modal({
-        backdrop: true,
-        keyboard: true,
-        show: false
-      });
+      $('.requires-login').on('click', function(e) {
+        var $this = $(this);
+        // execute the modal JS if not already executed
+        undefined === $holder.data('modal') || $holder.modal({
+          backdrop: true,
+          keyboard: true,
+          show: false
+        });
 
-      $('a.requires-login').on('click', function(e) {
-        $holder.modal('show');
+        if (!window.cq.authenticated) {
+          $holder.modal('show');
 
-        e.preventDefault();
-        return false;
+          if (undefined !== $this.data('login-title')) {
+            $holder.find('h1').html($this.data('login-title')).show();
+          } else {
+            $holder.find('h1').hide();
+          }
+
+          e.preventDefault();
+          return false
+        }
+
+        return true;
       });
     }, // setupModalLoginRegistrationDialog
     setupScrollToTop: function() {
@@ -365,6 +377,7 @@ var SEARCH = window.SEARCH = (function(){
             nextSelector: '#search-pagination li.next a',
             itemSelector: '.brick',
             loading: {
+              msgText: (settings.masonry.loading_text) ? settings.masonry.loading_text : 'Loading...',
               finishedMsg: 'No more pages to load.',
               img: settings.masonry.loading_image
             },

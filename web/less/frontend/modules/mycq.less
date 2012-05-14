@@ -1,0 +1,711 @@
+@import "../_variables.less";
+@import "../_mixins.less";
+
+#breadcrumbs {
+  margin-bottom: 0;
+}
+
+#content {
+  padding-top: 0;
+}
+
+.mycq-collector-avatar {
+	position: relative;
+	width: 140px;
+
+	span {
+		position: absolute;
+		top: 100px;
+		left: 0;
+		display: block;
+		width: 132px;
+		padding: 4px;
+		background-color: @yellowLight;
+		.custom-font(12px, 12px, italic, bold);
+		text-align: center;
+		color: @red;
+	}
+}
+
+.mycq-collector-info .sidebar-title {
+	margin-top: 0;
+}
+
+#mycq-tabs {
+	margin: 35px 0;
+	background-color: @lightBlue;
+
+	ul.nav-tabs {
+		background-color: white;
+		border-bottom-color: #cde5f2;
+
+		li {
+			background-color: #e7e4e4;
+			margin-left: 20px;
+			width: 380px;
+		}
+		li.active {
+			background-color: transparent;
+		}
+		.styles-reset {
+			height: 32px;
+			background: none;
+
+		}
+	}
+	.tab-pane {
+		padding: 5px 0 0 0;
+	}
+	.tab-content-inner {
+		margin: 0 15px;
+		padding-bottom: 10px;
+	}
+	.sidebar-title {
+		margin-top: 0;
+	}
+	.instruction-box {
+		background-color: @yellowHighlight;
+		border-top: 1px solid white;
+		border-bottom: 1px solid white;
+		height: 45px;
+		text-align: center;
+		padding-top: 10px;
+		margin-bottom: 25px;
+
+
+		.instruction-box-inner {
+			width: 420px;
+			margin: 0 auto;
+		}
+		.hint-text {
+			color: @brown;
+			display: block;
+			margin-top: 10px;
+		}
+	}
+}
+
+.nav-tabs > li > a {
+	font-size: 12px;
+	font-weight: bold;
+	color: @blue;
+	padding-top: 10px;
+	padding-bottom: 6px;
+	margin-right: 0 !important;
+	line-height: @baseLineHeight;
+	border: 1px solid #cfc9c9;
+	border-bottom-color: #cde5f2;
+	.border-radius(0);
+	&:hover {
+		border-color: @grayLighter @grayLighter #ddd;
+	}
+}
+
+.nav-tabs > .active > a,
+.nav-tabs > .active > a:hover {
+	color: @brown;
+	background-color: @lightBlue;
+	border: 1px solid #cde5f2;
+	border-bottom-color: transparent;
+	cursor: default;
+}
+
+
+a.add-new-items-button {
+	display: inline-block;
+	text-indent: -9999px;
+	vertical-align: middle;
+	outline: none;
+	margin-bottom: 6px;
+}
+
+a.buy-credits-button {
+	display: inline-block;
+	text-indent: -9999px;
+	vertical-align: middle;
+	outline: none;
+	margin-bottom: 6px;
+}
+
+.gray-arrow {
+	display: block
+}
+
+//Search bar
+
+.mycq-sort-search-box {
+	padding: 2px 0 2px 15px;
+	margin-bottom: 0;
+
+	.input-sort-by {
+		width: 265px;
+		font-size: 12px;
+		color: @blueDark;
+		z-index: 1;
+		padding-top: 3px;
+		padding-bottom: 3px;
+		margin-bottom: 2px !important;
+	}
+	.btn-group {
+		float: left;
+		margin-right: -1px;
+	}
+	.dropdown-menu a {
+		color: #887777;
+		strong {
+			color: @blue;
+			font-weight: normal;
+		}
+		&:hover {
+			background: @yellowHighlight;
+			color: #887777
+		}
+	}
+	.input-append form {
+		margin: 0;
+	}
+	.input-append input {
+		.border-radius(0);
+	}
+	input, textarea, select, .uneditable-input, button, append-left-gray, .gray-button.dropdown-toggle {
+		border: 1px solid #b5b7bd;
+	}
+	.gray-button, .collection-search-box btn-group a, .collection-search-box .dropdown-menu a {
+		font-size: 12px;
+	}
+
+	.caret.arrow-down {
+		border-top: 5px solid #887777;
+		margin-top: -8px;
+		.opacity(100);
+	}
+
+	.caret.arrow-up {
+		border-bottom: 5px solid #887777;
+		border-top: none;
+		margin-top: 0;
+		.opacity(100);
+	}
+
+	.gray-button.dropdown-toggle br {
+		line-height: 1px;
+	}
+
+	a.dropdown-toggle {
+		.size(16px, 8px);
+		display: block;
+		margin-top: 0;
+		padding: 5px 5px 3px 5px;
+		z-index: 10;
+	}
+
+	.btn-group > .dropdown-toggle {
+		border-radius: 0 0 0 0;
+		background-position: inherit;
+	}
+
+	.input-append button.gray-button {
+		margin-bottom: 2px;
+		padding-top: 3px;
+		padding-bottom: 3px;
+		border-color: #B5B7BD;
+		border: 1px 1px 1px none;
+		border-style: solid;
+	}
+}
+.sidebar-title .span5.link-align {
+	min-height: 22px;
+	padding-top: 8px;
+}
+
+
+.mycq-collections {
+	.thumbnail {
+		margin-left: 10px;
+		height: 91px;
+		padding: 6px 2px 4px 2px;
+		background-color: white;
+		.border-radius(0);
+		.box-shadow(0);
+
+		a {
+			margin-left: 5px;
+			margin-bottom: 4px;
+			display: block;
+			float: left;
+			.square(64px);
+		}
+	}
+	.thumbnails {
+		margin-left: -8px;
+	}
+}
+//reset
+.mycq-collections .thumbnail.no-collections-box {
+	height: auto;
+}
+
+.mycq-collections .thumbnails > .span4 {
+	border: 1px solid @boxBorder;
+	width: 213px;
+	margin-bottom: 10px;
+	font-size: 12px;
+	.box-shadow(0);
+	.border-radius(0);
+
+	&:hover {
+		background-color: white;
+		border: 1px solid @blue;
+		.border-radius(0);
+	}
+	span {
+		display: block;
+		width: 94%;
+		color: @blue;
+		text-align: left;
+		margin: 4px 3% 7px 3%;
+		height: 12px;
+		overflow: hidden;
+		.text-overflow();
+	}
+}
+
+.mycq-collections .thumbnails > .span12 {
+	width: 672px;
+}
+
+.mycq-collectibles-for-sale {
+	.thumbnail {
+		margin-left: 10px;
+		height: 102px;
+		padding: 6px 2px 4px 2px;
+		background-color: white;
+		.border-radius(0);
+		.box-shadow(0);
+
+		a {
+			margin-left: 5px;
+			margin-bottom: 4px;
+			display: block;
+			float: left;
+			.square(64px);
+		}
+		.collectibles-container {
+			.clearfix();
+			margin-bottom: 2px;
+		}
+	}
+	.thumbnails {
+		margin-left: -7px;
+	}
+	.prices {
+		margin-top: 2px;
+		margin-right: 2%;
+		font-weight: bold;
+		color: @blueDark;
+		text-align: right;
+		display: block;
+		width: 98%;
+	}
+}
+
+.mycq-collectibles-for-sale .thumbnails > .span4 {
+	border: 1px solid @boxBorder;
+	width: 213px;
+	margin-bottom: 10px;
+	font-size: 12px;
+	.box-shadow(0);
+	.border-radius(0);
+
+	&:hover {
+		background-color: white;
+		border: 1px solid @blue;
+		.border-radius(0);
+	}
+	span {
+		display: block;
+		width: 94%;
+		color: @blue;
+		text-align: left;
+		margin: 4px 3% 7px 3%;
+		height: 12px;
+		overflow: hidden;
+		.text-overflow();
+	}
+}
+
+
+.drop-zone {
+	.square(60px);
+	float: left;
+	background-color: @lightBlue;
+	border: 2px dashed @blue;
+	margin-left: 4px;
+	margin-bottom: 4px;
+}
+.create-collection {
+	background-color: #c2e0f0;
+	.square(60px);
+}
+.create-collection-text {
+	color: @blue;
+	font-size: 12px;
+	line-height: 16px;
+	font-weight: bold;
+	text-align: left;
+	margin-top: 8px;
+	display: block;
+	padding-left: 8px;
+	padding-right: 12px;
+	width: 90px !important;
+}
+
+.no-collections-box {
+	background-color: @yellowLight !important;
+	border: none;
+	border-top: 1px solid @yellowLight;
+	border-bottom: 1px solid @yellowLight;
+	.box-shadow(none);
+	.border-radius(0);
+
+	.info-no-collections-uploaded {
+		color: @blueDark;
+		.custom-font(20px, 30px, italic, normal);
+		display: block;
+		margin: 15px 20px 10px;
+		letter-spacing: 0.04em;
+	}
+	.info-no-collectibles-for-sale {
+		color: @blueDark;
+		.custom-font(20px, 30px, italic, normal);
+		display: block;
+		margin: 5px 20px 10px;
+		letter-spacing: 0.01em;
+	}
+	.bolder-title {
+		color: @blueDark;
+		.custom-font(20px, 30px, normal, bold);
+		text-transform: uppercase;
+	}
+	.spacer-inner-l {
+		padding-left: 15px;
+	}
+}
+
+.no-collections-uploaded-box {
+	background-color: @yellowLight !important;
+	border: none;
+	border-top: 1px solid @yellowLight;
+	border-bottom: 1px solid @yellowLight;
+	.box-shadow(none);
+	.border-radius(0);
+	height: 91px;
+
+	.info-no-collections-uploaded {
+		color: @blueDark;
+		.custom-font(20px, 30px, italic, normal);
+		display: block;
+		margin: 15px 20px 10px;
+		letter-spacing: 0.04em;
+	}
+}
+
+
+.collectibles-to-sort {
+	.thumbnails {
+		margin-left: -3px;
+
+		.span2 {
+			border: none;
+			.square(74px);
+			padding: 1px;
+			margin-left: 0;
+			margin-bottom: 4px;
+			font-size: 12px;
+			.box-shadow(none);
+			.border-radius(0);
+
+			&:hover {
+				background-color: white;
+				.border-radius(0);
+			}
+		}
+	}
+	.thumbnail {
+		.box-shadow(none);
+		.border-radius(0);
+		border: none;
+		padding: 1px;
+	}
+}
+
+.buttons-inner {
+	margin: 5px 0 5px 15px;
+	.blue-button {
+		width: 104px;
+	}
+}
+
+.plan-price {
+	display: inline-block;
+	margin: 10px 0 0 20px;
+}
+
+
+#not-a-seller-box {
+
+	.buy-credits {
+		color: @blueDark;
+		.custom-font(20px, 30px, italic, normal);
+		display: block;
+		margin: 15px 20px 10px 0;
+		letter-spacing: 0.01em;
+	}
+	.inner-yellow-bg {
+		background-color: @yellowLight;
+		height: 130px;
+		padding: 0 30px 10px 30px;
+	}
+	.inner-blue-bg {
+		background-color: @lightBlue;
+		height: 115px;
+		padding: 15px 10px 10px 10px;
+		margin-right: 0;
+	}
+	label {
+		color: @brown;
+		letter-spacing: 0.01em;
+	}
+	.add-white-icon-big {
+		margin: 0 auto;
+	}
+}
+
+.blue-link {
+	color: @blue;
+	font-size: 12px;
+	line-height: 16px;
+	font-weight: bold;
+	text-align: left;
+	margin-top: 10px;
+	display: block;
+	padding-left: 0;
+	padding-right: 0;
+}
+
+#sold-items-box {
+	background-color: @yellowHighlight;
+	padding-bottom: 10px;
+}
+
+.collectible_sold_items {
+	margin-left: -13px;
+}
+
+.collectible_sold_items_grid_view_square {
+	width: 138px;
+	margin-bottom: 13px;
+	margin-left: 13px;
+	border: 1px solid #afa19a;
+	position: relative;
+	&:hover {
+		border: 1px solid @blue;
+	}
+
+	img {
+		margin: 4px;
+	}
+
+	p {
+		margin: 0;
+		overflow: hidden;
+		line-height: 20px;
+		padding: 0 5px 5px 5px;
+	}
+	a.target {
+		display: block;
+		width: 98%;
+		color: @blue;
+		text-align: left;
+		margin: 2px 1% 2px 1%;
+		height: 18px;
+		overflow: hidden;
+		.text-overflow();
+	}
+	.sold {
+		position: absolute;
+		top: 12px;
+		left: -1px;
+		background-color: @red;
+		color: white;
+		font-size: 14px;
+		font-weight: bold;
+		padding: 2px 6px;
+	}
+}
+
+
+.blue-action-bar {
+	background-color: @lightBlue;
+	padding: 7px 2% 5px 2%;
+	.size(30px, 96%);
+
+	small {
+		font-size: 10px;
+		line-height: 10px;
+		margin-top: 10px;
+		display: inline-block;
+	}
+	.pagination {
+		margin: 0;
+		ul {
+			.border-radius(0);
+			.box-shadow(none);
+			margin-top: 7px;
+		}
+		a {
+			line-height: 18px;
+			border: none;
+			font-size: 12px;
+			padding: 0 6px;
+			margin: 0 4px;
+
+			&:hover {
+				background-color: @blue;
+				color: #ffffff;
+			}
+		}
+		.active a {
+			background-color: #d4dbe1;
+
+			&:hover {
+				color: #999999;
+			}
+		}
+	}
+}
+
+
+.collectible_wanted-list {
+	margin-left: -5px;
+}
+
+.collectible_wanted-list_grid_view_square {
+	width: 180px;
+	margin-bottom: 10px;
+	margin-left: 6px;
+	border: 1px solid transparent;
+	position: relative;
+	&:hover {
+		border: 1px solid #afa19a;
+	}
+
+	img {
+		margin: 2px;
+	}
+
+	p {
+		margin: 0;
+		overflow: hidden;
+		line-height: 20px;
+		padding: 0 5px 5px 5px;
+	}
+
+	i.remove-collectible {
+		display: inline-block;
+		vertical-align: bottom;
+		margin-top: 2px;
+	}
+}
+
+.collectible_wanted-list_grid_view_square .remove {
+	display: none;
+}
+.collectible_wanted-list_grid_view_square:hover .remove:hover {
+	background-color: @red;
+	.opacity(50);
+}
+.collectible_wanted-list_grid_view_square:hover .remove {
+	display: block;
+	position: absolute;
+	top: 4px;
+	right: 4px;
+	background-color: #000000;
+	.opacity(50);
+	color: white;
+	font-size: 9px;
+	line-height: 12px;
+	vertical-align: middle;
+	letter-spacing: 0.01em;
+	font-weight: bold;
+	padding: 2px 6px 4px 6px;
+	z-index: 20;
+	color: white;
+	text-transform: uppercase;
+}
+
+div.add-white-icon-big {
+  background: #C2E0F0;
+  color: #fff;
+  font-size: 60px;
+  text-align: center;
+  display: block;
+}
+
+.grid-view, .list_view {
+	display: inline-block;
+	vertical-align: top;
+	margin-left: 4px;
+}
+
+#list-view {
+	.price-collectible {
+		display: block;
+		width: 100%;
+		font-size: 12px;
+		line-height: 17px;
+		overflow: hidden;
+		.text-overflow();
+	}
+	.price-collectible {
+		display: block;
+		width: 100%;
+		font-size: 12px;
+		line-height: 17px;
+		font-weight: bold;
+		overflow: hidden;
+		.text-overflow();
+	}
+	.description-collectible {
+		display: block;
+		width: 100%;
+		font-size: 12px;
+		line-height: 16px;
+		overflow: hidden;
+		.text-overflow();
+	}
+	.tags-collectible {
+		display: block;
+		width: 100%;
+		text-transform: uppercase;
+		font-size: 10px;
+		line-height: 12px;
+		overflow: hidden;
+		.text-overflow();
+
+		a {
+			text-transform: uppercase;
+			font-size: 10px;
+			line-height: 12px;
+			padding: 0 4px 0 0;
+		}
+	}
+}
+
+#list-view > .row-fluid {
+	margin-bottom: 20px;
+}
+
+
+
+

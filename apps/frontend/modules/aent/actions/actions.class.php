@@ -16,11 +16,22 @@ class aentActions extends cqFrontendActions
   {
     $american_pickers = sfConfig::get('app_aetn_american_pickers');
 
-    $q = CollectibleQuery::create()
-      ->distinct()
-      ->filterByCollectorId($american_pickers['collector'])
+    $collection = CollectorCollectionQuery::create()->findOneById($american_pickers['collection']);
+    $this->forward404Unless($collection instanceof CollectorCollection);
+
+    /**
+     * Increment the number of views
+     */
+    if (!$this->getCollector()->isOwnerOf($collection))
+    {
+      $collection->setNumViews($collection->getNumViews() + 1);
+      $collection->save();
+    }
+
+    $q = CollectionCollectibleQuery::create()
       ->filterByCollectionId($american_pickers['collection'])
-      ->orderById(Criteria::ASC);
+      ->orderByPosition(Criteria::ASC)
+      ->orderByUpdatedAt(Criteria::ASC);
     $this->collectibles = $q->find();
 
     $collectible_ids = array(
@@ -51,11 +62,22 @@ class aentActions extends cqFrontendActions
   {
     $pawn_stars = sfConfig::get('app_aetn_pawn_stars');
 
-    $q = CollectibleQuery::create()
-      ->distinct()
-      ->filterByCollectorId($pawn_stars['collector'])
+    $collection = CollectorCollectionQuery::create()->findOneById($pawn_stars['collection']);
+    $this->forward404Unless($collection instanceof CollectorCollection);
+
+    /**
+     * Increment the number of views
+     */
+    if (!$this->getCollector()->isOwnerOf($collection))
+    {
+      $collection->setNumViews($collection->getNumViews() + 1);
+      $collection->save();
+    }
+
+    $q = CollectionCollectibleQuery::create()
       ->filterByCollectionId($pawn_stars['collection'])
-      ->orderById(Criteria::ASC);
+      ->orderByPosition(Criteria::ASC)
+      ->orderByUpdatedAt(Criteria::ASC);
     $this->collectibles = $q->find();
 
     $collectible_ids = array(
@@ -106,6 +128,15 @@ class aentActions extends cqFrontendActions
       $this->brand = 'Pawn Stars';
     } else if ($collection->getId() === $storage_wars['collection']) {
       $this->brand = 'Storage Wars';
+    }
+
+    /**
+     * Increment the number of views
+     */
+    if (!$this->getCollector()->isOwnerOf($collectible))
+    {
+      $collectible->setNumViews($collection->getNumViews() + 1);
+      $collectible->save();
     }
 
     $this->related_collectibles = $collectible->getRelatedCollectibles(8);

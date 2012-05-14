@@ -12,13 +12,39 @@ class generalActions extends cqFrontendActions
 
   public function executeIndex()
   {
-    // Get the latest Blog post and its first image
-    $this->blog_posts = wpPostPeer::getLatestPosts(2);
+    // Get the latest 2 Blog posts and its first image
+    $blog_posts = wpPostPeer::getLatestPosts(2);
+
+    /** @var $blog_post wpPost */
+    foreach ($blog_posts as $blog_post)
+    {
+      if (!$blog_post->getPrimaryImage())
+      {
+        if ($thumbnail = $blog_post->getPostThumbnail())
+        {
+          $blog_post->setPrimaryImage(sfConfig::get('sf_web_dir') . $thumbnail);
+        }
+        else if (preg_match('/<img[^>]+src[\\s=\'"]+([^"\'>\\s]+)/is', $blog_post->getPostContent(), $m))
+        {
+          if (IceWebBrowser::isUrl($m[1]))
+          {
+            $blog_post->setPrimaryImage($m[1]);
+          }
+          else
+          {
+            $filename = sfConfig::get('sf_web_dir') . '/' . $m[1];
+            $blog_post->setPrimaryImage($filename);
+          }
+        }
+      }
+    }
+
+    $this->blog_posts = $blog_posts;
 
     $q = wpPostQuery::create()
        ->filterByPostType('homepage_showcase')
        ->filterByPostStatus('publish')
-       ->orderByPostDate(Criteria::DESC)
+       ->addAscendingOrderByColumn('RAND()')
        ->limit(1);
 
     /** @var $themes wpPost[] */
@@ -33,8 +59,10 @@ class generalActions extends cqFrontendActions
 
       if ($collection_ids)
       {
+        shuffle($collection_ids);
+
         // Get 2 Collections
-        $q = CollectionQuery::create()
+        $q = CollectorCollectionQuery::create()
           ->filterById($collection_ids, Criteria::IN)
           ->limit(2)
           ->addAscendingOrderByColumn('FIELD(id, '. implode(',', $collection_ids) .')');
@@ -43,6 +71,8 @@ class generalActions extends cqFrontendActions
       }
       if ($collectible_ids)
       {
+        shuffle($collectible_ids);
+
         // Get 22 Collectibles
         $q = CollectibleQuery::create()
            ->filterById($collectible_ids, Criteria::IN)
@@ -284,22 +314,13 @@ class generalActions extends cqFrontendActions
     return sfView::SUCCESS;
   }
 
-
   public function executeError404()
   {
-    // Building the breadcrumbs and page title
-    $this->addBreadcrumb($this->__('Page Not Found'));
-    $this->prependTitle($this->__('Page Not Found'));
-
     return sfView::SUCCESS;
   }
 
   public function executeError50x()
   {
-    // Building the breadcrumbs and page title
-    $this->addBreadcrumb($this->__('Unexpected Error'));
-    $this->prependTitle($this->__('Unexpected Error'));
-
     return sfView::SUCCESS;
   }
 

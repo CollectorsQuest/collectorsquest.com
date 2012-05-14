@@ -34,3 +34,6 @@
 [submodule "plugins/iceMultimediaPlugin"]
 	path = plugins/iceMultimediaPlugin
 	url = git@github.com:CollectorsQuest/iceMultimediaPlugin.git
+[submodule "plugins/iceSEOPlugin"]
+	path = plugins/iceSEOPlugin
+	url = git@github.com:CollectorsQuest/iceSEOPlugin.git

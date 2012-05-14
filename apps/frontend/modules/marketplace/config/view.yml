@@ -8,3 +8,7 @@ indexSuccess:
 browseSuccess:
   components:
     sidebar_300: [marketplace, sidebarIndex]
+
+categoriesSuccess:
+  components:
+    sidebar_300: [marketplace, sidebarCategories]

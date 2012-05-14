@@ -36,11 +36,6 @@ class CollectionCollectible extends BaseCollectionCollectible
     parent::save($con);
   }
 
-  public function getCollector(PropelPDO $con = null)
-  {
-    return $this->getCollectible($con)->getCollector($con);
-  }
-
   public function getId()
   {
     return $this->getCollectibleId();
@@ -51,18 +46,17 @@ class CollectionCollectible extends BaseCollectionCollectible
     $this->setCollectibleId($v);
   }
 
-  public function getName()
+  public function __call($m, $a)
   {
-    return $this->getCollectible()->getName();
-  }
+    $collectible = $this->getCollectible();
 
-  public function getSlug()
-  {
-    return $this->getCollectible()->getSlug();
-  }
-
-  public function getIsNameAutomatic()
-  {
-    return $this->getCollectible()->getIsNameAutomatic();
+    if ($collectible instanceof Collectible && method_exists($collectible, $m))
+    {
+      return call_user_func_array(array($collectible, $m), $a);
+    }
+    else
+    {
+      return parent::__call($m, $a);
+    }
   }
 }

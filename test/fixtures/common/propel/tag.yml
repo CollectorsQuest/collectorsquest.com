@@ -19137,7 +19137,7 @@ iceModelTag:
     is_triple: '0'
   iceModelTag_5970:
     name: test
-    slug: ''
+    slug: test
     is_triple: '0'
   iceModelTag_5971:
     name: help

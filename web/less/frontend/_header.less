@@ -7,14 +7,6 @@ header {
   border-bottom: 1px solid #c4ccd2;
 }
 
-.header-inner {
-  background-color: transparent;
-  background-image: none;
-  border-radius: 0;
-  box-shadow: none;
-  padding: 15px 20px 0 15px;
-}
-
 header > .container {
   box-shadow: none;
 }
@@ -98,20 +90,37 @@ a.sing-up-now-btn, a.my-account-btn {
 }
 
 .header-inner {
+	background-color: transparent;
+	background-image: none;
+	border-radius: 0;
+	box-shadow: none;
+	padding: 15px 20px 0 15px;
 
+	input {
+		width: 245px;
+		padding: 7px 0 6px 6px;
+		margin-bottom: 0;
+		border: 1px solid;
+		border-color: #BDB9B8 #bfbaba #BDB9B8 #BDB9B8;
+		font-size: 14px;
+		line-height: 14px !important;
+		color: @blueDark;
+		.border-radius(7px 0 0 7px);
+		.box-shadow(inset 2px 2px 2px 2px rgba(0, 0, 0, .07));
+	}
   .btn-large {
-    padding: 8px 10px 8px;
+    padding: 7px 10px 8px;
     font-size: 14px;
+	  line-height: 16px !important;
     font-weight: bold;
     line-height: normal;
     color: #786767;
     #gradient > .vertical(#e1dede,#cecbcb);
-    .border-radius(7px);
+    //#gradient > .vertical(#eae7e7,#ffffff);
+	  border-color: #BDB9B8 #BDB9B8 #BDB9B8;
     -moz-background-clip: padding;
     -webkit-background-clip: padding-box;
     background-clip: padding-box;
-  }
-  .btn-large {
     margin-left: -5px;
     .border-radius(0 7px 7px 0);
   }
@@ -120,14 +129,5 @@ a.sing-up-now-btn, a.my-account-btn {
     background: #e1dddd;
     background-position: 0;
     text-decoration: none;
-  }
-  input {
-    width: 245px;
-    padding-top: 7px;
-    padding-bottom: 7px;
-    margin-bottom: 0;
-    border: 1px solid #C3C7CB;
-    .border-radius(7px 0 0 7px);
-    .box-shadow(inset 2px 2px 2px 2px rgba(0, 0, 0, .07));
   }
 }

@@ -25,7 +25,7 @@ all:
     default_timezone:       America/New_York
     charset:                utf-8
 
-    enabled_modules:        [iceGlobalModule, cqMagnifyAuth]
+    enabled_modules:        [iceGlobalModule, cqMagnifyAuth, iceBreadcrumbsModule]
     standard_helpers:       [Partial, Cache, I18N, Date, iceAssets, cqAssets, cqImages, cqLinks, cqJavascripts, cqTemplating, cqHTML]
     sf_compat_10:           off
 
@@ -40,7 +40,7 @@ all:
     lazy_cache_key:         true
 
   .actions:
-    error_404_module:       default
+    error_404_module:       general
     error_404_action:       error404
 
     login_module:           general

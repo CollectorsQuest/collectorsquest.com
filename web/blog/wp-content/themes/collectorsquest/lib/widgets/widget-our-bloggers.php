@@ -4,14 +4,14 @@
 /**
  * Adds CQ_Our_Bloggers_widget widget.
  */
-class CQ_Our_Bloggers_widget extends WP_Widget {
+class cq_our_bloggers_widget extends WP_Widget {
 
   /**
    * Register widget with WordPress.
    */
   public function __construct() {
     parent::__construct(
-      'CQ_Our_Bloggers_widget', // Base ID
+      'cq_our_bloggers_widget', // Base ID
       'CQ Bloggers', // Name
       array( 'description' => __( 'This is the "Our Bloggers" widget.', 'text_domain' ), ) // Args
     );
@@ -87,7 +87,7 @@ class CQ_Our_Bloggers_widget extends WP_Widget {
         $authors[] = (array)$user;
       }
 
-      echo '<ul class="author-list">';
+      echo '<ul class="author-list row-fluid">';
       foreach ($authors as $author) {
         $display_name = $author['data']->display_name;
         $avatar = get_avatar($author['ID'], $avatar_size);
@@ -95,7 +95,7 @@ class CQ_Our_Bloggers_widget extends WP_Widget {
         $author_profile_url = get_the_author_meta('user_url', $author['ID']);
         $nice_name = get_the_author_meta('user_nicename', $author['ID']);
         //echo '<li><a href="', $author_profile_url, '">', $avatar, '</a><strong>' . $display_name . '</strong><br /><a href="/blog/people/', $nice_name, '" class="author-link">[Bio]</a> <a href="', $author_posts_url, '" class="contributor-link">[Articles]</a></li>';
-        echo '<li><a href="', $author_posts_url, '">', $avatar, '<span class="author-name">' . $display_name . '</span></a></li>';
+        echo '<li class="row-fluid bottom-margin"><a href="', $author_posts_url, '">', $avatar, '<span class="author-name">' . $display_name . '</span></a></li>';
         echo '';
 
       }
@@ -150,4 +150,4 @@ class CQ_Our_Bloggers_widget extends WP_Widget {
 } // class CQ_Our_Bloggers_widget
 
 // register Foo_Widget widget
-add_action( 'widgets_init', create_function( '', 'register_widget( "CQ_Our_Bloggers_widget" );' ) );
+add_action( 'widgets_init', create_function( '', 'register_widget( "cq_our_bloggers_widget" );' ) );

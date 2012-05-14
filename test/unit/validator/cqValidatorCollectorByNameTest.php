@@ -8,7 +8,7 @@ cqTest::resetTables(array(
 ));
 cqTest::loadFixtures('01_test_collectors/');
 
-$t = new lime_test(7, new lime_output_color());
+$t = new lime_test(8, new lime_output_color());
 $t->diag('Testing /lib/validator/cqValidatorCollectorByName.class.php');
 
 $ivan_tanev_id = CollectorQuery::create()
@@ -22,6 +22,7 @@ $tests = array(
     array(false, 'sdfafafadfasdfasdfasdfas', null, 'The validator handles normal string validation'),
     array(true, 'ivan.tanev', $ivan_tanev_id, 'The validator returns the expected ID for collector username'),
     array(true, 'Ivan Tanev', $ivan_tanev_id, 'The validator returns the expected ID for collector display name'),
+    array(false, 'Ivan Ivanov', null, 'The validator throws exception when user is ambiguous'),
     array(false, 'Ivan', null, 'The validator throws exception when user not found'),
 );
 

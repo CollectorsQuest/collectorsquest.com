@@ -28,12 +28,10 @@
   <?php
     foreach ($pager->getResults() as $i => $collectible)
     {
-      echo '<div class="span4 brick" style="height: 165px; float: left;">';
       include_partial(
-        'collection/collectible_'. $display .'_view',
+        'collection/collectible_'. $display .'_view_square',
         array('collectible' => $collectible, 'i' => $i)
       );
-      echo '</div>';
     }
   ?>
   </div>

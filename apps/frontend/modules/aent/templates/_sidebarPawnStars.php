@@ -1,37 +1,42 @@
 <div class="banner-sidebar-top">
-  <?php cq_ad_slot('300x250', 300, 250) ?>
+  <?php cq_dart_slot('300x250', 'collections', 'pawnstars', 'sidebar') ?>
 </div>
 
+<!--
 <div class="banner-sidebar-promo-300-90">
-  <a href="#">
+  <a href="<?= url_for('@aetn_storage_wars'); ?>" title="Check out items seen on Storage Wars">
     <img src="/images/banners/storage-wars-banner.jpg" alt="">
     <span>
       Check out items seen on Storage Wars
     </span>
   </a>
 </div>
+//-->
+
 <div class="banner-sidebar-promo-300-90">
-  <a href="#">
-    <img src="/images/banners/american-pickers-banner.jpg" alt="">
+  <a href="<?= url_for('@aetn_american_pickers'); ?>" title="Check out items seen on American Pickers">
+    <img src="/images/banners/american-pickers-banner.jpg" alt="Check out items seen on American Pickers">
     <span>
       Check out items seen on American Pickers
     </span>
   </a>
 </div>
 
-<?php include_component('_sidebar', 'widgetMagnifyVideos'); ?>
-
+<?php
+  include_component(
+    '_sidebar', 'widgetMagnifyVideos',
+    array('playlist' => 'Pawn Stars')
+  );
+?>
 
 <div class="row-fluid sidebar-title">
-  <div class="span6">
+  <div class="span11">
     <h3 class="Chivo webfont">
       More Pawn Stars
     </h3>
   </div>
-  <div class="span6 text-right">
-    <a href="/collectors" class="text-v-middle link-align">
-      Go to episode guide &raquo;
-    </a>
+  <div class="span1 text-right">
+    &nbsp;
   </div>
 </div>
 

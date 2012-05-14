@@ -8,7 +8,7 @@
 <div class="twocolumn cf">
   <ul>
     <?php
-      /** @var $categories CollectionCategory[] */
+      /** @var $categories ContentCategory[] */
       foreach ($categories as $i => $category):
     ?>
     <li>

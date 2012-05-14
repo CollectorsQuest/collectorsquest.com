@@ -218,7 +218,7 @@ class collectionActions extends cqActions
 
     $this->collector = $collector;
     $this->collectible = $collectible;
-    $this->additional_multimedia = $collectible->getMultimedia(false);
+    $this->additional_multimedia = $collectible->getMultimedia(0, 'image', false);
 
     $c = new Criteria();
     $c->add(CollectionCollectiblePeer::COLLECTIBLE_ID, $collectible->getId(), Criteria::NOT_EQUAL);
@@ -230,7 +230,7 @@ class collectionActions extends cqActions
 
     // Building the breadcrumbs
     $this->addBreadcrumb($this->__('Collections'), '@collections');
-    $this->addBreadcrumb( $collection->getName(), route_for_collection($collection), array('limit' => 38));
+    $this->addBreadcrumb( $collection->getName(), route_for_collection($collection), array('limit' => 28));
     $this->addBreadcrumb(
       $collectible->getName(), null,
       array(

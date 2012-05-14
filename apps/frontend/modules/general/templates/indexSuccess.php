@@ -1,4 +1,4 @@
-<?php cq_page_title("Now on Display: Check out these collectors' items!") ?>
+<?php cq_page_title("Now on Display") ?>
 
 <div class="row">
   <div id="homepage" class="row-content">
@@ -28,20 +28,7 @@
 
     <?php include_partial('general/homepage_blogpost', array('blog_post' => $blog_posts[1])); ?>
 
-    <div class="span3 brick">
-      <div class="tall">
-        <a href="#" class="link-brick">
-          <?= ice_image_tag_flickholdr('140x295', array('i' => 2)) ?>
-        </a>
-        <div class="details" style="word-wrap: break-word;">
-          <div class="details-inner">
-            <h3>Art Deco Bronze Art Deco Bronze</h3>
-            <p>More than meets the eye ore than meets the eye ore than meets the eye</p>
-          </div>
-          <img src="http://www.collectorsquest.next/images/legacy/multimedia/CollectorCollection/50x50.png" width="25" height="25" title="" alt="">          <p>ssdsdsdsdsdsssssssssssssssssssssssssssssssssssssssssssssssssssss</p>
-        </div>
-      </div>
-    </div>
+    <?php include_partial('general/homepage_collection_tall', array('collection' => $collections[0])); ?>
 
     <?php
       for ($i = 9; $i < 12; $i++)
@@ -54,20 +41,7 @@
       }
     ?>
 
-    <div class="span6 brick">
-      <div class="wide">
-        <a href="#" class="link-brick">
-          <?= ice_image_tag_flickholdr('295x140', array('i' => 4)) ?>
-        </a>
-        <div class="details" style="word-wrap: break-word;">
-          <div class="details-inner">
-            <h3>Art Deco Bronze Art Deco Bronze</h3>
-            <p>1 More than meets the eye ore than meets the eye ore than meets the eye</p>
-          </div>
-          <img src="http://www.collectorsquest.next/images/legacy/multimedia/CollectorCollection/50x50.png" width="25" height="25" title="" alt="">          <p>ssdsdsdsdsdsssssssssssssssssssssssssssssssssssssssssssssssssssss</p>
-        </div>
-      </div>
-    </div>
+    <?php include_partial('general/homepage_collection_wide', array('collection' => $collections[1])); ?>
 
     <?php
       for ($i = 12; $i < 18; $i++)

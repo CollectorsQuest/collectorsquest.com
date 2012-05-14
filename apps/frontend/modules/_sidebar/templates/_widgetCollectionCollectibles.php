@@ -1,4 +1,4 @@
-<div class="other-items-sidebar top-margin-double">
+<div class="other-items-sidebar spacer-top-20">
   <span>Other items in the <a href="#">Pawn Stars</a> Collection</span>
   <div class="thumbnails-inner">
     <ul class="thumbnails">

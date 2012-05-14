@@ -93,7 +93,12 @@
       </div>
 
       <a href="<?= url_for_featured_week($featured_week); ?>" title="<?= addslashes($featured_week->title); ?>">
-        <?= image_tag_collectible($featured_collectible, '300x225', array('width' => 300, 'height' => 225, 'style' => 'margin: 10px 0;')); ?>
+        <?php
+          echo image_tag_collectible(
+            $featured_collectible, '300x225',
+            array('width' => 300, 'height' => 225, 'style' => 'margin: 10px 0;')
+          );
+        ?>
       </a>
       <p style="height: 50px;">
         <?= truncate_text($featured_week->homepage_text, 145, '...', true); ?>

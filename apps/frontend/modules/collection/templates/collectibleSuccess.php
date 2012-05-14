@@ -1,16 +1,16 @@
 <?php
 /**
- * @var $collectible  Collectible
+ * @var  $sf_user  cqFrontendUser
+ *
+ * @var  $collector    Collector
+ * @var  $collection   Collection
+ * @var  $collectible  Collectible
+ *
+ * @var  $additional_multimedia iceModelMultimedia[]
  */
 ?>
 
-<?php
-cq_page_title(
-  $collectible->getName(),
-  link_to('Back to Collection &raquo;', '@content_categories')
-);
-?>
-
+<?php cq_page_title($collectible->getName(), null); ?>
 
 <!--
   Test with alternate images: http://www.collectorsquest.next/collectible/3515/rkw-teacup
@@ -21,170 +21,77 @@ cq_page_title(
 <div class="row-fluid" xmlns="http://www.w3.org/1999/html">
   <?php
     $span = 10;
-    if (empty($additional_multimedia))
+    if (count($additional_multimedia) == 0)
     {
       $span += 2;
     }
   ?>
-  <div class="span<?= $span; ?>">
-    <div class="thumbnail" style="text-align: center;">
-      <?php ice_image_tag_placeholder('504x398') ?>
-      <?= ice_image_tag_flickholdr('620x490', array('tags' => array('Teacup', 'china', 'old'), 'i' => 1)) ?>
-      <?php
-        link_to(
-          image_tag_collectible(
-            $collectible, '610x1000',
-            array('width' => 610, 'class' => 'magnify')
-          ),
-          src_tag_collectible($collectible, 'original'),
-          array('id' => 'collectible_multimedia_primary', 'target' => '_blank')
-        );
-      ?>
-    </div>
+  <div class="span<?= $span; ?>" style="text-align: center;">
+    <?php
+      echo link_to(
+        image_tag_collectible(
+          $collectible, '620x0',
+          array('height' => null, 'class' => 'magnify')
+        ),
+        src_tag_collectible($collectible, 'original'),
+        array('id' => 'collectible_multimedia_primary', 'target' => '_blank')
+      );
+    ?>
   </div>
 
-  <?php if (!empty($additional_multimedia)): ?>
-  <div class="span2" style="padding-top: 5px;">
+  <?php if (count($additional_multimedia) > 0): ?>
+  <div class="span2">
     <?php foreach ($additional_multimedia as $i => $m): ?>
-    <a class="zoom" href="<?php echo src_tag_multimedia($m, '1024x768'); ?>" title="<?php echo $m->getName(); ?>" onClick="return false;">
-      <?= ice_image_tag_flickholdr('100x100', array('tags' => array('Teacup', 'china', 'old'), 'i' => $i+2)) ?>
-      <?php image_tag_multimedia($m, '100x100', array('title' => $m->getName())); ?>
-      <br/><br/>
+    <a class="zoom" href="<?php echo src_tag_multimedia($m, 'original'); ?>" title="<?php echo $m->getName(); ?>" onClick="return false;">
+      <?= image_tag_multimedia($m, '150x150', array('height' => null, 'title' => $m->getName(), 'style' => 'margin-bottom: 12px;')); ?>
     </a>
     <?php endforeach; ?>
   </div>
   <?php endif; ?>
 </div>
 
-<br clear="all">
-<div class="statistics-share-panel bottom-margin-double">
+<br style="clear: both;">
+<div class="statistics-share-panel spacer-bottom-20">
   <div class="row-fluid">
     <div class="span4">
       <ul>
         <li>
-          <span>XXXX Views</span>
+          <?php
+            echo format_number_choice(
+              '[0] no views yet|[1] 1 View|(1,+Inf] %1% Views',
+              array('%1%' => number_format($collectible->getNumViews())), $collectible->getNumViews()
+            );
+          ?>
         </li>
-        <li>
-          <span>In XXX wanted lists</span>
-        </li>
+        <!--
+          <li>In XXX wanted lists</li>
+        //-->
       </ul>
     </div>
     <div class="span8 text-right">
-      <a href="#" class="btn btn-mini-share2 btn-lightblue">
-        <i class="add-icon-middle"></i> Add to your want list
-      </a>
-      <a href="#" class="btn btn-mini-share btn-lightblue">
-        <i class="mail-icon-mini"></i> Mail
-      </a>
-      <a class="btn-mini-social" href="http://facebook.com/Collectors.Quest" target="_blank" >
-        <i class="s-16-icon-facebook social-ico-padding"></i>
-      </a>
-      <a class="btn-mini-social" href="http://twitter.com/CollectorsQuest" target="_blank" >
-        <i class="s-16-icon-twitter social-ico-padding"></i>
-      </a>
-      <a class="btn-mini-social" href="#" target="_blank" >
-        <i class="s-16-icon-google social-ico-padding"></i>
-      </a>
-      <a class="btn-mini-social" href="http://pinterest.com/CollectorsQuest" target="_blank">
-        <i class="s-16-icon-pinterest social-ico-padding"></i>
-      </a>
+      <!-- AddThis Button BEGIN -->
+      <a class="addthis_button_email"></a>
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count" fb:like:width="40"></a>
+      <a class="addthis_button_tweet" tw:twitter:data-count="none"></a>
+      <a class="addthis_button_google_plusone" g:plusone:size="medium" g:plusone:annotation="none"></a>
+      <a class="addthis_button_pinterest_pinit" pi:pinit:media="<?= image_tag_collectible($collectible, 'original'); ?>" pi:pinit:layout="horizontal"></a>
+      <!-- AddThis Button END -->
     </div>
   </div>
 </div>
 
 <?php if ($collectible->getDescription('stripped')): ?>
 <div class="item-description">
-  <h3>
-  <?php
-    if ($sf_user->isOwnerOf($collectible))
-    {
-      echo __('This is what you said about this collectible:');
-    }
-    else
-    {
-      echo sprintf(__('What %s says about this collectible:'), link_to_collector($collectible, 'text'));
-    }
-  ?>
-  </h3>
-  <br style="clear:both;"/>
-  <div>
-    <dd id="collectible_<?= $collectible->getId(); ?>_description"
-        style="border-left: 2px solid #eee; padding-left: 15px; font-size: 14px;"
-      ><?= $collectible->getDescription('html'); ?></dd>
-  </div>
+  <?= $collectible->getDescription('html'); ?>
 </div>
-<br style="clear:both;"/>
 <?php endif; ?>
 
-<div id="comments">
-  <div class="add-comment">
-    <div class="input-append post-comment">
-      <form method="post" action="comment">
-        <input type="text" id="c" data-provide="comment" autocomplete="off" name="c">
-        <button type="submit" class="btn btn-large">Comment</button>
-        <a class="upload-photo" title="Add a photo">&nbsp;</a>
-      </form>
-    </div>
-  </div>
-  <div class="user-comments">
-    <div class="row-fluid user-comment">
-      <div class="span2 text-right">
-        <a href="#">
-          <img src="http://placehold.it/65x65" alt="">
-        </a>
-      </div>
-      <div class="span10">
-        <p class="bubble left">
-          <a href="#" class="username">RobotBacon Wow!</a>
-          That gun is a real rarity.  I don't think the south produced much in the way of weaponry, so that is a good find!
-          <span class="comment-time">2 hours ago</span>
-        </p>
-      </div>
-    </div>
-    <div class="row-fluid user-comment">
-      <div class="span2 text-right">
-        <a href="#">
-          <img src="http://placehold.it/65x65" alt="">
-        </a>
-      </div>
-      <div class="span10">
-        <p class="bubble left">
-          <a href="#" class="username">RobotBacon Wow!</a>
-          That gun is a real rarity.  I don't think the south produced much in the way of weaponry, so that is a good find!
-          <span class="comment-time">2 hours ago</span>
-        </p>
-      </div>
-    </div>
-  </div>
-  <div class="see-more-under-image-set">
-    <button class="btn btn-small gray-button see-more-full" id="see-more-comments">
-      See all XX comments
-    </button>
-  </div>
+<?php if (isset($collectible_for_sale) && $collectible_for_sale instanceof CollectibleForSale): ?>
+  <!-- sale items -->
+  <span class="item-condition"><strong>Condition:</strong> Like new</span>
 
-</div>
-
-Permalink: <span class="lightblue"><?= url_for_collectible($collectible, true) ?></span>
-
-
-<!-- sale items -->
-<div class="item-description">
-  <h2 class="Chivo webfont">
-    Akkiloki Peecol, 1st (Limited) edition Peecol by eboy for Kidrobot
-  </h2>
-  <p>This arctic princess loves listening to Bjork and hitting the slopes on her snowboard when she isn't too busy studying for school. For kicks, visit her <a href="#">MySpace page</a>! Akkiloki is opened, but comes with the original box.</p>
-  <p>
-  Size: 3.5 Inches/9 cm<br>
-  Material: ABS plastic<br>
-  Box Size: 4.5 x 2.5 x 1.6 inches<br>
-  Box Weight: 1.6 oz<br>
-  </p>
-  <span class="item-condition">Condition:</span> Like new</span>
-</div>
-
-
-<table class="shipping-rates">
-  <thead>
+  <table class="shipping-rates">
+    <thead>
     <tr class="shipping-dest">
       <th colspan="5">
         <strong>Shipping from:</strong> <span class="darkblue">Portland, OR, USA</span>
@@ -197,8 +104,8 @@ Permalink: <span class="lightblue"><?= url_for_collectible($collectible, true) ?
       <th>WITH ANOTHER ITEM</th>
       <th>ESTIMATED DELIVERY</th>
     </tr>
-  </thead>
-  <tbody>
+    </thead>
+    <tbody>
     <tr>
       <td>USPS</td>
       <td>United States</td>
@@ -213,26 +120,39 @@ Permalink: <span class="lightblue"><?= url_for_collectible($collectible, true) ?
       <td>$10.00</td>
       <td>2-3 weeks</td>
     </tr>
-  </tbody>
-</table>
+    </tbody>
+  </table>
 
 
-<div id="information-box">
-  <p>Have a question about shippng? <a href="#">Send a message to Robotbacon »</a></p>
-  <p>Return Policy: If you are unhappy with the item, I accept returns or exchanges for purchased items within 30 days of the shipping date. Please email me within 7 days of receiving your order to arrange for a refund or exchange. Returns or exchanges made without prior notification may not be processed. Product must be returned in the same condition as it was received. Shipping charges are non-refundable and are full responsiblity of customer. Your refund will be issued when return items are received. In case of receiving damaged item, please return the item (you will be compensated for shipping costs).</p>
-  <p>Payment: I accept payment through PayPal, Moneybookers, money order and bank transfer. I greatly appreciate prompt payment and/or prompt communication regarding payment. I will not ship until payment has been received.</p>
-</div>
+  <div id="information-box">
+    <p>Have a question about shipping? <?= cq_link_to(sprintf('Send a message to %s »', $collector->getDisplayName()), '@messages_compose?to='. $collector->getUsername()); ?></p>
+    <p>Return Policy: If you are unhappy with the item, I accept returns or exchanges for purchased items within 30 days of the shipping date. Please email me within 7 days of receiving your order to arrange for a refund or exchange. Returns or exchanges made without prior notification may not be processed. Product must be returned in the same condition as it was received. Shipping charges are non-refundable and are full responsiblity of customer. Your refund will be issued when return items are received. In case of receiving damaged item, please return the item (you will be compensated for shipping costs).</p>
+    <p>Payment: I accept payment through PayPal, Moneybookers, money order and bank transfer. I greatly appreciate prompt payment and/or prompt communication regarding payment. I will not ship until payment has been received.</p>
+  </div>
 
-<div id="price-container">
-  <span class="price-large">
-    $25.00
-  </span>
-  <button type="submit" class="btn btn-primary blue-button" value="Add Item to Cart">
-    <i class="add-to-card-button"></i>
-    <span>Add Item to Cart</span>
-  </button>
-</div>
+  <form action="<?= url_for('@shopping_cart'); ?>" method="post">
 
-<div class="t-b-margin">
+    <div id="price-container">
+      <span class="price-large">
+        <?= money_format('%.2n', (float) $collectible_for_sale->getPrice()); ?>
+      </span>
+      <?php if (!$sf_user->getCollector()->isOwnerOf($collectible_for_sale)): ?>
+      <button type="submit" class="btn btn-primary blue-button" value="Add Item to Cart">
+        <i class="add-to-card-button"></i>
+        <span>Add Item to Cart</span>
+      </button>
+      <?php endif; ?>
+    </div>
+
+    <?= $form->renderHiddenFields(); ?>
+  </form>
+
+<?php else: ?>
+
+  <?php include_partial('sandbox/comments'); ?>
+
+<?php endif; ?>
+
+<div class="spacer">
   Permalink: <span class="lightblue"><?= url_for_collectible($collectible, true) ?></span>
 </div>

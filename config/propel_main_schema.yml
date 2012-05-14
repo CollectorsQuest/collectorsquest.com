@@ -50,6 +50,7 @@ classes:
       zip_postal:      varchar(10)
       country_iso3166: { type: char, size: 2, required: false, foreignTable: geo_country, foreignReference: iso3166 }
       website:         varchar(128)
+      num_views:       { type: integer, default: 0 }
       is_featured:     { type: boolean, default: false }
       is_seller:       { type: boolean, default: false }
       is_image_auto:   { type: boolean, default: true }
@@ -262,32 +263,6 @@ classes:
       archivable: { archive_class: CollectibleArchive, archived_at_column: archived_at }
       timestampable:  ~
 
-  ###
-  # NOTE: Make SURE to update also MultimediaArchive in archive.schema.yml
-  ##
-  Multimedia:
-    columns:
-      id:  ~
-      model:        { type: char, size: 64, required: true }
-      model_id:     { type: integer }
-      type:         { type: char, sqlType: "ENUM('image','video')", default: image, required: true }
-      name:         { type: varchar, size: 128 }
-      md5:          { type: char, size: 32, required: true }
-      colors:       { type: varchar(128) }
-      orientation:  { type: char, sqlType: "ENUM('landscape','portrait')", default: landscape }
-      source:       { type: varchar(255) }
-      is_primary:   { type: boolean, default: false }
-
-    indexes:
-      multimedia_I_1: [model, model_id]
-
-    uniques:
-      multimedia_U_1: [model, model_id, md5]
-
-    propel_behaviors:
-      archivable: { archive_class: MultimediaArchive, archived_at_column: archived_at }
-      timestampable:  ~
-
   PrivateMessage:
     columns:
       id:  ~
@@ -303,8 +278,6 @@ classes:
       is_marked:     { type: boolean, default: false }
       is_deleted:    { type: boolean, default: false }
       created_at:    ~
-
-
 
   PrivateMessageTemplate:
     columns:
