@@ -40,7 +40,7 @@ all:
     lazy_cache_key:         true
 
   .actions:
-    error_404_module:       default
+    error_404_module:       general
     error_404_action:       error404
 
     login_module:           general
