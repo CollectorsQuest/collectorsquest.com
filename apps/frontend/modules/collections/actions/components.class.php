@@ -82,9 +82,10 @@ class collectionsComponents extends cqFrontendComponents
 
   public function executeExploreCollections()
   {
-    $q = $this->getRequestParameter('q');
-    $s = $this->getRequestParameter('s', 'most-relevant');
-    $p = $this->getRequestParameter('p', 1);
+    $q = (string) $this->getRequestParameter('q');
+    $s = (string) $this->getRequestParameter('s', 'most-relevant');
+    $p = (int) $this->getRequestParameter('p', 1);
+    $pager = null;
 
     if (!empty($q))
     {
@@ -111,17 +112,49 @@ class collectionsComponents extends cqFrontendComponents
       }
 
       $pager = new cqSphinxPager($query, array('collections'), 16);
+    }
+    else
+    {
+      $query = wpPostQuery::create()
+        ->filterByPostType('collections_explore')
+        ->filterByPostStatus('publish')
+        ->orderByPostDate(Criteria::DESC);
+
+      /** @var $wp_post wpPost */
+      if ($wp_post = $query->findOne())
+      {
+        $values = unserialize($wp_post->getPostMetaValue('_collections_explore_items'));
+
+        if (isset($values['cq_collection_ids']))
+        {
+          $collection_ids = explode(',', (string) $values['cq_collection_ids']);
+          $collection_ids = array_map('trim', $collection_ids);
+
+          // Adding American Pickers and Pawn Stars at the top
+          $collection_ids = array_merge(array(2842, 2841), $collection_ids);
+
+          $query = CollectorCollectionQuery::create()
+            ->filterById($collection_ids)
+            ->addAscendingOrderByColumn('FIELD(id, '. implode(',', $collection_ids) .')');
+
+          $pager = new PropelModelPager($query, 16);
+        }
+
+        $this->wp_post = $wp_post;
+      }
+    }
+
+    if ($pager)
+    {
       $pager->setPage($p);
       $pager->init();
 
       $this->pager = $pager;
       $this->url = '@search_collections?q='. $q . '&s='. $s .'&page='. $pager->getNextPage();
-    }
-    else
-    {
 
+      return sfView::SUCCESS;
     }
 
-    return sfView::SUCCESS;
+    return sfView::NONE;
   }
 }
