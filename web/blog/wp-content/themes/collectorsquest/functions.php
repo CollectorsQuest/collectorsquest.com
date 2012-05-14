@@ -314,13 +314,8 @@ function hide_edit_permalinks_admin_css() {
 }
 
 
-
-
-
-if ($_SERVER['HTTP_HOST'] == 'www.collectorsquest.dev' || $_SERVER['HTTP_HOST'] == 'www.collectorsquest.next' || $_SERVER['HTTP_HOST'] == 'www.cqnext.com') {
-
   // ajax post loading
-  function cq_ajax_posts() {
+  function cq_ajax_posts_comments() {
 
   global $wp_query;
     // Add code to index pages.
@@ -346,8 +341,42 @@ if ($_SERVER['HTTP_HOST'] == 'www.collectorsquest.dev' || $_SERVER['HTTP_HOST'] 
         )
       );
     }
+    elseif (is_single())
+    {
+      // Queue JS and CSS
+      wp_enqueue_script(
+        'cq-load-comments', '/wp-content/themes/collectorsquest/js/load-comments.js',
+        array('jquery'), '1.0', true
+      );
+      global $post;
+      // What page are we on? And what is the pages limit?
+      $max = 10;
+      $paged = get_comment_pages_count() > 1 && get_option( 'page_comments' );
+
+      $comments = get_comments($post->ID);
+      global $wp_query;
+      $re = get_query_var('cpage');
+    $pl = get_previous_comments_link();
+
+     $count = preg_match('/href=(["\"])(.*?)\1/', $pl, $match);
+      if ($count === FALSE)
+        $prev = ('not found\n');
+      else
+        $prev = $match[2];
+
+
+      // Add some parameters for the JS.
+      wp_localize_script(
+        'cq-load-comments', 'cq',
+        array(
+          'startPage' => 1,
+          'maxPages'  => 10,
+          'nextLink'  => $prev
+        )
+      );
+    }
   }
-  add_action('template_redirect', 'cq_ajax_posts');
+  add_action('template_redirect', 'cq_ajax_posts_comments');
 
   function catch_that_image() {
     global $post, $posts;
@@ -464,5 +493,27 @@ if ($_SERVER['HTTP_HOST'] == 'www.collectorsquest.dev' || $_SERVER['HTTP_HOST'] 
   require_once 'lib/widgets/widgets.php';
   include_once 'lib/metaboxes/setup.php';
 
-}
-
+  // comment template
+  function cq_comment($comment, $args, $depth) {
+    $GLOBALS['comment'] = $comment; ?>
+  <div <?php comment_class(); ?> id="div-comment-<?php comment_ID() ?>">
+    <div id="div-comment-<?php comment_ID() ?>" class="row-fluid user-comment">
+      <div class="span2 text-right">
+        <a href="#">
+          <?php echo get_avatar( $comment->comment_author_email, 65 ); ?>
+        </a>
+      </div>
+      <div class="span10">
+        <p class="bubble left">
+          <a href="#" class="username"><?php comment_author_link() ?></a>
+          <?php if ($comment->comment_approved == '0') : ?>
+          <em>Your comment is awaiting moderation.</em>
+          <?php endif; ?>
+          <br />
+          <?php echo $comment->comment_content; ?>
+          <span class="comment-time"><a href="#comment-<?php comment_ID() ?>" title=""><?php comment_date('F jS, Y') ?> at <?php comment_time() ?></a> <?php edit_comment_link('edit','',''); ?></span>
+        </p>
+      </div>
+    </div>
+  <?php
+  }
