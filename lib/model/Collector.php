@@ -118,6 +118,19 @@ class Collector extends BaseCollector implements ShippingRatesInterface
   }
 
   /**
+   * @return    string
+   */
+  public function getDisplayName()
+  {
+    if (!$display_name = parent::getDisplayName())
+    {
+      $display_name = $this->getUsername();
+    }
+
+    return $display_name;
+  }
+
+  /**
    * Get the salt (generate it first if needed)
    *
    * @return    string

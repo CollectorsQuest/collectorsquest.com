@@ -5,6 +5,8 @@
   <div class="row-fluid">
     <div class="span2">
       <div class="inner-blue-bg">
+
+
         <i class="add-white-icon-big"></i>
         <a href="#" class="blue-link">
           Click to start adding items to your store

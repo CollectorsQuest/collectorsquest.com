@@ -15,6 +15,7 @@ class mycqActions extends cqFrontendActions
   public function executeCollections()
   {
     $this->collector = $this->getUser()->getCollector();
+    $this->collections_count = $this->collector->countCollectorCollections();
 
     return sfView::SUCCESS;
   }
@@ -26,7 +27,7 @@ class mycqActions extends cqFrontendActions
 
   public function executeCollection()
   {
-    $collection = $this->getRoute()->getObject();
+    // $collection = $this->getRoute()->getObject();
 
     return sfView::SUCCESS;
   }
