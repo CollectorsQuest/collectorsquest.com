@@ -27,38 +27,54 @@ class collectionsComponents extends cqFrontendComponents
 
   public function executeFeaturedWeek()
   {
-    // Featured Week
-    if (!$this->featured_week = FeaturedPeer::getCurrentFeatured(FeaturedPeer::TYPE_FEATURED_WEEK))
-    {
-      $this->featured_week = FeaturedPeer::getLatestFeatured(FeaturedPeer::TYPE_FEATURED_WEEK);
-    }
-    if ($this->featured_week instanceof Featured)
-    {
-      $collection_ids = $this->featured_week->getCollectionIds();
-      $this->collection = $this->featured_week->getCollections(1);
+    $q = wpPostQuery::create()
+      ->filterByPostType('featured_week')
+      ->filterByPostStatus('publish')
+      ->orderByPostDate(Criteria::DESC);
 
-      if ($this->collection)
+    /** @var $wp_post wpPost */
+    if ($wp_post = $q->findOne())
+    {
+      $values = unserialize($wp_post->getPostMetaValue('_featured_week_collectibles'));
+
+      if (isset($values['cq_collectible_ids']))
       {
-        $q = CollectionCollectibleQuery::create()
-          ->filterByCollection($this->collection)
+        $collectible_ids = explode(',', (string) $values['cq_collectible_ids']);
+        $collectible_ids = array_map('trim', $collectible_ids);
+
+        $q = CollectibleQuery::create()
+          ->filterById($collectible_ids)
           ->limit(4);
         $this->collectibles = $q->find();
       }
+
+      $this->wp_post = $wp_post;
     }
 
-    return $this->collection ? sfView::SUCCESS : sfView::NONE;
+    return $this->wp_post ? sfView::SUCCESS : sfView::NONE;
   }
 
   public function executeFeaturedWeekCollectibles()
   {
-    $collection = CollectorCollectionQuery::create()->findOneById($this->getRequestParameter('collection_id'));
+    $wp_post = wpPostQuery::create()->findOneById($this->getRequestParameter('id'));
 
-    if ($collection instanceof CollectorCollection)
+    if ($wp_post instanceof wpPost)
     {
-      $q = CollectibleQuery::create()
-        ->offset(4)
-        ->limit(12);
-      $this->collectibles = $q->find();
+      $values = unserialize($wp_post->getPostMetaValue('_featured_week_collectibles'));
+
+      if (isset($values['cq_collectible_ids']))
+      {
+        $collectible_ids = explode(',', (string) $values['cq_collectible_ids']);
+        $collectible_ids = array_map('trim', $collectible_ids);
+
+        $q = CollectibleQuery::create()
+          ->filterById($collectible_ids)
+          ->offset(4)
+          ->limit(12);
+        $this->collectibles = $q->find();
+      }
+
+      $this->wp_post = $wp_post;
     }
 
     return $this->collectibles ? sfView::SUCCESS : sfView::NONE;
