@@ -103,43 +103,14 @@
 	<!-- <h3 id="comments"><?php comments_number('No Responses', 'One Response', '% Responses' );?> to &#8220;<?php the_title(); ?>&#8221;</h3> -->
 
   <div class="user-comments">
-
-	<?php foreach ($comments as $comment) : ?>
-
-		<!-- <li class="<?php echo $oddcomment; ?>" id="comment-<?php comment_ID() ?>"> -->
-    <div class="row-fluid user-comment">
-      <div class="span2 text-right">
-        <a href="#">
-          <?php echo get_avatar( $comment, 65 ); ?>
-        </a>
-      </div>
-      <div class="span10">
-        <p class="bubble left">
-          <a href="#" class="username"><?php comment_author_link() ?></a>
-          <?php if ($comment->comment_approved == '0') : ?>
-          <em>Your comment is awaiting moderation.</em>
-          <?php endif; ?>
-          <br />
-          <?php echo $comment->comment_content; ?>
-          <span class="comment-time"><a href="#comment-<?php comment_ID() ?>" title=""><?php comment_date('F jS, Y') ?> at <?php comment_time() ?></a> <?php edit_comment_link('edit','',''); ?></span>
-        </p>
-      </div>
+    <div class="commentlist">
+      <?php global $wp_query; if (get_query_var('cpage')) : $g = 2; else : $g = -1; endif;
+      wp_list_comments('type=comment&callback=cq_comment&style=div&per_page='.$g); ?>
     </div>
-		<!-- </li> -->
-
-	<?php /* Changes every other comment to a different class */
-		if ('alt' == $oddcomment) $oddcomment = '';
-		else $oddcomment = 'alt';
-	?>
-
-	<?php endforeach; /* end for each comment */ ?>
-
 	</div>
 
   <div class="see-more-under-image-set">
-    <button class="btn btn-small gray-button see-more-full" id="see-more-comments">
-      See all XX comments
-    </button>
+<?php previous_comments_link() ?>
   </div>
 
  <?php else : // this is displayed if there are no comments so far ?>
