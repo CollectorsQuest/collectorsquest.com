@@ -144,15 +144,15 @@ function cq_custom_post_type_init()
   register_post_type('marketplace_featured', array(
     'labels' => array(
       'name'               => _x('Marketplace Featured', 'post type general name'),
-      'singular_name'      => _x('Featured Collectible', 'post type singular name'),
-      'add_new'            => _x('Add New', 'Featured Collectible'),
-      'add_new_item'       => __('Add New Featured Collectible'),
-      'edit_item'          => __('Edit Featured Collectible'),
-      'new_item'           => __('New Featured Collectible'),
-      'view_item'          => __('View Featured Collectible'),
-      'search_items'       => __('Search Featured Collectible'),
-      'not_found'          => __('No Featured Collectibles found'),
-      'not_found_in_trash' => __('No Featured Collectibles found in Trash'),
+      'singular_name'      => _x('Marketplace Featured', 'post type singular name'),
+      'add_new'            => _x('Add New', 'Featured Collectibles for Sale'),
+      'add_new_item'       => __('Add New Featured Collectibles for Sale'),
+      'edit_item'          => __('Edit Featured Collectibles for Sale'),
+      'new_item'           => __('New Featured Collectibles for Sale'),
+      'view_item'          => __('View Featured Collectibles for Sale'),
+      'search_items'       => __('Search Marketplace Featured'),
+      'not_found'          => __('No Marketplace Featured found'),
+      'not_found_in_trash' => __('No Marketplace Featured found in Trash'),
       'parent_item_colon'  => ''
     ),
     'public'          => true,
@@ -294,7 +294,7 @@ function hide_edit_permalinks_admin_css() {
   global $typenow;
   if ($typenow != 'post' && $typenow != 'page') :
 
-  ?>
+    ?>
   <style type="text/css">
     <!--
     #titlediv
@@ -315,9 +315,9 @@ function hide_edit_permalinks_admin_css() {
 
 
 // ajax post loading
-function cq_ajax_posts() {
+function cq_ajax_posts_comments() {
 
-global $wp_query;
+  global $wp_query;
   // Add code to index pages.
   if (!is_singular())
   {
@@ -342,46 +342,34 @@ global $wp_query;
     );
   }
 }
-add_action('template_redirect', 'cq_ajax_posts');
+add_action('template_redirect', 'cq_ajax_posts_comments');
 
-function catch_that_image()
-{
-  global $post;
+function catch_that_image() {
+  global $post, $posts;
   $first_img = '';
   ob_start();
   ob_end_clean();
-  if (preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches))
-  {
-    $first_img = $matches[1][0];
-  }
+  $output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post->post_content, $matches);
+  $first_img = $matches [1] [0];
 
-  // Defines a default image
-  if(empty($first_img))
-  {
+  if(empty($first_img)){ //Defines a default image
     $first_img = "/images/default.jpg";
   }
-
   return $first_img;
 }
 
 // add_filter('pre_get_posts', 'filter_homepage_posts');
-/**
- * @param $query WP_Query
- * @return mixed
- */
-function filter_homepage_posts($query)
-{
+function filter_homepage_posts($query) {
+
   $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 
   if (!is_admin() && $paged==1) {
     $limit_number_of_posts = 7;
   } elseif (!is_admin()) {
     $limit_number_of_posts = 8;
-  } else {
-    $limit_number_of_posts = 8;
   }
 
-  // $query->set('offset', $offset);
+  //$query->set('offset', $offset);
   $query->set('posts_per_page', $limit_number_of_posts);
 
   return $query;
@@ -401,13 +389,14 @@ function my_user_contactmethods($user_contactmethods){
 }
 
 // multiple excerpt lengths
-function cq_excerptlength_firstpost() {
+function cq_excerptlength_firstpost($length) {
   return 64;
 }
-function cq_excerptlength_archive() {
+function cq_excerptlength_archive($length) {
   return 32;
 }
 function cq_excerpt($length_callback='', $more_callback='') {
+  global $post;
   if(function_exists($length_callback)){
     add_filter('excerpt_length', $length_callback);
   }
@@ -422,7 +411,7 @@ function cq_excerpt($length_callback='', $more_callback='') {
 }
 
 // puts link in excerpts more tag
-function new_excerpt_more() {
+function new_excerpt_more($more) {
   global $post;
   return '...&nbsp;<a class="moretag" href="'. get_permalink($post->ID) . '">more</a>';
 }
@@ -431,6 +420,7 @@ add_filter('excerpt_more', 'new_excerpt_more');
 // adds link class for global styles
 function add_class_the_tags($html){
   if (is_single()) {
+    $postid = get_the_ID();
     $html = str_replace('<a','<a class="tags"',$html);
     return $html;
   } else {
@@ -444,24 +434,103 @@ function add_fixed_sidebar() {
 
   if (is_page()) : ?>
 
-<script type="text/javascript" src="/blog/wp-content/themes/collectorsquest/js/jquery-scrolltofixed-min.js"></script>
+  <script type="text/javascript" src="/blog/wp-content/themes/collectorsquest/js/jquery-scrolltofixed-min.js"></script>
 
-<script>
-  $(document).ready(function() {
-    $('#sidebar').scrollToFixed({
-      marginTop: 10,
-      limit: $('#footer').offset().top - 600
+  <script>
+
+    $(document).ready(function() {
+      $('#sidebar').scrollToFixed({
+        marginTop: 10,
+        limit: $('#footer').offset().top - 600
+      });
     });
-  });
-</script>
 
-<?php
 
-    endif;
+  </script>
 
-  }
+  <?php
+
+  endif;
+
+}
 add_action('wp_footer','add_fixed_sidebar');
 
 // includes for widgets/metaboxes
-require_once __DIR__.'/lib/widgets/widgets.php';
-include_once __DIR__.'/lib/metaboxes/setup.php';
+require_once __DIR__ .'/lib/widgets/widgets.php';
+include_once __DIR__ .'/lib/metaboxes/setup.php';
+
+// comment template
+function cq_comment($comment, $args, $depth) {
+  $GLOBALS['comment'] = $comment; ?>
+  <div <?php comment_class(); ?> id="div-comment-<?php comment_ID() ?>">
+    <div id="div-comment-<?php comment_ID() ?>" class="row-fluid user-comment">
+      <div class="span2 text-right">
+        <a href="#">
+          <?php echo get_avatar( $comment->comment_author_email, 65 ); ?>
+        </a>
+      </div>
+      <div class="span10">
+        <p class="bubble left">
+          <a href="#" class="username"><?php comment_author_link() ?></a>
+          <?php if ($comment->comment_approved == '0') : ?>
+          <em>Your comment is awaiting moderation.</em>
+          <?php endif; ?>
+          <br />
+          <?php echo $comment->comment_content; ?>
+          <span class="comment-time"><a href="#comment-<?php comment_ID() ?>" title=""><?php comment_date('F jS, Y') ?> at <?php comment_time() ?></a> <?php edit_comment_link('edit','',''); ?></span>
+        </p>
+      </div>
+    </div>
+  <?php
+  }
+
+function add_ajaxurl_cdata_to_front(){
+  ?>
+  <script type="text/javascript">
+    //<![CDATA[
+    ajaxurl = '<?php echo admin_url( 'admin-ajax.php'); ?>';
+    //]]>
+  </script>
+
+
+  <script type="text/javascript">
+    $('#load_comments').click(function(){
+
+      var post_id = $(this).parent("div").attr("id");
+      $(this).text('Loading comments...');
+
+      $.ajax({
+        type: 'POST',
+        url: ajaxurl,
+        data: {"action": "load_comments", post_id: post_id},
+        success: function(data){
+          jQuery(".commentlist").html(data);
+
+          $('#load_comments').remove();
+
+        }
+      });
+      return false;
+    });
+  </script>
+<?php
+}
+add_action( 'wp_footer', 'add_ajaxurl_cdata_to_front', 11);
+
+
+add_action( 'wp_ajax_load_comments', 'load_comments' );
+add_action( 'wp_ajax_nopriv_load_comments', 'load_comments' );
+function load_comments(){
+
+global $post, $wp_query, $post_id;
+  $post_id = isset($_POST['post_id'])? intval($_POST['post_id']) : 0;
+  $args = array(
+    'post_id' => $post_id,
+    'status' => 'approve',
+    'order'   => 'ASC'
+  );
+  $wp_query->comments = get_comments( $args );
+  wp_list_comments('type=comment&callback=cq_comment&style=div&per_page=20');
+  comments_template();
+  die();
+}
