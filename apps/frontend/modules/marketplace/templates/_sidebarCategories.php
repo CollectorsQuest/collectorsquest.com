@@ -5,6 +5,6 @@
 <?php
   echo link_to(
     image_tag('banners/040412_CQ_Market_blue.gif'),
-    '@seller_signup'
+    '@legacy_seller_signup'
   );
 ?>

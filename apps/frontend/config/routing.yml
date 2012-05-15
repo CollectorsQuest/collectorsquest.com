@@ -143,6 +143,11 @@ seller_signup:
   param: { module: seller, action: signup, step: 1 }
   requirements: { step: '[1-3]' }
 
+legacy_seller_signup:
+  url:   /collector/signup/:step
+  param: { module: seller, action: signup, step: 1 }
+  requirements: { step: '[1-3]' }
+
 
 ### COLLECTIBLES
 

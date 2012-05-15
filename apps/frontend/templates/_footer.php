@@ -140,7 +140,7 @@
               <p>
                 Do you have something you'd like to sell?
                 It's easy! Become a member of Collectors Quest and get started.<br/>
-                <?= link_to('Get&nbsp;Paid&nbsp;Now!', '@seller_signup'); ?>
+                <?= link_to('Get&nbsp;Paid&nbsp;Now!', '@legacy_seller_signup'); ?>
               </p>
             </div>
           </li>
