@@ -118,6 +118,20 @@ class CollectibleForSaleQuery extends BaseCollectibleForSaleQuery
   }
 
   /**
+   * @param  \Collector|null $collector
+   * @param  null $comparison
+
+   * @return CollectibleForSaleQuery
+   */
+  public function filterByCollector(Collector $collector = null, $comparison = null)
+  {
+    return $this
+      ->useCollectibleQuery()
+      ->filterByCollector($collector, $comparison)
+      ->enduse();
+  }
+
+  /**
    * @param  null|boolean  $hasOffers
    * @return CollectibleForSaleQuery
    */
