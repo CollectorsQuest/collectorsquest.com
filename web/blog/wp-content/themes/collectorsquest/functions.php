@@ -144,15 +144,15 @@ function cq_custom_post_type_init()
   register_post_type('marketplace_featured', array(
     'labels' => array(
       'name'               => _x('Marketplace Featured', 'post type general name'),
-      'singular_name'      => _x('Featured Collectible', 'post type singular name'),
-      'add_new'            => _x('Add New', 'Featured Collectible'),
-      'add_new_item'       => __('Add New Featured Collectible'),
-      'edit_item'          => __('Edit Featured Collectible'),
-      'new_item'           => __('New Featured Collectible'),
-      'view_item'          => __('View Featured Collectible'),
-      'search_items'       => __('Search Featured Collectible'),
-      'not_found'          => __('No Featured Collectibles found'),
-      'not_found_in_trash' => __('No Featured Collectibles found in Trash'),
+      'singular_name'      => _x('Marketplace Featured', 'post type singular name'),
+      'add_new'            => _x('Add New', 'Featured Collectibles for Sale'),
+      'add_new_item'       => __('Add New Featured Collectibles for Sale'),
+      'edit_item'          => __('Edit Featured Collectibles for Sale'),
+      'new_item'           => __('New Featured Collectibles for Sale'),
+      'view_item'          => __('View Featured Collectibles for Sale'),
+      'search_items'       => __('Search Marketplace Featured'),
+      'not_found'          => __('No Marketplace Featured found'),
+      'not_found_in_trash' => __('No Marketplace Featured found in Trash'),
       'parent_item_colon'  => ''
     ),
     'public'          => true,
@@ -341,40 +341,6 @@ function cq_ajax_posts_comments() {
       )
     );
   }
-  elseif (is_single())
-  {
-    // Queue JS and CSS
-    wp_enqueue_script(
-      'cq-load-comments', '/wp-content/themes/collectorsquest/js/load-comments.js',
-      array('jquery'), '1.0', true
-    );
-    global $post;
-    // What page are we on? And what is the pages limit?
-    $max = 10;
-    $paged = get_comment_pages_count() > 1 && get_option( 'page_comments' );
-
-    $comments = get_comments($post->ID);
-    global $wp_query;
-    $re = get_query_var('cpage');
-    $pl = get_previous_comments_link();
-
-    $count = preg_match('/href=(["\"])(.*?)\1/', $pl, $match);
-    if ($count === FALSE)
-      $prev = ('not found\n');
-    else
-      $prev = $match[2];
-
-
-    // Add some parameters for the JS.
-    wp_localize_script(
-      'cq-load-comments', 'cq',
-      array(
-        'startPage' => 1,
-        'maxPages'  => 10,
-        'nextLink'  => $prev
-      )
-    );
-  }
 }
 add_action('template_redirect', 'cq_ajax_posts_comments');
 
@@ -505,7 +471,7 @@ function cq_comment($comment, $args, $depth) {
       </div>
       <div class="span10">
         <p class="bubble left">
-          <a href="#" class="username"><?php comment_author_link() ?></a>
+          <?php comment_author_link() ?>
           <?php if ($comment->comment_approved == '0') : ?>
           <em>Your comment is awaiting moderation.</em>
           <?php endif; ?>
@@ -517,3 +483,54 @@ function cq_comment($comment, $args, $depth) {
     </div>
   <?php
   }
+
+function add_ajaxurl_cdata_to_front(){
+  ?>
+  <script type="text/javascript">
+    //<![CDATA[
+    ajaxurl = '<?php echo admin_url( 'admin-ajax.php'); ?>';
+    //]]>
+  </script>
+
+
+  <script type="text/javascript">
+    $('#load_comments').click(function(){
+
+      var post_id = $(this).parent("div").attr("id");
+      $(this).text('Loading comments...');
+
+      $.ajax({
+        type: 'POST',
+        url: ajaxurl,
+        data: {"action": "load_comments", post_id: post_id},
+        success: function(data){
+          jQuery(".commentlist").html(data);
+
+          $('#load_comments').remove();
+
+        }
+      });
+      return false;
+    });
+  </script>
+<?php
+}
+add_action( 'wp_footer', 'add_ajaxurl_cdata_to_front', 11);
+
+
+add_action( 'wp_ajax_load_comments', 'load_comments' );
+add_action( 'wp_ajax_nopriv_load_comments', 'load_comments' );
+function load_comments(){
+
+global $post, $wp_query, $post_id;
+  $post_id = isset($_POST['post_id'])? intval($_POST['post_id']) : 0;
+  $args = array(
+    'post_id' => $post_id,
+    'status' => 'approve',
+    'order'   => 'ASC'
+  );
+  $wp_query->comments = get_comments( $args );
+  wp_list_comments('type=comment&callback=cq_comment&style=div&per_page=20');
+  comments_template();
+  die();
+}
