@@ -1,7 +1,7 @@
 <?php
   cq_sidebar_title(
     'Explore the Market',
-    link_to('see all &raquo;', '@marketplace_categories', array('class' => 'text-v-middle link-align'))
+    link_to('See all &raquo;', '@marketplace_categories', array('class' => 'text-v-middle link-align'))
   );
 ?>
 
