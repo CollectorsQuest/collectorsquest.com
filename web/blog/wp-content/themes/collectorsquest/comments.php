@@ -56,7 +56,7 @@
 
         <!--<p><small><strong>XHTML:</strong> You can use these tags: <?php echo allowed_tags(); ?></small></p>-->
 
-        <textarea class="input-append" name="comment" id="c" rows="10" colspan="3" style="width: 494px; height: 23px;"></textarea>
+        <textarea class="input-append" name="comment" id="c" rows="10" colspan="3" style="width: 494px; height: 18px;"></textarea>
         <!-- <input class="input-append" type="text" id="c" data-provide="comment" autocomplete="off" name="comment">
 
         <!--<p><input name="submit" type="submit" id="submit" tabindex="5" value="Submit Comment" />-->
@@ -78,7 +78,7 @@
     {
       $('.post-comment textarea').focus(function()
       {
-        $(this).css('height', '50px');
+        $(this).css('height', '44px');
         $('.post-comment button').css('height', '60px');
         $('.comment-option-wrap').slideDown();
       });
