@@ -50,6 +50,9 @@ function cq_include_title()
   /** @var $title string */
   $title = $response->getTitle();
 
+  // Fixing double htmlspecialchars
+  $title = str_replace('&amp;', '&', $title);
+
   echo $title ? content_tag('title', $title)."\n" : null;
 }
 
