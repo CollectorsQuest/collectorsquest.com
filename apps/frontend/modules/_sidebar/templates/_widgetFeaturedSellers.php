@@ -28,7 +28,8 @@
             echo '<li class="span2">';
             echo link_to_collectible(
               $collectible_for_sale->getCollectible(), 'image',
-              array('width' => 75, 'height' => 75, 'max_width' => 54, 'max_height' => 54, 'class' => 'thumbnail'));
+              array('width' => 75, 'height' => 75, 'max_width' => 54, 'max_height' => 54, 'class' => 'thumbnail')
+            );
             echo '</li>';
           }
         ?>
@@ -40,9 +41,9 @@
           <?= link_to_collector($collector, 'image', array('max_width' => '60', 'max_height' => 60)); ?>
         </div>
         <div class="span9">
-          <p>
-            <?= link_to_collector($collector, 'text'); ?> sells <?= $collector->getProfile()->getAboutSell ?>.
-          </p>
+          <?php if ($text = $collector->getProfile()->getProperty('about.what_you_sell')): ?>
+          <p><?= link_to_collector($collector, 'text'); ?> sells <?= $text; ?>.</p>
+          <?php endif; ?>
           <a href="<?= url_for_collector($collector, true); ?>">
             Visit <?= $collector->getDisplayName() ?>’s page &raquo;
           </a>
