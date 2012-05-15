@@ -1,0 +1,41 @@
+@import "_variables.less";
+
+#addNewCollection {
+	.modal-header {
+		border-bottom: none;
+
+		h3 {
+			.custom-font(20px, 22px, italic, normal);
+			.smooth-font();
+			color: @red;
+			letter-spacing: 0.04em;
+			background: url("@{baseUrl}/red-dotted-line.png") repeat-x bottom;
+			margin-top: 2px;
+			padding-bottom: 5px;
+		}
+	}
+	.modal-body {
+		max-height: 500px;
+
+		label {
+			font-weight: bold;
+			color: @brown;
+		}
+		.help-block{
+			color: @brown;
+			font-size: 12px;
+		}
+		form.form-horizontal {
+			margin-bottom: 0;
+		}
+		.input-xlarge {
+			width: 350px;
+		}
+
+	}
+	.modal-footer {
+		background-color: @lightBlue;
+		border-top: none;
+		text-align: center;
+	}
+}

@@ -9,7 +9,7 @@
     <?php if ($collections_count > 0): ?>
     <li class="pull-right styles-reset">
       <span>
-        <a href="<?= url_for('@messages_compose'); ?>" type="submit" class="btn btn-primary blue-button pull-right">
+        <a href="#" type="submit" class="btn btn-primary blue-button pull-right">
           Upload Photos
         </a>
       </span>

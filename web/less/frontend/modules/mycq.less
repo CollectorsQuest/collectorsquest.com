@@ -228,7 +228,7 @@ a.buy-credits-button {
 		.border-radius(0);
 		.box-shadow(0);
 
-		a {
+		> a {
 			margin-left: 5px;
 			margin-bottom: 4px;
 			display: block;
@@ -283,7 +283,7 @@ a.buy-credits-button {
 		.border-radius(0);
 		.box-shadow(0);
 
-		a {
+		> a {
 			margin-left: 5px;
 			margin-bottom: 4px;
 			display: block;
@@ -293,6 +293,13 @@ a.buy-credits-button {
 		.collectibles-container {
 			.clearfix();
 			margin-bottom: 2px;
+			> a {
+			margin-left: 5px;
+				margin-bottom: 4px;
+				display: block;
+				float: left;
+				.square(64px);
+			}
 		}
 	}
 	.thumbnails {
@@ -471,13 +478,14 @@ a.buy-credits-button {
 		height: 115px;
 		padding: 15px 10px 10px 10px;
 		margin-right: 0;
+		.btn-create-collection-middle {
+			margin-top: 5px;
+			margin-bottom: 15px;
+		}
 	}
 	label {
 		color: @brown;
 		letter-spacing: 0.01em;
-	}
-	.add-white-icon-big {
-		margin: 0 auto;
 	}
 }
 
@@ -644,12 +652,18 @@ a.buy-credits-button {
 	text-transform: uppercase;
 }
 
-div.add-white-icon-big {
-  background: #C2E0F0;
+.btn-create-collection-middle {
+  background-color: #C2E0F0;
   color: #fff;
   font-size: 60px;
+	line-height: 60px;
   text-align: center;
   display: block;
+	.square(60px);
+	&:hover {
+		color: #fff;
+		background-color: #b2b5bb;
+	}
 }
 
 .grid-view, .list_view {
