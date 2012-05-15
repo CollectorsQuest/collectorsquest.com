@@ -288,12 +288,34 @@ class _sidebarComponents extends cqFrontendComponents
     // Set the limit of other Collections to show
     $this->limit = (int) $this->getVar('limit') ?: 0;
 
-    $q = CollectorQuery::create()
-       ->filterByUserType(CollectorPeer::TYPE_SELLER)
-       ->limit(2);
-    $this->sellers = $q->find();
+    $q = wpPostQuery::create()
+      ->filterByPostType('seller_spotlight')
+      ->filterByPostStatus('publish')
+      ->orderByPostDate(Criteria::DESC);
 
-    return $this->_sidebar_if(count($this->sellers) > 0);
+    /** @var $wp_post wpPost */
+    if ($wp_post = $q->findOne())
+    {
+      $values = unserialize($wp_post->getPostMetaValue('_seller_spotlight'));
+
+      if (isset($values['cq_collector_ids']))
+      {
+        $collector_ids = explode(',', (string) $values['cq_collector_ids']);
+        $collector_ids = array_map('trim', $collector_ids);
+
+        $q = CollectorQuery::create()
+          ->filterById($collector_ids, Criteria::IN)
+          ->filterByUserType(CollectorPeer::TYPE_SELLER)
+          ->addAscendingOrderByColumn('RAND()');
+
+        $this->collectors = $q->limit(2)->find();
+      }
+
+      $this->wp_post = $wp_post;
+    }
+
+
+    return $this->_sidebar_if(count($this->collectors) > 0);
   }
 
   public function executeWidgetCollectiblesForSale()
