@@ -56,9 +56,9 @@ function cq_link_to()
     {
       _cq_add_requires_login_class_to_options($arguments[2]);
     }
-    if (!isset($arguments[2]['absolute']))
+    if (!isset($arguments[3]['absolute']))
     {
-      $arguments[2]['absolute'] = true;
+      $arguments[3]['absolute'] = true;
     }
 
     return call_user_func_array('link_to2', $arguments);
