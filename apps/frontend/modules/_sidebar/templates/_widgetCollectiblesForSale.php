@@ -7,7 +7,7 @@
 
 <?php
   cq_sidebar_title(
-    $title, link_to(
+    $title, cq_link_to(
       'See all &raquo;',
       '@marketplace', array('class' => 'text-v-middle link-align')
     )
