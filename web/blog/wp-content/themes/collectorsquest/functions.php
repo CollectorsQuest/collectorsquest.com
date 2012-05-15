@@ -471,7 +471,7 @@ function cq_comment($comment, $args, $depth) {
       </div>
       <div class="span10">
         <p class="bubble left">
-          <a href="#" class="username"><?php comment_author_link() ?></a>
+          <?php comment_author_link() ?>
           <?php if ($comment->comment_approved == '0') : ?>
           <em>Your comment is awaiting moderation.</em>
           <?php endif; ?>
