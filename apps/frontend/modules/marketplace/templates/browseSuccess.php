@@ -7,8 +7,7 @@
 
 <?php
   cq_page_title(
-    $content_category->getName(),
-    link_to('Back to Market &raquo;', '@marketplace')
+    $content_category->getName()
   );
 ?>
 
