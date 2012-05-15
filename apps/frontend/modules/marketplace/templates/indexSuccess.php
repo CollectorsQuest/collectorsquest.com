@@ -1,10 +1,19 @@
+<?php
+/**
+ * @var $wp_post wpPost
+ * @var $collectibles_for_sale CollectibleForSale[]
+ * @var $collectibles_for_sale_text array
+ */
+?>
+
 <?php cq_page_title('Market'); ?>
 
+<?php if (isset($wp_post) && $wp_post instanceof wpPost): ?>
 <div class="row-fluid" id="marketplace-spotlight">
   <h2 class="spotlight-title Chivo webfont">
-    Spotlight on items from the Civil War
+    <?= $wp_post->getPostTitle() ?>
   </h2>
-  <?php foreach ($spotlight as $i => $collectible_for_sale): ?>
+  <?php foreach ($collectibles_for_sale as $i => $collectible_for_sale): ?>
   <div class="span4 link">
     <div class="thumbnail">
       <div class="spotlight-thumb">
@@ -14,7 +23,7 @@
             array('width' => 180, 'height' => 180)
           );
         ?>
-        <span>Affordable</span>
+        <span><?= $collectibles_for_sale_text[$i]; ?></span>
       </div>
       <div class="spotlight-text">
         <h4><?= link_to_collectible($collectible_for_sale->getCollectible(), 'text', array('class' => 'target')); ?></h4>
@@ -27,6 +36,7 @@
   </div>
   <?php endforeach; ?>
 </div>
+<?php endif; ?>
 
 <br/>
 <div class="banners-620">

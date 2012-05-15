@@ -4,13 +4,33 @@ class marketplaceActions extends cqFrontendActions
 {
   public function executeIndex()
   {
-    $q = CollectibleForSaleQuery::create()
-      ->joinCollectible()
-      ->isForSale()
-      ->orderByUpdatedAt(Criteria::DESC);
+    $q = wpPostQuery::create()
+      ->filterByPostType('marketplace_featured')
+      ->filterByPostStatus('publish')
+      ->orderByPostDate(Criteria::DESC);
 
-    $this->spotlight = $q->limit(3)->find();
-    $this->collectibles_for_sale = $q->limit(12)->find();
+    /** @var $wp_post wpPost */
+    if ($wp_post = $q->findOne())
+    {
+      $collectibles_for_sale = array();
+      $collectibles_for_sale_text = array();
+
+      $values = unserialize($wp_post->getPostMetaValue('_market_featured_items'));
+
+      for ($i = 1; $i <= 3; $i++)
+      if (isset($values['cq_collectible_id_'. $i]) && isset($values['cq_collectible_text_'. $i]))
+      {
+        $collectibles_for_sale[$i] = CollectibleForSaleQuery::create()
+          ->findOneByCollectibleId(trim($values['cq_collectible_id_'. $i]));
+
+        $collectibles_for_sale_text[$i] = trim($values['cq_collectible_text_'. $i]);
+      }
+
+      $this->collectibles_for_sale = $collectibles_for_sale;
+      $this->collectibles_for_sale_text = $collectibles_for_sale_text;
+      $this->wp_post = $wp_post;
+    }
+
 
     return sfView::SUCCESS;
   }

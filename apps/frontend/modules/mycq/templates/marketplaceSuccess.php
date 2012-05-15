@@ -5,9 +5,9 @@
   <div class="row-fluid">
     <div class="span2">
       <div class="inner-blue-bg">
-
-
-        <i class="add-white-icon-big"></i>
+        <a href="#" class="btn-create-collection-middle h-center">
+          <i class="icon-plus icon-white"></i>
+        </a>
         <a href="#" class="blue-link">
           Click to start adding items to your store
         </a>
@@ -257,7 +257,9 @@
       <div class="span4 thumbnail link">
         <div class="row-fluid spacer-inner-top-20">
           <div class="span5">
-            <i class="add-white-icon create-collection pull-right"></i>
+            <a href="#" class="btn-create-collection-middle spacer-left-20">
+              <i class="icon-plus icon-white"></i>
+            </a>
           </div>
           <div class="span7">
             <a href="#" class="create-collection-text">Create a new sale listing by clicking here</a>
@@ -330,10 +332,55 @@
         <div class="span4 thumbnail link">
           <div class="row-fluid spacer-inner-top-15">
             <div class="span5">
-              <i class="add-white-icon create-collection pull-right"></i>
+              <a href="#" class="btn-create-collection-middle spacer-left-20">
+                <i class="icon-plus icon-white"></i>
+              </a>
             </div>
             <div class="span7">
-              <a href="#" class="create-collection-text">Create a new collection by clicking here</a>
+              <div class="modal" id="addNewCollection">
+                <div class="modal-header">
+                  <button class="close" data-dismiss="modal">×</button>
+                  <h3>Add a new collection</h3>
+                </div>
+                <div class="modal-body">
+                  <form class="form-horizontal">
+                    <fieldset>
+                      <div class="control-group">
+                        <label class="control-label" for="input01">Collection Name</label>
+                        <div class="controls">
+                          <input type="text" class="input-xlarge" id="input01">
+                        </div>
+                      </div>
+                      <div class="control-group">
+                        <label class="control-label" for="input01">Tags</label>
+                        <div class="controls">
+                          <input type="text" class="input-xlarge" id="input02">
+                          <p class="help-block">Choose at least three descriptive words for your collection, separated by commas</p>
+                        </div>
+                      </div>
+                      <div class="control-group">
+                        <label for="select01" class="control-label">Category</label>
+                        <div class="controls">
+                          <select id="select01">
+                            <option>Please Select One:</option>
+                            <option>Category 1</option>
+                            <option>Category 2</option>
+                            <option>Category 3</option>
+                            <option>Category 4</option>
+                          </select>
+                        </div>
+                      </div>
+                    </fieldset>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <a href="#" class="btn btn-primary blue-button spacer-right-15">Create Collection</a>
+                  <a href="#" class="btn btn-primary gray-button">Cancel</a>
+                </div>
+              </div>
+              <a href="#addNewCollection" data-toggle="modal" class="create-collection-text target">
+                Create a new collection by clicking here
+              </a>
             </div>
           </div>
         </div>
@@ -497,6 +544,5 @@
 
 </div><!-- /.tab-content -->
 </div>
-
 
 

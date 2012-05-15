@@ -27,8 +27,10 @@
     <?php endforeach; ?>
     <div class="span4 thumbnail link">
       <div class="row-fluid spacer-inner-top-15">
-        <div class="span4 add-white-icon-big" style="margin-left: 20px;">
-          <i class="icon-plus icon-white"></i>
+        <div class="span5">
+          <a href="#" class="btn-create-collection-middle spacer-left-20">
+            <i class="icon-plus icon-white"></i>
+          </a>
         </div>
         <div class="span7">
           <a href="#" class="create-collection-text target">Create a new collection by clicking here</a>
@@ -59,11 +61,13 @@
       </div>
       <div class="span4 thumbnail link">
         <div class="row-fluid spacer-inner-top-15">
-          <div class="span4 add-white-icon-big" style="margin-left: 20px;">
-            <i class="icon-plus icon-white"></i>
+          <div class="span4">
+            <a href="#" class="btn-create-collection-middle spacer-left-20">
+              <i class="icon-plus icon-white"></i>
+            </a>
           </div>
           <div class="span7">
-            <a href="#" class="create-collection-text target">
+            <a href="#addNewCollection" data-toggle="modal" class="create-collection-text target">
               Create a new collection by clicking here
             </a>
           </div>
@@ -76,3 +80,4 @@
 </div>
 
 <?php endif; ?>
+

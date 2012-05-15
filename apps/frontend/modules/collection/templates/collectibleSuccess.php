@@ -130,7 +130,7 @@
     <p>Payment: I accept payment through PayPal, Moneybookers, money order and bank transfer. I greatly appreciate prompt payment and/or prompt communication regarding payment. I will not ship until payment has been received.</p>
   </div>
 
-  <form action="<?= url_for('@shopping_cart'); ?>" method="post">
+  <form action="<?= url_for('@shopping_cart', true); ?>" method="post">
 
     <div id="price-container">
       <span class="price-large">

@@ -33,7 +33,7 @@
 <script>
 $(document).ready(function()
 {
-  var $url = '<?= url_for('@ajax_collections?section=component&page=exploreCollections') ?>';
+  var $url = '<?= url_for('@ajax_collections?section=component&page=exploreCollections', true) ?>';
   var $form = $('#form-explore-collections');
 
   $('#seemore-explore-collections').click(function()

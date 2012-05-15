@@ -47,7 +47,7 @@
 ?>
 <div class="row-fluid">
   <div style="background-color: #e6f2f9; padding: 6px;">
-    <form action="<?= url_for('@messages_compose?to='. $collector->getUsername()); ?>" method="post" style="margin-bottom: 0;" id="form-private-message">
+    <form action="<?= url_for2('messages_compose', array('to'=>$collector->getUsername()), true); ?>" method="post" style="margin-bottom: 0;" id="form-private-message">
       <input type="hidden" name="message[receiver]" value="<?= $collector->getUsername(); ?>">
       <input type="hidden" name="message[subject]" value="<?= $subject; ?>">
       <textarea class="requires-login" data-login-title="Create an account to contact the seller of this item."  name="message[body]" style="width: 97%; margin-bottom: 0;" placeholder="Send a message to <?= $collector; ?>"></textarea>

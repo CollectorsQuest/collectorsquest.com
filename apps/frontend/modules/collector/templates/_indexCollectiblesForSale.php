@@ -36,7 +36,7 @@
     {
       $('#seemore-collectibles-for-sale').click(function()
       {
-        var $url = '<?= url_for('@ajax_collector?section=component&page=indexCollectiblesForSale&id='. $collector->getId()); ?>';
+        var $url = '<?= url_for('@ajax_collector?section=component&page=indexCollectiblesForSale&id='. $collector->getId(), true); ?>';
         var $button = $(this);
 
         $button.html('loading...');

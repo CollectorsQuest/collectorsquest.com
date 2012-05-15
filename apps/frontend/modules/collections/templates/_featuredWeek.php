@@ -2,7 +2,7 @@
 /**
  * @var $collectibles Collectible[]
  * @var $collection Collection
- * @var $featured_week Featured
+ * @var $wp_post wpPost
  */
 ?>
 
@@ -50,7 +50,7 @@ $(document).ready(function()
 {
   $('#seemore-featured-week').click(function()
   {
-    var $url = '<?= url_for('@ajax_collections?section=component&page=featuredWeekCollectibles&id='. $wp_post->getId()) ?>';
+    var $url = '<?= url_for('@ajax_collections?section=component&page=featuredWeekCollectibles&id='. $wp_post->getId(), true) ?>';
     var $button = $(this);
     $button.html('loading...');
 
