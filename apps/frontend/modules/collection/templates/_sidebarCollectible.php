@@ -1,6 +1,6 @@
 
 <?php if (isset($collectible_for_sale) && $collectible_for_sale instanceof CollectibleForSale): ?>
-<form action="<?= url_for('@shopping_cart'); ?>" method="post">
+<form action="<?= url_for('@shopping_cart', true); ?>" method="post">
 
   <div id="price-container">
     <?php if (!$sf_user->getCollector()->isOwnerOf($collectible_for_sale)): ?>

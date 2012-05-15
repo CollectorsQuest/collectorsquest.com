@@ -13,7 +13,7 @@
     <div class="tab-content">
 
       <div id="modal-login-username-pane" class="tab-pane active">
-        <form action="<?= url_for('@login'); ?>" class="form-horizontal" method="post">
+        <form action="<?= url_for('@login', true); ?>" class="form-horizontal" method="post">
           <?= $login_form->renderUsing('Bootstrap') ?>
           <div class="form-actions">
             <button type="submit" class="btn btn-primary">Log&nbsp;In</button>
