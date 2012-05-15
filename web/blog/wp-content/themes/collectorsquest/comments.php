@@ -56,7 +56,7 @@
 
         <!--<p><small><strong>XHTML:</strong> You can use these tags: <?php echo allowed_tags(); ?></small></p>-->
 
-        <textarea class="input-append" name="comment" id="c" rows="10" colspan="3" style="width: 476px; height: 23px;"></textarea>
+        <textarea class="input-append" name="comment" id="c" rows="10" colspan="3" style="width: 494px; height: 23px;"></textarea>
         <!-- <input class="input-append" type="text" id="c" data-provide="comment" autocomplete="off" name="comment">
 
         <!--<p><input name="submit" type="submit" id="submit" tabindex="5" value="Submit Comment" />-->
@@ -108,9 +108,10 @@
     </div>
 	</div>
 
-  <div class="see-more-under-image-set">
-<?php previous_comments_link() ?>
+  <div id="<?php the_ID() ?>">
+    <a id="load_comments" href="javascript:void(0);" class="btn btn-small gray-button see-more-full">See more</a>
   </div>
+
 
  <?php else : // this is displayed if there are no comments so far ?>
 

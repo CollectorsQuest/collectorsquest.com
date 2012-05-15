@@ -341,40 +341,6 @@ function cq_ajax_posts_comments() {
       )
     );
   }
-  elseif (is_single())
-  {
-    // Queue JS and CSS
-    wp_enqueue_script(
-      'cq-load-comments', '/wp-content/themes/collectorsquest/js/load-comments.js',
-      array('jquery'), '1.0', true
-    );
-    global $post;
-    // What page are we on? And what is the pages limit?
-    $max = 10;
-    $paged = get_comment_pages_count() > 1 && get_option( 'page_comments' );
-
-    $comments = get_comments($post->ID);
-    global $wp_query;
-    $re = get_query_var('cpage');
-    $pl = get_previous_comments_link();
-
-    $count = preg_match('/href=(["\"])(.*?)\1/', $pl, $match);
-    if ($count === FALSE)
-      $prev = ('not found\n');
-    else
-      $prev = $match[2];
-
-
-    // Add some parameters for the JS.
-    wp_localize_script(
-      'cq-load-comments', 'cq',
-      array(
-        'startPage' => 1,
-        'maxPages'  => 10,
-        'nextLink'  => $prev
-      )
-    );
-  }
 }
 add_action('template_redirect', 'cq_ajax_posts_comments');
 
@@ -517,3 +483,54 @@ function cq_comment($comment, $args, $depth) {
     </div>
   <?php
   }
+
+function add_ajaxurl_cdata_to_front(){
+  ?>
+  <script type="text/javascript">
+    //<![CDATA[
+    ajaxurl = '<?php echo admin_url( 'admin-ajax.php'); ?>';
+    //]]>
+  </script>
+
+
+  <script type="text/javascript">
+    $('#load_comments').click(function(){
+
+      var post_id = $(this).parent("div").attr("id");
+      $(this).text('Loading comments...');
+
+      $.ajax({
+        type: 'POST',
+        url: ajaxurl,
+        data: {"action": "load_comments", post_id: post_id},
+        success: function(data){
+          jQuery(".commentlist").html(data);
+
+          $('#load_comments').remove();
+
+        }
+      });
+      return false;
+    });
+  </script>
+<?php
+}
+add_action( 'wp_footer', 'add_ajaxurl_cdata_to_front', 11);
+
+
+add_action( 'wp_ajax_load_comments', 'load_comments' );
+add_action( 'wp_ajax_nopriv_load_comments', 'load_comments' );
+function load_comments(){
+
+global $post, $wp_query, $post_id;
+  $post_id = isset($_POST['post_id'])? intval($_POST['post_id']) : 0;
+  $args = array(
+    'post_id' => $post_id,
+    'status' => 'approve',
+    'order'   => 'ASC'
+  );
+  $wp_query->comments = get_comments( $args );
+  wp_list_comments('type=comment&callback=cq_comment&style=div&per_page=20');
+  comments_template();
+  die();
+}
