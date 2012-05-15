@@ -372,6 +372,11 @@ $lastclass = 0;
             <span class='st_sharethis_custom'>Share This</span>
           </div> -->
           <?php if (is_single()) : ?>
+          <span class="meta-text">
+            <a href="<?php the_permalink(); ?>">Permalink</a> |
+            <?php edit_post_link('Edit', '', ' | '); ?>  <?php comments_popup_link('Add a comment &#187;', '1 Comment &#187;', '% Comments &#187;'); ?>
+          </span>
+
           <div class="entry-share pull-right">
             <!-- ShareThis Button BEGIN
             <span class='st_email_hcount'></span>
