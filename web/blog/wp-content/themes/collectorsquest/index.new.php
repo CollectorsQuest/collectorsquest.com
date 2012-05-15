@@ -418,7 +418,6 @@ $lastclass = 0;
     <?php comments_template(); ?>
     </div>
 
-     <div class="perlinknklink">Permalink: <a href="<?php the_permalink(); ?>"><?php the_permalink() ?></a></div>
     <?php endif; ?>
 
     <?php if ( is_archive() && $wp_query->max_num_pages > 1 ) : ?>
