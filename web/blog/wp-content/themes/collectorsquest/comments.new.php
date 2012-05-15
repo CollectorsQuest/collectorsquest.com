@@ -27,6 +27,8 @@
 <?php if ('open' == $post->comment_status) : ?>
 
   <!--<h3 align="left" id="respond"><b>Leave a Reply</b></h3>-->
+  <h3><?php comments_number('Leave a Reply', 'One Response', '% Responses' );?> to &#8220;<?php the_title(); ?>&#8221;</h3>
+
 
   <?php if ( get_option('comment_registration') && !$user_ID ) : ?>
   <p>You must be <a href="<?php echo get_option('siteurl'); ?>/wp-login.php?redirect_to=<?php the_permalink(); ?>">logged in</a> to post a comment.</p>
@@ -99,19 +101,18 @@
 
 
 <?php if ($comments) : ?>
-	<!-- <h3 id="comments"><?php comments_number('No Responses', 'One Response', '% Responses' );?> to &#8220;<?php the_title(); ?>&#8221;</h3> -->
 
   <div class="user-comments">
     <div class="commentlist">
-      <?php global $wp_query; if (get_query_var('cpage')) : $g = 2; else : $g = -1; endif;
-      wp_list_comments('type=comment&callback=cq_comment&style=div&per_page='.$g); ?>
+      <?php wp_list_comments('type=comment&callback=cq_comment&style=div&per_page=5'); ?>
     </div>
 	</div>
 
+  <?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // Are there comments to navigate through? ?>
   <div id="<?php the_ID() ?>">
     <a id="load_comments" href="javascript:void(0);" class="btn btn-small gray-button see-more-full">See more</a>
   </div>
-
+  <?php endif; ?>
 
  <?php else : // this is displayed if there are no comments so far ?>
 
