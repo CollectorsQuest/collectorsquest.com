@@ -323,8 +323,7 @@ $lastclass = 0;
             </a>
             <span class="author-info">
             By <a href="<?php echo get_author_posts_url(get_the_author_meta('ID')) ?>"
-                  title="<?php the_author() ?>'s articles on collecting..."><?php the_author() ?></a> <!-- <span class="entry-date">| Posted <?php the_date('M d, Y') ?>
-            at <?php the_time('g:i a') ?></span> -->
+                  title="<?php the_author() ?>'s articles on collecting..."><?php the_author() ?></a> <span class="entry-date">| Posted <?php if (date('mdy') != get_the_date('mdy')) : echo human_time_diff( get_the_time('U'), current_time('timestamp') ) . ' ago'; else : the_date('M dS, Y'); endif; ?></span>
             </span>
           </span>
 

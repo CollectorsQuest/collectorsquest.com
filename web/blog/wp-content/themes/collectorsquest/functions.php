@@ -517,7 +517,6 @@ function add_ajaxurl_cdata_to_front(){
 }
 add_action( 'wp_footer', 'add_ajaxurl_cdata_to_front', 11);
 
-
 add_action( 'wp_ajax_load_comments', 'load_comments' );
 add_action( 'wp_ajax_nopriv_load_comments', 'load_comments' );
 function load_comments(){
@@ -533,4 +532,20 @@ global $post, $wp_query, $post_id;
   wp_list_comments('type=comment&callback=cq_comment&style=div&per_page=20');
   comments_template();
   die();
+}
+
+
+function is_days_ago($days = 7) {
+  global $post;
+  if(is_single() || is_page()) {
+    $expire = time() - $days*24*60*60;
+    if (mysql2date("U", $post->post_date) > $expire) {
+      $return = true;
+    }else{
+      $return = false;
+    }
+  }else{
+    $return = false;
+  }
+  return $return;
 }
