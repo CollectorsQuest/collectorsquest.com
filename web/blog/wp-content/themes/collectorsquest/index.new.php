@@ -133,6 +133,11 @@
       <h1 class="Chivo webfont" style="visibility: visible; "><?php _e( 'Related News:', 'collectorsquest' ) ?>&nbsp;&nbsp;<span><?php single_tag_title() ?></span></h1>
       <?php $categorydesc = category_description(); if ( !empty($categorydesc) ) echo apply_filters( 'archive_meta', '<div class="archive-meta">' . $categorydesc . '</div>' ); ?>
     </div>
+  <?php } elseif (is_search()) { ?>
+  <div class="span11">
+    <h1 class="Chivo webfont" style="visibility: visible; "><?php _e( 'Search Results for:', 'collectorsquest' ) ?>&nbsp;&nbsp;<span><?php the_search_query(); ?></span></h1>
+    <?php $categorydesc = category_description(); if ( !empty($categorydesc) ) echo apply_filters( 'archive_meta', '<div class="archive-meta">' . $categorydesc . '</div>' ); ?>
+  </div>
   <?php } ?>
 
 <?php if (!is_author()) : ?>
@@ -288,7 +293,7 @@ $lastclass = 0;
               endif;
               ?>
 
-            <?php elseif (is_front_page() || is_archive()) : ?>
+            <?php elseif (is_front_page() || is_archive() || is_search()) : ?>
             <img src="/blog/wp-content/themes/collectorsquest/thumb.php?src=<?php echo $image_url; //'http://placekitten.com/700/700'; ?>&w=<?php echo $img_w ?>&h=<?php echo $img_h ?>&zc=1&a=t" alt=""/>
             <?php endif; ?>
 
@@ -303,7 +308,7 @@ $lastclass = 0;
 
         </div>
 
-        <?php if (is_front_page() || is_archive()) : ?>
+        <?php if (is_front_page() || is_archive() || is_search()) : ?>
           <!-- <div class="entry-genre"><a href="" title=""><?php the_category() ?></a></div> -->
           <h2 class="entry-title <?php if (is_front_page() && $count==1): echo "span6"; elseif (!is_single()) : echo  "span9"; endif; ?>"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
         <?php endif; ?>
@@ -351,7 +356,7 @@ $lastclass = 0;
           <?php
           if (is_single()) :
              the_content();
-          elseif (is_front_page()||is_archive()) :
+          elseif (is_front_page() || is_archive() || is_search()) :
 
             if (is_front_page() && $count == 1) :
               cq_excerpt('cq_excerptlength_firstpost');
