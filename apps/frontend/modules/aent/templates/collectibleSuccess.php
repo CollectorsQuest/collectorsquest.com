@@ -58,7 +58,7 @@
 
 <?php include_partial('sandbox/comments'); ?>
 <div class="permalink">
-  Permalink: <span class="lightblue"><?= url_for_collectible($collectible, true) ?></span>
+  Permalink: <span class="darkblue"><?= url_for_collectible($collectible, true) ?></span>
 </div>
 
 <?php
