@@ -323,20 +323,25 @@ $lastclass = 0;
             </a>
             <span class="author-info">
             By <a href="<?php echo get_author_posts_url(get_the_author_meta('ID')) ?>"
-                  title="<?php the_author() ?>'s articles on collecting..."><?php the_author() ?></a> <span class="entry-date">| Posted <?php if (date('mdy') != get_the_date('mdy')) : echo human_time_diff( get_the_time('U'), current_time('timestamp') ) . ' ago'; else : the_date('M dS, Y'); endif; ?></span>
+                  title="<?php the_author() ?>'s articles on collecting..."><?php the_author() ?></a>
+              <span class="entry-date">| Posted
+                <?php
+                  $postdate = get_the_date('mdy');
+                  $date = date('mdy');
+                  if ($date == $postdate ||
+                    date('mdy',strtotime($date." -1 day")) == $postdate ||
+                    date('mdy',strtotime($date." -2 days")) == $postdate) :
+                    echo human_time_diff( get_the_time('U'), current_time('timestamp') ) . ' ago';
+                  else :
+                    the_date('M dS, Y');
+                  endif;
+                ?>
+              </span>
             </span>
           </span>
 
           <?php if (is_single()) : ?>
           <div class="entry-share pull-right <?php if (is_front_page() && $count==1): echo "span6"; endif; ?>">
-            <!-- ShareThis Button BEGIN
-            <span class='st_email_hcount'></span>
-            <span class='st_facebook_hcount'></span>
-            <span class='st_twitter_hcount'></span>
-            <span class='st_googleplus_hcount'></span>
-            <span class='st_pinterest_hcount'></span>
-            ShareThis Button BEGIN -->
-
             <!-- AddThis Button BEGIN -->
             <div class="addthis_toolbox addthis_default_style">
               <a class="addthis_button_email"></a>
@@ -351,7 +356,7 @@ $lastclass = 0;
         </div>
 
 
-        <div class="entry-content <?php if (is_front_page() && $count==1): echo "span6"; elseif (!is_single()) : echo  "span9"; endif; ?>">
+        <div class="entry-content <?php if (is_front_page() && $count==1): echo "span6"; elseif (!is_single()) : echo "span9"; else : echo "span12"; endif; ?>">
           <?php
           if (is_single()) :
              the_content();
@@ -382,14 +387,6 @@ $lastclass = 0;
           </span>
 
           <div class="entry-share pull-right">
-            <!-- ShareThis Button BEGIN
-            <span class='st_email_hcount'></span>
-            <span class='st_facebook_hcount'></span>
-            <span class='st_twitter_hcount'></span>
-            <span class='st_googleplus_hcount'></span>
-            <span class='st_pinterest_hcount'></span>
-            ShareThis Button BEGIN -->
-
             <!-- AddThis Button BEGIN -->
             <div class="addthis_toolbox addthis_default_style">
               <a class="addthis_button_email"></a>
