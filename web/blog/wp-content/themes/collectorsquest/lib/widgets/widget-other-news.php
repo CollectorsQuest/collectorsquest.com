@@ -59,8 +59,14 @@ class cq_other_news_widget extends WP_Widget {
 
       <?php endif; ?>
 
-      <?php global $post; //if (is_single()) : $offset = 0; else : $offset = 7; endif; ?>
-      <?php $posts = get_posts("showposts=3"); ?>
+      <?php global $post;
+            $cats = get_the_category($post->ID);
+            foreach ($cats as $cat) {
+              $cats .= $cat->cat_ID.',';
+            }
+      ?>
+
+      <?php $posts = get_posts("showposts=3&category=".$cats); ?>
 
       <?php foreach($posts as $post) { setup_postdata($post); ?>
       <div class="row-fluid bottom-margin">
