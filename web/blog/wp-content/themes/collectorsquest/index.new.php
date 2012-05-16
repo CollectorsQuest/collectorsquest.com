@@ -115,7 +115,7 @@
       <?php echo get_avatar(get_the_author_meta('ID'),192) //<img src="http://placekitten.com/33/33" alt="" width="33" height="33"/> ?>
     </div>
     <div class="author-bio span8">
-      <?php echo $curauth->user_description; ?>
+      <?php echo apply_filters('the_content', $curauth->user_description); ?>
     </div>
   </div>
   <div class="row-fluid section-title">
