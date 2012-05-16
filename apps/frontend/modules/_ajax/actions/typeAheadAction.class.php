@@ -12,7 +12,7 @@ class typeAheadAction extends IceAjaxAction
     $q = $request->getParameter('q');
     $limit = $request->getParameter('limit', 10);
 
-    $categories = CollectionCategoryQuery::create()
+    $categories = ContentCategoryQuery::create()
       ->filterByName("%$q%", Criteria::LIKE)
       ->limit($limit)
       ->find()

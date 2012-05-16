@@ -21,27 +21,6 @@ class _sidebarComponents extends cqFrontendComponents
   /**
    * @return string
    */
-  public function executeWidgetCollectionCategories()
-  {
-    // Set the limit of Collections to show
-    $this->limit = (int) $this->getVar('limit') ?: 30;
-
-    // Set the number of columns to show
-    $this->columns = (int) $this->getVar('columns') ?: 2;
-
-    $q = CollectionCategoryQuery::create()
-      ->filterById(0, Criteria::NOT_EQUAL)
-      ->filterByParentId(0, Criteria::EQUAL)
-      ->orderByName(Criteria::ASC)
-      ->limit($this->limit);
-    $this->categories = $q->find();
-
-    return $this->_sidebar_if(count($this->categories) > 0);
-  }
-
-  /**
-   * @return string
-   */
   public function executeWidgetContentCategories()
   {
     // Set the limit of Categories to show
@@ -50,9 +29,7 @@ class _sidebarComponents extends cqFrontendComponents
     // Set the number of columns to show
     $this->columns = (int) $this->getVar('columns') ?: 2;
 
-    $q = CollectionCategoryQuery::create()
-      ->filterById(0, Criteria::NOT_EQUAL)
-      ->filterByParentId(0, Criteria::EQUAL)
+    $q = ContentCategoryQuery::create()
       ->orderByName(Criteria::ASC)
       ->limit($this->limit);
     $this->categories = $q->find();

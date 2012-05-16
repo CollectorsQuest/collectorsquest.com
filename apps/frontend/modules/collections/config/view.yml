@@ -5,6 +5,6 @@ indexSuccess:
   components:
     sidebar_300: [collections, sidebarIndex]
 
-categorySuccess:
+collectorSuccess:
   components:
-    sidebar_180: [collections, sidebarCategory]
+    sidebar_300: [collections, sidebarCollector]
