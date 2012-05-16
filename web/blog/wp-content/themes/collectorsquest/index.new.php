@@ -384,7 +384,7 @@ $lastclass = 0;
           <?php if (is_single()) : ?>
           <span class="meta-text">
             <a href="<?php the_permalink(); ?>">Permalink</a> |
-            <?php edit_post_link('Edit', '', ' | '); ?>  <?php comments_popup_link('Add a comment &#187;', '1 Comment &#187;', '% Comments &#187;'); ?>
+            <?php edit_post_link('Edit', '', ''); ?>
           </span>
 
           <div class="entry-share pull-right">
