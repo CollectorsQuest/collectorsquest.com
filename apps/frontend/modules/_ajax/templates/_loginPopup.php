@@ -2,8 +2,8 @@
   <div class="modal-header">
     <button class="close" data-dismiss="modal">×</button>
     <ul class="nav nav-pills">
-      <li class="active"><a href="#modal-login-username-pane" data-toggle="tab">Collectors' Quest</a></li>
-      <li><a href="#modal-login-openid-pane" data-toggle="tab">OpenID</a></li>
+      <li class="active"><a href="#modal-login-username-pane" class="btn gray-button" data-toggle="tab">Collectors' Quest</a></li>
+      <li><a href="#modal-login-openid-pane" class="btn gray-button spacer-left" data-toggle="tab">OpenID</a></li>
       <li class="pull-right spacer-right"><a href="#modal-sign-up-pane" data-toggle="tab">Sign up!</a></li>
     </ul>
     <h1 class="header-text" style="display: none;"></h1>
@@ -16,7 +16,7 @@
         <form action="<?= url_for('@login', true); ?>" class="form-horizontal" method="post">
           <?= $login_form->renderUsing('Bootstrap') ?>
           <div class="form-actions">
-            <button type="submit" class="btn btn-primary">Log&nbsp;In</button>
+            <button type="submit" class="btn btn-primary blue-button">Log&nbsp;In</button>
             <span class="pull-right"><?= link_to('Forgot your password?', '@recover_password'); ?></span>
           </div>
         </form>
