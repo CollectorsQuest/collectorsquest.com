@@ -471,11 +471,10 @@ function cq_comment($comment, $args, $depth) {
       </div>
       <div class="span10">
         <p class="bubble left">
-          <?php comment_author_link() ?>
+          <span class="comment-author"><?php comment_author_link() ?></span>
           <?php if ($comment->comment_approved == '0') : ?>
           <em>Your comment is awaiting moderation.</em>
           <?php endif; ?>
-          <br />
           <?php echo $comment->comment_content; ?>
           <span class="comment-time"><a href="#comment-<?php comment_ID() ?>" title=""><?php comment_date('F jS, Y') ?> at <?php comment_time() ?></a> <?php edit_comment_link('edit','',''); ?></span>
         </p>
