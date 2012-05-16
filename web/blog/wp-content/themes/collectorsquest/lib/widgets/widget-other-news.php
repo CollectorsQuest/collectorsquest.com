@@ -66,7 +66,7 @@ class cq_other_news_widget extends WP_Widget {
             }
       ?>
 
-      <?php $posts = get_posts("showposts=3&category=".$cats); ?>
+      <?php $posts = get_posts("showposts=3&category=".$cats."&exclude=".$post->ID); ?>
 
       <?php foreach($posts as $post) { setup_postdata($post); ?>
       <div class="row-fluid bottom-margin">
