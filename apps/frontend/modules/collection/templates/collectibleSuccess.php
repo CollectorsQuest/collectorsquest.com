@@ -132,12 +132,12 @@
 
   <form action="<?= url_for('@shopping_cart', true); ?>" method="post">
 
-    <div id="price-container">
-      <span class="price-large">
+    <div id="price-container" class="spacer-top-25">
+      <p class="price">
         <?= money_format('%.2n', (float) $collectible_for_sale->getPrice()); ?>
-      </span>
+      </p>
       <?php if (!$sf_user->getCollector()->isOwnerOf($collectible_for_sale)): ?>
-      <button type="submit" class="btn btn-primary blue-button" value="Add Item to Cart">
+      <button type="submit" class="btn btn-primary blue-button pull-left" value="Add Item to Cart">
         <i class="add-to-card-button"></i>
         <span>Add Item to Cart</span>
       </button>
@@ -153,6 +153,6 @@
 
 <?php endif; ?>
 
-<div class="spacer">
+<div class="spacer-35">
   Permalink: <span class="darkblue"><?= url_for_collectible($collectible, true) ?></span>
 </div>
