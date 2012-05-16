@@ -46,6 +46,7 @@ class collectionsComponents extends cqFrontendComponents
       {
         $collectible_ids = explode(',', (string) $values['cq_collectible_ids']);
         $collectible_ids = array_map('trim', $collectible_ids);
+        $collectible_ids = array_filter($collectible_ids);
 
         $q = CollectibleQuery::create()
           ->filterById($collectible_ids)
@@ -71,6 +72,7 @@ class collectionsComponents extends cqFrontendComponents
       {
         $collectible_ids = explode(',', (string) $values['cq_collectible_ids']);
         $collectible_ids = array_map('trim', $collectible_ids);
+        $collectible_ids = array_filter($collectible_ids);
 
         $q = CollectibleQuery::create()
           ->filterById($collectible_ids)
@@ -134,6 +136,7 @@ class collectionsComponents extends cqFrontendComponents
         {
           $collection_ids = explode(',', (string) $values['cq_collection_ids']);
           $collection_ids = array_map('trim', $collection_ids);
+          $collection_ids = array_filter($collection_ids);
 
           // Adding American Pickers and Pawn Stars at the top
           $collection_ids = array_merge(array(2842, 2841), $collection_ids);

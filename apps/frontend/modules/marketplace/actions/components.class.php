@@ -71,6 +71,7 @@ class marketplaceComponents extends cqFrontendComponents
         {
           $collectible_ids = explode(',', (string) $values['cq_collectible_ids']);
           $collectible_ids = array_map('trim', $collectible_ids);
+          $collectible_ids = array_filter($collectible_ids);
 
           $query = CollectibleQuery::create()
             ->filterById($collectible_ids)

@@ -279,6 +279,7 @@ class _sidebarComponents extends cqFrontendComponents
       {
         $collector_ids = explode(',', (string) $values['cq_collector_ids']);
         $collector_ids = array_map('trim', $collector_ids);
+        $collector_ids = array_filter($collector_ids);
 
         $q = CollectorQuery::create()
           ->filterById($collector_ids, Criteria::IN)
