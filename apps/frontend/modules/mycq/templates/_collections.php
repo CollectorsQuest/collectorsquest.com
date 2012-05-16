@@ -61,7 +61,7 @@
       </div>
       <div class="span4 thumbnail link">
         <div class="row-fluid spacer-inner-top-15">
-          <div class="span4">
+          <div class="span5">
             <a href="#" class="btn-create-collection-middle spacer-left-20">
               <i class="icon-plus icon-white"></i>
             </a>
