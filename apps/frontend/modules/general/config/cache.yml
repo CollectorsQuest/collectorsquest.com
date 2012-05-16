@@ -1,0 +1,9 @@
+_indexCarousel:
+  enabled:     true
+  with_layout: false
+  lifetime:    300
+
+index:
+  enabled:     true
+  with_layout: false
+  lifetime:    60
