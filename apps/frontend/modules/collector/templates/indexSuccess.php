@@ -1,9 +1,19 @@
+<?php
+/**
+ * @var $sf_user cqFrontendUser
+ * @var $collector Collector
+ * @var $profile CollectorProfile
+ */
+?>
+
 <div class="row-fluid header-bar">
   <div class="span9">
-    <h1 class="Chivo webfont" style="margin-left: 145px;"><?= $collector->getDisplayName() ?></h1>
+    <h1 class="Chivo webfont" style="margin-left: 145px;">
+      <?= $sf_user->isOwnerOf($collector) ? 'This is you!' : $collector->getDisplayName(); ?>
+    </h1>
   </div>
   <div class="span3 text-right">
-    <?= ($sf_user->isOwnerOf($collector)) ? link_to('Edit Your Profile →', '@mycq_profile') : '&nbsp;'; ?>
+    <?= $sf_user->isOwnerOf($collector) ? link_to('Edit Your Profile →', '@mycq_profile') : '&nbsp;'; ?>
   </div>
 </div>
 
@@ -20,13 +30,13 @@
               <?php
               echo sprintf(
                 '%s %s collector',
-                in_array(strtolower(substr($collector->getCollectorType(), 0, 1)), array('a', 'e', 'i', 'o')) ? 'An' : 'A',
-                '<strong>'. $collector->getCollectorType() .'</strong>'
+                in_array(strtolower(substr($profile->getCollectorType(), 0, 1)), array('a', 'e', 'i', 'o')) ? 'An' : 'A',
+                '<strong>'. $profile->getCollectorType() .'</strong>'
               );
               ?>
             </li>
             <li>
-              From <?= $collector->getProfile()->getCountry(); ?>
+              From <?= $profile->getCountry(); ?>
             </li>
           </ul>
           <p><strong>Collecting:</strong>

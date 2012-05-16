@@ -8,19 +8,20 @@
 ?>
 
 <?php
+  $name = $sf_user->isOwnerOf($collector) ? 'Your' : $collector->getDisplayName() ."'s";
   if ($pager->haveToPaginate())
   {
-    $link = link_to(
+    $link = $sf_user->isOwnerOf($collector) ? link_to('Edit Collections', '@mycq_collections') .'&nbsp; | &nbsp;' : null ;
+    $link = $link . link_to(
       'See all »',
       '@collections_by_collector?collector_id='. $collector->getId() .'&collector_slug='. $collector->getSlug()
     );
-
-    $title = $collector->getDisplayName() ."'s Latest Collections";
+    $title = $name ." Latest Collections";
   }
   else
   {
     $link = null;
-    $title = $collector->getDisplayName() ."'s Collections";
+    $title = $name ." Collections";
   }
 
   cq_section_title($title, $link);

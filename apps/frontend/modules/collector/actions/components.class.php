@@ -49,7 +49,7 @@ class collectorComponents extends cqFrontendComponents
 
     $c = new Criteria();
     $c->add(CollectorCollectionPeer::COLLECTOR_ID, $collector->getId());
-    $c->addDescendingOrderByColumn(CollectorCollectionPeer::UPDATED_AT);
+    $c->addDescendingOrderByColumn(CollectorCollectionPeer::CREATED_AT);
 
     $pager = new sfPropelPager('CollectorCollection', 6);
     $pager->setPage($this->getRequestParameter('p', 1));
