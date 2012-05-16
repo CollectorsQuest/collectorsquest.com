@@ -1,22 +1,24 @@
 @import "_variables.less";
 
-#addNewCollection {
+.modal {
 	.modal-header {
 		border-bottom: none;
+		background: url("@{baseUrl}/red-dotted-line.png") repeat-x bottom;
+		padding-bottom: 5px;
 
+		.nav-pills {
+			margin-bottom: 5px;
+
+		}
 		h3 {
 			.custom-font(20px, 22px, italic, normal);
 			.smooth-font();
 			color: @red;
 			letter-spacing: 0.04em;
-			background: url("@{baseUrl}/red-dotted-line.png") repeat-x bottom;
 			margin-top: 2px;
-			padding-bottom: 5px;
 		}
 	}
 	.modal-body {
-		max-height: 500px;
-
 		label {
 			font-weight: bold;
 			color: @brown;
@@ -31,11 +33,23 @@
 		.input-xlarge {
 			width: 350px;
 		}
-
 	}
 	.modal-footer {
 		background-color: @lightBlue;
 		border-top: none;
 		text-align: center;
 	}
+}
+
+.modal .modal-header ul.nav-pills li.active .btn {
+	background-color: #E6E6E6;
+	background-image: none;
+	box-shadow: none;
+	cursor: default;
+	opacity: 0.65;
+	color: #a3a3a3;
+}
+
+#addNewCollection .modal-body {
+	max-height: 500px;
 }
