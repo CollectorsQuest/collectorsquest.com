@@ -2,7 +2,7 @@
 
 class _ajaxComponents extends cqFrontendComponents
 {
-  public function executeLoginPopup()
+  public function executeModalLogin()
   {
     $this->login_form = new CollectorLoginForm();
     $this->signup_form = new CollectorSignupStep1Form();
