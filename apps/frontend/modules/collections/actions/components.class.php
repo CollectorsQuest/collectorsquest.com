@@ -25,6 +25,11 @@ class collectionsComponents extends cqFrontendComponents
     return sfView::SUCCESS;
   }
 
+  public function executeSidebarCollector()
+  {
+    return sfView::SUCCESS;
+  }
+
   public function executeFeaturedWeek()
   {
     $q = wpPostQuery::create()

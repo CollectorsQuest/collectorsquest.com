@@ -380,37 +380,6 @@ function link_to_blog_author(wpUser $author, $type = 'text', $options = array())
   }
 }
 
-function link_to_collection_category(CollectionCategory $category, $type = 'text', $options = array())
-{
-  $options = array_merge(
-    array(
-      'alt' => $category->getName(),
-      'title' => $category->getName()
-    ),
-    $options
-  );
-
-  if (empty($options['width']) || empty($options['height']))
-  {
-    unset($options['width']);
-    unset($options['height']);
-  }
-
-  $route = url_for('collections_by_category', $category);
-  switch ($type)
-  {
-    case 'image':
-      $link = null;
-      break;
-    case 'text':
-    default:
-      $link = link_to($category->getName(), $route, $options);
-      break;
-  }
-
-  return $link;
-}
-
 function link_to_content_category(ContentCategory $category, $type = 'text', $options = array())
 {
   $options = array_merge(
