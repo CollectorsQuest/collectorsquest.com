@@ -418,7 +418,7 @@ function new_excerpt_more($more) {
 add_filter('excerpt_more', 'new_excerpt_more');
 
 // adds link class for global styles
-function add_class_the_tags($html){
+function add_class_the_tags($html) {
   if (is_single()) {
     $postid = get_the_ID();
     $html = str_replace('<a','<a class="tags"',$html);
@@ -484,7 +484,8 @@ function cq_comment($comment, $args, $depth) {
   <?php
   }
 
-function add_ajaxurl_cdata_to_front(){
+// ajax comments
+function add_ajaxurl_cdata_to_front() {
   ?>
   <script type="text/javascript">
     //<![CDATA[
@@ -517,10 +518,9 @@ function add_ajaxurl_cdata_to_front(){
 }
 add_action( 'wp_footer', 'add_ajaxurl_cdata_to_front', 11);
 
-
 add_action( 'wp_ajax_load_comments', 'load_comments' );
 add_action( 'wp_ajax_nopriv_load_comments', 'load_comments' );
-function load_comments(){
+function load_comments() {
 
 global $post, $wp_query, $post_id;
   $post_id = isset($_POST['post_id'])? intval($_POST['post_id']) : 0;
@@ -530,7 +530,7 @@ global $post, $wp_query, $post_id;
     'order'   => 'ASC'
   );
   $wp_query->comments = get_comments( $args );
-  wp_list_comments('type=comment&callback=cq_comment&style=div&per_page=20');
+  wp_list_comments('type=comment&callback=cq_comment&style=div&per_page=-1');
   comments_template();
   die();
 }

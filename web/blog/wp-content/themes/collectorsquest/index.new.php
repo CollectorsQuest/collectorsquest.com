@@ -133,6 +133,11 @@
       <h1 class="Chivo webfont" style="visibility: visible; "><?php _e( 'Related News:', 'collectorsquest' ) ?>&nbsp;&nbsp;<span><?php single_tag_title() ?></span></h1>
       <?php $categorydesc = category_description(); if ( !empty($categorydesc) ) echo apply_filters( 'archive_meta', '<div class="archive-meta">' . $categorydesc . '</div>' ); ?>
     </div>
+  <?php } elseif (is_search()) { ?>
+  <div class="span11">
+    <h1 class="Chivo webfont" style="visibility: visible; "><?php _e( 'Search Results for:', 'collectorsquest' ) ?>&nbsp;&nbsp;<span><?php the_search_query(); ?></span></h1>
+    <?php $categorydesc = category_description(); if ( !empty($categorydesc) ) echo apply_filters( 'archive_meta', '<div class="archive-meta">' . $categorydesc . '</div>' ); ?>
+  </div>
   <?php } ?>
 
 <?php if (!is_author()) : ?>
@@ -288,7 +293,7 @@ $lastclass = 0;
               endif;
               ?>
 
-            <?php elseif (is_front_page() || is_archive()) : ?>
+            <?php elseif (is_front_page() || is_archive() || is_search()) : ?>
             <img src="/blog/wp-content/themes/collectorsquest/thumb.php?src=<?php echo $image_url; //'http://placekitten.com/700/700'; ?>&w=<?php echo $img_w ?>&h=<?php echo $img_h ?>&zc=1&a=t" alt=""/>
             <?php endif; ?>
 
@@ -303,7 +308,7 @@ $lastclass = 0;
 
         </div>
 
-        <?php if (is_front_page() || is_archive()) : ?>
+        <?php if (is_front_page() || is_archive() || is_search()) : ?>
           <!-- <div class="entry-genre"><a href="" title=""><?php the_category() ?></a></div> -->
           <h2 class="entry-title <?php if (is_front_page() && $count==1): echo "span6"; elseif (!is_single()) : echo  "span9"; endif; ?>"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
         <?php endif; ?>
@@ -318,21 +323,25 @@ $lastclass = 0;
             </a>
             <span class="author-info">
             By <a href="<?php echo get_author_posts_url(get_the_author_meta('ID')) ?>"
-                  title="<?php the_author() ?>'s articles on collecting..."><?php the_author() ?></a> <!-- <span class="entry-date">| Posted <?php the_date('M d, Y') ?>
-            at <?php the_time('g:i a') ?></span> -->
+                  title="<?php the_author() ?>'s articles on collecting..."><?php the_author() ?></a>
+              <span class="entry-date">| Posted
+                <?php
+                  $postdate = get_the_date('mdy');
+                  $date = date('mdy');
+                  if ($date == $postdate ||
+                    date('mdy',strtotime($date." -1 day")) == $postdate ||
+                    date('mdy',strtotime($date." -2 days")) == $postdate) :
+                    echo human_time_diff( get_the_time('U'), current_time('timestamp') ) . ' ago';
+                  else :
+                    the_date('M dS, Y');
+                  endif;
+                ?>
+              </span>
             </span>
           </span>
 
           <?php if (is_single()) : ?>
           <div class="entry-share pull-right <?php if (is_front_page() && $count==1): echo "span6"; endif; ?>">
-            <!-- ShareThis Button BEGIN
-            <span class='st_email_hcount'></span>
-            <span class='st_facebook_hcount'></span>
-            <span class='st_twitter_hcount'></span>
-            <span class='st_googleplus_hcount'></span>
-            <span class='st_pinterest_hcount'></span>
-            ShareThis Button BEGIN -->
-
             <!-- AddThis Button BEGIN -->
             <div class="addthis_toolbox addthis_default_style">
               <a class="addthis_button_email"></a>
@@ -347,11 +356,11 @@ $lastclass = 0;
         </div>
 
 
-        <div class="entry-content <?php if (is_front_page() && $count==1): echo "span6"; elseif (!is_single()) : echo  "span9"; endif; ?>">
+        <div class="entry-content <?php if (is_front_page() && $count==1): echo "span6"; elseif (!is_single()) : echo "span9"; else : echo "span12"; endif; ?>">
           <?php
           if (is_single()) :
              the_content();
-          elseif (is_front_page()||is_archive()) :
+          elseif (is_front_page() || is_archive() || is_search()) :
 
             if (is_front_page() && $count == 1) :
               cq_excerpt('cq_excerptlength_firstpost');
@@ -378,14 +387,6 @@ $lastclass = 0;
           </span>
 
           <div class="entry-share pull-right">
-            <!-- ShareThis Button BEGIN
-            <span class='st_email_hcount'></span>
-            <span class='st_facebook_hcount'></span>
-            <span class='st_twitter_hcount'></span>
-            <span class='st_googleplus_hcount'></span>
-            <span class='st_pinterest_hcount'></span>
-            ShareThis Button BEGIN -->
-
             <!-- AddThis Button BEGIN -->
             <div class="addthis_toolbox addthis_default_style">
               <a class="addthis_button_email"></a>

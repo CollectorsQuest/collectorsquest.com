@@ -12,7 +12,7 @@ cq_sidebar_title(
     <li><?= link_to('American Pickers', '@aetn_american_pickers') ?></li>
     <li><?= link_to('Pawn Stars', '@aetn_pawn_stars') ?></li>
     <?php
-      /** @var $categories CollectionCategory[] */
+      /** @var $categories ContentCategory[] */
       foreach ($categories as $i => $category)
       {
         echo '<li>', ($category) ? link_to_content_category($category, 'text') : '', '</li>';

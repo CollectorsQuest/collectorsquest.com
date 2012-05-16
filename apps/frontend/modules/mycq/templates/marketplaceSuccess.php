@@ -1,6 +1,4 @@
 
-<?php //include_component('mycq', 'snapshot'); ?>
-
 <div id="not-a-seller-box">
   <div class="row-fluid">
     <div class="span2">

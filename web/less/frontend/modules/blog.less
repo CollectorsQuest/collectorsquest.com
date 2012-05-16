@@ -1,7 +1,7 @@
 @import "../_variables.less";
 @import "../_mixins.less";
 
-#entry-image-box,#entry-image-box-button,.stArrow,#networkedblogs_nwidget_container,img#wpstats
+#entry-image-box,#entry-image-box-button,.stArrow,#networkedblogs_nwidget_container,img#wpstats,.comment-option-wrap
 {
 	display:none !important
 }
@@ -60,7 +60,7 @@ h2 a:hover
 
 .aligncenter
 {
-	margin:0 auto 20px
+	margin:0 auto 20px;
 }
 
 .wp-caption-text
@@ -237,7 +237,8 @@ h2 a:hover
   {
     font-size:14px;
     line-height:20px;
-    text-align:justify
+    text-align:justify;
+    margin-left:0
   }
 
   .entry-meta,.entry-footer
@@ -366,12 +367,24 @@ ul.sub-page-list li.active ul, ul.sub-page-list li.current_page_ancestor ul
   margin-bottom:0px
 }
 
-.comment-option-wrap {display:none}
-.post-comment textarea {border-radius:5px 0 0 5px}
 
+.post-comment textarea {border-radius:5px 0 0 5px}
 #author-info-box {margin-bottom:25px}
 .gallery img {border:none !important;width:140px;height:auto}
 .widget_cq_tags_widget .sidebar-title {margin-bottom:0}
 .entry-footer .meta-text {margin-top:10px;margin-left:5px}
+body {color:#555}
+.entry-title {color:@blueDark}
 
-.entry-content {color:#555}
+blockquote {
+  display: inline-block;
+  }
+
+
+img[align="left"] {
+   margin-right:20px
+}
+
+img[align="right"] {
+   margin-left:20px
+}

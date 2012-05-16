@@ -1,6 +1,4 @@
 
-<?php include_component('mycq', 'collectorSnapshot'); ?>
-
 <div id="mycq-tabs">
   <ul class="nav nav-tabs">
     <li class="active">
