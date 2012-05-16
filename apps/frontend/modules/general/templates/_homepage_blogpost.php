@@ -3,7 +3,7 @@
     <a href="<?= $blog_post->getPostUrl(); ?>" class="link">
       <div class="blog-img"><?= image_tag_multimedia($blog_post->getPrimaryImage(), '270x270'); ?></div>
       <h3 class="Chivo webfont" style="line-height: 26px;"><?= $blog_post->getPostTitle(); ?></h3>
-      <p><?= cqStatic::truncateText($blog_post->getPlainPostContent(), 350, '...', true); ?></p>
+      <p><?= cqStatic::truncateText($blog_post->getPlainPostContent(), 160, '...', true); ?></p>
     </a>
     <div class="masonry-blogpost-author">
       <p>
