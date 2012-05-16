@@ -17,9 +17,7 @@
     <div class="span-12">
       <ul class="thumbnails">
         <li class="span6">
-          <a href="#">
-            <?= image_tag_wp_post($wp_post, '308x301'); ?>
-          </a>
+          <?= image_tag_wp_post($wp_post, '308x301'); ?>
           <span class="white-block">
             <?= $wp_post->getPostContent(); ?>
           </span>
