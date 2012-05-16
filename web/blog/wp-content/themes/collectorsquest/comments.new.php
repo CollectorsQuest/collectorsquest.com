@@ -26,8 +26,8 @@
 
 <?php if ('open' == $post->comment_status) : ?>
 
-  <!--<h3 align="left" id="respond"><b>Leave a Reply</b></h3>-->
-  <h3><?php comments_number('Leave a Reply', 'One Response', '% Responses' );?> to &#8220;<?php the_title(); ?>&#8221;</h3>
+  <!--<h3 align="left" id="respond"><b>Comment on</b></h3>-->
+  <h3><?php comments_number('Comment', 'One Comment', '% Comments' );?> on &#8220;<?php the_title(); ?>&#8221;</h3>
 
 
   <?php if ( get_option('comment_registration') && !$user_ID ) : ?>
