@@ -326,7 +326,7 @@ $lastclass = 0;
                   title="<?php the_author() ?>'s articles on collecting..."><?php the_author() ?></a>
               <span class="entry-date">| Posted
                 <?php
-                global $post;
+               /* global $post;
                   $postdate = get_the_date('mdy');
                   $date = date('mdy');
                   if ($date == $postdate ||
@@ -334,8 +334,9 @@ $lastclass = 0;
                     date('mdy',strtotime($date." -2 days")) == $postdate) :
                     echo human_time_diff( get_the_time('U'), current_time('timestamp') ) . ' ago';
                   else :
+                  endif;*/
                     echo get_the_date('M dS, Y');
-                  endif;
+
                 ?>
               </span>
             </span>
