@@ -2,6 +2,7 @@
 /**
  * @var  $collector  Collector
  * @var  $profile    CollectorProfile
+ * @var  $sf_user    cqFrontendUser
  */
 ?>
 
@@ -23,7 +24,10 @@
   </div>
 </div>
 
-<?php cq_section_title('More About '. $collector->getDisplayName()); ?>
+<?php
+  $name = $sf_user->isOwnerOf($collector) ? 'You' : $collector->getDisplayName();
+  cq_section_title('More About '. $name);
+?>
 <div class="personal-info-sidebar">
   <?php if ($text = $profile->getProperty('about.me')): ?>
     <p><strong>About me:</strong> <?= $text; ?></p>

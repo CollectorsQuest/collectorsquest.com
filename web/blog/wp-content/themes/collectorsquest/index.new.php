@@ -115,7 +115,7 @@
       <?php echo get_avatar(get_the_author_meta('ID'),192) //<img src="http://placekitten.com/33/33" alt="" width="33" height="33"/> ?>
     </div>
     <div class="author-bio span8">
-      <?php echo $curauth->user_description; ?>
+      <?php echo apply_filters('the_content', $curauth->user_description); ?>
     </div>
   </div>
   <div class="row-fluid section-title">
@@ -326,6 +326,7 @@ $lastclass = 0;
                   title="<?php the_author() ?>'s articles on collecting..."><?php the_author() ?></a>
               <span class="entry-date">| Posted
                 <?php
+                global $post;
                   $postdate = get_the_date('mdy');
                   $date = date('mdy');
                   if ($date == $postdate ||
@@ -333,7 +334,7 @@ $lastclass = 0;
                     date('mdy',strtotime($date." -2 days")) == $postdate) :
                     echo human_time_diff( get_the_time('U'), current_time('timestamp') ) . ' ago';
                   else :
-                    the_date('M dS, Y');
+                    echo get_the_date('M dS, Y');
                   endif;
                 ?>
               </span>

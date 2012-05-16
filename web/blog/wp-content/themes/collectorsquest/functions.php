@@ -522,7 +522,7 @@ add_action( 'wp_ajax_load_comments', 'load_comments' );
 add_action( 'wp_ajax_nopriv_load_comments', 'load_comments' );
 function load_comments() {
 
-global $post, $wp_query, $post_id;
+  global $post, $wp_query, $post_id;
   $post_id = isset($_POST['post_id'])? intval($_POST['post_id']) : 0;
   $args = array(
     'post_id' => $post_id,
@@ -534,3 +534,42 @@ global $post, $wp_query, $post_id;
   comments_template();
   die();
 }
+
+
+
+
+// add TinyMCE editor to the "Biographical Info" field in a user profile
+function kpl_user_bio_visual_editor( $user ) {
+  // Requires WP 3.3+ and author level capabilities
+  if ( function_exists('wp_editor') && current_user_can('publish_posts') ):
+    ?>
+    <script type="text/javascript">
+      (function($){
+        // Remove the textarea before displaying visual editor
+        $('#description').parents('tr').remove();
+      })(jQuery);
+    </script>
+
+    <table class="form-table">
+      <tr>
+        <th><label for="description"><?php _e('Biographical Info'); ?></label></th>
+        <td>
+          <?php
+          $description = get_user_meta( $user->ID, 'description', true);
+          wp_editor( $description, 'description' );
+          ?>
+          <p class="description"><?php _e('Share a little biographical information to fill out your profile. This may be shown publicly.'); ?></p>
+        </td>
+      </tr>
+    </table>
+  <?php
+  endif;
+}
+add_action('show_user_profile', 'kpl_user_bio_visual_editor');
+add_action('edit_user_profile', 'kpl_user_bio_visual_editor');
+
+// Remove textarea filters from description field
+function kpl_user_bio_visual_editor_unfiltered() {
+  remove_all_filters('pre_user_description');
+}
+add_action('admin_init','kpl_user_bio_visual_editor_unfiltered');

@@ -10,7 +10,8 @@
     $links = link_to('Log Out', '@logout') .
              '<span style="color: #fff;">&nbsp; | &nbsp;</span>'.
              link_to('View Public Profile →', '@collector_me');
-    cq_page_title($collector->getDisplayName() ."'s Profile", $links);
+
+    cq_page_title('Your Profile', $links);
   ?>
 
   <div id="profile-subnavbar" class="navbar">
