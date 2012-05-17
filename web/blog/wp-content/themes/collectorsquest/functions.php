@@ -553,6 +553,7 @@ function kpl_user_bio_visual_editor( $user ) {
       })(jQuery);
     </script>
 
+  <h3><?php _e('Biography', 'collectorsquest'); ?></h3>
     <table class="form-table">
       <tr>
         <th><label for="description"><?php _e('Biographical Info'); ?></label></th>
@@ -659,9 +660,36 @@ function get_post_image_url() {
 function insertThumbnailRSS($content) {
   global $post;
 
-    $content = '<img src="' . get_post_image_url() . '" alt="Post Thumbnail Image" style="display:block;max-width:200px;height:auto;float:left;margin-right:20px;margin-bottom:20px;" />' . $content;
+    $content = '<img src="/blog/wp-content/themes/collectorsquest/thumb.php?src=' . get_post_image_url() . '&w=140&h=140&zc=1&a=t" alt="Post Thumbnail Image" style="display:block;float:left;margin-right:20px;margin-bottom:20px;" />' . $content;
 
   return $content;
 }
 add_filter('the_excerpt_rss', 'insertThumbnailRSS');
 add_filter('the_content_feed', 'insertThumbnailRSS');
+
+
+// add tag field to user profile
+function cq_add_custom_user_profile_fields( $user ) {
+  ?>
+<h3><?php _e('Collectors\' Quest Tags', 'collectorsquest'); ?></h3>
+<table class="form-table">
+  <tr>
+    <th>
+      <label for="address"><?php _e('User Tags', 'collectorsquest'); ?>
+      </label></th>
+    <td>
+      <input type="text" name="user_tags" id="user_tags" value="<?php echo esc_attr( get_the_author_meta( 'user_tags', $user->ID ) ); ?>" class="regular-text" /><br />
+      <span class="description"><?php _e('Please enter your tags. (1,2,3)', 'collectorsquest'); ?></span>
+    </td>
+  </tr>
+</table>
+<?php }
+function cq_save_custom_user_profile_fields( $user_id ) {
+  if ( !current_user_can( 'edit_user', $user_id ) )
+    return FALSE;
+  update_user_meta( $user_id, 'user_tags', $_POST['user_tags'] );
+}
+add_action( 'show_user_profile', 'cq_add_custom_user_profile_fields' );
+add_action( 'edit_user_profile', 'cq_add_custom_user_profile_fields' );
+add_action( 'personal_options_update', 'cq_save_custom_user_profile_fields' );
+add_action( 'edit_user_profile_update', 'cq_save_custom_user_profile_fields' );
