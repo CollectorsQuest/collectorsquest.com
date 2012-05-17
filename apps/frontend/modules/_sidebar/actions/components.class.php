@@ -334,6 +334,11 @@ class _sidebarComponents extends cqFrontendComponents
       $tags = $wp_user->getTags('array');
       $q->filterByTags($tags, Criteria::IN);
     }
+    /** @var $category ContentCategory */
+    else if (($category = $this->getVar('category')) && $category instanceof ContentCategory)
+    {
+      $q->filterByContentCategoryWithDescendants($category);
+    }
     /** @var $collection Collection */
     else if (($collection = $this->getVar('collection')) && $collection instanceof CollectorCollection)
     {

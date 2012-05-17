@@ -16,41 +16,50 @@
   <?= image_tag_collectible($collectible, '620x370'); ?>
 </div>
 
-<div class="statistics-share-panel spacer-bottom-20">
+<div class="blue-actions-panel spacer-20">
   <div class="row-fluid">
-    <div class="span6">
+    <div class="pull-left">
       <ul>
         <li>
           <?php
-            echo format_number_choice(
-              '[0] no comments yet|[1] 1 Comment|(1,+Inf] %1% Comments',
-              array('%1%' => number_format($collectible->getNumComments())), $collectible->getNumComments()
-            );
+          echo format_number_choice(
+            '[0] no comments yet|[1] 1 Comment|(1,+Inf] %1% Comments',
+            array('%1%' => number_format($collectible->getNumComments())), $collectible->getNumComments()
+          );
           ?>
         </li>
         <li>
-         <?php
-           echo format_number_choice(
-             '[0] no views yet|[1] 1 View|(1,+Inf] %1% Views',
-             array('%1%' => number_format($collectible->getNumViews())), $collectible->getNumViews()
-           );
-         ?>
+          <?php
+          echo format_number_choice(
+            '[0] no views yet|[1] 1 View|(1,+Inf] %1% Views',
+            array('%1%' => number_format($collectible->getNumViews())), $collectible->getNumViews()
+          );
+          ?>
         </li>
-        <li>
-          In XXX wanted lists
-        </li>
+        <!--
+          <li>
+            In XXX wanted lists
+          </li>
+        //-->
       </ul>
     </div>
-    <div class="span6 text-right">
-      <a href="#" class="btn btn-mini-share btn-lightblue-medium">
-        <i class="add-icon-medium"></i> Add this item to your most wanted list
+    <div class="pull-right share">
+      <!-- AddThis Button BEGIN -->
+      <a href="#" class="btn btn-lightblue btn-mini-social">
+        <i class="add-icon-medium"></i> Add to your wanted list
       </a>
-      <a href="#" class="btn btn-mini-share btn-lightblue-medium">
-        <i class="add-icon-medium"></i> Share
+      <a class="btn btn-lightblue btn-mini-social addthis_button_email">
+        <i class="mail-icon-mini"></i> Email
       </a>
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count" fb:like:width="40"></a>
+      <a class="addthis_button_tweet" tw:twitter:data-count="none"></a>
+      <a class="addthis_button_google_plusone" g:plusone:size="medium" g:plusone:annotation="none"></a>
+      <a class="addthis_button_pinterest_pinit" pi:pinit:media="<?= image_tag_collectible($collectible, 'original'); ?>" pi:pinit:layout="horizontal"></a>
+      <!-- AddThis Button END -->
     </div>
   </div>
 </div>
+
 
 <div class="item-info">
   <?= $collectible->getDescription('html'); ?>
