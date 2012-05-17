@@ -65,7 +65,7 @@ function cq_link_to()
   }
 }
 
-function link_to_collector($object, $type = 'text', $options = array())
+function link_to_collector($object, $type = 'text', $options = array(), $image_options = array())
 {
   if ($object instanceof Collectible)
   {
@@ -89,9 +89,12 @@ function link_to_collector($object, $type = 'text', $options = array())
   /** @var Collector $collector */
 
   $display_name = $collector->getDisplayName();
-  $options      = array_merge($options, array('alt'   => $display_name,
-                                              'title' => $display_name
-  ));
+  $alt          = isset($image_options['alt']) ? (isset($options['alt']) ? $options['alt'] : $display_name) : $display_name;
+
+  $options       = array_merge(array('absolute'=> true), $options);
+  $image_options = array_merge(array('alt' => $display_name), $image_options);
+
+  unset($options['alt']);
 
   if (array_key_exists('truncate', $options) && strlen($display_name) > $options['truncate'])
   {
@@ -120,15 +123,17 @@ function link_to_collector($object, $type = 'text', $options = array())
         if ($collection instanceof Collection)
         {
           $url  = route_for_collection($collection);
-          $link = link_to_if(!$collector->isFacebookOnly(), image_tag_collection($collection, '100x100', array_merge(array('width'  => 100,
-                                                                                                                           'height' => 100
-          ), $options)), $url, $options);
+          $link = link_to_if(!$collector->isFacebookOnly(), image_tag_collection($collection, '100x100', array_merge(array(
+            'width'  => 100,
+            'height' => 100
+          ), $image_options)), $url, $options);
         }
       }
       break;
     case 'stack':
-      $options = array_merge($options, array('width'  => 64,
-                                             'height' => 64
+      $options = array_merge($options, array(
+        'width'  => 64,
+        'height' => 64
       ));
       $link    = sprintf(
         '<div style="width: 80px; height: 80px; background: transparent url(/images/legacy/avatar-bgr.png) no-repeat; padding: 13px 0 0 13px;">%s</div>',
