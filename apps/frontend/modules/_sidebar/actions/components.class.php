@@ -146,9 +146,11 @@ class _sidebarComponents extends cqFrontendComponents
         {
           $vq = (string) $tags[array_rand($tags, 1)];
           if ($videos = $magnify->getContent()->find($vq, 1, $this->limit))
-          foreach ($videos as $video)
           {
-            $this->videos[] = $video;
+            foreach ($videos as $video)
+            {
+              $this->videos[] = $video;
+            }
           }
         }
 
@@ -167,9 +169,11 @@ class _sidebarComponents extends cqFrontendComponents
           {
             $vq = (string) $content_categories[array_rand($content_categories, 1)];
             if ($videos = $magnify->getContent()->find($vq, 1, $this->limit - count($this->videos)))
-            foreach ($videos as $video)
             {
-              $this->videos[] = $video;
+              foreach ($videos as $video)
+              {
+                $this->videos[] = $video;
+              }
             }
           }
         }
@@ -182,7 +186,10 @@ class _sidebarComponents extends cqFrontendComponents
       }
       else if (!empty($this->tags))
       {
-        $vq = is_array($this->tags) ? (string) $this->tags[array_rand($this->tags, 1)] : (string) $this->tags;
+        $vq = is_array($this->tags) ?
+          (string) $this->tags[array_rand($this->tags, 1)] :
+          (string) $this->tags;
+
         $this->videos = $magnify->getContent()->find($vq, 1, $this->limit);
       }
       else
