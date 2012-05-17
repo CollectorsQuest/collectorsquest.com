@@ -597,6 +597,7 @@ function cq_filter_gettext( $translated, $original, $domain ) {
   // and what they should be replaced with
   $strings = array(
     'Use the form below to search the FAQs' => '',
+    'Use the form below to ask a question' => '',
     'Search for' => '',
     'Ask Question' => 'Submit',
     'Howdy, %1$s' => 'We love you, %1$s!',
