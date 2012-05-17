@@ -91,7 +91,11 @@ function link_to_collector($object, $type = 'text', $options = array(), $image_o
   $display_name = $collector->getDisplayName();
   $alt          = isset($image_options['alt']) ? $image_options['alt'] : (isset($options['alt']) ? $options['alt'] : $display_name);
 
-  $options       = array_merge(array('absolute'=> true), $options);
+  $options       = array_merge(array(
+    'absolute'=> true,
+    'title'   => $display_name
+  ), $options);
+
   $image_options = array_merge(array(
     'alt'     => $alt,
     'absolute'=> true,
