@@ -5,6 +5,9 @@ add_theme_support('post-thumbnails');
 
 /** Adding custom image size for the site's homepage (not the blog homepage) */
 add_image_size('homepage', 270, 270, true);
+/** Adding custom image size for the blog's homepage */
+add_image_size('blog-homepage-p1', 300, 300, true);
+
 
 /**
  * @see http://blurback.com/post/1479456356/permissions-with-wordpress-custom-post-types
@@ -538,9 +541,6 @@ function load_comments() {
   die();
 }
 
-
-
-
 // add TinyMCE editor to the "Biographical Info" field in a user profile
 function kpl_user_bio_visual_editor( $user ) {
   // Requires WP 3.3+ and author level capabilities
@@ -576,7 +576,6 @@ function kpl_user_bio_visual_editor_unfiltered() {
   remove_all_filters('pre_user_description');
 }
 add_action('admin_init','kpl_user_bio_visual_editor_unfiltered');
-
 
 // correcting comment count
 add_filter('get_comments_number', 'comment_count', 0);
@@ -626,3 +625,43 @@ function get_top_ancestor($id) {
     return get_top_ancestor($current->post_parent);
   }
 }
+
+// gets post thumbnails
+function get_post_image_url() {
+  global $post, $posts;
+  $image_id = get_post_thumbnail_id($post->ID);
+  $image_url = wp_get_attachment_image_src($image_id,'full');
+  $image_url = $image_url[0];
+
+  if (!$image_url) :
+    $args = array(
+      'post_parent' => $post->ID,
+      'post_type' => 'attachment',
+      'post_mime_type' => 'image',
+      'orderby' => 'menu_order',
+      'order' => 'ASC',
+      'offset' => '0',
+      'numberposts' => 1
+    );
+
+    $images = get_posts($args);
+
+    if ( count( $images ) > 0 ) :
+      echo wp_get_attachment_url($images[0]->ID);
+    else :
+      echo catch_that_image();
+    endif;
+  endif;
+}
+
+
+// include thumbnails in rss feed
+function insertThumbnailRSS($content) {
+  global $post;
+
+    $content = '<img src="' . get_post_image_url() . '" alt="" />' . $content;
+
+  return $content;
+}
+add_filter('the_excerpt_rss', 'insertThumbnailRSS');
+add_filter('the_content_feed', 'insertThumbnailRSS');

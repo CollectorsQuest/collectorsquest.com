@@ -230,29 +230,7 @@ $lastclass = 0;
         <div class="entry-image <?php if (is_front_page() && $count==1): echo "span6"; elseif (!is_single()) : echo  "span3"; endif; ?>">
 
           <?php
-          $image_id = get_post_thumbnail_id();
-          $image_url = wp_get_attachment_image_src($image_id,'full');
-          $image_url = $image_url[0];
 
-          if (!$image_url) :
-            $args = array(
-              'post_parent' => $post->ID,
-              'post_type' => 'attachment',
-              'post_mime_type' => 'image',
-              'orderby' => 'menu_order',
-              'order' => 'ASC',
-              'offset' => '0',
-              'numberposts' => 1
-            );
-
-            $images = get_posts($args);
-
-            if ( count( $images ) > 0 ) :
-              $image_url = wp_get_attachment_url($images[0]->ID);
-            else :
-              $image_url = catch_that_image();
-            endif;
-          endif;
           ?>
 
           <?php
@@ -284,7 +262,7 @@ $lastclass = 0;
                 elseif ($ct == "bottom") { $a="b"; }
                 else { $a="t"; }
               ?>
-              <img src="/blog/wp-content/themes/collectorsquest/thumb.php?src=<?php echo $image_url;  //echo 'http://placekitten.com/700/700'; ?>&w=<?php echo $img_w ?>&h=<?php echo $img_h ?>&zc=1&a=<?php echo $a; ?>" alt=""/>
+              <img src="/blog/wp-content/themes/collectorsquest/thumb.php?src=<?php get_post_image_url();  //echo 'http://placekitten.com/700/700'; ?>&w=<?php echo $img_w ?>&h=<?php echo $img_h ?>&zc=1&a=<?php echo $a; ?>" alt=""/>
               <?php
               $thumbnail_id = get_post_thumbnail_id($post->ID);
               $thumbnail_image = get_posts(array('p' => $thumbnail_id, 'post_type' => 'attachment'));
@@ -294,7 +272,7 @@ $lastclass = 0;
               ?>
 
             <?php elseif (is_front_page() || is_archive() || is_search()) : ?>
-            <img src="/blog/wp-content/themes/collectorsquest/thumb.php?src=<?php echo $image_url; //'http://placekitten.com/700/700'; ?>&w=<?php echo $img_w ?>&h=<?php echo $img_h ?>&zc=1&a=t" alt=""/>
+            <img src="/blog/wp-content/themes/collectorsquest/thumb.php?src=<?php get_post_image_url(); //'http://placekitten.com/700/700'; ?>&w=<?php echo $img_w ?>&h=<?php echo $img_h ?>&zc=1&a=t" alt=""/>
             <?php endif; ?>
 
           <?php if (!is_single()) : ?>
@@ -350,7 +328,7 @@ $lastclass = 0;
               <a class="addthis_button_facebook_like" fb:like:layout="button_count" fb:like:width="42"></a>
               <a class="addthis_button_tweet" tw:twitter:data-count="none"></a>
               <a class="addthis_button_google_plusone" g:plusone:size="medium" g:plusone:annotation="none"></a>
-              <a class="addthis_button_pinterest_pinit" pi:pinit:media="<?php echo bloginfo('url'). $image_url; ?>" pi:pinit:layout="horizontal"></a>
+              <a class="addthis_button_pinterest_pinit" pi:pinit:media="<?php get_post_image_url(); ?>" pi:pinit:layout="horizontal"></a>
             </div>
             <!-- AddThis Button END -->
           </div>
@@ -395,7 +373,7 @@ $lastclass = 0;
               <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
               <a class="addthis_button_tweet" tw:twitter:data-count="none"></a>
               <a class="addthis_button_google_plusone" g:plusone:size="medium" g:plusone:annotation="none"></a>
-              <a class="addthis_button_pinterest_pinit" pi:pinit:media="<?php echo bloginfo('url'). $image_url; ?>" pi:pinit:class="pin-it-button" pi:pinit:count-layout="horizontal"></a>
+              <a class="addthis_button_pinterest_pinit" pi:pinit:media="<?php get_post_image_url(); ?>" pi:pinit:class="pin-it-button" pi:pinit:count-layout="horizontal"></a>
             </div>
             <!-- AddThis Button END -->
           </div>
