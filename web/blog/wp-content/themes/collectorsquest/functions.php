@@ -585,3 +585,38 @@ function comment_count( $count ) {
     return $count;
   }
 }
+
+// filter text strings - (FAQ plugin/)
+function cq_filter_gettext( $translated, $original, $domain ) {
+
+  // This is an array of original strings
+  // and what they should be replaced with
+  $strings = array(
+    'Use the form below to search the FAQs' => '',
+    'Search for' => '',
+    'Howdy, %1$s' => 'We love you, %1$s!',
+    // Add some more strings here
+  );
+
+  // See if the current string is in the $strings array
+  // If so, replace it's translation
+  if ( isset( $strings[$original] ) ) {
+    // This accomplishes the same thing as __()
+    // but without running it through the filter again
+    $translations = &get_translations_for_domain( $domain );
+    $translated = $translations->translate( $strings[$original] );
+  }
+
+  return $translated;
+}
+add_filter( 'gettext', 'cq_filter_gettext', 10, 3 );
+
+// helper function
+function get_top_ancestor($id) {
+  $current = get_post($id);
+  if(!$current->post_parent){
+    return $current->ID;
+  } else {
+    return get_top_ancestor($current->post_parent);
+  }
+}
