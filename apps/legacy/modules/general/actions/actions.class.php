@@ -103,7 +103,11 @@ class generalActions extends cqActions
       $this->getUser()->Authenticate(true, $collector, false);
 
       // redirect to last page
-      return $this->redirect($request->getParameter('goto', '@community'));
+      $this->redirect($request->getParameter('goto', '@community'));
+    }
+    else if ($this->getUser()->isAuthenticated())
+    {
+      $this->redirect($request->getParameter('goto', '@community'));
     }
     else if ($email = $this->getRequestParameter('email'))
     {
