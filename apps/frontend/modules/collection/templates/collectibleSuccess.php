@@ -50,10 +50,9 @@
   <?php endif; ?>
 </div>
 
-<br style="clear: both;">
-<div class="statistics-share-panel spacer-bottom-20">
+<div class="blue-actions-panel spacer-20">
   <div class="row-fluid">
-    <div class="span4">
+    <div class="pull-left">
       <ul>
         <li>
           <?php
@@ -68,9 +67,11 @@
         //-->
       </ul>
     </div>
-    <div class="span8 text-right">
+    <div class="pull-right share">
       <!-- AddThis Button BEGIN -->
-      <a class="addthis_button_email"></a>
+      <a class="btn btn-lightblue btn-mini-social addthis_button_email">
+        <i class="mail-icon-mini"></i> Email
+      </a>
       <a class="addthis_button_facebook_like" fb:like:layout="button_count" fb:like:width="40"></a>
       <a class="addthis_button_tweet" tw:twitter:data-count="none"></a>
       <a class="addthis_button_google_plusone" g:plusone:size="medium" g:plusone:annotation="none"></a>

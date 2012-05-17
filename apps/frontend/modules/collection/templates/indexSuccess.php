@@ -9,36 +9,45 @@
 
 <?php cq_page_title($collection); ?>
 
-<div class="row-fluid" style="margin-top: 10px;">
-  <div class="well-blue">
-    By <?= link_to_collector($collection->getCollector(), 'text'); ?>
-    &nbsp;|&nbsp;
-    <?php
-      echo format_number_choice(
-        '[0] no collectibles yet|[1] 1 Collectible|(1,+Inf] %1% Collectibles',
-        array('%1%' => number_format($collection->getNumItems())), $collection->getNumItems()
-      );
-    ?>
-    &nbsp;|&nbsp;
-    <?php
-      echo format_number_choice(
-        '[0] no views yet|[1] 1 View|(1,+Inf] %1% Views',
-        array('%1%' => number_format($collection->getNumViews())), $collection->getNumViews()
-      );
-    ?>
 
-    <!-- AddThis Button BEGIN -->
-    <div class="addthis_toolbox addthis_default_style pull-right">
-      <a class="addthis_button_email"></a>
+<div class="blue-actions-panel spacer-20">
+  <div class="row-fluid">
+    <div class="pull-left">
+      <ul>
+        <li>
+          By <?= link_to_collector($collection->getCollector(), 'text'); ?>
+          </li>
+        <li>
+          <?php
+          echo format_number_choice(
+            '[0] no collectibles yet|[1] 1 Collectible|(1,+Inf] %1% Collectibles',
+            array('%1%' => number_format($collection->getNumItems())), $collection->getNumItems()
+          );
+          ?>
+        </li>
+        <li>
+          <?php
+          echo format_number_choice(
+            '[0] no views yet|[1] 1 View|(1,+Inf] %1% Views',
+            array('%1%' => number_format($collection->getNumViews())), $collection->getNumViews()
+          );
+          ?>
+        </li>
+      </ul>
+    </div>
+    <div class="pull-right share">
+      <!-- AddThis Button BEGIN -->
+      <a class="btn btn-lightblue btn-mini-social addthis_button_email">
+        <i class="mail-icon-mini"></i> Email
+      </a>
       <a class="addthis_button_facebook_like" fb:like:layout="button_count" fb:like:width="40"></a>
       <a class="addthis_button_tweet" tw:twitter:data-count="none"></a>
       <a class="addthis_button_google_plusone" g:plusone:size="medium" g:plusone:annotation="none"></a>
-      <a class="addthis_button_pinterest_pinit" pi:pinit:media="<?= image_tag_collection($collection, 'original'); ?>" pi:pinit:layout="horizontal"></a>
+      <a class="addthis_button_pinterest_pinit" pi:pinit:media="<?= image_tag_collectible($collectible, 'original'); ?>" pi:pinit:layout="horizontal"></a>
+      <!-- AddThis Button END -->
     </div>
-    <!-- AddThis Button END -->
   </div>
 </div>
-
 
 <?php if ($pager->getPage() === 1): ?>
 <div class="cf" style="margin-top: 20px;">
@@ -46,8 +55,7 @@
 </div>
 <?php endif; ?>
 
-<br/>
-<div class="row">
+<div class="row spacer-top">
   <div id="collectibles" class="row-content">
   <?php
     /** @var $collectible Collectible */
