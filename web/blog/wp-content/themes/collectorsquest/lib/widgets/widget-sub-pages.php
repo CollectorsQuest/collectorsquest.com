@@ -30,6 +30,7 @@ class cq_sub_pages_widget extends WP_Widget {
     <?php
     global $post;
 
+    if (!is_page('Pages')) :
 
     extract( $args );
     $title = apply_filters( 'widget_title', $instance['title'] );
@@ -83,6 +84,8 @@ class cq_sub_pages_widget extends WP_Widget {
 
   <?php
     echo $after_widget;
+
+  endif;
 
   }
 
