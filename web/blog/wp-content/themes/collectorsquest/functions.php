@@ -660,7 +660,7 @@ function get_post_image_url() {
 function insertThumbnailRSS($content) {
   global $post;
 
-    $content = '<img src="/blog/wp-content/themes/collectorsquest/thumb.php?src=' . get_post_image_url() . '&w=140&h=140&zc=1&a=t" alt="Post Thumbnail Image" style="display:block;float:left;margin-right:20px;margin-bottom:20px;" />' . $content;
+    $content = '<div><img src="/blog/wp-content/themes/collectorsquest/thumb.php?src=' . get_post_image_url() . '&w=140&h=140&zc=1&a=t" alt="Post Thumbnail Image" style="display:block;float:left;margin-right:20px;margin-bottom:20px;" /></div>' . $content;
 
   return $content;
 }
