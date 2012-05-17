@@ -10,4 +10,23 @@ class CollectibleQuery extends BaseCollectibleQuery
 
     return $this;
   }
+
+  public function filterByTags($tags, $comparison = null)
+  {
+    $tags = !is_array($tags) ? explode(',', (string) $tags) : $tags;
+    $tags = array_map(array('Utf8', 'slugify'), $tags);
+
+    $where = sprintf("
+        Collectible.Id IN (
+          SELECT tagging.taggable_id
+            FROM tagging RIGHT JOIN tag ON (tag.id = tagging.tag_id AND tag.slug %s ('%s'))
+           WHERE taggable_model = 'Collectible'
+        )
+      ",
+      $comparison === Criteria::NOT_IN ? 'NOT IN' : 'IN',
+      implode("','", $tags)
+    );
+
+    return $this->where($where);
+  }
 }

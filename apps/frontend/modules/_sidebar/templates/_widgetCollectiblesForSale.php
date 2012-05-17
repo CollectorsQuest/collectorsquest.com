@@ -28,11 +28,21 @@
       </div>
       <div class="span9 fix-height-text-block">
         <div class="content-container">
-          <?= link_to_collectible($collectible_for_sale->getCollectible(), 'text', array('class' => 'target')); ?>
+          <?php
+            echo link_to_collectible(
+              $collectible_for_sale->getCollectible(), 'text', array('class' => 'target')
+            );
+          ?>
           <p>
-            <?= cqStatic::truncateText($collectible_for_sale->getCollectible()->getDescription('stripped'), 35); ?>
+            <?php
+              echo cqStatic::truncateText(
+                $collectible_for_sale->getCollectible()->getDescription('stripped'), 35
+              );
+            ?>
           </p>
-          <span class="price">$45.56</span>
+          <span class="price">
+            <?= money_format('%.2n', (float) $collectible_for_sale->getPrice()); ?>
+          </span>
         </div>
        </div>
     </div>
