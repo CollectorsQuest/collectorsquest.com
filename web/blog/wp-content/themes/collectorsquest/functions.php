@@ -647,9 +647,9 @@ function get_post_image_url() {
     $images = get_posts($args);
 
     if ( count( $images ) > 0 ) :
-      echo wp_get_attachment_url($images[0]->ID);
+      return wp_get_attachment_url($images[0]->ID);
     else :
-      echo catch_that_image();
+      return catch_that_image();
     endif;
   endif;
 }
@@ -659,7 +659,7 @@ function get_post_image_url() {
 function insertThumbnailRSS($content) {
   global $post;
 
-    $content = '<img src="' . get_post_image_url() . '" alt="" />' . $content;
+    $content = '<img src="' . get_post_image_url() . '" alt="Post Image" class="center" />' . $content;
 
   return $content;
 }

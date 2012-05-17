@@ -262,7 +262,7 @@ $lastclass = 0;
                 elseif ($ct == "bottom") { $a="b"; }
                 else { $a="t"; }
               ?>
-              <img src="/blog/wp-content/themes/collectorsquest/thumb.php?src=<?php get_post_image_url();  //echo 'http://placekitten.com/700/700'; ?>&w=<?php echo $img_w ?>&h=<?php echo $img_h ?>&zc=1&a=<?php echo $a; ?>" alt=""/>
+              <img src="/blog/wp-content/themes/collectorsquest/thumb.php?src=<?php echo get_post_image_url();  //echo 'http://placekitten.com/700/700'; ?>&w=<?php echo $img_w ?>&h=<?php echo $img_h ?>&zc=1&a=<?php echo $a; ?>" alt=""/>
               <?php
               $thumbnail_id = get_post_thumbnail_id($post->ID);
               $thumbnail_image = get_posts(array('p' => $thumbnail_id, 'post_type' => 'attachment'));
@@ -272,7 +272,7 @@ $lastclass = 0;
               ?>
 
             <?php elseif (is_front_page() || is_archive() || is_search()) : ?>
-            <img src="/blog/wp-content/themes/collectorsquest/thumb.php?src=<?php get_post_image_url(); //'http://placekitten.com/700/700'; ?>&w=<?php echo $img_w ?>&h=<?php echo $img_h ?>&zc=1&a=t" alt=""/>
+            <img src="/blog/wp-content/themes/collectorsquest/thumb.php?src=<?php echo get_post_image_url(); //'http://placekitten.com/700/700'; ?>&w=<?php echo $img_w ?>&h=<?php echo $img_h ?>&zc=1&a=t" alt=""/>
             <?php endif; ?>
 
           <?php if (!is_single()) : ?>
@@ -328,7 +328,7 @@ $lastclass = 0;
               <a class="addthis_button_facebook_like" fb:like:layout="button_count" fb:like:width="42"></a>
               <a class="addthis_button_tweet" tw:twitter:data-count="none"></a>
               <a class="addthis_button_google_plusone" g:plusone:size="medium" g:plusone:annotation="none"></a>
-              <a class="addthis_button_pinterest_pinit" pi:pinit:media="<?php get_post_image_url(); ?>" pi:pinit:layout="horizontal"></a>
+              <a class="addthis_button_pinterest_pinit" pi:pinit:media="<?php echo get_post_image_url(); ?>" pi:pinit:layout="horizontal"></a>
             </div>
             <!-- AddThis Button END -->
           </div>
@@ -373,7 +373,7 @@ $lastclass = 0;
               <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
               <a class="addthis_button_tweet" tw:twitter:data-count="none"></a>
               <a class="addthis_button_google_plusone" g:plusone:size="medium" g:plusone:annotation="none"></a>
-              <a class="addthis_button_pinterest_pinit" pi:pinit:media="<?php get_post_image_url(); ?>" pi:pinit:class="pin-it-button" pi:pinit:count-layout="horizontal"></a>
+              <a class="addthis_button_pinterest_pinit" pi:pinit:media="<?php echo get_post_image_url(); ?>" pi:pinit:class="pin-it-button" pi:pinit:count-layout="horizontal"></a>
             </div>
             <!-- AddThis Button END -->
           </div>
