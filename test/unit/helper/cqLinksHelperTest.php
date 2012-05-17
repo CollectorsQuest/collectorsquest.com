@@ -44,12 +44,9 @@ $collector = cqTest::getModelObject('Collector', false);
 $t->is(link_to_collector($collector, 'text'),
   '<a href="http://www.example.com/collector/1/robotbacon">Robotbacon</a>');
 
-$t->is(link_to_collector($collector, 'collection_image'),
-  '<a href="http://www.example.com/collector/1/robotbacon">test</a>');
-
 //Simple image call
 $t->is(link_to_collector($collector, 'image'),
-  '<a href="http://www.example.com/collector/1/robotbacon"><img src="http://www.example.com/images/frontend/multimedia/Collector/100x100.png" /></a>');
+  '<a href="http://www.example.com/collector/1/robotbacon"><img alt="Robotbacon" slug="robotbacon" src="http://www.example.com/images/frontend/multimedia/Collector/100x100.png" /></a>');
 
 //Call with absolute=false
 $t->is(link_to_collector($collector, 'text', array('absolute'=> false)),
@@ -57,7 +54,7 @@ $t->is(link_to_collector($collector, 'text', array('absolute'=> false)),
 
 //Call with alt on $options - alt goes to image
 $t->is(link_to_collector($collector, 'image', array('alt'=> 'test')),
-  '<a href="http://www.example.com/collector/1/robotbacon"><img slug="robotbacon" alt="test" src="http://www.example.com/images/frontend/multimedia/Collector/100x100.png" /></a>');
+  '<a href="http://www.example.com/collector/1/robotbacon"><img alt="test" slug="robotbacon" src="http://www.example.com/images/frontend/multimedia/Collector/100x100.png" /></a>');
 
 //When image title should be only on <a>
 $t->is(link_to_collector($collector, 'image', array('title'=> 'test')),

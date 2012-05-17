@@ -23,7 +23,7 @@ function image_tag_collector($collector, $which = '100x100', $options = array())
   }
 
   $options = array_merge(
-    array('alt_title' => $collector->getDisplayName(), 'slug' => $collector->getSlug()),
+    array('alt' => $collector->getDisplayName(), 'slug' => $collector->getSlug()),
     is_array($options) ? $options : array()
   );
 
