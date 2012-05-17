@@ -1,4 +1,10 @@
-<?php cq_dart_slot('300x250', 'market', 'landing', 'sidebar') ?>
+<?php
+  cq_dart_slot(
+    '300x250', 'market',
+    isset($category) && $category instanceof ContentCategory ? $category->getSlug() : 'landing',
+    'sidebar'
+  );
+?>
 
 <?php include_component('_sidebar', 'widgetMarketplaceCategories'); ?>
 <?php include_component('_sidebar', 'widgetFeaturedSellers', array('title' => 'Spotlight')); ?>

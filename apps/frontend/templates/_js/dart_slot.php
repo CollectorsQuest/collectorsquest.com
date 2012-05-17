@@ -7,9 +7,14 @@
  */
 ?>
 <script>
-  if (typeof window.dfp_ord == 'undefined') { window.dfp_ord = Math.random()*10000000000000000; }
+  if (typeof window.dfp_ord == 'undefined') { window.dfp_ord = Math.random() * 10000000000000000; }
   if (typeof(window.dfp_tile) == 'undefined') { window.dfp_tile = 1; }
-  document.write('<script language="JavaScript" src="<?= $src; ?>;tile='+ (window.dfp_tile++) + ';ord=' + window.dfp_ord + '?" type="text/javascript"><\/script>');
+
+  var src = '<?= $src; ?>';
+  if (window.dfp_tile === 1) { src = src.replace(/pos=\w+/i, 'pos=top'); }
+  src = src +';tile='+ (window.dfp_tile++) +';ord='+ window.dfp_ord +'?';
+
+  document.write('<script language="JavaScript" src="'+ src +'" type="text/javascript"><\/script>');
 </script>
 <noscript>
   <a href="<?= $href; ?>;tile=1;ord=123456789?" target="_blank">

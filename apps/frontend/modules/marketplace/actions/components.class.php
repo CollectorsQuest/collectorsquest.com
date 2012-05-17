@@ -4,6 +4,11 @@ class marketplaceComponents extends cqFrontendComponents
 {
   public function executeSidebarIndex()
   {
+    if ($id = $this->getRequestParameter('id'))
+    {
+      $this->category = ContentCategoryQuery::create()->findOneById($id);
+    }
+
     return sfView::SUCCESS;
   }
 
