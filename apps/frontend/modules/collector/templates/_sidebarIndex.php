@@ -6,17 +6,21 @@
  */
 ?>
 
-<div class="statistics-share-panel spacer-bottom-20">
+<div class="blue-actions-panel spacer-bottom-20">
   <div class="row-fluid">
-    <div class="span5" style="padding-top: 3px;">
-      <?php
-        echo format_number_choice(
-          '[0] no views yet|[1] 1 View|(1,+Inf] %1% Views',
-          array('%1%' => number_format($profile->getNumViews())), $profile->getNumViews()
-        );
-      ?>
+    <div class="pull-left">
+      <ul>
+        <li>
+          <?php
+          echo format_number_choice(
+            '[0] no views yet|[1] 1 View|(1,+Inf] %1% Views',
+            array('%1%' => number_format($profile->getNumViews())), $profile->getNumViews()
+          );
+          ?>
+        </li>
+      </ul>
     </div>
-    <div class="span7 addthis_toolbox addthis_default_style pull-right" style="text-align: right;">
+    <div class="pull-right share">
       <a class="addthis_button_facebook_like" fb:like:layout="button_count" fb:like:width="40"></a>
       <a class="addthis_button_tweet" tw:twitter:data-count="none"></a>
       <a class="addthis_button_google_plusone" g:plusone:size="medium" g:plusone:annotation="none"></a>
