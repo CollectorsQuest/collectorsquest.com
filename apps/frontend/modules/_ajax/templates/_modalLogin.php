@@ -48,7 +48,7 @@
 
       <div id="modal-login-username-footer" class="tab-pane active">
         <button type="button" class="btn btn-primary blue-button">Log&nbsp;In</button>
-        <span class="pull-right"><?= link_to('Forgot your password?', '@recover_password'); ?></span>
+        <span class="spacer-left-15 modal-link"><?= link_to('Forgot your password?', '@recover_password'); ?></span>
       </div>
 
       <div id="modal-login-openid-footer" class="tab-pane">
