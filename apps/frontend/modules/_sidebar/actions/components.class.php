@@ -308,12 +308,38 @@ class _sidebarComponents extends cqFrontendComponents
     $this->title = $this->getVar('title') ?: 'Collectibles for Sale';
 
     // Set the limit of Collectibles For Sale to show
-    $this->limit = (int) $this->getVar('limit') ?: 0;
+    $this->limit = (int) $this->getVar('limit') ?: 3;
 
     $q = CollectibleForSaleQuery::create()
       ->isForSale()
       ->orderByUpdatedAt(Criteria::DESC);
 
+    /** @var $wp_post wpPost */
+    if (($wp_post = $this->getVar('wp_post')) && $wp_post instanceof wpPost)
+    {
+      $tags = $wp_post->getTags('array');
+      $q->filterByTags($tags, Criteria::IN);
+    }
+    /** @var $wp_user wpUser */
+    else if (($wp_user = $this->getVar('wp_user')) && $wp_user instanceof wpUser)
+    {
+      $tags = $wp_user->getTags('array');
+      $q->filterByTags($tags, Criteria::IN);
+    }
+    /** @var $collection Collection */
+    else if (($collection = $this->getVar('collection')) && $collection instanceof CollectorCollection)
+    {
+      $tags = $collection->getTags();
+      $q->filterByTags($tags, Criteria::IN);
+    }
+    /** @var $collectible Collectible */
+    else if (($collectible = $this->getVar('collectible')) && $collectible instanceof Collectible)
+    {
+      $tags = $collectible->getTags();
+      $q->filterByTags($tags, Criteria::IN);
+    }
+
+    // Make the actual query and get the CollectiblesForSale
     $this->collectibles_for_sale = $q->limit($this->limit)->find();
 
     return $this->_sidebar_if(count($this->collectibles_for_sale) > 0);
