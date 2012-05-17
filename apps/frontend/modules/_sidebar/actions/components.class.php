@@ -82,18 +82,26 @@ class _sidebarComponents extends cqFrontendComponents
     // Set the limit of Collections to show
     $this->limit = $this->getVar('limit') ?: 5;
 
+    $q = CollectorCollectionQuery::create()
+      ->orderByUpdatedAt(Criteria::DESC);
+
+    /** @var $collection CollectorCollection */
+    if (($collection = $this->getVar('collection')) && $collection instanceof CollectorCollection)
+    {
+      $tags = $collection->getTags();
+      $q
+        ->filterById($collection->getId(), Criteria::NOT_EQUAL)
+        ->filterByTags($tags);
+    }
     /** @var $collectible Collectible */
-    if ($collectible = $this->getVar('collectible'))
+    else if (($collectible = $this->getVar('collectible')) && $collectible instanceof Collectible)
     {
-      $this->collections = $collectible->getRelatedCollections($this->limit);
+      $tags = $collectible->getTags();
+      $q->filterByTags($tags);
     }
-    else if (empty($this->collections))
-    {
-      // Get some random collections
-      $c = new Criteria();
-      $c->add(CollectorCollectionPeer::NUM_ITEMS, 3, Criteria::GREATER_EQUAL);
-      $this->collections = CollectorCollectionPeer::getRandomCollections($this->limit, $c);
-    }
+
+    // Make the actual query and get the Collections
+    $this->collections = $q->limit($this->limit)->find();
 
     return $this->_sidebar_if(count($this->collections) > 0);
   }
