@@ -15,10 +15,6 @@
       <div id="modal-login-username-pane" class="tab-pane active">
         <form action="<?= url_for('@login', true); ?>" class="form-horizontal" method="post">
           <?= $login_form->renderUsing('Bootstrap') ?>
-          <div class="form-actions">
-            <button type="submit" class="btn btn-primary blue-button">Log&nbsp;In</button>
-            <span class="pull-right"><?= link_to('Forgot your password?', '@recover_password'); ?></span>
-          </div>
         </form>
       </div> <!-- #modal-login-username-pane .tab-pane.active -->
 
@@ -37,15 +33,31 @@
       </div> <!-- #modal-login-openid-pane .tab-pane -->
 
       <div id="modal-sign-up-pane" class="tab-pane">
-        <?= form_tag('@collector_signup?step=1', array('class' => 'form-horizontal')) ?>
+        <?= form_tag('@collector_signup', array('class' => 'form-horizontal')) ?>
           <fieldset>
             <?= $signup_form ?>
-            <div class="form-actions">
-              <input type="submit" class="btn btn-primary" value="Submit" />
-            </div>
           </fieldset>
         </form>
       </div> <!-- #modal-sign-up-pane .tab-pane -->
+
+    </div> <!-- .tab-content -->
+  </div> <!-- .modal-body -->
+
+  <div class="modal-footer">
+    <div class="tab-content">
+
+      <div id="modal-login-username-footer" class="tab-pane active">
+        <button type="button" class="btn btn-primary blue-button">Log&nbsp;In</button>
+        <span class="pull-right"><?= link_to('Forgot your password?', '@recover_password'); ?></span>
+      </div>
+
+      <div id="modal-login-openid-footer" class="tab-pane">
+        <!-- nothing in the footer here -->
+      </div>
+
+      <div id="modal-sign-up-footer" class="tab-pane">
+        <button type="button" class="btn btn-primary">Submit</button>
+      </div>
 
     </div> <!-- .tab-content -->
   </div> <!-- .modal-body -->

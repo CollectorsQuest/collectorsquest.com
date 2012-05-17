@@ -36,6 +36,10 @@ window.Modernizr.addTest("isproduction", function() {
 window.Modernizr.addTest("isauthenticated", function() {
   return !!window.cq.authenticated;
 });
+window.Modernizr.addTest('html5formvalidation', function() {
+  var f = window.document.createElement('form');
+  return typeof f.checkValidity === 'function';
+});
 
 // setup page load statistic if in prod environment
 if (Modernizr.isproduction)
