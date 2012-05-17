@@ -652,14 +652,14 @@ function get_post_image_url() {
       return catch_that_image();
     endif;
   endif;
-}
 
+}
 
 // include thumbnails in rss feed
 function insertThumbnailRSS($content) {
   global $post;
 
-    $content = '<img src="' . get_post_image_url() . '" alt="Post Image" class="center" />' . $content;
+    $content = '<img src="' . get_post_image_url() . '" alt="Post Thumbnail Image" style="display:block;max-width:200px;height:auto;float:left;margin-right:20px;margin-bottom:20px;" />' . $content;
 
   return $content;
 }

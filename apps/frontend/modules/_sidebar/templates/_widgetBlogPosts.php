@@ -1,6 +1,7 @@
 <?php
 /**
  * @var $wp_posts wpPost[]
+ * @var $title string
  */
 ?>
 

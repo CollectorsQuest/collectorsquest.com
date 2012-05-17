@@ -139,7 +139,13 @@ class aentActions extends cqFrontendActions
       $collectible->save();
     }
 
-    $this->related_collectibles = $collectible->getRelatedCollectibles(8);
+    $tags = $collectible->getTags();
+    $q = CollectibleQuery::create()
+      ->filterById($collectible->getId(), Criteria::NOT_EQUAL)
+      ->filterByTags($tags)
+      ->limit(8);
+    $this->related_collectibles = $q->find();
+
     $this->collectible = $collectible;
     $this->collection = $collection;
 

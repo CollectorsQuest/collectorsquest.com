@@ -82,7 +82,7 @@ class wpPost extends BasewpPost
     $tags = array();
     while ($row = $results->fetch(PDO::FETCH_NUM))
     {
-     $tags[] = $row[0];
+      $tags[] = $row[0];
     }
 
     return ($type == 'array') ? $tags : implode(', ', $tags);
