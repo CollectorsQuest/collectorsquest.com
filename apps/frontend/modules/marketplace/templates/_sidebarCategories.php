@@ -1,4 +1,4 @@
-<?php cq_dart_slot('300x250', 'market', null, 'sidebar') ?>
+<?php cq_dart_slot('300x250', 'market', 'categories', 'sidebar') ?>
 
 <?php include_component('_sidebar', 'widgetFeaturedSellers', array('title' => 'Spotlight')); ?>
 

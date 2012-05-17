@@ -3,8 +3,12 @@
 /** http://codex.wordpress.org/Post_Thumbnails */
 add_theme_support('post-thumbnails');
 
-/** @see http://blurback.com/post/1479456356/permissions-with-wordpress-custom-post-types */
+/** Adding custom image size for the site's homepage (not the blog homepage) */
+add_image_size('homepage', 270, 270, true);
 
+/**
+ * @see http://blurback.com/post/1479456356/permissions-with-wordpress-custom-post-types
+ */
 add_action('init', 'cq_custom_post_type_init');
 function cq_custom_post_type_init()
 {

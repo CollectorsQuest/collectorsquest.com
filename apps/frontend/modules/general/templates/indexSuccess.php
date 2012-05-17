@@ -1,3 +1,9 @@
+<?php
+  slot('header_pushdown');
+  cq_dart_slot('970x60', 'homepage', null, 'top');
+  end_slot();
+?>
+
 <?php cq_page_title("Now on Display") ?>
 
 <div class="row">
