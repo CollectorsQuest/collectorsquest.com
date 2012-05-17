@@ -90,6 +90,46 @@ var APP = window.APP = {
 
 var COMMON = window.COMMON = (function(){
 
+  /**
+   * Handle footer panes for login modal tabs
+   */
+  function setupModalLoginRegistrationDialogFooterTabs($holder) {
+    $holder.find('ul.nav').on('click', 'a', function() {
+      // hide the currently active pane
+      $holder.find('.modal-footer .tab-pane.active').removeClass('active');
+      // add active class to pane with the same name as the modal body target,
+      // only with the ending "pane" replaced by "foter", like:
+      // modal-login-username-pane -> modal-login-openid-footer
+      $($(this).attr('href').replace(/\bpane$/, 'footer')).addClass('active');
+
+      return true;
+    });
+  }
+
+  /**
+   * We use a <button> element outside the <form> and need to manually trigger
+   * the submit event. Additionally, the html5 forms validation api
+   * will not function if the submit event is triggered directly on the form,
+   * so we append a <input type=submit /> element and trigger "click" on it
+   */
+  function setupModalLoginRegistrationDialogFormSubmission($holder) {
+    $holder.find('.modal-footer button').on('click', function() {
+      var $form = $holder.find('.modal-body .active form');
+
+      if (!Modernizr.html5formvalidation) {
+        $form.trigger('submit');
+        return true;
+      }
+
+      if (!$form.find('input[type=submit]').length) {
+        $form.append('<input type="submit" class="hidden" />');
+      }
+
+      $form.find('input[type=submit]').trigger('click')
+      return true;
+    });
+  }
+
   // return object literal
   return {
     setupProjectWideHelpers: function() {
@@ -101,6 +141,9 @@ var COMMON = window.COMMON = (function(){
     },
     setupModalLoginRegistrationDialog: function() {
       var $holder = $('#modal-login-holder');
+
+      setupModalLoginRegistrationDialogFooterTabs($holder);
+      setupModalLoginRegistrationDialogFormSubmission($holder);
 
       $('.requires-login').on('click', function(e) {
         var $this = $(this);
@@ -395,12 +438,12 @@ var SEARCH = window.SEARCH = (function(){
             });
 
             // hide new bricks while they are loading
-            var $bricks = $(selector).css({ opacity: 0 });
+            var $bricks = $(selector).css({opacity: 0});
 
             // ensure that images load before adding to masonry layout
             $bricks.imagesLoaded(function() {
               // show bricks now that they're ready
-              $bricks.animate({ opacity: 1 });
+              $bricks.animate({opacity: 1});
               $container.masonry('appended', $bricks, true);
             });
           });
