@@ -27,7 +27,8 @@ class mycqActions extends cqFrontendActions
 
   public function executeCollection()
   {
-    // $collection = $this->getRoute()->getObject();
+    $collection = $this->getRoute()->getObject();
+    $this->forward404Unless($this->getCollector()->isOwnerOf($collection));
 
     return sfView::SUCCESS;
   }
