@@ -79,88 +79,16 @@
 </ul>
 <div class="tab-content">
 <div class="tab-pane active" id="tab1">
-<div class="tab-content-inner">
-  <?php cq_section_title('Items to Sort (14)') ?>
 
-  <div class="collectibles-to-sort">
-    <ul class="thumbnails">
-      <li class="span2">
-        <a href="#" class="thumbnail">
-          <img src="http://placehold.it/72x72" alt="">
-        </a>
-      </li>
-      <li class="span2">
-        <a href="#" class="thumbnail">
-          <img src="http://placehold.it/72x72" alt="">
-        </a>
-      </li>
-      <li class="span2">
-        <a href="#" class="thumbnail">
-          <img src="http://placehold.it/72x72" alt="">
-        </a>
-      </li>
-      <li class="span2">
-        <a href="#" class="thumbnail">
-          <img src="http://placehold.it/72x72" alt="">
-        </a>
-      </li>
-      <li class="span2">
-        <a href="#" class="thumbnail">
-          <img src="http://placehold.it/72x72" alt="">
-        </a>
-      </li>
-      <li class="span2">
-        <a href="#" class="thumbnail">
-          <img src="http://placehold.it/72x72" alt="">
-        </a>
-      </li>
-      <li class="span2">
-        <a href="#" class="thumbnail">
-          <img src="http://placehold.it/72x72" alt="">
-        </a>
-      </li>
-      <li class="span2">
-        <a href="#" class="thumbnail">
-          <img src="http://placehold.it/72x72" alt="">
-        </a>
-      </li>
-      <li class="span2">
-        <a href="#" class="thumbnail">
-          <img src="http://placehold.it/72x72" alt="">
-        </a>
-      </li>
-      <li class="span2">
-        <a href="#" class="thumbnail">
-          <img src="http://placehold.it/72x72" alt="">
-        </a>
-      </li>
-      <li class="span2">
-        <a href="#" class="thumbnail">
-          <img src="http://placehold.it/72x72" alt="">
-        </a>
-      </li>
-      <li class="span2">
-        <a href="#" class="thumbnail">
-          <img src="http://placehold.it/72x72" alt="">
-        </a>
-      </li>
-    </ul>
-  </div>
-
-</div><!-- /.tab-content-inner -->
-<div class="row-fluid instruction-box">
-  <div class="row-fluid instruction-box-inner">
-    <div class="span2">
-      <span class="gray-arrow pull-right"></span>
-    </div>
-    <div class="span8">
-      <span class="hint-text"><strong>Hint:</strong> Drag and drop your items into collections.</span>
-    </div>
-    <div class="span2">
-      <span class="gray-arrow"></span>
-    </div>
-  </div>
-</div><!-- /.instruction-box -->
+<?php
+  include_component(
+    'mycq', 'dropbox',
+    array('instructions' => array(
+      'position' => 'bottom',
+      'text' => 'Drag and drop images as new alternative views of your items for sale.')
+    )
+  );
+?>
 
 <div class="tab-content-inner spacer-top">
   <div class="row-fluid sidebar-title spacer-inner-bottom">
@@ -335,47 +263,7 @@
               </a>
             </div>
             <div class="span7">
-              <div class="modal" id="addNewCollection">
-                <div class="modal-header">
-                  <button class="close" data-dismiss="modal">×</button>
-                  <h3>Add a new collection</h3>
-                </div>
-                <div class="modal-body">
-                  <form class="form-horizontal">
-                    <fieldset>
-                      <div class="control-group">
-                        <label class="control-label" for="input01">Collection Name</label>
-                        <div class="controls">
-                          <input type="text" class="input-xlarge" id="input01">
-                        </div>
-                      </div>
-                      <div class="control-group">
-                        <label class="control-label" for="input01">Tags</label>
-                        <div class="controls">
-                          <input type="text" class="input-xlarge" id="input02">
-                          <p class="help-block">Choose at least three descriptive words for your collection, separated by commas</p>
-                        </div>
-                      </div>
-                      <div class="control-group">
-                        <label for="select01" class="control-label">Category</label>
-                        <div class="controls">
-                          <select id="select01">
-                            <option>Please Select One:</option>
-                            <option>Category 1</option>
-                            <option>Category 2</option>
-                            <option>Category 3</option>
-                            <option>Category 4</option>
-                          </select>
-                        </div>
-                      </div>
-                    </fieldset>
-                  </form>
-                </div>
-                <div class="modal-footer">
-                  <a href="#" class="btn btn-primary blue-button spacer-right-15">Create Collection</a>
-                  <a href="#" class="btn btn-primary gray-button">Cancel</a>
-                </div>
-              </div>
+
               <a href="#addNewCollection" data-toggle="modal" class="create-collection-text target">
                 Create a new collection by clicking here
               </a>

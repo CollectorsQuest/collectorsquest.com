@@ -48,4 +48,50 @@ class mycqComponents extends cqFrontendComponents
 
     return sfView::SUCCESS;
   }
+
+  public function executeDropbox()
+  {
+    $collector = $this->getCollector();
+    $dropbox = $collector->getCollectionDropbox();
+
+    $this->collectibles = $dropbox->getCollectibles();
+    $this->total = $dropbox->countCollectibles();
+
+    return sfView::SUCCESS;
+  }
+
+  public function executeCreateCollection()
+  {
+    $form = new CollectionCreateForm();
+
+    if ($this->getRequest()->isMethod('post'))
+    {
+      $form->bind($this->getRequestParameter('collection'));
+      if ($form->isValid())
+      {
+        $values = $form->getValues();
+        $values['collector_id'] = $this->getCollector()->getId();
+
+        /** @var $collection CollectorCollection */
+        $collection = $form->updateObject($values);
+        $collection->setTags($values['tags']);
+        $collection->save();
+
+        $this->collection = $collection;
+      }
+      else
+      {
+        // @todo: Here we need to add ModelCriteria filterByTags
+        // $form->getWidget('content_category_id')->setOption('', '');
+      }
+    }
+    else
+    {
+      unset($form['content_category_id']);
+    }
+
+    $this->form = $form;
+
+    return sfView::SUCCESS;
+  }
 }
