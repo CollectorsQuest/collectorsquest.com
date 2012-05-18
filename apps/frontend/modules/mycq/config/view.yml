@@ -1,4 +1,10 @@
 all:
   stylesheets: [frontend/modules/mycq.css]
+  javascripts:
+    - jquery/controls.js
+    - jquery/form.js
+    - /assets/js/bootstrap/dialog2.js
+    - /assets/js/bootstrap/dialog2.helpers.js
+
   components:
     slot1: [mycq, navigation]
