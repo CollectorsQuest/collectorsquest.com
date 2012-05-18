@@ -1,6 +1,6 @@
 <?php
   slot('header_pushdown');
-  cq_dart_slot('970x60', 'homepage', null, 'top');
+  cq_dart_slot('970x66', 'homepage', null, 'top');
   end_slot();
 ?>
 
