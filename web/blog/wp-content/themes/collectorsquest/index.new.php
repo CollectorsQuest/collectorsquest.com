@@ -138,7 +138,11 @@
     <h1 class="Chivo webfont" style="visibility: visible; "><?php _e( 'Search Results for:', 'collectorsquest' ) ?>&nbsp;&nbsp;<span><?php the_search_query(); ?></span></h1>
     <?php $categorydesc = category_description(); if ( !empty($categorydesc) ) echo apply_filters( 'archive_meta', '<div class="archive-meta">' . $categorydesc . '</div>' ); ?>
   </div>
-  <?php } ?>
+<?php } elseif (is_404()) { ?>
+<div class="span11">
+  <h1 class="Chivo webfont" style="visibility: visible; "><?php _e( 'You are here', 'collectorsquest' ) ?></h1>
+</div>
+<?php } ?>
 
 <?php if (!is_author()) : ?>
 </div>
@@ -416,10 +420,34 @@ $lastclass = 0;
 
     <?php endif; ?>
 
-  <?php else : ?>
+  <?php else :
+
+  $page = get_page_by_title( '404' );
+
+  if($page) :
+    echo $page->post_content;
+  else :
+
+  ?>
 
   <h2 class="entry-title">Not Found</h2>
-  <p>Sorry, but you are looking for something that isn't here.</p>
+  <p>"We've lost this page;<br />
+    It's gone astray.<br />
+    We hope you'll stay<br />
+    a little more.
+  </p>
+  <p>
+    The search above's<br />
+    What you should use.<br />
+    Please excuse<br />
+    our 404."
+  </p>
+
+  <?php
+
+  endif; ?>
+
+
 
   <?php endif; ?>
 
