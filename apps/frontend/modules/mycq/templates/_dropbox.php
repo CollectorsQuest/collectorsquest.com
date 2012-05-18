@@ -3,10 +3,8 @@
   <div class="collectibles-to-sort">
     <ul class="thumbnails">
       <?php foreach ($collectibles as $collectible): ?>
-      <li class="span2">
-        <a href="#" class="thumbnail">
-          <?php echo image_tag_collectible($collectible, '75x75', array('max_width' => 72, 'max_height' => 72)); ?>
-        </a>
+      <li class="span2 thumbnail" data-id="<?= $collectible->getId(); ?>">
+        <?= image_tag_collectible($collectible, '75x75', array('max_width' => 72, 'max_height' => 72)); ?>
       </li>
       <?php endforeach; ?>
     </ul>
@@ -24,3 +22,17 @@
     <span class="gray-arrow">&nbsp;</span>
   </div>
 </div><!-- /.instruction-box -->
+
+<script type="text/javascript">
+$(document).ready(function()
+{
+  $('.collectibles-to-sort li').draggable(
+  {
+    containment: '#contents',
+    handle: 'img',
+    opacity: 0.7,
+    revert: true,
+    cursor: 'move'
+  });
+});
+</script>

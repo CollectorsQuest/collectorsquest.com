@@ -86,3 +86,29 @@
   </div>
 
 <?php endif; ?>
+
+<script>
+$(document).ready(function()
+{
+  $(".mycq-collections .drop-zone").droppable(
+  {
+    over: function(event, ui)
+    {
+      $(this).addClass("ui-state-highlight");
+    },
+    out: function(event, ui)
+    {
+      $(this).removeClass("ui-state-highlight");
+    },
+    drop: function(event, ui)
+    {
+      $(this).removeClass("ui-state-highlight");
+      ui.draggable.draggable( 'option', 'revert', false );
+
+      var url = '<?= url_for('@mycq_collection_collectible_create') ?>';
+
+      window.location.href = url + '?collection_id='+ 1 +'&collectible_id=' + 1;
+    }
+  });
+});
+</script>

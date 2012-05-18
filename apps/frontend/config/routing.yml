@@ -304,6 +304,10 @@ mycq_collection_by_slug:
   param: { module: mycq, action: collection }
   requirements: { id: '\d+', slug: '[\-\w\.]+', sf_method: [get, post] }
 
+mycq_collection_collectible_create:
+  url:  /mycq/collection-collectible/create
+  param: { module: mycq, action: collectionCollectibleCreate }
+
 mycq_collectibles_dropbox:
   url:  /mycq/collectibles/0/dropbox
   params: { module: mycq, action: collectibles }

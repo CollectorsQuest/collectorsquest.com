@@ -33,6 +33,11 @@ class mycqActions extends cqFrontendActions
     return sfView::SUCCESS;
   }
 
+  public function executeCollectionCollectibleCreate()
+  {
+    $this->redirect('@mycq_collectible_by_slug?id='. 1 .'&slug=slug');
+  }
+
   public function executeCollectibles()
   {
     return sfView::SUCCESS;
