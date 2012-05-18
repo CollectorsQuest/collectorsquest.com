@@ -45,7 +45,7 @@
     $subject = 'Regarding your collection: '. addslashes($collection->getName());
   }
 ?>
-<div class="row-fluid">
+<div class="row-fluid spacer-15">
   <div class="send-pm">
     <form action="<?= url_for2('messages_compose', array('to'=>$collector->getUsername()), true); ?>" method="post" style="margin-bottom: 0;" id="form-private-message">
       <input type="hidden" name="message[receiver]" value="<?= $collector->getUsername(); ?>">
@@ -65,7 +65,6 @@
 <?php endif; ?>
 
 <?php if (!empty($collections) && count($collections) > 0): ?>
-  <br style="clear: both;"/>
   <div>
     Other collections by <?= $collector; ?><br/>
     <?= link_to('View all collections &raquo;', 'collections_by_collector', $collector); ?>
