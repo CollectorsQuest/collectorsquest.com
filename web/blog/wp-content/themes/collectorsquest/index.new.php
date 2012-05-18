@@ -239,14 +239,11 @@ $lastclass = 0;
 
           <?php
           if (is_single()) :
-            $img_w = '620';
-            $img_h = '440';
+            $size = 'blog-single-p1';
           elseif (is_front_page() && $count == 1) :
-            $img_w = '300';
-            $img_h = '300';
+            $size = 'blog-homepage-p1';
           else :
-            $img_w = '140';
-            $img_h = '140';
+            $size = 'thumbnail';
           endif;
           ?>
 
@@ -266,7 +263,7 @@ $lastclass = 0;
                 elseif ($ct == "bottom") { $a="b"; }
                 else { $a="t"; }
               ?>
-              <img src="/blog/wp-content/themes/collectorsquest/thumb.php?src=<?php echo get_post_image_url();  //echo 'http://placekitten.com/700/700'; ?>&w=<?php echo $img_w ?>&h=<?php echo $img_h ?>&zc=1&a=<?php echo $a; ?>" alt=""/>
+              <img src="/blog/wp-content/themes/collectorsquest/thumb.php?src=<?php echo get_post_image_url('');  //echo 'http://placekitten.com/700/700'; ?>&w=<?php echo $img_w ?>&h=<?php echo $img_h ?>&zc=1&a=<?php echo $a; ?>" alt=""/>
               <?php
               $thumbnail_id = get_post_thumbnail_id($post->ID);
               $thumbnail_image = get_posts(array('p' => $thumbnail_id, 'post_type' => 'attachment'));
@@ -276,7 +273,7 @@ $lastclass = 0;
               ?>
 
             <?php elseif (is_front_page() || is_archive() || is_search()) : ?>
-            <img src="/blog/wp-content/themes/collectorsquest/thumb.php?src=<?php echo get_post_image_url(); //'http://placekitten.com/700/700'; ?>&w=<?php echo $img_w ?>&h=<?php echo $img_h ?>&zc=1&a=t" alt=""/>
+              <img src="<?php echo get_post_image_url($size); //'http://placekitten.com/700/700'; ?>" alt=""/>
             <?php endif; ?>
 
           <?php if (!is_single()) : ?>

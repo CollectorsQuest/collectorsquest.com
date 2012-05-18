@@ -628,12 +628,15 @@ function get_top_ancestor($id) {
 }
 
 // gets post thumbnails
-function get_post_image_url() {
+function get_post_image_url($size = 'full') {
   global $post, $posts;
+
+  // check for post thumbnail
   $image_id = get_post_thumbnail_id($post->ID);
-  $image_url = wp_get_attachment_image_src($image_id,'full');
+  $image_url = wp_get_attachment_image_src($image_id,'thumbnail');
   $image_url = $image_url[0];
 
+  // if no post thumbnail check for attachments
   if (!$image_url) :
     $args = array(
       'post_parent' => $post->ID,
@@ -647,12 +650,18 @@ function get_post_image_url() {
 
     $images = get_posts($args);
 
+    // return attachment if found
     if ( count( $images ) > 0 ) :
-      return wp_get_attachment_url($images[0]->ID);
+      //return wp_get_attachment_url($images[0]->ID);
+      $img = wp_get_attachment_image_src($images[0]->ID, $size);
+      $img = $img[0];
     else :
-      return catch_that_image();
+    // else return first image from post content
+      $img = '/blog/wp-content/themes/collectorsquest/thumb.php?src='.catch_that_image().'&w='.$img[1].'&h='.$img[2].'&zc=1&a=t';
     endif;
   endif;
+
+  return $img;
 
 }
 
