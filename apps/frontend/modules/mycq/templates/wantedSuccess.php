@@ -2,7 +2,7 @@
   <h2 class="Chivo webfont">Wanted List</h2>
 </div>
 
-<div class="blue-action-bar spacer-12">
+<div class="details-container spacer-12">
   <div class="row-fluid">
     <div class="span2">
       <small>View as:</small>
@@ -13,7 +13,7 @@
       <small>Showing 1-25 of 58 Wanted Items</small>
     </div>
     <div class="span7">
-      <div class="pagination pull-right">
+      <div class="pagination-small pull-right">
         <ul>
           <li><a href="#">Prev</a></li>
           <li class="active">
@@ -130,7 +130,7 @@
 </div>
 
 
-<div class="blue-action-bar spacer-12">
+<div class="details-container spacer-12">
   <div class="row-fluid">
     <div class="span2">
       <small>View as:</small>
@@ -141,7 +141,7 @@
       <small>Showing 1-25 of 58 Wanted Items</small>
     </div>
     <div class="span7">
-      <div class="pagination pull-right">
+      <div class="pagination-small pull-right">
         <ul>
           <li><a href="#">Prev</a></li>
           <li class="active">
@@ -373,7 +373,7 @@
 
 </div>
 
-<div class="blue-action-bar spacer-12">
+<div class="details-container spacer-12">
   <div class="row-fluid">
     <div class="span2">
       <small>View as:</small>
@@ -384,7 +384,7 @@
       <small>Showing 1-25 of 58 Wanted Items</small>
     </div>
     <div class="span7">
-      <div class="pagination pull-right">
+      <div class="pagination-small pull-right">
         <ul>
           <li><a href="#">Prev</a></li>
           <li class="active">
