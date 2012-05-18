@@ -4,13 +4,13 @@
 "use strict";
 
 var APP = window.APP = {
+
   /**
    * Defaults to be used throughout the project
    */
   defaults:   {
     // empty ;)
   }, // defaults
-
 
   /**
    * Common module, executed for every page
@@ -83,10 +83,39 @@ var APP = window.APP = {
     compose: function() {
       $('#message_body').elastic();
     }
-  } // messages
+  }, // messages
+
+  /**
+   * "mycq" symfony module
+   */
+  mycq: {
+    init: function()
+    {
+      $(document).controls();
+
+      // If a a.auto-close is contained in the dialogs content,
+      // the dialog will automatically redirect to a new page
+      $(document).delegate(".modal", "dialog2.content-update", function()
+      {
+        // got the dialog as this object. Do something with it!
+        var e = $(this);
+        var autoclose = e.find("a.auto-close");
+
+        if (autoclose.length > 0)
+        {
+          var href = autoclose.attr('href');
+          if (href) {
+            window.location.href = href;
+          }
+        }
+      });
+    },
+    collections: function() {
+
+    }
+  } // mycq
 
 }; // APP
-
 
 var COMMON = window.COMMON = (function(){
 
@@ -292,7 +321,6 @@ var COMMON = window.COMMON = (function(){
   }; // COMMON object literal
 }());
 
-
 var GENERAL = window.GENERAL = (function(){
 
   // return object literal
@@ -455,7 +483,5 @@ var SEARCH = window.SEARCH = (function(){
 
   }; // SEARCH object literal
 }());
-
-
 
 })(this, this.document, jQuery);

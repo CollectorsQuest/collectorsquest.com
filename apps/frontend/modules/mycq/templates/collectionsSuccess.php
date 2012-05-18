@@ -1,6 +1,6 @@
 
 <div id="mycq-tabs">
-  <ul class="nav nav-tabs">
+  <ul class="nav nav-tabs" style="margin-bottom: 0;">
     <li class="active">
       <a href="#tab1" data-toggle="tab">Show Collections</a>
     </li>
@@ -16,6 +16,17 @@
   </ul>
   <div class="tab-content">
     <div class="tab-pane active" id="tab1">
+
+      <?php
+        include_component(
+          'mycq', 'dropbox',
+          array('instructions' => array(
+            'position' => 'bottom',
+            'text' => 'Drag and drop collectibles into your collections.')
+          )
+        );
+      ?>
+
       <div class="tab-content-inner spacer-top">
         <div class="row-fluid sidebar-title spacer-inner-bottom">
           <div class="span5 link-align">
@@ -23,9 +34,9 @@
           </div>
           <div class="span7">
             <?php if ($collections_count > 7): ?>
-            <div class="mycq-sort-search-box-mini">
+            <div class="mycq-sort-search-box">
               <div class="input-append">
-                <form id="form-explore-collections" method="post" action="<?= url_for('@ajax_mycq?section=component&page=collections') ?>">
+                <form id="form-explore-collections" method="post" action="/search/collections">
                   <div class="btn-group">
                     <div class="append-left-gray">Sort by <strong id="sortByName">Most Relevant</strong></div>
                     <a class="btn gray-button dropdown-toggle" data-toggle="dropdown" href="#">
