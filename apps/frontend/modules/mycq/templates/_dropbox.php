@@ -3,8 +3,12 @@
   <div class="collectibles-to-sort">
     <ul class="thumbnails">
       <?php foreach ($collectibles as $collectible): ?>
-      <li class="span2 thumbnail" data-id="<?= $collectible->getId(); ?>">
-        <?= image_tag_collectible($collectible, '75x75', array('max_width' => 72, 'max_height' => 72)); ?>
+      <li class="span2 thumbnail" data-collectible-id="<?= $collectible->getId(); ?>">
+        <?php
+          echo image_tag_collectible(
+            $collectible, '75x75', array('max_width' => 72, 'max_height' => 72)
+          );
+        ?>
       </li>
       <?php endforeach; ?>
     </ul>
@@ -32,7 +36,8 @@ $(document).ready(function()
     handle: 'img',
     opacity: 0.7,
     revert: true,
-    cursor: 'move'
+    cursor: 'move',
+    zIndex: 2700
   });
 });
 </script>

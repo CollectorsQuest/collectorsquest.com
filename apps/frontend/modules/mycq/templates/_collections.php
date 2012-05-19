@@ -47,14 +47,14 @@
           {
             if (isset($collectibles[$i]))
             {
-              echo image_tag_collectible(
+              echo link_to(image_tag_collectible(
                 $collectibles[$i], '75x75',
-                array('max_width' => 64, 'max_height' => 64)
-              );
+                array('max_width' => 64, 'max_height' => 64,)
+              ), url_for('mycq_collection_by_slug', $collection));
             }
             else
             {
-              echo '<i class="add-white-icon drop-zone"></i>';
+              echo '<i class="icon icon-download-alt drop-zone" data-collection-id="'.  $collection->getId() .'"></i>';
             }
           }
         ?>
@@ -107,7 +107,9 @@ $(document).ready(function()
 
       var url = '<?= url_for('@mycq_collection_collectible_create') ?>';
 
-      window.location.href = url + '?collection_id='+ 1 +'&collectible_id=' + 1;
+      window.location.href = url +
+        '?collection_id=' + $(this).data('collection-id') +
+        '&collectible_id=' + ui.draggable.data('collectible-id');
     }
   });
 });

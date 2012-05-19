@@ -33,9 +33,27 @@ class mycqActions extends cqFrontendActions
     return sfView::SUCCESS;
   }
 
-  public function executeCollectionCollectibleCreate()
+  /**
+   * @param sfWebRequest $request
+   */
+  public function executeCollectionCollectibleCreate(sfWebRequest $request)
   {
-    $this->redirect('@mycq_collectible_by_slug?id='. 1 .'&slug=slug');
+    $collection = CollectorCollectionQuery::create()
+      ->findOneById($request->getParameter('collection_id'));
+    $this->forward404Unless($this->getCollector()->isOwnerOf($collection));
+
+    $collectible = CollectibleQuery::create()
+      ->findOneById($request->getParameter('collectible_id'));
+    $this->forward404Unless($this->getCollector()->isOwnerOf($collectible));
+
+    $q = CollectionCollectibleQuery::create()
+      ->filterByCollection($collection)
+      ->filterByCollectible($collectible);
+
+    $collection_collectible = $q->findOneOrCreate();
+    $collection_collectible->save();
+
+    $this->redirect('mycq_collectible_by_slug', $collection_collectible);
   }
 
   public function executeCollectibles()

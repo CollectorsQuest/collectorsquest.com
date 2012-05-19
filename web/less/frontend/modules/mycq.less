@@ -228,7 +228,7 @@ a.buy-credits-button {
 		.border-radius(0);
 		.box-shadow(0);
 
-		> a {
+		& > a {
 			margin-left: 5px;
 			margin-bottom: 4px;
 			display: block;
@@ -236,13 +236,19 @@ a.buy-credits-button {
 			.square(64px);
 		}
 	}
+
 	.thumbnails {
 		margin-left: -8px;
 	}
-}
-//reset
-.mycq-collections .thumbnail.no-collections-box {
-	height: auto;
+
+  .thumbnails > .span12 {
+    width: 672px;
+  }
+
+  .thumbnail.no-collections-box {
+    height: auto;
+  }
+
 }
 
 .mycq-collections .thumbnails > .span4 {
@@ -270,10 +276,6 @@ a.buy-credits-button {
 	}
 }
 
-.mycq-collections .thumbnails > .span12 {
-	width: 672px;
-}
-
 .mycq-collectibles-for-sale {
 	.thumbnail {
 		margin-left: 10px;
@@ -283,7 +285,7 @@ a.buy-credits-button {
 		.border-radius(0);
 		.box-shadow(0);
 
-		> a {
+		& > a {
 			margin-left: 5px;
 			margin-bottom: 4px;
 			display: block;
@@ -293,7 +295,7 @@ a.buy-credits-button {
 		.collectibles-container {
 			.clearfix();
 			margin-bottom: 2px;
-			> a {
+			& > a {
 			margin-left: 5px;
 				margin-bottom: 4px;
 				display: block;
@@ -343,13 +345,23 @@ a.buy-credits-button {
 
 
 .drop-zone {
-	.square(60px);
+	.square(50px);
 	float: left;
 	background-color: @lightBlue;
 	border: 2px dashed @blue;
 	margin-left: 4px;
 	margin-bottom: 4px;
+  font-size: 50px;
+  color: #fff;
+  text-align: center;
+  vertical-align: middle;
+  padding: 5px;
 }
+
+.ui-state-highlight {
+  .transform(scale(1.25)translate3d(0, 0, 0));
+}
+
 .create-collection {
 	background-color: #c2e0f0;
 	.square(60px);
