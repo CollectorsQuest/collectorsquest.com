@@ -31,6 +31,47 @@
 	margin-top: 0;
 }
 
+#body-mycq-collection form.form-horizontal .control-group {
+	label {
+		font-size: 12px;
+		color: @brown;
+		letter-spacing: 0.01em;
+	}
+	label.control-label {
+		font-weight: bold;
+	}
+	.control-description-r {
+		padding-left: 10px;
+		color: @brown;
+		text-size: 12px;
+	}
+	.two-lines {
+		padding-top: 0px;
+		line-height: 14px;
+	}
+	.help-block {
+		color: @brown;
+		font-size: 12px;
+		margin-top: 5px;
+	}
+	label.disabled, p.disabled {
+		color: #a4a5a9;
+	}
+
+	input[disabled], select[disabled], textarea[disabled], input[readonly], select[readonly], textarea[readonly] {
+		background-color: #f2f8fc;
+		border-color: #d3d9de;
+	}
+}
+
+#body-mycq-collection .form-actions {
+	background-color: @lightBlue;
+	border-top: none;
+	margin-top: 0;
+	padding: 20px 0;
+}
+
+
 #mycq-tabs {
 	margin: 35px 0;
 	background-color: @lightBlue;
@@ -83,6 +124,48 @@
 			margin-top: 10px;
 		}
 	}
+}
+
+#mycq-tabs .control-group {
+	label {
+		font-size: 12px;
+		color: @brown;
+		letter-spacing: 0.01em;
+	}
+	label.control-label {
+		font-weight: bold;
+	}
+	.control-description-r {
+		padding-left: 10px;
+		color: @brown;
+		text-size: 12px;
+	}
+	.two-lines {
+		padding-top: 0px;
+		line-height: 14px;
+	}
+	.help-block {
+		color: @brown;
+		font-size: 12px;
+		margin-top: 5px;
+	}
+	label.disabled, p.disabled {
+		color: #a4a5a9;
+	}
+
+
+	input[disabled], select[disabled], textarea[disabled], input[readonly], select[readonly], textarea[readonly] {
+		background-color: #f2f8fc;
+		border-color: #d3d9de;
+	}
+}
+
+#mycq-tabs .form-actions {
+	background-color: transparent;
+	border-top: none;
+	margin-top: 2px;
+	padding-top: 6px;
+	padding-bottom: 6px;
 }
 
 .nav-tabs > li > a {
@@ -341,18 +424,51 @@ a.buy-credits-button {
 	}
 }
 
+.blue-link {
+	color: @blue;
+	font-size: 12px;
+	line-height: 16px;
+	font-weight: bold;
+	text-align: left;
+	margin-top: 10px;
+	display: block;
+	padding-left: 0;
+	padding-right: 0;
+}
 
 .drop-zone {
 	.square(60px);
 	float: left;
-	background-color: @lightBlue;
-	border: 2px dashed @blue;
 	margin-left: 4px;
 	margin-bottom: 4px;
+	background-color: @lightBlue;
+	border: 2px dashed @blue;
+
 }
+.drop-zone-large {
+	.drop-zone;
+	.square(144px);
+	padding-top: 10px;
+	background-color: #C2E0F0;
+	.blue-link {
+		text-align: center;
+	}
+	.plus-icon-holder {
+		color: #fff;
+		font-size: 80px;
+		line-height: 80px;
+		text-align: center;
+		display: block;
+	}
+	.blue-link {
+		margin-top: 5px;
+	}
+}
+
 .create-collection {
 	background-color: #c2e0f0;
 	.square(60px);
+	text-align: center;
 }
 .create-collection-text {
 	color: @blue;
@@ -487,18 +603,6 @@ a.buy-credits-button {
 		color: @brown;
 		letter-spacing: 0.01em;
 	}
-}
-
-.blue-link {
-	color: @blue;
-	font-size: 12px;
-	line-height: 16px;
-	font-weight: bold;
-	text-align: left;
-	margin-top: 10px;
-	display: block;
-	padding-left: 0;
-	padding-right: 0;
 }
 
 #sold-items-box {
@@ -726,5 +830,42 @@ a.buy-credits-button {
 }
 
 
+.form-container-center {
+	padding-left: 80px;
+	padding-right: 140px;
+
+	.row .span3 {
+		width: 140px;
+	}
+	.row .span4 {
+		width: 156px;
+		margin-left:20px;
+	}
+	.row .span7 {
+    margin-left: 0;
+	}
+	.spacer-top-thumb {
+		margin-top: 88px;
+	}
+}
+
+
+#body-mycq-collection .drop-zone-large {
+	.drop-zone;
+	.square(220px);
+	padding-top: 0px;
+	background-color: @lightBlue;
+	.blue-link {
+		text-align: center;
+	}
+	.plus-icon-holder {
+		font-size: 120px;
+		line-height: 120px;
+		margin-top: 10px;
+	}
+	.blue-link {
+		margin-top: 10px;
+	}
+}
 
 
