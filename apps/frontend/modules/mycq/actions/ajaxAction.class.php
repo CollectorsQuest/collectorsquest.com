@@ -20,4 +20,167 @@ class ajaxAction extends IceAjaxAction
 
     return parent::execute($request);
   }
+
+  /**
+   * @param  sfWebRequest $request
+   * @return string
+   */
+  protected function executeCollectiblesUpload(sfWebRequest $request)
+  {
+    /** @var $collector Collector */
+    $collector = $this->getUser()->getCollector();
+
+    if ($this->collection instanceof Collection)
+    {
+      $this->forward404Unless($collector && $collector->isOwnerOf($this->collection));
+    }
+
+    // We will return an array (in JSON format)
+    $output = array();
+
+    if ($request->isMethod('post') && ($files = $request->getFiles('files')))
+    {
+      $this->loadHelpers('cqImages');
+
+      foreach ($files as $file)
+      {
+        $name = preg_replace('/\.(jpg|jpeg|png|gif)$/iu', '', $file['name']);
+        $name = mb_substr(str_replace(array('_', '-'), ' ', ucfirst($name)), 0, 64, 'utf8');
+
+        try
+        {
+          $collectible = new Collectible();
+          $collectible->setCollector($collector);
+          $collectible->setName($name, true);
+          $collectible->setBatchHash($request->getParameter('batch', null));
+          $collectible->save();
+
+          // Set the Collection after the collectible has been saved
+          $collectible->setCollection($this->collection);
+
+          /**
+           * Add the image
+           *
+           * @var $multimedia iceModelMultimedia
+           */
+          if ($multimedia = $collectible->setThumbnail($file['tmp_name'], true))
+          {
+            $multimedia->setName($name);
+            $multimedia->save();
+
+            $output[] = array(
+              'name' => $multimedia->getName(),
+              'size' => $multimedia->getFileSize(),
+              'type' => 'image/jpeg',
+              'thumbnail' => src_tag_multimedia($multimedia, '19:15x60')
+            );
+          }
+        }
+        catch (PropelException $e)
+        {
+          $this->error($e->getCode(), $e->getMessage(), false);
+          return sfView::NONE;
+        }
+      }
+    }
+
+    // We do not want the web debug bar on these requests
+    sfConfig::set('sf_web_debug', false);
+
+    return $this->output($output);
+  }
+
+  /**
+   * @param  sfWebRequest $request
+   * @return string
+   */
+  protected function executeCollectiblesReorder(sfWebRequest $request)
+  {
+    $collector = $this->getUser()->getCollector();
+
+    if ($this->collection instanceof Collection)
+    {
+      $this->forward404Unless($collector && $collector->isOwnerOf($this->collection));
+    }
+
+    $items = $request->getParameter('items');
+    $key   = $request->getParameter('key');
+    parse_str($items, $order);
+
+    if (isset($order[$key]) && is_array($order[$key]))
+    {
+      $pks = array_values($order[$key]);
+
+      /** @var $q CollectionCollectibleQuery */
+      $q = CollectionCollectibleQuery::create()
+        ->filterByCollection($this->collection)
+        ->filterByCollectibleId($pks, Criteria::IN);
+
+      /** @var $collectibles CollectionCollectible[] */
+      $collectibles = $q->find();
+
+      foreach ($collectibles as $collectible)
+      {
+        foreach ($order[$key] as $position => $pk)
+        {
+          if ($collectible->getCollectibleId() == $pk && $collectible->getPosition() != $position)
+          {
+            $collectible->setPosition($position);
+            $collectible->save();
+
+            break;
+          }
+        }
+      }
+    }
+
+    // We do not want the web debug bar on these requests
+    sfConfig::set('sf_web_debug', false);
+
+    return sfView::NONE;
+  }
+
+  /**
+   * @return string
+   */
+  protected function executeCollectibleRotate()
+  {
+    $this->forward404Unless($this->collectible);
+
+    // Do the rotate
+    $this->collectible->rotateMultimedia(true, true);
+
+    // We do not want the web debug bar on these requests
+    sfConfig::set('sf_web_debug', false);
+
+    return sfView::NONE;
+  }
+
+  /**
+   * @return string
+   */
+  protected function executeCollectibleDelete()
+  {
+    $this->forward404Unless($this->collectible);
+
+    if ($this->collection instanceof Collection)
+    {
+      $q = CollectionCollectibleQuery::create()
+        ->filterByCollectionId($this->collection->getId())
+        ->filterByCollectibleId($this->collectible->getId());
+
+      // Do delete the reference in CollectionCollectible only
+      $q->delete();
+    }
+    else
+    {
+      // Do the delete of the actual Collectible
+      $this->collectible->delete();
+    }
+
+    // We do not want the web debug bar on these requests
+    sfConfig::set('sf_web_debug', false);
+
+    return sfView::NONE;
+  }
 }

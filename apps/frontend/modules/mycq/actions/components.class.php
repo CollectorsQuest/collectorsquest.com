@@ -57,7 +57,7 @@ class mycqComponents extends cqFrontendComponents
     $this->collectibles = $dropbox->getCollectibles();
     $this->total = $dropbox->countCollectibles();
 
-    return sfView::SUCCESS;
+    return $this->total > 0 ? sfView::SUCCESS : sfView::NONE;
   }
 
   public function executeCreateCollection()

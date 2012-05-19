@@ -6,6 +6,13 @@ all:
     - jquery/hoverIntent.js
     - jquery/controls.js
     - jquery/form.js
+    - jquery/tmpl.js
+    - jquery/iframe-transport.js
+    - jquery/load-image.js
+    - jquery/canvas-to-blob.js
+    - jquery/fileupload.js
+    - jquery/fileupload-fp.js
+    - jquery/fileupload-ui.js
     - /assets/js/bootstrap/dialog2.js
     - /assets/js/bootstrap/dialog2.helpers.js
 

@@ -369,6 +369,16 @@ mycq_shopping_orders:
   url:   /mycq/orders
   param: { module: mycq, action: shoppingOrders }
 
+mycq_upload_cancel:
+  url:   /mycq/upload/:batch/cancel
+  param: { module: mycq, action: uploadCancel }
+  requirements: { batch: '\w{32}' }
+
+mycq_upload_finish:
+  url:   /mycq/upload/:batch/finish
+  param: { module: mycq, action: uploadFinish }
+  requirements: { batch: '\w{32}' }
+
 mycq:
   url:   /mycq
   param: { module: mycq, action: index }

@@ -1,5 +1,8 @@
 <div class="tab-content-inner">
-  <?php cq_section_title('Collectibles to Sort ('. $total .')') ?>
+  <?php
+    $link = link_to('Empty Dropbox', '@mycq_dropbox?cmd=empty&encrypt=1');
+    cq_section_title('Collectibles to Sort ('. $total .')', $link);
+  ?>
   <div class="collectibles-to-sort">
     <ul class="thumbnails">
       <?php foreach ($collectibles as $collectible): ?>
@@ -37,7 +40,7 @@ $(document).ready(function()
     opacity: 0.7,
     revert: true,
     cursor: 'move',
-    zIndex: 2700
+    zIndex: 100
   });
 });
 </script>

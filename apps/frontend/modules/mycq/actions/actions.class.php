@@ -20,9 +20,36 @@ class mycqActions extends cqFrontendActions
     return sfView::SUCCESS;
   }
 
-  public function executeDropbox()
+  public function executeDropbox(sfWebRequest $request)
   {
-    return sfView::SUCCESS;
+    $collector = $this->getCollector();
+    $this->forward404Unless($collector instanceof Collector);
+
+    switch ($request->getParameter('cmd'))
+    {
+      case 'empty':
+        $c = new Criteria();
+        $c->add(CollectiblePeer::COLLECTOR_ID, $collector->getId());
+
+        $c->addJoin(
+          CollectiblePeer::ID, CollectionCollectiblePeer::COLLECTIBLE_ID, Criteria::LEFT_JOIN
+        );
+        $c->add(CollectionCollectiblePeer::COLLECTION_ID, null, Criteria::ISNULL);
+
+        /** @var $collectibles Collectible[] */
+        if ($collectibles = CollectiblePeer::doSelect($c))
+        {
+          foreach ($collectibles as $collectible)
+          {
+            $collectible->delete();
+          }
+        }
+
+        $this->getUser()->setFlash('success', 'Your dropbox was emptied!', true);
+        break;
+    }
+
+    $this->redirect('@mycq_collections');
   }
 
   public function executeCollection()
@@ -74,6 +101,50 @@ class mycqActions extends cqFrontendActions
   public function executeWanted()
   {
     return sfView::SUCCESS;
+  }
+
+  public function executeUploadCancel(sfWebRequest $request)
+  {
+    $batch = $request->getParameter('batch');
+    $this->forward404Unless($batch);
+
+    CollectibleQuery::create()
+      ->filterByCollector($this->getCollector())
+      ->filterByBatchHash($batch)
+      ->delete();
+
+    $this->getUser()->setFlash(
+      'error', 'The upload was cancelled and none of the photos were uploaded'
+    );
+
+    $this->redirect('@mycq_collections');
+  }
+
+  public function executeUploadFinish(sfWebRequest $request)
+  {
+    $batch = $request->getParameter('batch');
+    $this->forward404Unless($batch);
+
+    $q = CollectibleQuery::create()
+      ->filterByCollector($this->getCollector())
+      ->filterByBatchHash($batch);
+
+    $total = $q->count();
+
+    if ($total > 0)
+    {
+      $this->getUser()->setFlash(
+        'success', 'Total of <b>' . $total . '</b> photos were uploaded successfully'
+      );
+    }
+    else
+    {
+      $this->getUser()->setFlash(
+        'error', 'There was a problem uploading your photos and none were uploaded'
+      );
+    }
+
+    $this->redirect('@mycq_collections');
   }
 
   public function executeShoppingOrders()
