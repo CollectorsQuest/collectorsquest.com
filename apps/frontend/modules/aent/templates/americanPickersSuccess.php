@@ -1,4 +1,4 @@
-<div class="promo-space">
+<div class="spacer-bottom-15">
   <img src="/images/banners/040412_promo_space_banner2.jpg" alt="Check out items seen on American Pickers">
 </div>
 <?php cq_page_title('As seen on American Pickers'); ?>

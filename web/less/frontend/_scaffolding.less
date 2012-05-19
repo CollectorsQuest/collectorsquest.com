@@ -1,0 +1,97 @@
+// basic body
+body {
+	background: #ecebec url("@{baseUrl}/background-pattern.png") repeat;
+	color: #125375;
+}
+
+a {
+	color: @linkColor;
+	text-decoration: none;
+
+	&:hover {
+		color: @linkColorHover;
+		text-decoration: none;
+	}
+}
+
+h1 {
+	.custom-font(24px, 30px, normal, normal);
+	.smooth-font();
+
+	small {
+		font-size: 16px;
+	}
+}
+
+h2 {
+	.custom-font(22px, 36px, normal, normal);
+	.smooth-font();
+
+	small {
+		font-size: 14px;
+	}
+}
+
+h1 a:hover, h2 a:hover {
+	text-decoration: none;
+	border-bottom: 1px solid @red;
+	color: @blueDark;
+}
+
+h3 {
+	color: @blueDark;
+}
+
+// FONTS
+.Chivo {
+	font-family: 'Chivo', @sansFontFamily;
+}
+
+// SELECTION STYLE
+::selection {
+	background: #D9EBF5;
+}
+
+::-moz-selection {
+	background: #D9EBF5;
+}
+
+::-webkit-selection {
+	background: #D9EBF5;
+}
+
+// WRAPPER, COLUMNS
+#main {
+	float: left;
+	width: 100%;
+	min-height: 600px;
+}
+
+.without-column > #main {
+	float: none;
+}
+
+#content {
+	background-color: @white;
+	padding-top: 40px;
+	padding-bottom: 20px;
+	border-left: 1px solid #ededed;
+}
+
+//SLOTS
+#slot1 {
+	position: relative;
+	z-index: 300px;
+	margin: 0 auto;
+	background-color: @white;
+	.clearfix();
+
+	.slot1-inner {
+		padding: 40px 15px 0;
+	}
+}
+
+.slots-container {
+	.box-shadow(0 25px 20px rgba(136, 119, 119, 0.5));
+	border-left: 1px solid #ededed;
+}

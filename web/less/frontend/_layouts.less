@@ -1,0 +1,48 @@
+//  Fixed width of wrapper up to 1200px
+// (min-width: 997px) and (max-width: 1209px) {
+
+//CONTAINERS
+.container-fluid.fixed-right-300 {
+	width: 620px;
+	.margin-auto();
+}
+
+.container-fluid.fixed-right-120 {
+	width: 800px;
+	.margin-auto();
+}
+
+.container-fluid.fixed-right-160 {
+	width: 760px;
+	.margin-auto();
+}
+
+.container-fluid.fixed-right-180 {
+	width: 740px;
+	.margin-auto();
+}
+
+.container-fluid.without-column {
+	width: 939px;
+	.margin-auto();
+}
+
+header, footer, nav, #breadcrumbs, .slots-container, #slot1, #footer-links {
+	width: 979px;
+	.margin-auto();
+}
+
+
+
+
+// hiding #sidebar
+.container-fluid > #sidebar {
+	display: none;
+}
+
+.container-fluid.fixed-right-300 > #sidebar,
+.container-fluid.fixed-right-160 > #sidebar,
+.container-fluid.fixed-right-180 > #sidebar,
+.container-fluid.fixed-right-120 > #sidebar {
+	display: block;
+}

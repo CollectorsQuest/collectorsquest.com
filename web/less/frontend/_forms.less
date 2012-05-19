@@ -1,3 +1,89 @@
 ul.alert-error {
   margin: 10px;
 }
+
+
+//Search bar
+
+#sort-search-box {
+	background-color: #daecf6;
+	padding: 15px 15px 13px 15px;
+	margin-bottom: 15px;
+
+	.btn-group {
+		float: left;
+		margin-right: -1px;
+	}
+	.dropdown-menu a {
+		color: #887777;
+		strong {
+			color: @blue;
+			font-weight: normal;
+		}
+		&:hover {
+			background: @yellowHighlight;
+			color: #887777;
+		}
+	}
+	.input-append form {
+		margin: 0;
+	}
+	.input-append input {
+		.border-radius(0);
+	}
+	input, textarea, select, .uneditable-input, button, append-left-gray, .gray-button.dropdown-toggle {
+		border: 1px solid #b5b7bd;
+	}
+}
+
+#sort-search-box .gray-button, .collection-search-box btn-group a, .collection-search-box .dropdown-menu a {
+	font-size: 12px;
+}
+
+#sort-search-box .caret.arrow-down {
+	border-top: 5px solid #887777;
+	margin-top: -8px;
+	.opacity(100);
+}
+
+#sort-search-box .caret.arrow-up {
+	border-bottom: 5px solid #887777;
+	border-top: none;
+	margin-top: 0;
+	.opacity(100);
+}
+
+#sort-search-box .gray-button.dropdown-toggle br {
+	line-height: 1px;
+}
+
+#sort-search-box a.dropdown-toggle {
+	.size(16px, 8px);
+	display: block;
+	margin-top: 0;
+	padding: 5px 5px 3px 5px;
+	z-index: 10;
+}
+
+#sort-search-box .btn-group > .dropdown-toggle {
+	border-radius: 0 0 0 0;
+	background-position: inherit;
+}
+
+#sort-search-box .input-append button.gray-button {
+	margin-bottom: 2px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+
+
+// Email suggestion for .form-horizonSee all videotal
+.form-horizontal .email-suggestion {
+	.pull-right;
+	a {
+		cursor: pointer;
+		.domain {
+			font-weight: bold;
+		}
+	}
+}
