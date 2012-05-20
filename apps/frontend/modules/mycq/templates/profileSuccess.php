@@ -199,6 +199,83 @@
               <button class="btn gray-button spacer-left">Cancel</button>
             </div>
           </fieldset>
+
+          <!-- Edit Account Settings -->
+          <fieldset class="brown-dashes form-container-center">
+            <div class="control-group">
+              <label for="textarea" class="control-label">Username</label>
+              <div class="controls spacer-top-5">
+                <span class="brown">
+                  cdavid
+                </span>
+              </div>
+            </div>
+            <div class="control-group">
+              <label for="textarea" class="control-label">Member Since</label>
+              <div class="controls spacer-top-5">
+                <span class="brown">
+                  December 11, 2009
+                </span>
+              </div>
+            </div>
+
+          </fieldset>
+          <fieldset class="brown-dashes form-container-center">
+            <div class="control-group">
+              <label for="textarea" class="control-label">New Email</label>
+              <div class="controls spacer-top-5">
+                <span class="brown">
+                  collin@collectorsquest.com	Confirmed
+                </span>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="input01">New Email</label>
+              <div class="controls">
+                <input type="text" class="input-xxlarge" id="input01">
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="input01">Confirm New Email</label>
+              <div class="controls">
+                <input type="text" class="input-xxlarge" id="input01">
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="input01">Your Password</label>
+              <div class="controls">
+                <input type="text" class="input-xxlarge" id="input01">
+              </div>
+            </div>
+            <div class="form-actions">
+              <button class="btn btn-primary blue-button" type="submit">Change Email</button>
+              <p class="brown spacer-top">
+                Your email address will not change until you confirm it via email
+              </p>
+            </div>
+          </fieldset>
+          <fieldset class="brown-dashes form-container-center">
+            <div class="control-group">
+              <label for="inlineCheckboxes" class="control-label">Check the subscriptions you would like to receive:</label>
+              <div class="controls">
+                <label class="radio">
+                  <input type="radio" checked="" value="option1" id="optionsRadios1" name="optionsRadios">
+                  <strong>CQ Promotions</strong>
+                  <p class="help-block disabled spacer-top-reset">- the latest items for sale by our community of collectors (Published Weekly)</p>
+                </label>
+                <label class="radio">
+                  <input type="radio" checked="" value="option1" id="optionsRadios1" name="optionsRadios">
+                  <strong>CQ Newsletter</strong>
+                  <p class="help-block disabled spacer-top-reset">- the latest news about our community of collectors (Published Twice a Week)</p>
+                </label>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button class="btn btn-primary blue-button" type="submit">Save Subscriptions</button>
+            </div>
+          </fieldset>
+          <!-- /Edit Account Settings -->
+
         </form>
 
 
