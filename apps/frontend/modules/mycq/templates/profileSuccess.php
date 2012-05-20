@@ -23,41 +23,40 @@
         cq_sidebar_title('Nurz', $link, array('left' => 8, 'right' => 4));
         ?>
 
-        <div class="form-container-center spacer-bottom-15">
-          <div class="row">
-            <div class="span3">
-              <span class="brown-bold pull-right">Profile Photo</span>
-            </div>
-            <div class="span4">
-              <div class="drop-zone-large">
-                <a class="plus-icon-holder h-center" href="#">
-                  <i class="icon-plus icon-white"></i>
-                </a>
-                <a class="blue-link" href="#">
-                  Click to upload image<br> or choose from<br> images to the right
-                </a>
-              </div>
-            </div>
-            <div class="span7 spacer-top-thumb">
-              <div class="pull-left spacer-left">
-                <img alt="" src="http://placehold.it/70x70">
-              </div>
-              <div class="pull-left spacer-left">
-                <img alt="" src="http://placehold.it/70x70">
-              </div>
-              <div class="pull-left spacer-left">
-                <img alt="" src="http://placehold.it/70x70">
-              </div>
-              <div class="pull-left spacer-left">
-                <img alt="" src="http://placehold.it/70x70">
-              </div>
-            </div>
-          </div>
-        </div>
-
-
         <form class="form-horizontal">
+
           <fieldset class="form-container-center">
+            <div class="control-group">
+              <label for="input01" class="control-label">Profile Photo</label>
+              <div class="controls">
+                <div class="row-fluid">
+                  <div class="span4">
+                    <div class="drop-zone-large">
+                      <a class="plus-icon-holder h-center" href="#">
+                        <i class="icon-plus icon-white"></i>
+                      </a>
+                      <a class="blue-link" href="#">
+                        Click to upload image<br> or choose from<br> images to the right
+                      </a>
+                    </div>
+                  </div>
+                  <div class="span8 spacer-top-thumb">
+                    <div class="pull-left spacer-right">
+                      <img alt="" src="http://placehold.it/70x70">
+                    </div>
+                    <div class="pull-left spacer-right">
+                      <img alt="" src="http://placehold.it/70x70">
+                    </div>
+                    <div class="pull-left spacer-right">
+                      <img alt="" src="http://placehold.it/70x70">
+                    </div>
+                    <div class="pull-left spacer-right">
+                      <img alt="" src="http://placehold.it/70x70">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
             <div class="control-group">
               <label for="input01" class="control-label">Nickname</label>
