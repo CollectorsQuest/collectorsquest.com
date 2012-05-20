@@ -39,8 +39,8 @@
             <?php if ($sf_params->get('module') === '_video'): ?>
               <ul class="dropdown-menu" style="min-width: 123px;">
                 <li>
-                  <a href="<?= url_for('@collector_me', true); ?>" title="Go to your CollectorsQuest.com profile!">
-                    <i class="icon icon-user"></i> My Profile
+                  <a href="<?= url_for('@collector_me', true); ?>" title="Go to your profile!">
+                    <i class="icon icon-user"></i> Profile
                   </a>
                 </li>
                 <li class="divider"></li>
@@ -54,12 +54,22 @@
               <ul class="dropdown-menu" style="min-width: 123px;">
                 <li>
                   <a href="<?= url_for('@collector_me', true); ?>" title="Go to your CollectorsQuest.com profile!">
-                    <i class="icon icon-user"></i> My Profile
+                    <i class="icon icon-user"></i> Profile
                   </a>
                 </li>
                 <li>
-                  <a href="<?= url_for('@messages_inbox', true); ?>" title="Go to your CollectorsQuest.com inbox!">
-                    <i class="icon icon-envelope"></i> My Inbox
+                  <a href="<?= url_for('@mycq_collections', true); ?>" title="Manage your Collections!">
+                    <i class="icon icon-th-large"></i> Collections
+                  </a>
+                </li>
+                <li>
+                  <a href="<?= url_for('@mycq_marketplace', true); ?>" title="Manage your Collectibles for Sale!">
+                    <i class="icon icon-barcode"></i> Store
+                  </a>
+                </li>
+                <li>
+                  <a href="<?= url_for('@messages_inbox', true); ?>" title="Read and send private messages!">
+                    <i class="icon icon-envelope"></i> Messages
                   </a>
                 </li>
                 <li class="divider"></li>
@@ -96,20 +106,6 @@
 
           <?php $class = in_array($sf_params->get('module'), array('marketplace', 'shopping')) ? 'active' : null; ?>
           <li class="<?= $class ?>"><?= link_to('Market', '@marketplace', array('absolute' => true)); ?></li>
-          <!-- test z-index
-          <li class="dropdown open">
-            <a data-toggle="dropdown" class="dropdown-toggle" href="#">Test <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
-              <li class="divider"></li>
-              <li class="nav-header">Nav header</li>
-              <li><a href="#">Separated link</a></li>
-              <li><a href="#">One more separated link</a></li>
-            </ul>
-          </li>
-          -->
         </ul>
       </div>
     </div>
