@@ -160,6 +160,28 @@ select,
 	}
 }
 
+.red-button {
+	font-size: 14px;
+	font-weight: bold;
+	color: @white;
+	padding: 5px 14px 5px;
+	border: 1px solid #9e0907;
+	border-bottom-color: #9e0907;
+	.buttonBackground(#CC0000, #B2100E);
+	.border-radius(7px);
+	@shadow: inset 1 px 1 px 1 px rgba(255, 255, 255, .2), 0 1 px 2 px rgba(0, 0, 0, .05);
+	.box-shadow(@shadow);
+	text-shadow: none;
+	&:hover {
+		background-position: 0 0;
+		.transition(none);
+		.buttonBackground(#A10504, #CC0000);
+		color: @white;
+		text-decoration: none;
+		border: 1px solid @red;
+	}
+}
+
 .gray-button {
 	font-size: 14px;
 	color: #887777;

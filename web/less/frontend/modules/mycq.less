@@ -59,6 +59,10 @@
 	label.disabled, p.disabled {
 		color: #a4a5a9;
 	}
+	.price-indent {
+		margin-right: 2px;
+		margin-left: 20px;
+	}
 
 	input[disabled], select[disabled], textarea[disabled], input[readonly], select[readonly], textarea[readonly] {
 		background-color: #f2f8fc;
@@ -918,12 +922,17 @@ textarea.input-xlarge {
 	margin: 0 auto;
 
 	.thumbnails {
-		margin-left: -4px;
-		margin-bottom: -4px;
+		margin-right: -3px;
+		margin-left: 0;
+		margin-bottom: 0;
 
 		[class*="span"] {
-			margin-left: 4px;
+			margin-right: 4px;
+		margin-left: 0;
 			margin-bottom: 4px;
+		}
+		.span12 {
+			width: 300px;
 		}
 		a {
 			.box-shadow(none);
@@ -943,7 +952,7 @@ textarea.input-xlarge {
 		.drop-zone-large {
 			.size(256px, 286px);
 			margin-left: 0;
-			margin-bottom: 2px;
+			margin-bottom: 4px;
 			background-color: @lightBlue;
 			font-size: 100px;
 			padding-top: 30px;
