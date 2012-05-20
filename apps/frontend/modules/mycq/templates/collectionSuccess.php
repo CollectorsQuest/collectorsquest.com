@@ -48,6 +48,22 @@
 </div>
 </form>
 
+<div id="mycq-tabs">
+  <div class="tab-content">
+    <div class="tab-pane active" id="tab1">
+    <?php
+      include_component(
+        'mycq', 'dropbox',
+        array('instructions' => array(
+          'position' => 'top',
+          'text' => 'Drag and drop collectibles into your collections.')
+        )
+      );
+    ?>
+    </div>
+  </div>
+</div>
+
 <script>
   $(document).ready(function()
   {

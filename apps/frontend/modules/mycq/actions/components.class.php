@@ -41,7 +41,7 @@ class mycqComponents extends cqFrontendComponents
       $q->search($this->getRequestParameter('q'));
     }
 
-    $pager = new PropelModelPager($q, 7);
+    $pager = new PropelModelPager($q, 11);
     $pager->setPage($this->getRequestParameter('p', 1));
     $pager->init();
     $this->pager = $pager;
@@ -54,10 +54,11 @@ class mycqComponents extends cqFrontendComponents
     $collector = $this->getCollector();
     $dropbox = $collector->getCollectionDropbox();
 
+    $this->batch = cqStatic::getUniqueId(32);
     $this->collectibles = $dropbox->getCollectibles();
     $this->total = $dropbox->countCollectibles();
 
-    return $this->total > 0 ? sfView::SUCCESS : sfView::NONE;
+    return sfView::SUCCESS;
   }
 
   public function executeCreateCollection()
