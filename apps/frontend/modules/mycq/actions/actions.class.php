@@ -52,10 +52,71 @@ class mycqActions extends cqFrontendActions
     $this->redirect('@mycq_collections');
   }
 
-  public function executeCollection()
+  public function executeCollection(sfWebRequest $request)
   {
+    /** @var $collection CollectorCollection */
     $collection = $this->getRoute()->getObject();
     $this->forward404Unless($this->getCollector()->isOwnerOf($collection));
+
+    if ($request->getParameter('cmd'))
+    {
+      switch ($request->getParameter('cmd'))
+      {
+        case 'delete':
+          $collection_name = $collection->getName();
+          $collection->delete();
+
+          $this->getUser()->setFlash(
+            'success', sprintf('Your collection "%s" was deleted!', $collection_name)
+          );
+
+          $this->redirect('@mycq_collections');
+          break;
+      }
+    }
+
+    $form = new CollectorCollectionEditForm($collection);
+
+    if ($request->isMethod('post'))
+    {
+      $taintedValues = $request->getParameter($form->getName());
+      $form->bind($taintedValues, $request->getFiles($form->getName()));
+
+      if ($form->isValid())
+      {
+        $collection->setCollectionCategoryId($form->getValue('collection_category_id'));
+        $collection->setName($form->getValue('name'));
+        $collection->setDescription($form->getValue('description'), 'html');
+        $collection->setTags($form->getValue('tags'));
+
+        try
+        {
+          $collection->save();
+
+          $this->getUser()->setFlash("success", 'Changes were saved!');
+          $this->redirect($this->getController()->genUrl(array(
+            'sf_route'   => 'mycq_collection_by_slug',
+            'sf_subject' => $collection,
+          )));
+        }
+        catch (PropelException $e)
+        {
+          $this->getUser()->setFlash(
+            'error', 'There was a problem while saving the information you provided!'
+          );
+        }
+      }
+      else
+      {
+        $this->defaults = $taintedValues;
+        $this->getUser()->setFlash(
+          'error', 'There were some problems, please take a look below.'
+        );
+      }
+    }
+
+    $this->collection = $collection;
+    $this->form = $form;
 
     return sfView::SUCCESS;
   }
