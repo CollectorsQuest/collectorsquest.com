@@ -33,7 +33,7 @@
 	margin-top: 0;
 }
 
-#body-mycq-collection form.form-horizontal .control-group {
+.forms-mycq {
 	label {
 		font-size: 12px;
 		color: @brown;
@@ -72,6 +72,21 @@
 	margin-top: 0;
 	padding: 20px 0;
 }
+
+#body-mycq-collectible .form-actions {
+	background-color: @lightBlue;
+	border-top: none;
+	margin-top: 0;
+	padding: 20px 0;
+}
+
+#body-mycq-collection form.form-horizontal .control-group {
+	.forms-mycq;
+}
+#body-mycq-collectible form.form-horizontal .control-group {
+	.forms-mycq;
+}
+
 
 
 #mycq-tabs {
@@ -900,7 +915,7 @@ textarea.input-xlarge {
 }
 
 #main-image-set .main-image-set-container {
-	width: 610px;
+	width: 300px;
 	margin: 0 auto;
 
 	.thumbnails {
@@ -924,17 +939,33 @@ textarea.input-xlarge {
 	.thumbnail {
 		border: none;
 		padding: 0;
+		position: relative;
 
 		.drop-zone-large {
-			.size(418px, 446px);
+			.size(256px, 286px);
 			margin-left: 0;
 			margin-bottom: 2px;
 			background-color: @lightBlue;
+			font-size: 100px;
+			padding-top: 30px;
 		}
 		.drop-zone {
-			.square(129px);
+			.size(67px, 82px);
 			margin-left: 0;
 			margin-bottom: 0px;
+			padding-top: 20px;
+		}
+		.info-text {
+			position: absolute;
+			display: block;
+			top: 160px;
+			left: 50px;
+			width: 200px;
+			height: 100px;
+			text-align: center;
+			color: @blueDark;
+			text-size: 14px;
+			line-height: 22px;
 		}
 	}
 }
