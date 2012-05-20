@@ -29,4 +29,17 @@ class CollectibleQuery extends BaseCollectibleQuery
 
     return $this->where($where);
   }
+
+  /**
+   * @param  string  $v
+   * @return CollectibleQuery
+   */
+  public function search($v)
+  {
+    return $this
+      ->filterByName('%'. $v .'%', Criteria::LIKE)
+      ->_or()
+      ->filterByDescription('%'. $v .'%', Criteria::LIKE)
+      ->endUse();
+  }
 }

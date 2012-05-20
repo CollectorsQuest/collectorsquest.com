@@ -16,10 +16,10 @@
       <div class="tab-content-inner spacer-top-35">
         <div class="row-fluid sidebar-title spacer-inner-bottom">
           <div class="span5 link-align">
-            <h3 class="Chivo webfont">My Collections (<?= $collections_count ?>)</h3>
+            <h3 class="Chivo webfont">My Collections (<?= $total ?>)</h3>
           </div>
           <div class="span7">
-            <?php if ($collections_count > 7): ?>
+            <?php if ($total > 7): ?>
             <div class="mycq-sort-search-box">
               <div class="input-append">
                 <form id="form-explore-collections" method="post" action="<?= url_for('@ajax_mycq?section=component&page=collections') ?>">

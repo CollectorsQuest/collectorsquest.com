@@ -49,6 +49,37 @@ class mycqComponents extends cqFrontendComponents
     return sfView::SUCCESS;
   }
 
+  public function executeCollectibles()
+  {
+    /** @var $collection CollectorCollection */
+    $collection = $this->getVar('collection');
+
+    // Let's make sure the current user is the owner
+    if (!$this->getUser()->isOwnerOf($collection))
+    {
+      return sfView::SUCCESS;
+    }
+
+    $q = CollectionCollectibleQuery::create()
+      ->filterByCollection($collection)
+      ->orderByPosition(Criteria::ASC)
+      ->orderByCreatedAt(Criteria::DESC);
+
+    if ($this->getRequestParameter('q'))
+    {
+      $q->search($this->getRequestParameter('q'));
+    }
+
+    $pager = new PropelModelPager($q, 11);
+    $pager->setPage($this->getRequestParameter('p', 1));
+    $pager->init();
+
+    $this->pager = $pager;
+    $this->collection = $collection;
+
+    return sfView::SUCCESS;
+  }
+
   public function executeDropbox()
   {
     $collector = $this->getCollector();

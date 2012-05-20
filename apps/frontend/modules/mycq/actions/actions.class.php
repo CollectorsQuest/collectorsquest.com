@@ -15,7 +15,7 @@ class mycqActions extends cqFrontendActions
   public function executeCollections()
   {
     $this->collector = $this->getUser()->getCollector();
-    $this->collections_count = $this->collector->countCollectorCollections();
+    $this->total = $this->collector->countCollectorCollections();
 
     return sfView::SUCCESS;
   }
@@ -115,6 +115,7 @@ class mycqActions extends cqFrontendActions
       }
     }
 
+    $this->total = $collection->countCollectionCollectibles();
     $this->collection = $collection;
     $this->form = $form;
 
@@ -205,7 +206,7 @@ class mycqActions extends cqFrontendActions
       );
     }
 
-    $this->redirect('@mycq_collections');
+    $this->redirect($request->getReferer() ? $request->getReferer() : '@mycq_collections');
   }
 
   public function executeShoppingOrders()
