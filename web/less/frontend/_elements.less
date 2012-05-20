@@ -178,3 +178,32 @@ ul.stat {
 		}
 	}
 }
+
+ul.statistic-2 {
+	float: left;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+
+	li {
+		float: left;
+		margin: 0;
+		padding: 0 8px 0 8px;
+		font: 10px Arial;
+		border-left: 1px solid #83a8bb;
+		&:first-child {
+		border-left: none;
+		}
+		a, span {
+			margin: 0;
+			color: @blueDark;
+			text-decoration: none;
+			border: none;
+			position: relative;
+			line-height: 10px;
+			&:hover {
+				color: @blue;
+			}
+		}
+	}
+}

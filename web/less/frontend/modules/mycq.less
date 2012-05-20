@@ -112,7 +112,7 @@
 		height: 45px;
 		text-align: center;
 		padding-top: 10px;
-		margin-bottom: 25px;
+		margin-bottom: 20px;
 
 		.instruction-box-inner {
 			width: 420px;
@@ -875,5 +875,58 @@ a.buy-credits-button {
 	}
 }
 
+.collectible-container-inner {
+	padding: 0 15px 1px 15px;
+}
+
+.form-inner-white {
+	background-color: #fff;
+	padding: 35px 0 15px 35px;
+}
 
 
+#main-image-set {
+	width: 100%;
+	margin-bottom: 20px;
+	.clearfix();
+}
+
+#main-image-set .main-image-set-container {
+	width: 610px;
+	margin: 0 auto;
+
+	.thumbnails {
+		margin-left: -4px;
+		margin-bottom: -4px;
+
+		[class*="span"] {
+			margin-left: 4px;
+			margin-bottom: 4px;
+		}
+		a {
+			.box-shadow(none);
+			&:hover {
+				padding: 0;
+				background-color: white;
+				border: none;
+				.border-radius(0);
+			}
+		}
+	}
+	.thumbnail {
+		border: none;
+		padding: 0;
+
+		.drop-zone-large {
+			.size(418px, 446px);
+			margin-left: 0;
+			margin-bottom: 2px;
+			background-color: @lightBlue;
+		}
+		.drop-zone {
+			.square(129px);
+			margin-left: 0;
+			margin-bottom: 0px;
+		}
+	}
+}
