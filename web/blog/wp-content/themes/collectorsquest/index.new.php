@@ -318,7 +318,7 @@ $lastclass = 0;
                     echo human_time_diff( get_the_time('U'), current_time('timestamp') ) . ' ago';
                   else :
                   endif;*/
-                    echo get_the_date('M dS, Y');
+                    echo get_the_date('M jS, Y');
 
                 ?>
               </span>
