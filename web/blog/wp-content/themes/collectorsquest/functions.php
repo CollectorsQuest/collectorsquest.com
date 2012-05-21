@@ -633,7 +633,7 @@ function get_post_image_url($size = 'full') {
 
   // check for post thumbnail
   $image_id = get_post_thumbnail_id($post->ID);
-  $image_url = wp_get_attachment_image_src($image_id,'thumbnail');
+  $image_url = wp_get_attachment_image_src($image_id,'full');
   $image_url = $image_url[0];
 
   // if no post thumbnail check for attachments
@@ -659,6 +659,8 @@ function get_post_image_url($size = 'full') {
     // else return first image from post content
       $img = '/blog/wp-content/themes/collectorsquest/thumb.php?src='.catch_that_image().'&w='.$img[1].'&h='.$img[2].'&zc=1&a=t';
     endif;
+  else :
+    $img = $image_url;
   endif;
 
   return $img;

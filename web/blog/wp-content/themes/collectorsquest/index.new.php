@@ -240,6 +240,8 @@ $lastclass = 0;
           <?php
           if (is_single()) :
             $size = 'blog-single-p1';
+          $img_w = 620;
+          $img_h = 440;
           elseif (is_front_page() && $count == 1) :
             $size = 'blog-homepage-p1';
           else :
@@ -263,17 +265,17 @@ $lastclass = 0;
                 elseif ($ct == "bottom") { $a="b"; }
                 else { $a="t"; }
               ?>
-              <img src="/blog/wp-content/themes/collectorsquest/thumb.php?src=<?php echo get_post_image_url('');  //echo 'http://placekitten.com/700/700'; ?>&w=<?php echo $img_w ?>&h=<?php echo $img_h ?>&zc=1&a=<?php echo $a; ?>" alt=""/>
+              <img src="/blog/wp-content/themes/collectorsquest/thumb.php?src=<?php echo get_post_image_url('full');  //echo 'http://placekitten.com/700/700'; ?>&w=<?php echo $img_w ?>&h=<?php echo $img_h ?>&zc=1&a=<?php echo $a; ?>" alt=""/>
               <?php
               $thumbnail_id = get_post_thumbnail_id($post->ID);
               $thumbnail_image = get_posts(array('p' => $thumbnail_id, 'post_type' => 'attachment'));
-              if ($thumbnail_image && isset($thumbnail_image[0])) :
+              if ($thumbnail_image && isset($thumbnail_image[0]) && $thumbnail_image[0]->post_excerpt) :
                 echo '<p class="wp-caption-text">'.$thumbnail_image[0]->post_excerpt.'</p>';
               endif;
               ?>
 
-            <?php elseif (is_front_page() || is_archive() || is_search()) : ?>
-              <img src="<?php echo get_post_image_url($size); //'http://placekitten.com/700/700'; ?>" alt=""/>
+            <?php elseif (!is_single()) : ?>
+            <img src="<?php echo get_post_image_url($size); //'http://placekitten.com/700/700'; ?>" alt=""/>
             <?php endif; ?>
 
           <?php if (!is_single()) : ?>
