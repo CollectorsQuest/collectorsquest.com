@@ -31,6 +31,10 @@ collectionSuccess:
     - /assets/js/bootstrap/wysihtml5.js
 
 collectibleSuccess:
+  stylesheets:
+    - /assets/css/jquery/chosen.css
+
   javascripts:
     - wysihtml5.js
     - /assets/js/bootstrap/wysihtml5.js
+    - /assets/js/jquery/chosen.js

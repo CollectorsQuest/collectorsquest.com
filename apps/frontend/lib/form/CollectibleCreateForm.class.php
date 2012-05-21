@@ -20,18 +20,15 @@ class CollectibleCreateForm extends CollectibleForm
       ))
     ));
 
-    // Setup the Tags field
-    $this->setupTagsField();
-
     $this->setValidators(array(
       'collection_id'    => new sfValidatorPropelChoice(
         array('model' => 'Collection', 'column' => 'id', 'required' => true)
       ),
-      'name'  => new sfValidatorString(),
-      'tags'  => new sfValidatorCallback(
-        array('required' => true, 'callback' => array($this, 'validateTagsField'))
-      )
+      'name'  => new sfValidatorString()
     ));
+
+    // Setup the Tags field
+    $this->setupTagsField();
 
     $this->widgetSchema->setNameFormat('collectible[%s]');
     $this->widgetSchema->setFormFormatterName('Bootstrap');
@@ -54,6 +51,10 @@ class CollectibleCreateForm extends CollectibleForm
     $this->widgetSchema['tags']->setDefault($tags);
     $this->getWidgetSchema()->setHelp(
       'tags', 'Choose at least three descriptive words for your collectible, separated by commas'
+    );
+
+    $this->validatorSchema['tags'] = new sfValidatorCallback(
+      array('required' => true, 'callback' => array($this, 'validateTagsField'))
     );
   }
 
