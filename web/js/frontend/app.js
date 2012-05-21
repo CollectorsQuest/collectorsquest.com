@@ -187,9 +187,11 @@ var COMMON = window.COMMON = (function(){
           $holder.modal('show');
 
           if (undefined !== $this.data('login-title')) {
-            $holder.find('h1').html($this.data('login-title')).show();
-          } else {
-            $holder.find('h1').hide();
+            $holder.find('#modal-login-username-pane h3').html($this.data('login-title'));
+          }
+
+          if (undefined !== $this.data('signup-title')) {
+            $holder.find('#modal-sign-up-pane h3').html($this.data('signup-title'));
           }
 
           e.preventDefault();
