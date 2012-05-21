@@ -62,6 +62,34 @@ class collectorActions extends cqFrontendActions
           && $this->getUser()->getCollector()->getHasCompletedRegistration(),
          '@mycq');
 
+    $this->form = new CollectorSignupStep1Form();
+
+    if (sfRequest::POST == $request->getMethod())
+    {
+      $this->form->bind($request->getParameter($this->form->getName()));
+
+      if ($this->form->isValid())
+      {
+        $values = $this->form->getValues();
+        // try to guess the collector's country based on IP address
+        $values['country_iso3166'] = cqStatic::getGeoIpCountryCode(
+          $request->getRemoteAddress(), $check_against_geo_country = true);
+          //'www.government.com', $check_against_geo_country = true);
+
+        // create the collector
+        $collector = CollectorPeer::createFromArray($values);
+
+        // authenticate the collector and redirect to @mycq_profile
+        $this->getUser()->Authenticate(true, $collector, false);
+        $this->redirect('@mycq_profile');
+      }
+    }
+
+
+    // Everything below this comment is the old implementation.
+    // When it has been confirmed that it will not be needed, it should be deleted
+
+
     /* * /
     if (!$this->getUser()->isAuthenticated() && !$this->getUser()->getAttribute('signup_type', false, 'registration'))
     {
@@ -77,7 +105,7 @@ class collectorActions extends cqFrontendActions
     {
       $defaultStep = 4;
     }
-    /* */
+    /* * /
 
     // Get the current form step, default to 1 if not set
     $this->snStep = $request->getParameter('step', $defaultStep);
@@ -141,7 +169,7 @@ class collectorActions extends cqFrontendActions
         $this->getUser()->setAttribute('package', null, 'registration');
         $this->form = false; //Hack as $this->form is used as required in signupSuccess
         break;
-      /* */
+      /* * /
     endswitch;
 
     // if request is post
@@ -170,7 +198,7 @@ class collectorActions extends cqFrontendActions
                 'type'     => $this->getUser()->getAttribute('package', null, 'registration'),
               )));
             }
-            /* */
+            /* * /
 
             // redirect to step 2
             $this->redirect($this->getController()->genUrl(array(
