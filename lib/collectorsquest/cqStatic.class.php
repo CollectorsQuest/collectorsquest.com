@@ -333,4 +333,34 @@ class cqStatic extends IceStatic
     return new Magnify(sfConfig::get('app_magnify_channel'), sfConfig::get('app_magnify_api_key'));
   }
 
+  /**
+   * Try to get the country code for a specific IP based on the geoip ext
+   *
+   * Empty string is returned when no valid country code can be extracted
+   *
+   * @param     string $ip
+   * @param     boolean $check_against_geo_countryo
+   *
+   * @return    mixed A 2 letter country code or FALSE
+   */
+  public static function getGeoIpCountryCode(
+    $ip,
+    $check_against_geo_country = false
+  ) {
+    if (function_exists('geoip_country_code_by_name'))
+    {
+      if (false !== $country_code = geoip_country_code_by_name($ip))
+      {
+        if ( $check_against_geo_country
+          && !GeoCountryQuery::create()->filterByIso3166($country_code)->count() )
+        {
+          return false;
+        }
+
+        return $country_code;
+      }
+    }
+
+    return false;
+  }
 }
