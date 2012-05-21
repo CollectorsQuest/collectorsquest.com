@@ -240,8 +240,8 @@ $lastclass = 0;
           <?php
           if (is_single()) :
             $size = 'blog-single-p1';
-          $img_w = 620;
-          $img_h = 440;
+            $img_w = 620;
+            $img_h = 440;
           elseif (is_front_page() && $count == 1) :
             $size = 'blog-homepage-p1';
           else :
