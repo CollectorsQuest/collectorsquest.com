@@ -1,6 +1,6 @@
 <?php
 /**
- * @var $pager sfPropelPager
+ * @var $pager PropelModelPager
  */
 ?>
 
@@ -26,12 +26,6 @@
   <div class="mycq-collections">
     <div class="row thumbnails">
       <?php foreach ($pager->getResults() as $i => $collection): ?>
-      <?php
-        if ($pager->getPage() === 1 && $i == 3)
-        {
-          include_slot('html-create-collection');
-        }
-      ?>
       <div class="span4 thumbnail link">
         <span>
           <a href="<?= url_for('mycq_collection_by_slug', $collection) ?>" style="margin-left: 0px;" class="target">
@@ -43,12 +37,12 @@
           $c->setLimit(2);
           $collectibles = $collection->getCollectionCollectibles($c);
 
-          for ($i = 0; $i < 3; $i++)
+          for ($k = 0; $k < 3; $k++)
           {
-            if (isset($collectibles[$i]))
+            if (isset($collectibles[$k]))
             {
               echo link_to(image_tag_collectible(
-                $collectibles[$i], '75x75',
+                $collectibles[$k], '75x75',
                 array('max_width' => 64, 'max_height' => 64,)
               ), url_for('mycq_collection_by_slug', $collection));
             }
@@ -59,6 +53,12 @@
           }
         ?>
       </div>
+      <?php
+        if (($pager->getPage() === 1 && $i === 2) || $pager->count() === $i+1)
+        {
+          include_slot('html-create-collection');
+        }
+      ?>
       <?php endforeach; ?>
     </div>
   </div>

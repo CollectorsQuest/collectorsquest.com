@@ -1,7 +1,12 @@
-<!-- 041220_CQ_Edit_Collectible_Item_v3.psd and 041220_CQ_Edit_Sale_Item_v6.psd -->
+<?php
+/**
+ * @var $collectible Collectible
+ */
+?>
 
-<?php /*
-<form class="form-horizontal">
+<form action="<?= url_for('mycq_collectible_by_slug', $collectible); ?>"
+      method="post" class="form-horizontal">
+
   <div class="row-fluid">
     <div class="span4">
       <div id="main-image-set">
@@ -31,67 +36,34 @@
               </div>
             </li>
           </ul>
-          <ul class="statistic-2">
-            <li>
-              XXX Views
-            </li>
-            <li>
-              In XXX wanted lists
-            </li>
-            <li>
-              XXX Comments
-            </li>
-          </ul>
         </div>
       </div>
 
     </div><!-- ./span4 -->
     <div class="span8">
       <?php
-      $link = link_to(
-        'View public item page &raquo;', '/collector/1212/tofunky',
-        array('class' => 'text-v-middle link-align')
-      );
-      cq_sidebar_title('Nurz', $link, array('left' => 8, 'right' => 4, 'class'=>'spacer-top-reset row-fluid sidebar-title'));
+        $link = link_to(
+          'View public Collectible page &raquo;',
+          'collectible_by_slug', array('sf_subject' => $collectible),
+          array('class' => 'text-v-middle link-align')
+        );
+        cq_sidebar_title(
+          $collectible->getName(), $link,
+          array('left' => 8, 'right' => 4, 'class'=>'spacer-top-reset row-fluid sidebar-title')
+        );
       ?>
 
-      <div class="control-group">
-        <label class="control-label" for="input01">Collectible Name <span class="red-bold">*</span></label>
-        <div class="controls">
-          <input type="text" class="input-xlarge" id="input01">
-        </div>
-      </div>
-      <div class="control-group">
-        <label class="control-label" for="input01">Assign to Collection <span class="red-bold">*</span></label>
-        <div class="controls">
-          <input type="text" class="input-xlarge" id="input01">
-        </div>
-      </div>
-      <div class="control-group">
-        <label class="control-label" for="input01">Tags <span class="red-bold">*</span></label>
-        <div class="controls">
-          <input type="text" class="input-xlarge" id="input01">
-          <p class="help-block">Choose at least three descriptive words for your item, separated by commas</p>
-        </div>
-      </div>
-      <div class="control-group">
-        <label class="control-label" for="textarea">Collectible Description</label>
-        <div class="controls">
-          <textarea class="input-xlarge" id="textarea" rows="3"></textarea>
-        </div>
-      </div>
-      <div class="control-group">
-        <label for="textarea" class="control-label">Permalink</label>
-        <div class="controls spacer-top-5">
-          <span class="brown">http://collectorsquest.com/item/542698</span>
-        </div>
-      </div>
+      <?= $form; ?>
     </div><!-- ./span8 -->
 
     <div class="row-fluid">
       <div class="span12">
 
         <div class="form-actions text-center spacer-inner-15">
+          <a href="<?= url_for('mycq_collectible_by_slug', array('sf_subject' => $collectible, 'cmd' => 'delete', 'encrypt' => '1')); ?>"
+             class="btn red-button spacer-left pull-left spacer-left">
+            Delete This Item
+          </a>
           <button type="submit" class="btn btn-primary blue-button">Save changes</button>
           <button class="btn gray-button spacer-left">Cancel</button>
         </div>
@@ -100,8 +72,8 @@
     </div>
   </div>
 </form>
-*/?>
 
+<!--
 <form class="form-horizontal">
   <div class="row-fluid">
     <div class="span4">
@@ -158,7 +130,7 @@
         </div>
       </div>
 
-    </div><!-- ./span4 -->
+    </div>
     <div class="span8">
       <?php
       $link = link_to(
@@ -207,7 +179,7 @@
           <span class="brown">http://collectorsquest.com/item/542698</span>
         </div>
       </div>
-    </div><!-- ./span8 -->
+    </div>
 
     <div class="row-fluid">
       <div class="span12">
@@ -221,9 +193,7 @@
     </div>
   </div>
 </form>
-
-
-
+//-->
 
 <div id="mycq-tabs" class="spacer-top-reset">
   <div class="row-fluid instruction-box"><!-- .instruction-box -->
@@ -530,17 +500,7 @@
       </div>
     </div><!-- ./span8 -->
 
-    <div class="row-fluid">
-      <div class="span12">
 
-        <div class="form-actions text-center spacer-inner-15">
-          <button type="submit" class="btn btn-primary blue-button">Save changes</button>
-          <button class="btn gray-button spacer-left">Cancel</button>
-          <button class="btn red-button spacer-left pull-right spacer-right">Delete This Item</button>
-        </div>
-
-      </div>
-    </div>
   </div>
 </form>
 
@@ -647,3 +607,19 @@
 
 
 
+<script type="text/javascript">
+$(document).ready(function()
+{
+  $(".chzn-select").chosen();
+
+  $('input.tag').tagedit({
+    autocompleteURL: '<?= url_for('@ajax_typeahead?section=tags&page=edit'); ?>',
+    // return, comma, semicolon
+    breakKeyCodes: [ 13, 44, 59 ]
+  });
+
+  $('#collectible_description').wysihtml5({
+    "font-styles": false, "image": false, "link": false
+  });
+});
+</script>

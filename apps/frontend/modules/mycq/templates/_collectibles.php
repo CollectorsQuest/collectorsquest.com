@@ -28,12 +28,6 @@
   <div class="mycq-collections">
     <div class="row thumbnails">
       <?php foreach ($pager->getResults() as $i => $collectible): ?>
-      <?php
-        if ($pager->getPage() === 1 && $i == 3)
-        {
-          include_slot('mycq_create_collectible');
-        }
-      ?>
       <div class="span4 thumbnail link">
         <span>
           <a href="<?= url_for('mycq_collectible_by_slug', $collectible) ?>" style="margin-left: 0px;" class="target">
@@ -48,12 +42,12 @@
             ->orderByCreatedAt(Criteria::DESC);
           $multimedia = $q->limit(2)->find();
 
-          for ($i = 0; $i < 3; $i++)
+          for ($k = 0; $k < 3; $k++)
           {
-            if (isset($multimedia[$i]))
+            if (isset($multimedia[$k]))
             {
               echo link_to(image_tag_multimedia(
-                $multimedia[$i], '75x75',
+                $multimedia[$k], '75x75',
                 array('max_width' => 64, 'max_height' => 64,)
               ), url_for('mycq_collectible_by_slug', $collectible));
             }
@@ -64,6 +58,12 @@
           }
         ?>
       </div>
+      <?php
+        if (($pager->getPage() === 1 && $i === 2) || $pager->count() === $i+1)
+        {
+          include_slot('mycq_create_collectible');
+        }
+      ?>
       <?php endforeach; ?>
     </div>
   </div>

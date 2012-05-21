@@ -150,8 +150,93 @@ class mycqActions extends cqFrontendActions
     return sfView::SUCCESS;
   }
 
-  public function executeCollectible()
+  /**
+   * @param  sfWebRequest  $request
+   * @return string
+   */
+  public function executeCollectible(sfWebRequest $request)
   {
+    /** @var $collectible Collectible */
+    $collectible = $this->getRoute()->getObject();
+    $this->forward404Unless($this->getCollector()->isOwnerOf($collectible));
+
+    /** @var $collection CollectorCollection */
+    $collection = $collectible->getCollectorCollection();
+
+    if ($request->getParameter('cmd'))
+    {
+      switch ($request->getParameter('cmd'))
+      {
+        case 'delete':
+
+          $name = $collectible->getName();
+
+          // Delete the Collectible
+          $collectible->delete();
+          $this->getUser()->setFlash(
+            'success', sprintf('Collectible "%s" was deleted!', $name)
+          );
+
+          $url = $this->generateUrl('mycq_collection_by_slug', array('sf_subject' => $collection));
+          $this->redirect($url);
+
+          break;
+      }
+    }
+
+    $form = new CollectibleEditForm($collectible);
+
+    if ($request->isMethod('post'))
+    {
+      $taintedValues = $request->getParameter('collectible');
+      $form->bind($taintedValues, $request->getFiles('collectible'));
+
+      if ($form->isValid())
+      {
+        $form->save();
+
+        if ($this->bIsSeller)
+        {
+          if (isset($omItemForSaleForm) && $omItemForSaleForm->save())
+          {
+            if ($omItemForSaleForm->getValue('is_ready'))
+            {
+              $message = $this->__(
+                'Your collectible has been posted to the Marketplace.
+                 Click <a href="%url%">here</a> to view your collectibles for sale!',
+                array('%url%' => $this->generateUrl('manage_marketplace'))
+              );
+            }
+            else
+            {
+              $message = $this->__('Changes were saved!');
+            }
+
+            $this->getUser()->setFlash('success', $message);
+          }
+        }
+        else
+        {
+          $this->getUser()->setFlash('success', $this->__('Changes were saved!'), true);
+        }
+
+        // if we save the form the request has to be redirected
+        $this->redirect('mycq_collectible_by_slug', $form->getObject());
+      }
+      else
+      {
+        $this->defaults = $taintedValues;
+        $this->getUser()->setFlash(
+          'error', 'There was a problem while saving the information you provided!'
+        );
+      }
+    }
+
+    $this->collection = $collection;
+    $this->collectible = $collectible;
+
+    $this->form = $form;
+
     return sfView::SUCCESS;
   }
 
