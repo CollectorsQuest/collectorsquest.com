@@ -54,7 +54,7 @@ function cq_link_to()
 
     if (cqLinkUtils::getInstance()->isSecureRoute($arguments[1]))
     {
-      _cq_add_requires_login_class_to_options($arguments[2]);
+      _cq_add_requires_login_class_to_options($arguments[3]);
     }
     if (!isset($arguments[3]['absolute']))
     {

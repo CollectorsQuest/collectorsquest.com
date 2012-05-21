@@ -1,19 +1,4 @@
-
 <div id="mycq-tabs">
-  <ul class="nav nav-tabs" style="margin-bottom: 0;">
-    <li class="active">
-      <a href="#tab1" data-toggle="tab">Show Collections</a>
-    </li>
-    <?php if ($collections_count > 0): ?>
-    <li class="pull-right styles-reset">
-      <span>
-        <a href="#" type="submit" class="btn btn-primary blue-button pull-right">
-          Upload Photos
-        </a>
-      </span>
-    </li>
-    <?php endif; ?>
-  </ul>
   <div class="tab-content">
     <div class="tab-pane active" id="tab1">
 
@@ -27,16 +12,17 @@
         );
       ?>
 
-      <div class="tab-content-inner spacer-top">
+      <br style="clear: both;"/>
+      <div class="tab-content-inner spacer-top-35">
         <div class="row-fluid sidebar-title spacer-inner-bottom">
           <div class="span5 link-align">
-            <h3 class="Chivo webfont">My Collections (<?= $collections_count ?>)</h3>
+            <h3 class="Chivo webfont">My Collections (<?= $total ?>)</h3>
           </div>
           <div class="span7">
-            <?php if ($collections_count > 7): ?>
+            <?php if ($total > 7): ?>
             <div class="mycq-sort-search-box">
               <div class="input-append">
-                <form id="form-explore-collections" method="post" action="/search/collections">
+                <form id="form-explore-collections" method="post" action="<?= url_for('@ajax_mycq?section=component&page=collections') ?>">
                   <div class="btn-group">
                     <div class="append-left-gray">Sort by <strong id="sortByName">Most Relevant</strong></div>
                     <a class="btn gray-button dropdown-toggle" data-toggle="dropdown" href="#">

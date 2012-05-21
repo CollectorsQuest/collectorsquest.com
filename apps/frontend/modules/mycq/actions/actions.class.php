@@ -15,22 +15,134 @@ class mycqActions extends cqFrontendActions
   public function executeCollections()
   {
     $this->collector = $this->getUser()->getCollector();
-    $this->collections_count = $this->collector->countCollectorCollections();
+    $this->total = $this->collector->countCollectorCollections();
 
     return sfView::SUCCESS;
   }
 
-  public function executeDropbox()
+  public function executeDropbox(sfWebRequest $request)
   {
-    return sfView::SUCCESS;
+    $collector = $this->getCollector();
+    $this->forward404Unless($collector instanceof Collector);
+
+    switch ($request->getParameter('cmd'))
+    {
+      case 'empty':
+        $c = new Criteria();
+        $c->add(CollectiblePeer::COLLECTOR_ID, $collector->getId());
+
+        $c->addJoin(
+          CollectiblePeer::ID, CollectionCollectiblePeer::COLLECTIBLE_ID, Criteria::LEFT_JOIN
+        );
+        $c->add(CollectionCollectiblePeer::COLLECTION_ID, null, Criteria::ISNULL);
+
+        /** @var $collectibles Collectible[] */
+        if ($collectibles = CollectiblePeer::doSelect($c))
+        {
+          foreach ($collectibles as $collectible)
+          {
+            $collectible->delete();
+          }
+        }
+
+        $this->getUser()->setFlash('success', 'Your dropbox was emptied!', true);
+        break;
+    }
+
+    $this->redirect('@mycq_collections');
   }
 
-  public function executeCollection()
+  public function executeCollection(sfWebRequest $request)
   {
+    /** @var $collection CollectorCollection */
     $collection = $this->getRoute()->getObject();
     $this->forward404Unless($this->getCollector()->isOwnerOf($collection));
 
+    if ($request->getParameter('cmd'))
+    {
+      switch ($request->getParameter('cmd'))
+      {
+        case 'delete':
+          $collection_name = $collection->getName();
+          $collection->delete();
+
+          $this->getUser()->setFlash(
+            'success', sprintf('Your collection "%s" was deleted!', $collection_name)
+          );
+
+          $this->redirect('@mycq_collections');
+          break;
+      }
+    }
+
+    $form = new CollectorCollectionEditForm($collection);
+
+    if ($request->isMethod('post'))
+    {
+      $taintedValues = $request->getParameter($form->getName());
+      $form->bind($taintedValues, $request->getFiles($form->getName()));
+
+      if ($form->isValid())
+      {
+        $collection->setCollectionCategoryId($form->getValue('collection_category_id'));
+        $collection->setName($form->getValue('name'));
+        $collection->setDescription($form->getValue('description'), 'html');
+        $collection->setTags($form->getValue('tags'));
+
+        try
+        {
+          $collection->save();
+
+          $this->getUser()->setFlash("success", 'Changes were saved!');
+          $this->redirect($this->getController()->genUrl(array(
+            'sf_route'   => 'mycq_collection_by_slug',
+            'sf_subject' => $collection,
+          )));
+        }
+        catch (PropelException $e)
+        {
+          $this->getUser()->setFlash(
+            'error', 'There was a problem while saving the information you provided!'
+          );
+        }
+      }
+      else
+      {
+        $this->defaults = $taintedValues;
+        $this->getUser()->setFlash(
+          'error', 'There were some problems, please take a look below.'
+        );
+      }
+    }
+
+    $this->total = $collection->countCollectionCollectibles();
+    $this->collection = $collection;
+    $this->form = $form;
+
     return sfView::SUCCESS;
+  }
+
+  /**
+   * @param sfWebRequest $request
+   */
+  public function executeCollectionCollectibleCreate(sfWebRequest $request)
+  {
+    $collection = CollectorCollectionQuery::create()
+      ->findOneById($request->getParameter('collection_id'));
+    $this->forward404Unless($this->getCollector()->isOwnerOf($collection));
+
+    $collectible = CollectibleQuery::create()
+      ->findOneById($request->getParameter('collectible_id'));
+    $this->forward404Unless($this->getCollector()->isOwnerOf($collectible));
+
+    $q = CollectionCollectibleQuery::create()
+      ->filterByCollection($collection)
+      ->filterByCollectible($collectible);
+
+    $collection_collectible = $q->findOneOrCreate();
+    $collection_collectible->save();
+
+    $this->redirect('mycq_collectible_by_slug', $collection_collectible);
   }
 
   public function executeCollectibles()
@@ -51,6 +163,50 @@ class mycqActions extends cqFrontendActions
   public function executeWanted()
   {
     return sfView::SUCCESS;
+  }
+
+  public function executeUploadCancel(sfWebRequest $request)
+  {
+    $batch = $request->getParameter('batch');
+    $this->forward404Unless($batch);
+
+    CollectibleQuery::create()
+      ->filterByCollector($this->getCollector())
+      ->filterByBatchHash($batch)
+      ->delete();
+
+    $this->getUser()->setFlash(
+      'error', 'The upload was cancelled and none of the photos were uploaded'
+    );
+
+    $this->redirect('@mycq_collections');
+  }
+
+  public function executeUploadFinish(sfWebRequest $request)
+  {
+    $batch = $request->getParameter('batch');
+    $this->forward404Unless($batch);
+
+    $q = CollectibleQuery::create()
+      ->filterByCollector($this->getCollector())
+      ->filterByBatchHash($batch);
+
+    $total = $q->count();
+
+    if ($total > 0)
+    {
+      $this->getUser()->setFlash(
+        'success', 'Total of <b>' . $total . '</b> photos were uploaded successfully'
+      );
+    }
+    else
+    {
+      $this->getUser()->setFlash(
+        'error', 'There was a problem uploading your photos and none were uploaded'
+      );
+    }
+
+    $this->redirect($request->getReferer() ? $request->getReferer() : '@mycq_collections');
   }
 
   public function executeShoppingOrders()

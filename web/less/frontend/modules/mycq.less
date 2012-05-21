@@ -1,5 +1,7 @@
 @import "../_variables.less";
 @import "../_mixins.less";
+@import "../_fileupload.less";
+@import "../_wysihtml5.less";
 
 #breadcrumbs {
   margin-bottom: 0;
@@ -31,8 +33,67 @@
 	margin-top: 0;
 }
 
+.forms-mycq {
+	label {
+		font-size: 12px;
+		color: @brown;
+		letter-spacing: 0.01em;
+	}
+	label.control-label {
+		font-weight: bold;
+	}
+	.control-description-r {
+		padding-left: 10px;
+		color: @brown;
+		text-size: 12px;
+	}
+	.two-lines {
+		padding-top: 0px;
+		line-height: 14px;
+	}
+	.help-block {
+		color: @brown;
+		font-size: 12px;
+		margin-top: 5px;
+	}
+	label.disabled, p.disabled {
+		color: #a4a5a9;
+	}
+	.price-indent {
+		margin-right: 2px;
+		margin-left: 20px;
+	}
+
+	input[disabled], select[disabled], textarea[disabled], input[readonly], select[readonly], textarea[readonly] {
+		background-color: #f2f8fc;
+		border-color: #d3d9de;
+	}
+}
+
+#body-mycq-collection .form-actions {
+	background-color: @lightBlue;
+	border-top: none;
+	margin-top: 0;
+	padding: 20px 0;
+}
+
+#body-mycq-collectible .form-actions {
+	background-color: @lightBlue;
+	border-top: none;
+	margin-top: 0;
+	padding: 20px 0;
+}
+
+#body-mycq-collection form.form-horizontal .control-group {
+	.forms-mycq;
+}
+#body-mycq-collectible form.form-horizontal .control-group {
+	.forms-mycq;
+}
+
+
+
 #mycq-tabs {
-	margin: 35px 0;
 	background-color: @lightBlue;
 
 	ul.nav-tabs {
@@ -70,8 +131,7 @@
 		height: 45px;
 		text-align: center;
 		padding-top: 10px;
-		margin-bottom: 25px;
-
+		margin-bottom: 20px;
 
 		.instruction-box-inner {
 			width: 420px;
@@ -83,6 +143,55 @@
 			margin-top: 10px;
 		}
 	}
+	.form-actions {
+		padding-left:0;
+		text-align: center;
+	}
+}
+
+#mycq-tabs .control-group {
+	label {
+		font-size: 12px;
+		color: @brown;
+		letter-spacing: 0.01em;
+	}
+	label.control-label {
+		font-weight: bold;
+		width: 180px;
+	}
+	.control-description-r {
+		padding-left: 10px;
+		color: @brown;
+		text-size: 12px;
+	}
+	.controls {
+		margin-left: 200px;
+	}
+	.two-lines {
+		padding-top: 0px;
+		line-height: 14px;
+	}
+	.help-block {
+		color: @brown;
+		font-size: 12px;
+		margin-top: 5px;
+	}
+	label.disabled, p.disabled {
+		color: #a4a5a9;
+	}
+
+	input[disabled], select[disabled], textarea[disabled], input[readonly], select[readonly], textarea[readonly] {
+		background-color: #f2f8fc;
+		border-color: #d3d9de;
+	}
+}
+
+#mycq-tabs .form-actions {
+	background-color: transparent;
+	border-top: none;
+	margin-top: 2px;
+	padding-top: 6px;
+	padding-bottom: 6px;
 }
 
 .nav-tabs > li > a {
@@ -213,11 +322,11 @@ a.buy-credits-button {
 		border-style: solid;
 	}
 }
+
 .sidebar-title .span5.link-align {
 	min-height: 22px;
 	padding-top: 8px;
 }
-
 
 .mycq-collections {
 	.thumbnail {
@@ -228,7 +337,7 @@ a.buy-credits-button {
 		.border-radius(0);
 		.box-shadow(0);
 
-		> a {
+		& > a {
 			margin-left: 5px;
 			margin-bottom: 4px;
 			display: block;
@@ -236,13 +345,19 @@ a.buy-credits-button {
 			.square(64px);
 		}
 	}
+
 	.thumbnails {
 		margin-left: -8px;
 	}
-}
-//reset
-.mycq-collections .thumbnail.no-collections-box {
-	height: auto;
+
+  .thumbnails > .span12 {
+    width: 672px;
+  }
+
+  .thumbnail.no-collections-box {
+    height: auto;
+  }
+
 }
 
 .mycq-collections .thumbnails > .span4 {
@@ -270,10 +385,6 @@ a.buy-credits-button {
 	}
 }
 
-.mycq-collections .thumbnails > .span12 {
-	width: 672px;
-}
-
 .mycq-collectibles-for-sale {
 	.thumbnail {
 		margin-left: 10px;
@@ -283,7 +394,7 @@ a.buy-credits-button {
 		.border-radius(0);
 		.box-shadow(0);
 
-		> a {
+		& > a {
 			margin-left: 5px;
 			margin-bottom: 4px;
 			display: block;
@@ -293,7 +404,7 @@ a.buy-credits-button {
 		.collectibles-container {
 			.clearfix();
 			margin-bottom: 2px;
-			> a {
+			& > a {
 			margin-left: 5px;
 				margin-bottom: 4px;
 				display: block;
@@ -341,19 +452,62 @@ a.buy-credits-button {
 	}
 }
 
+.blue-link {
+	color: @blue;
+	font-size: 12px;
+	line-height: 16px;
+	font-weight: bold;
+	text-align: left;
+	margin-top: 10px;
+	display: block;
+	padding-left: 0;
+	padding-right: 0;
+}
 
 .drop-zone {
-	.square(60px);
+	.square(50px);
 	float: left;
 	background-color: @lightBlue;
 	border: 2px dashed @blue;
 	margin-left: 4px;
 	margin-bottom: 4px;
+  font-size: 50px;
+  color: #fff;
+  text-align: center;
+  vertical-align: middle;
+  padding: 5px;
 }
+
+.ui-state-highlight {
+  .transform(scale(1.25)translate3d(0, 0, 0));
+}
+
+.drop-zone-large {
+	.drop-zone;
+	.square(144px);
+	padding-top: 10px;
+	background-color: #C2E0F0;
+	.blue-link {
+		text-align: center;
+	}
+	.plus-icon-holder {
+		color: #fff;
+		font-size: 80px;
+		line-height: 80px;
+		text-align: center;
+		display: block;
+	}
+	.blue-link {
+		margin-top: 5px;
+	}
+}
+
 .create-collection {
 	background-color: #c2e0f0;
 	.square(60px);
+	text-align: center;
 }
+
 .create-collection-text {
 	color: @blue;
 	font-size: 12px;
@@ -458,6 +612,47 @@ a.buy-credits-button {
 	margin: 10px 0 0 20px;
 }
 
+.list-thumbs-other-collectibles {
+	margin: 20px 0 10px 15px;
+
+	.thumbnails {
+		margin-left: -1px;
+		.span2 {
+			border: none;
+			.square(81px);
+			margin-left: 1px;
+			margin-bottom: 2px;
+			font-size: 12px;
+			.box-shadow(none);
+			.border-radius(0);
+		}
+	}
+	.thumbnail {
+		.box-shadow(none);
+		.border-radius(0);
+		border: none;
+		padding: 3px;
+		&:hover {
+			background-color: white;
+			.border-radius(0);
+			padding: 2px;
+			border: 1px solid @brown;
+		}
+	}
+}
+
+.buttons-inner {
+	margin: 5px 0 5px 15px;
+	.blue-button {
+		width: 104px;
+	}
+}
+
+.plan-price {
+	display: inline-block;
+	margin: 10px 0 0 20px;
+}
+
 
 #not-a-seller-box {
 
@@ -487,18 +682,6 @@ a.buy-credits-button {
 		color: @brown;
 		letter-spacing: 0.01em;
 	}
-}
-
-.blue-link {
-	color: @blue;
-	font-size: 12px;
-	line-height: 16px;
-	font-weight: bold;
-	text-align: left;
-	margin-top: 10px;
-	display: block;
-	padding-left: 0;
-	padding-right: 0;
 }
 
 #sold-items-box {
@@ -552,8 +735,7 @@ a.buy-credits-button {
 	}
 }
 
-
-.blue-action-bar {
+.details-container {
 	background-color: @lightBlue;
 	padding: 7px 2% 5px 2%;
 	.size(30px, 96%);
@@ -564,19 +746,24 @@ a.buy-credits-button {
 		margin-top: 10px;
 		display: inline-block;
 	}
-	.pagination {
+	.pagination-small {
 		margin: 0;
 		ul {
+			display: inline-block;
+			.ie7-inline-block();
 			.border-radius(0);
 			.box-shadow(none);
-			margin-top: 7px;
+			margin: 5px 0 0 0;
+		}
+		li {
+			display: inline;
 		}
 		a {
-			line-height: 18px;
-			border: none;
 			font-size: 12px;
-			padding: 0 6px;
+			line-height: 18px;
+			padding: 3px 6px 2px 6px;
 			margin: 0 4px;
+			border: none;
 
 			&:hover {
 				background-color: @blue;
@@ -592,7 +779,6 @@ a.buy-credits-button {
 		}
 	}
 }
-
 
 .collectible_wanted-list {
 	margin-left: -5px;
@@ -720,6 +906,117 @@ a.buy-credits-button {
 	margin-bottom: 20px;
 }
 
+.form-container-center {
+	padding-left: 60px;
+	padding-right: 120px;
+
+	.spacer-top-thumb {
+		margin-top: 93px;
+	}
+	p {
+		margin-bottom: 0;
+	}
+}
 
 
+#body-mycq-collection .drop-zone-large {
+	.drop-zone;
+	.size(220px, 200px);
+	padding-top: 0px;
+	background-color: @lightBlue;
+	.blue-link {
+		text-align: center;
+	}
+	.plus-icon-holder {
+		font-size: 120px;
+		line-height: 120px;
+		margin-top: 10px;
+	}
+	.blue-link {
+		margin-top: 10px;
+	}
+}
 
+input.input-xlarge {
+  width: 400px;
+}
+textarea.input-xlarge {
+  width: 400px;
+  height: 200px;
+}
+.collectible-container-inner {
+	padding: 0 15px 1px 15px;
+}
+
+.form-inner-white {
+	background-color: #fff;
+	padding: 35px 0 15px 35px;
+}
+
+
+#main-image-set {
+	width: 100%;
+	margin-bottom: 20px;
+	.clearfix();
+}
+
+#main-image-set .main-image-set-container {
+	width: 300px;
+	margin: 0 auto;
+
+	.thumbnails {
+		margin-right: -3px;
+		margin-left: 0;
+		margin-bottom: 0;
+
+		[class*="span"] {
+			margin-right: 4px;
+		margin-left: 0;
+			margin-bottom: 4px;
+		}
+		.span12 {
+			width: 300px;
+		}
+		a {
+			.box-shadow(none);
+			&:hover {
+				padding: 0;
+				background-color: white;
+				border: none;
+				.border-radius(0);
+			}
+		}
+	}
+	.thumbnail {
+		border: none;
+		padding: 0;
+		position: relative;
+
+		.drop-zone-large {
+			.size(256px, 286px);
+			margin-left: 0;
+			margin-bottom: 4px;
+			background-color: @lightBlue;
+			font-size: 100px;
+			padding-top: 30px;
+		}
+		.drop-zone {
+			.size(67px, 82px);
+			margin-left: 0;
+			margin-bottom: 0px;
+			padding-top: 20px;
+		}
+		.info-text {
+			position: absolute;
+			display: block;
+			top: 160px;
+			left: 50px;
+			width: 200px;
+			height: 100px;
+			text-align: center;
+			color: @blueDark;
+			text-size: 14px;
+			line-height: 22px;
+		}
+	}
+}

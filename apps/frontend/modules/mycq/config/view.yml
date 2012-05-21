@@ -1,10 +1,36 @@
 all:
-  stylesheets: [frontend/modules/mycq.css]
+  stylesheets:
+    - jquery/ui/bootstrap/theme.css
+    - jquery/ui/bootstrap/theme.ie.css
+    - jquery/tagedit.css
+    - frontend/modules/mycq.css
+
   javascripts:
+    - jquery/ui.js
     - jquery/controls.js
     - jquery/form.js
+    - jquery/tmpl.js
+    - jquery/iframe-transport.js
+    - jquery/load-image.js
+    - jquery/canvas-to-blob.js
+    - jquery/fileupload.js
+    - jquery/fileupload-fp.js
+    - jquery/fileupload-ui.js
+    - jquery/tagedit.js
+    - jquery/autogrow-input.js
+
     - /assets/js/bootstrap/dialog2.js
     - /assets/js/bootstrap/dialog2.helpers.js
 
   components:
     slot1: [mycq, navigation]
+
+collectionSuccess:
+  javascripts:
+    - wysihtml5.js
+    - /assets/js/bootstrap/wysihtml5.js
+
+collectibleSuccess:
+  javascripts:
+    - wysihtml5.js
+    - /assets/js/bootstrap/wysihtml5.js

@@ -66,7 +66,7 @@
 
 
 
-<div id="mycq-tabs">
+<div id="mycq-tabs" class="spacer-top-25">
 <ul class="nav nav-tabs">
   <li class="active">
     <a href="#tab1" data-toggle="tab">Collectibles for Sale</a>

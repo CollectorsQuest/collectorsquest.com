@@ -26,12 +26,17 @@ class CollectionCreateForm extends CollectorCollectionForm
       'step'  => new sfWidgetFormInputHidden(array('default' => 1)),
     ));
 
+    // Setup the Tags field
+    $this->setupTagsField();
+
     $this->setValidators(array(
       'id'    => new sfValidatorPropelChoice(
         array('model' => 'Collection', 'column' => 'id', 'required' => false)
       ),
       'name'  => new sfValidatorString(),
-      'tags'  => new sfValidatorString(),
+      'tags'  => new sfValidatorCallback(
+        array('required' => true, 'callback' => array($this, 'validateTagsField'))
+      ),
       'content_category_id' => new sfValidatorPropelChoice(array(
         'required' => true,
         'model' => 'ContentCategory',
@@ -40,11 +45,39 @@ class CollectionCreateForm extends CollectorCollectionForm
       'step'  => new sfValidatorInteger(),
     ));
 
+    $this->widgetSchema->setNameFormat('collection[%s]');
+    $this->widgetSchema->setFormFormatterName('Bootstrap');
+  }
+
+  protected function setupTagsField()
+  {
+    // pretty ugly hack, but in this case this is the only way
+    // to keep the field's state between requests...
+    $tags = $this->getObject()->getTags();
+
+    $this->widgetSchema['tags'] = new cqWidgetFormMultipleInputText(array(
+      'label' => 'Tags'
+    ), array(
+      'name' => 'collection[tags][]',
+      'required' => 'required',
+      'class' => 'tag'
+    ));
+
+    $this->widgetSchema['tags']->setDefault($tags);
     $this->getWidgetSchema()->setHelp(
       'tags', 'Choose at least three descriptive words for your collection, separated by commas'
     );
+  }
 
-    $this->widgetSchema->setNameFormat('collection[%s]');
-    $this->widgetSchema->setFormFormatterName('Bootstrap');
+  public function validateTagsField($validator, $values)
+  {
+    $values = (array) $values;
+
+    if (empty($values)) {
+      throw new sfValidatorError($validator, 'required');
+    }
+    else {
+      return $values;
+    }
   }
 }

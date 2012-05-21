@@ -44,4 +44,23 @@ class typeAheadAction extends IceAjaxAction
 
     return $this->output($collectors);
   }
+
+  /**
+   * @param  sfWebRequest  $request
+   * @return string
+   */
+  protected function executeTagsEdit($request)
+  {
+    $q = iceModelTagQuery::create()
+      ->filterByName('%'.$request->getParameter('term').'%', Criteria::LIKE)
+      ->filterByIsTriple(false)
+      ->addAsColumn('id', 'Id')
+      ->addAsColumn('name', 'Name')
+      ->addAsColumn('label', 'Name')
+      ->select(array('id', 'name', 'label'))
+      ->limit(10);
+    $tags = $q->find()->getArrayCopy();
+
+    return $this->output($tags);
+  }
 }

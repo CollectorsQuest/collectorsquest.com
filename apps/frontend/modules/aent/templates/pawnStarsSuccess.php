@@ -1,4 +1,4 @@
-<div class="promo-space">
+<div class="spacer-bottom-15">
   <img src="/images/banners/040412_promo_space_banner.jpg" alt="">
 </div>
 <?php cq_page_title('As seen on Pawn Stars'); ?>
