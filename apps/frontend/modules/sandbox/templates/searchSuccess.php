@@ -167,16 +167,16 @@
 
     <h3><a href="http://collectorsquest.next/blog/2007/09/01/profile-of-a-game-collector-part-two">Profile of a Game Collector : Part Two</a></h3>
     <blockquote> ...  him about his experiences there. ------------------ <b>Collin</b> : You recently got back from ... . <b>Collin</b> : Ping pong gun? Eric : Ever played "Killer"? Or "Assassin"? <b>Collin</b> : I ... </blockquote>
-    <a href="/blog/author/colin/"><img width="35" height="35" style="float: left; margin-right: 10px;" src="/images/blog/avatar-collin-david.png" /></a>  posted by <br/>
-    <a href="/blog/author/colin/">Collin David</a></div>
+    <a href="/blog/author/collin/"><img width="35" height="35" style="float: left; margin-right: 10px;" src="/images/blog/avatar-collin-david.png" /></a>  posted by <br/>
+    <a href="/blog/author/collin/">Collin David</a></div>
 </div><div class="span8 brick" style="height: 165px; float: left;">
   <div id="wp_post_2478_grid_view"
        data-id="2478" class="wp_post_grid_view">
 
     <h3><a href="http://collectorsquest.next/blog/2007/08/29/profile-of-a-game-collector-part-one">Profile of a Game Collector : Part One</a></h3>
     <blockquote> ... 'm usually pretty easily infected. -------------------- <b>Collin</b> : So, I guess this is ... ) player interaction and simpler components. <b>Collin</b> : So, as a collector-slash ... </blockquote>
-    <a href="/blog/author/colin/"><img width="35" height="35" style="float: left; margin-right: 10px;" src="/images/blog/avatar-collin-david.png" /></a>  posted by <br/>
-    <a href="/blog/author/colin/">Collin David</a></div>
+    <a href="/blog/author/collin/"><img width="35" height="35" style="float: left; margin-right: 10px;" src="/images/blog/avatar-collin-david.png" /></a>  posted by <br/>
+    <a href="/blog/author/collin/">Collin David</a></div>
 </div><div class="span4 brick" style="height: 165px; float: left;">
   <div id="collectible_22079_grid_view"
        data-id="22079"
@@ -310,7 +310,7 @@
 
     <h3><a href="http://collectorsquest.next/blog/2010/06/06/women-of-star-trek-trading-cards">Women of Star Trek Trading Cards</a></h3>
     <blockquote> ... , with Famke Janssen and Joan <b>Collins</b> topping out at around $80 ...  Janeway, and signatures from Joan <b>Collins</b>, Sherry Jackson (from the original ... </blockquote>
-    <a href="/blog/author/colin/"><img width="35" height="35" style="float: left; margin-right: 10px;" src="/images/blog/avatar-collin-david.png" /></a>  posted by <br/>
-    <a href="/blog/author/colin/">Collin David</a></div>
+    <a href="/blog/author/collin/"><img width="35" height="35" style="float: left; margin-right: 10px;" src="/images/blog/avatar-collin-david.png" /></a>  posted by <br/>
+    <a href="/blog/author/collin/">Collin David</a></div>
 </div>  </div>
 </div>

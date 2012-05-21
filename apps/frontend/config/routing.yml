@@ -204,6 +204,13 @@ blog:
   url:   /blog
   param: { module: _blog, action: index }
 
+blog_post:
+  url:   /blog/:slug
+  param: { module: _blog, action: post }
+
+blog_page:
+  url:   /pages/:slug
+  param: { module: _blog, action: page }
 
 ### VIDEO
 
@@ -479,9 +486,6 @@ logout:
 recover_password:
   url:   /recover-password
   param: { module: general, action: recoverPassword }
-
-page:
-  url:   /blog/:slug
 
 feedback:
   url:   /feedback
