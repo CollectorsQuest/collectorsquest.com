@@ -35,6 +35,8 @@ class CollectorLoginForm extends BaseForm
 
     $this->widgetSchema->setNameFormat('login[%s]');
     $this->widgetSchema->setFormFormatterName('Bootstrap');
+
+    $this->setDefault('goto', sfContext::getInstance()->getRequest()->getUri());
   }
 
 }
