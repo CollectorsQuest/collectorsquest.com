@@ -270,6 +270,7 @@ $lastclass = 0;
               if ($thumbnail_image && isset($thumbnail_image[0])) :
                 echo '<p class="wp-caption-text">'.$thumbnail_image[0]->post_excerpt.'</p>';
               endif;
+              endif;
               ?>
 
             <?php elseif (is_front_page() || is_archive() || is_search()) : ?>
@@ -318,6 +319,7 @@ $lastclass = 0;
 
                 ?>
               </span>
+              <?php edit_post_link('Edit', '', ' | '); ?>
             </span>
           </span>
 
