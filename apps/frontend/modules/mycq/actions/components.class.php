@@ -139,11 +139,23 @@ class mycqComponents extends cqFrontendComponents
       if ($form->isValid())
       {
         $values = $form->getValues();
+
+        $collection = CollectorCollectionQuery::create()
+          ->findOneById($values['collection_id']);
+
+        if (!$this->getCollector()->isOwnerOf($collection)) {
+          return sfView::NONE;
+        }
+
+        $values = $form->getValues();
         $values['collector_id'] = $this->getCollector()->getId();
 
         /** @var $collectible Collectible */
         $collectible = $form->updateObject($values);
         $collectible->setTags($values['tags']);
+        $collectible->save();
+
+        $collectible->addCollection($collection);
         $collectible->save();
 
         $this->collectible = $collectible;
