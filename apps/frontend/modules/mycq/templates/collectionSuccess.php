@@ -93,6 +93,7 @@
         </div>
 
         <?php include_component('mycq', 'collectibles', array('collection' => $collection)); ?>
+      </div>
     </div>
   </div>
 </div>

@@ -1,13 +1,13 @@
 <?php
 
-class CollectionCreateForm extends CollectorCollectionForm
+class CollectibleCreateForm extends CollectibleForm
 {
   public function configure()
   {
     $this->setWidgets(array(
-      'id'  => new sfWidgetFormInputHidden(),
+      'collection_id'  => new sfWidgetFormInputHidden(),
       'name'  => new sfWidgetFormInputText(array(
-        'label' => 'Collection Name',
+        'label' => 'Collectible Name',
       ), array(
         'required' => 'required',
         'class' => 'input-xlarge'
@@ -17,35 +17,23 @@ class CollectionCreateForm extends CollectorCollectionForm
       ), array(
         'required' => 'required',
         'class' => 'input-xlarge'
-      )),
-      'content_category_id' => new cqWidgetFormPropelChoiceByNestedSet(array(
-        'label' => 'Category',
-        'model' => 'ContentCategory',
-        'add_empty' => true,
-      )),
-      'step'  => new sfWidgetFormInputHidden(array('default' => 1)),
+      ))
     ));
 
     // Setup the Tags field
     $this->setupTagsField();
 
     $this->setValidators(array(
-      'id'    => new sfValidatorPropelChoice(
-        array('model' => 'Collection', 'column' => 'id', 'required' => false)
+      'collection_id'    => new sfValidatorPropelChoice(
+        array('model' => 'Collection', 'column' => 'id', 'required' => true)
       ),
       'name'  => new sfValidatorString(),
       'tags'  => new sfValidatorCallback(
         array('required' => true, 'callback' => array($this, 'validateTagsField'))
-      ),
-      'content_category_id' => new sfValidatorPropelChoice(array(
-        'required' => true,
-        'model' => 'ContentCategory',
-        'column' => 'id',
-      )),
-      'step'  => new sfValidatorInteger(),
+      )
     ));
 
-    $this->widgetSchema->setNameFormat('collection[%s]');
+    $this->widgetSchema->setNameFormat('collectible[%s]');
     $this->widgetSchema->setFormFormatterName('Bootstrap');
   }
 
@@ -58,14 +46,14 @@ class CollectionCreateForm extends CollectorCollectionForm
     $this->widgetSchema['tags'] = new cqWidgetFormMultipleInputText(array(
       'label' => 'Tags'
     ), array(
-      'name' => 'collection[tags][]',
+      'name' => 'collectible[tags][]',
       'required' => 'required',
       'class' => 'tag'
     ));
 
     $this->widgetSchema['tags']->setDefault($tags);
     $this->getWidgetSchema()->setHelp(
-      'tags', 'Choose at least three descriptive words for your collection, separated by commas'
+      'tags', 'Choose at least three descriptive words for your collectible, separated by commas'
     );
   }
 

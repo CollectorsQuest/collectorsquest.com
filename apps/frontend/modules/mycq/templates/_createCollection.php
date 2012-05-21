@@ -17,12 +17,21 @@
 </form>
 
 <?php
-
-if (isset($collection) && !$collection->isNew())
-{
-  echo cq_link_to(
-    '&nbsp;', 'mycq_collection_by_slug', $collection, array('class' => 'auto-close')
-  );
-}
-
+  if (isset($collection) && !$collection->isNew())
+  {
+    echo cq_link_to(
+      '&nbsp;', 'mycq_collection_by_slug', $collection, array('class' => 'auto-close')
+    );
+  }
 ?>
+
+<script>
+  $(document).ready(function()
+  {
+    $('#form-create-collection input.tag').tagedit({
+      autocompleteURL: '<?= url_for('@ajax_typeahead?section=tags&page=edit'); ?>',
+      // return, comma, semicolon
+      breakKeyCodes: [ 13, 44, 59 ]
+    });
+  });
+</script>

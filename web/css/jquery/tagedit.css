@@ -15,10 +15,23 @@
   margin: 0;
   padding: 5px 5px 0 5px;
   border: 1px solid #c6c6c6;
-  width: 400px;
   overflow: auto;
-  font-size: 11px;
-  min-height: 25px;
+  min-height: 28px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+.tagedit-list input:focus {
+  border: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  padding: 0;
+}
+
+.error .tagedit-list {
+  border: 1px solid #B94A48;
 }
 
 .tagedit-list li.tagedit-listelement {

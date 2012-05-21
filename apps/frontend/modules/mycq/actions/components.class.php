@@ -126,4 +126,32 @@ class mycqComponents extends cqFrontendComponents
 
     return sfView::SUCCESS;
   }
+
+  public function executeCreateCollectible()
+  {
+    $form = new CollectibleCreateForm();
+    $form->setDefault('collection_id', $this->getRequestParameter('collection_id'));
+
+    if ($this->getRequest()->isMethod('post'))
+    {
+      $form->bind($this->getRequestParameter('collectible'));
+
+      if ($form->isValid())
+      {
+        $values = $form->getValues();
+        $values['collector_id'] = $this->getCollector()->getId();
+
+        /** @var $collectible Collectible */
+        $collectible = $form->updateObject($values);
+        $collectible->setTags($values['tags']);
+        $collectible->save();
+
+        $this->collectible = $collectible;
+      }
+    }
+
+    $this->form = $form;
+
+    return sfView::SUCCESS;
+  }
 }

@@ -16,7 +16,7 @@
     <div class="span7">
       <a href="<?php echo url_for('@ajax_mycq?section=component&page=createCollectible&collection_id='. $collection->getId()); ?>"
          class="open-dialog create-collection-text">
-        Create a new collectible by clicking here
+        Create a new Collectible by clicking here
       </a>
     </div>
   </div>
@@ -76,20 +76,17 @@
 
 <?php else: ?>
 
-  <div class="spacer-top-25">
-    <div class="mycq-collections">
-      <div class="row thumbnails">
-        <div class="span12 thumbnail link no-collections-uploaded-box">
-          <span class="Chivo webfont info-no-collections-uploaded">
-            Share your collection with the community today!<br>
-            Upload then sort your collectibles to get started.
-          </span>
-        </div>
-        <?php include_slot('html-create-collection'); ?>
+  <div class="mycq-collections spacer-top-25">
+    <div class="row thumbnails">
+      <div class="span12 thumbnail link no-collections-uploaded-box">
+        <span class="Chivo webfont info-no-collections-uploaded">
+          Share your collectibles with the community today!<br>
+          Upload then sort your collectibles to get started.
+        </span>
       </div>
+      <?php include_slot('mycq_create_collectible'); ?>
     </div>
   </div>
-
 <?php endif; ?>
 
 <script>
