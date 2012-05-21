@@ -636,6 +636,7 @@ function get_post_image_url($size = 'full') {
   $image_url = wp_get_attachment_image_src($image_id,'full');
   $image_url = $image_url[0];
 
+
   // if no post thumbnail check for attachments
   if (!$image_url) :
     $args = array(
@@ -650,17 +651,20 @@ function get_post_image_url($size = 'full') {
 
     $images = get_posts($args);
 
-    // return attachment if found
+    // return first attachment if found
     if ( count( $images ) > 0 ) :
       //return wp_get_attachment_url($images[0]->ID);
       $img = wp_get_attachment_image_src($images[0]->ID, $size);
       $img = $img[0];
+
     else :
-    // else return first image from post content
+      // else return first image from post content
       $img = '/blog/wp-content/themes/collectorsquest/thumb.php?src='.catch_that_image().'&w='.$img[1].'&h='.$img[2].'&zc=1&a=t';
     endif;
+
+  // if there is a post thumbnail
   else :
-    $image_url = wp_get_attachment_image_src($image_id,'thumbnail');
+    $image_url = wp_get_attachment_image_src($image_id,$size);
     $image_url = $image_url[0];
     $img = $image_url;
   endif;
@@ -668,6 +672,13 @@ function get_post_image_url($size = 'full') {
   return $img;
 
 }
+
+
+
+
+
+
+
 
 // include thumbnails in rss feed
 function insertThumbnailRSS($content) {

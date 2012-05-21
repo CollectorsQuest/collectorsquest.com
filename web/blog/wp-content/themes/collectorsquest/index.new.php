@@ -256,16 +256,18 @@ $lastclass = 0;
             <?php $image_attributes = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID), 'full' ); ?>
 
             <?php if (is_single() && $image_attributes[1] >= 620) : ?>
-              <?php
-                global $custom_thumbs_mb;
-                $custom_thumbs_mb->the_field('cq_thumb_align');
-                $ct = $custom_thumbs_mb->get_the_value();
-                if ($ct == "top") { $a="t"; }
-                elseif ($ct == "middle") { $a="m"; }
-                elseif ($ct == "bottom") { $a="b"; }
-                else { $a="t"; }
-              ?>
+                  <?php
+                    global $custom_thumbs_mb;
+                    $custom_thumbs_mb->the_field('cq_thumb_align');
+                    $ct = $custom_thumbs_mb->get_the_value();
+                    if ($ct == "top") { $a="t"; }
+                    elseif ($ct == "middle") { $a="m"; }
+                    elseif ($ct == "bottom") { $a="b"; }
+                    else { $a="t"; }
+                  ?>
+
               <img src="/blog/wp-content/themes/collectorsquest/thumb.php?src=<?php echo get_post_image_url('full');  //echo 'http://placekitten.com/700/700'; ?>&w=<?php echo $img_w ?>&h=<?php echo $img_h ?>&zc=1&a=<?php echo $a; ?>" alt=""/>
+
               <?php
               $thumbnail_id = get_post_thumbnail_id($post->ID);
               $thumbnail_image = get_posts(array('p' => $thumbnail_id, 'post_type' => 'attachment'));
