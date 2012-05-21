@@ -318,8 +318,71 @@
       </ul>
     </div>
   </div>
-
 </div>
+
+
+<div class="list-thumbs-other-collectibles">
+  Other items in the <a href="#">ActionMania!</a> Storefront
+  <ul class="thumbnails">
+    <li class="span2">
+      <a href="#" class="thumbnail">
+        <img src="http://placehold.it/75x75" alt="">
+      </a>
+    </li>
+    <li class="span2">
+      <a href="#" class="thumbnail">
+        <img src="http://placehold.it/75x75" alt="">
+      </a>
+    </li>
+    <li class="span2">
+      <a href="#" class="thumbnail">
+        <img src="http://placehold.it/75x75" alt="">
+      </a>
+    </li>
+    <li class="span2">
+      <a href="#" class="thumbnail">
+        <img src="http://placehold.it/75x75" alt="">
+      </a>
+    </li>
+    <li class="span2">
+      <a href="#" class="thumbnail">
+        <img src="http://placehold.it/75x75" alt="">
+      </a>
+    </li>
+    <li class="span2">
+      <a href="#" class="thumbnail">
+        <img src="http://placehold.it/75x75" alt="">
+      </a>
+    </li>
+    <li class="span2">
+      <a href="#" class="thumbnail">
+        <img src="http://placehold.it/75x75" alt="">
+      </a>
+    </li>
+    <li class="span2">
+      <a href="#" class="thumbnail">
+        <img src="http://placehold.it/75x75" alt="">
+      </a>
+    </li>
+    <li class="span2">
+      <a href="#" class="thumbnail">
+        <img src="http://placehold.it/75x75" alt="">
+      </a>
+    </li>
+    <li class="span2">
+      <a href="#" class="thumbnail">
+        <img src="http://placehold.it/75x75" alt="">
+      </a>
+    </li>
+    <li class="span2">
+      <a href="#" class="thumbnail">
+        <img src="http://placehold.it/75x75" alt="">
+      </a>
+    </li>
+  </ul>
+</div>
+
+
 
 <div class="spacer-top-35"></div>
 <!-- 041220_CQ_Edit_Sale_Item_v6 -->
