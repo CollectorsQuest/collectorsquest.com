@@ -578,6 +578,32 @@ function kpl_user_bio_visual_editor_unfiltered() {
 }
 add_action('admin_init','kpl_user_bio_visual_editor_unfiltered');
 
+// add tag field to user profile
+function cq_add_custom_user_profile_fields( $user ) {
+  ?>
+  <h3><?php _e('Collectors\' Quest Tags', 'collectorsquest'); ?></h3>
+  <table class="form-table">
+    <tr>
+      <th>
+        <label for="address"><?php _e('User Tags', 'collectorsquest'); ?>
+        </label></th>
+      <td>
+        <input type="text" name="user_tags" id="user_tags" value="<?php echo esc_attr( get_the_author_meta( 'user_tags', $user->ID ) ); ?>" class="regular-text" /><br />
+        <span class="description"><?php _e('Please enter your tags. (1,2,3)', 'collectorsquest'); ?></span>
+      </td>
+    </tr>
+  </table>
+<?php }
+function cq_save_custom_user_profile_fields( $user_id ) {
+  if ( !current_user_can( 'edit_user', $user_id ) )
+    return FALSE;
+  update_user_meta( $user_id, 'user_tags', $_POST['user_tags'] );
+}
+add_action( 'show_user_profile', 'cq_add_custom_user_profile_fields' );
+add_action( 'edit_user_profile', 'cq_add_custom_user_profile_fields' );
+add_action( 'personal_options_update', 'cq_save_custom_user_profile_fields' );
+add_action( 'edit_user_profile_update', 'cq_save_custom_user_profile_fields' );
+
 // correcting comment count
 add_filter('get_comments_number', 'comment_count', 0);
 function comment_count( $count ) {
@@ -646,15 +672,25 @@ function get_post_image_url($size = 'full') {
       'orderby' => 'menu_order',
       'order' => 'ASC',
       'offset' => '0',
-      'numberposts' => 1
+      'numberposts' => -1
     );
 
     $images = get_posts($args);
 
-    // return first attachment if found
+    // return first attachment over 300px wide if found
     if ( count( $images ) > 0 ) :
+
+      $c = 0;
+      foreach ($images as $image) {
+        $image_attributes = wp_get_attachment_image_src( $image->ID, 'full' );
+        if ($image_attributes[1] >= 300) {
+          $img = wp_get_attachment_image_src($images[$c]->ID, $size);
+          end;
+        }
+      $c++;
+      }
+
       //return wp_get_attachment_url($images[0]->ID);
-      $img = wp_get_attachment_image_src($images[0]->ID, $size);
       $img = $img[0];
 
     else :
@@ -675,11 +711,6 @@ function get_post_image_url($size = 'full') {
 
 
 
-
-
-
-
-
 // include thumbnails in rss feed
 function insertThumbnailRSS($content) {
   global $post;
@@ -688,32 +719,6 @@ function insertThumbnailRSS($content) {
 }
 add_filter('the_excerpt_rss', 'insertThumbnailRSS');
 add_filter('the_content_feed', 'insertThumbnailRSS');
-
-// add tag field to user profile
-function cq_add_custom_user_profile_fields( $user ) {
-  ?>
-<h3><?php _e('Collectors\' Quest Tags', 'collectorsquest'); ?></h3>
-<table class="form-table">
-  <tr>
-    <th>
-      <label for="address"><?php _e('User Tags', 'collectorsquest'); ?>
-      </label></th>
-    <td>
-      <input type="text" name="user_tags" id="user_tags" value="<?php echo esc_attr( get_the_author_meta( 'user_tags', $user->ID ) ); ?>" class="regular-text" /><br />
-      <span class="description"><?php _e('Please enter your tags. (1,2,3)', 'collectorsquest'); ?></span>
-    </td>
-  </tr>
-</table>
-<?php }
-function cq_save_custom_user_profile_fields( $user_id ) {
-  if ( !current_user_can( 'edit_user', $user_id ) )
-    return FALSE;
-  update_user_meta( $user_id, 'user_tags', $_POST['user_tags'] );
-}
-add_action( 'show_user_profile', 'cq_add_custom_user_profile_fields' );
-add_action( 'edit_user_profile', 'cq_add_custom_user_profile_fields' );
-add_action( 'personal_options_update', 'cq_save_custom_user_profile_fields' );
-add_action( 'edit_user_profile_update', 'cq_save_custom_user_profile_fields' );
 
 // sharper thumbnails
 // http://wordpress.org/extend/plugins/sharpen-resized-images/developers/
@@ -750,3 +755,27 @@ function ajx_sharpen_resized_files( $resized_file ) {
   return $resized_file;
 }
 add_filter('image_make_intermediate_size', 'ajx_sharpen_resized_files',900);
+
+// add custom sizes to media uploader - http://stackoverflow.com/questions/5032906/how-can-i-add-custom-image-sizes-to-wordpress-but-have-them-in-the-admin
+function my_attachment_fields_to_edit_filter($form_fields, $post) {
+  if (!array_key_exists('image-size', $form_fields)) return $form_fields;
+
+  global $_wp_additional_image_sizes;
+  foreach($_wp_additional_image_sizes as $size => $properties) {
+    if ($size == 'post-thumbnail') continue;
+
+    $label = ucwords(str_replace('-', ' ', $size));
+    $cssID = "image-size-{$size}-{$post->ID}";
+
+    $downsize = image_downsize($post->ID, $size);
+    $enabled = $downsize[3];
+
+    $html = '<input type="radio" ' . disabled($enabled, false, false) . 'name="attachments[' . $post->ID. '][image-size]" id="' . $cssID . '" value="' . $size .'">';
+    $html .= '<label for="'. $cssID . '">' . $label . '</label>';
+    if ($enabled) $html .= ' <label for="' . $cssID . '" class="help">(' . $downsize[1] . '&nbsp;×&nbsp;' . $downsize[2] . ')</label>';
+    $form_fields['image-size']['html'] .= '<div class="image-size-item">' . $html . '</div>';
+  }
+
+  return $form_fields;
+}
+add_filter('attachment_fields_to_edit', 'my_attachment_fields_to_edit_filter', 100, 2);
