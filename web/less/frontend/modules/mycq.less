@@ -48,7 +48,7 @@
 		text-size: 12px;
 	}
 	.two-lines {
-		padding-top: 0px;
+		padding-top: 0;
 		line-height: 14px;
 	}
 	.help-block {
@@ -70,18 +70,13 @@
 	}
 }
 
-#body-mycq-collection .form-actions {
-	background-color: @lightBlue;
-	border-top: none;
-	margin-top: 0;
-	padding: 20px 0;
-}
-
-#body-mycq-collectible .form-actions {
-	background-color: @lightBlue;
-	border-top: none;
-	margin-top: 0;
-	padding: 20px 0;
+#body-mycq-collection, #body-mycq-collectible {
+	.form-actions {
+		background-color: @lightBlue;
+		border-top: none;
+		margin-top: 0;
+		padding: 20px 0;
+	}
 }
 
 #body-mycq-collection form.form-horizontal .control-group {
@@ -90,8 +85,6 @@
 #body-mycq-collectible form.form-horizontal .control-group {
 	.forms-mycq;
 }
-
-
 
 #mycq-tabs {
 	background-color: @lightBlue;
@@ -168,7 +161,7 @@
 		margin-left: 200px;
 	}
 	.two-lines {
-		padding-top: 0px;
+		padding-top: 0;
 		line-height: 14px;
 	}
 	.help-block {
@@ -922,7 +915,7 @@ a.buy-credits-button {
 #body-mycq-collection .drop-zone-large {
 	.drop-zone;
 	.size(220px, 200px);
-	padding-top: 0px;
+	padding-top: 0;
 	background-color: @lightBlue;
 	.blue-link {
 		text-align: center;
@@ -1003,7 +996,7 @@ textarea.input-xlarge {
 		.drop-zone {
 			.size(67px, 82px);
 			margin-left: 0;
-			margin-bottom: 0px;
+			margin-bottom: 0;
 			padding-top: 20px;
 		}
 		.info-text {
