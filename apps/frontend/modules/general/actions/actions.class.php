@@ -166,7 +166,7 @@ class generalActions extends cqFrontendActions
       $this->getUser()->setReferer(
         $this->getContext()->getActionStack()->getSize() > 1
           ? $request->getUri()
-          : $request->getParameter('goto', $request->getReferer('@collector_me'))
+          : $request->getParameter('r', $request->getReferer('@collector_me'))
       );
     }
 

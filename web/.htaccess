@@ -35,7 +35,7 @@ Options +FollowSymLinks +ExecCGI
   RewriteRule ^$ index.html [QSA]
   RewriteRule ^([^.]+)$ $1.html [QSA]
 
-  RewriteRule ^page/(.*)$ /blog/$1 [QSA,L]
+  RewriteRule ^pages/(.*)$ /blog/$1 [QSA,L]
 
   # no, so we redirect to our front web controller
   RewriteCond %{REQUEST_FILENAME} !-f

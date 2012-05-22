@@ -25,6 +25,10 @@ class _blogActions extends cqFrontendActions
         $this->addBreadcrumb($breadcrumb['name'], @$breadcrumb['url']);
       }
     }
+    else if (!$this->data['is_page'])
+    {
+      $this->addBreadcrumb('Blog', 'blog/index');
+    }
 
     $this->getResponse()->setTitle($this->data['title']);
 

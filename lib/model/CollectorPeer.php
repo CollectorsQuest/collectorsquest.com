@@ -242,6 +242,18 @@ class CollectorPeer extends BaseCollectorPeer
       'message' => true
     ));
 
+
+    // set profile country code if present
+    if (isset($data['country_iso3166']) && false !== $data['country_iso3166'])
+    {
+      $collector_profile->setCountryIso3166($data['country_iso3166']);
+    }
+
+    // default to casual collector
+    $collector_profile->setCollectorType(isset($data['collector_type'])
+      ? $data['collector_type']
+      : 'casual');
+
     try
     {
       $collector_profile->save();
