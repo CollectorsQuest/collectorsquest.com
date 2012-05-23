@@ -62,7 +62,7 @@ class cq_other_news_widget extends WP_Widget {
       <?php global $post;
             $cats = get_the_category($post->ID);
             foreach ($cats as $cat) {
-              $cats .= $cat->cat_ID.',';
+              $cats .= $cat->term_taxonomy_id.',';
             }
       ?>
 
