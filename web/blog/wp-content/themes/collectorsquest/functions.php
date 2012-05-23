@@ -683,7 +683,7 @@ function get_post_image_url($size = 'full', $count = 0) {
       $c = 0;
       foreach ($images as $image) {
         $image_attributes = wp_get_attachment_image_src( $image->ID, 'full' );
-        if ($count = 1 && $image_attributes[1] >= 300) {
+        if ($count == 1 && $image_attributes[1] >= 300) {
           $img = wp_get_attachment_image_src($images[$c]->ID, $size);
           end;
         } else {
