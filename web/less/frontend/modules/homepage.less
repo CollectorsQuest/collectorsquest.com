@@ -245,10 +245,11 @@
   padding: 10px 0 0 10px;
   background-color: @white;
   z-index: 100;
+	.transition(all 0.4s ease-in-out);
 }
 
 #homepage .masonry-blogpost:hover .blog-img {
-  display: none;
+	opacity:0;
 }
 
 #homepage .link-brick img {
@@ -257,9 +258,11 @@
   left: 0;
   z-index: 0;
 }
-
+#homepage .tall img, #homepage .wide img{
+	.transition(all 0.2s ease-in-out);
+}
 #homepage .square:hover > a img, .tall:hover > a img, .wide:hover > a img {
   background: white;
-  opacity: 0.1;
-  filter: alpha(opacity=10);
+  opacity: 0.2;
+  filter: alpha(opacity=20);
 }
