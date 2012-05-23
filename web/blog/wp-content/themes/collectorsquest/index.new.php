@@ -276,8 +276,7 @@ $lastclass = 0;
               endif;
               ?>
 
-            <?php elseif (!is_single()) :
-          echo $count;?>
+            <?php elseif (!is_single()) : ?>
             <img src="<?php echo get_post_image_url($size, $count); //'http://placekitten.com/700/700'; ?>" alt=""/>
             <?php endif; ?>
 
