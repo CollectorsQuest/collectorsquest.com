@@ -654,7 +654,7 @@ function get_top_ancestor($id) {
 }
 
 // gets post thumbnails
-function get_post_image_url($size = 'full') {
+function get_post_image_url($size = 'full', $count = 0) {
   global $post, $posts;
 
   // check for post thumbnail
@@ -683,9 +683,11 @@ function get_post_image_url($size = 'full') {
       $c = 0;
       foreach ($images as $image) {
         $image_attributes = wp_get_attachment_image_src( $image->ID, 'full' );
-        if ($image_attributes[1] >= 300) {
+        if ($count = 1 && $image_attributes[1] >= 300) {
           $img = wp_get_attachment_image_src($images[$c]->ID, $size);
           end;
+        } else {
+          $img = wp_get_attachment_image_src($images[0]->ID, $size);
         }
       $c++;
       }
