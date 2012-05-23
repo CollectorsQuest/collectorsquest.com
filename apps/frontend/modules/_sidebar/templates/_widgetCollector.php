@@ -71,20 +71,20 @@
   </div>
 
   <?php foreach ($collections as $collection): ?>
-  <div style="border: 1px solid #dcd7d7; margin-top: 10px;">
-    <div style="border: 1px solid #f2f1f1; padding: 10px;">
+  <div class="sidebar-other-collections-by-user">
+    <div class="inner-other-collections">
     <p><?= link_to_collection($collection, 'text'); ?></p>
-    <?php
-      $c = new Criteria();
-      $c->setLimit(4);
-      foreach ($collection->getCollectionCollectibles($c) as $i => $collectible)
-      {
-        $options = array('width' => 60, 'height' => 60, 'style' => 'margin-right: 12px;');
-
-        if ($i == 3) unset($options['style']);
-        echo link_to(image_tag_collectible($collectible, '75x75', $options), 'collectible_by_slug', $collectible);
-      }
-    ?>
+      <div class="thumb-container">
+          <?php
+            $c = new Criteria();
+            $c->setLimit(4);
+            foreach ($collection->getCollectionCollectibles($c) as $i => $collectible)
+            {
+              $options = array('width' => 60, 'height' => 60);
+                  echo link_to(image_tag_collectible($collectible, '75x75', $options), 'collectible_by_slug', $collectible, array('class' => 'margin-right-12'));
+            }
+          ?>
+        </div>
       </div>
   </div>
   <?php endforeach; ?>
