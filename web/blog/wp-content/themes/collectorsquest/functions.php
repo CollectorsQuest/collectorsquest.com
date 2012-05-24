@@ -2,6 +2,7 @@
 
 /** http://codex.wordpress.org/Post_Thumbnails */
 add_theme_support('post-thumbnails');
+require_once __DIR__ .'/lib/crop-fix.php';
 
 /** Adding custom image size for the site's homepage (not the blog homepage) */
 bt_add_image_size('homepage', 270, 270, true, array( 'center', 'top' ));
@@ -466,7 +467,6 @@ add_action('wp_footer','add_fixed_sidebar');
 // includes for widgets/metaboxes
 require_once __DIR__ .'/lib/widgets/widgets.php';
 include_once __DIR__ .'/lib/metaboxes/setup.php';
-require_once __DIR__ .'/lib/crop-fix.php';
 
 // comment template
 function cq_comment($comment, $args, $depth) {
