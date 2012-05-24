@@ -465,6 +465,14 @@ messages_batch_actions:
   param: { module: messages, action: batchActions }
 
 
+### COMMENTS
+
+comments_add:
+  url:    /comments/add
+  param:  { module: comments, action: addComment }
+  requirements: { sf_method: [post] }
+
+
 ### GENERAL
 
 login:

@@ -22,6 +22,7 @@ class commentsComponents extends cqFrontendComponents
     $this->checkForObjectIsValid();
 
     $this->form = new FrontendCommentForm($this->getUser(), $this->for_object);
+    $this->form->setDefault('referer', $this->getRequest()->getUri());
   }
 
   /**

@@ -39,7 +39,10 @@ class FrontendCommentForm extends BaseCommentForm
 
   public function configure()
   {
+    $this->setupBodyField();
+    $this->setupAuthorEmailField();
     $this->setupTokenField();
+    $this->setupRefererField();
 
     $this->widgetSchema->setLabels(array(
         'is_notify' => 'Notify me of follow-up comments by email.',
@@ -50,6 +53,25 @@ class FrontendCommentForm extends BaseCommentForm
     $this->widgetSchema['author_email']->setAttribute('type', 'email');
 
     $this->unsetFields();
+    $this->mergePostValidator(
+      new FrontendCommentFormValidatorSchema($this->sf_user));
+  }
+
+  protected function setupBodyField()
+  {
+    $this->validatorSchema['body'] = new sfValidatorAnd(array(
+        $this->validatorSchema['body'],
+        new sfValidatorCallback(array('callback' => function($validator, $value) {
+          return IceStatic::cleanText($value);
+        })),
+    ));
+  }
+
+  protected function setupAuthorEmailField()
+  {
+    $this->validatorSchema['author_email'] = new sfValidatorEmail(array(
+        'required' => false,
+    ));
   }
 
   protected function setupTokenField()
@@ -62,6 +84,22 @@ class FrontendCommentForm extends BaseCommentForm
       $this->setDefault('token', $this->getDefault('token')
         ?: CommentPeer::addCommentableTokenToSession($this->model_object, $this->sf_user));
     }
+  }
+
+  protected function setupRefererField()
+  {
+    $this->widgetSchema['referer'] = new sfWidgetFormInputHidden();
+    $this->validatorSchema['referer'] = new sfValidatorString();
+  }
+
+  protected function doUpdateObject($values)
+  {
+    parent::doUpdateObject($values);
+
+    $this->getObject()->setModelObject(CommentPeer::retrieveFromCommentableToken(
+      $this->getValue('token'),
+      $this->sf_user
+    ));
   }
 
   protected function unsetFields()
