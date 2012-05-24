@@ -18,10 +18,13 @@ class CommentPeer extends BaseCommentPeer
     BaseObject $model_object,
     sfUser $sf_user
   ) {
-    $token = self::generateCommentableToken($model_object);
+    $object_class = get_class($model_object);
+    $object_id = $model_object->getPrimaryKey();
+
+    $token = self::generateCommentableToken($object_class, $object_id);
     $tokens = $sf_user->getAttribute('tokens', array(), 'cq/user/comments');
     $tokens = array(
-        $token => array(get_class($model_object), $model_object->getPrimaryKey()),
+        $token => array($object_class, $object_id),
       ) + $tokens;
     // limit to 10 tokens
     $tokens = array_slice($tokens, 0, 10);
@@ -33,10 +36,12 @@ class CommentPeer extends BaseCommentPeer
   /**
    * Generates token representing a commentable object from its model and its id
    *
-   * @param     BaseObject $model_object
+   * @param     string $object_class
+   * @param     integer $object_id
+   *
    * @return    string
    */
-  public static function generateCommentableToken(BaseObject $model_object)
+  public static function generateCommentableToken($object_class, $object_id)
   {
     if (isset($_SERVER['HTTP_X_FORWARDED_FOR']))
     {
@@ -50,7 +55,7 @@ class CommentPeer extends BaseCommentPeer
 
     return md5(sprintf(
       '%s-%s-%s-%s',
-      $ip_adress, get_class($model_object), $model_object->getPrimaryKey(), 'c0mm3nt4bl3'
+      $ip_adress, $object_class, $object_id, 'c0mm3nt4bl3'
     ));
   }
 
@@ -68,14 +73,14 @@ class CommentPeer extends BaseCommentPeer
 
     if (array_key_exists($token, $tokens) && is_array($tokens[$token]) && class_exists($tokens[$token][0]))
     {
-      $object_model = $tokens[$token][0];
+      $object_class = $tokens[$token][0];
       $object_id = $tokens[$token][1];
-      $new_token = self::generateCommentableToken($object_model, $object_id);
+      $new_token = self::generateCommentableToken($object_class, $object_id);
 
       // check is token has changed or not (ie., if the user's IP has changed)
       if ($token == $new_token)
       {
-        return self::retrieveCommentableObject($object_model, $object_id);
+        return self::retrieveCommentableObject($object_class, $object_id);
       }
     }
 
@@ -85,16 +90,16 @@ class CommentPeer extends BaseCommentPeer
   /**
    * Retrieve a commentable object
    *
-   * @param     string   $object_model
+   * @param     string   $object_class
    * @param     integer  $object_id
    *
    * @return    BaseObject
    */
-  public static function retrieveCommentableObject($object_model, $object_id)
+  public static function retrieveCommentableObject($object_class, $object_id)
   {
     try
     {
-      $peer = sprintf('%sPeer', $object_model);
+      $peer = sprintf('%sPeer', $object_class);
 
       if (!class_exists($peer))
       {
@@ -105,7 +110,7 @@ class CommentPeer extends BaseCommentPeer
 
       if (is_null($object))
       {
-        throw new Exception(sprintf('Unable to retrieve %s with primary key %s', $object_model, $object_id));
+        throw new Exception(sprintf('Unable to retrieve %s with primary key %s', $object_class, $object_id));
       }
 
       return $object;
