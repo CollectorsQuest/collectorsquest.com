@@ -472,6 +472,10 @@ comments_add:
   param:  { module: comments, action: addComment }
   requirements: { sf_method: [post] }
 
+comments_load_more:
+  url:  /comments/load-more
+  param: { module: comments, action: loadMoreComments }
+
 
 ### GENERAL
 

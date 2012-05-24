@@ -206,30 +206,50 @@ var COMMON = window.COMMON = (function(){
     }, // setupModalLoginRegistrationDialog
     setupComments: function() {
       // setup adding a new comment
-      var $holder = $('.add-comment');
+      var $form_holder = $('.add-comment');
 
-      $holder.on('click', 'textarea, button', function(){
-        var $extra_fields = $holder.find('.extra-fields.non-optional');
+      $form_holder.on('click', 'textarea, button', function(){
+        var $extra_fields = $form_holder.find('.extra-fields.non-optional');
 
         if (!window.cq.authenticated) {
-          var $extra_fields_not_auth = $('.extra-fields.not-authenticated');
+          var $extra_fields_not_auth = $form_holder.find('.extra-fields.not-authenticated');
           $extra_fields_not_auth.find('input').attr('required', 'required');
           $extra_fields = $extra_fields.add($extra_fields_not_auth);
         }
 
         $extra_fields.slideDown(200);
-        $holder.find('button, textarea').addClass('expand');
+        $form_holder.find('button, textarea').addClass('expand');
 
         // type property cannot be changed, but we want a normal looking button
         // initially that behaves as type=button, so we use 2 elements and switch
         // the type=button for a type=submit one
-        $holder.find('button.fake').hide();
-        $holder.find('button.hidden').removeClass('hidden');
+        $form_holder.find('button.fake').hide();
+        $form_holder.find('button.hidden').removeClass('hidden');
 
         // we want to execute this click handler only once, so we unbind it here
-        $holder.off('click');
+        $form_holder.off('click');
 
         return true;
+      });
+
+      var $load_more = $('#load-more-comments');
+
+      $load_more.on('click', function() {
+        $.get($load_more.data('uri'), {
+            token: $load_more.data('token'),
+            offset: $load_more.data('offset')
+          }, function (data) {
+            console.log(data);
+            $('.user-comments').append(data.html);
+            if (!data.has_more) {
+              $load_more.parent('.see-more-under-image-set').hide();
+              $load_more.off('click');
+            } else {
+              $load_more.data('offset', $load_more.data('offset') + $load_more.data('offset'));
+            }
+          },
+          'json'
+        )
       });
     },
     setupScrollToTop: function() {
