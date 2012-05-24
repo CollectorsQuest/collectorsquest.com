@@ -22,7 +22,7 @@ class CommentQuery extends BaseCommentQuery
     }
 
     return $this
-      ->filterByModel($model)
+      ->filterByModel($model_class)
       ->filterByModelId($object->getPrimaryKey());
   }
 
