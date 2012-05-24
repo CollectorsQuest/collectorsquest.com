@@ -13,6 +13,12 @@ class commentsActions extends cqFrontendActions
       if ($form->isValid())
       {
         $form->save();
+        $this->getUser()->setFlash('comment_success', 'Comment successfully added!');
+      }
+      else
+      {
+        $this->getUser()->setFlash('comment_error',
+          $form->getErrorSchema()->__toString());
       }
     }
 
