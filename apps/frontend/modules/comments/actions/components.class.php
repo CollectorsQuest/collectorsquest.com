@@ -14,6 +14,8 @@ class commentsComponents extends cqFrontendComponents
 
     $this->comments = CommentQuery::create()
       ->filterByModelObject($this->for_object)
+      ->orderByCreatedAt(Criteria::DESC)
+      ->limit(sfConfig::get('app_comments_num_load', 20))
       ->find();
   }
 

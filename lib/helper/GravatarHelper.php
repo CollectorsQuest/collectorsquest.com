@@ -44,7 +44,10 @@ function gravatar_image_tag($email, $size = 80, $rating = 'G', $default = '', $a
  */
 function gravatar_image($email, $size = 80, $rating = null, $default = '')
 {
-  $gravatar = new GravatarApi();
-
-  return $gravatar->get($email, $size, $rating, $default);
+  return 'http://www.gravatar.com/avatar/'. md5(strtolower(trim($email))).
+           '?size=' . $size .
+           '&rating=' . $rating .
+           '&default='. ($default
+              ? urlencode(image_path($default, true))
+              : urlencode(image_path(sfConfig::get('sf_web_dir').'/images/legacy/'.sfConfig::get('app_gravatar_default_image', 'gravatar_default.png'), true)));
 }

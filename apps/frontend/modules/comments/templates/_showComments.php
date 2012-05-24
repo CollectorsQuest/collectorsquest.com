@@ -1,35 +1,38 @@
+<?php
+  use_helper('Gravatar');
+  /** @var Comment $comment */ $comment;
+?>
+
 <div class="user-comments">
+  <?php foreach ($comments as $comment): ?>
   <div class="row-fluid user-comment">
     <div class="span2 text-right">
-      <a href="#">
-        <img src="http://placehold.it/65x65" alt="">
-      </a>
+      <?php if (( $collector = $comment->getCollector() )): ?>
+        <?= link_to(image_tag_collector($collector, '65x65'), url_for_collector($collector)); ?>
+      <?php else: ?>
+        <?= gravatar_image_tag($comment->getAuthorEmail(), 65, 'G', sfConfig::get('sf_app') .'/multimedia/Collector/65x65.png') ?>
+      <?php endif; ?>
     </div>
     <div class="span10">
       <p class="bubble left">
-        <a href="#" class="username">RobotBacon Wow!</a>
-        That gun is a real rarity.  I don't think the south produced much in the way of weaponry, so that is a good find!
-        <span class="comment-time">2 hours ago</span>
+        <?php if ($collector): ?>
+          <?= link_to_collector($collector); ?>
+        <?php else: ?>
+          <span class="username"><?= $comment->getAuthorName(); ?></span>
+        <?php endif; ?>
+
+        <?= $comment->getBody(); ?>
+        <span class="comment-time"><?= time_ago_in_words_or_exact_date($comment->getCreatedAt()); ?></span>
       </p>
     </div>
   </div>
-  <div class="row-fluid user-comment">
-    <div class="span2 text-right">
-      <a href="#">
-        <img src="http://placehold.it/65x65" alt="">
-      </a>
-    </div>
-    <div class="span10">
-      <p class="bubble left">
-        <a href="#" class="username">RobotBacon Wow!</a>
-        That gun is a real rarity.  I don't think the south produced much in the way of weaponry, so that is a good find!
-        <span class="comment-time">2 hours ago</span>
-      </p>
-    </div>
-  </div>
+  <?php endforeach; ?>
 </div>
+
+<?php if (sfConfig::get('app_comments_num_load', 20) == $comments->count()): ?>
 <div class="see-more-under-image-set">
   <button class="btn btn-small gray-button see-more-full" id="see-more-comments">
-    See all XX comments
+    See the next <?= sfConfig::get('app_comments_num_load', 20); ?> comments
   </button>
 </div>
+<?php endif; ?>
