@@ -245,7 +245,7 @@ $lastclass = 0;
           elseif (is_front_page() && $count == 1) :
             $size = 'blog-homepage-p1';
           else :
-            $size = 'thumbnail';
+            $size = 'blog-homepage-thumb';
           endif;
           ?>
 
