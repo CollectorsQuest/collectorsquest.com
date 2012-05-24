@@ -18,36 +18,62 @@
 }
 
 .post-comment {
-	background-color: #c2e0f0;
 	padding: 15px 5px 15px 15px;
 	margin: 10px auto;
+	background-color: #c2e0f0;
+
+  .extra-fields {
+    display: none;
+  }
+
+  &.active .extra-fields {
+    display: block;
+  }
+
+  small {
+    font-size: 11px;
+    color: @grayLight;
+  }
 
 	.btn-large {
 		padding: 8px 10px;
+		margin-left: -5px;
 		font-size: 14px;
 		font-weight: bold;
 		line-height: 16px;
+		color: #786767;
 		border-top: 1px solid #7cb9da;
 		border-right: 1px solid #7cb9da;
 		border-bottom: 1px solid #7cb9da;
-		color: #786767;
 		#gradient > .vertical(#e1dede,#cecbcb);
-		.border-radius(7px);
-		-moz-background-clip: padding;
-		-webkit-background-clip: padding-box;
-		background-clip: padding-box;
-	}
-	.btn-large {
-		margin-left: -5px;
+    .background-clip(padding-box);
 		.border-radius(0 7px 7px 0);
 	}
 	.btn:hover {
-		.transition(none);
+		text-decoration: none;
 		background: #e1dddd;
 		background-position: 0;
-		text-decoration: none;
+		.transition(none);
 	}
-	#c {
+  .shrink {
+    height: 18px;
+  }
+  textarea.expand {
+    height: 44px;
+  }
+  button.expand {
+    height: 60px;
+  }
+  .one-line-input {
+    input, label {
+      float: left;
+    }
+  }
+
+  input{
+		.border-radius(5px);
+  }
+	textarea {
 		width: 470px;
 		padding-top: 7px;
 		padding-bottom: 7px;
@@ -58,7 +84,9 @@
 		border-right: 1px solid c1b9b9;
 		.border-radius(7px 0 0 7px);
 		.box-shadow(inset 2px 2px 2px 2px rgba(0, 0, 0, .07));
-	}
+    // disable chrome and ff textarea resize control
+    resize: none;
+  }
 	form {
 		margin-bottom: 0;
 	}

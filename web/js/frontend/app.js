@@ -75,7 +75,7 @@ var APP = window.APP = {
             $checkboxes.attr('checked', false).filter('.unread').attr('checked', 'checked');
             break;
         }
-      })
+      });
     },
     show: function() {
       $('#message_body').elastic();
@@ -154,7 +154,7 @@ var COMMON = window.COMMON = (function(){
         $form.append('<input type="submit" class="hidden" />');
       }
 
-      $form.find('input[type=submit]').trigger('click')
+      $form.find('input[type=submit]').trigger('click');
       return true;
     });
   }
@@ -163,10 +163,11 @@ var COMMON = window.COMMON = (function(){
   return {
     setupProjectWideHelpers: function() {
       COMMON.setupModalLoginRegistrationDialog();
-      COMMON.setupScrollToTop();
-      COMMON.setupFooterLoginOrSignup();
-      COMMON.setupEmailSpellingHelper();
       COMMON.linkifyTables();
+      COMMON.setupComments();
+      COMMON.setupFooterLoginOrSignup();
+      COMMON.setupScrollToTop();
+      COMMON.setupEmailSpellingHelper();
     },
     setupModalLoginRegistrationDialog: function() {
       var $holder = $('#modal-login-holder');
@@ -177,11 +178,13 @@ var COMMON = window.COMMON = (function(){
       $('.requires-login').on('click', function(e) {
         var $this = $(this);
         // execute the modal JS if not already executed
-        undefined === $holder.data('modal') || $holder.modal({
-          backdrop: true,
-          keyboard: true,
-          show: false
-        });
+        if (undefined === $holder.data('modal')) {
+          $holder.modal({
+            backdrop: true,
+            keyboard: true,
+            show: false
+          });
+        }
 
         if (!window.cq.authenticated) {
           $holder.modal('show');
@@ -195,12 +198,40 @@ var COMMON = window.COMMON = (function(){
           }
 
           e.preventDefault();
-          return false
+          return false;
         }
 
         return true;
       });
     }, // setupModalLoginRegistrationDialog
+    setupComments: function() {
+      // setup adding a new comment
+      var $holder = $('.add-comment');
+
+      $holder.on('click', 'textarea, button', function(){
+        var $extra_fields = $holder.find('.extra-fields.non-optional');
+
+        if (!window.cq.authenticated) {
+          var $extra_fields_not_auth = $('.extra-fields.not-authenticated');
+          $extra_fields_not_auth.find('input').attr('required', 'required');
+          $extra_fields = $extra_fields.add($extra_fields_not_auth);
+        }
+
+        $extra_fields.slideDown(200);
+        $holder.find('button, textarea').addClass('expand');
+
+        // type property cannot be changed, but we want a normal looking button
+        // initially that behaves as type=button, so we use 2 elements and switch
+        // the type=button for a type=submit one
+        $holder.find('button.fake').hide();
+        $holder.find('button.hidden').removeClass('hidden');
+
+        // we want to execute this click handler only once, so we unbind it here
+        $holder.off('click');
+
+        return true;
+      });
+    },
     setupScrollToTop: function() {
       /**
        * "Scroll to Top" link on every long page
@@ -371,7 +402,7 @@ var GENERAL = window.GENERAL = (function(){
           autoplayDuration: 6000,
           autoplayPauseOnHover: true
         },function(){
-          $roundaboutEl.fadeTo(1000, 1)
+          $roundaboutEl.fadeTo(1000, 1);
         });
       }; // setup_roundabout
 

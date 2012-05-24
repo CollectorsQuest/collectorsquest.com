@@ -150,7 +150,7 @@
 
 <?php else: ?>
 
-  <?php include_partial('sandbox/comments'); ?>
+  <?php include_partial('comments/comments', array('for_object' => $collectible)); ?>
 
 <?php endif; ?>
 
