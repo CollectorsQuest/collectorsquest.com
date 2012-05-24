@@ -20,7 +20,9 @@
       <?php endif; ?>
 
       <?= $comment->getBody(); ?>
-      <span class="comment-time"><?= time_ago_in_words_or_exact_date($comment->getCreatedAt()); ?></span>
+      <span class="comment-time">
+        <?= time_ago_in_words_or_exact_date($comment->getCreatedAt()); ?>
+      </span>
     </p>
   </div>
 </div>

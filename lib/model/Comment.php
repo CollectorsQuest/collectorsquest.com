@@ -30,10 +30,6 @@ class Comment extends BaseComment
     {
       return $this->getCollectible($con);
     }
-    else if ($this->getCollectorId())
-    {
-      return $this->getCollector();
-    }
 
     return $this->model_object;
   }
@@ -52,7 +48,7 @@ class Comment extends BaseComment
     }
 
     $model_class = get_class($object);
-    if (in_array($model_class, array('Collection', 'Collectible', 'Collector')))
+    if (in_array($model_class, array('Collection', 'Collectible')))
     {
       $this->setModelObject(null);
       return call_user_func(array($this, 'set'.$model_class), $object);
@@ -63,6 +59,93 @@ class Comment extends BaseComment
     $this->model_object = $object;
 
     return $this;
+  }
+
+  /**
+   * Not to be confused with getModel()
+   *
+   * Will return the model object's class, even if Collection or Collectible
+   *
+   * @return    string
+   */
+  public function getModelObjectClass()
+  {
+    if ($this->getModel() && $this->getModelId())
+    {
+      return $this->getModel();
+    }
+    else if ($this->getCollectionId())
+    {
+      return 'Collection';
+    }
+    else if ($this->getCollectibleId())
+    {
+      return 'Collectible';
+    }
+  }
+
+  /**
+   * Not to be confused with getModelId()
+   *
+   * Will return the model object's PK even if Collection or Collectible
+   *
+   * @return    integer
+   */
+  public function getModelObjectPk()
+  {
+    if ($this->getModel() && $this->getModelId())
+    {
+      return $this->getModelId();
+    }
+    else if ($this->getCollectionId())
+    {
+      return $this->getCollectionId();
+    }
+    else if ($this->getCollectibleId())
+    {
+      return $this->getCollectibleId();
+    }
+  }
+
+  /**
+   * Not to be confused with getAuthorEmail()
+   *
+   * Will return the email address regardless if the comment was made by a collector
+   * or an unregistered user
+   *
+   * @return    string
+   */
+  public function getEmail()
+  {
+    if ($this->getCollectorId())
+    {
+      return $this->getCollector()->getEmail();
+    }
+    else
+    {
+      return $this->getAuthorEmail();
+    }
+  }
+
+  /**
+   * Not to be confused with getAuthorName()
+   *
+   * Will return the author name regardless if the comment was made by a collector
+   * or an unregistered user
+   *
+   * @return    string
+   */
+  public function getName()
+  {
+    if ($this->getCollectorId())
+    {
+      return $this->getCollector()->getDisplayName()
+        ?: $this->getCollector()->getUsername();
+    }
+    else
+    {
+      return $this->getAuthorName();
+    }
   }
 
 }

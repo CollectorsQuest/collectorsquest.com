@@ -16,7 +16,7 @@ class CommentQuery extends BaseCommentQuery
   {
     $model_class = get_class($object);
 
-    if (in_array($model_class, array('Collection', 'Collectible', 'Collector')))
+    if (in_array($model_class, array('Collection', 'Collectible')))
     {
       return call_user_func(array($this, 'filterBy'.$model_class), $object);
     }

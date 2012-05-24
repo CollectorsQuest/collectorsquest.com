@@ -21,6 +21,11 @@ all:
         subject: "You have a new message from {{ sender.displayName }}"
         required_params: [sender, receiver]
 
+    Comments:
+      comment_response_notification:
+        subject: 'You have a new comment reply for "{{ model_object }}"'
+        required_params: [ model_object, new_comment, user_comment, thread_url, unsubscribe_url ]
+
     internal:
       feedback:
         subject: "[Feedback]"
