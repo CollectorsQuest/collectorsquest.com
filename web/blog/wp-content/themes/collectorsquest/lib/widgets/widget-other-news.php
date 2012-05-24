@@ -61,8 +61,9 @@ class cq_other_news_widget extends WP_Widget {
 
       <?php global $post;
             $cats = get_the_category($post->ID);
+
             foreach ($cats as $cat) {
-              $cats .= $cat->term_taxonomy_id.',';
+              $cats = $cat->cat_ID;
             }
       ?>
 
@@ -71,7 +72,7 @@ class cq_other_news_widget extends WP_Widget {
       <?php foreach($posts as $post) { setup_postdata($post); ?>
       <div class="row-fluid bottom-margin">
         <h4 style="margin-bottom: 5px;">
-          <a href="<?php the_permalink() ?>"><?php the_title(); ?></a>
+          <a href="<?php the_permalink() ?>"><?php the_category(); the_title(); ?></a>
         </h4>
         <span class="content">
           <?php $length=100; $longString=get_the_excerpt('...more'); $truncated = substr($longString,0,strpos($longString,' ',$length)); echo $truncated.'... ' //.'... <a href="'.get_permalink().'">more</a>'; ?>
