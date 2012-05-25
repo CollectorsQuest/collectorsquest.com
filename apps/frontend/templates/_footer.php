@@ -93,8 +93,9 @@
         <ul class="footer-profile-box cf">
           <li class="icon-big-email">
             <p>
-              You have 1 message in
-              <?= link_to('your inbox', '@messages_inbox', array('class' => 'bold-links')); ?>
+              You have <?= format_number_choice('[0]no messages|[1]1 message|(1, +Inf]%count% messages',
+                array('%count%' => $sf_user->getUnreadMessagesCount()), $sf_user->getUnreadMessagesCount()); ?>
+              in <?= link_to('your inbox', '@messages_inbox', array('class' => 'bold-links')); ?>
             </p>
           </li>
           <li class="icon-big-battery">
