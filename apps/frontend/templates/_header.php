@@ -23,7 +23,7 @@
         <div class="input-append search-header pull-right">
           <form action="<?= url_for('@search', true) ?>" method="get">
             <?= $form['q']->render(array('value' => $q, 'autocomplete' => 'off')); ?>
-            <button class="btn btn-large" type="submit">Search</button>
+            <button class="btn btn-large append-search-button" type="submit">Search</button>
           </form>
         </div>
       </div>
@@ -41,8 +41,7 @@
         <span class="nav-divider"></span>
         <?php if ($sf_user->isAuthenticated()): ?>
           &nbsp;
-          <div id="menu-my-account" class="btn-group dropdown"
-               style="float: right; text-align: left; margin-top: -2px;">
+          <div id="menu-my-account" class="btn-group dropdown button-my-account">
             <a class="btn btn-large dropdown-toggle" data-toggle="dropdown" href="#menu-my-account">
               My Account &nbsp;<span class="caret"></span>
             </a>
