@@ -5,17 +5,22 @@
  */
 ?>
 
-<form action="<?= url_for('mycq_collection_by_slug', $collection); ?>" method="post"
-      enctype="multipart/form-data" class="form-horizontal spacer-bottom-reset">
+<form action="<?= url_for('mycq_collection_by_slug', $collection); ?>"
+      id="form-collection" method="post" enctype="multipart/form-data"
+      class="form-horizontal spacer-bottom-reset">
 <div class="row-fluid">
   <div class="span3">
     <div class="drop-zone-large">
-      <a class="plus-icon-holder h-center" href="#">
-        <i class="icon-plus icon-white"></i>
-      </a>
-      <a class="blue-link" href="#">
-        Click to Add Main<br>Thumbnail or Drag and Drop<br>from Collection
-      </a>
+      <?php if (!$collection->hasThumbnail()): ?>
+        <?= image_tag_collection($collection, '190x190'); ?>
+      <?php else: ?>
+        <a class="plus-icon-holder h-center" href="#">
+          <i class="icon-plus icon-white"></i>
+        </a>
+        <a class="blue-link" href="#">
+          Click to Add Main<br>Thumbnail or Drag and Drop<br>from Photos
+        </a>
+      <?php endif; ?>
     </div>
   </div>
   <div class="span9">
@@ -40,6 +45,12 @@
   <div class="row-fluid">
     <div class="span12">
       <div class="form-actions text-center">
+        <a href="<?= url_for('mycq_collection_by_slug', array('sf_subject' => $collection, 'cmd' => 'delete', 'encrypt' => '1')); ?>"
+           class="btn red-button spacer-left pull-left spacer-left"
+           onclick="return confirm('Are you sure you want to delete this Collection?');">
+          Delete Collection
+        </a>
+
         <button class="btn btn-primary blue-button" type="submit">Save changes</button>
         <button class="btn gray-button spacer-left">Cancel</button>
       </div>
@@ -48,6 +59,7 @@
 </div>
 </form>
 
+  <br/>
 <div id="mycq-tabs">
   <div class="tab-content">
     <div class="tab-pane active" id="tab1">
@@ -109,6 +121,42 @@
 
     $('#collection_description').wysihtml5({
       "font-styles": false, "image": false, "link": false
+    });
+
+    $("#form-collection .drop-zone-large").droppable(
+    {
+      over: function(event, ui)
+      {
+        $(this).addClass("ui-state-highlight");
+      },
+      out: function(event, ui)
+      {
+        $(this).removeClass("ui-state-highlight");
+      },
+      drop: function(event, ui)
+      {
+        $(this).removeClass("ui-state-highlight");
+        ui.draggable.draggable('option', 'revert', true);
+
+        $(this).showLoading();
+
+        $.ajax({
+          url: '<?= url_for('@ajax_mycq?section=collection&page=setThumbnail'); ?>',
+          type: 'GET',
+          data: {
+            collectible_id: ui.draggable.data('collectible-id'),
+            collection_id: '<?= $collection->getId() ?>'
+          },
+          success: function()
+          {
+            $('#form-collection').submit();
+          },
+          error: function()
+          {
+            // error
+          }
+        });
+      }
     });
   });
 </script>

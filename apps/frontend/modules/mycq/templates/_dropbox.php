@@ -106,8 +106,9 @@
     </ul>
   </div>
   <?php else: ?>
-    There are currently no photos to sort. Please use the <strong>"+ Upload Photos"</strong>
-    button on the right to upload all your collectibles to CollectorsQuest.com!
+    There are currently no photos to sort.
+    Please use the <strong>"+ Upload Photos"</strong>
+    button on the right to upload all your collectibles!
   <?php endif; ?>
 </div>
 
@@ -248,12 +249,14 @@ $(document).ready(function()
 {
   $('.collectibles-to-sort li').draggable(
   {
-    containment: '#contents',
+    containment: '#content',
+    scroll: false,
     handle: 'img',
     opacity: 0.7,
     revert: true,
     cursor: 'move',
-    zIndex: 100
+    cursorAt: { top: 36, left: 36 },
+    zIndex: 1000
   });
 });
 </script>

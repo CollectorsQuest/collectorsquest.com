@@ -54,7 +54,7 @@
         ?>
       </div>
       <?php
-        if (($pager->getPage() === 1 && $i === 2) || $pager->count() === $i+1)
+        if (($pager->getPage() === 1 && $i === 2) || ($pager->count() === $i+1 && $pager->count() < 3))
         {
           include_slot('html-create-collection');
         }
@@ -103,7 +103,9 @@ $(document).ready(function()
     drop: function(event, ui)
     {
       $(this).removeClass("ui-state-highlight");
-      ui.draggable.draggable( 'option', 'revert', false );
+      ui.draggable.draggable('option', 'revert', false);
+
+      $(this).showLoading();
 
       var url = '<?= url_for('@mycq_collection_collectible_create') ?>';
 
