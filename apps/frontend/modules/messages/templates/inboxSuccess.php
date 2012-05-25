@@ -60,7 +60,8 @@
           <input type="checkbox" name="ids[]" value="<?= $message->getId() ?>" class="<?= $message->getIsRead() ? 'read' : 'unread' ?>" />
         </td>
         <td class="sender-col">
-          <img alt="" src="http://placehold.it/50x50" class="avatar">
+          <?= image_tag_collector($message->getCollectorRelatedBySender(),
+            '50x50', array('class' => 'avatar')); ?>
           <?= link_to_collector($message->getCollectorRelatedBySender()); ?>
           <p style="font-size: 10px">
             <?= time_ago_in_words($message->getCreatedAt('U')); ?> ago
