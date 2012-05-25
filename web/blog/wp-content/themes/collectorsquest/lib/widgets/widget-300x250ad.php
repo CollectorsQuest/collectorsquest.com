@@ -35,14 +35,22 @@ class cq_300x250ad_widget extends WP_Widget {
     ?>
 
     <?php
-    if (is_author() || is_single()) :
-      $authvar = get_author_posts_url(get_the_author_meta('ID'));
-      $authvar = explode('/',$authvar);
-      end($authvar);
-      $authvar = prev($authvar);
-    endif;
+      if (is_author() || is_single())
+      {
+        $authvar = get_author_posts_url(get_the_author_meta('ID'));
+        $authvar = explode('/',$authvar);
+        end($authvar);
+        $authvar = prev($authvar);
+      }
+      else if (is_home())
+      {
+        $authvar = 'landing';
+      }
+      else
+      {
+        $authvar = 'other';
+      }
     ?>
-
 
     <script>
       if (typeof window.dfp_ord == 'undefined') { window.dfp_ord = Math.random() * 10000000000000000; }
