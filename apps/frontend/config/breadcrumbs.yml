@@ -89,6 +89,18 @@ ice_breadcrumbs:
     category:
       - { name: '%Name%', model: true, title: 'Category: %Name%' }
 
+  mycq:
+    _prepend:
+      - { name: 'My Account', route: collector_me }
+    collections:
+      - { name: 'Collections' }
+    collection:
+      - { name: 'Collections', route: mycq_collections }
+      - { name: '%Name%', model: true }
+    collectible:
+      - { name: '%Collection%', route: mycq_collection_by_slug, model: true, subobject: Collection }
+      - { name: '%Name%', model: true }
+
   messages:
     _prepend:
       - { name: 'Messages', route: messages_inbox }

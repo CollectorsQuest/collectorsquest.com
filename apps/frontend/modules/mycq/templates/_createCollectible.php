@@ -11,8 +11,8 @@
   <h1>Create a New Collectible</h1>
   <?= $form ?>
   <div class="form-actions">
-    <button type="submit" class="btn btn-primary blue-button spacer-right-15">Create</button>
-    <button type="button" class="btn gray-button">Cancel</button>
+    <button type="submit" class="btn btn-primary blue-button spacer-right-15">Create Collectible</button>
+    <button type="reset" class="btn gray-button">Cancel</button>
   </div>
 </form>
 

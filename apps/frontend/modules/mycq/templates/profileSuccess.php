@@ -195,8 +195,8 @@
               </div>
             </div>
             <div class="form-actions">
-              <button class="btn btn-primary blue-button" type="submit">Save changes</button>
-              <button class="btn gray-button spacer-left">Cancel</button>
+              <button type="submit" class="btn btn-primary blue-button">Save changes</button>
+              <button type="reset" class="btn gray-button spacer-left">Cancel</button>
             </div>
           </fieldset>
 

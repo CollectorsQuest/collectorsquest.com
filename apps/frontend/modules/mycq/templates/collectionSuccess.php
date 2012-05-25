@@ -11,7 +11,7 @@
 <div class="row-fluid">
   <div class="span3">
     <div class="drop-zone-large">
-      <?php if (!$collection->hasThumbnail()): ?>
+      <?php if ($collection->hasThumbnail()): ?>
         <?= image_tag_collection($collection, '190x190'); ?>
       <?php else: ?>
         <a class="plus-icon-holder h-center" href="#">
@@ -26,8 +26,7 @@
   <div class="span9">
     <?php
       $link = link_to(
-        'View collection page &raquo;',
-        'collection_by_slug', $collection,
+        'Back to Collections &raquo;', '@mycq_collections',
         array('class' => 'text-v-middle link-align')
       );
 
@@ -51,15 +50,16 @@
           Delete Collection
         </a>
 
-        <button class="btn btn-primary blue-button" type="submit">Save changes</button>
-        <button class="btn gray-button spacer-left">Cancel</button>
+        <button type="submit" class="btn btn-primary blue-button">Save changes</button>
+        <a href="<?= url_for('mycq_collection_by_slug', $collection) ?>"
+           class="btn gray-button spacer-left">Cancel</a>
       </div>
     </div>
   </div>
 </div>
 </form>
 
-  <br/>
+<br/>
 <div id="mycq-tabs">
   <div class="tab-content">
     <div class="tab-pane active" id="tab1">

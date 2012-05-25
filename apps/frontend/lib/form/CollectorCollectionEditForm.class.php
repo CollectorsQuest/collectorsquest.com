@@ -6,7 +6,7 @@ class CollectorCollectionEditForm extends CollectorCollectionForm
   {
     parent::configure();
 
-    $this->widgetSchema['content_category'] = new cqWidgetFormPropelChoiceByNestedSet(array(
+    $this->widgetSchema['content_category_id'] = new cqWidgetFormPropelChoiceByNestedSet(array(
       'label' => 'Category',
       'model' => 'ContentCategory',
       'add_empty' => true,

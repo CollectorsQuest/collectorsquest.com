@@ -11,8 +11,10 @@
   <h1>Create a New Collection</h1>
   <?= $form ?>
   <div class="form-actions">
-    <button type="submit" class="btn btn-primary blue-button spacer-right-15">Next</button>
-    <button type="button" class="btn gray-button">Cancel</button>
+    <button type="submit" class="btn btn-primary blue-button spacer-right-15">
+      <?php echo isset($form['content_category_id']) ? 'Create Collection' : 'Next'; ?>
+    </button>
+    <button type="reset" class="btn gray-button">Cancel</button>
   </div>
 </form>
 
