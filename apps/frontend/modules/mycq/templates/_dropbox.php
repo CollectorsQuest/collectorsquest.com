@@ -34,11 +34,11 @@
     <div class="span9">
       <?php
         $link = link_to(
-          'Delete all Photos', '@mycq_dropbox?cmd=empty&encrypt=1',
+          'Delete all Items', '@mycq_dropbox?cmd=empty&encrypt=1',
           array('style' => 'color: red;', 'class' => 'text-v-middle link-align')
         );
         cq_section_title(
-          'Photos to Sort ('. $total .')', $total > 0 ? $link : null,
+          'Items to Sort ('. $total .')', $total > 0 ? $link : null,
           array('class' => 'row-fluid section-title spacer-top-20')
         );
       ?>
@@ -49,14 +49,14 @@
             method="POST" enctype="multipart/form-data">
 
         <span class="btn btn-primary blue-button fileinput-button">
-          <i class="icon-plus icon-white"></i>&nbsp;<span>Upload Photos</span>
+          <i class="icon-plus icon-white"></i>&nbsp;<span>Upload Items</span>
           <input type="file" name="files[]" multiple="multiple">
         </span>
 
         <div id="fileupload-modal" class="modal hide fade">
           <div class="modal-header">
             <button class="close" data-dismiss="modal">&times;</button>
-            <h3>Uploading photos, please wait...</h3>
+            <h3>Uploading images, please wait...</h3>
           </div>
           <div class="modal-body">
             <!-- The table listing the files available for upload/download -->
@@ -106,8 +106,8 @@
     </ul>
   </div>
   <?php else: ?>
-    There are currently no photos to sort.
-    Please use the <strong>"+ Upload Photos"</strong>
+    There are currently no Items to Sort.
+    Please use the <strong>"+ Upload Items"</strong>
     button on the right to upload all your collectibles!
   <?php endif; ?>
 </div>

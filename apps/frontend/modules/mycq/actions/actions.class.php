@@ -266,7 +266,7 @@ class mycqActions extends cqFrontendActions
       ->delete();
 
     $this->getUser()->setFlash(
-      'error', 'The upload was cancelled and none of the photos were uploaded'
+      'error', 'The upload was cancelled and none of the items were uploaded'
     );
 
     $this->redirect('@mycq_collections');
@@ -286,13 +286,13 @@ class mycqActions extends cqFrontendActions
     if ($total > 0)
     {
       $this->getUser()->setFlash(
-        'success', 'Total of <b>' . $total . '</b> photos were uploaded successfully'
+        'success', 'Total of <b>' . $total . '</b> items were uploaded successfully'
       );
     }
     else
     {
       $this->getUser()->setFlash(
-        'error', 'There was a problem uploading your photos and none were uploaded'
+        'error', 'There was a problem uploading your items and none were uploaded'
       );
     }
 

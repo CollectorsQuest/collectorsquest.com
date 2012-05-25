@@ -18,7 +18,7 @@
           <i class="icon-plus icon-white"></i>
         </a>
         <a class="blue-link" href="#">
-          Click to Add Main<br>Thumbnail or Drag and Drop<br>from Photos
+          Click to Add Main<br>Thumbnail or Drag and Drop<br>from "Items to Sort"
         </a>
       <?php endif; ?>
     </div>
@@ -68,7 +68,7 @@
           'mycq', 'dropbox',
           array('instructions' => array(
             'position' => 'bottom',
-            'text' => 'Drag and drop photos into your collectibles altenative views.')
+            'text' => 'Drag and drop items into your collectibles altenative views.')
           )
         );
       ?>
