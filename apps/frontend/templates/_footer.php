@@ -20,18 +20,18 @@
             <button class="btn btn-primary blue-button pull-left" type="submit">Contact Us</button>
           </div>
           <p>
-            <a href="http://www.facebook.com/pages/Collectors-Quest/119338990397" target="_blank">
-              <i class="s-16-icon-facebook social-ico-padding"></i>Follow us on Facebook
+            <a href="http://www.facebook.com/pages/Collectors-Quest/119338990397" target="_blank" class="social-link">
+              <i class="s-16-icon-facebook social-ico-padding"></i>Follow us on <span>Facebook</span>
             </a>
           </p>
           <p>
-            <a href="http://twitter.com/CollectorsQuest" target="_blank">
-              <i class="s-16-icon-twitter social-ico-padding"></i>Follow us on Twitter
+            <a href="http://twitter.com/CollectorsQuest" target="_blank" class="social-link">
+              <i class="s-16-icon-twitter social-ico-padding"></i>Follow us on <span>Twitter</span>
             </a>
           </p>
           <p>
-            <a href="http://pinterest.com/CollectorsQuest" target="_blank">
-              <i class="s-16-icon-pinterest social-ico-padding"></i>Follow us on Pinterest
+            <a href="http://pinterest.com/CollectorsQuest" target="_blank" class="social-link">
+              <i class="s-16-icon-pinterest social-ico-padding"></i>Follow us on <span>Pinterest</span>
             </a>
           </p>
         </div>

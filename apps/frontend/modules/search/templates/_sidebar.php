@@ -45,13 +45,5 @@
         }
       }
     ?>
-    <li>&nbsp;</li>
-    <li class="divider"></li>
-    <li>
-      <a href="#" style="padding-left: 15px;">
-        <i class="icon-info-sign"></i>
-        Need help finding something? Click here!
-      </a>
-    </li>
   </ul>
 </div>

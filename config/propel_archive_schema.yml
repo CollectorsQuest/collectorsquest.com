@@ -196,6 +196,8 @@ classes:
       collection_id:   { type: integer, index: true }
       collectible_id:  { type: integer, index: true }
       collector_id:    { type: integer, index: true }
+      model:           { type: char,    size: 64, required: true }
+      model_id:        { type: integer, required: true }
       author_name:     { type: varchar, size: 128 }
       author_email:    { type: varchar, size: 128 }
       author_url:      { type: varchar, size: 255 }

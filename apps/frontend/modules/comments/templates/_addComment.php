@@ -1,0 +1,33 @@
+<?php
+  /** @var $form FrontendCommentForm */ $form;
+?>
+
+<div class="add-comment">
+  <div class="input-append post-comment">
+    <form method="post" action="<?= url_for('@comments_add') ?>">
+      <?= $form->renderHiddenFields(); ?>
+
+      <div class="extra-fields row-fluid not-authenticated">
+        <div class="span4">
+          <?= $form['author_name']->render(array('class' => 'span12')); ?>
+          <?= $form['author_name']->renderLabel('<small>Name (required)</small>'); ?>
+        </div>
+        <div class="span4">
+          <?= $form['author_email']->render(array('class' => 'span12')); ?>
+          <?= $form['author_email']->renderLabel('<small>Email (will not be published) (required) </small>'); ?>
+        </div>
+      </div>
+
+      <?= $form['body']->render(array('class' => 'shrink')); ?>
+      <button type="button" class="btn btn-large fake">Comment</button>
+      <button type="submit" class="btn btn-large hidden">Comment</button>
+
+      <div class="extra-fields clearfix spacer-top non-optional">
+        <p class="one-line-input">
+          <?= $form['is_notify']; ?>
+          <?= $form['is_notify']->renderLabel(null, array('class' => 'spacer-left-5')); ?>
+        </p>
+      </div>
+    </form>
+  </div>
+</div>

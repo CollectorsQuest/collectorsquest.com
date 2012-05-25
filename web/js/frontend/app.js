@@ -75,7 +75,7 @@ var APP = window.APP = {
             $checkboxes.attr('checked', false).filter('.unread').attr('checked', 'checked');
             break;
         }
-      })
+      });
     },
     show: function() {
       $('#message_body').elastic();
@@ -142,9 +142,22 @@ var COMMON = window.COMMON = (function(){
    * so we append a <input type=submit /> element and trigger "click" on it
    */
   function setupModalLoginRegistrationDialogFormSubmission($holder) {
-    $holder.find('.modal-footer button').on('click', function() {
-      var $form = $holder.find('.modal-body .active form');
+    var $form = $holder.find('.modal-body .active form');
 
+    $form.on('keypress', 'input', function(event) {
+      // if ENTER was pressed
+      if (13 == event.which) {
+        if (!$form.find('input[type=submit]').length) {
+          $form.append('<input type="submit" class="hidden" />');
+        }
+
+        $form.find('input[type=submit]').trigger('click');
+      }
+
+      return true;
+    })
+
+    $holder.find('.modal-footer button').on('click', function() {
       if (!Modernizr.html5formvalidation) {
         $form.trigger('submit');
         return true;
@@ -154,7 +167,7 @@ var COMMON = window.COMMON = (function(){
         $form.append('<input type="submit" class="hidden" />');
       }
 
-      $form.find('input[type=submit]').trigger('click')
+      $form.find('input[type=submit]').trigger('click');
       return true;
     });
   }
@@ -163,10 +176,11 @@ var COMMON = window.COMMON = (function(){
   return {
     setupProjectWideHelpers: function() {
       COMMON.setupModalLoginRegistrationDialog();
-      COMMON.setupScrollToTop();
-      COMMON.setupFooterLoginOrSignup();
-      COMMON.setupEmailSpellingHelper();
       COMMON.linkifyTables();
+      COMMON.setupComments();
+      COMMON.setupFooterLoginOrSignup();
+      COMMON.setupScrollToTop();
+      COMMON.setupEmailSpellingHelper();
     },
     setupModalLoginRegistrationDialog: function() {
       var $holder = $('#modal-login-holder');
@@ -177,11 +191,13 @@ var COMMON = window.COMMON = (function(){
       $('.requires-login').on('click', function(e) {
         var $this = $(this);
         // execute the modal JS if not already executed
-        undefined === $holder.data('modal') || $holder.modal({
-          backdrop: true,
-          keyboard: true,
-          show: false
-        });
+        if (undefined === $holder.data('modal')) {
+          $holder.modal({
+            backdrop: true,
+            keyboard: true,
+            show: false
+          });
+        }
 
         if (!window.cq.authenticated) {
           $holder.modal('show');
@@ -194,13 +210,62 @@ var COMMON = window.COMMON = (function(){
             $holder.find('#modal-sign-up-pane h3').html($this.data('signup-title'));
           }
 
+          $holder.find('input:visible').first().focus();
           e.preventDefault();
-          return false
+          return false;
         }
 
         return true;
       });
     }, // setupModalLoginRegistrationDialog
+    setupComments: function() {
+      // setup adding a new comment
+      var $form_holder = $('.add-comment');
+
+      $form_holder.on('click', 'textarea, button', function(){
+        var $extra_fields = $form_holder.find('.extra-fields.non-optional');
+
+        if (!window.cq.authenticated) {
+          var $extra_fields_not_auth = $form_holder.find('.extra-fields.not-authenticated');
+          $extra_fields_not_auth.find('input').attr('required', 'required');
+          $extra_fields = $extra_fields.add($extra_fields_not_auth);
+        }
+
+        $extra_fields.slideDown(200);
+        $form_holder.find('button, textarea').addClass('expand');
+
+        // type property cannot be changed, but we want a normal looking button
+        // initially that behaves as type=button, so we use 2 elements and switch
+        // the type=button for a type=submit one
+        $form_holder.find('button.fake').hide();
+        $form_holder.find('button.hidden').removeClass('hidden');
+
+        // we want to execute this click handler only once, so we unbind it here
+        $form_holder.off('click');
+
+        return true;
+      });
+
+      var $load_more = $('#load-more-comments');
+
+      $load_more.on('click', function() {
+        $.get($load_more.data('uri'), {
+            token: $load_more.data('token'),
+            offset: $load_more.data('offset')
+          }, function (data) {
+            console.log(data);
+            $('.user-comments').append(data.html);
+            if (!data.has_more) {
+              $load_more.parent('.see-more-under-image-set').hide();
+              $load_more.off('click');
+            } else {
+              $load_more.data('offset', $load_more.data('offset') + $load_more.data('offset'));
+            }
+          },
+          'json'
+        )
+      });
+    },
     setupScrollToTop: function() {
       /**
        * "Scroll to Top" link on every long page
@@ -371,7 +436,7 @@ var GENERAL = window.GENERAL = (function(){
           autoplayDuration: 6000,
           autoplayPauseOnHover: true
         },function(){
-          $roundaboutEl.fadeTo(1000, 1)
+          $roundaboutEl.fadeTo(1000, 1);
         });
       }; // setup_roundabout
 

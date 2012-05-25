@@ -465,6 +465,22 @@ messages_batch_actions:
   param: { module: messages, action: batchActions }
 
 
+### COMMENTS
+
+comments_add:
+  url:    /comments/add
+  param:  { module: comments, action: addComment }
+  requirements: { sf_method: [post] }
+
+comments_load_more:
+  url:    /comments/load-more
+  param:  { module: comments, action: loadMoreComments }
+
+comments_unsubscribe:
+  url:    /comments/unsubscribe/email/:email/model_class/:model_class/model_pk/:model_pk
+  param:  { module: comments, action: unsubscribe }
+
+
 ### GENERAL
 
 login:

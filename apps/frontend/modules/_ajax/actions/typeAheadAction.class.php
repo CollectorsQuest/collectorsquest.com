@@ -18,6 +18,9 @@ class typeAheadAction extends IceAjaxAction
       ->find()
       ->toKeyValue('Id', 'Name');
 
+    // Make sure we do not have duplicate names
+    $categories = array_unique($categories);
+
     return $this->output($categories);
   }
 

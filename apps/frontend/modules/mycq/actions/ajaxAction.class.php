@@ -228,5 +228,28 @@ class ajaxAction extends IceAjaxAction
     return sfView::NONE;
   }
 
+  /**
+   * @return string
+   */
+  protected function executeCollectionSetThumbnail(sfWebRequest $request)
+  {
+    $collection = CollectorCollectionQuery::create()
+      ->findOneById($request->getParameter('collection_id'));
+    $this->forward404Unless($this->getUser()->isOwnerOf($collection));
 
+    $collectible = CollectibleQuery::create()
+      ->findOneById($request->getParameter('collectible_id'));
+    $this->forward404Unless($this->getUser()->isOwnerOf($collectible));
+
+    /** @var $image iceModelMultimedia */
+    if ($image = $collectible->getPrimaryImage())
+    {
+      $collection->setPrimaryImage($image->getAbsolutePath('original'));
+      $collection->save();
+
+      return $this->success();
+    }
+
+    return $this->error('Error Title', 'Error Message');
+  }
 }

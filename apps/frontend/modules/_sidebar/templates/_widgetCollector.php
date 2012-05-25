@@ -56,7 +56,7 @@
          &nbsp; - or - &nbsp;
         <input type="submit" class="btn btn-lightblue-normal" value="Send the Message"> */?>
         <a href="#" class="btn btn-lightblue-normal textright">
-          <i class="mail-icon-mini"></i> &nbsp;Send a message
+          <i class="mail-icon-mini"></i> &nbsp;Send message
         </a>
       </div>
     </form>

@@ -9,6 +9,9 @@ all:
     # require the user to input a captcha every N outgoing messages
     require_captcha_threshold: 5
 
+  comments:
+    num_load: 10
+
   aetn:
     american_pickers:
       collector: 6668
