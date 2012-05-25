@@ -51,7 +51,7 @@
       <?= $collectors_question['content']; ?>
     </div>
   </div>
-  <?php include_partial('sandbox/comments'); ?>
+  <?php include_partial('comments/comments', array('for_object' => $category)); ?>
 
 <?php else: ?>
 
