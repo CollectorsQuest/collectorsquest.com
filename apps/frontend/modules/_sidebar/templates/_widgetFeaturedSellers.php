@@ -38,7 +38,12 @@
     <div class="seller">
       <div class="row-fluid">
         <div class="span3">
-          <?= link_to_collector($collector, 'image', array('max_width' => '60', 'max_height' => 60)); ?>
+          <?php
+            echo link_to_collector(
+              $collector, 'image', array(),
+              array('max_width' => '60', 'max_height' => 60)
+            );
+          ?>
         </div>
         <div class="span9">
           <?php if ($text = $collector->getProfile()->getProperty('about.what_you_sell')): ?>

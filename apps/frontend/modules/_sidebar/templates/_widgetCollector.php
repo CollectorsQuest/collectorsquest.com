@@ -11,7 +11,12 @@
 
 <div class="row-fluid">
   <div class="span3">
-    <?= link_to_collector($collector, 'image', array('width' => 60, 'height' => 60)); ?>
+    <?php
+      echo link_to_collector(
+        $collector, 'image', array(),
+        array('max_width' => 60, 'max_height' => 60)
+      );
+    ?>
   </div>
   <div class="span8">
     <h4><?= link_to_collector($collector, 'text'); ?></h4>

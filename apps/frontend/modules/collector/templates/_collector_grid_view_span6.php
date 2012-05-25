@@ -5,7 +5,12 @@
 
   <div class="row-fluid profile-info link">
     <div class="span3">
-      <?= link_to_collector($collector, 'image', array('width' => 64, 'height' => '64')); ?>
+      <?php
+        echo link_to_collector(
+          $collector, 'image', array(),
+          array('max_width' => 64, 'max_height' => '64')
+        );
+      ?>
     </div>
     <div class="span9">
       <h2 style="margin-bottom: 5px;">
