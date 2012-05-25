@@ -7,13 +7,15 @@
     <?= $form ?>
     <div class="form-actions">
       <input type="submit" class="btn btn-primary blue-button" value="Login" />
+      <span class="spacer-left-15">
+        <?= link_to('Forgot your password?', '@recover_password'); ?>
+      </span>
     </div>
   </fieldset>
 </form>
 
 
 <fieldset class="rpxnow-login clearfix">
-  <legend><?= __('Third Party Accounts:'); ?></legend>
   <iframe
     src="<?= $rpxnow['application_domain']; ?>openid/embed?token_url=<?= url_for('@rpx_token', true); ?>"
     scrolling="no"

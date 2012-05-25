@@ -20,7 +20,7 @@ class cqValidatorSchemaCollector extends sfValidatorSchema
     $this->addOption('password_field', 'password');
     $this->addOption('throw_global_error', false);
 
-    $this->setMessage('invalid', 'The username and/or password is invalid.');
+    $this->setMessage('invalid', 'Username and/or password is invalid.');
   }
 
   /**
