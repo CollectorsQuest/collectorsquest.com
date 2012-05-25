@@ -8,16 +8,16 @@
 <div id="mycq-create-collectible" data-collection-id="<?= $collection->getId() ?>"
      class="span4 thumbnail link">
   <div class="row-fluid spacer-inner-top-15">
-    <div class="span5">
+    <div class="span4">
       <a href="<?php echo url_for('@ajax_mycq?section=component&page=createCollectible&collection_id='. $collection->getId()); ?>"
          id="collectible-create-icon" class="open-dialog btn-create-collection-middle spacer-left-20">
         <i class="icon-plus icon-white"></i>
       </a>
     </div>
-    <div class="span7">
+    <div class="span8">
       <a href="<?php echo url_for('@ajax_mycq?section=component&page=createCollectible&collection_id='. $collection->getId()); ?>"
          id="collectible-create-link" class="open-dialog create-collection-text">
-        Create a new Collectible by clicking here
+        Add a new item to your collection by dragging here.
       </a>
     </div>
   </div>
@@ -54,7 +54,7 @@
             }
             else
             {
-              echo '<i class="icon icon-download-alt drop-zone" data-collectible-id="'.  $collectible->getId() .'"></i>';
+              echo '<i class="icon icon-plus drop-zone" data-collectible-id="'.  $collectible->getId() .'"></i>';
             }
           }
         ?>
@@ -97,16 +97,25 @@ $(document).ready(function()
   {
     over: function(event, ui)
     {
-      $(this).addClass("ui-state-highlight");
+      $(this)
+        .addClass("ui-state-highlight")
+        .removeClass('icon-plus')
+        .addClass('icon-download-alt');
     },
     out: function(event, ui)
     {
-      $(this).removeClass("ui-state-highlight");
+      $(this)
+        .removeClass("ui-state-highlight")
+        .removeClass('icon-download-alt')
+        .addClass('icon-plus');
     },
     drop: function(event, ui)
     {
-      $(this).removeClass("ui-state-highlight");
-      ui.draggable.draggable( 'option', 'revert', false );
+      $(this)
+        .removeClass("ui-state-highlight")
+        .removeClass('icon-download-alt')
+        .addClass('icon-plus');
+      ui.draggable.draggable('option', 'revert', false);
 
       $.ajax({
         url: '<?php echo url_for('@ajax_mycq?section=collectible&page=donateImage'); ?>',
@@ -136,24 +145,24 @@ $(document).ready(function()
       $(this)
         .addClass("ui-state-highlight")
         .find('i')
-        .removeClass('icon-plus')
-        .addClass('icon-download-alt');
+          .removeClass('icon-plus')
+          .addClass('icon-download-alt');
     },
     out: function(event, ui)
     {
       $(this)
         .removeClass("ui-state-highlight")
         .find('i')
-        .removeClass('icon-download-alt')
-        .addClass('icon-plus');
+          .removeClass('icon-download-alt')
+          .addClass('icon-plus');
     },
     drop: function(event, ui)
     {
       $(this)
         .removeClass("ui-state-highlight")
         .find('i')
-        .removeClass('icon-download-alt')
-        .addClass('icon-plus');
+          .removeClass('icon-download-alt')
+          .addClass('icon-plus');
 
       ui.draggable.draggable('option', 'revert', false);
       ui.draggable.hide();

@@ -68,7 +68,7 @@
           'mycq', 'dropbox',
           array('instructions' => array(
             'position' => 'bottom',
-            'text' => 'Drag and drop items into your collectibles altenative views.')
+            'text' => 'Drag and Drop Your Photos Below')
           )
         );
       ?>
@@ -77,7 +77,7 @@
       <div class="tab-content-inner spacer-top-35">
         <div class="row-fluid sidebar-title spacer-inner-bottom">
           <div class="span5 link-align">
-            <h3 class="Chivo webfont">Collectibles (<?= $total ?>)</h3>
+            <h3 class="Chivo webfont"><?= $collection->getName(); ?> (<?= $total ?>)</h3>
           </div>
           <div class="span7">
             <?php if ($total > 7): ?>
@@ -127,15 +127,24 @@
     {
       over: function(event, ui)
       {
-        $(this).addClass("ui-state-highlight");
+        $(this)
+          .removeClass('icon-plus')
+          .addClass("ui-state-highlight")
+          .addClass('icon-download-alt');
       },
       out: function(event, ui)
       {
-        $(this).removeClass("ui-state-highlight");
+        $(this)
+          .removeClass("ui-state-highlight")
+          .removeClass('icon-download-alt')
+          .addClass('icon-plus');
       },
       drop: function(event, ui)
       {
-        $(this).removeClass("ui-state-highlight");
+        $(this)
+          .removeClass("ui-state-highlight")
+          .removeClass('icon-download-alt')
+          .addClass('icon-plus');
         ui.draggable.draggable('option', 'revert', true);
 
         $(this).showLoading();
