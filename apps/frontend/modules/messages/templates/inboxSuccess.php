@@ -41,13 +41,8 @@
           <?= link_to('All', '@messages_inbox?filter=all', array('class' => 'btn btn-cq '.('all' == $filter_by ? 'active' : '') )); ?>
           <?= link_to('Unread', '@messages_inbox?filter=unread', array('class' => 'btn btn-cq '.('unread' == $filter_by ? 'active' : '') )); ?>
           <?= link_to('Read', '@messages_inbox?filter=read', array('class' => 'btn btn-cq '.('read' == $filter_by ? 'active' : '') )); ?>
-        </div> <!-- .pull-right -->
-      </div> <!-- .control-group -->
-    </div>
-    <div class="span2">
-      <a href="<?= url_for('@messages_compose'); ?>" type="submit" class="btn btn-primary blue-button pull-right">
-        Compose
-      </a>
+        </div>
+      </div> <!-- .control-group.pull-left -->
     </div>
   </div>
 
