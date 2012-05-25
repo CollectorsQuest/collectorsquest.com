@@ -49,6 +49,7 @@ class mycqComponents extends cqFrontendComponents
     return sfView::SUCCESS;
   }
 
+<<<<<<< Updated upstream
   public function executeCollectibles()
   {
     /** @var $collection CollectorCollection */
@@ -80,17 +81,23 @@ class mycqComponents extends cqFrontendComponents
     return sfView::SUCCESS;
   }
 
+=======
+>>>>>>> Stashed changes
   public function executeDropbox()
   {
     $collector = $this->getCollector();
     $dropbox = $collector->getCollectionDropbox();
 
+<<<<<<< Updated upstream
     $this->batch = cqStatic::getUniqueId(32);
+=======
+>>>>>>> Stashed changes
     $this->collectibles = $dropbox->getCollectibles();
     $this->total = $dropbox->countCollectibles();
 
     return sfView::SUCCESS;
   }
+<<<<<<< Updated upstream
 
   public function executeCreateCollection()
   {
@@ -166,4 +173,6 @@ class mycqComponents extends cqFrontendComponents
 
     return sfView::SUCCESS;
   }
+=======
+>>>>>>> Stashed changes
 }

@@ -142,9 +142,22 @@ var COMMON = window.COMMON = (function(){
    * so we append a <input type=submit /> element and trigger "click" on it
    */
   function setupModalLoginRegistrationDialogFormSubmission($holder) {
-    $holder.find('.modal-footer button').on('click', function() {
-      var $form = $holder.find('.modal-body .active form');
+    var $form = $holder.find('.modal-body .active form');
 
+    $form.on('keypress', 'input', function(event) {
+      // if ENTER was pressed
+      if (13 == event.which) {
+        if (!$form.find('input[type=submit]').length) {
+          $form.append('<input type="submit" class="hidden" />');
+        }
+
+        $form.find('input[type=submit]').trigger('click');
+      }
+
+      return true;
+    })
+
+    $holder.find('.modal-footer button').on('click', function() {
       if (!Modernizr.html5formvalidation) {
         $form.trigger('submit');
         return true;
@@ -197,6 +210,7 @@ var COMMON = window.COMMON = (function(){
             $holder.find('#modal-sign-up-pane h3').html($this.data('signup-title'));
           }
 
+          $holder.find('input:visible').first().focus();
           e.preventDefault();
           return false;
         }

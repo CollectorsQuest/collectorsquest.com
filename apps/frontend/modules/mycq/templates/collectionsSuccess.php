@@ -1,4 +1,21 @@
 <div id="mycq-tabs">
+<<<<<<< Updated upstream
+=======
+  <ul class="nav nav-tabs" style="margin-bottom: 0;">
+    <li class="active">
+      <a href="#tab1" data-toggle="tab">Show Collections</a>
+    </li>
+    <?php if ($collections_count > 0): ?>
+    <li class="pull-right styles-reset">
+      <span>
+        <a href="#" type="submit" class="btn btn-primary blue-button pull-right">
+          Upload Photos
+        </a>
+      </span>
+    </li>
+    <?php endif; ?>
+  </ul>
+>>>>>>> Stashed changes
   <div class="tab-content">
     <div class="tab-pane active" id="tab1">
 
@@ -12,8 +29,12 @@
         );
       ?>
 
+<<<<<<< Updated upstream
       <br style="clear: both;"/>
       <div class="tab-content-inner spacer-top-35">
+=======
+      <div class="tab-content-inner spacer-top">
+>>>>>>> Stashed changes
         <div class="row-fluid sidebar-title spacer-inner-bottom">
           <div class="span5 link-align">
             <h3 class="Chivo webfont">My Collections (<?= $total ?>)</h3>

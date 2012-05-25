@@ -33,6 +33,7 @@ default:
     - /assets/js/jquery/scrollTo.js
     - /assets/js/jquery/targets.js
     - jquery/mosaic.js
+    - jquery/loading.js
     - jquery/waypoints.js
 
   components:
