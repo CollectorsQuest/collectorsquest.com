@@ -45,9 +45,17 @@ class cq_300x250ad_widget extends WP_Widget {
 
 
     <script>
-      if (typeof window.dfp_ord == 'undefined') { window.dfp_ord = Math.random()*10000000000000000; }
+      if (typeof window.dfp_ord == 'undefined') { window.dfp_ord = Math.random() * 10000000000000000; }
       if (typeof(window.dfp_tile) == 'undefined') { window.dfp_tile = 1; }
-      document.write('<script language="JavaScript" src="http://ad.doubleclick.net/adj/aetn.hist.cq/blog/<?php echo $authvar ?>;s1=blog;s2=<?php echo $authvar ?>;kw=;test=;aetn=ad;pos=sidebar;dcopt=;sz=300x250;tile='+ (window.dfp_tile++) + ';ord=' + window.dfp_ord + '?" type="text/javascript"><\/script>');
+
+      var src = 'http://ad.doubleclick.net/adj/aetn.hist.cq/blog/<?php echo $authvar ?>;s1=blog;s2=<?php echo $authvar ?>;kw=;test=;aetn=ad;pos=sidebar;dcopt=;sz=300x250';
+      if (window.dfp_tile === 1) {
+        src = src.replace(/pos=\w+/i, 'pos=top');
+        src = src.replace(/dcopt=;/i, 'dcopt=ist;');
+      }
+      src = src +';tile='+ (window.dfp_tile++) +';ord='+ window.dfp_ord +'?';
+
+      document.write('<script language="JavaScript" src="'+ src +'" type="text/javascript"><\/script>');
     </script>
     <noscript>
       <a href="http://ad.doubleclick.net/jump/aetn.hist.cq/blog/<?php echo $authvar ?>;s1=blog;s2=<?php echo $authvar ?>;kw=;test=;aetn=ad;pos=sidebar;sz=300x250;tile=1;ord=123456789?" target="_blank">
