@@ -23,7 +23,8 @@ class CollectionCreateForm extends CollectorCollectionForm
         'model' => 'ContentCategory',
         'add_empty' => true,
       )),
-      'step'  => new sfWidgetFormInputHidden(array('default' => 1)),
+      'thumbnail'  => new sfWidgetFormInputHidden(),
+      'step'       => new sfWidgetFormInputHidden(array('default' => 1)),
     ));
 
     // Setup the Tags field
@@ -42,6 +43,7 @@ class CollectionCreateForm extends CollectorCollectionForm
         'model' => 'ContentCategory',
         'column' => 'id',
       )),
+      'thumbnail'  => new sfValidatorInteger(array('required' => false)),
       'step'  => new sfValidatorInteger(),
     ));
 

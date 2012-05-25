@@ -96,6 +96,19 @@ class mycqComponents extends cqFrontendComponents
   {
     $form = new CollectionCreateForm();
 
+    if ($collectible_id = $this->getRequestParameter('collectible_id'))
+    {
+      $q = CollectibleQuery::create()
+        ->filterByCollector($this->getCollector())
+        ->filterById($collectible_id);
+
+      /** @var $image iceModelMultimedia */
+      if (($collectible = $q->findOne()) && $image = $collectible->getPrimaryImage())
+      {
+        $form->setDefault('thumbnail', $image->getId());
+      }
+    }
+
     if ($this->getRequest()->isMethod('post'))
     {
       $form->bind($this->getRequestParameter('collection'));
@@ -108,6 +121,18 @@ class mycqComponents extends cqFrontendComponents
         $collection = $form->updateObject($values);
         $collection->setTags($values['tags']);
         $collection->save();
+
+        if ($values['thumbnail'])
+        {
+          $image = iceModelMultimediaQuery::create()
+            ->findOneById((int) $values['thumbnail']);
+
+          if ($this->getCollector()->isOwnerOf($image))
+          {
+            $collection->setThumbnail($image->getAbsolutePath('original'));
+            $collection->save();
+          }
+        }
 
         $this->collection = $collection;
       }
@@ -131,6 +156,19 @@ class mycqComponents extends cqFrontendComponents
   {
     $form = new CollectibleCreateForm();
     $form->setDefault('collection_id', $this->getRequestParameter('collection_id'));
+
+    if ($collectible_id = $this->getRequestParameter('collectible_id'))
+    {
+      $q = CollectibleQuery::create()
+        ->filterByCollector($this->getCollector())
+        ->filterById($collectible_id);
+
+      /** @var $image iceModelMultimedia */
+      if (($collectible = $q->findOne()) && $image = $collectible->getPrimaryImage())
+      {
+        $form->setDefault('thumbnail', $image->getId());
+      }
+    }
 
     if ($this->getRequest()->isMethod('post'))
     {
@@ -157,6 +195,18 @@ class mycqComponents extends cqFrontendComponents
 
         $collectible->addCollection($collection);
         $collectible->save();
+
+        if ($values['thumbnail'])
+        {
+          $image = iceModelMultimediaQuery::create()
+            ->findOneById((int) $values['thumbnail']);
+
+          if ($this->getCollector()->isOwnerOf($image))
+          {
+            $collectible->setThumbnail($image->getAbsolutePath('original'));
+            $collectible->save();
+          }
+        }
 
         $this->collectible = $collectible;
       }

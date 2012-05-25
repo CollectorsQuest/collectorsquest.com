@@ -17,14 +17,16 @@ class CollectibleCreateForm extends CollectibleForm
       ), array(
         'required' => 'required',
         'class' => 'input-xlarge'
-      ))
+      )),
+      'thumbnail'  => new sfWidgetFormInputHidden()
     ));
 
     $this->setValidators(array(
       'collection_id'    => new sfValidatorPropelChoice(
         array('model' => 'Collection', 'column' => 'id', 'required' => true)
       ),
-      'name'  => new sfValidatorString()
+      'name'  => new sfValidatorString(),
+      'thumbnail'  => new sfValidatorInteger(array('required' => false))
     ));
 
     // Setup the Tags field

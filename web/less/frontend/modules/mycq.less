@@ -380,6 +380,14 @@ a.buy-credits-button {
 	}
 }
 
+.mycq-collections .thumbnails > .ui-droppable {
+  border-style: dashed;
+
+  &:hover {
+    border-style: dashed;
+  }
+}
+
 .mycq-collectibles-for-sale {
 	.thumbnail {
 		margin-left: 10px;
@@ -834,16 +842,13 @@ a.buy-credits-button {
 }
 
 .btn-create-collection-middle {
-  background-color: #C2E0F0;
-  color: #fff;
   font-size: 60px;
 	line-height: 60px;
   text-align: center;
   display: block;
 	.square(60px);
 	&:hover {
-		color: #fff;
-		background-color: #b2b5bb;
+		color: @linkColorHover;
 	}
 }
 
@@ -1015,4 +1020,8 @@ textarea.input-xlarge {
 			line-height: 22px;
 		}
 	}
+}
+
+.ui-droppable {
+  border-style: dashed;
 }

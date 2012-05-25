@@ -3,13 +3,17 @@
     <div class="tab-pane active" id="tab1">
 
       <?php
-        include_component(
-          'mycq', 'dropbox',
-          array('instructions' => array(
-            'position' => 'bottom',
-            'text' => 'Drag and drop collectibles into your collections.')
-          )
-        );
+        // Do not display the dropbox when there are no collections
+        if ($total > 0)
+        {
+          include_component(
+            'mycq', 'dropbox',
+            array('instructions' => array(
+              'position' => 'bottom',
+              'text' => 'Drag and drop collectibles into your collections.')
+            )
+          );
+        }
       ?>
 
       <br style="clear: both;"/>

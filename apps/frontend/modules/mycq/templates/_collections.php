@@ -5,15 +5,15 @@
 ?>
 
 <?php slot('html-create-collection'); ?>
-<div class="span4 thumbnail link">
+<div id="collection-create-html" class="span4 thumbnail">
   <div class="row-fluid spacer-inner-top-15">
     <div class="span5">
-      <a href="<?php echo url_for('@ajax_mycq?section=component&page=createCollection'); ?>" class="open-dialog btn-create-collection-middle spacer-left-20">
+      <a id="collection-create-icon" href="<?= url_for('@ajax_mycq?section=component&page=createCollection'); ?>" class="open-dialog btn-create-collection-middle spacer-left-20">
         <i class="icon-plus icon-white"></i>
       </a>
     </div>
     <div class="span7">
-      <a href="<?php echo url_for('@ajax_mycq?section=component&page=createCollection'); ?>" class="open-dialog create-collection-text">
+      <a id="collection-create-link" href="<?= url_for('@ajax_mycq?section=component&page=createCollection'); ?>" class="open-dialog create-collection-text">
         Create a new collection by clicking here
       </a>
     </div>
@@ -48,7 +48,7 @@
             }
             else
             {
-              echo '<i class="icon icon-download-alt drop-zone" data-collection-id="'.  $collection->getId() .'"></i>';
+              echo '<i class="icon icon-plus drop-zone" data-collection-id="'.  $collection->getId() .'"></i>';
             }
           }
         ?>
@@ -94,11 +94,17 @@ $(document).ready(function()
   {
     over: function(event, ui)
     {
-      $(this).addClass("ui-state-highlight");
+      $(this)
+        .removeClass('icon-plus')
+        .addClass("ui-state-highlight")
+        .addClass('icon-download-alt');
     },
     out: function(event, ui)
     {
-      $(this).removeClass("ui-state-highlight");
+      $(this)
+        .removeClass("ui-state-highlight")
+        .removeClass('icon-download-alt')
+        .addClass('icon-plus');
     },
     drop: function(event, ui)
     {
@@ -112,6 +118,47 @@ $(document).ready(function()
       window.location.href = url +
         '?collection_id=' + $(this).data('collection-id') +
         '&collectible_id=' + ui.draggable.data('collectible-id');
+    }
+  });
+
+  $("#collection-create-html").droppable(
+  {
+    over: function(event, ui)
+    {
+      $(this)
+        .addClass("ui-state-highlight")
+        .find('i')
+          .removeClass('icon-plus')
+          .addClass('icon-download-alt');
+    },
+    out: function(event, ui)
+    {
+      $(this)
+        .removeClass("ui-state-highlight")
+        .find('i')
+          .removeClass('icon-download-alt')
+          .addClass('icon-plus');
+    },
+    drop: function(event, ui)
+    {
+      $(this)
+        .removeClass("ui-state-highlight")
+        .find('i')
+          .removeClass('icon-download-alt')
+          .addClass('icon-plus');
+
+      ui.draggable.draggable('option', 'revert', true);
+
+      var href = $('#collection-create-link').attr('href');
+      href = href +'?collectible_id=' + ui.draggable.data('collectible-id');
+
+      var options = {
+        modal: true,
+        autOpen: true,
+        content: href
+      };
+
+      $("<div></div>").dialog2(options);
     }
   });
 });

@@ -5,17 +5,18 @@
 ?>
 
 <?php slot('mycq_create_collectible'); ?>
-<div class="span4 thumbnail link">
+<div id="mycq-create-collectible" data-collection-id="<?= $collection->getId() ?>"
+     class="span4 thumbnail link">
   <div class="row-fluid spacer-inner-top-15">
     <div class="span5">
       <a href="<?php echo url_for('@ajax_mycq?section=component&page=createCollectible&collection_id='. $collection->getId()); ?>"
-         class="open-dialog btn-create-collection-middle spacer-left-20">
+         id="collectible-create-icon" class="open-dialog btn-create-collection-middle spacer-left-20">
         <i class="icon-plus icon-white"></i>
       </a>
     </div>
     <div class="span7">
       <a href="<?php echo url_for('@ajax_mycq?section=component&page=createCollectible&collection_id='. $collection->getId()); ?>"
-         class="open-dialog create-collection-text">
+         id="collectible-create-link" class="open-dialog create-collection-text">
         Create a new Collectible by clicking here
       </a>
     </div>
@@ -125,6 +126,45 @@ $(document).ready(function()
           ui.draggable.show();
         }
       });
+    }
+  });
+
+  $("#mycq-create-collectible").droppable(
+  {
+    over: function(event, ui)
+    {
+      $(this)
+        .addClass("ui-state-highlight")
+        .find('i')
+        .removeClass('icon-plus')
+        .addClass('icon-download-alt');
+    },
+    out: function(event, ui)
+    {
+      $(this)
+        .removeClass("ui-state-highlight")
+        .find('i')
+        .removeClass('icon-download-alt')
+        .addClass('icon-plus');
+    },
+    drop: function(event, ui)
+    {
+      $(this)
+        .removeClass("ui-state-highlight")
+        .find('i')
+        .removeClass('icon-download-alt')
+        .addClass('icon-plus');
+
+      ui.draggable.draggable('option', 'revert', false);
+      ui.draggable.hide();
+
+      $(this).showLoading();
+
+      var url = '<?= url_for('@mycq_collection_collectible_create') ?>';
+
+      window.location.href = url +
+        '?collection_id=' + $(this).data('collection-id') +
+        '&collectible_id=' + ui.draggable.data('collectible-id');
     }
   });
 });
