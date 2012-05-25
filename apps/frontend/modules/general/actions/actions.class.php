@@ -133,7 +133,7 @@ class generalActions extends cqFrontendActions
     // redirect to homepage if already logged in
     if ($this->getUser()->isAuthenticated())
     {
-      $this->redirect($request->getParameter('r', '@collector_me'));
+      $this->redirect($request->getParameter('goto', '@collector_me'));
     }
 
     // Auto login the collector if a hash was provided
@@ -142,7 +142,7 @@ class generalActions extends cqFrontendActions
       $this->getUser()->Authenticate(true, $collector, $remember = false);
 
       // redirect to last page or homepage after login
-      $this->redirect($request->getParameter('r', '@collector_me'));
+      $this->redirect($request->getParameter('goto', '@collector_me'));
     }
 
     $form = new CollectorLoginForm();
@@ -155,7 +155,7 @@ class generalActions extends cqFrontendActions
         $collector = $form->getValue('collector');
         $this->getUser()->Authenticate(true, $collector, $form->getValue('remember'));
 
-        $goto = $request->getParameter('r', $form->getValue('goto'));
+        $goto = $request->getParameter('goto', $form->getValue('goto'));
         $this->redirect(!empty($goto) ? $goto : $this->getUser()->getReferer('@collector_me'));
       }
     }
@@ -166,7 +166,7 @@ class generalActions extends cqFrontendActions
       $this->getUser()->setReferer(
         $this->getContext()->getActionStack()->getSize() > 1
           ? $request->getUri()
-          : $request->getParameter('r', $request->getReferer('@collector_me'))
+          : $request->getParameter('goto', $request->getReferer('@collector_me'))
       );
     }
 
