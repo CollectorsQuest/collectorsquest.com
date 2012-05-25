@@ -212,10 +212,10 @@ class generalActions extends cqActions
   public function executeLogout(sfWebRequest $request)
   {
     $this->getUser()->Authenticate(false);
-    $url = $request->getParameter('r', $this->getRequest()->getReferer());
+    $url = $request->getParameter('goto', $this->getRequest()->getReferer());
 
     /**
-     * Handling errors where the $_GET['r'] is double urlencoded()
+     * Handling errors where the $_GET['goto'] is double urlencoded()
      */
     if (substr($url, 0, 13) == 'http%3A%2F%2F')
     {

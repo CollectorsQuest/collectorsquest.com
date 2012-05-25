@@ -8,7 +8,7 @@ class cqLegacyUser extends cqBaseUser
 
   public function getLogoutUrl($next = null)
   {
-    return '@logout?r='. $next;
+    return '@logout?goto='. $next;
   }
 
   /**
