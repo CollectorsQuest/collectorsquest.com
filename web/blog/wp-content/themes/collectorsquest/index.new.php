@@ -139,9 +139,9 @@
     <?php $categorydesc = category_description(); if ( !empty($categorydesc) ) echo apply_filters( 'archive_meta', '<div class="archive-meta">' . $categorydesc . '</div>' ); ?>
   </div>
 <?php } elseif (is_404()) { ?>
-<div class="span11">
+<!-- <div class="span11">
   <h1 class="Chivo webfont" style="visibility: visible; "><?php _e( 'You are here', 'collectorsquest' ) ?></h1>
-</div>
+</div> -->
 <?php } ?>
 
 <?php if (!is_author()) : ?>
