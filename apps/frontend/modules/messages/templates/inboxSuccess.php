@@ -41,13 +41,8 @@
           <?= link_to('All', '@messages_inbox?filter=all', array('class' => 'btn btn-cq '.('all' == $filter_by ? 'active' : '') )); ?>
           <?= link_to('Unread', '@messages_inbox?filter=unread', array('class' => 'btn btn-cq '.('unread' == $filter_by ? 'active' : '') )); ?>
           <?= link_to('Read', '@messages_inbox?filter=read', array('class' => 'btn btn-cq '.('read' == $filter_by ? 'active' : '') )); ?>
-        </div> <!-- .pull-right -->
-      </div> <!-- .control-group -->
-    </div>
-    <div class="span2">
-      <a href="<?= url_for('@messages_compose'); ?>" type="submit" class="btn btn-primary blue-button pull-right">
-        Compose
-      </a>
+        </div>
+      </div> <!-- .control-group.pull-left -->
     </div>
   </div>
 
@@ -65,7 +60,8 @@
           <input type="checkbox" name="ids[]" value="<?= $message->getId() ?>" class="<?= $message->getIsRead() ? 'read' : 'unread' ?>" />
         </td>
         <td class="sender-col">
-          <img alt="" src="http://placehold.it/50x50" class="avatar">
+          <?= image_tag_collector($message->getCollectorRelatedBySender(),
+            '50x50', array('class' => 'avatar')); ?>
           <?= link_to_collector($message->getCollectorRelatedBySender()); ?>
           <p style="font-size: 10px">
             <?= time_ago_in_words($message->getCreatedAt('U')); ?> ago

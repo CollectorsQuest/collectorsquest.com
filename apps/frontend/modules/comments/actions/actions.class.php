@@ -14,7 +14,6 @@ class commentsActions extends cqFrontendActions
       {
         $comment = $form->save();
 
-
         if (method_exists($comment->getModelObject(), '__toString'))
         {
           $notify_comments = CommentQuery::create()
@@ -50,8 +49,6 @@ class commentsActions extends cqFrontendActions
             ));
           }
         }
-
-        $this->getUser()->setFlash('comment_success', 'Comment successfully added!');
       }
       else
       {
