@@ -10,6 +10,8 @@
 }
 
 .private-message-thread {
+  table-layout: fixed;
+
   .form-horizontal {
     .control-label {
       width: 90px;
@@ -24,6 +26,7 @@
 }
 
 .private-messages-list {
+  table-layout: fixed;
 
   tbody tr.unread:hover td {
     background-color: @yellowBackground;
@@ -33,10 +36,20 @@
     font-weight: bold;
     background: @yellowSolarized;
   }
+  .select-col {
+    width: 4%;
+  }
+  .select-col input {
+    left: -1px;
+    position: relative;
+  }
   .sender-col {
     width: 25%;
   }
   .message-col {
+    overflow: hidden;
+    word-wrap:  break-word;
+
     a {
       color: @grayDark;
     }
@@ -102,6 +115,8 @@ td.subject {
 }
 
 td.message {
+  overflow: hidden;
+  word-wrap:  break-word;
 	border: none;
 	border-left: 1px solid #ddd;
 }

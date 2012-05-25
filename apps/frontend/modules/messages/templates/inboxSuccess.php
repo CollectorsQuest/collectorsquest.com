@@ -73,7 +73,7 @@
             'sf_subject' => $message,
           )); ?>
           <span>
-            <?= Utf8::truncateHtmlKeepWordsWhole($message->getBody(), 100); ?>
+            <?= Utf8::truncateHtmlKeepWordsWhole($message->getBody(), 150); ?>
           </span>
         </td>
       </tr>
