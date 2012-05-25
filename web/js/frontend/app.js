@@ -210,6 +210,7 @@ var COMMON = window.COMMON = (function(){
             $holder.find('#modal-sign-up-pane h3').html($this.data('signup-title'));
           }
 
+          $holder.find('input:visible').first().focus();
           e.preventDefault();
           return false;
         }
