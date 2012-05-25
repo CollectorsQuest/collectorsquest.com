@@ -14,7 +14,7 @@
   <div class="span10">
     <p class="bubble left">
       <?php if ($collector): ?>
-        <?= link_to_collector($collector); ?>
+        <span class="username"><?= link_to_collector($collector); ?></span>
       <?php else: ?>
         <span class="username"><?= $comment->getAuthorName(); ?></span>
       <?php endif; ?>
