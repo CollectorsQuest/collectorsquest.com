@@ -76,6 +76,12 @@ class Collector extends BaseCollector implements ShippingRatesInterface
    */
   public function isOwnerOf($something)
   {
+    // Special case for Multimedia objects
+    if ($something instanceof iceModelMultimedia)
+    {
+      $something = $something->getModelObject();
+    }
+
     if (is_object($something) && method_exists($something, 'getCollectorId'))
     {
       return $something->getCollectorId() == $this->getId();
