@@ -3,6 +3,9 @@
 class cqFrontendUser extends cqBaseUser
 {
 
+  /** @var integer */
+  protected $unread_messages_count;
+
   const PRIVATE_MESSAGES_SENT_COUNT_KEY = 'private_messages_sent_count';
 
   /**
@@ -147,6 +150,24 @@ class cqFrontendUser extends cqBaseUser
     }
 
     return $ret;
+  }
+
+  /**
+   * Retrieve the unread messages count, or null for unauthenticated users
+   *
+   * @return    integer|null
+   */
+  public function getUnreadMessagesCount()
+  {
+    if (null === $this->unread_messages_count && $this->isAuthenticated())
+    {
+      $this->unread_messages_count = PrivateMessageQuery::create()
+        ->filterByCollectorRelatedByReceiver($this->getCollector())
+        ->filterByIsRead(false)
+        ->count();
+    }
+
+    return $this->unread_messages_count;
   }
 
 }

@@ -65,7 +65,8 @@
   <?= $collectible->getDescription('html'); ?>
 </div>
 
-<?php include_partial('sandbox/comments'); ?>
+<?php include_partial('comments/comments', array('for_object' => $collectible)); ?>
+
 <div class="permalink">
   Permalink: <span class="darkblue"><?= url_for_collectible($collectible, true) ?></span>
 </div>

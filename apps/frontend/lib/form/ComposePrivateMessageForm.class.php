@@ -48,6 +48,11 @@ class ComposePrivateMessageForm extends PrivateMessageForm
     $this->setupThreadField();
     $this->setupCaptchaField();
 
+    $this->widgetSchema->setLabels(array(
+        'receiver' => 'To',
+        'body' => 'Message',
+    ));
+
     $this->unsetFields();
   }
 

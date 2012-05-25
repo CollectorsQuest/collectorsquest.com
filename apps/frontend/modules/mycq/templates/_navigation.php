@@ -25,7 +25,10 @@
             ?>
             <?php $active = in_array($sf_params->get('module'), array('messages')) ? 'active' : null; ?>
             <li class="dropdown <?= $active ?>">
-              <a data-toggle="dropdown" class="dropdown-toggle" href="#">Messages (2) <b class="caret"></b></a>
+              <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                Messages (<?= $sf_user->getUnreadMessagesCount(); ?>)
+                <b class="caret"></b>
+              </a>
               <ul class="dropdown-menu">
                 <li style="text-transform: none;">
                   <a href="<?= url_for('@messages_inbox'); ?>" title="Go to Your Inbox">
