@@ -476,11 +476,11 @@ class Collectible extends BaseCollectible
 
   public function isForSale()
   {
-    $c = new Criteria();
-    $c->add(CollectibleForSalePeer::COLLECTIBLE_ID, $this->getId());
-    $c->add(CollectibleForSalePeer::IS_SOLD, false);
+    $q = CollectibleForSaleQuery::create()
+      ->filterByCollectible($this)
+      ->isForSale();
 
-    return CollectibleForSalePeer::doCount($c);
+    return $q->count();
   }
 
   /**

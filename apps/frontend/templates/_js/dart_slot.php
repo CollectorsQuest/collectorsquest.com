@@ -11,7 +11,10 @@
   if (typeof(window.dfp_tile) == 'undefined') { window.dfp_tile = 1; }
 
   var src = '<?= $src; ?>';
-  if (window.dfp_tile === 1) { src = src.replace(/pos=\w+/i, 'pos=top'); }
+  if (window.dfp_tile === 1) {
+    src = src.replace(/pos=\w+/i, 'pos=top');
+    src = src.replace(/dcopt=;/i, 'dcopt=ist;');
+  }
   src = src +';tile='+ (window.dfp_tile++) +';ord='+ window.dfp_ord +'?';
 
   document.write('<script language="JavaScript" src="'+ src +'" type="text/javascript"><\/script>');
