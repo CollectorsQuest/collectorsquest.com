@@ -1,19 +1,24 @@
-<br />
-<div class="password-recovery-form" style="width: 400px">
+<div class="password-recovery-form">
 
   <?= form_tag('@recover_password', array('class' => 'form-horizontal')); ?>
-    <?= $form->renderHiddenFields() ?>
-
-    <?= $form['email']->renderError(); ?>
-    <?= $form['email']->renderLabel(); ?>
-    <?= $form['email']; ?>
-    <div class="clearfix" >
-      <?= $form['captcha']->renderError(); ?>
-      <?= $form['captcha']->renderLabel(null, array('class' => 'control-label')); ?>
-      <?= $form['captcha']; ?>
+    <fieldset>
+      <?= $form->renderHiddenFields() ?>
+        <div class="control-group">
+          <?= $form['email']->renderLabel(null, array('class' => 'control-label')); ?>
+          <div class="controls">
+            <?= $form['email']->renderError(null, array('class' => 'help-inline')); ?>
+            <?= $form['email']; ?>
+          </div>
+        </div>
+        <div class="control-group">
+          <?= $form['captcha']->renderError(); ?>
+          <?= $form['captcha']->renderLabel(null, array('class' => 'help-inline')); ?>
+          <?= $form['captcha']; ?>
+        </div>
+      </div>
+    </fieldset>
+    <div class="form-actions">
+      <input class="btn btn-primary blue-button" type="submit" value="Submit" />
     </div>
-
-    <input class="btn btn-primary" type="submit" value="Submit" />
-
   </form>
 </div>
