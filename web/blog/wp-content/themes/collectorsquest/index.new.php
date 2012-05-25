@@ -239,13 +239,13 @@ $lastclass = 0;
 
           <?php
           if (is_single()) :
-            $size = 'blog-single-p1';
+            $size = array(620,440);
             $img_w = 620;
             $img_h = 440;
           elseif (is_front_page() && $count == 1) :
-            $size = 'blog-homepage-p1';
+            $size = array(300,300);
           else :
-            $size = 'blog-homepage-thumb';
+            $size = array(140,140);
           endif;
           ?>
 
