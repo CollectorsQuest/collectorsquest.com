@@ -13,12 +13,16 @@
         <div class="main-image-set-container">
           <ul class="thumbnails">
             <li class="span12">
-              <div class="thumbnail">
-                <i class="icon icon-download-alt drop-zone-large ui-droppable"></i>
-                <span class="info-text">
-                   Drag and drop the main image<br> of your collectible here.
-                </span>
-              </div>
+              <?php if ($image = $collectible->getPrimaryImage()): ?>
+                <?= image_tag_multimedia($image, '300x300'); ?>
+              <?php else: ?>
+                <div class="thumbnail">
+                  <i class="icon icon-download-alt drop-zone-large"></i>
+                  <span class="info-text">
+                     Drag and drop the main image<br> of your collectible here.
+                  </span>
+                </div>
+              <?php endif; ?>
             </li>
             <li class="span4">
               <div class="thumbnail">
@@ -43,8 +47,8 @@
     <div class="span8">
       <?php
         $link = link_to(
-          'View public Collectible page &raquo;',
-          'collectible_by_slug', array('sf_subject' => $collectible),
+          'Back to Collection &raquo;',
+          'mycq_collection_by_slug', array('sf_subject' => $collection),
           array('class' => 'text-v-middle link-align')
         );
         cq_sidebar_title(
@@ -66,7 +70,7 @@
             Delete Collectible
           </a>
           <button type="submit" class="btn btn-primary blue-button">Save changes</button>
-          <button class="btn gray-button spacer-left">Cancel</button>
+          <button type="reset" class="btn gray-button spacer-left">Cancel</button>
         </div>
 
       </div>
@@ -74,8 +78,35 @@
   </div>
 </form>
 
+<div id="mycq-tabs">
+  <div class="tab-content">
+    <div class="tab-pane active" id="tab1">
+    <?php
+      include_component(
+        'mycq', 'dropbox',
+        array('instructions' => array(
+          'position' => 'top',
+          'text' => 'Drag your alternate views for this Collectible into the drop areas.')
+        )
+      );
+    ?>
+    </div>
+  </div>
+</div>
 
-
+<br/>
+<div class="list-thumbs-other-collectibles">
+  Other collectibles in the <?= link_to_collection($collection, 'text') ?> collection
+  <ul class="thumbnails">
+    <?php foreach ($collectibles as $c): ?>
+    <li class="span2">
+      <a href="<?= url_for('mycq_collectible_by_slug', $c); ?>" class="thumbnail">
+        <?= image_tag_collectible($c, '75x75'); ?>
+      </a>
+    </li>
+    <?php endforeach; ?>
+  </ul>
+</div>
 
 <script type="text/javascript">
 $(document).ready(function()
