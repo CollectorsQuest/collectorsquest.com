@@ -165,7 +165,10 @@
       </div><!--/span-->
     </div><!--/row-->
   </div><!--/footer-inner-->
-  <a id="top-link" href="#" class="btn btn-large sticky">
-    <i class="icon-arrow-up"></i> Scroll<br/> to Top
-  </a>
+
+  <!--
+    <a id="top-link" href="#" class="btn btn-large sticky">
+      <i class="icon-arrow-up"></i> Scroll<br/> to Top
+    </a>
+  //-->
 </footer>
