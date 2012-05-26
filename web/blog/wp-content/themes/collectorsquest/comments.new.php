@@ -47,11 +47,11 @@
         <div class="row-fluid comment-option-wrap">
           <p class="span4">
             <input class="span12" type="text" align="left" name="author" id="author" value="<?php echo $comment_author; ?>" size="22" tabindex="5" />
-            <label for="author"><small>Name <?php if ($req) echo "(required)"; ?></small></label>
+            <label for="author"><small>Name</small></label>
           </p>
           <p class="span4">
             <input class="span12" type="text" name="email" id="email" value="<?php echo $comment_author_email; ?>"  />
-            <label for="email"><small>Mail (will not be published) <?php if ($req) echo "(required)"; ?></small></label>
+            <label for="email"><small>Email (will not be published)</small></label>
           </p>
         </div>
         <?php endif; ?>

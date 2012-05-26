@@ -26,9 +26,13 @@
           foreach ($collectibles_for_sale as $collectible_for_sale)
           {
             echo '<li class="span2">';
-            echo link_to_collectible(
-              $collectible_for_sale->getCollectible(), 'image',
-              array('width' => 75, 'height' => 75, 'max_width' => 54, 'max_height' => 54, 'class' => 'thumbnail')
+            echo link_to(
+              image_tag_collectible(
+                $collectible_for_sale->getCollectible(), '75x75',
+                array('max_width' => 54, 'max_height' => 54)
+              ),
+              url_for_collectible($collectible_for_sale->getCollectible()),
+              array('class' => 'thumbnail', 'title' => $collectible_for_sale->getName())
             );
             echo '</li>';
           }
