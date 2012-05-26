@@ -223,7 +223,9 @@ class ComposePrivateMessageForm extends PrivateMessageForm
 
   public function getDefaults()
   {
-    return array_merge(array('sender' => $this->sender_collector->getId(),), parent::getDefaults());
+    return array_merge(array(
+        'sender' => $this->sender_collector->getId(),
+    ), parent::getDefaults());
   }
 
   public function unsetFields()

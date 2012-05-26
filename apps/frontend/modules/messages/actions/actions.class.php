@@ -114,7 +114,22 @@ class messagesActions extends cqFrontendActions
             ),
         ));
 
-        $this->redirect('messages_show', $form->getObject());
+        if ($form->getValue('thread'))
+        {
+          // we are replaying to a thread, so we should be redirected
+          // to the thread's page
+          return $this->redirect('messages_show', $form->getObject());
+        }
+        else
+        {
+          // we are starting a new thread, so redirect to inbox with a success flash
+          $this->getUser()->setFlash('success',sprintf(
+            'Your message has been sent to %s.',
+            $receiver->getDisplayName()
+          ));
+
+          return $this->redirect('messages_inbox');
+        }
       }
       else
       {
