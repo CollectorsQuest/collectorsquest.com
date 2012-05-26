@@ -1,5 +1,7 @@
 <?php
   use_javascripts_for_form($signup_form);
+
+  $unread_messages = $sf_user->getUnreadMessagesCount();
 ?>
 
 <footer id="footer">
@@ -95,11 +97,17 @@
         <ul class="footer-profile-box cf">
           <li class="footer-pm-box">
             <span class="big-email-icon">
-              <span class="pm-counter">33</span>
+              <span class="pm-counter">
+                <?php if ($unread_messages < 1000): ?>
+                  <?= $unread_messages; ?>
+                <?php else: ?>
+                  &#8734; <!-- infinity! -->
+                <?php endif; ?>
+              </span>
             </span>
             <p>
               You have <?= format_number_choice('[0]no messages|[1]1 message|(1, +Inf]%count% messages',
-                array('%count%' => $sf_user->getUnreadMessagesCount()), $sf_user->getUnreadMessagesCount()); ?>
+                array('%count%' => $unread_messages), $unread_messages); ?>
               in <?= link_to('your inbox', '@messages_inbox', array('class' => 'bold-links')); ?>
             </p>
           </li>
