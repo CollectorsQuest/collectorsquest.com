@@ -23,7 +23,7 @@ var APP = window.APP = {
 
       $("a.target").bigTarget({
         hoverClass: 'over',
-        clickZone: 'div.link'
+        clickZone: '.link'
       });
 
       window.locale = {

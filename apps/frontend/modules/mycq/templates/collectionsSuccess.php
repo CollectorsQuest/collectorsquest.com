@@ -23,6 +23,7 @@
       ?>
 
       <br style="clear: both;"/>
+      <a name="my-collections"></a>
       <div class="tab-content-inner spacer-top-35">
         <div class="row-fluid sidebar-title spacer-inner-bottom">
           <div class="span5 link-align">
