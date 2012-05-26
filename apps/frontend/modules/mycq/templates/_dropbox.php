@@ -31,7 +31,7 @@
 
 <div class="tab-content-inner">
   <div class="row-fluid">
-    <div class="span9">
+    <div class="span10">
       <?php
         $link = link_to(
           'Delete all Items', '@mycq_dropbox?cmd=empty&encrypt=1',
@@ -43,12 +43,12 @@
         );
       ?>
     </div>
-    <div class="span3">
+    <div class="span2">
       <form action="<?= url_for('@ajax_mycq?section=collectibles&page=upload&batch='. $batch); ?>"
             id="fileupload" class="pull-right spacer-top-20"
             method="POST" enctype="multipart/form-data">
 
-        <span class="btn btn-primary blue-button fileinput-button">
+        <span class="btn btn-primary blue-button fileinput-button" style="margin-right: 10px;">
           Upload Items
           <input type="file" name="files[]" multiple="multiple">
         </span>
@@ -56,7 +56,7 @@
         <div id="fileupload-modal" class="modal hide fade">
           <div class="modal-header">
             <button class="close" data-dismiss="modal">&times;</button>
-            <h3>Uploading images, please wait...</h3>
+            <h3>Uploading items, please wait...</h3>
           </div>
           <div class="modal-body">
             <!-- The table listing the files available for upload/download -->
@@ -92,24 +92,30 @@
   </div>
 
   <?php if ($total > 0): ?>
-  <div class="collectibles-to-sort">
-    <ul class="thumbnails">
-      <?php foreach ($collectibles as $collectible): ?>
-      <li class="span2 thumbnail" data-collectible-id="<?= $collectible->getId(); ?>">
-        <?php
-          echo image_tag_collectible(
-            $collectible, '75x75', array('max_width' => 72, 'max_height' => 72)
-          );
-        ?>
-      </li>
-      <?php endforeach; ?>
-    </ul>
+  <div class="row-fluid">
+    <div class="span10 collectibles-to-sort">
+      <ul class="thumbnails">
+        <?php foreach ($collectibles as $collectible): ?>
+        <li class="span2 thumbnail" data-collectible-id="<?= $collectible->getId(); ?>" style="margin-left: 5px;">
+          <?php
+            echo image_tag_collectible(
+              $collectible, '75x75', array('max_width' => 72, 'max_height' => 72)
+            );
+          ?>
+        </li>
+        <?php endforeach; ?>
+      </ul>
+    </div>
+    <div class="span2" style="border: 1px solid #AEA3A3; background: white; height: 72px;">
+      <i class="icon icon-trash" style="font-size: 50px; float: left;"></i>
+      Drop items here to delete
+    </div>
   </div>
   <?php else: ?>
     <div class="no-collections-uploaded-box Chivo webfont" style="margin-left: 0;">
       <span class="info-no-collections-uploaded">
         There are currently no Items to Sort.<br/>
-        Please use the <strong>"Upload Items"</strong> button on the right to upload all your items!
+        Please use the <strong>"Upload Items"</strong> button on the right to get started!
       </span>
     </div>
   <?php endif; ?>
