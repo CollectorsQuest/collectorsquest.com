@@ -10,11 +10,11 @@
       <div class="extra-fields row-fluid not-authenticated">
         <div class="span4">
           <?= $form['author_name']->render(array('class' => 'span12')); ?>
-          <?= $form['author_name']->renderLabel('<small>Name (required)</small>'); ?>
+          <?= $form['author_name']->renderLabel('<small>Name</small>'); ?>
         </div>
         <div class="span4">
           <?= $form['author_email']->render(array('class' => 'span12')); ?>
-          <?= $form['author_email']->renderLabel('<small>Email (will not be published) (required) </small>'); ?>
+          <?= $form['author_email']->renderLabel('<small>Email (will not be published)</small>'); ?>
         </div>
       </div>
 
