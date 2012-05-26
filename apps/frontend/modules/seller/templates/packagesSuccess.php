@@ -1,7 +1,8 @@
 <?php
 /* @var $packagesForm SellerPackagesForm */
 ?>
-<?php echo cq_page_title('Seller packages') ?>
+<?php cq_page_title('Seller Packages') ?>
+
 <?php if ($packagesForm->hasGlobalErrors()): ?>
 <?php echo $packagesForm->renderGlobalErrors() ?>
 <?php endif; ?>
