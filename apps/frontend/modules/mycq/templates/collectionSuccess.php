@@ -13,6 +13,9 @@
     <div class="drop-zone-large">
       <?php if ($collection->hasThumbnail()): ?>
         <?= image_tag_collection($collection, '190x190'); ?>
+        <span class="plus-icon-holder h-center" style="display: none; padding-top: 25px;">
+          <i class="icon-download-alt icon-white"></i>
+        </span>
       <?php else: ?>
         <a class="plus-icon-holder h-center" href="#">
           <i class="icon-plus icon-white"></i>
@@ -129,25 +132,23 @@
     {
       over: function(event, ui)
       {
-        $(this)
-          .removeClass('icon-plus')
-          .addClass("ui-state-highlight")
-          .addClass('icon-download-alt');
+        $(this).addClass("ui-state-highlight");
+        $(this).find('img').hide();
+        $(this).find('span.plus-icon-holder').show();
       },
       out: function(event, ui)
       {
-        $(this)
-          .removeClass("ui-state-highlight")
-          .removeClass('icon-download-alt')
-          .addClass('icon-plus');
+        $(this).removeClass("ui-state-highlight");
+        $(this).find('span.plus-icon-holder').hide();
+        $(this).find('img').show();
       },
       drop: function(event, ui)
       {
-        $(this)
-          .removeClass("ui-state-highlight")
+        $(this).removeClass("ui-state-highlight");
+        $(this).find('i')
           .removeClass('icon-download-alt')
           .addClass('icon-plus');
-        ui.draggable.draggable('option', 'revert', true);
+        ui.draggable.draggable('option', 'revert', false);
 
         $(this).showLoading();
 

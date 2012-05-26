@@ -48,11 +48,11 @@
               </li>
               <?php
                 $active = in_array($sf_params->get('action'), array('collections')) ? 'active' : null;
-                echo '<li class="'. $active .'" style="border-right: 1px solid #4B3B3B;">', link_to('Collections', '@mycq_collections'), '</li>';
+                echo '<li class="'. $active .'">', link_to('Collections', '@mycq_collections'), '</li>';
               ?>
               <?php
                 $active = in_array($sf_params->get('action'), array('marketplace')) ? 'active' : null;
-                // echo '<li class="'. $active .'">', link_to('Store', '@mycq_marketplace'), '</li>';
+                echo '<li class="'. $active .'" style="border-right: 1px solid #4B3B3B;">', link_to('Store', '@mycq_marketplace'), '</li>';
               ?>
               <?php
                 $active = in_array($sf_params->get('action'), array('wanted')) ? 'active' : null;
