@@ -8,13 +8,12 @@
       <div class="span4">
         <div class="aboutus-footer-inner">
           <h2 class="Chivo webfont">About Collectors Quest</h2>
-          <p>
-            At Collectors Quest, you can meet and talk with your fellow collectors,
-            upload and organize your own collections, see other collections from around the world,
-            join special collecting groups, find hidden treasures to purchase,
-            sell stuff to passionate collectors, and get global news about the vast world of collecting.
-            If you collect it, you’ll find it here at Collectors Quest — where hunters gather!<br/>
-            <a href="#">Learn more</a>
+          <p class="about-us">
+            Collectors Quest helps you maximize the fun you have with your collections.
+            Post a gallery of your goods to share and use as an archive,
+            buy and sell treasures quickly and easily, learn what's going on in the collecting world,
+            and commune with other like-minded collectors.
+            Come here to to indulge your passion for collecting!
           </p>
           <div class="row-spacing-footer">
             <button class="btn btn-primary blue-button pull-left" type="submit">Contact Us</button>
