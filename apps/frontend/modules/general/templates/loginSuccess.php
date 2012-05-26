@@ -15,7 +15,7 @@
 </form>
 
 
-<fieldset class="rpxnow-login clearfix">
+<fieldset class="rpxnow-login clearfix" id="rpx-login">
   <iframe
     src="<?= $rpxnow['application_domain']; ?>openid/embed?token_url=<?= url_for('@rpx_token', true); ?>"
     scrolling="no"
