@@ -110,10 +110,14 @@ class mycqActions extends cqFrontendActions
       {
         $this->defaults = $taintedValues;
         $this->getUser()->setFlash(
-          'error', 'There were some problems, please take a look below.'
+          'error', 'Please complete the fields in red below'
         );
       }
     }
+
+    $collector = $this->getCollector();
+    $dropbox = $collector->getCollectionDropbox();
+    $this->dropbox_total = $dropbox->countCollectibles();
 
     $this->total = $collection->countCollectionCollectibles();
     $this->collection = $collection;
@@ -226,9 +230,7 @@ class mycqActions extends cqFrontendActions
       else
       {
         $this->defaults = $taintedValues;
-        $this->getUser()->setFlash(
-          'error', 'There was a problem while saving the information you provided!'
-        );
+        $this->getUser()->setFlash('error', 'Please complete the fields in red below');
       }
     }
 

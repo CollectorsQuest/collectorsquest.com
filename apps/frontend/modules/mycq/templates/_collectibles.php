@@ -17,7 +17,7 @@
     <div class="span8">
       <a href="<?php echo url_for('@ajax_mycq?section=component&page=createCollectible&collection_id='. $collection->getId()); ?>"
          id="collectible-create-link" class="open-dialog create-collection-text">
-        Add a new item to your collection by dragging here.
+        Add a new item to your collection by dragging it here.
       </a>
     </div>
   </div>
@@ -80,14 +80,14 @@
   <div class="mycq-collections spacer-top-25">
     <div class="row thumbnails">
       <div class="span12 thumbnail link no-collections-uploaded-box">
-        <span class="Chivo webfont info-no-collections-uploaded">
-          Share your collectibles with the community today!<br>
-          Upload then sort your collectibles to get started.
+        <span class="Chivo webfont info-no-collections-uploaded" style="padding-top: 15px;">
+          Share your collection with the community today!
         </span>
       </div>
       <?php include_slot('mycq_create_collectible'); ?>
     </div>
   </div>
+
 <?php endif; ?>
 
 <script>

@@ -73,6 +73,7 @@
         );
       ?>
 
+      <?php if ($total > 0 || $dropbox_total > 0): ?>
       <br style="clear: both;"/>
       <div class="tab-content-inner spacer-top-35">
         <div class="row-fluid sidebar-title spacer-inner-bottom">
@@ -106,6 +107,7 @@
 
         <?php include_component('mycq', 'collectibles', array('collection' => $collection)); ?>
       </div>
+      <?php endif; ?>
     </div>
   </div>
 </div>

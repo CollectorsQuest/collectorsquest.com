@@ -49,7 +49,7 @@
             method="POST" enctype="multipart/form-data">
 
         <span class="btn btn-primary blue-button fileinput-button">
-          <i class="icon-plus icon-white"></i>&nbsp;<span>Upload Items</span>
+          Upload Items
           <input type="file" name="files[]" multiple="multiple">
         </span>
 
@@ -106,9 +106,12 @@
     </ul>
   </div>
   <?php else: ?>
-    There are currently no Items to Sort.
-    Please use the <strong>"+ Upload Items"</strong>
-    button on the right to upload all your collectibles!
+    <div class="no-collections-uploaded-box Chivo webfont" style="margin-left: 0;">
+      <span class="info-no-collections-uploaded">
+        There are currently no Items to Sort.<br/>
+        Please use the <strong>"Upload Items"</strong> button on the right to upload all your items!
+      </span>
+    </div>
   <?php endif; ?>
 </div>
 
@@ -178,23 +181,6 @@
 </script>
 
 <script>
-  window.locale = {
-    "fileupload": {
-      "errors": {
-        "maxFileSize": "File is too big",
-        "minFileSize": "File is too small",
-        "acceptFileTypes": "Filetype not allowed",
-        "maxNumberOfFiles": "Max number of files exceeded",
-        "uploadedBytes": "Uploaded bytes exceed file size",
-        "emptyResult": "Empty file upload result"
-      },
-      "error": "Error",
-      "start": "Start",
-      "cancel": "Cancel",
-      "destroy": "Delete"
-    }
-  };
-
   $(document).ready(function()
   {
     'use strict';

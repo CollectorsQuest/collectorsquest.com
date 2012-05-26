@@ -94,6 +94,7 @@
   </div>
 </div>
 
+<?php if (count($collectibles) > 0): ?>
 <br/>
 <div class="list-thumbs-other-collectibles">
   Other collectibles in the <?= link_to_collection($collection, 'text') ?> collection
@@ -107,6 +108,7 @@
     <?php endforeach; ?>
   </ul>
 </div>
+<?php endif; ?>
 
 <script type="text/javascript">
 $(document).ready(function()

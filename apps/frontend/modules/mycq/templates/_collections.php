@@ -75,9 +75,8 @@
     <div class="mycq-collections">
       <div class="row thumbnails">
         <div class="span12 thumbnail link no-collections-uploaded-box">
-          <span class="Chivo webfont info-no-collections-uploaded">
-            Share your collection with the community today!<br>
-            Upload then sort your collectibles to get started.
+          <span class="Chivo webfont info-no-collections-uploaded" style="padding-top: 15px;">
+            Share your collection with the community today!
           </span>
         </div>
         <?php include_slot('html-create-collection'); ?>
