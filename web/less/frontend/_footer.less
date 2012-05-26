@@ -149,11 +149,15 @@ footer {
     margin-left: 0;
   }
 
-  ul.footer-profile-box li.icon-big-email p {
-    margin-top: 15px;
+  ul.footer-profile-box li.footer-pm-box p {
+	  margin-bottom: 22px;
+	  display: inline-block;
+	  vertical-align: middle;
   }
 
-  .footer-profile-box li.icon-big-email {
+  .footer-profile-box li.footer-pm-box {
+	  width: 100%;
+	  padding-left: 0;
     padding-bottom: 10px;
   }
 
@@ -167,18 +171,33 @@ footer {
       display: block;
     }
   }
-
-  .icon-big-email, .icon-big-battery {
+	//PMs
+  .footer-pm-box, .icon-big-battery {
     border-bottom: 1px dashed #e98c7a;
   }
+	.big-email-icon {
+		display: inline-block;
+		position: relative;
+
+		.pm-counter {
+			display: block;
+			position: absolute;
+			.size(12px, 94%);
+			padding-right: 6%;
+			top: 10px;
+			left: 0;
+			font-size: 12px;
+			font-weight: bold;
+			text-align: center;
+			color: #fff;
+		}
+	}
+
 
   .icon-big-battery {
     background: transparent url("@{baseUrl}/icon_big_battery.png") no-repeat left center;
   }
 
-  .icon-big-email {
-    background: transparent url("@{baseUrl}/icon_big_email.png") no-repeat left center;
-  }
 
   .add-collectible-img {
     background: transparent url("@{baseUrl}/icon_big_add.png") no-repeat left top;

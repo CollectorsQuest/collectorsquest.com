@@ -94,7 +94,10 @@
         <?php else: ?>
         <h2 class="Chivo webfont no-margin-bottom">Welcome back, <?= $sf_user->getCollector()->getDisplayName() ?>!</h2>
         <ul class="footer-profile-box cf">
-          <li class="icon-big-email">
+          <li class="footer-pm-box">
+            <span class="big-email-icon">
+              <span class="pm-counter">33</span>
+            </span>
             <p>
               You have <?= format_number_choice('[0]no messages|[1]1 message|(1, +Inf]%count% messages',
                 array('%count%' => $sf_user->getUnreadMessagesCount()), $sf_user->getUnreadMessagesCount()); ?>
