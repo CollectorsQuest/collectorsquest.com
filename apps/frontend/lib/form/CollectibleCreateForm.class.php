@@ -10,13 +10,13 @@ class CollectibleCreateForm extends CollectibleForm
         'label' => 'Collectible Name',
       ), array(
         'required' => 'required',
-        'class' => 'input-xlarge'
+        'style' => 'width: 360px;'
       )),
       'tags'  => new sfWidgetFormInputText(array(
         'label' => 'Tags'
       ), array(
         'required' => 'required',
-        'class' => 'input-xlarge'
+        'style' => 'width: 360px;'
       )),
       'thumbnail'  => new sfWidgetFormInputHidden()
     ));

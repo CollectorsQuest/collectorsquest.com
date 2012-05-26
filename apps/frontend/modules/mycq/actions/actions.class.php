@@ -149,11 +149,6 @@ class mycqActions extends cqFrontendActions
     $this->redirect('mycq_collectible_by_slug', $collection_collectible);
   }
 
-  public function executeCollectibles()
-  {
-    return sfView::SUCCESS;
-  }
-
   /**
    * @param  sfWebRequest  $request
    * @return string
@@ -238,6 +233,8 @@ class mycqActions extends cqFrontendActions
     $c->add(CollectionCollectiblePeer::COLLECTIBLE_ID, $collectible->getId(), Criteria::NOT_EQUAL);
     $c->setLimit(11);
     $this->collectibles = $collection->getCollectionCollectibles($c);
+
+    $this->multimedia = $collectible->getMultimedia(0, 'image', false);
 
     $this->collection = $collection;
     $this->collectible = $collectible;

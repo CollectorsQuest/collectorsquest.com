@@ -20,7 +20,7 @@ class CollectibleEditForm extends BaseCollectibleForm
         'model' => 'CollectorCollection', 'criteria' => $criteria,
         'add_empty' => true, 'multiple' => true
       ),
-      array('class' => 'input-xlarge chzn-select')
+      array('class' => 'input-xlarge chzn-select', 'style' => 'width: 410px;')
     );
 
     $this->widgetSchema['name']->setAttribute('class', 'input-xlarge');
