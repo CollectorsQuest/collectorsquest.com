@@ -12,7 +12,11 @@
     $sender = $message->getCollectorRelatedBySender();
     $receiver = $message->getCollectorRelatedByReceiver();
   ?>
-    <tr class="table-condensed">
+    <tr class="table-condensed"
+      <?php if ($messages->isLast()): ?>
+        id="latest-message"
+      <?endif; ?>
+    >
       <td class="sender" rowspan="2">
         <span>By <?= link_to($sender, array('sf_route' => 'collector_by_slug', 'sf_subject' => $sender)); ?></span>
         <br/>
