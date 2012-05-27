@@ -74,6 +74,7 @@
       </div>
       <? $form; ?>
 
+      <?php if ($form_for_sale): ?>
       <div class="control-group ">
         <?= $form_for_sale['is_ready']->renderLabel('Available for Sale?'); ?>
         <div class="controls switch">
@@ -121,6 +122,7 @@
           </div>
         </div>
       </div>
+      <?php endif; ?>
 
     </div><!-- ./span8 -->
 

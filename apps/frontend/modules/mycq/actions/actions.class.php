@@ -273,7 +273,7 @@ class mycqActions extends cqFrontendActions
     $this->collectible = $collectible;
 
     $this->form = $form;
-    $this->form_for_sale = $form['for_sale'];
+    $this->form_for_sale = isset($form['for_sale']) ? $form['for_sale'] : null;
 
     return sfView::SUCCESS;
   }
