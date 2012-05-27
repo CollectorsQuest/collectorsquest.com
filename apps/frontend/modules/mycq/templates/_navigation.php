@@ -11,7 +11,10 @@
       <?php
         echo image_tag_collector(
           $collector, '235x315',
-          array('width' => 75, 'height' => 101, 'style' => 'margin-top: -37px;')
+          array(
+            'width' => 70, 'height' => 94,
+            'class' => 'thumbnail', 'style' => 'margin-top: -37px;'
+          )
         );
       ?>
     </a>
