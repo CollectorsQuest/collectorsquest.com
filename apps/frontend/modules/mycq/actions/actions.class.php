@@ -345,8 +345,4 @@ class mycqActions extends cqFrontendActions
     return sfView::SUCCESS;
   }
 
-  public function executeSandbox()
-  {
-    return sfView::SUCCESS;
-  }
 }
