@@ -35,7 +35,10 @@
       <?php
         $link = link_to(
           '<i class="icon-trash"></i> Delete all Items', '@mycq_dropbox?cmd=empty&encrypt=1',
-          array('class' => 'btn btn-mini')
+          array(
+            'class' => 'btn btn-mini',
+            'onclick' => 'return confirm("Are you sure you want to delete all Items to Sort?")'
+          )
         );
         cq_section_title(
           'Items to Sort ('. $total .')', $total > 0 ? $link : null,
@@ -250,6 +253,7 @@ $(document).ready(function()
   {
     var $icon = $(this);
 
+    $(this).hide();
     $icon.parent('li.span2').showLoading();
 
     $.ajax({
@@ -267,8 +271,9 @@ $(document).ready(function()
           }
         });
       },
-      error: function() {
-        // error
+      error: function()
+      {
+        $(this).show();
       }
     });
   });

@@ -63,7 +63,7 @@ class mycqActions extends cqFrontendActions
           }
         }
 
-        $this->getUser()->setFlash('success', 'Your dropbox was emptied!', true);
+        $this->getUser()->setFlash('success', 'All Items to Sort were deleted!', true);
         break;
     }
 
