@@ -84,8 +84,6 @@ class generalActions extends cqFrontendActions
 
       if ($collection_ids)
       {
-        shuffle($collection_ids);
-
         /**
          * Get 2 Collections
          *
