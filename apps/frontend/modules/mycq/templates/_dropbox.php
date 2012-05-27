@@ -34,8 +34,8 @@
     <div class="span10">
       <?php
         $link = link_to(
-          'Delete all Items', '@mycq_dropbox?cmd=empty&encrypt=1',
-          array('style' => 'color: red;', 'class' => 'text-v-middle link-align')
+          '<i class="icon-trash"></i> Delete all Items', '@mycq_dropbox?cmd=empty&encrypt=1',
+          array('class' => 'btn btn-mini')
         );
         cq_section_title(
           'Items to Sort ('. $total .')', $total > 0 ? $link : null,
