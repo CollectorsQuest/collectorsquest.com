@@ -6,10 +6,17 @@
 ?>
 
 <div class="row" style="margin-left: 5px;">
-  <div class="span2" style="width: 70px;">
-    <?= link_to_collector($collector, 'image', array(), array('width' => 63, 'height' => 63)) ?>
+  <div class="span2">
+    <a href="<?= url_for('@collector_me') ?>" title="Go to your public profile">
+      <?php
+        echo image_tag_collector(
+          $collector, '235x315',
+          array('width' => 75, 'style' => 'margin-top: -37px;')
+        );
+      ?>
+    </a>
   </div>
-  <div class="span12" style="margin-left: 0; width: 89.4%;">
+  <div class="span12" style="margin-left: 0; width: 87%;">
     <?php
       $links = link_to('Log Out', '@logout') .
                '<span style="color: #fff;">&nbsp; | &nbsp;</span>'.

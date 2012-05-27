@@ -8,7 +8,7 @@
 <form action="<?= url_for('@messages_batch_actions'); ?>" method="post">
 
   <div class="row-fluid">
-    <div class="span6" style="padding-top: 5px;">
+    <div class="span8" style="padding-top: 5px;">
       <div class="checkbox-arrow pull-left"></div>
       <div class="private-messages-list-select control-group pull-left">
         <div class="btn-group">
