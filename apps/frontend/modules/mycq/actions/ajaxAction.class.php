@@ -205,9 +205,15 @@ class ajaxAction extends IceAjaxAction
    */
   protected function executeCollectibleDelete()
   {
-    $this->forward404Unless($this->collectible);
+    /** @var $collectible Collectible */
+    $collectible = CollectibleQuery::create()
+      ->findOneById($this->getRequestParameter('collectible_id'));
+    $this->forward404Unless($collectible instanceof Collectible);
 
-    if ($this->collection instanceof Collection)
+    $collection = CollectorCollectionQuery::create()
+      ->findOneById($this->getRequestParameter('collection_id'));
+
+    if ($collection && $collection instanceof Collection)
     {
       $q = CollectionCollectibleQuery::create()
         ->filterByCollectionId($this->collection->getId())
@@ -219,13 +225,13 @@ class ajaxAction extends IceAjaxAction
     else
     {
       // Do the delete of the actual Collectible
-      $this->collectible->delete();
+      $collectible->delete();
     }
 
     // We do not want the web debug bar on these requests
     sfConfig::set('sf_web_debug', false);
 
-    return sfView::NONE;
+    return $this->success();
   }
 
   /**
