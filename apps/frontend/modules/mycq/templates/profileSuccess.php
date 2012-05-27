@@ -42,6 +42,7 @@
 
         <?= form_tag('@mycq_profile', array('class' => 'form-horizontal')); ?>
           <?= $collector_form->renderHiddenFields(); ?>
+          <?= $collector_form->renderGlobalErrors(); ?>
 
           <fieldset class="form-container-center">
             <div class="control-group">

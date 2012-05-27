@@ -16,10 +16,21 @@ class mycqActions extends cqFrontendActions
     {
       if ($request->hasParameter($collector_form->getName()))
       {
-        $collector_form->bindAndSave(
+        $success = $collector_form->bindAndSave(
           $request->getParameter($collector_form->getName()),
           $request->getFiles($collector_form->getName())
         );
+
+        if ($success)
+        {
+          $this->getUser()->setFlash('success',
+            'You have successfully updated your profile');
+        }
+        else
+        {
+          $this->getUser()->setFlash('error',
+            'There were some errors when saving your profile, check below');
+        }
       }
     }
 
