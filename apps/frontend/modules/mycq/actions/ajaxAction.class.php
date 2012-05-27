@@ -258,4 +258,45 @@ class ajaxAction extends IceAjaxAction
 
     return $this->error('Error Title', 'Error Message');
   }
+
+  protected function executeCollectibleAddAlternativeImage(sfWebRequest $request)
+  {
+    /** @var $recipient Collectible */
+    $recipient = CollectibleQuery::create()
+      ->findOneById($this->getRequestParameter('recipient_id'));
+    $this->forward404Unless($this->getUser()->isOwnerOf($recipient));
+
+    /** @var $donor Collectible */
+    $donor = CollectibleQuery::create()
+      ->findOneById($this->getRequestParameter('donor_id'));
+
+    $this->forward404Unless($this->getUser()->isOwnerOf($donor));
+    $this->forward404if($donor->countCollectionCollectibles() > 0);
+
+    /** @var $image iceModelMultimedia */
+    if ($image = $donor->getPrimaryImage(Propel::CONNECTION_WRITE))
+    {
+      $image->setIsPrimary(false);
+      $image->setModelId($recipient->getId());
+      $image->save();
+
+      $recipient->setUpdatedAt(time());
+      $recipient->save();
+
+      // Delete the $donor, not needed anymore
+      $donor->delete();
+
+      // Return "Success"
+      $this->success();
+    }
+    else
+    {
+      $this->error('Error', 'There was a problem donating the image');
+    }
+
+    // We do not want the web debug bar on these requests
+    sfConfig::set('sf_web_debug', false);
+
+    return sfView::NONE;
+  }
 }

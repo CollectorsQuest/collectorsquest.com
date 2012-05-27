@@ -74,10 +74,9 @@
         <?= $form['tags']->renderLabel(); ?>
         <div class="controls"><?= $form['tags']; ?></div>
       </div>
-      <? $form; ?>
 
       <?php if ($form_for_sale): ?>
-      <div class="control-group ">
+      <div class="control-group">
         <?= $form_for_sale['is_ready']->renderLabel('Available for Sale?'); ?>
         <div class="controls switch">
           <label class="cb-enable"><span>Yes</span></label>
@@ -86,20 +85,20 @@
         </div>
       </div>
       <div id="form-collectible-for-sale" class="hide">
-        <div class="control-group ">
+        <div class="control-group">
           <?= $form_for_sale['price']->renderLabel(); ?>
           <div class="controls">
             <?= $form_for_sale['price']->render(array('class' => 'span2 text-center help-inline')); ?>
             <?= $form_for_sale['price_currency']->render(array('class' => 'span2 help-inline')); ?>
           </div>
         </div>
-        <div class="control-group ">
+        <div class="control-group">
           <?= $form_for_sale['quantity']->renderLabel(); ?>
           <div class="controls">
             <?= $form_for_sale['quantity']->render(array('class' => 'span2 help-inline text-center')); ?>
           </div>
         </div>
-        <div class="control-group ">
+        <div class="control-group">
           <?= $form_for_sale['condition']->renderLabel(); ?>
           <div class="controls">
             <?= $form_for_sale['condition']->render(array('class' => 'span4 help-inline')); ?>
@@ -130,7 +129,6 @@
 
     <div class="row-fluid">
       <div class="span12">
-
         <div class="form-actions text-center spacer-inner-15">
           <a href="<?= url_for('mycq_collectible_by_slug', array('sf_subject' => $collectible, 'cmd' => 'delete', 'encrypt' => '1')); ?>"
              class="btn gray-button spacer-left pull-left spacer-left"
@@ -144,9 +142,9 @@
             Cancel
           </a>
         </div>
-
       </div>
     </div>
+
   </div>
 
   <?= $form->renderHiddenFields(); ?>
@@ -205,12 +203,17 @@ $(document).ready(function()
     {
       $(this).addClass("ui-state-highlight");
       $(this).find('img').hide();
-      $(this).find('span.plus-icon-holder').show();
+      $(this).find('i')
+        .removeClass('icon-plus')
+        .addClass('icon-download-alt')
+        .show();
     },
     out: function(event, ui)
     {
       $(this).removeClass("ui-state-highlight");
-      $(this).find('span.plus-icon-holder').hide();
+      $(this).find('i')
+        .removeClass('icon-download-alt')
+        .addClass('icon-plus');
       $(this).find('img').show();
     },
     drop: function(event, ui)
@@ -220,19 +223,20 @@ $(document).ready(function()
         .removeClass('icon-download-alt')
         .addClass('icon-plus');
       ui.draggable.draggable('option', 'revert', false);
+      ui.draggable.hide();
 
       $(this).showLoading();
 
       $.ajax({
-        url: '<?= url_for('@ajax_mycq?section=collection&page=setThumbnail'); ?>',
+        url: '<?= url_for('@ajax_mycq?section=collectible&page=addAlternativeImage'); ?>',
         type: 'GET',
         data: {
-          collectible_id: ui.draggable.data('collectible-id'),
-          collection_id: '<?= $collection->getId() ?>'
+          recipient_id: '<?= $collectible->getId() ?>',
+          donor_id: ui.draggable.data('collectible-id')
         },
         success: function()
         {
-          $('#form-collection').submit();
+          window.location.reload();
         },
         error: function()
         {

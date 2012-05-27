@@ -74,8 +74,8 @@
           'mycq', 'dropbox',
           array('instructions' => array(
             'position' => 'bottom',
-            'text' => 'Drag and Drop Your Photos Below')
-          )
+            'text' => 'Drag and Drop Your Photos Below'
+          ))
         );
       ?>
 
@@ -177,7 +177,7 @@ $(document).ready(function()
         },
         success: function()
         {
-          $('#form-collection').submit();
+          window.location.reload();
         },
         error: function()
         {
