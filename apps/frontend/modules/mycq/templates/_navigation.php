@@ -42,11 +42,8 @@
                 echo '<li class="'. $active .'">', link_to('Collections', '@mycq_collections'), '</li>';
               ?>
               <?php
-                if ($sf_user->getCollector()->getIsSeller())
-                {
-                  $active = in_array($sf_params->get('action'), array('marketplace')) ? 'active' : null;
-                  echo '<li class="'. $active .'">', link_to('Store', '@mycq_marketplace'), '</li>';
-                }
+                $active = in_array($sf_params->get('action'), array('marketplace')) ? 'active' : null;
+                echo '<li class="'. $active .'">', link_to('Store <sup>βeta</sup>', '@mycq_marketplace'), '</li>';
               ?>
               <?php $active = in_array($sf_params->get('module'), array('messages')) ? 'active' : null; ?>
               <li class="dropdown <?= $active ?>" style="border-right: 1px solid #4B3B3B;">

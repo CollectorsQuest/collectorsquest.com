@@ -213,4 +213,16 @@ class CollectibleForSaleQuery extends BaseCollectibleForSaleQuery
       ->useQuery($relationAlias ? $relationAlias : 'CollectibleOffer', 'CollectibleOfferQuery');
   }
 
+  /**
+   * @param  string $v
+   * @return CollectionCollectibleQuery
+   */
+  public function search($v)
+  {
+    return $this
+      ->useCollectibleQuery()
+      ->search($v)
+      ->endUse();
+  }
+
 }

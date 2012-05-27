@@ -280,7 +280,16 @@ class mycqActions extends cqFrontendActions
 
   public function executeMarketplace()
   {
-    $this->forward404Unless($this->getCollector()->getIsSeller());
+    $collector = $this->getCollector();
+
+    $q = CollectibleForSaleQuery::create()
+      ->filterByCollector($collector)
+      ->isForSale();
+
+    $this->total = $q->count();
+
+    $dropbox = $collector->getCollectionDropbox();
+    $this->dropbox_total = $dropbox->countCollectibles();
 
     return sfView::SUCCESS;
   }
