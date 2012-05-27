@@ -366,4 +366,91 @@ class CollectorProfile extends BaseCollectorProfile
   {
     return $this->setProperty('about.interests', $v);
   }
+
+  /**
+   * Exports the object as an array.
+   *
+   * Will export the aditional fields handled by the ExtraProperties Propel
+   * behavior as well
+   *
+   * @param     string  $keyType (optional) One of the class type constants BasePeer::TYPE_PHPNAME, BasePeer::TYPE_STUDLYPHPNAME,
+   *                    BasePeer::TYPE_COLNAME, BasePeer::TYPE_FIELDNAME, BasePeer::TYPE_NUM.
+   *                    Defaults to BasePeer::TYPE_PHPNAME.
+   * @param     boolean $includeLazyLoadColumns (optional) Whether to include lazy loaded columns. Defaults to TRUE.
+   * @param     array $alreadyDumpedObjects List of objects to skip to avoid recursion
+   * @param     boolean $includeForeignObjects (optional) Whether to include hydrated related objects. Default to FALSE.
+   *
+   * @return    array an associative array containing the field names (as keys) and field values
+   */
+  public function toArray(
+    $keyType = BasePeer::TYPE_PHPNAME,
+    $includeLazyLoadColumns = true,
+    $alreadyDumpedObjects = array(),
+    $includeForeignObjects = false
+  ) {
+    $result = parent::toArray(
+      $keyType,
+      $includeLazyLoadColumns,
+      $alreadyDumpedObjects,
+      $includeForeignObjects);
+
+    if (!is_array($result))
+    {
+      // recursion
+      return $result;
+    }
+
+    $extra_fields = array();
+    if (isset(CollectorProfilePeer::$extraFieldNames[$keyType]))
+    {
+      $keys = CollectorProfilePeer::$extraFieldNames[$keyType];
+
+      $extra_fields = array(
+          $keys[0] => $this->getAboutMe(),
+          $keys[1] => $this->getAboutCompany(),
+          $keys[2] => $this->getAboutCollections(),
+          $keys[3] => $this->getAboutWhatYouCollect(),
+          $keys[4] => $this->getAboutWhatYouSell(),
+          $keys[5] => $this->getAboutMostExpensiveItem(),
+          $keys[6] => $this->getAboutAnnuallySpend(),
+          $keys[7] => $this->getAboutPurchasesPerYear(),
+          $keys[8] => $this->getAboutNewItemEvery(),
+          $keys[9] => $this->getAboutInterests(),
+      );
+    }
+
+    return array_merge($result, $extra_fields);
+  }
+
+  /**
+   * Populates the object using an array.
+   *
+   * Will set the aditional fields handled by the ExtraProperties Propel
+   * behavior as well
+   *
+   * @param      array  $arr     An array to populate the object from.
+   * @param      string $keyType The type of keys the array uses.
+   * @return     void
+   */
+  public function fromArray($arr, $keyType = BasePeer::TYPE_PHPNAME)
+  {
+    parent::fromArray($arr, $keyType);
+
+    if (isset(CollectorProfilePeer::$extraFieldNames[$keyType]))
+    {
+      $keys = CollectorProfilePeer::$extraFieldNames[$keyType];
+
+      if (array_key_exists($keys[0], $arr)) $this->setAboutMe($arr[$keys[0]]);
+      if (array_key_exists($keys[1], $arr)) $this->setAboutCompany($arr[$keys[1]]);
+      if (array_key_exists($keys[2], $arr)) $this->setAboutCollections($arr[$keys[2]]);
+      if (array_key_exists($keys[3], $arr)) $this->setAboutWhatYouCollect($arr[$keys[3]]);
+      if (array_key_exists($keys[4], $arr)) $this->setAboutWhatYouSell($arr[$keys[4]]);
+      if (array_key_exists($keys[5], $arr)) $this->setAboutMostExpensiveItem($arr[$keys[5]]);
+      if (array_key_exists($keys[6], $arr)) $this->setAboutAnnuallySpend($arr[$keys[6]]);
+      if (array_key_exists($keys[7], $arr)) $this->setAboutPurchasesPerYear($arr[$keys[7]]);
+      if (array_key_exists($keys[8], $arr)) $this->setAboutNewItemEvery($arr[$keys[8]]);
+      if (array_key_exists($keys[9], $arr)) $this->setAboutInterests($arr[$keys[9]]);
+    }
+  }
+
 }

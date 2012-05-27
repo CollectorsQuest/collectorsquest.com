@@ -93,7 +93,7 @@
             <?= $collector_form['collector_type']->renderRow(); ?>
             <?= $collector_form['about_what_you_collect']->renderRow(); ?>
             <?= $collector_form['about_collections']->renderRow(); ?>
-            <?= $collector_form['about_purchase_per_year']->renderRow(); ?>
+            <?= $collector_form['about_purchases_per_year']->renderRow(); ?>
             <?= $collector_form['about_most_expensive_item']->renderRow(); ?>
             <?= $collector_form['about_annually_spend']->renderRow(); ?>
           </fieldset>
@@ -109,10 +109,10 @@
                 </label>
                 <?= $collector_form['zip_postal']->render(array('class' => 'span3')); ?>
 
-                <label for="<?= $collector_form['country']->renderId(); ?>" class="spacer-left">
-                  <?= $collector_form['country']->renderLabelName(); ?>
+                <label for="<?= $collector_form['country_iso3166']->renderId(); ?>" class="spacer-left">
+                  <?= $collector_form['country_iso3166']->renderLabelName(); ?>
                 </label>
-                <?= $collector_form['country']->render(array('class' => 'span3')); ?>
+                <?= $collector_form['country_iso3166']->render(array('class' => 'span3')); ?>
               </div>
             </div>
 

@@ -93,6 +93,13 @@ class CollectorEditForm extends CollectorForm
     }
   }
 
+  protected function doUpdateObject($values)
+  {
+    parent::doUpdateObject($values);
+
+    $this->getObject()->getProfile()->fromArray($values, BasePeer::TYPE_FIELDNAME);
+  }
+
   protected function unsetFields()
   {
     unset ($this['id']);

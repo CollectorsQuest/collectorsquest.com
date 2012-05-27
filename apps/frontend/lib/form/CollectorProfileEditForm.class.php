@@ -30,7 +30,7 @@ class CollectorProfileEditForm extends BaseCollectorProfileForm
       'zip_postal'      => new sfWidgetFormInputText(array(
           'label'       => 'Zip/Postal code',
       )),
-      'country'         => new cqWidgetFormI18nChoiceCountry(array(
+      'country_iso3166'         => new cqWidgetFormI18nChoiceCountry(array(
           'add_empty'     => true,
         ), array(
           'required'    => 'required',
@@ -44,7 +44,7 @@ class CollectorProfileEditForm extends BaseCollectorProfileForm
         ), array(
           'required'              => 'required',
       )),
-      'about_purchase_per_year'   => new sfWidgetFormInputText(array(
+      'about_purchases_per_year'   => new sfWidgetFormInputText(array(
           'label'                 => 'How many times a year do you purchase?',
         ),array(
           'required'              => 'required',
@@ -69,43 +69,19 @@ class CollectorProfileEditForm extends BaseCollectorProfileForm
       'birthday' => new sfValidatorDate(array('required' => false)),
       'gender' => new sfValidatorChoice(array('choices' => array('f', 'm'), 'required' => false)),
       'zip_postal' => new sfValidatorString(array('max_length' => 10, 'required' => false)),
-      'country' => new sfValidatorI18nChoiceCountry(array('required' => false)),
+      'country_iso3166' => new sfValidatorI18nChoiceCountry(array('required' => false)),
       'website' => new sfValidatorString(array('max_length' => 128, 'required' => false)),
 
       'about_me' => new sfValidatorString(array('required' => false)),
       'about_collections' => new sfValidatorString(array('required' => false)),
       'about_what_you_collect' => new sfValidatorString(array('max_length' => 255, 'required' => false)),
-      'about_purchase_per_year'   => new sfValidatorNumber(array('required' => false)),
+      'about_purchases_per_year'   => new sfValidatorNumber(array('required' => false)),
       'about_most_expensive_item' => new sfValidatorNumber(array('min' => 0, 'max' => 2147483647, 'required' => false)),
       'about_annually_spend' => new sfValidatorNumber(array('min' => 0, 'max' => 2147483647, 'required' => false)),
       'about_new_item_every' => new sfValidatorString(array('max_length' => 64, 'required' => false)),
       'about_interests' => new sfValidatorString(array('required' => false)),
     ));
 
-  }
-
-  protected function unsetFields()
-  {
-    parent::unsetFields();
-
-    unset($this['country_iso3166']);
-  }
-
-  public function updateDefaultsFromObject()
-  {
-    parent::updateDefaultsFromObject();
-
-    if (( $profile = $this->getObject() ))
-    {
-      $this->setDefault('about_me', $profile->getAboutMe());
-      $this->setDefault('about_collections', $profile->getAboutCollections());
-      $this->setDefault('about_what_you_collect', $profile->getAboutWhatYouCollect());
-      $this->setDefault('about_most_expensive_item', $profile->getAboutMostExpensiveItem());
-      $this->setDefault('about_annually_spend', $profile->getAboutAnnuallySpend());
-      $this->setDefault('about_new_item_every', $profile->getAboutNewItemEvery());
-      $this->setDefault('about_interests', $profile->getAboutInterests());
-      $this->setDefault('country', $profile->getCountryIso3166());
-    }
   }
 
   public function getCollectorTypeChoices()
@@ -117,47 +93,6 @@ class CollectorProfileEditForm extends BaseCollectorProfileForm
       CollectorProfilePeer::COLLECTOR_TYPE_OBSESSIVE => 'Obsessive',
       CollectorProfilePeer::COLLECTOR_TYPE_EXPERT => 'Expert',
     );
-  }
-
-  public function doUpdateObject($values = null)
-  {
-    parent::doUpdateObject($values);
-
-    /** @var $profile CollectorProfile */
-    $profile = $this->getObject();
-    if (isset($values['country']))
-    {
-      $profile->setCountryIso3166($values['country']);
-    }
-
-    if (isset($values['about_me']))
-    {
-      $profile->setAboutMe($values['about_me']);
-    }
-    if (isset($values['about_collections']))
-    {
-      $profile->setAboutCollections($values['about_collections']);
-    }
-    if (isset($values['about_interests']))
-    {
-      $profile->setAboutInterests($values['about_interests']);
-    }
-    if (isset($values['about_what_you_collect']))
-    {
-      $profile->setAboutWhatYouCollect($values['about_what_you_collect']);
-    }
-    if (isset($values['about_most_expensive_item']))
-    {
-      $profile->setAboutMostExpensiveItem($values['about_most_expensive_item']);
-    }
-    if (isset($values['about_annually_spend']))
-    {
-      $profile->setAboutAnnuallySpend($values['about_annually_spend']);
-    }
-    if (isset($values['about_new_item_every']))
-    {
-      $profile->setAboutNewItemEvery($values['about_new_item_every']);
-    }
   }
 
 }
