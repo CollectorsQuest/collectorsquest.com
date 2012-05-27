@@ -23,7 +23,7 @@ all:
 
     Comments:
       comment_response_notification:
-        subject: 'You have a new comment reply for "{{ model_object }}"'
+        subject: 'Someone responded to your comment on Collectors Quest!'
         required_params: [ model_object, new_comment, user_comment, thread_url, unsubscribe_url ]
 
     internal:
