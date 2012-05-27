@@ -7,9 +7,9 @@ class CollectibleForSaleEditForm extends BaseCollectibleForSaleForm
     parent::configure();
 
     $this->useFields(array(
-      'condition',
-      'is_shipping_free',
       'is_ready',
+      'price_currency',
+      'condition',
       'quantity',
     ));
 
@@ -18,14 +18,23 @@ class CollectibleForSaleEditForm extends BaseCollectibleForSaleForm
     $conditions[''] = '';
 
     $this->setWidget('condition', new sfWidgetFormChoice(array('choices' => $conditions)));
-    $this->setValidator('condition', new sfValidatorChoice(array('choices' => array_keys($conditions), 'required' => false)));
+    $this->setValidator('condition', new sfValidatorChoice(
+        array('choices' => array_keys($conditions), 'required' => false)
+    ));
 
     $this->setWidget('price', new sfWidgetFormInputText());
     $this->setValidator('price', new sfValidatorString(array('required' => false)));
     $this->setDefault('price', $this->getObject()->getPrice());
 
-    $this->setValidator('quantity', new sfValidatorInteger(array('required' => false)));
+    // Get the Collectibles for sale currencies
+    $currencies = CollectibleForSalePeer::$currencies;
+    $this->setWidget('price_currency', new sfWidgetFormChoice(array('choices' => $currencies)));
+    $this->setValidator('price_currency', new sfValidatorChoice(
+        array('choices' => array_keys($currencies), 'required' => false)
+    ));
+
     $this->setValidator('is_ready', new sfValidatorBoolean(array('required' => false)));
+    $this->setValidator('quantity', new sfValidatorInteger(array('required' => false)));
 
     // add a post validator
     $this->validatorSchema->setPostValidator(

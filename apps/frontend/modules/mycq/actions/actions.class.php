@@ -174,6 +174,9 @@ class mycqActions extends cqFrontendActions
     /** @var $collection CollectorCollection */
     $collection = $collectible->getCollectorCollection();
 
+    /** @var $collector Collector */
+    $collector = $this->getCollector();
+
     if ($request->getParameter('cmd'))
     {
       switch ($request->getParameter('cmd'))
@@ -252,16 +255,12 @@ class mycqActions extends cqFrontendActions
     $this->collectible = $collectible;
 
     $this->form = $form;
+    $this->form_for_sale = $form['for_sale'];
 
     return sfView::SUCCESS;
   }
 
   public function executeMarketplace()
-  {
-    return sfView::SUCCESS;
-  }
-
-  public function executeWanted()
   {
     return sfView::SUCCESS;
   }
@@ -338,6 +337,11 @@ class mycqActions extends cqFrontendActions
 
     dd($result);
 
+    return sfView::SUCCESS;
+  }
+
+  public function executeWanted()
+  {
     return sfView::SUCCESS;
   }
 

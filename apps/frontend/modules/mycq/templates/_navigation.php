@@ -27,8 +27,16 @@
                 $active = in_array($sf_params->get('action'), array('profile')) ? 'active' : null;
                 echo '<li class="'. $active .'">', link_to('Profile', '@mycq_profile'), '</li>';
               ?>
+              <?php
+                $active = in_array($sf_params->get('action'), array('collections')) ? 'active' : null;
+                echo '<li class="'. $active .'">', link_to('Collections', '@mycq_collections'), '</li>';
+              ?>
+              <?php
+                $active = in_array($sf_params->get('action'), array('marketplace')) ? 'active' : null;
+                echo '<li class="'. $active .'">', link_to('Store', '@mycq_marketplace'), '</li>';
+              ?>
               <?php $active = in_array($sf_params->get('module'), array('messages')) ? 'active' : null; ?>
-              <li class="dropdown <?= $active ?>">
+              <li class="dropdown <?= $active ?>" style="border-right: 1px solid #4B3B3B;">
                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                   Messages (<?= $sf_user->getUnreadMessagesCount(); ?>)
                   <b class="caret"></b>
@@ -46,14 +54,6 @@
                   </li>
                 </ul>
               </li>
-              <?php
-                $active = in_array($sf_params->get('action'), array('collections')) ? 'active' : null;
-                echo '<li class="'. $active .'">', link_to('Collections', '@mycq_collections'), '</li>';
-              ?>
-              <?php
-                $active = in_array($sf_params->get('action'), array('marketplace')) ? 'active' : null;
-                echo '<li class="'. $active .'" style="border-right: 1px solid #4B3B3B;">', link_to('Store', '@mycq_marketplace'), '</li>';
-              ?>
               <?php
                 $active = in_array($sf_params->get('action'), array('wanted')) ? 'active' : null;
                 // echo '<li class="'. $active .'" style="border-right: 1px solid #4B3B3B;">', link_to('Wanted', '@mycq_wanted'), '</li>';
