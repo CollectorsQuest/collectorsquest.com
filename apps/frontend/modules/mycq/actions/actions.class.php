@@ -7,8 +7,26 @@ class mycqActions extends cqFrontendActions
     $this->redirect('@mycq_profile');
   }
 
-  public function executeProfile()
+  public function executeProfile(sfWebRequest $request)
   {
+    $this->collector = $this->getUser()->getCollector();
+    $collector_form = new CollectorEditForm($this->getUser()->getCollector());
+
+    if (sfRequest::POST == $request->getMethod())
+    {
+      if ($request->hasParameter($collector_form->getName()))
+      {
+        $collector_form->bindAndSave(
+          $request->getParameter($collector_form->getName()),
+          $request->getFiles($collector_form->getName())
+        );
+      }
+    }
+
+
+    $this->collector = $this->getUser()->getCollector();
+    $this->collector_form = $collector_form;
+
     return sfView::SUCCESS;
   }
 

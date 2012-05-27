@@ -1,3 +1,9 @@
+<?php
+  /** @var $collector Collector */
+  /** @var $collector_form CollectorEditForm */
+?>
+
+
 <div id="mycq-tabs">
   <ul class="nav nav-tabs">
     <li class="active">
@@ -23,7 +29,7 @@
         cq_sidebar_title('Nurz', $link, array('left' => 8, 'right' => 4));
         ?>
 
-        <form class="form-horizontal">
+        <?= form_tag('@mycq_profile', array('class' => 'form-horizontal')); ?>
 
           <fieldset class="form-container-center">
             <div class="control-group">
@@ -59,14 +65,46 @@
             </div>
 
             <div class="control-group">
-              <label for="input01" class="control-label">Nickname</label>
-              <div class="controls">
-                <input type="text" id="input01" class="input-xxlarge">
+              <label for="textarea" class="control-label">Username</label>
+              <div class="controls spacer-top-5">
+                <span class="brown">
+                  <?= $collector->getUsername(); ?>
+                </span>
               </div>
             </div>
+            <div class="control-group">
+              <label for="textarea" class="control-label">Member Since</label>
+              <div class="controls spacer-top-5">
+                <span class="brown">
+                  <!-- December 11, 2009 -->
+                  <?= $collector->getCreatedAt('F j, Y') ?>
+                </span>
+              </div>
+            </div>
+            <?= $collector_form['display_name']->renderRow(); ?>
+            <?= $collector_form['password']->renderRow(); ?>
+            <?= $collector_form['password_again']->renderRow(); ?>
           </fieldset>
 
+          <fieldset class="brown-dashes form-container-center">
+            <?= $collector_form['collector_type']->renderRow(); ?>
+            <?= $collector_form['birthday']->renderRow(); ?>
+            <?= $collector_form['gender']->renderRow(); ?>
+            <?= $collector_form['zip_postal']->renderRow(); ?>
+            <?= $collector_form['country']->renderRow(); ?>
+            <?= $collector_form['website']->renderRow(); ?>
+          </fieldset>
 
+          <fieldset class="brown-dashes form-container-center">
+            <?= $collector_form['about_me']->renderRow(); ?>
+            <?= $collector_form['about_collections']->renderRow(); ?>
+            <?= $collector_form['about_interests']->renderRow(); ?>
+            <?= $collector_form['about_what_you_collect']->renderRow(); ?>
+            <?= $collector_form['about_most_expensive_item']->renderRow(); ?>
+            <?= $collector_form['about_annually_spend']->renderRow(); ?>
+          </fieldset>
+
+          <!--
           <fieldset class="brown-dashes form-container-center">
             <div class="control-group">
               <label for="input01" class="control-label">I collect: <span class="red-bold">*</span></label>
@@ -180,7 +218,9 @@
               </div>
             </div>
           </fieldset>
+          -->
           <fieldset class="brown-dashes form-container-center">
+            <!--
             <div class="control-group">
               <label for="inlineCheckboxes" class="control-label">Wanted Items</label>
               <div class="controls">
@@ -194,11 +234,15 @@
                 </label>
               </div>
             </div>
+            -->
             <div class="form-actions">
               <button type="submit" class="btn btn-primary blue-button">Save changes</button>
               <button type="reset" class="btn gray-button spacer-left">Cancel</button>
             </div>
           </fieldset>
+
+        </form> <!-- CollectorEditForm -->
+
 
           <!-- Edit Account Settings -->
           <fieldset class="brown-dashes form-container-center">

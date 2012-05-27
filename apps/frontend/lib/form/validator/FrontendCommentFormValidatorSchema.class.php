@@ -26,12 +26,12 @@ class FrontendCommentFormValidatorSchema extends sfValidatorSchema
 
   protected function doClean($values)
   {
-    //$values = parent::doClean($values);
     $errorSchema = new sfValidatorErrorSchema($this);
 
     if (!CommentPeer::retrieveFromCommentableToken($values['token'], $this->sf_user))
     {
       $errorSchema->addError(new sfValidatorError($this, 'invalid_token'), 'token');
+      // we throw this error immediately
       throw $errorSchema;
     }
 
