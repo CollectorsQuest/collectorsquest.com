@@ -25,6 +25,8 @@ class mycqActions extends cqFrontendActions
         {
           $this->getUser()->setFlash('success',
             'You have successfully updated your profile');
+
+          return $this->redirect('mycq_profile');
         }
         else
         {
