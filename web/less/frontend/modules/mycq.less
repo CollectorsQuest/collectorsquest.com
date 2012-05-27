@@ -116,13 +116,12 @@
 		margin-top: 0;
 	}
 	.instruction-box {
-		background-color: @yellowHighlight;
+		background-color: @yellowLight;
 		border-top: 1px solid white;
 		border-bottom: 1px solid white;
 		height: 45px;
 		text-align: center;
 		padding-top: 10px;
-		margin-bottom: 20px;
 
 		.instruction-box-inner {
 			width: 420px;
@@ -1023,9 +1022,29 @@ textarea.input-xlarge {
 .ui-droppable {
   border-style: dashed;
 }
-
-
 .mycq-collections .see-more-full {
 	width: 99%;
 	margin-left: 1%;
+}
+
+.ui-state-highlight {
+  // #gradient > .vertical(@yellowHighlight, @yellowLight);
+  color: @white;
+
+  a {
+    color: @white;
+  }
+}
+
+#form-collection .tagedit-list,
+#form-collectible .tagedit-list
+{
+  width: 400px;
+}
+
+#form-collectible .chzn-choices {
+  border: 1px solid #ccc;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
 }

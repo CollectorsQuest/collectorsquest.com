@@ -10,18 +10,20 @@ class CollectionCreateForm extends CollectorCollectionForm
         'label' => 'Collection Name',
       ), array(
         'required' => 'required',
-        'class' => 'input-xlarge'
+        'style' => 'width: 360px;'
       )),
       'tags'  => new sfWidgetFormInputText(array(
         'label' => 'Tags'
       ), array(
         'required' => 'required',
-        'class' => 'input-xlarge'
+        'style' => 'width: 360px;'
       )),
       'content_category_id' => new cqWidgetFormPropelChoiceByNestedSet(array(
         'label' => 'Category',
         'model' => 'ContentCategory',
         'add_empty' => true,
+      ), array(
+        'style' => 'width: 370px;'
       )),
       'thumbnail'  => new sfWidgetFormInputHidden(),
       'step'       => new sfWidgetFormInputHidden(array('default' => 1)),

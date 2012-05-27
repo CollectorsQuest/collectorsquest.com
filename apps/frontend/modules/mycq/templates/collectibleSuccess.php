@@ -5,7 +5,7 @@
 ?>
 
 <form action="<?= url_for('mycq_collectible_by_slug', $collectible); ?>"
-      method="post" class="form-horizontal">
+      id="form-collectible" method="post" class="form-horizontal">
 
   <div class="row-fluid">
     <div class="span4">
@@ -24,21 +24,17 @@
                 </div>
               <?php endif; ?>
             </li>
+            <?php for ($i = 0; $i < 3; $i++): ?>
             <li class="span4">
               <div class="thumbnail">
-                <i class="icon icon-download-alt drop-zone ui-droppable"></i>
+                <?php if (isset($multimedia[$i]) && $multimedia[$i] instanceof iceModelMultimedia): ?>
+                  <?= image_tag_multimedia($multimedia[$i], '150x150', array('width' => 96, 'height' => 96)); ?>
+                <?php else: ?>
+                  <i class="icon icon-plus drop-zone"></i>
+                <?php endif; ?>
               </div>
             </li>
-            <li class="span4">
-              <div class="thumbnail">
-                <i class="icon icon-download-alt drop-zone ui-droppable"></i>
-              </div>
-            </li>
-            <li class="span4">
-              <div class="thumbnail">
-                <i class="icon icon-download-alt drop-zone ui-droppable"></i>
-              </div>
-            </li>
+            <?php endfor; ?>
           </ul>
         </div>
       </div>
@@ -123,6 +119,49 @@ $(document).ready(function()
 
   $('#collectible_description').wysihtml5({
     "font-styles": false, "image": false, "link": false
+  });
+
+  $("#main-image-set .drop-zone").droppable(
+  {
+    over: function(event, ui)
+    {
+      $(this).addClass("ui-state-highlight");
+      $(this).find('img').hide();
+      $(this).find('span.plus-icon-holder').show();
+    },
+    out: function(event, ui)
+    {
+      $(this).removeClass("ui-state-highlight");
+      $(this).find('span.plus-icon-holder').hide();
+      $(this).find('img').show();
+    },
+    drop: function(event, ui)
+    {
+      $(this).removeClass("ui-state-highlight");
+      $(this).find('i')
+        .removeClass('icon-download-alt')
+        .addClass('icon-plus');
+      ui.draggable.draggable('option', 'revert', false);
+
+      $(this).showLoading();
+
+      $.ajax({
+        url: '<?= url_for('@ajax_mycq?section=collection&page=setThumbnail'); ?>',
+        type: 'GET',
+        data: {
+          collectible_id: ui.draggable.data('collectible-id'),
+          collection_id: '<?= $collection->getId() ?>'
+        },
+        success: function()
+        {
+          $('#form-collection').submit();
+        },
+        error: function()
+        {
+          // error
+        }
+      });
+    }
   });
 });
 </script>

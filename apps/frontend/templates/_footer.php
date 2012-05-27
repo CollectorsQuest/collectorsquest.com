@@ -111,16 +111,22 @@
               in <?= link_to('your inbox', '@messages_inbox', array('class' => 'bold-links')); ?>
             </p>
           </li>
+          <!--
           <li class="icon-big-battery">
             <p>Your profile is 50% complete. <a href="#" class="bold-links">Add a collection</a> in minutes. (+10%)</p>
           </li>
-          <li class="footer-profile-box-h-list">
+          //-->
+          <li class="footer-profile-box-h-list" style="padding-top: 0;">
             <ul class="row-fluid">
-              <li class="span6 add-collectible-img">
-                <a href="#" class="bold-links">Upload a<br> photo</a>
+              <li class="span6 add-collectible-img link">
+                <a href="<?= url_for('@mycq_collections') ?>" class="bold-links target">
+                  Upload<br> an item
+                </a>
               </li>
-              <li class="span6 organize-collection">
-                <a href="#" class="bold-links">Organize your<br> collections</a>
+              <li class="span6 organize-collection link">
+                <a href="<?= url_for('@mycq_collections') ?>#my-collections" class="bold-links target">
+                  Organize your<br> collections
+                </a>
               </li>
             </ul>
           </li>

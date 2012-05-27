@@ -52,7 +52,8 @@ class mycqComponents extends cqFrontendComponents
   public function executeCollectibles()
   {
     /** @var $collection CollectorCollection */
-    $collection = $this->getVar('collection');
+    $collection = $this->getVar('collection') ?:
+      CollectorCollectionQuery::create()->findOneById($this->getRequestParameter('collection_id'));
 
     // Let's make sure the current user is the owner
     if (!$this->getUser()->isOwnerOf($collection))

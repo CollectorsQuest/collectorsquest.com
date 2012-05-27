@@ -153,7 +153,3 @@
   <?php include_partial('comments/comments', array('for_object' => $collectible)); ?>
 
 <?php endif; ?>
-
-<div class="spacer-35">
-  Permalink: <span class="darkblue"><?= url_for_collectible($collectible, true) ?></span>
-</div>
