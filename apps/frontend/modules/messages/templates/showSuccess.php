@@ -17,7 +17,7 @@
         id="latest-message"
       <?endif; ?>
     >
-      <td class="sender" rowspan="2" style="white-space: nowrap; width: 120px;">
+      <td class="sender" rowspan="2">
         <span>By <?= link_to($sender, array('sf_route' => 'collector_by_slug', 'sf_subject' => $sender)); ?></span>
         <br/>
         <span><?= time_ago_in_words_or_exact_date($message->getCreatedAt()); ?></span>
