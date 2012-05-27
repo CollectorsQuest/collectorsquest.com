@@ -17,13 +17,13 @@
         id="latest-message"
       <?endif; ?>
     >
-      <td class="sender" rowspan="2" style="white-space: nowrap; min-width: 120px;">
+      <td class="sender" rowspan="2" style="white-space: nowrap; width: 120px;">
         <span>By <?= link_to($sender, array('sf_route' => 'collector_by_slug', 'sf_subject' => $sender)); ?></span>
         <br/>
         <span><?= time_ago_in_words_or_exact_date($message->getCreatedAt()); ?></span>
         <br/>
         <div class="spacer-inner-top-7">
-          <?= link_to_collector($sender, 'image'); ?>
+          <?= link_to_collector($sender, 'image', array('width' => 100, 'height' => null)); ?>
         </div>
       </td>
       <td class="subject"><b><?= $message->getSubject(); ?></b></td>
