@@ -13,6 +13,7 @@
 
 
 <div id="mycq-tabs">
+  <!-- -- >
   <ul class="nav nav-tabs">
     <li class="active">
       <a href="#tab1" data-toggle="tab">Collectibles for Sale</a>
@@ -25,16 +26,18 @@
     </li>
     */?>
   </ul>
+  <!-- -->
 
   <div class="tab-content">
     <div class="tab-pane active" id="tab1">
       <div class="tab-content-inner spacer-top">
+        <br />
         <?php
         $link = link_to(
           'View public profile &raquo;', 'collector/me/index',
           array('class' => 'text-v-middle link-align')
         );
-        cq_sidebar_title('Nurz', $link, array('left' => 8, 'right' => 4));
+        cq_sidebar_title('Edit your profile', $link, array('left' => 8, 'right' => 4));
         ?>
 
         <?= form_tag('@mycq_profile', array('class' => 'form-horizontal')); ?>
@@ -96,7 +99,22 @@
 
           <fieldset class="brown-dashes form-container-center">
             <?= $collector_form['gender']->renderRow(); ?>
-            <?= $collector_form['country']->renderRow(); ?>
+
+            <div class="control-group">
+              <label class="control-label" for="input01">Where are you from?</label>
+              <div class="controls form-inline">
+                <label for="<?= $collector_form['zip_postal']->renderId(); ?>">
+                  <?= $collector_form['zip_postal']->renderLabelName(); ?>
+                </label>
+                <?= $collector_form['zip_postal']->render(array('class' => 'span3')); ?>
+
+                <label for="<?= $collector_form['country']->renderId(); ?>" class="spacer-left">
+                  <?= $collector_form['country']->renderLabelName(); ?>
+                </label>
+                <?= $collector_form['country']->render(array('class' => 'span3')); ?>
+              </div>
+            </div>
+
             <?= $collector_form['birthday']->renderRow(array(
               'class' => 'span2 inline',
             )); ?>
@@ -120,7 +138,7 @@
         </form> <!-- CollectorEditForm -->
 
 
-        <!-- easy comment in/out -- >
+        <!-- easy comment in/out -->
           <fieldset class="brown-dashes form-container-center">
             <div class="control-group">
               <label for="inlineCheckboxes" class="control-label">Wanted Items</label>

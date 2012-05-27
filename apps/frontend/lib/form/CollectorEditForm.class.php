@@ -17,7 +17,7 @@ class CollectorEditForm extends CollectorForm
     $this->setupProfileWebsite();
 
     $this->widgetSchema->setLabels(array(
-        'display_name' => 'Nickname',
+        'display_name' => 'Display Name (handle)',
         'collector_type' => 'Collector Type',
         'about_what_you_collect' => 'What do you collect?',
         'about_collections' => 'My collections are',
