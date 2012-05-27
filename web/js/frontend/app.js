@@ -239,7 +239,7 @@ var COMMON = window.COMMON = (function(){
       // setup adding a new comment
       var $form_holder = $('.add-comment');
 
-      $form_holder.on('click', 'textarea, button', function(){
+      $form_holder.one('click', 'textarea, button', function(){
         var $extra_fields = $form_holder.find('.extra-fields.non-optional');
 
         if (!window.cq.authenticated) {
@@ -256,9 +256,6 @@ var COMMON = window.COMMON = (function(){
         // the type=button for a type=submit one
         $form_holder.find('button.fake').hide();
         $form_holder.find('button.hidden').removeClass('hidden');
-
-        // we want to execute this click handler only once, so we unbind it here
-        $form_holder.off('click');
 
         return true;
       });
