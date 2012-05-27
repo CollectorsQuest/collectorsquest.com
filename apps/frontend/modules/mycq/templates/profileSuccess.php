@@ -30,6 +30,7 @@
         ?>
 
         <?= form_tag('@mycq_profile', array('class' => 'form-horizontal')); ?>
+          <?= $collector_form->renderHiddenFields(); ?>
 
           <fieldset class="form-container-center">
             <div class="control-group">

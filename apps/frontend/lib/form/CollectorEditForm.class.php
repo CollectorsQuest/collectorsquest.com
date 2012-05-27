@@ -55,6 +55,7 @@ class CollectorEditForm extends CollectorForm
 
   protected function unsetFields()
   {
+    unset ($this['id']);
     unset ($this['username']);
     unset ($this['email']);
     unset ($this['has_completed_registration']);
