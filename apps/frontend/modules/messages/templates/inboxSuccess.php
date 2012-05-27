@@ -48,13 +48,13 @@
 
   <table class="private-messages-list table table-bordered">
     <tbody>
-    <?php if (count($messages)): foreach ($messages as $message): ?>
+    <?php if (count($messages)): foreach ($messages as $message):
+      $message_link = url_for('messages_show', $message)
+        .($message->getIsRead() ? '' : '#latest-message');
+    ?>
       <tr
         class="linkify <?= $message->getIsRead() ? 'read' : 'unread' ?>"
-        data-url="<?= url_for(array(
-            'sf_route' => 'messages_show',
-            'sf_subject' => $message,
-          )); ?>"
+        data-url="<?= $message_link; ?>"
       >
         <td class="select-col dont-linkify">
           <input type="checkbox" name="ids[]" value="<?= $message->getId() ?>" class="<?= $message->getIsRead() ? 'read' : 'unread' ?>" />
@@ -68,10 +68,7 @@
           </p>
         </td>
         <td class="message-col">
-          <?= link_to($message->getSubject(), array(
-            'sf_route' => 'messages_show',
-            'sf_subject' => $message,
-          )); ?>
+          <?= link_to($message->getSubject(), $message_link); ?>
           <span>
             <?= Utf8::truncateHtmlKeepWordsWhole($message->getBody(), 150); ?>
           </span>
