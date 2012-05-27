@@ -262,6 +262,8 @@ class mycqActions extends cqFrontendActions
 
   public function executeMarketplace()
   {
+    $this->forward404Unless($this->getCollector()->getIsSeller());
+
     return sfView::SUCCESS;
   }
 
