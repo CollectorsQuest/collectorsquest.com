@@ -23,7 +23,7 @@ class mycqActions extends cqFrontendActions
   public function executeDropbox(sfWebRequest $request)
   {
     $collector = $this->getCollector();
-    $this->forward404Unless($collector instanceof Collector);
+    $this->redirectUnless($collector instanceof Collector, '@mycq_collections');
 
     switch ($request->getParameter('cmd'))
     {
@@ -56,7 +56,10 @@ class mycqActions extends cqFrontendActions
   {
     /** @var $collection CollectorCollection */
     $collection = $this->getRoute()->getObject();
-    $this->forward404Unless($this->getCollector()->isOwnerOf($collection));
+    $this->redirectUnless(
+      $this->getCollector()->isOwnerOf($collection),
+      '@mycq_collections'
+    );
 
     if ($request->getParameter('cmd'))
     {
@@ -133,11 +136,17 @@ class mycqActions extends cqFrontendActions
   {
     $collection = CollectorCollectionQuery::create()
       ->findOneById($request->getParameter('collection_id'));
-    $this->forward404Unless($this->getCollector()->isOwnerOf($collection));
+    $this->redirectUnless(
+      $this->getCollector()->isOwnerOf($collection),
+      '@mycq_collections'
+    );
 
     $collectible = CollectibleQuery::create()
       ->findOneById($request->getParameter('collectible_id'));
-    $this->forward404Unless($this->getCollector()->isOwnerOf($collectible));
+    $this->redirectUnless(
+      $this->getCollector()->isOwnerOf($collectible),
+      '@mycq_collections'
+    );
 
     $q = CollectionCollectibleQuery::create()
       ->filterByCollection($collection)
@@ -157,7 +166,10 @@ class mycqActions extends cqFrontendActions
   {
     /** @var $collectible Collectible */
     $collectible = $this->getRoute()->getObject();
-    $this->forward404Unless($this->getCollector()->isOwnerOf($collectible));
+    $this->redirectUnless(
+      $this->getCollector()->isOwnerOf($collectible),
+      '@mycq_collections'
+    );
 
     /** @var $collection CollectorCollection */
     $collection = $collectible->getCollectorCollection();
@@ -256,8 +268,10 @@ class mycqActions extends cqFrontendActions
 
   public function executeUploadCancel(sfWebRequest $request)
   {
-    $batch = $request->getParameter('batch');
-    $this->forward404Unless($batch);
+    $this->redirectUnless(
+      $batch = $request->getParameter('batch'),
+      '@mycq_collections'
+    );
 
     CollectibleQuery::create()
       ->filterByCollector($this->getCollector())
@@ -273,8 +287,10 @@ class mycqActions extends cqFrontendActions
 
   public function executeUploadFinish(sfWebRequest $request)
   {
-    $batch = $request->getParameter('batch');
-    $this->forward404Unless($batch);
+    $this->redirectUnless(
+      $batch = $request->getParameter('batch'),
+      '@mycq_collections'
+    );
 
     $q = CollectibleQuery::create()
       ->filterByCollector($this->getCollector())
