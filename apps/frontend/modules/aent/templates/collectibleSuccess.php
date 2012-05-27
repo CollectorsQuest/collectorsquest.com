@@ -67,10 +67,6 @@
 
 <?php include_partial('comments/comments', array('for_object' => $collectible)); ?>
 
-<div class="permalink">
-  Permalink: <span class="darkblue"><?= url_for_collectible($collectible, true) ?></span>
-</div>
-
 <?php
   $link = link_to('See all related collectibles &raquo;', '@marketplace', array('class' => 'text-v-middle link-align'));
   cq_section_title('Showcase', $link);
