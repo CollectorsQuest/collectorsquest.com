@@ -26,11 +26,11 @@
             </li>
             <?php for ($i = 0; $i < 3; $i++): ?>
             <li class="span4">
-              <div class="thumbnail drop-zone">
+              <div class="thumbnail">
                 <?php if (isset($multimedia[$i]) && $multimedia[$i] instanceof iceModelMultimedia): ?>
                   <?= image_tag_multimedia($multimedia[$i], '150x150', array('width' => 96, 'height' => 96)); ?>
                 <?php else: ?>
-                  <i class="icon icon-plus"></i>
+                  <i class="icon icon-plus drop-zone"></i>
                 <?php endif; ?>
               </div>
             </li>

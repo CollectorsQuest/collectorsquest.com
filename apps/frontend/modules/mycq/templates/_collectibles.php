@@ -26,74 +26,90 @@
 
 <?php if ($pager->getNbResults() > 0): ?>
 
-  <div class="mycq-collections">
-    <div class="row thumbnails">
-      <?php foreach ($pager->getResults() as $i => $collectible): ?>
-      <div class="span4 thumbnail link">
-        <span>
-          <a href="<?= url_for('mycq_collectible_by_slug', $collectible) ?>" style="margin-left: 0px;" class="target">
-            <?= Utf8::truncateHtmlKeepWordsWhole($collectible->getName(), 32); ?>
-          </a>
-        </span>
-        <?php
-          $q = iceModelMultimediaQuery::create()
-            ->filterByModel('Collectible')
-            ->filterByModelId($collectible->getId())
-            ->orderByIsPrimary(Criteria::DESC)
-            ->orderByCreatedAt(Criteria::DESC);
-          $multimedia = $q->limit(2)->find();
+  <?php foreach ($pager->getResults() as $i => $collectible): ?>
+  <div class="span4 thumbnail link">
+    <span>
+      <a href="<?= url_for('mycq_collectible_by_slug', $collectible) ?>" style="margin-left: 0px;" class="target">
+        <?= Utf8::truncateHtmlKeepWordsWhole($collectible->getName(), 32); ?>
+      </a>
+    </span>
+    <?php
+      $q = iceModelMultimediaQuery::create()
+        ->filterByModel('Collectible')
+        ->filterByModelId($collectible->getId())
+        ->orderByIsPrimary(Criteria::DESC)
+        ->orderByCreatedAt(Criteria::DESC);
+      $multimedia = $q->limit(2)->find();
 
-          for ($k = 0; $k < 3; $k++)
-          {
-            if (isset($multimedia[$k]))
-            {
-              echo link_to(image_tag_multimedia(
-                $multimedia[$k], '75x75',
-                array('max_width' => 64, 'max_height' => 64,)
-              ), url_for('mycq_collectible_by_slug', $collectible));
-            }
-            else
-            {
-              echo '<i class="icon icon-plus drop-zone" data-collectible-id="'.  $collectible->getId() .'"></i>';
-            }
-          }
-        ?>
-      </div>
-      <?php
-        if (($pager->getPage() === 1 && $i === 2) || ($pager->count() === $i+1 && $pager->count() < 3))
+      for ($k = 0; $k < 3; $k++)
+      {
+        if (isset($multimedia[$k]))
         {
-          include_slot('mycq_create_collectible');
+          echo link_to(image_tag_multimedia(
+            $multimedia[$k], '75x75',
+            array('max_width' => 64, 'max_height' => 64,)
+          ), url_for('mycq_collectible_by_slug', $collectible));
         }
-      ?>
-      <?php endforeach; ?>
-    </div>
+        else
+        {
+          echo '<i class="icon icon-plus drop-zone" data-collectible-id="'.  $collectible->getId() .'"></i>';
+        }
+      }
+    ?>
   </div>
+  <?php
+    if (($pager->getPage() === 1 && $i === 2) || ($pager->count() === $i+1 && $pager->count() < 3))
+    {
+      include_slot('mycq_create_collectible');
+    }
+  ?>
+  <?php endforeach; ?>
 
-  <?php if ($pager->haveToPaginate()): ?>
-  <a href="#" class="btn btn-small gray-button see-more-button">
-    See more
-  </a>
+  <?php if ($pager->haveToPaginate() && $pager->getPage() === 1): ?>
+
+    <button class="btn btn-small gray-button see-more-full" id="seemore-mycq-collectibles">
+      See more
+    </button>
+
+    <script>
+      $(document).ready(function()
+      {
+        var $url = '<?= url_for('@ajax_mycq?section=component&page=collectibles', true) ?>';
+        var $form = $('#form-mycq-collectibles');
+
+        $('#seemore-mycq-collectibles').click(function()
+        {
+          var $button = $(this);
+          $button.html('loading...');
+
+          $.post($url +'?p=2', $form.serialize(), function(data)
+          {
+            $('div.mycq-collections .thumbnails').append(data);
+            $button.hide();
+          }, 'html');
+        });
+      });
+    </script>
+
   <?php endif; ?>
 
 <?php else: ?>
 
-  <div class="mycq-collections spacer-top-25">
-    <div class="row thumbnails">
-      <div class="span12 thumbnail link no-collections-uploaded-box">
-        <span class="Chivo webfont info-no-collections-uploaded">
-          Share your collection with the community today!<br/>
-          Get Started Now!
-        </span>
-      </div>
-      <?php include_slot('mycq_create_collectible'); ?>
-    </div>
+  <div class="span12 thumbnail link no-collections-uploaded-box">
+    <span class="Chivo webfont info-no-collections-uploaded">
+      Share your collection with the community today!<br/>
+      Get Started Now!
+    </span>
   </div>
+  <?php include_slot('mycq_create_collectible'); ?>
 
 <?php endif; ?>
 
 <script>
 $(document).ready(function()
 {
+  $(document).controls();
+
   $(".mycq-collections .drop-zone").droppable(
   {
     over: function(event, ui)
