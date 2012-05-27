@@ -2,15 +2,30 @@
 
 class CollectorEditForm extends CollectorForm
 {
+
+  /** @var CollectorProfileForm */
+  protected $profile_form;
+
   public function configure()
   {
     parent::configure();
 
     $this->setupPasswordFields();
     $this->embedProfileForm();
+    $this->setupProfileGenderField();
+    $this->setupProfileCollectorType();
+    $this->setupProfileWebsite();
 
     $this->widgetSchema->setLabels(array(
-       'display_name' => 'Nickname',
+        'display_name' => 'Nickname',
+        'collector_type' => 'Collector Type',
+        'about_what_you_collect' => 'What do you collect?',
+        'about_collections' => 'My collections are',
+        'about_purchase_per_year' => 'How many times a year do you purchase?',
+        'about_most_expensive_item' => "What's the most you've spent on an item?",
+        'about_annually_spend' => 'How much do you spend annually?',
+        'about_interests' => 'My interests',
+        'website' => 'Personal Website',
     ));
 
     $this->widgetSchema->setFormFormatterName('Bootstrap');
@@ -47,10 +62,35 @@ class CollectorEditForm extends CollectorForm
 
   protected function embedProfileForm()
   {
-    $profile_form = new CollectorProfileEditForm($this->getObject()->getProfile());
-    $profile_form->widgetSchema->setFormFormatterName('Bootstrap');
+    $this->mergeForm($this->getProfileForm());
+  }
 
-    $this->mergeForm($profile_form);
+  protected function setupProfileGenderField()
+  {
+    $this->widgetSchema['gender'] = new sfWidgetFormSelectRadio(array(
+        'choices' => array('f' => 'Female', 'm' => 'Male', '' => 'Rather not say'),
+        'formatter' => array($this, 'inlineRadioInputFormatter'),
+    ));
+  }
+
+  protected function setupProfileCollectorType()
+  {
+    $this->widgetSchema['collector_type'] = new sfWidgetFormSelectRadio(array(
+        'choices' => $this->getProfileForm()->getCollectorTypeChoices(),
+        'formatter' => array($this, 'inlineRadioInputFormatter'),
+    ));
+  }
+
+  protected function setupProfileWebsite()
+  {
+    if (!$this->getObject()->getIsSeller())
+    {
+      $this->widgetSchema['website']->setAttributes(array(
+          'placeholder' => 'This feature is only available for sellers',
+          'disabled' => 'disabled',
+          'class' => 'disabled',
+      ));
+    }
   }
 
   protected function unsetFields()
@@ -70,4 +110,32 @@ class CollectorEditForm extends CollectorForm
 
     parent::unsetFields();
   }
+
+
+  /**
+   * @return    CollectorProfileForm
+   */
+  protected function getProfileForm()
+  {
+    if (null === $this->profile_form)
+    {
+      $this->profile_form = new CollectorProfileEditForm(
+        $this->getObject()->getProfile());
+      $this->profile_form->widgetSchema->setFormFormatterName('Bootstrap');
+    }
+
+    return $this->profile_form;
+  }
+
+  public function inlineRadioInputFormatter($widget, $inputs)
+  {
+    $rows = array();
+    foreach ($inputs as $input)
+    {
+      $rows[] = $widget->renderContentTag('label', $input['input'].strip_tags($input['label']), array('class' => 'radio inline'));
+    }
+
+    return !$rows ? '' : $widget->renderContentTag('div', implode($this->getOption('separator'), $rows), array('class' => $this->getOption('class')));
+  }
+
 }

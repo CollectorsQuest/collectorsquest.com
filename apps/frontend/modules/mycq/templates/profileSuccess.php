@@ -1,6 +1,14 @@
 <?php
   /** @var $collector Collector */
   /** @var $collector_form CollectorEditForm */
+
+  // set input-xxlarge as the default class of widgets
+  foreach($collector_form->getWidgetSchema()->getFields() as $form_field)
+  {
+    $form_field->setAttribute('class',
+      $form_field->getAttribute('class') . ' input-xxlarge');
+  }
+
 ?>
 
 
@@ -73,39 +81,133 @@
                 </span>
               </div>
             </div>
-            <div class="control-group">
-              <label for="textarea" class="control-label">Member Since</label>
-              <div class="controls spacer-top-5">
-                <span class="brown">
-                  <!-- December 11, 2009 -->
-                  <?= $collector->getCreatedAt('F j, Y') ?>
-                </span>
-              </div>
-            </div>
             <?= $collector_form['display_name']->renderRow(); ?>
+          </fieldset>
+
+
+          <fieldset class="brown-dashes form-container-center">
+            <?= $collector_form['collector_type']->renderRow(); ?>
+            <?= $collector_form['about_what_you_collect']->renderRow(); ?>
+            <?= $collector_form['about_collections']->renderRow(); ?>
+            <?= $collector_form['about_purchase_per_year']->renderRow(); ?>
+            <?= $collector_form['about_most_expensive_item']->renderRow(); ?>
+            <?= $collector_form['about_annually_spend']->renderRow(); ?>
+          </fieldset>
+
+          <fieldset class="brown-dashes form-container-center">
+            <?= $collector_form['gender']->renderRow(); ?>
+            <?= $collector_form['country']->renderRow(); ?>
+            <?= $collector_form['birthday']->renderRow(array(
+              'class' => 'span2 inline',
+            )); ?>
+            <?= $collector_form['about_me']->renderRow(); ?>
+            <?= $collector_form['about_interests']->renderRow(); ?>
+            <?= $collector_form['website']->renderRow(); ?>
+          </fieldset>
+
+          <fieldset class="brown-dashes form-container-center">
             <?= $collector_form['password']->renderRow(); ?>
             <?= $collector_form['password_again']->renderRow(); ?>
           </fieldset>
 
           <fieldset class="brown-dashes form-container-center">
-            <?= $collector_form['collector_type']->renderRow(); ?>
-            <?= $collector_form['birthday']->renderRow(); ?>
-            <?= $collector_form['gender']->renderRow(); ?>
-            <?= $collector_form['zip_postal']->renderRow(); ?>
-            <?= $collector_form['country']->renderRow(); ?>
-            <?= $collector_form['website']->renderRow(); ?>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary blue-button">Save changes</button>
+              <button type="reset" class="btn gray-button spacer-left">Cancel</button>
+            </div>
           </fieldset>
 
+        </form> <!-- CollectorEditForm -->
+
+
+        <!-- easy comment in/out -- >
           <fieldset class="brown-dashes form-container-center">
-            <?= $collector_form['about_me']->renderRow(); ?>
-            <?= $collector_form['about_collections']->renderRow(); ?>
-            <?= $collector_form['about_interests']->renderRow(); ?>
-            <?= $collector_form['about_what_you_collect']->renderRow(); ?>
-            <?= $collector_form['about_most_expensive_item']->renderRow(); ?>
-            <?= $collector_form['about_annually_spend']->renderRow(); ?>
+            <div class="control-group">
+              <label for="inlineCheckboxes" class="control-label">Wanted Items</label>
+              <div class="controls">
+                <label class="radio inline">
+                  <input type="radio" checked="" value="option1" id="optionsRadios1" name="optionsRadios">
+                  Display
+                </label>
+                <label class="radio inline">
+                  <input type="radio" checked="" value="option1" id="optionsRadios1" name="optionsRadios">
+                  Keep private
+                </label>
+              </div>
+            </div>
+            <div class="control-group">
+              <label for="textarea" class="control-label">Username</label>
+              <div class="controls spacer-top-5">
+                <span class="brown">
+                  cdavid
+                </span>
+              </div>
+            </div>
+            <div class="control-group">
+              <label for="textarea" class="control-label">Member Since</label>
+              <div class="controls spacer-top-5">
+                <span class="brown">
+                  December 11, 2009
+                </span>
+              </div>
+            </div>
+
+          </fieldset>
+          <fieldset class="brown-dashes form-container-center">
+            <div class="control-group">
+              <label for="textarea" class="control-label">New Email</label>
+              <div class="controls spacer-top-5">
+                <span class="brown">
+                  collin@collectorsquest.com	Confirmed
+                </span>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="input01">New Email</label>
+              <div class="controls">
+                <input type="text" class="input-xxlarge" id="input01">
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="input01">Confirm New Email</label>
+              <div class="controls">
+                <input type="text" class="input-xxlarge" id="input01">
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label" for="input01">Your Password</label>
+              <div class="controls">
+                <input type="text" class="input-xxlarge" id="input01">
+              </div>
+            </div>
+            <div class="form-actions">
+              <button class="btn btn-primary blue-button" type="submit">Change Email</button>
+              <p class="brown spacer-top">
+                Your email address will not change until you confirm it via email
+              </p>
+            </div>
+          </fieldset>
+          <fieldset class="brown-dashes form-container-center">
+            <div class="control-group">
+              <label for="inlineCheckboxes" class="control-label">Check the subscriptions you would like to receive:</label>
+              <div class="controls">
+                <label class="radio">
+                  <input type="radio" checked="" value="option1" id="optionsRadios1" name="optionsRadios">
+                  <strong>CQ Promotions</strong>
+                  <p class="help-block disabled spacer-top-reset">- the latest items for sale by our community of collectors (Published Weekly)</p>
+                </label>
+                <label class="radio">
+                  <input type="radio" checked="" value="option1" id="optionsRadios1" name="optionsRadios">
+                  <strong>CQ Newsletter</strong>
+                  <p class="help-block disabled spacer-top-reset">- the latest news about our community of collectors (Published Twice a Week)</p>
+                </label>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button class="btn btn-primary blue-button" type="submit">Save Subscriptions</button>
+            </div>
           </fieldset>
 
-          <!--
           <fieldset class="brown-dashes form-container-center">
             <div class="control-group">
               <label for="input01" class="control-label">I collect: <span class="red-bold">*</span></label>
@@ -219,109 +321,7 @@
               </div>
             </div>
           </fieldset>
-          -->
-          <fieldset class="brown-dashes form-container-center">
-            <!--
-            <div class="control-group">
-              <label for="inlineCheckboxes" class="control-label">Wanted Items</label>
-              <div class="controls">
-                <label class="radio inline">
-                  <input type="radio" checked="" value="option1" id="optionsRadios1" name="optionsRadios">
-                  Display
-                </label>
-                <label class="radio inline">
-                  <input type="radio" checked="" value="option1" id="optionsRadios1" name="optionsRadios">
-                  Keep private
-                </label>
-              </div>
-            </div>
-            -->
-            <div class="form-actions">
-              <button type="submit" class="btn btn-primary blue-button">Save changes</button>
-              <button type="reset" class="btn gray-button spacer-left">Cancel</button>
-            </div>
-          </fieldset>
-
-        </form> <!-- CollectorEditForm -->
-
-
-          <!-- Edit Account Settings -->
-          <fieldset class="brown-dashes form-container-center">
-            <div class="control-group">
-              <label for="textarea" class="control-label">Username</label>
-              <div class="controls spacer-top-5">
-                <span class="brown">
-                  cdavid
-                </span>
-              </div>
-            </div>
-            <div class="control-group">
-              <label for="textarea" class="control-label">Member Since</label>
-              <div class="controls spacer-top-5">
-                <span class="brown">
-                  December 11, 2009
-                </span>
-              </div>
-            </div>
-
-          </fieldset>
-          <fieldset class="brown-dashes form-container-center">
-            <div class="control-group">
-              <label for="textarea" class="control-label">New Email</label>
-              <div class="controls spacer-top-5">
-                <span class="brown">
-                  collin@collectorsquest.com	Confirmed
-                </span>
-              </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label" for="input01">New Email</label>
-              <div class="controls">
-                <input type="text" class="input-xxlarge" id="input01">
-              </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label" for="input01">Confirm New Email</label>
-              <div class="controls">
-                <input type="text" class="input-xxlarge" id="input01">
-              </div>
-            </div>
-            <div class="control-group">
-              <label class="control-label" for="input01">Your Password</label>
-              <div class="controls">
-                <input type="text" class="input-xxlarge" id="input01">
-              </div>
-            </div>
-            <div class="form-actions">
-              <button class="btn btn-primary blue-button" type="submit">Change Email</button>
-              <p class="brown spacer-top">
-                Your email address will not change until you confirm it via email
-              </p>
-            </div>
-          </fieldset>
-          <fieldset class="brown-dashes form-container-center">
-            <div class="control-group">
-              <label for="inlineCheckboxes" class="control-label">Check the subscriptions you would like to receive:</label>
-              <div class="controls">
-                <label class="radio">
-                  <input type="radio" checked="" value="option1" id="optionsRadios1" name="optionsRadios">
-                  <strong>CQ Promotions</strong>
-                  <p class="help-block disabled spacer-top-reset">- the latest items for sale by our community of collectors (Published Weekly)</p>
-                </label>
-                <label class="radio">
-                  <input type="radio" checked="" value="option1" id="optionsRadios1" name="optionsRadios">
-                  <strong>CQ Newsletter</strong>
-                  <p class="help-block disabled spacer-top-reset">- the latest news about our community of collectors (Published Twice a Week)</p>
-                </label>
-              </div>
-            </div>
-            <div class="form-actions">
-              <button class="btn btn-primary blue-button" type="submit">Save Subscriptions</button>
-            </div>
-          </fieldset>
-          <!-- /Edit Account Settings -->
-
-        </form>
+        <!-- -->
 
 
       </div><!-- /.tab-content-inner -->

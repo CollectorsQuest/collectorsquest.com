@@ -16,10 +16,16 @@ class CollectorProfileEditForm extends BaseCollectorProfileForm
           'required'    => 'required',
       )),
       'birthday'        => new sfWidgetFormDate(array(
-          'years'       => $years
+          'years'       => $years,
+          'format'      => '%month% %day% %year%',
+          'empty_values'=> array(
+              'day'     => 'Day',
+              'month'   => 'Month',
+              'year'    => 'Year',
+          ),
       )),
       'gender'          => new sfWidgetFormSelect(array(
-          'choices' => array('' => "Rather not say", 'f' => 'Female', 'm' => 'Male'),
+          'choices' => array('' => 'Rather not say', 'f' => 'Female', 'm' => 'Male'),
       )),
       'zip_postal'      => new sfWidgetFormInputText(array(
           'label'       => 'Zip/Postal code',
