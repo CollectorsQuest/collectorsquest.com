@@ -6,10 +6,20 @@
 ?>
 
 <div class="row" style="margin-left: 5px;">
-  <div class="span2" style="width: 70px;">
-    <?= link_to_collector($collector, 'image', array(), array('width' => 63, 'height' => 63)) ?>
+  <div class="span2">
+    <a href="<?= url_for('@collector_me') ?>" title="Go to your public profile">
+      <?php
+        echo image_tag_collector(
+          $collector, '235x315',
+          array(
+            'width' => 70, 'height' => 94,
+            'class' => 'thumbnail', 'style' => 'margin-top: -37px;'
+          )
+        );
+      ?>
+    </a>
   </div>
-  <div class="span12" style="margin-left: 0; width: 89.4%;">
+  <div class="span12" style="margin-left: 0; width: 87%;">
     <?php
       $links = link_to('Log Out', '@logout') .
                '<span style="color: #fff;">&nbsp; | &nbsp;</span>'.
@@ -27,8 +37,19 @@
                 $active = in_array($sf_params->get('action'), array('profile')) ? 'active' : null;
                 echo '<li class="'. $active .'">', link_to('Profile', '@mycq_profile'), '</li>';
               ?>
+              <?php
+                $active = in_array($sf_params->get('action'), array('collections')) ? 'active' : null;
+                echo '<li class="'. $active .'">', link_to('Collections', '@mycq_collections'), '</li>';
+              ?>
+              <?php
+                if ($sf_user->getCollector()->getIsSeller())
+                {
+                  $active = in_array($sf_params->get('action'), array('marketplace')) ? 'active' : null;
+                  echo '<li class="'. $active .'">', link_to('Store', '@mycq_marketplace'), '</li>';
+                }
+              ?>
               <?php $active = in_array($sf_params->get('module'), array('messages')) ? 'active' : null; ?>
-              <li class="dropdown <?= $active ?>">
+              <li class="dropdown <?= $active ?>" style="border-right: 1px solid #4B3B3B;">
                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                   Messages (<?= $sf_user->getUnreadMessagesCount(); ?>)
                   <b class="caret"></b>
@@ -46,14 +67,6 @@
                   </li>
                 </ul>
               </li>
-              <?php
-                $active = in_array($sf_params->get('action'), array('collections')) ? 'active' : null;
-                echo '<li class="'. $active .'">', link_to('Collections', '@mycq_collections'), '</li>';
-              ?>
-              <?php
-                $active = in_array($sf_params->get('action'), array('marketplace')) ? 'active' : null;
-                echo '<li class="'. $active .'" style="border-right: 1px solid #4B3B3B;">', link_to('Store', '@mycq_marketplace'), '</li>';
-              ?>
               <?php
                 $active = in_array($sf_params->get('action'), array('wanted')) ? 'active' : null;
                 // echo '<li class="'. $active .'" style="border-right: 1px solid #4B3B3B;">', link_to('Wanted', '@mycq_wanted'), '</li>';

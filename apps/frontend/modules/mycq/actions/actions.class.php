@@ -7,8 +7,26 @@ class mycqActions extends cqFrontendActions
     $this->redirect('@mycq_profile');
   }
 
-  public function executeProfile()
+  public function executeProfile(sfWebRequest $request)
   {
+    $this->collector = $this->getUser()->getCollector();
+    $collector_form = new CollectorEditForm($this->getUser()->getCollector());
+
+    if (sfRequest::POST == $request->getMethod())
+    {
+      if ($request->hasParameter($collector_form->getName()))
+      {
+        $collector_form->bindAndSave(
+          $request->getParameter($collector_form->getName()),
+          $request->getFiles($collector_form->getName())
+        );
+      }
+    }
+
+
+    $this->collector = $this->getUser()->getCollector();
+    $this->collector_form = $collector_form;
+
     return sfView::SUCCESS;
   }
 
@@ -23,7 +41,7 @@ class mycqActions extends cqFrontendActions
   public function executeDropbox(sfWebRequest $request)
   {
     $collector = $this->getCollector();
-    $this->forward404Unless($collector instanceof Collector);
+    $this->redirectUnless($collector instanceof Collector, '@mycq_collections');
 
     switch ($request->getParameter('cmd'))
     {
@@ -56,7 +74,10 @@ class mycqActions extends cqFrontendActions
   {
     /** @var $collection CollectorCollection */
     $collection = $this->getRoute()->getObject();
-    $this->forward404Unless($this->getCollector()->isOwnerOf($collection));
+    $this->redirectUnless(
+      $this->getCollector()->isOwnerOf($collection),
+      '@mycq_collections'
+    );
 
     if ($request->getParameter('cmd'))
     {
@@ -133,11 +154,17 @@ class mycqActions extends cqFrontendActions
   {
     $collection = CollectorCollectionQuery::create()
       ->findOneById($request->getParameter('collection_id'));
-    $this->forward404Unless($this->getCollector()->isOwnerOf($collection));
+    $this->redirectUnless(
+      $this->getCollector()->isOwnerOf($collection),
+      '@mycq_collections'
+    );
 
     $collectible = CollectibleQuery::create()
       ->findOneById($request->getParameter('collectible_id'));
-    $this->forward404Unless($this->getCollector()->isOwnerOf($collectible));
+    $this->redirectUnless(
+      $this->getCollector()->isOwnerOf($collectible),
+      '@mycq_collections'
+    );
 
     $q = CollectionCollectibleQuery::create()
       ->filterByCollection($collection)
@@ -157,10 +184,16 @@ class mycqActions extends cqFrontendActions
   {
     /** @var $collectible Collectible */
     $collectible = $this->getRoute()->getObject();
-    $this->forward404Unless($this->getCollector()->isOwnerOf($collectible));
+    $this->redirectUnless(
+      $this->getCollector()->isOwnerOf($collectible),
+      '@mycq_collections'
+    );
 
     /** @var $collection CollectorCollection */
     $collection = $collectible->getCollectorCollection();
+
+    /** @var $collector Collector */
+    $collector = $this->getCollector();
 
     if ($request->getParameter('cmd'))
     {
@@ -240,24 +273,24 @@ class mycqActions extends cqFrontendActions
     $this->collectible = $collectible;
 
     $this->form = $form;
+    $this->form_for_sale = $form['for_sale'];
 
     return sfView::SUCCESS;
   }
 
   public function executeMarketplace()
   {
-    return sfView::SUCCESS;
-  }
+    $this->forward404Unless($this->getCollector()->getIsSeller());
 
-  public function executeWanted()
-  {
     return sfView::SUCCESS;
   }
 
   public function executeUploadCancel(sfWebRequest $request)
   {
-    $batch = $request->getParameter('batch');
-    $this->forward404Unless($batch);
+    $this->redirectUnless(
+      $batch = $request->getParameter('batch'),
+      '@mycq_collections'
+    );
 
     CollectibleQuery::create()
       ->filterByCollector($this->getCollector())
@@ -273,8 +306,10 @@ class mycqActions extends cqFrontendActions
 
   public function executeUploadFinish(sfWebRequest $request)
   {
-    $batch = $request->getParameter('batch');
-    $this->forward404Unless($batch);
+    $this->redirectUnless(
+      $batch = $request->getParameter('batch'),
+      '@mycq_collections'
+    );
 
     $q = CollectibleQuery::create()
       ->filterByCollector($this->getCollector())
@@ -325,8 +360,9 @@ class mycqActions extends cqFrontendActions
     return sfView::SUCCESS;
   }
 
-  public function executeSandbox()
+  public function executeWanted()
   {
     return sfView::SUCCESS;
   }
+
 }

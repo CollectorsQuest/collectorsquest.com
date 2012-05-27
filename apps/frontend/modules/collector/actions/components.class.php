@@ -46,15 +46,15 @@ class collectorComponents extends cqFrontendComponents
       return sfView::NONE;
     }
 
-    $c = new Criteria();
-    $c->add(CollectorCollectionPeer::COLLECTOR_ID, $collector->getId());
-    $c->addJoin(CollectorCollectionPeer::ID, CollectionCollectiblePeer::COLLECTION_ID, Criteria::RIGHT_JOIN);
-    $c->addDescendingOrderByColumn(CollectorCollectionPeer::CREATED_AT);
-    $c->addGroupByColumn(CollectorCollectionPeer::ID);
+    /** @var $q CollectorCollectionQuery */
+    $q = CollectorCollectionQuery::create()
+      ->filterByCollector($collector)
+      ->addJoin(CollectorCollectionPeer::ID, CollectionCollectiblePeer::COLLECTION_ID, Criteria::RIGHT_JOIN)
+      ->orderByCreatedAt(Criteria::DESC)
+      ->groupById();
 
-    $pager = new sfPropelPager('CollectorCollection', 6);
+    $pager = new PropelModelPager($q, 6);
     $pager->setPage($this->getRequestParameter('p', 1));
-    $pager->setCriteria($c);
     $pager->init();
 
     $this->pager = $pager;

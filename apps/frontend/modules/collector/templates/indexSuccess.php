@@ -27,21 +27,23 @@
         <div class="span8">
           <ul style="margin-top: 10px;">
             <li>
-              <?php
+            <?php
               echo sprintf(
                 '%s %s collector',
                 in_array(strtolower(substr($profile->getCollectorType(), 0, 1)), array('a', 'e', 'i', 'o')) ? 'An' : 'A',
                 '<strong>'. $profile->getCollectorType() .'</strong>'
               );
-              ?>
+            ?>
             </li>
             <li>
               From <?= $profile->getCountry(); ?>
             </li>
           </ul>
+          <?php if ($text = $profile->getProperty('about.what_you_collect')): ?>
           <p><strong>Collecting:</strong>
-            <?= $profile->getProperty('about.what_you_collect')?>
+            <?= $text ?>
           </p>
+          <?php endif; ?>
         </div>
       </div>
     </div>

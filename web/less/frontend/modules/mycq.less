@@ -581,7 +581,7 @@ a.buy-credits-button {
 			border: none;
 			.square(74px);
 			padding: 1px;
-			margin-left: 0;
+      margin-left: 5px;
 			margin-bottom: 4px;
 			font-size: 12px;
 			.box-shadow(none);
@@ -590,7 +590,18 @@ a.buy-credits-button {
 			&:hover {
 				background-color: white;
 				.border-radius(0);
+        cursor: move;
+
+        .icon-remove-sign {
+          display: block;
+        }
 			}
+
+      &.ui-draggable-dragging {
+        .icon-remove-sign {
+          display: none;
+        }
+      }
 		}
 	}
 	.thumbnail {
@@ -598,7 +609,19 @@ a.buy-credits-button {
 		.border-radius(0);
 		border: none;
 		padding: 1px;
+    position: relative;
 	}
+
+  .icon-remove-sign {
+    color: transparent;
+    position: absolute;
+    left: 55px;
+    top: -8px;
+    font-size: 26px;
+    cursor: pointer;
+    display: none;
+    background: url(/images/icons/fancy_close.png) no-repeat center;
+  }
 }
 
 .buttons-inner {

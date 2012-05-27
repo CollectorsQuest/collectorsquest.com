@@ -22,7 +22,9 @@
         <br/>
         <span><?= time_ago_in_words_or_exact_date($message->getCreatedAt()); ?></span>
         <br/>
-        <div class="spacer-inner-top-7"><?= link_to_collector($sender, 'image'); ?></div>
+        <div class="spacer-inner-top-7">
+          <?= link_to_collector($sender, 'image', array('width' => 100, 'height' => null)); ?>
+        </div>
       </td>
       <td class="subject"><b><?= $message->getSubject(); ?></b></td>
     </tr>

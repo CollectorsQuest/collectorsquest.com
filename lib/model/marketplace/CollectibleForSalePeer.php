@@ -9,6 +9,10 @@ class CollectibleForSalePeer extends BaseCollectibleForSalePeer
     'good' => 'Good', 'fair' => 'Fair', 'poor' => 'Poor'
   );
 
+  public static $currencies = array(
+    'USD' => 'USD'
+  );
+
   /**
    * Retrieve collectibles by collector
    *

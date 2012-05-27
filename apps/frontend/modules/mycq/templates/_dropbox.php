@@ -92,24 +92,19 @@
   </div>
 
   <?php if ($total > 0): ?>
-  <div class="row-fluid">
-    <div class="span10 collectibles-to-sort">
-      <ul class="thumbnails">
-        <?php foreach ($collectibles as $collectible): ?>
-        <li class="span2 thumbnail" data-collectible-id="<?= $collectible->getId(); ?>" style="margin-left: 5px;">
-          <?php
-            echo image_tag_collectible(
-              $collectible, '75x75', array('max_width' => 72, 'max_height' => 72)
-            );
-          ?>
-        </li>
-        <?php endforeach; ?>
-      </ul>
-    </div>
-    <div class="span2" style="border: 1px solid #AEA3A3; background: white; height: 72px;">
-      <i class="icon icon-trash" style="font-size: 50px; float: left;"></i>
-      Drop items here to delete
-    </div>
+  <div class="collectibles-to-sort">
+    <ul class="thumbnails">
+      <?php foreach ($collectibles as $collectible): ?>
+      <li class="span2 thumbnail" data-collectible-id="<?= $collectible->getId(); ?>">
+        <?php
+          echo image_tag_collectible(
+            $collectible, '75x75', array('max_width' => 72, 'max_height' => 72)
+          );
+        ?>
+        <i class="icon icon-remove-sign" data-collectible-id="<?= $collectible->getId(); ?>"></i>
+      </li>
+      <?php endforeach; ?>
+    </ul>
   </div>
   <?php else: ?>
     <div class="no-collections-uploaded-box Chivo webfont" style="margin-left: 0;">
@@ -249,6 +244,33 @@ $(document).ready(function()
     cursor: 'move',
     cursorAt: { top: 36, left: 36 },
     zIndex: 1000
+  });
+
+  $('.collectibles-to-sort .icon-remove-sign').click(function()
+  {
+    var $icon = $(this);
+
+    $icon.parent('li.span2').showLoading();
+
+    $.ajax({
+      url: '<?= url_for('@ajax_mycq?section=collectible&page=delete&encrypt=1'); ?>',
+      type: 'post', data: { collectible_id: $icon.data('collectible-id') },
+      success: function()
+      {
+        $icon.parent('li.span2').fadeOut('fast', function()
+        {
+          $(this).hideLoading().remove();
+
+          if ($('.collectibles-to-sort .span2').length === 0)
+          {
+            window.location.reload();
+          }
+        });
+      },
+      error: function() {
+        // error
+      }
+    });
   });
 });
 </script>

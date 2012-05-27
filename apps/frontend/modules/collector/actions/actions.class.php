@@ -74,7 +74,6 @@ class collectorActions extends cqFrontendActions
         // try to guess the collector's country based on IP address
         $values['country_iso3166'] = cqStatic::getGeoIpCountryCode(
           $request->getRemoteAddress(), $check_against_geo_country = true);
-          //'www.government.com', $check_against_geo_country = true);
 
         // create the collector
         $collector = CollectorPeer::createFromArray($values);

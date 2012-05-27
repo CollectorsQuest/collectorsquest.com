@@ -48,14 +48,17 @@
     <div class="span12">
       <div class="form-actions text-center">
         <a href="<?= url_for('mycq_collection_by_slug', array('sf_subject' => $collection, 'cmd' => 'delete', 'encrypt' => '1')); ?>"
-           class="btn red-button spacer-left pull-left spacer-left"
+           class="btn gray-button spacer-left pull-left spacer-left"
            onclick="return confirm('Are you sure you want to delete this Collection?');">
+          <i class="icon icon-trash"></i>
           Delete Collection
         </a>
 
-        <button type="submit" class="btn btn-primary blue-button">Save changes</button>
+        <button type="submit" class="btn btn-primary blue-button">Save Changes</button>
         <a href="<?= url_for('mycq_collection_by_slug', $collection) ?>"
-           class="btn gray-button spacer-left">Cancel</a>
+           class="btn gray-button spacer-left">
+          Cancel
+        </a>
       </div>
     </div>
   </div>
