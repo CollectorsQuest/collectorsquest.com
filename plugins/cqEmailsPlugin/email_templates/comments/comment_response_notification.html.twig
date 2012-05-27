@@ -3,16 +3,26 @@
 {% block content %}
 
 <p style="margin-bottom: 10px; font-weight: bold;">
-  Dear {{ user_comment.name }}
+  Hey, {{ user_comment.name }}!
 </p>
-<p>
-  A new response has been made to a thread you follow about <b>{{ link_to(model_object, thread_url, true) }}</b>.
-  <br />
-  <br />
-  You can unsubscribe from comment notifications by {{ link_to('clicking here', unsubscribe_url, true) }} or by opening the following URL in your browser:
-  <br />
-  <pre>{{ unsubscribe_url }}</pre>
 
+<p>
+  Someone responded to your comment on Collectors Quest!<br />
+  <br />
+
+  New comment on your post "{{ model_object }}"<br />
+  Author : {{ new_comment.name }}<br />
+  Comment:<br />
+  {{ new_comment.body }}<br />
+  <br />
+
+  You can see all comments in this thread here:<br />
+  {{ thread_url }}<br />
+  <br />
 </p>
+
+<small>
+  You can unsubscribe from comment notifications by {{ link_to('clicking here', unsubscribe_url, true) }}.
+</small>
 
 {% endblock %}

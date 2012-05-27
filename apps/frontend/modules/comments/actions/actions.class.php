@@ -43,7 +43,7 @@ class commentsActions extends cqFrontendActions
                         'email' => urlencode($notify_comment->getEmail()),
                         'model_class' => $notify_comment->getModelObjectClass(),
                         'model_pk' => $notify_comment->getModelObjectPk(),
-                        'goto' => $request->getReferer(),
+                        'r' => $request->getReferer(),
                     ), true)
                 ),
             ));
@@ -116,7 +116,7 @@ class commentsActions extends cqFrontendActions
       $this->getUser()->setFlash('comment_success', 'You have successfully unsubscribed from new comment notifications.');
     }
 
-    $this->redirect($request->getParameter('goto', '@homepage') . '#comments');
+    $this->redirect($request->getParameter('r', '@homepage') . '#comments');
   }
 
 }
