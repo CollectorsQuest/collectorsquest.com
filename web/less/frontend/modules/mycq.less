@@ -1009,8 +1009,8 @@ textarea.input-xlarge {
 		}
 	}
 	.thumbnail {
-		border: none;
 		padding: 0;
+		border: none;
 		position: relative;
 
 		.drop-zone-large {
@@ -1020,12 +1020,6 @@ textarea.input-xlarge {
 			background-color: @lightBlue;
 			font-size: 100px;
 			padding-top: 30px;
-		}
-		.drop-zone {
-			.size(67px, 82px);
-			margin-left: 0;
-			margin-bottom: 0;
-			padding-top: 20px;
 		}
 		.info-text {
 			position: absolute;
@@ -1040,6 +1034,18 @@ textarea.input-xlarge {
 			line-height: 22px;
 		}
 	}
+	.ui-droppable {
+		border: 2px dashed @blue!important;
+		.border-radius(0);
+	}
+	.drop-zone {
+		.size(92px, 92px);
+		margin-left: 0;
+		margin-bottom: 0;
+	}
+	.drop-zone i {
+		padding-top: 20px;
+	}
 }
 
 .ui-droppable {
@@ -1053,6 +1059,7 @@ textarea.input-xlarge {
 .ui-state-highlight {
   // #gradient > .vertical(@yellowHighlight, @yellowLight);
   color: @white;
+	z-index: 100;
 
   a {
     color: @white;

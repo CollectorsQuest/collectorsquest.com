@@ -17,7 +17,9 @@
           <ul class="thumbnails">
             <li class="span12">
               <?php if ($image = $collectible->getPrimaryImage()): ?>
-                <?= image_tag_multimedia($image, '300x300'); ?>
+                <div class="ui-droppable">
+                  <?= image_tag_multimedia($image, '300x300'); ?>
+                </div>
               <?php else: ?>
                 <div class="thumbnail">
                   <i class="icon icon-download-alt drop-zone-large"></i>
@@ -29,11 +31,11 @@
             </li>
             <?php for ($i = 0; $i < 3; $i++): ?>
             <li class="span4">
-              <div class="thumbnail">
+              <div class="thumbnail drop-zone ui-droppable">
                 <?php if (isset($multimedia[$i]) && $multimedia[$i] instanceof iceModelMultimedia): ?>
-                  <?= image_tag_multimedia($multimedia[$i], '150x150', array('width' => 96, 'height' => 96)); ?>
+                  <?= image_tag_multimedia($multimedia[$i], '150x150', array('width' => 92, 'height' => 92)); ?>
                 <?php else: ?>
-                  <i class="icon icon-plus drop-zone"></i>
+                  <i class="icon icon-plus"></i>
                 <?php endif; ?>
               </div>
             </li>
