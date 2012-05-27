@@ -138,7 +138,7 @@
         </form> <!-- CollectorEditForm -->
 
 
-        <!-- easy comment in/out -->
+        <!-- easy comment in/out -- >
           <fieldset class="brown-dashes form-container-center">
             <div class="control-group">
               <label for="inlineCheckboxes" class="control-label">Wanted Items</label>
