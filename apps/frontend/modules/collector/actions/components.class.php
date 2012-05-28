@@ -11,6 +11,10 @@ class collectorComponents extends cqFrontendComponents
 
     $this->profile = $this->collector->getProfile();
 
+    $this->about_me = $this->profile->getProperty('about.me');
+    $this->about_collections = $this->profile->getProperty('about.collections');
+    $this->about_interests = $this->profile->getProperty('about.interests');
+
     return sfView::SUCCESS;
   }
 

@@ -9,7 +9,7 @@
 <div class="row-fluid header-bar">
   <div class="span9">
     <h1 class="Chivo webfont" style="margin-left: 145px;">
-      <?= $sf_user->isOwnerOf($collector) ? 'This is you!' : $collector->getDisplayName(); ?>
+      <?= $collector->getDisplayName(); ?>
     </h1>
   </div>
   <div class="span3 text-right">
@@ -25,18 +25,18 @@
           <?= image_tag_collector($collector, '235x315', array('max_width' => 138, 'max_height' => 185)) ?>
         </div>
         <div class="span8">
-          <ul style="margin-top: 10px;">
+          <ul style="margin-top: 10px; list-style: none; padding-left: 0; margin-left: 0;">
             <li>
             <?php
               echo sprintf(
-                '%s %s collector',
-                in_array(strtolower(substr($profile->getCollectorType(), 0, 1)), array('a', 'e', 'i', 'o')) ? 'An' : 'A',
+                'Is %s %s collector',
+                in_array(strtolower(substr($profile->getCollectorType(), 0, 1)), array('a', 'e', 'i', 'o')) ? 'an' : 'a',
                 '<strong>'. $profile->getCollectorType() .'</strong>'
               );
             ?>
             </li>
             <li>
-              From <?= $profile->getCountry(); ?>
+              Is from <?= ($profile->getCountryIso3166() == 'US') ? 'the United States' : $profile->getCountry(); ?>
             </li>
           </ul>
           <?php if ($text = $profile->getProperty('about.what_you_collect')): ?>
