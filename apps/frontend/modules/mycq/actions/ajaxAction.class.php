@@ -159,7 +159,7 @@ class ajaxAction extends IceAjaxAction
   /**
    * @return string
    */
-  protected function executeCollectibleDonateImage()
+  protected function executeCollectibleDonateImage(sfWebRequest $request)
   {
     /** @var $recipient Collectible */
     $recipient = CollectibleQuery::create()
@@ -169,16 +169,44 @@ class ajaxAction extends IceAjaxAction
     /** @var $donor Collectible */
     $donor = CollectibleQuery::create()
       ->findOneById($this->getRequestParameter('donor_id'));
-
     $this->forward404Unless($this->getUser()->isOwnerOf($donor));
+
+    /**
+     * Only dropbox Collectibles can be image donors
+     * because the donor gets killed (deleted) after donating
+     */
     $this->forward404if($donor->countCollectionCollectibles() > 0);
 
     /** @var $image iceModelMultimedia */
     if ($image = $donor->getPrimaryImage(Propel::CONNECTION_WRITE))
     {
-      $image->setIsPrimary($recipient->getMultimediaCount('image') === 0);
-      $image->setModelId($recipient->getId());
-      $image->save();
+      $is_primary = (boolean) $request->getParameter(
+        'is_primary', $recipient->getMultimediaCount('image') === 0
+      );
+
+      // Get rid of the old primary Multimedia
+      if ($is_primary === true && ($primary = $recipient->getPrimaryImage()))
+      {
+        $primary->delete();
+      }
+
+      try
+      {
+        $image->setIsPrimary($is_primary);
+        $image->setModelId($recipient->getId());
+        $image->save();
+      }
+      catch (PropelException $e)
+      {
+        if (preg_match('/multimedia_U_1/i', $e->getMessage()))
+        {
+          return $this->error(
+            'Multimedia Exists', 'This multimedia already exists for this object'
+          );
+        }
+
+        throw $e;
+      }
 
       $recipient->setUpdatedAt(time());
       $recipient->save();
@@ -259,44 +287,27 @@ class ajaxAction extends IceAjaxAction
     return $this->error('Error Title', 'Error Message');
   }
 
-  protected function executeCollectibleAddAlternativeImage(sfWebRequest $request)
+  protected function executeMultimediaDelete(sfWebRequest $request)
   {
-    /** @var $recipient Collectible */
-    $recipient = CollectibleQuery::create()
-      ->findOneById($this->getRequestParameter('recipient_id'));
-    $this->forward404Unless($this->getUser()->isOwnerOf($recipient));
+    $multimedia = iceModelMultimediaQuery::create()
+       ->findOneById($request->getParameter('multimedia_id'));
+    $this->forward404Unless($this->getUser()->isOwnerOf($multimedia));
 
-    /** @var $donor Collectible */
-    $donor = CollectibleQuery::create()
-      ->findOneById($this->getRequestParameter('donor_id'));
-
-    $this->forward404Unless($this->getUser()->isOwnerOf($donor));
-    $this->forward404if($donor->countCollectionCollectibles() > 0);
-
-    /** @var $image iceModelMultimedia */
-    if ($image = $donor->getPrimaryImage(Propel::CONNECTION_WRITE))
+    if ($multimedia instanceof iceModelMultimedia)
     {
-      $image->setIsPrimary(false);
-      $image->setModelId($recipient->getId());
-      $image->save();
+      if ($multimedia->getIsPrimary())
+      {
+        $model = $multimedia->getModelObject();
+        if ($alternative = $model->getMultimedia(1, 'image', false, Propel::CONNECTION_WRITE))
+        {
+          $alternative->setIsPrimary(true);
+          $alternative->save();
+        }
+      }
 
-      $recipient->setUpdatedAt(time());
-      $recipient->save();
-
-      // Delete the $donor, not needed anymore
-      $donor->delete();
-
-      // Return "Success"
-      $this->success();
-    }
-    else
-    {
-      $this->error('Error', 'There was a problem donating the image');
+      $multimedia->delete();
     }
 
-    // We do not want the web debug bar on these requests
-    sfConfig::set('sf_web_debug', false);
-
-    return sfView::NONE;
+    return $this->success();
   }
 }

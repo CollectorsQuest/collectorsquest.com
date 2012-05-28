@@ -17,23 +17,28 @@
           <ul class="thumbnails">
             <li class="span12">
               <?php if ($image = $collectible->getPrimaryImage()): ?>
-                <div class="ui-droppable">
+                <div class="thumbnail drop-zone-large" data-is-primary="1" style="position: relative;">
                   <?= image_tag_multimedia($image, '300x300'); ?>
+                  <i class="icon icon-remove-sign" data-multimedia-id="<?= $image->getId(); ?>"></i>
+                  <i class="icon icon-plus hide" style="position: absolute; top: 20%; left: 28%;"></i>
                 </div>
               <?php else: ?>
-                <div class="thumbnail">
-                  <i class="icon icon-download-alt drop-zone-large"></i>
+                <div class="thumbnail drop-zone-large" data-is-primary="1">
+                  <i class="icon icon-plus"></i>
                   <span class="info-text">
-                     Drag and drop the main image<br> of your collectible here.
+                    Drag and drop the main image<br> of your collectible here.
                   </span>
                 </div>
               <?php endif; ?>
             </li>
-            <?php for ($i = 0; $i < 3; $i++): ?>
-            <li class="span4">
-              <div class="thumbnail drop-zone ui-droppable">
-                <?php if (isset($multimedia[$i]) && $multimedia[$i] instanceof iceModelMultimedia): ?>
+            <?php for ($i = 0; $i < 3 * (intval(count($multimedia) / 3)  + 1); $i++): ?>
+            <?php $has_image = isset($multimedia[$i]) && $multimedia[$i] instanceof iceModelMultimedia ?>
+            <li class="span4 <?= $has_image ? 'ui-state-full' : 'ui-state-empty'; ?>" style="float: left;">
+              <div class="thumbnail drop-zone" data-is-primary="0" style="position: relative;">
+                <?php if ($has_image): ?>
                   <?= image_tag_multimedia($multimedia[$i], '150x150', array('width' => 92, 'height' => 92)); ?>
+                  <i class="icon icon-remove-sign" data-multimedia-id="<?= $multimedia[$i]->getId(); ?>"></i>
+                  <i class="icon icon-plus hide" style="position: absolute; top: 5%; left: 18%;"></i>
                 <?php else: ?>
                   <i class="icon icon-plus"></i>
                 <?php endif; ?>
@@ -197,13 +202,25 @@ $(document).ready(function()
     "font-styles": false, "image": false, "link": false
   });
 
-  $("#main-image-set .drop-zone").droppable(
+  $( "#main-image-set" ).sortable({
+    items: "li.span4:not(.ui-state-empty)",
+    containment: 'parent', cursor: 'move',
+    cursorAt: { left: 50, top: 50 },
+
+    update: function(event, ui)
+    {
+
+    }
+  });
+
+  $("#main-image-set .drop-zone, #main-image-set .drop-zone-large").droppable(
   {
+    accept: ".draggable",
     over: function(event, ui)
     {
       $(this).addClass("ui-state-highlight");
       $(this).find('img').hide();
-      $(this).find('i')
+      $(this).find('i.icon-plus')
         .removeClass('icon-plus')
         .addClass('icon-download-alt')
         .show();
@@ -211,15 +228,17 @@ $(document).ready(function()
     out: function(event, ui)
     {
       $(this).removeClass("ui-state-highlight");
-      $(this).find('i')
+      $(this).find('i.icon-download-alt')
         .removeClass('icon-download-alt')
         .addClass('icon-plus');
+      $(this).find('i.hide').hide();
+
       $(this).find('img').show();
     },
     drop: function(event, ui)
     {
       $(this).removeClass("ui-state-highlight");
-      $(this).find('i')
+      $(this).find('i.icon-download-alt')
         .removeClass('icon-download-alt')
         .addClass('icon-plus');
       ui.draggable.draggable('option', 'revert', false);
@@ -228,11 +247,12 @@ $(document).ready(function()
       $(this).showLoading();
 
       $.ajax({
-        url: '<?= url_for('@ajax_mycq?section=collectible&page=addAlternativeImage'); ?>',
+        url: '<?= url_for('@ajax_mycq?section=collectible&page=donateImage'); ?>',
         type: 'GET',
         data: {
           recipient_id: '<?= $collectible->getId() ?>',
-          donor_id: ui.draggable.data('collectible-id')
+          donor_id: ui.draggable.data('collectible-id'),
+          is_primary: $(this).data('is-primary')
         },
         success: function()
         {
@@ -246,11 +266,42 @@ $(document).ready(function()
     }
   });
 
+  $('#main-image-set .icon-remove-sign').click(function()
+  {
+    var $icon = $(this);
+
+    $icon.hide();
+    $icon.parent('div.ui-droppable').showLoading();
+
+    $.ajax({
+      url: '<?= url_for('@ajax_mycq?section=multimedia&page=delete&encrypt=1'); ?>',
+      type: 'post', data: { multimedia_id: $icon.data('multimedia-id') },
+      success: function()
+      {
+        window.location.reload();
+      },
+      error: function()
+      {
+        $(this).hideLoading();
+        $icon.show();
+      }
+    });
+  });
+
   $('#collectible_for_sale_is_ready').change(function()
   {
     $('#form-collectible-for-sale').toggleClass(
       'hide', $(this).attr('checked') !== 'checked'
     );
+
+    if ($(this).attr('checked') !== 'checked')
+    {
+      $(".cb-disable").click();
+    }
+    else
+    {
+      $(".cb-enable").click();
+    }
   });
 
   $(".cb-enable").click(function()
@@ -275,7 +326,7 @@ $(document).ready(function()
 
   if ($('#collectible_for_sale_is_ready').attr('checked'))
   {
-    $(".cb-enable").click();
+    $(this).find(".cb-enable").click();
   }
 });
 </script>

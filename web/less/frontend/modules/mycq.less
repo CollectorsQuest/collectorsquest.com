@@ -976,76 +976,120 @@ textarea.input-xlarge {
 
 
 #main-image-set {
-	width: 100%;
-	margin-bottom: 20px;
-	.clearfix();
-}
+  width: 100%;
+  margin-bottom: 20px;
+  .clearfix();
 
-#main-image-set .main-image-set-container {
-	width: 300px;
-	margin: 0 auto;
+  .main-image-set-container {
+    width: 300px;
+    margin: 0 auto;
 
-	.thumbnails {
-		margin-right: -7px;
-		margin-left: 0;
-		margin-bottom: 0;
+    .thumbnails {
+      margin-right: -7px;
+      margin-left: 0;
+      margin-bottom: 0;
 
-		[class*="span"] {
-			margin-right: 5px;
-		  margin-left: 0;
-			margin-bottom: 5px;
-		}
-		.span12 {
-			width: 300px;
-		}
-		a {
-			.box-shadow(none);
-			&:hover {
-				padding: 0;
-				background-color: white;
-				border: none;
-				.border-radius(0);
-			}
-		}
-	}
-	.thumbnail {
-		padding: 0;
-		border: none;
-		position: relative;
+      [class*="span"] {
+        margin-right: 5px;
+        margin-left: 0;
+        margin-bottom: 5px;
+      }
+      .span12 {
+        width: 300px;
+      }
 
-		.drop-zone-large {
-			.size(256px, 285px);
-			margin-left: 0;
-			margin-bottom: 4px;
-			background-color: @lightBlue;
-			font-size: 100px;
-			padding-top: 30px;
-		}
-		.info-text {
-			position: absolute;
-			display: block;
-			top: 160px;
-			left: 50px;
-			width: 200px;
-			height: 100px;
-			text-align: center;
-			color: @blueDark;
-			text-size: 14px;
-			line-height: 22px;
-		}
-	}
-	.ui-droppable {
-		border: 2px dashed @blue!important;
-		.border-radius(0);
-	}
-	.drop-zone {
-		.size(92px, 92px);
-		margin-left: 0;
-		margin-bottom: 0;
-	}
-	.drop-zone i {
-		padding-top: 20px;
-	}
+      .span4 {
+        &.ui-sortable-helper {
+          .icon-remove-sign {
+            display: none;
+          }
+        }
+      }
+
+      a {
+        .box-shadow(none);
+        &:hover {
+          padding: 0;
+          background-color: white;
+          border: none;
+          .border-radius(0);
+        }
+      }
+    }
+
+    .drop-zone-large {
+      .size(300px, 296px);
+      margin-left: 0;
+      margin-bottom: 4px;
+      background-color: @lightBlue;
+      font-size: 100px;
+      padding: 0;
+
+      i.icon-plus, i.icon-download-alt {
+        margin-top: 35px;
+      }
+
+      .info-text {
+        position: absolute;
+        display: block;
+        top: 160px;
+        left: 50px;
+        width: 200px;
+        height: 100px;
+        text-align: center;
+        color: @blueDark;
+        font-size: 14px;
+        line-height: 22px;
+      }
+    }
+
+    .thumbnail {
+      padding: 0;
+      border: none;
+      position: relative;
+    }
+    .ui-droppable {
+      border: 2px dashed @blue!important;
+      .border-radius(0);
+
+      &:hover {
+        .icon-remove-sign {
+          display: block;
+        }
+      }
+    }
+
+    .icon-remove-sign {
+      color: transparent;
+      position: absolute;
+      font-size: 30px;
+      cursor: pointer;
+      display: none;
+      margin-top: 0;
+      width: 26px;
+      height: 26px;
+      background: url(/images/icons/fancy_close.png) no-repeat center top;
+    }
+
+    .span4 .icon-remove-sign {
+      left: 75px;
+      top: -10px;
+    }
+
+    .span12 .icon-remove-sign {
+      left: 95%;
+      top: -10px;
+    }
+
+    .drop-zone {
+      .size(92px, 92px);
+      margin-left: 0;
+      margin-bottom: 0;
+    }
+    .drop-zone i {
+      padding-top: 20px;
+    }
+  }
 }
 
 .ui-droppable {

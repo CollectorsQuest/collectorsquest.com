@@ -20,7 +20,7 @@
             <h3 class="Chivo webfont">My Collectibles for Sale (<?= $total ?>)</h3>
           </div>
           <div class="span7">
-            <?php if ($total > 7): ?>
+            <?php if ($total > 11): ?>
             <div class="mycq-sort-search-box">
               <div class="input-append">
                 <form id="form-mycq-collectibles-for-sale" method="post"
@@ -43,7 +43,6 @@
             <?php endif; ?>
           </div>
         </div>
-
 
         <div class="mycq-collectibles-for-sale">
           <div class="row thumbnails">
