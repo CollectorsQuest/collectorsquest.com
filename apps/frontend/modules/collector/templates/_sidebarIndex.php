@@ -28,21 +28,31 @@
   </div>
 </div>
 
+<?php if ($about_me || $about_collections || $about_interests): ?>
+
+  <?php cq_section_title('More About '. $collector->getDisplayName()); ?>
+  <div class="personal-info-sidebar">
+    <?php if ($about_me): ?>
+      <p><strong>About me:</strong> <?= $about_me; ?></p>
+    <?php endif; ?>
+    <?php if ($about_collections): ?>
+      <p><strong>My collections:</strong> <?= $about_collections; ?></p>
+    <?php endif; ?>
+    <?php if ($about_interests): ?>
+      <p><strong>My interests:</strong> <?= $about_interests; ?></p>
+    <?php endif; ?>
+  </div>
+
+<?php else: ?>
+
 <?php
-  $name = $sf_user->isOwnerOf($collector) ? 'You' : $collector->getDisplayName();
-  cq_section_title('More About '. $name);
+  include_component(
+    '_sidebar', 'widgetCollections',
+    array('collector' => $collector)
+  );
 ?>
-<div class="personal-info-sidebar">
-  <?php if ($text = $profile->getProperty('about.me')): ?>
-    <p><strong>About me:</strong> <?= $text; ?></p>
-  <?php endif; ?>
-  <?php if ($text = $profile->getProperty('about.collections')): ?>
-    <p><strong>My collections:</strong> <?= $text; ?></p>
-  <?php endif; ?>
-  <?php if ($text = $profile->getProperty('about.interests')): ?>
-    <p><strong>My interests:</strong> <?= $text; ?></p>
-  <?php endif; ?>
-</div>
+
+<?php endif; ?>
 
 <?php
 //  include_component(
@@ -50,3 +60,4 @@
 //    array('collector' => $collector)
 //  );
 ?>
+
