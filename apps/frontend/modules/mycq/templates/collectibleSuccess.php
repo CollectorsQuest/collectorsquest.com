@@ -18,12 +18,12 @@
             <li class="span12">
               <?php if ($image = $collectible->getPrimaryImage()): ?>
                 <div class="thumbnail drop-zone-large" data-is-primary="1" style="position: relative;">
-                  <?= image_tag_multimedia($image, '300x300'); ?>
+                  <?= image_tag_multimedia($image, '300x0'); ?>
                   <i class="icon icon-remove-sign" data-multimedia-id="<?= $image->getId(); ?>"></i>
-                  <i class="icon icon-plus hide" style="position: absolute; top: 20%; left: 28%;"></i>
+                  <i class="icon icon-plus hide" style="position: absolute; top: 10%; left: 28%;"></i>
                 </div>
               <?php else: ?>
-                <div class="thumbnail drop-zone-large" data-is-primary="1">
+                <div class="thumbnail drop-zone-large empty" data-is-primary="1">
                   <i class="icon icon-plus"></i>
                   <span class="info-text">
                     Drag and drop the main image<br> of your collectible here.
@@ -40,7 +40,10 @@
                   <i class="icon icon-remove-sign" data-multimedia-id="<?= $multimedia[$i]->getId(); ?>"></i>
                   <i class="icon icon-plus hide" style="position: absolute; top: 5%; left: 18%;"></i>
                 <?php else: ?>
-                  <i class="icon icon-plus"></i>
+                  <i class="icon icon-plus" style="font-size: 40px; padding-top: 0;"></i>
+                  <div style="font-size: 14px; line-height: 18px; font-weight: bold;">
+                    Alternate<br/> View
+                  </div>
                 <?php endif; ?>
               </div>
             </li>
@@ -219,7 +222,7 @@ $(document).ready(function()
     over: function(event, ui)
     {
       $(this).addClass("ui-state-highlight");
-      $(this).find('img').hide();
+      $(this).find('img').fadeTo('fast', 0);
       $(this).find('i.icon-plus')
         .removeClass('icon-plus')
         .addClass('icon-download-alt')
@@ -233,7 +236,7 @@ $(document).ready(function()
         .addClass('icon-plus');
       $(this).find('i.hide').hide();
 
-      $(this).find('img').show();
+      $(this).find('img').fadeTo('slow', 1);
     },
     drop: function(event, ui)
     {
@@ -254,13 +257,14 @@ $(document).ready(function()
           donor_id: ui.draggable.data('collectible-id'),
           is_primary: $(this).data('is-primary')
         },
+        dataType: 'json',
         success: function()
         {
           window.location.reload();
         },
-        error: function()
+        error: function(data, response)
         {
-          // error
+          ;
         }
       });
     }

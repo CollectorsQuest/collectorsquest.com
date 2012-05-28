@@ -1018,18 +1018,21 @@ textarea.input-xlarge {
     }
 
     .drop-zone-large {
-      .size(300px, 296px);
+      width: 300px;
+      height: auto;
       margin-left: 0;
       margin-bottom: 4px;
       background-color: @lightBlue;
       font-size: 100px;
+      text-align: center;
       padding: 0;
 
       i.icon-plus, i.icon-download-alt {
         margin-top: 35px;
       }
 
-      .info-text {
+      .info-text
+      {
         position: absolute;
         display: block;
         top: 160px;
@@ -1041,6 +1044,10 @@ textarea.input-xlarge {
         font-size: 14px;
         line-height: 22px;
       }
+    }
+
+    .drop-zone-large.empty {
+      .square(300px);
     }
 
     .thumbnail {
