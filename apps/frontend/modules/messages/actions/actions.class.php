@@ -118,7 +118,7 @@ class messagesActions extends cqFrontendActions
         {
           // we are replaying to a thread, so we should be redirected
           // to the thread's page
-          return $this->redirect('messages_show#latest-message', $form->getObject());
+          return $this->redirect($this->generateUrl('messages_show', $form->getObject()).'#latest-message');
         }
         else
         {
