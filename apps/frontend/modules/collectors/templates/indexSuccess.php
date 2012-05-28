@@ -2,10 +2,11 @@
 /*
  * @var $pager PropelModelPager
  * @var $collector Collector
- * @var $filter string
+ * @var $sortBy string
+ * @var $type string
  */
 ?>
-<h1 class="Chivo webfont"><?='sellers' == $filter ? 'Sellers' : 'Collectors'?></h1>
+<h1 class="Chivo webfont"><?='sellers' == $type ? 'Sellers' : 'Collectors'?></h1>
 
 <div class="row">
   <div id="search-results" class="row-content">
