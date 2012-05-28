@@ -223,7 +223,7 @@ $lastclass = 0;
 
         echo (++$e % 2 == 0) ? ' even' : ' odd';
 
-        ?> row" id="post-<?php the_ID(); ?>">
+        ?> row-fluid" id="post-<?php the_ID(); ?>">
 
         <?php if (is_single()) : ?>
           <!-- <div class="entry-genre"><a href="" title=""><?php the_category() ?></a></div> -->
@@ -248,7 +248,8 @@ $lastclass = 0;
             $size = 'blog-homepage-p1';
             //$size = array(300,300);
           else :
-            $size = 'blog-homepage-thumb';
+            //$size = 'blog-homepage-thumb';
+            $size = 'thumbnail';
             //$size = array(140,140);
           endif;
           ?>
