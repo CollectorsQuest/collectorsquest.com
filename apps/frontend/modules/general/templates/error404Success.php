@@ -1,30 +1,26 @@
-<h1 style="font-size: 250%;">Sorry, the page you&rsquo;re looking for isn&rsquo;t here anymore.</h1>
+<br/>
+<h1 style="font-size: 250%;">Sorry, we seem to have misplaced this page!</h1>
+
+<br/>
 <h2 style="color: #877; line-height: 26px; margin-top: 10px;">
-  You didn&rsquo;t do anything wrong.
-  We may have moved the page you&rsquo;re looking for somewhere else.
+  If you reached this page from another part of this website, please
+  <?= link_to('let us know', '@feedback'); ?> and we'll try to fix our link.
 </h2>
 
 <br/>
-<section class="faq">
-  <h3>Did you follow a link from here?</h3>
-
-  <p>If you reached this page from another part of collectorsquest.com, please
-    <?= link_to('let us know', '@feedback'); ?> so we can correct our mistake.</p>
-
-  <h3>Did you follow a link from another site?</h3>
-
-  <p>Links from other sites can sometimes be outdated or misspelled.
-    <?= link_to('Let us know', '@feedback'); ?> where you came from and we can try to
-    contact the other site in order to fix the problem.
-  </p>
-
-  <h3>Did you type the URL?</h3>
+<section class="404">
   <p>
-    You may have typed the address (URL) incorrectly.
-    Check to make sure you&rsquo;ve got the exact right spelling, capitalization, etc.
-
-    The <?= link_to('CollectorsQuest.com home page', 'homepage') ?> has links to our most popular content.
+    If you came from another site, <?= link_to('let us know', '@feedback'); ?>
+    where you came from so that we can try to fix the problem.
   </p>
+  <p>And if you typed the address yourself, check to make sure you got it right!</p>
+  <p>
+    If you're just totally lost, stop on by our <?= link_to('home page', 'homepage') ?>
+    to see our newest stuff, or use the search bar above to find exactly what you're looking for.
+  </p>
+
+  <br/>
+  <p>Thanks for using Collectors Quest!</p>
 </section>
 
 <div class="row-fluid" style="margin-top: 50px;">
