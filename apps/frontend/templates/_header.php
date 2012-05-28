@@ -28,6 +28,7 @@
         </div>
       </div>
       <div class="span4 pull-right" style="float: right; text-align: right; padding-top: 2px;">
+        <!--
         <a href="<?= url_for('@shopping_cart', true); ?>" class="link-cart"
            title="<?= (0 < $k) ? 'View your shopping cart' : 'Your shopping cart is empty!'; ?>">
           <span class="shopping-cart-inner shopping-cart">
@@ -39,6 +40,8 @@
           </span>
         </a>
         <span class="nav-divider"></span>
+        //-->
+
         <?php if ($sf_user->isAuthenticated()): ?>
           &nbsp;
           <div id="menu-my-account" class="btn-group dropdown button-my-account">
