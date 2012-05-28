@@ -7,9 +7,9 @@
       <?= money_format('%.2n', (float) $collectible_for_sale->getPrice()); ?>
     </p>
     <?php if (!$sf_user->getCollector()->isOwnerOf($collectible_for_sale)): ?>
-    <button type="submit" class="btn btn-primary blue-button pull-left" value="Contact the Seller">
-      <i class="icon icon-envelope icon-white"></i>&nbsp;
-      <span>Contact the Seller</span>
+    <button type="submit" class="btn btn-primary blue-button pull-left" value="Add Item to Cart">
+      <i class="add-to-card-button"></i>
+      <span>Add Item to Cart</span>
     </button>
     <?php endif; ?>
   </div>
