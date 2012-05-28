@@ -301,7 +301,7 @@ class collectorActions extends cqFrontendActions
   {
     $collector = $this->getRoute()->getObject();
 
-    $this->loadHelpers('cqImages');
+    $this->loadHelpers(array('cqImages'));
     $this->redirect(src_tag_collector($collector, '100x100', true, array('absolute'=> true)), 301);
   }
 

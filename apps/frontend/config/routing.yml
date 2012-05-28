@@ -106,7 +106,7 @@ collector_avatar:
   url:  /collector/:id/:size/avatar.jpg
   class: cqPropelRoute
   options: { model: Collector, type: object, method: getObjectForRoute }
-  param: { module: collector, action: avatar }
+  param: { module: collector, action: avatar, size: '100x100' }
   requirements: { id: '\d+' }
 
 collector_by_slug:
