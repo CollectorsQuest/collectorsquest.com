@@ -229,6 +229,19 @@ class _sidebarComponents extends cqFrontendComponents
     // Set the limit of Collections to show
     $this->limit = $this->getVar('limit') !== null ? (int) $this->getVar('limit') : 3;
 
+    // setup PM form
+    $subject = null;
+    if (isset($this->collectible))
+    {
+      $subject = 'Regarding your item: '. addslashes($this->collectible->getName());
+    }
+    else if (isset($this->collection))
+    {
+      $subject = 'Regarding your collection: '. addslashes($this->collection->getName());
+    }
+    $this->pm_form = new ComposeAbridgedPrivateMessageForm(
+      $this->getUser()->getCollector(), $this->getVar('collector'), $subject);
+
     if ($collector instanceof Collector)
     {
       if ($this->limit > 0)

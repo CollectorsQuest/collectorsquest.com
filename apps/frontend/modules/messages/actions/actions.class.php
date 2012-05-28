@@ -128,7 +128,7 @@ class messagesActions extends cqFrontendActions
             $receiver->getDisplayName()
           ));
 
-          return $this->redirect('messages_inbox');
+          return $this->redirect($form->getValue('goto') ?: 'messages_inbox');
         }
       }
       else
