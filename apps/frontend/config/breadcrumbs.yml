@@ -80,7 +80,7 @@ ice_breadcrumbs:
     blog:
       - { name: 'Search', route: search }
       - { name: 'Blog Articles' }
-    video:
+    videos:
       - { name: 'Search', route: search }
       - { name: 'Video' }
 
