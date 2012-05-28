@@ -1,2 +1,4 @@
 all:
-  stylesheets: [frontend/modules/collectors.css]
+  stylesheets: [frontend/modules/search.css, frontend/modules/collectors.css]
+  components:
+    sidebar_300: [collectors, sidebar]

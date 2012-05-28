@@ -150,7 +150,7 @@ class _sidebarComponents extends cqFrontendComponents
         if (false !== strpos($this->category->getName(), '&'))
         {
           //FIXME: Remove when slugs are updated
-          $slug = Utf8::slugify($this->category->getName());
+          $slug = Utf8::slugify($this->category->getName(), '-', true);
         }
         $this->videos = $magnify->getContent()->find($slug, 1, $this->limit);
       }
