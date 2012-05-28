@@ -15,12 +15,12 @@
       <div id="main-image-set">
         <div class="main-image-set-container">
           <ul class="thumbnails">
-            <li class="span12">
+            <li class="span12 main-thumb">
               <?php if ($image = $collectible->getPrimaryImage()): ?>
-                <div class="thumbnail drop-zone-large" data-is-primary="1" style="position: relative;">
-                  <?= image_tag_multimedia($image, '300x0'); ?>
+                <div class="thumbnail drop-zone-large" data-is-primary="1">
+                  <?= image_tag_multimedia($image, '294x0'); ?>
                   <i class="icon icon-remove-sign" data-multimedia-id="<?= $image->getId(); ?>"></i>
-                  <i class="icon icon-plus hide" style="position: absolute; top: 10%; left: 28%;"></i>
+                  <i class="icon icon-plus icon-plus-pos hide"></i>
                 </div>
               <?php else: ?>
                 <div class="thumbnail drop-zone-large empty" data-is-primary="1">
@@ -33,17 +33,17 @@
             </li>
             <?php for ($i = 0; $i < 3 * (intval(count($multimedia) / 3)  + 1); $i++): ?>
             <?php $has_image = isset($multimedia[$i]) && $multimedia[$i] instanceof iceModelMultimedia ?>
-            <li class="span4 <?= $has_image ? 'ui-state-full' : 'ui-state-empty'; ?>" style="float: left;">
-              <div class="thumbnail drop-zone" data-is-primary="0" style="position: relative;">
+            <li class="span4 square-thumb <?= $has_image ? 'ui-state-full' : 'ui-state-empty'; ?>">
+              <div class="thumbnail drop-zone" data-is-primary="0">
                 <?php if ($has_image): ?>
                   <?= image_tag_multimedia($multimedia[$i], '150x150', array('width' => 92, 'height' => 92)); ?>
                   <i class="icon icon-remove-sign" data-multimedia-id="<?= $multimedia[$i]->getId(); ?>"></i>
-                  <i class="icon icon-plus hide" style="position: absolute; top: 5%; left: 18%;"></i>
+                  <i class="icon icon-plus icon-plus-pos hide"></i>
                 <?php else: ?>
-                  <i class="icon icon-plus" style="font-size: 40px; padding-top: 0;"></i>
-                  <div style="font-size: 14px; line-height: 18px; font-weight: bold;">
+                  <i class="icon icon-plus white-alternate-view"></i>
+                  <span class="info-text">
                     Alternate<br/> View
-                  </div>
+                  </span>
                 <?php endif; ?>
               </div>
             </li>

@@ -981,11 +981,11 @@ textarea.input-xlarge {
   .clearfix();
 
   .main-image-set-container {
-    width: 300px;
+    width: 298px;
     margin: 0 auto;
 
     .thumbnails {
-      margin-right: -7px;
+      margin-right: -5px;
       margin-left: 0;
       margin-bottom: 0;
 
@@ -994,11 +994,13 @@ textarea.input-xlarge {
         margin-left: 0;
         margin-bottom: 5px;
       }
-      .span12 {
-        width: 300px;
-      }
 
-      .span4 {
+      .main-thumb {
+        width: 298px;
+      }
+      .square-thumb {
+	      width: 96px;
+
         &.ui-sortable-helper {
           .icon-remove-sign {
             display: none;
@@ -1018,14 +1020,14 @@ textarea.input-xlarge {
     }
 
     .drop-zone-large {
-      width: 300px;
-      height: auto;
+	    position: relative;
+	    .size(auto, 294px);
       margin-left: 0;
       margin-bottom: 4px;
-      background-color: @lightBlue;
+	    padding: 0;
       font-size: 100px;
       text-align: center;
-      padding: 0;
+	    background-color: @lightBlue;
 
       i.icon-plus, i.icon-download-alt {
         margin-top: 35px;
@@ -1037,28 +1039,27 @@ textarea.input-xlarge {
         display: block;
         top: 160px;
         left: 50px;
-        width: 200px;
-        height: 100px;
+	      .size(100px, 200px);
+         font-size: 14px;
+	      line-height: 22px;
         text-align: center;
         color: @blueDark;
-        font-size: 14px;
-        line-height: 22px;
       }
     }
 
     .drop-zone-large.empty {
-      .square(300px);
+      .square(294px);
     }
 
     .thumbnail {
+	    position: relative;
       padding: 0;
       border: none;
-      position: relative;
     }
+
     .ui-droppable {
       border: 2px dashed @blue!important;
       .border-radius(0);
-
       &:hover {
         .icon-remove-sign {
           display: block;
@@ -1067,35 +1068,59 @@ textarea.input-xlarge {
     }
 
     .icon-remove-sign {
-      color: transparent;
       position: absolute;
+	    display: none;
+	    .square(26px);
+	    margin-top: 0;
       font-size: 30px;
-      cursor: pointer;
-      display: none;
-      margin-top: 0;
-      width: 26px;
-      height: 26px;
+	    color: transparent;
       background: url(/images/icons/fancy_close.png) no-repeat center top;
+	    cursor: pointer;
     }
 
-    .span4 .icon-remove-sign {
+    .square-thumb .icon-remove-sign {
       left: 75px;
       top: -10px;
     }
 
-    .span12 .icon-remove-sign {
+    .main-thumb .icon-remove-sign {
       left: 95%;
       top: -10px;
     }
 
+
+		.info-text {
+	    display: block;
+	    font-size: 14px;
+	    line-height: 18px;
+	    font-weight: bold;
+    }
+
     .drop-zone {
-      .size(92px, 92px);
-      margin-left: 0;
+	    position: relative;
+	    .square(92px);
       margin-bottom: 0;
+	    margin-left: 0;
     }
     .drop-zone i {
       padding-top: 20px;
     }
+
+		.white-alternate-view {
+			font-size: 40px;
+			padding-top: 0!important;
+		}
+
+		.main-thumb .icon-plus-pos {
+				position: absolute;
+				top: 10%;
+				left: 28%;
+		}
+		.square-thumb .icon-plus-pos {
+				position: absolute;
+				top: 5%;
+				left: 18%;
+		}
   }
 }
 
