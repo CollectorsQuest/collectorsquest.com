@@ -362,7 +362,7 @@ $lastclass = 0;
           ?>
         </div>
 
-        <?php if ((is_front_page() && $count == 1) || is_single()) : ?>
+        <?php if ((is_front_page() && $count == 1) /* is_single()*/) : ?>
         <div class="entry-footer <?php if (is_front_page() && $count==1): echo "span6"; else : echo "span12"; endif; ?>">
         <?php if (is_front_page() && $count == 1) : ?>
           <p><?php the_tags(); ?></p>
