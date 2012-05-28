@@ -53,6 +53,7 @@ class collectorsActions extends cqFrontendActions
     $pager->init();
 
     $this->pager = $pager;
+    $this->display = $this->getUser()->getAttribute('display', 'grid', 'search');
     $this->filter = $filter;
 
     return sfView::SUCCESS;

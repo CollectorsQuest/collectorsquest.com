@@ -136,7 +136,7 @@ collector_signup:
 
 sellers:
   url:  /sellers
-  param: { module: sellers, action: index }
+  param: { module: collectors, action: index, filter: sellers }
 
 seller_signup:
   url:   /seller/signup/:step
