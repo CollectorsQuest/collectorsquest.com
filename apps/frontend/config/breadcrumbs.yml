@@ -64,7 +64,7 @@ ice_breadcrumbs:
       - { name: '%Name%', model: true }
 
   search:
-    index: [{ name: 'Search Results', route: search }]
+    index: [{ name: 'Search Results' }]
     collections:
       - { name: 'Search', route: search }
       - { name: 'Collections' }
