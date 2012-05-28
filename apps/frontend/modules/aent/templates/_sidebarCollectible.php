@@ -27,15 +27,15 @@
 
 <?php
   include_component(
-    '_sidebar', 'widgetTags',
-    array('collectible' => $collectible)
+    '_sidebar', 'widgetCollectionCollectibles',
+    array('collectible' => $collectible, 'limit' => 4)
   );
 ?>
 
 <?php
   include_component(
-    '_sidebar', 'widgetCollectionCollectibles',
-    array('collectible' => $collectible, 'limit' => 4)
+    '_sidebar', 'widgetTags',
+    array('collectible' => $collectible)
   );
 ?>
 

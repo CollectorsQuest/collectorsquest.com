@@ -1,4 +1,4 @@
-<?php cq_sidebar_title('Related Collections') ?>
+<?php cq_sidebar_title('Collections of Interest') ?>
 
 <?php foreach ($collections as $collection): ?>
   <div id="sidebar_collection_<?php echo  $collection->getId(); ?>" class="row-fluid link">

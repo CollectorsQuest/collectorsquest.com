@@ -7,9 +7,9 @@
       <?= money_format('%.2n', (float) $collectible_for_sale->getPrice()); ?>
     </p>
     <?php if (!$sf_user->getCollector()->isOwnerOf($collectible_for_sale)): ?>
-    <button type="submit" class="btn btn-primary blue-button pull-left" value="Add Item to Cart">
-      <i class="add-to-card-button"></i>
-      <span>Add Item to Cart</span>
+    <button type="submit" class="btn btn-primary blue-button pull-left" value="Contact the Seller">
+      <i class="icon icon-envelope icon-white"></i>&nbsp;
+      <span>Contact the Seller</span>
     </button>
     <?php endif; ?>
   </div>
@@ -31,8 +31,8 @@
 
 <?php
   include_component(
-    '_sidebar', 'widgetTags',
-    array('collectible' => $collectible)
+    '_sidebar', 'widgetCollectionCollectibles',
+    array('collectible' => $collectible, 'limit' => 4)
   );
 ?>
 
@@ -43,6 +43,12 @@
   );
 ?>
 
+<?php
+  include_component(
+    '_sidebar', 'widgetTags',
+    array('collectible' => $collectible)
+  );
+?>
 
 <?php
   include_component(

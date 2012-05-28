@@ -60,9 +60,9 @@
         <?php /* <button type="button" class="btn cancel" value="cancel">cancel</button>
          &nbsp; - or - &nbsp;
         <input type="submit" class="btn btn-lightblue-normal" value="Send the Message"> */?>
-        <a href="#" class="btn btn-lightblue-normal textright">
+        <button type="submit" class="btn btn-lightblue-normal textright">
           <i class="mail-icon-mini"></i> &nbsp;Send message
-        </a>
+        </button>
       </div>
     </form>
   </div>
@@ -96,18 +96,18 @@
 <?php endif; ?>
 
 <script>
-  $(document).ready(function()
+$(document).ready(function()
+{
+  $('#form-private-message textarea').focus(function()
   {
-    $('#form-private-message textarea').focus(function()
-    {
-      $(this).css('height', '100px');
-      $('#buttons-private-message').slideDown();
-    });
-
-    $('#buttons-private-message .cancel').click(function()
-    {
-      $('#buttons-private-message').slideUp();
-      $('#form-private-message textarea').css('height', 'auto');
-    });
+    $(this).css('height', '100px');
+    $('#buttons-private-message').slideDown();
   });
+
+  $('#buttons-private-message .cancel').click(function()
+  {
+    $('#buttons-private-message').slideUp();
+    $('#form-private-message textarea').css('height', 'auto');
+  });
+});
 </script>
