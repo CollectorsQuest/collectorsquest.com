@@ -2,6 +2,7 @@
 
 class collectorActions extends cqFrontendActions
 {
+
   public function executeIndex(sfWebRequest $request)
   {
     /** @var $collector Collector */
@@ -29,7 +30,7 @@ class collectorActions extends cqFrontendActions
   {
     if ($this->getUser()->isAuthenticated() && ($collector = $this->getCollector()))
     {
-      $id = $collector->getId();
+      $id   = $collector->getId();
       $slug = $collector->getSlug();
 
       $this->redirect('@dropbox_by_slug?collector_id=' . $id . '&collector_slug=' . $slug);
@@ -42,7 +43,7 @@ class collectorActions extends cqFrontendActions
   {
     if ($this->getUser()->isAuthenticated() && ($collector = $this->getCollector()))
     {
-      $id = $collector->getId();
+      $id   = $collector->getId();
       $slug = $collector->getSlug();
 
       $this->redirect('@collector_by_slug?id=' . $id . '&slug=' . $slug);
@@ -60,7 +61,7 @@ class collectorActions extends cqFrontendActions
     // Redirect to the community if already signed up
     $this->redirectIf($this->getUser()->isAuthenticated()
           && $this->getUser()->getCollector()->getHasCompletedRegistration(),
-         '@mycq');
+      '@mycq');
 
     $this->form = new CollectorSignupStep1Form();
 
@@ -84,18 +85,16 @@ class collectorActions extends cqFrontendActions
       }
     }
 
-
     // Everything below this comment is the old implementation.
     // When it has been confirmed that it will not be needed, it should be deleted
 
-
     /* * /
-    if (!$this->getUser()->isAuthenticated() && !$this->getUser()->getAttribute('signup_type', false, 'registration'))
-    {
-      $this->redirect('collector/signupChoice');
-    }
-    $signupType = $this->getUser()->getAttribute('signup_type', null, 'registration');
-    /* */
+   if (!$this->getUser()->isAuthenticated() && !$this->getUser()->getAttribute('signup_type', false, 'registration'))
+   {
+     $this->redirect('collector/signupChoice');
+   }
+   $signupType = $this->getUser()->getAttribute('signup_type', null, 'registration');
+   /* */
 
     $defaultStep = 1;
 
@@ -289,6 +288,21 @@ class collectorActions extends cqFrontendActions
     /* */
 
     return sfView::SUCCESS;
+  }
+
+  /**
+   * Action Avatar
+   *
+   * @param sfWebRequest $request
+   *
+   * @return string
+   */
+  public function executeAvatar(sfWebRequest $request)
+  {
+    $collector = $this->getRoute()->getObject();
+
+    $this->loadHelpers('cqImages');
+    $this->redirect(src_tag_collector($collector, '100x100', true, array('absolute'=> true)), 301);
   }
 
 }

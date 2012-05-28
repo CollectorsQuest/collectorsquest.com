@@ -102,6 +102,13 @@ collectors:
   url:  /collectors
   param: { module: collectors, action: index }
 
+collector_avatar:
+  url:  /collector/:id/:size/avatar.jpg
+  class: cqPropelRoute
+  options: { model: Collector, type: object, method: getObjectForRoute }
+  param: { module: collector, action: avatar }
+  requirements: { id: '\d+' }
+
 collector_by_slug:
   url:  /collector/:id/:slug
   class: cqPropelRoute
