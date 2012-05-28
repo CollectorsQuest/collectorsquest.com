@@ -46,7 +46,7 @@
     </div>
   </div>
 
-  <table class="private-messages-list table table-bordered">
+  <table id="private-messages-inbox" class="private-messages-list table table-bordered">
     <tbody>
     <?php if (count($messages)): foreach ($messages as $message):
       $message_link = url_for('messages_show', $message)

@@ -93,6 +93,17 @@ var APP = window.APP = {
             break;
         }
       });
+      var $action_buttons = $('.private-messages-list-actions input')
+                            .addClass('disabled').attr('disabled', 'disabled');
+      var $messages_inbox = $('#private-messages-inbox');
+
+      $messages_inbox.on('change', 'input', function(){
+        if ($messages_inbox.find('input:checked').length) {
+          $action_buttons.removeClass('disabled').removeAttr('disabled');
+        } else {
+          $action_buttons.addClass('disabled').attr('disabled', 'disabled');
+        }
+      });
     },
     show: function() {
       $('#message_body').elastic();
