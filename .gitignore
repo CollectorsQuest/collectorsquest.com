@@ -25,7 +25,8 @@ map
 base
 
 # composer modules
-.composer
+.composer/
+composer/
 /plugins/sfGuardPlugin
 /lib/vendor/neo4jphp
 /lib/vendor/faker
