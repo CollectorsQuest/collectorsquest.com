@@ -13,83 +13,79 @@
 
 
 <div id="mycq-tabs">
-  <!-- -- >
-  <ul class="nav nav-tabs">
-    <li class="active">
-      <a href="#tab1" data-toggle="tab">Collectibles for Sale</a>
-    </li>
-    <?php /*
-    <li class="pull-right styles-reset">
-    <span>
-      <a href="#" class="add-new-items-button pull-right">&nbsp;</a>
-    </span>
-    </li>
-    */?>
-  </ul>
-  <!-- -->
-
   <div class="tab-content">
     <div class="tab-pane active" id="tab1">
       <div class="tab-content-inner spacer-top">
         <br />
         <?php
-        $link = link_to(
-          'View public profile &raquo;', 'collector/me/index',
-          array('class' => 'text-v-middle link-align')
-        );
-        cq_sidebar_title('Edit your profile', $link, array('left' => 8, 'right' => 4));
+          $link = link_to(
+            'View public profile &raquo;', 'collector/me/index',
+            array('class' => 'text-v-middle link-align')
+          );
+          cq_sidebar_title('Edit Your Profile', $link, array('left' => 8, 'right' => 4));
         ?>
 
-        <?= form_tag('@mycq_profile', array('class' => 'form-horizontal')); ?>
-          <?= $collector_form->renderHiddenFields(); ?>
-          <?= $collector_form->renderGlobalErrors(); ?>
+        <form method="post" action="<?= url_for('@mycq_profile') ?>"
+              class="form-horizontal" enctype="multipart/form-data">
+          <?= $avatar_form->renderHiddenFields(); ?>
+          <?= $avatar_form->renderGlobalErrors(); ?>
 
           <fieldset class="form-container-center">
             <div class="control-group">
               <label for="input01" class="control-label">Profile Photo</label>
               <div class="controls">
                 <div class="row-fluid">
-                  <div class="span4">
-                    <div class="drop-zone-large">
-                      <a class="plus-icon-holder h-center" href="#">
-                        <i class="icon-plus icon-white"></i>
-                      </a>
-                      <a class="blue-link" href="#">
-                        Click to upload image<br> or choose from<br> images to the right
-                      </a>
+                  <div class="span12" style="margin-bottom: 20px;">
+                    <?= $avatar_form['filename']; ?>
+                    <button type="submit" class="btn btn-primary blue-button">Upload File</button>
+                    <?= $avatar_form['filename']->renderError(); ?>
+                    <div class="help-block" style="color: grey;">
+                      All popular image formats are supported but the image file should be less than 5MB in size!
                     </div>
                   </div>
-                  <div class="span8 spacer-top-thumb">
-                    <div class="pull-left spacer-right">
-                      <img alt="" src="http://placehold.it/70x70">
+                  <div class="span3 avatar">
+                    <?php
+                      echo image_tag_collector(
+                        $collector, '235x315',
+                        array(
+                          'width' => 138, 'height' => 185,
+                          'class' => 'thumbnail', 'style' => 'background: #fff;'
+                        )
+                      );
+                    ?>
+                    <i class="icon icon-remove-sign"></i>
+                  </div>
+                  <div class="span8">
+                    <div class="cf spacer-bottom-15">
+                      You can also choose one of these default avatars:
                     </div>
-                    <div class="pull-left spacer-right">
-                      <img alt="" src="http://placehold.it/70x70">
+
+                    <?php foreach ($avatars as $id): ?>
+                    <div class="pull-left spacer-right spacer-top">
+                      <?php
+                        echo image_tag(
+                          'frontend/multimedia/Collector/default/100x100/'. $id. '.jpg',
+                          array(
+                            'width' => 57, 'height' => 57, 'data-id' => $id,
+                            'class' => 'thumbnail avatars', 'style' => 'background: #fff;'
+                          )
+                        );
+                      ?>
                     </div>
-                    <div class="pull-left spacer-right">
-                      <img alt="" src="http://placehold.it/70x70">
-                    </div>
-                    <div class="pull-left spacer-right">
-                      <img alt="" src="http://placehold.it/70x70">
-                    </div>
+                    <?php endforeach; ?>
                   </div>
                 </div>
               </div>
             </div>
-
-            <div class="control-group">
-              <label for="textarea" class="control-label">Username</label>
-              <div class="controls spacer-top-5">
-                <span class="brown">
-                  <?= $collector->getUsername(); ?>
-                </span>
-              </div>
-            </div>
-            <?= $collector_form['display_name']->renderRow(); ?>
           </fieldset>
+        </form>
 
+        <form method="post" action="<?= url_for('@mycq_profile') ?>" class="form-horizontal">
+          <?= $collector_form->renderHiddenFields(); ?>
+          <?= $collector_form->renderGlobalErrors(); ?>
 
           <fieldset class="brown-dashes form-container-center">
+            <?= $collector_form['display_name']->renderRow(); ?>
             <?= $collector_form['collector_type']->renderRow(); ?>
             <?= $collector_form['about_what_you_collect']->renderRow(); ?>
             <?= $collector_form['about_collections']->renderRow(); ?>
@@ -125,6 +121,14 @@
           </fieldset>
 
           <fieldset class="brown-dashes form-container-center">
+            <div class="control-group">
+              <label for="textarea" class="control-label">Username</label>
+              <div class="controls spacer-top-5">
+                <span class="brown">
+                  <?= $collector->getUsername(); ?>
+                </span>
+              </div>
+            </div>
             <?= $collector_form['password']->renderRow(); ?>
             <?= $collector_form['password_again']->renderRow(); ?>
           </fieldset>
@@ -350,5 +354,50 @@
 </div>
 
 
+<script>
+$(document).ready(function()
+{
+  $('img.avatars').click(function()
+  {
+    $('div.avatar').showLoading();
 
+    var $id = $(this).data('id');
 
+    $.ajax({
+      url: '<?= url_for('@ajax_mycq?section=collector&page=avatarFromDefault'); ?>',
+      type: 'get', data: { avatar_id: $id },
+      success: function()
+      {
+        $('div.avatar img').attr('src', '/images/frontend/multimedia/Collector/default/235x315/' + $id + '.jpg');
+        $('div.avatar').hideLoading();
+      },
+      error: function()
+      {
+        $('div.avatar').hideLoading();
+      }
+    });
+
+  });
+
+  $('div.avatar .icon-remove-sign').click(function()
+  {
+    var $icon = $(this);
+
+    $('div.avatar').showLoading();
+
+    $.ajax({
+      url: '<?= url_for('@ajax_mycq?section=collector&page=avatarDelete&encrypt=1'); ?>',
+      type: 'post',
+      success: function()
+      {
+        $('div.avatar').hideLoading();
+        $('div.avatar img').attr('src', '/images/frontend/multimedia/Collector/235x315.png');
+      },
+      error: function()
+      {
+        $('div.avatar').hideLoading();
+      }
+    });
+  });
+});
+</script>

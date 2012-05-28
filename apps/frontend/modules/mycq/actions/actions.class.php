@@ -9,12 +9,32 @@ class mycqActions extends cqFrontendActions
 
   public function executeProfile(sfWebRequest $request)
   {
-    $this->collector = $this->getUser()->getCollector();
-    $collector_form = new CollectorEditForm($this->getUser()->getCollector());
+    $this->collector = $this->getCollector();
+
+    $collector_form = new CollectorEditForm($this->collector);
+    $avatar_form = new CollectorAvatarForm($this->collector);
 
     if (sfRequest::POST == $request->getMethod())
     {
-      if ($request->hasParameter($collector_form->getName()))
+      if ($request->hasParameter($avatar_form->getName()))
+      {
+        $success = $avatar_form->bindAndSave(
+          $request->getParameter($avatar_form->getName()),
+          $request->getFiles($avatar_form->getName())
+        );
+
+        if ($success)
+        {
+          $this->getUser()->setFlash('success', 'You have successfully updated your profile photo');
+
+          $this->redirect('mycq_profile');
+        }
+        else
+        {
+          $this->getUser()->setFlash('error', 'There was an error when saving your profile photo');
+        }
+      }
+      else if ($request->hasParameter($collector_form->getName()))
       {
         $success = $collector_form->bindAndSave(
           $request->getParameter($collector_form->getName()),
@@ -36,6 +56,8 @@ class mycqActions extends cqFrontendActions
       }
     }
 
+    $this->avatars = CollectorPeer::$avatars;
+    $this->avatar_form = $avatar_form;
 
     $this->collector = $this->getUser()->getCollector();
     $this->collector_form = $collector_form;

@@ -11,6 +11,18 @@
   padding-top: 0;
 }
 
+.icon-remove-sign {
+  color: transparent;
+  position: absolute;
+  font-size: 30px;
+  cursor: pointer;
+  display: none;
+  margin-top: 0;
+  width: 26px;
+  height: 26px;
+  background: url(/images/icons/fancy_close.png) no-repeat center top;
+}
+
 .mycq-collector-avatar {
 	position: relative;
 	width: 140px;
@@ -928,11 +940,8 @@ i.drop-zone.ui-state-highlight {
 
 .form-container-center {
 	padding-left: 60px;
-	padding-right: 120px;
+	// padding-right: 120px;
 
-	.spacer-top-thumb {
-		margin-top: 93px;
-	}
 	p {
 		margin-bottom: 0;
 	}
@@ -1131,6 +1140,29 @@ textarea.input-xlarge {
 .mycq-collections .see-more-full {
 	width: 99%;
 	margin-left: 1%;
+}
+
+#body-mycq-profile {
+
+  div.avatar {
+
+    margin-left: 0;
+    position: relative;
+
+    &:hover .icon-remove-sign {
+      display: block;
+    }
+
+    .icon-remove-sign {
+      left: 130px;
+      top: -8px;
+    }
+  }
+
+  img.avatars {
+    cursor: pointer;
+  }
+
 }
 
 .ui-state-highlight {
