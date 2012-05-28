@@ -1,17 +1,5 @@
 [
     {
-        "name": "lib/vendor/magnify",
-        "version": "1.0",
-        "version_normalized": "1.0.0.0",
-        "source": {
-            "type": "git",
-            "url": "git://github.com/CollectorsQuest/magnify-sdk.git",
-            "reference": "aa254d1758b58307c77c544a2433d852df9bc9de"
-        },
-        "type": "library",
-        "installation-source": "source"
-    },
-    {
         "name": "lib/vendor/twig",
         "version": "1.6.2",
         "version_normalized": "1.6.2.0",
@@ -61,6 +49,18 @@
             "type": "git",
             "url": "git@github.com:CollectorsQuest/sfGuardPlugin-1.3.git",
             "reference": "a195c663cf419736a050c28a3937207e288e18a6"
+        },
+        "type": "library",
+        "installation-source": "source"
+    },
+    {
+        "name": "lib/vendor/magnify",
+        "version": "1.1",
+        "version_normalized": "1.1.0.0",
+        "source": {
+            "type": "git",
+            "url": "git://github.com/CollectorsQuest/magnify-sdk.git",
+            "reference": "f946c9f572e98f286595cb2b024e6b13423b8610"
         },
         "type": "library",
         "installation-source": "source"
