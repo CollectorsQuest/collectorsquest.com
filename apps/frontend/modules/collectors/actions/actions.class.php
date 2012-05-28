@@ -10,13 +10,13 @@ class collectorsActions extends cqFrontendActions
    */
   public function executeIndex(sfWebRequest $request)
   {
-    $q = CollectorQuery::create()
-        ->orderByCreatedAt(Criteria::DESC);
+    $q = CollectorQuery::create();
 
-    $filter = $request->getParameter('filter');
-    $q->filterByUserType('sellers' == $filter ? 'Seller' : 'Collector', Criteria::EQUAL);
+    $sortBy = $request->getParameter('sort', 'latest');
+    $type = $request->getParameter('type', 'collectors');
+    $q->filterByUserType('sellers' == $type ? 'Seller' : 'Collector', Criteria::EQUAL);
 
-    switch ($filter)
+    switch ($sortBy)
     {
       case 'most-popular':
         $q->useCollectorCollectionQuery()
@@ -54,7 +54,8 @@ class collectorsActions extends cqFrontendActions
 
     $this->pager = $pager;
     $this->display = $this->getUser()->getAttribute('display', 'grid', 'search');
-    $this->filter = $filter;
+    $this->type = $type;
+    $this->sortBy = $sortBy;
 
     return sfView::SUCCESS;
   }

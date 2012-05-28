@@ -98,9 +98,13 @@ collections_by_collector:
 
 ### COLLECTORS
 
+collectors_filter_legacy:
+  url: /collectors/filter/:sort
+  param: { module: collectors, action: index, sort: latest }
+
 collectors:
-  url:  /collectors
-  param: { module: collectors, action: index }
+  url:  /collectors/:sort
+  param: { module: collectors, action: index, sort: latest }
 
 collector_avatar:
   url:  /collector/:id/:size/avatar.jpg
@@ -135,8 +139,8 @@ collector_signup:
 ### SELLERS
 
 sellers:
-  url:  /sellers
-  param: { module: collectors, action: index, filter: sellers }
+  url:  /sellers/:sort
+  param: { module: collectors, action: index, type: sellers, sort: latest }
 
 seller_signup:
   url:   /seller/signup/:step
