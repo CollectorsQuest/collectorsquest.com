@@ -85,7 +85,7 @@ collections_by_collector_legacy:
   url:  /collections/by/:collector_slug
   class: sfPropelRoute
   options: { model: Collector, type: object, method: getObjectForRoute }
-  param: { module: collections, action: index }
+  param: { module: collections, action: collector }
   requirements: { collector_slug: '[\-\w\.]+' }
 
 collections_by_collector:

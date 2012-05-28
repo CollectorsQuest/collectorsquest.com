@@ -167,7 +167,7 @@ class CollectorPeer extends BaseCollectorPeer
     }
     else if (isset($parameters['collector_slug']))
     {
-      $parameters['slug'] = str_replace(array('.html', '.htm'), '', $parameters['slug']);
+      $parameters['slug'] = str_replace(array('.html', '.htm'), '', $parameters['collector_slug']);
       $collector = self::retrieveBySlug($parameters['collector_slug']);
     }
     else if (isset($parameters['slug']))
