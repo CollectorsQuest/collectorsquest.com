@@ -223,7 +223,7 @@ $lastclass = 0;
 
         echo (++$e % 2 == 0) ? ' even' : ' odd';
 
-        ?> row-fluid" id="post-<?php the_ID(); ?>">
+        ?> row" id="post-<?php the_ID(); ?>">
 
         <?php if (is_single()) : ?>
           <!-- <div class="entry-genre"><a href="" title=""><?php the_category() ?></a></div> -->
