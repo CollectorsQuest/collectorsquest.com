@@ -40,6 +40,9 @@ window.Modernizr.addTest('html5formvalidation', function() {
   var f = window.document.createElement('form');
   return typeof f.checkValidity === 'function';
 });
+window.Modernizr.addTest('insideiframe', function() {
+  return (window.location != window.parent.location) ? true : false;
+});
 
 // setup page load statistic if in prod environment
 if (Modernizr.isproduction)
