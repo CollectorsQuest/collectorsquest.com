@@ -18,8 +18,8 @@
 
   <div class="header-inner">
     <div class="row-fluid">
-      <div class="span3">&nbsp;</div>
-      <div class="span5">
+      <div class="span2">&nbsp;</div>
+      <div class="span6">
         <div class="input-append search-header pull-right">
           <form action="<?= url_for('@search', true) ?>" method="get">
             <?= $form['q']->render(array('value' => $q, 'autocomplete' => 'off', 'placeholder' => 'Find collectibles, blog posts, videos and more...')); ?>
