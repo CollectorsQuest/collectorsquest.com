@@ -146,7 +146,13 @@ class _sidebarComponents extends cqFrontendComponents
     {
       if (isset($this->category) && $this->category instanceof BaseObject)
       {
-        $this->videos = $magnify->getContent()->find($this->category->getSlug(), 1, $this->limit);
+        $slug = $this->category->getSlug();
+        if (false !== strpos($this->category->getName(), '&'))
+        {
+          //FIXME: Remove when slugs are updated
+          $slug = Utf8::slugify($this->category->getName());
+        }
+        $this->videos = $magnify->getContent()->find($slug, 1, $this->limit);
       }
       else if (isset($this->collectible) && $this->collectible instanceof BaseObject)
       {
