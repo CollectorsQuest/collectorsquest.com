@@ -332,15 +332,15 @@ $lastclass = 0;
           </span>
 
           <?php if (is_single()) : ?>
-          <div class="entry-share pull-right <?php if (is_front_page() && $count==1): echo "span6"; endif; ?>">
+          <div class="entry-share pull-right share <?php if (is_front_page() && $count==1): echo "span6"; endif; ?>">
             <!-- AddThis Button BEGIN -->
-            <div class="addthis_toolbox addthis_default_style">
-              <a class="addthis_button_email"></a>
-              <a class="addthis_button_facebook_like" fb:like:layout="button_count" fb:like:width="42"></a>
-              <a class="addthis_button_tweet" tw:twitter:data-count="none"></a>
-              <a class="addthis_button_google_plusone" g:plusone:size="medium" g:plusone:annotation="none"></a>
-              <a class="addthis_button_pinterest_pinit" pi:pinit:media="<?php echo get_post_image_url(); ?>" pi:pinit:layout="horizontal"></a>
-            </div>
+            <a class="btn btn-lightblue btn-mini-social addthis_button_email">
+              <i class="mail-icon-mini"></i> Email
+            </a>
+            <a class="addthis_button_facebook_like" fb:like:layout="button_count" fb:like:width="40"></a>
+            <a class="addthis_button_tweet" tw:twitter:data-count="none"></a>
+            <a class="addthis_button_google_plusone" g:plusone:size="medium" g:plusone:annotation="none"></a>
+            <a class="addthis_button_pinterest_pinit" pi:pinit:media="<?php echo get_post_image_url(); ?>" pi:pinit:layout="horizontal"></a>
             <!-- AddThis Button END -->
           </div>
           <?php endif; ?>

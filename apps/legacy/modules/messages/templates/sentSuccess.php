@@ -11,7 +11,7 @@
     </td>
     <td class="sender">
       <div style="float: left; margin-right: 10px;">
-        <?php echo link_to_collector($receiver, 'stack', array('target' => '_blank')); ?>
+        <?php echo link_to_collector($receiver, 'image', array('target' => '_blank')); ?>
       </div>
       <div style="font-weight: <?= ($message->getIsRead() == 0) ? 'bold' : 'normal'; ?>;">
         To: <?php echo link_to_collector($receiver, 'text', array('target' => '_blank')) ?><br>

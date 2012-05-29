@@ -11,10 +11,11 @@ class CollectorEmailPeer extends BaseCollectorEmailPeer
    * @param  Collector|integer  $collector
    * @param  string   $email
    * @param  boolean  $verified
+   * @param  PropelPDO $con
    *
    * @return CollectorEmail
    */
-  public static function retrieveByCollectorEmail($collector, $email, $verified = null)
+  public static function retrieveByCollectorEmail($collector, $email, $verified = null, PropelPDO $con = null)
   {
     $collectorId = $collector instanceof Collector ? $collector->getId() : $collector;
 
@@ -28,7 +29,7 @@ class CollectorEmailPeer extends BaseCollectorEmailPeer
       $q->filterByIsVerified((bool)$verified);
     }
 
-    return $q->findOne();
+    return $q->findOne($con);
   }
 
   /**

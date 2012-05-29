@@ -22,6 +22,9 @@ class CollectibleEditForm extends BaseCollectibleForm
       ),
       array('class' => 'input-xlarge chzn-select', 'style' => 'width: 410px;')
     );
+    $this->validatorSchema['collection_collectible_list'] = new sfValidatorPropelChoice(array(
+      'multiple' => true, 'model' => 'Collection', 'required' => true)
+    );
 
     $this->widgetSchema['name']->setAttribute('class', 'input-xlarge');
     $this->widgetSchema['description']->setAttribute('class', 'input-xlarge');

@@ -626,6 +626,7 @@ function cq_filter_gettext( $translated, $original, $domain ) {
   $strings = array(
     'Use the form below to search the FAQs' => '',
     'Use the form below to ask a question' => '',
+    'Your question has been submitted for answering' => 'Your question has been submitted. We\'ll respond as soon as possible!',
     'Search for' => '',
     'Ask Question' => 'Submit',
     'Howdy, %1$s' => 'We love you, %1$s!',

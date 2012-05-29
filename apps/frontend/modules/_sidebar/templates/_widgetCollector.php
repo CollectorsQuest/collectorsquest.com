@@ -37,7 +37,7 @@
   </div>
 </div>
 
-<?php if (isset($message) && $message === true): ?>
+<?php if (!$sf_user->isOwnerOf($collector) && isset($message) && $message === true): ?>
 <div class="row-fluid spacer-15">
   <div class="send-pm">
     <form action="<?= url_for2('messages_compose', array('to'=>$collector->getUsername()), true); ?>" method="post" style="margin-bottom: 0;" id="form-private-message">

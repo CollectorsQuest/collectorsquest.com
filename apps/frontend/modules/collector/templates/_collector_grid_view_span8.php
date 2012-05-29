@@ -18,19 +18,21 @@
           <h2 style="margin-bottom: 5px;">
             <?= link_to_collector($collector, 'text', array('class' => 'target')); ?>
           </h2>
-          <ul>
+          <ul style="list-style: none; margin-left: 0;">
             <li>
             <?php
               echo sprintf(
-                '%s %s collector',
-                in_array(strtolower(substr($collector->getCollectorType(), 0, 1)), array('a', 'e', 'i', 'o')) ? 'An' : 'A',
+                'Is %s %s collector',
+                in_array(strtolower(substr($collector->getCollectorType(), 0, 1)), array('a', 'e', 'i', 'o')) ? 'an' : 'a',
                 '<strong>'. $collector->getCollectorType() .'</strong>'
               );
             ?>
             </li>
+            <?php if ($country_iso3166 = $collector->getProfile()->getCountryIso3166()): ?>
             <li>
-              From <?= $collector->getProfile()->getCountry(); ?>
+              Is from <?= ($country_iso3166 == 'US') ? 'the United States' : $collector->getProfile()->getCountry(); ?>
             </li>
+            <?php endif; ?>
           </ul>
         </div>
       </div>

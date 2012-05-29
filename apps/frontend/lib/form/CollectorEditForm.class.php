@@ -25,7 +25,7 @@ class CollectorEditForm extends CollectorForm
         'about_purchase_per_year' => 'How many times a year do you purchase?',
         'about_most_expensive_item' => "What's the most you've spent on an item?",
         'about_annually_spend' => 'How much do you spend annually?',
-        'about_interests' => 'Your interests are',
+        'about_interests' => 'My Interests Are',
         'website' => 'Personal Website',
     ));
 
