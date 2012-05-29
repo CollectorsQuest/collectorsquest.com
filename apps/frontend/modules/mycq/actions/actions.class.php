@@ -26,13 +26,15 @@ class mycqActions extends cqFrontendActions
 
         if ($success)
         {
-          $this->getUser()->setFlash('success', 'You have successfully updated your profile photo');
+          $this->getUser()->setFlash('success',
+            'You have successfully updated your profile photo.');
 
           return $this->redirect('mycq_profile');
         }
         else
         {
-          $this->getUser()->setFlash('error', 'There was an error when saving your profile photo');
+          $this->getUser()->setFlash('error',
+            'There was an error when saving your profile photo.');
         }
       }
       else if ($request->hasParameter($collector_form->getName()))
@@ -45,14 +47,15 @@ class mycqActions extends cqFrontendActions
         if ($success)
         {
           $this->getUser()->setFlash('success',
-            'You have successfully updated your profile');
+            'You have successfully updated your profile.');
 
           return $this->redirect('mycq_profile');
         }
         else
         {
           $this->getUser()->setFlash('error',
-            'There were some errors when saving your profile, check below');
+            'There was an error while updating your profile.
+             Please see below.');
         }
       }
       else if ($request->hasParameter($email_form->getName()))
@@ -64,7 +67,7 @@ class mycqActions extends cqFrontendActions
         {
           $cqEmail = new cqEmail($this->getMailer());
           $cqEmail->send('Collector/verify_new_email', array(
-             'to' => $email,
+              'to' => $email,
               'params' => array(
                   'collector' => $this->collector,
                   'collector_email' => $collector_email,
@@ -79,7 +82,8 @@ class mycqActions extends cqFrontendActions
         else
         {
           $this->getUser()->setFlash('error',
-            'There were an error when changing your email, check below');
+            'There was an error while changing your e-mail address.
+             Please see below.');
         }
       }
 
