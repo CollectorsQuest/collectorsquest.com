@@ -18,7 +18,7 @@
             <li class="span12 main-thumb">
               <?php if ($image = $collectible->getPrimaryImage()): ?>
                 <div class="thumbnail drop-zone-large" data-is-primary="1">
-                  <?= image_tag_multimedia($image, '294x0'); ?>
+                  <?= image_tag_multimedia($image, '300x0', array('width' => 294)); ?>
                   <i class="icon icon-remove-sign" data-multimedia-id="<?= $image->getId(); ?>"></i>
                   <i class="icon icon-plus icon-plus-pos hide"></i>
                 </div>
@@ -66,22 +66,10 @@
         );
       ?>
 
-      <div class="control-group">
-        <?= $form['collection_collectible_list']->renderLabel(); ?>
-        <div class="controls"><?= $form['collection_collectible_list']; ?></div>
-      </div>
-      <div class="control-group">
-        <?= $form['name']->renderLabel(); ?>
-        <div class="controls"><?= $form['name']; ?></div>
-      </div>
-      <div class="control-group">
-        <?= $form['description']->renderLabel(); ?>
-        <div class="controls"><?= $form['description']; ?></div>
-      </div>
-      <div class="control-group">
-        <?= $form['tags']->renderLabel(); ?>
-        <div class="controls"><?= $form['tags']; ?></div>
-      </div>
+      <?= $form['collection_collectible_list']->renderRow(); ?>
+      <?= $form['name']->renderRow(); ?>
+      <?= $form['description']->renderRow(); ?>
+      <?= $form['tags']->renderRow(); ?>
 
       <?php if ($form_for_sale): ?>
       <div class="control-group">
