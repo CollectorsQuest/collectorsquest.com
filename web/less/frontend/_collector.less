@@ -52,3 +52,41 @@
 	margin-bottom: 0;
 }
 
+.collector_grid_view {
+  border: 1px solid #ebebeb;
+  padding: 10px 12px;
+  height: 130px;
+  overflow: hidden;
+
+  h2 {
+    .custom-font(18px, 22px, normal, normal);
+  }
+  .about {
+    margin-top: 10px;
+    margin-left: 0;
+    font-size: 12px;
+    height: 54px;
+    overflow: hidden;
+  }
+  .stat-area {
+    height: 44px;
+    padding-top: 14px;
+    margin-left: 5px;
+    background-color: @yellowBackground;
+    color: @brown;
+    display: block;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    span {
+      font-size: 10px;
+      line-height: 14px;
+      display: block;
+      padding-top: 4px;
+    }
+  }
+
+  [class*="span"], ul {
+    margin-bottom: 0 !important;
+  }
+}

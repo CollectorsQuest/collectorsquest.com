@@ -98,7 +98,7 @@ collections_by_collector:
 
 ### COLLECTORS
 
-collectors_filter_legacy:
+legacy_collectors_filter:
   url: /collectors/filter/:sort
   param: { module: collectors, action: index, sort: latest }
 

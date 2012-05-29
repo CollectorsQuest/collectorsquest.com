@@ -1,17 +1,19 @@
 <?php
-/*
+/**
  * @var $pager PropelModelPager
  * @var $collector Collector
  * @var $sortBy string
  * @var $type string
  */
 ?>
-<h1 class="Chivo webfont"><?='sellers' == $type ? 'Sellers' : 'Collectors'?></h1>
 
+<?php cq_page_title('sellers' == $type ? 'Sellers' : 'Collectors', '&nbsp;'); ?>
+
+<br/>
 <div class="row">
-  <div id="search-results" class="row-content">
+  <div id="collectors" class="row-content">
     <?php foreach ($pager->getResults() as $i => $collector): ?>
-    <div class="span6 brick" style="height: 165px; float: left;">
+    <div class="span6" style="height: 165px; float: left;">
       <?php       include_partial(
       'collector/collector_' . $display . '_view_span6',
       array(
