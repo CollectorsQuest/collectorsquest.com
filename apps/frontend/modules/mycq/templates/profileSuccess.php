@@ -88,7 +88,6 @@
             <?= $collector_form['display_name']->renderRow(); ?>
             <?= $collector_form['collector_type']->renderRow(); ?>
             <?= $collector_form['about_what_you_collect']->renderRow(); ?>
-            <?= $collector_form['about_collections']->renderRow(); ?>
             <?= $collector_form['about_purchases_per_year']->renderRow(); ?>
             <?= $collector_form['about_most_expensive_item']->renderRow(); ?>
             <?= $collector_form['about_annually_spend']->renderRow(); ?>
@@ -116,6 +115,7 @@
               'class' => 'span2 inline',
             )); ?>
             <?= $collector_form['about_me']->renderRow(); ?>
+            <?= $collector_form['about_collections']->renderRow(); ?>
             <?= $collector_form['about_interests']->renderRow(); ?>
             <?= $collector_form['website']->renderRow(); ?>
           </fieldset>

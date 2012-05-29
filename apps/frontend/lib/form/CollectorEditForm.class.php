@@ -21,7 +21,7 @@ class CollectorEditForm extends CollectorForm
         'collector_type' => 'Collector Type',
         'country_iso3166' => 'Country',
         'about_what_you_collect' => 'What do you collect?',
-        'about_collections' => 'Your collections are',
+        'about_collections' => 'About My Collections',
         'about_purchase_per_year' => 'How many times a year do you purchase?',
         'about_most_expensive_item' => "What's the most you've spent on an item?",
         'about_annually_spend' => 'How much do you spend annually?',
