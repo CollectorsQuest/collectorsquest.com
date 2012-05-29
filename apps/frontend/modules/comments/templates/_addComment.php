@@ -18,7 +18,7 @@
         </div>
       </div>
 
-      <?= $form['body']->render(array('class' => 'shrink')); ?>
+      <?= $form['body']->render(array('class' => 'shrink', 'placeholder' => ' What do you think?')); ?>
       <button type="button" class="btn btn-large fake">Comment</button>
       <button type="submit" class="btn btn-large hidden">Comment</button>
 

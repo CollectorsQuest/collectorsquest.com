@@ -770,7 +770,6 @@ class Collector extends BaseCollector implements ShippingRatesInterface
     $watermark = isset($options['watermark']) ? (boolean) $options['watermark'] : false;
 
     $multimedia->makeThumb(100, 100, 'center', false);
-    $multimedia->makeCustomThumb(150, 150, '150x150', 'center', false);
     $multimedia->makeCustomThumb(235, 315, '235x315', 'top', $watermark);
   }
 

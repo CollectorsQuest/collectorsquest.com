@@ -17,14 +17,15 @@ class CollectorEditForm extends CollectorForm
     $this->setupProfileWebsite();
 
     $this->widgetSchema->setLabels(array(
-        'display_name' => 'Display Name (handle)',
+        'display_name' => 'Screen Name',
         'collector_type' => 'Collector Type',
+        'country_iso3166' => 'Country',
         'about_what_you_collect' => 'What do you collect?',
-        'about_collections' => 'My collections are',
+        'about_collections' => 'About My Collections',
         'about_purchase_per_year' => 'How many times a year do you purchase?',
         'about_most_expensive_item' => "What's the most you've spent on an item?",
         'about_annually_spend' => 'How much do you spend annually?',
-        'about_interests' => 'My interests',
+        'about_interests' => 'My Interests Are',
         'website' => 'Personal Website',
     ));
 
@@ -33,6 +34,9 @@ class CollectorEditForm extends CollectorForm
 
   protected function setupPasswordFields()
   {
+    $this->widgetSchema['old_password'] = new sfWidgetFormInputPassword(array(), array(
+        'placeholder' => 'Enter your old password'
+    ));
     $this->widgetSchema['password'] = new sfWidgetFormInputPassword(array(), array(
         'placeholder' => 'Set new password here',
     ));
@@ -42,6 +46,7 @@ class CollectorEditForm extends CollectorForm
         'placeholder' => 'Confirm your new password'
     ));
 
+    $this->validatorSchema['old_password'] = new sfValidatorPass();
     $this->validatorSchema['password'] = new sfValidatorString(
       array(
         'min_length' => 6,
@@ -53,11 +58,15 @@ class CollectorEditForm extends CollectorForm
     ));
     $this->validatorSchema['password_again'] = new sfValidatorPass();
 
-    $this->mergePostValidator(new sfValidatorSchemaCompare(
-      'password', sfValidatorSchemaCompare::EQUAL, 'password_again',
-      array('throw_global_error' => true),
-      array('invalid' => 'The two passwords do not match, please enter them again!')
-    ));
+    $this->mergePostValidator(new sfValidatorAnd(array(
+        new CollectorEditFormPasswordSchemaValidator(null, array(
+            'collector' => $this->getObject(),
+        )),
+        new sfValidatorSchemaCompare(
+          'password', sfValidatorSchemaCompare::EQUAL, 'password_again',
+          array('throw_global_error' => true),
+          array('invalid' => 'The two passwords do not match, please enter them again!')),
+    )));
   }
 
   protected function embedProfileForm()

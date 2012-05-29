@@ -15,6 +15,9 @@ all:
       password_reminder:
         subject: "Your new password for CollectorsQuest.com"
         required_params: [collector, password]
+      verify_new_email:
+        subject: "You have changed your email at CollectorsQuest.com"
+        required_params: [collector, collector_email]
 
     Messages:
       private_message_notification:

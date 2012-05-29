@@ -34,7 +34,7 @@ class collectorsActions extends cqFrontendActions
           $pks = array_diff($pks, array(0 => $this->getUser()->getId()));
 
           $q->filterById($pks, Criteria::IN)
-            ->orderBy(sprintf('FIELD(%s, %s)', CollectorPeer::ID, implode(', ', $pks)));
+            ->orderById(Criteria::DESC);
         }
         break;
 

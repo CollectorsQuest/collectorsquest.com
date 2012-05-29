@@ -8,15 +8,15 @@
 ?>
 
 <?php
-  $name = $sf_user->isOwnerOf($collector) ? 'Your' : $collector->getDisplayName() ."'s";
   if ($pager->haveToPaginate())
   {
-    $link = $sf_user->isOwnerOf($collector) ? link_to('Edit Collections', '@mycq_collections') .'&nbsp; | &nbsp;' : null ;
+    $link = $sf_user->isOwnerOf($collector) ? link_to('Edit Collections', '@mycq_collections', array('class' => 'text-v-middle link-align')) .'&nbsp; | &nbsp;' : null ;
     $link = $link . link_to(
       'See all »',
-      '@collections_by_collector?collector_id='. $collector->getId() .'&collector_slug='. $collector->getSlug()
+      '@collections_by_collector?collector_id='. $collector->getId() .'&collector_slug='. $collector->getSlug(),
+      array('class' => 'text-v-middle link-align')
     );
-    $title = $name ." Latest Collections";
+    $title = $collector->getDisplayName() ."'s Latest Collections";
   }
   else
   {

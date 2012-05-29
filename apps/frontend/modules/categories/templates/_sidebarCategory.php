@@ -21,6 +21,6 @@
 <?php
   include_component(
     '_sidebar', 'widgetMagnifyVideos',
-    array('category' => $category, 'limit' => 3)
+    array('category' => $category, 'limit' => 5)
   );
 ?>

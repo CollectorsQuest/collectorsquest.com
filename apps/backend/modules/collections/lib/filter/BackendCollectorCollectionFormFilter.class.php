@@ -15,6 +15,16 @@ class BackendCollectorCollectionFormFilter extends BaseCollectorCollectionFormFi
     $this->widgetSchema['collection_category_id'] = new bsWidgetFormInputTypeAhead(array(
       'source'    => $this->getOption('collection_category_id_url', sfContext::getInstance()->getController()->genUrl('collections/collectionCategory')),
     ));
+    $this->setupIdField();
+  }
+
+  public function setupIdField()
+  {
+    $this->widgetSchema['id']    = new sfWidgetFormInputText();
+    $this->validatorSchema['id'] = new cqValidatorNumber(array(
+      'required'=> false,
+      'multiple'=> true
+    ));
   }
 
   /**
@@ -37,9 +47,27 @@ class BackendCollectorCollectionFormFilter extends BaseCollectorCollectionFormFi
     else
     {
       $criteria->useCollectionCategoryQuery()
-        ->filterByName("%$values%")
-        ->endUse();
+          ->filterByName("%$values%")
+          ->endUse();
     }
+
+    return $criteria;
+  }
+
+  /**
+   * @param CollectorCollectionQuery $criteria
+   * @param string $field
+   * @param array|int|null $values
+   * @return CollectorCollectionQuery
+   */
+  public function addIdColumnCriteria($criteria, $field, $values = null)
+  {
+    if (null === $values)
+    {
+      return null;
+    }
+
+    $criteria->filterById(explode(',', $values), Criteria::IN);
 
     return $criteria;
   }

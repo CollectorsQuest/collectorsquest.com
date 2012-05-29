@@ -15,15 +15,15 @@
       <div id="main-image-set">
         <div class="main-image-set-container">
           <ul class="thumbnails">
-            <li class="span12">
+            <li class="span12 main-thumb">
               <?php if ($image = $collectible->getPrimaryImage()): ?>
-                <div class="thumbnail drop-zone-large" data-is-primary="1" style="position: relative;">
-                  <?= image_tag_multimedia($image, '300x300'); ?>
+                <div class="thumbnail drop-zone-large" data-is-primary="1">
+                  <?= image_tag_multimedia($image, '300x0', array('width' => 294)); ?>
                   <i class="icon icon-remove-sign" data-multimedia-id="<?= $image->getId(); ?>"></i>
-                  <i class="icon icon-plus hide" style="position: absolute; top: 20%; left: 28%;"></i>
+                  <i class="icon icon-plus icon-plus-pos hide"></i>
                 </div>
               <?php else: ?>
-                <div class="thumbnail drop-zone-large" data-is-primary="1">
+                <div class="thumbnail drop-zone-large empty" data-is-primary="1">
                   <i class="icon icon-plus"></i>
                   <span class="info-text">
                     Drag and drop the main image<br> of your collectible here.
@@ -33,14 +33,17 @@
             </li>
             <?php for ($i = 0; $i < 3 * (intval(count($multimedia) / 3)  + 1); $i++): ?>
             <?php $has_image = isset($multimedia[$i]) && $multimedia[$i] instanceof iceModelMultimedia ?>
-            <li class="span4 <?= $has_image ? 'ui-state-full' : 'ui-state-empty'; ?>" style="float: left;">
-              <div class="thumbnail drop-zone" data-is-primary="0" style="position: relative;">
+            <li class="span4 square-thumb <?= $has_image ? 'ui-state-full' : 'ui-state-empty'; ?>">
+              <div class="thumbnail drop-zone" data-is-primary="0">
                 <?php if ($has_image): ?>
                   <?= image_tag_multimedia($multimedia[$i], '150x150', array('width' => 92, 'height' => 92)); ?>
                   <i class="icon icon-remove-sign" data-multimedia-id="<?= $multimedia[$i]->getId(); ?>"></i>
-                  <i class="icon icon-plus hide" style="position: absolute; top: 5%; left: 18%;"></i>
+                  <i class="icon icon-plus icon-plus-pos hide"></i>
                 <?php else: ?>
-                  <i class="icon icon-plus"></i>
+                  <i class="icon icon-plus white-alternate-view"></i>
+                  <span class="info-text">
+                    Alternate<br/> View
+                  </span>
                 <?php endif; ?>
               </div>
             </li>
@@ -63,22 +66,10 @@
         );
       ?>
 
-      <div class="control-group">
-        <?= $form['collection_collectible_list']->renderLabel(); ?>
-        <div class="controls"><?= $form['collection_collectible_list']; ?></div>
-      </div>
-      <div class="control-group">
-        <?= $form['name']->renderLabel(); ?>
-        <div class="controls"><?= $form['name']; ?></div>
-      </div>
-      <div class="control-group">
-        <?= $form['description']->renderLabel(); ?>
-        <div class="controls"><?= $form['description']; ?></div>
-      </div>
-      <div class="control-group">
-        <?= $form['tags']->renderLabel(); ?>
-        <div class="controls"><?= $form['tags']; ?></div>
-      </div>
+      <?= $form['collection_collectible_list']->renderRow(); ?>
+      <?= $form['name']->renderRow(); ?>
+      <?= $form['description']->renderRow(); ?>
+      <?= $form['tags']->renderRow(); ?>
 
       <?php if ($form_for_sale): ?>
       <div class="control-group">
@@ -219,7 +210,7 @@ $(document).ready(function()
     over: function(event, ui)
     {
       $(this).addClass("ui-state-highlight");
-      $(this).find('img').hide();
+      $(this).find('img').fadeTo('fast', 0);
       $(this).find('i.icon-plus')
         .removeClass('icon-plus')
         .addClass('icon-download-alt')
@@ -233,7 +224,7 @@ $(document).ready(function()
         .addClass('icon-plus');
       $(this).find('i.hide').hide();
 
-      $(this).find('img').show();
+      $(this).find('img').fadeTo('slow', 1);
     },
     drop: function(event, ui)
     {
@@ -254,13 +245,14 @@ $(document).ready(function()
           donor_id: ui.draggable.data('collectible-id'),
           is_primary: $(this).data('is-primary')
         },
+        dataType: 'json',
         success: function()
         {
           window.location.reload();
         },
-        error: function()
+        error: function(data, response)
         {
-          // error
+          ;
         }
       });
     }

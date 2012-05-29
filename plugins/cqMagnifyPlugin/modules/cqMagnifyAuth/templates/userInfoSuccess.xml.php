@@ -6,5 +6,5 @@
   <handle><?= $collector->getUsername() ?></handle>
   <email><?= $collector->getEmail() ?></email>
   <name><?= $collector->getDisplayName() ?></name>
-  <photo><?= url_for('collector_avatar', array('id' => $collector, 'size'=>'100x100'), array('absolute'=>true)); ?></photo>
+  <photo><?= url_for('collector_avatar', array('id' => $collector->getId(), 'size' => '100x100'), array('absolute' => true)); ?></photo>
 </userinfo>

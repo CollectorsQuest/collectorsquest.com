@@ -310,4 +310,43 @@ class ajaxAction extends IceAjaxAction
 
     return $this->success();
   }
+
+  protected function executeCollectorAvatarFromDefault(sfWebRequest $request)
+  {
+    $avatars = CollectorPeer::$avatars;
+
+    $avatar_id = $request->getParameter('avatar_id');
+    $this->forward404Unless($avatar_id && false !== array_search($avatar_id, $avatars));
+
+    /** @var $collector Collector */
+    $collector = $this->getUser()->getCollector();
+
+    $image = sfConfig::get('sf_web_dir'). '/images/frontend/multimedia/Collector/default/235x315/'. $avatar_id .'.jpg';
+    if ($multimedia = $collector->setPhoto($image))
+    {
+      /**
+       * We want to copy here optimized 100x100 thumb,
+       * rather than the automatically generated one
+       */
+      $small = $multimedia->getAbsolutePath('100x100');
+      copy(sfConfig::get('sf_web_dir'). '/images/frontend/multimedia/Collector/default/100x100/'. $avatar_id .'.jpg', $small);
+
+      return $this->success();
+    }
+
+    return $this->error('Error', 'Error');
+  }
+
+  protected function executeCollectorAvatarDelete()
+  {
+    /** @var $collector Collector */
+    $collector = $this->getUser()->getCollector();
+
+    if ($image = $collector->getPhoto())
+    {
+      $image->delete();
+    }
+
+    return $this->success();
+  }
 }
