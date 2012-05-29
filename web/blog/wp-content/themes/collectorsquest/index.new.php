@@ -332,7 +332,7 @@ $lastclass = 0;
           </span>
 
           <?php if (is_single()) : ?>
-          <div class="entry-share pull-right share <?php if (is_front_page() && $count==1): echo "span6"; endif; ?>">
+          <div class="blue-actions-panel entry-share pull-right share <?php if (is_front_page() && $count==1): echo "span6"; endif; ?>">
             <!-- AddThis Button BEGIN -->
             <a class="btn btn-lightblue btn-mini-social addthis_button_email">
               <i class="mail-icon-mini"></i> Email
