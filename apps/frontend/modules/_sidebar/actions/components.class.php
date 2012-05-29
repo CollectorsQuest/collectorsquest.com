@@ -97,7 +97,9 @@ class _sidebarComponents extends cqFrontendComponents
     else if (($collectible = $this->getVar('collectible')) && $collectible instanceof Collectible)
     {
       $tags = $collectible->getTags();
-      $q->filterByTags($tags);
+      $q
+        ->filterById($collectible->getCollectionId(), Criteria::NOT_EQUAL)
+        ->filterByTags($tags);
     }
 
     // Make the actual query and get the Collections
@@ -239,8 +241,10 @@ class _sidebarComponents extends cqFrontendComponents
     {
       $subject = 'Regarding your collection: '. addslashes($this->collection->getName());
     }
+
     $this->pm_form = new ComposeAbridgedPrivateMessageForm(
-      $this->getUser()->getCollector(), $this->getVar('collector'), $subject);
+      $this->getUser()->getCollector(), $this->getVar('collector'), $subject
+    );
 
     if ($collector instanceof Collector)
     {
@@ -362,13 +366,17 @@ class _sidebarComponents extends cqFrontendComponents
     else if (($collection = $this->getVar('collection')) && $collection instanceof CollectorCollection)
     {
       $tags = $collection->getTags();
-      $q->filterByTags($tags, Criteria::IN);
+      $q
+        ->filterByCollection($collection, Criteria::NOT_EQUAL)
+        ->filterByTags($tags, Criteria::IN);
     }
     /** @var $collectible Collectible */
     else if (($collectible = $this->getVar('collectible')) && $collectible instanceof Collectible)
     {
       $tags = $collectible->getTags();
-      $q->filterByTags($tags, Criteria::IN);
+      $q
+        ->filterByCollectible($collectible, Criteria::NOT_EQUAL)
+        ->filterByTags($tags, Criteria::IN);
     }
 
     // Make the actual query and get the CollectiblesForSale
