@@ -31,7 +31,11 @@
       echo '<div class="span6">';
       include_partial(
         '_blog/wp_post_'. $display .'_view',
-        array('wp_post' => $wp_post, 'excerpt' => $pager->getExcerpt($i), 'i' => $i)
+        array(
+          'wp_post' => $wp_post, 'i' => $i,
+          'title' => link_to_blog_post($wp_post, 'text', array('truncate' => 50)),
+          'excerpt' => $pager->getExcerpt($i)
+        )
       );
       echo '</div>';
 
