@@ -20,10 +20,26 @@
   <br clear="all"/>
   <div class="well clearfix">
     <i class="icon icon-search"></i>&nbsp;
-    <?= link_to('Not finding what you are looking for? Click here to find it on our search page!', $url); ?>
+    <?php
+      if ($sf_params->get('q'))
+      {
+        echo link_to(
+          'Not finding what you are looking for? Click here to find it on our search page!',
+          $url
+        );
+      }
+      else
+      {
+        echo link_to(
+          "Can't find what you're looking for? Try the search bar at the top of the page!",
+          '@collections#top',
+          array('onclick' => 'if (window.jQuery) { $("#q").focus(); } return true;')
+        );
+      }
+    ?>
   </div>
 <?php elseif ($pager->haveToPaginate()): ?>
-  <div class="see-more-under-image-set">
+  <div class="see-more-under-image-set" style="padding-left: 3px; padding-right: 2px;">
     <button class="btn btn-small gray-button see-more-full" id="seemore-explore-collections">
       See more
     </button>

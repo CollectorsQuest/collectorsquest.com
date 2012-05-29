@@ -20,6 +20,7 @@
   <!-- Blog Head //-->
 </head>
 <body id="<?= 'body-'. $sf_params->get('module') .'-'. $sf_params->get('action'); ?>" data-controller="<?= $sf_params->get('module'); ?>" data-action="<?= $sf_params->get('action'); ?>">
+  <a name="top"></a>
   <div id="fb-root"></div>
   <script>
     window.fbAsyncInit = function()
