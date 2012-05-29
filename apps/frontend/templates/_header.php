@@ -22,7 +22,12 @@
       <div class="span6">
         <div class="input-append search-header pull-right">
           <form action="<?= url_for('@search', true) ?>" method="get">
-            <?= $form['q']->render(array('value' => $q, 'autocomplete' => 'off', 'placeholder' => 'Find collectibles, blog posts, videos and more...')); ?>
+            <?php
+              echo $form['q']->render(array(
+                'value' => $q, 'autocomplete' => 'off', 'required' => 'required',
+                'placeholder' => 'Find collectibles, blog posts, videos and more...')
+              );
+            ?>
             <button class="btn btn-large append-search-button" type="submit">Search</button>
           </form>
         </div>
