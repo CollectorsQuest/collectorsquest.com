@@ -129,6 +129,7 @@
                 </span>
               </div>
             </div>
+            <?= $collector_form['old_password']->renderRow(); ?>
             <?= $collector_form['password']->renderRow(); ?>
             <?= $collector_form['password_again']->renderRow(); ?>
           </fieldset>

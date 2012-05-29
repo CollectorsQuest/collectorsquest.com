@@ -34,6 +34,9 @@ class CollectorEditForm extends CollectorForm
 
   protected function setupPasswordFields()
   {
+    $this->widgetSchema['old_password'] = new sfWidgetFormInputPassword(array(), array(
+        'placeholder' => 'Enter your old password'
+    ));
     $this->widgetSchema['password'] = new sfWidgetFormInputPassword(array(), array(
         'placeholder' => 'Set new password here',
     ));
@@ -43,6 +46,7 @@ class CollectorEditForm extends CollectorForm
         'placeholder' => 'Confirm your new password'
     ));
 
+    $this->validatorSchema['old_password'] = new sfValidatorPass();
     $this->validatorSchema['password'] = new sfValidatorString(
       array(
         'min_length' => 6,
@@ -54,11 +58,15 @@ class CollectorEditForm extends CollectorForm
     ));
     $this->validatorSchema['password_again'] = new sfValidatorPass();
 
-    $this->mergePostValidator(new sfValidatorSchemaCompare(
-      'password', sfValidatorSchemaCompare::EQUAL, 'password_again',
-      array('throw_global_error' => true),
-      array('invalid' => 'The two passwords do not match, please enter them again!')
-    ));
+    $this->mergePostValidator(new sfValidatorAnd(array(
+        new CollectorEditFormPasswordSchemaValidator(null, array(
+            'collector' => $this->getObject(),
+        )),
+        new sfValidatorSchemaCompare(
+          'password', sfValidatorSchemaCompare::EQUAL, 'password_again',
+          array('throw_global_error' => true),
+          array('invalid' => 'The two passwords do not match, please enter them again!')),
+    )));
   }
 
   protected function embedProfileForm()
