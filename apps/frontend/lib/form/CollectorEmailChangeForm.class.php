@@ -36,15 +36,7 @@ class CollectorEmailChangeForm extends BaseForm
 
     $this->setValidators(array(
         'password' => new sfValidatorString(),
-        'email' => new sfValidatorAnd(array(
-            new sfValidatorEmail(),
-            new sfValidatorCallback(array(
-                'callback' => array($this, 'validateEmail'),
-            ),array(
-                'invalid' => "This email is set for validation.
-                              Check you old email's inbox",
-            )),
-          ), array('halt_on_error' => true)),
+        'email' => new sfValidatorEmail(),
         'email_again' => new sfValidatorPass(),
     ));
 
@@ -53,42 +45,56 @@ class CollectorEmailChangeForm extends BaseForm
             'collector' => $this->collector,
             'old_password_field' => 'password',
         )),
+        new sfValidatorCallback(array(
+            'callback' => array($this, 'validateEmail'),
+        ),array(
+            'invalid' => "This email address is already validated",
+        )),
         new sfValidatorSchemaCompare(
           'email', sfValidatorSchemaCompare::EQUAL, 'email_again',
           array('throw_global_error' => true),
           array('invalid' => 'The two emails do not match, please enter them again!')
         ),
-    )));
+    ), array('halt_on_error' => true)));
 
     $this->widgetSchema->setNameFormat('collector_email[%s]');
     $this->widgetSchema->setFormFormatterName('Bootstrap');
   }
 
-  public function validateEmail($validator, $value, $arguments)
+  public function validateEmail($validator, $values, $arguments)
   {
-    if ($this->collector->getEmail() == $value)
+    $email = $values['email'];
+
+    $errorSchema = new sfValidatorErrorSchema($validator);
+
+    if ($this->collector->getEmail() == $email)
     {
-      throw new sfValidatorError($validator,
-        'This is the same email as your current one');
+      $errorSchema->addError(new sfValidatorError($validator,
+        'This is the same email as your current one'), 'email');
+      throw $errorSchema;
     }
 
     $collector = CollectorQuery::create()
-      ->filterByEmail($value)
+      ->filterByEmail($email)
       ->findOne();
     if ($collector)
     {
-      throw new sfValidatorError($validator, 'This email address is taken');
+      $errorSchema->addError(new sfValidatorError($validator,
+        'This email address is taken'), 'email');
+      throw $errorSchema;
     }
 
     $collector = CollectorEmailQuery::create()
       ->filterByIsVerified(true)
-      ->findOneByEmail($value);
+      ->findOneByEmail($email);
     if ($collector)
     {
-      throw new sfValidatorError($validator, 'invalid');
+      $errorSchema->addError(new sfValidatorError($validator,
+        'invalid'), 'email');
+      throw $errorSchema;
     }
 
-    return $value;
+    return $values;
   }
 
   /**
