@@ -5,7 +5,7 @@
     <td class="sender">
       <?php if ($m->getSender() == $sf_user->getId()): ?>
         <div style="float: left; margin-right: 10px;">
-          <?php echo link_to_collector($sf_user->getCollector(), 'stack'); ?>
+          <?php echo link_to_collector($sf_user->getCollector(), 'image'); ?>
         </div>
         <div>
           <?= __('You'); ?><br>
@@ -13,7 +13,7 @@
         </div>
       <?php else: ?>
         <div style="float: left; margin-right: 10px;">
-          <?php echo link_to_collector($m->getCollectorRelatedBySender(), 'stack'); ?>
+          <?php echo link_to_collector($m->getCollectorRelatedBySender(), 'image'); ?>
         </div>
         <div>
           <?php echo link_to_collector($m->getCollectorRelatedBySender(), 'text'); ?><br>

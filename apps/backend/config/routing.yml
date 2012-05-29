@@ -160,7 +160,7 @@ collectible:
 collection:
   class: icePropelRouteCollection
   options:
-    model:                Collection
+    model:                CollectorCollection
     module:               collections
     prefix_path:          /collections
     column:               id

@@ -57,9 +57,13 @@
 <?php endif; ?>
 
 <?php if (!empty($collections) && count($collections) > 0): ?>
-  <div>
-    Other collections by <?= $collector; ?><br/>
-    <?= link_to('View all collections &raquo;', 'collections_by_collector', $collector); ?>
+  <div class="row-fluid min-height-13 cf">
+    <div class="span9 text-word-wrap">
+      Other collections by <?= $collector; ?>
+    </div>
+    <div class="span3">
+      <?= link_to('View all &raquo;', 'collections_by_collector', $collector, array('class' => 'pull-right')); ?>
+    </div>
   </div>
 
   <?php foreach ($collections as $collection): ?>

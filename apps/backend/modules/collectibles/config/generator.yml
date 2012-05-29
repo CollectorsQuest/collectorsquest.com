@@ -29,5 +29,6 @@ generator:
         display: [id, collection_collectible_list, name]
 
       form:    ~
-      edit:    ~
+      edit:
+        display: [name, description, tags]
       new:     ~
