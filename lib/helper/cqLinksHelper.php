@@ -363,9 +363,16 @@ function url_for_featured_week(Featured $featured_week)
   return url_for('@featured_week?id=' . $featured_week->getId() . '&slug=' . Utf8::slugify($featured_week->title));
 }
 
-function link_to_blog_post(wpPost $post)
+function link_to_blog_post(wpPost $post, $type = 'text', $options = array())
 {
-  return link_to($post->getPostTitle(), $post->getPostUrl());
+  $title = $post->getPostTitle();
+  if (array_key_exists('truncate', $options) && strlen($title) > $options['truncate'])
+  {
+    $title = truncate_text($title, $options['truncate'], "...", true);
+    unset($options['truncate']);
+  }
+
+  return link_to($title, $post->getPostUrl(), $options);
 }
 
 function link_to_blog_author(wpUser $author, $type = 'text', $options = array())
