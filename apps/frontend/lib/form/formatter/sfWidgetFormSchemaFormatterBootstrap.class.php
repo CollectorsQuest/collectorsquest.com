@@ -24,18 +24,38 @@ class sfWidgetFormSchemaFormatterBootstrap extends sfWidgetFormSchemaFormatter
   protected $errorListFormatInARow    = '<ul class="unstyled alert alert-error">%errors%  </ul>';
   protected $errorListFormatForField  = '<ul class="unstyled">%errors%  </ul>';
 
+  protected $fieldRequiredFormat      = '<div class="with-required-token">
+                                           <span class="required-token">
+                                             %required_token%
+                                           </span>
+                                           %field%
+                                         </div>';
+
 
   public function formatRow($label, $field, $errors = array(), $help = '', $hiddenFields = null)
   {
     return strtr($this->getRowFormat(), array(
         '%label%'         => $label,
-        '%field%'         => $field,
+        '%field%'         => $this->formatRequiredField($field),
                              // show help only when there are no errors
         '%help%'          => 0 == count($errors) ? $this->formatHelp($help) : '',
         '%errors%'        => $this->formatErrorsForField($errors),
         '%error_class%'   => count($errors) ? 'error' : '',
         '%hidden_fields%' => null === $hiddenFields ? '%hidden_fields%' : $hiddenFields,
     ));
+  }
+
+  public function formatRequiredField($field)
+  {
+    if (false !== strpos($field, 'required='))
+    {
+      return strtr($this->fieldRequiredFormat, array(
+          '%required_token%' => '*',
+          '%field%' => $field,
+      ));
+    }
+
+    return $field;
   }
 
   public function formatErrorsForField($errors)
