@@ -24,23 +24,26 @@
         <div class="span4 thumbnail" style="margin-top: -55px; background: #fff;">
           <?= image_tag_collector($collector, '235x315', array('max_width' => 138, 'max_height' => 185)) ?>
         </div>
-        <div class="span8">
-          <ul style="margin-top: 10px; list-style: none; padding-left: 0; margin-left: 0;">
-            <li>
-            <?php
+        <div class="span8" style="padding-top: 10px;">
+          <?php
+            echo sprintf(
+              'I am %s <strong>%s</strong> collector',
+              in_array(strtolower(substr($profile->getCollectorType(), 0, 1)), array('a', 'e', 'i', 'o')) ? 'an' : 'a',
+              $profile->getCollectorType()
+            );
+
+            if ($profile->getCountryIso3166())
+            {
               echo sprintf(
-                'Is %s %s collector',
-                in_array(strtolower(substr($profile->getCollectorType(), 0, 1)), array('a', 'e', 'i', 'o')) ? 'an' : 'a',
-                '<strong>'. $profile->getCollectorType() .'</strong>'
+                ' from %s',
+                ($profile->getCountryIso3166() == 'US') ? 'the United States' : $profile->getCountry()
               );
-            ?>
-            </li>
-            <li>
-              Is from <?= ($profile->getCountryIso3166() == 'US') ? 'the United States' : $profile->getCountry(); ?>
-            </li>
-          </ul>
+            }
+          ?>
+
           <?php if ($text = $profile->getProperty('about.what_you_collect')): ?>
-          <p><strong>Collecting:</strong>
+          <p style="margin-top: 10px;">
+            <strong>I collect:</strong>
             <?= $text ?>
           </p>
           <?php endif; ?>
