@@ -23,7 +23,9 @@ generator:
         sort: [created_at, desc]
 
       filter:
-        display: [name]
+        fields:
+          collection_id: { label: 'Collection #' }
+        display: [collection_collectible_list, name]
 
       form:    ~
       edit:    ~
