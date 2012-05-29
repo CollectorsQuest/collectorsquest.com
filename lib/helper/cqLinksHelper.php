@@ -89,9 +89,11 @@ function link_to_collector($object, $type = 'text', $options = array(), $image_o
   /** @var Collector $collector */
 
   $display_name = $collector->getDisplayName();
-  $alt          = isset($image_options['alt']) ? $image_options['alt'] : (isset($options['alt']) ? $options['alt'] : $display_name);
+  $alt = isset($image_options['alt']) ?
+    $image_options['alt'] :
+    (isset($options['alt']) ? $options['alt'] : $display_name);
 
-  $options       = array_merge(array(
+  $options = array_merge(array(
     'absolute'=> true,
     'title'   => $display_name
   ), $options);
@@ -112,22 +114,12 @@ function link_to_collector($object, $type = 'text', $options = array(), $image_o
   $url = route_for_collector($collector);
   switch ($type)
   {
-    case 'stack':
-      $options = array_merge($options, array(
-        'width'  => 64,
-        'height' => 64
-      ));
-      $link    = sprintf(
-        '<div style="width: 80px; height: 80px; background: transparent url(/images/legacy/avatar-bgr.png) no-repeat; padding: 13px 0 0 13px;">%s</div>',
-        link_to(image_tag_collector($collector, '100x100', $options), $url, $options)
-      );
-      break;
     case "image":
-      $link = link_to_if(!$collector->isFacebookOnly(), image_tag_collector($collector, '100x100', $image_options), $url, $options);
+      $link = link_to(image_tag_collector($collector, '100x100', $image_options), $url, $options);
       break;
     case "text":
     default:
-      $link = link_to_if(!$collector->isFacebookOnly(), $display_name, $url, $options);
+      $link = link_to($display_name, $url, $options);
       break;
   }
 
