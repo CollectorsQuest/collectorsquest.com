@@ -1,9 +1,17 @@
 <?php
-  /** @var $collector Collector */
-  /** @var $collector_form CollectorEditForm */
+  /** @var $collector       Collector */
+  /** @var $collector_form  CollectorEditForm */
+  /** @var $avatar_form     CollectorAvatarForm */
+  /** @var $email_form      CollectorEmailChangeForm */
 
   // set input-xxlarge as the default class of widgets
   foreach($collector_form->getWidgetSchema()->getFields() as $form_field)
+  {
+    $form_field->setAttribute('class',
+      $form_field->getAttribute('class') . ' input-xxlarge');
+  }
+  // set input-xxlarge as the default class of widgets
+  foreach($email_form->getWidgetSchema()->getFields() as $form_field)
   {
     $form_field->setAttribute('class',
       $form_field->getAttribute('class') . ' input-xxlarge');
@@ -140,8 +148,38 @@
               <button type="reset" class="btn gray-button spacer-left">Cancel</button>
             </div>
           </fieldset>
-
         </form> <!-- CollectorEditForm -->
+
+        <form action="<?= url_for('@mycq_profile'); ?>" class="form-horizontal" method="post">
+          <?= $email_form->renderHiddenFields(); ?>
+          <?= $email_form->renderGlobalErrors(); ?>
+
+          <fieldset class="brown-dashes form-container-center">
+            <div class="control-group">
+              <label for="textarea" class="control-label">Current email</label>
+              <div class="controls spacer-top-5">
+                <span class="brown">
+                  <?= $collector->getEmail(); ?>
+                </span>
+              </div>
+            </div>
+            <?= $email_form['password']->renderRow(); ?>
+            <?= $email_form['email']->renderRow(); ?>
+            <?= $email_form['email_again']->renderRow(); ?>
+          </fieldset>
+
+          <fieldset class="brown-dashes form-container-center">
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary blue-button">Change email</button>
+              <button type="submit" class="btn gray-button spacer-left">Cancel</button>
+              <div class="spacer-left-25">
+                <p class="brown spacer-top spacer-left-35">
+                  Your email address will not change until you confirm it via email
+                </p>
+              </div>
+            </div>
+          </fieldset>
+        </form> <!-- CollectorEmailChangeForm -->
 
 
         <!-- easy comment in/out -- >

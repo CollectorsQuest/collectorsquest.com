@@ -41,4 +41,5 @@ class CollectorEditFormPasswordSchemaValidator extends sfValidatorSchema
 
     return $values;
   }
+
 }

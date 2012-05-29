@@ -305,4 +305,28 @@ class collectorActions extends cqFrontendActions
     $this->redirect(src_tag_collector($collector, '100x100', true, array('absolute'=> true)), 301);
   }
 
+  /**
+   * Verify new user emails
+   */
+  public function executeVerifyEmail(sfWebRequest $request)
+  {
+    /* @var $collectorEmail CollectorEmail */
+    $collectorEmail = $this->getRoute()->getObject();
+    $this->forward404Unless($collectorEmail instanceof CollectorEmail);
+
+    $collector = $collectorEmail->getCollector();
+    $collector->setEmail($collectorEmail->getEmail());
+    $collector->save();
+
+    $collectorEmail->setIsVerified(true);
+    $collectorEmail->save();
+
+    $this->getUser()->Authenticate(true, $collector, false);
+
+    $this->getUser()->setFlash('success', sprintf(
+      'Your new email, %s, has been verified.', $collector->getEmail()));
+
+    return $this->redirect('@mycq_profile');
+  }
+
 }

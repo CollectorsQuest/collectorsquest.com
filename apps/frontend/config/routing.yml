@@ -135,6 +135,12 @@ collector_signup:
   param: { module: collector, action: signup, step: 1 }
   requirements: { step: '[1-3]' }
 
+collector_verify_email:
+  url:  /collector/verify-email/:hash
+  class: cqPropelRoute
+  param: { module: collector, action: verifyEmail }
+  options: { model: CollectorEmail, type: object }
+
 
 ### SELLERS
 

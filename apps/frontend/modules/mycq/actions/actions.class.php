@@ -13,6 +13,7 @@ class mycqActions extends cqFrontendActions
 
     $collector_form = new CollectorEditForm($this->collector);
     $avatar_form = new CollectorAvatarForm($this->collector);
+    $email_form = new CollectorEmailChangeForm($this->collector);
 
     if (sfRequest::POST == $request->getMethod())
     {
@@ -27,7 +28,7 @@ class mycqActions extends cqFrontendActions
         {
           $this->getUser()->setFlash('success', 'You have successfully updated your profile photo');
 
-          $this->redirect('mycq_profile');
+          return $this->redirect('mycq_profile');
         }
         else
         {
@@ -54,6 +55,34 @@ class mycqActions extends cqFrontendActions
             'There were some errors when saving your profile, check below');
         }
       }
+      else if ($request->hasParameter($email_form->getName()))
+      {
+        $collector_email = $email_form->bindAndCreateCollectorEmail(
+          $request->getParameter($email_form->getName()));
+
+        if ($collector_email)
+        {
+          $cqEmail = new cqEmail($this->getMailer());
+          $cqEmail->send('Collector/verify_new_email', array(
+             'to' => $email,
+              'params' => array(
+                  'collector' => $this->collector,
+                  'collector_email' => $collector_email,
+              )
+          ));
+
+          $this->getUser()->setFlash('success',
+            'A verification email was sent to '.$this->collector->getEmail());
+
+          return $this->redirect('mycq_profile');
+        }
+        else
+        {
+          $this->getUser()->setFlash('error',
+            'There were an error when changing your email, check below');
+        }
+      }
+
     }
 
     $this->avatars = CollectorPeer::$avatars;
@@ -61,6 +90,8 @@ class mycqActions extends cqFrontendActions
 
     $this->collector = $this->getUser()->getCollector();
     $this->collector_form = $collector_form;
+
+    $this->email_form = $email_form;
 
     return sfView::SUCCESS;
   }
