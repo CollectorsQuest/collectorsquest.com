@@ -92,3 +92,49 @@ EAT
 
   echo content_tag('div', $content, $options);
 }
+
+
+/**
+ * @param PropelObjectCollection $collection must be ordered by branch
+ */
+function cq_nestedset_to_ul(PropelObjectCollection $collection, $print_method = '__toString')
+{
+  echo '<ul>' . "\n";
+
+  foreach($collection as $object)
+  {
+    // should close levels ?
+    if ($prev_object = $collection->getPrevious())
+    {
+      $close_levels = $prev_object->getLevel() - $object->getLevel();
+    }
+    else
+    {
+      $close_levels = false;
+    }
+
+    // reset the internal iterator to its original starting point,
+    // because getPrevious() moves it back
+    $collection->getInternalIterator()->next();
+
+    if ($close_levels > 0)
+    {
+      echo str_repeat('</ul></li>', $close_levels) . "\n";
+    }
+
+    // print the
+    echo '<li>' . call_user_func(array($object, $print_method));
+
+    if ($object->hasChildren())
+    {
+      echo "\n" . '<ul>';
+    }
+    else
+    {
+      echo '</li>' . "\n";
+    }
+    ;
+  }
+
+  echo '</ul>';
+}
