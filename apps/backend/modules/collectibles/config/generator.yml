@@ -25,7 +25,8 @@ generator:
       filter:
         fields:
           collection_id: { label: 'Collection #' }
-        display: [collection_collectible_list, name]
+          id: { label: 'Collectible #' }
+        display: [id, collection_collectible_list, name]
 
       form:    ~
       edit:    ~
