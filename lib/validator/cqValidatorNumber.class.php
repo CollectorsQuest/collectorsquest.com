@@ -25,3 +25,32 @@
  * Id: $Id$
  */
 
+class cqValidatorNumber extends sfValidatorNumber
+{
+
+  protected function configure($options = array(), $messages = array())
+  {
+    parent::configure($options, $messages);
+
+    $this->addOption('multiple', false);
+  }
+
+  protected function doClean($value)
+  {
+    if ($this->getOption('multiple'))
+    {
+      $returnValue = array();
+      foreach (explode(',', $value) as $item)
+      {
+        $returnValue[] = parent::doClean($item);
+      }
+
+      return implode(',', $returnValue);
+    }
+    else
+    {
+      return parent::doClean($value);
+    }
+  }
+
+}
