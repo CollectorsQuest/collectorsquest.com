@@ -99,7 +99,7 @@ EAT
  */
 function cq_nestedset_to_ul(PropelObjectCollection $collection, $print_method = '__toString')
 {
-  echo '<ul>' . "\n";
+  echo '<ul class="menu">' . "\n";
 
   foreach($collection as $object)
   {
@@ -107,27 +107,29 @@ function cq_nestedset_to_ul(PropelObjectCollection $collection, $print_method = 
     if ($prev_object = $collection->getPrevious())
     {
       $close_levels = $prev_object->getLevel() - $object->getLevel();
+      // reset the internal iterator to its original starting point,
+      // because getPrevious() moves it back
+      $collection->getInternalIterator()->next();
     }
     else
     {
       $close_levels = false;
     }
 
-    // reset the internal iterator to its original starting point,
-    // because getPrevious() moves it back
-    $collection->getInternalIterator()->next();
-
     if ($close_levels > 0)
     {
       echo str_repeat('</ul></li>', $close_levels) . "\n";
     }
 
-    // print the
-    echo '<li>' . call_user_func(array($object, $print_method));
+    // print the object name
+    echo sprintf('<li class="%s">%s',
+      $object->hasChildren() ? 'expanded' : 'leaf',
+      '<a href="#">' . call_user_func(array($object, $print_method)) . '</a>'
+    );
 
     if ($object->hasChildren())
     {
-      echo "\n" . '<ul>';
+      echo "\n" . '<ul class="menu">';
     }
     else
     {
