@@ -21,7 +21,7 @@
   else
   {
     $link = null;
-    $title = $name ." Collections";
+    $title = $collector->getDisplayName() ."'s Collections";
   }
 
   cq_section_title($title, $link);

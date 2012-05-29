@@ -46,6 +46,16 @@ class CollectionCollectible extends BaseCollectionCollectible
     $this->setCollectibleId($v);
   }
 
+  public function getPrimaryImage($mode = Propel::CONNECTION_READ)
+  {
+    return $this->getCollectible()->getPrimaryImage($mode);
+  }
+
+  public function getMultimedia($limit = 0, $type = null, $primary = null, $mode = Propel::CONNECTION_READ)
+  {
+    return $this->getCollectible()->getMultimedia($limit, $type, $primary, $mode);
+  }
+
   public function __call($m, $a)
   {
     $collectible = $this->getCollectible();

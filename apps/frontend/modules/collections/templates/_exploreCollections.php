@@ -11,10 +11,10 @@
 
 <?php if ($pager->getNbResults() === 0): ?>
   <div style="margin: 15px 20px;">
-    <i class="icon-exclamation-sign" style="float: left; font-size: 46px; margin-right: 10px; color: #DF912F;"></i>
+    <i class="icon-exclamation-sign" style="float: left; font-size: 46px; line-height: 34px; margin-right: 10px; color: #DF912F;"></i>
       Sorry! We can't find anything that matches your search.
       Try a broader search, or browse around for other neat stuff.
-      (Or you can <?= link_to('upload something new', '@collection_create'); ?> to the site!)
+      (Or you can <?= link_to('upload something new', '@mycq_collections'); ?> to the site!)
   </div>
 <?php elseif ($pager->getPage() > 1): ?>
   <br clear="all"/>

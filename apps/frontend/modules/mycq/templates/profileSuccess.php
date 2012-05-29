@@ -152,9 +152,13 @@
 
         <form action="<?= url_for('@mycq_profile'); ?>" class="form-horizontal" method="post">
           <?= $email_form->renderHiddenFields(); ?>
-          <?= $email_form->renderGlobalErrors(); ?>
 
           <fieldset class="brown-dashes form-container-center">
+            <div class="control-group row">
+              <div class="offset4 span8">
+                <?= $email_form->renderGlobalErrors(); ?>
+              </div>
+            </div>
             <div class="control-group">
               <label for="textarea" class="control-label">Current email</label>
               <div class="controls spacer-top-5">
