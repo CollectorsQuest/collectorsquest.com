@@ -18,12 +18,8 @@ class CollectionCreateForm extends CollectorCollectionForm
         'required' => 'required',
         'style' => 'width: 360px;'
       )),
-      'content_category_id' => new cqWidgetFormPropelChoiceByNestedSet(array(
+      'content_category_id' => new sfWidgetFormInputHidden(array(
         'label' => 'Category',
-        'model' => 'ContentCategory',
-        'add_empty' => true,
-      ), array(
-        'style' => 'width: 370px;'
       )),
       'thumbnail'  => new sfWidgetFormInputHidden(),
       'step'       => new sfWidgetFormInputHidden(array('default' => 1)),

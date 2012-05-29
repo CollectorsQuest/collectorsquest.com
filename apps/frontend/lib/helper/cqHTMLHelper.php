@@ -97,9 +97,9 @@ EAT
 /**
  * @param PropelObjectCollection $collection must be ordered by branch
  */
-function cq_nestedset_to_ul(PropelObjectCollection $collection, $print_method = '__toString')
+function cq_nestedset_to_ul(PropelObjectCollection $collection, $print_method = '__toString', $id = null)
 {
-  echo '<ul class="menu">' . "\n";
+  echo '<ul class="menu" id="'. $id .'">' . "\n";
 
   foreach ($collection as $object)
   {
@@ -124,7 +124,10 @@ function cq_nestedset_to_ul(PropelObjectCollection $collection, $print_method = 
     // print the object name
     echo sprintf('<li class="%s">%s',
       $object->hasChildren() ? 'expanded' : 'leaf',
-      '<a href="#">' . call_user_func(array($object, $print_method)) . '</a>'
+      sprintf(
+        '<a href="#" data-object-id="%d">%s</a>',
+        $object->getId(), call_user_func(array($object, $print_method))
+      )
     );
 
     if ($object->hasChildren())

@@ -167,10 +167,11 @@ class mycqComponents extends cqFrontendComponents
         // $form->getWidget('content_category_id')->setOption('', '');
       }
     }
-    else
-    {
-      unset($form['content_category_id']);
-    }
+
+    $root = ContentCategoryQuery::create()->findRoot();
+    $this->categories = ContentCategoryQuery::create()
+      ->descendantsOf($root)
+      ->findTree();
 
     $this->form = $form;
 

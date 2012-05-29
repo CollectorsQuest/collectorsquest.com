@@ -1194,3 +1194,65 @@ textarea.input-xlarge {
   -moz-border-radius: 5px;
   border-radius: 5px;
 }
+
+.columnview {
+  border: 1px solid #ccc;
+  height: 15em;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  position: relative;
+}
+
+.columnview div {
+  height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  position: absolute;
+}
+
+.columnview a {
+  display: block;
+  white-space: nowrap;
+  clear: both;
+  padding: 2px 15px 2px 5px;
+  overflow: hidden;
+  text-decoration: none;
+}
+
+.columnview a:focus {
+  outline: none;
+}
+
+.columnview a canvas {
+}
+
+.columnview .feature {
+  min-width: 200px;
+  overflow-y: auto;
+}
+
+.columnview .feature a {
+  white-space: normal;
+}
+
+.columnview .hasChildMenu {
+}
+
+.columnview .active {
+  background-color: #3671cf;
+  color: #fff;
+}
+
+.columnview .inpath {
+  background-color: #d0d0d0;
+  color: #000;
+}
+
+.columnview .hasChildMenu .widget {
+  color: black;
+  position: absolute;
+  right: 0;
+  text-decoration: none;
+  font-size: 0.7em;
+}

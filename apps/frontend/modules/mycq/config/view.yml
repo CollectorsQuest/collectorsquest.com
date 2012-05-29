@@ -8,6 +8,7 @@ all:
   javascripts:
     - jquery/ui.js
     - jquery/controls.js
+    - jquery/columnview.js
     - jquery/form.js
     - jquery/tmpl.js
     - jquery/iframe-transport.js

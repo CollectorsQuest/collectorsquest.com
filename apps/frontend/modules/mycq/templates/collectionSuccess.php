@@ -21,7 +21,7 @@
           <i class="icon icon-plus icon-white"></i>
         </a>
         <a class="blue-link" href="#">
-          Click to Add Main<br>Thumbnail or Drag and Drop<br>from "Items to Sort"
+          Click to Add Main<br>Thumbnail or Drag and Drop<br>from "Items to Sort" below
         </a>
       <?php endif; ?>
     </div>

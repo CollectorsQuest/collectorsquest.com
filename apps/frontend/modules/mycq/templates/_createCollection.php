@@ -10,12 +10,34 @@
 
   <h1>Create a New Collection</h1>
   <?= $form ?>
-  <div class="form-actions">
-    <button type="submit" class="btn btn-primary blue-button spacer-right-15">
-      <?php echo isset($form['content_category_id']) ? 'Create Collection' : 'Next'; ?>
-    </button>
-    <button type="reset" class="btn gray-button">Cancel</button>
-  </div>
+
+  <?php if (isset($form['content_category_id'])): ?>
+
+    <div class="control-group ">
+      <?= $form['content_category_id']->renderLabel('Category') ?>
+      <div class="controls">
+        <div class="with-required-token">
+          <span class="required-token">*</span>
+          <?php cq_nestedset_to_ul($categories, 'getName', 'categories'); ?>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary blue-button spacer-right-15">
+        Create Collection
+      </button>
+      <button type="reset" class="btn gray-button">Cancel</button>
+    </div>
+  <?php else: ?>
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary blue-button spacer-right-15">
+        Next
+      </button>
+      <button type="reset" class="btn gray-button">Cancel</button>
+    </div>
+  <?php endif; ?>
+
 </form>
 
 <?php
@@ -28,12 +50,21 @@
 ?>
 
 <script>
-  $(document).ready(function()
-  {
-    $('#form-create-collection input.tag').tagedit({
-      autocompleteURL: '<?= url_for('@ajax_typeahead?section=tags&page=edit'); ?>',
-      // return, comma, semicolon
-      breakKeyCodes: [ 13, 44, 59 ]
-    });
+$(document).ready(function()
+{
+  $("#categories").columnview({
+    multi: false, preview: false,
+    onchange: function(element) {
+      $("#collection_content_category_id").val($(element).data('object-id'));
+      $('#categories').scrollLeft(500);
+      $('#categories .feature').hide();
+    }
   });
+
+  $('#form-create-collection input.tag').tagedit({
+    autocompleteURL: '<?= url_for('@ajax_typeahead?section=tags&page=edit'); ?>',
+    // return, comma, semicolon
+    breakKeyCodes: [ 13, 44, 59 ]
+  });
+});
 </script>
