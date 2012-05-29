@@ -334,9 +334,6 @@ $lastclass = 0;
           <?php if (is_single()) : ?>
           <div class="entry-share pull-right share <?php if (is_front_page() && $count==1): echo "span6"; endif; ?>">
             <!-- AddThis Button BEGIN -->
-            <a href="#" class="btn btn-lightblue btn-mini-social">
-              <i class="add-icon-medium"></i> Add to your wanted list
-            </a>
             <a class="btn btn-lightblue btn-mini-social addthis_button_email">
               <i class="mail-icon-mini"></i> Email
             </a>
