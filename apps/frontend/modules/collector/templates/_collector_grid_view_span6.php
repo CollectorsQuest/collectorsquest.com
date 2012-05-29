@@ -35,9 +35,14 @@
     </div>
     <div class="span12 about">
     <?php
-      echo !empty($excerpt) ?
-        $excerpt :
-        cqStatic::truncateText($collector->getProfile()->getAboutMe(), 140, '...', true);
+      if (!empty($excerpt) && trim($excerpt) !== '.')
+      {
+        echo $excerpt;
+      }
+      else if ($collector->getProfile()->getAboutMe())
+      {
+        echo cqStatic::truncateText($collector->getProfile()->getAboutMe(), 140, '...', true);
+      }
     ?>
     </div>
   </div>
