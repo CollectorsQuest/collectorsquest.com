@@ -101,7 +101,7 @@ function cq_nestedset_to_ul(PropelObjectCollection $collection, $print_method = 
 {
   echo '<ul class="menu">' . "\n";
 
-  foreach($collection as $object)
+  foreach ($collection as $object)
   {
     // should close levels ?
     if ($prev_object = $collection->getPrevious())
