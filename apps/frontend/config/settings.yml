@@ -1,12 +1,16 @@
 prod_debug:
   .settings:
     error_reporting:        <?php echo (E_ALL & ~E_STRICT)."\n" ?>
+    cache:                  false
+    etag:                   false
     logging_enabled:        true
     web_debug:              true
 
 next_debug:
   .settings:
     error_reporting:        <?php echo (E_ALL & ~E_STRICT)."\n" ?>
+    cache:                  false
+    etag:                   false
     logging_enabled:        true
     web_debug:              true
 
