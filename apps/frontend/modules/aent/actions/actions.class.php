@@ -143,6 +143,7 @@ class aentActions extends cqFrontendActions
     $q = CollectibleQuery::create()
       ->filterById($collectible->getId(), Criteria::NOT_EQUAL)
       ->filterByTags($tags)
+      ->orderByNumViews(Criteria::DESC)
       ->limit(8);
     $this->related_collectibles = $q->find();
 

@@ -11,6 +11,12 @@ class CollectibleQuery extends BaseCollectibleQuery
     return $this;
   }
 
+  /**
+   * @param  array   $tags
+   * @param  string  $comparison
+   *
+   * @return CollectibleQuery
+   */
   public function filterByTags($tags, $comparison = null)
   {
     $tags = !is_array($tags) ? explode(',', (string) $tags) : $tags;
