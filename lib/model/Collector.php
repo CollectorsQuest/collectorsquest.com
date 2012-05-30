@@ -14,6 +14,7 @@ class Collector extends BaseCollector implements ShippingRatesInterface
     $_multimedia = array(),
     $_counts = array();
 
+  protected $collCollectiblesInCollections;
 
   public function initializeProperties()
   {
@@ -363,6 +364,94 @@ class Collector extends BaseCollector implements ShippingRatesInterface
   public function getCountCollectibles()
   {
     return $this->countCollectibles();
+  }
+
+  /**
+   * Clear the collCollectiblesInCollections collection
+   *
+   * @return    void
+   */
+  public function clearCollectiblesInCollections()
+  {
+    // important to set this to NULL since that means it is uninitialized
+    $this->collCollectiblesInCollections = null;
+  }
+
+  /**
+   * Initializes the collCollectiblesInCollections collection.
+   *
+   * @param     boolean $overrideExisting
+   * @return    void
+   */
+  public function initCollectiblesInCollections($overrideExisting = true)
+  {
+    if (null !== $this->collCollectiblesInCollections && !$overrideExisting) {
+      return;
+    }
+    $this->collCollectiblesInCollections = new PropelObjectCollection();
+    $this->collCollectiblesInCollections->setModel('Collectible');
+  }
+
+  /**
+   * Get the collectibles related to this collector that are asigned in
+   * collections
+   *
+   * @param     Criteria $criteria
+   * @param     PropelPDO $con
+   * @return    PropelObjectCollection Collectible[]
+   */
+  public function getCollectiblesInCollections(
+    Criteria $criteria = null,
+    PropelPDO $con = null
+  ) {
+    if (null === $this->collCollectiblesInCollections || null !== $criteria) {
+      if ($this->isNew() && null === $this->collCollectiblesInCollections) {
+        // return empty collection
+        $this->initCollectiblesInCollections();
+      } else {
+        $coll = CollectibleQuery::create(null, $criteria)
+          ->filterByCollector($this)
+          ->innerJoinCollectionCollectible()
+          ->find($con);
+        if (null !== $criteria) {
+          return $coll;
+        }
+        $this->collCollectiblesInCollections = $coll;
+      }
+    }
+    return $this->collCollectiblesInCollections;
+  }
+
+  /**
+   * Count the number of collectibles related to this collector that
+   * are asigned in collections
+   *
+   * @param     Criteria $criteria
+   * @param     boolean $distinct
+   * @param     PropelPDO $con
+   * @return    integer
+   */
+  public function countCollectiblesInCollections(
+    Criteria $criteria = null,
+    $distinct = false,
+    PropelPDO $con = null
+  ) {
+    if (null === $this->collCollectiblesInCollections || null !== $criteria) {
+      if ($this->isNew() && null === $this->collCollectiblesInCollections) {
+        return 0;
+      } else {
+        $query = CollectibleQuery::create(null, $criteria);
+        if($distinct) {
+          $query->distinct();
+        }
+        return $query
+          ->filterByCollector($this)
+          ->innerJoinCollectionCollectible()
+          ->count($con);
+      }
+    } else {
+      return count($this->collCollectiblesInCollections);
+    }
   }
 
   public function getCollectorFriends(Criteria $criteria = null)
