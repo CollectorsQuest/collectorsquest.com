@@ -19,8 +19,7 @@
     ?>
   </div>
   <div class="span8">
-    <h4><?= link_to_collector($collector, 'text'); ?></h4>
-    <ul>
+    <ul style="list-style: none; margin-left: 5px;">
       <li>
         <?php
         echo sprintf(
@@ -30,15 +29,17 @@
         );
         ?>
       </li>
+      <?php if ($country_iso3166 = $collector->getProfile()->getCountryIso3166()): ?>
       <li>
-        From <?= $collector->getProfile()->getCountry(); ?>
+        From <?= ($country_iso3166 == 'US') ? 'the United States' : $collector->getProfile()->getCountry(); ?>
       </li>
+      <?php endif; ?>
     </ul>
   </div>
 </div>
 
 <?php if (!$sf_user->isOwnerOf($collector) && isset($message) && $message === true): ?>
-<div class="row-fluid spacer-15">
+<div class="row-fluid spacer">
   <div class="send-pm">
     <form action="<?= url_for2('messages_compose', array('to'=>$collector->getUsername()), true); ?>" method="post" style="margin-bottom: 0;" id="form-private-message">
       <?= $pm_form->renderHiddenFields(); ?>

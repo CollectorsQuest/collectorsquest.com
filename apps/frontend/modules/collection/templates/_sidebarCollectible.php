@@ -39,7 +39,10 @@
 <?php
   include_component(
     '_sidebar', 'widgetCollectiblesForSale',
-    array('collectible' => $collectible, 'limit' => 3)
+    array(
+      'collectible' => $collectible, 'limit' => 3,
+      'fallback' => 'random'
+    )
   );
 ?>
 
@@ -53,6 +56,6 @@
 <?php
   include_component(
     '_sidebar', 'widgetCollections',
-    array('collectible' => $collectible)
+    array('collectible' => $collectible, 'fallback' => 'random')
   );
 ?>
