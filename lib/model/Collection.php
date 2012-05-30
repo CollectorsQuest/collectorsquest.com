@@ -182,10 +182,16 @@ class Collection extends BaseCollection
   {
     $con = $con ?: Propel::getConnection();
 
-    $stmt = $con->prepare('SELECT COUNT(collectible_id) FROM `collection_collectible` WHERE collection_collectible.COLLECTION_ID = :p1');
+    /** @var $stmt PDOStatement */
+    $stmt = $con->prepare('
+      SELECT COUNT(collectible_id)
+        FROM `collection_collectible`
+       WHERE collection_collectible.COLLECTION_ID = :p1
+    ');
     $stmt->bindValue(':p1', $this->getId());
     $stmt->execute();
-    return $stmt->fetchColumn();
+
+    return (int) $stmt->fetchColumn();
   }
 
   /**

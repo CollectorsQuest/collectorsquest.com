@@ -10,9 +10,8 @@ class PropelMigration_1338404557
 
 	public function preUp($manager)
 	{
-		// add the pre-migration code here
-    $collections = CollectorCollectionQuery::create()
-      ->find();
+    /** @var $collections CollectorCollection[] */
+    $collections = CollectorCollectionQuery::create()->find();
 
     foreach ($collections as $collection)
     {
