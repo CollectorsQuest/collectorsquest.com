@@ -1,22 +1,35 @@
+prod_debug:
+  .settings:
+    error_reporting:        <?php echo (E_ALL & ~E_STRICT)."\n" ?>
+    logging_enabled:        true
+    web_debug:              true
+
+next_debug:
+  .settings:
+    error_reporting:        <?php echo (E_ALL & ~E_STRICT)."\n" ?>
+    logging_enabled:        true
+    web_debug:              true
+
 dev:
   .settings:
     error_reporting:        <?php echo (E_ALL | E_STRICT)."\n" ?>
-    web_debug:              true
     logging_enabled:        true
     cache:                  false
     etag:                   false
+    web_debug:              true
+    web_debug_web_dir:      "/sf/sf_web_debug"
 
 test:
   .settings:
     error_reporting:        <?php echo ((E_ALL | E_STRICT) ^ E_NOTICE)."\n" ?>
     cache:                  false
-    web_debug:              false
     etag:                   false
+    web_debug:              false
 
 all:
   .settings:
-    logging_enabled:        false
     cache:                  true
+    logging_enabled:        false
     no_script_name:         true
     web_debug:              false
     web_debug_web_dir:      "http://backend.cqcdns.com/sf/sf_web_debug"

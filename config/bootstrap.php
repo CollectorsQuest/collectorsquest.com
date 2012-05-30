@@ -61,6 +61,7 @@ else
 
 if (isset($_COOKIE['sf_debug']) && $_COOKIE['sf_debug'] == '1')
 {
+  $app = $app .'_debug';
   $dbg = true;
 }
 
