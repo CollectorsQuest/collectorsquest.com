@@ -9,6 +9,7 @@
 <?php
   $link = $sf_user->isOwnerOf($collector) ? link_to('Edit Market', '@mycq_marketplace', array('class' => 'text-v-middle link-align')) .'&nbsp; | &nbsp;' : null ;
   $link = $link . link_to('See all &raquo;', '@marketplace', array('class' => 'text-v-middle link-align'));
+  $link = null;
 
   cq_section_title($collector->getDisplayName() ."'s Collectibles for Sale", $link);
 ?>
