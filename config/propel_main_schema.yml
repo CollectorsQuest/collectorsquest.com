@@ -13,8 +13,8 @@ classes:
       id:  ~
       graph_id:       { type: integer, required: false, index: unique }
       facebook_id:    { type: varchar, size: 20, index: unique }
-      username:       { type: varchar, size: 64, required: true }
-      display_name:   { type: varchar, size: 64, required: true, primaryString: true }
+      username:       { type: varchar, size: 64, required: true, index: unique }
+      display_name:   { type: varchar, size: 64, required: true, primaryString: true, index: unique }
       slug:           { type: varchar, size: 64, required: true, index: unique }
       sha1_password:  { type: varchar, size: 40, required: true }
       salt:           { type: varchar, size: 32, required: true }
