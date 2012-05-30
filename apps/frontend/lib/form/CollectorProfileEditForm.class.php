@@ -53,9 +53,13 @@ class CollectorProfileEditForm extends BaseCollectorProfileForm
       )),
       'about_most_expensive_item' => new sfWidgetFormInputText(array(
           'label'                 => 'What is the most you ever spent on an item? (in USD)',
+        ), array(
+          'required'              => 'required',
       )),
       'about_annually_spend'      => new sfWidgetFormInputText(array(
           'label'                 => 'How much do you spend annually? (in USD)',
+        ), array(
+          'required'              => 'required',
       )),
       'about_new_item_every'      => new sfWidgetFormInputText(array(
           'label'                 => 'How much time is there between your purchases?',

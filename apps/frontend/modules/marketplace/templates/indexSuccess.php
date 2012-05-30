@@ -23,7 +23,7 @@
             array('width' => 180, 'height' => 180)
           );
         ?>
-        <span><?= $collectibles_for_sale_text[$i]; ?></span>
+        <span class="blue-label"><?= $collectibles_for_sale_text[$i]; ?></span>
       </div>
       <div class="spotlight-text">
         <h4><?= link_to_collectible($collectible_for_sale->getCollectible(), 'text', array('class' => 'target')); ?></h4>
@@ -75,16 +75,16 @@
 <script>
 $(document).ready(function()
 {
-  $('.dropdown-toggle').dropdown();
+  var $url = '<?= url_for('@ajax_marketplace?section=component&page=discoverCollectiblesForSale') ?>';
+  var $form = $('#form-discover-collectibles');
 
+  $('.dropdown-toggle').dropdown();
   $('.dropdown-menu a.sortBy').click(function()
   {
     $('#sortByName').html($(this).data('name'));
     $('#sortByValue').val($(this).data('sort'));
+    $form.submit();
   });
-
-  var $url = '<?= url_for('@ajax_marketplace?section=component&page=discoverCollectiblesForSale') ?>';
-  var $form = $('#form-discover-collectibles');
 
   $form.submit(function()
   {

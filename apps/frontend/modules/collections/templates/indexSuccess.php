@@ -33,16 +33,17 @@
 <script>
 $(document).ready(function()
 {
+  var $url = '<?= url_for('@ajax_collections?section=component&page=exploreCollections', true) ?>';
+  var $form = $('#form-explore-collections');
+
   $('.dropdown-toggle').dropdown();
 
   $('.dropdown-menu a.sortBy').click(function()
   {
     $('#sortByName').html($(this).data('name'));
     $('#sortByValue').val($(this).data('sort'));
+    $form.submit();
   });
-
-  var $url = '<?= url_for('@ajax_collections?section=component&page=exploreCollections', true) ?>';
-  var $form = $('#form-explore-collections');
 
   $form.submit(function()
   {
