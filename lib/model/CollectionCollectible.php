@@ -4,7 +4,8 @@ require 'lib/model/om/BaseCollectionCollectible.php';
 
 class CollectionCollectible extends BaseCollectionCollectible
 {
-  public function save(PropelPDO $con = null)
+
+  public function preSave(PropelPDO $con = null)
   {
     /**
      * We need to place the new collectible at the end of the collection
@@ -22,18 +23,28 @@ class CollectionCollectible extends BaseCollectionCollectible
 
       $position = (int) $stmt->fetch(PDO::FETCH_COLUMN);
       $this->setPosition($position + 1);
-
-      if ($collection = $this->getCollection($con))
-      {
-        $q = CollectionCollectibleQuery::create()
-           ->filterByCollectionId($this->getCollectionId());
-        $num_items = $q->count($con);
-        $collection->setNumItems($num_items);
-        $collection->save();
-      }
     }
 
-    parent::save($con);
+    return true;
+  }
+
+  public function postSave(PropelPDO $con = null)
+  {
+    $this->updateRelatedCollection($con);
+
+    return true;
+  }
+
+  /**
+   * Update the aggregate column in the related Collection object
+   *
+   * @param PropelPDO $con A connection object
+   */
+  protected function updateRelatedCollection(PropelPDO $con = null)
+  {
+    if ($collection = $this->getCollection()) {
+      $collection->updateNumItems($con);
+    }
   }
 
   public function getId()
@@ -69,4 +80,5 @@ class CollectionCollectible extends BaseCollectionCollectible
       return parent::__call($m, $a);
     }
   }
+
 }
