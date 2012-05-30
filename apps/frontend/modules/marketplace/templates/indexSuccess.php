@@ -75,16 +75,16 @@
 <script>
 $(document).ready(function()
 {
-  $('.dropdown-toggle').dropdown();
+  var $url = '<?= url_for('@ajax_marketplace?section=component&page=discoverCollectiblesForSale') ?>';
+  var $form = $('#form-discover-collectibles');
 
+  $('.dropdown-toggle').dropdown();
   $('.dropdown-menu a.sortBy').click(function()
   {
     $('#sortByName').html($(this).data('name'));
     $('#sortByValue').val($(this).data('sort'));
+    $form.submit();
   });
-
-  var $url = '<?= url_for('@ajax_marketplace?section=component&page=discoverCollectiblesForSale') ?>';
-  var $form = $('#form-discover-collectibles');
 
   $form.submit(function()
   {
