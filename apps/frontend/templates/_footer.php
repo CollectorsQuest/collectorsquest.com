@@ -173,7 +173,7 @@
               <p>
                 Have a question or a concern? Having trouble figuring something out?
                 Get the most out of the site by checking out our FAQs.<br/>
-                <a href="#">Get&nbsp;Help&nbsp;Now!</a>
+                <a href="<?=urldecode(url_for('blog_page', array('slug' => 'cq-faqs/general-questions')))?>">Get&nbsp;Help&nbsp;Now!</a>
               </p>
             </div>
           </li>
