@@ -9,11 +9,13 @@ class CollectorCollectionForm extends BaseCollectorCollectionForm
 
   public function configure()
   {
-    $this->getWidgetSchema()->setFormFormatterName('Bootstrap');
+    $this->widgetSchema['name']->setAttribute('required', 'required');
+    $this->widgetSchema['description']->setAttribute('required', 'required');
 
     $this->setupTagsField();
     $this->unsetFields();
 
+    $this->getWidgetSchema()->setFormFormatterName('Bootstrap');
     $this->widgetSchema->setNameFormat('collection[%s]');
   }
 
@@ -34,13 +36,34 @@ class CollectorCollectionForm extends BaseCollectorCollectionForm
       }
     }
 
-    $this->widgetSchema['tags'] = new cqWidgetFormMultipleInputText();
+    $this->widgetSchema['tags'] = new cqWidgetFormMultipleInputText(array(
+      'label' => 'Tags'
+    ), array(
+      'name' => 'collection[tags][]',
+      'required' => 'required',
+      'class' => 'tag'
+    ));
+    $this->getWidgetSchema()->setHelp(
+      'tags', 'Choose at least three descriptive words or
+               phrases for your collection, separated by commas'
+    );
 
     $this->widgetSchema['tags']->setDefault($tags);
-    $this->widgetSchema['tags']->setAttribute('name', 'collection[tags][]');
-    $this->widgetSchema['tags']->setAttribute('class', 'tag');
+    $this->validatorSchema['tags'] = new sfValidatorCallback(
+      array('required' => true, 'callback' => array($this, 'validateTagsField'))
+    );
+  }
 
-    $this->validatorSchema['tags'] = new sfValidatorPass();
+  public function validateTagsField($validator, $values)
+  {
+    $values = (array) $values;
+
+    if (empty($values)) {
+      throw new sfValidatorError($validator, 'required');
+    }
+    else {
+      return $values;
+    }
   }
 
   protected function unsetFields()

@@ -31,7 +31,7 @@
       echo link_to(
         image_tag_collectible(
           $collectible, '620x0',
-          array('height' => null, 'class' => 'magnify', 'id' => 'collectible_image')
+          array('height' => null, 'class' => 'magnify')
         ),
         src_tag_collectible($collectible, 'original'),
         array('id' => 'collectible_multimedia_primary', 'target' => '_blank')
@@ -41,6 +41,10 @@
 
   <?php if (count($additional_multimedia) > 0): ?>
   <div class="span2">
+    <a class="zoom" href="<?php echo src_tag_collectible($collectible, '150x150'); ?>" title="<?php echo $collectible->getName(); ?>">
+      <?= image_tag_collectible($collectible, '150x150', array(
+        'height' => null, 'title' => $collectible->getName(), 'style' => 'margin-bottom: 12px;')); ?>
+    </a>
     <?php foreach ($additional_multimedia as $i => $m): ?>
     <a class="zoom" href="<?php echo src_tag_multimedia($m, 'original'); ?>" title="<?php echo $m->getName(); ?>">
       <?= image_tag_multimedia($m, '150x150', array('height' => null, 'title' => $m->getName(), 'style' => 'margin-bottom: 12px;')); ?>
@@ -158,13 +162,17 @@
     $(".zoom").click(function(e) {
       e.stopPropagation();
 
-      var src = $(this).find('img');
-      var target = $('#collectible_image');
-      var path = $(src).attr('src').split(/\/150x150\//);
-      var orig = $(target).attr('src').split(/\/620x0\//);
+      var source = $(this).find('img');
+      var target = $('#collectible_multimedia_primary');
+      var path = $(source).attr('src').split(/\/150x150\//);
 
-      $(target).attr('src', path[0] + '/620x0/' + path[1]);
-      $(src).attr('src', orig[0] + '/150x150/' + orig[1]);
+      $(target)
+          .attr('href', path[0] + '/original/' + path[1])
+          .find('img')
+          .attr({
+            src: path[0] + '/620x0/' + path[1],
+            alt: $(source).attr('alt')
+          });
 
       return false;
     });

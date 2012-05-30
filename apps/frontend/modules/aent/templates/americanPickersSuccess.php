@@ -1,9 +1,18 @@
 <div class="spacer-bottom-15">
   <img src="/images/banners/2012-0420_AP_Promo_Space_620x180_FIN.jpg" alt="Check out items seen on American Pickers">
 </div>
-<?php cq_page_title('As Seen on American Pickers'); ?>
 
-<br/>
+<p>
+  Part sleuths, part antiques experts, and part cultural historians –
+  Mike Wolfe and Frank Fritz’s adventures in AMERICAN PICKERS® on HISTORY®
+  bring them to small towns across the country in search of weird and
+  wonderful Americana. As professional “pickers,” these childhood buddies
+  comb through memorabilia and artifacts, hoping to find treasures among the trash.
+  Here are just a few treasures they’ve found along the way.
+</p>
+
+<?php cq_page_title('As Seen on American Pickers', null, array('class' => 'row-fluid header-bar spacer-bottom-15')); ?>
+
 <div class="row">
   <div id="collectibles" class="row-content">
     <?php

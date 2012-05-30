@@ -7,7 +7,9 @@ class CollectorCollectionEditForm extends CollectorCollectionForm
     parent::configure();
 
     $this->widgetSchema['name']->setAttribute('class', 'input-xlarge');
+    $this->widgetSchema['name']->setAttribute('required', 'required');
     $this->widgetSchema['description']->setAttribute('class', 'input-xlarge');
+    $this->widgetSchema['description']->setAttribute('required', 'required');
 
     // Define which fields to use from the base form
     $this->useFields(array(

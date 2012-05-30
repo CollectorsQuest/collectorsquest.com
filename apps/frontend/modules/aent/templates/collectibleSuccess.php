@@ -45,9 +45,11 @@
     </div>
     <div class="pull-right share">
       <!-- AddThis Button BEGIN -->
+      <?php /*
       <a href="#" class="btn btn-lightblue btn-mini-social">
         <i class="add-icon-medium"></i> Add to your wanted list
       </a>
+      */?>
       <a class="btn btn-lightblue btn-mini-social addthis_button_email">
         <i class="mail-icon-mini"></i> Email
       </a>

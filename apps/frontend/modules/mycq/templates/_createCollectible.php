@@ -12,7 +12,7 @@
   <?= $form ?>
   <div class="form-actions">
     <button type="submit" class="btn btn-primary blue-button spacer-right-15">Create Collectible</button>
-    <button type="reset" class="btn gray-button">Cancel</button>
+    <button type="reset" class="btn gray-button" onClick="$(this).parents('.modal').find('.modal-body').dialog2('close')">Cancel</button>
   </div>
 </form>
 

@@ -25,18 +25,55 @@ dev:
     param:
       level: debug
       loggers:
-
         sf_web_debug:
-          class: sfWebDebugLogger
+          class: IceWebDebugLogger
           param:
             level: debug
             condition:       %SF_WEB_DEBUG%
             xdebug_logging:  false
             web_debug_class: sfWebDebug
-
         sf_file_debug:
           class: sfNoLogger
 
+
+next_debug:
+  logger:
+    class: sfAggregateLogger
+    param:
+      level: debug
+      loggers:
+        sf_web_debug:
+          class: IceWebDebugLogger
+          param:
+            level: debug
+            condition:       %SF_WEB_DEBUG%
+            xdebug_logging:  false
+            web_debug_class: sfWebDebug
+        sf_file_debug:
+          class: sfFileLogger
+          param:
+            level: debug
+            file: %SF_LOG_DIR%/%SF_APP%_%SF_ENVIRONMENT%.log
+
+
+prod_debug:
+  logger:
+    class: sfAggregateLogger
+    param:
+      level: debug
+      loggers:
+        sf_web_debug:
+          class: IceWebDebugLogger
+          param:
+            level: debug
+            condition:       %SF_WEB_DEBUG%
+            xdebug_logging:  false
+            web_debug_class: sfWebDebug
+        sf_file_debug:
+          class: sfFileLogger
+          param:
+            level: debug
+            file: %SF_LOG_DIR%/%SF_APP%_%SF_ENVIRONMENT%.log
 
 all:
   mailer:

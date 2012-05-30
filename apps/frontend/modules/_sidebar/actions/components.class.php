@@ -421,6 +421,11 @@ class _sidebarComponents extends cqFrontendComponents
     return $this->_sidebar_if(count($this->collectibles) > 0);
   }
 
+  public function executeWidgetMoreHistory()
+  {
+    return sfView::SUCCESS;
+  }
+
   private function _sidebar_if($condition = false)
   {
     if ($condition)
