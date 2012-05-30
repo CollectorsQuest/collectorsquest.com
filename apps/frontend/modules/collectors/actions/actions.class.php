@@ -53,7 +53,7 @@ class collectorsActions extends cqFrontendActions
     $pager->init();
 
     $this->pager = $pager;
-    $this->display = $this->getUser()->getAttribute('display', 'grid', 'search');
+    $this->display = $this->getUser()->getAttribute('display', 'grid', 'collectors');
     $this->type = $type;
     $this->sortBy = $sortBy;
 
