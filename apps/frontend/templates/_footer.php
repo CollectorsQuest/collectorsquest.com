@@ -18,7 +18,7 @@
             Come here to to indulge your passion for collecting!
           </p>
           <div class="row-spacing-footer">
-            <button class="btn btn-primary blue-button pull-left" type="submit">Contact Us</button>
+            <button class="btn btn-primary blue-button pull-left" type="submit" onclick="location.href='<?=url_for('blog_page', array('slug' => 'contact-us'));?>'">Contact Us</button>
           </div>
           <p>
             <a href="http://www.facebook.com/pages/Collectors-Quest/119338990397"
