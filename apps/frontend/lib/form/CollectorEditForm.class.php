@@ -29,6 +29,8 @@ class CollectorEditForm extends CollectorForm
         'website' => 'Personal Website',
     ));
 
+    $this->setupDisplayNameValidator();
+
     $this->widgetSchema->setFormFormatterName('Bootstrap');
   }
 
@@ -100,6 +102,26 @@ class CollectorEditForm extends CollectorForm
           'class' => 'disabled',
       ));
     }
+  }
+
+  protected function setupDisplayNameValidator()
+  {
+    // because sfValidatorPropelUnique is a post validator we cannot modify it,
+    // so we add a new unique validator to be execute before the other ones
+    // and halt if there is error with it, allowing us to set the proper
+    // error message
+
+    $this->validatorSchema->setPostValidator(new sfValidatorAnd(array(
+        new sfValidatorPropelUnique(array(
+            'model' => $this->getModelName(),
+            'column' => 'display_name',
+          ), array(
+            'invalid' => 'A Collector with the same '.
+                         $this->widgetSchema->getLabel('display_name').
+                         ' already exists.',
+        )),
+        $this->validatorSchema->getPostValidator(),
+    ), array('halt_on_error' => true)));
   }
 
   protected function doUpdateObject($values)
