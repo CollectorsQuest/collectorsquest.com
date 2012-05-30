@@ -20,6 +20,8 @@ class CollectionCreateForm extends CollectorCollectionForm
       )),
       'content_category_id' => new sfWidgetFormInputHidden(array(
         'label' => 'Category',
+      ), array(
+        'required' => 'required'
       )),
       'thumbnail'  => new sfWidgetFormInputHidden(),
       'step'       => new sfWidgetFormInputHidden(array('default' => 1)),
@@ -65,7 +67,8 @@ class CollectionCreateForm extends CollectorCollectionForm
 
     $this->widgetSchema['tags']->setDefault($tags);
     $this->getWidgetSchema()->setHelp(
-      'tags', 'Choose at least three descriptive words for your collection, separated by commas'
+      'tags', 'Choose at least three descriptive words or
+               phrases for your collection, separated by commas'
     );
   }
 

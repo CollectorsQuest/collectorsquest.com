@@ -20,14 +20,20 @@ class CollectibleEditForm extends BaseCollectibleForm
         'model' => 'CollectorCollection', 'criteria' => $criteria,
         'add_empty' => true, 'multiple' => true
       ),
-      array('class' => 'input-xlarge chzn-select', 'style' => 'width: 410px;')
+      array(
+        'data-placeholder' => 'Please, choose at least one Collection',
+        'class' => 'input-xlarge chzn-select',
+        'style' => 'width: 410px;',
+        'required' => 'required')
     );
     $this->validatorSchema['collection_collectible_list'] = new sfValidatorPropelChoice(array(
       'multiple' => true, 'model' => 'Collection', 'required' => true)
     );
 
     $this->widgetSchema['name']->setAttribute('class', 'input-xlarge');
+    $this->widgetSchema['name']->setAttribute('required', 'required');
     $this->widgetSchema['description']->setAttribute('class', 'input-xlarge');
+    $this->widgetSchema['description']->setAttribute('required', 'required');
 
     $this->setupTagsField();
 
@@ -75,7 +81,8 @@ class CollectibleEditForm extends BaseCollectibleForm
 
     $this->widgetSchema['tags']->setDefault($tags);
     $this->getWidgetSchema()->setHelp(
-      'tags', 'Choose at least three descriptive words for your collectible, separated by commas'
+      'tags', 'Choose at least three descriptive words or
+               phrases for your collectible, separated by commas'
     );
 
     $this->validatorSchema['tags'] = new sfValidatorCallback(
