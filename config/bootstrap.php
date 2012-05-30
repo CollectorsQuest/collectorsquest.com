@@ -1,59 +1,75 @@
 <?php
 
+$app = isset($_SERVER['SF_APP']) ? $_SERVER['SF_APP'] : 'frontend';
+$env = isset($_SERVER['SF_ENV']) ? $_SERVER['SF_ENV'] : 'prod';
+$dbg = isset($_SERVER['SF_DEBUG']) ? (boolean) $_SERVER['SF_DEBUG'] : false;
+
 if ($_SERVER['SERVER_NAME'] == 'backend.collectorsquest.dev' || $_SERVER['SERVER_NAME'] == 'backend.collectorsquest.next')
 {
-  define('SF_APP', 'backend');
-  define('SF_ENV', 'dev');
-  define('SF_DEBUG', true);
+  $app = 'backend';
+  $env = 'dev';
+  $dbg = true;
 }
 else if (false !== stripos($_SERVER['SERVER_NAME'], 'collectorsquest.dev'))
 {
-  define('SF_APP', 'legacy');
-  define('SF_ENV', 'dev');
-  define('SF_DEBUG', true);
+  $app = 'legacy';
+  $env = 'dev';
+  $dbg = true;
 }
 else if (false !== stripos($_SERVER['SERVER_NAME'], 'collectorsquest.next') || $_SERVER['SERVER_NAME'] == '92.247.221.137' || $_SERVER['SERVER_NAME'] == 'zecho.dyndns-home.com')
 {
-  define('SF_APP', 'frontend');
-  define('SF_ENV', 'dev');
-  define('SF_DEBUG', true);
+  $app = 'frontend';
+  $env = 'dev';
+  $dbg = true;
 }
 else if ($_SERVER['SERVER_NAME'] == 'backend.cqnext.com')
 {
-  define('SF_APP', 'backend');
-  define('SF_ENV', 'next');
-  define('SF_DEBUG', false);
+  $app = 'backend';
+  $env = 'next';
+  $dbg = false;
 }
 else if (false !== stripos($_SERVER['SERVER_NAME'], 'cqnext.com'))
 {
-  define('SF_APP', 'frontend');
-  define('SF_ENV', 'next');
-  define('SF_DEBUG', false);
+  $app = 'frontend';
+  $env = 'next';
+  $dbg = false;
 }
 else if ($_SERVER['SERVER_NAME'] == 'backend.cqstaging.com')
 {
-  define('SF_APP', 'backend');
-  define('SF_ENV', 'stg');
-  define('SF_DEBUG', false);
+  $app = 'backend';
+  $env = 'stg';
+  $dbg = false;
 }
 else if (false !== stripos($_SERVER['SERVER_NAME'], 'cqstaging.com'))
 {
-  define('SF_APP', 'legacy');
-  define('SF_ENV', 'stg');
-  define('SF_DEBUG', false);
+  $app = 'legacy';
+  $env = 'stg';
+  $dbg = false;
 }
 else if ($_SERVER['SERVER_NAME'] == 'backend.collectorsquest.com')
 {
-  define('SF_APP', 'backend');
-  define('SF_ENV', 'prod');
-  define('SF_DEBUG', false);
+  $app = 'backend';
+  $env = 'prod';
+  $dbg = false;
 }
 else
 {
-  define('SF_APP', 'legacy');
-  define('SF_ENV', 'prod');
-  define('SF_DEBUG', false);
+  $app = 'legacy';
+  $env = 'prod';
+  $dbg = false;
 }
+
+if (isset($_COOKIE['sf_debug']) && $_COOKIE['sf_debug'] == '1')
+{
+  $env = $env === 'prod' ? 'prod_debug' : 'next_debug';
+}
+
+define('SF_APP', $app);
+define('SF_ENV', $env);
+define('SF_DEBUG', $dbg);
+
+// Cleanup
+unset($app, $env, $dbg);
 
 if (SF_ENV === 'prod' && !defined('GIT_REVISION'))
 {
