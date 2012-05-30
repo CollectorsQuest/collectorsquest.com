@@ -55,7 +55,8 @@
             <?php if ($sf_params->get('module') === '_video'): ?>
               <ul class="dropdown-menu" style="min-width: 123px;">
                 <li>
-                  <a href="<?= url_for('@collector_me', true); ?>" title="Go to your profile!">
+                  <a href="<?= url_for('@mycq_profile', true); ?>"
+                     title="Manage your CollectorsQuest.com profile!">
                     <i class="icon icon-user"></i> Profile
                   </a>
                 </li>
