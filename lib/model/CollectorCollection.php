@@ -135,7 +135,7 @@ class CollectorCollection extends BaseCollectorCollection
    */
   public function getNumItems()
   {
-    $this->getParentOrCreate()->getNumItems();
+    return $this->getParentOrCreate()->getNumItems();
   }
 
   /**
