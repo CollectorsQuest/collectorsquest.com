@@ -14,8 +14,11 @@ class PropelMigration_1338363931
 
 	public function preUp($manager)
   {
-    // Truncate table
-    ContentCategoryPeer::doDeleteAll();
+    // add the pre-migration code here
+  }
+
+	public function postUp($manager)
+	{
     // Create root node
     $content_category_root = new ContentCategory();
     $content_category_root->makeRoot();
@@ -94,11 +97,11 @@ class PropelMigration_1338363931
           CollectorCollectionQuery::create()
             ->filterByPrimaryKeys($collection_ids)
             ->update(
-              array('ContentCategoryId' => $parent_category->getId()),
-              $con = null,
-              // required for Concrete Inheritance tables
-              $forceIndividualSaves = true
-            );
+            array('ContentCategoryId' => $parent_category->getId()),
+            $con = null,
+            // required for Concrete Inheritance tables
+            $forceIndividualSaves = true
+          );
         }
       } // while csv rows
 
@@ -111,25 +114,18 @@ class PropelMigration_1338363931
       // fail the migration
       return false;
     }
-
-  }
+	}
 
   public function existingCategory($name, ContentCategory $parent_category)
   {
     return isset(self::$known_categories[$name . $parent_category->getId()])
       ? self::$known_categories[$name . $parent_category->getId()]
       : ContentCategoryQuery::create()
-          ->filterByName($name)
-          ->descendantsOf($parent_category)
-          ->select('Id')
-          ->findOne();
+        ->filterByName($name)
+        ->descendantsOf($parent_category)
+        ->select('Id')
+        ->findOne();
   }
-
-
-	public function postUp($manager)
-	{
-		// add the post-migration code here
-	}
 
 	public function preDown($manager)
 	{
@@ -150,15 +146,17 @@ class PropelMigration_1338363931
 	public function getUpSQL()
 	{
 		return array (
-  'propel' => '
-# This is a fix for InnoDB in MySQL >= 4.1.x
-# It "suspends judgement" for fkey relationships until are tables are set.
-SET FOREIGN_KEY_CHECKS = 0;
-
-# This restores the fkey checks, after having unset them earlier
-SET FOREIGN_KEY_CHECKS = 1;
-',
-);
+      'propel' => '
+        SET FOREIGN_KEY_CHECKS = 0;
+        TRUNCATE TABLE `content_category`;
+        SET FOREIGN_KEY_CHECKS = 1;
+      ',
+      'archive' => '
+        SET FOREIGN_KEY_CHECKS = 0;
+        TRUNCATE TABLE `content_category_archive`;
+        SET FOREIGN_KEY_CHECKS = 1;
+      '
+    );
 	}
 
 	/**
@@ -170,15 +168,11 @@ SET FOREIGN_KEY_CHECKS = 1;
 	public function getDownSQL()
 	{
 		return array (
-  'propel' => '
-# This is a fix for InnoDB in MySQL >= 4.1.x
-# It "suspends judgement" for fkey relationships until are tables are set.
-SET FOREIGN_KEY_CHECKS = 0;
-
-# This restores the fkey checks, after having unset them earlier
-SET FOREIGN_KEY_CHECKS = 1;
-',
-);
+      'propel' => '
+        SET FOREIGN_KEY_CHECKS = 0;
+        SET FOREIGN_KEY_CHECKS = 1;
+      ',
+    );
 	}
 
 }
