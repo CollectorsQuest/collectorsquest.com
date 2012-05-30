@@ -23,7 +23,7 @@
             array('width' => 180, 'height' => 180)
           );
         ?>
-        <span><?= $collectibles_for_sale_text[$i]; ?></span>
+        <span class="blue-label"><?= $collectibles_for_sale_text[$i]; ?></span>
       </div>
       <div class="spotlight-text">
         <h4><?= link_to_collectible($collectible_for_sale->getCollectible(), 'text', array('class' => 'target')); ?></h4>
