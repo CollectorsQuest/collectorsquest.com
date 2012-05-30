@@ -11,7 +11,12 @@
   on these items from the show?
 </p>
 
-<?php cq_page_title('As Seen on Pawn Stars', null, array('class' => 'row-fluid header-bar spacer-bottom-15')); ?>
+<?php
+  cq_page_title(
+    'As Seen on <strong><i>Pawn Stars</i></strong>', null,
+    array('class' => 'row-fluid header-bar spacer-bottom-15')
+  );
+?>
 
 <div class="row">
   <div id="collectibles" class="row-content">

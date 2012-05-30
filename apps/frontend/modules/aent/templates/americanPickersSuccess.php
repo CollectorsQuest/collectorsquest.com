@@ -3,14 +3,20 @@
 </div>
 
 <p style="text-align: justify;">
-  Part sleuths, part antiques experts, and part cultural historians, professional ‘pickers’ Mike Wolfe
-  and Frank Fritz’s adventures in <strong><i>AMERICAN PICKERS</i></strong><sup>&reg;</sup>
-  on HISTORY<sup>&reg;</sup> bring them to small towns across the country.
-  Combing through memorabilia and artifacts and hoping to find treasures among the trash,
-  they find their ‘gold’ in items of all kinds, like the pieces featured below.
+  Part sleuths, part antiques experts, and part cultural historians,
+  professional ‘pickers’ Mike Wolfe and Frank Fritz’s adventures in
+  <strong><i>AMERICAN PICKERS</i></strong><sup>&reg;</sup> on HISTORY<sup>&reg;</sup>
+  bring them to small towns across the country. Combing through memorabilia and
+  artifacts and hoping to find treasures among the trash, they find their ‘gold’
+  in items of all kinds, like the pieces featured below.
 </p>
 
-<?php cq_page_title('As Seen on American Pickers', null, array('class' => 'row-fluid header-bar spacer-bottom-15')); ?>
+<?php
+  cq_page_title(
+    'As Seen on <strong><i>American Pickers</i></strong>', null,
+    array('class' => 'row-fluid header-bar spacer-bottom-15')
+  );
+?>
 
 <div class="row">
   <div id="collectibles" class="row-content">
