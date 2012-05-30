@@ -3,12 +3,12 @@
 </div>
 
 <p>
-  Part sleuths, part antiques experts, and part cultural historians –
-  Mike Wolfe and Frank Fritz’s adventures in AMERICAN PICKERS® on HISTORY®
-  bring them to small towns across the country in search of weird and
-  wonderful Americana. As professional “pickers,” these childhood buddies
-  comb through memorabilia and artifacts, hoping to find treasures among the trash.
-  Here are just a few treasures they’ve found along the way.
+  Part sleuths, part antiques experts, and part cultural historians, professional ‘pickers’ Mike Wolfe
+  and Frank Fritz’s adventures in
+  <strong><em class="trademark-container">AMERICAN PICKERS<span class="trademark">&reg;</span></em></strong>&nbsp;&nbsp;&nbsp;
+  on <strong><em class="trademark-container">HISTORY<span class="trademark">&reg;</span></em></strong>&nbsp;&nbsp;&nbsp;&nbsp;bring them to small towns across the country.
+  Combing through memorabilia and artifacts and hoping to find treasures among the trash,
+  they find their ‘gold’ in items of all kinds, like the pieces featured below.
 </p>
 
 <?php cq_page_title('As Seen on American Pickers', null, array('class' => 'row-fluid header-bar spacer-bottom-15')); ?>
