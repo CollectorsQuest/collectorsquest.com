@@ -18,7 +18,16 @@
             <li class="span12 main-thumb">
               <?php if ($image = $collectible->getPrimaryImage()): ?>
                 <div class="thumbnail drop-zone-large" data-is-primary="1">
-                  <?= image_tag_multimedia($image, '300x0', array('width' => 294)); ?>
+                  <?php
+                    echo image_tag_multimedia(
+                      $image, '300x0',
+                      array(
+                        'width' => 294, 'id' => 'multimedia-'. $image->getId(),
+                        //'onclick' => "return launchEditor('multimedia-". $image->getId() ."', '". src_tag_multimedia($image, 'original') ."');"
+                        //'onclick' => "return imageEditor('multimedia-". $image->getId() ."', 'http://images.aviary.com/imagesv5/feather_default.jpg');"
+                      )
+                    );
+                  ?>
                   <i class="icon icon-remove-sign" data-multimedia-id="<?= $image->getId(); ?>"></i>
                   <i class="icon icon-plus icon-plus-pos hide"></i>
                 </div>
@@ -177,6 +186,8 @@
   </ul>
 </div>
 <?php endif; ?>
+
+<?php // include_partial('mycq/aviary_feathers'); ?>
 
 <script type="text/javascript">
 $(document).ready(function()
