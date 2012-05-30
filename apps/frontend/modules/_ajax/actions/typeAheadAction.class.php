@@ -14,6 +14,9 @@ class typeAheadAction extends IceAjaxAction
 
     $categories = ContentCategoryQuery::create()
       ->filterByName("%$q%", Criteria::LIKE)
+      ->filterByName("%&%", Criteria::NOT_LIKE)
+      ->filterByName("%,%", Criteria::NOT_LIKE)
+      ->joinCollectorCollection(null, Criteria::RIGHT_JOIN)
       ->limit($limit)
       ->find()
       ->toKeyValue('Id', 'Name');
