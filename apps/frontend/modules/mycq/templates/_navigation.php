@@ -38,7 +38,7 @@
                 echo '<li class="'. $active .'">', link_to('Profile', '@mycq_profile'), '</li>';
               ?>
               <?php
-                $active = in_array($sf_params->get('action'), array('collections')) ? 'active' : null;
+                $active = in_array($sf_params->get('action'), array('collections', 'collection', 'collectible')) ? 'active' : null;
                 echo '<li class="'. $active .'">', link_to('Collections', '@mycq_collections'), '</li>';
               ?>
               <?php
