@@ -119,26 +119,6 @@ class CollectorCollection extends BaseCollectorCollection
   }
 
   /**
-   * Disallow setting the number of items (collectibles) from the child table
-   * in concrete inheritance
-   *
-   * @param     type $v
-   * @return    CollectorCollection
-   */
-  public function setNumItems($v)
-  {
-    return $this;
-  }
-
-  /**
-   * Proxy to concrete inheritance parent ->getNumItems()
-   */
-  public function getNumItems()
-  {
-    return $this->getParentOrCreate()->getNumItems();
-  }
-
-  /**
    * For each Multimedia that is added to the Advert, this method will be called
    * to take care of creating the right thumnail sizes
    *

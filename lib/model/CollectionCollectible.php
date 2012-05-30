@@ -42,8 +42,18 @@ class CollectionCollectible extends BaseCollectionCollectible
    */
   protected function updateRelatedCollection(PropelPDO $con = null)
   {
-    if ($collection = $this->getCollection()) {
-      $collection->updateNumItems($con);
+    if ($collection = $this->getCollection())
+    {
+      if ($collection->hasChildObject())
+      {
+        // this will update the parent as well
+        $collection->getChildObject()->updateNumItems($con);
+      }
+      else
+      {
+        // childless collection, there shouldn't be any of those, but just in case
+        $collection->updateNumItems($con);
+      }
     }
   }
 
