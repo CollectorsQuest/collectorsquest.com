@@ -5,7 +5,7 @@
 <p style="text-align: justify;">
   In the only family-run pawn shop in Las Vegas, three generations of men
   from the Harrison family buy and sell collectible, unusual and historically
-  significant items on HISTORY’s <strong>PAWN STARS</strong><sup>&reg;</sup>.
+  significant items on HISTORY’s <strong><i>PAWN STARS</i></strong><sup>&reg;</sup>.
   Their customers are carrying on a centuries-old practice: pawning or selling
   their possessions to make a quick buck. What would you be willing to gamble
   on these items from the show?

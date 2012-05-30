@@ -4,7 +4,7 @@
 
 <p style="text-align: justify;">
   Part sleuths, part antiques experts, and part cultural historians, professional ‘pickers’ Mike Wolfe
-  and Frank Fritz’s adventures in <strong>AMERICAN PICKERS</strong><sup>&reg;</sup>
+  and Frank Fritz’s adventures in <strong><i>AMERICAN PICKERS</i></strong><sup>&reg;</sup>
   on HISTORY<sup>&reg;</sup> bring them to small towns across the country.
   Combing through memorabilia and artifacts and hoping to find treasures among the trash,
   they find their ‘gold’ in items of all kinds, like the pieces featured below.
