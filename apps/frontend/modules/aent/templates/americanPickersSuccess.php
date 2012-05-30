@@ -2,11 +2,10 @@
   <img src="/images/banners/2012-0420_AP_Promo_Space_620x180_FIN.jpg" alt="Check out items seen on American Pickers">
 </div>
 
-<p>
+<p style="text-align: justify;">
   Part sleuths, part antiques experts, and part cultural historians, professional ‘pickers’ Mike Wolfe
-  and Frank Fritz’s adventures in
-  <strong><em class="trademark-container">AMERICAN PICKERS<span class="trademark">&reg;</span></em></strong>&nbsp;&nbsp;&nbsp;
-  on <strong><em class="trademark-container">HISTORY<span class="trademark">&reg;</span></em></strong>&nbsp;&nbsp;&nbsp;&nbsp;bring them to small towns across the country.
+  and Frank Fritz’s adventures in <strong>AMERICAN PICKERS</strong><sup>&reg;</sup>
+  on HISTORY<sup>&reg;</sup> bring them to small towns across the country.
   Combing through memorabilia and artifacts and hoping to find treasures among the trash,
   they find their ‘gold’ in items of all kinds, like the pieces featured below.
 </p>

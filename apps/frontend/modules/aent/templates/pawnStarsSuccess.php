@@ -2,12 +2,13 @@
   <img src="/images/banners/2012-0420_PS_Promo_Space_620x180_FIN.jpg" alt="">
 </div>
 
-<p>
+<p style="text-align: justify;">
   In the only family-run pawn shop in Las Vegas, three generations of men
   from the Harrison family buy and sell collectible, unusual and historically
-  significant items on <strong><em class="trademark-container">HISTORY’s PAWN STARS<span class="trademark">&reg;</span></em></strong>&nbsp;&nbsp;&nbsp;&nbsp;. Their customers are carrying on
-  a centuries-old practice: pawning or selling their possessions to make a quick buck.
-  What would you be willing to gamble on these items from the show?
+  significant items on HISTORY’s <strong>PAWN STARS</strong><sup>&reg;</sup>.
+  Their customers are carrying on a centuries-old practice: pawning or selling
+  their possessions to make a quick buck. What would you be willing to gamble
+  on these items from the show?
 </p>
 
 <?php cq_page_title('As Seen on Pawn Stars', null, array('class' => 'row-fluid header-bar spacer-bottom-15')); ?>
