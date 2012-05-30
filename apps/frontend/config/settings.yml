@@ -1,16 +1,6 @@
-prod_debug:
+next:
   .settings:
     error_reporting:        <?php echo (E_ALL & ~E_STRICT)."\n" ?>
-    cache:                  true
-    logging_enabled:        true
-    web_debug:              true
-    web_debug_web_dir:      "http://backend.cqcdns.com/sf/sf_web_debug"
-
-next_debug:
-  .settings:
-    error_reporting:        <?php echo (E_ALL & ~E_STRICT)."\n" ?>
-    cache:                  true
-    logging_enabled:        true
     web_debug:              true
     web_debug_web_dir:      "http://backend.cqcdns.com/sf/sf_web_debug"
 
@@ -32,9 +22,10 @@ test:
 all:
   .settings:
     logging_enabled:        false
-    web_debug:              false
     cache:                  true
     no_script_name:         true
+    web_debug:              false
+    web_debug_web_dir:      "http://backend.cqcdns.com/sf/sf_web_debug"
 
     i18n:                   true
     default_culture:        en

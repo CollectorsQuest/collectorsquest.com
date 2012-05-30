@@ -61,7 +61,7 @@ else
 
 if (isset($_COOKIE['sf_debug']) && $_COOKIE['sf_debug'] == '1')
 {
-  $env = $env === 'prod' ? 'prod_debug' : 'next_debug';
+  $dbg = true;
 }
 
 define('SF_APP', $app);
