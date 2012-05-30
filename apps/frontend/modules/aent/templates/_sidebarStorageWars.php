@@ -24,3 +24,9 @@
 </div>
 
 <?php include_component('_sidebar', 'widgetMagnifyVideos'); ?>
+
+<?php
+  include_component(
+    '_sidebar', 'widgetMoreHistory'
+  );
+?>
