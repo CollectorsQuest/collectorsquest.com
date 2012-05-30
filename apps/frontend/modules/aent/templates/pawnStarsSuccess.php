@@ -1,9 +1,20 @@
 <div class="spacer-bottom-15">
   <img src="/images/banners/2012-0420_PS_Promo_Space_620x180_FIN.jpg" alt="">
 </div>
-<?php cq_page_title('As Seen on Pawn Stars'); ?>
 
-<br/>
+<p>
+  They’ve seen 3-cent nickels, clocks that kill, a historic Revolutionary War
+  bond printed by Paul Revere, sunken treasure from the Spanish Empire, and so
+  much more on HISTORY’s PAWN STARS®. In the only family-run pawn shop in Las Vegas,
+  three generations of men from the Harrison family buy and sell collectible, unusual
+  and historically significant items. Their customers, often as colorful as the
+  merchandise, are carrying on a centuries-old practice: pawning or selling their
+  possessions to make a quick buck.  What would you be willing to gamble on these
+  items from the show?
+</p>
+
+<?php cq_page_title('As Seen on Pawn Stars', null, array('class' => 'row-fluid header-bar spacer-bottom-15')); ?>
+
 <div class="row">
   <div id="collectibles" class="row-content">
   <?php
