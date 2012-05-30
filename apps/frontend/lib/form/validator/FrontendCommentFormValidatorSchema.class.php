@@ -61,7 +61,8 @@ class FrontendCommentFormValidatorSchema extends sfValidatorSchema
 
       $akismet->setCommentAuthor($values['author_name']);
       $akismet->setCommentAuthorEmail($values['author_email']);
-      $akismet->setCommentAuthorURL($values['author_url']);
+      $akismet->setCommentAuthorURL(isset($values['author_url'])
+        ? $values['author_url'] : '');
 
       try
       {
