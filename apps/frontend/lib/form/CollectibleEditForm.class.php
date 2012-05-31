@@ -24,7 +24,8 @@ class CollectibleEditForm extends BaseCollectibleForm
         'data-placeholder' => 'Please, choose at least one Collection',
         'class' => 'input-xlarge chzn-select',
         'style' => 'width: 410px;',
-        'required' => 'required')
+        'required' => 'required'
+      )
     );
     $this->validatorSchema['collection_collectible_list'] = new sfValidatorPropelChoice(array(
       'multiple' => true, 'model' => 'Collection', 'required' => true)

@@ -291,6 +291,12 @@ class mycqActions extends cqFrontendActions
     if ($request->isMethod('post'))
     {
       $taintedValues = $request->getParameter('collectible');
+      if (isset($taintedValues['collection_collectible_list']))
+      {
+        $taintedValues['collection_collectible_list'] = array_filter($taintedValues['collection_collectible_list']);
+        $taintedValues['collection_collectible_list'] = array_values($taintedValues['collection_collectible_list']);
+      }
+
       $form->bind($taintedValues, $request->getFiles('collectible'));
 
       if ($form->isValid())

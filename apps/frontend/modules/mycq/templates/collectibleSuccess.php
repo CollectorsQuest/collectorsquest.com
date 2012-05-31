@@ -7,7 +7,7 @@
  */
 ?>
 
-<form action="<?= url_for('mycq_collectible_by_slug', $collectible); ?>"
+<form action="<?= url_for('mycq_collectible_by_slug', $collectible); ?>" novalidate
       id="form-collectible" method="post" class="form-horizontal">
 
   <div class="row-fluid">
@@ -145,7 +145,7 @@
             <i class="icon icon-trash"></i>
             Delete Collectible
           </a>
-          <button type="submit" class="btn btn-primary blue-button">Save Changes</button>
+          <button type="submit" formnovalidate class="btn btn-primary blue-button">Save Changes</button>
           <a href="<?= url_for('mycq_collectible_by_slug', $collectible) ?>"
              class="btn gray-button spacer-left">
             Cancel

@@ -5,9 +5,10 @@
  */
 ?>
 
-<form action="<?= url_for('mycq_collection_by_slug', $collection); ?>"
+<form action="<?= url_for('mycq_collection_by_slug', $collection); ?>" novalidate
       id="form-collection" method="post" enctype="multipart/form-data"
       class="form-horizontal spacer-bottom-reset">
+
 <div class="row-fluid">
   <div class="span3">
     <div class="drop-zone-large">
@@ -54,7 +55,7 @@
           Delete Collection
         </a>
 
-        <button type="submit" class="btn btn-primary blue-button">Save Changes</button>
+        <button type="submit" formnovalidate class="btn btn-primary blue-button">Save Changes</button>
         <a href="<?= url_for('mycq_collection_by_slug', $collection) ?>"
            class="btn gray-button spacer-left">
           Cancel
