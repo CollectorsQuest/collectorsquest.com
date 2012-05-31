@@ -83,7 +83,7 @@ class _sidebarComponents extends cqFrontendComponents
     $this->limit = $this->getVar('limit') ?: 5;
 
     $q = CollectorCollectionQuery::create()
-      ->orderByUpdatedAt(Criteria::DESC);
+      ->filterByNumItems(3, Criteria::GREATER_EQUAL);
 
     /** @var $collection CollectorCollection */
     if (($collection = $this->getVar('collection')) && $collection instanceof CollectorCollection)
@@ -91,7 +91,8 @@ class _sidebarComponents extends cqFrontendComponents
       $tags = $collection->getTags();
       $q
         ->filterById($collection->getId(), Criteria::NOT_EQUAL)
-        ->filterByTags($tags);
+        ->filterByTags($tags)
+        ->orderByUpdatedAt(Criteria::DESC);
     }
     /** @var $collectible Collectible */
     else if (($collectible = $this->getVar('collectible')) && $collectible instanceof Collectible)
@@ -99,7 +100,14 @@ class _sidebarComponents extends cqFrontendComponents
       $tags = $collectible->getTags();
       $q
         ->filterById($collectible->getCollectionId(), Criteria::NOT_EQUAL)
-        ->filterByTags($tags);
+        ->filterByTags($tags)
+        ->orderByUpdatedAt(Criteria::DESC);
+    }
+    else
+    {
+      $q
+        ->filterByNumViews(1000, Criteria::GREATER_EQUAL)
+        ->addAscendingOrderByColumn('RAND()');
     }
 
     // Make the actual query and get the Collections

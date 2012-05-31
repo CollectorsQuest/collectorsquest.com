@@ -22,6 +22,12 @@ class CollectorCollectionQuery extends BaseCollectorCollectionQuery
       ->endUse();
   }
 
+  /**
+   * @param  array   $tags
+   * @param  string  $comparison
+   *
+   * @return CollectorCollectionQuery
+   */
   public function filterByTags($tags, $comparison = null)
   {
     $tags = !is_array($tags) ? explode(',', (string) $tags) : $tags;
