@@ -5,6 +5,7 @@
 <?php cq_page_title('Login to Collectors Quest'); ?>
 
 <?= form_tag('@login', array('class' => 'form-horizontal spacer-top-35')) ?>
+  <?= $form->renderGlobalErrors(); ?>
   <fieldset>
     <?= $form['username']->renderRow(); ?>
     <?= $form['password']->renderRow(); ?>
