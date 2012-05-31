@@ -7,9 +7,9 @@ class collectionsComponents extends cqFrontendComponents
     $ids = array(
       3044,  152,  402,  775,
        521, 3465, 1209, 3375,
-       885, 1136, 1425, 1559,
+         2, 1136, 1425, 1559,
       1755, 3464, 1905, 2266,
-      2836, 3043,    2
+      2836, 3043,
     );
 
     $q = ContentCategoryQuery::create()
