@@ -143,3 +143,56 @@ function cq_nestedset_to_ul(PropelObjectCollection $collection, $print_method = 
 
   echo '</ul>';
 }
+
+function cq_content_categories_to_ul(PropelObjectCollection $collections, $id = null)
+{
+  echo '<ul class="menu" id="'. $id .'">' . "\n";
+
+  foreach ($collections as $object)
+  {
+    // should close levels ?
+    if ($prev_object = $collections->getPrevious())
+    {
+      $close_levels = $prev_object->getLevel() - $object->getLevel();
+      // reset the internal iterator to its original starting point,
+      // because getPrevious() moves it back
+      $collections->getInternalIterator()->next();
+    }
+    else
+    {
+      $close_levels = false;
+    }
+
+    if ($close_levels > 0)
+    {
+      $close_str =
+        '   <li class="leaf">
+              <a href="#" data-object-id="-1">Other</a>
+            </li>
+          </ul>
+        </li>' . "\n";
+
+      echo str_repeat($close_str, $close_levels) . "\n";
+    }
+
+    // print the object name
+    echo sprintf('<li class="%s">%s',
+      $object->hasChildren() ? 'expanded' : 'leaf',
+      sprintf(
+        '<a href="#" data-object-id="%d">%s</a>',
+        $object->getId(), $object->getName()
+      )
+    );
+
+    if ($object->hasChildren())
+    {
+      echo "\n" . '<ul class="menu">';
+    }
+    else
+    {
+      echo '</li>' . "\n";
+    }
+  }
+
+  echo '</ul>';
+}

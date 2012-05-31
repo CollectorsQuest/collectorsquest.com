@@ -18,7 +18,7 @@
       <div class="controls">
         <div class="with-required-token">
           <span class="required-token">*</span>
-          <?php cq_nestedset_to_ul($categories, 'getName', 'categories'); ?>
+          <?php cq_content_categories_to_ul($categories, 'categories'); ?>
         </div>
       </div>
     </div>
@@ -27,7 +27,10 @@
       <button type="submit" class="btn btn-primary blue-button spacer-right-15">
         Create Collection
       </button>
-      <button type="reset" class="btn gray-button" onClick="$(this).parents('.modal').find('.modal-body').dialog2('close')">Cancel</button>
+      <button type="reset" class="btn gray-button"
+              onClick="$(this).parents('.modal').find('.modal-body').dialog2('close')">
+        Cancel
+      </button>
     </div>
   <?php else: ?>
     <div class="form-actions">
@@ -54,8 +57,11 @@ $(document).ready(function()
 {
   $("#categories").columnview({
     multi: false, preview: false,
-    onchange: function(element) {
-      $("#collection_content_category_id").val($(element).data('object-id'));
+    onchange: function(element)
+    {
+      if (0 < $(element).data('object-id')) {
+        $("#collection_content_category_id").val($(element).data('object-id'));
+      }
       $('#categories').scrollLeft(500);
       $('#categories .feature').hide();
     }
