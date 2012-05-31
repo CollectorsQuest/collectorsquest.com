@@ -1,10 +1,13 @@
 <?php cq_dart_slot('300x250', 'collections', 'landing', 'sidebar') ?>
 
 <?php
-cq_sidebar_title(
-  'Popular Categories',
-  link_to('See all &raquo;', '@content_categories', array('class' => 'text-v-middle link-align'))
-);
+  $link = link_to(
+    'See all &raquo;',
+    '@content_categories', array('class' => 'text-v-middle link-align')
+  );
+  $link = null;
+
+  cq_sidebar_title('Popular Categories', $link);
 ?>
 
 <div class="twocolumn cf">
