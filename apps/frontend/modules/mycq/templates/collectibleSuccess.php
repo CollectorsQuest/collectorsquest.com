@@ -84,8 +84,9 @@
       <div class="control-group">
         <?= $form_for_sale['is_ready']->renderLabel('Available for Sale?'); ?>
         <div class="controls switch">
-          <label class="cb-enable"><span>Yes</span></label>
-          <label class="cb-disable selected"><span>No</span></label>
+          <?php $enabled = 'on' == $form_for_sale['is_ready']->getValue(); ?>
+          <label class="cb-enable" for="<?=$form_for_sale['is_ready']->renderId()?>"><span>Yes</span></label>
+          <label class="cb-disable selected" for="<?=$form_for_sale['is_ready']->renderId()?>"><span>No</span></label>
           <?= $form_for_sale['is_ready']->render(array('class' => 'checkbox hide')); ?>
         </div>
       </div>
@@ -93,8 +94,11 @@
         <div class="control-group">
           <?= $form_for_sale['price']->renderLabel(); ?>
           <div class="controls">
-            <?= $form_for_sale['price']->render(array('class' => 'span2 text-center help-inline')); ?>
+            <div class="with-required-token">
+              <span class="required-token">*</span>
+            <?= $form_for_sale['price']->render(array('class' => 'span2 text-center help-inline', 'required'=>'required')); ?>
             <?= $form_for_sale['price_currency']->render(array('class' => 'span2 help-inline')); ?>
+            </div>
           </div>
         </div>
         <div class="control-group">
@@ -293,43 +297,12 @@ $(document).ready(function()
 
   $('#collectible_for_sale_is_ready').change(function()
   {
+    var checked = $(this).attr('checked') == 'checked';
     $('#form-collectible-for-sale').toggleClass(
-      'hide', $(this).attr('checked') !== 'checked'
+      'hide', !checked
     );
-
-    if ($(this).attr('checked') !== 'checked')
-    {
-      $(".cb-disable").click();
-    }
-    else
-    {
-      $(".cb-enable").click();
-    }
-  });
-
-  $(".cb-enable").click(function()
-  {
-    var parent = $(this).parents('.switch');
-    $('.cb-disable',parent).removeClass('selected');
-    $(this).addClass('selected');
-    $('.checkbox', parent)
-      .attr('checked', true)
-      .change();
-  });
-
-  $(".cb-disable").click(function()
-  {
-    var parent = $(this).parents('.switch');
-    $('.cb-enable',parent).removeClass('selected');
-    $(this).addClass('selected');
-    $('.checkbox', parent)
-      .attr('checked', false)
-      .change();
-  });
-
-  if ($('#collectible_for_sale_is_ready').attr('checked'))
-  {
-    $(this).find(".cb-enable").click();
-  }
+    $('.cb-enable').toggleClass('selected', checked);
+    $('.cb-disable').toggleClass('selected', !checked);
+  }).change();
 });
 </script>

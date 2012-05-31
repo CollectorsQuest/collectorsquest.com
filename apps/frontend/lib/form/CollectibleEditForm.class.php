@@ -167,4 +167,15 @@ class CollectibleEditForm extends BaseCollectibleForm
     }
   }
 
+  public function bind(array $taintedValues = null, array $taintedFiles = null)
+  {
+    parent::bind($taintedValues, $taintedFiles);
+
+    foreach ($this->embeddedForms as $name => $form)
+    {
+      $form->bind($taintedValues[$name], isset($taintedFiles[$name]) ? $taintedFiles[$name] : array());
+    }
+
+  }
+
 }

@@ -22,7 +22,7 @@ class CollectibleForSaleEditForm extends BaseCollectibleForSaleForm
         array('choices' => array_keys($conditions), 'required' => false)
     ));
 
-    $this->setWidget('price', new sfWidgetFormInputText());
+    $this->setWidget('price', new sfWidgetFormInputText(array(), array('required'=>'required')));
     $this->setValidator('price', new sfValidatorString(array('required' => false)));
     $this->setDefault('price', $this->getObject()->getPrice());
 
