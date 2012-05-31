@@ -142,11 +142,11 @@
 <!-- <div class="span11">
   <h1 class="Chivo webfont" style="visibility: visible; "><?php _e( 'You are here', 'collectorsquest' ) ?></h1>
 </div> -->
-<?php } elseif (is_child(25309)) { ?>
+<?php } elseif (is_child(23509)) { ?>
   <div class="span11">
     <h1 class="Chivo webfont" style="visibility: visible; "><?php _e( 'CQ In The News', 'collectorsquest' ) ?></h1>
   </div>
-<?php } elseif (is_child(25311)) { ?>
+<?php } elseif (is_child(23511)) { ?>
 <div class="span11">
   <h1 class="Chivo webfont" style="visibility: visible; "><?php _e( 'Press Releases', 'collectorsquest' ) ?></h1>
 </div>
@@ -157,7 +157,7 @@
 
 <br />
 
-  <?php if (is_child(25309) || is_child(25311)) : ?>
+  <?php if (is_child(23509) || is_child(23511)) : ?>
     <h2><?php the_title() ?></h2>
   <?php endif ?>
 
