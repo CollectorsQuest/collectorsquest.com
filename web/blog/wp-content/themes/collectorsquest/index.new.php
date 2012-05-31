@@ -84,7 +84,7 @@
 ?>
 
 <div class="row-fluid header-bar">
-  <?php if (is_page() && !is_child(25309) && !is_child(25311)) { ?>
+  <?php if (is_page() && !is_child(21129) && !is_child(25311)) { ?>
   <div class="span11">
     <h1 class="Chivo webfont" style="visibility: visible; "><?php the_title() ?></h1>
   </div>
@@ -146,18 +146,21 @@
   <div class="span11">
     <h1 class="Chivo webfont" style="visibility: visible; "><?php _e( 'CQ In The News', 'collectorsquest' ) ?></h1>
   </div>
-  <h2><?php the_title() ?></h2>
 <?php } elseif (is_child(25311)) { ?>
 <div class="span11">
   <h1 class="Chivo webfont" style="visibility: visible; "><?php _e( 'Press Releases', 'collectorsquest' ) ?></h1>
 </div>
-  <h2><?php the_title() ?></h2>
 <?php } ?>
 
 <?php if (!is_author()) : ?>
 </div>
 
 <br />
+
+  <?php if (is_child(25309) || is_child(25311)) : ?>
+    <h2><?php the_title() ?></h2>
+  <?php endif ?>
+
 <?php endif; ?>
 
 <?php
