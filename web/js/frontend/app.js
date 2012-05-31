@@ -209,6 +209,15 @@ var COMMON = window.COMMON = (function(){
       COMMON.setupFooterLoginOrSignup();
       COMMON.setupScrollToTop();
       COMMON.setupEmailSpellingHelper();
+      COMMON.setFormGotoToWindowHref()
+    },
+    setFormGotoToWindowHref: function() {
+      $('input.set-value-to-href').each(function() {
+        var $this = $(this);
+        if (!$this.val()) {
+          $(this).val(window.location.href);
+        }
+      });
     },
     setupModalLoginRegistrationDialog: function() {
       var $holder = $('#modal-login-holder');
