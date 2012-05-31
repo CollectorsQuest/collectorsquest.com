@@ -63,6 +63,7 @@ class typeAheadAction extends IceAjaxAction
       ->addAsColumn('id', 'Id')
       ->addAsColumn('name', 'Name')
       ->addAsColumn('label', 'Name')
+      ->orderBy('name', Criteria::ASC)
       ->select(array('id', 'name', 'label'))
       ->limit(10);
     $tags = $q->find()->getArrayCopy();

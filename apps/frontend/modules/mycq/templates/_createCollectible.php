@@ -35,6 +35,7 @@
   {
     $('#form-create-collectible input.tag').tagedit({
       autocompleteURL: '<?= url_for('@ajax_typeahead?section=tags&page=edit'); ?>',
+      autocompleteOptions: { minLength: 3 },
       // return, comma, semicolon
       breakKeyCodes: [ 13, 44, 59 ]
     });
