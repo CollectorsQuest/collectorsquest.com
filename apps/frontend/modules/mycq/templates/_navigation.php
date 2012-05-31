@@ -13,7 +13,7 @@
           $collector, '235x315',
           array(
             'width' => 70, 'height' => 94,
-            'class' => 'thumbnail', 'style' => 'margin-top: -37px;'
+            'class' => 'thumbnail avatar-in-title'
           )
         );
       ?>

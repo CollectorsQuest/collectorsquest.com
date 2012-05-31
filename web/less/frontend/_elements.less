@@ -71,8 +71,7 @@ a.bold-links {
 // BREADCRUMBS
 
 #breadcrumbs {
-	margin: 0 auto;
-	margin-bottom: -40px;
+	margin: 0 auto -40px auto;
 	background-color: @white;
 	border-left: 1px solid #ededed;
 	.box-shadow(0 25px 20px rgba(136, 119, 119, 0.5));
@@ -82,6 +81,22 @@ a.bold-links {
 		padding: 15px 20px 32px 0;
 	}
 }
+
+.lt-ie9 {
+	#body-messages-sent,
+	#body-messages-inbox,
+	#body-messages-compose,
+	#body-mycq-collections,
+	#body-mycq-profile  {
+		#breadcrumbs {
+			margin: 0 auto;
+		}
+		#content {
+			padding-top: 0;
+		}
+	}
+}
+
 
 
 .header-bar {
