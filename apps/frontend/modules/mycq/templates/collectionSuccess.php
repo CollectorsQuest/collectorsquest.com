@@ -94,13 +94,13 @@
                 <form id="form-mycq-collectibles" method="post"
                       action="<?= url_for('@ajax_mycq?section=component&page=collectibles') ?>">
                   <div class="btn-group">
-                    <div class="append-left-gray">Sort by <strong id="sortByName">Position</strong></div>
+                    <div class="append-left-gray">Sort by <strong id="sortByName"></strong></div>
                     <a class="btn gray-button dropdown-toggle" data-toggle="dropdown" href="#">
                       <span class="caret arrow-up"></span><br><span class="caret arrow-down"></span>
                     </a>
                     <ul class="dropdown-menu">
-                      <li><a data-sort="position" data-name="Position" class="sortBy" href="javascript:">Sort by <strong>Position</strong></a></li>
-                      <li><a data-sort="most-relevant" data-name="Most Relevant" class="sortBy" href="javascript:">Sort by <strong>Most Relevant</strong></a></li>
+                      <li><a data-sort="position" data-name="" class="sortBy" href="javascript:">Sort by <strong>Position</strong></a></li>
+                      <li><a data-sort="most-popular" data-name="Most Popular" class="sortBy" href="javascript:">Sort by <strong>Most Popular</strong></a></li>
                       <li><a data-sort="most-recent" data-name="Most Recent" class="sortBy" href="javascript:">Sort by <strong>Most Recent</strong></a></li>
                     </ul>
                   </div>
@@ -198,6 +198,8 @@ $(document).ready(function()
   {
     $('#sortByName').html($(this).data('name'));
     $('#sortByValue').val($(this).data('sort'));
+
+    $('#form-mycq-collectibles').submit();
   });
 
   var $url = '<?= url_for('@ajax_mycq?section=component&page=collectibles', true) ?>';
