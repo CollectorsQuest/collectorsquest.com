@@ -19,7 +19,10 @@
 
   <!-- Blog Head //-->
 </head>
-<body id="<?= 'body-'. $sf_params->get('module') .'-'. $sf_params->get('action'); ?>" data-controller="<?= $sf_params->get('module'); ?>" data-action="<?= $sf_params->get('action'); ?>">
+<body id="<?= 'body-'. $sf_context->getModuleName() .'-'. $sf_context->getActionName(); ?>"
+      class="<?= 'body-'. $sf_context->getModuleName(); ?>"
+      data-controller="<?= $sf_context->getModuleName(); ?>"
+      data-action="<?= $sf_context->getActionName(); ?>">
   <a name="top"></a>
   <div id="fb-root"></div>
   <script>
