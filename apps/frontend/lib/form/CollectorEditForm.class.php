@@ -175,4 +175,28 @@ class CollectorEditForm extends CollectorForm
     return !$rows ? '' : $widget->renderContentTag('div', implode($this->getOption('separator'), $rows), array('class' => $this->getOption('class')));
   }
 
+  public function updateAboutMeColumn($value = null)
+  {
+    $value = strip_tags($value);
+    $this->getObject()->setAboutMe($value);
+
+    return $value;
+  }
+
+  public function updateAboutCollectionsColumn($value = null)
+  {
+    $value = strip_tags($value);
+    $this->getObject()->setAboutCollections($value);
+
+    return $value;
+  }
+
+  public function updateAboutInterestsColumn($value = null)
+  {
+    $value = strip_tags($value);
+    $this->getObject()->setAboutInterests($value);
+
+    return $value;
+  }
+
 }
