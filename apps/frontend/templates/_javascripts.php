@@ -41,7 +41,9 @@
   }]);
 </script>
 
-<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4fa2c6240b775d05"></script>
+<script>
+  Modernizr.load('//s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4fa2c6240b775d05');
+</script>
 
 <?php
   // Include analytics code only in production

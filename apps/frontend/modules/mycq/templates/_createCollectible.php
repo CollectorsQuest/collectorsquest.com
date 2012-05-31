@@ -11,8 +11,13 @@
   <h1>Create a New Collectible</h1>
   <?= $form ?>
   <div class="form-actions">
-    <button type="submit" class="btn btn-primary blue-button spacer-right-15">Create Collectible</button>
-    <button type="reset" class="btn gray-button" onClick="$(this).parents('.modal').find('.modal-body').dialog2('close')">Cancel</button>
+    <button type="submit" class="btn btn-primary blue-button spacer-right-15">
+      Create Collectible
+    </button>
+    <button type="reset" class="btn gray-button"
+            onClick="$(this).parents('.modal').find('.modal-body').dialog2('close')">
+      Cancel
+    </button>
   </div>
 </form>
 
@@ -30,6 +35,7 @@
   {
     $('#form-create-collectible input.tag').tagedit({
       autocompleteURL: '<?= url_for('@ajax_typeahead?section=tags&page=edit'); ?>',
+      autocompleteOptions: { minLength: 3 },
       // return, comma, semicolon
       breakKeyCodes: [ 13, 44, 59 ]
     });

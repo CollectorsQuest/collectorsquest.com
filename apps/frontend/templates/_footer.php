@@ -18,7 +18,7 @@
             Come here to to indulge your passion for collecting!
           </p>
           <div class="row-spacing-footer">
-            <button class="btn btn-primary blue-button pull-left" type="submit">Contact Us</button>
+            <button class="btn btn-primary blue-button pull-left" type="submit" onclick="location.href='<?=url_for('blog_page', array('slug' => 'contact-us'));?>'">Contact Us</button>
           </div>
           <p>
             <a href="http://www.facebook.com/pages/Collectors-Quest/119338990397"
@@ -155,6 +155,7 @@
               </p>
             </div>
           </li>
+          <?php /**
           <li>
             <i class="big-piggy-bank-icon"></i>
             <div class="info-box-text">
@@ -162,10 +163,11 @@
               <p>
                 Do you have something you'd like to sell?
                 It's easy! Become a member of Collectors Quest and get started.<br/>
-                <?= link_to('Get&nbsp;Paid&nbsp;Now!', '@legacy_seller_signup'); ?>
+                <?= link_to('Get&nbsp;Paid&nbsp;Now!', '@seller_packages'); ?>
               </p>
             </div>
           </li>
+          **/ ?>
           <li>
             <i class="big-question-icon"></i>
             <div class="info-box-text">
@@ -173,7 +175,7 @@
               <p>
                 Have a question or a concern? Having trouble figuring something out?
                 Get the most out of the site by checking out our FAQs.<br/>
-                <a href="#">Get&nbsp;Help&nbsp;Now!</a>
+                <a href="<?=urldecode(url_for('blog_page', array('slug' => 'cq-faqs/general-questions')))?>">Get&nbsp;Help&nbsp;Now!</a>
               </p>
             </div>
           </li>

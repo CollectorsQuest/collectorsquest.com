@@ -173,6 +173,38 @@ class Collection extends BaseCollection
   }
 
   /**
+   * Computes the value of the aggregate column num_items *
+   * @param PropelPDO $con A connection object
+   *
+   * @return mixed The scalar result from the aggregate query
+   */
+  public function computeNumItems(PropelPDO $con = null)
+  {
+    $con = $con ?: Propel::getConnection();
+
+    /** @var $stmt PDOStatement */
+    $stmt = $con->prepare('
+      SELECT COUNT(collectible_id)
+        FROM `collection_collectible`
+       WHERE collection_collectible.COLLECTION_ID = :p1
+    ');
+    $stmt->bindValue(':p1', $this->getId());
+    $stmt->execute();
+
+    return (int) $stmt->fetchColumn();
+  }
+
+  /**
+   * Updates the aggregate column num_items *
+   * @param PropelPDO $con A connection object
+   */
+  public function updateNumItems(PropelPDO $con = null)
+  {
+    $this->setNumItems($this->computeNumItems($con));
+    $this->save($con);
+  }
+
+  /**
    * @param  PropelPDO  $con
    * @return boolean
    */

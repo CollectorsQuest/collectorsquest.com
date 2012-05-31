@@ -35,6 +35,38 @@ dev:
         sf_file_debug:
           class: sfNoLogger
 
+  mailer:
+    class: cqMailer
+    param:
+      delivery_strategy: single_address
+      delivery_address:  developers@collectorsquest.com
+      charset: UTF-8
+      transport:
+        class: Swift_SmtpTransport
+        param:
+          host: smtp.gmail.com
+          port: 465
+          username: no-reply@collectorsquest.com
+          password: gHnyU7wZLtYf3n
+          encryption: tls
+
+
+next:
+  mailer:
+    class: cqMailer
+    param:
+      delivery_strategy: single_address
+      delivery_address:  developers@collectorsquest.com
+      charset: UTF-8
+      transport:
+        class: Swift_SmtpTransport
+        param:
+          host: smtp.gmail.com
+          port: 465
+          username: no-reply@collectorsquest.com
+          password: gHnyU7wZLtYf3n
+          encryption: tls
+
 
 next_debug:
   logger:
@@ -79,17 +111,11 @@ all:
   mailer:
     class: cqMailer
     param:
-      delivery_strategy: single_address
-      delivery_address:  ysimeonoff@collectorsquest.com
-      charset: UTF-8
+      logging: %SF_LOGGING_ENABLED%
+      charset: %SF_CHARSET%
+      delivery_strategy: realtime
       transport:
-        class: Swift_SmtpTransport
-        param:
-          host: smtp.gmail.com
-          port: 465
-          username: no-reply@collectorsquest.com
-          password: gHnyU7wZLtYf3n
-          encryption: tls
+        class: Swift_AWSTransport
 
   routing:
     class: cqPatternRouting

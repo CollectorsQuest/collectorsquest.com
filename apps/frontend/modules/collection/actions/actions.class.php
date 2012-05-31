@@ -87,7 +87,7 @@ class collectionActions extends cqFrontendActions
     $this->getResponse()->addMeta('description', $collection->getDescription('stripped'));
     $this->getResponse()->addMeta('keywords', $collection->getTagString());
 
-    if ($collection->countCollectibles() == 0)
+    if ($collection->getNumItems() == 0)
     {
       $this->collections = null;
 

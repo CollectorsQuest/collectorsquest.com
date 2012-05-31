@@ -5,10 +5,11 @@ class collectionsComponents extends cqFrontendComponents
   public function executeSidebarIndex()
   {
     $ids = array(
-      2684, 2834, 3085, 3204, 3358,
-      3459, 3569, 3820, 3893, 4109,
-      4248, 4444, 4594, 4955, 5526,
-      5735, 5736, 6068, 6159, 4903
+      3044,  152,  402,  775,
+       521, 3465, 1209, 3375,
+       885, 1136, 1425, 1559,
+      1755, 3464, 1905, 2266,
+      2836, 3043,    2
     );
 
     $q = ContentCategoryQuery::create()

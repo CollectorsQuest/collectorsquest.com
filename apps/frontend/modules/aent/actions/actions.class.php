@@ -2,6 +2,7 @@
 
 class aentActions extends cqFrontendActions
 {
+
   public function executeIndex()
   {
     $this->redirect('@aetn_landing', 302);
@@ -9,7 +10,16 @@ class aentActions extends cqFrontendActions
 
   public function executeLanding()
   {
-    return sfView::SUCCESS;
+    $category = ContentCategoryQuery::create()->findOneBySlug('history-militaria'); //History-and-militaria
+
+    if ($category)
+    {
+      $this->redirect('content_category', $category, 301);
+    }
+    else
+    {
+      $this->redirect('homepage');
+    }
   }
 
   public function executeAmericanPickers()
@@ -28,10 +38,10 @@ class aentActions extends cqFrontendActions
       $collection->save();
     }
 
-    $q = CollectionCollectibleQuery::create()
-      ->filterByCollectionId($american_pickers['collection'])
-      ->orderByPosition(Criteria::ASC)
-      ->orderByUpdatedAt(Criteria::ASC);
+    $q                  = CollectionCollectibleQuery::create()
+        ->filterByCollectionId($american_pickers['collection'])
+        ->orderByPosition(Criteria::ASC)
+        ->orderByUpdatedAt(Criteria::ASC);
     $this->collectibles = $q->find();
 
     $collectible_ids = array(
@@ -48,11 +58,11 @@ class aentActions extends cqFrontendActions
     shuffle($collectible_ids);
 
     /** @var $q CollectibleForSaleQuery */
-    $q = CollectibleForSaleQuery::create()
-      ->filterByCollectibleId($collectible_ids, Criteria::IN)
-      ->joinWith('Collectible')->useQuery('Collectible')->endUse()
-      ->limit(8)
-      ->addAscendingOrderByColumn('FIELD(collectible_id, '. implode(',', $collectible_ids) .')');
+    $q                           = CollectibleForSaleQuery::create()
+        ->filterByCollectibleId($collectible_ids, Criteria::IN)
+        ->joinWith('Collectible')->useQuery('Collectible')->endUse()
+        ->limit(8)
+        ->addAscendingOrderByColumn('FIELD(collectible_id, ' . implode(',', $collectible_ids) . ')');
     $this->collectibles_for_sale = $q->find();
 
     return sfView::SUCCESS;
@@ -74,15 +84,15 @@ class aentActions extends cqFrontendActions
       $collection->save();
     }
 
-    $q = CollectionCollectibleQuery::create()
-      ->filterByCollectionId($pawn_stars['collection'])
-      ->orderByPosition(Criteria::ASC)
-      ->orderByUpdatedAt(Criteria::ASC);
+    $q                  = CollectionCollectibleQuery::create()
+        ->filterByCollectionId($pawn_stars['collection'])
+        ->orderByPosition(Criteria::ASC)
+        ->orderByUpdatedAt(Criteria::ASC);
     $this->collectibles = $q->find();
 
     $collectible_ids = array(
       56600, 56597, 56543, 56088, 56396, 56393,
-      56599,  2308, 56600, 56545, 56189, 56676,
+      56599, 2308, 56600, 56545, 56189, 56676,
       56210, 22181, 56509, 56065, 56063, 56029,
       55530, 56579, 33493, 56573, 15630, 56577,
       56078, 56081, 56528, 56514, 56530, 56080,
@@ -95,11 +105,11 @@ class aentActions extends cqFrontendActions
     shuffle($collectible_ids);
 
     /** @var $q CollectibleForSaleQuery */
-    $q = CollectibleForSaleQuery::create()
-      ->filterByCollectibleId($collectible_ids, Criteria::IN)
-      ->joinWith('Collectible')->useQuery('Collectible')->endUse()
-      ->limit(8)
-      ->addAscendingOrderByColumn('FIELD(collectible_id, '. implode(',', $collectible_ids) .')');
+    $q                           = CollectibleForSaleQuery::create()
+        ->filterByCollectibleId($collectible_ids, Criteria::IN)
+        ->joinWith('Collectible')->useQuery('Collectible')->endUse()
+        ->limit(8)
+        ->addAscendingOrderByColumn('FIELD(collectible_id, ' . implode(',', $collectible_ids) . ')');
     $this->collectibles_for_sale = $q->find();
 
     return sfView::SUCCESS;
@@ -119,14 +129,19 @@ class aentActions extends cqFrontendActions
     $collection = $collectible->getCollection();
 
     $american_pickers = sfConfig::get('app_aetn_american_pickers');
-    $pawn_stars = sfConfig::get('app_aetn_pawn_stars');
-    $storage_wars = sfConfig::get('app_aetn_storage_wars');
+    $pawn_stars       = sfConfig::get('app_aetn_pawn_stars');
+    $storage_wars     = sfConfig::get('app_aetn_storage_wars');
 
-    if ($collection->getId() === $american_pickers['collection']) {
+    if ($collection->getId() === $american_pickers['collection'])
+    {
       $this->brand = 'American Pickers';
-    } else if ($collection->getId() === $pawn_stars['collection']) {
+    }
+    else if ($collection->getId() === $pawn_stars['collection'])
+    {
       $this->brand = 'Pawn Stars';
-    } else if ($collection->getId() === $storage_wars['collection']) {
+    }
+    else if ($collection->getId() === $storage_wars['collection'])
+    {
       $this->brand = 'Storage Wars';
     }
 
@@ -139,15 +154,16 @@ class aentActions extends cqFrontendActions
       $collectible->save();
     }
 
-    $tags = $collectible->getTags();
-    $q = CollectibleQuery::create()
-      ->filterById($collectible->getId(), Criteria::NOT_EQUAL)
-      ->filterByTags($tags)
-      ->limit(8);
+    $tags                       = $collectible->getTags();
+    $q                          = CollectibleQuery::create()
+        ->filterById($collectible->getId(), Criteria::NOT_EQUAL)
+        ->filterByTags($tags)
+        ->orderByNumViews(Criteria::DESC)
+        ->limit(8);
     $this->related_collectibles = $q->find();
 
     $this->collectible = $collectible;
-    $this->collection = $collection;
+    $this->collection  = $collection;
 
     return sfView::SUCCESS;
   }

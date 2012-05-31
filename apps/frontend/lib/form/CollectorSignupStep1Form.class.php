@@ -75,7 +75,6 @@ class CollectorSignupStep1Form extends BaseForm
           'max_length' => 'The password is too long (%max_length% characters max).',
           'min_length' => 'The password is too short (%min_length% characters min).',
        )),
-      'password_again' => new sfValidatorPass(),
       'seller'         => new sfValidatorChoice(array(
           'choices'    => array(0,1,2),
           'required'   => true,
@@ -87,6 +86,8 @@ class CollectorSignupStep1Form extends BaseForm
           'invalid'    => 'This email address is invalid.',
         )),
     ));
+
+    $this->validatorSchema['password_again'] = clone $this->validatorSchema['password'];
 
     $this->mergePostValidator(new sfValidatorPropelUnique(
       array('model' => 'Collector', 'column' => array('username')),

@@ -7,6 +7,8 @@
 
 <?php
   $link = link_to('Browse profiles &raquo;', '@collectors', array('class' => 'text-v-middle link-align'));
+  $link = null;
+
   cq_sidebar_title($title, $link, array('left' => 7, 'right' => 5));
 ?>
 

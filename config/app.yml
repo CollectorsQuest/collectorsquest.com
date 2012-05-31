@@ -24,6 +24,10 @@ all:
     defensio: "bb85a65a8118c50aa3918cb254a34176"
     dlvrit: "123456789abcdefg"
 
+    aviary:
+      key: "3058e289b"
+      secret: "694b2d643"
+
     recaptcha:
       public_key: "6LdACwsAAAAAAE5tZTcYG47Lth2jzxxZeXAbll-Z"
       private_key: "6LdACwsAAAAAAM19l6G0lFk4F560SWvBM2k5M9L0"

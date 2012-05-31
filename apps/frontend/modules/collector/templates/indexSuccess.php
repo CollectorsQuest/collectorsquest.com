@@ -62,7 +62,7 @@
       </span>
       <span class="stat-area" style="padding-bottom: 5px;">
       <?php
-        $count = $collector->countCollectibles();
+        $count = $collector->countCollectiblesInCollections();
         echo format_number_choice(
           '[0] No <span>COLLECTIBLES</span>|[1] 1 <span>COLLECTIBLE</span>|(1,+Inf] %1% <span>COLLECTIBLES</span>',
           array('%1%' => number_format($count)), $count

@@ -58,7 +58,7 @@ class CollectorCollection extends BaseCollectorCollection
   {
     if ('html' == $type)
     {
-      $v = IceStatic::cleanText($v, false, 'p, b, u, i, em, strong, h1, h2, h3, h4, h5, h6, div, span, ul, ol, li, blockquote');
+      $v = IceStatic::cleanText($v, false, 'p, b, u, i, em, strong, h1, h2, h3, h4, h5, h6, div, span, ul, ol, li, blockquote, br');
       $v = cqMarkdownify::doConvert($v);
     }
 

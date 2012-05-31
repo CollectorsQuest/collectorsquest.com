@@ -106,6 +106,26 @@ function image_tag_collection($collection, $which = '150x150', $options = array(
 }
 
 /**
+ * @param  Collection   $collection
+ * @param  string       $which
+ *
+ * @return null|string
+ */
+function src_tag_collection($collection, $which = '150x150')
+{
+  $multimedia = $collection->getThumbnail();
+  $src_tag = src_tag_multimedia($multimedia, $which);
+
+  if (empty($src_tag))
+  {
+    $src_tag = '/images/'. sfConfig::get('sf_app') .'/multimedia/'.
+               get_class($collection) .'/'. $which .'.png';
+  }
+
+  return $src_tag;
+}
+
+/**
  * Returns an HTML image tag for a Collectible object
  *
  * @see image_tag_multimedia()

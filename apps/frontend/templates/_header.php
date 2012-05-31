@@ -34,17 +34,19 @@
       </div>
       <div class="span4 pull-right" style="float: right; text-align: right; padding-top: 2px;">
 
-        <a href="<?= url_for('@shopping_cart', true); ?>" class="link-cart"
-           title="<?= (0 < $k) ? 'View your shopping cart' : 'Your shopping cart is empty!'; ?>">
-          <span class="shopping-cart-inner shopping-cart">
-          <?php if (0 < $k): ?>
-            <span id="shopping-cart-count"><?= $k; ?></span>
-          <?php else: ?>
-            <span id="shopping-cart-count" class="empty-cart">0</span>
-          <?php endif; ?>
-          </span>
-        </a>
-        <span class="nav-divider"></span>
+        <?php /**
+          <a href="<?= url_for('@shopping_cart', true); ?>" class="link-cart"
+             title="<?= (0 < $k) ? 'View your shopping cart' : 'Your shopping cart is empty!'; ?>">
+            <span class="shopping-cart-inner shopping-cart">
+            <?php if (0 < $k): ?>
+              <span id="shopping-cart-count"><?= $k; ?></span>
+            <?php else: ?>
+              <span id="shopping-cart-count" class="empty-cart">0</span>
+            <?php endif; ?>
+            </span>
+          </a>
+          <span class="nav-divider"></span>
+        */ ?>
 
         <?php if ($sf_user->isAuthenticated()): ?>
           &nbsp;
@@ -55,7 +57,8 @@
             <?php if ($sf_params->get('module') === '_video'): ?>
               <ul class="dropdown-menu" style="min-width: 123px;">
                 <li>
-                  <a href="<?= url_for('@collector_me', true); ?>" title="Go to your profile!">
+                  <a href="<?= url_for('@mycq_profile', true); ?>"
+                     title="Manage your CollectorsQuest.com profile!">
                     <i class="icon icon-user"></i> Profile
                   </a>
                 </li>

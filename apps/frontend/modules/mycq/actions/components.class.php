@@ -2,6 +2,7 @@
 
 class mycqComponents extends cqFrontendComponents
 {
+
   public function executeNavigation()
   {
     $this->collector = $this->getUser()->getCollector();
@@ -15,14 +16,14 @@ class mycqComponents extends cqFrontendComponents
   public function executeCollectorSnapshot()
   {
     $this->collector = $this->getUser()->getCollector();
-    $this->profile = $this->collector->getProfile();
+    $this->profile   = $this->collector->getProfile();
 
     return sfView::SUCCESS;
   }
 
   public function executeSellerSnapshot()
   {
-    $this->seller = $this->getUser()->getCollector();
+    $this->seller  = $this->getUser()->getCollector();
     $this->profile = $this->collector->getProfile();
 
     return sfView::SUCCESS;
@@ -30,11 +31,11 @@ class mycqComponents extends cqFrontendComponents
 
   public function executeCollections()
   {
-    $this->collector = $this->getVar('collector') ?: $this->getUser()->getCollector();
+    $this->collector = $this->getVar('collector') ? : $this->getUser()->getCollector();
 
     $q = CollectorCollectionQuery::create()
-      ->filterByCollector($this->collector)
-      ->orderByCreatedAt(Criteria::DESC);
+        ->filterByCollector($this->collector)
+        ->orderByCreatedAt(Criteria::DESC);
 
     if ($this->getRequestParameter('q'))
     {
@@ -52,8 +53,9 @@ class mycqComponents extends cqFrontendComponents
   public function executeCollectibles()
   {
     /** @var $collection CollectorCollection */
-    $collection = $this->getVar('collection') ?:
-      CollectorCollectionQuery::create()->findOneById($this->getRequestParameter('collection_id'));
+    $collection = $this->getVar('collection') ? :
+        CollectorCollectionQuery::create()->findOneById($this->getRequestParameter('collection_id'));
+    $sort       = $this->getRequestParameter('s', 'position');
 
     // Let's make sure the current user is the owner
     if (!$this->getUser()->isOwnerOf($collection))
@@ -62,9 +64,30 @@ class mycqComponents extends cqFrontendComponents
     }
 
     $q = CollectionCollectibleQuery::create()
-      ->filterByCollection($collection)
-      ->orderByPosition(Criteria::ASC)
-      ->orderByCreatedAt(Criteria::DESC);
+        ->filterByCollection($collection);
+
+    switch ($sort)
+    {
+      case 'most-popular':
+        $q
+          ->joinCollection()
+          ->useCollectionQuery()
+          ->orderByNumViews(Criteria::DESC)
+          ->endUse();
+        break;
+
+      case 'most-recent':
+        $q
+          ->orderByCreatedAt(Criteria::DESC);
+        break;
+
+      case 'position':
+      default:
+        $q
+            ->orderByPosition(Criteria::ASC)
+            ->orderByCreatedAt(Criteria::DESC);
+        break;
+    }
 
     if ($this->getRequestParameter('q'))
     {
@@ -75,7 +98,7 @@ class mycqComponents extends cqFrontendComponents
     $pager->setPage($this->getRequestParameter('p', 1));
     $pager->init();
 
-    $this->pager = $pager;
+    $this->pager      = $pager;
     $this->collection = $collection;
 
     return sfView::SUCCESS;
@@ -86,9 +109,9 @@ class mycqComponents extends cqFrontendComponents
     $collector = $this->getCollector();
 
     $q = CollectibleForSaleQuery::create()
-      ->filterByCollector($collector)
-      ->isForSale()
-      ->orderByCreatedAt(Criteria::DESC);
+        ->filterByCollector($collector)
+        ->isForSale()
+        ->orderByCreatedAt(Criteria::DESC);
 
     if ($this->getRequestParameter('q'))
     {
@@ -99,7 +122,7 @@ class mycqComponents extends cqFrontendComponents
     $pager->setPage($this->getRequestParameter('p', 1));
     $pager->init();
 
-    $this->pager = $pager;
+    $this->pager     = $pager;
     $this->collector = $collector;
 
     return sfView::SUCCESS;
@@ -108,11 +131,11 @@ class mycqComponents extends cqFrontendComponents
   public function executeDropbox()
   {
     $collector = $this->getCollector();
-    $dropbox = $collector->getCollectionDropbox();
+    $dropbox   = $collector->getCollectionDropbox();
 
-    $this->batch = cqStatic::getUniqueId(32);
+    $this->batch        = cqStatic::getUniqueId(32);
     $this->collectibles = $dropbox->getCollectibles();
-    $this->total = $dropbox->countCollectibles();
+    $this->total        = $dropbox->countCollectibles();
 
     return sfView::SUCCESS;
   }
@@ -124,8 +147,8 @@ class mycqComponents extends cqFrontendComponents
     if ($collectible_id = $this->getRequestParameter('collectible_id'))
     {
       $q = CollectibleQuery::create()
-        ->filterByCollector($this->getCollector())
-        ->filterById($collectible_id);
+          ->filterByCollector($this->getCollector())
+          ->filterById($collectible_id);
 
       /** @var $image iceModelMultimedia */
       if (($collectible = $q->findOne()) && $image = $collectible->getPrimaryImage())
@@ -139,7 +162,7 @@ class mycqComponents extends cqFrontendComponents
       $form->bind($this->getRequestParameter('collection'));
       if ($form->isValid())
       {
-        $values = $form->getValues();
+        $values                 = $form->getValues();
         $values['collector_id'] = $this->getCollector()->getId();
 
         /** @var $collection CollectorCollection */
@@ -150,7 +173,7 @@ class mycqComponents extends cqFrontendComponents
         if ($values['thumbnail'])
         {
           $image = iceModelMultimediaQuery::create()
-            ->findOneById((int) $values['thumbnail']);
+              ->findOneById((int)$values['thumbnail']);
 
           if ($this->getCollector()->isOwnerOf($image))
           {
@@ -168,10 +191,10 @@ class mycqComponents extends cqFrontendComponents
       }
     }
 
-    $root = ContentCategoryQuery::create()->findRoot();
+    $root             = ContentCategoryQuery::create()->findRoot();
     $this->categories = ContentCategoryQuery::create()
-      ->descendantsOf($root)
-      ->findTree();
+        ->descendantsOf($root)
+        ->findTree();
 
     $this->form = $form;
 
@@ -186,8 +209,8 @@ class mycqComponents extends cqFrontendComponents
     if ($collectible_id = $this->getRequestParameter('collectible_id'))
     {
       $q = CollectibleQuery::create()
-        ->filterByCollector($this->getCollector())
-        ->filterById($collectible_id);
+          ->filterByCollector($this->getCollector())
+          ->filterById($collectible_id);
 
       /** @var $image iceModelMultimedia */
       if (($collectible = $q->findOne()) && $image = $collectible->getPrimaryImage())
@@ -205,13 +228,14 @@ class mycqComponents extends cqFrontendComponents
         $values = $form->getValues();
 
         $collection = CollectorCollectionQuery::create()
-          ->findOneById($values['collection_id']);
+            ->findOneById($values['collection_id']);
 
-        if (!$this->getCollector()->isOwnerOf($collection)) {
+        if (!$this->getCollector()->isOwnerOf($collection))
+        {
           return sfView::NONE;
         }
 
-        $values = $form->getValues();
+        $values                 = $form->getValues();
         $values['collector_id'] = $this->getCollector()->getId();
 
         /** @var $collectible Collectible */
@@ -225,7 +249,7 @@ class mycqComponents extends cqFrontendComponents
         if ($values['thumbnail'])
         {
           $image = iceModelMultimediaQuery::create()
-            ->findOneById((int) $values['thumbnail']);
+              ->findOneById((int)$values['thumbnail']);
 
           if ($this->getCollector()->isOwnerOf($image))
           {

@@ -62,7 +62,7 @@ class _sidebarComponents extends cqFrontendComponents
           ->useCollectibleQuery()
             ->joinCollectibleForSale()
             ->useCollectibleForSaleQuery()
-              ->filterByIsSold(false)
+              ->isForSale()
             ->endUse()
           ->endUse()
         ->endUse()
@@ -83,7 +83,7 @@ class _sidebarComponents extends cqFrontendComponents
     $this->limit = $this->getVar('limit') ?: 5;
 
     $q = CollectorCollectionQuery::create()
-      ->orderByUpdatedAt(Criteria::DESC);
+      ->filterByNumItems(3, Criteria::GREATER_EQUAL);
 
     /** @var $collection CollectorCollection */
     if (($collection = $this->getVar('collection')) && $collection instanceof CollectorCollection)
@@ -91,7 +91,8 @@ class _sidebarComponents extends cqFrontendComponents
       $tags = $collection->getTags();
       $q
         ->filterById($collection->getId(), Criteria::NOT_EQUAL)
-        ->filterByTags($tags);
+        ->filterByTags($tags)
+        ->orderByUpdatedAt(Criteria::DESC);
     }
     /** @var $collectible Collectible */
     else if (($collectible = $this->getVar('collectible')) && $collectible instanceof Collectible)
@@ -99,11 +100,27 @@ class _sidebarComponents extends cqFrontendComponents
       $tags = $collectible->getTags();
       $q
         ->filterById($collectible->getCollectionId(), Criteria::NOT_EQUAL)
-        ->filterByTags($tags);
+        ->filterByTags($tags)
+        ->orderByUpdatedAt(Criteria::DESC);
+    }
+    else
+    {
+      $q
+        ->filterByNumViews(1000, Criteria::GREATER_EQUAL)
+        ->addAscendingOrderByColumn('RAND()');
     }
 
     // Make the actual query and get the Collections
     $this->collections = $q->limit($this->limit)->find();
+
+    if (count($this->collections) === 0 && $this->getVar('fallback') === 'random')
+    {
+      // Get some random collections
+      $c = new Criteria();
+      $c->add(CollectorCollectionPeer::NUM_ITEMS, 3, Criteria::GREATER_EQUAL);
+      $c->add(CollectorCollectionPeer::NUM_VIEWS, 1000, Criteria::GREATER_EQUAL);
+      $this->collections = CollectorCollectionPeer::getRandomCollections($this->limit, $c);
+    }
 
     return $this->_sidebar_if(count($this->collections) > 0);
   }
@@ -226,7 +243,7 @@ class _sidebarComponents extends cqFrontendComponents
     /** @var $collector Collector */
     $collector = $this->getVar('collector');
 
-    $this->title = $this->getVar('title') ?: 'About the Collector';
+    $this->title = $this->getVar('title') ?: 'About '. $collector->getDisplayName();
 
     // Set the limit of Collections to show
     $this->limit = $this->getVar('limit') !== null ? (int) $this->getVar('limit') : 3;
@@ -252,6 +269,7 @@ class _sidebarComponents extends cqFrontendComponents
       {
         $c = new Criteria();
         $c->addDescendingOrderByColumn(CollectorCollectionPeer::CREATED_AT);
+        $c->add(CollectorCollectionPeer::NUM_VIEWS, 0, Criteria::GREATER_THAN);
         $c->setLimit($this->limit);
 
         /** @var $collection Collection */

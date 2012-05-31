@@ -24,7 +24,8 @@ class CollectibleEditForm extends BaseCollectibleForm
         'data-placeholder' => 'Please, choose at least one Collection',
         'class' => 'input-xlarge chzn-select',
         'style' => 'width: 410px;',
-        'required' => 'required')
+        'required' => 'required'
+      )
     );
     $this->validatorSchema['collection_collectible_list'] = new sfValidatorPropelChoice(array(
       'multiple' => true, 'model' => 'Collection', 'required' => true)
@@ -165,6 +166,17 @@ class CollectibleEditForm extends BaseCollectibleForm
       $c->add(CollectionCollectiblePeer::COLLECTIBLE_ID, $this->object->getPrimaryKey());
       CollectionCollectiblePeer::doDelete($c, $con);
     }
+  }
+
+  public function bind(array $taintedValues = null, array $taintedFiles = null)
+  {
+    parent::bind($taintedValues, $taintedFiles);
+
+    foreach ($this->embeddedForms as $name => $form)
+    {
+      $form->bind($taintedValues[$name], isset($taintedFiles[$name]) ? $taintedFiles[$name] : array());
+    }
+
   }
 
 }

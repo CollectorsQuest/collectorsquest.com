@@ -5,9 +5,10 @@
  */
 ?>
 
-<form action="<?= url_for('mycq_collection_by_slug', $collection); ?>"
+<form action="<?= url_for('mycq_collection_by_slug', $collection); ?>" novalidate
       id="form-collection" method="post" enctype="multipart/form-data"
       class="form-horizontal spacer-bottom-reset">
+
 <div class="row-fluid">
   <div class="span3">
     <div class="drop-zone-large">
@@ -54,7 +55,7 @@
           Delete Collection
         </a>
 
-        <button type="submit" class="btn btn-primary blue-button">Save Changes</button>
+        <button type="submit" formnovalidate class="btn btn-primary blue-button">Save Changes</button>
         <a href="<?= url_for('mycq_collection_by_slug', $collection) ?>"
            class="btn gray-button spacer-left">
           Cancel
@@ -93,13 +94,13 @@
                 <form id="form-mycq-collectibles" method="post"
                       action="<?= url_for('@ajax_mycq?section=component&page=collectibles') ?>">
                   <div class="btn-group">
-                    <div class="append-left-gray">Sort by <strong id="sortByName">Position</strong></div>
+                    <div class="append-left-gray">Sort by <strong id="sortByName"></strong></div>
                     <a class="btn gray-button dropdown-toggle" data-toggle="dropdown" href="#">
                       <span class="caret arrow-up"></span><br><span class="caret arrow-down"></span>
                     </a>
                     <ul class="dropdown-menu">
-                      <li><a data-sort="position" data-name="Position" class="sortBy" href="javascript:">Sort by <strong>Position</strong></a></li>
-                      <li><a data-sort="most-relevant" data-name="Most Relevant" class="sortBy" href="javascript:">Sort by <strong>Most Relevant</strong></a></li>
+                      <li><a data-sort="position" data-name="" class="sortBy" href="javascript:">Sort by <strong>Position</strong></a></li>
+                      <li><a data-sort="most-popular" data-name="Most Popular" class="sortBy" href="javascript:">Sort by <strong>Most Popular</strong></a></li>
                       <li><a data-sort="most-recent" data-name="Most Recent" class="sortBy" href="javascript:">Sort by <strong>Most Recent</strong></a></li>
                     </ul>
                   </div>
@@ -130,6 +131,7 @@ $(document).ready(function()
 {
   $('input.tag').tagedit({
     autocompleteURL: '<?= url_for('@ajax_typeahead?section=tags&page=edit'); ?>',
+    autocompleteOptions: { minLength: 3 },
     // return, comma, semicolon
     breakKeyCodes: [ 13, 44, 59 ]
   });
@@ -196,6 +198,8 @@ $(document).ready(function()
   {
     $('#sortByName').html($(this).data('name'));
     $('#sortByValue').val($(this).data('sort'));
+
+    $('#form-mycq-collectibles').submit();
   });
 
   var $url = '<?= url_for('@ajax_mycq?section=component&page=collectibles', true) ?>';
