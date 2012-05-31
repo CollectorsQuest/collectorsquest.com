@@ -84,7 +84,7 @@
 ?>
 
 <div class="row-fluid header-bar">
-  <?php if (is_page() && !is_child(21129) && !is_child(25311)) { ?>
+  <?php if (is_page() && !is_child(23509) && !is_child(23511)) { ?>
   <div class="span11">
     <h1 class="Chivo webfont" style="visibility: visible; "><?php the_title() ?></h1>
   </div>
