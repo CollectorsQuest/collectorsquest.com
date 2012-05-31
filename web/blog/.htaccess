@@ -15,3 +15,5 @@ RewriteRule . /blog/index.php [L]
 
 RedirectPermanent /blog/author/colin /blog/author/collin
 RedirectPermanent /blog/author/shaun-hennessy /blog/author/ms-hennessy
+
+RewriteRule /blog/pages/ /blog/pages/about-us/
