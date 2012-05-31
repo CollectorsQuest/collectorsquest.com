@@ -188,18 +188,22 @@ class generalActions extends cqFrontendActions
 
     if (false !== $result && ENGAGE_STAT_OK === $auth_info_array['stat'])
     {
+      $new_collector = false;
       $profile = $auth_info_array['profile'];
       $collector = CollectorPeer::retrieveByIdentifier($profile['identifier']);
 
       if (!$collector)
       {
         $collector = CollectorPeer::createFromRPXProfile($profile);
+        $collector->assignRandomAvatar();
+        $new_collector = true;
       }
 
       if ($collector instanceof Collector)
       {
         $this->getUser()->Authenticate(true, $collector, true);
-        $this->redirect('@homepage');
+
+        return $this->redirect($new_collector ? '@mycq_profile' : '@homepage');
       }
     }
 

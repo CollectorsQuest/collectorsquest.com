@@ -861,6 +861,33 @@ class Collector extends BaseCollector implements ShippingRatesInterface
     $multimedia->makeCustomThumb(235, 315, '235x315', 'top', $watermark);
   }
 
+  /**
+   * Assign a random avatar image to this collector
+   *
+   * @return    boolean Success?
+   */
+  public function assignRandomAvatar()
+  {
+    $avatar_id = CollectorPeer::$avatars[mt_rand(0, count(CollectorPeer::$avatars)-1)];
+    $image = sfConfig::get('sf_web_dir')
+      .'/images/frontend/multimedia/Collector/default/235x315/'. $avatar_id .'.jpg';
+
+    if ($multimedia = $this->setPhoto($image))
+    {
+      /**
+       * We want to copy here optimized 100x100 thumb,
+       * rather than the automatically generated one
+       */
+      $small = $multimedia->getAbsolutePath('100x100');
+      copy(sfConfig::get('sf_web_dir')
+        .'/images/frontend/multimedia/Collector/default/100x100/'. $avatar_id .'.jpg', $small);
+
+      return true;
+    }
+
+    return false;
+  }
+
 }
 
 sfPropelBehavior::add('Collector', array('IceMultimediaBehavior'));

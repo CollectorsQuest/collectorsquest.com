@@ -81,6 +81,8 @@ class collectorActions extends cqFrontendActions
 
         // authenticate the collector and redirect to @mycq_profile
         $this->getUser()->Authenticate(true, $collector, false);
+        $collector->assignRandomAvatar();
+
         $this->redirect('@mycq_profile');
       }
     }
