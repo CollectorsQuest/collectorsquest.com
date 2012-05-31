@@ -62,7 +62,7 @@ class _sidebarComponents extends cqFrontendComponents
           ->useCollectibleQuery()
             ->joinCollectibleForSale()
             ->useCollectibleForSaleQuery()
-              ->filterByIsSold(false)
+              ->isForSale()
             ->endUse()
           ->endUse()
         ->endUse()
