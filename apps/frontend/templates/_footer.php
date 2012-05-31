@@ -155,6 +155,7 @@
               </p>
             </div>
           </li>
+          <?php /**
           <li>
             <i class="big-piggy-bank-icon"></i>
             <div class="info-box-text">
@@ -166,6 +167,7 @@
               </p>
             </div>
           </li>
+          **/ ?>
           <li>
             <i class="big-question-icon"></i>
             <div class="info-box-text">
