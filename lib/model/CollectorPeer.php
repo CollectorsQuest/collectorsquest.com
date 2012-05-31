@@ -217,10 +217,15 @@ class CollectorPeer extends BaseCollectorPeer
 
   public static function createFromArray($data = array())
   {
+    // We need to make sure we have a display name
+    $display_name = !empty($data['display_name']) ?
+      $data['display_name'] :
+      $data['username'];
+
     $collector = new Collector();
     $collector->setUsername($data['username']);
     $collector->setPassword($data['password']);
-    $collector->setDisplayName($data['display_name']);
+    $collector->setDisplayName($display_name);
     $collector->setEmail($data['email']);
     $collector->setUserType(isset($data['seller']) && !!$data['seller'] ? 'Seller' : 'Collector');
 
