@@ -69,7 +69,7 @@
                     </div>
 
                     <?php foreach ($avatars as $id): ?>
-                    <div class="pull-left spacer-right spacer-top">
+                    <div class="avatars-suggestion">
                       <?php
                         echo image_tag(
                           'frontend/multimedia/Collector/default/100x100/'. $id. '.jpg',
