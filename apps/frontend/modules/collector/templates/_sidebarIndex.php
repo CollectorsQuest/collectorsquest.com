@@ -33,13 +33,13 @@
   <?php cq_section_title('More About '. $collector->getDisplayName()); ?>
   <div class="personal-info-sidebar">
     <?php if ($about_me): ?>
-      <p><strong>About me:</strong> <?= $about_me; ?></p>
+      <p><strong>About me:</strong> <?= nl2br($about_me); ?></p>
     <?php endif; ?>
     <?php if ($about_collections): ?>
-      <p><strong>My collections:</strong> <?= $about_collections; ?></p>
+      <p><strong>My collections:</strong> <?= nl2br($about_collections); ?></p>
     <?php endif; ?>
     <?php if ($about_interests): ?>
-      <p><strong>My interests:</strong> <?= $about_interests; ?></p>
+      <p><strong>My interests:</strong> <?= nl2br($about_interests); ?></p>
     <?php endif; ?>
   </div>
 
