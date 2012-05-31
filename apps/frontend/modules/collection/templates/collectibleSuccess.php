@@ -91,7 +91,7 @@
 </div>
 <?php endif; ?>
 
-<?php if (isset($collectible_for_sale) && $collectible_for_sale instanceof CollectibleForSale): ?>
+<?php if (false && isset($collectible_for_sale) && $collectible_for_sale instanceof CollectibleForSale): ?>
   <!-- sale items -->
   <span class="item-condition"><strong>Condition:</strong> Like new</span>
 
