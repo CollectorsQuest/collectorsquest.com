@@ -450,7 +450,7 @@ function add_fixed_sidebar() {
     $(document).ready(function() {
       $('#sidebar').scrollToFixed({
         marginTop: 10,
-        limit: $('#footer').offset().top - 340
+        limit: $('#footer').offset().top - $('#sidebar').outerHeight() - 10
       });
     });
 
@@ -646,13 +646,21 @@ function cq_filter_gettext( $translated, $original, $domain ) {
 }
 add_filter( 'gettext', 'cq_filter_gettext', 10, 3 );
 
-// helper function
+// helper functions
 function get_top_ancestor($id) {
   $current = get_post($id);
   if(!$current->post_parent){
     return $current->ID;
   } else {
     return get_top_ancestor($current->post_parent);
+  }
+}
+function is_child($pageID) {
+  global $post;
+  if( is_page() && ($post->post_parent==$pageID) ) {
+    return true;
+  } else {
+    return false;
   }
 }
 

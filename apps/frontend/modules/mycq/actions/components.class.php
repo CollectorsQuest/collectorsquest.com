@@ -191,10 +191,10 @@ class mycqComponents extends cqFrontendComponents
       }
     }
 
-    $root             = ContentCategoryQuery::create()->findRoot();
+    $root = ContentCategoryQuery::create()->findRoot();
     $this->categories = ContentCategoryQuery::create()
-        ->descendantsOf($root)
-        ->findTree();
+      ->descendantsOf($root)
+      ->findTree();
 
     $this->form = $form;
 

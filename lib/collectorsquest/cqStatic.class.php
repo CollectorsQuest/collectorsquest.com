@@ -349,7 +349,7 @@ class cqStatic extends IceStatic
   ) {
     if (function_exists('geoip_country_code_by_name'))
     {
-      if (false !== $country_code = geoip_country_code_by_name($ip))
+      if (false !== $country_code = @geoip_country_code_by_name($ip))
       {
         if ( $check_against_geo_country
           && !GeoCountryQuery::create()->filterByIso3166($country_code)->count() )
