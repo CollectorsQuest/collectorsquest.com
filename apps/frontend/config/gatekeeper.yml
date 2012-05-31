@@ -1,0 +1,14 @@
+all:
+  pages: ~
+  features:
+    shopping_cart: false
+
+next:
+  pages: ~
+  features:
+    shopping_cart: true
+
+dev:
+  pages: ~
+  features:
+    shopping_cart: true
