@@ -1,4 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -27,16 +28,17 @@
     }
 
     /* Force Hotmail to display emails at full width */
-    .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {
+    .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font,
+    .ExternalClass td, .ExternalClass div {
       line-height: 100%;
     }
 
-    /* Forces Hotmail to display normal line spacing.  More on that: http://www.emailonacid.com/forum/viewthread/43/ */
+    /**
+     * Forces Hotmail to display normal line spacing.
+     * More on that: http://www.emailonacid.com/forum/viewthread/43/
+     */
     #backgroundTable {
       background: #f7f7f7;
-      background-color: #f7f7f7;
-      background-image: url({{ image_path('emails/background-pattern.png') }});
-      background-repeat: repeat;
       color: #125375;
       margin: 0;
       padding: 0;
@@ -72,11 +74,13 @@
       color: blue !important;
     }
 
-    h1 a:active, h2 a:active, h3 a:active, h4 a:active, h5 a:active, h6 a:active {
+    h1 a:active, h2 a:active, h3 a:active,
+    h4 a:active, h5 a:active, h6 a:active {
       color: red !important;
     }
 
-    h1 a:visited, h2 a:visited, h3 a:visited, h4 a:visited, h5 a:visited, h6 a:visited {
+    h1 a:visited, h2 a:visited, h3 a:visited,
+    h4 a:visited, h5 a:visited, h6 a:visited {
       color: purple !important;
     }
 
