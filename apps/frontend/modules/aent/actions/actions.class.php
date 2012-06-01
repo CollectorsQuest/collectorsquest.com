@@ -180,16 +180,14 @@ class aentActions extends cqFrontendActions
     $american_pickers = sfConfig::get('app_aetn_american_pickers');
 
     /** @var $q CollectibleQuery */
-    $q = CollectibleQuery::create()
-      ->filterByCollectorId($pawn_stars['collector'])
+    $q = CollectionCollectibleQuery::create()
       ->filterByCollectionId($pawn_stars['collection'])
-      ->orderById(Criteria::ASC);
+      ->orderByCollectibleId(Criteria::ASC);
     $ps_collectibles = $q->find();
 
-    $q = CollectibleQuery::create()
-      ->filterByCollectorId($american_pickers['collector'])
+    $q = CollectionCollectibleQuery::create()
       ->filterByCollectionId($american_pickers['collection'])
-      ->orderById(Criteria::ASC);
+      ->orderByCollectibleId(Criteria::ASC);
     $ap_collectibles = $q->find();
 
     /**
