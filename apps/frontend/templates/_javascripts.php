@@ -15,6 +15,13 @@
 <script src="/js/ie6update.js"></script>
 <![endif]-->
 
+<?php
+  // Include the cqcdns.com javascript files
+  // ice_include_javascripts();
+
+  // Include the cqcdns.com javascript files
+  cq_include_javascripts();
+?>
 <script>
   // http://stackoverflow.com/a/8567229
   (function ($, window, document){
@@ -24,13 +31,6 @@
   }(jQuery, this, this.document));
 </script>
 
-<?php
-  // Include the cqcdns.com javascript files
-  // ice_include_javascripts();
-
-  // Include the cqcdns.com javascript files
-  cq_include_javascripts();
-?>
 
 <script>
   // Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline
