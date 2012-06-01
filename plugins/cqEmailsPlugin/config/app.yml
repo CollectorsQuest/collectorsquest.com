@@ -13,7 +13,7 @@ all:
 
     Collector:
       password_reminder:
-        subject: "Your new password for CollectorsQuest.com"
+        subject: "Collectors Quest Password Reset"
         required_params: [collector, password]
       verify_new_email:
         subject: "You have changed your email at CollectorsQuest.com"
