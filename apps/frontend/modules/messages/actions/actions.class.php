@@ -102,15 +102,18 @@ class messagesActions extends cqFrontendActions
 
       if ($form->isValid())
       {
-        $form->save();
+        $message = $form->save();
         $receiver = $form->getValue('receiver');
 
         $cqEmail = new cqEmail($this->getMailer());
         $sent = $cqEmail->send('Messages/private_message_notification', array(
             'to' => $receiver->getEmail(),
             'params' => array(
-              'sender' => $sender,
-              'receiver' => $receiver,
+              'oSender' => $sender,
+              'oReceiver' => $receiver,
+              'oMessage' => $message,
+              'sThreadUrl' => $this->generateUrl('messages_show', $message, true)
+                              . '#latest-message',
             ),
         ));
 

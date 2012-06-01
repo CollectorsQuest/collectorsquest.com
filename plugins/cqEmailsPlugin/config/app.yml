@@ -23,8 +23,8 @@ all:
 
     Messages:
       private_message_notification:
-        subject: "You have a new message from {{ sender.displayName }}"
-        required_params: [sender, receiver]
+        subject: "You've Received a Message on Collectors Quest!"
+        required_params: [oSender, oReceiver, oMessage, sThreadUrl]
 
     Comments:
       comment_response_notification:

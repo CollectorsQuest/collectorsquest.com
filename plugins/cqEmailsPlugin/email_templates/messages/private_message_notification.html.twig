@@ -3,12 +3,23 @@
 {% block content %}
 
 <p style="margin-bottom: 10px; font-weight: bold;">
-  Dear {{ receiver.displayName }}
+  Hey, {{ oReceiver.displayName }}!
 </p>
+
 <p>
-  You have a new private message on {{ link_to('Collectors\' Quest', '@homepage', { absolute: true }) }}
-  from user {{ link_to_collector(sender, 'text', { absolute: true }) }}.
-  You can go to your {{ link_to('Messages Inbox', '@messages_inbox', { absolute: true }) }} to read it and reply.
+  {{ oSender.displayName }} has sent you a message on Collectors Quest :
+</p>
+
+<p>
+  {{ link_to_collector(oSender, 'image', { style: "float: left"}) }}
+  {% autoescape false %}
+    <em>{{ oMessage.body }}</em>
+  {% endautoescape %}
+</p>
+<br styl="clear: both" />
+
+<p>
+  {{ link_to('Click here', sThreadUrl, { absolute: true }) }} to respond to {{ oSender.displayName }}!
 </p>
 
 {% endblock %}
