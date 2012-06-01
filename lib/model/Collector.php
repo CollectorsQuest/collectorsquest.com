@@ -34,6 +34,16 @@ class Collector extends BaseCollector implements ShippingRatesInterface
     return (boolean) parent::getCqnextAccessAllowed();
   }
 
+  /**
+   * Temporary hardcoded to always true, will be updated in the near future
+   *
+   * @return boolean
+   */
+  public function getHasCompletedRegistration()
+  {
+    return true;
+  }
+
   public function getGraphId()
   {
     $graph_id = parent::getGraphId();
