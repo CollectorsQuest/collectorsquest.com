@@ -38,7 +38,7 @@ class collectorsActions extends autoCollectorsActions
       $hash = $collector->getAutoLoginHash();
       $url = sfProjectConfiguration::getActive()->generateFrontendUrl('auto_login', array('hash' => $hash));
 
-      $this->redirect($url, 301);
+      $this->redirect(rtrim($url, '/'), 301);
     }
 
     return sfView::ERROR;
