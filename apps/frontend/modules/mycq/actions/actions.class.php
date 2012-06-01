@@ -185,7 +185,7 @@ class mycqActions extends cqFrontendActions
           $collection->save();
 
           $this->getUser()->setFlash("success", 'Changes were saved!');
-          return $this->redirect($this->getController()->genUrl(array(
+          $this->redirect($this->getController()->genUrl(array(
             'sf_route'   => 'mycq_collection_by_slug',
             'sf_subject' => $collection,
           )));
