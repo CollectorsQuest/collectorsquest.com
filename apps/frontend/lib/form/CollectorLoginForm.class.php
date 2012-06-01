@@ -19,7 +19,9 @@ class CollectorLoginForm extends BaseForm
       'remember'  => new sfWidgetFormInputCheckbox(array(
           'label' => 'Remember me',
       )),
-      'goto' => new sfWidgetFormInputHidden()
+      'goto' => new sfWidgetFormInputHidden(array(), array(
+          'class' => 'set-value-to-href',
+      ))
     ));
 
     $this->setValidators(array(
@@ -35,8 +37,6 @@ class CollectorLoginForm extends BaseForm
 
     $this->widgetSchema->setNameFormat('login[%s]');
     $this->widgetSchema->setFormFormatterName('Bootstrap');
-
-    $this->setDefault('goto', sfContext::getInstance()->getRequest()->getUri());
   }
 
 }

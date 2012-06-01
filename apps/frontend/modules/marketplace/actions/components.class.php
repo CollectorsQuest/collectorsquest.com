@@ -80,6 +80,9 @@ class marketplaceComponents extends cqFrontendComponents
 
           $query = CollectibleQuery::create()
             ->filterById($collectible_ids)
+            ->useCollectibleForSaleQuery(null, Criteria::RIGHT_JOIN)
+              ->isForSale()
+            ->endUse()
             ->addAscendingOrderByColumn('FIELD(id, '. implode(',', $collectible_ids) .')');
 
           $pager = new PropelModelPager($query, 12);

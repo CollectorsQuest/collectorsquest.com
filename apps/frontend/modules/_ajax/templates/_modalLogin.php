@@ -22,7 +22,6 @@
 
       <div id="modal-login-openid-pane" class="tab-pane">
         <fieldset class="rpxnow-login clearfix">
-          <legend><?= __('Please sign in using your account with'); ?>:</legend>
           <iframe
             src="<?= $rpxnow['application_domain']; ?>openid/embed?token_url=<?= url_for('@rpx_token', true); ?>"
             scrolling="no"

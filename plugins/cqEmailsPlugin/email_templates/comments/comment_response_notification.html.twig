@@ -3,26 +3,24 @@
 {% block content %}
 
 <p style="margin-bottom: 10px; font-weight: bold;">
-  Hey, {{ user_comment.name }}!
+  Hey, {{ oYourComment.authorName }}!
 </p>
 
 <p>
-  Someone responded to your comment on Collectors Quest!<br />
-  <br />
+  Someone responded to your comment on Collectors Quest!
+</p>
 
-  New comment on your post "{{ model_object }}"<br />
-  Author : {{ new_comment.name }}<br />
-  Comment:<br />
-  {{ new_comment.body }}<br />
-  <br />
+<p>
+  {{ oNewComment.body }}
+</p>
 
-  You can see all comments in this thread here:<br />
-  {{ thread_url }}<br />
+<p>
+  {{ link_to('Click here', sThreadUrl) }} to respond and make a friend!
   <br />
 </p>
 
 <small>
-  You can unsubscribe from comment notifications by {{ link_to('clicking here', unsubscribe_url, true) }}.
+  Or you can unsubscribe from further notifications by {{ link_to('clicking here', sUnsubscribeUrl) }}.
 </small>
 
 {% endblock %}

@@ -6,10 +6,13 @@ all:
     - frontend/modules/mycq.css
 
   javascripts:
+    - /assets/js/jquery/controls.js
+    - /assets/js/jquery/form.js
+    - /assets/js/bootstrap/dialog2.js
+    - /assets/js/bootstrap/dialog2.helpers.js
+
     - jquery/ui.js
-    - jquery/controls.js
     - jquery/columnview.js
-    - jquery/form.js
     - jquery/tmpl.js
     - jquery/iframe-transport.js
     - jquery/load-image.js
@@ -20,15 +23,12 @@ all:
     - jquery/tagedit.js
     - jquery/autogrow-input.js
 
-    - /assets/js/bootstrap/dialog2.js
-    - /assets/js/bootstrap/dialog2.helpers.js
-
   components:
     slot1: [mycq, navigation]
 
 collectionSuccess:
   javascripts:
-    - wysihtml5.js
+    - /assets/js/wysihtml5.js
     - /assets/js/bootstrap/wysihtml5.js
 
 collectibleSuccess:
@@ -36,6 +36,6 @@ collectibleSuccess:
     - /assets/css/jquery/chosen.css
 
   javascripts:
-    - wysihtml5.js
+    - /assets/js/wysihtml5.js
     - /assets/js/bootstrap/wysihtml5.js
     - /assets/js/jquery/chosen.js

@@ -495,11 +495,11 @@ $lastclass = 0;
   switch (SF_ENV)
   {
     case 'dev':
-      $domain = 'collectorsquest.next';
+      $domain = 'collectorsquest.dev';
       break;
     case 'prod':
     default:
-      $domain = 'cqnext.com';
+      $domain = 'collectorsquest.com';
       break;
   }
 

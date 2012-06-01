@@ -69,7 +69,7 @@ class marketplaceActions extends cqFrontendActions
     return sfView::SUCCESS;
   }
 
-  public function executeCategories(sfWebRequest $request)
+  public function executeCategories()
   {
     $this->level1_categories = ContentCategoryQuery::create()
       ->childrenOfRoot()

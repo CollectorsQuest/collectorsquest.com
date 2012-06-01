@@ -12,7 +12,6 @@ class ComposeAbridgedPrivateMessageForm extends ComposePrivateMessageForm
     parent::__construct($sender, $sf_user = null, $thread = null, $options, $CSRFSecret);
 
     $this->setDefault('subject', $subject);
-    $this->setDefault('goto', sfContext::getInstance()->getRequest()->getUri());
   }
 
 
@@ -22,6 +21,7 @@ class ComposeAbridgedPrivateMessageForm extends ComposePrivateMessageForm
 
     $this->widgetSchema['receiver'] = new sfWidgetFormInputHidden();
     $this->widgetSchema['subject'] = new sfWidgetFormInputHidden();
+    $this->widgetSchema['goto']->setAttribute('class', 'set-value-to-href');
   }
 
   protected function updateDefaultsFromObject()

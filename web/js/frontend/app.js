@@ -209,6 +209,29 @@ var COMMON = window.COMMON = (function(){
       COMMON.setupFooterLoginOrSignup();
       COMMON.setupScrollToTop();
       COMMON.setupEmailSpellingHelper();
+      COMMON.loginLogoutHelpers();
+    },
+    loginLogoutHelpers: function() {
+      // set proper logout redirects when included as iframe (only for same domain)
+      if (Modernizr.insideiframe && window.parent.location.href) {
+        $('a.logout-link').each(function (){
+          $(this).attr('href',
+            $(this).attr('href') + '?r=' + window.parent.location.href
+          );
+        });
+      }
+
+      // set proper input[name=goto] redirects
+      $('input.set-value-to-href').each(function() {
+        var $this = $(this);
+        if (!$this.val()) {
+          if (Modernizr.insideiframe) {
+            $(this).val(window.parent.location.href || '');
+          } else {
+            $(this).val(window.location.href);
+          }
+        }
+      });
     },
     setupModalLoginRegistrationDialog: function() {
       var $holder = $('#modal-login-holder');

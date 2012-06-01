@@ -131,7 +131,7 @@ class generalActions extends cqFrontendActions
     // redirect to homepage if already logged in
     if ($this->getUser()->isAuthenticated())
     {
-      $this->redirect($request->getParameter('r', '@collector_me'));
+      return $this->redirect($request->getParameter('r', '@collector_me'));
     }
 
     // Auto login the collector if a hash was provided
@@ -140,10 +140,11 @@ class generalActions extends cqFrontendActions
       $this->getUser()->Authenticate(true, $collector, $remember = false);
 
       // redirect to last page or homepage after login
-      $this->redirect($request->getParameter('r', '@collector_me'));
+      return $this->redirect($request->getParameter('r', '@collector_me'));
     }
 
     $form = new CollectorLoginForm();
+    $form->setDefault('goto', $this->generateUrl('collector_me'));
     if (sfRequest::POST == $request->getMethod())
     {
       $form->bind($request->getParameter($form->getName()));
@@ -154,7 +155,15 @@ class generalActions extends cqFrontendActions
         $this->getUser()->Authenticate(true, $collector, $form->getValue('remember'));
 
         $goto = $request->getParameter('r', $form->getValue('goto'));
-        $this->redirect(!empty($goto) ? $goto : $this->getUser()->getReferer('@collector_me'));
+        $goto = !empty($goto) ? $goto : $this->getUser()->getReferer('@collector_me');
+
+        // when JS is disabled or there was a problem with cross-iframe communication
+        if (false !== strpos($goto, '_video'))
+        {
+          $goto = '@collector_me';
+        }
+
+        return $this->redirect($goto);
       }
     }
     else
@@ -188,18 +197,28 @@ class generalActions extends cqFrontendActions
 
     if (false !== $result && ENGAGE_STAT_OK === $auth_info_array['stat'])
     {
+      $new_collector = false;
       $profile = $auth_info_array['profile'];
       $collector = CollectorPeer::retrieveByIdentifier($profile['identifier']);
 
       if (!$collector)
       {
         $collector = CollectorPeer::createFromRPXProfile($profile);
+        $collector->assignRandomAvatar();
+
+        $cqEmail = new cqEmail($this->getMailer());
+        $cqEmail->send('Collector/welcome_to_cq', array(
+          'to' => $collector->getEmail(),
+        ));
+
+        $new_collector = true;
       }
 
       if ($collector instanceof Collector)
       {
         $this->getUser()->Authenticate(true, $collector, true);
-        $this->redirect('@homepage');
+
+        return $this->redirect($new_collector ? '@mycq_profile' : '@homepage');
       }
     }
 
@@ -227,7 +246,13 @@ class generalActions extends cqFrontendActions
       $url = urldecode($url);
     }
 
-    $this->redirect($url);
+    // when JS is disabled or there was a problem with cross-iframe communication
+    if (false !== strpos($url, '_video'))
+    {
+      $url = '@homepage';
+    }
+
+    return $this->redirect($url);
   }
 
   public function executeRecoverPassword(sfWebRequest $request)
@@ -235,7 +260,7 @@ class generalActions extends cqFrontendActions
     // redirect to homepage if already logged in
     if ($this->getUser()->isAuthenticated())
     {
-      $this->redirect('@homepage');
+      return $this->redirect('@homepage');
     }
 
     $form = new PasswordRecoveryForm();
@@ -269,7 +294,7 @@ class generalActions extends cqFrontendActions
             array('%email%' => $email)
           ));
 
-          $this->redirect('@login');
+          return $this->redirect('@login');
         }
         else
         {

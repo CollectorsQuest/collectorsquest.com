@@ -108,14 +108,12 @@ class Comment extends BaseComment
   }
 
   /**
-   * Not to be confused with getAuthorEmail()
-   *
    * Will return the email address regardless if the comment was made by a collector
    * or an unregistered user
    *
    * @return    string
    */
-  public function getEmail()
+  public function getAuthorEmail()
   {
     if ($this->getCollectorId())
     {
@@ -123,19 +121,17 @@ class Comment extends BaseComment
     }
     else
     {
-      return $this->getAuthorEmail();
+      return parent::getAuthorEmail();
     }
   }
 
   /**
-   * Not to be confused with getAuthorName()
-   *
    * Will return the author name regardless if the comment was made by a collector
    * or an unregistered user
    *
    * @return    string
    */
-  public function getName()
+  public function getAuthorName()
   {
     if ($this->getCollectorId())
     {
@@ -144,7 +140,7 @@ class Comment extends BaseComment
     }
     else
     {
-      return $this->getAuthorName();
+      return parent::getAuthorName();
     }
   }
 

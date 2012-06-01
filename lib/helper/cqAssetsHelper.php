@@ -86,7 +86,7 @@ function cq_javascript_src($javascript)
 function cq_include_stylesheets()
 {
   // Do not combine or do anything special if not in Production
-  if (SF_ENV != 'prod')
+  if (SF_ENV !== 'prod')
   {
     include_stylesheets();
 
@@ -143,7 +143,7 @@ function cq_include_stylesheets()
 function cq_include_javascripts()
 {
   // Do not combine or do anything special if not in Production
-  if (SF_ENV != 'prod')
+  if (SF_ENV !== 'prod')
   {
     include_javascripts();
 

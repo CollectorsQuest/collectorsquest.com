@@ -11,11 +11,11 @@
         <div class="aboutus-footer-inner">
           <h2 class="Chivo webfont">About Collectors Quest</h2>
           <p class="about-us">
-            Collectors Quest helps you maximize the fun you have with your collections.
-            Post a gallery of your goods to share and use as an archive,
-            buy and sell treasures quickly and easily, learn what's going on in the collecting world,
-            and commune with other like-minded collectors.
-            Come here to to indulge your passion for collecting!
+            Collectors Quest is here to help you get the most out of your
+            collections: post a gallery of your neat stuff to share and use as an archive,
+            buy and sell treasures quickly and easily, learn what’s going on in the collecting
+            world, and meet other like-minded collectors.
+            <?= link_to('Join us', '@collector_signup') ?> to make collecting more fun than ever!
           </p>
           <div class="row-spacing-footer">
             <button class="btn btn-primary blue-button pull-left" type="submit" onclick="location.href='<?=url_for('blog_page', array('slug' => 'contact-us'));?>'">Contact Us</button>
@@ -137,7 +137,7 @@
             <a href="<?= url_for('@mycq'); ?>" class="btn btn-primary blue-button">
               My Profile
             </a>
-            <b><?= link_to('Log out', '@logout', array('class' => 'spacer-left')); ?></b>
+            <b><?= link_to('Log out', '@logout', array('class' => 'spacer-left logout-link')); ?></b>
           </div>
         </div>
         <?php endif; ?>

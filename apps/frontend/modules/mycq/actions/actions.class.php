@@ -4,7 +4,7 @@ class mycqActions extends cqFrontendActions
 {
   public function executeIndex()
   {
-    $this->redirect('@mycq_profile');
+    return $this->redirect('@mycq_profile');
   }
 
   public function executeProfile(sfWebRequest $request)
@@ -137,7 +137,7 @@ class mycqActions extends cqFrontendActions
         break;
     }
 
-    $this->redirect('@mycq_collections');
+    return $this->redirect('@mycq_collections');
   }
 
   public function executeCollection(sfWebRequest $request)
@@ -161,7 +161,7 @@ class mycqActions extends cqFrontendActions
             'success', sprintf('Your collection "%s" was deleted!', $collection_name)
           );
 
-          $this->redirect('@mycq_collections');
+          return $this->redirect('@mycq_collections');
           break;
       }
     }
@@ -243,7 +243,7 @@ class mycqActions extends cqFrontendActions
     $collection_collectible = $q->findOneOrCreate();
     $collection_collectible->save();
 
-    $this->redirect('mycq_collectible_by_slug', $collection_collectible);
+    return $this->redirect('mycq_collectible_by_slug', $collection_collectible);
   }
 
   /**
@@ -280,7 +280,7 @@ class mycqActions extends cqFrontendActions
           );
 
           $url = $this->generateUrl('mycq_collection_by_slug', array('sf_subject' => $collection));
-          $this->redirect($url);
+          return $this->redirect($url);
 
           break;
       }
@@ -329,7 +329,7 @@ class mycqActions extends cqFrontendActions
         }
 
         // if we save the form the request has to be redirected
-        $this->redirect('mycq_collectible_by_slug', $form->getObject());
+        return $this->redirect('mycq_collectible_by_slug', $form->getObject());
       }
       else
       {
@@ -386,7 +386,7 @@ class mycqActions extends cqFrontendActions
       'error', 'The upload was cancelled and none of the items were uploaded'
     );
 
-    $this->redirect('@mycq_collections');
+    return $this->redirect('@mycq_collections');
   }
 
   public function executeUploadFinish(sfWebRequest $request)
@@ -415,7 +415,7 @@ class mycqActions extends cqFrontendActions
       );
     }
 
-    $this->redirect($request->getReferer() ? $request->getReferer() : '@mycq_collections');
+    return $this->redirect($request->getReferer() ? $request->getReferer() : '@mycq_collections');
   }
 
   public function executeShoppingOrders()

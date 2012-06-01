@@ -33,10 +33,10 @@ class collectorActions extends cqFrontendActions
       $id   = $collector->getId();
       $slug = $collector->getSlug();
 
-      $this->redirect('@dropbox_by_slug?collector_id=' . $id . '&collector_slug=' . $slug);
+      return $this->redirect('@dropbox_by_slug?collector_id=' . $id . '&collector_slug=' . $slug);
     }
 
-    $this->redirect('@login');
+    return $this->redirect('@login');
   }
 
   public function executeMe()
@@ -46,10 +46,10 @@ class collectorActions extends cqFrontendActions
       $id   = $collector->getId();
       $slug = $collector->getSlug();
 
-      $this->redirect('@collector_by_slug?id=' . $id . '&slug=' . $slug);
+      return $this->redirect('@collector_by_slug?id=' . $id . '&slug=' . $slug);
     }
 
-    $this->redirect('@login');
+    return $this->redirect('@login');
   }
 
   /**
@@ -81,7 +81,15 @@ class collectorActions extends cqFrontendActions
 
         // authenticate the collector and redirect to @mycq_profile
         $this->getUser()->Authenticate(true, $collector, false);
-        $this->redirect('@mycq_profile');
+
+        $cqEmail = new cqEmail($this->getMailer());
+        $cqEmail->send('Collector/welcome_to_cq', array(
+          'to' => $collector->getEmail(),
+        ));
+
+        $collector->assignRandomAvatar();
+
+        return $this->redirect('@mycq_profile');
       }
     }
 
@@ -300,9 +308,9 @@ class collectorActions extends cqFrontendActions
   public function executeAvatar(sfWebRequest $request)
   {
     $collector = $this->getRoute()->getObject();
-
     $this->loadHelpers(array('cqImages'));
-    $this->redirect(src_tag_collector($collector, '100x100', true, array('absolute'=> true)), 301);
+
+    return $this->redirect(src_tag_collector($collector, '100x100', true, array('absolute'=> true)), 301);
   }
 
   /**

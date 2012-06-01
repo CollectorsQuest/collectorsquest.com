@@ -1255,19 +1255,19 @@ class Markdown_Parser
       if ($tree_char_em) {
         # Reached closing marker while inside a three-char emphasis.
         if ($token_len == 3) {
-          # Three-char closing marker, close em and strong.
+          # Three-char closing marker, close i and strong.
           array_shift($token_stack);
           $span = array_shift($text_stack);
           $span = $this->runSpanGamut($span);
-          $span = "<strong><em>$span</em></strong>";
+          $span = "<b><i>$span</i></b>";
           $text_stack[0] .= $this->hashPart($span);
           $em = '';
           $strong = '';
         } else {
-          # Other closing marker: close one em or strong and
+          # Other closing marker: close one i or b and
           # change current token state to match the other
           $token_stack[0] = str_repeat($token{0}, 3 - $token_len);
-          $tag = $token_len == 2 ? "strong" : "em";
+          $tag = $token_len == 2 ? "b" : "i";
           $span = $text_stack[0];
           $span = $this->runSpanGamut($span);
           $span = "<$tag>$span</$tag>";
@@ -1277,11 +1277,11 @@ class Markdown_Parser
         $tree_char_em = false;
       } else if ($token_len == 3) {
         if ($em) {
-          # Reached closing marker for both em and strong.
-          # Closing strong marker:
+          # Reached closing marker for both i and b.
+          # Closing b marker:
           for ($i = 0; $i < 2; ++$i) {
             $shifted_token = array_shift($token_stack);
-            $tag = strlen($shifted_token) == 2 ? "strong" : "em";
+            $tag = strlen($shifted_token) == 2 ? "b" : "i";
             $span = array_shift($text_stack);
             $span = $this->runSpanGamut($span);
             $span = "<$tag>$span</$tag>";
@@ -1304,11 +1304,11 @@ class Markdown_Parser
             $text_stack[1] .= array_shift($token_stack);
             $text_stack[0] .= array_shift($text_stack);
           }
-          # Closing strong marker:
+          # Closing b marker:
           array_shift($token_stack);
           $span = array_shift($text_stack);
           $span = $this->runSpanGamut($span);
-          $span = "<strong>$span</strong>";
+          $span = "<b>$span</b>";
           $text_stack[0] .= $this->hashPart($span);
           $strong = '';
         } else {
@@ -1324,7 +1324,7 @@ class Markdown_Parser
             array_shift($token_stack);
             $span = array_shift($text_stack);
             $span = $this->runSpanGamut($span);
-            $span = "<em>$span</em>";
+            $span = "<i>$span</i>";
             $text_stack[0] .= $this->hashPart($span);
             $em = '';
           } else {

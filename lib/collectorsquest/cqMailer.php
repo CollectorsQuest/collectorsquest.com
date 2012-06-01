@@ -283,7 +283,7 @@ class cqMailer extends Swift_Mailer
     return parent::send($message, $failedRecipients);
   }
 
-  protected function shouldMessageUseRedirectingPlugin(Swift_Mime_Message $message)
+  public function shouldMessageUseRedirectingPlugin(Swift_Mime_Message $message)
   {
     $addresses = array_keys($message->getTo());
     $addresses = implode(',', $addresses);

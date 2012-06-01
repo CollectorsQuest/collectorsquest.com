@@ -42,24 +42,20 @@ class CollectorProfileEditForm extends BaseCollectorProfileForm
       'about_what_you_collect'    => new sfWidgetFormInputText(array(
           'label'                 => 'What do you collect?',
         ), array(
-          'required'              => 'required',
       )),
       'about_purchases_per_year'   => new sfWidgetFormInputText(array(
           'label'                 => 'How many times a year do you purchase?',
         ),array(
-          'required'              => 'required',
           'type'                  => 'number',
           'pattern'               => '\d+'
       )),
       'about_most_expensive_item' => new sfWidgetFormInputText(array(
           'label'                 => 'What is the most you ever spent on an item? (in USD)',
         ), array(
-          'required'              => 'required',
       )),
       'about_annually_spend'      => new sfWidgetFormInputText(array(
           'label'                 => 'How much do you spend annually? (in USD)',
         ), array(
-          'required'              => 'required',
       )),
       'about_new_item_every'      => new sfWidgetFormInputText(array(
           'label'                 => 'How much time is there between your purchases?',
@@ -79,9 +75,11 @@ class CollectorProfileEditForm extends BaseCollectorProfileForm
       'about_me' => new sfValidatorString(array('required' => false)),
       'about_collections' => new sfValidatorString(array('required' => false)),
       'about_what_you_collect' => new sfValidatorString(array('max_length' => 255, 'required' => false)),
-      'about_purchases_per_year'   => new sfValidatorNumber(array('required' => false)),
-      'about_most_expensive_item' => new cqValidatorPrice(),
-      'about_annually_spend' => new cqValidatorPrice(),
+      'about_purchases_per_year'   => new sfValidatorNumber(array('required' => false, 'min' => 0), array(
+          'min' => 'You cannot enter a value below zero here.',
+      )),
+      'about_most_expensive_item' => new cqValidatorPrice(array('required' => false)),
+      'about_annually_spend' => new cqValidatorPrice(array('required' => false)),
       'about_new_item_every' => new sfValidatorString(array('max_length' => 64, 'required' => false)),
       'about_interests' => new sfValidatorString(array('required' => false)),
     ));

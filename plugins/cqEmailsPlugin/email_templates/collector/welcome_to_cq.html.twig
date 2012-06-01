@@ -1,0 +1,35 @@
+{% extends "common/base.html.twig" %}
+
+{% block content %}
+<p>
+  Thanks for joining the fine folks at Collectors Quest! We hope you enjoy sharing your
+  collections with other collectors throughout the world, as well as viewing the collections of others.
+  As a registered, human member of the site, you can now buy, sell, share and interact with your fellow
+  collectors like never before.
+</p>
+
+<p>Here’s some stuff you can do:</p>
+<p>
+  {{ link_to('Fill out your profile', '@mycq_profile', { absolute: true}) }}
+  so you can easily find other collectors who dig the same stuff that you do.
+</p>
+<p>
+  {{ link_to('Upload your favorite collections', '@mycq_collections', { absolute: true}) }} and show the world
+  how awesome they are. Make everyone green with envy while your rock your Pez collection like no one else can.
+</p>
+<p>
+  {{ link_to('Check out these galleries of collectibles', '@collections', { absolute: true }) }} which other users
+  have uploaded and journey through their inspiring, fascinating, weird collections—and let them know what you think!
+</p>
+
+<!--
+<p>
+  {{ link_to('Explore our market', '@marketplace', { absolute: true }) }} for that treasured
+  item for which you’ve been hunting, or {{ link_to('sell something', '@seller_packages', { absolute: true }) }}
+  which you may have lying around. That upside-down airplane stamp might be worth something.
+  No one could fly that thing anyway.
+</p>
+//-->
+
+<p>Have a look around Collectors Quest, and you’ll see why this is the place Where Hunters Gather!</p>
+{% endblock %}

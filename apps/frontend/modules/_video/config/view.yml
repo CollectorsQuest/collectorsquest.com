@@ -1,5 +1,5 @@
-all:
-  stylesheets: [frontend/modules/video.css]
+default:
+  has_layout: false
 
 headerSuccess:
   has_layout: false

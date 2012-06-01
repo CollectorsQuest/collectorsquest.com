@@ -422,16 +422,60 @@ class _sidebarComponents extends cqFrontendComponents
 
   public function executeWidgetCollectionCollectibles()
   {
+    return $this->_sidebar_if(count($this->collectibles) > 0);
+
     // Set the limit of other Collections to show
-    $this->collection = $this->getVar('collection') ?: null;
+    /** @var $collection CollectorCollection */
+    $collection = $this->getVar('collection') ?: null;
+
+    /** @var $collectible CollectionCollectible */
+    $collectible = $this->getVar('collectible') ?: null;
+
+    if ($collectible instanceof CollectionCollectible)
+    {
+      $collection = $collectible->getCollection();
+    }
 
     // Set the limit of other Collections to show
     $this->limit = (int) $this->getVar('limit') ?: 4;
 
-    if ($this->collection)
+    // Initialize the array
+    $this->collectibles = array();
+
+    if ($collection instanceof CollectorCollection)
     {
+      /**
+       * Figure out the previous and the next item in the collection
+       */
+      $collectible_ids = $collection->getCollectionCollectibleIds();
+
+      if (array_search($collection->getId(), $collectible_ids) - 1 < 0)
+      {
+        $this->previous = CollectionCollectibleQuery::create()->findOneByCollectibleId(
+          $collectible_ids[count($collectible_ids) - 1]
+        );
+      }
+      else
+      {
+        $this->previous = CollectionCollectibleQuery::create()->findOneByCollectibleId(
+          $collectible_ids[array_search($collection->getId(), $collectible_ids) - 1]
+        );
+      }
+
+      if (array_search($collectible->getId(), $collectible_ids) + 1 >= count($collectible_ids))
+      {
+        $this->next = CollectiblePeer::retrieveByPk($collectible_ids[0]);
+      }
+      else
+      {
+        $this->next = CollectiblePeer::retrieveByPk(
+          $collectible_ids[array_search($collectible->getId(), $collectible_ids) + 1]
+        );
+      }
+
       $q = CollectionCollectibleQuery::create()
-        ->filterByCollection($this->collection)
+        ->filterByCollection($collection)
+        ->filterByCollectibleId($collectible_ids)
         ->limit($this->limit);
       $this->collectibles = $q->find();
     }

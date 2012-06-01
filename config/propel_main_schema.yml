@@ -289,6 +289,9 @@ classes:
     propel_behaviors:
       timestampable:  ~
 
+  ###
+  # NOTE: Make SURE to update also CommentArchive in archive.schema.yml
+  ##
   Comment:
     columns:
       id:  ~
