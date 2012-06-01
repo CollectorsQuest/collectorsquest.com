@@ -296,7 +296,7 @@ class aentActions extends cqFrontendActions
     else if ($collectible->getId() == $ap_collectibles[7]->getId())
     {
       $this->related_collections = CollectorCollectionQuery::create()->filterById(
-        array(752, 616, 807, 1576, 437, 812, 1584, 1183, 9260), Criteria::IN
+        array(752, 616, 807, 1576, 437, 812, 1584, 1183, 616), Criteria::IN
       )->find();
     }
     else if ($collectible->getId() == $ap_collectibles[8]->getId())
