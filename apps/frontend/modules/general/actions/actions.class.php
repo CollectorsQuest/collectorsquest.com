@@ -144,6 +144,7 @@ class generalActions extends cqFrontendActions
     }
 
     $form = new CollectorLoginForm();
+    $form->setDefault('goto', $this->generateUrl('collector_me'));
     if (sfRequest::POST == $request->getMethod())
     {
       $form->bind($request->getParameter($form->getName()));
@@ -154,14 +155,15 @@ class generalActions extends cqFrontendActions
         $this->getUser()->Authenticate(true, $collector, $form->getValue('remember'));
 
         $goto = $request->getParameter('r', $form->getValue('goto'));
+        $goto = !empty($goto) ? $goto : $this->getUser()->getReferer('@collector_me');
 
         // when JS is disabled or there was a problem with cross-iframe communication
         if (false !== strpos($goto, '_video'))
         {
-          $goto = '@homepage';
+          $goto = '@collector_me';
         }
 
-        return $this->redirect(!empty($goto) ? $goto : $this->getUser()->getReferer('@collector_me'));
+        return $this->redirect($goto);
       }
     }
     else

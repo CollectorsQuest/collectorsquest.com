@@ -213,7 +213,7 @@ var COMMON = window.COMMON = (function(){
     },
     loginLogoutHelpers: function() {
       // set proper logout redirects when included as iframe (only for same domain)
-      if (Modernizr.insideiframe) {
+      if (Modernizr.insideiframe && window.parent.location.href) {
         $('a.logout-link').each(function (){
           $(this).attr('href',
             $(this).attr('href') + '?r=' + window.parent.location.href
@@ -226,7 +226,7 @@ var COMMON = window.COMMON = (function(){
         var $this = $(this);
         if (!$this.val()) {
           if (Modernizr.insideiframe) {
-            $(this).val(window.parent.location.href);
+            $(this).val(window.parent.location.href || '');
           } else {
             $(this).val(window.location.href);
           }
