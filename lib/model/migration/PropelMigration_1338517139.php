@@ -13,7 +13,7 @@ class PropelMigration_1338517139
       /** @var $thumbnail iceModelMultimedia */
       $thumbnail = $collection->getThumbnail();
 
-      if (!$thumbnail || !$thumbnail->fileExists('original') || !$thumbnail->fileExists('190x190'))
+      if (!$thumbnail || !$thumbnail->fileExists('original') || !$thumbnail->fileExists('190x150'))
       {
         if ($thumbnail && $thumbnail->fileExists('original'))
         {
