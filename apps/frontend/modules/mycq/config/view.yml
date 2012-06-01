@@ -28,7 +28,7 @@ all:
 
 collectionSuccess:
   javascripts:
-    - wysihtml5.js
+    - /assets/js/wysihtml5.js
     - /assets/js/bootstrap/wysihtml5.js
 
 collectibleSuccess:
@@ -36,6 +36,6 @@ collectibleSuccess:
     - /assets/css/jquery/chosen.css
 
   javascripts:
-    - wysihtml5.js
+    - /assets/js/wysihtml5.js
     - /assets/js/bootstrap/wysihtml5.js
     - /assets/js/jquery/chosen.js
