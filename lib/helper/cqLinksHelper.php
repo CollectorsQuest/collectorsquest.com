@@ -158,7 +158,6 @@ function link_to_collection($object, $type = 'text', $options = array())
   $title   = trim($collection->getName());
   $options = array_merge(
     array(
-      'route'  => route_for_collection($collection),
       'width'  => 150,
       'height' => 150,
       'alt'    => $title,
@@ -173,17 +172,18 @@ function link_to_collection($object, $type = 'text', $options = array())
     unset($options['truncate']);
   }
 
+  $route = route_for_collection($collection);
   switch ($type)
   {
     case 'image':
       $which     = (isset($options['width']) && isset($options['height'])) ? $options['width'] . 'x' . $options['height'] : '150x150';
       $image_tag = image_tag_collection($collection, $which, $options);
 
-      $link = link_to($image_tag, $options['route']);
+      $link = link_to($image_tag, $route);
       break;
     case 'text':
     default:
-      $link = link_to($title, $options['route'], array_diff_key($options, array('route'=> null)));
+      $link = link_to($title, $route, $options);
       break;
   }
 
