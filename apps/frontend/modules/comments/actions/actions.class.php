@@ -26,27 +26,27 @@ class commentsActions extends cqFrontendActions
           $cqEmail = new cqEmail($this->getMailer());
           foreach ($notify_comments as $notify_comment)
           {
-            if ($comment->getEmail() == $notify_comment->getEmail())
+            if ($comment->getAuthorEmail() == $notify_comment->getAuthorEmail())
             {
               // don't notify ourselves about our own comment ;)
               continue;
             }
 
-            $res = $cqEmail->send('Comments/comment_response_notification', array(
-                'to' => $notify_comment->getEmail(),
+            $cqEmail->send('Comments/comment_response_notification', array(
+                'to' => $notify_comment->getAuthorEmail(),
                 'params' => array(
-                    'model_object' => $comment->getModelObject(),
-                    'new_comment' => $comment,
-                    'user_comment'  => $notify_comment,
-                    'thread_url' => $request->getReferer() . '#comments',
-                    'unsubscribe_url' => $this->generateUrl('comments_unsubscribe', array(
-                        'email' => urlencode($notify_comment->getEmail()),
+                    'oModelObject' => $comment->getModelObject(),
+                    'oNewComment' => $comment,
+                    'oYourComment' => $notify_comment,
+                    'sThreadUrl' => $request->getReferer() . '#comments',
+                    'sUnsubscribeUrl' => $this->generateUrl('comments_unsubscribe', array(
+                        'email' => urlencode($notify_comment->getAuthorEmail()),
                         'model_class' => $notify_comment->getModelObjectClass(),
                         'model_pk' => $notify_comment->getModelObjectPk(),
                         'r' => $request->getReferer(),
                     ), true)
-                ),
-            ));
+                ), // params
+            )); // send()
           }
         }
       }

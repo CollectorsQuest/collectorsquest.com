@@ -28,8 +28,8 @@ all:
 
     Comments:
       comment_response_notification:
-        subject: 'Someone responded to your comment on Collectors Quest!'
-        required_params: [ model_object, new_comment, user_comment, thread_url, unsubscribe_url ]
+        subject: "Someone commented on your {{ oModelObject }}, {{ oYourComment.authorName }}!"
+        required_params: [ oModelObject, oNewComment, oYourComment, sThreadUrl, sUnsubscribeUrl ]
 
     internal:
       feedback:
