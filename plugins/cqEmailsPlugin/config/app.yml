@@ -18,6 +18,8 @@ all:
       verify_new_email:
         subject: "You have changed your email at CollectorsQuest.com"
         required_params: [collector, collector_email]
+      welcome_to_cq:
+        subject: "Welcome to Collectors Quest!"
 
     Messages:
       private_message_notification:

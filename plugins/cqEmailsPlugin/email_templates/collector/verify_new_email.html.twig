@@ -6,6 +6,6 @@
   </p>
   <p>
     Your email has been changed to <strong>{{ collector_email.email }}</strong> and needs verification
-    {{ link_to('here', 'collector_verify_email', { hash: collector_email.hash }, { absolute: true}) }}.
+    {{ link_to('here', '@collector_verify_email', { hash: collector_email.hash }, { absolute: true}) }}.
   </p>
 {% endblock %}
