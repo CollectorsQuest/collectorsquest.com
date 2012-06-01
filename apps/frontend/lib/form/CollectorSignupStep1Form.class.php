@@ -49,6 +49,7 @@ class CollectorSignupStep1Form extends BaseForm
 
       ), array(
         'required' => 'required',
+        'style' => 'padding-top: 3px;'
       )),
     ));
 
