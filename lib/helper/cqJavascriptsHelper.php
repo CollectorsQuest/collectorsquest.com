@@ -65,7 +65,7 @@ function cq_dart_slot($size, $zone1 = 'other', $zone2 = null, $pos = null)
 
   $test = isset($_GET['test']) && $_GET['test'] === 'on' ? 'on' : null;
   $src = sprintf(
-    'http://ad.doubleclick.net/adj/aetn.hist.cq/%s;s1=%s;s2=%s;kw=;test=%s;aetn=ad;pos=%s;dcopt=%s;sz=%s',
+    'http://ad.doubleclick.net/adj/aetn.hist.cq/cq%s;s1=cq%s;s2=%s;kw=;test=%s;aetn=ad;pos=%s;dcopt=%s;sz=%s',
     $zone1, $zone1, $zone2, $test, $pos, ($pos === 'top') ? 'ist' : null, $size
   );
 
