@@ -205,6 +205,12 @@ class generalActions extends cqFrontendActions
       {
         $collector = CollectorPeer::createFromRPXProfile($profile);
         $collector->assignRandomAvatar();
+
+        $cqEmail = new cqEmail($this->getMailer());
+        $cqEmail->send('Collector/welcome_to_cq', array(
+          'to' => $collector->getEmail(),
+        ));
+
         $new_collector = true;
       }
 
