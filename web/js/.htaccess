@@ -12,7 +12,7 @@ AddType application/javascript        js
     RewriteEngine On
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^(.+)\.(\w{32}).(js|css)$ $1.$3 [L]
+    RewriteRule ^(.+)\.(\w{40}).(js|css)$ $1.$3 [L]
 </IfModule>
 
 
