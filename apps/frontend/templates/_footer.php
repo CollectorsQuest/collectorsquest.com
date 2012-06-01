@@ -137,7 +137,7 @@
             <a href="<?= url_for('@mycq'); ?>" class="btn btn-primary blue-button">
               My Profile
             </a>
-            <b><?= link_to('Log out', '@logout', array('class' => 'spacer-left')); ?></b>
+            <b><?= link_to('Log out', '@logout', array('class' => 'spacer-left logout-link')); ?></b>
           </div>
         </div>
         <?php endif; ?>

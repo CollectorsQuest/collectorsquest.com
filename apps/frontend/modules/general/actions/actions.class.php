@@ -131,7 +131,7 @@ class generalActions extends cqFrontendActions
     // redirect to homepage if already logged in
     if ($this->getUser()->isAuthenticated())
     {
-      $this->redirect($request->getParameter('r', '@collector_me'));
+      return $this->redirect($request->getParameter('r', '@collector_me'));
     }
 
     // Auto login the collector if a hash was provided
@@ -140,7 +140,7 @@ class generalActions extends cqFrontendActions
       $this->getUser()->Authenticate(true, $collector, $remember = false);
 
       // redirect to last page or homepage after login
-      $this->redirect($request->getParameter('r', '@collector_me'));
+      return $this->redirect($request->getParameter('r', '@collector_me'));
     }
 
     $form = new CollectorLoginForm();
@@ -154,7 +154,14 @@ class generalActions extends cqFrontendActions
         $this->getUser()->Authenticate(true, $collector, $form->getValue('remember'));
 
         $goto = $request->getParameter('r', $form->getValue('goto'));
-        $this->redirect(!empty($goto) ? $goto : $this->getUser()->getReferer('@collector_me'));
+
+        // when JS is disabled or there was a problem with cross-iframe communication
+        if (false !== strpos($goto, '_video'))
+        {
+          $goto = '@homepage';
+        }
+
+        return $this->redirect(!empty($goto) ? $goto : $this->getUser()->getReferer('@collector_me'));
       }
     }
     else
@@ -231,7 +238,13 @@ class generalActions extends cqFrontendActions
       $url = urldecode($url);
     }
 
-    $this->redirect($url);
+    // when JS is disabled or there was a problem with cross-iframe communication
+    if (false !== strpos($url, '_video'))
+    {
+      $url = '@homepage';
+    }
+
+    return $this->redirect($url);
   }
 
   public function executeRecoverPassword(sfWebRequest $request)
@@ -239,7 +252,7 @@ class generalActions extends cqFrontendActions
     // redirect to homepage if already logged in
     if ($this->getUser()->isAuthenticated())
     {
-      $this->redirect('@homepage');
+      return $this->redirect('@homepage');
     }
 
     $form = new PasswordRecoveryForm();
@@ -273,7 +286,7 @@ class generalActions extends cqFrontendActions
             array('%email%' => $email)
           ));
 
-          $this->redirect('@login');
+          return $this->redirect('@login');
         }
         else
         {

@@ -209,13 +209,27 @@ var COMMON = window.COMMON = (function(){
       COMMON.setupFooterLoginOrSignup();
       COMMON.setupScrollToTop();
       COMMON.setupEmailSpellingHelper();
-      COMMON.setFormGotoToWindowHref()
+      COMMON.loginLogoutHelpers()
     },
-    setFormGotoToWindowHref: function() {
+    loginLogoutHelpers: function() {
+      // set proper logout redirects when included as iframe (only for same domain)
+      if (Modernizr.insideiframe) {
+        $('a.logout-link').each(function (){
+          $(this).attr('href',
+            $(this).attr('href') + '?r=' + window.parent.location.href
+          );
+        });
+      }
+
+      // set proper input[name=goto] redirects
       $('input.set-value-to-href').each(function() {
         var $this = $(this);
         if (!$this.val()) {
-          $(this).val(window.location.href);
+          if (Modernizr.insideiframe) {
+            $(this).val(window.parent.location.href);
+          } else {
+            $(this).val(window.location.href);
+          }
         }
       });
     },

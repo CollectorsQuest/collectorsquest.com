@@ -21,7 +21,7 @@
   </div>
   <div class="span12" style="margin-left: 0; width: 87%;">
     <?php
-      $links = link_to('Log Out', '@logout') .
+      $links = link_to('Log Out', '@logout', array('class'=>'logout-link')) .
                '<span style="color: #fff;">&nbsp; | &nbsp;</span>'.
                link_to('View Public Profile →', '@collector_me');
 
