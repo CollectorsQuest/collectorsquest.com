@@ -67,10 +67,4 @@ if (Modernizr.isproduction)
       ['_trackPageview']
     );
   };
-
-  // framebusting
-  if (top.location !== self.location)
-  {
-    top.location.replace(self.location.toString());
-  }
 }

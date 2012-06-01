@@ -209,7 +209,7 @@ var COMMON = window.COMMON = (function(){
       COMMON.setupFooterLoginOrSignup();
       COMMON.setupScrollToTop();
       COMMON.setupEmailSpellingHelper();
-      COMMON.loginLogoutHelpers()
+      COMMON.loginLogoutHelpers();
     },
     loginLogoutHelpers: function() {
       // set proper logout redirects when included as iframe (only for same domain)
