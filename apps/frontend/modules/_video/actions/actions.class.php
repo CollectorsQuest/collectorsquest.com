@@ -11,13 +11,13 @@ class _videoActions extends cqFrontendActions
   {
     sfConfig::set('sf_web_debug', false);
 
-    return sfView::SUCCESS;
+    return (sfConfig::get('sf_environment') === 'next') ? 'Iframe' : sfView::SUCCESS;
   }
 
   public function executeFooter()
   {
     sfConfig::set('sf_web_debug', false);
 
-    return sfView::SUCCESS;
+    return (sfConfig::get('sf_environment') === 'next') ? 'Iframe' : sfView::SUCCESS;
   }
 }

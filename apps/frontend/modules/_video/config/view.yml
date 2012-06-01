@@ -1,6 +1,3 @@
-all:
-  stylesheets: [frontend/modules/video.css]
-
 headerSuccess:
   has_layout: false
 
