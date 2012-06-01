@@ -28,7 +28,7 @@ all:
 
     Comments:
       comment_response_notification:
-        subject: "Someone commented on your {{ oModelObject }}, {{ oYourComment.authorName }}!"
+        subject: "Someone responded to your comment on Collectors Quest!"
         required_params: [ oModelObject, oNewComment, oYourComment, sThreadUrl, sUnsubscribeUrl ]
 
     internal:
