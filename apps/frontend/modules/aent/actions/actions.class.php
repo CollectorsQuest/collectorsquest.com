@@ -333,7 +333,7 @@ class aentActions extends cqFrontendActions
 
     if ($videos = $collectible->getMultimedia(1, 'video', false))
     {
-      $this->video = $videos[0];
+      $this->video = $videos;
     }
 
     $this->setTemplate('collectible');
