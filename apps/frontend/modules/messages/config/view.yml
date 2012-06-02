@@ -1,6 +1,5 @@
 all:
   stylesheets: [frontend/modules/messages.css]
-  javascripts: [jquery/elastic.js]
   components:
     slot1: [mycq, navigation]
     sidebar_180: [messages, sidebar]
