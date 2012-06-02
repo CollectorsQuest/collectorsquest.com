@@ -95,7 +95,7 @@
   </div>
 
   <?php if ($total > 0): ?>
-  <div class="collectibles-to-sort">
+  <div id="dropzone" class="collectibles-to-sort">
     <ul class="thumbnails">
       <?php foreach ($collectibles as $collectible): ?>
       <li class="span2 thumbnail draggable" data-collectible-id="<?= $collectible->getId(); ?>">
@@ -110,7 +110,7 @@
     </ul>
   </div>
   <?php else: ?>
-    <div class="no-collections-uploaded-box Chivo webfont" style="margin-left: 0;">
+    <div id="dropzone" class="no-collections-uploaded-box Chivo webfont" style="margin-left: 0;">
       <span class="info-no-collections-uploaded">
         There are currently no Items to Sort.<br/>
         Please use the <strong>"Upload Items"</strong> button on the right to get started!
@@ -189,12 +189,13 @@
   {
     'use strict';
 
-    $('#main').bind('drop dragover', function (e) {
-      e.preventDefault();
+    // Initialize the jQuery File Upload widget:
+    $('#fileupload').fileupload({
+      add: function (e, data) {
+        data.submit();
+      }
     });
 
-    // Initialize the jQuery File Upload widget:
-    $('#fileupload').fileupload();
     $('#fileupload').fileupload('option', 'autoUpload', true);
     $('#fileupload').fileupload('option', 'dropZone', $('#main'));
     $('#fileupload').fileupload('option', 'limitConcurrentUploads', 3);
