@@ -144,7 +144,12 @@ class generalActions extends cqFrontendActions
     }
 
     $form = new CollectorLoginForm();
-    $form->setDefault('goto', $this->generateUrl('collector_me'));
+
+    if ($request->getParameter('module') == 'general' && $request->getParameter('action') == 'login')
+    {
+      $form->setDefault('goto', $this->generateUrl('collector_me'));
+    }
+
     if (sfRequest::POST == $request->getMethod())
     {
       $form->bind($request->getParameter($form->getName()));
