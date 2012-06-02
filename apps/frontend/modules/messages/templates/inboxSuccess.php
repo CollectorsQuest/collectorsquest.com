@@ -1,8 +1,8 @@
 <?php
-  /** @var $messages PrivateMessage[] */ $messages;
-  /** @var $filter_by string read|unread|all */ $filter_by;
-
-  use_javascript('/assets/js/bootstrap/dropdown.js');
+/**
+ * @var $messages PrivateMessage[] $messages;
+ * @var $filter_by string read|unread|all $filter_by;
+ */
 ?>
 
 <form action="<?= url_for('@messages_batch_actions'); ?>" method="post">

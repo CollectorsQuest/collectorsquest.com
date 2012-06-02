@@ -113,7 +113,7 @@ class CollectorSignupStep1Form extends BaseForm
   public function getJavaScripts()
   {
     return array(
-        '/js/jquery/mailcheck.js',
+        'jquery/mailcheck.js',
     );
   }
 

@@ -1,7 +1,5 @@
 <?php
   /* @var $form ComposePrivateMessageForm */ $form;
-
-  use_javascript('/js/jquery/elastic.js');
 ?>
 
 <?= form_tag('@messages_compose', array('class' => 'form-horizontal form-private-message-compose')) ?>

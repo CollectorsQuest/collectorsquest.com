@@ -2,8 +2,6 @@
   /* @var $message  PrivateMessage   */ $message;
   /* @var $messages PrivateMessage[] */ $messages;
   /* @var $reply_form ComposePrivateMessageForm */ $reply_form;
-
-  use_javascript('/js/jquery/elastic.js');
 ?>
 
 <table class="private-message-thread table table-striped table-bordered">
