@@ -50,7 +50,10 @@ class Comment extends BaseComment
     }
 
     // These classes are not saved as model and model_id
-    $special = array('Collection', 'CollectorCollection', 'CollectionCollectible');
+    $special = array(
+      'Collection', 'CollectorCollection',
+      'Collectible', 'CollectionCollectible'
+    );
 
     $model_class = get_class($object);
     if (in_array($model_class, $special))
