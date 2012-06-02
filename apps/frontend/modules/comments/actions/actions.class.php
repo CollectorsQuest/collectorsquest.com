@@ -5,7 +5,7 @@ class commentsActions extends cqFrontendActions
 
   public function executeAddComment(sfWebRequest $request)
   {
-    if (sfRequest::POST == $request->getMethod())
+    if ($request->isMethod('post'))
     {
       $form = new FrontendCommentForm($this->getUser());
       $form->bind($request->getParameter($form->getName()));
@@ -52,8 +52,9 @@ class commentsActions extends cqFrontendActions
       }
       else
       {
-        $this->getUser()->setFlash('comment_error',
-          $form->getErrorSchema()->__toString());
+        $this->getUser()->setFlash(
+          'comment_error', $form->getErrorSchema()->__toString()
+        );
       }
     }
 
@@ -113,7 +114,10 @@ class commentsActions extends cqFrontendActions
       }
       $comments->save();
 
-      $this->getUser()->setFlash('comment_success', 'You have successfully unsubscribed from new comment notifications.');
+      $this->getUser()->setFlash(
+        'comment_success',
+        'You have successfully unsubscribed from new comment notifications.'
+      );
     }
 
     $this->redirect($request->getParameter('r', '@homepage') . '#comments');

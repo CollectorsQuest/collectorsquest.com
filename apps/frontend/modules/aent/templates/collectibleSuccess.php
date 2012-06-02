@@ -21,12 +21,13 @@
     <div class="pull-left">
       <ul>
         <li>
-          <?php
+        <?php
           echo format_number_choice(
             '[0] no comments yet|[1] 1 Comment|(1,+Inf] %1% Comments',
-            array('%1%' => number_format($collectible->getNumComments())), $collectible->getNumComments()
+            array('%1%' => number_format($collectible->getNumComments())),
+            $collectible->getNumComments()
           );
-          ?>
+        ?>
         </li>
         <li>
           <?php
@@ -67,10 +68,18 @@
   <?= $collectible->getDescription('html'); ?>
 </div>
 
-<?php include_partial('comments/comments', array('for_object' => $collectible)); ?>
+<?php
+  include_partial(
+    'comments/comments',
+    array('for_object' => $collectible->getCollectible())
+  );
+?>
 
 <?php
-  $link = link_to('See all related collectibles &raquo;', '@marketplace', array('class' => 'text-v-middle link-align'));
+  $link = link_to(
+    'See all related collectibles &raquo;', '@marketplace',
+    array('class' => 'text-v-middle link-align')
+  );
   $link = null;
 
   cq_section_title('Showcase', $link);

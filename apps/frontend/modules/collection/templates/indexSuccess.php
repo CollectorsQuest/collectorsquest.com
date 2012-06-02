@@ -91,6 +91,8 @@
 ?>
 </div>
 
+<?php include_partial('comments/comments', array('for_object' => $collection)); ?>
+
 <?php if ($sf_params->get('show') == 'all'): ?>
 <script>
 $(document).ready(function()

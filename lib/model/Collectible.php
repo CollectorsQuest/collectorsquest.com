@@ -45,6 +45,16 @@ class Collectible extends BaseCollectible
     return $graph_id;
   }
 
+  /**
+   * Convinience method
+   *
+   * @return Collectible
+   */
+  public function getCollectible()
+  {
+    return $this;
+  }
+
   public function getSlug()
   {
     $slug = parent::getSlug();

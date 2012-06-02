@@ -154,7 +154,12 @@
 
 <?php else: ?>
 
-  <?php include_partial('comments/comments', array('for_object' => $collectible)); ?>
+  <?php
+    include_partial(
+      'comments/comments',
+      array('for_object' => $collectible->getCollectible())
+    );
+  ?>
 
 <?php endif; ?>
 <script type="text/javascript">

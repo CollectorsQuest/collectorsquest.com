@@ -54,16 +54,17 @@ class FrontendCommentForm extends BaseCommentForm
 
     $this->unsetFields();
     $this->mergePostValidator(
-      new FrontendCommentFormValidatorSchema($this->sf_user));
+      new FrontendCommentFormValidatorSchema($this->sf_user)
+    );
   }
 
   protected function setupBodyField()
   {
     $this->validatorSchema['body'] = new sfValidatorAnd(array(
-        $this->validatorSchema['body'],
-        new sfValidatorCallback(array('callback' => function($validator, $value) {
-          return IceStatic::cleanText($value);
-        })),
+      $this->validatorSchema['body'],
+      new sfValidatorCallback(array('callback' => function($validator, $value) {
+        return IceStatic::cleanText($value);
+      })),
     ));
   }
 
@@ -81,8 +82,10 @@ class FrontendCommentForm extends BaseCommentForm
 
     if ($this->model_object)
     {
-      $this->setDefault('token', $this->getDefault('token')
-        ?: CommentPeer::addCommentableTokenToSession($this->model_object, $this->sf_user));
+      $token = $this->getDefault('token') ?:
+        CommentPeer::addCommentableTokenToSession($this->model_object, $this->sf_user);
+
+      $this->setDefault('token', $token);
     }
   }
 

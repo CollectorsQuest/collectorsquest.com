@@ -71,8 +71,11 @@ class CommentPeer extends BaseCommentPeer
   {
     $tokens = $sf_user->getAttribute('tokens', array(), 'cq/user/comments');
 
-    if (array_key_exists($token, $tokens) && is_array($tokens[$token]) && class_exists($tokens[$token][0]))
-    {
+    if (
+      array_key_exists($token, $tokens) &&
+      is_array($tokens[$token]) &&
+      class_exists($tokens[$token][0])
+    ) {
       $object_class = $tokens[$token][0];
       $object_id = $tokens[$token][1];
       $new_token = self::generateCommentableToken($object_class, $object_id);
@@ -99,18 +102,21 @@ class CommentPeer extends BaseCommentPeer
   {
     try
     {
-      $peer = sprintf('%sPeer', $object_class);
+      $query = sprintf('%sQuery', $object_class);
 
-      if (!class_exists($peer))
+      if (!class_exists($query))
       {
-        throw new Exception(sprintf('Unable to load class %s', $peer));
+        throw new Exception(sprintf('Unable to load class %s', $query));
       }
 
-      $object = call_user_func(array($peer, 'retrieveByPk'), $object_id);
+      $q = call_user_func(array($query, 'create'));
+      $object = call_user_func(array($q, 'findOneByPrimaryKey'), $object_id);
 
-      if (is_null($object))
+      if (null === $object)
       {
-        throw new Exception(sprintf('Unable to retrieve %s with primary key %s', $object_class, $object_id));
+        throw new Exception(
+          sprintf('Unable to retrieve %s with primary key %s', $object_class, $object_id)
+        );
       }
 
       return $object;

@@ -22,13 +22,13 @@ class Comment extends BaseComment
         $this->getModelId()
       );
     }
-    else if ($this->getCollectionId())
-    {
-      return $this->getCollectionId();
-    }
     else if ($this->getCollectibleId())
     {
       return $this->getCollectible($con);
+    }
+    else if ($this->getCollectionId())
+    {
+      return $this->getCollection($con);
     }
 
     return $this->model_object;
@@ -44,18 +44,26 @@ class Comment extends BaseComment
     {
       $this->model_object = null;
 
-      return $this->setModel(null)->setModelId(null);
+      return $this
+        ->setModel(null)
+        ->setModelId(null);
     }
+
+    // These classes are not saved as model and model_id
+    $special = array('Collection', 'CollectorCollection', 'CollectionCollectible');
 
     $model_class = get_class($object);
-    if (in_array($model_class, array('Collection', 'Collectible')))
+    if (in_array($model_class, $special))
     {
       $this->setModelObject(null);
-      return call_user_func(array($this, 'set'.$model_class), $object);
+      return call_user_func(array($this, 'set' . $model_class), $object);
     }
 
+    // @todo: We need to make sure multiple primary keys are supported
+    $primary_key = implode('-', (array) $object->getPrimaryKey());
+
     $this->setModel($model_class);
-    $this->setModelId($object->getPrimaryKey());
+    $this->setModelId($primary_key);
     $this->model_object = $object;
 
     return $this;
@@ -144,4 +152,16 @@ class Comment extends BaseComment
     }
   }
 
+  public function setCollectorCollection($v)
+  {
+    return $this->setCollection($v);
+  }
+
+  public function setCollectionCollectible(CollectionCollectible $v = null)
+  {
+    $this->setCollection($v !== null ? $v->getCollection() : null);
+    $this->setCollectible($v !== null ? $v->getCollectible() : null);
+
+    return $this;
+  }
 }
