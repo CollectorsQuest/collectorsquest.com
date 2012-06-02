@@ -45,7 +45,7 @@ $t->diag('::getReplySubject()');
   $message->setSubject('Some <html>HTML</html> in here and there <p>');
   $t->is($message->getSubject(), 'Some HTML in here and there ');
 
-  $body = "Welcome to Collectors' Quest - the destination place for all collectors.\n\nGet started by <a href=\"http://www.collectorsquest.com/collection/create.html\">adding your own collection</a> or just click around to find some great <a href=\"http://www.collectorsquest.com/collection.html\">collections</a> and <a href=\"http://www.collectorsquest.com/community/collectors.html\">collectors</a>.\n\nWhat's in your collection?";
+  $body = "Welcome to Collectors Quest - the destination place for all collectors.\n\nGet started by <a href=\"http://www.collectorsquest.com/collection/create.html\">adding your own collection</a> or just click around to find some great <a href=\"http://www.collectorsquest.com/collection.html\">collections</a> and <a href=\"http://www.collectorsquest.com/community/collectors.html\">collectors</a>.\n\nWhat's in your collection?";
   $message->setIsRich(true);
   $message->setBody($body, false);
   $t->is($message->getBody(), $body);

@@ -5,8 +5,8 @@
   <?php cq_include_title() ?>
 
   <?php
-    // Include the cqcdns.com stylesheets
-    ice_include_stylesheets();
+    echo stylesheet_tag('frontend/stylesheets.bundle.' . GIT_REVISION . '.css');
+    // echo stylesheet_tag('frontend/responsive.css');
 
     // Include the application specific stylesheets
     cq_include_stylesheets();

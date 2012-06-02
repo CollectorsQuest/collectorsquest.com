@@ -155,7 +155,7 @@
     <h3><a href="http://collectorsquest.next/blog/2010/03/03/collin-david">Collin David</a></h3>
     <blockquote><b>Collin</b> David is a lone squid  ... </blockquote>
     <a href="/blog/author/admin/"><img width="35" height="35" style="float: left; margin-right: 10px;" src="/images/blog/avatar-collectors'-quest.png" /></a>  posted by <br/>
-    <a href="/blog/author/admin/">Collectors' Quest</a></div>
+    <a href="/blog/author/admin/">Collectors Quest</a></div>
 </div><div class="span4 brick" style="height: 165px; float: left;">
   <div id="collector_6010_grid_view"
        data-id="6010" class="collector_grid_view">

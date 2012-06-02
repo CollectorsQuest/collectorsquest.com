@@ -43,6 +43,7 @@ composer/
 /web/css/frontend/*.css
 /web/css/frontend/modules/*.css
 !/web/css/frontend/ie.css
+!/web/css/frontend/stylesheets.bundle.css
 
 # Vagrant
 /config/vagrant/.vagrant

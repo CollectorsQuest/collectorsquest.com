@@ -45,7 +45,7 @@
 
     jQuery('textarea').tinymce(
     {
-      script_url: '/js/tiny_mce/tiny_mce.js',
+      script_url: '/js/legacy/tiny_mce/tiny_mce.js',
       content_css : "/css/legacy/tinymce.css",
 
       theme: "advanced",

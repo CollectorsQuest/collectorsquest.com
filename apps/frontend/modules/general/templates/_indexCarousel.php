@@ -30,5 +30,9 @@
 $(document).ready(function()
 {
   $("#carousel-holder .wrapper a").addClass("target");
+  $("#carousel-holder .wrapper a").bigTarget({
+    hoverClass: 'over',
+    clickZone: '.link'
+  });
 });
 </script>

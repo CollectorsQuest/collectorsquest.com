@@ -17,24 +17,11 @@ default:
     coverage:     "Worldwide"
     copyright:    "Copyright (c) 2006-<?php echo date('Y'); ?> CollectorsQuest.com"
 
-  stylesheets:
-    - frontend/bootstrap.css
-    - frontend/main.css
-    # - frontend/responsive.css
-
-  javascripts:
-    - /assets/js/bootstrap/alerts.js
-    - /assets/js/bootstrap/buttons.js
-    - /assets/js/bootstrap/dropdown.js
-    - /assets/js/bootstrap/typeahead.js
-    - /assets/js/bootstrap/tooltip.js
-    - /assets/js/bootstrap/tabs.js
-    - /assets/js/bootstrap/modal.js
-    - /assets/js/jquery/scrollTo.js
-    - /assets/js/jquery/targets.js
-    - jquery/mosaic.js
-    - jquery/loading.js
-    - jquery/waypoints.js
+  ## Stylesheets and Javascripts are forbidden to be defined here!
+  ## Please use css/frontend/stylesheets.bundle.css and
+  ##             js/frontend/scripts.common.bundle.js
+  # stylesheets:
+  # javascripts:
 
   components:
     header:       [global, header]
