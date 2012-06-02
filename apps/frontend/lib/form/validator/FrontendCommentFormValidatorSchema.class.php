@@ -66,14 +66,16 @@ class FrontendCommentFormValidatorSchema extends sfValidatorSchema
 
       try
       {
-        $akismet->isCommentSpam();
+        if ($akismet->isCommentSpam())
+        {
+          $errorSchema->addError(new sfValidatorError($this, 'spam'));
+        }
       }
       catch (Exception $e)
       {
-        $errorSchema->addError(new sfValidatorError($this, 'spam'));;
+        // dd($e);
       }
     }
-
 
     if ($errorSchema->count())
     {
