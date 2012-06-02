@@ -190,12 +190,7 @@
     'use strict';
 
     // Initialize the jQuery File Upload widget:
-    $('#fileupload').fileupload({
-      add: function (e, data) {
-        data.submit();
-      }
-    });
-
+    $('#fileupload').fileupload();
     $('#fileupload').fileupload('option', 'autoUpload', true);
     $('#fileupload').fileupload('option', 'dropZone', $('#main'));
     $('#fileupload').fileupload('option', 'limitConcurrentUploads', 3);
