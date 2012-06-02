@@ -1,4 +1,4 @@
-// frontend/app.js
+// frontend/application.js
 
 (function (window, document, $, undefined) {
 "use strict";
