@@ -22,22 +22,21 @@
   // Include the cqcdns.com javascript files
   cq_include_javascripts();
 ?>
-<script>
-  // http://stackoverflow.com/a/8567229
-  (function ($, window, document){
-    for (func in window.docready) {
-      $(document).ready(window.docready[func]);
-    }
-  }(jQuery, this, this.document));
-</script>
-
 
 <script>
-  // Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline
   Modernizr.load([{
-    test : Modernizr.isauthenticated,
-    yep  : '<?= javascript_path('frontend/scripts.authenticated.bundle.' . GIT_REVISION . '.js'); ?>',
-    both : '<?= javascript_path('frontend/scripts.common.bundle.' . GIT_REVISION . '.js'); ?>'
+    test: Modernizr.isauthenticated,
+    yep:  '<?= javascript_path('frontend/scripts.authenticated.bundle.' . GIT_REVISION . '.js'); ?>',
+    both: '<?= javascript_path('frontend/scripts.common.bundle.' . GIT_REVISION . '.js'); ?>',
+    complete: function () {
+      // http://stackoverflow.com/a/8567229
+      (function ($, window, document)
+      {
+        for (func in window.docready) {
+          $(document).ready(window.docready[func]);
+        }
+      }(jQuery, this, this.document));
+    }
   }]);
 </script>
 

@@ -22,17 +22,6 @@ default:
     - frontend/main.css
     # - frontend/responsive.css
 
-  javascripts:
-    - /assets/js/bootstrap/alerts.js
-    - /assets/js/bootstrap/buttons.js
-    - /assets/js/bootstrap/dropdown.js
-    - /assets/js/bootstrap/typeahead.js
-    - /assets/js/bootstrap/tooltip.js
-    - /assets/js/bootstrap/tabs.js
-    - /assets/js/bootstrap/modal.js
-    - /assets/js/jquery/scrollTo.js
-    - /assets/js/jquery/targets.js
-
   components:
     header:       [global, header]
     footer:       [global, footer]
