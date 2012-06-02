@@ -4,7 +4,7 @@
 
   if ($sf_user->isAuthenticated())
   {
-    use_javascript('tiny_mce/jquery.tinymce.js');
+    use_javascript('legacy/tiny_mce/jquery.tinymce.js');
     use_javascript('jquery/autogrow.js');
     use_javascript('jquery/editable.js');
     use_javascript('jquery/rotate.js');

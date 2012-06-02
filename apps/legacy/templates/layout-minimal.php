@@ -47,7 +47,7 @@
     // TODO: We are stuck at jquery version 1.5 because of jquery.beutytips.js
     if ('dev' == SF_ENV)
     {
-      echo '<script type="text/javascript" src="/js/jquery.js"></script>';
+      echo '<script type="text/javascript" src="/js/legacy/jquery.js"></script>';
     }
     else
     {

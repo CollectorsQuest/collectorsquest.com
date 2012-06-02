@@ -174,7 +174,7 @@ if($bSeller):
 		{
 		  $('#collection_description').tinymce(
 		  {
-			script_url: '<?php echo sfConfig::get('app_static_domain_name')?>js/tiny_mce/tiny_mce.js',
+			script_url: '<?php echo sfConfig::get('app_static_domain_name')?>js/legacy/tiny_mce/tiny_mce.js',
 			content_css : "<?php echo sfConfig::get('app_static_domain_name')?>css/legacy/tinymce.css",
 
 			theme: "advanced",
