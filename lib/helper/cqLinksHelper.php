@@ -380,11 +380,22 @@ function link_to_blog_author(wpUser $author, $type = 'text', $options = array())
   switch ($type)
   {
     case "image":
-      return link_to(image_tag('blog/avatar-' . str_replace(' ', '-', strtolower($author->getDisplayName())), $options), '/blog/author/' . urlencode($author->getUserLogin()) . '/');
+      if (!$avatar_url = $author->getAvatarUrl('40'))
+      {
+        $avatar_url = 'blog/avatar-' . str_replace(' ', '-', strtolower($author->getDisplayName()));
+      }
+
+      return link_to(
+        image_tag($avatar_url, $options),
+        '/blog/author/' . urlencode($author->getUserNicename()) . '/'
+      );
       break;
     case "text":
     default:
-      return link_to($author->getDisplayName(), '/blog/author/' . urlencode($author->getUserLogin()) . '/');
+      return link_to(
+        $author->getDisplayName(),
+        '/blog/author/' . urlencode($author->getUserLogin()) . '/'
+      );
       break;
   }
 }
