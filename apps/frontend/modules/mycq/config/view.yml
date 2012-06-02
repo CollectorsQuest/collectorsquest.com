@@ -1,5 +1,6 @@
 all:
   stylesheets:
+    - /assets/css/jquery/chosen.css
     - jquery/ui/bootstrap/theme.css
     - jquery/ui/bootstrap/theme.ie.css
     - jquery/tagedit.css
@@ -10,6 +11,9 @@ all:
     - /assets/js/jquery/form.js
     - /assets/js/bootstrap/dialog2.js
     - /assets/js/bootstrap/dialog2.helpers.js
+    - /assets/js/wysihtml5.js
+    - /assets/js/bootstrap/wysihtml5.js
+    - /assets/js/jquery/chosen.js
 
     - jquery/ui.js
     - jquery/columnview.js
@@ -25,17 +29,3 @@ all:
 
   components:
     slot1: [mycq, navigation]
-
-collectionSuccess:
-  javascripts:
-    - /assets/js/wysihtml5.js
-    - /assets/js/bootstrap/wysihtml5.js
-
-collectibleSuccess:
-  stylesheets:
-    - /assets/css/jquery/chosen.css
-
-  javascripts:
-    - /assets/js/wysihtml5.js
-    - /assets/js/bootstrap/wysihtml5.js
-    - /assets/js/jquery/chosen.js
