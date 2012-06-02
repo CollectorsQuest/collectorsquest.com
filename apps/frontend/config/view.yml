@@ -17,10 +17,11 @@ default:
     coverage:     "Worldwide"
     copyright:    "Copyright (c) 2006-<?php echo date('Y'); ?> CollectorsQuest.com"
 
-  stylesheets:
-    - frontend/bootstrap.css
-    - frontend/main.css
-    # - frontend/responsive.css
+  ## Stylesheets and Javascripts are forbidden to be defined here!
+  ## Please use css/frontend/stylesheets.bundle.css and
+  ##             js/frontend/scripts.common.bundle.js
+  # stylesheets:
+  # javascripts:
 
   components:
     header:       [global, header]
