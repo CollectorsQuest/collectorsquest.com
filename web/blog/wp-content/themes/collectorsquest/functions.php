@@ -583,7 +583,7 @@ add_action('admin_init','kpl_user_bio_visual_editor_unfiltered');
 // add tag field to user profile
 function cq_add_custom_user_profile_fields( $user ) {
   ?>
-  <h3><?php _e('Collectors\' Quest Tags', 'collectorsquest'); ?></h3>
+  <h3><?php _e('Collectors Quest Tags', 'collectorsquest'); ?></h3>
   <table class="form-table">
     <tr>
       <th>
