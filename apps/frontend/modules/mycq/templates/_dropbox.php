@@ -207,7 +207,7 @@
     $('#fileupload').fileupload(
       'option', 'redirect',
       window.location.href.replace(
-        /\/[^\/]*$/, '/jquery_xdcomm.html?%s'
+        /\/mycq\/[^\/]*$/, '/iframe_xdcomm.html?%s'
       )
     );
 

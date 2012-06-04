@@ -82,6 +82,13 @@ class ajaxAction extends IceAjaxAction
           return sfView::NONE;
         }
       }
+
+      // This is for xdcomm support in IE browsers
+      if ($redirect = $request->getParameter('redirect'))
+      {
+        $redirect = sprintf($redirect, urlencode(json_encode($output)));
+        $this->redirect($redirect);
+      }
     }
 
     // We do not want the web debug bar on these requests
