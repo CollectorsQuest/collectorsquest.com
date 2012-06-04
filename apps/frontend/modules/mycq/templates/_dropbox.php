@@ -62,6 +62,16 @@
             <h3>Uploading items, please wait...</h3>
           </div>
           <div class="modal-body">
+            <div class="alert alert-info alert-gcf">
+              <strong>NOTE:</strong> If you want to upload more than one file at a time, please
+              <?php
+                echo link_to(
+                  'click here.', 'http://www.google.com/chromeframe',
+                  array('target' => '_blank')
+                );
+              ?>
+            </div>
+
             <!-- The table listing the files available for upload/download -->
             <table class="table table-striped">
               <thead>

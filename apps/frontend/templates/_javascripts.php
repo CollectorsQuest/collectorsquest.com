@@ -4,16 +4,15 @@
   window.jQuery || document.write('<script src="<?= cq_javascript_src('frontend/jquery.js'); ?>"><\/script>');
 </script>
 
-<!--[if lt IE 7]>
+<?php if ($sf_params->get('gcf')): ?>
+<script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
 <script>
-  var IE6UPDATE_OPTIONS = {
-    icons_path: "/images/legacy/ie6update/",
-    message: "<?= __('Internet Explorer is missing updates required to view this site. Click here to update...'); ?>",
-    url: "http://www.google.com/chromeframe"
-  }
+  CFInstall.check({
+    mode: "overlay",
+    destination: "http://www.waikiki.com"
+  });
 </script>
-<script src="/js/ie6update.js"></script>
-<![endif]-->
+<?php endif; ?>
 
 <?php
   if (SF_ENV === 'prod')
@@ -31,7 +30,8 @@
     test: Modernizr.isauthenticated,
     yep:  '<?= javascript_path('frontend/scripts.authenticated.bundle.' . GIT_REVISION . '.js'); ?>',
     both: '<?= javascript_path('frontend/scripts.common.bundle.' . GIT_REVISION . '.js'); ?>',
-    complete: function () {
+    complete: function ()
+    {
       // http://stackoverflow.com/a/8567229
       (function ($, window, document)
       {
