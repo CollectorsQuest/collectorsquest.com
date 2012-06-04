@@ -220,7 +220,7 @@ class aentActions extends cqFrontendActions
     else if ($collectible->getId() == $ps_collectibles[4]->getId())
     {
       $this->related_collections = CollectorCollectionQuery::create()->filterById(
-        array(2151, 270, 2649, 1695, 2651, 2831, 1249, 675, 2151), Criteria::IN
+        array(2151, 270, 2649, 1695, 2651, 2831, 1249, 675, 1044, 1782), Criteria::IN
       )->orderById('DESC')->find();
     }
     else if ($collectible->getId() == $ps_collectibles[5]->getId())
@@ -296,7 +296,7 @@ class aentActions extends cqFrontendActions
     else if ($collectible->getId() == $ap_collectibles[7]->getId())
     {
       $this->related_collections = CollectorCollectionQuery::create()->filterById(
-        array(752, 616, 807, 1576, 437, 812, 1584, 1183, 616), Criteria::IN
+        array(752, 616, 807, 1576, 437, 812, 1584, 1183, 709), Criteria::IN
       )->find();
     }
     else if ($collectible->getId() == $ap_collectibles[8]->getId())
