@@ -58,7 +58,7 @@ class typeAheadAction extends IceAjaxAction
   protected function executeTagsEdit($request)
   {
     $q = iceModelTagQuery::create()
-      ->filterByName('%'.$request->getParameter('term').'%', Criteria::LIKE)
+      ->filterByName($request->getParameter('term').'%', Criteria::LIKE)
       ->filterByIsTriple(false)
       ->addAsColumn('id', 'Id')
       ->addAsColumn('name', 'Name')
