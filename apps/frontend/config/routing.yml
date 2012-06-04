@@ -106,19 +106,16 @@ collectors:
   url:  /collectors/:sort
   param: { module: collectors, action: index, sort: latest }
 
-collector_avatar:
-  url:  /collector/:id/:size/avatar.jpg
+collector_verify_email:
+  url:  /collector/verify-email/:hash
   class: cqPropelRoute
-  options: { model: Collector, type: object, method: getObjectForRoute }
-  param: { module: collector, action: avatar, size: '100x100' }
-  requirements: { id: '\d+' }
+  param: { module: collector, action: verifyEmail }
+  options: { model: CollectorEmail, type: object }
 
-collector_by_slug:
-  url:  /collector/:id/:slug
-  class: cqPropelRoute
-  options: { model: Collector, type: object, method: getObjectForRoute, statsd: true }
-  param: { module: collector, action: index }
-  requirements: { id: '\d+', slug: '[\-\w\.]+' }
+collector_signup:
+  url:   /collector/signup/:step
+  param: { module: collector, action: signup, step: 1 }
+  requirements: { step: '[1-3]' }
 
 collector_dropbox:
   url:  /collector/dropbox
@@ -130,17 +127,26 @@ collector_me:
   options: { model: Collector, type: object, method: getObjectForRoute }
   param: { module: collector, action: me }
 
-collector_signup:
-  url:   /collector/signup/:step
-  param: { module: collector, action: signup, step: 1 }
-  requirements: { step: '[1-3]' }
-
-collector_verify_email:
-  url:  /collector/verify-email/:hash
+collector_avatar:
+  url:  /collector/:id/:size/avatar.jpg
   class: cqPropelRoute
-  param: { module: collector, action: verifyEmail }
-  options: { model: CollectorEmail, type: object }
+  options: { model: Collector, type: object, method: getObjectForRoute }
+  param: { module: collector, action: avatar, size: '100x100' }
+  requirements: { id: '\d+', size: '\d+x\d+' }
 
+collector_by_slug:
+  url:  /collector/:id/:slug
+  class: cqPropelRoute
+  options: { model: Collector, type: object, method: getObjectForRoute, statsd: true }
+  param: { module: collector, action: index }
+  requirements: { id: '\d+', slug: '[\-\w\.]+' }
+
+legacy_collector_by_slug:
+  url:  /collector/:slug
+  class: sfPropelRoute
+  options: { model: Collector, type: object, method: getObjectForRoute }
+  param: { module: collector, action: index }
+  requirements: { slug: '[\-\w\.]+' }
 
 ### SELLERS
 
