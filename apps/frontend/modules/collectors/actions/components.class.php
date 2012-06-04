@@ -23,11 +23,6 @@ class collectorsComponents extends cqFrontendComponents
         'active' => 'most-popular' == $sortBy || empty($sortBy),
         'route'  => $this->generateUrl($action, array('sort'=> 'most-popular')),
       ),
-      'near-you'     => array(
-        'name'   => 'Near you',
-        'active' => 'near-you' == $sortBy,
-        'route'  => $this->generateUrl($action, array('sort'=> 'near-you')),
-      ),
       'latest'       => array(
         'name'   => 'Latest',
         'active' => 'latest' == $sortBy,
