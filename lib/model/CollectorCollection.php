@@ -136,10 +136,10 @@ class CollectorCollection extends BaseCollectorCollection
      * We need to have the two main thumbnails available as soon as the object is saved so
      * we make sure they are not put on the job queue
      */
-    $multimedia->makeThumb(150, 150, 'center', $watermark);
-    $multimedia->makeCustomThumb(50, 50, '50x50', 'center', false);
-    $multimedia->makeCustomThumb(190, 150, '190x150', 'center', $watermark);
-    $multimedia->makeCustomThumb(190, 190, '190x190', 'center', $watermark);
+    $multimedia->makeThumb(150, 150, 'top', $watermark);
+    $multimedia->makeCustomThumb(50, 50, '50x50', 'top', false);
+    $multimedia->makeCustomThumb(190, 150, '190x150', 'top', $watermark);
+    $multimedia->makeCustomThumb(190, 190, '190x190', 'top', $watermark);
   }
 
 }
