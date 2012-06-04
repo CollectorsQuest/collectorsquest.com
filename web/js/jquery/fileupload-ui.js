@@ -356,11 +356,7 @@
         },
 
         _renderExtendedProgress: function (data) {
-            return this._formatBitrate(data.bitrate) + ' | ' +
-                this._formatTime(
-                    (data.total - data.loaded) * 8 / data.bitrate
-                ) + ' | ' +
-                this._formatPercentage(
+            return this._formatPercentage(
                     data.loaded / data.total
                 ) + ' | ' +
                 this._formatFileSize(data.loaded) + ' / ' +

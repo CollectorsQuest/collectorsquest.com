@@ -90,7 +90,7 @@
                 <div class="bar" style="width:0%;"></div>
               </div>
               <!-- The extended global progress information -->
-              <div class="progress-extended">&nbsp;</div>
+              <div class="progress-extended" style="text-align: left;">&nbsp;</div>
             </div>
             <div class="span3">
               <a href="<?= url_for('@mycq_upload_cancel?batch='. $batch); ?>"
