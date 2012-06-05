@@ -536,6 +536,11 @@ homepage:
   url:   /
   param: { module: general, action: index }
 
+# legacy actions
+legacy_community_help:
+  url:  /community/help
+  param: { module: legacy, action: help }
+
 # generic rules
 # please, remove them by adding more specific rules
 default_index:
