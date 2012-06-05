@@ -519,47 +519,43 @@ feedback:
   param: { module: general, action: feedback }
 
 
-# default rules
-homepage:
-  url:   /
-  param: { module: general, action: index }
+### LEGACY
 
-# legacy actions
 legacy_community_help:
   url:  /community/help
-  param: { module: legacy, action: help }
+  param: { module: _legacy, action: help }
 
 legacy_community_spotlight:
   url:   /community/spotlight
-  param: { module: legacy, action: spotlight }
+  param: { module: _legacy, action: spotlight }
 
 legacy_community:
   url:   /community
-  param: { module: legacy, action: spotlight }
+  param: { module: _legacy, action: spotlight }
 
 legacy_collectible_sell:
   url:  /collectible/sell
-  param: { module: community, action: spotlight }
+  param: { module: _legacy, action: spotlight }
 
 legacy_featured_week:
   url:   /community/spotlight/:id/:slug
   class: sfPropelRoute
   options: { model: Featured, type: object, method: getObjectForFeaturedWeek }
-  param: { module: community, action: spotlight }
+  param: { module: _legacy, action: spotlight }
   requirements: { id: '\d+', slug: '[\-\w\.]+' }
 
 legacy_15_minutes_of_fame:
   url:   /community/15-minutes-of-fame
-  param: { module: community, action: spotlight }
+  param: { module: _legacy, action: spotlight }
 
 legacy_seller_signup:
   url:   /seller/signup/:step
-  param: { module: legacy, action: signup, step: 1 }
+  param: { module: _legacy, action: signup, step: 1 }
   requirements: { step: '[1-3]' }
 
 legacy_seller_subscribe:
   url:   /seller/subscribe
-  param: { module: legacy, action: comingSoon }
+  param: { module: _legacy, action: comingSoon }
 
 legacy_collector_signup_facebook:
   url:   /collector/signup/facebook
@@ -567,12 +563,16 @@ legacy_collector_signup_facebook:
 
 legacy_collections_by_tag:
   url:   /collections/tag/:tag
-  param: { module: legacy, action: collectionsByTag }
+  param: { module: _legacy, action: collectionsByTag }
 
 legacy_collections_most_recent:
   url:  /collections/filter/most-recent
-  param: { module: legacy, action: collectionsMostRecent }
+  param: { module: _legacy, action: collectionsMostRecent }
 
+# default rules
+homepage:
+  url:   /
+  param: { module: general, action: index }
 
 # generic rules
 # please, remove them by adding more specific rules
