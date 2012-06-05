@@ -21,4 +21,19 @@ class legacyActions extends sfActions
   {
     $this->redirect(urldecode($this->generateUrl('blog_page', array('slug' => 'cq-faqs/general-questions'))), 301);
   }
+
+  /**
+   * Action Spotlight
+   *
+   * @param sfWebRequest $request
+   *
+   * @return string
+   *
+   * @deprecated
+   */
+  public function executeSpotlight(sfWebRequest $request)
+  {
+    $this->redirect('@collections', 301);
+  }
+
 }

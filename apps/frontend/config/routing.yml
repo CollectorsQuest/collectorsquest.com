@@ -541,6 +541,29 @@ legacy_community_help:
   url:  /community/help
   param: { module: legacy, action: help }
 
+legacy_community_spotlight:
+  url:   /community/spotlight
+  param: { module: legacy, action: spotlight }
+
+legacy_community:
+  url:   /community
+  param: { module: legacy, action: spotlight }
+
+legacy_collectible_sell:
+  url:  /collectible/sell
+  param: { module: community, action: spotlight }
+
+legacy_featured_week:
+  url:   /community/spotlight/:id/:slug
+  class: sfPropelRoute
+  options: { model: Featured, type: object, method: getObjectForFeaturedWeek }
+  param: { module: community, action: spotlight }
+  requirements: { id: '\d+', slug: '[\-\w\.]+' }
+
+legacy_15_minutes_of_fame:
+  url:   /community/15-minutes-of-fame
+  param: { module: community, action: spotlight }
+
 # generic rules
 # please, remove them by adding more specific rules
 default_index:
