@@ -36,7 +36,8 @@ class PropelMigration_1338897532
     foreach ($collectors as $collector)
     {
       $collector->setAboutMe($collector->getAboutMe());
-//      $collector->save();
+      $collector->setAboutInterests($collector->getAboutInterests());
+      $collector->setAboutCompany($collector->getAboutCompany());
     }
 
     $collectors->save();
