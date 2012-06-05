@@ -77,6 +77,11 @@ class CollectionCollectible extends BaseCollectionCollectible
     return $this->getCollectible()->getMultimedia($limit, $type, $primary, $mode);
   }
 
+  public function getTags()
+  {
+    return $this->getCollectible()->getTags();
+  }
+
   public function __call($m, $a)
   {
     $collectible = $this->getCollectible();

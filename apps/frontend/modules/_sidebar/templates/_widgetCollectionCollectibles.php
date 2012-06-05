@@ -1,27 +1,19 @@
 <div class="other-items-sidebar spacer-top-20">
-  <span>Other items in the <a href="#">Pawn Stars</a> Collection</span>
+  <span>Other collectibles in <?= link_to_collection($collection, 'text'); ?></span>
   <div class="thumbnails-inner">
     <ul class="thumbnails">
+      <?php foreach ($collectibles as $c): ?>
       <li class="span3">
-        <a href="#" class="thumbnail">
-          <img src="http://placehold.it/70x70" alt="">
+        <a href="<?= url_for_collectible($c) ?>"
+           class="thumbnail <?= $collectible->getId() === $c->getId() ? 'active' : null; ?>">
+          <?php
+            echo image_tag_collectible(
+              $c, '75x75', array('max_width' => 70, 'max_height' => 70)
+            );
+          ?>
         </a>
       </li>
-      <li class="span3">
-        <a href="#" class="thumbnail">
-          <img src="http://placehold.it/70x70" alt="">
-        </a>
-      </li>
-      <li class="span3">
-        <a href="#" class="thumbnail">
-          <img src="http://placehold.it/70x70" alt="">
-        </a>
-      </li>
-      <li class="span3">
-        <a href="#" class="thumbnail">
-          <img src="http://placehold.it/70x70" alt="">
-        </a>
-      </li>
+      <?php endforeach; ?>
     </ul>
-  </div><!-- /.thumbnails-inner -->
-</div><!-- /#spotlight-sidebar -->
+  </div>
+</div>
