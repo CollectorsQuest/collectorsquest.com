@@ -18,7 +18,7 @@ class _blogActions extends cqFrontendActions
       $this->data = zend_shm_cache_fetch($key);
     }
 
-    if (isset($this->data['breadcrumbs']) && is_array($this->data['breadcrumbs']))
+    if (!empty($this->data['breadcrumbs']) && is_array($this->data['breadcrumbs']))
     {
       foreach ($this->data['breadcrumbs'] as $breadcrumb)
       {
@@ -27,9 +27,21 @@ class _blogActions extends cqFrontendActions
     }
     else if (!$this->data['is_page'])
     {
-      $this->addBreadcrumb('Blog');
+      $this->addBreadcrumb('Blog', 'blog/index');
     }
 
+    // This will make sure the 'Blog' from above is a link
+    if (!empty($this->data['breadcrumbs'])) {
+      $this->addBreadcrumb('', null);
+    }
+
+    // We do not want to hightlight the Blog header menu on static pages
+    $this
+      ->getRequest()
+      ->getParameterHolder()
+      ->set('cq_header_active', $this->data['is_page'] ? 'page' : 'blog');
+
+    // Set the right title based on data from the blog
     $this->getResponse()->setTitle($this->data['title']);
 
     return sfView::SUCCESS;

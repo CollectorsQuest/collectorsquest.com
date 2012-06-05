@@ -138,17 +138,24 @@
             array('class' => 'cq-logo logo hide-text', 'title' => 'Home', 'absolute' => true)
           );
         ?>
+        <?php
+          /**
+           * By default we look at the 'module' to determine which menu items to highlight
+           * You have a way to overwrite that by setting the request parameter 'cq_header_active'
+           */
+          $active = $sf_params->get('cq_header_active', $sf_params->get('module'));
+        ?>
         <ul class="nav">
-          <?php $class = in_array($sf_params->get('module'), array('collection', 'collections', 'aent')) ? 'active' : null; ?>
+          <?php $class = in_array($active, array('collection', 'collections', 'aent')) ? 'active' : null; ?>
           <li class="<?= $class ?>"><?= link_to('Collections', '@collections', array('absolute' => true)); ?></li>
 
-          <?php $class = in_array($sf_params->get('module'), array('news', '_blog')) ? 'active' : null; ?>
+          <?php $class = in_array($active, array('news', '_blog')) ? 'active' : null; ?>
           <li class="<?= $class ?>"><?= link_to('Blog', '@blog', array('absolute' => true)); ?></li>
 
-          <?php $class = in_array($sf_params->get('module'), array('_video')) ? 'active' : null; ?>
+          <?php $class = in_array($active, array('_video')) ? 'active' : null; ?>
           <li class="<?= $class ?>"><?= link_to('Video', '@video', array('absolute' => true)); ?></li>
 
-          <?php $class = in_array($sf_params->get('module'), array('marketplace', 'shopping')) ? 'active' : null; ?>
+          <?php $class = in_array($active, array('marketplace', 'shopping')) ? 'active' : null; ?>
           <li class="<?= $class ?>"><?= link_to('Market', '@marketplace', array('absolute' => true)); ?></li>
         </ul>
       </div>
