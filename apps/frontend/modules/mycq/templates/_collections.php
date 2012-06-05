@@ -28,7 +28,7 @@
   <div class="span4 thumbnail link">
     <span>
       <a href="<?= url_for('mycq_collection_by_slug', $collection) ?>" style="margin-left: 0px;" class="target">
-        <?= Utf8::truncateHtmlKeepWordsWhole($collection->getName(), 32); ?>
+        <?= cqStatic::reduceText($collection->getName(), 35, '[...]'); ?>
       </a>
     </span>
 
