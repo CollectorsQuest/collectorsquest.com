@@ -1,3 +1,10 @@
+<?php
+cq_page_title(
+  'Join us!', null,
+  array('class' => 'row-fluid header-bar spacer-bottom-25')
+);
+?>
+
 <?php use_javascripts_for_form($form); ?>
 
 <div class="row-fluid">
@@ -27,7 +34,7 @@
     <fieldset>
       <?= $form ?>
       <div class="form-actions">
-        <input type="submit" class="btn btn-primary" value="Submit" />
+        <input type="submit" class="btn btn-primary blue-button" value="Submit" />
       </div>
     </fieldset>
     <?= '</form>' ?>
