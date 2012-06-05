@@ -70,10 +70,6 @@ collections:
   url:   /collections
   param: { module: collections, action: index }
 
-collection_create:
-  url:   /collection/create
-  param: { module: collection, action: create }
-
 collection_by_slug:
   url:  /collection/:id/:slug
   class: cqPropelRoute
@@ -95,6 +91,9 @@ collections_by_collector:
   param: { module: collections, action: collector }
   requirements: { collector_id: '\d+', collector_slug: '[\-\w\.]+' }
 
+collections_by_tag:
+  url:   /collections/tag/:tag
+  param: { module: search, action: collections }
 
 ### COLLECTORS
 
@@ -153,17 +152,6 @@ legacy_collector_by_slug:
 sellers:
   url:  /sellers/:sort
   param: { module: collectors, action: index, type: sellers, sort: latest }
-
-seller_signup:
-  url:   /seller/signup/:step
-  param: { module: seller, action: signup, step: 1 }
-  requirements: { step: '[1-3]' }
-
-legacy_seller_signup:
-  url:   /collector/signup/:step
-  param: { module: seller, action: signup, step: 1 }
-  requirements: { step: '[1-3]' }
-
 
 ### COLLECTIBLES
 
@@ -563,6 +551,28 @@ legacy_featured_week:
 legacy_15_minutes_of_fame:
   url:   /community/15-minutes-of-fame
   param: { module: community, action: spotlight }
+
+legacy_seller_signup:
+  url:   /seller/signup/:step
+  param: { module: legacy, action: signup, step: 1 }
+  requirements: { step: '[1-3]' }
+
+legacy_seller_subscribe:
+  url:   /seller/subscribe
+  param: { module: legacy, action: comingSoon }
+
+legacy_collector_signup_facebook:
+  url:   /collector/signup/facebook
+  param: { module: collector, action: signup }
+
+legacy_collections_by_tag:
+  url:   /collections/tag/:tag
+  param: { module: legacy, action: collectionsByTag }
+
+legacy_collections_most_recent:
+  url:  /collections/filter/most-recent
+  param: { module: legacy, action: collectionsMostRecent }
+
 
 # generic rules
 # please, remove them by adding more specific rules

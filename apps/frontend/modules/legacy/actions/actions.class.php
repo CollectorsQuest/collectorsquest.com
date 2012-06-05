@@ -36,4 +36,40 @@ class legacyActions extends sfActions
     $this->redirect('@collections', 301);
   }
 
+  /**
+   * Action Signup
+   *
+   * @param sfWebRequest $request
+   *
+   * @return string
+   */
+  public function executeSignup(sfWebRequest $request)
+  {
+    $this->redirect('collector_signup', 301);
+  }
+
+  /**
+   * Action ComingSoon
+   *
+   * @param sfWebRequest $request
+   *
+   * @return string
+   */
+  public function executeComingSoon(sfWebRequest $request)
+  {
+    $this->redirect('@homepage', 301);
+  }
+
+  /**
+   * Action CollectionsMostRecent
+   *
+   * @param sfWebRequest $request
+   *
+   * @return string
+   */
+  public function executeCollectionsMostRecent(sfWebRequest $request)
+  {
+    $this->redirect('collections', 301);
+  }
+
 }
