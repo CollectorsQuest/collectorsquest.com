@@ -7,13 +7,13 @@
  */
 ?>
 
-<?php cq_sidebar_title($title, null); ?>
+<div class="row-fluid spacer-top-20 link">
+  <?php cq_sidebar_title($title, null); ?>
 
-<div class="row-fluid">
   <div class="span3">
     <?php
       echo link_to_collector(
-        $collector, 'image', array(),
+        $collector, 'image', array('class' => 'target'),
         array('max_width' => 60, 'max_height' => 60)
       );
     ?>
