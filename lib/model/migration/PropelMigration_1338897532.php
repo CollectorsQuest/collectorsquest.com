@@ -5,6 +5,18 @@ class PropelMigration_1338897532
 
 	public function preUp($manager)
 	{
+    /* @var $collectors Collector[] */
+    $collectors = CollectorQuery::create()
+      ->setFormatter(ModelCriteria::FORMAT_ON_DEMAND)
+      ->find();
+
+    foreach ($collectors as $collector)
+    {
+      $collector->setAboutMe($collector->getAboutMe());
+      $collector->setAboutInterests($collector->getAboutInterests());
+      $collector->setAboutCompany($collector->getAboutCompany());
+      $collector->save();
+    }
 	}
 
 	public function postUp($manager)
@@ -30,18 +42,6 @@ class PropelMigration_1338897532
 	 */
 	public function getUpSQL()
 	{
-    /* @var $collectors Collector[] */
-    $collectors = CollectorQuery::create()->find();
-
-    foreach ($collectors as $collector)
-    {
-      $collector->setAboutMe($collector->getAboutMe());
-      $collector->setAboutInterests($collector->getAboutInterests());
-      $collector->setAboutCompany($collector->getAboutCompany());
-    }
-
-    $collectors->save();
-
 		return array (
       'propel' => '
         # This is a fix for InnoDB in MySQL >= 4.1.x
