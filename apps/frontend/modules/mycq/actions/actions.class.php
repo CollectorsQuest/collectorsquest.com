@@ -315,6 +315,7 @@ class mycqActions extends cqFrontendActions
         $for_sale = $form->getValue('for_sale');
 
         if (
+          null !== $for_sale &&
           $for_sale['is_ready'] !== $collectible->getCollectibleForSale()->getIsReady() &&
           $for_sale['is_ready'] === true
         )
