@@ -58,7 +58,7 @@
 <?php endif; ?>
 
 <?php if (!empty($collections) && count($collections) > 0): ?>
-  <div class="row-fluid min-height-13 cf">
+  <div class="row-fluid min-height-13 spacer-top cf">
     <div class="span9 text-word-wrap">
       Other collections by <?= $collector; ?>
     </div>

@@ -1,1 +1,92 @@
+@import "../_variables.less";
+@import "../_mixins.less";
 
+.other-items-sidebar {
+  width: 100%;
+  margin-bottom: 10px;
+
+  a.left-arrow, a.right-arrow {
+    position: absolute;
+  	display: none;
+    .size(69px,14px);
+    color: #fff;
+    #gradient > .vertical(#2093C3, #0971BA);
+    &:hover {
+      #gradient > .vertical(#13597F, #072B44);
+    }
+    i {
+      margin-top: 26px;
+      margin-left: 4px;
+    }
+  }
+  a.left-arrow {
+    left: -14px;
+  }
+  a.right-arrow {
+    right: -14px;
+  }
+
+  span {
+    padding-left: 5px;
+    margin-bottom: 5px;
+    display: block;
+  }
+  .thumbnails-inner {
+    .clearfix();
+  }
+  .collectible {
+    .square(69px);
+    margin: 0 2px;
+  }
+  .thumbnails {
+    display: relative;
+    margin-left: 2px;
+    margin-bottom: 5px;
+
+    a {
+      .box-shadow(none);
+      margin:2px;
+    }
+    a.active {
+      margin: 0px;
+      padding: 1px;
+      background-color: white;
+      border: 1px solid @blue;
+      .border-radius(0);
+    }
+  }
+  .thumbnail {
+    padding: 0;
+    border: none;
+    .square(69px);
+    .border-radius(0);
+  }
+}
+
+#carousel {
+  margin-left: 4px;
+}
+
+.ui-carousel {
+  height: 100px;
+  margin: 0;
+  overflow: auto;
+  padding: 0;
+  position: relative; /*for ie7 to work e.g in html carousels*/
+  width: 300px
+}
+
+.ui-carousel > .wrapper {
+  margin: 0;
+  padding: 0;
+  width: 9999px;
+}
+
+.ui-carousel > .wrapper > * {
+  border: 0;
+  display: block;
+  float: left;
+  height: 100px;
+  overflow: hidden;
+  width: 100px;
+}

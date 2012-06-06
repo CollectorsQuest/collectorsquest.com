@@ -1,14 +1,18 @@
 default:
-  enabled: true
+  enabled:     true
   with_layout: false
-  lifetime: 3600
+  lifetime:    3600
 
 _widgetFacebookRecommendations:
-  lifetime: 604800
+  lifetime:    604800
 
 _widgetFacebookLikeBox:
   lifetime: 604800
 
-# We cannot cache the widget because of the message form and the _csrf_token
+# We cannot cache because of use_javascript() calls
+_widgetCollectionCollectibles:
+  enabled: false
+
+# We cannot cache because of the message form and the _csrf_token
 _widgetCollector:
   enabled: false

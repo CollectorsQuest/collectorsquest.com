@@ -11,6 +11,11 @@ ajax_collections:
   options: { extra_parameters_as_query_string: true }
   requirements: { sf_format: (?:html|json) }
 
+ajax_collection:
+  url:   /ajax/collection/:section/:page.:sf_format
+  param: { module: collection, action: ajax, sf_format: html }
+  requirements: { sf_method: [GET], sf_format: (?:html|json) }
+
 ajax_collectors:
   url:   /ajax/collectors/:section/:page.:sf_format
   param: { module: _ajax, action: collectors, sf_format: html }
@@ -18,7 +23,7 @@ ajax_collectors:
   requirements: { sf_format: (?:html|json) }
 
 ajax_collector:
-  url:   /ajax/collector/:section/:page
+  url:   /ajax/collector/:section/:page.:sf_format
   param: { module: collector, action: ajax, sf_format: html }
   requirements: { sf_method: [GET], sf_format: (?:html|json) }
 
