@@ -64,9 +64,8 @@
                 </li>
                 <li class="divider"></li>
                 <li>
-                  <a href="<?= url_for('@logout', true); ?>"
-                     class="logout-link"
-                     title="Log Out from your CollectorsQuest.com account!">
+                  <a href="http://<?= sfConfig::get('app_magnify_channel', 'video.collectorsquest.com') ?>/login/logout"
+                     class="logout-link" title="Log Out from your CollectorsQuest.com account!">
                     <i class="icon icon-signout"></i> Log Out
                   </a>
                 </li>
