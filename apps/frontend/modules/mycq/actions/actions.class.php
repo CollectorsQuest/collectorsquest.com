@@ -175,10 +175,17 @@ class mycqActions extends cqFrontendActions
 
       if ($form->isValid())
       {
-        $collection->setCollectionCategoryId($form->getValue('collection_category_id'));
-        $collection->setName($form->getValue('name'));
-        $collection->setDescription($form->getValue('description'), 'html');
-        $collection->setTags($form->getValue('tags'));
+        $values = $form->getValues();
+
+        $collection->setCollectionCategoryId($values['collection_category_id']);
+        $collection->setName($values['name']);
+        $collection->setDescription($values['description'], 'html');
+        $collection->setTags($values['tags']);
+
+        if ($values['thumbnail'] instanceof sfValidatedFile)
+        {
+          $collection->setThumbnail($values['thumbnail']);
+        }
 
         try
         {
@@ -280,7 +287,7 @@ class mycqActions extends cqFrontendActions
           );
 
           $url = $this->generateUrl('mycq_collection_by_slug', array('sf_subject' => $collection));
-          return $this->redirect($url);
+          $this->redirect($url);
 
           break;
       }
@@ -293,8 +300,12 @@ class mycqActions extends cqFrontendActions
       $taintedValues = $request->getParameter('collectible');
       if (isset($taintedValues['collection_collectible_list']))
       {
-        $taintedValues['collection_collectible_list'] = array_filter($taintedValues['collection_collectible_list']);
-        $taintedValues['collection_collectible_list'] = array_values($taintedValues['collection_collectible_list']);
+        $taintedValues['collection_collectible_list'] = array_filter(
+          $taintedValues['collection_collectible_list']
+        );
+        $taintedValues['collection_collectible_list'] = array_values(
+          $taintedValues['collection_collectible_list']
+        );
       }
 
       $form->bind($taintedValues, $request->getFiles('collectible'));

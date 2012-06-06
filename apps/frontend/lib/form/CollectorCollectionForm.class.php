@@ -44,8 +44,8 @@ class CollectorCollectionForm extends BaseCollectorCollectionForm
       'class' => 'tag'
     ));
     $this->getWidgetSchema()->setHelp(
-      'tags', 'Choose at least three descriptive words or
-               phrases for your collection, separated by commas'
+      'tags', 'Choose at least three descriptive words
+               or phrases, separated by commas'
     );
 
     $this->widgetSchema['tags']->setDefault($tags);
@@ -63,6 +63,24 @@ class CollectorCollectionForm extends BaseCollectorCollectionForm
     }
     else {
       return $values;
+    }
+  }
+
+  protected function setupThumbnailField()
+  {
+    $this->widgetSchema['thumbnail'] = new sfWidgetFormInputFile();
+    $this->validatorSchema['thumbnail'] = new sfValidatorFile(array(
+      'mime_types' => 'web_images', 'required' => false
+    ));
+
+    /**
+     * We need to make the Thumbnail field required if
+     * the Collection does not have a Thumbnail yet
+     */
+    if (!$this->getObject()->hasThumbnail())
+    {
+      $this->widgetSchema['thumbnail']->setAttribute('required', 'required');
+      $this->validatorSchema['thumbnail']->setOption('required', true);
     }
   }
 

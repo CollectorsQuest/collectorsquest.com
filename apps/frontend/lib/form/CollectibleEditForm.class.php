@@ -36,13 +36,19 @@ class CollectibleEditForm extends BaseCollectibleForm
     $this->widgetSchema['description']->setAttribute('class', 'input-xlarge');
     $this->widgetSchema['description']->setAttribute('required', 'required');
 
+    $this->setupThumbnailField();
     $this->setupTagsField();
 
     $this->validatorSchema->setPostValidator(new sfValidatorPass());
 
     // Define which fields to use from the base form
     $this->useFields(array(
-      'collection_collectible_list', 'name', 'description', 'tags'
+      'collection_collectible_list',
+      'name',
+      'thumbnail',
+      'is_alt_view',
+      'description',
+      'tags'
     ));
 
     if ($collector->getIsSeller())
@@ -82,8 +88,8 @@ class CollectibleEditForm extends BaseCollectibleForm
 
     $this->widgetSchema['tags']->setDefault($tags);
     $this->getWidgetSchema()->setHelp(
-      'tags', 'Choose at least three descriptive words or
-               phrases for your collectible, separated by commas'
+      'tags', 'Choose at least three descriptive words
+               or phrases, separated by commas'
     );
 
     $this->validatorSchema['tags'] = new sfValidatorCallback(
@@ -103,6 +109,32 @@ class CollectibleEditForm extends BaseCollectibleForm
     }
   }
 
+  protected function setupThumbnailField()
+  {
+    $this->widgetSchema['thumbnail'] = new sfWidgetFormInputFile();
+    $this->validatorSchema['thumbnail'] = new sfValidatorFile(array(
+      'mime_types' => 'web_images', 'required' => false
+    ));
+
+    $this->widgetSchema['is_alt_view'] = new sfWidgetFormInputHidden();
+    $this->validatorSchema['is_alt_view'] = new sfValidatorBoolean();
+    $this->setDefault('is_alt_view', false);
+
+    /**
+     * We need to make the Thumbnail field required if
+     * the Collection does not have a Thumbnail yet
+     */
+    if (!$this->getObject()->getPrimaryImage())
+    {
+      $this->widgetSchema['thumbnail']->setAttribute('required', 'required');
+      $this->validatorSchema['thumbnail']->setOption('required', true);
+    }
+    else
+    {
+      $this->widgetSchema['is_alt_view'] = new sfWidgetFormInputCheckbox();
+    }
+  }
+
   public function updateDescriptionColumn($value)
   {
     $this->getObject()->setDescription($value, 'html');
@@ -118,6 +150,18 @@ class CollectibleEditForm extends BaseCollectibleForm
 
     $object->setDescription($values['description'], 'html');
     $object->setTags($values['tags']);
+
+    if ($values['thumbnail'] instanceof sfValidatedFile)
+    {
+      if (isset($values['is_alt_view']) && $values['is_alt_view'] === true)
+      {
+        $object->addMultimedia($values['thumbnail']);
+      }
+      else
+      {
+        $object->setPrimaryImage($values['thumbnail']);
+      }
+    }
 
     $object->save();
 

@@ -241,7 +241,8 @@
                         'width',
                         parseInt(data.loaded / data.total * 100, 10) + '%'
                     ).end()
-                    .find('.progress-extended').each(function () {
+                    .parent()
+                      .find('.progress-extended').each(function () {
                         $(this).html(
                             $this.data('fileupload')
                                 ._renderExtendedProgress(data)

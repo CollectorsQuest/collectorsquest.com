@@ -7,7 +7,8 @@
  */
 ?>
 
-<form action="<?= url_for('mycq_collectible_by_slug', $collectible); ?>" novalidate
+<form action="<?= url_for('mycq_collectible_by_slug', $collectible); ?>"
+      enctype="multipart/form-data" novalidate
       id="form-collectible" method="post" class="form-horizontal">
 
   <div class="row-fluid">
@@ -77,6 +78,20 @@
 
       <?= $form['collection_collectible_list']->renderRow(); ?>
       <?= $form['name']->renderRow(); ?>
+
+      <div class="control-group">
+        <?= $form['thumbnail']->renderLabel(); ?>
+        <div class="controls">
+          <?= $form['thumbnail']->render(); ?>
+          <?php if ($form['is_alt_view']->getWidget() instanceof sfWidgetFormInputCheckbox): ?>
+            <label style="margin-top: 5px; line-height: 22px;">
+              &nbsp; <?= $form['is_alt_view']->render(array('style' => 'float: left;')); ?>
+              Add as an alternative view instead?
+            </label>
+          <?php endif; ?>
+        </div>
+      </div>
+
       <?= $form['description']->renderRow(); ?>
       <?= $form['tags']->renderRow(); ?>
 
