@@ -18,6 +18,9 @@
 <head>
   <?php include_partial('global/head'); ?>
 
+  <!-- A&E Networks javascript code (tracking, analytics, etc) //-->
+  <script src="//nexus.ensighten.com/aetn/Bootstrap.js"></script>
+
   <!-- Blog Head //-->
 </head>
 <body id="<?= 'body-'. $sf_context->getModuleName() .'-'. $sf_context->getActionName(); ?>"
