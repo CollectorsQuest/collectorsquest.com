@@ -20,13 +20,13 @@ class marketplaceComponents extends cqFrontendComponents
   public function executeDiscoverCollectiblesForSale()
   {
     $q = $this->getRequestParameter('q');
-    $s = $this->getRequestParameter('s', 'most-recent');
+    $s = $this->getRequestParameter('s', 'most-popular');
     $p = $this->getRequestParameter('p', 1);
 
     // Initialize the $pager
     $pager = null;
 
-    if (!empty($q) || $s != 'most-recent')
+    if (!empty($q) || $s != 'most-popular')
     {
       $query = array(
         'q' => $q,
@@ -54,6 +54,10 @@ class marketplaceComponents extends cqFrontendComponents
           $query['filters']['uint2'] = array('min' => 25000);
           break;
         case 'most-recent':
+          $query['sortby'] = 'updated_at';
+          $query['order'] = 'desc';
+          break;
+        case 'most-popular':
         default:
           break;
       }
@@ -98,7 +102,10 @@ class marketplaceComponents extends cqFrontendComponents
       $pager->init();
 
       $this->pager = $pager;
-      $this->url = '@search_collectibles_for_sale?q='. $q . '&s='. $s .'&page='. $pager->getNextPage();
+      $this->url = sprintf(
+        '@search_collectibles_for_sale?q=%s&s=%s&page=%d',
+        $q, $s, $pager->getNextPage()
+      );
 
       return sfView::SUCCESS;
     }

@@ -49,11 +49,12 @@
   <div class="input-append">
     <form action="<?= url_for('@search_collectibles_for_sale'); ?>" method="post" id="form-discover-collectibles">
       <div class="btn-group">
-        <div class="append-left-gray">Sort By <strong id="sortByName">Most Recent</strong></div>
+        <div class="append-left-gray">Sort By <strong id="sortByName">Most Popular</strong></div>
         <a href="#" data-toggle="dropdown" class="btn gray-button dropdown-toggle">
           <span class="caret arrow-up"></span><br><span class="caret arrow-down"></span>
         </a>
         <ul class="dropdown-menu">
+          <li><a href="javascript:" class="sortBy" data-name="Most Popular" data-sort="most-popular">Sort by <strong>Most Popular</strong></a></li>
           <li><a href="javascript:" class="sortBy" data-name="Most Recent" data-sort="most-recent">Sort by <strong>Most Recent</strong></a></li>
           <li><a href="javascript:" class="sortBy" data-name="Under $100" data-sort="under-100">Sort by <strong>Under $100</strong></a></li>
           <li><a href="javascript:" class="sortBy" data-name="$100 - $250" data-sort="100-200">Sort by <strong>$100 - $250</strong></a></li>
@@ -61,7 +62,7 @@
         </ul>
       </div>
       <input name="q" type="text" size="16" id="appendedPrependedInput" class="input-sort-by"><button type="submit" class="btn gray-button"><strong>Search</strong></button>
-      <input type="hidden" name="s" id="sortByValue" value="most-recent">
+      <input type="hidden" name="s" id="sortByValue" value="most-popular">
       </form>
   </div>
 </div>
