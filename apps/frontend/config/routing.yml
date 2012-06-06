@@ -229,6 +229,9 @@ video:
   url:   /video
   param: { module: _video, action: index }
 
+videos:
+  url:   /videos
+  param: { module: _video, action: index }
 
 ### MARKETPLACE
 
