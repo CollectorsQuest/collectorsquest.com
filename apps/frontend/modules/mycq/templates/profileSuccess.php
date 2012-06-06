@@ -90,7 +90,7 @@
 
         <form method="post" action="<?= url_for('@mycq_profile') ?>" class="form-horizontal">
           <?= $collector_form->renderHiddenFields(); ?>
-          <?= $collector_form->renderGlobalErrors(); ?>
+          <?= $collector_form->renderAllErrors(); ?>
 
           <fieldset class="brown-dashes form-container-center">
             <?= $collector_form['display_name']->renderRow(); ?>
