@@ -59,7 +59,7 @@ class CollectorCollection extends BaseCollectorCollection
     if ('html' == $type)
     {
       $v = IceStatic::cleanText($v, false, 'p, b, u, i, em, strong, h1, h2, h3, h4, h5, h6, div, span, ul, ol, li, blockquote, br');
-      $v = cqMarkdownify::doConvert($v);
+      //$v = cqMarkdownify::doConvert($v);
     }
 
     // We should always save the description in Markdown format
@@ -85,7 +85,7 @@ class CollectorCollection extends BaseCollectorCollection
         $v = ($limit > 0) ? cqStatic::truncateText($v, $limit, '...', true) : $v;
         break;
       case 'html':
-        $v = cqMarkdown::doConvert($v);
+        //$v = cqMarkdown::doConvert($v);
         break;
     }
 
