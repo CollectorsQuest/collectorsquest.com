@@ -14,7 +14,7 @@ cq_page_title(
       <dt>Show Off Your Collection</dt>
       <dd>
         You bought it, now brag about it. Let other collectors see what's hiding in your closets.
-        Or use as a a digital archive on the go so you don't buy the same thing twice!
+        Or use as a digital archive on the go so you don't buy the same thing twice!
         (It has happened to all of us).
       </dd>
       <dt>Meet Other Collectors</dt>
