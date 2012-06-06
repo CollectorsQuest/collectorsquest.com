@@ -35,7 +35,7 @@ class CollectibleForSale extends BaseCollectibleForSale
    */
   public function getPrice()
   {
-    return bcdiv($this->getPriceAmount(), 100);
+    return (float) bcdiv((string) $this->getPriceAmount(), 100, 2);
   }
 
   public function setPrice($v)
