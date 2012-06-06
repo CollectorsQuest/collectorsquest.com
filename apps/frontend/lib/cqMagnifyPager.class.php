@@ -27,7 +27,11 @@
 
 class cqMagnifyPager extends sfPager
 {
-  private $query;
+  /** @var null|string */
+  private $query = null;
+
+  /** @var null|ContentFeed */
+  private $results = null;
 
   public function __construct($query, $maxPerPage = 12)
   {
@@ -48,9 +52,18 @@ class cqMagnifyPager extends sfPager
     $magnify = cqStatic::getMagnifyClient();
     $sort = $this->getParameter('sort', 'recent');
 
-    $this->results = $magnify->getContent()->find($this->query, $this->getPage(), $this->getMaxPerPage(), $sort);
+    try
+    {
+      $this->results = $magnify->getContent()->find(
+        $this->query, $this->getPage(), $this->getMaxPerPage(), $sort
+      );
 
-    $this->setNbResults($this->results->getTotalResults());
+      $this->setNbResults($this->results->getTotalResults());
+    }
+    catch (MagnifyException $e)
+    {
+      $this->setNbResults(0);
+    }
 
     if (0 == $this->getPage() || 0 == $this->getMaxPerPage())
     {
