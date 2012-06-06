@@ -36,6 +36,12 @@ class CollectibleQuery extends BaseCollectibleQuery
     return $this->where($where);
   }
 
+  public function haveThumbnail()
+  {
+    // @todo: to implement
+    return $this;
+  }
+
   /**
    * @param  string  $v
    * @return CollectibleQuery

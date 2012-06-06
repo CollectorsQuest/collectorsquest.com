@@ -99,7 +99,7 @@ class collectionsComponents extends cqFrontendComponents
     {
       $query = array(
         'q' => $q,
-        'filters' => array()
+        'filters' => array('has_thumbnail' => 1)
       );
 
       switch ($s)
@@ -144,6 +144,7 @@ class collectionsComponents extends cqFrontendComponents
 
           $query = CollectorCollectionQuery::create()
             ->filterById($collection_ids)
+            ->haveThumbnail()
             ->addAscendingOrderByColumn('FIELD(id, '. implode(',', $collection_ids) .')');
 
           $pager = new PropelModelPager($query, 16);

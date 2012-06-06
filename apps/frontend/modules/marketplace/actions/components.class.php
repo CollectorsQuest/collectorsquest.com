@@ -30,7 +30,7 @@ class marketplaceComponents extends cqFrontendComponents
     {
       $query = array(
         'q' => $q,
-        'filters' => array('uint1' => 1)
+        'filters' => array('has_thumbnail' => 1, 'uint1' => 1)
       );
 
       $query['sortby'] = 'date';
@@ -84,6 +84,7 @@ class marketplaceComponents extends cqFrontendComponents
 
           $query = CollectibleQuery::create()
             ->filterById($collectible_ids)
+            ->haveThumbnail()
             ->useCollectibleForSaleQuery(null, Criteria::RIGHT_JOIN)
               ->isForSale()
             ->endUse()
