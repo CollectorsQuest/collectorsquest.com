@@ -315,13 +315,22 @@ class cqSphinxPager extends sfPager
         );
         break;
       case 'relevance':
-      default:
         // http://sphinxsearch.com/docs/current.html#api-func-setrankingmode
         $sphinx->setRankingMode(SPH_RANK_PROXIMITY_BM25);
 
         $sphinx->setSortMode(
           SPH_SORT_EXTENDED,
           sprintf('@weight %s, updated_at DESC', isset($query['order']) ? $query['order'] : 'DESC')
+        );
+        break;
+      default:
+        $sphinx->setSortMode(
+          SPH_SORT_EXTENDED,
+          sprintf(
+            '%s %s, @weight DESC',
+            $query['sortby'],
+            isset($query['order']) ? strtoupper($query['order']) : 'DESC'
+          )
         );
         break;
     }

@@ -54,7 +54,7 @@ class marketplaceComponents extends cqFrontendComponents
           $query['filters']['uint2'] = array('min' => 25000);
           break;
         case 'most-recent':
-          $query['sortby'] = 'updated_at';
+          $query['sortby'] = 'date';
           $query['order'] = 'desc';
           break;
         case 'most-popular':
