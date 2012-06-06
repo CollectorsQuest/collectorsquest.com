@@ -18,7 +18,7 @@
   <?php include_partial('global/head'); ?>
   <base target="_parent" />
 </head>
-<body id="<?= 'body-'. $sf_params->get('module') .'-'. $sf_params->get('action'); ?>" data-controller="<?= $sf_params->get('module'); ?>" data-action="<?= $sf_params->get('action'); ?>">
+<body id="body-_video-header" data-controller="_video" data-action="header">
   <?php
     include_component_slot('header', array(
       'q' => $sf_params->get('q'),
