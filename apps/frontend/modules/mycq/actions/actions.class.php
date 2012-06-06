@@ -301,35 +301,38 @@ class mycqActions extends cqFrontendActions
 
       if ($form->isValid())
       {
-        $form->save();
+        $for_sale = $form->getValue('for_sale');
 
-        if ($this->bIsSeller)
+        if (
+          $for_sale['is_ready'] !== $collectible->getCollectibleForSale()->getIsReady() &&
+          $for_sale['is_ready'] === true
+        )
         {
-          if (isset($omItemForSaleForm) && $omItemForSaleForm->save())
-          {
-            if ($omItemForSaleForm->getValue('is_ready'))
-            {
-              $message = $this->__(
-                'Your collectible has been posted to the Marketplace.
-                 Click <a href="%url%">here</a> to view your collectibles for sale!',
-                array('%url%' => $this->generateUrl('manage_marketplace'))
-              );
-            }
-            else
-            {
-              $message = $this->__('Changes were saved!');
-            }
-
-            $this->getUser()->setFlash('success', $message);
-          }
+          $message = $this->__(
+            'Your collectible has been posted to the Market.
+             Click <a href="%url%">here</a> to manage your collectibles for sale!',
+            array('%url%' => $this->generateUrl('mycq_marketplace'))
+          );
         }
         else
         {
-          $this->getUser()->setFlash('success', $this->__('Changes were saved!'), true);
+          $message = $this->__('Changes were saved!');
         }
 
-        // if we save the form the request has to be redirected
-        return $this->redirect('mycq_collectible_by_slug', $form->getObject());
+        try
+        {
+          $form->save();
+          $this->getUser()->setFlash('success', $message, true);
+
+          // If we save the form the request has to be redirected
+          $this->redirect('mycq_collectible_by_slug', $form->getObject());
+        }
+        catch (PropelException $e)
+        {
+          $this->getUser()->setFlash(
+            'error', 'There was a problem saving your information'
+          );
+        }
       }
       else
       {
