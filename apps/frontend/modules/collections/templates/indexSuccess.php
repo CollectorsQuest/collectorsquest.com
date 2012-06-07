@@ -1,4 +1,4 @@
-<?php cq_page_title('Collections'); ?>
+<?php cq_page_title('Collectibles Now On Display'); ?>
 
 <br/>
 <?php include_component('collections', 'featuredWeek'); ?>

@@ -6,7 +6,7 @@
  */
 ?>
 
-<?php cq_page_title('Market'); ?>
+<?php cq_page_title('Collectibles Marketplace'); ?>
 
 <?php if (isset($wp_post) && $wp_post instanceof wpPost): ?>
 <div class="row-fluid" id="marketplace-spotlight">
