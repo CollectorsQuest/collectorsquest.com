@@ -47,12 +47,13 @@ class ajaxAction extends IceAjaxAction
       $position = 0;
     }
 
-    $p = (int) $request->getParameter('p', -1) + 1;
+    // pages start from 1
+    $p = (int) $request->getParameter('p', 1);
     $s = (int) $request->getParameter('s', 4);
 
     $q = CollectionCollectibleQuery::create()
       ->filterByCollection($this->collection)
-      ->offset(4 - $position + ($p * $s))
+      ->offset(($p - 1) * $s)
       ->limit($s)
       ->orderByPosition(Criteria::ASC)
       ->orderByCreatedAt(Criteria::ASC);

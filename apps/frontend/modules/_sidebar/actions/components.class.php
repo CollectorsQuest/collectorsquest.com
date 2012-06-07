@@ -448,6 +448,9 @@ class _sidebarComponents extends cqFrontendComponents
       $collectible_ids = $collection->getCollectibleIds();
 
       $position = array_search($collectible->getId(), $collectible_ids);
+      // pages start from 1
+      $page = (int)ceil(($position + 1)  / $this->limit);
+      /* * /
       $step = intval($this->limit / 2);
 
       if ($position === 0)
@@ -462,17 +465,21 @@ class _sidebarComponents extends cqFrontendComponents
       $next = array_slice($collectible_ids, $position + 1, $step + ($step - count($previous)));
       $ids = array_merge($previous, $next);
 
+      /* */
       $q = CollectionCollectibleQuery::create()
         ->filterByCollection($collection)
-        ->filterByCollectibleId($ids)
+        //->filterByCollectibleId($ids)
+        ->limit( $page * $this->limit )
         ->orderByPosition(Criteria::ASC)
         ->orderByCreatedAt(Criteria::ASC);
 
       $this->collectibles = $q->find();
       $this->collection = $collection;
+      $this->page = $page;
     }
 
-    return $this->_sidebar_if(count($this->collectibles) > 0);
+    // show if at least two, because there is no sense in showing only itself
+    return $this->_sidebar_if(count($this->collectibles) > 1);
   }
 
   public function executeWidgetMoreHistory()

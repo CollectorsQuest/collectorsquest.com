@@ -12,9 +12,13 @@
     <a href="#" id="ui-carousel-next" title="next collectible" class="right-arrow" style="right: -12px;">
       <i class="icon-chevron-right white"></i>
     </a>
-    <div id="carousel" data-loaded="[]" class="thumbnails" style="position: relative;">
+    <div id="carousel" data-loaded='<?php
+      $loaded = array();
+      for ($i = 1; $i <= $page; $i++) $loaded[$i] = true;
+      echo json_encode($loaded);
+    ?>' class="" style="">
       <?php foreach ($collectibles as $c): ?>
-        <a href="<?= url_for_collectible($c) ?>" class="thumbnail" style="margin: 0;">
+        <a href="<?= url_for_collectible($c) ?>" class="" style="">
         <?php
           echo image_tag_collectible(
             $c, '75x75', array('width' => 69, 'height' => 69)
@@ -32,9 +36,8 @@ $(document).ready(function()
   $("#carousel").rcarousel({
     visible: 4, step: 4,
     width: 73, height: 69,
-    auto: { enabled: true, interval: 15000 },
-    startAtPage: 1,
-    start: loadPage,
+    auto: { enabled: false, interval: 15000 },
+    start: firstLoad,
     pageLoaded: loadPage
   });
 
@@ -43,20 +46,29 @@ $(document).ready(function()
     function() { $("#ui-carousel-prev, #ui-carousel-next").hide(); }
   );
 
+  function firstLoad(event)
+  {
+    $("#carousel").rcarousel('goToPage', <?= $page - 1; ?>);
+
+    if (1 == $("#carousel").rcarousel('getCurrentPage')) {
+      loadPage(event, {});
+    }
+  }
+
   function loadPage(event, data)
   {
-    var $loaded = $("#carousel").data('loaded');
+    var loaded = $("#carousel").data('loaded');
 
     var $link, $img, $jqElements = $();
     var $url = '<?= url_for('ajax_collection', array('section' => 'collectibles', 'page' => 'carousel')); ?>';
-    var $p = typeof(data.page) !== 'undefined' ? data.page : -1;
+    var p = $("#carousel").rcarousel('getCurrentPage') + 1;
 
-    if (typeof($loaded) !== 'undefined' && $loaded[$p] === true)
+    if (typeof(loaded) !== 'undefined' && loaded[p] === true)
     {
       return;
     }
 
-    $.getJSON($url +'?p='+ $p,
+    $.getJSON($url +'?p='+ p,
       {
         id: <?= $collection->getId(); ?>,
         collectible_id: <?= $collectible->getId(); ?>
@@ -84,12 +96,11 @@ $(document).ready(function()
           $( "#carousel" ).rcarousel("append", $jqElements);
         }
 
-        $loaded[$p] = true;
-        console.log($loaded, $p);
+        loaded[p] = true;
       }
     );
 
-    $("#carousel").data('loaded', $loaded);
+    $("#carousel").data('loaded', loaded);
   }
 });
 </script>
