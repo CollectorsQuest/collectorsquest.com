@@ -57,7 +57,7 @@ class wpPost extends BasewpPost
       $q = wpPostMetaQuery::create()
         ->filterByPostId($thumbnail_id);
 
-      if ($size != 'original') {
+      if ($size !== 'original') {
         $q->filterByMetaKey('_wp_attachment_metadata');
       } else {
         $q->filterByMetaKey('_wp_attached_file');
