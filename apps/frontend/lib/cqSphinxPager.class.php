@@ -328,7 +328,7 @@ class cqSphinxPager extends sfPager
           SPH_SORT_EXTENDED,
           sprintf(
             '%s %s, @weight DESC',
-            $query['sortby'],
+            isset($query['sortby']) ? $query['sortby'] : 'created_at',
             isset($query['order']) ? strtoupper($query['order']) : 'DESC'
           )
         );
