@@ -84,14 +84,14 @@
                     <i class="icon icon-th-large"></i> Collections
                   </a>
                 </li>
-                <?php /**
-                  <li>
-                    <a href="<?= url_for('@mycq_marketplace', true); ?>"
-                       title="Manage your Collectibles for Sale!">
-                      <i class="icon icon-barcode"></i> Store
-                    </a>
-                  </li>
-                */ ?>
+                <?php if (IceGateKeeper::open('mycq_marketplace')): ?>
+                <li>
+                  <a href="<?= url_for('@mycq_marketplace', true); ?>"
+                     title="Manage your Collectibles for Sale!">
+                    <i class="icon icon-barcode"></i> Store
+                  </a>
+                </li>
+                <?php endif; ?>
                 <li>
                   <a href="<?= url_for('@messages_inbox', true); ?>"
                      title="Read and send private messages!">

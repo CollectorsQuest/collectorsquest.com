@@ -371,18 +371,24 @@ class mycqActions extends cqFrontendActions
 
   public function executeMarketplace()
   {
+    $this->redirectUnless(IceGateKeeper::open('mycq_marketplace'), '@mycq');
+
     $collector = $this->getCollector();
 
     $q = CollectibleForSaleQuery::create()
       ->filterByCollector($collector)
       ->isForSale();
-
     $this->total = $q->count();
+
+    $q = CollectibleForSaleQuery::create()
+      ->filterByCollector($collector)
+      ->filterByIsSold(true);
+    $this->sold_total = $q->count();
 
     $dropbox = $collector->getCollectionDropbox();
     $this->dropbox_total = $dropbox->countCollectibles();
 
-    return sfView::SUCCESS;
+    return $collector->getIsSeller() ? sfView::SUCCESS : 'NotSeller';
   }
 
   public function executeUploadCancel(sfWebRequest $request)

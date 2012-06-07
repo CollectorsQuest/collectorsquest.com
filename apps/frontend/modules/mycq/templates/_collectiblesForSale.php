@@ -1,7 +1,7 @@
 
-<?php slot('mycq_create_collectible'); ?>
+<?php slot('mycq_create_collectible_for_sale'); ?>
 <div id="mycq-create-collectible" class="span4 thumbnail link">
-  <div class="row-fluid spacer-inner-top-15">
+  <div class="row-fluid spacer-inner-top-20">
     <div class="span4">
       <a href="<?php echo url_for('@ajax_mycq?section=component&page=createCollectible'); ?>"
          id="collectible-create-icon" class="open-dialog btn-create-collection-middle spacer-left-20">
@@ -62,7 +62,7 @@
     <?php
       if (($pager->getPage() === 1 && $i === 2) || ($pager->count() === $i+1 && $pager->count() < 3))
       {
-        include_slot('mycq_create_collectible');
+        include_slot('mycq_create_collectible_for_sale');
       }
     ?>
   <?php endforeach; ?>

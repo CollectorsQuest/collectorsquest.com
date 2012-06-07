@@ -2,13 +2,16 @@ all:
   pages: ~
   features:
     shopping_cart: false
+    mycq_marketplace: false
 
 next:
   pages: ~
   features:
     shopping_cart: true
+    mycq_marketplace: true
 
 dev:
   pages: ~
   features:
     shopping_cart: true
+    mycq_marketplace: true
