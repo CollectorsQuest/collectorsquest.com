@@ -16,9 +16,9 @@
       $loaded = array();
       for ($i = 1; $i <= $page; $i++) $loaded[$i] = true;
       echo json_encode($loaded);
-    ?>' class="" style="">
+    ?>' class="thumbnails" style="">
       <?php foreach ($collectibles as $c): ?>
-        <a href="<?= url_for_collectible($c) ?>" class="" style="">
+        <a href="<?= url_for_collectible($c) ?>" class="thumbnail" style="">
         <?php
           echo image_tag_collectible(
             $c, '75x75', array('width' => 69, 'height' => 69)
