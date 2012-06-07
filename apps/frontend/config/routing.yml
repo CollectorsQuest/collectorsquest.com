@@ -145,13 +145,6 @@ collector_by_slug:
   param: { module: collector, action: index }
   requirements: { id: '\d+', slug: '[\-\w\.]+' }
 
-legacy_collector_by_slug:
-  url:  /collector/:slug
-  class: sfPropelRoute
-  options: { model: Collector, type: object, method: getObjectForRoute }
-  param: { module: collector, action: index }
-  requirements: { slug: '[\-\w\.]+' }
-
 ### SELLERS
 
 sellers:
@@ -572,6 +565,13 @@ legacy_collector_signup_facebook:
 legacy_collections_most_recent:
   url:  /collections/filter/most-recent
   param: { module: _legacy, action: collectionsMostRecent }
+
+legacy_collector_by_slug:
+  url:  /collector/:slug
+  class: sfPropelRoute
+  options: { model: Collector, type: object, method: getObjectForRoute }
+  param: { module: collector, action: index }
+  requirements: { slug: '[\-\w\.]+' }
 
 # default rules
 homepage:
