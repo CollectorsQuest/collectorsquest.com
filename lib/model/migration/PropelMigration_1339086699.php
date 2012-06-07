@@ -5,6 +5,16 @@ class PropelMigration_1339086699
 
   public function preUp($manager)
   {
+    /* @var $collectibles Collectible[] */
+    $collectibles = CollectionQuery::create()
+        ->setFormatter(ModelCriteria::FORMAT_ON_DEMAND)
+        ->find();
+
+    foreach ($collectibles as $collectible)
+    {
+      $collectible->setDescription(cqMarkdown::doConvert($collectible->getDescription()));
+      $collectible->save();
+    }
   }
 
   public function postUp($manager)
@@ -14,12 +24,20 @@ class PropelMigration_1339086699
 
   public function preDown($manager)
   {
-    // add the pre-migration code here
+    /* @var $collectibles Collectible[] */
+    $collectibles = CollectionQuery::create()
+        ->setFormatter(ModelCriteria::FORMAT_ON_DEMAND)
+        ->find();
+
+    foreach ($collectibles as $collectible)
+    {
+      $collectible->setDescription(cqMarkdownify::doConvert($collectible->getDescription()));
+      $collectible->save();
+    }
   }
 
   public function postDown($manager)
   {
-    // add the post-migration code here
   }
 
   /**
@@ -30,18 +48,6 @@ class PropelMigration_1339086699
    */
   public function getUpSQL()
   {
-    /* @var $collectibles Collectible[] */
-    $collectibles = CollectionQuery::create()
-        ->setFormatter(ModelCriteria::FORMAT_ON_DEMAND)
-        ->find();
-
-    foreach ($collectibles as $collectible)
-    {
-      $collectible->setDescription(cqMarkdown::doConvert($collectible->getDescription()));
-    }
-
-    $collectibles->save();
-
     return array(
       'propel' => '
         # This is a fix for InnoDB in MySQL >= 4.1.x
@@ -70,18 +76,6 @@ class PropelMigration_1339086699
    */
   public function getDownSQL()
   {
-    /* @var $collectibles Collectible[] */
-    $collectibles = CollectionQuery::create()
-        ->setFormatter(ModelCriteria::FORMAT_ON_DEMAND)
-        ->find();
-
-    foreach ($collectibles as $collectible)
-    {
-      $collectible->setDescription(cqMarkdownify::doConvert($collectible->getDescription()));
-    }
-
-    $collectibles->save();
-
     return array(
       'propel' => '
         # This is a fix for InnoDB in MySQL >= 4.1.x
