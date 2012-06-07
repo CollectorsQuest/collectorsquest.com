@@ -43,7 +43,7 @@
   <?= link_to(image_tag('banners/040412_show_and_sell_red.gif'), '@collector_signup'); ?>
 </div>
 
-<?php cq_section_title('Discover more items for sale'); ?>
+<?php cq_section_title('Discover more collectibles for sale'); ?>
 
 <div id="sort-search-box">
   <div class="input-append">

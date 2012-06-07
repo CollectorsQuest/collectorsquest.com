@@ -1,6 +1,5 @@
-<?php cq_page_title('Collectibles Now On Display'); ?>
+<?php cq_page_title('Collections Now On Display'); ?>
 
-<br/>
 <?php include_component('collections', 'featuredWeek'); ?>
 
 <?php cq_section_title('Explore Collections') ?>
