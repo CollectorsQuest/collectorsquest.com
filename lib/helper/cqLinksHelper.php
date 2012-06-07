@@ -277,7 +277,7 @@ function link_to_collectible($collectible, $type = 'text', $options = array())
  *
  * @return null|string
  */
-function url_for_collectible($collectible = null, $absolute = false)
+function url_for_collectible($collectible = null, $absolute = true)
 {
   return ($collectible) ?
       url_for(route_for_collectible($collectible), $absolute) :

@@ -50,18 +50,37 @@ class wpPost extends BasewpPost
     return wpPostPeer::stripShortcodes($this->getPostContent());
   }
 
-  public function getPostThumbnail()
+  public function getPostThumbnail($size = 'original')
   {
     if ($thumbnail_id = $this->getPostMetaValue('_thumbnail_id'))
     {
       $q = wpPostMetaQuery::create()
-        ->filterByPostId($thumbnail_id)
-        ->filterByMetaKey('_wp_attached_file');
+        ->filterByPostId($thumbnail_id);
+
+      if ($size !== 'original') {
+        $q->filterByMetaKey('_wp_attachment_metadata');
+      } else {
+        $q->filterByMetaKey('_wp_attached_file');
+      }
 
       /** @var $wp_post_meta wpPostMeta */
       if ($wp_post_meta = $q->findOne())
       {
-        return '/uploads/blog/' . $wp_post_meta->getMetaValue();
+        if ($size !== 'original')
+        {
+          $data = unserialize($wp_post_meta->getMetaValue());
+
+          if (isset($data['sizes'][$size]))
+          {
+            return sprintf(
+              '/uploads/blog/%s/%s', dirname($data['file']), $data['sizes'][$size]['file']
+            );
+          }
+        }
+        else
+        {
+          return '/uploads/blog/' . $wp_post_meta->getMetaValue();
+        }
       }
     }
 

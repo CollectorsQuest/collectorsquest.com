@@ -44,10 +44,10 @@ dev:
       transport:
         class: Swift_SmtpTransport
         param:
-          host: smtp.gmail.com
+          host: email-smtp.us-east-1.amazonaws.com
           port: 465
-          username: no-reply@collectorsquest.com
-          password: gHnyU7wZLtYf3n
+          username: AKIAJXXQN5BYO3YM5AAQ
+          password: AopixiXkTynN3qP0V3fkbRvoFiGZrteHcVveJRczBQUA
           encryption: tls
 
 
@@ -61,10 +61,10 @@ next:
       transport:
         class: Swift_SmtpTransport
         param:
-          host: smtp.gmail.com
+          host: email-smtp.us-east-1.amazonaws.com
           port: 465
-          username: no-reply@collectorsquest.com
-          password: gHnyU7wZLtYf3n
+          username: AKIAJXXQN5BYO3YM5AAQ
+          password: AopixiXkTynN3qP0V3fkbRvoFiGZrteHcVveJRczBQUA
           encryption: tls
 
 

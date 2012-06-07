@@ -175,10 +175,17 @@ class mycqActions extends cqFrontendActions
 
       if ($form->isValid())
       {
-        $collection->setCollectionCategoryId($form->getValue('collection_category_id'));
-        $collection->setName($form->getValue('name'));
-        $collection->setDescription($form->getValue('description'), 'html');
-        $collection->setTags($form->getValue('tags'));
+        $values = $form->getValues();
+
+        $collection->setCollectionCategoryId($values['collection_category_id']);
+        $collection->setName($values['name']);
+        $collection->setDescription($values['description'], 'html');
+        $collection->setTags($values['tags']);
+
+        if ($values['thumbnail'] instanceof sfValidatedFile)
+        {
+          $collection->setThumbnail($values['thumbnail']);
+        }
 
         try
         {
@@ -280,7 +287,7 @@ class mycqActions extends cqFrontendActions
           );
 
           $url = $this->generateUrl('mycq_collection_by_slug', array('sf_subject' => $collection));
-          return $this->redirect($url);
+          $this->redirect($url);
 
           break;
       }
@@ -293,43 +300,51 @@ class mycqActions extends cqFrontendActions
       $taintedValues = $request->getParameter('collectible');
       if (isset($taintedValues['collection_collectible_list']))
       {
-        $taintedValues['collection_collectible_list'] = array_filter($taintedValues['collection_collectible_list']);
-        $taintedValues['collection_collectible_list'] = array_values($taintedValues['collection_collectible_list']);
+        $taintedValues['collection_collectible_list'] = array_filter(
+          $taintedValues['collection_collectible_list']
+        );
+        $taintedValues['collection_collectible_list'] = array_values(
+          $taintedValues['collection_collectible_list']
+        );
       }
 
       $form->bind($taintedValues, $request->getFiles('collectible'));
 
       if ($form->isValid())
       {
-        $form->save();
+        $for_sale = $form->getValue('for_sale');
 
-        if ($this->bIsSeller)
+        if (
+          null !== $for_sale &&
+          $for_sale['is_ready'] !== $collectible->getCollectibleForSale()->getIsReady() &&
+          $for_sale['is_ready'] === true
+        )
         {
-          if (isset($omItemForSaleForm) && $omItemForSaleForm->save())
-          {
-            if ($omItemForSaleForm->getValue('is_ready'))
-            {
-              $message = $this->__(
-                'Your collectible has been posted to the Marketplace.
-                 Click <a href="%url%">here</a> to view your collectibles for sale!',
-                array('%url%' => $this->generateUrl('manage_marketplace'))
-              );
-            }
-            else
-            {
-              $message = $this->__('Changes were saved!');
-            }
-
-            $this->getUser()->setFlash('success', $message);
-          }
+          $message = $this->__(
+            'Your collectible has been posted to the Market.
+             Click <a href="%url%">here</a> to manage your collectibles for sale!',
+            array('%url%' => $this->generateUrl('mycq_marketplace'))
+          );
         }
         else
         {
-          $this->getUser()->setFlash('success', $this->__('Changes were saved!'), true);
+          $message = $this->__('Changes were saved!');
         }
 
-        // if we save the form the request has to be redirected
-        return $this->redirect('mycq_collectible_by_slug', $form->getObject());
+        try
+        {
+          $form->save();
+          $this->getUser()->setFlash('success', $message, true);
+
+          // If we save the form the request has to be redirected
+          $this->redirect('mycq_collectible_by_slug', $form->getObject());
+        }
+        catch (PropelException $e)
+        {
+          $this->getUser()->setFlash(
+            'error', 'There was a problem saving your information'
+          );
+        }
       }
       else
       {

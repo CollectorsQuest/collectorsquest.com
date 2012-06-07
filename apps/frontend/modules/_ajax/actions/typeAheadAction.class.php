@@ -57,12 +57,14 @@ class typeAheadAction extends IceAjaxAction
    */
   protected function executeTagsEdit($request)
   {
+    /** @var $q iceModelTagQuery */
     $q = iceModelTagQuery::create()
-      ->filterByName('%'.$request->getParameter('term').'%', Criteria::LIKE)
-      ->filterByIsTriple(false)
+      ->distinct()
       ->addAsColumn('id', 'Id')
-      ->addAsColumn('name', 'Name')
-      ->addAsColumn('label', 'Name')
+      ->addAsColumn('name', 'LOWER(CONVERT(`Name` USING utf8))')
+      ->addAsColumn('label', 'LOWER(CONVERT(`Name` USING utf8))')
+      ->filterBy('Name', 'name LIKE "'. mb_strtolower($request->getParameter('term')).'%"', Criteria::CUSTOM)
+      ->filterByIsTriple(false)
       ->orderBy('name', Criteria::ASC)
       ->select(array('id', 'name', 'label'))
       ->limit(10);

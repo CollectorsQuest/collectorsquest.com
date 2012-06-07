@@ -75,11 +75,20 @@ class ajaxAction extends IceAjaxAction
               'thumbnail' => src_tag_multimedia($multimedia, '19:15x60')
             );
           }
+          else
+          {
+            // We do not want to have a Collectibles without Mutlimedia
+            $collectible->delete();
+          }
         }
         catch (PropelException $e)
         {
-          $this->error($e->getCode(), $e->getMessage(), false);
-          return sfView::NONE;
+          if ($collectible && !$collectible->isNew())
+          {
+            $collectible->delete();
+          }
+
+          return $this->error($e->getCode(), $e->getMessage(), false);
         }
       }
 

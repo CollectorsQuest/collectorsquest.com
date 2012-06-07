@@ -17,6 +17,7 @@
   <link href='//fonts.googleapis.com/css?family=Chivo:400,400italic,900,900italic' rel='stylesheet' type='text/css'>
   <link rel="shortcut icon" href="<?php echo cq_image_src('frontend/favicon.ico', true); ?>"/>
   <link rel="icon" type="image/png" href="<?php echo cq_image_src('frontend/favicon.png', true); ?>"/>
+  <?php echo get_slot('prev_next') ?>
 
   <script>
     window.cq = {
@@ -32,6 +33,3 @@
     var docready=[],$=function(){return{ready:function(fn){docready.push(fn)}}};
   </script>
   <script src="<?= cq_javascript_src('frontend/head.js'); ?>"></script>
-
-  <!-- A&E Networks javascript code (tracking, analytics, etc) //-->
-  <script src="//nexus.ensighten.com/aetn/Bootstrap.js"></script>

@@ -1,6 +1,5 @@
-<?php cq_page_title('Collections'); ?>
+<?php cq_page_title('Collections Now On Display'); ?>
 
-<br/>
 <?php include_component('collections', 'featuredWeek'); ?>
 
 <?php cq_section_title('Explore Collections') ?>
@@ -56,5 +55,10 @@ $(document).ready(function()
 
     return false;
   });
+
+  if ($form.find('input').val() !== '')
+  {
+    $form.submit();
+  }
 });
 </script>

@@ -54,13 +54,15 @@ class globalComponents extends cqFrontendComponents
     $options['title'] = (!empty($options['title']) && stripos($options['title'], '%d')) ? $options['title'] : __('Page %d');
     $options['page_param'] = @$options['page_param'] ?: 'page';
 
-    $url          = isset($options['url']) ? $options['url'] : $this->getRequest()->getUri();
+    $params = array();
+    $url = isset($options['url']) ? $options['url'] : $this->getRequest()->getUri();
     $questionMark = strpos($url, '?');
-    $params       = array();
+
     if (false !== $questionMark)
     {
       $queryStr = substr($url, $questionMark + 1);
-      $url      = substr($url, 0, $questionMark);
+      $url = substr($url, 0, $questionMark);
+
       foreach (explode('&', $queryStr) as $param)
       {
         $item = explode('=', $param);
@@ -69,7 +71,7 @@ class globalComponents extends cqFrontendComponents
         {
           continue;
         }
-        $params[$item[0]] = $item[1];
+        $params[$item[0]] = urldecode($item[1]);
       }
     }
 

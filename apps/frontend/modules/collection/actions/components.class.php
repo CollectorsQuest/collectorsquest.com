@@ -15,7 +15,8 @@ class collectionComponents extends cqFrontendComponents
 
   public function executeSidebarCollectible()
   {
-    if (!$this->collectible = CollectiblePeer::retrieveByPk($this->getRequestParameter('id')))
+    $parameters = array('id' => $this->getRequestParameter('id'));
+    if (!$this->collectible = CollectionCollectiblePeer::getObjectForRoute($parameters))
     {
       return sfView::NONE;
     }

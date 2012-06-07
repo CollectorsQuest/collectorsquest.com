@@ -18,7 +18,7 @@
             <?= link_to('Join us', '@collector_signup') ?> to make collecting more fun than ever!
           </p>
           <div class="row-spacing-footer">
-            <button class="btn btn-primary blue-button pull-left" type="submit" onclick="location.href='<?=url_for('blog_page', array('slug' => 'contact-us'));?>'">Contact Us</button>
+            <button class="btn btn-primary blue-button pull-left" type="submit" onclick="location.href='<?=url_for('blog_page', array('slug' => 'contact-us'), true);?>'">Contact Us</button>
           </div>
           <p>
             <a href="http://www.facebook.com/pages/Collectors-Quest/119338990397"
@@ -47,7 +47,7 @@
         <div id="footer-form-signup">
           <h2 class="Chivo webfont">Sign Up</h2>
 
-          <form action="<?= url_for('@collector_signup'); ?>" method="post" class="form-horizontal form-footer">
+          <form action="<?= url_for('@collector_signup', true); ?>" method="post" class="form-horizontal form-footer">
             <?= $signup_form->renderUsing('BootstrapWithRowFluid'); ?>
             <div class="row-fluid spacer-7">
               <div class="span9 spacer-inner-top">
@@ -68,7 +68,7 @@
 
         <div id="footer-form-login" style="display: none">
           <h2 class="Chivo webfont">Log In</h2>
-          <form action="<?= url_for('@login'); ?>" class="form-horizontal form-footer" method="post">
+          <form action="<?= url_for('@login', true); ?>" class="form-horizontal form-footer" method="post">
             <?= $login_form->renderUsing('BootstrapWithRowFluid') ?>
             <div class="row-fluid spacer-7">
               <div class="span8 spacer-inner-top">
@@ -119,12 +119,12 @@
           <li class="footer-profile-box-h-list" style="padding-top: 0;">
             <ul class="row-fluid">
               <li class="span6 add-collectible-img link">
-                <a href="<?= url_for('@mycq_collections') ?>" class="bold-links target">
+                <a href="<?= url_for('@mycq_collections', true) ?>" class="bold-links target">
                   Upload<br> an item
                 </a>
               </li>
               <li class="span6 organize-collection link">
-                <a href="<?= url_for('@mycq_collections') ?>#my-collections" class="bold-links target">
+                <a href="<?= url_for('@mycq_collections', true) ?>#my-collections" class="bold-links target">
                   Organize your<br> collections
                 </a>
               </li>
@@ -134,7 +134,7 @@
 
         <div class="row-fluid spacer-inner-top">
           <div class="span12">
-            <a href="<?= url_for('@mycq'); ?>" class="btn btn-primary blue-button">
+            <a href="<?= url_for('@mycq', true); ?>" class="btn btn-primary blue-button">
               My Profile
             </a>
             <b><?= link_to('Log out', '@logout', array('class' => 'spacer-left logout-link')); ?></b>
@@ -175,7 +175,7 @@
               <p>
                 Have a question or a concern? Having trouble figuring something out?
                 Get the most out of the site by checking out our FAQs.<br/>
-                <a href="<?=urldecode(url_for('blog_page', array('slug' => 'cq-faqs/general-questions')))?>">Get&nbsp;Help&nbsp;Now!</a>
+                <a href="<?=urldecode(url_for('blog_page', array('slug' => 'cq-faqs/general-questions'), true))?>">Get&nbsp;Help&nbsp;Now!</a>
               </p>
             </div>
           </li>

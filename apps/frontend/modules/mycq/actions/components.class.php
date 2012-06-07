@@ -16,14 +16,14 @@ class mycqComponents extends cqFrontendComponents
   public function executeCollectorSnapshot()
   {
     $this->collector = $this->getUser()->getCollector();
-    $this->profile   = $this->collector->getProfile();
+    $this->profile = $this->collector->getProfile();
 
     return sfView::SUCCESS;
   }
 
   public function executeSellerSnapshot()
   {
-    $this->seller  = $this->getUser()->getCollector();
+    $this->seller = $this->getUser()->getCollector();
     $this->profile = $this->collector->getProfile();
 
     return sfView::SUCCESS;
@@ -32,10 +32,23 @@ class mycqComponents extends cqFrontendComponents
   public function executeCollections()
   {
     $this->collector = $this->getVar('collector') ? : $this->getUser()->getCollector();
+    $sort = $this->getRequestParameter('s', 'most-recent');
 
     $q = CollectorCollectionQuery::create()
-        ->filterByCollector($this->collector)
-        ->orderByCreatedAt(Criteria::DESC);
+        ->filterByCollector($this->collector);
+
+    switch ($sort)
+    {
+      case 'most-relevant':
+        //TODO: Order by most-relevant
+        break;
+
+      case 'most-recent':
+      default:
+        $q
+            ->orderByCreatedAt(Criteria::DESC);
+        break;
+    }
 
     if ($this->getRequestParameter('q'))
     {
@@ -55,7 +68,7 @@ class mycqComponents extends cqFrontendComponents
     /** @var $collection CollectorCollection */
     $collection = $this->getVar('collection') ? :
         CollectorCollectionQuery::create()->findOneById($this->getRequestParameter('collection_id'));
-    $sort       = $this->getRequestParameter('s', 'position');
+    $sort = $this->getRequestParameter('s', 'position');
 
     // Let's make sure the current user is the owner
     if (!$this->getUser()->isOwnerOf($collection))
@@ -70,15 +83,15 @@ class mycqComponents extends cqFrontendComponents
     {
       case 'most-popular':
         $q
-          ->joinCollection()
-          ->useCollectionQuery()
-          ->orderByNumViews(Criteria::DESC)
-          ->endUse();
+            ->joinCollection()
+            ->useCollectionQuery()
+            ->orderByNumViews(Criteria::DESC)
+            ->endUse();
         break;
 
       case 'most-recent':
         $q
-          ->orderByCreatedAt(Criteria::DESC);
+            ->orderByCreatedAt(Criteria::DESC);
         break;
 
       case 'position':
@@ -98,7 +111,7 @@ class mycqComponents extends cqFrontendComponents
     $pager->setPage($this->getRequestParameter('p', 1));
     $pager->init();
 
-    $this->pager      = $pager;
+    $this->pager = $pager;
     $this->collection = $collection;
 
     return sfView::SUCCESS;
@@ -122,7 +135,7 @@ class mycqComponents extends cqFrontendComponents
     $pager->setPage($this->getRequestParameter('p', 1));
     $pager->init();
 
-    $this->pager     = $pager;
+    $this->pager = $pager;
     $this->collector = $collector;
 
     return sfView::SUCCESS;
@@ -131,11 +144,11 @@ class mycqComponents extends cqFrontendComponents
   public function executeDropbox()
   {
     $collector = $this->getCollector();
-    $dropbox   = $collector->getCollectionDropbox();
+    $dropbox = $collector->getCollectionDropbox();
 
-    $this->batch        = cqStatic::getUniqueId(32);
+    $this->batch = cqStatic::getUniqueId(32);
     $this->collectibles = $dropbox->getCollectibles();
-    $this->total        = $dropbox->countCollectibles();
+    $this->total = $dropbox->countCollectibles();
 
     return sfView::SUCCESS;
   }
@@ -162,7 +175,7 @@ class mycqComponents extends cqFrontendComponents
       $form->bind($this->getRequestParameter('collection'));
       if ($form->isValid())
       {
-        $values                 = $form->getValues();
+        $values = $form->getValues();
         $values['collector_id'] = $this->getCollector()->getId();
 
         /** @var $collection CollectorCollection */
@@ -193,8 +206,8 @@ class mycqComponents extends cqFrontendComponents
 
     $root = ContentCategoryQuery::create()->findRoot();
     $this->categories = ContentCategoryQuery::create()
-      ->descendantsOf($root)
-      ->findTree();
+        ->descendantsOf($root)
+        ->findTree();
 
     $this->form = $form;
 
@@ -235,7 +248,7 @@ class mycqComponents extends cqFrontendComponents
           return sfView::NONE;
         }
 
-        $values                 = $form->getValues();
+        $values = $form->getValues();
         $values['collector_id'] = $this->getCollector()->getId();
 
         /** @var $collectible Collectible */

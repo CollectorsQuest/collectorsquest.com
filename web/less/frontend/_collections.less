@@ -7,15 +7,13 @@
 	position: relative;
 
 	.mosaic-backdrop {
-		width: 190px;
-		height: 150px;
+		.size(150px, 190px);
 		margin-left: 3px;
 		margin-top: 3px;
 	}
 
 	.mosaic-overlay {
-		width: 190px;
-		height: 150px;
+		.size(150px, 190px);
 		margin: 3px;
 
 		.details {
@@ -25,13 +23,11 @@
 
 	.stack {
 		background: url("@{baseUrl}/stack.png") no-repeat;
-		width: 196px;
-		height: 151px;
+		.size(151px, 196px);
 		padding: 5px 0 0 13px;
 
 		.mosaic-backdrop {
-			width: 175px;
-			height: 138px;
+			.size(138px, 175px);
 			margin: 5px 0 0 0;
 			border: none;
 			-webkit-box-shadow: none;
@@ -48,19 +44,17 @@
 }
 
 .collection_grid_view_square_small {
-	height: 140px;
-	overflow: hidden;
 	position: relative;
+	overflow: hidden;
+	height: 140px;
 	margin-bottom: 18px;
 
 	.mosaic-backdrop {
-		width: 140px;
-		height: 140px;
+		.square(140px);
 	}
 
 	.mosaic-overlay {
-		width: 140px;
-		height: 140px;
+		.square(140px);
 	}
 
 	.mosaic-overlay .details {
@@ -94,13 +88,10 @@
 	display: block;
 }
 
-#user-collections {
-
-	.user-collections-inner {
-		border: 1px solid #f2f0f0;
-		.border-radius(2px);
-		height: 212px;
-	}
+#user-collections .user-collections-inner {
+	height: 212px;
+	border: 1px solid #f2f0f0;
+	.border-radius(2px);
 }
 
 .personal-info-sidebar {
@@ -110,54 +101,11 @@
   word-wrap: break-word;
 }
 
-.other-items-sidebar {
-	width: 100%;
-	margin-bottom: 10px;
-
-	span {
-		padding-left: 5px;
-		margin-bottom: 5px;
-		display: block;
-	}
-	.thumbnails-inner {
-		.clearfix();
-	}
-	.span3 {
-		.square(70px);
-		margin: 0 0 4px 4px;
-	}
-	.thumbnails {
-		margin-left: 0;
-		margin-bottom: 5px;
-
-		a {
-			.box-shadow(none);
-			&:hover {
-				padding: 3px;
-				background-color: white;
-				border: 1px solid @blue;
-				.border-radius(0);
-
-			}
-		}
-	}
-	.thumbnail {
-		border: none;
-		padding: 0;
-		&:hover img {
-			max-width: 64px;
-			max-height: 62px;
-		}
-	}
-}
-
-
-
 .blue-actions-panel {
-	background-color: @lightBlue;
-	font-size: 10px;
-	padding: 8px 8px 0 10px;
 	height: 30px;
+	padding: 8px 8px 0 10px;
+	font-size: 10px;
+	background-color: @lightBlue;
 
 	[class*="span"] {
 		min-height: 22px;
@@ -165,9 +113,9 @@
 	}
 
 	> a {
-		  display: inline-block;
-		  line-height: 10px;
-		  vertical-align: middle;
+	  display: inline-block;
+	  line-height: 10px;
+	  vertical-align: middle;
 	}
 	ul {
 		float: left;
@@ -200,8 +148,8 @@
 }
 
 #sidebar .blue-actions-panel {
-	padding: 10px 8px 0 10px;
 	height: 30px;
+	padding: 10px 8px 0 10px;
 
 	ul {
 		margin-top: 4px;

@@ -4,7 +4,7 @@
 //  end_slot();
 ?>
 
-<?php cq_page_title("Now on Display") ?>
+<?php cq_page_title("Now On Display") ?>
 
 <div class="row">
   <div id="homepage" class="row-content">

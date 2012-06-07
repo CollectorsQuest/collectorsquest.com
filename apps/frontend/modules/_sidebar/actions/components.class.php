@@ -269,7 +269,7 @@ class _sidebarComponents extends cqFrontendComponents
       {
         $c = new Criteria();
         $c->addDescendingOrderByColumn(CollectorCollectionPeer::CREATED_AT);
-        $c->add(CollectorCollectionPeer::NUM_VIEWS, 0, Criteria::GREATER_THAN);
+        $c->add(CollectorCollectionPeer::NUM_ITEMS, 0, Criteria::GREATER_THAN);
         $c->setLimit($this->limit);
 
         /** @var $collection Collection */
@@ -422,8 +422,6 @@ class _sidebarComponents extends cqFrontendComponents
 
   public function executeWidgetCollectionCollectibles()
   {
-    return $this->_sidebar_if(count($this->collectibles) > 0);
-
     // Set the limit of other Collections to show
     /** @var $collection CollectorCollection */
     $collection = $this->getVar('collection') ?: null;
@@ -442,45 +440,46 @@ class _sidebarComponents extends cqFrontendComponents
     // Initialize the array
     $this->collectibles = array();
 
-    if ($collection instanceof CollectorCollection)
+    if ($collection instanceof Collection)
     {
       /**
-       * Figure out the previous and the next item in the collection
+       * Figure out the previous and the next items in the collection
        */
-      $collectible_ids = $collection->getCollectionCollectibleIds();
+      $collectible_ids = $collection->getCollectibleIds();
 
-      if (array_search($collection->getId(), $collectible_ids) - 1 < 0)
+      $position = array_search($collectible->getId(), $collectible_ids);
+      // pages start from 1
+      $page = (int)ceil(($position + 1)  / $this->limit);
+      /* * /
+      $step = intval($this->limit / 2);
+
+      if ($position === 0)
       {
-        $this->previous = CollectionCollectibleQuery::create()->findOneByCollectibleId(
-          $collectible_ids[count($collectible_ids) - 1]
-        );
+        $previous = array($collectible_ids[0]);
       }
       else
       {
-        $this->previous = CollectionCollectibleQuery::create()->findOneByCollectibleId(
-          $collectible_ids[array_search($collection->getId(), $collectible_ids) - 1]
-        );
+        $previous = array_slice($collectible_ids, $position - $step + 1, $step);
       }
 
-      if (array_search($collectible->getId(), $collectible_ids) + 1 >= count($collectible_ids))
-      {
-        $this->next = CollectiblePeer::retrieveByPk($collectible_ids[0]);
-      }
-      else
-      {
-        $this->next = CollectiblePeer::retrieveByPk(
-          $collectible_ids[array_search($collectible->getId(), $collectible_ids) + 1]
-        );
-      }
+      $next = array_slice($collectible_ids, $position + 1, $step + ($step - count($previous)));
+      $ids = array_merge($previous, $next);
 
+      /* */
       $q = CollectionCollectibleQuery::create()
         ->filterByCollection($collection)
-        ->filterByCollectibleId($collectible_ids)
-        ->limit($this->limit);
+        //->filterByCollectibleId($ids)
+        ->limit( $page * $this->limit )
+        ->orderByPosition(Criteria::ASC)
+        ->orderByCreatedAt(Criteria::ASC);
+
       $this->collectibles = $q->find();
+      $this->collection = $collection;
+      $this->page = $page;
     }
 
-    return $this->_sidebar_if(count($this->collectibles) > 0);
+    // show if at least two, because there is no sense in showing only itself
+    return $this->_sidebar_if(count($this->collectibles) > 1);
   }
 
   public function executeWidgetMoreHistory()

@@ -67,8 +67,8 @@ class CollectionCreateForm extends CollectorCollectionForm
 
     $this->widgetSchema['tags']->setDefault($tags);
     $this->getWidgetSchema()->setHelp(
-      'tags', 'Choose at least three descriptive words or
-               phrases for your collection, separated by commas'
+      'tags', 'Choose at least three descriptive words
+               or phrases, separated by commas'
     );
   }
 

@@ -107,17 +107,23 @@ ul.alert-error {
 	}
 }
 
-.form-horizontal .controls {
-  .with-required-token {
-    position: relative;
+.form-horizontal {
+  .controls {
+    .with-required-token {
+      position: relative;
 
-    .required-token {
-      position: absolute;
-      left: -15px;
-      top: 4px;
-      color: red;
-      font-weight: bolder;
+      .required-token {
+        position: absolute;
+        left: -15px;
+        top: 4px;
+        color: red;
+        font-weight: bolder;
+      }
     }
+  }
+
+  .all-errors ul {
+    margin-bottom: 0;
   }
 }
 

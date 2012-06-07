@@ -14,7 +14,7 @@
   <i class="icon-exclamation-sign" style="float: left; font-size: 46px; margin-right: 10px; color: #DF912F;"></i>
   Sorry! We can't find anything that matches your search.
   Try a broader search, or browse around for other neat stuff.
-  (Or you can <?= link_to('sell something of your own', '@collection_create'); ?> on the site!)
+  (Or you can <?= link_to('sell something of your own', '@mycq_collections'); ?> on the site!)
 </div>
 <?php elseif ($pager->getPage() > 1): ?>
 <br clear="all"/>

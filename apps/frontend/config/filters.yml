@@ -5,12 +5,12 @@ rendering: ~
 
 remember_me:
   class: cqCollectorRememberMeFilter
-
 uuid:
   class: cqUuidFilter
-
 security:
   class: cqSecurityFilter
+seo:
+  class: iceSeoFilter
 
 cache:     ~
 execution: ~

@@ -8,7 +8,7 @@
   </div>
   <div class="span2" style="color: #999; font-size: 60px; font-weight: 700; padding: 45px 0;">&nbsp;OR</div>
   <div class="span6">
-    <form action="<?= url_for('@login'); ?>" method="post">
+    <form action="<?= url_for('@login', true); ?>" method="post">
       <div class="row-fluid">
         <h3>Login now to use your saved details:</h3>
         <br/>

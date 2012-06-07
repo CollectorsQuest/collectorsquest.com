@@ -334,7 +334,7 @@ class CollectorProfile extends BaseCollectorProfile
 
   public function setAboutCompany($v)
   {
-    return $this->setProperty('about.company', $v);
+    return $this->setProperty('about.company', strip_tags($v));
   }
 
   public function getAboutNewItemEvery()
@@ -354,7 +354,7 @@ class CollectorProfile extends BaseCollectorProfile
 
   public function setAboutMe($v)
   {
-    return $this->setProperty('about.me', $v);
+    return $this->setProperty('about.me', strip_tags($v));
   }
 
   public function getAboutInterests()
@@ -364,7 +364,7 @@ class CollectorProfile extends BaseCollectorProfile
 
   public function setAboutInterests($v)
   {
-    return $this->setProperty('about.interests', $v);
+    return $this->setProperty('about.interests', strip_tags($v));
   }
 
   /**

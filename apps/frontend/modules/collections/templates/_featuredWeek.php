@@ -6,6 +6,7 @@
  */
 ?>
 
+<br/>
 <div id="weeks-promo-box">
   <div class="row-fluid">
     <div class="span12">

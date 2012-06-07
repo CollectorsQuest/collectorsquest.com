@@ -241,7 +241,8 @@
                         'width',
                         parseInt(data.loaded / data.total * 100, 10) + '%'
                     ).end()
-                    .find('.progress-extended').each(function () {
+                    .parent()
+                      .find('.progress-extended').each(function () {
                         $(this).html(
                             $this.data('fileupload')
                                 ._renderExtendedProgress(data)
@@ -356,11 +357,7 @@
         },
 
         _renderExtendedProgress: function (data) {
-            return this._formatBitrate(data.bitrate) + ' | ' +
-                this._formatTime(
-                    (data.total - data.loaded) * 8 / data.bitrate
-                ) + ' | ' +
-                this._formatPercentage(
+            return this._formatPercentage(
                     data.loaded / data.total
                 ) + ' | ' +
                 this._formatFileSize(data.loaded) + ' / ' +

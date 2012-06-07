@@ -47,6 +47,12 @@ class CollectorCollectionQuery extends BaseCollectorCollectionQuery
     return $this->where($where);
   }
 
+  public function haveThumbnail()
+  {
+    // @todo: we need implementation
+    return $this;
+  }
+
   public function search($v)
   {
     return $this

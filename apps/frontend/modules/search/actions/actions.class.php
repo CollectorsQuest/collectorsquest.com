@@ -13,7 +13,7 @@ class searchActions extends cqFrontendActions
 
     if ($tag = $request->getParameter('tag'))
     {
-      $request->setParameter('q', $tag);
+      $request->setParameter('q', str_replace('-', ' ', $tag));
     }
 
     self::$_query['q'] = $request->getParameter('q');

@@ -23,7 +23,7 @@
   margin-bottom: 5px;
 }
 .files .progress {
-  width: 200px;
+  width: 100px;
 }
 .progress-animated .bar {
   background: url(/images/progressbar.gif) !important;
@@ -39,6 +39,29 @@
 }
 .fileupload-processing .fileupload-loading {
   display: block;
+}
+
+.fileupload-progress {
+  padding-top: 7px;
+
+  .progress {
+    margin-bottom: 0;
+  }
+}
+
+.progress-extended {
+  text-align: left;
+  padding-top: 7px;
+}
+
+.template-upload .size {
+  white-space: nowrap;
+  text-wrap: avoid;
+  text-align: right;
+}
+
+.template-upload .name {
+  word-wrap: break-word;
 }
 
 /* Fix for IE 6: */

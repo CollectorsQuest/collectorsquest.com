@@ -14,11 +14,10 @@ HOME=/www/vhosts/collectorsquest.com/current
 # Rotation of the Symfony logs
   01 00  *  *  *  apache  cronic ./symfony log:rotate backend prod
   01 00  *  *  *  apache  cronic ./symfony log:rotate frontend prod
-  01 00  *  *  *  apache  cronic ./symfony log:rotate legacy prod
 
-   *  *  *  *  *  apache  solo -silent -port=2050 ./symfony batch:process-job-queue --env=prod --application=legacy --queue=multimedia_thumbs
-  30  *  *  *  *  apache  solo -silent -port=2051 ./symfony batch:process-job-queue --env=prod --application=legacy --queue=multimedia_colors
- */2  *  *  *  *  apache  solo -silent -port=2052 ./symfony batch:process-job-queue --env=prod --application=legacy --queue=multimedia_rotate
+   *  *  *  *  *  apache  solo -silent -port=2050 ./symfony batch:process-job-queue --env=prod --application=frontend --queue=multimedia_thumbs
+  30  *  *  *  *  apache  solo -silent -port=2051 ./symfony batch:process-job-queue --env=prod --application=frontend --queue=multimedia_colors
+ */2  *  *  *  *  apache  solo -silent -port=2052 ./symfony batch:process-job-queue --env=prod --application=frontend --queue=multimedia_rotate
 
 # Sphinx indexes
  */5  *  *  *  *  root  cronic solo -silent -port=2037 ./symfony sphinx:rebuild-indexes --env=prod --delta=yes

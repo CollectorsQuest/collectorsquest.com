@@ -59,7 +59,7 @@ class CollectorCollection extends BaseCollectorCollection
     if ('html' == $type)
     {
       $v = IceStatic::cleanText($v, false, 'p, b, u, i, em, strong, h1, h2, h3, h4, h5, h6, div, span, ul, ol, li, blockquote, br');
-      $v = cqMarkdownify::doConvert($v);
+      //$v = cqMarkdownify::doConvert($v);
     }
 
     // We should always save the description in Markdown format
@@ -85,7 +85,7 @@ class CollectorCollection extends BaseCollectorCollection
         $v = ($limit > 0) ? cqStatic::truncateText($v, $limit, '...', true) : $v;
         break;
       case 'html':
-        $v = cqMarkdown::doConvert($v);
+        //$v = cqMarkdown::doConvert($v);
         break;
     }
 
@@ -136,10 +136,10 @@ class CollectorCollection extends BaseCollectorCollection
      * We need to have the two main thumbnails available as soon as the object is saved so
      * we make sure they are not put on the job queue
      */
-    $multimedia->makeThumb(150, 150, 'center', $watermark);
-    $multimedia->makeCustomThumb(50, 50, '50x50', 'center', false);
-    $multimedia->makeCustomThumb(190, 150, '190x150', 'center', $watermark);
-    $multimedia->makeCustomThumb(190, 190, '190x190', 'center', $watermark);
+    $multimedia->makeThumb(150, 150, 'top', $watermark);
+    $multimedia->makeCustomThumb(50, 50, '50x50', 'top', false);
+    $multimedia->makeCustomThumb(190, 150, '190x150', 'top', $watermark);
+    $multimedia->makeCustomThumb(190, 190, '190x190', 'top', $watermark);
   }
 
 }

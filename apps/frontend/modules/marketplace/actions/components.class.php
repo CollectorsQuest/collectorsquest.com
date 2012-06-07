@@ -20,17 +20,17 @@ class marketplaceComponents extends cqFrontendComponents
   public function executeDiscoverCollectiblesForSale()
   {
     $q = $this->getRequestParameter('q');
-    $s = $this->getRequestParameter('s', 'most-recent');
+    $s = $this->getRequestParameter('s', 'most-popular');
     $p = $this->getRequestParameter('p', 1);
 
     // Initialize the $pager
     $pager = null;
 
-    if (!empty($q) || $s != 'most-recent')
+    if (!empty($q) || $s != 'most-popular')
     {
       $query = array(
         'q' => $q,
-        'filters' => array('uint1' => 1)
+        'filters' => array('has_thumbnail' => 1, 'uint1' => 1)
       );
 
       $query['sortby'] = 'date';
@@ -54,6 +54,10 @@ class marketplaceComponents extends cqFrontendComponents
           $query['filters']['uint2'] = array('min' => 25000);
           break;
         case 'most-recent':
+          $query['sortby'] = 'date';
+          $query['order'] = 'desc';
+          break;
+        case 'most-popular':
         default:
           break;
       }
@@ -80,6 +84,7 @@ class marketplaceComponents extends cqFrontendComponents
 
           $query = CollectibleQuery::create()
             ->filterById($collectible_ids)
+            ->haveThumbnail()
             ->useCollectibleForSaleQuery(null, Criteria::RIGHT_JOIN)
               ->isForSale()
             ->endUse()
@@ -98,7 +103,10 @@ class marketplaceComponents extends cqFrontendComponents
       $pager->init();
 
       $this->pager = $pager;
-      $this->url = '@search_collectibles_for_sale?q='. $q . '&s='. $s .'&page='. $pager->getNextPage();
+      $this->url = sprintf(
+        '@search_collectibles_for_sale?q=%s&s=%s&page=%d',
+        $q, $s, $pager->getNextPage()
+      );
 
       return sfView::SUCCESS;
     }

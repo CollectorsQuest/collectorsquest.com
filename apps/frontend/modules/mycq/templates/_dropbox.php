@@ -84,14 +84,14 @@
             </table>
           </div>
           <div class="modal-footer">
-            <div class="span9 fileupload-progress fade">
+            <div class="span4 fileupload-progress fade">
               <!-- The global progress bar -->
               <div class="progress progress-success progress-striped active">
-                <div class="bar" style="width:0%;"></div>
+                <div class="bar" style="width:0;"></div>
               </div>
-              <!-- The extended global progress information -->
-              <div class="progress-extended">&nbsp;</div>
             </div>
+            <!-- The extended global progress information -->
+            <div class="span5 progress-extended">&nbsp;</div>
             <div class="span3">
               <a href="<?= url_for('@mycq_upload_cancel?batch='. $batch); ?>"
                  class="btn btn-primary btn-danger">
