@@ -8,7 +8,7 @@
 ?>
 
 <div class="clear append-bottom">&nbsp;</div>
-<form action="<?php echo url_for('@feedback'); ?>" method="post" id="form_feedback">
+<form action="<?php echo url_for('@feedback', true); ?>" method="post" id="form_feedback">
   <?= $form->renderUsing('BootstrapWithRowFluid') ?>
 
   <br/><br/>

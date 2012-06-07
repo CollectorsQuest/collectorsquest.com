@@ -4,7 +4,7 @@
 
 <div class="add-comment">
   <div class="input-append post-comment">
-    <form method="post" action="<?= url_for('@comments_add') ?>">
+    <form method="post" action="<?= url_for('@comments_add', true) ?>">
       <?= $form->renderHiddenFields(); ?>
 
       <div class="extra-fields row-fluid not-authenticated">
