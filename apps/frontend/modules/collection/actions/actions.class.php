@@ -142,7 +142,7 @@ class collectionActions extends cqFrontendActions
      */
     if (!$this->getCollector()->isOwnerOf($collectible))
     {
-      $collectible->setNumViews($collection->getNumViews() + 1);
+      $collectible->setNumViews($collectible->getNumViews() + 1);
       $collectible->save();
     }
 
