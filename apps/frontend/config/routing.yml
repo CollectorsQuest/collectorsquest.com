@@ -569,10 +569,6 @@ legacy_collector_signup_facebook:
   url:   /collector/signup/facebook
   param: { module: collector, action: signup }
 
-legacy_collections_by_tag:
-  url:   /collections/tag/:tag
-  param: { module: _legacy, action: collectionsByTag }
-
 legacy_collections_most_recent:
   url:  /collections/filter/most-recent
   param: { module: _legacy, action: collectionsMostRecent }

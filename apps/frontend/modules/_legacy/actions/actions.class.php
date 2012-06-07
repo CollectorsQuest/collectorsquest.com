@@ -8,7 +8,7 @@
  * @author     Collectors Quest, Inc.
  * @version    SVN: $Id: actions.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
-class legacyActions extends sfActions
+class _legacyActions extends sfActions
 {
  /**
   * Executes help action
