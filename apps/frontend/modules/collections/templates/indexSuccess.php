@@ -55,5 +55,10 @@ $(document).ready(function()
 
     return false;
   });
+
+  if ($form.find('input').val() !== '')
+  {
+    $form.submit();
+  }
 });
 </script>
