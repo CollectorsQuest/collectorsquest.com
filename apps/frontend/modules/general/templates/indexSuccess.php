@@ -1,7 +1,7 @@
 <?php
-  slot('header_pushdown');
-  cq_dart_slot('970x66', 'homepage', null, 'top');
-  end_slot();
+//  slot('header_pushdown');
+//  cq_dart_slot('970x66', 'homepage', null, 'top');
+//  end_slot();
 ?>
 
 <?php cq_page_title("Now On Display") ?>
