@@ -269,7 +269,7 @@ class _sidebarComponents extends cqFrontendComponents
       {
         $c = new Criteria();
         $c->addDescendingOrderByColumn(CollectorCollectionPeer::CREATED_AT);
-        $c->add(CollectorCollectionPeer::NUM_VIEWS, 0, Criteria::GREATER_THAN);
+        $c->add(CollectorCollectionPeer::NUM_ITEMS, 0, Criteria::GREATER_THAN);
         $c->setLimit($this->limit);
 
         /** @var $collection Collection */
