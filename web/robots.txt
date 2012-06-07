@@ -20,3 +20,8 @@ Disallow: /ajax/
 Disallow: /backend/
 Disallow: /errors/
 Disallow: /images/
+Disallow: /messages/*
+Disallow: /search/*
+Disallow: /collections/by/*
+Disallow: /collection/create/*
+Disallow: /cart/*
