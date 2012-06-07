@@ -27,7 +27,7 @@ class PropelMigration_1339093889
 
       $ga->requestReportData(
         1111092, array('pagePath'), array('pageviews'),
-        array('-pageviews'), "pagePath =~ /collectible/\d+", '2007-01-01', '2012-04-30',
+        array('-pageviews'), "pagePath =~ /collectible/\d+", '2007-01-01', '2012-06-15',
         $i * 1000 - 999, 1000
       );
 
@@ -69,6 +69,7 @@ class PropelMigration_1339093889
     return array(
       'propel'  => '
         SET FOREIGN_KEY_CHECKS = 0;
+        UPDATE `collectible` SET `num_views` = 0 WHERE 1;
         SET FOREIGN_KEY_CHECKS = 1;
       ',
       'blog' => '
