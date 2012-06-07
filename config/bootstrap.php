@@ -14,7 +14,7 @@ if (
 }
 else if (false !== stripos($_SERVER['SERVER_NAME'], 'collectorsquest.legacy'))
 {
-  $app = 'legacy';
+  $app = 'disabled';
   $env = 'dev';
   $dbg = true;
 }
@@ -47,7 +47,7 @@ else if ($_SERVER['SERVER_NAME'] == 'backend.cqstaging.com')
 }
 else if (false !== stripos($_SERVER['SERVER_NAME'], 'cqstaging.com'))
 {
-  $app = 'legacy';
+  $app = 'disabled';
   $env = 'stg';
   $dbg = false;
 }
