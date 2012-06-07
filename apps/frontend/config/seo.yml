@@ -22,6 +22,12 @@ seo:
       title: Explore Our Endless Collection of Collectibles | Category Listing
       description: We have unique vintage items such as antique figurines and political memorabilia. Browse over 10,000 unique vintage antiques and collectibles today!
 
+    category:
+      title: Collectible %Name% | Collectible and Antique %Name%
+      description: CollectorsQuest.com is the place to browse antique %Name%. Our sellers are serious about their interest in antique and collectible %Name%.
+      keywords: %Name%
+      model: true
+
   collections:
     title: Collectors Items | Find Unique Vintage Collectibles and Antiques
     description: CollectorsQuest.com has unique collectors items from  every era. Find unique vintage collectibles and antiques sold by trusted buyers.
