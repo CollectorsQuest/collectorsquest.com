@@ -42,8 +42,11 @@
                 echo '<li class="'. $active .'">', link_to('Collections', '@mycq_collections'), '</li>';
               ?>
               <?php
-                // $active = in_array($sf_params->get('action'), array('marketplace')) ? 'active' : null;
-                // echo '<li class="'. $active .'">', link_to('Store <sup>βeta</sup>', '@mycq_marketplace'), '</li>';
+                if (IceGateKeeper::open('mycq_marketplace'))
+                {
+                  $active = in_array($sf_params->get('action'), array('marketplace')) ? 'active' : null;
+                  echo '<li class="'. $active .'">', link_to('Store <sup>βeta</sup>', '@mycq_marketplace'), '</li>';
+                }
               ?>
               <?php $active = in_array($sf_params->get('module'), array('messages')) ? 'active' : null; ?>
               <li class="dropdown <?= $active ?>" style="border-right: 1px solid #4B3B3B;">
