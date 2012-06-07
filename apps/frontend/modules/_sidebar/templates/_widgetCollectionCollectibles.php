@@ -12,11 +12,8 @@
     <a href="#" id="ui-carousel-next" title="next collectible" class="right-arrow" style="right: -12px;">
       <i class="icon-chevron-right white"></i>
     </a>
-    <div id="carousel" data-loaded='<?php
-      $loaded = array();
-      for ($i = 1; $i <= $page; $i++) $loaded[$i] = true;
-      echo json_encode($loaded);
-    ?>' class="thumbnails" style="">
+    <div id="carousel" data-loaded='<?= json_encode(array_fill(1, $page, true)); ?>'
+         class="thumbnails" style="">
       <?php foreach ($collectibles as $c): ?>
         <a href="<?= url_for_collectible($c) ?>" class="thumbnail" style="">
         <?php
@@ -36,7 +33,7 @@ $(document).ready(function()
   $("#carousel").rcarousel({
     visible: 4, step: 4,
     width: 73, height: 69,
-    auto: { enabled: false, interval: 15000 },
+    auto: { enabled: true, interval: 15000 },
     start: firstLoad,
     pageLoaded: loadPage
   });
@@ -50,6 +47,8 @@ $(document).ready(function()
   {
     $("#carousel").rcarousel('goToPage', <?= $page - 1; ?>);
 
+    // when current page is first page, manually fire event to load next page,
+    // because goToPage will not fire the "pageLoaded" event
     if (1 == $("#carousel").rcarousel('getCurrentPage')) {
       loadPage(event, {});
     }
@@ -60,15 +59,15 @@ $(document).ready(function()
     var loaded = $("#carousel").data('loaded');
 
     var $link, $img, $jqElements = $();
-    var $url = '<?= url_for('ajax_collection', array('section' => 'collectibles', 'page' => 'carousel')); ?>';
-    var p = $("#carousel").rcarousel('getCurrentPage') + 1;
+    var url = '<?= url_for('ajax_collection', array('section' => 'collectibles', 'page' => 'carousel')); ?>';
+    var target_page = $("#carousel").rcarousel('getCurrentPage') + 1;
 
-    if (typeof(loaded) !== 'undefined' && loaded[p] === true)
+    if (typeof(loaded) !== 'undefined' && loaded[target_page] === true)
     {
       return;
     }
 
-    $.getJSON($url +'?p='+ p,
+    $.getJSON(url +'?p='+ target_page,
       {
         id: <?= $collection->getId(); ?>,
         collectible_id: <?= $collectible->getId(); ?>
@@ -96,7 +95,7 @@ $(document).ready(function()
           $( "#carousel" ).rcarousel("append", $jqElements);
         }
 
-        loaded[p] = true;
+        loaded[target_page] = true;
       }
     );
 
