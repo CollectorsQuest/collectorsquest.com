@@ -55,13 +55,15 @@ $linkPrev = $linkNext = false;
     <?php endif; ?>
   </ul>
 </div>
+
 <?php slot('prev_next'); ?>
-<?php if ($linkPrev): ?>
-<link rel="prev" href="<?=$linkPrev?>" />
-<?php endif; ?>
-<?php if ($linkNext): ?>
-<link rel="next" href="<?=$linkNext?>" />
-<?php endif; ?>
-<link rel="start" href="<?=$url?>" />
+  <?php if ($linkPrev): ?>
+    <link rel="prev" href="<?= $linkPrev ?>" />
+  <?php endif; ?>
+  <?php if ($linkNext): ?>
+    <link rel="next" href="<?= $linkNext ?>" />
+  <?php endif; ?>
+  <link rel="start" href="<?= $url ?>" />
 <?php end_slot(); ?>
+
 <?php endif; ?>
