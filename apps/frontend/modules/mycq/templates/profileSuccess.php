@@ -106,16 +106,21 @@
 
             <div class="control-group">
               <label class="control-label" for="input01">Where are you from?</label>
-              <div class="controls form-inline">
-                <label for="<?= $collector_form['zip_postal']->renderId(); ?>">
-                  <?= $collector_form['zip_postal']->renderLabelName(); ?>
-                </label>
-                <?= $collector_form['zip_postal']->render(array('class' => 'span3')); ?>
+              <div class="controls form-inline" style="width: 530px">
+                <div style="float: left">
+                  <label for="<?= $collector_form['zip_postal']->renderId(); ?>">
+                    <?= $collector_form['zip_postal']->renderLabelName(); ?>
+                  </label>
+                  <?= $collector_form['zip_postal']->render(array('class' => 'span3')); ?>
+                </div>
 
-                <label for="<?= $collector_form['country_iso3166']->renderId(); ?>" class="spacer-left">
-                  <?= $collector_form['country_iso3166']->renderLabelName(); ?>
-                </label>
-                <?= $collector_form['country_iso3166']->render(array('class' => 'span3')); ?>
+                <div class="with-required-token" style="float: right">
+                  <span class="required-token">*</span>
+                  <label for="<?= $collector_form['country_iso3166']->renderId(); ?>" class="spacer-left">
+                    <?= $collector_form['country_iso3166']->renderLabelName(); ?>
+                  </label>
+                  <?= $collector_form['country_iso3166']->render(array('class' => 'span4')); ?>
+                </div>
               </div>
             </div>
 
