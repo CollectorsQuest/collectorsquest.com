@@ -6,10 +6,10 @@
 <div class="other-items-sidebar spacer-top-20">
   <span>Other collectibles in this collection:</span>
   <div class="thumbnails-inner">
-    <a href="#" id="ui-carousel-prev" title="previous collectible" class="left-arrow" style="left: -12px;">
+    <a href="#" id="ui-carousel-prev" title="previous collectible" class="left-arrow">
       <i class="icon-chevron-left white"></i>
     </a>
-    <a href="#" id="ui-carousel-next" title="next collectible" class="right-arrow" style="right: -12px;">
+    <a href="#" id="ui-carousel-next" title="next collectible" class="right-arrow">
       <i class="icon-chevron-right white"></i>
     </a>
     <div id="carousel" data-loaded='<?= json_encode(array_fill(1, $page, true)); ?>'
@@ -33,8 +33,9 @@ $(document).ready(function()
 {
   $("#carousel").rcarousel({
     visible: 4, step: 4,
-    width: 73, height: 69,
-    auto: { enabled: true, interval: 15000 },
+    width: 69, height: 69,
+    margin: 5,
+    auto: { enabled: false, interval: 15000 },
     start: firstLoad,
     pageLoaded: loadPage
   });
