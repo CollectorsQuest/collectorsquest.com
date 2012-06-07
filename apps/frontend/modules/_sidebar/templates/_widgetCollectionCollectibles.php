@@ -15,7 +15,8 @@
     <div id="carousel" data-loaded='<?= json_encode(array_fill(1, $page, true)); ?>'
          class="thumbnails" style="">
       <?php foreach ($collectibles as $c): ?>
-        <a href="<?= url_for_collectible($c) ?>" class="thumbnail" style="">
+        <a href="<?= url_for_collectible($c) ?>" class="thumbnail
+           <?= $c->getId() == $collectible->getId() ? 'active' : '' ?>" style="">
         <?php
           echo image_tag_collectible(
             $c, '75x75', array('width' => 69, 'height' => 69)
@@ -45,7 +46,9 @@ $(document).ready(function()
 
   function firstLoad(event)
   {
-    $("#carousel").rcarousel('goToPage', <?= $page - 1; ?>);
+    $("#carousel").rcarousel('goToPage', <?= $page - 1; ?>)
+                  // fix bottom of active collectible cut off
+                  .css('height', 'auto');
 
     // when current page is first page, manually fire event to load next page,
     // because goToPage will not fire the "pageLoaded" event
@@ -78,8 +81,7 @@ $(document).ready(function()
         {
           $link = $( "<a />" )
             .attr( "href", collectible.url )
-            .attr( "class", 'thumbnail' )
-            .attr( "style", 'margin: 0;' );
+            .attr( "class", 'thumbnail' );
 
           $img = $( "<img />" )
             .attr( "src", collectible.thumbnails.x75 )
