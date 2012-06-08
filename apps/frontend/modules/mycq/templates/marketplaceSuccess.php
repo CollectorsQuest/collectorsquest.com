@@ -60,7 +60,7 @@
 <?php if ($sold_total > 0): ?>
 <!-- Sold Items -->
 <div id="sold-items-box" class="spacer-top-20">
-  <div class="tab-content-inner spacer-inner-top-20">
+  <div class="tab-content-inner spacer-inner-top">
     <div class="row-fluid sidebar-title spacer-inner-bottom">
       <div class="span5 link-align">
         <h3 class="Chivo webfont">Sold Items (<?= $sold_total ?>)</h3>

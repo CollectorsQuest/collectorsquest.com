@@ -2,6 +2,14 @@
 
 class _blogActions extends cqFrontendActions
 {
+
+  public function preExecute()
+  {
+    $this->getResponse()->addMeta('title', null, true);
+    $this->getResponse()->addMeta('description', null, true);
+    $this->getResponse()->addMeta('keywords', null, true);
+  }
+
   public function executeIndex()
   {
     // We do not want the web debug bar on blog requests

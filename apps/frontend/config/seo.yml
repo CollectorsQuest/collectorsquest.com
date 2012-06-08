@@ -33,11 +33,22 @@ seo:
     description: CollectorsQuest.com has unique collectors items from  every era. Find unique vintage collectibles and antiques sold by trusted buyers.
 
   collection:
+    index:
+      model: true
+      title: %Name%  | A Curated Collection
+      description: At Collectors' Quest, our collectors share their antiques and collections, like this %Name%, a curated collection.
+
     collectible:
-      title: %Name%
+      title: %Name% | %Collection%
+      description: Collectors are selling collectible items such as this %Collection%. CollectorsQuest.com is the place to find %Name%, collectible items and more.
       model: true
 
   collector:
+    index:
+      title: Collectibles for Sale by %DisplayName% | Buy Vintage Collectibles
+      description: CollectorsQuest.com is the best place to find %AboutWhatYouCollect% and collectibles for sale. Find collectors selling %AboutWhatYouCollect%.
+      model: true
+
     signup:
       title: Buy and Sell Collectibles Online | Sign Up at CollectorsQuest.com
       description: Sign up to sell or buy collectibles online. CollectorsQuest.com provides a unique marketplace for buying and selling collectibles online.
@@ -51,6 +62,11 @@ seo:
     index:
       title: Collectibles & Antiques for Sale | Collectors' Quest
       description: CollectorsQuest.com is a trusted source to buy antiques and collectibles online. Our experienced collectors sell an amazing array of collections online.
+
+    browse:
+      model: true
+      title: Collectable %Name% | Vintage Collectable %Name%
+      description: Buy, sell and trade vintage collectable %Name%. Browse over %countCollections% collectible %Name%  in the CollectorsQuest.com marketplace.
 
     categories:
       title: Collectors | Buy Collectors Items in Our Marketplace
