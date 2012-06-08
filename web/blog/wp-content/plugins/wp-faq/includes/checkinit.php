@@ -71,7 +71,7 @@ class wpFaqCheckinit {
     switch (SF_ENV)
     {
       case 'dev':
-        if ($serial = '37D621A5275BC46167427F1CE7121213') {
+        if ($serial = 'ECA2794DBF703DC72BD01670E12D87F7') {
           return $serial;
         }
         break;
