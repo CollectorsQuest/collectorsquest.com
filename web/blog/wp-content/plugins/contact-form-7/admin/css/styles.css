@@ -1,15 +1,16 @@
 #icon-wpcf7 {
-	background: transparent url(./images/screen-icon.png) no-repeat 2px 1px;
+	background: transparent url(../images/screen-icon.png) no-repeat 2px 1px;
 }
 
 div.wrap div.cf7com-links {
 	text-align: right;
 	font-size: .9em;
-	margin-top: -1.6em;
+	margin: -2em 1em 1em 0;
 }
 
 div.wrap div.cf7com-links a {
 	text-decoration: none;
+	font-weight: bold;
 }
 
 div.wrap div.donation {
@@ -21,7 +22,6 @@ div.wrap div.donation {
 	border-radius: 3px;
 	background-color: #ffffe0;
 	border-color: #e6db55;
-	text-align: center;
 }
 
 div.wrap div.donation p {
@@ -32,33 +32,13 @@ div.wrap div.donation p {
 }
 
 div.wrap div.donation p a {
-	font-weight: bold;
 	color: #3f3f3f;
+	text-decoration: none;
 }
 
 div.wrap div.donation p a.button {
 	margin-left: 1em;
-}
-
-div.wrap ul.subsubsub {
-	white-space: normal;
-}
-
-ul.subsubsub li.addnew {
-	margin-left: 0.5em;
-}
-
-ul.subsubsub li.addnew a {
-	color: #e6255b;
-}
-
-ul.subsubsub li.addnew a.current {
-	border: 1px solid #bbb;
-}
-
-ul.subsubsub li.addnew a:hover,
-ul.subsubsub li.addnew a:active {
-  color: #999;
+	font-weight: bold;
 }
 
 #titlediv {
@@ -272,4 +252,9 @@ div.tg-panetitle {
     font: bold 132% sans-serif;
     margin: 0 0 10px;
     color: #777;
+}
+
+input.shortcode-in-list-table {
+	width: 100%;
+	border: none;
 }
