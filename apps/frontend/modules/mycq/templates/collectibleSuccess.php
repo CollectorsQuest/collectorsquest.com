@@ -31,6 +31,9 @@
                   ?>
                   <i class="icon icon-remove-sign" data-multimedia-id="<?= $image->getId(); ?>"></i>
                   <i class="icon icon-plus icon-plus-pos hide"></i>
+                  <span class="icon-edit-holder">
+                    <i class="icon icon-edit"></i>
+                  </span>
                 </div>
               <?php else: ?>
                 <div class="thumbnail drop-zone-large empty" data-is-primary="1">
@@ -49,6 +52,9 @@
                   <?= image_tag_multimedia($multimedia[$i], '150x150', array('width' => 92, 'height' => 92)); ?>
                   <i class="icon icon-remove-sign" data-multimedia-id="<?= $multimedia[$i]->getId(); ?>"></i>
                   <i class="icon icon-plus icon-plus-pos hide"></i>
+                  <span class="icon-edit-holder">
+                    <i class="icon icon-edit"></i>
+                  </span>
                 <?php else: ?>
                   <i class="icon icon-plus white-alternate-view"></i>
                   <span class="info-text">
