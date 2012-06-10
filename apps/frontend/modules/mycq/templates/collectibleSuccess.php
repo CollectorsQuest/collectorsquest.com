@@ -24,8 +24,6 @@
                       $image, '300x0',
                       array(
                         'width' => 294, 'id' => 'multimedia-'. $image->getId(),
-                        //'onclick' => "return launchEditor('multimedia-". $image->getId() ."', '". src_tag_multimedia($image, 'original') ."');"
-                        //'onclick' => "return imageEditor('multimedia-". $image->getId() ."', 'http://images.aviary.com/imagesv5/feather_default.jpg');"
                       )
                     );
                   ?>
@@ -33,9 +31,9 @@
                   <i class="icon icon-plus icon-plus-pos hide"></i>
                   <span class="multimedia-edit icon-edit-holder"
                     data-original-image-url="<?= src_tag_multimedia($image, 'original') ?>"
-                    data-post-data='<?= json_encode(array(
+                    data-post-data='<?= $sf_user->hmacSignMessage(json_encode(array(
                         'multimedia-id' => $image->getId(),
-                    ));?>'
+                    ))); ?>'
                   >
                     <i class="icon icon-edit"></i>
                   </span>
@@ -59,9 +57,9 @@
                   <i class="icon icon-plus icon-plus-pos hide"></i>
                   <span class="multimedia-edit icon-edit-holder"
                     data-original-image-url="<?= src_tag_multimedia($image, 'original') ?>"
-                    data-post-data='<?= json_encode(array(
+                    data-post-data='<?= $sf_user->hmacSignMessage(json_encode(array(
                         'multimedia-id' => $image->getId(),
-                    ));?>'
+                    ))); ?>'
                   >
                     <i class="icon icon-edit"></i>
                   </span>

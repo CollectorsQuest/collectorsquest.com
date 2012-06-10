@@ -519,6 +519,9 @@ feedback:
   url:   /feedback
   param: { module: general, action: feedback }
 
+aviary_update_image:
+  url:   /aviary-update-image
+  param: { module: general, action: aviaryUpdateImage }
 
 ### LEGACY
 
