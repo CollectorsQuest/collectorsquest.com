@@ -1,2 +1,5 @@
 default:
   is_secure: true
+
+aviaryUpdateImage:
+  is_secure: false

@@ -1,7 +1,3 @@
-<?php
-  $aviary_credentials = sfConfig::get('app_credentials_aviary', array());
-?>
-
   <meta charset="utf-8" />
   <?php cq_include_http_metas() ?>
   <?php cq_include_metas() ?>
@@ -31,8 +27,8 @@
       username_cookie: '<?= sfConfig::get('app_collector_username_cookie_name', 'cqUsername'); ?>',
       settings: {
         aviary: {
-          apiKey: '<?= $aviary_credentials['key']; ?>',
-          postUrl: '<?= url_for('@aviary_update_image', true); ?>'
+          apiKey: '<?= cqConfig::getCredentials('aviary', 'api_key'); ?>',
+          postUrl: '<?= url_for('@mycq_aviary_update_image', true); ?>'
         }
       }
     };

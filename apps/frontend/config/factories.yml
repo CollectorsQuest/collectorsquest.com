@@ -34,6 +34,10 @@ dev:
             web_debug_class: sfWebDebug
         sf_file_debug:
           class: sfNoLogger
+          # class: sfFileLogger
+          # param:
+          #   level: debug
+          #   file: %SF_LOG_DIR%/%SF_APP%_%SF_ENVIRONMENT%.log
 
   mailer:
     class: cqMailer

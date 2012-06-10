@@ -21,7 +21,7 @@
           data-original-image-url="<?= src_tag_multimedia($collection->getThumbnail(), 'original') ?>"
           data-post-data='<?= $sf_user->hmacSignMessage(json_encode(array(
               'multimedia-id' => $collection->getThumbnail()->getId(),
-          ))); ?>'
+          )), cqConfig::getCredentials('aviary', 'hmac_secret')); ?>'
         >
           <i class="icon icon-edit"></i>
         </span>

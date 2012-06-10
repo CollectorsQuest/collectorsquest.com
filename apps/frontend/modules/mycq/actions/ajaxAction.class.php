@@ -337,7 +337,12 @@ class ajaxAction extends IceAjaxAction
     /** @var $collector Collector */
     $collector = $this->getUser()->getCollector();
 
-    $image = sfConfig::get('sf_web_dir'). '/images/frontend/multimedia/Collector/default/235x315/'. $avatar_id .'.jpg';
+    $image = sprintf(
+      '%s/images/frontend/multimedia/Collector/default/235x315/%s.jpg',
+      sfConfig::get('sf_web_dir'), $avatar_id
+    );
+
+    /** @var $multimedia iceModelMultimedia */
     if ($multimedia = $collector->setPhoto($image))
     {
       /**
@@ -345,7 +350,7 @@ class ajaxAction extends IceAjaxAction
        * rather than the automatically generated one
        */
       $small = $multimedia->getAbsolutePath('100x100');
-      copy(sfConfig::get('sf_web_dir'). '/images/frontend/multimedia/Collector/default/100x100/'. $avatar_id .'.jpg', $small);
+      copy(str_replace('235x315', '100x100', $image), $small);
 
       return $this->success();
     }

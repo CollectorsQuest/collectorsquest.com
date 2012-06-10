@@ -673,7 +673,7 @@ var AVIARY = window.AVIARY = (function(){
     } else {
       $.isFunction(callback) && callback();
     } // if not aviary_loaded
-  }; // loadAviary()
+  } // loadAviary()
 
   // setup the private aviary_editor variable
   function setupAviary(onLoad) {
@@ -690,7 +690,7 @@ var AVIARY = window.AVIARY = (function(){
     }
 
     return aviary_editor;
-  };
+  }
 
   // set flag that the image was updated
   function aviaryOnSave(image_id, new_url) {

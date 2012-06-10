@@ -167,16 +167,20 @@ class cqBaseUser extends IceSecurityUser
    * Sign a message for the current user session
    *
    * @param     string $message
+   * @param     string $hmac_secret
+   *
    * @return    string
    */
-  public function hmacSignMessage($message)
+  public function hmacSignMessage($message, $hmac_secret = null)
   {
     $time = time();
+
     return json_encode(array(
         'message' => base64_encode($message),
         'time' => $time,
         'hmac' => base64_encode(
-                    hash_hmac('sha1', $message.$time, $this->getHmacSecret()))
+          hash_hmac('sha1', $message.$time, $hmac_secret ?: $this->getHmacSecret())
+        )
     ));
   }
 
@@ -184,12 +188,13 @@ class cqBaseUser extends IceSecurityUser
    * Verify a hmac message
    *
    * @param     string $hmac_message
-   * @param     time $valid_for
+   * @param     string $valid_for
    * @return    mixed False if invalid message, the message string otherwize
    */
-  public function hmacVerifyMessage($hmac_message, $valid_for = '+10 minutes')
+  public function hmacVerifyMessage($hmac_message, $valid_for = '+10 minutes', $hmac_secret = null)
   {
     $data = json_decode($hmac_message, true);
+
     // first check if all required parts of the message are present
     if (!(isset($data['message']) && isset($data['time']) && isset($data['hmac'])))
     {
@@ -206,7 +211,12 @@ class cqBaseUser extends IceSecurityUser
       return false;
     }
 
-    if ($hmac === base64_encode(hash_hmac('sha1', $message.$time, $this->getHmacSecret())))
+    if (null === $hmac_secret)
+    {
+      $hmac_secret = $this->getHmacSecret();
+    }
+
+    if ($hmac === base64_encode(hash_hmac('sha1', $message.$time, $hmac_secret)))
     {
       return $message;
     }

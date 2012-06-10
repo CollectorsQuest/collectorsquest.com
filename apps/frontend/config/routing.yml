@@ -304,6 +304,10 @@ shopping_order_error:
 
 ### MY CQ
 
+mycq_aviary_update_image:
+  url:   /mycq/aviary-update-image
+  param: { module: mycq, action: aviaryUpdateImage }
+
 mycq_profile:
   url:   /mycq/profile
   param: { module: mycq, action: profile }
@@ -518,10 +522,6 @@ recover_password:
 feedback:
   url:   /feedback
   param: { module: general, action: feedback }
-
-aviary_update_image:
-  url:   /aviary-update-image
-  param: { module: general, action: aviaryUpdateImage }
 
 ### LEGACY
 
