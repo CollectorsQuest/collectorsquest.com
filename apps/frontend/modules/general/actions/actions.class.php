@@ -117,13 +117,9 @@ class generalActions extends cqFrontendActions
     return sfView::SUCCESS;
   }
 
-  public function executeCountdown()
+  public function executeDefault()
   {
-    $launch = new DateTime('2012-05-15');
-    $now = new DateTime();
-    $this->time_left = $launch->diff($now);
-
-    return sfView::SUCCESS;
+    $this->redirect('/', 301);
   }
 
   public function executeLogin(sfWebRequest $request)

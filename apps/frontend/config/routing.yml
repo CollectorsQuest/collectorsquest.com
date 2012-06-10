@@ -576,13 +576,17 @@ legacy_collector_by_slug:
   param: { module: collector, action: index }
   requirements: { slug: '[\-\w\.]+' }
 
-# default rules
+
+### DEFAULT
+
 homepage:
   url:   /
   param: { module: general, action: index }
 
-# generic rules
-# please, remove them by adding more specific rules
+default_module:
+  url:   /default/*
+  param: { module: general, action: default }
+
 default_index:
   url:   /:module
   param: { action: index }
