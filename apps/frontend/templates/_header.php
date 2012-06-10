@@ -134,8 +134,19 @@
         <?php
           echo link_to(
             'Collectors Quest', '@homepage',
-            array('class' => 'cq-logo logo hide-text', 'title' => 'Home', 'absolute' => true)
+            array('class' => 'cq-logo logo-development hide-text', 'title' => 'Home', 'absolute' => true)
           );
+        ?>
+        <?php /*
+          echo link_to(
+            'Collectors Quest', '@homepage',
+            array('class' => 'cq-logo logo-staging hide-text', 'title' => 'Home', 'absolute' => true)
+          );
+ 
+          echo link_to(
+            'Collectors Quest', '@homepage',
+            array('class' => 'cq-logo logo hide-text', 'title' => 'Home', 'absolute' => true)
+          ); */
         ?>
         <?php
           /**
