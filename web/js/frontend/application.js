@@ -236,7 +236,28 @@ var COMMON = window.COMMON = (function(){
       COMMON.setupFooterLoginOrSignup();
       COMMON.setupScrollToTop();
       COMMON.setupEmailSpellingHelper();
+      COMMON.setupLinksModalConfirm();
       COMMON.loginLogoutHelpers();
+    },
+    setupLinksModalConfirm: function() {
+      $('a.requires-confirm').on('click', function(e) {
+        var $this = $(this);
+        e.preventDefault();
+
+        MISC.modalConfirm($this.data('modal-title'),
+          $this.data('modal-text'), $this.attr('href'));
+
+        return false;
+      });
+      $('a.requires-confirm-destructive').on('click', function(e) {
+        var $this = $(this);
+        e.preventDefault();
+
+        MISC.modalConfirmDestructive($this.data('modal-title'),
+          $this.data('modal-text'), $this.attr('href'));
+
+        return false;
+      });
     },
     loginLogoutHelpers: function() {
       // set proper logout redirects when included as iframe (only for same domain)
@@ -710,10 +731,75 @@ var AVIARY = window.AVIARY = (function(){
           return false;
         }
       });
-    }
+    } // setup()
   }; // AVIARY public interface object literal
 
 }()); // AVIARY
+
+
+var MISC = window.MISC = (function(){
+
+  function setupIsDestructiveModal($modal, destructive)
+  {
+    if (destructive) {
+      $modal.find('button.proceed').addClass('btn-danger')
+                                   .removeClass('btn-primary');
+    } else {
+      $modal.find('button.proceed').addClass('btn-primary')
+                                   .removeClass('btn-danger');
+    }
+  }
+
+  function commonModalConfirm(destructive, title, text, target, return_callback) {
+    title = title || 'Are you sure?';
+    text  = text  || 'Are you sure you wish to proceeed?'
+    var $modal = $('#confirmation-modal');
+    var callback = $.isFunction(target) && target || function() {
+      window.location.href = target;
+    }
+
+    if (!$modal.data('modal')) {
+      $modal.modal({
+        backdrop: true,
+        keyboard: true,
+        show: false
+      });
+
+      $modal.on('click', 'button.cancel', function() {
+        $modal.modal('hide');
+      });
+    }
+
+    function execute(ev) {
+      // we need to get the proper context for the callback that is passed to us
+      var that = ev.target || this;
+      setupIsDestructiveModal($modal, destructive)
+      $modal.find('.modal-header h3').html(title);
+      $modal.find('.modal-body p').html(text);
+      $modal.modal('show');
+
+      $modal.one('click', 'button.proceed', function() {
+        $modal.one('hidden', $.proxy(callback, that));
+        $modal.modal('hide');
+
+        return true;
+      });
+    };
+
+    return return_callback && execute || execute();
+  };
+
+  return {
+    // target should be either a callable or a URL
+    // if return callback is truthy the modal display routine will be returned
+    modalConfirm: function(title, text, target, return_callback) {
+      return commonModalConfirm(false, title, text, target, return_callback);
+    },
+    modalConfirmDestructive: function(title, text, target, return_callback) {
+      return commonModalConfirm(true, title, text, target, return_callback);
+    }
+  }; // MISC public interface object literal
+}()); // MISC
 
 
 })(this, this.document, jQuery);
