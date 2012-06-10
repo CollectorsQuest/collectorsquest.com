@@ -94,7 +94,7 @@ ice_breadcrumbs:
 
   mycq:
     _prepend:
-      - { name: 'My Account', route: collector_me }
+      - { name: 'My Account', route: mycq }
     collections:
       - { name: 'Collections' }
     collection:
@@ -117,6 +117,7 @@ ice_breadcrumbs:
       - { name: 'Read message' }
 
   seller:
-    index: [{ name: Seller }]
+    _prepend:
+      - { name: 'My Account', route: mycq }
     packages:
       - { name: 'Seller packages' }

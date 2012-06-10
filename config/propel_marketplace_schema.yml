@@ -146,7 +146,7 @@ classes:
       plan_type:            { type: char, sqlType: "ENUM('Casual','Power')", default: NULL, required: true }
       package_name:         { type: varchar, size: 255, required: true }
       package_description:  { type: longvarchar }
-      max_items_for_sale:   { type: integer }
+      credits:              { type: integer, required: true, default: 0 }
       package_price:        { type: float }
 
     propel_behaviors:
@@ -158,10 +158,19 @@ classes:
       package_id:               { type: integer, foreignClass: Package, foreignReference: id, required: true, onDelete: restrict }
       collector_id:             { type: integer, foreignClass: Collector, foreignReference: id, required: true, onDelete: cascade }
       payment_status:           { type: varchar, default: pending, size: 255 }
-      max_items_for_sale:       { type: integer }
+      credits:                  { type: integer, required: true, default: 0 }
       package_price:            { type: float }
       discount:                 { type: float, required: false, sqlType: 'float unsigned' }
       promotion_transaction_id: { type: integer, required: false, foreignClass: PromotionTransaction, foreignReference: id, onDelete: restrict }
+      expiry_date:              { type: timestamp }
+      created_at:  ~
+
+  PackageTransactionCredit:
+    columns:
+      id:  ~
+      package_transaction_id:   { type: integer, foreignClass: Package, foreignReference: id, required: true, onDelete: restrict }
+      collector_id:             { type: integer, required: false }
+      collectible_id:           { type: integer, required: false }
       expiry_date:              { type: timestamp }
       created_at:  ~
 

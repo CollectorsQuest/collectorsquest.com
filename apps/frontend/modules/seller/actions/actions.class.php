@@ -9,16 +9,14 @@
  */
 class sellerActions extends cqFrontendActions
 {
-  /**
-   * Executes index action
-   *
-   * @param sfWebRequest $request A request object
-   *
-   * @return string
-   */
-  public function executeIndex(sfWebRequest $request)
+  public function preExecute()
   {
-    return sfView::SUCCESS;
+    $this->redirectUnless(IceGateKeeper::open('mycq_marketplace'), '@mycq');
+  }
+
+  public function executeIndex()
+  {
+    $this->redirect('@mycq_marketplace');
   }
 
   /**
@@ -26,6 +24,7 @@ class sellerActions extends cqFrontendActions
    *
    * @param sfWebRequest $request
    *
+   * @throws Exception
    * @return string
    */
   public function executePackages(sfWebRequest $request)
@@ -331,6 +330,33 @@ class sellerActions extends cqFrontendActions
     }
 
     $this->redirect('@mycq_collections');
+  }
+
+  public function executeShoppingOrders()
+  {
+    return sfView::SUCCESS;
+  }
+
+  public function executeShoppingOrder()
+  {
+    /** @var $shopping_order ShoppingOrder */
+    $shopping_order = $this->getRoute()->getObject();
+
+    /** @var $shopping_payment ShoppingPayment */
+    $shopping_payment = $shopping_order->getShoppingPaymentRelatedByShoppingPaymentId();
+
+    // Prepare request arrays
+    $GetShippingAddressFields = array(
+      'Key' => $shopping_payment->getProperty('paypal.pay_key')
+    );
+    $PayPalRequestData = array('GetShippingAddressFields' => $GetShippingAddressFields);
+
+    $AdaptivePayments = cqStatic::getPayPaylAdaptivePaymentsClient();
+    $result = $AdaptivePayments->GetShippingAddress($PayPalRequestData);
+
+    dd($result);
+
+    return sfView::SUCCESS;
   }
 
 }

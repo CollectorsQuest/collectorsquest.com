@@ -1,2 +1,9 @@
+all:
+  stylesheets:
+    - frontend/modules/mycq.css
+    - frontend/modules/seller.css
+  components:
+    slot1: [mycq, navigation]
+
 packagesSuccess:
   javascripts: [/assets/js/jquery/creditCardValidator.js]

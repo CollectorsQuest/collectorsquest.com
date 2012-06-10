@@ -109,59 +109,20 @@
       <?= $form['description']->renderRow(); ?>
       <?= $form['tags']->renderRow(); ?>
 
-      <?php if ($form_for_sale): ?>
-      <div class="control-group">
-        <?= $form_for_sale['is_ready']->renderLabel('Available for Sale?'); ?>
-        <div class="controls switch">
-          <?php $enabled = 'on' == $form_for_sale['is_ready']->getValue(); ?>
-          <label class="cb-enable" for="<?=$form_for_sale['is_ready']->renderId()?>"><span>Yes</span></label>
-          <label class="cb-disable selected" for="<?=$form_for_sale['is_ready']->renderId()?>"><span>No</span></label>
-          <?= $form_for_sale['is_ready']->render(array('class' => 'checkbox hide')); ?>
-        </div>
-      </div>
-      <div id="form-collectible-for-sale" class="hide">
-        <div class="control-group">
-          <?= $form_for_sale['price']->renderLabel(); ?>
-          <div class="controls">
-            <div class="with-required-token">
-              <span class="required-token">*</span>
-            <?= $form_for_sale['price']->render(array('class' => 'span2 text-center help-inline', 'required'=>'required')); ?>
-            <?= $form_for_sale['price_currency']->render(array('class' => 'span2 help-inline')); ?>
-            </div>
-          </div>
-        </div>
-        <div class="control-group">
-          <?= $form_for_sale['quantity']->renderLabel(); ?>
-          <div class="controls">
-            <?= $form_for_sale['quantity']->render(array('class' => 'span2 help-inline text-center')); ?>
-          </div>
-        </div>
-        <div class="control-group">
-          <?= $form_for_sale['condition']->renderLabel(); ?>
-          <div class="controls">
-            <?= $form_for_sale['condition']->render(array('class' => 'span4 help-inline')); ?>
-          </div>
-        </div>
-
-        <div class="control-group">
-          <label class="control-label">Shipping</label>
-          <div class="controls">
-            <label class="radio">
-              <input type="radio" name="optionsRadios" value="option1" checked="">
-              Free Shipping
-            </label>
-            <label class="radio">
-              <input class="help-inline" type="radio" name="optionsRadios" value="option1">
-              Flat Rate (please specify):
-              <input type="text" placeholder="input price" class="span3 help-inline price-indent">
-              <select class="span2 help-inline">
-                <option value="USD" selected="selected">USD</option>
-              </select>
-            </label>
-          </div>
-        </div>
-      </div>
-      <?php endif; ?>
+      <?php
+        if ($form_for_sale)
+        {
+          include_partial(
+            'mycq/collectible_form_for_sale',
+            array('collectible' => $collectible, 'form' => $form_for_sale)
+          );
+        }
+        else
+        {
+          echo image_tag('banners/want-to-sell-this-item.png', array('align' => 'right'));
+          echo '<br clear="all"/><br/>';
+        }
+      ?>
 
     </div><!-- ./span8 -->
 
@@ -219,8 +180,6 @@
   </ul>
 </div>
 <?php endif; ?>
-
-<?php // include_partial('mycq/aviary_feathers'); ?>
 
 <script type="text/javascript">
 $(document).ready(function()

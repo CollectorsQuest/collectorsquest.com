@@ -422,7 +422,17 @@ seller_callback_ipn:
   url: /seller/ipn
   param: { module: seller, action: callbackIPN }
   options: { extra_parameters_as_query_string: true }
-  requirements: { sf_method: [POST]}
+  requirements: { sf_method: [post] }
+
+seller_shopping_order:
+  url:   /seller/order/:uuid
+  class: sfPropelRoute
+  options: { model: ShoppingOrder, type: object }
+  param: { module: seller, action: shoppingOrder }
+
+seller_shopping_orders:
+  url:   /seller/orders
+  param: { module: seller, action: shoppingOrders }
 
 ### TAGS
 

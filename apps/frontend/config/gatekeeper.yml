@@ -7,8 +7,8 @@ all:
 next:
   pages: ~
   features:
-    shopping_cart: true
-    mycq_marketplace: true
+    shopping_cart: false
+    mycq_marketplace: false
 
 dev:
   pages: ~

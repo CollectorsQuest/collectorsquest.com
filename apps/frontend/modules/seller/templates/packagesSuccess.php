@@ -1,7 +1,6 @@
 <?php
 /* @var $packagesForm SellerPackagesForm */
 ?>
-<?php cq_page_title('Seller Packages') ?>
 
 <div class="span8">
   <h3>Why Sell on Collectors Quest?</h3>

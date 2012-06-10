@@ -1,5 +1,8 @@
 all:
-  stylesheets: [frontend/modules/messages.css]
+  stylesheets:
+    - frontend/modules/mycq.css
+    - frontend/modules/messages.css
+
   components:
     slot1: [mycq, navigation]
     sidebar_180: [messages, sidebar]
