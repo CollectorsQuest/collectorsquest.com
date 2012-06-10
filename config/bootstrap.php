@@ -4,23 +4,15 @@ $app = isset($_SERVER['SF_APP']) ? $_SERVER['SF_APP'] : 'frontend';
 $env = isset($_SERVER['SF_ENV']) ? $_SERVER['SF_ENV'] : 'prod';
 $dbg = isset($_SERVER['SF_DEBUG']) ? (boolean) $_SERVER['SF_DEBUG'] : false;
 
-if (
-  $_SERVER['SERVER_NAME'] == 'backend.collectorsquest.dev' ||
-  $_SERVER['SERVER_NAME'] == 'backend.collectorsquest.legacy'
-) {
-  $app = 'backend';
-  $env = 'dev';
-  $dbg = true;
-}
-else if (false !== stripos($_SERVER['SERVER_NAME'], 'collectorsquest.legacy'))
+if ($_SERVER['SERVER_NAME'] == 'backend.collectorsquest.dev')
 {
-  $app = 'disabled';
+  $app = 'backend';
   $env = 'dev';
   $dbg = true;
 }
 else if (
   false !== stripos($_SERVER['SERVER_NAME'], 'collectorsquest.dev') ||
-  $_SERVER['SERVER_NAME'] == '92.247.221.137' ||
+  $_SERVER['SERVER_NAME'] == '92.247.236.83' ||
   $_SERVER['SERVER_NAME'] == 'zecho.dyndns-home.com'
 ) {
   $app = 'frontend';

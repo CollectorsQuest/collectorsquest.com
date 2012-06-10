@@ -1,9 +1,0 @@
-index:
-  enabled:     true
-  with_layout: false
-  lifetime:    60
-
-_indexTheme:
-  enabled:     true
-  with_layout: false
-  lifetime:    60

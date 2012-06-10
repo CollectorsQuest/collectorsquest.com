@@ -4,11 +4,9 @@ require_once __DIR__ .'/../../../lib/collectorsquest/cqApplicationConfiguration.
 
 class backendConfiguration extends cqApplicationConfiguration
 {
-  /** @var IcePatternRouting */
-  protected $frontendRouting = null;
 
   /** @var IcePatternRouting */
-  protected $legacyRouting = null;
+  protected $frontendRouting = null;
 
   public function configure()
   {
@@ -39,21 +37,4 @@ class backendConfiguration extends cqApplicationConfiguration
     return $this->frontendRouting;
   }
 
-  /**
-   * @return IcePatternRouting
-   */
-  public function getLegacyRouting()
-  {
-    if (!$this->legacyRouting)
-    {
-      $this->legacyRouting = new IcePatternRouting(new sfEventDispatcher());
-
-      $config = new sfRoutingConfigHandler();
-      $routes = $config->evaluate(array(sfConfig::get('sf_apps_dir').'/legacy/config/routing.yml'));
-
-      $this->legacyRouting->setRoutes($routes);
-    }
-
-    return $this->legacyRouting;
-  }
 }

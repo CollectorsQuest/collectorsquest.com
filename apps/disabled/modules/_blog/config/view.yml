@@ -1,4 +1,0 @@
-all:
-  components:
-    sidebar: [_blog, sidebar]
-  stylesheets: [legacy/blog.css]
