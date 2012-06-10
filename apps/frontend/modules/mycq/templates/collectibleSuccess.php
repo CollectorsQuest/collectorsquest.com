@@ -303,7 +303,8 @@ $(document).ready(function()
     }
   });
 
-  $('#main-image-set .icon-remove-sign').click(function()
+  $('#main-image-set .icon-remove-sign').click(MISC.modalConfirmDestructive(
+    'Delete image', 'Are you sure you want to delete this image?', function()
   {
     var $icon = $(this);
 
@@ -323,7 +324,7 @@ $(document).ready(function()
         $icon.show();
       }
     });
-  });
+  }, true));
 
   $('#collectible_for_sale_is_ready').change(function()
   {

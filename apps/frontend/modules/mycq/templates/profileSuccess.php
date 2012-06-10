@@ -405,7 +405,8 @@
 <script>
 $(document).ready(function()
 {
-  $('img.avatars').click(function()
+  $('img.avatars').click(MISC.modalConfirm(
+    'Change avatar', 'Are you sure you want to change your avatar to one of our defaults?', function()
   {
     $('div.avatar').showLoading();
 
@@ -424,10 +425,10 @@ $(document).ready(function()
         $('div.avatar').hideLoading();
       }
     });
+  }, true));
 
-  });
-
-  $('div.avatar .icon-remove-sign').click(function()
+  $('div.avatar .icon-remove-sign').click(MISC.modalConfirmDestructive(
+    'Remove avatar', 'Are you sure you want to remove your avatar?', function()
   {
     var $icon = $(this);
 
@@ -446,6 +447,7 @@ $(document).ready(function()
         $('div.avatar').hideLoading();
       }
     });
-  });
+  }, true));
+
 });
 </script>
