@@ -31,7 +31,12 @@
                   ?>
                   <i class="icon icon-remove-sign" data-multimedia-id="<?= $image->getId(); ?>"></i>
                   <i class="icon icon-plus icon-plus-pos hide"></i>
-                  <span class="icon-edit-holder">
+                  <span class="multimedia-edit icon-edit-holder"
+                    data-original-image-url="<?= src_tag_multimedia($image, 'original') ?>"
+                    data-post-data='<?= json_encode(array(
+                        'multimedia-id' => $image->getId(),
+                    ));?>'
+                  >
                     <i class="icon icon-edit"></i>
                   </span>
                 </div>
@@ -52,7 +57,12 @@
                   <?= image_tag_multimedia($multimedia[$i], '150x150', array('width' => 92, 'height' => 92)); ?>
                   <i class="icon icon-remove-sign" data-multimedia-id="<?= $multimedia[$i]->getId(); ?>"></i>
                   <i class="icon icon-plus icon-plus-pos hide"></i>
-                  <span class="icon-edit-holder">
+                  <span class="multimedia-edit icon-edit-holder"
+                    data-original-image-url="<?= src_tag_multimedia($image, 'original') ?>"
+                    data-post-data='<?= json_encode(array(
+                        'multimedia-id' => $image->getId(),
+                    ));?>'
+                  >
                     <i class="icon icon-edit"></i>
                   </span>
                 <?php else: ?>

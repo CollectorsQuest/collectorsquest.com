@@ -162,8 +162,8 @@ var APP = window.APP = {
         }, 100);
       });
     },
-    collections: function() {
-
+    collectible: function() {
+      MYCQ_COLLECTIBLE.setup();
     }
   } // mycq
 
@@ -628,5 +628,92 @@ var SEARCH = window.SEARCH = (function(){
 
   }; // SEARCH object literal
 }());
+
+
+var MYCQ_COLLECTIBLE = window.MYCQ_COLLECTIBLE = (function(){
+
+  var aviary_loaded = false;
+  var aviary_image_updated = false;
+  var aviary_editor;
+
+  // load aviary if not already loaded
+  function loadAviary(callback) {
+    if (false === aviary_loaded) {
+      Modernizr.load({
+        load: '//feather.aviary.com/js/feather.js',
+        callback: function() {
+          aviary_loaded = true;
+          typeof callback === 'function' && callback();
+        }
+      });
+    } else {
+      typeof callback === 'function' && callback();
+    } // if not aviary_loaded
+  }; // loadAviary()
+
+  // setup the private aviary_editor variable
+  function setupAviary(onLoad) {
+    if (undefined === aviary_editor) {
+      aviary_editor = new Aviary.Feather($.extend({}, window.cq.settings.aviary, {
+        apiVersion: 2,
+        tools: 'orientation,crop,text',
+        onSave: aviaryOnSave,
+        onClose: aviaryOnClose,
+        onLoad: typeof onLoad === 'function' && onload || window.noop,
+        appendTo: ''
+      }));
+    }
+
+    return aviary_editor;
+  };
+
+  // set flag that the image was updated
+  function aviaryOnSave(image_id, new_url) {
+    aviary_image_updated = true;
+  }
+
+  // if the image was updated reload the page, so that a new thumbnail
+  // will be created
+  function aviaryOnClose()
+  {
+    if (aviary_image_updated) {
+      window.location.reload();
+    }
+  }
+
+  // return object literal of callable functions
+  return {
+    setupAviary: function() {
+      // async load Aviary and setup the "aviary_editor" variable
+      loadAviary(setupAviary);
+
+      $('.multimedia-edit').on('click', function clickclackclock() {
+        // if aviary is loaded
+        if (undefined !== aviary_editor && AV.feather_loaded) {
+          var $this = $(this);
+          // launch the image editor
+          aviary_editor.launch({
+            image: $this.siblings('img')[0],
+            postData: $this.data('post-data'),
+            //url: $this.data('original-image-url')
+            // test image
+             url: 'http://images.aviary.com/imagesv5/feather_default.jpg'
+          });
+        } else {
+          // call this function again until we have the editor available
+          setTimeout($.proxy(clickclackclock, this), 100);
+
+          return false;
+        }
+      });
+    },
+
+    setup: function() {
+      MYCQ_COLLECTIBLE.setupAviary();
+    }
+  }; // MYCQ object literal
+
+}()); // MYCQ_COLLECTIBLE
+
 
 })(this, this.document, jQuery);
