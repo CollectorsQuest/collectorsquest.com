@@ -659,7 +659,8 @@ var AVIARY = window.AVIARY = (function(){
     if (undefined === aviary_editor) {
       aviary_editor = new Aviary.Feather($.extend({}, window.cq.settings.aviary, {
         apiVersion: 2,
-        tools: 'orientation,crop,text',
+        tools: 'orientation,crop,text,effects,enhance,brightness,contrast,sharpness,saturation',
+        minimumStyling: true,
         onSave: aviaryOnSave,
         onClose: aviaryOnClose,
         onLoad: typeof onLoad === 'function' && onload || window.noop,
