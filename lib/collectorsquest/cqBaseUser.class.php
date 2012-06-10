@@ -163,6 +163,85 @@ class cqBaseUser extends IceSecurityUser
     return $this->collector;
   }
 
+  /**
+   * Sign a message for the current user session
+   *
+   * @param     string $message
+   * @return    string
+   */
+  public function hmacSignMessage($message)
+  {
+    $time = time();
+    return json_encode(array(
+        'message' => base64_encode($message),
+        'time' => $time,
+        'hmac' => base64_encode(
+                    hash_hmac('sha1', $message.$time, $this->getHmacSecret()))
+    ));
+  }
+
+  /**
+   * Verify a hmac message
+   *
+   * @param     string $hmac_message
+   * @param     time $valid_for
+   * @return    mixed False if invalid message, the message string otherwize
+   */
+  public function hmacVerifyMessage($hmac_message, $valid_for = '+10 minutes')
+  {
+    $data = json_decode($hmac_message, true);
+    // first check if all required parts of the message are present
+    if (!(isset($data['message']) && isset($data['time']) && isset($data['hmac'])))
+    {
+      return false;
+    }
+
+    $message = base64_decode($data['message']);
+    $time = $data['time'];
+    $hmac = $data['hmac'];
+
+    // check if the message has timed out
+    if (time() > strtotime($valid_for, $time))
+    {
+      return false;
+    }
+
+    if ($hmac === base64_encode(hash_hmac('sha1', $message.$time, $this->getHmacSecret())))
+    {
+      return $message;
+    }
+
+    return false;
+  }
+
+  /**
+   * Get the current user's hmac secret (will be generated if not set)
+   *
+   * @return    string
+   */
+  public function getHmacSecret()
+  {
+    if (!$this->hasAttribute('secret', 'hmac'))
+    {
+      $this->regenerateHmacSecret();
+    }
+
+    return $this->getAttribute('secret', null, 'hmac');
+  }
+
+  /**
+   * Regenerate the current user's hmac secret.
+   *
+   * @return    cqBaseUser
+   */
+  public function regenerateHmacSecret()
+  {
+    $this->setAttribute('secret', sha1(uniqid(null, true)), 'hmac');
+
+    return $this;
+  }
+
+
   public function clearAttributes()
   {
     parent::clearAttributes();
