@@ -646,11 +646,11 @@ var AVIARY = window.AVIARY = (function(){
         load: '//feather.aviary.com/js/feather.js',
         callback: function() {
           aviary_loaded = true;
-          typeof callback === 'function' && callback();
+          $.isFunction(callback) && callback();
         }
       });
     } else {
-      typeof callback === 'function' && callback();
+      $.isFunction(callback) && callback();
     } // if not aviary_loaded
   }; // loadAviary()
 
@@ -663,7 +663,7 @@ var AVIARY = window.AVIARY = (function(){
         minimumStyling: true,
         onSave: aviaryOnSave,
         onClose: aviaryOnClose,
-        onLoad: typeof onLoad === 'function' && onload || window.noop,
+        onLoad: $.isFunction(onLoad) && onload || window.noop,
         appendTo: ''
       }));
     }
@@ -699,9 +699,9 @@ var AVIARY = window.AVIARY = (function(){
           aviary_editor.launch({
             image: $this.siblings('img')[0],
             postData: $this.data('post-data'),
-            //url: $this.data('original-image-url')
+            url: $this.data('original-image-url')
             // test image
-             url: 'http://images.aviary.com/imagesv5/feather_default.jpg'
+            // url: 'http://images.aviary.com/imagesv5/feather_default.jpg'
           });
         } else {
           // call this function again until we have the editor available
