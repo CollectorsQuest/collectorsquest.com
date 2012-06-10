@@ -11,11 +11,19 @@
 
 <div class="row-fluid">
   <div class="span3">
-    <div class="drop-zone-large">
+    <div class="drop-zone-large thumbnail collection">
       <?php if ($collection->hasThumbnail()): ?>
         <?= image_tag_collection($collection, '190x190'); ?>
         <span class="plus-icon-holder h-center" style="display: none; padding-top: 25px;">
           <i class="icon icon-download-alt icon-white"></i>
+        </span>
+        <span class="multimedia-edit icon-edit-holder"
+          data-original-image-url="<?= src_tag_multimedia($collection->getThumbnail(), 'original') ?>"
+          data-post-data='<?= $sf_user->hmacSignMessage(json_encode(array(
+              'multimedia-id' => $collection->getThumbnail()->getId(),
+          ))); ?>'
+        >
+          <i class="icon icon-edit"></i>
         </span>
       <?php else: ?>
         <a class="plus-icon-holder h-center" href="#">

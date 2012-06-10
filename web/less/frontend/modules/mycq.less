@@ -987,6 +987,63 @@ textarea.input-xlarge {
 	padding: 35px 0 15px 35px;
 }
 
+.thumbnail {
+  position: relative;
+
+  .icon-edit-holder {
+    position: absolute;
+    display: none;
+    cursor: pointer;
+    background-color: transparent;
+    background-color: rgba(0, 0, 0, 0.6);  /* FF3+, Saf3+, Opera 10.10+, Chrome, IE9 */
+              filter: ~"progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000,endColorstr=#99000000)";
+              zoom: 1;
+    i {
+      color: @grayLighter;
+    }
+  }
+  &:hover .icon-edit-holder {
+    display: block;
+  }
+
+  &.drop-zone-large {
+    .icon-edit-holder {
+      top: 25%;
+      left: 30%;
+      .square(105px);
+      i {
+        font-size: 80px;
+      }
+    }
+  }
+  &.drop-zone {
+    .icon-edit-holder {
+      top: 25%;
+      left: 25%;
+      .square(40px);
+      i {
+        position: absolute;
+        top: -14px;
+        left: 3px;
+        font-size: 30px;
+      }
+    }
+  }
+  &.collection {
+    .icon-edit-holder {
+      top: 27%;
+      left: 27%;
+      .square(80px);
+      i {
+        position: absolute;
+        top: 10px;
+        left: 12px;
+        font-size: 60px;
+      }
+    }
+  }
+
+}
 
 #main-image-set {
   width: 100%;
@@ -1019,51 +1076,6 @@ textarea.input-xlarge {
             display: none;
           }
         }
-      }
-
-      .thumbnail {
-        position: relative;
-
-        .icon-edit-holder {
-          position: absolute;
-          display: none;
-          cursor: pointer;
-          background-color: transparent;
-          background-color: rgba(0, 0, 0, 0.6);  /* FF3+, Saf3+, Opera 10.10+, Chrome, IE9 */
-                    filter: ~"progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000,endColorstr=#99000000)";
-                    zoom: 1;
-          i {
-            color: @grayLighter;
-          }
-        }
-        &:hover .icon-edit-holder {
-          display: block;
-        }
-
-        &.drop-zone-large {
-          .icon-edit-holder {
-            top: 25%;
-            left: 30%;
-            .square(105px);
-            i {
-              font-size: 80px;
-            }
-          }
-        }
-        &.drop-zone {
-          .icon-edit-holder {
-            top: 25%;
-            left: 25%;
-            .square(40px);
-            i {
-              position: absolute;
-              top: -14px;
-              left: 3px;
-              font-size: 30px;
-            }
-          }
-        }
-
       }
 
       a {

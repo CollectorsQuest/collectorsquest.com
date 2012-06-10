@@ -162,8 +162,11 @@ var APP = window.APP = {
         }, 100);
       });
     },
+    collection: function() {
+      AVIARY.setup();
+    },
     collectible: function() {
-      MYCQ_COLLECTIBLE.setup();
+      AVIARY.setup();
     }
   } // mycq
 
@@ -630,7 +633,7 @@ var SEARCH = window.SEARCH = (function(){
 }());
 
 
-var MYCQ_COLLECTIBLE = window.MYCQ_COLLECTIBLE = (function(){
+var AVIARY = window.AVIARY = (function(){
 
   var aviary_loaded = false;
   var aviary_image_updated = false;
@@ -683,7 +686,7 @@ var MYCQ_COLLECTIBLE = window.MYCQ_COLLECTIBLE = (function(){
 
   // return object literal of callable functions
   return {
-    setupAviary: function() {
+    setup: function() {
       // async load Aviary and setup the "aviary_editor" variable
       loadAviary(setupAviary);
 
@@ -706,14 +709,10 @@ var MYCQ_COLLECTIBLE = window.MYCQ_COLLECTIBLE = (function(){
           return false;
         }
       });
-    },
-
-    setup: function() {
-      MYCQ_COLLECTIBLE.setupAviary();
     }
-  }; // MYCQ object literal
+  }; // AVIARY public interface object literal
 
-}()); // MYCQ_COLLECTIBLE
+}()); // AVIARY
 
 
 })(this, this.document, jQuery);
