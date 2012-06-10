@@ -173,13 +173,16 @@ class cqBaseUser extends IceSecurityUser
    */
   public function hmacSignMessage($message, $hmac_secret = null)
   {
+    $id = $this->getId();
+    $hmac_secret = $id.($hmac_secret ?: $this->getHmacSecret());
     $time = time();
 
     return json_encode(array(
+        'id' => $id,
         'message' => base64_encode($message),
         'time' => $time,
         'hmac' => base64_encode(
-          hash_hmac('sha1', $message.$time, $hmac_secret ?: $this->getHmacSecret())
+          hash_hmac('sha1', $id.$message.$time, $hmac_secret)
         )
     ));
   }
@@ -202,8 +205,9 @@ class cqBaseUser extends IceSecurityUser
     }
 
     $message = base64_decode($data['message']);
-    $time = $data['time'];
-    $hmac = $data['hmac'];
+    $id   = (int) $data['id'];
+    $time = (int) $data['time'];
+    $hmac = (string) $data['hmac'];
 
     // check if the message has timed out
     if (time() > strtotime($valid_for, $time))
@@ -211,12 +215,10 @@ class cqBaseUser extends IceSecurityUser
       return false;
     }
 
-    if (null === $hmac_secret)
-    {
-      $hmac_secret = $this->getHmacSecret();
-    }
+    // Construct the hmac secret
+    $hmac_secret = $id.($hmac_secret ?: $this->getHmacSecret());
 
-    if ($hmac === base64_encode(hash_hmac('sha1', $message.$time, $hmac_secret)))
+    if ($hmac === base64_encode(hash_hmac('sha1', $id.$message.$time, $hmac_secret)))
     {
       return $message;
     }
