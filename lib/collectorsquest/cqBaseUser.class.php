@@ -192,22 +192,26 @@ class cqBaseUser extends IceSecurityUser
    *
    * @param     string $hmac_message
    * @param     string $valid_for
+   * @param     null|string $hmac_secret
+   *
    * @return    mixed False if invalid message, the message string otherwize
    */
   public function hmacVerifyMessage($hmac_message, $valid_for = '+10 minutes', $hmac_secret = null)
   {
     $data = json_decode($hmac_message, true);
 
-    // first check if all required parts of the message are present
-    if (!(isset($data['message']) && isset($data['time']) && isset($data['hmac'])))
-    {
+    // First check if all required parts of the message are present
+    if (
+      !isset($data['id']) || !isset($data['message']) ||
+      !isset($data['time']) || !isset($data['hmac'])
+    ) {
       return false;
     }
 
-    $message = base64_decode($data['message']);
-    $id   = (int) $data['id'];
-    $time = (int) $data['time'];
-    $hmac = (string) $data['hmac'];
+    $id      = (int) $data['id'];
+    $time    = (int) $data['time'];
+    $hmac    = (string) $data['hmac'];
+    $message = base64_decode((string) $data['message']);
 
     // check if the message has timed out
     if (time() > strtotime($valid_for, $time))
