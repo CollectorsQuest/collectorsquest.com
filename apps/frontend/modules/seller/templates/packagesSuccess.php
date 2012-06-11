@@ -28,15 +28,18 @@
           <?=$packagesForm['promo_code']->renderLabel(null, array('class'=> 'control-label'))?>
           <div class="controls form-inline">
             <?=$packagesForm['promo_code']->render()?>
-            <button type="submit" name="submit" value="applyPromo">Apply</button>
+            <button type="submit" name="applyPromo" id="applyPromo3" value="applyPromo">Apply</button>
             <?=$packagesForm['promo_code']->renderError() ?>
             <?php if (!empty($discountMessage)): ?>
             <span style="color: green; font-weight: bold;"><?=$discountMessage ?></span>
             <?php endif; ?>
           </div>
-          <?= $packagesForm['payment_type']->renderRow() ?>
         </div>
+        <?php if (IceGateKeeper::open('mycq_marketplace')): ?>
+        <?= $packagesForm['payment_type']->renderRow() ?>
+        <?php endif; ?>
       </fieldset>
+      <?php if (IceGateKeeper::open('mycq_marketplace')): ?>
       <fieldset id="credit_card" class="form-container-center">
         <?= $packagesForm['cc_type']->renderRow() ?>
         <?= $packagesForm['cc_number']->renderRow() ?>
@@ -50,15 +53,18 @@
         <?= $packagesForm['zip']->renderRow() ?>
         <?= $packagesForm['country']->renderRow() ?>
       </fieldset>
+      <?php endif; ?>
       <fieldset class="form-container-center">
         <label for="<?= $packagesForm['terms']->renderId() ?>" class="radio inline">
           <?= $packagesForm['terms']->render() ?>&nbsp;
-          I accept the <a href="/blog/terms-and-conditions/" title="terms and conditions" target="_blank">terms and conditions</a> set forth by this site.</label>
+          I accept the
+          <a href="/blog/terms-and-conditions/" title="terms and conditions" target="_blank">terms and conditions</a> set forth by this site.</label>
       </fieldset>
       <h5 style="margin-top: 10px;">* To avoid interruption of service, annual subscriptions
         automatically renew at the end of the subscription period</h5>
+
       <div class="form-actions">
-        <input type="submit" class="btn btn-primary blue-button" value="Sign up" />
+        <button type="submit" class="btn btn-primary blue-button">Sign up</button>
       </div>
     </form>
   </div>

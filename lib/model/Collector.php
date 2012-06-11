@@ -839,12 +839,12 @@ class Collector extends BaseCollector implements ShippingRatesInterface
     $collectiblesForSale = 0;
     foreach ($activePackageTransactions as $packageTransaction)
     {
-      if ($packageTransaction->getMaxItemsForSale() < 0)
+      if ($packageTransaction->getCredits() < 0)
       {
         $collectiblesForSale = 10000;
         break;
       }
-      $collectiblesForSale += $packageTransaction->getMaxItemsForSale();
+      $collectiblesForSale += $packageTransaction->getCredits();
     }
 
     $this->setMaxCollectiblesForSale($collectiblesForSale);
