@@ -823,3 +823,19 @@ class fixImageMargins{
   }
 }
 $fixImageMargins = new fixImageMargins();
+
+
+// hiding JetPack Menu from non-admins
+function remove_menu_items() {
+  if (!current_user_can( 'administrator' )) {
+    global $menu;
+    $restricted = array(__('jetpack'),__('Jetpack'));
+    end ($menu);
+    while (prev($menu)){
+      $value = explode(' ',$menu[key($menu)][0]);
+      if(in_array($value[0] != NULL?$value[0]:"" , $restricted)){
+        unset($menu[key($menu)]);}
+    }
+  }
+}
+add_action('admin_menu', 'remove_menu_items',11);
