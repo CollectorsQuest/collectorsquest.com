@@ -448,10 +448,9 @@ function add_fixed_sidebar() {
   <script>
 
     $(document).ready(function() {
-      $('#sidebar').scrollToFixed({
-        limit: $('#footer').offset().top - $('#sidebar').outerHeight() - 10
+        $('#sidebar').scrollToFixed({ limit: $($('#sidebar')).offset().top });
       });
-    });
+
 
 
   </script>
