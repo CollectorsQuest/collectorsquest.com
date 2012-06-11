@@ -35,7 +35,7 @@
                         'multimedia-id' => $image->getId(),
                     ))); ?>'
                   >
-                    <i class="icon icon-edit"></i>
+                    <i class="icon icon-wrench"></i>
                   </span>
                 </div>
               <?php else: ?>
@@ -61,7 +61,7 @@
                         'multimedia-id' => $image->getId(),
                     ))); ?>'
                   >
-                    <i class="icon icon-edit"></i>
+                    <i class="icon icon-wrench"></i>
                   </span>
                 <?php else: ?>
                   <i class="icon icon-plus white-alternate-view"></i>
