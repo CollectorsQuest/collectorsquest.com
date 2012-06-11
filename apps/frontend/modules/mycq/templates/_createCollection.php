@@ -44,6 +44,7 @@
     </div>
   <?php endif; ?>
 
+  <?= $form->renderHiddenFields() ?>
 </form>
 
 <?php

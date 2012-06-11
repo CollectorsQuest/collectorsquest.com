@@ -13,13 +13,13 @@
  */
 .tagedit-list {
   margin: 0;
-  padding: 5px 5px 0 5px;
+  padding: 3px 3px 0 3px;
   border: 1px solid #ccc;
   overflow: auto;
-  min-height: 28px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
+  min-height: 24px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
 }
 
 .tagedit-list input:focus {
@@ -37,7 +37,7 @@
 .tagedit-list li.tagedit-listelement {
   list-style-type: none;
   float: left;
-  margin: 0 5px 5px 0;
+  margin: 0 5px 3px 0;
   padding: 0;
 }
 
@@ -46,6 +46,7 @@
   border: 0;
   height: 100%;
   padding: 2px 5px;
+  padding-bottom: 0;
   width: 15px;
   background: #fff;
 }
@@ -62,7 +63,7 @@
 .tagedit-list li.tagedit-listelement-old {
   background: #E6F2F9 url(/images/icons/tagedit/disc.png) 4px center no-repeat;
   border: 1px solid #CAD8F3;
-  padding: 2px 0 2px 13px;
+  padding: 1px 0 0 13px;
   -moz-border-radius: 8px 4px 4px 8px;
   -webkit-border-radius: 8px 4px 4px 8px;
   border-radius: 8px 4px 4px 8px;

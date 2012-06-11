@@ -474,7 +474,7 @@ class Collector extends BaseCollector implements ShippingRatesInterface
 
   public function getCollectionDropbox()
   {
-    return !$this->isNew() ? new CollectionDropbox($this->getId()) : null;
+    return $this->getId() ? new CollectionDropbox($this->getId()) : null;
   }
 
   public function hasFacebook()

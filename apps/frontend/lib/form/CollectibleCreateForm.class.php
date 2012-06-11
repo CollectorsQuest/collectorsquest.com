@@ -10,21 +10,21 @@ class CollectibleCreateForm extends CollectibleForm
         'label' => 'Collectible Name',
       ), array(
         'required' => 'required',
-        'style' => 'width: 360px;'
+        'class' => 'input-xlarge'
       )),
       'tags'  => new sfWidgetFormInputText(array(
         'label' => 'Tags'
       ), array(
         'required' => 'required',
-        'style' => 'width: 360px;'
+        'class' => 'input-xlarge'
       )),
       'thumbnail'  => new sfWidgetFormInputHidden()
     ));
 
     $this->setValidators(array(
-      'collection_id'    => new sfValidatorPropelChoice(
-        array('model' => 'Collection', 'column' => 'id', 'required' => true)
-      ),
+      'collection_id'  => new sfValidatorPropelChoice(array(
+        'model' => 'CollectorCollection', 'column' => 'id', 'required' => true
+      )),
       'name'  => new sfValidatorString(),
       'thumbnail'  => new sfValidatorInteger(array('required' => false))
     ));
@@ -43,9 +43,8 @@ class CollectibleCreateForm extends CollectibleForm
     $tags = $this->getObject()->getTags();
 
     $this->widgetSchema['tags'] = new cqWidgetFormMultipleInputText(array(
-      'label' => 'Tags'
+      'label' => 'Tags',
     ), array(
-      'name' => 'collectible[tags][]',
       'required' => 'required',
       'class' => 'tag'
     ));

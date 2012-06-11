@@ -389,8 +389,14 @@ class mycqActions extends cqFrontendActions
       ->filterByIsSold(true);
     $this->sold_total = $q->count();
 
-    $dropbox = $seller->getCollectionDropbox();
-    $this->dropbox_total = $dropbox->countCollectibles();
+    if ($dropbox = $seller->getCollectionDropbox())
+    {
+      $this->dropbox_total = $dropbox->countCollectibles();
+    }
+    else
+    {
+      $this->dropbox_total = 0;
+    }
 
     // Make the seller available to the template
     $this->seller = $seller;

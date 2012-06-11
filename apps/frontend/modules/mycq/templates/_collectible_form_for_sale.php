@@ -14,7 +14,10 @@
     </label>
     <?= $form['is_ready']->render(array('class' => 'checkbox hide')); ?>
   </div>
+  <br style="clear: both;"/>
+  <?= $form['is_ready']->renderError(); ?>
 </div>
+
 <div id="form-collectible-for-sale" class="hide">
   <?php if ($sf_user->getSeller()->hasPackageCredits()): ?>
   <div class="control-group">
@@ -60,7 +63,7 @@
             <div class="span12">
               <span class="Chivo webfont buy-credits">
                 Want to sell this collectible?<br/>
-                You can start selling for a small fee.
+                Start selling now for a small fee.
               </span>
               <div class="row-fluid spacer-inner-top-15">
                 <div class="span6">
@@ -102,3 +105,18 @@
   </div>
   <?php endif; ?>
 </div>
+
+<script type="text/javascript">
+$(document).ready(function()
+{
+  $('#collectible_for_sale_is_ready').change(function()
+  {
+    var checked = $(this).attr('checked') == 'checked';
+    $('#form-collectible-for-sale').toggleClass(
+      'hide', !checked
+    );
+    $('.cb-enable').toggleClass('selected', checked);
+    $('.cb-disable').toggleClass('selected', !checked);
+  }).change();
+});
+</script>

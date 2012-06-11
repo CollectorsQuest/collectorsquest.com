@@ -104,7 +104,7 @@
 		}
 		else {
 			// Elementname does not match the expected format, exit
-			alert('elementname dows not match the expected format (regexp: '+baseNameRegexp+')')
+			alert('elementname does not match the expected format (regexp: '+baseNameRegexp+')')
 			return;
 		}
 
@@ -403,7 +403,7 @@
 		function isNew(value, checkAutocomplete) {
             checkAutocomplete = typeof checkAutocomplete == 'undefined'? false : checkAutocomplete;
 			var autoCompleteId = null;
-            
+
             var compareValue = options.checkNewEntriesCaseSensitive == true? value : value.toLowerCase();
 
 			var isNew = true;
@@ -440,7 +440,7 @@
 						}
 					});
 				}
-                
+
 				// If there is an entry for that already in the autocomplete, don't use it (Check could be case sensitive or not)
 				for (var i = 0; i < result.length; i++) {
                     var label = options.checkNewEntriesCaseSensitive == true? result[i].label : result[i].label.toLowerCase();

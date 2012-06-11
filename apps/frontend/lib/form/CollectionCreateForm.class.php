@@ -10,13 +10,13 @@ class CollectionCreateForm extends CollectorCollectionForm
         'label' => 'Collection Name',
       ), array(
         'required' => 'required',
-        'style' => 'width: 360px;'
+        'class' => 'input-xlarge'
       )),
       'tags'  => new sfWidgetFormInputText(array(
         'label' => 'Tags'
       ), array(
         'required' => 'required',
-        'style' => 'width: 360px;'
+        'class' => 'input-xlarge'
       )),
       'content_category_id' => new sfWidgetFormInputHidden(array(
         'label' => 'Category',
@@ -32,7 +32,7 @@ class CollectionCreateForm extends CollectorCollectionForm
 
     $this->setValidators(array(
       'id'    => new sfValidatorPropelChoice(
-        array('model' => 'Collection', 'column' => 'id', 'required' => false)
+        array('model' => 'CollectorCollection', 'column' => 'id', 'required' => false)
       ),
       'name'  => new sfValidatorString(),
       'tags'  => new sfValidatorCallback(
@@ -60,7 +60,6 @@ class CollectionCreateForm extends CollectorCollectionForm
     $this->widgetSchema['tags'] = new cqWidgetFormMultipleInputText(array(
       'label' => 'Tags'
     ), array(
-      'name' => 'collection[tags][]',
       'required' => 'required',
       'class' => 'tag'
     ));
