@@ -993,9 +993,7 @@ textarea.input-xlarge {
     display: none;
     cursor: pointer;
     background-color: transparent;
-    background-color: rgba(0, 0, 0, 0.6);  /* FF3+, Saf3+, Opera 10.10+, Chrome, IE9 */
-              filter: ~"progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000,endColorstr=#99000000)";
-              zoom: 1;
+    background-color: rgba(0, 0, 0, 0.6);
 	  .border-radius(7px);
 
     i {
@@ -1042,7 +1040,13 @@ textarea.input-xlarge {
       }
     }
   }
+}
 
+.lt-ie9 .thumbnail .icon-edit-holder {
+	background-color: transparent;
+	background-color: rgba(0, 0, 0, 0.6);
+	filter: ~"progid:DXImageTransform.Microsoft.gradient(startColorstr=#7F000000,endColorstr=#7F000000)";
+	zoom: 1;
 }
 
 #main-image-set {
