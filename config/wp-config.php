@@ -24,6 +24,10 @@ if (SF_ENV === 'dev')
 
   define('WP_SITEURL', 'http://www.collectorsquest.dev/blog');
   define('WP_HOME', 'http://www.collectorsquest.dev/blog');
+
+  define('WP_DEBUG', true);
+  define('SCRIPT_DEBUG', true);
+
 }
 else if (is_readable(__DIR__ .'/secure/wp-config.php'))
 {
