@@ -449,7 +449,7 @@ function add_fixed_sidebar() {
 
     $(document).ready(function() {
       $('#sidebar').scrollToFixed({
-        limit: $('#footer').offset().top
+        limit: $('#footer').offset().top - $('#sidebar').innerHeight() - 10
       });
     });
 
