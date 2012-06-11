@@ -200,8 +200,9 @@ $lastclass = 0;
     ?>
 
     <?php if (is_page()) : ?>
+    <?php do_shortcode('[wpfaqsearch menu=0]'); ?>
 
-      <div class="page" id="page-<?php the_ID(); ?>">
+    <div class="page" id="page-<?php the_ID(); ?>">
         <?php the_content('Read the rest of this entry &raquo;'); ?>
       </div>
 
