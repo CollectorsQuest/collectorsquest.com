@@ -18,8 +18,19 @@
   </div>
   <div class="span8">
     <?php if ($packagesForm->hasGlobalErrors()): ?>
-    <?= $packagesForm->renderGlobalErrors() ?>
+      <?= $packagesForm->renderGlobalErrors() ?>
     <?php endif; ?>
+
+    <?php if (IceGateKeeper::locked('mycq_seller_pay')): ?>
+    <div class="alert">
+      The marketplace is currently is private beta.
+      If you have received a promo code for participating in the private beta,
+      please enter it below in the "Promo" box.<br/><br/>
+      If you want to be added to the beta tester list, please email
+      <?= mail_to('info@collectorsquest.com', 'info@collectorsquest.com'); ?>
+    </div>
+    <?php endif; ?>
+
     <form action="<?=url_for('seller_packages')?>" method="post" id="form-seller-packages" class="form-horizontal">
       <?= $packagesForm->renderHiddenFields() ?>
       <fieldset>
@@ -35,11 +46,12 @@
             <?php endif; ?>
           </div>
         </div>
-        <?php if (IceGateKeeper::open('mycq_marketplace')): ?>
+        <?php if (IceGateKeeper::open('mycq_seller_pay')): ?>
         <?= $packagesForm['payment_type']->renderRow() ?>
         <?php endif; ?>
       </fieldset>
-      <?php if (IceGateKeeper::open('mycq_marketplace')): ?>
+
+      <?php if (IceGateKeeper::open('mycq_seller_pay')): ?>
       <fieldset id="credit_card" class="form-container-center">
         <?= $packagesForm['cc_type']->renderRow() ?>
         <?= $packagesForm['cc_number']->renderRow() ?>
@@ -54,14 +66,18 @@
         <?= $packagesForm['country']->renderRow() ?>
       </fieldset>
       <?php endif; ?>
+
       <fieldset class="form-container-center">
         <label for="<?= $packagesForm['terms']->renderId() ?>" class="radio inline">
           <?= $packagesForm['terms']->render() ?>&nbsp;
           I accept the
           <a href="/blog/terms-and-conditions/" title="terms and conditions" target="_blank">terms and conditions</a> set forth by this site.</label>
       </fieldset>
+
+      <?php if (IceGateKeeper::open('mycq_seller_pay')): ?>
       <h5 style="margin-top: 10px;">* To avoid interruption of service, annual subscriptions
         automatically renew at the end of the subscription period</h5>
+      <?php endif; ?>
 
       <div class="form-actions">
         <button type="submit" class="btn btn-primary blue-button">Sign up</button>

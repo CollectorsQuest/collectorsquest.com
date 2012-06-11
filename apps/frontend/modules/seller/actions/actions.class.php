@@ -12,7 +12,7 @@ class sellerActions extends cqFrontendActions
 
   public function preExecute()
   {
-//    $this->redirectUnless(IceGateKeeper::open('mycq_marketplace'), '@mycq');
+    $this->redirectIf(IceGateKeeper::locked('mycq_marketplace'), '@mycq');
   }
 
   public function executeIndex()
@@ -231,7 +231,9 @@ class sellerActions extends cqFrontendActions
           else
           {
             //TODO: replace this with test
-            throw new Exception(sprintf('Invalid payment type %s', $packagesForm->getValue('payment_type')));
+            throw new Exception(sprintf(
+              'Invalid payment type %s', $packagesForm->getValue('payment_type')
+            ));
           }
         }
       }
@@ -289,7 +291,7 @@ class sellerActions extends cqFrontendActions
     $this->forward404Unless($request->hasParameter('invoice'));
 
     $packageTransaction = PackageTransactionPeer::retrieveByPK($request->getParameter('invoice'));
-    $this->forward404Unless((bool)$packageTransaction);
+    $this->forward404Unless((boolean) $packageTransaction);
 
     $collector = $packageTransaction->getCollector();
     $package = $packageTransaction->getPackage();
