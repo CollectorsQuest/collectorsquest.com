@@ -38,7 +38,7 @@ class PackageTransactionPeer extends BasePackageTransactionPeer
     $transaction->setCollector($collector);
     $transaction->setPackage($package);
     $transaction->setExpiryDate(strtotime('+1 year'));
-    $transaction->setMaxItemsForSale($package->getMaxItemsForSale());
+    $transaction->setCredits($package->getCredits());
 
     $priceWithDiscount = $package->getPackagePrice();
     if (!is_null($promotion))

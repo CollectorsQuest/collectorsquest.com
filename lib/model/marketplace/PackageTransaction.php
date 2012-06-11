@@ -13,7 +13,7 @@ class PackageTransaction extends BasePackageTransaction
 		$oPackageTransaction = new PackageTransaction();
 		$oPackageTransaction->setCollectorId($amData['collector_id']);
 		$oPackageTransaction->setPackageId($amData['package_id']);
-		$oPackageTransaction->setMaxItemsForSale($amData['max_items_for_sale']);
+		$oPackageTransaction->setCredits($amData['max_items_for_sale']);
 		$oPackageTransaction->setPackagePrice($amData['package_price']);
 		$oPackageTransaction->setExpiryDate(date('Y-m-d h:i:s', strtotime('+365 days')));
 		$oPackageTransaction->setPaymentStatus($amData['payment_status']);

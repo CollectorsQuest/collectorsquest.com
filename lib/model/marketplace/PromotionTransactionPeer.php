@@ -26,7 +26,7 @@ class PromotionTransactionPeer extends BasePromotionTransactionPeer
       $promotion = PromotionPeer::retrieveByPK($promotion);
     }
 
-    if ($amount < 0 )
+    if ($amount < 0)
     {
       throw new Exception('Promotion amount can not be less than 0');
     }
@@ -43,5 +43,24 @@ class PromotionTransactionPeer extends BasePromotionTransactionPeer
     $promotion->save();
 
     return $transaction;
+  }
+
+  /**
+   * @static
+   * @param Collector|int $collector
+   * @param string $code
+   * @return PromotionTransaction|null
+   */
+  public static function findOneByCollectorAndCode($collector, $code)
+  {
+    $collectorId = $collector instanceof Collector ? $collector->getId() : $collector;
+
+    return PromotionTransactionQuery::create()
+        ->filterByCollectorId($collectorId)
+        ->joinPromotion()
+        ->usePromotionQuery()
+        ->filterByPromotionCode($code)
+        ->endUse()
+        ->findOne();
   }
 }

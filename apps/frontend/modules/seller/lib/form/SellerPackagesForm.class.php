@@ -90,10 +90,12 @@ class SellerPackagesForm extends sfForm
     ), array(
       'placeholder' => 'Promo code',
     )));
-    $this->setValidator('promo_code', new sfValidatorCallback(array(
-      'required'=> false,
-      'callback'=> array($this, 'applyPromoCode')
-    )));
+    $this->setValidator('promo_code', new sfValidatorString(array('required'=>false)));
+//    $this->setValidator('promo_code', new sfValidatorCallback(array(
+//      'required'=> false,
+//      'callback'=> array($this, 'applyPromoCode')
+//    )));
+    $this->mergePreValidator(new sfValidatorCallback(array('callback'=>array($this, 'applyPromoCode'))));
   }
 
   private function setupPaymentTypeField()
@@ -263,28 +265,62 @@ class SellerPackagesForm extends sfForm
         ->getPrimaryKeys(false);
   }
 
-  public function applyPromoCode($validator, $value)
+  public function applyPromoCode($validator, $values, $arguments)
   {
-    $promo = PromotionPeer::findByPromotionCode($value);
+    if (IceGateKeeper::locked('mycq_marketplace') && empty($values['promo_code']))
+    {
+      throw new sfValidatorErrorSchema($validator, array('promo_code'=>new sfValidatorError($validator, 'Promo code is required!')));
+    }
+
+    if (empty($values['promo_code']))
+    {
+      return $values;
+    }
+
+    $promo = PromotionPeer::findByPromotionCode($values['promo_code']);
+    $collector = sfContext::getInstance()->getUser()->getCollector();
+    $error = false;
 
     if (!$promo)
     {
-      throw new sfValidatorError($validator, 'Invalid promotion code!');
+      $error = new sfValidatorError($validator, 'Invalid promotion code!');
     }
-
-    if (0 == $promo->getNoOfTimeUsed())
+    else if (0 == $promo->getNoOfTimeUsed())
     {
-      throw new sfValidatorError($validator, 'No of time Used of this promo code is over!');
+      $error = new sfValidatorError($validator, 'No of time Used of this promo code is over!');
     }
-
-    if (time() > $promo->getExpiryDate('U'))
+    else if (time() > $promo->getExpiryDate('U'))
     {
-      throw new sfValidatorError($validator, 'This Promotion code has been expired!');
+      $error = new sfValidatorError($validator, 'This Promotion code has been expired!');
+    }
+    else if ($used = PromotionTransactionPeer::findOneByCollectorAndCode($this->getOption('collector', $collector), $values['promo_code']))
+    {
+      $error = new sfValidatorError($validator, 'This code is already used by you!');
     }
 
-    $this->promotion = $promo;
+    if (!$error)
+    {
+      $this->promotion = $promo;
+      $packageId = $this->getValidator('package_id')->clean($values['package_id']);
 
-    return $value;
+      if ($promo && $this->getPackage($packageId))
+      {
+        $this->package->applyPromo($promo);
+      }
+
+      if ($this->package->getPackagePrice() <= $this->package->getDiscount())
+      {
+        $this->validatorSchema['payment_type']->setOption('required', false);
+      }
+    }
+    else
+    {
+      unset($values['promo_code']);
+
+      throw new sfValidatorErrorSchema($validator, array('promo_code'=>$error));
+    }
+
+    return $values;
   }
 
   public function setPartialRequirements()
@@ -298,19 +334,6 @@ class SellerPackagesForm extends sfForm
 
   public function bind(array $taintedValues = null, array $taintedFiles = null)
   {
-    if (!empty($taintedValues['promo_code']))
-    {
-      $packageId = $this->getValidator('package_id')->clean($taintedValues['package_id']);
-      $this->getValidator('promo_code')->clean($taintedValues['promo_code']);
-      if ($this->promotion && $this->getPackage($packageId))
-      {
-        $this->package->applyPromo($this->promotion);
-        if ($this->package->getPackagePrice() <= $this->package->getDiscount())
-        {
-          $this->getValidator('payment_type')->setOption('required', false);
-        }
-      }
-    }
     if (!isset($taintedValues['payment_type']) || 'cc' != $taintedValues['payment_type'])
     {
       $fields = array('cc_type', 'cc_number', 'expiry_date', 'cvv_number', 'first_name', 'last_name', 'street', 'city', 'state', 'zip', 'country');

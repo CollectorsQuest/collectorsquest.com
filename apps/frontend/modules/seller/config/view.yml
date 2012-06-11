@@ -5,5 +5,5 @@ all:
   components:
     slot1: [mycq, navigation]
 
-packagesSuccess:
-  javascripts: [/assets/js/jquery/creditCardValidator.js]
+#packagesSuccess:
+#  javascripts: [/assets/js/jquery/creditCardValidator.js]
