@@ -44,7 +44,7 @@ generator:
         display: [id, collection_category_parent, collection_category, collector, name, count_collectibles, created_at]
 
       form:
-        display: [name, description, tags]
+        display: [name, description, tags, collection_category_id, content_category_id]
 
       edit:
         title: Edit collection %%name%%
