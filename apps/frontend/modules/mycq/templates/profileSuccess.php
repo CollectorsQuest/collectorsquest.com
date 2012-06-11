@@ -19,12 +19,24 @@
 
 ?>
 
-
 <div id="mycq-tabs">
+  <ul class="nav nav-tabs">
+    <li class="active">
+      <a href="#tab1" data-toggle="tab">Personal Information</a>
+    </li>
+    <li>
+      <a href="#tab2" data-toggle="tab">Account Information</a>
+    </li>
+    <li>
+      <a href="#tab3" data-toggle="tab">Mailing Addresses</a>
+    </li>
+    <li>
+      <a href="#tab4" data-toggle="tab">Settings</a>
+    </li>
+  </ul>
   <div class="tab-content">
     <div class="tab-pane active" id="tab1">
-      <div class="tab-content-inner spacer-top">
-        <br />
+      <div class="tab-content-inner spacer">
         <?php
           $link = link_to(
             'View public profile &raquo;', 'collector/me/index',
@@ -397,7 +409,43 @@
 
       </div><!-- /.tab-content-inner -->
 
-    </div><!-- /.tab-pane -->
+    </div><!-- /.tab1 -->
+    <div class="tab-pane" id="tab2">
+      <div class="tab-content-inner spacer">
+        <?php
+        $link = link_to(
+          'View public profile &raquo;', 'collector/me/index',
+          array('class' => 'text-v-middle link-align')
+        );
+        cq_sidebar_title('Edit Your Account Information', $link, array('left' => 8, 'right' => 4));
+        ?>
+        <p>Account Information Content</p>
+      </div><!-- /.tab-content-inner -->
+    </div><!-- /.tab2 -->
+    <div class="tab-pane" id="tab3">
+      <div class="tab-content-inner spacer">
+        <?php
+        $link = link_to(
+          'View public profile &raquo;', 'collector/me/index',
+          array('class' => 'text-v-middle link-align')
+        );
+        cq_sidebar_title('Edit Your Mailing Addresses', $link, array('left' => 8, 'right' => 4));
+        ?>
+        <p>Mailing Addresses Content</p>
+      </div><!-- /.tab-content-inner -->
+    </div><!-- /.tab3 -->
+    <div class="tab-pane" id="tab4">
+      <div class="tab-content-inner spacer">
+        <?php
+        $link = link_to(
+          'View public profile &raquo;', 'collector/me/index',
+          array('class' => 'text-v-middle link-align')
+        );
+        cq_sidebar_title('Edit Your Profile', $link, array('left' => 8, 'right' => 4));
+        ?>
+        <p>Settings Content</p>
+      </div><!-- /.tab-content-inner -->
+    </div><!-- /.tab4 -->
   </div><!-- /.tab-content -->
 </div>
 
