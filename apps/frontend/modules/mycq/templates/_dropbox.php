@@ -255,7 +255,8 @@ $(document).ready(function()
     zIndex: 1000
   });
 
-  $('.collectibles-to-sort .icon-remove-sign').click(function()
+  $('.collectibles-to-sort .icon-remove-sign').click(MISC.modalConfirmDestructive(
+    'Remove item to sort', 'Are you sure you want to remove this item for sorting?', function()
   {
     var $icon = $(this);
 
@@ -282,6 +283,6 @@ $(document).ready(function()
         $(this).show();
       }
     });
-  });
+  }, true));
 });
 </script>

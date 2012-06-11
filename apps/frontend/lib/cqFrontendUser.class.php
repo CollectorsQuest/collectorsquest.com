@@ -9,9 +9,10 @@ class cqFrontendUser extends cqBaseUser
   const PRIVATE_MESSAGES_SENT_COUNT_KEY = 'private_messages_sent_count';
 
   /**
-   * @return    Collector
+   * @param  boolean  $strict
+   * @return null|Collector
    */
-  public function getCollector()
+  public function getCollector($strict = false)
   {
     if (!($this->collector instanceof Collector))
     {
@@ -19,7 +20,7 @@ class cqFrontendUser extends cqBaseUser
       {
         $this->collector = CollectorPeer::retrieveByPK($this->getAttribute("id", null, "collector"));
       }
-      else
+      else if ($strict === false)
       {
         $this->collector = new Collector();
       }
@@ -30,6 +31,23 @@ class cqFrontendUser extends cqBaseUser
     }
 
     return $this->collector;
+  }
+
+  /**
+   * @param  boolean  $strict
+   * @return null|Seller
+   */
+  public function getSeller($strict = false)
+  {
+    $seller = null;
+
+    if (($collector = $this->getCollector($strict)) && $collector->getIsSeller())
+    {
+      $seller = new Seller();
+      $collector->copyInto($seller);
+    }
+
+    return $seller;
   }
 
   public function getShoppingCart()

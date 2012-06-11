@@ -1,3 +1,15 @@
+<?php
+/**
+ * @var $seller Seller
+ */
+?>
+
+<?php
+  if (!$seller->hasPackageCredits())
+  {
+    include_partial('mycq/marketplace_no_credits', array('seller' => $seller));
+  }
+?>
 
 <div id="mycq-tabs">
   <div class="tab-content">

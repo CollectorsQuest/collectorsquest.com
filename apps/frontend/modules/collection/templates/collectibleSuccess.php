@@ -17,8 +17,7 @@
   Test without alternate images: http://collectorsquest.next/collectible/70081/space-set
 //-->
 
-<br/>
-<div class="row-fluid" xmlns="http://www.w3.org/1999/html">
+<div class="row-fluid spacer-top-15" xmlns="http://www.w3.org/1999/html">
   <?php
     $span = 10;
     if (count($additional_multimedia) == 0)
@@ -26,7 +25,7 @@
       $span += 2;
     }
   ?>
-  <div class="span<?= $span; ?>" style="text-align: center;">
+  <div class="span<?= $span; ?> text-center">
     <?php
       echo link_to(
         image_tag_collectible(

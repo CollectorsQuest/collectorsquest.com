@@ -117,29 +117,24 @@ class generalActions extends cqFrontendActions
     return sfView::SUCCESS;
   }
 
-  public function executeCountdown()
+  public function executeDefault()
   {
-    $launch = new DateTime('2012-05-15');
-    $now = new DateTime();
-    $this->time_left = $launch->diff($now);
-
-    return sfView::SUCCESS;
+    $this->redirect('/', 301);
   }
 
   public function executeLogin(sfWebRequest $request)
   {
-    // redirect to homepage if already logged in
-    if ($this->getUser()->isAuthenticated())
-    {
-      return $this->redirect($request->getParameter('r', '@collector_me'));
-    }
-
     // Auto login the collector if a hash was provided
     if ($collector = CollectorPeer::retrieveByHash($request->getParameter('hash')))
     {
       $this->getUser()->Authenticate(true, $collector, $remember = false);
 
       // redirect to last page or homepage after login
+      return $this->redirect($request->getParameter('r', '@collector_me'));
+    }
+    // redirect to homepage if already logged in
+    else if ($this->getUser()->isAuthenticated())
+    {
       return $this->redirect($request->getParameter('r', '@collector_me'));
     }
 

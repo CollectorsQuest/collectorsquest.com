@@ -304,6 +304,10 @@ shopping_order_error:
 
 ### MY CQ
 
+mycq_aviary_update_image:
+  url:   /mycq/aviary-update-image
+  param: { module: mycq, action: aviaryUpdateImage }
+
 mycq_profile:
   url:   /mycq/profile
   param: { module: mycq, action: profile }
@@ -418,7 +422,17 @@ seller_callback_ipn:
   url: /seller/ipn
   param: { module: seller, action: callbackIPN }
   options: { extra_parameters_as_query_string: true }
-  requirements: { sf_method: [POST]}
+  requirements: { sf_method: [post] }
+
+seller_shopping_order:
+  url:   /seller/order/:uuid
+  class: sfPropelRoute
+  options: { model: ShoppingOrder, type: object }
+  param: { module: seller, action: shoppingOrder }
+
+seller_shopping_orders:
+  url:   /seller/orders
+  param: { module: seller, action: shoppingOrders }
 
 ### TAGS
 
@@ -519,7 +533,6 @@ feedback:
   url:   /feedback
   param: { module: general, action: feedback }
 
-
 ### LEGACY
 
 legacy_community_help:
@@ -573,13 +586,17 @@ legacy_collector_by_slug:
   param: { module: collector, action: index }
   requirements: { slug: '[\-\w\.]+' }
 
-# default rules
+
+### DEFAULT
+
 homepage:
   url:   /
   param: { module: general, action: index }
 
-# generic rules
-# please, remove them by adding more specific rules
+default_module:
+  url:   /default/*
+  param: { module: general, action: default }
+
 default_index:
   url:   /:module
   param: { action: index }

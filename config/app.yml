@@ -25,8 +25,9 @@ all:
     dlvrit: "123456789abcdefg"
 
     aviary:
-      key: "3058e289b"
-      secret: "694b2d643"
+      api_key: "3058e289b"
+      api_secret: "694b2d643"
+      hmac_secret: "o67NpB1P2xKJdV2J5KtUvLP9myVMIIG2sPr2xVHJ3JBQXo6njy1H5udSHobAL4vz"
 
     recaptcha:
       public_key: "6LdACwsAAAAAAE5tZTcYG47Lth2jzxxZeXAbll-Z"

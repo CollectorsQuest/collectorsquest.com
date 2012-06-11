@@ -1,4 +1,0 @@
-all:
-  stylesheets: [legacy/forms.css]
-  components:
-    sidebar: [community, sidebar]

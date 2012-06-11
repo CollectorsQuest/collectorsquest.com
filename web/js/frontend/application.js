@@ -162,8 +162,11 @@ var APP = window.APP = {
         }, 100);
       });
     },
-    collections: function() {
-
+    collection: function() {
+      AVIARY.setup();
+    },
+    collectible: function() {
+      AVIARY.setup();
     }
   } // mycq
 
@@ -233,7 +236,28 @@ var COMMON = window.COMMON = (function(){
       COMMON.setupFooterLoginOrSignup();
       COMMON.setupScrollToTop();
       COMMON.setupEmailSpellingHelper();
+      COMMON.setupLinksModalConfirm();
       COMMON.loginLogoutHelpers();
+    },
+    setupLinksModalConfirm: function() {
+      $('a.requires-confirm').on('click', function(e) {
+        var $this = $(this);
+        e.preventDefault();
+
+        MISC.modalConfirm($this.data('modal-title'),
+          $this.data('modal-text'), $this.attr('href'));
+
+        return false;
+      });
+      $('a.requires-confirm-destructive').on('click', function(e) {
+        var $this = $(this);
+        e.preventDefault();
+
+        MISC.modalConfirmDestructive($this.data('modal-title'),
+          $this.data('modal-text'), $this.attr('href'));
+
+        return false;
+      });
     },
     loginLogoutHelpers: function() {
       // set proper logout redirects when included as iframe (only for same domain)
@@ -628,5 +652,154 @@ var SEARCH = window.SEARCH = (function(){
 
   }; // SEARCH object literal
 }());
+
+
+var AVIARY = window.AVIARY = (function(){
+
+  var aviary_loaded = false;
+  var aviary_image_updated = false;
+  var aviary_editor;
+
+  // load aviary if not already loaded
+  function loadAviary(callback) {
+    if (false === aviary_loaded) {
+      Modernizr.load({
+        load: '//feather.aviary.com/js/feather.js',
+        callback: function() {
+          aviary_loaded = true;
+          $.isFunction(callback) && callback();
+        }
+      });
+    } else {
+      $.isFunction(callback) && callback();
+    } // if not aviary_loaded
+  } // loadAviary()
+
+  // setup the private aviary_editor variable
+  function setupAviary(onLoad) {
+    if (undefined === aviary_editor) {
+      aviary_editor = new Aviary.Feather($.extend({}, window.cq.settings.aviary, {
+        apiVersion: 2,
+        tools: 'orientation,crop,text,effects,enhance,brightness,contrast,sharpness,saturation',
+        minimumStyling: true,
+        onSave: aviaryOnSave,
+        onClose: aviaryOnClose,
+        onLoad: $.isFunction(onLoad) && onload || window.noop,
+        appendTo: ''
+      }));
+    }
+
+    return aviary_editor;
+  }
+
+  // set flag that the image was updated
+  function aviaryOnSave(image_id, new_url) {
+    aviary_image_updated = true;
+  }
+
+  // if the image was updated reload the page, so that a new thumbnail
+  // will be created
+  function aviaryOnClose()
+  {
+    if (aviary_image_updated) {
+      window.location.reload();
+    }
+  }
+
+  // return object literal of callable functions
+  return {
+    setup: function() {
+      // async load Aviary and setup the "aviary_editor" variable
+      loadAviary(setupAviary);
+
+      $('.multimedia-edit').on('click', function clickclackclock() {
+        // if aviary is loaded
+        if (undefined !== aviary_editor && AV.feather_loaded) {
+          var $this = $(this);
+          // launch the image editor
+          aviary_editor.launch({
+            image: $this.siblings('img')[0],
+            postData: $this.data('post-data'),
+            url: $this.data('original-image-url')
+            // test image
+            // url: 'http://images.aviary.com/imagesv5/feather_default.jpg'
+          });
+        } else {
+          // call this function again until we have the editor available
+          setTimeout($.proxy(clickclackclock, this), 100);
+
+          return false;
+        }
+      });
+    } // setup()
+  }; // AVIARY public interface object literal
+
+}()); // AVIARY
+
+
+var MISC = window.MISC = (function(){
+
+  function setupIsDestructiveModal($modal, destructive)
+  {
+    if (destructive) {
+      $modal.find('button.proceed').addClass('btn-danger')
+                                   .removeClass('btn-primary');
+    } else {
+      $modal.find('button.proceed').addClass('btn-primary')
+                                   .removeClass('btn-danger');
+    }
+  }
+
+  function commonModalConfirm(destructive, title, text, target, return_callback) {
+    title = title || 'Are you sure?';
+    text  = text  || 'Are you sure you wish to proceeed?'
+    var $modal = $('#confirmation-modal');
+    var callback = $.isFunction(target) && target || function() {
+      window.location.href = target;
+    }
+
+    if (!$modal.data('modal')) {
+      $modal.modal({
+        backdrop: true,
+        keyboard: true,
+        show: false
+      });
+
+      $modal.on('click', 'button.cancel', function() {
+        $modal.modal('hide');
+      });
+    }
+
+    function execute(ev) {
+      // we need to get the proper context for the callback that is passed to us
+      var that = ev.target || this;
+      setupIsDestructiveModal($modal, destructive)
+      $modal.find('.modal-header h3').html(title);
+      $modal.find('.modal-body p').html(text);
+      $modal.modal('show');
+
+      $modal.one('click', 'button.proceed', function() {
+        $modal.one('hidden', $.proxy(callback, that));
+        $modal.modal('hide');
+
+        return true;
+      });
+    };
+
+    return return_callback && execute || execute();
+  };
+
+  return {
+    // target should be either a callable or a URL
+    // if return callback is truthy the modal display routine will be returned
+    modalConfirm: function(title, text, target, return_callback) {
+      return commonModalConfirm(false, title, text, target, return_callback);
+    },
+    modalConfirmDestructive: function(title, text, target, return_callback) {
+      return commonModalConfirm(true, title, text, target, return_callback);
+    }
+  }; // MISC public interface object literal
+}()); // MISC
+
 
 })(this, this.document, jQuery);

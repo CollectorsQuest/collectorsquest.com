@@ -45,6 +45,7 @@
                 if (IceGateKeeper::open('mycq_marketplace'))
                 {
                   $active = in_array($sf_params->get('action'), array('marketplace')) ? 'active' : null;
+                  $active = in_array($sf_params->get('module'), array('seller')) ? 'active' : $active;
                   echo '<li class="'. $active .'">', link_to('Store <sup>βeta</sup>', '@mycq_marketplace'), '</li>';
                 }
               ?>

@@ -35,15 +35,30 @@ class SellerPackagesForm extends sfForm
     $this->setupCardZipField();
     $this->setupTermsField();
 
+    $this->widgetSchema->setFormFormatterName('Bootstrap');
     $this->widgetSchema->setNameFormat('packages[%s]');
   }
 
   private function setupPackageIdField()
   {
-    $this->setWidget('package_id', new sfWidgetFormChoice(array(
+    $this->setWidget('package_id', new sfWidgetFormSelectRadio(array(
       'choices'          => PackagePeer::getAllPackagesForSelectGroupedByPlanType(),
-      'expanded'         => true,
-      'label'            => false,
+      'label'            => 'Package',
+      'formatter'        => function($widget, $inputs)
+      {
+        $rows = array();
+        foreach ($inputs as $input)
+        {
+          $rows[] = $widget->renderContentTag('label',
+              $input['input'] . $widget->getOption('label_separator') . strip_tags($input['label']),
+            array('class'=> 'radio')
+          );
+        }
+
+        return !$rows ? '' : $widget->renderContentTag('div', implode($widget->getOption('separator'), $rows), array('class' => $widget->getOption('class')));
+      }
+    ), array(
+      'required' => 'required',
     )));
 
     $this->setValidator('package_id', new sfValidatorChoice(array(
@@ -58,7 +73,9 @@ class SellerPackagesForm extends sfForm
   {
     $this->setWidget('country', new sfWidgetFormI18nChoiceCountry(array(
       'choices'  => $this->getCountries(),
-      'add_empty'=> true
+      'add_empty'=> true,
+    ), array(
+      'placeholder' => 'Country',
     )));
 
     $this->setValidator('country', new sfValidatorI18nChoiceCountry(array(
@@ -68,7 +85,11 @@ class SellerPackagesForm extends sfForm
 
   private function setupPromoCodeField()
   {
-    $this->setWidget('promo_code', new sfWidgetFormInputText());
+    $this->setWidget('promo_code', new sfWidgetFormInputText(array(
+      'label'=> 'Promo',
+    ), array(
+      'placeholder' => 'Promo code',
+    )));
     $this->setValidator('promo_code', new sfValidatorCallback(array(
       'required'=> false,
       'callback'=> array($this, 'applyPromoCode')
@@ -81,7 +102,7 @@ class SellerPackagesForm extends sfForm
       'choices'           => $this->getPaymentTypes(),
       'renderer_class'    => 'cqWidgetFormSelectPayment',
       'renderer_options'  => array(
-        'class'=> 'packages',
+        'class'=> 'packages unstyled',
       ),
     )));
 
@@ -90,13 +111,19 @@ class SellerPackagesForm extends sfForm
 
   private function setupCardTypeField()
   {
-    $this->setWidget('cc_type', new sfWidgetFormChoice(array('choices'=> $this->getCardTypes())));
+    $this->setWidget('cc_type', new sfWidgetFormChoice(array(
+      'choices'=> array_merge(array('' => ''), $this->getCardTypes()),
+    ), array(
+      'placeholder' => 'Credit card type',
+    )));
     $this->setValidator('cc_type', new sfValidatorChoice(array('choices'=> array_keys($this->getCardTypes()))));
   }
 
   private function setupCardNumberField()
   {
-    $this->setWidget('cc_number', new cqWidgetFormCreditCard());
+    $this->setWidget('cc_number', new cqWidgetFormCreditCard(array(), array(
+      'placeholder' => 'Credit card number',
+    )));
     $this->setValidator('cc_number', new sfValidatorString());
   }
 
@@ -107,6 +134,7 @@ class SellerPackagesForm extends sfForm
       'format'=> '%month% %year%',
       'years' => array_combine($expDateYears, $expDateYears),
       'label' => 'Expiration date',
+    ), array(
     )));
 
     $this->setValidator('expiry_date', new cqValidatorExpiryDate(array(
@@ -118,53 +146,71 @@ class SellerPackagesForm extends sfForm
 
   private function setupCardVerificationNumberField()
   {
-    $this->setWidget('cvv_number', new sfWidgetFormInputText(array(), array('maxlength'=> 3)));
+    $this->setWidget('cvv_number', new sfWidgetFormInputText(array(), array(
+      'maxlength'   => 3,
+      'placeholder' => 'CVV number',
+    )));
 
     $this->setValidator('cvv_number', new sfValidatorNumber(array(
+      'min'     => 100,
       'max'     => 999,
-      'required'=> true
+      'required'=> true,
     )));
   }
 
   private function setupCardFirstNameField()
   {
-    $this->setWidget('first_name', new sfWidgetFormInputText());
+    $this->setWidget('first_name', new sfWidgetFormInputText(array(), array(
+      'placeholder' => 'First name',
+    )));
     $this->setValidator('first_name', new sfValidatorString());
   }
 
   private function setupCardLastNameField()
   {
-    $this->setWidget('last_name', new sfWidgetFormInputText());
+    $this->setWidget('last_name', new sfWidgetFormInputText(array(), array(
+      'placeholder' => 'Last name',
+    )));
     $this->setValidator('last_name', new sfValidatorString());
   }
 
   private function setupCardStreetField()
   {
-    $this->setWidget('street', new sfWidgetFormInputText());
+    $this->setWidget('street', new sfWidgetFormInputText(array(), array(
+      'placeholder' => 'Street',
+    )));
     $this->setValidator('street', new sfValidatorString());
   }
 
   private function setupCardCityField()
   {
-    $this->setWidget('city', new sfWidgetFormInputText());
+    $this->setWidget('city', new sfWidgetFormInputText(array(), array(
+      'placeholder' => 'City',
+    )));
     $this->setValidator('city', new sfValidatorString());
   }
 
   private function setupCardStateField()
   {
-    $this->setWidget('state', new sfWidgetFormInputText());
+    $this->setWidget('state', new sfWidgetFormInputText(array(), array(
+      'placeholder' => 'State',
+    )));
     $this->setValidator('state', new sfValidatorString());
   }
 
   private function setupCardZipField()
   {
-    $this->setWidget('zip', new sfWidgetFormInputText());
+    $this->setWidget('zip', new sfWidgetFormInputText(array(), array(
+      'placeholder' => 'Zip',
+    )));
     $this->setValidator('zip', new sfValidatorString());
   }
 
   private function setupTermsField()
   {
-    $this->setWidget('terms', new sfWidgetFormInputCheckbox());
+    $this->setWidget('terms', new sfWidgetFormInputCheckbox(array(), array(
+      'required' => 'required',
+    )));
     $this->setValidator('terms', new sfValidatorBoolean(array('required'=> true)));
   }
 

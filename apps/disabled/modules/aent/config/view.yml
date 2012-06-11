@@ -1,6 +1,0 @@
-all:
-  stylesheets: [legacy/aent.css]
-
-collectibleSuccess:
-  stylesheets: [legacy/scrollable.css]
-  javascripts: [jquery/mousewheel.js, jquery/carousel.js, jwplayer.js]

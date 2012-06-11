@@ -373,22 +373,29 @@ class mycqActions extends cqFrontendActions
   {
     $this->redirectUnless(IceGateKeeper::open('mycq_marketplace'), '@mycq');
 
-    $collector = $this->getCollector();
+    // Get the Seller
+    $seller = $this->getSeller(true);
+
+    // We cannot do anything more here if not a Seller
+    $this->redirectUnless($seller instanceof Seller, 'seller/packages');
 
     $q = CollectibleForSaleQuery::create()
-      ->filterByCollector($collector)
+      ->filterByCollector($seller)
       ->isForSale();
     $this->total = $q->count();
 
     $q = CollectibleForSaleQuery::create()
-      ->filterByCollector($collector)
+      ->filterByCollector($seller)
       ->filterByIsSold(true);
     $this->sold_total = $q->count();
 
-    $dropbox = $collector->getCollectionDropbox();
+    $dropbox = $seller->getCollectionDropbox();
     $this->dropbox_total = $dropbox->countCollectibles();
 
-    return $collector->getIsSeller() ? sfView::SUCCESS : 'NotSeller';
+    // Make the seller available to the template
+    $this->seller = $seller;
+
+    return sfView::SUCCESS;
   }
 
   public function executeUploadCancel(sfWebRequest $request)

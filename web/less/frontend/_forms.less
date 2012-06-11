@@ -10,7 +10,6 @@ select:focus:required:invalid {
 		color: #125375;
 		.box-shadow(none);
 		outline: none;
-//		.box-shadow(0 0 6px lighten(@blue, 20%));
 	}
 }
 
@@ -49,9 +48,6 @@ ul.alert-error {
 	}
 	input, textarea, select, .uneditable-input, button, append-left-gray, .gray-button.dropdown-toggle {
 		border: 1px solid #b5b7bd;
-	}
-	input.input-sort-by:focus {
-		border: 1px solid #0A82C2;
 	}
 }
 
@@ -185,4 +181,26 @@ ul.alert-error {
 	margin: 0 auto;
 }
 
+
+.search-header input:focus:required:invalid {
+	border-color: @blue #bfbaba @blue @blue;
+}
+
+#sort-search-box input.input-sort-by:focus {
+	border-style: solid;
+	border-width: 1px;
+	border-color: @blue #b5b7bd @blue @blue;
+}
+
+.blue-outline {
+	border-color: @blue!important;
+}
+
+.blue-outline-t-b {
+	border-color: @blue #b5b7bd @blue #b5b7bd !important;
+}
+
+.blue-outline-comment-btn {
+	border-color: @blue @blue @blue #ccc !important;
+}
 

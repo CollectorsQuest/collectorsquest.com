@@ -125,6 +125,9 @@
       include_component('_ajax', 'modalLogin');
     }
 
+    // include the html for modal confirmation
+    include_partial('global/modal_confirm');
+
     // Include the global javascripts
     include_partial('global/javascripts', array('sf_cache_key' => $sf_cache_key));
 

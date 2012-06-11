@@ -21,6 +21,8 @@ Disallow: /backend/
 Disallow: /errors/
 Disallow: /images/
 Disallow: /search/
+Disallow: /tag/
+Disallow: /tags/
 Disallow: /messages/
 Disallow: /mycq/
 Disallow: /cart/

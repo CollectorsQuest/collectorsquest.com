@@ -1,4 +1,3 @@
-
   <meta charset="utf-8" />
   <?php cq_include_http_metas() ?>
   <?php cq_include_metas() ?>
@@ -26,7 +25,12 @@
       page_load_start: new Date(),
       server_load_time: 0,
       username_cookie: '<?= sfConfig::get('app_collector_username_cookie_name', 'cqUsername'); ?>',
-      settings: {}
+      settings: {
+        aviary: {
+          apiKey: '<?= cqConfig::getCredentials('aviary', 'api_key'); ?>',
+          postUrl: '<?= url_for('@mycq_aviary_update_image', true); ?>'
+        }
+      }
     };
 
     // http://stackoverflow.com/a/8567229

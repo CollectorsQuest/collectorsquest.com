@@ -34,7 +34,7 @@
       </div>
       <div class="span4 pull-right" style="float: right; text-align: right; padding-top: 2px;">
 
-        <?php /**
+        <?php if (IceGateKeeper::open('shopping_cart')): ?>
           <a href="<?= url_for('@shopping_cart', true); ?>" class="link-cart"
              title="<?= (0 < $k) ? 'View your shopping cart' : 'Your shopping cart is empty!'; ?>">
             <span class="shopping-cart-inner shopping-cart">
@@ -46,7 +46,7 @@
             </span>
           </a>
           <span class="nav-divider"></span>
-        */ ?>
+        <?php endif; ?>
 
         <?php if ($sf_user->isAuthenticated()): ?>
           &nbsp;
@@ -134,8 +134,19 @@
         <?php
           echo link_to(
             'Collectors Quest', '@homepage',
-            array('class' => 'cq-logo logo hide-text', 'title' => 'Home', 'absolute' => true)
+            array('class' => 'cq-logo logo-development hide-text', 'title' => 'Home', 'absolute' => true)
           );
+        ?>
+        <?php /*
+          echo link_to(
+            'Collectors Quest', '@homepage',
+            array('class' => 'cq-logo logo-staging hide-text', 'title' => 'Home', 'absolute' => true)
+          );
+
+          echo link_to(
+            'Collectors Quest', '@homepage',
+            array('class' => 'cq-logo logo hide-text', 'title' => 'Home', 'absolute' => true)
+          ); */
         ?>
         <?php
           /**

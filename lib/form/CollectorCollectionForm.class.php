@@ -12,7 +12,15 @@ class CollectorCollectionForm extends BaseCollectorCollectionForm
   public function configure()
   {
     $this->setupTagsField();
+    $this->setupContentCategoryIdField();
     $this->widgetSchema['description']->setAttributes(array('rows'=>10, 'cols'=>50, 'style'=>'width: 300px;'));
+  }
+
+  protected function setupContentCategoryIdField()
+  {
+    $this->widgetSchema['content_category_id'] = new cqWidgetFormPropelChoiceByNestedSet(array(
+      'model' => 'ContentCategory',
+    ));
   }
 
   protected function setupTagsField()
