@@ -132,17 +132,17 @@
     <div class="navbar-inner">
       <div class="container dark-bg">
         <?php
-          if (sfConfig::get('sf_envoronment') == 'dev')
+          if (sfConfig::get('sf_environment') == 'dev')
           {
             $class = 'cq-logo logo-development';
           }
-          else if (sfConfig::get('sf_envoronment') == 'next')
+          else if (sfConfig::get('sf_environment') == 'next')
           {
             $class = 'cq-logo logo-staging';
           }
           else
           {
-            $class = 'cq-logo';
+            $class = 'cq-logo logo';
           }
 
           echo link_to(
