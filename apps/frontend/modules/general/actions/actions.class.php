@@ -124,18 +124,17 @@ class generalActions extends cqFrontendActions
 
   public function executeLogin(sfWebRequest $request)
   {
-    // redirect to homepage if already logged in
-    if ($this->getUser()->isAuthenticated())
-    {
-      return $this->redirect($request->getParameter('r', '@collector_me'));
-    }
-
     // Auto login the collector if a hash was provided
     if ($collector = CollectorPeer::retrieveByHash($request->getParameter('hash')))
     {
       $this->getUser()->Authenticate(true, $collector, $remember = false);
 
       // redirect to last page or homepage after login
+      return $this->redirect($request->getParameter('r', '@collector_me'));
+    }
+    // redirect to homepage if already logged in
+    else if ($this->getUser()->isAuthenticated())
+    {
       return $this->redirect($request->getParameter('r', '@collector_me'));
     }
 
