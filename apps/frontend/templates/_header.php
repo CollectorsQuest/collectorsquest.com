@@ -132,16 +132,11 @@
     <div class="navbar-inner">
       <div class="container dark-bg">
         <?php
-          if (sfConfig::get('sf_environment') == 'dev')
-          {
+          if (sfConfig::get('sf_environment') === 'dev') {
             $class = 'cq-logo logo-development';
-          }
-          else if (sfConfig::get('sf_environment') == 'next')
-          {
+          } else if (sfConfig::get('sf_environment') === 'next') {
             $class = 'cq-logo logo-staging';
-          }
-          else
-          {
+          } else {
             $class = 'cq-logo logo';
           }
 
@@ -149,17 +144,6 @@
             'Collectors Quest', '@homepage',
             array('class' => $class .' hide-text', 'title' => 'Home', 'absolute' => true)
           );
-        ?>
-        <?php /*
-          echo link_to(
-            'Collectors Quest', '@homepage',
-            array('class' => 'cq-logo logo-staging hide-text', 'title' => 'Home', 'absolute' => true)
-          );
-
-          echo link_to(
-            'Collectors Quest', '@homepage',
-            array('class' => 'cq-logo logo hide-text', 'title' => 'Home', 'absolute' => true)
-          ); */
         ?>
         <?php
           /**
