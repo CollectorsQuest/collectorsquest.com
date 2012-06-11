@@ -23,8 +23,8 @@ class CollectorEditForm extends CollectorForm
         'about_what_you_collect' => 'What do you collect?',
         'about_collections' => 'About My Collections',
         'about_purchase_per_year' => 'How many times a year do you purchase?',
-        'about_most_expensive_item' => "What's the most you've spent on an item?",
-        'about_annually_spend' => 'How much do you spend annually?',
+        'about_most_expensive_item' => "The most you've spent on an item?",
+        'about_annually_spend' => 'Anually?',
         'about_interests' => 'My Interests Are',
         'website' => 'Personal Website',
     ));

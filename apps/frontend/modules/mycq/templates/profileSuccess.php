@@ -109,8 +109,25 @@
             <?= $collector_form['collector_type']->renderRow(); ?>
             <?= $collector_form['about_what_you_collect']->renderRow(); ?>
             <?= $collector_form['about_purchases_per_year']->renderRow(); ?>
-            <?= $collector_form['about_most_expensive_item']->renderRow(); ?>
-            <?= $collector_form['about_annually_spend']->renderRow(); ?>
+
+            <div class="control-group">
+              <label class="control-label" for="input01">Purchasing habbits</label>
+              <div class="controls form-inline clearfix" style="width: 540px">
+                <div class="inset-input pull-left">
+                  <label for="<?= $collector_form['about_most_expensive_item']->renderId(); ?>">
+                    <?= $collector_form['about_most_expensive_item']->renderLabelName(); ?>
+                  </label>
+                  <?= $collector_form['about_most_expensive_item']->render(array('class' => 'span2')); ?>
+                </div>
+
+                <div class="inset-input pull-right">
+                  <label for="<?= $collector_form['about_annually_spend']->renderId(); ?>" class="spacer-left">
+                    <?= $collector_form['about_annually_spend']->renderLabelName(); ?>
+                  </label>
+                  <?= $collector_form['about_annually_spend']->render(array('class' => 'span2')); ?>
+                </div>
+              </div>
+            </div>
           </fieldset>
 
           <fieldset class="brown-dashes form-container-center">
@@ -118,15 +135,15 @@
 
             <div class="control-group">
               <label class="control-label" for="input01">Where are you from?</label>
-              <div class="controls form-inline" style="width: 530px">
-                <div style="float: left">
+              <div class="controls form-inline clearfix" style="width: 540px">
+                <div class="pull-left">
                   <label for="<?= $collector_form['zip_postal']->renderId(); ?>">
                     <?= $collector_form['zip_postal']->renderLabelName(); ?>
                   </label>
                   <?= $collector_form['zip_postal']->render(array('class' => 'span3')); ?>
                 </div>
 
-                <div class="with-required-token" style="float: right">
+                <div class="inset-input pull-right with-required-token">
                   <span class="required-token">*</span>
                   <label for="<?= $collector_form['country_iso3166']->renderId(); ?>" class="spacer-left">
                     <?= $collector_form['country_iso3166']->renderLabelName(); ?>
