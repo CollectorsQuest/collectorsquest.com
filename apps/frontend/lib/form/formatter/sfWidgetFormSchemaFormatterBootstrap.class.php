@@ -107,7 +107,8 @@ class sfWidgetFormSchemaFormatterBootstrap extends sfWidgetFormSchemaFormatter
 
         if (!is_integer($name))
         {
-          $name = $this->generateLabelName($name);
+          $name = trim($this->generateLabelName($name), '?:');
+
           $newErrors[] = strtr($this->namedErrorRowFormatForRowAll, array('%error%' => $err, '%name%' => ($prefix ? $prefix.' > ' : '').$name));
         }
         else
