@@ -156,10 +156,10 @@
           <?php $class = in_array($active, array('collection', 'collections', 'aent', 'categories')) ? 'active' : null; ?>
           <li class="<?= $class ?>"><?= link_to('Collections', '@collections', array('absolute' => true)); ?></li>
 
-          <?php $class = in_array($active, array('news', '_blog')) ? 'active' : null; ?>
+          <?php $class = in_array($active, array('news', 'blog', '_blog')) ? 'active' : null; ?>
           <li class="<?= $class ?>"><?= link_to('Blog', '@blog', array('absolute' => true)); ?></li>
 
-          <?php $class = in_array($active, array('_video')) ? 'active' : null; ?>
+          <?php $class = in_array($active, array('video', '_video')) ? 'active' : null; ?>
           <li class="<?= $class ?>"><?= link_to('Video', '@video', array('absolute' => true)); ?></li>
 
           <?php $class = in_array($active, array('marketplace', 'shopping')) ? 'active' : null; ?>
