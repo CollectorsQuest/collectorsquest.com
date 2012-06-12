@@ -66,4 +66,6 @@
       }
     ?>
   <?php endforeach; ?>
+<?php else: ?>
+  <?php include_slot('mycq_create_collectible_for_sale'); ?>
 <?php endif; ?>

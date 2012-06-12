@@ -49,7 +49,7 @@ class sellerActions extends cqFrontendActions
           {
             $package->applyPromo($promotion);
             $afterDiscountPrice = $package->getPackagePrice() - $package->getDiscount();
-            $freeSubscription = (bool)($afterDiscountPrice <= 0);
+            $freeSubscription = (boolean) ($afterDiscountPrice <= 0);
 
             if ($freeSubscription)
             {
@@ -99,7 +99,7 @@ class sellerActions extends cqFrontendActions
             }
 
             $this->getUser()->setFlash('success', 'You received free subscription');
-            $this->redirect('@mycq_profile');
+            $this->redirect('@mycq_marketplace');
           }
           else if ('paypal' == $packagesForm->getValue('payment_type'))
           {
@@ -213,7 +213,7 @@ class sellerActions extends cqFrontendActions
               }
 
               $this->getUser()->setFlash('success', 'Payment received');
-              $this->redirect('@mycq');
+              $this->redirect('@mycq_marketplace');
             }
             else
             {
