@@ -40,7 +40,7 @@
 
                   <fieldset class="form-container-center">
                     <div class="form-actions">
-                      <?= link_to('Edit Addresses', array('sf_route' => 'mycq_profile_addresses_edit', 'sf_subject' => $address), array('class' => 'btn blue-button spacer-left')) ?>
+                      <?= link_to('Edit Address', array('sf_route' => 'mycq_profile_addresses_edit', 'sf_subject' => $address), array('class' => 'btn blue-button spacer-left')) ?>
                       <?= link_to('Delete', array('sf_route' => 'mycq_profile_addresses_delete', 'sf_subject' => $address), array('class' => 'btn red-button spacer-left')) ?>
                     </div>
                   </fieldset>
