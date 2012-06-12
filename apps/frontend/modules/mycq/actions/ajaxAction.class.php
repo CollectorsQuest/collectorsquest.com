@@ -41,6 +41,7 @@ class ajaxAction extends IceAjaxAction
     if ($request->isMethod('post') && ($files = $request->getFiles('files')))
     {
       $this->loadHelpers('cqImages');
+      $firstUpload = 0 == $collector->countCollectibles();
 
       foreach ($files as $file)
       {
@@ -90,6 +91,11 @@ class ajaxAction extends IceAjaxAction
 
           return $this->error($e->getCode(), $e->getMessage(), false);
         }
+      }
+
+      if ($firstUpload)
+      {
+        $collector->getProfile()->updateProfileProgress();
       }
 
       // This is for xdcomm support in IE browsers

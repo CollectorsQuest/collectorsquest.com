@@ -79,6 +79,10 @@ class cqBaseUser extends IceSecurityUser
     {
       $collector = $this->getCollector();
     }
+    if ($profile = $collector->getProfile())
+    {
+      $profile->updateProfileProgress(); //This is to be sure profile completion is updated
+    }
 
     /** @var $response cqWebResponse */
     $response = sfContext::getInstance()->getResponse();

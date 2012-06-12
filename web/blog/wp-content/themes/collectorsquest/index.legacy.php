@@ -139,6 +139,9 @@
     case 'dev':
       $domain = 'collectorsquest.dev';
       break;
+    case 'next':
+      $domain = 'cqnext.com';
+      break;
     case 'stg':
       $domain = 'cqstaging.com';
       break;

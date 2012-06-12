@@ -396,6 +396,14 @@ class _sidebarComponents extends cqFrontendComponents
         ->filterByCollectible($collectible, Criteria::NOT_EQUAL)
         ->filterByTags($tags, Criteria::IN);
     }
+    /** @var $collectible CollectionCollectible */
+    else if (($collectible = $this->getVar('collectible')) && $collectible instanceof CollectionCollectible)
+    {
+      $tags = $collectible->getTags();
+      $q
+        ->filterByCollectionCollectible($collectible, Criteria::NOT_EQUAL)
+        ->filterByTags($tags, Criteria::IN);
+    }
 
     // Make the actual query and get the CollectiblesForSale
     $this->collectibles_for_sale = $q->limit($this->limit)->find();

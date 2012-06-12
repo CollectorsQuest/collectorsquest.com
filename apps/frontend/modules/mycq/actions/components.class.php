@@ -219,6 +219,8 @@ class mycqComponents extends cqFrontendComponents
           }
         }
 
+        $this->getCollector()->getProfile()->updateProfileProgress();
+
         $this->collection = $collection;
       }
       else
