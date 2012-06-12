@@ -13,9 +13,6 @@
     <li class="active">
       <a href="<?= url_for('@mycq_profile_addresses'); ?>">Mailing Addresses</a>
     </li>
-    <li>
-      <a href="#tab4" data-toggle="tab">Settings</a>
-    </li>
   </ul>
   <div class="tab-content">
     <div class="tab-pane active">

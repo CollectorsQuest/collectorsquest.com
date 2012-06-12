@@ -1,5 +1,10 @@
 <?php
   /* @var $form FrontendCollectorAddressForm */
+    foreach($form->getWidgetSchema()->getFields() as $form_field)
+    {
+      $form_field->setAttribute('class',
+        $form_field->getAttribute('class') . ' input-xxlarge');
+    }
 ?>
 <div id="mycq-tabs">
   <ul class="nav nav-tabs">
@@ -11,9 +16,6 @@
     </li>
     <li class="active">
       <a href="<?= url_for('@mycq_profile_addresses'); ?>">Mailing Addresses</a>
-    </li>
-    <li>
-      <a href="#tab4" data-toggle="tab">Settings</a>
     </li>
   </ul>
   <div class="tab-content">
@@ -36,7 +38,7 @@
             <input type="submit" class="btn btn-primary blue-button" value="Save & Continue" />
           </div>
         </form>
-        
+
       </div> <!-- .tab-content-inner.spacer -->
     </div> <!-- .tab-pane.active -->
   </div><!-- .tab-content -->

@@ -13,9 +13,6 @@
     <li class="active">
       <a href="<?= url_for('@mycq_profile_addresses'); ?>">Mailing Addresses</a>
     </li>
-    <li>
-      <a href="#tab4" data-toggle="tab">Settings</a>
-    </li>
   </ul>
   <div class="tab-content">
     <div class="tab-pane active">
@@ -32,7 +29,6 @@
           <h2>Your addresses</h2>
 
           <?php if (count($collector_addresses)): ?>
-            <p>Your addresses:</p>
             <div class="collector-addresses">
 
             <?php foreach ($collector_addresses as $key => $address): ?>
@@ -41,11 +37,14 @@
                 <div class="address-data">
                   <?php include_partial('collector_address',
                      array('collector_address' => $address)); ?>
-                  <div class="actions">
-                    <?= link_to('Edit', array('sf_route' => 'mycq_profile_addresses_edit', 'sf_subject' => $address)); ?>
 
-                    <?= link_to('Delete', array('sf_route' => 'mycq_profile_addresses_delete', 'sf_subject' => $address)) ?>
-                  </div>
+                  <fieldset class="form-container-center">
+                    <div class="form-actions">
+                      <?= link_to('Edit Addresses', array('sf_route' => 'mycq_profile_addresses_edit', 'sf_subject' => $address), array('class' => 'btn blue-button spacer-left')) ?>
+                      <?= link_to('Delete', array('sf_route' => 'mycq_profile_addresses_delete', 'sf_subject' => $address), array('class' => 'btn red-button spacer-left')) ?>
+                    </div>
+                  </fieldset>
+
                 </div> <!-- .address-data -->
               </div> <!-- .address-row -->
             <?php endforeach; ?>
@@ -54,10 +53,10 @@
           <?php else: ?>
             <p>
               You have no addresses currently entered. <br/>
-              Click here to add a new address:
-              <a href="<?= url_for('@mycq_profile_addresses_new') ?>">Enter a new address</a>
             </p>
           <?php endif; ?>
+          Click here to add a new address:
+          <a href="<?= url_for('@mycq_profile_addresses_new') ?>">Enter a new address</a>
         </div> <!-- .collector-address-holder -->
 
       </div> <!-- .tab-content-inner.spacer -->
