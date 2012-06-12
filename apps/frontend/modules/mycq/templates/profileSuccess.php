@@ -49,7 +49,7 @@
                 <div class="row-fluid">
                   <div class="span12" style="margin-bottom: 20px;">
                     <?= $avatar_form['filename']; ?>
-                    <button type="submit" class="btn btn-primary blue-button">Upload File</button>
+                    <button type="submit" class="btn btn-primary blue-button spacer-left">Upload File</button>
                     <?= $avatar_form['filename']->renderError(); ?>
                     <div class="help-block" style="color: grey;">
                       All popular image formats are supported but the image file should be less than 5MB in size!
