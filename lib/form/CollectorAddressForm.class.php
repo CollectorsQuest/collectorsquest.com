@@ -29,27 +29,41 @@ class CollectorAddressForm extends BaseCollectorAddressForm
 
   protected function setupZipPostcodeField()
   {
-    $this->widgetSchema['zip_postcode']->setLabel('ZIP / Postal Code');
+    if ($this->widgetSchema['zip_postcode'])
+    {
+      $this->widgetSchema['zip_postcode']->setLabel('ZIP / Postal Code');
+    }
   }
 
   protected function setupStateRegionField()
   {
-    $this->widgetSchema['state_region']->setLabel('State / Province');
+    if ($this->widgetSchema['state_region'])
+    {
+      $this->widgetSchema['state_region']->setLabel('State / Province');
+    }
   }
 
   protected function setupCountryIso3166Field()
   {
-    $this->widgetSchema['country_iso3166']
-      ->setLabel('Country')->setOption('add_empty', false);
-    $this->validatorSchema['country_iso3166']->setMessage('required',
-      'Please supply a country for this address.');
+    if ($this->widgetSchema['country_iso3166'])
+    {
+      $this->widgetSchema['country_iso3166']
+        ->setLabel('Country')->setOption('add_empty', false);
+      $this->validatorSchema['country_iso3166']->setMessage('required',
+        'Please supply a country for this address.');
+    }
   }
 
   protected function setupPhoneField()
   {
-    $this->widgetSchema['phone']->setLabel('Phone Number');
-    $this->validatorSchema['phone']->setMessage('required',
-      'Please supply a phone number so we can call if there are any problems using this address.');
+    if ($this->widgetSchema['phone'])
+    {
+      $this->widgetSchema['phone']->setLabel('Phone Number');
+      $this->validatorSchema['phone']->setMessage('required',
+        'Please supply a phone number so we can call if
+         there are any problems using this address.'
+      );
+    }
   }
 
 }
