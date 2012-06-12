@@ -155,6 +155,21 @@ class Comment extends BaseComment
     }
   }
 
+  /**
+   * Check if the comment has passed its cutoff date (default 6 months)
+   *
+   * Used to determine if the comment's creation time will be displayed
+   *
+   * @param     mixed $cutoff_date strtotime/DateTime compatible format
+   * @return    boolean
+   */
+  public function isPastCutoffDate($cutoff_date = '-6 months')
+  {
+    $cutoff_date = new DateTime($cutoff_date);
+
+    return $cutoff_date > $this->getCreatedAt(null);
+  }
+
   public function setCollectorCollection($v)
   {
     return $this->setCollection($v);
