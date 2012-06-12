@@ -14,7 +14,6 @@
 <div id="mycq-tabs">
   <div class="tab-content">
     <div class="tab-pane active" id="tab1">
-      <?php if ($total > 0 || $dropbox_total > 0): ?>
       <br style="clear: both;"/>
       <div class="tab-content-inner spacer-top-35">
         <div class="row-fluid sidebar-title spacer-inner-bottom">
@@ -52,7 +51,6 @@
           </div>
         </div>
       </div>
-      <?php endif; ?>
 
     </div>
   </div>

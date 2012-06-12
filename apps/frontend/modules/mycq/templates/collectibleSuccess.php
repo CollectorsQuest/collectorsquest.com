@@ -98,8 +98,8 @@
         <?= $form['thumbnail']->renderLabel(); ?>
         <div class="controls">
           <?= $form['thumbnail']->render(); ?>
-          <label style="margin-top: 5px; line-height: 22px;">
-            &nbsp; <?= $form['is_alt_view']->render(array('style' => 'float: left;')); ?>
+          <label>
+            &nbsp; <?= $form['is_alt_view']; ?>
             Add as an alternative view instead?
           </label>
           <?= $form['thumbnail']->renderError(); ?>
