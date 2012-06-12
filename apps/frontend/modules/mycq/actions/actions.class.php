@@ -142,6 +142,70 @@ class mycqActions extends cqFrontendActions
     return sfView::SUCCESS;
   }
 
+  public function executeProfileAddresses(sfWebRequest $request)
+  {
+    $this->collector_addresses = $this->getCollector()->getCollectorAddresses();
+
+    return sfView::SUCCESS;
+  }
+
+  public function executeProfileAddressesNew(sfWebRequest $request)
+  {
+    $address = new CollectorAddress();
+    $address->setCollector($this->getCollector());
+    $form = new FrontendCollectorAddressForm($address);
+
+    if (sfRequest::POST == $request->getMethod())
+    {
+      if ($form->bindAndSave($request->getParameter($form->getName())))
+      {
+        $this->redirect('@mycq_profile_addresses');
+      }
+    }
+    $this->form = $form;
+
+    return sfView::SUCCESS;
+  }
+
+  public function executeProfileAddressesEdit(sfWebRequest $request)
+  {
+    $address = $this->getRoute()->getObject();
+    $this->forward404Unless($this->getCollector()->isOwnerOf($address));
+
+    $form = new FrontendCollectorAddressForm($address);
+
+    if (sfRequest::POST == $request->getMethod())
+    {
+      if ($form->bindAndSave($request->getParameter($form->getName())))
+      {
+        $this->redirect('@mycq_profile_addresses');
+      }
+    }
+
+    $this->form = $form;
+
+    return sfView::SUCCESS;
+  }
+
+  public function executeProfileAddressesDelete(sfWebRequest $request)
+  {
+    $address = $this->getRoute()->getObject();
+    $this->forward404Unless($this->getUser()->isOwnerOf($address));
+
+    if (sfRequest::DELETE == $request->getMethod())
+    {
+      $address->delete();
+      $this->getUser()->setFlash('success',
+        $this->__('You have successfully removed an address from your account.'));
+
+      return $this->redirect('@mycq_profile_addresses');
+    }
+
+    $this->collector_address = $address;
+
+    return sfView::SUCCESS;
+  }
+
   public function executeDropbox(sfWebRequest $request)
   {
     $collector = $this->getCollector();

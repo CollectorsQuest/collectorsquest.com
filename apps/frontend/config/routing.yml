@@ -316,6 +316,28 @@ mycq_profile_account_info:
   url:   /mycq/profile/account-information
   param: { module: mycq, action: profileAccountInfo }
 
+mycq_profile_addresses:
+  url:   /mycq/profile/addresses
+  param: { module: mycq, action: profileAddresses }
+
+mycq_profile_addresses_new:
+  url:   /mycq/profile/addresses/new
+  param: { module: mycq, action: profileAddressesNew }
+
+mycq_profile_addresses_edit:
+  url:      /mycq/profile/addresses/:id/edit
+  class:    sfPropelORMRoute
+  param:    { module: mycq, action: profileAddressesEdit }
+  options:  { model: CollectorAddress, type: object }
+  requirements: { id: '\d+', sf_method: [get, post] }
+
+mycq_profile_addresses_delete:
+  url:      /mycq/profile/addresses/:id/delete
+  class:    sfPropelORMRoute
+  param:    { module: mycq, action: profileAddressesDelete }
+  options:  { model: CollectorAddress, type: object }
+  requirements: { id: '\d+', sf_method: [get, delete] }
+
 mycq_dropbox:
   url:   /mycq/dropbox
   param: { module: mycq, action: dropbox }

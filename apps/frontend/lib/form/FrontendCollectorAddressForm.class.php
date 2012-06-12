@@ -1,11 +1,21 @@
 <?php
 
+/**
+ * Form class to be used for frontend collector address edit/create
+ */
 class FrontendCollectorAddressForm extends CollectorAddressForm
 {
 
   public function configure()
   {
     parent::configure();
+
+    $this->getWidgetSchema()->setFormFormatterName('Bootstrap');
+  }
+
+  protected function unsetFields()
+  {
+    parent::unsetFields();
 
     unset ($this['id']);
     unset ($this['collector_id']);
@@ -16,7 +26,7 @@ class FrontendCollectorAddressForm extends CollectorAddressForm
   {
     return array_merge(array(
         'country_iso3166' => $this->getCountryCodeFromCollector() ?: 'US',
-    ),parent::getDefaults());
+    ), parent::getDefaults());
   }
 
   protected function getCountryCodeFromCollector()
