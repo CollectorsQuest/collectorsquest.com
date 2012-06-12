@@ -312,6 +312,10 @@ mycq_profile:
   url:   /mycq/profile
   param: { module: mycq, action: profile }
 
+mycq_profile_email:
+  url:   /mycq/profile/email
+  param: { module: mycq, action: profileEmail }
+
 mycq_dropbox:
   url:   /mycq/dropbox
   param: { module: mycq, action: dropbox }

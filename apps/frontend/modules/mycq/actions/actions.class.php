@@ -9,11 +9,8 @@ class mycqActions extends cqFrontendActions
 
   public function executeProfile(sfWebRequest $request)
   {
-    $this->collector = $this->getCollector();
-
-    $collector_form = new CollectorEditForm($this->collector);
-    $avatar_form = new CollectorAvatarForm($this->collector);
-    $email_form = new CollectorEmailChangeForm($this->collector);
+    $collector_form = new CollectorEditForm($this->getCollector());
+    $avatar_form = new CollectorAvatarForm($this->getCollector());
 
     if (sfRequest::POST == $request->getMethod())
     {
@@ -58,35 +55,6 @@ class mycqActions extends cqFrontendActions
              Please see below.');
         }
       }
-      else if ($request->hasParameter($email_form->getName()))
-      {
-        $collector_email = $email_form->bindAndCreateCollectorEmail(
-          $request->getParameter($email_form->getName()));
-
-        if ($collector_email)
-        {
-          $cqEmail = new cqEmail($this->getMailer());
-          $cqEmail->send('Collector/verify_new_email', array(
-              'to' => $email,
-              'params' => array(
-                  'collector' => $this->collector,
-                  'collector_email' => $collector_email,
-              )
-          ));
-
-          $this->getUser()->setFlash('success',
-            'A verification email was sent to '.$this->collector->getEmail());
-
-          return $this->redirect('mycq_profile');
-        }
-        else
-        {
-          $this->getUser()->setFlash('error',
-            'There was an error while changing your e-mail address.
-             Please see below.');
-        }
-      }
-
     }
 
     $this->avatars = CollectorPeer::$avatars;
@@ -95,8 +63,6 @@ class mycqActions extends cqFrontendActions
     $this->collector = $this->getUser()->getCollector();
     $this->collector_form = $collector_form;
 
-    $this->email_form = $email_form;
-
     return sfView::SUCCESS;
   }
 
@@ -104,6 +70,47 @@ class mycqActions extends cqFrontendActions
   {
     $this->collector = $this->getUser()->getCollector();
     $this->total = $this->collector->countCollectorCollections();
+
+    return sfView::SUCCESS;
+  }
+
+  public function executeProfileEmail(sfWebRequest $request)
+  {
+    $email_form = new CollectorEmailChangeForm($this->getCollector());
+
+    if (
+      sfRequest::POST == $request->getMethod() &&
+      $request->hasParameter($email_form->getName())
+    ) {
+      $collector_email = $email_form->bindAndCreateCollectorEmail(
+        $request->getParameter($email_form->getName()));
+
+      if ($collector_email)
+      {
+        $cqEmail = new cqEmail($this->getMailer());
+        $cqEmail->send('Collector/verify_new_email', array(
+            'to' => $email,
+            'params' => array(
+                'collector' => $this->collector,
+                'collector_email' => $collector_email,
+            )
+        ));
+
+        $this->getUser()->setFlash('success',
+          'A verification email was sent to '.$this->collector->getEmail());
+
+        return $this->redirect('mycq_profile');
+      }
+      else
+      {
+        $this->getUser()->setFlash('error',
+          'There was an error while changing your e-mail address.
+           Please see below.');
+      }
+    }
+
+    $this->collector = $this->getCollector();
+    $this->email_form = $email_form;
 
     return sfView::SUCCESS;
   }
