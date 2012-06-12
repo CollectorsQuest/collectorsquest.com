@@ -200,7 +200,8 @@ $lastclass = 0;
     ?>
 
     <?php if (is_page()) : ?>
-    <?php // do_shortcode('[wpfaqsearch menu=0]'); ?>
+
+    <?php if (is_page('CQ FAQs') || is_child(23117)) { echo do_shortcode('[wpfaqsearch menu=0]'); } ?>
 
     <div class="page" id="page-<?php the_ID(); ?>">
         <?php the_content('Read the rest of this entry &raquo;'); ?>
