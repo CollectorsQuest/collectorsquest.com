@@ -2,7 +2,9 @@
 /* @var $packagesForm SellerPackagesForm */
 ?>
 
-<?php if (IceGateKeeper::locked('mycq_seller_pay')): ?>
+<?php if ($packagesForm->hasGlobalErrors()): ?>
+  <?= $packagesForm->renderGlobalErrors(); ?>
+<?php elseif (IceGateKeeper::locked('mycq_seller_pay')): ?>
 <div class="alert alert-info">
   The market is currently in private beta testing mode.
   If you have received a promo code for participation, please enter it below.
@@ -41,10 +43,6 @@
     </dl>
   </div>
   <div class="span8">
-    <?php if ($packagesForm->hasGlobalErrors()): ?>
-      <?= $packagesForm->renderGlobalErrors() ?>
-    <?php endif; ?>
-
     <form action="<?=url_for('seller_packages')?>" method="post"
           id="form-seller-packages" class="form-horizontal">
       <?= $packagesForm->renderHiddenFields() ?>
