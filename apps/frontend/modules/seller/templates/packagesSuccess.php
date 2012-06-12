@@ -2,6 +2,15 @@
 /* @var $packagesForm SellerPackagesForm */
 ?>
 
+<?php if (IceGateKeeper::locked('mycq_seller_pay')): ?>
+<div class="alert alert-info">
+  The market is currently in private beta testing mode.
+  If you have received a promo code for participation, please enter it below.
+  If you'd like to be a beta tester, please email
+  <?= mail_to('info@collectorsquest.com', 'info@collectorsquest.com'); ?> for more information.
+</div>
+<?php endif; ?>
+
 <div class="row-fluid">
   <div class="span4 info-box-left-y">
     <h3>Why Sell on Collectors Quest?</h3>
@@ -34,15 +43,6 @@
   <div class="span8">
     <?php if ($packagesForm->hasGlobalErrors()): ?>
       <?= $packagesForm->renderGlobalErrors() ?>
-    <?php endif; ?>
-
-    <?php if (IceGateKeeper::locked('mycq_seller_pay')): ?>
-    <div class="alert">
-      The market is currently in private beta testing mode.
-      If you have received a promo code for participation, please enter it below.
-      If you'd like to be a beta tester, please email
-      <?= mail_to('info@collectorsquest.com', 'info@collectorsquest.com'); ?> for more information.
-    </div>
     <?php endif; ?>
 
     <form action="<?=url_for('seller_packages')?>" method="post"
@@ -82,10 +82,12 @@
       </fieldset>
       <?php endif; ?>
 
-      <fieldset class="form-container-center">
-        <label for="<?= $packagesForm['terms']->renderId() ?>" class="radio inline">
-          <?= $packagesForm['terms']->render() ?>&nbsp;
-          <?php
+      <div class="control-group" style="margin-bottom: 0;">
+        <label class="control-label control-label">&nbsp;</label>
+        <div class="controls form-inline">
+          <label for="<?= $packagesForm['terms']->renderId() ?>" class="radio inline">
+            <?= $packagesForm['terms']->render() ?>&nbsp;
+            <?php
             echo sprintf(
               'I accept the %s set forth by this site.',
               urldecode(link_to(
@@ -93,9 +95,10 @@
                 array('target' => '_blank')
               ))
             );
-          ?>
-        </label>
-      </fieldset>
+            ?>
+          </label>
+        </div>
+      </div>
 
       <?php if (IceGateKeeper::open('mycq_seller_pay')): ?>
       <h5 class="spacer-top">* To avoid interruption of service, annual subscriptions
@@ -103,7 +106,10 @@
       <?php endif; ?>
 
       <div class="form-actions">
-        <button type="submit" class="btn btn-primary blue-button">Sign up</button>
+        <button type="submit" class="btn btn-primary blue-button">Purchase Package</button>
+        <a href="<?= url_for('mycq') ?>" class="btn gray-button spacer-left">
+          Cancel
+        </a>
       </div>
     </form>
   </div>
