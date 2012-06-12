@@ -30,9 +30,9 @@ class CollectorSignupStep1Form extends BaseForm
       'seller'          => new sfWidgetFormSelectRadio(array(
         'label'       => 'Choose one',
         'choices'     => array(
-          0 => 'I Collect',
-          1 => 'I Sell',
-          2 => 'I Collect and Sell',
+          0 => 'I collect',
+          1 => 'I sell',
+          2 => 'I collect and sell',
         ),
 
         'formatter'   =>   function($widget, $inputs) {
