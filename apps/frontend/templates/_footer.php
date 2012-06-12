@@ -1,7 +1,10 @@
 <?php
-  use_javascripts_for_form($signup_form);
+/* @var $sf_user cqFrontendUser */
+use_javascripts_for_form($signup_form);
 
-  $unread_messages = $sf_user->getUnreadMessagesCount();
+$unread_messages = $sf_user->getUnreadMessagesCount();
+$collector = $sf_user->getCollector();
+$profile_completed = $sf_user->isAuthenticated() ? $collector->getProfile()->getProfileCompleted() : 0;
 ?>
 
 <footer id="footer">
@@ -10,6 +13,7 @@
       <div class="span4">
         <div class="aboutus-footer-inner">
           <h2 class="Chivo webfont">About Collectors Quest</h2>
+
           <p class="about-us">
             Collectors Quest is here to help you get the most out of your
             collections: post a gallery of your neat stuff to share and use as an archive,
@@ -17,6 +21,7 @@
             world, and meet other like-minded collectors.
             <?= link_to('Join us', '@collector_signup') ?> to make collecting more fun than ever!
           </p>
+
           <div class="row-spacing-footer">
             <button class="btn btn-primary blue-button pull-left" type="submit" onclick="location.href='<?=url_for('blog_page', array('slug' => 'contact-us'), true);?>'">Contact Us</button>
           </div>
@@ -26,12 +31,14 @@
               <i class="s-16-icon-facebook social-ico-padding"></i>Follow us on Facebook
             </a>
           </p>
+
           <p>
             <a href="http://twitter.com/CollectorsQuest"
                target="_blank" class="social-link" title="Follow us on Twitter">
               <i class="s-16-icon-twitter social-ico-padding"></i>Follow us on Twitter
             </a>
           </p>
+
           <p>
             <a href="http://pinterest.com/CollectorsQuest"
                target="_blank" class="social-link" title="Follow us on Pinterest">
@@ -39,7 +46,8 @@
             </a>
           </p>
         </div>
-      </div><!-- .span4 -->
+      </div>
+      <!-- .span4 -->
 
       <div class="span4">
         <?php if (!$sf_user->isAuthenticated()): ?>
@@ -68,6 +76,7 @@
 
         <div id="footer-form-login" style="display: none">
           <h2 class="Chivo webfont">Log In</h2>
+
           <form action="<?= url_for('@login', true); ?>" class="form-horizontal form-footer" method="post">
             <?= $login_form->renderUsing('BootstrapWithRowFluid') ?>
             <div class="row-fluid spacer-7">
@@ -99,23 +108,35 @@
             <span class="big-email-icon">
               <span class="pm-counter">
                 <?php if ($unread_messages < 1000): ?>
-                  <?= $unread_messages; ?>
+                <?=
+                $unread_messages
+                ; ?>
                 <?php else: ?>
-                  &#8734; <!-- infinity! -->
+                &#8734; <!-- infinity! -->
                 <?php endif; ?>
               </span>
             </span>
+
             <p>
               You have <?= format_number_choice('[0]no messages|[1]1 message|(1, +Inf]%count% messages',
-                array('%count%' => $unread_messages), $unread_messages); ?>
+              array('%count%' => $unread_messages), $unread_messages); ?>
               in <?= link_to('your inbox', '@messages_inbox', array('class' => 'bold-links')); ?>
             </p>
           </li>
-          <!--
+          <?php if ($sf_user->isAuthenticated() && 100 > $profile_completed): ?>
           <li class="icon-big-battery">
-            <p>Your profile is 50% complete. <a href="#" class="bold-links">Add a collection</a> in minutes. (+10%)</p>
+            <p>Your profile is <?=$profile_completed?>% complete.
+              <?php if (75 <= $profile_completed): ?>
+                <a href="<?=url_for('mycq_collection_collectible_create')?>" class="bold-links">Add a collectible</a> in minutes.
+                <?php elseif (50 <= $profile_completed): ?>
+                <a href="<?=url_for('mycq_collections')?>" class="bold-links">Add a collection</a> in minutes.
+                <?php else: ?>
+                <a href="<?=url_for('mycq_profile')?>" class="bold-links">Add info about what you collect</a> in minutes.
+                <?php endif; ?>
+              (+25%)
+            </p>
           </li>
-          //-->
+          <?php endif; ?>
           <li class="footer-profile-box-h-list" style="padding-top: 0;">
             <ul class="row-fluid">
               <li class="span6 add-collectible-img link">
@@ -141,48 +162,56 @@
           </div>
         </div>
         <?php endif; ?>
-      </div><!-- .span4 -->
+      </div>
+      <!-- .span4 -->
 
       <div class="span4">
         <ul class="footer-info-box">
           <li>
             <i class="big-box-icon"></i>
+
             <div class="info-box-text">
               <h2 class="Chivo webfont">Show Off</h2>
+
               <p>
-                Show your collections to the world! Upload and organize your stuff here.<br/>
+                Show your collections to the world! Upload and organize your stuff here.<br />
                 <?= link_to('Show&nbsp;Off&nbsp;Now!', '@collector_signup'); ?>
               </p>
             </div>
           </li>
           <?php /**
-          <li>
-            <i class="big-piggy-bank-icon"></i>
-            <div class="info-box-text">
-              <h2 class="Chivo webfont">Get Paid</h2>
-              <p>
-                Do you have something you'd like to sell?
-                It's easy! Become a member of Collectors Quest and get started.<br/>
-                <?= link_to('Get&nbsp;Paid&nbsp;Now!', '@seller_packages'); ?>
-              </p>
-            </div>
-          </li>
-          **/ ?>
+        <li>
+        <i class="big-piggy-bank-icon"></i>
+        <div class="info-box-text">
+        <h2 class="Chivo webfont">Get Paid</h2>
+        <p>
+        Do you have something you'd like to sell?
+        It's easy! Become a member of Collectors Quest and get started.<br/>
+        <?= link_to('Get&nbsp;Paid&nbsp;Now!', '@seller_packages'); ?>
+        </p>
+        </div>
+        </li>
+         **/ ?>
           <li>
             <i class="big-question-icon"></i>
+
             <div class="info-box-text">
               <h2 class="Chivo webfont">Help / FAQ</h2>
+
               <p>
                 Have a question or a concern? Having trouble figuring something out?
-                Get the most out of the site by checking out our FAQs.<br/>
+                Get the most out of the site by checking out our FAQs.<br />
                 <a href="<?=urldecode(url_for('blog_page', array('slug' => 'cq-faqs/general-questions'), true))?>">Get&nbsp;Help&nbsp;Now!</a>
               </p>
             </div>
           </li>
         </ul>
-      </div><!--/span-->
-    </div><!--/row-->
-  </div><!--/footer-inner-->
+      </div>
+      <!--/span-->
+    </div>
+    <!--/row-->
+  </div>
+  <!--/footer-inner-->
 
   <!--
     <a id="top-link" href="#" class="btn btn-large sticky">

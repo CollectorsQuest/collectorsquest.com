@@ -43,6 +43,7 @@ class mycqActions extends cqFrontendActions
 
         if ($success)
         {
+          $this->getUser()->getCollector()->getProfile()->updateProfileProgress();
           $this->getUser()->setFlash('success',
             'You have successfully updated your profile.');
 

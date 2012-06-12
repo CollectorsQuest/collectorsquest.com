@@ -239,6 +239,7 @@ class CollectorPeer extends BaseCollectorPeer
     // All of the profile data is optional, thus make sure to check it is provided
     $collector_profile = new CollectorProfile();
     $collector_profile->setCollector($collector);
+    $collector_profile->setProfileCompleted(25);
 
     $collector_profile->setPreferences(array(
       'show_age'    => false,

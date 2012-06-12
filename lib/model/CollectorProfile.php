@@ -453,4 +453,38 @@ class CollectorProfile extends BaseCollectorProfile
     }
   }
 
+  public function getProfileCompleted()
+  {
+    return $this->getProperty('completed', 25);
+  }
+
+  public function setProfileCompleted($value)
+  {
+    return $this->setProperty('completed', $value);
+  }
+
+  public function updateProfileProgress()
+  {
+    $percentage = 25; //25% default for registered
+    $collector = $this->getCollector();
+
+    if ($this->getAboutWhatYouCollect())
+    {
+      $percentage += 25;
+    }
+
+    if ($collector->countCollections())
+    {
+      $percentage += 25;
+    }
+
+    if ($collector->countCollectibles())
+    {
+      $percentage += 25;
+    }
+
+    $this->setProfileCompleted($percentage);
+    $this->save();
+  }
+
 }
