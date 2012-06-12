@@ -1,12 +1,3 @@
-<?php
-/* @var $sf_user cqFrontendUser */
-use_javascripts_for_form($signup_form);
-
-$unread_messages = $sf_user->getUnreadMessagesCount();
-$collector = $sf_user->getCollector();
-$profile_completed = $sf_user->isAuthenticated() && $collector->getProfile() ? $collector->getProfile()->getProfileCompleted() : 0;
-?>
-
 <footer id="footer">
   <div class="footer-inner">
     <div class="row-fluid">
@@ -23,7 +14,12 @@ $profile_completed = $sf_user->isAuthenticated() && $collector->getProfile() ? $
           </p>
 
           <div class="row-spacing-footer">
-            <button class="btn btn-primary blue-button pull-left" type="submit" onclick="location.href='<?=url_for('blog_page', array('slug' => 'contact-us'), true);?>'">Contact Us</button>
+            <?php
+              echo link_to(
+                'Contact Us', 'blog_page', array('slug' => 'contact-us'),
+                array('class' => 'btn btn-primary blue-button pull-left')
+              );
+            ?>
           </div>
           <p>
             <a href="http://www.facebook.com/pages/Collectors-Quest/119338990397"
@@ -50,118 +46,22 @@ $profile_completed = $sf_user->isAuthenticated() && $collector->getProfile() ? $
       <!-- .span4 -->
 
       <div class="span4">
-        <?php if (!$sf_user->isAuthenticated()): ?>
-
-        <div id="footer-form-signup">
-          <h2 class="Chivo webfont">Sign Up</h2>
-
-          <form action="<?= url_for('@collector_signup', true); ?>" method="post" class="form-horizontal form-footer">
-            <?= $signup_form->renderUsing('BootstrapWithRowFluid'); ?>
-            <div class="row-fluid spacer-7">
-              <div class="span9 spacer-inner-top">
-                <?php include_partial('global/footer_signup_external_buttons'); ?>
-              </div>
-              <div class="span3">
-                <button type="submit" class="btn btn-primary blue-button pull-right">Submit</button>
-              </div>
-            </div>
-          </form>
-
-          <div id="footer-control-login">
-            <span class="pull-right">
-              Already have an account? <?= link_to('Log In', '@login', array('id' => 'footer-control-login-button')); ?>
-            </span>
-          </div>
-        </div><!-- #footer-form-signup -->
-
-        <div id="footer-form-login" style="display: none">
-          <h2 class="Chivo webfont">Log In</h2>
-
-          <form action="<?= url_for('@login', true); ?>" class="form-horizontal form-footer" method="post">
-            <?= $login_form->renderUsing('BootstrapWithRowFluid') ?>
-            <div class="row-fluid spacer-7">
-              <div class="span8 spacer-inner-top">
-                <?php include_partial('global/footer_signup_external_buttons'); ?>
-              </div>
-              <div class="span4">
-                <button type="submit" class="btn btn-primary blue-button pull-right">Log&nbsp;In</button>
-              </div>
-            </div>
-            <div class="row-fluid">
-              <div class="span12">
-                <span class="pull-right"><?= link_to('Forgot your password?', '@recover_password'); ?></span>
-              </div>
-            </div>
-          </form>
-
-          <div id="footer-control-signup" style="display: none">
-            <span class="pull-right">
-              Don't have an account yet? <?= link_to('Sign up', '@collector_signup', array('id' => 'footer-control-signup-button')); ?>
-            </span>
-          </div>
-        </div> <!-- #footer-form-login -->
-
-        <?php else: ?>
-        <h2 class="Chivo webfont no-margin-bottom">Welcome back, <?= $sf_user->getCollector()->getDisplayName() ?>!</h2>
-        <ul class="footer-profile-box cf">
-          <li class="footer-pm-box">
-            <span class="big-email-icon">
-              <span class="pm-counter">
-                <?php if ($unread_messages < 1000): ?>
-                <?=
-                $unread_messages
-                ; ?>
-                <?php else: ?>
-                &#8734; <!-- infinity! -->
-                <?php endif; ?>
-              </span>
-            </span>
-
-            <p>
-              You have <?= format_number_choice('[0]no messages|[1]1 message|(1, +Inf]%count% messages',
-              array('%count%' => $unread_messages), $unread_messages); ?>
-              in <?= link_to('your inbox', '@messages_inbox', array('class' => 'bold-links')); ?>
-            </p>
-          </li>
-          <?php if ($sf_user->isAuthenticated() && 100 > $profile_completed): ?>
-          <li class="icon-big-battery">
-            <p>Your profile is <?=$profile_completed?>% complete.
-              <?php if (75 <= $profile_completed): ?>
-                <a href="<?=url_for('mycq_collection_collectible_create')?>" class="bold-links">Add a collectible</a> in minutes.
-                <?php elseif (50 <= $profile_completed): ?>
-                <a href="<?=url_for('mycq_collections')?>" class="bold-links">Add a collection</a> in minutes.
-                <?php else: ?>
-                <a href="<?=url_for('mycq_profile')?>" class="bold-links">Add info about what you collect</a> in minutes.
-                <?php endif; ?>
-              (+25%)
-            </p>
-          </li>
-          <?php endif; ?>
-          <li class="footer-profile-box-h-list" style="padding-top: 0;">
-            <ul class="row-fluid">
-              <li class="span6 add-collectible-img link">
-                <a href="<?= url_for('@mycq_collections', true) ?>" class="bold-links target">
-                  Upload<br> an item
-                </a>
-              </li>
-              <li class="span6 organize-collection link">
-                <a href="<?= url_for('@mycq_collections', true) ?>#my-collections" class="bold-links target">
-                  Organize your<br> collections
-                </a>
-              </li>
-            </ul>
-          </li>
-        </ul> <!-- .footer-pofile-box -->
-
-        <div class="row-fluid spacer-inner-top">
-          <div class="span12">
-            <a href="<?= url_for('@mycq', true); ?>" class="btn btn-primary blue-button">
-              My Profile
-            </a>
-            <b><?= link_to('Log out', '@logout', array('class' => 'spacer-left logout-link')); ?></b>
-          </div>
-        </div>
-        <?php endif; ?>
+        <?php
+          if (!$sf_user->isAuthenticated())
+          {
+            include_partial(
+              'global/footer_login_signup',
+              array('login_form' => $login_form, 'signup_form' => $signup_form)
+            );
+          }
+          else
+          {
+            include_partial(
+              'global/footer_authenticated',
+              array('collector' => $sf_user->getCollector())
+            );
+          }
+        ?>
       </div>
       <!-- .span4 -->
 
@@ -169,10 +69,8 @@ $profile_completed = $sf_user->isAuthenticated() && $collector->getProfile() ? $
         <ul class="footer-info-box">
           <li>
             <i class="big-box-icon"></i>
-
             <div class="info-box-text">
               <h2 class="Chivo webfont">Show Off</h2>
-
               <p>
                 Show your collections to the world! Upload and organize your stuff here.<br />
                 <?= link_to('Show&nbsp;Off&nbsp;Now!', '@collector_signup'); ?>
@@ -194,10 +92,8 @@ $profile_completed = $sf_user->isAuthenticated() && $collector->getProfile() ? $
          **/ ?>
           <li>
             <i class="big-question-icon"></i>
-
             <div class="info-box-text">
               <h2 class="Chivo webfont">Help / FAQ</h2>
-
               <p>
                 Have a question or a concern? Having trouble figuring something out?
                 Get the most out of the site by checking out our FAQs.<br />
