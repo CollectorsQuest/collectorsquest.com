@@ -27,17 +27,17 @@ $unread_messages = $collector->getUnreadMessagesCount();
   <li class="icon-big-battery">
     <p>Your profile is <?= $profile_completed ?>% complete.
       <?php if (75 <= $profile_completed): ?>
-        <a href="<?=url_for('mycq_collections')?>" class="bold-links">
-          Add a collectible
-        </a> in minutes.
-      <?php elseif (50 <= $profile_completed): ?>
-        <a href="<?=url_for('mycq_collections')?>#my-collections" class="bold-links">
-          Add a collection
-        </a> in minutes.
-      <?php else: ?>
         <a href="<?=url_for('mycq_profile')?>" class="bold-links">
           Add info about what you collect
         </a>.
+      <?php elseif (50 <= $profile_completed): ?>
+        <a href="<?=url_for('mycq_collections')?>" class="bold-links">
+          Add a collectible
+        </a> in minutes.
+      <?php else: ?>
+        <a href="<?=url_for('mycq_collections')?>#my-collections" class="bold-links">
+          Add a collection
+        </a> in minutes.
       <?php endif; ?>
       (+25%)
     </p>
