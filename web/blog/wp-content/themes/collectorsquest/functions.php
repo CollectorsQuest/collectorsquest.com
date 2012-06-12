@@ -839,3 +839,38 @@ function remove_menu_items() {
   }
 }
 add_action('admin_menu', 'remove_menu_items',11);
+
+
+
+
+// REQUIRE Post Tags
+function tag_remind_init() {
+  wp_enqueue_script('jquery');
+}
+function tag_remind() {
+  global $typenow;
+  if ($typenow == 'post') {
+    echo "<script type='text/javascript'>\n";
+    echo "//<![CDATA[\n";
+    echo "
+    jQuery('#publish').click(function() {
+      tagSelected=false;
+      if (jQuery('.tagchecklist span').length >0) {
+        tagSelected=true;
+      }
+      if (tagSelected==false) {
+        alert('You must add at least one tag.');
+        setTimeout(\"jQuery('#ajax-loading').css('visibility', 'hidden');\",
+        100);
+        jQuery('[id^=\"tagsdiv-post_tag\"]').css('background', '#FFB');
+        setTimeout(\"jQuery('#publish').removeClass('button-primary-disabled');\", 100)
+        return false;
+      }
+    });
+    ";
+    echo "// ]]>\n";
+    echo "</script>\n";
+  }
+}
+//add_action('admin_init', 'tag_remind_init');
+add_action('edit_form_advanced', 'tag_remind');
