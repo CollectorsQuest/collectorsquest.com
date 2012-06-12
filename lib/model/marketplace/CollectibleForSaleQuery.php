@@ -132,6 +132,20 @@ class CollectibleForSaleQuery extends BaseCollectibleForSaleQuery
   }
 
   /**
+   * @param  \CollectionCollectible|null $collectible
+   * @param  null $comparison
+
+   * @return CollectibleForSaleQuery
+   */
+  public function filterByCollectionCollectible(CollectionCollectible $collectible = null, $comparison = null)
+  {
+    return $this
+      ->useCollectibleQuery()
+      ->filterByCollectionCollectible($collectible, $comparison)
+      ->enduse();
+  }
+
+  /**
    * @param  \Collection|null $collection
    * @param  null $comparison
 
