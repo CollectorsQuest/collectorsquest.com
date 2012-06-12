@@ -44,7 +44,7 @@
   </div>
   <div class="span8">
     <form action="<?=url_for('seller_packages')?>" method="post"
-          id="form-seller-packages" class="form-horizontal">
+          id="form-seller-packages" class="form-horizontal" novalidate="novalidate">
       <?= $packagesForm->renderHiddenFields() ?>
       <fieldset>
         <?= $packagesForm['package_id']->renderRow() ?>
@@ -52,7 +52,7 @@
           <?=$packagesForm['promo_code']->renderLabel(null, array('class'=> 'control-label'))?>
           <div class="controls form-inline">
             <?=$packagesForm['promo_code']->render()?>
-            <button type="submit" name="applyPromo" id="applyPromo3" value="applyPromo">Apply</button>
+            <button type="submit" name="applyPromo" id="applyPromo3" value="applyPromo" formnovalidate="formnovalidate">Apply</button>
             <?=$packagesForm['promo_code']->renderError() ?>
             <?php if (!empty($discountMessage)): ?>
             <span style="color: green; font-weight: bold;"><?=$discountMessage ?></span>
