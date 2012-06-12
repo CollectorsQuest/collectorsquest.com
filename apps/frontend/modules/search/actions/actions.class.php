@@ -3,7 +3,9 @@
 class searchActions extends cqFrontendActions
 {
   /** @var array */
-  private static $_query = array('filters' => array());
+  private static $_query = array(
+    'filters' => array('thumbnail' => 'yes')
+  );
 
   public function preExecute()
   {

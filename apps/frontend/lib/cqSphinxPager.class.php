@@ -12,6 +12,7 @@ class cqSphinxPager extends sfPager
 
   /**
    * @param  array    $query
+   * @param  array    $types
    * @param  integer  $maxPerPage
    */
   public function __construct($query, $types = array(), $maxPerPage = 24)
@@ -140,7 +141,9 @@ class cqSphinxPager extends sfPager
     if (!empty($collection_ids))
     {
       /** @var $collections CollectorCollection[] */
-      $collections = CollectorCollectionQuery::create()->filterById($collection_ids, Criteria::IN)->find();
+      $collections = CollectorCollectionQuery::create()
+        ->filterById($collection_ids, Criteria::IN)
+        ->find();
 
       foreach ($collections as $collection)
       {
@@ -163,14 +166,18 @@ class cqSphinxPager extends sfPager
           $profile = $collector->getProfile();
 
           $objects[$key] = $collector;
-          $contents[$key] = implode('. ', array($profile->getProperty('about.me'), $profile->getProperty('about.collections')));
+          $contents[$key] = implode('. ', array(
+              $profile->getProperty('about.me'), $profile->getProperty('about.collections')
+          ));
         }
       }
     }
     if (!empty($collectible_ids))
     {
       /** @var $collectibles Collectible[] */
-      $collectibles = CollectibleQuery::create()->filterById($collectible_ids, Criteria::IN)->find();
+      $collectibles = CollectibleQuery::create()
+        ->filterById($collectible_ids, Criteria::IN)
+        ->find();
 
       foreach ($collectibles as $collectible)
       {
@@ -196,8 +203,9 @@ class cqSphinxPager extends sfPager
     $index = sprintf('%1$s_blog_normalized', $env);
 
     $keys = array_keys($contents);
-    if (!empty($this->query['q']) &&
-       ($excerpts = $sphinx->BuildExcerpts($contents, $index, $this->query['q'], array('limit' => 140)))
+    if (
+      !empty($this->query['q']) &&
+      ($excerpts = $sphinx->BuildExcerpts($contents, $index, $this->query['q'], array('limit' => 140)))
     ) {
       foreach ($excerpts as $i => $excerpt)
       if (!empty($excerpt))
@@ -276,6 +284,7 @@ class cqSphinxPager extends sfPager
 
   /**
    * @param  array   $query
+   * @param  array   $types
    * @param  string  $return
    *
    * @return mixed
@@ -283,7 +292,9 @@ class cqSphinxPager extends sfPager
   static public function search($query, $types = array(), $return = 'pks')
   {
     $sphinx = self::getSphinxClient();
-    $types  = !empty($types) ? (array) $types : array('collections', 'collectors', 'collectibles', 'blog');
+    $types  = !empty($types) ?
+      (array) $types :
+      array('collections', 'collectors', 'collectibles', 'blog');
 
     // http://www.sphinxsearch.com/docs/current.html#api-func-setlimits
     if (!empty($query['limits']) && count($query['limits']) == 2)
@@ -305,13 +316,19 @@ class cqSphinxPager extends sfPager
       case 'date':
         $sphinx->setSortMode(
           SPH_SORT_EXTENDED,
-          sprintf('created_at %s, @weight DESC', isset($query['order']) ? strtoupper($query['order']) : 'DESC')
+          sprintf(
+            'created_at %s, @weight DESC',
+            isset($query['order']) ? strtoupper($query['order']) : 'DESC'
+          )
         );
         break;
       case 'popularity':
         $sphinx->setSortMode(
           SPH_SORT_EXTENDED,
-          sprintf('score %s, @weight DESC, updated_at DESC', isset($query['order']) ? strtoupper($query['order']) : 'DESC')
+          sprintf(
+            'score %s, @weight DESC, updated_at DESC',
+            isset($query['order']) ? strtoupper($query['order']) : 'DESC'
+          )
         );
         break;
       case 'relevance':
@@ -346,8 +363,10 @@ class cqSphinxPager extends sfPager
           $query['filters'][substr($name, 0, -4)]['min'] = $values;
           unset($query['filters'][$name]);
         }
-        else if (substr($name, -4) == '_max' && !isset($query['filters'][substr($name, 0, -4)]['max']))
-        {
+        else if (
+          substr($name, -4) == '_max' &&
+          !isset($query['filters'][substr($name, 0, -4)]['max'])
+        ) {
           $query['filters'][substr($name, 0, -4)]['max'] = $values;
           unset($query['filters'][$name]);
         }
@@ -355,12 +374,11 @@ class cqSphinxPager extends sfPager
 
       foreach ($query['filters'] as $name => $values)
       {
-
-        if ($name == 'images')
+        if ($name == 'thumbnail')
         {
           if (in_array($values, array('yes', 'no')))
           {
-            $sphinx->setFilter('num_images', array(0), ($values == 'yes') ? true : false);
+            $sphinx->setFilter('has_thumbnail', array(0), ($values == 'yes') ? true : false);
           }
         }
         else
