@@ -3,70 +3,39 @@
 class cqPropelPager extends sfPropelPager
 {
   /**
-   * @param integer $v
-   * @return void
+   * @var bool
    */
-  public function setNbResults($v)
+  private $strictMode = false;
+
+  /**
+   * @param bool $strictMode
+   */
+  public function setStrictMode($strictMode)
   {
-    $this->nbResults = $v;
+    $this->strictMode = $strictMode;
   }
 
   /**
-   * @see sfPager
+   * @return bool
    */
-  public function init()
+  public function getStrictMode()
   {
-    $this->results = null;
+    return $this->strictMode;
+  }
 
-    $hasMaxRecordLimit = ($this->getMaxRecordLimit() !== false);
-    $maxRecordLimit = $this->getMaxRecordLimit();
+  /**
+   * Sets the last page number.
+   *
+   * @param integer $page
+   */
+  protected function setLastPage($page)
+  {
+    $this->lastPage = $page;
 
-    if ($this->nbResults === 0)
+    if ($this->getStrictMode() && $this->getPage() > $page)
     {
-      $criteriaForCount = clone $this->getCriteria();
-      $criteriaForCount
-        ->setOffset(0)
-        ->setLimit(0)
-        ->clearGroupByColumns()
-      ;
-
-      $count = call_user_func(array($this->getClassPeer(), $this->getPeerCountMethod()), $criteriaForCount);
-
-      $this->setNbResults($hasMaxRecordLimit ? min($count, $maxRecordLimit) : $count);
-    }
-
-    $criteria = $this->getCriteria()
-      ->setOffset(0)
-      ->setLimit(0)
-    ;
-
-    if (0 == $this->getPage() || 0 == $this->getMaxPerPage())
-    {
-      $this->setLastPage(0);
-    }
-    else
-    {
-      $this->setLastPage(ceil($this->getNbResults() / $this->getMaxPerPage()));
-
-      $offset = ($this->getPage() - 1) * $this->getMaxPerPage();
-      $criteria->setOffset($offset);
-
-      if ($hasMaxRecordLimit)
-      {
-        $maxRecordLimit = $maxRecordLimit - $offset;
-        if ($maxRecordLimit > $this->getMaxPerPage())
-        {
-          $criteria->setLimit($this->getMaxPerPage());
-        }
-        else
-        {
-          $criteria->setLimit($maxRecordLimit);
-        }
-      }
-      else
-      {
-        $criteria->setLimit($this->getMaxPerPage());
-      }
+      $this->setPage($page);
     }
   }
+
 }

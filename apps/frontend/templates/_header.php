@@ -132,21 +132,18 @@
     <div class="navbar-inner">
       <div class="container dark-bg">
         <?php
-          echo link_to(
-            'Collectors Quest', '@homepage',
-            array('class' => 'cq-logo logo-development hide-text', 'title' => 'Home', 'absolute' => true)
-          );
-        ?>
-        <?php /*
-          echo link_to(
-            'Collectors Quest', '@homepage',
-            array('class' => 'cq-logo logo-staging hide-text', 'title' => 'Home', 'absolute' => true)
-          );
+          if (sfConfig::get('sf_environment') === 'dev') {
+            $class = 'cq-logo logo-development';
+          } else if (sfConfig::get('sf_environment') === 'next') {
+            $class = 'cq-logo logo-staging';
+          } else {
+            $class = 'cq-logo logo';
+          }
 
           echo link_to(
             'Collectors Quest', '@homepage',
-            array('class' => 'cq-logo logo hide-text', 'title' => 'Home', 'absolute' => true)
-          ); */
+            array('class' => $class .' hide-text', 'title' => 'Home', 'absolute' => true)
+          );
         ?>
         <?php
           /**
@@ -156,7 +153,7 @@
           $active = $sf_params->get('cq_header_active', $sf_params->get('module'));
         ?>
         <ul class="nav">
-          <?php $class = in_array($active, array('collection', 'collections', 'aent')) ? 'active' : null; ?>
+          <?php $class = in_array($active, array('collection', 'collections', 'aent', 'categories')) ? 'active' : null; ?>
           <li class="<?= $class ?>"><?= link_to('Collections', '@collections', array('absolute' => true)); ?></li>
 
           <?php $class = in_array($active, array('news', '_blog')) ? 'active' : null; ?>

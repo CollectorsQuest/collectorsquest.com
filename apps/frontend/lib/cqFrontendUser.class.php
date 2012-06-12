@@ -44,7 +44,8 @@ class cqFrontendUser extends cqBaseUser
     if (($collector = $this->getCollector($strict)) && $collector->getIsSeller())
     {
       $seller = new Seller();
-      $collector->copyInto($seller);
+      $collector->copyInto($seller, false, false);
+      $seller->setId($collector->getId());
     }
 
     return $seller;

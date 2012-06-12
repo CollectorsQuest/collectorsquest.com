@@ -32,6 +32,11 @@ class cqWidgetFormMultipleInputText extends sfWidgetFormInputText
    */
   public function render($name, $values = null, $attributes = array(), $errors = array())
   {
+    if ('[]' != substr($name, -2))
+    {
+      $name .= '[]';
+    }
+
     if (!is_array($values))
     {
       $values = explode($this->getOption('separator'), $values);

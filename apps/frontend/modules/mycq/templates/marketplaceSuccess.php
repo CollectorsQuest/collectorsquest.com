@@ -14,16 +14,6 @@
 <div id="mycq-tabs">
   <div class="tab-content">
     <div class="tab-pane active" id="tab1">
-      <?php
-        include_component(
-          'mycq', 'dropbox',
-          array('instructions' => array(
-            'position' => 'bottom',
-            'text' => 'Drag and Drop Your Photos Below')
-          )
-        );
-      ?>
-
       <?php if ($total > 0 || $dropbox_total > 0): ?>
       <br style="clear: both;"/>
       <div class="tab-content-inner spacer-top-35">

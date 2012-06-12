@@ -286,7 +286,7 @@ class mycqComponents extends cqFrontendComponents
         if ($values['thumbnail'])
         {
           $image = iceModelMultimediaQuery::create()
-              ->findOneById((int)$values['thumbnail']);
+              ->findOneById((integer) $values['thumbnail']);
 
           if ($this->getCollector()->isOwnerOf($image))
           {
@@ -303,4 +303,61 @@ class mycqComponents extends cqFrontendComponents
 
     return sfView::SUCCESS;
   }
+
+  public function executeCreateCollectibleForSale()
+  {
+    $form = new CollectibleForSaleCreateForm();
+
+    if ($collectible_id = $this->getRequestParameter('collectible_id'))
+    {
+      $q = CollectibleQuery::create()
+         ->filterByCollector($this->getCollector())
+         ->filterById($collectible_id);
+
+      /** @var $image iceModelMultimedia */
+      if (($collectible = $q->findOne()) && $image = $collectible->getPrimaryImage())
+      {
+        $form->setDefault('collectible', array('thumbnail' => $image->getId()));
+      }
+    }
+
+    if ($this->getRequest()->isMethod('post'))
+    {
+      $form->bind($this->getRequestParameter('collectible_for_sale'));
+
+      if ($form->isValid())
+      {
+        $values = $form->getValues();
+        $values['collector_id'] = $this->getCollector()->getId();
+
+        /** @var $collectible_for_sale CollectibleForSale */
+        $collectible_for_sale = $form->updateObject($values);
+
+        /** @var $collectible Collectible */
+        $collectible = $collectible_for_sale->getCollectible();
+
+        $collectible->setTags($values['collectible']['tags']);
+        $collectible->save();
+
+        if ($values['collectible']['thumbnail'])
+        {
+          $image = iceModelMultimediaQuery::create()
+              ->findOneById((integer) $values['collectible']['thumbnail']);
+
+          if ($this->getCollector()->isOwnerOf($image))
+          {
+            $collectible->setThumbnail($image->getAbsolutePath('original'));
+            $collectible->save();
+          }
+        }
+
+        $this->collectible = $collectible;
+      }
+    }
+
+    $this->form = $form;
+
+    return sfView::SUCCESS;
+  }
+
 }

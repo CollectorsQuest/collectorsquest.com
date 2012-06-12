@@ -3,15 +3,18 @@ all:
   features:
     shopping_cart: false
     mycq_marketplace: false
+    mycq_seller_pay: false
 
 next:
   pages: ~
   features:
     shopping_cart: false
     mycq_marketplace: false
+    mycq_seller_pay: false
 
 dev:
   pages: ~
   features:
     shopping_cart: true
     mycq_marketplace: true
+    mycq_seller_pay: false

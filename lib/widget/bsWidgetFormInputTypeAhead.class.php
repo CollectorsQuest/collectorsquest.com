@@ -19,6 +19,7 @@ class bsWidgetFormInputTypeAhead extends sfWidgetFormInput
     $this->addOption('matcher');
     $this->addOption('sorter');
     $this->addOption('highlighter');
+    $this->addOption('autoselect');
 
     parent::__construct($options, $attributes);
   }
@@ -30,9 +31,9 @@ class bsWidgetFormInputTypeAhead extends sfWidgetFormInput
 
     $source = $this->getOption('source');
     $typeAheadOptions = array();
-    foreach (array('items', 'matcher', 'sorter', 'highlighter') as $option)
+    foreach (array('items', 'matcher', 'sorter', 'highlighter', 'autoselect') as $option)
     {
-      if ($this->getOption($option))
+      if (null !== $this->getOption($option))
       {
         $typeAheadOptions[$option] = $this->getOption($option);
       }

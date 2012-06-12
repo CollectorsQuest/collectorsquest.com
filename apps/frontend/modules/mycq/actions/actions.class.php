@@ -9,11 +9,8 @@ class mycqActions extends cqFrontendActions
 
   public function executeProfile(sfWebRequest $request)
   {
-    $this->collector = $this->getCollector();
-
-    $collector_form = new CollectorEditForm($this->collector);
-    $avatar_form = new CollectorAvatarForm($this->collector);
-    $email_form = new CollectorEmailChangeForm($this->collector);
+    $collector_form = new CollectorEditForm($this->getCollector());
+    $avatar_form = new CollectorAvatarForm($this->getCollector());
 
     if (sfRequest::POST == $request->getMethod())
     {
@@ -58,6 +55,56 @@ class mycqActions extends cqFrontendActions
              Please see below.');
         }
       }
+    }
+
+    $this->avatars = CollectorPeer::$avatars;
+    $this->avatar_form = $avatar_form;
+
+    $this->collector = $this->getUser()->getCollector();
+    $this->collector_form = $collector_form;
+
+    return sfView::SUCCESS;
+  }
+
+  public function executeCollections()
+  {
+    $this->collector = $this->getUser()->getCollector();
+    $this->total = $this->collector->countCollectorCollections();
+
+    return sfView::SUCCESS;
+  }
+
+  public function executeProfileAccountInfo(sfWebRequest $request)
+  {
+    $collector_form = new CollectorEditForm($this->getCollector());
+    $collector_form->useFields(array(
+        'old_password', 'password', 'password_again'
+    ));
+    $email_form = new CollectorEmailChangeForm($this->getCollector());
+
+    if (sfRequest::POST == $request->getMethod())
+    {
+      if ($request->hasParameter($collector_form->getName()))
+      {
+        $success = $collector_form->bindAndSave(
+          $request->getParameter($collector_form->getName()),
+          $request->getFiles($collector_form->getName())
+        );
+
+        if ($success)
+        {
+          $this->getUser()->setFlash('success',
+            'You have successfully updated your profile.');
+
+          return $this->redirect('mycq_profile_account_info');
+        }
+        else
+        {
+          $this->getUser()->setFlash('error',
+            'There was an error while updating your profile.
+             Please see below.');
+        }
+      }
       else if ($request->hasParameter($email_form->getName()))
       {
         $collector_email = $email_form->bindAndCreateCollectorEmail(
@@ -77,7 +124,7 @@ class mycqActions extends cqFrontendActions
           $this->getUser()->setFlash('success',
             'A verification email was sent to '.$this->collector->getEmail());
 
-          return $this->redirect('mycq_profile');
+          return $this->redirect('mycq_profile_account_info');
         }
         else
         {
@@ -86,24 +133,75 @@ class mycqActions extends cqFrontendActions
              Please see below.');
         }
       }
-
     }
 
-    $this->avatars = CollectorPeer::$avatars;
-    $this->avatar_form = $avatar_form;
-
-    $this->collector = $this->getUser()->getCollector();
-    $this->collector_form = $collector_form;
-
+    $this->collector = $this->getCollector();
     $this->email_form = $email_form;
+    $this->collector_form = $collector_form;
 
     return sfView::SUCCESS;
   }
 
-  public function executeCollections()
+  public function executeProfileAddresses(sfWebRequest $request)
   {
-    $this->collector = $this->getUser()->getCollector();
-    $this->total = $this->collector->countCollectorCollections();
+    $this->collector_addresses = $this->getCollector()->getCollectorAddresses();
+
+    return sfView::SUCCESS;
+  }
+
+  public function executeProfileAddressesNew(sfWebRequest $request)
+  {
+    $address = new CollectorAddress();
+    $address->setCollector($this->getCollector());
+    $form = new FrontendCollectorAddressForm($address);
+
+    if (sfRequest::POST == $request->getMethod())
+    {
+      if ($form->bindAndSave($request->getParameter($form->getName())))
+      {
+        $this->redirect('@mycq_profile_addresses');
+      }
+    }
+    $this->form = $form;
+
+    return sfView::SUCCESS;
+  }
+
+  public function executeProfileAddressesEdit(sfWebRequest $request)
+  {
+    $address = $this->getRoute()->getObject();
+    $this->forward404Unless($this->getCollector()->isOwnerOf($address));
+
+    $form = new FrontendCollectorAddressForm($address);
+
+    if (sfRequest::POST == $request->getMethod())
+    {
+      if ($form->bindAndSave($request->getParameter($form->getName())))
+      {
+        $this->redirect('@mycq_profile_addresses');
+      }
+    }
+
+    $this->form = $form;
+
+    return sfView::SUCCESS;
+  }
+
+  public function executeProfileAddressesDelete(sfWebRequest $request)
+  {
+    $address = $this->getRoute()->getObject();
+    $this->forward404Unless($this->getUser()->isOwnerOf($address));
+
+    if (sfRequest::DELETE == $request->getMethod())
+    {
+      $address->delete();
+      $this->getUser()->setFlash('success',
+        $this->__('You have successfully removed an address from your account.'));
+
+      return $this->redirect('@mycq_profile_addresses');
+    }
+
+    $this->collector_address = $address;
 
     return sfView::SUCCESS;
   }
@@ -389,8 +487,14 @@ class mycqActions extends cqFrontendActions
       ->filterByIsSold(true);
     $this->sold_total = $q->count();
 
-    $dropbox = $seller->getCollectionDropbox();
-    $this->dropbox_total = $dropbox->countCollectibles();
+    if ($dropbox = $seller->getCollectionDropbox())
+    {
+      $this->dropbox_total = $dropbox->countCollectibles();
+    }
+    else
+    {
+      $this->dropbox_total = 0;
+    }
 
     // Make the seller available to the template
     $this->seller = $seller;

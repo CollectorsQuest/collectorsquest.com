@@ -42,19 +42,23 @@ class CollectorProfileEditForm extends BaseCollectorProfileForm
       'about_what_you_collect'    => new sfWidgetFormInputText(array(
           'label'                 => 'What do you collect?',
         ), array(
+          'placeholder'           => 'Tell us a few words about what you collect'
       )),
-      'about_purchases_per_year'   => new sfWidgetFormInputText(array(
+      'about_purchases_per_year'  => new sfWidgetFormInputText(array(
           'label'                 => 'How many times a year do you purchase?',
         ),array(
+          'placeholder'           => 'Share the number of purchases you make anually. Numeric value please',
           'type'                  => 'number',
           'pattern'               => '\d+'
       )),
-      'about_most_expensive_item' => new sfWidgetFormInputText(array(
+      'about_most_expensive_item' => new bsWidgetFormInputTextAppendPrepend(array(
           'label'                 => 'What is the most you ever spent on an item? (in USD)',
+          'prepend'                => '$',
         ), array(
       )),
-      'about_annually_spend'      => new sfWidgetFormInputText(array(
+      'about_annually_spend'      => new bsWidgetFormInputTextAppendPrepend(array(
           'label'                 => 'How much do you spend annually? (in USD)',
+          'prepend'                => '$',
         ), array(
       )),
       'about_new_item_every'      => new sfWidgetFormInputText(array(
@@ -64,7 +68,9 @@ class CollectorProfileEditForm extends BaseCollectorProfileForm
     ));
 
     $this->setValidators(array(
-      'collector_type' => new sfValidatorChoice(array('choices' => array_keys($this->getCollectorTypeChoices()), 'required' => true)),
+      'collector_type' => new sfValidatorChoice(array('choices' => array_keys($this->getCollectorTypeChoices()), 'required' => true), array(
+          'required'   => 'You must select the type of collector you are.'
+      )),
 
       'birthday' => new sfValidatorDate(array('required' => false)),
       'gender' => new sfValidatorChoice(array('choices' => array('f', 'm'), 'required' => false)),

@@ -39,7 +39,6 @@ class CollectorCollectionForm extends BaseCollectorCollectionForm
     $this->widgetSchema['tags'] = new cqWidgetFormMultipleInputText(array(
       'label' => 'Tags'
     ), array(
-      'name' => 'collection[tags][]',
       'required' => 'required',
       'class' => 'tag'
     ));

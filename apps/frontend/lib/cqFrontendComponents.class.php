@@ -3,7 +3,7 @@
 /**
  * This is for correct IDE code suggests
  *
- * @method cqUser getUser()
+ * @method cqFrontendUser getUser()
  * @method cqWebRequest getRequest()
  * @method cqWebResponse getResponse()
  */

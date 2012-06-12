@@ -28,8 +28,9 @@ class CollectibleEditForm extends BaseCollectibleForm
       )
     );
     $this->validatorSchema['collection_collectible_list'] = new sfValidatorPropelChoice(array(
-      'multiple' => true, 'model' => 'Collection', 'required' => true)
-    );
+      'model' => 'CollectorCollection', 'criteria' => $criteria,
+      'multiple' => true, 'required' => true
+    ));
 
     $this->widgetSchema['name']->setAttribute('class', 'input-xlarge');
     $this->widgetSchema['name']->setAttribute('required', 'required');
@@ -81,7 +82,6 @@ class CollectibleEditForm extends BaseCollectibleForm
     $this->widgetSchema['tags'] = new cqWidgetFormMultipleInputText(array(
       'label' => 'Tags'
     ), array(
-      'name' => 'collectible[tags][]',
       'required' => 'required',
       'class' => 'tag'
     ));
@@ -216,11 +216,14 @@ class CollectibleEditForm extends BaseCollectibleForm
   {
     parent::bind($taintedValues, $taintedFiles);
 
+    /** @var $form BaseForm */
     foreach ($this->embeddedForms as $name => $form)
     {
-      $form->bind($taintedValues[$name], isset($taintedFiles[$name]) ? $taintedFiles[$name] : array());
+      $form->bind(
+        @$taintedValues[$name],
+        isset($taintedFiles[$name]) ? $taintedFiles[$name] : array()
+      );
     }
-
   }
 
 }

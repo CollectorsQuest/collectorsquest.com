@@ -19,6 +19,8 @@
       Cancel
     </button>
   </div>
+
+  <?= $form->renderHiddenFields() ?>
 </form>
 
 <?php

@@ -13,10 +13,18 @@ select:focus:required:invalid {
 	}
 }
 
-ul.alert-error {
-  margin: 10px;
+input[type="radio"] {
+	margin: 2px 0;
 }
 
+input[type="checkbox"] {
+	margin: 0 0 2px 0;
+}
+
+ul.alert-error {
+  margin: 10px;
+  margin-left: 0;
+}
 
 //Search bar
 
@@ -116,6 +124,9 @@ ul.alert-error {
         font-weight: bolder;
       }
     }
+  }
+  .form-inline label {
+    padding-top: 5px;
   }
 
   .all-errors ul {

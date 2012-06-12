@@ -34,12 +34,19 @@ class shoppingActions extends cqFrontendActions
         {
           $cart_collectible->delete();
 
-          $this->getUser()->setFlash('success', 'We have removed the item from your cart!', true);
+          $this->getUser()->setFlash(
+            'success', 'The item was successfully added to your cart.', true
+          );
           $this->redirect('@shopping_cart');
         }
         else
         {
-          $this->getUser()->setFlash('error', 'We could not remove the item from you shopping cart or it has been already removed!', true);
+          $this->getUser()->setFlash(
+            'error',
+            'We could not remove the item from you shopping cart
+             or it has been already removed!',
+            true
+          );
         }
 
         break;
@@ -488,7 +495,9 @@ class shoppingActions extends cqFrontendActions
         $shopping_payment->setStatus(ShoppingPaymentPeer::STATUS_CANCELLED);
         $shopping_payment->save();
 
-        $this->getUser()->setFlash('error', 'You cancelled the PayPal payment and your order was not completed!', true);
+        $this->getUser()->setFlash(
+          'error', 'You have not completed your purchase.', true
+        );
         $this->url = '@shopping_cart';
 
         return 'Redirect';

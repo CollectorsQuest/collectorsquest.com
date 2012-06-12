@@ -312,6 +312,10 @@ class SellerPackagesForm extends sfForm
       {
         $this->validatorSchema['payment_type']->setOption('required', false);
       }
+      else if (IceGateKeeper::locked('mycq_marketplace'))
+      {
+        throw new sfValidatorErrorSchema($validator, array('promo_code'=>new sfValidatorError($validator, 'Invalid promo code!')));
+      }
     }
     else
     {

@@ -93,18 +93,21 @@
       <?= $form['collection_collectible_list']->renderRow(); ?>
       <?= $form['name']->renderRow(); ?>
 
+      <?php if ($form['is_alt_view']->getWidget() instanceof sfWidgetFormInputCheckbox): ?>
       <div class="control-group">
         <?= $form['thumbnail']->renderLabel(); ?>
         <div class="controls">
           <?= $form['thumbnail']->render(); ?>
-          <?php if ($form['is_alt_view']->getWidget() instanceof sfWidgetFormInputCheckbox): ?>
-            <label style="margin-top: 5px; line-height: 22px;">
-              &nbsp; <?= $form['is_alt_view']->render(array('style' => 'float: left;')); ?>
-              Add as an alternative view instead?
-            </label>
-          <?php endif; ?>
+          <label style="margin-top: 5px; line-height: 22px;">
+            &nbsp; <?= $form['is_alt_view']->render(array('style' => 'float: left;')); ?>
+            Add as an alternative view instead?
+          </label>
+          <?= $form['thumbnail']->renderError(); ?>
         </div>
       </div>
+      <?php else: ?>
+        <?= $form['thumbnail']->renderRow(); ?>
+      <?php endif;?>
 
       <?= $form['description']->renderRow(); ?>
       <?= $form['tags']->renderRow(); ?>
@@ -284,15 +287,5 @@ $(document).ready(function()
       }
     });
   }, true));
-
-  $('#collectible_for_sale_is_ready').change(function()
-  {
-    var checked = $(this).attr('checked') == 'checked';
-    $('#form-collectible-for-sale').toggleClass(
-      'hide', !checked
-    );
-    $('.cb-enable').toggleClass('selected', checked);
-    $('.cb-disable').toggleClass('selected', !checked);
-  }).change();
 });
 </script>
