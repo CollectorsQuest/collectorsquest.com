@@ -80,20 +80,21 @@ a.btn-cq-style:hover {
 
 .btn-lightblue-normal {
 	.btn-lightblue();
-	font-size: 12px;
 	padding-top: 2px;
 	padding-bottom: 1px;
+	font-size: 12px;
 }
 
 .btn-mini-social {
 	display: inline-block;
 	vertical-align: middle;
-	font-size: 10px;
-	line-height: 10px;
 	height: 14px;
 	margin: -2px 1px 0 2px;
 	padding: 4px 7px 0 7px;
+	font-size: 10px;
+	line-height: 10px;
 }
+
 .btn-mini-social {
 	&:hover {
 		.border-radius(3px);
@@ -106,13 +107,12 @@ a.btn-cq-style:hover {
 .mini-social {
 	display: inline-block;
 	vertical-align: middle;
-	font-size: 10px;
-	line-height: 20px;
+	height: 20px;
 	margin: 0 1px 0 2px;
 	padding: 0;
-	height: 20px;
+	font-size: 10px;
+	line-height: 20px;
 }
-
 
 .mail-icon-mini, .add-icon-medium, .share-icon-medium {
 	display: inline-block;
@@ -144,10 +144,10 @@ select,
 }
 
 .blue-button {
+	padding: 5px 14px 5px;
 	font-size: 14px;
 	font-weight: bold;
 	color: @white;
-	padding: 5px 14px 5px;
 	border: 1px solid #0a82c2;
 	border-bottom-color: @blue;
 	.buttonBackground(@btnPrimaryBackground, @btnPrimaryBackgroundHighlight);
@@ -166,10 +166,10 @@ select,
 }
 
 .red-button {
+	padding: 5px 14px 5px;
 	font-size: 14px;
 	font-weight: bold;
 	color: @white;
-	padding: 5px 14px 5px;
 	border: 1px solid #9e0907;
 	border-bottom-color: #9e0907;
 	.buttonBackground(#CC0000, #B2100E);
@@ -178,19 +178,19 @@ select,
 	.box-shadow(@shadow);
 	text-shadow: none;
 	&:hover {
+		text-decoration: none;
+		border: 1px solid @red;
 		background-position: 0 0;
 		.transition(none);
 		.buttonBackground(#A10504, #CC0000);
 		color: @white;
-		text-decoration: none;
-		border: 1px solid @red;
 	}
 }
 
 .gray-button {
+	padding: 5px 14px;
 	font-size: 14px;
 	color: #887777;
-	padding: 5px 14px;
 	border: 1px solid #d2cccc;
 	.buttonBackground(#eeecec, #dbd9d9);
 	.border-radius(7px);
@@ -217,17 +217,17 @@ select,
 
 .append-left-gray {
 	position: relative;
-	width: 125px;
-	float: left;
-	text-align: center;
-	margin-left: 0;
-	margin-bottom: 0;
 	display: inline-block;
 	vertical-align: middle;
+	width: 125px;
+	float: left;
+	margin-left: 0;
+	margin-bottom: 0;
+	padding: 3px 8px 3px 8px;
 	font-size: 12px;
 	line-height: 18px;
+	text-align: center;
 	color: #887777;
-	padding: 3px 8px 3px 8px;
 	border: 1px solid #b5b7bd !important;
 	.buttonBackground(#eeecec, #dbd9d9);
 	.border-radius(6px 0 0 6px);
@@ -289,9 +289,7 @@ input[type="submit"].btn.btn-micro {
 .addthis_button_facebook_like
 {
 	overflow:hidden;
-	.size(22px, 345px);
-	width:48px;
-	height: 22px;
+	.size(22px, 48px);
 }
 
 .addthis_button_tweet
@@ -300,43 +298,35 @@ input[type="submit"].btn.btn-micro {
 	.size(22px,56px);
 }
 
-.addthis_button_pinterest_pinit
-{
-	height:24px;
-	width:50px;
+.addthis_button_pinterest_pinit {
+	.size(24px, 50px);
 }
 
-.addthis_button_google_plusone
-{
+.addthis_button_google_plusone {
 	height: 22px;
 }
 
-.addthis_button_email
-{
-
-}
-
 .cb-enable, .cb-disable, .cb-enable span, .cb-disable span {
+	display: block;
+	float: left;
   background: url(/images/frontend/switch.gif) repeat-x;
-  display: block;
-  float: left;
 }
 
 .cb-enable span, .cb-disable span {
-  line-height: 30px;
   display: block;
+	line-height: 30px;
   background-repeat: no-repeat;
   font-weight: bold;
 }
 
 .cb-enable span {
+	padding: 0 10px;
   background-position: left -90px;
-  padding: 0 10px;
 }
 
 .cb-disable span {
+	padding: 0 10px;
   background-position: right -180px;
-  padding: 0 10px;
 }
 
 .cb-disable.selected {
