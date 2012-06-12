@@ -90,9 +90,9 @@ function be_gallery_metabox_html( $post_id ) {
 	$return .= apply_filters( 'be_gallery_metabox_intro', $intro );
 
   $custom_posts = get_posts($args);
-  foreach($custom_posts as $post) : setup_postdata($post);
-    $thumbnail = wp_get_attachment_image_src( $post->ID, apply_filters( 'be_gallery_metabox_image_size', 'thumbnail' ) );
-    $return .= apply_filters( 'be_gallery_metabox_output', '<a class="thickbox" href="/blog/wp-admin/admin-ajax.php?action=pte_ajax&pte-action=launch&id='.$post->ID.'&TB_iframe=1&width=590&height=501"><img src="' . $thumbnail[0] . '" alt="' . get_the_title() . '" title="' . get_the_content() . '" /></a> ', $thumbnail[0], $post );
+  foreach($custom_posts as $cpost) : setup_postdata($cpost);
+    $thumbnail = wp_get_attachment_image_src( $cpost->ID, apply_filters( 'be_gallery_metabox_image_size', 'thumbnail' ) );
+    $return .= apply_filters( 'be_gallery_metabox_output', '<a class="thickbox" href="/blog/wp-admin/admin-ajax.php?action=pte_ajax&pte-action=launch&id='.$cpost->ID.'&TB_iframe=1&width=590&height=501"><img src="' . $thumbnail[0] . '" alt="' . get_the_title() . '" title="' . get_the_content() . '" /></a> ', $thumbnail[0], $cpost );
 
   endforeach;
 
