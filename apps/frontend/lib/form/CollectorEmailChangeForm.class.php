@@ -20,14 +20,22 @@ class CollectorEmailChangeForm extends BaseForm
     $this->setWidgets(array(
         'password' => new sfWidgetFormInputPassword(array(), array(
             'required' => 'required',
-            'placeholder' => 'Your password',
+            'placeholder' => 'Your CollectorsQuest.com account password',
         )),
-        'email' => new sfWidgetFormInputText(array(), array(
+        'email' => new sfWidgetFormInputText(
+          array(
+            'label' => 'New Email'
+          ),
+          array(
             'type' => 'email',
             'required' => 'required',
             'placeholder' => 'Your new email address',
         )),
-        'email_again' => new sfWidgetFormInputText(array(), array(
+        'email_again' => new sfWidgetFormInputText(
+          array(
+            'label' => 'Confirm Email'
+          ),
+          array(
             'type' => 'email',
             'required' => 'required',
             'placeholder' => 'Enter your new address again',

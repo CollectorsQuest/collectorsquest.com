@@ -36,8 +36,12 @@ class CollectorEditForm extends CollectorForm
 
   protected function setupPasswordFields()
   {
-    $this->widgetSchema['old_password'] = new sfWidgetFormInputPassword(array(), array(
-        'placeholder' => 'Enter your old password'
+    $this->widgetSchema['old_password'] = new sfWidgetFormInputPassword(
+      array(
+        'label' => 'Current Password'
+      ),
+      array(
+        'placeholder' => 'Enter your current CollectorsQuest.com account password'
     ));
     $this->widgetSchema['password'] = new sfWidgetFormInputPassword(array(), array(
         'placeholder' => 'Set new password here',

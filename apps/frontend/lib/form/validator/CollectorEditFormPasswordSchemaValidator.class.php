@@ -8,8 +8,14 @@ class CollectorEditFormPasswordSchemaValidator extends sfValidatorSchema
     $this->addOption('old_password_field', 'old_password');
     $this->addOption('new_password_field', 'password');
 
-    $this->addMessage('invalid_old_password', "The password you've entered is wrong");
-    $this->addMessage('missing_old_password', "You must enter your old password");
+    $this->addMessage(
+      'invalid_old_password',
+      "The password you've entered does not match the one we have on file"
+    );
+    $this->addMessage(
+      'missing_old_password',
+      'You must enter your old password before you can change it'
+    );
   }
 
   public function doClean($values)
