@@ -4,7 +4,7 @@ use_javascripts_for_form($signup_form);
 
 $unread_messages = $sf_user->getUnreadMessagesCount();
 $collector = $sf_user->getCollector();
-$profile_completed = $sf_user->isAuthenticated() ? $collector->getProfile()->getProfileCompleted() : 0;
+$profile_completed = $sf_user->isAuthenticated() && $collector->getProfile() ? $collector->getProfile()->getProfileCompleted() : 0;
 ?>
 
 <footer id="footer">
