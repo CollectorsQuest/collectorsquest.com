@@ -153,7 +153,7 @@
           $active = $sf_params->get('cq_header_active', $sf_params->get('module'));
         ?>
         <ul class="nav">
-          <?php $class = in_array($active, array('collection', 'collections', 'aent')) ? 'active' : null; ?>
+          <?php $class = in_array($active, array('collection', 'collections', 'aent', 'categories')) ? 'active' : null; ?>
           <li class="<?= $class ?>"><?= link_to('Collections', '@collections', array('absolute' => true)); ?></li>
 
           <?php $class = in_array($active, array('news', '_blog')) ? 'active' : null; ?>
