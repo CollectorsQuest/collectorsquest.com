@@ -74,43 +74,70 @@ class mycqActions extends cqFrontendActions
     return sfView::SUCCESS;
   }
 
-  public function executeProfileEmail(sfWebRequest $request)
+  public function executeProfileAccountInfo(sfWebRequest $request)
   {
+    $collector_form = new CollectorEditForm($this->getCollector());
+    $collector_form->useFields(array(
+        'old_password', 'password', 'password_again'
+    ));
     $email_form = new CollectorEmailChangeForm($this->getCollector());
 
-    if (
-      sfRequest::POST == $request->getMethod() &&
-      $request->hasParameter($email_form->getName())
-    ) {
-      $collector_email = $email_form->bindAndCreateCollectorEmail(
-        $request->getParameter($email_form->getName()));
-
-      if ($collector_email)
+    if (sfRequest::POST == $request->getMethod())
+    {
+      if ($request->hasParameter($collector_form->getName()))
       {
-        $cqEmail = new cqEmail($this->getMailer());
-        $cqEmail->send('Collector/verify_new_email', array(
-            'to' => $email,
-            'params' => array(
-                'collector' => $this->collector,
-                'collector_email' => $collector_email,
-            )
-        ));
+        $success = $collector_form->bindAndSave(
+          $request->getParameter($collector_form->getName()),
+          $request->getFiles($collector_form->getName())
+        );
 
-        $this->getUser()->setFlash('success',
-          'A verification email was sent to '.$this->collector->getEmail());
+        if ($success)
+        {
+          $this->getUser()->setFlash('success',
+            'You have successfully updated your profile.');
 
-        return $this->redirect('mycq_profile');
+          return $this->redirect('mycq_profile_account_info');
+        }
+        else
+        {
+          $this->getUser()->setFlash('error',
+            'There was an error while updating your profile.
+             Please see below.');
+        }
       }
-      else
+      else if ($request->hasParameter($email_form->getName()))
       {
-        $this->getUser()->setFlash('error',
-          'There was an error while changing your e-mail address.
-           Please see below.');
+        $collector_email = $email_form->bindAndCreateCollectorEmail(
+          $request->getParameter($email_form->getName()));
+
+        if ($collector_email)
+        {
+          $cqEmail = new cqEmail($this->getMailer());
+          $cqEmail->send('Collector/verify_new_email', array(
+              'to' => $email,
+              'params' => array(
+                  'collector' => $this->collector,
+                  'collector_email' => $collector_email,
+              )
+          ));
+
+          $this->getUser()->setFlash('success',
+            'A verification email was sent to '.$this->collector->getEmail());
+
+          return $this->redirect('mycq_profile_account_info');
+        }
+        else
+        {
+          $this->getUser()->setFlash('error',
+            'There was an error while changing your e-mail address.
+             Please see below.');
+        }
       }
     }
 
     $this->collector = $this->getCollector();
     $this->email_form = $email_form;
+    $this->collector_form = $collector_form;
 
     return sfView::SUCCESS;
   }

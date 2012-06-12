@@ -17,10 +17,10 @@
       <a href="<?= url_for('@mycq_profile'); ?>">Personal Information</a>
     </li>
     <li>
-      <a href="#tab2" data-toggle="tab">Account Information</a>
+      <a href="<?= url_for('@mycq_profile_account_info'); ?>">Account Information</a>
     </li>
     <li>
-      <a href="<?= url_for('@mycq_profile_email'); ?>">Mailing Addresses</a>
+      <a href="#tab3" data-toggle="tab">Mailing Addresses</a>
     </li>
     <li>
       <a href="#tab4" data-toggle="tab">Settings</a>
@@ -155,20 +155,6 @@
           </fieldset>
 
           <fieldset class="brown-dashes form-container-center">
-            <div class="control-group">
-              <label for="textarea" class="control-label">Username</label>
-              <div class="controls spacer-top-5">
-                <span class="brown">
-                  <?= $collector->getUsername(); ?>
-                </span>
-              </div>
-            </div>
-            <?= $collector_form['old_password']->renderRow(); ?>
-            <?= $collector_form['password']->renderRow(); ?>
-            <?= $collector_form['password_again']->renderRow(); ?>
-          </fieldset>
-
-          <fieldset class="brown-dashes form-container-center">
             <div class="form-actions">
               <button type="submit" class="btn btn-primary blue-button">Save changes</button>
               <button type="reset" class="btn gray-button spacer-left">Cancel</button>
@@ -178,18 +164,18 @@
 
       </div><!-- .tab-content-inner -->
     </div> <!-- .tab-pane -->
-    <div class="tab-pane" id="tab2">
+    <div class="tab-pane" id="tab3">
       <div class="tab-content-inner spacer">
         <?php
         $link = link_to(
           'View public profile &raquo;', 'collector/me/index',
           array('class' => 'text-v-middle link-align')
         );
-        cq_sidebar_title('Edit Your Account Information', $link, array('left' => 8, 'right' => 4));
+        cq_sidebar_title('Edit Your Mailing Addresses', $link, array('left' => 8, 'right' => 4));
         ?>
-        <p>Account Information Content</p>
+        <p>Mailing Addresses Content</p>
       </div><!-- .tab-content-inner -->
-    </div><!-- #tab2.tab-pane -->
+    </div><!-- #tab3.tab-pane -->
     <div class="tab-pane" id="tab4">
       <div class="tab-content-inner spacer">
         <?php
@@ -197,7 +183,7 @@
           'View public profile &raquo;', 'collector/me/index',
           array('class' => 'text-v-middle link-align')
         );
-        cq_sidebar_title('Edit Your Profile', $link, array('left' => 8, 'right' => 4));
+        cq_sidebar_title('Edit Your Profile Settings', $link, array('left' => 8, 'right' => 4));
         ?>
         <p>Settings Content</p>
       </div><!-- .tab-content-inner -->
