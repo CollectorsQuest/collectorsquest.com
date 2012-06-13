@@ -3,16 +3,24 @@
 class Seller extends Collector
 {
 
+  /**
+   * Check if current user has credits left
+   *
+   * @return bool
+   */
   public function hasPackageCredits()
   {
     return 0 < $this->getCreditsLeft();
   }
 
   /**
+   * Retrieve total number of credits for active packages for the current user
+   *
    * @return int
+   *
    * @todo unit tests
    */
-  public function getTotalPackageCredits()
+  public function getPackageCreditsSum()
   {
     $q = PackageTransactionQuery::create()
         ->filterByCollector($this)
@@ -24,13 +32,27 @@ class Seller extends Collector
     return (int)PackageTransactionPeer::doSelectStmt($q)->fetchColumn(0);
   }
 
+  /**
+   * Retrieve number of seller credits left for use
+   *
+   * @return int
+   *
+   * @todo unit tests
+   */
   public function getCreditsLeft()
   {
-    $totalCredits = $this->getTotalPackageCredits();
+    $packages = PackageTransactionQuery::create()
+        ->filterByCollector($this)
+        ->filterByPaymentStatus(PackageTransactionPeer::STATUS_PAID)
+        ->filterByExpiryDate(time(), Criteria::GREATER_EQUAL)
+        ->find()
+        ->toKeyValue('PrimaryKey', 'Credits');
+        ;
+
+    $totalCredits = array_sum($packages);
 
     $creditsUsed = PackageTransactionCreditQuery::create()
-        ->filterByCollectorId($this->getId())
-        ->filterByExpiryDate(time(), Criteria::GREATER_EQUAL)
+        ->filterByPackageTransactionId(array_keys($packages))
         ->count();
 
     return $totalCredits - $creditsUsed;
