@@ -79,6 +79,10 @@ class cqBaseUser extends IceSecurityUser
     {
       $collector = $this->getCollector();
     }
+    if ($profile = $collector->getProfile())
+    {
+      $profile->updateProfileProgress(); //This is to be sure profile completion is updated
+    }
 
     /** @var $response cqWebResponse */
     $response = sfContext::getInstance()->getResponse();
@@ -162,6 +166,101 @@ class cqBaseUser extends IceSecurityUser
 
     return $this->collector;
   }
+
+  /**
+   * Sign a message for the current user session
+   *
+   * @param     string $message
+   * @param     string $hmac_secret
+   *
+   * @return    string
+   */
+  public function hmacSignMessage($message, $hmac_secret = null)
+  {
+    $id = $this->getId();
+    $hmac_secret = $id.($hmac_secret ?: $this->getHmacSecret());
+    $time = time();
+
+    return json_encode(array(
+        'id' => $id,
+        'message' => base64_encode($message),
+        'time' => $time,
+        'hmac' => base64_encode(
+          hash_hmac('sha1', $id.$message.$time, $hmac_secret)
+        )
+    ));
+  }
+
+  /**
+   * Verify a hmac message
+   *
+   * @param     string $hmac_message
+   * @param     string $valid_for
+   * @param     null|string $hmac_secret
+   *
+   * @return    mixed False if invalid message, the message string otherwize
+   */
+  public function hmacVerifyMessage($hmac_message, $valid_for = '+10 minutes', $hmac_secret = null)
+  {
+    $data = json_decode($hmac_message, true);
+
+    // First check if all required parts of the message are present
+    if (
+      !isset($data['id']) || !isset($data['message']) ||
+      !isset($data['time']) || !isset($data['hmac'])
+    ) {
+      return false;
+    }
+
+    $id      = (int) $data['id'];
+    $time    = (int) $data['time'];
+    $hmac    = (string) $data['hmac'];
+    $message = base64_decode((string) $data['message']);
+
+    // check if the message has timed out
+    if (time() > strtotime($valid_for, $time))
+    {
+      return false;
+    }
+
+    // Construct the hmac secret
+    $hmac_secret = $id.($hmac_secret ?: $this->getHmacSecret());
+
+    if ($hmac === base64_encode(hash_hmac('sha1', $id.$message.$time, $hmac_secret)))
+    {
+      return $message;
+    }
+
+    return false;
+  }
+
+  /**
+   * Get the current user's hmac secret (will be generated if not set)
+   *
+   * @return    string
+   */
+  public function getHmacSecret()
+  {
+    if (!$this->hasAttribute('secret', 'hmac'))
+    {
+      $this->regenerateHmacSecret();
+    }
+
+    return $this->getAttribute('secret', null, 'hmac');
+  }
+
+  /**
+   * Regenerate the current user's hmac secret.
+   *
+   * @return    cqBaseUser
+   */
+  public function regenerateHmacSecret()
+  {
+    $this->setAttribute('secret', sha1(uniqid(null, true)), 'hmac');
+
+    return $this;
+  }
+
 
   public function clearAttributes()
   {

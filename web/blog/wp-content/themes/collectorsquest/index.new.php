@@ -84,7 +84,7 @@
 ?>
 
 <div class="row-fluid header-bar">
-  <?php if (is_page()) { ?>
+  <?php if (is_page() && !is_child(23509) && !is_child(23511)) { ?>
   <div class="span11">
     <h1 class="Chivo webfont" style="visibility: visible; "><?php the_title() ?></h1>
   </div>
@@ -115,7 +115,7 @@
       <?php echo get_avatar(get_the_author_meta('ID'),192) //<img src="http://placekitten.com/33/33" alt="" width="33" height="33"/> ?>
     </div>
     <div class="author-bio span8">
-      <?php echo $curauth->user_description; ?>
+      <?php echo apply_filters('the_content', $curauth->user_description); ?>
     </div>
   </div>
   <div class="row-fluid section-title">
@@ -133,12 +133,34 @@
       <h1 class="Chivo webfont" style="visibility: visible; "><?php _e( 'Related News:', 'collectorsquest' ) ?>&nbsp;&nbsp;<span><?php single_tag_title() ?></span></h1>
       <?php $categorydesc = category_description(); if ( !empty($categorydesc) ) echo apply_filters( 'archive_meta', '<div class="archive-meta">' . $categorydesc . '</div>' ); ?>
     </div>
-  <?php } ?>
+  <?php } elseif (is_search()) { ?>
+  <div class="span11">
+    <h1 class="Chivo webfont" style="visibility: visible; "><?php _e( 'Search Results for:', 'collectorsquest' ) ?>&nbsp;&nbsp;<span><?php the_search_query(); ?></span></h1>
+    <?php $categorydesc = category_description(); if ( !empty($categorydesc) ) echo apply_filters( 'archive_meta', '<div class="archive-meta">' . $categorydesc . '</div>' ); ?>
+  </div>
+<?php } elseif (is_404()) { ?>
+<!-- <div class="span11">
+  <h1 class="Chivo webfont" style="visibility: visible; "><?php _e( 'You are here', 'collectorsquest' ) ?></h1>
+</div> -->
+<?php } elseif (is_child(23509)) { ?>
+  <div class="span11">
+    <h1 class="Chivo webfont" style="visibility: visible; "><?php _e( 'CQ In The News', 'collectorsquest' ) ?></h1>
+  </div>
+<?php } elseif (is_child(23511)) { ?>
+<div class="span11">
+  <h1 class="Chivo webfont" style="visibility: visible; "><?php _e( 'Press Releases', 'collectorsquest' ) ?></h1>
+</div>
+<?php } ?>
 
 <?php if (!is_author()) : ?>
 </div>
 
 <br />
+
+  <?php if (is_child(23509) || is_child(23511)) : ?>
+    <h2><?php the_title() ?></h2>
+  <?php endif ?>
+
 <?php endif; ?>
 
 <?php
@@ -179,7 +201,9 @@ $lastclass = 0;
 
     <?php if (is_page()) : ?>
 
-      <div class="page" id="page-<?php the_ID(); ?>">
+    <?php if (is_page('CQ FAQs') || is_child(23117)) { echo do_shortcode('[wpfaqsearch menu=0]'); } ?>
+
+    <div class="page" id="page-<?php the_ID(); ?>">
         <?php the_content('Read the rest of this entry &raquo;'); ?>
       </div>
 
@@ -225,41 +249,23 @@ $lastclass = 0;
         <div class="entry-image <?php if (is_front_page() && $count==1): echo "span6"; elseif (!is_single()) : echo  "span3"; endif; ?>">
 
           <?php
-          $image_id = get_post_thumbnail_id();
-          $image_url = wp_get_attachment_image_src($image_id,'full');
-          $image_url = $image_url[0];
 
-          if (!$image_url) :
-            $args = array(
-              'post_parent' => $post->ID,
-              'post_type' => 'attachment',
-              'post_mime_type' => 'image',
-              'orderby' => 'menu_order',
-              'order' => 'ASC',
-              'offset' => '0',
-              'numberposts' => 1
-            );
-
-            $images = get_posts($args);
-
-            if ( count( $images ) > 0 ) :
-              $image_url = wp_get_attachment_url($images[0]->ID);
-            else :
-              $image_url = catch_that_image();
-            endif;
-          endif;
           ?>
 
           <?php
           if (is_single()) :
-            $img_w = '620';
-            $img_h = '440';
+            $size = 'blog-single-p1';
+            //$size = array(620,440);
+
+            $img_w = 620;
+            $img_h = 440;
           elseif (is_front_page() && $count == 1) :
-            $img_w = '300';
-            $img_h = '300';
+            $size = 'blog-homepage-p1';
+            //$size = array(300,300);
           else :
-            $img_w = '140';
-            $img_h = '140';
+            //$size = 'blog-homepage-thumb';
+            $size = 'thumbnail';
+            //$size = array(140,140);
           endif;
           ?>
 
@@ -270,26 +276,28 @@ $lastclass = 0;
             <?php $image_attributes = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID), 'full' ); ?>
 
             <?php if (is_single() && $image_attributes[1] >= 620) : ?>
-              <?php
-                global $custom_thumbs_mb;
-                $custom_thumbs_mb->the_field('cq_thumb_align');
-                $ct = $custom_thumbs_mb->get_the_value();
-                if ($ct == "top") { $a="t"; }
-                elseif ($ct == "middle") { $a="m"; }
-                elseif ($ct == "bottom") { $a="b"; }
-                else { $a="t"; }
-              ?>
-              <img src="/blog/wp-content/themes/collectorsquest/thumb.php?src=<?php echo $image_url;  //echo 'http://placekitten.com/700/700'; ?>&w=<?php echo $img_w ?>&h=<?php echo $img_h ?>&zc=1&a=<?php echo $a; ?>" alt=""/>
+                  <?php
+                    global $custom_thumbs_mb;
+                    $custom_thumbs_mb->the_field('cq_thumb_align');
+                    $ct = $custom_thumbs_mb->get_the_value();
+                    if ($ct == "top") { $a="t"; }
+                    elseif ($ct == "middle") { $a="m"; }
+                    elseif ($ct == "bottom") { $a="b"; }
+                    else { $a="t"; }
+                  ?>
+
+              <img src="/blog/wp-content/themes/collectorsquest/thumb.php?src=<?php echo get_post_image_url('full');  //echo 'http://placekitten.com/700/700'; ?>&w=<?php echo $img_w ?>&h=<?php echo $img_h ?>&zc=1&a=<?php echo $a; ?>" alt=""/>
+
               <?php
               $thumbnail_id = get_post_thumbnail_id($post->ID);
               $thumbnail_image = get_posts(array('p' => $thumbnail_id, 'post_type' => 'attachment'));
-              if ($thumbnail_image && isset($thumbnail_image[0])) :
+              if ($thumbnail_image && isset($thumbnail_image[0]) && $thumbnail_image[0]->post_excerpt) :
                 echo '<p class="wp-caption-text">'.$thumbnail_image[0]->post_excerpt.'</p>';
               endif;
               ?>
 
-            <?php elseif (is_front_page() || is_archive()) : ?>
-            <img src="/blog/wp-content/themes/collectorsquest/thumb.php?src=<?php echo $image_url; //'http://placekitten.com/700/700'; ?>&w=<?php echo $img_w ?>&h=<?php echo $img_h ?>&zc=1&a=t" alt=""/>
+            <?php elseif (!is_single()) : ?>
+            <img src="<?php echo get_post_image_url($size, $count); //'http://placekitten.com/700/700'; ?>" alt=""/>
             <?php endif; ?>
 
           <?php if (!is_single()) : ?>
@@ -303,7 +311,7 @@ $lastclass = 0;
 
         </div>
 
-        <?php if (is_front_page() || is_archive()) : ?>
+        <?php if (is_front_page() || is_archive() || is_search()) : ?>
           <!-- <div class="entry-genre"><a href="" title=""><?php the_category() ?></a></div> -->
           <h2 class="entry-title <?php if (is_front_page() && $count==1): echo "span6"; elseif (!is_single()) : echo  "span9"; endif; ?>"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
         <?php endif; ?>
@@ -318,40 +326,47 @@ $lastclass = 0;
             </a>
             <span class="author-info">
             By <a href="<?php echo get_author_posts_url(get_the_author_meta('ID')) ?>"
-                  title="<?php the_author() ?>'s articles on collecting..."><?php the_author() ?></a> <!-- <span class="entry-date">| Posted <?php the_date('M d, Y') ?>
-            at <?php the_time('g:i a') ?></span> -->
+                  title="<?php the_author() ?>'s articles on collecting..."><?php the_author() ?></a>
+              <span class="entry-date">| Posted
+                <?php
+               /* global $post;
+                  $postdate = get_the_date('mdy');
+                  $date = date('mdy');
+                  if ($date == $postdate ||
+                    date('mdy',strtotime($date." -1 day")) == $postdate ||
+                    date('mdy',strtotime($date." -2 days")) == $postdate) :
+                    echo human_time_diff( get_the_time('U'), current_time('timestamp') ) . ' ago';
+                  else :
+                  endif;*/
+                    echo get_the_date('M jS, Y');
+
+                ?>
+              </span>
+              <?php edit_post_link('Edit', ' | ', ''); ?>
             </span>
           </span>
 
           <?php if (is_single()) : ?>
-          <div class="entry-share pull-right <?php if (is_front_page() && $count==1): echo "span6"; endif; ?>">
-            <!-- ShareThis Button BEGIN
-            <span class='st_email_hcount'></span>
-            <span class='st_facebook_hcount'></span>
-            <span class='st_twitter_hcount'></span>
-            <span class='st_googleplus_hcount'></span>
-            <span class='st_pinterest_hcount'></span>
-            ShareThis Button BEGIN -->
-
+          <div class="blue-actions-panel entry-share pull-right share <?php if (is_front_page() && $count==1): echo "span6"; endif; ?>">
             <!-- AddThis Button BEGIN -->
-            <div class="addthis_toolbox addthis_default_style">
-              <a class="addthis_button_email"></a>
-              <a class="addthis_button_facebook_like" fb:like:layout="button_count" fb:like:width="42"></a>
-              <a class="addthis_button_tweet" tw:twitter:data-count="none"></a>
-              <a class="addthis_button_google_plusone" g:plusone:size="medium" g:plusone:annotation="none"></a>
-              <a class="addthis_button_pinterest_pinit" pi:pinit:media="<?php echo bloginfo('url'). $image_url; ?>" pi:pinit:layout="horizontal"></a>
-            </div>
+            <a class="btn btn-lightblue btn-mini-social addthis_button_email">
+              <i class="mail-icon-mini"></i> Email
+            </a>
+            <a class="addthis_button_facebook_like" fb:like:layout="button_count" fb:like:width="40"></a>
+            <a class="addthis_button_tweet" tw:twitter:data-count="none"></a>
+            <a class="addthis_button_google_plusone" g:plusone:size="medium" g:plusone:annotation="none"></a>
+            <a class="addthis_button_pinterest_pinit" pi:pinit:media="<?php echo get_post_image_url(); ?>" pi:pinit:layout="horizontal"></a>
             <!-- AddThis Button END -->
           </div>
           <?php endif; ?>
         </div>
 
 
-        <div class="entry-content <?php if (is_front_page() && $count==1): echo "span6"; elseif (!is_single()) : echo  "span9"; endif; ?>">
+        <div class="entry-content <?php if (is_front_page() && $count==1): echo "span6"; elseif (!is_single()) : echo "span9"; else : echo "span12"; endif; ?>">
           <?php
           if (is_single()) :
              the_content();
-          elseif (is_front_page()||is_archive()) :
+          elseif (is_front_page() || is_archive() || is_search()) :
 
             if (is_front_page() && $count == 1) :
               cq_excerpt('cq_excerptlength_firstpost');
@@ -363,7 +378,7 @@ $lastclass = 0;
           ?>
         </div>
 
-        <?php if ((is_front_page() && $count == 1) || is_single()) : ?>
+        <?php if ((is_front_page() && $count == 1) /* is_single()*/) : ?>
         <div class="entry-footer <?php if (is_front_page() && $count==1): echo "span6"; else : echo "span12"; endif; ?>">
         <?php if (is_front_page() && $count == 1) : ?>
           <p><?php the_tags(); ?></p>
@@ -372,22 +387,19 @@ $lastclass = 0;
             <span class='st_sharethis_custom'>Share This</span>
           </div> -->
           <?php if (is_single()) : ?>
-          <div class="entry-share pull-right">
-            <!-- ShareThis Button BEGIN
-            <span class='st_email_hcount'></span>
-            <span class='st_facebook_hcount'></span>
-            <span class='st_twitter_hcount'></span>
-            <span class='st_googleplus_hcount'></span>
-            <span class='st_pinterest_hcount'></span>
-            ShareThis Button BEGIN -->
+          <span class="meta-text">
+            <a href="<?php the_permalink(); ?>">Permalink</a> |
+            <?php edit_post_link('Edit', '', ''); ?>
+          </span>
 
+          <div class="entry-share pull-right">
             <!-- AddThis Button BEGIN -->
             <div class="addthis_toolbox addthis_default_style">
               <a class="addthis_button_email"></a>
               <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
               <a class="addthis_button_tweet" tw:twitter:data-count="none"></a>
               <a class="addthis_button_google_plusone" g:plusone:size="medium" g:plusone:annotation="none"></a>
-              <a class="addthis_button_pinterest_pinit" pi:pinit:media="<?php echo bloginfo('url'). $image_url; ?>" pi:pinit:class="pin-it-button" pi:pinit:count-layout="horizontal"></a>
+              <a class="addthis_button_pinterest_pinit" pi:pinit:media="<?php echo get_post_image_url(); ?>" pi:pinit:class="pin-it-button" pi:pinit:count-layout="horizontal"></a>
             </div>
             <!-- AddThis Button END -->
           </div>
@@ -413,7 +425,6 @@ $lastclass = 0;
     <?php comments_template(); ?>
     </div>
 
-     <div class="perlinknklink">Permalink: <a href="<?php the_permalink(); ?>"><?php the_permalink() ?></a></div>
     <?php endif; ?>
 
     <?php if ( is_archive() && $wp_query->max_num_pages > 1 ) : ?>
@@ -431,10 +442,34 @@ $lastclass = 0;
 
     <?php endif; ?>
 
-  <?php else : ?>
+  <?php else :
+
+  $page = get_page_by_title( '404' );
+
+  if($page) :
+    echo $page->post_content;
+  else :
+
+  ?>
 
   <h2 class="entry-title">Not Found</h2>
-  <p>Sorry, but you are looking for something that isn't here.</p>
+  <p>"We've lost this page;<br />
+    It's gone astray.<br />
+    We hope you'll stay<br />
+    a little more.
+  </p>
+  <p>
+    The search above's<br />
+    What you should use.<br />
+    Please excuse<br />
+    our 404."
+  </p>
+
+  <?php
+
+  endif; ?>
+
+
 
   <?php endif; ?>
 
@@ -462,11 +497,17 @@ $lastclass = 0;
   switch (SF_ENV)
   {
     case 'dev':
-      $domain = 'collectorsquest.next';
+      $domain = 'collectorsquest.dev';
+      break;
+    case 'next':
+      $domain = 'cqnext.com';
+      break;
+    case 'stg':
+      $domain = 'cqstaging.com';
       break;
     case 'prod':
     default:
-      $domain = 'cqnext.com';
+      $domain = 'collectorsquest.com';
       break;
   }
 

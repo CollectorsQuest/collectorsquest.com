@@ -45,7 +45,7 @@
 				margin-top: 1px;
 			}
 
-			span {
+			.blue-label {
 				position: absolute;
 				top: 24px;
 				right: -32px;
@@ -78,6 +78,9 @@
 			margin-top: 5px;
 		}
 	}
+}
+.lt-ie9 #marketplace-spotlight .thumbnail .blue-label {
+	right: 0px;
 }
 
 .featured-sellers {
@@ -138,7 +141,8 @@
 			color: @blue;
 			line-height: 20px;
 			&:hover {
-				border-bottom: 1px solid @red;
+				color: @red;
+				text-decoration: none;
 			}
 		}
 		h2 {
@@ -148,6 +152,10 @@
 		h2 a {
 			color: @blueDark;
 			line-height: 28px;
+			&:hover {
+				text-decoration: none;
+				border-bottom: none;
+			}
 		}
 	}
 }

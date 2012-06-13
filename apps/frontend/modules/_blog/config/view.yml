@@ -4,7 +4,6 @@ all:
     breadcrumbs: [_blog, breadcrumbs]
     sidebar_300: [_blog, sidebar]
 
-indexSuccess:
   metas:
     title: ~
     description: ~

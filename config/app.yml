@@ -24,6 +24,11 @@ all:
     defensio: "bb85a65a8118c50aa3918cb254a34176"
     dlvrit: "123456789abcdefg"
 
+    aviary:
+      api_key: "3058e289b"
+      api_secret: "694b2d643"
+      hmac_secret: "o67NpB1P2xKJdV2J5KtUvLP9myVMIIG2sPr2xVHJ3JBQXo6njy1H5udSHobAL4vz"
+
     recaptcha:
       public_key: "6LdACwsAAAAAAE5tZTcYG47Lth2jzxxZeXAbll-Z"
       private_key: "6LdACwsAAAAAAM19l6G0lFk4F560SWvBM2k5M9L0"

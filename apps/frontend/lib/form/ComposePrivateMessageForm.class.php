@@ -45,8 +45,15 @@ class ComposePrivateMessageForm extends PrivateMessageForm
     parent::configure();
 
     $this->setupReceiverField();
+    $this->setupSenderField();
     $this->setupThreadField();
     $this->setupCaptchaField();
+    $this->setupRedirectField();
+
+    $this->widgetSchema->setLabels(array(
+        'receiver' => 'To',
+        'body' => 'Message',
+    ));
 
     $this->unsetFields();
   }
@@ -75,6 +82,14 @@ class ComposePrivateMessageForm extends PrivateMessageForm
     ));
   }
 
+  protected function setupSenderField()
+  {
+    // check if we are replying to a thread
+    $this->validatorSchema['sender'] = new cqValidatorCollectorByName(array(
+        'return_object' => true,
+    ));
+  }
+
   protected function setupThreadField()
   {
     $this->widgetSchema['thread'] = new sfWidgetFormInputHidden();
@@ -90,12 +105,18 @@ class ComposePrivateMessageForm extends PrivateMessageForm
     if ( $this->userGetSentMessagesCount()
       >= sfConfig::get('app_private_messages_require_captcha_threshold') )
     {
-      $this->widgetSchema['captcha'] = new IceWidgetCaptcha(array(
+      $this->widgetSchema['captcha'] = new cqWidgetBootstrapCaptcha(array(
           'width' => 200,
           'height' => 50,
       ));
       $this->validatorSchema['captcha'] = new IceValidatorCaptcha();
     }
+  }
+
+  protected function setupRedirectField()
+  {
+    $this->widgetSchema['goto'] = new sfWidgetFormInputHidden();
+    $this->validatorSchema['goto'] = new sfValidatorPass();
   }
 
   /**
@@ -198,6 +219,8 @@ class ComposePrivateMessageForm extends PrivateMessageForm
         $this->setDefault('receiver', $receiver->getUsername());
       }
     }
+
+    $this->setDefault('sender', $this->sender_collector->getUsername());
   }
 
   protected function getReceiverFromThread()
@@ -218,7 +241,9 @@ class ComposePrivateMessageForm extends PrivateMessageForm
 
   public function getDefaults()
   {
-    return array_merge(array('sender' => $this->sender_collector->getId(),), parent::getDefaults());
+    return array_merge(array(
+        'sender' => $this->sender_collector->getId(),
+    ), parent::getDefaults());
   }
 
   public function unsetFields()

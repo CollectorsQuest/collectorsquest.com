@@ -4,7 +4,8 @@ require 'lib/model/om/BaseCollectionCollectible.php';
 
 class CollectionCollectible extends BaseCollectionCollectible
 {
-  public function save(PropelPDO $con = null)
+
+  public function preSave(PropelPDO $con = null)
   {
     /**
      * We need to place the new collectible at the end of the collection
@@ -22,18 +23,38 @@ class CollectionCollectible extends BaseCollectionCollectible
 
       $position = (int) $stmt->fetch(PDO::FETCH_COLUMN);
       $this->setPosition($position + 1);
-
-      if ($collection = $this->getCollection($con))
-      {
-        $q = CollectionCollectibleQuery::create()
-           ->filterByCollectionId($this->getCollectionId());
-        $num_items = $q->count($con);
-        $collection->setNumItems($num_items);
-        $collection->save();
-      }
     }
 
-    parent::save($con);
+    return true;
+  }
+
+  public function postSave(PropelPDO $con = null)
+  {
+    $this->updateRelatedCollection($con);
+
+    return true;
+  }
+
+  /**
+   * Update the aggregate column in the related Collection object
+   *
+   * @param PropelPDO $con A connection object
+   */
+  protected function updateRelatedCollection(PropelPDO $con = null)
+  {
+    if ($collection = $this->getCollection())
+    {
+      if ($collection->hasChildObject())
+      {
+        // this will update the parent as well
+        $collection->getChildObject()->updateNumItems($con);
+      }
+      else
+      {
+        // childless collection, there shouldn't be any of those, but just in case
+        $collection->updateNumItems($con);
+      }
+    }
   }
 
   public function getId()
@@ -44,6 +65,21 @@ class CollectionCollectible extends BaseCollectionCollectible
   public function setId($v)
   {
     $this->setCollectibleId($v);
+  }
+
+  public function getPrimaryImage($mode = Propel::CONNECTION_READ)
+  {
+    return $this->getCollectible()->getPrimaryImage($mode);
+  }
+
+  public function getMultimedia($limit = 0, $type = null, $primary = null, $mode = Propel::CONNECTION_READ)
+  {
+    return $this->getCollectible()->getMultimedia($limit, $type, $primary, $mode);
+  }
+
+  public function getTags()
+  {
+    return $this->getCollectible()->getTags();
   }
 
   public function __call($m, $a)
@@ -59,4 +95,5 @@ class CollectionCollectible extends BaseCollectionCollectible
       return parent::__call($m, $a);
     }
   }
+
 }

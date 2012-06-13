@@ -11,6 +11,8 @@ class cqMailer extends Swift_Mailer
     SINGLE_ADDRESS = 'single_address',
     NONE           = 'none';
 
+  protected $avoidSingleAddressIdentifier = '@collectorsquest.com';
+
   protected
     $spool             = null,
     $logger            = null,
@@ -78,7 +80,7 @@ class cqMailer extends Swift_Mailer
         }
       }
     }
-    
+
     $this->realtimeTransport = $transport;
 
     if (sfMailer::SPOOL == $this->strategy)
@@ -110,7 +112,7 @@ class cqMailer extends Swift_Mailer
 
       $this->address = $options['delivery_address'];
 
-      $transport->registerPlugin($this->redirectingPlugin = new Swift_Plugins_RedirectingPlugin($this->address));
+      $transport->registerPlugin($this->redirectingPlugin = new cqSwiftPluginsRedirectingPlugin($this->address, array($this, 'shouldMessageUseRedirectingPlugin')));
     }
 
     parent::__construct($transport);
@@ -134,7 +136,7 @@ class cqMailer extends Swift_Mailer
 
     $dispatcher->notify(new sfEvent($this, 'mailer.configure'));
   }
-  
+
   /**
    * Gets the realtime transport instance.
    *
@@ -278,8 +280,15 @@ class cqMailer extends Swift_Mailer
 
       return $this->realtimeTransport->send($message, $failedRecipients);
     }
-
     return parent::send($message, $failedRecipients);
+  }
+
+  public function shouldMessageUseRedirectingPlugin(Swift_Mime_Message $message)
+  {
+    $addresses = array_keys($message->getTo());
+    $addresses = implode(',', $addresses);
+
+    return false === strpos($addresses, $this->avoidSingleAddressIdentifier);
   }
 
   /**

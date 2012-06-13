@@ -43,14 +43,14 @@ class cqWidgetFormCreditCard extends sfWidgetFormInputText
 
   public function render($name, $value = null, $attributes = array(), $errors = array())
   {
-    return parent::render($name, $value, $attributes, $errors) . sprintf(<<<JAVASCRIPT
+    return parent::render($name, $value, $attributes, $errors); /* . sprintf(<<<JAVASCRIPT
 <script type="text/javascript">
 $(document).ready(function() {
   console.log('test');
 });
 </script>
 JAVASCRIPT
-    , $this->generateId($name));
+    , $this->generateId($name));*/
   }
 
   public function getJavaScripts()

@@ -4,12 +4,22 @@ class collectorComponents extends cqFrontendComponents
 {
   public function executeSidebarIndex()
   {
-    if (!$this->collector = CollectorPeer::retrieveByPk($this->getRequestParameter('id')))
+    $this->collector = CollectorPeer::retrieveByPk($this->getRequestParameter('id'));
+    $this->profile = $this->collector->getProfile();
+
+    // if we are not viewing our own profile
+    if ($this->getCollector() && ($this->getCollector()->getId() != $this->collector->getId()))
     {
-      return sfView::NONE;
+      // setup PM form
+      $this->pm_form = new ComposeAbridgedPrivateMessageForm(
+        $this->getCollector(), $this->collector,
+        'A message from '.$this->getCollector()->getDisplayName()
+      );
     }
 
-    $this->profile = $this->collector->getProfile();
+    $this->about_me = $this->profile->getProperty('about.me');
+    $this->about_collections = $this->profile->getProperty('about.collections');
+    $this->about_interests = $this->profile->getProperty('about.interests');
 
     return sfView::SUCCESS;
   }
@@ -22,15 +32,14 @@ class collectorComponents extends cqFrontendComponents
       return sfView::NONE;
     }
 
-    $c = new Criteria();
-    $c->setDistinct();
-    $c->addJoin(CollectiblePeer::ID, CollectibleForSalePeer::COLLECTIBLE_ID, Criteria::RIGHT_JOIN);
-    $c->add(CollectiblePeer::COLLECTOR_ID, $collector->getId());
-    $c->addDescendingOrderByColumn(CollectibleForSalePeer::UPDATED_AT);
+    $q = CollectibleForSaleQuery::create()
+      ->joinCollectible()
+      ->filterByCollector($collector)
+      ->isForSale()
+      ->orderByUpdatedAt(Criteria::DESC);
 
-    $pager = new sfPropelPager('CollectibleForSale', 4);
+    $pager = new PropelModelPager($q, 4);
     $pager->setPage($this->getRequestParameter('p', 1));
-    $pager->setCriteria($c);
     $pager->init();
 
     $this->pager = $pager;
@@ -47,13 +56,15 @@ class collectorComponents extends cqFrontendComponents
       return sfView::NONE;
     }
 
-    $c = new Criteria();
-    $c->add(CollectorCollectionPeer::COLLECTOR_ID, $collector->getId());
-    $c->addDescendingOrderByColumn(CollectorCollectionPeer::UPDATED_AT);
+    /** @var $q CollectorCollectionQuery */
+    $q = CollectorCollectionQuery::create()
+      ->filterByCollector($collector)
+      ->addJoin(CollectorCollectionPeer::ID, CollectionCollectiblePeer::COLLECTION_ID, Criteria::RIGHT_JOIN)
+      ->orderByCreatedAt(Criteria::DESC)
+      ->groupById();
 
-    $pager = new sfPropelPager('CollectorCollection', 6);
+    $pager = new PropelModelPager($q, 6);
     $pager->setPage($this->getRequestParameter('p', 1));
-    $pager->setCriteria($c);
     $pager->init();
 
     $this->pager = $pager;

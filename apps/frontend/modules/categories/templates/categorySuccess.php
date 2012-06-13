@@ -10,7 +10,7 @@
 
 <?php
   cq_page_title(
-    $category->getName(),
+    sprintf('%s', $category->getName()),
     link_to('Back to Collections &raquo;', '@collections')
   );
 ?>
@@ -51,7 +51,7 @@
       <?= $collectors_question['content']; ?>
     </div>
   </div>
-  <?php include_partial('sandbox/comments'); ?>
+  <?php include_partial('comments/comments', array('for_object' => $category)); ?>
 
 <?php else: ?>
 

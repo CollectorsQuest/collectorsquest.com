@@ -3,7 +3,14 @@
   /* @var $messages PrivateMessage[] */ $messages;
   /* @var $reply_form ComposePrivateMessageForm */ $reply_form;
 
-  use_javascript('/js/jquery/elastic.js');
+  if ($messages->getFirst()->getReceiver() == $sf_user->getCollector()->getId())
+  {
+    SmartMenu::setSelected('messages_sidebar', 'inbox');
+  }
+  else
+  {
+    SmartMenu::setSelected('messages_sidebar', 'sent');
+  }
 ?>
 
 <table class="private-message-thread table table-striped table-bordered">
@@ -12,13 +19,19 @@
     $sender = $message->getCollectorRelatedBySender();
     $receiver = $message->getCollectorRelatedByReceiver();
   ?>
-    <tr class="table-condensed">
+    <tr class="table-condensed"
+      <?php if ($messages->isLast()): ?>
+        id="latest-message"
+      <?endif; ?>
+    >
       <td class="sender" rowspan="2">
-        <span>By <?= link_to($sender, array('sf_route' => 'collector_by_slug', 'sf_subject' => $sender)); ?></span>
+        <span>By&nbsp;<?= link_to($sender, array('sf_route' => 'collector_by_slug', 'sf_subject' => $sender)); ?></span>
         <br/>
         <span><?= time_ago_in_words_or_exact_date($message->getCreatedAt()); ?></span>
         <br/>
-        <div class="spacer-inner-top-7"><?= link_to_collector($sender, 'image'); ?></div>
+        <div class="spacer-inner-top-7">
+          <?= link_to_collector($sender, 'image', array('width' => 100, 'height' => null)); ?>
+        </div>
       </td>
       <td class="subject"><b><?= $message->getSubject(); ?></b></td>
     </tr>

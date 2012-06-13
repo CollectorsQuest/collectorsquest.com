@@ -9,16 +9,15 @@
  */
 class sellerActions extends cqFrontendActions
 {
-  /**
-   * Executes index action
-   *
-   * @param sfWebRequest $request A request object
-   *
-   * @return string
-   */
-  public function executeIndex(sfWebRequest $request)
+
+  public function preExecute()
   {
-    return sfView::SUCCESS;
+    $this->redirectIf(IceGateKeeper::locked('mycq_marketplace'), '@mycq');
+  }
+
+  public function executeIndex()
+  {
+    $this->redirect('@mycq_marketplace');
   }
 
   /**
@@ -26,6 +25,7 @@ class sellerActions extends cqFrontendActions
    *
    * @param sfWebRequest $request
    *
+   * @throws Exception
    * @return string
    */
   public function executePackages(sfWebRequest $request)
@@ -34,66 +34,63 @@ class sellerActions extends cqFrontendActions
 
     if (sfRequest::POST == $request->getMethod())
     {
-      if ('applyPromo' == $request->getParameter('submit', false))
+      if ('applyPromo' == $request->getParameter('applyPromo', false))
       {
         $packagesForm->setPartialRequirements();
         $packagesForm->bind($request->getParameter($packagesForm->getName()));
 
-        //        echo '<pre>';
-        //        var_dump($packagesForm->isValid(), $packagesForm->getErrorSchema()); die();
-
-        if ($packagesForm->isValid())
+        if ($packagesForm->isValid() && !is_null($packagesForm->getValue('package_id')))
         {
-          $promotion          = $packagesForm->getPromotion();
-          $package            = $packagesForm->getPackage();
+          $promotion = $packagesForm->getPromotion();
+          $package = $packagesForm->getPackage();
           $afterDiscountPrice = $package->getPackagePrice();
 
           if ($promotion)
           {
             $package->applyPromo($promotion);
             $afterDiscountPrice = $package->getPackagePrice() - $package->getDiscount();
-            $freeSubscription   = (bool)($afterDiscountPrice <= 0);
+            $freeSubscription = (boolean) ($afterDiscountPrice <= 0);
 
-            if ($freeSubscription)
-            {
-              $this->discountMessage = 'Free Subscription!';
-            }
-            else
-            {
-              $this->discountMessage = sprintf('%d%s discount', $promotion->getAmount(),
-                PromotionPeer::DISCOUNT_FIXED == $package->getDiscountType() ? '$' : '%');
-            }
+//            if ($freeSubscription)
+//            {
+//              $this->discountMessage = 'Free Subscription!';
+//            }
+//            else
+//            {
+//              $this->discountMessage = sprintf('%d%s discount', $promotion->getAmount(),
+//                PromotionPeer::DISCOUNT_FIXED == $package->getDiscountType() ? '$' : '%');
+//            }
           }
         }
       }
       else
       {
+
+
         $packagesForm->bind($request->getParameter($packagesForm->getName()));
 
-        //        dd($request->getParameterHolder()->getAll(), $packagesForm->getErrorSchema()->getErrors());
         if ($packagesForm->isValid())
         {
           $promotion = $packagesForm->getPromotion();
-          $package   = $packagesForm->getPackage();
+          $package = $packagesForm->getPackage();
           $collector = $this->getUser()->getCollector();
 
           $transaction = PackageTransactionPeer::newTransaction($collector, $package, $promotion);
-          //          dd($transaction);
 
           //2. Save transaction
-          if (0 > $transaction->getPackagePrice())
+          if (0 == $transaction->getPackagePrice())
           {
             //2.1 If free - apply collector changes
             $transaction->confirmPayment();
 
             $cqEmail = new cqEmail($this->getMailer());
-            $sent    = $cqEmail->send('Seller/package_confirmation', array(
+            $sent = $cqEmail->send('Seller/package_confirmation', array(
               'to'     => $collector->getEmail(),
               'subject'=> 'Thank you for becoming a seller',
               'params' => array(
                 'collector'     => $collector,
                 'package_name'  => $package->getPackageName(),
-                'package_items' => $package->getMaxItemsForSale() < 0 ? 'Unlimited' : $package->getMaxItemsForSale(),
+                'package_items' => $package->getCredits() < 0 ? 'Unlimited' : $package->getCredits(),
                 'expiry_date'   => strtotime('+1 year'),
               ),
             ));
@@ -104,13 +101,13 @@ class sellerActions extends cqFrontendActions
             }
 
             $this->getUser()->setFlash('success', 'You received free subscription');
-            $this->redirect('@mycq');
+            $this->redirect('@mycq_marketplace');
           }
           else if ('paypal' == $packagesForm->getValue('payment_type'))
           {
             //2.2. If paypal - redirect to paypal
             $this->packageTransaction = $transaction;
-            $this->promotion          = $promotion;
+            $this->promotion = $promotion;
             $this->setTemplate('redirect');
 
             return sfView::SUCCESS;
@@ -133,7 +130,7 @@ class sellerActions extends cqFrontendActions
               'creditcardtype' => $packagesForm->getValue('cc_type'),
               'acct'           => $packagesForm->getValue('cc_number'),
               'expdate'        => date('mY', strtotime($packagesForm->getValue('expiry_date'))),
-                'cvv2'           => $packagesForm->getValue('cvv_number'),
+              'cvv2'           => $packagesForm->getValue('cvv_number'),
             );
 
             $payerInfo = array(
@@ -142,7 +139,7 @@ class sellerActions extends cqFrontendActions
 
             $payerName = array(
               'firstname' => $packagesForm->getValue('first_name'),
-              'lastname' => $packagesForm->getValue('last_name'),
+              'lastname'  => $packagesForm->getValue('last_name'),
             );
 
             $billingAddressInfo = array(
@@ -195,19 +192,19 @@ class sellerActions extends cqFrontendActions
               $transaction->save();
 
               $collector->setUserType(CollectorPeer::TYPE_SELLER);
-              $collector->setItemsAllowed($package->getMaxItemsForSale());
+              $collector->setItemsAllowed($package->getCredits());
               $collector->save();
 
               // Send Mail To Seller
               //@todo send email on success
               $cqEmail = new cqEmail($this->getMailer());
-              $sent    = $cqEmail->send('Seller/package_confirmation', array(
+              $sent = $cqEmail->send('Seller/package_confirmation', array(
                 'to'     => $collector->getEmail(),
                 'subject'=> 'Thank you for becoming a seller',
                 'params' => array(
                   'collector'     => $collector,
                   'package_name'  => $package->getPackageName(),
-                  'package_items' => $package->getMaxItemsForSale() < 0 ? 'Unlimited' : $package->getMaxItemsForSale(),
+                  'package_items' => $package->getCredits() < 0 ? 'Unlimited' : $package->getCredits(),
                   'expiry_date'   => strtotime('+1 year'),
                 ),
               ));
@@ -218,7 +215,7 @@ class sellerActions extends cqFrontendActions
               }
 
               $this->getUser()->setFlash('success', 'Payment received');
-              $this->redirect('@mycq');
+              $this->redirect('@mycq_marketplace');
             }
             else
             {
@@ -236,7 +233,9 @@ class sellerActions extends cqFrontendActions
           else
           {
             //TODO: replace this with test
-            throw new Exception(sprintf('Invalid payment type %s', $packagesForm->getValue('payment_type')));
+            throw new Exception(sprintf(
+              'Invalid payment type %s', $packagesForm->getValue('payment_type')
+            ));
           }
         }
       }
@@ -294,13 +293,13 @@ class sellerActions extends cqFrontendActions
     $this->forward404Unless($request->hasParameter('invoice'));
 
     $packageTransaction = PackageTransactionPeer::retrieveByPK($request->getParameter('invoice'));
-    $this->forward404Unless((bool)$packageTransaction);
+    $this->forward404Unless((boolean) $packageTransaction);
 
     $collector = $packageTransaction->getCollector();
-    $package   = $packageTransaction->getPackage();
+    $package = $packageTransaction->getPackage();
 
     $collector->setUserType(CollectorPeer::TYPE_SELLER);
-    $collector->setItemsAllowed($package->getMaxItemsForSale());
+    $collector->setItemsAllowed($package->getCredits());
     $collector->save();
 
     $packageTransaction->setPackagePrice($request->getParameter('mc_gross'));
@@ -309,13 +308,13 @@ class sellerActions extends cqFrontendActions
 
     // Send Mail To Seller
     $cqEmail = new cqEmail($this->getMailer());
-    $sent    = $cqEmail->send('Seller/package_confirmation', array(
+    $sent = $cqEmail->send('Seller/package_confirmation', array(
       'to'     => $collector->getEmail(),
       'subject'=> 'Thank you for becoming a seller',
       'params' => array(
         'collector'     => $collector,
         'package_name'  => $package->getPackageName(),
-        'package_items' => $package->getMaxItemsForSale() < 0 ? 'Unlimited' : $package->getMaxItemsForSale(),
+        'package_items' => $package->getCredits() < 0 ? 'Unlimited' : $package->getCredits(),
         'expiry_date'   => strtotime('+1 year'),
       ),
     ));
@@ -331,6 +330,33 @@ class sellerActions extends cqFrontendActions
     }
 
     $this->redirect('@mycq_collections');
+  }
+
+  public function executeShoppingOrders()
+  {
+    return sfView::SUCCESS;
+  }
+
+  public function executeShoppingOrder()
+  {
+    /** @var $shopping_order ShoppingOrder */
+    $shopping_order = $this->getRoute()->getObject();
+
+    /** @var $shopping_payment ShoppingPayment */
+    $shopping_payment = $shopping_order->getShoppingPaymentRelatedByShoppingPaymentId();
+
+    // Prepare request arrays
+    $GetShippingAddressFields = array(
+      'Key' => $shopping_payment->getProperty('paypal.pay_key')
+    );
+    $PayPalRequestData = array('GetShippingAddressFields' => $GetShippingAddressFields);
+
+    $AdaptivePayments = cqStatic::getPayPaylAdaptivePaymentsClient();
+    $result = $AdaptivePayments->GetShippingAddress($PayPalRequestData);
+
+    dd($result);
+
+    return sfView::SUCCESS;
   }
 
 }

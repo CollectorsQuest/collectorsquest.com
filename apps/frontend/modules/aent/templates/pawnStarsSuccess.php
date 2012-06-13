@@ -1,9 +1,23 @@
-<div class="promo-space">
-  <img src="/images/banners/040412_promo_space_banner.jpg" alt="">
+<div class="spacer-bottom-15">
+  <img src="/images/banners/2012-0420_PS_Promo_Space_620x180_FIN.jpg" alt="">
 </div>
-<?php cq_page_title('As seen on Pawn Stars'); ?>
 
-<br/>
+<p style="text-align: justify;">
+  In the only family-run pawn shop in Las Vegas, three generations of men
+  from the Harrison family buy and sell collectible, unusual and historically
+  significant items on HISTORY’s <strong><i>PAWN STARS</i></strong><sup>&reg;</sup>.
+  Their customers are carrying on a centuries-old practice: pawning or selling
+  their possessions to make a quick buck. What would you be willing to gamble
+  on these items from the show?
+</p>
+
+<?php
+  cq_page_title(
+    'Collectibles Seen on <strong><i>Pawn Stars</i></strong>', null,
+    array('class' => 'row-fluid header-bar spacer-bottom-15')
+  );
+?>
+
 <div class="row">
   <div id="collectibles" class="row-content">
   <?php

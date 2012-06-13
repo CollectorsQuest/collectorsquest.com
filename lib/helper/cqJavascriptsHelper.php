@@ -63,14 +63,15 @@ function cq_dart_slot($size, $zone1 = 'other', $zone2 = null, $pos = null)
 {
   list($width, $height) = explode('x', $size);
 
+  $test = isset($_GET['test']) && $_GET['test'] === 'on' ? 'on' : null;
   $src = sprintf(
-    'http://ad.doubleclick.net/adj/aetn.hist.cq/%s;s1=%s;s2=%s;kw=;test=;aetn=ad;pos=%s;dcopt=%s;sz=%s',
-    $zone1, $zone1, $zone2, $pos, ($pos === 'top') ? 'ist' : null, $size
+    'http://ad.doubleclick.net/adj/aetn.hist.cq/cq%s;s1=cq%s;s2=%s;kw=;test=%s;aetn=ad;pos=%s;dcopt=%s;sz=%s',
+    $zone1, $zone1, $zone2, $test, $pos, ($pos === 'top') ? 'ist' : null, $size
   );
 
   $href = sprintf(
-    'http://ad.doubleclick.net/jump/aetn.hist.cq/%s;s1=%s;s2=%s;kw=;test=;aetn=ad;pos=%s;sz=%s',
-    $zone1, $zone1, $zone2, $pos, $size
+    'http://ad.doubleclick.net/jump/aetn.hist.cq/%s;s1=%s;s2=%s;kw=;test=%s;aetn=ad;pos=%s;sz=%s',
+    $zone1, $zone1, $zone2, $test, $pos, $size
   );
 
   include_partial(

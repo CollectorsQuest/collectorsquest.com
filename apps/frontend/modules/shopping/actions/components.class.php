@@ -49,7 +49,6 @@ class shoppingComponents extends cqFrontendComponents
     }
 
     $this->form = new CollectorLoginForm();
-    $this->form->setDefault('goto', $this->getRequest()->getUri());
 
     return sfView::SUCCESS;
   }

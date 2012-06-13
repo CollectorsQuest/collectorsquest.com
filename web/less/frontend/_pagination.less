@@ -1,0 +1,64 @@
+// PAGINATION
+// ----------
+
+.pagination {
+	height: @baseLineHeight * 2;
+	margin: @baseLineHeight 0;
+	background: @lightBlue;
+	padding: 12px 0 8px 0;
+}
+.pagination ul {
+	display: inline-block;
+	.ie7-inline-block();
+	margin-left: 0;
+	margin-bottom: 0;
+	.border-radius(none);
+	.box-shadow(none);
+}
+.pagination li {
+	display: inline;
+}
+.pagination a {
+	float: left;
+	padding: 0 13px;
+	line-height: (@baseLineHeight * 2) - 4;
+	text-decoration: none;
+	border: none;
+	border-left-width: 0;
+	margin: 0 3px;
+}
+.pagination a:hover,
+.pagination .active a {
+	background-color: #d4dbe1;
+	.border-radius(5px);
+}
+.pagination .active a {
+	color: @blue;
+	cursor: default;
+	.border-radius(5px);
+	.box-shadow(none);
+}
+.pagination .disabled span,
+.pagination .disabled a,
+.pagination .disabled a:hover {
+	color: @grayLight;
+	background-color: transparent;
+	cursor: default;
+}
+.pagination li:first-child a {
+	border-left-width: 1px;
+	.border-radius(5px);
+}
+.pagination li:last-child a {
+	.border-radius(5px);
+}
+
+// Centered
+.pagination-centered {
+	text-align: center;
+}
+.pagination-right {
+	text-align: right;
+}
+
+

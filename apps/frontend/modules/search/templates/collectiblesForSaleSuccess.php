@@ -28,9 +28,13 @@ include_partial(
   <?php
     foreach ($pager->getResults() as $i => $collectible)
     {
+      if (!$collectible_for_sale = $collectible->getCollectibleForSale()) {
+        continue;
+      }
+
       include_partial(
         'marketplace/collectible_for_sale_'. $display .'_view_square',
-        array('collectible_for_sale' => $collectible->getCollectibleForSale(), 'i' => $i)
+        array('collectible_for_sale' => $collectible_for_sale, 'i' => $i)
       );
     }
   ?>

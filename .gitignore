@@ -25,7 +25,8 @@ map
 base
 
 # composer modules
-.composer
+.composer/
+composer/
 /plugins/sfGuardPlugin
 /lib/vendor/neo4jphp
 /lib/vendor/faker
@@ -42,6 +43,7 @@ base
 /web/css/frontend/*.css
 /web/css/frontend/modules/*.css
 !/web/css/frontend/ie.css
+!/web/css/frontend/stylesheets.bundle.css
 
 # Vagrant
 /config/vagrant/.vagrant

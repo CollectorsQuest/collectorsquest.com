@@ -2,9 +2,18 @@
 
 /** http://codex.wordpress.org/Post_Thumbnails */
 add_theme_support('post-thumbnails');
+require_once __DIR__ .'/lib/crop-fix.php';
 
-/** @see http://blurback.com/post/1479456356/permissions-with-wordpress-custom-post-types */
+/** Adding custom image size for the site's homepage (not the blog homepage) */
+bt_add_image_size('homepage', 270, 270, true, array( 'center', 'top' ));
+/** Adding custom image size for the blog's homepage */
+bt_add_image_size('blog-homepage-p1', 300, 300, true, array( 'center', 'top' ));
+bt_add_image_size('blog-homepage-thumb', 140, 140, true, array( 'center', 'top' ));
 
+
+/**
+ * @see http://blurback.com/post/1479456356/permissions-with-wordpress-custom-post-types
+ */
 add_action('init', 'cq_custom_post_type_init');
 function cq_custom_post_type_init()
 {
@@ -418,7 +427,7 @@ function new_excerpt_more($more) {
 add_filter('excerpt_more', 'new_excerpt_more');
 
 // adds link class for global styles
-function add_class_the_tags($html){
+function add_class_the_tags($html) {
   if (is_single()) {
     $postid = get_the_ID();
     $html = str_replace('<a','<a class="tags"',$html);
@@ -440,8 +449,7 @@ function add_fixed_sidebar() {
 
     $(document).ready(function() {
       $('#sidebar').scrollToFixed({
-        marginTop: 10,
-        limit: $('#footer').offset().top - 600
+        limit: $('#footer').offset().top - $('#sidebar').innerHeight() - 10
       });
     });
 
@@ -471,11 +479,10 @@ function cq_comment($comment, $args, $depth) {
       </div>
       <div class="span10">
         <p class="bubble left">
-          <?php comment_author_link() ?>
+          <span class="comment-author"><?php comment_author_link() ?></span>
           <?php if ($comment->comment_approved == '0') : ?>
           <em>Your comment is awaiting moderation.</em>
           <?php endif; ?>
-          <br />
           <?php echo $comment->comment_content; ?>
           <span class="comment-time"><a href="#comment-<?php comment_ID() ?>" title=""><?php comment_date('F jS, Y') ?> at <?php comment_time() ?></a> <?php edit_comment_link('edit','',''); ?></span>
         </p>
@@ -484,7 +491,8 @@ function cq_comment($comment, $args, $depth) {
   <?php
   }
 
-function add_ajaxurl_cdata_to_front(){
+// ajax comments
+function add_ajaxurl_cdata_to_front() {
   ?>
   <script type="text/javascript">
     //<![CDATA[
@@ -517,12 +525,11 @@ function add_ajaxurl_cdata_to_front(){
 }
 add_action( 'wp_footer', 'add_ajaxurl_cdata_to_front', 11);
 
-
 add_action( 'wp_ajax_load_comments', 'load_comments' );
 add_action( 'wp_ajax_nopriv_load_comments', 'load_comments' );
-function load_comments(){
+function load_comments() {
 
-global $post, $wp_query, $post_id;
+  global $post, $wp_query, $post_id;
   $post_id = isset($_POST['post_id'])? intval($_POST['post_id']) : 0;
   $args = array(
     'post_id' => $post_id,
@@ -530,7 +537,340 @@ global $post, $wp_query, $post_id;
     'order'   => 'ASC'
   );
   $wp_query->comments = get_comments( $args );
-  wp_list_comments('type=comment&callback=cq_comment&style=div&per_page=20');
+  wp_list_comments('type=comment&callback=cq_comment&style=div&per_page=-1');
   comments_template();
   die();
 }
+
+// add TinyMCE editor to the "Biographical Info" field in a user profile
+function kpl_user_bio_visual_editor( $user ) {
+  // Requires WP 3.3+ and author level capabilities
+  if ( function_exists('wp_editor') && current_user_can('publish_posts') ):
+    ?>
+    <script type="text/javascript">
+      (function($){
+        // Remove the textarea before displaying visual editor
+        $('#description').parents('tr').remove();
+      })(jQuery);
+    </script>
+
+  <h3><?php _e('Biography', 'collectorsquest'); ?></h3>
+    <table class="form-table">
+      <tr>
+        <th><label for="description"><?php _e('Biographical Info'); ?></label></th>
+        <td>
+          <?php
+          $description = get_user_meta( $user->ID, 'description', true);
+          wp_editor( $description, 'description' );
+          ?>
+          <p class="description"><?php _e('Share a little biographical information to fill out your profile. This may be shown publicly.'); ?></p>
+        </td>
+      </tr>
+    </table>
+  <?php
+  endif;
+}
+add_action('show_user_profile', 'kpl_user_bio_visual_editor');
+add_action('edit_user_profile', 'kpl_user_bio_visual_editor');
+
+// Remove textarea filters from description field
+function kpl_user_bio_visual_editor_unfiltered() {
+  remove_all_filters('pre_user_description');
+}
+add_action('admin_init','kpl_user_bio_visual_editor_unfiltered');
+
+// add tag field to user profile
+function cq_add_custom_user_profile_fields( $user ) {
+  ?>
+  <h3><?php _e('Collectors Quest Tags', 'collectorsquest'); ?></h3>
+  <table class="form-table">
+    <tr>
+      <th>
+        <label for="address"><?php _e('User Tags', 'collectorsquest'); ?>
+        </label></th>
+      <td>
+        <input type="text" name="user_tags" id="user_tags" value="<?php echo esc_attr( get_the_author_meta( 'user_tags', $user->ID ) ); ?>" class="regular-text" /><br />
+        <span class="description"><?php _e('Please enter your tags. (1,2,3)', 'collectorsquest'); ?></span>
+      </td>
+    </tr>
+  </table>
+<?php }
+function cq_save_custom_user_profile_fields( $user_id ) {
+  if ( !current_user_can( 'edit_user', $user_id ) )
+    return FALSE;
+  update_user_meta( $user_id, 'user_tags', $_POST['user_tags'] );
+}
+add_action( 'show_user_profile', 'cq_add_custom_user_profile_fields' );
+add_action( 'edit_user_profile', 'cq_add_custom_user_profile_fields' );
+add_action( 'personal_options_update', 'cq_save_custom_user_profile_fields' );
+add_action( 'edit_user_profile_update', 'cq_save_custom_user_profile_fields' );
+
+// correcting comment count
+add_filter('get_comments_number', 'comment_count', 0);
+function comment_count( $count ) {
+  if ( ! is_admin() ) {
+    global $id;
+    $comments_by_type = &separate_comments(get_comments('status=approve&post_id=' . $id));
+    return count($comments_by_type['comment']);
+  } else {
+    return $count;
+  }
+}
+
+// filter text strings - (FAQ plugin/)
+function cq_filter_gettext( $translated, $original, $domain ) {
+
+  // This is an array of original strings
+  // and what they should be replaced with
+  $strings = array(
+    'Use the form below to search the FAQs' => '',
+    'Use the form below to ask a question' => '',
+    'Your question has been submitted for answering' => 'Your question has been submitted. We\'ll respond as soon as possible!',
+    'Search for' => '',
+    'Ask Question' => 'Submit',
+    'Howdy, %1$s' => 'We love you, %1$s!',
+    // Add some more strings here
+  );
+
+  // See if the current string is in the $strings array
+  // If so, replace it's translation
+  if ( isset( $strings[$original] ) ) {
+    // This accomplishes the same thing as __()
+    // but without running it through the filter again
+    $translations = &get_translations_for_domain( $domain );
+    $translated = $translations->translate( $strings[$original] );
+  }
+
+  return $translated;
+}
+add_filter( 'gettext', 'cq_filter_gettext', 10, 3 );
+
+// helper functions
+function get_top_ancestor($id) {
+  $current = get_post($id);
+  if(!$current->post_parent){
+    return $current->ID;
+  } else {
+    return get_top_ancestor($current->post_parent);
+  }
+}
+function is_child($pageID) {
+  global $post;
+  if( is_page() && ($post->post_parent==$pageID) ) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+// gets post thumbnails
+function get_post_image_url($size = 'full', $count = 0) {
+  global $post, $posts;
+
+  // check for post thumbnail
+  $image_id = get_post_thumbnail_id($post->ID);
+  $image_url = wp_get_attachment_image_src($image_id,'full');
+  $image_url = $image_url[0];
+
+
+  // if no post thumbnail check for attachments
+  if (!$image_url) :
+    $args = array(
+      'post_parent' => $post->ID,
+      'post_type' => 'attachment',
+      'post_mime_type' => 'image',
+      'orderby' => 'menu_order',
+      'order' => 'ASC',
+      'offset' => '0',
+      'numberposts' => -1
+    );
+
+    $images = get_posts($args);
+
+    // return first attachment over 300px wide if found
+    if ( count( $images ) > 0 ) :
+
+      $c = 0;
+      foreach ($images as $image) {
+        $image_attributes = wp_get_attachment_image_src( $image->ID, 'full' );
+        if ($count == 1 && $image_attributes[1] >= 300) {
+          $img = wp_get_attachment_image_src($images[$c]->ID, $size);
+          end;
+        } else {
+          $img = wp_get_attachment_image_src($images[0]->ID, $size);
+        }
+      $c++;
+      }
+
+      //return wp_get_attachment_url($images[0]->ID);
+      $img = $img[0];
+
+    else :
+      // else return first image from post content
+      $img = '/blog/wp-content/themes/collectorsquest/thumb.php?src='.catch_that_image().'&w='.$img[1].'&h='.$img[2].'&zc=1&a=t';
+    endif;
+
+  // if there is a post thumbnail
+  else :
+    $image_url = wp_get_attachment_image_src($image_id,$size);
+    $image_url = $image_url[0];
+    $img = $image_url;
+  endif;
+
+  return $img;
+
+}
+
+
+
+// include thumbnails in rss feed
+function insertThumbnailRSS($content) {
+  global $post;
+  $content = '<div><img src="/blog/wp-content/themes/collectorsquest/thumb.php?src=' . get_post_image_url() . '&w=140&h=140&zc=1&a=t" alt="Post Thumbnail Image" style="display:block;float:left;margin-right:20px;margin-bottom:20px;" /></div>' . $content;
+  return $content;
+}
+add_filter('the_excerpt_rss', 'insertThumbnailRSS');
+add_filter('the_content_feed', 'insertThumbnailRSS');
+
+// sharper thumbnails
+// http://wordpress.org/extend/plugins/sharpen-resized-images/developers/
+function ajx_sharpen_resized_files( $resized_file ) {
+
+  $image = wp_load_image( $resized_file );
+  if ( !is_resource( $image ) )
+    return new WP_Error( 'error_loading_image', $image, $file );
+
+  $size = @getimagesize( $resized_file );
+  if ( !$size )
+    return new WP_Error('invalid_image', __('Could not read image size'), $file);
+  list($orig_w, $orig_h, $orig_type) = $size;
+
+  switch ( $orig_type ) {
+    case IMAGETYPE_JPEG:
+      $matrix = array(
+        array(-1, -1, -1),
+        array(-1, 16, -1),
+        array(-1, -1, -1),
+      );
+
+      $divisor = array_sum(array_map('array_sum', $matrix));
+      $offset = 0;
+      imageconvolution($image, $matrix, $divisor, $offset);
+      imagejpeg($image, $resized_file,apply_filters( 'jpeg_quality', 90, 'edit_image' ));
+      break;
+    case IMAGETYPE_PNG:
+      return $resized_file;
+    case IMAGETYPE_GIF:
+      return $resized_file;
+  }
+
+  return $resized_file;
+}
+add_filter('image_make_intermediate_size', 'ajx_sharpen_resized_files',900);
+
+// add custom sizes to media uploader - http://stackoverflow.com/questions/5032906/how-can-i-add-custom-image-sizes-to-wordpress-but-have-them-in-the-admin
+function my_attachment_fields_to_edit_filter($form_fields, $post) {
+  if (!array_key_exists('image-size', $form_fields)) return $form_fields;
+
+  global $_wp_additional_image_sizes;
+  foreach($_wp_additional_image_sizes as $size => $properties) {
+    if ($size == 'post-thumbnail') continue;
+
+    $label = ucwords(str_replace('-', ' ', $size));
+    $cssID = "image-size-{$size}-{$post->ID}";
+
+    $downsize = image_downsize($post->ID, $size);
+    $enabled = $downsize[3];
+
+    $html = '<input type="radio" ' . disabled($enabled, false, false) . 'name="attachments[' . $post->ID. '][image-size]" id="' . $cssID . '" value="' . $size .'">';
+    $html .= '<label for="'. $cssID . '">' . $label . '</label>';
+    if ($enabled) $html .= ' <label for="' . $cssID . '" class="help">(' . $downsize[1] . '&nbsp;×&nbsp;' . $downsize[2] . ')</label>';
+    $form_fields['image-size']['html'] .= '<div class="image-size-item">' . $html . '</div>';
+  }
+
+  return $form_fields;
+}
+add_filter('attachment_fields_to_edit', 'my_attachment_fields_to_edit_filter', 100, 2);
+
+
+
+/**
+http://rathercurious.net
+*/
+class fixImageMargins{
+  public $xs = 0; //change this to change the amount of extra spacing
+
+  public function __construct(){
+    add_filter('img_caption_shortcode', array(&$this, 'fixme'), 10, 3);
+  }
+  public function fixme($x=null, $attr, $content){
+
+    extract(shortcode_atts(array(
+      'id'    => '',
+      'align'    => 'alignnone',
+      'width'    => '',
+      'caption' => ''
+    ), $attr));
+
+    if ( 1 > (int) $width || empty($caption) ) {
+      return $content;
+    }
+
+    if ( $id ) $id = 'id="' . $id . '" ';
+
+    return '<div ' . $id . 'class="wp-caption ' . $align . '" style="width: ' . ((int) $width + $this->xs) . 'px">'
+      . $content . '<p class="wp-caption-text">' . $caption . '</p></div>';
+  }
+}
+$fixImageMargins = new fixImageMargins();
+
+
+// hiding JetPack Menu from non-admins
+function remove_menu_items() {
+  if (!current_user_can( 'administrator' )) {
+    global $menu;
+    $restricted = array(__('jetpack'),__('Jetpack'));
+    end ($menu);
+    while (prev($menu)){
+      $value = explode(' ',$menu[key($menu)][0]);
+      if(in_array($value[0] != NULL?$value[0]:"" , $restricted)){
+        unset($menu[key($menu)]);}
+    }
+  }
+}
+add_action('admin_menu', 'remove_menu_items',11);
+
+
+
+
+// REQUIRE Post Tags
+function tag_remind_init() {
+  wp_enqueue_script('jquery');
+}
+function tag_remind() {
+  global $typenow;
+  if ($typenow == 'post') {
+    echo "<script type='text/javascript'>\n";
+    echo "//<![CDATA[\n";
+    echo "
+    jQuery('#publish').click(function() {
+      tagSelected=false;
+      if (jQuery('.tagchecklist span').length >0) {
+        tagSelected=true;
+      }
+      if (tagSelected==false) {
+        alert('You must add at least one tag.');
+        setTimeout(\"jQuery('#ajax-loading').css('visibility', 'hidden');\",
+        100);
+        jQuery('[id^=\"tagsdiv-post_tag\"]').css('background', '#FFB');
+        setTimeout(\"jQuery('#publish').removeClass('button-primary-disabled');\", 100)
+        return false;
+      }
+    });
+    ";
+    echo "// ]]>\n";
+    echo "</script>\n";
+  }
+}
+//add_action('admin_init', 'tag_remind_init');
+add_action('edit_form_advanced', 'tag_remind');

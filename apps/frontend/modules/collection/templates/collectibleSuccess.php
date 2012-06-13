@@ -17,8 +17,7 @@
   Test without alternate images: http://collectorsquest.next/collectible/70081/space-set
 //-->
 
-<br/>
-<div class="row-fluid" xmlns="http://www.w3.org/1999/html">
+<div class="row-fluid spacer-top-15" xmlns="http://www.w3.org/1999/html">
   <?php
     $span = 10;
     if (count($additional_multimedia) == 0)
@@ -26,7 +25,7 @@
       $span += 2;
     }
   ?>
-  <div class="span<?= $span; ?>" style="text-align: center;">
+  <div class="span<?= $span; ?> text-center">
     <?php
       echo link_to(
         image_tag_collectible(
@@ -41,8 +40,12 @@
 
   <?php if (count($additional_multimedia) > 0): ?>
   <div class="span2">
+    <a class="zoom" href="<?php echo src_tag_collectible($collectible, '150x150'); ?>" title="<?php echo $collectible->getName(); ?>">
+      <?= image_tag_collectible($collectible, '150x150', array(
+        'height' => null, 'title' => $collectible->getName(), 'style' => 'margin-bottom: 12px;')); ?>
+    </a>
     <?php foreach ($additional_multimedia as $i => $m): ?>
-    <a class="zoom" href="<?php echo src_tag_multimedia($m, 'original'); ?>" title="<?php echo $m->getName(); ?>" onClick="return false;">
+    <a class="zoom" href="<?php echo src_tag_multimedia($m, 'original'); ?>" title="<?php echo $m->getName(); ?>">
       <?= image_tag_multimedia($m, '150x150', array('height' => null, 'title' => $m->getName(), 'style' => 'margin-bottom: 12px;')); ?>
     </a>
     <?php endforeach; ?>
@@ -50,10 +53,9 @@
   <?php endif; ?>
 </div>
 
-<br style="clear: both;">
-<div class="statistics-share-panel spacer-bottom-20">
+<div class="blue-actions-panel spacer-20">
   <div class="row-fluid">
-    <div class="span4">
+    <div class="pull-left">
       <ul>
         <li>
           <?php
@@ -68,13 +70,15 @@
         //-->
       </ul>
     </div>
-    <div class="span8 text-right">
+    <div class="pull-right share">
       <!-- AddThis Button BEGIN -->
-      <a class="addthis_button_email"></a>
+      <a class="btn btn-lightblue btn-mini-social addthis_button_email">
+        <i class="mail-icon-mini"></i> Email
+      </a>
       <a class="addthis_button_facebook_like" fb:like:layout="button_count" fb:like:width="40"></a>
       <a class="addthis_button_tweet" tw:twitter:data-count="none"></a>
       <a class="addthis_button_google_plusone" g:plusone:size="medium" g:plusone:annotation="none"></a>
-      <a class="addthis_button_pinterest_pinit" pi:pinit:media="<?= image_tag_collectible($collectible, 'original'); ?>" pi:pinit:layout="horizontal"></a>
+      <a class="addthis_button_pinterest_pinit" pi:pinit:media="<?= src_tag_collectible($collectible, 'original'); ?>" pi:pinit:layout="horizontal"></a>
       <!-- AddThis Button END -->
     </div>
   </div>
@@ -86,7 +90,7 @@
 </div>
 <?php endif; ?>
 
-<?php if (isset($collectible_for_sale) && $collectible_for_sale instanceof CollectibleForSale): ?>
+<?php if (false && isset($collectible_for_sale) && $collectible_for_sale instanceof CollectibleForSale): ?>
   <!-- sale items -->
   <span class="item-condition"><strong>Condition:</strong> Like new</span>
 
@@ -130,14 +134,14 @@
     <p>Payment: I accept payment through PayPal, Moneybookers, money order and bank transfer. I greatly appreciate prompt payment and/or prompt communication regarding payment. I will not ship until payment has been received.</p>
   </div>
 
-  <form action="<?= url_for('@shopping_cart'); ?>" method="post">
+  <form action="<?= url_for('@shopping_cart', true); ?>" method="post">
 
-    <div id="price-container">
-      <span class="price-large">
+    <div id="price-container" class="spacer-top-25">
+      <p class="price">
         <?= money_format('%.2n', (float) $collectible_for_sale->getPrice()); ?>
-      </span>
+      </p>
       <?php if (!$sf_user->getCollector()->isOwnerOf($collectible_for_sale)): ?>
-      <button type="submit" class="btn btn-primary blue-button" value="Add Item to Cart">
+      <button type="submit" class="btn btn-primary blue-button pull-left" value="Add Item to Cart">
         <i class="add-to-card-button"></i>
         <span>Add Item to Cart</span>
       </button>
@@ -149,10 +153,32 @@
 
 <?php else: ?>
 
-  <?php include_partial('sandbox/comments'); ?>
+  <?php
+    include_partial(
+      'comments/comments',
+      array('for_object' => $collectible->getCollectible())
+    );
+  ?>
 
 <?php endif; ?>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $(".zoom").click(function(e) {
+      e.stopPropagation();
 
-<div class="spacer">
-  Permalink: <span class="lightblue"><?= url_for_collectible($collectible, true) ?></span>
-</div>
+      var source = $(this).find('img');
+      var target = $('#collectible_multimedia_primary');
+      var path = $(source).attr('src').split(/\/150x150\//);
+
+      $(target)
+          .attr('href', path[0] + '/original/' + path[1])
+          .find('img')
+          .attr({
+            src: path[0] + '/620x0/' + path[1],
+            alt: $(source).attr('alt')
+          });
+
+      return false;
+    });
+  });
+</script>

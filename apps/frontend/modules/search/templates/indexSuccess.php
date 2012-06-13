@@ -28,7 +28,10 @@
           echo '<div class="span8 brick" style="height: 165px;">';
           include_partial(
             '_blog/wp_post_'. $display .'_view',
-            array('wp_post' => $object, 'excerpt' => $pager->getExcerpt($i), 'i' => $i)
+            array(
+              'wp_post' => $object, 'i' => $i,
+              'title' => link_to_blog_post($object, 'text', array('truncate' => 80)),
+              'excerpt' => $pager->getExcerpt($i))
           );
           echo '</div>';
           break;

@@ -16,15 +16,21 @@ class CollectorProfileEditForm extends BaseCollectorProfileForm
           'required'    => 'required',
       )),
       'birthday'        => new sfWidgetFormDate(array(
-          'years'       => $years
+          'years'       => $years,
+          'format'      => '%month% %day% %year%',
+          'empty_values'=> array(
+              'day'     => 'Day',
+              'month'   => 'Month',
+              'year'    => 'Year',
+          ),
       )),
       'gender'          => new sfWidgetFormSelect(array(
-          'choices' => array('' => "Rather not say", 'f' => 'Female', 'm' => 'Male'),
+          'choices' => array('' => 'Rather not say', 'f' => 'Female', 'm' => 'Male'),
       )),
       'zip_postal'      => new sfWidgetFormInputText(array(
           'label'       => 'Zip/Postal code',
       )),
-      'country'         => new cqWidgetFormI18nChoiceCountry(array(
+      'country_iso3166'         => new cqWidgetFormI18nChoiceCountry(array(
           'add_empty'     => true,
         ), array(
           'required'    => 'required',
@@ -36,68 +42,54 @@ class CollectorProfileEditForm extends BaseCollectorProfileForm
       'about_what_you_collect'    => new sfWidgetFormInputText(array(
           'label'                 => 'What do you collect?',
         ), array(
-          'required'              => 'required',
+          'placeholder'           => 'Tell us a few words about what you collect'
       )),
-      'about_purchase_per_year'   => new sfWidgetFormInputText(array(
+      'about_purchases_per_year'  => new sfWidgetFormInputText(array(
           'label'                 => 'How many times a year do you purchase?',
         ),array(
-          'required'              => 'required',
+          'placeholder'           => 'Share the number of purchases you make anually. Numeric value please',
           'type'                  => 'number',
           'pattern'               => '\d+'
       )),
-      'about_most_expensive_item' => new sfWidgetFormInputText(array(
+      'about_most_expensive_item' => new bsWidgetFormInputTextAppendPrepend(array(
           'label'                 => 'What is the most you ever spent on an item? (in USD)',
+          'prepend'                => '$',
+        ), array(
       )),
-      'about_annually_spend'      => new sfWidgetFormInputText(array(
-          'label'                 => 'How much do you spend annually? (in USD)'
+      'about_annually_spend'      => new bsWidgetFormInputTextAppendPrepend(array(
+          'label'                 => 'How much do you spend annually? (in USD)',
+          'prepend'                => '$',
+        ), array(
       )),
-      'about_new_item_every'      => new sfWidgetFormInputText(),
+      'about_new_item_every'      => new sfWidgetFormInputText(array(
+          'label'                 => 'How much time is there between your purchases?',
+      )),
       'about_interests'           => new sfWidgetFormTextarea()
     ));
 
     $this->setValidators(array(
-      'collector_type' => new sfValidatorChoice(array('choices' => array_keys($this->getCollectorTypeChoices()), 'required' => true)),
+      'collector_type' => new sfValidatorChoice(array('choices' => array_keys($this->getCollectorTypeChoices()), 'required' => true), array(
+          'required'   => 'You must select the type of collector you are.'
+      )),
 
       'birthday' => new sfValidatorDate(array('required' => false)),
       'gender' => new sfValidatorChoice(array('choices' => array('f', 'm'), 'required' => false)),
       'zip_postal' => new sfValidatorString(array('max_length' => 10, 'required' => false)),
-      'country' => new sfValidatorI18nChoiceCountry(array('required' => false)),
+      'country_iso3166' => new sfValidatorI18nChoiceCountry(array('required' => false)),
       'website' => new sfValidatorString(array('max_length' => 128, 'required' => false)),
 
       'about_me' => new sfValidatorString(array('required' => false)),
       'about_collections' => new sfValidatorString(array('required' => false)),
       'about_what_you_collect' => new sfValidatorString(array('max_length' => 255, 'required' => false)),
-      'about_purchase_per_year'   => new sfValidatorNumber(array('required' => false)),
-      'about_most_expensive_item' => new sfValidatorNumber(array('min' => 0, 'max' => 2147483647, 'required' => false)),
-      'about_annually_spend' => new sfValidatorNumber(array('min' => 0, 'max' => 2147483647, 'required' => false)),
+      'about_purchases_per_year'   => new sfValidatorNumber(array('required' => false, 'min' => 0), array(
+          'min' => 'You cannot enter a value below zero here.',
+      )),
+      'about_most_expensive_item' => new cqValidatorPrice(array('required' => false)),
+      'about_annually_spend' => new cqValidatorPrice(array('required' => false)),
       'about_new_item_every' => new sfValidatorString(array('max_length' => 64, 'required' => false)),
       'about_interests' => new sfValidatorString(array('required' => false)),
     ));
 
-  }
-
-  protected function unsetFields()
-  {
-    parent::unsetFields();
-
-    unset($this['country_iso3166']);
-  }
-
-  public function updateDefaultsFromObject()
-  {
-    parent::updateDefaultsFromObject();
-
-    if (( $profile = $this->getObject() ))
-    {
-      $this->setDefault('about_me', $profile->getAboutMe());
-      $this->setDefault('about_collections', $profile->getAboutCollections());
-      $this->setDefault('about_what_you_collect', $profile->getAboutWhatYouCollect());
-      $this->setDefault('about_most_expensive_item', $profile->getAboutMostExpensiveItem());
-      $this->setDefault('about_annually_spend', $profile->getAboutAnnuallySpend());
-      $this->setDefault('about_new_item_every', $profile->getAboutNewItemEvery());
-      $this->setDefault('about_interests', $profile->getAboutInterests());
-      $this->setDefault('country', $profile->getCountryIso3166());
-    }
   }
 
   public function getCollectorTypeChoices()
@@ -109,47 +101,6 @@ class CollectorProfileEditForm extends BaseCollectorProfileForm
       CollectorProfilePeer::COLLECTOR_TYPE_OBSESSIVE => 'Obsessive',
       CollectorProfilePeer::COLLECTOR_TYPE_EXPERT => 'Expert',
     );
-  }
-
-  public function doUpdateObject($values = null)
-  {
-    parent::doUpdateObject($values);
-
-    /** @var $profile CollectorProfile */
-    $profile = $this->getObject();
-    if (isset($values['country']))
-    {
-      $profile->setCountryIso3166($values['country']);
-    }
-
-    if (isset($values['about_me']))
-    {
-      $profile->setAboutMe($values['about_me']);
-    }
-    if (isset($values['about_collections']))
-    {
-      $profile->setAboutCollections($values['about_collections']);
-    }
-    if (isset($values['about_interests']))
-    {
-      $profile->setAboutInterests($values['about_interests']);
-    }
-    if (isset($values['about_what_you_collect']))
-    {
-      $profile->setAboutWhatYouCollect($values['about_what_you_collect']);
-    }
-    if (isset($values['about_most_expensive_item']))
-    {
-      $profile->setAboutMostExpensiveItem($values['about_most_expensive_item']);
-    }
-    if (isset($values['about_annually_spend']))
-    {
-      $profile->setAboutAnnuallySpend($values['about_annually_spend']);
-    }
-    if (isset($values['about_new_item_every']))
-    {
-      $profile->setAboutNewItemEvery($values['about_new_item_every']);
-    }
   }
 
 }

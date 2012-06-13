@@ -30,6 +30,7 @@ class cq_sub_pages_widget extends WP_Widget {
     <?php
     global $post;
 
+    if (!is_page('Pages')) :
 
     extract( $args );
     $title = apply_filters( 'widget_title', $instance['title'] );
@@ -62,13 +63,18 @@ class cq_sub_pages_widget extends WP_Widget {
 -->
       <?php endif; ?>
 
-  <?php if($post->post_parent): ?>
-    <?php $children = wp_list_pages('depth=2&title_li=&child_of='.$post->post_parent.'&echo=0'); ?>
+  <?php if($post->post_parent):
+
+      $post_arch = get_top_ancestor($post->ID);
+
+      ?>
+    <?php $children = wp_list_pages('depth=4&title_li=&child_of='.$post_arch.'&echo=0'); ?>
     <?php else: ?>
     <?php $children = wp_list_pages('depth=2&title_li=&child_of='.$post->ID.'&echo=0'); ?>
     <?php endif; ?>
   <?php if ($children) : ?>
-  <?php $children = str_replace('current_page_item', 'active', $children); ?>
+  <?php $children = str_replace('current_page_item', 'current_page_item active', $children); ?>
+  <?php $children = str_replace('current_page_ancestor', 'current_page_ancestor active', $children); ?>
       <div class="tabbable tabs-right">
     <ul class="nav nav-tabs sub-page-list">
       <?php echo $children; ?>
@@ -78,6 +84,8 @@ class cq_sub_pages_widget extends WP_Widget {
 
   <?php
     echo $after_widget;
+
+  endif;
 
   }
 

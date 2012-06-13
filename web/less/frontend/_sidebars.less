@@ -1,6 +1,5 @@
-
 #sidebar {
-  overflow: hidden;
+//  overflow: hidden;
 }
 
 .fixed-right-300 {
@@ -91,7 +90,6 @@
 // Tags
 .tags-container-sidebar {
   .clearfix();
-  margin: 35px 0;
 
   .tags {
     line-height: 14px;
@@ -208,7 +206,6 @@
 			&:hover {
 				border-color: @blue;
 			}
-
 			.span9 {
 				margin-left: 4px;
 			}
@@ -239,6 +236,9 @@
 			height: 15px;
 			overflow: hidden;
 			display: block;
+			&:hover {
+				color: @red;
+			}
 		}
 		.price {
 			margin-top: 2px;
@@ -275,5 +275,48 @@
 	}
 	&:hover span {
 		#gradient > .vertical(#d22020, #b30101);
+	}
+}
+
+
+//PMs - sidebar
+
+.send-pm {
+	background-color: #C2E0F0;
+	padding: 6px;
+
+	.buttons-container {
+		text-align: right;
+		display: none;
+		margin: 10px 0 5px 0;
+	}
+}
+
+//
+
+.sidebar-other-collections-by-user {
+	margin-top: 10px;
+	border: 1px solid #dcd7d7;
+
+	.inner-other-collections {
+		padding: 10px;
+	}
+	.inner-other-collections > p {
+		line-height: 13px;
+	}
+	.margin-right-12 {
+		display: block;
+		float: left;
+		.square(60px);
+		margin-right: 5px;
+		padding: 3px;
+		&:hover {
+			padding: 2px;
+			border: 1px solid @brown;
+		}
+	}
+	.thumb-container {
+		margin-right: -6px;
+		.clearfix();
 	}
 }

@@ -11,7 +11,7 @@ class PasswordRecoveryForm extends BaseForm
     $this->widgetSchema['email'] = new sfWidgetFormInputText(array(), array(
         'type' => 'email',
     ));
-    $this->widgetSchema['captcha'] = new IceWidgetCaptcha(array(
+    $this->widgetSchema['captcha'] = new cqWidgetBootstrapCaptcha(array(
         'width' => 200,
         'height' => 50,
     ));

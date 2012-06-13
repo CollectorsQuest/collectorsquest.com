@@ -10,7 +10,7 @@
     <div class="row-fluid">
       <div class="row-fluid line-under-title">
         <div class="span11"><!-- Title-->
-          <p class="seller-link">Order from <?= link_to_collector($shopping_cart_collectible->getCollector(), 'text'); ?></p>
+          <p class="seller-link">Purchase from <?= link_to_collector($shopping_cart_collectible->getCollector(), 'text'); ?></p>
         </div><!-- /Title-->
         <div class="span1"><!-- Remove from cart-->
           <div class="pull-right">

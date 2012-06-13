@@ -32,7 +32,9 @@ generator:
           export: { label: "Export to CSV", action: export }
 
       filter:
-        display: [name, collection_category_id]
+        fields:
+          id: { label: 'Collection #' }
+        display: [id, name, collection_category_id]
         class: BackendCollectorCollectionFormFilter
 
       export:
@@ -42,7 +44,8 @@ generator:
         display: [id, collection_category_parent, collection_category, collector, name, count_collectibles, created_at]
 
       form:
-        display: [name, collection_category_id]
+        display: [name, description, tags, collection_category_id, content_category_id]
 
-      edit:    ~
+      edit:
+        title: Edit collection %%name%%
       new:     ~

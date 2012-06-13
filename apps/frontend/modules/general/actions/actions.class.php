@@ -52,16 +52,43 @@ class generalActions extends cqFrontendActions
 
     foreach ($themes as $theme)
     {
-      $collector_ids = explode(',', $theme->getPostMetaValue('cq_collector_ids'));
-      $collection_ids = explode(',', $theme->getPostMetaValue('cq_collection_ids'));
-      $collectible_ids = explode(',', $theme->getPostMetaValue('cq_collectible_ids'));
-      $video_ids = explode(',', $theme->getPostMetaValue('cq_video_ids'));
+      $values = unserialize($theme->getPostMetaValue('_homepage_showcase_items'));
+
+      // Initialize the arrays
+      $collector_ids = $collection_ids = $collectible_ids = $video_ids = array();
+
+      if (!empty($values['cq_collector_ids']))
+      {
+        $collector_ids = explode(',', $values['cq_collector_ids']);
+        $collector_ids = array_map('trim', $collector_ids);
+        $collector_ids = array_filter($collector_ids);
+      }
+      if (!empty($values['cq_collection_ids']))
+      {
+        $collection_ids = explode(',', $values['cq_collection_ids']);
+        $collection_ids = array_map('trim', $collection_ids);
+        $collection_ids = array_filter($collection_ids);
+      }
+      if (!empty($values['cq_collectible_ids']))
+      {
+        $collectible_ids = explode(',', $values['cq_collectible_ids']);
+        $collectible_ids = array_map('trim', $collectible_ids);
+        $collectible_ids = array_filter($collectible_ids);
+      }
+      if (!empty($values['magnify_video_ids']))
+      {
+        $video_ids = explode(',', $values['magnify_video_ids']);
+        $video_ids = array_map('trim', $video_ids);
+        $video_ids = array_filter($video_ids);
+      }
 
       if ($collection_ids)
       {
-        shuffle($collection_ids);
-
-        // Get 2 Collections
+        /**
+         * Get 2 Collections
+         *
+         * @var $q CollectorCollectionQuery
+         */
         $q = CollectorCollectionQuery::create()
           ->filterById($collection_ids, Criteria::IN)
           ->limit(2)
@@ -73,7 +100,11 @@ class generalActions extends cqFrontendActions
       {
         shuffle($collectible_ids);
 
-        // Get 22 Collectibles
+        /**
+         * Get 22 Collectibles
+         *
+         * @var $q CollectibleQuery
+         */
         $q = CollectibleQuery::create()
            ->filterById($collectible_ids, Criteria::IN)
            ->limit(22)
@@ -86,33 +117,34 @@ class generalActions extends cqFrontendActions
     return sfView::SUCCESS;
   }
 
-  public function executeCountdown()
+  public function executeDefault()
   {
-    $launch = new DateTime('2012-05-15');
-    $now = new DateTime();
-    $this->time_left = $launch->diff($now);
-
-    return sfView::SUCCESS;
+    $this->redirect('/', 301);
   }
 
   public function executeLogin(sfWebRequest $request)
   {
-    // redirect to homepage if already logged in
-    if ($this->getUser()->isAuthenticated())
-    {
-      $this->redirect($request->getParameter('r', '@collector_me'));
-    }
-
     // Auto login the collector if a hash was provided
     if ($collector = CollectorPeer::retrieveByHash($request->getParameter('hash')))
     {
       $this->getUser()->Authenticate(true, $collector, $remember = false);
 
       // redirect to last page or homepage after login
-      $this->redirect($request->getParameter('r', '@collector_me'));
+      return $this->redirect($request->getParameter('r', '@collector_me'));
+    }
+    // redirect to homepage if already logged in
+    else if ($this->getUser()->isAuthenticated())
+    {
+      return $this->redirect($request->getParameter('r', '@collector_me'));
     }
 
     $form = new CollectorLoginForm();
+
+    if ($request->getParameter('module') == 'general' && $request->getParameter('action') == 'login')
+    {
+      $form->setDefault('goto', $this->generateUrl('collector_me'));
+    }
+
     if (sfRequest::POST == $request->getMethod())
     {
       $form->bind($request->getParameter($form->getName()));
@@ -123,7 +155,15 @@ class generalActions extends cqFrontendActions
         $this->getUser()->Authenticate(true, $collector, $form->getValue('remember'));
 
         $goto = $request->getParameter('r', $form->getValue('goto'));
-        $this->redirect(!empty($goto) ? $goto : $this->getUser()->getReferer('@collector_me'));
+        $goto = !empty($goto) ? $goto : $this->getUser()->getReferer('@collector_me');
+
+        // when JS is disabled or there was a problem with cross-iframe communication
+        if (false !== strpos($goto, '_video'))
+        {
+          $goto = '@collector_me';
+        }
+
+        return $this->redirect($goto);
       }
     }
     else
@@ -133,7 +173,7 @@ class generalActions extends cqFrontendActions
       $this->getUser()->setReferer(
         $this->getContext()->getActionStack()->getSize() > 1
           ? $request->getUri()
-          : $request->getParameter('goto', $request->getReferer('@collector_me'))
+          : $request->getParameter('r', $request->getReferer('@collector_me'))
       );
     }
 
@@ -157,18 +197,28 @@ class generalActions extends cqFrontendActions
 
     if (false !== $result && ENGAGE_STAT_OK === $auth_info_array['stat'])
     {
+      $new_collector = false;
       $profile = $auth_info_array['profile'];
       $collector = CollectorPeer::retrieveByIdentifier($profile['identifier']);
 
       if (!$collector)
       {
         $collector = CollectorPeer::createFromRPXProfile($profile);
+        $collector->assignRandomAvatar();
+
+        $cqEmail = new cqEmail($this->getMailer());
+        $cqEmail->send('Collector/welcome_to_cq', array(
+          'to' => $collector->getEmail(),
+        ));
+
+        $new_collector = true;
       }
 
       if ($collector instanceof Collector)
       {
         $this->getUser()->Authenticate(true, $collector, true);
-        $this->redirect('@homepage');
+
+        return $this->redirect($new_collector ? '@mycq_profile' : '@homepage');
       }
     }
 
@@ -186,17 +236,23 @@ class generalActions extends cqFrontendActions
     $this->getUser()->setFlash('success',
       $this->__('You have successfully signed out of your account'));
 
-    $url = $request->getParameter('goto');
+    $url = $request->getParameter('r', $request->getReferer() ?: '@homepage');
 
     /**
-     * Handling errors where the $_GET['goto'] is double urlencoded()
+     * Handling errors where the $_GET['r'] is double urlencoded()
      */
     if (substr($url, 0, 13) == 'http%3A%2F%2F')
     {
       $url = urldecode($url);
     }
 
-    $this->redirect(!empty($url) ? $url : '@homepage');
+    // when JS is disabled or there was a problem with cross-iframe communication
+    if (false !== strpos($url, '_video'))
+    {
+      $url = '@homepage';
+    }
+
+    return $this->redirect($url);
   }
 
   public function executeRecoverPassword(sfWebRequest $request)
@@ -204,7 +260,7 @@ class generalActions extends cqFrontendActions
     // redirect to homepage if already logged in
     if ($this->getUser()->isAuthenticated())
     {
-      $this->redirect('@homepage');
+      return $this->redirect('@homepage');
     }
 
     $form = new PasswordRecoveryForm();
@@ -238,7 +294,7 @@ class generalActions extends cqFrontendActions
             array('%email%' => $email)
           ));
 
-          $this->redirect('@login');
+          return $this->redirect('@login');
         }
         else
         {

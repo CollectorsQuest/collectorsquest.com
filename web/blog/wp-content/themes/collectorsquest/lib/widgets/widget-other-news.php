@@ -59,8 +59,15 @@ class cq_other_news_widget extends WP_Widget {
 
       <?php endif; ?>
 
-      <?php global $post; //if (is_single()) : $offset = 0; else : $offset = 7; endif; ?>
-      <?php $posts = get_posts("showposts=3"); ?>
+      <?php global $post;
+            $cats = get_the_category($post->ID);
+
+            foreach ($cats as $cat) {
+              $cats = $cat->cat_ID;
+            }
+      ?>
+
+      <?php $posts = get_posts("showposts=3&category=".$cats."&exclude=".$post->ID); ?>
 
       <?php foreach($posts as $post) { setup_postdata($post); ?>
       <div class="row-fluid bottom-margin">
@@ -70,7 +77,22 @@ class cq_other_news_widget extends WP_Widget {
         <span class="content">
           <?php $length=100; $longString=get_the_excerpt('...more'); $truncated = substr($longString,0,strpos($longString,' ',$length)); echo $truncated.'... ' //.'... <a href="'.get_permalink().'">more</a>'; ?>
         </span>
-        <small style="font-size: 80%">posted by <?php the_author_posts_link() ?> <span style="color: grey"><?php echo human_time_diff( get_the_time('U'), current_time('timestamp') ) . ' ago'; ?></span></small>
+        <small style="font-size: 80%">
+          <span style="color: grey">
+            Posted by <?php the_author_posts_link() ?>
+            <?php
+            /* global $post;
+            $postdate = get_the_date('mdy');
+            $date = date('mdy');
+            if ($date == $postdate ||
+              date('mdy',strtotime($date." -1 day")) == $postdate ||
+              date('mdy',strtotime($date." -2 days")) == $postdate) :
+              echo human_time_diff( get_the_time('U'), current_time('timestamp') ) . ' ago';
+            else :
+            endif;*/
+            echo 'on '.get_the_date('M dS, Y');
+          ?>
+        </span></small>
       </div>
       <?php } ?>
 

@@ -1,7 +1,0 @@
-all:
-  stylesheets: [legacy/messages.css]
-  components:
-    sidebar: [messages, sidebar]
-
-composeSuccess:
-  stylesheets: [jquery/tags.css]

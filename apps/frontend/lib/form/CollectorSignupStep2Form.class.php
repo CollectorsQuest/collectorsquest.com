@@ -37,7 +37,7 @@ class CollectorSignupStep2Form extends CollectorProfileEditForm
     unset($this['birthday']);
     unset($this['gender']);
     unset($this['zip_postal']);
-    unset($this['country']);
+    unset($this['country_iso3166']);
     unset($this['website']);
     unset($this['about_me']);
     unset($this['about_collections']);

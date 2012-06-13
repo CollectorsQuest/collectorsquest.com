@@ -4,7 +4,7 @@
  */
 ?>
 
-<?php cq_dart_slot('300x250', 'collections', null, 'sidebar') ?>
+<?php cq_dart_slot('300x250', 'collections', $category->getSlug(), 'sidebar') ?>
 
 <?php
   include_component(
@@ -21,6 +21,6 @@
 <?php
   include_component(
     '_sidebar', 'widgetMagnifyVideos',
-    array('category' => $category, 'limit' => 3)
+    array('category' => $category, 'limit' => 5)
   );
 ?>

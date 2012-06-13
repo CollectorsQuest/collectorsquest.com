@@ -49,7 +49,9 @@ class PrivateMessage extends BasePrivateMessage
   {
     $v = trim($v);
     $v = (!$this->getIsRich()) ? nl2br($v) : $v;
-    $v = (true === $clean) ? IceStatic::cleanText($v, false, 'b, u, i, strong, br', $this->getIsRich() ? -1 : 0) : $v;
+    $v = (true === $clean) ?
+      IceStatic::cleanText($v, false, 'b, u, i, strong, br', $this->getIsRich() ? -1 : 0) :
+      $v;
 
     return parent::setBody($v);
   }

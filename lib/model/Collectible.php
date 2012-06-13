@@ -45,6 +45,16 @@ class Collectible extends BaseCollectible
     return $graph_id;
   }
 
+  /**
+   * Convinience method
+   *
+   * @return Collectible
+   */
+  public function getCollectible()
+  {
+    return $this;
+  }
+
   public function getSlug()
   {
     $slug = parent::getSlug();
@@ -63,14 +73,16 @@ class Collectible extends BaseCollectible
    * Set the description of the collectible
    *
    * @param  string  $v     The description text itself
-   * @param  string  $type  Can be 'html' or 'markdown'
+   * @param  string  $type  Can be only 'html' for now
    */
-  public function setDescription($v, $type = 'markdown')
+  public function setDescription($v, $type = 'html')
   {
     if ($type == 'html')
     {
-      $v = IceStatic::cleanText($v, false, 'p, b, u, i, em, strong, h1, h2, h3, h4, h5, h6, div, span, ul, ol, li, blockquote');
-      $v = cqMarkdownify::doConvert($v);
+      $v = IceStatic::cleanText(
+        $v, false,
+        'p, b, u, i, em, strong, h3, h4, h5, h6, div, span, ul, ol, li, blockquote, br'
+      );
     }
 
     parent::setDescription($v);
@@ -83,11 +95,9 @@ class Collectible extends BaseCollectible
     switch ($type)
     {
       case 'stripped':
-        $v = cqMarkdown::doConvert($v);
         $v = trim(strip_tags($v));
         break;
       case 'html':
-        $v = cqMarkdown::doConvert($v);
         break;
     }
 
@@ -476,11 +486,11 @@ class Collectible extends BaseCollectible
 
   public function isForSale()
   {
-    $c = new Criteria();
-    $c->add(CollectibleForSalePeer::COLLECTIBLE_ID, $this->getId());
-    $c->add(CollectibleForSalePeer::IS_SOLD, false);
+    $q = CollectibleForSaleQuery::create()
+      ->filterByCollectible($this)
+      ->isForSale();
 
-    return CollectibleForSalePeer::doCount($c);
+    return $q->count();
   }
 
   /**

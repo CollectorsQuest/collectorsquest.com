@@ -41,7 +41,8 @@ class cqEmail
     $options = array_merge(
       array('params' => array()),
       cqEmailsConfig::getDataForName($name),
-      $options);
+      $options
+    );
 
     $missing_params = array_diff($this->mandatory_params, array_keys($options));
     if (!empty($missing_params))
@@ -61,9 +62,15 @@ class cqEmail
       $template = $name;
     }
 
-    $rendered_template = $template->render($options['params']);
+    // Render the subject, while replacing any varibles
     $rendered_subject = cqEmailsConfig::getTwigStringEnvironment()
       ->render($options['subject'], $options['params']);
+
+    // We need to make the subject available to the template
+    $options['params']['subject'] = $rendered_subject;
+
+    // Render the body of the email
+    $rendered_template = $template->render($options['params']);
 
     $message = Swift_Message::newInstance()
       ->setFrom($options['from'])

@@ -11,8 +11,16 @@ class PropelMigration_1337016151
     // add the pre-migration code here
   }
 
+  /**
+   * @param  PropelMigrationManager $manager
+   * @return mixed
+   */
   public function postUp($manager)
   {
+    if (sfConfig::get('sf_environment') === 'dev') {
+      return true;
+    }
+
     $q = CollectorQuery::create()
       ->setFormatter(ModelCriteria::FORMAT_ON_DEMAND)
       ->orderBy('CreatedAt', Criteria::DESC);

@@ -6,7 +6,7 @@ class CollectorSignupStep3Form extends CollectorProfileEditForm
   {
     parent::configure();
 
-    $this->validatorSchema['country']->setOption('required', true);
+    $this->validatorSchema['country_iso3166']->setOption('required', true);
 
     $this->widgetSchema->setNameFormat('signup_step3[%s]');
     $this->widgetSchema->setFormFormatterName('Bootstrap');

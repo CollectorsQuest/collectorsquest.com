@@ -38,13 +38,14 @@ generator:
 
       filter:
         class: BackendCollectorFormFilter
-        display: [username, display_name, email, user_type, spaminess, is_spam, cqnext_access_allowed]
+        display: [username, display_name, email, user_type, spaminess, is_spam, cqnext_access_allowed, collection_id]
         fields:
           email:
             widgetOptions: { with_empty: false }
           spaminess: { label: Spaminess }
           is_spam: { label: "Spam?" }
           cqnext_access_allowed: { label: "CQ Next access?" }
+          collection_id: { label: "Collection #" }
 
       form:
         class: CollectorEditForm

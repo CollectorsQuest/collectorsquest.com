@@ -2,6 +2,7 @@
 
 class collectorActions extends cqFrontendActions
 {
+
   public function executeIndex(sfWebRequest $request)
   {
     /** @var $collector Collector */
@@ -29,26 +30,26 @@ class collectorActions extends cqFrontendActions
   {
     if ($this->getUser()->isAuthenticated() && ($collector = $this->getCollector()))
     {
-      $id = $collector->getId();
+      $id   = $collector->getId();
       $slug = $collector->getSlug();
 
-      $this->redirect('@dropbox_by_slug?collector_id=' . $id . '&collector_slug=' . $slug);
+      return $this->redirect('@dropbox_by_slug?collector_id=' . $id . '&collector_slug=' . $slug);
     }
 
-    $this->redirect('@login');
+    return $this->redirect('@login');
   }
 
   public function executeMe()
   {
     if ($this->getUser()->isAuthenticated() && ($collector = $this->getCollector()))
     {
-      $id = $collector->getId();
+      $id   = $collector->getId();
       $slug = $collector->getSlug();
 
-      $this->redirect('@collector_by_slug?id=' . $id . '&slug=' . $slug);
+      return $this->redirect('@collector_by_slug?id=' . $id . '&slug=' . $slug);
     }
 
-    $this->redirect('@login');
+    return $this->redirect('@login');
   }
 
   /**
@@ -60,15 +61,48 @@ class collectorActions extends cqFrontendActions
     // Redirect to the community if already signed up
     $this->redirectIf($this->getUser()->isAuthenticated()
           && $this->getUser()->getCollector()->getHasCompletedRegistration(),
-         '@mycq');
+      '@mycq');
+
+    $this->form = new CollectorSignupStep1Form();
+
+    if (sfRequest::POST == $request->getMethod())
+    {
+      $this->form->bind($request->getParameter($this->form->getName()));
+
+      if ($this->form->isValid())
+      {
+        $values = $this->form->getValues();
+        // try to guess the collector's country based on IP address
+        $values['country_iso3166'] = cqStatic::getGeoIpCountryCode(
+          $request->getRemoteAddress(), $check_against_geo_country = true);
+
+        // create the collector
+        $collector = CollectorPeer::createFromArray($values);
+
+        // authenticate the collector and redirect to @mycq_profile
+        $this->getUser()->Authenticate(true, $collector, false);
+
+        $cqEmail = new cqEmail($this->getMailer());
+        $cqEmail->send('Collector/welcome_to_cq', array(
+          'to' => $collector->getEmail(),
+        ));
+
+        $collector->assignRandomAvatar();
+
+        return $this->redirect('@mycq_profile');
+      }
+    }
+
+    // Everything below this comment is the old implementation.
+    // When it has been confirmed that it will not be needed, it should be deleted
 
     /* * /
-    if (!$this->getUser()->isAuthenticated() && !$this->getUser()->getAttribute('signup_type', false, 'registration'))
-    {
-      $this->redirect('collector/signupChoice');
-    }
-    $signupType = $this->getUser()->getAttribute('signup_type', null, 'registration');
-    /* */
+   if (!$this->getUser()->isAuthenticated() && !$this->getUser()->getAttribute('signup_type', false, 'registration'))
+   {
+     $this->redirect('collector/signupChoice');
+   }
+   $signupType = $this->getUser()->getAttribute('signup_type', null, 'registration');
+   /* */
 
     $defaultStep = 1;
 
@@ -77,7 +111,7 @@ class collectorActions extends cqFrontendActions
     {
       $defaultStep = 4;
     }
-    /* */
+    /* * /
 
     // Get the current form step, default to 1 if not set
     $this->snStep = $request->getParameter('step', $defaultStep);
@@ -141,7 +175,7 @@ class collectorActions extends cqFrontendActions
         $this->getUser()->setAttribute('package', null, 'registration');
         $this->form = false; //Hack as $this->form is used as required in signupSuccess
         break;
-      /* */
+      /* * /
     endswitch;
 
     // if request is post
@@ -170,7 +204,7 @@ class collectorActions extends cqFrontendActions
                 'type'     => $this->getUser()->getAttribute('package', null, 'registration'),
               )));
             }
-            /* */
+            /* * /
 
             // redirect to step 2
             $this->redirect($this->getController()->genUrl(array(
@@ -262,6 +296,45 @@ class collectorActions extends cqFrontendActions
     /* */
 
     return sfView::SUCCESS;
+  }
+
+  /**
+   * Action Avatar
+   *
+   * @param sfWebRequest $request
+   *
+   * @return string
+   */
+  public function executeAvatar(sfWebRequest $request)
+  {
+    $collector = $this->getRoute()->getObject();
+    $this->loadHelpers(array('cqImages'));
+
+    return $this->redirect(src_tag_collector($collector, '100x100', true, array('absolute'=> true)), 301);
+  }
+
+  /**
+   * Verify new user emails
+   */
+  public function executeVerifyEmail(sfWebRequest $request)
+  {
+    /* @var $collectorEmail CollectorEmail */
+    $collectorEmail = $this->getRoute()->getObject();
+    $this->forward404Unless($collectorEmail instanceof CollectorEmail);
+
+    $collector = $collectorEmail->getCollector();
+    $collector->setEmail($collectorEmail->getEmail());
+    $collector->save();
+
+    $collectorEmail->setIsVerified(true);
+    $collectorEmail->save();
+
+    $this->getUser()->Authenticate(true, $collector, false);
+
+    $this->getUser()->setFlash('success', sprintf(
+      'Your new email, %s, has been verified.', $collector->getEmail()));
+
+    return $this->redirect('@mycq_profile');
   }
 
 }

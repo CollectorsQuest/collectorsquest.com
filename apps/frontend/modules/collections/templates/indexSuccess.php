@@ -1,12 +1,11 @@
-<?php cq_page_title('Collections'); ?>
+<?php cq_page_title('Collections Now On Display'); ?>
 
-<br/>
 <?php include_component('collections', 'featuredWeek'); ?>
 
 <?php cq_section_title('Explore Collections') ?>
 <div id="sort-search-box">
   <div class="input-append">
-    <form action="<?= url_for('@search_collections'); ?>" method="post" id="form-explore-collections">
+    <form action="<?= url_for('@search_collections', true); ?>" method="post" id="form-explore-collections">
     <div class="btn-group">
       <div class="append-left-gray">Sort by <strong id="sortByName">Most Relevant</strong></div>
       <a href="#" data-toggle="dropdown" class="btn gray-button dropdown-toggle">
@@ -33,18 +32,19 @@
 <script>
 $(document).ready(function()
 {
+  var $url = '<?= url_for('@ajax_collections?section=component&page=exploreCollections', true) ?>';
+  var $form = $('#form-explore-collections');
+
   $('.dropdown-toggle').dropdown();
 
   $('.dropdown-menu a.sortBy').click(function()
   {
     $('#sortByName').html($(this).data('name'));
     $('#sortByValue').val($(this).data('sort'));
+    $form.submit();
   });
 
-  var $url = '<?= url_for('@ajax_collections?section=component&page=exploreCollections') ?>';
-  var $form = $('#form-explore-collections');
-
-  $('#form-explore-collections').submit(function()
+  $form.submit(function()
   {
     $('#collections').fadeOut();
 
@@ -55,5 +55,10 @@ $(document).ready(function()
 
     return false;
   });
+
+  if ($form.find('input').val() !== '')
+  {
+    $form.submit();
+  }
 });
 </script>

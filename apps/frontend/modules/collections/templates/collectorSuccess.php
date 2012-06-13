@@ -8,7 +8,7 @@
  */
 cq_page_title(
   sprintf('Collections by %s', $collector->getDisplayName()),
-  link_to('Back to Collections &raquo;', '@collections')
+  link_to('Back to Collector &raquo;', 'collector_by_slug', $collector)
 );
 ?>
 <br />

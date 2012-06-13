@@ -1,4 +1,0 @@
-all:
-  stylesheets: [legacy/tags.css]
-  components:
-    sidebar: [tags, sidebar]

@@ -2,11 +2,11 @@
   <?php
     if ($brand === 'American Pickers')
     {
-      echo link_to(image_tag('banners/040412_americanpickers_620x67.jpg'), '@aetn_american_pickers');
+      echo link_to(image_tag('banners/2012-0420_AP_Promo_Space_620x67_FIN.jpg'), '@aetn_american_pickers');
     }
     else if ($brand === 'Pawn Stars')
     {
-      echo link_to(image_tag('banners/040412_pawnstars_620x67.jpg'), '@aetn_pawn_stars');
+      echo link_to(image_tag('banners/2012-0420_PS_Promo_Space_620x67_FIN.jpg'), '@aetn_pawn_stars');
     }
   ?>
 </div>
@@ -16,66 +16,98 @@
   <?= image_tag_collectible($collectible, '620x370'); ?>
 </div>
 
-<div class="statistics-share-panel spacer-bottom-20">
+<div class="blue-actions-panel spacer-20">
   <div class="row-fluid">
-    <div class="span6">
+    <div class="pull-left">
       <ul>
         <li>
+        <?php
+          echo format_number_choice(
+            '[0] no comments yet|[1] 1 Comment|(1,+Inf] %1% Comments',
+            array('%1%' => number_format($collectible->getNumComments())),
+            $collectible->getNumComments()
+          );
+        ?>
+        </li>
+        <li>
           <?php
-            echo format_number_choice(
-              '[0] no comments yet|[1] 1 Comment|(1,+Inf] %1% Comments',
-              array('%1%' => number_format($collectible->getNumComments())), $collectible->getNumComments()
-            );
+          echo format_number_choice(
+            '[0] no views yet|[1] 1 View|(1,+Inf] %1% Views',
+            array('%1%' => number_format($collectible->getNumViews())), $collectible->getNumViews()
+          );
           ?>
         </li>
-        <li>
-         <?php
-           echo format_number_choice(
-             '[0] no views yet|[1] 1 View|(1,+Inf] %1% Views',
-             array('%1%' => number_format($collectible->getNumViews())), $collectible->getNumViews()
-           );
-         ?>
-        </li>
-        <li>
-          In XXX wanted lists
-        </li>
+        <!--
+          <li>
+            In XXX wanted lists
+          </li>
+        //-->
       </ul>
     </div>
-    <div class="span6 text-right">
-      <a href="#" class="btn btn-mini-share btn-lightblue-medium">
-        <i class="add-icon-medium"></i> Add this item to your most wanted list
+    <div class="pull-right share">
+      <!-- AddThis Button BEGIN -->
+      <?php /*
+      <a href="#" class="btn btn-lightblue btn-mini-social">
+        <i class="add-icon-medium"></i> Add to your wanted list
       </a>
-      <a href="#" class="btn btn-mini-share btn-lightblue-medium">
-        <i class="add-icon-medium"></i> Share
+      */?>
+      <a class="btn btn-lightblue btn-mini-social addthis_button_email">
+        <i class="mail-icon-mini"></i> Email
       </a>
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count" fb:like:width="40"></a>
+      <a class="addthis_button_tweet" tw:twitter:data-count="none"></a>
+      <a class="addthis_button_google_plusone" g:plusone:size="medium" g:plusone:annotation="none"></a>
+      <a class="addthis_button_pinterest_pinit" pi:pinit:media="<?= src_tag_collectible($collectible, 'original'); ?>" pi:pinit:layout="horizontal"></a>
+      <!-- AddThis Button END -->
     </div>
   </div>
 </div>
+
 
 <div class="item-info">
   <?= $collectible->getDescription('html'); ?>
 </div>
 
-<?php include_partial('sandbox/comments'); ?>
-<div class="permalink">
-  Permalink: <span class="lightblue"><?= url_for_collectible($collectible, true) ?></span>
-</div>
+<?php
+  include_partial(
+    'comments/comments',
+    array('for_object' => $collectible->getCollectible())
+  );
+?>
 
 <?php
-  $link = link_to('See all related collectibles &raquo;', '@marketplace', array('class' => 'text-v-middle link-align'));
+  $link = link_to(
+    'See all related collectibles &raquo;', '@marketplace',
+    array('class' => 'text-v-middle link-align')
+  );
+  $link = null;
+
   cq_section_title('Showcase', $link);
 ?>
 
 <div class="row">
   <div id="collectibles" class="row-content">
   <?php
-    /** @var $related_collectibles Collectible[] */
-    foreach ($related_collectibles as $i => $collectible)
+    if (!empty($related_collectibles))
     {
-      include_partial(
-        'collection/collectible_grid_view_square_small',
-        array('collectible' => $collectible, 'i' => $i)
-      );
+      /** @var $related_collectibles Collectible[] */
+      foreach ($related_collectibles as $i => $collectible)
+      {
+        include_partial(
+          'collection/collectible_grid_view_square_small',
+          array('collectible' => $collectible, 'i' => $i)
+        );
+      }
+    }
+    else if (!empty($related_collections))
+    {
+      foreach ($related_collections as $i => $collection)
+      {
+        include_partial(
+          'collection/collection_grid_view_square_small',
+          array('collection' => $collection, 'i' => $i)
+        );
+      }
     }
   ?>
   </div>

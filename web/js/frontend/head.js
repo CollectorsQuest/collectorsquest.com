@@ -36,6 +36,13 @@ window.Modernizr.addTest("isproduction", function() {
 window.Modernizr.addTest("isauthenticated", function() {
   return !!window.cq.authenticated;
 });
+window.Modernizr.addTest('html5formvalidation', function() {
+  var f = window.document.createElement('form');
+  return typeof f.checkValidity === 'function';
+});
+window.Modernizr.addTest('insideiframe', function() {
+  return (window.location != window.parent.location) ? true : false;
+});
 
 // setup page load statistic if in prod environment
 if (Modernizr.isproduction)
@@ -60,10 +67,4 @@ if (Modernizr.isproduction)
       ['_trackPageview']
     );
   };
-
-  // framebusting
-  if (top.location !== self.location)
-  {
-    top.location.replace(self.location.toString());
-  }
 }

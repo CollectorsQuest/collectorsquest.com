@@ -93,7 +93,8 @@ class searchComponents extends cqFrontendComponents
      */
     $query = array(
       'q' => $q,
-      'groupby' => 'object_type'
+      'groupby' => 'object_type',
+      'filters' => array('thumbnail' => 'yes')
     );
     $matches = cqSphinxPager::search($query, array(), 'matches');
 
@@ -109,6 +110,7 @@ class searchComponents extends cqFrontendComponents
       'q' => $q,
       'filters' => array(
         'object_type' => 'collectible',
+        'thumbnail' => 'yes',
         'uint1' => 1
       )
     );

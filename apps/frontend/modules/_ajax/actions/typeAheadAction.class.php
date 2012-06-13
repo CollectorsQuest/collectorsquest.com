@@ -12,11 +12,17 @@ class typeAheadAction extends IceAjaxAction
     $q = $request->getParameter('q');
     $limit = $request->getParameter('limit', 10);
 
-    $categories = CollectionCategoryQuery::create()
+    $categories = ContentCategoryQuery::create()
       ->filterByName("%$q%", Criteria::LIKE)
+      ->filterByName("%&%", Criteria::NOT_LIKE)
+      ->filterByName("%,%", Criteria::NOT_LIKE)
+      ->joinCollectorCollection(null, Criteria::RIGHT_JOIN)
       ->limit($limit)
       ->find()
       ->toKeyValue('Id', 'Name');
+
+    // Make sure we do not have duplicate names
+    $categories = array_unique($categories);
 
     return $this->output($categories);
   }
@@ -43,5 +49,27 @@ class typeAheadAction extends IceAjaxAction
     }
 
     return $this->output($collectors);
+  }
+
+  /**
+   * @param  sfWebRequest  $request
+   * @return string
+   */
+  protected function executeTagsEdit($request)
+  {
+    /** @var $q iceModelTagQuery */
+    $q = iceModelTagQuery::create()
+      ->distinct()
+      ->addAsColumn('id', 'Id')
+      ->addAsColumn('name', 'LOWER(CONVERT(`Name` USING utf8))')
+      ->addAsColumn('label', 'LOWER(CONVERT(`Name` USING utf8))')
+      ->filterBy('Name', 'name LIKE "'. mb_strtolower($request->getParameter('term')).'%"', Criteria::CUSTOM)
+      ->filterByIsTriple(false)
+      ->orderBy('name', Criteria::ASC)
+      ->select(array('id', 'name', 'label'))
+      ->limit(10);
+    $tags = $q->find()->getArrayCopy();
+
+    return $this->output($tags);
   }
 }

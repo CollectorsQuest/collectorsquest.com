@@ -2,17 +2,15 @@
 /**
  * @var $collectibles Collectible[]
  * @var $collection Collection
- * @var $featured_week Featured
+ * @var $wp_post wpPost
  */
 ?>
 
+<br/>
 <div id="weeks-promo-box">
   <div class="row-fluid">
-    <div class="span8">
-      <span class="weeks-promo-title Chivo webfont"><?= $featured_week->title ?></span>
-    </div>
-    <div class="span4 text-right">
-      &nbsp;
+    <div class="span12">
+      <span class="weeks-promo-title Chivo webfont"><?= $wp_post->getPostTitle() ?></span>
     </div>
   </div>
 
@@ -20,11 +18,9 @@
     <div class="span-12">
       <ul class="thumbnails">
         <li class="span6">
-          <a href="#">
-            <?= image_tag_collection($collection, '308x301'); ?>
-          </a>
+          <?= image_tag_wp_post($wp_post, '308x301'); ?>
           <span class="white-block">
-            <?= $featured_week->homepage_text; ?>
+            <?= $wp_post->getPostContent(); ?>
           </span>
         </li>
         <?php foreach ($collectibles as $i => $collectible): ?>
@@ -53,7 +49,7 @@ $(document).ready(function()
 {
   $('#seemore-featured-week').click(function()
   {
-    var $url = '<?= url_for('@ajax_collections?section=component&page=featuredWeekCollectibles&collection_id='. $collection->getId()) ?>';
+    var $url = '<?= url_for('@ajax_collections?section=component&page=featuredWeekCollectibles&id='. $wp_post->getId(), true) ?>';
     var $button = $(this);
     $button.html('loading...');
 

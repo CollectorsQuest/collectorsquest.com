@@ -3,12 +3,16 @@
 class cqFrontendUser extends cqBaseUser
 {
 
+  /** @var integer */
+  protected $unread_messages_count;
+
   const PRIVATE_MESSAGES_SENT_COUNT_KEY = 'private_messages_sent_count';
 
   /**
-   * @return    Collector
+   * @param  boolean  $strict
+   * @return null|Collector
    */
-  public function getCollector()
+  public function getCollector($strict = false)
   {
     if (!($this->collector instanceof Collector))
     {
@@ -16,7 +20,7 @@ class cqFrontendUser extends cqBaseUser
       {
         $this->collector = CollectorPeer::retrieveByPK($this->getAttribute("id", null, "collector"));
       }
-      else
+      else if ($strict === false)
       {
         $this->collector = new Collector();
       }
@@ -27,6 +31,24 @@ class cqFrontendUser extends cqBaseUser
     }
 
     return $this->collector;
+  }
+
+  /**
+   * @param  boolean  $strict
+   * @return null|Seller
+   */
+  public function getSeller($strict = false)
+  {
+    $seller = null;
+
+    if (($collector = $this->getCollector($strict)) && $collector->getIsSeller())
+    {
+      $seller = new Seller();
+      $collector->copyInto($seller, false, false);
+      $seller->setId($collector->getId());
+    }
+
+    return $seller;
   }
 
   public function getShoppingCart()
@@ -102,7 +124,7 @@ class cqFrontendUser extends cqBaseUser
    */
   public function getUsernameFromCookie()
   {
-    $username_cookie = sfConfig::get('app_collector_username_cookie_name', 'cqUsername');
+    $username_cookie = sfConfig::get('app_collector_username_cookie_name', 'cq_username');
     return sfContext::getInstance()->getRequest()->getCookie($username_cookie);
   }
 
@@ -113,7 +135,7 @@ class cqFrontendUser extends cqBaseUser
   {
     // remove the username cookie
     $expiration_time = sfConfig::get('app_collector_username_cookie_expiration_age', 15 * 24 * 3600);
-    $username_cookie = sfConfig::get('app_collector_username_cookie_name', 'cqUsername');
+    $username_cookie = sfConfig::get('app_collector_username_cookie_name', 'cq_username');
     sfContext::getInstance()->getResponse()->setCookie($username_cookie, '', time() - $expiration_time);
   }
 
@@ -147,6 +169,24 @@ class cqFrontendUser extends cqBaseUser
     }
 
     return $ret;
+  }
+
+  /**
+   * Retrieve the unread messages count, or null for unauthenticated users
+   *
+   * @return    integer|null
+   */
+  public function getUnreadMessagesCount()
+  {
+    if (null === $this->unread_messages_count && $this->isAuthenticated())
+    {
+      $this->unread_messages_count = PrivateMessageQuery::create()
+        ->filterByCollectorRelatedByReceiver($this->getCollector())
+        ->filterByIsRead(false)
+        ->count();
+    }
+
+    return $this->unread_messages_count;
   }
 
 }

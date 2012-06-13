@@ -102,19 +102,37 @@ class messagesActions extends cqFrontendActions
 
       if ($form->isValid())
       {
-        $form->save();
+        $message = $form->save();
         $receiver = $form->getValue('receiver');
 
         $cqEmail = new cqEmail($this->getMailer());
         $sent = $cqEmail->send('Messages/private_message_notification', array(
             'to' => $receiver->getEmail(),
             'params' => array(
-              'sender' => $sender,
-              'receiver' => $receiver,
+              'oSender' => $sender,
+              'oReceiver' => $receiver,
+              'oMessage' => $message,
+              'sThreadUrl' => $this->generateUrl('messages_show', $message, true)
+                              . '#latest-message',
             ),
         ));
 
-        $this->redirect('messages_show', $form->getObject());
+        if ($form->getValue('thread'))
+        {
+          // we are replaying to a thread, so we should be redirected
+          // to the thread's page
+          return $this->redirect($this->generateUrl('messages_show', $form->getObject()).'#latest-message');
+        }
+        else
+        {
+          // we are starting a new thread, so redirect to inbox with a success flash
+          $this->getUser()->setFlash('success',sprintf(
+            'Your message has been sent to %s.',
+            $receiver->getDisplayName()
+          ));
+
+          return $this->redirect($form->getValue('goto') ?: 'messages_inbox');
+        }
       }
       else
       {

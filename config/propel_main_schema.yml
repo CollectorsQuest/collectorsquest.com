@@ -13,8 +13,8 @@ classes:
       id:  ~
       graph_id:       { type: integer, required: false, index: unique }
       facebook_id:    { type: varchar, size: 20, index: unique }
-      username:       { type: varchar, size: 64, required: true }
-      display_name:   { type: varchar, size: 64, required: true, primaryString: true }
+      username:       { type: varchar, size: 64, required: true, index: unique }
+      display_name:   { type: varchar, size: 64, required: true, primaryString: true, index: unique }
       slug:           { type: varchar, size: 64, required: true, index: unique }
       sha1_password:  { type: varchar, size: 40, required: true }
       salt:           { type: varchar, size: 32, required: true }
@@ -289,22 +289,30 @@ classes:
     propel_behaviors:
       timestampable:  ~
 
+  ###
+  # NOTE: Make SURE to update also CommentArchive in archive.schema.yml
+  ##
   Comment:
     columns:
       id:  ~
       disqus_id:       { type: char, size: 10 }
       parent_id:       { type: char, size: 10 }
-      collection_id:   { type: integer, foreignClass: Collection, foreignReference: id, required: true, onDelete: cascade }
-      collectible_id:  { type: integer, foreignClass: Collectible, foreignReference: id, onDelete: setnull }
-      collector_id:    { type: integer, foreignClass: Collector, foreignReference: id, onDelete: cascade }
-      author_name:     { type: varchar, size: 128 }
-      author_email:    { type: varchar, size: 128 }
-      author_url:      { type: varchar, size: 255 }
-      subject:         { type: varchar, size: 128 }
-      body:            { type: longvarchar, required: true }
-      ip_address:      { type: varchar, size: 15 }
+      collection_id:   { type: integer, foreignClass: Collection,  foreignReference: id, required: false, onDelete: cascade }
+      collectible_id:  { type: integer, foreignClass: Collectible, foreignReference: id, required: false, onDelete: cascade }
+      collector_id:    { type: integer, foreignClass: Collector,   foreignReference: id, required: false, onDelete: cascade }
+      model:           { type: char, size: 64, required: false }
+      model_id:        { type: integer,      required: false }
+      author_name:     { type: varchar(128), required: false }
+      author_email:    { type: varchar(128), required: false }
+      author_url:      { type: varchar(255), required: false }
+      is_notify:       { type: boolean,      required: true, default: false }
+      subject:         { type: varchar(128), required: false }
+      body:            { type: longvarchar,  required: true  }
+      ip_address:      { type: varchar(15),  required: false }
       created_at:  ~
 
+    indexes:
+      comment_model_object: [model, model_id]
     uniques:
       comment_U_1:  [disqus_id]
 

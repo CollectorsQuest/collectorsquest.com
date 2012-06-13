@@ -25,34 +25,101 @@ dev:
     param:
       level: debug
       loggers:
-
         sf_web_debug:
-          class: sfWebDebugLogger
+          class: IceWebDebugLogger
           param:
             level: debug
             condition:       %SF_WEB_DEBUG%
             xdebug_logging:  false
             web_debug_class: sfWebDebug
-
         sf_file_debug:
           class: sfNoLogger
+          # class: sfFileLogger
+          # param:
+          #   level: debug
+          #   file: %SF_LOG_DIR%/%SF_APP%_%SF_ENVIRONMENT%.log
 
+  mailer:
+    class: cqMailer
+    param:
+      delivery_strategy: single_address
+      delivery_address:  developers@collectorsquest.com
+      charset: UTF-8
+      transport:
+        class: Swift_SmtpTransport
+        param:
+          host: email-smtp.us-east-1.amazonaws.com
+          port: 465
+          username: AKIAJXXQN5BYO3YM5AAQ
+          password: AopixiXkTynN3qP0V3fkbRvoFiGZrteHcVveJRczBQUA
+          encryption: tls
+
+
+next:
+  mailer:
+    class: cqMailer
+    param:
+      delivery_strategy: single_address
+      delivery_address:  developers@collectorsquest.com
+      charset: UTF-8
+      transport:
+        class: Swift_SmtpTransport
+        param:
+          host: email-smtp.us-east-1.amazonaws.com
+          port: 465
+          username: AKIAJXXQN5BYO3YM5AAQ
+          password: AopixiXkTynN3qP0V3fkbRvoFiGZrteHcVveJRczBQUA
+          encryption: tls
+
+
+next_debug:
+  logger:
+    class: sfAggregateLogger
+    param:
+      level: debug
+      loggers:
+        sf_web_debug:
+          class: IceWebDebugLogger
+          param:
+            level: debug
+            condition:       %SF_WEB_DEBUG%
+            xdebug_logging:  false
+            web_debug_class: sfWebDebug
+        sf_file_debug:
+          class: sfFileLogger
+          param:
+            level: debug
+            file: %SF_LOG_DIR%/%SF_APP%_%SF_ENVIRONMENT%.log
+
+
+prod_debug:
+  logger:
+    class: sfAggregateLogger
+    param:
+      level: debug
+      loggers:
+        sf_web_debug:
+          class: IceWebDebugLogger
+          param:
+            level: debug
+            condition:       %SF_WEB_DEBUG%
+            xdebug_logging:  false
+            web_debug_class: sfWebDebug
+        sf_file_debug:
+          class: sfFileLogger
+          param:
+            level: debug
+            file: %SF_LOG_DIR%/%SF_APP%_%SF_ENVIRONMENT%.log
 
 all:
   mailer:
     class: cqMailer
     param:
-      delivery_strategy: single_address
-      delivery_address:  ysimeonoff@collectorsquest.com
-      charset: UTF-8
+      logging: %SF_LOGGING_ENABLED%
+      charset: %SF_CHARSET%
+      delivery_strategy: realtime
       transport:
-        class: Swift_SmtpTransport
-        param:
-          host: smtp.gmail.com
-          port: 465
-          username: no-reply@collectorsquest.com
-          password: gHnyU7wZLtYf3n
-          encryption: tls
+        class: Swift_AWSTransport
 
   routing:
     class: cqPatternRouting

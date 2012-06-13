@@ -1,9 +1,19 @@
+<?php
+/**
+ * @var $sf_user cqFrontendUser
+ * @var $collector Collector
+ * @var $profile CollectorProfile
+ */
+?>
+
 <div class="row-fluid header-bar">
   <div class="span9">
-    <h1 class="Chivo webfont" style="margin-left: 145px;"><?= $collector->getDisplayName() ?></h1>
+    <h1 class="Chivo webfont" style="margin-left: 145px;">
+      <?= $collector->getDisplayName(); ?>
+    </h1>
   </div>
   <div class="span3 text-right">
-    <?= ($sf_user->isOwnerOf($collector)) ? link_to('Edit Your Profile →', '@mycq_profile') : '&nbsp;'; ?>
+    <?= $sf_user->isOwnerOf($collector) ? link_to('Edit Your Profile →', '@mycq_profile') : '&nbsp;'; ?>
   </div>
 </div>
 
@@ -14,24 +24,29 @@
         <div class="span4 thumbnail" style="margin-top: -55px; background: #fff;">
           <?= image_tag_collector($collector, '235x315', array('max_width' => 138, 'max_height' => 185)) ?>
         </div>
-        <div class="span8">
-          <ul style="margin-top: 10px;">
-            <li>
-              <?php
+        <div class="span8" style="padding-top: 10px;">
+          <?php
+            echo sprintf(
+              'I am %s <strong>%s</strong> collector',
+              in_array(strtolower(substr($profile->getCollectorType(), 0, 1)), array('a', 'e', 'i', 'o')) ? 'an' : 'a',
+              $profile->getCollectorType()
+            );
+
+            if ($profile->getCountryIso3166())
+            {
               echo sprintf(
-                '%s %s collector',
-                in_array(strtolower(substr($collector->getCollectorType(), 0, 1)), array('a', 'e', 'i', 'o')) ? 'An' : 'A',
-                '<strong>'. $collector->getCollectorType() .'</strong>'
+                ' from %s',
+                ($profile->getCountryIso3166() == 'US') ? 'the United States' : $profile->getCountry()
               );
-              ?>
-            </li>
-            <li>
-              From <?= $collector->getProfile()->getCountry(); ?>
-            </li>
-          </ul>
-          <p><strong>Collecting:</strong>
-            <?= $profile->getProperty('about.what_you_collect')?>
+            }
+          ?>
+
+          <?php if ($text = $profile->getProperty('about.what_you_collect')): ?>
+          <p style="margin-top: 10px;">
+            <strong>I collect:</strong>
+            <?= $text ?>
           </p>
+          <?php endif; ?>
         </div>
       </div>
     </div>
@@ -47,7 +62,7 @@
       </span>
       <span class="stat-area" style="padding-bottom: 5px;">
       <?php
-        $count = $collector->countCollectibles();
+        $count = $collector->countCollectiblesInCollections();
         echo format_number_choice(
           '[0] No <span>COLLECTIBLES</span>|[1] 1 <span>COLLECTIBLE</span>|(1,+Inf] %1% <span>COLLECTIBLES</span>',
           array('%1%' => number_format($count)), $count

@@ -21,27 +21,6 @@ class _sidebarComponents extends cqFrontendComponents
   /**
    * @return string
    */
-  public function executeWidgetCollectionCategories()
-  {
-    // Set the limit of Collections to show
-    $this->limit = (int) $this->getVar('limit') ?: 30;
-
-    // Set the number of columns to show
-    $this->columns = (int) $this->getVar('columns') ?: 2;
-
-    $q = CollectionCategoryQuery::create()
-      ->filterById(0, Criteria::NOT_EQUAL)
-      ->filterByParentId(0, Criteria::EQUAL)
-      ->orderByName(Criteria::ASC)
-      ->limit($this->limit);
-    $this->categories = $q->find();
-
-    return $this->_sidebar_if(count($this->categories) > 0);
-  }
-
-  /**
-   * @return string
-   */
   public function executeWidgetContentCategories()
   {
     // Set the limit of Categories to show
@@ -50,9 +29,7 @@ class _sidebarComponents extends cqFrontendComponents
     // Set the number of columns to show
     $this->columns = (int) $this->getVar('columns') ?: 2;
 
-    $q = CollectionCategoryQuery::create()
-      ->filterById(0, Criteria::NOT_EQUAL)
-      ->filterByParentId(0, Criteria::EQUAL)
+    $q = ContentCategoryQuery::create()
       ->orderByName(Criteria::ASC)
       ->limit($this->limit);
     $this->categories = $q->find();
@@ -85,7 +62,7 @@ class _sidebarComponents extends cqFrontendComponents
           ->useCollectibleQuery()
             ->joinCollectibleForSale()
             ->useCollectibleForSaleQuery()
-              ->filterByIsSold(false)
+              ->isForSale()
             ->endUse()
           ->endUse()
         ->endUse()
@@ -105,16 +82,43 @@ class _sidebarComponents extends cqFrontendComponents
     // Set the limit of Collections to show
     $this->limit = $this->getVar('limit') ?: 5;
 
-    /** @var $collectible Collectible */
-    if ($collectible = $this->getVar('collectible'))
+    $q = CollectorCollectionQuery::create()
+      ->filterByNumItems(3, Criteria::GREATER_EQUAL);
+
+    /** @var $collection CollectorCollection */
+    if (($collection = $this->getVar('collection')) && $collection instanceof CollectorCollection)
     {
-      $this->collections = $collectible->getRelatedCollections($this->limit);
+      $tags = $collection->getTags();
+      $q
+        ->filterById($collection->getId(), Criteria::NOT_EQUAL)
+        ->filterByTags($tags)
+        ->orderByUpdatedAt(Criteria::DESC);
     }
-    else if (empty($this->collections))
+    /** @var $collectible Collectible */
+    else if (($collectible = $this->getVar('collectible')) && $collectible instanceof Collectible)
+    {
+      $tags = $collectible->getTags();
+      $q
+        ->filterById($collectible->getCollectionId(), Criteria::NOT_EQUAL)
+        ->filterByTags($tags)
+        ->orderByUpdatedAt(Criteria::DESC);
+    }
+    else
+    {
+      $q
+        ->filterByNumViews(1000, Criteria::GREATER_EQUAL)
+        ->addAscendingOrderByColumn('RAND()');
+    }
+
+    // Make the actual query and get the Collections
+    $this->collections = $q->limit($this->limit)->find();
+
+    if (count($this->collections) === 0 && $this->getVar('fallback') === 'random')
     {
       // Get some random collections
       $c = new Criteria();
       $c->add(CollectorCollectionPeer::NUM_ITEMS, 3, Criteria::GREATER_EQUAL);
+      $c->add(CollectorCollectionPeer::NUM_VIEWS, 1000, Criteria::GREATER_EQUAL);
       $this->collections = CollectorCollectionPeer::getRandomCollections($this->limit, $c);
     }
 
@@ -161,7 +165,13 @@ class _sidebarComponents extends cqFrontendComponents
     {
       if (isset($this->category) && $this->category instanceof BaseObject)
       {
-        $this->videos = $magnify->getContent()->find($this->category->getSlug(), 1, $this->limit);
+        $slug = $this->category->getSlug();
+        if (false !== strpos($this->category->getName(), '&'))
+        {
+          //FIXME: Remove when slugs are updated
+          $slug = Utf8::slugify($this->category->getName(), '-', true);
+        }
+        $this->videos = $magnify->getContent()->find($slug, 1, $this->limit);
       }
       else if (isset($this->collectible) && $this->collectible instanceof BaseObject)
       {
@@ -169,9 +179,11 @@ class _sidebarComponents extends cqFrontendComponents
         {
           $vq = (string) $tags[array_rand($tags, 1)];
           if ($videos = $magnify->getContent()->find($vq, 1, $this->limit))
-          foreach ($videos as $video)
           {
-            $this->videos[] = $video;
+            foreach ($videos as $video)
+            {
+              $this->videos[] = $video;
+            }
           }
         }
 
@@ -190,9 +202,11 @@ class _sidebarComponents extends cqFrontendComponents
           {
             $vq = (string) $content_categories[array_rand($content_categories, 1)];
             if ($videos = $magnify->getContent()->find($vq, 1, $this->limit - count($this->videos)))
-            foreach ($videos as $video)
             {
-              $this->videos[] = $video;
+              foreach ($videos as $video)
+              {
+                $this->videos[] = $video;
+              }
             }
           }
         }
@@ -205,7 +219,10 @@ class _sidebarComponents extends cqFrontendComponents
       }
       else if (!empty($this->tags))
       {
-        $vq = is_array($this->tags) ? (string) $this->tags[array_rand($this->tags, 1)] : (string) $this->tags;
+        $vq = is_array($this->tags) ?
+          (string) $this->tags[array_rand($this->tags, 1)] :
+          (string) $this->tags;
+
         $this->videos = $magnify->getContent()->find($vq, 1, $this->limit);
       }
       else
@@ -226,10 +243,25 @@ class _sidebarComponents extends cqFrontendComponents
     /** @var $collector Collector */
     $collector = $this->getVar('collector');
 
-    $this->title = $this->getVar('title') ?: 'About the Collector';
+    $this->title = $this->getVar('title') ?: 'About '. $collector->getDisplayName();
 
     // Set the limit of Collections to show
     $this->limit = $this->getVar('limit') !== null ? (int) $this->getVar('limit') : 3;
+
+    // setup PM form
+    $subject = null;
+    if (isset($this->collectible))
+    {
+      $subject = 'Regarding your item: '. addslashes($this->collectible->getName());
+    }
+    else if (isset($this->collection))
+    {
+      $subject = 'Regarding your collection: '. addslashes($this->collection->getName());
+    }
+
+    $this->pm_form = new ComposeAbridgedPrivateMessageForm(
+      $this->getUser()->getCollector(), $this->getVar('collector'), $subject
+    );
 
     if ($collector instanceof Collector)
     {
@@ -237,6 +269,7 @@ class _sidebarComponents extends cqFrontendComponents
       {
         $c = new Criteria();
         $c->addDescendingOrderByColumn(CollectorCollectionPeer::CREATED_AT);
+        $c->add(CollectorCollectionPeer::NUM_ITEMS, 0, Criteria::GREATER_THAN);
         $c->setLimit($this->limit);
 
         /** @var $collection Collection */
@@ -288,12 +321,35 @@ class _sidebarComponents extends cqFrontendComponents
     // Set the limit of other Collections to show
     $this->limit = (int) $this->getVar('limit') ?: 0;
 
-    $q = CollectorQuery::create()
-       ->filterByUserType(CollectorPeer::TYPE_SELLER)
-       ->limit(2);
-    $this->sellers = $q->find();
+    $q = wpPostQuery::create()
+      ->filterByPostType('seller_spotlight')
+      ->filterByPostStatus('publish')
+      ->orderByPostDate(Criteria::DESC);
 
-    return $this->_sidebar_if(count($this->sellers) > 0);
+    /** @var $wp_post wpPost */
+    if ($wp_post = $q->findOne())
+    {
+      $values = unserialize($wp_post->getPostMetaValue('_seller_spotlight'));
+
+      if (isset($values['cq_collector_ids']))
+      {
+        $collector_ids = explode(',', (string) $values['cq_collector_ids']);
+        $collector_ids = array_map('trim', $collector_ids);
+        $collector_ids = array_filter($collector_ids);
+
+        $q = CollectorQuery::create()
+          ->filterById($collector_ids, Criteria::IN)
+          ->filterByUserType(CollectorPeer::TYPE_SELLER)
+          ->addAscendingOrderByColumn('RAND()');
+
+        $this->collectors = $q->limit(2)->find();
+      }
+
+      $this->wp_post = $wp_post;
+    }
+
+
+    return $this->_sidebar_if(count($this->collectors) > 0);
   }
 
   public function executeWidgetCollectiblesForSale()
@@ -301,12 +357,55 @@ class _sidebarComponents extends cqFrontendComponents
     $this->title = $this->getVar('title') ?: 'Collectibles for Sale';
 
     // Set the limit of Collectibles For Sale to show
-    $this->limit = (int) $this->getVar('limit') ?: 0;
+    $this->limit = (int) $this->getVar('limit') ?: 3;
 
     $q = CollectibleForSaleQuery::create()
       ->isForSale()
       ->orderByUpdatedAt(Criteria::DESC);
 
+    /** @var $wp_post wpPost */
+    if (($wp_post = $this->getVar('wp_post')) && $wp_post instanceof wpPost)
+    {
+      $tags = $wp_post->getTags('array');
+      $q->filterByTags($tags, Criteria::IN);
+    }
+    /** @var $wp_user wpUser */
+    else if (($wp_user = $this->getVar('wp_user')) && $wp_user instanceof wpUser)
+    {
+      $tags = $wp_user->getTags('array');
+      $q->filterByTags($tags, Criteria::IN);
+    }
+    /** @var $category ContentCategory */
+    else if (($category = $this->getVar('category')) && $category instanceof ContentCategory)
+    {
+      $q->filterByContentCategoryWithDescendants($category);
+    }
+    /** @var $collection Collection */
+    else if (($collection = $this->getVar('collection')) && $collection instanceof CollectorCollection)
+    {
+      $tags = $collection->getTags();
+      $q
+        ->filterByCollection($collection, Criteria::NOT_EQUAL)
+        ->filterByTags($tags, Criteria::IN);
+    }
+    /** @var $collectible Collectible */
+    else if (($collectible = $this->getVar('collectible')) && $collectible instanceof Collectible)
+    {
+      $tags = $collectible->getTags();
+      $q
+        ->filterByCollectible($collectible, Criteria::NOT_EQUAL)
+        ->filterByTags($tags, Criteria::IN);
+    }
+    /** @var $collectible CollectionCollectible */
+    else if (($collectible = $this->getVar('collectible')) && $collectible instanceof CollectionCollectible)
+    {
+      $tags = $collectible->getTags();
+      $q
+        ->filterByCollectionCollectible($collectible, Criteria::NOT_EQUAL)
+        ->filterByTags($tags, Criteria::IN);
+    }
+
+    // Make the actual query and get the CollectiblesForSale
     $this->collectibles_for_sale = $q->limit($this->limit)->find();
 
     return $this->_sidebar_if(count($this->collectibles_for_sale) > 0);
@@ -332,20 +431,68 @@ class _sidebarComponents extends cqFrontendComponents
   public function executeWidgetCollectionCollectibles()
   {
     // Set the limit of other Collections to show
-    $this->collection = $this->getVar('collection') ?: null;
+    /** @var $collection CollectorCollection */
+    $collection = $this->getVar('collection') ?: null;
+
+    /** @var $collectible CollectionCollectible */
+    $collectible = $this->getVar('collectible') ?: null;
+
+    if ($collectible instanceof CollectionCollectible)
+    {
+      $collection = $collectible->getCollection();
+    }
 
     // Set the limit of other Collections to show
     $this->limit = (int) $this->getVar('limit') ?: 4;
 
-    if ($this->collection)
+    // Initialize the array
+    $this->collectibles = array();
+
+    if ($collection instanceof Collection)
     {
+      /**
+       * Figure out the previous and the next items in the collection
+       */
+      $collectible_ids = $collection->getCollectibleIds();
+
+      $position = array_search($collectible->getId(), $collectible_ids);
+      // pages start from 1
+      $page = (int)ceil(($position + 1)  / $this->limit);
+      /* * /
+      $step = intval($this->limit / 2);
+
+      if ($position === 0)
+      {
+        $previous = array($collectible_ids[0]);
+      }
+      else
+      {
+        $previous = array_slice($collectible_ids, $position - $step + 1, $step);
+      }
+
+      $next = array_slice($collectible_ids, $position + 1, $step + ($step - count($previous)));
+      $ids = array_merge($previous, $next);
+
+      /* */
       $q = CollectionCollectibleQuery::create()
-        ->filterByCollection($this->collection)
-        ->limit($this->limit);
+        ->filterByCollection($collection)
+        //->filterByCollectibleId($ids)
+        ->limit( $page * $this->limit )
+        ->orderByPosition(Criteria::ASC)
+        ->orderByCreatedAt(Criteria::ASC);
+
       $this->collectibles = $q->find();
+      $this->collection = $collection;
+      $this->page = $page;
     }
 
-    return $this->_sidebar_if(count($this->collectibles) > 0);
+    // show if at least two, because there is no sense in showing only itself
+    return $this->_sidebar_if(count($this->collectibles) > 1);
+  }
+
+  public function executeWidgetMoreHistory()
+  {
+    return sfView::SUCCESS;
   }
 
   private function _sidebar_if($condition = false)

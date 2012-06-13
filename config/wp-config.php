@@ -22,8 +22,12 @@ if (SF_ENV === 'dev')
   define('LOGGED_IN_SALT',   '^m,t-XP+c,yawM=nS-M <FmoZ,X%W>%PWJ)+p4q]&gtj .%fluz!JkS(g#Gi}d1l');
   define('NONCE_SALT',       'VB x)2b`VY([8n^sQ]`u9s]^uf `ssNRY<V/pge^ox-8%2zfAzkhH7.%{%e~!*<O');
 
-  define('WP_SITEURL', 'http://www.collectorsquest.next/blog');
-  define('WP_HOME', 'http://www.collectorsquest.next/blog');
+  define('WP_SITEURL', 'http://www.collectorsquest.dev/blog');
+  define('WP_HOME', 'http://www.collectorsquest.dev/blog');
+
+  define('WP_DEBUG', true);
+  define('SCRIPT_DEBUG', true);
+
 }
 else if (is_readable(__DIR__ .'/secure/wp-config.php'))
 {

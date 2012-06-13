@@ -13,13 +13,23 @@ all:
 
     Collector:
       password_reminder:
-        subject: "Your new password for CollectorsQuest.com"
+        subject: "Collectors Quest Password Reset"
         required_params: [collector, password]
+      verify_new_email:
+        subject: "You have changed your email at CollectorsQuest.com"
+        required_params: [collector, collector_email]
+      welcome_to_cq:
+        subject: "Welcome to Collectors Quest!"
 
     Messages:
       private_message_notification:
-        subject: "You have a new message from {{ sender.displayName }}"
-        required_params: [sender, receiver]
+        subject: "You've Received a Message on Collectors Quest!"
+        required_params: [oSender, oReceiver, oMessage, sThreadUrl]
+
+    Comments:
+      comment_response_notification:
+        subject: "Someone responded to your comment on Collectors Quest!"
+        required_params: [ oModelObject, oNewComment, oYourComment, sThreadUrl, sUnsubscribeUrl ]
 
     internal:
       feedback:

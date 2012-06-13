@@ -23,7 +23,7 @@ function image_tag_collector($collector, $which = '100x100', $options = array())
   }
 
   $options = array_merge(
-    array('alt_title' => $collector->getDisplayName(), 'slug' => $collector->getSlug()),
+    array('alt' => $collector->getDisplayName(), 'slug' => $collector->getSlug()),
     is_array($options) ? $options : array()
   );
 
@@ -106,6 +106,26 @@ function image_tag_collection($collection, $which = '150x150', $options = array(
 }
 
 /**
+ * @param  Collection   $collection
+ * @param  string       $which
+ *
+ * @return null|string
+ */
+function src_tag_collection($collection, $which = '150x150')
+{
+  $multimedia = $collection->getThumbnail();
+  $src_tag = src_tag_multimedia($multimedia, $which);
+
+  if (empty($src_tag))
+  {
+    $src_tag = '/images/'. sfConfig::get('sf_app') .'/multimedia/'.
+               get_class($collection) .'/'. $which .'.png';
+  }
+
+  return $src_tag;
+}
+
+/**
  * Returns an HTML image tag for a Collectible object
  *
  * @see image_tag_multimedia()
@@ -179,6 +199,25 @@ function src_tag_collectible($collectible, $which = '150x150')
 
   return $src_tag;
 }
+
+/**
+ * @param  wpPost  $wp_post
+ * @param  string  $which
+ *
+ * @return null|string
+ */
+function image_tag_wp_post($wp_post, $which = '150x150')
+{
+  list($width, $height) = explode('x', $which);
+
+  if (!$src = $wp_post->getPostThumbnail())
+  {
+    $src = '/images/'. sfConfig::get('sf_app') .'/multimedia/wpPost/'. $which .'.png';
+  }
+
+  return image_tag($src, array('width' => $width, 'height' => $height));
+}
+
 
 /**
  * Returns an HTML image tag of the multimedia object

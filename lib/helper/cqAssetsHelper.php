@@ -50,6 +50,9 @@ function cq_include_title()
   /** @var $title string */
   $title = $response->getTitle();
 
+  // Fixing double htmlspecialchars
+  $title = str_replace('&amp;', '&', $title);
+
   echo $title ? content_tag('title', $title)."\n" : null;
 }
 
@@ -83,7 +86,7 @@ function cq_javascript_src($javascript)
 function cq_include_stylesheets()
 {
   // Do not combine or do anything special if not in Production
-  if (SF_ENV != 'prod')
+  if (SF_ENV !== 'prod')
   {
     include_stylesheets();
 
@@ -140,7 +143,7 @@ function cq_include_stylesheets()
 function cq_include_javascripts()
 {
   // Do not combine or do anything special if not in Production
-  if (SF_ENV != 'prod')
+  if (SF_ENV !== 'prod')
   {
     include_javascripts();
 

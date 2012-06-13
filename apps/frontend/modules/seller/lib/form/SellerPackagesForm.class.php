@@ -1,19 +1,4 @@
 <?php
-/**
- * Copyright 2012 Collectors' Quest, Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License"); you may
- * not use this file except in compliance with the License. You may obtain
- * a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
- * License for the specific language governing permissions and limitations
- * under the License.
- */
 
 /**
  * Filename: SellerPackagesForm.class.php
@@ -50,15 +35,30 @@ class SellerPackagesForm extends sfForm
     $this->setupCardZipField();
     $this->setupTermsField();
 
+    $this->widgetSchema->setFormFormatterName('Bootstrap');
     $this->widgetSchema->setNameFormat('packages[%s]');
   }
 
   private function setupPackageIdField()
   {
-    $this->setWidget('package_id', new sfWidgetFormChoice(array(
+    $this->setWidget('package_id', new sfWidgetFormSelectRadio(array(
       'choices'          => PackagePeer::getAllPackagesForSelectGroupedByPlanType(),
-      'expanded'         => true,
-      'label'            => false,
+      'label'            => 'Package',
+      'formatter'        => function($widget, $inputs)
+      {
+        $rows = array();
+        foreach ($inputs as $input)
+        {
+          $rows[] = $widget->renderContentTag('label',
+              $input['input'] . html_entity_decode($input['label']),
+            array('class'=> 'radio')
+          );
+        }
+
+        return !$rows ? '' : $widget->renderContentTag('div', implode($widget->getOption('separator'), $rows), array('class' => $widget->getOption('class')));
+      }
+    ), array(
+      'required' => 'required',
     )));
 
     $this->setValidator('package_id', new sfValidatorChoice(array(
@@ -73,7 +73,9 @@ class SellerPackagesForm extends sfForm
   {
     $this->setWidget('country', new sfWidgetFormI18nChoiceCountry(array(
       'choices'  => $this->getCountries(),
-      'add_empty'=> true
+      'add_empty'=> true,
+    ), array(
+      'placeholder' => 'Country',
     )));
 
     $this->setValidator('country', new sfValidatorI18nChoiceCountry(array(
@@ -83,11 +85,13 @@ class SellerPackagesForm extends sfForm
 
   private function setupPromoCodeField()
   {
-    $this->setWidget('promo_code', new sfWidgetFormInputText());
-    $this->setValidator('promo_code', new sfValidatorCallback(array(
-      'required'=> false,
-      'callback'=> array($this, 'applyPromoCode')
+    $this->setWidget('promo_code', new sfWidgetFormInputText(array(
+      'label'=> 'Promo',
+    ), array(
+      'placeholder' => 'Promo code',
     )));
+    $this->setValidator('promo_code', new sfValidatorString(array('required'=> false)));
+    $this->mergePreValidator(new sfValidatorCallback(array('callback'=> array($this, 'applyPromoCode'))));
   }
 
   private function setupPaymentTypeField()
@@ -96,7 +100,7 @@ class SellerPackagesForm extends sfForm
       'choices'           => $this->getPaymentTypes(),
       'renderer_class'    => 'cqWidgetFormSelectPayment',
       'renderer_options'  => array(
-        'class'=> 'packages',
+        'class'=> 'packages unstyled',
       ),
     )));
 
@@ -105,13 +109,19 @@ class SellerPackagesForm extends sfForm
 
   private function setupCardTypeField()
   {
-    $this->setWidget('cc_type', new sfWidgetFormChoice(array('choices'=> $this->getCardTypes())));
+    $this->setWidget('cc_type', new sfWidgetFormChoice(array(
+      'choices'=> array_merge(array('' => ''), $this->getCardTypes()),
+    ), array(
+      'placeholder' => 'Credit card type',
+    )));
     $this->setValidator('cc_type', new sfValidatorChoice(array('choices'=> array_keys($this->getCardTypes()))));
   }
 
   private function setupCardNumberField()
   {
-    $this->setWidget('cc_number', new cqWidgetFormCreditCard());
+    $this->setWidget('cc_number', new cqWidgetFormCreditCard(array(), array(
+      'placeholder' => 'Credit card number',
+    )));
     $this->setValidator('cc_number', new sfValidatorString());
   }
 
@@ -122,6 +132,7 @@ class SellerPackagesForm extends sfForm
       'format'=> '%month% %year%',
       'years' => array_combine($expDateYears, $expDateYears),
       'label' => 'Expiration date',
+    ), array(
     )));
 
     $this->setValidator('expiry_date', new cqValidatorExpiryDate(array(
@@ -133,53 +144,71 @@ class SellerPackagesForm extends sfForm
 
   private function setupCardVerificationNumberField()
   {
-    $this->setWidget('cvv_number', new sfWidgetFormInputText(array(), array('maxlength'=> 3)));
+    $this->setWidget('cvv_number', new sfWidgetFormInputText(array(), array(
+      'maxlength'   => 3,
+      'placeholder' => 'CVV number',
+    )));
 
     $this->setValidator('cvv_number', new sfValidatorNumber(array(
+      'min'     => 100,
       'max'     => 999,
-      'required'=> true
+      'required'=> true,
     )));
   }
 
   private function setupCardFirstNameField()
   {
-    $this->setWidget('first_name', new sfWidgetFormInputText());
+    $this->setWidget('first_name', new sfWidgetFormInputText(array(), array(
+      'placeholder' => 'First name',
+    )));
     $this->setValidator('first_name', new sfValidatorString());
   }
 
   private function setupCardLastNameField()
   {
-    $this->setWidget('last_name', new sfWidgetFormInputText());
+    $this->setWidget('last_name', new sfWidgetFormInputText(array(), array(
+      'placeholder' => 'Last name',
+    )));
     $this->setValidator('last_name', new sfValidatorString());
   }
 
   private function setupCardStreetField()
   {
-    $this->setWidget('street', new sfWidgetFormInputText());
+    $this->setWidget('street', new sfWidgetFormInputText(array(), array(
+      'placeholder' => 'Street',
+    )));
     $this->setValidator('street', new sfValidatorString());
   }
 
   private function setupCardCityField()
   {
-    $this->setWidget('city', new sfWidgetFormInputText());
+    $this->setWidget('city', new sfWidgetFormInputText(array(), array(
+      'placeholder' => 'City',
+    )));
     $this->setValidator('city', new sfValidatorString());
   }
 
   private function setupCardStateField()
   {
-    $this->setWidget('state', new sfWidgetFormInputText());
+    $this->setWidget('state', new sfWidgetFormInputText(array(), array(
+      'placeholder' => 'State',
+    )));
     $this->setValidator('state', new sfValidatorString());
   }
 
   private function setupCardZipField()
   {
-    $this->setWidget('zip', new sfWidgetFormInputText());
+    $this->setWidget('zip', new sfWidgetFormInputText(array(), array(
+      'placeholder' => 'Zip',
+    )));
     $this->setValidator('zip', new sfValidatorString());
   }
 
   private function setupTermsField()
   {
-    $this->setWidget('terms', new sfWidgetFormInputCheckbox());
+    $this->setWidget('terms', new sfWidgetFormInputCheckbox(array(), array(
+      'required' => 'required',
+    )));
     $this->setValidator('terms', new sfValidatorBoolean(array('required'=> true)));
   }
 
@@ -232,33 +261,76 @@ class SellerPackagesForm extends sfForm
         ->getPrimaryKeys(false);
   }
 
-  public function applyPromoCode($validator, $value)
+  public function applyPromoCode($validator, $values, $arguments)
   {
-    $promo = PromotionPeer::findByPromotionCode($value);
+    if (IceGateKeeper::locked('mycq_seller_pay') && empty($values['promo_code']))
+    {
+      throw new sfValidatorErrorSchema($validator, array('promo_code'=> new sfValidatorError($validator, 'Promo code is required!')));
+    }
+
+    if (empty($values['promo_code']))
+    {
+      return $values;
+    }
+
+    $promo = PromotionPeer::findByPromotionCode($values['promo_code']);
+    $collector = sfContext::getInstance()->getUser()->getCollector();
+    $error = false;
 
     if (!$promo)
     {
-      throw new sfValidatorError($validator, 'Invalid promotion code!');
+      $error = new sfValidatorError($validator, 'Invalid promotion code!');
     }
-
-    if (0 == $promo->getNoOfTimeUsed())
+    else if (0 == $promo->getNoOfTimeUsed())
     {
-      throw new sfValidatorError($validator, 'No of time Used of this promo code is over!');
+      $error = new sfValidatorError($validator, 'No of time Used of this promo code is over!');
     }
-
-    if (time() > $promo->getExpiryDate('U'))
+    else if (time() > $promo->getExpiryDate('U'))
     {
-      throw new sfValidatorError($validator, 'This Promotion code has been expired!');
+      $error = new sfValidatorError($validator, 'This Promotion code has been expired!');
+    }
+    else if ($used = PromotionTransactionPeer::findOneByCollectorAndCode($this->getOption('collector', $collector), $values['promo_code']))
+    {
+      $error = new sfValidatorError($validator, 'This code is already used by you!');
     }
 
-    $this->promotion = $promo;
+    if (!$error)
+    {
+      $this->promotion = $promo;
+      if (isset($values['package_id']))
+      {
+        $packageId = $this->getValidator('package_id')->clean($values['package_id']);
 
-    return $value;
+        if ($promo && $this->getPackage($packageId))
+        {
+          $this->package->applyPromo($promo);
+        }
+
+        if ($this->package->getPackagePrice() <= $this->package->getDiscount())
+        {
+          $this->validatorSchema['payment_type']->setOption('required', false);
+        }
+        else if (IceGateKeeper::locked('mycq_seller_pay'))
+        {
+          throw new sfValidatorErrorSchema($validator, array('promo_code' => new sfValidatorError($validator, 'This promo code cannot be used in beta testing mode!')));
+        }
+      }
+
+      $this->getWidget('package_id')->setOption('choices', PackagePeer::getAllPackagesForSelectGroupedByPlanType($promo));
+    }
+    else
+    {
+      unset($values['promo_code']);
+
+      throw new sfValidatorErrorSchema($validator, array('promo_code'=> $error));
+    }
+
+    return $values;
   }
 
   public function setPartialRequirements()
   {
-    $fields = array('payment_type', 'cc_type', 'cc_number', 'expiry_date', 'cvv_number', 'first_name', 'last_name', 'street', 'city', 'state', 'zip', 'country', 'terms');
+    $fields = array('package_id', 'payment_type', 'cc_type', 'cc_number', 'expiry_date', 'cvv_number', 'first_name', 'last_name', 'street', 'city', 'state', 'zip', 'country', 'terms');
     foreach ($fields as $field)
     {
       $this->getValidator($field)->setOption('required', false);
@@ -267,19 +339,6 @@ class SellerPackagesForm extends sfForm
 
   public function bind(array $taintedValues = null, array $taintedFiles = null)
   {
-    if (!empty($taintedValues['promo_code']))
-    {
-      $packageId = $this->getValidator('package_id')->clean($taintedValues['package_id']);
-      $this->getValidator('promo_code')->clean($taintedValues['promo_code']);
-      if ($this->promotion && $this->getPackage($packageId))
-      {
-        $this->package->applyPromo($this->promotion);
-        if ($this->package->getPackagePrice() <= $this->package->getDiscount())
-        {
-          $this->getValidator('payment_type')->setOption('required', false);
-        }
-      }
-    }
     if (!isset($taintedValues['payment_type']) || 'cc' != $taintedValues['payment_type'])
     {
       $fields = array('cc_type', 'cc_number', 'expiry_date', 'cvv_number', 'first_name', 'last_name', 'street', 'city', 'state', 'zip', 'country');

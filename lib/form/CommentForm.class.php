@@ -164,11 +164,6 @@ class CommentForm extends BaseCommentForm
     return $comment;
   }
 
-  public function getModelName()
-  {
-    return 'Comment';
-  }
-
   /**
    * Add a token to available ones in the user session
    * and return generated token

@@ -7,15 +7,19 @@
  */
 ?>
 
-<?php cq_sidebar_title($title, null); ?>
+<div class="row-fluid spacer-top-20 link">
+  <?php cq_sidebar_title($title, null); ?>
 
-<div class="row-fluid">
   <div class="span3">
-    <?= link_to_collector($collector, 'image', array('width' => 60, 'height' => 60)); ?>
+    <?php
+      echo link_to_collector(
+        $collector, 'image', array('class' => 'target'),
+        array('max_width' => 60, 'max_height' => 60)
+      );
+    ?>
   </div>
   <div class="span8">
-    <h4><?= link_to_collector($collector, 'text'); ?></h4>
-    <ul>
+    <ul style="list-style: none; margin-left: 5px;">
       <li>
         <?php
         echo sprintf(
@@ -25,36 +29,28 @@
         );
         ?>
       </li>
+      <?php if ($country_iso3166 = $collector->getProfile()->getCountryIso3166()): ?>
       <li>
-        From <?= $collector->getProfile()->getCountry(); ?>
+        From <?= ($country_iso3166 == 'US') ? 'the United States' : $collector->getProfile()->getCountry(); ?>
       </li>
+      <?php endif; ?>
     </ul>
   </div>
 </div>
 
-<?php if (isset($message) && $message === true): ?>
-<?php
-  $subject = null;
-
-  if (isset($collectible))
-  {
-    $subject = 'Regarding your item: '. addslashes($collectible->getName());
-  }
-  else if (isset($collection))
-  {
-    $subject = 'Regarding your collection: '. addslashes($collection->getName());
-  }
-?>
-<div class="row-fluid">
-  <div style="background-color: #e6f2f9; padding: 6px;">
-    <form action="<?= url_for('@messages_compose?to='. $collector->getUsername()); ?>" method="post" style="margin-bottom: 0;" id="form-private-message">
-      <input type="hidden" name="message[receiver]" value="<?= $collector->getUsername(); ?>">
-      <input type="hidden" name="message[subject]" value="<?= $subject; ?>">
-      <textarea class="requires-login" data-login-title="Create an account to contact the seller of this item."  name="message[body]" style="width: 97%; margin-bottom: 0;" placeholder="Send a message to <?= $collector; ?>"></textarea>
-      <div style="text-align: center; display: none; margin: 10px 0 5px 0;" id="buttons-private-message">
-        <button type="button" class="btn cancel" value="cancel">cancel</button>
+<?php if (!$sf_user->isOwnerOf($collector) && isset($message) && $message === true): ?>
+<div class="row-fluid spacer">
+  <div class="send-pm">
+    <form action="<?= url_for2('messages_compose', array('to'=>$collector->getUsername()), true); ?>" method="post" style="margin-bottom: 0;" id="form-private-message">
+      <?= $pm_form->renderHiddenFields(); ?>
+      <textarea class="requires-login" required data-login-title="Please log in to contact this member:" data-signup-title="Create an account to contact this member:" name="message[body]" style="width: 97%; margin-bottom: 0;" placeholder="Send a message to <?= $collector; ?>"></textarea>
+      <div class="buttons-container" id="buttons-private-message">
+        <?php /* <button type="button" class="btn cancel" value="cancel">cancel</button>
          &nbsp; - or - &nbsp;
-        <input type="submit" class="btn btn-primary" value="Send the Message">
+        <input type="submit" class="btn btn-lightblue-normal" value="Send the Message"> */?>
+        <button type="submit" class="btn btn-lightblue-normal textright requires-login">
+          <i class="mail-icon-mini"></i> &nbsp;Send message
+        </button>
       </div>
     </form>
   </div>
@@ -62,45 +58,48 @@
 <?php endif; ?>
 
 <?php if (!empty($collections) && count($collections) > 0): ?>
-  <br style="clear: both;"/>
-  <div>
-    Other collections by <?= $collector; ?><br/>
-    <?= link_to('View all collections &raquo;', 'collections_by_collector', $collector); ?>
+  <div class="row-fluid min-height-13 spacer-top cf">
+    <div class="span9 text-word-wrap">
+      Other collections by <?= $collector; ?>
+    </div>
+    <div class="span3">
+      <?= link_to('View all &raquo;', 'collections_by_collector', $collector, array('class' => 'pull-right')); ?>
+    </div>
   </div>
 
   <?php foreach ($collections as $collection): ?>
-  <div style="border: 1px solid #dcd7d7; margin-top: 10px;">
-    <div style="border: 1px solid #f2f1f1; padding: 10px;">
+  <div class="sidebar-other-collections-by-user">
+    <div class="inner-other-collections">
     <p><?= link_to_collection($collection, 'text'); ?></p>
-    <?php
-      $c = new Criteria();
-      $c->setLimit(4);
-      foreach ($collection->getCollectionCollectibles($c) as $i => $collectible)
-      {
-        $options = array('width' => 60, 'height' => 60, 'style' => 'margin-right: 12px;');
-
-        if ($i == 3) unset($options['style']);
-        echo link_to(image_tag_collectible($collectible, '75x75', $options), 'collectible_by_slug', $collectible);
-      }
-    ?>
+      <div class="thumb-container">
+          <?php
+            $c = new Criteria();
+            $c->setLimit(4);
+            foreach ($collection->getCollectionCollectibles($c) as $i => $collectible)
+            {
+              $options = array('width' => 60, 'height' => 60);
+                  echo link_to(image_tag_collectible($collectible, '75x75', $options), 'collectible_by_slug', $collectible, array('class' => 'margin-right-12'));
+            }
+          ?>
+        </div>
       </div>
   </div>
   <?php endforeach; ?>
 <?php endif; ?>
 
 <script>
-  $(document).ready(function()
+$(document).ready(function()
+{
+  $('#form-private-message textarea').focus(function()
   {
-    $('#form-private-message textarea').focus(function()
-    {
-      $(this).css('height', '100px');
-      $('#buttons-private-message').slideDown();
-    });
-
-    $('#buttons-private-message .cancel').click(function()
-    {
-      $('#buttons-private-message').slideUp();
-      $('#form-private-message textarea').css('height', 'auto');
-    });
+    $(this).css('height', '100px');
+    $('#buttons-private-message').slideDown();
   });
+
+  $('#buttons-private-message .cancel').click(function()
+  {
+    $('#buttons-private-message').slideUp();
+    $('#form-private-message textarea').css('height', 'auto');
+  });
+});
 </script>

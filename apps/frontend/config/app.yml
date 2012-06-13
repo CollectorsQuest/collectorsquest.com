@@ -9,6 +9,9 @@ all:
     # require the user to input a captcha every N outgoing messages
     require_captcha_threshold: 5
 
+  comments:
+    num_load: 10
+
   aetn:
     american_pickers:
       collector: 6668
@@ -20,19 +23,38 @@ all:
       collector: -1
       collection: -1
 
+  smart_menus:
+    defaults:
+      template:
+        normal: '<li><a href="%url%" title="%title%" target="%target%">%name%</a></li>'
+        active: '<li class="active"><a href="%url%" title="%title%" target="%target%">%name%</a></li>'
+
+    profile_tabs_navigation:
+      items:
+        personal_info:    { name: "Personal Information", uri: "@mycq_profile" }
+        account_info:     { name: "Account Information",  uri: "@mycq_profile_account_info" }
+        mailing_addresses: { name: "Mailing Addresses",    uri: "@mycq_profile_addresses", check_lock: mycq_profile_addresses }
+
+    messages_sidebar:
+      items:
+        inbox:    { name: '<i class="icon icon-inbox"></i> Inbox', title: "Inbox", uri: "@messages_inbox" }
+        sent:     { name: '<i class="icon icon-share-alt"></i> Sent Messages', title: "Sent Messages", uri: "@messages_sent" }
+        compose:  { name: '<i class="icon icon-edit"></i> Compose Message', title: "Compose Message", uri: "@messages_compose" }
+
+
 dev:
-  domain_name: "collectorsquest.next"
-  www_domain: "www.collectorsquest.next"
-  static_domain: "www.collectorsquest.next"
-  multimedia_domain: "multimedia.collectorsquest.next"
+  domain_name: "collectorsquest.dev"
+  www_domain: "www.collectorsquest.dev"
+  static_domain: "www.collectorsquest.dev"
+  multimedia_domain: "multimedia.collectorsquest.dev"
 
   cq:
-    www_domain: "http://www.collectorsquest.next/"
-    static_domain: "http://static.collectorsquest.next/"
-    multimedia_domain: "http://multimedia.collectorsquest.next"
+    www_domain: "http://www.collectorsquest.dev/"
+    static_domain: "http://static.collectorsquest.dev/"
+    multimedia_domain: "http://multimedia.collectorsquest.dev"
 
   credentials:
     rpxnow:
-      application_domain: "https://cqnext-dev.rpxnow.com/"
-      application_id: "fmbfbkcdfejhcneholpp"
-      api_key: "e5eea7cf89324ccf96c5ef8f1b486024884cc002"
+      application_domain: "https://collectorsquest-dev.rpxnow.com/"
+      application_id: "epghfmlgdcconfbmkmof"
+      api_key: "dabc61cdced770898eccd13f3b9f100e40d46b40"

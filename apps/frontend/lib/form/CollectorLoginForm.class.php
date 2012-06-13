@@ -19,7 +19,9 @@ class CollectorLoginForm extends BaseForm
       'remember'  => new sfWidgetFormInputCheckbox(array(
           'label' => 'Remember me',
       )),
-      'goto' => new sfWidgetFormInputHidden()
+      'goto' => new sfWidgetFormInputHidden(array(), array(
+          'class' => 'set-value-to-href',
+      ))
     ));
 
     $this->setValidators(array(

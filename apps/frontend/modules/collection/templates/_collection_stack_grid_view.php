@@ -12,7 +12,7 @@
   <div class="stack">
     <div class="mosaic-overlay">
       <p class="details">
-        <?php echo link_to_collection($collection, 'text', array('class' => 'target')); ?>&nbsp;<span style="color:#ccc;">(<?php echo (int) $collection->countCollectibles(); ?>)</span>&nbsp;<?php if ($collection->countCollectiblesSince('7 day ago') > 0) echo image_tag('icons/new.png'); ?>
+        <?php echo link_to_collection($collection, 'text', array('class' => 'target')); ?>&nbsp;<span style="color:#ccc;">(<?php echo (int) $collection->getNumItems(); ?>)</span>&nbsp;<?php if ($collection->countCollectiblesSince('7 day ago') > 0) echo image_tag('icons/new.png'); ?>
         <br><small>by</small>
         <?php echo link_to_collector($collection->getCollector(), 'text', array('style' => 'color: #000;')); ?>
       </p>

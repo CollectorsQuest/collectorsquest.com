@@ -3,7 +3,9 @@
 class searchActions extends cqFrontendActions
 {
   /** @var array */
-  private static $_query = array('filters' => array());
+  private static $_query = array(
+    'filters' => array('thumbnail' => 'yes')
+  );
 
   public function preExecute()
   {
@@ -13,7 +15,7 @@ class searchActions extends cqFrontendActions
 
     if ($tag = $request->getParameter('tag'))
     {
-      $request->setParameter('q', $tag);
+      $request->setParameter('q', str_replace('-', ' ', $tag));
     }
 
     self::$_query['q'] = $request->getParameter('q');

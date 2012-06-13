@@ -10,6 +10,11 @@ class CollectorPeer extends BaseCollectorPeer
   const TYPE_COLLECTOR = 'Collector';
   const TYPE_SELLER = 'Seller';
 
+  static public $avatars = array(
+    '159763', '2551491', '2805695', '12528549', '13709194',
+    '13721607', '14193613', '17227104', '17744242', '18048813'
+  );
+
   /**
    * @param     string $username
    * @param     PropelPDO $con
@@ -167,7 +172,7 @@ class CollectorPeer extends BaseCollectorPeer
     }
     else if (isset($parameters['collector_slug']))
     {
-      $parameters['slug'] = str_replace(array('.html', '.htm'), '', $parameters['slug']);
+      $parameters['slug'] = str_replace(array('.html', '.htm'), '', $parameters['collector_slug']);
       $collector = self::retrieveBySlug($parameters['collector_slug']);
     }
     else if (isset($parameters['slug']))
@@ -212,10 +217,15 @@ class CollectorPeer extends BaseCollectorPeer
 
   public static function createFromArray($data = array())
   {
+    // We need to make sure we have a display name
+    $display_name = !empty($data['display_name']) ?
+      $data['display_name'] :
+      $data['username'];
+
     $collector = new Collector();
     $collector->setUsername($data['username']);
     $collector->setPassword($data['password']);
-    $collector->setDisplayName($data['display_name']);
+    $collector->setDisplayName($display_name);
     $collector->setEmail($data['email']);
     $collector->setUserType(isset($data['seller']) && !!$data['seller'] ? 'Seller' : 'Collector');
 
@@ -229,6 +239,7 @@ class CollectorPeer extends BaseCollectorPeer
     // All of the profile data is optional, thus make sure to check it is provided
     $collector_profile = new CollectorProfile();
     $collector_profile->setCollector($collector);
+    $collector_profile->setProfileCompleted(25);
 
     $collector_profile->setPreferences(array(
       'show_age'    => false,
@@ -241,6 +252,18 @@ class CollectorPeer extends BaseCollectorPeer
       'buddy'   => true,
       'message' => true
     ));
+
+
+    // set profile country code if present
+    if (isset($data['country_iso3166']) && false !== $data['country_iso3166'])
+    {
+      $collector_profile->setCountryIso3166($data['country_iso3166']);
+    }
+
+    // default to casual collector
+    $collector_profile->setCollectorType(isset($data['collector_type'])
+      ? $data['collector_type']
+      : 'casual');
 
     try
     {

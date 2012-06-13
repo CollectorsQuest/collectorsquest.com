@@ -7,6 +7,7 @@ class SearchHeaderForm extends BaseForm
     $this->setWidgets(array(
       'q' => new bsWidgetFormInputTypeAhead(array(
         'source' => sfContext::getInstance()->getController()->genUrl(array('sf_route' => 'ajax_typeahead', 'section' => 'search', 'page' => 'header')),
+        'autoselect' => false,
       ))
     ));
 

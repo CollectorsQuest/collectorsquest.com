@@ -1,18 +1,42 @@
-<?php /* @var $sf_user cqFrontendUser */ ?>
+<?php
+/**
+ * @var $sf_params sfParameterHolder
+ * @var $sf_user cqFrontendUser
+ * @var $form SearchHeaderForm
+ * @var $q string
+ * @var $k integer
+ */
+?>
+
 <header>
+  <?php
+    if (has_slot('header_pushdown'))
+    {
+      echo '<div id="header-pushdown-ad">', get_slot('header_pushdown'), '</div>';
+    }
+  ?>
+
   <div class="header-inner">
-      <div class="row-fluid">
-        <div class="span3">&nbsp;</div>
-        <div class="span5">
-          <div class="input-append search-header pull-right">
-            <form action="<?= url_for('@search') ?>" method="get">
-              <?= $form['q']->render(array('value' => $q, 'autocomplete' => 'off')); ?>
-              <button class="btn btn-large" type="submit">Search</button>
-            </form>
-          </div>
+    <div class="row-fluid">
+      <div class="span2">&nbsp;</div>
+      <div class="span6">
+        <div class="input-append search-header pull-right">
+          <form action="<?= url_for('@search', true) ?>" method="get">
+            <?php
+              echo $form['q']->render(array(
+                'value' => $q, 'autocomplete' => 'off', 'required' => 'required',
+                'placeholder' => 'Find collectibles, blog posts, videos and more...')
+              );
+            ?>
+            <button class="btn btn-large append-search-button" type="submit">Search</button>
+          </form>
         </div>
-        <div class="span4 pull-right" style="float: right; text-align: right; padding-top: 2px;">
-          <a href="<?= url_for('@shopping_cart'); ?>" class="link-cart" title="<?= (0 < $k) ? 'View your shopping cart' : 'Your shopping cart is empty!'; ?>">
+      </div>
+      <div class="span4 pull-right" style="float: right; text-align: right; padding-top: 2px;">
+
+        <?php if (IceGateKeeper::open('shopping_cart')): ?>
+          <a href="<?= url_for('@shopping_cart', true); ?>" class="link-cart"
+             title="<?= (0 < $k) ? 'View your shopping cart' : 'Your shopping cart is empty!'; ?>">
             <span class="shopping-cart-inner shopping-cart">
             <?php if (0 < $k): ?>
               <span id="shopping-cart-count"><?= $k; ?></span>
@@ -22,86 +46,124 @@
             </span>
           </a>
           <span class="nav-divider"></span>
-          <?php if ($sf_user->isAuthenticated()): ?>
-            &nbsp;
-            <div id="menu-my-account" class="btn-group dropdown" style="float: right; text-align: left; margin-top: -2px;">
-              <a class="btn btn-large dropdown-toggle" data-toggle="dropdown" href="#menu-my-account">
-                My Account &nbsp;<span class="caret"></span>
-              </a>
-              <?php if ($sf_params->get('module') === '_video'): ?>
-                <ul class="dropdown-menu" style="min-width: 123px;">
-                  <li>
-                    <a href="<?= url_for('@collector_me'); ?>" title="Go to your CollectorsQuest.com profile!">
-                      <i class="icon icon-user"></i> My Profile
-                    </a>
-                  </li>
-                  <li class="divider"></li>
-                  <li>
-                    <a href="<?= url_for('@logout'); ?>" title="Log Out from your CollectorsQuest.com account!">
-                      <i class="icon icon-signout"></i> Log Out
-                    </a>
-                  </li>
-                </ul>
-              <?php else: ?>
-                <ul class="dropdown-menu" style="min-width: 123px;">
-                  <li>
-                    <a href="<?= url_for('@collector_me'); ?>" title="Go to your CollectorsQuest.com profile!">
-                      <i class="icon icon-user"></i> My Profile
-                    </a>
-                  </li>
-                  <li>
-                    <a href="<?= url_for('@messages_inbox'); ?>" title="Go to your CollectorsQuest.com inbox!">
-                      <i class="icon icon-envelope"></i> My Inbox
-                    </a>
-                  </li>
-                  <li class="divider"></li>
-                  <li>
-                    <a href="<?= url_for('@logout'); ?>" title="Log Out from your CollectorsQuest.com account!">
-                      <i class="icon icon-signout"></i> Log Out
-                    </a>
-                  </li>
-                </ul>
-              <?php endif; ?>
-            </div>
-          <?php else: ?>
-            <?= link_to('Log In', '@login', array('class' => 'requires-login bold-links padding-signup')); ?>
-            &nbsp;or&nbsp;
-            <?= link_to('&nbsp;', '@collector_signup', array('class' => 'sing-up-now-btn sing-up-now-red')); ?>
-          <?php endif; ?>
-        </div>
+        <?php endif; ?>
+
+        <?php if ($sf_user->isAuthenticated()): ?>
+          &nbsp;
+          <div id="menu-my-account" class="btn-group dropdown button-my-account">
+            <a class="btn btn-large dropdown-toggle" data-toggle="dropdown" href="#menu-my-account">
+              My Account &nbsp;<span class="caret"></span>
+            </a>
+            <?php if ($sf_params->get('module') === '_video'): ?>
+              <ul class="dropdown-menu" style="min-width: 123px;">
+                <li>
+                  <a href="<?= url_for('@mycq_profile', true); ?>"
+                     title="Manage your CollectorsQuest.com profile!">
+                    <i class="icon icon-user"></i> Profile
+                  </a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                  <a href="http://<?= sfConfig::get('app_magnify_channel', 'video.collectorsquest.com') ?>/login/logout"
+                     class="logout-link" title="Log Out from your CollectorsQuest.com account!">
+                    <i class="icon icon-signout"></i> Log Out
+                  </a>
+                </li>
+              </ul>
+            <?php else: ?>
+              <ul class="dropdown-menu" style="min-width: 123px;">
+                <li>
+                  <a href="<?= url_for('@mycq_profile', true); ?>"
+                     title="Manage your CollectorsQuest.com profile!">
+                    <i class="icon icon-user"></i> Profile
+                  </a>
+                </li>
+                <li>
+                  <a href="<?= url_for('@mycq_collections', true); ?>"
+                     title="Manage your Collections!">
+                    <i class="icon icon-th-large"></i> Collections
+                  </a>
+                </li>
+                <?php if (IceGateKeeper::open('mycq_marketplace')): ?>
+                <li>
+                  <a href="<?= url_for('@mycq_marketplace', true); ?>"
+                     title="Manage your Collectibles for Sale!">
+                    <i class="icon icon-barcode"></i> Store
+                  </a>
+                </li>
+                <?php endif; ?>
+                <li>
+                  <a href="<?= url_for('@messages_inbox', true); ?>"
+                     title="Read and send private messages!">
+                    <i class="icon icon-envelope"></i> Messages
+                  </a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                  <a href="<?= url_for('@logout', true); ?>"
+                     class="logout-link"
+                     title="Log Out from your CollectorsQuest.com account!">
+                    <i class="icon icon-signout"></i> Log Out
+                  </a>
+                </li>
+              </ul>
+            <?php endif; ?>
+          </div>
+        <?php else: ?>
+          <?php
+            echo link_to(
+              'Log In', '@login',
+              array('class' => 'requires-login bold-links padding-signup', 'absolute' => true)
+            );
+          ?>
+          &nbsp;or&nbsp;
+          <?php
+            echo link_to(
+              '&nbsp;', '@collector_signup',
+              array('class' => 'sing-up-now-btn sing-up-now-red', 'absolute' => true)
+            );
+          ?>
+        <?php endif; ?>
       </div>
+    </div>
   </div><!-- /navbar-inner -->
 
   <div class="navbar">
     <div class="navbar-inner">
       <div class="container dark-bg">
-        <?= link_to('Collectors Quest', '@homepage', array('class' => 'cq-logo logo hide-text', 'title' => 'Home')) ?>
+        <?php
+          if (sfConfig::get('sf_environment') === 'dev') {
+            $class = 'cq-logo logo-development';
+          } else if (sfConfig::get('sf_environment') === 'next') {
+            $class = 'cq-logo logo-staging';
+          } else {
+            $class = 'cq-logo logo';
+          }
+
+          echo link_to(
+            'Collectors Quest', '@homepage',
+            array('class' => $class .' hide-text', 'title' => 'Home', 'absolute' => true)
+          );
+        ?>
+        <?php
+          /**
+           * By default we look at the 'module' to determine which menu items to highlight
+           * You have a way to overwrite that by setting the request parameter 'cq_header_active'
+           */
+          $active = $sf_params->get('cq_header_active', $sf_params->get('module'));
+        ?>
         <ul class="nav">
-          <?php $class = in_array($sf_params->get('module'), array('collection', 'collections', 'aent')) ? 'active' : null; ?>
-          <li class="<?= $class ?>"><?= link_to('Collections', '@collections'); ?></li>
+          <?php $class = in_array($active, array('collection', 'collections', 'aent', 'categories')) ? 'active' : null; ?>
+          <li class="<?= $class ?>"><?= link_to('Collections', '@collections', array('absolute' => true)); ?></li>
 
-          <?php $class = in_array($sf_params->get('module'), array('news', '_blog')) ? 'active' : null; ?>
-          <li class="<?= $class ?>"><?= link_to('Blog', '@blog'); ?></li>
+          <?php $class = in_array($active, array('news', 'blog', '_blog')) ? 'active' : null; ?>
+          <li class="<?= $class ?>"><?= link_to('Blog', '@blog', array('absolute' => true)); ?></li>
 
-          <?php $class = in_array($sf_params->get('module'), array('_video')) ? 'active' : null; ?>
-          <li class="<?= $class ?>"><?= link_to('Video', '@video'); ?></li>
+          <?php $class = in_array($active, array('video', '_video')) ? 'active' : null; ?>
+          <li class="<?= $class ?>"><?= link_to('Video', '@video', array('absolute' => true)); ?></li>
 
-          <?php $class = in_array($sf_params->get('module'), array('marketplace', 'shopping')) ? 'active' : null; ?>
-          <li class="<?= $class ?>"><?= link_to('Market', '@marketplace'); ?></li>
-          <!-- test z-index
-          <li class="dropdown open">
-            <a data-toggle="dropdown" class="dropdown-toggle" href="#">Test <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
-              <li class="divider"></li>
-              <li class="nav-header">Nav header</li>
-              <li><a href="#">Separated link</a></li>
-              <li><a href="#">One more separated link</a></li>
-            </ul>
-          </li>
-          -->
+          <?php $class = in_array($active, array('marketplace', 'shopping')) ? 'active' : null; ?>
+          <li class="<?= $class ?>"><?= link_to('Market', '@marketplace', array('absolute' => true)); ?></li>
         </ul>
       </div>
     </div>

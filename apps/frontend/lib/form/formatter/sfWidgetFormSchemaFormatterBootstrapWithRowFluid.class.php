@@ -19,4 +19,9 @@ class sfWidgetFormSchemaFormatterBootstrapWithRowFluid extends sfWidgetFormSchem
     </div>
 ';
 
+  public function formatRequiredField($field)
+  {
+    return $field;
+  }
+
 }

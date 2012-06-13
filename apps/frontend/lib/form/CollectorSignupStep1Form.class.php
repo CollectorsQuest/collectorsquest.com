@@ -30,9 +30,9 @@ class CollectorSignupStep1Form extends BaseForm
       'seller'          => new sfWidgetFormSelectRadio(array(
         'label'       => 'Choose one',
         'choices'     => array(
-          0 => 'I Collect',
-          1 => 'I Sell',
-          2 => 'I Collect and Sell',
+          0 => 'I collect',
+          1 => 'I sell',
+          2 => 'I collect and sell',
         ),
 
         'formatter'   =>   function($widget, $inputs) {
@@ -49,6 +49,7 @@ class CollectorSignupStep1Form extends BaseForm
 
       ), array(
         'required' => 'required',
+        'style' => 'padding-top: 3px;'
       )),
     ));
 
@@ -75,7 +76,6 @@ class CollectorSignupStep1Form extends BaseForm
           'max_length' => 'The password is too long (%max_length% characters max).',
           'min_length' => 'The password is too short (%min_length% characters min).',
        )),
-      'password_again' => new sfValidatorPass(),
       'seller'         => new sfValidatorChoice(array(
           'choices'    => array(0,1,2),
           'required'   => true,
@@ -87,6 +87,8 @@ class CollectorSignupStep1Form extends BaseForm
           'invalid'    => 'This email address is invalid.',
         )),
     ));
+
+    $this->validatorSchema['password_again'] = clone $this->validatorSchema['password'];
 
     $this->mergePostValidator(new sfValidatorPropelUnique(
       array('model' => 'Collector', 'column' => array('username')),
@@ -111,7 +113,7 @@ class CollectorSignupStep1Form extends BaseForm
   public function getJavaScripts()
   {
     return array(
-        '/js/jquery/mailcheck.js',
+        'jquery/mailcheck.js',
     );
   }
 

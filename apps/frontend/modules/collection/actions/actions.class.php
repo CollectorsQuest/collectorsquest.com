@@ -2,6 +2,7 @@
 
 class collectionActions extends cqFrontendActions
 {
+
   /**
    * @param sfWebRequest $request
    * @return string
@@ -27,7 +28,7 @@ class collectionActions extends cqFrontendActions
       $collection = $object;
 
       /** @var $collector Collector */
-      $collector  = $collection->getCollector();
+      $collector = $collection->getCollector();
     }
 
     /**
@@ -73,21 +74,22 @@ class collectionActions extends cqFrontendActions
 
     $per_page = sfConfig::get('app_pager_list_collectibles_max', 24);
 
-    $pager = new sfPropelPager('Collectible', $per_page);
+    $pager = new cqPropelPager('Collectible', $per_page);
     $pager->setCriteria($c);
     $pager->setPage($this->getRequestParameter('page', 1));
+    $pager->setStrictMode('all' === $request->getParameter('show'));
     $pager->init();
 
-    $this->pager      = $pager;
-    $this->display    = $this->getUser()->getAttribute('display', 'grid', 'collectibles');
-    $this->collector  = $collector;
+    $this->pager = $pager;
+    $this->display = $this->getUser()->getAttribute('display', 'grid', 'collectibles');
+    $this->collector = $collector;
     $this->collection = $collection;
 
     // Building the meta tags
     $this->getResponse()->addMeta('description', $collection->getDescription('stripped'));
     $this->getResponse()->addMeta('keywords', $collection->getTagString());
 
-    if ($collection->countCollectibles() == 0)
+    if ($collection->getNumItems() == 0)
     {
       $this->collections = null;
 
@@ -134,7 +136,7 @@ class collectionActions extends cqFrontendActions
 
     if (in_array($collection->getId(), array($pawn_stars['collection'], $american_pickers['collection'])))
     {
-      $this->redirect('@aetn_collectible_by_slug?id='. $collectible->getId() .'&slug='. $collectible->getSlug(), 301);
+      $this->redirect('@aetn_collectible_by_slug?id=' . $collectible->getId() . '&slug=' . $collectible->getSlug(), 301);
     }
 
     /**
@@ -142,7 +144,7 @@ class collectionActions extends cqFrontendActions
      */
     if (!$this->getCollector()->isOwnerOf($collectible))
     {
-      $collectible->setNumViews($collection->getNumViews() + 1);
+      $collectible->setNumViews($collectible->getNumViews() + 1);
       $collectible->save();
     }
 
@@ -154,30 +156,30 @@ class collectionActions extends cqFrontendActions
     if (array_search($collectible->getId(), $collectible_ids) - 1 < 0)
     {
       $q = CollectionCollectibleQuery::create()
-        ->filterByCollection($collection)
-        ->filterByCollectibleId($collectible_ids[count($collectible_ids) - 1]);
+          ->filterByCollection($collection)
+          ->filterByCollectibleId($collectible_ids[count($collectible_ids) - 1]);
       $this->previous = $q->findOne();
     }
     else
     {
       $q = CollectionCollectibleQuery::create()
-        ->filterByCollection($collection)
-        ->filterByCollectibleId($collectible_ids[array_search($collectible->getId(), $collectible_ids) - 1]);
+          ->filterByCollection($collection)
+          ->filterByCollectibleId($collectible_ids[array_search($collectible->getId(), $collectible_ids) - 1]);
       $this->previous = $q->findOne();
     }
 
     if (array_search($collectible->getId(), $collectible_ids) + 1 >= count($collectible_ids))
     {
       $q = CollectionCollectibleQuery::create()
-        ->filterByCollection($collection)
-        ->filterByCollectibleId($collectible_ids[0]);
+          ->filterByCollection($collection)
+          ->filterByCollectibleId($collectible_ids[0]);
       $this->next = $q->findOne();
     }
     else
     {
       $q = CollectionCollectibleQuery::create()
-        ->filterByCollection($collection)
-        ->filterByCollectibleId($collectible_ids[array_search($collectible->getId(), $collectible_ids) + 1]);
+          ->filterByCollection($collection)
+          ->filterByCollectibleId($collectible_ids[array_search($collectible->getId(), $collectible_ids) + 1]);
       $this->next = $q->findOne();
     }
 

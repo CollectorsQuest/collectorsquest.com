@@ -1,4 +1,217 @@
-ul.alert-error {
-  margin: 0;
-  margin-top: 10px;
+// HTML5 invalid states
+// Shares styles with the .control-group.error above
+input:focus:required:invalid,
+textarea:focus:required:invalid,
+select:focus:required:invalid {
+	color: #b94a48;
+	border-color: #ee5f5b;
+	&:focus {
+		border-color: #0A82C2;
+		color: #125375;
+		.box-shadow(none);
+		outline: none;
+	}
 }
+
+input[type="radio"] {
+	margin: 2px 0;
+}
+
+input[type="checkbox"] {
+	margin: 0 0 2px 0;
+}
+
+ul.alert-error {
+  margin: 10px;
+  margin-left: 0;
+}
+
+//Search bar
+
+#sort-search-box {
+	background-color: #daecf6;
+	padding: 15px 15px 13px 15px;
+	margin-bottom: 15px;
+
+	.btn-group {
+		float: left;
+		margin-right: -1px;
+	}
+	.dropdown-menu a {
+		color: #887777;
+		strong {
+			color: @blue;
+			font-weight: normal;
+		}
+		&:hover {
+			background: @yellowHighlight;
+			color: #887777;
+		}
+	}
+	.input-append form {
+		margin: 0;
+	}
+	.input-append input {
+		.border-radius(0);
+	}
+	input, textarea, select, .uneditable-input, button, append-left-gray, .gray-button.dropdown-toggle {
+		border: 1px solid #b5b7bd;
+	}
+}
+
+#sort-search-box .gray-button, .collection-search-box btn-group a, .collection-search-box .dropdown-menu a {
+	font-size: 12px;
+}
+
+#sort-search-box .caret.arrow-down {
+	border-top: 5px solid #887777;
+	margin-top: -8px;
+	.opacity(100);
+}
+
+#sort-search-box .caret.arrow-up {
+	border-bottom: 5px solid #887777;
+	border-top: none;
+	margin-top: 0;
+	.opacity(100);
+}
+
+#sort-search-box .gray-button.dropdown-toggle br {
+	line-height: 1px;
+}
+
+#sort-search-box a.dropdown-toggle {
+	.size(16px, 8px);
+	display: block;
+	margin-top: 0;
+	padding: 5px 5px 3px 5px;
+	z-index: 10;
+}
+
+#sort-search-box .btn-group > .dropdown-toggle {
+	border-radius: 0 0 0 0;
+	background-position: inherit;
+}
+
+#sort-search-box .input-append button.gray-button {
+	margin-bottom: 2px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+
+
+// Email suggestion for .form-horizonSee all videotal
+.form-horizontal .email-suggestion {
+	.pull-right;
+	a {
+		cursor: pointer;
+		.domain {
+			font-weight: bold;
+		}
+	}
+}
+
+.form-horizontal {
+  .controls {
+    .with-required-token {
+      position: relative;
+
+      .required-token {
+        position: absolute;
+        left: -15px;
+        top: 4px;
+        color: red;
+        font-weight: bolder;
+      }
+    }
+  }
+  .form-inline label {
+    padding-top: 5px;
+  }
+
+  .all-errors ul {
+    margin-bottom: 0;
+  }
+}
+
+
+#body-general-login, #body-general-recoverPassword {
+
+	#main .form-actions {
+		background-color: @lightBlue;
+		border-top: none;
+		margin: 0;
+		text-align: left;
+	}
+
+	#main .form-horizontal {
+		.control-group {
+			width: 600px;
+			margin: 15px auto;
+		}
+
+		label {
+			font-size: 12px;
+			color: @brown;
+			letter-spacing: 0.01em;
+		}
+		label.control-label {
+			font-weight: bold;
+		}
+		.control-description-r {
+			padding-left: 10px;
+			color: @brown;
+			text-size: 12px;
+		}
+		.two-lines {
+			padding-top: 0;
+			line-height: 14px;
+		}
+		.help-block {
+			color: @brown;
+			font-size: 12px;
+			margin-top: 5px;
+		}
+		label.disabled, p.disabled {
+			color: #a4a5a9;
+		}
+		.price-indent {
+			margin-right: 2px;
+			margin-left: 20px;
+		}
+
+		input[disabled], select[disabled], textarea[disabled], input[readonly], select[readonly], textarea[readonly] {
+			background-color: #f2f8fc;
+			border-color: #d3d9de;
+		}
+	}
+}
+
+#body-general-login #content .rpxnow-login {
+	width: 600px;
+	margin: 0 auto;
+}
+
+
+.search-header input:focus:required:invalid {
+	border-color: @blue #bfbaba @blue @blue;
+}
+
+#sort-search-box input.input-sort-by:focus {
+	border-style: solid;
+	border-width: 1px;
+	border-color: @blue #b5b7bd @blue @blue;
+}
+
+.blue-outline {
+	border-color: @blue!important;
+}
+
+.blue-outline-t-b {
+	border-color: @blue #b5b7bd @blue #b5b7bd !important;
+}
+
+.blue-outline-comment-btn {
+	border-color: @blue @blue @blue #ccc !important;
+}
+

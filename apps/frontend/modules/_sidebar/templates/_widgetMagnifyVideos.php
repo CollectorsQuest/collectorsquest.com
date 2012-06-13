@@ -18,7 +18,7 @@
 <div class="row-fluid spacer-bottom">
   <div class="span5">
     <div class="clip-inner">
-      <a href="<?= $video->getIframeUrl() ?>" title="<?= $video->getTitle() ?>">
+      <a href="<?= $video->getPlayUrl() ?>" title="<?= $video->getTitle() ?>">
         <img src="<?= $video->getThumbnail() ?>" alt="<?= $video->getTitle() ?>" width="120" />
         <span class="sidebar-video-play-button"></span>
       </a>
@@ -27,7 +27,7 @@
   <div class="span7 max-height-video-box-sidebar">
     <div id="sidebar-videos">
         <span class="title">
-          <a href="<?= $video->getIframeUrl() ?>" title="<?= $video->getTitle() ?>">
+          <a href="<?= $video->getPlayUrl() ?>" title="<?= $video->getTitle() ?>">
             <?= cqStatic::truncateText($video->getTitle(), 50) ?>
           </a>
         </span>

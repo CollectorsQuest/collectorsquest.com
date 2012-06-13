@@ -1,9 +1,23 @@
-<div class="promo-space">
-  <img src="/images/banners/040412_promo_space_banner2.jpg" alt="Check out items seen on American Pickers">
+<div class="spacer-bottom-15">
+  <img src="/images/banners/2012-0420_AP_Promo_Space_620x180_FIN.jpg" alt="Check out items seen on American Pickers">
 </div>
-<?php cq_page_title('As seen on American Pickers'); ?>
 
-<br/>
+<p style="text-align: justify;">
+  Part sleuths, part antiques experts, and part cultural historians,
+  professional ‘pickers’ Mike Wolfe and Frank Fritz’s adventures in
+  <strong><i>AMERICAN PICKERS</i></strong><sup>&reg;</sup> on HISTORY<sup>&reg;</sup>
+  bring them to small towns across the country. Combing through memorabilia and
+  artifacts and hoping to find treasures among the trash, they find their ‘gold’
+  in items of all kinds, like the pieces featured below.
+</p>
+
+<?php
+  cq_page_title(
+    'Collectibles Seen on <strong><i>American Pickers</i></strong>', null,
+    array('class' => 'row-fluid header-bar spacer-bottom-15')
+  );
+?>
+
 <div class="row">
   <div id="collectibles" class="row-content">
     <?php
@@ -21,8 +35,8 @@
 </div>
 
 <?php
-$link = link_to('See all items for sale  &raquo;', '@marketplace', array('class' => 'text-v-middle link-align'));
-cq_section_title('Featured Items For Sale', $link);
+  $link = link_to('See all items for sale  &raquo;', '@marketplace', array('class' => 'text-v-middle link-align'));
+  cq_section_title('Featured Items For Sale', $link);
 ?>
 
 <div id="items-for-sale">

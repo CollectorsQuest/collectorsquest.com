@@ -3,10 +3,12 @@
  * @var  $options  array
  * @var  $pager    sfPropelPager|PropelModelPager
  * @var  $sf_request sfWebRequest
+ * @var  $sf_response sfWebResponse
  * @var  $url string
  * @var  $mark string
  */
 $page = 1;
+$linkPrev = $linkNext = false;
 ?>
 
 <?php if ($pager->haveToPaginate()): ?>
@@ -14,7 +16,10 @@ $page = 1;
   <ul>
     <?php if ($pager->getPage() != 1): ?>
     <li class="prev">
-      <?= link_to(' &larr; ', $url . $mark . $options['page_param'] . '=' . $pager->getPreviousPage()); ?>
+      <?php
+      $linkPrev =  $url . $mark . $options['page_param'] . '=' . $pager->getPreviousPage();
+      ?>
+      <?= link_to(' &larr; ', $linkPrev); ?>
     </li>
     <?php else: ?>
     <li class="disabled"><a href="javascript:void(0);"> &larr; </a></li>
@@ -36,7 +41,8 @@ $page = 1;
     <?php endif; ?>
     <?php if ($pager->getPage() != $pager->getCurrentMaxLink()): ?>
     <li class="next">
-      <?= link_to(' &rarr; ', $url . $mark . $options['page_param'] . '=' . $pager->getNextPage()); ?>
+      <?php $linkNext = $url . $mark . $options['page_param'] . '=' . $pager->getNextPage(); ?>
+      <?= link_to(' &rarr; ', $linkNext); ?>
     </li>
     <?php else: ?>
     <li class="disabled"><a href="javascript:void(0);"> &rarr; </a></li>
@@ -49,4 +55,15 @@ $page = 1;
     <?php endif; ?>
   </ul>
 </div>
+
+<?php slot('prev_next'); ?>
+  <?php if ($linkPrev): ?>
+    <link rel="prev" href="<?= $linkPrev ?>" />
+  <?php endif; ?>
+  <?php if ($linkNext): ?>
+    <link rel="next" href="<?= $linkNext ?>" />
+  <?php endif; ?>
+  <link rel="start" href="<?= $url ?>" />
+<?php end_slot(); ?>
+
 <?php endif; ?>

@@ -13,6 +13,10 @@ class PropelMigration_1337016152
 
   public function postUp($manager)
   {
+    if (sfConfig::get('sf_environment') === 'dev') {
+      return true;
+    }
+
     $q = CollectorCollectionQuery::create()
       ->setFormatter(ModelCriteria::FORMAT_ON_DEMAND)
       ->orderBy('CreatedAt', Criteria::DESC);

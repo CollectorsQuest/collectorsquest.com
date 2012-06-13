@@ -10,7 +10,7 @@
 
   <div class="mosaic-overlay">
     <p class="details">
-      <?= link_to_collectible($collectible, 'text', array('class' => 'target', 'truncate' => 30)); ?>
+      <?= link_to_collectible($collectible, 'text', array('class' => 'target', 'truncate' => 40)); ?>
     </p>
   </div>
   <?= link_to_collectible($collectible, 'image', array('width' => 140, 'height' => 140, 'class' => 'mosaic-backdrop')); ?>

@@ -2,14 +2,15 @@
 # http://www.symfony-project.org/reference/1_4/en/12-Filters
 
 rendering: ~
+
 remember_me:
   class: cqCollectorRememberMeFilter
-cqnext_access:
-  class: cqNextAccessFilter
 uuid:
   class: cqUuidFilter
-
 security:
   class: cqSecurityFilter
+seo:
+  class: iceSeoFilter
+
 cache:     ~
 execution: ~

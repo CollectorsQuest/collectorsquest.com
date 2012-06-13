@@ -26,7 +26,9 @@
 
 <?php if ('open' == $post->comment_status) : ?>
 
-  <!--<h3 align="left" id="respond"><b>Leave a Reply</b></h3>-->
+  <!--<h3 align="left" id="respond"><b>Comment on</b></h3>
+  <h3><?php comments_number('Comment', 'One Comment', '% Comments' );?> on &#8220;<?php the_title(); ?>&#8221;</h3>-->
+
 
   <?php if ( get_option('comment_registration') && !$user_ID ) : ?>
   <p>You must be <a href="<?php echo get_option('siteurl'); ?>/wp-login.php?redirect_to=<?php the_permalink(); ?>">logged in</a> to post a comment.</p>
@@ -45,18 +47,18 @@
         <div class="row-fluid comment-option-wrap">
           <p class="span4">
             <input class="span12" type="text" align="left" name="author" id="author" value="<?php echo $comment_author; ?>" size="22" tabindex="5" />
-            <label for="author"><small>Name <?php if ($req) echo "(required)"; ?></small></label>
+            <label for="author"><small>Name</small></label>
           </p>
           <p class="span4">
             <input class="span12" type="text" name="email" id="email" value="<?php echo $comment_author_email; ?>"  />
-            <label for="email"><small>Mail (will not be published) <?php if ($req) echo "(required)"; ?></small></label>
+            <label for="email"><small>Email (will not be published)</small></label>
           </p>
         </div>
         <?php endif; ?>
 
         <!--<p><small><strong>XHTML:</strong> You can use these tags: <?php echo allowed_tags(); ?></small></p>-->
 
-        <textarea class="input-append" name="comment" id="c" rows="10" colspan="3" style="width: 494px; height: 18px;"></textarea>
+        <textarea class="input-append" name="comment" id="c" rows="10" colspan="3" style="width: 494px; height: 18px;resize: none;" placeholder=" What do you think?"></textarea>
         <!-- <input class="input-append" type="text" id="c" data-provide="comment" autocomplete="off" name="comment">
 
         <!--<p><input name="submit" type="submit" id="submit" tabindex="5" value="Submit Comment" />-->
@@ -99,19 +101,18 @@
 
 
 <?php if ($comments) : ?>
-	<!-- <h3 id="comments"><?php comments_number('No Responses', 'One Response', '% Responses' );?> to &#8220;<?php the_title(); ?>&#8221;</h3> -->
 
   <div class="user-comments">
     <div class="commentlist">
-      <?php global $wp_query; if (get_query_var('cpage')) : $g = 2; else : $g = -1; endif;
-      wp_list_comments('type=comment&callback=cq_comment&style=div&per_page='.$g); ?>
+      <?php wp_list_comments('type=comment&callback=cq_comment&style=div&per_page=5'); ?>
     </div>
 	</div>
 
+  <?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // Are there comments to navigate through? ?>
   <div id="<?php the_ID() ?>">
     <a id="load_comments" href="javascript:void(0);" class="btn btn-small gray-button see-more-full">See more</a>
   </div>
-
+  <?php endif; ?>
 
  <?php else : // this is displayed if there are no comments so far ?>
 

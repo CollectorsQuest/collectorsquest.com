@@ -22,6 +22,37 @@ class CollectorCollectionQuery extends BaseCollectorCollectionQuery
       ->endUse();
   }
 
+  /**
+   * @param  array   $tags
+   * @param  string  $comparison
+   *
+   * @return CollectorCollectionQuery
+   */
+  public function filterByTags($tags, $comparison = null)
+  {
+    $tags = !is_array($tags) ? explode(',', (string) $tags) : $tags;
+    $tags = array_map(array('Utf8', 'slugify'), $tags);
+
+    $where = sprintf("
+        CollectorCollection.Id IN (
+          SELECT tagging.taggable_id
+            FROM tagging RIGHT JOIN tag ON (tag.id = tagging.tag_id AND tag.slug %s ('%s'))
+           WHERE taggable_model = 'CollectorCollection'
+        )
+      ",
+      $comparison === Criteria::NOT_IN ? 'NOT IN' : 'IN',
+      implode("','", $tags)
+    );
+
+    return $this->where($where);
+  }
+
+  public function haveThumbnail()
+  {
+    // @todo: we need implementation
+    return $this;
+  }
+
   public function search($v)
   {
     return $this

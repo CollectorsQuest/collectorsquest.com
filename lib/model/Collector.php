@@ -6,7 +6,6 @@ require 'lib/model/om/BaseCollector.php';
  * @method     int getSingupNumCompletedSteps() Return the number of completed signup steps
  * @method     Collector setSingupNumCompletedSteps(int $v) Set the number of completed signup steps
  * @method     Collector setCqnextAccessAllowed(boolean $v)
- * @method     boolean getCqnextAccessAllowed()
  */
 class Collector extends BaseCollector implements ShippingRatesInterface
 {
@@ -14,6 +13,7 @@ class Collector extends BaseCollector implements ShippingRatesInterface
     $_multimedia = array(),
     $_counts = array();
 
+  protected $collCollectiblesInCollections;
 
   public function initializeProperties()
   {
@@ -32,6 +32,16 @@ class Collector extends BaseCollector implements ShippingRatesInterface
   public function getCqnextAccessAllowed()
   {
     return (boolean) parent::getCqnextAccessAllowed();
+  }
+
+  /**
+   * Temporary hardcoded to always true, will be updated in the near future
+   *
+   * @return boolean
+   */
+  public function getHasCompletedRegistration()
+  {
+    return true;
   }
 
   public function getGraphId()
@@ -76,6 +86,12 @@ class Collector extends BaseCollector implements ShippingRatesInterface
    */
   public function isOwnerOf($something)
   {
+    // Special case for Multimedia objects
+    if ($something instanceof iceModelMultimedia)
+    {
+      $something = $something->getModelObject();
+    }
+
     if (is_object($something) && method_exists($something, 'getCollectorId'))
     {
       return $something->getCollectorId() == $this->getId();
@@ -359,6 +375,94 @@ class Collector extends BaseCollector implements ShippingRatesInterface
     return $this->countCollectibles();
   }
 
+  /**
+   * Clear the collCollectiblesInCollections collection
+   *
+   * @return    void
+   */
+  public function clearCollectiblesInCollections()
+  {
+    // important to set this to NULL since that means it is uninitialized
+    $this->collCollectiblesInCollections = null;
+  }
+
+  /**
+   * Initializes the collCollectiblesInCollections collection.
+   *
+   * @param     boolean $overrideExisting
+   * @return    void
+   */
+  public function initCollectiblesInCollections($overrideExisting = true)
+  {
+    if (null !== $this->collCollectiblesInCollections && !$overrideExisting) {
+      return;
+    }
+    $this->collCollectiblesInCollections = new PropelObjectCollection();
+    $this->collCollectiblesInCollections->setModel('Collectible');
+  }
+
+  /**
+   * Get the collectibles related to this collector that are asigned in
+   * collections
+   *
+   * @param     Criteria $criteria
+   * @param     PropelPDO $con
+   * @return    PropelObjectCollection Collectible[]
+   */
+  public function getCollectiblesInCollections(
+    Criteria $criteria = null,
+    PropelPDO $con = null
+  ) {
+    if (null === $this->collCollectiblesInCollections || null !== $criteria) {
+      if ($this->isNew() && null === $this->collCollectiblesInCollections) {
+        // return empty collection
+        $this->initCollectiblesInCollections();
+      } else {
+        $coll = CollectibleQuery::create(null, $criteria)
+          ->filterByCollector($this)
+          ->innerJoinCollectionCollectible()
+          ->find($con);
+        if (null !== $criteria) {
+          return $coll;
+        }
+        $this->collCollectiblesInCollections = $coll;
+      }
+    }
+    return $this->collCollectiblesInCollections;
+  }
+
+  /**
+   * Count the number of collectibles related to this collector that
+   * are asigned in collections
+   *
+   * @param     Criteria $criteria
+   * @param     boolean $distinct
+   * @param     PropelPDO $con
+   * @return    integer
+   */
+  public function countCollectiblesInCollections(
+    Criteria $criteria = null,
+    $distinct = false,
+    PropelPDO $con = null
+  ) {
+    if (null === $this->collCollectiblesInCollections || null !== $criteria) {
+      if ($this->isNew() && null === $this->collCollectiblesInCollections) {
+        return 0;
+      } else {
+        $query = CollectibleQuery::create(null, $criteria);
+        if($distinct) {
+          $query->distinct();
+        }
+        return $query
+          ->filterByCollector($this)
+          ->innerJoinCollectionCollectible()
+          ->count($con);
+      }
+    } else {
+      return count($this->collCollectiblesInCollections);
+    }
+  }
+
   public function getCollectorFriends(Criteria $criteria = null)
   {
     $c = ($criteria !== null) ? clone $criteria : new Criteria();
@@ -370,7 +474,7 @@ class Collector extends BaseCollector implements ShippingRatesInterface
 
   public function getCollectionDropbox()
   {
-    return !$this->isNew() ? new CollectionDropbox($this->getId()) : null;
+    return $this->getId() ? new CollectionDropbox($this->getId()) : null;
   }
 
   public function hasFacebook()
@@ -735,12 +839,12 @@ class Collector extends BaseCollector implements ShippingRatesInterface
     $collectiblesForSale = 0;
     foreach ($activePackageTransactions as $packageTransaction)
     {
-      if ($packageTransaction->getMaxItemsForSale() < 0)
+      if ($packageTransaction->getCredits() < 0)
       {
         $collectiblesForSale = 10000;
         break;
       }
-      $collectiblesForSale += $packageTransaction->getMaxItemsForSale();
+      $collectiblesForSale += $packageTransaction->getCredits();
     }
 
     $this->setMaxCollectiblesForSale($collectiblesForSale);
@@ -764,8 +868,34 @@ class Collector extends BaseCollector implements ShippingRatesInterface
     $watermark = isset($options['watermark']) ? (boolean) $options['watermark'] : false;
 
     $multimedia->makeThumb(100, 100, 'center', false);
-    $multimedia->makeCustomThumb(150, 150, '150x150', 'center', false);
     $multimedia->makeCustomThumb(235, 315, '235x315', 'top', $watermark);
+  }
+
+  /**
+   * Assign a random avatar image to this collector
+   *
+   * @return    boolean Success?
+   */
+  public function assignRandomAvatar()
+  {
+    $avatar_id = CollectorPeer::$avatars[mt_rand(0, count(CollectorPeer::$avatars)-1)];
+    $image = sfConfig::get('sf_web_dir')
+      .'/images/frontend/multimedia/Collector/default/235x315/'. $avatar_id .'.jpg';
+
+    if ($multimedia = $this->setPhoto($image))
+    {
+      /**
+       * We want to copy here optimized 100x100 thumb,
+       * rather than the automatically generated one
+       */
+      $small = $multimedia->getAbsolutePath('100x100');
+      copy(sfConfig::get('sf_web_dir')
+        .'/images/frontend/multimedia/Collector/default/100x100/'. $avatar_id .'.jpg', $small);
+
+      return true;
+    }
+
+    return false;
   }
 
 }

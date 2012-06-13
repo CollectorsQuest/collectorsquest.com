@@ -12,7 +12,8 @@
 			color: @blue;
 			line-height: 20px;
 			&:hover {
-				border-bottom: 1px solid @red;
+				color: @red;
+				text-decoration: none;
 			}
 		}
 		h2 {
@@ -22,6 +23,10 @@
 		h2 a {
 			color: @blueDark;
 			line-height: 28px;
+			&:hover {
+				text-decoration: none;
+				border-bottom: none;
+			}
 		}
 	}
 }

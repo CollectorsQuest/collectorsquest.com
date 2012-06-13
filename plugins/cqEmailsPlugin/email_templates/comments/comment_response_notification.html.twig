@@ -1,0 +1,26 @@
+{% extends "common/base.html.twig" %}
+
+{% block content %}
+
+<p style="margin-bottom: 10px; font-weight: bold;">
+  Hey, {{ oYourComment.authorName }}!
+</p>
+
+<p>
+  Someone responded to your comment on Collectors Quest!
+</p>
+
+<p>
+  {{ oNewComment.body }}
+</p>
+
+<p>
+  {{ link_to('Click here', sThreadUrl) }} to respond and make a friend!
+  <br />
+</p>
+
+<small>
+  Or you can unsubscribe from further notifications by {{ link_to('clicking here', sUnsubscribeUrl) }}.
+</small>
+
+{% endblock %}

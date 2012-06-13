@@ -15,7 +15,7 @@ class generalComponents extends cqFrontendComponents
     $wp_posts = $q->limit(15)->find();
 
     foreach ($wp_posts as $wp_post)
-    if ($image = $wp_post->getPostThumbnail())
+    if ($image = $wp_post->getPostThumbnail('original'))
     {
       $this->carousels[] = array(
         'image' => $image,

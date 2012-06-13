@@ -118,6 +118,57 @@ class CollectibleForSaleQuery extends BaseCollectibleForSaleQuery
   }
 
   /**
+   * @param  \Collector|null $collector
+   * @param  null $comparison
+
+   * @return CollectibleForSaleQuery
+   */
+  public function filterByCollector(Collector $collector = null, $comparison = null)
+  {
+    return $this
+      ->useCollectibleQuery()
+      ->filterByCollector($collector, $comparison)
+      ->enduse();
+  }
+
+  /**
+   * @param  \CollectionCollectible|null $collectible
+   * @param  null $comparison
+
+   * @return CollectibleForSaleQuery
+   */
+  public function filterByCollectionCollectible(CollectionCollectible $collectible = null, $comparison = null)
+  {
+    return $this
+      ->useCollectibleQuery()
+      ->filterByCollectionCollectible($collectible, $comparison)
+      ->enduse();
+  }
+
+  /**
+   * @param  \Collection|null $collection
+   * @param  null $comparison
+
+   * @return CollectibleForSaleQuery
+   */
+  public function filterByCollection(Collection $collection = null, $comparison = null)
+  {
+    return $this
+      ->useCollectibleQuery()
+      ->filterByCollection($collection, $comparison)
+      ->enduse();
+  }
+
+  public function filterByTags($tags, $comparison = null)
+  {
+    return $this
+      ->joinCollectible()
+      ->useCollectibleQuery()
+        ->filterByTags($tags, $comparison)
+      ->endUse();
+  }
+
+  /**
    * @param  null|boolean  $hasOffers
    * @return CollectibleForSaleQuery
    */
@@ -188,6 +239,18 @@ class CollectibleForSaleQuery extends BaseCollectibleForSaleQuery
     return $this
       ->joinCollectibleOffer($relationAlias, $joinType)
       ->useQuery($relationAlias ? $relationAlias : 'CollectibleOffer', 'CollectibleOfferQuery');
+  }
+
+  /**
+   * @param  string $v
+   * @return CollectionCollectibleQuery
+   */
+  public function search($v)
+  {
+    return $this
+      ->useCollectibleQuery()
+      ->search($v)
+      ->endUse();
   }
 
 }
