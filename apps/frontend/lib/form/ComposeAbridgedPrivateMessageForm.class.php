@@ -5,8 +5,13 @@ class ComposeAbridgedPrivateMessageForm extends ComposePrivateMessageForm
   /** @var Collector */
   protected $receiver_collector;
 
-  public function __construct(Collector $sender, Collector $receiver, $subject, $options = array(), $CSRFSecret = null)
-  {
+  public function __construct(
+    Collector $sender,
+    Collector $receiver,
+    $subject,
+    $options = array(),
+    $CSRFSecret = null
+  ) {
     $this->receiver_collector = $receiver;
 
     parent::__construct($sender, $sf_user = null, $thread = null, $options, $CSRFSecret);
