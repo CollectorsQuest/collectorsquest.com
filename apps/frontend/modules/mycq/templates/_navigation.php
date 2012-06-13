@@ -49,27 +49,13 @@
                   echo '<li class="'. $active .'">', link_to('Store <sup>βeta</sup>', '@mycq_marketplace'), '</li>';
                 }
               ?>
-              <?php $active = in_array($sf_params->get('module'), array('messages')) ? 'active' : null; ?>
-              <li class="dropdown <?= $active ?>" style="border-right: 1px solid #4B3B3B;">
-                <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                  Messages (<?= $sf_user->getUnreadMessagesCount(); ?>)
-                  <b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu">
-                  <li style="text-transform: none;">
-                    <a href="<?= url_for('@messages_inbox'); ?>" title="Go to Your Inbox">
-                      <i class="icon icon-inbox"></i> Go to Inbox
-                    </a>
-                  </li>
-                  <li style="text-transform: none;">
-                    <a href="<?= url_for('@messages_compose'); ?>" title="Compose Message">
-                      <i class="icon icon-edit"></i> Compose Message
-                    </a>
-                  </li>
-                </ul>
-              </li>
               <?php
-                $active = in_array($sf_params->get('action'), array('wanted')) ? 'active' : null;
+                $active = in_array($sf_params->get('module'), array('messages')) ? 'active' : null;
+                $text = sprintf('Messages (%s)', $sf_user->getUnreadMessagesCount());
+                echo '<li class="'. $active .'" style="border-right: 1px solid #4B3B3B;">', link_to($text, '@messages_inbox'), '</li>';
+              ?>
+              <?php
+                // $active = in_array($sf_params->get('action'), array('wanted')) ? 'active' : null;
                 // echo '<li class="'. $active .'" style="border-right: 1px solid #4B3B3B;">', link_to('Wanted', '@mycq_wanted'), '</li>';
               ?>
             </ul>

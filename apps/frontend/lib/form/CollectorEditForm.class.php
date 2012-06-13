@@ -115,6 +115,7 @@ class CollectorEditForm extends CollectorForm
     // and halt if there is error with it, allowing us to set the proper
     // error message
 
+    $this->widgetSchema['display_name']->setAttribute('required', 'required');
     $this->validatorSchema->setPostValidator(new sfValidatorAnd(array(
         new sfValidatorPropelUnique(array(
             'model' => $this->getModelName(),

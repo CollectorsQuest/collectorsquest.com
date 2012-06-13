@@ -11,13 +11,7 @@
   <div class="tab-content">
     <div class="tab-pane active">
       <div class="tab-content-inner spacer">
-        <?php
-        $link = link_to(
-          'View public profile &raquo;', 'collector/me/index',
-          array('class' => 'text-v-middle link-align')
-        );
-        cq_sidebar_title('Edit Your Mailing Addresses', $link, array('left' => 8, 'right' => 4));
-        ?>
+        <?php cq_sidebar_title('Edit Your Mailing Addresses'); ?>
 
         <div class="collector-addresses-holder">
           <h2>Your addresses</h2>
@@ -34,8 +28,25 @@
 
                   <fieldset class="form-container-center">
                     <div class="form-actions">
-                      <?= link_to('Edit Address', array('sf_route' => 'mycq_profile_addresses_edit', 'sf_subject' => $address), array('class' => 'btn blue-button spacer-left')) ?>
-                      <?= link_to('<i class="icon-trash"></i> Delete', array('sf_route' => 'mycq_profile_addresses_delete', 'sf_subject' => $address), array('class' => 'btn gray-button spacer-left')) ?>
+                      <?php
+                        echo link_to('Edit Address',
+                          array(
+                            'sf_route' => 'mycq_profile_addresses_edit',
+                            'sf_subject' => $address
+                          ),
+                          array('class' => 'btn blue-button spacer-left')
+                        );
+                      ?>
+                      <?php
+                        echo link_to(
+                          '<i class="icon-trash"></i> Delete',
+                          array(
+                            'sf_route' => 'mycq_profile_addresses_delete',
+                            'sf_subject' => $address
+                          ),
+                          array('class' => 'btn gray-button spacer-left')
+                        );
+                      ?>
                     </div>
                   </fieldset>
 
