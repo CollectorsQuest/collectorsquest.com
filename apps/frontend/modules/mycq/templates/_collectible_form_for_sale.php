@@ -65,7 +65,7 @@
                 Want to sell this collectible?<br/>
                 Start selling now for a small fee.
               </span>
-              <div class="row-fluid spacer-inner-top-15">
+              <div class="row-fluid spacer-inner-top">
                 <div class="span6">
                   <label class="radio">
                     <input type="radio" value="option1" id="optionsRadios1" name="optionsRadios">
@@ -92,7 +92,7 @@
         </div>
       </div>
       <div class="span3">
-        <div class="inner-yellow-bg">
+        <div class="inner-yellow-bg buy-credits-button-container">
           <a href="#" class="btn-create-collection-middle h-center">
             <i class="icon icon-shopping-cart icon-white"></i>
           </a>
