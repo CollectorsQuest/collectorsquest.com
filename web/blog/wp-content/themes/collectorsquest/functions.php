@@ -9,6 +9,7 @@ bt_add_image_size('homepage', 270, 270, true, array( 'center', 'top' ));
 /** Adding custom image size for the blog's homepage */
 bt_add_image_size('blog-homepage-p1', 300, 300, true, array( 'center', 'top' ));
 bt_add_image_size('blog-homepage-thumb', 140, 140, true, array( 'center', 'top' ));
+bt_add_image_size('blog-single-hero', 620, 440, true, array( 'center', 'top' ));
 
 
 /**
