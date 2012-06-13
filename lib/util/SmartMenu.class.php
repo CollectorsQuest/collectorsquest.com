@@ -75,7 +75,7 @@ class SmartMenu
 
     if (!is_array($menu_data))
     {
-      throw new Exception(sprintf("SmartMenus: The menu %s doesn't exist.", $menu_name));
+      throw new Exception(sprintf('SmartMenus: The menu "%s" doesn\'t exist.', $menu_name));
     }
 
     $menu_data = array_merge(
@@ -100,7 +100,7 @@ class SmartMenu
 
     if (!isset($menu_data['items']))
     {
-      throw new Exception(sprintf("SmartMenus: The menu %s doesn't have any items set.", $menu_name));
+      throw new Exception(sprintf('SmartMenus: The menu "%s" doesn\'t have any items set.', $menu_name));
     }
 
     return $menu_data['items'];
