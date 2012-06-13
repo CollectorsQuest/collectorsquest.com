@@ -127,10 +127,10 @@
                 </div>
 
                 <div class="inset-input pull-right with-required-token">
-                  <span class="required-token">*</span>
                   <label for="<?= $collector_form['country_iso3166']->renderId(); ?>" class="spacer-left">
                     <?= $collector_form['country_iso3166']->renderLabelName(); ?>
                   </label>
+                  <span class="required-token" style="position: relative; left: 0px;">*</span>
                   <?= $collector_form['country_iso3166']->render(array('class' => 'span4')); ?>
                 </div>
               </div>
