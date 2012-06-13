@@ -198,7 +198,7 @@ var COMMON = window.COMMON = (function(){
 
     $form.on('keypress', 'input', function(event) {
       // if ENTER was pressed
-      if (13 == event.which) {
+      if (13 === event.which) {
         if (!$form.find('input[type=submit]').length) {
           $form.append('<input type="submit" class="hidden" />');
         }
@@ -207,7 +207,7 @@ var COMMON = window.COMMON = (function(){
       }
 
       return true;
-    })
+    });
 
     $holder.find('.modal-footer button').on('click', function() {
       if (!Modernizr.html5formvalidation) {
@@ -352,7 +352,6 @@ var COMMON = window.COMMON = (function(){
             token: $load_more.data('token'),
             offset: $load_more.data('offset')
           }, function (data) {
-            console.log(data);
             $('.user-comments').append(data.html);
             if (!data.has_more) {
               $load_more.parent('.see-more-under-image-set').hide();
@@ -362,7 +361,7 @@ var COMMON = window.COMMON = (function(){
             }
           },
           'json'
-        )
+        );
       });
     },
     setupScrollToTop: function() {
@@ -749,11 +748,11 @@ var MISC = window.MISC = (function(){
 
   function commonModalConfirm(destructive, title, text, target, return_callback) {
     title = title || 'Are you sure?';
-    text  = text  || 'Are you sure you wish to proceeed?'
+    text  = text  || 'Are you sure you wish to proceeed?';
     var $modal = $('#confirmation-modal');
     var callback = $.isFunction(target) && target || function() {
       window.location.href = target;
-    }
+    };
 
     if (!$modal.data('modal')) {
       $modal.modal({
@@ -769,8 +768,9 @@ var MISC = window.MISC = (function(){
 
     function execute(ev) {
       // we need to get the proper context for the callback that is passed to us
-      var that = ev.target || this;
-      setupIsDestructiveModal($modal, destructive)
+      var that = ev && ev.target || this;
+
+      setupIsDestructiveModal($modal, destructive);
       $modal.find('.modal-header h3').html(title);
       $modal.find('.modal-body p').html(text);
       $modal.modal('show');
@@ -781,10 +781,10 @@ var MISC = window.MISC = (function(){
 
         return true;
       });
-    };
+    }
 
     return return_callback && execute || execute();
-  };
+  }
 
   return {
     // target should be either a callable or a URL
