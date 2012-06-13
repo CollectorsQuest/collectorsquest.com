@@ -124,7 +124,7 @@ class cqFrontendUser extends cqBaseUser
    */
   public function getUsernameFromCookie()
   {
-    $username_cookie = sfConfig::get('app_collector_username_cookie_name', 'cqUsername');
+    $username_cookie = sfConfig::get('app_collector_username_cookie_name', 'cq_username');
     return sfContext::getInstance()->getRequest()->getCookie($username_cookie);
   }
 
@@ -135,7 +135,7 @@ class cqFrontendUser extends cqBaseUser
   {
     // remove the username cookie
     $expiration_time = sfConfig::get('app_collector_username_cookie_expiration_age', 15 * 24 * 3600);
-    $username_cookie = sfConfig::get('app_collector_username_cookie_name', 'cqUsername');
+    $username_cookie = sfConfig::get('app_collector_username_cookie_name', 'cq_username');
     sfContext::getInstance()->getResponse()->setCookie($username_cookie, '', time() - $expiration_time);
   }
 
