@@ -10,9 +10,9 @@ next:
   pages: ~
   features:
     shopping_cart: false
-    mycq_marketplace: false
+    mycq_marketplace: true
     mycq_seller_pay: false
-    mycq_profile_addresses: false
+    mycq_profile_addresses: true
 
 dev:
   pages: ~
