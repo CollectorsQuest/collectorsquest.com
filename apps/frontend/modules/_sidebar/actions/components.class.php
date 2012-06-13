@@ -459,7 +459,7 @@ class _sidebarComponents extends cqFrontendComponents
       // pages start from 1
       $page = (integer) ceil(($position + 1)  / $this->limit);
 
-      $offset = $page * $this->limit - $this->limit * 2;
+      $offset = $page * $this->limit - $this->limit * 4;
       $offset = $offset < 0 ? 0 : $offset;
 
       $q = CollectionCollectibleQuery::create()
