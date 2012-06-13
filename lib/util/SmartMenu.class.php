@@ -30,6 +30,7 @@ class SmartMenu
           '%name%'  => $item['name'],
           '%title%' => isset($item['title']) ? $item['title'] : $item['name'],
           '%url%'   => isset($item['uri']) ? url_for($item['uri']) : '#',
+          // https://developer.mozilla.org/en/HTML/Element/a#attr-target
           '%target%'=> isset($item['target']) ? $item['target'] : '_self',
       );
 
@@ -76,6 +77,11 @@ class SmartMenu
     {
       throw new Exception(sprintf("SmartMenus: The menu %s doesn't exist.", $menu_name));
     }
+
+    $menu_data = array_merge(
+      sfConfig::get('app_smart_menus_defaults', array()),
+      $menu_data
+    );
 
     return null === $key ? $menu_data : $menu_data[$key];
   }

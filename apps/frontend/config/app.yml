@@ -24,10 +24,11 @@ all:
       collection: -1
 
   smart_menus:
-    profile_tabs_navigation:
+    defaults:
       template:
-        normal: '<li><a href="%url%" title="%title%">%name%</a></li>'
-        active: '<li class="active"><a href="%url%" title="%title%">%name%</a></li>'
+        normal: '<li><a href="%url%" title="%title%" target="%target%">%name%</a></li>'
+        active: '<li class="active"><a href="%url%" title="%title%" target="%target%">%name%</a></li>'
+    profile_tabs_navigation:
       items:
         personal_info:    { name: "Personal Information", uri: "@mycq_profile" }
         account_info:     { name: "Account Information",  uri: "@mycq_profile_account_info" }
