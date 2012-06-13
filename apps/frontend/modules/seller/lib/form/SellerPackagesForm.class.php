@@ -283,7 +283,7 @@ class SellerPackagesForm extends sfForm
     }
     else if (0 == $promo->getNoOfTimeUsed())
     {
-      $error = new sfValidatorError($validator, 'No of time Used of this promo code is over!');
+      $error = new sfValidatorError($validator, 'No promo codes of this type left!');
     }
     else if (time() > $promo->getExpiryDate('U'))
     {
@@ -291,7 +291,7 @@ class SellerPackagesForm extends sfForm
     }
     else if ($used = PromotionTransactionPeer::findOneByCollectorAndCode($this->getOption('collector', $collector), $values['promo_code']))
     {
-      $error = new sfValidatorError($validator, 'This code is already used by you!');
+      $error = new sfValidatorError($validator, 'You have already used this promo code!');
     }
 
     if (!$error)
