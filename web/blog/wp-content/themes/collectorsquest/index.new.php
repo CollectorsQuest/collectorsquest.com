@@ -254,7 +254,7 @@ $lastclass = 0;
 
           <?php
           if (is_single()) :
-            $size = 'blog-single-p1';
+            $size = 'blog-single-hero';
             //$size = array(620,440);
 
             $img_w = 620;
@@ -277,7 +277,7 @@ $lastclass = 0;
 
             <?php if (is_single() && $image_attributes[1] >= 620) : ?>
 
-             <img src="<?php echo get_post_image_url('blog-single-hero', $count); //'http://placekitten.com/700/700'; ?>" alt=""/>
+             <img src="<?php echo get_post_image_url($size, $count); //'http://placekitten.com/700/700'; ?>" alt=""/>
              <!-- <img src="/blog/wp-content/themes/collectorsquest/thumb.php?src=<?php echo get_post_image_url('full');  //echo 'http://placekitten.com/700/700'; ?>&w=<?php echo $img_w ?>&h=<?php echo $img_h ?>&zc=1&a=<?php echo $a; ?>" alt=""/> -->
 
               <?php
