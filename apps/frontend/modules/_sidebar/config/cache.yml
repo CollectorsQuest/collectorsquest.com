@@ -16,3 +16,9 @@ _widgetCollectionCollectibles:
 # We cannot cache because of the message form and the _csrf_token
 _widgetCollector:
   enabled: false
+
+_widgetManageCollection:
+  enabled: false
+
+_widgetManageCollectible:
+  enabled: false

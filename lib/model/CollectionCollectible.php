@@ -67,6 +67,11 @@ class CollectionCollectible extends BaseCollectionCollectible
     $this->setCollectibleId($v);
   }
 
+  public function getCollectorId(PropelPDO $con = null)
+  {
+    return $this->getCollectible($con)->getCollectorId();
+  }
+
   public function getPrimaryImage($mode = Propel::CONNECTION_READ)
   {
     return $this->getCollectible()->getPrimaryImage($mode);

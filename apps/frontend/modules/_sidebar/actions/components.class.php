@@ -483,15 +483,36 @@ class _sidebarComponents extends cqFrontendComponents
     return sfView::SUCCESS;
   }
 
+  public function executeWidgetManageCollection()
+  {
+    $collection = $this->getVar('collection');
+
+    return $this->_sidebar_if($this->getCollector()->isOwnerOf($collection));
+  }
+
+  public function executeWidgetManageCollectible()
+  {
+    $collectible = $this->getVar('collectible');
+
+    return $this->_sidebar_if($this->getCollector()->isOwnerOf($collectible));
+  }
+
   private function _sidebar_if($condition = false)
   {
-    if ($condition)
-    {
+    if ($condition) {
       return sfView::SUCCESS;
     }
-    else if ($this->fallback && method_exists($this, 'execute'.$this->fallback))
-    {
+    else if (
+      $this->fallback && is_string($this->fallback) &&
+      method_exists($this, 'execute' . $this->fallback)
+    ) {
       echo get_component('_sidebar', $this->fallback, $this->getVarHolder()->getAll());
+    }
+    else if (
+      $this->fallback && count($this->fallback) === 2 &&
+      function_exists($this->fallback[0])
+    ) {
+      echo call_user_func_array($this->fallback[0], $this->fallback[1]);
     }
 
     return sfView::NONE;

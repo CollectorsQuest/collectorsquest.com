@@ -7,6 +7,13 @@
 ?>
 
 <?php
+  include_component(
+    '_sidebar', 'widgetManageCollectible',
+    array('collectible' => $collectible)
+  );
+?>
+
+<?php
   if (
     IceGateKeeper::open('shopping_cart') &&
     isset($collectible_for_sale) &&
