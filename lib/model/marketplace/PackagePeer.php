@@ -7,11 +7,9 @@ class PackagePeer extends BasePackagePeer
 
   public static function getAllPackages()
   {
-    $oCriteria = new Criteria();
-    $oCriteria->add(PackagePeer::ID, 9999, Criteria::LESS_THAN);
-    $oCriteria->addAscendingOrderByColumn(PackagePeer::PLAN_TYPE);
-
-    return PackagePeer::doSelectStmt($oCriteria);
+    return PackageQuery::create()
+        ->filterById(9999, Criteria::LESS_THAN)
+        ->find();
   }
 
   /**
@@ -28,7 +26,7 @@ class PackagePeer extends BasePackagePeer
     $packages = array();
     foreach ($results as $package)
     {
-      $packages[$package->getPlanType()][$package->getId()] = sprintf('%s - %s', money_format('%.2n', $package->getPackagePrice()), $package->getPackageName());
+      $packages[$package->getId()] = sprintf('%s - %s', money_format('%.2n', $package->getPackagePrice()), $package->getPackageName());
     }
 
     return $packages;

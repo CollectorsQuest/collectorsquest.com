@@ -65,6 +65,8 @@ class sellerActions extends cqFrontendActions
       }
       else
       {
+
+
         $packagesForm->bind($request->getParameter($packagesForm->getName()));
 
         if ($packagesForm->isValid())

@@ -91,10 +91,6 @@ class SellerPackagesForm extends sfForm
       'placeholder' => 'Promo code',
     )));
     $this->setValidator('promo_code', new sfValidatorString(array('required'=>false)));
-//    $this->setValidator('promo_code', new sfValidatorCallback(array(
-//      'required'=> false,
-//      'callback'=> array($this, 'applyPromoCode')
-//    )));
     $this->mergePreValidator(new sfValidatorCallback(array('callback'=>array($this, 'applyPromoCode'))));
   }
 
@@ -267,7 +263,7 @@ class SellerPackagesForm extends sfForm
 
   public function applyPromoCode($validator, $values, $arguments)
   {
-    if (IceGateKeeper::locked('mycq_marketplace') && empty($values['promo_code']))
+    if (IceGateKeeper::locked('mycq_seller_pay') && empty($values['promo_code']))
     {
       throw new sfValidatorErrorSchema($validator, array('promo_code'=>new sfValidatorError($validator, 'Promo code is required!')));
     }
@@ -312,7 +308,7 @@ class SellerPackagesForm extends sfForm
       {
         $this->validatorSchema['payment_type']->setOption('required', false);
       }
-      else if (IceGateKeeper::locked('mycq_marketplace'))
+      else if (IceGateKeeper::locked('mycq_seller_pay'))
       {
         throw new sfValidatorErrorSchema($validator, array('promo_code'=>new sfValidatorError($validator, 'Invalid promo code!')));
       }
