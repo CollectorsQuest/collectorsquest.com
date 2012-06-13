@@ -33,7 +33,7 @@
                     data-original-image-url="<?= src_tag_multimedia($image, 'original') ?>"
                     data-post-data='<?= $sf_user->hmacSignMessage(json_encode(array(
                         'multimedia-id' => $image->getId(),
-                    ))); ?>'
+                    )), cqConfig::getCredentials('aviary', 'hmac_secret')); ?>'
                   >
                     <i class="icon icon-wrench"></i>
                   </span>
@@ -56,10 +56,10 @@
                   <i class="icon icon-remove-sign" data-multimedia-id="<?= $multimedia[$i]->getId(); ?>"></i>
                   <i class="icon icon-plus icon-plus-pos hide"></i>
                   <span class="multimedia-edit icon-edit-holder"
-                    data-original-image-url="<?= src_tag_multimedia($image, 'original') ?>"
+                    data-original-image-url="<?= src_tag_multimedia($multimedia[$i], 'original') ?>"
                     data-post-data='<?= $sf_user->hmacSignMessage(json_encode(array(
-                        'multimedia-id' => $image->getId(),
-                    ))); ?>'
+                        'multimedia-id' => $multimedia[$i]->getId(),
+                    )), cqConfig::getCredentials('aviary', 'hmac_secret')); ?>'
                   >
                     <i class="icon icon-wrench"></i>
                   </span>
