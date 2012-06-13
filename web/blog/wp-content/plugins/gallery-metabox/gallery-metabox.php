@@ -57,7 +57,7 @@ add_action( 'add_meta_boxes', 'be_gallery_metabox_add' );
  * @author Bill Erickson
  */
 function be_gallery_metabox( $post ) {
-
+  global $post;
 	$original_post = $post;
 	echo be_gallery_metabox_html( $post->ID );
 	$post = $original_post;
@@ -89,13 +89,17 @@ function be_gallery_metabox_html( $post_id ) {
 	$intro = '<p><a href="media-upload.php?post_id=' . $post_id .'&amp;type=image&amp;TB_iframe=1&amp;width=640&amp;height=715" id="add_image" class="thickbox" title="' . __( 'Add Image', 'gallery-metabox' ) . '">' . __( 'Upload Images', 'gallery-metabox' ) . '</a> | <a href="media-upload.php?post_id=' . $post_id .'&amp;type=image&amp;tab=gallery&amp;TB_iframe=1&amp;width=640&amp;height=715" id="manage_gallery" class="thickbox" title="' . __( 'Manage Gallery', 'gallery-metabox' ) . '">' . __( 'Manage Gallery', 'gallery-metabox' ) . '</a> | (Click on an image below to preview and edit its thumbnails)</p>';
 	$return .= apply_filters( 'be_gallery_metabox_intro', $intro );
 
-  $custom_posts = get_posts($args);
-  foreach($custom_posts as $cpost) : setup_postdata($cpost);
-    $thumbnail = wp_get_attachment_image_src( $cpost->ID, apply_filters( 'be_gallery_metabox_image_size', 'thumbnail' ) );
-    $return .= apply_filters( 'be_gallery_metabox_output', '<a class="thickbox" href="/blog/wp-admin/admin-ajax.php?action=pte_ajax&pte-action=launch&id='.$cpost->ID.'&TB_iframe=1&width=590&height=501"><img src="' . $thumbnail[0] . '" alt="' . get_the_title() . '" title="' . get_the_content() . '" /></a> ', $thumbnail[0], $cpost );
 
-  endforeach;
+	$loop = new WP_Query( $args );
+	if( !$loop->have_posts() )
+		$return .= '<p>No images.</p>';
 
+	while( $loop->have_posts() ): $loop->the_post();
+		$thumbnail = wp_get_attachment_image_src( $post->ID, apply_filters( 'be_gallery_metabox_image_size', 'thumbnail' ) );
+		$return .= apply_filters( 'be_gallery_metabox_output', '<a class="thickbox" href="/blog/wp-admin/admin-ajax.php?action=pte_ajax&pte-action=launch&id='.$post->ID.'&TB_iframe=1&width=590&height=501"><img src="' . $thumbnail[0] . '" alt="' . get_the_title() . '" title="' . get_the_content() . '" /></a> ', $thumbnail[0], $post );
+	endwhile;
+
+	return $return;
 }
 
 /**
