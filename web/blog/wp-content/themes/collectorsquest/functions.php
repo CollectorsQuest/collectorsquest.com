@@ -794,9 +794,8 @@ add_filter('attachment_fields_to_edit', 'my_attachment_fields_to_edit_filter', 1
 
 
 
-/**
-http://rathercurious.net
-*/
+
+// fix wp image margins from - http://rathercurious.net
 class fixImageMargins{
   public $xs = 0; //change this to change the amount of extra spacing
 
@@ -874,3 +873,18 @@ function tag_remind() {
 }
 //add_action('admin_init', 'tag_remind_init');
 add_action('edit_form_advanced', 'tag_remind');
+
+
+
+
+// Add a "Download Original" link to the media row actions
+function add_media_row_action( $actions, $post ) {
+  if ( 'image/' != substr( $post->post_mime_type, 0, 6 ) || ! current_user_can('edit_post', $post->ID ) )
+    return $actions;
+$img = wp_get_attachment_url( $post->ID );
+  $url = wp_nonce_url( admin_url( 'tools.php?page=download-original&goback=1&ids=' . $post->ID ), 'download-original' );
+  $actions['download_original'] = '<a href="' . esc_url( $img ) . '" title="' . esc_attr( __( "Right Click, and Save Link As to download the original image", 'download-original' ) ) . '">' . __( 'Download Original', 'download-original' ) . '</a>';
+
+  return $actions;
+}
+add_filter('media_row_actions', 'add_media_row_action', 10, 3);
