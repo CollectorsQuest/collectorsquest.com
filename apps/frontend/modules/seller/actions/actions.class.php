@@ -39,7 +39,7 @@ class sellerActions extends cqFrontendActions
         $packagesForm->setPartialRequirements();
         $packagesForm->bind($request->getParameter($packagesForm->getName()));
 
-        if ($packagesForm->isValid())
+        if ($packagesForm->isValid() && !is_null($packagesForm->getValue('package_id')))
         {
           $promotion = $packagesForm->getPromotion();
           $package = $packagesForm->getPackage();
@@ -51,15 +51,15 @@ class sellerActions extends cqFrontendActions
             $afterDiscountPrice = $package->getPackagePrice() - $package->getDiscount();
             $freeSubscription = (boolean) ($afterDiscountPrice <= 0);
 
-            if ($freeSubscription)
-            {
-              $this->discountMessage = 'Free Subscription!';
-            }
-            else
-            {
-              $this->discountMessage = sprintf('%d%s discount', $promotion->getAmount(),
-                PromotionPeer::DISCOUNT_FIXED == $package->getDiscountType() ? '$' : '%');
-            }
+//            if ($freeSubscription)
+//            {
+//              $this->discountMessage = 'Free Subscription!';
+//            }
+//            else
+//            {
+//              $this->discountMessage = sprintf('%d%s discount', $promotion->getAmount(),
+//                PromotionPeer::DISCOUNT_FIXED == $package->getDiscountType() ? '$' : '%');
+//            }
           }
         }
       }

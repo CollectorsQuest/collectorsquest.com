@@ -14,9 +14,12 @@ class PackagePeer extends BasePackagePeer
 
   /**
    * @static
+   *
+   * @param Promotion $promotion
+   *
    * @return Package[]
    */
-  public static function getAllPackagesForSelectGroupedByPlanType()
+  public static function getAllPackagesForSelectGroupedByPlanType($promotion = null)
   {
     /* @var $results Package[] */
     $results = PackageQuery::create()
@@ -26,7 +29,25 @@ class PackagePeer extends BasePackagePeer
     $packages = array();
     foreach ($results as $package)
     {
-      $packages[$package->getId()] = sprintf('%s - %s', money_format('%.2n', $package->getPackagePrice()), $package->getPackageName());
+      if (null !== $promotion)
+      {
+        $package->applyPromo($promotion);
+        $discountedPrice = $package->getPackagePrice() - $package->getDiscount();
+        if ($discountedPrice < 0)
+        {
+          $discountedPrice = 0;
+        }
+
+        $price = sprintf('<span class="old-price">%s</span> <span class="current-price">%s</span>',
+          money_format('%.2n', $package->getPackagePrice()),
+          0 < $discountedPrice ? money_format('%.2n', $discountedPrice) : 'Free');
+      }
+      else
+      {
+        $price = money_format('%.2n', $package->getPackagePrice());
+      }
+
+      $packages[$package->getId()] = sprintf('%s - %s', $price, $package->getPackageName());
     }
 
     return $packages;

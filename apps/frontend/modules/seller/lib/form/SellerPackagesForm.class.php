@@ -50,7 +50,7 @@ class SellerPackagesForm extends sfForm
         foreach ($inputs as $input)
         {
           $rows[] = $widget->renderContentTag('label',
-              $input['input'] . $widget->getOption('label_separator') . strip_tags($input['label']),
+              $input['input'] . html_entity_decode($input['label']),
             array('class'=> 'radio')
           );
         }
@@ -90,8 +90,8 @@ class SellerPackagesForm extends sfForm
     ), array(
       'placeholder' => 'Promo code',
     )));
-    $this->setValidator('promo_code', new sfValidatorString(array('required'=>false)));
-    $this->mergePreValidator(new sfValidatorCallback(array('callback'=>array($this, 'applyPromoCode'))));
+    $this->setValidator('promo_code', new sfValidatorString(array('required'=> false)));
+    $this->mergePreValidator(new sfValidatorCallback(array('callback'=> array($this, 'applyPromoCode'))));
   }
 
   private function setupPaymentTypeField()
@@ -265,7 +265,7 @@ class SellerPackagesForm extends sfForm
   {
     if (IceGateKeeper::locked('mycq_seller_pay') && empty($values['promo_code']))
     {
-      throw new sfValidatorErrorSchema($validator, array('promo_code'=>new sfValidatorError($validator, 'Promo code is required!')));
+      throw new sfValidatorErrorSchema($validator, array('promo_code'=> new sfValidatorError($validator, 'Promo code is required!')));
     }
 
     if (empty($values['promo_code']))
@@ -297,27 +297,32 @@ class SellerPackagesForm extends sfForm
     if (!$error)
     {
       $this->promotion = $promo;
-      $packageId = $this->getValidator('package_id')->clean($values['package_id']);
+      if (isset($values['package_id']))
+      {
+        $packageId = $this->getValidator('package_id')->clean($values['package_id']);
 
-      if ($promo && $this->getPackage($packageId))
-      {
-        $this->package->applyPromo($promo);
+        if ($promo && $this->getPackage($packageId))
+        {
+          $this->package->applyPromo($promo);
+        }
+
+        if ($this->package->getPackagePrice() <= $this->package->getDiscount())
+        {
+          $this->validatorSchema['payment_type']->setOption('required', false);
+        }
+        else if (IceGateKeeper::locked('mycq_seller_pay'))
+        {
+          throw new sfValidatorErrorSchema($validator, array('promo_code' => new sfValidatorError($validator, 'This promo code cannot be used in beta testing mode!')));
+        }
       }
 
-      if ($this->package->getPackagePrice() <= $this->package->getDiscount())
-      {
-        $this->validatorSchema['payment_type']->setOption('required', false);
-      }
-      else if (IceGateKeeper::locked('mycq_seller_pay'))
-      {
-        throw new sfValidatorErrorSchema($validator, array('promo_code'=>new sfValidatorError($validator, 'Invalid promo code!')));
-      }
+      $this->getWidget('package_id')->setOption('choices', PackagePeer::getAllPackagesForSelectGroupedByPlanType($promo));
     }
     else
     {
       unset($values['promo_code']);
 
-      throw new sfValidatorErrorSchema($validator, array('promo_code'=>$error));
+      throw new sfValidatorErrorSchema($validator, array('promo_code'=> $error));
     }
 
     return $values;
@@ -325,7 +330,7 @@ class SellerPackagesForm extends sfForm
 
   public function setPartialRequirements()
   {
-    $fields = array('payment_type', 'cc_type', 'cc_number', 'expiry_date', 'cvv_number', 'first_name', 'last_name', 'street', 'city', 'state', 'zip', 'country', 'terms');
+    $fields = array('package_id', 'payment_type', 'cc_type', 'cc_number', 'expiry_date', 'cvv_number', 'first_name', 'last_name', 'street', 'city', 'state', 'zip', 'country', 'terms');
     foreach ($fields as $field)
     {
       $this->getValidator($field)->setOption('required', false);
