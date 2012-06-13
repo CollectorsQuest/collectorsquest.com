@@ -70,9 +70,6 @@ var APP = window.APP = {
    * "messages" symfony module
    */
   messages: {
-    init: function(action) {
-      $('.nav-private-messages #' + action).addClass('active');
-    },
     inbox: function() {
       $('.private-messages-list-select .dropdown-toggle').dropdown();
       $('.private-messages-list-select .dropdown-menu a').on('click', function(e) {

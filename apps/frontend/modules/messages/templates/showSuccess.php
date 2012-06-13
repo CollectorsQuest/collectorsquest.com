@@ -2,6 +2,15 @@
   /* @var $message  PrivateMessage   */ $message;
   /* @var $messages PrivateMessage[] */ $messages;
   /* @var $reply_form ComposePrivateMessageForm */ $reply_form;
+
+  if ($messages->getFirst()->getReceiver() == $sf_user->getCollector()->getId())
+  {
+    SmartMenu::setSelected('messages_sidebar', 'inbox');
+  }
+  else
+  {
+    SmartMenu::setSelected('messages_sidebar', 'sent');
+  }
 ?>
 
 <table class="private-message-thread table table-striped table-bordered">
