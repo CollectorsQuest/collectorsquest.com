@@ -1,22 +1,17 @@
 <?php
   /* @var $form FrontendCollectorAddressForm */
-    foreach($form->getWidgetSchema()->getFields() as $form_field)
-    {
-      $form_field->setAttribute('class',
-        $form_field->getAttribute('class') . ' input-xxlarge');
-    }
+  foreach($form->getWidgetSchema()->getFields() as $form_field)
+  {
+    $form_field->setAttribute('class',
+      $form_field->getAttribute('class') . ' input-xxlarge');
+  }
+
+  SmartMenu::setSelected('profile_tabs_navigation', 'mailing_addresses');
 ?>
+
 <div id="mycq-tabs">
   <ul class="nav nav-tabs">
-    <li>
-      <a href="<?= url_for('@mycq_profile'); ?>">Personal Information</a>
-    </li>
-    <li>
-      <a href="<?= url_for('@mycq_profile_account_info'); ?>">Account Information</a>
-    </li>
-    <li class="active">
-      <a href="<?= url_for('@mycq_profile_addresses'); ?>">Mailing Addresses</a>
-    </li>
+    <?= SmartMenu::generate('profile_tabs_navigation'); ?>
   </ul>
   <div class="tab-content">
     <div class="tab-pane active">

@@ -23,6 +23,17 @@ all:
       collector: -1
       collection: -1
 
+  smart_menus:
+    profile_tabs_navigation:
+      template:
+        normal: '<li><a href="%url%" title="%title%">%name%</a></li>'
+        active: '<li class="active"><a href="%url%" title="%title%">%name%</a></li>'
+      items:
+        personal_info:    { name: "Personal Information", uri: "@mycq_profile" }
+        account_info:     { name: "Account Information",  uri: "@mycq_profile_account_info" }
+        mailing_addresses: { name: "Mailing Addresses",    uri: "@mycq_profile_addresses" }
+
+
 dev:
   domain_name: "collectorsquest.dev"
   www_domain: "www.collectorsquest.dev"
