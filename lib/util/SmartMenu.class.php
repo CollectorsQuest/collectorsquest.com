@@ -24,6 +24,12 @@ class SmartMenu
 
     foreach (self::getItems($menu_name) as $id => $item)
     {
+      // We want to lock some nav items with gatekeeper
+      if (isset($item['check_lock']) && IceGateKeeper::locked($item['check_lock']))
+      {
+        continue;
+      }
+
       // Set template values, defaults when none provided
       $item = array(
           '%id%'    => $id,

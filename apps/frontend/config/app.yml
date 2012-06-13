@@ -33,7 +33,7 @@ all:
       items:
         personal_info:    { name: "Personal Information", uri: "@mycq_profile" }
         account_info:     { name: "Account Information",  uri: "@mycq_profile_account_info" }
-        mailing_addresses: { name: "Mailing Addresses",    uri: "@mycq_profile_addresses" }
+        mailing_addresses: { name: "Mailing Addresses",    uri: "@mycq_profile_addresses", check_lock: mycq_profile_addresses }
 
     messages_sidebar:
       items:
