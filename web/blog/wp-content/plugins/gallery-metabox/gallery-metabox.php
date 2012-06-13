@@ -94,7 +94,7 @@ function be_gallery_metabox_html( $post_id ) {
 	if( !$loop->have_posts() )
 		$return .= '<p>No images.</p>';
 
-	while( $loop->have_posts() ): $loop->the_post();
+	while( $loop->have_posts() ): $loop->the_post(); global $post;
 		$thumbnail = wp_get_attachment_image_src( $post->ID, apply_filters( 'be_gallery_metabox_image_size', 'thumbnail' ) );
 		$return .= apply_filters( 'be_gallery_metabox_output', '<a class="thickbox" href="/blog/wp-admin/admin-ajax.php?action=pte_ajax&pte-action=launch&id='.$post->ID.'&TB_iframe=1&width=590&height=501"><img src="' . $thumbnail[0] . '" alt="' . get_the_title() . '" title="' . get_the_content() . '" /></a> ', $thumbnail[0], $post );
 	endwhile;
