@@ -457,27 +457,15 @@ class _sidebarComponents extends cqFrontendComponents
 
       $position = array_search($collectible->getId(), $collectible_ids);
       // pages start from 1
-      $page = (int)ceil(($position + 1)  / $this->limit);
-      /* * /
-      $step = intval($this->limit / 2);
+      $page = (integer) ceil(($position + 1)  / $this->limit);
 
-      if ($position === 0)
-      {
-        $previous = array($collectible_ids[0]);
-      }
-      else
-      {
-        $previous = array_slice($collectible_ids, $position - $step + 1, $step);
-      }
+      $offset = $page * $this->limit - $this->limit * 2;
+      $offset = $offset < 0 ? 0 : $offset;
 
-      $next = array_slice($collectible_ids, $position + 1, $step + ($step - count($previous)));
-      $ids = array_merge($previous, $next);
-
-      /* */
       $q = CollectionCollectibleQuery::create()
         ->filterByCollection($collection)
-        //->filterByCollectibleId($ids)
-        ->limit( $page * $this->limit )
+        ->offset($offset)
+        ->limit($this->limit * 4)
         ->orderByPosition(Criteria::ASC)
         ->orderByCreatedAt(Criteria::ASC);
 
