@@ -61,7 +61,7 @@ class CollectionCreateForm extends CollectorCollectionForm
       'label' => 'Tags'
     ), array(
       'required' => 'required',
-      'class' => 'tag'
+      'class' => 'tag js-hide'
     ));
 
     $this->widgetSchema['tags']->setDefault($tags);

@@ -40,7 +40,7 @@ class CollectorCollectionForm extends BaseCollectorCollectionForm
       'label' => 'Tags'
     ), array(
       'required' => 'required',
-      'class' => 'tag'
+      'class' => 'tag js-hide'
     ));
     $this->getWidgetSchema()->setHelp(
       'tags', 'Choose at least three descriptive words

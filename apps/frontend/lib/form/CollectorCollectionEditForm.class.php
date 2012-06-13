@@ -8,7 +8,7 @@ class CollectorCollectionEditForm extends CollectorCollectionForm
 
     $this->widgetSchema['name']->setAttribute('class', 'input-xlarge');
     $this->widgetSchema['name']->setAttribute('required', 'required');
-    $this->widgetSchema['description']->setAttribute('class', 'input-xlarge');
+    $this->widgetSchema['description']->setAttribute('class', 'input-xlarge js-invisible');
     $this->widgetSchema['description']->setAttribute('required', 'required');
 
     $this->setupThumbnailField();

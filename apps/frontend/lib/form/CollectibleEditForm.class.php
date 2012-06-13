@@ -22,7 +22,7 @@ class CollectibleEditForm extends BaseCollectibleForm
       ),
       array(
         'data-placeholder' => 'Please, choose at least one Collection',
-        'class' => 'input-xlarge chzn-select',
+        'class' => 'input-xlarge chzn-select js-hide',
         'style' => 'width: 410px;',
         'required' => 'required'
       )
@@ -34,7 +34,7 @@ class CollectibleEditForm extends BaseCollectibleForm
 
     $this->widgetSchema['name']->setAttribute('class', 'input-xlarge');
     $this->widgetSchema['name']->setAttribute('required', 'required');
-    $this->widgetSchema['description']->setAttribute('class', 'input-xlarge');
+    $this->widgetSchema['description']->setAttribute('class', 'input-xlarge js-invisible');
     $this->widgetSchema['description']->setAttribute('required', 'required');
 
     $this->setupThumbnailField();
@@ -83,7 +83,7 @@ class CollectibleEditForm extends BaseCollectibleForm
       'label' => 'Tags'
     ), array(
       'required' => 'required',
-      'class' => 'tag'
+      'class' => 'tag js-hide'
     ));
 
     $this->widgetSchema['tags']->setDefault($tags);

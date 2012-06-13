@@ -66,7 +66,7 @@
                 <?php else: ?>
                   <i class="icon icon-plus white-alternate-view"></i>
                   <span class="info-text">
-                    Alternate<br/> View
+                    Alternative<br/> View
                   </span>
                 <?php endif; ?>
               </div>
@@ -160,7 +160,7 @@
         'mycq', 'dropbox',
         array('instructions' => array(
           'position' => 'top',
-          'text' => 'Drag your alternate views for this Collectible into the drop areas.')
+          'text' => 'Drag your alternative views for this Collectible into the drop areas.')
         )
       );
     ?>
@@ -197,7 +197,15 @@ $(document).ready(function()
   });
 
   $('#collectible_description').wysihtml5({
-    "font-styles": false, "image": false, "link": false
+    "font-styles": false, "image": false, "link": false,
+    events:
+    {
+      "load": function() {
+        $('#collectible_description')
+          .removeClass('js-hide')
+          .removeClass('js-invisible');
+      }
+    }
   });
 
   $( "#main-image-set" ).sortable({
