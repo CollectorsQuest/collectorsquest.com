@@ -1,6 +1,9 @@
 <?php
   /* @var $messages PrivateMessage[] */ $messages;
+
+  SmartMenu::setSelected('messages_sidebar', 'sent');
 ?>
+
 <table class="private-messages-list table table-bordered">
   <tbody>
   <?php if (count($messages)): foreach ($messages as $message): ?>

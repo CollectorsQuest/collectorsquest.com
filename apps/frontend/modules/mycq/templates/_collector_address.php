@@ -22,3 +22,5 @@
 <!-- phone -->
 Phone: <?= $collector_address->getPhone() ?><br/>
 
+<!-- country -->
+Country: <?= $collector_address->getCountryName(); ?>

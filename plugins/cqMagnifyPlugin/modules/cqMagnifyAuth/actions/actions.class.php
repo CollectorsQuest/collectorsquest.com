@@ -23,8 +23,8 @@ class cqMagnifyAuthActions extends sfActions
     // Turn off web debug
     sfConfig::set('sf_web_debug', false);
 
-    $q         = CollectorQuery::create()
-        ->filterByExtraProperty('magnify.sso_signature', $request->getParameter('signature'));
+    $q = CollectorQuery::create()
+       ->filterByExtraProperty('magnify.sso_signature', $request->getParameter('signature'));
     $collector = $q->findOne();
 
     /**

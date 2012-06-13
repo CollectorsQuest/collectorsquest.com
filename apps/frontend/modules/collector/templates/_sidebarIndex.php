@@ -28,6 +28,25 @@
   </div>
 </div>
 
+<?php if (isset($pm_form)): ?>
+<div class="row-fluid spacer">
+  <div class="send-pm">
+    <form action="<?= url_for2('messages_compose', array('to'=>$collector->getUsername()), true); ?>" method="post" style="margin-bottom: 0;" id="form-private-message">
+      <?= $pm_form->renderHiddenFields(); ?>
+      <textarea class="requires-login" required data-login-title="Please log in to contact this member:" data-signup-title="Create an account to contact this member:" name="message[body]" style="width: 97%; margin-bottom: 0;" placeholder="Send a message to <?= $collector; ?>"></textarea>
+      <div class="buttons-container" id="buttons-private-message">
+        <?php /* <button type="button" class="btn cancel" value="cancel">cancel</button>
+         &nbsp; - or - &nbsp;
+        <input type="submit" class="btn btn-lightblue-normal" value="Send the Message"> */?>
+        <button type="submit" class="btn btn-lightblue-normal textright requires-login">
+          <i class="mail-icon-mini"></i> &nbsp;Send message
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+<?php endif; ?>
+
 <?php if ($about_me || $about_collections || $about_interests): ?>
 
   <?php cq_section_title('More About '. $collector->getDisplayName()); ?>
@@ -61,3 +80,19 @@
 //  );
 ?>
 
+<script>
+$(document).ready(function()
+{
+  $('#form-private-message textarea').focus(function()
+  {
+    $(this).css('height', '100px');
+    $('#buttons-private-message').slideDown();
+  });
+
+  $('#buttons-private-message .cancel').click(function()
+  {
+    $('#buttons-private-message').slideUp();
+    $('#form-private-message textarea').css('height', 'auto');
+  });
+});
+</script>

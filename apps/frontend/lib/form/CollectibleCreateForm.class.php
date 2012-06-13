@@ -46,7 +46,7 @@ class CollectibleCreateForm extends CollectibleForm
       'label' => 'Tags',
     ), array(
       'required' => 'required',
-      'class' => 'tag'
+      'class' => 'tag js-hide'
     ));
 
     $this->widgetSchema['tags']->setDefault($tags);

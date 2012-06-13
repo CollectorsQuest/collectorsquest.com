@@ -4,12 +4,18 @@ class collectorComponents extends cqFrontendComponents
 {
   public function executeSidebarIndex()
   {
-    if (!$this->collector = CollectorPeer::retrieveByPk($this->getRequestParameter('id')))
-    {
-      return sfView::NONE;
-    }
-
+    $this->collector = CollectorPeer::retrieveByPk($this->getRequestParameter('id'));
     $this->profile = $this->collector->getProfile();
+
+    // if we are not viewing our own profile
+    if ($this->getCollector() && ($this->getCollector()->getId() != $this->collector->getId()))
+    {
+      // setup PM form
+      $this->pm_form = new ComposeAbridgedPrivateMessageForm(
+        $this->getCollector(), $this->collector,
+        'A message from '.$this->getCollector()->getDisplayName()
+      );
+    }
 
     $this->about_me = $this->profile->getProperty('about.me');
     $this->about_collections = $this->profile->getProperty('about.collections');

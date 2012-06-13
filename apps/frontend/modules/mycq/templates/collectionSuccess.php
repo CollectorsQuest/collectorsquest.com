@@ -145,7 +145,15 @@ $(document).ready(function()
   });
 
   $('#collection_description').wysihtml5({
-    "font-styles": false, "image": false, "link": false
+    "font-styles": false, "image": false, "link": false,
+    events:
+    {
+      "load": function() {
+        $('#collection_description')
+          .removeClass('js-hide')
+          .removeClass('js-invisible');
+      }
+    }
   });
 
   $("#form-collection .drop-zone-large").droppable(

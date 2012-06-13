@@ -1,8 +1,10 @@
 <?php
-/**
- * @var $messages PrivateMessage[] $messages;
- * @var $filter_by string read|unread|all $filter_by;
- */
+  /**
+   * @var $messages PrivateMessage[] $messages;
+   * @var $filter_by string read|unread|all $filter_by;
+   */
+
+  SmartMenu::setSelected('messages_sidebar', 'inbox');
 ?>
 
 <form action="<?= url_for('@messages_batch_actions'); ?>" method="post">

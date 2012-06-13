@@ -1,7 +1,8 @@
 
 default:
   http_metas:
-    content-type: text/html
+    content-type: "text/html"
+    X-UA-Compatible: "IE=Edge,chrome=1"
 
   metas:
     title:        "Interactive Community and Marketplace for Collectors - CollectorsQuest.com"

@@ -33,7 +33,7 @@
                     data-original-image-url="<?= src_tag_multimedia($image, 'original') ?>"
                     data-post-data='<?= $sf_user->hmacSignMessage(json_encode(array(
                         'multimedia-id' => $image->getId(),
-                    ))); ?>'
+                    )), cqConfig::getCredentials('aviary', 'hmac_secret')); ?>'
                   >
                     <i class="icon icon-wrench"></i>
                   </span>
@@ -56,17 +56,17 @@
                   <i class="icon icon-remove-sign" data-multimedia-id="<?= $multimedia[$i]->getId(); ?>"></i>
                   <i class="icon icon-plus icon-plus-pos hide"></i>
                   <span class="multimedia-edit icon-edit-holder"
-                    data-original-image-url="<?= src_tag_multimedia($image, 'original') ?>"
+                    data-original-image-url="<?= src_tag_multimedia($multimedia[$i], 'original') ?>"
                     data-post-data='<?= $sf_user->hmacSignMessage(json_encode(array(
-                        'multimedia-id' => $image->getId(),
-                    ))); ?>'
+                        'multimedia-id' => $multimedia[$i]->getId(),
+                    )), cqConfig::getCredentials('aviary', 'hmac_secret')); ?>'
                   >
                     <i class="icon icon-wrench"></i>
                   </span>
                 <?php else: ?>
                   <i class="icon icon-plus white-alternate-view"></i>
                   <span class="info-text">
-                    Alternate<br/> View
+                    Alternative<br/> View
                   </span>
                 <?php endif; ?>
               </div>
@@ -98,8 +98,8 @@
         <?= $form['thumbnail']->renderLabel(); ?>
         <div class="controls">
           <?= $form['thumbnail']->render(); ?>
-          <label style="margin-top: 5px; line-height: 22px;">
-            &nbsp; <?= $form['is_alt_view']->render(array('style' => 'float: left;')); ?>
+          <label>
+            &nbsp; <?= $form['is_alt_view']; ?>
             Add as an alternative view instead?
           </label>
           <?= $form['thumbnail']->renderError(); ?>
@@ -160,7 +160,7 @@
         'mycq', 'dropbox',
         array('instructions' => array(
           'position' => 'top',
-          'text' => 'Drag your alternate views for this Collectible into the drop areas.')
+          'text' => 'Drag your alternative views for this Collectible into the drop areas.')
         )
       );
     ?>
@@ -197,7 +197,15 @@ $(document).ready(function()
   });
 
   $('#collectible_description').wysihtml5({
-    "font-styles": false, "image": false, "link": false
+    "font-styles": false, "image": false, "link": false,
+    events:
+    {
+      "load": function() {
+        $('#collectible_description')
+          .removeClass('js-hide')
+          .removeClass('js-invisible');
+      }
+    }
   });
 
   $( "#main-image-set" ).sortable({

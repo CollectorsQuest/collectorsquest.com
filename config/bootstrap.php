@@ -74,7 +74,7 @@ if (SF_ENV === 'prod' && !defined('GIT_REVISION'))
   if (file_exists(dirname(__FILE__).'/../.git/FETCH_HEAD'))
   {
     $contents = (string) file_get_contents(dirname(__FILE__).'/../.git/FETCH_HEAD');
-    define('GIT_REVISION', substr($contents, 0, stripos($contents, '		')));
+    define('GIT_REVISION', substr($contents, 0, 40));
     define('SVN_REVISION', sprintf("%u", crc32(GIT_REVISION)));
   }
   else

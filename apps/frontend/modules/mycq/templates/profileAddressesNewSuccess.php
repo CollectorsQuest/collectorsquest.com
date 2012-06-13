@@ -1,20 +1,19 @@
 <?php
   /* @var $form FrontendCollectorAddressForm */
+
+  // set input-xxlarge as the default class of widgets
+  foreach($form->getWidgetSchema()->getFields() as $form_field)
+  {
+    $form_field->setAttribute('class',
+      $form_field->getAttribute('class') . ' input-xxlarge');
+  }
+
+  SmartMenu::setSelected('profile_tabs_navigation', 'mailing_addresses');
 ?>
+
 <div id="mycq-tabs">
   <ul class="nav nav-tabs">
-    <li>
-      <a href="<?= url_for('@mycq_profile'); ?>">Personal Information</a>
-    </li>
-    <li>
-      <a href="<?= url_for('@mycq_profile_account_info'); ?>">Account Information</a>
-    </li>
-    <li class="active">
-      <a href="<?= url_for('@mycq_profile_addresses'); ?>">Mailing Addresses</a>
-    </li>
-    <li>
-      <a href="#tab4" data-toggle="tab">Settings</a>
-    </li>
+    <?= SmartMenu::generate('profile_tabs_navigation'); ?>
   </ul>
   <div class="tab-content">
     <div class="tab-pane active">
@@ -35,7 +34,9 @@
               <?= $form; ?>
             </fieldset>
           <div class="brown-dashes form-container-center">
-            <input type="submit" class="btn btn-primary blue-button" value="Save & Continue" />
+            <div class="form-actions">
+              <input type="submit" class="btn btn-primary blue-button" value="Save & Continue" />
+            </div>
           </div>
         </form>
       </div> <!-- .tab-content-inner.spacer -->

@@ -9,22 +9,13 @@
     $form_field->setAttribute('class',
       $form_field->getAttribute('class') . ' input-xxlarge');
   }
+
+  SmartMenu::setSelected('profile_tabs_navigation', 'personal_info');
 ?>
 
 <div id="mycq-tabs">
   <ul class="nav nav-tabs">
-    <li class="active">
-      <a href="<?= url_for('@mycq_profile'); ?>">Personal Information</a>
-    </li>
-    <li>
-      <a href="<?= url_for('@mycq_profile_account_info'); ?>">Account Information</a>
-    </li>
-    <li>
-      <a href="<?= url_for('@mycq_profile_addresses'); ?>">Mailing Addresses</a>
-    </li>
-    <li>
-      <a href="#tab4" data-toggle="tab">Settings</a>
-    </li>
+    <?= SmartMenu::generate('profile_tabs_navigation'); ?>
   </ul>
   <div class="tab-content">
     <div class="tab-pane active">
@@ -136,10 +127,10 @@
                 </div>
 
                 <div class="inset-input pull-right with-required-token">
-                  <span class="required-token">*</span>
                   <label for="<?= $collector_form['country_iso3166']->renderId(); ?>" class="spacer-left">
                     <?= $collector_form['country_iso3166']->renderLabelName(); ?>
                   </label>
+                  <span class="required-token" style="position: relative; left: 0px;">*</span>
                   <?= $collector_form['country_iso3166']->render(array('class' => 'span4')); ?>
                 </div>
               </div>
