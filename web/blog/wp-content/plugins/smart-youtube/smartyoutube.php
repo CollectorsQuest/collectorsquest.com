@@ -8,7 +8,7 @@ Version: 4.1.6
 Author URI: http://www.prelovac.com/vladimir/
 
 
-To-Do: 
+To-Do:
 
 - Is there a way to have smart youtube display multiple thumbnails of youtube videos in this fashion:
 http://wordpress.org/extend/plugins/my-youtube-playlist/
@@ -37,7 +37,7 @@ I find this would greatly help, especiall when I help create video blogs for com
 
 - love to see vimeo support! i have video intensive site...love Vimeo
 
-Only issue is I would LOVE to add the widget into another sidebar and I do not see this possibility. Can you have multiple Smart YouTubes? 
+Only issue is I would LOVE to add the widget into another sidebar and I do not see this possibility. Can you have multiple Smart YouTubes?
 
 - 1. Adding few possibilities for posting videos into post � I have great production of videos but before end of 2009 all was in 320 x 240 and after end of 2009 I start publishing video in 640 x 480 resolution. I have adjusted player video for 640 x 480 but now 320 x 240 videos are stretched across all of player window.
 
@@ -56,10 +56,10 @@ If you don�t put #1, #2, #3 player will be those which is default (without num
 
 - marinas javascript suggestion for hq videos
 - add editor button
-- The plugin places a preview image in the RSS feed which is great, but it links to the video on http://www.youtube.com. I would like to change it so the image links to the blog post so I can generate some traffic on my blog. 
+- The plugin places a preview image in the RSS feed which is great, but it links to the video on http://www.youtube.com. I would like to change it so the image links to the blog post so I can generate some traffic on my blog.
 - localization
 - the images appear under the embedded Smart Youtube videos. Is there any way to edit the z-index for Smart Youtube CSS? I
-- would like to use multiple instances of the Smart YouTube plugin. I saw the reply that said to simply use multiple calls in one instance of the widget, but that doesn't let me choose different videos for different pages. 
+- would like to use multiple instances of the Smart YouTube plugin. I saw the reply that said to simply use multiple calls in one instance of the widget, but that doesn't let me choose different videos for different pages.
 - was wondering if it's possible to get a vid and playlist in a custom page template?? Is it possible to add a preview image to search results?
 - I wondered if there were a way to bring the video to the forefront layer (perhaps z-index)? I know this actually breaks good design practice in my intended use, but have a look here:
 - However, on one page I have two videos and therefore I want to add a a parameter to the second video embed URL to _not_ start automatically. Something like httpv://www.youtube.com/watch?v=xyz123&autostart=off
@@ -80,38 +80,35 @@ class SmartYouTube_PRO {
 	var $key;
 	var $first;
 	var $first_post_on_archive;
-	
+
 	function SmartYouTube() {
 		$this->__construct();
 	}
-	
+
 	function __construct() {
 		$this->local_version = '1.0'; // TODO: Change this number???
-		
+
 		$this->plugin_url = trailingslashit(plugins_url(null,__FILE__));
-	
-		
+
+
 		$this->key = 'smart_youtube_pro';
 		$this->first_post_on_archive = false;
-		
-		$script_path = $this->plugin_url . '/javascripts/jquery.colorbox-min.js';
-		wp_register_script( 'colorbox', $script_path );
-		
+
 		$this->options = $this->get_options();
-							
+
 		$this->add_filters_and_hooks();
 	}
-	
+
 	function add_filters_and_hooks() {
 		if ( $this->options['posts'] == 'on' ) {
 			add_filter( 'the_content', array( $this, 'check' ), 5 );
 			add_filter( 'the_excerpt', array( $this, 'check_excerpt' ), 5 );
 		}
-		
+
 		if ( $this->options['comments'] == 'on' ) {
 			add_filter( 'comment_text', array( $this, 'check' ), 100 );
 		}
-		
+
 		add_action( 'plugins_loaded', array( $this, 'install' ) );
 		add_action( 'admin_menu', array( $this, 'add_menu_items' ) );
 		add_action( 'admin_head', array( $this, 'plugin_header' ) );
@@ -119,24 +116,24 @@ class SmartYouTube_PRO {
 		add_action( 'wp_print_scripts', array( $this, 'load_scripts' ) );
 		add_action( 'wp_print_styles', array( $this, 'load_styles' ) );
 		add_action( 'template_redirect', array( $this, 'mark_first_post_on_archive' ) );
-		
+
 		register_activation_hook(__FILE__, array($this, 'install' ) );
 	}
-	
+
 	function post_header() {
 		if ( is_singular() ) {
 			global $wp_query;
 			$the_content = $wp_query->post->post_content;
 			$char_codes = array( '&#215;', '&#8211;' );
 			$replacements = array( "x", "--" );
-			$the_content = str_replace( $char_codes, $replacements, $the_content );			
-			
+			$the_content = str_replace( $char_codes, $replacements, $the_content );
+
 			preg_match_all( "/(http(v|vh|vhd)?:\/\/)?([a-zA-Z0-9\-\_]+\.|)?youtube\.com\/watch(\?v\=|\/v\/|#!v=)([a-zA-Z0-9\-\_]{11})([^<\s]*)/", $the_content, $matches, PREG_SET_ORDER );
-			
+
 			if ( isset( $matches[0][5] ) )
 				if ( $matches[0][5] != '' )
 					echo '<meta property="og:image" content="http://i.ytimg.com/vi/' . $matches[0][5] . '/default.jpg" />';
-			
+
 			if ( $this->options['colorbox'] == 'on' ) {
 		?>
 		<script>
@@ -148,33 +145,33 @@ class SmartYouTube_PRO {
 			}
 		}
 	}
-	
+
 	function load_scripts() {
 		if ( $this->options["colorbox"] == 'on' && is_singular() ) {
 			wp_enqueue_script( 'jquery' );
 			wp_enqueue_script( 'colorbox' );
 		}
 	}
-	
+
 	function load_styles() {
 		$style_path = $this->plugin_url . '/themes/theme' . $this->options['colorbox_theme'] . '/colorbox.css';
 		wp_register_style( 'colorbox', $style_path );
-		
+
 		if ( $this->options["colorbox"] == 'on' && is_singular() ) {
 			wp_enqueue_style( 'colorbox' );
 		}
 	}
-	
+
 	function plugin_header() {
 		if ( ! empty( $_REQUEST['page'] ) )
 			$page = $_REQUEST['page'];
 		else
 			$page = '';
-		?>		
+		?>
 		<style>
 		<?php if ( ( $page == 'syt_settings' ) || ( $page == 'syt_colorbox_options' ) || ( $page == 'syt_about' ) ) : ?>
-		#icon-syt_settings { background:transparent url('<?php echo $this->plugin_url .'i/logo.png';?>') no-repeat; }		
-		<?php endif; ?>		
+		#icon-syt_settings { background:transparent url('<?php echo $this->plugin_url .'i/logo.png';?>') no-repeat; }
+		<?php endif; ?>
 		</style>
 		<script>
 		<?php if ( $page == 'syt_settings' ) : ?>
@@ -184,7 +181,7 @@ class SmartYouTube_PRO {
 			else
 				($)('#disp_excerpt_align_div').show();
 			($)('#disp_excerpt').change(function(){
-				if (($)(this).val() == 'not') 
+				if (($)(this).val() == 'not')
 					($)('#disp_excerpt_align_div').hide();
 				else
 					($)('#disp_excerpt_align_div').show();
@@ -205,7 +202,7 @@ class SmartYouTube_PRO {
 		</script>
 		<?php
 	}
-	
+
 	function add_menu_items() {
 		$image = $this->plugin_url . '/i/icon.png';
 		add_menu_page( __( 'Smart Youtube', 'smart-youtube' ), __( 'Smart Youtube', 'smart-youtube' ), 'manage_options', 'syt_settings', array(
@@ -225,40 +222,40 @@ class SmartYouTube_PRO {
 			'handle_about'
 		) );
 	}
-		
-	function options_page() { 
+
+	function options_page() {
 		// If form was submitted
-		if ( isset( $_POST['submitted'] ) ) {			
+		if ( isset( $_POST['submitted'] ) ) {
 			check_admin_referer( 'smart-youtube' );
-			
+
 			$this->options['img'] = ! isset( $_POST['disp_img'] ) ? 'off' : 'on';
 			$this->options['link'] = ! isset( $_POST['disp_link'] ) ? 'off' : 'on';
 			$this->options['valid'] = ! isset( $_POST['valid'] ) ? 'off' : 'on';
 			$this->options['search'] = ! isset( $_POST['disp_search'] ) ? 'off' : 'on';
 			$this->options['ann'] = ! isset( $_POST['disp_ann'] ) ? 'off' : 'on';
-			
+
 			$this->options['info'] = ! isset( $_POST['disp_info'] ) ? 'off' : 'on';
-			
+
 			$this->options['width'] = ! isset( $_POST['disp_width'] ) ? 425 : intval( $_POST['disp_width'] );
 			$this->options['height'] = ! isset( $_POST['disp_height'] ) ? 344 : intval( $_POST['disp_height'] );
-			
+
 			$this->options['widthhq'] = ! isset( $_POST['disp_widthhq'] ) ? 480 : intval( $_POST['disp_widthhq'] );
 			$this->options['heighthq'] = ! isset( $_POST['disp_heighthq'] ) ? 295 : intval( $_POST['disp_heighthq'] );
-			
+
 			$this->options['widthside'] = ! isset( $_POST['disp_widthside'] ) ? 150 : intval( $_POST['disp_widthside'] );
 			$this->options['heightside'] = ! isset( $_POST['disp_heightside'] ) ? 125 : intval( $_POST['disp_heightside'] );
-			
+
 			$this->options['rel'] = ! isset( $_POST['embedRel'] ) ? 1 : $_POST['embedRel'];
 			$this->options['autoplay'] = ! isset( $_POST['autoplay'] ) ? 0 : 1;
 			$this->options['autoplay_first'] = ! isset( $_POST['autoplay_first'] ) ? 0 : 1;
 			$this->options['privacy'] = ! isset( $_POST['disp_privacy'] ) ? 0 : 1;
-			
+
 			$this->options['posts'] = ! isset( $_POST['disp_posts'] ) ? 'off' : 'on';
 			$this->options['comments'] = ! isset( $_POST['disp_comments'] ) ? 'off' : 'on';
 			$this->options['iframe'] = ! isset( $_POST['iframe'] ) ? 'off' : 'on';
 			$this->options['www'] = ! isset( $_POST['www'] ) ? 'off' : 'on';
 			$this->options['http'] = ! isset( $_POST['http'] ) ? 'off' : 'on';
-			
+
 			$this->options['template'] = ! isset( $_POST['disp_template'] ) ? '{video}' : stripslashes( htmlspecialchars( $_POST['disp_template'] ) );
 			$this->options['tag'] = ! isset( $_POST['tag'] ) ? '' : $_POST['tag'];
 			$this->options['wiziapp'] = ! isset( $_POST['wiziapp'] ) ? 'off' : 'on';
@@ -269,37 +266,37 @@ class SmartYouTube_PRO {
 			$this->options['excerpt_align'] = ! isset( $_POST['excerpt_align'] ) ? '' : $_POST['excerpt_align'];
 			$this->options['logoless'] = ! isset( $_POST['logoless'] ) ? 'off' : 'on';
 			$this->options['theme'] = ! isset( $_POST['theme'] ) ? '' : $_POST['theme'];
-			
+
 			update_option( $this->key, $this->options );
-			
+
 			// Show message
 			echo '<div id="message" class="updated fade"><p>' . __( 'Smart Youtube options saved.', 'smart-youtube' ) . '</p></div>';
-		} 
-		
+		}
+
 		$disp_img = $this->options['img'] == 'on' ? 'checked="checked"' : '';
 		$disp_link = $this->options['link'] == 'on' ? 'checked="checked"' : '';
 		$disp_search = $this->options['search'] == 'on' ? 'checked="checked"' : '';
 		$disp_ann = $this->options['ann'] == 'on' ? 'checked="checked"' : '';
 		$disp_info = $this->options['info'] == 'on' ? 'checked="checked"' : '';
-		
+
 		$valid = $this->options['valid'] == 'on' ? 'checked="checked"' : '';
-		
+
 		$disp_width = $this->options['width'];
 		$disp_height = $this->options['height'];
-		
+
 		$disp_widthhq = $this->options['widthhq'];
 		$disp_heighthq = $this->options['heighthq'];
-		
+
 		$disp_widthside = $this->options['widthside'];
 		$disp_heightside = $this->options['heightside'];
-		
+
 		$disp_autoplay = $this->options['autoplay'] ? 'checked="checked"' : '';
 		$disp_autoplay_first = $this->options['autoplay_first'] ? 'checked="checked"' : '';
 		$disp_rel = $this->options['rel'] ? 'checked="checked"' : '';
 		$disp_rel2 = $this->options['rel'] ? '' : 'checked="checked"';
 		$disp_posts = $this->options['posts'] == 'on' ? 'checked="checked"' : '' ;
 		$disp_comments = $this->options['comments'] == 'on' ? 'checked="checked"' : '';
-		
+
 		$disp_privacy = $this->options['privacy'] ? 'checked="checked"' : '';
 		$iframe = $this->options['iframe'] =='on' ? 'checked="checked"' : '';
 		$www = $this->options['www'] =='on' ? 'checked="checked"' : '';
@@ -309,35 +306,35 @@ class SmartYouTube_PRO {
 		$colorbox = $this->options['colorbox'] == 'on' ? 'checked="checked"' : '';
 		$excerpt = isset( $this->options['excerpt'] ) ? $this->options['excerpt'] : 'not';
 		$excerpt_align = isset( $this->options['excerpt_align'] ) ? $this->options['excerpt_align'] : 'left';
-		
+
 		$disp_template = esc_html( $this->options['template'] );
 		$tag = $this->options['tag'];
 		$wiziapp = $this->options['wiziapp'] == 'on' ? 'checked="checked"' : '';
 		$logoless = $this->options['logoless'] == 'on' ? 'checked="checked"' : '';
 		$theme = isset( $this->options['theme'] ) ? $this->options['theme'] : '';
-		
+
 		if ( ! $disp_width ) {
 			$disp_width = 425;
 		}
-		
+
 		if ( ! $disp_height ) {
 			$disp_height = 344;
 		}
-		
+
 		global $wp_version;
-		
+
 		$embed_img = $this->plugin_url . '/img/embed_selection-vfl29294.png';
-			
+
 		echo '<script src="' . $this->plugin_url . '/yt.js" type="text/javascript"></script>
 <link rel="stylesheet" type="text/css" href="' . $this->plugin_url . '/styleyt.css" />';
-		
+
 		$imgpath = $this->plugin_url.'/i';
 		$actionurl = $_SERVER['REQUEST_URI'];
 		$nonce = wp_create_nonce( 'smart-youtube' );
 		$example = htmlentities( '<div style="float:left;margin-right: 10px;">{video}</div>' );
-		
+
 		// Configuration Page
-		
+
 ?>
 <div class="wrap smartyoutube" >
 	<?php screen_icon(); ?>
@@ -346,7 +343,7 @@ class SmartYouTube_PRO {
 	<div id="poststuff" style="margin-top:10px;">
 		<div id="sideblock" style="float:right;width:270px;margin-left:10px;">
 			<iframe width=270 height=800 frameborder="0" src="http://www.prelovac.com/plugin/news.php?id=0&utm_source=plugin&utm_medium=plugin&utm_campaign=Smart%2BYoutube"></iframe>
-		</div> 
+		</div>
 		<div id="mainblock" style="width:710px">
 			<div class="dbx-content">
 				<h2 id="usageHeader"><?php _e( 'Usage <span style="font-size:small">[<a href="#">view instructions</a>]</span>', 'smart-youtube' ); ?></h2>
@@ -369,11 +366,11 @@ class SmartYouTube_PRO {
 					</ul>
 				</div>
 				<form name="yteform" action="<?php echo $actionurl; ?>" method="post">
-					<input type="hidden" name="submitted" value="1" /> 
+					<input type="hidden" name="submitted" value="1" />
 					<input type="hidden" id="_wpnonce" name="_wpnonce" value="<?php echo $nonce; ?>" />
 					<h2><?php _e( 'Options', 'smart-youtube' ); ?></h2>
 					<p><?php _e( 'Smart Youtube is powerful and free WordPress plugin for embeding videos into your blog. ', 'smart-youtube' ); ?></p>
-					
+
 					<p><?php _e( 'From the same author: <a href="http://managewp.com" target="_blank">ManageWP.com</a> - Wordpress service that helps you manage all your WordPress sites from one location.', 'smart-youtube' ); ?></p>
 					<p><?php _e( 'You can adjust the way your embeded youtube videos behave in the options below.', 'smart-youtube' ); ?></p>
 					<h3><?php _e( 'Video settings', 'smart-youtube' ); ?></h3>
@@ -512,7 +509,7 @@ class SmartYouTube_PRO {
 							</select>
 						</div>
 						<div id="disp_excerpt_align_div">
-							<label for="disp_excerpt_align"><?php _e( 'Align embeds in post excerpts to', 'smart-youtube' ); ?></label>						
+							<label for="disp_excerpt_align"><?php _e( 'Align embeds in post excerpts to', 'smart-youtube' ); ?></label>
 							<select id="disp_excerpt_align" name="excerpt_align">
 								<option value="left" <?php echo ( ( $excerpt_align == 'left' ) ? 'selected="yes"' : '' ); ?>><?php _e( 'Left', 'smart-youtube' ); ?></option>
 								<option value="right" <?php echo ( ( $excerpt_align == 'right' ) ? 'selected="yes"' : '' ); ?>><?php _e( 'Right', 'smart-youtube' ); ?></option>
@@ -524,7 +521,7 @@ class SmartYouTube_PRO {
 					<p><?php _e( 'For example if you used [yt]qYWWBwf2wHE[/yt] type of code, you would type yt in the box below.', 'smart-youtube' ); ?></p>
 					<input id="tag" type="text" name="tag" value="<?php echo $tag; ?>" />
 					<label for="tag"><?php _e( 'Custom code', 'smart-youtube' ); ?></label>
-					 
+
 					<h3><?php _e( 'WiziApp support', 'smart-youtube' ); ?></h3>
 					<p><?php _e( 'This will integrate your video seamlessly with WiziApp', 'smart-youtube' ); ?></p>
 					<input id="wiziapp" type="checkbox" name="wiziapp" <?php echo $wiziapp; ?> />
@@ -549,22 +546,22 @@ class SmartYouTube_PRO {
 <h5 class="author"><?php _e( 'Another fine WordPress plugin by <a href="http://www.prelovac.com/vladimir/">Vladimir Prelovac', 'smart-youtube' ); ?></a></h5>
 <?php
 	}
-	
+
 	function handle_colorbox_options() {
 		if ( isset( $_POST['submitted'] ) ) {
 			$this->options['colorbox_theme'] = ( ! isset( $_POST['colorbox_theme'] ) ? '1' : $_POST['colorbox_theme'] );
-			
+
 			update_option( $this->key, $this->options );
-			
+
 			$msg_status = __( 'SEO Friendly Images PRO colorbox options saved.', 'smart-youtube' );
-			
+
 			// Show message
 			echo '<div id="message" class="updated fade"><p>' . $msg_status . '</p></div>';
 		}
-		
+
 		$imgpath = $this->plugin_url . '/i';
 		$actionurl = $_SERVER['REQUEST_URI'];
-		
+
 		$this->options = $this->get_options();
 	?>
 	<div class="wrap">
@@ -572,7 +569,7 @@ class SmartYouTube_PRO {
 		<h2><?php _e( 'Smart YouTube PRO', 'smart-youtube' ); echo '&nbsp;' . $this->local_version; ?></h2>
 		<a href="admin.php?page=syt_settings"><?php _e( 'Settings', 'smart-youtube' ); ?></a> &nbsp;|&nbsp; <a href="admin.php?page=syt_colorbox_options"><?php _e( 'Colorbox Options', 'smart-youtube' ); ?></a> &nbsp;|&nbsp; <a href="admin.php?page=syt_about"><?php _e( 'About', 'smart-youtube' ); ?></a>
 		<div id="poststuff" style="margin-top:10px;">
-			<div id="sideblock" style="float:right;width:270px;margin-left:10px;">		  
+			<div id="sideblock" style="float:right;width:270px;margin-left:10px;">
 				<iframe width=270 height=800 frameborder="0" src="http://www.prelovac.com/plugin/news.php?id=2&utm_source=plugin&utm_medium=plugin&utm_campaign=SEO%2BFriendly%2BImages%2BPRO"></iframe>
 			</div>
 		</div>
@@ -600,21 +597,21 @@ class SmartYouTube_PRO {
 						<input type="submit" name="Submit" value="<?php _e( 'Update options', 'smart-youtube' ); ?>" />
 					</div>
 				</form>
-			</div>   
+			</div>
 		</div>
 		<h5><?php _e( 'Another fine WordPress plugin by', 'smart-youtube' ); ?> <a href="http://www.prelovac.com/vladimir/">Vladimir Prelovac</a></h5>
 	</div>
-	<?php		
+	<?php
 	}
-	
+
 	function handle_about() {
 		global $wp_version;
-		
+
 		$upd_msg = "";
-		
+
 		$actionurl = $_SERVER['REQUEST_URI'];
 		$nonce = wp_create_nonce( 'smart-youtube' );
-		
+
 		$lic_msg = '<p>Welcome to ' . __( 'Smart YouTube PRO', 'smart-youtube' ) . '.</p>';
 	?>
 	<div class="wrap">
@@ -622,38 +619,38 @@ class SmartYouTube_PRO {
 		<h2><?php _e( 'Smart YouTube PRO', 'smart-youtube' ); echo '&nbsp;' . $this->local_version; ?></h2>
 		<a href="admin.php?page=syt_settings"><?php _e( 'Settings', 'smart-youtube' ); ?></a> &nbsp;|&nbsp; <a href="admin.php?page=syt_colorbox_options"><?php _e( 'Colorbox Options', 'smart-youtube' ); ?></a> &nbsp;|&nbsp; <a href="admin.php?page=syt_about"><?php _e( 'About', 'smart-youtube' ); ?></a>
 		<div id="poststuff" style="margin-top:10px;">
-		
-			<div id="sideblock" style="float:right;width:270px;margin-left:10px;">		  
+
+			<div id="sideblock" style="float:right;width:270px;margin-left:10px;">
 				<iframe width=270 height=800 frameborder="0" src="http://www.prelovac.com/plugin/news.php?id=2&utm_source=plugin&utm_medium=plugin&utm_campaign=SEO%2BFriendly%2BImages%2BPRO"></iframe>
 			</div>
 		</div>
 		<div id="mainblock" class="submit">
-			<div class="dbx-content">				
+			<div class="dbx-content">
 				<h2><?php _e( 'About', 'smart-youtube' ); ?></h2>
 				<br />
 				<form name="STY_about" action="$actionurl" method="post">
 					<input type="hidden" id="_wpnonce" name="_wpnonce" value="$nonce" />
-					<input type="hidden" name="submitted" value="1" /> 			
+					<input type="hidden" name="submitted" value="1" />
 					<?php echo $lic_msg; ?>
 					<?php echo __( 'Version:', 'smart-youtube' ) . $this->local_version; ?> <?php echo $upd_msg; ?>
 				</form>
-			</div>   
+			</div>
 		</div>
 		<h5><?php _e( 'Another fine WordPress plugin by', 'smart-youtube' ); ?> <a href="http://www.prelovac.com/vladimir/">Vladimir Prelovac</a></h5>
 	</div>
 	<?php
 	}
-	
+
 	function mark_first_post_on_archive() {
 		if ( is_archive() || is_home() || is_front_page() ) {
 			$this->first_post_on_archive = true;
 		}
 	}
-	
+
 	/**
 	* Looks for Smart Youtube URL(s) in the post content
 	* and replace them with proper HTML tags
-	* 
+	*
 	* @param mixed $the_content
 	* @param mixed $side
 	* @return mixed
@@ -663,11 +660,11 @@ class SmartYouTube_PRO {
 		$replacements = array( "x", "--" );
 		$the_content = str_replace( $char_codes, $replacements, $the_content );
 		$this->first = false;
-		
+
 		$context = $side ? 'side' : 'post';
-		
+
 		preg_match_all( "/((http(v|vh|vhd)?:\/\/)?([a-zA-Z0-9\-\_]+\.|)?youtube\.com\/watch(\?v\=|\/v\/|#!v=)([a-zA-Z0-9\-\_]{11})([^<\s]*))|((http(v|vh|vhd)?:\/\/)?([a-zA-Z0-9\-\_]+\.|)?youtu\.be\/([a-zA-Z0-9\-\_]{11}))|((http(v|vh|vhd)?:\/\/)?([a-zA-Z0-9\-\_]+\.|)?metacafe\.com\/watch\/([a-zA-Z0-9\-\_]{7})\/([^<^\/\s]*)([\/])?)|((http(v|vh|vhd)?:\/\/)?([a-zA-Z0-9\-\_]+\.|)?vimeo\.com\/([a-zA-Z0-9\-\_]{8})([\/])?)|((http(v|vh|vhd)?:\/\/)?([a-zA-Z0-9\-\_]+\.|)?liveleak\.com\/view(\?i\=)([a-zA-Z0-9\-\_]*))|((http(v|vh|vhd)?:\/\/)?([a-zA-Z0-9\-\_]+\.|)?facebook\.com\/video\/video.php\?v\=([a-zA-Z0-9\-\_]*))|((http(vp|vhp)?:\/\/)?([a-zA-Z0-9\-\_]+\.|)?youtube\.com\/(view_play_list\?p\=|playlist\?list\=)([a-zA-Z0-9\-\_]{18})([^<\s]*))/", $the_content, $matches, PREG_SET_ORDER );
-		
+
 		foreach ( $matches as $match ) {
 			if ( $match[1] != '' ) {
 				if ( 'on' == $this->options['wiziapp'] ) {
@@ -748,7 +745,7 @@ class SmartYouTube_PRO {
 					$the_content = str_replace( $match[32], $this->tag_facebook( $context, $match[36], $match[34] ), $the_content );
 				}
 			} elseif ( $match[37] != '' ) {
-				
+
 				if ( 'on' == $this->options['wiziapp'] ) {
 					$videos = array();
 					$video_info['src'] = "http://www.youtube.com/playlist?list={$match[42]}";
@@ -763,7 +760,7 @@ class SmartYouTube_PRO {
 				}
 			}
 		}
-		
+
 		/*preg_match_all( "/(http(v|vh|vhd)?:\/\/)?([a-zA-Z0-9\-\_]+\.|)?youtu\.be\/([a-zA-Z0-9\-\_]{11})/", $the_content, $matches, PREG_SET_ORDER );
 		foreach ( $matches as $match ) {
 			if (( $match[1] == 'http://' && $this->options['http'] == 'on' ) || ( $match[1] == '' && $this->options['www'] == 'on' ) ) {
@@ -772,34 +769,34 @@ class SmartYouTube_PRO {
 				$the_content = str_replace( $match[0], $this->tag_youtube( $context, $match[4], $match[2] ), $the_content );
 			}
 		}
-		
-		preg_match_all( "/(http(v|vh|vhd)?:\/\/)?([a-zA-Z0-9\-\_]+\.|)?metacafe\.com\/watch\/([a-zA-Z0-9\-\_]{7})\/([^<^\/\s]*)([\/])?/", $the_content, $matches, PREG_SET_ORDER ); 
-		foreach ( $matches as $match ) {	 
+
+		preg_match_all( "/(http(v|vh|vhd)?:\/\/)?([a-zA-Z0-9\-\_]+\.|)?metacafe\.com\/watch\/([a-zA-Z0-9\-\_]{7})\/([^<^\/\s]*)([\/])?/", $the_content, $matches, PREG_SET_ORDER );
+		foreach ( $matches as $match ) {
 			if ( ( $match[1] == 'http://' && $this->options['http'] == 'on' ) || ( $match[1] == '' && $this->options['www'] == 'on' ) ) {
 				$the_content = str_replace( $match[0], $this->tag_metacafe( $context, $match[4], 'v', $match[5] ), $the_content );
 			} else if ( $match[2] == 'v' || $match[2] == 'vh' || $match[2] == 'vhd' ) {
 				$the_content = str_replace( $match[0], $this->tag_metacafe( $context, $match[4], $match[2], $match[5] ), $the_content );
 			}
 		}
-		
-		preg_match_all( "/(http(v|vh|vhd)?:\/\/)?([a-zA-Z0-9\-\_]+\.|)?vimeo\.com\/([a-zA-Z0-9\-\_]{8})([\/])?/", $the_content, $matches, PREG_SET_ORDER ); 
-		foreach ( $matches as $match ) {	 
+
+		preg_match_all( "/(http(v|vh|vhd)?:\/\/)?([a-zA-Z0-9\-\_]+\.|)?vimeo\.com\/([a-zA-Z0-9\-\_]{8})([\/])?/", $the_content, $matches, PREG_SET_ORDER );
+		foreach ( $matches as $match ) {
 			if ( ( $match[1] == 'http://' && $this->options['http'] == 'on' ) || ( $match[1] == '' && $this->options['www'] == 'on' ) ) {
 				$the_content = str_replace( $match[0], $this->tag_vimeo( $context, $match[4], 'v' ), $the_content );
 			} else if ( $match[2] == 'v' || $match[2] == 'vh' || $match[2] == 'vhd' ) {
 				$the_content = str_replace( $match[0], $this->tag_vimeo( $context, $match[4], $match[2] ), $the_content );
 			}
 		}
-		
-		preg_match_all( "/(http(v|vh|vhd)?:\/\/)?([a-zA-Z0-9\-\_]+\.|)?liveleak\.com\/view(\?i\=)([a-zA-Z0-9\-\_]*)/", $the_content, $matches, PREG_SET_ORDER ); 
-		foreach ( $matches as $match ) {	 
+
+		preg_match_all( "/(http(v|vh|vhd)?:\/\/)?([a-zA-Z0-9\-\_]+\.|)?liveleak\.com\/view(\?i\=)([a-zA-Z0-9\-\_]*)/", $the_content, $matches, PREG_SET_ORDER );
+		foreach ( $matches as $match ) {
 			if ( ( $match[1] == 'http://' && $this->options['http'] == 'on' ) || ( $match[1] == '' && $this->options['www'] == 'on' ) ) {
 				$the_content = str_replace( $match[0], $this->tag_liveleak( $context, $match[5], 'v' ), $the_content );
 			} else if ( $match[2] == 'v' || $match[2] == 'vh' || $match[2] == 'vhd' ) {
 				$the_content = str_replace( $match[0], $this->tag_liveleak( $context, $match[5], $match[2] ), $the_content );
 			}
 		}
-		
+
 		preg_match_all( "/(http(v|vh|vhd)?:\/\/)?([a-zA-Z0-9\-\_]+\.|)?facebook\.com\/video\/video.php\?v\=([a-zA-Z0-9\-\_]*)/", $the_content, $matches, PREG_SET_ORDER );
 		foreach ( $matches as $match ) {
 			if ( ( $match[1] == 'http://' && $this->options['http'] == 'on' ) || ( $match[1] == '' && $this->options['www'] == 'on' ) ) {
@@ -808,7 +805,7 @@ class SmartYouTube_PRO {
 				$the_content = str_replace( $match[0], $this->tag_facebook( $context, $match[4], $match[2] ), $the_content );
 			}
 		}
-		
+
 		preg_match_all( "/(http(vp|vhp)?:\/\/)?([a-zA-Z0-9\-\_]+\.|)?youtube\.com\/view_play_list(\?p\=|\/v\/|#!v=)([a-zA-Z0-9\-\_]{16})([^<\s]*)/", $the_content, $matches, PREG_SET_ORDER );
 		foreach ( $matches as $match ) {
 			if ( ( $match[1] == 'http://' && $this->options['http'] == 'on' ) || ( $match[1] == '' && $this->options['www'] == 'on' ) ) {
@@ -817,7 +814,7 @@ class SmartYouTube_PRO {
 				$the_content = str_replace( $match[0], $this->tag_youtube( $context, $match[5], $match[2], $match[6] ), $the_content );
 			}
 		}*/
-	
+
 		// to work with migrated blogs from Wordpress.com replacing [youtube=youtubeadresss]
 		if ( strpos($the_content, "[youtube") !== false ) {
 			preg_match_all( "/\[youtube\=http:\/\/([a-zA-Z0-9\-\_]+\.|)youtube\.com\/watch(\?v\=|\/v\/|#!v=)([a-zA-Z0-9\-\_]{11})([^<\s]*)\]/", $the_content, $matches, PREG_SET_ORDER );
@@ -833,29 +830,29 @@ class SmartYouTube_PRO {
 				$the_content = preg_replace( "/\[$tag\]([a-zA-Z0-9\-\_]{11})([^<\s]*)\[\/$tag\]/", $this->tag_youtube( $context, $match[1], '', '' ), $the_content, 1 );
 			}
 		}
-		
+
 		if ( $this->first_post_on_archive ) {
 			$this->first_post_on_archive = false;
 		}
-		
+
 		return $the_content;
 	}
-	
+
 	function check_excerpt( $the_content ) {
 		$excerpt = $this->options['excerpt'];
 		$template = trim($this->options['template']) == '' ? '{video}' : $this->options['template'];
-		
+
 		if ( $excerpt != 'not' ) {
 			global $post;
 			$content = $post->post_content;
-			
+
 			preg_match_all( "/(http(v|vh|vhd)?:\/\/)?([a-zA-Z0-9\-\_]+\.|)?youtube\.com\/watch(\?v\=|\/v\/|#!v=)([a-zA-Z0-9\-\_]{11})([^<\s]*)/", $content, $matches['youtube.com'], PREG_SET_ORDER );
 			preg_match_all( "/(http(v|vh|vhd)?:\/\/)?([a-zA-Z0-9\-\_]+\.|)?youtu\.be\/([a-zA-Z0-9\-\_]{11})/", $content, $matches['youtu.be'], PREG_SET_ORDER );
 			preg_match_all( "/(http(v|vh|vhd)?:\/\/)?([a-zA-Z0-9\-\_]+\.|)?metacafe\.com\/watch\/([a-zA-Z0-9\-\_]{7})\/([^<^\/\s]*)([\/])?/", $content, $matches['metacafe.com'], PREG_SET_ORDER );
 			preg_match_all( "/(http(v|vh|vhd)?:\/\/)?([a-zA-Z0-9\-\_]+\.|)?vimeo\.com\/([a-zA-Z0-9\-\_]{8})([\/])?/", $content, $matches['vimeo.com'], PREG_SET_ORDER );
 			preg_match_all( "/(http(v|vh|vhd)?:\/\/)?([a-zA-Z0-9\-\_]+\.|)?liveleak\.com\/view(\?i\=)([a-zA-Z0-9\-\_]*)/", $content, $matches['liveleak.com'], PREG_SET_ORDER );
 			preg_match_all( "/(http(v|vh|vhd)?:\/\/)?([a-zA-Z0-9\-\_]+\.|)?facebook\.com\/video\/video.php\?v\=([a-zA-Z0-9\-\_]*)/", $content, $matches['facebook.com'], PREG_SET_ORDER );
-			
+
 			if ( isset( $matches['youtube.com'][0] ) ) {
 				if ( ( $matches['youtube.com'][0][1] == 'http://' && $this->options['http'] == 'on' ) || ( $matches['youtube.com'][0][1] == '' && $this->options['www'] == 'on' ) ) {
 					$matches['youtube.com'][0][0] = str_replace( $matches['youtube.com'][0][0], $this->tag_youtube( 'excerpt', $matches['youtube.com'][0][5], 'v', $matches['youtube.com'][0][6] ), $matches['youtube.com'][0][0] );
@@ -901,8 +898,8 @@ class SmartYouTube_PRO {
 				$result = $matches['facebook.com'][0][0];
 			} else {
 				/*$width = $this->options['widthside'];
-				$height = $this->options['heightside'];  
-				
+				$height = $this->options['heightside'];
+
 				$img_url = htmlspecialchars( $this->plugin_url . '/img/default.jpg' );
 				$post_url = get_permalink( $post->ID );
 				$yte_tag = <<<EOT
@@ -911,21 +908,21 @@ class SmartYouTube_PRO {
 </a>
 EOT;
 				$result = str_replace( '{video}', $yte_tag, html_entity_decode( $template ) );*/
-				
+
 				return $the_content;
 			}
 			if ( isset( $result ) ) {
 				$the_content = '<div style="float:' . $this->options["excerpt_align"] . ';padding-' . ( $this->options["excerpt_aign"] == 'left' ? 'right' : 'left' ) . ':10px;">' . $result . '</div>' . $the_content . '<div style="clear:both"></div>';
 			}
 		}
-		
+
 		if ( $this->first_post_on_archive ) {
 			$this->first_post_on_archive = false;
 		}
-		
+
 		return $the_content;
 	}
-	
+
 	function tag_youtube( $context, $file, $high = 'v', $time = '' ) {
 		$playlist = 0;
 		$disp_rel = $this->options['rel'];
@@ -934,9 +931,9 @@ EOT;
 		$disp_search = $this->options['search'] == 'on' ? 1 : 0;
 		$disp_info = $this->options['info'] == 'on' ? '&showinfo=0' : '';
 		$disp_ann = $this->options['ann'] == 'on' ? '&iv_load_policy=3' : '';
-		$template = trim( $this->options['template'] ) == '' ? '{video}' : $this->options['template']; 
+		$template = trim( $this->options['template'] ) == '' ? '{video}' : $this->options['template'];
 		$valid = $this->options['valid'];
-		if ($this->options['loop'])		
+		if ($this->options['loop'])
 			$loop="&loop=1&playlist=$file";
 		else $loop='';
 		$thumb = $this->options['thumb'];
@@ -944,46 +941,46 @@ EOT;
 		$logoless = $this->options['logoless'];
 		$theme = $this->options['theme'];
 		$excerpt = $this->options['excerpt'];
-		
+
 		switch ( $high ) {
-			case 'v': 
-				$high = ''; 
+			case 'v':
+				$high = '';
 				break;
-			case 'vh': 
-				$high = '&amp;hd=1'; 
+			case 'vh':
+				$high = '&amp;hd=1';
 				break;
-			case 'vhd': 
-				$high = '&amp;hd=1'; 
+			case 'vhd':
+				$high = '&amp;hd=1';
 				break;
-			case 'vp': 
-				$high = ''; 
-				$playlist = 1; 
+			case 'vp':
+				$high = '';
+				$playlist = 1;
 				break;
-			case 'vhp': 
-				$high = '&amp;hd=1'; 
-				$playlist = 1; 
+			case 'vhp':
+				$high = '&amp;hd=1';
+				$playlist = 1;
 				break;
-			default: 
-				$high = ''; 
+			default:
+				$high = '';
 				break;
 		}
-		
-		$width = ( $context == 'excerpt' || $context == 'side' ) ? 
-				$this->options['widthside'] : 
+
+		$width = ( $context == 'excerpt' || $context == 'side' ) ?
+				$this->options['widthside'] :
 				( $high ? $this->options['widthhq'] : $this->options['width'] );
-		
-		$height = ( $context == 'excerpt' || $context == 'side' ) ? 
-				$this->options['heightside'] : 
+
+		$height = ( $context == 'excerpt' || $context == 'side' ) ?
+				$this->options['heightside'] :
 				( $high ? $this->options['heighthq'] : $this->options['height'] );
-		
+
 		if ( ! $width ) {
 			$width = ! $high ? 480 : 425 ;
 		}
-		
+
 		if ( ! $height ) {
 			$height = ! $high ? 360 : 344;
 		}
-		
+
 		$ap = '';
 		if ( is_single() ) {
 			if ( $context == 'post' && $autoplay_first && ! $this->first ) {
@@ -1004,16 +1001,16 @@ EOT;
 				$ap = '';
 			}
 		}
-		
+
 		if ( $logoless == 'on' ) {
 			$ll = '&modestbranding=1';
 			$disp_info = '';
 		} else {
 			$ll = '';
 		}
-		
-		$root_url = $this->options['privacy'] ? 'http://www.youtube-nocookie.com' : 'http://www.youtube.com'; 
-		
+
+		$root_url = $this->options['privacy'] ? 'http://www.youtube-nocookie.com' : 'http://www.youtube.com';
+
 		if ( $excerpt == 'thm' ) {
 			$img_url = htmlspecialchars( "http://img.youtube.com/vi/$file/0.jpg" );
 			global $post;
@@ -1022,7 +1019,7 @@ EOT;
 <a href="$post_url"><img src="$img_url" height="$height" width="$width" /></a>
 EOT;
 		}
-		
+
 		if ( ( ( is_home() || is_front_page() || is_archive() ) && $context == 'post' && $thumb == 'on' ) || ( $context == 'thumb' ) || ( $context == 'excerpt' && $excerpt == 'thm' ) ) {
 			$img_url = htmlspecialchars( "http://img.youtube.com/vi/$file/0.jpg" );
 			if ( $context == 'excerpt' && $excerpt == 'thm' ) {
@@ -1041,8 +1038,8 @@ EOT;
 				$video_url = htmlspecialchars( "$root_url/embed/$file?wmode=transparent&fs=1&hl=en$ap$ll$loop{$disp_info}$disp_ann&showsearch=$disp_search&rel=$disp_rel&theme=$theme", ENT_QUOTES ) . $high . $time;
 			else
 				$video_url = htmlspecialchars( "$root_url/v/$file?wmode=transparent&fs=1&hl=en&$ap$ll$loop{$disp_info}$disp_ann&showsearch=$disp_search&rel=$disp_rel&theme=$theme", ENT_QUOTES ) . $high . $time;
-			
-			if ( $playlist ) {				
+
+			if ( $playlist ) {
 				$video_url = htmlspecialchars( "$root_url/embed/videoseries?list=$file&fs=1&hl=en$ap$ll$loop{$disp_info}$disp_ann&showsearch=$disp_search&rel=$disp_rel&theme=$theme", ENT_QUOTES ) . $high . $time;
 				$yte_tag = <<<EOT
 <span class="youtube"><iframe class="youtube-player" src="$video_url" width="$width" height="$height" frameborder="0" allowfullscreen></iframe></span>
@@ -1080,7 +1077,7 @@ EOT;
 				}
 			}
 		}
-		
+
 		if ( is_feed() && ( $context == 'post' || $context = 'excerpt' ) ) {
 			if ( $high ) {
 				$high = '&fmt=18';
@@ -1089,47 +1086,47 @@ EOT;
 				$url = 'http://www.youtube.com/playlist?list=';
 			else
 				$url = 'http://www.youtube.com/watch?v=';
-				
+
 			$yte_tag = '';
 			if ( $this->options['link'] == 'on' ) {
 				$yte_tag .= '<p><a href="' . $url . $file . $high . '">'.$url. $file . '</a></p>';
 			}
-			
+
 			if ( $this->options['img'] == 'on' ) {
 				$yte_tag .= '<p><a href="' . $url . $file . $high. '"><img src="http://img.youtube.com/vi/' . $file . '/default.jpg" width="130" height="97" border=0></a></p>';
 			}
-			
+
 			 if ($this->options['link'] == 'off' && $this->options['img'] == 'off')
 			 $yte_tag=$url.$file;
 		}
-		
-		return str_replace( '{video}', $yte_tag, html_entity_decode( $template ) ); 
+
+		return str_replace( '{video}', $yte_tag, html_entity_decode( $template ) );
 	}
-	
+
 	function tag_metacafe( $context, $file, $high = 'v', $name = '' ) {
-		$width = ( $context == 'excerpt' || $context == 'side' ) ? 
-				$this->options['widthside'] : 
+		$width = ( $context == 'excerpt' || $context == 'side' ) ?
+				$this->options['widthside'] :
 				( $high ? $this->options['widthhq'] : $this->options['width'] );
-		
-		$height = ( $context == 'excerpt' || $context == 'side' ) ? 
-				$this->options['heightside'] : 
+
+		$height = ( $context == 'excerpt' || $context == 'side' ) ?
+				$this->options['heightside'] :
 				( $high ? $this->options['heighthq'] : $this->options['height'] );
-		
+
 		if ( ! $width ) {
 			$width = ! ( $high == 'v' ) ? 480 : 425 ;
 		}
-		
+
 		if ( ! $height ) {
 			$height = ! ( $high == 'v' ) ? 360 : 344;
 		}
-		
+
 		$template = trim( $this->options['template'] ) == '' ? '{video}' : $this->options['template'];
 		$excerpt = $this->options['excerpt'];
 		$thumb = $this->options['thumb'];
 		$colorbox = $this->options['colorbox'];
 		$autoplay = $this->options['autoplay'];
 		$autoplay_first = $this->options['autoplay_first'];
-		
+
 		$ap = 'no';
 		if ( is_single() ) {
 			if ( $context == 'post' && $autoplay_first && ! $this->first ) {
@@ -1150,9 +1147,9 @@ EOT;
 				$ap = 'no';
 			}
 		}
-		
+
 		$flash_vars = "playerVars=showStats=no|autoPlay=$ap|";
-		
+
 		if ( ( ( is_home() || is_front_page() || is_archive() ) && $context == 'post' && $thumb == 'on' ) || ( $context == 'thumb' ) || ( $context == 'excerpt' && $excerpt == 'thm' ) ) {
 			$img_url = htmlspecialchars( "http://www.metacafe.com/thumb/$file.jpg" );
 			if ( $context == 'excerpt' && $excerpt == 'thm' ) {
@@ -1176,27 +1173,27 @@ EOT;
 <embed flashVars="$flash_vars" src="http://www.metacafe.com/fplayer/$file/$name.swf" width="$width" height="$height" wmode="transparent" allowFullScreen="true" allowScriptAccess="always" name="Metacafe_6261286" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash"></embed>
 EOT;
 		}
-		
-		return str_replace( '{video}', $yte_tag, html_entity_decode( $template ) ); 
+
+		return str_replace( '{video}', $yte_tag, html_entity_decode( $template ) );
 	}
-	
+
 	function tag_vimeo( $context, $file, $high = 'v', $side = 0 ) {
-		$width = ( $context == 'excerpt' || $context == 'side' ) ? 
-				$this->options['widthside'] : 
+		$width = ( $context == 'excerpt' || $context == 'side' ) ?
+				$this->options['widthside'] :
 				( $high ? $this->options['widthhq'] : $this->options['width'] );
-		
-		$height = ( $context == 'excerpt' || $context == 'side' ) ? 
-				$this->options['heightside'] : 
+
+		$height = ( $context == 'excerpt' || $context == 'side' ) ?
+				$this->options['heightside'] :
 				( $high ? $this->options['heighthq'] : $this->options['height'] );
-		
+
 		if ( ! $width ) {
 			$width = ! ( $high == 'v' ) ? 480 : 425 ;
 		}
-		
+
 		if ( ! $height ) {
 			$height = ! ( $high == 'v' ) ? 360 : 344;
 		}
-		
+
 		$template = trim( $this->options['template'] ) == '' ? '{video}' : $this->options['template'];
 		$excerpt = $this->options['excerpt'];
 		$thumb = $this->options['thumb'];
@@ -1204,9 +1201,9 @@ EOT;
 		$autoplay = $this->options['autoplay'];
 		$autoplay_first = $this->options['autoplay_first'];
 		$loop = $this->options['loop'];
-				
+
 		$video_url = "http://player.vimeo.com/video/$file";
-		
+
 		if ( $context == 'post' && $autoplay_first && ! $this->first ) {
 			if ( is_single() ) {
 				$video_url .= "?autoplay=1";
@@ -1231,7 +1228,7 @@ EOT;
 				$video_url .= "?loop=1";
 			}
 		}
-		
+
 		if ( ( ( is_home() || is_front_page() || is_archive() ) && $context == 'post' && $thumb == 'on' ) || ( $context == 'thumb' ) || ( $context == 'excerpt' && $excerpt == 'thm' ) ) {
 			$thumbs = unserialize(file_get_contents("http://vimeo.com/api/v2/video/$file.php"));
 			$img_url = htmlspecialchars($thumbs[0]['thumbnail_large']);
@@ -1258,32 +1255,32 @@ EOT;
 <iframe src="$video_url" width="$width" height="$height" frameborder="0"></iframe>
 EOT;
 		}
-		
-		return str_replace( '{video}', $yte_tag, html_entity_decode( $template ) ); 
+
+		return str_replace( '{video}', $yte_tag, html_entity_decode( $template ) );
 	}
-	
+
 	function tag_liveleak( $context, $file, $high = 'v', $side = 0 ) {
-		$width = ( $context == 'excerpt' || $context == 'side' ) ? 
-				$this->options['widthside'] : 
+		$width = ( $context == 'excerpt' || $context == 'side' ) ?
+				$this->options['widthside'] :
 				( $high ? $this->options['widthhq'] : $this->options['width'] );
-		
-		$height = ( $context == 'excerpt' || $context == 'side' ) ? 
-				$this->options['heightside'] : 
+
+		$height = ( $context == 'excerpt' || $context == 'side' ) ?
+				$this->options['heightside'] :
 				( $high ? $this->options['heighthq'] : $this->options['height'] );
-		
+
 		if ( ! $width ) {
 			$width = ! ( $high == 'v' ) ? 480 : 425 ;
 		}
-		
+
 		if ( ! $height ) {
 			$height = ! ( $high == 'v' ) ? 360 : 344;
 		}
-		
+
 		$template = trim($this->options['template']) == '' ? '{video}' : $this->options['template'];
 		$thumb = $this->options['thumb'];
 		$colorbox = $this->options['colorbox'];
 		$excerpt = $this->options['excerpt'];
-		
+
 		if ( ( ( is_home() || is_front_page() || is_archive() ) && $context == 'post' && $thumb == 'on' ) || ( $context == 'thumb' ) || ( $context == 'excerpt' && $excerpt == 'thm' ) ) {
 			$img_url = htmlspecialchars( $this->plugin_url . '/img/default.jpg' );
 			if ( $context == 'excerpt' && $excerpt == 'thm' ) {
@@ -1307,32 +1304,32 @@ EOT;
 <object width="$width" height="$height"><param name="movie" value="http://www.liveleak.com/e/$file"></param><param name="wmode" value="transparent"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.liveleak.com/e/$file" type="application/x-shockwave-flash" wmode="transparent" allowscriptaccess="always" width="$width" height="$height"></embed></object>
 EOT;
 		}
-		
-		return str_replace( '{video}', $yte_tag, html_entity_decode( $template ) ); 
+
+		return str_replace( '{video}', $yte_tag, html_entity_decode( $template ) );
 	}
-	
+
 	function tag_facebook( $context, $file, $high = 'v', $side = 0 ) {
-		$width = ( $context == 'excerpt' || $context == 'side' ) ? 
-				$this->options['widthside'] : 
+		$width = ( $context == 'excerpt' || $context == 'side' ) ?
+				$this->options['widthside'] :
 				( $high ? $this->options['widthhq'] : $this->options['width'] );
-		
-		$height = ( $context == 'excerpt' || $context == 'side' ) ? 
-				$this->options['heightside'] : 
+
+		$height = ( $context == 'excerpt' || $context == 'side' ) ?
+				$this->options['heightside'] :
 				( $high ? $this->options['heighthq'] : $this->options['height'] );
-		
+
 		if ( ! $width ) {
 			$width = ! ( $high == 'v' ) ? 480 : 425 ;
 		}
-		
+
 		if ( ! $height ) {
 			$height = ! ( $high == 'v' ) ? 360 : 344;
 		}
-		
+
 		$template = trim($this->options['template']) == '' ? '{video}' : $this->options['template'];
 		$thumb = $this->options['thumb'];
 		$colorbox = $this->options['colorbox'];
 		$excerpt = $this->options['excerpt'];
-		
+
 		if ( ( ( is_home() || is_front_page() || is_archive() ) && $context == 'post' && $thumb == 'on' ) || ( $context == 'thumb' ) || ( $context == 'excerpt' && $excerpt == 'thm' ) ) {
 			$img_url = htmlspecialchars( $this->plugin_url . '/img/default.jpg' );
 			if ( $context == 'excerpt' && $excerpt == 'thm' ) {
@@ -1354,21 +1351,21 @@ EOT;
 		} else {
 			$yte_tag = <<<EOT
 <object width="$width" height="$height"><param name="allowfullscreen" value="true" /><param name="allowscriptaccess" value="always" />
-<param name="movie" value="http://www.facebook.com/v/$file" /><embed src="http://www.facebook.com/v/$file" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="$width" height="$height"></embed></object> 
+<param name="movie" value="http://www.facebook.com/v/$file" /><embed src="http://www.facebook.com/v/$file" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="$width" height="$height"></embed></object>
 EOT;
 		}
-		
-		return str_replace( '{video}', $yte_tag, html_entity_decode( $template ) ); 
+
+		return str_replace( '{video}', $yte_tag, html_entity_decode( $template ) );
 	}
-	
+
 	function install() {
 		add_action( 'widgets_init', array( $this, 'load_widgets' ) );
-		
+
 		if ( get_option( $this->key ) ) {
 			$this->options = $this->get_options();
 		}
 	}
-	
+
 	// Handle our options
 	function get_options() {
 		$options = array(
@@ -1407,40 +1404,40 @@ EOT;
 			'theme' => 'dark'
 		);
 		$saved = get_option( $this->key );
-		
+
 		if ( ! empty( $saved ) ) {
 			foreach ( $saved as $key => $option ) {
 				$options[$key] = $option;
 			}
 		}
-			  
+
 		if ( $saved != $options ) {
 			update_option( $this->key, $options );
 		}
-		
+
 		return $options;
-	}	
-		  
+	}
+
 	function load_widgets() {
 		register_widget( 'SmartYouTube_Widget' );
 	}
-	
+
 	/**
-	 * Gets plugin info from WordPress Codex repo 
+	 * Gets plugin info from WordPress Codex repo
 	 * @return mixed
 	 */
 	function get_info() {
 		$checkfile = 'http://svn.wp-plugins.org/smart-youtube/trunk/smartyoutube.chk';
-		
+
 		$status = array();
-		
+
 		return $status; //???
-		
+
 		$vcheck = wp_remote_fopen( $checkfile );
-		
+
 		if ( $vcheck ) {
 			$version = $this->local_version;
-			
+
 			$status = explode( '@', $vcheck );
 			return $status;
 		}
@@ -1448,35 +1445,35 @@ EOT;
 }
 
 class SmartYouTube_Widget extends WP_Widget {
-	function SmartYouTube_Widget() {		
-		$widget_ops = array( 'classname' => 'smart-youtube', 'description' => 'A widget which dispalys some video from Youtube.' );		
+	function SmartYouTube_Widget() {
+		$widget_ops = array( 'classname' => 'smart-youtube', 'description' => 'A widget which dispalys some video from Youtube.' );
 		$control_ops = array( 'width' => 300, 'height' => 350, 'id_base' => 'smart-youtube' );
 		$this->WP_Widget( 'smart-youtube', 'Smart Youtube', $widget_ops, $control_ops );
 	}
-	
+
 	function widget( $args, $instance ) {
 		extract( $args );
 		$text = smart_youtube_check( $instance['text'], 1 );
 		$title = $instance['title'];
-		
+
 		echo
 		$before_widget,
 		$before_title, $title, $after_title,
 		$text,
 		$after_widget;
 	}
-	
+
 	function update( $new_instance, $old_instance ) {
 		$instance = $old_instance;
-		
+
 		$instance['text'] = strip_tags( $new_instance['text'] );
 		$instance['title'] = strip_tags( $new_instance['title'] );
 		return $instance;
 	}
-	
+
 	function form( $instance ) {
 		$defaults = array( 'title' => 'Smart Youtube Widget', 'text' => '' );
-		$instance = wp_parse_args( ( array )$instance, $defaults ); 
+		$instance = wp_parse_args( ( array )$instance, $defaults );
 ?>
 <?php _e('Title:', 'smart-youtube'); ?><br /><input type="text" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo $instance['title']; ?>" /><br />
 <?php _e('Insert HTML code below. In addition to normal text you may use httpv, httpvh and httpvhd links just like in your posts.'); ?><br />
@@ -1493,16 +1490,16 @@ function smart_youtube_check( $the_content, $side = 0 ) {
 function syt_show_thumb( $post_id ) {
 	$p = get_post( $post_id );
 	$content = $p->post_content;
-	
+
 	preg_match_all( "/(http(v|vh|vhd)?:\/\/)?([a-zA-Z0-9\-\_]+\.|)?youtube\.com\/watch(\?v\=|\/v\/|#!v=)([a-zA-Z0-9\-\_]{11})([^<\s]*)/", $content, $matches['youtube.com'], PREG_SET_ORDER );
 	preg_match_all( "/(http(v|vh|vhd)?:\/\/)?([a-zA-Z0-9\-\_]+\.|)?youtu\.be\/([a-zA-Z0-9\-\_]{11})/", $content, $matches['youtu.be'], PREG_SET_ORDER );
 	preg_match_all( "/(http(v|vh|vhd)?:\/\/)?([a-zA-Z0-9\-\_]+\.|)?metacafe\.com\/watch\/([a-zA-Z0-9\-\_]{7})\/([^<^\/\s]*)([\/])?/", $content, $matches['metacafe.com'], PREG_SET_ORDER );
 	preg_match_all( "/(http(v|vh|vhd)?:\/\/)?([a-zA-Z0-9\-\_]+\.|)?vimeo\.com\/([a-zA-Z0-9\-\_]{8})([\/])?/", $content, $matches['vimeo.com'], PREG_SET_ORDER );
 	preg_match_all( "/(http(v|vh|vhd)?:\/\/)?([a-zA-Z0-9\-\_]+\.|)?liveleak\.com\/view(\?i\=)([a-zA-Z0-9\-\_]*)/", $content, $matches['liveleak.com'], PREG_SET_ORDER );
 	preg_match_all( "/(http(v|vh|vhd)?:\/\/)?([a-zA-Z0-9\-\_]+\.|)?facebook\.com\/video\/video.php\?v\=([a-zA-Z0-9\-\_]*)/", $content, $matches['facebook.com'], PREG_SET_ORDER );
-	
+
 	global $smart_youtube_pro;
-	
+
 	if ( isset( $matches['youtube.com'][0] ) ) {
 		if ( ( $matches['youtube.com'][0][1] == 'http://' && $smart_youtube_pro->options['http'] == 'on' ) || ( $matches['youtube.com'][0][1] == '' && $smart_youtube_pro->options['www'] == 'on' ) ) {
 			$matches['youtube.com'][0][0] = str_replace( $matches['youtube.com'][0][0], $smart_youtube_pro->tag_youtube( 'excerpt', $matches['youtube.com'][0][5], 'v', $matches['youtube.com'][0][6] ), $matches['youtube.com'][0][0] );
@@ -1548,8 +1545,8 @@ function syt_show_thumb( $post_id ) {
 		$result = $matches['facebook.com'][0][0];
 	} else {
 		$width = $smart_youtube_pro->options['width'];
-		$height = $smart_youtube_pro->options['height'];  
-		
+		$height = $smart_youtube_pro->options['height'];
+
 		$img_url = htmlspecialchars( $smart_youtube_pro->plugin_url . '/img/default.jpg' );
 		$post_url = get_permalink( $post->ID );
 		$yte_tag = <<<EOT
