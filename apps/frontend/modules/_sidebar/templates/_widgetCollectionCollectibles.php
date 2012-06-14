@@ -12,7 +12,7 @@
     <a href="#" id="ui-carousel-next" title="next collectible" class="right-arrow">
       <i class="icon-chevron-right white"></i>
     </a>
-    <div id="carousel" data-loaded='<?= json_encode(array_fill(1, $page, true)); ?>'
+    <div id="carousel" data-loaded='<?= json_encode(array_fill(1, $carousel_page, true)); ?>'
          class="thumbnails" style="">
       <?php foreach ($collectibles as $c): ?>
         <a href="<?= url_for_collectible($c) ?>"
@@ -31,7 +31,12 @@
 <script type="text/javascript">
 $(document).ready(function()
 {
-  $("#carousel").rcarousel({
+  var carousel_page = <?= $carousel_page; ?>;
+  var carousel_page_offset = <?= $carousel_page_offset; ?>;
+
+  var $carousel = $('#carousel');
+
+  $carousel.rcarousel({
     visible: 4, step: 4,
     width: 69, height: 69,
     margin: 5,
@@ -47,31 +52,34 @@ $(document).ready(function()
 
   function firstLoad(event)
   {
-    $("#carousel").rcarousel('goToPage', <?= $page - 1; ?>)
-                  // fix bottom of active collectible cut off
-                  .css('height', 'auto');
+    $carousel.css('height', 'auto');
+
+    if (carousel_page !== 1) {
+      // execute carousel animation
+      $carousel.rcarousel('goToPage', carousel_page);
+    }
 
     // when current page is first page, manually fire event to load next page,
     // because goToPage will not fire the "pageLoaded" event
-    if (1 == $("#carousel").rcarousel('getCurrentPage')) {
+    if (1 == $carousel.rcarousel('getCurrentPage')) {
       loadPage(event, {});
     }
   }
 
-  function loadPage(event, data)
+  function loadPage()
   {
-    var loaded = $("#carousel").data('loaded');
+    var loaded = $carousel.data('loaded');
 
     var $link, $img, $jqElements = $();
     var url = '<?= url_for('ajax_collection', array('section' => 'collectibles', 'page' => 'carousel')); ?>';
-    var target_page = $("#carousel").rcarousel('getCurrentPage') + 1;
+    var target_page = $carousel.rcarousel('getCurrentPage') + 1;
 
     if (typeof(loaded) !== 'undefined' && loaded[target_page] === true)
     {
       return;
     }
 
-    $.getJSON(url +'?p='+ target_page,
+    $.getJSON(url +'?p='+ (target_page + carousel_page_offset),
       {
         id: <?= $collection->getId(); ?>,
         collectible_id: <?= $collectible->getId(); ?>
@@ -95,14 +103,14 @@ $(document).ready(function()
 
         if ($jqElements.length > 0)
         {
-          $( "#carousel" ).rcarousel("append", $jqElements);
+          $carousel.rcarousel("append", $jqElements);
         }
 
         loaded[target_page] = true;
       }
     );
 
-    $("#carousel").data('loaded', loaded);
+    $carousel.data('loaded', loaded);
   }
 });
 </script>

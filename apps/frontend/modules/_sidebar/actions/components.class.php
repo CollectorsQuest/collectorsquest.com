@@ -442,9 +442,6 @@ class _sidebarComponents extends cqFrontendComponents
       $collection = $collectible->getCollection();
     }
 
-    // Set the limit of other Collections to show
-    $this->limit = (int) $this->getVar('limit') ?: 4;
-
     // Initialize the array
     $this->collectibles = array();
 
@@ -454,24 +451,35 @@ class _sidebarComponents extends cqFrontendComponents
        * Figure out the previous and the next items in the collection
        */
       $collectible_ids = $collection->getCollectibleIds();
-
       $position = array_search($collectible->getId(), $collectible_ids);
-      // pages start from 1
-      $page = (integer) ceil(($position + 1)  / $this->limit);
 
-      $offset = $page * $this->limit - $this->limit * 4;
-      $offset = $offset < 0 ? 0 : $offset;
+      // collectibles per page
+      $limit_per_page = 4;
+      // how many pages before the current one should be shown
+      $pages_before_current = 2;
+
+      // page numbering starts from 1
+      $page = (integer) ceil(($position + 1)  / $limit_per_page);
+
+      // offset should be always >= 0
+      $offset = max(0, ($page - $pages_before_current - 1) * $limit_per_page);
+
+      // limit the total collectibles depending on how many pages we will be showing
+      $limit = min($page * $limit_per_page, ($pages_before_current + 1) * $limit_per_page);
 
       $q = CollectionCollectibleQuery::create()
         ->filterByCollection($collection)
         ->offset($offset)
-        ->limit($this->limit * 4)
+        ->limit($limit)
         ->orderByPosition(Criteria::ASC)
         ->orderByCreatedAt(Criteria::ASC);
 
       $this->collectibles = $q->find();
       $this->collection = $collection;
-      $this->page = $page;
+      $this->carousel_page = $page <= $pages_before_current
+        ? $page
+        : $pages_before_current + 1;
+      $this->carousel_page_offset = $page - $this->carousel_page;
     }
 
     // show if at least two, because there is no sense in showing only itself

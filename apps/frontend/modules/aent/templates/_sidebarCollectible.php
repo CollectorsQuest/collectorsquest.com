@@ -60,7 +60,7 @@
 <?php
   include_component(
     '_sidebar', 'widgetCollectionCollectibles',
-    array('collectible' => $collectible, 'limit' => 4)
+    array('collectible' => $collectible)
   );
 ?>
 
