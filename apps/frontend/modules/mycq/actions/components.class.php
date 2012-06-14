@@ -325,7 +325,38 @@ class mycqComponents extends cqFrontendComponents
 
     if ($this->getRequest()->isMethod('post'))
     {
-      $form->bind($this->getRequestParameter('collectible_for_sale'));
+      $tainted = $this->getRequestParameter('collectible_for_sale');
+
+      /**
+       * The logic below is to support creating of new CollectorCollections
+       * if the select option's value is not numeric but a string, this
+       * shows us that we need to create the collection rather than use
+       * an already existing CollectorCollection
+       */
+      if (!empty($tainted['collectible']['collection_collectible_list']))
+      {
+        $collection_collectible_list = &$tainted['collectible']['collection_collectible_list'];
+        foreach($collection_collectible_list as $i => $id)
+        {
+          if (!is_numeric($id) && !empty($id))
+          {
+            $collection = new CollectorCollection();
+            $collection->setCollector($this->getCollector());
+            $collection->setName($id);
+
+            try {
+              $collection->save();
+              $collection_collectible_list[$i] = $collection->getId();
+            }
+            catch (PropelException $e)
+            {
+              ;
+            }
+          }
+        }
+      }
+
+      $form->bind($tainted);
 
       if ($form->isValid())
       {
@@ -354,6 +385,10 @@ class mycqComponents extends cqFrontendComponents
         }
 
         $this->collectible = $collectible;
+      }
+      else
+      {
+        ;
       }
     }
 

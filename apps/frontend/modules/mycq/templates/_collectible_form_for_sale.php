@@ -55,52 +55,29 @@
     </div>
   </div>
   <?php else: ?>
-  <div id="not-a-seller-box">
-    <div class="row-fluid">
-      <div class="span9">
-        <div class="inner-yellow-bg">
-          <div class="row-fluid">
-            <div class="span12">
-              <span class="Chivo webfont buy-credits">
-                Want to sell this collectible?<br/>
-                Start selling now for a small fee.
-              </span>
-              <div class="row-fluid spacer-inner-top">
-                <div class="span6">
-                  <label class="radio">
-                    <input type="radio" value="option1" id="optionsRadios1" name="optionsRadios">
-                    <strong>1 credit /</strong> $2.50
-                  </label>
-                  <label class="radio">
-                    <input type="radio" value="option2" id="optionsRadios2" name="optionsRadios">
-                    <strong>10 credits /</strong> $20
-                  </label>
-                </div>
-                <div class="span6">
-                  <label class="radio">
-                    <input type="radio" value="option4" id="optionsRadios4" name="optionsRadios">
-                    <strong>100 credits /</strong> $150
-                  </label>
-                  <label class="radio">
-                    <input type="radio" value="option5" id="optionsRadios5" name="optionsRadios">
-                    <strong>Unlimited Credits /</strong> $250
-                  </label>
-                </div>
-              </div>
+  <div id="not-a-seller-box" class="spacer-bottom-20">
+    <div class="inner-yellow-bg">
+      <div class="row-fluid">
+        <div class="span12">
+          <span class="Chivo webfont buy-credits">
+            Want to sell this collectible?<br/>
+            Start selling now for a small fee.
+          </span>
+          <div class="row-fluid spacer-inner-top">
+            <div class="span6">
+              <?= link_to('1 credit / $2.50', '@seller_packages', array('class' => 'btn blue-button')) ?>
+              <br/><br/>
+              <?= link_to('10 credits / $20', '@seller_packages', array('class' => 'btn blue-button')) ?>
+            </div>
+            <div class="span6">
+              <?= link_to('100 credits / $150', '@seller_packages', array('class' => 'btn blue-button')) ?>
+              <br/><br/>
+              <?= link_to('Unlimited Credits / $250', '@seller_packages', array('class' => 'btn blue-button')) ?>
             </div>
           </div>
         </div>
       </div>
-      <div class="span3">
-        <div class="inner-yellow-bg buy-credits-button-container">
-          <a href="#" class="btn-create-collection-middle h-center">
-            <i class="icon icon-shopping-cart icon-white"></i>
-          </a>
-          <a href="#" class="blue-link">
-            Click here to buy credits
-          </a>
-        </div>
-      </div>
+      <br/>
     </div>
   </div>
   <?php endif; ?>

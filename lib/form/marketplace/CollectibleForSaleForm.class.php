@@ -4,10 +4,7 @@ class CollectibleForSaleForm extends BaseCollectibleForSaleForm
 {
   public function configure()
   {
-    $this->setValidator('is_ready', new sfValidatorBoolean(array('required' => false)));
-    $this->getValidator('is_ready')->setDefaultMessage(
-      'invalid', 'You do not have enough credits to post this Collectible to the marketplace!'
-    );
+
   }
 
   public function bind(array $taintedValues = null, array $taintedFiles = null)
@@ -29,25 +26,12 @@ class CollectibleForSaleForm extends BaseCollectibleForSaleForm
     ));
   }
 
-  public function updatePriceColumn($v)
+  public function setupIsReadyField()
   {
-    $this->getObject()->setPrice($v);
-  }
-
-  public function setupPriceField()
-  {
-    $this->setWidget('price', new sfWidgetFormInputText(array(), array('required' => 'required')));
-    $this->setValidator('price', new sfValidatorString(array('required' => false)));
-    $this->setDefault('price', $this->getObject()->getPrice());
-
-    // Get the Collectibles for sale currencies
-    $currencies = CollectibleForSalePeer::$currencies;
-    $this->setWidget('price_currency', new sfWidgetFormChoice(
-      array('choices' => $currencies, 'default' => 'USD')
-    ));
-    $this->setValidator('price_currency', new sfValidatorChoice(
-      array('choices' => array_keys($currencies), 'required' => false)
-    ));
+    $this->setValidator('is_ready', new sfValidatorBoolean(array('required' => false)));
+    $this->validatorSchema['is_ready']->setMessage(
+      'invalid', 'You do not have enough credits to post this Collectible to the marketplace!'
+    );
   }
 
   public function validateIsReadyField($validator, $values)
@@ -72,6 +56,27 @@ class CollectibleForSaleForm extends BaseCollectibleForSaleForm
     }
 
     return $values;
+  }
+
+  public function setupPriceField()
+  {
+    $this->setWidget('price', new sfWidgetFormInputText(array(), array('required' => 'required')));
+    $this->setValidator('price', new sfValidatorString(array('required' => false)));
+    $this->setDefault('price', $this->getObject()->getPrice());
+
+    // Get the Collectibles for sale currencies
+    $currencies = CollectibleForSalePeer::$currencies;
+    $this->setWidget('price_currency', new sfWidgetFormChoice(
+      array('choices' => $currencies, 'default' => 'USD')
+    ));
+    $this->setValidator('price_currency', new sfValidatorChoice(
+      array('choices' => array_keys($currencies), 'required' => false)
+    ));
+  }
+
+  public function updatePriceColumn($v)
+  {
+    $this->getObject()->setPrice($v);
   }
 
   public function validatePriceField($validator, $values)
