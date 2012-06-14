@@ -55,31 +55,15 @@
     </div>
   </div>
   <?php else: ?>
-  <div id="not-a-seller-box" class="spacer-bottom-20">
-    <div class="inner-yellow-bg">
-      <div class="row-fluid">
-        <div class="span12">
-          <span class="Chivo webfont buy-credits">
-            Want to sell this collectible?<br/>
-            Start selling now for a small fee.
-          </span>
-          <div class="row-fluid spacer-inner-top">
-            <div class="span6">
-              <?= link_to('1 credit / $2.50', '@seller_packages', array('class' => 'btn blue-button')) ?>
-              <br/><br/>
-              <?= link_to('10 credits / $20', '@seller_packages', array('class' => 'btn blue-button')) ?>
-            </div>
-            <div class="span6">
-              <?= link_to('100 credits / $150', '@seller_packages', array('class' => 'btn blue-button')) ?>
-              <br/><br/>
-              <?= link_to('Unlimited Credits / $250', '@seller_packages', array('class' => 'btn blue-button')) ?>
-            </div>
-          </div>
-        </div>
-      </div>
-      <br/>
-    </div>
-  </div>
+  <center>
+    <?php
+      echo link_to(
+        image_tag('banners/want-to-sell-this-item.png'),
+        '@seller_packages'
+      );
+    ?>
+  </center>
+  <br/>
   <?php endif; ?>
 </div>
 
