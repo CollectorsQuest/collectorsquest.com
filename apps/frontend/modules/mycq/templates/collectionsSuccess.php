@@ -31,7 +31,7 @@
           </div>
           <div class="span7">
             <?php if ($total > 11): ?>
-            <div class="mycq-sort-search-box">
+            <div class="sort-search-box">
               <div class="input-append">
                 <form action="<?= url_for('@ajax_mycq?section=component&page=collections') ?>"
                       id="form-mycq-collections" method="post">
