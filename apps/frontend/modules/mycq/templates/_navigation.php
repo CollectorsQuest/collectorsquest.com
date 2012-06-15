@@ -112,6 +112,7 @@
     $(".dropzone-container-slide").click(function() {
       $("#dropzone-wrapper").slideToggle("slow");
       $(this).find('span').toggleClass('hidden');
+      $(this).toggleClass('open');
       return false;
     });
   });
