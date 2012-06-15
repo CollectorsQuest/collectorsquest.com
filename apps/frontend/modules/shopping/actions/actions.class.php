@@ -5,6 +5,7 @@ class shoppingActions extends cqFrontendActions
   public function preExecute()
   {
     $this->forward404If(IceGateKeeper::locked('shopping_cart'));
+    SmartMenu::setSelected('header_main_menu', 'marketplace');
   }
 
   public function executeCart(sfWebRequest $request)

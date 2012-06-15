@@ -41,6 +41,13 @@ all:
         sent:     { name: '<i class="icon icon-share-alt"></i> Sent Messages', title: "Sent Messages", uri: "@messages_sent" }
         compose:  { name: '<i class="icon icon-edit"></i> Compose Message', title: "Compose Message", uri: "@messages_compose" }
 
+    header_main_menu:
+      items:
+        collections:  { name: Collections, uri: "@collections" }
+        blog:         { name: Blog, uri: "@blog" }
+        video:        { name: Video, uri: "@video" }
+        marketplace:  { name: Market, uri: "@marketplace" }
+
 
 dev:
   domain_name: "collectorsquest.dev"

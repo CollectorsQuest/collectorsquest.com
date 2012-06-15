@@ -2,6 +2,14 @@
 
 class marketplaceActions extends cqFrontendActions
 {
+
+  public function preExecute()
+  {
+    parent::preExecute();
+
+    SmartMenu::setSelected('header_main_menu', 'marketplace');
+  }
+
   public function executeIndex()
   {
     $q = wpPostQuery::create()

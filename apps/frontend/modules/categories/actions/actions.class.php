@@ -2,6 +2,14 @@
 
 class categoriesActions extends cqFrontendActions
 {
+
+  public function preExecute()
+  {
+    parent::preExecute();
+
+    SmartMenu::setSelected('header_main_menu', 'collections');
+  }
+
   public function executeIndex()
   {
     $this->level1_categories = ContentCategoryQuery::create()
