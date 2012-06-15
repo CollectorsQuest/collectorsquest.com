@@ -100,7 +100,10 @@ class sellerActions extends cqFrontendActions
               $this->logMessage(sprintf('Email about package confirmation to %s not sent', $collector->getEmail()));
             }
 
-            $this->getUser()->setFlash('success', 'You received free subscription');
+            $this->getUser()->setFlash(
+              'success', 'Congratulations! You’ve received a free subscription!'
+            );
+
             $this->redirect('@mycq_marketplace');
           }
           else if ('paypal' == $packagesForm->getValue('payment_type'))
@@ -214,14 +217,17 @@ class sellerActions extends cqFrontendActions
                 $this->logMessage(sprintf('Email about package confirmation to %s not sent', $collector->getEmail()));
               }
 
-              $this->getUser()->setFlash('success', 'Payment received');
+              $this->getUser()->setFlash('success', 'Thanks! Your payment has been received!');
               $this->redirect('@mycq_marketplace');
             }
             else
             {
               $this->sendEmail(sfConfig::get('app_ice_libs_emails_notify'), 'CC DEBUG', var_export($paypalResult, true));
 
-              $this->getUser()->setFlash('error', 'Your credit card information is invalid!');
+              $this->getUser()->setFlash(
+                'error', 'Your payment could not be processed.
+                          Please check your credit card information and try again.'
+              );
 
               $this->packagesForm = $packagesForm;
               return sfView::SUCCESS;

@@ -285,19 +285,19 @@ class SellerPackagesForm extends sfForm
 
     if (!$promo)
     {
-      $error = new sfValidatorError($validator, 'Invalid promotion code!');
+      $error = new sfValidatorError($validator, 'Sorry! That code is invalid.');
     }
     else if (0 == $promo->getNoOfTimeUsed())
     {
-      $error = new sfValidatorError($validator, 'No promo codes of this type left!');
+      $error = new sfValidatorError($validator, 'Sorry! That code has expired.');
     }
     else if (time() > $promo->getExpiryDate('U'))
     {
-      $error = new sfValidatorError($validator, 'This Promotion code has been expired!');
+      $error = new sfValidatorError($validator, 'Sorry! That code has expired.');
     }
     else if ($used = PromotionTransactionPeer::findOneByCollectorAndCode($this->getOption('collector', $collector), $values['promo_code']))
     {
-      $error = new sfValidatorError($validator, 'You have already used this promo code!');
+      $error = new sfValidatorError($validator, 'Sorry! You’ve already used this code!');
     }
 
     if (!$error)
