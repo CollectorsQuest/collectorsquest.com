@@ -69,3 +69,57 @@
 <?php else: ?>
   <?php include_slot('mycq_create_collectible_for_sale'); ?>
 <?php endif; ?>
+
+
+<script>
+$(document).ready(function()
+{
+  $(document).controls();
+
+  $(".mycq-collectibles-for-sale .drop-zone").droppable(
+  {
+    over: function(event, ui)
+    {
+      $(this)
+        .addClass("ui-state-highlight")
+        .removeClass('icon-plus')
+        .addClass('icon-download-alt');
+    },
+    out: function(event, ui)
+    {
+      $(this)
+        .removeClass("ui-state-highlight")
+        .removeClass('icon-download-alt')
+        .addClass('icon-plus');
+    },
+    drop: function(event, ui)
+    {
+      $(this)
+        .removeClass("ui-state-highlight")
+        .removeClass('icon-download-alt')
+        .addClass('icon-plus');
+      ui.draggable.draggable('option', 'revert', false);
+
+      $.ajax({
+        url: '<?php echo url_for('@ajax_mycq?section=collectible&page=donateImage'); ?>',
+        type: 'GET',
+        data: {
+          donor_id: ui.draggable.data('collectible-id'),
+          recipient_id: $(this).data('collectible-id')
+        },
+        success: function()
+        {
+          ui.draggable.draggable('option', 'revert', false);
+          ui.draggable.hide();
+        },
+        error: function()
+        {
+          ui.draggable.draggable('option', 'revert', true);
+          ui.draggable.show();
+        }
+      });
+    }
+  });
+
+});
+</script>

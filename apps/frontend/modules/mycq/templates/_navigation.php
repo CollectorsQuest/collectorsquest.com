@@ -8,9 +8,9 @@
   <div class="row-fluid">
     <div class="span10">
       <?php
-        $links = link_to('Log Out', '@logout', array('class'=>'logout-link')) .
+        $links = link_to('View Public Profile', '@collector_me') .
                  '<span style="color: #fff;">&nbsp; | &nbsp;</span>'.
-                 link_to('View Public Profile →', '@collector_me');
+                 link_to('Log Out', '@logout', array('class'=>'logout-link'));
 
         cq_page_title($collector->getDisplayName(), $links);
       ?>
@@ -21,8 +21,11 @@
             <div class="nav-collapse">
               <ul class="nav">
                 <?php
-                  $active = in_array($sf_params->get('action'), array('index')) ? 'active' : null;
-                  echo '<li class="'. $active .'">', link_to('Home', '@mycq'), '</li>';
+                  if (IceGateKeeper::open('mycq_homepage'))
+                  {
+                    $active = in_array($sf_params->get('action'), array('index')) ? 'active' : null;
+                    echo '<li class="'. $active .'">', link_to('Home', '@mycq'), '</li>';
+                  }
                 ?>
                 <?php
                   $active = in_array($sf_params->get('action'), array('profile')) ? 'active' : null;
@@ -46,8 +49,11 @@
                   echo '<li class="'. $active .'" style="border-right: 1px solid #4B3B3B;">', link_to($text, '@messages_inbox'), '</li>';
                 ?>
                 <?php
-                  // $active = in_array($sf_params->get('action'), array('wanted')) ? 'active' : null;
-                  // echo '<li class="'. $active .'" style="border-right: 1px solid #4B3B3B;">', link_to('Wanted', '@mycq_wanted'), '</li>';
+                  if (IceGateKeeper::open('mycq_wanted'))
+                  {
+                    $active = in_array($sf_params->get('action'), array('wanted')) ? 'active' : null;
+                    echo '<li class="'. $active .'" style="border-right: 1px solid #4B3B3B;">', link_to('Wanted', '@mycq_wanted'), '</li>';
+                  }
                 ?>
               </ul>
             </div><!-- /.nav-collapse -->

@@ -64,20 +64,6 @@
   <?php endif; ?>
 </div>
 
-<?php slot('mycq_dropbox_instructions'); ?>
-<div class="row-fluid instruction-box <?= $instructions['position']; ?>">
-  <div class="span3">
-    <span class="<?php echo ($instructions['position'] === 'top') ? 'gray-arrow-up' : 'gray-arrow' ; ?> pull-right">&nbsp;</span>
-  </div>
-  <div class="span6 hint-text">
-    <?= $instructions['text'] ?>
-  </div>
-  <div class="span3">
-    <span class="<?php echo ($instructions['position'] === 'top') ? 'gray-arrow-up' : 'gray-arrow' ; ?>">&nbsp;</span>
-  </div>
-</div><!-- /.instruction-box -->
-<?php end_slot(); ?>
-
 <script>
 $(document).ready(function()
 {
