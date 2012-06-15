@@ -12,14 +12,15 @@ header {
 	z-index: 400px;
 
 	.navbar {
-		margin-bottom: 0;
 		position: relative;
+		z-index: 500;
+		margin-bottom: 0;
 		border-top: 1px solid #4f83a0;
 		border-right: 1px solid #062842;
-		z-index: 500;
 	}
 
 	.navbar-inner {
+		min-height: 42px;
 		padding-left: 0;
 		padding-right: 20px;
 		background: rgb(19, 89, 127); /* Old browsers */
@@ -32,33 +33,25 @@ header {
 		background: -ms-linear-gradient(top, rgba(19, 89, 127, 1) 0%, rgba(14, 67, 96, 1) 94%, rgba(7, 43, 68, 1) 100%); /* IE10+ */
 		background: linear-gradient(top, rgba(19, 89, 127, 1) 0%, rgba(14, 67, 96, 1) 94%, rgba(7, 43, 68, 1) 100%); /* W3C */
 		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#13597f', endColorstr = '#0e4360', GradientType = 0); /* IE6-8 */
-		-webkit-border-radius: 0;
-		-moz-border-radius: 0;
-		border-radius: 0;
-		-webkit-box-shadow: none;
-		-moz-box-shadow: none;
-		box-shadow: none;
-		min-height: 42px;
+		.border-radius(0);
 	}
 
 	.navbar .container {
-		-webkit-box-shadow: none;
-		-moz-box-shadow: none;
-		box-shadow: none;
-		clear: both;
-		float: left;
 		width: 100%;
+		float: left;
+		clear: both;
+		.box-shadow(none);
 	}
 
 	.navbar .nav > li {
+		position: relative;
+		right: 50%;
+		float: left;
+		margin-top: 1px;
 		font: 18px Arial;
 		font-weight: bold;
 		text-transform: uppercase;
 		border-left: 1px solid #033b74;
-		float: left;
-		position: relative;
-		right: 50%;
-		margin-top: 1px;
 	}
 
 // Links
@@ -82,8 +75,8 @@ header {
 		background: -o-linear-gradient(top, rgba(32, 147, 195, 1) 0%, rgba(9, 113, 186, 1) 96%, rgba(4, 67, 126, 1) 99%); /* Opera 11.10+ */
 		background: -ms-linear-gradient(top, rgba(32, 147, 195, 1) 0%, rgba(9, 113, 186, 1) 96%, rgba(4, 67, 126, 1) 99%); /* IE10+ */
 		background: linear-gradient(top, rgba(32, 147, 195, 1) 0%, rgba(9, 113, 186, 1) 96%, rgba(4, 67, 126, 1) 99%); /* W3C */
-		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#2093c3', endColorstr = '#04437e', GradientType = 0); /* IE6-8 */
 		text-shadow: -1px 1px 1px rgba(42, 44, 42, 1);
+		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#2093c3', endColorstr = '#04437e', GradientType = 0); /* IE6-8 */
 	}
 
 	.dropdown-menu > li {
@@ -96,11 +89,11 @@ header {
 	}
 
 	.navbar .nav {
-		margin-left: auto !important;
-		margin-right: auto !important;
-		float: left;
 		position: relative;
 		left: 49%;
+		float: left;
+		margin-left: auto !important;
+		margin-right: auto !important;
 	}
 }
 
@@ -123,43 +116,36 @@ header {
 	border-top: none;
 	border-bottom: 1px solid #ada4a4;
 
-	.navbar {
-		margin-bottom: 0;
+	&.navbar {
 		position: relative;
+		margin-bottom: 0;
 	}
 
 	.navbar-inner {
-		padding-left: 0;
-		padding-right: 0;
-		#gradient > .vertical(#887777, #766868);
-		-webkit-border-radius: 0;
-		-moz-border-radius: 0;
-		border-radius: 0;
-		-webkit-box-shadow: none;
-		-moz-box-shadow: none;
-		box-shadow: none;
 		min-height: 27px;
+		padding-right: 0;
+		padding-left: 0;
+		#gradient > .vertical(#887777, #766868);
+		.border-radius(0);
+		.box-shadow(none);
 	}
 
 	.container {
-		-webkit-box-shadow: none;
-		-moz-box-shadow: none;
-		box-shadow: none;
-		clear: both;
-		float: left;
 		width: 100%;
+		float: left;
+		clear: both;
 		padding-left: 0;
 		.box-shadow(none);
 	}
 
 	.nav > li {
-		font-weight: bold;
+	  position: relative;
+	  float: left;
+	  margin-top: 1px;
+	  font-weight: bold;
 		text-transform: uppercase;
 		letter-spacing: 0.04em;
 		border-left: 1px solid #4b3b3b;
-		float: left;
-		position: relative;
-		margin-top: 1px;
 	}
 
 // Links
@@ -206,10 +192,10 @@ header {
 	}
 
 	.navbar .nav {
+		position: relative;
+		float: left;
 		margin-left: auto !important;
 		margin-right: auto !important;
-		float: left;
-		position: relative;
 	}
 }
 
