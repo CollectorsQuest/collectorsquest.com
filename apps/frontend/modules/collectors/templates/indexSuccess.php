@@ -2,8 +2,8 @@
 /**
  * @var $pager PropelModelPager
  * @var $collector Collector
- * @var $sortBy string
  * @var $type string
+ * @var $display string
  */
 ?>
 
@@ -13,14 +13,12 @@
 <div class="row">
   <div id="collectors" class="row-content">
     <?php foreach ($pager->getResults() as $i => $collector): ?>
-    <div class="span6" style="height: 95px; float: left;">
-      <?php       include_partial(
-      'collector/collector_' . $display . '_view_compact',
-      array(
-        'collector' => $collector,
-        'i'         => $i
-      )
-    );
+    <div class="span6" style="height: 100px; float: left;">
+      <?php
+        include_partial(
+          'collector/collector_' . $display . '_view_compact',
+          array('collector' => $collector, 'i' => $i)
+        );
       ?>
     </div>
     <?php endforeach; ?>

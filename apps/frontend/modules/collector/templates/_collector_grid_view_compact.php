@@ -6,13 +6,13 @@
   <div class="row-fluid link">
     <div class="span3">
       <?php
-      echo link_to_collector(
-        $collector, 'image', array(),
-        array(
-          'max_width'  => 64,
-          'max_height' => 64
-        )
-      );
+        echo link_to_collector(
+          $collector, 'image', array(),
+          array(
+            'max_width'  => 64,
+            'max_height' => 64
+          )
+        );
       ?>
     </div>
     <div class="span9">
@@ -21,16 +21,16 @@
       </h2>
       <ul style="list-style: none; margin-left: 0;">
         <?php if ($collectionsCount = $collector->countCollections()): ?>
-        <li>
-          <?= sprintf('has <b>%d</b> collections', $collectionsCount) ?>
-        </li>
-        <?php if ($collectiblesCount = $collector->countCollectibles()): ?>
           <li>
-            <?= sprintf('with <b>%d</b> collectibles', $collectiblesCount) ?>
+            <?= sprintf('has <b>%d</b> collections', $collectionsCount) ?>
           </li>
+          <?php if ($collectiblesCount = $collector->countCollectibles()): ?>
+            <li>
+              <?= sprintf('with <b>%d</b> collectibles', $collectiblesCount) ?>
+            </li>
           <?php endif; ?>
         <?php else: ?>
-        <li><?= sprintf('joined <b>%s</b> ago', time_ago_in_words($collector->getCreatedAt('U')));?></li>
+          <li><?= sprintf('joined <b>%s</b> ago', time_ago_in_words($collector->getCreatedAt('U')));?></li>
         <?php endif; ?>
       </ul>
     </div>
