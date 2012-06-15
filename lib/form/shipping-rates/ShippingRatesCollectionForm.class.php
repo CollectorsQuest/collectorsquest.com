@@ -19,7 +19,7 @@ class ShippingRatesCollectionForm extends sfFormPropel
     $options = array(),
     $CSRFSecret = null
   ) {
-    if (!in_array(get_class($object), array('Collector', 'Collection')))
+    if (!in_array(get_class($object), array('Collector', 'Collectible')))
     {
       throw new InvalidArgumentException(sprintf(
         'ShippingFeeCollectionForm exects a Collector or Collectible object,
@@ -60,7 +60,8 @@ class ShippingRatesCollectionForm extends sfFormPropel
     // setup domsetic shipping form
     $form = new ShippingRatesForDomesticShippingForm(array(), array(
         'parent_object' => $this->getObject(),
-        'shipping_rates' => $this->getObject()->getShippingRatesDomestic(),
+        'shipping_rates' => $this->filterObjectShippingRates(
+            $this->getObject()->getShippingRatesDomestic()),
         'tainted_request_values' =>
             $this->getTaintedRequestValue('shipping_domestic'),
     ));
@@ -69,7 +70,8 @@ class ShippingRatesCollectionForm extends sfFormPropel
 
     $form = new ShippingRatesForInternationalShippingForm(array(), array(
       'parent_object' => $this->getObject(),
-      'shipping_rates' => $this->getObject()->getShippingRatesForCountryCode('ZZ'),
+      'shipping_rates' => $this->filterObjectShippingRates(
+          $this->getObject()->getShippingRatesForCountryCode('ZZ')),
       'tainted_request_values' =>
           $this->getTaintedRequestValue('shipping_international'),
     ));
@@ -97,6 +99,30 @@ class ShippingRatesCollectionForm extends sfFormPropel
       $this->embedForm($form->getNameForEmbedding(), $form);
     }
     /* */
+  }
+
+  /**
+   * FIlter out ShippingRateCollector objects if we are currently in collectible,
+   * because we don't want to be able to edit those from a collectible
+   *
+   * @param     ShippingRate[] $shipping_rates
+   * @return    ShippingRate[]
+   */
+  protected function filterObjectShippingRates($shipping_rates)
+  {
+    if ($this->getObject() instanceof Collectible)
+    {
+
+      foreach ($shipping_rates as $k => $shipping_rate)
+      {
+        if ($shipping_rate instanceof ShippingRateCollector)
+        {
+          unset ($shipping_rates[$k]);
+        }
+      }
+    }
+
+    return $shipping_rates;
   }
 
   /**

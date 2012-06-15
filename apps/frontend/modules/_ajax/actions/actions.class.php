@@ -2,5 +2,4 @@
 
 class _ajaxActions extends cqFrontendActions
 {
-
 }

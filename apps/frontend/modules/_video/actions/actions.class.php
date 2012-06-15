@@ -2,6 +2,14 @@
 
 class _videoActions extends cqFrontendActions
 {
+
+  public function preExecute()
+  {
+    parent::preExecute();
+
+    SmartMenu::setSelected('header_main_menu', 'video');
+  }
+
   public function executeIndex()
   {
     $this->redirect('http://'. sfConfig::get('app_magnify_channel', 'video.collectorsquest.com'), 301);

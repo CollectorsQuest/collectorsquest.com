@@ -3,6 +3,13 @@
 class collectionActions extends cqFrontendActions
 {
 
+  public function preExecute()
+  {
+    parent::preExecute();
+
+    SmartMenu::setSelected('header_main_menu', 'collections');
+  }
+
   /**
    * @param sfWebRequest $request
    * @return string
@@ -191,6 +198,8 @@ class collectionActions extends cqFrontendActions
 
       $this->collectible_for_sale = $collectible_for_sale;
       $this->form = new CollectibleForSaleBuyForm($collectible_for_sale);
+
+      SmartMenu::setSelected('header_main_menu', 'marketplace');
     }
 
     $this->collector = $collector;

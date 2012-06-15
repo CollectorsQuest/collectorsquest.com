@@ -159,6 +159,9 @@ a.bold-links {
 	font-size: 85%;
 }
 
+li {
+  line-height: @baseLineHeight + 2;
+}
 
 ul.stat {
 	float: left;
@@ -230,4 +233,34 @@ ul.statistic-2 {
 	line-height: 30px;
 	font-weight: bold;
 	letter-spacing: 0.2em;
+}
+
+//horizontal links
+
+ul.h-links-small {
+	margin: 4px 0 0 0;
+	padding: 0;
+	list-style: none;
+
+	li {
+		float: left;
+		margin: 0;
+		padding: 0 9px 0 9px;
+		font: 10px Arial;
+		border-left: 1px solid #83a8bb;
+		&:first-child {
+			border-left: none;
+		}
+		a, span {
+			position: relative;
+			margin: 0;
+			line-height: 10px;
+			text-decoration: none;
+			color: @blueDark;
+			border: none;
+			&:hover {
+				color: @blue;
+			}
+		}
+	}
 }

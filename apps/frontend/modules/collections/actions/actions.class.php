@@ -3,6 +3,13 @@
 class collectionsActions extends cqFrontendActions
 {
 
+  public function preExecute()
+  {
+    parent::preExecute();
+
+    SmartMenu::setSelected('header_main_menu', 'collections');
+  }
+
   public function executeIndex()
   {
     return sfView::SUCCESS;

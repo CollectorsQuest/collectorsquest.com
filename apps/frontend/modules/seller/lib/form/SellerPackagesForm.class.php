@@ -42,9 +42,9 @@ class SellerPackagesForm extends sfForm
   private function setupPackageIdField()
   {
     $this->setWidget('package_id', new sfWidgetFormSelectRadio(array(
-      'choices'          => PackagePeer::getAllPackagesForSelectGroupedByPlanType(),
-      'label'            => 'Package',
-      'formatter'        => function($widget, $inputs)
+      'choices'    => PackagePeer::getAllPackagesForSelectGroupedByPlanType(),
+      'label'      => 'Package',
+      'formatter'  => function($widget, $inputs)
       {
         $rows = array();
         foreach ($inputs as $input)
@@ -88,9 +88,13 @@ class SellerPackagesForm extends sfForm
     $this->setWidget('promo_code', new sfWidgetFormInputText(array(
       'label'=> 'Promo',
     ), array(
+      'required' => 'required',
       'placeholder' => 'Promo code',
     )));
-    $this->setValidator('promo_code', new sfValidatorString(array('required'=> false)));
+    $this->setValidator('promo_code', new sfValidatorString(
+      array('required'=> false),
+      array('required' => 'The promo code is required while we are in private beta!')
+    ));
     $this->mergePreValidator(new sfValidatorCallback(array('callback'=> array($this, 'applyPromoCode'))));
   }
 
@@ -238,8 +242,8 @@ class SellerPackagesForm extends sfForm
   {
     //TODO: Replace with proper labeling
     return array(
-      'paypal'=> '/images/legacy/payment/paypal.gif',
-      'cc'    => '/images/legacy/payment/cc.gif',
+      'paypal' => '/images/legacy/payment/paypal.gif',
+      'cc'     => '/images/legacy/payment/cc.gif',
     );
   }
 
@@ -265,7 +269,9 @@ class SellerPackagesForm extends sfForm
   {
     if (IceGateKeeper::locked('mycq_seller_pay') && empty($values['promo_code']))
     {
-      throw new sfValidatorErrorSchema($validator, array('promo_code'=> new sfValidatorError($validator, 'Promo code is required!')));
+      throw new sfValidatorErrorSchema($validator, array(
+        'promo_code'=> new sfValidatorError($validator, 'The promo code is required while we are in private beta!'))
+      );
     }
 
     if (empty($values['promo_code']))

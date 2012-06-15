@@ -227,6 +227,7 @@ var COMMON = window.COMMON = (function(){
   // return object literal
   return {
     setupProjectWideHelpers: function() {
+      COMMON.setupCssHelpers();
       COMMON.setupModalLoginRegistrationDialog();
       COMMON.linkifyTables();
       COMMON.setupComments();
@@ -235,6 +236,16 @@ var COMMON = window.COMMON = (function(){
       COMMON.setupEmailSpellingHelper();
       COMMON.setupLinksModalConfirm();
       COMMON.loginLogoutHelpers();
+    },
+    setupCssHelpers: function() {
+      // search box extend overline over close-by elements
+      $('.sort-search-box').on('focusin focusout', 'input.input-sort-by', function(){
+        console.log('wat?')
+        var $this = $(this);
+        $this.siblings('button').toggleClass('blue-outline-t-b-r');
+        $this.siblings('.btn-group').find('div').toggleClass('blue-outline-t-b-l');
+        $this.siblings('.btn-group').find('a').toggleClass('blue-outline-t-b');
+      });
     },
     setupLinksModalConfirm: function() {
       $('a.requires-confirm').on('click', function(e) {

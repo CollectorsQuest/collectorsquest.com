@@ -45,7 +45,7 @@
 
 <?php cq_section_title('Discover more collectibles for sale'); ?>
 
-<div id="sort-search-box">
+<div class="sort-search-box full-lenght-blue">
   <div class="input-append">
     <form action="<?= url_for('@search_collectibles_for_sale'); ?>" method="post" id="form-discover-collectibles">
       <div class="btn-group">

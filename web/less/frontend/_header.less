@@ -83,6 +83,15 @@ header .search-header form, header .form-inline.pull-right {
   margin-bottom: 15px;
 }
 
+header .search-header input:focus ~ button {
+	border-color: @blue!important;
+}
+
+header .search-header button {
+  @transition: border linear .2s, box-shadow linear .2s;
+  .transition(@transition);
+}
+
 a.sing-up-now-btn, a.my-account-btn {
   display: inline-block;
   text-indent: -9999px;
@@ -141,4 +150,8 @@ a.sing-up-now-btn, a.my-account-btn {
 	.append-search-button {
 		.border-radius(0 7px 7px 0);
 	}
+}
+
+.input-append .btn:last-child {
+	border-radius: 0 7px 7px 0;
 }

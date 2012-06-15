@@ -35,7 +35,7 @@ class SmartMenu
           '%id%'    => $id,
           '%name%'  => $item['name'],
           '%title%' => isset($item['title']) ? $item['title'] : $item['name'],
-          '%url%'   => isset($item['uri']) ? url_for($item['uri']) : '#',
+          '%url%'   => isset($item['uri']) ? url_for($item['uri'], isset($item['absolute']) ? $item['absolute'] : true) : '#',
           // https://developer.mozilla.org/en/HTML/Element/a#attr-target
           '%target%'=> isset($item['target']) ? $item['target'] : '_self',
       );
@@ -64,6 +64,24 @@ class SmartMenu
   public static function setSelected($menu_name, $selected)
   {
     self::$selected[$menu_name] = $selected;
+  }
+
+  /**
+   * Return a sf cache key, either for a specific menu or for all menus.
+   *
+   * The cache key is based on which element is selected (either for all
+   * menus or for a specific menu)
+   *
+   * @param     string $menu_name
+   * @return    string
+   */
+  public static function getCacheKey($menu_name = null)
+  {
+    return md5(var_export(
+      isset($menu_name) && isset(self::$selected[$menu_name])
+        ? self::$selected[$menu_name]
+        : self::$selected
+    , true));
   }
 
   /**

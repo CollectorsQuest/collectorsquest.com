@@ -82,7 +82,7 @@ class ajaxAction extends IceAjaxAction
             $collectible->delete();
           }
         }
-        catch (PropelException $e)
+        catch (Exception $e)
         {
           if ($collectible && !$collectible->isNew())
           {

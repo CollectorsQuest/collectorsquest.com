@@ -6,7 +6,7 @@
  */
 ?>
 
-<div class="blue-actions-panel spacer-bottom-20">
+<div class="blue-actions-panel spacer-bottom-10">
   <div class="row-fluid">
     <div class="pull-left">
       <ul>

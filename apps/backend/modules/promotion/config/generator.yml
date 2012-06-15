@@ -19,7 +19,7 @@ generator:
         promotion_code: { label: Promotion Code }
         amount: { label: Amount }
         amount_type: { label: Amount Type }
-        no_of_time_used: { label: Limit }
+        no_of_time_used: { label: Usages }
         expiry_date: { label: Expiry Date }
 
       list:
@@ -30,6 +30,9 @@ generator:
 
       form:
         display: [promotion_name, promotion_desc, promotion_code, amount, amount_type, no_of_time_used, expiry_date]
+        fields:
+          expiry_date:
+            attributes: { class: span2 }
       edit:
         title: Edit Promotion
       new:

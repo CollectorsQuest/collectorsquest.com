@@ -1,4 +1,18 @@
-<?php cq_dart_slot('300x250', 'collections', 'collection', 'sidebar') ?>
+<?php
+/**
+ * @var $collection CollectorCollection
+ */
+?>
+
+<?php
+  include_component(
+    '_sidebar', 'widgetManageCollection',
+    array(
+      'collection' => $collection,
+      'fallback' => array('cq_dart_slot', array('300x250', 'collections', 'collection', 'sidebar'))
+    )
+  );
+?>
 
 <?php
   include_component(

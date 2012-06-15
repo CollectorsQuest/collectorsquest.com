@@ -88,9 +88,3 @@ else if (!defined('GIT_REVISION'))
   define('GIT_REVISION', md5(uniqid('git_revision_', true)));
   define('SVN_REVISION', rand(1, PHP_INT_MAX));
 }
-
-require_once __DIR__ . '/ProjectConfiguration.class.php';
-$configuration = ProjectConfiguration::getApplicationConfiguration(SF_APP, SF_ENV, SF_DEBUG);
-
-// Start the page request timer
-cqTimer::getInstance()->startTimer();

@@ -16,10 +16,16 @@ else
   $_xhprof_on = false;
 }
 
-/**
- * @var cqApplicationConfiguration $configuration
- */
 require __DIR__ .'/../config/bootstrap.php';
+require __DIR__ .'/../config/ProjectConfiguration.class.php';
+
+/** @var cqApplicationConfiguration $configuration */
+$configuration = ProjectConfiguration::getApplicationConfiguration(SF_APP, SF_ENV, SF_DEBUG);
+
+// Start the page request timer
+cqTimer::getInstance()->startTimer();
+
+// Handle the request
 sfContext::createInstance($configuration)->dispatch();
 
 // Time the request and send it to Graphite
@@ -32,7 +38,7 @@ if (false !== $crawler = cqStatic::isCrawler())
 }
 
 /**
- * Record the XHProf run only if the page execution time is greater than 1 second
+ * Record the XHProf run only if the page execution time is greater than 2 seconds
  */
 if ($_xhprof_on && ((isset($_GET['_profile']) && $_GET['_profile'] == '1') || (2 < microtime(true) - $_time_start)))
 {

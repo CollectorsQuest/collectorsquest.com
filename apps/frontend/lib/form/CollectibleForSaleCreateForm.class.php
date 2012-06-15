@@ -7,12 +7,13 @@ class CollectibleForSaleCreateForm extends CollectibleForSaleForm
     parent::configure();
 
     $this->setupCollectibleForm();
+    $this->setupIsReadyField();
     $this->setupPriceField();
     $this->setupConditionField();
 
     // add a post validator
     $this->validatorSchema->setPostValidator(
-      new sfValidatorCallback(array('callback' => array($this, 'validatePriceField')))
+      new sfValidatorCallback(array('callback' => array($this, 'validateIsReadyField')))
     );
 
     $this->useFields(array(
@@ -41,7 +42,7 @@ class CollectibleForSaleCreateForm extends CollectibleForSaleForm
       array(
         'label' => 'Collection(s)',
         'model' => 'CollectorCollection', 'criteria' => $criteria,
-        'add_empty' => true, 'multiple' => true
+        'add_empty' => 'Create a new Collection', 'multiple' => true
       ),
       array(
         'data-placeholder' => 'Please, choose at least one Collection',
@@ -53,10 +54,13 @@ class CollectibleForSaleCreateForm extends CollectibleForSaleForm
       'model' => 'CollectorCollection', 'criteria' => $criteria,
       'multiple' => true, 'required' => true, 'min' => 1
     ));
+    $collectible->getValidator('collection_collectible_list')->setMessage(
+      'invalid', 'Please choose at least one existing Collection or create a new one!'
+    );
 
     unset(
-    $collectible->widgetSchema['collection_id'],
-    $collectible->validatorSchema['collection_id']
+      $collectible->widgetSchema['collection_id'],
+      $collectible->validatorSchema['collection_id']
     );
 
     $collectible->useFields(array(

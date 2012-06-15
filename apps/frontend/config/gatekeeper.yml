@@ -1,6 +1,7 @@
 all:
   pages: ~
   features:
+    collectible_shipping: false
     shopping_cart: false
     mycq_marketplace: false
     mycq_seller_pay: false
@@ -9,6 +10,7 @@ all:
 next:
   pages: ~
   features:
+    collectible_shipping: false
     shopping_cart: false
     mycq_marketplace: true
     mycq_seller_pay: false
@@ -17,6 +19,7 @@ next:
 dev:
   pages: ~
   features:
+    collectible_shipping: true
     shopping_cart: true
     mycq_marketplace: true
     mycq_seller_pay: false

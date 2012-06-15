@@ -4,7 +4,7 @@ class mycqActions extends cqFrontendActions
 {
   public function executeIndex()
   {
-    return $this->redirect('@mycq_profile');
+    return sfView::SUCCESS;
   }
 
   public function executeProfile(sfWebRequest $request)
@@ -393,6 +393,10 @@ class mycqActions extends cqFrontendActions
     }
 
     $form = new CollectibleEditForm($collectible);
+    $form_shipping = new ShippingRatesCollectionForm($collectible, array(
+        'tainted_request_values' =>
+            $request->getParameter('shipping_rates_collection'),
+    ));
 
     if ($request->isMethod('post'))
     {
@@ -409,7 +413,15 @@ class mycqActions extends cqFrontendActions
 
       $form->bind($taintedValues, $request->getFiles('collectible'));
 
-      if ($form->isValid())
+      if ($form['for_sale'] && !IceGateKeeper::locked('collectible_shipping'))
+      {
+        $form_shipping->bind($request->getParameter('shipping_rates_collection'));
+      }
+
+      if (
+        $form->isValid() &&
+        (!$form_shipping->isBound() || $form_shipping->isValid())
+      )
       {
         $for_sale = $form->getValue('for_sale');
 
@@ -464,6 +476,7 @@ class mycqActions extends cqFrontendActions
 
     $this->form = $form;
     $this->form_for_sale = isset($form['for_sale']) ? $form['for_sale'] : null;
+    $this->form_shipping = $form_shipping;
 
     return sfView::SUCCESS;
   }

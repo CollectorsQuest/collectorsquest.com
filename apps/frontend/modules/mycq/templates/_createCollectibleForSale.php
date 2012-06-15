@@ -8,7 +8,9 @@
 <form action="<?= url_for('@ajax_mycq?section=component&page=createCollectibleForSale'); ?>"
       method="post" id="form-create-collectible" class="ajax form-horizontal form-modal">
 
-  <h1>Create a New Collectible</h1>
+  <h1>Create a New Collectible for Sale</h1>
+
+  <?= $form->renderGlobalErrors(); ?>
 
   <?= $form['collectible']['collection_collectible_list']->renderRow() ?>
   <?= $form['collectible']['name']->renderRow() ?>
@@ -18,7 +20,7 @@
 
   <div class="form-actions">
     <button type="submit" class="btn btn-primary blue-button spacer-right-15">
-      Create Collectible
+      Create Collectible for Sale
     </button>
     <button type="reset" class="btn gray-button"
             onClick="$(this).parents('.modal').find('.modal-body').dialog2('close')">
@@ -41,7 +43,29 @@
 <script>
 $(document).ready(function()
 {
-  $(".chzn-select").chosen();
+  $(".chzn-select").find("option:selected").each(function(index, option)
+  {
+    if ($(option).val() === '') {
+      $(option).removeAttr("selected");
+    }
+  });
+
+  $(".chzn-select")
+    .chosen({ no_results_text: "No collections found for" })
+    .change(function()
+    {
+      if ($(this).find("option:selected").val() === '')
+      {
+        $(this).find("option:selected").removeAttr("selected");
+
+        var name;
+        if (name = prompt("Please enter the name of the Collection:"))
+        {
+          $(this).append($('<option></option>').val(name).html(name).attr('selected', 'selected'));
+          $(this).trigger("liszt:updated");
+        }
+      }
+    });
 
   $('#form-create-collectible input.tag').tagedit({
     autocompleteURL: '<?= url_for('@ajax_typeahead?section=tags&page=edit'); ?>',

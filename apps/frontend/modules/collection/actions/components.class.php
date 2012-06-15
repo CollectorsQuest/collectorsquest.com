@@ -34,4 +34,41 @@ class collectionComponents extends cqFrontendComponents
     return sfView::SUCCESS;
   }
 
+  public function executeCollectiblesReorder()
+  {
+    $this->_get_collection();
+
+    if ($this->getUser()->isOwnerOf($this->collection))
+    {
+      $c = new Criteria();
+      $c->addAscendingOrderByColumn(CollectionCollectiblePeer::POSITION);
+      $c->addDescendingOrderByColumn(CollectionCollectiblePeer::CREATED_AT);
+
+      $this->collectibles = $this->collection->getCollectibles($c);
+    }
+
+    return sfView::SUCCESS;
+  }
+
+  private function _get_collection()
+  {
+    if ($id = $this->getRequestParameter('id'))
+    {
+      $this->collection = CollectorCollectionPeer::retrieveByPk($id);
+    }
+    else if ($id = $this->getRequestParameter('collector_id'))
+    {
+      if ($collector = CollectorPeer::retrieveByPK($id))
+      {
+        $this->collection = $collector->getCollectionDropbox();
+      }
+    }
+    else if ('0' === $id = $this->getRequestParameter('id'))
+    {
+      if ($collector = $this->getCollector())
+      {
+        $this->collection = $collector->getCollectionDropbox();
+      }
+    }
+  }
 }

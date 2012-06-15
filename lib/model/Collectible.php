@@ -505,7 +505,7 @@ class Collectible extends BaseCollectible
   {
     return array_merge(
       ShippingRateCollectorQuery::create()
-        ->filterByCollector($this)
+        ->filterByCollectorId($this->getCollectorId())
         ->findAndGroupByCountryCode($con),
       ShippingRateCollectibleQuery::create()
         ->filterByCollectible($this)

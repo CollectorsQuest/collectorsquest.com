@@ -12,13 +12,13 @@ _ad_slots:
   lifetime:    3600
 
 _header:
-  enabled:     true
+  enabled:     false
   contextual:  true
   with_layout: false
   lifetime:    300
 
 _javascripts:
-  enabled:     true
+  enabled:     false
   contextual:  true
   with_layout: false
   lifetime:    3600
