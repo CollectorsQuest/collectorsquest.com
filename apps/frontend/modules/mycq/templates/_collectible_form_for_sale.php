@@ -1,6 +1,7 @@
 <?php
 /**
  * @var $form CollectibleForSaleEditForm
+ * @var $form_shipping ShippingRatesCollection
  */
 ?>
 
@@ -19,7 +20,7 @@
 </div>
 
 <div id="form-collectible-for-sale" class="hide">
-  <?php if ($sf_user->getSeller()->hasPackageCredits()): ?>
+  <?php if (true || $sf_user->getSeller()->hasPackageCredits()): ?>
   <div class="control-group">
     <?= $form['price']->renderLabel(); ?>
     <div class="controls">
@@ -37,6 +38,7 @@
     </div>
   </div>
 
+  <?php if (IceGateKeeper::locked('collectible_shipping')): ?>
   <div class="control-group">
     <label class="control-label">Shipping</label>
     <div class="controls">
@@ -54,6 +56,11 @@
       </label>
     </div>
   </div>
+  <?php else: ?>
+    <?= $form_shipping->renderHiddenFields(); ?>
+    <?= $form_shipping->renderUsing('Bootstrap'); ?>
+  <?php endif; ?>
+
   <?php else: ?>
   <center>
     <?php

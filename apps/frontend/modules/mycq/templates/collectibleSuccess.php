@@ -116,9 +116,11 @@
         if ($form_for_sale)
         {
           include_partial(
-            'mycq/collectible_form_for_sale',
-            array('collectible' => $collectible, 'form' => $form_for_sale)
-          );
+            'mycq/collectible_form_for_sale', array(
+                'collectible' => $collectible,
+                'form' => $form_for_sale,
+                'form_shipping' => $form_shipping,
+          ));
         }
         else
         {

@@ -73,7 +73,7 @@ class ShippingRateQuery extends BaseShippingRateQuery
     if ($object instanceof Collectible)
     {
       return ShippingRateCollectibleQuery::create($modelAlias, $con)
-        ->filterByCollectible($collectible);
+        ->filterByCollectible($object);
     }
   }
 
