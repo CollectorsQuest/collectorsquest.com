@@ -13,5 +13,41 @@
         Edit Collection
       </a>
     </li>
+    <li>
+      <a href="<?=url_for('@ajax_collection?section=component&page=collectiblesReorder') . '?id=' . $collection->getId()?>" onclick="ajax_load('#main', this.href); return false;">
+        <i class="icon-refresh"></i>
+        Re-Order Collectibles
+      </a>
+    </li>
   </ul>
 </div>
+<script type="text/javascript">
+  var ajax_load = function(target, url) {
+    var $target = $(target);
+
+    if ($target && url)
+    {
+      var pos = $target.offset();
+
+//      $('#main').css(
+//      {
+//        "left": pos.left +"px",
+//        "top":  pos.top  +"px"
+//      });
+
+      $('#main').showLoading();
+//      $('#loading').height($target.height() + 10);
+//      $('#loading').width($target.width());
+//      $('#loading').show();
+
+      $target.load(url, function()
+      {
+        $('#main').hideLoading();
+      });
+
+      return true;
+    }
+
+    return false;
+  }
+</script>
