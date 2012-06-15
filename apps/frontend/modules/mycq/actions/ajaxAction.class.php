@@ -358,6 +358,9 @@ class ajaxAction extends IceAjaxAction
       $small = $multimedia->getAbsolutePath('100x100');
       copy(str_replace('235x315', '100x100', $image), $small);
 
+      $collector->getProfile()->setIsImageAuto(true);
+      $collector->getProfile()->save();
+
       return $this->success();
     }
 

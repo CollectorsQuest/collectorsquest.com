@@ -892,6 +892,9 @@ class Collector extends BaseCollector implements ShippingRatesInterface
       copy(sfConfig::get('sf_web_dir')
         .'/images/frontend/multimedia/Collector/default/100x100/'. $avatar_id .'.jpg', $small);
 
+      $this->getProfile()->setIsImageAuto(true);
+      $this->getProfile()->save();
+
       return true;
     }
 
