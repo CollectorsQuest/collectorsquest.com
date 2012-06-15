@@ -6,6 +6,7 @@ class mycqComponents extends cqFrontendComponents
   public function executeNavigation()
   {
     $this->collector = $this->getUser()->getCollector();
+    $this->batch = cqStatic::getUniqueId(32);
 
     $this->module = $this->getModuleName();
     $this->action = $this->getActionName();
@@ -170,7 +171,6 @@ class mycqComponents extends cqFrontendComponents
     $collector = $this->getCollector();
     $dropbox = $collector->getCollectionDropbox();
 
-    $this->batch = cqStatic::getUniqueId(32);
     $this->collectibles = $dropbox->getCollectibles();
     $this->total = $dropbox->countCollectibles();
 

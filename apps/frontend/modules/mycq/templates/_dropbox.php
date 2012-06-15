@@ -8,6 +8,62 @@
  */
 ?>
 
+<div id="dropzone-wrapper" class="dropzone-container">
+  <div class="row-fluid sidebar-title">
+    <div class="span8">
+      <h3 class="Chivo webfont"><?= 'Items to Sort ('. $total .')'; ?></h3>
+    </div>
+    <div class="span4">
+      <!--
+      <ul class="h-links-small pull-right">
+        <li>
+          <a href="#">
+            View Demo
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            Help
+          </a>
+        </li>
+      </ul>
+      //-->
+      <?php
+        echo  link_to(
+          '<i class="icon-trash"></i> Delete all Items', '@mycq_dropbox?cmd=empty&encrypt=1',
+          array(
+            'class' => 'btn btn-mini',
+            'onclick' => 'return confirm("Are you sure you want to delete all Items to Sort?")'
+          )
+        );
+      ?>
+    </div>
+  </div>
+  <?php if ($total > 0): ?>
+  <div class="collectibles-to-sort" id="dropzone">
+    <ul class="thumbnails">
+      <?php foreach ($collectibles as $collectible): ?>
+      <li class="span2 thumbnail draggable" data-collectible-id="<?= $collectible->getId(); ?>">
+        <?php
+        echo image_tag_collectible(
+          $collectible, '75x75', array('max_width' => 72, 'max_height' => 72)
+        );
+        ?>
+        <i class="icon icon-remove-sign" data-collectible-id="<?= $collectible->getId(); ?>"></i>
+      </li>
+      <?php endforeach; ?>
+    </ul>
+  </div>
+  <?php else: ?>
+  <div id="dropzone" class="collectibles-to-sort no-collections-uploaded-box Chivo webfont">
+    <span class="info-no-collections-uploaded">
+      There are currently no Items to Sort.<br/>
+      Please use the <strong>"Upload Items"</strong> button on the right to get started!
+    </span>
+  </div>
+  <?php endif; ?>
+</div>
+
 <?php slot('mycq_dropbox_instructions'); ?>
 <div class="row-fluid instruction-box <?= $instructions['position']; ?>">
   <div class="span3">
@@ -22,230 +78,12 @@
 </div><!-- /.instruction-box -->
 <?php end_slot(); ?>
 
-<?php
-  if ($instructions['position'] === 'top' && $total > 0)
-  {
-    include_slot('mycq_dropbox_instructions');
-  }
-?>
-
-<div class="tab-content-inner">
-  <div class="row-fluid">
-    <div class="span10">
-      <?php
-        $link = link_to(
-          '<i class="icon-trash"></i> Delete all Items', '@mycq_dropbox?cmd=empty&encrypt=1',
-          array(
-            'class' => 'btn btn-mini',
-            'onclick' => 'return confirm("Are you sure you want to delete all Items to Sort?")'
-          )
-        );
-        cq_section_title(
-          'Items to Sort ('. $total .')', $total > 0 ? $link : null,
-          array('class' => 'row-fluid section-title spacer-top-20')
-        );
-      ?>
-    </div>
-    <div class="span2">
-      <form action="<?= url_for('@ajax_mycq?section=collectibles&page=upload&batch='. $batch); ?>"
-            id="fileupload" class="pull-right spacer-top-20"
-            method="POST" enctype="multipart/form-data">
-
-        <span class="btn btn-primary blue-button fileinput-button" style="margin-right: 10px;">
-          Upload Items
-          <input type="file" name="files[]" multiple="multiple">
-        </span>
-
-        <div id="fileupload-modal" class="modal hide fade">
-          <div class="modal-header">
-            <button class="close" data-dismiss="modal">&times;</button>
-            <h3>Uploading items, please wait...</h3>
-          </div>
-          <div class="modal-body">
-            <div class="alert alert-info alert-gcf">
-              <strong>NOTE:</strong> If you want to upload more than one file at a time, please
-              <?php
-                echo link_to(
-                  'click here.', 'http://www.google.com/chromeframe',
-                  array('target' => '_blank')
-                );
-              ?>
-            </div>
-
-            <!-- The table listing the files available for upload/download -->
-            <table class="table table-striped">
-              <thead>
-              <tr>
-                <td>Preview</td>
-                <td colspan="4">Name</td>
-              </tr>
-              </thead>
-              <tbody class="files"></tbody>
-            </table>
-          </div>
-          <div class="modal-footer">
-            <div class="span4 fileupload-progress fade">
-              <!-- The global progress bar -->
-              <div class="progress progress-success progress-striped active">
-                <div class="bar" style="width:0;"></div>
-              </div>
-            </div>
-            <!-- The extended global progress information -->
-            <div class="span5 progress-extended">&nbsp;</div>
-            <div class="span3">
-              <a href="<?= url_for('@mycq_upload_cancel?batch='. $batch); ?>"
-                 class="btn btn-primary btn-danger">
-                Cancel Upload
-              </a>
-            </div>
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <?php if ($total > 0): ?>
-  <div id="dropzone" class="collectibles-to-sort">
-    <ul class="thumbnails">
-      <?php foreach ($collectibles as $collectible): ?>
-      <li class="span2 thumbnail draggable" data-collectible-id="<?= $collectible->getId(); ?>">
-        <?php
-          echo image_tag_collectible(
-            $collectible, '75x75', array('max_width' => 72, 'max_height' => 72)
-          );
-        ?>
-        <i class="icon icon-remove-sign" data-collectible-id="<?= $collectible->getId(); ?>"></i>
-      </li>
-      <?php endforeach; ?>
-    </ul>
-  </div>
-  <?php else: ?>
-    <div id="dropzone" class="no-collections-uploaded-box Chivo webfont" style="margin-left: 0;">
-      <span class="info-no-collections-uploaded">
-        There are currently no Items to Sort.<br/>
-        Please use the <strong>"Upload Items"</strong> button on the right to get started!
-      </span>
-    </div>
-  <?php endif; ?>
-</div>
-
-<?php
-  if ($instructions['position'] !== 'top' && $total > 0)
-  {
-    include_slot('mycq_dropbox_instructions');
-  }
-?>
-
-<!-- The template to display files available for upload -->
-<script id="template-upload" type="text/x-tmpl">
-  {% for (var i=0, file; file=o.files[i]; i++) { %}
-  <tr class="template-upload fade">
-    <td class="preview"><span class="fade"></span></td>
-    <td class="name"><span>{%=file.name%}</span></td>
-    <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
-    {% if (file.error) { %}
-    <td class="error" colspan="2">
-      <span class="label label-important">{%=locale.fileupload.error%}</span>
-      {%=locale.fileupload.errors[file.error] || file.error%}
-    </td>
-    {% } else if (o.files.valid && !i) { %}
-    <td>
-      <div class="progress progress-success progress-striped active">
-        <div class="bar" style="width:0;"></div>
-      </div>
-    </td>
-    <td class="cancel">
-      {% if (!i) { %}
-      <button class="btn btn-warning">
-        <span>{%=locale.fileupload.cancel%}</span>
-      </button>
-      {% } %}
-    </td>
-    {% } %}
-  </tr>
-  {% } %}
-</script>
-
-<!-- The template to display files available for download -->
-<script id="template-download" type="text/x-tmpl">
-  {% for (var i=0, file; file=o.files[i]; i++) { %}
-  <tr class="template-download fade">
-    {% if (file.error) { %}
-    <td>-</td>
-    <td class="name"><span>{%=file.name%}</span></td>
-    <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
-    <td class="error" colspan="2">
-      <span class="label label-important">{%=locale.fileupload.error%}</span>
-      {%=locale.fileupload.errors[file.error] || file.error%}
-    </td>
-    {% } else { %}
-    <td class="preview">
-      {% if (file.thumbnail) { %}
-      <img src="{%=file.thumbnail%}" height="50"/>
-      {% } %}
-    </td>
-    <td class="name" colspan="2"><span>{%=file.name%}</span></td>
-    <td class="size"><span>{%=file.size%}</span></td>
-    <td class="success">
-      <span class="label label-success">Success</span>
-    </td>
-    {% } %}
-  </tr>
-  {% } %}
-</script>
-
-<script>
-  $(document).ready(function()
-  {
-    'use strict';
-
-    // Initialize the jQuery File Upload widget:
-    $('#fileupload').fileupload();
-    $('#fileupload').fileupload('option', 'autoUpload', true);
-    $('#fileupload').fileupload('option', 'dropZone', $('#main'));
-    $('#fileupload').fileupload('option', 'limitConcurrentUploads', 3);
-
-    $('#fileupload')
-      .bind('fileuploadstart', function(e, data) {
-        $('#fileupload-modal').modal();
-      })
-      .bind('fileuploadstop', function(e, data) {
-        window.location.href = '<?= url_for('@mycq_upload_finish?batch='. $batch); ?>';
-      });
-
-    // Enable iframe cross-domain access via redirect option:
-    $('#fileupload').fileupload(
-      'option', 'redirect',
-      window.location.href.replace(
-        /\/mycq\/[^\/]*$/, '/iframe_xdcomm.html?%s'
-      )
-    );
-
-    $('#fileupload').fileupload('option', {
-      maxFileSize: 5000000,
-      acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i
-    });
-
-    // Load existing files:
-    $('#fileupload').each(function () {
-      var that = this;
-      $.getJSON(this.action, function (result) {
-        if (result && result.length) {
-          $(that).fileupload('option', 'done')
-            .call(that, null, {result: result});
-        }
-      });
-    });
-
-  });
-</script>
-
 <script>
 $(document).ready(function()
 {
   $('.collectibles-to-sort li').draggable(
   {
-    containment: '#content',
+    // containment: '#content',
     scroll: false,
     handle: 'img',
     opacity: 0.7,
@@ -256,33 +94,34 @@ $(document).ready(function()
   });
 
   $('.collectibles-to-sort .icon-remove-sign').click(MISC.modalConfirmDestructive(
-    'Remove item to sort', 'Are you sure you want to remove this item for sorting?', function()
-  {
-    var $icon = $(this);
+    'Remove item to sort', 'Are you sure you want to remove this item for sorting?',
+    function()
+    {
+      var $icon = $(this);
 
-    $(this).hide();
-    $icon.parent('li.span2').showLoading();
+      $(this).hide();
+      $icon.parent('li.span2').showLoading();
 
-    $.ajax({
-      url: '<?= url_for('@ajax_mycq?section=collectible&page=delete&encrypt=1'); ?>',
-      type: 'post', data: { collectible_id: $icon.data('collectible-id') },
-      success: function()
-      {
-        $icon.parent('li.span2').fadeOut('fast', function()
+      $.ajax({
+        url: '<?= url_for('@ajax_mycq?section=collectible&page=delete&encrypt=1'); ?>',
+        type: 'post', data: { collectible_id: $icon.data('collectible-id') },
+        success: function()
         {
-          $(this).hideLoading().remove();
-
-          if ($('.collectibles-to-sort .span2').length === 0)
+          $icon.parent('li.span2').fadeOut('fast', function()
           {
-            window.location.reload();
-          }
-        });
-      },
-      error: function()
-      {
-        $(this).show();
-      }
-    });
-  }, true));
+            $(this).hideLoading().remove();
+
+            if ($('.collectibles-to-sort .span2').length === 0)
+            {
+              window.location.reload();
+            }
+          });
+        },
+        error: function()
+        {
+          $(this).show();
+        }
+      });
+    }, true));
 });
 </script>

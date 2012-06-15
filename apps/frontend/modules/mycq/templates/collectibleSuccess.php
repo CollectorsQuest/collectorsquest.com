@@ -154,22 +154,6 @@
   <?= $form->renderHiddenFields(); ?>
 </form>
 
-<div id="mycq-tabs">
-  <div class="tab-content">
-    <div class="tab-pane active" id="tab1">
-    <?php
-      include_component(
-        'mycq', 'dropbox',
-        array('instructions' => array(
-          'position' => 'top',
-          'text' => 'Drag your alternative views for this Collectible into the drop areas.')
-        )
-      );
-    ?>
-    </div>
-  </div>
-</div>
-
 <?php if (count($collectibles) > 0): ?>
 <br/>
 <div class="list-thumbs-other-collectibles">
