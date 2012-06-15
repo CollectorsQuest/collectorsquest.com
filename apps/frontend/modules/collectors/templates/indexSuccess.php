@@ -13,9 +13,9 @@
 <div class="row">
   <div id="collectors" class="row-content">
     <?php foreach ($pager->getResults() as $i => $collector): ?>
-    <div class="span6" style="height: 165px; float: left;">
+    <div class="span6" style="height: 95px; float: left;">
       <?php       include_partial(
-      'collector/collector_' . $display . '_view_span6',
+      'collector/collector_' . $display . '_view_compact',
       array(
         'collector' => $collector,
         'i'         => $i
