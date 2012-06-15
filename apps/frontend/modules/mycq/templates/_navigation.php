@@ -21,6 +21,10 @@
             <div class="nav-collapse">
               <ul class="nav">
                 <?php
+                  $active = in_array($sf_params->get('action'), array('index')) ? 'active' : null;
+                  echo '<li class="'. $active .'">', link_to('Home', '@mycq'), '</li>';
+                ?>
+                <?php
                   $active = in_array($sf_params->get('action'), array('profile')) ? 'active' : null;
                   echo '<li class="'. $active .'">', link_to('Profile', '@mycq_profile'), '</li>';
                 ?>
@@ -77,7 +81,7 @@
           </li>
         </ul>
         <a href="#"
-           onclick="return confirm(&quot;Are you sure you want to delete all Items to Sort?&quot;)"
+           onclick="return confirm('Are you sure you want to delete all Items to Sort?')"
            class="btn btn-mini pull-right spacer-right">
           <i class="icon-trash"></i> Delete all Items
         </a>

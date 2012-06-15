@@ -4,7 +4,7 @@ class mycqActions extends cqFrontendActions
 {
   public function executeIndex()
   {
-    return $this->redirect('@mycq_profile');
+    return sfView::SUCCESS;
   }
 
   public function executeProfile(sfWebRequest $request)
