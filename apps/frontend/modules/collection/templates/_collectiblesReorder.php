@@ -1,3 +1,5 @@
+<?php cq_page_title('Reorder collectibles in ' . $collection); ?>
+
 <div id="sortable-collectibles" class="row row-content">
   <?php foreach ($collectibles as $i => $collectible): ?>
   <div id="collectible-<?=$collectible->getId() ?>" class="span2">
