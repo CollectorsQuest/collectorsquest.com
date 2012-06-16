@@ -432,6 +432,10 @@ class mycqActions extends cqFrontendActions
         (!$form_shipping->isBound() || $form_shipping->isValid())
       )
       {
+        if ($form_shipping->isValid())
+        {
+          $form_shipping->save();
+        }
         $for_sale = $form->getValue('for_sale');
 
         if (
