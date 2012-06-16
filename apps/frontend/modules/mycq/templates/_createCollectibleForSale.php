@@ -25,7 +25,7 @@
   <?= $form['collectible']['name']->renderRow() ?>
   <?= $form['collectible']['tags']->renderRow() ?>
 
-  <?php include_partial('mycq/collectible_form_for_sale', array('form' => $form)); ?>
+  <?php // include_partial('mycq/collectible_form_for_sale', array('form' => $form)); ?>
 
   <div class="form-actions">
     <button type="submit" class="btn btn-primary blue-button spacer-right-15">

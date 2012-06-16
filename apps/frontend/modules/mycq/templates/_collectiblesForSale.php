@@ -3,7 +3,7 @@
 <div id="mycq-create-collectible" class="span4 thumbnail link">
   <div class="row-fluid spacer-inner-top-20">
     <div class="span4">
-      <a href="<?php echo url_for('@ajax_mycq?section=component&page=createCollectible'); ?>"
+      <a href="<?php echo url_for('@ajax_mycq?section=component&page=createCollectibleForSale'); ?>"
          id="collectible-create-icon" class="open-dialog btn-create-collection-middle spacer-left-20">
         <i class="icon-plus icon-white"></i>
       </a>

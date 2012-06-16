@@ -44,6 +44,7 @@ class CollectibleForSaleForm extends BaseCollectibleForSaleForm
       if ($seller && $seller->hasPackageCredits())
       {
         $values = $this->validatePriceField($validator, $values);
+        $values = $this->validateConditionsdsdsField($validator, $values);
       }
       else
       {
@@ -101,6 +102,28 @@ class CollectibleForSaleForm extends BaseCollectibleForSaleForm
     }
 
     // price is valid or not required, return the clean values
+    return $values;
+  }
+
+  public function validateConditionsdsdsField($validator, $values)
+  {
+    // Get the Collectibles for sale condictions
+    $conditions = CollectibleForSalePeer::$conditions;
+    $conditions[''] = '';
+
+    try
+    {
+      $condition_validator = new sfValidatorChoice(
+        array('choices' => array_keys($conditions), 'required' => true)
+      );
+      $values['condition'] = $condition_validator->clean($values['condition']);
+    }
+    catch (sfValidatorError $error)
+    {
+      // throw an error bound to the price field
+      throw new sfValidatorErrorSchema($validator, array('condition' => $error));
+    }
+
     return $values;
   }
 }

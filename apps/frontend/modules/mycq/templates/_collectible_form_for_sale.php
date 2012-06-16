@@ -34,14 +34,10 @@
           ?>
           <?= $form['price_currency']->render(array('class' => 'span2 help-inline')); ?>
         </div>
+        <?= $form['price']->renderError(); ?>
       </div>
     </div>
-    <div class="control-group">
-      <?= $form['condition']->renderLabel(); ?>
-      <div class="controls">
-        <?= $form['condition']->render(array('class' => 'span4 help-inline')); ?>
-      </div>
-    </div>
+    <?= $form['condition']->renderRow(); ?>
 
     <?php if (IceGateKeeper::open('collectible_shipping') && $form_shipping): ?>
       <?= $form_shipping->renderHiddenFields(); ?>
