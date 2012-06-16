@@ -35,7 +35,8 @@
                         'multimedia-id' => $image->getId(),
                     )), cqConfig::getCredentials('aviary', 'hmac_secret')); ?>'
                   >
-                    <i class="icon icon-wrench"></i>
+                    <i class="icon icon-camera"></i><br/>
+                    Edit Photo
                   </span>
                 </div>
               <?php else: ?>
@@ -61,7 +62,7 @@
                         'multimedia-id' => $multimedia[$i]->getId(),
                     )), cqConfig::getCredentials('aviary', 'hmac_secret')); ?>'
                   >
-                    <i class="icon icon-wrench"></i>
+                    <i class="icon icon-camera"></i>
                   </span>
                 <?php else: ?>
                   <i class="icon icon-plus white-alternate-view"></i>

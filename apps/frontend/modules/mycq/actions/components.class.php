@@ -388,7 +388,7 @@ class mycqComponents extends cqFrontendComponents
       }
       else
       {
-        dd($form->getErrorSchema()->getMessage());
+        ;
       }
     }
 

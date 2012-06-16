@@ -23,7 +23,8 @@
               'multimedia-id' => $collection->getThumbnail()->getId(),
           )), cqConfig::getCredentials('aviary', 'hmac_secret')); ?>'
         >
-          <i class="icon icon-wrench"></i>
+          <i class="icon icon-camera"></i><br/>
+          Edit Photo
         </span>
       <?php else: ?>
         <a class="plus-icon-holder h-center" href="#">
