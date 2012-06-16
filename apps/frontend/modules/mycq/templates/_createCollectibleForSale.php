@@ -12,7 +12,16 @@
 
   <?= $form->renderGlobalErrors(); ?>
 
-  <?= $form['collectible']['collection_collectible_list']->renderRow() ?>
+  <?php
+    if (isset($form['collectible']['collection_id'])) {
+      echo $form['collectible']['collection_id'];
+    }
+  ?>
+  <?php
+    if (isset($form['collectible']['collection_collectible_list'])) {
+      echo $form['collectible']['collection_collectible_list']->renderRow();
+    }
+  ?>
   <?= $form['collectible']['name']->renderRow() ?>
   <?= $form['collectible']['tags']->renderRow() ?>
 

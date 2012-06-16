@@ -30,45 +30,84 @@ class CollectibleForSaleCreateForm extends CollectibleForSaleForm
 
   protected function setupCollectibleForm()
   {
+    /** @var $collector Collector */
+    $collector = sfContext::getInstance()
+      ->getUser()
+      ->getCollector();
+
     $criteria = new Criteria();
     $criteria->add(
       CollectorCollectionPeer::COLLECTOR_ID,
-      sfContext::getInstance()->getUser()->getId()
+      $collector->getId()
     );
     $criteria->addAscendingOrderByColumn(CollectorCollectionPeer::NAME);
 
+    // Get a new Collectible Form
     $collectible = new CollectibleCreateForm();
-    $collectible->widgetSchema['collection_collectible_list'] = new sfWidgetFormPropelChoice(
-      array(
-        'label' => 'Collection(s)',
+
+    $fields = array();
+
+    if ($collector->countCollectorCollections() > 1)
+    {
+      $collectible->widgetSchema['collection_collectible_list'] = new sfWidgetFormPropelChoice(
+        array(
+          'label' => 'Collection(s)',
+          'model' => 'CollectorCollection', 'criteria' => $criteria,
+          'add_empty' => 'Create a new Collection', 'multiple' => true
+        ),
+        array(
+          'data-placeholder' => 'Please, choose at least one Collection',
+          'class' => 'input-xlarge chzn-select js-hide',
+          'required' => 'required'
+        )
+      );
+      $collectible->validatorSchema['collection_collectible_list'] = new cqValidatorPropelChoice(array(
         'model' => 'CollectorCollection', 'criteria' => $criteria,
-        'add_empty' => 'Create a new Collection', 'multiple' => true
-      ),
-      array(
-        'data-placeholder' => 'Please, choose at least one Collection',
-        'class' => 'input-xlarge chzn-select js-hide',
-        'required' => 'required'
-      )
-    );
-    $collectible->validatorSchema['collection_collectible_list'] = new cqValidatorPropelChoice(array(
-      'model' => 'CollectorCollection', 'criteria' => $criteria,
-      'multiple' => true, 'required' => true, 'min' => 1
-    ));
-    $collectible->getValidator('collection_collectible_list')->setMessage(
-      'invalid', 'Please choose at least one existing Collection or create a new one!'
-    );
+        'multiple' => true, 'required' => true, 'min' => 1
+      ));
+      $collectible->getValidator('collection_collectible_list')->setMessage(
+        'invalid', 'Please choose at least one existing Collection or create a new one!'
+      );
 
-    unset(
-      $collectible->widgetSchema['collection_id'],
-      $collectible->validatorSchema['collection_id']
-    );
+      $fields[] = 'collection_collectible_list';
 
-    $collectible->useFields(array(
-      'collection_collectible_list',
+      unset(
+        $collectible->widgetSchema['collection_id'],
+        $collectible->validatorSchema['collection_id']
+      );
+    }
+    else
+    {
+      $q = CollectorCollectionQuery::create()
+        ->filterByCollector($collector);
+
+      if (!$collection = $q->findOne())
+      {
+        $collection = $q->findOneOrCreate();
+        $collection->setName('Collectibles for Sale Collection');
+        $collection->save();
+      }
+
+      $collectible->widgetSchema['collection_id'] = new sfWidgetFormInputHidden();
+      $collectible->validatorSchema['collection_id'] = new sfValidatorChoice(array(
+        'choices' => array($collection->getId()), 'required' => true
+      ));
+      $collectible->setDefault('collection_id', $collection->getId());
+
+      $fields[] = 'collection_id';
+
+      unset(
+        $collectible->widgetSchema['collection_collectible_list'],
+        $collectible->validatorSchema['collection_collectible_list']
+      );
+    }
+
+    $fields = array_merge($fields, array(
       'name',
       'tags',
       'thumbnail'
     ));
+    $collectible->useFields($fields);
 
     $this->embedForm('collectible', $collectible);
   }
@@ -84,7 +123,15 @@ class CollectibleForSaleCreateForm extends CollectibleForSaleForm
     $collectible = $embedded_form->updateObject($values['collectible']);
     $collectible->save();
 
-    $_values = $values['collectible']['collection_collectible_list'];
+    if (isset($values['collectible']['collection_collectible_list']))
+    {
+      $_values = (array) $values['collectible']['collection_collectible_list'];
+    }
+    else
+    {
+      $_values = (array) $values['collectible']['collection_id'];
+    }
+
     if (is_array($_values))
     {
       foreach ($_values as $_value)

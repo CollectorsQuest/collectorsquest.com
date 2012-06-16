@@ -21,56 +21,43 @@
 
 <div id="form-collectible-for-sale" class="hide">
   <?php if ($sf_user->getSeller()->hasPackageCredits()): ?>
-  <div class="control-group">
-    <?= $form['price']->renderLabel(); ?>
-    <div class="controls">
-      <div class="with-required-token">
-        <span class="required-token">*</span>
-        <?= $form['price']->render(array('class' => 'span2 text-center help-inline', 'required'=>'required')); ?>
-        <?= $form['price_currency']->render(array('class' => 'span2 help-inline')); ?>
+
+    <div class="control-group">
+      <?= $form['price']->renderLabel(); ?>
+      <div class="controls">
+        <div class="with-required-token">
+          <span class="required-token">*</span>
+          <?php
+            echo $form['price']->render(array(
+              'class' => 'span2 text-center help-inline', 'required'=>'required'
+            ));
+          ?>
+          <?= $form['price_currency']->render(array('class' => 'span2 help-inline')); ?>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="control-group">
-    <?= $form['condition']->renderLabel(); ?>
-    <div class="controls">
-      <?= $form['condition']->render(array('class' => 'span4 help-inline')); ?>
+    <div class="control-group">
+      <?= $form['condition']->renderLabel(); ?>
+      <div class="controls">
+        <?= $form['condition']->render(array('class' => 'span4 help-inline')); ?>
+      </div>
     </div>
-  </div>
 
-  <?php if (IceGateKeeper::locked('collectible_shipping')): ?>
-  <div class="control-group">
-    <label class="control-label">Shipping</label>
-    <div class="controls">
-      <label class="radio">
-        <input type="radio" name="optionsRadios" value="option1" checked="">
-        Free Shipping
-      </label>
-      <label class="radio">
-        <input class="help-inline" type="radio" name="optionsRadios" value="option1">
-        Flat Rate (please specify):
-        <input type="text" placeholder="input price" class="span3 help-inline price-indent">
-        <select class="span2 help-inline">
-          <option value="USD" selected="selected">USD</option>
-        </select>
-      </label>
-    </div>
-  </div>
-  <?php else: ?>
-    <?= $form_shipping->renderHiddenFields(); ?>
-    <?= $form_shipping->renderUsing('Bootstrap'); ?>
-  <?php endif; ?>
+    <?php if (IceGateKeeper::open('collectible_shipping') && $form_shipping): ?>
+      <?= $form_shipping->renderHiddenFields(); ?>
+      <?= $form_shipping->renderUsing('Bootstrap'); ?>
+    <?php endif; ?>
 
   <?php else: ?>
-  <center>
-    <?php
-      echo link_to(
-        image_tag('banners/want-to-sell-this-item.png'),
-        '@seller_packages'
-      );
-    ?>
-  </center>
-  <br/>
+    <center>
+      <?php
+        echo link_to(
+          image_tag('banners/want-to-sell-this-item.png'),
+          '@seller_packages'
+        );
+      ?>
+    </center>
+    <br/>
   <?php endif; ?>
 </div>
 

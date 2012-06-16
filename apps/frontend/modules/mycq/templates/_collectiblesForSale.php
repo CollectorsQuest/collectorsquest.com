@@ -74,7 +74,7 @@
       </span>
     <?php else: ?>
       <span class="Chivo webfont info-no-collections-uploaded">
-        Sell your items in the Collectors Quest marketplace today!<br/>
+        Sell your items in the marketplace today!<br/>
         Get Started Now!
       </span>
     <?php endif; ?>

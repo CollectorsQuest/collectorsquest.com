@@ -490,7 +490,7 @@ class Collectible extends BaseCollectible
       ->filterByCollectible($this)
       ->isForSale();
 
-    return $q->count();
+    return $q->count() > 0;
   }
 
   /**
