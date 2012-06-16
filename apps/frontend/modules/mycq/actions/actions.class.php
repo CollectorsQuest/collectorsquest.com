@@ -582,9 +582,9 @@ class mycqActions extends cqFrontendActions
       );
     }
 
-    $redirect = $request->getReferer() ?
-      $request->getReferer().'#dropbox' :
-      '@mycq_collections#dropbox';
+    $redirect = $request->getReferer()
+      ? $request->getReferer()
+      : '@mycq_collections';
 
     $this->redirect($redirect);
   }

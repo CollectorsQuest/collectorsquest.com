@@ -7,27 +7,14 @@
  * @var $collectibles Collectible[] | PropelObjectCollection
  */
 ?>
-
-<div id="dropzone-wrapper" class="dropzone-container">
+<div id="dropzone-wrapper" class="dropzone-container
+     <?= $sf_user->getMycqDropboxOpenState() ? '' : 'hidden' ?>"
+>
   <div class="row-fluid sidebar-title">
     <div class="span8">
       <h3 class="Chivo webfont"><?= 'Uploaded Photos ('. $total .')'; ?></h3>
     </div>
     <div class="span4">
-      <!--
-      <ul class="h-links-small pull-right">
-        <li>
-          <a href="#">
-            View Demo
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            Help
-          </a>
-        </li>
-      </ul>
-      //-->
       <?php
         echo  link_to(
           '<i class="icon-trash"></i> Delete all Photos', '@mycq_dropbox?cmd=empty&encrypt=1',

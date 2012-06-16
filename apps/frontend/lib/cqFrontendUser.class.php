@@ -7,6 +7,7 @@ class cqFrontendUser extends cqBaseUser
   protected $unread_messages_count;
 
   const PRIVATE_MESSAGES_SENT_COUNT_KEY = 'private_messages_sent_count';
+  const DROPBOX_OPEN_STATE_COOKIE_NAME = 'cq_mycq_dropbox_open';
 
   /**
    * @param  boolean  $strict
@@ -118,6 +119,53 @@ class cqFrontendUser extends cqBaseUser
   }
 
   /**
+   * Set whether the mycq dropbox component should be opened or closed
+   * on page load
+   *
+   * @param     boolean $is_open
+   * @return    cqFrontendUser
+   */
+  public function setMycqDropboxOpenState($is_open)
+  {
+    sfContext::getInstance()->getResponse()->setCookie(
+      self::DROPBOX_OPEN_STATE_COOKIE_NAME,
+      // boolean value
+      !!$is_open,
+      // 10 years
+      time() + 60 * 60 * 24 * 365 * 10
+    );
+
+    return $this;
+  }
+
+  /**
+   * Get the current setting for the mycq dropbox component, where all newly
+   * uploaded files are listed.
+   *
+   * Returns the value of the mycq dropbox open state cookie, true by default
+   *
+   * @return    boolean
+   */
+  public function getMycqDropboxOpenState()
+  {
+    return !!sfContext::getInstance()->getRequest()->getCookie(
+      self::DROPBOX_OPEN_STATE_COOKIE_NAME, true);
+  }
+
+  /**
+   * Clear the mycql dropbox open state cookie
+   */
+  public function clearMycqDropboxOpenStateCookie()
+  {
+    sfContext::getInstance()->getResponse()->setCookie(
+      self::DROPBOX_OPEN_STATE_COOKIE_NAME,
+      '',
+      // 10 years
+      time() - 60 * 60 * 24 * 365 * 10
+    );
+  }
+
+  /**
    * Get the username of the last logged in user if the cookie has not yet expired
    *
    * @return    string
@@ -166,6 +214,7 @@ class cqFrontendUser extends cqBaseUser
     if (false == $boolean)
     {
       $this->clearUsernameCookie();
+      $this->clearMycqDropboxOpenStateCookie();
     }
 
     return $ret;

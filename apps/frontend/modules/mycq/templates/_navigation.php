@@ -86,9 +86,15 @@
 
   <?php include_component('mycq', 'dropbox'); ?>
 
-  <a href="#" class="dropzone-container-slide pull-right">
-    <span class="close-dropzone">Open Uploaded Photos <i class="icon-caret-down"></i></span>
-    <span class="open hidden">Close Uploaded Photos <i class="icon-caret-up"></i></span>
+  <a href="#" class="dropzone-container-slide pull-right
+                     <?= $sf_user->getMycqDropboxOpenState() ? 'open' : '' ?>"
+  >
+    <span class="open-dropzone">
+      Open Uploaded Photos <i class="icon-caret-down"></i>
+    </span>
+    <span class="close-dropzone">
+      Close Uploaded Photos <i class="icon-caret-up"></i>
+    </span>
   </a>
 </div>
 
@@ -159,31 +165,31 @@ $(document).ready(function()
   $(".dropzone-container-slide").click(function()
   {
     var $this = $(this);
+    var $dropzone_wrapper = $('#dropzone-wrapper');
 
-    if ($this.hasClass('open'))
-    {
-      $("#dropzone-wrapper").slideToggle("slow", function()
-      {
-        $this.find('span').toggleClass('hidden');
-        $this.toggleClass('open');
-      });
+    if ($dropzone_wrapper.hasClass('hidden')){
+      // we apply "display:none" to the element with .hide()
+      // and then remove the .hidden class, which is "display:none !important;"
+      // and breaks js interactions
+      $dropzone_wrapper.hide().toggleClass('hidden');
     }
-    else
-    {
-      $("#dropzone-wrapper").slideToggle("slow");
-      $this.find('span').toggleClass('hidden');
+
+    $dropzone_wrapper.slideToggle("slow", function(){
       $this.toggleClass('open');
-    }
+    });
+
+    $.cookie(
+      window.cq.cookies.mycq_dropbox_state,
+      // stupid $#!@... $.cookie(name, false) will set a cookie with
+      // the STRING "false", and !"false" === false
+      // Setting $.cookie(name, 0) will set the STRING "0", and again:
+      // !"0" === false, so we need this parseInt bullshit AND manual integer asign
+      !parseInt($.cookie(window.cq.cookies.mycq_dropbox_state)) && 1 || 0,
+      { expires: 10 * 365, path: '/' }
+    );
 
     return false;
   });
-
-  if (
-    window.location.hash &&
-      window.location.hash.substring(1) === 'dropbox'
-    ) {
-    $(".dropzone-container-slide").click();
-  }
 
   // Initialize the jQuery File Upload widget:
   $('#fileupload').fileupload();

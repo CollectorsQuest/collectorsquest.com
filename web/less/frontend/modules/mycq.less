@@ -1304,8 +1304,7 @@ textarea.input-xlarge {
 //
 
 .dropzone-container {
-	position:relative;
-	display: none;
+	position: relative;
 	padding: 15px;
 	background-color: #fff8e0;
 
@@ -1373,7 +1372,21 @@ textarea.input-xlarge {
 	background-color: #fff8e0;
 	.border-radius(0 0 6px 6px);
 	.box-shadow(inset 4px 1px 5px 0 rgba(211, 206, 185, 0.8));
+
+  .close-dropzone {
+    display: none;
+  }
+  .open-dropzone {
+    display: block;
+  }
 	&.open {
+    .close-dropzone {
+      display: block;
+    }
+    .open-dropzone {
+      display: none;
+    }
+
 		.box-shadow(none);
 		&:hover {
 			.box-shadow(none);

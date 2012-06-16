@@ -477,11 +477,11 @@ var COMMON = window.COMMON = (function(){
       });
 
       // if the username cookie is set and has a value that is truthy
-      if ($.cookie(window.cq.username_cookie)) {
+      if ($.cookie(window.cq.cookies.username)) {
         // triger the event to show the login form in the footer
         $('#footer-control-login-button').trigger('click');
         // and set the username to the value of the cookie
-        $('#login_username').val($.cookie(window.cq.username_cookie));
+        $('#login_username').val($.cookie(window.cq.cookies.username));
       }
     }, // setupFooterLoginOrSignup()
 

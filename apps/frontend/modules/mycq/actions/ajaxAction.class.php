@@ -98,6 +98,10 @@ class ajaxAction extends IceAjaxAction
         $collector->getProfile()->updateProfileProgress();
       }
 
+      // change the dropbox open status depending on whether we have stuff
+      // left in it
+      $this->getUser()->setMycqDropboxOpenState(true);
+
       // This is for xdcomm support in IE browsers
       if ($redirect = $request->getParameter('redirect'))
       {
