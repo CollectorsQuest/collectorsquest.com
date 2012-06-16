@@ -9,10 +9,12 @@
       method="post" id="form-create-collectible" class="ajax form-horizontal form-modal">
 
   <h1>Create a New Collectible</h1>
+
   <?= $form ?>
+
   <div class="form-actions">
     <button type="submit" class="btn btn-primary blue-button spacer-right-15">
-      Create Collectible
+      Next Step
     </button>
     <button type="reset" class="btn gray-button"
             onClick="$(this).parents('.modal').find('.modal-body').dialog2('close')">

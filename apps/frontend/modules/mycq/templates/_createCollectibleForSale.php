@@ -29,7 +29,7 @@
 
   <div class="form-actions">
     <button type="submit" class="btn btn-primary blue-button spacer-right-15">
-      Create Collectible for Sale
+      Next Step
     </button>
     <button type="reset" class="btn gray-button"
             onClick="$(this).parents('.modal').find('.modal-body').dialog2('close')">
