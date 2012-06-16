@@ -5,10 +5,7 @@
 ?>
 
 <?php
-  if (!$seller->hasPackageCredits())
-  {
-    include_partial('mycq/marketplace_no_credits', array('seller' => $seller));
-  }
+  // include_partial('mycq/seller_snapshot', array('seller' => $seller));
 ?>
 
 <div id="mycq-tabs">
@@ -48,7 +45,7 @@
 
         <div class="mycq-collectibles-for-sale">
           <div class="row thumbnails">
-            <?php include_component('mycq', 'collectiblesForSale'); ?>
+            <?php include_component('mycq', 'collectiblesForSale', array('seller' => $seller)); ?>
           </div>
         </div>
       </div>
@@ -93,7 +90,7 @@
 
     <div class="row collectible_sold_items">
       <div class="row-content">
-        <?php include_component('mycq', 'collectiblesForSaleSold'); ?>
+        <?php include_component('mycq', 'collectiblesForSaleSold', array('seller' => $seller)); ?>
       </div>
     </div>
 

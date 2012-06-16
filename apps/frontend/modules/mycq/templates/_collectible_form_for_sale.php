@@ -20,7 +20,7 @@
 </div>
 
 <div id="form-collectible-for-sale" class="hide">
-  <?php if (true || $sf_user->getSeller()->hasPackageCredits()): ?>
+  <?php if ($sf_user->getSeller()->hasPackageCredits()): ?>
   <div class="control-group">
     <?= $form['price']->renderLabel(); ?>
     <div class="controls">

@@ -86,12 +86,9 @@ class sellerActions extends cqFrontendActions
             $cqEmail = new cqEmail($this->getMailer());
             $sent = $cqEmail->send('Seller/package_confirmation', array(
               'to'     => $collector->getEmail(),
-              'subject'=> 'Thank you for becoming a seller',
               'params' => array(
-                'collector'     => $collector,
-                'package_name'  => $package->getPackageName(),
-                'package_items' => $package->getCredits() < 0 ? 'Unlimited' : $package->getCredits(),
-                'expiry_date'   => strtotime('+1 year'),
+                'collector' => $collector,
+                'package_transaction' => $transaction
               ),
             ));
 
@@ -203,12 +200,9 @@ class sellerActions extends cqFrontendActions
               $cqEmail = new cqEmail($this->getMailer());
               $sent = $cqEmail->send('Seller/package_confirmation', array(
                 'to'     => $collector->getEmail(),
-                'subject'=> 'Thank you for becoming a seller',
                 'params' => array(
-                  'collector'     => $collector,
-                  'package_name'  => $package->getPackageName(),
-                  'package_items' => $package->getCredits() < 0 ? 'Unlimited' : $package->getCredits(),
-                  'expiry_date'   => strtotime('+1 year'),
+                  'collector' => $collector,
+                  'package_transaction' => $transaction
                 ),
               ));
 
@@ -316,12 +310,9 @@ class sellerActions extends cqFrontendActions
     $cqEmail = new cqEmail($this->getMailer());
     $sent = $cqEmail->send('Seller/package_confirmation', array(
       'to'     => $collector->getEmail(),
-      'subject'=> 'Thank you for becoming a seller',
       'params' => array(
-        'collector'     => $collector,
-        'package_name'  => $package->getPackageName(),
-        'package_items' => $package->getCredits() < 0 ? 'Unlimited' : $package->getCredits(),
-        'expiry_date'   => strtotime('+1 year'),
+        'collector' => $collector,
+        'package_transaction' => $packageTransaction
       ),
     ));
 

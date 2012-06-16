@@ -1,0 +1,26 @@
+{% extends "common/base.html.twig" %}
+
+{% block content %}
+<p>
+  Thanks for joining the other great sellers at Collectors Quest! We hope you enjoy selling your great stuff
+  to an audience of passionate, active collectors throughout the world.
+</p>
+
+<p>So, what next?</p>
+<p>
+  {{ link_to('Fill out your profile', '@mycq_profile', { absolute: true}) }}
+  (if you haven’t already) so you can easily find and sell to other collectors who dig the same stuff that you do.
+</p>
+<p>
+  {{ link_to('Upload your items for sale', '@mycq_marketplace', { absolute: true}) }} and they’ll immediately
+  be matched against related items and blog posts already on the site, as well as our ever-growing archive of
+  collectibles, for as long as your item is listed!
+</p>
+<p>
+  {{ link_to('Explore the market', '@marketplace', { absolute: true }) }} to see what other people are selling.
+  Maybe you have an unexpected treasure you’d never realized!
+</p>
+
+<p>Have a look around Collectors Quest, and you’ll see why this is the place Where Hunters Gather!</p>
+
+{% endblock %}

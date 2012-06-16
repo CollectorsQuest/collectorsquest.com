@@ -21,6 +21,13 @@ all:
       welcome_to_cq:
         subject: "Welcome to Collectors Quest!"
 
+    Seller:
+      package_confirmation:
+        subject: "Thanks for purchasing credits on Collectors Quest!"
+        required_params: [collector, package_transaction]
+      welcome_to_cq:
+        subject: "Thanks for becoming a seller on Collectors Quest!"
+
     Messages:
       private_message_notification:
         subject: "You've Received a Message on Collectors Quest!"

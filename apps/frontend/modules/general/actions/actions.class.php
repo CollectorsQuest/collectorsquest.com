@@ -207,7 +207,7 @@ class generalActions extends cqFrontendActions
         $collector->assignRandomAvatar();
 
         $cqEmail = new cqEmail($this->getMailer());
-        $cqEmail->send('Collector/welcome_to_cq', array(
+        $cqEmail->send($collector->getUserType() . '/welcome_to_cq', array(
           'to' => $collector->getEmail(),
         ));
 

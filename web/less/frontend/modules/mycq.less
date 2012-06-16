@@ -359,6 +359,10 @@ a.buy-credits-button {
 	}
 }
 
+.mycq-collectibles-for-sale .thumbnails > .span12 {
+  width: 672px;
+}
+
 .mycq-collectibles-for-sale .thumbnails > .span4 {
 	width: 213px;
 	margin-bottom: 10px;
@@ -483,17 +487,35 @@ i.drop-zone.ui-state-highlight {
 	}
 }
 
-.no-collections-uploaded-box {
-	border: none;
-	.box-shadow(none);
-	.border-radius(0);
+.no-items-to-sort-box {
+  border: none;
+  .box-shadow(none);
+  .border-radius(0);
 
-	.info-no-collections-uploaded {
-		display: block;
-		.custom-font(20px, 30px, italic, normal);
-		letter-spacing: 0.04em;
-		color: @blueDark;
-	}
+  .info-no-items-to-sort {
+    display: block;
+    .custom-font(20px, 30px, italic, normal);
+    letter-spacing: 0.04em;
+    color: @blueDark;
+  }
+}
+
+.no-collections-uploaded-box {
+  height: 91px;
+  border: none;
+  border-top: 1px solid @yellowLight;
+  border-bottom: 1px solid @yellowLight;
+  background-color: @yellowLight !important;
+  .box-shadow(none);
+  .border-radius(0);
+
+  .info-no-collections-uploaded {
+    display: block;
+    margin: 15px 20px 10px;
+    .custom-font(20px, 30px, italic, normal);
+    letter-spacing: 0.04em;
+    color: @blueDark;
+  }
 }
 
 

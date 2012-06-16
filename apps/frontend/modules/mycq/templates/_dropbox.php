@@ -55,8 +55,8 @@
     </ul>
   </div>
   <?php else: ?>
-  <div id="dropzone" class="collectibles-to-sort no-collections-uploaded-box Chivo webfont">
-    <span class="info-no-collections-uploaded">
+  <div id="dropzone" class="collectibles-to-sort no-items-to-sort-box Chivo webfont">
+    <span class="info-no-items-to-sort">
       There are currently no Items to Sort.<br/>
       Please use the <strong>"Upload Items"</strong> button on the right to get started!
     </span>
