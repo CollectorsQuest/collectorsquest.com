@@ -11,7 +11,7 @@
 <div id="dropzone-wrapper" class="dropzone-container">
   <div class="row-fluid sidebar-title">
     <div class="span8">
-      <h3 class="Chivo webfont"><?= 'Items to Sort ('. $total .')'; ?></h3>
+      <h3 class="Chivo webfont"><?= 'Uploaded Photos ('. $total .')'; ?></h3>
     </div>
     <div class="span4">
       <!--
@@ -30,10 +30,10 @@
       //-->
       <?php
         echo  link_to(
-          '<i class="icon-trash"></i> Delete all Items', '@mycq_dropbox?cmd=empty&encrypt=1',
+          '<i class="icon-trash"></i> Delete all Photos', '@mycq_dropbox?cmd=empty&encrypt=1',
           array(
             'class' => 'btn btn-mini',
-            'onclick' => 'return confirm("Are you sure you want to delete all Items to Sort?")'
+            'onclick' => 'return confirm("Are you sure you want to delete all Uploaded Photos?")'
           )
         );
       ?>
@@ -57,8 +57,8 @@
   <?php else: ?>
   <div id="dropzone" class="collectibles-to-sort no-items-to-sort-box Chivo webfont">
     <span class="info-no-items-to-sort">
-      There are currently no Items to Sort.<br/>
-      Please use the <strong>"Upload Items"</strong> button on the right to get started!
+      There are currently no Uploaded Photos.<br/>
+      Please use the <strong>"+ Upload Photos"</strong> button on the right to get started!
     </span>
   </div>
   <?php endif; ?>

@@ -32,14 +32,14 @@
             id="fileupload" method="POST" enctype="multipart/form-data">
 
         <span class="upload-items-button fileinput-button">
-          <i class="icon-plus icon-white"></i> upload items
+          <i class="icon-plus icon-white"></i> Upload Photos
           <input type="file" name="files[]" multiple="multiple">
         </span>
 
         <div id="fileupload-modal" class="modal hide fade">
           <div class="modal-header">
             <button class="close" data-dismiss="modal">&times;</button>
-            <h3>Uploading items, please wait...</h3>
+            <h3>Uploading files, please wait...</h3>
           </div>
           <div class="modal-body">
             <div class="alert alert-info alert-gcf">
@@ -87,8 +87,8 @@
   <?php include_component('mycq', 'dropbox'); ?>
 
   <a href="#" class="dropzone-container-slide pull-right">
-    <span class="close-dropzone">Open Items to sort <i class="icon-caret-down"></i></span>
-    <span class="open hidden">Close Items to sort <i class="icon-caret-up"></i></span>
+    <span class="close-dropzone">Open Uploaded Photos <i class="icon-caret-down"></i></span>
+    <span class="open hidden">Close Uploaded Photos <i class="icon-caret-up"></i></span>
   </a>
 </div>
 

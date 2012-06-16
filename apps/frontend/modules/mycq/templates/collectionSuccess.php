@@ -31,7 +31,7 @@
           <i class="icon icon-plus icon-white"></i>
         </a>
         <a class="blue-link" href="#">
-          Drag and Drop from <br>"Items to Sort"
+          Drag and Drop from <br>"Uploaded Photos"
         </a>
       <?php endif; ?>
     </div>

@@ -228,7 +228,7 @@ class mycqActions extends cqFrontendActions
           }
         }
 
-        $this->getUser()->setFlash('success', 'All Items to Sort were deleted!', true);
+        $this->getUser()->setFlash('success', 'All uploaded photos were deleted!', true);
         break;
     }
 
@@ -546,7 +546,7 @@ class mycqActions extends cqFrontendActions
       ->delete();
 
     $this->getUser()->setFlash(
-      'error', 'The upload was cancelled and none of the items were uploaded'
+      'error', 'The upload was cancelled and none of the photos were uploaded'
     );
 
     return $this->redirect('@mycq_collections');
@@ -568,13 +568,13 @@ class mycqActions extends cqFrontendActions
     if ($total > 0)
     {
       $this->getUser()->setFlash(
-        'success', 'Total of <b>' . $total . '</b> items were uploaded successfully'
+        'success', 'Total of <b>' . $total . '</b> photos were uploaded successfully'
       );
     }
     else
     {
       $this->getUser()->setFlash(
-        'error', 'There was a problem uploading your items and none were uploaded'
+        'error', 'There was a problem uploading your photos and none were uploaded'
       );
     }
 
