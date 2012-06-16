@@ -11,6 +11,8 @@ class mycqActions extends cqFrontendActions
 
   public function executeProfile(sfWebRequest $request)
   {
+    SmartMenu::setSelected('mycq_menu', 'profile');
+
     $collector_form = new CollectorEditForm($this->getCollector());
     $avatar_form = new CollectorAvatarForm($this->getCollector());
 
@@ -65,14 +67,6 @@ class mycqActions extends cqFrontendActions
 
     $this->collector = $this->getUser()->getCollector();
     $this->collector_form = $collector_form;
-
-    return sfView::SUCCESS;
-  }
-
-  public function executeCollections()
-  {
-    $this->collector = $this->getUser()->getCollector();
-    $this->total = $this->collector->countCollectorCollections();
 
     return sfView::SUCCESS;
   }
@@ -241,8 +235,21 @@ class mycqActions extends cqFrontendActions
     return $this->redirect('@mycq_collections');
   }
 
+
+  public function executeCollections()
+  {
+    SmartMenu::setSelected('mycq_menu', 'collections');
+
+    $this->collector = $this->getUser()->getCollector();
+    $this->total = $this->collector->countCollectorCollections();
+
+    return sfView::SUCCESS;
+  }
+
   public function executeCollection(sfWebRequest $request)
   {
+    SmartMenu::setSelected('mycq_menu', 'collections');
+
     /** @var $collection CollectorCollection */
     $collection = $this->getRoute()->getObject();
     $this->redirectUnless(
@@ -415,7 +422,7 @@ class mycqActions extends cqFrontendActions
 
       $form->bind($taintedValues, $request->getFiles('collectible'));
 
-      if ($form['for_sale'] && !IceGateKeeper::locked('collectible_shipping'))
+      if ($form['for_sale'] && IceGateKeeper::open('collectible_shipping'))
       {
         $form_shipping->bind($request->getParameter('shipping_rates_collection'));
       }
@@ -480,12 +487,20 @@ class mycqActions extends cqFrontendActions
     $this->form_for_sale = isset($form['for_sale']) ? $form['for_sale'] : null;
     $this->form_shipping = $form_shipping;
 
+    if ($collectible->isForSale()) {
+      SmartMenu::setSelected('mycq_menu', 'marketplace');
+    } else  {
+      SmartMenu::setSelected('mycq_menu', 'collections');
+    }
+
     return sfView::SUCCESS;
   }
 
   public function executeMarketplace()
   {
     $this->redirectUnless(IceGateKeeper::open('mycq_marketplace'), '@mycq');
+
+    SmartMenu::setSelected('mycq_menu', 'marketplace');
 
     // Get the Seller
     $seller = $this->getSeller(true);
@@ -572,11 +587,15 @@ class mycqActions extends cqFrontendActions
 
   public function executeShoppingOrders()
   {
+    SmartMenu::setSelected('mycq_menu', 'marketplace');
+
     return sfView::SUCCESS;
   }
 
   public function executeShoppingOrder()
   {
+    SmartMenu::setSelected('mycq_menu', 'marketplace');
+
     /** @var $shopping_order ShoppingOrder */
     $shopping_order = $this->getRoute()->getObject();
 
@@ -599,6 +618,8 @@ class mycqActions extends cqFrontendActions
 
   public function executeWanted()
   {
+    SmartMenu::setSelected('mycq_menu', 'wanted');
+
     return sfView::SUCCESS;
   }
 

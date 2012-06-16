@@ -1,32 +1,32 @@
 all:
   pages: ~
   features:
-    collectible_shipping: false
     shopping_cart: false
     mycq_homepage: false
     mycq_marketplace: false
     mycq_wanted: false
     mycq_seller_pay: false
     mycq_profile_addresses: false
+    collectible_shipping: false
 
 next:
   pages: ~
   features:
-    collectible_shipping: false
     shopping_cart: false
     mycq_homepage: false
     mycq_marketplace: true
     mycq_wanted: false
     mycq_seller_pay: false
     mycq_profile_addresses: true
+    collectible_shipping: false
 
 dev:
   pages: ~
   features:
-    collectible_shipping: false
     shopping_cart: true
     mycq_homepage: false
     mycq_marketplace: true
     mycq_wanted: false
     mycq_seller_pay: false
     mycq_profile_addresses: true
+    collectible_shipping: false

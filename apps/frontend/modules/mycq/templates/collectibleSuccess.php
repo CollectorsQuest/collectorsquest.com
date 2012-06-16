@@ -79,11 +79,22 @@
     </div><!-- ./span4 -->
     <div class="span8">
       <?php
-        $link = link_to(
-          'Back to Collection &raquo;',
-          'mycq_collection_by_slug', array('sf_subject' => $collection),
-          array('class' => 'text-v-middle link-align')
-        );
+        if ($collectible->isForSale())
+        {
+          $link = link_to(
+            'Go to Store &raquo;', 'mycq_marketplace',
+            array('class' => 'text-v-middle link-align')
+          );
+        }
+        else
+        {
+          $link = link_to(
+            'Back to Collection &raquo;',
+            'mycq_collection_by_slug', array('sf_subject' => $collection),
+            array('class' => 'text-v-middle link-align')
+          );
+        }
+
         cq_sidebar_title(
           $collectible->getName(), $link,
           array('left' => 8, 'right' => 4, 'class'=>'spacer-top-reset row-fluid sidebar-title')

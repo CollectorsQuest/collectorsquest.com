@@ -13,6 +13,8 @@ class sellerActions extends cqFrontendActions
   public function preExecute()
   {
     $this->redirectIf(IceGateKeeper::locked('mycq_marketplace'), '@mycq');
+
+    SmartMenu::setSelected('mycq_menu', 'marketplace');
   }
 
   public function executeIndex()

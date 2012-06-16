@@ -48,6 +48,15 @@ all:
         video:        { name: Video, uri: "@video" }
         marketplace:  { name: Market, uri: "@marketplace" }
 
+    mycq_menu:
+      items:
+        homepage:     { name: Home, uri: "@mycq", check_lock: mycq_homepage }
+        profile:      { name: Profile, uri: "@mycq_profile" }
+        collections:  { name: Collections, uri: "@mycq_collections" }
+        marketplace:  { name: "Store <sup>βeta</sup>", uri: "@mycq_marketplace", check_lock: mycq_marketplace }
+        messages:     { name: Messages, uri: "@messages_inbox" }
+        wanted:       { name: Wanted List, uri: "@mycq_wanted", check_lock: mycq_wanted }
+
 
 dev:
   domain_name: "collectorsquest.dev"

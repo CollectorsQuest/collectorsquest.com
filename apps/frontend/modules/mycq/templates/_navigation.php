@@ -20,41 +20,7 @@
           <div class="container">
             <div class="nav-collapse">
               <ul class="nav">
-                <?php
-                  if (IceGateKeeper::open('mycq_homepage'))
-                  {
-                    $active = in_array($sf_params->get('action'), array('index')) ? 'active' : null;
-                    echo '<li class="'. $active .'">', link_to('Home', '@mycq'), '</li>';
-                  }
-                ?>
-                <?php
-                  $active = in_array($sf_params->get('action'), array('profile')) ? 'active' : null;
-                  echo '<li class="'. $active .'">', link_to('Profile', '@mycq_profile'), '</li>';
-                ?>
-                <?php
-                  $active = in_array($sf_params->get('action'), array('collections', 'collection', 'collectible')) ? 'active' : null;
-                  echo '<li class="'. $active .'">', link_to('Collections', '@mycq_collections'), '</li>';
-                ?>
-                <?php
-                  if (IceGateKeeper::open('mycq_marketplace'))
-                  {
-                    $active = in_array($sf_params->get('action'), array('marketplace')) ? 'active' : null;
-                    $active = in_array($sf_params->get('module'), array('seller')) ? 'active' : $active;
-                    echo '<li class="'. $active .'">', link_to('Store <sup>βeta</sup>', '@mycq_marketplace'), '</li>';
-                  }
-                ?>
-                <?php
-                  $active = in_array($sf_params->get('module'), array('messages')) ? 'active' : null;
-                  $text = sprintf('Messages (%s)', $sf_user->getUnreadMessagesCount());
-                  echo '<li class="'. $active .'" style="border-right: 1px solid #4B3B3B;">', link_to($text, '@messages_inbox'), '</li>';
-                ?>
-                <?php
-                  if (IceGateKeeper::open('mycq_wanted'))
-                  {
-                    $active = in_array($sf_params->get('action'), array('wanted')) ? 'active' : null;
-                    echo '<li class="'. $active .'" style="border-right: 1px solid #4B3B3B;">', link_to('Wanted', '@mycq_wanted'), '</li>';
-                  }
-                ?>
+                <?= SmartMenu::generate('mycq_menu'); ?>
               </ul>
             </div><!-- /.nav-collapse -->
           </div>

@@ -8,6 +8,10 @@
  */
 class messagesActions extends cqFrontendActions
 {
+  public function preExecute()
+  {
+    SmartMenu::setSelected('mycq_menu', 'messages');
+  }
 
   public function executeIndex()
   {

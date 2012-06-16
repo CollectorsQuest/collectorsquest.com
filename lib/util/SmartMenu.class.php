@@ -32,12 +32,13 @@ class SmartMenu
 
       // Set template values, defaults when none provided
       $item = array(
-          '%id%'    => $id,
-          '%name%'  => $item['name'],
-          '%title%' => isset($item['title']) ? $item['title'] : $item['name'],
-          '%url%'   => isset($item['uri']) ? url_for($item['uri'], isset($item['absolute']) ? $item['absolute'] : true) : '#',
-          // https://developer.mozilla.org/en/HTML/Element/a#attr-target
-          '%target%'=> isset($item['target']) ? $item['target'] : '_self',
+        '%id%'    => $id,
+        '%name%'  => $item['name'],
+        '%title%' => isset($item['title']) ? $item['title'] : $item['name'],
+        '%url%'   => isset($item['uri']) ? url_for($item['uri'], isset($item['absolute']) ? $item['absolute'] : true) : '#',
+
+        // https://developer.mozilla.org/en/HTML/Element/a#attr-target
+        '%target%'=> isset($item['target']) ? $item['target'] : '_self',
       );
 
       if (self::isSelected($menu_name, $item))
