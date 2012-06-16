@@ -15,13 +15,16 @@ class PromotionForm extends BasePromotionForm
   {
     parent::__construct($object, $options, $CSRFSecret);
 
-    $this->setDefault('promotion_code', sprintf('CQ%d-%s', date('Y'), ShoppingOrderPeer::getUuidFromId(date('mdHis'))));
+    if ($this->getObject()->isNew())
+    {
+      $this->setDefault('promotion_code', sprintf('CQ%d-%s', date('Y'), ShoppingOrderPeer::getUuidFromId(date('mdHis'))));
+    }
   }
 
   public function configure()
   {
     $this->widgetSchema['expiry_date'] = new sfWidgetFormJQueryDate();
-    
+
     $this->widgetSchema['amount_type'] = new sfWidgetFormSelectRadio(array(
       'choices'=> $this->amountTypes,
       'formatter'        => function($widget, $inputs)
