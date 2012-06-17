@@ -43,7 +43,7 @@
                 <div class="thumbnail drop-zone-large empty" data-is-primary="1">
                   <i class="icon icon-plus"></i>
                   <span class="info-text">
-                    Drag and drop the main image<br> of your collectible here.
+                    Drag and drop your main image here from your "Uploaded Photos"
                   </span>
                 </div>
               <?php endif; ?>
