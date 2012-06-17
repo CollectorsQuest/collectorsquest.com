@@ -34,7 +34,7 @@ class SmartMenu
       $item = array(
         '%id%'    => $id,
         '%name%'  => $item['name'],
-        '%title%' => isset($item['title']) ? $item['title'] : $item['name'],
+        '%title%' => isset($item['title']) ? $item['title'] : strip_tags($item['name']),
         '%url%'   => isset($item['uri']) ? url_for($item['uri'], isset($item['absolute']) ? $item['absolute'] : true) : '#',
 
         // https://developer.mozilla.org/en/HTML/Element/a#attr-target
@@ -65,6 +65,17 @@ class SmartMenu
   public static function setSelected($menu_name, $selected)
   {
     self::$selected[$menu_name] = $selected;
+  }
+
+  /**
+   * Gets the selected item for a specific menu
+   *
+   * @param     string $menu_name
+   * @return    string
+   */
+  public static function getSelected($menu_name)
+  {
+    return self::$selected[$menu_name];
   }
 
   /**
