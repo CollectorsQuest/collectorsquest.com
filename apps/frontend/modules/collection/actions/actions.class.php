@@ -212,6 +212,6 @@ class collectionActions extends cqFrontendActions
 
   public function executeCreate()
   {
-    return sfView::SUCCESS;
+    $this->redirect('@mycq_collections');
   }
 }
