@@ -313,6 +313,13 @@
             }
         },
 
+        _formatFileName: function (name) {
+          return name
+            .match(/(.*)\.[^.]+$/)[1]
+            .replace(/(\.jpg|\.png|\.gif)/gi, '')
+            .replace(/(-|_|\.)/gi, ' ');
+        },
+
         _formatFileSize: function (bytes) {
             if (typeof bytes !== 'number') {
                 return '';
@@ -410,6 +417,7 @@
             }
             var result = func({
                 files: files,
+                formatFileName: this._formatFileName,
                 formatFileSize: this._formatFileSize,
                 options: this.options
             });

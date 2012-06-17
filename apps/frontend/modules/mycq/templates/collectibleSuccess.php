@@ -110,10 +110,7 @@
         <?= $form['thumbnail']->renderLabel(); ?>
         <div class="controls">
           <?= $form['thumbnail']->render(); ?>
-          <label>
-            &nbsp; <?= $form['is_alt_view']; ?>
-            Add as an alternative view instead?
-          </label>
+          <label><?= $form['is_alt_view']; ?>&nbsp; Add as an alternative view instead?</label>
           <?= $form['thumbnail']->renderError(); ?>
         </div>
       </div>
@@ -136,7 +133,10 @@
         }
         else
         {
-          echo image_tag('banners/want-to-sell-this-item.png', array('align' => 'right'));
+          echo link_to(
+            image_tag('banners/want-to-sell-this-item.png', array('align' => 'right')),
+            '@seller_packages'
+          );
           echo '<br clear="all"/><br/>';
         }
       ?>

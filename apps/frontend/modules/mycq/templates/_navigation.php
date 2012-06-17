@@ -38,7 +38,6 @@
 
         <div id="fileupload-modal" class="modal hide fade">
           <div class="modal-header">
-            <button class="close" data-dismiss="modal">&times;</button>
             <h3>Uploading files, please wait...</h3>
           </div>
           <div class="modal-body">
@@ -53,7 +52,7 @@
             </div>
 
             <!-- The table listing the files available for upload/download -->
-            <table class="table table-striped">
+            <table class="table table-striped" style="width: 515px;">
               <thead>
               <tr>
                 <td>Preview</td>
@@ -66,7 +65,7 @@
           <div class="modal-footer">
             <div class="span4 fileupload-progress fade">
               <!-- The global progress bar -->
-              <div class="progress progress-success progress-striped active">
+              <div class="progress progress-info progress-striped active">
                 <div class="bar" style="width:0;"></div>
               </div>
             </div>
@@ -104,7 +103,7 @@
   {% for (var i=0, file; file=o.files[i]; i++) { %}
   <tr class="template-upload fade">
     <td class="preview"><span class="fade"></span></td>
-    <td class="name"><span>{%=file.name%}</span></td>
+    <td class="name"><span>{%=o.formatFileName(file.name)%}</span></td>
     <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
     {% if (file.error) { %}
     <td class="error" colspan="2">
@@ -113,7 +112,7 @@
     </td>
     {% } else if (o.files.valid && !i) { %}
     <td>
-      <div class="progress progress-success progress-striped active">
+      <div class="progress progress-info progress-striped active">
         <div class="bar" style="width:0;"></div>
       </div>
     </td>
@@ -135,7 +134,7 @@
   <tr class="template-download fade">
     {% if (file.error) { %}
     <td>-</td>
-    <td class="name"><span>{%=file.name%}</span></td>
+    <td class="name"><span>{%=o.formatFileName(file.name)%}</span></td>
     <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
     <td class="error" colspan="2">
       <span class="label label-important">{%=locale.fileupload.error%}</span>
@@ -199,7 +198,7 @@ $(document).ready(function()
 
   $('#fileupload')
     .bind('fileuploadstart', function(e, data) {
-      $('#fileupload-modal').modal();
+      $('#fileupload-modal').modal({backdrop: 'static', keyboard: false, show: true});
     })
     .bind('fileuploadstop', function(e, data) {
       window.location.href = '<?= url_for('@mycq_upload_finish?batch='. $batch); ?>';
