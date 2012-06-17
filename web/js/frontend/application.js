@@ -122,13 +122,13 @@ var APP = window.APP = {
       // the dialog will automatically redirect to a new page
       $(document).delegate(".modal", "dialog2.content-update", function()
       {
-        // got the dialog as this object. Do something with it!
-        var e = $(this);
-        var autoclose = e.find("a.auto-close");
+        var $autoclose = $(this).find("a.auto-close");
 
-        if (autoclose.length > 0)
+        if ($autoclose.length > 0)
         {
-          var href = autoclose.attr('href');
+          $autoclose.blur();
+
+          var href = $autoclose.attr('href');
           if (href) {
             window.location.href = href;
           }

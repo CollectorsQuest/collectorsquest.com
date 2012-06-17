@@ -5,6 +5,18 @@
  */
 ?>
 
+<?php
+  if (isset($collection) && !$collection->isNew())
+  {
+    include_partial(
+      'global/loading',
+      array('url' => url_for('mycq_collection_by_slug', $collection))
+    );
+
+    return;
+  }
+?>
+
 <form action="<?= url_for('@ajax_mycq?section=component&page=createCollection'); ?>"
       method="post" id="form-create-collection" class="ajax form-horizontal form-modal">
 
@@ -45,15 +57,6 @@
   <?php endif; ?>
 
 </form>
-
-<?php
-  if (isset($collection) && !$collection->isNew())
-  {
-    echo cq_link_to(
-      '&nbsp;', 'mycq_collection_by_slug', $collection, array('class' => 'auto-close')
-    );
-  }
-?>
 
 <script>
 $(document).ready(function()
