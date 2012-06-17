@@ -1,7 +1,24 @@
 all:
   stylesheets:
+    - jquery/ui/bootstrap/theme.css
+    - jquery/ui/bootstrap/theme.ie.css
     - frontend/modules/mycq.css
     - frontend/modules/messages.css
+
+  javascripts:
+    - /assets/js/bootstrap/dialog2.js
+    - /assets/js/bootstrap/dialog2.helpers.js
+
+    - jquery/ui.js
+    - jquery/columnview.js
+    - jquery/tmpl.js
+    - jquery/iframe-transport.js
+    - jquery/load-image.js
+    - jquery/canvas-to-blob.js
+    - jquery/fileupload.js
+    - jquery/fileupload-fp.js
+    - jquery/fileupload-ui.js
+    - jquery/autogrow-input.js
 
   components:
     slot1: [mycq, navigation]
