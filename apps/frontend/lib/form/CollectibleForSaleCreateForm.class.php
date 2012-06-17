@@ -148,6 +148,7 @@ class CollectibleForSaleCreateForm extends CollectibleForSaleForm
       /** @var $collectible_for_sale CollectibleForSale */
       $collectible_for_sale = parent::updateObject($values);
       $collectible_for_sale->setCollectible($collectible);
+      $collectible_for_sale->setQuantity(1);
       $collectible_for_sale->save();
     }
     else
@@ -158,7 +159,7 @@ class CollectibleForSaleCreateForm extends CollectibleForSaleForm
       $collectible_for_sale->setPriceCurrency('USD');
       $collectible_for_sale->setIsReady(false);
       $collectible_for_sale->setCondition(null);
-      $collectible_for_sale->setQuantity(0);
+      $collectible_for_sale->setQuantity(1);
       $collectible_for_sale->save();
     }
 

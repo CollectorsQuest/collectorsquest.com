@@ -213,7 +213,10 @@ class SellerPackagesForm extends sfForm
     $this->setWidget('terms', new sfWidgetFormInputCheckbox(array(), array(
       'required' => 'required',
     )));
-    $this->setValidator('terms', new sfValidatorBoolean(array('required'=> true)));
+    $this->setValidator('terms', new sfValidatorBoolean(
+      array('required' => true),
+      array('required' => 'You need to accept the terms and conditions')
+    ));
   }
 
   private function getCountries()

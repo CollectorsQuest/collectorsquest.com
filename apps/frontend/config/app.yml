@@ -54,7 +54,7 @@ all:
         profile:      { name: Profile, uri: "@mycq_profile" }
         collections:  { name: Collections, uri: "@mycq_collections" }
         marketplace:  { name: "Store <sup>βeta</sup>", uri: "@mycq_marketplace", check_lock: mycq_marketplace }
-        messages:     { name: Messages, uri: "@messages_inbox" }
+        messages:     { name: Inbox, uri: "@messages_inbox" }
         wanted:       { name: Wanted List, uri: "@mycq_wanted", check_lock: mycq_wanted }
 
 

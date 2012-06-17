@@ -15,7 +15,9 @@
       <h3 class="Chivo webfont"><?= 'Uploaded Photos ('. $total .')'; ?></h3>
     </div>
     <div class="span4">
-      <?php
+    <?php
+      if ($total > 0)
+      {
         echo  link_to(
           '<i class="icon-trash"></i> Delete all Photos', '@mycq_dropbox?cmd=empty&encrypt=1',
           array(
@@ -23,7 +25,8 @@
             'onclick' => 'return confirm("Are you sure you want to delete all Uploaded Photos?")'
           )
         );
-      ?>
+      }
+    ?>
     </div>
   </div>
   <?php if ($total > 0): ?>

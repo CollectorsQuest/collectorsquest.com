@@ -49,7 +49,7 @@
       );
     ?>
 
-    <fieldset>
+    <fieldset style="width: 580px;">
         <?= $form; ?>
     </fieldset>
 
