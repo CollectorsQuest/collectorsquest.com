@@ -6,7 +6,6 @@ class mycqComponents extends cqFrontendComponents
   public function executeNavigation()
   {
     $this->collector = $this->getUser()->getCollector();
-    $this->batch = cqStatic::getUniqueId(32);
 
     $this->module = $this->getModuleName();
     $this->action = $this->getActionName();
