@@ -57,6 +57,7 @@
             <input name="shipping_rates_us[shipping_type]"
                    type="radio"
                    value="flat_rate"
+                   class="flat-rate-checkbox"
                    id="shipping_rates_us_shipping_type_flat_rate"
                    <?php if (!$form_shipping_us->isShippingTypeFreeShipping()) echo 'checked="checked"'; ?>
             />Flat rate
@@ -78,15 +79,22 @@
                    value="no_shipping"
                    id="shipping_rates_zz_shipping_type_no_shipping"
                    <?php if ($form_shipping_zz->isShippingTypeNoShipping()) echo 'checked="checked"'; ?>
-
             />No shipping
+          </label><br />
+          <label class="radio">
+            <input name="shipping_rates_zz[shipping_type]" type="radio"
+                   value="free_shipping"
+                   id="shipping_rates_zz_shipping_type_free_shipping"
+                   <?php if ($form_shipping_zz->isShippingTypeFreeShipping()) echo 'checked="checked"'; ?>
+            />Free shipping
           </label><br />
           <label class="radio">
             <input name="shipping_rates_zz[shipping_type]"
                    type="radio"
                    value="flat_rate"
+                   class="flat-rate-checkbox"
                    id="shipping_rates_zz_shipping_type_flat_rate"
-                   <?php if (!$form_shipping_zz->isShippingTypeNoShipping()) echo 'checked="checked"'; ?>
+                   <?php if (!($form_shipping_zz->isShippingTypeNoShipping() || $form_shipping_zz->isShippingTypeFreeShipping())) echo 'checked="checked"'; ?>
             />Flat rate
           </label>
           <div class="input-prepend spacer-left-15 spacer-top-5">
@@ -129,8 +137,9 @@ $(document).ready(function()
 
   $('.flat-rate-controller').on('change', 'input[type=radio]', function() {
     var $flat_rate_field = $(this).parents('.controls').find('.flat-rate-field');
+    var flat_rate_checked = !!$(this).parents('.controls').find('.flat-rate-checkbox:checked').length;
 
-    if ($flat_rate_field.attr('disabled')) {
+    if (flat_rate_checked) {
       $flat_rate_field.removeAttr('disabled');
     } else {
       $flat_rate_field.attr('disabled', 'disabled');

@@ -22,7 +22,8 @@ class SimpleShippingCollectorCollectibleInternationalForm extends SimpleShipping
   {
     parent::configure();
 
-    $this->setupFlatRateAmountField($this->isShippingTypeNoShipping());
+    $this->setupFlatRateAmountField(
+      $this->isShippingTypeNoShipping() || $this->isShippingTypeFreeShipping());
 
     $this->setupDoNotShipToField();
   }
@@ -49,6 +50,7 @@ class SimpleShippingCollectorCollectibleInternationalForm extends SimpleShipping
   {
     return array(
         ShippingReferencePeer::SHIPPING_TYPE_NO_SHIPPING => 'No shipping',
+        self::SHIPPING_TYPE_FREE => 'Free shipping',
         ShippingReferencePeer::SHIPPING_TYPE_FLAT_RATE => 'Flat Rate',
     );
   }
