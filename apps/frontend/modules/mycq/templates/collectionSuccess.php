@@ -30,9 +30,9 @@
         <a class="plus-icon-holder h-center" href="#">
           <i class="icon icon-plus icon-white"></i>
         </a>
-        <a class="blue-link" href="#">
+        <div class="info-text">
           Drag and Drop from <br>"Uploaded Photos"
-        </a>
+        </div>
       <?php endif; ?>
     </div>
   </div>

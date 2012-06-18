@@ -4,8 +4,8 @@ class mycqActions extends cqFrontendActions
 {
   public function executeIndex()
   {
-    $this->redirectIf(IceGateKeeper::locked('mycq_homepage'), '@mycq_profile');
-
+  //  $this->redirectIf(IceGateKeeper::locked('mycq_homepage'), '@mycq_profile');
+    $this->collector = $this->getUser()->getCollector();
     return sfView::SUCCESS;
   }
 
