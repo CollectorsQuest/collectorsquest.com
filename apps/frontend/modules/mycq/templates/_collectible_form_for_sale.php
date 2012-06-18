@@ -1,7 +1,7 @@
 <?php
 /**
  * @var $form CollectibleForSaleEditForm
- * @var $form_shipping ShippingRatesCollection
+ * @var $form_shipping_us SimpleShippingCollectorCollectibleForCountryForm
  */
 ?>
 
@@ -39,10 +39,33 @@
     </div>
     <?= $form['condition']->renderRow(); ?>
 
-    <?php if (IceGateKeeper::open('collectible_shipping') && $form_shipping): ?>
-      <?= $form_shipping->renderHiddenFields(); ?>
-      <?= $form_shipping->renderUsing('Bootstrap'); ?>
-    <?php endif; ?>
+    <?= $form_shipping_us->renderHiddenFields(); ?>
+    <?= $form_shipping_us->renderAllErrors(); ?>
+    <div class="control-group form-inline">
+      <label class="control-label" for="">Domestic shipping</label>
+      <div class="controls">
+        <label class="radio">
+          <input name="shipping_rates_us[shipping_type]" type="radio"
+                 value="free_shipping"
+                 id="shipping_rates_us_shipping_type_free_shipping"
+                 <?php if (!$form_shipping_us->isShippingTypeFlatRate()) echo 'checked="checked"'; ?>
+
+          />Free Shipping
+        </label><br />
+        <label class="radio">
+          <input name="shipping_rates_us[shipping_type]"
+                 type="radio"
+                 value="flat_rate"
+                 id="shipping_rates_us_shipping_type_flat_rate"
+                 <?php if ($form_shipping_us->isShippingTypeFlatRate()) echo 'checked="checked"'; ?>
+          />Flat rate
+        </label>
+        <div class="input-prepend spacer-left-15 spacer-top-5">
+          <span class="add-on">$</span><?= $form_shipping_us['flat_rate']->render(array(
+            'class' => 'input-small')); ?>
+        </div>
+      </div>
+    </div>
 
   <?php else: ?>
     <center>

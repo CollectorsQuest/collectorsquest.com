@@ -5,6 +5,11 @@ class ShippingCollectorCollectibleForCountryFormValidatorSchema extends sfValida
 
   protected function doClean($values)
   {
+    if (!isset($values['shipping_rates']))
+    {
+      return $values;
+    }
+
     $shipping_forms = $values['shipping_rates'];
 
     if (null === $shipping_forms['shipping_rate_new']['shipping_carrier_service_id'])

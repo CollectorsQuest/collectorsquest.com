@@ -699,10 +699,8 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
    */
   public function getShippingReferenceDomestic(PropelPDO $con = null)
   {
-    return ShippingReferenceQuery::create()
-      ->filterByCollector($this)
-      ->filterByCountryIso3166($this->getProfile()->getCountryIso3166())
-      ->findOne($con);
+    return $this->getShippingReferenceForCountryCode(
+      $this->getProfile($con)->getCountryIso3166(), $con);
   }
 
   /**

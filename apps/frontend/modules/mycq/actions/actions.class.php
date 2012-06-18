@@ -402,10 +402,11 @@ class mycqActions extends cqFrontendActions
     }
 
     $form = new CollectibleEditForm($collectible);
-    $form_shipping = new ShippingRatesCollectionForm($collectible, array(
-        'tainted_request_values' =>
-            $request->getParameter('shipping_rates_collection'),
-    ));
+    $form_shipping_us = new SimpleShippingCollectorCollectibleForCountryForm(
+      $collectible,
+      'US',
+      $request->getParameter('shipping_rates_us')
+    );
 
     if ($request->isMethod('post'))
     {
@@ -424,17 +425,17 @@ class mycqActions extends cqFrontendActions
 
       if ($form['for_sale'] && IceGateKeeper::open('collectible_shipping'))
       {
-        $form_shipping->bind($request->getParameter('shipping_rates_collection'));
+        $form_shipping_us->bind($request->getParameter('shipping_rates_us'));
       }
 
       if (
         $form->isValid() &&
-        (!$form_shipping->isBound() || $form_shipping->isValid())
+        (!$form_shipping_us->isBound() || $form_shipping_us->isValid())
       )
       {
-        if ($form_shipping->isValid())
+        if ($form_shipping_us->isValid())
         {
-          $form_shipping->save();
+          $form_shipping_us->save();
         }
         $for_sale = $form->getValue('for_sale');
 
@@ -489,7 +490,7 @@ class mycqActions extends cqFrontendActions
 
     $this->form = $form;
     $this->form_for_sale = isset($form['for_sale']) ? $form['for_sale'] : null;
-    $this->form_shipping = $form_shipping;
+    $this->form_shipping_us = $form_shipping_us;
 
     if ($collectible->isForSale()) {
       SmartMenu::setSelected('mycq_menu', 'marketplace');

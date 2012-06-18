@@ -22,12 +22,12 @@ class ShippingCollectorCollectibleForCountryForm extends ShippingReferenceForm
     $options = array(),
     $CSRFSecret = null
   ) {
-    if (!in_array(get_class($related_object), array('Collector', 'Collection')))
+    if (!in_array(get_class($related_object), array('Collector', 'Collectible')))
     {
       throw new InvalidArgumentException(sprintf(
         'ShippingCollectorCollectibleForm exects a Collector or Collectible object,
          %s given',
-        get_class($object)
+        get_class($related_object)
       ));
     }
 
@@ -128,8 +128,6 @@ class ShippingCollectorCollectibleForCountryForm extends ShippingReferenceForm
 
   protected function doSave($con = null)
   {
-
-    // embedded forms
     if (null === $con)
     {
       $con = $this->getConnection();

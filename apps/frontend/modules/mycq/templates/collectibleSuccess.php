@@ -128,7 +128,7 @@
             'mycq/collectible_form_for_sale', array(
                 'collectible' => $collectible,
                 'form' => $form_for_sale,
-                'form_shipping' => $form_shipping,
+                'form_shipping_us' => $form_shipping_us,
           ));
         }
         else
