@@ -136,5 +136,7 @@ $(document).ready(function()
       $flat_rate_field.attr('disabled', 'disabled');
     }
   })
+
+  $('#shipping_rates_zz_do_not_ship_to').chosen();
 });
 </script>
