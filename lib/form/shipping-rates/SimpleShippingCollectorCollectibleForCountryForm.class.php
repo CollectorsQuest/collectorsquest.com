@@ -38,10 +38,8 @@ class SimpleShippingCollectorCollectibleForCountryForm extends ShippingCollector
 
   protected function setupFlatRateAmountField()
   {
-    $this->widgetSchema['flat_rate'] = new cqWidgetFormInputCentsToUsd(array(
-        'show_zero_as_empty' => true,
-    ));
-    $this->validatorSchema['flat_rate'] = new cqValidatorUSDtoCents(array(
+    $this->widgetSchema['flat_rate'] = new sfWidgetFormInput();
+    $this->validatorSchema['flat_rate'] = new cqValidatorPrice(array(
         'required' => false,
     ));
 
@@ -96,7 +94,7 @@ class SimpleShippingCollectorCollectibleForCountryForm extends ShippingCollector
       {
         // if not then we repopulate the "flat_rate" field;
         // shipping_tye
-        $this->setDefault('flat_rate', $shipping_rate->getFlatRateInCents());
+        $this->setDefault('flat_rate', $shipping_rate->getFlatRateInUSD());
       }
     }
     else if (
@@ -129,7 +127,7 @@ class SimpleShippingCollectorCollectibleForCountryForm extends ShippingCollector
     if ($values['shipping_type'] == ShippingReferencePeer::SHIPPING_TYPE_FLAT_RATE)
     {
       $shipping_rate = new ShippingRate();
-      $shipping_rate->setFlatRateInCents($values['flat_rate']);
+      $shipping_rate->setFlatRateInUSD($values['flat_rate']);
       $shipping_rate->setShippingReference($this->getObject());
     }
 
