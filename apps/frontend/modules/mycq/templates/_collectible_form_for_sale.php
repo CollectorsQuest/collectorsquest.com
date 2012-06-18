@@ -77,7 +77,7 @@
             <input name="shipping_rates_zz[shipping_type]" type="radio"
                    value="no_shipping"
                    id="shipping_rates_zz_shipping_type_no_shipping"
-                   <?php if ($form_shipping_zz->isShippingTypeFreeShipping()) echo 'checked="checked"'; ?>
+                   <?php if ($form_shipping_zz->isShippingTypeNoShipping()) echo 'checked="checked"'; ?>
 
             />No shipping
           </label><br />
@@ -86,7 +86,7 @@
                    type="radio"
                    value="flat_rate"
                    id="shipping_rates_zz_shipping_type_flat_rate"
-                   <?php if (!$form_shipping_zz->isShippingTypeFreeShipping()) echo 'checked="checked"'; ?>
+                   <?php if (!$form_shipping_zz->isShippingTypeNoShipping()) echo 'checked="checked"'; ?>
             />Flat rate
           </label>
           <div class="input-prepend spacer-left-15 spacer-top-5">

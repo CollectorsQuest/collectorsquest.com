@@ -11,7 +11,7 @@ class SimpleShippingCollectorCollectibleForCountryForm extends ShippingCollector
   {
     parent::configure();
 
-    $this->setupFlatRateAmountField();
+    $this->setupFlatRateAmountField($this->isShippingTypeFreeShipping());
 
     $this->mergePostValidator(
       new SimpleShippingCollectorCollectibleForCountryFormValidatorSchema(null));
@@ -36,14 +36,14 @@ class SimpleShippingCollectorCollectibleForCountryForm extends ShippingCollector
     ));
   }
 
-  protected function setupFlatRateAmountField()
+  protected function setupFlatRateAmountField($disabled = false)
   {
     $this->widgetSchema['flat_rate'] = new sfWidgetFormInput();
     $this->validatorSchema['flat_rate'] = new cqValidatorPrice(array(
         'required' => false,
     ));
 
-    if ($this->isShippingTypeFreeShipping())
+    if ($disabled)
     {
       $this->widgetSchema['flat_rate']->setAttributes(array(
           'class' => 'disabled',
@@ -64,6 +64,12 @@ class SimpleShippingCollectorCollectibleForCountryForm extends ShippingCollector
        $this->getObject()->getShippingRates()->count() == 1 &&
         $this->getObject()->getShippingRates()->getFirst()->getIsFreeShipping()
       ? self::SHIPPING_TYPE_FREE : '');
+  }
+
+  public function isShippingTypeNoShipping()
+  {
+    return ShippingReferencePeer::SHIPPING_TYPE_NO_SHIPPING
+        == $this->getTaintedRequestValue('shipping_type', $this->getObject()->getShippingType());
   }
 
   protected static function getShippingTypeChoices()
