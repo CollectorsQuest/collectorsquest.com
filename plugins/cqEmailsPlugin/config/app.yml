@@ -38,6 +38,14 @@ all:
         subject: "Someone responded to your comment on Collectors Quest!"
         required_params: [ oModelObject, oNewComment, oYourComment, sThreadUrl, sUnsubscribeUrl ]
 
+    Shopping:
+      buyer_order_confirmation:
+        subject: "Congratulations! You’ve made a purchase on Collectors Quest!"
+        required_params: [ oSeller, oShoppingOrder, oCollectible ]
+      seller_order_notification:
+        subject: "Congratulations! You’ve sold on Collectors Quest!"
+        required_params: [ oSeller, oShoppingOrder, oCollectible ]
+
     internal:
       feedback:
         subject: "[Feedback]"

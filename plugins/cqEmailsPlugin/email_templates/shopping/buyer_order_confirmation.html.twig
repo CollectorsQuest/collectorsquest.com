@@ -1,0 +1,23 @@
+{% extends "common/base.html.twig" %}
+
+{% block content %}
+
+<p style="margin-bottom: 10px; font-weight: bold;">
+  Hey, {{ buyer_name }}!
+</p>
+
+<p>
+  Congratulations! You’ve agreed to purchase
+  {{ oSeller.displayName }}’s {{ link_to_collectible(oCollectible, 'text', {absolute: true}) }}!
+</p>
+
+<p>
+  {{ oSeller.displayName }} has been notified of your purchase and will be in
+  contact with you soon to finalize any outstanding details.
+</p>
+
+<p>Here are your transaction details:</p>
+
+[Item thumbnail, usernames, e-mail addresses, link to communicate on CQ, physical addresses, price, shipping, etc.]
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "common/base.html.twig" %}
+
+{% block content %}
+
+<p style="margin-bottom: 10px; font-weight: bold;">
+  Hey, {{ oSeller.displayName }}!
+</p>
+
+<p>
+  Congratulations! {{ buyer_name }} has purchased your
+  {{ link_to_collectible(oCollectible, 'text', {absolute: true}) }} on Collectors Quest!
+</p>
+
+<p>Here are your transaction details:</p>
+
+[Item thumbnail, usernames, e-mail addresses, link to communicate on CQ, physical addresses, price, shipping, etc.]
+
+{% endblock %}

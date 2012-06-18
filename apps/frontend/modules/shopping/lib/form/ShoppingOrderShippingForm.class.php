@@ -21,7 +21,9 @@ class ShoppingOrderShippingForm extends BaseForm
     $sf_user = sfContext::getInstance()->getUser();
 
     $this->setWidgets(array(
-      'buyer_email'  => new sfWidgetFormInputText(),
+      'buyer_email'  => new sfWidgetFormInputText(
+        array(), array('required' => 'required')
+      ),
       'buyer_phone'  => new sfWidgetFormInputText()
     ));
 
@@ -62,7 +64,10 @@ class ShoppingOrderShippingForm extends BaseForm
         'shipping_address', array(), 'shopping'
       );
 
-      $use_session_defaults = isset($session_defaults['country_iso3166']) && ($session_defaults['country_iso3166'] == $defaults['country_iso3166']);
+      $use_session_defaults =
+        isset($session_defaults['country_iso3166']) &&
+        ($session_defaults['country_iso3166'] == $defaults['country_iso3166']);
+
       foreach (array_keys($defaults) as $key)
       {
         if (!empty($defaults[$key]) && $key !== 'country_iso3166')
@@ -81,7 +86,6 @@ class ShoppingOrderShippingForm extends BaseForm
 
     parent::setup();
   }
-
 
   public function configure()
   {

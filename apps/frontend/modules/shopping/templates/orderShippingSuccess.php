@@ -7,15 +7,15 @@
 <br/><br/>
 
 <form action="<?= url_for('@shopping_order_shipping?uuid='. $shopping_order->getUuid()); ?>"
-      method="post"
-      class="form-horizontal">
+      method="post" class="form-horizontal" novalidate="novalidate">
 
   <fieldset>
     <legend>Contact Details</legend>
     <div class="control-group">
       <?= $form['buyer_email']->renderLabel(null, array('class' => 'control-label')); ?>
       <div class="controls">
-        <div class="input-prepend">
+        <div class="input-prepend with-required-token">
+          <span class="required-token">*</span>
           <span class="add-on"><i class="icon-envelope"></i></span>
           <?= $form['buyer_email']->render(array('class' => 'span4', 'style' => 'margin-left: -4px;')) ?>
           <?= $form['buyer_email']->renderError() ?>
@@ -34,7 +34,7 @@
   <fieldset>
     <legend>
       Shipping Address
-      <?php if ($sf_user->isAuthenticated()): ?>
+      <?php if ($sf_user->isAuthenticated() && count($shipping_addresses) > 0): ?>
         <button type="submit" class="btn pull-right" style="font-size: 60%;" name="new_address">
           <i class="icon icon-plus"></i>
           &nbsp;Add new shipping address
@@ -71,9 +71,12 @@
   </fieldset>
 
   <div class="well" style="text-align: center; margin-top: 40px;">
-    <?= link_to('cancel this order', '@shopping_cart', array('class' => 'btn')); ?>
-    &nbsp - or - &nbsp;
-    <button type="submit" class="btn btn-large btn-primary" data-loading-text="Loading payment screen...">Continue to Payment →</button>
+    <button type="submit" class="btn btn-large blue-button spacer-right-15"
+            data-loading-text="Loading payment screen..." formnovalidate="formnovalidate">
+      Continue to Payment
+    </button>
+
+    <?= link_to('Cancel', '@shopping_cart', array('class' => 'btn gray-button')); ?>
   </div>
 
   <?= $form->renderHiddenFields(); ?>
@@ -82,8 +85,8 @@
 <script>
   $(document).ready(function()
   {
-    $('.btn-primary').button();
-    $('.btn-primary').click(function()
+    $('.btn').button();
+    $('.btn').click(function()
     {
       $(this).button('loading');
     });

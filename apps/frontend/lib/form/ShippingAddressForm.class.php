@@ -5,13 +5,21 @@ class ShippingAddressForm extends CollectorAddressForm
   public function setup()
   {
     $this->setWidgets(array(
-      'full_name'       => new sfWidgetFormInputText(),
-      'address_line_1'  => new sfWidgetFormInputText(),
+      'full_name'       => new sfWidgetFormInputText(
+        array(), array('required' => 'required')
+      ),
+      'address_line_1'  => new sfWidgetFormInputText(
+        array(), array('required' => 'required')
+      ),
       'address_line_2'  => new sfWidgetFormInputText(),
-      'city'            => new sfWidgetFormInputText(),
+      'city'            => new sfWidgetFormInputText(
+        array(), array('required' => 'required')
+      ),
       'state_region'    => new sfWidgetFormInputText(),
       'zip_postcode'    => new sfWidgetFormInputText(),
-      'country_iso3166' => new cqWidgetFormI18nChoiceCountry(array('add_empty' => false)),
+      'country_iso3166' => new cqWidgetFormI18nChoiceCountry(
+        array('add_empty' => false), array('required' => 'required')
+      ),
 
       'address_id' => new sfWidgetFormInputHidden(),
     ));

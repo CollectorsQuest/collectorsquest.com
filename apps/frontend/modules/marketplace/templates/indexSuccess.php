@@ -38,10 +38,12 @@
 </div>
 <?php endif; ?>
 
+<!--
 <br/>
 <div class="banners-620">
   <?= link_to(image_tag('banners/040412_show_and_sell_red.gif'), '@collector_signup'); ?>
 </div>
+//-->
 
 <?php cq_section_title('Discover more collectibles for sale'); ?>
 
