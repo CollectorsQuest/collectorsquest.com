@@ -74,7 +74,7 @@ class ShippingCollectorCollectibleForCountryForm extends ShippingReferenceForm
   {
     if (null === $shipping_types)
     {
-      $shipping_types = self::getShippingTypeChoices();
+      $shipping_types = static::getShippingTypeChoices();
     }
 
     $this->widgetSchema['shipping_type'] = new sfWidgetFormChoice(array(
@@ -153,13 +153,17 @@ class ShippingCollectorCollectibleForCountryForm extends ShippingReferenceForm
   {
     if (null === $forms)
     {
-      $shipping_rates_collection = $this->getValue('shipping_rates');
       $forms = $this->embeddedForms;
-      foreach ($this->embeddedForms['shipping_rates'] as $name => $form)
+
+      if (isset($this->embeddedForms['shipping_rates']))
       {
-        if (!isset($shipping_rates_collection[$name]))
+        $shipping_rates_collection = $this->getValue('shipping_rates');
+        foreach ($this->embeddedForms['shipping_rates'] as $name => $form)
         {
-          unset($forms['shipping_rates'][$name]);
+          if (!isset($shipping_rates_collection[$name]))
+          {
+            unset($forms['shipping_rates'][$name]);
+          }
         }
       }
     }

@@ -129,6 +129,7 @@
                 'collectible' => $collectible,
                 'form' => $form_for_sale,
                 'form_shipping_us' => $form_shipping_us,
+                'form_shipping_zz' => $form_shipping_zz,
           ));
         }
         else

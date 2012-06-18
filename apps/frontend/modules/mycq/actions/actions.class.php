@@ -407,6 +407,10 @@ class mycqActions extends cqFrontendActions
       'US',
       $request->getParameter('shipping_rates_us')
     );
+    $form_shipping_zz = new SimpleShippingCollectorCollectibleInternationalForm(
+      $collectible,
+      $request->getParameter('shipping_rates_zz')
+    );
 
     if ($request->isMethod('post'))
     {
@@ -426,16 +430,22 @@ class mycqActions extends cqFrontendActions
       if ($form['for_sale'] && IceGateKeeper::open('collectible_shipping'))
       {
         $form_shipping_us->bind($request->getParameter('shipping_rates_us'));
+        $form_shipping_zz->bind($request->getParameter('shipping_rates_zz'));
       }
 
       if (
         $form->isValid() &&
-        (!$form_shipping_us->isBound() || $form_shipping_us->isValid())
+        (!$form_shipping_us->isBound() || $form_shipping_us->isValid()) &&
+        (!$form_shipping_zz->isBound() || $form_shipping_zz->isValid())
       )
       {
         if ($form_shipping_us->isValid())
         {
           $form_shipping_us->save();
+        }
+        if ($form_shipping_zz->isValid())
+        {
+          $form_shipping_zz->save();
         }
         $for_sale = $form->getValue('for_sale');
 
@@ -491,6 +501,7 @@ class mycqActions extends cqFrontendActions
     $this->form = $form;
     $this->form_for_sale = isset($form['for_sale']) ? $form['for_sale'] : null;
     $this->form_shipping_us = $form_shipping_us;
+    $this->form_shipping_zz = $form_shipping_zz;
 
     if ($collectible->isForSale()) {
       SmartMenu::setSelected('mycq_menu', 'marketplace');

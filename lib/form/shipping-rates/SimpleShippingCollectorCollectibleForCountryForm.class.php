@@ -23,7 +23,7 @@ class SimpleShippingCollectorCollectibleForCountryForm extends ShippingCollector
   {
     if (null === $shipping_types)
     {
-      $shipping_types = self::getShippingTypeChoices();
+      $shipping_types = static::getShippingTypeChoices();
     }
 
     $this->widgetSchema['shipping_type'] = new sfWidgetFormSelectRadio(array(
@@ -45,7 +45,7 @@ class SimpleShippingCollectorCollectibleForCountryForm extends ShippingCollector
         'required' => false,
     ));
 
-    if (!$this->isShippingTypeFlatRate())
+    if ($this->isShippingTypeFreeShipping())
     {
       $this->widgetSchema['flat_rate']->setAttributes(array(
           'class' => 'disabled',
@@ -54,11 +54,18 @@ class SimpleShippingCollectorCollectibleForCountryForm extends ShippingCollector
     }
   }
 
-  public function isShippingTypeFlatRate()
+  /**
+   * Check if the shipping type is really flat rate or if it is a fake flat rate
+   * that hides a free shipping rate
+   *
+   * @return    booleanb
+   */
+  public function isShippingTypeFreeShipping()
   {
-    return ShippingReferencePeer::SHIPPING_TYPE_FLAT_RATE ==
-      $this->getTaintedRequestValue('shipping_type',
-        $this->getObject()->getShippingType());
+    return self::SHIPPING_TYPE_FREE == $this->getTaintedRequestValue('shipping_type',
+       $this->getObject()->getShippingRates()->count() == 1 &&
+        $this->getObject()->getShippingRates()->getFirst()->getIsFreeShipping()
+      ? self::SHIPPING_TYPE_FREE : '');
   }
 
   protected static function getShippingTypeChoices()
@@ -92,8 +99,10 @@ class SimpleShippingCollectorCollectibleForCountryForm extends ShippingCollector
         $this->setDefault('flat_rate', $shipping_rate->getFlatRateInCents());
       }
     }
-    else if (!$this->isNew())
-    {
+    else if (
+      !$this->isNew() &&
+      !ShippingReferencePeer::SHIPPING_TYPE_NO_SHIPPING == $this->getObject()->getShippingType()
+    ) {
       throw new Exception('SimpleShippingCollectorCollectibleForCountryForm expects
         an object with a singular shipping rate for a country,
         the provided object had '.$this->getObject()->getShippingRates()->count());
@@ -108,10 +117,10 @@ class SimpleShippingCollectorCollectibleForCountryForm extends ShippingCollector
       ->delete();
 
     // we have free shipping, save a related ShippingRate object of
-    // type free shipping and set this record to calculated shipping
+    // type free shipping and set this record to flat rate shipping
     if (self::SHIPPING_TYPE_FREE == $values['shipping_type'])
     {
-      $values['shipping_type'] = ShippingReferencePeer::SHIPPING_TYPE_CALCULATED_SHIPPING;
+      $values['shipping_type'] = ShippingReferencePeer::SHIPPING_TYPE_FLAT_RATE;
       $shipping_rate = new ShippingRate();
       $shipping_rate->setIsFreeShipping(true);
       $shipping_rate->setShippingReference($this->getObject());
