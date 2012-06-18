@@ -43,7 +43,7 @@
                 <div class="thumbnail drop-zone-large empty" data-is-primary="1">
                   <i class="icon icon-plus"></i>
                   <span class="info-text">
-                    Drag and drop your main image here from your <strong>"Uploaded Photos"</strong>
+                    Drag and drop your main image here from your <strong>"Uploaded&nbsp;Photos"</strong>
                     or use the <strong>Browse</strong> button on the right.
                   </span>
                 </div>
