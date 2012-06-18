@@ -19,19 +19,18 @@ class collectorsActions extends cqFrontendActions
     switch ($sortBy)
     {
       case 'most-popular':
-        $q->joinCollectorCollection()
+        $q->joinCollectorCollection(null, Criteria::LEFT_JOIN)
             ->withColumn('SUM(CollectorCollection.NumViews)', 'TotalCollectionsViews')
             ->groupBy('CollectorCollection.CollectorId')
 
-            ->useCollectorCollectionQuery()
-            ->filterByNumItems(10, Criteria::GREATER_EQUAL)
-            ->endUse()
+//            ->useCollectorCollectionQuery()
+//            ->filterByNumItems(10, Criteria::GREATER_EQUAL)
+//            ->endUse()
 
             ->joinCollectorProfile()
 
             ->orderBy('CollectorCollection.NumViews', Criteria::DESC)
         ;
-//        dd($q->toString());
         break;
 
       case 'near-you':
