@@ -1,11 +1,11 @@
 <?php
 
 
-require 'lib/model/marketplace/om/BaseShippingRateCollector.php';
+require 'lib/model/marketplace/om/BaseShippingCarrierServiceQuery.php';
 
 
 /**
- * Skeleton subclass for representing a row from the 'shipping_rate_collector' table.
+ * Skeleton subclass for performing query and update operations on the 'shipping_carrier_service' table.
  *
  * 
  *
@@ -15,6 +15,6 @@ require 'lib/model/marketplace/om/BaseShippingRateCollector.php';
  *
  * @package    propel.generator.lib.model.marketplace
  */
-class ShippingRateCollector extends BaseShippingRateCollector {
+class ShippingCarrierServiceQuery extends BaseShippingCarrierServiceQuery {
 
 }

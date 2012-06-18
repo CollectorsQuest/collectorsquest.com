@@ -7,7 +7,7 @@ require 'lib/model/om/BaseCollector.php';
  * @method     Collector setSingupNumCompletedSteps(int $v) Set the number of completed signup steps
  * @method     Collector setCqnextAccessAllowed(boolean $v)
  */
-class Collector extends BaseCollector implements ShippingRatesInterface
+class Collector extends BaseCollector implements ShippingReferencesInterface
 {
   public
     $_multimedia = array(),
@@ -666,15 +666,13 @@ class Collector extends BaseCollector implements ShippingRatesInterface
    * Get the shipping rates for this collector, grouped by country
    *
    * @param     PropelPDO $con
-   * @return    array
-   *
-   * @see       ShippingRateCollectorQuery::findAndGroupByCountryCode()
+   * @return    array ShippingReference[]
    */
-  public function getShippingRatesGroupedByCountryCode(PropelPDO $con = null)
+  public function getShippingReferencesByCountryCode(PropelPDO $con = null)
   {
-    return ShippingRateCollectorQuery::create()
+    return ShippingReferenceQuery::create()
       ->filterByCollector($this)
-      ->findAndGroupByCountryCode($con);
+      ->find($con)->getArrayCopy($keyColumn = 'CountryIso3166');
   }
 
   /**
@@ -682,38 +680,29 @@ class Collector extends BaseCollector implements ShippingRatesInterface
    *
    * @param     string $coutry_code
    * @param     PropelPDO $con
-   * @return    ShippingRate[]
+   *
+   * @return    ShippingReference
    */
-  public function getShippingRatesForCountryCode($coutry_code, PropelPDO $con = null)
+  public function getShippingReferenceForCountryCode($coutry_code, PropelPDO $con = null)
   {
-    return ShippingRateCollectorQuery::create()
+    return ShippingReferenceQuery::create()
       ->filterByCollector($this)
       ->filterByCountryIso3166($coutry_code)
-      ->find($con);
+      ->findOne($con);
   }
 
   /**
    * Get shipping rates for the collector's country
    *
    * @param     PropelPDO $con
-   * @return    ShippingRate[]
+   * @return    ShippingReference
    */
-  public function getShippingRatesDomestic(PropelPDO $con = null)
+  public function getShippingReferenceDomestic(PropelPDO $con = null)
   {
-    return ShippingRateCollectorQuery::create()
+    return ShippingReferenceQuery::create()
       ->filterByCollector($this)
       ->filterByCountryIso3166($this->getProfile()->getCountryIso3166())
-      ->find($con);
-  }
-
-  /**
-   * Return the domestic country code
-   *
-   * @return    string
-   */
-  public function getDomesticCountryCode()
-  {
-    return $this->getProfile()->getCountryIso3166();
+      ->findOne($con);
   }
 
   /**
@@ -722,6 +711,11 @@ class Collector extends BaseCollector implements ShippingRatesInterface
    */
   public function preDelete(PropelPDO $con = null)
   {
+    // Delete shipping references manually, because no actual FK exists
+    ShippingReferenceQuery::create()
+      ->filterByCollector($this)
+      ->delete($con);
+
     /** @var $collections Collection[] */
     if ($collections = $this->getCollections())
       foreach ($collections as $collection)
