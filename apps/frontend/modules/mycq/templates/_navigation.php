@@ -6,7 +6,7 @@
 ?>
 <div class="slot1-inner-mycq">
   <div class="row-fluid">
-    <div class="span10">
+    <div class="span10 upload-items-wrapper-l">
       <?php
         $links = link_to('View Public Profile', '@collector_me') .
                  '<span style="color: #fff;">&nbsp; | &nbsp;</span>'.
@@ -27,23 +27,27 @@
         </div><!-- /navbar-inner -->
       </div>
     </div>
-    <div class="span2 upload-items-wrapper">
+    <div class="span2 upload-items-wrapper-r">
       <?php include_partial('mycq/upload_photos'); ?>
     </div>
   </div>
 
   <?php include_component('mycq', 'dropbox'); ?>
-
-  <a href="#" class="dropzone-container-slide pull-right
-                     <?= $sf_user->getMycqDropboxOpenState() ? 'open' : '' ?>"
-  >
-    <span class="open-dropzone">
-      Open Uploaded Photos <i class="icon-caret-down"></i>
-    </span>
-    <span class="close-dropzone">
-      Close Uploaded Photos <i class="icon-caret-up"></i>
-    </span>
-  </a>
+  <div class="row-fluid">
+    <div class="span10 upload-items-wrapper-l"></div>
+    <div class="span2 upload-items-wrapper-r">
+      <a href="#" class="dropzone-container-slide pull-right
+                         <?= $sf_user->getMycqDropboxOpenState() ? 'open' : '' ?>"
+      >
+        <span class="open-dropzone">
+          Open Uploaded Photos <i class="icon-caret-down"></i>
+        </span>
+        <span class="close-dropzone">
+          Close Uploaded Photos <i class="icon-caret-up"></i>
+        </span>
+      </a>
+    </div>
+  </div>
 </div>
 
 <script>

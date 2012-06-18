@@ -1313,14 +1313,18 @@ textarea.input-xlarge {
 	}
 }
 
-.upload-items-wrapper {
-	width: 16.4893% !important;
-	margin-left: 0.53196% !important;
+.span10.upload-items-wrapper-l {
+	width: 774px !important;
+}
+
+.span2.upload-items-wrapper-r {
+	width: 160px !important;
+	margin-left: 4px !important;
 }
 
 .upload-items-button {
 	display: inline-block;
-	.size(44px, 135px);
+	.size(44px, 140px);
 	padding: 10px 15px 10px 5px;
 	font-size: 18px;
 	font-weight: bold;
@@ -1362,16 +1366,19 @@ textarea.input-xlarge {
 
 .dropzone-container-slide {
 	display: block;
-	.size(12px,145px);
+	.size(12px,150px);
 	padding: 5px;
-	font-size: 9px;
-	line-height: 12px;
-	text-transform: uppercase;
-	text-align: center;
-	outline: none;
 	background-color: #fff8e0;
 	.border-radius(0 0 6px 6px);
 	.box-shadow(inset 4px 1px 5px 0 rgba(211, 206, 185, 0.8));
+
+	> span {
+		font-size: 10px;
+		line-height: 12px;
+		text-transform: uppercase;
+		text-align: center;
+		outline: none;
+	}
 
   .close-dropzone {
     display: none;
