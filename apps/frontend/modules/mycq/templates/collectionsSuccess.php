@@ -4,7 +4,7 @@
  */
 ?>
 
-
+<?php /**
 <div id="mycq-tabs">
   <ul class="nav nav-tabs">
     <li class="active"><a href="#" target="_self" title="Your Collection">Your Collection</a></li>
@@ -147,9 +147,8 @@
     </div><!-- #tab4.tab-pane -->
   </div><!-- .tab-content -->
 </div>
+*/ ?>
 
-
-<?php /*
 <div id="mycq-tabs">
   <div class="tab-content">
     <div class="tab-pane active" id="tab1">
@@ -195,7 +194,6 @@
     </div>
   </div><!-- /.tab-content -->
 </div>
-*/?>
 
 <script>
 $(document).ready(function()
