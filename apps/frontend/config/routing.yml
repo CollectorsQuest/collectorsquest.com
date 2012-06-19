@@ -323,9 +323,9 @@ mycq_profile_account_info:
   url:   /mycq/profile/account-information
   param: { module: mycq, action: profileAccountInfo }
 
-mycq_profile_seller_settings:
-  url:   /mycq/profile/seller-settings
-  param: { module: mycq, action: profileSellerSettings }
+mycq_marketplace_settings:
+  url:   /mycq/marketplace/settings
+  param: { module: mycq, action: marketplaceSettings }
 
 mycq_profile_addresses:
   url:   /mycq/profile/addresses

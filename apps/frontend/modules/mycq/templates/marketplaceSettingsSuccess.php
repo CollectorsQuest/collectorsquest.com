@@ -6,27 +6,24 @@
       $form_field->getAttribute('class') . ' input-xxlarge');
   }
 
-  SmartMenu::setSelected('profile_tabs_navigation', 'seller_settings');
+  SmartMenu::setSelected('mycq_marketplace_tabs', 'marketplace_settings');
 ?>
 
 <div id="mycq-tabs">
-  <?php include_partial('mycq_tabs_navigation'); ?>
+
+  <ul class="nav nav-tabs">
+    <?= SmartMenu::generate('mycq_marketplace_tabs'); ?>
+  </ul>
+
   <div class="tab-content">
     <div class="tab-pane active">
       <div class="tab-content-inner spacer">
-        <?php
-          $link = link_to(
-            'Return to your profile &raquo;', '@mycq_profile',
-            array('class' => 'text-v-middle link-align')
-          );
-          cq_sidebar_title('Edit your store settings', $link, array('left' => 8, 'right' => 4));
-        ?>
 
-        <?= form_tag('@mycq_profile_seller_settings', array('class' => 'form-horizontal')); ?>
+        <?= form_tag('@mycq_marketplace_settings', array('class' => 'form-horizontal')); ?>
           <?= $form->renderHiddenFields(); ?>
           <?= $form->renderAllErrors(); ?>
 
-          <fieldset class="brown-dashes form-container-center">
+          <fieldset class="form-container-center">
             <?= $form['seller_settings_paypal_email']->renderRow(); ?>
             <?= $form['seller_settings_phone_number']->renderRow(); ?>
           </fieldset>
@@ -38,10 +35,10 @@
           </fieldset>
 
           <div class="form-actions">
-            <input type="submit" class="btn btn-primary blue-button" value="Save Changes" />
-            <?= link_to('Cancel', '@mycq_profile', array('class' => 'btn')); ?>
+            <input type="submit" class="btn blue-button spacer-right-15" value="Save Changes" />
+            <?= link_to('Cancel', '@mycq_profile', array('class' => 'btn gray-button')); ?>
           </div>
-        </form>
+        <?php echo '</form>'; ?>
 
       </div> <!-- .tab-content-inner.spacer -->
     </div> <!-- .tab-pane.active -->

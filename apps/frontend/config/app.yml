@@ -29,18 +29,6 @@ all:
         normal: '<li><a href="%url%" title="%title%" target="%target%">%name%</a></li>'
         active: '<li class="active"><a href="%url%" title="%title%" target="%target%">%name%</a></li>'
 
-    profile_tabs_navigation:
-      items:
-        personal_info:    { name: "Personal Information", uri: "@mycq_profile" }
-        account_info:     { name: "Account Information",  uri: "@mycq_profile_account_info" }
-        mailing_addresses: { name: "Mailing Addresses",    uri: "@mycq_profile_addresses", check_lock: mycq_profile_addresses }
-
-    messages_sidebar:
-      items:
-        inbox:    { name: 'Inbox', icon: inbox, uri: "@messages_inbox" }
-        sent:     { name: 'Sent Messages', icon: share-alt, uri: "@messages_sent" }
-        compose:  { name: 'Compose Message', icon: edit, uri: "@messages_compose" }
-
     header_main_menu:
       items:
         collections:  { name: Collections, uri: "@collections" }
@@ -57,6 +45,22 @@ all:
         messages:     { name: Inbox, uri: "@messages_inbox" }
         wanted:       { name: Wanted List, uri: "@mycq_wanted", check_lock: mycq_wanted }
 
+    mycq_profile_tabs:
+      items:
+        personal_info:      { name: "Personal Information", uri: "@mycq_profile" }
+        account_info:       { name: "Account Information",  uri: "@mycq_profile_account_info" }
+        mailing_addresses:  { name: "Mailing Addresses",    uri: "@mycq_profile_addresses", check_lock: mycq_profile_addresses }
+
+    mycq_marketplace_tabs:
+      items:
+        collectibles_for_sale:  { name: "Collectibles for Sale", uri: "@mycq_marketplace" }
+        marketplace_settings:   { name: "Store Settings", uri: "@mycq_marketplace_settings" }
+
+    mycq_messages_sidebar:
+      items:
+        inbox:    { name: 'Inbox', icon: inbox, uri: "@messages_inbox" }
+        sent:     { name: 'Sent Messages', icon: share-alt, uri: "@messages_sent" }
+        compose:  { name: 'Compose Message', icon: edit, uri: "@messages_compose" }
 
 dev:
   domain_name: "collectorsquest.dev"

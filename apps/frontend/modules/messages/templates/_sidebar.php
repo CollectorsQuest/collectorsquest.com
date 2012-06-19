@@ -1,3 +1,3 @@
 <ul class="nav nav-pills nav-stacked">
-  <?= SmartMenu::generate('messages_sidebar') ?>
+  <?= SmartMenu::generate('mycq_messages_sidebar') ?>
 </ul>

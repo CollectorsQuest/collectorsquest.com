@@ -21,7 +21,7 @@ class CollectorEditFormPasswordSchemaValidator extends sfValidatorSchema
   public function doClean($values)
   {
     $errorSchema = new sfValidatorErrorSchema($this);
-    if ($values[$this->getOption('new_password_field')])
+    if (!empty($values[$this->getOption('new_password_field')]))
     {
       if (!$values[$this->getOption('old_password_field')])
       {
@@ -30,7 +30,7 @@ class CollectorEditFormPasswordSchemaValidator extends sfValidatorSchema
       }
     }
 
-    if ($values[$this->getOption('old_password_field')])
+    if (!empty($values[$this->getOption('old_password_field')]))
     {
       $collector = $this->getOption('collector');
       if (!$collector->checkPassword($values[$this->getOption('old_password_field')]))

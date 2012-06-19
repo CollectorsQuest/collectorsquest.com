@@ -1,7 +1,7 @@
 <?php
   /* @var $messages PrivateMessage[] */ $messages;
 
-  SmartMenu::setSelected('messages_sidebar', 'sent');
+  SmartMenu::setSelected('mycq_messages_sidebar', 'sent');
 ?>
 
 <table class="private-messages-list table table-bordered">

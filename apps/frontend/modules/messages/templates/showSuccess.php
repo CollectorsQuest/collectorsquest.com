@@ -5,11 +5,11 @@
 
   if ($messages->getFirst()->getReceiver() == $sf_user->getCollector()->getId())
   {
-    SmartMenu::setSelected('messages_sidebar', 'inbox');
+    SmartMenu::setSelected('mycq_messages_sidebar', 'inbox');
   }
   else
   {
-    SmartMenu::setSelected('messages_sidebar', 'sent');
+    SmartMenu::setSelected('mycq_messages_sidebar', 'sent');
   }
 ?>
 

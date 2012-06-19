@@ -8,11 +8,15 @@
       $form_field->getAttribute('class') . ' input-xxlarge');
   }
 
-  SmartMenu::setSelected('profile_tabs_navigation', 'mailing_addresses');
+  SmartMenu::setSelected('mycq_profile_tabs', 'mailing_addresses');
 ?>
 
 <div id="mycq-tabs">
-  <?php include_partial('mycq_tabs_navigation'); ?>
+
+  <ul class="nav nav-tabs">
+    <?= SmartMenu::generate('mycq_profile_tabs'); ?>
+  </ul>
+
   <div class="tab-content">
     <div class="tab-pane active">
       <div class="tab-content-inner spacer">

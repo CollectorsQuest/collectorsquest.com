@@ -1,7 +1,9 @@
 <?php
-/**
+  /**
  * @var $seller Seller
  */
+
+  SmartMenu::setSelected('mycq_marketplace_tabs', 'collectibles_for_sale');
 ?>
 
 <?php
@@ -9,6 +11,11 @@
 ?>
 
 <div id="mycq-tabs">
+
+  <ul class="nav nav-tabs">
+    <?= SmartMenu::generate('mycq_marketplace_tabs'); ?>
+  </ul>
+
   <div class="tab-content">
     <div class="tab-pane active" id="tab1">
 
