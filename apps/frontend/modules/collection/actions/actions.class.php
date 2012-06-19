@@ -91,6 +91,7 @@ class collectionActions extends cqFrontendActions
     $this->display = $this->getUser()->getAttribute('display', 'grid', 'collectibles');
     $this->collector = $collector;
     $this->collection = $collection;
+    $this->editable = $collector->isOwnerOf($collection);
 
     // Building the meta tags
     $this->getResponse()->addMeta('description', $collection->getDescription('stripped'));
@@ -206,6 +207,7 @@ class collectionActions extends cqFrontendActions
     $this->collection = $collection;
     $this->collectible = $collectible;
     $this->additional_multimedia = $collectible->getMultimedia(0, 'image', false);
+    $this->editable = $collector->isOwnerOf($collectible);
 
     return sfView::SUCCESS;
   }

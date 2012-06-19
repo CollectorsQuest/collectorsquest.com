@@ -7,7 +7,13 @@
  */
 ?>
 
-<?php cq_page_title($collection); ?>
+<?php
+  $options = array('id' => sprintf('%s_%d_name', get_class($collection), $collection->getId()));
+  if ($editable) {
+    $options['class'] = 'row-fluid header-bar editable';
+  }
+  cq_page_title($collection, null, $options);
+?>
 
 
 <div class="blue-actions-panel spacer-20">
@@ -16,7 +22,7 @@
       <ul>
         <li>
           By <?= link_to_collector($collection->getCollector(), 'text'); ?>
-          </li>
+        </li>
         <li>
           <?php
           echo format_number_choice(
@@ -50,14 +56,16 @@
 </div>
 
 <?php if ($pager->getPage() === 1): ?>
-<div class="cf" style="margin-top: 20px;">
-  <?= cqStatic::linkify($collection->getDescription('html')); ?>
+<div class="cf <?= $editable ? 'editable_html' : '' ?>"
+     style="margin-top: 20px;"
+     id="<?= sprintf('%s_%s_description', get_class($collection), $collection->getId()) ?>">
+  <?= $collection->getDescription('html'); ?>
 </div>
 <?php endif; ?>
 
 <div class="row spacer-top">
   <div id="collectibles" class="row-content">
-  <?php
+    <?php
     /** @var $collectible Collectible */
     foreach ($pager->getResults() as $i => $collectible)
     {
@@ -66,7 +74,10 @@
         // Show the collectible (in grid, list or hybrid view)
         include_partial(
           'marketplace/collectible_for_sale_grid_view_square',
-          array('collectible_for_sale' => $collectible->getCollectibleForSale(), 'i' => (int) $i)
+          array(
+            'collectible_for_sale' => $collectible->getCollectibleForSale(),
+            'i'                    => (int)$i
+          )
         );
       }
       else
@@ -74,48 +85,54 @@
         // Show the collectible (in grid, list or hybrid view)
         include_partial(
           'collection/collectible_grid_view_square',
-          array('collectible' => $collectible, 'i' => (int) $i)
+          array(
+            'collectible' => $collectible,
+            'i'           => (int)$i
+          )
         );
       }
     }
-  ?>
+    ?>
   </div>
 </div>
 
 <div class="row-fluid" style="text-align: center;">
-<?php
+  <?php
   include_component(
     'global', 'pagination',
-    array('pager' => $pager, 'options' => array('id' => 'collectibles-pagination', 'show_all' => true))
+    array(
+      'pager'   => $pager,
+      'options' => array(
+        'id'       => 'collectibles-pagination',
+        'show_all' => true
+      )
+    )
   );
-?>
+  ?>
 </div>
 
 <?php include_partial('comments/comments', array('for_object' => $collection)); ?>
 
 <?php if ($sf_params->get('show') == 'all'): ?>
 <script>
-$(document).ready(function()
-{
+$(document).ready(function () {
   $('#collectibles').infinitescroll(
-    {
-      navSelector: '#collectibles-pagination',
-      nextSelector: '#collectibles-pagination li.next a',
-      itemSelector: '#collectibles .span4',
-      loading:
-      {
-        msgText: 'Loading more collectibles...',
-        finishedMsg: 'No more pages to load.',
-        img: '<?= image_path('frontend/progress.gif'); ?>'
-      },
-      bufferPx: 150
+  {
+    navSelector:'#collectibles-pagination',
+    nextSelector:'#collectibles-pagination li.next a',
+    itemSelector:'#collectibles .span4',
+    loading:{
+      msgText:'Loading more collectibles...',
+      finishedMsg:'No more pages to load.',
+      img:'<?= image_path('frontend/progress.gif'); ?>'
     },
-    function()
-    {
-      $('.collectible_grid_view').mosaic({
-        animation: 'slide'
-      });
+    bufferPx:150
+  },
+  function () {
+    $('.collectible_grid_view').mosaic({
+      animation:'slide'
     });
+  });
 
   // Hide the pagination before infinite scroll does it
   $('#collectibles-pagination').hide();
