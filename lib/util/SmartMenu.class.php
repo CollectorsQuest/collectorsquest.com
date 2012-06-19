@@ -14,15 +14,17 @@ class SmartMenu
    * Generate a menu from app.yml configuration
    *
    * @param     string $menu_name
+   * @param     array $extra_items Extra items to be added to the menu;
+   *                               Can override existing items
    * @return    string
    */
-  public static function generate($menu_name)
+  public static function generate($menu_name, $extra_items = array())
   {
     // app_smart_menus_%MenuName%_template
     $template = self::getAppMenuData($menu_name, 'template');
     $output = '';
 
-    foreach (self::getItems($menu_name) as $id => $item)
+    foreach (self::getItems($menu_name, $extra_items) as $id => $item)
     {
       // We want to lock some nav items with gatekeeper
       if (isset($item['check_lock']) && IceGateKeeper::locked($item['check_lock']))
@@ -126,11 +128,13 @@ class SmartMenu
    * Try to return
    *
    * @param     string $menu_name
+   * @param     array $extra_items Extra items to be added to the result;
+   *                               Can overwrite existing items
    * @return    array
    *
    * @throws    Exception If the menu doesn't have any items set
    */
-  protected static function getItems($menu_name)
+  protected static function getItems($menu_name, $extra_items = array())
   {
     $menu_data = self::getAppMenuData($menu_name);
 
@@ -139,7 +143,7 @@ class SmartMenu
       throw new Exception(sprintf('SmartMenus: The menu "%s" doesn\'t have any items set.', $menu_name));
     }
 
-    return $menu_data['items'];
+    return array_merge($menu_data['items'], $extra_items);
   }
 
   /**
