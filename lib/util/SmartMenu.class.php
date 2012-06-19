@@ -33,7 +33,7 @@ class SmartMenu
       // Set template values, defaults when none provided
       $item = array(
         '%id%'    => $id,
-        '%name%'  => $item['name'],
+        '%name%'  => (isset($item['icon']) ? sprintf('<i class="icon icon-%s"></i> ', $item['icon']) : '') . $item['name'],
         '%title%' => isset($item['title']) ? $item['title'] : strip_tags($item['name']),
         '%url%'   => isset($item['uri']) ? url_for($item['uri'], isset($item['absolute']) ? $item['absolute'] : true) : '#',
 
