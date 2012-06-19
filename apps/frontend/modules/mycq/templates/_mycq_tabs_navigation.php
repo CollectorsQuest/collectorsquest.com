@@ -12,5 +12,5 @@
 ?>
 
 <ul class="nav nav-tabs">
-  <?= SmartMenu::generate('profile_tabs_navigation', $extra_menu_items); ?>
+  <?= SmartMenu::generate('profile_tabs_navzigation', $extra_menu_items); ?>
 </ul>

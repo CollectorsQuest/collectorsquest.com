@@ -109,17 +109,15 @@ class SmartMenu
    */
   public static function getAppMenuData($menu_name, $key = null)
   {
-    $menu_data = sfConfig::get('app_smart_menus_'.$menu_name, null);
+    $menu_data = array_merge(
+      sfConfig::get('app_smart_menus_defaults', array()),
+      sfConfig::get('app_smart_menus_'.$menu_name, array())
+    );
 
-    if (!is_array($menu_data))
+    if (empty($menu_data))
     {
       throw new Exception(sprintf('SmartMenus: The menu "%s" doesn\'t exist.', $menu_name));
     }
-
-    $menu_data = array_merge(
-      sfConfig::get('app_smart_menus_defaults', array()),
-      $menu_data
-    );
 
     return null === $key ? $menu_data : $menu_data[$key];
   }
@@ -138,12 +136,15 @@ class SmartMenu
   {
     $menu_data = self::getAppMenuData($menu_name);
 
-    if (!isset($menu_data['items']))
+    if (!isset($menu_data['items']) && empty($extra_items))
     {
       throw new Exception(sprintf('SmartMenus: The menu "%s" doesn\'t have any items set.', $menu_name));
     }
 
-    return array_merge($menu_data['items'], $extra_items);
+    return array_merge(
+      isset($menu_data['items']) ? $menu_data['items'] : array(),
+      $extra_items
+    );
   }
 
   /**
