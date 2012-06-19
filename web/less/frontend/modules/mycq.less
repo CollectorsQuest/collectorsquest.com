@@ -98,17 +98,13 @@
 }
 
 #mycq-tabs {
-	background-color: @lightBlue;
-//background-color: #fff;
+	background-color: #fff;
+
 	.tab-content {
 		border-width: 1px;
 		border-style: none solid solid solid;
 		border-color: #A7D1E8;
 	}
-
-  .tab-content {
-		border: none;
-  }
 
 	.buttons-container {
 		margin: 6px 0 0 0;
@@ -119,6 +115,16 @@
 			&:focus {
 				border-color: @blue #ccc @blue @blue;
 				.box-shadow(none);
+			}
+		}
+		.btn {
+			color: #786767;
+			#gradient > .vertical(#e1dede,#cecbcb);
+			&:hover {
+			.transition(none);
+			background: #e1dddd;
+			background-position: 0;
+			text-decoration: none;
 			}
 		}
 	}
@@ -242,8 +248,7 @@
 	line-height: @baseLineHeight;
 	color: @blue;
 	background-color: @lightBlue;
-	border: 1px solid #A7D1E8;
-	border-bottom-color: #A7D1E8;
+	border-bottom: 1px solid #A7D1E8;
 	.border-radius(6px 6px 0 0);
 	&:hover {
 		color: @navbarLinkColorHover;
