@@ -4,11 +4,11 @@ all:
     shopping_cart: false
     shopping_checkout_help: false
     mycq_homepage: false
-    mycq_marketplace: false
+    mycq_marketplace: true
     mycq_wanted: false
     mycq_seller_pay: false
     mycq_profile_addresses: false
-    collectible_shipping: false
+    collectible_shipping: true
 
 next:
   pages: ~
@@ -20,7 +20,7 @@ next:
     mycq_wanted: false
     mycq_seller_pay: false
     mycq_profile_addresses: true
-    collectible_shipping: false
+    collectible_shipping: true
 
 dev:
   pages: ~
