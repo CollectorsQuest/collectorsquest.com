@@ -1361,13 +1361,18 @@ textarea.input-xlarge {
 //
 
 .dropzone-container {
-	position: relative;
 	padding: 15px;
 	background-color: #fff8e0;
 
 	.sidebar-title {
 		margin-top: 0px;
 	}
+
+  &.fixed {
+    position: fixed;
+    width: 910px;
+    z-index: 9999;
+  }
 }
 
 .span10.upload-items-wrapper-l {
