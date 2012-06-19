@@ -7,7 +7,13 @@
  */
 ?>
 
-<?php cq_page_title($collection); ?>
+<?php
+  $options = array('id' => sprintf('%s_%d_name', get_class($collection), $collection->getId()));
+  if ($editable) {
+    $options['class'] = 'row-fluid header-bar editable';
+  }
+  cq_page_title($collection, null, $options);
+?>
 
 
 <div class="blue-actions-panel spacer-20">
@@ -50,9 +56,9 @@
 </div>
 
 <?php if ($pager->getPage() === 1): ?>
-<div class="cf <?=$sf_user->isOwnerOf($collection) ? 'editable_html' : ''?>"
+<div class="cf <?= $editable ? 'editable_html' : '' ?>"
      style="margin-top: 20px;"
-     id="collection_<?=$collection->getId()?>_description">
+     id="<?= sprintf('%s_%s_description', get_class($collection), $collection->getId()) ?>">
   <?= $collection->getDescription('html'); ?>
 </div>
 <?php endif; ?>
@@ -109,65 +115,27 @@
 
 <?php if ($sf_params->get('show') == 'all'): ?>
 <script>
-  $(document).ready(function () {
-    $('#collectibles').infinitescroll(
-        {
-          navSelector:'#collectibles-pagination',
-          nextSelector:'#collectibles-pagination li.next a',
-          itemSelector:'#collectibles .span4',
-          loading:{
-            msgText:'Loading more collectibles...',
-            finishedMsg:'No more pages to load.',
-            img:'<?= image_path('frontend/progress.gif'); ?>'
-          },
-          bufferPx:150
-        },
-        function () {
-          $('.collectible_grid_view').mosaic({
-            animation:'slide'
-          });
-        });
-
-    // Hide the pagination before infinite scroll does it
-    $('#collectibles-pagination').hide();
+$(document).ready(function () {
+  $('#collectibles').infinitescroll(
+  {
+    navSelector:'#collectibles-pagination',
+    nextSelector:'#collectibles-pagination li.next a',
+    itemSelector:'#collectibles .span4',
+    loading:{
+      msgText:'Loading more collectibles...',
+      finishedMsg:'No more pages to load.',
+      img:'<?= image_path('frontend/progress.gif'); ?>'
+    },
+    bufferPx:150
+  },
+  function () {
+    $('.collectible_grid_view').mosaic({
+      animation:'slide'
+    });
   });
+
+  // Hide the pagination before infinite scroll does it
+  $('#collectibles-pagination').hide();
+});
 </script>
 <?php endif; ?>
-<script type="text/javascript">
-  $(document).ready(function () {
-    <?php if ($sf_user->isOwnerOf($collection)): ?>
-    $('#main .header-bar h1')
-        .attr('id', '<?=sprintf('collection_%d_name', $collection->getId());?>')
-        .editable('<?= url_for('@ajax_editable') ?>',
-    {
-      indicator: '<img src="/images/loading.gif"/>',
-      tooltip: '<?= __('Click to edit...'); ?>',
-      cancel: '<?= __('Cancel'); ?>',
-      submit: '<?= __('Save'); ?>'
-    });
-    $('.editable_html').editable('<?= url_for('@ajax_editable'); ?>',
-    {
-      loadurl: '<?= url_for('@ajax_editable_load'); ?>',
-
-      type: 'textarea',
-      cancel: '<?= __('Cancel'); ?>',
-      submit: '<?= __('Save'); ?>',
-      indicator: '<img src="/images/loading.gif"/>',
-      tooltip: '<?= __('Click to edit...'); ?>',
-      onblur: "ignore",
-      rows: 16,
-      cols: 80,
-      autogrow: {
-        lineHeight: 16,
-        minHeight: 50
-      },
-      onedit: function() {
-        console.log($('.editable_html').find('textarea'));
-        $('.editable_html').find('textarea').wysihtml5({
-          "font-styles": false, "image": false, "link": false
-        });
-      }
-    });
-    <?php endif; ?>
-  });
-</script>

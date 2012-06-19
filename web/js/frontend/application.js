@@ -236,6 +236,9 @@ var COMMON = window.COMMON = (function(){
       COMMON.setupEmailSpellingHelper();
       COMMON.setupLinksModalConfirm();
       COMMON.loginLogoutHelpers();
+      if (window.cq.authenticated) {
+        COMMON.setupEditable();
+      }
     },
     setupCssHelpers: function() {
       // search box extend overline over close-by elements
@@ -485,6 +488,48 @@ var COMMON = window.COMMON = (function(){
       }
     }, // setupFooterLoginOrSignup()
 
+    setupEditable: function ()
+    {
+      $('.header-bar.editable h1').editable('/ajax/editable',
+      {
+        indicator: '<img src="/images/loading.gif"/>',
+        tooltip: 'Click to edit...',
+        cancel: 'Cancel',
+        submit: 'Save',
+        onedit: function()
+        {
+          $(this).parent().parent().removeClass('header-bar');
+        },
+        onreset: function ()
+        {
+          $(this).parent().parent().parent().addClass('header-bar');
+        },
+        onsubmit: function ()
+        {
+          $(this).parent().parent().parent().addClass('header-bar');
+        }
+      });
+
+      $('.editable_html').editable('/ajax/editable',
+      {
+        loadurl: '/ajax/editable-load',
+
+        type: 'wysihtml5',
+        cancel: 'Cancel',
+        submit: 'Save',
+        indicator: '<img src="/images/loading.gif"/>',
+        tooltip: 'Click to edit...',
+        onblur: "ignore",
+        width: '100%',
+        height: '100px',
+        wysihtml5: {
+          "font-styles": false,
+          "image": false,
+          "link": false
+        }
+      });
+    },
+
     linkifyTables: function() {
       // make all table rows with class "linkify" clickable links ;)
       var $link_table_rows = $('table').find('tr.linkify');
@@ -660,7 +705,6 @@ var SEARCH = window.SEARCH = (function(){
   }; // SEARCH object literal
 }());
 
-
 var AVIARY = window.AVIARY = (function(){
 
   var aviary_loaded = false;
@@ -742,7 +786,6 @@ var AVIARY = window.AVIARY = (function(){
   }; // AVIARY public interface object literal
 
 }()); // AVIARY
-
 
 var MISC = window.MISC = (function(){
 
