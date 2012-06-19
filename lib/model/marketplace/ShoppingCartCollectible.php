@@ -81,19 +81,22 @@ class ShoppingCartCollectible extends BaseShoppingCartCollectible
   public function getPriceAmount($return = 'float')
   {
     $amount = parent::getPriceAmount();
-    return ($return === 'integer') ? $amount : $amount / 100;
+
+    return ($return === 'integer') ? $amount : bcdiv($amount, 100, 2);
   }
 
   public function getTaxAmount($return = 'float')
   {
     $amount = parent::getTaxAmount();
-    return ($return === 'integer') ? $amount : $amount / 100;
+
+    return ($return === 'integer') ? $amount : bcdiv($amount, 100, 2);
   }
 
   public function getShippingFeeAmount($return = 'float')
   {
     $amount = parent::getShippingFeeAmount();
-    return ($return === 'integer') ? $amount : $amount / 100;
+
+    return ($return === 'integer') ? $amount : bcdiv($amount, 100, 2);
   }
 
 }
