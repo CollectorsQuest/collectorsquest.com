@@ -42,12 +42,12 @@ class CollectorProfileEditForm extends BaseCollectorProfileForm
       'about_what_you_collect'    => new sfWidgetFormInputText(array(
           'label'                 => 'What do you collect?',
         ), array(
-          'placeholder'           => 'Tell us a few words about what you collect'
+          'placeholder'           => 'Tell us what kind of things you collect (separated by commas)'
       )),
       'about_purchases_per_year'  => new sfWidgetFormInputText(array(
           'label'                 => 'How many times a year do you purchase?',
         ),array(
-          'placeholder'           => 'Share the number of purchases you make anually. Numeric value please',
+          'placeholder'           => 'Share the number of purchases you make annually. Numeric value please',
           'type'                  => 'number',
           'pattern'               => '\d+'
       )),

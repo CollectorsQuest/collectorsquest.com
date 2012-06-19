@@ -43,17 +43,22 @@
     </dl>
   </div>
   <div class="span8">
-    <form action="<?=url_for('seller_packages')?>" method="post"
+    <form action="<?= url_for('seller_packages')?>" method="post"
           id="form-seller-packages" class="form-horizontal" novalidate="novalidate">
       <?= $packagesForm->renderHiddenFields() ?>
+      <?= $packagesForm->renderGlobalErrors() ?>
+
       <fieldset>
         <?= $packagesForm['package_id']->renderRow() ?>
         <div class="control-group">
-          <?=$packagesForm['promo_code']->renderLabel(null, array('class'=> 'control-label'))?>
+          <?= $packagesForm['promo_code']->renderLabel(null, array('class'=> 'control-label')) ?>
           <div class="controls form-inline">
-            <?=$packagesForm['promo_code']->render()?>
-            <button type="submit" name="applyPromo" id="applyPromo3" value="applyPromo" formnovalidate="formnovalidate">Apply</button>
-            <?=$packagesForm['promo_code']->renderError() ?>
+            <?= $packagesForm['promo_code']->render() ?>
+            <button type="submit" name="applyPromo" id="applyPromo3"
+                    value="applyPromo" formnovalidate="formnovalidate">
+              Apply
+            </button>
+            <?= $packagesForm['promo_code']->renderError() ?>
             <?php if (!empty($discountMessage)): ?>
             <span style="color: green; font-weight: bold;"><?=$discountMessage ?></span>
             <?php endif; ?>
@@ -87,7 +92,7 @@
             <?= $packagesForm['terms']->render() ?>&nbsp;
             <?php
             echo sprintf(
-              'I accept the %s set forth by this site.',
+              'I accept the %s set forth by Collectors Quest.',
               urldecode(link_to(
                 'terms and conditions', '@blog_page?slug=terms-and-conditions',
                 array('target' => '_blank')
@@ -95,6 +100,7 @@
             );
             ?>
           </label>
+          <?= $packagesForm['terms']->renderError() ?>
         </div>
       </div>
 

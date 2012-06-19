@@ -1,15 +1,20 @@
 {% extends "common/base.html.twig" %}
 
 {% block content %}
+
   <p style="margin-bottom: 10px; font-weight: bold;">
-    Dear {{ collector.displayName }},
+    Hello again, {{ collector.displayName }}!
   </p>
 
   <p>
-      Thank you for becoming a seller on Collectors Quest. Below is your selected package information.<br/><br/>
-      Package name: <strong>{{ package_name }}</strong><br/>
-      Allowed items for sale: <strong>{{ package_items }}</strong><br/>
-      Expiry date: <strong>{{ expiry_date|date('m/d/Y') }}</strong>
+    Thanks for purchasing credits on Collectors Quest! We hope you enjoy continuing to sell your neat
+    stuff to our audience of passionate, active collectors. Here’s your package information:<br/><br/>
+
+      Number of credits: <strong>{{ package_transaction.credits }}</strong><br/>
+      Pricing level: <strong>${{ package.packagePrice }}</strong><br/>
+      Expiry date: <strong>{{ package_transaction.expiryDate|date('m/d/Y') }}</strong>
   </p>
+
+  <p>Happy selling!</p>
 
 {% endblock %}

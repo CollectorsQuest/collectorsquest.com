@@ -26,6 +26,7 @@ if (SF_ENV === 'dev')
   define('WP_HOME', 'http://www.collectorsquest.dev/blog');
 
   define('WP_DEBUG', true);
+  define('SAVEQUERIES', true);
   define('SCRIPT_DEBUG', true);
 
 }

@@ -5,6 +5,7 @@ class shoppingActions extends cqFrontendActions
   public function preExecute()
   {
     $this->forward404If(IceGateKeeper::locked('shopping_cart'));
+    SmartMenu::setSelected('header_main_menu', 'marketplace');
   }
 
   public function executeCart(sfWebRequest $request)
@@ -80,7 +81,7 @@ class shoppingActions extends cqFrontendActions
             $shopping_cart->addShoppingCartCollectible($shopping_cart_collectible);
             $shopping_cart->save();
 
-            $this->getUser()->setFlash('success', $this->__('The collectible was added to your cart.'));
+            $this->getUser()->setFlash('success', $this->__('The item was added to your cart.'));
 
             $this->redirect('@shopping_cart');
           }
@@ -88,7 +89,9 @@ class shoppingActions extends cqFrontendActions
           {
             if (preg_match("/1062 Duplicate entry '(\d+)-(\d+)' for key 'PRIMARY'/i", $e->getMessage()))
             {
-              $this->getUser()->setFlash('success', $this->__('This collectible was already in your cart!'));
+              $this->getUser()->setFlash(
+                'success', 'This item was already in your cart!'
+              );
             }
             else
             {
@@ -99,19 +102,17 @@ class shoppingActions extends cqFrontendActions
         else
         {
           $this->getUser()->setFlash(
-            'error', $this->__('We are sorry but there was a problem adding the collectible to your cart!')
+            'error', 'We are sorry but there was a problem adding the item to your cart!'
           );
         }
       }
       else
       {
         $this->getUser()->setFlash(
-          'error', $this->__('We are sorry but there was a problem adding the collectible to your cart!')
+          'error', 'We are sorry but there was a problem adding the item to your cart!'
         );
       }
     }
-
-    $this->addBreadcrumb($this->__('Shopping Cart'), '@shopping_cart');
 
     if ($shopping_cart->countCollectibles() === 0)
     {
@@ -143,16 +144,17 @@ class shoppingActions extends cqFrontendActions
 
         /** @var $collectible_for_sale CollectibleForSale */
         $collectible_for_sale = CollectibleForSaleQuery::create()
+          ->isForSale()
           ->findOneByCollectibleId($values['collectible_id']);
 
-        /**
-         * @todo: We need to check here:
-         *          1. If this CollectibleForSale is still for sale
-         *          2. If the Collector is not trying to buy his own items
-         */
         if (!$collectible_for_sale)
         {
           $this->getUser()->setFlash('error', 'There was a problem processing the request');
+          $this->redirect('@shopping_cart');
+        }
+        else if ($this->getCollector(false)->isOwnerOf($collectible_for_sale))
+        {
+          $this->getUser()->setFlash('error', 'You are trying to buy your own item');
           $this->redirect('@shopping_cart');
         }
 
@@ -342,8 +344,9 @@ class shoppingActions extends cqFrontendActions
           );
 
           $SenderOptions = array(
-            // Boolean.  If true, require the sender to select a shipping address during the embedded payment flow.  Default is false.
-            'RequireShippingAddressSelection' => true
+            // If true, require the sender to select a shipping address
+            // during the embedded payment flow. Default is false.
+            'RequireShippingAddressSelection' => false
           );
 
           $InvoiceData = array(
@@ -485,7 +488,47 @@ class shoppingActions extends cqFrontendActions
            ->filterByShoppingCart($shopping_order->getShoppingCart());
         $q->delete();
 
-        $this->url = '@shopping_order_review?uuid='. $shopping_order->getUuid();
+        // Add this order to the session if it's a guest checkout
+        if ($this->getUser()->isAuthenticated())
+        {
+          $orders = array_merge(
+            $this->getUser()->getAttribute('orders', array(), 'shopping'),
+            array($shopping_order->getUuid())
+          );
+          $this->getUser()->setAttribute('orders', $orders, 'shopping');
+        }
+
+        $cqEmail = new cqEmail($this->getMailer());
+        $cqEmail->send('Shopping/buyer_order_confirmation', array(
+          'to' => $shopping_order->getBuyerEmail(),
+          'params' => array(
+            'buyer_name'  => $shopping_order->getShippingFullName(),
+            'oSeller' => $shopping_order->getSeller(),
+            'oCollectible' => $shopping_order->getCollectible(),
+            'oShoppingOrder' => $shopping_order
+          )
+        ));
+
+        $cqEmail = new cqEmail($this->getMailer());
+        $cqEmail->send('Shopping/seller_order_notification', array(
+          'to' => $shopping_order->getSeller()->getEmail(),
+          'params' => array(
+            'buyer_name'  => $shopping_order->getShippingFullName(),
+            'oSeller' => $shopping_order->getSeller(),
+            'oCollectible' => $shopping_order->getCollectible(),
+            'oShoppingOrder' => $shopping_order
+          )
+        ));
+
+        /**
+         * If the user is authenticated, let's send her straight to the
+         * My CQ area and not duplicate functionality
+         */
+        $route = $this->getUser()->isAuthenticated() ?
+          '@mycq_shopping_order' :
+          '@shopping_order_review';
+
+        $this->url = $route . '?uuid='. $shopping_order->getUuid();
 
         return 'Redirect';
         break;
@@ -496,7 +539,7 @@ class shoppingActions extends cqFrontendActions
         $shopping_payment->save();
 
         $this->getUser()->setFlash(
-          'error', 'You have not completed your purchase.', true
+          'error', 'You have not completed your purchase', true
         );
         $this->url = '@shopping_cart';
 

@@ -66,6 +66,7 @@
   .shrink {
     height: 18px;
   }
+
   textarea.expand {
     height: 44px;
   }
@@ -95,6 +96,9 @@
     // disable chrome and ff textarea resize control
     resize: none;
 
+		&:focus ~ button {
+			border-color: @blue @blue @blue #B7B7B7!important;
+		}
 		&::-webkit-input-placeholder {
 			color: @blueDark;
 		}

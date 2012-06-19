@@ -35,14 +35,16 @@
                         'multimedia-id' => $image->getId(),
                     )), cqConfig::getCredentials('aviary', 'hmac_secret')); ?>'
                   >
-                    <i class="icon icon-wrench"></i>
+                    <i class="icon icon-camera"></i><br/>
+                    Edit Photo
                   </span>
                 </div>
               <?php else: ?>
                 <div class="thumbnail drop-zone-large empty" data-is-primary="1">
                   <i class="icon icon-plus"></i>
                   <span class="info-text">
-                    Drag and drop the main image<br> of your collectible here.
+                    Drag and drop your main image here from your <strong>"Uploaded&nbsp;Photos"</strong>
+                    or use the <strong>Browse</strong> button on the right.
                   </span>
                 </div>
               <?php endif; ?>
@@ -61,7 +63,7 @@
                         'multimedia-id' => $multimedia[$i]->getId(),
                     )), cqConfig::getCredentials('aviary', 'hmac_secret')); ?>'
                   >
-                    <i class="icon icon-wrench"></i>
+                    <i class="icon icon-camera"></i>
                   </span>
                 <?php else: ?>
                   <i class="icon icon-plus white-alternate-view"></i>
@@ -79,11 +81,22 @@
     </div><!-- ./span4 -->
     <div class="span8">
       <?php
-        $link = link_to(
-          'Back to Collection &raquo;',
-          'mycq_collection_by_slug', array('sf_subject' => $collection),
-          array('class' => 'text-v-middle link-align')
-        );
+        if ($collectible->isForSale())
+        {
+          $link = link_to(
+            'Go to Store &raquo;', 'mycq_marketplace',
+            array('class' => 'text-v-middle link-align')
+          );
+        }
+        else
+        {
+          $link = link_to(
+            'Back to Collection &raquo;',
+            'mycq_collection_by_slug', array('sf_subject' => $collection),
+            array('class' => 'text-v-middle link-align')
+          );
+        }
+
         cq_sidebar_title(
           $collectible->getName(), $link,
           array('left' => 8, 'right' => 4, 'class'=>'spacer-top-reset row-fluid sidebar-title')
@@ -98,10 +111,7 @@
         <?= $form['thumbnail']->renderLabel(); ?>
         <div class="controls">
           <?= $form['thumbnail']->render(); ?>
-          <label>
-            &nbsp; <?= $form['is_alt_view']; ?>
-            Add as an alternative view instead?
-          </label>
+          <label><?= $form['is_alt_view']; ?>&nbsp; Add as an alternative view instead?</label>
           <?= $form['thumbnail']->renderError(); ?>
         </div>
       </div>
@@ -116,13 +126,19 @@
         if ($form_for_sale)
         {
           include_partial(
-            'mycq/collectible_form_for_sale',
-            array('collectible' => $collectible, 'form' => $form_for_sale)
-          );
+            'mycq/collectible_form_for_sale', array(
+                'collectible' => $collectible,
+                'form' => $form_for_sale,
+                'form_shipping_us' => $form_shipping_us,
+                'form_shipping_zz' => $form_shipping_zz,
+          ));
         }
         else
         {
-          echo image_tag('banners/want-to-sell-this-item.png', array('align' => 'right'));
+          echo link_to(
+            image_tag('banners/want-to-sell-this-item.png', array('align' => 'right')),
+            '@seller_packages'
+          );
           echo '<br clear="all"/><br/>';
         }
       ?>
@@ -151,22 +167,6 @@
 
   <?= $form->renderHiddenFields(); ?>
 </form>
-
-<div id="mycq-tabs">
-  <div class="tab-content">
-    <div class="tab-pane active" id="tab1">
-    <?php
-      include_component(
-        'mycq', 'dropbox',
-        array('instructions' => array(
-          'position' => 'top',
-          'text' => 'Drag your alternative views for this Collectible into the drop areas.')
-        )
-      );
-    ?>
-    </div>
-  </div>
-</div>
 
 <?php if (count($collectibles) > 0): ?>
 <br/>

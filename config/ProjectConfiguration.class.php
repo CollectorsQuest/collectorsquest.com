@@ -18,6 +18,9 @@ IceClassLoader::getLoader()->registerPrefixes(array(
 
 class ProjectConfiguration extends IceProjectConfiguration
 {
+
+  protected $rocketShipItAutoloaderRegistered = false;
+
   public function setup()
   {
     parent::setup();
@@ -41,5 +44,10 @@ class ProjectConfiguration extends IceProjectConfiguration
       'sf_upload_dir_name' => 'uploads',
     ));
 
+    if (!$this->rocketShipItAutoloaderRegistered)
+    {
+      require_once sfConfig::get('sf_lib_dir'). '/vendor/rocketshipit/Autoloader.php';
+      RocketShipItAutoloader::register();
+    }
   }
 }

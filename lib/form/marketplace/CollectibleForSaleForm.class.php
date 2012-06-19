@@ -4,10 +4,7 @@ class CollectibleForSaleForm extends BaseCollectibleForSaleForm
 {
   public function configure()
   {
-    $this->setValidator('is_ready', new sfValidatorBoolean(array('required' => false)));
-    $this->getValidator('is_ready')->setDefaultMessage(
-      'invalid', 'You do not have enough credits to post this Collectible to the marketplace!'
-    );
+
   }
 
   public function bind(array $taintedValues = null, array $taintedFiles = null)
@@ -29,9 +26,37 @@ class CollectibleForSaleForm extends BaseCollectibleForSaleForm
     ));
   }
 
-  public function updatePriceColumn($v)
+  public function setupIsReadyField()
   {
-    $this->getObject()->setPrice($v);
+    $this->setValidator('is_ready', new sfValidatorBoolean(array('required' => false)));
+    $this->validatorSchema['is_ready']->setMessage(
+      'invalid', 'You do not have enough credits to post this Collectible to the marketplace!'
+    );
+  }
+
+  public function validateIsReadyField($validator, $values)
+  {
+    if (!empty($values['is_ready']))
+    {
+      /** @var $seller Seller */
+      $seller = sfContext::getInstance()->getUser()->getSeller();
+
+      if ($seller && $seller->hasPackageCredits())
+      {
+        $values = $this->validatePriceField($validator, $values);
+        $values = $this->validateConditionsdsdsField($validator, $values);
+      }
+      else
+      {
+        // throw an error bound to the price field
+        throw new sfValidatorErrorSchema(
+          $validator,
+          array('is_ready' => new sfValidatorError($validator, 'invalid'))
+        );
+      }
+    }
+
+    return $values;
   }
 
   public function setupPriceField()
@@ -50,28 +75,9 @@ class CollectibleForSaleForm extends BaseCollectibleForSaleForm
     ));
   }
 
-  public function validateIsReadyField($validator, $values)
+  public function updatePriceColumn($v)
   {
-    if (!empty($values['is_ready']))
-    {
-      /** @var $seller Seller */
-      $seller = sfContext::getInstance()->getUser()->getSeller();
-
-      if ($seller && $seller->hasPackageCredits())
-      {
-        $values = $this->validatePriceField($validator, $values);
-      }
-      else
-      {
-        // throw an error bound to the price field
-        throw new sfValidatorErrorSchema(
-          $validator,
-          array('is_ready' => new sfValidatorError($validator, 'invalid'))
-        );
-      }
-    }
-
-    return $values;
+    $this->getObject()->setPrice($v);
   }
 
   public function validatePriceField($validator, $values)
@@ -96,6 +102,28 @@ class CollectibleForSaleForm extends BaseCollectibleForSaleForm
     }
 
     // price is valid or not required, return the clean values
+    return $values;
+  }
+
+  public function validateConditionsdsdsField($validator, $values)
+  {
+    // Get the Collectibles for sale condictions
+    $conditions = CollectibleForSalePeer::$conditions;
+    $conditions[''] = '';
+
+    try
+    {
+      $condition_validator = new sfValidatorChoice(
+        array('choices' => array_keys($conditions), 'required' => true)
+      );
+      $values['condition'] = $condition_validator->clean($values['condition']);
+    }
+    catch (sfValidatorError $error)
+    {
+      // throw an error bound to the price field
+      throw new sfValidatorErrorSchema($validator, array('condition' => $error));
+    }
+
     return $values;
   }
 }

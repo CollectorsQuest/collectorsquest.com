@@ -3,7 +3,7 @@
 <div id="mycq-create-collectible" class="span4 thumbnail link">
   <div class="row-fluid spacer-inner-top-20">
     <div class="span4">
-      <a href="<?php echo url_for('@ajax_mycq?section=component&page=createCollectible'); ?>"
+      <a href="<?php echo url_for('@ajax_mycq?section=component&page=createCollectibleForSale'); ?>"
          id="collectible-create-icon" class="open-dialog btn-create-collection-middle spacer-left-20">
         <i class="icon-plus icon-white"></i>
       </a>
@@ -67,5 +67,89 @@
     ?>
   <?php endforeach; ?>
 <?php else: ?>
-  <?php include_slot('mycq_create_collectible_for_sale'); ?>
+  <div class="span12 thumbnail link no-collections-uploaded-box">
+    <?php if ($sf_params->get('q')): ?>
+      <span class="Chivo webfont info-no-collections-uploaded" style="padding-top: 15px;">
+        None of your Collectibles for Sale match search term: <strong><?= $sf_params->get('q'); ?></strong>
+      </span>
+    <?php else: ?>
+      <span class="Chivo webfont info-no-collections-uploaded">
+        Sell your items in the marketplace today!<br/>
+        Get Started Now!
+      </span>
+    <?php endif; ?>
+  </div>
+  <?php if ($seller->hasPackageCredits()): ?>
+    <?php include_slot('mycq_create_collectible_for_sale'); ?>
+  <?php else: ?>
+  <div id="mycq-create-collectible" class="span4 thumbnail link">
+    <div class="row-fluid spacer-inner-top-20">
+      <div class="span4">
+        <a href="<?php echo url_for('@seller_packages'); ?>"
+           class="btn-create-collection-middle spacer-left-20">
+          <i class="icon-shopping-cart"></i>
+        </a>
+      </div>
+      <div class="span8" style="font-size:28px; padding-left: 20px;">
+        <a href="<?php echo url_for('@seller_packages'); ?>">
+          Buy<br/> Credits
+        </a>
+      </div>
+    </div>
+  </div>
+  <?php endif; ?>
 <?php endif; ?>
+
+
+<script>
+$(document).ready(function()
+{
+  $(document).controls();
+
+  $(".mycq-collectibles-for-sale .drop-zone").droppable(
+  {
+    over: function(event, ui)
+    {
+      $(this)
+        .addClass("ui-state-highlight")
+        .removeClass('icon-plus')
+        .addClass('icon-download-alt');
+    },
+    out: function(event, ui)
+    {
+      $(this)
+        .removeClass("ui-state-highlight")
+        .removeClass('icon-download-alt')
+        .addClass('icon-plus');
+    },
+    drop: function(event, ui)
+    {
+      $(this)
+        .removeClass("ui-state-highlight")
+        .removeClass('icon-download-alt')
+        .addClass('icon-plus');
+      ui.draggable.draggable('option', 'revert', false);
+
+      $.ajax({
+        url: '<?php echo url_for('@ajax_mycq?section=collectible&page=donateImage'); ?>',
+        type: 'GET',
+        data: {
+          donor_id: ui.draggable.data('collectible-id'),
+          recipient_id: $(this).data('collectible-id')
+        },
+        success: function()
+        {
+          ui.draggable.draggable('option', 'revert', false);
+          ui.draggable.hide();
+        },
+        error: function()
+        {
+          ui.draggable.draggable('option', 'revert', true);
+          ui.draggable.show();
+        }
+      });
+    }
+  });
+
+});
+</script>

@@ -2,14 +2,14 @@
 
 /** http://codex.wordpress.org/Post_Thumbnails */
 add_theme_support('post-thumbnails');
-require_once __DIR__ .'/lib/crop-fix.php';
+//require_once __DIR__ .'/lib/crop-fix.php';
 
 /** Adding custom image size for the site's homepage (not the blog homepage) */
-bt_add_image_size('homepage', 270, 270, true, array( 'center', 'top' ));
+add_image_size('homepage', 270, 270, true);
 /** Adding custom image size for the blog's homepage */
-bt_add_image_size('blog-homepage-p1', 300, 300, true, array( 'center', 'top' ));
-bt_add_image_size('blog-homepage-thumb', 140, 140, true, array( 'center', 'top' ));
-bt_add_image_size('blog-single-hero', 620, 440, true, array( 'center', 'top' ));
+add_image_size('blog-homepage-p1', 300, 300, true);
+//bt_add_image_size('thumbnail', 140, 140, array( 'center', 'top' ));
+//bt_add_image_size('large', 620, 440, array( 'center', 'top' ));
 
 
 /**

@@ -421,8 +421,8 @@
                             });
                         /* Otherwise use button with given string as text. */
                         } else {
-                            var submit = $('<button type="submit" class="submit"></button>');
-                            submit.html('<span><span>'+settings.submit+'</span></span>');
+                            var submit = $('<button type="submit" class="btn blue-button spacer-right" />');
+                            submit.html('<i class="icon icon-ok"></i>&nbsp;' + settings.submit);
                         }
                         $(this).append(submit);
                     }
@@ -432,7 +432,7 @@
                             var cancel = $(settings.cancel);
                         /* otherwise use button with given string as text */
                         } else {
-                            var cancel = $('<button type="cancel" class="cancel" />');
+                            var cancel = $('<button type="cancel" class="btn gray-button" />');
                             cancel.html(settings.cancel);
                         }
                         $(this).append(cancel);
@@ -565,5 +565,29 @@ $.editable.addInputType('autogrow', {
   plugin : function(settings, original)
   {
     $('textarea', this).autogrow(settings.autogrow);
+  }
+});
+
+$.editable.addInputType('wysihtml5', {
+  element : function(settings, original)
+  {
+    var textarea = $('<textarea id="wysihtml5" />');
+    if (settings.rows) {
+      textarea.attr('rows', settings.rows);
+    } else {
+      textarea.height(settings.height);
+    }
+    if (settings.cols) {
+      textarea.attr('cols', settings.cols);
+    } else {
+      textarea.width(settings.width);
+    }
+    $(this).append(textarea);
+
+    return(textarea);
+  },
+  plugin : function(settings, original)
+  {
+    $('textarea', this).wysihtml5(settings.wysihtml5);
   }
 });

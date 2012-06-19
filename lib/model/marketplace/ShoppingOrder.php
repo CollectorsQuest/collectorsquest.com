@@ -21,6 +21,12 @@ class ShoppingOrder extends BaseShoppingOrder
     }
   }
 
+  public function getSeller()
+  {
+    return CollectorQuery::create()
+      ->findOneById($this->getSellerId());
+  }
+
   /**
    * @param  null|PropelPDO  $con
    * @return CollectibleForSale

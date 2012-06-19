@@ -10,12 +10,13 @@
  */
 ?>
 
-<?php cq_page_title($collectible->getName(), null); ?>
-
-<!--
-  Test with alternate images: http://www.collectorsquest.next/collectible/3515/rkw-teacup
-  Test without alternate images: http://collectorsquest.next/collectible/70081/space-set
-//-->
+<?php
+  $options = array('id' => sprintf('collectible_%d_name', $collectible->getId()));
+  if ($editable) {
+    $options['class'] = 'row-fluid header-bar editable';
+  }
+  cq_page_title($collectible->getName(), null, $options);
+?>
 
 <div class="row-fluid spacer-top-15" xmlns="http://www.w3.org/1999/html">
   <?php
@@ -85,7 +86,8 @@
 </div>
 
 <?php if ($collectible->getDescription('stripped')): ?>
-<div class="item-description">
+<div class="item-description <?= $editable ? 'editable_html' : '' ?>"
+     id="collectible_<?= $collectible->getId(); ?>_description">
   <?= $collectible->getDescription('html'); ?>
 </div>
 <?php endif; ?>
@@ -161,24 +163,27 @@
   ?>
 
 <?php endif; ?>
-<script type="text/javascript">
-  $(document).ready(function(){
-    $(".zoom").click(function(e) {
-      e.stopPropagation();
 
-      var source = $(this).find('img');
-      var target = $('#collectible_multimedia_primary');
-      var path = $(source).attr('src').split(/\/150x150\//);
+<script>
+$(document).ready(function()
+{
+  $(".zoom").click(function(e)
+  {
+    e.stopPropagation();
 
-      $(target)
-          .attr('href', path[0] + '/original/' + path[1])
-          .find('img')
-          .attr({
-            src: path[0] + '/620x0/' + path[1],
-            alt: $(source).attr('alt')
-          });
+    var source = $(this).find('img');
+    var target = $('#collectible_multimedia_primary');
+    var path = $(source).attr('src').split(/\/150x150\//);
 
-      return false;
-    });
+    $(target)
+      .attr('href', path[0] + '/original/' + path[1])
+      .find('img')
+      .attr({
+        src: path[0] + '/620x0/' + path[1],
+        alt: $(source).attr('alt')
+      });
+
+    return false;
   });
+});
 </script>

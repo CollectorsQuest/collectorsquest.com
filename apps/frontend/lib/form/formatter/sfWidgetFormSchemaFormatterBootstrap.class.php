@@ -16,13 +16,13 @@ class sfWidgetFormSchemaFormatterBootstrap extends sfWidgetFormSchemaFormatter
                                             </div>';
 
   protected $helpFormat                  = '<p class="help-block">%help%</p>';
-  protected $errorRowFormatForField      = '<li class="help-block">%error%</li>';
-  protected $namedErrorRowFormatForField = '<li class="help-block">%name%: %error%</li>';
+  protected $errorRowFormatForField      = '<li>%error%</li>';
+  protected $namedErrorRowFormatForField = '<li>%name%: %error%</li>';
   protected $errorRowFormatForRowAll      = '<li class="">%error%</li>';
   protected $namedErrorRowFormatForRowAll = '<li class="">%name%: %error%</li>';
 
   protected $errorListFormatInARow       = '<ul class="unstyled alert alert-error">%errors%  </ul>';
-  protected $errorListFormatForField     = '<ul class="unstyled">%errors%  </ul>';
+  protected $errorListFormatForField     = '<ul class="unstyled alert alert-error">%errors%  </ul>';
   protected $errorListFormatForRowAll    = '<div class="alert alert-error all-errors">
                                               <a class="close" data-dismiss="alert">×</a>
                                               <ul class="unstyled">

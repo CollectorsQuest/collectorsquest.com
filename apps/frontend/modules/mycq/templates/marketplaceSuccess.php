@@ -5,24 +5,21 @@
 ?>
 
 <?php
-  if (!$seller->hasPackageCredits())
-  {
-    include_partial('mycq/marketplace_no_credits', array('seller' => $seller));
-  }
+  // include_partial('mycq/seller_snapshot', array('seller' => $seller));
 ?>
 
 <div id="mycq-tabs">
   <div class="tab-content">
     <div class="tab-pane active" id="tab1">
-      <br style="clear: both;"/>
-      <div class="tab-content-inner spacer-top-35">
+
+      <div class="tab-content-inner">
         <div class="row-fluid sidebar-title spacer-inner-bottom">
           <div class="span5 link-align">
             <h3 class="Chivo webfont">My Collectibles for Sale (<?= $total ?>)</h3>
           </div>
           <div class="span7">
             <?php if ($total > 11): ?>
-            <div class="mycq-sort-search-box">
+            <div class="sort-search-box">
               <div class="input-append">
                 <form id="form-mycq-collectibles-for-sale" method="post"
                       action="<?= url_for('@ajax_mycq?section=component&page=collectiblesForSale') ?>">
@@ -36,7 +33,8 @@
                       <li><a data-sort="most-relevant" data-name="Most Relevant" class="sortBy" href="javascript:">Sort by <strong>Most Relevant</strong></a></li>
                     </ul>
                   </div>
-                  <input type="text" class="input-sort-by" id="appendedPrependedInput" name="q"><button class="btn gray-button" type="submit"><strong>Search</strong></button>
+                  <input type="text" class="input-sort-by" id="appendedPrependedInput" name="q" />
+                  <button class="btn gray-button" type="submit"><strong>Search</strong></button>
                   <input type="hidden" value="most-recent" id="sortByValue" name="s">
                 </form>
               </div>
@@ -47,7 +45,7 @@
 
         <div class="mycq-collectibles-for-sale">
           <div class="row thumbnails">
-            <?php include_component('mycq', 'collectiblesForSale'); ?>
+            <?php include_component('mycq', 'collectiblesForSale', array('seller' => $seller)); ?>
           </div>
         </div>
       </div>
@@ -67,7 +65,7 @@
       </div>
       <div class="span7">
         <?php if ($sold_total > 14): ?>
-        <div class="mycq-sort-search-box">
+        <div class="sort-search-box">
           <div class="input-append">
             <form id="form-explore-collections" method="post" action="/search/collections">
               <div class="btn-group">
@@ -92,7 +90,7 @@
 
     <div class="row collectible_sold_items">
       <div class="row-content">
-        <?php include_component('mycq', 'collectiblesForSaleSold'); ?>
+        <?php include_component('mycq', 'collectiblesForSaleSold', array('seller' => $seller)); ?>
       </div>
     </div>
 

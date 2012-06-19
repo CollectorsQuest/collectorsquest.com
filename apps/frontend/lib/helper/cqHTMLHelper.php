@@ -9,20 +9,20 @@ function cq_page_title($h1, $link = null, $options = array())
   {
     $content = sprintf(<<<EAT
   <div class="span12">
-    <h1 class="Chivo webfont">%s</h1>
+    <h1 class="Chivo webfont" id="%s">%s</h1>
   </div>
 EAT
-, $h1, $link);
+, @$options['id'] ?: cqStatic::getUniqueId(10), $h1, $link);
   }
   else
   {
     $content = sprintf(<<<EAT
   <div class="span%d">
-    <h1 class="Chivo webfont">%s</h1>
+    <h1 class="Chivo webfont" id="%s">%s</h1>
   </div>
   <div class="span%d text-right">%s</div>
 EAT
-, (int) $options['left'], $h1, (int) $options['right'], $link);
+, (int) $options['left'], @$options['id'] ?: cqStatic::getUniqueId(10), $h1, (int) $options['right'], $link);
   }
 
   unset($options['left'], $options['right']);

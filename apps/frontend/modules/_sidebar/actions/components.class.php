@@ -30,9 +30,18 @@ class _sidebarComponents extends cqFrontendComponents
     $this->columns = (int) $this->getVar('columns') ?: 2;
 
     $q = ContentCategoryQuery::create()
+      ->filterByTreeLevel(2)
+      ->joinCollectorCollection(null, Criteria::INNER_JOIN)
+      ->addDescendingOrderByColumn('COUNT(collector_collection.id)')
       ->orderByName(Criteria::ASC)
+      ->groupById()
       ->limit($this->limit);
-    $this->categories = $q->find();
+    $this->categories = $q->find()->getArrayCopy();
+
+    usort($this->categories, function($a, $b)
+    {
+      return strcmp($a->getName(), $b->getName());
+    });
 
     return $this->_sidebar_if(count($this->categories) > 0);
   }

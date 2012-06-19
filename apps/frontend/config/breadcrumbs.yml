@@ -121,3 +121,9 @@ ice_breadcrumbs:
       - { name: 'My Account', route: mycq }
     packages:
       - { name: 'Seller packages' }
+
+  shopping:
+    _prepend:
+      - { name: 'Shopping Cart', route: shopping_cart }
+    orderReview:
+      - { name: 'Review Order' }

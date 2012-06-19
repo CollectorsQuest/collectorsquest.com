@@ -3,6 +3,13 @@
 class collectionActions extends cqFrontendActions
 {
 
+  public function preExecute()
+  {
+    parent::preExecute();
+
+    SmartMenu::setSelected('header_main_menu', 'collections');
+  }
+
   /**
    * @param sfWebRequest $request
    * @return string
@@ -84,6 +91,7 @@ class collectionActions extends cqFrontendActions
     $this->display = $this->getUser()->getAttribute('display', 'grid', 'collectibles');
     $this->collector = $collector;
     $this->collection = $collection;
+    $this->editable = $collector->isOwnerOf($collection);
 
     // Building the meta tags
     $this->getResponse()->addMeta('description', $collection->getDescription('stripped'));
@@ -191,18 +199,21 @@ class collectionActions extends cqFrontendActions
 
       $this->collectible_for_sale = $collectible_for_sale;
       $this->form = new CollectibleForSaleBuyForm($collectible_for_sale);
+
+      SmartMenu::setSelected('header_main_menu', 'marketplace');
     }
 
     $this->collector = $collector;
     $this->collection = $collection;
     $this->collectible = $collectible;
     $this->additional_multimedia = $collectible->getMultimedia(0, 'image', false);
+    $this->editable = $collector->isOwnerOf($collectible);
 
     return sfView::SUCCESS;
   }
 
   public function executeCreate()
   {
-    return sfView::SUCCESS;
+    $this->redirect('@mycq_collections');
   }
 }

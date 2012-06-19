@@ -122,13 +122,13 @@ var APP = window.APP = {
       // the dialog will automatically redirect to a new page
       $(document).delegate(".modal", "dialog2.content-update", function()
       {
-        // got the dialog as this object. Do something with it!
-        var e = $(this);
-        var autoclose = e.find("a.auto-close");
+        var $autoclose = $(this).find("a.auto-close");
 
-        if (autoclose.length > 0)
+        if ($autoclose.length > 0)
         {
-          var href = autoclose.attr('href');
+          $autoclose.blur();
+
+          var href = $autoclose.attr('href');
           if (href) {
             window.location.href = href;
           }
@@ -227,6 +227,7 @@ var COMMON = window.COMMON = (function(){
   // return object literal
   return {
     setupProjectWideHelpers: function() {
+      COMMON.setupCssHelpers();
       COMMON.setupModalLoginRegistrationDialog();
       COMMON.linkifyTables();
       COMMON.setupComments();
@@ -235,6 +236,19 @@ var COMMON = window.COMMON = (function(){
       COMMON.setupEmailSpellingHelper();
       COMMON.setupLinksModalConfirm();
       COMMON.loginLogoutHelpers();
+      if (window.cq.authenticated) {
+        COMMON.setupEditable();
+      }
+    },
+    setupCssHelpers: function() {
+      // search box extend overline over close-by elements
+      $('.sort-search-box').on('focusin focusout', 'input.input-sort-by', function(){
+        console.log('wat?')
+        var $this = $(this);
+        $this.siblings('button').toggleClass('blue-outline-t-b-r');
+        $this.siblings('.btn-group').find('div').toggleClass('blue-outline-t-b-l');
+        $this.siblings('.btn-group').find('a').toggleClass('blue-outline-t-b');
+      });
     },
     setupLinksModalConfirm: function() {
       $('a.requires-confirm').on('click', function(e) {
@@ -466,13 +480,55 @@ var COMMON = window.COMMON = (function(){
       });
 
       // if the username cookie is set and has a value that is truthy
-      if ($.cookie(window.cq.username_cookie)) {
+      if ($.cookie(window.cq.cookies.username)) {
         // triger the event to show the login form in the footer
         $('#footer-control-login-button').trigger('click');
         // and set the username to the value of the cookie
-        $('#login_username').val($.cookie(window.cq.username_cookie));
+        $('#login_username').val($.cookie(window.cq.cookies.username));
       }
     }, // setupFooterLoginOrSignup()
+
+    setupEditable: function ()
+    {
+      $('.header-bar.editable h1').editable('/ajax/editable',
+      {
+        indicator: '<img src="/images/loading.gif"/>',
+        tooltip: 'Click to edit...',
+        cancel: 'Cancel',
+        submit: 'Save',
+        onedit: function()
+        {
+          $(this).parent().parent().removeClass('header-bar');
+        },
+        onreset: function ()
+        {
+          $(this).parent().parent().parent().addClass('header-bar');
+        },
+        onsubmit: function ()
+        {
+          $(this).parent().parent().parent().addClass('header-bar');
+        }
+      });
+
+      $('.editable_html').editable('/ajax/editable',
+      {
+        loadurl: '/ajax/editable-load',
+
+        type: 'wysihtml5',
+        cancel: 'Cancel',
+        submit: 'Save',
+        indicator: '<img src="/images/loading.gif"/>',
+        tooltip: 'Click to edit...',
+        onblur: "ignore",
+        width: '100%',
+        height: '100px',
+        wysihtml5: {
+          "font-styles": false,
+          "image": false,
+          "link": false
+        }
+      });
+    },
 
     linkifyTables: function() {
       // make all table rows with class "linkify" clickable links ;)
@@ -649,7 +705,6 @@ var SEARCH = window.SEARCH = (function(){
   }; // SEARCH object literal
 }());
 
-
 var AVIARY = window.AVIARY = (function(){
 
   var aviary_loaded = false;
@@ -731,7 +786,6 @@ var AVIARY = window.AVIARY = (function(){
   }; // AVIARY public interface object literal
 
 }()); // AVIARY
-
 
 var MISC = window.MISC = (function(){
 

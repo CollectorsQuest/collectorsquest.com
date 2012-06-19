@@ -23,15 +23,16 @@
               'multimedia-id' => $collection->getThumbnail()->getId(),
           )), cqConfig::getCredentials('aviary', 'hmac_secret')); ?>'
         >
-          <i class="icon icon-wrench"></i>
+          <i class="icon icon-camera"></i><br/>
+          Edit Photo
         </span>
       <?php else: ?>
         <a class="plus-icon-holder h-center" href="#">
           <i class="icon icon-plus icon-white"></i>
         </a>
-        <a class="blue-link" href="#">
-          Drag and Drop from <br>"Items to Sort"
-        </a>
+        <div class="info-text">
+          Drag and Drop from <br>"Uploaded Photos"
+        </div>
       <?php endif; ?>
     </div>
   </div>
@@ -48,7 +49,7 @@
       );
     ?>
 
-    <fieldset>
+    <fieldset style="width: 580px;">
         <?= $form; ?>
     </fieldset>
 
@@ -78,18 +79,7 @@
 <div id="mycq-tabs">
   <div class="tab-content">
     <div class="tab-pane active" id="tab1">
-      <?php
-        include_component(
-          'mycq', 'dropbox',
-          array('instructions' => array(
-            'position' => 'bottom',
-            'text' => 'Drag and Drop Your Photos Below'
-          ))
-        );
-      ?>
 
-      <?php if ($total > 0 || $dropbox_total > 0): ?>
-      <br style="clear: both;"/>
       <div class="tab-content-inner spacer-top-35">
         <div class="row-fluid sidebar-title spacer-inner-bottom">
           <div class="span5 link-align">
@@ -97,7 +87,7 @@
           </div>
           <div class="span7">
             <?php if ($total > 11): ?>
-            <div class="mycq-sort-search-box">
+            <div class="sort-search-box">
               <div class="input-append">
                 <form id="form-mycq-collectibles" method="post"
                       action="<?= url_for('@ajax_mycq?section=component&page=collectibles') ?>">
@@ -128,7 +118,6 @@
           </div>
         </div>
       </div>
-      <?php endif; ?>
 
     </div>
   </div>

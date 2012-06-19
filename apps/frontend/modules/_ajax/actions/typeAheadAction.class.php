@@ -58,7 +58,9 @@ class typeAheadAction extends IceAjaxAction
   protected function executeTagsEdit($request)
   {
     $term = mb_strtolower($request->getParameter('term'));
-    $term = mysql_real_escape_string($term);
+    $term = Propel::getConnection('propel')->quote(
+      str_replace('%', '', $term).'%', PDO::PARAM_STR
+    );
 
     /** @var $q iceModelTagQuery */
     $q = iceModelTagQuery::create()
@@ -66,7 +68,7 @@ class typeAheadAction extends IceAjaxAction
       ->addAsColumn('id', 'Id')
       ->addAsColumn('name', 'LOWER(CONVERT(`Name` USING utf8))')
       ->addAsColumn('label', 'LOWER(CONVERT(`Name` USING utf8))')
-      ->filterBy('Name', 'name LIKE "'. $term .'%"', Criteria::CUSTOM)
+      ->filterBy('Name', 'name LIKE '. $term, Criteria::CUSTOM)
       ->filterByIsTriple(false)
       ->orderBy('name', Criteria::ASC)
       ->select(array('id', 'name', 'label'))

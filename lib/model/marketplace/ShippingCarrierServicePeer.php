@@ -1,13 +1,10 @@
 <?php
 
 
-require 'lib/model/marketplace/om/BaseShippingRateCollectorPeer.php';
-
-
 /**
- * Skeleton subclass for performing query and update operations on the 'shipping_rate_collector' table.
+ * Skeleton subclass for performing query and update operations on the 'shipping_carrier_service' table.
  *
- * 
+ *
  *
  * You should add additional methods to this class to meet the
  * application requirements.  This class will only be generated as
@@ -15,6 +12,7 @@ require 'lib/model/marketplace/om/BaseShippingRateCollectorPeer.php';
  *
  * @package    propel.generator.lib.model.marketplace
  */
-class ShippingRateCollectorPeer extends BaseShippingRateCollectorPeer {
+class ShippingCarrierServicePeer extends BaseShippingCarrierServicePeer
+{
 
 }

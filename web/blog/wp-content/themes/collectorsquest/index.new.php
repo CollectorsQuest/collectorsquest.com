@@ -254,18 +254,11 @@ $lastclass = 0;
 
           <?php
           if (is_single()) :
-            $size = 'blog-single-hero';
-            //$size = array(620,440);
-
-            $img_w = 620;
-            $img_h = 440;
+            $size = 'large';
           elseif (is_front_page() && $count == 1) :
             $size = 'blog-homepage-p1';
-            //$size = array(300,300);
           else :
-            //$size = 'blog-homepage-thumb';
             $size = 'thumbnail';
-            //$size = array(140,140);
           endif;
           ?>
 
@@ -277,8 +270,7 @@ $lastclass = 0;
 
             <?php if (is_single() && $image_attributes[1] >= 620) : ?>
 
-             <img src="<?php echo get_post_image_url($size, $count); //'http://placekitten.com/700/700'; ?>" alt=""/>
-             <!-- <img src="/blog/wp-content/themes/collectorsquest/thumb.php?src=<?php echo get_post_image_url('full');  //echo 'http://placekitten.com/700/700'; ?>&w=<?php echo $img_w ?>&h=<?php echo $img_h ?>&zc=1&a=<?php echo $a; ?>" alt=""/> -->
+             <img src="<?php echo get_post_image_url($size, $count); ?>" alt=""/>
 
               <?php
               $thumbnail_id = get_post_thumbnail_id($post->ID);
@@ -289,7 +281,7 @@ $lastclass = 0;
               ?>
 
             <?php elseif (!is_single()) : ?>
-            <img src="<?php echo get_post_image_url($size, $count); //'http://placekitten.com/700/700'; ?>" alt=""/>
+            <img src="<?php echo get_post_image_url($size, $count); ?>" alt=""/>
             <?php endif; ?>
 
           <?php if (!is_single()) : ?>

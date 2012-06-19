@@ -4,52 +4,59 @@ require 'lib/model/marketplace/om/BasePackageTransaction.php';
 
 class PackageTransaction extends BasePackageTransaction
 {
-	/* added by Prakash Panchal 13-APR-2011
-	 * savePackageTransaction function.
-	 * return object
-	 */
-	public static function savePackageTransaction($amData = array())
-	{
-		$oPackageTransaction = new PackageTransaction();
-		$oPackageTransaction->setCollectorId($amData['collector_id']);
-		$oPackageTransaction->setPackageId($amData['package_id']);
-		$oPackageTransaction->setCredits($amData['max_items_for_sale']);
-		$oPackageTransaction->setPackagePrice($amData['package_price']);
-		$oPackageTransaction->setExpiryDate(date('Y-m-d h:i:s', strtotime('+365 days')));
-		$oPackageTransaction->setPaymentStatus($amData['payment_status']);
+  public function getPackageName()
+  {
+    if ($package = $this->getPackage())
+    {
+      return $package->getPackageName();
+    }
 
-		try
-		{
-			$oPackageTransaction->save();
-		}
-		catch (PropelException $e)
-		{
-			return null;
-		}
+    return null;
+  }
 
-		return $oPackageTransaction;
-	}
+  /**
+   * added by Prakash Panchal 13-APR-2011
+   *
+   * savePackageTransaction function.
+   * return object
+   */
+  public static function savePackageTransaction($amData = array())
+  {
+    $oPackageTransaction = new PackageTransaction();
+    $oPackageTransaction->setCollectorId($amData['collector_id']);
+    $oPackageTransaction->setPackageId($amData['package_id']);
+    $oPackageTransaction->setCredits($amData['max_items_for_sale']);
+    $oPackageTransaction->setPackagePrice($amData['package_price']);
+    $oPackageTransaction->setExpiryDate(date('Y-m-d h:i:s', strtotime('+365 days')));
+    $oPackageTransaction->setPaymentStatus($amData['payment_status']);
 
-	/* added by Prakash Panchal 14-APR-2011
-	 * updatePaymentStatus function.
-	 * return object
-	 */
-	public static function updatePaymentStatus($amData = array())
-	{
-		$oPackageTransaction = PackageTransactionPeer::retrieveByPK($amData['id']);
-		$oPackageTransaction->setPackagePrice($amData['package_price']);
-		$oPackageTransaction->setPaymentStatus($amData['payment_status']);
-		try
-		{
-			$oPackageTransaction->save();
-		}
-		catch (PropelException $e)
-		{
-			return null;
-		}
+    try {
+      $oPackageTransaction->save();
+    } catch (PropelException $e) {
+      return null;
+    }
 
-		return $oPackageTransaction;
-	}
+    return $oPackageTransaction;
+  }
+
+  /**
+   * added by Prakash Panchal 14-APR-2011
+   * updatePaymentStatus function.
+   * return object
+   */
+  public static function updatePaymentStatus($amData = array())
+  {
+    $oPackageTransaction = PackageTransactionPeer::retrieveByPK($amData['id']);
+    $oPackageTransaction->setPackagePrice($amData['package_price']);
+    $oPackageTransaction->setPaymentStatus($amData['payment_status']);
+    try {
+      $oPackageTransaction->save();
+    } catch (PropelException $e) {
+      return null;
+    }
+
+    return $oPackageTransaction;
+  }
 
   /**
    * @return PackageTransaction

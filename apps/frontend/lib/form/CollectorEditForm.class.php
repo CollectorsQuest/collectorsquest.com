@@ -21,10 +21,10 @@ class CollectorEditForm extends CollectorForm
         'collector_type' => 'Collector Type',
         'country_iso3166' => 'Country',
         'about_what_you_collect' => 'What do you collect?',
-        'about_collections' => 'About My Collections',
+        'about_collections' => 'About My Items',
         'about_purchase_per_year' => 'How many times a year do you purchase?',
         'about_most_expensive_item' => "The most you've spent on an item?",
-        'about_annually_spend' => 'Anually?',
+        'about_annually_spend' => 'Annually?',
         'about_interests' => 'My Interests Are',
         'website' => 'Personal Website',
     ));

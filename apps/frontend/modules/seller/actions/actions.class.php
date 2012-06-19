@@ -13,6 +13,8 @@ class sellerActions extends cqFrontendActions
   public function preExecute()
   {
     $this->redirectIf(IceGateKeeper::locked('mycq_marketplace'), '@mycq');
+
+    SmartMenu::setSelected('mycq_menu', 'marketplace');
   }
 
   public function executeIndex()
@@ -86,12 +88,10 @@ class sellerActions extends cqFrontendActions
             $cqEmail = new cqEmail($this->getMailer());
             $sent = $cqEmail->send('Seller/package_confirmation', array(
               'to'     => $collector->getEmail(),
-              'subject'=> 'Thank you for becoming a seller',
               'params' => array(
-                'collector'     => $collector,
-                'package_name'  => $package->getPackageName(),
-                'package_items' => $package->getCredits() < 0 ? 'Unlimited' : $package->getCredits(),
-                'expiry_date'   => strtotime('+1 year'),
+                'collector' => $collector,
+                'package_transaction' => $transaction,
+                'package' => $package,
               ),
             ));
 
@@ -100,7 +100,10 @@ class sellerActions extends cqFrontendActions
               $this->logMessage(sprintf('Email about package confirmation to %s not sent', $collector->getEmail()));
             }
 
-            $this->getUser()->setFlash('success', 'You received free subscription');
+            $this->getUser()->setFlash(
+              'success', 'Congratulations! You’ve received a free subscription!'
+            );
+
             $this->redirect('@mycq_marketplace');
           }
           else if ('paypal' == $packagesForm->getValue('payment_type'))
@@ -200,12 +203,9 @@ class sellerActions extends cqFrontendActions
               $cqEmail = new cqEmail($this->getMailer());
               $sent = $cqEmail->send('Seller/package_confirmation', array(
                 'to'     => $collector->getEmail(),
-                'subject'=> 'Thank you for becoming a seller',
                 'params' => array(
-                  'collector'     => $collector,
-                  'package_name'  => $package->getPackageName(),
-                  'package_items' => $package->getCredits() < 0 ? 'Unlimited' : $package->getCredits(),
-                  'expiry_date'   => strtotime('+1 year'),
+                  'collector' => $collector,
+                  'package_transaction' => $transaction
                 ),
               ));
 
@@ -214,14 +214,17 @@ class sellerActions extends cqFrontendActions
                 $this->logMessage(sprintf('Email about package confirmation to %s not sent', $collector->getEmail()));
               }
 
-              $this->getUser()->setFlash('success', 'Payment received');
+              $this->getUser()->setFlash('success', 'Thanks! Your payment has been received!');
               $this->redirect('@mycq_marketplace');
             }
             else
             {
               $this->sendEmail(sfConfig::get('app_ice_libs_emails_notify'), 'CC DEBUG', var_export($paypalResult, true));
 
-              $this->getUser()->setFlash('error', 'Your credit card information is invalid!');
+              $this->getUser()->setFlash(
+                'error', 'Your payment could not be processed.
+                          Please check your credit card information and try again.'
+              );
 
               $this->packagesForm = $packagesForm;
               return sfView::SUCCESS;
@@ -310,12 +313,9 @@ class sellerActions extends cqFrontendActions
     $cqEmail = new cqEmail($this->getMailer());
     $sent = $cqEmail->send('Seller/package_confirmation', array(
       'to'     => $collector->getEmail(),
-      'subject'=> 'Thank you for becoming a seller',
       'params' => array(
-        'collector'     => $collector,
-        'package_name'  => $package->getPackageName(),
-        'package_items' => $package->getCredits() < 0 ? 'Unlimited' : $package->getCredits(),
-        'expiry_date'   => strtotime('+1 year'),
+        'collector' => $collector,
+        'package_transaction' => $packageTransaction
       ),
     ));
 

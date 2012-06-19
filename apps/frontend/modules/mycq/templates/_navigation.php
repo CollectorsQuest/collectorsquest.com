@@ -4,64 +4,93 @@
  * @var $sf_params sfParameterHolder
  */
 ?>
-
-<div class="row" style="margin-left: 5px;">
-  <div class="span2">
-    <a href="<?= url_for('@collector_me') ?>" title="Go to your public profile">
+<div class="slot1-inner-mycq">
+  <div class="row-fluid">
+    <div class="span10 upload-items-wrapper-l">
       <?php
-        echo image_tag_collector(
-          $collector, '235x315',
-          array(
-            'width' => 70, 'height' => 94,
-            'class' => 'thumbnail avatar-in-title'
-          )
-        );
+        $links = link_to('View Public Profile', '@collector_me') .
+                 '<span style="color: #fff;">&nbsp; | &nbsp;</span>'.
+                 link_to('Log Out', '@logout', array('class'=>'logout-link'));
+
+        cq_page_title($collector->getDisplayName(), $links);
       ?>
-    </a>
+
+      <div id="profile-subnavbar" class="navbar">
+        <div class="navbar-inner">
+          <div class="container">
+            <div class="nav-collapse">
+              <ul class="nav">
+                <?= SmartMenu::generate('mycq_menu'); ?>
+              </ul>
+            </div><!-- /.nav-collapse -->
+          </div>
+        </div><!-- /navbar-inner -->
+      </div>
+    </div>
+    <div class="span2 upload-items-wrapper-r">
+      <?php include_partial('mycq/upload_photos'); ?>
+    </div>
   </div>
-  <div class="span12" style="margin-left: 0; width: 87%;">
-    <?php
-      $links = link_to('Log Out', '@logout', array('class'=>'logout-link')) .
-               '<span style="color: #fff;">&nbsp; | &nbsp;</span>'.
-               link_to('View Public Profile →', '@collector_me');
 
-      cq_page_title($collector->getDisplayName(), $links);
-    ?>
-
-    <div id="profile-subnavbar" class="navbar">
-      <div class="navbar-inner">
-        <div class="container">
-          <div class="nav-collapse">
-            <ul class="nav">
-              <?php
-                $active = in_array($sf_params->get('action'), array('profile')) ? 'active' : null;
-                echo '<li class="'. $active .'">', link_to('Profile', '@mycq_profile'), '</li>';
-              ?>
-              <?php
-                $active = in_array($sf_params->get('action'), array('collections', 'collection', 'collectible')) ? 'active' : null;
-                echo '<li class="'. $active .'">', link_to('Collections', '@mycq_collections'), '</li>';
-              ?>
-              <?php
-                if (IceGateKeeper::open('mycq_marketplace'))
-                {
-                  $active = in_array($sf_params->get('action'), array('marketplace')) ? 'active' : null;
-                  $active = in_array($sf_params->get('module'), array('seller')) ? 'active' : $active;
-                  echo '<li class="'. $active .'">', link_to('Store <sup>βeta</sup>', '@mycq_marketplace'), '</li>';
-                }
-              ?>
-              <?php
-                $active = in_array($sf_params->get('module'), array('messages')) ? 'active' : null;
-                $text = sprintf('Messages (%s)', $sf_user->getUnreadMessagesCount());
-                echo '<li class="'. $active .'" style="border-right: 1px solid #4B3B3B;">', link_to($text, '@messages_inbox'), '</li>';
-              ?>
-              <?php
-                // $active = in_array($sf_params->get('action'), array('wanted')) ? 'active' : null;
-                // echo '<li class="'. $active .'" style="border-right: 1px solid #4B3B3B;">', link_to('Wanted', '@mycq_wanted'), '</li>';
-              ?>
-            </ul>
-          </div><!-- /.nav-collapse -->
-        </div>
-      </div><!-- /navbar-inner -->
+  <?php include_component('mycq', 'dropbox'); ?>
+  <div class="row-fluid">
+    <div class="span10 upload-items-wrapper-l"></div>
+    <div class="span2 upload-items-wrapper-r">
+      <a href="#" class="dropzone-container-slide pull-right
+                         <?= $sf_user->getMycqDropboxOpenState() ? 'open' : '' ?>"
+      >
+        <span class="open-dropzone">
+          Open Uploaded Photos <i class="icon-caret-down"></i>
+        </span>
+        <span class="close-dropzone">
+          Close Uploaded Photos <i class="icon-caret-up"></i>
+        </span>
+      </a>
     </div>
   </div>
 </div>
+
+<script>
+$(document).ready(function()
+{
+  'use strict';
+
+  $(".dropzone-container-slide").click(function()
+  {
+    var $this = $(this);
+    var $dropzone_wrapper = $('#dropzone-wrapper');
+
+    if ($dropzone_wrapper.hasClass('hidden'))
+    {
+      // we apply "display:none" to the element with .hide()
+      // and then remove the .hidden class, which is "display:none !important;"
+      // and breaks js interactions
+      $dropzone_wrapper.hide().toggleClass('hidden');
+    }
+
+    if ($this.hasClass('open'))
+    {
+      $dropzone_wrapper.slideToggle("slow", function() {
+        $this.toggleClass('open');
+      });
+    }
+    else
+    {
+      $this.toggleClass('open');
+      $dropzone_wrapper.slideToggle("slow");
+    }
+
+    $.cookie(
+      window.cq.cookies.mycq_dropbox_state,
+      // stupid $#!@... $.cookie(name, false) will set a cookie with
+      // the STRING "false", and !"false" === false
+      // Setting $.cookie(name, 0) will set the STRING "0", and again:
+      // !"0" === false, so we need this parseInt bullshit AND manual integer asign
+      !parseInt($.cookie(window.cq.cookies.mycq_dropbox_state)) && 1 || 0,
+      { expires: 10 * 365, path: '/' }
+    );
+
+    return false;
+  });
+});
+</script>

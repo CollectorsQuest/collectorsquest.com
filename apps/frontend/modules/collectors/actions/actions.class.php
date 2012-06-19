@@ -19,11 +19,18 @@ class collectorsActions extends cqFrontendActions
     switch ($sortBy)
     {
       case 'most-popular':
-        $q->useCollectorCollectionQuery()
-          ->filterByNumItems(10, Criteria::GREATER_EQUAL)
-          ->endUse()
-          ->orderBy('Score', Criteria::DESC)
-          ->distinct();
+        $q->joinCollectorCollection(null, Criteria::LEFT_JOIN)
+            ->withColumn('SUM(CollectorCollection.NumViews)', 'TotalCollectionsViews')
+            ->groupBy('CollectorCollection.CollectorId')
+
+//            ->useCollectorCollectionQuery()
+//            ->filterByNumItems(10, Criteria::GREATER_EQUAL)
+//            ->endUse()
+
+            ->joinCollectorProfile()
+
+            ->orderBy('CollectorCollection.NumViews', Criteria::DESC)
+        ;
         break;
 
       case 'near-you':
@@ -34,7 +41,7 @@ class collectorsActions extends cqFrontendActions
           $pks = array_diff($pks, array(0 => $this->getUser()->getId()));
 
           $q->filterById($pks, Criteria::IN)
-            ->orderById(Criteria::DESC);
+              ->orderById(Criteria::DESC);
         }
         break;
 

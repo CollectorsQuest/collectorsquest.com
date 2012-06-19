@@ -88,7 +88,7 @@
                 <li>
                   <a href="<?= url_for('@mycq_marketplace', true); ?>"
                      title="Manage your Collectibles for Sale!">
-                    <i class="icon icon-barcode"></i> Store
+                    <i class="icon icon-shopping-cart"></i> Store
                   </a>
                 </li>
                 <?php endif; ?>
@@ -145,25 +145,8 @@
             array('class' => $class .' hide-text', 'title' => 'Home', 'absolute' => true)
           );
         ?>
-        <?php
-          /**
-           * By default we look at the 'module' to determine which menu items to highlight
-           * You have a way to overwrite that by setting the request parameter 'cq_header_active'
-           */
-          $active = $sf_params->get('cq_header_active', $sf_params->get('module'));
-        ?>
         <ul class="nav">
-          <?php $class = in_array($active, array('collection', 'collections', 'aent', 'categories')) ? 'active' : null; ?>
-          <li class="<?= $class ?>"><?= link_to('Collections', '@collections', array('absolute' => true)); ?></li>
-
-          <?php $class = in_array($active, array('news', 'blog', '_blog')) ? 'active' : null; ?>
-          <li class="<?= $class ?>"><?= link_to('Blog', '@blog', array('absolute' => true)); ?></li>
-
-          <?php $class = in_array($active, array('video', '_video')) ? 'active' : null; ?>
-          <li class="<?= $class ?>"><?= link_to('Video', '@video', array('absolute' => true)); ?></li>
-
-          <?php $class = in_array($active, array('marketplace', 'shopping')) ? 'active' : null; ?>
-          <li class="<?= $class ?>"><?= link_to('Market', '@marketplace', array('absolute' => true)); ?></li>
+          <?= SmartMenu::generate('header_main_menu'); ?>
         </ul>
       </div>
     </div>

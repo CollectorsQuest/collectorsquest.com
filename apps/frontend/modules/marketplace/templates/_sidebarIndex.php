@@ -7,7 +7,7 @@
 ?>
 
 <?php include_component('_sidebar', 'widgetMarketplaceCategories'); ?>
-<?php include_component('_sidebar', 'widgetCollections', array('limit' => 10)); ?>
+<?php include_component('_sidebar', 'widgetCollections', array('limit' => 8)); ?>
 
 <?php
 /**

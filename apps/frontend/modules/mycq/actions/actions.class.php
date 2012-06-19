@@ -4,11 +4,15 @@ class mycqActions extends cqFrontendActions
 {
   public function executeIndex()
   {
-    return $this->redirect('@mycq_profile');
+  //  $this->redirectIf(IceGateKeeper::locked('mycq_homepage'), '@mycq_profile');
+    $this->collector = $this->getUser()->getCollector();
+    return sfView::SUCCESS;
   }
 
   public function executeProfile(sfWebRequest $request)
   {
+    SmartMenu::setSelected('mycq_menu', 'profile');
+
     $collector_form = new CollectorEditForm($this->getCollector());
     $avatar_form = new CollectorAvatarForm($this->getCollector());
 
@@ -63,14 +67,6 @@ class mycqActions extends cqFrontendActions
 
     $this->collector = $this->getUser()->getCollector();
     $this->collector_form = $collector_form;
-
-    return sfView::SUCCESS;
-  }
-
-  public function executeCollections()
-  {
-    $this->collector = $this->getUser()->getCollector();
-    $this->total = $this->collector->countCollectorCollections();
 
     return sfView::SUCCESS;
   }
@@ -232,15 +228,28 @@ class mycqActions extends cqFrontendActions
           }
         }
 
-        $this->getUser()->setFlash('success', 'All Items to Sort were deleted!', true);
+        $this->getUser()->setFlash('success', 'All uploaded photos were deleted!', true);
         break;
     }
 
     return $this->redirect('@mycq_collections');
   }
 
+
+  public function executeCollections()
+  {
+    SmartMenu::setSelected('mycq_menu', 'collections');
+
+    $this->collector = $this->getUser()->getCollector();
+    $this->total = $this->collector->countCollectorCollections();
+
+    return sfView::SUCCESS;
+  }
+
   public function executeCollection(sfWebRequest $request)
   {
+    SmartMenu::setSelected('mycq_menu', 'collections');
+
     /** @var $collection CollectorCollection */
     $collection = $this->getRoute()->getObject();
     $this->redirectUnless(
@@ -393,6 +402,15 @@ class mycqActions extends cqFrontendActions
     }
 
     $form = new CollectibleEditForm($collectible);
+    $form_shipping_us = new SimpleShippingCollectorCollectibleForCountryForm(
+      $collectible,
+      'US',
+      $request->getParameter('shipping_rates_us')
+    );
+    $form_shipping_zz = new SimpleShippingCollectorCollectibleInternationalForm(
+      $collectible,
+      $request->getParameter('shipping_rates_zz')
+    );
 
     if ($request->isMethod('post'))
     {
@@ -408,10 +426,28 @@ class mycqActions extends cqFrontendActions
       }
 
       $form->bind($taintedValues, $request->getFiles('collectible'));
+      $for_sale = $form->getValue('for_sale');
 
-      if ($form->isValid())
+      if ($for_sale['is_ready'] && IceGateKeeper::open('collectible_shipping'))
       {
-        $for_sale = $form->getValue('for_sale');
+        $form_shipping_us->bind($request->getParameter('shipping_rates_us'));
+        $form_shipping_zz->bind($request->getParameter('shipping_rates_zz'));
+      }
+
+      if (
+        $form->isValid() &&
+        (!$form_shipping_us->isBound() || $form_shipping_us->isValid()) &&
+        (!$form_shipping_zz->isBound() || $form_shipping_zz->isValid())
+      )
+      {
+        if ($form_shipping_us->isValid())
+        {
+          $form_shipping_us->save();
+        }
+        if ($form_shipping_zz->isValid())
+        {
+          $form_shipping_zz->save();
+        }
 
         if (
           null !== $for_sale &&
@@ -464,6 +500,14 @@ class mycqActions extends cqFrontendActions
 
     $this->form = $form;
     $this->form_for_sale = isset($form['for_sale']) ? $form['for_sale'] : null;
+    $this->form_shipping_us = $form_shipping_us;
+    $this->form_shipping_zz = $form_shipping_zz;
+
+    if ($collectible->isForSale()) {
+      SmartMenu::setSelected('mycq_menu', 'marketplace');
+    } else  {
+      SmartMenu::setSelected('mycq_menu', 'collections');
+    }
 
     return sfView::SUCCESS;
   }
@@ -471,6 +515,8 @@ class mycqActions extends cqFrontendActions
   public function executeMarketplace()
   {
     $this->redirectUnless(IceGateKeeper::open('mycq_marketplace'), '@mycq');
+
+    SmartMenu::setSelected('mycq_menu', 'marketplace');
 
     // Get the Seller
     $seller = $this->getSeller(true);
@@ -516,7 +562,7 @@ class mycqActions extends cqFrontendActions
       ->delete();
 
     $this->getUser()->setFlash(
-      'error', 'The upload was cancelled and none of the items were uploaded'
+      'error', 'The upload was cancelled and none of the photos were uploaded'
     );
 
     return $this->redirect('@mycq_collections');
@@ -538,26 +584,34 @@ class mycqActions extends cqFrontendActions
     if ($total > 0)
     {
       $this->getUser()->setFlash(
-        'success', 'Total of <b>' . $total . '</b> items were uploaded successfully'
+        'success', 'Total of <b>' . $total . '</b> photos were uploaded successfully'
       );
     }
     else
     {
       $this->getUser()->setFlash(
-        'error', 'There was a problem uploading your items and none were uploaded'
+        'error', 'There was a problem uploading your photos and none were uploaded'
       );
     }
 
-    return $this->redirect($request->getReferer() ? $request->getReferer() : '@mycq_collections');
+    $redirect = $request->getReferer()
+      ? $request->getReferer()
+      : '@mycq_collections';
+
+    $this->redirect($redirect);
   }
 
   public function executeShoppingOrders()
   {
+    SmartMenu::setSelected('mycq_menu', 'marketplace');
+
     return sfView::SUCCESS;
   }
 
   public function executeShoppingOrder()
   {
+    SmartMenu::setSelected('mycq_menu', 'marketplace');
+
     /** @var $shopping_order ShoppingOrder */
     $shopping_order = $this->getRoute()->getObject();
 
@@ -580,6 +634,8 @@ class mycqActions extends cqFrontendActions
 
   public function executeWanted()
   {
+    SmartMenu::setSelected('mycq_menu', 'wanted');
+
     return sfView::SUCCESS;
   }
 

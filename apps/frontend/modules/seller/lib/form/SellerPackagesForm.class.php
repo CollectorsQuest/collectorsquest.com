@@ -42,9 +42,9 @@ class SellerPackagesForm extends sfForm
   private function setupPackageIdField()
   {
     $this->setWidget('package_id', new sfWidgetFormSelectRadio(array(
-      'choices'          => PackagePeer::getAllPackagesForSelectGroupedByPlanType(),
-      'label'            => 'Package',
-      'formatter'        => function($widget, $inputs)
+      'choices'    => PackagePeer::getAllPackagesForSelectGroupedByPlanType(),
+      'label'      => 'Package',
+      'formatter'  => function($widget, $inputs)
       {
         $rows = array();
         foreach ($inputs as $input)
@@ -88,9 +88,13 @@ class SellerPackagesForm extends sfForm
     $this->setWidget('promo_code', new sfWidgetFormInputText(array(
       'label'=> 'Promo',
     ), array(
+      'required' => 'required',
       'placeholder' => 'Promo code',
     )));
-    $this->setValidator('promo_code', new sfValidatorString(array('required'=> false)));
+    $this->setValidator('promo_code', new sfValidatorString(
+      array('required'=> false),
+      array('required' => 'The promo code is required while we are in private beta!')
+    ));
     $this->mergePreValidator(new sfValidatorCallback(array('callback'=> array($this, 'applyPromoCode'))));
   }
 
@@ -209,7 +213,10 @@ class SellerPackagesForm extends sfForm
     $this->setWidget('terms', new sfWidgetFormInputCheckbox(array(), array(
       'required' => 'required',
     )));
-    $this->setValidator('terms', new sfValidatorBoolean(array('required'=> true)));
+    $this->setValidator('terms', new sfValidatorBoolean(
+      array('required' => true),
+      array('required' => 'You need to accept the terms and conditions')
+    ));
   }
 
   private function getCountries()
@@ -238,8 +245,8 @@ class SellerPackagesForm extends sfForm
   {
     //TODO: Replace with proper labeling
     return array(
-      'paypal'=> '/images/legacy/payment/paypal.gif',
-      'cc'    => '/images/legacy/payment/cc.gif',
+      'paypal' => '/images/legacy/payment/paypal.gif',
+      'cc'     => '/images/legacy/payment/cc.gif',
     );
   }
 
@@ -265,7 +272,9 @@ class SellerPackagesForm extends sfForm
   {
     if (IceGateKeeper::locked('mycq_seller_pay') && empty($values['promo_code']))
     {
-      throw new sfValidatorErrorSchema($validator, array('promo_code'=> new sfValidatorError($validator, 'Promo code is required!')));
+      throw new sfValidatorErrorSchema($validator, array(
+        'promo_code'=> new sfValidatorError($validator, 'The promo code is required while we are in private beta!'))
+      );
     }
 
     if (empty($values['promo_code']))
@@ -279,19 +288,19 @@ class SellerPackagesForm extends sfForm
 
     if (!$promo)
     {
-      $error = new sfValidatorError($validator, 'Invalid promotion code!');
+      $error = new sfValidatorError($validator, 'Sorry! That code is invalid.');
     }
     else if (0 == $promo->getNoOfTimeUsed())
     {
-      $error = new sfValidatorError($validator, 'No promo codes of this type left!');
+      $error = new sfValidatorError($validator, 'Sorry! That code has expired.');
     }
     else if (time() > $promo->getExpiryDate('U'))
     {
-      $error = new sfValidatorError($validator, 'This Promotion code has been expired!');
+      $error = new sfValidatorError($validator, 'Sorry! That code has expired.');
     }
     else if ($used = PromotionTransactionPeer::findOneByCollectorAndCode($this->getOption('collector', $collector), $values['promo_code']))
     {
-      $error = new sfValidatorError($validator, 'You have already used this promo code!');
+      $error = new sfValidatorError($validator, 'Sorry! You’ve already used this code!');
     }
 
     if (!$error)

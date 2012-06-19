@@ -1,6 +1,7 @@
 <?php
 /**
  * @var $form CollectibleForSaleEditForm
+ * @var $form_shipping_us SimpleShippingCollectorCollectibleForCountryForm
  */
 ?>
 
@@ -20,95 +21,110 @@
 
 <div id="form-collectible-for-sale" class="hide">
   <?php if ($sf_user->getSeller()->hasPackageCredits()): ?>
-  <div class="control-group">
-    <?= $form['price']->renderLabel(); ?>
-    <div class="controls">
-      <div class="with-required-token">
-        <span class="required-token">*</span>
-        <?= $form['price']->render(array('class' => 'span2 text-center help-inline', 'required'=>'required')); ?>
-        <?= $form['price_currency']->render(array('class' => 'span2 help-inline')); ?>
+
+    <div class="control-group">
+      <?= $form['price']->renderLabel(); ?>
+      <div class="controls">
+        <div class="with-required-token">
+          <span class="required-token">*</span>
+          <?php
+            echo $form['price']->render(array(
+              'class' => 'span2 text-center help-inline', 'required'=>'required'
+            ));
+          ?>
+          <?= $form['price_currency']->render(array('class' => 'span2 help-inline')); ?>
+        </div>
+        <?= $form['price']->renderError(); ?>
       </div>
     </div>
-  </div>
-  <div class="control-group">
-    <?= $form['condition']->renderLabel(); ?>
-    <div class="controls">
-      <?= $form['condition']->render(array('class' => 'span4 help-inline')); ?>
-    </div>
-  </div>
+    <?= $form['condition']->renderRow(); ?>
 
-  <div class="control-group">
-    <label class="control-label">Shipping</label>
-    <div class="controls">
-      <label class="radio">
-        <input type="radio" name="optionsRadios" value="option1" checked="">
-        Free Shipping
-      </label>
-      <label class="radio">
-        <input class="help-inline" type="radio" name="optionsRadios" value="option1">
-        Flat Rate (please specify):
-        <input type="text" placeholder="input price" class="span3 help-inline price-indent">
-        <select class="span2 help-inline">
-          <option value="USD" selected="selected">USD</option>
-        </select>
-      </label>
-    </div>
-  </div>
-  <?php else: ?>
-  <div id="not-a-seller-box">
-    <div class="row-fluid">
-      <div class="span9">
-        <div class="inner-yellow-bg">
-          <div class="row-fluid">
-            <div class="span12">
-              <span class="Chivo webfont buy-credits">
-                Want to sell this collectible?<br/>
-                Start selling now for a small fee.
-              </span>
-              <div class="row-fluid spacer-inner-top">
-                <div class="span6">
-                  <label class="radio">
-                    <input type="radio" value="option1" id="optionsRadios1" name="optionsRadios">
-                    <strong>1 credit /</strong> $2.50
-                  </label>
-                  <label class="radio">
-                    <input type="radio" value="option2" id="optionsRadios2" name="optionsRadios">
-                    <strong>10 credits /</strong> $20
-                  </label>
-                </div>
-                <div class="span6">
-                  <label class="radio">
-                    <input type="radio" value="option4" id="optionsRadios4" name="optionsRadios">
-                    <strong>100 credits /</strong> $150
-                  </label>
-                  <label class="radio">
-                    <input type="radio" value="option5" id="optionsRadios5" name="optionsRadios">
-                    <strong>Unlimited Credits /</strong> $250
-                  </label>
-                </div>
-              </div>
-            </div>
+    <?php if (IceGateKeeper::open('collectible_shipping')): ?>
+      <?= $form_shipping_us->renderHiddenFields(); ?>
+      <?= $form_shipping_us->renderAllErrors(); ?>
+      <div class="control-group form-inline">
+        <label class="control-label" for="">Domestic shipping</label>
+        <div class="controls flat-rate-controller">
+          <label class="radio">
+            <input name="shipping_rates_us[shipping_type]" type="radio"
+                   value="free_shipping"
+                   id="shipping_rates_us_shipping_type_free_shipping"
+                   <?php if ($form_shipping_us->isShippingTypeFreeShipping()) echo 'checked="checked"'; ?>
+
+            />Free Shipping
+          </label><br />
+          <label class="radio">
+            <input name="shipping_rates_us[shipping_type]"
+                   type="radio"
+                   value="flat_rate"
+                   class="flat-rate-checkbox"
+                   id="shipping_rates_us_shipping_type_flat_rate"
+                   <?php if (!$form_shipping_us->isShippingTypeFreeShipping()) echo 'checked="checked"'; ?>
+            />Flat rate
+          </label>
+          <div class="input-prepend spacer-left-15 spacer-top-5">
+            <span class="add-on">$</span><?= $form_shipping_us['flat_rate']->render(array(
+              'class' => 'input-small flat-rate-field')); ?>
           </div>
         </div>
       </div>
-      <div class="span3">
-        <div class="inner-yellow-bg buy-credits-button-container">
-          <a href="#" class="btn-create-collection-middle h-center">
-            <i class="icon icon-shopping-cart icon-white"></i>
-          </a>
-          <a href="#" class="blue-link">
-            Click here to buy credits
-          </a>
+
+      <?= $form_shipping_zz->renderHiddenFields(); ?>
+      <?= $form_shipping_zz->renderAllErrors(); ?>
+      <div class="control-group form-inline">
+        <label class="control-label" for="">International shipping</label>
+        <div class="controls flat-rate-controller">
+          <label class="radio">
+            <input name="shipping_rates_zz[shipping_type]" type="radio"
+                   value="no_shipping"
+                   id="shipping_rates_zz_shipping_type_no_shipping"
+                   <?php if ($form_shipping_zz->isShippingTypeNoShipping()) echo 'checked="checked"'; ?>
+            />Not shipping
+          </label><br />
+          <label class="radio">
+            <input name="shipping_rates_zz[shipping_type]" type="radio"
+                   value="free_shipping"
+                   id="shipping_rates_zz_shipping_type_free_shipping"
+                   <?php if ($form_shipping_zz->isShippingTypeFreeShipping()) echo 'checked="checked"'; ?>
+            />Free shipping
+          </label><br />
+          <label class="radio">
+            <input name="shipping_rates_zz[shipping_type]"
+                   type="radio"
+                   value="flat_rate"
+                   class="flat-rate-checkbox"
+                   id="shipping_rates_zz_shipping_type_flat_rate"
+                   <?php if (!($form_shipping_zz->isShippingTypeNoShipping() || $form_shipping_zz->isShippingTypeFreeShipping())) echo 'checked="checked"'; ?>
+            />Flat rate
+          </label>
+          <div class="input-prepend spacer-left-15 spacer-top-5">
+            <span class="add-on">$</span><?= $form_shipping_zz['flat_rate']->render(array(
+              'class' => 'input-small flat-rate-field')); ?>
+          </div><br /><br />
+          <label for="shipping_rates_zz_do_not_ship_to">We do not ship to these countries:</label><br />
+          <?= $form_shipping_zz['do_not_ship_to']; ?>
         </div>
       </div>
-    </div>
-  </div>
+    <?php endif; // if collectible shipping allowed in gatekeeper ?>
+
+  <?php else: ?>
+    <center>
+      <?php
+        echo link_to(
+          image_tag('banners/want-to-sell-this-item.png'),
+          '@seller_packages'
+        );
+      ?>
+    </center>
+    <br/>
   <?php endif; ?>
 </div>
 
 <script type="text/javascript">
 $(document).ready(function()
 {
+  'use strict';
+
   $('#collectible_for_sale_is_ready').change(function()
   {
     var checked = $(this).attr('checked') == 'checked';
@@ -118,5 +134,20 @@ $(document).ready(function()
     $('.cb-enable').toggleClass('selected', checked);
     $('.cb-disable').toggleClass('selected', !checked);
   }).change();
+
+  $('.flat-rate-controller').on('change', 'input[type=radio]', function() {
+    var $flat_rate_field = $(this).parents('.controls').find('.flat-rate-field');
+    var flat_rate_checked = !!$(this).parents('.controls').find('.flat-rate-checkbox:checked').length;
+
+    if (flat_rate_checked) {
+      $flat_rate_field.removeAttr('disabled');
+    } else {
+      $flat_rate_field.attr('disabled', 'disabled');
+    }
+  })
+
+  $('#shipping_rates_zz_do_not_ship_to').chosen({
+    no_results_text: "No countries found for "
+  });
 });
 </script>

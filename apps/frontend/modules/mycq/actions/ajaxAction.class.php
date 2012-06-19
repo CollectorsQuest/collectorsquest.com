@@ -82,7 +82,7 @@ class ajaxAction extends IceAjaxAction
             $collectible->delete();
           }
         }
-        catch (PropelException $e)
+        catch (Exception $e)
         {
           if ($collectible && !$collectible->isNew())
           {
@@ -97,6 +97,10 @@ class ajaxAction extends IceAjaxAction
       {
         $collector->getProfile()->updateProfileProgress();
       }
+
+      // change the dropbox open status depending on whether we have stuff
+      // left in it
+      $this->getUser()->setMycqDropboxOpenState(true);
 
       // This is for xdcomm support in IE browsers
       if ($redirect = $request->getParameter('redirect'))
@@ -357,6 +361,9 @@ class ajaxAction extends IceAjaxAction
        */
       $small = $multimedia->getAbsolutePath('100x100');
       copy(str_replace('235x315', '100x100', $image), $small);
+
+      $collector->getProfile()->setIsImageAuto(true);
+      $collector->getProfile()->save();
 
       return $this->success();
     }

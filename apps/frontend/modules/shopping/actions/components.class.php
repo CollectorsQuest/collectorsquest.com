@@ -14,7 +14,8 @@ class shoppingComponents extends cqFrontendComponents
         'text' => 'Empty Shopping Cart',
         'icon' => 'trash',
         'route' => '@shopping_cart_empty?encrypt=1',
-        'confirm' => 'This will permanently remove all items from your Shopping Cart. Do you want to continue?'
+        'confirm' => 'This will permanently remove all items from your Shopping Cart.
+                      Do you want to continue?'
       )
     );
 
@@ -23,7 +24,15 @@ class shoppingComponents extends cqFrontendComponents
 
   public function executeSidebarCheckout()
   {
-    $this->shopping_order = ShoppingOrderQuery::create()->findOneByUuid($this->getRequestParameter('uuid'));
+    $this->shopping_order = ShoppingOrderQuery::create()
+      ->findOneByUuid($this->getRequestParameter('uuid'));
+
+    return sfView::SUCCESS;
+  }
+
+  public function executeSidebarSignup()
+  {
+    $this->form = new CollectorSignupSidebarForm();
 
     return sfView::SUCCESS;
   }

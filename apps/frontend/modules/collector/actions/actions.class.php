@@ -83,7 +83,7 @@ class collectorActions extends cqFrontendActions
         $this->getUser()->Authenticate(true, $collector, false);
 
         $cqEmail = new cqEmail($this->getMailer());
-        $cqEmail->send('Collector/welcome_to_cq', array(
+        $cqEmail->send($collector->getUserType() . '/welcome_to_cq', array(
           'to' => $collector->getEmail(),
         ));
 

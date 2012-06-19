@@ -15,14 +15,34 @@ class PromotionForm extends BasePromotionForm
   {
     parent::__construct($object, $options, $CSRFSecret);
 
-    $this->setDefault('promotion_code', sprintf('CQ%d-%s', date('Y'), ShoppingOrderPeer::getUuidFromId(date('mdHis'))));
+    if ($this->getObject()->isNew())
+    {
+      $this->setDefault('promotion_code', sprintf('CQ%d-%s', date('Y'), ShoppingOrderPeer::getUuidFromId(date('mdHis'))));
+    }
   }
 
   public function configure()
   {
     $this->widgetSchema['expiry_date'] = new sfWidgetFormJQueryDate();
-    
-    $this->widgetSchema['amount_type'] = new sfWidgetFormChoice(array('choices'=> $this->amountTypes, 'expanded'=>true), array('class'=>'unstyled'));
+
+    $this->widgetSchema['amount_type'] = new sfWidgetFormSelectRadio(array(
+      'choices'=> $this->amountTypes,
+      'formatter'        => function($widget, $inputs)
+      {
+        $rows = array();
+        foreach ($inputs as $input)
+        {
+          $rows[] = $widget->renderContentTag('label',
+              $input['input'] . html_entity_decode($input['label']),
+            array('class'=> 'radio')
+          );
+        }
+
+        return !$rows ? '' : $widget->renderContentTag('div', implode($widget->getOption('separator'), $rows), array('class' => $widget->getOption('class')));
+      }
+    ), array(
+      'class'=>'inline'
+    ));
   }
 
 }

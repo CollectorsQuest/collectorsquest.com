@@ -39,11 +39,14 @@
               <div class="controls">
                 <div class="row-fluid">
                   <div class="span12" style="margin-bottom: 20px;">
-                    <?= $avatar_form['filename']; ?>
-                    <button type="submit" class="btn btn-primary blue-button spacer-left">Upload File</button>
+                    <?= $avatar_form['filename']->render(array('style' => 'width: auto;')); ?>
+                    <button type="submit" class="btn btn-primary blue-button spacer-left">
+                      Upload File
+                    </button>
                     <?= $avatar_form['filename']->renderError(); ?>
-                    <div class="help-block" style="color: grey;">
-                      All popular image formats are supported but the image file should be less than 5MB in size!
+                    <div class="help-block">
+                      <strong>Note:</strong> All popular image formats are supported
+                      but the image file should be less than 10MB in size!
                     </div>
                   </div>
                   <div class="span3 avatar">
@@ -94,7 +97,7 @@
             <?= $collector_form['about_purchases_per_year']->renderRow(); ?>
 
             <div class="control-group">
-              <label class="control-label" for="input01">Purchasing habbits</label>
+              <label class="control-label" for="input01">Purchasing habits</label>
               <div class="controls form-inline clearfix" style="width: 540px">
                 <div class="inset-input pull-left">
                   <label for="<?= $collector_form['about_most_expensive_item']->renderId(); ?>">
@@ -108,6 +111,10 @@
                     <?= $collector_form['about_annually_spend']->renderLabelName(); ?>
                   </label>
                   <?= $collector_form['about_annually_spend']->render(array('class' => 'span2')); ?>
+                </div>
+                <br style="clear: both">
+                <div class="help-block spacer-top-10">
+                  <strong>Note:</strong> This information will not be made public
                 </div>
               </div>
             </div>

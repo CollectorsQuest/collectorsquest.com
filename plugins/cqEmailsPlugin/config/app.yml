@@ -21,6 +21,13 @@ all:
       welcome_to_cq:
         subject: "Welcome to Collectors Quest!"
 
+    Seller:
+      package_confirmation:
+        subject: "Thanks for purchasing credits on Collectors Quest!"
+        required_params: [collector, package_transaction]
+      welcome_to_cq:
+        subject: "Thanks for becoming a seller on Collectors Quest!"
+
     Messages:
       private_message_notification:
         subject: "You've Received a Message on Collectors Quest!"
@@ -30,6 +37,14 @@ all:
       comment_response_notification:
         subject: "Someone responded to your comment on Collectors Quest!"
         required_params: [ oModelObject, oNewComment, oYourComment, sThreadUrl, sUnsubscribeUrl ]
+
+    Shopping:
+      buyer_order_confirmation:
+        subject: "Congratulations! You’ve made a purchase on Collectors Quest!"
+        required_params: [ oSeller, oShoppingOrder, oCollectible ]
+      seller_order_notification:
+        subject: "Congratulations! You’ve sold on Collectors Quest!"
+        required_params: [ oSeller, oShoppingOrder, oCollectible ]
 
     internal:
       feedback:

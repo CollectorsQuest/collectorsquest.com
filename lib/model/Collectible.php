@@ -10,7 +10,7 @@ require 'lib/model/om/BaseCollectible.php';
  * @method boolean addTag($name)
  * @method boolean hasTag($name)
  */
-class Collectible extends BaseCollectible
+class Collectible extends BaseCollectible implements ShippingReferencesInterface
 {
   public
     $_multimedia = array(),
@@ -490,77 +490,61 @@ class Collectible extends BaseCollectible
       ->filterByCollectible($this)
       ->isForSale();
 
-    return $q->count();
+    return $q->count() > 0;
   }
 
   /**
-   * Get the shipping rates for this collectible, grouped by country
+   * Get the shipping references for this collectible, grouped by country, merged
+   * with the shipping references for the related collector
    *
    * @param     PropelPDO $con
-   * @return    array
-   *
-   * @see       ShippingRateCollectorQuery::findAndGroupByCountryCode()
+   * @return    array ShippingReference[]
    */
-  public function getShippingRatesGroupedByCountryCode(PropelPDO $con = null)
+  public function getShippingReferencesByCountryCode(PropelPDO $con = null)
   {
     return array_merge(
-      ShippingRateCollectorQuery::create()
-        ->filterByCollector($this)
-        ->findAndGroupByCountryCode($con),
-      ShippingRateCollectibleQuery::create()
+      ShippingReferenceQuery::create()
+        ->filterByCollector($this->getCollector($con))
+        ->find($con)->getArrayCopy($keyColumn = 'CountryIso3166'),
+      ShippingReferenceQuery::create()
         ->filterByCollectible($this)
-        ->findAndGroupByCountryCode($con)
+        ->find($con)->getArrayCopy($keyColumn = 'CountryIso3166')
     );
   }
 
   /**
-   * Get shipping rates for a specific country
+   * Get the shipping reference for a specific country
+   *
+   * If no shipping reference is present for the collectible, the shipping
+   * reference for the related collector will be returned (if there is one)
    *
    * @param     string $coutry_code
    * @param     PropelPDO $con
-   * @return    ShippingRate[]
+   *
+   * @return    ShippingReference
    */
-  public function getShippingRatesForCountryCode($coutry_code, PropelPDO $con = null)
+  public function getShippingReferenceForCountryCode($coutry_code, PropelPDO $con = null)
   {
-    // get all shipping rates by country,
-    // because they hold the combination of base collector shipping rates
-    // plus any specific collectible shipping rates set for this object
-    $shipping_rates_by_country = $this->getShippingRatesGroupedByCountryCode($con);
-
-    // if we have a shipping fee set for this country
-    if (isset($shipping_rates_by_country[$coutry_code]))
-    {
-      // return it
-      return $shipping_rates_by_country[$coutry_code];
-    }
-    else
-    {
-      // otherwize return an empty array
-      return array();
-    }
+    return ShippingReferenceQuery::create()
+      ->filterByCollectible($this)
+      ->filterByCountryIso3166($coutry_code)
+      ->findOne($con)
+    ?: ShippingReferenceQuery::create()
+      ->filterByCollector($this->getCOllector())
+      ->filterByCountryIso3166($coutry_code)
+      ->findOne($con);
   }
 
   /**
-   * Get shipping rates for the collectible's collector country
+   * Get the shipping reference for this collectible's collector's country
    *
    * @param     PropelPDO $con
-   * @return    ShippingRate[]
+   * @return    ShippingReference
    */
-  public function getShippingRatesDomestic(PropelPDO $con = null)
+  public function getShippingReferenceDomestic(PropelPDO $con = null)
   {
-    $country_code = $this->getCollector()->getProfile()->getCountryIso3166();
-
-    return $this->getShippingRatesForCountryCode($country_code, $con);
-  }
-
-  /**
-   * Return the domestic country code
-   *
-   * @return    string
-   */
-  public function getDomesticCountryCode()
-  {
-    return $this->getCollector()->getProfile()->getCountryIso3166();
+    return $this->getShippingRateForCountryCode(
+      $this->getCollector($con)->getProfile($con)->getCountryIso3166(), $con);
   }
 
   /**
@@ -603,6 +587,11 @@ class Collectible extends BaseCollectible
    */
   public function preDelete(PropelPDO $con = null)
   {
+    // Delete shipping references manually because no actual FK exists
+    ShippingReferenceQuery::create()
+      ->filterByCollectible($this)
+      ->delete($con);
+
     // Deleting collectibles for sale
     $collectible_for_sale = $this->getCollectibleForSale();
     if (!empty($collectibles_for_sale))
