@@ -5,8 +5,7 @@ all:
 indexSuccess:
   javascripts:
     - jquery/infinitescroll.js
-    - /assets/js/wysihtml5.js
-    - /assets/js/bootstrap/wysihtml5.js
+
   components:
     sidebar_300: [collection, sidebar]
 
@@ -17,7 +16,3 @@ indexNoCollectibles:
 collectibleSuccess:
   components:
     sidebar_300: [collection, sidebarCollectible]
-
-  javascripts:
-    - /assets/js/wysihtml5.js
-    - /assets/js/bootstrap/wysihtml5.js
