@@ -152,7 +152,7 @@
 <div id="mycq-tabs">
   <div class="tab-content">
     <div class="tab-pane active" id="tab1">
-      <br style="clear: both;"/>
+
       <a name="my-collections"></a>
       <div class="tab-content-inner spacer-top-35">
         <div class="row-fluid sidebar-title spacer-inner-bottom">

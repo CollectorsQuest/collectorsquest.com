@@ -79,7 +79,7 @@
                    value="no_shipping"
                    id="shipping_rates_zz_shipping_type_no_shipping"
                    <?php if ($form_shipping_zz->isShippingTypeNoShipping()) echo 'checked="checked"'; ?>
-            />No shipping
+            />Not shipping
           </label><br />
           <label class="radio">
             <input name="shipping_rates_zz[shipping_type]" type="radio"
@@ -100,8 +100,8 @@
           <div class="input-prepend spacer-left-15 spacer-top-5">
             <span class="add-on">$</span><?= $form_shipping_zz['flat_rate']->render(array(
               'class' => 'input-small flat-rate-field')); ?>
-          </div><br />
-          <label for="shipping_rates_zz_do_not_ship_to">Do not ship to:</label><br />
+          </div><br /><br />
+          <label for="shipping_rates_zz_do_not_ship_to">We do not ship to these countries:</label><br />
           <?= $form_shipping_zz['do_not_ship_to']; ?>
         </div>
       </div>
@@ -146,6 +146,8 @@ $(document).ready(function()
     }
   })
 
-  $('#shipping_rates_zz_do_not_ship_to').chosen();
+  $('#shipping_rates_zz_do_not_ship_to').chosen({
+    no_results_text: "No countries found for "
+  });
 });
 </script>

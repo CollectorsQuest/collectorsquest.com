@@ -37,7 +37,8 @@ class SimpleShippingCollectorCollectibleInternationalForm extends SimpleShipping
         'multiple' => true,
         'key_method' => 'getIso3166',
         'criteria' => $q,
-    ));
+    ), array('data-placeholder' => 'Choose countries if applicable...'));
+
     $this->validatorSchema['do_not_ship_to'] = new sfValidatorPropelChoice(array(
         'model' => 'GeoCountry',
         'column' => 'iso3166',

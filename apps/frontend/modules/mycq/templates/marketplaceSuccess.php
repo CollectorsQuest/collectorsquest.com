@@ -11,7 +11,7 @@
 <div id="mycq-tabs">
   <div class="tab-content">
     <div class="tab-pane active" id="tab1">
-      <br style="clear: both;"/>
+
       <div class="tab-content-inner">
         <div class="row-fluid sidebar-title spacer-inner-bottom">
           <div class="span5 link-align">
