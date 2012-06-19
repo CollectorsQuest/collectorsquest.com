@@ -85,7 +85,10 @@
 </div>
 
 <?php if ($collectible->getDescription('stripped')): ?>
-<div class="item-description">
+<?php if ($sf_user->isOwnerOf($collectible)): ?>
+  <span class="ui-icon ui-icon-pencil ui-icon-editable"></span>
+<?php endif; ?>
+<div class="item-description <?= ($sf_user->isOwnerOf($collectible)) ? 'editable_html' : '' ?>" id="collectible_<?= $collectible->getId(); ?>_description">
   <?= $collectible->getDescription('html'); ?>
 </div>
 <?php endif; ?>
@@ -180,5 +183,41 @@
 
       return false;
     });
+
+    <?php if ($sf_user->isOwnerOf($collectible)): ?>
+    $('#main .header-bar h1')
+        .attr('id', '<?=sprintf('collectible_%d_name', $collectible->getId());?>')
+        .editable('<?= url_for('@ajax_editable') ?>',
+    {
+      indicator: '<img src="/images/loading.gif"/>',
+      tooltip: '<?= __('Click to edit...'); ?>',
+      cancel: '<?= __('Cancel'); ?>',
+      submit: '<?= __('Save'); ?>'
+    });
+    $('.editable_html').editable('<?= url_for('@ajax_editable'); ?>',
+    {
+      loadurl: '<?= url_for('@ajax_editable_load'); ?>',
+
+      type: 'textarea',
+      cancel: '<?= __('Cancel'); ?>',
+      submit: '<?= __('Save'); ?>',
+      indicator: '<img src="/images/loading.gif"/>',
+      tooltip: '<?= __('Click to edit...'); ?>',
+      onblur: "ignore",
+      rows: 16,
+      cols: 80,
+      autogrow: {
+        lineHeight: 16,
+        minHeight: 50
+      },
+      onedit: function() {
+        console.log($('.editable_html').find('textarea'));
+        $('.editable_html').find('textarea').wysihtml5({
+          "font-styles": false, "image": false, "link": false
+        });
+      }
+    });
+    <?php endif; ?>
+
   });
 </script>
