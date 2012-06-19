@@ -98,7 +98,7 @@ a.btn-cq-style:hover {
 .btn-mini-social {
 	&:hover {
 		.border-radius(3px);
-		.box-shadow(0);
+		.box-shadow(none);
 		margin: -2px 1px 0 2px;
 		padding: 4px 7px 0 7px;
 	}
@@ -202,6 +202,40 @@ select,
 		color: #887777;
 		text-decoration: none;
 		border: 1px solid #d1cccc;
+	}
+}
+
+.btn-blue-simple {
+	margin: 0 3px;
+	padding: 4px 8px;
+	font-size: 12px;
+	font-weight: bold;
+	//letter-spacing: 0.03em;
+	color: @blue;
+	background: none;
+	cursor: pointer;
+	&:hover {
+		color: #fff;
+		background-color: @blue;
+		.border-radius(8px);
+	}
+	&:active {
+		background-color: #0a80c0;
+	}
+}
+
+.btn-delete-simple {
+	margin: 0 3px;
+	padding: 4px 8px;
+	font-size: 12px;
+	font-weight: bold;
+	//letter-spacing: 0.03em;
+	color: #9a9ba2;
+	&:hover {
+		color: #716a70;
+	}
+	&:active {
+		color: #68757b;
 	}
 }
 

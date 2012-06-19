@@ -46,20 +46,21 @@
         <div class="blue-well">
           <div class="row-fluid">
             <div class="span8">
-              <button class="btn btn-primary blue-button" type="submit">
-                Set Main Image
-              </button>
-              <button class="btn btn-primary blue-button" type="submit">
-                Re-orderCollection
-              </button>
-              <button class="btn btn-primary blue-button" type="submit">
-                Public View
-              </button>
-              <a onclick="return confirm('Are you sure you want to delete this Collection?');"
-                 class="btn gray-button" href="#">
-                <i class="icon icon-trash"></i>
-                Delete Collection
-              </a>
+              <div class="buttons-container">
+                <a href="#" class="btn-blue-simple">
+                  Set main image
+                </a>
+                <a href="#"  class="btn-blue-simple">
+                  Re-order collection
+                </a>
+                <a href="#" class="btn-blue-simple">
+                  Public view
+                </a>
+                <a onclick="return confirm('Are you sure you want to delete this Collection?');"
+                   class="btn-delete-simple" href="#">
+                  Delete collection
+                </a>
+              </div>
             </div>
             <div class="span4">
               <div class="input-append pull-right search-mycq">
@@ -114,15 +115,17 @@
               </p>
             </div>
             <div class="span3 collectible_grid_view_square link">
-              <a href="#" title="">
-                <img src="http://placehold.it/140x140" alt="">
-              </a>
-              <p>
-                <a href="#" class="target" title="">Indie Spotlight : Scud</a>
-              </p>
+              <div class="add-new-zone">
+                <a href="#" id="collection-create-icon"
+                   class="btn-upload-collectible">
+                  <i class="icon-plus icon-white"></i>
+                </a>
+                <a href="#" id="collection-create-link"
+                   class="btn-upload-collectible-txt">
+                  Add a new collectible by clicking here
+                </a>
+              </div>
             </div>
-
-
           </div>
         </div>
 
@@ -147,7 +150,7 @@
     </div><!-- #tab4.tab-pane -->
   </div><!-- .tab-content -->
 </div>
-*/ ?>
+ */ ?>
 
 <div id="mycq-tabs">
   <div class="tab-content">
