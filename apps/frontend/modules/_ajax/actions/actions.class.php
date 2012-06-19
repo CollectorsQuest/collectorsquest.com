@@ -26,9 +26,9 @@ class _ajaxActions extends cqFrontendActions
       {
         $value = call_user_func(array($object, 'get'. sfInflector::camelize($field)));
       }
-    }
+    } else { $value = ''; }
 
-    $this->renderText($value);
+    $this->renderText($value . '<span>'. implode(',', array($model, $id, $field)) .'</span>');
 
     return sfView::NONE;
   }

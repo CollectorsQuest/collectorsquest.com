@@ -3,7 +3,10 @@ all:
   javascripts: [jquery/ui.js]
 
 indexSuccess:
-  javascripts: [jquery/infinitescroll.js]
+  javascripts:
+    - jquery/infinitescroll.js
+    - /assets/js/wysihtml5.js
+    - /assets/js/bootstrap/wysihtml5.js
   components:
     sidebar_300: [collection, sidebar]
 
