@@ -139,6 +139,38 @@ class mycqActions extends cqFrontendActions
     return sfView::SUCCESS;
   }
 
+  public function executeProfileSellerSettings(sfWebRequest $request)
+  {
+    $this->forward404Unless($this->getCollector()->getIsSeller());
+
+    $form = new CollectorEditForm($this->getCollector(), array(
+        'seller_settings_show' => true,
+        'seller_settings_required' => true,
+    ));
+    $form->useFields(array(
+        'seller_settings_paypal_email',
+        'seller_settings_phone_number',
+        'seller_settings_store_description',
+        'seller_settings_return_policy',
+        'seller_settings_payment_accepted',
+    ));
+
+    if (sfRequest::POST == $request->getMethod())
+    {
+      if ($form->bindAndSave($request->getParameter($form->getName())))
+      {
+        $this->getUser()->setFlash('success',
+          'You have successfully updated your seller settings.');
+
+        return $this->redirect('@mycq_profile_seller_settings');
+      };
+    }
+
+    $this->form = $form;
+
+    return sfView::SUCCESS;
+  }
+
   public function executeProfileAddresses(sfWebRequest $request)
   {
     $this->collector_addresses = $this->getCollector()->getCollectorAddresses();
@@ -156,6 +188,9 @@ class mycqActions extends cqFrontendActions
     {
       if ($form->bindAndSave($request->getParameter($form->getName())))
       {
+        $this->getUser()->setFlash('success',
+          'You have successfully added a new address.');
+
         $this->redirect('@mycq_profile_addresses');
       }
     }
@@ -175,6 +210,9 @@ class mycqActions extends cqFrontendActions
     {
       if ($form->bindAndSave($request->getParameter($form->getName())))
       {
+        $this->getUser()->setFlash('success',
+          'You have successfully edited your address.');
+
         $this->redirect('@mycq_profile_addresses');
       }
     }

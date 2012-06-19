@@ -6,6 +6,22 @@ require 'lib/model/om/BaseCollector.php';
  * @method     int getSingupNumCompletedSteps() Return the number of completed signup steps
  * @method     Collector setSingupNumCompletedSteps(int $v) Set the number of completed signup steps
  * @method     Collector setCqnextAccessAllowed(boolean $v)
+ *
+ * @method     Collector setSellerSettingsPaypalEmail(string $v)
+ * @method     string    getSellerSettingsPaypalEmail()
+ *
+ * @method     Collector setSellerSettingsPhoneNumber(string $v)
+ * @method     string    getSellerSettingsPhoneNumber()
+ *
+ * @method     Collector setSellerSettingsStoreDescription(string $v)
+ * @method     string    getSellerSettingsStoreDescription()
+ *
+ * @method     Collector setSellerSettingsReturnPolicy(string $v)
+ * @method     string    getSellerSettingsReturnPolicy()
+ *
+ * @method     Collector setSellerSettingsPaymentAccepted(string $v)
+ * @method     string    getSellerSettingsPaymentAccepted()
+ *
  */
 class Collector extends BaseCollector implements ShippingReferencesInterface
 {
@@ -22,6 +38,12 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
       CollectorPeer::PROPERTY_CQNEXT_ACCESS_ALLOWED,
       CollectorPeer::PROPERTY_CQNEXT_ACCESS_ALLOWED_DEFAULT_VALUE
     );
+
+    $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_PAYPAL_EMAIL);
+    $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_PHONE_NUMBER);
+    $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_STORE_DESCRIPTION);
+    $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_RETURN_POLICY);
+    $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_PAYMENT_ACCEPTED);
   }
 
   /**

@@ -16,6 +16,11 @@ class CollectorEditForm extends CollectorForm
     $this->setupProfileCollectorType();
     $this->setupProfileWebsite();
 
+    if ($this->getOption('seller_settings_show'))
+    {
+      $this->setupSellerSettingsFields($this->getOption('seller_settings_required', false));
+    }
+
     $this->widgetSchema->setLabels(array(
         'display_name' => 'Screen Name',
         'collector_type' => 'Collector Type',
@@ -75,6 +80,39 @@ class CollectorEditForm extends CollectorForm
     )));
   }
 
+  /**
+   * Add the seller settings fields to the form, whose values are kept in
+   * ExtraPropertiesBehavior
+   *
+   * @param     bollean $required
+   */
+  protected function setupSellerSettingsFields($required = false)
+  {
+    $this->widgetSchema['seller_settings_paypal_email'] = new sfWidgetFormInputText(array(
+        'label' => 'PayPal Email',
+      ), array(
+        'type' => 'email',
+    ));
+    $this->widgetSchema['seller_settings_phone_number'] = new sfWidgetFormInputText(array(
+        'label' => 'Phone Number',
+    ));
+    $this->widgetSchema['seller_settings_store_description'] = new sfWidgetFormTextarea(array(
+        'label' => 'Store Description',
+    ));
+    $this->widgetSchema['seller_settings_return_policy'] = new sfWidgetFormTextarea(array(
+        'label' => 'Return Policy',
+    ));
+    $this->widgetSchema['seller_settings_payment_accepted'] = new sfWidgetFormTextarea(array(
+        'label' => 'Payment Accepted',
+    ));
+
+    $this->validatorSchema['seller_settings_paypal_email'] = new sfValidatorEmail(array('required' => $required));
+    $this->validatorSchema['seller_settings_phone_number'] = new sfValidatorString(array('required' => $required));
+    $this->validatorSchema['seller_settings_store_description'] = new sfValidatorString(array('required' => $required));
+    $this->validatorSchema['seller_settings_return_policy'] = new sfValidatorString(array('required' => $required));
+    $this->validatorSchema['seller_settings_payment_accepted'] = new sfValidatorString(array('required' => $required));
+  }
+
   protected function embedProfileForm()
   {
     $this->mergeForm($this->getProfileForm());
@@ -129,11 +167,62 @@ class CollectorEditForm extends CollectorForm
     ), array('halt_on_error' => true)));
   }
 
+  /**
+   * Update the Collector object with the form values
+   *
+   * @param type $values
+   */
   protected function doUpdateObject($values)
   {
     parent::doUpdateObject($values);
 
+    // Also update the collector profile
     $this->getObject()->getProfile()->fromArray($values, BasePeer::TYPE_FIELDNAME);
+
+    // and update the values kept in by ExtraPropertiesBehavior
+    if (isset($values['seller_settings_paypal_email']))
+    {
+      $this->getObject()->setSellerSettingsPaypalEmail(
+        $values['seller_settings_paypal_email']);
+    }
+    if (isset($values['seller_settings_phone_number']))
+    {
+      $this->getObject()->setSellerSettingsPhoneNumber(
+        $values['seller_settings_phone_number']);
+    }
+    if (isset($values['seller_settings_store_description']))
+    {
+      $this->getObject()->setSellerSettingsStoreDescription(
+        $values['seller_settings_store_description']);
+    }
+    if (isset($values['seller_settings_return_policy']))
+    {
+      $this->getObject()->setSellerSettingsReturnPolicy(
+        $values['seller_settings_return_policy']);
+    }
+    if (isset($values['seller_settings_payment_accepted']))
+    {
+      $this->getObject()->setSellerSettingsPaymentAccepted(
+        $values['seller_settings_payment_accepted']);
+    }
+  }
+
+  /**
+   * Update form defaults from object, adding fields that are kept in ExtraProperties
+   * behavior
+   */
+  protected function updateDefaultsFromObject()
+  {
+    parent::updateDefaultsFromObject();
+
+    $this->setDefaults(array_merge($this->defaults, array(
+        'seller_settings_paypal_email' => $this->getObject()->getSellerSettingsPaypalEmail(),
+        'seller_settings_phone_number' => $this->getObject()->getSellerSettingsPhoneNumber(),
+        'seller_settings_store_description' => $this->getObject()->getSellerSettingsStoreDescription(),
+        'seller_settings_return_policy' => $this->getObject()->getSellerSettingsReturnPolicy(),
+        'seller_settings_payment_accepted' => $this->getObject()->getSellerSettingsPaymentAccepted(),
+    )));
+
   }
 
   protected function unsetFields()
@@ -152,7 +241,6 @@ class CollectorEditForm extends CollectorForm
 
     parent::unsetFields();
   }
-
 
   /**
    * @return    CollectorProfileForm

@@ -5,9 +5,7 @@
 ?>
 
 <div id="mycq-tabs">
-  <ul class="nav nav-tabs">
-    <?= SmartMenu::generate('profile_tabs_navigation'); ?>
-  </ul>
+  <?php include_partial('mycq_tabs_navigation'); ?>
   <div class="tab-content">
     <div class="tab-pane active">
       <div class="tab-content-inner spacer">
