@@ -10,8 +10,8 @@
     Thanks for purchasing credits on Collectors Quest! We hope you enjoy continuing to sell your neat
     stuff to our audience of passionate, active collectors. Here’s your package information:<br/><br/>
 
-      Package name: <strong>{{ package_transaction.packageName }}</strong><br/>
       Number of credits: <strong>{{ package_transaction.credits }}</strong><br/>
+      Pricing level: <strong>${{ package.packagePrice }}</strong><br/>
       Expiry date: <strong>{{ package_transaction.expiryDate|date('m/d/Y') }}</strong>
   </p>
 

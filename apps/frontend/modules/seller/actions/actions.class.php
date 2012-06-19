@@ -90,7 +90,8 @@ class sellerActions extends cqFrontendActions
               'to'     => $collector->getEmail(),
               'params' => array(
                 'collector' => $collector,
-                'package_transaction' => $transaction
+                'package_transaction' => $transaction,
+                'package' => $package,
               ),
             ));
 
