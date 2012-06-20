@@ -191,15 +191,8 @@ class collectionActions extends cqFrontendActions
       $this->next = $q->findOne();
     }
 
-    if ($collectible->isForSale())
+    if ($collectible->isWasForSale())
     {
-      /* @var $collectible_for_sale CollectibleForSale */
-      $collectible_for_sale = $collectible->getCollectibleForSale();
-      $this->isSold = $collectible_for_sale->getIsSold() || $collectible_for_sale->getActiveCollectibleOffersCount() == 0;
-
-      $this->collectible_for_sale = $collectible_for_sale;
-      $this->form = new CollectibleForSaleBuyForm($collectible_for_sale);
-
       SmartMenu::setSelected('header_main_menu', 'marketplace');
     }
 

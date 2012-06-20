@@ -91,17 +91,25 @@ class ShoppingOrder extends BaseShoppingOrder
   public function getPaypalPayRequestFields()
   {
     $PayRequestFields = array(
-      // Required.  Whether the request pays the receiver or whether the request is set up to create a payment request, but not fulfill the payment until the ExecutePayment is called.  Values are:  PAY, CREATE, PAY_PRIMARY
+      // Required.  Whether the request pays the receiver or whether the request is set up to
+      // create a payment request, but not fulfill the payment until the ExecutePayment is called.
+      // Values are:  PAY, CREATE, PAY_PRIMARY
       'ActionType' => 'CREATE',
       'CurrencyCode' => $this->getCurrency(),
+
       // The payer of the fees.  Values are:  SENDER, PRIMARYRECEIVER, EACHRECEIVER, SECONDARYONLY
       'FeesPayer' => 'EACHRECEIVER',
+
       // A note associated with the payment (text, not HTML).  1000 char max
       'Memo' => $this->getNoteToSeller(),
-      // Whether to reverse paralel payments if an error occurs with a payment.  Values are:  TRUE, FALSE
+
+      // Whether to reverse paralel payments if an error occurs with a payment.
+      // Values are:  TRUE, FALSE
       'ReverseAllParallelPaymentsOnError' => true,
+
       // Sender's email address.  127 char max.
       'SenderEmail' => '',
+
       // Unique ID that you specify to track the payment.  127 char max.
       'TrackingID' => ''
     );
@@ -133,16 +141,24 @@ class ShoppingOrder extends BaseShoppingOrder
     $Receiver = array(
       // Required.  Amount to be paid to the receiver.
       'Amount' => $this->getTotalAmount(),
+
       // Receiver's email address. 127 char max.
-      'Email' => 'kangov_1327417143_biz@collectorsquest.com',
+      'Email' => $this->getSeller()->getSellerSettingsPaypalEmail() ?
+        $this->getSeller()->getSellerSettingsPaypalEmail() :
+        $this->getSeller()->getEmail(),
+
       // The invoice number for the payment.  127 char max.
       'InvoiceID' => $this->getUuid() .'-'. date('is'),
+
       // Transaction type.  Values are:  GOODS, SERVICE, PERSONAL, CASHADVANCE, DIGITALGOODS
       'PaymentType' => 'GOODS',
+
       // The transaction subtype for the payment.
       'PaymentSubType' => '',
+
       // Receiver's phone number.   Numbers only.
       'Phone' => array('CountryCode' => '', 'PhoneNumber' => '', 'Extension' => ''),
+
       // Whether this receiver is the primary receiver.  Values are:  TRUE, FALSE
       'Primary' => false
     );
@@ -165,7 +181,8 @@ class ShoppingOrder extends BaseShoppingOrder
   {
     $AccountIdentifierFields = array(
       // Sender's email address.  127 char max.
-      'Email' => '',
+      'Email' => $this->getBuyerEmail(),
+
       // Sender's phone number.  Numbers only.
       'Phone' => array('CountryCode' => '', 'PhoneNumber' => '', 'Extension' => '')
     );

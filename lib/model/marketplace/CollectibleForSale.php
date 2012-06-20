@@ -174,4 +174,27 @@ class CollectibleForSale extends BaseCollectibleForSale
     return (bool)CollectibleOfferPeer::doCount($criteria);
   }
 
+  public function isForSale()
+  {
+    if (!$this->getIsReady()) {
+      return false;
+    }
+    else if ($this->getIsSold()) {
+      return false;
+    }
+    else if ($this->getQuantity() === 0) {
+      return false;
+    }
+    else if ($this->getPriceAmount() === 0) {
+      return false;
+    }
+
+    return true;
+  }
+
+  public function isShippingFree()
+  {
+    return true;
+  }
+
 }

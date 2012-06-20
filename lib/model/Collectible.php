@@ -493,6 +493,14 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
     return $q->count() > 0;
   }
 
+  public function isWasForSale()
+  {
+    $q = CollectibleForSaleQuery::create()
+      ->filterByCollectible($this);
+
+    return $q->count() > 0;
+  }
+
   /**
    * Get the shipping references for this collectible, grouped by country, merged
    * with the shipping references for the related collector

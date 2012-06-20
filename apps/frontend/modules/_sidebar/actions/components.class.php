@@ -514,6 +514,31 @@ class _sidebarComponents extends cqFrontendComponents
     return $this->_sidebar_if($this->getCollector()->isOwnerOf($collectible));
   }
 
+  public function executeWidgetCollectibleBuy()
+  {
+    if (IceGateKeeper::locked('shopping_cart'))
+    {
+      return sfView::NONE;
+    }
+
+    /** @var $collectible Collectible|CollectionCollectible */
+    $collectible = $this->getVar('collectible');
+
+    /** @var $collectible_for_sale CollectibleForSale */
+    $collectible_for_sale = null;
+
+    if ($collectible && $collectible->isWasForSale())
+    {
+      /* @var $collectible_for_sale CollectibleForSale */
+      $collectible_for_sale = $collectible->getCollectibleForSale();
+
+      $this->collectible_for_sale = $collectible_for_sale;
+      $this->form = new CollectibleForSaleBuyForm($collectible_for_sale);
+    }
+
+    return $this->_sidebar_if($collectible_for_sale instanceof CollectibleForSale);
+  }
+
   private function _sidebar_if($condition = false)
   {
     if ($condition) {
