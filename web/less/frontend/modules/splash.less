@@ -12,7 +12,7 @@
 	}
 	.wrapper-bottom {
 		position: relative;
-		margin-top: 370px;
+		margin-top: 342px;
 		padding: 135px 20px 30px 20px;
 		background: rgb(8,99,148); /* Old browsers */
 	/* IE9 SVG, needs conditional override of 'filter' to 'none' */
@@ -36,15 +36,6 @@
 			color: #fff;
 		}
 	}
-
-	.sign-up-form {
-		margin-right: 15px;
-		padding: 30px;
-		background-color: @yellowLight;
-		border: 1px solid @boxBorder2;
-		.border-radius(6px);
-		.box-shadow(0 2px 7px rgba(0, 0, 0, 0.2));
-	}
 }
 
 
@@ -59,5 +50,34 @@
 		.smooth-font();
 		color: #fff5d4;
 		letter-spacing: 0.01em;
+	}
+}
+
+
+//SIGNUP FORM
+
+.signup-form-splash {
+	margin-right: 15px;
+	padding: 20px 30px 30px;
+	background-color: @yellowLight;
+	border: 1px solid @boxBorder2;
+	.border-radius(6px);
+	.box-shadow(0 2px 7px rgba(0, 0, 0, 0.2));
+
+	.v-center-container-label {
+		width: auto !important;
+	}
+	.form-horizontal .control-label {
+		width: 86px;
+		margin-bottom: 0;
+		padding-right: 4px;
+		padding-top: 3px;
+		line-height: 13px;
+	}
+	.span8 input {
+		width: 180px;
+	}
+	.radio_list input {
+		width: auto !important;
 	}
 }

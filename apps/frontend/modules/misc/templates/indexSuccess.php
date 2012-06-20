@@ -21,12 +21,14 @@
             </div>
           </div>
           <div class="span6">
-            <img src="/images/frontend/misc/guide-splash-page-img.png" alt="">
+            <div class="pull-right spacer-top">
+              <img src="/images/frontend/misc/guide-splash-page-img.png" alt="">
+            </div>
           </div>
         </div>
       </div>
       <div class="span5">
-        <div class="sign-up-form">
+        <div class="signup-form-splash">
           <?php include_partial('global/footer_login_signup', array(
           'signup_form'=> $signup_form,
           'login_form' => $login_form
