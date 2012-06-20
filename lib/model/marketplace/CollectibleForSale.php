@@ -44,6 +44,67 @@ class CollectibleForSale extends BaseCollectibleForSale
   }
 
   /**
+   * Check if shipping is free for this collectible for sale
+   *
+   * If no country code is provided, all shipping references are checked
+   *
+   * @param     string $country_code
+   * @return    boolean
+   */
+  public function isShippingFree($country_code = null)
+  {
+    if (null !== $country_code)
+    {
+      return 0 === $this->getShippingAmountForCountry($country_code);
+    }
+
+    $shipping_references = $this->getCollectible()
+      ->getShippingReferencesByCountryCode();
+    if (empty($shipping_references))
+    {
+      return true;
+    }
+
+    foreach ($shipping_references as $shipping_reference)
+    {
+      if (!$shipping_reference->isSimpleFreeShipping())
+      {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  /**
+   * Return a simple shipping amount for a country
+   *
+   * @param     string $country_code
+   * @param     string $return "float|integer"
+   * @param     PropePDO $con
+   *
+   * @return    mixed A float amount in USD, 0 if free shipping or FALSE if no shipping
+   */
+  public function getShippingAmountForCountry($country_code = false, $return = 'float',  PropelPDO $con = null)
+  {
+    if (false === $country_code)
+    {
+      $country_code = 'US';
+    }
+
+    $shipping_refenrence = $this->getCollectible($con)
+      ->getShippingReferenceForCountryCode($country_code, $con);
+
+    if (!$shipping_refenrence)
+    {
+      // if no shipping reference, assume free shipping
+      return 0;
+    }
+
+    return $shipping_refenrence->getSimpleShippingAmount($return);
+  }
+
+  /**
    * Proxy method to Collectible::getCollector()
    *
    * @param  null|PropelPDO  $con
@@ -144,6 +205,24 @@ class CollectibleForSale extends BaseCollectibleForSale
     $criteria = CollectibleOfferPeer::getBackendIsSoldCriteria($this);
 
     return (bool)CollectibleOfferPeer::doCount($criteria);
+  }
+
+  public function isForSale()
+  {
+    if (!$this->getIsReady()) {
+      return false;
+    }
+    else if ($this->getIsSold()) {
+      return false;
+    }
+    else if ($this->getQuantity() === 0) {
+      return false;
+    }
+    else if ($this->getPriceAmount() === 0) {
+      return false;
+    }
+
+    return true;
   }
 
 }

@@ -14,7 +14,7 @@
     </tr>
     <tr>
       <td>Quantity</td>
-      <td style="text-align: right;">1 <strong>x</strong> <?= money_format('%.2n', (float) $shopping_order->getTotalAmount()); ?></td>
+      <td style="text-align: right;">1 <strong>x</strong> <?= money_format('%.2n', (float) $shopping_order->getCollectiblesAmount()); ?></td>
     </tr>
     <tr>
       <td>Shipping</td>
