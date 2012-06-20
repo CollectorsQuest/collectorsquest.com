@@ -28,15 +28,21 @@ class categoriesActions extends cqFrontendActions
 
     if ($request->getParameter('page', 1) == 1)
     {
+      /** @var $q wpPostQuery */
       $q = wpPostQuery::create()
         ->filterByPostType('collectors_question')
-        ->filterByPostStatus('publish')
+        ->filterByPostParent(0)
         ->joinwpPostMeta(null, Criteria::RIGHT_JOIN)
         ->usewpPostMetaQuery()
           ->filterByMetaKey('cq_content_category_id')
           ->filterByMetaValue($this->category->getId())
         ->endUse()
         ->orderByPostDate(Criteria::DESC);
+
+      if (sfConfig::get('sf_environment') === 'prod')
+      {
+        $q->filterByPostStatus('publish');
+      }
 
       /** @var $wp_posts wpPost[] */
       if ($wp_posts = $q->limit(5)->find())

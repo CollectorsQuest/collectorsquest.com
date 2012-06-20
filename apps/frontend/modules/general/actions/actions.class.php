@@ -41,6 +41,7 @@ class generalActions extends cqFrontendActions
 
     $this->blog_posts = $blog_posts;
 
+    /** @var $q wpPostQuery */
     $q = wpPostQuery::create()
        ->filterByPostType('homepage_showcase')
        ->filterByPostStatus('publish')

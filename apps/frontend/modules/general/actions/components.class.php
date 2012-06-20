@@ -6,10 +6,16 @@ class generalComponents extends cqFrontendComponents
   {
     $this->carousels = array();
 
+    /** @var $q wpPostQuery */
     $q = wpPostQuery::create()
        ->filterByPostType('homepage_carousel')
-       ->filterByPostStatus('publish')
+       ->filterByPostParent(0)
        ->orderByPostDate(Criteria::DESC);
+
+    if (sfConfig::get('sf_environment') === 'prod')
+    {
+      $q->filterByPostStatus('publish');
+    }
 
     /** @var $wp_posts wpPost[] */
     $wp_posts = $q->limit(15)->find();
@@ -32,6 +38,7 @@ class generalComponents extends cqFrontendComponents
 
   public function executeSidebarIndex()
   {
+    /** @var $q wpPostQuery */
     $q = wpPostQuery::create()
       ->filterByPostType('cms_slot')
       ->filterByPostStatus('publish')

@@ -12,10 +12,16 @@ class marketplaceActions extends cqFrontendActions
 
   public function executeIndex()
   {
+    /** @var $q wpPostQuery */
     $q = wpPostQuery::create()
       ->filterByPostType('marketplace_featured')
-      ->filterByPostStatus('publish')
+      ->filterByPostParent(0)
       ->orderByPostDate(Criteria::DESC);
+
+    if (sfConfig::get('sf_environment') === 'prod')
+    {
+      $q->filterByPostStatus('publish');
+    }
 
     /** @var $wp_post wpPost */
     if ($wp_post = $q->findOne())

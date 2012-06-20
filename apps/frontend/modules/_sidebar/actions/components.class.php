@@ -332,8 +332,12 @@ class _sidebarComponents extends cqFrontendComponents
 
     $q = wpPostQuery::create()
       ->filterByPostType('seller_spotlight')
-      ->filterByPostStatus('publish')
       ->orderByPostDate(Criteria::DESC);
+
+    if (sfConfig::get('sf_environment') === 'prod')
+    {
+      $q->filterByPostStatus('publish');
+    }
 
     /** @var $wp_post wpPost */
     if ($wp_post = $q->findOne())
