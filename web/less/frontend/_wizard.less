@@ -2,20 +2,20 @@
 
 #wizard {
   .wizard {
-    background: @grayLighter;
-    color: @gray;
-    padding: 8px 0 6px 0;
-    min-height: 20px;
+	  min-height: 20px;
+	  padding: 8px 0 6px 0;
+	  color: @gray;
+	  background: @grayLighter;
   }
 
   .wizard.active {
-    background: @yellowLight;
-    color: @black;
+	  color: @black;
+	  background: @yellowLight;
   }
 
   .wizard_separator {
-    background: url('@{baseUrl}/wizard_separator.png') no-repeat;
+	  height: 32px;
+	  background: url('@{baseUrl}/wizard_separator.png') no-repeat;
     background-position: center;
-    height: 32px;
   }
 }
