@@ -32,7 +32,6 @@
         <?php elseif (false !== $ship_amount): ?>
           with $<?= $ship_amount ?> shipping and handling to <?= $sf_user->getCountryName(); ?>
         <?php endif; ?>
-        <?php dd ($ship_amount); ?>
         </span>
       </p>
       <button type="submit" class="btn btn-primary blue-button pull-left" value="Add Item to Cart">
@@ -55,7 +54,6 @@
       <?php elseif (false !== $ship_amount): ?>
         with $<?= $ship_amount ?> shipping and handling to <?= $sf_user->getCountryName(); ?>
       <?php endif; ?>
-      <?php dd ($ship_amount); ?>
       </span>
     </p>
     <button type="button" class="btn btn-primary blue-button pull-left" value="Add Item to Cart"
