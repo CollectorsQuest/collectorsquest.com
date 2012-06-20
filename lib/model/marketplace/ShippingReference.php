@@ -61,10 +61,12 @@ class ShippingReference extends BaseShippingReference
   /**
    * Return a simple value for the shipping reference amount
    *
+   * @param     string $return "float|integer"
+   *
    * @return    mixed A float if shipping amount set, 0 for free shipping and FALSE for No shipping
    * @throws    Exception when the shipping refenrence does not conform to the expected simple format
    */
-  public function getSimpleShippingAmount()
+  public function getSimpleShippingAmount($return = 'float')
   {
     if (ShippingReferencePeer::SHIPPING_TYPE_NO_SHIPPING == $this->getShippingType())
     {
@@ -86,12 +88,36 @@ class ShippingReference extends BaseShippingReference
       }
       else
       {
-        return $shipping_rate->getFlatRateInUSD();
+        return 'integer' === $return
+          ? $shipping_rate->getFlatRateInCents()
+          : $shipping_rate->getFlatRateInUSD();
       }
     }
     else
     {
       throw new Exception('ShippingReference::getSimpleShippingAmount() supports only no shipping or flat rate shipping');
+    }
+  }
+
+  /**
+   * Check if we have only a single realted shipping rate of type
+   * free shipping
+   *
+   * @return boolean
+   *
+   * @throws Exception when the simple shipping constraints are not followed
+   */
+  public function isSimpleFreeShipping()
+  {
+    if (ShippingReferencePeer::SHIPPING_TYPE_FLAT_RATE == $this->getShippingType())
+    {
+      if (1 != $this->getShippingRates()->count())
+      {
+        throw new Exception('ShippingReference::isSimpleFreeShipping() expects only one related ShippingRate');
+      }
+
+      return $shipping_rate = $this->getShippingRates()->getFirst()
+        ->getIsFreeShipping();
     }
   }
 
