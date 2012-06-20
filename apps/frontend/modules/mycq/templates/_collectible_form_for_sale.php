@@ -43,7 +43,7 @@
       <?= $form_shipping_us->renderHiddenFields(); ?>
       <?= $form_shipping_us->renderAllErrors(); ?>
       <div class="control-group form-inline">
-        <label class="control-label" for="">Domestic shipping</label>
+        <label class="control-label" for="">US shipping</label>
         <div class="controls flat-rate-controller">
           <label class="radio">
             <input name="shipping_rates_us[shipping_type]" type="radio"
