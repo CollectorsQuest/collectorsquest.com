@@ -643,6 +643,8 @@ class mycqActions extends cqFrontendActions
   {
     SmartMenu::setSelected('mycq_menu', 'marketplace');
 
+    $this->bought_total = 1;
+
     return sfView::SUCCESS;
   }
 
@@ -665,7 +667,10 @@ class mycqActions extends cqFrontendActions
     $AdaptivePayments = cqStatic::getPayPaylAdaptivePaymentsClient();
     $result = $AdaptivePayments->GetShippingAddress($PayPalRequestData);
 
-    dd($result);
+    // dd($result);
+
+    $this->getUser()->setFlash('success', 'You purchased an item!', true);
+    $this->redirect('@mycq_shopping_orders');
 
     return sfView::SUCCESS;
   }
