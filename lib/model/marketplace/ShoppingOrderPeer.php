@@ -4,6 +4,15 @@ require 'lib/model/marketplace/om/BaseShoppingOrderPeer.php';
 
 class ShoppingOrderPeer extends BaseShoppingOrderPeer
 {
+  /**
+   * WARNING: The method has a serious limitation when used with small numbers
+   *          The logic here is based on $id of at least >= 1000001
+   *
+   * @param  integer  $id
+   * @param  integer  $length
+   *
+   * @return null|string
+   */
   public static function getUuidFromId($id, $length = 8)
   {
     if (empty($id)) {

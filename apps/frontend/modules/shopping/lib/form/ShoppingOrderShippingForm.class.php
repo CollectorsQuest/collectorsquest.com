@@ -116,7 +116,7 @@ class ShoppingOrderShippingForm extends BaseForm
 
     // update shopping cart collectible shipping based on new
     // shipping address country
-    $this->getShoppingCartCollectible()
+    $this->shopping_order->getShoppingCartCollectible()
       ->setShippingCountryIso3166($shipping_address['country_iso3166'])
       ->updateShippingFeeAmountFromCountryCode()
       ->save();

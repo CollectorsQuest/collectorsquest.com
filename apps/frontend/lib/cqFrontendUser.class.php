@@ -288,4 +288,63 @@ class cqFrontendUser extends cqBaseUser
     return $this->unread_messages_count;
   }
 
+  /**
+   * This will be executed before new user (Collector) is created
+   */
+  public function preCreateHook()
+  {
+    // nothing yet
+  }
+
+  /**
+   * This will be executed after new user (Collector) is created
+   */
+  public function postCreateHook($collector = null)
+  {
+    /** @var $collector Collector */
+    $collector = $collector ?: $this->getCollector();
+
+    // We cannot do anything without a Collector
+    if (!($collector instanceof Collector) || $collector->isNew()) {
+      return false;
+    }
+
+    // Assign a random Avatar
+    $collector->assignRandomAvatar();
+
+    // Check if the signup is after a shopping order(s)
+    if ($shopping_order_uuids = $this->getAttribute('orders', null, 'shopping'))
+    {
+      foreach ($shopping_order_uuids as $uuid)
+      {
+        if ($shopping_order = ShoppingOrderQuery::create()->findOneByUuid($uuid))
+        {
+          $shopping_order->setCollectorId($collector->getId());
+          $shopping_order->save();
+        }
+      }
+
+      $this->setAttribute('orders', null, 'shopping');
+    }
+
+    if ($_shipping_address = $this->getAttribute('shipping_address', null, 'shopping'))
+    {
+      if (empty($_shipping_address['address_id']))
+      {
+        $shipping_address = new CollectorAddress();
+        $shipping_address->fromArray($_shipping_address, BasePeer::TYPE_FIELDNAME);
+        $shipping_address->setCollector($collector);
+        $shipping_address->save();
+
+        $this->setAttribute('shipping_address', null, 'shopping');
+      }
+    }
+
+    // Finally, send the welcome email
+    $cqEmail = new cqEmail(sfContext::getInstance()->getMailer());
+    $cqEmail->send($collector->getUserType() . '/welcome_to_cq', array(
+      'to' => $collector->getEmail(),
+    ));
+  }
+
 }

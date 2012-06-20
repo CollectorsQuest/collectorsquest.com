@@ -61,10 +61,9 @@ class ShoppingOrder extends BaseShoppingOrder
    */
   public function getTotalAmount()
   {
-    return bcadd(bcadd(
-      $this->getCollectiblesAmount(),
-      $this->getTaxAmount()),
-      $this->getShippingFeeAmount()
+    return bcadd(
+      bcadd($this->getCollectiblesAmount(), $this->getTaxAmount(), 2),
+      $this->getShippingFeeAmount(), 2
     );
   }
 
@@ -190,7 +189,7 @@ class ShoppingOrder extends BaseShoppingOrder
   {
     $SenderIdentifierFields = array(
       // If TRUE, use credentials to identify the sender.  Default is false.
-      'UseCredentials' => ''
+      'UseCredentials' => false
     );
 
     return $SenderIdentifierFields;
@@ -200,7 +199,7 @@ class ShoppingOrder extends BaseShoppingOrder
   {
     $AccountIdentifierFields = array(
       // Sender's email address.  127 char max.
-      'Email' => $this->getBuyerEmail(),
+      'Email' => '',
 
       // Sender's phone number.  Numbers only.
       'Phone' => array('CountryCode' => '', 'PhoneNumber' => '', 'Extension' => '')
