@@ -74,9 +74,9 @@ class shoppingActions extends cqFrontendActions
             $shopping_cart_collectible->setCollectible($collectible_for_sale->getCollectible());
             $shopping_cart_collectible->setPriceAmount($collectible_for_sale->getPrice() * 1.00);
             $shopping_cart_collectible->setPriceCurrency('USD');
-            $shopping_cart_collectible->setShippingCountryIso3166($this->getUser()->getCountryCode());
-            $shopping_cart_collectible->setShippingFeeAmount(0);
             $shopping_cart_collectible->setTaxAmount(0);
+            $shopping_cart_collectible->setShippingCountryIso3166($this->getUser()->getCountryCode());
+            $shopping_cart_collectible->updateShippingFeeAmountFromCountryCode();
 
             $shopping_cart->addShoppingCartCollectible($shopping_cart_collectible);
             $shopping_cart->save();
@@ -351,9 +351,9 @@ class shoppingActions extends cqFrontendActions
 
           $InvoiceData = array(
             // Total tax associated with the payment.
-            'TotalTax' => $shopping_order->getTotalAmount(),
+            'TotalTax' => $shopping_order->getTaxAmount(),
             // Total shipping associated with the payment.
-            'TotalShipping' => $shopping_order->getShippingFeeAmount()
+            'TotalShipping' => $shopping_order->getShippingFeeAmount('float'),
           );
 
           $PayPalRequest = array(

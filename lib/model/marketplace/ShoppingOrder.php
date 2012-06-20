@@ -54,12 +54,23 @@ class ShoppingOrder extends BaseShoppingOrder
     return $this->getShoppingCartCollectible()->getPriceCurrency();
   }
 
+  /**
+   * price + tax + shipping
+   *
+   * @return type
+   */
   public function getTotalAmount()
   {
-    return bcadd(
+    return bcadd(bcadd(
       $this->getCollectiblesAmount(),
+      $this->getTaxAmount()),
       $this->getShippingFeeAmount()
     );
+  }
+
+  public function getTaxAmount()
+  {
+    return 0;
   }
 
   public function getCollectiblesAmount()
@@ -87,6 +98,13 @@ class ShoppingOrder extends BaseShoppingOrder
     $this->setShippingStateRegion($address->getStateRegion());
     $this->setShippingZipPostcode($address->getZipPostcode());
     $this->setShippingCountryIso3166($address->getCountryIso3166());
+
+    // update shopping cart collectible shipping based on new
+    // shipping address country
+    $this->getShoppingCartCollectible()
+      ->setShippingCountryIso3166($address->getCountryIso3166())
+      ->updateShippingFeeAmountFromCountryCode()
+      ->save();
   }
 
   public function getPaypalPayRequestFields()

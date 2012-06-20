@@ -55,7 +55,7 @@
               <tr>
                 <td>Price:</td>
                 <td style="text-align: right;">
-                  <?= money_format('%.2n', (float) $shopping_cart_collectible->getTotalPrice()); ?>
+                  <?= money_format('%.2n', (float) $shopping_cart_collectible->getPriceAmount()); ?>
                   <small style="font-size: 80%;"><?= $shopping_cart_collectible->getPriceCurrency(); ?></small>
                 </td>
               </tr>

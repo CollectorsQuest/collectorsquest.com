@@ -36,7 +36,10 @@ class ShoppingCartCollectible extends BaseShoppingCartCollectible
 
   public function getTotalPrice()
   {
-    return $this->getPriceAmount();
+    return bcadd(bcadd(
+      $this->getPriceAmount('float'),
+      $this->getTaxAmount('float')),
+      $this->getShippingFeeAmount('float'));
   }
 
   /**
