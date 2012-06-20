@@ -43,7 +43,6 @@ class CollectibleForSale extends BaseCollectibleForSale
     $this->setPriceAmount((int) bcmul($v, 100));
   }
 
-
   /**
    * Check if shipping is free for this collectible for sale
    *
@@ -101,7 +100,6 @@ class CollectibleForSale extends BaseCollectibleForSale
       // if no shipping reference, assume free shipping
       return 0;
     }
-
 
     return $shipping_refenrence->getSimpleShippingAmount($return);
   }
