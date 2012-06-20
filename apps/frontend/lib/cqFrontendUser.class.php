@@ -42,9 +42,11 @@ class cqFrontendUser extends cqBaseUser
    */
   public function getCountryCode()
   {
-    if ($this->isAuthenticated() && !$this->getCollector()->isNew())
+
+    if ( $this->isAuthenticated() && !$this->getCollector()->isNew()
+      && $country_code = $this->getCollector()->getProfile()->getCountryIso3166() )
     {
-      return $this->getCollector()->getProfile()->getCountryIso3166();
+      return $country_code;
     }
 
     return cqStatic::getGeoIpCountryCode(sfContext::getInstance()->getRequest()->getRemoteAddress(), true);
