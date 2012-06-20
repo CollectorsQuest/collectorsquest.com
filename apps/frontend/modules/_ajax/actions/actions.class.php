@@ -15,7 +15,7 @@ class _ajaxActions extends cqFrontendActions
       $object = call_user_func_array(array(sfInflector::camelize($model).'Peer', 'retrieveByPk'), array($id));
       if ($object && is_callable(array($object, 'set'. sfInflector::camelize($field))))
       {
-        if ($this->getCollector()->isOwnerOf($object) || true)
+        if ($this->getCollector()->isOwnerOf($object))
         {
           call_user_func_array(array($object, 'set'. sfInflector::camelize($field)), array($value));
           $object->save();
