@@ -75,7 +75,7 @@ class shoppingActions extends cqFrontendActions
             $shopping_cart_collectible->setPriceAmount($collectible_for_sale->getPrice() * 1.00);
             $shopping_cart_collectible->setPriceCurrency('USD');
             $shopping_cart_collectible->setTaxAmount(0);
-            $shopping_cart_collectible->setShippingCountryIso3166($this->getUser()->getCountryCode());
+            $shopping_cart_collectible->setShippingCountryIso3166($this->getUser()->getCountryCode('US'));
             $shopping_cart_collectible->updateShippingFeeAmountFromCountryCode();
 
             $shopping_cart->addShoppingCartCollectible($shopping_cart_collectible);

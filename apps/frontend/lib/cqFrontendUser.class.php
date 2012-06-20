@@ -38,18 +38,21 @@ class cqFrontendUser extends cqBaseUser
    * Return the country for the currently logged in user, or try to get it from the
    * user's IP
    *
+   * If not possible to retrieve by IP the value of the $default
+   * param will be returned
+   *
+   * @param     string $default
    * @return    string|false
    */
-  public function getCountryCode()
+  public function getCountryCode($default = false)
   {
-
     if ( $this->isAuthenticated() && !$this->getCollector()->isNew()
       && $country_code = $this->getCollector()->getProfile()->getCountryIso3166() )
     {
       return $country_code;
     }
 
-    return cqStatic::getGeoIpCountryCode(sfContext::getInstance()->getRequest()->getRemoteAddress(), true);
+    return cqStatic::getGeoIpCountryCode(sfContext::getInstance()->getRequest()->getRemoteAddress(), true) ?: $default;
   }
 
   /**
