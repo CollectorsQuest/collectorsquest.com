@@ -1,3 +1,8 @@
-all:
+guideToCollectingSuccess:
+
   stylesheets:
     - frontend/modules/splash.css
+
+  components:
+    footer:  []
+    breadcrumbs: []

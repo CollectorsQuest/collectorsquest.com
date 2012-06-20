@@ -10,14 +10,18 @@
  */
 class miscActions extends sfActions
 {
- /**
-  * Executes index action
-  *
-  * @param sfWebRequest $request A request object
-  *
-  * @return string
-  */
-  public function executeIndex(sfWebRequest $request)
+  /**
+   * Executes index action
+   */
+  public function executeIndex()
+  {
+    $this->redirect('@homepage');
+  }
+
+  /**
+   * @return string
+   */
+  public function executeGuideToCollecting()
   {
     $this->signup_form = new CollectorSignupFooterForm();
     $this->login_form  = new CollectorLoginForm();
