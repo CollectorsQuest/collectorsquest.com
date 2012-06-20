@@ -67,7 +67,7 @@ class ShoppingOrder extends BaseShoppingOrder
     return $this->getShoppingCartCollectible()->getPriceAmount();
   }
 
-  public function getShippingFeeAmount($return = 'integer')
+  public function getShippingFeeAmount($return = 'float')
   {
     return $this->getShoppingCartCollectible()
       ->getShippingFeeAmount($return);
