@@ -149,7 +149,10 @@ class shoppingActions extends cqFrontendActions
 
         if (!$collectible_for_sale)
         {
-          $this->getUser()->setFlash('error', 'There was a problem processing the request');
+          $this->getUser()->setFlash(
+            'error', 'There was a problem processing the request.
+                      Most probably this items has already been sold.'
+          );
           $this->redirect('@shopping_cart');
         }
         else if ($this->getCollector(false)->isOwnerOf($collectible_for_sale))
@@ -279,7 +282,15 @@ class shoppingActions extends cqFrontendActions
     if ($shopping_payment && $shopping_payment->getStatus() == ShoppingPaymentPeer::STATUS_COMPLETED)
     {
       $this->getUser()->setFlash('success', 'This order has already been paid');
-      $this->redirect('@mycq_shopping_order?uuid='. $shopping_order->getUuid());
+
+      if ($this->getUser()->isOwnerOf($shopping_order))
+      {
+        $this->redirect('@mycq_shopping_order?uuid='. $shopping_order->getUuid());
+      }
+      else
+      {
+        $this->redirect('@shopping_order_review?uuid='. $shopping_order->getUuid());
+      }
     }
 
     switch (strtolower($request->getParameter('processor', 'paypal')))
@@ -474,7 +485,9 @@ class shoppingActions extends cqFrontendActions
 
         if (strtoupper($result['Status']) !== 'COMPLETED')
         {
-          $this->getUser()->setFlash('error', sprintf('Order <b>%s</b> has not been paid yet!', $shopping_order->getUuid()));
+          $this->getUser()->setFlash(
+            'error', sprintf('Order <b>%s</b> has not been paid yet!', $shopping_order->getUuid())
+          );
           $this->redirect('@shopping_order_pay?uuid='. $shopping_order->getUuid());
         }
 
@@ -487,6 +500,12 @@ class shoppingActions extends cqFrontendActions
            ->filterByCollectible($shopping_order->getCollectible())
            ->filterByShoppingCart($shopping_order->getShoppingCart());
         $q->delete();
+
+        // The Collectible has sold, so decrease the quantity (make zero)
+        $shopping_order->getCollectibleForSale()->setQuantity(0);
+        // The Collectible has sold, mark it as sold (legacy)
+        $shopping_order->getCollectibleForSale()->setIsSold(true);
+        $shopping_order->getCollectibleForSale()->save();
 
         // Add this order to the session if it's a guest checkout
         if ($this->getUser()->isAuthenticated())

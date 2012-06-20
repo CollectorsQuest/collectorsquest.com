@@ -114,13 +114,18 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
       $something = $something->getModelObject();
     }
 
-    if (is_object($something) && method_exists($something, 'getCollectorId'))
+    if ($something instanceof PrivateMessage)
     {
-      return $something->getCollectorId() == $this->getId();
+      return $something->getSender() === $this->getId();
     }
-    else if ($something instanceof PrivateMessage)
+    else if (null === $something->getCollectorId())
     {
-      return $something->getSender() == $this->getId();
+      // Nobody owns NULL
+      return false;
+    }
+    else if (is_object($something) && method_exists($something, 'getCollectorId'))
+    {
+      return $something->getCollectorId() === $this->getId();
     }
 
     return false;
