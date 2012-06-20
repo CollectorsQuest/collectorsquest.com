@@ -525,14 +525,20 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
    */
   public function getShippingReferenceForCountryCode($coutry_code, PropelPDO $con = null)
   {
-    return ShippingReferenceQuery::create()
-      ->filterByCollectible($this)
-      ->filterByCountryIso3166($coutry_code)
-      ->findOne($con)
+    return (
+      ShippingReferenceQuery::create()
+        ->filterByCollectible($this)
+        ->filterByCountryIso3166($coutry_code)
+        ->findOne($con)
+      ?: ShippingReferenceQuery::create()
+        ->filterByCollectible($this)
+        ->filterByCountryIso3166('ZZ') // international
+        ->findOne($con)
+    )
     ?: ShippingReferenceQuery::create()
-      ->filterByCollector($this->getCOllector())
+      ->filterByCollector($this->getCollector())
       ->filterByCountryIso3166($coutry_code)
-      ->findOne($con);
+      ->findOne($con); // for collector
   }
 
   /**

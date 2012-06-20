@@ -685,7 +685,7 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
   }
 
   /**
-   * Get the shipping rates for this collector, grouped by country
+   * Get the shipping references for this collector, grouped by country
    *
    * @param     PropelPDO $con
    * @return    array ShippingReference[]
@@ -698,7 +698,7 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
   }
 
   /**
-   * Get shipping rates for a specific country
+   * Get the shipping reference for a specific country
    *
    * @param     string $coutry_code
    * @param     PropelPDO $con
@@ -710,6 +710,10 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
     return ShippingReferenceQuery::create()
       ->filterByCollector($this)
       ->filterByCountryIso3166($coutry_code)
+      ->findOne($con)
+    ?: ShippingReferenceQuery::create()
+      ->filterByCollector($this)
+      ->filterByCountryIso3166('ZZ') // international
       ->findOne($con);
   }
 
