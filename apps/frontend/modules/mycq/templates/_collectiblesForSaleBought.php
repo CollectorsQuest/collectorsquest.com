@@ -15,6 +15,7 @@
             $shopping_order->getCollectible()->getName(), 18, '...', true
           );
         ?>
+        <br/>
         <strong class="pull-right">
           <?= money_format('%.2n', (float) $shopping_order->getCollectibleForSale()->getPrice()); ?>
         </strong>

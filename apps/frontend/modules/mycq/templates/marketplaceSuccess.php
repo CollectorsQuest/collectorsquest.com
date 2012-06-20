@@ -62,7 +62,7 @@
 </div>
 
 
-<?php if (false && $sold_total > 0): ?>
+<?php if ($sold_total > 0): ?>
 <!-- Sold Items -->
 <div id="sold-items-box" class="spacer-top-20">
   <div class="tab-content-inner spacer-inner-top">
@@ -100,10 +100,6 @@
         <?php include_component('mycq', 'collectiblesForSaleSold', array('seller' => $seller)); ?>
       </div>
     </div>
-
-    <a href="#" class="btn btn-small gray-button see-more-button">
-      See more
-    </a>
 
   </div><!-- /.tab-content-inner -->
 </div>

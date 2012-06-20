@@ -5,7 +5,7 @@
   <div class="tab-content-inner spacer-inner-top">
     <div class="row-fluid sidebar-title spacer-inner-bottom">
       <div class="span5 link-align">
-        <h3 class="Chivo webfont">Purchases (<?= $bought_total ?>)</h3>
+        <h3 class="Chivo webfont">Purchased Items (<?= $bought_total ?>)</h3>
       </div>
       <div class="span7">
         <?php if ($bought_total > 14): ?>
