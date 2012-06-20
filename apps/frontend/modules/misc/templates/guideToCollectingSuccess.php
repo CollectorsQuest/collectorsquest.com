@@ -4,7 +4,7 @@
       <div class="span7">
         <?php
           cq_sidebar_title(
-            'Unlock the essential guide to collecting—sign up today!', null,
+            'Unlock your free guide to collecting—sign up today!', null,
             array('class' => 'row-fluid title-red spacer-bottom-30')
           );
         ?>
@@ -19,7 +19,7 @@
               <p>
                 Sign up to become a member and get this electronic guide for free.
                 It just takes a minute to complete the form on the right, and we’ll
-                email you a link to get the PDF*<br/><br/>
+                email you a link to get the PDF*.<br/><br/>
                 * <a href="http://get.adobe.com/reader/" target="_blank">
                     Adobe Acrobat Reader required
                   </a>
@@ -49,7 +49,7 @@
     <?php
       cq_sidebar_title(
         'Why else should you join?', null,
-        array('class' => 'row-fluid section-title-yellow  spacer-bottom-30')
+        array('class' => 'row-fluid section-title-yellow spacer-bottom-30')
       );
     ?>
     <div class="row-fluid">
