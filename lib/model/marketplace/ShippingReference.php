@@ -37,6 +37,7 @@ class ShippingReference extends BaseShippingReference
   }
 
   /**
+   * Set the related model object (Collector|Collectible)
    *
    * @param     Collector|Collectible $object
    * @return    ShippingReference
@@ -55,6 +56,43 @@ class ShippingReference extends BaseShippingReference
     $this->setModelId($object->getPrimaryKey());
 
     return $this;
+  }
+
+  /**
+   * Return a simple value for the shipping reference amount
+   *
+   * @return    mixed A float if shipping amount set, 0 for free shipping and FALSE for No shipping
+   * @throws    Exception when the shipping refenrence does not conform to the expected simple format
+   */
+  public function getSimpleShippingAmount()
+  {
+    if (ShippingReferencePeer::SHIPPING_TYPE_NO_SHIPPING == $this->getShippingType())
+    {
+      return false;
+    }
+
+    if (ShippingReferencePeer::SHIPPING_TYPE_FLAT_RATE == $this->getShippingType())
+    {
+      if (1 != $this->getShippingRates()->count())
+      {
+        throw new Exception('ShippingReference::getSimpleShippingAmount() expects only one related ShippingRate');
+      }
+
+      $shipping_rate =  $this->getShippingRates()->getFirst();
+
+      if ($shipping_rate->getIsFreeShipping())
+      {
+        return 0;
+      }
+      else
+      {
+        return $shipping_rate->getFlatRateInUSD();
+      }
+    }
+    else
+    {
+      throw new Exception('ShippingReference::getSimpleShippingAmount() supports only no shipping or flat rate shipping');
+    }
   }
 
 }

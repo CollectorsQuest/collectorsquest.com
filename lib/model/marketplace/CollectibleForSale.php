@@ -44,6 +44,34 @@ class CollectibleForSale extends BaseCollectibleForSale
   }
 
   /**
+   *
+   *
+   * @param     string $country_code
+   * @param     PropePDO $con
+   *
+   * @return    mixed A float amount in USD, 0 if free shipping or FALSE if no shipping
+   */
+  public function getShippingAmountForCountry($country_code = false, PropelPDO $con = null)
+  {
+    if (false === $country_code)
+    {
+      $country_code = 'US';
+    }
+
+    $shipping_refenrence = $this->getCollectible($con)
+      ->getShippingReferenceForCountryCode($country_code, $con);
+
+    if (!$shipping_refenrence)
+    {
+      // if no shipping reference, assume free shipping
+      return 0;
+    }
+
+
+    return $shipping_refenrence->getSimpleShippingAmount();
+  }
+
+  /**
    * Proxy method to Collectible::getCollector()
    *
    * @param  null|PropelPDO  $con

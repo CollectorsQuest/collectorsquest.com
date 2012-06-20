@@ -35,6 +35,43 @@ class cqFrontendUser extends cqBaseUser
   }
 
   /**
+   * Return the country for the currently logged in user, or try to get it from the
+   * user's IP
+   *
+   * @return    string|false
+   */
+  public function getCountryCode()
+  {
+    if ($this->isAuthenticated() && !$this->getCollector()->isNew())
+    {
+      return $this->getCollector()->getProfile()->getCountryIso3166();
+    }
+
+    return cqStatic::getGeoIpCountryCode(sfContext::getInstance()->getRequest()->getRemoteAddress(), true);
+  }
+
+  /**
+   * Return the current user's country name
+   *
+   * @param     type $country_code
+   * @return    string|false
+   *
+   * @see       cqFrontendUser::getCountryCode()
+   */
+  public function getCountryName($country_code = null)
+  {
+    if (null === $country_code)
+    {
+      $country_code = $this->getCountryCode();
+    }
+
+    return GeoCountryQuery::create()
+      ->filterByIso3166($country_code)
+      ->select('Name')
+      ->findOne() ?: false;
+  }
+
+  /**
    * @param  boolean  $strict
    * @return null|Seller
    */
