@@ -17,6 +17,9 @@ _widgetCollectionCollectibles:
 _widgetCollector:
   enabled: false
 
+_widgetCollectibleBuy:
+  enabled: false
+
 _widgetManageCollection:
   enabled: false
 
