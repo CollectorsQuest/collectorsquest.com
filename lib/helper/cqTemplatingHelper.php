@@ -15,8 +15,8 @@
  * @param     string $cutoff_date strtotime() compatible string defining the date
  *                               after which the exact date will be returned instead
  *                               of the distance of time in words
- * @param     $datetime_format   The format to be used when returning the exact date
- * @param     type $now          The current time
+ * @param     string|\The $datetime_format The format to be used when returning the exact date
+ * @param     integer $now          The current time
  * @return    string              Localized time string
  *
  * @see       DateHelper.php

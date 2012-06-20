@@ -33,7 +33,7 @@
         <?php if (time() > strtotime('+1 year', $collector->getCreatedAt('U'))): ?>
           <li><?= sprintf('member since %s', $collector->getCreatedAt('Y'))?></li>
           <?php else: ?>
-          <li><?= sprintf('joined <b>%s</b> ago', time_ago_in_words_or_exact_date($collector->getCreatedAt('U'), '-1 year'));?></li>
+          <li><?= sprintf('joined <b>%s</b> ago', time_ago_in_words($collector->getCreatedAt('U'))); ?></li>
           <?php endif; ?>
         <?php endif; ?>
       </ul>
