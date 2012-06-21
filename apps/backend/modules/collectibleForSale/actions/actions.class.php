@@ -1,4 +1,5 @@
 <?php
+
 require_once dirname(__FILE__) . '/../lib/collectibleForSaleGeneratorConfiguration.class.php';
 require_once dirname(__FILE__) . '/../lib/collectibleForSaleGeneratorHelper.class.php';
 
@@ -21,20 +22,6 @@ class collectibleForSaleActions extends autoCollectibleForSaleActions
     $query->innerJoinCollectible();
 
     return $query;
-  }
-
-  public function executeItemOffers(sfWebRequest $request)
-  {
-    $this->collectible_for_sale = CollectibleForSalePeer::retrieveByPK($this->getRequestParameter('id'));
-    $this->forward404Unless($this->collectible_for_sale);
-    $this->collectible = $this->collectible_for_sale->getCollectible();
-    $this->omCollectibleOwner = $this->collectible->getCollector();
-
-    $oCriteria = new Criteria();
-    $oCriteria->addAscendingOrderByColumn(CollectibleOfferPeer::COLLECTOR_ID);
-    $oCriteria->addDescendingOrderByColumn(CollectibleOfferPeer::UPDATED_AT);
-    $oCriteria->add(CollectibleOfferPeer::COLLECTIBLE_ID, $this->collectible->getId());
-    $this->offers = CollectibleOfferPeer::doSelect($oCriteria);
   }
 
   public function executeExport1(sfWebRequest $request)
@@ -83,4 +70,5 @@ class collectibleForSaleActions extends autoCollectibleForSaleActions
     fclose($out);
     return sfView::NONE;
   }
+
 }

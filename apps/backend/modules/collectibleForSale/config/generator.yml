@@ -15,25 +15,22 @@ generator:
       actions: ~
       fields: ~
       list:
-        title: Collectibles for Sale
+        title: Items for Sale
         fields:
+          list_seller: { label: Seller }
+          list_collectible: { label: Item }
+          list_price: { label: Price }
           created_at: { label: Created, date_format: M/d/y }
-          is_sold: { label: Is Sold, type: Boolean }
-          is_price_negotiable: { label: Negotiable, type: Boolean }
-          is_shipping_free: { label: Free Shipping, type: Boolean }
-          list_sold_at: { label: Sold at }
-          offers_count: { label: '# offers' }
-          price: { type: Price }
-#          seller: { label: Seller, type: foreignKey }
-        display: [_collectible, condition, price, _seller, is_price_negotiable, is_shipping_free, _is_sold, _offers_count, created_at, _list_sold_at, _buyer]
+        display: [_list_seller, _list_collectible, _list_price, condition, created_at]
         object_actions: {}
         actions:
           _new: ~
           export: { label: 'Export to CSV' }
-      filter:  ~
+      filter:
+        display: [price, condition]
       form:
-        display: [collectible_id, price, condition, is_price_negotiable, is_shipping_free, is_sold, is_ready, quantity]
+        display: [collectible_id, condition, is_ready, quantity]
       edit:    ~
       new:     ~
       export:
-        display: [id, collectible.name, condition, price, collector.display_name, is_price_negotiable, is_shipping_free, is_sold, created_at]
+        display: [id, collectible.name, condition, collector.display_name, is_sold, created_at]
