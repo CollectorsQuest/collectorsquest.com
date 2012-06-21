@@ -7,7 +7,7 @@ class SimpleShippingCollectorCollectibleForCountryFormValidatorSchema extends sf
   {
     parent::configure($options, $messages);
 
-    $this->addMessage('flat_rate_missing', 'You must enter a positive shipping amount for flat rate');
+    $this->addMessage('flat_rate_missing', 'Please enter a valid shipping amount.');
   }
 
   protected function doClean($values)
