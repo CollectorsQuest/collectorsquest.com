@@ -94,7 +94,7 @@ class CollectorEditForm extends CollectorForm
       'type' => 'email',
     ));
 
-    $this->setupSellerSettingsPhoneNumberField($required);
+    $this->setupSellerSettingsPhoneNumberField(false);
 
     $this->widgetSchema['seller_settings_store_description'] = new sfWidgetFormTextarea(array(
       'label' => 'Store Description',
@@ -105,6 +105,11 @@ class CollectorEditForm extends CollectorForm
     $this->widgetSchema['seller_settings_payment_accepted'] = new sfWidgetFormTextarea(array(
       'label' => 'Payment Accepted',
     ));
+
+    $this->setupSellerSettingsWelcomeField($required);
+    $this->setupSellerSettingsShippingField($required);
+    $this->setupSellerSettingsRefundsField($required);
+    $this->setupSellerSettingsAdditionalPoliciesField($required);
 
     $this->validatorSchema['seller_settings_paypal_email'] = new sfValidatorEmail(array('required' => $required));
     $this->validatorSchema['seller_settings_store_description'] = new sfValidatorString(array('required' => $required));
@@ -218,6 +223,22 @@ class CollectorEditForm extends CollectorForm
       $this->getObject()->setSellerSettingsPaymentAccepted(
         $values['seller_settings_payment_accepted']);
     }
+    if (isset($values['seller_settings_welcome']))
+    {
+      $this->getObject()->setSellerSettingsWelcome($values['seller_settings_welcome']);
+    }
+    if (isset($values['seller_settings_shipping']))
+    {
+      $this->getObject()->setSellerSettingsShipping($values['seller_settings_shipping']);
+    }
+    if (isset($values['seller_settings_refunds']))
+    {
+      $this->getObject()->setSellerSettingsRefunds($values['seller_settings_refunds']);
+    }
+    if (isset($values['seller_settings_additional_policies']))
+    {
+      $this->getObject()->setSellerSettingsAdditionalPolicies($values['seller_settings_additional_policies']);
+    }
   }
 
   /**
@@ -229,13 +250,17 @@ class CollectorEditForm extends CollectorForm
     parent::updateDefaultsFromObject();
 
     $this->setDefaults(array_merge($this->defaults, array(
-      'seller_settings_paypal_email'      => $this->getObject()->getSellerSettingsPaypalEmail(),
-      'seller_settings_phone_code'        => $this->getObject()->getSellerSettingsPhoneCode(),
-      'seller_settings_phone_number'      => $this->getObject()->getSellerSettingsPhoneNumber(),
-      'seller_settings_phone_extension'   => $this->getObject()->getSellerSettingsPhoneExtension(),
-      'seller_settings_store_description' => $this->getObject()->getSellerSettingsStoreDescription(),
-      'seller_settings_return_policy'     => $this->getObject()->getSellerSettingsReturnPolicy(),
-      'seller_settings_payment_accepted'  => $this->getObject()->getSellerSettingsPaymentAccepted(),
+      'seller_settings_paypal_email'                  => $this->getObject()->getSellerSettingsPaypalEmail(),
+      'seller_settings_phone_code'                    => $this->getObject()->getSellerSettingsPhoneCode(),
+      'seller_settings_phone_number'                  => $this->getObject()->getSellerSettingsPhoneNumber(),
+      'seller_settings_phone_extension'               => $this->getObject()->getSellerSettingsPhoneExtension(),
+      'seller_settings_store_description'             => $this->getObject()->getSellerSettingsStoreDescription(),
+      'seller_settings_return_policy'                 => $this->getObject()->getSellerSettingsReturnPolicy(),
+      'seller_settings_payment_accepted'              => $this->getObject()->getSellerSettingsPaymentAccepted(),
+      'seller_settings_welcome'                       => $this->getObject()->getSellerSettingsWelcome(),
+      'seller_settings_shipping'                      => $this->getObject()->getSellerSettingsShipping(),
+      'seller_settings_refunds'                       => $this->getObject()->getSellerSettingsRefunds(),
+      'seller_settings_additional_policies'           => $this->getObject()->getSellerSettingsAdditionalPolicies(),
     )));
 
   }
@@ -309,4 +334,41 @@ class CollectorEditForm extends CollectorForm
 
     $this->validatorSchema['seller_settings_phone_number'] = new sfValidatorString(array('required' => $required));
   }
+
+  public function setupSellerSettingsWelcomeField($required = false)
+  {
+    $this->widgetSchema['seller_settings_welcome'] = new sfWidgetFormTextarea(array(
+      'label' => 'Welcome',
+    ));
+
+    $this->validatorSchema['seller_settings_welcome'] = new sfValidatorString(array('required' => $required));
+  }
+
+  public function setupSellerSettingsShippingField($required = false)
+  {
+    $this->widgetSchema['seller_settings_shipping'] = new sfWidgetFormTextarea(array(
+      'label' => 'Shipping',
+    ));
+
+    $this->validatorSchema['seller_settings_shipping'] = new sfValidatorString(array('required' => $required));
+  }
+
+  public function setupSellerSettingsRefundsField($required = false)
+  {
+    $this->widgetSchema['seller_settings_refunds'] = new sfWidgetFormTextarea(array(
+      'label' => 'Refunds and exchange',
+    ));
+
+    $this->validatorSchema['seller_settings_refunds'] = new sfValidatorString(array('required' => $required));
+  }
+
+  public function setupSellerSettingsAdditionalPoliciesField($required = false)
+  {
+    $this->widgetSchema['seller_settings_additional_policies'] = new sfWidgetFormTextarea(array(
+      'label' => 'Additional policies and FAQs',
+    ));
+
+    $this->validatorSchema['seller_settings_additional_policies'] = new sfValidatorString(array('required' => $required));
+  }
+
 }
