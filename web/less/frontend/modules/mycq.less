@@ -146,7 +146,6 @@
 		.styles-reset {
 			height: 32px;
 			background: none;
-
 		}
 	}
 
@@ -154,6 +153,10 @@
 		margin: 0 15px;
 		padding-top: 20px;
 		padding-bottom: 10px;
+
+		.sort-search-box {
+			margin-top: 4px;
+		}
 	}
 	.sidebar-title {
 		margin-top: 0;
@@ -304,12 +307,16 @@ a.buy-credits-button {
 }
 
 #mycq-tabs .pagination {
+	padding: 0;
 	background-color: #fff;
 
   li.active a {
 	color: #fff;
 	background-color: @blue;
   }
+	a:hover {
+		color: @blueDark;
+	}
 }
 
 .mycq-collections {
@@ -1567,6 +1574,175 @@ textarea.input-xlarge {
 		margin: 0 auto;
 		font-size: 14px;
 		line-height: 18px;
+		font-weight: bold;
+		text-align: center;
+		color: @blue;
+	}
+}
+
+.mycq-collections-wrapper {
+
+}
+
+.mycq-collections-4x9 {
+	margin-top: 10px;
+	margin-left: -12px;
+
+	.collectible_grid_view_square {
+		.size(244px, 208px);
+		margin-left: 15px;
+		padding: 6px;
+		border: 1px solid @boxBorder2;
+		&:hover {
+			background-color: #F5FCFF;
+			border: 1px solid @blue;
+			cursor: auto;
+		}
+
+		.thumbnails {
+			margin-bottom: 0;
+			margin-left: -6px;
+		}
+		.thumbnails > li {
+		margin-bottom: 6px;
+		margin-left: 6px;
+
+			a > img {
+			margin: 1px 0 1px 2px;
+			}
+		}
+
+		> p {
+			height: 40px;
+			padding: 0 0 4px 4px;
+		}
+	}
+
+	.drop-zone {
+		.size(32px, 46px);
+		margin: 1px 0 1px 2px;
+		padding-top: 18px;
+	}
+	.add-new-zone {
+		.size(244px, 208px);
+		margin-bottom: 15px;
+		margin-left: 15px;
+		padding: 6px;
+		border: 1px dotted @blue;
+		background-color: #fff;
+		&:hover {
+			background: rgb(177,12,11);
+			background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2IxMGMwYiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjUwJSIgc3RvcC1jb2xvcj0iI2JjMDAwMCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNjYjAwMDAiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+			background: -moz-linear-gradient(top,  rgb(177,12,11) 0%, rgb(188,0,0) 50%, rgb(203,0,0) 100%);
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb(177,12,11)), color-stop(50%,rgb(188,0,0)), color-stop(100%,rgb(203,0,0)));
+			background: -webkit-linear-gradient(top,  rgb(177,12,11) 0%,rgb(188,0,0) 50%,rgb(203,0,0) 100%);
+			background: -o-linear-gradient(top,  rgb(177,12,11) 0%,rgb(188,0,0) 50%,rgb(203,0,0) 100%);
+			background: -ms-linear-gradient(top,  rgb(177,12,11) 0%,rgb(188,0,0) 50%,rgb(203,0,0) 100%);
+			background: linear-gradient(top,  rgb(177,12,11) 0%,rgb(188,0,0) 50%,rgb(203,0,0) 100%);
+			filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#b10c0b', endColorstr = '#cb0000', GradientType = 0); /* IE6-8 */
+
+			.btn-upload-collectible, .btn-upload-collectible-txt {
+				color: #fff;
+			}
+		}
+	}
+	.btn-upload-collectible {
+		display: block;
+		margin-top: 25px;
+		font-size: 80px;
+		line-height: 80px;
+		decoration: none;
+		text-align: center;
+		color: @blue;
+	}
+	.btn-upload-collectible-txt {
+		display: block;
+		width: 90%;
+		margin: 6px auto 0 auto;
+		font-size: 16px;
+		line-height: 28px;
+		font-weight: bold;
+		text-align: center;
+		color: @blue;
+	}
+}
+
+.mycq-collections-4x9-in-tab {
+	//thumbnails 60x60
+	margin-top: 10px;
+	margin-left: -12px;
+
+	.collectible_grid_view_square {
+		.size(244px, 200px);
+		margin-left: 15px;
+		padding: 6px;
+		border: 1px solid @boxBorder2;
+		&:hover {
+			background-color: #F5FCFF;
+			border: 1px solid @blue;
+			cursor: auto;
+		}
+
+		.thumbnails {
+			margin-bottom: 0;
+			margin-left: -6px;
+		}
+		.thumbnails > li {
+		margin-bottom: 6px;
+		margin-left: 6px;
+
+			a > img {
+			margin: 1px 0 1px 2px;
+			}
+		}
+
+		> p {
+			height: 40px;
+			padding: 0 0 4px 4px;
+		}
+	}
+
+	.drop-zone {
+		.size(32px, 46px);
+		margin: 1px 0 1px 2px;
+		padding-top: 18px;
+	}
+	.add-new-zone {
+		.size(244px, 200px);
+		padding: 6px;
+		border: 1px dotted @blue;
+		background-color: #fff;
+		&:hover {
+			background: rgb(177,12,11);
+			background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2IxMGMwYiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjUwJSIgc3RvcC1jb2xvcj0iI2JjMDAwMCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNjYjAwMDAiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+			background: -moz-linear-gradient(top,  rgb(177,12,11) 0%, rgb(188,0,0) 50%, rgb(203,0,0) 100%);
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb(177,12,11)), color-stop(50%,rgb(188,0,0)), color-stop(100%,rgb(203,0,0)));
+			background: -webkit-linear-gradient(top,  rgb(177,12,11) 0%,rgb(188,0,0) 50%,rgb(203,0,0) 100%);
+			background: -o-linear-gradient(top,  rgb(177,12,11) 0%,rgb(188,0,0) 50%,rgb(203,0,0) 100%);
+			background: -ms-linear-gradient(top,  rgb(177,12,11) 0%,rgb(188,0,0) 50%,rgb(203,0,0) 100%);
+			background: linear-gradient(top,  rgb(177,12,11) 0%,rgb(188,0,0) 50%,rgb(203,0,0) 100%);
+			filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#b10c0b', endColorstr = '#cb0000', GradientType = 0); /* IE6-8 */
+
+			.btn-upload-collectible, .btn-upload-collectible-txt {
+				color: #fff;
+			}
+		}
+	}
+	.btn-upload-collectible {
+		display: block;
+		margin-top: 25px;
+		font-size: 80px;
+		line-height: 80px;
+		decoration: none;
+		text-align: center;
+		color: @blue;
+	}
+	.btn-upload-collectible-txt {
+		display: block;
+		width: 90%;
+		margin: 6px auto 0 auto;
+		font-size: 16px;
+		line-height: 28px;
 		font-weight: bold;
 		text-align: center;
 		color: @blue;
