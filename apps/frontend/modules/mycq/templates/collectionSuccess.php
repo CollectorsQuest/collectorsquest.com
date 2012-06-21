@@ -9,7 +9,6 @@
   <ul class="nav nav-tabs">
     <li class="active"><a href="#" target="_self" title="Your Collection">Your Collection</a></li>
     <li><a href="#" target="_self" title="Edit Collection Description">Edit Collection Description</a></li>
-
   </ul>
   <div class="tab-content">
     <div class="tab-pane active">
