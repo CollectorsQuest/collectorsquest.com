@@ -181,6 +181,12 @@ classes:
       expiry_date:              { type: timestamp }
       created_at:  ~
 
+    propel_behaviors:
+      aggregate_column:
+        name:                   credits_used
+        foreign_table:          package_transaction_credit
+        expression:             "COUNT(id)"
+
   PackageTransactionCredit:
     columns:
       id:  ~
