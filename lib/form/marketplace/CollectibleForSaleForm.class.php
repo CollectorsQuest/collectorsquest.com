@@ -96,7 +96,7 @@ class CollectibleForSaleForm extends BaseCollectibleForSaleForm
       }
     }
 
-    if (null === $values['price_currency'])
+    if (empty($values['price_currency']))
     {
       $values['price_currency'] = 'USD';
     }

@@ -17,7 +17,6 @@ class CollectibleForSaleEditForm extends CollectibleForSaleForm
     $this->useFields(array(
       'is_ready',
       'price',
-      'price_currency',
       'condition'
     ));
 
