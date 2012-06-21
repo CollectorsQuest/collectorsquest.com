@@ -35,7 +35,7 @@ class PackageTransactionPeer extends BasePackageTransactionPeer
         $discount = (float)($package->getPackagePrice() * $promotion->getAmount()) / 100;
         $discountTypeString = '%';
       }
-      $priceWithDiscount = (float)$package->getPackagePrice() - $discount;
+      $priceWithDiscount = max(0, (float)$package->getPackagePrice() - $discount);
 
       $promoTransaction = PromotionTransactionPeer::newTransaction($collector, $promotion, $discount, $promotion->getAmountType());
 
