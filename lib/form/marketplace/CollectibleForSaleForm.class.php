@@ -29,9 +29,6 @@ class CollectibleForSaleForm extends BaseCollectibleForSaleForm
   public function setupIsReadyField()
   {
     $this->setValidator('is_ready', new sfValidatorBoolean(array('required' => false)));
-    $this->validatorSchema['is_ready']->setMessage(
-      'invalid', 'You do not have enough credits to post this Collectible to the marketplace!'
-    );
   }
 
   public function validateIsReadyField($validator, $values)
@@ -49,10 +46,10 @@ class CollectibleForSaleForm extends BaseCollectibleForSaleForm
       else
       {
         // throw an error bound to the price field
-        throw new sfValidatorErrorSchema(
-          $validator,
-          array('is_ready' => new sfValidatorError($validator, 'invalid'))
-        );
+        $errorSchema = new sfValidatorErrorSchema($validator);
+        $errorSchema->addError(new sfValidatorError($validator, 'invalid'), 'is_ready');
+
+        throw $errorSchema;
       }
     }
 
