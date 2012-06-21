@@ -63,7 +63,7 @@ class CollectibleForSaleForm extends BaseCollectibleForSaleForm
   {
     $this->setWidget('price', new sfWidgetFormInputText(array(), array('required' => 'required')));
     $this->setValidator('price', new sfValidatorString(array('required' => false)));
-    $this->setDefault('price', $this->getObject()->getPrice());
+    $this->setDefault('price', sprintf('%01.2f', $this->getObject()->getPrice()));
 
     // Get the Collectibles for sale currencies
     $currencies = CollectibleForSalePeer::$currencies;
