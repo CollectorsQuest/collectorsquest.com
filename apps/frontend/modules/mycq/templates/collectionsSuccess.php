@@ -11,7 +11,7 @@
       <h3 class="Chivo webfont">My Collections (<?= $total ?>)</h3>
     </div>
     <div class="span7">
-      <?php if ($total > 0): ?>
+      <?php if ($total > 11): ?>
       <div class="sort-search-box">
         <div class="input-append">
           <form action="<?= url_for('@ajax_mycq?section=component&page=collections') ?>"
