@@ -5,10 +5,6 @@ require 'lib/model/marketplace/om/BasePackageTransactionPeer.php';
 class PackageTransactionPeer extends BasePackageTransactionPeer
 {
 
-  const STATUS_PAID = 'paid';
-  const STATUS_PENDING = 'pending';
-  const STATUS_CANCELED = 'canceled';
-
   /**
    * @static
    * @param $collectorId
@@ -62,7 +58,7 @@ class PackageTransactionPeer extends BasePackageTransactionPeer
     }
 
     $transaction->setPackagePrice($priceWithDiscount);
-    $transaction->setPaymentStatus($priceWithDiscount ? self::STATUS_PENDING : self::STATUS_PAID);
+    $transaction->setPaymentStatus($priceWithDiscount ? self::PAYMENT_STATUS_PENDING : self::PAYMENT_STATUS_PAID);
     $transaction->save();
 
     return $transaction;

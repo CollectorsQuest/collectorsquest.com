@@ -64,7 +64,7 @@ class PackageTransaction extends BasePackageTransaction
    */
   public function confirmPayment()
   {
-    $this->setPaymentStatus(PackageTransactionPeer::STATUS_PAID);
+    $this->setPaymentStatus(PackageTransactionPeer::PAYMENT_STATUS_PAID);
     $this->save();
 
     /* @var $collector Collector */

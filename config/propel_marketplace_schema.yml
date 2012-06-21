@@ -172,7 +172,7 @@ classes:
       id:  ~
       package_id:               { type: integer, foreignClass: Package, foreignReference: id, required: true, onDelete: restrict }
       collector_id:             { type: integer, foreignClass: Collector, foreignReference: id, required: true, onDelete: cascade }
-      payment_status:           { type: varchar, default: pending, size: 255 }
+      payment_status:           { type: enum,    valueSet: "pending, paid, cancelled", default: pending }
       credits:                  { type: integer, required: true, default: 0 }
       package_price:            { type: float }
       discount:                 { type: float, required: false, sqlType: 'float unsigned' }
