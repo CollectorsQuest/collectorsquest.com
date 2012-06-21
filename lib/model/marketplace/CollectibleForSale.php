@@ -221,8 +221,23 @@ class CollectibleForSale extends BaseCollectibleForSale
     else if ($this->getPriceAmount() === 0) {
       return false;
     }
+    else if (!$this->hasActiveCredit()) {
+      return false;
+    }
 
     return true;
   }
 
+  /**
+   * Is there an active credit available for this Collectible?
+   *
+   * @return    boolean
+   */
+  public function hasActiveCredit()
+  {
+    return !!PackageTransactionCreditQuery::create()
+      ->filterByCollectible($this)
+      ->notExpired()
+      ->count();
+  }
 }

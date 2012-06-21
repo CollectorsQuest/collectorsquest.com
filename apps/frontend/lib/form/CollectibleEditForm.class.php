@@ -170,6 +170,40 @@ class CollectibleEditForm extends BaseCollectibleForm
     return $object;
   }
 
+  public function updateObject($values = null)
+  {
+    if (null === $values)
+    {
+      $values = $this->values;
+    }
+
+    $values = $this->processValues($values);
+
+    // If the collectible for sale was not marked as ready before,
+    // but is currently being marked as such
+    if (
+      $this->getObject()->getCollectibleForSale() &&
+      !$this->getObject()->getCollectibleForSale()->getIsReady() &&
+      isset($values['for_sale']['is_ready']) && $values['for_sale']['is_ready']
+    ) {
+      try {
+        // try to create a transaction credit for this collectible
+        PackageTransactionCreditPeer::findActiveOrCreateForCollectible($this->getObject());
+      } catch (CollectorHasNoCreditsAvailableException $e) {
+        // and if for some reason there were no available credits
+        // auto-set is_ready to false
+        $values['for_sale']['is_ready'] = false;
+      }
+    }
+
+    $this->doUpdateObject($values);
+
+    // embedded forms
+    $this->updateObjectEmbeddedForms($values);
+
+    return $this->getObject();
+  }
+
   public function saveCollectionCollectibleList($con = null)
   {
     if (!$this->isValid())
