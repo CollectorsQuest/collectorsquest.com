@@ -57,9 +57,9 @@ class CollectorCollectionQuery extends BaseCollectorCollectionQuery
   {
     return $this
       ->useCollectionQuery()
-        ->filterByName('%'. $v .'%', Criteria::LIKE)
+        ->filterByName('%'. trim($v) .'%', Criteria::LIKE)
         ->_or()
-        ->filterByDescription('%'. $v .'%', Criteria::LIKE)
+        ->filterByDescription('%'. trim($v) .'%', Criteria::LIKE)
       ->endUse();
   }
 }

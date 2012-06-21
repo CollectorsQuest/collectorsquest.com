@@ -144,12 +144,23 @@ class shoppingActions extends cqFrontendActions
 
         /** @var $collectible_for_sale CollectibleForSale */
         $collectible_for_sale = CollectibleForSaleQuery::create()
-          ->isForSale()
           ->findOneByCollectibleId($values['collectible_id']);
 
-        if (!$collectible_for_sale)
+        if ($collectible_for_sale && !$collectible_for_sale->isForSale())
         {
-          $this->getUser()->setFlash('error', 'There was a problem processing the request');
+          $this->getUser()->setFlash(
+            'error', 'There was a problem processing the request
+                      and we have removed the item from your cart.
+                      Most probably this item has already been sold
+                      or no longer available for purchase.'
+          );
+
+          // Remove the CollectibleForSale from the shopping cart
+          $q = ShoppingCartCollectibleQuery::create()
+            ->filterByCollectible($collectible_for_sale->getCollectible())
+            ->filterByShoppingCart($shopping_cart);
+          $q->delete();
+
           $this->redirect('@shopping_cart');
         }
         else if ($this->getCollector(false)->isOwnerOf($collectible_for_sale))
@@ -279,7 +290,15 @@ class shoppingActions extends cqFrontendActions
     if ($shopping_payment && $shopping_payment->getStatus() == ShoppingPaymentPeer::STATUS_COMPLETED)
     {
       $this->getUser()->setFlash('success', 'This order has already been paid');
-      $this->redirect('@mycq_shopping_order?uuid='. $shopping_order->getUuid());
+
+      if ($this->getUser()->isOwnerOf($shopping_order))
+      {
+        $this->redirect('@mycq_shopping_order?uuid='. $shopping_order->getUuid());
+      }
+      else
+      {
+        $this->redirect('@shopping_order_review?uuid='. $shopping_order->getUuid());
+      }
     }
 
     switch (strtolower($request->getParameter('processor', 'paypal')))
@@ -378,7 +397,7 @@ class shoppingActions extends cqFrontendActions
             return sfView::ERROR;
           }
         }
-        else if ($result['L_ERRORCODE0'] == '10412')
+        else if (isset($result['L_ERRORCODE0']) && $result['L_ERRORCODE0'] === '10412')
         {
           $shopping_payment->setStatus(ShoppingPaymentPeer::STATUS_FAILED);
           $shopping_payment->save();
@@ -415,9 +434,16 @@ class shoppingActions extends cqFrontendActions
     // Check if the Order is already completed and redirect appropriately
     if (!$shopping_payment || $shopping_payment->getStatus() != ShoppingPaymentPeer::STATUS_COMPLETED)
     {
-      $this->getUser()->setFlash('error', sprintf('Order <b>%s</b> has not been paid yet!', $shopping_order->getUuid()));
+      $this->getUser()->setFlash(
+        'error', sprintf('Order <b>%s</b> has not been paid yet!', $shopping_order->getUuid())
+      );
       $this->redirect('@shopping_order_pay?uuid='. $shopping_order->getUuid());
     }
+
+    $this->shopping_order   = $shopping_order;
+    $this->shopping_payment = $shopping_payment;
+
+    $this->seller = $shopping_order->getSeller();
 
     return sfView::SUCCESS;
   }
@@ -474,7 +500,9 @@ class shoppingActions extends cqFrontendActions
 
         if (strtoupper($result['Status']) !== 'COMPLETED')
         {
-          $this->getUser()->setFlash('error', sprintf('Order <b>%s</b> has not been paid yet!', $shopping_order->getUuid()));
+          $this->getUser()->setFlash(
+            'error', sprintf('Order <b>%s</b> has not been paid yet!', $shopping_order->getUuid())
+          );
           $this->redirect('@shopping_order_pay?uuid='. $shopping_order->getUuid());
         }
 
@@ -488,8 +516,14 @@ class shoppingActions extends cqFrontendActions
            ->filterByShoppingCart($shopping_order->getShoppingCart());
         $q->delete();
 
+        // The Collectible has sold, so decrease the quantity (make zero)
+        $shopping_order->getCollectibleForSale()->setQuantity(0);
+        // The Collectible has sold, mark it as sold (legacy)
+        $shopping_order->getCollectibleForSale()->setIsSold(true);
+        $shopping_order->getCollectibleForSale()->save();
+
         // Add this order to the session if it's a guest checkout
-        if ($this->getUser()->isAuthenticated())
+        if (!$this->getUser()->isAuthenticated())
         {
           $orders = array_merge(
             $this->getUser()->getAttribute('orders', array(), 'shopping'),

@@ -249,7 +249,7 @@ class CollectibleForSaleQuery extends BaseCollectibleForSaleQuery
   {
     return $this
       ->useCollectibleQuery()
-      ->search($v)
+        ->search(trim($v))
       ->endUse();
   }
 

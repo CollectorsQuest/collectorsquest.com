@@ -13,3 +13,7 @@ $t->diag('::getUuidFromId()');
   $t->is(ShoppingOrderPeer::getUuidFromId('1100001'), 'EA3JRYT8');
   $t->is(ShoppingOrderPeer::getUuidFromId('1234567'), 'EH7XEK8R');
   $t->is(ShoppingOrderPeer::getUuidFromId('7654321'), '1D68ONRI');
+
+  // This is the serious limitation of the method
+  $t->is(ShoppingOrderPeer::getUuidFromId('1'),  'EK00X8HP');
+  $t->is(ShoppingOrderPeer::getUuidFromId('10'), 'EK00X8HP');

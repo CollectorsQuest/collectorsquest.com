@@ -570,6 +570,12 @@ feedback:
   url:   /feedback
   param: { module: general, action: feedback }
 
+### MISC
+
+misc_guide_to_collecting:
+  url:   /the-essential-guide-to-collecting
+  param: { module: misc, action: guideToCollecting }
+
 ### LEGACY
 
 legacy_community_help:

@@ -85,8 +85,8 @@
 <script>
   $(document).ready(function()
   {
-    $('.btn').button();
-    $('.btn').click(function()
+    $('.blue-button').button();
+    $('.blue-button').click(function()
     {
       $(this).button('loading');
     });

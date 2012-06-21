@@ -41,6 +41,7 @@ class generalActions extends cqFrontendActions
 
     $this->blog_posts = $blog_posts;
 
+    /** @var $q wpPostQuery */
     $q = wpPostQuery::create()
        ->filterByPostType('homepage_showcase')
        ->filterByPostStatus('publish')
@@ -203,13 +204,13 @@ class generalActions extends cqFrontendActions
 
       if (!$collector)
       {
-        $collector = CollectorPeer::createFromRPXProfile($profile);
-        $collector->assignRandomAvatar();
+        // Run the pre create hook
+        $this->getUser()->preCreateHook();
 
-        $cqEmail = new cqEmail($this->getMailer());
-        $cqEmail->send($collector->getUserType() . '/welcome_to_cq', array(
-          'to' => $collector->getEmail(),
-        ));
+        $collector = CollectorPeer::createFromRPXProfile($profile);
+
+        // Run the post create hook
+        $this->getUser()->postCreateHook($collector);
 
         $new_collector = true;
       }
@@ -218,14 +219,15 @@ class generalActions extends cqFrontendActions
       {
         $this->getUser()->Authenticate(true, $collector, true);
 
-        return $this->redirect($new_collector ? '@mycq_profile' : '@homepage');
+        $this->redirect($new_collector ? '@mycq_profile' : '@collector_me');
       }
     }
 
     // forward the user to the homepage after 5 seconds
     $this->getResponse()->addHttpMeta(
       'refresh',
-      '5;' . $this->getController()->genUrl('@homepage'));
+      '5;' . $this->getController()->genUrl('@homepage')
+    );
 
     return sfView::ERROR;
   }
