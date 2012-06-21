@@ -1,8 +1,8 @@
 <?php
 
-include(__DIR__.'/../../bootstrap/model.php');
+include(__DIR__.'/../../../bootstrap/model.php');
 
-$t = new lime_test(7, array('output' => new lime_output_color(), 'error_reporting' => true));
+$t = new lime_test(9, array('output' => new lime_output_color(), 'error_reporting' => true));
 
 $t->diag('::getUuidFromId()');
 
