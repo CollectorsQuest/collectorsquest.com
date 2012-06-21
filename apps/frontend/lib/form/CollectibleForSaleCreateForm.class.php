@@ -83,8 +83,13 @@ class CollectibleForSaleCreateForm extends CollectibleForSaleForm
 
       if (!$collection = $q->findOne())
       {
+        $name = sprintf(
+          "%s Items for Sale",
+          $collector->getDisplayName() .
+          (in_array(substr(strtolower($collector->getDisplayName()), -1, 1), array('s', 'z')) ? "'" : "'s")
+        );
         $collection = $q->findOneOrCreate();
-        $collection->setName('Collectibles for Sale Collection');
+        $collection->setName($name);
         $collection->save();
       }
 

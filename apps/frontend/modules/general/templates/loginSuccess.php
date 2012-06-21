@@ -12,7 +12,7 @@
     <div class="control-group ">
       <label class="control-label">&nbsp;</label>
       <div class="controls">
-        <?= $form['remember']->render(array('style' => 'float: left;')); ?>
+        <?= $form['remember']->render(array('style' => 'float: left; margin-top: 3px;')); ?>
         <label for="login_remember">&nbsp; Remember me for two weeks</label>
       </div>
     </div>

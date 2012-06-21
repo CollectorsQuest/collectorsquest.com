@@ -9,5 +9,5 @@ $collectible = $CollectibleForSale->getCollectible();
 $collector = $collectible->getCollector();
 
 echo $collector, "<br />\n";
-?>
-<a href="mailto:<?php echo $collector->getEmail() ?>"><?php echo $collector->getEmail() ?></a>
+echo mail_to($collector->getEmail(), $collector->getEmail());
+

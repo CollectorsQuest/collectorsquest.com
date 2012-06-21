@@ -159,7 +159,7 @@ classes:
     columns:
       id:  ~
       plan_type:            { type: char, sqlType: "ENUM('Casual','Power')", default: NULL, required: true }
-      package_name:         { type: varchar, size: 255, required: true }
+      package_name:         { type: varchar, size: 255, required: true, primary_string: true }
       package_description:  { type: longvarchar }
       credits:              { type: integer, required: true, default: 0 }
       package_price:        { type: float }
@@ -172,20 +172,26 @@ classes:
       id:  ~
       package_id:               { type: integer, foreignClass: Package, foreignReference: id, required: true, onDelete: restrict }
       collector_id:             { type: integer, foreignClass: Collector, foreignReference: id, required: true, onDelete: cascade }
-      payment_status:           { type: varchar, default: pending, size: 255 }
+      payment_status:           { type: enum,    valueSet: "pending, paid, cancelled", default: pending }
       credits:                  { type: integer, required: true, default: 0 }
+      credits_used:             { type: integer, required: true, default: 0 }
       package_price:            { type: float }
       discount:                 { type: float, required: false, sqlType: 'float unsigned' }
       promotion_transaction_id: { type: integer, required: false, foreignClass: PromotionTransaction, foreignReference: id, onDelete: restrict }
       expiry_date:              { type: timestamp }
       created_at:  ~
 
+    propel_behaviors:
+      aggregate_column:
+        name:                   credits_used
+        foreign_table:          package_transaction_credit
+        expression:             "COUNT(id)"
+
   PackageTransactionCredit:
     columns:
       id:  ~
-      package_transaction_id:   { type: integer, foreignClass: Package, foreignReference: id, required: true, onDelete: restrict }
-      collector_id:             { type: integer, required: false }
-      collectible_id:           { type: integer, required: false }
+      package_transaction_id:   { type: integer,  foreignClass: PackageTransaction, foreignReference: id, required: true, onDelete: cascade }
+      collectible_id:           { type: integer,  foreignClass: Collectible,        foreignReference: id, required: false, onDelete: setnull }
       expiry_date:              { type: timestamp }
       created_at:  ~
 
@@ -193,7 +199,7 @@ classes:
     columns:
       id:  ~
       promotion_code:   { type: varchar, size: 255, required: true }
-      promotion_name:   { type: varchar, size: 255, required: true }
+      promotion_name:   { type: varchar, size: 255, required: true, primaryString: true }
       promotion_desc:   { type: longvarchar }
       amount:           { type: float}
       amount_type:      { type: char, sqlType: "ENUM('Fix','Percentage')", default: Fix, required: true }

@@ -13,13 +13,22 @@ class CollectibleForSaleQuery extends BaseCollectibleForSaleQuery
     $this
       ->filterByIsReady(true)
       ->filterByPriceAmount(1, Criteria::GREATER_EQUAL)
-      ->filterByQuantity(1, Criteria::GREATER_EQUAL);
+      ->filterByQuantity(1, Criteria::GREATER_EQUAL)
+      ->_and()
+      ->useCollectibleQuery()
+        ->usePackageTransactionCreditQuery()
+          ->notExpired()
+        ->endUse()
+      ->endUse();
 
     return $this;
   }
 
   /**
+   * Does not check for a transaction credit present or not!
+   *
    * @return CollectibleForSaleQuery
+   * @deprecated
    */
   public function isNotForSale()
   {

@@ -61,7 +61,7 @@ all:
         icon: shopping-cart
         items:
           Marketplace:
-            url: marketplace_list
+            url: marketplace
             image: theme/icons/menu.png
           Promotion:
             url: promotion

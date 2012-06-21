@@ -24,7 +24,7 @@ class Seller extends Collector
   {
     $q = PackageTransactionQuery::create()
         ->filterByCollector($this)
-        ->filterByPaymentStatus(PackageTransactionPeer::STATUS_PAID)
+        ->filterByPaymentStatus(PackageTransactionPeer::PAYMENT_STATUS_PAID)
         ->filterByExpiryDate(time(), Criteria::GREATER_EQUAL)
         ->clearSelectColumns()
         ->addAsColumn('total', 'SUM(credits)');
@@ -43,8 +43,8 @@ class Seller extends Collector
   {
     $packages = PackageTransactionQuery::create()
         ->filterByCollector($this)
-        ->filterByPaymentStatus(PackageTransactionPeer::STATUS_PAID)
-        ->filterByExpiryDate(time(), Criteria::GREATER_EQUAL)
+        ->filterByPaymentStatus(PackageTransactionPeer::PAYMENT_STATUS_PAID)
+        ->notExpired()
         ->find()
         ->toKeyValue('PrimaryKey', 'Credits');
         ;
@@ -57,4 +57,5 @@ class Seller extends Collector
 
     return $totalCredits - $creditsUsed;
   }
+
 }

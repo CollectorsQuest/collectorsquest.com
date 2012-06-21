@@ -25,14 +25,15 @@
     <div class="control-group">
       <?= $form['price']->renderLabel(); ?>
       <div class="controls">
-        <div class="with-required-token">
+        <div class="with-required-token input-prepend">
+          <span class="add-on">$</span>
           <span class="required-token">*</span>
           <?php
             echo $form['price']->render(array(
-              'class' => 'span2 text-center help-inline', 'required'=>'required'
+              'class' => 'span5 text-center', 'required' => 'required',
+              'style' => 'margin-left: -4px; font-size: 120%; padding-top: 8px;'
             ));
           ?>
-          <?= $form['price_currency']->render(array('class' => 'span2 help-inline')); ?>
         </div>
         <?= $form['price']->renderError(); ?>
       </div>
