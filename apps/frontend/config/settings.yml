@@ -65,8 +65,14 @@ all:
     lazy_cache_key:         true
 
   .actions:
+    default_module:         general
+    default_action:         index
+
     error_404_module:       general
     error_404_action:       error404
+
+    secure_module:          general
+    secure_action:          secure
 
     login_module:           general
     login_action:           login
