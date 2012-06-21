@@ -7,20 +7,6 @@ class PackageTransactionPeer extends BasePackageTransactionPeer
 
   /**
    * @static
-   * @param $collectorId
-   * @return PackageTransaction
-   */
-  public static function checkExpiryDate($collectorId)
-	{
-		$criteria = new Criteria();
-		$criteria->add(PackageTransactionPeer::COLLECTOR_ID, $collectorId);
-		$criteria->addDescendingOrderByColumn(PackageTransactionPeer::ID);
-
-		return PackageTransactionPeer::doSelectOne($criteria);
-	}
-
-  /**
-   * @static
    * @param Collector $collector
    * @param Package $package
    * @param null|Promotion $promotion

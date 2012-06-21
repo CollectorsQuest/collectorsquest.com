@@ -159,7 +159,7 @@ classes:
     columns:
       id:  ~
       plan_type:            { type: char, sqlType: "ENUM('Casual','Power')", default: NULL, required: true }
-      package_name:         { type: varchar, size: 255, required: true }
+      package_name:         { type: varchar, size: 255, required: true, primary_string: true }
       package_description:  { type: longvarchar }
       credits:              { type: integer, required: true, default: 0 }
       package_price:        { type: float }
@@ -193,7 +193,7 @@ classes:
     columns:
       id:  ~
       promotion_code:   { type: varchar, size: 255, required: true }
-      promotion_name:   { type: varchar, size: 255, required: true }
+      promotion_name:   { type: varchar, size: 255, required: true, primaryString: true }
       promotion_desc:   { type: longvarchar }
       amount:           { type: float}
       amount_type:      { type: char, sqlType: "ENUM('Fix','Percentage')", default: Fix, required: true }

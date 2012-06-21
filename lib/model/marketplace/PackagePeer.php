@@ -5,13 +5,6 @@ require 'lib/model/marketplace/om/BasePackagePeer.php';
 class PackagePeer extends BasePackagePeer
 {
 
-  public static function getAllPackages()
-  {
-    return PackageQuery::create()
-        ->filterById(9999, Criteria::LESS_THAN)
-        ->find();
-  }
-
   /**
    * @static
    *
