@@ -661,6 +661,48 @@ i.drop-zone.ui-state-highlight {
 	margin: 10px 0 0 20px;
 }
 
+.list-thumbs-10x {
+	margin: 20px 0 10px 15px;
+
+	.thumbnails {
+		margin-left: -1px;
+		.wrapper-90 {
+			.square(90px);
+			margin-bottom: 2px;
+			margin-left: 1px;
+			font-size: 12px;
+			border: none;
+			.box-shadow(none);
+			.border-radius(0);
+		}
+		.drop-zone {
+			display: block;
+			.square(90px);
+			margin-bottom: 2px;
+			margin-left: 1px;
+			font-size: 30px;
+			line-height: 30px;
+			border: none;
+			.box-shadow(none);
+			.border-radius(0);
+		}
+	}
+	.thumbnail {
+		padding: 3px;
+		border: none;
+		.box-shadow(none);
+		.border-radius(0);
+
+		&:hover {
+			padding: 2px;
+			border: 1px solid @brown;
+			background-color: white;
+			.border-radius(0);
+		}
+	}
+}
+
+//old
 .list-thumbs-other-collectibles {
 	margin: 20px 0 10px 15px;
 

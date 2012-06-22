@@ -178,6 +178,76 @@
   <?= $form->renderHiddenFields(); ?>
 </form>
 
+
+<div class="list-thumbs-10x">
+
+  <div class="row-fluid">
+    <div class="span6">
+      Edit other collectibles in this collection
+    </div>
+    <div class="span6">
+      <a href="#" class="pull-right">
+        Edit collection &raquo;
+      </a>
+    </div>
+  </div>
+
+  <ul class="thumbnails">
+    <li class="wrapper-90">
+      <a href="#" class="thumb">
+        <img alt="" src="http://placehold.it/90x90">
+      </a>
+    </li>
+    <li class="wrapper-90">
+      <a href="#" class="thumb">
+        <img alt="" src="http://placehold.it/90x90">
+      </a>
+    </li>
+    <li class="wrapper-90">
+      <a href="#" class="thumb">
+        <img alt="" src="http://placehold.it/90x90">
+      </a>
+    </li>
+    <li class="wrapper-90">
+      <a href="#" class="thumb">
+        <img alt="" src="http://placehold.it/90x90">
+      </a>
+    </li>
+    <li class="wrapper-90">
+      <a href="#" class="thumb">
+        <img alt="" src="http://placehold.it/90x90">
+      </a>
+    </li>
+    <li class="wrapper-90">
+      <a href="#" class="thumb">
+        <img alt="" src="http://placehold.it/90x90">
+      </a>
+    </li>
+    <li class="wrapper-90">
+      <a href="#" class="thumb">
+        <img alt="" src="http://placehold.it/90x90">
+      </a>
+    </li>
+    <li class="wrapper-90">
+      <a href="#" class="thumb">
+        <img alt="" src="http://placehold.it/90x90">
+      </a>
+    </li>
+    <li class="drop-zone">
+      <i class="icon icon-plus ui-droppable"
+         data-collection-id="3269">
+      </i>
+      Add item
+    </li>
+    <li class="wrapper-90">
+      <a href="#" class="thumb">
+        <img alt="" src="http://placehold.it/90x90">
+      </a>
+    </li>
+  </ul>
+</div>
+
+
 <?php if (count($collectibles) > 0): ?>
 <br/>
 <div class="list-thumbs-other-collectibles">
