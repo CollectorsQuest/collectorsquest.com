@@ -100,32 +100,36 @@ $(document).ready(function()
       });
     }, true));
 
-  // Calculate the height of <header>
   // Use outerHeight() instead of height() if have padding
   var aboveHeight = $('#slot1').outerHeight();
 
-  //when scroll
+  var $div = $('<div></div>')
+    .addClass('hide')
+    .css('width', $('#dropzone-wrapper').outerWidth())
+    .css('height', $('#dropzone-wrapper').outerHeight());
+
+  // when scrolling
   $(window).scroll(function()
   {
     // if scrolled down more than the header’s height
-    if ($(window).scrollTop() > aboveHeight)
-    {
-      // if yes, add “fixed” class to the <nav>
-      // add padding top to the #content
-      // (value is same as the height of the nav)
+    if (
+      $('#dropzone-wrapper ul.thumbnails li').length > 0 &&
+      $(window).scrollTop() > aboveHeight - 30
+    ) {
+      $div.removeClass('hide');
+      $div.insertBefore($('#dropzone-wrapper'));
+
       $('#dropzone-wrapper')
         .addClass('fixed')
-        .css('top','0').next()
-        .css('padding-top','60px');
-
+        .css('top', '0')
+        .css('padding-top', '5px');
     }
     else
     {
-      // when scroll up or less than aboveHeight,
-      // remove the “fixed” class, and the padding-top
+      $div.addClass('hide');
       $('#dropzone-wrapper')
-        .removeClass('fixed').next()
-        .css('padding-top','0');
+        .removeClass('fixed')
+        .css('padding-top', '15px');
     }
   });
 });
