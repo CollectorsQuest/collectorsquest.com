@@ -44,7 +44,6 @@ class testGenerateFixturesTask extends sfBaseTask
       "TRUNCATE TABLE `shopping_cart_collectible`;",
       "TRUNCATE TABLE `shopping_cart`;",
 
-      "DELETE FROM collectible_offer WHERE collector_id NOT IN (". implode(',', $collector_ids) .");",
       "DELETE FROM collectible WHERE collector_id NOT IN (". implode(',', $collector_ids) .");",
       "DELETE FROM collection_collectible WHERE collectible_id NOT IN (SELECT id FROM collectible)",
       "DELETE FROM collector_collection WHERE collector_id NOT IN (". implode(',', $collector_ids) .");",
@@ -72,8 +71,6 @@ class testGenerateFixturesTask extends sfBaseTask
       "DELETE FROM comment WHERE collection_id NOT IN (SELECT id FROM collection) AND collection_id IS NOT NULL;",
       "DELETE FROM comment WHERE collectible_id NOT IN (SELECT id FROM collectible) AND collectible_id IS NOT NULL;",
 
-      "DELETE FROM collectible_offer WHERE collector_id NOT IN (SELECT collector.id FROM collector);",
-      "DELETE FROM collectible_offer WHERE collectible_id NOT IN (SELECT collectible.id FROM collectible JOIN (SELECT collectible.id FROM collectible ORDER BY RAND() LIMIT 25) AS c WHERE collectible.id = c.id);",
       "DELETE FROM collectible_for_sale WHERE collectible_id NOT IN (SELECT collectible.id FROM collectible JOIN (SELECT collectible.id FROM collectible ORDER BY RAND() LIMIT 25) AS c WHERE collectible.id = c.id);",
 
       "DELETE FROM custom_value WHERE `collection_id` NOT IN (SELECT collection.id FROM collection JOIN (SELECT collection.id FROM collection ORDER BY RAND() LIMIT 25) AS c WHERE collection.id = c.id);",

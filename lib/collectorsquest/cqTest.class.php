@@ -50,9 +50,7 @@ class cqTest
           'collection_collectible',
           'collectible_archive',
           'collectible_for_sale',
-          'collectible_for_sale_archive',
-          'collectible_offer',
-          'collectible_offer_archive'
+          'collectible_for_sale_archive'
         ));
         break;
     }

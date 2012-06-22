@@ -771,24 +771,21 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
 
     /** @var $collections Collection[] */
     if ($collections = $this->getCollections())
+    {
       foreach ($collections as $collection)
       {
         $collection->delete($con);
       }
-
-    /** @var $collectible_offers CollectibleOffer[] */
-    if ($collectible_offers = $this->getCollectibleOffers())
-      foreach ($collectible_offers as $collectible_offer)
-      {
-        $collectible_offer->delete($con);
-      }
+    }
 
     /** @var $comments Comment[] */
     if ($comments = $this->getComments())
+    {
       foreach ($comments as $comment)
       {
         $comment->delete($con);
       }
+    }
 
     // Deleting private messages
     $c = new Criteria();

@@ -27,28 +27,31 @@ class PackageTransactionPeer extends BasePackageTransactionPeer
     {
       if (PromotionPeer::DISCOUNT_FIXED == $promotion->getAmountType())
       {
-        $discount = (float)$promotion->getAmount();
+        $discount = (float) $promotion->getAmount();
         $discountTypeString = '$';
       }
       else
       {
-        $discount = (float)($package->getPackagePrice() * $promotion->getAmount()) / 100;
+        $discount = (float) ($package->getPackagePrice() * $promotion->getAmount()) / 100;
         $discountTypeString = '%';
       }
-      $priceWithDiscount = max(0, (float)$package->getPackagePrice() - $discount);
+      $priceWithDiscount = max(0, (float) $package->getPackagePrice() - $discount);
 
-      $promoTransaction = PromotionTransactionPeer::newTransaction($collector, $promotion, $discount, $promotion->getAmountType());
+      $promoTransaction = PromotionTransactionPeer::newTransaction(
+        $collector, $promotion, $discount, $promotion->getAmountType()
+      );
 
       $transaction->setPromotionTransaction($promoTransaction);
       $transaction->setDiscount($discount); //Keep it here even if prices change
     }
 
     $transaction->setPackagePrice($priceWithDiscount);
-    $transaction->setPaymentStatus($priceWithDiscount ? self::PAYMENT_STATUS_PENDING : self::PAYMENT_STATUS_PAID);
+    $transaction->setPaymentStatus(
+      $priceWithDiscount ? self::PAYMENT_STATUS_PENDING : self::PAYMENT_STATUS_PAID
+    );
     $transaction->save();
 
     return $transaction;
   }
-
 
 }
