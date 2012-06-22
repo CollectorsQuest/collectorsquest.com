@@ -68,8 +68,8 @@
   </div>
 
   <?php foreach ($collections as $collection): ?>
-  <div class="sidebar-other-collections-by-user">
-    <div class="inner-other-collections">
+  <div class="thumbnails-box-1x4-sidebar bgyellow-border">
+    <div class="inner-thumbnails-box">
     <p><?= link_to_collection($collection, 'text'); ?></p>
       <div class="thumb-container">
           <?php
@@ -78,7 +78,7 @@
             foreach ($collection->getCollectionCollectibles($c) as $i => $collectible)
             {
               $options = array('width' => 60, 'height' => 60);
-                  echo link_to(image_tag_collectible($collectible, '75x75', $options), 'collectible_by_slug', $collectible, array('class' => 'margin-right-12'));
+                  echo link_to(image_tag_collectible($collectible, '75x75', $options), 'collectible_by_slug', $collectible, array('class' => 'thumbnails60'));
             }
           ?>
         </div>
