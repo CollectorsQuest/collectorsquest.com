@@ -466,9 +466,9 @@ a.buy-credits-button {
 	background-color: @lightBlue;
 }
 
-i.drop-zone.ui-state-highlight {
-  .transform(scale(1.25)translate3d(0, 0, 0));
-}
+//i.drop-zone.ui-state-highlight {
+//  .transform(scale(1.25)translate3d(0, 0, 0));
+//}
 
 .drop-zone-large {
 	.drop-zone;
@@ -602,6 +602,11 @@ i.drop-zone.ui-state-highlight {
 			}
 
       &.ui-draggable-dragging {
+	      border: 1px solid @red;
+		      img {
+			      padding: 1px;
+		      }
+
         .icon-remove-sign {
           display: none;
         }
@@ -1230,10 +1235,12 @@ textarea.input-xlarge {
 
 .ui-state-highlight {
 	z-index: 100;
-  color: @white;
+  color: @red;
+	background: #f0b2b2;
+	border-color: @red;
 
   a {
-    color: @white;
+    color: @red;
   }
 }
 
