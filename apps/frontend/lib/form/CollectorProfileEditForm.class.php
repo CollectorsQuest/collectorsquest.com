@@ -48,8 +48,6 @@ class CollectorProfileEditForm extends BaseCollectorProfileForm
           'label'                 => 'How many times a year do you purchase?',
         ),array(
           'placeholder'           => 'Share the number of purchases you make annually. Numeric value please',
-          'type'                  => 'number',
-          'pattern'               => '\d+'
       )),
       'about_most_expensive_item' => new bsWidgetFormInputTextAppendPrepend(array(
           'label'                 => 'What is the most you ever spent on an item? (in USD)',
