@@ -5,9 +5,12 @@
  * @var  $collector    Collector
  * @var  $collection   Collection
  * @var  $collectible  Collectible
+ * @var  $collectible_for_sale  CollectibleForSale
  *
  * @var  $additional_multimedia iceModelMultimedia[]
  */
+
+  $buy_form = new CollectibleForSaleBuyForm($collectible_for_sale);
 ?>
 
 <?php
@@ -92,7 +95,7 @@
 </div>
 <?php endif; ?>
 
-<?php if (isset($collectible_for_sale) && $collectible_for_sale instanceof CollectibleForSale): ?>
+<?php if (isset($collectible_for_sale) && $collectible_for_sale instanceof CollectibleForSale && $collectible_for_sale->isForSale()): ?>
   <!-- sale items -->
   <span class="item-condition"><strong>Condition:</strong> <?= $collectible_for_sale->getCondition(); ?></span>
 
@@ -111,20 +114,31 @@
     </tr>
     </thead>
     <tbody>
-    <?php foreach ($collectible->getShippingReferencesByCountryCode() as $country_code => $shipping_reference): ?>
-    <?php if (ShippingReferencePeer::SHIPPING_TYPE_NO_SHIPPING != $shipping_reference->getShippingType()): ?>
+    <?php if (count($collectible->getShippingReferencesByCountryCode())):
+      foreach ($collectible->getShippingReferencesByCountryCode() as $country_code => $shipping_reference):
+        if (ShippingReferencePeer::SHIPPING_TYPE_NO_SHIPPING != $shipping_reference->getShippingType()): ?>
+        <tr>
+          <td><?= $shipping_reference->getCountryName(); ?></td>
+          <td>
+          <?php if ($shipping_reference->isSimpleFreeShipping()): ?>
+            Free shipping
+          <?php else: ?>
+            $<?= $shipping_reference->getSimpleShippingAmount(); ?>
+          <?php endif; ?>
+          </td>
+        </tr>
+        <?php endif; // if is not type not shipping
+      endforeach; // foreach shipping reference
+    else: // if has shipping references ?>
       <tr>
-        <td><?= $shipping_reference->getCountryName(); ?></td>
-        <td>
-        <?php if ($shipping_reference->isSimpleFreeShipping()): ?>
-          Free shipping
-        <?php else: ?>
-          $<?= $shipping_reference->getSimpleShippingAmount(); ?>
-        <?php endif; ?>
-        </td>
+        <td>United States</td>
+        <td>Free shipping</td>
       </tr>
-    <?php endif; ?>
-    <?php endforeach; ?>
+      <tr>
+        <td>Everywhere Else</td>
+        <td>Free shipping</td>
+      </tr>
+    <?php endif; // if has shipping references ?>
     </tbody>
   </table>
 
@@ -135,7 +149,38 @@
     <p>Payment: <?= $collector->getSellerSettingsPaymentAccepted(); ?></p>
   </div>
 
-  <?php // include_component('_sidebar', 'widgetCollectibleBuy', array('collectible' => $collectible,)); ?>
+
+  <?php if ($collectible_for_sale->getIsSold()): ?>
+  <div id="price-container">
+    <p class="price">
+      Sold
+      <small>
+        for <?= money_format('%.2n', (float) $collectible_for_sale->getPrice()); ?>
+      </small>
+    </p>
+    Quantity sold: 1
+  </div>
+
+  <?php elseif ($collectible_for_sale->isForSale()): ?>
+  <form action="<?= url_for('@shopping_cart', true); ?>" method="post">
+    <div id="price-container">
+      <p class="price">
+        <?= money_format('%.2n', (float) $collectible_for_sale->getPrice()); ?>
+
+        <?php if ($collectible_for_sale->isShippingFree()): ?>
+          <small style="white-space: nowrap;">with FREE shipping & handling</small>
+        <?php endif; ?>
+      </p>
+      <button type="submit" class="btn btn-primary pull-left" value="Add Item to Cart">
+        <i class="add-to-card-button"></i>
+        <span>Add Item to Cart</span>
+      </button>
+    </div>
+
+    <?= $buy_form->renderHiddenFields(); ?>
+  </form>
+  <?php endif; ?>
+
 
 <?php else: ?>
 
