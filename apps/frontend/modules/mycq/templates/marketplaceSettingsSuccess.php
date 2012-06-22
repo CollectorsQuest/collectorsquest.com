@@ -29,9 +29,7 @@ SmartMenu::setSelected('mycq_marketplace_tabs', 'marketplace_settings');
         </fieldset>
 
         <fieldset class="brown-dashes form-container-center">
-          <?= $form['seller_settings_store_description']->renderRow(); ?>
           <?= $form['seller_settings_return_policy']->renderRow(); ?>
-          <?= $form['seller_settings_payment_accepted']->renderRow(); ?>
         </fieldset>
 
         <fieldset class="brown-dashes form-container-center">

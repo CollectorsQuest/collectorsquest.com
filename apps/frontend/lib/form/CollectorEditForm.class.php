@@ -96,15 +96,15 @@ class CollectorEditForm extends CollectorForm
 
     $this->setupSellerSettingsPhoneNumberField(false);
 
-    $this->widgetSchema['seller_settings_store_description'] = new sfWidgetFormTextarea(array(
-      'label' => 'Store Description',
-    ));
+//    $this->widgetSchema['seller_settings_store_description'] = new sfWidgetFormTextarea(array(
+//      'label' => 'Store Description',
+//    ));
     $this->widgetSchema['seller_settings_return_policy'] = new sfWidgetFormTextarea(array(
       'label' => 'Return Policy',
     ));
-    $this->widgetSchema['seller_settings_payment_accepted'] = new sfWidgetFormTextarea(array(
-      'label' => 'Payment Accepted',
-    ));
+//    $this->widgetSchema['seller_settings_payment_accepted'] = new sfWidgetFormTextarea(array(
+//      'label' => 'Payment Accepted',
+//    ));
 
     $this->setupSellerSettingsWelcomeField($required);
     $this->setupSellerSettingsShippingField($required);
@@ -112,9 +112,9 @@ class CollectorEditForm extends CollectorForm
     $this->setupSellerSettingsAdditionalPoliciesField($required);
 
     $this->validatorSchema['seller_settings_paypal_email'] = new sfValidatorEmail(array('required' => $required));
-    $this->validatorSchema['seller_settings_store_description'] = new sfValidatorString(array('required' => $required));
+//    $this->validatorSchema['seller_settings_store_description'] = new sfValidatorString(array('required' => $required));
     $this->validatorSchema['seller_settings_return_policy'] = new sfValidatorString(array('required' => $required));
-    $this->validatorSchema['seller_settings_payment_accepted'] = new sfValidatorString(array('required' => $required));
+//    $this->validatorSchema['seller_settings_payment_accepted'] = new sfValidatorString(array('required' => $required));
   }
 
   protected function embedProfileForm()
@@ -203,26 +203,21 @@ class CollectorEditForm extends CollectorForm
       $this->getObject()->setSellerSettingsPhoneNumber(
         $values['seller_settings_phone_number']);
     }
-    if (isset($values['seller_settings_phone_extension']))
-    {
-      $this->getObject()->setSellerSettingsPhoneExtension(
-        $values['seller_settings_phone_extension']);
-    }
-    if (isset($values['seller_settings_store_description']))
-    {
-      $this->getObject()->setSellerSettingsStoreDescription(
-        $values['seller_settings_store_description']);
-    }
+//    if (isset($values['seller_settings_store_description']))
+//    {
+//      $this->getObject()->setSellerSettingsStoreDescription(
+//        $values['seller_settings_store_description']);
+//    }
     if (isset($values['seller_settings_return_policy']))
     {
       $this->getObject()->setSellerSettingsReturnPolicy(
         $values['seller_settings_return_policy']);
     }
-    if (isset($values['seller_settings_payment_accepted']))
-    {
-      $this->getObject()->setSellerSettingsPaymentAccepted(
-        $values['seller_settings_payment_accepted']);
-    }
+//    if (isset($values['seller_settings_payment_accepted']))
+//    {
+//      $this->getObject()->setSellerSettingsPaymentAccepted(
+//        $values['seller_settings_payment_accepted']);
+//    }
     if (isset($values['seller_settings_welcome']))
     {
       $this->getObject()->setSellerSettingsWelcome($values['seller_settings_welcome']);
@@ -253,16 +248,14 @@ class CollectorEditForm extends CollectorForm
       'seller_settings_paypal_email'                  => $this->getObject()->getSellerSettingsPaypalEmail(),
       'seller_settings_phone_code'                    => $this->getObject()->getSellerSettingsPhoneCode(),
       'seller_settings_phone_number'                  => $this->getObject()->getSellerSettingsPhoneNumber(),
-      'seller_settings_phone_extension'               => $this->getObject()->getSellerSettingsPhoneExtension(),
-      'seller_settings_store_description'             => $this->getObject()->getSellerSettingsStoreDescription(),
+//      'seller_settings_store_description'             => $this->getObject()->getSellerSettingsStoreDescription(),
       'seller_settings_return_policy'                 => $this->getObject()->getSellerSettingsReturnPolicy(),
-      'seller_settings_payment_accepted'              => $this->getObject()->getSellerSettingsPaymentAccepted(),
+//      'seller_settings_payment_accepted'              => $this->getObject()->getSellerSettingsPaymentAccepted(),
       'seller_settings_welcome'                       => $this->getObject()->getSellerSettingsWelcome(),
       'seller_settings_shipping'                      => $this->getObject()->getSellerSettingsShipping(),
       'seller_settings_refunds'                       => $this->getObject()->getSellerSettingsRefunds(),
       'seller_settings_additional_policies'           => $this->getObject()->getSellerSettingsAdditionalPolicies(),
     )));
-
   }
 
   protected function unsetFields()
@@ -332,7 +325,12 @@ class CollectorEditForm extends CollectorForm
       'label' => 'Phone Number',
     ));
 
-    $this->validatorSchema['seller_settings_phone_number'] = new sfValidatorString(array('required' => $required));
+    $this->validatorSchema['seller_settings_phone_number'] = new sfValidatorRegex(array(
+      'pattern' => '/^0(?:0|11)(9[976]\d|8[987530]\d|6[987]\d|5[90]\d|42\d|3[875]\d|
+          2[98654321]\d|9[8543210]|8[6421]|6[6543210]|5[87654321]|
+          4[987654310]|3[9643210]|2[70]|7|1)\d{0,14}$/',
+      'required' => $required,
+    ));
   }
 
   public function setupSellerSettingsWelcomeField($required = false)
