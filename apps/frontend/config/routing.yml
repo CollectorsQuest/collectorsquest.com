@@ -584,6 +584,11 @@ misc_guide_to_collecting:
   url:   /the-essential-guide-to-collecting
   param: { module: misc, action: guideToCollecting }
 
+misc_guide_download_file:
+  url: /the-essential-guide-download/:hash.:sf_format
+  param: { module: misc, action: guideDownload }
+  requirements: { hash: '\w{10}', sf_format: (?:pdf|zip) }
+
 misc_guide_download:
   url:  /the-essential-guide-download
   param: { module: misc, action: guideDownload }

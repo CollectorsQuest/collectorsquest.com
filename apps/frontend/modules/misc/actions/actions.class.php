@@ -10,6 +10,7 @@
  */
 class miscActions extends sfActions
 {
+
   /**
    * Executes index action
    */
@@ -23,8 +24,13 @@ class miscActions extends sfActions
    */
   public function executeGuideToCollecting()
   {
+    if ($this->getUser()->isAuthenticated())
+    {
+      $this->redirect('@misc_guide_download');
+    }
+
     $signupForm = new CollectorGuideSignupForm();
-    $loginForm  = new CollectorGuideLoginForm();
+    $loginForm = new CollectorGuideLoginForm();
     $display = 'signup';
 
     $request = $this->getRequest();
@@ -90,10 +96,55 @@ class miscActions extends sfActions
    */
   public function executeGuideDownload(sfWebRequest $request)
   {
-    if (!$this->getUser()->isAuthenticated())
+    $this->redirectUnless($this->getUser()->isAuthenticated(), '@misc_guide_to_collecting');
+
+    /* @var $collector Collector */
+    $collector = $this->getUser()->getCollector();
+
+    /* @var $profile CollectorProfile */
+    $profile = $collector->getProfile();
+
+    $email = CollectorEmailQuery::create()
+        ->filterByCollector($collector)
+        ->findOneByEmail($collector->getEmail());
+
+    $this->redirectUnless($email && $email->getIsVerified(), '@misc_guide_to_collecting');
+
+    $hash = $this->getUser()->getAttribute('hash', false, 'guide');
+    $expireAt = $this->getUser()->getAttribute('expire', 0, 'guide');
+
+    if ($this->getRequestParameter('sf_format', false) && $hash && $expireAt >= time())
     {
-      $this->redirect('misc_guide_to_collecting');
+      //Download
+      $format = $this->getRequestParameter('sf_format');
+      $filename = sprintf('essential-guide.%s', $format);
+      $mimeType = 'pdf' == $format ? 'application/pdf' : 'application/zip';
+      $sourceFile = sfConfig::get('sf_data_dir') . DIRECTORY_SEPARATOR . 'guide.' . $format;
+
+      header("Expires: 0");
+      header("Cache-control: private");
+      header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+      header("Content-Description: File Transfer");
+      header(sprintf('Content-Type: %s, charset=UTF-8; encoding=UTF-8', $mimeType));
+      header("Content-disposition: attachment; filename=". $filename);
+
+      readfile($sourceFile);
+      exit(0);
     }
+
+    if (!$hash || $expireAt < time())
+    {
+      //Generate hash for next 5 minutes
+      $hash = ShoppingOrderPeer::getUuidFromId(date('mdHis'));
+      $expireAt = strtotime('+5 minute');
+      $this->getUser()->setAttribute('hash', $hash, 'guide');
+      $this->getUser()->setAttribute('expire', $expireAt, 'guide');
+    }
+
+//      dd($this->getUser()->getAttribute('hash', null, 'guide'), $this->getUser()->getAttribute('expire', null, 'guide'), time(), $expireAt-time());
+//    dd($email);
+
+    $this->hash = $hash;
 
     return sfView::SUCCESS;
   }
