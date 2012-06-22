@@ -23,6 +23,12 @@ sidebarNoneSuccess:
     sidebar_180: []
     sidebar_300: []
 
+nocollectionhelpSuccess:
+  stylesheets: [frontend/modules/mycq.css]
+  components:
+    sidebar_120: []
+    sidebar_180: []
+    sidebar_300: []
 
 searchSuccess:
   stylesheets: [frontend/modules/search.css]

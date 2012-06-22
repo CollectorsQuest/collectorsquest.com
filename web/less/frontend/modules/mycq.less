@@ -1490,17 +1490,9 @@ textarea.input-xlarge {
 	#gradient > .vertical(#fffae8, #fff6d8);
 }
 
-.edit-profile {
-	display: block;
-	margin: 14px auto;
-}
-
-.edit_collections {
-	display: block;
-	margin: 14px auto;
-}
-
-.check_messages {
+.edit-profile, .edit-collections,
+.check-messages, .upload-images,
+.show-and-tell {
 	display: block;
 	margin: 14px auto;
 }
@@ -1563,3 +1555,76 @@ textarea.input-xlarge {
 		color: @blue;
 	}
 }
+
+.no-collection-help {
+
+	.rectangle {
+		.size(120px, 100%);
+		border: 1px solid #d6d1d1;
+		#gradient > .vertical(#fffae8, #fff6d8);
+		h2 {
+			padding: 5px 0 0 20px;
+			.custom-font(20px, 26px, italic, normal);
+			.smooth-font();
+			letter-spacing: 0.01em;
+		}
+	}
+	.content-box {
+		top: 65px;
+	}
+	.zone-add-new {
+		display: block;
+		.size(240px, 176px);
+		padding: 20px;
+		background-color: #e5f2f9;
+		border: 2px solid @boxBorder2;
+
+		.btn-upload-collectible, .btn-upload-collectible-txt {
+			display: block;
+			width: 100%;
+			text-align: center;
+		}
+		.btn-upload-collectible {
+			margin-top: 24px;
+		}
+		.btn-upload-collectible-txt {
+			margin-top: 10px;
+			font-weight: bold;
+		}
+		.icon-plus {
+			font-size: 60px;
+			line-height: 60px;
+			color: @blue;
+		}
+	}
+	.help-wrapper {
+		margin-top: 60px;
+		padding: 8px 10px 4px 10px;
+		border: 1px solid @boxBorder2;
+
+		.blue-bolder-txt {
+			display: inline-block;
+			padding-top: 4px;
+			padding-left: 8px;
+			font-size: 16px;
+			font-weight: bold;
+			color: @blue;
+		}
+		.icon-question-sign {
+			font-size: 24px;
+			line-height: 20px;
+			color: @blue;
+			vertical-align: middle;
+		}
+		.faq-txt {
+			display: block;
+			float: right;
+			margin-top: 4px;
+		}
+
+		.row-fluid [class*="span"] {
+			max-height: 18px !important;
+		}
+	}
+}
+

@@ -30,7 +30,7 @@
       </div>
       <div class="span4 text-center">
         <a href="<?= url_for('@mycq_collections'); ?>" title="Edit My Collections">
-          <i class="edit_collections"></i>
+          <i class="edit-collections"></i>
           <h3>Edit My Collections</h3>
         </a>
         <p>
@@ -42,7 +42,7 @@
       </div>
       <div class="span4 text-center">
         <a href="<?= url_for('@messages_inbox'); ?>" title="Check My Messages">
-          <i class="check_messages"></i>
+          <i class="check-messages"></i>
           <h3>Check My Messages</h3>
         </a>
         <p>
