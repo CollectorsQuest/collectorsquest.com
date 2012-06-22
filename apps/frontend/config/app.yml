@@ -55,7 +55,7 @@ all:
       items:
         collectibles_for_sale:   { name: "Items for Sale", uri: "@mycq_marketplace" }
         # collectibles_sold:       { name: "Sold Items", uri: "@mycq_marketplace_sold" }
-        collectibles_purchased:  { name: "Purchases", uri: "@mycq_marketplace_purchased" }
+        # collectibles_purchased:  { name: "Purchases", uri: "@mycq_marketplace_purchased" }
         marketplace_settings:    { name: "Store Settings", uri: "@mycq_marketplace_settings" }
 
     mycq_messages_sidebar:
