@@ -6,7 +6,7 @@
       $form_field->getAttribute('class') . ' input-xxlarge');
   }
 
-  SmartMenu::setSelected('mycq_profile_tabs', 'mailing_addresses');
+  SmartMenu::setSelected('mycq_profile_tabs', 'addresses');
 ?>
 
 <div id="mycq-tabs">
@@ -20,10 +20,10 @@
       <div class="tab-content-inner spacer">
         <?php
           $link = link_to(
-            'Return to manage addresses &raquo;', '@mycq_profile_addresses',
+            'Return to manage address book &raquo;', '@mycq_profile_addresses',
             array('class' => 'text-v-middle link-align')
           );
-          cq_sidebar_title('Add a new address', $link, array('left' => 8, 'right' => 4));
+          cq_sidebar_title('Edit your address', $link, array('left' => 8, 'right' => 4));
         ?>
 
         <?= form_tag('@mycq_profile_addresses_edit?id='.$form->getObject()->getId(), array('class' => 'form-horizontal')); ?>
