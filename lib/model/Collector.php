@@ -7,8 +7,23 @@ require 'lib/model/om/BaseCollector.php';
  * @method     Collector setSingupNumCompletedSteps(int $v) Set the number of completed signup steps
  * @method     Collector setCqnextAccessAllowed(boolean $v)
  *
+ * @method     Collector setSellerSettingsPaypalAccountId(string $v)
+ * @method     string    getSellerSettingsPaypalAccountId()
+ *
+ * @method     Collector setSellerSettingsPaypalAccountStatus(string $v)
+ * @method     string    getSellerSettingsPaypalAccountStatus()
+ *
+ * @method     Collector setSellerSettingsPaypalBusinessName(string $v)
+ * @method     string    getSellerSettingsPaypalBusinessName()
+ *
  * @method     Collector setSellerSettingsPaypalEmail(string $v)
  * @method     string    getSellerSettingsPaypalEmail()
+ *
+ * @method     Collector setSellerSettingsPaypalFirstName(string $v)
+ * @method     string    getSellerSettingsPaypalFirstName()
+ *
+ * @method     Collector setSellerSettingsPaypalLastName(string $v)
+ * @method     string    getSellerSettingsPaypalLastName()
  *
  * @method     Collector setSellerSettingsPhoneCode(string $v)
  * @method     string    getSellerSettingsPhoneCode()
@@ -57,7 +72,12 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
       CollectorPeer::PROPERTY_CQNEXT_ACCESS_ALLOWED_DEFAULT_VALUE
     );
 
+    $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_PAYPAL_ACCOUNT_ID);
+    $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_PAYPAL_ACCOUNT_STATUS);
+    $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_PAYPAL_BUSINESS_NAME);
     $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_PAYPAL_EMAIL);
+    $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_PAYPAL_FIRST_NAME);
+    $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_PAYPAL_LAST_NAME);
     $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_PHONE_CODE);
     $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_PHONE_NUMBER);
     $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_PHONE_EXTENSION);

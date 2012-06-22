@@ -543,12 +543,14 @@ class mycqActions extends cqFrontendActions
 
   public function executeMarketplaceSold()
   {
+    SmartMenu::setSelected('mycq_menu', 'marketplace');
+
     return sfView::SUCCESS;
   }
 
   public function executeMarketplacePurchased()
   {
-    SmartMenu::setSelected('mycq_menu', 'collectibles_purchased');
+    SmartMenu::setSelected('mycq_menu', 'marketplace');
 
     $q = ShoppingOrderQuery::create()
       ->filterByCollectorId($this->getCollector()->getId());
@@ -560,19 +562,19 @@ class mycqActions extends cqFrontendActions
 
   public function executeMarketplaceSettings(sfWebRequest $request)
   {
-    //$this->forward404Unless($this->getCollector()->getIsSeller());
+    SmartMenu::setSelected('mycq_menu', 'marketplace');
 
     $form = new CollectorEditForm($this->getCollector(), array(
       'seller_settings_show' => true,
-      'seller_settings_required' => true,
+      'seller_settings_required' => false,
     ));
 
     $form->useFields(array(
       'seller_settings_paypal_email',
+      'seller_settings_paypal_fname',
+      'seller_settings_paypal_lname',
       'seller_settings_phone_number',
-//      'seller_settings_store_description',
       'seller_settings_return_policy',
-//      'seller_settings_payment_accepted',
       'seller_settings_welcome',
       'seller_settings_shipping',
       'seller_settings_refunds',
@@ -591,6 +593,7 @@ class mycqActions extends cqFrontendActions
       };
     }
 
+    $this->collector = $this->getCollector(true);
     $this->form = $form;
 
     return sfView::SUCCESS;
