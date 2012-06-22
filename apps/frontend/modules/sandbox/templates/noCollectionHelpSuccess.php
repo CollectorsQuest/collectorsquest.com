@@ -7,7 +7,8 @@
       <h3 class="Chivo webfont">My Collections (0)</h3>
     </div>
     <div class="span7">
-      <?php if ($total > 0): ?>
+      <?php /*
+      <?php if ($total > 11): ?>
       <div class="sort-search-box">
         <div class="input-append pull-right">
           <form action="<?= url_for('@ajax_mycq?section=component&page=collections') ?>"
@@ -28,6 +29,7 @@
         </div>
       </div>
       <?php endif; ?>
+    */ ?>
     </div>
   </div>
 
