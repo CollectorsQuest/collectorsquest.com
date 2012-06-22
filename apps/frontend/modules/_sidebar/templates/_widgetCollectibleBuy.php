@@ -22,7 +22,7 @@
           <small style="white-space: nowrap;">with FREE shipping & handling</small>
         <?php endif; ?>
       </p>
-      <button type="submit" class="btn btn-primary blue-button pull-left" value="Add Item to Cart">
+      <button type="submit" class="btn btn-primary pull-left" value="Add Item to Cart">
         <i class="add-to-card-button"></i>
         <span>Add Item to Cart</span>
       </button>

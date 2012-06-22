@@ -40,7 +40,7 @@ SmartMenu::setSelected('mycq_marketplace_tabs', 'marketplace_settings');
         </fieldset>
 
         <div class="form-actions">
-          <input type="submit" class="btn blue-button spacer-right-15" value="Save Changes" />
+          <input type="submit" class="btn btn-primary spacer-right-15" value="Save Changes" />
           <?= link_to('Cancel', '@mycq_profile', array('class' => 'btn gray-button')); ?>
         </div>
         <?php echo '</form>'; ?>

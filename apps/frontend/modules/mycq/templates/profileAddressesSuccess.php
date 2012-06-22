@@ -36,7 +36,7 @@
                             'sf_route' => 'mycq_profile_addresses_edit',
                             'sf_subject' => $address
                           ),
-                          array('class' => 'btn blue-button spacer-left')
+                          array('class' => 'btn btn-primary spacer-left')
                         );
                       ?>
                       <?php

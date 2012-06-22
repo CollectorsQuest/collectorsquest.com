@@ -42,7 +42,7 @@
                 <div class="row-fluid">
                   <div class="span12" style="margin-bottom: 20px;">
                     <?= $avatar_form['filename']->render(array('style' => 'width: auto;')); ?>
-                    <button type="submit" class="btn btn-primary blue-button spacer-left">
+                    <button type="submit" class="btn btn-primary spacer-left">
                       Upload File
                     </button>
                     <?= $avatar_form['filename']->renderError(); ?>
@@ -156,7 +156,7 @@
 
           <fieldset class="brown-dashes form-container-center">
             <div class="form-actions">
-              <button type="submit" class="btn btn-primary blue-button">Save changes</button>
+              <button type="submit" class="btn btn-primary">Save changes</button>
               <button type="reset" class="btn gray-button spacer-left">Cancel</button>
             </div>
           </fieldset>

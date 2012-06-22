@@ -13,7 +13,7 @@
         <?php include_partial('global/footer_signup_external_buttons'); ?>
       </div>
       <div class="span3">
-        <button type="submit" class="btn btn-primary blue-button pull-right">Submit</button>
+        <button type="submit" class="btn btn-primary pull-right">Submit</button>
       </div>
     </div>
   </form>
@@ -35,7 +35,7 @@
         <?php include_partial('global/footer_signup_external_buttons'); ?>
       </div>
       <div class="span4">
-        <button type="submit" class="btn btn-primary blue-button pull-right">Log&nbsp;In</button>
+        <button type="submit" class="btn btn-primary pull-right">Log&nbsp;In</button>
       </div>
     </div>
     <div class="row-fluid">

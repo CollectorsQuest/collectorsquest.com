@@ -9,7 +9,7 @@
 </div>
 
 <div class="row" style="text-align: center;">
-  <a href="<?= url_for_collection($collection)?>" class="btn btn-primary blue-button">
+  <a href="<?= url_for_collection($collection)?>" class="btn btn-primary">
     <i class="icon-ok"></i>
     Finish Reordering
   </a>
