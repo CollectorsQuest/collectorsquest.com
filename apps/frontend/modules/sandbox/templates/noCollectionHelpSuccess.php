@@ -45,7 +45,7 @@
       </div>
       <div class="row-fluid content-box">
         <div class="span4 text-center">
-          <a href="<?= url_for('@mycq_profile'); ?>" title="Edit My Profile">
+          <a href="<?= url_for('@mycq_profile'); ?>" title="Upload Images">
             <i class="upload-images"></i>
             <h3>Upload Images</h3>
           </a>
@@ -56,7 +56,7 @@
           </p>
         </div>
         <div class="span4 text-center">
-          <a href="<?= url_for('@mycq_collections'); ?>" title="Edit My Collections">
+          <a href="<?= url_for('@mycq_collections'); ?>" title="Create a Collection">
             <i class="edit-collections"></i>
             <h3>Create a Collection</h3>
           </a>
@@ -68,7 +68,7 @@
           </p>
         </div>
         <div class="span4 text-center">
-          <a href="<?= url_for('@messages_inbox'); ?>" title="Check My Messages">
+          <a href="<?= url_for('@messages_inbox'); ?>" title="Show and Tell">
             <i class="show-and-tell"></i>
             <h3>Show and Tell</h3>
           </a>
