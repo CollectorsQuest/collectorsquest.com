@@ -94,7 +94,7 @@ class marketplaceComponents extends cqFrontendComponents
             ->useCollectibleForSaleQuery(null, Criteria::RIGHT_JOIN)
               ->isForSale()
             ->endUse()
-            ->addAscendingOrderByColumn('FIELD(id, '. implode(',', $collectible_ids) .')');
+            ->addAscendingOrderByColumn('FIELD(collectible.id, '. implode(',', $collectible_ids) .')');
 
           $pager = new PropelModelPager($query, 12);
         }

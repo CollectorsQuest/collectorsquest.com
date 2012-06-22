@@ -36,7 +36,7 @@
     </div>
 
     <div class="form-actions">
-      <button type="submit" class="btn btn-primary blue-button spacer-right-15">
+      <button type="submit" class="btn btn-primary spacer-right-15">
         Create Collection
       </button>
       <button type="reset" class="btn gray-button"
@@ -46,7 +46,7 @@
     </div>
   <?php else: ?>
     <div class="form-actions">
-      <button type="submit" class="btn btn-primary blue-button spacer-right-15">
+      <button type="submit" class="btn btn-primary spacer-right-15">
         Next
       </button>
       <button type="reset" class="btn gray-button"

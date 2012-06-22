@@ -22,16 +22,16 @@ class CollectorEditForm extends CollectorForm
     }
 
     $this->widgetSchema->setLabels(array(
-        'display_name' => 'Screen Name',
-        'collector_type' => 'Collector Type',
-        'country_iso3166' => 'Country',
-        'about_what_you_collect' => 'What do you collect?',
-        'about_collections' => 'About My Items',
-        'about_purchase_per_year' => 'How many times a year do you purchase?',
-        'about_most_expensive_item' => "The most you've spent on an item?",
-        'about_annually_spend' => 'Annually?',
-        'about_interests' => 'My Interests Are',
-        'website' => 'Personal Website',
+      'display_name'              => 'Screen Name',
+      'collector_type'            => 'Collector Type',
+      'country_iso3166'           => 'Country',
+      'about_what_you_collect'    => 'What do you collect?',
+      'about_collections'         => 'About My Items',
+      'about_purchase_per_year'   => 'How many times a year do you purchase?',
+      'about_most_expensive_item' => "The most you've spent on an item?",
+      'about_annually_spend'      => 'Annually?',
+      'about_interests'           => 'My Interests Are',
+      'website'                   => 'Personal Website',
     ));
 
     $this->setupDisplayNameValidator();
@@ -47,14 +47,14 @@ class CollectorEditForm extends CollectorForm
       ),
       array(
         'placeholder' => 'Enter your current CollectorsQuest.com account password'
-    ));
+      ));
     $this->widgetSchema['password'] = new sfWidgetFormInputPassword(array(), array(
-        'placeholder' => 'Set new password here',
+      'placeholder' => 'Set new password here',
     ));
     $this->widgetSchema['password_again'] = new sfWidgetFormInputPassword(array(
-        'label'       => 'Confirm Password'
-      ), array(
-        'placeholder' => 'Confirm your new password'
+      'label'       => 'Confirm Password'
+    ), array(
+      'placeholder' => 'Confirm your new password'
     ));
 
     $this->validatorSchema['old_password'] = new sfValidatorPass();
@@ -64,19 +64,19 @@ class CollectorEditForm extends CollectorForm
         'max_length' => 50,
         'required'   => false,
       ), array(
-        'max_length' => 'The password is too long (%max_length% characters max).',
-        'min_length' => 'The password is too short (%min_length% characters min).',
+      'max_length' => 'The password is too long (%max_length% characters max).',
+      'min_length' => 'The password is too short (%min_length% characters min).',
     ));
     $this->validatorSchema['password_again'] = new sfValidatorPass();
 
     $this->mergePostValidator(new sfValidatorAnd(array(
-        new CollectorEditFormPasswordSchemaValidator(null, array(
-            'collector' => $this->getObject(),
-        )),
-        new sfValidatorSchemaCompare(
-          'password', sfValidatorSchemaCompare::EQUAL, 'password_again',
-          array('throw_global_error' => true),
-          array('invalid' => 'The two passwords do not match, please enter them again!')),
+      new CollectorEditFormPasswordSchemaValidator(null, array(
+        'collector' => $this->getObject(),
+      )),
+      new sfValidatorSchemaCompare(
+        'password', sfValidatorSchemaCompare::EQUAL, 'password_again',
+        array('throw_global_error' => true),
+        array('invalid' => 'The two passwords do not match, please enter them again!')),
     )));
   }
 
@@ -84,33 +84,37 @@ class CollectorEditForm extends CollectorForm
    * Add the seller settings fields to the form, whose values are kept in
    * ExtraPropertiesBehavior
    *
-   * @param     bollean $required
+   * @param boolean $required
    */
   protected function setupSellerSettingsFields($required = false)
   {
     $this->widgetSchema['seller_settings_paypal_email'] = new sfWidgetFormInputText(array(
-        'label' => 'PayPal Email',
-      ), array(
-        'type' => 'email',
-    ));
-    $this->widgetSchema['seller_settings_phone_number'] = new sfWidgetFormInputText(array(
-        'label' => 'Phone Number',
-    ));
-    $this->widgetSchema['seller_settings_store_description'] = new sfWidgetFormTextarea(array(
-        'label' => 'Store Description',
-    ));
-    $this->widgetSchema['seller_settings_return_policy'] = new sfWidgetFormTextarea(array(
-        'label' => 'Return Policy',
-    ));
-    $this->widgetSchema['seller_settings_payment_accepted'] = new sfWidgetFormTextarea(array(
-        'label' => 'Payment Accepted',
+      'label' => 'PayPal Email',
+    ), array(
+      'type' => 'email',
     ));
 
+    $this->setupSellerSettingsPhoneNumberField(false);
+
+//    $this->widgetSchema['seller_settings_store_description'] = new sfWidgetFormTextarea(array(
+//      'label' => 'Store Description',
+//    ));
+    $this->widgetSchema['seller_settings_return_policy'] = new sfWidgetFormTextarea(array(
+      'label' => 'Return Policy',
+    ));
+//    $this->widgetSchema['seller_settings_payment_accepted'] = new sfWidgetFormTextarea(array(
+//      'label' => 'Payment Accepted',
+//    ));
+
+    $this->setupSellerSettingsWelcomeField($required);
+    $this->setupSellerSettingsShippingField($required);
+    $this->setupSellerSettingsRefundsField($required);
+    $this->setupSellerSettingsAdditionalPoliciesField($required);
+
     $this->validatorSchema['seller_settings_paypal_email'] = new sfValidatorEmail(array('required' => $required));
-    $this->validatorSchema['seller_settings_phone_number'] = new sfValidatorString(array('required' => $required));
-    $this->validatorSchema['seller_settings_store_description'] = new sfValidatorString(array('required' => $required));
+//    $this->validatorSchema['seller_settings_store_description'] = new sfValidatorString(array('required' => $required));
     $this->validatorSchema['seller_settings_return_policy'] = new sfValidatorString(array('required' => $required));
-    $this->validatorSchema['seller_settings_payment_accepted'] = new sfValidatorString(array('required' => $required));
+//    $this->validatorSchema['seller_settings_payment_accepted'] = new sfValidatorString(array('required' => $required));
   }
 
   protected function embedProfileForm()
@@ -121,16 +125,20 @@ class CollectorEditForm extends CollectorForm
   protected function setupProfileGenderField()
   {
     $this->widgetSchema['gender'] = new sfWidgetFormSelectRadio(array(
-        'choices' => array('f' => 'Female', 'm' => 'Male', '' => 'Rather not say'),
-        'formatter' => array($this, 'inlineRadioInputFormatter'),
+      'choices'   => array(
+        'f' => 'Female',
+        'm' => 'Male',
+        ''  => 'Rather not say'
+      ),
+      'formatter' => array($this, 'inlineRadioInputFormatter'),
     ));
   }
 
   protected function setupProfileCollectorType()
   {
     $this->widgetSchema['collector_type'] = new sfWidgetFormSelectRadio(array(
-        'choices' => $this->getProfileForm()->getCollectorTypeChoices(),
-        'formatter' => array($this, 'inlineRadioInputFormatter'),
+      'choices'   => $this->getProfileForm()->getCollectorTypeChoices(),
+      'formatter' => array($this, 'inlineRadioInputFormatter'),
     ));
   }
 
@@ -139,9 +147,9 @@ class CollectorEditForm extends CollectorForm
     if (!$this->getObject()->getIsSeller())
     {
       $this->widgetSchema['website']->setAttributes(array(
-          'placeholder' => 'This feature is only available for sellers',
-          'disabled' => 'disabled',
-          'class' => 'disabled',
+        'placeholder' => 'This feature is only available for sellers',
+        'disabled'    => 'disabled',
+        'class'       => 'disabled',
       ));
     }
   }
@@ -155,22 +163,22 @@ class CollectorEditForm extends CollectorForm
 
     $this->widgetSchema['display_name']->setAttribute('required', 'required');
     $this->validatorSchema->setPostValidator(new sfValidatorAnd(array(
-        new sfValidatorPropelUnique(array(
-            'model' => $this->getModelName(),
-            'column' => 'display_name',
-          ), array(
-            'invalid' => 'A Collector with the same '.
-                         $this->widgetSchema->getLabel('display_name').
-                         ' already exists.',
-        )),
-        $this->validatorSchema->getPostValidator(),
+      new sfValidatorPropelUnique(array(
+        'model'  => $this->getModelName(),
+        'column' => 'display_name',
+      ), array(
+        'invalid' => 'A Collector with the same ' .
+            $this->widgetSchema->getLabel('display_name') .
+            ' already exists.',
+      )),
+      $this->validatorSchema->getPostValidator(),
     ), array('halt_on_error' => true)));
   }
 
   /**
    * Update the Collector object with the form values
    *
-   * @param type $values
+   * @param array $values
    */
   protected function doUpdateObject($values)
   {
@@ -185,25 +193,46 @@ class CollectorEditForm extends CollectorForm
       $this->getObject()->setSellerSettingsPaypalEmail(
         $values['seller_settings_paypal_email']);
     }
+    if (isset($values['seller_settings_phone_code']))
+    {
+      $this->getObject()->setSellerSettingsPhoneCode(
+        $values['seller_settings_phone_code']);
+    }
     if (isset($values['seller_settings_phone_number']))
     {
       $this->getObject()->setSellerSettingsPhoneNumber(
         $values['seller_settings_phone_number']);
     }
-    if (isset($values['seller_settings_store_description']))
-    {
-      $this->getObject()->setSellerSettingsStoreDescription(
-        $values['seller_settings_store_description']);
-    }
+//    if (isset($values['seller_settings_store_description']))
+//    {
+//      $this->getObject()->setSellerSettingsStoreDescription(
+//        $values['seller_settings_store_description']);
+//    }
     if (isset($values['seller_settings_return_policy']))
     {
       $this->getObject()->setSellerSettingsReturnPolicy(
         $values['seller_settings_return_policy']);
     }
-    if (isset($values['seller_settings_payment_accepted']))
+//    if (isset($values['seller_settings_payment_accepted']))
+//    {
+//      $this->getObject()->setSellerSettingsPaymentAccepted(
+//        $values['seller_settings_payment_accepted']);
+//    }
+    if (isset($values['seller_settings_welcome']))
     {
-      $this->getObject()->setSellerSettingsPaymentAccepted(
-        $values['seller_settings_payment_accepted']);
+      $this->getObject()->setSellerSettingsWelcome($values['seller_settings_welcome']);
+    }
+    if (isset($values['seller_settings_shipping']))
+    {
+      $this->getObject()->setSellerSettingsShipping($values['seller_settings_shipping']);
+    }
+    if (isset($values['seller_settings_refunds']))
+    {
+      $this->getObject()->setSellerSettingsRefunds($values['seller_settings_refunds']);
+    }
+    if (isset($values['seller_settings_additional_policies']))
+    {
+      $this->getObject()->setSellerSettingsAdditionalPolicies($values['seller_settings_additional_policies']);
     }
   }
 
@@ -216,13 +245,17 @@ class CollectorEditForm extends CollectorForm
     parent::updateDefaultsFromObject();
 
     $this->setDefaults(array_merge($this->defaults, array(
-        'seller_settings_paypal_email' => $this->getObject()->getSellerSettingsPaypalEmail(),
-        'seller_settings_phone_number' => $this->getObject()->getSellerSettingsPhoneNumber(),
-        'seller_settings_store_description' => $this->getObject()->getSellerSettingsStoreDescription(),
-        'seller_settings_return_policy' => $this->getObject()->getSellerSettingsReturnPolicy(),
-        'seller_settings_payment_accepted' => $this->getObject()->getSellerSettingsPaymentAccepted(),
+      'seller_settings_paypal_email'                  => $this->getObject()->getSellerSettingsPaypalEmail(),
+      'seller_settings_phone_code'                    => $this->getObject()->getSellerSettingsPhoneCode(),
+      'seller_settings_phone_number'                  => $this->getObject()->getSellerSettingsPhoneNumber(),
+//      'seller_settings_store_description'             => $this->getObject()->getSellerSettingsStoreDescription(),
+      'seller_settings_return_policy'                 => $this->getObject()->getSellerSettingsReturnPolicy(),
+//      'seller_settings_payment_accepted'              => $this->getObject()->getSellerSettingsPaymentAccepted(),
+      'seller_settings_welcome'                       => $this->getObject()->getSellerSettingsWelcome(),
+      'seller_settings_shipping'                      => $this->getObject()->getSellerSettingsShipping(),
+      'seller_settings_refunds'                       => $this->getObject()->getSellerSettingsRefunds(),
+      'seller_settings_additional_policies'           => $this->getObject()->getSellerSettingsAdditionalPolicies(),
     )));
-
   }
 
   protected function unsetFields()
@@ -262,7 +295,7 @@ class CollectorEditForm extends CollectorForm
     $rows = array();
     foreach ($inputs as $input)
     {
-      $rows[] = $widget->renderContentTag('label', $input['input'].strip_tags($input['label']), array('class' => 'radio inline'));
+      $rows[] = $widget->renderContentTag('label', $input['input'] . strip_tags($input['label']), array('class' => 'radio inline'));
     }
 
     return !$rows ? '' : $widget->renderContentTag('div', implode($this->getOption('separator'), $rows), array('class' => $this->getOption('class')));
@@ -284,6 +317,56 @@ class CollectorEditForm extends CollectorForm
   {
     $value = strip_tags($value);
     return $value;
+  }
+
+  public function setupSellerSettingsPhoneNumberField($required = false)
+  {
+    $this->widgetSchema['seller_settings_phone_number'] = new sfWidgetFormInputText(array(
+      'label' => 'Phone Number',
+    ));
+
+    $this->validatorSchema['seller_settings_phone_number'] = new sfValidatorRegex(array(
+      'pattern' => '/^0(?:0|11)(9[976]\d|8[987530]\d|6[987]\d|5[90]\d|42\d|3[875]\d|
+          2[98654321]\d|9[8543210]|8[6421]|6[6543210]|5[87654321]|
+          4[987654310]|3[9643210]|2[70]|7|1)\d{0,14}$/',
+      'required' => $required,
+    ));
+  }
+
+  public function setupSellerSettingsWelcomeField($required = false)
+  {
+    $this->widgetSchema['seller_settings_welcome'] = new sfWidgetFormTextarea(array(
+      'label' => 'Welcome',
+    ));
+
+    $this->validatorSchema['seller_settings_welcome'] = new sfValidatorString(array('required' => $required));
+  }
+
+  public function setupSellerSettingsShippingField($required = false)
+  {
+    $this->widgetSchema['seller_settings_shipping'] = new sfWidgetFormTextarea(array(
+      'label' => 'Shipping',
+    ));
+
+    $this->validatorSchema['seller_settings_shipping'] = new sfValidatorString(array('required' => $required));
+  }
+
+  public function setupSellerSettingsRefundsField($required = false)
+  {
+    $this->widgetSchema['seller_settings_refunds'] = new sfWidgetFormTextarea(array(
+      'label' => 'Refunds and exchange',
+    ));
+
+    $this->validatorSchema['seller_settings_refunds'] = new sfValidatorString(array('required' => $required));
+  }
+
+  public function setupSellerSettingsAdditionalPoliciesField($required = false)
+  {
+    $this->widgetSchema['seller_settings_additional_policies'] = new sfWidgetFormTextarea(array(
+      'label' => 'Additional policies and FAQs',
+    ));
+
+    $this->validatorSchema['seller_settings_additional_policies'] = new sfValidatorString(array('required' => $required));
   }
 
 }

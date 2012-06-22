@@ -566,9 +566,13 @@ class mycqActions extends cqFrontendActions
     $form->useFields(array(
       'seller_settings_paypal_email',
       'seller_settings_phone_number',
-      'seller_settings_store_description',
+//      'seller_settings_store_description',
       'seller_settings_return_policy',
-      'seller_settings_payment_accepted',
+//      'seller_settings_payment_accepted',
+      'seller_settings_welcome',
+      'seller_settings_shipping',
+      'seller_settings_refunds',
+      'seller_settings_additional_policies',
     ));
 
     if (sfRequest::POST == $request->getMethod())

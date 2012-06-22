@@ -199,6 +199,7 @@ class collectionActions extends cqFrontendActions
     $this->collector = $collector;
     $this->collection = $collection;
     $this->collectible = $collectible;
+    $this->collectible_for_sale = $collectible->getCollectibleForSale();
     $this->additional_multimedia = $collectible->getMultimedia(0, 'image', false);
     $this->editable = $this->getUser()->isOwnerOf($collectible);
 

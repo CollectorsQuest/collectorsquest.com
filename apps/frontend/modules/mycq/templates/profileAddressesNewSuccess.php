@@ -37,7 +37,7 @@
             </fieldset>
           <div class="brown-dashes form-container-center">
             <div class="form-actions">
-              <input type="submit" class="btn btn-primary blue-button" value="Save & Continue" />
+              <input type="submit" class="btn btn-primary" value="Save & Continue" />
             </div>
           </div>
         </form>

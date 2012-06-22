@@ -17,7 +17,7 @@
       </div>
     </div>
     <div class="form-actions">
-      <input type="submit" class="btn btn-primary blue-button" value="Login" />
+      <input type="submit" class="btn btn-primary" value="Login" />
       <span class="spacer-left-15">
         <?= link_to('Forgot your password?', '@recover_password'); ?>
       </span>

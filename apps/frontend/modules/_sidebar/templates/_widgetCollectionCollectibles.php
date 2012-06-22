@@ -36,14 +36,16 @@ $(document).ready(function()
 
   var $carousel = $('#carousel');
 
-  $carousel.rcarousel({
-    visible: 4, step: 4,
-    width: 69, height: 69,
-    margin: 5,
-    auto: { enabled: false, interval: 15000 },
-    start: firstLoad,
-    pageLoaded: loadPage
-  });
+  if ($carousel.children().length >= 4) {
+    $carousel.rcarousel({
+      visible: 4, step: 4,
+      width: 69, height: 69,
+      margin: 5,
+      auto: { enabled: false, interval: 15000 },
+      start: firstLoad,
+      pageLoaded: loadPage
+    });
+  }
 
   $('.other-items-sidebar').hover(
     function() { $("#ui-carousel-prev, #ui-carousel-next").show(); },

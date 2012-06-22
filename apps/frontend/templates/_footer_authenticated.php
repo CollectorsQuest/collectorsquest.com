@@ -61,7 +61,7 @@ $unread_messages = $collector->getUnreadMessagesCount();
 
 <div class="row-fluid spacer-inner-top">
   <div class="span12">
-    <a href="<?= url_for('@mycq_profile', true); ?>" class="btn btn-primary blue-button">
+    <a href="<?= url_for('@mycq_profile', true); ?>" class="btn btn-primary">
       My Profile
     </a>
     <b><?= link_to('Log out', '@logout', array('class' => 'spacer-left logout-link')); ?></b>

@@ -112,8 +112,8 @@ $(document).ready(function()
     {
       $(this)
         .addClass("ui-state-highlight")
-        .removeClass('icon-plus')
-        .addClass('icon-download-alt');
+        //.removeClass('icon-plus')
+        //.addClass('icon-download-alt');
     },
     out: function(event, ui)
     {

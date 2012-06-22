@@ -74,7 +74,7 @@
   </fieldset>
 
   <div class="well" style="text-align: center; margin-top: 40px;">
-    <button type="submit" class="btn btn-large blue-button spacer-right-15"
+    <button type="submit" class="btn btn-large btn-primary spacer-right-15"
             data-loading-text="Loading payment screen..." formnovalidate="formnovalidate">
       Continue to Payment
     </button>
@@ -88,8 +88,8 @@
 <script>
   $(document).ready(function()
   {
-    $('.blue-button').button();
-    $('.blue-button').click(function()
+    $('.btn-primary').button();
+    $('.btn-primary').click(function()
     {
       $(this).button('loading');
     });

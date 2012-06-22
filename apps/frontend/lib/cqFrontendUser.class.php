@@ -20,6 +20,14 @@ class cqFrontendUser extends cqBaseUser
       if ($this->collector === null && ($this->getAttribute("id", null, "collector") !== null))
       {
         $this->collector = CollectorPeer::retrieveByPK($this->getAttribute("id", null, "collector"));
+
+        if (!$this->collector)
+        {
+          // the user does not exist anymore in the database
+          $this->Authenticate(false);
+
+          throw new sfException('The collector does not exist anymore in the database.');
+        }
       }
       else if ($strict === false)
       {

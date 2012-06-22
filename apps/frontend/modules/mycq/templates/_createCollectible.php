@@ -25,7 +25,7 @@
   <?= $form ?>
 
   <div class="form-actions">
-    <button type="submit" class="btn btn-primary blue-button spacer-right-15">
+    <button type="submit" class="btn btn-primary spacer-right-15">
       Next Step
     </button>
     <button type="reset" class="btn gray-button"

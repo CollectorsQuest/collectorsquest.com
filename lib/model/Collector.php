@@ -10,8 +10,14 @@ require 'lib/model/om/BaseCollector.php';
  * @method     Collector setSellerSettingsPaypalEmail(string $v)
  * @method     string    getSellerSettingsPaypalEmail()
  *
+ * @method     Collector setSellerSettingsPhoneCode(string $v)
+ * @method     string    getSellerSettingsPhoneCode()
+ *
  * @method     Collector setSellerSettingsPhoneNumber(string $v)
  * @method     string    getSellerSettingsPhoneNumber()
+ *
+ * @method     Collector setSellerSettingsPhoneExtension(string $v)
+ * @method     string    getSellerSettingsPhoneExtension()
  *
  * @method     Collector setSellerSettingsStoreDescription(string $v)
  * @method     string    getSellerSettingsStoreDescription()
@@ -21,6 +27,18 @@ require 'lib/model/om/BaseCollector.php';
  *
  * @method     Collector setSellerSettingsPaymentAccepted(string $v)
  * @method     string    getSellerSettingsPaymentAccepted()
+ *
+ * @method     Collector setSellerSettingsWelcome(string $v)
+ * @method     string    getSellerSettingsWelcome()
+ *
+ * @method     Collector setSellerSettingsShipping(string $v)
+ * @method     string    getSellerSettingsShipping()
+ *
+ * @method     Collector setSellerSettingsRefunds(string $v)
+ * @method     string    getSellerSettingsRefunds()
+ *
+ * @method     Collector setSellerSettingsAdditionalPolicies(string $v)
+ * @method     string    getSellerSettingsAdditionalPolicies()
  *
  */
 class Collector extends BaseCollector implements ShippingReferencesInterface
@@ -40,10 +58,16 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
     );
 
     $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_PAYPAL_EMAIL);
+    $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_PHONE_CODE);
     $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_PHONE_NUMBER);
+    $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_PHONE_EXTENSION);
     $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_STORE_DESCRIPTION);
     $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_RETURN_POLICY);
     $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_PAYMENT_ACCEPTED);
+    $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_WELCOME);
+    $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_SHIPPING);
+    $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_REFUNDS);
+    $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_ADDITIONAL_POLICIES);
   }
 
   /**
