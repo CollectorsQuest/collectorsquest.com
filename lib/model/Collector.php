@@ -540,6 +540,20 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
     return ($this->hasFacebook() && preg_match('/^fb(\d+)$/', $this->getUsername()));
   }
 
+  public function getSeller()
+  {
+    $seller = null;
+
+    if ($this->getIsSeller())
+    {
+      $seller = new Seller();
+      $this->copyInto($seller, false, false);
+      $seller->setId($this->getId());
+    }
+
+    return $seller;
+  }
+
   public function getIsSeller()
   {
     return $this->getUserType() == 'Seller';

@@ -90,16 +90,12 @@ class cqFrontendUser extends cqBaseUser
    */
   public function getSeller($strict = false)
   {
-    $seller = null;
-
-    if (($collector = $this->getCollector($strict)) && $collector->getIsSeller())
+    if ($collector = $this->getCollector($strict))
     {
-      $seller = new Seller();
-      $collector->copyInto($seller, false, false);
-      $seller->setId($collector->getId());
+      return $collector->getSeller();
     }
 
-    return $seller;
+    return null;
   }
 
   public function getShoppingCart()
