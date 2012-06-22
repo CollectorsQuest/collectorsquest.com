@@ -103,6 +103,22 @@
         );
       ?>
 
+      <div class="blue-well spacer-bottom-15">
+        <div class="buttons-container">
+          <a href="#" class="btn-blue-simple">
+            Set new main thumbnail
+          </a>
+          <a href="#"  class="btn-blue-simple">
+            Public view
+          </a>
+          <a href="<?= url_for('mycq_collectible_by_slug', array('sf_subject' => $collectible, 'cmd' => 'delete', 'encrypt' => '1')); ?>"
+             class="btn-delete-simple"
+             onclick="return confirm('Are you sure you want to delete this Collectible?');">
+            Delete this collectibles
+          </a>
+        </div>
+      </div>
+
       <?= $form['collection_collectible_list']->renderRow(); ?>
       <?= $form['name']->renderRow(); ?>
 
@@ -139,7 +155,7 @@
             image_tag('banners/want-to-sell-this-item.png', array('align' => 'right')),
             '@seller_packages'
           );
-          echo '<br clear="all"/><br/>';
+          echo '<br clear="all"/>';
         }
       ?>
 
@@ -148,12 +164,6 @@
     <div class="row-fluid">
       <div class="span12">
         <div class="form-actions text-center spacer-inner-15">
-          <a href="<?= url_for('mycq_collectible_by_slug', array('sf_subject' => $collectible, 'cmd' => 'delete', 'encrypt' => '1')); ?>"
-             class="btn gray-button spacer-left pull-left spacer-left"
-             onclick="return confirm('Are you sure you want to delete this Collectible?');">
-            <i class="icon icon-trash"></i>
-            Delete Collectible
-          </a>
           <button type="submit" formnovalidate class="btn btn-primary">Save Changes</button>
           <a href="<?= url_for('mycq_collectible_by_slug', $collectible) ?>"
              class="btn gray-button spacer-left">
