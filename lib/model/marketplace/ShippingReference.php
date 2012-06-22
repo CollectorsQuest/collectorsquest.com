@@ -37,6 +37,24 @@ class ShippingReference extends BaseShippingReference
   }
 
   /**
+   * Proxy get geo country name (with custom name for "Worldwide")
+   *
+   * @param     string $international_name
+   * @return    string
+   */
+  public function getCountryName($international_name = 'Everywhere Else')
+  {
+    if ('ZZ' == $this->getCountryIso3166())
+    {
+      return $international_name;
+    }
+    else
+    {
+      return $this->getGeoCountry()->getName();
+    }
+  }
+
+  /**
    * Set the related model object (Collector|Collectible)
    *
    * @param     Collector|Collectible $object
