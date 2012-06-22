@@ -22,7 +22,7 @@
       <div class="tab-content-inner">
         <div class="row-fluid sidebar-title spacer-inner-bottom">
           <div class="span5 link-align">
-            <h3 class="Chivo webfont">My Collectibles for Sale (<?= $total ?>)</h3>
+            <h3 class="Chivo webfont">My Items for Sale (<?= $total ?>)</h3>
           </div>
           <div class="span7">
             <?php if ($total > 11): ?>
@@ -68,10 +68,10 @@
   <div class="tab-content-inner spacer-inner-top">
     <div class="row-fluid sidebar-title spacer-inner-bottom">
       <div class="span5 link-align">
-        <h3 class="Chivo webfont">Sold Items (<?= $sold_total ?>)</h3>
+        <h3 class="Chivo webfont">My Sold Items (<?= $sold_total ?>)</h3>
       </div>
       <div class="span7">
-        <?php if ($sold_total > 14): ?>
+        <?php if (false && $sold_total > 14): ?>
         <div class="sort-search-box">
           <div class="input-append">
             <form id="form-explore-collections" method="post" action="/search/collections">

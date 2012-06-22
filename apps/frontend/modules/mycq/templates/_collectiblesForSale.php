@@ -70,7 +70,7 @@
   <div class="span12 thumbnail link no-collections-uploaded-box">
     <?php if ($sf_params->get('q')): ?>
       <span class="Chivo webfont info-no-collections-uploaded" style="padding-top: 15px;">
-        None of your Collectibles for Sale match search term: <strong><?= $sf_params->get('q'); ?></strong>
+        None of your Items for Sale match search term: <strong><?= $sf_params->get('q'); ?></strong>
       </span>
     <?php else: ?>
       <span class="Chivo webfont info-no-collections-uploaded">
@@ -79,7 +79,7 @@
       </span>
     <?php endif; ?>
   </div>
-  <?php if ($seller->hasPackageCredits()): ?>
+  <?php if ($seller && $seller->hasPackageCredits()): ?>
     <?php include_slot('mycq_create_collectible_for_sale'); ?>
   <?php else: ?>
   <div id="mycq-create-collectible" class="span4 thumbnail link">

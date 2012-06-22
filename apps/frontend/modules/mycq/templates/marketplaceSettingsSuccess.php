@@ -1,12 +1,13 @@
 <?php
-/* @var $form CollectorEditForm */
-foreach ($form->getWidgetSchema()->getFields() as $form_field)
-{
-  $form_field->setAttribute('class',
-      $form_field->getAttribute('class') . ' input-xxlarge');
-}
+  /* @var $form CollectorEditForm */
+  foreach ($form->getWidgetSchema()->getFields() as $form_field)
+  {
+    $form_field->setAttribute(
+      'class', $form_field->getAttribute('class') . ' input-xxlarge'
+    );
+  }
 
-SmartMenu::setSelected('mycq_marketplace_tabs', 'marketplace_settings');
+  SmartMenu::setSelected('mycq_marketplace_tabs', 'marketplace_settings');
 ?>
 
 <div id="mycq-tabs">
