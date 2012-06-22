@@ -236,7 +236,7 @@ class CollectibleForSale extends BaseCollectibleForSale
   public function hasActiveCredit()
   {
     return !!PackageTransactionCreditQuery::create()
-      ->filterByCollectible($this)
+      ->filterByCollectibleId($this->getCollectibleId())
       ->notExpired()
       ->count();
   }
