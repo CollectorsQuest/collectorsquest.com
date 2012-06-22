@@ -102,7 +102,7 @@
   <table class="shipping-rates">
     <thead>
     <tr class="shipping-dest">
-      <th colspan="5">
+      <th colspan="2">
         <strong>Shipping from:</strong> <span class="darkblue">
           <?= $collector->getProfile()->getCountry() ?: '-'; ?>
         </span>
