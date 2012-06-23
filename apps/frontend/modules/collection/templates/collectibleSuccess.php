@@ -11,6 +11,9 @@
  */
 
   $buy_form = new CollectibleForSaleBuyForm($collectible_for_sale);
+
+  $shipping_will_ship_text = '';
+  $shipping_no_shipping_countries = array();
 ?>
 
 <?php
@@ -117,19 +120,40 @@
     <?php if (count($collectible->getShippingReferencesByCountryCode())):
       foreach ($collectible->getShippingReferencesByCountryCode() as $country_code => $shipping_reference):
         if (ShippingReferencePeer::SHIPPING_TYPE_NO_SHIPPING != $shipping_reference->getShippingType()): ?>
+
+          <?php ob_start(); ?>
+          <tr>
+            <td><?= $shipping_reference->getCountryName(); ?></td>
+            <td>
+            <?php if ($shipping_reference->isSimpleFreeShipping()): ?>
+              Free shipping
+            <?php else: ?>
+              $<?= $shipping_reference->getSimpleShippingAmount(); ?>
+            <?php endif; ?>
+            </td>
+          </tr>
+          <?php $shipping_will_ship_text .= ob_get_clean(); ?>
+
+        <?php else: // shipping_type = no shipping
+          $shipping_no_shipping_countries[] = $shipping_reference->getCountryName();
+        endif;
+      endforeach; // foreach shipping reference ?>
+
+      <?= $shipping_will_ship_text; // first output which countries we ship to ?>
+
+      <?php $international_shipping = $collectible->getShippingReferenceForCountryCode('ZZ'); ?>
+      <?php if ($international_shipping && ShippingReferencePeer::SHIPPING_TYPE_NO_SHIPPING == $international_shipping->getShippingType()): ?>
         <tr>
-          <td><?= $shipping_reference->getCountryName(); ?></td>
-          <td>
-          <?php if ($shipping_reference->isSimpleFreeShipping()): ?>
-            Free shipping
-          <?php else: ?>
-            $<?= $shipping_reference->getSimpleShippingAmount(); ?>
-          <?php endif; ?>
-          </td>
+          <td>International Shipping</td>
+          <td>This item cannot be shipped internationally</td>
         </tr>
-        <?php endif; // if is not type not shipping
-      endforeach; // foreach shipping reference
-    else: // if has shipping references ?>
+      <?php elseif ($shipping_no_shipping_countries): ?>
+        <tr>
+          <td>This item cannot be shipped to the following countries</td>
+          <td><?= implode($shipping_no_shipping_countries, ', '); ?></td>
+        </tr>
+      <?endif; ?>
+    <?php else: // if has shipping references ?>
       <tr>
         <td>United States</td>
         <td>Free shipping</td>
