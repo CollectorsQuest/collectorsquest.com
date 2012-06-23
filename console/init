@@ -1,0 +1,14 @@
+#!/bin/bash
+
+SOURCE="${BASH_SOURCE[0]}"
+while [ -h "$SOURCE" ] ; do SOURCE="$(readlink "$SOURCE")"; done
+DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+
+[[ $1 != '' ]] && branch=$1 || branch="develop"
+
+cd $DIR/..
+git submodule update --init --recursive
+console/git-pull $branch
+console/composer.phar install
+console/propel-build
+chown -R apache:apache cache/ log/ web/
