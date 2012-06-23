@@ -84,7 +84,7 @@
         if ($collectible->isForSale())
         {
           $link = link_to(
-            'Go to Store &raquo;', 'mycq_marketplace',
+            'Go to Store &raquo;', '@mycq_marketplace',
             array('class' => 'text-v-middle link-align')
           );
         }

@@ -95,7 +95,7 @@
 </div>
 <?php endif; ?>
 
-<?php if (isset($collectible_for_sale) && $collectible_for_sale instanceof CollectibleForSale && $collectible_for_sale->isForSale()): ?>
+<?php if (isset($collectible_for_sale) && $collectible_for_sale->isForSale() && $collectible_for_sale->hasActiveCredit()): ?>
   <!-- sale items -->
   <span class="item-condition"><strong>Condition:</strong> <?= $collectible_for_sale->getCondition(); ?></span>
 
@@ -144,9 +144,19 @@
 
 
   <div id="information-box">
-    <p>Have a question about shipping? <?= cq_link_to(sprintf('Send a message to %s »', $collector->getDisplayName()), '@messages_compose?to='. $collector->getUsername()); ?></p>
-    <p>Return Policy: <?= $collector->getSellerSettingsReturnPolicy(); ?></p>
-    <p>Payment: <?= $collector->getSellerSettingsPaymentAccepted(); ?></p>
+    <p>Have a question about shipping? <?= cq_link_to(
+      sprintf('Send a message to %s »', $collector->getDisplayName()),
+      'messages_compose',
+      array('to' => $collector->getUsername(), 'subject' => 'Regarding your item: '. $collectible->getName(), 'goto' => $sf_request->getUri())
+    ); ?></p>
+
+    <?php if ($collector->getSellerSettingsReturnPolicy()): ?>
+      <p>Return Policy: <?= $collector->getSellerSettingsReturnPolicy(); ?></p>
+    <?endif; ?>
+
+    <?php if ($collector->getSellerSettingsPaymentAccepted()): ?>
+      <p>Payment: <?= $collector->getSellerSettingsPaymentAccepted(); ?></p>
+    <?php endif; ?>
   </div>
 
 
@@ -179,10 +189,10 @@
 
     <?= $buy_form->renderHiddenFields(); ?>
   </form>
-  <?php endif; ?>
+  <?php endif; // if for sale ?>
 
 
-<?php else: ?>
+<?php else: // if not (for sale && has active credit) ?>
 
   <?php
     include_partial(
