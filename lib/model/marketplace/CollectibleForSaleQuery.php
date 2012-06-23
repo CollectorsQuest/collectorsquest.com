@@ -10,17 +10,28 @@ class CollectibleForSaleQuery extends BaseCollectibleForSaleQuery
    */
   public function isForSale()
   {
-    $this
+    return $this
       ->filterByIsReady(true)
       ->filterByPriceAmount(1, Criteria::GREATER_EQUAL)
-      ->filterByQuantity(1, Criteria::GREATER_EQUAL);
-    //  ->useCollectibleQuery('collectible_check_credit_alias')
-    //    ->usePackageTransactionCreditQuery()
-    //      ->notExpired()
-    //    ->endUse()
-    //  ->endUse();
+      ->filterByQuantity(1, Criteria::GREATER_EQUAL)
+      // ->hasActiveCredit()
+      ;
+  }
 
-    return $this;
+  /**
+   * Filter on collectibles that have an active (not yet expired) transaction credit,
+   * ie are paid to be shown as for sale
+   *
+   * @return    CollectibleForSaleQuery
+   */
+  public function hasActiveCredit()
+  {
+    return $this
+      ->useCollectibleQuery('collectible_check_credit_alias')
+        ->usePackageTransactionCreditQuery()
+          ->notExpired()
+        ->endUse()
+      ->endUse();
   }
 
   /**
@@ -109,23 +120,6 @@ class CollectibleForSaleQuery extends BaseCollectibleForSaleQuery
   }
 
   /**
-   * @param  integer  $seller
-   * @return CollectibleForSaleQuery
-   */
-  public function filterBySeller($seller = null)
-  {
-    if (!is_null($seller))
-    {
-      $this
-        ->useCollectibleQuery()
-        ->filterByCollectorId($seller)
-        ->enduse();
-    }
-
-    return $this;
-  }
-
-  /**
    * @param  \Collector|null $collector
    * @param  null $comparison
 
@@ -135,7 +129,7 @@ class CollectibleForSaleQuery extends BaseCollectibleForSaleQuery
   {
     return $this
       ->useCollectibleQuery()
-      ->filterByCollector($collector, $comparison)
+        ->filterByCollector($collector, $comparison)
       ->enduse();
   }
 
@@ -149,7 +143,7 @@ class CollectibleForSaleQuery extends BaseCollectibleForSaleQuery
   {
     return $this
       ->useCollectibleQuery()
-      ->filterByCollectionCollectible($collectible, $comparison)
+        ->filterByCollectionCollectible($collectible, $comparison)
       ->enduse();
   }
 
@@ -163,7 +157,7 @@ class CollectibleForSaleQuery extends BaseCollectibleForSaleQuery
   {
     return $this
       ->useCollectibleQuery()
-      ->filterByCollection($collection, $comparison)
+        ->filterByCollection($collection, $comparison)
       ->enduse();
   }
 
@@ -177,14 +171,16 @@ class CollectibleForSaleQuery extends BaseCollectibleForSaleQuery
   }
 
   /**
-   * @param  string $v
-   * @return CollectionCollectibleQuery
+   * @param     string $v
+   * @return    CollectionCollectibleQuery
+   *
+   * @see       CollectibleQuery::search()
    */
   public function search($v)
   {
     return $this
       ->useCollectibleQuery()
-        ->search(trim($v))
+        ->search($v)
       ->endUse();
   }
 
