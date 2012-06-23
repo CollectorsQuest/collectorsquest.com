@@ -36,10 +36,14 @@
       <div class="span5">
         <div class="signup-form-splash">
           <p>
-            <a href="<?= url_for('misc_guide_download_file', array('hash'=>$hash, 'sf_format'=>'pdf')) ?>">Download PDF</a>
+            <a href="<?= url_for('misc_guide_download_file', array('hash'=>$hash, 'sf_format'=>'pdf')) ?>">
+              <img src="/images/icons/pdf.png" alt="Adobe PDF" style="height: 16px;" />
+              Download PDF</a>
           </p>
           <p>
-            <a href="<?= url_for('misc_guide_download_file', array('hash'=>$hash, 'sf_format'=>'zip')) ?>">Download ZIP</a>
+            <a href="<?= url_for('misc_guide_download_file', array('hash'=>$hash, 'sf_format'=>'zip')) ?>">
+              <img src="/images/icons/zip.png" alt="ZIP archive" style="height: 16px;" />
+              Download ZIP</a>
           </p>
         </div>
       </div>
