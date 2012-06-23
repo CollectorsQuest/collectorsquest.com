@@ -6,3 +6,11 @@ guideToCollectingSuccess:
   components:
     footer:  []
     breadcrumbs: []
+
+guideDownloadSuccess:
+  stylesheets:
+    - frontend/modules/splash.css
+
+  components:
+    footer:  []
+    breadcrumbs: []
