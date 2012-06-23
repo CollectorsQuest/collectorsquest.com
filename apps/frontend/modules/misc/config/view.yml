@@ -14,3 +14,12 @@ guideDownloadSuccess:
   components:
     footer:  []
     breadcrumbs: []
+
+guideDownloadAlert:
+  stylesheets:
+    - frontend/modules/splash.css
+
+  components:
+    footer:  []
+    breadcrumbs: []
+
