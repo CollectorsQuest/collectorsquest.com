@@ -131,7 +131,7 @@ class miscActions extends sfActions
 
           $this->getUser()->setFlash('success', sprintf('Validation email sent to %s', $email->getEmail()));
 
-          $this->redirect('validationEmailSent');
+          $this->redirect('@misc_guide_download');
           return sfView::SUCCESS;
         }
       }
