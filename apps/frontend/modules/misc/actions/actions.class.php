@@ -108,7 +108,40 @@ class miscActions extends sfActions
         ->filterByCollector($collector)
         ->findOneByEmail($collector->getEmail());
 
-    $this->redirectUnless($email && $email->getIsVerified(), '@misc_guide_to_collecting');
+    if (!$email || !$email->getIsVerified())
+    {
+      $form = new CollectorValidateEmailForm($email);
+
+      if (sfRequest::POST == $this->getRequest()->getMethod())
+      {
+        //Form submited
+        $form->bind($this->getRequestParameter($form->getName()));
+
+        if ($form->isValid())
+        {
+          $cqEmail = new cqEmail($this->getMailer());
+          $cqEmail->send('misc/validate_email_to_download', array(
+            'to'      => $collector->getEmail(),
+            'subject' => 'Download essential guide',
+            'params'  => array(
+              'collector'       => $collector,
+              'collector_email' => $email,
+            )
+          ));
+
+          $this->getUser()->setFlash('success', sprintf('Validation email sent to %s', $email->getEmail()));
+
+          $this->redirect('validationEmailSent');
+          return sfView::SUCCESS;
+        }
+      }
+
+      $this->form = $form;
+
+      return sfView::ALERT;
+    }
+
+//    $this->redirectUnless($email && $email->getIsVerified(), '@misc_guide_to_collecting');
 
     $hash = $this->getUser()->getAttribute('hash', false, 'guide');
     $expireAt = $this->getUser()->getAttribute('expire', 0, 'guide');
@@ -116,6 +149,8 @@ class miscActions extends sfActions
     if ($this->getRequestParameter('sf_format', false) && $hash && $expireAt >= time())
     {
       //Download
+      dd($hash, $expireAt, $this->getRequestParameter('sf_format'), $expireAt - time());
+
       $format = $this->getRequestParameter('sf_format');
       $filename = sprintf('essential-guide.%s', $format);
       $mimeType = 'pdf' == $format ? 'application/pdf' : 'application/zip';
@@ -126,7 +161,7 @@ class miscActions extends sfActions
       header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
       header("Content-Description: File Transfer");
       header(sprintf('Content-Type: %s, charset=UTF-8; encoding=UTF-8', $mimeType));
-      header("Content-disposition: attachment; filename=". $filename);
+      header("Content-disposition: attachment; filename=" . $filename);
 
       readfile($sourceFile);
       exit(0);
@@ -147,6 +182,43 @@ class miscActions extends sfActions
     $this->hash = $hash;
 
     return sfView::SUCCESS;
+  }
+
+  /**
+   * Action ValidationEmailSent
+   *
+   * @param sfWebRequest $request
+   *
+   * @return string
+   */
+  public function executeValidationEmailSent(sfWebRequest $request)
+  {
+    return sfView::SUCCESS;
+  }
+
+  /**
+   * Action GuideVerifyEmail
+   *
+   * @param sfWebRequest $request
+   *
+   * @return string
+   */
+  public function executeGuideVerifyEmail(sfWebRequest $request)
+  {
+    /* @var $collectorEmail CollectorEmail */
+    $collectorEmail = $this->getRoute()->getObject();
+    $this->forward404Unless($collectorEmail instanceof CollectorEmail);
+
+    $collector = $collectorEmail->getCollector();
+    $collector->setEmail($collectorEmail->getEmail());
+    $collector->save();
+
+    $collectorEmail->setIsVerified(true);
+    $collectorEmail->save();
+
+    $this->getUser()->Authenticate(true, $collector, false);
+
+    $this->redirect('@misc_guide_download');
   }
 
 }

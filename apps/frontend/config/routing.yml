@@ -593,6 +593,12 @@ misc_guide_download:
   url:  /the-essential-guide-download
   param: { module: misc, action: guideDownload }
 
+misc_guide_verify_email:
+  url:  /the-essential-guide-verify/:hash
+  class: cqPropelRoute
+  param: { module: misc, action: guideVerifyEmail }
+  options: { model: CollectorEmail, type: object }
+
 ### LEGACY
 
 legacy_community_help:
