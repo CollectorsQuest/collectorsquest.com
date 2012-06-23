@@ -2,7 +2,7 @@
   /* @var $collectible_for_sale CollectibleForSale */
 ?>
 
-<?php if ($collectible_for_sale->hasActiveCredit()): ?>
+<?php if ($collectible_for_sale->hasActiveCredit() && IceGateKeeper::open('shopping_cart') ): ?>
 
   <?php if ($collectible_for_sale->getIsSold()): ?>
     <div id="price-container">
