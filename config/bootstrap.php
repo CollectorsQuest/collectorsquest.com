@@ -71,10 +71,9 @@ unset($app, $env, $dbg);
 
 if (SF_ENV === 'prod' && !defined('GIT_REVISION'))
 {
-  if (file_exists(dirname(__FILE__).'/../.git/FETCH_HEAD'))
+  if ($hash = `git rev-parse HEAD`)
   {
-    $contents = (string) file_get_contents(dirname(__FILE__).'/../.git/FETCH_HEAD');
-    define('GIT_REVISION', substr($contents, 0, 40));
+    define('GIT_REVISION', substr(trim($hash), 0, 40));
     define('SVN_REVISION', sprintf("%u", crc32(GIT_REVISION)));
   }
   else
