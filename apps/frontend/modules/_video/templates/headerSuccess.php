@@ -16,7 +16,7 @@
 <!--[if gt IE 9]><!--><html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#" lang="en" class="no-js"><!--<![endif]-->
 <head>
   <?php include_partial('global/head'); ?>
-  <base target="_parent" />
+  <base target="_top" />
 </head>
 <body id="body-_video-header" data-controller="_video" data-action="header">
   <?php

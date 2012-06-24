@@ -12,7 +12,7 @@
 <!--[if gt IE 8]><!--><html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#" lang="en" class="no-js"><!--<![endif]-->
 <head>
   <?php include_partial('global/head'); ?>
-  <base target="_parent" />
+  <base target="_top" />
 </head>
 <body id="<?= 'body-'. $sf_params->get('module') .'-'. $sf_params->get('action'); ?>" data-controller="<?= $sf_params->get('module'); ?>" data-action="<?= $sf_params->get('action'); ?>">
   <?php
