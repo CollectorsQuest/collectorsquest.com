@@ -1,0 +1,17 @@
+#!/bin/bash
+
+SOURCE="${BASH_SOURCE[0]}"
+while [ -h "$SOURCE" ] ; do SOURCE="$(readlink "$SOURCE")"; done
+DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+
+[[ $1 != '' && $1 == 'prod' ]] && SERVER_NAME=www.collectorsquest.com || SERVER_NAME=www.collectorsquest.dev
+
+cd $DIR/..
+if [ ! -f tags ];
+then
+  yum install ctags
+  ctags -R
+fi
+
+export SERVER_NAME=$SERVER_NAME
+phpsh web/index.php

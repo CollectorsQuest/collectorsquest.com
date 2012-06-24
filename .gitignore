@@ -5,6 +5,7 @@ nbproject
 .svn
 *~
 .swp
+tags
 
 # symfony folders
 /cache/*
