@@ -6,3 +6,20 @@ guideToCollectingSuccess:
   components:
     footer:  []
     breadcrumbs: []
+
+guideDownloadSuccess:
+  stylesheets:
+    - frontend/modules/splash.css
+
+  components:
+    footer:  []
+    breadcrumbs: []
+
+guideDownloadAlert:
+  stylesheets:
+    - frontend/modules/splash.css
+
+  components:
+    footer:  []
+    breadcrumbs: []
+

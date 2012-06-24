@@ -1,7 +1,7 @@
 <?php
 
-$app = isset($_SERVER['SF_APP']) ? $_SERVER['SF_APP'] : 'frontend';
-$env = isset($_SERVER['SF_ENV']) ? $_SERVER['SF_ENV'] : 'prod';
+$app = isset($_SERVER['SF_APP']) ? (string) $_SERVER['SF_APP'] : 'frontend';
+$env = isset($_SERVER['SF_ENV']) ? (string) $_SERVER['SF_ENV'] : 'prod';
 $dbg = isset($_SERVER['SF_DEBUG']) ? (boolean) $_SERVER['SF_DEBUG'] : false;
 
 if ($_SERVER['SERVER_NAME'] == 'backend.collectorsquest.dev')
@@ -31,18 +31,6 @@ else if (false !== stripos($_SERVER['SERVER_NAME'], 'cqnext.com'))
   $env = 'next';
   $dbg = false;
 }
-else if ($_SERVER['SERVER_NAME'] == 'backend.cqstaging.com')
-{
-  $app = 'backend';
-  $env = 'stg';
-  $dbg = false;
-}
-else if (false !== stripos($_SERVER['SERVER_NAME'], 'cqstaging.com'))
-{
-  $app = 'disabled';
-  $env = 'stg';
-  $dbg = false;
-}
 else if ($_SERVER['SERVER_NAME'] == 'backend.collectorsquest.com')
 {
   $app = 'backend';
@@ -69,22 +57,41 @@ define('SF_DEBUG', $dbg);
 // Cleanup
 unset($app, $env, $dbg);
 
-if (SF_ENV === 'prod' && !defined('GIT_REVISION'))
+if (!defined('GIT_REVISION'))
 {
-  if (file_exists(dirname(__FILE__).'/../.git/FETCH_HEAD'))
+  if (SF_ENV === 'prod')
   {
-    $contents = (string) file_get_contents(dirname(__FILE__).'/../.git/FETCH_HEAD');
-    define('GIT_REVISION', substr($contents, 0, 40));
-    define('SVN_REVISION', sprintf("%u", crc32(GIT_REVISION)));
+    if (function_exists('apc_fetch'))
+    {
+      $success = false;
+      $git = apc_fetch('GIT_REVISION', $success);
+    }
+
+    if (empty($git) || $success !== true)
+    {
+      $git = `git rev-parse HEAD`;
+      $git = trim($git);
+
+      if (strlen($git) !== 40) {
+        $git = sha1(uniqid('git_revision_', true));
+      }
+
+      if (function_exists('apc_store')) {
+        apc_store('GIT_REVISION', $git, 60);
+      }
+    }
   }
   else
   {
-    define('GIT_REVISION', 1);
-    define('SVN_REVISION', 1);
+    $git = sha1(uniqid('git_revision_', true));
   }
-}
-else if (!defined('GIT_REVISION'))
-{
-  define('GIT_REVISION', md5(uniqid('git_revision_', true)));
-  define('SVN_REVISION', rand(1, PHP_INT_MAX));
+
+  $git = substr($git, 0, 7);
+  $svn = sprintf("%u", crc32($git));
+
+  define('GIT_REVISION', $git);
+  define('SVN_REVISION', $svn);
+
+  // Cleanup
+  unset($git, $svn, $success);
 }

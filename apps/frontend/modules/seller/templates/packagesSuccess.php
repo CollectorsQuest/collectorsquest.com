@@ -111,7 +111,7 @@
 
       <div class="form-actions">
         <button type="submit" class="btn btn-primary">Purchase Package</button>
-        <a href="<?= url_for('mycq') ?>" class="btn gray-button spacer-left">
+        <a href="<?= url_for('mycq') ?>" class="btn spacer-left">
           Cancel
         </a>
       </div>

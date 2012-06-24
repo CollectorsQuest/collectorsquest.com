@@ -157,7 +157,7 @@
           <fieldset class="brown-dashes form-container-center">
             <div class="form-actions">
               <button type="submit" class="btn btn-primary">Save changes</button>
-              <button type="reset" class="btn gray-button spacer-left">Cancel</button>
+              <button type="reset" class="btn spacer-left">Cancel</button>
             </div>
           </fieldset>
         </form> <!-- CollectorEditForm -->

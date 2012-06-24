@@ -126,7 +126,7 @@ class cqStatic extends IceStatic
     include_once __DIR__.'/../vendor/PayPalAdaptivePayments.class.php';
 
     return new PayPalAdaptivePayments(array(
-      'Sandbox'       => sfConfig::get('sf_environment') !== 'prod',
+      'Sandbox'       => (boolean) sfConfig::get('app_paypal_sandbox'),
       'ApplicationID' => sfConfig::get('app_paypal_application_id'),
       'APIUsername'   => sfConfig::get('app_paypal_api_username'),
       'APIPassword'   => sfConfig::get('app_paypal_api_password'),

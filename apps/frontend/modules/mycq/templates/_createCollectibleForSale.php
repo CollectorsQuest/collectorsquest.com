@@ -43,7 +43,7 @@
     <button type="submit" class="btn btn-primary spacer-right-15">
       Next Step
     </button>
-    <button type="reset" class="btn gray-button"
+    <button type="reset" class="btn"
             onClick="$(this).parents('.modal').find('.modal-body').dialog2('close')">
       Cancel
     </button>

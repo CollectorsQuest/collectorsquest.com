@@ -176,18 +176,6 @@ classes:
       created_at:   { type: timestamp }
       archived_at:  { type: timestamp }
 
-  CollectibleOfferArchive:
-    columns:
-      id:              { type: integer, primaryKey: true, autoIncrement: false }
-      collectible_id:  { type: integer, index: true }
-      collector_id:    { type: integer }
-      price:           { type: float }
-      status:          { type: char, sqlType: "ENUM('pending','counter','rejected','accepted')", required: true }
-
-      updated_at:   { type: timestamp }
-      created_at:   { type: timestamp }
-      archived_at:  { type: timestamp }
-
   CommentArchive:
     columns:
       id:              { type: integer, primaryKey: true, autoIncrement: false }

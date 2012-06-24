@@ -22,14 +22,28 @@
       <ul style="list-style: none; margin-left: 0;">
         <?php if ($collectionsCount = $collector->countCollections() and $collectiblesCount = $collector->countCollectibles()): ?>
         <li>
-        <?= sprintf('has <b>%d</b> collections', $collectionsCount) ?>
+          <?= format_number_choice(
+          '[1] has <b>1</b> collection|(1,+Inf] has <b>%1%</b> collections',
+          array('%1%' => number_format($collectionsCount)),
+          $collectionsCount
+        );
+          ?>
         </li>
         <li>
-        <?= sprintf('with <b>%d</b> collectibles', $collectiblesCount) ?>
+          <?= format_number_choice(
+          '[1] with <b>1</b> collectible|(1,+Inf] with <b>%1%</b> collectible',
+          array('%1%' => number_format($collectiblesCount)),
+          $collectiblesCount
+        );
+          ?>
         </li>
         <?php else: ?>
         <?php if (time() > strtotime('+1 year', $collector->getCreatedAt('U'))): ?>
           <li><?= sprintf('member since %s', $collector->getCreatedAt('Y'))?></li>
+          <?php elseif ((time() - $collector->getCreatedAt('U')) < 86400): ?>
+          <li>joined <b>today</b></li>
+          <?php elseif ((time() - $collector->getCreatedAt('U')) < 172800): ?>
+            <li>joined <b>yesterday</b></li>
           <?php else: ?>
           <li><?= sprintf('joined <b>%s</b> ago', time_ago_in_words($collector->getCreatedAt('U'))); ?></li>
           <?php endif; ?>

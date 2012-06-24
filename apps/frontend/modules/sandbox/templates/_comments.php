@@ -39,7 +39,7 @@
     </div>
   </div>
   <div class="see-more-under-image-set">
-    <button class="btn btn-small gray-button see-more-full" id="see-more-comments">
+    <button class="btn btn-small see-more-full" id="see-more-comments">
       See all XX comments
     </button>
   </div>

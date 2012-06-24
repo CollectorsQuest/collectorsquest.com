@@ -323,10 +323,6 @@ mycq_profile_account_info:
   url:   /mycq/profile/account-information
   param: { module: mycq, action: profileAccountInfo }
 
-mycq_marketplace_settings:
-  url:   /mycq/marketplace/settings
-  param: { module: mycq, action: marketplaceSettings }
-
 mycq_profile_addresses:
   url:   /mycq/profile/addresses
   param: { module: mycq, action: profileAddresses }
@@ -392,6 +388,18 @@ mycq_collectible_by_slug:
 mycq_marketplace:
   url:   /mycq/marketplace
   param: { module: mycq, action: marketplace }
+
+mycq_marketplace_settings:
+  url:   /mycq/marketplace/settings
+  param: { module: mycq, action: marketplaceSettings }
+
+mycq_marketplace_sold:
+  url:   /mycq/marketplace/sold
+  param: { module: mycq, action: marketplaceSold }
+
+mycq_marketplace_purchased:
+  url:   /mycq/marketplace/purchased
+  param: { module: mycq, action: marketplacePurchased }
 
 mycq_wanted:
   url:   /mycq/wanted
@@ -575,6 +583,21 @@ feedback:
 misc_guide_to_collecting:
   url:   /the-essential-guide-to-collecting
   param: { module: misc, action: guideToCollecting }
+
+misc_guide_download_file:
+  url: /the-essential-guide-download/:hash.:sf_format
+  param: { module: misc, action: guideDownload }
+  requirements: { hash: '\w{10}', sf_format: (?:pdf|zip) }
+
+misc_guide_download:
+  url:  /the-essential-guide-download
+  param: { module: misc, action: guideDownload }
+
+misc_guide_verify_email:
+  url:  /the-essential-guide-verify/:hash
+  class: cqPropelRoute
+  param: { module: misc, action: guideVerifyEmail }
+  options: { model: CollectorEmail, type: object }
 
 ### LEGACY
 

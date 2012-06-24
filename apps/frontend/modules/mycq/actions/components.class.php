@@ -165,7 +165,7 @@ class mycqComponents extends cqFrontendComponents
     return sfView::SUCCESS;
   }
 
-  public function executeCollectiblesForSaleBought()
+  public function executeCollectiblesForSalePurchased()
   {
     $collector = $this->getCollector();
 

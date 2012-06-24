@@ -1,11 +1,12 @@
+
 <?php cq_sidebar_title('Collections of Interest') ?>
 
+<?php if (false) foreach ($collections as $collection): ?>
 <div class="thumbnails-box-1x4-sidebar bgyellow-noborder">
   <div class="inner-thumbnails-box">
     <p>
-      <a href="#" title="Vintage kitchenalia cookie jars">
-        Vintage kitchenalia cookie jars
-      </a>
+      <?= link_to_collection($collection, 'text', array('class' => 'target')); ?>
+      by <?= link_to_collector($collection, 'text'); ?>
     </p>
     <div class="thumb-container">
       <a href="#" class="thumbnails54">
@@ -26,8 +27,7 @@
     </div>
   </div>
 </div>
-
-<?php cq_sidebar_title('Collections of Interest') ?>
+<?php endforeach; ?>
 
 <?php foreach ($collections as $collection): ?>
   <div id="sidebar_collection_<?php echo  $collection->getId(); ?>" class="row-fluid link">

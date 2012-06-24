@@ -26,17 +26,3 @@ $t->diag('::getCollection()');
   /** @var $collectible_for_sale CollectibleForSale */
   $collectible_for_sale = cqTest::getModelObject('CollectibleForSale', true);
   $t->is($collectible_for_sale->getCollection() instanceof Collection, true);
-
-$t->diag('::getOffersCount()');
-
-
-$t->diag('::getCollectibleOfferByBuyer()');
-
-
-$t->diag('::getActiveCollectibleOffersCount()');
-
-
-$t->diag('::getSoldOffer()');
-
-
-$t->diag('::getBackendIsSold()');

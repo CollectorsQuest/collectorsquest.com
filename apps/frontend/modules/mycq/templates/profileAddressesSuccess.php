@@ -1,7 +1,7 @@
 <?php
   /** @var $collector_addresses CollectorAddress[] */
 
-  SmartMenu::setSelected('mycq_profile_tabs', 'mailing_addresses');
+  SmartMenu::setSelected('mycq_profile_tabs', 'addresses');
 ?>
 
 <div id="mycq-tabs">
@@ -13,7 +13,7 @@
   <div class="tab-content">
     <div class="tab-pane active">
       <div class="tab-content-inner spacer">
-        <?php cq_sidebar_title('Edit Your Mailing Addresses'); ?>
+        <?php cq_sidebar_title('Edit Your Address Book'); ?>
 
         <div class="collector-addresses-holder">
           <h2>Your addresses</h2>
@@ -46,7 +46,7 @@
                             'sf_route' => 'mycq_profile_addresses_delete',
                             'sf_subject' => $address
                           ),
-                          array('class' => 'btn gray-button spacer-left')
+                          array('class' => 'btn spacer-left')
                         );
                       ?>
                     </div>
@@ -63,7 +63,7 @@
             </p>
           <?php endif; ?>
           Click here to add a new address:
-          <a href="<?= url_for('@mycq_profile_addresses_new') ?>">Enter a new address</a>
+          <a class="btn btn-primary" href="<?= url_for('@mycq_profile_addresses_new') ?>">Enter a new address</a>
         </div> <!-- .collector-address-holder -->
 
       </div> <!-- .tab-content-inner.spacer -->

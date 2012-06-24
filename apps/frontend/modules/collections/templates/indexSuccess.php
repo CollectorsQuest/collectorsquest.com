@@ -8,7 +8,7 @@
     <form action="<?= url_for('@search_collections', true); ?>" method="post" id="form-explore-collections">
     <div class="btn-group">
       <div class="append-left-gray">Sort by <strong id="sortByName">Most Relevant</strong></div>
-      <a href="#" data-toggle="dropdown" class="btn gray-button dropdown-toggle">
+      <a href="#" data-toggle="dropdown" class="btn dropdown-toggle">
         <span class="caret arrow-up"></span><br><span class="caret arrow-down"></span>
       </a>
       <ul class="dropdown-menu">
@@ -17,7 +17,7 @@
         <li><a href="javascript:" class="sortBy" data-name="Most Popular" data-sort="most-popular">Sort by <strong>Most Popular</strong></a></li>
       </ul>
     </div>
-    <input type="text" name="q" id="appendedPrependedInput" class="input-sort-by"><button type="submit" class="btn gray-button"><strong>Search</strong></button>
+    <input type="text" name="q" id="appendedPrependedInput" class="input-sort-by"><button type="submit" class="btn"><strong>Search</strong></button>
     <input type="hidden" name="s" id="sortByValue" value="most-relevant">
     </form>
   </div>

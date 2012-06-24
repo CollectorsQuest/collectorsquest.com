@@ -22,7 +22,7 @@
       <div class="tab-content-inner">
         <div class="row-fluid sidebar-title spacer-inner-bottom">
           <div class="span5 link-align">
-            <h3 class="Chivo webfont">My Collectibles for Sale (<?= $total ?>)</h3>
+            <h3 class="Chivo webfont">My Items for Sale (<?= $total ?>)</h3>
           </div>
           <div class="span7">
             <?php if ($total > 11): ?>
@@ -32,7 +32,7 @@
                       action="<?= url_for('@ajax_mycq?section=component&page=collectiblesForSale') ?>">
                   <div class="btn-group">
                     <div class="append-left-gray">Sort by <strong id="sortByName">Most Recent</strong></div>
-                    <a class="btn gray-button dropdown-toggle" data-toggle="dropdown" href="#">
+                    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
                       <span class="caret arrow-up"></span><br><span class="caret arrow-down"></span>
                     </a>
                     <ul class="dropdown-menu">
@@ -41,7 +41,7 @@
                     </ul>
                   </div>
                   <input type="text" class="input-sort-by" id="appendedPrependedInput" name="q" />
-                  <button class="btn gray-button" type="submit"><strong>Search</strong></button>
+                  <button class="btn" type="submit"><strong>Search</strong></button>
                   <input type="hidden" value="most-recent" id="sortByValue" name="s">
                 </form>
               </div>
@@ -68,16 +68,16 @@
   <div class="tab-content-inner spacer-inner-top">
     <div class="row-fluid sidebar-title spacer-inner-bottom">
       <div class="span5 link-align">
-        <h3 class="Chivo webfont">Sold Items (<?= $sold_total ?>)</h3>
+        <h3 class="Chivo webfont">My Sold Items (<?= $sold_total ?>)</h3>
       </div>
       <div class="span7">
-        <?php if ($sold_total > 14): ?>
+        <?php if (false && $sold_total > 14): ?>
         <div class="sort-search-box">
           <div class="input-append">
             <form id="form-explore-collections" method="post" action="/search/collections">
               <div class="btn-group">
                 <div class="append-left-gray">Sort by <strong id="sortByName">Most Relevant</strong></div>
-                <a class="btn gray-button dropdown-toggle" data-toggle="dropdown" href="#">
+                <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
                   <span class="caret arrow-up"></span><br><span class="caret arrow-down"></span>
                 </a>
                 <ul class="dropdown-menu">
@@ -86,7 +86,7 @@
                   <li><a data-sort="most-popular" data-name="Most Popular" class="sortBy" href="javascript:">Sort by <strong>Most Popular</strong></a></li>
                 </ul>
               </div>
-              <input type="text" class="input-sort-by" id="appendedPrependedInput" name="q"><button class="btn gray-button" type="submit"><strong>Search</strong></button>
+              <input type="text" class="input-sort-by" id="appendedPrependedInput" name="q"><button class="btn" type="submit"><strong>Search</strong></button>
               <input type="hidden" value="most-relevant" id="sortByValue" name="s">
             </form>
           </div>

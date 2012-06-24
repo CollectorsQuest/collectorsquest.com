@@ -25,21 +25,6 @@ classes:
       timestampable:  ~
 
 
-  ###
-  # NOTE: Make SURE to update also CollectibleOfferArchive in archive.schema.yml
-  ##
-  CollectibleOffer:
-    columns:
-      id:  ~
-      collectible_id:  { type: integer, required: true, foreignClass: Collectible, foreignReference: id, onDelete: cascade }
-      collector_id:    { type: integer, required: true, foreignClass: Collector, foreignReference: id }
-      price:           { type: float }
-      status:          { type: char, sqlType: "ENUM('pending','counter','rejected','accepted')", required: true }
-
-    propel_behaviors:
-      archivable:      { archive_class: CollectibleOfferArchive, archived_at_column: archived_at }
-      timestampable:   ~
-
   ShoppingCart:
     columns:
       id:  ~

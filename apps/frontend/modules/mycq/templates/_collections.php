@@ -80,7 +80,7 @@
 <?php endif; ?>
 
 <?php if ($pager->haveToPaginate() && $pager->getPage() === 1): ?>
-  <button class="btn btn-small gray-button see-more-full" id="seemore-mycq-collections">
+  <button class="btn btn-small see-more-full" id="seemore-mycq-collections">
     See more
   </button>
 

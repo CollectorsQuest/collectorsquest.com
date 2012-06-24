@@ -520,11 +520,6 @@ class _sidebarComponents extends cqFrontendComponents
 
   public function executeWidgetCollectibleBuy()
   {
-    if (IceGateKeeper::locked('shopping_cart'))
-    {
-      return sfView::NONE;
-    }
-
     /** @var $collectible Collectible|CollectionCollectible */
     $collectible = $this->getVar('collectible');
 
