@@ -14,9 +14,9 @@ all:
 next:
   pages: ~
   features:
-    shopping_cart: true
+    shopping_cart: false
     shopping_checkout_help: false
-    mycq_homepage: true
+    mycq_homepage: false
     mycq_marketplace: true
     mycq_wanted: false
     mycq_seller_pay: false
