@@ -357,7 +357,6 @@ class shoppingActions extends cqFrontendActions
         $PayPalRequest = array(
           'PayRequestFields' => $PayRequestFields,
           'ClientDetailsFields' => $shopping_order->getPaypalClientDetailsFields(),
-          'FundingTypes' => $shopping_order->getPaypalFundingTypes(),
           'Receivers' => $shopping_order->getPaypalReceivers(),
           'SenderIdentifierFields' => $shopping_order->getPaypalSenderIdentifierFields(),
           'AccountIdentifierFields' => $shopping_order->getPaypalAccountIdentifierFields()
