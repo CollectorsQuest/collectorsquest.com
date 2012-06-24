@@ -189,11 +189,11 @@ class shoppingActions extends cqFrontendActions
         }
         catch (Exception $e)
         {
-          $this->getUser()->setFlash(
-            'error', 'There was an error proceeding to the checkout screen'
-          );
+          //  $this->getUser()->setFlash(
+          //    'error', 'There was an error proceeding to the checkout screen'
+          //  );
 
-          //return sfView::ERROR;
+          // return sfView::ERROR;
         }
       }
       else
@@ -202,7 +202,7 @@ class shoppingActions extends cqFrontendActions
           'error', 'There was an error proceeding to the checkout screen'
         );
 
-        //return sfView::ERROR;
+        // return sfView::ERROR;
       }
     }
 
