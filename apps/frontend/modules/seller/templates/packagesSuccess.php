@@ -110,7 +110,7 @@
       <?php endif; ?>
 
       <div class="form-actions">
-        <button type="submit" class="btn btn-primary blue-button">Purchase Package</button>
+        <button type="submit" class="btn btn-primary">Purchase Package</button>
         <a href="<?= url_for('mycq') ?>" class="btn gray-button spacer-left">
           Cancel
         </a>

@@ -1,0 +1,12 @@
+SHELL=/bin/bash
+PATH=/www/bin:/www/vhosts/collectorsquest.com/current/data/bin:/usr/local/zend/bin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+MAILTO=cron@collectorsquest.com
+HOME=/www/vhosts/collectorsquest.com/current
+
+# WordPress wp-cron.php
+ */5  *  *  *  *  apache  cronic php ./web/blog/wp-cron.php
+
+# Sphinx indexes
+ */5  *  *  *  *  root  cronic solo -silent -port=2037 ./symfony sphinx:rebuild-indexes --env=prod --delta=yes
+*/10  *  *  *  *  root  cronic solo -silent -port=2037 ./symfony sphinx:rebuild-indexes --env=prod
+# 30,31,32,33,34,35,36,37,38,39 06 * * *  root  cronic solo -silent -port=2037 ./symfony sphinx:rebuild-indexes --delta=no --env=prod >/dev/null 2>&1

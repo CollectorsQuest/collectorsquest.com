@@ -71,17 +71,32 @@ unset($app, $env, $dbg);
 
 if (SF_ENV === 'prod' && !defined('GIT_REVISION'))
 {
-  if (file_exists(dirname(__FILE__).'/../.git/FETCH_HEAD'))
+  $success = false;
+  @list($git, $svn) = apc_fetch(array('GIT_REVISION', 'SVN_REVISION'), $success);
+
+  if (empty($git) || $success !== true)
   {
-    $contents = (string) file_get_contents(dirname(__FILE__).'/../.git/FETCH_HEAD');
-    define('GIT_REVISION', substr($contents, 0, 40));
-    define('SVN_REVISION', sprintf("%u", crc32(GIT_REVISION)));
+    $git = `git rev-parse HEAD`;
+    $git = trim($git);
+
+    if (strlen($git) === 40)
+    {
+      $git = substr($git, 0, 7);
+      $svn = sprintf("%u", crc32($git));
+    }
+    else
+    {
+      $git = $svn = 1;
+    }
+
+    apc_store('GIT_REVISION', $git, 60);
+    apc_store('SVN_REVISION', $svn, 60);
   }
-  else
-  {
-    define('GIT_REVISION', 1);
-    define('SVN_REVISION', 1);
-  }
+
+  define('GIT_REVISION', $git);
+  define('SVN_REVISION', $svn);
+
+  unset($git, $svn, $success);
 }
 else if (!defined('GIT_REVISION'))
 {

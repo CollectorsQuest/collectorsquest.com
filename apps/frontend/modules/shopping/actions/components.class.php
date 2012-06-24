@@ -32,7 +32,19 @@ class shoppingComponents extends cqFrontendComponents
 
   public function executeSidebarSignup()
   {
-    $this->form = new CollectorSignupSidebarForm();
+    $shopping_order = ShoppingOrderQuery::create()
+      ->findOneByUuid($this->getRequestParameter('uuid'));
+
+    $form = new CollectorSignupSidebarForm();
+    $form->getWidget('password')->setAttribute('placeholder', null);
+    $form->getWidget('password_again')->setAttribute('placeholder', null);
+    $form->setDefaults(array(
+      'username' => Utf8::slugify($shopping_order->getShippingFullName(), '_', true),
+      'email' => $shopping_order->getBuyerEmail(),
+      'seller' => 0
+    ));
+
+    $this->form = $form;
 
     return sfView::SUCCESS;
   }

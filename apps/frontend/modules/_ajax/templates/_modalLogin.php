@@ -3,7 +3,7 @@
     <button class="close" data-dismiss="modal">×</button>
     <ul class="nav nav-pills">
       <li class="active"><a href="#modal-login-username-pane" class="btn gray-button" data-toggle="tab">Collectors Quest</a></li>
-      <li><a href="#modal-login-openid-pane" class="btn gray-button spacer-left" data-toggle="tab">OpenID</a></li>
+      <li><a href="#modal-login-openid-pane" class="btn gray-button spacer-left" data-toggle="tab">Facebook or Twitter</a></li>
       <!--<li class="pull-right spacer-right"><a href="#modal-sign-up-pane" data-toggle="tab">Sign up!</a></li>//-->
       <li class="pull-right spacer-right"><?= link_to('Sign up!', '@collector_signup'); ?></li>
     </ul>
@@ -16,7 +16,16 @@
         <h3 class="text-center">Log in to your account:</h3>
         <br />
         <form action="<?= url_for('@login', true); ?>" class="form-horizontal" method="post">
-          <?= $login_form->renderUsing('Bootstrap') ?>
+          <?= $login_form['username']->renderRow(); ?>
+          <?= $login_form['password']->renderRow(); ?>
+          <div class="control-group ">
+            <label class="control-label">&nbsp;</label>
+            <div class="controls">
+              <?= $login_form['remember']->render(array('style' => 'float: left; margin-top: 3px;')); ?>
+              <?= $login_form->renderHiddenFields(); ?>
+              <label for="login_remember">&nbsp; Remember me for two weeks</label>
+            </div>
+          </div>
         </form>
       </div> <!-- #modal-login-username-pane .tab-pane.active -->
 
@@ -50,7 +59,7 @@
     <div class="tab-content">
 
       <div id="modal-login-username-footer" class="tab-pane active">
-        <button type="button" class="btn btn-primary blue-button">Log&nbsp;In</button>
+        <button type="button" class="btn btn-primary">Log&nbsp;In</button>
         <span class="spacer-left-15 modal-link"><?= link_to('Forgot your password?', '@recover_password'); ?></span>
       </div>
 

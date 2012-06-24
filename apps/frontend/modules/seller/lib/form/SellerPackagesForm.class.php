@@ -86,10 +86,10 @@ class SellerPackagesForm extends sfForm
   private function setupPromoCodeField()
   {
     $this->setWidget('promo_code', new sfWidgetFormInputText(array(
-      'label'=> 'Promo',
+      'label'=> false,
     ), array(
       'required' => 'required',
-      'placeholder' => 'Promo code',
+      'placeholder' => 'Enter Your Promo Code',
     )));
     $this->setValidator('promo_code', new sfValidatorString(
       array('required'=> false),

@@ -52,7 +52,7 @@
 
           <fieldset class="form-container-center">
             <div class="form-actions">
-              <button type="submit" class="btn btn-primary blue-button">Change Email</button>
+              <button type="submit" class="btn btn-primary">Change Email</button>
               <button type="submit" class="btn gray-button spacer-left">Cancel</button>
               <div class="spacer-left-25">
                 <p class="brown spacer-top spacer-left-35">
@@ -83,7 +83,7 @@
 
           <fieldset class="form-container-center">
             <div class="form-actions">
-              <button type="submit" class="btn btn-primary blue-button">Change Password</button>
+              <button type="submit" class="btn btn-primary">Change Password</button>
               <button type="reset" class="btn gray-button spacer-left">Cancel</button>
             </div>
           </fieldset>

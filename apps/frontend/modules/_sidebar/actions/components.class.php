@@ -332,8 +332,12 @@ class _sidebarComponents extends cqFrontendComponents
 
     $q = wpPostQuery::create()
       ->filterByPostType('seller_spotlight')
-      ->filterByPostStatus('publish')
       ->orderByPostDate(Criteria::DESC);
+
+    if (sfConfig::get('sf_environment') === 'prod')
+    {
+      $q->filterByPostStatus('publish');
+    }
 
     /** @var $wp_post wpPost */
     if ($wp_post = $q->findOne())
@@ -512,6 +516,26 @@ class _sidebarComponents extends cqFrontendComponents
     $collectible = $this->getVar('collectible');
 
     return $this->_sidebar_if($this->getCollector()->isOwnerOf($collectible));
+  }
+
+  public function executeWidgetCollectibleBuy()
+  {
+    /** @var $collectible Collectible|CollectionCollectible */
+    $collectible = $this->getVar('collectible');
+
+    /** @var $collectible_for_sale CollectibleForSale */
+    $collectible_for_sale = null;
+
+    if ($collectible && $collectible->isWasForSale())
+    {
+      /* @var $collectible_for_sale CollectibleForSale */
+      $collectible_for_sale = $collectible->getCollectibleForSale();
+
+      $this->collectible_for_sale = $collectible_for_sale;
+      $this->form = new CollectibleForSaleBuyForm($collectible_for_sale);
+    }
+
+    return $this->_sidebar_if($collectible_for_sale instanceof CollectibleForSale);
   }
 
   private function _sidebar_if($condition = false)

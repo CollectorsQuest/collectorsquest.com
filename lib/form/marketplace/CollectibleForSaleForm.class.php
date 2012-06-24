@@ -29,9 +29,6 @@ class CollectibleForSaleForm extends BaseCollectibleForSaleForm
   public function setupIsReadyField()
   {
     $this->setValidator('is_ready', new sfValidatorBoolean(array('required' => false)));
-    $this->validatorSchema['is_ready']->setMessage(
-      'invalid', 'You do not have enough credits to post this Collectible to the marketplace!'
-    );
   }
 
   public function validateIsReadyField($validator, $values)
@@ -49,10 +46,10 @@ class CollectibleForSaleForm extends BaseCollectibleForSaleForm
       else
       {
         // throw an error bound to the price field
-        throw new sfValidatorErrorSchema(
-          $validator,
-          array('is_ready' => new sfValidatorError($validator, 'invalid'))
-        );
+        $errorSchema = new sfValidatorErrorSchema($validator);
+        $errorSchema->addError(new sfValidatorError($validator, 'invalid'), 'is_ready');
+
+        throw $errorSchema;
       }
     }
 
@@ -63,7 +60,7 @@ class CollectibleForSaleForm extends BaseCollectibleForSaleForm
   {
     $this->setWidget('price', new sfWidgetFormInputText(array(), array('required' => 'required')));
     $this->setValidator('price', new sfValidatorString(array('required' => false)));
-    $this->setDefault('price', $this->getObject()->getPrice());
+    $this->setDefault('price', sprintf('%01.2f', $this->getObject()->getPrice()));
 
     // Get the Collectibles for sale currencies
     $currencies = CollectibleForSalePeer::$currencies;
@@ -96,7 +93,7 @@ class CollectibleForSaleForm extends BaseCollectibleForSaleForm
       }
     }
 
-    if (null === $values['price_currency'])
+    if (empty($values['price_currency']))
     {
       $values['price_currency'] = 'USD';
     }

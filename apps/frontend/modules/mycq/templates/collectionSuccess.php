@@ -64,7 +64,7 @@
           Delete Collection
         </a>
 
-        <button type="submit" formnovalidate class="btn btn-primary blue-button">Save Changes</button>
+        <button type="submit" formnovalidate class="btn btn-primary">Save Changes</button>
         <a href="<?= url_for('mycq_collection_by_slug', $collection) ?>"
            class="btn gray-button spacer-left">
           Cancel

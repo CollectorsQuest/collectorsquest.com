@@ -10,7 +10,7 @@
       </div>
       <div class="span3">
         <button type="submit"
-                class="btn btn-primary blue-button pull-right">
+                class="btn btn-primary pull-right">
           Submit
         </button>
       </div>

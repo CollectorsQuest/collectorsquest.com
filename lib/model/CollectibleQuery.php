@@ -49,8 +49,8 @@ class CollectibleQuery extends BaseCollectibleQuery
   public function search($v)
   {
     return $this
-      ->filterByName('%'. $v .'%', Criteria::LIKE)
+      ->filterByName('%'. trim($v) .'%', Criteria::LIKE)
       ->_or()
-      ->filterByDescription('%'. $v .'%', Criteria::LIKE);
+      ->filterByDescription('%'. trim($v) .'%', Criteria::LIKE);
   }
 }

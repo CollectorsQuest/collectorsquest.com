@@ -20,6 +20,14 @@ class cqFrontendUser extends cqBaseUser
       if ($this->collector === null && ($this->getAttribute("id", null, "collector") !== null))
       {
         $this->collector = CollectorPeer::retrieveByPK($this->getAttribute("id", null, "collector"));
+
+        if (!$this->collector)
+        {
+          // the user does not exist anymore in the database
+          $this->Authenticate(false);
+
+          throw new sfException('The collector does not exist anymore in the database.');
+        }
       }
       else if ($strict === false)
       {
@@ -35,21 +43,59 @@ class cqFrontendUser extends cqBaseUser
   }
 
   /**
+   * Return the country for the currently logged in user, or try to get it from the
+   * user's IP
+   *
+   * If not possible to retrieve by IP the value of the $default
+   * param will be returned
+   *
+   * @param     string $default
+   * @return    string|false
+   */
+  public function getCountryCode($default = false)
+  {
+    if ( $this->isAuthenticated() && !$this->getCollector()->isNew()
+      && $country_code = $this->getCollector()->getProfile()->getCountryIso3166() )
+    {
+      return $country_code;
+    }
+
+    return cqStatic::getGeoIpCountryCode(sfContext::getInstance()->getRequest()->getRemoteAddress(), true) ?: $default;
+  }
+
+  /**
+   * Return the current user's country name
+   *
+   * @param     type $country_code
+   * @return    string|false
+   *
+   * @see       cqFrontendUser::getCountryCode()
+   */
+  public function getCountryName($country_code = null)
+  {
+    if (null === $country_code)
+    {
+      $country_code = $this->getCountryCode();
+    }
+
+    return GeoCountryQuery::create()
+      ->filterByIso3166($country_code)
+      ->select('Name')
+      ->findOne() ?: false;
+  }
+
+  /**
    * @param  boolean  $strict
    * @return null|Seller
    */
   public function getSeller($strict = false)
   {
-    $seller = null;
-
-    if (($collector = $this->getCollector($strict)) && $collector->getIsSeller())
+    if ($collector = $this->getCollector($strict))
     {
-      $seller = new Seller();
-      $collector->copyInto($seller, false, false);
-      $seller->setId($collector->getId());
+      return $collector->getSeller();
     }
 
-    return $seller;
+    return null;
   }
 
   public function getShoppingCart()
@@ -244,6 +290,65 @@ class cqFrontendUser extends cqBaseUser
     }
 
     return $this->unread_messages_count;
+  }
+
+  /**
+   * This will be executed before new user (Collector) is created
+   */
+  public function preCreateHook()
+  {
+    // nothing yet
+  }
+
+  /**
+   * This will be executed after new user (Collector) is created
+   */
+  public function postCreateHook($collector = null)
+  {
+    /** @var $collector Collector */
+    $collector = $collector ?: $this->getCollector();
+
+    // We cannot do anything without a Collector
+    if (!($collector instanceof Collector) || $collector->isNew()) {
+      return false;
+    }
+
+    // Assign a random Avatar
+    $collector->assignRandomAvatar();
+
+    // Check if the signup is after a shopping order(s)
+    if ($shopping_order_uuids = $this->getAttribute('orders', null, 'shopping'))
+    {
+      foreach ($shopping_order_uuids as $uuid)
+      {
+        if ($shopping_order = ShoppingOrderQuery::create()->findOneByUuid($uuid))
+        {
+          $shopping_order->setCollectorId($collector->getId());
+          $shopping_order->save();
+        }
+      }
+
+      $this->setAttribute('orders', null, 'shopping');
+    }
+
+    if ($_shipping_address = $this->getAttribute('shipping_address', null, 'shopping'))
+    {
+      if (empty($_shipping_address['address_id']))
+      {
+        $shipping_address = new CollectorAddress();
+        $shipping_address->fromArray($_shipping_address, BasePeer::TYPE_FIELDNAME);
+        $shipping_address->setCollector($collector);
+        $shipping_address->save();
+
+        $this->setAttribute('shipping_address', null, 'shopping');
+      }
+    }
+
+    // Finally, send the welcome email
+    $cqEmail = new cqEmail(sfContext::getInstance()->getMailer());
+    $cqEmail->send($collector->getUserType() . '/welcome_to_cq', array(
+      'to' => $collector->getEmail(),
+    ));
   }
 
 }

@@ -12,7 +12,7 @@ class CollectionCollectibleQuery extends BaseCollectionCollectibleQuery
   {
     return $this
       ->useCollectibleQuery()
-        ->search($v)
+        ->search(trim($v))
       ->endUse();
   }
 }

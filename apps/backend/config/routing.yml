@@ -175,8 +175,8 @@ collector:
     column:               id
     with_wildcard_routes: true
 
-marketplace_list:
-  url:   /list/marketplace
+marketplace:
+  url:   /marketplace
   param: { module: collectibleForSale, action: index }
 
 item_offers:

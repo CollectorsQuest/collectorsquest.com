@@ -7,11 +7,32 @@ require 'lib/model/om/BaseCollector.php';
  * @method     Collector setSingupNumCompletedSteps(int $v) Set the number of completed signup steps
  * @method     Collector setCqnextAccessAllowed(boolean $v)
  *
+ * @method     Collector setSellerSettingsPaypalAccountId(string $v)
+ * @method     string    getSellerSettingsPaypalAccountId()
+ *
+ * @method     Collector setSellerSettingsPaypalAccountStatus(string $v)
+ * @method     string    getSellerSettingsPaypalAccountStatus()
+ *
+ * @method     Collector setSellerSettingsPaypalBusinessName(string $v)
+ * @method     string    getSellerSettingsPaypalBusinessName()
+ *
  * @method     Collector setSellerSettingsPaypalEmail(string $v)
  * @method     string    getSellerSettingsPaypalEmail()
  *
+ * @method     Collector setSellerSettingsPaypalFirstName(string $v)
+ * @method     string    getSellerSettingsPaypalFirstName()
+ *
+ * @method     Collector setSellerSettingsPaypalLastName(string $v)
+ * @method     string    getSellerSettingsPaypalLastName()
+ *
+ * @method     Collector setSellerSettingsPhoneCode(string $v)
+ * @method     string    getSellerSettingsPhoneCode()
+ *
  * @method     Collector setSellerSettingsPhoneNumber(string $v)
  * @method     string    getSellerSettingsPhoneNumber()
+ *
+ * @method     Collector setSellerSettingsPhoneExtension(string $v)
+ * @method     string    getSellerSettingsPhoneExtension()
  *
  * @method     Collector setSellerSettingsStoreDescription(string $v)
  * @method     string    getSellerSettingsStoreDescription()
@@ -21,6 +42,18 @@ require 'lib/model/om/BaseCollector.php';
  *
  * @method     Collector setSellerSettingsPaymentAccepted(string $v)
  * @method     string    getSellerSettingsPaymentAccepted()
+ *
+ * @method     Collector setSellerSettingsWelcome(string $v)
+ * @method     string    getSellerSettingsWelcome()
+ *
+ * @method     Collector setSellerSettingsShipping(string $v)
+ * @method     string    getSellerSettingsShipping()
+ *
+ * @method     Collector setSellerSettingsRefunds(string $v)
+ * @method     string    getSellerSettingsRefunds()
+ *
+ * @method     Collector setSellerSettingsAdditionalPolicies(string $v)
+ * @method     string    getSellerSettingsAdditionalPolicies()
  *
  */
 class Collector extends BaseCollector implements ShippingReferencesInterface
@@ -39,11 +72,22 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
       CollectorPeer::PROPERTY_CQNEXT_ACCESS_ALLOWED_DEFAULT_VALUE
     );
 
+    $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_PAYPAL_ACCOUNT_ID);
+    $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_PAYPAL_ACCOUNT_STATUS);
+    $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_PAYPAL_BUSINESS_NAME);
     $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_PAYPAL_EMAIL);
+    $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_PAYPAL_FIRST_NAME);
+    $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_PAYPAL_LAST_NAME);
+    $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_PHONE_CODE);
     $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_PHONE_NUMBER);
+    $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_PHONE_EXTENSION);
     $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_STORE_DESCRIPTION);
     $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_RETURN_POLICY);
     $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_PAYMENT_ACCEPTED);
+    $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_WELCOME);
+    $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_SHIPPING);
+    $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_REFUNDS);
+    $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_ADDITIONAL_POLICIES);
   }
 
   /**
@@ -114,13 +158,18 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
       $something = $something->getModelObject();
     }
 
-    if (is_object($something) && method_exists($something, 'getCollectorId'))
+    if ($something instanceof PrivateMessage)
     {
-      return $something->getCollectorId() == $this->getId();
+      return $something->getSender() === $this->getId();
     }
-    else if ($something instanceof PrivateMessage)
+    else if (null === $something->getCollectorId())
     {
-      return $something->getSender() == $this->getId();
+      // Nobody owns NULL
+      return false;
+    }
+    else if (is_object($something) && method_exists($something, 'getCollectorId'))
+    {
+      return $something->getCollectorId() === $this->getId();
     }
 
     return false;
@@ -511,6 +560,20 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
     return ($this->hasFacebook() && preg_match('/^fb(\d+)$/', $this->getUsername()));
   }
 
+  public function getSeller()
+  {
+    $seller = null;
+
+    if ($this->getIsSeller())
+    {
+      $seller = new Seller();
+      $this->copyInto($seller, false, false);
+      $seller->setId($this->getId());
+    }
+
+    return $seller;
+  }
+
   public function getIsSeller()
   {
     return $this->getUserType() == 'Seller';
@@ -685,7 +748,7 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
   }
 
   /**
-   * Get the shipping rates for this collector, grouped by country
+   * Get the shipping references for this collector, grouped by country
    *
    * @param     PropelPDO $con
    * @return    array ShippingReference[]
@@ -698,7 +761,7 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
   }
 
   /**
-   * Get shipping rates for a specific country
+   * Get the shipping reference for a specific country
    *
    * @param     string $coutry_code
    * @param     PropelPDO $con
@@ -710,6 +773,10 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
     return ShippingReferenceQuery::create()
       ->filterByCollector($this)
       ->filterByCountryIso3166($coutry_code)
+      ->findOne($con)
+    ?: ShippingReferenceQuery::create()
+      ->filterByCollector($this)
+      ->filterByCountryIso3166('ZZ') // international
       ->findOne($con);
   }
 
@@ -738,24 +805,21 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
 
     /** @var $collections Collection[] */
     if ($collections = $this->getCollections())
+    {
       foreach ($collections as $collection)
       {
         $collection->delete($con);
       }
-
-    /** @var $collectible_offers CollectibleOffer[] */
-    if ($collectible_offers = $this->getCollectibleOffers())
-      foreach ($collectible_offers as $collectible_offer)
-      {
-        $collectible_offer->delete($con);
-      }
+    }
 
     /** @var $comments Comment[] */
     if ($comments = $this->getComments())
+    {
       foreach ($comments as $comment)
       {
         $comment->delete($con);
       }
+    }
 
     // Deleting private messages
     $c = new Criteria();

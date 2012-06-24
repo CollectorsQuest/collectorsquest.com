@@ -12,10 +12,14 @@ class _ajaxActions extends cqFrontendActions
       // Cast the id to INT for sanity
       $id = (int) $id;
 
-      $object = call_user_func_array(array(sfInflector::camelize($model).'Peer', 'retrieveByPk'), array($id));
+      // Retrieve the Object from the database
+      $object = call_user_func_array(
+        array(sfInflector::camelize($model).'Peer', 'retrieveByPk'), array($id)
+      );
+
       if ($object && is_callable(array($object, 'set'. sfInflector::camelize($field))))
       {
-        if ($this->getCollector()->isOwnerOf($object))
+        if ($this->getUser()->isOwnerOf($object))
         {
           call_user_func_array(array($object, 'set'. sfInflector::camelize($field)), array($value));
           $object->save();
@@ -43,18 +47,14 @@ class _ajaxActions extends cqFrontendActions
       // Cast the id to INT for sanity
       $id = (int) $id;
 
-      $object = call_user_func_array(array(sfInflector::camelize($model).'Peer', 'retrieveByPk'), array($id));
+      // Retrieve the Object from the database
+      $object = call_user_func_array(
+        array(sfInflector::camelize($model).'Peer', 'retrieveByPk'), array($id)
+      );
 
       if (is_callable(array($object, 'get'. sfInflector::camelize($field))))
       {
-        if (in_array($field, array('name', 'description')))
-        {
-          $value = call_user_func_array(array($object, 'get'. sfInflector::camelize($field)), array('markdown'));
-        }
-        else
-        {
-          $value = call_user_func(array($object, 'get'. sfInflector::camelize($field)));
-        }
+        $value = call_user_func(array($object, 'get'. sfInflector::camelize($field)));
       }
     }
 

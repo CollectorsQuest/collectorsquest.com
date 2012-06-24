@@ -33,10 +33,16 @@ class collectionsComponents extends cqFrontendComponents
 
   public function executeFeaturedWeek()
   {
+    /** @var $q wpPostQuery */
     $q = wpPostQuery::create()
       ->filterByPostType('featured_week')
-      ->filterByPostStatus('publish')
+      ->filterByPostParent(0)
       ->orderByPostDate(Criteria::DESC);
+
+    if (sfConfig::get('sf_environment') === 'prod')
+    {
+      $q->filterByPostStatus('publish');
+    }
 
     /** @var $wp_post wpPost */
     if ($wp_post = $q->findOne())
@@ -123,10 +129,16 @@ class collectionsComponents extends cqFrontendComponents
     }
     else
     {
+      /** @var $query wpPostQuery */
       $query = wpPostQuery::create()
         ->filterByPostType('collections_explore')
-        ->filterByPostStatus('publish')
+        ->filterByPostParent(0)
         ->orderByPostDate(Criteria::DESC);
+
+      if (sfConfig::get('sf_environment') === 'prod')
+      {
+        $query->filterByPostStatus('publish');
+      }
 
       /** @var $wp_post wpPost */
       if ($wp_post = $query->findOne())

@@ -36,7 +36,12 @@ class sandboxActions extends cqFrontendActions
     return sfView::SUCCESS;
   }
 
-  public function executeSidebarNone()
+  public function executeSidebarnone()
+  {
+    return sfView::SUCCESS;
+  }
+
+  public function executeNocollectionhelp()
   {
     return sfView::SUCCESS;
   }

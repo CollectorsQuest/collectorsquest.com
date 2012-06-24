@@ -190,7 +190,7 @@ class sellerActions extends cqFrontendActions
             if ('SUCCESS' == strtoupper($paypalResult["ACK"]))
             {
               // Save package information with payment status paid while payment successfully done.
-              $transaction->setPaymentStatus(PackageTransactionPeer::STATUS_PAID);
+              $transaction->setPaymentStatus(PackageTransactionPeer::PAYMENT_STATUS_PAID);
               $transaction->setPackagePrice($paypalResult['AMT']);
               $transaction->save();
 
@@ -260,12 +260,12 @@ class sellerActions extends cqFrontendActions
     $packageTransaction = PackageTransactionQuery::create()
         ->filterByCollector($this->getCollector())
         ->filterById($request->getParameter('id'))
-        ->filterByPaymentStatus(PackageTransactionPeer::STATUS_PENDING)
+        ->filterByPaymentStatus(PackageTransactionPeer::PAYMENT_STATUS_PENDING)
         ->findOne();
 
     if ($packageTransaction)
     {
-      $packageTransaction->setPaymentStatus(PackageTransactionPeer::STATUS_CANCELED);
+      $packageTransaction->setPaymentStatus(PackageTransactionPeer::PAYMENT_STATUS_CANCELLED);
       $packageTransaction->save();
 
       $this->getUser()->setFlash('success', 'Order canceled successfully.');
@@ -306,7 +306,7 @@ class sellerActions extends cqFrontendActions
     $collector->save();
 
     $packageTransaction->setPackagePrice($request->getParameter('mc_gross'));
-    $packageTransaction->setPaymentStatus(PackageTransactionPeer::STATUS_PAID);
+    $packageTransaction->setPaymentStatus(PackageTransactionPeer::PAYMENT_STATUS_PAID);
     $packageTransaction->save();
 
     // Send Mail To Seller

@@ -26,7 +26,7 @@ class collectionComponents extends cqFrontendComponents
       /* @var $collectible_for_sale CollectibleForSale */
       $collectible_for_sale = $this->collectible->getCollectibleForSale();
 
-      $this->isSold = $collectible_for_sale->getIsSold() || $collectible_for_sale->getActiveCollectibleOffersCount() == 0;
+      $this->isSold = $collectible_for_sale->getIsSold();
       $this->collectible_for_sale = $collectible_for_sale;
       $this->form = new CollectibleForSaleBuyForm($collectible_for_sale);
     }

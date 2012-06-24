@@ -24,6 +24,9 @@ interface ShippingReferencesInterface
   /**
    * Return the Shipping Reference for a particular country
    *
+   * If there is no reference for that specific country,
+   * the International shipping reference is returned.
+   *
    * @param     string $country_code
    * @param     PropelPDO $con
    *

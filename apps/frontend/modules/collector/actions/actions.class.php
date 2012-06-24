@@ -74,22 +74,22 @@ class collectorActions extends cqFrontendActions
         $values = $this->form->getValues();
         // try to guess the collector's country based on IP address
         $values['country_iso3166'] = cqStatic::getGeoIpCountryCode(
-          $request->getRemoteAddress(), $check_against_geo_country = true);
+          $request->getRemoteAddress(), $check_against_geo_country = true
+        );
+
+        // Run the pre create hook
+        $this->getUser()->preCreateHook();
 
         // create the collector
         $collector = CollectorPeer::createFromArray($values);
 
+        // Run the post create hook
+        $this->getUser()->postCreateHook($collector);
+
         // authenticate the collector and redirect to @mycq_profile
         $this->getUser()->Authenticate(true, $collector, false);
 
-        $cqEmail = new cqEmail($this->getMailer());
-        $cqEmail->send($collector->getUserType() . '/welcome_to_cq', array(
-          'to' => $collector->getEmail(),
-        ));
-
-        $collector->assignRandomAvatar();
-
-        return $this->redirect('@mycq_profile');
+        $this->redirect('@mycq_profile');
       }
     }
 

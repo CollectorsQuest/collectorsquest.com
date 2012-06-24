@@ -1,19 +1,25 @@
 <?php
-  /* @var $sf_user cqFrontendUser */
-  use_javascripts_for_form($signup_form);
+/* @var $sf_user cqFrontendUser */
+/* @var $signup_form CollectorSignupStep1Form */
+/* @var $login_form CollectorLoginForm */
+use_javascripts_for_form($signup_form);
+
+$signup_action = isset($signup_action) ? $signup_action : '@collector_signup';
+$login_action = isset($login_action) ? $login_action : '@login';
+$display = $sf_request->getParameter('display', 'signup');
 ?>
 
-<div id="footer-form-signup">
+<div id="footer-form-signup" style="<?= 'signup' == $display ? '' : 'display: none;'?>">
   <h2 class="Chivo webfont">Sign Up</h2>
 
-  <form action="<?= url_for('@collector_signup', true); ?>" method="post" class="form-horizontal form-footer">
+  <form action="<?= url_for($signup_action, true); ?>" method="post" class="form-horizontal form-footer">
     <?= $signup_form->renderUsing('BootstrapWithRowFluid'); ?>
     <div class="row-fluid spacer-7">
       <div class="span9 spacer-inner-top">
         <?php include_partial('global/footer_signup_external_buttons'); ?>
       </div>
       <div class="span3">
-        <button type="submit" class="btn btn-primary blue-button pull-right">Submit</button>
+        <button type="submit" class="btn btn-primary pull-right">Submit</button>
       </div>
     </div>
   </form>
@@ -25,17 +31,17 @@
   </div>
 </div><!-- #footer-form-signup -->
 
-<div id="footer-form-login" style="display: none">
+<div id="footer-form-login" style="<?= 'login' == $display ? '' : 'display: none;' ?>">
   <h2 class="Chivo webfont">Log In</h2>
 
-  <form action="<?= url_for('@login', true); ?>" class="form-horizontal form-footer" method="post">
+  <form action="<?= url_for($login_action, true); ?>" class="form-horizontal form-footer" method="post">
     <?= $login_form->renderUsing('BootstrapWithRowFluid') ?>
     <div class="row-fluid spacer-7">
       <div class="span8 spacer-inner-top">
         <?php include_partial('global/footer_signup_external_buttons'); ?>
       </div>
       <div class="span4">
-        <button type="submit" class="btn btn-primary blue-button pull-right">Log&nbsp;In</button>
+        <button type="submit" class="btn btn-primary pull-right">Log&nbsp;In</button>
       </div>
     </div>
     <div class="row-fluid">

@@ -493,6 +493,14 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
     return $q->count() > 0;
   }
 
+  public function isWasForSale()
+  {
+    $q = CollectibleForSaleQuery::create()
+      ->filterByCollectible($this);
+
+    return $q->count() > 0;
+  }
+
   /**
    * Get the shipping references for this collectible, grouped by country, merged
    * with the shipping references for the related collector
@@ -525,14 +533,20 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
    */
   public function getShippingReferenceForCountryCode($coutry_code, PropelPDO $con = null)
   {
-    return ShippingReferenceQuery::create()
-      ->filterByCollectible($this)
-      ->filterByCountryIso3166($coutry_code)
-      ->findOne($con)
+    return (
+      ShippingReferenceQuery::create()
+        ->filterByCollectible($this)
+        ->filterByCountryIso3166($coutry_code)
+        ->findOne($con)
+      ?: ShippingReferenceQuery::create()
+        ->filterByCollectible($this)
+        ->filterByCountryIso3166('ZZ') // international
+        ->findOne($con)
+    )
     ?: ShippingReferenceQuery::create()
-      ->filterByCollector($this->getCOllector())
+      ->filterByCollector($this->getCollector())
       ->filterByCountryIso3166($coutry_code)
-      ->findOne($con);
+      ->findOne($con); // for collector
   }
 
   /**
@@ -597,17 +611,6 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
     if (!empty($collectibles_for_sale))
     {
       $collectible_for_sale->delete($con);
-    }
-
-    // Deleting collectibles offers
-    $collectible_offers = $this->getCollectibleOffers();
-    if (!empty($collectible_offers))
-    {
-      /** @var $collectible_offer CollectibleOffer */
-      foreach ($collectible_offers as $collectible_offer)
-      {
-        $collectible_offer->delete($con);
-      }
     }
 
     return parent::preDelete($con);

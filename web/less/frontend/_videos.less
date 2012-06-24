@@ -1,19 +1,16 @@
 @import "_variables.less";
 
 .video_grid_view {
-  height: 160px;
+	position: relative;
   overflow: hidden;
-  position: relative;
+	height: 160px;
 
-  .mosaic-backdrop {
-    width: 190px;
-    height: 150px;
-    margin-left: 3px;
+	.mosaic-backdrop {
+    .size(150px,190px);
     margin-top: 3px;
+	  margin-left: 3px;
     border: 1px solid #fff;
-    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-    -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+	  .box-shadow(0 1px 3px rgba(0, 0, 0, 0.5);
   }
 
   .mosaic-overlay {

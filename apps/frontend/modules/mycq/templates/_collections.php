@@ -116,9 +116,9 @@ $(document).ready(function()
     over: function(event, ui)
     {
       $(this)
-        .removeClass('icon-plus')
+      //  .removeClass('icon-plus')
         .addClass("ui-state-highlight")
-        .addClass('icon-download-alt');
+      //  .addClass('icon-download-alt');
     },
     out: function(event, ui)
     {

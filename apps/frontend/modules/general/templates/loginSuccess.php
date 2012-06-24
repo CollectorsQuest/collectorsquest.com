@@ -12,12 +12,12 @@
     <div class="control-group ">
       <label class="control-label">&nbsp;</label>
       <div class="controls">
-        <?= $form['remember']->render(array('style' => 'float: left;')); ?>
+        <?= $form['remember']->render(array('style' => 'float: left; margin-top: 3px;')); ?>
         <label for="login_remember">&nbsp; Remember me for two weeks</label>
       </div>
     </div>
     <div class="form-actions">
-      <input type="submit" class="btn btn-primary blue-button" value="Login" />
+      <input type="submit" class="btn btn-primary" value="Login" />
       <span class="spacer-left-15">
         <?= link_to('Forgot your password?', '@recover_password'); ?>
       </span>

@@ -17,7 +17,7 @@
             <?php
               echo link_to(
                 'Contact Us', 'blog_page', array('slug' => 'contact-us'),
-                array('class' => 'btn btn-primary blue-button pull-left')
+                array('class' => 'btn btn-primary pull-left')
               );
             ?>
           </div>

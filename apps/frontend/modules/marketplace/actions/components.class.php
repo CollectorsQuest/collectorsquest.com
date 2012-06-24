@@ -66,10 +66,16 @@ class marketplaceComponents extends cqFrontendComponents
     }
     else
     {
+      /** @var $query wpPostQuery */
       $query = wpPostQuery::create()
         ->filterByPostType('marketplace_explore')
-        ->filterByPostStatus('publish')
+        ->filterByPostParent(0)
         ->orderByPostDate(Criteria::DESC);
+
+      if (sfConfig::get('sf_environment') === 'prod')
+      {
+        $query->filterByPostStatus('publish');
+      }
 
       /** @var $wp_post wpPost */
       if ($wp_post = $query->findOne())
@@ -88,7 +94,7 @@ class marketplaceComponents extends cqFrontendComponents
             ->useCollectibleForSaleQuery(null, Criteria::RIGHT_JOIN)
               ->isForSale()
             ->endUse()
-            ->addAscendingOrderByColumn('FIELD(id, '. implode(',', $collectible_ids) .')');
+            ->addAscendingOrderByColumn('FIELD(collectible.id, '. implode(',', $collectible_ids) .')');
 
           $pager = new PropelModelPager($query, 12);
         }

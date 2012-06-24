@@ -241,7 +241,6 @@ class mycqActions extends cqFrontendActions
     return $this->redirect('@mycq_collections');
   }
 
-
   public function executeCollections()
   {
     SmartMenu::setSelected('mycq_menu', 'collections');
@@ -338,9 +337,6 @@ class mycqActions extends cqFrontendActions
     return sfView::SUCCESS;
   }
 
-  /**
-   * @param sfWebRequest $request
-   */
   public function executeCollectionCollectibleCreate(sfWebRequest $request)
   {
     $collection = CollectorCollectionQuery::create()
@@ -367,10 +363,6 @@ class mycqActions extends cqFrontendActions
     return $this->redirect('mycq_collectible_by_slug', $collection_collectible);
   }
 
-  /**
-   * @param  sfWebRequest  $request
-   * @return string
-   */
   public function executeCollectible(sfWebRequest $request)
   {
     /** @var $collectible Collectible */
@@ -434,8 +426,10 @@ class mycqActions extends cqFrontendActions
       $form->bind($taintedValues, $request->getFiles('collectible'));
       $for_sale = $form->getValue('for_sale');
 
-      if ($for_sale['is_ready'] && IceGateKeeper::open('collectible_shipping'))
-      {
+      if (
+        (isset($taintedValues['for_sale']['is_ready']) && $taintedValues['for_sale']['is_ready'])
+        && IceGateKeeper::open('collectible_shipping')
+      ) {
         $form_shipping_us->bind($request->getParameter('shipping_rates_us'));
         $form_shipping_zz->bind($request->getParameter('shipping_rates_zz'));
       }
@@ -527,61 +521,81 @@ class mycqActions extends cqFrontendActions
     // Get the Seller
     $seller = $this->getSeller(true);
 
-    // We cannot do anything more here if not a Seller
-    $this->redirectUnless($seller instanceof Seller, 'seller/packages');
+    // Get the Collector
+    $collector = $this->getCollector(true);
 
     $q = CollectibleForSaleQuery::create()
-      ->filterByCollector($seller)
+      ->filterByCollector($collector)
       ->isForSale();
     $this->total = $q->count();
 
     $q = CollectibleForSaleQuery::create()
-      ->filterByCollector($seller)
+      ->filterByCollector($collector)
       ->filterByIsSold(true);
     $this->sold_total = $q->count();
 
-    if ($dropbox = $seller->getCollectionDropbox())
-    {
-      $this->dropbox_total = $dropbox->countCollectibles();
-    }
-    else
-    {
-      $this->dropbox_total = 0;
-    }
-
     // Make the seller available to the template
     $this->seller = $seller;
+
+    // Make the collector available to the template
+    $this->collector = $collector;
+
+    return sfView::SUCCESS;
+  }
+
+  public function executeMarketplaceSold()
+  {
+    SmartMenu::setSelected('mycq_menu', 'marketplace');
+
+    return sfView::SUCCESS;
+  }
+
+  public function executeMarketplacePurchased()
+  {
+    SmartMenu::setSelected('mycq_menu', 'marketplace');
+
+    $q = ShoppingOrderQuery::create()
+      ->filterByCollectorId($this->getCollector()->getId());
+
+    $this->bought_total = $q->count();
 
     return sfView::SUCCESS;
   }
 
   public function executeMarketplaceSettings(sfWebRequest $request)
   {
-    $this->forward404Unless($this->getCollector()->getIsSeller());
+    SmartMenu::setSelected('mycq_menu', 'marketplace');
 
     $form = new CollectorEditForm($this->getCollector(), array(
       'seller_settings_show' => true,
-      'seller_settings_required' => true,
+      'seller_settings_required' => false,
     ));
+
     $form->useFields(array(
       'seller_settings_paypal_email',
+      'seller_settings_paypal_fname',
+      'seller_settings_paypal_lname',
       'seller_settings_phone_number',
-      'seller_settings_store_description',
       'seller_settings_return_policy',
-      'seller_settings_payment_accepted',
+      'seller_settings_welcome',
+      'seller_settings_shipping',
+      'seller_settings_refunds',
+      'seller_settings_additional_policies',
     ));
 
     if (sfRequest::POST == $request->getMethod())
     {
       if ($form->bindAndSave($request->getParameter($form->getName())))
       {
-        $this->getUser()->setFlash('success',
-          'You have successfully updated your store settings.');
+        $this->getUser()->setFlash(
+          'success', 'You have successfully updated your store settings.'
+        );
 
-        return $this->redirect('@mycq_marketplace_settings');
+        $this->redirect('@mycq_marketplace_settings');
       };
     }
 
+    $this->collector = $this->getCollector(true);
     $this->form = $form;
 
     return sfView::SUCCESS;
@@ -639,13 +653,6 @@ class mycqActions extends cqFrontendActions
     $this->redirect($redirect);
   }
 
-  public function executeShoppingOrders()
-  {
-    SmartMenu::setSelected('mycq_menu', 'marketplace');
-
-    return sfView::SUCCESS;
-  }
-
   public function executeShoppingOrder()
   {
     SmartMenu::setSelected('mycq_menu', 'marketplace');
@@ -665,7 +672,10 @@ class mycqActions extends cqFrontendActions
     $AdaptivePayments = cqStatic::getPayPaylAdaptivePaymentsClient();
     $result = $AdaptivePayments->GetShippingAddress($PayPalRequestData);
 
-    dd($result);
+    // dd($result);
+
+    $this->getUser()->setFlash('success', 'You purchased an item!', true);
+    $this->redirect('@mycq_marketplace_purchased');
 
     return sfView::SUCCESS;
   }

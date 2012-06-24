@@ -84,7 +84,7 @@
         if ($collectible->isForSale())
         {
           $link = link_to(
-            'Go to Store &raquo;', 'mycq_marketplace',
+            'Go to Store &raquo;', '@mycq_marketplace',
             array('class' => 'text-v-middle link-align')
           );
         }
@@ -154,7 +154,7 @@
             <i class="icon icon-trash"></i>
             Delete Collectible
           </a>
-          <button type="submit" formnovalidate class="btn btn-primary blue-button">Save Changes</button>
+          <button type="submit" formnovalidate class="btn btn-primary">Save Changes</button>
           <a href="<?= url_for('mycq_collectible_by_slug', $collectible) ?>"
              class="btn gray-button spacer-left">
             Cancel

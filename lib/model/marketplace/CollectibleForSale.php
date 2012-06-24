@@ -44,6 +44,68 @@ class CollectibleForSale extends BaseCollectibleForSale
   }
 
   /**
+   * Check if shipping is free for this collectible for sale
+   *
+   * If no country code is provided, all shipping references are checked
+   *
+   * @param     string $country_code
+   * @return    boolean
+   */
+  public function isShippingFree($country_code = null)
+  {
+    if (null !== $country_code)
+    {
+      return 0 === $this->getShippingAmountForCountry($country_code);
+    }
+
+    $shipping_references = $this->getCollectible()
+      ->getShippingReferencesByCountryCode();
+    if (empty($shipping_references))
+    {
+      return true;
+    }
+
+    /** @var $shipping_references ShippingReference[] */
+    foreach ($shipping_references as $shipping_reference)
+    {
+      if (!$shipping_reference->isSimpleFreeShipping())
+      {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  /**
+   * Return a simple shipping amount for a country
+   *
+   * @param     boolean|string $country_code
+   * @param     string $return "float|integer"
+   * @param     null|PropelPDO $con
+   *
+   * @return    mixed A float amount in USD, 0 if free shipping or FALSE if no shipping
+   */
+  public function getShippingAmountForCountry($country_code = false, $return = 'float',  PropelPDO $con = null)
+  {
+    if (false === $country_code)
+    {
+      $country_code = 'US';
+    }
+
+    $shipping_refenrence = $this->getCollectible($con)
+      ->getShippingReferenceForCountryCode($country_code, $con);
+
+    if (!$shipping_refenrence)
+    {
+      // if no shipping reference, assume free shipping
+      return 0;
+    }
+
+    return $shipping_refenrence->getSimpleShippingAmount($return);
+  }
+
+  /**
    * Proxy method to Collectible::getCollector()
    *
    * @param  null|PropelPDO  $con
@@ -70,80 +132,34 @@ class CollectibleForSale extends BaseCollectibleForSale
     return $this->getCollectible($con)->getCollection($con);
   }
 
-  /**
-   * Get the number of offers made for this CollectibleForSale
-   *
-   * @param  boolean  $activeOnly
-   * @return integer
-   */
-  public function getOffersCount($activeOnly = null)
+  public function isForSale()
   {
-    $c = new Criteria();
-
-    if (null !== $activeOnly) {
-      $c->add(CollectibleOfferPeer::STATUS, 'pending', $activeOnly ? Criteria::EQUAL : Criteria::NOT_EQUAL);
+    if (!$this->getIsReady()) {
+      return false;
+    }
+    else if ($this->getIsSold()) {
+      return false;
+    }
+    else if ($this->getQuantity() === 0) {
+      return false;
+    }
+    else if ($this->getPriceAmount() === 0) {
+      return false;
     }
 
-    return count($this->getCollectible()->getCollectibleOffers($c));
+    return true;
   }
 
   /**
-   * @param Collector|integer $buyer
-   * @param null $status
-   * @param Criteria|null $criteria
+   * Is there an active credit available for this Collectible?
    *
-   * @return CollectibleOffer
+   * @return    boolean
    */
-  public function getCollectibleOfferByBuyer($buyer, $status = null, Criteria $criteria = null)
+  public function hasActiveCredit()
   {
-    $id = $buyer instanceof Collector ? $buyer->getId() : $buyer;
-
-    if (null === $criteria)
-    {
-      $criteria = new Criteria();
-    }
-
-    $criteria->add(CollectibleOfferPeer::COLLECTIBLE_ID, $this->getCollectibleId());
-    $criteria->add(CollectibleOfferPeer::COLLECTOR_ID, $id);
-
-    if (null !== $status)
-    {
-      $criteria->add(CollectibleOfferPeer::STATUS, $status);
-    }
-
-    return CollectibleOfferPeer::doSelectOne($criteria);
+    return !!PackageTransactionCreditQuery::create()
+      ->filterByCollectibleId($this->getCollectibleId())
+      ->notExpired()
+      ->count();
   }
-
-  /**
-   * @return integer
-   */
-  public function getActiveCollectibleOffersCount()
-  {
-    $criteria = new Criteria();
-
-    $criteria->add(CollectibleOfferPeer::COLLECTIBLE_ID, $this->getCollectibleId());
-    $criteria->add(CollectibleOfferPeer::STATUS, array('pending', 'completed'), Criteria::IN);
-
-    return CollectibleOfferPeer::doCount($criteria);
-  }
-
-  /**
-   * Retrieve offer which collectible is sold with
-   *
-   * @return CollectibleOffer
-   */
-  public function getSoldOffer()
-  {
-    $criteria = CollectibleOfferPeer::getBackendIsSoldCriteria($this);
-
-    return CollectibleOfferPeer::doSelectOne($criteria);
-  }
-
-  public function getBackendIsSold()
-  {
-    $criteria = CollectibleOfferPeer::getBackendIsSoldCriteria($this);
-
-    return (bool)CollectibleOfferPeer::doCount($criteria);
-  }
-
 }

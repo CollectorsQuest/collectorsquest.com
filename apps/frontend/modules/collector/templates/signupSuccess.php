@@ -34,7 +34,7 @@ cq_page_title(
     <fieldset>
       <?= $form ?>
       <div class="form-actions">
-        <input type="submit" class="btn btn-primary blue-button" value="Submit" />
+        <input type="submit" class="btn btn-primary" value="Submit" />
       </div>
     </fieldset>
     <?= '</form>' ?>

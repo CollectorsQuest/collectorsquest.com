@@ -1,4 +1,33 @@
+
 <?php cq_sidebar_title('Collections of Interest') ?>
+
+<?php if (false) foreach ($collections as $collection): ?>
+<div class="thumbnails-box-1x4-sidebar bgyellow-noborder">
+  <div class="inner-thumbnails-box">
+    <p>
+      <?= link_to_collection($collection, 'text', array('class' => 'target')); ?>
+      by <?= link_to_collector($collection, 'text'); ?>
+    </p>
+    <div class="thumb-container">
+      <a href="#" class="thumbnails54">
+        <img width="54" height="54" alt="" src="http://multimedia.collectorsquest.dev/image/75x75/p1-704738-76682.jpg?1328815166">
+      </a>
+      <a href="#" class="thumbnails54">
+        <img width="54" height="54" alt="" src="http://multimedia.collectorsquest.dev/image/75x75/p1-704738-76682.jpg?1328815166">
+      </a>
+      <a href="#" class="thumbnails54">
+        <img width="54" height="54" alt="" src="http://multimedia.collectorsquest.dev/image/75x75/p1-704738-76682.jpg?1328815166">
+      </a>
+      <a href="#" class="thumbnails54">
+        <img width="54" height="54" alt="" src="http://multimedia.collectorsquest.dev/image/75x75/p1-704738-76682.jpg?1328815166">
+      </a>
+      <a href="#" class="thumbnails54">
+        <img width="54" height="54" alt="" src="http://multimedia.collectorsquest.dev/image/75x75/p1-704738-76682.jpg?1328815166">
+      </a>
+    </div>
+  </div>
+</div>
+<?php endforeach; ?>
 
 <?php foreach ($collections as $collection): ?>
   <div id="sidebar_collection_<?php echo  $collection->getId(); ?>" class="row-fluid link">
@@ -12,3 +41,7 @@
   </div>
   <br clear="all">
 <?php endforeach; ?>
+
+
+
+

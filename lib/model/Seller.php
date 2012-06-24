@@ -16,45 +16,44 @@ class Seller extends Collector
   /**
    * Retrieve total number of credits for active packages for the current user
    *
-   * @return int
+   * @return integer
    *
    * @todo unit tests
    */
   public function getPackageCreditsSum()
   {
     $q = PackageTransactionQuery::create()
-        ->filterByCollector($this)
-        ->filterByPaymentStatus(PackageTransactionPeer::STATUS_PAID)
-        ->filterByExpiryDate(time(), Criteria::GREATER_EQUAL)
-        ->clearSelectColumns()
-        ->addAsColumn('total', 'SUM(credits)');
+      ->filterByCollector($this)
+      ->filterByPaymentStatus(PackageTransactionPeer::PAYMENT_STATUS_PAID)
+      ->filterByExpiryDate(time(), Criteria::GREATER_EQUAL)
+      ->clearSelectColumns()
+      ->addAsColumn('total', 'SUM(credits)');
 
-    return (int)PackageTransactionPeer::doSelectStmt($q)->fetchColumn(0);
+    return (integer) PackageTransactionPeer::doSelectStmt($q)->fetchColumn(0);
   }
 
   /**
    * Retrieve number of seller credits left for use
    *
-   * @return int
+   * @return integer
    *
    * @todo unit tests
    */
   public function getCreditsLeft()
   {
-    $packages = PackageTransactionQuery::create()
-        ->filterByCollector($this)
-        ->filterByPaymentStatus(PackageTransactionPeer::STATUS_PAID)
-        ->filterByExpiryDate(time(), Criteria::GREATER_EQUAL)
-        ->find()
-        ->toKeyValue('PrimaryKey', 'Credits');
-        ;
+    $q = PackageTransactionQuery::create()
+      ->filterByCollector($this)
+      ->filterByPaymentStatus(PackageTransactionPeer::PAYMENT_STATUS_PAID)
+      ->notExpired();
 
+    $packages = $q->find()->toKeyValue('PrimaryKey', 'Credits');
     $totalCredits = array_sum($packages);
 
     $creditsUsed = PackageTransactionCreditQuery::create()
-        ->filterByPackageTransactionId(array_keys($packages))
-        ->count();
+      ->filterByPackageTransactionId(array_keys($packages))
+      ->count();
 
     return $totalCredits - $creditsUsed;
   }
+
 }

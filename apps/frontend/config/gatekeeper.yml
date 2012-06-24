@@ -7,20 +7,22 @@ all:
     mycq_marketplace: true
     mycq_wanted: false
     mycq_seller_pay: false
-    mycq_profile_addresses: false
+    mycq_profile_addresses: true
     collectible_shipping: true
+    collectible_allow_no_shipping: true
 
 next:
   pages: ~
   features:
     shopping_cart: false
     shopping_checkout_help: false
-    mycq_homepage: true
+    mycq_homepage: false
     mycq_marketplace: true
     mycq_wanted: false
     mycq_seller_pay: false
     mycq_profile_addresses: true
     collectible_shipping: true
+    collectible_allow_no_shipping: true
 
 dev:
   pages: ~
@@ -33,3 +35,4 @@ dev:
     mycq_seller_pay: false
     mycq_profile_addresses: true
     collectible_shipping: true
+    collectible_allow_no_shipping: true

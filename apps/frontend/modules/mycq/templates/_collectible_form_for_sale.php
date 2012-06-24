@@ -20,19 +20,20 @@
 </div>
 
 <div id="form-collectible-for-sale" class="hide">
-  <?php if ($sf_user->getSeller()->hasPackageCredits()): ?>
+  <?php if ($collectible->getCollectibleForSale()->hasActiveCredit() || $sf_user->getSeller()->hasPackageCredits()): ?>
 
     <div class="control-group">
       <?= $form['price']->renderLabel(); ?>
       <div class="controls">
-        <div class="with-required-token">
+        <div class="with-required-token input-prepend">
+          <span class="add-on">$</span>
           <span class="required-token">*</span>
           <?php
             echo $form['price']->render(array(
-              'class' => 'span2 text-center help-inline', 'required'=>'required'
+              'class' => 'span5 text-center', 'required' => 'required',
+              'style' => 'margin-left: -4px; font-size: 120%; padding-top: 8px;'
             ));
           ?>
-          <?= $form['price_currency']->render(array('class' => 'span2 help-inline')); ?>
         </div>
         <?= $form['price']->renderError(); ?>
       </div>
@@ -43,7 +44,7 @@
       <?= $form_shipping_us->renderHiddenFields(); ?>
       <?= $form_shipping_us->renderAllErrors(); ?>
       <div class="control-group form-inline">
-        <label class="control-label" for="">Domestic shipping</label>
+        <label class="control-label" for="">US shipping</label>
         <div class="controls flat-rate-controller">
           <label class="radio">
             <input name="shipping_rates_us[shipping_type]" type="radio"
@@ -74,6 +75,7 @@
       <div class="control-group form-inline">
         <label class="control-label" for="">International shipping</label>
         <div class="controls flat-rate-controller">
+          <?php if (IceGateKeeper::open('collectible_allow_no_shipping')): ?>
           <label class="radio">
             <input name="shipping_rates_zz[shipping_type]" type="radio"
                    value="no_shipping"
@@ -81,6 +83,7 @@
                    <?php if ($form_shipping_zz->isShippingTypeNoShipping()) echo 'checked="checked"'; ?>
             />Not shipping
           </label><br />
+          <?php endif; ?>
           <label class="radio">
             <input name="shipping_rates_zz[shipping_type]" type="radio"
                    value="free_shipping"
@@ -100,9 +103,11 @@
           <div class="input-prepend spacer-left-15 spacer-top-5">
             <span class="add-on">$</span><?= $form_shipping_zz['flat_rate']->render(array(
               'class' => 'input-small flat-rate-field')); ?>
-          </div><br /><br />
+          </div><br />
+          <?php if (IceGateKeeper::open('collectible_allow_no_shipping')): ?><br />
           <label for="shipping_rates_zz_do_not_ship_to">We do not ship to these countries:</label><br />
           <?= $form_shipping_zz['do_not_ship_to']; ?>
+          <?php endif; ?>
         </div>
       </div>
     <?php endif; // if collectible shipping allowed in gatekeeper ?>
@@ -146,8 +151,10 @@ $(document).ready(function()
     }
   })
 
+  <?php if (IceGateKeeper::open('collectible_allow_no_shipping')): ?>
   $('#shipping_rates_zz_do_not_ship_to').chosen({
     no_results_text: "No countries found for "
   });
+  <?php endif; ?>
 });
 </script>

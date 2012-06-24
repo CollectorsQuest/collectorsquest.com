@@ -135,7 +135,8 @@
 		}
 		li.active a {
 			color: @blueDark;
-			background-color: #fff;
+			//background-color: #fff;
+			background-color: #E6F2F9;
 		}
 		.styles-reset {
 			height: 32px;
@@ -241,7 +242,8 @@
 	font-weight: bold;
 	line-height: @baseLineHeight;
 	color: @blue;
-	background-color: @lightBlue;
+	//background-color: @lightBlue;
+	background-color: #fff;
 	border: 1px solid #A7D1E8;
 	border-bottom-color: #A7D1E8;
 	.border-radius(6px 6px 0 0);
@@ -584,7 +586,7 @@ i.drop-zone.ui-state-highlight {
 		.span2 {
 			.square(74px);
       margin-left: 5px;
-			margin-bottom: 0;
+			margin-bottom: 5px;
 			padding: 1px;
 			font-size: 12px;
 			border: none;
@@ -602,6 +604,11 @@ i.drop-zone.ui-state-highlight {
 			}
 
       &.ui-draggable-dragging {
+	      border: 1px solid @red;
+		      img {
+			      padding: 1px;
+		      }
+
         .icon-remove-sign {
           display: none;
         }
@@ -630,7 +637,7 @@ i.drop-zone.ui-state-highlight {
 
 .buttons-inner {
 	margin: 5px 0 5px 15px;
-	.blue-button {
+	.btn-primary {
 		width: 104px;
 	}
 }
@@ -673,7 +680,7 @@ i.drop-zone.ui-state-highlight {
 .buttons-inner {
 	margin: 5px 0 5px 15px;
 
-	.blue-button {
+	.btn-primary {
 		width: 104px;
 	}
 }
@@ -1230,10 +1237,12 @@ textarea.input-xlarge {
 
 .ui-state-highlight {
 	z-index: 100;
-  color: @white;
+  color: @red;
+	background: #f0b2b2;
+	border-color: @red;
 
   a {
-    color: @white;
+    color: @red;
   }
 }
 
@@ -1490,17 +1499,9 @@ textarea.input-xlarge {
 	#gradient > .vertical(#fffae8, #fff6d8);
 }
 
-.edit-profile {
-	display: block;
-	margin: 14px auto;
-}
-
-.edit_collections {
-	display: block;
-	margin: 14px auto;
-}
-
-.check_messages {
+.edit-profile, .edit-collections,
+.check-messages, .upload-images,
+.show-and-tell {
 	display: block;
 	margin: 14px auto;
 }
@@ -1563,3 +1564,92 @@ textarea.input-xlarge {
 		color: @blue;
 	}
 }
+
+.no-collection-help {
+
+	.rectangle {
+		.size(120px, 100%);
+		border: 1px solid #d6d1d1;
+		#gradient > .vertical(#fffae8, #fff6d8);
+		h2 {
+			padding: 5px 0 0 20px;
+			.custom-font(20px, 26px, italic, normal);
+			.smooth-font();
+			letter-spacing: 0.01em;
+		}
+	}
+	.content-box {
+		top: 65px;
+	}
+	.zone-add-new {
+		display: block;
+		.size(240px, 176px);
+		padding: 20px;
+		background-color: #e5f2f9;
+		border: 2px solid @boxBorder2;
+
+		&:hover {
+			background: rgb(177,12,11);
+			background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2IxMGMwYiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjUwJSIgc3RvcC1jb2xvcj0iI2JjMDAwMCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNjYjAwMDAiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+			background: -moz-linear-gradient(top,  rgb(177,12,11) 0%, rgb(188,0,0) 50%, rgb(203,0,0) 100%);
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb(177,12,11)), color-stop(50%,rgb(188,0,0)), color-stop(100%,rgb(203,0,0)));
+			background: -webkit-linear-gradient(top,  rgb(177,12,11) 0%,rgb(188,0,0) 50%,rgb(203,0,0) 100%);
+			background: -o-linear-gradient(top,  rgb(177,12,11) 0%,rgb(188,0,0) 50%,rgb(203,0,0) 100%);
+			background: -ms-linear-gradient(top,  rgb(177,12,11) 0%,rgb(188,0,0) 50%,rgb(203,0,0) 100%);
+			background: linear-gradient(top,  rgb(177,12,11) 0%,rgb(188,0,0) 50%,rgb(203,0,0) 100%);
+			filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#b10c0b', endColorstr = '#cb0000', GradientType = 0); /* IE6-8 */
+
+			.btn-upload-collectible i, .btn-upload-collectible-txt {
+				color: #fff;
+			}
+		}
+
+		.btn-upload-collectible, .btn-upload-collectible-txt {
+			display: block;
+			width: 100%;
+			text-align: center;
+		}
+		.btn-upload-collectible {
+			margin-top: 24px;
+		}
+		.btn-upload-collectible-txt {
+			margin-top: 10px;
+			font-weight: bold;
+		}
+		.icon-plus {
+			font-size: 60px;
+			line-height: 60px;
+			color: @blue;
+		}
+	}
+	.help-wrapper {
+		margin-top: 60px;
+		padding: 8px 10px 4px 10px;
+		border: 1px solid @boxBorder2;
+
+		.blue-bolder-txt {
+			display: inline-block;
+			padding-top: 4px;
+			padding-left: 8px;
+			font-size: 16px;
+			font-weight: bold;
+			color: @blue;
+			vertical-align: top;
+		}
+		.icon-question-sign {
+			font-size: 26px;
+			line-height: 26px;
+			color: @blue;
+		}
+		.faq-txt {
+			display: block;
+			float: right;
+			margin-top: 4px;
+		}
+
+		.row-fluid [class*="span"] {
+			max-height: 18px !important;
+		}
+	}
+}
+

@@ -1,20 +1,7 @@
 <?php
 
-
 require 'lib/model/marketplace/om/BaseShippingReference.php';
 
-
-/**
- * Skeleton subclass for representing a row from the 'shipping_reference' table.
- *
- *
- *
- * You should add additional methods to this class to meet the
- * application requirements.  This class will only be generated as
- * long as it does not already exist in the output directory.
- *
- * @package    propel.generator.lib.model.marketplace
- */
 class ShippingReference extends BaseShippingReference
 {
   /** @var Collector|Collectible */
@@ -37,6 +24,25 @@ class ShippingReference extends BaseShippingReference
   }
 
   /**
+   * Proxy get geo country name (with custom name for "Worldwide")
+   *
+   * @param     string $international_name
+   * @return    string
+   */
+  public function getCountryName($international_name = 'Everywhere Else')
+  {
+    if ('ZZ' == $this->getCountryIso3166())
+    {
+      return $international_name;
+    }
+    else
+    {
+      return $this->getGeoCountry()->getName();
+    }
+  }
+
+  /**
+   * Set the related model object (Collector|Collectible)
    *
    * @param     Collector|Collectible $object
    * @return    ShippingReference
@@ -55,6 +61,69 @@ class ShippingReference extends BaseShippingReference
     $this->setModelId($object->getPrimaryKey());
 
     return $this;
+  }
+
+  /**
+   * Return a simple value for the shipping reference amount
+   *
+   * @param     string $return "float|integer"
+   *
+   * @return    mixed A float if shipping amount set, 0 for free shipping and FALSE for No shipping
+   * @throws    Exception when the shipping refenrence does not conform to the expected simple format
+   */
+  public function getSimpleShippingAmount($return = 'float')
+  {
+    if (ShippingReferencePeer::SHIPPING_TYPE_NO_SHIPPING == $this->getShippingType())
+    {
+      return false;
+    }
+
+    if (ShippingReferencePeer::SHIPPING_TYPE_FLAT_RATE == $this->getShippingType())
+    {
+      if (1 != $this->getShippingRates()->count())
+      {
+        throw new Exception('ShippingReference::getSimpleShippingAmount() expects only one related ShippingRate');
+      }
+
+      $shipping_rate =  $this->getShippingRates()->getFirst();
+
+      if ($shipping_rate->getIsFreeShipping())
+      {
+        return 0;
+      }
+      else
+      {
+        return 'integer' === $return
+          ? $shipping_rate->getFlatRateInCents()
+          : $shipping_rate->getFlatRateInUSD();
+      }
+    }
+    else
+    {
+      throw new Exception('ShippingReference::getSimpleShippingAmount() supports only no shipping or flat rate shipping');
+    }
+  }
+
+  /**
+   * Check if we have only a single realted shipping rate of type
+   * free shipping
+   *
+   * @return boolean
+   *
+   * @throws Exception when the simple shipping constraints are not followed
+   */
+  public function isSimpleFreeShipping()
+  {
+    if (ShippingReferencePeer::SHIPPING_TYPE_FLAT_RATE == $this->getShippingType())
+    {
+      if (1 != $this->getShippingRates()->count())
+      {
+        throw new Exception('ShippingReference::isSimpleFreeShipping() expects only one related ShippingRate');
+      }
+
+      return $shipping_rate = $this->getShippingRates()->getFirst()
+        ->getIsFreeShipping();
+    }
   }
 
 }
