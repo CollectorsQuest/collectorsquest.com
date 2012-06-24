@@ -14,7 +14,7 @@ all:
 next:
   pages: ~
   features:
-    shopping_cart: false
+    shopping_cart: true
     shopping_checkout_help: false
     mycq_homepage: false
     mycq_marketplace: true
@@ -22,7 +22,7 @@ next:
     mycq_seller_pay: false
     mycq_profile_addresses: true
     collectible_shipping: true
-    collectible_allow_no_shipping: true
+    collectible_allow_no_shipping: false
 
 dev:
   pages: ~
