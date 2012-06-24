@@ -79,7 +79,7 @@
     </div>
     <div class="pull-right share">
       <!-- AddThis Button BEGIN -->
-      <a class="btn btn-lightblue btn-mini-social addthis_button_email">
+      <a class="btn-lightblue btn-mini-social addthis_button_email">
         <i class="mail-icon-mini"></i> Email
       </a>
       <a class="addthis_button_facebook_like" fb:like:layout="button_count" fb:like:width="40"></a>
