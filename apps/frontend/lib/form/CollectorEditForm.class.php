@@ -445,7 +445,7 @@ class CollectorEditForm extends CollectorForm
 
     if ($AdaptivePayments->APICallSuccessful($result['Ack']))
     {
-      $this->getObject()->setSellerSettingsPaypalAccountStatus('VERIFIED');
+      $this->getObject()->setSellerSettingsPaypalAccountStatus($result['AccountStatus']);
       $this->getObject()->setSellerSettingsPaypalAccountId($result['AccountID']);
       $this->getObject()->setSellerSettingsPaypalBusinessName($result['BusinessName']);
     }

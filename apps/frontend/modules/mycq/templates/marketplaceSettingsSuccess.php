@@ -25,11 +25,13 @@
         <?= $form->renderHiddenFields(); ?>
         <?= $form->renderAllErrors(); ?>
 
-        <?php if ($collector->getSellerSettingsPaypalAccountStatus() === 'VERIFIED'): ?>
+        <?php if ($collector->getSellerSettingsPaypalAccountStatus()): ?>
         <fieldset class="form-container-center">
           <div class="control-group ">
             <label class=" control-label" for="">Account Status:</label>
-            <div class="controls" style="padding-top: 5px;">VERIFIED</div>
+            <div class="controls" style="padding-top: 5px;">
+              <?= $collector->getSellerSettingsPaypalAccountStatus() ?>
+            </div>
           </div>
           <div class="control-group ">
             <label class=" control-label" for="">Business Name:</label>
