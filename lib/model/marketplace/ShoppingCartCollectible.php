@@ -123,8 +123,13 @@ class ShoppingCartCollectible extends BaseShoppingCartCollectible
 
     if (false === $shipping_amount)
     {
-      throw new Exception('Cannot automatically update shipping fee amount for shopping cart collectible %d and country %s:
-        The related shipping reference was of type No Shipping', $this->getCollectibleId(), $this->getShippingCountryIso3166());
+      throw new Exception(
+        sprintf(
+          'Cannot automatically update shipping fee amount for shopping cart collectible %d and country %s:
+           The related shipping reference was of type No Shipping',
+          $this->getCollectibleId(), $this->getShippingCountryIso3166()
+        )
+      );
     }
 
     $this->setShippingFeeAmount($shipping_amount);

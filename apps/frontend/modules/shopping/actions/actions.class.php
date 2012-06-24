@@ -169,22 +169,40 @@ class shoppingActions extends cqFrontendActions
           $this->redirect('@shopping_cart');
         }
 
+        /** @var $q ShoppingOrderQuery */
         $q = ShoppingOrderQuery::create()
            ->filterByShoppingCart($shopping_cart)
            ->filterByCollectibleId($collectible_for_sale->getCollectibleId());
 
+        /** @var $shopping_order ShoppingOrder */
         $shopping_order = $q->findOneOrCreate();
-        $shopping_order->setSellerId($collectible_for_sale->getCollectorId());
-        $shopping_order->setCollectorId($this->getCollector()->getId());
-        $shopping_order->setShippingAddress($shipping_address);
-        $shopping_order->setNoteToSeller($values['note_to_seller']);
-        $shopping_order->save();
 
-        $this->redirect('@shopping_order_shipping?uuid='. $shopping_order->getUuid());
+        try
+        {
+          $shopping_order->setSellerId($collectible_for_sale->getCollectorId());
+          $shopping_order->setCollectorId($this->getCollector()->getId());
+          $shopping_order->setShippingAddress($shipping_address);
+          $shopping_order->setNoteToSeller($values['note_to_seller']);
+          $shopping_order->save();
+
+          $this->redirect('@shopping_order_shipping?uuid='. $shopping_order->getUuid());
+        }
+        catch (Exception $e)
+        {
+          $this->getUser()->setFlash(
+            'error', 'There was an error proceeding to the checkout screen'
+          );
+
+          //return sfView::ERROR;
+        }
       }
       else
       {
-        return sfView::ERROR;
+        $this->getUser()->setFlash(
+          'error', 'There was an error proceeding to the checkout screen'
+        );
+
+        //return sfView::ERROR;
       }
     }
 
@@ -252,7 +270,9 @@ class shoppingActions extends cqFrontendActions
       }
       else if (!$form->getValue('shipping_address'))
       {
-        $this->getUser()->setFlash('error', 'You need to select an address or add a new one');
+        $this->getUser()->setFlash(
+          'error', 'Please choose an address on file or enter a new address.', false
+        );
       }
     }
 
