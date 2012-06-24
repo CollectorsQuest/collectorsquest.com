@@ -196,53 +196,60 @@
   <ul class="thumbnails">
     <li class="wrapper-90">
       <a href="#" class="thumb">
-        <img alt="" src="http://placehold.it/90x90">
+        <img alt="" src="http://placehold.it/85x85">
       </a>
     </li>
     <li class="wrapper-90">
       <a href="#" class="thumb">
-        <img alt="" src="http://placehold.it/90x90">
+        <img alt="" src="http://placehold.it/85x85">
       </a>
     </li>
     <li class="wrapper-90">
       <a href="#" class="thumb">
-        <img alt="" src="http://placehold.it/90x90">
+        <img alt="" src="http://placehold.it/85x85">
       </a>
     </li>
     <li class="wrapper-90">
       <a href="#" class="thumb">
-        <img alt="" src="http://placehold.it/90x90">
+        <img alt="" src="http://placehold.it/85x85">
       </a>
     </li>
     <li class="wrapper-90">
       <a href="#" class="thumb">
-        <img alt="" src="http://placehold.it/90x90">
+        <img alt="" src="http://placehold.it/85x85">
       </a>
     </li>
     <li class="wrapper-90">
       <a href="#" class="thumb">
-        <img alt="" src="http://placehold.it/90x90">
+        <img alt="" src="http://placehold.it/85x85">
       </a>
     </li>
     <li class="wrapper-90">
       <a href="#" class="thumb">
-        <img alt="" src="http://placehold.it/90x90">
+        <img alt="" src="http://placehold.it/85x85">
       </a>
     </li>
     <li class="wrapper-90">
       <a href="#" class="thumb">
-        <img alt="" src="http://placehold.it/90x90">
+        <img alt="" src="http://placehold.it/85x85">
       </a>
-    </li>
-    <li class="drop-zone">
-      <i class="icon icon-plus ui-droppable"
-         data-collection-id="3269">
-      </i>
-      Add item
     </li>
     <li class="wrapper-90">
       <a href="#" class="thumb">
-        <img alt="" src="http://placehold.it/90x90">
+        <img alt="" src="http://placehold.it/85x85">
+      </a>
+    </li>
+    <li class="wrapper-90">
+      <div class="drop-zone ui-droppable">
+        <i class="icon icon-plus"
+           data-collection-id="3269">
+        </i>
+        <span class="drop-zone-txt">Add item<span>
+      </div>
+    </li>
+    <li class="wrapper-90">
+      <a href="#" class="thumb">
+        <img alt="" src="http://placehold.it/85x85">
       </a>
     </li>
   </ul>
