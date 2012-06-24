@@ -83,6 +83,13 @@ header .search-header form, header .form-inline.pull-right {
   margin-bottom: 15px;
 }
 
+header .search-header input:focus {
+	border-color: @blue #BFBABA @blue @blue;
+	outline-style: none !important;
+	.box-shadow(none);
+	*border: 0; // Remove the border to prevent IE7's black border on input:focus
+}
+
 header .search-header input:focus ~ button {
 	border-color: @blue!important;
 }
