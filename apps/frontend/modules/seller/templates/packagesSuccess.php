@@ -40,6 +40,16 @@
         Buy Credits that last for one full year. Once an item is marked for sale,
         it remains in the Market for up to 6 months.
       </dd>
+
+      <dt>Payments Processed by PayPal<sup>®</sup></dt>
+      <dd>
+        Collectors Quest uses PayPal<sup>®</sup> to process all payments made to sellers on our site.
+        If you don't have a PayPal<sup>®</sup> account, make sure to
+        <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_registration-run"
+           target="_blank">
+          sign up now
+        </a>!
+      </dd>
     </dl>
   </div>
   <div class="span8">
@@ -101,6 +111,14 @@
             ?>
           </label>
           <?= $packagesForm['terms']->renderError() ?>
+        </div>
+        <div class="controls form-inline">
+          <label for="<?= $packagesForm['fyi']->renderId() ?>" class="radio inline">
+            <?= $packagesForm['fyi']->render(array('style' => 'margin-bottom: 25px; float: left; margin-right: 5px; margin-top: 4px;')) ?>
+            I acknowledge that all payments made to me for items sold on
+            Collectors Quest are processed through PayPal<sup>®</sup>.
+          </label>
+          <?= $packagesForm['fyi']->renderError() ?>
         </div>
       </div>
 
