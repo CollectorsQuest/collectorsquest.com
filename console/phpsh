@@ -13,5 +13,4 @@ then
   ctags -R
 fi
 
-export SERVER_NAME=$SERVER_NAME
-phpsh web/index.php
+SERVER_NAME=$SERVER_NAME /usr/bin/phpsh config/phpsh.php
