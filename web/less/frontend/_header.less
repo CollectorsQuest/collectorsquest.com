@@ -79,19 +79,26 @@ a.link-cart {
   margin-bottom: 0;
 }
 
+header .search-header input {
+	.border-radius(7px 0 0 7px);
+}
+
 header .search-header form, header .form-inline.pull-right {
   margin-bottom: 15px;
 }
 
-header .search-header input:focus {
-	border-color: @blue #BFBABA @blue @blue;
+header .search-header input {
+	border-color: #BDB9B8 #BDB9B8 #BDB9B8 #BDB9B8;
+	&:focus {
+	border-color: @blue #BFBABA @blue @blue !important;
 	outline-style: none !important;
 	.box-shadow(none);
 	*border: 0; // Remove the border to prevent IE7's black border on input:focus
+	}
 }
 
 header .search-header input:focus ~ button {
-	border-color: @blue!important;
+	border-color: @blue @blue @blue #BFBABA !important;
 }
 
 header .search-header button {
