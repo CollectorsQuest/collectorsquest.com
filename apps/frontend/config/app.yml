@@ -31,10 +31,10 @@ all:
 
     header_main_menu:
       items:
-        collections:  { name: Collections, uri: "@collections" }
-        blog:         { name: Blog, uri: "@blog" }
-        video:        { name: Video, uri: "@video" }
-        marketplace:  { name: Market, uri: "@marketplace" }
+        collections:  { name: Collections, uri: "@collections", target: '_top' }
+        blog:         { name: Blog, uri: "@blog", target: '_top' }
+        video:        { name: Video, uri: "@video", target: '_top' }
+        marketplace:  { name: Market, uri: "@marketplace", target: '_top' }
 
     mycq_menu:
       items:
