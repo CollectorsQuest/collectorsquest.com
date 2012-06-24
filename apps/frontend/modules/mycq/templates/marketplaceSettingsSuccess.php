@@ -59,7 +59,7 @@
 
         <div class="form-actions">
           <input type="submit" class="btn btn-primary spacer-right-15" value="Save Changes" />
-          <?= link_to('Cancel', '@mycq_profile', array('class' => 'btn gray-button')); ?>
+          <?= link_to('Cancel', '@mycq_profile', array('class' => 'btn')); ?>
         </div>
         <?php echo '</form>'; ?>
 

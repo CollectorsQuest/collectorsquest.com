@@ -53,7 +53,7 @@
           <fieldset class="form-container-center">
             <div class="form-actions">
               <button type="submit" class="btn btn-primary">Change Email</button>
-              <button type="submit" class="btn gray-button spacer-left">Cancel</button>
+              <button type="submit" class="btn spacer-left">Cancel</button>
               <div class="spacer-left-25">
                 <p class="brown spacer-top spacer-left-35">
                   Your email address will not change until you verify it via email
@@ -84,7 +84,7 @@
           <fieldset class="form-container-center">
             <div class="form-actions">
               <button type="submit" class="btn btn-primary">Change Password</button>
-              <button type="reset" class="btn gray-button spacer-left">Cancel</button>
+              <button type="reset" class="btn spacer-left">Cancel</button>
             </div>
           </fieldset>
         </form> <!-- CollectorEditForm -->

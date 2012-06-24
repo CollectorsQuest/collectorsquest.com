@@ -27,7 +27,7 @@
                       id="form-mycq-collections" method="post">
                   <div class="btn-group">
                     <div class="append-left-gray">Sort by <strong id="sortByName">Most Recent</strong></div>
-                    <a class="btn gray-button dropdown-toggle" data-toggle="dropdown" href="#">
+                    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
                       <span class="caret arrow-up"></span><br><span class="caret arrow-down"></span>
                     </a>
                     <ul class="dropdown-menu">
@@ -35,7 +35,7 @@
                       <li><a data-sort="most-relevant" data-name="Most Relevant" class="sortBy" href="javascript:">Sort by <strong>Most Relevant</strong></a></li>
                     </ul>
                   </div>
-                  <input type="text" class="input-sort-by" id="appendedPrependedInput" name="q"><button class="btn gray-button" type="submit"><strong>Search</strong></button>
+                  <input type="text" class="input-sort-by" id="appendedPrependedInput" name="q"><button class="btn" type="submit"><strong>Search</strong></button>
                   <input type="hidden" value="most-recent" id="sortByValue" name="s">
                 </form>
               </div>
@@ -170,7 +170,7 @@
                       id="form-mycq-collections" method="post">
                   <div class="btn-group">
                     <div class="append-left-gray">Sort by <strong id="sortByName">Most Recent</strong></div>
-                    <a class="btn gray-button dropdown-toggle" data-toggle="dropdown" href="#">
+                    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
                       <span class="caret arrow-up"></span><br><span class="caret arrow-down"></span>
                     </a>
                     <ul class="dropdown-menu">
@@ -178,7 +178,7 @@
                       <li><a data-sort="most-relevant" data-name="Most Relevant" class="sortBy" href="javascript:">Sort by <strong>Most Relevant</strong></a></li>
                     </ul>
                   </div>
-                  <input type="text" class="input-sort-by" id="appendedPrependedInput" name="q"><button class="btn gray-button" type="submit"><strong>Search</strong></button>
+                  <input type="text" class="input-sort-by" id="appendedPrependedInput" name="q"><button class="btn" type="submit"><strong>Search</strong></button>
                   <input type="hidden" value="most-recent" id="sortByValue" name="s">
                 </form>
               </div>

@@ -2,8 +2,8 @@
   <div class="modal-header">
     <button class="close" data-dismiss="modal">×</button>
     <ul class="nav nav-pills">
-      <li class="active"><a href="#modal-login-username-pane" class="btn gray-button" data-toggle="tab">Collectors Quest</a></li>
-      <li><a href="#modal-login-openid-pane" class="btn gray-button spacer-left" data-toggle="tab">Facebook or Twitter</a></li>
+      <li class="active"><a href="#modal-login-username-pane" class="btn" data-toggle="tab">Collectors Quest</a></li>
+      <li><a href="#modal-login-openid-pane" class="btn spacer-left" data-toggle="tab">Facebook or Twitter</a></li>
       <!--<li class="pull-right spacer-right"><a href="#modal-sign-up-pane" data-toggle="tab">Sign up!</a></li>//-->
       <li class="pull-right spacer-right"><?= link_to('Sign up!', '@collector_signup'); ?></li>
     </ul>

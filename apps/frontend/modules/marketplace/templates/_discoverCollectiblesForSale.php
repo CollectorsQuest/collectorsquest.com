@@ -24,7 +24,7 @@
 </div>
 <?php elseif ($pager->haveToPaginate()): ?>
 <div class="see-more-under-image-set" style="padding: 0; margin-left: 13px;">
-  <button class="btn btn-small gray-button see-more-full" id="seemore-explore-collectibles">
+  <button class="btn btn-small see-more-full" id="seemore-explore-collectibles">
     See more
   </button>
 </div>

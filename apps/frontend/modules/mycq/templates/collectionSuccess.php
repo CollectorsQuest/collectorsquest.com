@@ -58,7 +58,7 @@
     <div class="span12">
       <div class="form-actions text-center">
         <a href="<?= url_for('mycq_collection_by_slug', array('sf_subject' => $collection, 'cmd' => 'delete', 'encrypt' => '1')); ?>"
-           class="btn gray-button spacer-left pull-left spacer-left"
+           class="btn pull-left spacer-left"
            onclick="return confirm('Are you sure you want to delete this Collection?');">
           <i class="icon icon-trash"></i>
           Delete Collection
@@ -66,7 +66,7 @@
 
         <button type="submit" formnovalidate class="btn btn-primary">Save Changes</button>
         <a href="<?= url_for('mycq_collection_by_slug', $collection) ?>"
-           class="btn gray-button spacer-left">
+           class="btn spacer-left">
           Cancel
         </a>
       </div>
@@ -93,7 +93,7 @@
                       action="<?= url_for('@ajax_mycq?section=component&page=collectibles') ?>">
                   <div class="btn-group">
                     <div class="append-left-gray">Sort by <strong id="sortByName"></strong></div>
-                    <a class="btn gray-button dropdown-toggle" data-toggle="dropdown" href="#">
+                    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
                       <span class="caret arrow-up"></span><br><span class="caret arrow-down"></span>
                     </a>
                     <ul class="dropdown-menu">
@@ -102,7 +102,7 @@
                       <li><a data-sort="most-recent" data-name="Most Recent" class="sortBy" href="javascript:">Sort by <strong>Most Recent</strong></a></li>
                     </ul>
                   </div>
-                  <input type="text" class="input-sort-by" id="appendedPrependedInput" name="q"><button class="btn gray-button" type="submit"><strong>Search</strong></button>
+                  <input type="text" class="input-sort-by" id="appendedPrependedInput" name="q"><button class="btn" type="submit"><strong>Search</strong></button>
                   <input type="hidden" value="position" id="sortByValue" name="s">
                   <input type="hidden" value="<?= $collection->getId() ?>" name="collection_id">
                 </form>

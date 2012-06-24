@@ -34,7 +34,7 @@
 
   <?php if ($pager->haveToPaginate()): ?>
     <a href="<?= url_for('content_category', $category) ?>?page=2"
-       class="btn btn-small gray-button see-more-full" style="width: 590px;">
+       class="btn btn-small see-more-full" style="width: 590px;">
       See more
     </a>
   <?php endif; ?>

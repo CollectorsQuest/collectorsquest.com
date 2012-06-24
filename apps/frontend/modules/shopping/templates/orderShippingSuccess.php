@@ -79,7 +79,7 @@
       Continue to Payment
     </button>
 
-    <?= link_to('Cancel', '@shopping_cart', array('class' => 'btn gray-button')); ?>
+    <?= link_to('Cancel', '@shopping_cart', array('class' => 'btn')); ?>
   </div>
 
   <?= $form->renderHiddenFields(); ?>
