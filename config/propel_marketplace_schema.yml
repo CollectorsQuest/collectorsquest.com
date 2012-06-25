@@ -46,8 +46,10 @@ classes:
       price_amount:              { type: integer, required: true, default: 0 }
       price_currency:            { type: char, size: 3, required: true, default: 'USD' }
       tax_amount:                { type: integer, required: true, default: 0 }
-      shipping_country_iso3166:  { type: char, size: 2, required: false, foreignTable: geo_country, foreignReference: iso3166 }
-      shipping_fee_amount:       { type: integer, required: true, default: 0 }
+      shipping_country_iso3166:  { type: char, size: 2, required: true, foreignTable: geo_country, foreignReference: iso3166 }
+      shipping_fee_amount:       { type: integer, required: false }
+      # should always mirror shipping_reference.shipping_type
+      shipping_type:             { type: enum,    required: true, valueSet: "no_shipping, local_pickup_only, flat_rate, calculated_shipping" }
       is_active:                 { type: boolean, default: true }
 
     propel_behaviors:
@@ -120,6 +122,7 @@ classes:
       model:                { type: char,    size: 64, required: true }
       model_id:             { type: integer, required: true }
       country_iso3166:      { type: char,    size: 2, required: true, foreignTable: geo_country, foreignReference: iso3166 } # ZZ = international
+      # should always be mirrored to shopping_cart_collectible.shipping_type
       shipping_type:        { type: enum,    required: true, valueSet: "no_shipping, local_pickup_only, flat_rate, calculated_shipping" }
     uniques:
       foreign_model_country: [ model, model_id, country_iso3166 ]
