@@ -204,6 +204,11 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
     return sha1($this->getSalt() . $password) === $this->getSha1Password();
   }
 
+  public function setDisplayName($v)
+  {
+    return parent::setDisplayName(trim(strip_tags($v)));
+  }
+
   /**
    * @return    string
    */
