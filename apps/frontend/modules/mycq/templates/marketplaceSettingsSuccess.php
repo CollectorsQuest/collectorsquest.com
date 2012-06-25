@@ -44,7 +44,7 @@
           <?= $form['seller_settings_paypal_email']->renderRow(); ?>
           <?= $form['seller_settings_paypal_fname']->renderRow(); ?>
           <?= $form['seller_settings_paypal_lname']->renderRow(); ?>
-          <?= $form['seller_settings_phone_number']->renderRow(); ?>
+          <?php // $form['seller_settings_phone_number']->renderRow(); ?>
         </fieldset>
 
         <?php cq_sidebar_title('Store Policies'); ?>
