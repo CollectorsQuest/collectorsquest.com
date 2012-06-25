@@ -13,7 +13,7 @@
             <span class="guide-splash-page">
               <img  src="/images/frontend/misc/guide-splash-page-img.png" alt="Essential Guide to Collecting">
             </span>
-            <div class="spacer-r-280">
+            <div class="spacer-r-290">
               <p>
                 <b>Quest Your Best: The Essential Guide to Collecting</b> has something for every
                 collector, whether you're just beginning to acquire treasures or you're a dedicated
