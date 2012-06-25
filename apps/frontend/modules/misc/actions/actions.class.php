@@ -72,7 +72,9 @@ class miscActions extends sfActions
           // authenticate the collector and redirect to @misc_guide_download
           $this->getUser()->Authenticate(true, $collector, false);
 
-          $this->getUser()->setFlash('success', sprintf('Email with download link sent to %s', $collector->getEmail()));
+          $this->getUser()->setFlash(
+            'success', sprintf('Email with download link was sent to %s', $collector->getEmail())
+          );
 
           $this->redirect('@misc_guide_download');
         }
@@ -142,7 +144,9 @@ class miscActions extends sfActions
             )
           ));
 
-          $this->getUser()->setFlash('success', sprintf('Validation email sent to %s', $email->getEmail()));
+          $this->getUser()->setFlash(
+            'success', sprintf('Validation email sent to %s', $email->getEmail())
+          );
 
           $this->redirect('@misc_guide_download');
           return sfView::SUCCESS;

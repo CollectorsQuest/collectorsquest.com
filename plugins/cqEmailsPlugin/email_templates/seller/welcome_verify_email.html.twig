@@ -1,0 +1,19 @@
+{% extends "common/base.html.twig" %}
+
+{% block content %}
+  <p style="margin-bottom: 10px; font-weight: bold;">
+    Welcome to the wonderful world of Collectors Quest, {{ collector.displayName }}!
+  </p>
+  <p>
+    Please click on the link below to verify your account and prove that you’re not a robot.
+    Once that’s done, you can start to explore items for sale from all over the world, as well
+    as sell your own killer stuff! We can’t wait to see what you have in store!
+  </p>
+  <p>
+    {{ url_for('collector_verify_email', { hash: collector_email.hash, welcome: 1 }, { absolute: true}) }}
+  </p>
+  <p>
+    If clicking the link above does not work, copy and paste the URL in
+    a new browser window instead. The URL will expire in 5 days.
+  </p>
+{% endblock %}
