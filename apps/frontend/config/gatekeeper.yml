@@ -22,7 +22,7 @@ next:
     mycq_seller_pay: false
     mycq_profile_addresses: true
     collectible_shipping: true
-    collectible_allow_no_shipping: false
+    collectible_allow_no_shipping: true
 
 dev:
   pages: ~
