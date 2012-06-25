@@ -39,8 +39,10 @@
           <form action="" id="form-verify-email" class="form-horizontal" method="post">
             <?= $form->renderUsing('BootstrapWithRowFluid'); ?>
             <div class="row-fluid spacer-7">
-              <div class="span3">
-                <button type="submit" class="btn btn-primary pull-right">Validate</button>
+              <div class="span3 control-group">
+                <div class="controls">
+                  <button type="submit" class="btn btn-primary pull-right">Validate</button>
+                </div>
               </div>
             </div>
           </form>
