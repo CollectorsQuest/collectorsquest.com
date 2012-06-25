@@ -55,11 +55,24 @@ class miscActions extends sfActions
           // create the collector
           $collector = CollectorPeer::createFromArray($values);
 
-          // Run the post create hook
-          $this->getUser()->postCreateHook($collector);
+          $collector_email = CollectorEmailPeer::retrieveByCollectorEmail($collector, $collector->getEmail());
 
-          // authenticate the collector and redirect to @mycq_profile
+          // Run the post create hook
+          $cqEmail = new cqEmail($this->getMailer());
+          $cqEmail->send('misc/validate_email_to_download', array(
+            'to' => $collector->getEmail(),
+            'subject' => 'Download essential guide',
+            'params' => array(
+              'collector' => $collector,
+              'collector_email' => $collector_email,
+            ),
+          ));
+
+
+          // authenticate the collector and redirect to @misc_guide_download
           $this->getUser()->Authenticate(true, $collector, false);
+
+          $this->getUser()->setFlash('success', sprintf('Email with download link sent to %s', $collector->getEmail()));
 
           $this->redirect('@misc_guide_download');
         }
@@ -215,6 +228,12 @@ class miscActions extends sfActions
 
     $collectorEmail->setIsVerified(true);
     $collectorEmail->save();
+
+    // Finally, send the welcome email
+    $cqEmail = new cqEmail($this->getMailer());
+    $cqEmail->send($collector->getUserType() . '/welcome_to_cq', array(
+      'to' => $collector->getEmail(),
+    ));
 
     $this->getUser()->Authenticate(true, $collector, false);
 

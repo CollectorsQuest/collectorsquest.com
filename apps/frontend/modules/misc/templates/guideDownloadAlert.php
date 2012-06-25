@@ -36,12 +36,13 @@
       </div>
       <div class="span5">
         <div class="signup-form-splash">
+          <h2 class="Chivo webfont">You didn't receive the email?</h2>
           <form action="" id="form-verify-email" class="form-horizontal" method="post">
             <?= $form->renderUsing('BootstrapWithRowFluid'); ?>
             <div class="row-fluid spacer-7">
               <div class="span3 control-group">
                 <div class="controls">
-                  <button type="submit" class="btn btn-primary pull-right">Validate</button>
+                  <button type="submit" class="btn btn-primary pull-right">Resend</button>
                 </div>
               </div>
             </div>
