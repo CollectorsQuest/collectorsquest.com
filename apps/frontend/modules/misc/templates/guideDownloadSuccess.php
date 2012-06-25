@@ -9,8 +9,11 @@
           );
         ?>
         <div class="row-fluid">
-          <div class="span6">
-            <div class="spacer-right-30">
+          <div class="span12 relative">
+            <span class="guide-splash-page">
+              <img  src="/images/frontend/misc/guide-splash-page-img.png" alt="Essential Guide to Collecting">
+            </span>
+            <div class="spacer-r-280">
               <p>
                 <b>Quest Your Best: The Essential Guide to Collecting</b> has something for every
                 collector, whether you're just beginning to acquire treasures or you're a dedicated
@@ -24,11 +27,6 @@
                     Adobe Acrobat Reader required
                   </a>
               </p>
-            </div>
-          </div>
-          <div class="span6">
-            <div class="pull-right spacer-top">
-              <img src="/images/frontend/misc/guide-splash-page-img.png" alt="">
             </div>
           </div>
         </div>
