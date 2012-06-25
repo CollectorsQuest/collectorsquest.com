@@ -18,7 +18,15 @@
     </tr>
     <tr>
       <td>Shipping</td>
-      <td style="text-align: right;"><?= ($shopping_order->getShippingFeeAmount() == 0) ? 'Free' : money_format('%.2n', (float) $shopping_order->getShippingFeeAmount()); ?></td>
+      <td style="text-align: right;">
+      <?php if (0 === $shopping_order->getShippingFeeAmount('integer')): ?>
+        Free
+      <?php elseif (null === $shopping_order->getShippingFeeAmount()): ?>
+        <span class="red">Cannot be shipped to this country!</span>
+      <?php else: ?>
+        <?= money_format('%.2n', (float) $shopping_order->getShippingFeeAmount()); ?>
+      <?endif; ?>
+      </td>
     </tr>
     <tr>
       <td colspan="2"><hr/></td>

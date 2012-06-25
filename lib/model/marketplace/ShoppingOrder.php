@@ -5,6 +5,9 @@ require 'lib/model/marketplace/om/BaseShoppingOrder.php';
 class ShoppingOrder extends BaseShoppingOrder
 {
 
+  /** @var ShippingReference */
+  protected $aShippingReference;
+
   /**
    * @param  null|PropelPDO  $con
    */
@@ -77,9 +80,24 @@ class ShoppingOrder extends BaseShoppingOrder
     return $this->getShoppingCartCollectible()->getPriceAmount();
   }
 
+  /**
+   * Get the combined shipping fee amount for the order.
+   *
+   * Will return NULL if shipping type for the selected country is NO_SHIPPING
+   *
+   * @param     integer|float $return
+   * @return    mixed
+   */
   public function getShippingFeeAmount($return = 'float')
   {
-    return $this->getShoppingCartCollectible()
+    $shipping_reference = $this->getShippingReference();
+
+    if ($shipping_reference && ShippingReferencePeer::SHIPPING_TYPE_NO_SHIPPING == $shipping_reference->getShippingType())
+    {
+      return null;
+    }
+
+   return $this->getShoppingCartCollectible()
       ->getShippingFeeAmount($return);
   }
 
@@ -212,4 +230,37 @@ class ShoppingOrder extends BaseShoppingOrder
   {
     return array('ECHECK', 'BALANCE', 'CREDITCARD');
   }
+
+  /**
+   * Get the shipping reference based on the currently set country iso 3166 or
+   * manual parameter value
+   *
+   * @param     string|null $country_code
+   * @param     PropelPDO $con
+   *
+   * @return    ShippingReference
+   */
+  public function getShippingReference($country_code = null, PropelPDO $con = null)
+  {
+    if (null === $this->aShippingReference || null !== $country_code)
+    {
+      $this->aShippingReference = $this->getCollectible($con)
+        ->getShippingReferenceForCountryCode(
+          $country_code ?: $this->getShippingCountryIso3166(),
+          $con);
+    }
+
+    return $this->aShippingReference;
+  }
+
+  /**
+   * @return    ShoppingCartCollectible
+   */
+  public function clearShippingReference()
+  {
+    $this->aShippingReference = null;
+
+    return $this;
+  }
+
 }

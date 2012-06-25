@@ -84,6 +84,12 @@ class ShoppingOrderShippingForm extends BaseForm
     $shipping_address->widgetSchema->setFormFormatterName('Bootstrap');
     $this->embedForm('shipping_address', $shipping_address, '%content%');
 
+    $this->mergePostValidator(new sfValidatorCallback(array(
+        'callback' => array($this, 'validateShippingCountry'),
+      ), array(
+        'invalid' => 'The seller does not ship to this country',
+    )));
+
     parent::setup();
   }
 
@@ -140,4 +146,36 @@ class ShoppingOrderShippingForm extends BaseForm
       return false;
     }
   }
+
+  /**
+   * Validate if shipping to the selected country is allowed
+   *
+   * @param     sfValidatorBase $validator
+   * @param     array $values
+   * @param     array $arguments
+   *
+   * @return    array() validated values
+   */
+  public function validateShippingCountry(sfValidatorBase $validator, $values, $arguments = array())
+  {
+    if (!isset($values['shipping_address']))
+    {
+      return $values;
+    }
+
+    $country_code = $values['shipping_address']['country_iso3166'];
+    $shipping_refenrece = $this->shopping_order->getShippingReference($country_code);
+
+    if ($shipping_refenrece && ShippingReferencePeer::SHIPPING_TYPE_NO_SHIPPING == $shipping_refenrece->getShippingType())
+    {
+      throw new sfValidatorErrorSchema($validator, array(
+          'shipping_address' => new sfValidatorErrorSchema($validator, array(
+              'country_iso3166' => new sfValidatorError($validator, 'invalid'),
+           )),
+      ));
+    }
+
+    return $values;
+  }
+
 }

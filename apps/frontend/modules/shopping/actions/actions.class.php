@@ -321,6 +321,14 @@ class shoppingActions extends cqFrontendActions
       }
     }
 
+    if (null === $shopping_order->getShippingFeeAmount())
+    {
+      // cannot be shipped to selected country, abort
+      $this->getUser()->setFlash('error', 'The seller does not ship to the destination country you\'ve selected.');
+
+      return $this->redirect('shopping_order_shipping', $shopping_order);
+    }
+
     switch (strtolower($request->getParameter('processor', 'paypal')))
     {
       case 'paypal':
