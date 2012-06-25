@@ -2,7 +2,7 @@
 @import "../_mixins.less";
 @import "../_wysihtml5";
 
-.other-items-sidebar {
+.carousel-sidebar {
   width: 100%;
   margin-bottom: 10px;
 
@@ -66,6 +66,46 @@
     .border-radius(0);
   }
 }
+
+.carousel-v-main {
+	position: relative;
+	width: 92px;
+
+	a.step-up, a.step-down {
+		position: absolute;
+		display: none;
+		.size(20px,92px);
+		color: #fff;
+		#gradient > .vertical(rgba(32,147,195,0.3), rgba(9,113,186,0.3));
+		&:hover {
+			#gradient > .vertical(#13597F, #072B44);
+		}
+		i {
+			display: block;
+			margin: 0px auto;
+			text-align: center;
+			text-shadow: 1px 1px 2px rgba(42, 44, 42, 0.3);
+		}
+	}
+	a.step-up {
+		top: 0;
+	}
+	a.step-down {
+		bottom: 0;
+	}
+	&:hover {
+		a.step-up, a.step-down {
+			display: block;
+		}
+	}
+
+	.collectible {
+		display: block;
+	  margin-bottom: 12px;
+  }
+}
+
+
 
 #sortable-collectibles .span2 {
   margin-bottom: 25px;

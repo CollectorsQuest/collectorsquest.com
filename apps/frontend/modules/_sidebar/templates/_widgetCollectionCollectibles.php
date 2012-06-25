@@ -3,7 +3,7 @@
   use_javascript('jquery/rcarousel.js');
 ?>
 
-<div class="other-items-sidebar spacer-top-20">
+<div class="carousel-sidebar spacer-top-20">
   <span>Other collectibles in this collection:</span>
   <div class="thumbnails-inner">
     <a href="#" id="ui-carousel-prev" title="previous collectible" class="left-arrow">

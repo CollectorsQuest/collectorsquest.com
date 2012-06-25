@@ -24,6 +24,35 @@
   cq_page_title($collectible->getName(), null, $options);
 ?>
 
+<div class="row-fluid spacer-top-15">
+  <div class="span10 text-center">
+    <a href="#" target="_blank" id="collectible_multimedia_primary">
+      <img title="iMac G4 circa 2002" src="http://placehold.it/620x480" class="magnify">
+    </a>
+  </div>
+  <div class="span2">
+    <div class="carousel-v-main">
+      <a id="ui-carousel-v-next" class="step-up" title="next" href="#">
+        <i class="icon-chevron-up white"></i>
+      </a>
+      <a id="ui-carousel-v-prev" class="step-down" title="previous" href="#">
+        <i class="icon-chevron-down white"></i>
+      </a>
+
+      <a title="" href="#" class="zoom collectible">
+        <img src="http://placehold.it/92x92" style="" alt="" title="">
+      </a>
+      <a title="" href="#" class="zoom collectible">
+        <img src="http://placehold.it/92x92" alt="" title="">
+      </a>
+      <a title="" href="#" class="zoom collectible">
+        <img src="http://placehold.it/92x92" alt="" title="">
+      </a>
+    </div>
+  </div>
+</div>
+
+
 <div class="row-fluid spacer-top-15" xmlns="http://www.w3.org/1999/html">
   <?php
     $span = 10;
