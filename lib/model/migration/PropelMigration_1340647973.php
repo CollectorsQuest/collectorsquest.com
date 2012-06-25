@@ -22,9 +22,11 @@ class PropelMigration_1340647973
     // WILL BE TREATED AS FREE SHIPPING,
     // INCLUDING FOR INTERNATIONAL BUYERS!
 
-    throw new Exception('Enter the collector IDs in the migration please!');
-
     $collector_ids = array(
+      '9239','9223','9198','8805','8391','8139','8031', '963','6569','6563',
+      '7892','7629','7430','7333','7092','7021','6995','6910','6','6779','6499',
+      '6658','6657','6648', '6644','6635','6634','6613','6610','6609','6601','6590',
+      '6589','6588','2','6576','6574','6571'
     );
 
     $package = PackageQuery::create()->findPk(1);
@@ -32,6 +34,7 @@ class PropelMigration_1340647973
     foreach ($collector_ids as $collector_id)
     {
       $collector = CollectorQuery::create()->findPk($collector_id);
+      if (!$collector) continue;
 
       $for_sale_without_credits = CollectibleForSaleQuery::create()
         ->joinWith('CollectibleForSale.Collectible')
@@ -57,8 +60,10 @@ class PropelMigration_1340647973
       }
       echo sprintf("Total: %d\n", count($for_sale_without_credits));
 
+      /** @var $seller Seller */
+      $seller = $collector->getSeller();
 
-      if (count($for_sale_without_credits) > $collector->getSeller()->getCreditsLeft())
+      if ($seller && count($for_sale_without_credits) > $seller->getCreditsLeft())
       {
         $creditsNeeded = count($for_sale_without_credits) - $collector->getSeller()->getCreditsLeft();
 
