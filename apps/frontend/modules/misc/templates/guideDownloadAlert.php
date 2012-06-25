@@ -3,15 +3,16 @@
     <div class="row-fluid">
       <div class="span7">
         <?php
-        cq_sidebar_title(
-          'Unlock your free guide to collecting—sign up today!', null,
-          array('class' => 'row-fluid title-red spacer-bottom-30')
-        );
+          cq_sidebar_title(
+            'Unlock your free guide to collecting—sign up today!', null,
+            array('class' => 'row-fluid title-red spacer-bottom-30')
+          );
         ?>
         <div class="row-fluid">
           <div class="span12 relative">
             <span class="guide-splash-page">
-              <img  src="/images/frontend/misc/guide-splash-page-img.png" alt="Essential Guide to Collecting">
+              <img src="/images/frontend/misc/guide-splash-page-img.png"
+                   alt="Essential Guide to Collecting">
             </span>
             <div class="spacer-r-290">
               <p>
@@ -34,15 +35,15 @@
       </div>
       <div class="span5">
         <div class="signup-form-splash">
-          <h2 class="Chivo webfont">You didn't receive the email?</h2>
+          <h2 class="Chivo webfont">Didn't receive the email?</h2>
+          <br/>
           <form action="" id="form-verify-email" class="form-horizontal" method="post">
-            <?= $form->renderUsing('BootstrapWithRowFluid'); ?>
-            <div class="row-fluid spacer-7">
-              <div class="span3 control-group">
-                <div class="controls">
-                  <button type="submit" class="btn btn-primary pull-right">Resend</button>
-                </div>
-              </div>
+            <?= $form->renderHiddenFields(); ?>
+            <div class="span8" style="margin-left: 0px;">
+              <?= $form['email']->render(); ?>
+            </div>
+            <div class="span4">
+              <button type="submit" class="btn btn-primary pull-right">Resend</button>
             </div>
           </form>
         </div>
@@ -51,10 +52,10 @@
   </div>
   <div class="wrapper-bottom">
     <?php
-    cq_sidebar_title(
-      'Why else should you join?', null,
-      array('class' => 'row-fluid section-title-yellow spacer-bottom-30')
-    );
+      cq_sidebar_title(
+        'Why else should you join?', null,
+        array('class' => 'row-fluid section-title-yellow spacer-bottom-30')
+      );
     ?>
     <div class="row-fluid">
       <div class="span4">

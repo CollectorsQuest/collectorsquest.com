@@ -5,7 +5,7 @@
     Hello again, {{ collector.displayName }}!
   </p>
   <p>
-    Your can download the guide
-    {{ link_to('here', 'misc_guide_verify_email', { hash: collector_email.hash }, { absolute: true}) }}.
+    Your can download the Essential Guide to Collecting via the link below:<br/><br/>
+    {{ url_for('misc_guide_verify_email', { hash: collector_email.hash }, { absolute: true}) }}.
   </p>
 {% endblock %}

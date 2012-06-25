@@ -8,7 +8,7 @@
  * @author     Collectors Quest, Inc.
  * @version    SVN: $Id: actions.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
-class miscActions extends sfActions
+class miscActions extends cqFrontendActions
 {
 
   /**
@@ -22,7 +22,7 @@ class miscActions extends sfActions
   /**
    * @return string
    */
-  public function executeGuideToCollecting()
+  public function executeGuideToCollecting(sfWebRequest $request)
   {
     if ($this->getUser()->isAuthenticated())
     {
@@ -33,8 +33,6 @@ class miscActions extends sfActions
     $loginForm = new CollectorGuideLoginForm();
     $display = 'signup';
 
-    $request = $this->getRequest();
-//    dd($request->getParameterHolder()->getAll(), $request->getMethod());
     if (sfRequest::POST == $request->getMethod())
     {
       if ($request->getParameter($signupForm->getName()))
@@ -55,13 +53,15 @@ class miscActions extends sfActions
           // create the collector
           $collector = CollectorPeer::createFromArray($values);
 
-          $collector_email = CollectorEmailPeer::retrieveByCollectorEmail($collector, $collector->getEmail());
+          $collector_email = CollectorEmailPeer::retrieveByCollectorEmail(
+            $collector, $collector->getEmail()
+          );
 
           // Run the post create hook
           $cqEmail = new cqEmail($this->getMailer());
           $cqEmail->send('misc/validate_email_to_download', array(
             'to' => $collector->getEmail(),
-            'subject' => 'Download essential guide',
+            'subject' => 'Quest Your Best: The Essential Guide to Collecting',
             'params' => array(
               'collector' => $collector,
               'collector_email' => $collector_email,
@@ -137,7 +137,7 @@ class miscActions extends sfActions
           $cqEmail = new cqEmail($this->getMailer());
           $cqEmail->send('misc/validate_email_to_download', array(
             'to'      => $collector->getEmail(),
-            'subject' => 'Download essential guide',
+            'subject' => 'Quest Your Best: The Essential Guide to Collecting',
             'params'  => array(
               'collector'       => $collector,
               'collector_email' => $email,
@@ -157,8 +157,6 @@ class miscActions extends sfActions
 
       return sfView::ALERT;
     }
-
-//    $this->redirectUnless($email && $email->getIsVerified(), '@misc_guide_to_collecting');
 
     $hash = $this->getUser()->getAttribute('hash', false, 'guide');
     $expireAt = $this->getUser()->getAttribute('expire', 0, 'guide');
