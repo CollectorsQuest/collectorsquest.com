@@ -1,8 +1,8 @@
 <?php
 
-class ajaxAction extends IceAjaxAction
+class ajaxAction extends cqAjaxAction
 {
-  protected function getObject(sfWebRequest $request)
+  protected function getObject(sfRequest $request)
   {
     $object = null;
 

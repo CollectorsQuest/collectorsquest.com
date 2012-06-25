@@ -1,8 +1,8 @@
 <?php
 
-class typeAheadAction extends IceAjaxAction
+class typeAheadAction extends cqAjaxAction
 {
-  protected function getObject(sfWebRequest $request)
+  protected function getObject(sfRequest $request)
   {
     return null;
   }

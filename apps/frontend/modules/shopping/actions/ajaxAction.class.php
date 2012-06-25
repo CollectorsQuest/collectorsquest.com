@@ -3,7 +3,7 @@
 /**
  * @method  cqFrontendUser  getUser()
  */
-class ajaxAction extends IceAjaxAction
+class ajaxAction extends cqAjaxAction
 {
 
   public function preExecute()
@@ -11,12 +11,15 @@ class ajaxAction extends IceAjaxAction
     $this->forward404If(IceGateKeeper::locked('shopping_cart'));
   }
 
-  public function getObject(sfWebRequest $request) {
+  public function getObject(sfRequest $request)
+  {
+    return null;
   }
 
   public function executeShoppingCartCollectibleUpdateCountry(sfWebRequest $request)
   {
-    $this->forward404Unless($shopping_cart = $this->getUser()->getShoppingCart());
+    $shopping_cart = $this->getUser()->getShoppingCart();
+    $this->forward404Unless(!$shopping_cart instanceof ShoppingCart);
 
     $id = $request->getParameter('collectible_id');
     $country_code = $request->getParameter('country_iso3166');
@@ -27,16 +30,16 @@ class ajaxAction extends IceAjaxAction
       {
         $cart_collectible->save();
 
-        return $this->output(array('success' => true));
+        return $this->success();
       }
       else
       {
-        return $this->output(array('success'=> false, 'bla' => 'ga'));
+        return $this->error('bla', 'ga');
       }
     }
     else
     {
-      return $this->output(array('success' => false));
+      return $this->error('bla', 'ga');
     }
   }
 
