@@ -7,7 +7,7 @@ ajax_typeahead:
 
 ajax_collections:
   url:   /ajax/collections/:section/:page.:sf_format
-  param: { module: _ajax, action: collections, sf_format: html }
+  param: { module: collections, action: ajax, sf_format: html }
   options: { extra_parameters_as_query_string: true }
   requirements: { sf_format: (?:html|json) }
 
@@ -18,7 +18,7 @@ ajax_collection:
 
 ajax_collectors:
   url:   /ajax/collectors/:section/:page.:sf_format
-  param: { module: _ajax, action: collectors, sf_format: html }
+  param: { module: collectors, action: ajax, sf_format: html }
   options: { extra_parameters_as_query_string: true }
   requirements: { sf_format: (?:html|json) }
 
@@ -29,7 +29,7 @@ ajax_collector:
 
 ajax_marketplace:
   url:   /ajax/marketplace/:section/:page.:sf_format
-  param: { module: _ajax, action: marketplace, sf_format: html }
+  param: { module: marketplace, action: ajax, sf_format: html }
   options: { extra_parameters_as_query_string: true }
   requirements: { sf_format: (?:html|json) }
 
