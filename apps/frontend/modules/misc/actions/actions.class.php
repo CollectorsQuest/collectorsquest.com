@@ -165,13 +165,10 @@ class miscActions extends sfActions
 
     if ($this->getRequestParameter('sf_format', false) && $hash && $expireAt >= time())
     {
-      //Download
-      dd($hash, $expireAt, $this->getRequestParameter('sf_format'), $expireAt - time());
-
       $format = $this->getRequestParameter('sf_format');
-      $filename = sprintf('essential-guide.%s', $format);
+      $filename = sprintf('Essential Guide to Collecting - CollectorsQuest.%s', $format);
       $mimeType = 'pdf' == $format ? 'application/pdf' : 'application/zip';
-      $sourceFile = sfConfig::get('sf_data_dir') . DIRECTORY_SEPARATOR . 'guide.' . $format;
+      $sourceFile = sfConfig::get('sf_data_dir') . '/download/essential-guide.' . $format;
 
       header("Expires: 0");
       header("Cache-control: private");
@@ -192,9 +189,6 @@ class miscActions extends sfActions
       $this->getUser()->setAttribute('hash', $hash, 'guide');
       $this->getUser()->setAttribute('expire', $expireAt, 'guide');
     }
-
-//      dd($this->getUser()->getAttribute('hash', null, 'guide'), $this->getUser()->getAttribute('expire', null, 'guide'), time(), $expireAt-time());
-//    dd($email);
 
     $this->hash = $hash;
 
