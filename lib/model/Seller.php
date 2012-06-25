@@ -36,24 +36,15 @@ class Seller extends Collector
    * Retrieve number of seller credits left for use
    *
    * @return integer
-   *
-   * @todo unit tests
    */
   public function getCreditsLeft()
   {
-    $q = PackageTransactionQuery::create()
+    return (int) PackageTransactionQuery::create()
       ->filterByCollector($this)
-      ->filterByPaymentStatus(PackageTransactionPeer::PAYMENT_STATUS_PAID)
-      ->notExpired();
-
-    $packages = $q->find()->toKeyValue('PrimaryKey', 'Credits');
-    $totalCredits = array_sum($packages);
-
-    $creditsUsed = PackageTransactionCreditQuery::create()
-      ->filterByPackageTransactionId(array_keys($packages))
-      ->count();
-
-    return $totalCredits - $creditsUsed;
+      ->notExpired()
+      ->withColumn('SUM(PackageTransaction.Credits) - SUM(PackageTransaction.CreditsUsed)', 'CreditsLeft')
+      ->select('CreditsLeft')
+      ->findOne();
   }
 
 }
