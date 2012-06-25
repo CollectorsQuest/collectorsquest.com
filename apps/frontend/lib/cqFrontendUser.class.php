@@ -344,10 +344,17 @@ class cqFrontendUser extends cqBaseUser
       }
     }
 
+    $collector_email = CollectorEmailPeer::retrieveByCollectorEmail($collector, $collector->getEmail());
+
     // Finally, send the welcome email
     $cqEmail = new cqEmail(sfContext::getInstance()->getMailer());
-    $cqEmail->send($collector->getUserType() . '/welcome_to_cq', array(
+    $cqEmail->send($collector->getUserType() . '/validate_email', array(
       'to' => $collector->getEmail(),
+      'subject' => 'Verify your email at CollectorsQuest',
+      'params'=>array(
+        'collector'=>$collector,
+        'collector_email' => $collector_email,
+      ),
     ));
   }
 

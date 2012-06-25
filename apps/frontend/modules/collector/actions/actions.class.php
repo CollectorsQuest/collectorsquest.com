@@ -331,6 +331,11 @@ class collectorActions extends cqFrontendActions
 
     $this->getUser()->Authenticate(true, $collector, false);
 
+    $cqEmail = new cqEmail($this->getMailer());
+    $cqEmail->send($collector->getUserType() . '/welcome_to_cq', array(
+      'to' => $collector->getEmail(),
+    ));
+
     $this->getUser()->setFlash('success', sprintf(
       'Your new email, %s, has been verified.', $collector->getEmail()));
 
