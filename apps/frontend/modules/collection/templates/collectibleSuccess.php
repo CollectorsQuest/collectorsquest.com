@@ -24,6 +24,7 @@
   cq_page_title($collectible->getName(), null, $options);
 ?>
 
+<?/**
 <div class="row-fluid spacer-top-15">
   <div class="span10 text-center">
     <a href="#" target="_blank" id="collectible_multimedia_primary">
@@ -51,9 +52,9 @@
     </div>
   </div>
 </div>
+*/?>
 
-
-<div class="row-fluid spacer-top-15" xmlns="http://www.w3.org/1999/html">
+<div class="row-fluid spacer-top-15">
   <?php
     $span = 10;
     if (count($additional_multimedia) == 0)
