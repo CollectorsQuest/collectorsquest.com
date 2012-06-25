@@ -85,7 +85,7 @@
               </tr>
               <tr>
                 <td colspan="2" style="text-align: center;">
-                  <button type="submit" name="Checkout" class="btn btn-large btn-danger" value="Checkout" style="width: 100%;">
+                  <button type="submit" name="Checkout" class="btn btn-primary" value="Checkout" style="width: 100%;">
                     Proceed to Checkout
                   </button>
                 </td>

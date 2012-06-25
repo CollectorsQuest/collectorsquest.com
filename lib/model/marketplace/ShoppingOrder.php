@@ -30,6 +30,12 @@ class ShoppingOrder extends BaseShoppingOrder
       ->findOneById($this->getSellerId());
   }
 
+  public function getBuyer()
+  {
+    return CollectorQuery::create()
+      ->findOneById($this->getCollectorId());
+  }
+
   /**
    * @param  null|PropelPDO  $con
    * @return CollectibleForSale
@@ -52,6 +58,11 @@ class ShoppingOrder extends BaseShoppingOrder
     return $q->findOne($con);
   }
 
+  public function getDescription()
+  {
+    return $this->getShoppingCartCollectible()->getDescription();
+  }
+
   public function getCurrency()
   {
     return $this->getShoppingCartCollectible()->getPriceCurrency();
@@ -60,7 +71,7 @@ class ShoppingOrder extends BaseShoppingOrder
   /**
    * price + tax + shipping
    *
-   * @return type
+   * @return float
    */
   public function getTotalAmount()
   {
@@ -77,7 +88,16 @@ class ShoppingOrder extends BaseShoppingOrder
 
   public function getCollectiblesAmount()
   {
-    return $this->getShoppingCartCollectible()->getPriceAmount();
+    if ($payment = $this->getShoppingPaymentRelatedByShoppingPaymentId())
+    {
+      return $payment->getAmountCollectibles();
+    }
+    else if ($collectible = $this->getShoppingCartCollectible())
+    {
+      return $collectible->getPriceAmount();
+    }
+
+    return null;
   }
 
   /**
@@ -90,20 +110,23 @@ class ShoppingOrder extends BaseShoppingOrder
    */
   public function getShippingFeeAmount($return = 'float')
   {
-    $shipping_reference = $this->getShippingReference();
-
-    if ($shipping_reference && ShippingReferencePeer::SHIPPING_TYPE_NO_SHIPPING == $shipping_reference->getShippingType())
-    {
+    if (
+      ($shipping_reference = $this->getShippingReference()) &&
+      ShippingReferencePeer::SHIPPING_TYPE_NO_SHIPPING == $shipping_reference->getShippingType()
+    ) {
       return null;
     }
 
-   return $this->getShoppingCartCollectible()
-      ->getShippingFeeAmount($return);
-  }
+    if ($payment = $this->getShoppingPaymentRelatedByShoppingPaymentId())
+    {
+      return $payment->getAmountShippingFee();
+    }
+    else if ($collectible = $this->getShoppingCartCollectible())
+    {
+      return $collectible->getShippingFeeAmount($return);
+    }
 
-  public function getDescription()
-  {
-    return $this->getShoppingCartCollectible()->getDescription();
+    return null;
   }
 
   public function setShippingAddress(CollectorAddress $address)
@@ -122,6 +145,14 @@ class ShoppingOrder extends BaseShoppingOrder
       ->setShippingCountryIso3166($address->getCountryIso3166())
       ->updateShippingFeeAmountFromCountryCode()
       ->save();
+  }
+
+  public function getShippingCountryName()
+  {
+    $geo_country = GeoCountryQuery::create()
+      ->findOneByIso3166($this->getShippingCountryIso3166());
+
+    return $geo_country ? $geo_country->getName() : '';
   }
 
   public function getPaypalPayRequestFields()

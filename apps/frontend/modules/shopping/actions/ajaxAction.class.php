@@ -19,7 +19,7 @@ class ajaxAction extends cqAjaxAction
   public function executeShoppingCartCollectibleUpdateCountry(sfWebRequest $request)
   {
     $shopping_cart = $this->getUser()->getShoppingCart();
-    $this->forward404Unless(!$shopping_cart instanceof ShoppingCart);
+    $this->forward404Unless($shopping_cart instanceof ShoppingCart);
 
     $id = $request->getParameter('collectible_id');
     $country_code = $request->getParameter('country_iso3166');

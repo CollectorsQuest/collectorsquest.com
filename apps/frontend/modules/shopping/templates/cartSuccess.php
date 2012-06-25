@@ -26,12 +26,14 @@
 
 
 <script type="text/javascript">
-$(document).ready(function() {
+$(document).ready(function()
+{
   'use strict';
 
-  $('.collectible-country').on('change', function() {
+  $('.collectible-country').on('change', function()
+  {
     var $this = $(this);
-    console.log($(this).val());
+
     // execute the JSON request only if a valid value is selected
     $this.val() && $.getJSON(
       '<?= url_for('ajax_shopping', array('section'=>'ShoppingCartCollectible', 'page' => 'UpdateCountry')) ?>',
@@ -39,8 +41,9 @@ $(document).ready(function() {
         collectible_id:  $this.data('collectible-id'),
         country_iso3166: $this.val()
       },
-      function (data) {
-        if (true == data.success) {
+      function (data)
+      {
+        if (true == data.Success) {
           window.location.reload();
         } else {
           console.log('there was some error');
