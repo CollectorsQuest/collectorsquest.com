@@ -67,14 +67,14 @@ select,
 
 .btn-danger {
 	color: #fff;
-	border: 2px solid @red;
 	.buttonBackground(#CC0000, #B2100E);
+	border: 2px solid @red;
 	&:hover {
 		color: @white;
-		border-color: @red !important;
+		.buttonBackground(#A10504, #CC0000);
+		border-color: @red;
 		background-position: 0 0;
 		.transition(none);
-		.buttonBackground(#A10504, #CC0000);
 	}
 }
 
@@ -84,7 +84,22 @@ select,
 	line-height: @baseLineHeight - 4px;
 	border-width: 1px;
 	.border-radius(5px);
+	text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.3);
 }
+
+.btn.disabled, .btn[disabled] {
+	color: #a69f9f;
+	.buttonBackground(#f8f7f7, #e8e7e6);
+	border-color: #dae3e9;
+}
+
+.btn-primary.disabled, .btn-primary.btn[disabled] {
+	color: #fff;
+	.buttonBackground(#aad2e9, #9ec4d8);
+	border-color: #b4d8ec;
+}
+
+
 
 //MyCQ SECTION
 

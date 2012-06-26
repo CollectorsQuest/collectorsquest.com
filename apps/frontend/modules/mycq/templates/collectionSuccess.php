@@ -103,6 +103,7 @@
                     </ul>
                   </div>
                   <input type="text" class="input-sort-by" id="appendedPrependedInput" name="q"><button class="btn" type="submit"><strong>Search</strong></button>
+                  <!-- keep INPUT and BUTTON elements in same line -->
                   <input type="hidden" value="position" id="sortByValue" name="s">
                   <input type="hidden" value="<?= $collection->getId() ?>" name="collection_id">
                 </form>

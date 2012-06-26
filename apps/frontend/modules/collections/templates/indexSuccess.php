@@ -18,6 +18,7 @@
       </ul>
     </div>
     <input type="text" name="q" id="appendedPrependedInput" class="input-sort-by"><button type="submit" class="btn"><strong>Search</strong></button>
+    <!-- keep INPUT and BUTTON elements in same line, if you break to two lines, you will see the "gap" between the text box and button -->
     <input type="hidden" name="s" id="sortByValue" value="most-relevant">
     </form>
   </div>

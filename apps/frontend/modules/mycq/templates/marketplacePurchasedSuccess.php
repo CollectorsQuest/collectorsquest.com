@@ -37,6 +37,7 @@
                     </ul>
                   </div>
                   <input type="text" class="input-sort-by" id="appendedPrependedInput" name="q"><button class="btn gray-button" type="submit"><strong>Search</strong></button>
+                  <!-- keep INPUT and BUTTON elements in same line -->
                   <input type="hidden" value="most-relevant" id="sortByValue" name="s">
                 </form>
               </div>
