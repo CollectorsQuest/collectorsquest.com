@@ -34,9 +34,10 @@
 	}
 
   span {
-    padding-left: 5px;
-    margin-bottom: 5px;
-    display: block;
+	  display: block;
+	  margin-bottom: 5px;
+	  padding-left: 5px;
+
   }
   .thumbnails-inner {
 	  height: 82px;
@@ -48,10 +49,10 @@
   }
   .thumbnails {
     display: relative;
+	  overflow: hidden;
     height: 73px;
     margin-left: 2px;
     margin-bottom: 5px;
-    overflow: hidden;
 
     a {
       margin-top: 2px;
@@ -64,10 +65,10 @@
     }
   }
   .thumbnail {
-	  margin-right: 5px;
-    padding: 0;
-    border: none;
     .square(69px);
+	  margin-right: 5px;
+	  padding: 0;
+	  border: none;
     .border-radius(0);
   }
 }
@@ -79,7 +80,7 @@
 	a.step-up, a.step-down {
 		position: absolute;
 		display: none;
-		.size(20px,92px);
+		.size(20px, 92px);
 		color: #fff;
 		#gradient > .vertical(rgba(32,147,195,0.3), rgba(9,113,186,0.3));
 		&:hover {
@@ -87,7 +88,7 @@
 		}
 		i {
 			display: block;
-			margin: 0px auto;
+			margin: 0 auto;
 			text-align: center;
 			text-shadow: 1px 1px 2px rgba(42, 44, 42, 0.3);
 		}
@@ -110,11 +111,9 @@
   }
 }
 
-
-
 #sortable-collectibles .span2 {
-  margin-bottom: 25px;
-  width: 88px;
+	width: 88px;
+	margin-bottom: 25px;
   text-align: right;
 }
 
@@ -123,25 +122,23 @@
 }
 
 .ui-carousel {
-  height: 100px;
+	position: relative; /*for ie7 to work e.g in html carousels*/
+	overflow: auto;
+  .size(100px, 300px);
   margin: 0;
-  overflow: auto;
   padding: 0;
-  position: relative; /*for ie7 to work e.g in html carousels*/
-  width: 300px
 }
 
 .ui-carousel > .wrapper {
-  margin: 0;
+	width: 9999px;
+	margin: 0;
   padding: 0;
-  width: 9999px;
 }
 
 .ui-carousel > .wrapper > * {
-  border: 0;
   display: block;
   float: left;
-  height: 100px;
   overflow: hidden;
-  width: 100px;
+	.square(100px);
+	border: 0;
 }
