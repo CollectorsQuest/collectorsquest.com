@@ -16,20 +16,19 @@ generator:
       fields:
         package_name: { label: Package Name }
         package_description: { label: Package Description }
-        max_item_for_sale: { label: Max Item For Sale }
         package_price: { label: Package Price }
         plan_type: { label: Plan Type }
 
       list:
         title: Packages
-        display: [id, =package_name, max_items_for_sale, package_price, plan_type]
+        display: [id, =package_name, credits, package_price, plan_type]
 
       filter:
         class: false
 
       form:
         display:
-          "Package":  [package_name, package_description, max_items_for_sale, package_price, plan_type]
+          "Package":  [package_name, package_description, credits, package_price, plan_type]
       edit:
         title: Edit Package
       new:

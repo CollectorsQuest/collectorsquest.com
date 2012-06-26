@@ -38,7 +38,7 @@
     ?>
   </div>
   <?php elseif ($pager->getPage() == 1 && $pager->haveToPaginate()): ?>
-  <button id="seemore-collectibles-for-sale" class="btn btn-small gray-button see-more-full">
+  <button id="seemore-collectibles-for-sale" class="btn btn-small see-more-full">
     See more
   </button>
 

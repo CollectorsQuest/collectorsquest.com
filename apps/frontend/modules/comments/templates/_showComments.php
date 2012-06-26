@@ -11,7 +11,7 @@
 
 <?php if (sfConfig::get('app_comments_num_load', 20) == $comments->count()): ?>
 <div class="see-more-under-image-set">
-  <button class="btn btn-small gray-button see-more-full"
+  <button class="btn btn-small see-more-full"
           id="load-more-comments"
           data-token="<?= CommentPeer::addCommentableTokenToSession($for_object, $sf_user); ?>"
           data-offset="<?= sfConfig::get('app_comments_num_load', 20); ?>"

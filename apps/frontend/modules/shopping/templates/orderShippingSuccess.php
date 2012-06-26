@@ -59,7 +59,8 @@
             <?= $shipping_address->getZipPostcode(); ?>
           </p>
           <p style="font-weight: bold;"><?= $shipping_address->getCountryName(); ?></p>
-          <a href="<?= url_for('@shopping_order_shipping?uuid='. $shopping_order->getUuid() .'&address_id='. $shipping_address->getId()); ?>" class="btn">
+          <a href="<?= url_for('@shopping_order_shipping?uuid='. $shopping_order->getUuid() .'&address_id='. $shipping_address->getId()); ?>"
+             class="btn" style="padding: 4px 10px;">
             Ship to this address
           </a>
         </div>
@@ -79,7 +80,7 @@
       Continue to Payment
     </button>
 
-    <?= link_to('Cancel', '@shopping_cart', array('class' => 'btn gray-button')); ?>
+    <?= link_to('Cancel', '@shopping_cart', array('class' => 'btn')); ?>
   </div>
 
   <?= $form->renderHiddenFields(); ?>

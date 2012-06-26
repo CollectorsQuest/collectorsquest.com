@@ -1,8 +1,0 @@
-#!/bin/sh
-
-CWD=`pwd`
-DIR="$( cd -P "$( dirname "$0" )" && pwd )"
-
-cd $DIR/../config/vagrant
-vagrant ssh
-cd $CWD

@@ -18,11 +18,13 @@ class CollectorAddressForm extends BaseCollectorAddressForm
     $this->setupPhoneField();
 
     $this->validatorSchema['full_name']->setMessage('required',
-      'Please supply a name for this address.');
+      'Please enter your full name');
     $this->validatorSchema['address_line_1']->setMessage('required',
-      'At least one address line must be supplied.');
+      'Please enter your street address');
     $this->validatorSchema['city']->setMessage('required',
-      'You must supply a city for this address.');
+      'Please enter your city');
+    $this->validatorSchema['zip_postcode']->setMessage('required',
+      'Please enter your postal code');
 
     $this->unsetFields();
   }

@@ -1,8 +1,11 @@
 <?php
-  cq_sidebar_title(
-    'Explore the Market',
-    link_to('See all &raquo;', '@marketplace_categories', array('class' => 'text-v-middle link-align'))
+  $link = link_to(
+    'See all &raquo;', '@marketplace_categories',
+    array('class' => 'text-v-middle link-align')
   );
+  $link = null;
+
+  cq_sidebar_title('Explore the Market', $link);
 ?>
 
 <div class="twocolumn cf">

@@ -37,8 +37,8 @@
       <div class="buttons-container" id="buttons-private-message">
         <?php /* <button type="button" class="btn cancel" value="cancel">cancel</button>
          &nbsp; - or - &nbsp;
-        <input type="submit" class="btn btn-lightblue-normal" value="Send the Message"> */?>
-        <button type="submit" class="btn btn-lightblue-normal textright requires-login">
+        <input type="submit" class="btn-lightblue-normal" value="Send the Message"> */?>
+        <button type="submit" class="btn-lightblue-normal textright requires-login">
           <i class="mail-icon-mini"></i> &nbsp;Send message
         </button>
       </div>

@@ -294,7 +294,7 @@ class CollectorPeer extends BaseCollectorPeer
         $collectorEmail->setEmail($collector->getEmail());
         $collectorEmail->setSalt($collector->generateSalt());
         $collectorEmail->setHash($collector->getAutoLoginHash());
-        $collectorEmail->setIsVerified(true);
+        $collectorEmail->setIsVerified(false);
         $collectorEmail->save();
       }
     }

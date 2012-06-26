@@ -149,14 +149,14 @@
       <div class="span12">
         <div class="form-actions text-center spacer-inner-15">
           <a href="<?= url_for('mycq_collectible_by_slug', array('sf_subject' => $collectible, 'cmd' => 'delete', 'encrypt' => '1')); ?>"
-             class="btn gray-button spacer-left pull-left spacer-left"
+             class="btn pull-left spacer-left"
              onclick="return confirm('Are you sure you want to delete this Collectible?');">
             <i class="icon icon-trash"></i>
             Delete Collectible
           </a>
           <button type="submit" formnovalidate class="btn btn-primary">Save Changes</button>
           <a href="<?= url_for('mycq_collectible_by_slug', $collectible) ?>"
-             class="btn gray-button spacer-left">
+             class="btn spacer-left">
             Cancel
           </a>
         </div>

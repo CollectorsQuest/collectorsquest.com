@@ -3,6 +3,91 @@ input:focus, textarea:focus {
 	box-shadow: none;
 }
 
+// Inputs, Buttons, Textareas, Selects
+input,
+textarea,
+select,
+.uneditable-input {
+	.border-radius(5px);
+	color: @blueDark;
+}
+
+.btn {
+	padding: 4px 14px;
+	font-size: 14px;
+	font-weight: bold;
+	color: @brown;
+	border-width: 2px;
+	border-style: solid;
+	border-color: rgba(206, 211, 216, 1) rgba(206, 211, 216, 1) rgba(206, 211, 216, 1);
+	.buttonBackground(#f3f0f0, #d1cfcd);
+	.border-radius(8px);
+	text-shadow: none;
+
+	&:hover {
+		text-decoration: none;
+		color: @brown;
+		border-color: #cfd3d7;
+		background-position: 0 0;
+		.transition(none);
+		.buttonBackground(#f3f1f1, #eae8e7);
+	}
+	.active,
+	&:active {
+		background-color: darken(@white, 10%);
+		background-color: darken(@white, 15%) e("\9");
+		background-image: none;
+		outline: 0;
+		.box-shadow(~"inset 0 4px 4px rgba(0,0,0,.3), 0 1px 2px rgba(0,0,0,.05)");
+	}
+}
+
+.btn-primary {
+	color: @white;
+	border-width: 2px;
+	border-style: solid;
+	border-color: rgba(10, 130, 194, 1);
+	.buttonBackground(#0f83c0, #0f72a6);
+	.box-shadow(~"inset 0 1px 0 rgba(26,137,194,1), 0 1px 2px rgba(0,0,0,.05)");
+
+	&:hover {
+		color: @white;
+		border-color: @red;
+		background-position: 0 0;
+		.transition(none);
+		.buttonBackground(#cc0201, #b2100e);
+		.box-shadow(~"inset 0 1px 0 rgba(206,16,14,1), 0 1px 2px rgba(0,0,0,.05)");
+	}
+	.active,
+	&:active{
+		outline: 0;
+		.box-shadow(~"inset 0 4px 4px rgba(0,0,0,0.3), 0 1px 2px rgba(0,0,0,.05)");
+	}
+}
+
+.btn-danger {
+	color: #fff;
+	border: 2px solid @red;
+	.buttonBackground(#CC0000, #B2100E);
+	&:hover {
+		color: @white;
+		border-color: @red !important;
+		background-position: 0 0;
+		.transition(none);
+		.buttonBackground(#A10504, #CC0000);
+	}
+}
+
+.btn-mini {
+	padding: 2px 6px;
+	font-size: @baseFontSize - 2px;
+	line-height: @baseLineHeight - 4px;
+	border-width: 1px;
+	.border-radius(5px);
+}
+
+//MyCQ SECTION
+
 a.btn-cq-style span {
 	.btn-cq-left;
 	display: block;
@@ -32,20 +117,23 @@ a.btn-cq-style:hover {
 	background-position: right -34px;
 }
 
+// CUSTOM STYLES
 
 .btn-lightblue {
+	color: @blue;
 	.buttonBackground(#ddecf5, #cddce3);
 	border: 1px solid #90c7e3;
-	color: @blue;
+	.border-radius(4px);
+	cursor: pointer;
 	&:hover {
+		text-decoration: none;
+		color: white;
+		border: 1px solid #60a6ca;
 		background-position: 0 0;
 		.transition(none);
 		.reset-filter();
 		#gradient > .vertical-three-colors(#278fc7, #0974ad, 50%, #278fc7);
 		*background-color: #278fc7;
-		color: white;
-		text-decoration: none;
-		border: 1px solid #60a6ca;
 	}
 	&:active,
 	&.active {
@@ -54,18 +142,19 @@ a.btn-cq-style:hover {
 }
 
 .btn-lightgray {
-	.buttonBackground(#fefefe, #dfdfdf);
-	border: 1px solid #90c7e3;
 	color: @blue;
+	border: 1px solid #90c7e3;
+	.buttonBackground(#fefefe, #dfdfdf);
+	.border-radius(4px);
 	&:hover {
+		text-decoration: none;
+		color: @blueDark;
+		border: 1px solid #cccccc;
 		background-position: 0 0;
 		.transition(none);
 		.reset-filter();
 		.buttonBackground(#f4f6f7, #dcdfe0);
 		*background-color: #f4f6f7;
-		color: @blueDark;
-		text-decoration: none;
-		border: 1px solid #cccccc;
 	}
 	&:active,
 	&.active {
@@ -134,77 +223,6 @@ button.btn-primary:hover i.add-to-card-button {
 }
 
 
-// Inputs, Buttons, Textareas, Selects
-input,
-textarea,
-select,
-.uneditable-input {
-	.border-radius(5px);
-	color: @blueDark;
-}
-
-.btn-primary {
-	padding: 5px 14px 5px;
-	font-size: 14px;
-	font-weight: bold;
-	color: @white;
-	border: 1px solid #0a82c2;
-	border-bottom-color: @blue;
-	.buttonBackground(@btnPrimaryBackground, @btnPrimaryBackgroundHighlight);
-	.border-radius(7px);
-	@shadow: inset 1 px 1 px 1 px rgba(255, 255, 255, .2), 0 1 px 2 px rgba(0, 0, 0, .05);
-	.box-shadow(@shadow);
-	text-shadow: none;
-	&:hover {
-		background-position: 0 0;
-		.transition(none);
-		.buttonBackground(@red, #b2100e);
-		color: @white;
-		text-decoration: none;
-		border: 1px solid @red;
-	}
-}
-
-.red-button {
-	padding: 5px 14px 5px;
-	font-size: 14px;
-	font-weight: bold;
-	color: @white;
-	border: 1px solid #9e0907;
-	border-bottom-color: #9e0907;
-	.buttonBackground(#CC0000, #B2100E);
-	.border-radius(7px);
-	@shadow: inset 1 px 1 px 1 px rgba(255, 255, 255, .2), 0 1 px 2 px rgba(0, 0, 0, .05);
-	.box-shadow(@shadow);
-	text-shadow: none;
-	&:hover {
-		text-decoration: none;
-		border: 1px solid @red;
-		background-position: 0 0;
-		.transition(none);
-		.buttonBackground(#A10504, #CC0000);
-		color: @white;
-	}
-}
-
-.gray-button {
-	padding: 5px 14px;
-	font-size: 14px;
-	color: #887777;
-	border: 1px solid #d2cccc;
-	.buttonBackground(#eeecec, #dbd9d9);
-	.border-radius(7px);
-	text-shadow: none;
-	&:hover {
-		background-position: 0 0;
-		.transition(none);
-		.buttonBackground(#e2dddd, #cecbcb);
-		color: #887777;
-		text-decoration: none;
-		border: 1px solid #d1cccc;
-	}
-}
-
 .btn-blue-simple {
 	margin: 0 3px;
 	padding: 4px 8px;
@@ -246,15 +264,16 @@ select,
 }
 
 .button-my-account .btn-large {
+	border-width: 1px;
 	.border-radius(7px)!important;
 }
 
 .append-left-gray {
 	position: relative;
 	display: inline-block;
+	float: left;
 	vertical-align: middle;
 	width: 125px;
-	float: left;
 	margin-left: 0;
 	margin-bottom: 0;
 	padding: 3px 8px 3px 8px;
@@ -262,26 +281,21 @@ select,
 	line-height: 18px;
 	text-align: center;
 	color: #887777;
-	border: 1px solid #b5b7bd !important;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #B5B7BD #BFBABA #B5B7BD #B5B7BD !important;
 	.buttonBackground(#eeecec, #dbd9d9);
 	.border-radius(6px 0 0 6px);
 	text-shadow: none;
 }
 
-.see-more-full {
+.see-more-full, .see-less-full {
 	width: 100%;
 	margin-top: 5px;
-}
-
-.see-less-full {
-	width: 100%;
-	margin-top: 7px;
-}
-
-.see-more-button {
-	width: 96%;
-	padding: 5px 2%;
-	margin-top: 5px;
+	font-weight: normal;
+	border-width: 1px;
+	border-color: #cfcdcd;
+	.border-radius(6px);
 }
 
 .see-more-under-image-set {

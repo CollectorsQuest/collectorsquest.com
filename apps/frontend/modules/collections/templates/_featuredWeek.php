@@ -37,7 +37,7 @@
     </div>
   </div>
 
-  <button class="btn btn-small gray-button see-more-full"
+  <button class="btn btn-small see-more-full"
           id="seemore-featured-week"
           data-target="#weeks-promo-box div.imageset">
     See more

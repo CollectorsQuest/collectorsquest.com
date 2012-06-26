@@ -67,7 +67,7 @@
 
   <?php if ($pager->haveToPaginate() && $pager->getPage() === 1): ?>
 
-    <button class="btn btn-small gray-button see-more-full" id="seemore-mycq-collectibles">
+    <button class="btn btn-small see-more-full" id="seemore-mycq-collectibles">
       See more
     </button>
 

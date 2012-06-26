@@ -39,7 +39,7 @@
       <button type="submit" class="btn btn-primary spacer-right-15">
         Create Collection
       </button>
-      <button type="reset" class="btn gray-button"
+      <button type="reset" class="btn"
               onClick="$(this).parents('.modal').find('.modal-body').dialog2('close')">
         Cancel
       </button>
@@ -49,7 +49,7 @@
       <button type="submit" class="btn btn-primary spacer-right-15">
         Next
       </button>
-      <button type="reset" class="btn gray-button"
+      <button type="reset" class="btn"
               onClick="$(this).parents('.modal').find('.modal-body').dialog2('close')">
         Cancel
       </button>

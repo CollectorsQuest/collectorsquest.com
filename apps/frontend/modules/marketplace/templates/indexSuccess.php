@@ -52,7 +52,7 @@
     <form action="<?= url_for('@search_collectibles_for_sale'); ?>" method="post" id="form-discover-collectibles">
       <div class="btn-group">
         <div class="append-left-gray">Sort By <strong id="sortByName">Most Popular</strong></div>
-        <a href="#" data-toggle="dropdown" class="btn gray-button dropdown-toggle">
+        <a href="#" data-toggle="dropdown" class="btn dropdown-toggle">
           <span class="caret arrow-up"></span><br><span class="caret arrow-down"></span>
         </a>
         <ul class="dropdown-menu">
@@ -63,7 +63,7 @@
           <li><a href="javascript:" class="sortBy" data-name="Over $250" data-sort="over-250">Sort by <strong>Over $250</strong></a></li>
         </ul>
       </div>
-      <input name="q" type="text" size="16" id="appendedPrependedInput" class="input-sort-by"><button type="submit" class="btn gray-button"><strong>Search</strong></button>
+      <input name="q" type="text" size="16" id="appendedPrependedInput" class="input-sort-by"><button type="submit" class="btn"><strong>Search</strong></button>
       <input type="hidden" name="s" id="sortByValue" value="most-popular">
       </form>
   </div>

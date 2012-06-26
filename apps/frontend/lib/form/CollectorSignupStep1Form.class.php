@@ -106,6 +106,8 @@ class CollectorSignupStep1Form extends BaseForm
       array('invalid' => 'The two passwords do not match, please enter them again!')
     ));
 
+    $this->setDefault('seller', 0);
+
     $this->widgetSchema->setNameFormat('signup_step1[%s]');
     $this->widgetSchema->setFormFormatterName('Bootstrap');
   }
