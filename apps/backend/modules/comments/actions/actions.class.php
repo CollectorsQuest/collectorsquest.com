@@ -23,8 +23,6 @@ class commentsActions extends autoCommentsActions
    */
   public function executeBlock(sfWebRequest $request)
   {
-    //    dd($request->getParameterHolder()->getAll(), $this->getRoute()->getObject());
-
     /* @var $comment Comment */
     $comment = $this->getRoute()->getObject();
 
