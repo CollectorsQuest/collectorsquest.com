@@ -256,6 +256,7 @@ $(document).ready(function()
     $vertical_carousel.rcarousel({
       orientation: 'vertical',
       visible: 3, step: 3,
+      margin: 14,
       height: 92, width: 92,
       auto: { enabled: true, interval: 15000 }
     });
