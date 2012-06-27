@@ -77,15 +77,23 @@
 
   <?php if (count($additional_multimedia) > 0): ?>
   <div class="span2">
-    <a class="zoom" href="<?php echo src_tag_collectible($collectible, '150x150'); ?>" title="<?php echo $collectible->getName(); ?>">
-      <?= image_tag_collectible($collectible, '150x150', array(
-        'height' => null, 'title' => $collectible->getName(), 'style' => 'margin-bottom: 12px;')); ?>
+    <a href="#" id="ui-carousel-prev" title="previous collectible" class="ui-carousel-navigation hidden left-arrow">
+      <i class="icon-chevron-left white"></i>
     </a>
-    <?php foreach ($additional_multimedia as $i => $m): ?>
-    <a class="zoom" href="<?php echo src_tag_multimedia($m, 'original'); ?>" title="<?php echo $m->getName(); ?>">
-      <?= image_tag_multimedia($m, '150x150', array('height' => null, 'title' => $m->getName(), 'style' => 'margin-bottom: 12px;')); ?>
+    <div id="vertical-carousel">
+      <a class="zoom" href="<?php echo src_tag_collectible($collectible, '150x150'); ?>" title="<?php echo $collectible->getName(); ?>">
+        <?= image_tag_collectible($collectible, '150x150', array(
+          'height' => null, 'title' => $collectible->getName(), 'style' => 'margin-bottom: 12px;')); ?>
+      </a>
+      <?php foreach ($additional_multimedia as $i => $m): ?>
+      <a class="zoom" href="<?php echo src_tag_multimedia($m, 'original'); ?>" title="<?php echo $m->getName(); ?>">
+        <?= image_tag_multimedia($m, '150x150', array('height' => null, 'title' => $m->getName(), 'style' => 'margin-bottom: 12px;')); ?>
+      </a>
+      <?php endforeach; ?>
+    </div>
+    <a href="#" id="ui-carousel-next" title="next collectible" class="ui-carousel-navigation hidden right-arrow">
+      <i class="icon-chevron-right white"></i>
     </a>
-    <?php endforeach; ?>
   </div>
   <?php endif; ?>
 </div>
@@ -260,6 +268,24 @@
 <script>
 $(document).ready(function()
 {
+  'use strict';
+
+  var $vertical_carousel = $('#vertical-carousel');
+
+  // enable vertical carousel only if we have more than 3 alternative views
+  if ($vertical_carousel.children().length > 3) {
+    // show navigation arrows
+    $vertical_carousel.siblings('.ui-carousel-navigation').removeClass('hidden');
+
+    // enable carousel
+    $vertical_carousel.rcarousel({
+      orientation: 'vertical',
+      visible: 3, step: 3,
+      auto: { enabled: true, interval: 15000 }
+    });
+  }
+
+
   $(".zoom").click(function(e)
   {
     e.stopPropagation();
