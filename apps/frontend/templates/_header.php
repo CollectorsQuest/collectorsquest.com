@@ -119,7 +119,8 @@
           &nbsp;or&nbsp;
           <?php
             echo link_to(
-              '&nbsp;', '@collector_signup',
+              // '&nbsp;', '@collector_signup',
+              '&nbsp;', '@misc_guide_to_collecting',
               array('class' => 'sing-up-now-btn sing-up-now-red', 'absolute' => true)
             );
           ?>

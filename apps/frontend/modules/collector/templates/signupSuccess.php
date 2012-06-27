@@ -38,15 +38,13 @@ cq_page_title(
     <fieldset class="rpxnow-login clearfix" id="rpx-login" style="text-align: center;">
       <iframe
         src="<?= $rpxnow['application_domain']; ?>openid/embed?token_url=<?= url_for('@rpx_token', true); ?>"
-        scrolling="no" frameBorder="no"
-        style="width:350px; height:217px;"
-        width="350" height="217">
+        scrolling="no" frameBorder="no" style="width:350px; height:217px;" width="350" height="217">
       </iframe>
 
       <br/>
       <hr/>
-      <div style="background: #fff; margin: auto; margin-top: -29px; width: 40px; text-align: center;">
-        <?= image_tag('favicon-gray.png', array('width' => 16, 'height' => 16)) ?>
+      <div style="background: #fff; margin: auto; margin-top: -29px; width: 50px; text-align: center; font-size: 150%;">
+        OR
       </div>
     </fieldset>
 
@@ -54,7 +52,7 @@ cq_page_title(
     <fieldset>
       <?= $form ?>
       <div class="form-actions">
-        <input type="submit" class="btn btn-primary" value="Signup" />
+        <input type="submit" class="btn btn-primary" value="Sign Up" />
       </div>
     </fieldset>
     <?= '</form>' ?>
