@@ -264,10 +264,7 @@ $(document).ready(function()
   }
 
 
-  $(".zoom").click(function(e)
-  {
-    e.stopPropagation();
-
+  $vertical_carousel.on('click', '.zoom', function(e) {
     var source = $(this).find('img');
     var target = $('#collectible_multimedia_primary');
     var path = $(source).attr('src').split(/\/150x150\//);
@@ -282,5 +279,6 @@ $(document).ready(function()
 
     return false;
   });
+
 });
 </script>
