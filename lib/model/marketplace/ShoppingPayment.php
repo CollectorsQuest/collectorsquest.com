@@ -27,10 +27,38 @@ class ShoppingPayment extends BaseShoppingPayment
     /**
      * Set all the money amounts
      */
-    $this->setAmountTotal($shopping_order->getTotalAmount());
-    $this->setAmountShippingFee($shopping_order->getShippingFeeAmount());
-    $this->setAmountCollectibles($shopping_order->getCollectiblesAmount());
+    $this->setAmountTotal($shopping_order->getTotalAmount('integer'));
+    $this->setAmountShippingFee($shopping_order->getShippingFeeAmount('integer'));
+    $this->setAmountCollectibles($shopping_order->getCollectiblesAmount('integer'));
     $this->setAmountTax(0);
+  }
+
+  public function getAmountCollectibles($return = 'float')
+  {
+    $amount = parent::getAmountCollectibles();
+
+    return ($return === 'integer') ? $amount : bcdiv($amount, 100, 2);
+  }
+
+  public function getAmountShippingFee($return = 'float')
+  {
+    $amount = parent::getAmountShippingFee();
+
+    return ($return === 'integer') ? $amount : bcdiv($amount, 100, 2);
+  }
+
+  public function getAmountTax($return = 'float')
+  {
+    $amount = parent::getAmountTax();
+
+    return ($return === 'integer') ? $amount : bcdiv($amount, 100, 2);
+  }
+
+  public function getAmountTotal($return = 'float')
+  {
+    $amount = parent::getAmountTotal();
+
+    return ($return === 'integer') ? $amount : bcdiv($amount, 100, 2);
   }
 
   /**

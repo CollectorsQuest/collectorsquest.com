@@ -324,9 +324,11 @@ class shoppingActions extends cqFrontendActions
     if (null === $shopping_order->getShippingFeeAmount())
     {
       // cannot be shipped to selected country, abort
-      $this->getUser()->setFlash('error', 'The seller does not ship to the destination country you\'ve selected.');
+      $this->getUser()->setFlash(
+        'error', 'The seller does not ship to the destination country you have selected.'
+      );
 
-      return $this->redirect('shopping_order_shipping', $shopping_order);
+      $this->redirect('shopping_order_shipping', $shopping_order);
     }
 
     switch (strtolower($request->getParameter('processor', 'paypal')))
@@ -413,7 +415,8 @@ class shoppingActions extends cqFrontendActions
             'ReceiverIdentifier' => array()
           );
 
-          // Pass data into class for processing with PayPal and load the response array into $PayPalResult
+          // Pass data into class for processing with PayPal
+          // and load the response array into $PayPalResult
           $result = $AdaptivePayments->SetPaymentOptions($PayPalRequest);
 
           if (!$AdaptivePayments->APICallSuccessful($result['Ack']))
@@ -488,6 +491,22 @@ class shoppingActions extends cqFrontendActions
 
     $this->setTemplate('orderPay', 'shopping');
     return sfView::ERROR;
+  }
+
+  public function executeOrder()
+  {
+    /** @var $shopping_order ShoppingOrder */
+    $shopping_order = $this->getRoute()->getObject();
+
+    /** @var $shopping_payment ShoppingPayment */
+    $shopping_payment = $shopping_order->getShoppingPaymentRelatedByShoppingPaymentId();
+
+    if ($shopping_payment->getStatus() == ShoppingPaymentPeer::STATUS_COMPLETED)
+    {
+      $this->redirect('collectible_by_slug', $shopping_order->getCollectible());
+    }
+
+    $this->redirect('/404');
   }
 
   public function executePaypal(sfWebRequest $request)

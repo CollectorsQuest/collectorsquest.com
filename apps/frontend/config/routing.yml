@@ -282,12 +282,14 @@ shopping_cart_empty:
 shopping_cart:
   url: /cart
   param: { module: shopping, action: cart }
+  requirements: { sf_method: [get, post] }
 
 shopping_order_paypal:
   url: /order/:uuid/paypal
   class: sfPropelRoute
   options: { model: ShoppingOrder, type: object }
   param: { module: shopping, action: paypal }
+  requirements: { sf_method: [get, post] }
 
 shopping_order_shipping:
   url: /order/:uuid/shipping
@@ -301,6 +303,7 @@ shopping_order_pay:
   class: sfPropelRoute
   options: { model: ShoppingOrder, type: object }
   param: { module: shopping, action: orderPay }
+  requirements: { sf_method: [get, post] }
 
 shopping_order_review:
   url: /order/:uuid/review
@@ -314,6 +317,11 @@ shopping_order_error:
   options: { model: ShoppingOrder, type: object }
   param: { module: shopping, action: orderError }
 
+shopping_order_redirect:
+  url: /order/:uuid
+  class: sfPropelRoute
+  options: { model: ShoppingOrder, type: object }
+  param: { module: shopping, action: order }
 
 ### MY CQ
 
