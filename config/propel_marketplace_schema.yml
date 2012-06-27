@@ -49,7 +49,7 @@ classes:
       shipping_country_iso3166:  { type: char, size: 2, required: true, foreignTable: geo_country, foreignReference: iso3166 }
       shipping_fee_amount:       { type: integer, required: false }
       # should always mirror shipping_reference.shipping_type
-      shipping_type:             { type: enum,    required: true, valueSet: "no_shipping, local_pickup_only, flat_rate, calculated_shipping" }
+      shipping_type:             { type: enum,    required: false, valueSet: "no_shipping, local_pickup_only, flat_rate, calculated_shipping" }
       is_active:                 { type: boolean, default: true }
 
     propel_behaviors:

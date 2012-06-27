@@ -52,7 +52,7 @@ class PropelMigration_1340647973
 
 
       echo "\n";
-      echo sprintf("The collector %s:%d as the following collectilbles for sale without credits: \n", $collector->getDisplayName(), $collector->getId());
+      echo sprintf("The collector %s:%d has the following collectilbles for sale without credits: \n", $collector->getDisplayName(), $collector->getId());
 
       foreach ($for_sale_without_credits as $collectible_for_sale)
       {

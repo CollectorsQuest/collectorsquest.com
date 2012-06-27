@@ -49,7 +49,7 @@ ALTER TABLE `shopping_cart_collectible` CHANGE `shipping_country_iso3166` `shipp
 
 ALTER TABLE `shopping_cart_collectible` CHANGE `shipping_fee_amount` `shipping_fee_amount` INTEGER;
 
-ALTER TABLE `shopping_cart_collectible` ADD `shipping_type` TINYINT NOT NULL AFTER `shipping_fee_amount`;
+ALTER TABLE `shopping_cart_collectible` ADD `shipping_type` TINYINT AFTER `shipping_fee_amount`;
 
 # This restores the fkey checks, after having unset them earlier
 SET FOREIGN_KEY_CHECKS = 1;
