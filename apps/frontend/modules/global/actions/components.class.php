@@ -92,7 +92,7 @@ class globalComponents extends cqFrontendComponents
   public function executeFooter()
   {
     $this->signup_form = new CollectorSignupFooterForm();
-    $this->login_form  = new CollectorLoginForm();
+    $this->login_form  = new CollectorLoginFooterForm();
 
     return sfView::SUCCESS;
   }

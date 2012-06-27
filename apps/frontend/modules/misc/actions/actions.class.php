@@ -19,7 +19,13 @@ class miscActions extends cqFrontendActions
     $this->redirect('@homepage');
   }
 
+  public function executeGuideToCollectingShortcut()
+  {
+    $this->redirect('@misc_guide_to_collecting');
+  }
+
   /**
+   * @param  sfWebRequest  $request
    * @return string
    */
   public function executeGuideToCollecting(sfWebRequest $request)
@@ -105,19 +111,14 @@ class miscActions extends cqFrontendActions
   /**
    * Action GuideDownload
    *
-   * @param sfWebRequest $request
-   *
    * @return string
    */
-  public function executeGuideDownload(sfWebRequest $request)
+  public function executeGuideDownload()
   {
     $this->redirectUnless($this->getUser()->isAuthenticated(), '@misc_guide_to_collecting');
 
     /* @var $collector Collector */
     $collector = $this->getUser()->getCollector();
-
-    /* @var $profile CollectorProfile */
-    $profile = $collector->getProfile();
 
     $email = CollectorEmailQuery::create()
         ->filterByCollector($collector)
@@ -194,25 +195,11 @@ class miscActions extends cqFrontendActions
   }
 
   /**
-   * Action ValidationEmailSent
-   *
-   * @param sfWebRequest $request
-   *
-   * @return string
-   */
-  public function executeValidationEmailSent(sfWebRequest $request)
-  {
-    return sfView::SUCCESS;
-  }
-
-  /**
    * Action GuideVerifyEmail
    *
-   * @param sfWebRequest $request
-   *
    * @return string
    */
-  public function executeGuideVerifyEmail(sfWebRequest $request)
+  public function executeGuideVerifyEmail()
   {
     /* @var $collectorEmail CollectorEmail */
     $collectorEmail = $this->getRoute()->getObject();

@@ -586,6 +586,10 @@ feedback:
 
 ### MISC
 
+misc_guide_to_collecting_shortcut:
+  url:   /guide
+  param: { module: misc, action: guideToCollectingShortcut }
+
 misc_guide_to_collecting:
   url:   /the-essential-guide-to-collecting
   param: { module: misc, action: guideToCollecting }

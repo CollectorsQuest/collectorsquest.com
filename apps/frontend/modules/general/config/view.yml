@@ -18,6 +18,7 @@ indexSuccess:
 loginSuccess:
   components:
     sidebar_300: [global, sidebar300]
+    footer: []
 
 recoverPasswordSuccess:
   components:
