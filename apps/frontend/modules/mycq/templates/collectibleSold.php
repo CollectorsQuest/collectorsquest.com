@@ -9,7 +9,7 @@
   <div class="span8">
     <?php
       $link = link_to(
-        'Go to Store &raquo;', '@mycq_marketplace',
+        'Go to Market &raquo;', '@mycq_marketplace',
         array('class' => 'text-v-middle link-align')
       );
 
@@ -48,21 +48,21 @@
         <ul class="thumbnails">
           <li class="span12 main-thumb">
             <div class="thumbnail">
-              <?php
+            <?php
               echo image_tag_multimedia(
                 $collectible->getPrimaryImage(), '300x0', array('width' => 294)
               );
-              ?>
+            ?>
             </div>
           </li>
           <?php foreach ($multimedia as $m): ?>
           <li class="span4 square-thumb ui-state-full">
             <div class="thumbnail drop-zone" data-is-primary="0">
-              <?php
+            <?php
               echo image_tag_multimedia(
                 $m, '150x150', array('width' => 92, 'height' => 92)
               );
-              ?>
+            ?>
             </div>
           </li>
           <?php endforeach; ?>

@@ -3,6 +3,24 @@
 class Seller extends Collector
 {
 
+  public function getBusinessName()
+  {
+    return $this->getSellerSettingsPaypalBusinessName();
+  }
+
+  public function getFullName()
+  {
+    return implode(' ', array(
+      $this->getSellerSettingsPaypalFirstName(),
+      $this->getSellerSettingsPaypalLastName()
+    ));
+  }
+
+  public function getPayPalEmail()
+  {
+    return $this->getSellerSettingsPaypalEmail();
+  }
+
   /**
    * Check if current user has credits left
    *
