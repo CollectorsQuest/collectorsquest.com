@@ -40,7 +40,7 @@ class SimpleShippingCollectorCollectibleForCountryForm extends ShippingCollector
   {
     $this->widgetSchema['flat_rate'] = new sfWidgetFormInput();
     $this->validatorSchema['flat_rate'] = new cqValidatorPrice(array(
-        'required' => false,
+        'required' => false, 'min' => 0.01
     ));
 
     if ($disabled)
