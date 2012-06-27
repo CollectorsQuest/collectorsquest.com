@@ -51,24 +51,25 @@
 
   <?php if (count($additional_multimedia) > 0): ?>
   <div class="span2">
-    <div id="vertical-carousel">
-      <a class="zoom" href="<?php echo src_tag_collectible($collectible, '150x150'); ?>" title="<?php echo $collectible->getName(); ?>">
-        <?= image_tag_collectible($collectible, '150x150', array(
-          'height' => null, 'title' => $collectible->getName(), 'style' => 'margin-bottom: 12px;')); ?>
+    <div class="vertical-carousel-wrapper">
+      <div id="vertical-carousel">
+        <a class="zoom" href="<?php echo src_tag_collectible($collectible, '150x150'); ?>" title="<?php echo $collectible->getName(); ?>">
+          <?= image_tag_collectible($collectible, '150x150', array(
+            'height' => null, 'title' => $collectible->getName(), 'style' => 'margin-bottom: 12px;')); ?>
+        </a>
+        <?php foreach ($additional_multimedia as $i => $m): ?>
+        <a class="zoom" href="<?php echo src_tag_multimedia($m, 'original'); ?>" title="<?php echo $m->getName(); ?>">
+          <?= image_tag_multimedia($m, '150x150', array('height' => null, 'title' => $m->getName(), 'style' => 'margin-bottom: 12px;')); ?>
+        </a>
+        <?php endforeach; ?>
+      </div>
+      <a href="#" id="ui-carousel-prev" title="previous collectible" class="ui-carousel-navigation hidden left-arrow">
+        <i class="icon-chevron-up white"></i>
       </a>
-      <?php foreach ($additional_multimedia as $i => $m): ?>
-      <a class="zoom" href="<?php echo src_tag_multimedia($m, 'original'); ?>" title="<?php echo $m->getName(); ?>">
-        <?= image_tag_multimedia($m, '150x150', array('height' => null, 'title' => $m->getName(), 'style' => 'margin-bottom: 12px;')); ?>
+      <a href="#" id="ui-carousel-next" title="next collectible" class="ui-carousel-navigation hidden right-arrow">
+        <i class="icon-chevron-down white"></i>
       </a>
-      <?php endforeach; ?>
     </div>
-    <a href="#" id="ui-carousel-prev" title="previous collectible" class="ui-carousel-navigation hidden left-arrow">
-      <i class="icon-chevron-up white"></i>
-    </a>
-    <a href="#" id="ui-carousel-next" title="next collectible" class="ui-carousel-navigation hidden right-arrow">
-      <i class="icon-chevron-down white"></i>
-    </a>
-
   </div>
   <?php endif; ?>
 </div>
