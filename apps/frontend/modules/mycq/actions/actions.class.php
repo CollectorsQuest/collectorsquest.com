@@ -271,14 +271,35 @@ class mycqActions extends cqFrontendActions
       switch ($request->getParameter('cmd'))
       {
         case 'delete':
-          $collection_name = $collection->getName();
-          $collection->delete();
+          $name = $collection->getName();
+          $url = '@mycq_collections';
+          try
+          {
+            $collection->delete();
 
-          $this->getUser()->setFlash(
-            'success', sprintf('Your collection "%s" was deleted!', $collection_name)
-          );
+            $this->getUser()->setFlash(
+              'success', sprintf('Your collection "%s" was deleted!', $name)
+            );
+          }
+          catch (PropelException $e)
+          {
+            if (stripos($e->getMessage(), 'a foreign key constraint fails'))
+            {
+              $this->getUser()->setFlash(
+                'error', sprintf(
+                  'Collection "%s" cannot be deleted.
+                   Please, try to archive it instead.', $name)
+              );
 
-          return $this->redirect('@mycq_collections');
+              $url = $this->generateUrl(
+                'mycq_collection_by_slug', array('sf_subject' => $collection)
+              );
+            }
+          }
+
+          // Redirect appropriately to avoid refreshes to trigger the same action
+          $this->redirect($url);
+
           break;
       }
     }
@@ -392,7 +413,10 @@ class mycqActions extends cqFrontendActions
       {
         if ($this->buyer instanceof Collector)
         {
-          $subject = 'Regarding order #%s ()'. $this->shopping_order->getUuid();
+          $subject = sprintf(
+            'Regarding order %s (%s)',
+            $this->shopping_order->getUuid(), $collectible->getName()
+          );
 
           $this->pm_form = new ComposeAbridgedPrivateMessageForm(
             $this->seller, $this->buyer, $subject
@@ -424,13 +448,34 @@ class mycqActions extends cqFrontendActions
 
           $name = $collectible->getName();
 
-          // Delete the Collectible
-          $collectible->delete();
-          $this->getUser()->setFlash(
-            'success', sprintf('Collectible "%s" was deleted!', $name)
+          $url = $this->generateUrl(
+            'mycq_collection_by_slug', array('sf_subject' => $collection)
           );
 
-          $url = $this->generateUrl('mycq_collection_by_slug', array('sf_subject' => $collection));
+          try
+          {
+            // Delete the Collectible
+            $collectible->delete();
+            $this->getUser()->setFlash(
+              'success', sprintf('Collectible "%s" was deleted!', $name)
+            );
+          }
+          catch (PropelException $e)
+          {
+            if (stripos($e->getMessage(), 'a foreign key constraint fails'))
+            {
+              $this->getUser()->setFlash(
+                'error', sprintf(
+                  'Collectible "%s" cannot be deleted.
+                   Please, try to archive it instead.', $name)
+              );
+
+              $url = $this->generateUrl(
+                'mycq_collectible_by_slug', array('sf_subject' => $collectible)
+              );
+            }
+          }
+
           $this->redirect($url);
 
           break;
