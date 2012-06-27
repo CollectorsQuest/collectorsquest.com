@@ -28,36 +28,6 @@
   cq_page_title($collectible->getName(), null, $options);
 ?>
 
-<?/**
-<div class="row-fluid spacer-top-15">
-  <div class="span10 text-center">
-    <a href="#" target="_blank" id="collectible_multimedia_primary">
-      <img title="iMac G4 circa 2002" src="http://placehold.it/620x480" class="magnify">
-    </a>
-  </div>
-  <div class="span2">
-    <div class="carousel-v-main">
-      <a id="ui-carousel-v-next" class="step-up" title="next" href="#">
-        <i class="icon-chevron-up white"></i>
-      </a>
-      <a id="ui-carousel-v-prev" class="step-down" title="previous" href="#">
-        <i class="icon-chevron-down white"></i>
-      </a>
-
-      <a title="" href="#" class="zoom collectible">
-        <img src="http://placehold.it/92x92" style="" alt="" title="">
-      </a>
-      <a title="" href="#" class="zoom collectible">
-        <img src="http://placehold.it/92x92" alt="" title="">
-      </a>
-      <a title="" href="#" class="zoom collectible">
-        <img src="http://placehold.it/92x92" alt="" title="">
-      </a>
-    </div>
-  </div>
-</div>
-*/?>
-
 <div class="row-fluid spacer-top-15">
   <?php
     $span = 10;
@@ -81,9 +51,6 @@
 
   <?php if (count($additional_multimedia) > 0): ?>
   <div class="span2">
-    <a href="#" id="ui-carousel-prev" title="previous collectible" class="ui-carousel-navigation hidden left-arrow">
-      <i class="icon-chevron-left white"></i>
-    </a>
     <div id="vertical-carousel">
       <a class="zoom" href="<?php echo src_tag_collectible($collectible, '150x150'); ?>" title="<?php echo $collectible->getName(); ?>">
         <?= image_tag_collectible($collectible, '150x150', array(
@@ -95,9 +62,13 @@
       </a>
       <?php endforeach; ?>
     </div>
-    <a href="#" id="ui-carousel-next" title="next collectible" class="ui-carousel-navigation hidden right-arrow">
-      <i class="icon-chevron-right white"></i>
+    <a href="#" id="ui-carousel-prev" title="previous collectible" class="ui-carousel-navigation hidden left-arrow">
+      <i class="icon-chevron-up white"></i>
     </a>
+    <a href="#" id="ui-carousel-next" title="next collectible" class="ui-carousel-navigation hidden right-arrow">
+      <i class="icon-chevron-down white"></i>
+    </a>
+
   </div>
   <?php endif; ?>
 </div>
@@ -272,7 +243,7 @@
 <script>
 $(document).ready(function()
 {
-  'use strict';
+ 'use strict';
 
   var $vertical_carousel = $('#vertical-carousel');
 
@@ -285,6 +256,7 @@ $(document).ready(function()
     $vertical_carousel.rcarousel({
       orientation: 'vertical',
       visible: 3, step: 3,
+      height: 92, width: 92,
       auto: { enabled: true, interval: 15000 }
     });
   }
