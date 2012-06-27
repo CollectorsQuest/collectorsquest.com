@@ -1,4 +1,8 @@
 <?php
+
+  use_javascript('jquery/ui.js');
+  use_javascript('jquery/rcarousel.js');
+
 /**
  * @var  $sf_user  cqFrontendUser
  *
