@@ -11,6 +11,8 @@ security:
   class: cqSecurityFilter
 seo:
   class: iceSeoFilter
+history:
+  class: iceRequestHistoryFilter
 
 cache:     ~
 execution: ~

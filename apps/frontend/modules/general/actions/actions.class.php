@@ -219,7 +219,14 @@ class generalActions extends cqFrontendActions
       {
         $this->getUser()->Authenticate(true, $collector, true);
 
-        return $this->redirect($new_collector ? '@mycq_profile' : '@collector_me');
+        if ($new_collector)
+        {
+          return $this->redirect('@mycq_profile');
+        }
+        else
+        {
+          return $this->redirect(IceRequestHistory::getCurrentUri() ?: '@collector_me');
+        }
       }
     }
 
