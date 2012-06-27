@@ -131,12 +131,12 @@ class generalActions extends cqFrontendActions
       $this->getUser()->Authenticate(true, $collector, $remember = false);
 
       // redirect to last page or homepage after login
-      return $this->redirect($request->getParameter('r', '@collector_me'));
+      $this->redirect($request->getParameter('r', '@collector_me'));
     }
     // redirect to homepage if already logged in
     else if ($this->getUser()->isAuthenticated())
     {
-      return $this->redirect($request->getParameter('r', '@collector_me'));
+      $this->redirect($request->getParameter('r', '@collector_me'));
     }
 
     $form = new CollectorLoginForm();
@@ -164,7 +164,7 @@ class generalActions extends cqFrontendActions
           $goto = '@collector_me';
         }
 
-        return $this->redirect($goto);
+        $this->redirect($goto);
       }
     }
     else

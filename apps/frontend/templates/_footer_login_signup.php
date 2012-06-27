@@ -16,7 +16,12 @@ $display = $sf_request->getParameter('display', 'signup');
     <?= $signup_form->renderUsing('BootstrapWithRowFluid'); ?>
     <div class="row-fluid spacer-7">
       <div class="span9 spacer-inner-top">
-        <?php include_partial('global/footer_signup_external_buttons'); ?>
+        <?php
+          include_partial(
+            'global/footer_signup_external_buttons',
+            array('action' => 'signup')
+          );
+        ?>
       </div>
       <div class="span3">
         <button type="submit" class="btn btn-primary pull-right">Submit</button>
@@ -35,10 +40,35 @@ $display = $sf_request->getParameter('display', 'signup');
   <h2 class="Chivo webfont">Log In</h2>
 
   <form action="<?= url_for($login_action, true); ?>" class="form-horizontal form-footer" method="post">
-    <?= $login_form->renderUsing('BootstrapWithRowFluid') ?>
+    <?php $login_form->renderHiddenFields(); ?>
+
+    <?= $login_form['username']->renderRow(); ?>
+    <?= $login_form['password']->renderRow(); ?>
+
+    <div class="row-fluid spacer-7 ">
+      <div class="span4 v-center-container-label">
+        <span class="v-center">
+          <label class=" control-label" for="login_remember">&nbsp;</label>
+        </span>
+      </div>
+      <div class="span8 ">
+        <?php
+          echo $login_form['remember']->render(
+            array('style' => 'float: left; width: 20px; margin-top: 3px;')
+          );
+        ?>
+        <label for="login_remember">Remember me for two weeks</label>
+      </div>
+    </div>
+
     <div class="row-fluid spacer-7">
       <div class="span8 spacer-inner-top">
-        <?php include_partial('global/footer_signup_external_buttons'); ?>
+        <?php
+          include_partial(
+            'global/footer_signup_external_buttons',
+            array('action' => 'login')
+          );
+        ?>
       </div>
       <div class="span4">
         <button type="submit" class="btn btn-primary pull-right">Log&nbsp;In</button>
@@ -54,7 +84,7 @@ $display = $sf_request->getParameter('display', 'signup');
   <div id="footer-control-signup" style="display: none">
     <span class="pull-right">
       Don't have an account yet?
-      <?= link_to('Sign up', '@collector_signup', array('id' => 'footer-control-signup-button')); ?>
+      <?= link_to('Sign up now!', '@collector_signup', array('id' => 'footer-control-signup-button')); ?>
     </span>
   </div>
 </div> <!-- #footer-form-login -->

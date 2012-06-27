@@ -295,6 +295,8 @@ class collectorActions extends cqFrontendActions
     }
     /* */
 
+    $this->rpxnow = sfConfig::get('app_credentials_rpxnow');
+
     return sfView::SUCCESS;
   }
 

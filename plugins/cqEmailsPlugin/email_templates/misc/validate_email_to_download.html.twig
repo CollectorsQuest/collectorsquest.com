@@ -5,7 +5,13 @@
     Hello again, {{ collector.displayName }}!
   </p>
   <p>
-    Your can download the Essential Guide to Collecting via the link below:<br/><br/>
+    Thanks for joining us at Collectors Quest.
+    Here's your link to download your Essential Guide to Collecting.
+    <br/><br/>
+
     {{ url_for('misc_guide_verify_email', { hash: collector_email.hash }, { absolute: true}) }}.
+    <br/><br/>
+
+    We hope to see your collections soon! Happy hunting!
   </p>
 {% endblock %}
