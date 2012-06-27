@@ -24,7 +24,7 @@ $display = $sf_request->getParameter('display', 'signup');
         ?>
       </div>
       <div class="span3">
-        <button type="submit" class="btn btn-primary pull-right">Submit</button>
+        <button type="submit" class="btn btn-primary pull-right">Sign Up</button>
       </div>
     </div>
   </form>

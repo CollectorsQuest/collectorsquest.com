@@ -49,15 +49,15 @@
         <?php
           if (!$sf_user->isAuthenticated())
           {
-            include_partial(
-              'global/footer_login_signup',
-              array('login_form' => $login_form, 'signup_form' => $signup_form)
-            );
-
-//            echo link_to(
-//              image_tag('banners/2012-06-24_CQGuide_300x250_footer.png'),
-//              '@misc_guide_to_collecting'
+//            include_partial(
+//              'global/footer_login_signup',
+//              array('login_form' => $login_form, 'signup_form' => $signup_form)
 //            );
+
+            echo link_to(
+              image_tag('banners/2012-06-24_CQGuide_300x250_footer.png'),
+              '@misc_guide_to_collecting'
+            );
           }
           else
           {
