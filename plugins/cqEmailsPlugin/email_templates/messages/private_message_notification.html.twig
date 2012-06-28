@@ -7,7 +7,8 @@
 </p>
 
 <p>
-  {{ oSender.displayName }} has sent you a message on Collectors Quest :
+  {{ link_to_collector(oSender, 'text', { absolute: true }) }}
+  has sent you a message on Collectors Quest:
 </p>
 
 <p>
@@ -15,10 +16,11 @@
   <br /><br />
   <em>{{ oMessage.body|raw }}</em>
 </p>
-<br styl="clear: both" />
+<br style="clear: both;" />
 
 <p>
-  {{ link_to('Click here', sThreadUrl, { absolute: true }) }} to respond to {{ oSender.displayName }}!
+  {{ link_to('Click here', sThreadUrl, { absolute: true }) }} to respond to
+  {{ link_to_collector(oSender, 'text', { absolute: true }) }}!
 </p>
 
 {% endblock %}
