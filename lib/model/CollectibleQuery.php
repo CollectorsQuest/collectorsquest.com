@@ -6,9 +6,9 @@ class CollectibleQuery extends BaseCollectibleQuery
 {
   public function filterByCollectionId($id, $comparison = null)
   {
-    $this->addUsingAlias(CollectionCollectiblePeer::COLLECTION_ID, $id, $comparison);
-
-    return $this;
+    return $this
+      ->joinCollectionCollectible()
+      ->addUsingAlias(CollectionCollectiblePeer::COLLECTION_ID, $id, $comparison);
   }
 
   /**
