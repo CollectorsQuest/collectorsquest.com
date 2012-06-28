@@ -1,7 +1,7 @@
 === Facebook ===
 Contributors: Facebook, automattic, mattwkelly, niallkennedy, jamesgpearce, ravi.grover, danielbachhuber, gigawats, eosgood, Otto42
-Tags: Facebook, comments, social, friends, like, like button, social plugins, facebook platform
-Requires at least: 3.1.1
+Tags: Facebook, comments, social, friends, like, like button, social plugins, facebook platform, page, posts, sidebar, plugin, open graph
+Requires at least: 3.2.1
 Tested up to: 3.4
 Stable tag: trunk
 
@@ -38,7 +38,7 @@ Facebook Insights (http://www.facebook.com/insights) integration included. This 
 == Installation ==
 
 1. Install Facebook for WordPress either via the WordPress.org plugin directory, or by uploading the files to your server (in the `/wp-content/plugins/` directory).
-1. After activating the plugin, you will be asked to set up your Facebook app (via http://developers.facebook.com/apps), with step-by-step instructions.
+1. After activating the plugin, you will be asked to set up your Facebook app (via http://developers.facebook.com/apps ), with step-by-step instructions.
 1. That's it. You're ready to go!
 
 == Screenshots ==
@@ -54,5 +54,31 @@ Facebook Insights (http://www.facebook.com/insights) integration included. This 
 
 == Changelog ==
 
+= 1.0.1 =
+
+* Comment count bug fix.
+* Comments width bug fix.
+* Like, send, subscribe: fixed incorrect hrefs for homepage buttons.
+* Added like/send button to settings page (spread the word!).
+* Changed minimum and maximum supported WP versions.
+* Security fix in the admin control panel.
+* Fixed issue with publishing a post/page if there isn't a thumbnail defined.
+* Changed auto-completes to play nice with UTF-8.
+* Moved extended access token function to Facebook_WP class.
+* Added debug link on settings page that outputs debug information.
+* Lots of i18n fixes.
+* Added easier debugging of Facebook API errors.
+* Added better logged in state detection in admin UI, depending on if the user has authenticated and given certain permissions.
+* Fixed publishing a post if no friends or pages mentioned.
+* Theme fixes to prevent like and mentions bar from showing up in the wrong place.
+* Fixed configure link on plugins page.
+* Fixes for bugs happening on 404 page.
+* Bug fix for if a WP admin removes the app via facebook.com.
+* Added status messages for what was/wasn't posted to Facebook as part of a Post/Page being taken live.
+* Added functionality to disable publishing to a page if access token fails.
+* Clearer error messages for certain scenarios (like inability to post to a friend of page's Timeline because of privacy settings.
+* Fixed conflicts with Power Editor and extraneous text being added to og:description.  Thanks to Angelo Mandato (http://wordpress.org/support/topic/plugin-facebook-plugin-conflicts-with-powerpress?replies=16)
+
 = 1.0 =
+
 * Launch.
