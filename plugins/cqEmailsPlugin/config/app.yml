@@ -35,6 +35,9 @@ all:
       private_message_notification:
         subject: "You've Received a Message on Collectors Quest!"
         required_params: [oSender, oReceiver, oMessage, sThreadUrl]
+      relay_message_to_unregistered_user:
+        subject: "You have a new message from {{ oSender.displayName }} on Collectors Quest!"
+        required_params: [oSender, sMessageBody ]
 
     Comments:
       comment_response_notification:

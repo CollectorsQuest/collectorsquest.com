@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Description of ComposePrivateMessageForm
+ * ComposePrivateMessageForm does what its name says :)
  */
 class ComposePrivateMessageForm extends PrivateMessageForm
 {
@@ -74,12 +74,60 @@ class ComposePrivateMessageForm extends PrivateMessageForm
       ));
     }
 
-    $this->validatorSchema['receiver'] = new cqValidatorCollectorByName(array(
+    $this->validatorSchema['receiver'] = new sfValidatorCallback(array(
+        'required' => true,
+        'callback' => array($this, 'validateReceiverField'),
+    ));
+  }
+
+  /**
+   * Validate the receiver field. Several values are permitted:
+   *
+   * 1) email address of a registered Collector, the model obeject is returned
+   * 2) email address of a non-registered user, the plain email is returned
+   * 3) a collector username, the Collector object is retuned
+   * 4) a collector display name, the Colletor object is returned
+   *
+   * @param     sfValidatorCallback $validator
+   * @param     string $value
+   * @param     array $arguments
+   * @return    mixed Either a valid email for a user not registered
+   *                  at the site or a Collector object
+   *
+   * @throws    sfValidatorError
+   */
+  public function validateReceiverField(
+    sfValidatorBase $validator,
+    $value,
+    $arguments = array()
+  ) {
+    // first we check if the value is a valid email address
+    try {
+      $v = new sfValidatorEmail();
+      $value = $v->clean($value);
+      $is_email = true;
+    } catch (sfValidatorError $e) {
+      $is_email = false;
+    }
+
+    // if the value is a valid email
+    if ($is_email)
+    {
+      // check if we have a user with that email, if yes return it,
+      // if no return the plain email
+      return CollectorQuery::create()->findOneByEmail($value)
+        ?: $value;
+    }
+
+    // else validate with cqValidatorCollectorByName
+    $v = new cqValidatorCollectorByName(array(
         'invalid_ids' => array($this->sender_collector->getId()),
         'return_object' => true,
       ), array(
         'collector_invalid_id' => 'You cannot send messages to yourself.'
     ));
+
+    return $v->clean($value);
   }
 
   protected function setupSenderField()

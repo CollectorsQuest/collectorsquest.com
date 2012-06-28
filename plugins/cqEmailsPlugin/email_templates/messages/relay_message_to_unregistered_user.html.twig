@@ -3,22 +3,19 @@
 {% block content %}
 
 <p style="margin-bottom: 10px; font-weight: bold;">
-  Hey, {{ oReceiver.displayName }}!
-</p>
-
-<p>
-  {{ oSender.displayName }} has sent you a message on Collectors Quest :
+  Hello from Collectorsquest.com!
 </p>
 
 <p>
   {{ link_to_collector(oSender, 'image', { style: "float: right"}) }}
+  {{ oSender.displayName }} has sent you a message through Collectors Quest :
   <br /><br />
-  <em>{{ oMessage.body|raw }}</em>
+  <em>{{ sMessageBody|raw }}</em>
 </p>
 <br styl="clear: both" />
 
 <p>
-  {{ link_to('Click here', sThreadUrl, { absolute: true }) }} to respond to {{ oSender.displayName }}!
+  <a href="mailto:{{ oSender.email }}">Write back to {{ oSender.displayName }}!</a>
 </p>
 
 {% endblock %}
