@@ -13,23 +13,25 @@ all:
       replyTo: { "info@collectorsquest.com": "CollectorsQuest.com" }
 
     Collector:
+      welcome_verify_email:
+        subject: "Please confirm your email at CollectorsQuest.com"
+      welcome_to_cq:
+        subject: "Welcome to Collectors Quest!"
       password_reminder:
         subject: "CollectorsQuest.com Password Reset"
         required_params: [collector, password]
       verify_new_email:
         subject: "You have changed your email at CollectorsQuest.com"
         required_params: [collector, collector_email]
+
+    Seller:
       welcome_verify_email:
         subject: "Please confirm your email at CollectorsQuest.com"
       welcome_to_cq:
-        subject: "Welcome to Collectors Quest!"
-
-    Seller:
+        subject: "Thanks for becoming a seller on Collectors Quest!"
       package_confirmation:
         subject: "Thanks for purchasing credits on Collectors Quest!"
         required_params: [collector, package_transaction]
-      welcome_to_cq:
-        subject: "Thanks for becoming a seller on Collectors Quest!"
 
     Messages:
       private_message_notification:
