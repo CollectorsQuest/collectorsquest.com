@@ -6,12 +6,7 @@
 
 <?php if ($sf_params->get('gcf')): ?>
 <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
-<script>
-  CFInstall.check({
-    mode: "overlay",
-    destination: "http://www.waikiki.com"
-  });
-</script>
+<script> CFInstall.check({ mode: "overlay" }); </script>
 <?php endif; ?>
 
 <?php
@@ -46,11 +41,3 @@
 <script>
   Modernizr.load('//s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4fa2c6240b775d05');
 </script>
-
-<?php
-  // Include analytics code only in production
-  if (sfConfig::get('sf_environment') === 'prod')
-  {
-    include_partial('global/js/analytics');
-  }
-?>
