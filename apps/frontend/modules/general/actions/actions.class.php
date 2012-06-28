@@ -44,9 +44,19 @@ class generalActions extends cqFrontendActions
     /** @var $q wpPostQuery */
     $q = wpPostQuery::create()
        ->filterByPostType('homepage_showcase')
-       ->filterByPostStatus('publish')
-       ->addAscendingOrderByColumn('RAND()')
        ->limit(1);
+
+    // Limit to only published in production
+    if (sfConfig::get('sf_environment') === 'prod')
+    {
+      $q
+        ->filterByPostStatus('publish')
+        ->addAscendingOrderByColumn('RAND()');
+    }
+    else
+    {
+      $q->orderByPostDate(Criteria::DESC);
+    }
 
     /** @var $themes wpPost[] */
     $themes = $q->find();
@@ -99,23 +109,28 @@ class generalActions extends cqFrontendActions
       }
       if ($collectible_ids)
       {
-        shuffle($collectible_ids);
+        if (IceGateKeeper::locked('independence_day')) {
+          shuffle($collectible_ids);
+        }
 
         /**
-         * Get 22 Collectibles
+         * Get the Collectibles
          *
          * @var $q CollectibleQuery
          */
         $q = CollectibleQuery::create()
            ->filterById($collectible_ids, Criteria::IN)
-           ->limit(22)
            ->addAscendingOrderByColumn('FIELD(id, '. implode(',', $collectible_ids) .')');
+
+        IceGateKeeper::open('independence_day') ?
+          $q->limit(47) : $q->limit(22);
 
         $this->collectibles = $q->find();
       }
     }
 
-    return sfView::SUCCESS;
+    return IceGateKeeper::open('independence_day') ?
+      'IndependenceDay' : sfView::SUCCESS;
   }
 
   public function executeDefault()
