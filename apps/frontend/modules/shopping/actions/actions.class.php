@@ -473,6 +473,7 @@ class shoppingActions extends cqFrontendActions
     $this->shopping_order   = $shopping_order;
     $this->shopping_payment = $shopping_payment;
 
+    $this->collectible = $shopping_order->getCollectible();
     $this->seller = $shopping_order->getSeller();
 
     return sfView::SUCCESS;

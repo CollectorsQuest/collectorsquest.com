@@ -55,17 +55,6 @@
               ?>
             </div>
           </li>
-          <?php foreach ($multimedia as $m): ?>
-          <li class="span4 square-thumb ui-state-full">
-            <div class="thumbnail drop-zone" data-is-primary="0">
-              <?php
-              echo image_tag_multimedia(
-                $m, '150x150', array('width' => 92, 'height' => 92)
-              );
-              ?>
-            </div>
-          </li>
-          <?php endforeach; ?>
         </ul>
       </div>
     </div>

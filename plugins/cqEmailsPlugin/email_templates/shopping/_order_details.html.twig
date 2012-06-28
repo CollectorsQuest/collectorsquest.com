@@ -1,0 +1,66 @@
+<table>
+  <tr>
+    <td style="width: 100px;">
+      {{ image_tag_multimedia(oCollectible.getPrimaryImage(), '75x75') }}
+    </td>
+    <td style="vertical-align: top;">
+      <table class="table">
+        <tr>
+          <td style="width: 25%;">Name:</td>
+          <td>{{ oCollectible.getName() }}</td>
+        </tr>
+        <tr>
+          <td style="vertical-align: top;" valign="top">Description:</td>
+          <td>{{ oCollectible.getDescription() }}</td>
+        </tr>
+        <tr>
+          <td>Price:</td>
+          <td>${{ oShoppingOrder.getCollectiblesAmount('float') | number_format(2, '.', ',') }}</td>
+        </tr>
+        <tr>
+          <td>Condition:</td>
+          <td>{{ oCollectible.getCollectibleForSale().getCondition() }}</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+<br/>
+<table class="table">
+  <tr>
+    <td>Order #:</td>
+    <td>{{ link_to(oShoppingOrder.getUuid(), 'mycq_collectible_by_slug', oCollectible, {absolute: true}) }}</td>
+  </tr>
+  <tr>
+    <td style="width: 38%;">Status:</td>
+    <td>
+      {{ oShoppingOrder.getShoppingPaymentRelatedByShoppingPaymentId().getStatus() | upper }}
+    </td>
+  </tr>
+  <tr>
+    <td>Date:</td>
+    <td>{{ oShoppingOrder.getCreatedAt() }}</td>
+  </tr>
+  <tr>
+    <td colspan="2">&nbsp;</td>
+  </tr>
+  <tr>
+    <td style="vertical-align: top;" valign="top">Shipping Address:</td>
+    <td>
+      {{ oShoppingOrder.getShippingAddressLine1() }}<br/>
+      {{ oShoppingOrder.getShippingCity() }},
+      {{ oShoppingOrder.getShippingStateRegion() }}
+      {{ oShoppingOrder.getShippingZipPostcode() }}
+      <p style="font-weight: bold;">
+        {{ oShoppingOrder.getShippingCountryName() }}
+      </p>
+    </td>
+  </tr>
+  {% if oShoppingOrder.getNoteToSeller() %}
+  <tr>
+    <td>Extra Information:</td>
+    <td>{{ oShoppingOrder.getNoteToSeller() }}</td>
+  </tr>
+  {% endif %}
+</table>
