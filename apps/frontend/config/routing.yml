@@ -169,7 +169,7 @@ sellers:
 collectible_by_slug:
   url:  /collectible/:id/:slug
   class: cqPropelRoute
-  options: { model: CollectionCollectible, type: object, method: getObjectForRoute, statsd: true }
+  options: { model: Collectible, type: object, method: getObjectForRoute, statsd: true }
   param: { module: collection, action: collectible }
   requirements: { id: '\d+', slug: '[\-\w\.]+' }
 

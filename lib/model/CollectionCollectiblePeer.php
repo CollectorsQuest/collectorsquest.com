@@ -20,7 +20,7 @@ class CollectionCollectiblePeer extends BaseCollectionCollectiblePeer
       ->orderByCollectibleId(Criteria::DESC);
 
     // If the Collectible has only one collection, do not even check here
-    if ($q->count() > 1 && preg_match('/-(\d+)$/i', @$parameters['slug'], $m))
+    if ($q->count() > 1 && preg_match('/-c(\d+)$/i', @$parameters['slug'], $m))
     {
       $q->filterByCollectionId((int) $m[1]);
     }
