@@ -406,27 +406,37 @@ class mycqActions extends cqFrontendActions
       $this->shopping_order = ShoppingOrderQuery::create()
         ->findOneByCollectibleId($collectible->getId());
 
-      $this->buyer  = $this->shopping_order->getBuyer();
-      $this->seller = $this->shopping_order->getSeller();
-
-      if ($this->getCollector()->isOwnerOf($collectible))
+      if ($this->shopping_order instanceof ShoppingOrder)
       {
-        if ($this->buyer instanceof Collector)
+        $this->shopping_payment = $this->shopping_order->getShoppingPayment();
+
+        $this->buyer  = $this->shopping_order->getBuyer();
+        $this->seller = $this->shopping_order->getSeller();
+
+        $subject = sprintf(
+          'Regarding order %s (%s)',
+          $this->shopping_order->getUuid(), $collectible->getName()
+        );
+
+        if ($this->getCollector()->isOwnerOf($collectible))
         {
-          $subject = sprintf(
-            'Regarding order %s (%s)',
-            $this->shopping_order->getUuid(), $collectible->getName()
-          );
-
           $this->pm_form = new ComposeAbridgedPrivateMessageForm(
-            $this->seller, $this->buyer, $subject
+            $this->seller, $this->buyer ?: $this->shopping_order->getBuyerEmail(), $subject
           );
-        }
 
-        return 'Sold';
+          return 'Sold';
+        }
+        else if ($this->getCollector()->isOwnerOf($this->buyer))
+        {
+          $this->pm_form = new ComposeAbridgedPrivateMessageForm(
+            $this->buyer, $this->seller, $subject
+          );
+
+          return 'Purchased';
+        }
       }
 
-      return 'Purchased';
+      $this->forward404();
     }
 
     $this->redirectUnless(

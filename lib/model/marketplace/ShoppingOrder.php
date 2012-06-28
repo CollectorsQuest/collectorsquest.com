@@ -305,6 +305,11 @@ class ShoppingOrder extends BaseShoppingOrder
     return $this->aShippingReference;
   }
 
+  public function getShoppingPayment()
+  {
+    return $this->getShoppingPaymentRelatedByShoppingPaymentId();
+  }
+
   /**
    * @return    ShoppingCartCollectible
    */

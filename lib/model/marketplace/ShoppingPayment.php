@@ -17,6 +17,32 @@ class ShoppingPayment extends BaseShoppingPayment
     return null;
   }
 
+  public function getTransactionId()
+  {
+    switch ($this->getProcessor())
+    {
+      case ShoppingPaymentPeer::PROCESSOR_PAYPAL:
+        return $this->getProperty('paypal.transaction_id');
+        break;
+    }
+
+    return null;
+  }
+
+  public function getSenderEmail()
+  {
+    switch ($this->getProcessor())
+    {
+      case ShoppingPaymentPeer::PROCESSOR_PAYPAL:
+        return $this->getProperty('paypal.sender_email');
+        break;
+    }
+
+    return null;
+  }
+
+
+
   public function setShoppingOrder(ShoppingOrder $shopping_order)
   {
     /**

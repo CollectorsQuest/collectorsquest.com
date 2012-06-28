@@ -41,6 +41,10 @@ class ComposeAbridgedPrivateMessageForm extends ComposePrivateMessageForm
     $this->widgetSchema['receiver'] = new sfWidgetFormInputHidden();
     $this->widgetSchema['subject'] = new sfWidgetFormInputHidden();
     $this->widgetSchema['goto']->setAttribute('class', 'set-value-to-href');
+
+    $this->widgetSchema['body']->setAttribute(
+      'placeholder', "Send a message to ". $this->receiver
+    );
   }
 
   protected function updateDefaultsFromObject()

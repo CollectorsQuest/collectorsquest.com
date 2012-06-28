@@ -2,6 +2,8 @@
 /**
  * @var $collectible Collectible
  * @var $shopping_order ShoppingOrder
+ * @var $shopping_payment ShoppingPayment
+ * @var $pm_form ComposeAbridgedPrivateMessageForm
  */
 ?>
 
@@ -9,7 +11,7 @@
   <div class="span8">
     <?php
       $link = link_to(
-        'Go to Market &raquo;', '@mycq_marketplace',
+        'Back to Items for Sale &raquo;', '@mycq_marketplace',
         array('class' => 'text-v-middle link-align')
       );
 
@@ -28,10 +30,12 @@
         <td>Description:</td>
         <td><?= $collectible->getDescription(); ?></td>
       </tr>
+      <?php if ($v = $collectible->getTagString()): ?>
       <tr>
         <td>Tags:</td>
-        <td><?= $collectible->getTagString(); ?></td>
+        <td><?= $v; ?></td>
       </tr>
+      <?php endif; ?>
       <tr>
         <td>Price:</td>
         <td><?= money_format('%.2n', (float) $collectible->getCollectibleForSale()->getPrice()); ?></td>
@@ -121,17 +125,15 @@
       <?php endif; ?>
     </table>
   </div>
-  <?php if (isset($pm_form)): ?>
   <div class="span4 send-pm">
-    <form action="<?= url_for2('messages_compose', array('to' => $buyer->getUsername()), true); ?>" method="post" style="margin-bottom: 0;" id="form-private-message">
+    <?= form_tag('@messages_compose'); ?>
       <?= $pm_form->renderHiddenFields(); ?>
-      <textarea required="required" name="message[body]" style="width: 97%; height: 100px; margin-bottom: 0;" placeholder="Send a message to <?= $buyer; ?>"></textarea>
+      <?= $pm_form['body']->render(array('style' => "width: 97%; height: 100px; margin-bottom: 0;")); ?>
       <button type="submit" class="btn-lightblue-normal textright" style="float: right; margin-top: 10px;">
         <i class="mail-icon-mini"></i> &nbsp;Send message
       </button>
-    </form>
+    <?= '</form>'; ?>
   </div>
-  <?php endif; ?>
 
   <?php
     cq_sidebar_title(
@@ -139,7 +141,6 @@
       array('left' => 8, 'right' => 4, 'class'=>'spacer-top-reset row-fluid sidebar-title')
     );
   ?>
-
   <div class="span8" style="margin-left: 0;">
     <table class="table">
       <tr>
@@ -185,15 +186,19 @@
   <table class="table">
     <tr>
       <td style="width: 25%;">Payment Status:</td>
-      <td>COMPLETED</td>
+      <td><?= strtoupper($shopping_payment->getStatus()); ?></td>
     </tr>
+    <?php if ($v = $shopping_payment->getTransactionId()): ?>
     <tr>
       <td style="width: 25%;">Transaction ID:</td>
-      <td>4VG97008KE1121109</td>
+      <td><?= $v ?></td>
     </tr>
+    <?php endif; ?>
+    <?php if ($v = $shopping_payment->getSenderEmail()): ?>
     <tr>
       <td style="width: 25%;">Sender Email:</td>
-      <td>kangov_1327417552_per@collectorsquest.com</td>
+      <td><?= $v; ?></td>
     </tr>
+    <?php endif; ?>
   </table>
 </div>

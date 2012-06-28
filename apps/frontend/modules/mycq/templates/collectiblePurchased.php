@@ -9,7 +9,7 @@
   <div class="span8">
     <?php
     $link = link_to(
-      'Go to Market &raquo;', '@mycq_marketplace',
+      'Back to Purchases &raquo;', '@mycq_marketplace_purchased',
       array('class' => 'text-v-middle link-align')
     );
 
@@ -28,10 +28,12 @@
         <td>Description:</td>
         <td><?= $collectible->getDescription(); ?></td>
       </tr>
+      <?php if ($v = $collectible->getTagString()): ?>
       <tr>
         <td>Tags:</td>
-        <td><?= $collectible->getTagString(); ?></td>
+        <td><?= $v; ?></td>
       </tr>
+      <?php endif; ?>
       <tr>
         <td>Price:</td>
         <td><?= money_format('%.2n', (float) $collectible->getCollectibleForSale()->getPrice()); ?></td>
@@ -92,17 +94,15 @@
       <?php endif; ?>
     </table>
   </div>
-  <?php if (isset($pm_form)): ?>
   <div class="span4 send-pm">
-    <form action="<?= url_for2('messages_compose', array('to' => $buyer->getUsername()), true); ?>" method="post" style="margin-bottom: 0;" id="form-private-message">
-      <?= $pm_form->renderHiddenFields(); ?>
-      <textarea required="required" name="message[body]" style="width: 97%; height: 100px; margin-bottom: 0;" placeholder="Send a message to <?= $buyer; ?>"></textarea>
-      <button type="submit" class="btn-lightblue-normal textright" style="float: right; margin-top: 10px;">
-        <i class="mail-icon-mini"></i> &nbsp;Send message
-      </button>
-    </form>
+    <?= form_tag('@messages_compose'); ?>
+    <?= $pm_form->renderHiddenFields(); ?>
+    <?= $pm_form['body']->render(array('style' => "width: 97%; height: 100px; margin-bottom: 0;")); ?>
+    <button type="submit" class="btn-lightblue-normal textright" style="float: right; margin-top: 10px;">
+      <i class="mail-icon-mini"></i> &nbsp;Send message
+    </button>
+    <?= '</form>'; ?>
   </div>
-  <?php endif; ?>
 
   <?php
     cq_sidebar_title(
