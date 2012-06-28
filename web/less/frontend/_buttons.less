@@ -22,7 +22,7 @@ select,
 	border-style: solid;
 	border-color: #CED3D8;
 	.border-radius(8px);
-	text-shadow: (~"none,none");
+	.box-shadow(none);
 
 	&:hover {
 		text-decoration: none;
@@ -91,12 +91,18 @@ select,
 	color: #a69f9f;
 	.buttonBackground(#f8f7f7, #e8e7e6);
 	border-color: #dae3e9;
+	&:hover {
+		.box-shadow(none);
+	}
 }
 
 .btn-primary.disabled, .btn-primary.btn[disabled] {
 	color: #fff;
 	.buttonBackground(#aad2e9, #9ec4d8);
 	border-color: #b4d8ec;
+	&:hover {
+		.box-shadow(none);
+	}
 }
 
 
