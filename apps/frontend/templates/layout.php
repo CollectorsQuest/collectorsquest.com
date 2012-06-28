@@ -135,6 +135,12 @@
     // Include the global javascripts
     include_partial('global/javascripts', array('sf_cache_key' => $sf_cache_key));
 
+    // Include analytics code only in production
+    if (sfConfig::get('sf_environment') === 'prod')
+    {
+      include_partial('global/js/analytics');
+    }
+
     /** @var $sf_request cqWebRequest */
     if ($slots = $sf_request->getAttribute('slots', array(), 'cq/view/ads'))
     {
