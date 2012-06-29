@@ -4,7 +4,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '12080'
     collection_category_id: CollectionCategory_34
-    content_category_id: ContentCategory_4853
     name: 'Voice-O-Graph Recordings'
     slug: voice-o-graph-recordings
     description: 'A collection of 1940s-1960s era recordings made in specially designed Voice-O-Graph booths by amateur vocalists and speakers, cut into 45-sized discs, playable on regular record players.'
@@ -24,7 +23,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '10693'
     collection_category_id: CollectionCategory_774
-    content_category_id: ContentCategory_5743
     name: Batman-a-phenalia
     slug: batman-a-phenalia
     description: 'A collection of various non-figural, Batman-related things I''ve somehow accumulated. The figures are located in another collection here!'
@@ -44,7 +42,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '10757'
     collection_category_id: CollectionCategory_35
-    content_category_id: ContentCategory_4875
     name: Cephalopodia
     slug: cephalopodia
     description: 'A collection of octopus and squid items that have found their way into my hands. Not only are they beautiful and fun to draw, but they''re also both delicious. The best of both worlds.'
@@ -64,7 +61,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '10806'
     collection_category_id: CollectionCategory_42
-    content_category_id: ContentCategory_5830
     name: Kaiju
     slug: kaiju
     description: 'I know very little of Kamen / Masked Rider or the various similar Japanese TV shows, but I LOVE Kaiju! Japanese movie monsters are some of my favorite kinds of monsters. I don''t know what they''re called, but I know I like ''em!'
@@ -84,7 +80,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '10488'
     collection_category_id: CollectionCategory_6
-    content_category_id: ContentCategory_2834
     name: 'The Art of Dave McKean'
     slug: the-art-of-dave-mckean
     description: 'Illustrator Dave McKean was my first indication that art could span genres and be more than one thing at once - very inspiring for a young artist. Over the years, I''ve actively sought out everything he''s put his art to, including a lot of limited and signed items.'
@@ -104,7 +99,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '10700'
     collection_category_id: CollectionCategory_42
-    content_category_id: ContentCategory_5954
     name: 'Robot Invasion'
     slug: robot-invasion
     description: 'Robots. Everywhere. From all matter of manufacturers and years and genres. '
@@ -124,7 +118,6 @@ CollectorCollection:
     collector_id: Collector_52
     graph_id: '10832'
     collection_category_id: CollectionCategory_101
-    content_category_id: ContentCategory_6067
     name: 'Dinosaur Toys'
     slug: dinosaur-toys
     description: 'Dinosaur toys from the 1920s to today.'
@@ -144,7 +137,6 @@ CollectorCollection:
     collector_id: Collector_52
     graph_id: '10786'
     collection_category_id: CollectionCategory_101
-    content_category_id: ContentCategory_6123
     name: 'Dinosaur Games'
     slug: dinosaur-games
     description: 'Games featuring dinosaurs and other prehistoric animals.'
@@ -164,7 +156,6 @@ CollectorCollection:
     collector_id: Collector_52
     graph_id: '11371'
     collection_category_id: CollectionCategory_731
-    content_category_id: ContentCategory_4371
     name: 'Dinosaur Pins'
     slug: dinosaur-pins
     description: 'Pins featuring dinosaurs and other prehistoric animals.'
@@ -184,7 +175,6 @@ CollectorCollection:
     collector_id: Collector_52
     graph_id: '10746'
     collection_category_id: CollectionCategory_101
-    content_category_id: ContentCategory_3556
     name: 'Dinosaur Stamps'
     slug: dinosaur-stamps
     description: 'Stamps featuring images of dinosaurs and other prehistoric animals.'
@@ -204,7 +194,6 @@ CollectorCollection:
     collector_id: Collector_52
     graph_id: '10524'
     collection_category_id: CollectionCategory_101
-    content_category_id: ContentCategory_3134
     name: 'Dinosaur Books'
     slug: dinosaur-books
     description: 'Books about dinosaurs and other prehistoric animals.'
@@ -224,7 +213,6 @@ CollectorCollection:
     collector_id: Collector_52
     graph_id: '10480'
     collection_category_id: CollectionCategory_101
-    content_category_id: ContentCategory_3349
     name: 'Dinosaur Magazines'
     slug: dinosaur-magazines
     description: 'Magazines featuring dinosaurs and other prehistoric animals'
@@ -244,7 +232,6 @@ CollectorCollection:
     collector_id: Collector_52
     graph_id: '10690'
     collection_category_id: CollectionCategory_101
-    content_category_id: ContentCategory_2729
     name: 'Sinclair Oil Collectibles'
     slug: sinclair-oil-collectibles
     description: 'The Sinclair Oil Company began using a dinosaur as its logo in 1930 and has continued to use dinosaurs to promote its products.'
@@ -264,7 +251,6 @@ CollectorCollection:
     collector_id: Collector_52
     graph_id: '10510'
     collection_category_id: CollectionCategory_101
-    content_category_id: ContentCategory_3267
     name: 'Dinosaur Comic Books'
     slug: dinosaur-comic-books
     description: 'Comic books featuring artwork of dinosaurs and other prehistoric animals.'
@@ -284,7 +270,6 @@ CollectorCollection:
     collector_id: Collector_52
     graph_id: '11220'
     collection_category_id: CollectionCategory_101
-    content_category_id: ContentCategory_5004
     name: 'Dinosaur Trading Cards'
     slug: dinosaur-trading-cards
     description: 'Trading cards featuring dinosaurs and other prehistoric animals.'
@@ -304,7 +289,6 @@ CollectorCollection:
     collector_id: Collector_52
     graph_id: '10851'
     collection_category_id: CollectionCategory_101
-    content_category_id: ContentCategory_3978
     name: 'Jurassic Park Toys'
     slug: jurassic-park-toys
     description: 'The Jurassic Park franchise has spawned a very large number of action figures.'
@@ -324,7 +308,6 @@ CollectorCollection:
     collector_id: Collector_52
     graph_id: '11919'
     collection_category_id: CollectionCategory_101
-    content_category_id: ContentCategory_3770
     name: 'Dinosaur Clothes'
     slug: dinosaur-clothes
     description: 'Clothes featuring dinosaurs and other prehistoric animals.'
@@ -344,7 +327,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '11678'
     collection_category_id: CollectionCategory_54
-    content_category_id: ContentCategory_5735
     name: 'Small Designer Toys'
     slug: small-designer-toys
     description: 'A whole mess of randomly collected small designer toys, from Japan and the US. Usually blind-boxed, under 3" tall, and artist-specific.'
@@ -364,7 +346,6 @@ CollectorCollection:
     collector_id: Collector_52
     graph_id: '11066'
     collection_category_id: CollectionCategory_101
-    content_category_id: ContentCategory_2758
     name: 'Dinosaur Restaurant and Fast Food Premiums'
     slug: dinosaur-restaurant-and-fast-food-premiums
     description: 'Dinosaurs have always made popular restaurant and fast food premiums - the free toy included with the child''s meal.  These regularly show up at garage sales so its pretty easy to start a collection.'
@@ -384,7 +365,6 @@ CollectorCollection:
     collector_id: Collector_52
     graph_id: '10956'
     collection_category_id: CollectionCategory_101
-    content_category_id: ContentCategory_6106
     name: 'Stuffed Dinosaurs'
     slug: stuffed-dinosaurs
     description: 'Plush, cloth, stuffed, dino-dolls, whatever you want to call them!'
@@ -404,7 +384,6 @@ CollectorCollection:
     collector_id: Collector_52
     graph_id: '11079'
     collection_category_id: CollectionCategory_101
-    content_category_id: ContentCategory_6250
     name: 'Dinosaur Pressed Pennies'
     slug: dinosaur-pressed-pennies
     description: 'Prehistoric-themed elongated coins from museums and other attractions.'
@@ -424,7 +403,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '10816'
     collection_category_id: CollectionCategory_54
-    content_category_id: ContentCategory_5955
     name: 'Demon''s Chronicle Mini-figures'
     slug: demons-chronicle-mini-figures
     description: 'An odd collection of mini sculptures from the Yanoman Company in Japan. Very hard to get in the US, so I had to import these myself. They''re based on various mythologies, and a lot of bizarre original creations. There are ten series, and these are a few.'
@@ -444,7 +422,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '11556'
     collection_category_id: CollectionCategory_16
-    content_category_id: ContentCategory_3204
     name: 'Big Apple Comic Book, Art, Toy &amp; Sci-Fi Expo 2007'
     slug: big-apple-comic-book-art-toy-amp-sci-fi-expo-2007
     description: 'Held in the Pennsylvania Hotel, here''s some photos from this year''s Big Apple Comic Con.'
@@ -464,7 +441,6 @@ CollectorCollection:
     collector_id: Collector_52
     graph_id: '10456'
     collection_category_id: CollectionCategory_54
-    content_category_id: ContentCategory_5735
     name: 'My Childhood Toys'
     slug: my-childhood-toys
     description: 'Recently I went through some of my childhood toys at my parents house.  It looks like I got the pack rat gene from my mother who saved a lot of the packages and instructions from my toys.  This has helped increase the value of my toys and I will probably sell them all on eBay eventually.  I can''t sell them now since they are halfway across the country in my parents house, so I''ll post the pictures I have here so you can see a snapshot of an 80s childhood.'
@@ -484,7 +460,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '10901'
     collection_category_id: CollectionCategory_42
-    content_category_id: ContentCategory_5831
     name: 'Classic Marvel Figurine Collection'
     slug: classic-marvel-figurine-collection
     description: 'A collection of Marvel Comics characters cast in lead, fully painted, originally distributed exclusively in the UK by Eaglemoss Publishing. They''ve made their way to the US, there are at least 80 currently out there or planned for production! [Update Nov 2009 : Most of these have been sold off, except for about a dozen favorites. Ergo, they are no longer in my possession.]'
@@ -504,7 +479,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '10987'
     collection_category_id: CollectionCategory_34
-    content_category_id: ContentCategory_4789
     name: 'Eclectic &amp; Interesting Vinyl'
     slug: eclectic-amp-interesting-vinyl
     description: 'As well as collecting some musically thrilling and interesting records, I also collect the worst of the worst. Anything too lame to ever find its way onto CD, anything so niche that no one cares, anything otherwise ignored. Also, good stuff too!'
@@ -524,7 +498,6 @@ CollectorCollection:
     collector_id: Collector_52
     graph_id: '10528'
     collection_category_id: CollectionCategory_101
-    content_category_id: ContentCategory_4983
     name: 'Prehistoric Post Cards'
     slug: prehistoric-post-cards
     description: 'Post cards with images of dinosaurs and prehistoric animals.'
@@ -544,7 +517,6 @@ CollectorCollection:
     collector_id: Collector_52
     graph_id: '11005'
     collection_category_id: CollectionCategory_101
-    content_category_id: ContentCategory_4903
     name: 'August 3 2007 Garage Sale Finds'
     slug: august-3-2007-garage-sale-finds
     description: 'Today was a good garage sale day for me!  I slept in and wasn''t planning on going to sales today, but my wife was looking through the ads and found one that advertised "large dinosaur collection."  Well, I was ready to go in a second!  But it was 10:30 and the sale started at 8.  Would there be anything left?  Well, there was - here is everything I bought - all for $20.'
@@ -564,7 +536,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '10924'
     collection_category_id: CollectionCategory_24
-    content_category_id: ContentCategory_4219
     name: 'DC Comics Pepsi Glasses'
     slug: dc-comics-pepsi-glasses
     description: 'Two different series of DC Comics themed Pepsi glasses were released in the 1970s-80s. The earlier glasses feature the same image on both sides, and the character framed by a large circle, or a ''moon''. The later series featured the image of a character on one side and their logo on the reverse.'
@@ -584,7 +555,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '11247'
     collection_category_id: CollectionCategory_21
-    content_category_id: ContentCategory_5831
     name: 'Marvel 3age'
     slug: marvel-3age
     description: 'Series one and two of Asunarosya''s Marvel 3age figures from Japan. About 3" tall.'
@@ -604,7 +574,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '11774'
     collection_category_id: CollectionCategory_21
-    content_category_id: ContentCategory_5831
     name: 'Marvel Kubricks'
     slug: marvel-kubricks
     description: 'Made by Medicom in Japan, these are from the first 4 series of Marvel ''Bricks. Missing are a few ultra-rare figures (1 in 96 packs), such as the Doppelganger Spider-Man, and Punisher/Venom. All are sold blind-packaged, so you don''t know what you''re going to get until you open it!'
@@ -624,7 +593,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '11284'
     collection_category_id: CollectionCategory_1
-    content_category_id: ContentCategory_5831
     name: 'Legendary Comic Book Heroes Action Figures'
     slug: legendary-comic-book-heroes-action-figures
     description: 'A collection of action figures by Marvel Toys representing a large variety of independent comic characters.'
@@ -644,7 +612,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '10537'
     collection_category_id: CollectionCategory_37
-    content_category_id: ContentCategory_2897
     name: 'Through The Viewfinder Photography'
     slug: through-the-viewfinder-photography
     description: 'A photographic technique that produces in-camera distortions and a vintage appearance. These use a collection of Kodak Duaflex cameras and a Canon Powershot.'
@@ -664,7 +631,6 @@ CollectorCollection:
     collector_id: Collector_52
     graph_id: '11038'
     collection_category_id: CollectionCategory_101
-    content_category_id: ContentCategory_4903
     name: 'Metal Dinosaur &amp; Prehistoric Figures'
     slug: metal-dinosaur-amp-prehistoric-figures
     description: 'These are prehistoric animal figures made out of metal.'
@@ -684,7 +650,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '10977'
     collection_category_id: CollectionCategory_1
-    content_category_id: ContentCategory_5831
     name: 'Marvel World by Famosa'
     slug: marvel-world-by-famosa
     description: 'Not sold within the US and made in Spain, Famosa''s Marvel World toys are about 3" tall and totally cute. They all have double-sided faces, a few accessories, and stands. Some come in 2-packs, and some in larger playsets, kinda like Playmobil stuff!'
@@ -704,7 +669,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '11332'
     collection_category_id: CollectionCategory_1
-    content_category_id: ContentCategory_5742
     name: 'DC Superfriends by Mattel'
     slug: dc-superfriends-by-mattel
     description: 'A line of kid-friendly DC characters with action features and foam projectiles. Too cute for words.'
@@ -724,7 +688,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '10562'
     collection_category_id: CollectionCategory_1
-    content_category_id: ContentCategory_5831
     name: 'Marvel Minimates'
     slug: marvel-minimates
     description: 'A collection of Marvel Minimates by Art Asylum, dating back to wave one. I recently unloaded a lot of similar characters (a dozen Spider-Man and Wolverines that I didn''t care for and battle-damaged stuff), so it''s not a COMPLETE collection, but it has all of my favorite characters that were released. About 2" tall, they have a lot of articulation and a neat design based on a basic body form. Art Asylum has finally refocused on great characters after a bunch of waves of duds.'
@@ -744,7 +707,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '10701'
     collection_category_id: CollectionCategory_1
-    content_category_id: ContentCategory_5831
     name: 'Marvel Superhero Squad'
     slug: marvel-superhero-squad
     description: 'A collection of small, kid-friendly figures with minimal articulation from Hasbro. About 2" tall each, with a few larger exceptions, like Hulk and Juggernaut. The line covers an impressive array of characters, with variant color schemes for some figures released in box sets. Most of these have been sold!'
@@ -764,7 +726,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '10472'
     collection_category_id: CollectionCategory_21
-    content_category_id: ContentCategory_5955
     name: 'Universal Monsters Kubricks'
     slug: universal-monsters-kubricks
     description: '2 series of these were released by Medicom in Japan, including an ultra-rare Dracula''s Coffin and Frankenstein''s Lab Table accessories, and a female vampire.'
@@ -784,7 +745,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '11529'
     collection_category_id: CollectionCategory_21
-    content_category_id: ContentCategory_5743
     name: 'Batman Kubricks'
     slug: batman-kubricks
     description: 'A handful of Batman Kubricks were released by Medicom in Japan, spanning the movies, comics, and the animated series.'
@@ -804,7 +764,6 @@ CollectorCollection:
     collector_id: Collector_163
     graph_id: '11410'
     collection_category_id: CollectionCategory_15
-    content_category_id: ContentCategory_3541
     name: 'Brooklyn Tokens'
     slug: brooklyn-tokens
     description: 'My collection focuses on 19th and 20th century merchant tokens issued in Brooklyn, New York.  Most of these were issued by retail stores as promotional items.  However, the collection includes an array of other Brooklyn tokens including tokens issued by the Brooklyn Navy Yard, the Brooklyn City Prison, Brooklyn mass transit organizations, and the YMCA.  The collection provides interesting and unusual snapshots of Brooklyn''s lost history.'
@@ -824,7 +783,6 @@ CollectorCollection:
     collector_id: Collector_52
     graph_id: '11914'
     collection_category_id: CollectionCategory_101
-    content_category_id: ContentCategory_2740
     name: 'Prehistoric-themed advertising'
     slug: prehistoric-themed-advertising
     description: 'These are presskits and advertising materials, including standees, from dinosaur movies and other events.'
@@ -844,7 +802,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '10529'
     collection_category_id: CollectionCategory_8
-    content_category_id: ContentCategory_3190
     name: 'Great Sci-Fi Paperback Covers'
     slug: great-sci-fi-paperback-covers
     description: 'While I haven''t yet read a majority of these, I''m attracted to these neat paperback covers from the pre-suck era.'
@@ -864,7 +821,6 @@ CollectorCollection:
     collector_id: Collector_52
     graph_id: '11787'
     collection_category_id: CollectionCategory_101
-    content_category_id: ContentCategory_3134
     name: 'Dinosaurs in the Classroom'
     slug: dinosaurs-in-the-classroom
     description: 'These are educational materials about dinosaurs made for teaching.'
@@ -884,7 +840,6 @@ CollectorCollection:
     collector_id: Collector_52
     graph_id: '10799'
     collection_category_id: CollectionCategory_101
-    content_category_id: ContentCategory_4366
     name: 'Household Dinosaurs'
     slug: household-dinosaurs
     description: 'Household items featuring dinosaurs.'
@@ -904,7 +859,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '11448'
     collection_category_id: CollectionCategory_1
-    content_category_id: ContentCategory_5831
     name: 'Hasbro Marvel Legends // Brood Series [3]'
     slug: hasbro-marvel-legends-brood-series-3
     description: 'The third Marvel Legends series from Hasbro, in roughly 1/12th scale, features Golden Age Captain America and Bucky, Danger, Cyclops, X3 Colossus, some Hydra Soldiers, Rachel Summers, Black Knight, and a buildable Brood Queen - eight figures in all, plus the bonus Brood.'
@@ -924,7 +878,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '11809'
     collection_category_id: CollectionCategory_1
-    content_category_id: ContentCategory_5854
     name: 'Hasbro Marvel Legends // Fantastic Four Series'
     slug: hasbro-marvel-legends-fantastic-four-series
     description: 'After Hasbro released Marvel Legends series 2, they snuck in a set of eight Fantastic Four characters. Collect all eight and you get the parts to build the mighty Ronan the Accuser!'
@@ -944,7 +897,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '11480'
     collection_category_id: CollectionCategory_1
-    content_category_id: ContentCategory_5736
     name: 'Legendary Comic Book Heroes Action Figures Ser. 2'
     slug: legendary-comic-book-heroes-action-figures-ser-2
     description: 'A set of six indie comic heroes released by ToyBiz, plus a HUGE  build-a-figure Monkeyman! Released around the same time (and kept with this collection) were some two-packs of teams or arch-enemies.'
@@ -964,7 +916,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '10877'
     collection_category_id: CollectionCategory_23
-    content_category_id: ContentCategory_6132
     name: 'Marvel Heroclix : Mutations and Monsters'
     slug: marvel-heroclix-mutations-and-monsters
     description: 'A set of 60 Heroclix 2.0 figures featuring an array of X-Men, monsters and zombies - also focusing on characters from recent Marvel storylines.'
@@ -984,7 +935,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '10945'
     collection_category_id: CollectionCategory_23
-    content_category_id: ContentCategory_6132
     name: 'Marvel Heroclix : Avengers'
     slug: marvel-heroclix-avengers
     description: 'The first set of Heroclix 2.0 from WizKids - 60 superhero figures.'
@@ -1004,7 +954,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '10620'
     collection_category_id: CollectionCategory_34
-    content_category_id: ContentCategory_4796
     name: 'Christmas Records'
     slug: christmas-records
     description: 'I''ve come across these all in larger bins of Christmas records, but was obligated to take them with the set. Almost none of these were intentional purchases, but some of them are kinda fun.'
@@ -1024,7 +973,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '11394'
     collection_category_id: CollectionCategory_1
-    content_category_id: ContentCategory_5951
     name: 'Nightmare Before Christmas Action Figures'
     slug: nightmare-before-christmas-action-figures
     description: 'Made in the 2000s by NECA, six waves (or four figures / packs each) were produced before production stopped (with some figures repeated a few times) - but they encompass a huge array of characters. Box sets included Lock, Shock & Barrel, Oogie''s Lair, Jack''s Snowmobile and Jack & Sally on the spiral hill. Comicon exclusives include a Pirate Jack and a Vampire Jack. The collection here is woefully incomplete, but mostly here. Accessories pictures do not necessarily go with the figures pictured, but they were opened long ago and I''ve lost track. Figures that need replacement include Santa Jack (both legs fell off!) and Pumpkin King Jack (whose hand fell off).'
@@ -1044,7 +992,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '10244'
     collection_category_id: CollectionCategory_70
-    content_category_id: ContentCategory_5742
     name: 'DC Superheroes, Universe, Batman &amp; Green Lantern Classics'
     slug: dc-superheroes-universe-batman-amp-green-lantern-classics
     description: 'A set of articulated characters from the DC Universe, made by Mattel and sculpted by the Four Horsemen. Collect all of the figures in a wave and you can build an additional character!'
@@ -1064,7 +1011,6 @@ CollectorCollection:
     collector_id: Collector_235
     graph_id: '10904'
     collection_category_id: CollectionCategory_0
-    content_category_id: ContentCategory_3345
     name: Tintin
     slug: tintin
     description: 'My small collection of all things Tintin. Comics, movies, figurines and other stuff relating to the world famous adventurer Tintin.'
@@ -1084,7 +1030,6 @@ CollectorCollection:
     collector_id: Collector_235
     graph_id: '11571'
     collection_category_id: CollectionCategory_0
-    content_category_id: ContentCategory_4860
     name: 'Stuffed Birds'
     slug: stuffed-birds
     description: 'Small collection of stuffed birds.'
@@ -1104,7 +1049,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '11208'
     collection_category_id: CollectionCategory_0
-    content_category_id: ContentCategory_3901
     name: 'Disney Store Exclusive Figures'
     slug: disney-store-exclusive-figures
     description: 'Released exclusively at the Disney Store, and based on Disney / Pixar films, these toys represent some of the best Disney action figures there are.'
@@ -1124,7 +1068,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '8808'
     collection_category_id: CollectionCategory_1
-    content_category_id: ContentCategory_5742
     name: 'DC Minimates'
     slug: dc-minimates
     description: 'All regularly released miniature block figures from DC Direct & Diamond, plus a convention exclusive Green Lantern. All of the figures marked ''C3'' were produced prior to the main line, before Art Asylum had the rights to produce mini figures by themselves. As a result, each of these came with a Lego-like construction kit called C3, which were notorious for missing pieces. Most valuable is the Martian Manhunter piece, as an important member of the JLU never reproduced as a lone figure.'
@@ -1144,7 +1087,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '8809'
     collection_category_id: CollectionCategory_1
-    content_category_id: ContentCategory_5743
     name: 'Batman Action Figures'
     slug: batman-action-figures
     description: "A few things figural from my terrifying Batman collection! These are some of the action figures I've collected, though I know there are a lot more floating around (all 3 DC Direct 13\" figures, Minimates, Mego, DC Action League, LEGO, etc.). I hope to photograph them all eventually.\n\nYou'll notice that I omit almost all of the crazy \"Aqua Unicorn Dandelion\" variants that came out with the movie series.\n\nCheck out my other collections for other Batman related items!"
@@ -1164,7 +1106,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '8807'
     collection_category_id: CollectionCategory_1
-    content_category_id: ContentCategory_5770
     name: 'Justice League Unlimited Figures'
     slug: justice-league-unlimited-figures
     description: 'A collection of 4" figures from Mattel, featuring characters that appeared in the Justice League Unlimited cartoon.'
@@ -1184,7 +1125,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '10487'
     collection_category_id: CollectionCategory_0
-    content_category_id: ContentCategory_5831
     name: 'Marvel Legends Showdown'
     slug: marvel-legends-showdown
     description: 'Originally called ''Superhero Showdown'', ToyBiz released a whole array of 4" figures of Marvel characters. They were super-poseable, amazingly detailed and well made for the tiny scale that they were in, and they could even be used for a game if you so chose. The line died out when the rights to Marvel toys went to Hasbro, but as you can see here, they were might fine for what they were.'
@@ -1204,7 +1144,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '11302'
     collection_category_id: CollectionCategory_0
-    content_category_id: ContentCategory_6154
     name: LEGOs
     slug: legos
     description: 'A small, but growing, collection of LEGO sets & original creations from the sets.'
@@ -1224,7 +1163,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '11060'
     collection_category_id: CollectionCategory_0
-    content_category_id: ContentCategory_6132
     name: 'DC Heroclix : Crisis'
     slug: dc-heroclix-crisis
     description: 'A collection of recent Heroclix under the theme of DC''s various ''Crisis'' themed miniseries.'
@@ -1244,7 +1182,6 @@ CollectorCollection:
     collector_id: Collector_52
     graph_id: '11465'
     collection_category_id: CollectionCategory_101
-    content_category_id: ContentCategory_5031
     name: 'Dinosaur Ephemera'
     slug: dinosaur-ephemera
     description: 'Prehistoric-themed ephemera.'
@@ -1264,7 +1201,6 @@ CollectorCollection:
     collector_id: Collector_531
     graph_id: '11055'
     collection_category_id: CollectionCategory_752
-    content_category_id: ContentCategory_4789
     name: 'Cool Album Covers'
     slug: cool-album-covers
     description: "I first started sending pictures of oddball record covers for friends and a few customers, mostly for fun.  After a while, interest began growing and I started a web site, Black Gem Records, at www.blackgemrecords.com.  \r\n\r\nIt's still fun, and now everything's available for purchase, too.  Thousands of unique items - from the best (and worst) album covers to some beautiful cover art, too!   \r\n\r\nSo come in and have a look.  Here's a small sample of what's inside:\r\n\r\n"
@@ -1284,7 +1220,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '11194'
     collection_category_id: CollectionCategory_1
-    content_category_id: ContentCategory_5839
     name: 'Iron Man Figures'
     slug: iron-man-figures
     description: 'A collection of many Iron Man figures & figural items, starting with the movie and working backwards.'
@@ -1304,7 +1239,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '11339'
     collection_category_id: CollectionCategory_1
-    content_category_id: ContentCategory_6003
     name: 'AAAHH! Real Monsters Toys'
     slug: aaahh-real-monsters-toys
     description: 'Made by Mattel in 1995, these were some of my favorite toys (from a great Nickelodeon show). Each one had an action feature, and it took me 13 years to complete the set, since half of them never showed up in my area. The designs are surreal and grotesque.'
@@ -1324,7 +1258,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '10893'
     collection_category_id: CollectionCategory_54
-    content_category_id: ContentCategory_4400
     name: 'Re-Ment Miniatures'
     slug: re-ment-miniatures
     description: 'A great collection of Japanese miniatures.'
@@ -1344,7 +1277,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '11056'
     collection_category_id: CollectionCategory_54
-    content_category_id: ContentCategory_5831
     name: 'Marvel Mighty Beanz (2004)'
     slug: marvel-mighty-beanz-2004
     description: 'A series of weighted ''beans'' featuring the images of Marvel characters. Many series were produced with different properties.'
@@ -1364,7 +1296,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '8814'
     collection_category_id: CollectionCategory_1
-    content_category_id: ContentCategory_5829
     name: 'Spawn Series 33 : The Age of Pharaohs'
     slug: spawn-series-33-the-age-of-pharaohs
     description: 'The 33rd series of Spawn figures, which includes 6 figures in an Egyptian theme.'
@@ -1384,7 +1315,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '10884'
     collection_category_id: CollectionCategory_1
-    content_category_id: ContentCategory_5951
     name: 'Indiana Jones 3.75" Figures'
     slug: indiana-jones-3-75-figures
     description: 'An extensive collection of Star Wars-scaled figures from all 4 Indy movies. Each single figure includes a mystery artifact from the films.'
@@ -1404,7 +1334,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '11026'
     collection_category_id: CollectionCategory_1
-    content_category_id: ContentCategory_5951
     name: 'Narnia : Prince Caspian Action Figures'
     slug: narnia-prince-caspian-action-figures
     description: 'A collection of 3.75" scale action figures from the movie Chronicles of Narnia : Prince Caspian, including a large collection of heroes and a few villians. Most have accessories and action figures, and are in scale with one another.'
@@ -1424,7 +1353,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '10872'
     collection_category_id: CollectionCategory_21
-    content_category_id: ContentCategory_5824
     name: 'Gus Fink''s Boogily Heads'
     slug: gus-finks-boogily-heads
     description: 'An extensive series of mini-sculptures created by Gus Fink & produced by Rocket USA. Each figure includes a mini-comic backed with a poster, and all have bobble-head action!'
@@ -1444,7 +1372,6 @@ CollectorCollection:
     collector_id: Collector_52
     graph_id: '10835'
     collection_category_id: CollectionCategory_101
-    content_category_id: ContentCategory_4903
     name: 'June 6 2008 Garage Sale Finds'
     slug: june-6-2008-garage-sale-finds
     description: 'These are some things I bought at garage sales on June 6 2008'
@@ -1464,7 +1391,6 @@ CollectorCollection:
     collector_id: Collector_644
     graph_id: '11622'
     collection_category_id: CollectionCategory_10
-    content_category_id: ContentCategory_3050
     name: 'Continental Collection'
     slug: continental-collection
     description: 'I collect all things "Continental". '
@@ -1484,7 +1410,6 @@ CollectorCollection:
     collector_id: Collector_644
     graph_id: '10871'
     collection_category_id: CollectionCategory_6
-    content_category_id: ContentCategory_2977
     name: 'Metal art'
     slug: metal-art
     description: 'Our collection is too large to post together so I''ve split it into Metal art, Ceramics, Glass and Graphic art.'
@@ -1504,7 +1429,6 @@ CollectorCollection:
     collector_id: Collector_644
     graph_id: '10347'
     collection_category_id: CollectionCategory_6
-    content_category_id: ContentCategory_3015
     name: 'Wood collection'
     slug: wood-collection
     description: 'Everything we collect has a high degree of difficulty. Our wood pieces are no exception.'
@@ -1524,7 +1448,6 @@ CollectorCollection:
     collector_id: Collector_52
     graph_id: '10494'
     collection_category_id: CollectionCategory_101
-    content_category_id: ContentCategory_6190
     name: 'Dinosaur Pez'
     slug: dinosaur-pez
     description: 'In honor of  Dinosaur week - here are my dinosaur Pez dispensers'
@@ -1544,7 +1467,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '11560'
     collection_category_id: CollectionCategory_61
-    content_category_id: ContentCategory_6190
     name: 'Another Pez Collection!'
     slug: another-pez-collection
     description: 'I started consciously collecting Pez after I went to a Pez Convention in 2007. Since then, I''ve just collected things I like!'
@@ -1564,7 +1486,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '10947'
     collection_category_id: CollectionCategory_1
-    content_category_id: ContentCategory_5792
     name: 'Superman Action Figures'
     slug: superman-action-figures
     description: 'A small collection of various Supermen from various toy lines.'
@@ -1584,7 +1505,6 @@ CollectorCollection:
     collector_id: Collector_52
     graph_id: '10664'
     collection_category_id: CollectionCategory_101
-    content_category_id: ContentCategory_6160
     name: 'Dinosaur Models'
     slug: dinosaur-models
     description: 'These are some of my dinosaur models.'
@@ -1604,7 +1524,6 @@ CollectorCollection:
     collector_id: Collector_52
     graph_id: '10875'
     collection_category_id: CollectionCategory_101
-    content_category_id: ContentCategory_6188
     name: 'Dinosaur Paint By Numbers'
     slug: dinosaur-paint-by-numbers
     description: 'I uploaded this one for Deanna - I enjoyed her articles about paint-by-numbers.'
@@ -1624,7 +1543,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '11064'
     collection_category_id: CollectionCategory_1
-    content_category_id: ContentCategory_5789
     name: 'Wonder Woman Action Figures'
     slug: wonder-woman-action-figures
     description: 'A collection of figures of Wonder Woman.'
@@ -1644,7 +1562,6 @@ CollectorCollection:
     collector_id: Collector_644
     graph_id: '11596'
     collection_category_id: CollectionCategory_6
-    content_category_id: ContentCategory_2888
     name: 'Wall art, paintings, pencil drawings'
     slug: wall-art-paintings-pencil-drawings
     description: 'I really like photo-realism. I also like surrealism. Many of our pieces combine the two.'
@@ -1664,7 +1581,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '11318'
     collection_category_id: CollectionCategory_1
-    content_category_id: ContentCategory_5780
     name: 'Green Lantern Action Figures'
     slug: green-lantern-action-figures
     description: 'A collection of different characters in the Green Lantern Corps, at one time or another.'
@@ -1684,7 +1600,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '11319'
     collection_category_id: CollectionCategory_1
-    content_category_id: ContentCategory_5778
     name: 'Flash Action Figures'
     slug: flash-action-figures
     description: 'The Flash! Action figures! A lot of ''em!'
@@ -1704,7 +1619,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '10825'
     collection_category_id: CollectionCategory_1
-    content_category_id: ContentCategory_5743
     name: 'Robin, Batgirl &amp; Other Batman Allies'
     slug: robin-batgirl-amp-other-batman-allies
     description: 'A handful of ''friends of Batman'' action figures.'
@@ -1724,7 +1638,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '10887'
     collection_category_id: CollectionCategory_1
-    content_category_id: ContentCategory_5787
     name: 'Hawkman &amp; Hawkgirl Action Figures'
     slug: hawkman-amp-hawkgirl-action-figures
     description: 'A bunch of action figures basedon Hawkman & Hawkgirl, through the ages.'
@@ -1744,7 +1657,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '11321'
     collection_category_id: CollectionCategory_1
-    content_category_id: ContentCategory_5792
     name: 'Supergirl &amp; Other Superman Allies'
     slug: supergirl-amp-other-superman-allies
     description: 'A collection of Friends of Superman.'
@@ -1764,7 +1676,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '11074'
     collection_category_id: CollectionCategory_1
-    content_category_id: ContentCategory_5771
     name: 'Aquaman Action Figures'
     slug: aquaman-action-figures
     description: 'Aquaman! Action figures! Aplenty!'
@@ -1784,7 +1695,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '10776'
     collection_category_id: CollectionCategory_1
-    content_category_id: ContentCategory_5742
     name: 'Martian Manhunter Action Figures'
     slug: martian-manhunter-action-figures
     description: 'A collection of the Martian Manhunter, J''onn J''onzz, as he appears through the comics & cartoons.'
@@ -1804,7 +1714,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '11404'
     collection_category_id: CollectionCategory_1
-    content_category_id: ContentCategory_5837
     name: 'Hulk Action Figures : Fin Fang Foom Collection'
     slug: hulk-action-figures-fin-fang-foom-collection
     description: 'A set of eight Hulk-related figures by Hasbro. Colelct all eight and build the giant dragon, Fin Fang Foom!'
@@ -1824,7 +1733,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '11076'
     collection_category_id: CollectionCategory_62
-    content_category_id: ContentCategory_2759
     name: 'McDonalds Star Wars : Clone Wars Toys Collection'
     slug: mcdonalds-star-wars-clone-wars-toys-collection
     description: 'A collection of 18 different Happy Meal toys distributed by McDonalds to coincide with the Clone Wars movie - some with action features, some with wheels, all with bobbleheads and all with awesome.'
@@ -1844,7 +1752,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '11375'
     collection_category_id: CollectionCategory_6
-    content_category_id: ContentCategory_2888
     name: 'Original 3" x 3" DC Comics Superhero Paintings'
     slug: original-3-x-3-dc-comics-superhero-paintings
     description: 'A collection of 50 different heroes (so far!), all painted by Collin David and all for sale! If you don''t see your favorite hero, ask!'
@@ -1864,7 +1771,6 @@ CollectorCollection:
     collector_id: Collector_714
     graph_id: '11477'
     collection_category_id: CollectionCategory_285
-    content_category_id: ContentCategory_6163
     name: Moviecars
     slug: moviecars
     description: 'A collection of 1:18th scale models of cars that one might find familiar, as they have been featured in a movie or TV-series'
@@ -1884,7 +1790,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '11077'
     collection_category_id: CollectionCategory_1
-    content_category_id: ContentCategory_5753
     name: 'The Joker'
     slug: the-joker
     description: 'A selection of action figures of The Joker.'
@@ -1904,7 +1809,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '10442'
     collection_category_id: CollectionCategory_1
-    content_category_id: ContentCategory_5742
     name: 'DC Comics Villains'
     slug: dc-comics-villains
     description: 'A whole mess of DC Comics bad guys!'
@@ -1924,7 +1828,6 @@ CollectorCollection:
     collector_id: Collector_52
     graph_id: '11094'
     collection_category_id: CollectionCategory_101
-    content_category_id: ContentCategory_4903
     name: 'September 5th Weekend Haul'
     slug: september-5th-weekend-haul
     description: 'It was a good weekend for me and my dinosaur collection.  On Friday I received a box of dinosaur toys in the mail from my father in law (he knows I collect them and he buys them for me when he comes across them).  On Saturday I went to an estate sale that had some dinosaur toys.  And also on Saturday my wife was at a garage sale and found a huge box full of dinosaur toys!  On Sunday I returned to the estate sale to pick up some more dinosaur toys that I passed on the day before - they were half price on Sunday!  Total amount I spent for everything you see here: $13.50'
@@ -1944,7 +1847,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '11725'
     collection_category_id: CollectionCategory_1
-    content_category_id: ContentCategory_5983
     name: 'Teenage Mutant Ninja Turtles'
     slug: teenage-mutant-ninja-turtles
     description: 'A variety of TMNT incarnations, as action figures.'
@@ -1964,7 +1866,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '11735'
     collection_category_id: CollectionCategory_33
-    content_category_id: ContentCategory_5951
     name: Hellboy
     slug: hellboy
     description: "A wide array of Hellboy collectibles, including original film props and many action figures.\n\nAlso included, but not pictured, is the complete Mezco comic series (all 8, including the ultra-rare Kriegaffe #10), plus Comic Con Abe Sapien & Floating Head Hellboy.\n\n1:1 Sideshow Samitan replica gun, Abe Sapien 1:2 bust, Hot Toys Hellboy & Abe, Ultimate 12\" Sideshow Hellboy, faux bronze Mezco HB bust, Mezco's extreme Hellboy, Selma Blair's cross necklace from the first film, and Jeffrey Tambor's pants - as well as a lot of other stuff!"
@@ -1984,7 +1885,6 @@ CollectorCollection:
     collector_id: Collector_52
     graph_id: '12061'
     collection_category_id: CollectionCategory_101
-    content_category_id: ContentCategory_6140
     name: 'Prehistoric Puzzles'
     slug: prehistoric-puzzles
     description: 'These are some of the prehistoric-themed puzzles I have'
@@ -2004,7 +1904,6 @@ CollectorCollection:
     collector_id: Collector_52
     graph_id: '11947'
     collection_category_id: CollectionCategory_54
-    content_category_id: ContentCategory_5735
     name: 'Toys and Collectibles'
     slug: toys-and-collectibles
     description: 'In my quest to collect dinosaur toys sometimes I come across other cool toys that I do not have room to store, so I must sell them!  And sometimes I even sell dinosaur toys too!'
@@ -2024,7 +1923,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '12070'
     collection_category_id: CollectionCategory_54
-    content_category_id: ContentCategory_5736
     name: 'Onell Design Figures'
     slug: onell-design-figures
     description: 'A collection of small art-action-figures from Onell Design [onelldesign.com].'
@@ -2044,7 +1942,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '11372'
     collection_category_id: CollectionCategory_685
-    content_category_id: ContentCategory_6240
     name: 'Buck Rogers Disintegrator Pistol by Go Hero'
     slug: buck-rogers-disintegrator-pistol-by-go-hero
     description: 'A limited edition of 1000 reproduction Daisy Buck Rogers Atomic Disintegrator Pistols, made beautifully by Go Hero.'
@@ -2064,7 +1961,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '11080'
     collection_category_id: CollectionCategory_1
-    content_category_id: ContentCategory_5997
     name: 'Doctor Who Action Figures'
     slug: doctor-who-action-figures
     description: 'A collection of Dr. Who figures from Character Options in the UK.'
@@ -2084,7 +1980,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '10609'
     collection_category_id: CollectionCategory_42
-    content_category_id: ContentCategory_3821
     name: 'The Real Ghostbusters : Complete Collection on DVD'
     slug: the-real-ghostbusters-complete-collection-on-dvd
     description: 'A beautiful $180 set released by Time-Life, which includes 25 DVDs in 5 metal cases, in fancy, lenticular firehouse packaging.'
@@ -2104,7 +1999,6 @@ CollectorCollection:
     collector_id: Collector_52
     graph_id: '10889'
     collection_category_id: CollectionCategory_54
-    content_category_id: ContentCategory_6067
     name: 'Jurassic Park III Dino Packs Dinosaurs'
     slug: jurassic-park-iii-dino-packs-dinosaurs
     description: 'This collection provides information about the Jurassic Park III Dino Packs dinosaur toys, a short-lived series of miniature figures that I think are very underrated.'
@@ -2124,7 +2018,6 @@ CollectorCollection:
     collector_id: Collector_846
     graph_id: '11962'
     collection_category_id: CollectionCategory_50
-    content_category_id: ContentCategory_4402
     name: 'nordstrom snowglobes'
     slug: nordstrom-snowglobes
     description: 'Little winter fairies'
@@ -2144,7 +2037,6 @@ CollectorCollection:
     collector_id: Collector_846
     graph_id: '11133'
     collection_category_id: CollectionCategory_50
-    content_category_id: ContentCategory_4347
     name: Christmas
     slug: christmas
     description: 'Christmas Snowglobes'
@@ -2164,7 +2056,6 @@ CollectorCollection:
     collector_id: Collector_846
     graph_id: '12153'
     collection_category_id: CollectionCategory_50
-    content_category_id: ContentCategory_6252
     name: 'Around the World'
     slug: around-the-world
     description: 'My friends love me! :)'
@@ -2184,7 +2075,6 @@ CollectorCollection:
     collector_id: Collector_846
     graph_id: '10328'
     collection_category_id: CollectionCategory_50
-    content_category_id: ContentCategory_4402
     name: Miscellaneous
     slug: miscellaneous-1
     description: 'fairy, dancer, strange items...'
@@ -2204,7 +2094,6 @@ CollectorCollection:
     collector_id: Collector_846
     graph_id: '11380'
     collection_category_id: CollectionCategory_50
-    content_category_id: ContentCategory_3907
     name: 'Disney Snowglobes'
     slug: disney-snowglobes
     description: '...fairy tales...'
@@ -2224,7 +2113,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '10734'
     collection_category_id: CollectionCategory_19
-    content_category_id: ContentCategory_6115
     name: 'Tonner : DC Stars Batman'
     slug: tonner-dc-stars-batman
     description: 'One of many 16" dolls made by Tonner depicting DC superheroes, will fully-removable costumes in multiple pieces.'
@@ -2244,7 +2132,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '11634'
     collection_category_id: CollectionCategory_19
-    content_category_id: ContentCategory_6115
     name: 'Tonner : DC Stars Black Canary'
     slug: tonner-dc-stars-black-canary
     description: 'Released in the winter of 2008, Tonner''s DC Stars Black Canary is about 16" tall, and is fully costumed in fabric and accessories.'
@@ -2264,7 +2151,6 @@ CollectorCollection:
     collector_id: Collector_870
     graph_id: '11336'
     collection_category_id: CollectionCategory_54
-    content_category_id: ContentCategory_6160
     name: 'Museum Model Toys'
     slug: museum-model-toys
     description: 'Various dinosaur models. Some of note are Carnegie Battat Playvisions Walking with Dinosaurs Safari LTD.'
@@ -2284,7 +2170,6 @@ CollectorCollection:
     collector_id: Collector_963
     graph_id: '11849'
     collection_category_id: CollectionCategory_757
-    content_category_id: ContentCategory_4311
     name: 'Theodore Roosevelt campaign items'
     slug: theodore-roosevelt-campaign-items
     description: 'Campaign buttons, ribbons, etc.'
@@ -2304,7 +2189,6 @@ CollectorCollection:
     collector_id: Collector_870
     graph_id: '11523'
     collection_category_id: CollectionCategory_567
-    content_category_id: ContentCategory_4906
     name: Fossils
     slug: fossils
     description: "Psittacosaurus partial skull\n\nsold\n\nSkeleton $600"
@@ -2324,7 +2208,6 @@ CollectorCollection:
     collector_id: Collector_870
     graph_id: '10525'
     collection_category_id: CollectionCategory_470
-    content_category_id: ContentCategory_6160
     name: 'Dinosaurs and Prehistoric Animal Models'
     slug: dinosaurs-and-prehistoric-animal-models
     description: "Various models made in resin and plastic\n\n$300 for max salas kit\n\n$200 lunar models kit"
@@ -2344,7 +2227,6 @@ CollectorCollection:
     collector_id: Collector_1082
     graph_id: '10171'
     collection_category_id: CollectionCategory_19
-    content_category_id: ContentCategory_6095
     name: 'Living Dead Dolls'
     slug: living-dead-dolls-1
     description: 'Living Dead Dolls take up 50% of my life.  Im totally obsessed with these cute little zombie dolls!'
@@ -2364,7 +2246,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '10716'
     collection_category_id: CollectionCategory_330
-    content_category_id: ContentCategory_3993
     name: 'Star Trek Slides'
     slug: star-trek-slides
     description: 'I discovered a collection of 16 of these in a box recently, and am still seeking their origin and if they''re genuine or not!'
@@ -2384,7 +2265,6 @@ CollectorCollection:
     collector_id: Collector_870
     graph_id: '12119'
     collection_category_id: CollectionCategory_21
-    content_category_id: ContentCategory_6160
     name: 'Metal Figures'
     slug: metal-figures
     description: "H.S. Brumms flat metal\n\n$400 sold"
@@ -2404,7 +2284,6 @@ CollectorCollection:
     collector_id: Collector_870
     graph_id: '11593'
     collection_category_id: CollectionCategory_65
-    content_category_id: ContentCategory_6159
     name: 'Dinosaur and Other Animal Models'
     slug: dinosaur-and-other-animal-models
     description: 'Various Dinosaur and animal Models'
@@ -2424,7 +2303,6 @@ CollectorCollection:
     collector_id: Collector_1212
     graph_id: '11743'
     collection_category_id: CollectionCategory_330
-    content_category_id: ContentCategory_3939
     name: 'The Museum UnCut Funk Movie Poster  Collection'
     slug: the-museum-uncut-funk-movie-poster-collection
     description: 'The collection includes a small sample of Italian movie posters from the 1970''s Blaxploitation film genre. To view the entire collection of The Museum of Uncut Funk please visit www.museumofuncutfunk.com'
@@ -2444,7 +2322,6 @@ CollectorCollection:
     collector_id: Collector_1212
     graph_id: '11894'
     collection_category_id: CollectionCategory_115
-    content_category_id: ContentCategory_2799
     name: 'Black Animation'
     slug: black-animation
     description: 'The Museum of UnCut Funk Collection includes original production drawings and cels and limited edition cels from the 1970’s,1980’s and 1990’s. Please visit The Museum of UnCut Funk to see more of our collection of Black animation and read our animation blogs.'
@@ -2464,7 +2341,6 @@ CollectorCollection:
     collector_id: Collector_1212
     graph_id: '12076'
     collection_category_id: CollectionCategory_250
-    content_category_id: ContentCategory_3204
     name: 'Black Comic Books and Graphic Novels'
     slug: black-comic-books-and-graphic-novels
     description: 'The Museum of UnCut Funk Collection includes Luke Cage, Storm and other comic books from the 1960‘s, 1970’s and early 1980’s. Please visit to see more of our collection at The Museum of UnCut Funk. www.museumofuncutfunk.com'
@@ -2484,7 +2360,6 @@ CollectorCollection:
     collector_id: Collector_1212
     graph_id: '11703'
     collection_category_id: CollectionCategory_52
-    content_category_id: ContentCategory_3566
     name: 'Blacks on Stamps '
     slug: blacks-on-stamps
     description: 'The Museum of UnCut Funk Collection includes The Black Heritage Series from the USPS and other stamps featuring Blacks on them. Please visit The Museum of UnCut Funk to read our stamp collecting blog.'
@@ -2504,7 +2379,6 @@ CollectorCollection:
     collector_id: Collector_1212
     graph_id: '10820'
     collection_category_id: CollectionCategory_15
-    content_category_id: ContentCategory_3462
     name: 'Blacks on Currency and Gold Medals'
     slug: blacks-on-currency-and-gold-medals
     description: 'The Museum of UnCut Funk Collection includes a collection of gold coin and medal featuring Blacks. Please visit The Museum of UnCut Funk at www.museumofuncutfunk.com to read our blogs about our collection. '
@@ -2524,7 +2398,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '10629'
     collection_category_id: CollectionCategory_677
-    content_category_id: ContentCategory_6192
     name: 'Playmobil : April 2009 '
     slug: playmobil-april-2009
     description: 'I adore Playmobil - simple and strange. Here''s a photo gallery of some of their April 2009 releases, from Nautical Expeditions, Police and Wedding.'
@@ -2544,7 +2417,6 @@ CollectorCollection:
     collector_id: Collector_870
     graph_id: '10497'
     collection_category_id: CollectionCategory_1
-    content_category_id: ContentCategory_6067
     name: 'Dino King and Happinet Dinosaurs'
     slug: dino-king-and-happinet-dinosaurs
     description: 'dino king and happinet dinosaurs'
@@ -2564,7 +2436,6 @@ CollectorCollection:
     collector_id: Collector_870
     graph_id: '11162'
     collection_category_id: CollectionCategory_1
-    content_category_id: ContentCategory_6067
     name: 'Older collection pics'
     slug: older-collection-pics
     description: 'pictured of collection 2 yrs ago.'
@@ -2584,7 +2455,6 @@ CollectorCollection:
     collector_id: Collector_1212
     graph_id: '11706'
     collection_category_id: CollectionCategory_2
-    content_category_id: ContentCategory_2739
     name: 'Blacks on Crate Labels'
     slug: blacks-on-crate-labels
     description: "I collect crate labels from the pre-civil rights era. While these labels are racist and offensive, I appreciate them for their artwork. I also believe that they are important historical artifacts to preserve as a reminder that this type of product labeling should never be tolerated again.\r\n\r\nBelow is a small sampling of the Original Black Crate Labels that are a part of The Museum of UnCut Funk Collection."
@@ -2604,7 +2474,6 @@ CollectorCollection:
     collector_id: Collector_1212
     graph_id: '10903'
     collection_category_id: CollectionCategory_16
-    content_category_id: ContentCategory_2799
     name: 'Golden Legacy Series of Black History Comic Books'
     slug: golden-legacy-series-of-black-history-comic-books
     description: 'Bertram A Fitzgerald is the publisher of the Golden Legacy Series of Black History Comic Books. During the decade between 1966 and 1976 he acted as editor and publisher for the series and wrote almost half the books. To read more about the series please visit The Museum of UnCut Funk blog Can''t Get Enough...Og That Funky Stuff at www.museumofuncutfunk.com'
@@ -2624,7 +2493,6 @@ CollectorCollection:
     collector_id: Collector_1212
     graph_id: '11308'
     collection_category_id: CollectionCategory_2
-    content_category_id: ContentCategory_2737
     name: 'Black Fashion Ads'
     slug: black-fashion-ads
     description: 'From the archives of The Museum of UnCut Funk Flagg Brothers Couture. For a trip down memory lane in funky mens fashion please visit www.museumofuncutfunk.com and read our Can''t Get Enough of That Funky Stuff blog.'
@@ -2644,7 +2512,6 @@ CollectorCollection:
     collector_id: Collector_1212
     graph_id: '11161'
     collection_category_id: CollectionCategory_2
-    content_category_id: ContentCategory_4545
     name: 'Broadway in Black'
     slug: broadway-in-black
     description: "Please visit www.museumofuncutfunk.com and read our Can't Get Enough of That Funky Stuff blog on Broadway in Black.\r\n\r\n"
@@ -2664,7 +2531,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '11363'
     collection_category_id: CollectionCategory_1
-    content_category_id: ContentCategory_5997
     name: 'Mr. Bean 1/6th Figure'
     slug: mr-bean-1-6th-figure
     description: 'Mr. Bean from Enterbay is the most unexpected figure I''ve ever seen. So, of course, I had to get one.'
@@ -2684,7 +2550,6 @@ CollectorCollection:
     collector_id: Collector_1212
     graph_id: '10601'
     collection_category_id: CollectionCategory_2
-    content_category_id: ContentCategory_5058
     name: 'Vintage Rhum Labels'
     slug: vintage-rhum-labels
     description: "The Museum of UnCut Funk has a small collection of vintage rum labels. The Curators favorite labels are the old French Rhum labels from the early nineteen hundreds. These often have Black people of West Indian or African descent, usually accompanied by poorly spelt English words translated from French.\r\n\r\nTo see more of the Curators collection please visit The Museum of UnCut Funk at www.museumofuncutfunk.com"
@@ -2704,7 +2569,6 @@ CollectorCollection:
     collector_id: Collector_1317
     graph_id: '10981'
     collection_category_id: CollectionCategory_771
-    content_category_id: ContentCategory_6159
     name: 'My Wild Animals'
     slug: my-wild-animals
     description: 'My wildlife collection!(not ubdated)'
@@ -2724,7 +2588,6 @@ CollectorCollection:
     collector_id: Collector_1317
     graph_id: '11797'
     collection_category_id: CollectionCategory_771
-    content_category_id: ContentCategory_6159
     name: 'Farm Life'
     slug: farm-life
     description: 'Waited too much for other collections?Here they are:farm animals!'
@@ -2744,7 +2607,6 @@ CollectorCollection:
     collector_id: Collector_1317
     graph_id: '11672'
     collection_category_id: CollectionCategory_21
-    content_category_id: ContentCategory_6159
     name: 'Animal dioramas'
     slug: animal-dioramas
     description: 'Photos of my figurines living in natural enverioments outside the house and between the walls.'
@@ -2764,7 +2626,6 @@ CollectorCollection:
     collector_id: Collector_52
     graph_id: '10513'
     collection_category_id: CollectionCategory_250
-    content_category_id: ContentCategory_3267
     name: 'Jurassic Park Comic Books'
     slug: jurassic-park-comic-books
     description: 'Most of these Jurassic Park Comic Books were purchased in a binder from the estate of a comic book collector/dealer.'
@@ -2784,7 +2645,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '11408'
     collection_category_id: CollectionCategory_677
-    content_category_id: ContentCategory_6065
     name: 'Artoyz Elements : Unboxing'
     slug: artoyz-elements-unboxing
     description: 'Artoyz Elements series was first released exclusively in France, and only recently has come to the US. It''s a beautiful little series based on the idea of the four elements. Here''s the unboxing process.'
@@ -2804,7 +2664,6 @@ CollectorCollection:
     collector_id: Collector_1212
     graph_id: '11786'
     collection_category_id: CollectionCategory_250
-    content_category_id: ContentCategory_3204
     name: 'Spoof Comics Presents Soul Trek'
     slug: spoof-comics-presents-soul-trek
     description: "Spoof Comics presents SoulTrek, a combination of Soul Train and Star Trek. Say What??? Okay, maybe not the best comic, but what a brilliant idea for Spoof comic book fans. \r\n\r\nPlease visit The Museum of UnCut Funk and read our Can't Get Enough of That Funky Stuff Blog for more of Spoof Comics.\r\nwww.funkystuffblog.com\r\n\r\nPlease visit The Museum of UnCut Funk and read our Can't Get Enough of That Funky Stuff Blog for more of Spoof Comics.\r\nwww.funkystuffblog.com"
@@ -2824,7 +2683,6 @@ CollectorCollection:
     collector_id: Collector_1212
     graph_id: '11895'
     collection_category_id: CollectionCategory_16
-    content_category_id: ContentCategory_3204
     name: 'GunHawks Vol 1 -7'
     slug: gunhawks-vol-1-7
     description: "The Gunhawks were Kid Cassidy and Reno Jones. As introduced in Gunhawks #1 (1972), Cassidy was the son of a plantation-owning family in the antebellum American South, and Jones was a Black employee of the family who was friends with Cassidy.\r\n\r\nPlease visit The Museum of UnCut Funk and read our Can't Get Enough of That Funky Stuff Blog to see our western comic book collection and read more about racism in the old west. www.funkystuffblog.com"
@@ -2844,7 +2702,6 @@ CollectorCollection:
     collector_id: Collector_1212
     graph_id: '11691'
     collection_category_id: CollectionCategory_768
-    content_category_id: ContentCategory_3204
     name: 'A Comic Tribute to Michael Jackson '
     slug: a-comic-tribute-to-michael-jackson
     description: "The Museum of UnCut Funk is working through profound sadness over the passing of Michael Jackson. We honor him in this blog with a quick look at his career as a comic book character from the collection of the Curator.\r\n\r\nPlease visit The Museum of UnCut Funk to read more on our Comic Tribute to Michael Jackson. www.koolcatshipchicksblog.com."
@@ -2864,7 +2721,6 @@ CollectorCollection:
     collector_id: Collector_52
     graph_id: '10906'
     collection_category_id: CollectionCategory_101
-    content_category_id: ContentCategory_4903
     name: 'June 27 2009 Garage Sale Finds'
     slug: june-27-2009-garage-sale-finds
     description: 'You know its going to be a good garage sale weekend when there''s an ad in the paper advertising "lots of dinosaur toys"'
@@ -2884,7 +2740,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '11122'
     collection_category_id: CollectionCategory_754
-    content_category_id: ContentCategory_5736
     name: 'SDCC Mez-Itz Show Preview'
     slug: sdcc-mez-itz-show-preview
     description: 'Mezco was kind enough to drop some picture love on us for a preview of the upcoming Mez-Itz inaugural show at San Diego Comic Con this summer. Enjoy!'
@@ -2904,7 +2759,6 @@ CollectorCollection:
     collector_id: Collector_1212
     graph_id: '11360'
     collection_category_id: CollectionCategory_115
-    content_category_id: ContentCategory_2802
     name: 'Jackson Five Animation'
     slug: jackson-five-animation
     description: 'The Museum of UnCut Funk Collection includes original production drawings and cels and limited edition cels from the 1970’s,1980’s and 1990’s. The Curator''s collection includes original production cels from The Jackson Five cartoon series. '
@@ -2924,7 +2778,6 @@ CollectorCollection:
     collector_id: Collector_1374
     graph_id: '12192'
     collection_category_id: CollectionCategory_330
-    content_category_id: ContentCategory_4049
     name: 'The X Files'
     slug: the-x-files
     description: 'Memorabilia of the 90''s series tv The X Files sales overworld, signs, rare items, limited items, spanish and english editions, etc.'
@@ -2944,7 +2797,6 @@ CollectorCollection:
     collector_id: Collector_1212
     graph_id: '11976'
     collection_category_id: CollectionCategory_23
-    content_category_id: ContentCategory_6126
     name: 'UnCut Funk Board Games'
     slug: uncut-funk-board-games
     description: 'The Museum of UnCut Funk has a unique collection of 1970''s and 80''s  board games featuring Black characters such as the Harlem Globetrotters, The Jackson Five, Fat Albert and The A-Team. Please visit Can''t Get Enough of That Funky Stuff blog to read more. www.funkystuffblog.com'
@@ -2964,7 +2816,6 @@ CollectorCollection:
     collector_id: Collector_870
     graph_id: '11255'
     collection_category_id: CollectionCategory_21
-    content_category_id: ContentCategory_6160
     name: 'Small dinosaur and prehistoric animal figures'
     slug: small-dinosaur-and-prehistoric-animal-figures
     description: 'small shelf full of mainly kaiyodos'
@@ -2984,7 +2835,6 @@ CollectorCollection:
     collector_id: Collector_1212
     graph_id: '10478'
     collection_category_id: CollectionCategory_250
-    content_category_id: ContentCategory_3349
     name: 'Crazy Magazine '
     slug: crazy-magazine
     description: "For a short time in the early 1970's, Crazy magazine, a competitor of Mad and Cracked magazines was published by Marvel Comics. During this period Crazy magazine payed tribute to many Black celebrities in the area of film, music and television.\r\nPlease visit The Museum of UnCut Funk blog Can't Get Enough of That Funky Stuff blog to read more. www.funkystuffblog.com.\r\n"
@@ -3004,7 +2854,6 @@ CollectorCollection:
     collector_id: Collector_1212
     graph_id: '10295'
     collection_category_id: CollectionCategory_250
-    content_category_id: ContentCategory_3259
     name: 'Lois Lane #106'
     slug: lois-lane-106
     description: '?I am Curious (Black)” the first story in Superman’s Girlfriend Lois Lane #106. The Museum of UnCut Funk has acquired this comic book to our comic book collection. Please visit the Can''t Get Enough of that Stuff blog to read more. www.funkystuffblog.com'
@@ -3024,7 +2873,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '11859'
     collection_category_id: CollectionCategory_754
-    content_category_id: ContentCategory_5997
     name: 'Futurama Minis from Kid Robot'
     slug: futurama-minis-from-kid-robot
     description: 'A collection of mini vinyl figured depicting the Futurama universe, made by Kid Robot.'
@@ -3044,7 +2892,6 @@ CollectorCollection:
     collector_id: Collector_1212
     graph_id: '11654'
     collection_category_id: CollectionCategory_115
-    content_category_id: ContentCategory_2799
     name: 'The Censored Eleven at The Museum of UnCut Funk'
     slug: the-censored-eleven-at-the-museum-of-uncut-funk
     description: 'The Museum of UnCut Funk has a unique collection of Black animation. Within that collection we have acquired Publicity Stills from the "Censored Eleven" cartoons. '
@@ -3064,7 +2911,6 @@ CollectorCollection:
     collector_id: Collector_1317
     graph_id: '11258'
     collection_category_id: CollectionCategory_21
-    content_category_id: ContentCategory_6159
     name: 'House rodents and lagomorphs'
     slug: house-rodents-and-lagomorphs
     description: 'This is a small collection with my rabbits,hamsters,guineea pigs,mice and rats. Watch from time to time for new figurines!'
@@ -3084,7 +2930,6 @@ CollectorCollection:
     collector_id: Collector_1317
     graph_id: '11139'
     collection_category_id: CollectionCategory_21
-    content_category_id: ContentCategory_6159
     name: 'Wild rodents and lagomorphs'
     slug: wild-rodents-and-lagomorphs
     description: 'A small collection which contains wild rabbits and hares,beavers,squirrels,marmots and many more.'
@@ -3104,7 +2949,6 @@ CollectorCollection:
     collector_id: Collector_1317
     graph_id: '10709'
     collection_category_id: CollectionCategory_21
-    content_category_id: ContentCategory_6159
     name: 'Monotremes and marsupials'
     slug: monotremes-and-marsupials
     description: 'Watch from time to time for new items!'
@@ -3124,7 +2968,6 @@ CollectorCollection:
     collector_id: Collector_1317
     graph_id: '11620'
     collection_category_id: CollectionCategory_21
-    content_category_id: ContentCategory_6159
     name: 'Bats and small insectivores'
     slug: bats-and-small-insectivores
     description: 'I think the tittle tells everything.Enjoy!'
@@ -3144,7 +2987,6 @@ CollectorCollection:
     collector_id: Collector_1317
     graph_id: '11259'
     collection_category_id: CollectionCategory_21
-    content_category_id: ContentCategory_6159
     name: 'Parrots and other tropical birds'
     slug: parrots-and-other-tropical-birds
     description: 'A small bunch of birds.No ordinary pidgeons,thought.They are the most beautiful flyers on earth.'
@@ -3164,7 +3006,6 @@ CollectorCollection:
     collector_id: Collector_1317
     graph_id: '12120'
     collection_category_id: CollectionCategory_21
-    content_category_id: ContentCategory_6159
     name: Edentates
     slug: edentates
     description: 'Wierdo!You have no teeth!_Sorry,I am an anteater.Enjoy a bunch of other wierdos in this collection!!!'
@@ -3184,7 +3025,6 @@ CollectorCollection:
     collector_id: Collector_1317
     graph_id: '10741'
     collection_category_id: CollectionCategory_21
-    content_category_id: ContentCategory_6159
     name: 'Mustelidae, Procyonnidae and more'
     slug: mustelidae-procyonnidae-and-more
     description: 'Otters,meerkats,racoons,mongoose,civets,genets and many more.Watch out,''cause there are others to come.'
@@ -3204,7 +3044,6 @@ CollectorCollection:
     collector_id: Collector_1317
     graph_id: '11257'
     collection_category_id: CollectionCategory_21
-    content_category_id: ContentCategory_6159
     name: 'Elephants and rhinos'
     slug: elephants-and-rhinos
     description: 'Watch from time to time if there are any new figurines.This collection contains the biggest land animals.'
@@ -3224,7 +3063,6 @@ CollectorCollection:
     collector_id: Collector_1317
     graph_id: '11021'
     collection_category_id: CollectionCategory_21
-    content_category_id: ContentCategory_6159
     name: 'Hippos and tapirs'
     slug: hippos-and-tapirs
     description: 'Water loving mammals,including the gentle tapirs and the fiersome hippopotamas.There may be others on the way.'
@@ -3244,7 +3082,6 @@ CollectorCollection:
     collector_id: Collector_1317
     graph_id: '11175'
     collection_category_id: CollectionCategory_21
-    content_category_id: ContentCategory_6159
     name: 'Wild pigs and wild cattle'
     slug: wild-pigs-and-wild-cattle
     description: 'Muddy,heavy,ugly,hoofed.No ordinary pig or cow.These are brutal.There may come others,so be prepared!'
@@ -3264,7 +3101,6 @@ CollectorCollection:
     collector_id: Collector_1317
     graph_id: '11177'
     collection_category_id: CollectionCategory_21
-    content_category_id: ContentCategory_6159
     name: 'Marine birds'
     slug: marine-birds
     description: 'Many sea birds are found in this collection,both from the poles and the tropics.'
@@ -3284,7 +3120,6 @@ CollectorCollection:
     collector_id: Collector_1317
     graph_id: '11555'
     collection_category_id: CollectionCategory_21
-    content_category_id: ContentCategory_6159
     name: 'Woodpeckers and other birds'
     slug: woodpeckers-and-other-birds
     description: 'Typical birds for the temperate region and some others,including the ostrich.'
@@ -3304,7 +3139,6 @@ CollectorCollection:
     collector_id: Collector_1317
     graph_id: '11398'
     collection_category_id: CollectionCategory_21
-    content_category_id: ContentCategory_6159
     name: 'Birds of prey'
     slug: birds-of-prey
     description: 'The most fiersome flyers.From owls to eagles,here you find them all.'
@@ -3324,7 +3158,6 @@ CollectorCollection:
     collector_id: Collector_1317
     graph_id: '10737'
     collection_category_id: CollectionCategory_21
-    content_category_id: ContentCategory_6159
     name: 'Reptiles and amphibians'
     slug: reptiles-and-amphibians
     description: 'Frogs,snakes,turtles and crocs.Watch from time to time for new stuff.'
@@ -3344,7 +3177,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '11304'
     collection_category_id: CollectionCategory_677
-    content_category_id: ContentCategory_6192
     name: 'Playmobil : Egypt'
     slug: playmobil-egypt
     description: 'Egyptians, policemen, and an awesome set of home-themed pieces - all available as of August 2009.'
@@ -3364,7 +3196,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '11549'
     collection_category_id: CollectionCategory_677
-    content_category_id: ContentCategory_6192
     name: 'Playmobil : Home'
     slug: playmobil-home
     description: 'A set of toys that depicts a suburban lifestyle, meant to be used in the much larger ''Suburban House'' playset.'
@@ -3384,7 +3215,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '12127'
     collection_category_id: CollectionCategory_1
-    content_category_id: ContentCategory_5955
     name: 'Buck Rogers 12" Figure from Go Hero'
     slug: buck-rogers-12-figure-from-go-hero
     description: 'The amazing 1/6th scale figure of Buck Rogers, made by the fine people at Go Hero!'
@@ -3404,7 +3234,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '11799'
     collection_category_id: CollectionCategory_1
-    content_category_id: ContentCategory_5955
     name: 'Boiler Zomb 12" from 3A Toys'
     slug: boiler-zomb-12-from-3a-toys
     description: 'A very interesting 12" figure designed by Ashley Wood.'
@@ -3424,7 +3253,6 @@ CollectorCollection:
     collector_id: Collector_1317
     graph_id: '11766'
     collection_category_id: CollectionCategory_21
-    content_category_id: ContentCategory_6159
     name: 'Camels and llamas'
     slug: camels-and-llamas
     description: 'A bunch of figurines including the camels,guanacos,alpacas and llamas.'
@@ -3444,7 +3272,6 @@ CollectorCollection:
     collector_id: Collector_1317
     graph_id: '11352'
     collection_category_id: CollectionCategory_21
-    content_category_id: ContentCategory_6159
     name: 'Canids and hyenas'
     slug: canids-and-hyenas
     description: 'Wild dogs,foxes,wolves and dingos.They are all here!Whatch from time to tim for new arrivals.'
@@ -3464,7 +3291,6 @@ CollectorCollection:
     collector_id: Collector_1317
     graph_id: '11624'
     collection_category_id: CollectionCategory_21
-    content_category_id: ContentCategory_6159
     name: 'Zebras,wild horses and wild donkeys'
     slug: zebras-wild-horses-and-wild-donkeys
     description: 'Stripes in black and white.Zebras come in all shapes and sizes.Enjoy!There are still more to come.'
@@ -3484,7 +3310,6 @@ CollectorCollection:
     collector_id: Collector_1317
     graph_id: '10369'
     collection_category_id: CollectionCategory_21
-    content_category_id: ContentCategory_6159
     name: 'Anilopes and gazelles'
     slug: anilopes-and-gazelles
     description: 'From the bulky wildebeest to the small dik-dik,here you find your favorites.There are still more to come!'
@@ -3504,7 +3329,6 @@ CollectorCollection:
     collector_id: Collector_1317
     graph_id: '10179'
     collection_category_id: CollectionCategory_21
-    content_category_id: ContentCategory_6159
     name: Lions
     slug: lions-1
     description: 'The king of the beasts and his family.Many more on the way!'
@@ -3524,7 +3348,6 @@ CollectorCollection:
     collector_id: Collector_1317
     graph_id: '10375'
     collection_category_id: CollectionCategory_21
-    content_category_id: ContentCategory_6159
     name: 'Wild goats,wild sheep and musk oxes'
     slug: wild-goats-wild-sheep-and-musk-oxes
     description: 'There are more to come.Whatch from time to time this collection.'
@@ -3544,7 +3367,6 @@ CollectorCollection:
     collector_id: Collector_1317
     graph_id: '10560'
     collection_category_id: CollectionCategory_21
-    content_category_id: ContentCategory_6120
     name: 'Human figurines'
     slug: human-figurines
     description: 'Farmers,keepers and many more.Here are all the people I have.There are still many more on the way.'
@@ -3564,7 +3386,6 @@ CollectorCollection:
     collector_id: Collector_1317
     graph_id: '11263'
     collection_category_id: CollectionCategory_21
-    content_category_id: ContentCategory_6159
     name: Bears
     slug: bears
     description: 'Black bears,grizzlys,pandas and polar bears.There are more on the way.'
@@ -3584,7 +3405,6 @@ CollectorCollection:
     collector_id: Collector_1317
     graph_id: '11141'
     collection_category_id: CollectionCategory_21
-    content_category_id: ContentCategory_6159
     name: Cervides
     slug: cervides
     description: 'Deer,moose,reindeer,caribou and many more.Whatch from time to time if there are any new figurirines!'
@@ -3604,7 +3424,6 @@ CollectorCollection:
     collector_id: Collector_1317
     graph_id: '11755'
     collection_category_id: CollectionCategory_21
-    content_category_id: ContentCategory_6159
     name: 'Girrafes and okapis'
     slug: girrafes-and-okapis
     description: 'There will be many more.'
@@ -3624,7 +3443,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '8806'
     collection_category_id: CollectionCategory_54
-    content_category_id: ContentCategory_6240
     name: 'Dr. Grordbort''s Righteous Bison'
     slug: dr-grordborts-righteous-bison
     description: 'An amazing, well-priced plastic raygun from the Grordbort collection, made by WETA.'
@@ -3644,7 +3462,6 @@ CollectorCollection:
     collector_id: Collector_1317
     graph_id: '10440'
     collection_category_id: CollectionCategory_21
-    content_category_id: ContentCategory_6159
     name: 'Leopards,jaguars and cheetahs'
     slug: leopards-jaguars-and-cheetahs
     description: 'Including the big spotted cats,but also the elusive ocelot.There are still many more items on the way!'
@@ -3664,7 +3481,6 @@ CollectorCollection:
     collector_id: Collector_1317
     graph_id: '12112'
     collection_category_id: CollectionCategory_21
-    content_category_id: ContentCategory_6159
     name: 'Cougars,lynxs and caracals'
     slug: cougars-lynxs-and-caracals
     description: 'Watch for new items from time to time!'
@@ -3684,7 +3500,6 @@ CollectorCollection:
     collector_id: Collector_1317
     graph_id: '10801'
     collection_category_id: CollectionCategory_21
-    content_category_id: ContentCategory_6159
     name: Tigers
     slug: tigers
     description: 'Watch for new items every once in a while!'
@@ -3704,7 +3519,6 @@ CollectorCollection:
     collector_id: Collector_1212
     graph_id: '11171'
     collection_category_id: CollectionCategory_115
-    content_category_id: ContentCategory_2799
     name: 'Robert Balser and The Museum of UnCut Funk'
     slug: robert-balser-and-the-museum-of-uncut-funk
     description: 'The Museum Of UnCut Funk presents our interview with Robert Balser, Supervising Director of The Jackson Five Cartoon. Bob talks to us about his illustrious career, and in particular his involvement with The Jackson Five Cartoon and how important it was to create a positive animated series for Black children during the 1970''s.'
@@ -3724,7 +3538,6 @@ CollectorCollection:
     collector_id: Collector_870
     graph_id: '10744'
     collection_category_id: CollectionCategory_330
-    content_category_id: ContentCategory_3940
     name: 'Dinosaur Movie Memorabilia'
     slug: dinosaur-movie-memorabilia
     description: 'Mainly dinosaur memorabilia such as props posters standees promos figures cells art and autographs.'
@@ -3744,7 +3557,6 @@ CollectorCollection:
     collector_id: Collector_1317
     graph_id: '11925'
     collection_category_id: CollectionCategory_21
-    content_category_id: ContentCategory_6159
     name: Pinnipeds
     slug: pinnipeds
     description: 'Walruses,seals and sea lions.Whatch from time to time for new items!'
@@ -3764,7 +3576,6 @@ CollectorCollection:
     collector_id: Collector_1317
     graph_id: '10461'
     collection_category_id: CollectionCategory_21
-    content_category_id: ContentCategory_6159
     name: Cetaceans
     slug: cetaceans
     description: 'Whales and dolphins.Watch from time to time for new items!'
@@ -3784,7 +3595,6 @@ CollectorCollection:
     collector_id: Collector_1317
     graph_id: '11147'
     collection_category_id: CollectionCategory_21
-    content_category_id: ContentCategory_6159
     name: 'Bony fish'
     slug: bony-fish
     description: 'Watch from time to time for new items!'
@@ -3804,7 +3614,6 @@ CollectorCollection:
     collector_id: Collector_1317
     graph_id: '11447'
     collection_category_id: CollectionCategory_21
-    content_category_id: ContentCategory_6159
     name: 'Cartilaginous fish'
     slug: cartilaginous-fish
     description: 'Sharks,rays and sawfish.Watch from time to time for new items!'
@@ -3824,7 +3633,6 @@ CollectorCollection:
     collector_id: Collector_1317
     graph_id: '11014'
     collection_category_id: CollectionCategory_21
-    content_category_id: ContentCategory_6159
     name: 'Marine Invertebrates'
     slug: marine-invertebrates
     description: 'Lobsters,jellyfish,octopuses,crabs and sea stars.Watch from time to time for more!'
@@ -3844,7 +3652,6 @@ CollectorCollection:
     collector_id: Collector_1317
     graph_id: '11897'
     collection_category_id: CollectionCategory_21
-    content_category_id: ContentCategory_6159
     name: 'Farm birds'
     slug: farm-birds
     description: 'Ducks,geese,turkeys,roosters and swans.Watch from time to time for new birds!'
@@ -3864,7 +3671,6 @@ CollectorCollection:
     collector_id: Collector_1317
     graph_id: '10427'
     collection_category_id: CollectionCategory_21
-    content_category_id: ContentCategory_6159
     name: 'Monkeys and Lemurs'
     slug: monkeys-and-lemurs
     description: 'Baboons,squirrel monkeys,lemurs and many more.Watch from time to time for new items!'
@@ -3884,7 +3690,6 @@ CollectorCollection:
     collector_id: Collector_1317
     graph_id: '10803'
     collection_category_id: CollectionCategory_21
-    content_category_id: ContentCategory_6159
     name: 'Large Apes'
     slug: large-apes
     description: 'Gorrilas,chimps and orangutans.Watch from time to time for new items!'
@@ -3904,7 +3709,6 @@ CollectorCollection:
     collector_id: Collector_1212
     graph_id: '10495'
     collection_category_id: CollectionCategory_115
-    content_category_id: ContentCategory_2799
     name: 'The Museum of UnCut Funk Collection '
     slug: the-museum-of-uncut-funk-collection
     description: 'The Museum of UnCut Funk Collection includes original production cels and drawings and limited edition cels from a turning point in cartoon history where Black and White animators created positive Black characters and Black stories for all to enjoy, including: Fat Albert And The Cosby Kids; The Jackson 5ive; The Harlem Globetrotters; Valerie – Josie and The Pussy Cats; Lt. Uhuru – Star Trek Animated Series; Muhammad Ali – I Am The Greatest; Billy Jo Jive – Sesame Street; Verb: That’s What’s Happening – School House Rock and Franklin – Peanuts. Please visit www.museumofuncutfunk.com to view the film on black animation and the collection.'
@@ -3924,7 +3728,6 @@ CollectorCollection:
     collector_id: Collector_1317
     graph_id: '11813'
     collection_category_id: CollectionCategory_21
-    content_category_id: ContentCategory_6159
     name: Pigs
     slug: pigs
     description: 'Watch from time to time for new pigs coming!'
@@ -3944,7 +3747,6 @@ CollectorCollection:
     collector_id: Collector_1317
     graph_id: '11905'
     collection_category_id: CollectionCategory_21
-    content_category_id: ContentCategory_6159
     name: 'Domesticated cattle'
     slug: domesticated-cattle
     description: 'Cows and bulls.Watch from time to time for new cows!'
@@ -3964,7 +3766,6 @@ CollectorCollection:
     collector_id: Collector_1317
     graph_id: '10714'
     collection_category_id: CollectionCategory_21
-    content_category_id: ContentCategory_6161
     name: Horses
     slug: horses
     description: 'Watch from time to time for new items!'
@@ -3984,7 +3785,6 @@ CollectorCollection:
     collector_id: Collector_1317
     graph_id: '11150'
     collection_category_id: CollectionCategory_21
-    content_category_id: ContentCategory_6159
     name: 'Insects and arahnids'
     slug: insects-and-arahnids
     description: 'You also find here slugs.Watch from time to time for new items!'
@@ -4004,7 +3804,6 @@ CollectorCollection:
     collector_id: Collector_1212
     graph_id: '11276'
     collection_category_id: CollectionCategory_115
-    content_category_id: ContentCategory_2802
     name: 'Jackson Five Model Sheets'
     slug: jackson-five-model-sheets
     description: 'Original Jack Davis art from The Jackson Five series, shared with The Museum of UnCut Funk by Robert Balser from his collection.'
@@ -4024,7 +3823,6 @@ CollectorCollection:
     collector_id: Collector_1317
     graph_id: '10804'
     collection_category_id: CollectionCategory_21
-    content_category_id: ContentCategory_6159
     name: Cats
     slug: cats
     description: 'Watch from time to time for new items!'
@@ -4044,7 +3842,6 @@ CollectorCollection:
     collector_id: Collector_1317
     graph_id: '11878'
     collection_category_id: CollectionCategory_21
-    content_category_id: ContentCategory_6159
     name: Donkeys
     slug: donkeys
     description: 'Watch from time to time for new items!'
@@ -4064,7 +3861,6 @@ CollectorCollection:
     collector_id: Collector_1317
     graph_id: '11016'
     collection_category_id: CollectionCategory_21
-    content_category_id: ContentCategory_6159
     name: Goats
     slug: goats
     description: 'There are more items to come!'
@@ -4084,7 +3880,6 @@ CollectorCollection:
     collector_id: Collector_1317
     graph_id: '11896'
     collection_category_id: CollectionCategory_21
-    content_category_id: ContentCategory_6159
     name: Sheep
     slug: sheep
     description: 'Watch from time to time for new items!'
@@ -4104,7 +3899,6 @@ CollectorCollection:
     collector_id: Collector_1317
     graph_id: '10228'
     collection_category_id: CollectionCategory_21
-    content_category_id: ContentCategory_6160
     name: Dinosaurs
     slug: dinosaurs-1
     description: 'From the mighty T-rex to the small Leptoceratops,this section contains dozens of species of dinosaurs.Watch from time to time for new items!'
@@ -4124,7 +3918,6 @@ CollectorCollection:
     collector_id: Collector_1317
     graph_id: '10160'
     collection_category_id: CollectionCategory_21
-    content_category_id: ContentCategory_6159
     name: Dogs
     slug: dogs-1
     description: 'Watch from time to time for new items!'
@@ -4144,7 +3937,6 @@ CollectorCollection:
     collector_id: Collector_52
     graph_id: '12422'
     collection_category_id: CollectionCategory_377
-    content_category_id: ContentCategory_5604
     name: 'Cool Old Geology Stuff'
     slug: cool-old-geology-stuff
     description: 'Some cool old geology stuff.'
@@ -4164,7 +3956,6 @@ CollectorCollection:
     collector_id: Collector_1317
     graph_id: '10882'
     collection_category_id: CollectionCategory_21
-    content_category_id: ContentCategory_6160
     name: Pterosaurs
     slug: pterosaurs
     description: 'The great flyers of the Cretaceous period,which lived among the dinosaurs and became extinct 65 million years ago.Whach from time to time for new items!'
@@ -4184,7 +3975,6 @@ CollectorCollection:
     collector_id: Collector_1317
     graph_id: '11871'
     collection_category_id: CollectionCategory_21
-    content_category_id: ContentCategory_6159
     name: Sirenia
     slug: sirenia
     description: 'Also known as sea cows,this collection includes manatees and dugongs.Watch from time to time for new items!'
@@ -4204,7 +3994,6 @@ CollectorCollection:
     collector_id: Collector_1317
     graph_id: '11595'
     collection_category_id: CollectionCategory_21
-    content_category_id: ContentCategory_6160
     name: 'Prehistoric aquatic animals'
     slug: prehistoric-aquatic-animals
     description: 'Marine arthropods,marine reptiles & fish which are long extinct.Watch from time to time for new items!'
@@ -4224,7 +4013,6 @@ CollectorCollection:
     collector_id: Collector_1317
     graph_id: '10878'
     collection_category_id: CollectionCategory_21
-    content_category_id: ContentCategory_6160
     name: 'Other prehistoric reptiles'
     slug: other-prehistoric-reptiles
     description: 'Various species of mammal-like reptiles and archosaurians.Watch from time to time for new items!'
@@ -4244,7 +4032,6 @@ CollectorCollection:
     collector_id: Collector_1317
     graph_id: '11008'
     collection_category_id: CollectionCategory_21
-    content_category_id: ContentCategory_6160
     name: 'Prehistoric mammals and birds'
     slug: prehistoric-mammals-and-birds
     description: 'Watch from time to time for new items!'
@@ -4264,7 +4051,6 @@ CollectorCollection:
     collector_id: Collector_1317
     graph_id: '11393'
     collection_category_id: CollectionCategory_21
-    content_category_id: ContentCategory_6120
     name: 'Plants and garden objects'
     slug: plants-and-garden-objects
     description: 'Flower pots,trees,benches and more.Watch from time to time fro new items!'
@@ -4284,7 +4070,6 @@ CollectorCollection:
     collector_id: Collector_1317
     graph_id: '12108'
     collection_category_id: CollectionCategory_21
-    content_category_id: ContentCategory_6159
     name: 'Animal accesories'
     slug: animal-accesories
     description: 'Watch from time to time for new items!'
@@ -4304,7 +4089,6 @@ CollectorCollection:
     collector_id: Collector_1317
     graph_id: '11278'
     collection_category_id: CollectionCategory_21
-    content_category_id: ContentCategory_6120
     name: 'Medieval World'
     slug: medieval-world
     description: 'This collection includes knights and fantasy animals related to the Midle Eve.Watch from time to time for new items!'
@@ -4324,7 +4108,6 @@ CollectorCollection:
     collector_id: Collector_870
     graph_id: '12066'
     collection_category_id: CollectionCategory_35
-    content_category_id: ContentCategory_6160
     name: 'Animatronics and projects'
     slug: animatronics-and-projects
     description: 'future projects to display'
@@ -4344,7 +4127,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '11182'
     collection_category_id: CollectionCategory_23
-    content_category_id: ContentCategory_6132
     name: 'Heroclix : Hammer of Thor'
     slug: heroclix-hammer-of-thor
     description: 'A set of collectible gaming miniatures made by WizKids / NECA in late 2009 / early 2010, under the theme of the Marvel character Thor.'
@@ -4364,7 +4146,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '11281'
     collection_category_id: CollectionCategory_677
-    content_category_id: ContentCategory_5736
     name: 'Ultra Monsters : Kaiju'
     slug: ultra-monsters-kaiju
     description: 'A collection of kaiju toys made by Bandai and distributed exclusively in Asia. All (or most) of these are monsters featured throughout the Ultraman series of TV shows, and are roughly 6" tall, made of rotocast vinyl - and are ridiculously awesome.'
@@ -4384,7 +4165,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '11349'
     collection_category_id: CollectionCategory_754
-    content_category_id: ContentCategory_5839
     name: 'Iron Man Mega Bloks'
     slug: iron-man-mega-bloks
     description: 'A collection of Iron Man pieces from the Mega Bloks collection.'
@@ -4404,7 +4184,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '11462'
     collection_category_id: CollectionCategory_23
-    content_category_id: ContentCategory_6145
     name: 'Vintage 1980s Cosmi Atari Games'
     slug: vintage-1980s-cosmi-atari-games
     description: "A set of twelve games made by Cosmi around 1983. Half are cassettes, and half are diskettes. All are sealed and in amazingly pristine condition, and come in the original retail display case.\n\nAn amazing find!"
@@ -4424,7 +4203,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '11285'
     collection_category_id: CollectionCategory_23
-    content_category_id: ContentCategory_6132
     name: 'Heroclix : Brave &amp; the Bold'
     slug: heroclix-brave-amp-the-bold
     description: 'A set of Heroclix pieces released in April of 2010 based on characters from DC Comics.'
@@ -4444,7 +4222,6 @@ CollectorCollection:
     collector_id: Collector_870
     graph_id: '11801'
     collection_category_id: CollectionCategory_330
-    content_category_id: ContentCategory_3940
     name: Godzilla
     slug: godzilla
     description: "mainly godzilla and other monsters\n\nFor sale: sold"
@@ -4464,7 +4241,6 @@ CollectorCollection:
     collector_id: Collector_3632
     graph_id: '11120'
     collection_category_id: CollectionCategory_285
-    content_category_id: ContentCategory_6168
     name: 'Diecast Car Collection'
     slug: diecast-car-collection
     description: 'Everything from Hot Wheels to Matchbox to Maylasia to Yatming to Tonka.  Looking to sell and will sell single vehicles or in lots.  Some pre- 1970s and some remote control.  Let me know what you''re looking for. '
@@ -4484,7 +4260,6 @@ CollectorCollection:
     collector_id: Collector_52
     graph_id: '10928'
     collection_category_id: CollectionCategory_333
-    content_category_id: ContentCategory_2868
     name: 'Edward Warwick Dinosaur Art'
     slug: edward-warwick-dinosaur-art
     description: 'This is a set of small sketches found inside a dinosaur book purchased at an antique shop in Philadelphia.  Writing in the book indicates it belonged to Edward Warwick.  I am trying to figure out if the sketches are indeed by Edward Warwick (1881-1973), former dean of the Philadelphia Museum School of Industrial Art.'
@@ -4504,7 +4279,6 @@ CollectorCollection:
     collector_id: Collector_4208
     graph_id: '11929'
     collection_category_id: CollectionCategory_42
-    content_category_id: ContentCategory_2925
     name: 'Houston Freeburg Collection'
     slug: houston-freeburg-collection
     description: 'Original sixties rock concert posters and vintage black light posters from the psychedelic era. Includes complete sets of Bill Graham Fillmore West and Chet Helms'' Family Dog, as well as Art of Rock, Grande Ballroom, Neon Rose, Hapshash, and others. Also, probably the world''s largest private collection of vintage black light posters. Hundreds and hundreds of quality pieces which will take you on a trip back in time. Other memorabilia include signed LP albums by Jimi Hendrix, the Beatles, and the Rolling Stones, original movie promotional one sheets, concert photos, autographs, and more. Check it out.'
@@ -4524,7 +4298,6 @@ CollectorCollection:
     collector_id: Collector_4295
     graph_id: '12301'
     collection_category_id: CollectionCategory_677
-    content_category_id: ContentCategory_6197
     name: 'My Many Rubber Ducks'
     slug: my-many-rubber-ducks
     description: 'These are the pictures of my many rubber friends, I hope you love them as much as I do.'
@@ -4544,7 +4317,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '10588'
     collection_category_id: CollectionCategory_1
-    content_category_id: ContentCategory_5742
     name: 'DC Universe Squatz'
     slug: dc-universe-squatz
     description: 'Series one of DC Squatz from WIld Planet includes 13 different DC Comics characters, sold in two packs. Some are mystery figures, while some are revealed one the packaging. Place a Squatz in the warm water and the outer shell fizzes away, revealing the 1" figure inside.'
@@ -4564,7 +4336,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '11184'
     collection_category_id: CollectionCategory_23
-    content_category_id: ContentCategory_6132
     name: 'Heroclix : DC 75th Anniversary'
     slug: heroclix-dc-75th-anniversary
     description: 'Heroclix : 75th Anniversary Set'
@@ -4584,7 +4355,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '10775'
     collection_category_id: CollectionCategory_1
-    content_category_id: ContentCategory_5742
     name: 'DC Action League'
     slug: dc-action-league
     description: "<p>A series of blocky, animated-style mini figures made by Mattel, beginning with interpretations of The Brave & The Bold cartoon characters, and moving on to mainstream DC Comics characters.</p>\r\n"
@@ -4604,7 +4374,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '11188'
     collection_category_id: CollectionCategory_23
-    content_category_id: ContentCategory_5736
     name: 'Mighty Beanz (2010 and beyond)'
     slug: mighty-beanz-2010-and-beyond
     description: 'Mighty Beanz were popular in 2004, but they''ve seen a resurgence recently, with more and more sets being released by Spin Master, featuring Marvel Comics, DC Comics and Star Wars, among their original creations.'
@@ -4624,7 +4393,6 @@ CollectorCollection:
     collector_id: Collector_6610
     graph_id: '10424'
     collection_category_id: CollectionCategory_525
-    content_category_id: ContentCategory_5565
     name: 'ANTIQUE &amp; VINTAGE PHOTOGRAPHIC COLLECTIBLES'
     slug: antique-amp-vintage-photographic-collectibles
     description: 'Offering photographic collectibles including 19th & 20th century cameras, lenses, and related accessories.'
@@ -4644,7 +4412,6 @@ CollectorCollection:
     collector_id: Collector_6610
     graph_id: '11474'
     collection_category_id: CollectionCategory_685
-    content_category_id: ContentCategory_5735
     name: 'VINTAGE &amp; OPTICAL TOYS'
     slug: vintage-amp-optical-toys
     description: 'Vintage toys to include optical toys, vehicles, die cast, games, etc.'
@@ -4683,7 +4450,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '10250'
     collection_category_id: CollectionCategory_10
-    content_category_id: ContentCategory_6164
     name: Batmobiles!
     slug: batmobiles-1
     description: 'A small collection of Batmobiles from many sources, with a thousand holt grails still left to find!'
@@ -4703,7 +4469,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '11052'
     collection_category_id: CollectionCategory_1
-    content_category_id: ContentCategory_5831
     name: 'Marvel Squinkies'
     slug: marvel-squinkies
     description: 'A collection of tiny, rubbery Marvel heroes!'
@@ -4723,7 +4488,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '11190'
     collection_category_id: CollectionCategory_1
-    content_category_id: ContentCategory_5831
     name: 'Marvel Frenzies from tokidoki!'
     slug: marvel-frenzies-from-tokidoki
     description: 'A series of 20 keychains depicting Marvel Comics characters, released by tokidoki, and provided here by Tenacious Toys!'
@@ -4743,7 +4507,6 @@ CollectorCollection:
     collector_id: Collector_6700
     graph_id: '12244'
     collection_category_id: CollectionCategory_551
-    content_category_id: ContentCategory_4119
     name: 'Vintage Hull Magnolia Matte Double Handle Vase 12 1/2'
     slug: vintage-hull-magnolia-matte-double-handle-vase-12-1-2
     description: "Vintage Hull Magnolia Matte Finish Double Handle Vase\n\nMaker: Hull 17-121\n\nMeasures: 5 1/2 x 5 x 12 1/2 inches....widest part is 8 inches\n\nOriginal Black Label is on the inside of the Vase...\n\nCondition: Near MINT...there is a TINY chip in the glaze on the left side of the vase handle at the bottom tip... wouldn't notice until i would point it out to you... fine amount of crazing found... beautiful colors... pink, blue and yellow..\n\n "
@@ -4763,7 +4526,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '11847'
     collection_category_id: CollectionCategory_1
-    content_category_id: ContentCategory_5736
     name: 'Gogo''s Crazy Bones!'
     slug: gogos-crazy-bones
     description: 'A series of hard, plastic, wildly colelctible minifigures!'
@@ -4783,7 +4545,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '10677'
     collection_category_id: CollectionCategory_677
-    content_category_id: ContentCategory_6154
     name: 'DC Universe LEGOs!'
     slug: dc-universe-legos
     description: 'In late 2011, LEGO began to release their DC Universe series.'
@@ -4803,7 +4564,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '9414'
     collection_category_id: CollectionCategory_208
-    content_category_id: ContentCategory_6154
     name: 'LEGO Minifigures'
     slug: lego-minifigures
     description: 'LEGO''s many series of single-packed Minifigures.'
@@ -4823,7 +4583,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '12368'
     collection_category_id: CollectionCategory_250
-    content_category_id: ContentCategory_5836
     name: 'Hawkeye Stuff'
     slug: hawkeye-stuff
     description: 'Figures & etc. centering around Marvel Comics'' Hawkeye.'
@@ -4843,7 +4602,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '12376'
     collection_category_id: CollectionCategory_250
-    content_category_id: ContentCategory_5837
     name: 'Hulk Stuff'
     slug: hulk-stuff
     description: 'Figures & etc. centering around Hulk & She-Hulk!'
@@ -4863,7 +4621,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '13106'
     collection_category_id: CollectionCategory_1
-    content_category_id: ContentCategory_5831
     name: 'Marvel Legends 2012'
     slug: marvel-legends-2012
     description: 'Marvel Legends 2012 and beyond, from Hasbro.'
@@ -4883,7 +4640,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '13763'
     collection_category_id: CollectionCategory_1
-    content_category_id: ContentCategory_6059
     name: 'Earthworm Jim'
     slug: earthworm-jim
     description: 'Action figures from the glorious ''90s!'
@@ -4903,7 +4659,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '14036'
     collection_category_id: CollectionCategory_1
-    content_category_id: ContentCategory_5848
     name: 'Thor Stuff!'
     slug: thor-stuff
     description: 'A collection of many different Thor figures!'
@@ -4923,7 +4678,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '14212'
     collection_category_id: CollectionCategory_754
-    content_category_id: ContentCategory_5736
     name: 'Peecol Figures by eboy'
     slug: peecol-figures-by-eboy
     description: 'Peecol figures by eboy and Kidrobot.'
@@ -4943,7 +4697,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '14263'
     collection_category_id: CollectionCategory_754
-    content_category_id: ContentCategory_5736
     name: 'LOG! From Blammo!'
     slug: log-from-blammo
     description: 'A collection of LOG figures, packaged with Palisades'' Ren & Stimpy figures!'
@@ -4963,7 +4716,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '14330'
     collection_category_id: CollectionCategory_1
-    content_category_id: ContentCategory_5761
     name: 'The Riddler!'
     slug: the-riddler
     description: 'My collection of Riddler stuff!'
@@ -4983,7 +4735,6 @@ CollectorCollection:
     collector_id: Collector_12
     graph_id: '14364'
     collection_category_id: CollectionCategory_677
-    content_category_id: ContentCategory_6192
     name: 'Playmobil Figures'
     slug: playmobil-figures
     description: 'Sure, the playsets are great... but the real money is with the figures. These are from playsets and individual packs.'
