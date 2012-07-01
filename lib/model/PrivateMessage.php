@@ -1,7 +1,96 @@
 <?php
 
+/**
+ * @method    PrivateMessage setAttachedCollectibleId(int $v)
+ * @method    int            getAttachedCollectibleId()
+ *
+ * @method    PrivateMessage setAttachedCollectionId(int $v)
+ * @method    int            getAttachedCollectionId()
+ */
 class PrivateMessage extends BasePrivateMessage
 {
+
+  /** @var Collectible */
+  protected $attached_collectible;
+
+  /** @var Collection */
+  protected $attached_collection;
+
+  /**
+   * Initialize extra properties so that auto setters/getters are added
+   * to the object
+   */
+  public function initializeProperties()
+  {
+    $this->registerProperty(PrivateMessagePeer::PROPERTY_ATTACHED_COLLECTION_ID);
+    $this->registerProperty(PrivateMessagePeer::PROPERTY_ATTACHED_COLLECTIBLE_ID);
+  }
+
+  /**
+   * Set the attached collectible for this message
+   *
+   * @param     Collectible $collectible
+   * @return    PrivateMessage
+   */
+  public function setAttachedCollectible(Collectible $collectilbe)
+  {
+    $this->setAttachedCollectibleId($collectible->getId());
+    $this->attached_collectible = $collectible;
+
+    return $this;
+  }
+
+  /**
+   * Set the attached colletion for this message
+   *
+   * @param     Collection $collection
+   * @return    PrivateMessage
+   */
+  public function setAttachedCollection(Collection $collection)
+  {
+    $this->setAttachedCollectionId($collection->getId());
+    $this->attached_collection = $collection;
+
+    return $this;
+  }
+
+  /**
+   * Get the attached collectible for this message (if present)
+   *
+   * @return    Collectible|null
+   */
+  public function getAttachedCollectible()
+  {
+    if (null === $this->attached_collectible)
+    {
+      $pk = $this->getAttachedCollectibleId();
+
+      $this->attached_collectible = $pk
+        ? call_user_func(array('CollectiblePeer', 'retrieveByPK'), $pk)
+        : null;
+    }
+
+    return $this->attached_collectible;
+  }
+
+  /**
+   * Get the attached collection for this message (if present)
+   *
+   * @return    Collection|null
+   */
+  public function getAttachedCollection()
+  {
+    if (null === $this->attached_collection)
+    {
+      $pk = $this->getAttachedCollectionId();
+
+      $this->attached_collection = $pk
+        ? call_user_func(array('CollectionPeer', 'retrieveByPK'), $pk)
+        : null;
+    }
+
+    return $this->attached_collection;
+  }
 
   /**
    * @param     int|Collector $v

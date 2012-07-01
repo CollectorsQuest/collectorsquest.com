@@ -4,6 +4,10 @@ require 'lib/model/om/BasePrivateMessagePeer.php';
 
 class PrivateMessagePeer extends BasePrivateMessagePeer
 {
+
+  const PROPERTY_ATTACHED_COLLECTION_ID = 'ATTACHED_COLLECTION_ID';
+  const PROPERTY_ATTACHED_COLLECTIBLE_ID = 'ATTACHED_COLLECTIBLE_ID';
+
   /**
    * Generates a random string (32 cahrs) for use as thread id in PrivateMessages
    *
