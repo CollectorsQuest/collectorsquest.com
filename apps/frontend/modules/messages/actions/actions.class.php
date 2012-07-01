@@ -88,9 +88,18 @@ class messagesActions extends cqFrontendActions
   {
     $form = new ComposePrivateMessageForm($sender = $this->getCollector(), $this->getUser());
     $form->setDefault('subject', $request->getParameter('subject'));
+
     if ($request->hasParameter('goto'))
     {
       $form->setDefault('goto', $request->getParameter('goto'));
+    }
+    if ($request->hasParameter('collection_id'))
+    {
+      $form->setDefault('collection_id', $request->getParamteter('collection_id'));
+    }
+    if ($request->hasParameter('collectible_id'))
+    {
+      $form->setDefault('collectible_id', $request->getParamteter('collectible_id'));
     }
 
     // If "to" param is numeric, try to add corresponding Collector username as default

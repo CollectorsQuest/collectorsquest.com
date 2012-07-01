@@ -93,6 +93,16 @@ class PrivateMessage extends BasePrivateMessage
   }
 
   /**
+   * Convenience method for checking if there is an attached Collection or Collectible
+   *
+   * @return    boolean
+   */
+  public function hasAttachedCollectionOrCollectible()
+  {
+    return !!($this->getAttachedCollectible() || $this->getAttachedCollection());
+  }
+
+  /**
    * @param     int|Collector $v
    * @return    PrivateMessage
    */

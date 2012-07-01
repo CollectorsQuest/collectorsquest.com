@@ -2,6 +2,10 @@
 
 /**
  * ComposePrivateMessageForm does what its name says :)
+ *
+ * Options:
+ *    attach: Collector/Collection object (or an array of both)
+ *
  */
 class ComposePrivateMessageForm extends PrivateMessageForm
 {
@@ -49,6 +53,7 @@ class ComposePrivateMessageForm extends PrivateMessageForm
     $this->setupThreadField();
     $this->setupCaptchaField();
     $this->setupRedirectField();
+    $this->setupAttachFields();
 
     $this->widgetSchema->setLabels(array(
         'receiver' => 'To',
@@ -168,6 +173,46 @@ class ComposePrivateMessageForm extends PrivateMessageForm
   }
 
   /**
+   * We can attach a collection and/or a collectible to a message now.
+   * Simply use the "attach" option to pass an object or an array
+   */
+  protected function setupAttachFields()
+  {
+    $this->widgetSchema['collection_id'] = new sfWidgetFormInputHidden();
+    $this->validatorSchema['collection_id'] = new sfValidatorPropelChoice(array(
+        'required' => false,
+        'model' =>  'Collection',
+        'column' => 'id',
+    ));
+
+    $this->widgetSchema['collectible_id'] = new sfWidgetFormInputHidden();
+    $this->validatorSchema['collectible_id'] = new sfValidatorPropelChoice(array(
+        'required' => false,
+        'model' =>  'Collectible',
+        'column' => 'id',
+    ));
+
+    // if we have an attach option passed to the form
+    if ($this->getOption('attach'))
+    {
+      // try to set defaults for attached collection/collectible
+      foreach ((array)$this->getOption('attach') as $object)
+      {
+        if ($object instanceof Collection)
+        {
+          $this->setDefault('collection_id', $object->getPrimaryKey());
+        }
+
+        if ($object instanceof Collectible)
+        {
+          $this->setDefault('collectible_id', $object->getPrimaryKey());
+        }
+      }
+    }
+
+  }
+
+  /**
    * Returns the number of private messages sent by the user in this session
    *
    * @return integer
@@ -230,6 +275,16 @@ class ComposePrivateMessageForm extends PrivateMessageForm
 
     $this->getObject()->setIsRich(false);
     $this->getObject()->setBody($values['body'], true);
+
+    if ($values['collectible_id'])
+    {
+      $this->getObject()->setAttachedCollectibleId($values['collectible_id']);
+    }
+
+    if ($values['collection_id'])
+    {
+      $this->getObject()->setAttachedCollectionId($values['collection_id']);
+    }
   }
 
   /**
