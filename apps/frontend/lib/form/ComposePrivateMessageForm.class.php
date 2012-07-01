@@ -209,7 +209,6 @@ class ComposePrivateMessageForm extends PrivateMessageForm
         }
       }
     }
-
   }
 
   /**
