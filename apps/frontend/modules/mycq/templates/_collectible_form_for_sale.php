@@ -81,7 +81,7 @@
                    value="no_shipping"
                    id="shipping_rates_zz_shipping_type_no_shipping"
                    <?php if ($form_shipping_zz->isShippingTypeNoShipping()) echo 'checked="checked"'; ?>
-            />Not shipping
+            />Not available
           </label><br />
           <?php endif; ?>
           <label class="radio">
