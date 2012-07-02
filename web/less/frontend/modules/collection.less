@@ -132,3 +132,76 @@
 	.square(100px);
 	border: 0;
 }
+
+//MAIN IMAGE CONTAINER
+
+.main-collectible-container {
+	margin-top: 15px;
+
+
+	.icon-edit-holder {
+		top: 45%;
+		left: 44%;
+		.square(55px);
+		font-size: 14px;
+		i {
+			font-size: 55px;
+			line-height: 55px;
+		}
+	}
+
+	//Controls
+	.prev-collectible, .next-collectible {
+		position: absolute;
+		display: block;
+		.size(100%, 20%);
+		top: 0;
+		z-index: 105;
+		opacity: 0;
+		background-color: transparent;
+		background-color: rgba(255, 255, 255, 0.3);
+		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#4CFFFFFF', endColorstr = '#4CFFFFFF', GradientType = 0);
+
+		.icon-caret-left, .icon-caret-right {
+			position: absolute;
+			display: block;
+			top: 45%;
+			font-size: 50px;
+			line-height: 50px;
+			color: #fff;
+		}
+		.icon-caret-left { left: 35%; }
+		.icon-caret-right { right: 35%; }
+	}
+
+	.prev-collectible { left: 0; }
+	.next-collectible { right: 0; }
+
+	.prev-collectible, .next-collectible {
+		span {.hide-text;}
+	}
+
+	.zoom-zone {
+		position: absolute;
+		display: block;
+		.size(100%, 60%);
+		top: 0;
+		left: 20%;
+		z-index: 105;
+		opacity: 0;
+	}
+
+	.prev-collectible, .next-collectible, .zoom-zone {
+		&:hover {
+			opacity: 1;
+		}
+	}
+}
+
+.lt-ie9 .main-collectible-container {
+	.prev-collectible, .next-collectible {
+		zoom: 1;
+	}
+}
+
+

@@ -28,7 +28,7 @@
   cq_page_title($collectible->getName(), null, $options);
 ?>
 
-<div class="row-fluid spacer-top-15">
+<div class="row-fluid main-collectible-container">
   <?php
     $span = 10;
     if (count($additional_multimedia) == 0)
@@ -36,7 +36,20 @@
       $span += 2;
     }
   ?>
-  <div class="span<?= $span; ?> text-center">
+  <div class="span<?= $span; ?> text-center relative">
+    <a href="#" class="prev-collectible" title="Previous Collectible">
+      <span>prev</span>
+      <i class="icon-caret-left white"></i>
+    </a>
+    <a href="#" class="next-collectible" title="Next Collectible">
+      <span>next</span>
+      <i class="icon-caret-right white"></i>
+    </a>
+    <a class="zoom-zone">
+      <span class="picture-zoom icon-edit-holder">
+        <i class="icon icon-zoom-in"></i>
+      </span>
+    </a>
     <?php
       echo link_to(
         image_tag_collectible(
