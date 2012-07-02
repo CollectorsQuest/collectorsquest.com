@@ -37,15 +37,25 @@
     }
   ?>
   <div class="span<?= $span; ?> text-center relative">
-    <a href="#" class="prev-collectible" title="Previous Collectible">
+
+    <?php if ($previous): ?>
+    <a href="<?= url_for_collectible($previous) ?>"
+       class="prev-collectible" title="Previous: <?= $previous->getName(); ?>">
       <span>prev</span>
       <i class="icon-caret-left white"></i>
     </a>
-    <a href="#" class="next-collectible" title="Next Collectible">
+    <?php endif; ?>
+
+    <?php if ($next): ?>
+    <a href="<?= url_for_collectible($next) ?>"
+       class="next-collectible" title="Next: <?= $next->getName(); ?>">
       <span>next</span>
       <i class="icon-caret-right white"></i>
     </a>
-    <a class="zoom-zone">
+    <?php endif; ?>
+
+    <a class="zoom-zone" target="_blank" title="Click to zoom"
+       href="<?= src_tag_collectible($collectible, 'original') ?>">
       <span class="picture-zoom icon-edit-holder">
         <i class="icon icon-zoom-in"></i>
       </span>
@@ -54,7 +64,7 @@
       echo link_to(
         image_tag_collectible(
           $collectible, '620x0',
-          array('height' => null, 'class' => 'magnify')
+          array('width' => null, 'height' => null)
         ),
         src_tag_collectible($collectible, 'original'),
         array('id' => 'collectible_multimedia_primary', 'target' => '_blank')
@@ -289,6 +299,10 @@ $(document).ready(function()
         src: path[0] + '/620x0/' + path[1],
         alt: $(source).attr('alt')
       });
+
+    $(target)
+      .siblings('a.zoom-zone')
+      .attr('href', path[0] + '/original/' + path[1]);
 
     return false;
   });
