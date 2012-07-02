@@ -1,20 +1,20 @@
 <?php
 /**
- *
+ * @var $collectibles Collectible[]
  */
 
 /** @var $blog_post wpPost */
 $blog_post = wpPostQuery::create()->findOneById(26075);
+
 ?>
 
 <?php cq_page_title("Independence Day - 4th of July") ?>
 
-<br/>
 <div class="row">
   <div id="homepage" class="row-content">
 
     <div class="span6 masonry-blogpost" style="width: 320px;">
-      <a href="<?= $blog_post->getPostUrl(); ?>" class="link">
+      <a href="<?= $blog_post->getPostUrl(); ?>" class="link" style="width: auto; height: auto;">
         <div class="blog-img" style="width: 320px; height: 320px; padding: 0;">
         <?php
           if ($thumbnail = $blog_post->getPostThumbnail('original'))
@@ -28,7 +28,7 @@ $blog_post = wpPostQuery::create()->findOneById(26075);
         ?>
         </div>
         <h3 class="Chivo webfont" style="line-height: 26px;"><?= $blog_post->getPostTitle(); ?></h3>
-        <p><?= cqStatic::truncateText($blog_post->getPlainPostContent(), 210, '...', true); ?></p>
+        <p><?= cqStatic::truncateText($blog_post->getPlainPostContent(), 220, '...', true); ?></p>
       </a>
       <div class="masonry-blogpost-author">
         <p>
