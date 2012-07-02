@@ -52,7 +52,7 @@
                    id="shipping_rates_us_shipping_type_free_shipping"
                    <?php if ($form_shipping_us->isShippingTypeFreeShipping()) echo 'checked="checked"'; ?>
 
-            />Free Shipping
+            />Free shipping
           </label><br />
           <label class="radio">
             <input name="shipping_rates_us[shipping_type]"
