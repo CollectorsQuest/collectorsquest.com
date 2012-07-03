@@ -26,8 +26,8 @@ map
 base
 
 # composer modules
-.composer/
-composer/
+/.composer
+/composer
 /plugins/sfGuardPlugin
 /lib/vendor/neo4jphp
 /lib/vendor/faker
@@ -39,6 +39,9 @@ composer/
 # symlinked folders (when on windows)
 /web/sf
 /web/sf*Plugin
+
+# wordpress blog
+/web/blog/wp-content/mail-*
 
 # stylesheets
 /web/css/frontend/*.css

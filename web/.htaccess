@@ -1,5 +1,11 @@
 Options +FollowSymLinks
 
+SetEnvIf X-Forwarded-For ^180\.76\. block_me
+
+Order allow,deny
+Deny  from env=block_me
+Allow from all
+
 # ----------------------------------------------------------------------
 # Better website experience for IE users
 # ----------------------------------------------------------------------
@@ -55,6 +61,10 @@ Options +FollowSymLinks
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
+
+  RewriteCond %{HTTP_USER_AGENT} ^Baiduspider [NC,OR]
+  RewriteCond %{HTTP_USER_AGENT} ^Sogou
+  RewriteRule ^.*$ - [F]
 
   RewriteRule ^cal/events/(.*)$ /calendar/events/$1 [R=301,L]
   RewriteRule ^collectible/item/(\d+)\.html$ /collectible/$1/n-a [R=301,L]
