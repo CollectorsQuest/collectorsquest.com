@@ -14,8 +14,8 @@
     <div class="drop-zone-large thumbnail collection">
       <?php if ($collection->hasThumbnail()): ?>
         <?= image_tag_collection($collection, '190x190'); ?>
-        <span class="plus-icon-holder h-center" style="display: none; padding-top: 25px;">
-          <i class="icon icon-plus icon-white"></i>
+        <span class="icon-plus-holder h-center" style="display: none; padding-top: 25px;">
+          <i class="icon icon-download-alt icon-white"></i>
         </span>
         <span class="multimedia-edit icon-edit-holder"
           data-original-image-url="<?= src_tag_multimedia($collection->getThumbnail(), 'original') ?>"
@@ -27,7 +27,7 @@
           Edit Photo
         </span>
       <?php else: ?>
-        <a class="plus-icon-holder h-center" href="#">
+        <a class="icon-plus-holder h-center" href="#">
           <i class="icon icon-plus icon-white"></i>
         </a>
         <div class="info-text">
@@ -150,28 +150,30 @@ $(document).ready(function()
   {
     over: function(event, ui)
     {
-      $(this).addClass("ui-state-highlight");
-     // $(this).find('i')
-     //   .removeClass('icon-plus')
-     //   .addClass('icon-download-alt');
+      $(this).addClass('ui-state-highlight');
+      $(this).find('.icon-plus-holder i')
+        .removeClass('icon-plus')
+        .addClass('icon-download-alt');
       $(this).find('img').hide();
-      $(this).find('span.plus-icon-holder').show();
+      $(this).find('.icon-edit-holder').hide();
+      $(this).find('span.icon-plus-holder').show();
     },
     out: function(event, ui)
     {
-      $(this).removeClass("ui-state-highlight");
-    //  $(this).find('i')
-    //    .removeClass('icon-download-alt')
-    //    .addClass('icon-plus');
-      $(this).find('span.plus-icon-holder').hide();
+      $(this).removeClass('ui-state-highlight');
+      $(this).find('.icon-plus-holder i')
+        .removeClass('icon-download-alt')
+        .addClass('icon-plus');
+      $(this).find('span.icon-plus-holder').hide();
+      $(this).find('.icon-edit-holder').show();
       $(this).find('img').show();
     },
     drop: function(event, ui)
     {
-      $(this).removeClass("ui-state-highlight");
-     // $(this).find('i')
-     //   .removeClass('icon-download-alt')
-     //   .addClass('icon-plus');
+      $(this).removeClass('ui-state-highlight');
+      $(this).find('.icon-plus-holder i')
+        .removeClass('icon-download-alt')
+        .addClass('icon-plus');
       ui.draggable.draggable('option', 'revert', false);
 
       $(this).showLoading();

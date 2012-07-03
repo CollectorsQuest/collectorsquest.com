@@ -111,21 +111,21 @@ $(document).ready(function()
     over: function(event, ui)
     {
       $(this)
-        .addClass("ui-state-highlight");
-        //.removeClass('icon-plus')
-        //.addClass('icon-download-alt');
+        .addClass('ui-state-highlight')
+        .removeClass('icon-plus')
+        .addClass('icon-download-alt');
     },
     out: function(event, ui)
     {
       $(this)
-        .removeClass("ui-state-highlight");
-        //.removeClass('icon-download-alt')
-        //.addClass('icon-plus');
+        .removeClass('ui-state-highlight')
+        .removeClass('icon-download-alt')
+        .addClass('icon-plus');
     },
     drop: function(event, ui)
     {
       $(this)
-        .removeClass("ui-state-highlight")
+        .removeClass('ui-state-highlight')
         .removeClass('icon-download-alt')
         .addClass('icon-plus');
       ui.draggable.draggable('option', 'revert', false);

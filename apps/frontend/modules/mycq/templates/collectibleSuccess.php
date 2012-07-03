@@ -224,33 +224,38 @@ $(document).ready(function()
     accept: ".draggable",
     over: function(event, ui)
     {
-      $(this).addClass("ui-state-highlight");
-      $(this).find('img').fadeTo('fast', 0);
-    //  $(this).find('i.icon-plus')
-    //    .removeClass('icon-plus')
-    //   .addClass('icon-download-alt')
-    //    .show();
+      var $this = $(this);
+      $this.addClass('ui-state-highlight');
+      $this.find('img').fadeTo('fast', 0);
+      $this.find('.icon-edit-holder').hide();
+      $this.find('i.icon-plus')
+       .removeClass('icon-plus')
+       .addClass('icon-download-alt')
+       .show();
     },
     out: function(event, ui)
     {
-      $(this).removeClass("ui-state-highlight");
-    //  $(this).find('i.icon-download-alt')
-    //    .removeClass('icon-download-alt')
-    //    .addClass('icon-plus');
-      $(this).find('i.hide').hide();
-
-      $(this).find('img').fadeTo('slow', 1);
+      var $this = $(this);
+      $this.removeClass("ui-state-highlight");
+      $this.find('i.icon-download-alt')
+        .removeClass('icon-download-alt')
+        .addClass('icon-plus');
+      $this.find('i.hide').hide();
+      $this.find('.icon-edit-holder').show();
+      $this.find('img').fadeTo('slow', 1);
     },
     drop: function(event, ui)
     {
-      $(this).removeClass("ui-state-highlight");
-     // $(this).find('i.icon-download-alt')
-     //  .removeClass('icon-download-alt')
-     //  .addClass('icon-plus');
+      var $this = $(this);
+      $this.removeClass("ui-state-highlight");
+      $this.find('.icon-edit-holder').show();
+      $this.find('i.icon-download-alt')
+       .removeClass('icon-download-alt')
+       .addClass('icon-plus');
       ui.draggable.draggable('option', 'revert', false);
       ui.draggable.hide();
 
-      $(this).showLoading();
+      $this.showLoading();
 
       $.ajax({
         url: '<?= url_for('@ajax_mycq?section=collectible&page=donateImage'); ?>',
@@ -258,7 +263,7 @@ $(document).ready(function()
         data: {
           recipient_id: '<?= $collectible->getId() ?>',
           donor_id: ui.draggable.data('collectible-id'),
-          is_primary: $(this).data('is-primary')
+          is_primary: $this.data('is-primary')
         },
         dataType: 'json',
         success: function()
