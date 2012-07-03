@@ -82,9 +82,11 @@ class searchActions extends cqFrontendActions
 
   public function executeIndex(sfWebRequest $request)
   {
+    $page = $request->getParameter('page', 1);
+
     $query = array(
       'q' => self::$_query['q'],
-      'limit' => 8,
+      'limits' => array(4 * ($page - 1), 4),
       'filters' => array(
         'object_type' => 'collectible',
         'thumbnail' => 'yes',
@@ -94,7 +96,7 @@ class searchActions extends cqFrontendActions
 
     if (
       ($pks = cqSphinxPager::search($query, array('collectibles'), 'pks')) &&
-      count($pks) >= 4
+      count($pks) >= 3
     ) {
       $pks = array_map(create_function('$v', 'return $v - 400000000;'), $pks);
 
@@ -111,7 +113,7 @@ class searchActions extends cqFrontendActions
     }
 
     $pager = new cqSphinxPager(self::$_query, array(), 24);
-    $pager->setPage($request->getParameter('page', 1));
+    $pager->setPage($page);
     $this->sid = $pager->init();
 
     $this->pager = $pager;

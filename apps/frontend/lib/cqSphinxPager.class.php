@@ -453,7 +453,8 @@ class cqSphinxPager extends sfPager
     }
     else if (isset($results['total']) && $results['total'] > 0)
     {
-      $pks = array_keys($results['matches']);
+      $pks = !empty($results['matches']) ?
+        array_keys($results['matches']) : array();
 
       switch ($return)
       {
@@ -462,7 +463,7 @@ class cqSphinxPager extends sfPager
           break;
 
         case 'matches':
-          return $results['matches'];
+          return @$results['matches'] ?: array();
           break;
 
         case 'objects':

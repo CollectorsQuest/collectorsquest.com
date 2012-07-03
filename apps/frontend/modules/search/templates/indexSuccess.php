@@ -24,7 +24,7 @@
   );
 ?>
 
-<div class="row" style="margin-left: -12px;">
+<div class="row" style="margin-left: -10px;">
   <div id="search-results" class="row-content">
   <?php
     foreach ($pager->getResults() as $i => $object)
