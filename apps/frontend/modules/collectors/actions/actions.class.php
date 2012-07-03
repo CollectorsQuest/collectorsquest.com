@@ -10,27 +10,29 @@ class collectorsActions extends cqFrontendActions
    */
   public function executeIndex(sfWebRequest $request)
   {
+    /** @var $q CollectorQuery */
     $q = CollectorQuery::create();
 
     $sortBy = $request->getParameter('sort', 'latest');
     $type = $request->getParameter('type', 'collectors');
-    $q->filterByUserType('sellers' == $type ? 'Seller' : 'Collector', Criteria::EQUAL);
+
+    if ('sellers' == $type) {
+      $q->filterByUserType(CollectorPeer::TYPE_SELLER, Criteria::EQUAL);
+    }
 
     switch ($sortBy)
     {
       case 'most-popular':
         $q->joinCollectorCollection(null, Criteria::LEFT_JOIN)
-            ->withColumn('SUM(CollectorCollection.NumViews)', 'TotalCollectionsViews')
-            ->groupBy('CollectorCollection.CollectorId')
 
-//            ->useCollectorCollectionQuery()
-//            ->filterByNumItems(10, Criteria::GREATER_EQUAL)
-//            ->endUse()
+          //  ->useCollectorCollectionQuery()
+          //  ->filterByNumItems(10, Criteria::GREATER_EQUAL)
+          //  ->endUse()
 
-            ->joinCollectorProfile()
-
-            ->orderBy('CollectorCollection.NumViews', Criteria::DESC)
-        ;
+          ->joinCollectorProfile()
+          ->withColumn('SUM(CollectorCollection.NumViews)', 'TotalCollectionsViews')
+          ->groupBy('CollectorCollection.CollectorId')
+          ->orderBy('CollectorCollection.NumViews', Criteria::DESC);
         break;
 
       case 'near-you':
