@@ -17,7 +17,14 @@
 ?>
 <h1 class="Chivo webfont">Search results <small><?= $title; ?></small></h1>
 
-<div class="row">
+<?php
+  include_partial(
+    'search/collectibles_for_sale',
+    array('collectibles_for_sale' => $collectibles_for_sale)
+  );
+?>
+
+<div class="row" style="margin-left: -12px;">
   <div id="search-results" class="row-content">
   <?php
     foreach ($pager->getResults() as $i => $object)

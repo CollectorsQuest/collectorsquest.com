@@ -82,6 +82,34 @@ class searchActions extends cqFrontendActions
 
   public function executeIndex(sfWebRequest $request)
   {
+    $query = array(
+      'q' => self::$_query['q'],
+      'limit' => 8,
+      'filters' => array(
+        'object_type' => 'collectible',
+        'thumbnail' => 'yes',
+        'uint1' => 1
+      )
+    );
+
+    if (
+      ($pks = cqSphinxPager::search($query, array('collectibles'), 'pks')) &&
+      count($pks) >= 4
+    ) {
+      $pks = array_map(create_function('$v', 'return $v - 400000000;'), $pks);
+
+      $this->collectibles_for_sale = CollectibleForSaleQuery::create()
+        ->filterByCollectibleId($pks, Criteria::IN)
+        ->limit(4)
+        ->find();
+
+      self::$_query['filters']['id'] = array($this->collectibles_for_sale->getPrimaryKeys(), true);
+    }
+    else
+    {
+      $this->collectibles_for_sale = array();
+    }
+
     $pager = new cqSphinxPager(self::$_query, array(), 24);
     $pager->setPage($request->getParameter('page', 1));
     $this->sid = $pager->init();
