@@ -226,17 +226,17 @@ $(document).ready(function()
     {
       $(this).addClass("ui-state-highlight");
       $(this).find('img').fadeTo('fast', 0);
-      $(this).find('i.icon-plus')
-        .removeClass('icon-plus')
-        .addClass('icon-download-alt')
-        .show();
+    //  $(this).find('i.icon-plus')
+    //    .removeClass('icon-plus')
+    //   .addClass('icon-download-alt')
+    //    .show();
     },
     out: function(event, ui)
     {
       $(this).removeClass("ui-state-highlight");
-      $(this).find('i.icon-download-alt')
-        .removeClass('icon-download-alt')
-        .addClass('icon-plus');
+    //  $(this).find('i.icon-download-alt')
+    //    .removeClass('icon-download-alt')
+    //    .addClass('icon-plus');
       $(this).find('i.hide').hide();
 
       $(this).find('img').fadeTo('slow', 1);
@@ -244,9 +244,9 @@ $(document).ready(function()
     drop: function(event, ui)
     {
       $(this).removeClass("ui-state-highlight");
-      $(this).find('i.icon-download-alt')
-        .removeClass('icon-download-alt')
-        .addClass('icon-plus');
+     // $(this).find('i.icon-download-alt')
+     //  .removeClass('icon-download-alt')
+     //  .addClass('icon-plus');
       ui.draggable.draggable('option', 'revert', false);
       ui.draggable.hide();
 

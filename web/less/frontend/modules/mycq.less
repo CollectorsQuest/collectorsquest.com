@@ -1118,17 +1118,8 @@ textarea.input-xlarge {
     .thumbnail {
 	    position: relative;
       padding: 0;
-      border: none;
-    }
-
-    .ui-droppable {
-      border: 2px dashed @blue!important;
-      .border-radius(0);
-      &:hover {
-        .icon-remove-sign {
-          display: block;
-        }
-      }
+	    border: 2px dashed @blue;
+	    .border-radius(0);
     }
 
     .icon-remove-sign {
@@ -1217,17 +1208,6 @@ textarea.input-xlarge {
     cursor: pointer;
   }
 
-}
-
-.ui-state-highlight {
-	z-index: 100;
-  color: @red;
-	background: #f0b2b2;
-	border-color: @red;
-
-  a {
-    color: @red;
-  }
 }
 
 #form-collection .tagedit-list,
@@ -1459,6 +1439,26 @@ textarea.input-xlarge {
 	}
 }
 
+.ui-state-highlight {
+	z-index: 100;
+	color: @red !important;
+	background: #f0b2b2 !important;
+	border-color: @red !important;
+	text-shadow: none;
+
+	a {
+		color: @red;
+	}
+	.info-text {
+		color: @red !important;
+	}
+	.icon-camera  {
+		color: @red !important;
+	}
+	.icon-edit-holder {
+		background: none;
+	}
+}
 
 //MYCQ HOME
 
