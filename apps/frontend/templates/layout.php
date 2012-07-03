@@ -161,6 +161,6 @@
     );
   ?>
 
-  <!-- Page generated in <?= cqTimer::getInstance()->getElapsedTime(); ?> seconds //-->
+  <!-- Page generated in <?= cqTimer::getInstance()->getElapsedTime(); ?> seconds by <?= gethostname(); ?> //-->
 </body>
 </html>
