@@ -436,6 +436,162 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
     return $tag_ids;
   }
 
+  /**
+   * Return all tags as a string
+   *
+   * @return    string
+   */
+  public function getTagsString()
+  {
+    return implode(', ', array_merge(
+      $this->getTags(array('is_triple' => false)),
+      $this->getNamespacedTags(CollectorPeer::TAGS_NAMESPACE_I_COLLECT),
+      $this->getNamespacedTags(CollectorPeer::TAGS_NAMESPACE_I_SELL)
+    ));
+  }
+
+  /**
+   * Return triple tags according to a namespace
+   *
+   * @param     string $ns
+   * @return    array
+   */
+  public function getNamespacedTags($ns)
+  {
+    return $this->getTags(array(
+        'is_triple' => true,
+        'namespace' => $ns,
+        'key'       => $ns,
+        'return'    => 'value',
+    ));
+  }
+
+  /**
+   * Add a tag or tags for a namespace
+   *
+   * @param     string|array $tagname Anything that ::addTag() accepts
+   * @param     string $ns
+   */
+  public function addNamespacedTag($tagname, $ns)
+  {
+    $tags = (array) IceTaggableToolkit::explodeTagString($tagname);
+
+    $triple_prefix = sprintf('%s:%s=', $ns, $ns);
+
+    array_walk($tags, function(&$tag) use ($triple_prefix)
+    {
+      if (0 !== strpos($tag, $triple_prefix))
+      {
+        $tag = $triple_prefix.$tag;
+      }
+    });
+
+    $this->addTag($tags);
+  }
+
+  /**
+   * Set the tags for a specific namespace
+   *
+   * @param     string|array $tags Anything that ::addTag() accepts
+   * @param     string $ns
+   */
+  public function setNamespacedTags($tags, $ns)
+  {
+    $this->removeAllNamespacedTags($ns);
+    $this->addNamespacedTag($tags, $ns);
+  }
+
+  /**
+   * Remove all tags for a specific namespace
+   *
+   * @param     string $ns
+   */
+  public function removeAllNamespacedTags($ns)
+  {
+    $this->removeTag($this->getTags(array(
+        'is_triple' => true,
+        'namespace' => $ns,
+        'key'       => $ns,
+        'return'    => 'tag',
+    )));
+  }
+
+  /**
+   * Return tags for the I_COLLECT namespace
+   *
+   * @return    array
+   */
+  public function getICollectTags()
+  {
+    return $this->getNamespacedTags(CollectorPeer::TAGS_NAMESPACE_I_COLLECT);
+  }
+
+  /**
+   * Add tag or tags to the I_COLLECT namespace
+   *
+   * @param     string|array $tagname Anything that ::addTag() accepts
+   */
+  public function addICollectTag($tagname)
+  {
+    $this->addNamespacedTag($tagname, CollectorPeer::TAGS_NAMESPACE_I_COLLECT);
+  }
+
+  /**
+   * Remove all tags for the I_COLLECT namespace
+   */
+  public function removeAllICollectTags()
+  {
+    $this->removeAllNamespacedTags(CollectorPeer::TAGS_NAMESPACE_I_COLLECT);
+  }
+
+  /**
+   * Set the tags for the I_SELL namespace
+   *
+   * @param     string|array $tags Anything that ::addTag() accepts
+   */
+  public function setICollectTags($tags)
+  {
+    $this->setNamespacedTags($tags, CollectorPeer::TAGS_NAMESPACE_I_COLLECT);
+  }
+
+  /**
+   * Return tags for the I_SELL namespace
+   *
+   * @return    array
+   */
+  public function getISellTags()
+  {
+    return $this->getNamespacedTags(CollectorPeer::TAGS_NAMESPACE_I_SELL);
+  }
+
+  /**
+   * Add tag or tags to the I_SELL namespace
+   *
+   * @param     string|array $tagname Anything that ::addTag() accepts
+   */
+  public function addISellTag($tagname)
+  {
+    $this->addNamespacedTag($tagname, CollectorPeer::TAGS_NAMESPACE_I_SELL);
+  }
+
+  /**
+   * Remove all tags for the I_SELL namespace
+   */
+  public function removeAllISellTags()
+  {
+    $this->removeAllNamespacedTags(CollectorPeer::TAGS_NAMESPACE_I_SELL);
+  }
+
+  /**
+   * Set the tags for the I_SELL namespace
+   *
+   * @param     string|array $tags Anything that ::addTag() accepts
+   */
+  public function setISellTags($tags)
+  {
+    $this->setNamespacedTags($tags, CollectorPeer::TAGS_NAMESPACE_I_SELL);
+  }
+
   public function getTerms()
   {
     return TermPeer::getTerms($this);
@@ -996,7 +1152,7 @@ sfPropelBehavior::add(
 
 sfPropelBehavior::add(
   'Collector', array(
-    'PropelActAsSluggableBehavior' => array(
+    'IceTaggableBehavior' => array(
       'columns'   => array(
         'from' => CollectorPeer::DISPLAY_NAME,
         'to'   => CollectorPeer::SLUG
