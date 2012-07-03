@@ -2,7 +2,7 @@
 
 include(__DIR__.'/../../bootstrap/model.php');
 
-$t = new lime_test(null, array('output' => new lime_output_color(), 'error_reporting' => true));
+$t = new lime_test(22, array('output' => new lime_output_color(), 'error_reporting' => true));
 
 cqTest::resetClasses(array('Collector'));
 
