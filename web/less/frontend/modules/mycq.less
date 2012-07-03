@@ -1,3 +1,4 @@
+@import "../bootstrap/buttons.less";
 @import "../_variables.less";
 @import "../_mixins.less";
 @import "../_fileupload.less";
@@ -1330,8 +1331,28 @@ textarea.input-xlarge {
 	margin: 15px 0;
 }
 
+.avpw_main_mode {
+  .border-radius(7px);
+}
 
-//
+/* primary button
+ * (overriding color on these links so
+ * we have to be explicit)
+ */
+body .avpw .avpw_primary_button,
+body .avpw .avpw_primary_button:link,
+body .avpw .avpw_primary_button:visited,
+body .avpw .avpw_primary_button:active {
+  .btn;
+  .btn-primary;
+  height: 25px;
+  padding-top: 8px;
+  font-size: 18px;
+  background-color: #097AB6;
+}
+
+
+// dropzone
 
 .dropzone-container {
 	padding: 15px;
