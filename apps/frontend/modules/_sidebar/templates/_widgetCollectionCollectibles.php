@@ -3,7 +3,7 @@
   use_javascript('jquery/rcarousel.js');
 ?>
 
-<div class="carousel-sidebar spacer-top-20">
+<div class="carousel-sidebar">
   <span>Other collectibles in this collection:</span>
   <div class="thumbnails-inner">
     <a href="#" id="ui-carousel-prev" title="previous collectible" class="left-arrow">
@@ -19,7 +19,7 @@
            class="thumbnail <?= $c->getId() == $collectible->getId() ? 'active' : '' ?>">
           <?php
             echo image_tag_collectible(
-              $c, '75x75', array('width' => 69, 'height' => 69)
+              $c, '100x100', array('width' => 90, 'height' => 90)
             );
           ?>
         </a>
@@ -36,21 +36,16 @@ $(document).ready(function()
 
   var $carousel = $('#carousel');
 
-  if ($carousel.children().length >= 4) {
+  if ($carousel.children().length >= 3) {
     $carousel.rcarousel({
-      visible: 4, step: 4,
-      width: 69, height: 69,
-      margin: 5,
+      visible: 3, step: 2,
+      width: 90, height: 90,
+      margin: 6,
       auto: { enabled: false, interval: 15000 },
       start: firstLoad,
       pageLoaded: loadPage
     });
   }
-
-//  $('.other-items-sidebar').hover(
-//    function() { $("#ui-carousel-prev, #ui-carousel-next").show(); },
-//    function() { $("#ui-carousel-prev, #ui-carousel-next").hide(); }
-//  );
 
   function firstLoad(event)
   {
@@ -96,8 +91,8 @@ $(document).ready(function()
 
           $img = $( "<img />" )
             .attr( "src", collectible.thumbnails.x75 )
-            .attr( "width", 69 )
-            .attr( "height", 69 );
+            .attr( "width", 90 )
+            .attr( "height", 90 );
 
           $link.html($img);
           $jqElements = $jqElements.add( $link );
