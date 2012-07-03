@@ -34,9 +34,10 @@
 	}
 
   span {
-    padding-left: 5px;
-    margin-bottom: 5px;
-    display: block;
+	  display: block;
+	  margin-bottom: 5px;
+	  padding-left: 5px;
+
   }
   .thumbnails-inner {
 	  height: 82px;
@@ -48,10 +49,10 @@
   }
   .thumbnails {
     display: relative;
+	  overflow: hidden;
     height: 73px;
     margin-left: 2px;
     margin-bottom: 5px;
-    overflow: hidden;
 
     a {
       margin-top: 2px;
@@ -64,57 +65,45 @@
     }
   }
   .thumbnail {
-	  margin-right: 5px;
-    padding: 0;
-    border: none;
     .square(69px);
+	  margin-right: 5px;
+	  padding: 0;
+	  border: none;
     .border-radius(0);
   }
 }
 
-.carousel-v-main {
-	position: relative;
-	width: 92px;
-
-	a.step-up, a.step-down {
-		position: absolute;
-		display: none;
-		.size(20px,92px);
-		color: #fff;
-		#gradient > .vertical(rgba(32,147,195,0.3), rgba(9,113,186,0.3));
-		&:hover {
-			#gradient > .vertical(#13597F, #072B44);
-		}
-		i {
-			display: block;
-			margin: 0px auto;
-			text-align: center;
-			text-shadow: 1px 1px 2px rgba(42, 44, 42, 0.3);
-		}
-	}
-	a.step-up {
-		top: 0;
-	}
-	a.step-down {
-		bottom: 0;
-	}
-	&:hover {
-		a.step-up, a.step-down {
-			display: block;
-		}
-	}
-
-	.collectible {
-		display: block;
-	  margin-bottom: 12px;
-  }
+.vertical-carousel-wrapper {
+	height: 336px;
+	overflow: hidden;
 }
 
+.ui-carousel-navigation {
+	&.left-arrow, &.right-arrow {
+		display: block;
+		margin-top: 10px;
+		width: 48%;
+		float: left;
+		color: #fff;
+		text-align: center;
+		#gradient > .vertical(rgba(32,147,195,1), rgba(9,113,186,1));
 
+		&.right-arrow {
+			margin-left: 4%;
+		}
+		&:hover {
+			#gradient > .vertical(#cb0504, #b00000);
+		}
+		&:active {
+			.box-shadow(~"inset 0 4px 4px rgba(0,0,0,.3), 0 1px 2px rgba(0,0,0,.05)");
+		}
+
+	}
+}
 
 #sortable-collectibles .span2 {
-  margin-bottom: 25px;
-  width: 88px;
+	width: 88px;
+	margin-bottom: 25px;
   text-align: right;
 }
 
@@ -123,25 +112,99 @@
 }
 
 .ui-carousel {
-  height: 100px;
+	position: relative; /*for ie7 to work e.g in html carousels*/
+	overflow: auto;
+  .size(100px, 300px);
   margin: 0;
-  overflow: auto;
   padding: 0;
-  position: relative; /*for ie7 to work e.g in html carousels*/
-  width: 300px
 }
 
 .ui-carousel > .wrapper {
-  margin: 0;
+	width: 9999px;
+	margin: 0;
   padding: 0;
-  width: 9999px;
 }
 
 .ui-carousel > .wrapper > * {
-  border: 0;
   display: block;
   float: left;
-  height: 100px;
   overflow: hidden;
-  width: 100px;
+	.square(100px);
+	border: 0;
 }
+
+//MAIN IMAGE CONTAINER
+
+.main-collectible-container {
+	margin-top: 15px;
+
+	.icon-edit-holder {
+		top: 45%;
+		left: 44%;
+		.square(55px);
+		font-size: 14px;
+		i {
+			font-size: 40px;
+			line-height: 55px;
+		}
+	}
+
+	//Controls
+	.prev-collectible, .next-collectible {
+		position: absolute;
+		display: block;
+		.size(100%, 15%);
+		top: 0;
+		z-index: 105;
+		opacity: 0;
+    cursor: pointer;
+		background-color: transparent;
+		background-color: rgba(255, 255, 255, 0.3);
+		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#4CFFFFFF', endColorstr = '#4CFFFFFF', GradientType = 0);
+
+		.icon-caret-left, .icon-caret-right {
+			position: absolute;
+			display: block;
+			top: 45%;
+			font-size: 50px;
+			line-height: 50px;
+			color: #fff;
+      text-shadow: 0 1px 0 rgba(0,0,0,.5);
+      cursor: pointer;
+		}
+		.icon-caret-left { left: 35%; }
+		.icon-caret-right { right: 35%; }
+	}
+
+	.prev-collectible { left: 0; }
+	.next-collectible { right: 0; }
+
+	.prev-collectible, .next-collectible {
+		span {.hide-text;}
+	}
+
+	.zoom-zone {
+		position: absolute;
+		display: block;
+		.size(100%, 70%);
+		top: 0;
+		left: 15%;
+		z-index: 105;
+		opacity: 0;
+    cursor: pointer;
+	}
+
+	.prev-collectible, .next-collectible, .zoom-zone {
+		&:hover {
+			opacity: 1;
+		}
+	}
+}
+
+.lt-ie9 .main-collectible-container {
+	.prev-collectible, .next-collectible {
+		zoom: 1;
+	}
+}
+
+

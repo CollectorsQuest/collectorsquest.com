@@ -269,7 +269,12 @@ class _sidebarComponents extends cqFrontendComponents
     }
 
     $this->pm_form = new ComposeAbridgedPrivateMessageForm(
-      $this->getUser()->getCollector(), $this->getVar('collector'), $subject
+      $this->getUser()->getCollector(), $this->getVar('collector'), $subject, array(
+          'attach' => array(
+              isset($this->collectible) ? $this->collectible->getCollectible() : null,
+              isset($this->collection)  ? $this->collection : null,
+          ),
+      )
     );
 
     if ($collector instanceof Collector)

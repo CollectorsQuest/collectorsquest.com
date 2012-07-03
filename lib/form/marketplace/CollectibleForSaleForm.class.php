@@ -83,7 +83,7 @@ class CollectibleForSaleForm extends BaseCollectibleForSaleForm
     {
       try
       {
-        $price_validator = new cqValidatorPrice(array('required' => true, 'min' => 1));
+        $price_validator = new cqValidatorPrice(array('required' => true, 'min' => 0.01));
         $values['price'] = $price_validator->clean($values['price']);
       }
       catch (sfValidatorError $error)

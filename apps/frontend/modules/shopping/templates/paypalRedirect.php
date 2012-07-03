@@ -2,8 +2,17 @@
 <html>
 <head>
   <title>Redirecting...</title>
+  <script src="//www.paypalobjects.com/js/external/dg.js"></script>
   <script>
-    top.location.replace('<?= url_for($url); ?>');
+    var _top = top;
+
+    if (top.opener && (_top = top.opener.top) && (_dgFlow = top.opener.top.dgFlow))
+    {
+      _dgFlow.closeFlow();
+      top.close();
+    }
+
+    (_top || top).location.replace('<?= url_for($url); ?>');
   </script>
 </head>
 <body style="background: #fff;">

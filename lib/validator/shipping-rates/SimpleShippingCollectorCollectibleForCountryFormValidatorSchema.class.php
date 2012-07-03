@@ -14,13 +14,14 @@ class SimpleShippingCollectorCollectibleForCountryFormValidatorSchema extends sf
   {
     if (
       ShippingReferencePeer::SHIPPING_TYPE_FLAT_RATE == $values['shipping_type'] &&
-      intval($values['flat_rate']) < 1
+      $values['flat_rate'] < 0.01
     ) {
         $errorSchema = new sfValidatorErrorSchema($this);
         $error = new sfValidatorError($this, 'flat_rate_missing');
 
-        $errorSchema->addError(new sfValidatorError($this, 'flat_rate_missing'),
-          'flat_rate');
+        $errorSchema->addError(
+          new sfValidatorError($this, 'flat_rate_missing'), 'flat_rate'
+        );
 
         throw $errorSchema;
     }

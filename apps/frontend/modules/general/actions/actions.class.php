@@ -44,9 +44,19 @@ class generalActions extends cqFrontendActions
     /** @var $q wpPostQuery */
     $q = wpPostQuery::create()
        ->filterByPostType('homepage_showcase')
-       ->filterByPostStatus('publish')
-       ->addAscendingOrderByColumn('RAND()')
        ->limit(1);
+
+    // Limit to only published in production
+    if (sfConfig::get('sf_environment') === 'prod')
+    {
+      $q
+        ->filterByPostStatus('publish')
+        ->addAscendingOrderByColumn('RAND()');
+    }
+    else
+    {
+      $q->orderByPostDate(Criteria::DESC);
+    }
 
     /** @var $themes wpPost[] */
     $themes = $q->find();
@@ -99,28 +109,33 @@ class generalActions extends cqFrontendActions
       }
       if ($collectible_ids)
       {
-        shuffle($collectible_ids);
+        if (IceGateKeeper::locked('independence_day')) {
+          shuffle($collectible_ids);
+        }
 
         /**
-         * Get 22 Collectibles
+         * Get the Collectibles
          *
          * @var $q CollectibleQuery
          */
         $q = CollectibleQuery::create()
            ->filterById($collectible_ids, Criteria::IN)
-           ->limit(22)
            ->addAscendingOrderByColumn('FIELD(id, '. implode(',', $collectible_ids) .')');
+
+        IceGateKeeper::open('independence_day') ?
+          $q->limit(47) : $q->limit(22);
 
         $this->collectibles = $q->find();
       }
     }
 
-    return sfView::SUCCESS;
+    return IceGateKeeper::open('independence_day') ?
+      'IndependenceDay' : sfView::SUCCESS;
   }
 
   public function executeDefault()
   {
-    $this->redirect('/', 301);
+    return $this->redirect('/', 301);
   }
 
   public function executeLogin(sfWebRequest $request)
@@ -131,12 +146,12 @@ class generalActions extends cqFrontendActions
       $this->getUser()->Authenticate(true, $collector, $remember = false);
 
       // redirect to last page or homepage after login
-      $this->redirect($request->getParameter('r', '@collector_me'));
+      return $this->redirect($request->getParameter('r', '@collector_me'));
     }
     // redirect to homepage if already logged in
     else if ($this->getUser()->isAuthenticated())
     {
-      $this->redirect($request->getParameter('r', '@collector_me'));
+      return $this->redirect($request->getParameter('r', '@collector_me'));
     }
 
     $form = new CollectorLoginForm();
@@ -164,7 +179,7 @@ class generalActions extends cqFrontendActions
           $goto = '@collector_me';
         }
 
-        $this->redirect($goto);
+        return $this->redirect($goto);
       }
     }
     else
@@ -219,7 +234,14 @@ class generalActions extends cqFrontendActions
       {
         $this->getUser()->Authenticate(true, $collector, true);
 
-        $this->redirect($new_collector ? '@mycq_profile' : '@collector_me');
+        if ($new_collector)
+        {
+          return $this->redirect('@mycq_profile');
+        }
+        else
+        {
+          return $this->redirect(IceRequestHistory::getCurrentUri() ?: '@collector_me');
+        }
       }
     }
 

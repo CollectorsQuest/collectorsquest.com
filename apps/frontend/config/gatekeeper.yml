@@ -10,6 +10,7 @@ all:
     mycq_profile_addresses: true
     collectible_shipping: true
     collectible_allow_no_shipping: true
+    independence_day: false
 
 next:
   pages: ~
@@ -23,6 +24,7 @@ next:
     mycq_profile_addresses: true
     collectible_shipping: true
     collectible_allow_no_shipping: true
+    independence_day: true
 
 dev:
   pages: ~
@@ -36,3 +38,4 @@ dev:
     mycq_profile_addresses: true
     collectible_shipping: true
     collectible_allow_no_shipping: true
+    independence_day: true

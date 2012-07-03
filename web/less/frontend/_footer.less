@@ -1,12 +1,10 @@
 @import "_variables.less";
 
 footer {
-
-  color: @blueDark;
+	position: relative;
+	color: @blueDark;
   border-left: 1px solid #ededed;
   background-color: @yellowLight;
-  .box-shadow(0 25px 20px rgba(136, 119, 119, 0.5));
-  position: relative;
 
   a {
     font-size: 12px;
@@ -22,13 +20,14 @@ footer {
 	}
 
   h2 {
+	  margin-bottom: 10px;
+	  padding-bottom: 6px;
     font-size: 20px;
     line-height: 20px;
-    padding-bottom: 6px;
     font-style: italic;
     font-weight: bold;
     color: @blueDark;
-    margin-bottom: 10px;
+
     &.no-margin-bottom {
       margin-bottom: 0;
     }
@@ -46,15 +45,14 @@ footer {
 
   .form-horizontal .control-label {
     width: auto;
-    font-size: 12px;
+	  float: left;
+	  margin-bottom: 0;
+	  padding-top: 0;
+	  font-size: 12px;
     line-height: 12px;
     font-weight: bold;
     text-align: left;
-    padding-top: 0;
-    margin-bottom: 0;
     color: #125375;
-    float: left;
-    text-align: left;
   }
 
   .form-horizontal .control-group {
@@ -62,11 +60,11 @@ footer {
   }
 
   .form-actions {
-    background-color: transparent;
-    border-top: none;
     margin-top: 2px;
     padding-top: 6px;
     padding-bottom: 6px;
+	  border-top: none;
+	  background-color: transparent;
   }
 
   .form-horizontal .controls {
@@ -83,28 +81,28 @@ footer {
   }
 
   .row-spacing-footer {
-    margin: 30px 0;
-    width: 100%;
+	  width: 100%;
+	  margin: 30px 0;
     .clearfix();
   }
 
   ul.footer-info-box {
-    list-style: none;
     margin-right: 3%;
     margin-left: 5%;
+	  list-style: none;
 
 	  li {
+		  margin-bottom: 15px;
 		  padding-left: 0;
 		  padding-top: 18px;
-		  margin-bottom: 15px;
 		  padding-right: 2%;
 		  background: url("@{baseUrl}/red-dotted-line.png") repeat-x top;
 		  .clearfix();
 
 		  &:first-child {
-			  background: none;
-			  padding-top: 0;
 			  margin-top: 0;
+			  padding-top: 0;
+			  background: none;
 		  }
 	  }
   }
@@ -118,18 +116,17 @@ footer {
   }
 
   ul.footer-profile-box {
-    list-style: none;
     margin-right: 3%;
     margin-left: 0;
+	  list-style: none;
 
 	  li {
+		  width: 80%;
+		  .min-height(46px);
 		  margin-bottom: 2px;
 		  padding-top: 15px;
 		  padding-bottom: 15px;
 		  padding-left: 20%;
-		  .min-height(46px);
-		  width: 80%;
-
 		  p {
 		  margin-bottom: 0;
 	    }
@@ -138,8 +135,8 @@ footer {
 
 
   ul.footer-profile-box li.footer-profile-box-h-list {
-    padding-left: 0;
     width: 100%;
+	  padding-left: 0;
     .clearfix();
   }
 
@@ -170,8 +167,8 @@ footer {
     padding-top: 0;
     padding-left: 60px;
     a {
-      padding-top: 6px;
-      display: block;
+	    display: block;
+	    padding-top: 6px;
     }
   }
 	//PMs
@@ -179,8 +176,8 @@ footer {
     border-bottom: 1px dashed #e98c7a;
   }
 	.big-email-icon {
-		display: inline-block;
 		position: relative;
+		display: inline-block;
 
 		.pm-counter {
 			display: block;
@@ -216,14 +213,14 @@ footer {
   }
 
   .big-box-icon, .big-piggy-bank-icon, .big-question-icon {
-    float: left;
-    display: block;
+	  display: block;
+	  float: left;
     margin-top: 4px;
   }
 
   .add-collectible-img, .icon-big-battery, .organize-collection, .icon-big-email {
-    float: left;
-    display: block;
+	  display: block;
+	  float: left;
     margin-top: 0;
   }
 
@@ -246,10 +243,11 @@ footer {
 
 
 #footer-links {
-  background: #cdc7c7 url("@{baseUrl}/background-pattern-footer.png") repeat;
-  //.box-shadow(0 25px 20px rgba(136, 119, 119, 0.5));
-  position: relative;
+	position: relative;
 	z-index: 100;
+	background: #cdc7c7 url("@{baseUrl}/background-pattern-footer.png") repeat;
+	border-left: 1px solid #cdc7c7;
+
 
   .footer-links-inner {
     padding: 12px 2% 0 2%;
@@ -271,14 +269,15 @@ footer {
 			  border-left: none;
 		  }
 		  a {
-			  float: left;
+			  position: relative;
 			  display: block;
+			  float: left;
 			  margin: 0;
 			  padding: 2px 9px 0 9px;
 			  color: @blue;
 			  text-decoration: none;
 			  border: none;
-			  position: relative;
+
 			  &:hover {
 				  color: @blueDark;
 			  }

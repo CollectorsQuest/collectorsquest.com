@@ -24,7 +24,7 @@
         id="latest-message"
       <?endif; ?>
     >
-      <td class="sender" rowspan="2">
+      <td class="sender" rowspan="<?= $message->hasAttachedCollectionOrCollectible() ? 3 : 2 ?>">
         <span>By&nbsp;<?= link_to($sender, array('sf_route' => 'collector_by_slug', 'sf_subject' => $sender)); ?></span>
         <br/>
         <span><?= time_ago_in_words_or_exact_date($message->getCreatedAt()); ?></span>
@@ -36,7 +36,7 @@
       <td class="subject"><b><?= $message->getSubject(); ?></b></td>
     </tr>
     <tr>
-      <td class="message"><?php
+      <td class="message" rowspan="1"><div class="message-holder"><?php
         $body = $message->getBody();
 
         // Replace all the {route.*} tags with their true URL
@@ -49,8 +49,19 @@
         $body = preg_replace('/({[\w\.]+})/iu', '', $body);
 
         echo (!$message->getIsRich()) ? cqStatic::linkify($body, false) : $body;
-      ?></td>
+      ?></div></td>
     </tr>
+    <?php if ($message->hasAttachedCollectionOrCollectible()): ?>
+    <tr>
+      <td class="message-attached-info">
+      <?php if ($collectible = $message->getAttachedCollectible()): ?>
+        This message was sent regarding the collectible <?= link_to_collectible($collectible, 'text'); ?>.
+      <?php elseif ($collection = $message->getAttachedCollection()): ?>
+        This message was sent regarding the collection <?= link_to_collection($collection, 'text'); ?>.
+      <?php endif; ?>
+      </td>
+    </tr>
+    <?php endif; ?>
   <?php endforeach; ?>
 </table>
 

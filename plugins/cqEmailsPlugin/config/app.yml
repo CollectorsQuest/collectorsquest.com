@@ -6,34 +6,40 @@ all:
       Url: [link_to, url_for]
       Asset: [image_path, image_tag]
       cqLinks: [link_to_collector, link_to_collection, link_to_collectible]
+      cqImages: [image_tag_multimedia]
 
     defaults:
       from: { "no-reply@collectorsquest.com": "CollectorsQuest.com" }
       replyTo: { "info@collectorsquest.com": "CollectorsQuest.com" }
 
     Collector:
+      welcome_verify_email:
+        subject: "Please confirm your email at CollectorsQuest.com"
+      welcome_to_cq:
+        subject: "Welcome to Collectors Quest!"
       password_reminder:
         subject: "CollectorsQuest.com Password Reset"
         required_params: [collector, password]
       verify_new_email:
         subject: "You have changed your email at CollectorsQuest.com"
         required_params: [collector, collector_email]
+
+    Seller:
       welcome_verify_email:
         subject: "Please confirm your email at CollectorsQuest.com"
       welcome_to_cq:
-        subject: "Welcome to Collectors Quest!"
-
-    Seller:
+        subject: "Thanks for becoming a seller on Collectors Quest!"
       package_confirmation:
         subject: "Thanks for purchasing credits on Collectors Quest!"
         required_params: [collector, package_transaction]
-      welcome_to_cq:
-        subject: "Thanks for becoming a seller on Collectors Quest!"
 
     Messages:
       private_message_notification:
         subject: "You've Received a Message on Collectors Quest!"
         required_params: [oSender, oReceiver, oMessage, sThreadUrl]
+      relay_message_to_unregistered_user:
+        subject: "You have a new message from {{ oSender.displayName }} on Collectors Quest!"
+        required_params: [oSender, sMessageBody ]
 
     Comments:
       comment_response_notification:

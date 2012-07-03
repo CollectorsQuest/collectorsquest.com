@@ -3,14 +3,15 @@
 /**
  * cqValidatorUSDtoCents
  */
-class cqValidatorUSDtoCents extends sfValidatorInteger
+class cqValidatorUSDtoCents extends cqValidatorPrice
 {
 
   public function doClean($value)
   {
-    $value = bcmul(cqStatic::floatval($value, 2), 100);
+    $value = parent::doClean($value);
 
-    return parent::doClean($value);
+    // Turn into cents
+    return bcmul($value, 100, 0);
   }
 
 }

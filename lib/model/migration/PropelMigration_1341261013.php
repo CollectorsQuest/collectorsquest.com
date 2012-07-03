@@ -5,11 +5,14 @@
  *
  * Generated on 2012-06-25 14:12:53 by root
  */
-class PropelMigration_1340647973
+class PropelMigration_1341261013
 {
 
-	public function preUp($manager)
-	{
+  public function preUp($manager)
+  {
+
+    // Do not execute the migration for now
+    return;
 
     // WARNING! THIS MIGRATION WILL DO THE FOLLOWING:
 
@@ -52,7 +55,7 @@ class PropelMigration_1340647973
 
 
       echo "\n";
-      echo sprintf("The collector %s:%d as the following collectilbles for sale without credits: \n", $collector->getDisplayName(), $collector->getId());
+      echo sprintf("The collector %s:%d has the following collectilbles for sale without credits: \n", $collector->getDisplayName(), $collector->getId());
 
       foreach ($for_sale_without_credits as $collectible_for_sale)
       {
@@ -90,59 +93,61 @@ class PropelMigration_1340647973
       echo "complete! \n";
     }
 
-	}
+  }
 
-	public function postUp($manager)
-	{
-		// add the post-migration code here
-	}
+  public function postUp($manager)
+  {
+    // add the post-migration code here
+  }
 
-	public function preDown($manager)
-	{
-		// add the pre-migration code here
-	}
+  public function preDown($manager)
+  {
+    // add the pre-migration code here
+  }
 
-	public function postDown($manager)
-	{
-		// add the post-migration code here
-	}
+  public function postDown($manager)
+  {
+    // add the post-migration code here
+  }
 
-	/**
-	 * Get the SQL statements for the Up migration
-	 *
-	 * @return array list of the SQL strings to execute for the Up migration
-	 *               the keys being the datasources
-	 */
-	public function getUpSQL()
-	{
-		return array (
-  'propel' => '
+  /**
+   * Get the SQL statements for the Up migration
+   *
+   * @return array list of the SQL strings to execute for the Up migration
+   *               the keys being the datasources
+   */
+  public function getUpSQL()
+  {
+    return array(
+      'propel' => '
+        SET FOREIGN_KEY_CHECKS = 0;
+        SET FOREIGN_KEY_CHECKS = 1;
+      ',
+      'blog' => '
+        SET FOREIGN_KEY_CHECKS = 0;
+        SET FOREIGN_KEY_CHECKS = 1;
+      '
+    );
+  }
 
-# This restores the fkey checks, after having unset them earlier
-SET FOREIGN_KEY_CHECKS = 1;
-',
-);
-	}
-
-	/**
-	 * Get the SQL statements for the Down migration
-	 *
-	 * @return array list of the SQL strings to execute for the Down migration
-	 *               the keys being the datasources
-	 */
-	public function getDownSQL()
-	{
-		return array (
-  'propel' => '
-# This is a fix for InnoDB in MySQL >= 4.1.x
-# It "suspends judgement" for fkey relationships until are tables are set.
-SET FOREIGN_KEY_CHECKS = 0;
-
-
-# This restores the fkey checks, after having unset them earlier
-SET FOREIGN_KEY_CHECKS = 1;
-',
-);
-	}
+  /**
+   * Get the SQL statements for the Down migration
+   *
+   * @return array list of the SQL strings to execute for the Down migration
+   *               the keys being the datasources
+   */
+  public function getDownSQL()
+  {
+    return array(
+      'propel' => '
+        SET FOREIGN_KEY_CHECKS = 0;
+        SET FOREIGN_KEY_CHECKS = 1;
+      ',
+      'blog' => '
+        SET FOREIGN_KEY_CHECKS = 0;
+        SET FOREIGN_KEY_CHECKS = 1;
+      '
+    );
+  }
 
 }

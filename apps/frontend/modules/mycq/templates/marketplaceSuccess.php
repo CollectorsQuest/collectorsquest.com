@@ -40,8 +40,8 @@
                       <li><a data-sort="most-relevant" data-name="Most Relevant" class="sortBy" href="javascript:">Sort by <strong>Most Relevant</strong></a></li>
                     </ul>
                   </div>
-                  <input type="text" class="input-sort-by" id="appendedPrependedInput" name="q" />
-                  <button class="btn" type="submit"><strong>Search</strong></button>
+                  <input type="text" class="input-sort-by" id="appendedPrependedInput" name="q"><button class="btn" type="submit"><strong>Search</strong></button>
+                  <!-- keep INPUT and BUTTON elements in same line, if you break to two lines, you will see the "gap" between the text box and button -->
                   <input type="hidden" value="most-recent" id="sortByValue" name="s">
                 </form>
               </div>
@@ -87,6 +87,7 @@
                 </ul>
               </div>
               <input type="text" class="input-sort-by" id="appendedPrependedInput" name="q"><button class="btn" type="submit"><strong>Search</strong></button>
+              <!-- keep INPUT and BUTTON elements in same line -->
               <input type="hidden" value="most-relevant" id="sortByValue" name="s">
             </form>
           </div>

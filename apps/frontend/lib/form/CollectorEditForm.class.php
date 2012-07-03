@@ -354,7 +354,8 @@ class CollectorEditForm extends CollectorForm
     $this->widgetSchema['seller_settings_paypal_email'] = new sfWidgetFormInputText(array(
       'label' => 'Email Address',
     ), array(
-      'type' => 'email', 'required' => 'required'
+      'type'     => 'email',
+      'required' => 'required'
     ));
 
     $this->widgetSchema['seller_settings_paypal_fname'] = new sfWidgetFormInputText(array(
@@ -392,10 +393,10 @@ class CollectorEditForm extends CollectorForm
       'label' => 'Phone Number',
     ));
 
+    $this->widgetSchema->setHelp('seller_settings_phone_number', 'Use format: +1-123-456-7890, 00123-456-789-0123, 00123/123/456 7890');
+
     $this->validatorSchema['seller_settings_phone_number'] = new sfValidatorRegex(array(
-      'pattern' => '/^0(?:0|11)(9[976]\d|8[987530]\d|6[987]\d|5[90]\d|42\d|3[875]\d|
-          2[98654321]\d|9[8543210]|8[6421]|6[6543210]|5[87654321]|
-          4[987654310]|3[9643210]|2[70]|7|1)\d{0,14}$/',
+      'pattern' => '/^(\+|00)?\s*\d{1,3}\s*[-\/\(]?\d{1,3}[-\)\/\s]*[-\d\s]{5,10}$/',
       'required' => $required,
     ));
   }
@@ -449,9 +450,9 @@ class CollectorEditForm extends CollectorForm
     $data = array(
       'GetVerifiedStatusFields' => array(
         'MatchCriteria' => 'NAME',
-        'EmailAddress' => $values['seller_settings_paypal_email'],
-        'FirstName' => $values['seller_settings_paypal_fname'],
-        'LastName' => $values['seller_settings_paypal_lname']
+        'EmailAddress'  => $values['seller_settings_paypal_email'],
+        'FirstName'     => $values['seller_settings_paypal_fname'],
+        'LastName'      => $values['seller_settings_paypal_lname']
       )
     );
 

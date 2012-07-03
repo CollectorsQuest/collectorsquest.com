@@ -18,7 +18,7 @@
 	margin-top: 0;
   font-size: 30px;
 	color: transparent;
-  background: url(/images/icons/fancy_close.png) no-repeat center top;
+  background: url("@{iconUrl}/fancy_close.png") no-repeat center top;
 	cursor: pointer;
 }
 
@@ -630,7 +630,7 @@ a.buy-credits-button {
     left: 55px;
     font-size: 26px;
 	  color: transparent;
-	  background: url(/images/icons/fancy_close.png) no-repeat center;
+	  background: url("@{iconUrl}/fancy_close.png") no-repeat center;
 	  cursor: pointer;
   }
 }
@@ -999,23 +999,6 @@ textarea.input-xlarge {
 .thumbnail {
   position: relative;
 
-  .icon-edit-holder {
-    position: absolute;
-    display: none;
-    background-color: transparent;
-    background-color: rgba(0, 0, 0, 0.6);
-	  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#7F000000', endColorstr = '#7F000000', GradientType = 0);
-	  .border-radius(7px);
-	  cursor: pointer;
-
-    i {
-      color: @grayLighter;
-    }
-  }
-  &:hover .icon-edit-holder {
-    display: block;
-  }
-
   &.drop-zone-large {
     .icon-edit-holder {
       top: 25%;
@@ -1050,6 +1033,7 @@ textarea.input-xlarge {
       font-size: 14px;
       i {
         font-size: 55px;
+	      line-height: 55px;
       }
     }
   }
@@ -1154,7 +1138,7 @@ textarea.input-xlarge {
 	    margin-top: 0;
       font-size: 30px;
 	    color: transparent;
-      background: url(/images/icons/fancy_close.png) no-repeat center top;
+      background: url("@{iconUrl}/fancy_close.png") no-repeat center top;
 	    cursor: pointer;
     }
 
@@ -1374,7 +1358,7 @@ textarea.input-xlarge {
 	background-color: #fff8e0;
 
 	.sidebar-title {
-		margin-top: 0px;
+		margin-top: 0;
 	}
 
   &.fixed {

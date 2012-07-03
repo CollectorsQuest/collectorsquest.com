@@ -45,7 +45,6 @@ class ShoppingCartCollectible extends BaseShoppingCartCollectible
     );
   }
 
-
   /**
    * @param integer|float|double $v
    */
@@ -75,7 +74,6 @@ class ShoppingCartCollectible extends BaseShoppingCartCollectible
   {
     return parent::getPriceAmount();
   }
-
 
   /**
    * @param integer|float|double $v

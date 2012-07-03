@@ -1,7 +1,11 @@
 <?php
 
 /**
- * Description of ComposePrivateMessageForm
+ * ComposePrivateMessageForm does what its name says :)
+ *
+ * Options:
+ *    attach: Collector/Collection object (or an array of both)
+ *
  */
 class ComposePrivateMessageForm extends PrivateMessageForm
 {
@@ -49,6 +53,7 @@ class ComposePrivateMessageForm extends PrivateMessageForm
     $this->setupThreadField();
     $this->setupCaptchaField();
     $this->setupRedirectField();
+    $this->setupAttachFields();
 
     $this->widgetSchema->setLabels(array(
         'receiver' => 'To',
@@ -74,12 +79,60 @@ class ComposePrivateMessageForm extends PrivateMessageForm
       ));
     }
 
-    $this->validatorSchema['receiver'] = new cqValidatorCollectorByName(array(
+    $this->validatorSchema['receiver'] = new sfValidatorCallback(array(
+        'required' => true,
+        'callback' => array($this, 'validateReceiverField'),
+    ));
+  }
+
+  /**
+   * Validate the receiver field. Several values are permitted:
+   *
+   * 1) email address of a registered Collector, the model obeject is returned
+   * 2) email address of a non-registered user, the plain email is returned
+   * 3) a collector username, the Collector object is retuned
+   * 4) a collector display name, the Colletor object is returned
+   *
+   * @param     sfValidatorCallback $validator
+   * @param     string $value
+   * @param     array $arguments
+   * @return    mixed Either a valid email for a user not registered
+   *                  at the site or a Collector object
+   *
+   * @throws    sfValidatorError
+   */
+  public function validateReceiverField(
+    sfValidatorBase $validator,
+    $value,
+    $arguments = array()
+  ) {
+    // first we check if the value is a valid email address
+    try {
+      $v = new sfValidatorEmail();
+      $value = $v->clean($value);
+      $is_email = true;
+    } catch (sfValidatorError $e) {
+      $is_email = false;
+    }
+
+    // if the value is a valid email
+    if ($is_email)
+    {
+      // check if we have a user with that email, if yes return it,
+      // if no return the plain email
+      return CollectorQuery::create()->findOneByEmail($value)
+        ?: $value;
+    }
+
+    // else validate with cqValidatorCollectorByName
+    $v = new cqValidatorCollectorByName(array(
         'invalid_ids' => array($this->sender_collector->getId()),
         'return_object' => true,
       ), array(
         'collector_invalid_id' => 'You cannot send messages to yourself.'
     ));
+
+    return $v->clean($value);
   }
 
   protected function setupSenderField()
@@ -117,6 +170,45 @@ class ComposePrivateMessageForm extends PrivateMessageForm
   {
     $this->widgetSchema['goto'] = new sfWidgetFormInputHidden();
     $this->validatorSchema['goto'] = new sfValidatorPass();
+  }
+
+  /**
+   * We can attach a collection and/or a collectible to a message now.
+   * Simply use the "attach" option to pass an object or an array
+   */
+  protected function setupAttachFields()
+  {
+    $this->widgetSchema['collection_id'] = new sfWidgetFormInputHidden();
+    $this->validatorSchema['collection_id'] = new sfValidatorPropelChoice(array(
+        'required' => false,
+        'model' =>  'Collection',
+        'column' => 'id',
+    ));
+
+    $this->widgetSchema['collectible_id'] = new sfWidgetFormInputHidden();
+    $this->validatorSchema['collectible_id'] = new sfValidatorPropelChoice(array(
+        'required' => false,
+        'model' =>  'Collectible',
+        'column' => 'id',
+    ));
+
+    // if we have an attach option passed to the form
+    if ($this->getOption('attach'))
+    {
+      // try to set defaults for attached collection/collectible
+      foreach ((array)$this->getOption('attach') as $object)
+      {
+        if ($object instanceof Collection)
+        {
+          $this->setDefault('collection_id', $object->getPrimaryKey());
+        }
+
+        if ($object instanceof Collectible)
+        {
+          $this->setDefault('collectible_id', $object->getPrimaryKey());
+        }
+      }
+    }
   }
 
   /**
@@ -182,6 +274,16 @@ class ComposePrivateMessageForm extends PrivateMessageForm
 
     $this->getObject()->setIsRich(false);
     $this->getObject()->setBody($values['body'], true);
+
+    if ($values['collectible_id'])
+    {
+      $this->getObject()->setAttachedCollectibleId($values['collectible_id']);
+    }
+
+    if ($values['collection_id'])
+    {
+      $this->getObject()->setAttachedCollectionId($values['collection_id']);
+    }
   }
 
   /**

@@ -18,9 +18,10 @@
 
 <script src="//www.paypalobjects.com/js/external/dg.js"></script>
 <script>
+  var dgFlow = new PAYPAL.apps.DGFlow({ trigger: 'submitBtn' });
+
   $(document).ready(function()
   {
-    var dgFlow = new PAYPAL.apps.DGFlow({ trigger: 'submitBtn' });
     $('#submitBtn').click();
   });
 </script>

@@ -1,4 +1,8 @@
 <?php
+
+  use_javascript('jquery/ui.js');
+  use_javascript('jquery/rcarousel.js');
+
 /**
  * @var  $sf_user  cqFrontendUser
  *
@@ -24,37 +28,7 @@
   cq_page_title($collectible->getName(), null, $options);
 ?>
 
-<?/**
-<div class="row-fluid spacer-top-15">
-  <div class="span10 text-center">
-    <a href="#" target="_blank" id="collectible_multimedia_primary">
-      <img title="iMac G4 circa 2002" src="http://placehold.it/620x480" class="magnify">
-    </a>
-  </div>
-  <div class="span2">
-    <div class="carousel-v-main">
-      <a id="ui-carousel-v-next" class="step-up" title="next" href="#">
-        <i class="icon-chevron-up white"></i>
-      </a>
-      <a id="ui-carousel-v-prev" class="step-down" title="previous" href="#">
-        <i class="icon-chevron-down white"></i>
-      </a>
-
-      <a title="" href="#" class="zoom collectible">
-        <img src="http://placehold.it/92x92" style="" alt="" title="">
-      </a>
-      <a title="" href="#" class="zoom collectible">
-        <img src="http://placehold.it/92x92" alt="" title="">
-      </a>
-      <a title="" href="#" class="zoom collectible">
-        <img src="http://placehold.it/92x92" alt="" title="">
-      </a>
-    </div>
-  </div>
-</div>
-*/?>
-
-<div class="row-fluid spacer-top-15">
+<div class="row-fluid main-collectible-container">
   <?php
     $span = 10;
     if (count($additional_multimedia) == 0)
@@ -62,12 +36,35 @@
       $span += 2;
     }
   ?>
-  <div class="span<?= $span; ?> text-center">
+  <div class="span<?= $span; ?> text-center relative">
+
+    <?php if ($previous): ?>
+    <a href="<?= url_for_collectible($previous) ?>"
+       class="prev-collectible" title="Previous: <?= $previous->getName(); ?>">
+      <span>prev</span>
+      <i class="icon-caret-left white"></i>
+    </a>
+    <?php endif; ?>
+
+    <?php if ($next): ?>
+    <a href="<?= url_for_collectible($next) ?>"
+       class="next-collectible" title="Next: <?= $next->getName(); ?>">
+      <span>next</span>
+      <i class="icon-caret-right white"></i>
+    </a>
+    <?php endif; ?>
+
+    <a class="zoom-zone" target="_blank" title="Click to zoom"
+       href="<?= src_tag_collectible($collectible, 'original') ?>">
+      <span class="picture-zoom icon-edit-holder">
+        <i class="icon icon-zoom-in"></i>
+      </span>
+    </a>
     <?php
       echo link_to(
         image_tag_collectible(
           $collectible, '620x0',
-          array('height' => null, 'class' => 'magnify')
+          array('width' => null, 'height' => null)
         ),
         src_tag_collectible($collectible, 'original'),
         array('id' => 'collectible_multimedia_primary', 'target' => '_blank')
@@ -77,15 +74,25 @@
 
   <?php if (count($additional_multimedia) > 0): ?>
   <div class="span2">
-    <a class="zoom" href="<?php echo src_tag_collectible($collectible, '150x150'); ?>" title="<?php echo $collectible->getName(); ?>">
-      <?= image_tag_collectible($collectible, '150x150', array(
-        'height' => null, 'title' => $collectible->getName(), 'style' => 'margin-bottom: 12px;')); ?>
-    </a>
-    <?php foreach ($additional_multimedia as $i => $m): ?>
-    <a class="zoom" href="<?php echo src_tag_multimedia($m, 'original'); ?>" title="<?php echo $m->getName(); ?>">
-      <?= image_tag_multimedia($m, '150x150', array('height' => null, 'title' => $m->getName(), 'style' => 'margin-bottom: 12px;')); ?>
-    </a>
-    <?php endforeach; ?>
+    <div class="vertical-carousel-wrapper">
+      <div id="vertical-carousel">
+        <a class="zoom" href="<?php echo src_tag_collectible($collectible, '150x150'); ?>" title="<?php echo $collectible->getName(); ?>">
+          <?= image_tag_collectible($collectible, '150x150', array(
+            'height' => null, 'title' => $collectible->getName(), 'style' => 'margin-bottom: 12px;')); ?>
+        </a>
+        <?php foreach ($additional_multimedia as $i => $m): ?>
+        <a class="zoom" href="<?php echo src_tag_multimedia($m, 'original'); ?>" title="<?php echo $m->getName(); ?>">
+          <?= image_tag_multimedia($m, '150x150', array('height' => null, 'title' => $m->getName(), 'style' => 'margin-bottom: 12px;')); ?>
+        </a>
+        <?php endforeach; ?>
+      </div>
+      <a href="#" id="ui-carousel-prev" title="previous collectible" class="ui-carousel-navigation hidden left-arrow">
+        <i class="icon-chevron-up white"></i>
+      </a>
+      <a href="#" id="ui-carousel-next" title="next collectible" class="ui-carousel-navigation hidden right-arrow">
+        <i class="icon-chevron-down white"></i>
+      </a>
+    </div>
   </div>
   <?php endif; ?>
 </div>
@@ -260,10 +267,27 @@
 <script>
 $(document).ready(function()
 {
-  $(".zoom").click(function(e)
-  {
-    e.stopPropagation();
+ 'use strict';
 
+  var $vertical_carousel = $('#vertical-carousel');
+
+  // enable vertical carousel only if we have more than 3 alternative views
+  if ($vertical_carousel.children().length > 3) {
+    // show navigation arrows
+    $vertical_carousel.siblings('.ui-carousel-navigation').removeClass('hidden');
+
+    // enable carousel
+    $vertical_carousel.rcarousel({
+      orientation: 'vertical',
+      visible: 3, step: 3,
+      margin: 14,
+      height: 92, width: 92,
+      auto: { enabled: true, interval: 15000 }
+    });
+  }
+
+
+  $vertical_carousel.on('click', '.zoom', function(e) {
     var source = $(this).find('img');
     var target = $('#collectible_multimedia_primary');
     var path = $(source).attr('src').split(/\/150x150\//);
@@ -276,7 +300,12 @@ $(document).ready(function()
         alt: $(source).attr('alt')
       });
 
+    $(target)
+      .siblings('a.zoom-zone')
+      .attr('href', path[0] + '/original/' + path[1]);
+
     return false;
   });
+
 });
 </script>

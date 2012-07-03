@@ -59,7 +59,9 @@
         SmartMenu::getCacheKey('header_main_menu'),
       ))
     ));
-
+  ?>
+  <div class="shadow">
+  <?php
     if (has_component_slot('breadcrumbs'))
     {
       echo '<div id="breadcrumbs">';
@@ -147,8 +149,10 @@
       include_partial('global/ad_slots', array('slots' => $slots));
     }
   ?>
-
   <!-- Blog Footer //-->
+
+  </div>
+  <!-- /.shadow -->
 
   <?php
     cqStats::timing(

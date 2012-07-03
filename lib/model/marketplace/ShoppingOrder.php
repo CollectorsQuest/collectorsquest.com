@@ -65,36 +65,57 @@ class ShoppingOrder extends BaseShoppingOrder
 
   public function getCurrency()
   {
-    return $this->getShoppingCartCollectible()->getPriceCurrency();
+    $currency = 'USD';
+
+    if ($collectible = $this->getShoppingCartCollectible())
+    {
+      $currency = $collectible->getPriceCurrency();
+    }
+
+    return $currency;
   }
 
   /**
    * price + tax + shipping
    *
+   * @param  string  $return
    * @return float
    */
-  public function getTotalAmount()
+  public function getTotalAmount($return = 'float')
   {
-    return bcadd(
-      bcadd($this->getCollectiblesAmount(), $this->getTaxAmount(), 2),
-      $this->getShippingFeeAmount(), 2
-    );
+    if ($return === 'integer')
+    {
+      return array_sum(array(
+        $this->getCollectiblesAmount('integer'),
+        $this->getTaxAmount('integer'),
+        $this->getShippingFeeAmount('integer')
+      ));
+    }
+    else
+    {
+      return bcadd(
+        bcadd($this->getCollectiblesAmount(), $this->getTaxAmount(), 2),
+        $this->getShippingFeeAmount(), 2
+      );
+    }
   }
 
-  public function getTaxAmount()
+  public function getTaxAmount($return = 'float')
   {
-    return 0;
+    $amount = 0;
+
+    return ($return === 'integer') ? $amount : bcdiv($amount, 100, 2);
   }
 
-  public function getCollectiblesAmount()
+  public function getCollectiblesAmount($return = 'float')
   {
     if ($payment = $this->getShoppingPaymentRelatedByShoppingPaymentId())
     {
-      return $payment->getAmountCollectibles();
+      return $payment->getAmountCollectibles($return);
     }
     else if ($collectible = $this->getShoppingCartCollectible())
     {
-      return $collectible->getPriceAmount();
+      return $collectible->getPriceAmount($return);
     }
 
     return null;
@@ -105,7 +126,7 @@ class ShoppingOrder extends BaseShoppingOrder
    *
    * Will return NULL if shipping type for the selected country is NO_SHIPPING
    *
-   * @param     integer|float $return
+   * @param     string $return
    * @return    mixed
    */
   public function getShippingFeeAmount($return = 'float')
@@ -119,7 +140,7 @@ class ShoppingOrder extends BaseShoppingOrder
 
     if ($payment = $this->getShoppingPaymentRelatedByShoppingPaymentId())
     {
-      return $payment->getAmountShippingFee();
+      return $payment->getAmountShippingFee($return);
     }
     else if ($collectible = $this->getShoppingCartCollectible())
     {
@@ -282,6 +303,11 @@ class ShoppingOrder extends BaseShoppingOrder
     }
 
     return $this->aShippingReference;
+  }
+
+  public function getShoppingPayment()
+  {
+    return $this->getShoppingPaymentRelatedByShoppingPaymentId();
   }
 
   /**

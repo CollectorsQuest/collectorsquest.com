@@ -15,33 +15,41 @@
 
 function fb_get_like_button($options = array()) {
 	$params = fb_build_social_plugin_params($options);
-
+	
 	return '<div class="fb-like fb-social-plugin" ' . $params . ' ></div>';
 }
 
 function fb_like_button_automatic($content) {
 	$options = get_option('fb_options');
-
-	$new_content = '';
-
-	switch ($options['like']['position']) {
-		case 'top':
-			$new_content = fb_get_like_button($options['like']) . $content;
-			break;
-		case 'bottom':
-			$new_content = $content . fb_get_like_button($options['like']);
-			break;
-		case 'both':
-			$new_content = fb_get_like_button($options['like']) . $content;
-			$new_content .= fb_get_like_button($options['like']);
-			break;
-	}
-
-	if ( empty( $options['like']['show_on_homepage'] ) && is_singular() ) {
-		$content = $new_content;
-	}
-	elseif ( isset($options['like']['show_on_homepage']) ) {
-		$content = $new_content;
+	
+	global $post;
+	
+	if ( isset ( $post ) ) {
+		if ( isset($options['like']['show_on_homepage']) ) {
+			$options['like']['href'] = get_permalink($post->ID);
+		}
+		
+		$new_content = '';
+	
+		switch ($options['like']['position']) {
+			case 'top':
+				$new_content = fb_get_like_button($options['like']) . $content;
+				break;
+			case 'bottom':
+				$new_content = $content . fb_get_like_button($options['like']);
+				break;
+			case 'both':
+				$new_content = fb_get_like_button($options['like']) . $content;
+				$new_content .= fb_get_like_button($options['like']);
+				break;
+		}
+	
+		if ( empty( $options['like']['show_on_homepage'] ) && is_singular() ) {
+			$content = $new_content;
+		}
+		elseif ( isset($options['like']['show_on_homepage']) ) {
+			$content = $new_content;
+		}
 	}
 
 	return $content;
@@ -152,7 +160,7 @@ function fb_get_like_fields_array($placement) {
 													),
 										array('name' => 'width',
 													'type' => 'text',
-													'default' => '250',
+													'default' => '450',
 													'help_text' => __( 'The width of the plugin, in pixels.', 'facebook' ),
 													'sanitization_callback' => 'intval',
 													),
@@ -171,7 +179,7 @@ function fb_get_like_fields_array($placement) {
 													),
 										array('name' => 'font',
 													'type' => 'dropdown',
-													'default' => 'arial',
+													'default' => 'lucida grande',
 													'options' => array('arial' => 'arial', 'lucida grande' => 'lucida grande', 'segoe ui' => 'segoe ui', 'tahoma' => 'tahoma', 'trebuchet ms' => 'trebuchet ms', 'verdana' => 'verdana'),
 													'help_text' => __( 'The font of the button.', 'facebook' ),
 													),

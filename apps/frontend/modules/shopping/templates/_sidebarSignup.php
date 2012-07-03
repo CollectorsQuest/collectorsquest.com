@@ -6,11 +6,15 @@
     <?= $form->renderUsing('BootstrapWithRowFluid'); ?>
     <div class="row-fluid spacer-7">
       <div class="span9 spacer-inner-top">
-        <?php include_partial('global/footer_signup_external_buttons'); ?>
+        <?php
+          include_partial(
+            'global/footer_signup_external_buttons',
+            array('action' => 'signup')
+          );
+        ?>
       </div>
       <div class="span3">
-        <button type="submit"
-                class="btn btn-primary pull-right">
+        <button type="submit" class="btn btn-primary pull-right">
           Submit
         </button>
       </div>
