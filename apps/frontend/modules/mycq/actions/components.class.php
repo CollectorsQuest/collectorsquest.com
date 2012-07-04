@@ -123,8 +123,24 @@ class mycqComponents extends cqFrontendComponents
 
     $q = CollectibleForSaleQuery::create()
         ->filterByCollector($collector)
-        ->isForSale()
-        ->orderByCreatedAt(Criteria::DESC);
+        ->isForSale();
+
+    switch ($this->getRequestParameter('s', 'most-recent'))
+    {
+      case 'most-popular':
+        $q
+          ->joinCollectible()
+          ->useCollectibleQuery()
+          ->orderByNumViews(Criteria::DESC)
+          ->endUse();
+        break;
+
+      case 'most-recent':
+      default:
+        $q
+          ->orderByCreatedAt(Criteria::DESC);
+        break;
+    }
 
     if ($this->getRequestParameter('q'))
     {
@@ -137,6 +153,7 @@ class mycqComponents extends cqFrontendComponents
 
     $this->pager = $pager;
     $this->collector = $collector;
+    $this->seller = $this->getVar('seller') ?: $this->getUser()->getSeller(true);
 
     return sfView::SUCCESS;
   }

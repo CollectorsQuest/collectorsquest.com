@@ -66,6 +66,35 @@
       }
     ?>
   <?php endforeach; ?>
+
+  <?php if ($pager->haveToPaginate() && $pager->getPage() === 1): ?>
+
+    <button class="btn btn-small see-more-full" id="seemore-mycq-collectibles-for-sale">
+      See more
+    </button>
+
+    <script>
+      $(document).ready(function()
+      {
+        var $url = '<?= url_for('@ajax_mycq?section=component&page=collectiblesForSale', true) ?>';
+        var $form = $('#form-mycq-collectibles-for-sale');
+
+        $('#seemore-mycq-collectibles-for-sale').click(function()
+        {
+          var $button = $(this);
+          $button.html('loading...');
+
+          $.post($url +'?p=2', $form.serialize(), function(data)
+          {
+            $('div.mycq-collectibles-for-sale .thumbnails').append(data);
+            $button.hide();
+          }, 'html');
+        });
+      });
+    </script>
+
+  <?php endif; ?>
+
 <?php else: ?>
   <div class="span12 thumbnail link no-collections-uploaded-box">
     <?php if ($sf_params->get('q')): ?>
@@ -79,7 +108,7 @@
       </span>
     <?php endif; ?>
   </div>
-  <?php if ($seller && $seller->hasPackageCredits()): ?>
+  <?php if (isset($seller) && $seller->hasPackageCredits()): ?>
     <?php include_slot('mycq_create_collectible_for_sale'); ?>
   <?php else: ?>
   <div id="mycq-create-collectible" class="span4 thumbnail link">
