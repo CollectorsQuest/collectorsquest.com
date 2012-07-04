@@ -23,6 +23,7 @@ class PropelMigration_1341338916
       ->joinWith('Collector.CollectorProfile')
       ->find();
 
+    echo "\n". 'Processing collecotrs: ';
     foreach($collectors as $collector)
     {
       // Move collector profile about what I collect extra property to Collector tags
@@ -34,10 +35,12 @@ class PropelMigration_1341338916
       {
         $collector->addICollectTag($extra_icollect_tags[$collector->getId()]);
       }
-      echo '+';
+      echo '.';
     }
 
+    echo "\n".'Saving collectors...';
     $collectors->save();
+    echo ' done!';
 	}
 
 	public function postUp($manager)

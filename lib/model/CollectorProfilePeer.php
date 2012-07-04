@@ -4,6 +4,7 @@ require 'lib/model/om/BaseCollectorProfilePeer.php';
 
 class CollectorProfilePeer extends BaseCollectorProfilePeer
 {
+
   public static $collector_types = array(
     'casual' => 'Casual',
     'occasional' => 'Occasional',
@@ -11,7 +12,6 @@ class CollectorProfilePeer extends BaseCollectorProfilePeer
     'obsessive' => 'Obsessive',
     'expert' => 'Expert'
   );
-
 
   /**
    * @var array Fields handled by the ExtraProperties Propel behavior
