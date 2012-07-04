@@ -47,7 +47,11 @@ class CollectibleForSaleCreateForm extends CollectibleForSaleForm
 
     $fields = array();
 
-    if ($collector->countCollectorCollections() > 1)
+    $q = CollectorCollectionQuery::create()
+      ->filterByCollector($collector)
+      ->filterByName('% Items for Sale', Criteria::NOT_LIKE);
+
+    if ($q->count() > 0)
     {
       $collectible->widgetSchema['collection_collectible_list'] = new sfWidgetFormPropelChoice(
         array(
