@@ -42,6 +42,7 @@ class CollectorProfileEditForm extends BaseCollectorProfileForm
       'about_what_you_collect'    => new cqWidgetFormInputTags(array(
           'autocompleteURL'       => '@ajax_typeahead?section=tags&page=edit',
           'label'                 => 'What do you collect?',
+          'additionalListClass'   => 'input-xxlarge',
         ), array(
           'placeholder'           => 'Tell us what kind of things you collect (separated by commas)'
       )),
