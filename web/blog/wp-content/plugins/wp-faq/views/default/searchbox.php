@@ -3,12 +3,12 @@
 
 <form action="" method="post" id="<?php echo $this -> pre; ?>searchform<?php echo $number; ?>" class="<?php echo $this -> pre; ?> <?php echo $this -> pre; ?>searchform" onsubmit="<?php echo $this -> pre; ?>_search('<?php echo $number; ?>'); return false;">
 	<input type="hidden" name="<?php echo $number; ?>[group_id]" value="<?php echo $group -> id; ?>" />
-	
+
 	<?php if (empty($group -> groupsmenu) || $group -> groupsmenu == "N") : ?>
 		<input type="hidden" name="<?php echo $number; ?>[group]" value="<?php echo $group -> id; ?>" />
 	<?php endif; ?>
 
-	<div class="<?php echo $this -> pre; ?>searchformi">	
+	<div class="<?php echo $this -> pre; ?>searchformi">
 		<table>
 			<tbody>
 				<tr>
@@ -19,22 +19,30 @@
 						<td>
 							<select name="<?php echo $number; ?>[group]">
 								<option value=""><?php _e('the entire FAQ', $this -> plugin_name); ?></option>
-								
+
 								<?php $wpfaqDb -> model = $wpfaqGroup -> model; ?>
 								<?php if ($groups = $wpfaqDb -> find_all()) : ?>
 									<?php foreach ($groups as $gr) : ?>
-										<option <?php echo (!empty($group -> id) && $group -> id == $gr -> id) ? 'selected="selected"' : ''; ?> value="<?php echo $gr -> id; ?>"><?php echo $gr -> name; ?></option>
+										<option
+                      <?php echo (!empty($group -> id) && $group -> id == $gr -> id) ? 'selected="selected"' : ''; ?> value="<?php echo $gr -> id; ?>"><?php echo $gr -> name; ?>
+                    </option>
 									<?php endforeach; ?>
 								<?php endif; ?>
 							</select>
 						</td>
 					<?php endif; ?>
-					<td><input type="submit" name="wpfaqsearch" value="<?php _e('Search', $this -> plugin_name); ?>" /></td>
+					<td style="text-align: center; width: 100px;">
+            <button type="submit" name="wpfaqsearch" class="btn btn-primary"
+                    style="margin-top: -10px;"
+                    value="<?php _e('Search', $this -> plugin_name); ?>">
+              <?php _e('Search', $this -> plugin_name); ?>
+					  </button>
+          </td>
 					<td><span id="<?php echo $this -> pre; ?>searchloading<?php echo $number; ?>" style="display:none; float:right;"><img border="0" style="border:none;" src="<?php echo $this -> url(); ?>/images/loading.gif" alt="<?php _e('loading', $this -> plugin_name); ?>" /></span></td>
 				</tr>
 			</tbody>
 		</table>
-		
+
 		<?php $this -> render('errors', array('errors' => $errors), 'default', true); ?>
 	</div>
 </form>
