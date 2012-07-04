@@ -445,8 +445,8 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
   {
     return implode(', ', array_merge(
       $this->getTags(array('is_triple' => false)),
-      $this->getNamespacedTags(CollectorPeer::TAGS_NAMESPACE_I_COLLECT),
-      $this->getNamespacedTags(CollectorPeer::TAGS_NAMESPACE_I_SELL)
+      $this->getICollectTags(),
+      $this->getISellTags()
     ));
   }
 
@@ -454,14 +454,15 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
    * Return triple tags according to a namespace
    *
    * @param     string $ns
+   * @param     string $key
    * @return    array
    */
-  public function getNamespacedTags($ns)
+  protected function getNamespacedTags($ns, $key)
   {
     return $this->getTags(array(
         'is_triple' => true,
         'namespace' => $ns,
-        'key'       => $ns,
+        'key'       => $key,
         'return'    => 'value',
     ));
   }
@@ -472,11 +473,11 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
    * @param     string|array $tagname Anything that ::addTag() accepts
    * @param     string $ns
    */
-  public function addNamespacedTag($tagname, $ns)
+  protected function addNamespacedTag($tagname, $ns, $key)
   {
     $tags = (array) IceTaggableToolkit::explodeTagString($tagname);
 
-    $triple_prefix = sprintf('%s:%s=', $ns, $ns);
+    $triple_prefix = sprintf('%s:%s=', $ns, $key);
 
     array_walk($tags, function(&$tag) use ($triple_prefix)
     {
@@ -495,10 +496,10 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
    * @param     string|array $tags Anything that ::addTag() accepts
    * @param     string $ns
    */
-  public function setNamespacedTags($tags, $ns)
+  protected function setNamespacedTags($tags, $ns, $key)
   {
-    $this->removeAllNamespacedTags($ns);
-    $this->addNamespacedTag($tags, $ns);
+    $this->removeAllNamespacedTags($ns, $key);
+    $this->addNamespacedTag($tags, $ns, $key);
   }
 
   /**
@@ -506,12 +507,12 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
    *
    * @param     string $ns
    */
-  public function removeAllNamespacedTags($ns)
+  protected function removeAllNamespacedTags($ns, $key)
   {
     $this->removeTag($this->getTags(array(
         'is_triple' => true,
         'namespace' => $ns,
-        'key'       => $ns,
+        'key'       => $key,
         'return'    => 'tag',
     )));
   }
@@ -523,7 +524,10 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
    */
   public function getICollectTags()
   {
-    return $this->getNamespacedTags(CollectorPeer::TAGS_NAMESPACE_I_COLLECT);
+    return $this->getNamespacedTags(
+      CollectorPeer::TAGS_NAMESPACE_COLLECTOR,
+      CollectorPeer::TAGS_KEY_I_COLLECT
+    );
   }
 
   /**
@@ -533,7 +537,11 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
    */
   public function addICollectTag($tagname)
   {
-    $this->addNamespacedTag($tagname, CollectorPeer::TAGS_NAMESPACE_I_COLLECT);
+    $this->addNamespacedTag(
+      $tagname,
+      CollectorPeer::TAGS_NAMESPACE_COLLECTOR,
+      CollectorPeer::TAGS_KEY_I_COLLECT
+    );
   }
 
   /**
@@ -541,17 +549,35 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
    */
   public function removeAllICollectTags()
   {
-    $this->removeAllNamespacedTags(CollectorPeer::TAGS_NAMESPACE_I_COLLECT);
+    $this->removeAllNamespacedTags(
+      CollectorPeer::TAGS_NAMESPACE_COLLECTOR,
+      CollectorPeer::TAGS_KEY_I_COLLECT
+    );
   }
 
   /**
-   * Set the tags for the I_SELL namespace
+   * Set the tags for the I_COLLECT namespace
    *
    * @param     string|array $tags Anything that ::addTag() accepts
    */
   public function setICollectTags($tags)
   {
-    $this->setNamespacedTags($tags, CollectorPeer::TAGS_NAMESPACE_I_COLLECT);
+    $this->setNamespacedTags(
+      $tags,
+      CollectorPeer::TAGS_NAMESPACE_COLLECTOR,
+      CollectorPeer::TAGS_KEY_I_COLLECT
+    );
+  }
+
+  /**
+   * Return a string representation of the I Collect tags
+   *
+   * @param     string $glue
+   * @return    string
+   */
+  public function getICollect($glue = ', ')
+  {
+    return implode($glue, $this->getICollectTags());
   }
 
   /**
@@ -561,7 +587,10 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
    */
   public function getISellTags()
   {
-    return $this->getNamespacedTags(CollectorPeer::TAGS_NAMESPACE_I_SELL);
+    return $this->getNamespacedTags(
+      CollectorPeer::TAGS_NAMESPACE_SELLER,
+      CollectorPeer::TAGS_KEY_I_SELL
+    );
   }
 
   /**
@@ -571,7 +600,11 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
    */
   public function addISellTag($tagname)
   {
-    $this->addNamespacedTag($tagname, CollectorPeer::TAGS_NAMESPACE_I_SELL);
+    $this->addNamespacedTag(
+      $tagname,
+      CollectorPeer::TAGS_NAMESPACE_SELLER,
+      CollectorPeer::TAGS_KEY_I_SELL
+    );
   }
 
   /**
@@ -579,7 +612,10 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
    */
   public function removeAllISellTags()
   {
-    $this->removeAllNamespacedTags(CollectorPeer::TAGS_NAMESPACE_I_SELL);
+    $this->removeAllNamespacedTags(
+      CollectorPeer::TAGS_NAMESPACE_SELLER,
+      CollectorPeer::TAGS_KEY_I_SELL
+    );
   }
 
   /**
@@ -589,8 +625,24 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
    */
   public function setISellTags($tags)
   {
-    $this->setNamespacedTags($tags, CollectorPeer::TAGS_NAMESPACE_I_SELL);
+    $this->setNamespacedTags(
+      $tags,
+      CollectorPeer::TAGS_NAMESPACE_SELLER,
+      CollectorPeer::TAGS_KEY_I_SELL
+    );
   }
+
+  /**
+   * Return a string representation of the I Sell tags
+   *
+   * @param     string $glue
+   * @return    string
+   */
+  public function getISell($glue = ', ')
+  {
+    return implode($glue, $this->getISellTags());
+  }
+
 
   public function getTerms()
   {

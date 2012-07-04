@@ -2,7 +2,7 @@
 
 include(__DIR__.'/../../bootstrap/model.php');
 
-$t = new lime_test(null, array('output' => new lime_output_color(), 'error_reporting' => true));
+$t = new lime_test(26, array('output' => new lime_output_color(), 'error_reporting' => true));
 
 cqTest::resetClasses(array('Collector'));
 
@@ -71,6 +71,12 @@ $t->diag("Test tagging functions");
   $t->is_deeply($new_collector->getICollectTags(), array('luna', 'is', 'best', 'pony'),
     '::setICollectTags()');
 
+  $t->is_deeply($new_collector->getICollect(), 'luna, is, best, pony',
+    '::getICollect()');
+
+  $t->is_deeply($new_collector->getICollect(' '), 'luna is best pony',
+    '::getICollect()');
+
 
   $new_collector->addISellTag('ponies');
   $t->is_deeply($new_collector->getISellTags(), array('ponies'),
@@ -96,11 +102,16 @@ $t->diag("Test tagging functions");
   $t->is_deeply($new_collector->getISellTags(), array('twilight', 'sparkle', 'disagrees'),
     '::setISellTags()');
 
+  $t->is($new_collector->getISell(), 'twilight, sparkle, disagrees',
+    '::getISell()');
+
+  $t->is($new_collector->getISell(' '), 'twilight sparkle disagrees',
+    '::getISell()');
 
   $new_collector->addTag('standalone-tag');
   $t->is_deeply($new_collector->getTags(array('is_triple' => false)),
     array('standalone-tag' => 'standalone-tag'),
     '::getTags()');
 
-  $t->is_deeply($new_collector->getTagsString(), 'standalone-tag, luna, is, best, pony, twilight, sparkle, disagrees',
+  $t->is($new_collector->getTagsString(), 'standalone-tag, luna, is, best, pony, twilight, sparkle, disagrees',
     '::getTagsString()');
