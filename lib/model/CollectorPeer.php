@@ -32,8 +32,10 @@ class CollectorPeer extends BaseCollectorPeer
     '13721607', '14193613', '17227104', '17744242', '18048813'
   );
 
-  const TAGS_NAMESPACE_I_COLLECT = 'icollect';
-  const TAGS_NAMESPACE_I_SELL    = 'isell';
+  const TAGS_NAMESPACE_SELLER     = 'collector';
+  const TAGS_KEY_I_COLLECT        = 'icollect';
+  const TAGS_NAMESPACE_COLLECTOR  = 'seller';
+  const TAGS_KEY_I_SELL           = 'isell';
 
   /**
    * @param     string $username
