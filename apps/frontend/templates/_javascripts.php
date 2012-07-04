@@ -34,6 +34,9 @@
           $(document).ready(window.docready[func]);
         }
       }(jQuery, this, this.document));
+
+      // Execute the controller in scripts.common.bundle.js
+      $(document).ready(CONTROLLER.init());
     }
   }]);
 </script>

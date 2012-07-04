@@ -85,7 +85,7 @@
 <script>
   $(document).ready(function()
   {
-    $.extend(cq.settings, {
+    window.cq.settings = $.extend(true, {}, window.cq.settings, {
       masonry: {
         add_infinite_scroll: <?= ($sf_params->get('show') == 'all') ? 'true' : 'false' ?>,
         loading_image: '<?= image_path('frontend/progress.gif'); ?>',
