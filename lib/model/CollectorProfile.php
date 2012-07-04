@@ -300,12 +300,13 @@ class CollectorProfile extends BaseCollectorProfile
 
   public function getAboutWhatYouSell()
   {
-    return $this->getProperty('about.what_you_sell');
+    return $this->getCollector()->getISell();
   }
 
   public function setAboutWhatYouSell($v)
   {
-    return $this->setProperty('about.what_you_sell', trim(str_replace(array(',', ',  '), ', ', $v), ', '));
+    $this->getCollector()->setISellTags($v);
+    return $this;
   }
 
   public function getAboutPurchasesPerYear()
