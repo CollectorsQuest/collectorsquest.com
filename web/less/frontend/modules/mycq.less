@@ -1000,7 +1000,7 @@ textarea.input-xlarge {
   position: relative;
 
   &.drop-zone-large {
-    .icon-edit-holder {
+    .holder-icon-edit {
       top: 25%;
       left: 30%;
       .square(105px);
@@ -1013,7 +1013,7 @@ textarea.input-xlarge {
     }
   }
   &.drop-zone {
-    .icon-edit-holder {
+    .holder-icon-edit {
       top: 28%;
       left: 28%;
       .square(40px);
@@ -1026,7 +1026,7 @@ textarea.input-xlarge {
     }
   }
   &.collection {
-    .icon-edit-holder {
+    .holder-icon-edit {
       top: 27%;
       left: 27%;
       .square(80px);
@@ -1120,6 +1120,10 @@ textarea.input-xlarge {
       padding: 0;
 	    border: 2px dashed @blue;
 	    .border-radius(0);
+
+	    &:hover .icon-remove-sign {
+			    display: block;
+		    }
     }
 
     .icon-remove-sign {
@@ -1181,7 +1185,12 @@ textarea.input-xlarge {
 .ui-droppable {
   .border-radius(0);
 	border-style: dashed;
+	&:hover .holder-icon-edit {
+		display: block;
+	}
 }
+
+.ui-droppable
 
 .mycq-collections .see-more-full {
 	width: 99%;
@@ -1459,7 +1468,7 @@ textarea.input-xlarge {
 	.icon-camera  {
 		color: @red !important;
 	}
-	.icon-edit-holder {
+	.holder-icon-edit {
 		background: none;
 	}
 }

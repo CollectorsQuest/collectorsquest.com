@@ -29,7 +29,7 @@
                   ?>
                   <i class="icon icon-remove-sign" data-multimedia-id="<?= $image->getId(); ?>"></i>
                   <i class="icon icon-plus icon-plus-pos hide"></i>
-                  <span class="multimedia-edit icon-edit-holder"
+                  <span class="multimedia-edit holder-icon-edit"
                     data-original-image-url="<?= src_tag_multimedia($image, 'original') ?>"
                     data-post-data='<?= $sf_user->hmacSignMessage(json_encode(array(
                         'multimedia-id' => $image->getId(),
@@ -57,7 +57,7 @@
                   <?= image_tag_multimedia($multimedia[$i], '150x150', array('width' => 92, 'height' => 92)); ?>
                   <i class="icon icon-remove-sign" data-multimedia-id="<?= $multimedia[$i]->getId(); ?>"></i>
                   <i class="icon icon-plus icon-plus-pos hide"></i>
-                  <span class="multimedia-edit icon-edit-holder"
+                  <span class="multimedia-edit holder-icon-edit"
                     data-original-image-url="<?= src_tag_multimedia($multimedia[$i], 'original') ?>"
                     data-post-data='<?= $sf_user->hmacSignMessage(json_encode(array(
                         'multimedia-id' => $multimedia[$i]->getId(),
@@ -227,7 +227,7 @@ $(document).ready(function()
       var $this = $(this);
       $this.addClass('ui-state-highlight');
       $this.find('img').fadeTo('fast', 0);
-      $this.find('.icon-edit-holder').hide();
+      $this.find('.holder-icon-edit').hide();
       $this.find('i.icon-plus')
        .removeClass('icon-plus')
        .addClass('icon-download-alt')
@@ -241,14 +241,14 @@ $(document).ready(function()
         .removeClass('icon-download-alt')
         .addClass('icon-plus');
       $this.find('i.hide').hide();
-      $this.find('.icon-edit-holder').show();
+      $this.find('.holder-icon-edit').show();
       $this.find('img').fadeTo('slow', 1);
     },
     drop: function(event, ui)
     {
       var $this = $(this);
       $this.removeClass("ui-state-highlight");
-      $this.find('.icon-edit-holder').show();
+      $this.find('.holder-icon-edit').show();
       $this.find('i.icon-download-alt')
        .removeClass('icon-download-alt')
        .addClass('icon-plus');
