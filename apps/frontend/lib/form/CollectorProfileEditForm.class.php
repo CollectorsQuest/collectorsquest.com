@@ -39,8 +39,10 @@ class CollectorProfileEditForm extends BaseCollectorProfileForm
 
       'about_me'                  => new sfWidgetFormTextarea(),
       'about_collections'         => new sfWidgetFormTextarea(),
-      'about_what_you_collect'    => new sfWidgetFormInputText(array(
+      'about_what_you_collect'    => new cqWidgetFormInputTags(array(
+          'autocompleteURL'       => '@ajax_typeahead?section=tags&page=edit',
           'label'                 => 'What do you collect?',
+          'additionalListClass'   => 'input-xxlarge',
         ), array(
           'placeholder'           => 'Tell us what kind of things you collect (separated by commas)'
       )),
@@ -78,8 +80,8 @@ class CollectorProfileEditForm extends BaseCollectorProfileForm
 
       'about_me' => new sfValidatorString(array('required' => false)),
       'about_collections' => new sfValidatorString(array('required' => false)),
-      'about_what_you_collect' => new sfValidatorString(array('max_length' => 255, 'required' => false)),
-      'about_purchases_per_year'   => new sfValidatorNumber(array('required' => false, 'min' => 0), array(
+      'about_what_you_collect' => new cqValidatorTags(array('required' => false)),
+      'about_purchases_per_year'   => new sfValidatorNumber(array('required' => false, 'max' => 0), array(
           'min' => 'You cannot enter a value below zero here.',
       )),
       'about_most_expensive_item' => new cqValidatorPrice(array('required' => false)),

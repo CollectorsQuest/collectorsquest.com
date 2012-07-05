@@ -5,7 +5,7 @@
 
   // // The Gaber-Irish Markup based unobstructive DOM-ready execution
   // http://www.viget.com/inspire/extending-paul-irishs-comprehensive-dom-ready-execution/
-  var UTIL = {
+  var CONTROLLER  = window.CONTROLLER = {
     exec: function( controller, action, report_action ) {
       var ns = window.APP,
           action = ( action === undefined ) ? "init" : action
@@ -21,17 +21,18 @@
           controller = body.getAttribute( "data-controller" ),
           action = body.getAttribute( "data-action" );
 
-      UTIL.exec( "common" );
-      UTIL.exec( controller, "init", action);
-      UTIL.exec( controller, action );
+      CONTROLLER.exec( "common" );
+      CONTROLLER.exec( controller, "init", action);
+      CONTROLLER.exec( controller, action );
 
-      UTIL.controller = controller;
-      UTIL.action = action;
+      CONTROLLER.controller = controller;
+      CONTROLLER.action = action;
     }
   };
 
   // Init the controller on DOM ready
-  $( document ).ready( UTIL.init );
+  // We init it manually from Modernizr.load (yepnope)
+  // $( document ).ready( CONTROLLER.init );
 
   // provide a global noop function
   window.noop = function() {};

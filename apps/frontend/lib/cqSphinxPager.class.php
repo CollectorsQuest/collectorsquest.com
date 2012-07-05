@@ -374,7 +374,11 @@ class cqSphinxPager extends sfPager
 
       foreach ($query['filters'] as $name => $values)
       {
-        if ($name == 'thumbnail')
+        if ($name == 'id')
+        {
+          $sphinx->setFilter('object_id', (array) $values[0], (boolean) $values[1]);
+        }
+        else if ($name == 'thumbnail')
         {
           if (in_array($values, array('yes', 'no')))
           {
@@ -419,10 +423,6 @@ class cqSphinxPager extends sfPager
         // http://www.sphinxsearch.com/forum/view.html?id=527
         $sphinx->setFilter('object_id', array_slice($pks, 0, 4096));
       }
-      else if (is_array($pks))
-      {
-        $sphinx->setFilter('object_id', array(0));
-      }
     }
 
     // http://www.sphinxsearch.com/docs/current.html#api-func-setgroupby
@@ -453,8 +453,8 @@ class cqSphinxPager extends sfPager
     }
     else if (isset($results['total']) && $results['total'] > 0)
     {
-      // The the advert pks
-      $pks = array_keys($results['matches']);
+      $pks = !empty($results['matches']) ?
+        array_keys($results['matches']) : array();
 
       switch ($return)
       {
@@ -463,7 +463,7 @@ class cqSphinxPager extends sfPager
           break;
 
         case 'matches':
-          return $results['matches'];
+          return @$results['matches'] ?: array();
           break;
 
         case 'objects':

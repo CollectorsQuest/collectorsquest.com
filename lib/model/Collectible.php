@@ -38,8 +38,15 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
         $graph_id = null;
       }
 
-      $this->setGraphId($graph_id);
-      $this->save();
+      try
+      {
+        $this->setGraphId($graph_id);
+        $this->save();
+      }
+      catch (PropelException $e)
+      {
+        $graph_id = parent::getGraphId();
+      }
     }
 
     return $graph_id;

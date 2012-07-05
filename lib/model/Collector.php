@@ -436,6 +436,214 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
     return $tag_ids;
   }
 
+  /**
+   * Return all tags as a string
+   *
+   * @return    string
+   */
+  public function getTagsString()
+  {
+    return implode(', ', array_merge(
+      $this->getTags(array('is_triple' => false)),
+      $this->getICollectTags(),
+      $this->getISellTags()
+    ));
+  }
+
+  /**
+   * Return triple tags according to a namespace
+   *
+   * @param     string $ns
+   * @param     string $key
+   * @return    array
+   */
+  protected function getNamespacedTags($ns, $key)
+  {
+    return $this->getTags(array(
+        'is_triple' => true,
+        'namespace' => $ns,
+        'key'       => $key,
+        'return'    => 'value',
+    ));
+  }
+
+  /**
+   * Add a tag or tags for a namespace
+   *
+   * @param     string|array $tagname Anything that ::addTag() accepts
+   * @param     string $ns
+   */
+  protected function addNamespacedTag($tagname, $ns, $key)
+  {
+    $tags = (array) IceTaggableToolkit::explodeTagString($tagname);
+
+    $triple_prefix = sprintf('%s:%s=', $ns, $key);
+
+    array_walk($tags, function(&$tag) use ($triple_prefix)
+    {
+      if (0 !== strpos($tag, $triple_prefix))
+      {
+        $tag = $triple_prefix.$tag;
+      }
+    });
+
+    $this->addTag($tags);
+  }
+
+  /**
+   * Set the tags for a specific namespace
+   *
+   * @param     string|array $tags Anything that ::addTag() accepts
+   * @param     string $ns
+   */
+  protected function setNamespacedTags($tags, $ns, $key)
+  {
+    $this->removeAllNamespacedTags($ns, $key);
+    $this->addNamespacedTag($tags, $ns, $key);
+  }
+
+  /**
+   * Remove all tags for a specific namespace
+   *
+   * @param     string $ns
+   */
+  protected function removeAllNamespacedTags($ns, $key)
+  {
+    $this->removeTag($this->getTags(array(
+        'is_triple' => true,
+        'namespace' => $ns,
+        'key'       => $key,
+        'return'    => 'tag',
+    )));
+  }
+
+  /**
+   * Return tags for the I_COLLECT namespace
+   *
+   * @return    array
+   */
+  public function getICollectTags()
+  {
+    return $this->getNamespacedTags(
+      CollectorPeer::TAGS_NAMESPACE_COLLECTOR,
+      CollectorPeer::TAGS_KEY_I_COLLECT
+    );
+  }
+
+  /**
+   * Add tag or tags to the I_COLLECT namespace
+   *
+   * @param     string|array $tagname Anything that ::addTag() accepts
+   */
+  public function addICollectTag($tagname)
+  {
+    $this->addNamespacedTag(
+      $tagname,
+      CollectorPeer::TAGS_NAMESPACE_COLLECTOR,
+      CollectorPeer::TAGS_KEY_I_COLLECT
+    );
+  }
+
+  /**
+   * Remove all tags for the I_COLLECT namespace
+   */
+  public function removeAllICollectTags()
+  {
+    $this->removeAllNamespacedTags(
+      CollectorPeer::TAGS_NAMESPACE_COLLECTOR,
+      CollectorPeer::TAGS_KEY_I_COLLECT
+    );
+  }
+
+  /**
+   * Set the tags for the I_COLLECT namespace
+   *
+   * @param     string|array $tags Anything that ::addTag() accepts
+   */
+  public function setICollectTags($tags)
+  {
+    $this->setNamespacedTags(
+      $tags,
+      CollectorPeer::TAGS_NAMESPACE_COLLECTOR,
+      CollectorPeer::TAGS_KEY_I_COLLECT
+    );
+  }
+
+  /**
+   * Return a string representation of the I Collect tags
+   *
+   * @param     string $glue
+   * @return    string
+   */
+  public function getICollect($glue = ', ')
+  {
+    return implode($glue, $this->getICollectTags());
+  }
+
+  /**
+   * Return tags for the I_SELL namespace
+   *
+   * @return    array
+   */
+  public function getISellTags()
+  {
+    return $this->getNamespacedTags(
+      CollectorPeer::TAGS_NAMESPACE_SELLER,
+      CollectorPeer::TAGS_KEY_I_SELL
+    );
+  }
+
+  /**
+   * Add tag or tags to the I_SELL namespace
+   *
+   * @param     string|array $tagname Anything that ::addTag() accepts
+   */
+  public function addISellTag($tagname)
+  {
+    $this->addNamespacedTag(
+      $tagname,
+      CollectorPeer::TAGS_NAMESPACE_SELLER,
+      CollectorPeer::TAGS_KEY_I_SELL
+    );
+  }
+
+  /**
+   * Remove all tags for the I_SELL namespace
+   */
+  public function removeAllISellTags()
+  {
+    $this->removeAllNamespacedTags(
+      CollectorPeer::TAGS_NAMESPACE_SELLER,
+      CollectorPeer::TAGS_KEY_I_SELL
+    );
+  }
+
+  /**
+   * Set the tags for the I_SELL namespace
+   *
+   * @param     string|array $tags Anything that ::addTag() accepts
+   */
+  public function setISellTags($tags)
+  {
+    $this->setNamespacedTags(
+      $tags,
+      CollectorPeer::TAGS_NAMESPACE_SELLER,
+      CollectorPeer::TAGS_KEY_I_SELL
+    );
+  }
+
+  /**
+   * Return a string representation of the I Sell tags
+   *
+   * @param     string $glue
+   * @return    string
+   */
+  public function getISell($glue = ', ')
+  {
+    return implode($glue, $this->getISellTags());
+  }
+
+
   public function getTerms()
   {
     return TermPeer::getTerms($this);
@@ -996,7 +1204,7 @@ sfPropelBehavior::add(
 
 sfPropelBehavior::add(
   'Collector', array(
-    'PropelActAsSluggableBehavior' => array(
+    'IceTaggableBehavior' => array(
       'columns'   => array(
         'from' => CollectorPeer::DISPLAY_NAME,
         'to'   => CollectorPeer::SLUG

@@ -116,20 +116,20 @@ $(document).ready(function()
     over: function(event, ui)
     {
       $(this)
-      //  .removeClass('icon-plus')
-        .addClass("ui-state-highlight")
-      //  .addClass('icon-download-alt');
+        .removeClass('icon-plus')
+        .addClass('ui-state-highlight')
+        .addClass('icon-download-alt');
     },
     out: function(event, ui)
     {
       $(this)
-        .removeClass("ui-state-highlight")
+        .removeClass('ui-state-highlight')
         .removeClass('icon-download-alt')
         .addClass('icon-plus');
     },
     drop: function(event, ui)
     {
-      $(this).removeClass("ui-state-highlight");
+      $(this).removeClass('ui-state-highlight');
       ui.draggable.draggable('option', 'revert', false);
       ui.draggable.hide();
 
@@ -148,7 +148,7 @@ $(document).ready(function()
     over: function(event, ui)
     {
       $(this)
-        .addClass("ui-state-highlight")
+        .addClass('ui-state-highlight')
         .find('i')
           .removeClass('icon-plus')
           .addClass('icon-download-alt');
@@ -156,15 +156,15 @@ $(document).ready(function()
     out: function(event, ui)
     {
       $(this)
-        .removeClass("ui-state-highlight")
+        .removeClass('ui-state-highlight')
         .find('i')
-          .removeClass('icon-download-alt')
-          .addClass('icon-plus');
+         .removeClass('icon-download-alt')
+         .addClass('icon-plus');
     },
     drop: function(event, ui)
     {
       $(this)
-        .removeClass("ui-state-highlight")
+        .removeClass('ui-state-highlight')
         .find('i')
           .removeClass('icon-download-alt')
           .addClass('icon-plus');

@@ -114,7 +114,9 @@ class searchComponents extends cqFrontendComponents
         'uint1' => 1
       )
     );
-    $this->types['collectible_for_sale']['count'] = cqSphinxPager::search($query, array(), 'total');
+    $this->types['collectible_for_sale']['count'] = cqSphinxPager::search(
+      $query, array('collectibles'), 'total'
+    );
 
     return sfView::SUCCESS;
   }

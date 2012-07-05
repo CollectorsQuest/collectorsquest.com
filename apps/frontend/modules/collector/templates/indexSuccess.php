@@ -41,7 +41,7 @@
             }
           ?>
 
-          <?php if ($text = $profile->getProperty('about.what_you_collect')): ?>
+          <?php if ($text = $collector->getICollect()): ?>
           <p style="margin-top: 10px;">
             <strong>I collect:</strong>
             <?= $text ?>

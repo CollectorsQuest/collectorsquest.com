@@ -653,7 +653,7 @@ var SEARCH = window.SEARCH = (function(){
   return {
     setupMasonry: function() {
       var $container = $('#search-results'),
-          settings = $.extend({}, defaults, window.cq.settings);
+          settings = $.extend(true, {}, defaults, window.cq.settings);
 
       $container.imagesLoaded(function() {
         $container.masonry({
@@ -729,7 +729,7 @@ var AVIARY = window.AVIARY = (function(){
   // setup the private aviary_editor variable
   function setupAviary(onLoad) {
     if (undefined === aviary_editor) {
-      aviary_editor = new Aviary.Feather($.extend({}, window.cq.settings.aviary, {
+      aviary_editor = new Aviary.Feather($.extend(true, {}, window.cq.settings.aviary, {
         apiVersion: 2,
         tools: 'orientation,crop,text,effects,enhance,brightness,contrast,sharpness,saturation',
         minimumStyling: true,

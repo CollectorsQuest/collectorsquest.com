@@ -81,6 +81,11 @@
 	}
 }
 
+.tagedit-list {
+  background-color: white;
+}
+
+
 #body-mycq-collection, #body-mycq-collectible {
 	.form-actions {
 		margin-top: 0;
@@ -480,7 +485,7 @@ a.buy-credits-button {
 	.blue-link {
 		text-align: center;
 	}
-	.plus-icon-holder {
+	.icon-plus-holder {
 		display: block;
 		font-size: 80px;
 		line-height: 80px;
@@ -971,7 +976,7 @@ a.buy-credits-button {
 	.blue-link {
 		text-align: center;
 	}
-	.plus-icon-holder {
+	.icon-plus-holder {
 		margin-top: 10px;
 		font-size: 100px;
 		line-height: 100px;
@@ -1000,7 +1005,7 @@ textarea.input-xlarge {
   position: relative;
 
   &.drop-zone-large {
-    .icon-edit-holder {
+    .holder-icon-edit {
       top: 25%;
       left: 30%;
       .square(105px);
@@ -1013,7 +1018,7 @@ textarea.input-xlarge {
     }
   }
   &.drop-zone {
-    .icon-edit-holder {
+    .holder-icon-edit {
       top: 28%;
       left: 28%;
       .square(40px);
@@ -1026,7 +1031,7 @@ textarea.input-xlarge {
     }
   }
   &.collection {
-    .icon-edit-holder {
+    .holder-icon-edit {
       top: 27%;
       left: 27%;
       .square(80px);
@@ -1118,17 +1123,12 @@ textarea.input-xlarge {
     .thumbnail {
 	    position: relative;
       padding: 0;
-      border: none;
-    }
+	    border: 2px dashed @blue;
+	    .border-radius(0);
 
-    .ui-droppable {
-      border: 2px dashed @blue!important;
-      .border-radius(0);
-      &:hover {
-        .icon-remove-sign {
-          display: block;
-        }
-      }
+	    &:hover .icon-remove-sign {
+			    display: block;
+		    }
     }
 
     .icon-remove-sign {
@@ -1190,7 +1190,12 @@ textarea.input-xlarge {
 .ui-droppable {
   .border-radius(0);
 	border-style: dashed;
+	&:hover .holder-icon-edit {
+		display: block;
+	}
 }
+
+.ui-droppable
 
 .mycq-collections .see-more-full {
 	width: 99%;
@@ -1217,17 +1222,6 @@ textarea.input-xlarge {
     cursor: pointer;
   }
 
-}
-
-.ui-state-highlight {
-	z-index: 100;
-  color: @red;
-	background: #f0b2b2;
-	border-color: @red;
-
-  a {
-    color: @red;
-  }
 }
 
 #form-collection .tagedit-list,
@@ -1350,8 +1344,12 @@ textarea.input-xlarge {
 	margin: 15px 0;
 }
 
+.avpw_main_mode {
+  .border-radius(7px);
+}
 
-//
+
+// dropzone
 
 .dropzone-container {
 	padding: 15px;
@@ -1459,6 +1457,26 @@ textarea.input-xlarge {
 	}
 }
 
+.ui-state-highlight {
+	z-index: 100;
+	color: @red !important;
+	background: #f0b2b2 !important;
+	border-color: @red !important;
+	text-shadow: none;
+
+	a {
+		color: @red;
+	}
+	.info-text {
+		color: @red !important;
+	}
+	.icon-camera  {
+		color: @red !important;
+	}
+	.holder-icon-edit {
+		background: none;
+	}
+}
 
 //MYCQ HOME
 

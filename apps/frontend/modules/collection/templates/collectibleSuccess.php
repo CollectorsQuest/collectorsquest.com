@@ -56,7 +56,7 @@
 
     <a class="zoom-zone" target="_blank" title="Click to zoom"
        href="<?= src_tag_collectible($collectible, 'original') ?>">
-      <span class="picture-zoom icon-edit-holder">
+      <span class="picture-zoom holder-icon-edit">
         <i class="icon icon-zoom-in"></i>
       </span>
     </a>

@@ -36,7 +36,7 @@ class shoppingActions extends cqFrontendActions
           $cart_collectible->delete();
 
           $this->getUser()->setFlash(
-            'success', 'The item was successfully added to your cart.', true
+            'success', 'The item was successfully removed from your cart', true
           );
           $this->redirect('@shopping_cart');
         }

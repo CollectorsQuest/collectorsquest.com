@@ -17,7 +17,14 @@
 ?>
 <h1 class="Chivo webfont">Search results <small><?= $title; ?></small></h1>
 
-<div class="row">
+<?php
+  include_partial(
+    'search/collectibles_for_sale',
+    array('collectibles_for_sale' => $collectibles_for_sale)
+  );
+?>
+
+<div class="row" style="margin-left: -10px;">
   <div id="search-results" class="row-content">
   <?php
     foreach ($pager->getResults() as $i => $object)
@@ -78,7 +85,7 @@
 <script>
   $(document).ready(function()
   {
-    $.extend(cq.settings, {
+    window.cq.settings = $.extend(true, {}, window.cq.settings, {
       masonry: {
         add_infinite_scroll: <?= ($sf_params->get('show') == 'all') ? 'true' : 'false' ?>,
         loading_image: '<?= image_path('frontend/progress.gif'); ?>',
