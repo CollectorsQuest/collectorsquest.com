@@ -106,6 +106,7 @@ class marketplaceComponents extends cqFrontendComponents
     {
       /** @var $query CollectibleQuery */
       $query = CollectibleQuery::create()
+        ->distinct()
         ->haveThumbnail()
         ->useCollectionCollectibleQuery(null, Criteria::RIGHT_JOIN)
           ->groupByCollectionId()
