@@ -31,11 +31,13 @@ class PropelMigration_1341338916
       }
       else
       {
-        $collector->setICollectTags($collector->getProfile()->getAboutWhatYouCollect());
+        $collector->setICollectTags(
+          $collector->getProfile()->getProperty('about.what_you_collect'));
       }
 
       // Move collector profile about what I sell to Collector tags
-      $collector->setISellTags($collector->getProfile()->getAboutWhatYouSell());
+      $collector->setISellTags(
+        $collector->getProfile()->getProperty('about.what_you_sell'));
 
       $collector->save();
 
