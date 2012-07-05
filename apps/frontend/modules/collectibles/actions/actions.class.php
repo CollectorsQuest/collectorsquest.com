@@ -23,6 +23,7 @@ class collectiblesActions extends cqFrontendActions
       ->find()->getArrayCopy();
 
     $q = CollectionCollectibleQuery::create()
+      ->joinWith('CollectionCollectible.Collectible')
       ->filterByCollector($collector)
       ->_if($request->getParameter('onlyForSale'))
         ->filterByCollectibleId($for_sale_ids, Criteria::IN)
