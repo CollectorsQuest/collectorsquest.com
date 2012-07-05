@@ -153,13 +153,30 @@ class CollectibleForSale extends BaseCollectibleForSale
   /**
    * Is there an active credit available for this Collectible?
    *
+   * @param     PropelPDO $con
    * @return    boolean
    */
-  public function hasActiveCredit()
+  public function hasActiveCredit(PropelPDO $con = null)
   {
     return !!PackageTransactionCreditQuery::create()
       ->filterByCollectibleId($this->getCollectibleId())
       ->notExpired()
-      ->count();
+      ->count($con);
   }
+
+  /**
+   * Get the oldest active Package Transaction Credit for the related collectible
+   *
+   * @param     PropelPDO $con
+   * @return    PackageTransactionCredit
+   */
+  public function getActiveCredit(PropelPDO $con = null)
+  {
+    return PackageTransactionCreditQuery::create()
+      ->filterByCollectibleId($this->getCollectibleId())
+      ->notExpired()
+      ->orderByExpiryDate(Criteria::ASC)
+      ->findOne($con);
+  }
+
 }

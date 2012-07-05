@@ -17,6 +17,7 @@ classes:
       is_price_negotiable:  { type: boolean, default: false }
       is_shipping_free:     { type: boolean, default: false }
       is_ready:             { type: boolean, default: false, description: 'Show in the market or not' }
+      marked_for_sale_at:   { type: timestamp }
       is_sold:              { type: boolean, default: false }
       quantity:             { type: integer, required: true, default: 1 }
 
