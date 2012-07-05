@@ -491,21 +491,16 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
     return CustomValuePeer::doDelete($c);
   }
 
-  public function isForSale()
+  public function isForSale(PropelPDO $con = null)
   {
-    $q = CollectibleForSaleQuery::create()
-      ->filterByCollectible($this)
-      ->isForSale();
-
-    return $q->count() > 0;
+    return $this->getCollectibleForSale($con)
+      ? $this->getCollectibleForSale($con)->isForSale()
+      : false;
   }
 
-  public function isWasForSale()
+  public function isWasForSale(PropelPDO $con = null)
   {
-    $q = CollectibleForSaleQuery::create()
-      ->filterByCollectible($this);
-
-    return $q->count() > 0;
+    return !! $this->getCollectibleForSale($con);
   }
 
   /**
