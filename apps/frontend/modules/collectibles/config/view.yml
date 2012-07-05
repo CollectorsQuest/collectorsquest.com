@@ -1,0 +1,3 @@
+collectorListSuccess:
+  components:
+    sidebar_180:  [collectibles, sidebarCollectorList]
