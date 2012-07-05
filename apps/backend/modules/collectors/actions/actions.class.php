@@ -105,6 +105,7 @@ class collectorsActions extends autoCollectorsActions
     $mc = cqStatic::getMailChimpClient();
 
     $collectors = CollectorQuery::create()
+     ->filterByCreatedAt(strtotime('today'), Criteria::GREATER_EQUAL)
      ->setFormatter(ModelCriteria::FORMAT_ON_DEMAND)
      ->orderBy('CreatedAt', Criteria::DESC)
      ->find();
