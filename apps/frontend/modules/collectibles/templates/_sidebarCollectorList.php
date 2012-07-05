@@ -17,14 +17,14 @@
     ));
     echo SmartMenu::generate('collectibles_for_collector_list', array(
       'normal' => array(
-          'name' => 'Normal Collectibles',
+          'name' => 'Collectibles',
           'uri' => array(
               'sf_route' => 'collectibles_by_collector',
               'sf_subject' => $collector
           ),
       ),
       'for_sale' => array(
-          'name' => 'Collectibles for Sale',
+          'name' => 'Items for Sale',
           'uri' => array(
               'sf_route' => 'collectibles_for_sale_by_collector',
               'sf_subject' => $collector

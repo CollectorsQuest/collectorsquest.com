@@ -1,12 +1,18 @@
-<div class="row thumbnails">
+<?php
+  $link = link_to('Back to Collector Profile >>', 'collector_by_slug', $collector);
+  cq_page_title('Collectibles by '. $collector->getDisplayName(), $link, array());
+?>
+
+<div class="row spacer-top-20" style="margin-left: -13px;">
+  <div id="collectibles" class="row-content">
   <?php
     foreach ($pager->getResults() as $i => $collectible)
     {
       if ($collectible->isForSale())
       {
-        // Show the collectible (in grid, list or hybrid view)
+        // Show the Collectible for Sale
         include_partial(
-          'marketplace/collectible_for_sale_grid_view_square_small',
+          'marketplace/collectible_for_sale_grid_view_square',
           array(
             'collectible_for_sale' => $collectible->getCollectibleForSale(),
             'i' => (integer) $i
@@ -15,25 +21,18 @@
       }
       else
       {
-        // Show the collectible (in grid, list or hybrid view)
+        // Show the Collectible
         include_partial(
-          'collection/collectible_grid_view_square_small_bordered',
+          'collection/collectible_grid_view_square',
           array(
             'collectible' => $collectible,
             'i' => (integer) $i
           )
         );
       }
-
-
-      // if we have outputed 4 results (one row) and there are more rows to come
-      if (($i+1)%4 == 0 && ($i+1) < $pager->getMaxPerPage() && ($i+1) != $pager->count())
-      {
-        // close this row and open the next
-        echo '</div><div class="row thumbnails">';
-      }
     }
   ?>
+  </div>
 </div>
 
 <div class="row-fluid" style="text-align: center;">

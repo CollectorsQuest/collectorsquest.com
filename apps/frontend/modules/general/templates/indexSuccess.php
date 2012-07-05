@@ -34,7 +34,15 @@
 
     <?php include_partial('general/homepage_blogpost', array('blog_post' => $blog_posts[1])); ?>
 
-    <?php include_partial('general/homepage_collection_tall', array('collection' => $collections[0])); ?>
+    <?php
+      if (!empty($collections[0]) && $collections[0] instanceof Collection)
+      {
+        include_partial(
+          'general/homepage_collection_tall',
+          array('collection' => $collections[0])
+        );
+      }
+    ?>
 
     <?php
       for ($i = 9; $i < 12; $i++)
@@ -47,7 +55,15 @@
       }
     ?>
 
-    <?php include_partial('general/homepage_collection_wide', array('collection' => $collections[1])); ?>
+    <?php
+      if (!empty($collections[1]) && $collections[1] instanceof Collection)
+      {
+        include_partial(
+          'general/homepage_collection_wide',
+          array('collection' => $collections[1])
+        );
+      }
+    ?>
 
     <?php
       for ($i = 12; $i < 18; $i++)

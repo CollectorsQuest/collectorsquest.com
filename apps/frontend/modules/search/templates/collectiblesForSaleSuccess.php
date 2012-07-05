@@ -21,7 +21,7 @@ include_partial(
     )
   );
 ?>
-<h1 class="Chivo webfont">Collectibles for Sale <small><?= $title; ?></small></h1>
+<h1 class="Chivo webfont">Items for Sale <small><?= $title; ?></small></h1>
 
 <div class="row">
   <div id="search-results" class="row-content">
