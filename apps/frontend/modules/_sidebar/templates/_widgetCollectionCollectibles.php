@@ -5,7 +5,7 @@
 
 <div class="carousel-sidebar">
   <span>Other collectibles in this collection:</span>
-  <div class="thumbnails-inner">
+  <div class="thumbnails-inner well">
     <a href="#" id="ui-carousel-prev" title="previous collectible" class="left-arrow">
       <i class="icon-chevron-left white"></i>
     </a>
@@ -38,7 +38,7 @@ $(document).ready(function()
 
   if ($carousel.children().length >= 3) {
     $carousel.rcarousel({
-      visible: 3, step: 2,
+      visible: 3, step: 1,
       width: 90, height: 90,
       margin: 6,
       auto: { enabled: false, interval: 15000 },

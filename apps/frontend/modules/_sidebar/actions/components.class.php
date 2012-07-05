@@ -472,7 +472,7 @@ class _sidebarComponents extends cqFrontendComponents
       $position = array_search($collectible->getId(), $collectible_ids);
 
       // collectibles per page
-      $limit_per_page = 4;
+      $limit_per_page = 3;
       // how many pages before the current one should be shown
       $pages_before_current = 2;
 

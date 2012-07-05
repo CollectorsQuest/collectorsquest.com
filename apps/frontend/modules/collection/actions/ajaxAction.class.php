@@ -40,23 +40,18 @@ class ajaxAction extends cqAjaxAction
     if ($collectible)
     {
       $collectible_ids = $this->collection->getCollectibleIds();
-      $position = array_search($collectible->getId(), $collectible_ids);
-    }
-    else
-    {
-      $position = 0;
     }
 
     // pages start from 1
     $p = (int) $request->getParameter('p', 1);
-    $s = (int) $request->getParameter('s', 4);
+    $s = (int) $request->getParameter('s', 3);
 
     $q = CollectionCollectibleQuery::create()
       ->filterByCollection($this->collection)
-      ->offset(($p - 1) * $s)
-      ->limit($s)
       ->orderByPosition(Criteria::ASC)
-      ->orderByCreatedAt(Criteria::ASC);
+      ->orderByCreatedAt(Criteria::ASC)
+      ->offset(($p - 1) * $s)
+      ->limit($s);
 
     if ($collectibles = $q->find())
     {
