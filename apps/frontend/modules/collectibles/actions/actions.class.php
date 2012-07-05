@@ -24,6 +24,7 @@ class collectiblesActions extends cqFrontendActions
 
     $q = CollectionCollectibleQuery::create()
       ->joinWith('CollectionCollectible.Collectible')
+      ->joinWith('Collectible.CollectibleForSale')
       ->filterByCollector($collector)
       ->_if($request->getParameter('onlyForSale'))
         ->filterByCollectibleId($for_sale_ids, Criteria::IN)
