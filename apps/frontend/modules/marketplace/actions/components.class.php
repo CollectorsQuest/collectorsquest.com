@@ -64,7 +64,7 @@ class marketplaceComponents extends cqFrontendComponents
 
       $pager = new cqSphinxPager($query, array('collectibles'), 12);
     }
-    else
+    else if (false)
     {
       /** @var $query wpPostQuery */
       $query = wpPostQuery::create()
@@ -101,6 +101,24 @@ class marketplaceComponents extends cqFrontendComponents
 
         $this->wp_post = $wp_post;
       }
+    }
+    else
+    {
+      /** @var $query CollectibleQuery */
+      $query = CollectibleQuery::create()
+        ->haveThumbnail()
+        ->useCollectionCollectibleQuery(null, Criteria::RIGHT_JOIN)
+          ->groupByCollectionId()
+        ->endUse()
+        ->useCollectibleForSaleQuery(null, Criteria::RIGHT_JOIN)
+          ->isForSale()
+          ->orderBy('MarkedForSaleAt', Criteria::DESC)
+          ->orderByCreatedAt(Criteria::DESC)
+        ->endUse()
+        ->filterById(null, Criteria::NOT_EQUAL)
+        ->orderByCreatedAt(Criteria::DESC);
+
+      $pager = new PropelModelPager($query, 12);
     }
 
     if ($pager)
