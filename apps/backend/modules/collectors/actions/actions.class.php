@@ -19,7 +19,9 @@ class collectorsActions extends autoCollectorsActions
    */
   public function executeList(sfWebRequest $request)
   {
-    $collectors = CollectorPeer::retrieveForSelect($request->getParameter('q'), $request->getParameter('limit'));
+    $collectors = CollectorPeer::retrieveForSelect(
+      $request->getParameter('q'), $request->getParameter('limit')
+    );
 
     return $this->renderText(json_encode($collectors));
   }
@@ -96,6 +98,43 @@ class collectorsActions extends autoCollectorsActions
     $collector->save();
 
     $this->redirect('collector');
+  }
+
+  public function executeSyncWithMailChimp()
+  {
+    $mc = cqStatic::getMailChimpClient();
+
+    $collectors = CollectorQuery::create()
+     ->setFormatter(ModelCriteria::FORMAT_ON_DEMAND)
+     ->orderBy('CreatedAt', Criteria::DESC)
+     ->find();
+
+    /** @var $collector Collector */
+    foreach ($collectors as $collector)
+    {
+      $avatar = !$collector->getProfile()->getIsImageAuto() && !$collector->hasPhoto() ?
+        'Yes' : 'No';
+
+      $fields = array(
+        'ID' => $collector->getId(),
+        'DNAME' => $collector->getDisplayName(),
+        'AVATAR' => $avatar,
+        'TYPE' => $collector->getUserType(),
+        'NUMCTIONS' => $collector->countCollectorCollections(),
+        'NUMCIBLES' => $collector->countCollectionCollectibles(),
+        'COMPLETED' => (int) $collector->getProfile()->getProfileCompleted(),
+        'VISITED_AT' => $collector->getLastVisitedAt('m/d/Y'),
+        'SEEN_AT' => $collector->getLastSeenAt('m/d/Y'),
+        'CREATED_AT' => $collector->getCreatedAt('m/d/Y'),
+      );
+
+      $mc->listSubscribe(
+        '4b51c2b29c', $collector->getEmail(), $fields,
+        'html', false, true, true, false
+      );
+    }
+
+    $this->redirect('@collector');
   }
 
 }
