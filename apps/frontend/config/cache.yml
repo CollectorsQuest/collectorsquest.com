@@ -26,3 +26,8 @@ _javascripts:
 # We cannot cache the footer because of the signup form and the _csrf_token
 _footer:
   enabled:     false
+
+_footer_links:
+  enabled:     true
+  with_layout: false
+  lifetime:    84600

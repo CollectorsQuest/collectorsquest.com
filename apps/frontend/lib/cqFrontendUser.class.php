@@ -105,6 +105,7 @@ class cqFrontendUser extends cqBaseUser
     if ($this->isAuthenticated()) {
       $q->filterByCollector($this->getCollector());
     } else {
+      $q->filterByCollectorId(null, Criteria::EQUAL);
       $q->filterByCookieUuid($this->getCookieUuid());
     }
 

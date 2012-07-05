@@ -50,12 +50,14 @@
   </script>
 
   <?php
+    $k = $sf_user->getShoppingCartCollectiblesCount();
+
     include_component_slot('header', array(
       'q' => $sf_params->get('q'),
-      'k' => $sf_user->getShoppingCartCollectiblesCount(),
+      'k' => $k,
       'sf_cache_key' => implode('-', array(
         $sf_cache_key,
-        md5(serialize(array($sf_params->get('q'), $sf_user->getShoppingCartCollectiblesCount()))),
+        md5(serialize(array($sf_params->get('q'), $k))),
         SmartMenu::getCacheKey('header_main_menu'),
       ))
     ));

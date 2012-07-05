@@ -486,6 +486,7 @@ class _sidebarComponents extends cqFrontendComponents
       $limit = min($page * $limit_per_page, ($pages_before_current + 1) * $limit_per_page);
 
       $q = CollectionCollectibleQuery::create()
+        ->joinWith('Collectible')
         ->filterByCollection($collection)
         ->offset($offset)
         ->limit($limit)
