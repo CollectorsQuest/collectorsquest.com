@@ -7,7 +7,7 @@ ajax_typeahead:
 
 ajax_collections:
   url:   /ajax/collections/:section/:page.:sf_format
-  param: { module: _ajax, action: collections, sf_format: html }
+  param: { module: collections, action: ajax, sf_format: html }
   options: { extra_parameters_as_query_string: true }
   requirements: { sf_format: (?:html|json) }
 
@@ -18,7 +18,7 @@ ajax_collection:
 
 ajax_collectors:
   url:   /ajax/collectors/:section/:page.:sf_format
-  param: { module: _ajax, action: collectors, sf_format: html }
+  param: { module: collectors, action: ajax, sf_format: html }
   options: { extra_parameters_as_query_string: true }
   requirements: { sf_format: (?:html|json) }
 
@@ -29,13 +29,19 @@ ajax_collector:
 
 ajax_marketplace:
   url:   /ajax/marketplace/:section/:page.:sf_format
-  param: { module: _ajax, action: marketplace, sf_format: html }
+  param: { module: marketplace, action: ajax, sf_format: html }
   options: { extra_parameters_as_query_string: true }
   requirements: { sf_format: (?:html|json) }
 
 ajax_mycq:
   url:   /ajax/mycq/:section/:page.:sf_format
   param: { module: mycq, action: ajax, sf_format: html }
+  options: { extra_parameters_as_query_string: true }
+  requirements: { sf_format: (?:html|json) }
+
+ajax_shopping:
+  url:   /ajax/shopping/:section/:page.:sf_format
+  param: { module: shopping, action: ajax, sf_format: html }
   options: { extra_parameters_as_query_string: true }
   requirements: { sf_format: (?:html|json) }
 
@@ -163,10 +169,23 @@ sellers:
 collectible_by_slug:
   url:  /collectible/:id/:slug
   class: cqPropelRoute
-  options: { model: CollectionCollectible, type: object, method: getObjectForRoute, statsd: true }
+  options: { model: Collectible, type: object, method: getObjectForRoute, statsd: true }
   param: { module: collection, action: collectible }
   requirements: { id: '\d+', slug: '[\-\w\.]+' }
 
+collectibles_by_collector:
+  url:  /collectibles/by/:id/:slug
+  class: cqPropelRoute
+  options: { model: Collector, type: object, method: getObjectForRoute, statsd: true }
+  param: { module: collectibles, action: collectorList, onlyForSale: false }
+  requirements: { id: '\d+', slug: '[\-\w\.]+' }
+
+collectibles_for_sale_by_collector:
+  url:  /collectibles-for-sale/by/:id/:slug
+  class: cqPropelRoute
+  options: { model: Collector, type: object, method: getObjectForRoute, statsd: true }
+  param: { module: collectibles, action: collectorList, onlyForSale: true }
+  requirements: { id: '\d+', slug: '[\-\w\.]+' }
 
 ### CHANNELS
 
@@ -276,12 +295,14 @@ shopping_cart_empty:
 shopping_cart:
   url: /cart
   param: { module: shopping, action: cart }
+  requirements: { sf_method: [get, post] }
 
 shopping_order_paypal:
   url: /order/:uuid/paypal
   class: sfPropelRoute
   options: { model: ShoppingOrder, type: object }
   param: { module: shopping, action: paypal }
+  requirements: { sf_method: [get, post] }
 
 shopping_order_shipping:
   url: /order/:uuid/shipping
@@ -295,6 +316,7 @@ shopping_order_pay:
   class: sfPropelRoute
   options: { model: ShoppingOrder, type: object }
   param: { module: shopping, action: orderPay }
+  requirements: { sf_method: [get, post] }
 
 shopping_order_review:
   url: /order/:uuid/review
@@ -308,6 +330,11 @@ shopping_order_error:
   options: { model: ShoppingOrder, type: object }
   param: { module: shopping, action: orderError }
 
+shopping_order_redirect:
+  url: /order/:uuid
+  class: sfPropelRoute
+  options: { model: ShoppingOrder, type: object }
+  param: { module: shopping, action: order }
 
 ### MY CQ
 
@@ -579,6 +606,10 @@ feedback:
   param: { module: general, action: feedback }
 
 ### MISC
+
+misc_guide_to_collecting_shortcut:
+  url:   /guide
+  param: { module: misc, action: guideToCollectingShortcut }
 
 misc_guide_to_collecting:
   url:   /the-essential-guide-to-collecting

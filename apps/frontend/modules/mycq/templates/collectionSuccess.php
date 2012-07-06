@@ -163,10 +163,10 @@
     <div class="drop-zone-large thumbnail collection">
       <?php if ($collection->hasThumbnail()): ?>
         <?= image_tag_collection($collection, '190x190'); ?>
-        <span class="plus-icon-holder h-center" style="display: none; padding-top: 25px;">
+        <span class="icon-plus-holder h-center" style="display: none; padding-top: 25px;">
           <i class="icon icon-download-alt icon-white"></i>
         </span>
-        <span class="multimedia-edit icon-edit-holder"
+        <span class="multimedia-edit holder-icon-edit"
           data-original-image-url="<?= src_tag_multimedia($collection->getThumbnail(), 'original') ?>"
           data-post-data='<?= $sf_user->hmacSignMessage(json_encode(array(
               'multimedia-id' => $collection->getThumbnail()->getId(),
@@ -176,7 +176,7 @@
           Edit Photo
         </span>
       <?php else: ?>
-        <a class="plus-icon-holder h-center" href="#">
+        <a class="icon-plus-holder h-center" href="#">
           <i class="icon icon-plus icon-white"></i>
         </a>
         <div class="info-text">
@@ -252,6 +252,7 @@
                     </ul>
                   </div>
                   <input type="text" class="input-sort-by" id="appendedPrependedInput" name="q"><button class="btn" type="submit"><strong>Search</strong></button>
+                  <!-- keep INPUT and BUTTON elements in same line -->
                   <input type="hidden" value="position" id="sortByValue" name="s">
                   <input type="hidden" value="<?= $collection->getId() ?>" name="collection_id">
                 </form>
@@ -298,26 +299,28 @@ $(document).ready(function()
   {
     over: function(event, ui)
     {
-      $(this).addClass("ui-state-highlight");
-      $(this).find('i')
+      $(this).addClass('ui-state-highlight');
+      $(this).find('.icon-plus-holder i')
         .removeClass('icon-plus')
         .addClass('icon-download-alt');
       $(this).find('img').hide();
-      $(this).find('span.plus-icon-holder').show();
+      $(this).find('.holder-icon-edit').hide();
+      $(this).find('span.icon-plus-holder').show();
     },
     out: function(event, ui)
     {
-      $(this).removeClass("ui-state-highlight");
-      $(this).find('i')
+      $(this).removeClass('ui-state-highlight');
+      $(this).find('.icon-plus-holder i')
         .removeClass('icon-download-alt')
         .addClass('icon-plus');
-      $(this).find('span.plus-icon-holder').hide();
+      $(this).find('span.icon-plus-holder').hide();
+      $(this).find('.holder-icon-edit').show();
       $(this).find('img').show();
     },
     drop: function(event, ui)
     {
-      $(this).removeClass("ui-state-highlight");
-      $(this).find('i')
+      $(this).removeClass('ui-state-highlight');
+      $(this).find('.holder-icon-edit i')
         .removeClass('icon-download-alt')
         .addClass('icon-plus');
       ui.draggable.draggable('option', 'revert', false);

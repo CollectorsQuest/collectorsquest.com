@@ -15,7 +15,6 @@
   cq_page_title($collection, null, $options);
 ?>
 
-
 <div class="blue-actions-panel spacer-20">
   <div class="row-fluid">
     <div class="pull-left">
@@ -76,7 +75,7 @@
           'marketplace/collectible_for_sale_grid_view_square',
           array(
             'collectible_for_sale' => $collectible->getCollectibleForSale(),
-            'i'                    => (int)$i
+            'i' => (integer) $i
           )
         );
       }
@@ -87,7 +86,7 @@
           'collection/collectible_grid_view_square',
           array(
             'collectible' => $collectible,
-            'i'           => (int)$i
+            'i' => (integer) $i
           )
         );
       }
@@ -101,9 +100,9 @@
   include_component(
     'global', 'pagination',
     array(
-      'pager'   => $pager,
+      'pager' => $pager,
       'options' => array(
-        'id'       => 'collectibles-pagination',
+        'id' => 'collectibles-pagination',
         'show_all' => true
       )
     )

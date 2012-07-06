@@ -1,12 +1,12 @@
 #!/bin/bash
 
 SOURCE="${BASH_SOURCE[0]}"
-while [ -h "$SOURCE" ] ; do SOURCE="$(readlink "$SOURCE")"; done
-DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+while [ -h "${SOURCE}" ] ; do SOURCE="$(readlink "${SOURCE}")"; done
+DIR="$( cd -P "$( dirname "${SOURCE}" )" && pwd )"
 
 [[ $1 != '' ]] && branch=$1 || branch="develop"
 
-cd $DIR/.. && git pull --recurse-submodules --ff-only origin $branch
-cd $DIR/.. && git submodule update --recursive
-cd $DIR/.. && exec watchr -l apps/frontend/config/less.watchr
-cd $DIR/.. && php symfony cache:clear
+cd ${DIR}/.. && git pull --recurse-submodules --ff-only origin ${branch}
+cd ${DIR}/.. && git submodule update --recursive
+cd ${DIR}/.. && exec watchr -l apps/frontend/config/less.watchr
+cd ${DIR}/.. && php symfony cache:clear

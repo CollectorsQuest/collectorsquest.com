@@ -23,15 +23,15 @@
             "type": "package",
             "package": {
                 "name": "lib/vendor/neo4jphp",
-                "version": "0.0.7",
+                "version": "0.1.0",
                 "dist": {
-                    "url": "https://github.com/jadell/neo4jphp/zipball/0.0.7-beta",
+                    "url": "https://github.com/jadell/neo4jphp/zipball/0.1.0",
                     "type": "zip"
                 },
                 "source": {
                     "url": "git://github.com/jadell/neo4jphp.git",
                     "type": "git",
-                    "reference": "a493f05cce3965fe3a46e5c12b5eea774b6673f5"
+                    "reference": "40671e80574f449f980b917c9054304d012bf117"
                 }
             }
         },
@@ -86,7 +86,7 @@
     },
     "require": {
         "plugins/sfGuardPlugin": "4.0.2",
-        "lib/vendor/neo4jphp": "0.0.7",
+        "lib/vendor/neo4jphp": "0.1.0",
         "lib/vendor/faker": "master-dev",
         "lib/vendor/twig": "1.6.2",
         "lib/vendor/magnify": "1.1"

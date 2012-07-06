@@ -6,4 +6,4 @@ _indexCarousel:
 index:
   enabled:     true
   with_layout: false
-  lifetime:    60
+  lifetime:    300

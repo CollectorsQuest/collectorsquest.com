@@ -83,7 +83,6 @@ a.bold-links {
 	margin: 0 auto -40px auto;
 	background-color: @white;
 	border-left: 1px solid #ededed;
-	.box-shadow(0 25px 20px rgba(136, 119, 119, 0.5));
 	.clearfix();
 
 	.breadcrumbs-inner {
@@ -273,3 +272,22 @@ ul.h-links-small {
 		}
 	}
 }
+
+
+//
+
+.holder-icon-edit {
+	position: absolute;
+	display: none;
+	background-color: transparent;
+	background-color: rgba(0, 0, 0, 0.6);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#7F000000', endColorstr = '#7F000000', GradientType = 0);
+	.border-radius(7px);
+	cursor: pointer;
+
+	i {
+		color: @grayLighter;
+	}
+}
+
+

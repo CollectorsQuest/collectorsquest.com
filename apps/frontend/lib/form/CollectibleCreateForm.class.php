@@ -54,9 +54,7 @@ class CollectibleCreateForm extends CollectibleForm
       'tags', 'Choose at least three descriptive words for your collectible, separated by commas'
     );
 
-    $this->validatorSchema['tags'] = new sfValidatorCallback(
-      array('required' => true, 'callback' => array($this, 'validateTagsField'))
-    );
+    $this->validatorSchema['tags'] = new cqValidatorTags();
   }
 
   public function validateTagsField($validator, $values)

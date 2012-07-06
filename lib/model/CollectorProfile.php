@@ -289,22 +289,24 @@ class CollectorProfile extends BaseCollectorProfile
 
   public function getAboutWhatYouCollect()
   {
-    return $this->getProperty('about.what_you_collect');
+    return $this->getCollector()->getICollect();
   }
 
   public function setAboutWhatYouCollect($v)
   {
-    return $this->setProperty('about.what_you_collect', trim(str_replace(array(',', ',  '), ', ', $v), ', '));
+    $this->getCollector()->setICollectTags($v);
+    return $this;
   }
 
   public function getAboutWhatYouSell()
   {
-    return $this->getProperty('about.what_you_sell');
+    return $this->getCollector()->getISell();
   }
 
   public function setAboutWhatYouSell($v)
   {
-    return $this->setProperty('about.what_you_sell', trim(str_replace(array(',', ',  '), ', ', $v), ', '));
+    $this->getCollector()->setISellTags($v);
+    return $this;
   }
 
   public function getAboutPurchasesPerYear()

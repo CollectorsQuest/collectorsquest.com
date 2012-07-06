@@ -162,9 +162,9 @@ class CollectorEditForm extends CollectorForm
         'model'  => $this->getModelName(),
         'column' => 'display_name',
       ), array(
-        'invalid' => 'A Collector with the same ' .
+        'invalid' => 'A Collector with the same screen name "' .
             $this->widgetSchema->getLabel('display_name') .
-            ' already exists.',
+            '" already exists.',
       )),
       $this->validatorSchema->getPostValidator(),
     ), array('halt_on_error' => true)));
@@ -216,35 +216,43 @@ class CollectorEditForm extends CollectorForm
     //  if (isset($values['seller_settings_store_description']))
     //  {
     //    $this->getObject()->setSellerSettingsStoreDescription(
-    //      $values['seller_settings_store_description']);
+    //      strip_tags($values['seller_settings_store_description'])
+    //    );
     //  }
     if (isset($values['seller_settings_return_policy']))
     {
       $this->getObject()->setSellerSettingsReturnPolicy(
-        $values['seller_settings_return_policy']
+        strip_tags($values['seller_settings_return_policy'])
       );
     }
     //  if (isset($values['seller_settings_payment_accepted']))
     //  {
     //    $this->getObject()->setSellerSettingsPaymentAccepted(
-    //      $values['seller_settings_payment_accepted']);
+    //      strip_tags($values['seller_settings_payment_accepted'])
+    //    );
     //  }
     if (isset($values['seller_settings_welcome']))
     {
-      $this->getObject()->setSellerSettingsWelcome($values['seller_settings_welcome']);
+      $this->getObject()->setSellerSettingsWelcome(
+        strip_tags($values['seller_settings_welcome'])
+      );
     }
     if (isset($values['seller_settings_shipping']))
     {
-      $this->getObject()->setSellerSettingsShipping($values['seller_settings_shipping']);
+      $this->getObject()->setSellerSettingsShipping(
+        strip_tags($values['seller_settings_shipping'])
+      );
     }
     if (isset($values['seller_settings_refunds']))
     {
-      $this->getObject()->setSellerSettingsRefunds($values['seller_settings_refunds']);
+      $this->getObject()->setSellerSettingsRefunds(
+        strip_tags($values['seller_settings_refunds'])
+      );
     }
     if (isset($values['seller_settings_additional_policies']))
     {
       $this->getObject()->setSellerSettingsAdditionalPolicies(
-        $values['seller_settings_additional_policies']
+        strip_tags($values['seller_settings_additional_policies'])
       );
     }
   }
@@ -316,22 +324,29 @@ class CollectorEditForm extends CollectorForm
     return !$rows ? '' : $widget->renderContentTag('div', implode($this->getOption('separator'), $rows), array('class' => $this->getOption('class')));
   }
 
+  public function updateDisplayNameColumn($value = null)
+  {
+    return trim(strip_tags($value));
+  }
+
+  public function updateAboutWhatYouCollectColumn($value = null)
+  {
+    return $this->getObject()->setICollectTags($value);
+  }
+
   public function updateAboutMeColumn($value = null)
   {
-    $value = strip_tags($value);
-    return $value;
+    return trim(strip_tags($value));
   }
 
   public function updateAboutCollectionsColumn($value = null)
   {
-    $value = strip_tags($value);
-    return $value;
+    return trim(strip_tags($value));
   }
 
   public function updateAboutInterestsColumn($value = null)
   {
-    $value = strip_tags($value);
-    return $value;
+    return trim(strip_tags($value));
   }
 
   public function setupSellerSettingsPayPalFields()
@@ -339,7 +354,8 @@ class CollectorEditForm extends CollectorForm
     $this->widgetSchema['seller_settings_paypal_email'] = new sfWidgetFormInputText(array(
       'label' => 'Email Address',
     ), array(
-      'type' => 'email', 'required' => 'required'
+      'type'     => 'email',
+      'required' => 'required'
     ));
 
     $this->widgetSchema['seller_settings_paypal_fname'] = new sfWidgetFormInputText(array(
@@ -377,10 +393,10 @@ class CollectorEditForm extends CollectorForm
       'label' => 'Phone Number',
     ));
 
+    $this->widgetSchema->setHelp('seller_settings_phone_number', 'Use format: +1-123-456-7890, 00123-456-789-0123, 00123/123/456 7890');
+
     $this->validatorSchema['seller_settings_phone_number'] = new sfValidatorRegex(array(
-      'pattern' => '/^0(?:0|11)(9[976]\d|8[987530]\d|6[987]\d|5[90]\d|42\d|3[875]\d|
-          2[98654321]\d|9[8543210]|8[6421]|6[6543210]|5[87654321]|
-          4[987654310]|3[9643210]|2[70]|7|1)\d{0,14}$/',
+      'pattern' => '/^(\+|00)?\s*\d{1,3}\s*[-\/\(]?\d{1,3}[-\)\/\s]*[-\d\s]{5,10}$/',
       'required' => $required,
     ));
   }
@@ -434,9 +450,9 @@ class CollectorEditForm extends CollectorForm
     $data = array(
       'GetVerifiedStatusFields' => array(
         'MatchCriteria' => 'NAME',
-        'EmailAddress' => $values['seller_settings_paypal_email'],
-        'FirstName' => $values['seller_settings_paypal_fname'],
-        'LastName' => $values['seller_settings_paypal_lname']
+        'EmailAddress'  => $values['seller_settings_paypal_email'],
+        'FirstName'     => $values['seller_settings_paypal_fname'],
+        'LastName'      => $values['seller_settings_paypal_lname']
       )
     );
 

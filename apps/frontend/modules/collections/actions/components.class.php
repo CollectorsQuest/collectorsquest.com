@@ -55,9 +55,13 @@ class collectionsComponents extends cqFrontendComponents
         $collectible_ids = array_map('trim', $collectible_ids);
         $collectible_ids = array_filter($collectible_ids);
 
+        /** @var $q CollectibleQuery */
         $q = CollectibleQuery::create()
           ->filterById($collectible_ids)
-          ->limit(4);
+          ->limit(4)
+          ->addAscendingOrderByColumn(
+            'FIELD(id, ' . implode(',', $collectible_ids) . ')'
+          );
         $this->collectibles = $q->find();
       }
 
@@ -81,10 +85,14 @@ class collectionsComponents extends cqFrontendComponents
         $collectible_ids = array_map('trim', $collectible_ids);
         $collectible_ids = array_filter($collectible_ids);
 
+        /** @var $q CollectibleQuery */
         $q = CollectibleQuery::create()
           ->filterById($collectible_ids)
           ->offset(4)
-          ->limit(12);
+          ->limit(12)
+          ->addAscendingOrderByColumn(
+            'FIELD(id, ' . implode(',', $collectible_ids) . ')'
+          );
         $this->collectibles = $q->find();
       }
 

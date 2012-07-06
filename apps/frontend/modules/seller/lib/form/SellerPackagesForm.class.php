@@ -33,6 +33,7 @@ class SellerPackagesForm extends sfForm
     $this->setupCardCityField();
     $this->setupCardStateField();
     $this->setupCardZipField();
+
     $this->setupTermsField();
 
     $this->widgetSchema->setFormFormatterName('Bootstrap');
@@ -210,6 +211,14 @@ class SellerPackagesForm extends sfForm
 
   private function setupTermsField()
   {
+    $this->setWidget('fyi', new sfWidgetFormInputCheckbox(array(), array(
+      'required' => 'required',
+    )));
+    $this->setValidator('fyi', new sfValidatorBoolean(
+      array('required' => true),
+      array('required' => 'You need to acknowledge the PayPal<sup>®</sup> account requirement')
+    ));
+
     $this->setWidget('terms', new sfWidgetFormInputCheckbox(array(), array(
       'required' => 'required',
     )));
@@ -273,7 +282,10 @@ class SellerPackagesForm extends sfForm
     if (IceGateKeeper::locked('mycq_seller_pay') && empty($values['promo_code']))
     {
       throw new sfValidatorErrorSchema($validator, array(
-        'promo_code'=> new sfValidatorError($validator, 'The promo code is required while we are in private beta!'))
+        'promo_code'=> new sfValidatorError($validator,
+          'A promo code is required while we are in private beta!<br/>
+           Please email info@collectorsquest.com for more information.'
+        ))
       );
     }
 

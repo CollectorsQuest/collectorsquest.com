@@ -32,6 +32,11 @@ class CollectorPeer extends BaseCollectorPeer
     '13721607', '14193613', '17227104', '17744242', '18048813'
   );
 
+  const TAGS_NAMESPACE_SELLER     = 'collector';
+  const TAGS_KEY_I_COLLECT        = 'icollect';
+  const TAGS_NAMESPACE_COLLECTOR  = 'seller';
+  const TAGS_KEY_I_SELL           = 'isell';
+
   /**
    * @param     string $username
    * @param     PropelPDO $con
@@ -294,7 +299,7 @@ class CollectorPeer extends BaseCollectorPeer
         $collectorEmail->setEmail($collector->getEmail());
         $collectorEmail->setSalt($collector->generateSalt());
         $collectorEmail->setHash($collector->getAutoLoginHash());
-        $collectorEmail->setIsVerified(true);
+        $collectorEmail->setIsVerified(false);
         $collectorEmail->save();
       }
     }

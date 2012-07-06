@@ -50,16 +50,20 @@
   </script>
 
   <?php
+    $k = $sf_user->getShoppingCartCollectiblesCount();
+
     include_component_slot('header', array(
       'q' => $sf_params->get('q'),
-      'k' => $sf_user->getShoppingCartCollectiblesCount(),
+      'k' => $k,
       'sf_cache_key' => implode('-', array(
         $sf_cache_key,
-        md5(serialize(array($sf_params->get('q'), $sf_user->getShoppingCartCollectiblesCount()))),
+        md5(serialize(array($sf_params->get('q'), $k))),
         SmartMenu::getCacheKey('header_main_menu'),
       ))
     ));
-
+  ?>
+  <div class="shadow">
+  <?php
     if (has_component_slot('breadcrumbs'))
     {
       echo '<div id="breadcrumbs">';
@@ -135,14 +139,22 @@
     // Include the global javascripts
     include_partial('global/javascripts', array('sf_cache_key' => $sf_cache_key));
 
+    // Include analytics code only in production
+    if (sfConfig::get('sf_environment') === 'prod')
+    {
+      include_partial('global/js/analytics');
+    }
+
     /** @var $sf_request cqWebRequest */
     if ($slots = $sf_request->getAttribute('slots', array(), 'cq/view/ads'))
     {
       include_partial('global/ad_slots', array('slots' => $slots));
     }
   ?>
-
   <!-- Blog Footer //-->
+
+  </div>
+  <!-- /.shadow -->
 
   <?php
     cqStats::timing(
@@ -151,6 +163,6 @@
     );
   ?>
 
-  <!-- Page generated in <?= cqTimer::getInstance()->getElapsedTime(); ?> seconds //-->
+  <!-- Page generated in <?= cqTimer::getInstance()->getElapsedTime(); ?> seconds by <?= gethostname(); ?> //-->
 </body>
 </html>

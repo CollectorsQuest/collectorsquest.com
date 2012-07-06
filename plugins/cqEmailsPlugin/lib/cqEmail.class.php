@@ -74,6 +74,7 @@ class cqEmail
 
     $message = Swift_Message::newInstance()
       ->setFrom($options['from'])
+      ->setReplyTo(isset($options['replyTo']) ? $options['replyTo'] : $options['from'])
       ->setTo($options['to'])
       ->setSubject($rendered_subject)
       ->setCharset('UTF-8')

@@ -1,4 +1,9 @@
 _discoverCollectiblesForSale:
   enabled:     true
   with_layout: false
+  lifetime:    3600
+
+index:
+  enabled:     true
+  with_layout: false
   lifetime:    300

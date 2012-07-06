@@ -4,6 +4,9 @@ require 'lib/model/marketplace/om/BaseShoppingCartCollectible.php';
 
 class ShoppingCartCollectible extends BaseShoppingCartCollectible
 {
+  /** @var ShippingReference */
+  protected $aShippingReference;
+
   public function getCollector(PropelPDO $con = null)
   {
     return $this->getCollectibleForSale($con)->getCollector($con);
@@ -55,6 +58,23 @@ class ShoppingCartCollectible extends BaseShoppingCartCollectible
     parent::setPriceAmount($v);
   }
 
+  public function getPriceAmount($return = 'float')
+  {
+    $amount = parent::getPriceAmount();
+
+    return ($return === 'integer') ? $amount : bcdiv($amount, 100, 2);
+  }
+
+  public function setRawPriceAmount($v)
+  {
+    return parent::setPriceAmount($v);
+  }
+
+  public function getRawPriceAmount()
+  {
+    return parent::getPriceAmount();
+  }
+
   /**
    * @param integer|float|double $v
    */
@@ -67,6 +87,24 @@ class ShoppingCartCollectible extends BaseShoppingCartCollectible
 
     parent::setTaxAmount($v);
   }
+
+  public function getTaxAmount($return = 'float')
+  {
+    $amount = parent::getTaxAmount();
+
+    return ($return === 'integer') ? $amount : bcdiv($amount, 100, 2);
+  }
+
+  public function setRawTaxAmount($v)
+  {
+    return parent::setTaxAmount($v);
+  }
+
+  public function getRawTaxAmount()
+  {
+    return parent::getTaxAmount();
+  }
+
 
   /**
    * @param integer|float|double $v
@@ -81,35 +119,45 @@ class ShoppingCartCollectible extends BaseShoppingCartCollectible
     parent::setShippingFeeAmount($v);
   }
 
-  public function getPriceAmount($return = 'float')
-  {
-    $amount = parent::getPriceAmount();
-
-    return ($return === 'integer') ? $amount : bcdiv($amount, 100, 2);
-  }
-
-  public function getTaxAmount($return = 'float')
-  {
-    $amount = parent::getTaxAmount();
-
-    return ($return === 'integer') ? $amount : bcdiv($amount, 100, 2);
-  }
-
+  /**
+   * Return the shipping fee amount, either as an integer or as an float.
+   * If however the shipping fee amount is set to null it will be returned as is
+   *
+   * @param     string $return
+   * @return    mixed
+   */
   public function getShippingFeeAmount($return = 'float')
   {
     $amount = parent::getShippingFeeAmount();
 
+    if (null === $amount)
+    {
+      return null;
+    }
+
     return ($return === 'integer') ? $amount : bcdiv($amount, 100, 2);
   }
+
+  public function setRawShippingFeeAmount($v)
+  {
+    return parent::setShippingFeeAmount($v);
+  }
+
+  public function getRawShippingFeeAmount()
+  {
+    return parent::getShippingFeeAmount();
+  }
+
 
   /**
    * Automatically update the shipping fee amount based either on a new country code
    * or on the currently set shipping country iso 3166
    *
+   * If a country code is supplied, the current shipping country iso 3166 code
+   * will be overwritten
+   *
    * @param     string|null $country_code
    * @return    ShoppingCartCollectible
-   *
-   * @throws    Exception if the shipping reference for the selected country is of type No Shipping
    */
   public function updateShippingFeeAmountFromCountryCode($country_code = null)
   {
@@ -121,19 +169,67 @@ class ShoppingCartCollectible extends BaseShoppingCartCollectible
     $shipping_amount = $this->getCollectibleForSale()
       ->getShippingAmountForCountry($this->getShippingCountryIso3166(), 'integer');
 
-    if (false === $shipping_amount)
+    // if no shipping amout can be returned for a country we get "FALSE"
+    if (false !== $shipping_amount)
     {
-      throw new Exception('Cannot automatically update shipping fee amount for shopping cart collectible %d and country %s:
-        The related shipping reference was of type No Shipping', $this->getCollectibleId(), $this->getShippingCountryIso3166());
+      // if we got a normal result simply update the shipping amount
+      $this->setShippingFeeAmount($shipping_amount);
     }
-
-    $this->setShippingFeeAmount($shipping_amount);
+    else
+    {
+      // in this case we set the shipping fee amount field to NULL to show that
+      // it does not hold an actual value. Notice that null !== 0, which denounces
+      // free shipping
+      $this->setRawShippingFeeAmount(null);
+    }
 
     return $this;
   }
 
   /**
-   * Pre save hoo
+   * Automatically update the shipping type based either on a new country code
+   * or on the currrently set shipping country iso 3166
+   *
+   * If a country code param is supplied it will overwrite the current one
+   *
+   * @param     string|null $country_code
+   * @return    boolean
+   */
+  public function updateShippingTypeFromCountryCode($country_code = null)
+  {
+    if (null !== $country_code)
+    {
+      $this->setShippingCountryIso3166($country_code);
+    }
+
+    if (null !== $this->getShippingReference($this->getShippingCountryIso3166()))
+    {
+      $this->setShippingType($this->getShippingReference()->getShippingType());
+
+      return true;
+    }
+    else
+    {
+      return false;
+    }
+  }
+
+  /**
+   * Will try to update both the shipping amount and the shipping type based
+   * on a new shipping country code
+   *
+   * @param     string $country_code
+   * @return    boolean
+   */
+  public function updateShippingFromCountryCode($country_code)
+  {
+    $this->updateShippingFeeAmountFromCountryCode($country_code);
+
+    return $this->updateShippingTypeFromCountryCode($country_code);
+  }
+
+  /**
+   * Pre save hook
    *
    * @param     PropelPDO $con
    * @return    boolean
@@ -149,7 +245,48 @@ class ShoppingCartCollectible extends BaseShoppingCartCollectible
       $this->updateShippingFeeAmountFromCountryCode();
     }
 
+    // if the shipping country iso 3166 has been changed, but no manual shipping type
+    // change has occured set it automatically
+    if (
+      $this->isColumnModified(ShoppingCartCollectiblePeer::SHIPPING_COUNTRY_ISO3166) &&
+      !$this->isColumnModified(ShoppingCartCollectiblePeer::SHIPPING_TYPE)
+    ) {
+      $this->updateShippingTypeFromCountryCode();
+    }
+
     return parent::preSave($con);
+  }
+
+  /**
+   * Get the shipping reference based on the currently set country iso 3166 or
+   * manual parameter value
+   *
+   * @param     string|null $country_code
+   * @param     PropelPDO $con
+   *
+   * @return    ShippingReference
+   */
+  public function getShippingReference($country_code = null, PropelPDO $con = null)
+  {
+    if (null === $this->aShippingReference || null !== $country_code)
+    {
+      $this->aShippingReference = $this->getCollectible($con)
+        ->getShippingReferenceForCountryCode(
+          $country_code ?: $this->getShippingCountryIso3166(),
+          $con);
+    }
+
+    return $this->aShippingReference;
+  }
+
+  /**
+   * @return    ShoppingCartCollectible
+   */
+  public function clearShippingReference()
+  {
+    $this->aShippingReference = null;
+
+    return $this;
   }
 
 }

@@ -81,7 +81,7 @@ class collectionActions extends cqFrontendActions
 
     $per_page = sfConfig::get('app_pager_list_collectibles_max', 24);
 
-    $pager = new cqPropelPager('Collectible', $per_page);
+    $pager = new cqPropelPager('CollectionCollectible', $per_page);
     $pager->setCriteria($c);
     $pager->setPage($this->getRequestParameter('page', 1));
     $pager->setStrictMode('all' === $request->getParameter('show'));

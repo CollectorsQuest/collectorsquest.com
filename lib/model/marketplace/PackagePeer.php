@@ -40,7 +40,7 @@ class PackagePeer extends BasePackagePeer
         $price = money_format('%.2n', $package->getPackagePrice());
       }
 
-      $packages[$package->getId()] = sprintf('%s - %s', $price, $package->getPackageName());
+      $packages[$package->getId()] = sprintf('%s ‒ %s', $price, $package->getPackageName());
     }
 
     return $packages;

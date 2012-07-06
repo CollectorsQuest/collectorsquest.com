@@ -48,7 +48,11 @@
               <tr>
                 <td colspan="2">
                   Ship to:<br/>
-                  <?= $form['country_iso3166']->render(array('style' => 'width: 100%;')); ?>
+                  <?= $form['country_iso3166']->render(array(
+                      'style' => 'width: 100%;',
+                      'class' => 'collectible-country',
+                      'data-collectible-id' => $shopping_cart_collectible->getCollectibleId(),
+                  )); ?>
                 </td>
               </tr>
               <tr>
@@ -65,6 +69,8 @@
                   <?php if ($shopping_cart_collectible->getShippingFeeAmount() > 0): ?>
                     <?= money_format('%.2n', (float) $shopping_cart_collectible->getShippingFeeAmount()); ?>
                     <small style="font-size: 80%;"><?= $shopping_cart_collectible->getPriceCurrency(); ?></small>
+                  <?php elseif (ShoppingCartCollectiblePeer::SHIPPING_TYPE_NO_SHIPPING == $shopping_cart_collectible->getShippingType()): ?>
+                    <span class="red">Cannot be shipped to this country!</span>
                   <?php else: ?>
                     Free
                   <?php endif; ?>
@@ -79,7 +85,7 @@
               </tr>
               <tr>
                 <td colspan="2" style="text-align: center;">
-                  <button type="submit" name="Checkout" class="btn btn-large btn-danger" value="Checkout" style="width: 100%;">
+                  <button type="submit" name="Checkout" class="btn btn-primary" value="Checkout" style="width: 100%;">
                     Proceed to Checkout
                   </button>
                 </td>

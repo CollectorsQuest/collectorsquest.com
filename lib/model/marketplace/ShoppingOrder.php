@@ -5,6 +5,9 @@ require 'lib/model/marketplace/om/BaseShoppingOrder.php';
 class ShoppingOrder extends BaseShoppingOrder
 {
 
+  /** @var ShippingReference */
+  protected $aShippingReference;
+
   /**
    * @param  null|PropelPDO  $con
    */
@@ -25,6 +28,12 @@ class ShoppingOrder extends BaseShoppingOrder
   {
     return CollectorQuery::create()
       ->findOneById($this->getSellerId());
+  }
+
+  public function getBuyer()
+  {
+    return CollectorQuery::create()
+      ->findOneById($this->getCollectorId());
   }
 
   /**
@@ -49,43 +58,96 @@ class ShoppingOrder extends BaseShoppingOrder
     return $q->findOne($con);
   }
 
+  public function getDescription()
+  {
+    return $this->getShoppingCartCollectible()->getDescription();
+  }
+
   public function getCurrency()
   {
-    return $this->getShoppingCartCollectible()->getPriceCurrency();
+    $currency = 'USD';
+
+    if ($collectible = $this->getShoppingCartCollectible())
+    {
+      $currency = $collectible->getPriceCurrency();
+    }
+
+    return $currency;
   }
 
   /**
    * price + tax + shipping
    *
-   * @return type
+   * @param  string  $return
+   * @return float
    */
-  public function getTotalAmount()
+  public function getTotalAmount($return = 'float')
   {
-    return bcadd(
-      bcadd($this->getCollectiblesAmount(), $this->getTaxAmount(), 2),
-      $this->getShippingFeeAmount(), 2
-    );
+    if ($return === 'integer')
+    {
+      return array_sum(array(
+        $this->getCollectiblesAmount('integer'),
+        $this->getTaxAmount('integer'),
+        $this->getShippingFeeAmount('integer')
+      ));
+    }
+    else
+    {
+      return bcadd(
+        bcadd($this->getCollectiblesAmount(), $this->getTaxAmount(), 2),
+        $this->getShippingFeeAmount(), 2
+      );
+    }
   }
 
-  public function getTaxAmount()
+  public function getTaxAmount($return = 'float')
   {
-    return 0;
+    $amount = 0;
+
+    return ($return === 'integer') ? $amount : bcdiv($amount, 100, 2);
   }
 
-  public function getCollectiblesAmount()
+  public function getCollectiblesAmount($return = 'float')
   {
-    return $this->getShoppingCartCollectible()->getPriceAmount();
+    if ($payment = $this->getShoppingPaymentRelatedByShoppingPaymentId())
+    {
+      return $payment->getAmountCollectibles($return);
+    }
+    else if ($collectible = $this->getShoppingCartCollectible())
+    {
+      return $collectible->getPriceAmount($return);
+    }
+
+    return null;
   }
 
+  /**
+   * Get the combined shipping fee amount for the order.
+   *
+   * Will return NULL if shipping type for the selected country is NO_SHIPPING
+   *
+   * @param     string $return
+   * @return    mixed
+   */
   public function getShippingFeeAmount($return = 'float')
   {
-    return $this->getShoppingCartCollectible()
-      ->getShippingFeeAmount($return);
-  }
+    if (
+      ($shipping_reference = $this->getShippingReference()) &&
+      ShippingReferencePeer::SHIPPING_TYPE_NO_SHIPPING == $shipping_reference->getShippingType()
+    ) {
+      return null;
+    }
 
-  public function getDescription()
-  {
-    return $this->getShoppingCartCollectible()->getDescription();
+    if ($payment = $this->getShoppingPaymentRelatedByShoppingPaymentId())
+    {
+      return $payment->getAmountShippingFee($return);
+    }
+    else if ($collectible = $this->getShoppingCartCollectible())
+    {
+      return $collectible->getShippingFeeAmount($return);
+    }
+
+    return null;
   }
 
   public function setShippingAddress(CollectorAddress $address)
@@ -104,6 +166,14 @@ class ShoppingOrder extends BaseShoppingOrder
       ->setShippingCountryIso3166($address->getCountryIso3166())
       ->updateShippingFeeAmountFromCountryCode()
       ->save();
+  }
+
+  public function getShippingCountryName()
+  {
+    $geo_country = GeoCountryQuery::create()
+      ->findOneByIso3166($this->getShippingCountryIso3166());
+
+    return $geo_country ? $geo_country->getName() : '';
   }
 
   public function getPaypalPayRequestFields()
@@ -212,4 +282,42 @@ class ShoppingOrder extends BaseShoppingOrder
   {
     return array('ECHECK', 'BALANCE', 'CREDITCARD');
   }
+
+  /**
+   * Get the shipping reference based on the currently set country iso 3166 or
+   * manual parameter value
+   *
+   * @param     string|null $country_code
+   * @param     PropelPDO $con
+   *
+   * @return    ShippingReference
+   */
+  public function getShippingReference($country_code = null, PropelPDO $con = null)
+  {
+    if (null === $this->aShippingReference || null !== $country_code)
+    {
+      $this->aShippingReference = $this->getCollectible($con)
+        ->getShippingReferenceForCountryCode(
+          $country_code ?: $this->getShippingCountryIso3166(),
+          $con);
+    }
+
+    return $this->aShippingReference;
+  }
+
+  public function getShoppingPayment()
+  {
+    return $this->getShoppingPaymentRelatedByShoppingPaymentId();
+  }
+
+  /**
+   * @return    ShoppingCartCollectible
+   */
+  public function clearShippingReference()
+  {
+    $this->aShippingReference = null;
+
+    return $this;
+  }
+
 }

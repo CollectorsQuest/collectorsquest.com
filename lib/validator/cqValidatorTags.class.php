@@ -1,25 +1,49 @@
 <?php
 
 /**
- * @author Yanko Simeonoff
- * @since $Date: 2011-06-09 01:23:36 +0300 (Thu, 09 Jun 2011) $
- * @version $Id: cqValidatorTags.class.php 2025 2011-06-08 22:23:36Z yanko $
+ * Validator counterpart to cqWidgetFormInputTags
  */
 class cqValidatorTags extends sfValidatorBase
 {
-  public function clean($value)
+
+  protected function configure($options = array(), $messages = array())
   {
-    return $this->doClean($value);
+    parent::configure($options, $messages);
+
+    $this->addMessage('max', 'You can set at most %max% tags, you tried to set %count%,');
+    $this->addMessage('min', 'You must set at least %min% tags, you tried to set %count%.');
+
+    $this->addOption('min');
+    $this->addOption('max');
   }
 
   protected function doClean($value)
   {
-    $values = array();
-    
-    if (!empty($value)) {
-      $values = array_combine($value, $value);
+    $values = (array) $value;
+
+    if (empty($values) && $this->getOption('required'))
+    {
+      throw new sfValidatorError($this, 'required');
     }
-    
+
+    $count = count($values);
+
+    if ($this->hasOption('min') && $this->getOption('min') > $count)
+    {
+      throw new sfValidatorError($this, 'min', array(
+          'min'   => $this->getOption('min'),
+          'count' => $count,
+      ));
+    }
+
+    if ($this->hasOption('max') && $this->getOption('max') < $count)
+    {
+      throw new sfValidatorError($this, 'max', array(
+          'max'   => $this->getOption('max'),
+          'count' => $count,
+      ));
+    }
+
     return $values;
   }
 

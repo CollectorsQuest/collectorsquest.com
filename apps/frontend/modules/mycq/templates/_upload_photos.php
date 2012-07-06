@@ -46,7 +46,7 @@
       <div class="span5 progress-extended">&nbsp;</div>
       <div class="span4">
         <a href="<?= url_for('@mycq_upload_cancel?batch='. $batch); ?>" id="button-fileupload"
-           class="btn btn-primary btn-danger" data-loading-text="Cancelling...">
+           class="btn btn-danger" data-loading-text="Cancelling...">
           Cancel Upload
         </a>
       </div>
@@ -76,7 +76,7 @@
     </td>
     <td class="cancel">
       {% if (!i) { %}
-      <button class="btn btn-warning">
+      <button class="btn btn-warning btn-mini">
         <span>{%=locale.fileupload.cancel%}</span>
       </button>
       {% } %}

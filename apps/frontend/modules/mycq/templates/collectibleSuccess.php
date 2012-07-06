@@ -29,7 +29,7 @@
                   ?>
                   <i class="icon icon-remove-sign" data-multimedia-id="<?= $image->getId(); ?>"></i>
                   <i class="icon icon-plus icon-plus-pos hide"></i>
-                  <span class="multimedia-edit icon-edit-holder"
+                  <span class="multimedia-edit holder-icon-edit"
                     data-original-image-url="<?= src_tag_multimedia($image, 'original') ?>"
                     data-post-data='<?= $sf_user->hmacSignMessage(json_encode(array(
                         'multimedia-id' => $image->getId(),
@@ -57,7 +57,7 @@
                   <?= image_tag_multimedia($multimedia[$i], '150x150', array('width' => 92, 'height' => 92)); ?>
                   <i class="icon icon-remove-sign" data-multimedia-id="<?= $multimedia[$i]->getId(); ?>"></i>
                   <i class="icon icon-plus icon-plus-pos hide"></i>
-                  <span class="multimedia-edit icon-edit-holder"
+                  <span class="multimedia-edit holder-icon-edit"
                     data-original-image-url="<?= src_tag_multimedia($multimedia[$i], 'original') ?>"
                     data-post-data='<?= $sf_user->hmacSignMessage(json_encode(array(
                         'multimedia-id' => $multimedia[$i]->getId(),
@@ -84,7 +84,7 @@
         if ($collectible->isForSale())
         {
           $link = link_to(
-            'Go to Store &raquo;', '@mycq_marketplace',
+            'Go to Market &raquo;', '@mycq_marketplace',
             array('class' => 'text-v-middle link-align')
           );
         }
@@ -312,33 +312,38 @@ $(document).ready(function()
     accept: ".draggable",
     over: function(event, ui)
     {
-      $(this).addClass("ui-state-highlight");
-      $(this).find('img').fadeTo('fast', 0);
-      $(this).find('i.icon-plus')
-        .removeClass('icon-plus')
-        .addClass('icon-download-alt')
-        .show();
+      var $this = $(this);
+      $this.addClass('ui-state-highlight');
+      $this.find('img').fadeTo('fast', 0);
+      $this.find('.holder-icon-edit').hide();
+      $this.find('i.icon-plus')
+       .removeClass('icon-plus')
+       .addClass('icon-download-alt')
+       .show();
     },
     out: function(event, ui)
     {
-      $(this).removeClass("ui-state-highlight");
-      $(this).find('i.icon-download-alt')
+      var $this = $(this);
+      $this.removeClass("ui-state-highlight");
+      $this.find('i.icon-download-alt')
         .removeClass('icon-download-alt')
         .addClass('icon-plus');
-      $(this).find('i.hide').hide();
-
-      $(this).find('img').fadeTo('slow', 1);
+      $this.find('i.hide').hide();
+      $this.find('.holder-icon-edit').show();
+      $this.find('img').fadeTo('slow', 1);
     },
     drop: function(event, ui)
     {
-      $(this).removeClass("ui-state-highlight");
-      $(this).find('i.icon-download-alt')
-        .removeClass('icon-download-alt')
-        .addClass('icon-plus');
+      var $this = $(this);
+      $this.removeClass("ui-state-highlight");
+      $this.find('.holder-icon-edit').show();
+      $this.find('i.icon-download-alt')
+       .removeClass('icon-download-alt')
+       .addClass('icon-plus');
       ui.draggable.draggable('option', 'revert', false);
       ui.draggable.hide();
 
-      $(this).showLoading();
+      $this.showLoading();
 
       $.ajax({
         url: '<?= url_for('@ajax_mycq?section=collectible&page=donateImage'); ?>',
@@ -346,7 +351,7 @@ $(document).ready(function()
         data: {
           recipient_id: '<?= $collectible->getId() ?>',
           donor_id: ui.draggable.data('collectible-id'),
-          is_primary: $(this).data('is-primary')
+          is_primary: $this.data('is-primary')
         },
         dataType: 'json',
         success: function()

@@ -36,7 +36,7 @@ class shoppingActions extends cqFrontendActions
           $cart_collectible->delete();
 
           $this->getUser()->setFlash(
-            'success', 'The item was successfully added to your cart.', true
+            'success', 'The item was successfully removed from your cart', true
           );
           $this->redirect('@shopping_cart');
         }
@@ -169,22 +169,40 @@ class shoppingActions extends cqFrontendActions
           $this->redirect('@shopping_cart');
         }
 
+        /** @var $q ShoppingOrderQuery */
         $q = ShoppingOrderQuery::create()
            ->filterByShoppingCart($shopping_cart)
            ->filterByCollectibleId($collectible_for_sale->getCollectibleId());
 
+        /** @var $shopping_order ShoppingOrder */
         $shopping_order = $q->findOneOrCreate();
-        $shopping_order->setSellerId($collectible_for_sale->getCollectorId());
-        $shopping_order->setCollectorId($this->getCollector()->getId());
-        $shopping_order->setShippingAddress($shipping_address);
-        $shopping_order->setNoteToSeller($values['note_to_seller']);
-        $shopping_order->save();
 
-        $this->redirect('@shopping_order_shipping?uuid='. $shopping_order->getUuid());
+        try
+        {
+          $shopping_order->setSellerId($collectible_for_sale->getCollectorId());
+          $shopping_order->setCollectorId($this->getCollector()->getId());
+          $shopping_order->setShippingAddress($shipping_address);
+          $shopping_order->setNoteToSeller($values['note_to_seller']);
+          $shopping_order->save();
+
+          $this->redirect('@shopping_order_shipping?uuid='. $shopping_order->getUuid());
+        }
+        catch (Exception $e)
+        {
+          //  $this->getUser()->setFlash(
+          //    'error', 'There was an error proceeding to the checkout screen'
+          //  );
+
+          // return sfView::ERROR;
+        }
       }
       else
       {
-        return sfView::ERROR;
+        $this->getUser()->setFlash(
+          'error', 'There was an error proceeding to the checkout screen'
+        );
+
+        // return sfView::ERROR;
       }
     }
 
@@ -252,7 +270,9 @@ class shoppingActions extends cqFrontendActions
       }
       else if (!$form->getValue('shipping_address'))
       {
-        $this->getUser()->setFlash('error', 'You need to select an address or add a new one');
+        $this->getUser()->setFlash(
+          'error', 'Please choose an address on file or enter a new address.', false
+        );
       }
     }
 
@@ -301,6 +321,16 @@ class shoppingActions extends cqFrontendActions
       }
     }
 
+    if (null === $shopping_order->getShippingFeeAmount())
+    {
+      // cannot be shipped to selected country, abort
+      $this->getUser()->setFlash(
+        'error', 'The seller does not ship to the destination country you have selected.'
+      );
+
+      $this->redirect('shopping_order_shipping', $shopping_order);
+    }
+
     switch (strtolower($request->getParameter('processor', 'paypal')))
     {
       case 'paypal':
@@ -337,7 +367,6 @@ class shoppingActions extends cqFrontendActions
         $PayPalRequest = array(
           'PayRequestFields' => $PayRequestFields,
           'ClientDetailsFields' => $shopping_order->getPaypalClientDetailsFields(),
-          'FundingTypes' => $shopping_order->getPaypalFundingTypes(),
           'Receivers' => $shopping_order->getPaypalReceivers(),
           'SenderIdentifierFields' => $shopping_order->getPaypalSenderIdentifierFields(),
           'AccountIdentifierFields' => $shopping_order->getPaypalAccountIdentifierFields()
@@ -386,7 +415,8 @@ class shoppingActions extends cqFrontendActions
             'ReceiverIdentifier' => array()
           );
 
-          // Pass data into class for processing with PayPal and load the response array into $PayPalResult
+          // Pass data into class for processing with PayPal
+          // and load the response array into $PayPalResult
           $result = $AdaptivePayments->SetPaymentOptions($PayPalRequest);
 
           if (!$AdaptivePayments->APICallSuccessful($result['Ack']))
@@ -443,6 +473,7 @@ class shoppingActions extends cqFrontendActions
     $this->shopping_order   = $shopping_order;
     $this->shopping_payment = $shopping_payment;
 
+    $this->collectible = $shopping_order->getCollectible();
     $this->seller = $shopping_order->getSeller();
 
     return sfView::SUCCESS;
@@ -461,6 +492,22 @@ class shoppingActions extends cqFrontendActions
 
     $this->setTemplate('orderPay', 'shopping');
     return sfView::ERROR;
+  }
+
+  public function executeOrder()
+  {
+    /** @var $shopping_order ShoppingOrder */
+    $shopping_order = $this->getRoute()->getObject();
+
+    /** @var $shopping_payment ShoppingPayment */
+    $shopping_payment = $shopping_order->getShoppingPaymentRelatedByShoppingPaymentId();
+
+    if ($shopping_payment->getStatus() == ShoppingPaymentPeer::STATUS_COMPLETED)
+    {
+      $this->redirect('collectible_by_slug', $shopping_order->getCollectible());
+    }
+
+    $this->redirect('/404');
   }
 
   public function executePaypal(sfWebRequest $request)

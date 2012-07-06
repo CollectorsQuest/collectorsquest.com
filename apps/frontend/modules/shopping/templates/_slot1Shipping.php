@@ -19,7 +19,6 @@
             <span class="add-on"><i class="icon-user"></i></span>
             <?= $form['username']->render(array('style' => 'width: 75%; margin-left: -4px;', 'placeholder' => '')); ?>
           </div>
-
         </div>
         <div class="span5">
           <?= $form['password']->renderLabel('Password'); ?>
@@ -30,7 +29,8 @@
         </div>
         <div class="span2">
           <label>&nbsp;</label>
-          <button type="submit" class="btn" value="Login" data-loading-text="loading...">
+          <button type="submit" class="btn" value="Login" data-loading-text="loading..."
+                  style="white-space: nowrap; padding: 4px 15px; margin-top: -2px;">
             <i class="icon-signin"></i>&nbsp;Login
           </button>
         </div>

@@ -45,7 +45,7 @@ class cqValidatorCollectorByName extends sfValidatorString
 
     $collectors = CollectorQuery::create()
       ->filterByUsername($value)
-      ->_or()
+      ->find() ?: CollectorQuery::create()
       ->filterByDisplayName($value)
       ->find();
 

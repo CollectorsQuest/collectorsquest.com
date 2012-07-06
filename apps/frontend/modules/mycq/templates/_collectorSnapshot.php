@@ -30,7 +30,7 @@
           <strong>From:&nbsp;</strong>
           <?= $profile->getCountry(); ?>
         </p>
-        <?php if ($text = $profile->getProperty('about.what_you_collect')): ?>
+        <?php if ($text = $collector->getICollect()): ?>
         <p>
           <strong>I collect:</strong>
           <?= $text ?>

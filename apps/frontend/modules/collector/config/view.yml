@@ -4,3 +4,7 @@ all:
 indexSuccess:
   components:
     sidebar_300: [collector, sidebarIndex]
+
+signupSuccess:
+  components:
+    footer: []

@@ -10,7 +10,7 @@
 <form action="<?= url_for('@messages_batch_actions'); ?>" method="post">
 
   <div class="row-fluid">
-    <div class="span8" style="padding-top: 5px;">
+    <div class="span8">
       <div class="checkbox-arrow pull-left"></div>
       <div class="private-messages-list-select control-group pull-left">
         <div class="btn-group">
@@ -40,9 +40,9 @@
       <span class="pull-left show-all-text">Show:</span>
       <div class="control-group pull-left">
         <div class=" btn-group">
-          <?= link_to('All', '@messages_inbox?filter=all', array('class' => 'btn btn-cq '.('all' == $filter_by ? 'active' : '') )); ?>
-          <?= link_to('Unread', '@messages_inbox?filter=unread', array('class' => 'btn btn-cq '.('unread' == $filter_by ? 'active' : '') )); ?>
-          <?= link_to('Read', '@messages_inbox?filter=read', array('class' => 'btn btn-cq '.('read' == $filter_by ? 'active' : '') )); ?>
+          <?= link_to('All', '@messages_inbox?filter=all', array('class' => 'btn btn-mini '.('all' == $filter_by ? 'active' : '') )); ?>
+          <?= link_to('Unread', '@messages_inbox?filter=unread', array('class' => 'btn btn-mini '.('unread' == $filter_by ? 'active' : '') )); ?>
+          <?= link_to('Read', '@messages_inbox?filter=read', array('class' => 'btn btn-mini '.('read' == $filter_by ? 'active' : '') )); ?>
         </div>
       </div> <!-- .control-group.pull-left -->
     </div>

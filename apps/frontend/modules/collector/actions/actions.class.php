@@ -295,6 +295,8 @@ class collectorActions extends cqFrontendActions
     }
     /* */
 
+    $this->rpxnow = sfConfig::get('app_credentials_rpxnow');
+
     return sfView::SUCCESS;
   }
 
@@ -331,8 +333,17 @@ class collectorActions extends cqFrontendActions
 
     $this->getUser()->Authenticate(true, $collector, false);
 
+    if ($request->getParameter('welcome') == '1')
+    {
+      $cqEmail = new cqEmail($this->getMailer());
+      $cqEmail->send($collector->getUserType() . '/welcome_to_cq', array(
+        'to' => $collector->getEmail(),
+      ));
+    }
+
     $this->getUser()->setFlash('success', sprintf(
-      'Your new email, %s, has been verified.', $collector->getEmail()));
+      'Your email, %s, has been verified', $collector->getEmail()
+    ));
 
     return $this->redirect('@mycq_profile');
   }

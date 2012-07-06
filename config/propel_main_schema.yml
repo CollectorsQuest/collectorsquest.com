@@ -279,6 +279,18 @@ classes:
       is_deleted:    { type: boolean, default: false }
       created_at:    ~
 
+    propel_behaviors:
+      extra_properties: ~
+
+  PrivateMessageExtraProperty:
+    columns:
+      id:             ~
+      property_name:  { type: varchar(255), required: true }
+      property_value: { type: longvarchar }
+    propel_behaviors:
+      symfony:        { form: false, filter: false }
+
+
   PrivateMessageTemplate:
     columns:
       id:  ~

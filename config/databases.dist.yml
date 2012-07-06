@@ -38,6 +38,7 @@ all:
       password:
       encoding:   utf8
       persistent: true
+      pooling:    true
 
   calendar:
     class:        sfPropelDatabase
@@ -48,6 +49,7 @@ all:
       password:
       encoding:   utf8
       persistent: true
+      pooling:    true
 
   queue:
     class:        sfPropelDatabase
@@ -58,6 +60,7 @@ all:
       password:
       encoding:   utf8
       persistent: true
+      pooling:    true
 
   icepique:
     class:        sfPropelDatabase
@@ -68,6 +71,7 @@ all:
       password:
       encoding:   utf8
       persistent: true
+      pooling:    true
 
   archive:
     class:        sfPropelDatabase
@@ -78,6 +82,7 @@ all:
       password:
       encoding:   utf8
       persistent: true
+      pooling:    true
 
 test:
   propel:

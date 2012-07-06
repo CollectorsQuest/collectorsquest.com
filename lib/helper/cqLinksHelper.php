@@ -249,18 +249,11 @@ function link_to_collectible($collectible, $type = 'text', $options = array())
   switch ($type)
   {
     case 'image':
-      $which = (isset($options['width']) && isset($options['height'])) ? $options['width'] . 'x' . $options['height'] : '150x150';
+      $which = (isset($options['width']) && isset($options['height'])) ?
+        $options['width'] . 'x' . $options['height'] :
+        '150x150';
 
-      if (sfConfig::get('sf_app') == 'legacy')
-      {
-        $_options = array_merge(array('class' => 'thumbnail'), $options);
-      }
-      else
-      {
-        $_options = $options;
-      }
-
-      $link = link_to(image_tag_collectible($collectible, $which, $_options), $route, $options);
+      $link = link_to(image_tag_collectible($collectible, $which, $options), $route, $options);
       break;
     case 'text':
     default:
@@ -295,7 +288,7 @@ function route_for_collectible($collectible = null)
     $collection_id = $collectible->getCollectionId();
 
     $id   = $collectible->getCollectibleId();
-    $slug = $collectible->getSlug() . '-' . $collection_id;
+    $slug = preg_replace('/[\d\-]+$/', '', $collectible->getSlug()) . '-c' . $collection_id;
   }
   else if ($collectible instanceof Collectible)
   {

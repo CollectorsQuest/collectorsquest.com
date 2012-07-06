@@ -93,41 +93,45 @@ class mycqActions extends cqFrontendActions
           $this->getUser()->setFlash('success',
             'You have successfully updated your profile.');
 
-          return $this->redirect('mycq_profile_account_info');
+          $this->redirect('mycq_profile_account_info');
         }
         else
         {
-          $this->getUser()->setFlash('error',
-            'There was an error while updating your profile.
-             Please see below.');
+          $this->getUser()->setFlash(
+            'error', 'There was an error while updating your profile.
+                      Please see below.'
+          );
         }
       }
       else if ($request->hasParameter($email_form->getName()))
       {
         $collector_email = $email_form->bindAndCreateCollectorEmail(
-          $request->getParameter($email_form->getName()));
+          $request->getParameter($email_form->getName())
+        );
 
         if ($collector_email)
         {
           $cqEmail = new cqEmail($this->getMailer());
           $cqEmail->send('Collector/verify_new_email', array(
-              'to' => $email,
+              'to' => $collector_email,
               'params' => array(
-                  'collector' => $this->collector,
-                  'collector_email' => $collector_email,
+                'collector' => $this->collector,
+                'collector_email' => $collector_email,
               )
           ));
 
           $this->getUser()->setFlash('success',
-            'A verification email was sent to '.$this->collector->getEmail());
+            'A verification email was sent to '.$this->collector->getEmail()
+          );
 
-          return $this->redirect('mycq_profile_account_info');
+          $this->redirect('mycq_profile_account_info');
         }
         else
         {
-          $this->getUser()->setFlash('error',
-            'There was an error while changing your e-mail address.
-             Please see below.');
+          $this->getUser()->setFlash(
+            'error', 'There was an error while changing your e-mail address.
+                      Please see below.'
+          );
         }
       }
     }
@@ -267,14 +271,35 @@ class mycqActions extends cqFrontendActions
       switch ($request->getParameter('cmd'))
       {
         case 'delete':
-          $collection_name = $collection->getName();
-          $collection->delete();
+          $name = $collection->getName();
+          $url = '@mycq_collections';
+          try
+          {
+            $collection->delete();
 
-          $this->getUser()->setFlash(
-            'success', sprintf('Your collection "%s" was deleted!', $collection_name)
-          );
+            $this->getUser()->setFlash(
+              'success', sprintf('Your collection "%s" was deleted!', $name)
+            );
+          }
+          catch (PropelException $e)
+          {
+            if (stripos($e->getMessage(), 'a foreign key constraint fails'))
+            {
+              $this->getUser()->setFlash(
+                'error', sprintf(
+                  'Collection "%s" cannot be deleted.
+                   Please, try to archive it instead.', $name)
+              );
 
-          return $this->redirect('@mycq_collections');
+              $url = $this->generateUrl(
+                'mycq_collection_by_slug', array('sf_subject' => $collection)
+              );
+            }
+          }
+
+          // Redirect appropriately to avoid refreshes to trigger the same action
+          $this->redirect($url);
+
           break;
       }
     }
@@ -367,6 +392,53 @@ class mycqActions extends cqFrontendActions
   {
     /** @var $collectible Collectible */
     $collectible = $this->getRoute()->getObject();
+
+    /**
+     * Handle sold/purchased Collectibles
+     */
+    if ($collectible->isWasForSale() && $collectible->getCollectibleForSale()->getIsSold())
+    {
+      SmartMenu::setSelected('mycq_menu', 'marketplace');
+
+      $this->collectible = $collectible;
+      $this->multimedia = $collectible->getMultimedia(0, 'image', false);
+
+      $this->shopping_order = ShoppingOrderQuery::create()
+        ->findOneByCollectibleId($collectible->getId());
+
+      if ($this->shopping_order instanceof ShoppingOrder)
+      {
+        $this->shopping_payment = $this->shopping_order->getShoppingPayment();
+
+        $this->buyer  = $this->shopping_order->getBuyer();
+        $this->seller = $this->shopping_order->getSeller();
+
+        $subject = sprintf(
+          'Regarding order %s (%s)',
+          $this->shopping_order->getUuid(), $collectible->getName()
+        );
+
+        if ($this->getCollector()->isOwnerOf($collectible))
+        {
+          $this->pm_form = new ComposeAbridgedPrivateMessageForm(
+            $this->seller, $this->buyer ?: $this->shopping_order->getBuyerEmail(), $subject
+          );
+
+          return 'Sold';
+        }
+        else if ($this->getCollector()->isOwnerOf($this->buyer))
+        {
+          $this->pm_form = new ComposeAbridgedPrivateMessageForm(
+            $this->buyer, $this->seller, $subject
+          );
+
+          return 'Purchased';
+        }
+      }
+
+      $this->forward404();
+    }
+
     $this->redirectUnless(
       $this->getCollector()->isOwnerOf($collectible),
       '@mycq_collections'
@@ -386,13 +458,34 @@ class mycqActions extends cqFrontendActions
 
           $name = $collectible->getName();
 
-          // Delete the Collectible
-          $collectible->delete();
-          $this->getUser()->setFlash(
-            'success', sprintf('Collectible "%s" was deleted!', $name)
+          $url = $this->generateUrl(
+            'mycq_collection_by_slug', array('sf_subject' => $collection)
           );
 
-          $url = $this->generateUrl('mycq_collection_by_slug', array('sf_subject' => $collection));
+          try
+          {
+            // Delete the Collectible
+            $collectible->delete();
+            $this->getUser()->setFlash(
+              'success', sprintf('Collectible "%s" was deleted!', $name)
+            );
+          }
+          catch (PropelException $e)
+          {
+            if (stripos($e->getMessage(), 'a foreign key constraint fails'))
+            {
+              $this->getUser()->setFlash(
+                'error', sprintf(
+                  'Collectible "%s" cannot be deleted.
+                   Please, try to archive it instead.', $name)
+              );
+
+              $url = $this->generateUrl(
+                'mycq_collectible_by_slug', array('sf_subject' => $collectible)
+              );
+            }
+          }
+
           $this->redirect($url);
 
           break;
@@ -457,7 +550,7 @@ class mycqActions extends cqFrontendActions
         {
           $message = $this->__(
             'Your collectible has been posted to the Market.
-             Click <a href="%url%">here</a> to manage your collectibles for sale!',
+             Click <a href="%url%">here</a> to manage your items for sale!',
             array('%url%' => $this->generateUrl('mycq_marketplace'))
           );
         }
@@ -531,6 +624,10 @@ class mycqActions extends cqFrontendActions
 
     $q = CollectibleForSaleQuery::create()
       ->filterByCollector($collector)
+      ->joinCollectible()
+      ->useCollectibleQuery()
+        ->joinWith('ShoppingOrder', Criteria::RIGHT_JOIN)
+      ->endUse()
       ->filterByIsSold(true);
     $this->sold_total = $q->count();
 
@@ -557,7 +654,7 @@ class mycqActions extends cqFrontendActions
     $q = ShoppingOrderQuery::create()
       ->filterByCollectorId($this->getCollector()->getId());
 
-    $this->bought_total = $q->count();
+    $this->purchases_total = $q->count();
 
     return sfView::SUCCESS;
   }
@@ -660,24 +757,8 @@ class mycqActions extends cqFrontendActions
     /** @var $shopping_order ShoppingOrder */
     $shopping_order = $this->getRoute()->getObject();
 
-    /** @var $shopping_payment ShoppingPayment */
-    $shopping_payment = $shopping_order->getShoppingPaymentRelatedByShoppingPaymentId();
-
-    // Prepare request arrays
-    $GetShippingAddressFields = array(
-      'Key' => $shopping_payment->getProperty('paypal.pay_key')
-    );
-    $PayPalRequestData = array('GetShippingAddressFields' => $GetShippingAddressFields);
-
-    $AdaptivePayments = cqStatic::getPayPaylAdaptivePaymentsClient();
-    $result = $AdaptivePayments->GetShippingAddress($PayPalRequestData);
-
-    // dd($result);
-
-    $this->getUser()->setFlash('success', 'You purchased an item!', true);
-    $this->redirect('@mycq_marketplace_purchased');
-
-    return sfView::SUCCESS;
+    $collectible = $shopping_order->getCollectible();
+    $this->redirect('mycq_collectible_by_slug', $collectible);
   }
 
   public function executeWanted()

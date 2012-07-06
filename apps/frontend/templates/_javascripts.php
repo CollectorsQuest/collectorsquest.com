@@ -6,12 +6,7 @@
 
 <?php if ($sf_params->get('gcf')): ?>
 <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
-<script>
-  CFInstall.check({
-    mode: "overlay",
-    destination: "http://www.waikiki.com"
-  });
-</script>
+<script> CFInstall.check({ mode: "overlay" }); </script>
 <?php endif; ?>
 
 <?php
@@ -39,18 +34,21 @@
           $(document).ready(window.docready[func]);
         }
       }(jQuery, this, this.document));
+
+      // Execute the controller in scripts.common.bundle.js
+      $(document).ready(CONTROLLER.init());
     }
   }]);
 </script>
 
 <script>
-  Modernizr.load('//s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4fa2c6240b775d05');
-</script>
+(function(d, t)
+{
+  var addthis = d.createElement(t);
+  var s = d.getElementsByTagName(t)[0];
 
-<?php
-  // Include analytics code only in production
-  if (sfConfig::get('sf_environment') === 'prod')
-  {
-    include_partial('global/js/analytics');
-  }
-?>
+  addthis.async = true;
+  addthis.src = '//s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4fa2c6240b775d05';
+  s.parentNode.insertBefore(addthis, s);
+})(document, 'script');
+</script>

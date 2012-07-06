@@ -8,10 +8,9 @@
 
 <?php
   $link = $sf_user->isOwnerOf($collector) ? link_to('Edit Market', '@mycq_marketplace', array('class' => 'text-v-middle link-align')) .'&nbsp; | &nbsp;' : null ;
-  $link = $link . link_to('See all &raquo;', '@marketplace', array('class' => 'text-v-middle link-align'));
-  $link = null;
+  $link = link_to('See all &raquo;', 'collectibles_for_sale_by_collector', $collector, array('class' => 'text-v-middle link-align'));
 
-  cq_section_title($collector->getDisplayName() ."'s Collectibles for Sale", $link);
+  cq_section_title($collector->getDisplayName() ."'s Items for Sale", $link);
 ?>
 
 <div id="user-collectibles-for-sale">
@@ -32,8 +31,11 @@
     <i class="icon icon-search"></i>&nbsp;
     <?php
       echo link_to(
-        sprintf('Want to see more? Click here for all collectibles for sale from %s!', $collector->getDisplayName()),
-        '@collections_by_collector?collector_id='. $collector->getId() .'&collector_slug='. $collector->getSlug()
+        sprintf(
+          'Want to see more? Click here for all items for sale from %s!',
+          $collector->getDisplayName()
+        ),
+        'collectibles_for_sale_by_collector', $collector
       );
     ?>
   </div>

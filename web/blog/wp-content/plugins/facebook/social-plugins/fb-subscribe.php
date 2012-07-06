@@ -7,37 +7,49 @@ function fb_get_subscribe_button($options = array()) {
 
 function fb_subscribe_button_automatic($content) {
 	$options = get_option('fb_options');
-
-	$fb_data = fb_get_user_meta(get_the_author_meta('ID'), 'fb_data', true);
-	if (!$fb_data) {
-		return $content;
-	}
-
-	$options['subscribe']['href'] = 'http://www.facebook.com/' . $fb_data['username'];
-
-	$new_content = '';
-
-	if (isset($fb_data['username'])) {
-		switch ($options['subscribe']['position']) {
-			case 'top':
-				$new_content = fb_get_subscribe_button($options['subscribe']) . $content;
-				break;
-			case 'bottom':
-				$new_content = $content . fb_get_subscribe_button($options['subscribe']);
-				break;
-			case 'both':
-				$new_content = fb_get_subscribe_button($options['subscribe']) . $content;
-				$new_content .= fb_get_subscribe_button($options['subscribe']);
-				break;
+	
+	global $post;
+	
+	if ( isset ($post ) ) {
+		if ( isset($options['subscribe']['show_on_homepage']) ) {
+		
+			$options['subscribe']['href'] = get_permalink($post->ID);
+		}
+		
+		$fb_data = fb_get_user_meta(get_the_author_meta('ID'), 'fb_data', true);
+	
+		if (!$fb_data) {
+			return $content;
+		}
+	
+		$options['subscribe']['href'] = 'http://www.facebook.com/' . $fb_data['username'];
+	
+		$new_content = '';
+	
+		if (isset($fb_data['username'])) {
+			switch ($options['subscribe']['position']) {
+				case 'top':
+					$new_content = fb_get_subscribe_button($options['subscribe']) . $content;
+					break;
+				case 'bottom':
+					$new_content = $content . fb_get_subscribe_button($options['subscribe']);
+					break;
+				case 'both':
+					$new_content = fb_get_subscribe_button($options['subscribe']) . $content;
+					$new_content .= fb_get_subscribe_button($options['subscribe']);
+					break;
+			}
+		}
+	
+		if ( empty( $options['subscribe']['show_on_homepage'] ) && is_singular() ) {
+			$content = $new_content;
+		}
+		elseif ( isset($options['subscribe']['show_on_homepage']) ) {
+			$content = $new_content;
 		}
 	}
-
-	if ( empty( $params['show_on_homepage'] ) && is_singular() ) {
-		$content = $new_content;
-	}
-	elseif ( isset($params['show_on_homepage']) ) {
-		$content = $new_content;
-	}
+	
+	
 
 	return $content;
 }
@@ -130,7 +142,7 @@ function fb_get_subscribe_fields($placement = 'settings', $object = null) {
 function fb_get_subscribe_fields_array($placement) {
 	$array['parent'] = array('name' => 'subscribe',
 									'label' => 'Subscribe Button',
-									'description' => 'The Subscribe Button lets a user subscribe to your public updates on Facebook.  Each WordPress author must authenticate with Facebook in order for the Subscribe button to appear on their Posts.',
+									'description' => 'The Subscribe Button lets a user subscribe to your public updates on Facebook.  Each WordPress author must authenticate with Facebook in order for the Subscribe button to appear on their pages and posts.',
 									'type' => 'checkbox',
 									'help_link' => 'https://developers.facebook.com/docs/reference/plugins/subscribe/',
 									'image' => plugins_url( '/images/settings_subscribe_button.png', dirname(__FILE__))
@@ -144,7 +156,7 @@ function fb_get_subscribe_fields_array($placement) {
 													),
 										array('name' => 'width',
 													'type' => 'text',
-													'default' => '250',
+													'default' => '450',
 													'help_text' => __( 'The width of the plugin, in pixels.', 'facebook' ),
 													'sanitization_callback' => 'intval',
 													),
@@ -162,7 +174,7 @@ function fb_get_subscribe_fields_array($placement) {
 													),
 										array('name' => 'font',
 													'type' => 'dropdown',
-													'default' => 'arial',
+													'default' => 'lucida grande',
 													'options' => array('arial' => 'arial', 'lucida grande' => 'lucida grande', 'segoe ui' => 'segoe ui', 'tahoma' => 'tahoma', 'trebuchet ms' => 'trebuchet ms', 'verdana' => 'verdana'),
 													'help_text' => __( 'The font of the plugin.', 'facebook' ),
 													),

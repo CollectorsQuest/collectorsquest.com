@@ -8,7 +8,7 @@
  * @author     Collectors Quest, Inc.
  * @version    SVN: $Id: actions.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
-class miscActions extends sfActions
+class miscActions extends cqFrontendActions
 {
 
   /**
@@ -19,10 +19,16 @@ class miscActions extends sfActions
     $this->redirect('@homepage');
   }
 
+  public function executeGuideToCollectingShortcut()
+  {
+    $this->redirect('@misc_guide_to_collecting');
+  }
+
   /**
+   * @param  sfWebRequest  $request
    * @return string
    */
-  public function executeGuideToCollecting()
+  public function executeGuideToCollecting(sfWebRequest $request)
   {
     if ($this->getUser()->isAuthenticated())
     {
@@ -33,8 +39,6 @@ class miscActions extends sfActions
     $loginForm = new CollectorGuideLoginForm();
     $display = 'signup';
 
-    $request = $this->getRequest();
-//    dd($request->getParameterHolder()->getAll(), $request->getMethod());
     if (sfRequest::POST == $request->getMethod())
     {
       if ($request->getParameter($signupForm->getName()))
@@ -55,11 +59,28 @@ class miscActions extends sfActions
           // create the collector
           $collector = CollectorPeer::createFromArray($values);
 
-          // Run the post create hook
-          $this->getUser()->postCreateHook($collector);
+          $collector_email = CollectorEmailPeer::retrieveByCollectorEmail(
+            $collector, $collector->getEmail()
+          );
 
-          // authenticate the collector and redirect to @mycq_profile
+          // Run the post create hook
+          $cqEmail = new cqEmail($this->getMailer());
+          $cqEmail->send('misc/validate_email_to_download', array(
+            'to' => $collector->getEmail(),
+            'subject' => 'Quest Your Best: The Essential Guide to Collecting',
+            'params' => array(
+              'collector' => $collector,
+              'collector_email' => $collector_email,
+            ),
+          ));
+
+
+          // authenticate the collector and redirect to @misc_guide_download
           $this->getUser()->Authenticate(true, $collector, false);
+
+          $this->getUser()->setFlash(
+            'success', sprintf('Email with download link was sent to %s', $collector->getEmail())
+          );
 
           $this->redirect('@misc_guide_download');
         }
@@ -90,19 +111,14 @@ class miscActions extends sfActions
   /**
    * Action GuideDownload
    *
-   * @param sfWebRequest $request
-   *
    * @return string
    */
-  public function executeGuideDownload(sfWebRequest $request)
+  public function executeGuideDownload()
   {
     $this->redirectUnless($this->getUser()->isAuthenticated(), '@misc_guide_to_collecting');
 
     /* @var $collector Collector */
     $collector = $this->getUser()->getCollector();
-
-    /* @var $profile CollectorProfile */
-    $profile = $collector->getProfile();
 
     $email = CollectorEmailQuery::create()
         ->filterByCollector($collector)
@@ -122,14 +138,16 @@ class miscActions extends sfActions
           $cqEmail = new cqEmail($this->getMailer());
           $cqEmail->send('misc/validate_email_to_download', array(
             'to'      => $collector->getEmail(),
-            'subject' => 'Download essential guide',
+            'subject' => 'Quest Your Best: The Essential Guide to Collecting',
             'params'  => array(
               'collector'       => $collector,
               'collector_email' => $email,
             )
           ));
 
-          $this->getUser()->setFlash('success', sprintf('Validation email sent to %s', $email->getEmail()));
+          $this->getUser()->setFlash(
+            'success', sprintf('Validation email sent to %s', $email->getEmail())
+          );
 
           $this->redirect('@misc_guide_download');
           return sfView::SUCCESS;
@@ -141,20 +159,15 @@ class miscActions extends sfActions
       return sfView::ALERT;
     }
 
-//    $this->redirectUnless($email && $email->getIsVerified(), '@misc_guide_to_collecting');
-
     $hash = $this->getUser()->getAttribute('hash', false, 'guide');
     $expireAt = $this->getUser()->getAttribute('expire', 0, 'guide');
 
     if ($this->getRequestParameter('sf_format', false) && $hash && $expireAt >= time())
     {
-      //Download
-      dd($hash, $expireAt, $this->getRequestParameter('sf_format'), $expireAt - time());
-
       $format = $this->getRequestParameter('sf_format');
-      $filename = sprintf('essential-guide.%s', $format);
+      $filename = sprintf('Essential Guide to Collecting - CollectorsQuest.%s', $format);
       $mimeType = 'pdf' == $format ? 'application/pdf' : 'application/zip';
-      $sourceFile = sfConfig::get('sf_data_dir') . DIRECTORY_SEPARATOR . 'guide.' . $format;
+      $sourceFile = sfConfig::get('sf_data_dir') . '/download/essential-guide.' . $format;
 
       header("Expires: 0");
       header("Cache-control: private");
@@ -176,34 +189,17 @@ class miscActions extends sfActions
       $this->getUser()->setAttribute('expire', $expireAt, 'guide');
     }
 
-//      dd($this->getUser()->getAttribute('hash', null, 'guide'), $this->getUser()->getAttribute('expire', null, 'guide'), time(), $expireAt-time());
-//    dd($email);
-
     $this->hash = $hash;
 
     return sfView::SUCCESS;
   }
 
   /**
-   * Action ValidationEmailSent
-   *
-   * @param sfWebRequest $request
-   *
-   * @return string
-   */
-  public function executeValidationEmailSent(sfWebRequest $request)
-  {
-    return sfView::SUCCESS;
-  }
-
-  /**
    * Action GuideVerifyEmail
    *
-   * @param sfWebRequest $request
-   *
    * @return string
    */
-  public function executeGuideVerifyEmail(sfWebRequest $request)
+  public function executeGuideVerifyEmail()
   {
     /* @var $collectorEmail CollectorEmail */
     $collectorEmail = $this->getRoute()->getObject();
@@ -215,6 +211,12 @@ class miscActions extends sfActions
 
     $collectorEmail->setIsVerified(true);
     $collectorEmail->save();
+
+    // Finally, send the welcome email
+    $cqEmail = new cqEmail($this->getMailer());
+    $cqEmail->send($collector->getUserType() . '/welcome_to_cq', array(
+      'to' => $collector->getEmail(),
+    ));
 
     $this->getUser()->Authenticate(true, $collector, false);
 

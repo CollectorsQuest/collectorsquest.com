@@ -45,7 +45,7 @@
 </div>
 //-->
 
-<?php cq_section_title('Discover more collectibles for sale'); ?>
+<?php cq_section_title('Discover More Items for Sale'); ?>
 
 <div class="sort-search-box full-lenght-blue">
   <div class="input-append">
@@ -64,6 +64,7 @@
         </ul>
       </div>
       <input name="q" type="text" size="16" id="appendedPrependedInput" class="input-sort-by"><button type="submit" class="btn"><strong>Search</strong></button>
+      <!-- keep INPUT and BUTTON elements in same line, if you break to two lines, you will see the "gap" between the text box and button -->
       <input type="hidden" name="s" id="sortByValue" value="most-popular">
       </form>
   </div>

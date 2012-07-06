@@ -88,9 +88,18 @@ class messagesActions extends cqFrontendActions
   {
     $form = new ComposePrivateMessageForm($sender = $this->getCollector(), $this->getUser());
     $form->setDefault('subject', $request->getParameter('subject'));
+
     if ($request->hasParameter('goto'))
     {
       $form->setDefault('goto', $request->getParameter('goto'));
+    }
+    if ($request->hasParameter('collection_id'))
+    {
+      $form->setDefault('collection_id', $request->getParamteter('collection_id'));
+    }
+    if ($request->hasParameter('collectible_id'))
+    {
+      $form->setDefault('collectible_id', $request->getParamteter('collectible_id'));
     }
 
     // If "to" param is numeric, try to add corresponding Collector username as default
@@ -110,20 +119,45 @@ class messagesActions extends cqFrontendActions
 
       if ($form->isValid())
       {
-        $message = $form->save();
         $receiver = $form->getValue('receiver');
-
         $cqEmail = new cqEmail($this->getMailer());
-        $sent = $cqEmail->send('Messages/private_message_notification', array(
-            'to' => $receiver->getEmail(),
-            'params' => array(
-              'oSender' => $sender,
-              'oReceiver' => $receiver,
-              'oMessage' => $message,
-              'sThreadUrl' => $this->generateUrl('messages_show', $message, true)
-                              . '#latest-message',
-            ),
-        ));
+
+        // if we are sending a message to an actual collector
+        if ($receiver instanceof Collector)
+        {
+          // then we need to save a message object
+          $message = $form->save();
+
+          // and send it as normal
+          $cqEmail->send('Messages/private_message_notification', array(
+              'to' => $receiver->getEmail(),
+              'params' => array(
+                'oSender' => $sender,
+                'oReceiver' => $receiver,
+                'oMessage' => $message,
+                'sThreadUrl' => $this->generateUrl('messages_show', $message, true)
+                                . '#latest-message',
+              ),
+          ));
+        }
+        else
+        {
+          // else we are sending a message to a plain email
+          $message_body = $form->getValue('body');
+          $message_subject = $form->getValue('subject')
+            ?: 'Message from '.$sender->getDisplayName();
+
+          // so we just notify the recepient and set the reply-to header to
+          // the sender's email
+          $cqEmail->send('Messages/relay_message_to_unregistered_user', array(
+              'to' => $receiver,
+              'replyTo' => $sender->getEmail(),
+              'params' => array(
+                'oSender' => $sender,
+                'sMessageBody' => $message_body,
+              ),
+          ));
+        }
 
         if ($form->getValue('thread'))
         {
@@ -136,7 +170,9 @@ class messagesActions extends cqFrontendActions
           // we are starting a new thread, so redirect to inbox with a success flash
           $this->getUser()->setFlash('success',sprintf(
             'Your message has been sent to %s.',
-            $receiver->getDisplayName()
+            $receiver instanceof Collector
+              ? $receiver->getDisplayName()
+              : $receiver
           ));
 
           return $this->redirect($form->getValue('goto') ?: 'messages_inbox');

@@ -113,6 +113,7 @@ $(document).ready(function()
   {
     // if scrolled down more than the header’s height
     if (
+      $('#dropzone-wrapper').is(':visible') &&
       $('#dropzone-wrapper ul.thumbnails li').length > 0 &&
       $(window).scrollTop() > aboveHeight - 30
     ) {

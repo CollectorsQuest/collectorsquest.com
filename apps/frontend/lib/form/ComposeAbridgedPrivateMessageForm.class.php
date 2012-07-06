@@ -1,18 +1,32 @@
 <?php
 
+/**
+ * A convenience form to compose a private message to a particular collector
+ *
+ * The only visible field to the user will be the Message Body
+ */
 class ComposeAbridgedPrivateMessageForm extends ComposePrivateMessageForm
 {
-  /** @var Collector */
-  protected $receiver_collector;
+  /** @var Collector|string */
+  protected $receiver;
 
+  /**
+   * @param     Collector $sender
+   * @param     Collector|string $receiver Either a collector or an email
+   * @param     string $subject
+   * @param     arrray $options
+   * @param     string $CSRFSecret
+   *
+   * @see       ComposePrivateMessage.class.php
+   */
   public function __construct(
     Collector $sender,
-    Collector $receiver,
+    $receiver,
     $subject,
     $options = array(),
     $CSRFSecret = null
   ) {
-    $this->receiver_collector = $receiver;
+    $this->receiver = $receiver;
 
     parent::__construct($sender, $sf_user = null, $thread = null, $options, $CSRFSecret);
 
@@ -27,13 +41,19 @@ class ComposeAbridgedPrivateMessageForm extends ComposePrivateMessageForm
     $this->widgetSchema['receiver'] = new sfWidgetFormInputHidden();
     $this->widgetSchema['subject'] = new sfWidgetFormInputHidden();
     $this->widgetSchema['goto']->setAttribute('class', 'set-value-to-href');
+
+    $this->widgetSchema['body']->setAttribute(
+      'placeholder', "Send a message to ". $this->receiver
+    );
   }
 
   protected function updateDefaultsFromObject()
   {
     parent::updateDefaultsFromObject();
 
-    $this->setDefault('receiver', $this->receiver_collector->getUsername());
+    $this->setDefault('receiver', $this->receiver instanceof Collector
+      ? $this->receiver->getUsername()
+      : $this->receiver);
   }
 
   /**

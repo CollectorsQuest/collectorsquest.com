@@ -2,51 +2,53 @@
 @import "../_mixins.less";
 @import "../_wysihtml5";
 
-.other-items-sidebar {
-  width: 100%;
-  margin-bottom: 10px;
+.carousel-sidebar {
+  width: 296px;
+	margin: 20px 0 20px 4px;
+
+	.thumbnails-inner {
+		height: 102px;
+	}
+	> span {
+		display: block;
+		margin-bottom: 4px;
+	}
 
   a.left-arrow, a.right-arrow {
     position: absolute;
   	display: none;
     margin-top: 2px;
-    .size(69px,14px);
+    .size(90px, 18px);
     color: #fff;
     #gradient > .vertical(#2093C3, #0971BA);
     &:hover {
-      #gradient > .vertical(#13597F, #072B44);
+      #gradient > .vertical(#cc0201, #b2100e);
     }
     i {
-      margin-top: 26px;
-      margin-left: 4px;
+      margin-top: 36px;
+      margin-left: 5px;
+	    font-size: 20px;
+	    line-height: 20px;
     }
   }
   a.left-arrow {
-    left: -11px;
+    left: -14px;
   }
   a.right-arrow {
-    right: -12px;
+    right: -14px;
   }
+	&:hover {
+		a.left-arrow, a.right-arrow {
+			display: block;
+		}
+	}
 
-  span {
-    padding-left: 5px;
-    margin-bottom: 5px;
-    display: block;
-  }
-  .thumbnails-inner {
-	  height: 82px;
-    .clearfix();
-  }
-  .collectible {
-    .square(69px);
-    margin: 0 2px;
-  }
   .thumbnails {
     display: relative;
-    height: 73px;
+	  overflow: hidden;
+    height: 90px;
     margin-left: 2px;
     margin-bottom: 5px;
-    overflow: hidden;
 
     a {
       margin-top: 2px;
@@ -54,22 +56,57 @@
       .box-shadow(none);
     }
     a.active {
-		  padding-bottom: 3px;
-		  border-bottom: 3px solid #CC0000;
+		  padding-bottom: 5px;
+		  border-bottom: 5px solid #CC0000;
     }
   }
   .thumbnail {
-	  margin-right: 5px;
-    padding: 0;
-    border: none;
-    .square(69px);
+    .square(90px);
+	  margin-right: 6px;
+	  padding: 0;
+	  border: none;
+    .border-radius(0);
+  }
+
+  .well {
+    padding: 7px 3px 0 3px;
+    background: #FFF5D5;
+    margin-left: -4px;
     .border-radius(0);
   }
 }
 
+.vertical-carousel-wrapper {
+	height: 336px;
+	overflow: hidden;
+}
+
+.ui-carousel-navigation {
+	&.left-arrow, &.right-arrow {
+		display: block;
+		margin-top: 10px;
+		width: 48%;
+		float: left;
+		color: #fff;
+		text-align: center;
+		#gradient > .vertical(rgba(32,147,195,1), rgba(9,113,186,1));
+
+		&.right-arrow {
+			margin-left: 4%;
+		}
+		&:hover {
+			#gradient > .vertical(#cb0504, #b00000);
+		}
+		&:active {
+			.box-shadow(~"inset 0 4px 4px rgba(0,0,0,.3), 0 1px 2px rgba(0,0,0,.05)");
+		}
+
+	}
+}
+
 #sortable-collectibles .span2 {
-  margin-bottom: 25px;
-  width: 88px;
+	width: 88px;
+	margin-bottom: 25px;
   text-align: right;
 }
 
@@ -78,25 +115,104 @@
 }
 
 .ui-carousel {
-  height: 100px;
+	position: relative; /*for ie7 to work e.g in html carousels*/
+	overflow: auto;
+  .size(100px, 300px);
   margin: 0;
-  overflow: auto;
   padding: 0;
-  position: relative; /*for ie7 to work e.g in html carousels*/
-  width: 300px
 }
 
 .ui-carousel > .wrapper {
-  margin: 0;
+	width: 9999px;
+	margin: 0;
   padding: 0;
-  width: 9999px;
 }
 
 .ui-carousel > .wrapper > * {
-  border: 0;
   display: block;
   float: left;
-  height: 100px;
   overflow: hidden;
-  width: 100px;
+	.square(100px);
+	border: 0;
 }
+
+//MAIN IMAGE CONTAINER
+
+.main-collectible-container {
+	margin-top: 15px;
+
+	.holder-icon-edit {
+		top: 45%;
+		left: 44%;
+		.square(55px);
+		font-size: 14px;
+    background-color: rgba(0, 0, 0, 0.4);
+		i {
+			font-size: 40px;
+			line-height: 55px;
+		}
+	}
+
+	//Controls
+	.prev-collectible, .next-collectible {
+		position: absolute;
+		display: block;
+		.size(100%, 10%);
+		top: 0;
+		z-index: 105;
+		opacity: 0;
+    cursor: pointer;
+		background: transparent;
+		background-color: rgba(0, 0, 0, 0.3);
+
+		.icon-caret-left, .icon-caret-right {
+			position: absolute;
+			display: block;
+			top: 45%;
+			font-size: 50px;
+			line-height: 50px;
+			color: #fff;
+      text-shadow: 0 1px 0 rgba(0,0,0,.5);
+      cursor: pointer;
+		}
+		.icon-caret-left { left: 35%; }
+		.icon-caret-right { right: 35%; }
+	}
+
+	.prev-collectible { left: 0; }
+	.next-collectible { right: 0; }
+
+	.prev-collectible, .next-collectible {
+		span {.hide-text;}
+	}
+
+	.zoom-zone {
+		position: absolute;
+		display: block;
+		.size(100%, 70%);
+		top: 0;
+		left: 15%;
+		z-index: 105;
+		opacity: 0;
+    cursor: pointer;
+
+		.picture-zoom {
+			display: block;
+		}
+	}
+
+	.prev-collectible, .next-collectible, .zoom-zone {
+		&:hover {
+			opacity: 1;
+		}
+	}
+}
+
+.lt-ie9 .main-collectible-container {
+	.prev-collectible, .next-collectible {
+		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#33000000', endColorstr = '#33000000', GradientType = 0);
+		zoom: 1;
+	}
+}
+
+

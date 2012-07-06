@@ -1,10 +1,11 @@
 {
-    "hash": "b40dbf947989f8eaf3b094085045c280",
+    "hash": "85f9db0e7152ad1e7d20ad60cb6227e9",
     "packages": [
         {
             "package": "lib/vendor/faker",
             "version": "master-dev",
-            "source-reference": "ab426e0253a1fe41fd6077df86f34fb0a2ca65a8"
+            "source-reference": "ab426e0253a1fe41fd6077df86f34fb0a2ca65a8",
+            "commit-date": "1328895211"
         },
         {
             "package": "lib/vendor/magnify",
@@ -12,7 +13,7 @@
         },
         {
             "package": "lib/vendor/neo4jphp",
-            "version": "0.0.7"
+            "version": "0.1.0"
         },
         {
             "package": "lib/vendor/twig",

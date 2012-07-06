@@ -7,6 +7,8 @@ class CollectorSignupFooterForm extends CollectorSignupStep1Form
     parent::setup();
 
     unset($this->widgetSchema['display_name']);
+
+    $this->widgetSchema->setFormFormatterName('BootstrapWithRowFluid');
   }
 
   /**
