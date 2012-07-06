@@ -10,7 +10,7 @@
 <div id="dropzone-wrapper" class="dropzone-container
      <?= $sf_user->getMycqDropboxOpenState() ? '' : 'hidden' ?>"
 >
-  <div class="row-fluid sidebar-title">
+  <div class="row-fluid sidebar-title spacer-bottom-reset">
     <div class="span8">
       <h3 class="Chivo webfont"><?= 'Uploaded Photos ('. $total .')'; ?></h3>
     </div>
@@ -60,14 +60,25 @@ $(document).ready(function()
   $('.collectibles-to-sort li').draggable(
   {
     // containment: '#content',
+    appendTo: 'body',
+    helper: function() {
+      return $(this).clone().removeAttr('id').addClass('ui-draggable-dragging')[0];
+    },
     scroll: false,
     handle: 'img',
     opacity: 0.7,
     revert: true,
     cursor: 'move',
     cursorAt: { top: 36, left: 36 },
-    zIndex: 1000
+    zIndex: 1000,
+    start: function() {
+      $(this).hide()
+    },
+    stop: function() {
+      $(this).show();
+    }
   });
+
 
   $('.collectibles-to-sort .icon-remove-sign').click(MISC.modalConfirmDestructive(
     'Remove item to sort', 'Are you sure you want to remove this item for sorting?',
