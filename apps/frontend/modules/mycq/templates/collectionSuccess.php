@@ -142,6 +142,9 @@ $(document).ready(function()
         $('#collection_description')
           .removeClass('js-hide')
           .removeClass('js-invisible');
+      },
+      "focus": function() {
+        $(editor.composer.iframe).autoResize();
       }
     }
   });
