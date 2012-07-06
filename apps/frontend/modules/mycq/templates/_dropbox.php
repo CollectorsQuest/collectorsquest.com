@@ -72,10 +72,10 @@ $(document).ready(function()
     cursorAt: { top: 36, left: 36 },
     zIndex: 1000,
     start: function() {
-      $(this).hide()
+      $(this).toggleClass('invisible')
     },
     stop: function() {
-      $(this).show();
+      $(this).toggleClass('invisible')
     }
   });
 
