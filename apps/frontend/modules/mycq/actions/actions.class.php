@@ -345,9 +345,6 @@ class mycqActions extends cqFrontendActions
       else
       {
         $this->defaults = $taintedValues;
-        $this->getUser()->setFlash(
-          'error', 'Please complete the fields in red below'
-        );
       }
     }
 
@@ -577,7 +574,6 @@ class mycqActions extends cqFrontendActions
       else
       {
         $this->defaults = $taintedValues;
-        $this->getUser()->setFlash('error', 'Please complete the fields in red below');
       }
     }
 
