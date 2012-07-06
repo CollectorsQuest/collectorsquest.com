@@ -15,7 +15,9 @@ class ShippingAddressForm extends CollectorAddressForm
       'city'            => new sfWidgetFormInputText(
         array(), array('required' => 'required')
       ),
-      'state_region'    => new sfWidgetFormInputText(),
+      'state_region'    => new sfWidgetFormInputText(
+        array(), array('required' => 'required')
+      ),
       'zip_postcode'    => new sfWidgetFormInputText(
         array(), array('required' => 'required')
       ),
@@ -31,9 +33,11 @@ class ShippingAddressForm extends CollectorAddressForm
       'address_line_1'  => new sfValidatorString(array('max_length' => 255)),
       'address_line_2'  => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'city'            => new sfValidatorString(array('max_length' => 100)),
-      'state_region'    => new sfValidatorString(array('max_length' => 100, 'required' => false)),
+      'state_region'    => new sfValidatorString(array('max_length' => 100, 'required' => true)),
       'zip_postcode'    => new sfValidatorString(array('max_length' => 50, 'required' => true)),
-      'country_iso3166' => new sfValidatorPropelChoice(array('model' => 'GeoCountry', 'column' => 'iso3166')),
+      'country_iso3166' => new sfValidatorPropelChoice(
+        array('model' => 'GeoCountry', 'column' => 'iso3166')
+      ),
 
       'address_id' => new sfValidatorPropelChoice(
         array('model' => 'CollectorAddress', 'column' => 'id', 'required' => false)
