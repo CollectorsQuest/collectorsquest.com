@@ -45,7 +45,7 @@
 </div>
 //-->
 
-<?php cq_section_title('Discover more collectibles for sale'); ?>
+<?php cq_section_title('Discover More Items for Sale'); ?>
 
 <div class="sort-search-box full-lenght-blue">
   <div class="input-append">

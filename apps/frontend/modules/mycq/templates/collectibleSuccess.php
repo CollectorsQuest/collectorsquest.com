@@ -204,6 +204,9 @@ $(document).ready(function()
         $('#collectible_description')
           .removeClass('js-hide')
           .removeClass('js-invisible');
+      },
+      "focus": function() {
+        $(editor.composer.iframe).autoResize();
       }
     }
   });

@@ -48,21 +48,7 @@ class CollectorCollectionForm extends BaseCollectorCollectionForm
     );
 
     $this->widgetSchema['tags']->setDefault($tags);
-    $this->validatorSchema['tags'] = new sfValidatorCallback(
-      array('required' => true, 'callback' => array($this, 'validateTagsField'))
-    );
-  }
-
-  public function validateTagsField($validator, $values)
-  {
-    $values = (array) $values;
-
-    if (empty($values)) {
-      throw new sfValidatorError($validator, 'required');
-    }
-    else {
-      return $values;
-    }
+    $this->validatorSchema['tags'] = new cqValidatorTags();
   }
 
   protected function setupThumbnailField()

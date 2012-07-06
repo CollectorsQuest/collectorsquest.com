@@ -58,7 +58,7 @@ class searchComponents extends cqFrontendComponents
         'route' => '@search_collectibles?q='. $q
       ),
       'collectible_for_sale' => array(
-        'name' => 'Collectibles for Sale',
+        'name' => 'Items for Sale',
         'count' => 0,
         'active' => in_array('collectible_for_sale', $types_selected),
         'route' => '@search_collectibles_for_sale?q='. $q

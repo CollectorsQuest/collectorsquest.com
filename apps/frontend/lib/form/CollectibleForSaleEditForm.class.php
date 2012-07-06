@@ -10,7 +10,7 @@ class CollectibleForSaleEditForm extends CollectibleForSaleForm
     $this->setupConditionField();
 
     // add a post validator
-    $this->validatorSchema->setPostValidator(new sfValidatorCallback(array(
+    $this->mergePostValidator(new sfValidatorCallback(array(
         'callback' => array($this, 'validateIsReadyField')
       ), array(
         'invalid' => "Please purchase credits if you'd like to sell this item.",

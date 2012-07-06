@@ -550,7 +550,7 @@ class mycqActions extends cqFrontendActions
         {
           $message = $this->__(
             'Your collectible has been posted to the Market.
-             Click <a href="%url%">here</a> to manage your collectibles for sale!',
+             Click <a href="%url%">here</a> to manage your items for sale!',
             array('%url%' => $this->generateUrl('mycq_marketplace'))
           );
         }

@@ -5,7 +5,7 @@ require 'lib/model/marketplace/om/BasePackageTransactionCreditPeer.php';
 class PackageTransactionCreditPeer extends BasePackageTransactionCreditPeer
 {
 
-  const STANDARD_EXPIRY_TIME = '+ 6 months';
+  const STANDARD_EXPIRY_TIME = '6 months';
 
   /**
    * Will return the active credit for a particular collectible, or create a new
@@ -42,7 +42,7 @@ class PackageTransactionCreditPeer extends BasePackageTransactionCreditPeer
         $credit = new PackageTransactionCredit();
         $credit->setCollectible($collectible);
         $credit->setPackageTransaction($packageTransaction);
-        $credit->setExpiryDate(strtotime(self::STANDARD_EXPIRY_TIME));
+        $credit->setExpiryDate(strtotime('+'.self::STANDARD_EXPIRY_TIME));
         $credit->save($con);
       }
       else

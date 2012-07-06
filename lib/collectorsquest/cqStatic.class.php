@@ -134,6 +134,13 @@ class cqStatic extends IceStatic
     ));
   }
 
+  static public function getMailChimpClient()
+  {
+    include_once __DIR__ . '/../vendor/MailChimp.class.php';
+
+    return new MailChimp(cqConfig::getCredentials('mailchimp'));
+  }
+
   static public function linkify($text, $shorten = false)
   {
     preg_match("/[A-Za-z]+:\/\/[A-Za-z0-9-_]+\.[A-Za-z0-9-_:%&\?\/.=]+/i", $text, $matches);

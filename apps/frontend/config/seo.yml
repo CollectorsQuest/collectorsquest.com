@@ -8,7 +8,7 @@ seo:
       title: Collectors' Blog | News & Commentary from the Collector Community
       description: |
         Get the latest from the world of collectibles, vintage items, antique figurines,
-        sports memorabilia and more at the Collectors' Quest blog.
+        sports memorabilia and more at the Collectors Quest blog.
 
   aent:
     pawnStars:
@@ -49,7 +49,7 @@ seo:
       model: true
       title: %Name%  | A Curated Collection
       description: |
-        At Collectors' Quest, our collectors share their antiques and collections,
+        At Collectors Quest, our collectors share their antiques and collections,
         like this %Name%, a curated collection.
 
     collectible:
@@ -64,7 +64,7 @@ seo:
       model: true
       title: Collectibles for Sale by %DisplayName% | Buy Vintage Collectibles
       description: |
-        CollectorsQuest.com is the best place to find %AboutWhatYouCollect% and collectibles for sale.
+        CollectorsQuest.com is the best place to find %AboutWhatYouCollect% and items for sale.
         Find collectors selling %AboutWhatYouCollect%.
 
     signup:
@@ -77,12 +77,12 @@ seo:
     index:
       title: Collectors Selling Collectibles and Antiques | CollectorsQuest.com
       description: |
-        Collectors' Quest is interactive community and marketplace for collectors.
+        Collectors Quest is interactive community and marketplace for collectors.
         Showcase your collections, meet other collectors and buy, sell or trade.
 
   marketplace:
     index:
-      title: Collectibles & Antiques for Sale | Collectors' Quest
+      title: Collectibles & Antiques for Sale | Collectors Quest
       description: |
         CollectorsQuest.com is a trusted source to buy antiques and collectibles online.
         Our experienced collectors sell an amazing array of collections online.
@@ -100,6 +100,10 @@ seo:
         CollectorsQuest.com is the leading online source for collectors to buy or sell collectibles.
         Buy unique vintage collectors items in our marketplace.
 
+  collectibles:
+    collectorList:
+      model: true
+      title: Collectibles by %DisplayName% | Collectors Quest
 
   misc:
     guideToCollecting:

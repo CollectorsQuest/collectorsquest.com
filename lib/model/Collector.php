@@ -175,6 +175,11 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
     return false;
   }
 
+  public function getLastVisitedAt($format = 'Y-m-d H:i:s')
+  {
+    return null;
+  }
+
   public function getLastSeenAt($format = 'Y-m-d H:i:s')
   {
     $time = parent::getLastSeenAt($format);
@@ -745,6 +750,23 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
     } else {
       return count($this->collCollectiblesInCollections);
     }
+  }
+
+  /**
+   * @see Collector::countCollectiblesInCollections()
+   *
+   * @param Criteria $criteria
+   * @param bool $distinct
+   * @param PropelPDO $con
+   *
+   * @return int
+   */
+  public function countCollectionCollectibles(
+    Criteria $criteria = null,
+    $distinct = false,
+    PropelPDO $con = null
+  ) {
+    return $this->countCollectiblesInCollections($criteria, $distinct, $con);
   }
 
   public function getCollectorFriends(Criteria $criteria = null)

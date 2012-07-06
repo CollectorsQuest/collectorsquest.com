@@ -35,9 +35,7 @@ class CollectionCreateForm extends CollectorCollectionForm
         array('model' => 'CollectorCollection', 'column' => 'id', 'required' => false)
       ),
       'name'  => new sfValidatorString(),
-      'tags'  => new sfValidatorCallback(
-        array('required' => true, 'callback' => array($this, 'validateTagsField'))
-      ),
+      'tags'  => new cqValidatorTags(),
       'content_category_id' => new sfValidatorPropelChoice(array(
         'required' => true,
         'model' => 'ContentCategory',
@@ -69,17 +67,5 @@ class CollectionCreateForm extends CollectorCollectionForm
       'tags', 'Choose at least three descriptive words
                or phrases, separated by commas'
     );
-  }
-
-  public function validateTagsField($validator, $values)
-  {
-    $values = (array) $values;
-
-    if (empty($values)) {
-      throw new sfValidatorError($validator, 'required');
-    }
-    else {
-      return $values;
-    }
   }
 }
