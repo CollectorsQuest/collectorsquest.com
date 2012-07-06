@@ -47,7 +47,7 @@ class CollectibleForSaleForm extends BaseCollectibleForSaleForm
       {
         // throw an error bound to the price field
         $errorSchema = new sfValidatorErrorSchema($validator);
-        $errorSchema->addError(new sfValidatorError($validator, 'invalid'), 'is_ready');
+        $errorSchema->addError(new sfValidatorError($validator, 'invalid'));
 
         throw $errorSchema;
       }
@@ -58,7 +58,7 @@ class CollectibleForSaleForm extends BaseCollectibleForSaleForm
 
   public function setupPriceField()
   {
-    $this->setWidget('price', new sfWidgetFormInputText(array(), array('required' => 'required')));
+    $this->widgetSchema['price'] = new sfWidgetFormInputText(array(), array('required' => 'required'));
     $this->setValidator('price', new sfValidatorString(array('required' => false)));
     $this->setDefault('price', sprintf('%01.2f', $this->getObject()->getPrice()));
 
