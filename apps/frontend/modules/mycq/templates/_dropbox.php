@@ -81,7 +81,7 @@ $(document).ready(function()
 
 
   $('.collectibles-to-sort .icon-remove-sign').click(MISC.modalConfirmDestructive(
-    'Remove item to sort', 'Are you sure you want to remove this item for sorting?',
+    'Delete Uploaded Photo', 'Are you sure you want to delete this photo?',
     function()
     {
       var $icon = $(this);
