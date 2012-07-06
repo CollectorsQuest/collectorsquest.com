@@ -20,7 +20,8 @@
 </div>
 
 <div id="form-collectible-for-sale" class="hide">
-  <?php if ($collectible->getCollectibleForSale()->hasActiveCredit() || $sf_user->getSeller()->hasPackageCredits()): ?>
+  <?php if ($collectible->getCollectibleForSale()->hasActiveCredit() ||
+     ($sf_user->getSeller()->hasPackageCredits()) && $sf_user->getCollector()->hasPayPalDetails()): ?>
 
     <div class="control-group">
       <?= $form['price']->renderLabel(); ?>

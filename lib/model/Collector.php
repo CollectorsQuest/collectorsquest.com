@@ -91,6 +91,16 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
   }
 
   /**
+   * The collector has setup his paypal information
+   *
+   * @return    boolean
+   */
+  public function hasPayPalDetails()
+  {
+    return !! $this->getSellerSettingsPaypalAccountId();
+  }
+
+  /**
    * Property accessor. Always cast the return value to boolean
    *
    * @return    boolean

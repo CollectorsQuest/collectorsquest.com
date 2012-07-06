@@ -2,17 +2,6 @@
 
 class CollectibleForSaleForm extends BaseCollectibleForSaleForm
 {
-  public function configure()
-  {
-
-  }
-
-  public function bind(array $taintedValues = null, array $taintedFiles = null)
-  {
-    $this->validatorSchema['price']->setOption('required', !empty($taintedValues['is_ready']));
-
-    parent::bind($taintedValues, $taintedFiles);
-  }
 
   protected function setupConditionField()
   {
@@ -40,8 +29,11 @@ class CollectibleForSaleForm extends BaseCollectibleForSaleForm
 
       if ($seller && $seller->hasPackageCredits())
       {
-        $values = $this->validatePriceField($validator, $values);
-        $values = $this->validateConditionsdsdsField($validator, $values);
+        if ($seller->hasPaypalDetails())
+        {
+          $values = $this->validatePriceField($validator, $values);
+          $values = $this->validateConditionsdsdsField($validator, $values);
+        }
       }
       else
       {
