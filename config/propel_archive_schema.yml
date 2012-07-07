@@ -26,6 +26,7 @@ classes:
       has_completed_registration: { type: boolean, default: false }
       session_id:     { type: varchar, size: 32 }
       last_seen_at:   { type: timestamp }
+      last_visited_at: { type: timestamp }
 
       eblob:        { type: longvarchar, default: null }
 
