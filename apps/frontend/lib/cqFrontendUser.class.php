@@ -362,4 +362,53 @@ class cqFrontendUser extends cqBaseUser
     return true;
   }
 
+  /**
+   * @param  BaseObject $something
+   * @return boolean
+   */
+  public function isOwnerOf($something)
+  {
+    $is_owner = parent::isOwnerOf($something);
+
+    if (!$is_owner && method_exists($something, 'getId'))
+    {
+      $is_owner = in_array($something->getId(), $this->getObjectIdsOwned(get_class($something)));
+    }
+
+    return $is_owner;
+  }
+
+  /**
+   * @param object $object
+   * @return boolean
+   */
+  public function setOwnerOf($object)
+  {
+    if (!is_object($object) || !method_exists($object, 'getId'))
+    {
+      return false;
+    }
+
+    $name = sfInflector::underscore(get_class($object));
+    $ids = $this->getAttribute($name, array(), 'cq/user/owns');
+    $ids[] = $object->getId();
+
+    return $this->setAttribute($name, array_unique($ids), 'cq/user/owns');
+  }
+
+  public function getObjectsOwned($name)
+  {
+    $ids = $this->getObjectIdsOwned($name);
+
+    return call_user_func(array(sfInflector::classify($name).'Peer', 'retrieveByPks'), $ids);
+  }
+
+  public function getObjectIdsOwned($name)
+  {
+    $name = sfInflector::underscore($name);
+    $ids = $this->getAttribute($name, array(), 'cq/user/owns');
+
+    return $ids;
+  }
+
 }

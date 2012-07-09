@@ -5,6 +5,28 @@ require 'lib/model/marketplace/om/BaseCollectibleForSale.php';
 class CollectibleForSale extends BaseCollectibleForSale
 {
   /**
+   * Pre save hooks
+   *
+   * @param     PropelPDO $con
+   * @return    boolean
+   */
+  public function preSave(PropelPDO $con = null)
+  {
+    // we check if the IS_READY field was modified, and if the MARKED_FOR_SALE_AT
+    // field was not manually set and IS_READY is true we set MARKED_FOR_SALE_AT
+    // to the current time
+    if (
+      $this->isColumnModified(CollectibleForSalePeer::IS_READY) &&
+      !$this->isColumnModified(CollectibleForSalePeer::MARKED_FOR_SALE_AT) &&
+      $this->getIsReady()
+    ) {
+      $this->setMarkedForSaleAt(time());
+    }
+
+    return parent::preSave($con);
+  }
+
+  /**
    * Proxy method to Collectible::getName()
    *
    * @param  null|\PropelPDO  $con
@@ -179,25 +201,10 @@ class CollectibleForSale extends BaseCollectibleForSale
       ->findOne($con);
   }
 
-  /**
-   * Pre save hooks
-   *
-   * @param     PropelPDO $con
-   * @return    boolean
-   */
-  public function preSave(PropelPDO $con = null)
+  public function getShoppingOrder()
   {
-    // we check if the IS_READY field was modified, and if the MARKED_FOR_SALE_AT
-    // field was not manually set and IS_READY is true we set MARKED_FOR_SALE_AT
-    // to the current time
-    if (
-      $this->isColumnModified(CollectibleForSalePeer::IS_READY) &&
-      !$this->isColumnModified(CollectibleForSalePeer::MARKED_FOR_SALE_AT) &&
-      $this->getIsReady()
-    ) {
-      $this->setMarkedForSaleAt(time());
-    }
-
-    return parent::preSave($con);
+    return ShoppingOrderQuery::create()
+      ->findOneByCollectibleId($this->getCollectibleId());
   }
+
 }

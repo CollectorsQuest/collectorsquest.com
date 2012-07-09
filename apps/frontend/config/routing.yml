@@ -331,10 +331,11 @@ shopping_order_error:
   param: { module: shopping, action: orderError }
 
 shopping_order_redirect:
-  url: /order/:uuid
+  url: /order/:uuid/:hash
   class: sfPropelRoute
   options: { model: ShoppingOrder, type: object }
   param: { module: shopping, action: order }
+  requirements: { sf_method: [get] }
 
 ### MY CQ
 
@@ -629,6 +630,7 @@ misc_guide_verify_email:
   class: cqPropelRoute
   param: { module: misc, action: guideVerifyEmail }
   options: { model: CollectorEmail, type: object }
+  requirements: { hash: '\w{10}' }
 
 ### LEGACY
 

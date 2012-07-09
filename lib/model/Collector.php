@@ -162,6 +162,11 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
    */
   public function isOwnerOf($something)
   {
+    // Assume the User is not the owner if not an object
+    if (!is_object($something)) {
+      return false;
+    }
+
     // Special case for Multimedia objects
     if ($something instanceof iceModelMultimedia)
     {
@@ -177,7 +182,7 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
       // Nobody owns NULL
       return false;
     }
-    else if (is_object($something) && method_exists($something, 'getCollectorId'))
+    else if (method_exists($something, 'getCollectorId'))
     {
       return $something->getCollectorId() === $this->getId();
     }

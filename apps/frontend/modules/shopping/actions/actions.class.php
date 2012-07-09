@@ -310,15 +310,7 @@ class shoppingActions extends cqFrontendActions
     if ($shopping_payment && $shopping_payment->getStatus() == ShoppingPaymentPeer::STATUS_COMPLETED)
     {
       $this->getUser()->setFlash('success', 'This order has already been paid');
-
-      if ($this->getUser()->isOwnerOf($shopping_order))
-      {
-        $this->redirect('@mycq_shopping_order?uuid='. $shopping_order->getUuid());
-      }
-      else
-      {
-        $this->redirect('@shopping_order_review?uuid='. $shopping_order->getUuid());
-      }
+      $this->redirect('shopping_order_redirect', $shopping_order);
     }
 
     if (null === $shopping_order->getShippingFeeAmount())
@@ -461,6 +453,9 @@ class shoppingActions extends cqFrontendActions
     /** @var $shopping_payment ShoppingPayment */
     $shopping_payment = $shopping_order->getShoppingPaymentRelatedByShoppingPaymentId();
 
+    // Stop right here if not authorized to see this Shopping Order
+    $this->forward404Unless($this->getUser()->isOwnerOf($shopping_order));
+
     // Check if the Order is already completed and redirect appropriately
     if (!$shopping_payment || $shopping_payment->getStatus() != ShoppingPaymentPeer::STATUS_COMPLETED)
     {
@@ -494,7 +489,7 @@ class shoppingActions extends cqFrontendActions
     return sfView::ERROR;
   }
 
-  public function executeOrder()
+  public function executeOrder(sfWebRequest $request)
   {
     /** @var $shopping_order ShoppingOrder */
     $shopping_order = $this->getRoute()->getObject();
@@ -502,9 +497,25 @@ class shoppingActions extends cqFrontendActions
     /** @var $shopping_payment ShoppingPayment */
     $shopping_payment = $shopping_order->getShoppingPaymentRelatedByShoppingPaymentId();
 
+    if ($_shopping_order = ShoppingOrderPeer::retrieveByHash($request->getParameter('hash')))
+    {
+      $this->getUser()->setOwnerOf($_shopping_order);
+    }
+
     if ($shopping_payment->getStatus() == ShoppingPaymentPeer::STATUS_COMPLETED)
     {
-      $this->redirect('collectible_by_slug', $shopping_order->getCollectible());
+      if ($this->getUser()->isAuthenticated() && $this->getUser()->isOwnerOf($shopping_order))
+      {
+        $this->redirect('mycq_collectible_by_slug', $shopping_order->getCollectible());
+      }
+      else if ($this->getUser()->isOwnerOf($shopping_order))
+      {
+        $this->redirect('shopping_order_review', $shopping_order);
+      }
+      else
+      {
+        $this->redirect('collectible_by_slug', $shopping_order->getCollectible());
+      }
     }
 
     $this->redirect('/404');
@@ -577,6 +588,9 @@ class shoppingActions extends cqFrontendActions
             array($shopping_order->getUuid())
           );
           $this->getUser()->setAttribute('orders', $orders, 'shopping');
+
+          // Set as the owner of this Shopping Order
+          $this->getUser()->setOwnerOf($shopping_order);
         }
 
         $cqEmail = new cqEmail($this->getMailer());

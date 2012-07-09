@@ -88,6 +88,29 @@ class ShoppingOrderPeer extends BaseShoppingOrderPeer
   }
 
   /**
+   * @param     string $hash
+   * @param     PropelPDO $con
+   * @return    ShoppingOrder|null
+   */
+  public static function retrieveByHash($hash, PropelPDO $con = null)
+  {
+    if (!empty($hash))
+    {
+      // Split the Hash parts
+      @list($version, $id, $hmac, $time) = explode(';', $hash);
+
+      // Try to get the ShoppingOrder object
+      if (( $shopping_order = self::retrieveByPk($id, $con) ))
+      {
+        // Finally check if the $hash is valid
+        return $shopping_order->getHash($version, $time) === $hash ? $shopping_order : null;
+      }
+    }
+
+    return null;
+  }
+
+  /**
    * convert $key into an array of numbers
    *
    * @static

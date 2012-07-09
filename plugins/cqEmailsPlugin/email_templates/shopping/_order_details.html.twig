@@ -11,7 +11,7 @@
         </tr>
         <tr>
           <td style="vertical-align: top;" valign="top">Description:</td>
-          <td>{{ oCollectible.getDescription() }}</td>
+          <td>{{ oCollectible.getDescription() | striptags }}</td>
         </tr>
         <tr>
           <td>Price:</td>
@@ -30,7 +30,7 @@
 <table class="table">
   <tr>
     <td>Order #:</td>
-    <td>{{ link_to(oShoppingOrder.getUuid(), 'mycq_collectible_by_slug', oCollectible, {absolute: true}) }}</td>
+    <td>{{ link_to(oShoppingOrder.getUuid(), 'shopping_order_redirect', oShoppingOrder, {absolute: true}) }}</td>
   </tr>
   <tr>
     <td style="width: 38%;">Status:</td>
@@ -44,6 +44,10 @@
   </tr>
   <tr>
     <td colspan="2">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>Name:</td>
+    <td>{{ oShoppingOrder.getShippingFullName() }}</td>
   </tr>
   <tr>
     <td style="vertical-align: top;" valign="top">Shipping Address:</td>
