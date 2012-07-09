@@ -5,7 +5,6 @@
  */
 class cqCollectorLastVisitFilter extends sfFilter
 {
-  const SESSION_ACCESS_KEY = 'keep_cqnext_access';
 
   public function execute($filterChain)
   {
@@ -23,7 +22,11 @@ class cqCollectorLastVisitFilter extends sfFilter
       $collector->setUpdatedAt(false);
       $collector->setUpdatedAt($updated_at);
 
-      $collector->save();
+      /* @var $response iceWebResponse */
+      $response = $this->context->getResponse();
+
+      $response->addDelayedFunction(array($collector, 'save'));
+      //$collector->save();
     }
 
     $filterChain->execute();
