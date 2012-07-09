@@ -16,7 +16,6 @@
     return;
   }
 ?>
-
 <form action="<?= url_for('@ajax_mycq?section=component&page=createCollection'); ?>"
       method="post" id="form-create-collection" class="ajax form-horizontal form-modal">
 
@@ -30,7 +29,7 @@
       <div class="controls">
         <div class="with-required-token">
           <span class="required-token">*</span>
-          <?php cq_content_categories_to_ul($categories, array('id' => 'categories')); ?>
+          <?php cq_content_categories_to_ul($categories, array('id' => 'categories', 'tabindex'=>3)); ?>
         </div>
       </div>
     </div>
@@ -61,10 +60,10 @@
 <script>
 $(document).ready(function()
 {
-  $("#categories").columnview({
+  var categories_tabindex = $('#categories').attr('tabIndex') || 0;
+  $("#categories").attr('tabIndex', 0).columnview({
     multi: false, preview: false,
-    onchange: function(element)
-    {
+    onchange: function(element) {
       if (0 < $(element).data('object-id')) {
         $("#collection_content_category_id").val($(element).data('object-id'));
       }
@@ -73,11 +72,6 @@ $(document).ready(function()
     }
   });
 
-  $('#form-create-collection input.tag').tagedit({
-    autocompleteURL: '<?= url_for('@ajax_typeahead?section=tags&page=edit'); ?>',
-    autocompleteOptions: { minLength: 3 },
-    // return, comma, semicolon
-    breakKeyCodes: [ 13, 44, 59 ]
-  });
+  $('#categories top').attr('role', 'listbox').attr('tabIndex', categories_tabindex);
 });
 </script>

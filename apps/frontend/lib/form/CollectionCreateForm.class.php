@@ -10,13 +10,17 @@ class CollectionCreateForm extends CollectorCollectionForm
         'label' => 'Collection Name',
       ), array(
         'required' => 'required',
-        'class' => 'input-xlarge'
+        'class' => 'input-xlarge',
+        'tabindex' => 1
+
       )),
-      'tags'  => new sfWidgetFormInputText(array(
-        'label' => 'Tags'
+      'tags'  => new cqWidgetFormInputTags(array(
+        'label' => 'Tags',
+        'autocompleteURL' => '@ajax_typeahead?section=tags&page=edit',
       ), array(
         'required' => 'required',
-        'class' => 'input-xlarge'
+        'class' => 'input-xlarge',
+        'tabindex' => 2,
       )),
       'content_category_id' => new sfWidgetFormInputHidden(array(
         'label' => 'Category',
@@ -54,13 +58,6 @@ class CollectionCreateForm extends CollectorCollectionForm
     // pretty ugly hack, but in this case this is the only way
     // to keep the field's state between requests...
     $tags = $this->getObject()->getTags();
-
-    $this->widgetSchema['tags'] = new cqWidgetFormMultipleInputText(array(
-      'label' => 'Tags'
-    ), array(
-      'required' => 'required',
-      'class' => 'tag js-hide'
-    ));
 
     $this->widgetSchema['tags']->setDefault($tags);
     $this->getWidgetSchema()->setHelp(
