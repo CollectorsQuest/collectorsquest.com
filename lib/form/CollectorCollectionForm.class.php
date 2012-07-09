@@ -29,29 +29,17 @@ class CollectorCollectionForm extends BaseCollectorCollectionForm
     // to keep the field's state between requests...
     $tags = $this->getObject()->getTags();
 
-    $this->widgetSchema['tags'] = new cqWidgetFormMultipleInputText(array(
-      'label' => 'Tags'
+    $this->widgetSchema['tags'] = new cqWidgetFormInputTags(array(
+      'label' => 'Tags',
+      'autocompleteURL' => '@ajax_typeahead?section=tags&page=edit',
     ), array(
-      'name' => 'collector_collection[tags][]',
       'class' => 'tag'
     ));
 
     $this->widgetSchema['tags']->setDefault($tags);
-    $this->validatorSchema['tags'] = new sfValidatorCallback(
-      array('required' => false, 'callback' => array($this, 'validateTagsField'))
-    );
-  }
-
-  public function validateTagsField($validator, $values)
-  {
-    $values = (array) $values;
-
-    if (empty($values)) {
-      throw new sfValidatorError($validator, 'required');
-    }
-    else {
-      return $values;
-    }
+    $this->validatorSchema['tags'] = new cqValidatorTags(array(
+        'required' => false,
+    ));
   }
 
   public function updateDescriptionColumn($value)
