@@ -6,10 +6,15 @@ php_value tidy.clean_output 0
 RewriteEngine On
 RewriteBase /blog/
 
+# Redirect all wp-admin/ pages to backend.collectorsquest.com
 RewriteCond %{HTTP_HOST} !^www.collectorsquest.dev$
 RewriteCond %{HTTP_HOST} !^www.cqnext.com$
 RewriteCond %{HTTP_HOST} !^backend.collectorsquest.com$
 RewriteRule ^wp-admin/(.*)$ http://backend.collectorsquest.com/blog/wp-admin/$1 [QSA,L,R=301]
+
+# Redirect everything which is not wp-admin/ to www.collectorsquest.com
+RewriteCond %{HTTP_HOST} ^backend.collectorsquest.com$
+RewriteRule !^wp-admin http://www.collectorsquest.com%{REQUEST_URI} [QSA,L,R=301]
 
 RewriteRule ^index\.php$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
