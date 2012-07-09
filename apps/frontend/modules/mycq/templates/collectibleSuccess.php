@@ -190,13 +190,6 @@ $(document).ready(function()
 {
   $(".chzn-select").chosen();
 
-  $('input.tag').tagedit({
-    autocompleteURL: '<?= url_for('@ajax_typeahead?section=tags&page=edit'); ?>',
-    autocompleteOptions: { minLength: 3 },
-    // return, comma, semicolon
-    breakKeyCodes: [ 13, 44, 59 ]
-  });
-
   $('#collectible_description').wysihtml5({
     "font-styles": false, "image": false, "link": false,
     events:

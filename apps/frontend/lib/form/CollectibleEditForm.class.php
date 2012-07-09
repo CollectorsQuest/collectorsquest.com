@@ -80,11 +80,11 @@ class CollectibleEditForm extends BaseCollectibleForm
     // to keep the field's state between requests...
     $tags = $this->getObject()->getTags();
 
-    $this->widgetSchema['tags'] = new cqWidgetFormMultipleInputText(array(
-      'label' => 'Tags'
+    $this->widgetSchema['tags'] = new cqWidgetFormInputTags(array(
+      'label' => 'Tags',
+      'autocompleteURL' => '@ajax_typeahead?section=tags&page=edit',
     ), array(
       'required' => 'required',
-      'class' => 'tag js-hide'
     ));
 
     $this->widgetSchema['tags']->setDefault($tags);
