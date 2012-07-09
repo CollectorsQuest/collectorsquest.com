@@ -185,11 +185,6 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
     return false;
   }
 
-  public function getLastVisitedAt($format = 'Y-m-d H:i:s')
-  {
-    return null;
-  }
-
   public function getLastSeenAt($format = 'Y-m-d H:i:s')
   {
     $time = parent::getLastSeenAt($format);
