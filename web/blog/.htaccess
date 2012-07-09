@@ -1,6 +1,7 @@
 php_value tidy.clean_output 0
 
 # BEGIN WordPress
+
 <IfModule mod_rewrite.c>
 RewriteEngine On
 RewriteBase /blog/
@@ -10,21 +11,15 @@ RewriteCond %{HTTP_HOST} !^www.cqnext.com$
 RewriteCond %{HTTP_HOST} !^backend.collectorsquest.com$
 RewriteRule ^wp-admin/(.*)$ http://backend.collectorsquest.com/blog/wp-admin/$1 [QSA,L,R=301]
 
-RewriteCond %{HTTP_HOST} !^www.collectorsquest.dev$
-RewriteCond %{HTTP_HOST} !^www.cqnext.com$
-RewriteCond %{HTTP_HOST} !^backend.collectorsquest.com$
-RewriteRule ^wp-login.php$ http://backend.collectorsquest.com/blog/wp-login.php [QSA,L,R=301]
-
 RewriteRule ^index\.php$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /blog/index.php [L]
+
+RewriteRule ^pages/ /blog/pages/about-us/
 </IfModule>
-
-# END WordPress
-
 
 RedirectPermanent /blog/author/colin /blog/author/collin
 RedirectPermanent /blog/author/shaun-hennessy /blog/author/ms-hennessy
 
-RewriteRule /blog/pages/ /blog/pages/about-us/
+# END WordPress
