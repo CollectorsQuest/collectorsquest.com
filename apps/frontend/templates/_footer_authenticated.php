@@ -43,7 +43,7 @@ $unread_messages = $collector->getUnreadMessagesCount();
     </p>
   </li>
   <?php endif; ?>
-  <li class="footer-profile-box-h-list" style="padding-top: 0;">
+  <li class="footer-profile-box-h-list spacer-inner-top-reset">
     <ul class="row-fluid">
       <li class="span6 add-collectible-img link">
         <a href="<?= url_for('@mycq_collections', true) ?>" class="bold-links target">

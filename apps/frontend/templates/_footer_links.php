@@ -8,7 +8,7 @@
           <li><?= link_to('Terms', 'blog_page', array('slug' => 'terms-and-conditions')); ?></li>
           <li><?= link_to('RSS', 'blog_page', array('slug' => 'rss-feeds')); ?></li>
           <li><?= urldecode(link_to('Help/FAQ', 'blog_page', array('slug' => 'cq-faqs/general-questions'))); ?></li>
-          <li><?= link_to('Report an Error', '@feedback', array('target' => '_blank', 'style' => 'color: red;')); ?></li>
+          <li><?= link_to('Report an Error', '@feedback', array('target' => '_blank', 'class' => 'red')); ?></li>
         </ul>
       </div>
       <div class="span5 text-right">
