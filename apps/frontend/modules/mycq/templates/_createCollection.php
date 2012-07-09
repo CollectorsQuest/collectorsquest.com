@@ -30,7 +30,7 @@
       <div class="controls">
         <div class="with-required-token">
           <span class="required-token">*</span>
-          <?php cq_content_categories_to_ul($categories, 'categories'); ?>
+          <?php cq_content_categories_to_ul($categories, array('id' => 'categories')); ?>
         </div>
       </div>
     </div>
