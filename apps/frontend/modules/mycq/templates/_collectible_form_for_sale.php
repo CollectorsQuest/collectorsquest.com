@@ -113,7 +113,7 @@
       </div>
     <?php endif; // if collectible shipping allowed in gatekeeper ?>
 
-  <?php else: ?>
+  <?php elseif (!$sf_user->getSeller()->hasPackageCredits()): ?>
     <center>
       <?php
         echo link_to(
@@ -123,6 +123,11 @@
       ?>
     </center>
     <br/>
+  <?php elseif (!$sf_user->getCollector()->hasPayPalDetails()): ?>
+    <div class="alert alert-error all-errors">
+      You must <?= link_to('setup your paypal account', '@mycq_marketplace_settings') ?>
+      before you can sell in the Marketplace.
+    </div>
   <?php endif; ?>
 </div>
 
