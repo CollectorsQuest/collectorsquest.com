@@ -7,6 +7,35 @@ class ShoppingCartCollectible extends BaseShoppingCartCollectible
   /** @var ShippingReference */
   protected $aShippingReference;
 
+  /**
+   * Pre save hook
+   *
+   * @param     PropelPDO $con
+   * @return    boolean
+   */
+  public function preSave(PropelPDO $con = null)
+  {
+    // if the shipping country iso 3166 has been changed, but no manual shipping fee
+    // amount was entered automatically recalculate the shipping fee amount
+    if (
+      $this->isColumnModified(ShoppingCartCollectiblePeer::SHIPPING_COUNTRY_ISO3166) &&
+      !$this->isColumnModified(ShoppingCartCollectiblePeer::SHIPPING_FEE_AMOUNT)
+    ) {
+      $this->updateShippingFeeAmountFromCountryCode();
+    }
+
+    // if the shipping country iso 3166 has been changed, but no manual shipping type
+    // change has occured set it automatically
+    if (
+      $this->isColumnModified(ShoppingCartCollectiblePeer::SHIPPING_COUNTRY_ISO3166) &&
+      !$this->isColumnModified(ShoppingCartCollectiblePeer::SHIPPING_TYPE)
+    ) {
+      $this->updateShippingTypeFromCountryCode();
+    }
+
+    return parent::preSave($con);
+  }
+
   public function getCollector(PropelPDO $con = null)
   {
     return $this->getCollectibleForSale($con)->getCollector($con);
@@ -229,35 +258,6 @@ class ShoppingCartCollectible extends BaseShoppingCartCollectible
   }
 
   /**
-   * Pre save hook
-   *
-   * @param     PropelPDO $con
-   * @return    boolean
-   */
-  public function preSave(PropelPDO $con = null)
-  {
-    // if the shipping country iso 3166 has been changed, but no manual shipping fee
-    // amount was entered automatically recalculate the shipping fee amount
-    if (
-      $this->isColumnModified(ShoppingCartCollectiblePeer::SHIPPING_COUNTRY_ISO3166) &&
-      !$this->isColumnModified(ShoppingCartCollectiblePeer::SHIPPING_FEE_AMOUNT)
-    ) {
-      $this->updateShippingFeeAmountFromCountryCode();
-    }
-
-    // if the shipping country iso 3166 has been changed, but no manual shipping type
-    // change has occured set it automatically
-    if (
-      $this->isColumnModified(ShoppingCartCollectiblePeer::SHIPPING_COUNTRY_ISO3166) &&
-      !$this->isColumnModified(ShoppingCartCollectiblePeer::SHIPPING_TYPE)
-    ) {
-      $this->updateShippingTypeFromCountryCode();
-    }
-
-    return parent::preSave($con);
-  }
-
-  /**
    * Get the shipping reference based on the currently set country iso 3166 or
    * manual parameter value
    *
@@ -287,6 +287,19 @@ class ShoppingCartCollectible extends BaseShoppingCartCollectible
     $this->aShippingReference = null;
 
     return $this;
+  }
+
+  public function getShippingCountryName(PropelPDO $con = null)
+  {
+    $q = GeoCountryQuery::create()
+       ->filterByIso3166($this->getShippingCountryIso3166());
+
+    if ($geo_country = $q->findOne($con))
+    {
+      return $geo_country->getName();
+    }
+
+    return null;
   }
 
 }
