@@ -8,6 +8,7 @@
 <form action="<?= url_for('mycq_collection_by_slug', $collection); ?>" novalidate
       id="form-collection" method="post" enctype="multipart/form-data"
       class="form-horizontal spacer-bottom-reset">
+<?= $form->renderAllErrors(); ?>
 
 <div class="row-fluid">
   <div class="span3">

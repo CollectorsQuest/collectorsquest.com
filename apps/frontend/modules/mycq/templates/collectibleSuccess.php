@@ -10,6 +10,7 @@
 <form action="<?= url_for('mycq_collectible_by_slug', $collectible); ?>"
       enctype="multipart/form-data" novalidate
       id="form-collectible" method="post" class="form-horizontal">
+  <?= $form->renderAllErrors(); ?>
 
   <div class="row-fluid">
     <div class="span4">

@@ -582,16 +582,17 @@ a.buy-credits-button {
   }
 }
 
-
 .collectibles-to-sort {
-	.thumbnails {
-		margin-bottom: 0;
-		margin-left: -3px;
 
+	.thumbnails {
+		padding-top: 10px;
+		overflow: auto;
+		max-height: 162px;
+		margin-bottom: 0;
+		margin-left: -4px;
 		.span2 {
 			.square(74px);
-      margin-left: 5px;
-			margin-bottom: 5px;
+			margin: 0 5px 5px 0;
 			padding: 1px;
 			font-size: 12px;
 			border: none;
@@ -607,17 +608,6 @@ a.buy-credits-button {
           display: block;
         }
 			}
-
-      &.ui-draggable-dragging {
-	      border: 1px solid @red;
-		      img {
-			      padding: 1px;
-		      }
-
-        .icon-remove-sign {
-          display: none;
-        }
-      }
 		}
 	}
 	.thumbnail {
@@ -638,6 +628,22 @@ a.buy-credits-button {
 	  background: url("@{iconUrl}/fancy_close.png") no-repeat center;
 	  cursor: pointer;
   }
+}
+
+.ui-draggable-dragging {
+	img {
+		padding: 1px;
+		border: 1px solid @red;
+	}
+
+	.icon-remove-sign {
+		display: none;
+	}
+}
+.thumbnail.ui-draggable-dragging {
+	border: none;
+	.border-radius(0);
+	.box-shadow(none);
 }
 
 .buttons-inner {
@@ -1362,7 +1368,7 @@ textarea.input-xlarge {
   &.fixed {
     position: fixed;
     width: 910px;
-    z-index: 9999;
+    z-index: 3999;
   }
 }
 

@@ -23,6 +23,16 @@ seo:
         Check out these collectors items from the American Pickers Collection.
         CollectorsQuest.com gives you an inside look at the American Pickers collection.
 
+    collectible:
+      model: true
+      title: %Name% | %Collection%
+      description: %Description%
+
+    collectibleFixedMatching:
+      model: true
+      title: %Name% | %Collection%
+      description: %Description%
+
   categories:
     index:
       title: Explore Our Endless Collection of Collectibles | Category Listing

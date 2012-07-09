@@ -65,6 +65,7 @@ class CollectibleEditForm extends BaseCollectibleForm
       $for_sale_form = new CollectibleForSaleEditForm($collectibleForSale);
       unset($for_sale_form['collectible_id']);
       $this->embedForm('for_sale', $for_sale_form);
+      $this->widgetSchema['for_sale']->setLabel('For Sale');
     }
 
     $this->getWidgetSchema()->setFormFormatterName('Bootstrap');

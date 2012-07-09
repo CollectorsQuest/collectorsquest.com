@@ -31,8 +31,8 @@
 
 <?php if (!$sf_user->isAuthenticated()): ?>
   <p>
-    To better track your order and to ease your future the shopping experiece,
-    you can <strong>signup for an account</strong> using the form to the right.
+    In order to streamline your future shopping experience and track your orders,
+    please <strong>signup for an account</strong> using the form to the right.
   </p>
 <?php endif; ?>
 

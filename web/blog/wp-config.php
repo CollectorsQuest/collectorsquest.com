@@ -5,16 +5,8 @@ require_once __DIR__ .'/../../config/wp-config.php';
 // You can have multiple installations in one database if you give each a unique prefix
 $table_prefix  = 'wp_';   // Only numbers, letters, and underscores please!
 
-if (SF_ENV === 'prod')
-{
-  define('WPLANG', 'en');
-  define('WP_CACHE', true);
-}
-else
-{
-  define('WPLANG', 'en');
-  define('WP_CACHE', false);
-}
+define('WPLANG', 'en');
+define('WP_CACHE', false);
 
 /**
 define('WP_ALLOW_MULTISITE', true);
