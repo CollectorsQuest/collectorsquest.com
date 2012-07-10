@@ -165,7 +165,9 @@ class shoppingActions extends cqFrontendActions
         }
         else if ($this->getCollector(false)->isOwnerOf($collectible_for_sale))
         {
-          $this->getUser()->setFlash('error', 'You are trying to buy your own item');
+          $this->getUser()->setFlash(
+            'error', 'Sorry, you cannot buy your own items!'
+          );
           $this->redirect('@shopping_cart');
         }
 

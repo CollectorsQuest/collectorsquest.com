@@ -47,33 +47,13 @@
     </table>
   </div><!-- ./span8 -->
   <div class="span4">
-    <div id="main-image-set">
-      <div class="main-image-set-container">
-        <ul class="thumbnails">
-          <li class="span12 main-thumb">
-            <div class="thumbnail">
-            <?php
-              echo image_tag_multimedia(
-                $collectible->getPrimaryImage(), '300x0', array('width' => 294)
-              );
-            ?>
-            </div>
-          </li>
-          <?php foreach ($multimedia as $m): ?>
-          <li class="span4 square-thumb ui-state-full">
-            <div class="thumbnail drop-zone" data-is-primary="0">
-            <?php
-              echo image_tag_multimedia(
-                $m, '150x150', array('width' => 92, 'height' => 92)
-              );
-            ?>
-            </div>
-          </li>
-          <?php endforeach; ?>
-        </ul>
-      </div>
+    <div class="thumbnail">
+    <?php
+      echo image_tag_multimedia(
+        $collectible->getPrimaryImage(), '300x0', array('width' => 294)
+      );
+    ?>
     </div>
-
   </div><!-- ./span4 -->
 
   <?php
