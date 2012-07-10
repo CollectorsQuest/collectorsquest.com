@@ -25,8 +25,13 @@ class cqCollectorLastVisitFilter extends sfFilter
       /* @var $response iceWebResponse */
       $response = $this->context->getResponse();
 
-      $response->addDelayedFunction(array($collector, 'save'));
-      //$collector->save();
+      $response->addDelayedFunction(function()
+      {
+        if (( $collector = sfContext::getInstance()->getUser()->getCollector($strict = true) ))
+        {
+          $collector->save();
+        }
+      });
     }
 
     $filterChain->execute();
