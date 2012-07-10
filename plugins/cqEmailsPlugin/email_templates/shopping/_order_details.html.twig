@@ -29,11 +29,11 @@
 <br/>
 <table class="table">
   <tr>
-    <td>Order #:</td>
+    <td style="width: 100px;">Order #:</td>
     <td>{{ link_to(oShoppingOrder.getUuid(), 'shopping_order_redirect', oShoppingOrder, {absolute: true}) }}</td>
   </tr>
   <tr>
-    <td style="width: 38%;">Status:</td>
+    <td>Status:</td>
     <td>
       {{ oShoppingOrder.getShoppingPaymentRelatedByShoppingPaymentId().getStatus() | upper }}
     </td>
