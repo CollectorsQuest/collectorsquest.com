@@ -76,6 +76,7 @@ class ShoppingOrderShippingForm extends BaseForm
           break;
         }
       }
+
       $defaults = $use_session_defaults ? $session_defaults : $defaults;
     }
 
@@ -154,6 +155,7 @@ class ShoppingOrderShippingForm extends BaseForm
    * @param     array $values
    * @param     array $arguments
    *
+   * @throws    sfValidatorErrorSchema
    * @return    array() validated values
    */
   public function validateShippingCountry(sfValidatorBase $validator, $values, $arguments = array())

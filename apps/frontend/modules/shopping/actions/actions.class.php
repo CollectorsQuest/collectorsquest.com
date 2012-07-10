@@ -266,7 +266,14 @@ class shoppingActions extends cqFrontendActions
           }
         }
 
-        $this->redirect('@shopping_order_pay?uuid='. $shopping_order->getUuid(), 302);
+        $this->redirect(
+          'shopping_order_pay',
+          array(
+            'sf_subject' => $shopping_order,
+            'encrypt' => 1
+          ),
+          302
+        );
       }
       else if (!$form->getValue('shipping_address'))
       {
@@ -310,7 +317,7 @@ class shoppingActions extends cqFrontendActions
     if ($shopping_payment && $shopping_payment->getStatus() == ShoppingPaymentPeer::STATUS_COMPLETED)
     {
       $this->getUser()->setFlash('success', 'This order has already been paid');
-      $this->redirect('shopping_order_redirect', $shopping_order);
+      $this->redirect('shopping_order', $shopping_order);
     }
 
     if (null === $shopping_order->getShippingFeeAmount())
@@ -460,9 +467,16 @@ class shoppingActions extends cqFrontendActions
     if (!$shopping_payment || $shopping_payment->getStatus() != ShoppingPaymentPeer::STATUS_COMPLETED)
     {
       $this->getUser()->setFlash(
-        'error', sprintf('Order <b>%s</b> has not been paid yet!', $shopping_order->getUuid())
+        'error', sprintf('Order <b>%s</b> has not been paid yet!', $shopping_order->getUuid()), true
       );
-      $this->redirect('@shopping_order_pay?uuid='. $shopping_order->getUuid());
+
+      $this->redirect(
+        'shopping_order_pay',
+        array(
+          'sf_subject' => $shopping_order,
+          'encrypt' => 1
+        )
+      );
     }
 
     $this->shopping_order   = $shopping_order;
@@ -504,21 +518,28 @@ class shoppingActions extends cqFrontendActions
 
     if ($shopping_payment->getStatus() == ShoppingPaymentPeer::STATUS_COMPLETED)
     {
-      if ($this->getUser()->isAuthenticated() && $this->getUser()->isOwnerOf($shopping_order))
-      {
+      if (
+        $this->getUser()->isAuthenticated() &&
+        (
+          $this->getUser()->getId() === $shopping_order->getSellerId() ||
+          $this->getUser()->getId() === $shopping_order->getCollectorId()
+        )
+      ) {
         $this->redirect('mycq_collectible_by_slug', $shopping_order->getCollectible());
       }
-      else if ($this->getUser()->isOwnerOf($shopping_order))
+      else if ($shopping_order->equals($_shopping_order))
       {
-        $this->redirect('shopping_order_review', $shopping_order);
-      }
-      else
-      {
-        $this->redirect('collectible_by_slug', $shopping_order->getCollectible());
+        $this->redirect(
+          'shopping_order_review',
+          array(
+            'sf_subject' => $shopping_order,
+            'encrypt' => 1
+          )
+        );
       }
     }
 
-    $this->redirect('/404');
+    $this->redirect('collectible_by_slug', $shopping_order->getCollectible());
   }
 
   public function executePaypal(sfWebRequest $request)
@@ -559,9 +580,16 @@ class shoppingActions extends cqFrontendActions
         if (strtoupper($result['Status']) !== 'COMPLETED')
         {
           $this->getUser()->setFlash(
-            'error', sprintf('Order <b>%s</b> has not been paid yet!', $shopping_order->getUuid())
+            'error', sprintf('Order <b>%s</b> has not been paid yet!', $shopping_order->getUuid()), true
           );
-          $this->redirect('@shopping_order_pay?uuid='. $shopping_order->getUuid());
+
+          $this->redirect(
+            'shopping_order_pay',
+            array(
+              'sf_subject' => $shopping_order,
+              'encrypt' => 1
+            )
+          );
         }
 
         $shopping_payment->setProperty('paypal.transaction_id', $result['PaymentInfo']['TransactionID']);

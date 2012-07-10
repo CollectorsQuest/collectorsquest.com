@@ -190,7 +190,7 @@ class ShoppingCartCollectible extends BaseShoppingCartCollectible
    */
   public function updateShippingFeeAmountFromCountryCode($country_code = null)
   {
-    if (null !== $country_code)
+    if (!empty($country_code))
     {
       $this->setShippingCountryIso3166($country_code);
     }
@@ -226,7 +226,7 @@ class ShoppingCartCollectible extends BaseShoppingCartCollectible
    */
   public function updateShippingTypeFromCountryCode($country_code = null)
   {
-    if (null !== $country_code)
+    if (!empty($country_code))
     {
       $this->setShippingCountryIso3166($country_code);
     }

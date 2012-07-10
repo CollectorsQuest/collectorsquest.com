@@ -24,23 +24,19 @@ class ajaxAction extends cqAjaxAction
     $id = $request->getParameter('collectible_id');
     $country_code = $request->getParameter('country_iso3166');
 
-    if (( $cart_collectible = $shopping_cart->getShoppingCartCollectibleById($id) ))
-    {
-      if ($cart_collectible->updateShippingFromCountryCode($country_code))
+    if (
+      ($cart_collectible = $shopping_cart->getShoppingCartCollectibleById($id)) &&
+       $cart_collectible->updateShippingFromCountryCode($country_code)
+    ) {
+      try
       {
         $cart_collectible->save();
-
         return $this->success();
       }
-      else
-      {
-        return $this->error('bla', 'ga');
-      }
+      catch (PropelException $e) { ; }
     }
-    else
-    {
-      return $this->error('bla', 'ga');
-    }
+
+    return $this->error('error', 'error');
   }
 
 }

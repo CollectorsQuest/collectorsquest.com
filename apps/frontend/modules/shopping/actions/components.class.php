@@ -35,6 +35,13 @@ class shoppingComponents extends cqFrontendComponents
     $shopping_order = ShoppingOrderQuery::create()
       ->findOneByUuid($this->getRequestParameter('uuid'));
 
+    if ($shopping_order && $shopping_order->getCollectorId() !== null) {
+      return sfView::NONE;
+    }
+    else if ($this->getUser()->isAuthenticated()) {
+      return sfView::NONE;
+    }
+
     $form = new CollectorSignupSidebarForm();
     $form->getWidget('password')->setAttribute('placeholder', null);
     $form->getWidget('password_again')->setAttribute('placeholder', null);

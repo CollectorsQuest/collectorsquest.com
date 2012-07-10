@@ -3,16 +3,24 @@
 {% block content %}
 
 <p style="margin-bottom: 10px; font-weight: bold;">
-  Hey, {{ oSeller.displayName }}!
+  Hey, {{ oSeller.DisplayName }}!
 </p>
 
 <p>
   Congratulations! {{ buyer_name }} has purchased your
-  {{ link_to_collectible(oCollectible, 'text', {absolute: true}) }} on Collectors Quest!
+  {{ link_to(oCollectible.Name, 'mycq_collectible_by_slug', oCollectible, {absolute: true}) }}
+  on Collectors Quest!
 </p>
 
 <p>Here are your transaction details:</p>
-
 {% include 'shopping/_order_details.html.twig' %}
+
+<p>
+  You will be able to access online the details
+  of the order at the address below:
+</p>
+<p>
+  {{ url_for('mycq_collectible_by_slug', oCollectible, {absolute: true}) }}
+</p>
 
 {% endblock %}
