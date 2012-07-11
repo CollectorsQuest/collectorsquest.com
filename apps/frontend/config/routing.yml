@@ -462,6 +462,13 @@ mycq_collector_address_delete:
   param:  { module: mycq, action: deleteAddress }
   requirements: { id: '\d+', sf_method: [get, delete] }
 
+mycq_shopping_order_tracking:
+  url:   /mycq/order/:uuid/tracking
+  class: sfPropelRoute
+  options: { model: ShoppingOrder, type: object }
+  param: { module: mycq, action: shoppingOrderTracking }
+  requirements: { sf_method: [get, post] }
+
 mycq_shopping_order:
   url:   /mycq/order/:uuid
   class: sfPropelRoute

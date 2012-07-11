@@ -401,7 +401,12 @@ class mycqActions extends cqFrontendActions
       $this->multimedia = $collectible->getMultimedia(0, 'image', false);
 
       $this->shopping_order = ShoppingOrderQuery::create()
-        ->findOneByCollectibleId($collectible->getId());
+        ->joinShoppingPaymentRelatedByShoppingPaymentId()
+        ->useShoppingPaymentRelatedByShoppingPaymentIdQuery()
+          ->filterByStatus(ShoppingPaymentPeer::STATUS_COMPLETED)
+        ->endUse()
+        ->filterByCollectibleId($collectible->getId())
+        ->findOne();
 
       if ($this->shopping_order instanceof ShoppingOrder)
       {
@@ -418,7 +423,8 @@ class mycqActions extends cqFrontendActions
         if ($this->getCollector()->isOwnerOf($collectible))
         {
           $this->pm_form = new ComposeAbridgedPrivateMessageForm(
-            $this->seller, $this->buyer ?: $this->shopping_order->getBuyerEmail(), $subject
+            $this->seller, $this->buyer ?: $this->shopping_order->getBuyerEmail(),
+            $subject, array('attach' => array($collectible))
           );
 
           return 'Sold';
@@ -426,7 +432,7 @@ class mycqActions extends cqFrontendActions
         else if ($this->getCollector()->isOwnerOf($this->buyer))
         {
           $this->pm_form = new ComposeAbridgedPrivateMessageForm(
-            $this->buyer, $this->seller, $subject
+            $this->buyer, $this->seller, $subject, array('attach' => $collectible)
           );
 
           return 'Purchased';
@@ -755,6 +761,55 @@ class mycqActions extends cqFrontendActions
 
     $collectible = $shopping_order->getCollectible();
     $this->redirect('mycq_collectible_by_slug', $collectible);
+  }
+
+  public function executeShoppingOrderTracking(sfWebRequest $request)
+  {
+    /** @var $shopping_order ShoppingOrder */
+    $shopping_order = $this->getRoute()->getObject();
+
+    if ($request->isMethod('post') && $this->getUser()->isOwnerOf($shopping_order))
+    {
+      if (!$request->getParameter('tracking_number'))
+      {
+        $this->getUser()->setFlash(
+          'error', 'You need to provide the tracking number in order to mark the item as shipped!'
+        );
+      }
+      else if ($shopping_order->getShippingTrackingNumber())
+      {
+        $this->getUser()->setFlash(
+          'error', 'You have already provided the tracking number for this order!'
+        );
+      }
+      else
+      {
+        $shopping_order->setShippingCarrier($request->getParameter('carrier'));
+        $shopping_order->setShippingTrackingNumber($request->getParameter('tracking_number'));
+        $shopping_order->save();
+
+        $cqEmail = new cqEmail($this->getMailer());
+        $cqEmail->send('shopping/buyer_order_shipped', array(
+          'to' => $shopping_order->getBuyerEmail(),
+          'subject' => 'Your order from CollectorsQuest.com has shipped',
+          'params' => array(
+            'buyer_name' => $shopping_order->getShippingFullName(),
+            'oCollectible' => $shopping_order->getCollectible(),
+            'oSeller' => $shopping_order->getSeller(),
+            'oShoppingOrder' => $shopping_order
+          )
+        ));
+
+        $this->getUser()->setFlash('success', sprintf(
+          'An email was sent to %s (%s) with the tracking number information',
+           $shopping_order->getShippingFullName(), $shopping_order->getBuyerEmail()
+        ));
+      }
+
+      $this->redirect('mycq_collectible_by_slug', $shopping_order->getCollectible());
+    }
+
+    return sfView::SUCCESS;
   }
 
   public function executeWanted()

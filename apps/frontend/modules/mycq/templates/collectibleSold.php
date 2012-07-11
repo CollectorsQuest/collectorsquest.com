@@ -58,26 +58,26 @@
 
   <?php
     cq_sidebar_title(
-      'Buyer Information', null,
+      'Shipping Information', null,
       array('left' => 8, 'right' => 4, 'class'=>'spacer-top-reset row-fluid sidebar-title')
     );
   ?>
   <div class="span8" style="margin-left: 0;">
     <table class="table">
       <tr>
-        <td style="width: 38%;">Name:</td>
-        <td><?= $shopping_order->getShippingFullName(); ?></td>
-      </tr>
-      <tr>
         <td>Email Address:</td>
         <td>
-          <?php
-            echo mail_to(
-              $shopping_order->getBuyerEmail(),
-              $shopping_order->getBuyerEmail()
-            );
-          ?>
+        <?php
+          echo mail_to(
+            $shopping_order->getBuyerEmail(),
+            $shopping_order->getBuyerEmail()
+          );
+        ?>
         </td>
+      </tr>
+      <tr>
+        <td style="width: 38%;">Name:</td>
+        <td><?= $shopping_order->getShippingFullName(); ?></td>
       </tr>
       <?php if ($v = $shopping_order->getShippingPhone()): ?>
       <tr>
@@ -103,6 +103,35 @@
         <td><?= $v; ?></td>
       </tr>
       <?php endif; ?>
+      <tr>
+        <td>Tracking Number:</td>
+        <td>
+          <?php if ($shopping_order->getShippingTrackingNumber()): ?>
+            <a href="http://www.faranow.com/track/<?= strtoupper($shopping_order->getShippingCarrier()) ?>/<?= $shopping_order->getShippingTrackingNumber() ?>"
+               target="_blank">
+              <?= $shopping_order->getShippingTrackingNumber() ?>
+            </a>
+          <?php else: ?>
+            <div class="row-fluid">
+            <form action="<?= url_for('mycq_shopping_order_tracking', $shopping_order); ?>" method="post">
+              <div class="span4" style="margin-left: 0;">
+                <select name="carrier" style="width: 100px;">
+                  <option value="">Courier</option>
+                  <option value="">-------</option>
+                  <option value="FedEx">FedEx</option>
+                  <option value="UPS">UPS</option>
+                  <option value="USPS">USPS</option>
+                </select>
+              </div>
+              <div class="span8">
+                <input type="text" name="tracking_number" placeholder="enter the tracking number here"/>
+              </div>
+              <button type="submit" class="btn btn-primary">Mark as Shipped</button>
+            </form>
+            </div>
+          <?php endif; ?>
+        </td>
+      </tr>
     </table>
   </div>
   <div class="span4 send-pm">
@@ -124,7 +153,7 @@
   <div class="span8" style="margin-left: 0;">
     <table class="table">
       <tr>
-        <td style="width: 38%;">Status:</td>
+        <td style="width: 38%;">Payment Status:</td>
         <td>
           <?= strtoupper($shopping_order->getShoppingPaymentRelatedByShoppingPaymentId()->getStatus()); ?>
         </td>
@@ -134,7 +163,7 @@
         <td><?= $shopping_order->getUuid() ?></td>
       </tr>
       <tr>
-        <td>Date:</td>
+        <td>Date & Time:</td>
         <td><?= $shopping_order->getCreatedAt() ?></td>
       </tr>
     </table>

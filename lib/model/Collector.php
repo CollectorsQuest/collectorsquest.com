@@ -177,6 +177,10 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
     {
       return $something->getSender() === $this->getId();
     }
+    else if ($something instanceof ShoppingOrder)
+    {
+      return $something->getSellerId() === $this->getId();
+    }
     else if (null === $something->getCollectorId())
     {
       // Nobody owns NULL

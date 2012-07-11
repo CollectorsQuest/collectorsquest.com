@@ -11,6 +11,8 @@ class cqFrontendUser extends cqBaseUser
 
   /**
    * @param  boolean  $strict
+   *
+   * @throws sfException
    * @return null|Collector
    */
   public function getCollector($strict = false)
@@ -19,7 +21,9 @@ class cqFrontendUser extends cqBaseUser
     {
       if ($this->collector === null && ($this->getAttribute("id", null, "collector") !== null))
       {
-        $this->collector = CollectorPeer::retrieveByPK($this->getAttribute("id", null, "collector"));
+        $this->collector = CollectorPeer::retrieveByPK(
+          $this->getAttribute("id", null, "collector")
+        );
 
         if (!$this->collector)
         {
@@ -49,8 +53,8 @@ class cqFrontendUser extends cqBaseUser
    * If not possible to retrieve by IP the value of the $default
    * param will be returned
    *
-   * @param     string $default
-   * @return    string|false
+   * @param     boolean|string $default
+   * @return    boolean|string
    */
   public function getCountryCode($default = false)
   {
@@ -66,8 +70,8 @@ class cqFrontendUser extends cqBaseUser
   /**
    * Return the current user's country name
    *
-   * @param     type $country_code
-   * @return    string|false
+   * @param     string $country_code
+   * @return    boolean|string
    *
    * @see       cqFrontendUser::getCountryCode()
    */
