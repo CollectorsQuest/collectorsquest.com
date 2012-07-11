@@ -80,7 +80,6 @@ class commentsActions extends cqFrontendActions
     }
 
     return $this->redirect($request->getReferer() . "#comments");
-    return $this->renderText('g');
   }
 
   public function executeLoadMoreComments(sfWebRequest $request)
