@@ -172,7 +172,7 @@
 <?php if (count($collectibles) > 0): ?>
 <br/>
 <div class="list-thumbs-other-collectibles">
-  Other collectibles in the <?= link_to_collection($collection, 'text') ?> collection
+  Other items in the <?= link_to_collection($collection, 'text') ?> collection
   <ul class="thumbnails">
     <?php foreach ($collectibles as $c): ?>
     <li class="span2">

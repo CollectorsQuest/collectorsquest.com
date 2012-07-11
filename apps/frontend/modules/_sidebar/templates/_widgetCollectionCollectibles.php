@@ -4,7 +4,7 @@
 ?>
 
 <div class="carousel-sidebar">
-  <span>Other collectibles in this collection:</span>
+  <span>Other items in this collection:</span>
   <div class="thumbnails-inner well">
     <a href="#" id="ui-carousel-prev" title="previous collectible" class="left-arrow">
       <i class="icon-chevron-left white"></i>
