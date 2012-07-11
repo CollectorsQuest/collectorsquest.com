@@ -24,7 +24,8 @@
                     echo image_tag_multimedia(
                       $image, '300x0',
                       array(
-                        'width' => 294, 'id' => 'multimedia-'. $image->getId(),
+                        'id' => 'multimedia-'. $image->getId(),
+                        'width' => 294, 'height' => null
                       )
                     );
                   ?>

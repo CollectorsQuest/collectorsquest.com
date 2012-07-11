@@ -126,7 +126,7 @@
     <div class="thumbnail">
     <?php
       echo image_tag_multimedia(
-        $collectible->getPrimaryImage(), '300x0', array('width' => 294)
+        $collectible->getPrimaryImage(), '190x190'
       );
     ?>
     </div>
