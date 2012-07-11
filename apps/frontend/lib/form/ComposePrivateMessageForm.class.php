@@ -4,7 +4,7 @@
  * ComposePrivateMessageForm does what its name says :)
  *
  * Options:
- *    attach: Collector/Collection object (or an array of both)
+ *    attach: Collection/Collectible object (or an array of both)
  *
  */
 class ComposePrivateMessageForm extends PrivateMessageForm
