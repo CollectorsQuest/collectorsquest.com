@@ -36,6 +36,7 @@ classes:
 
     propel_behaviors:
       archivable: { archive_class: CollectorArchive, archived_at_column: archived_at }
+      sluggable: { slug_pattern: "{DisplayName}", permanent: false }
       extra_properties: ~
       timestampable:  ~
 
@@ -262,6 +263,7 @@ classes:
 
     propel_behaviors:
       archivable: { archive_class: CollectibleArchive, archived_at_column: archived_at }
+      sluggable: { slug_pattern: "{Name}", permanent: false }
       timestampable:  ~
 
   PrivateMessage:

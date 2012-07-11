@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Adding two fields to shopping_order table
+ * Fix missing slugs for Collector records
  */
-class PropelMigration_1341999126
+class PropelMigration_1342027526
 {
 
   public function preUp($manager)
@@ -13,7 +13,20 @@ class PropelMigration_1341999126
 
   public function postUp($manager)
   {
-    // add the post-migration code here
+    /** @var $q CollectorQuery */
+    $q = CollectorQuery::create()
+      ->filterBySlug(null, Criteria::ISNULL)
+      ->setFormatter(ModelCriteria::FORMAT_ON_DEMAND);
+
+    /** @var $collectors Collector[] */
+    $collectors = $q->find();
+    foreach ($collectors as $collector)
+    {
+      $display_name = $collector->getDisplayName();
+      $collector->setDisplayName(null);
+      $collector->setDisplayName($display_name);
+      $collector->save();
+    }
   }
 
   public function preDown($manager)
@@ -37,13 +50,6 @@ class PropelMigration_1341999126
     return array(
       'propel' => '
         SET FOREIGN_KEY_CHECKS = 0;
-
-        ALTER TABLE `shopping_order`
-        ADD `shipping_carrier` TINYINT AFTER `shipping_country_iso3166`;
-
-        ALTER TABLE `shopping_order`
-        ADD `shipping_tracking_number` VARCHAR(64) AFTER `shipping_carrier`;
-
         SET FOREIGN_KEY_CHECKS = 1;
       ',
       'blog' => '
@@ -64,10 +70,6 @@ class PropelMigration_1341999126
     return array(
       'propel' => '
         SET FOREIGN_KEY_CHECKS = 0;
-
-        ALTER TABLE `shopping_order` DROP `shipping_carrier`;
-        ALTER TABLE `shopping_order` DROP `shipping_tracking_number`;
-
         SET FOREIGN_KEY_CHECKS = 1;
       ',
       'blog' => '

@@ -1231,25 +1231,11 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
 }
 
 sfPropelBehavior::add('Collector', array('IceMultimediaBehavior'));
+sfPropelBehavior::add('Collector', array('IceTaggableBehavior'));
 
 sfPropelBehavior::add(
   'Collector',
   array(
     'PropelActAsEblobBehavior' => array('column' => 'eblob')
-  ));
-
-sfPropelBehavior::add(
-  'Collector', array(
-    'IceTaggableBehavior' => array(
-      'columns'   => array(
-        'from' => CollectorPeer::DISPLAY_NAME,
-        'to'   => CollectorPeer::SLUG
-      ),
-      'separator' => '-',
-      'permanent' => false,
-      'lowercase' => true,
-      'ascii'     => true,
-      'chars'     => 64
-    )
   )
 );
