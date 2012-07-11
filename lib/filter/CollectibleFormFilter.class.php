@@ -28,14 +28,16 @@ class CollectibleFormFilter extends BaseCollectibleFormFilter
 
   public function configure()
   {
+    $this->widgetSchema['id'] = new sfWidgetFormInputText(array('label' => 'Collectible #'));
     $this->widgetSchema['collection_collectible_list'] = new sfWidgetFormInputText(array('label' => 'Collection #'));
-    $this->widgetSchema['id']                          = new sfWidgetFormInputText(array('label' => 'Collectible #'));
 
     $this->validatorSchema['collection_collectible_list']->setOption('multiple', true);
+    $this->validatorSchema['collection_collectible_list']->setOption('required', false);
     $this->validatorSchema['id'] = new sfValidatorPropelChoice(array(
-      'model'   => 'Collectible',
-      'required'=> false,
-      'multiple'=> true
+      'model'    => 'Collectible',
+      'column'   => 'id',
+      'required' => false,
+      'multiple' => true
     ));
   }
 
@@ -43,12 +45,17 @@ class CollectibleFormFilter extends BaseCollectibleFormFilter
   {
     if (isset($values['collection_collectible_list']))
     {
-      $values['collection_collectible_list'] = explode(',', $values['collection_collectible_list']);
+      $values['collection_collectible_list'] = array_combine(
+        explode(',', $values['collection_collectible_list']),
+        explode(',', $values['collection_collectible_list'])
+      );
+      $values['collection_collectible_list'] = array_filter($values['collection_collectible_list']);
     }
 
     if (isset($values['id']))
     {
-      $values['id'] = explode(',', $values['id']);
+      $values['id'] = array_combine(explode(',', $values['id']), explode(',', $values['id']));
+      $values['id'] = array_filter($values['id']);
     }
 
     parent::doBind($values);
