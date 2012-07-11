@@ -1,0 +1,22 @@
+{% extends "common/base.html.twig" %}
+
+{% block content %}
+
+<p style="margin-bottom: 10px; font-weight: bold;">
+  Hey, {{ oOwner.displayName }}!
+</p>
+
+<p>
+  Someone posted a new comment about your {{ link_to(oModelObject, sThreadUrl) }} on Collectors Quest!
+</p>
+
+<p>
+  {{ oNewComment.body }}
+</p>
+
+<p>
+  {{ link_to('Click here', sThreadUrl) }} to respond and make a friend!
+  <br />
+</p>
+
+{% endblock %}
