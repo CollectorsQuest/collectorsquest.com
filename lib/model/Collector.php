@@ -157,6 +157,56 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
   }
 
   /**
+   * Upon logging in, merge cookie data into ExtraProperties data
+   *
+   * @param     array $data
+   * @return    Collector
+   */
+  public function mergeVisitorInfoArray($data)
+  {
+    foreach (CollectorPeer::$visitor_info_props as $prop_name)
+    {
+      if (isset($data[$prop_name]) && $value = $data[$prop_name]) switch ($prop_name)
+      {
+        case CollectorPeer::PROPERTY_VISITOR_INFO_FIRST_VISIT_AT:
+          $new_time = strtotime($value);
+          if ($new_time < $this->getVisitorInfoFirstVisitAt('U'))
+          {
+            $this->setVisitorInfoFirstVisitAt($new_time);
+          }
+          break;
+
+        case CollectorPeer::PROPERTY_VISITOR_INFO_LAST_VISIT_AT:
+          $new_time = strtotime($value);
+          if ($new_time > $this->getVisitorInfoLastVisitAt('U'))
+          {
+            $this->setVisitorInfoFirstVisitAt($new_time);
+          }
+          break;
+
+        case CollectorPeer::PROPERTY_VISITOR_INFO_NUM_PAGE_VIEWS:
+          $this->setVisitorInfoNumPageViews(
+            $this->getVisitorInfoNumPageViews() + $value
+          );
+          break;
+
+        case CollectorPeer::PROPERTY_VISITOR_INFO_NUM_VISITS:
+          $this->setVisitorInfoNumVisits(
+            $this->getVisitorInfoNumVisits() + $value
+          );
+          break;
+
+        default:
+          $this->setProperty($prop_name, $value);
+          break;
+      }
+    }
+
+    return $this;
+  }
+
+
+  /**
    * The collector has setup his paypal information
    *
    * @return    boolean
