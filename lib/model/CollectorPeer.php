@@ -517,4 +517,35 @@ class CollectorPeer extends BaseCollectorPeer
     }
   }
 
+  /**
+   * Listener for user.change_authentication
+   *
+   * Used to set UUID from the request cookie;
+   * Because the cookie can change at some points (ie, using the site form a different PC), it's preferred to keep the collector's UUID updating
+   * based on that cookie.
+   *
+   * @param     sfEvent $event
+   */
+  public function listenToChangeAuthenticationEvent(sfEvent $event)
+  {
+    $params = $event->getParameters();
+
+    // if the user is beign authenticated
+    if (true === $params['authenticated'])
+    {
+      /** @var $cq_user cqFrontendUser */
+      $cq_user = $event->getSubject();
+
+      // and we can successfully get the related collector
+      if (( $collector = $cq_user->getCollector($strict = true) ))
+      {
+        if ($cq_user->getCookieUuid())
+        {
+          $collector->setUuid($cq_user->getCookieUuid());
+          $collector->save();
+        }
+      }
+    }
+  }
+
 }
