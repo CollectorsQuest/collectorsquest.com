@@ -29,7 +29,7 @@ classes:
       is_public:      { type: boolean, default: true }
       has_completed_registration: { type: boolean, default: false }
       session_id:     { type: varchar, size: 32 }
-      uuid:           { type: varchar, size: 32, index: unique }
+      cookie_uuid:    { type: varchar, size: 32, index: unique }
       last_seen_at:   { type: timestamp }
       last_visited_at: { type: timestamp }
 
