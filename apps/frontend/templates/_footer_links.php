@@ -4,6 +4,7 @@
       <div class="span7">
         <ul role="footer-links">
           <li><?= link_to('About Us', 'blog_page', array('slug' => 'about-us')); ?></li>
+          <li><?= link_to('Press Room', 'blog_page', array('slug' => 'press-room')); ?></li>
           <li><?= link_to('Contact', 'blog_page', array('slug' => 'contact-us')); ?></li>
           <li><?= link_to('Terms', 'blog_page', array('slug' => 'terms-and-conditions')); ?></li>
           <li><?= link_to('RSS', 'blog_page', array('slug' => 'rss-feeds')); ?></li>
