@@ -3,7 +3,7 @@
 /**
  * Add collector.cookie_uuid field
  */
-class PropelMigration_1341941802
+class PropelMigration_1342119548
 {
 
 	public function preUp($manager)

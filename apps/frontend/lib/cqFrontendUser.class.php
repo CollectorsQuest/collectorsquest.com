@@ -424,7 +424,7 @@ class cqFrontendUser extends cqBaseUser
    *
    * @return    Collector|null
    */
-  public function getCollectorByUUID()
+  public function getCollectorByUuid()
   {
     return $this->getCookieUuid()
       ? CollectorQuery::create()
@@ -447,7 +447,7 @@ class cqFrontendUser extends cqBaseUser
     {
       // if the user is authenticated or we can get it from the UUID cookie
       $collector = $this->getCollector($strict = true)
-        ?: $this->getCollectorByUUID();
+        ?: $this->getCollectorByUuid();
       if ($collector)
       {
         // populate the array from ExtraProperties behavior data for the collector
@@ -481,12 +481,21 @@ class cqFrontendUser extends cqBaseUser
 
     // if the user is authenticated or we can get it from the UUID cookie
     $collector = $this->getCollector($strict = true)
-      ?: $this->getCollectorByUUID();
+      ?: $this->getCollectorByUuid();
+
     if ($collector)
     {
       // populate ExtraProperties behavior data for the collector
       foreach ($data as $prop_name => $value)
       {
+        // We do not want to reset this property if it already exists
+        if (
+          $prop_name === CollectorPeer::PROPERTY_VISITOR_INFO_FIRST_VISIT_AT &&
+          $collector->getProperty($prop_name)
+        ) {
+          continue;
+        }
+
         $collector->setProperty($prop_name, $value);
       }
 
@@ -585,7 +594,7 @@ class cqFrontendUser extends cqBaseUser
       array_fill(0, count(CollectorPeer::$visitor_info_props), null)
     );
 
-    /** @var $response sfWebRequest */
+    /** @var $request sfWebRequest */
     $request = sfContext::getInstance()->getRequest();
     $raw_data = $request->getCookie(self::VISITOR_INFO_COOKIE_NAME, null);
 
