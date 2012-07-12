@@ -19,11 +19,14 @@ class cqVisitorInfoFilter extends sfFilter
    */
   public function execute($filterChain)
   {
-    /* @var $sf_user cqFrontendUser */
-    $sf_user = $this->context->getUser();
-    $request = sfContext::GetInstance()->getRequest();
+    /** @var $request sfWebREquest */
+    $request = $this->context->getRequest();
+
     if (!$request->isXmlHttpRequest())
     {
+      /* @var $sf_user cqFrontendUser */
+      $sf_user = $this->context->getUser();
+
       $this->updateLastVisitedAtForAuthenticated($sf_user);
       $this->updateVisitorInfo($sf_user);
     }
@@ -140,7 +143,7 @@ class cqVisitorInfoFilter extends sfFilter
       $collector->setUpdatedAt(false);
       $collector->setUpdatedAt($updated_at);
 
-      /* @var $response iceWebResponse */
+      /* @var $response IceWebResponse */
       $response = $this->context->getResponse();
 
       $response->addDelayedFunction(function()
