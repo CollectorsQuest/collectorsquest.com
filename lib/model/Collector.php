@@ -1228,6 +1228,16 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
     return false;
   }
 
+  public function getFeedTitle()
+  {
+    return $this->getDisplayName();
+  }
+
+  public function getFeedDescription()
+  {
+    return $this->getProfile()->getAboutMe();
+  }
+
 }
 
 sfPropelBehavior::add('Collector', array('IceMultimediaBehavior'));

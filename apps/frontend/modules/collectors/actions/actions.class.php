@@ -57,7 +57,7 @@ class collectorsActions extends cqFrontendActions
         break;
     }
 
-    $pager = new PropelModelPager($q, 36);
+    $pager = new cqPropelModelPager($q, 36);
     $pager->setPage($request->getParameter('page', 1));
     $pager->init();
 

@@ -88,6 +88,11 @@ collections:
   url:   /collections
   param: { module: collections, action: index }
 
+collections_with_sort:
+  url:   /collections/:sort.:sf_format
+  param: { module: collections, action: index, sort: latest, sf_format: html }
+  requirements: { sf_format: (?:html|rss) }
+
 collection_by_slug:
   url:  /collection/:id/:slug
   class: cqPropelRoute
@@ -120,8 +125,9 @@ legacy_collectors_filter:
   param: { module: collectors, action: index, sort: latest }
 
 collectors:
-  url:  /collectors/:sort
-  param: { module: collectors, action: index, sort: latest }
+  url:  /collectors/:sort.:sf_format
+  param: { module: collectors, action: index, sort: latest, sf_format: html }
+  requirements: { sf_format: (?:html|rss) }
 
 collector_verify_email:
   url:  /collector/verify-email/:hash
