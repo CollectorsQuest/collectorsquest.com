@@ -6,8 +6,12 @@ class cqFrontendUser extends cqBaseUser
   /** @var integer */
   protected $unread_messages_count;
 
+  /** @var array */
+  protected $visitor_info_array;
+
   const PRIVATE_MESSAGES_SENT_COUNT_KEY = 'private_messages_sent_count';
   const DROPBOX_OPEN_STATE_COOKIE_NAME = 'cq_mycq_dropbox_open';
+  const VISITOR_INFO_COOKIE_NAME = 'cq_visitor_info';
 
   /**
    * @param  boolean  $strict
@@ -413,6 +417,184 @@ class cqFrontendUser extends cqBaseUser
     $ids = $this->getAttribute($name, array(), 'cq/user/owns');
 
     return $ids;
+  }
+
+  /**
+   * Get the collector corresponding to the UUID stored in the cq_uuid cookie
+   *
+   * @return    Collector|null
+   */
+  public function getCollectorByUUID()
+  {
+    return $this->getCookieUuid()
+      ? CollectorQuery::create()
+          ->filterByUuid($this->getCookieUuid())
+          ->findOne()
+      : null;
+  }
+
+  /**
+   * Get all visitor info properties as array
+   *
+   * @param     boolean $force
+   * @return    array
+   *
+   * @see       CollectorPeer::$visitor_info_props
+   */
+  public function getVisitorInfoArray($force = false)
+  {
+    if (null === $this->visitor_info_array || $force)
+    {
+      // if the user is authenticated or we can get it from the UUID cookie
+      $collector = $this->getCollector($strict = true)
+        ?: $this->getCollectorByUUID();
+      if ($collector)
+      {
+        // populate the array from ExtraProperties behavior data for the collector
+        $this->visitor_info_array = array();
+        foreach (CollectorPeer::$visitor_info_props as $prop_name)
+        {
+          $this->visitor_info_array[$prop_name] = $collector->getProperty($prop_name);
+        }
+      }
+      else
+      {
+        $this->visitor_info_array = $this->getVisitorInfoCookieData();
+      }
+    }
+
+    return $this->visitor_info_array;
+  }
+
+  /**
+   * Persist all visitor info properties,
+   * either to a cookie or to Collector ExtraProperty
+   *
+   * @param     array $data
+   * @return    cqFrontendUser
+   *
+   * @see       CollectorPeer::$visitor_info_props
+   */
+  public function setVisitorInfoArray($data)
+  {
+    $this->visitor_info_array = $data;
+
+    // if the user is authenticated or we can get it from the UUID cookie
+    $collector = $this->getCollector($strict = true)
+      ?: $this->getCollectorByUUID();
+    if ($collector)
+    {
+      // populate ExtraProperties behavior data for the collector
+      foreach ($data as $prop_name => $value)
+      {
+        $collector->setProperty($prop_name, $value);
+      }
+
+      $collector->save();
+    }
+    else
+    {
+      $this->setVisitorInfoCookieData($data);
+    }
+
+    return $this;
+  }
+
+  /**
+   * Get a visitor info property by its key
+   *
+   * @param     string $prop_name
+   * @param     mixed $default
+   *
+   * @return    mixed
+   * @throws    RuntimeException
+   *
+   * @see       CollectorPeer::$visitor_info_props
+   */
+  public function getVisitorInfo($prop_name, $default = null)
+  {
+    $data = $this->getVisitorInfoArray();
+
+    if (!array_key_exists($prop_name, $data))
+    {
+      throw new RuntimeException(sprintf(
+        '[cqFrontendUser] There is no visitor property named %s',
+        $prop_name));
+    }
+
+    return $data[$prop_name] !== null
+      ? $data[$prop_name]
+      : $default;
+  }
+
+  /**
+   * Persist a visitor info property,
+   * either in a cookie or in Collector ExtraProperty
+   *
+   * @param     string $prop_name
+   * @param     mixed $value
+   *
+   * @return    cqFrontendUser
+   * @throws    RuntimeException
+   *
+   * @see       CollectorPeer::$visitor_info_props
+   */
+  public function setVisitorInfo($prop_name, $value)
+  {
+    if (!in_array($prop_name, CollectorPeer::$visitor_info_props))
+    {
+      throw new RuntimeException(sprintf(
+        '[cqFrontendUser] Unknown visitor info key %s allowed keys: %s',
+        $prop_name, implode(', ', CollectorPeer::$visitor_info_props)));
+    }
+
+    $data = $this->getVisitorInfoArray();
+    $data[$prop_name] = $value;
+
+    $this->setVisitorInfoArray($data);
+
+    return $this;
+  }
+
+  /**
+   * Internal method
+   *
+   * @param     array $data
+   */
+  protected function setVisitorInfoCookieData($data)
+  {
+    /** @var $response sfWebResponse */
+    $response = sfContext::getInstance()->getResponse();
+    $response->setCookie(
+      self::VISITOR_INFO_COOKIE_NAME,
+      base64_encode(json_encode($data)),
+      strtotime('+ 1 year'),
+      '/'
+    );
+  }
+
+  /**
+   * Internal method
+   *
+   * @return    array
+   */
+  public function getVisitorInfoCookieData()
+  {
+    $default_data = array_combine(
+      CollectorPeer::$visitor_info_props,
+      array_fill(0, count(CollectorPeer::$visitor_info_props), null)
+    );
+
+    /** @var $response sfWebRequest */
+    $request = sfContext::getInstance()->getRequest();
+    $raw_data = $request->getCookie(self::VISITOR_INFO_COOKIE_NAME, null);
+
+    if (!$raw_data)
+    {
+      return $default_data;
+    }
+
+    return json_decode(base64_decode($raw_data), true);
   }
 
 }

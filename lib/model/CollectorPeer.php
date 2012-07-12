@@ -539,11 +539,17 @@ class CollectorPeer extends BaseCollectorPeer
       // and we can successfully get the related collector
       if (( $collector = $cq_user->getCollector($strict = true) ))
       {
-        if ($cq_user->getCookieUuid())
+        if (( $uuid = $cq_user->getCookieUuid() ))
         {
-          $collector->setUuid($cq_user->getCookieUuid());
-          $collector->save();
+          $collector->setUuid($uuid);
         }
+
+        if (($visitor_info = $cq_user->getVisitorInfoArray() ))
+        {
+          $collector->mergeVisitorInfoArray($visitor_info);
+        }
+
+        $collector->save();
       }
     }
   }
