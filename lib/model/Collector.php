@@ -205,7 +205,6 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
     return $this;
   }
 
-
   /**
    * The collector has setup his paypal information
    *

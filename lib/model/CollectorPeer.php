@@ -520,8 +520,8 @@ class CollectorPeer extends BaseCollectorPeer
   /**
    * Listener for user.change_authentication
    *
-   * Used to set UUID from the request cookie;
-   * Because the cookie can change at some points (ie, using the site form a different PC), it's preferred to keep the collector's UUID updating
+   * Used to set COOKIE_UUID from the request cookie;
+   * Because the cookie can change at some points (ie, using the site form a different PC), it's preferred to keep the collector's COOKIE_UUID updating
    * based on that cookie.
    *
    * @param     sfEvent $event
@@ -541,7 +541,7 @@ class CollectorPeer extends BaseCollectorPeer
       {
         if (( $uuid = $cq_user->getCookieUuid() ))
         {
-          $collector->setUuid($uuid);
+          $collector->setCookieUuid($uuid);
         }
 
         if (($visitor_info = $cq_user->getVisitorInfoArray() ))

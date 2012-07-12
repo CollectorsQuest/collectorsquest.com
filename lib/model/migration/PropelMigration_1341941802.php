@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Add collector.uuid field
+ * Add collector.cookie_uuid field
  */
 class PropelMigration_1341941802
 {
@@ -42,11 +42,11 @@ class PropelMigration_1341941802
 
 
         ALTER TABLE `collector`
-        ADD `uuid` VARCHAR(32) AFTER `session_id`;
-        CREATE UNIQUE INDEX `collector_U_7` ON `collector` (`uuid`);
+        ADD `cookie_uuid` VARCHAR(32) AFTER `session_id`;
+        CREATE UNIQUE INDEX `collector_U_7` ON `collector` (`cookie_uuid`);
 
         ALTER TABLE `collector_archive`
-        ADD `uuid` VARCHAR(32) AFTER `session_id`;
+        ADD `cookie_uuid` VARCHAR(32) AFTER `session_id`;
 
 
         # This restores the fkey checks, after having unset them earlier
@@ -75,10 +75,10 @@ class PropelMigration_1341941802
 
 
         ALTER TABLE `collector`
-        DROP `uuid`;
+        DROP `cookie_uuid`;
 
         ALTER TABLE `collector_archive`
-        DROP `uuid`;
+        DROP `cookie_uuid`;
 
 
         # This restores the fkey checks, after having unset them earlier
