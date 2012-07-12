@@ -320,4 +320,34 @@ class ShoppingOrder extends BaseShoppingOrder
     return $this;
   }
 
+  public function getHash($version = 'v1', $time = null, $salt = null)
+  {
+    $time = is_numeric($time) ? $time : time();
+    $salt = !empty($salt) ? (string) $salt : $this->getUuid();
+
+    switch ($version)
+    {
+      case 'v1':
+      default:
+        // Making sure the version is good value
+        $version = 'v1';
+
+        $json = json_encode(array(
+          'version' => $version,
+          'id'      => $this->getId(),
+          'created' => (int) $this->getCreatedAt('U'),
+          'time'    => (int) $time
+        ));
+
+        $hash = sprintf(
+          "%s;%d;%s;%d",
+          $version, $this->getId(),
+          hash_hmac('sha1', base64_encode($json), $salt), $time
+        );
+        break;
+    }
+
+    return $hash;
+  }
+
 }

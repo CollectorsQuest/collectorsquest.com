@@ -101,35 +101,10 @@
   </div>
 
   <br clear="all"/>
-  <div class="span4" style="margin-left: 0; clear: left;">
-    <div id="main-image-set">
-      <div class="main-image-set-container">
-        <ul class="thumbnails">
-          <li class="span12 main-thumb">
-            <div class="thumbnail">
-              <?php
-                echo image_tag_multimedia(
-                  $collectible->getPrimaryImage(), '300x0', array('width' => 294)
-                );
-              ?>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div><!-- ./span4 -->
-
-  <div class="span8">
-    <?php
-      cq_sidebar_title(
-        $collectible->getName(), null,
-        array('left' => 8, 'right' => 4, 'class'=>'spacer-top-reset row-fluid sidebar-title')
-      );
-    ?>
-
+  <div class="span8" style="margin-left: 0; clear: left;">
     <table class="table">
       <tr>
-        <td style="width: 25%;">Name:</td>
+        <td style="width: 25%;">Item Name:</td>
         <td><?= $collectible->getName(); ?></td>
       </tr>
       <tr>
@@ -146,5 +121,15 @@
       </tr>
     </table>
   </div><!-- ./span8 -->
+
+  <div class="span4">
+    <div class="thumbnail">
+    <?php
+      echo image_tag_multimedia(
+        $collectible->getPrimaryImage(), '190x190'
+      );
+    ?>
+    </div>
+  </div><!-- ./span4 -->
 
 </div>

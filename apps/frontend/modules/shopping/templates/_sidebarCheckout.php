@@ -13,16 +13,19 @@
       <td colspan="2"><hr/></td>
     </tr>
     <tr>
-      <td>Quantity</td>
-      <td style="text-align: right;">1 <strong>x</strong> <?= money_format('%.2n', (float) $shopping_order->getCollectiblesAmount()); ?></td>
+      <td>Quantity:</td>
+      <td style="text-align: right;">
+        1 <strong>x</strong> <?= money_format('%.2n', (float) $shopping_order->getCollectiblesAmount()); ?>
+      </td>
     </tr>
     <tr>
-      <td>Shipping</td>
+      <td style="vertical-align: top;">Shipping:</td>
       <td style="text-align: right;">
-      <?php if (0 === $shopping_order->getShippingFeeAmount('integer')): ?>
+
+      <?php if (null === $shopping_order->getShippingFeeAmount()): ?>
+        <span class="red">Cannot be shipped to <br/>the chosen country!</span>
+      <?php elseif (0 === $shopping_order->getShippingFeeAmount('integer')): ?>
         Free
-      <?php elseif (null === $shopping_order->getShippingFeeAmount()): ?>
-        <span class="red">Cannot be shipped to this country!</span>
       <?php else: ?>
         <?= money_format('%.2n', (float) $shopping_order->getShippingFeeAmount()); ?>
       <?endif; ?>

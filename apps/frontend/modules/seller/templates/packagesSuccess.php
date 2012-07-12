@@ -17,11 +17,6 @@
   <div class="span4 info-box-left-y">
     <h3>Why Sell on Collectors Quest?</h3>
     <dl class="text-container">
-      <dt>Heavy Traffic</dt>
-      <dd>
-        Over 300,000 collectors and growing!
-        We have more monthly traffic than flea markets and floor shows.
-      </dd>
 
       <dt>Broader Exposure</dt>
       <dd>

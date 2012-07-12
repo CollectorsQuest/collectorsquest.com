@@ -49,7 +49,6 @@
         array('left' => 8, 'right' => 4, 'class'=>'spacer-top-reset row-fluid sidebar-title')
       );
     ?>
-
     <fieldset style="width: 580px;">
         <?= $form; ?>
     </fieldset>
@@ -128,13 +127,6 @@
 <script>
 $(document).ready(function()
 {
-  $('input.tag').tagedit({
-    autocompleteURL: '<?= url_for('@ajax_typeahead?section=tags&page=edit'); ?>',
-    autocompleteOptions: { minLength: 3 },
-    // return, comma, semicolon
-    breakKeyCodes: [ 13, 44, 59 ]
-  });
-
   $('#collection_description').wysihtml5({
     "font-styles": false, "image": false, "link": false,
     events:

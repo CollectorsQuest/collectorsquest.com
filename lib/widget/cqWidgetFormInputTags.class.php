@@ -62,18 +62,25 @@ class cqWidgetFormInputTags extends sfWidgetFormInputText
       );
     }
 
+    $tabindex = isset($attributes['tabindex']) ? $attributes['tabindex'] : 0;
+    unset($attributes['tabindex']);
+
     return $this->renderContentTag('div', implode("\n", $tags), array(
       'id' => $this->generateId($name).'_holder',
-    )). sprintf(<<<EOF
+    ), $attributes). sprintf(<<<EOF
 
 <script>
 $(document).ready(function() {
-  $('#%s input').tagedit({
+  $('#%s input').attr('tabIndex', 0).tagedit({
     autocompleteURL: '%s',
     autocompleteOptions: %s,
     breakKeyCodes: [ %s ],
     additionalListClass: '%s',
     animSpeed: %d,
+  });
+
+  $('#%s').attr('tabIndex', %d).on('focus', function() {
+    $(this).find('ul').click();
   });
 });
 </script>
@@ -85,7 +92,9 @@ EOF
       json_encode($this->getOption('autocompleteOptions')),
       implode(', ', $this->getOption('breakKeyCodes')),
       $this->getOption('additionalListClass'),
-      $this->getOption('animSpeed')
+      $this->getOption('animSpeed'),
+      $this->generateId($name).'_holder',
+      $tabindex
     );
   }
 

@@ -5,6 +5,7 @@
 <?php if ($collectible_for_sale->hasActiveCredit() && IceGateKeeper::open('shopping_cart') ): ?>
 
   <?php if ($collectible_for_sale->getIsSold()): ?>
+
     <div id="price-container">
       <p class="price">
         Sold

@@ -329,11 +329,6 @@ class CollectorEditForm extends CollectorForm
     return trim(strip_tags($value));
   }
 
-  public function updateAboutWhatYouCollectColumn($value = null)
-  {
-    return $this->getObject()->setICollectTags($value);
-  }
-
   public function updateAboutMeColumn($value = null)
   {
     return trim(strip_tags($value));

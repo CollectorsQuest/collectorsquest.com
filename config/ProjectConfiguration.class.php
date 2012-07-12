@@ -34,9 +34,9 @@ class ProjectConfiguration extends IceProjectConfiguration
     $this->enablePlugins('sfPropelORMPlugin', 'sfGuardPlugin');
     $this->enablePlugins(array(
       'iceAssetsPlugin', 'iceBehaviorsPlugin', 'iceLibsPlugin',
-      'iceTaggablePlugin', 'iceBackendPlugin', 'iceJobQueuePlugin',
-      'iceCrontabPlugin', 'iceSpamControlPlugin', 'iceGeoLocationPlugin',
-      'iceMultimediaPlugin', 'cqEmailsPlugin', 'cqMagnifyPlugin', 'iceSEOPlugin',
+      'iceTaggablePlugin', 'iceJobQueuePlugin', 'iceCrontabPlugin',
+      'iceSpamControlPlugin', 'iceGeoLocationPlugin', 'iceMultimediaPlugin',
+      'cqEmailsPlugin', 'cqMagnifyPlugin', 'iceSEOPlugin',
     ));
 
     sfConfig::add(array(
@@ -46,7 +46,7 @@ class ProjectConfiguration extends IceProjectConfiguration
 
     if (!$this->rocketShipItAutoloaderRegistered)
     {
-      require_once sfConfig::get('sf_lib_dir'). '/vendor/rocketshipit/Autoloader.php';
+      require_once __DIR__ . '/../lib/vendor/rocketshipit/Autoloader.php';
       RocketShipItAutoloader::register();
     }
   }

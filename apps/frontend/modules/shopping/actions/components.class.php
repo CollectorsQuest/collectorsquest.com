@@ -35,6 +35,13 @@ class shoppingComponents extends cqFrontendComponents
     $shopping_order = ShoppingOrderQuery::create()
       ->findOneByUuid($this->getRequestParameter('uuid'));
 
+    if ($shopping_order && $shopping_order->getCollectorId() !== null) {
+      return sfView::NONE;
+    }
+    else if ($this->getUser()->isAuthenticated()) {
+      return sfView::NONE;
+    }
+
     $form = new CollectorSignupSidebarForm();
     $form->getWidget('password')->setAttribute('placeholder', null);
     $form->getWidget('password_again')->setAttribute('placeholder', null);
@@ -54,10 +61,28 @@ class shoppingComponents extends cqFrontendComponents
     /** @var $shopping_cart_collectible ShoppingCartCollectible */
     if (!$shopping_cart_collectible = $this->getVar('shopping_cart_collectible'))
     {
+      $q = ShoppingCartCollectibleQuery::create()
+        ->filterByCollectibleId($this->getRequestParameter('collectible_id'))
+        ->filterByShoppingCart($this->getUser()->getShoppingCart())
+        ->filterByIsActive(true);
+
+      $shopping_cart_collectible = $q->findOne();
+    }
+
+    // We cannot do anything without a ShoppingCart Collectible
+    if (!$shopping_cart_collectible) {
       return sfView::NONE;
     }
 
+    $this->country = $shopping_cart_collectible->getShippingCountryName();
+    $this->cannot_ship =
+      ShoppingCartCollectiblePeer::SHIPPING_TYPE_NO_SHIPPING ==
+      $shopping_cart_collectible->getShippingType() &&
+      $shopping_cart_collectible->getShippingFeeAmount() === null;
+
+    // Get the form
     $this->form = new ShoppingCartCollectibleCheckoutForm($shopping_cart_collectible);
+    $this->shopping_cart_collectible = $shopping_cart_collectible;
 
     return sfView::SUCCESS;
   }

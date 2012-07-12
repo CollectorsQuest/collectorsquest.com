@@ -40,8 +40,8 @@ all:
       items:
         homepage:     { name: Home, uri: "@mycq", check_lock: mycq_homepage }
         profile:      { name: Profile, uri: "@mycq_profile" }
-        collections:  { name: Collections, uri: "@mycq_collections" }
-        marketplace:  { name: "Market <sup>βeta</sup>", uri: "@mycq_marketplace", check_lock: mycq_marketplace }
+        collections:  { name: My Collections, uri: "@mycq_collections" }
+        marketplace:  { name: "My Market <sup>βeta</sup>", uri: "@mycq_marketplace", check_lock: mycq_marketplace }
         messages:     { name: Inbox, uri: "@messages_inbox" }
         wanted:       { name: Wanted List, uri: "@mycq_wanted", check_lock: mycq_wanted }
 

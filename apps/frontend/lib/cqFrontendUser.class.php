@@ -11,6 +11,8 @@ class cqFrontendUser extends cqBaseUser
 
   /**
    * @param  boolean  $strict
+   *
+   * @throws sfException
    * @return null|Collector
    */
   public function getCollector($strict = false)
@@ -19,7 +21,9 @@ class cqFrontendUser extends cqBaseUser
     {
       if ($this->collector === null && ($this->getAttribute("id", null, "collector") !== null))
       {
-        $this->collector = CollectorPeer::retrieveByPK($this->getAttribute("id", null, "collector"));
+        $this->collector = CollectorPeer::retrieveByPK(
+          $this->getAttribute("id", null, "collector")
+        );
 
         if (!$this->collector)
         {
@@ -49,8 +53,8 @@ class cqFrontendUser extends cqBaseUser
    * If not possible to retrieve by IP the value of the $default
    * param will be returned
    *
-   * @param     string $default
-   * @return    string|false
+   * @param     boolean|string $default
+   * @return    boolean|string
    */
   public function getCountryCode($default = false)
   {
@@ -66,8 +70,8 @@ class cqFrontendUser extends cqBaseUser
   /**
    * Return the current user's country name
    *
-   * @param     type $country_code
-   * @return    string|false
+   * @param     string $country_code
+   * @return    boolean|string
    *
    * @see       cqFrontendUser::getCountryCode()
    */
@@ -360,6 +364,55 @@ class cqFrontendUser extends cqBaseUser
     ));
 
     return true;
+  }
+
+  /**
+   * @param  BaseObject $something
+   * @return boolean
+   */
+  public function isOwnerOf($something)
+  {
+    $is_owner = parent::isOwnerOf($something);
+
+    if (!$is_owner && method_exists($something, 'getId'))
+    {
+      $is_owner = in_array($something->getId(), $this->getObjectIdsOwned(get_class($something)));
+    }
+
+    return $is_owner;
+  }
+
+  /**
+   * @param object $object
+   * @return boolean
+   */
+  public function setOwnerOf($object)
+  {
+    if (!is_object($object) || !method_exists($object, 'getId'))
+    {
+      return false;
+    }
+
+    $name = sfInflector::underscore(get_class($object));
+    $ids = $this->getAttribute($name, array(), 'cq/user/owns');
+    $ids[] = $object->getId();
+
+    return $this->setAttribute($name, array_unique($ids), 'cq/user/owns');
+  }
+
+  public function getObjectsOwned($name)
+  {
+    $ids = $this->getObjectIdsOwned($name);
+
+    return call_user_func(array(sfInflector::classify($name).'Peer', 'retrieveByPks'), $ids);
+  }
+
+  public function getObjectIdsOwned($name)
+  {
+    $name = sfInflector::underscore($name);
+    $ids = $this->getAttribute($name, array(), 'cq/user/owns');
+
+    return $ids;
   }
 
 }

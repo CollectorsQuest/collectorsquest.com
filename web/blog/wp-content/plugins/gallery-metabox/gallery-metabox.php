@@ -4,7 +4,7 @@ Plugin Name: Gallery Metabox
 Plugin URI: http://wordpress.org/extend/plugins/gallery-metabox/
 Description: Displays all the post's attached images on the Edit screen
 Author: Bill Erickson
-Version: 1.3
+Version: 1.4
 Author URI: http://www.billerickson.net
 */
 
@@ -27,19 +27,19 @@ add_action( 'init', 'be_gallery_metabox_translations' );
  * @author Bill Erickson
  */
 function be_gallery_metabox_add() {
-	// Filterable metabox settings.
+	// Filterable metabox settings. 
 	$post_types = apply_filters( 'be_gallery_metabox_post_types', array( 'post', 'page') );
 	$context = apply_filters( 'be_gallery_metabox_context', 'normal' );
 	$priority = apply_filters( 'be_gallery_metabox_priority', 'high' );
-
+	
 	// Loop through all post types
 	foreach( $post_types as $post_type ) {
-
+		
 		// Get post ID
 		if( isset( $_GET['post'] ) ) $post_id = $_GET['post'];
 		elseif( isset( $_POST['post_ID'] ) ) $post_id = $_POST['post_ID'];
 		if( !isset( $post_id ) ) $post_id = false;
-
+		
 		// Granular filter so you can limit it to single page or page template
 		if( apply_filters( 'be_gallery_metabox_limit', true, $post_id ) )
 			add_meta_box( 'be_gallery_metabox', __( 'Gallery Images', 'gallery-metabox' ), 'be_gallery_metabox', $post_type, $context, $priority );
@@ -57,18 +57,18 @@ add_action( 'add_meta_boxes', 'be_gallery_metabox_add' );
  * @author Bill Erickson
  */
 function be_gallery_metabox( $post ) {
-  global $post;
+	
 	$original_post = $post;
 	echo be_gallery_metabox_html( $post->ID );
 	$post = $original_post;
 }
 
-/**
- * Gallery Metabox HTML
+/** 
+ * Gallery Metabox HTML 
  * @since 1.3
  *
  * @param int $post_id
- * @return string html output
+ * @return string html output 
  *
  * @author Bill Erickson
  */
@@ -85,19 +85,19 @@ function be_gallery_metabox_html( $post_id ) {
 	);
 	$args = apply_filters( 'be_gallery_metabox_args', $args );
 	$return = '';
-
-	$intro = '<p><a href="media-upload.php?post_id=' . $post_id .'&amp;type=image&amp;TB_iframe=1&amp;width=640&amp;height=715" id="add_image" class="thickbox" title="' . __( 'Add Image', 'gallery-metabox' ) . '">' . __( 'Upload Images', 'gallery-metabox' ) . '</a> | <a href="media-upload.php?post_id=' . $post_id .'&amp;type=image&amp;tab=gallery&amp;TB_iframe=1&amp;width=640&amp;height=715" id="manage_gallery" class="thickbox" title="' . __( 'Manage Gallery', 'gallery-metabox' ) . '">' . __( 'Manage Gallery', 'gallery-metabox' ) . '</a> | (Click on an image below to preview and edit its thumbnails)</p>';
+	
+	$intro = '<p><a href="media-upload.php?post_id=' . $post_id .'&amp;type=image&amp;TB_iframe=1&amp;width=640&amp;height=715" id="add_image" class="thickbox" title="' . __( 'Add Image', 'gallery-metabox' ) . '">' . __( 'Upload Images', 'gallery-metabox' ) . '</a> | <a href="media-upload.php?post_id=' . $post_id .'&amp;type=image&amp;tab=gallery&amp;TB_iframe=1&amp;width=640&amp;height=715" id="manage_gallery" class="thickbox" title="' . __( 'Manage Gallery', 'gallery-metabox' ) . '">' . __( 'Manage Gallery', 'gallery-metabox' ) . '</a></p>';
 	$return .= apply_filters( 'be_gallery_metabox_intro', $intro );
 
-
-	$loop = new WP_Query( $args );
-	if( !$loop->have_posts() )
+	
+	$loop = get_posts( $args );
+	if( empty( $loop ) )
 		$return .= '<p>No images.</p>';
-
-	while( $loop->have_posts() ): $loop->the_post(); global $post;
-		$thumbnail = wp_get_attachment_image_src( $post->ID, apply_filters( 'be_gallery_metabox_image_size', 'thumbnail' ) );
-		$return .= apply_filters( 'be_gallery_metabox_output', '<a class="thickbox" href="/blog/wp-admin/admin-ajax.php?action=pte_ajax&pte-action=launch&id='.$post->ID.'&TB_iframe=1&width=590&height=501"><img src="' . $thumbnail[0] . '" alt="' . get_the_title() . '" title="' . get_the_content() . '" /></a> ', $thumbnail[0], $post );
-	endwhile;
+			
+	foreach( $loop as $image ):
+		$thumbnail = wp_get_attachment_image_src( $image->ID, apply_filters( 'be_gallery_metabox_image_size', 'thumbnail' ) );
+		$return .= apply_filters( 'be_gallery_metabox_output', '<img src="' . $thumbnail[0] . '" alt="' . $image->post_title . '" title="' . $image->post_content . '" /> ', $thumbnail[0], $image );
+	endforeach;
 
 	return $return;
 }

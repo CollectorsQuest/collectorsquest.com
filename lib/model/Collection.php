@@ -204,6 +204,20 @@ class Collection extends BaseCollection
     $this->save($con);
   }
 
+  public function getFeedTitle()
+  {
+    return $this->getName();
+  }
+
+  public function getFeedDescription()
+  {
+    $v = parent::getDescription();
+    $v = trim(strip_tags($v));
+    $v = cqStatic::truncateText($v, 255, '...', true);
+
+    return $v;
+  }
+
   /**
    * @param  PropelPDO  $con
    * @return boolean

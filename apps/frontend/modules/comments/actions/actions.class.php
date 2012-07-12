@@ -13,17 +13,38 @@ class commentsActions extends cqFrontendActions
       if ($form->isValid())
       {
         $comment = $form->save();
+        $cqEmail = new cqEmail($this->getMailer());
 
         if (method_exists($comment->getModelObject(), '__toString'))
         {
+          if (method_exists($comment->getModelObject(), 'getCollector'))
+          {
+            $owner = $comment->getModelObject()->getCollector();
+
+            if (!$this->getUser()->isAuthenticated() || $this->getCollector()->getId() != $owner->getId())
+            {
+              $cqEmail->send('Comments/new_comment_on_owned_item_notification', array(
+                  'to' => $owner->getEmail(),
+                  'params' => array(
+                      'oOwner' => $owner,
+                      'oModelObject' => $comment->getModelObject(),
+                      'oNewComment' => $comment,
+                      'sThreadUrl' => $request->getReferer() . '#comments',
+                  ),
+              ));
+            }
+          }
+
           $notify_comments = CommentQuery::create()
             ->filterByModelObject($comment->getModelObject())
             ->filterByIsNotify(true)
+            ->_if(isset($owner))
+              ->filterByCollectorId($owner->getId(), Criteria::NOT_EQUAL)
+            ->_endif()
             ->groupByAuthorEmail()
             ->groupByCollectorId()
             ->find();
 
-          $cqEmail = new cqEmail($this->getMailer());
           foreach ($notify_comments as $notify_comment)
           {
             if ($comment->getAuthorEmail() == $notify_comment->getAuthorEmail())
@@ -45,8 +66,8 @@ class commentsActions extends cqFrontendActions
                         'model_pk' => $notify_comment->getModelObjectPk(),
                         'r' => $request->getReferer(),
                     ), true)
-                ), // params
-            )); // send()
+                ),
+            ));
           }
         }
       }
@@ -58,7 +79,7 @@ class commentsActions extends cqFrontendActions
       }
     }
 
-    $this->redirect($request->getReferer() . "#comments");
+    return $this->redirect($request->getReferer() . "#comments");
   }
 
   public function executeLoadMoreComments(sfWebRequest $request)

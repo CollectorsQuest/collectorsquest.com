@@ -81,7 +81,7 @@ class CollectorProfileEditForm extends BaseCollectorProfileForm
       'about_me' => new sfValidatorString(array('required' => false)),
       'about_collections' => new sfValidatorString(array('required' => false)),
       'about_what_you_collect' => new cqValidatorTags(array('required' => false)),
-      'about_purchases_per_year'   => new sfValidatorNumber(array('required' => false, 'max' => 0), array(
+      'about_purchases_per_year'   => new sfValidatorNumber(array('required' => false, 'min' => 0), array(
           'min' => 'You cannot enter a value below zero here.',
       )),
       'about_most_expensive_item' => new cqValidatorPrice(array('required' => false)),

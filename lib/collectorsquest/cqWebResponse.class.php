@@ -1,6 +1,6 @@
 <?php
 
-class cqWebResponse extends sfWebResponse
+class cqWebResponse extends iceWebResponse
 {
   /** @var string */
   private $_canonical_url = null;

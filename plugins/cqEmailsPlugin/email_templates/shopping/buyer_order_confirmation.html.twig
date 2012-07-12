@@ -17,7 +17,13 @@
 </p>
 
 <p>Here are your transaction details:</p>
-
 {% include 'shopping/_order_details.html.twig' %}
+
+<p>
+  Click on the address below to access your order details:
+</p>
+<p>
+  {{ url_for('shopping_order_with_hash', oShoppingOrder, {absolute: true}) }}
+</p>
 
 {% endblock %}
