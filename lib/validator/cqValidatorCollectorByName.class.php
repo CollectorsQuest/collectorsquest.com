@@ -42,12 +42,16 @@ class cqValidatorCollectorByName extends sfValidatorString
   public function doClean($value)
   {
     $value = parent::doClean($value);
-
     $collectors = CollectorQuery::create()
       ->filterByUsername($value)
-      ->find() ?: CollectorQuery::create()
-      ->filterByDisplayName($value)
       ->find();
+
+    if (!$collectors->count())
+    {
+      $collectors = CollectorQuery::create()
+        ->filterByDisplayName($value)
+        ->find();
+    }
 
     if (count($collectors) > 1)
     {
