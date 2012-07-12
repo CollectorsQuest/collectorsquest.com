@@ -10,11 +10,15 @@ class CollectorEditForm extends CollectorForm
   {
     parent::configure();
 
-    $this->setupPasswordFields();
     $this->embedProfileForm();
+    $this->setupPasswordFields();
     $this->setupProfileGenderField();
     $this->setupProfileCollectorType();
-    $this->setupProfileWebsite();
+
+    $this->widgetSchema->setHelp(
+      'birthday',
+      '<strong>Note:</strong> This information will remain private!'
+    );
 
     if ($this->getOption('seller_settings_show'))
     {
@@ -26,12 +30,14 @@ class CollectorEditForm extends CollectorForm
       'collector_type'            => 'Collector Type',
       'country_iso3166'           => 'Country',
       'about_what_you_collect'    => 'What do you collect?',
-      'about_collections'         => 'About My Items',
+      'about_what_you_sell'       => 'What do you sell?',
+      'about_me'                  => 'About me',
+      'about_collections'         => 'About my items',
+      'about_interests'           => 'About my interests',
       'about_purchase_per_year'   => 'How many times a year do you purchase?',
       'about_most_expensive_item' => "The most you've spent on an item?",
       'about_annually_spend'      => 'Annually?',
-      'about_interests'           => 'My Interests Are',
-      'website'                   => 'Personal Website',
+      'website'                   => 'Website',
     ));
 
     $this->setupDisplayNameValidator();
@@ -203,24 +209,12 @@ class CollectorEditForm extends CollectorForm
         $values['seller_settings_phone_number']
       );
     }
-    //  if (isset($values['seller_settings_store_description']))
-    //  {
-    //    $this->getObject()->setSellerSettingsStoreDescription(
-    //      strip_tags($values['seller_settings_store_description'])
-    //    );
-    //  }
     if (isset($values['seller_settings_return_policy']))
     {
       $this->getObject()->setSellerSettingsReturnPolicy(
         strip_tags($values['seller_settings_return_policy'])
       );
     }
-    //  if (isset($values['seller_settings_payment_accepted']))
-    //  {
-    //    $this->getObject()->setSellerSettingsPaymentAccepted(
-    //      strip_tags($values['seller_settings_payment_accepted'])
-    //    );
-    //  }
     if (isset($values['seller_settings_welcome']))
     {
       $this->getObject()->setSellerSettingsWelcome(
