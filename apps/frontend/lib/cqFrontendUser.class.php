@@ -11,7 +11,7 @@ class cqFrontendUser extends cqBaseUser
 
   const PRIVATE_MESSAGES_SENT_COUNT_KEY = 'private_messages_sent_count';
   const DROPBOX_OPEN_STATE_COOKIE_NAME = 'cq_mycq_dropbox_open';
-  const VISITOR_INFO_COOKIE_NAME = 'cq_visitor_info';
+  const VISITOR_INFO_COOKIE_NAME = 'cq_visitor';
 
   /**
    * @param  boolean  $strict
