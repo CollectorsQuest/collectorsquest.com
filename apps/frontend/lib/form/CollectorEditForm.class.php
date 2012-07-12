@@ -10,11 +10,15 @@ class CollectorEditForm extends CollectorForm
   {
     parent::configure();
 
-    $this->setupPasswordFields();
     $this->embedProfileForm();
+    $this->setupPasswordFields();
     $this->setupProfileGenderField();
     $this->setupProfileCollectorType();
-    $this->setupProfileWebsite();
+
+    $this->widgetSchema->setHelp(
+      'birthday',
+      '<strong>Note:</strong> This information will remain private!'
+    );
 
     if ($this->getOption('seller_settings_show'))
     {
@@ -26,12 +30,14 @@ class CollectorEditForm extends CollectorForm
       'collector_type'            => 'Collector Type',
       'country_iso3166'           => 'Country',
       'about_what_you_collect'    => 'What do you collect?',
-      'about_collections'         => 'About My Items',
+      'about_what_you_sell'       => 'What do you sell?',
+      'about_me'                  => 'About me',
+      'about_collections'         => 'About my items',
+      'about_interests'           => 'About my interests',
       'about_purchase_per_year'   => 'How many times a year do you purchase?',
       'about_most_expensive_item' => "The most you've spent on an item?",
       'about_annually_spend'      => 'Annually?',
-      'about_interests'           => 'My Interests Are',
-      'website'                   => 'Personal Website',
+      'website'                   => 'Website',
     ));
 
     $this->setupDisplayNameValidator();
@@ -91,25 +97,15 @@ class CollectorEditForm extends CollectorForm
     $this->setupSellerSettingsPayPalFields();
     $this->setupSellerSettingsPhoneNumberField(false);
 
-//    $this->widgetSchema['seller_settings_store_description'] = new sfWidgetFormTextarea(array(
-//      'label' => 'Store Description',
-//    ));
-    $this->widgetSchema['seller_settings_return_policy'] = new sfWidgetFormTextarea(array(
-      'label' => 'Return Policy',
-    ));
-//    $this->widgetSchema['seller_settings_payment_accepted'] = new sfWidgetFormTextarea(array(
-//      'label' => 'Payment Accepted',
-//    ));
-
+    $this->setupSellerSettingsRefundsField();
+    $this->setupSellerSettingsReturnPolicyField();
     $this->setupSellerSettingsWelcomeField($required);
     $this->setupSellerSettingsShippingField($required);
-    $this->setupSellerSettingsRefundsField($required);
     $this->setupSellerSettingsAdditionalPoliciesField($required);
 
-    $this->validatorSchema['seller_settings_paypal_email'] = new sfValidatorEmail(array('required' => $required));
-//    $this->validatorSchema['seller_settings_store_description'] = new sfValidatorString(array('required' => $required));
-    $this->validatorSchema['seller_settings_return_policy'] = new sfValidatorString(array('required' => false));
-//    $this->validatorSchema['seller_settings_payment_accepted'] = new sfValidatorString(array('required' => false));
+    $this->validatorSchema['seller_settings_paypal_email'] = new sfValidatorEmail(
+      array('required' => $required)
+    );
   }
 
   protected function embedProfileForm()
@@ -213,24 +209,12 @@ class CollectorEditForm extends CollectorForm
         $values['seller_settings_phone_number']
       );
     }
-    //  if (isset($values['seller_settings_store_description']))
-    //  {
-    //    $this->getObject()->setSellerSettingsStoreDescription(
-    //      strip_tags($values['seller_settings_store_description'])
-    //    );
-    //  }
     if (isset($values['seller_settings_return_policy']))
     {
       $this->getObject()->setSellerSettingsReturnPolicy(
         strip_tags($values['seller_settings_return_policy'])
       );
     }
-    //  if (isset($values['seller_settings_payment_accepted']))
-    //  {
-    //    $this->getObject()->setSellerSettingsPaymentAccepted(
-    //      strip_tags($values['seller_settings_payment_accepted'])
-    //    );
-    //  }
     if (isset($values['seller_settings_welcome']))
     {
       $this->getObject()->setSellerSettingsWelcome(
@@ -271,9 +255,7 @@ class CollectorEditForm extends CollectorForm
       'seller_settings_paypal_lname'          => $this->getObject()->getSellerSettingsPaypalLastName(),
       'seller_settings_phone_code'            => $this->getObject()->getSellerSettingsPhoneCode(),
       'seller_settings_phone_number'          => $this->getObject()->getSellerSettingsPhoneNumber(),
-//      'seller_settings_store_description'   => $this->getObject()->getSellerSettingsStoreDescription(),
       'seller_settings_return_policy'         => $this->getObject()->getSellerSettingsReturnPolicy(),
-//      'seller_settings_payment_accepted'    => $this->getObject()->getSellerSettingsPaymentAccepted(),
       'seller_settings_welcome'               => $this->getObject()->getSellerSettingsWelcome(),
       'seller_settings_shipping'              => $this->getObject()->getSellerSettingsShipping(),
       'seller_settings_refunds'               => $this->getObject()->getSellerSettingsRefunds(),
@@ -399,7 +381,7 @@ class CollectorEditForm extends CollectorForm
   public function setupSellerSettingsWelcomeField($required = false)
   {
     $this->widgetSchema['seller_settings_welcome'] = new sfWidgetFormTextarea(array(
-      'label' => 'Welcome',
+      'label' => 'About Your Store',
     ));
 
     $this->validatorSchema['seller_settings_welcome'] = new sfValidatorString(
@@ -410,7 +392,7 @@ class CollectorEditForm extends CollectorForm
   public function setupSellerSettingsShippingField($required = false)
   {
     $this->widgetSchema['seller_settings_shipping'] = new sfWidgetFormTextarea(array(
-      'label' => 'Shipping',
+      'label' => 'Shipping Policy',
     ));
 
     $this->validatorSchema['seller_settings_shipping'] = new sfValidatorString(
@@ -418,14 +400,27 @@ class CollectorEditForm extends CollectorForm
     );
   }
 
-  public function setupSellerSettingsRefundsField($required = false)
+  public function setupSellerSettingsRefundsField()
   {
-    $this->widgetSchema['seller_settings_refunds'] = new sfWidgetFormTextarea(array(
-      'label' => 'Refunds and Exchange',
-    ));
+    $this->widgetSchema['seller_settings_refunds'] = new sfWidgetFormTextarea(
+      array('label' => 'Refunds and Exchange'),
+      array('required' => 'required')
+    );
 
     $this->validatorSchema['seller_settings_refunds'] = new sfValidatorString(
-      array('required' => $required)
+      array('required' => true)
+    );
+  }
+
+  public function setupSellerSettingsReturnPolicyField()
+  {
+    $this->widgetSchema['seller_settings_return_policy'] = new sfWidgetFormTextarea(
+      array('label' => 'Return Policy'),
+      array('required' => 'required')
+    );
+
+    $this->validatorSchema['seller_settings_return_policy'] = new sfValidatorString(
+      array('required' => true)
     );
   }
 

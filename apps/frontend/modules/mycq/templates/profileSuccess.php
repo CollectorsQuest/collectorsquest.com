@@ -96,30 +96,8 @@
             <?= $collector_form['display_name']->renderRow(); ?>
             <?= $collector_form['collector_type']->renderRow(); ?>
             <?= $collector_form['about_what_you_collect']->renderRow(); ?>
-            <?= $collector_form['about_purchases_per_year']->renderRow(); ?>
+            <?= $collector_form['about_what_you_sell']->renderRow(); ?>
 
-            <div class="control-group">
-              <label class="control-label" for="input01">Purchasing habits</label>
-              <div class="controls form-inline clearfix" style="width: 540px">
-                <div class="inset-input pull-left">
-                  <label for="<?= $collector_form['about_most_expensive_item']->renderId(); ?>">
-                    <?= $collector_form['about_most_expensive_item']->renderLabelName(); ?>
-                  </label>
-                  <?= $collector_form['about_most_expensive_item']->render(array('class' => 'span2')); ?>
-                </div>
-
-                <div class="inset-input pull-right">
-                  <label for="<?= $collector_form['about_annually_spend']->renderId(); ?>" class="spacer-left">
-                    <?= $collector_form['about_annually_spend']->renderLabelName(); ?>
-                  </label>
-                  <?= $collector_form['about_annually_spend']->render(array('class' => 'span2')); ?>
-                </div>
-                <br style="clear: both">
-                <div class="help-block spacer-top-10">
-                  <strong>Note:</strong> This information will not be made public
-                </div>
-              </div>
-            </div>
           </fieldset>
 
           <fieldset class="brown-dashes form-container-center">
@@ -151,7 +129,6 @@
             <?= $collector_form['about_me']->renderRow(); ?>
             <?= $collector_form['about_collections']->renderRow(); ?>
             <?= $collector_form['about_interests']->renderRow(); ?>
-            <?= $collector_form['website']->renderRow(); ?>
           </fieldset>
 
           <fieldset class="brown-dashes form-container-center">
