@@ -23,7 +23,7 @@ class CollectibleForSaleEditForm extends CollectibleForSaleForm
       ), array(
         'invalid'  => sprintf(
           'You must <a href="%s">setup your paypal account</a> before you can sell in the Marketplace',
-          sfContext::getInstance()->getController()->genUrl('@mycq_marketplace_settings')),
+          sfContext::getInstance()->getController()->genUrl('@mycq_profile_store_settings')),
       )
     ));
 
