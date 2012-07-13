@@ -589,12 +589,6 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
     $multimedia->makeCustomThumb(75, 75, '75x75', 'top', false);
     $multimedia->makeCustomThumb(190, 150, '190x150', 'top', false);
     $multimedia->makeCustomThumb(260, 205, '260x205', 'top', $watermark);
-
-    /**
-     * Legacy application
-     */
-    $multimedia->makeCustomThumb(420, 0, '420x0', 'resize', $watermark);
-    $multimedia->makeCustomThumb(1024, 768, '1024x768', 'resize', $watermark);
   }
 
   /**
