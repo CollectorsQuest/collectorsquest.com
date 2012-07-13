@@ -360,7 +360,12 @@ class CollectorEditForm extends CollectorForm
     );
 
     $this->validatorSchema->setPostValidator(
-      new sfValidatorCallback(array('callback' => array($this, 'validateSellerSettingsPayPal')))
+      new sfValidatorCallback(
+        array('callback' => array($this, 'validateSellerSettingsPayPal')),
+        array('invalid' => 'We cannot verify the status of your PayPal account.<br/>
+                            Please check the information you\'ve entered and make
+                            sure that it matches your PayPal account.')
+      )
     );
   }
 
@@ -457,8 +462,10 @@ class CollectorEditForm extends CollectorForm
     }
     else
     {
-      if (isset($result['Errors'][0]))
-      {
+      if (
+        isset($result['Errors'][0]) &&
+        $result['Errors'][0]['Message'] != 'Cannot determine PayPal Account status'
+      ) {
         throw new sfValidatorError($validator, $result['Errors'][0]['Message']);
       }
 

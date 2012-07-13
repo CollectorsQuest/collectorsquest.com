@@ -70,7 +70,7 @@
                 <?php else: ?>
                   <i class="icon icon-plus white-alternate-view"></i>
                   <span class="info-text">
-                    Alternative<br/> View
+                    Alternate<br/> View
                   </span>
                 <?php endif; ?>
               </div>
@@ -113,7 +113,7 @@
         <?= $form['thumbnail']->renderLabel(); ?>
         <div class="controls">
           <?= $form['thumbnail']->render(); ?>
-          <label><?= $form['is_alt_view']; ?>&nbsp; Add as an alternative view instead?</label>
+          <label><?= $form['is_alt_view']; ?>&nbsp; Add as an alternate view instead?</label>
           <?= $form['thumbnail']->renderError(); ?>
         </div>
       </div>
