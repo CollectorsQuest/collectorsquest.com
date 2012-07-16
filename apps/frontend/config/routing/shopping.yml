@@ -1,0 +1,87 @@
+
+### MARKETPLACE
+
+marketplace_categories:
+  url: /marketplace/categories
+  param: { module: marketplace, action: categories }
+
+marketplace_category_by_slug:
+  url: /marketplace/:id/:slug
+  class: sfPropelRoute
+  options: { model: ContentCategory, type: object }
+  param: { module: marketplace, action: browse }
+  requirements:
+    id: \d+
+    sf_method: [GET, POST]
+
+marketplace:
+  url: /marketplace
+  param: { module: marketplace, action: index }
+
+### SHOPPING
+
+shopping_cart_remove:
+  url: /cart/:id/remove
+  param: { module: shopping, action: cart, cmd: remove }
+  requirements: { id: \d+ }
+
+shopping_cart_checkout:
+  url: /cart/checkout
+  param: { module: shopping, action: checkout }
+  requirements: { sf_method: [post] }
+
+shopping_cart_empty:
+  url: /cart/empty
+  param: { module: shopping, action: cart, cmd: empty }
+
+shopping_cart:
+  url: /cart
+  param: { module: shopping, action: cart }
+  requirements: { sf_method: [get, post] }
+
+shopping_order_paypal:
+  url: /order/:uuid/paypal
+  class: sfPropelRoute
+  options: { model: ShoppingOrder, type: object }
+  param: { module: shopping, action: paypal }
+  requirements: { sf_method: [get, post] }
+
+shopping_order_shipping:
+  url: /order/:uuid/shipping
+  class: sfPropelRoute
+  options: { model: ShoppingOrder, type: object }
+  param: { module: shopping, action: orderShipping }
+  requirements: { sf_method: [get, post] }
+
+shopping_order_pay:
+  url: /order/:uuid/pay
+  class: sfPropelRoute
+  options: { model: ShoppingOrder, type: object }
+  param: { module: shopping, action: orderPay }
+  requirements: { sf_method: [get, post] }
+
+shopping_order_review:
+  url: /order/:uuid/review
+  class: sfPropelRoute
+  options: { model: ShoppingOrder, type: object }
+  param: { module: shopping, action: orderReview }
+
+shopping_order_error:
+  url: /order/:uuid/error
+  class: sfPropelRoute
+  options: { model: ShoppingOrder, type: object }
+  param: { module: shopping, action: orderError }
+
+shopping_order_with_hash:
+  url: /order/:uuid/:hash
+  class: sfPropelRoute
+  options: { model: ShoppingOrder, type: object }
+  param: { module: shopping, action: order }
+  requirements: { sf_method: [get] }
+
+shopping_order:
+  url: /order/:uuid
+  class: sfPropelRoute
+  options: { model: ShoppingOrder, type: object }
+  param: { module: shopping, action: order }
+  requirements: { sf_method: [get] }
