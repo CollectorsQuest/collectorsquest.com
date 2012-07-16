@@ -4,6 +4,8 @@ class mycqActions extends cqFrontendActions
 {
   public function executeIndex()
   {
+    SmartMenu::setSelected('mycq_menu', 'home');
+
     $this->collector = $this->getUser()->getCollector();
 
     return sfView::SUCCESS;
