@@ -21,7 +21,7 @@
 
 <div class="span5 collectible_grid_view_square link">
   <p>
-    <a href="<?= url_for('mycq_collection_by_slug', $collection) ?>" class="target">
+    <a href="<?= url_for('mycq_collection_by_section', array('id' => $collection->getId(), 'section' => 'collectibles')) ?>" class="target">
       <?= cqStatic::reduceText($collection->getName(), 35, '[...]'); ?>
     </a>
   </p>
@@ -38,7 +38,8 @@
         echo '<li>', link_to(image_tag_collectible(
           $collectibles[$k], '75x75',
           array('max_width' => 60, 'max_height' => 60,)
-        ), url_for('mycq_collection_by_slug', $collection)), '</li>';
+        ), url_for('mycq_collection_by_section', array('id' => $collection->getid(), 'section' => 'collectibles'))),
+        '</li>';
       }
       else
       {

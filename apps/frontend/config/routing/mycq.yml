@@ -46,12 +46,19 @@ mycq_collections:
   url:   /mycq/collections
   param: { module: mycq, action: collections }
 
-mycq_collection_by_slug:
+mycq_collection_by_section:
+  url:  /mycq/collection/:id/:section
+  class: sfPropelRoute
+  options: { model: CollectorCollection, type: object, method: getObjectForRoute }
+  param: { module: mycq, action: collection }
+  requirements: { id: '\d+', sf_method: [get, post] }
+
+mycq_collection_by_id:
   url:  /mycq/collection/:id/:slug
   class: sfPropelRoute
   options: { model: CollectorCollection, type: object, method: getObjectForRoute }
   param: { module: mycq, action: collection }
-  requirements: { id: '\d+', slug: '[\-\w\.]+', sf_method: [get, post] }
+  requirements: { id: '\d+', sf_method: [get] }
 
 mycq_collection_collectible_create:
   url:  /mycq/collection-collectible/create

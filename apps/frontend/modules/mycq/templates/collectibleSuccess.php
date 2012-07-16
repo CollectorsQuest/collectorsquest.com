@@ -23,8 +23,8 @@
         else
         {
           $link = link_to(
-            'Back to Collection &raquo;',
-            'mycq_collection_by_slug', array('sf_subject' => $collection),
+            'Back to Collection &raquo;', 'mycq_collection_by_section',
+            array('id' => $collection->getId(), 'section' => 'collectibles'),
             array('class' => 'text-v-middle link-align')
           );
         }
@@ -41,6 +41,12 @@
   ?>
   <div class="blue-well spacer-15 cf">
     <div class="pull-left">
+      <?php
+        echo link_to(
+          '← Back to Collections', '@mycq_collections',
+          array('class' => 'btn-blue-simple')
+        );
+      ?>
       <a href="#" class="btn-blue-simple">
         Set new main thumbnail
       </a>

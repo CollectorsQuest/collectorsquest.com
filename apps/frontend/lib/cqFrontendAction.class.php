@@ -1,9 +1,9 @@
 <?php
 
 /**
- * @method  cqFrontendUser  getUser()
+ * @method cqFrontendUser getUser()
  */
-abstract class cqFrontendActions extends cqBaseActions
+abstract class cqFrontendAction extends cqBaseAction
 {
   /**
    * @param  boolean $strict
