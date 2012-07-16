@@ -24,6 +24,21 @@ class cqBaseUser extends IceSecurityUser
     return $request->getCookie('cq_uuid', null);
   }
 
+  /**
+   * Regenerate the UUID cookie; Should be done on user logout to prevent
+   * unique errors
+   *
+   * @param     string|null $uuid
+   */
+  public function regenerateCookieUuid($uuid = null)
+  {
+    /* @var $response sfWebResponse */
+    $response = sfContext::getInstance()->getResponse();
+
+    $uuid = $uuid ?: cqStatic::getUniqueId(32);
+    $response->setCookie('cq_uuid', $uuid, strtotime('+1 year'), '/', '.'. sfConfig::get('app_domain_name'));
+  }
+
   public function getReferer($default)
   {
     $referer = $this->getAttribute('referer', $default);
@@ -91,6 +106,7 @@ class cqBaseUser extends IceSecurityUser
     {
       $this->setAuthenticated(false);
       $this->collector = null;
+      $this->regenerateCookieUuid();
 
       // remove remember me cookie
       $expiration_age = sfConfig::get('app_collector_remember_cookie_expiration_age', 15 * 24 * 3600);
