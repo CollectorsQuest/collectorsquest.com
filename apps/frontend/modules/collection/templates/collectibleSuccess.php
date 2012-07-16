@@ -271,7 +271,7 @@ $(document).ready(function()
 
   var $vertical_carousel = $('#vertical-carousel');
 
-  // enable vertical carousel only if we have more than 3 alternative views
+  // enable vertical carousel only if we have more than 3 alternate views
   if ($vertical_carousel.children().length > 3) {
     // show navigation arrows
     $vertical_carousel.siblings('.ui-carousel-navigation').removeClass('hidden');

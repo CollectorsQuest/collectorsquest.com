@@ -7,6 +7,7 @@ require 'lib/model/om/BaseCollector.php';
  * @method     Collector setSingupNumCompletedSteps(int $v) Set the number of completed signup steps
  * @method     Collector setCqnextAccessAllowed(boolean $v)
  *
+ *
  * @method     Collector setSellerSettingsPaypalAccountId(string $v)
  * @method     string    getSellerSettingsPaypalAccountId()
  *
@@ -24,6 +25,7 @@ require 'lib/model/om/BaseCollector.php';
  *
  * @method     Collector setSellerSettingsPaypalLastName(string $v)
  * @method     string    getSellerSettingsPaypalLastName()
+ *
  *
  * @method     Collector setSellerSettingsPhoneCode(string $v)
  * @method     string    getSellerSettingsPhoneCode()
@@ -55,6 +57,12 @@ require 'lib/model/om/BaseCollector.php';
  * @method     Collector setSellerSettingsAdditionalPolicies(string $v)
  * @method     string    getSellerSettingsAdditionalPolicies()
  *
+ *
+ * @method     Collector setVisitorInfoNumVisits(int $v)
+ * @method     int       getVisitorInfoNumVisits()
+ *
+ * @method     Collector setVisitorInfoNumPageViews(int $v)
+ * @method     int       getVisitorInfoNumPageViews()
  */
 class Collector extends BaseCollector implements ShippingReferencesInterface
 {
@@ -78,6 +86,7 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
     $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_PAYPAL_EMAIL);
     $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_PAYPAL_FIRST_NAME);
     $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_PAYPAL_LAST_NAME);
+
     $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_PHONE_CODE);
     $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_PHONE_NUMBER);
     $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_PHONE_EXTENSION);
@@ -88,6 +97,112 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
     $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_SHIPPING);
     $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_REFUNDS);
     $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_ADDITIONAL_POLICIES);
+
+    $this->registerProperty(CollectorPeer::PROPERTY_VISITOR_INFO_FIRST_VISIT_AT);
+    $this->registerProperty(CollectorPeer::PROPERTY_VISITOR_INFO_LAST_VISIT_AT);
+    $this->registerProperty(CollectorPeer::PROPERTY_VISITOR_INFO_NUM_VISITS);
+    $this->registerProperty(CollectorPeer::PROPERTY_VISITOR_INFO_NUM_PAGE_VIEWS);
+  }
+
+  /**
+   * @param     mixed $v string, integer (timestamp), or DateTime value.
+   *               Empty strings are treated as NULL.
+   * @return    Collector The current object (for fluent API support)
+   */
+  public function setVisitorInfoFirstVisitAt($v)
+  {
+    $v = CollectorPeer::translateTimeToStringPropelStyle($v);
+
+    return parent::setVisitorInfoFirstVisitAt($v);
+  }
+
+  /**
+   * @param     string $format The date/time format string (either date()-style or strftime()-style).
+   *              If format is NULL, then the raw DateTime object will be returned.
+   * @return    mixed Formatted date/time value as string or DateTime object (if format is NULL), NULL if column is NULL, and 0 if column value is 0000-00-00 00:00:00
+   * @throws    RuntimeException - if unable to parse/validate the date/time value.
+   */
+  public function getVisitorInfoFirstVisitAt($format = 'Y-m-d H:i:s')
+  {
+    return CollectorPeer::formatTimePropelSyle(
+      parent::getVisitorInfoFirstVisitAt(),
+      $format
+    );
+  }
+
+  /**
+   * @param     mixed $v string, integer (timestamp), or DateTime value.
+   *               Empty strings are treated as NULL.
+   * @return    Collector The current object (for fluent API support)
+   */
+  public function setVisitorInfoLastVisitAt($v)
+  {
+    $v = CollectorPeer::translateTimeToStringPropelStyle($v);
+
+    return parent::setVisitorInfoLastVisitAt($v);
+  }
+
+  /**
+   * @param     string $format The date/time format string (either date()-style or strftime()-style).
+   *              If format is NULL, then the raw DateTime object will be returned.
+   * @return    mixed Formatted date/time value as string or DateTime object (if format is NULL), NULL if column is NULL, and 0 if column value is 0000-00-00 00:00:00
+   * @throws    RuntimeException - if unable to parse/validate the date/time value.
+   */
+  public function getVisitorInfoLastVisitAt($format = 'Y-m-d H:i:s')
+  {
+    return CollectorPeer::formatTimePropelSyle(
+      parent::getVisitorInfoLastVisitAt(),
+      $format
+    );
+  }
+
+  /**
+   * Upon logging in, merge cookie data into ExtraProperties data
+   *
+   * @param     array $data
+   * @return    Collector
+   */
+  public function mergeVisitorInfoArray($data)
+  {
+    foreach (CollectorPeer::$visitor_info_props as $prop_name)
+    {
+      if (isset($data[$prop_name]) && $value = $data[$prop_name]) switch ($prop_name)
+      {
+        case CollectorPeer::PROPERTY_VISITOR_INFO_FIRST_VISIT_AT:
+          $new_time = strtotime($value);
+          if ($new_time < $this->getVisitorInfoFirstVisitAt('U'))
+          {
+            $this->setVisitorInfoFirstVisitAt($new_time);
+          }
+          break;
+
+        case CollectorPeer::PROPERTY_VISITOR_INFO_LAST_VISIT_AT:
+          $new_time = strtotime($value);
+          if ($new_time > $this->getVisitorInfoLastVisitAt('U'))
+          {
+            $this->setVisitorInfoFirstVisitAt($new_time);
+          }
+          break;
+
+        case CollectorPeer::PROPERTY_VISITOR_INFO_NUM_PAGE_VIEWS:
+          $this->setVisitorInfoNumPageViews(
+            $this->getVisitorInfoNumPageViews() + $value
+          );
+          break;
+
+        case CollectorPeer::PROPERTY_VISITOR_INFO_NUM_VISITS:
+          $this->setVisitorInfoNumVisits(
+            $this->getVisitorInfoNumVisits() + $value
+          );
+          break;
+
+        default:
+          $this->setProperty($prop_name, $value);
+          break;
+      }
+    }
+
+    return $this;
   }
 
   /**

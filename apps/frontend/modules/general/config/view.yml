@@ -30,7 +30,6 @@ indexIndependenceDay:
 
 loginSuccess:
   components:
-    sidebar_300: [global, sidebar300]
     footer: []
 
 recoverPasswordSuccess:

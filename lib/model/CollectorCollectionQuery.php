@@ -8,7 +8,7 @@ class CollectorCollectionQuery extends BaseCollectorCollectionQuery
    * @param ContentCategory $content_category
    * @param string $comparison
    *
-   * @return CollectibleForSaleQuery
+   * @return CollectorCollectionQuery
    */
   public function filterByContentCategoryWithDescendants($content_category, $comparison = null)
   {
@@ -47,12 +47,28 @@ class CollectorCollectionQuery extends BaseCollectorCollectionQuery
     return $this->where($where);
   }
 
+  /**
+   * @return CollectorCollectionQuery
+   */
   public function haveThumbnail()
   {
     // @todo: we need implementation
     return $this;
   }
 
+  /**
+   * @return CollectorCollectionQuery
+   */
+  public function haveCollectibles()
+  {
+    return $this
+      ->filterByNumItems(0, Criteria::GREATER_THAN);
+  }
+
+  /**
+   * @param      string  $v
+   * @return     CollectorCollectionQuery
+   */
   public function search($v)
   {
     return $this

@@ -23,7 +23,15 @@
         <?php cq_sidebar_title('PayPal Account'); ?>
         <?= form_tag('@mycq_profile_store_settings', array('class' => 'form-horizontal')); ?>
         <?= $form->renderHiddenFields(); ?>
-        <?= $form->renderAllErrors(); ?>
+
+        <?php if ($form->hasGlobalErrors()): ?>
+          <?= $form->renderAllErrors(); ?>
+        <?php elseif (!$collector->getSellerSettingsPaypalAccountStatus()): ?>
+          <p>
+            You need to enter your <strong>full name</strong> and <strong>email address</strong>
+            exactly as it appears on your PayPal account so that we can verify your information.
+          </p><br/>
+        <?php endif; ?>
 
         <?php if ($collector->getSellerSettingsPaypalAccountStatus()): ?>
         <fieldset class="form-container-center">
@@ -35,6 +43,7 @@
           </div>
         </fieldset>
         <?php endif; ?>
+
 
         <fieldset class="form-container-center">
           <?= $form['seller_settings_paypal_email']->renderRow(); ?>

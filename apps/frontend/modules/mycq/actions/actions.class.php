@@ -4,8 +4,10 @@ class mycqActions extends cqFrontendActions
 {
   public function executeIndex()
   {
-  //  $this->redirectIf(IceGateKeeper::locked('mycq_homepage'), '@mycq_profile');
+    SmartMenu::setSelected('mycq_menu', 'home');
+
     $this->collector = $this->getUser()->getCollector();
+
     return sfView::SUCCESS;
   }
 
@@ -27,15 +29,17 @@ class mycqActions extends cqFrontendActions
 
         if ($success)
         {
-          $this->getUser()->setFlash('success',
-            'You have successfully updated your profile photo.');
+          $this->getUser()->setFlash(
+            'success', 'You have successfully updated your profile photo.'
+          );
 
-          return $this->redirect('mycq_profile');
+          $this->redirect('mycq_profile');
         }
         else
         {
-          $this->getUser()->setFlash('error',
-            'There was an error when saving your profile photo.');
+          $this->getUser()->setFlash(
+            'error', 'There was an error when saving your profile photo.'
+          );
         }
       }
       else if ($request->hasParameter($collector_form->getName()))
@@ -48,16 +52,18 @@ class mycqActions extends cqFrontendActions
         if ($success)
         {
           $this->getUser()->getCollector()->getProfile()->updateProfileProgress();
-          $this->getUser()->setFlash('success',
-            'You have successfully updated your profile.');
+          $this->getUser()->setFlash(
+            'success', 'You have successfully updated your profile.'
+          );
 
-          return $this->redirect('mycq_profile');
+          $this->redirect('mycq_profile');
         }
         else
         {
-          $this->getUser()->setFlash('error',
-            'There was an error while updating your profile.
-             Please see below.');
+          $this->getUser()->setFlash(
+            'error', 'There was an error while updating your profile.
+                      Please see below.'
+          );
         }
       }
     }
@@ -175,7 +181,9 @@ class mycqActions extends cqFrontendActions
 
   public function executeProfileAddressesEdit(sfWebRequest $request)
   {
+    /** @var $address CollectorAddress */
     $address = $this->getRoute()->getObject();
+
     $this->forward404Unless($this->getCollector()->isOwnerOf($address));
 
     $form = new FrontendCollectorAddressForm($address);
@@ -198,7 +206,9 @@ class mycqActions extends cqFrontendActions
 
   public function executeProfileAddressesDelete(sfWebRequest $request)
   {
+    /** @var $address CollectorAddress */
     $address = $this->getRoute()->getObject();
+
     $this->forward404Unless($this->getUser()->isOwnerOf($address));
 
     if (sfRequest::DELETE == $request->getMethod())
@@ -207,7 +217,7 @@ class mycqActions extends cqFrontendActions
       $this->getUser()->setFlash('success',
         $this->__('You have successfully removed an address from your account.'));
 
-      return $this->redirect('@mycq_profile_addresses');
+      $this->redirect('@mycq_profile_addresses');
     }
 
     $this->collector_address = $address;
@@ -283,7 +293,7 @@ class mycqActions extends cqFrontendActions
         break;
     }
 
-    return $this->redirect('@mycq_collections');
+    $this->redirect('@mycq_collections');
   }
 
   public function executeCollections()
@@ -423,7 +433,7 @@ class mycqActions extends cqFrontendActions
     $collection_collectible = $q->findOneOrCreate();
     $collection_collectible->save();
 
-    return $this->redirect('mycq_collectible_by_slug', $collection_collectible);
+    $this->redirect('mycq_collectible_by_slug', $collection_collectible);
   }
 
   public function executeCollectible(sfWebRequest $request)
@@ -442,11 +452,11 @@ class mycqActions extends cqFrontendActions
       $this->multimedia = $collectible->getMultimedia(0, 'image', false);
 
       $this->shopping_order = ShoppingOrderQuery::create()
+        ->filterByCollectibleId($collectible->getId())
         ->joinShoppingPaymentRelatedByShoppingPaymentId()
         ->useShoppingPaymentRelatedByShoppingPaymentIdQuery()
           ->filterByStatus(ShoppingPaymentPeer::STATUS_COMPLETED)
         ->endUse()
-        ->filterByCollectibleId($collectible->getId())
         ->findOne();
 
       if ($this->shopping_order instanceof ShoppingOrder)
@@ -490,9 +500,6 @@ class mycqActions extends cqFrontendActions
 
     /** @var $collection CollectorCollection */
     $collection = $collectible->getCollectorCollection();
-
-    /** @var $collector Collector */
-    $collector = $this->getCollector();
 
     if ($request->getParameter('cmd'))
     {
@@ -718,7 +725,7 @@ class mycqActions extends cqFrontendActions
       'error', 'The upload was cancelled and none of the photos were uploaded'
     );
 
-    return $this->redirect('@mycq_collections');
+    $this->redirect('@mycq_collections');
   }
 
   public function executeUploadFinish(sfWebRequest $request)

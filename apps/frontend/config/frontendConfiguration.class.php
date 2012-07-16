@@ -9,5 +9,7 @@ class frontendConfiguration extends cqApplicationConfiguration
     parent::setup();
 
     $this->enablePlugins(array('sfFeed2Plugin'));
+
+    $this->dispatcher->connect('user.change_authentication', array('CollectorPeer', 'listenToChangeAuthenticationEvent'));
   }
 }

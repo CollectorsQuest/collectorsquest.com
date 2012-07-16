@@ -70,6 +70,8 @@ class categoriesActions extends cqFrontendActions
     }
 
     $q = CollectorCollectionQuery::create()
+       ->haveThumbnail()
+       ->haveCollectibles()
        ->filterByContentCategoryWithDescendants($this->category)
        ->orderByUpdatedAt(Criteria::DESC);
 

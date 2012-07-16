@@ -16,7 +16,7 @@
         <?php cq_sidebar_title('Edit Your Address Book'); ?>
 
         <div class="collector-addresses-holder">
-          <h2>Your addresses</h2>
+          <h2>Shopping Address</h2>
 
           <?php if (count($collector_addresses)): ?>
             <div class="collector-addresses">
@@ -58,11 +58,10 @@
             </div> <!-- .collector-addresses -->
 
           <?php else: ?>
-            <p>
+            <p class="spacer-20">
               You have no addresses currently entered. <br/>
             </p>
           <?php endif; ?>
-          Click here to add a new address:
           <a class="btn btn-primary" href="<?= url_for('@mycq_profile_addresses_new') ?>">Enter a new address</a>
         </div> <!-- .collector-address-holder -->
 
