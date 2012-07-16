@@ -11,6 +11,33 @@
       enctype="multipart/form-data" novalidate
       id="form-collectible" method="post" class="form-horizontal">
 
+  <?php
+        if ($collectible->isForSale())
+        {
+          $link = link_to(
+            'Go to Market &raquo;', '@mycq_marketplace',
+            array('class' => 'text-v-middle link-align')
+          );
+        }
+        else
+        {
+          $link = link_to(
+            'Back to Collection &raquo;',
+            'mycq_collection_by_slug', array('sf_subject' => $collection),
+            array('class' => 'text-v-middle link-align')
+          );
+        }
+         cq_sidebar_title(
+          $collectible->getName(), $link,
+          array('left' => 8, 'right' => 4, 'class'=>'spacer-top-reset row-fluid sidebar-title')
+        );
+
+/*
+  cq_sidebar_title(
+    $collectible->getName(), null,
+    array('left' => 8, 'right' => 4, 'class'=>'spacer-top-reset row-fluid sidebar-title')
+  ); */
+  ?>
   <div class="blue-well spacer-15 cf">
     <div class="pull-left">
       <a href="#" class="btn-blue-simple">
@@ -25,9 +52,11 @@
         Delete this collectibles
       </a>
     </div>
+    <?php /*
     <div class="pull-right">
       <a href="#">Back to Collection »</a>
     </div>
+    */ ?>
   </div>
 
   <div class="row-fluid">
@@ -99,33 +128,6 @@
 
     </div><!-- ./span4 -->
     <div class="span8">
-      <?php /*
-        if ($collectible->isForSale())
-        {
-          $link = link_to(
-            'Go to Market &raquo;', '@mycq_marketplace',
-            array('class' => 'text-v-middle link-align')
-          );
-        }
-        else
-        {
-          $link = link_to(
-            'Back to Collection &raquo;',
-            'mycq_collection_by_slug', array('sf_subject' => $collection),
-            array('class' => 'text-v-middle link-align')
-          );
-        }
-         cq_sidebar_title(
-          $collectible->getName(), $link,
-          array('left' => 8, 'right' => 4, 'class'=>'spacer-top-reset row-fluid sidebar-title')
-        );
-      */
-
-      cq_sidebar_title(
-        $collectible->getName(), null,
-        array('left' => 8, 'right' => 4, 'class'=>'spacer-top-reset row-fluid sidebar-title')
-      );
-      ?>
 
       <?= $form['collection_collectible_list']->renderRow(); ?>
       <?= $form['name']->renderRow(); ?>

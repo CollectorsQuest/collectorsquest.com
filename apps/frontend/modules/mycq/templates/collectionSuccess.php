@@ -4,7 +4,18 @@
  * @var $form CollectorCollectionEditForm
  */
 ?>
-<?php cq_sidebar_title('Collectibles (' . $total . ')') ?>
+
+<?php
+$link = link_to(
+  'Back to Collections &raquo;', '@mycq_collections',
+  array('class' => 'text-v-middle link-align')
+);
+
+cq_sidebar_title(
+  $collection->getName(), $link,
+  array('left' => 8, 'right' => 4, 'class'=>'spacer-top-reset row-fluid sidebar-title')
+);
+?>
 
 <div class="blue-well spacer-15 cf">
   <div class="row-fluid">
@@ -167,17 +178,6 @@
     </div>
   </div>
   <div class="span9">
-    <?php
-      $link = link_to(
-        'Back to Collections &raquo;', '@mycq_collections',
-        array('class' => 'text-v-middle link-align')
-      );
-
-      cq_sidebar_title(
-        $collection->getName(), $link,
-        array('left' => 8, 'right' => 4, 'class'=>'spacer-top-reset row-fluid sidebar-title')
-      );
-    ?>
 
     <fieldset style="width: 580px;">
         <?= $form; ?>
