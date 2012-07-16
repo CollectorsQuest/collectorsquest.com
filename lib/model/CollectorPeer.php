@@ -526,7 +526,7 @@ class CollectorPeer extends BaseCollectorPeer
    *
    * @param     sfEvent $event
    */
-  public function listenToChangeAuthenticationEvent(sfEvent $event)
+  public static function listenToChangeAuthenticationEvent(sfEvent $event)
   {
     $params = $event->getParameters();
     /** @var $cq_user cqFrontendUser */
