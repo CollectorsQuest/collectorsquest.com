@@ -1,0 +1,54 @@
+### AJAX
+
+ajax_typeahead:
+  url:   /ajax/typeahead/:section/:page
+  param: { module: _ajax, action: typeAhead }
+  requirements: { sf_method: [GET], sf_format: json }
+
+ajax_collections:
+  url:   /ajax/collections/:section/:page.:sf_format
+  param: { module: collections, action: ajax, sf_format: html }
+  options: { extra_parameters_as_query_string: true }
+  requirements: { sf_format: (?:html|json) }
+
+ajax_collection:
+  url:   /ajax/collection/:section/:page.:sf_format
+  param: { module: collection, action: ajax, sf_format: html }
+  requirements: { sf_method: [GET], sf_format: (?:html|json) }
+
+ajax_collectors:
+  url:   /ajax/collectors/:section/:page.:sf_format
+  param: { module: collectors, action: ajax, sf_format: html }
+  options: { extra_parameters_as_query_string: true }
+  requirements: { sf_format: (?:html|json) }
+
+ajax_collector:
+  url:   /ajax/collector/:section/:page.:sf_format
+  param: { module: collector, action: ajax, sf_format: html }
+  requirements: { sf_method: [GET], sf_format: (?:html|json) }
+
+ajax_marketplace:
+  url:   /ajax/marketplace/:section/:page.:sf_format
+  param: { module: marketplace, action: ajax, sf_format: html }
+  options: { extra_parameters_as_query_string: true }
+  requirements: { sf_format: (?:html|json) }
+
+ajax_mycq:
+  url:   /ajax/mycq/:section/:page.:sf_format
+  param: { module: mycq, action: ajax, sf_format: html }
+  options: { extra_parameters_as_query_string: true }
+  requirements: { sf_format: (?:html|json) }
+
+ajax_shopping:
+  url:   /ajax/shopping/:section/:page.:sf_format
+  param: { module: shopping, action: ajax, sf_format: html }
+  options: { extra_parameters_as_query_string: true }
+  requirements: { sf_format: (?:html|json) }
+
+ajax_editable:
+  url:   /ajax/editable
+  param: { module: _ajax, action: editable }
+
+ajax_editable_load:
+  url:   /ajax/editable-load
+  param: { module: _ajax, action: editableLoad }
