@@ -21,23 +21,22 @@
 
 <?php if ($pager->getNbResults() > 0): ?>
 
-<?php foreach ($pager->getResults() as $i => $collectible): ?>
-
+  <?php foreach ($pager->getResults() as $i => $collectible): ?>
   <div class="span3 collectible_grid_view_square link">
     <?php
-    echo link_to(
-      image_tag_collectible(
-        $collectible, '150x150', array('width' => 140, 'height' => 140)
-      ),
-      'mycq_collectible_by_slug', $collectible
-    );
+      echo link_to(
+        image_tag_collectible(
+          $collectible, '150x150', array('width' => 140, 'height' => 140)
+        ),
+        'mycq_collectible_by_slug', $collectible
+      );
     ?>
     <p>
       <?php
-      echo link_to(
-        cqStatic::reduceText($collectible->getName(), 30), 'mycq_collectible_by_slug',
-        $collectible, array('class' => 'target')
-      );
+        echo link_to(
+          cqStatic::reduceText($collectible->getName(), 30), 'mycq_collectible_by_slug',
+          $collectible, array('class' => 'target')
+        );
       ?>
     </p>
   </div>
@@ -47,16 +46,59 @@
     {
       include_slot('mycq_create_collectible');
     }
-    ?>
+  ?>
   <?php endforeach; ?>
+
+  <?php if ($pager->haveToPaginate()): ?>
+  <br clear="all">
+  <div class="row-fluid text-center">
+    <?php
+    include_component(
+      'global', 'pagination',
+      array(
+        'pager' => $pager,
+        'options' => array(
+          'id' => 'collectibles-pagination',
+          'show_all' => false
+        )
+      )
+    );
+    ?>
+  </div>
+
+  <script>
+    $(document).ready(function()
+    {
+      var $url = '<?= url_for('@ajax_mycq?section=component&page=collections', true) ?>';
+      var $form = $('#form-mycq-collections');
+
+      $('#collectibles-pagination a').click(function(e)
+      {
+        e.preventDefault();
+
+        $('#collectibles').parent().showLoading();
+
+        $('#collectibles').load(
+          $url +'?p=2', $form.serialize(),
+          function(data) {
+            $('#collectibles').parent().hideLoading();
+          }
+        );
+
+        return false;
+      });
+    });
+  </script>
+
+  <?php endif; ?>
 
 <?php else: ?>
 
 <div class="span12 thumbnail link no-collections-uploaded-box">
-    <span class="Chivo webfont info-no-collections-uploaded">
-      Share your collectibles with the community today!<br/>
-      Get Started Now!
-    </span>
+  <span class="Chivo webfont info-no-collections-uploaded">
+    Share your collectibles with the community today!<br/>
+    Get Started Now!
+  </span>
 </div>
 <?php include_slot('mycq_create_collectible'); ?>
 
@@ -68,42 +110,42 @@
     $(document).controls();
 
     $("#mycq-create-collectible").droppable(
+    {
+      over: function(event, ui)
       {
-        over: function(event, ui)
-        {
-          $(this)
-            .addClass('ui-state-highlight')
-            .find('i')
-            .removeClass('icon-plus')
-            .addClass('icon-download-alt');
-        },
-        out: function(event, ui)
-        {
-          $(this)
-            .removeClass('ui-state-highlight')
-            .find('i')
-            .removeClass('icon-download-alt')
-            .addClass('icon-plus');
-        },
-        drop: function(event, ui)
-        {
-          $(this)
-            .removeClass('ui-state-highlight')
-            .find('i')
-            .removeClass('icon-download-alt')
-            .addClass('icon-plus');
+        $(this)
+          .addClass('ui-state-highlight')
+          .find('i')
+          .removeClass('icon-plus')
+          .addClass('icon-download-alt');
+      },
+      out: function(event, ui)
+      {
+        $(this)
+          .removeClass('ui-state-highlight')
+          .find('i')
+          .removeClass('icon-download-alt')
+          .addClass('icon-plus');
+      },
+      drop: function(event, ui)
+      {
+        $(this)
+          .removeClass('ui-state-highlight')
+          .find('i')
+          .removeClass('icon-download-alt')
+          .addClass('icon-plus');
 
-          ui.draggable.draggable('option', 'revert', false);
-          ui.draggable.hide();
+        ui.draggable.draggable('option', 'revert', false);
+        ui.draggable.hide();
 
-          $(this).showLoading();
+        $(this).showLoading();
 
-          var url = '<?= url_for('@mycq_collection_collectible_create') ?>';
+        var url = '<?= url_for('@mycq_collection_collectible_create') ?>';
 
-          window.location.href = url +
-            '?collection_id=' + $(this).data('collection-id') +
-            '&collectible_id=' + ui.draggable.data('collectible-id');
-        }
-      });
+        window.location.href = url +
+          '?collection_id=' + $(this).data('collection-id') +
+          '&collectible_id=' + ui.draggable.data('collectible-id');
+      }
+    });
   });
 </script>

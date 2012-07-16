@@ -49,18 +49,6 @@
           </div>
         </div>
 
-        <div class="pagination reset-t-b-margin">
-          <ul>
-            <li class="active">
-              <a href="#">1</a>
-            </li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">Next</a></li>
-          </ul>
-        </div>
-
       </div><!-- .tab-content-inner -->
     </div> <!-- .tab-pane.active -->
     <div id="tab4" class="tab-pane">

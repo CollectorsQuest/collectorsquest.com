@@ -13,50 +13,41 @@
   <?= $form->renderAllErrors(); ?>
 
   <?php
+    cq_sidebar_title(
+      $collectible->getName(), null,
+      array('left' => 10, 'right' => 2, 'class'=>'spacer-top-reset row-fluid sidebar-title')
+    );
+  ?>
+  <div class="blue-well spacer-bottom-15 cf">
+    <div class="pull-left">
+      <?php
         if ($collectible->isForSale())
         {
           $link = link_to(
-            'Go to Market &raquo;', '@mycq_marketplace',
-            array('class' => 'text-v-middle link-align')
+            '← Go to Market', '@mycq_marketplace',
+            array('class' => 'btn-blue-simple')
           );
         }
         else
         {
           $link = link_to(
-            'Back to Collection &raquo;', 'mycq_collection_by_section',
+            '← Back to Collection', 'mycq_collection_by_section',
             array('id' => $collection->getId(), 'section' => 'collectibles'),
-            array('class' => 'text-v-middle link-align')
+            array('class' => 'btn-blue-simple')
           );
         }
-         cq_sidebar_title(
-          $collectible->getName(), $link,
-          array('left' => 8, 'right' => 4, 'class'=>'spacer-top-reset row-fluid sidebar-title')
-        );
 
-/*
-  cq_sidebar_title(
-    $collectible->getName(), null,
-    array('left' => 8, 'right' => 4, 'class'=>'spacer-top-reset row-fluid sidebar-title')
-  ); */
-  ?>
-  <div class="blue-well spacer-15 cf">
-    <div class="pull-left">
-      <?php
-        echo link_to(
-          '← Back to Collections', '@mycq_collections',
-          array('class' => 'btn-blue-simple')
-        );
+        echo $link
+
       ?>
-      <a href="#" class="btn-blue-simple">
-        Set new main thumbnail
-      </a>
-      <a href="#"  class="btn-blue-simple">
+      <a href="<?= url_for_collectible($collectible) ?>"  class="btn-blue-simple">
+        <i class="icon-globe"></i>
         Public view
       </a>
       <a href="<?= url_for('mycq_collectible_by_slug', array('sf_subject' => $collectible, 'cmd' => 'delete', 'encrypt' => '1')); ?>"
-         class="btn-delete-simple"
-         onclick="return confirm('Are you sure you want to delete this Collectible?');">
-        Delete this collectibles
+         class="btn-delete-simple" onclick="return confirm('Are you sure you want to delete this Collectible?');">
+        <i class="icon-trash"></i>
+        Delete Collectible
       </a>
     </div>
     <?php /*
@@ -123,7 +114,7 @@
                 <?php else: ?>
                 <i class="icon icon-plus white-alternate-view"></i>
                 <span class="info-text">
-                    Alternative<br/> View
+                    Alternate<br/> View
                   </span>
                 <?php endif; ?>
               </div>

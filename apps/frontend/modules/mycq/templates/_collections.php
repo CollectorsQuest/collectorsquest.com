@@ -84,7 +84,7 @@
       array(
         'pager' => $pager,
         'options' => array(
-          'id' => 'collectibles-pagination',
+          'id' => 'collections-pagination',
           'show_all' => false
         )
       )
@@ -98,7 +98,7 @@
       var $url = '<?= url_for('@ajax_mycq?section=component&page=collections', true) ?>';
       var $form = $('#form-mycq-collections');
 
-      $('#collectibles-pagination a').click(function(e)
+      $('#collections-pagination a').click(function(e)
       {
         e.preventDefault();
 

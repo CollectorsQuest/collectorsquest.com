@@ -16,24 +16,18 @@ cq_sidebar_title(
 );
 ?>
 
-<div class="blue-well spacer-15 cf">
+<div class="blue-well spacer-bottom-15 cf">
   <div class="row-fluid">
     <div class="span6">
       <div class="buttons-container">
-        <!--
-        <a href="#" class="btn-blue-simple">
-          Edit all collections
+        <a href="<?= url_for('@ajax_mycq?section=component&page=createCollection'); ?>"
+           class="btn-blue-simple open-dialog" title="Create a new collection by clicking here">
+          <i class="icon-plus"></i>
+          New Collection
         </a>
-        <a href="#"  class="btn-blue-simple">
-          Re-order collection
-        </a>
-        -->
-        <a href="#" class="btn-blue-simple">
-          Public view
-        </a>
-        <a onclick="return confirm('Are you sure you want to delete this Collection?');"
-           class="btn-delete-simple" href="#">
-          Delete all collections
+        <a href="<?= url_for('collections_by_collector', $collector) ?>" class="btn-blue-simple">
+          <i class="icon-globe"></i>
+          Public View
         </a>
       </div>
     </div>

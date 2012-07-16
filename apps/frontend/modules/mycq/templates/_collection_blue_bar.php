@@ -2,14 +2,17 @@
   <div class="row-fluid">
     <div class="span8">
       <div class="buttons-container">
-        <a href="#"  class="btn-blue-simple">
+        <a href="<?= url_for('@ajax_mycq?section=component&page=createCollectible&collection_id='. $collection->getId()); ?>"
+           class="btn-blue-simple open-dialog">
           <i class="icon icon-plus"></i>
           Add Collectible
         </a>
-        <a href="#" class="btn-blue-simple">
+        <a href="<?= url_for_collection($collection); ?>" class="btn-blue-simple">
+          <i class="icon-globe"></i>
           Public View
         </a>
         <a href="#"  class="btn-blue-simple">
+          <i class="icon icon-move"></i>
           Re-order Collectibles
         </a>
         <a href="<?= url_for('mycq_collection_by_section', array('id' => $collection, 'section' => 'details', 'cmd' => 'delete', 'encrypt' => '1')); ?>"
