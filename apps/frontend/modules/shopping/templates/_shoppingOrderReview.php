@@ -47,7 +47,7 @@
             </td>
           </tr>
           <tr>
-            <td colspan="2" style="text-align: center;">
+            <td colspan="2" class="text-center">
               <button type="submit" name="Checkout" class="btn btn-large btn-danger" value="Checkout" style="width: 100%;">
                 Proceed to Checkout
               </button>

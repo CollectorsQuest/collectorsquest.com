@@ -8,7 +8,7 @@
   <?php endforeach; ?>
 </div>
 
-<div class="row" style="text-align: center;">
+<div class="row text-center">
   <a href="<?= url_for_collection($collection)?>" class="btn btn-primary">
     <i class="icon-ok"></i>
     Finish Reordering

@@ -29,7 +29,7 @@
   <?php foreach ($pager->getResults() as $i => $collectible): ?>
   <div class="span4 thumbnail link">
     <span>
-      <a href="<?= url_for('mycq_collectible_by_slug', $collectible) ?>" style="margin-left: 0px;" class="target">
+      <a href="<?= url_for('mycq_collectible_by_slug', $collectible) ?>" class="target spacer-inner-left-reset">
         <?= Utf8::truncateHtmlKeepWordsWhole($collectible->getName(), 32); ?>
       </a>
     </span>

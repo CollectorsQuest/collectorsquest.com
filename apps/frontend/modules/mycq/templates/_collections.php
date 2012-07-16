@@ -61,7 +61,7 @@
 <?php if ($pager->count() === 0): ?>
   <div class="span12 thumbnail link no-collections-uploaded-box">
     <?php if ($sf_params->get('q')): ?>
-      <span class="Chivo webfont info-no-collections-uploaded" style="padding-top: 15px;">
+      <span class="Chivo webfont info-no-collections-uploaded spacer-top-15">
         None of your collections match search term: <strong><?= $sf_params->get('q'); ?></strong>
       </span>
     <?php else: ?>
@@ -76,7 +76,7 @@
 
 <?php if ($pager->haveToPaginate()): ?>
   <br clear="all">
-  <div class="row-fluid" style="text-align: center;">
+  <div class="row-fluid text-center">
   <?php
     include_component(
       'global', 'pagination',
