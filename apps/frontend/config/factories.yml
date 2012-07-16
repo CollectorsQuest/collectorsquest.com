@@ -10,7 +10,7 @@ test:
       session_path: %SF_TEST_CACHE_DIR%/sessions
 
   response:
-    class: sfWebResponse
+    class: cqWebResponse
     param:
       send_http_headers: false
 
