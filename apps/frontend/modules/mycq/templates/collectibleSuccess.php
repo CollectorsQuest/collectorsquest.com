@@ -8,8 +8,8 @@
 ?>
 
 <form action="<?= url_for('mycq_collectible_by_slug', $collectible); ?>"
-      enctype="multipart/form-data" novalidate
-      id="form-collectible" method="post" class="form-horizontal">
+      method="post" enctype="multipart/form-data" novalidate
+      id="form-collectible" class="form-horizontal">
   <?= $form->renderAllErrors(); ?>
 
   <?php
@@ -24,14 +24,14 @@
         if ($collectible->isForSale())
         {
           $link = link_to(
-            '← Go to Market', '@mycq_marketplace',
+            '<i class="icon-circle-arrow-left"></i> Go to Market', '@mycq_marketplace',
             array('class' => 'btn-blue-simple')
           );
         }
         else
         {
           $link = link_to(
-            '← Back to Collection', 'mycq_collection_by_section',
+            '<i class="icon-arrow-left"></i> Back to Collection', 'mycq_collection_by_section',
             array('id' => $collection->getId(), 'section' => 'collectibles'),
             array('class' => 'btn-blue-simple')
           );
@@ -169,6 +169,7 @@
 
     </div><!-- ./span8 -->
 
+    <br clear="all"><br/>
     <div class="row-fluid">
       <div class="span12">
         <div class="form-actions text-center spacer-inner-15">
@@ -188,6 +189,7 @@
 </form>
 
 
+<?php if (count($collectibles) > 0): ?>
 <div class="list-thumbs-10x">
 
   <div class="row-fluid">
@@ -202,195 +204,135 @@
   </div>
 
   <ul class="thumbnails">
-    <li class="wrapper-90">
-      <a href="#" class="thumb">
-        <img alt="" src="http://placehold.it/85x85">
-      </a>
-    </li>
-    <li class="wrapper-90">
-      <a href="#" class="thumb">
-        <img alt="" src="http://placehold.it/85x85">
-      </a>
-    </li>
-    <li class="wrapper-90">
-      <a href="#" class="thumb">
-        <img alt="" src="http://placehold.it/85x85">
-      </a>
-    </li>
-    <li class="wrapper-90">
-      <a href="#" class="thumb">
-        <img alt="" src="http://placehold.it/85x85">
-      </a>
-    </li>
-    <li class="wrapper-90">
-      <a href="#" class="thumb">
-        <img alt="" src="http://placehold.it/85x85">
-      </a>
-    </li>
-    <li class="wrapper-90">
-      <a href="#" class="thumb">
-        <img alt="" src="http://placehold.it/85x85">
-      </a>
-    </li>
-    <li class="wrapper-90">
-      <a href="#" class="thumb">
-        <img alt="" src="http://placehold.it/85x85">
-      </a>
-    </li>
-    <li class="wrapper-90">
-      <a href="#" class="thumb">
-        <img alt="" src="http://placehold.it/85x85">
-      </a>
-    </li>
-    <li class="wrapper-90">
-      <a href="#" class="thumb">
-        <img alt="" src="http://placehold.it/85x85">
-      </a>
-    </li>
-    <li class="wrapper-90">
-      <div class="drop-zone ui-droppable">
-        <i class="icon icon-plus"
-           data-collection-id="3269">
-        </i>
-        <span class="drop-zone-txt">Add item<span>
-      </div>
-    </li>
-    <li class="wrapper-90">
-      <a href="#" class="thumb">
-        <img alt="" src="http://placehold.it/85x85">
-      </a>
-    </li>
-  </ul>
-</div>
-
-
-<?php if (count($collectibles) > 0): ?>
-<br/>
-<div class="list-thumbs-other-collectibles">
-  Other items in the <?= link_to_collection($collection, 'text') ?> collection
-  <ul class="thumbnails">
     <?php foreach ($collectibles as $c): ?>
-    <li class="span2">
-      <a href="<?= url_for('mycq_collectible_by_slug', $c); ?>" class="thumbnail">
-        <?= image_tag_collectible($c, '75x75'); ?>
+    <li class="wrapper-90">
+      <a href="<?= url_for('mycq_collectible_by_slug', $c); ?>" class="thumb">
+        <?= image_tag_collectible($c, '100x100', array('width' => 85, 'height' => 85)); ?>
       </a>
     </li>
     <?php endforeach; ?>
+
+    <li class="wrapper-90">
+      <div class="drop-zone ui-droppable">
+        <i class="icon icon-plus" data-collection-id="3269"></i>
+        <span class="drop-zone-txt">Add Item<span>
+      </div>
+    </li>
   </ul>
 </div>
 <?php endif; ?>
 
 <script type="text/javascript">
-  $(document).ready(function()
+$(document).ready(function()
+{
+  $(".chzn-select").chosen();
+
+  $('#collectible_description').wysihtml5({
+    "font-styles": false, "image": false, "link": false,
+    events:
+    {
+      "load": function() {
+        $('#collectible_description')
+          .removeClass('js-hide')
+          .removeClass('js-invisible');
+      },
+      "focus": function() {
+        $(editor.composer.iframe).autoResize();
+      }
+    }
+  });
+
+  $( "#main-image-set" ).sortable({
+    items: "li.span4:not(.ui-state-empty)",
+    containment: 'parent', cursor: 'move',
+    cursorAt: { left: 50, top: 50 },
+
+    update: function(event, ui)
+    {
+
+    }
+  });
+
+  $("#main-image-set .drop-zone, #main-image-set .drop-zone-large").droppable(
   {
-    $(".chzn-select").chosen();
+    accept: ".draggable",
+    over: function(event, ui)
+    {
+      var $this = $(this);
+      $this.addClass('ui-state-highlight');
+      $this.find('img').fadeTo('fast', 0);
+      $this.find('.holder-icon-edit').hide();
+      $this.find('i.icon-plus')
+        .removeClass('icon-plus')
+        .addClass('icon-download-alt')
+        .show();
+    },
+    out: function(event, ui)
+    {
+      var $this = $(this);
+      $this.removeClass("ui-state-highlight");
+      $this.find('i.icon-download-alt')
+        .removeClass('icon-download-alt')
+        .addClass('icon-plus');
+      $this.find('i.hide').hide();
+      $this.find('.holder-icon-edit').show();
+      $this.find('img').fadeTo('slow', 1);
+    },
+    drop: function(event, ui)
+    {
+      var $this = $(this);
+      $this.removeClass("ui-state-highlight");
+      $this.find('.holder-icon-edit').show();
+      $this.find('i.icon-download-alt')
+        .removeClass('icon-download-alt')
+        .addClass('icon-plus');
+      ui.draggable.draggable('option', 'revert', false);
+      ui.draggable.hide();
 
-    $('#collectible_description').wysihtml5({
-      "font-styles": false, "image": false, "link": false,
-      events:
-      {
-        "load": function() {
-          $('#collectible_description')
-            .removeClass('js-hide')
-            .removeClass('js-invisible');
+      $this.showLoading();
+
+      $.ajax({
+        url: '<?= url_for('@ajax_mycq?section=collectible&page=donateImage'); ?>',
+        type: 'GET',
+        data: {
+          recipient_id: '<?= $collectible->getId() ?>',
+          donor_id: ui.draggable.data('collectible-id'),
+          is_primary: $this.data('is-primary')
         },
-        "focus": function() {
-          $(editor.composer.iframe).autoResize();
-        }
-      }
-    });
-
-    $( "#main-image-set" ).sortable({
-      items: "li.span4:not(.ui-state-empty)",
-      containment: 'parent', cursor: 'move',
-      cursorAt: { left: 50, top: 50 },
-
-      update: function(event, ui)
-      {
-
-      }
-    });
-
-    $("#main-image-set .drop-zone, #main-image-set .drop-zone-large").droppable(
-      {
-        accept: ".draggable",
-        over: function(event, ui)
+        dataType: 'json',
+        success: function()
         {
-          var $this = $(this);
-          $this.addClass('ui-state-highlight');
-          $this.find('img').fadeTo('fast', 0);
-          $this.find('.holder-icon-edit').hide();
-          $this.find('i.icon-plus')
-            .removeClass('icon-plus')
-            .addClass('icon-download-alt')
-            .show();
+          window.location.reload();
         },
-        out: function(event, ui)
+        error: function(data, response)
         {
-          var $this = $(this);
-          $this.removeClass("ui-state-highlight");
-          $this.find('i.icon-download-alt')
-            .removeClass('icon-download-alt')
-            .addClass('icon-plus');
-          $this.find('i.hide').hide();
-          $this.find('.holder-icon-edit').show();
-          $this.find('img').fadeTo('slow', 1);
-        },
-        drop: function(event, ui)
-        {
-          var $this = $(this);
-          $this.removeClass("ui-state-highlight");
-          $this.find('.holder-icon-edit').show();
-          $this.find('i.icon-download-alt')
-            .removeClass('icon-download-alt')
-            .addClass('icon-plus');
-          ui.draggable.draggable('option', 'revert', false);
-          ui.draggable.hide();
-
-          $this.showLoading();
-
-          $.ajax({
-            url: '<?= url_for('@ajax_mycq?section=collectible&page=donateImage'); ?>',
-            type: 'GET',
-            data: {
-              recipient_id: '<?= $collectible->getId() ?>',
-              donor_id: ui.draggable.data('collectible-id'),
-              is_primary: $this.data('is-primary')
-            },
-            dataType: 'json',
-            success: function()
-            {
-              window.location.reload();
-            },
-            error: function(data, response)
-            {
-              ;
-            }
-          });
+          ;
         }
       });
-
-    $('#main-image-set .icon-remove-sign').click(MISC.modalConfirmDestructive(
-      'Delete image', 'Are you sure you want to delete this image?', function()
-      {
-        var $icon = $(this);
-
-        $icon.hide();
-        $icon.parent('div.ui-droppable').showLoading();
-
-        $.ajax({
-          url: '<?= url_for('@ajax_mycq?section=multimedia&page=delete&encrypt=1'); ?>',
-          type: 'post', data: { multimedia_id: $icon.data('multimedia-id') },
-          success: function()
-          {
-            window.location.reload();
-          },
-          error: function()
-          {
-            $(this).hideLoading();
-            $icon.show();
-          }
-        });
-      }, true));
+    }
   });
+
+  $('#main-image-set .icon-remove-sign').click(MISC.modalConfirmDestructive(
+    'Delete image', 'Are you sure you want to delete this image?', function()
+    {
+      var $icon = $(this);
+
+      $icon.hide();
+      $icon.parent('div.ui-droppable').showLoading();
+
+      $.ajax({
+        url: '<?= url_for('@ajax_mycq?section=multimedia&page=delete&encrypt=1'); ?>',
+        type: 'post', data: { multimedia_id: $icon.data('multimedia-id') },
+        success: function()
+        {
+          window.location.reload();
+        },
+        error: function()
+        {
+          $(this).hideLoading();
+          $icon.show();
+        }
+      });
+    }, true));
+});
 </script>
