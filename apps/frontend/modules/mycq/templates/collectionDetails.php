@@ -84,7 +84,7 @@
 
             <div class="row-fluid">
               <div class="span12">
-                <div class="form-actions text-center">
+                <div class="form-actions text-center spacer-inner-15">
                   <button type="submit" formnovalidate class="btn btn-primary">Save Changes</button>
                   <a href="<?= url_for('mycq_collection_by_section', array('id' => $collection->getId(), 'section' => 'collectibles')) ?>"
                      class="btn spacer-left">

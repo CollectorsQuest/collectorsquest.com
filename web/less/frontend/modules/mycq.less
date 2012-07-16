@@ -86,12 +86,12 @@
 }
 
 
-#body-mycq-collection, #body-mycq-collectible {
+#body-mycq-collection, #body-mycq-collectible, #body-mycq-collection {
 	.form-actions {
 		margin-top: 0;
 		padding: 20px 0;
 		border-top: none;
-		background-color: @lightBlue;
+		background-color: @lightBlue !important;
 	}
 }
 
@@ -166,6 +166,11 @@
 	.form-actions {
 		padding-left:0;
 		text-align: center;
+	}
+
+	.pagination {
+		margin-left: 10px;
+
 	}
 }
 
@@ -257,14 +262,14 @@
             }
 
 .nav-tabs > .active > a,
-                      .nav-tabs > .active > a:hover {
-	                      color: @brown;
-	                      background: @lightBlue;
-	                      border: 1px solid #A7D1E8;
-	                      border-bottom-color: transparent;
-	                      cursor: default;
-	                      .border-radius(6px 6px 0 0);
-                      }
+                .nav-tabs > .active > a:hover {
+                  color: @brown;
+                  background: @lightBlue;
+                  border: 1px solid #A7D1E8;
+                  border-bottom-color: transparent;
+                  cursor: default;
+                  .border-radius(6px 6px 0 0);
+                }
 
 
 a.add-new-items-button {
@@ -316,12 +321,12 @@ a.buy-credits-button {
 
 	.thumbnails > .span12 {
 	width: 672px;
-}
-
-.thumbnail.no-collections-box {
-	height: auto;
-}
 	}
+
+	.thumbnail.no-collections-box {
+		height: auto;
+	}
+}
 
 .mycq-collections .thumbnails > .span4 {
 	width: 213px;
