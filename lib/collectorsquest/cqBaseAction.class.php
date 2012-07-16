@@ -7,7 +7,7 @@
  * @method  cqWebRequest     getRequest()
  * @method  cqBaseUser       getUser()
  */
-class cqBaseActions extends sfActions
+abstract class cqBaseAction extends sfAction
 {
   /**
    * @return Collector
@@ -60,13 +60,6 @@ class cqBaseActions extends sfActions
     $response->setTitle($title . $delimiter . $current_title, false);
   }
 
-  /**
-   * @return string
-   */
-  protected function getCulture()
-  {
-    return $this->getUser()->getCulture();
-  }
 
   /**
    * @param  string   $internal_uri
@@ -79,35 +72,4 @@ class cqBaseActions extends sfActions
     return $this->getController()->genUrl($internal_uri, $absolute);
   }
 
-  /**
-   * @param  string  $to
-   * @param  string  $subject
-   * @param  string  $body
-   *
-   * @return false|int
-   */
-  protected function sendEmail($to, $subject, $body)
-  {
-    $message = $this->getMailer()->compose('no-reply@collectorsquest.com', $to, $subject);
-    $message->setFrom('no-reply@collectorsquest.com', 'CollectorsQuest.com');
-    $message->setReplyTo('info@collectorsquest.com');
-    $message->setCharset('UTF-8');
-    $message->addPart(strip_tags($body), 'text/plain');
-    $message->addPart($body, 'text/html');
-
-    // Actually send the email
-    return $this->getMailer()->send($message);
-  }
-
-  /**
-   * @param  string  $string
-   * @param  array   $args
-   * @param  string  $catalogue
-   *
-   * @return string
-   */
-  protected function __($string, $args = array(), $catalogue = 'messages')
-  {
-    return $this->getContext()->getI18n()->__($string, $args, $catalogue);
-  }
 }

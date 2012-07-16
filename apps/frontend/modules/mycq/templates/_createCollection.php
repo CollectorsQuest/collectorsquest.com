@@ -10,7 +10,10 @@
   {
     include_partial(
       'global/loading',
-      array('url' => url_for('mycq_collection_by_slug', $collection))
+      array('url' => url_for(
+        'mycq_collection_by_section',
+        array('id' => $collection->getId(), 'section' => 'details')
+      ))
     );
 
     return;

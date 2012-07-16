@@ -5,7 +5,7 @@
 //  );
 ?>
 
-<div class="row-fluid">
+<div class="row-fluid spacer-top-20">
   <div class="span3">
     <p class="spacer-right">
       One of the best parts about collecting is sharing your love and treasures with others,
