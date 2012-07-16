@@ -17,8 +17,6 @@ all:
           Categories:
             url: content_category
             image: theme/icons/categories.png
-          Featured Weeks:
-            url: featured_weeks
           Comments:
             url: comment
             image: theme/icons/language.png
@@ -45,17 +43,6 @@ all:
           Collectibles:
             url: collectible
             image: theme/icons/mediamanager.png
-          Categories:
-            url: collection_category
-            image: theme/icons/categories.png
-
-      Videos:
-        icon: film
-        items:
-          Videos:
-            url: video
-          Playlists:
-            url: playlist
 
       Marketplace:
         icon: shopping-cart

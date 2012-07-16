@@ -19,7 +19,9 @@ class collectibleForSaleActions extends autoCollectibleForSaleActions
     /* @var $query CollectibleForSaleQuery */
     $query = parent::buildQuery();
 
-    $query->innerJoinCollectible();
+    $query
+      ->isForSale()
+      ->innerJoinCollectible();
 
     return $query;
   }
@@ -45,7 +47,7 @@ class collectibleForSaleActions extends autoCollectibleForSaleActions
     $criteria->addJoin(CollectiblePeer::COLLECTOR_ID, CollectorPeer::ID);
     $criteria->addSelectColumn(CollectiblePeer::NAME);
     $criteria->addSelectColumn(CollectibleForSalePeer::CONDITION);
-    $criteria->addSelectColumn(CollectibleForSalePeer::PRICE);
+    $criteria->addSelectColumn(CollectibleForSalePeer::PRICE_AMOUNT);
     $criteria->addSelectColumn(CollectorPeer::DISPLAY_NAME);
     $criteria->addSelectColumn(CollectibleForSalePeer::IS_PRICE_NEGOTIABLE);
     $criteria->addSelectColumn(CollectibleForSalePeer::IS_SHIPPING_FREE);

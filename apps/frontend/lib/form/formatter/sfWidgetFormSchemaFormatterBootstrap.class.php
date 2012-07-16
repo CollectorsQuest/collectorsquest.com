@@ -92,6 +92,7 @@ class sfWidgetFormSchemaFormatterBootstrap extends sfWidgetFormSchemaFormatter
     {
       if ($error instanceof ArrayAccess || is_array($error))
       {
+        $name = trim($this->generateLabelName($name), '?:');
         $newErrors = array_merge($newErrors, $this->unnestErrorsForRowAll($error, ($prefix ? $prefix.' > ' : '').$name));
       }
       else
@@ -121,7 +122,34 @@ class sfWidgetFormSchemaFormatterBootstrap extends sfWidgetFormSchemaFormatter
     return $newErrors;
   }
 
+  /**
+   * Generates the label name for the given field name.
+   *
+   * It seems that at some point sfWidgetFormSchema's interface changed, and
+   * exception started being thrown. The original sfWidgetFormSchemaFormatter
+   * does not account for that, so we do it manually here
+   *
+   * @param  string $name  The field name
+   *
+   * @return string The label name
+   */
+  public function generateLabelName($name)
+  {
+    // handle change in getLabel() intrface:
+    // exception being thrown for non-existent labels
+    try {
+      $label = $this->widgetSchema->getLabel($name);
+    } catch (InvalidArgumentException $e) {
+      $label = '';
+    }
 
+    if (!$label && false !== $label)
+    {
+      $label = str_replace('_', ' ', ucfirst('_id' == substr($name, -3) ? substr($name, 0, -3) : $name));
+    }
+
+    return $this->translate($label);
+  }
 
   /**
    * If the field is required, reformat it with a required token,

@@ -45,22 +45,13 @@
     </table>
   </div><!-- ./span8 -->
   <div class="span4">
-    <div id="main-image-set">
-      <div class="main-image-set-container">
-        <ul class="thumbnails">
-          <li class="span12 main-thumb">
-            <div class="thumbnail">
-              <?php
-              echo image_tag_multimedia(
-                $collectible->getPrimaryImage(), '300x0', array('width' => 294)
-              );
-              ?>
-            </div>
-          </li>
-        </ul>
-      </div>
+    <div class="thumbnail">
+    <?php
+      echo image_tag_multimedia(
+        $collectible->getPrimaryImage(), '300x0', array('width' => 294, 'height' => null)
+      );
+    ?>
     </div>
-
   </div><!-- ./span4 -->
 
   <?php
@@ -114,7 +105,7 @@
   <div class="span8" style="margin-left: 0;">
     <table class="table">
       <tr>
-        <td style="width: 38%;">Status:</td>
+        <td style="width: 38%;">Payment Status:</td>
         <td>
           <?= strtoupper($shopping_order->getShoppingPaymentRelatedByShoppingPaymentId()->getStatus()); ?>
         </td>
@@ -124,7 +115,7 @@
         <td><?= $shopping_order->getUuid() ?></td>
       </tr>
       <tr>
-        <td>Date:</td>
+        <td>Date & Time:</td>
         <td><?= $shopping_order->getCreatedAt() ?></td>
       </tr>
       <tr>
@@ -145,6 +136,19 @@
         <td><?= $v; ?></td>
       </tr>
       <?php endif; ?>
+      <tr>
+        <td>Tracking Number:</td>
+        <td>
+          <?php if ($shopping_order->getShippingTrackingNumber()): ?>
+            <a href="http://www.faranow.com/track/<?= strtoupper($shopping_order->getShippingCarrier()) ?>/<?= $shopping_order->getShippingTrackingNumber() ?>"
+               target="_blank">
+              <?= $shopping_order->getShippingTrackingNumber() ?>
+            </a>
+          <?php else: ?>
+            N/A
+          <?php endif; ?>
+        </td>
+      </tr>
     </table>
   </div>
 

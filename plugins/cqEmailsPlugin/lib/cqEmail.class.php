@@ -81,7 +81,19 @@ class cqEmail
       ->addPart(strip_tags($rendered_template), 'text/plain')
       ->addPart($rendered_template, 'text/html');
 
-    return $this->getMailer()->send($message);
+    try {
+      $return = $this->getMailer()->send($message);
+    }
+    catch (Swift_TransportException $e)
+    {
+      if (false !== stripos($e->getMessage(), '554 Message rejected: Address blacklisted')) {
+        $return = false;
+      } else {
+        throw $e;
+      }
+    }
+
+    return $return;
   }
 
 }

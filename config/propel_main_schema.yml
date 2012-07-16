@@ -29,12 +29,15 @@ classes:
       is_public:      { type: boolean, default: true }
       has_completed_registration: { type: boolean, default: false }
       session_id:     { type: varchar, size: 32 }
+      cookie_uuid:    { type: varchar, size: 32, index: unique }
       last_seen_at:   { type: timestamp }
+      last_visited_at: { type: timestamp }
 
       eblob: { type: longvarchar, default: null }
 
     propel_behaviors:
       archivable: { archive_class: CollectorArchive, archived_at_column: archived_at }
+      sluggable: { slug_pattern: "{DisplayName}", permanent: false }
       extra_properties: ~
       timestampable:  ~
 

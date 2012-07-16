@@ -88,7 +88,7 @@
                 <li>
                   <a href="<?= url_for('@mycq_marketplace', true); ?>"
                      title="Manage your Collectibles for Sale!">
-                    <i class="icon icon-shopping-cart"></i> Market
+                    <i class="icon icon-shopping-cart"></i> My Market
                   </a>
                 </li>
                 <?php endif; ?>

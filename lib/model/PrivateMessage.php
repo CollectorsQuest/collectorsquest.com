@@ -32,7 +32,7 @@ class PrivateMessage extends BasePrivateMessage
    * @param     Collectible $collectible
    * @return    PrivateMessage
    */
-  public function setAttachedCollectible(Collectible $collectilbe)
+  public function setAttachedCollectible(Collectible $collectible)
   {
     $this->setAttachedCollectibleId($collectible->getId());
     $this->attached_collectible = $collectible;
@@ -132,7 +132,7 @@ class PrivateMessage extends BasePrivateMessage
 
   /**
    * @param     string $v
-   * @return    PrivateMesage
+   * @return    PrivateMessage
    */
   public function setSubject($v)
   {

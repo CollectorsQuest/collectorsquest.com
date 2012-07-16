@@ -10,6 +10,7 @@
 <form action="<?= url_for('mycq_collectible_by_slug', $collectible); ?>"
       enctype="multipart/form-data" novalidate
       id="form-collectible" method="post" class="form-horizontal">
+  <?= $form->renderAllErrors(); ?>
 
   <?php
         if ($collectible->isForSale())
@@ -137,7 +138,7 @@
         <?= $form['thumbnail']->renderLabel(); ?>
         <div class="controls">
           <?= $form['thumbnail']->render(); ?>
-          <label><?= $form['is_alt_view']; ?>&nbsp; Add as an alternative view instead?</label>
+          <label><?= $form['is_alt_view']; ?>&nbsp; Add as an alternate view instead?</label>
           <?= $form['thumbnail']->renderError(); ?>
         </div>
       </div>
@@ -269,7 +270,7 @@
 <?php if (count($collectibles) > 0): ?>
 <br/>
 <div class="list-thumbs-other-collectibles">
-  Other collectibles in the <?= link_to_collection($collection, 'text') ?> collection
+  Other items in the <?= link_to_collection($collection, 'text') ?> collection
   <ul class="thumbnails">
     <?php foreach ($collectibles as $c): ?>
     <li class="span2">
@@ -287,13 +288,6 @@
   {
     $(".chzn-select").chosen();
 
-    $('input.tag').tagedit({
-      autocompleteURL: '<?= url_for('@ajax_typeahead?section=tags&page=edit'); ?>',
-      autocompleteOptions: { minLength: 3 },
-      // return, comma, semicolon
-      breakKeyCodes: [ 13, 44, 59 ]
-    });
-
     $('#collectible_description').wysihtml5({
       "font-styles": false, "image": false, "link": false,
       events:
@@ -302,6 +296,9 @@
           $('#collectible_description')
             .removeClass('js-hide')
             .removeClass('js-invisible');
+        },
+        "focus": function() {
+          $(editor.composer.iframe).autoResize();
         }
       }
     });

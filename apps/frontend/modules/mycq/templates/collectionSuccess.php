@@ -6,15 +6,15 @@
 ?>
 
 <?php
-$link = link_to(
-  'Back to Collections &raquo;', '@mycq_collections',
-  array('class' => 'text-v-middle link-align')
-);
+  $link = link_to(
+    'Back to Collections &raquo;', '@mycq_collections',
+    array('class' => 'text-v-middle link-align')
+  );
 
-cq_sidebar_title(
-  $collection->getName(), $link,
-  array('left' => 8, 'right' => 4, 'class'=>'spacer-top-reset row-fluid sidebar-title')
-);
+  cq_sidebar_title(
+    $collection->getName(), $link,
+    array('left' => 8, 'right' => 4, 'class'=>'spacer-top-reset row-fluid sidebar-title')
+  );
 ?>
 
 <div class="blue-well spacer-15 cf">
@@ -149,6 +149,7 @@ cq_sidebar_title(
 <form action="<?= url_for('mycq_collection_by_slug', $collection); ?>" novalidate
       id="form-collection" method="post" enctype="multipart/form-data"
       class="form-horizontal spacer-bottom-reset">
+<?= $form->renderAllErrors(); ?>
 
 <div class="row-fluid">
   <div class="span3">
@@ -177,13 +178,13 @@ cq_sidebar_title(
       <?php endif; ?>
     </div>
   </div>
+
   <div class="span9">
-
     <fieldset style="width: 580px;">
-        <?= $form; ?>
+      <?= $form; ?>
     </fieldset>
-
   </div>
+
   <div class="row-fluid">
     <div class="span12">
       <div class="form-actions text-center">
@@ -257,13 +258,6 @@ cq_sidebar_title(
 <script>
 $(document).ready(function()
 {
-  $('input.tag').tagedit({
-    autocompleteURL: '<?= url_for('@ajax_typeahead?section=tags&page=edit'); ?>',
-    autocompleteOptions: { minLength: 3 },
-    // return, comma, semicolon
-    breakKeyCodes: [ 13, 44, 59 ]
-  });
-
   $('#collection_description').wysihtml5({
     "font-styles": false, "image": false, "link": false,
     events:
@@ -272,6 +266,9 @@ $(document).ready(function()
         $('#collection_description')
           .removeClass('js-hide')
           .removeClass('js-invisible');
+      },
+      "focus": function() {
+        $(editor.composer.iframe).autoResize();
       }
     }
   });

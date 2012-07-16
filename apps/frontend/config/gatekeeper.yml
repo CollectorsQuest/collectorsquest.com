@@ -3,11 +3,11 @@ all:
   features:
     shopping_cart: false
     shopping_checkout_help: false
-    mycq_homepage: false
+    mycq_homepage: true
     mycq_marketplace: true
     mycq_wanted: false
     mycq_seller_pay: false
-    mycq_profile_addresses: true
+    mycq_profile_addresses: false
     collectible_shipping: true
     collectible_allow_no_shipping: true
     independence_day: false
@@ -17,11 +17,11 @@ next:
   features:
     shopping_cart: true
     shopping_checkout_help: false
-    mycq_homepage: false
+    mycq_homepage: true
     mycq_marketplace: true
     mycq_wanted: false
     mycq_seller_pay: false
-    mycq_profile_addresses: true
+    mycq_profile_addresses: false
     collectible_shipping: true
     collectible_allow_no_shipping: true
     independence_day: false
@@ -35,7 +35,7 @@ dev:
     mycq_marketplace: true
     mycq_wanted: false
     mycq_seller_pay: false
-    mycq_profile_addresses: true
+    mycq_profile_addresses: false
     collectible_shipping: true
     collectible_allow_no_shipping: true
     independence_day: false

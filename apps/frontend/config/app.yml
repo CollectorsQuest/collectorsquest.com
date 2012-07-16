@@ -40,23 +40,23 @@ all:
       items:
         homepage:     { name: Home, uri: "@mycq", check_lock: mycq_homepage }
         profile:      { name: Profile, uri: "@mycq_profile" }
-        collections:  { name: Collections, uri: "@mycq_collections" }
-        marketplace:  { name: "Market <sup>βeta</sup>", uri: "@mycq_marketplace", check_lock: mycq_marketplace }
+        collections:  { name: My Collections, uri: "@mycq_collections" }
+        marketplace:  { name: "My Market <sup>βeta</sup>", uri: "@mycq_marketplace", check_lock: mycq_marketplace }
         messages:     { name: Inbox, uri: "@messages_inbox" }
         wanted:       { name: Wanted List, uri: "@mycq_wanted", check_lock: mycq_wanted }
 
     mycq_profile_tabs:
       items:
-        personal_info:      { name: "Personal Information", uri: "@mycq_profile" }
-        account_info:       { name: "Account Information",  uri: "@mycq_profile_account_info" }
-        addresses:          { name: "Address Book",         uri: "@mycq_profile_addresses", check_lock: mycq_profile_addresses }
+        personal_info:   { name: "Personal Information", uri: "@mycq_profile" }
+        account_info:    { name: "Account Settings",  uri: "@mycq_profile_account_info" }
+        store_settings:  { name: "Store Settings",       uri: "@mycq_profile_store_settings" }
+        addresses:       { name: "Address Book",         uri: "@mycq_profile_addresses", check_lock: mycq_profile_addresses }
 
     mycq_marketplace_tabs:
       items:
         collectibles_for_sale:   { name: "Items for Sale", uri: "@mycq_marketplace" }
         # collectibles_sold:       { name: "Sold Items", uri: "@mycq_marketplace_sold" }
         collectibles_purchased:  { name: "Purchases", uri: "@mycq_marketplace_purchased", check_lock: shopping_cart }
-        marketplace_settings:    { name: "Store Settings", uri: "@mycq_marketplace_settings" }
 
     mycq_messages_sidebar:
       items:

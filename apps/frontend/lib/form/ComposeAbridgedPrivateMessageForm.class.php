@@ -14,7 +14,7 @@ class ComposeAbridgedPrivateMessageForm extends ComposePrivateMessageForm
    * @param     Collector $sender
    * @param     Collector|string $receiver Either a collector or an email
    * @param     string $subject
-   * @param     arrray $options
+   * @param     array $options
    * @param     string $CSRFSecret
    *
    * @see       ComposePrivateMessage.class.php

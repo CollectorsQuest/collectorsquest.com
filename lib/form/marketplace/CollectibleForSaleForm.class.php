@@ -2,17 +2,6 @@
 
 class CollectibleForSaleForm extends BaseCollectibleForSaleForm
 {
-  public function configure()
-  {
-
-  }
-
-  public function bind(array $taintedValues = null, array $taintedFiles = null)
-  {
-    $this->validatorSchema['price']->setOption('required', !empty($taintedValues['is_ready']));
-
-    parent::bind($taintedValues, $taintedFiles);
-  }
 
   protected function setupConditionField()
   {
@@ -40,14 +29,17 @@ class CollectibleForSaleForm extends BaseCollectibleForSaleForm
 
       if ($seller && $seller->hasPackageCredits())
       {
-        $values = $this->validatePriceField($validator, $values);
-        $values = $this->validateConditionsdsdsField($validator, $values);
+        if ($seller->hasPaypalDetails())
+        {
+          $values = $this->validatePriceField($validator, $values);
+          $values = $this->validateConditionsdsdsField($validator, $values);
+        }
       }
       else
       {
         // throw an error bound to the price field
         $errorSchema = new sfValidatorErrorSchema($validator);
-        $errorSchema->addError(new sfValidatorError($validator, 'invalid'), 'is_ready');
+        $errorSchema->addError(new sfValidatorError($validator, 'invalid'));
 
         throw $errorSchema;
       }
@@ -58,7 +50,7 @@ class CollectibleForSaleForm extends BaseCollectibleForSaleForm
 
   public function setupPriceField()
   {
-    $this->setWidget('price', new sfWidgetFormInputText(array(), array('required' => 'required')));
+    $this->widgetSchema['price'] = new sfWidgetFormInputText(array(), array('required' => 'required'));
     $this->setValidator('price', new sfValidatorString(array('required' => false)));
     $this->setDefault('price', sprintf('%01.2f', $this->getObject()->getPrice()));
 

@@ -13,6 +13,8 @@ seo:
   class: iceSeoFilter
 history:
   class: iceRequestHistoryFilter
+visitorInfo:
+  class: cqVisitorInfoFilter
 
 cache:     ~
 execution: ~

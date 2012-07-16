@@ -8,6 +8,13 @@ class backendConfiguration extends cqApplicationConfiguration
   /** @var IcePatternRouting */
   protected $frontendRouting = null;
 
+  public function setup()
+  {
+    parent::setup();
+
+    $this->enablePlugins(array('iceBackendPlugin'));
+  }
+
   public function configure()
   {
     ;

@@ -4,15 +4,17 @@
   <title>Redirecting...</title>
   <script src="//www.paypalobjects.com/js/external/dg.js"></script>
   <script>
-    var _top = top;
-
     if (top.opener && (_top = top.opener.top) && (_dgFlow = top.opener.top.dgFlow))
     {
+      _top.location.replace('<?= url_for($url); ?>');
       _dgFlow.closeFlow();
       top.close();
     }
-
-    (_top || top).location.replace('<?= url_for($url); ?>');
+    else if (parent.top && (_top = parent.top) && (_dgFlow = parent.top.dgFlow))
+    {
+      _top.location.replace('<?= url_for($url); ?>');
+      _dgFlow.closeFlow();
+    }
   </script>
 </head>
 <body style="background: #fff;">

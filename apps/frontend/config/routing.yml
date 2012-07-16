@@ -88,6 +88,11 @@ collections:
   url:   /collections
   param: { module: collections, action: index }
 
+collections_with_sort:
+  url:   /collections/:sort.:sf_format
+  param: { module: collections, action: index, sort: latest, sf_format: html }
+  requirements: { sf_format: (?:html|rss) }
+
 collection_by_slug:
   url:  /collection/:id/:slug
   class: cqPropelRoute
@@ -120,8 +125,9 @@ legacy_collectors_filter:
   param: { module: collectors, action: index, sort: latest }
 
 collectors:
-  url:  /collectors/:sort
-  param: { module: collectors, action: index, sort: latest }
+  url:  /collectors/:sort.:sf_format
+  param: { module: collectors, action: index, sort: latest, sf_format: html }
+  requirements: { sf_format: (?:html|rss) }
 
 collector_verify_email:
   url:  /collector/verify-email/:hash
@@ -330,11 +336,19 @@ shopping_order_error:
   options: { model: ShoppingOrder, type: object }
   param: { module: shopping, action: orderError }
 
-shopping_order_redirect:
+shopping_order_with_hash:
+  url: /order/:uuid/:hash
+  class: sfPropelRoute
+  options: { model: ShoppingOrder, type: object }
+  param: { module: shopping, action: order }
+  requirements: { sf_method: [get] }
+
+shopping_order:
   url: /order/:uuid
   class: sfPropelRoute
   options: { model: ShoppingOrder, type: object }
   param: { module: shopping, action: order }
+  requirements: { sf_method: [get] }
 
 ### MY CQ
 
@@ -349,6 +363,10 @@ mycq_profile:
 mycq_profile_account_info:
   url:   /mycq/profile/account-information
   param: { module: mycq, action: profileAccountInfo }
+
+mycq_profile_store_settings:
+  url:   /mycq/profile/store/settings
+  param: { module: mycq, action: profileStoreSettings }
 
 mycq_profile_addresses:
   url:   /mycq/profile/addresses
@@ -416,10 +434,6 @@ mycq_marketplace:
   url:   /mycq/marketplace
   param: { module: mycq, action: marketplace }
 
-mycq_marketplace_settings:
-  url:   /mycq/marketplace/settings
-  param: { module: mycq, action: marketplaceSettings }
-
 mycq_marketplace_sold:
   url:   /mycq/marketplace/sold
   param: { module: mycq, action: marketplaceSold }
@@ -453,6 +467,13 @@ mycq_collector_address_delete:
   options: { model: CollectorAddress, type: object }
   param:  { module: mycq, action: deleteAddress }
   requirements: { id: '\d+', sf_method: [get, delete] }
+
+mycq_shopping_order_tracking:
+  url:   /mycq/order/:uuid/tracking
+  class: sfPropelRoute
+  options: { model: ShoppingOrder, type: object }
+  param: { module: mycq, action: shoppingOrderTracking }
+  requirements: { sf_method: [get, post] }
 
 mycq_shopping_order:
   url:   /mycq/order/:uuid

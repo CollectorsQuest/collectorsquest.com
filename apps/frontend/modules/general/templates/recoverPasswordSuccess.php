@@ -10,5 +10,8 @@
   </fieldset>
   <div class="form-actions">
     <input class="btn btn-primary" type="submit" value="Recover your account!" />
+    <span class="spacer-left-15">
+      <?= link_to('Did you recover your credentials?', '@login'); ?>
+    </span>
   </div>
 </form>

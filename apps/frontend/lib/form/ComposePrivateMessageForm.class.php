@@ -4,7 +4,7 @@
  * ComposePrivateMessageForm does what its name says :)
  *
  * Options:
- *    attach: Collector/Collection object (or an array of both)
+ *    attach: Collection/Collectible object (or an array of both)
  *
  */
 class ComposePrivateMessageForm extends PrivateMessageForm
@@ -24,15 +24,15 @@ class ComposePrivateMessageForm extends PrivateMessageForm
    * has the user sent in the current session and append a captcha field
    * if over the threshold
    *
-   * @param     Collector $sender
-   * @param     sfUser $sf_user
-   * @param     string $thread
-   * @param     arrray $options
-   * @param     string $CSRFSecret
+   * @param     Collector   $sender
+   * @param     cqBaseUser  $sf_user
+   * @param     string      $thread
+   * @param     array       $options
+   * @param     string      $CSRFSecret
    */
   public function __construct(
     Collector $sender,
-    sfUser $sf_user = null,
+    cqBaseUser $sf_user = null,
     $thread = null,
     $options = array(),
     $CSRFSecret = null
@@ -75,7 +75,9 @@ class ComposePrivateMessageForm extends PrivateMessageForm
     {
       // if no, then allow the user to input the receiver
       $this->widgetSchema['receiver'] = new bsWidgetFormInputTypeAhead(array(
-        'source' => sfContext::getInstance()->getController()->genUrl(array('sf_route' => 'ajax_typeahead', 'section' => 'messages', 'page' => 'compose'))
+        'source' => sfContext::getInstance()->getController()->genUrl(
+          array('sf_route' => 'ajax_typeahead', 'section' => 'messages', 'page' => 'compose')
+        )
       ));
     }
 
@@ -93,13 +95,13 @@ class ComposePrivateMessageForm extends PrivateMessageForm
    * 3) a collector username, the Collector object is retuned
    * 4) a collector display name, the Colletor object is returned
    *
-   * @param     sfValidatorCallback $validator
-   * @param     string $value
-   * @param     array $arguments
+   * @param     sfValidatorBase  $validator
+   * @param     string           $value
+   * @param     array            $arguments
+   *
    * @return    mixed Either a valid email for a user not registered
    *                  at the site or a Collector object
    *
-   * @throws    sfValidatorError
    */
   public function validateReceiverField(
     sfValidatorBase $validator,
@@ -196,7 +198,7 @@ class ComposePrivateMessageForm extends PrivateMessageForm
     if ($this->getOption('attach'))
     {
       // try to set defaults for attached collection/collectible
-      foreach ((array)$this->getOption('attach') as $object)
+      foreach ((array) $this->getOption('attach') as $object)
       {
         if ($object instanceof Collection)
         {
@@ -257,8 +259,7 @@ class ComposePrivateMessageForm extends PrivateMessageForm
     {
       $this->sf_user->setAttribute(
         cqFrontendUser::PRIVATE_MESSAGES_SENT_COUNT_KEY,
-        0,
-        'collector'
+        0, 'collector'
       );
     }
   }
@@ -289,14 +290,16 @@ class ComposePrivateMessageForm extends PrivateMessageForm
   /**
    * perform the actual save, and if necessary reset sent messages count
    *
-   * @param type $con
+   * @param     PropelPDO $con
    */
   protected function doSave($con = null)
   {
     parent::doSave($con);
 
-    if ( $this->userGetSentMessagesCount()
-      < sfConfig::get('app_private_messages_require_captcha_threshold') )
+    // When do we show the captcha?
+    $threshold = sfConfig::get('app_private_messages_require_captcha_threshold', 5);
+
+    if ($this->userGetSentMessagesCount() < $threshold)
     {
       // we have not reached the threshold yet, so incriment the count
       $this->userIncrementSentMessagesCount();

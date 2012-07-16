@@ -6,11 +6,17 @@ class cqFrontendUser extends cqBaseUser
   /** @var integer */
   protected $unread_messages_count;
 
+  /** @var array */
+  protected $visitor_info_array;
+
   const PRIVATE_MESSAGES_SENT_COUNT_KEY = 'private_messages_sent_count';
   const DROPBOX_OPEN_STATE_COOKIE_NAME = 'cq_mycq_dropbox_open';
+  const VISITOR_INFO_COOKIE_NAME = 'cq_visitor';
 
   /**
    * @param  boolean  $strict
+   *
+   * @throws sfException
    * @return null|Collector
    */
   public function getCollector($strict = false)
@@ -19,7 +25,9 @@ class cqFrontendUser extends cqBaseUser
     {
       if ($this->collector === null && ($this->getAttribute("id", null, "collector") !== null))
       {
-        $this->collector = CollectorPeer::retrieveByPK($this->getAttribute("id", null, "collector"));
+        $this->collector = CollectorPeer::retrieveByPK(
+          $this->getAttribute("id", null, "collector")
+        );
 
         if (!$this->collector)
         {
@@ -49,8 +57,8 @@ class cqFrontendUser extends cqBaseUser
    * If not possible to retrieve by IP the value of the $default
    * param will be returned
    *
-   * @param     string $default
-   * @return    string|false
+   * @param     boolean|string $default
+   * @return    boolean|string
    */
   public function getCountryCode($default = false)
   {
@@ -66,8 +74,8 @@ class cqFrontendUser extends cqBaseUser
   /**
    * Return the current user's country name
    *
-   * @param     type $country_code
-   * @return    string|false
+   * @param     string $country_code
+   * @return    boolean|string
    *
    * @see       cqFrontendUser::getCountryCode()
    */
@@ -360,6 +368,242 @@ class cqFrontendUser extends cqBaseUser
     ));
 
     return true;
+  }
+
+  /**
+   * @param  BaseObject $something
+   * @return boolean
+   */
+  public function isOwnerOf($something)
+  {
+    $is_owner = parent::isOwnerOf($something);
+
+    if (!$is_owner && method_exists($something, 'getId'))
+    {
+      $is_owner = in_array($something->getId(), $this->getObjectIdsOwned(get_class($something)));
+    }
+
+    return $is_owner;
+  }
+
+  /**
+   * @param object $object
+   * @return boolean
+   */
+  public function setOwnerOf($object)
+  {
+    if (!is_object($object) || !method_exists($object, 'getId'))
+    {
+      return false;
+    }
+
+    $name = sfInflector::underscore(get_class($object));
+    $ids = $this->getAttribute($name, array(), 'cq/user/owns');
+    $ids[] = $object->getId();
+
+    return $this->setAttribute($name, array_unique($ids), 'cq/user/owns');
+  }
+
+  public function getObjectsOwned($name)
+  {
+    $ids = $this->getObjectIdsOwned($name);
+
+    return call_user_func(array(sfInflector::classify($name).'Peer', 'retrieveByPks'), $ids);
+  }
+
+  public function getObjectIdsOwned($name)
+  {
+    $name = sfInflector::underscore($name);
+    $ids = $this->getAttribute($name, array(), 'cq/user/owns');
+
+    return $ids;
+  }
+
+  /**
+   * Get the collector corresponding to the UUID stored in the cq_uuid cookie
+   *
+   * @return    Collector|null
+   */
+  public function getCollectorByUuid()
+  {
+    return $this->getCookieUuid()
+      ? CollectorQuery::create()
+          ->filterByCookieUuid($this->getCookieUuid())
+          ->findOne()
+      : null;
+  }
+
+  /**
+   * Get all visitor info properties as array
+   *
+   * @param     boolean $force
+   * @return    array
+   *
+   * @see       CollectorPeer::$visitor_info_props
+   */
+  public function getVisitorInfoArray($force = false)
+  {
+    if (null === $this->visitor_info_array || $force)
+    {
+      // if the user is authenticated or we can get it from the UUID cookie
+      $collector = $this->getCollector($strict = true)
+        ?: $this->getCollectorByUuid();
+      if ($collector)
+      {
+        // populate the array from ExtraProperties behavior data for the collector
+        $this->visitor_info_array = array();
+        foreach (CollectorPeer::$visitor_info_props as $prop_name)
+        {
+          $this->visitor_info_array[$prop_name] = $collector->getProperty($prop_name);
+        }
+      }
+      else
+      {
+        $this->visitor_info_array = $this->getVisitorInfoCookieData();
+      }
+    }
+
+    return $this->visitor_info_array;
+  }
+
+  /**
+   * Persist all visitor info properties,
+   * either to a cookie or to Collector ExtraProperty
+   *
+   * @param     array $data
+   * @return    cqFrontendUser
+   *
+   * @see       CollectorPeer::$visitor_info_props
+   */
+  public function setVisitorInfoArray($data)
+  {
+    $this->visitor_info_array = $data;
+
+    // if the user is authenticated or we can get it from the UUID cookie
+    $collector = $this->getCollector($strict = true)
+      ?: $this->getCollectorByUuid();
+
+    if ($collector)
+    {
+      // populate ExtraProperties behavior data for the collector
+      foreach ($data as $prop_name => $value)
+      {
+        // We do not want to reset this property if it already exists
+        if (
+          $prop_name === CollectorPeer::PROPERTY_VISITOR_INFO_FIRST_VISIT_AT &&
+          $collector->getProperty($prop_name)
+        ) {
+          continue;
+        }
+
+        $collector->setProperty($prop_name, $value);
+      }
+
+      $collector->save();
+    }
+    else
+    {
+      $this->setVisitorInfoCookieData($data);
+    }
+
+    return $this;
+  }
+
+  /**
+   * Get a visitor info property by its key
+   *
+   * @param     string $prop_name
+   * @param     mixed $default
+   *
+   * @return    mixed
+   * @throws    RuntimeException
+   *
+   * @see       CollectorPeer::$visitor_info_props
+   */
+  public function getVisitorInfo($prop_name, $default = null)
+  {
+    $data = $this->getVisitorInfoArray();
+
+    if (!array_key_exists($prop_name, $data))
+    {
+      throw new RuntimeException(sprintf(
+        '[cqFrontendUser] There is no visitor property named %s',
+        $prop_name));
+    }
+
+    return $data[$prop_name] !== null
+      ? $data[$prop_name]
+      : $default;
+  }
+
+  /**
+   * Persist a visitor info property,
+   * either in a cookie or in Collector ExtraProperty
+   *
+   * @param     string $prop_name
+   * @param     mixed $value
+   *
+   * @return    cqFrontendUser
+   * @throws    RuntimeException
+   *
+   * @see       CollectorPeer::$visitor_info_props
+   */
+  public function setVisitorInfo($prop_name, $value)
+  {
+    if (!in_array($prop_name, CollectorPeer::$visitor_info_props))
+    {
+      throw new RuntimeException(sprintf(
+        '[cqFrontendUser] Unknown visitor info key %s allowed keys: %s',
+        $prop_name, implode(', ', CollectorPeer::$visitor_info_props)));
+    }
+
+    $data = $this->getVisitorInfoArray();
+    $data[$prop_name] = $value;
+
+    $this->setVisitorInfoArray($data);
+
+    return $this;
+  }
+
+  /**
+   * Internal method
+   *
+   * @param     array $data
+   */
+  protected function setVisitorInfoCookieData($data)
+  {
+    /** @var $response sfWebResponse */
+    $response = sfContext::getInstance()->getResponse();
+    $response->setCookie(
+      self::VISITOR_INFO_COOKIE_NAME,
+      base64_encode(json_encode($data)),
+      strtotime('+ 1 year'),
+      '/'
+    );
+  }
+
+  /**
+   * Internal method
+   *
+   * @return    array
+   */
+  public function getVisitorInfoCookieData()
+  {
+    $default_data = array_combine(
+      CollectorPeer::$visitor_info_props,
+      array_fill(0, count(CollectorPeer::$visitor_info_props), null)
+    );
+
+    /** @var $request sfWebRequest */
+    $request = sfContext::getInstance()->getRequest();
+    $raw_data = $request->getCookie(self::VISITOR_INFO_COOKIE_NAME, null);
+
+    if (!$raw_data)
+    {
+      return $default_data;
+    }
+
+    return json_decode(base64_decode($raw_data), true);
   }
 
 }

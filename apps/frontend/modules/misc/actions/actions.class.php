@@ -174,7 +174,7 @@ class miscActions extends cqFrontendActions
       header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
       header("Content-Description: File Transfer");
       header(sprintf('Content-Type: %s, charset=UTF-8; encoding=UTF-8', $mimeType));
-      header("Content-disposition: attachment; filename=" . $filename);
+      header('Content-disposition: attachment; filename="' . $filename .'"');
 
       readfile($sourceFile);
       exit(0);

@@ -36,11 +36,11 @@ class CollectorCollectionForm extends BaseCollectorCollectionForm
       }
     }
 
-    $this->widgetSchema['tags'] = new cqWidgetFormMultipleInputText(array(
-      'label' => 'Tags'
+    $this->widgetSchema['tags'] = new cqWidgetFormInputTags(array(
+      'label' => 'Tags',
+      'autocompleteURL' => '@ajax_typeahead?section=tags&page=edit',
     ), array(
       'required' => 'required',
-      'class' => 'tag js-hide'
     ));
     $this->getWidgetSchema()->setHelp(
       'tags', 'Choose at least three descriptive words

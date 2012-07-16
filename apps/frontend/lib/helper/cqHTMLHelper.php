@@ -144,10 +144,13 @@ function cq_nestedset_to_ul(PropelObjectCollection $collection, $print_method = 
   echo '</ul>';
 }
 
-function cq_content_categories_to_ul(PropelObjectCollection $collections, $id = null)
+function cq_content_categories_to_ul(PropelObjectCollection $collections, $options = array())
 {
-  echo '<ul class="menu" id="'. $id .'">' . "\n";
+  $options = array_merge(array(
+      'class' => 'menu',
+  ), $options);
 
+  $html = '';
   foreach ($collections as $object)
   {
     // should close levels ?
@@ -172,11 +175,11 @@ function cq_content_categories_to_ul(PropelObjectCollection $collections, $id = 
           </ul>
         </li>' . "\n";
 
-      echo str_repeat($close_str, $close_levels) . "\n";
+      $html .= str_repeat($close_str, $close_levels) . "\n";
     }
 
     // print the object name
-    echo sprintf('<li class="%s">%s',
+    $html .= sprintf('<li class="%s">%s',
       $object->hasChildren() ? 'expanded' : 'leaf',
       sprintf(
         '<a href="#" data-object-id="%d">%s</a>',
@@ -186,13 +189,13 @@ function cq_content_categories_to_ul(PropelObjectCollection $collections, $id = 
 
     if ($object->hasChildren())
     {
-      echo "\n" . '<ul class="menu">';
+      $html .= "\n" . '<ul class="menu">';
     }
     else
     {
-      echo '</li>' . "\n";
+      $html .= '</li>' . "\n";
     }
   }
 
-  echo '</ul>';
+  echo content_tag('ul', $html, $options);
 }

@@ -20,7 +20,8 @@
 </div>
 
 <div id="form-collectible-for-sale" class="hide">
-  <?php if ($collectible->getCollectibleForSale()->hasActiveCredit() || $sf_user->getSeller()->hasPackageCredits()): ?>
+  <?php if ($collectible->getCollectibleForSale()->hasActiveCredit() ||
+     ($sf_user->getSeller()->hasPackageCredits()) && $sf_user->getCollector()->hasPayPalDetails()): ?>
 
     <div class="control-group">
       <?= $form['price']->renderLabel(); ?>
@@ -112,7 +113,7 @@
       </div>
     <?php endif; // if collectible shipping allowed in gatekeeper ?>
 
-  <?php else: ?>
+  <?php elseif (!$sf_user->getSeller()->hasPackageCredits()): ?>
     <center>
       <?php
         echo link_to(
@@ -122,6 +123,11 @@
       ?>
     </center>
     <br/>
+  <?php elseif (!$sf_user->getCollector()->hasPayPalDetails()): ?>
+    <div class="alert alert-error all-errors">
+      You must <?= link_to('setup your paypal account', '@mycq_profile_store_settings') ?>
+      before you can sell in the Marketplace.
+    </div>
   <?php endif; ?>
 </div>
 

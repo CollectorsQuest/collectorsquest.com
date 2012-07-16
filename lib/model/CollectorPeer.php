@@ -13,6 +13,7 @@ class CollectorPeer extends BaseCollectorPeer
   const PROPERTY_SELLER_SETTINGS_PAYPAL_EMAIL = 'SELLER_SETTINGS_PAYPAL_EMAIL';
   const PROPERTY_SELLER_SETTINGS_PAYPAL_FIRST_NAME = 'SELLER_SETTINGS_PAYPAL_FIRST_NAME';
   const PROPERTY_SELLER_SETTINGS_PAYPAL_LAST_NAME = 'SELLER_SETTINGS_PAYPAL_LAST_NAME';
+
   const PROPERTY_SELLER_SETTINGS_PHONE_CODE = 'SELLER_SETTINGS_PHONE_CODE';
   const PROPERTY_SELLER_SETTINGS_PHONE_NUMBER = 'SELLER_SETTINGS_PHONE_NUMBER';
   const PROPERTY_SELLER_SETTINGS_PHONE_EXTENSION = 'SELLER_SETTINGS_PHONE_EXTENSION';
@@ -23,6 +24,18 @@ class CollectorPeer extends BaseCollectorPeer
   const PROPERTY_SELLER_SETTINGS_SHIPPING = 'SELLER_SETTINGS_SHIPPING';
   const PROPERTY_SELLER_SETTINGS_REFUNDS = 'SELLER_SETTINGS_REFUNDS';
   const PROPERTY_SELLER_SETTINGS_ADDITIONAL_POLICIES = 'SELLER_SETTINGS_ADDITIONAL_POLICIES';
+
+  const PROPERTY_VISITOR_INFO_FIRST_VISIT_AT = 'VISITOR_INFO_FIRST_VISIT_AT';
+  const PROPERTY_VISITOR_INFO_LAST_VISIT_AT = 'VISITOR_INFO_LAST_VISIT_AT';
+  const PROPERTY_VISITOR_INFO_NUM_VISITS = 'VISITOR_INFO_NUM_VISITS';
+  const PROPERTY_VISITOR_INFO_NUM_PAGE_VIEWS = 'VISITOR_INFO_NUM_PAGE_VIEWS';
+
+  static public $visitor_info_props = array(
+      self::PROPERTY_VISITOR_INFO_FIRST_VISIT_AT,
+      self::PROPERTY_VISITOR_INFO_LAST_VISIT_AT,
+      self::PROPERTY_VISITOR_INFO_NUM_VISITS,
+      self::PROPERTY_VISITOR_INFO_NUM_PAGE_VIEWS,
+  );
 
   const TYPE_COLLECTOR = 'Collector';
   const TYPE_SELLER = 'Seller';
@@ -457,6 +470,88 @@ class CollectorPeer extends BaseCollectorPeer
     $criteria->add(self::DISPLAY_NAME, '%' . mysql_real_escape_string($q) . '%', Criteria::LIKE);
 
     return self::doSelectStmt($criteria)->fetchAll(PDO::FETCH_KEY_PAIR);
+  }
+
+  /**
+   * @param     mixed $v string, integer (timestamp), or DateTime value.
+   *                     Empty strings are treated as NULL.
+   * @return    string|null String formatted to "Y-m-d H:i:s"
+   */
+  public static function translateTimeToStringPropelStyle($v)
+  {
+    $dt = PropelDateTime::newInstance($v, null, 'DateTime');
+    return $dt ? $dt->format('Y-m-d H:i:s') : null;
+  }
+
+  /**
+   * @param     mixed $time string, integer (timestamp), or DateTime value.
+   * @param     type $format The date/time format string (either date()-style or strftime()-style).
+   * @return    mixed Formatted date/time value as string or DateTime object (if format is NULL), NULL if column is NULL, and 0 if column value is 0000-00-00 00:00:00
+   *
+   * @throws    RuntimeException
+   */
+  public static function formatTimePropelSyle($time, $format = 'Y-m-d H:i:s')
+  {
+    if ($time === null) {
+      return null;
+    }
+
+    if ($time === '0000-00-00 00:00:00') {
+      // while technically this is not a default value of NULL,
+      // this seems to be closest in meaning.
+      return null;
+    } else {
+      try {
+        $dt = new DateTime($time);
+      } catch (Exception $x) {
+        throw new RuntimeException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($time, true), $x);
+      }
+    }
+
+    if ($format === null) {
+      return $dt;
+    } elseif (strpos($format, '%') !== false) {
+      return strftime($format, $dt->format('U'));
+    } else {
+      return $dt->format($format);
+    }
+  }
+
+  /**
+   * Listener for user.change_authentication
+   *
+   * Used to set COOKIE_UUID from the request cookie;
+   * Because the cookie can change at some points (ie, using the site form a different PC), it's preferred to keep the collector's COOKIE_UUID updating
+   * based on that cookie.
+   *
+   * @param     sfEvent $event
+   */
+  public function listenToChangeAuthenticationEvent(sfEvent $event)
+  {
+    $params = $event->getParameters();
+
+    // if the user is beign authenticated
+    if (true === $params['authenticated'])
+    {
+      /** @var $cq_user cqFrontendUser */
+      $cq_user = $event->getSubject();
+
+      // and we can successfully get the related collector
+      if (( $collector = $cq_user->getCollector($strict = true) ))
+      {
+        if (( $uuid = $cq_user->getCookieUuid() ))
+        {
+          $collector->setCookieUuid($uuid);
+        }
+
+        if (($visitor_info = $cq_user->getVisitorInfoArray() ))
+        {
+          $collector->mergeVisitorInfoArray($visitor_info);
+        }
+
+        $collector->save();
+      }
+    }
   }
 
 }

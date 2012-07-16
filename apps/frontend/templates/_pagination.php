@@ -71,7 +71,7 @@ $linkPrev = $linkNext = false;
     <?php endif; ?>
 
     <?php if (@$options['show_all'] ? : false): ?>
-    <li style="margin-left: 10px;">
+    <li class="spacer-left">
       <?= link_to(__('show all'), $url . $mark . $options['page_param'] . '=1&show=all'); ?>
     </li>
     <?php endif; ?>

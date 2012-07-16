@@ -119,10 +119,10 @@
       <a class="btn-lightblue btn-mini-social addthis_button_email">
         <i class="mail-icon-mini"></i> Email
       </a>
-      <a class="addthis_button_facebook_like" fb:like:layout="button_count" fb:like:width="40"></a>
+      <a class="addthis_button_pinterest_pinit" pi:pinit:media="<?= src_tag_collectible($collectible, 'original'); ?>" pi:pinit:layout="horizontal"></a>
       <a class="addthis_button_tweet" tw:twitter:data-count="none"></a>
       <a class="addthis_button_google_plusone" g:plusone:size="medium" g:plusone:annotation="none"></a>
-      <a class="addthis_button_pinterest_pinit" pi:pinit:media="<?= src_tag_collectible($collectible, 'original'); ?>" pi:pinit:layout="horizontal"></a>
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count" fb:like:width="40"></a>
       <!-- AddThis Button END -->
     </div>
   </div>
@@ -271,7 +271,7 @@ $(document).ready(function()
 
   var $vertical_carousel = $('#vertical-carousel');
 
-  // enable vertical carousel only if we have more than 3 alternative views
+  // enable vertical carousel only if we have more than 3 alternate views
   if ($vertical_carousel.children().length > 3) {
     // show navigation arrows
     $vertical_carousel.siblings('.ui-carousel-navigation').removeClass('hidden');

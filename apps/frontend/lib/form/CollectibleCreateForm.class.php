@@ -51,7 +51,8 @@ class CollectibleCreateForm extends CollectibleForm
 
     $this->widgetSchema['tags']->setDefault($tags);
     $this->getWidgetSchema()->setHelp(
-      'tags', 'Choose at least three descriptive words for your collectible, separated by commas'
+      'tags', 'Choose at least three descriptive words
+               or phrases, separated by commas'
     );
 
     $this->validatorSchema['tags'] = new cqValidatorTags();
