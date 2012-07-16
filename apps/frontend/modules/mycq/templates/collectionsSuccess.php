@@ -10,7 +10,7 @@
       <h3 class="Chivo webfont">My Collections (<?= $total ?>)</h3>
     </div>
     <div class="span7">
-      <?php if ($total > 11): ?>
+      <?php if ($total > 0): ?>
       <div class="sort-search-box">
         <div class="input-append pull-right">
           <form action="<?= url_for('@ajax_mycq?section=component&page=collections') ?>"
@@ -44,6 +44,20 @@
 <script>
   $(document).ready(function()
   {
+    $('.add-new-zone').on('mouseenter', function() {
+      var $this = $(this);
+      $this.find('i.icon-plus')
+        .removeClass('icon-plus')
+        .addClass('icon-hand-up')
+        .show();
+    });
+    $('.add-new-zone').on('mouseleave', function() {
+      var $this = $(this);
+      $this.find('i.icon-hand-up')
+        .removeClass('icon-hand-up')
+        .addClass('icon-plus')
+        .show();
+    });
     $('.dropdown-menu a.sortBy').click(function()
     {
       $('#sortByName').html($(this).data('name'));
