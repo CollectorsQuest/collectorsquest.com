@@ -28,18 +28,25 @@
   <ul class="thumbnails">
     <?php
     $c = new Criteria();
-    $c->setLimit(2);
+    $c->setLimit(8);
     $collectibles = $collection->getCollectionCollectibles($c);
 
-    for ($k = 0; $k < 3; $k++)
+    for ($k = 0; $k < 9; $k++)
     {
       if (isset($collectibles[$k]))
       {
-        echo '<li>', link_to(image_tag_collectible(
-          $collectibles[$k], '75x75',
-          array('max_width' => 60, 'max_height' => 60,)
-        ), url_for('mycq_collection_by_section', array('id' => $collection->getid(), 'section' => 'collectibles'))),
-        '</li>';
+        echo '<li>';
+        echo link_to(
+          image_tag_collectible(
+            $collectibles[$k], '75x75',
+            array('width' => 62, 'height' => 62)
+          ),
+          url_for(
+            'mycq_collection_by_section',
+            array('id' => $collection->getid(), 'section' => 'collectibles')
+          )
+        );
+        echo '</li>';
       }
       else
       {
@@ -101,13 +108,13 @@
       $('#collections-pagination a').click(function(e)
       {
         e.preventDefault();
+        var page = $(this).data('page');
 
-        $('#collectibles').parent().showLoading();
-
-        $('#collectibles').load(
-          $url +'?p=2', $form.serialize(),
+        $('#collections').parent().showLoading();
+        $('#collections').load(
+          $url +'?p='+ page, $form.serialize(),
           function(data) {
-            $('#collectibles').parent().hideLoading();
+            $('#collections').parent().hideLoading();
           }
         );
 
@@ -123,7 +130,7 @@ $(document).ready(function()
 {
   $(document).controls();
 
-  $(".mycq-collections .drop-zone").droppable(
+  $("#collections .drop-zone").droppable(
   {
     over: function(event, ui)
     {
