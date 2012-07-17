@@ -8,7 +8,7 @@
  * Id: $Id$
  */
 
-class SellerPackagesForm extends sfForm
+class SellerPackagesForm extends BaseForm
 {
 
   /* @var $promotion Promotion */
@@ -72,22 +72,21 @@ class SellerPackagesForm extends sfForm
 
   private function setupCountryField()
   {
-    $this->setWidget('country', new sfWidgetFormI18nChoiceCountry(array(
-      'choices'  => $this->getCountries(),
+    $this->setWidget('country', new cqWidgetFormChoiceGeoIpCountry(array(
+      'remote_address' => sfContext::getInstance()->getRequest()->getRemoteAddress(),
       'add_empty'=> true,
     ), array(
       'placeholder' => 'Country',
     )));
 
     $this->setValidator('country', new sfValidatorI18nChoiceCountry(array(
-      'choices'=> array_keys($this->getCountries()),
     )));
   }
 
   private function setupPromoCodeField()
   {
     $this->setWidget('promo_code', new sfWidgetFormInputText(array(
-      'label'=> false,
+      'label'=> 'Promo code',
     ), array(
       'required' => 'required',
       'placeholder' => 'Enter Your Promo Code',
@@ -211,8 +210,10 @@ class SellerPackagesForm extends sfForm
 
   private function setupTermsField()
   {
-    $this->setWidget('fyi', new sfWidgetFormInputCheckbox(array(), array(
-      'required' => 'required',
+    $this->setWidget('fyi', new sfWidgetFormInputCheckbox(array(
+        'label' => 'Paypal terms',
+      ), array(
+        'required' => 'required',
     )));
     $this->setValidator('fyi', new sfValidatorBoolean(
       array('required' => true),
@@ -226,28 +227,6 @@ class SellerPackagesForm extends sfForm
       array('required' => true),
       array('required' => 'You need to accept the terms and conditions')
     ));
-  }
-
-  private function getCountries()
-  {
-    $countries = sfCultureInfo::getInstance('en')->getCountries();
-
-    // Dirty hack to display given countries at the top but only solution currently
-    $top = array(
-      ''   => '',
-      'US' => $countries['US'],
-      'GB' => $countries['GB'],
-      'AU' => $countries['AU'],
-    );
-
-    foreach ($top as $key => $value)
-    {
-      unset($countries[$key]);
-    }
-
-    $countries = array_merge($top, $countries);
-
-    return $countries;
   }
 
   protected function getPaymentTypes()

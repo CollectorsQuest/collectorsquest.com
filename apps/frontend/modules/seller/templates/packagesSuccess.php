@@ -51,7 +51,7 @@
     <form action="<?= url_for('seller_packages')?>" method="post"
           id="form-seller-packages" class="form-horizontal" novalidate="novalidate">
       <?= $packagesForm->renderHiddenFields() ?>
-      <?= $packagesForm->renderGlobalErrors() ?>
+      <?= $packagesForm->renderAllErrors(); ?>
 
       <fieldset>
         <?= $packagesForm['package_id']->renderRow() ?>
@@ -78,7 +78,7 @@
       <fieldset id="credit_card" class="form-container-center">
         <?= $packagesForm['cc_type']->renderRow() ?>
         <?= $packagesForm['cc_number']->renderRow() ?>
-        <?= $packagesForm['expiry_date']->renderRow(array('class'=> 'span2 inline')) ?>
+        <?= $packagesForm['expiry_date']->renderRow(array('class'=> 'input-mini pull-left')) ?>
         <?= $packagesForm['cvv_number']->renderRow() ?>
         <?= $packagesForm['first_name']->renderRow() ?>
         <?= $packagesForm['last_name']->renderRow() ?>

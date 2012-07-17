@@ -99,16 +99,16 @@ class cqWidgetFormChoiceGeoIpCountry extends sfWidgetFormSelect
     // add the separator between common and all countries, unless "false"
     if (false !== $this->getOption('common_separator'))
     {
-      $common_countries[''] = $this->getOption('common_separator');
+      $common_countries['-'] = $this->getOption('common_separator');
     }
 
     // merge common with all countries
-    $countries = array_merge($common_countries, $countries);
+    $countries = $common_countries + $countries;
 
     // if remote_address option is supplied use GeoIP to guess first country choice
     if (false !== $this->getOption('remote_address') && function_exists('geoip_country_code_by_name'))
     {
-      if (false !== $country_code = geoip_country_code_by_name($this->getOption('remote_address')))
+      if ($country_code = @geoip_country_code_by_name($this->getOption('remote_address')))
       {
         if (isset($countries[$country_code]))
         {
@@ -121,9 +121,9 @@ class cqWidgetFormChoiceGeoIpCountry extends sfWidgetFormSelect
       }
     }
 
-    if (false !== $this->getOption('add_empty'))
+    if (false !== $addEmpty = $this->getOption('add_empty'))
     {
-      $countries = array_merge(array('' => true === $addEmpty ? '' : $addEmpty), $countries);
+      $countries = array('' => true === $addEmpty ? '' : $addEmpty) + $countries;
     }
 
     $this->setOption('choices', $countries);
