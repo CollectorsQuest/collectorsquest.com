@@ -53,6 +53,7 @@
       <?= $packagesForm->renderHiddenFields() ?>
       <?= $packagesForm->renderAllErrors(); ?>
 
+      <?php cq_sidebar_title('Which package is right for you'); ?>
       <fieldset>
         <?= $packagesForm['package_id']->renderRow() ?>
         <div class="control-group">
@@ -69,13 +70,16 @@
             <?php endif; ?>
           </div>
         </div>
+        <?php cq_sidebar_title('How would you pay'); ?>
         <?php if (IceGateKeeper::open('mycq_seller_pay')): ?>
-        <?= $packagesForm['payment_type']->renderRow() ?>
+          <div class="payment-type">
+            <?= $packagesForm['payment_type']->renderRow() ?>
+          </div>
         <?php endif; ?>
       </fieldset>
 
       <?php if (IceGateKeeper::open('mycq_seller_pay')): ?>
-      <fieldset id="credit_card" class="form-container-center">
+      <fieldset id="credit_card">
         <?= $packagesForm['cc_type']->renderRow() ?>
         <?= $packagesForm['cc_number']->renderRow() ?>
         <?= $packagesForm['expiry_date']->renderRow(array('class'=> 'input-mini pull-left')) ?>
@@ -118,8 +122,8 @@
       </div>
 
       <?php if (IceGateKeeper::open('mycq_seller_pay')): ?>
-      <h5 class="spacer-top">* To avoid interruption of service, annual subscriptions
-        automatically renew at the end of the subscription period</h5>
+      <h5 class="info-text">* To avoid interruption of service, annual subscriptions
+        automatically<br> renew at the end of the subscription period</h5>
       <?php endif; ?>
 
       <div class="form-actions">

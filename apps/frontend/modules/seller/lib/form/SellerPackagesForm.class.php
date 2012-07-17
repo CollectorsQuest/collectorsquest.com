@@ -124,7 +124,7 @@ class SellerPackagesForm extends BaseForm
   private function setupCardNumberField()
   {
     $this->setWidget('cc_number', new cqWidgetFormCreditCard(array(), array(
-      'placeholder' => 'Credit card number',
+      'placeholder' => 'Credit card number', 'type' => 'text',
     )));
     $this->setValidator('cc_number', new sfValidatorString());
   }
