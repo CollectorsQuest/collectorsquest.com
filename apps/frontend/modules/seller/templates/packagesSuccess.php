@@ -96,7 +96,7 @@
 
       <div class="control-group" style="margin-bottom: 0;">
         <label class="control-label control-label">&nbsp;</label>
-        <div class="controls form-inline">
+        <div class="controls form-inline reset-label-colors">
           <label for="<?= $packagesForm['terms']->renderId() ?>" class="radio inline">
             <?= $packagesForm['terms']->render() ?>&nbsp;
             <?php
@@ -111,7 +111,7 @@
           </label>
           <?= $packagesForm['terms']->renderError() ?>
         </div>
-        <div class="controls form-inline">
+        <div class="controls form-inline reset-label-colors">
           <label for="<?= $packagesForm['fyi']->renderId() ?>" class="radio inline">
             <?= $packagesForm['fyi']->render(array('style' => 'margin-bottom: 25px; float: left; margin-right: 5px; margin-top: 4px;')) ?>
             I acknowledge that all payments made to me for items sold on
