@@ -151,7 +151,7 @@ classes:
     columns:
       id:  ~
       plan_type:            { type: char, sqlType: "ENUM('Casual','Power')", default: NULL, required: true }
-      package_name:         { type: varchar, size: 255, required: true, primary_string: true }
+      package_name:         { type: varchar, size: 255, required: true, primaryString: true }
       package_description:  { type: longvarchar }
       credits:              { type: integer, required: true, default: 0 }
       package_price:        { type: float }
