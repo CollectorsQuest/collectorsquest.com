@@ -10,7 +10,9 @@ class collectionAction extends cqFrontendAction
   {
     SmartMenu::setSelected('mycq_menu', 'collections');
 
-    $this->collection = $this->getRoute()->getObject();
+    $this->collection = $this->getRoute() instanceof sfPropelRoute ?
+      $this->getRoute()->getObject() : null;
+
     $this->redirectUnless(
       $this->getCollector()->isOwnerOf($this->collection),
       '@mycq_collections'

@@ -15,7 +15,7 @@
           <i class="icon icon-move"></i>
           Re-order Collectibles
         </a>
-        <a href="<?= url_for('mycq_collection_by_section', array('id' => $collection, 'section' => 'details', 'cmd' => 'delete', 'encrypt' => '1')); ?>"
+        <a href="<?= url_for('mycq_collection_by_section', array('id' => $collection->getId(), 'section' => 'details', 'cmd' => 'delete', 'encrypt' => '1')); ?>"
            class="btn-delete-simple" onclick="return confirm('Are you sure you want to delete this Collection?');">
           <i class="icon icon-trash"></i>
           Delete Collection
