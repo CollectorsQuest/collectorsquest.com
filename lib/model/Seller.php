@@ -40,14 +40,13 @@ class Seller extends Collector
    */
   public function getPackageCreditsSum()
   {
-    $q = PackageTransactionQuery::create()
+    return (integer) PackageTransactionQuery::create()
       ->filterByCollector($this)
-      ->filterByPaymentStatus(PackageTransactionPeer::PAYMENT_STATUS_PAID)
-      ->filterByExpiryDate(time(), Criteria::GREATER_EQUAL)
-      ->clearSelectColumns()
-      ->addAsColumn('total', 'SUM(credits)');
-
-    return (integer) PackageTransactionPeer::doSelectStmt($q)->fetchColumn(0);
+      ->paidFor()
+      ->notExpired()
+      ->withColumn('SUM(PackageTransaction.Credits)', 'CreditsTotal')
+      ->select('CreditsTotal')
+      ->findOne();
   }
 
   /**
@@ -59,6 +58,7 @@ class Seller extends Collector
   {
     return (int) PackageTransactionQuery::create()
       ->filterByCollector($this)
+      ->paidFor()
       ->notExpired()
       ->withColumn('SUM(PackageTransaction.Credits) - SUM(PackageTransaction.CreditsUsed)', 'CreditsLeft')
       ->select('CreditsLeft')
