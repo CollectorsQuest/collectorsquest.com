@@ -715,6 +715,9 @@ class mycqActions extends cqFrontendActions
 
     $this->package_transactions = PackageTransactionQuery::create()
       ->filterByCollector($this->getCollector())
+      ->_if('dev' != sfConfig::get('sf_environment'))
+        ->paidFor()
+      ->_endif()
       ->find();
 
     return sfView::SUCCESS;

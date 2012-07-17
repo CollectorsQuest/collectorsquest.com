@@ -23,6 +23,9 @@
               <th>Credits Used</th>
               <th>Purchased At</th>
               <th>Expires at</th>
+              <?php if ('dev' == sfConfig::get('sf_environment')): ?>
+              <th>Payment status</th>
+              <?php endif; ?>
             </tr>
           </thead>
           <tbody>
@@ -33,6 +36,9 @@
               <td><?= $package_transaction->getCreditsUsed(); ?></td>
               <td><?= $package_transaction->getCreatedAt(); ?></td>
               <td><?= $package_transaction->getExpiryDate(); ?></td>
+              <?php if ('dev' == sfConfig::get('sf_environment')): ?>
+              <td><?= $package_transaction->getPaymentStatus(); ?></td>
+              <?php endif; ?>
             </tr>
           <?php endforeach; else: ?>
             <tr>
