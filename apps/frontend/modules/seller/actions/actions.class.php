@@ -286,7 +286,7 @@ class sellerActions extends cqFrontendActions
   {
     if ('COMPLETED' != strtoupper($request->getParameter('payment_status')))
     {
-      $this->getUser()->setFlash('success', 'The payment was not successful!');
+      $this->getUser()->setFlash('error', 'The payment was not successful!');
       return $this->redirect('@seller_become');
     }
 

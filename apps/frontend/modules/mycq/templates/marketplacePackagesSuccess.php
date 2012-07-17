@@ -22,9 +22,9 @@
               <th>Credits Purchased</th>
               <th>Credits Used</th>
               <th>Purchased At</th>
-              <th>Expires at</th>
+              <th>Expires At</th>
               <?php if ('dev' == sfConfig::get('sf_environment')): ?>
-              <th>Payment status</th>
+              <th>Payment Status</th>
               <?php endif; ?>
             </tr>
           </thead>
