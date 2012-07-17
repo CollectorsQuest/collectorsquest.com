@@ -32,6 +32,7 @@ class PackageTransactionCreditPeer extends BasePackageTransactionCreditPeer
     {
       $packageTransaction = PackageTransactionQuery::create()
         ->filterByCollectorId($collectible->getCollectorId())
+        ->paidFor()
         ->notExpired()
         ->hasUnusedCredits()
         ->orderByExpiryDate(Criteria::ASC) // those that expire sooner first

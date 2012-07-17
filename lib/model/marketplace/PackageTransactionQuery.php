@@ -39,4 +39,16 @@ class PackageTransactionQuery extends BasePackageTransactionQuery
     return $this
       ->where('PackageTransaction.Credits > PackageTransaction.CreditsUsed');
   }
+
+  /**
+   * Filter by has been paid for
+   *
+   * @return PackageTransactionQuery
+   */
+  public function paidFor()
+  {
+    return $this
+      ->filterByPaymentStatus(PackageTransactionPeer::PAYMENT_STATUS_PAID);
+  }
+
 }
