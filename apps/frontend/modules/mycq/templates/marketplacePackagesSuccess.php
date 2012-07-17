@@ -42,7 +42,7 @@
             </tr>
           <?php endforeach; else: ?>
             <tr>
-              <td colspan="5">You have not purchased any packages yet.</td>
+              <td colspan="6">You have not purchased any packages yet.</td>
             </tr>
           <?php endif; ?>
           </tbody>
