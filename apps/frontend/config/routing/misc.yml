@@ -1,0 +1,170 @@
+
+### CHANNELS
+
+channels:
+  url:  /channels
+  param: { module: channels, action: index }
+
+
+### SEARCH
+
+search_typeahead:
+  url:   /search/typeahead
+  param: { module: search, action: ajax }
+
+search_collectibles:
+  url:   /search/collectibles
+  param: { module: search, action: collectibles }
+
+search_collectibles_for_sale:
+  url:   /search/collectibles-for-sale
+  param: { module: search, action: collectiblesForSale }
+
+search_collections:
+  url:   /search/collections
+  param: { module: search, action: collections }
+
+search_collectors:
+  url:   /search/collectors
+  param: { module: search, action: collectors }
+
+search_videos:
+  url:   /search/videos
+  param: { module: search, action: videos }
+
+search_blog:
+  url:   /search/blog
+  param: { module: search, action: blog }
+
+search_advanced:
+  url:   /search/advanced
+  param: { module: search, action: advanced }
+
+search:
+  url:   /search
+  param: { module: search, action: index }
+
+
+### BLOG
+
+blog:
+  url:   /blog
+  param: { module: _blog, action: index }
+
+blog_post:
+  url:   /blog/:slug
+  param: { module: _blog, action: post }
+
+blog_page:
+  url:   /pages/:slug
+  param: { module: _blog, action: page }
+
+
+### VIDEO
+
+video:
+  url:   /video
+  param: { module: _video, action: index }
+
+videos:
+  url:   /videos
+  param: { module: _video, action: index }
+
+
+### TAGS
+
+tag:
+  url:   /tag/:tag
+  param: { module: search, action: index }
+
+tags:
+  url:   /tags/:which
+  param: { module: tags, action: tagCloud}
+  requirements: { which: '[\-\w\.]+' }
+
+tags_index:
+  url:   /tags
+  param: { module: tags, action: index }
+
+
+### CONTENT CATEGORIES
+
+content_category:
+  url:  /category/:id/:slug
+  class: cqPropelRoute
+  options: { model: ContentCategory, type: object }
+  param: { module: categories, action: category }
+  requirements: { id: '\d+', slug: '[\-\w\.]+' }
+
+content_categories:
+  url:  /categories
+  param: { module: categories, action: index }
+
+
+### COMMENTS
+
+comments_add:
+  url:    /comments/add
+  param:  { module: comments, action: addComment }
+  requirements: { sf_method: [post] }
+
+comments_load_more:
+  url:    /comments/load-more
+  param:  { module: comments, action: loadMoreComments }
+
+comments_unsubscribe:
+  url:    /comments/unsubscribe/email/:email/model_class/:model_class/model_pk/:model_pk
+  param:  { module: comments, action: unsubscribe }
+
+
+### MISC
+
+misc_guide_to_collecting_shortcut:
+  url:   /guide
+  param: { module: misc, action: guideToCollectingShortcut }
+
+misc_guide_to_collecting:
+  url:   /the-essential-guide-to-collecting
+  param: { module: misc, action: guideToCollecting }
+
+misc_guide_download_file:
+  url: /the-essential-guide-download/:hash.:sf_format
+  param: { module: misc, action: guideDownload }
+  requirements: { hash: '\w{10}', sf_format: (?:pdf|zip) }
+
+misc_guide_download:
+  url:  /the-essential-guide-download
+  param: { module: misc, action: guideDownload }
+
+misc_guide_verify_email:
+  url:  /the-essential-guide-verify/:hash
+  class: cqPropelRoute
+  param: { module: misc, action: guideVerifyEmail }
+  options: { model: CollectorEmail, type: object }
+
+
+### GENERAL
+
+login:
+  url:   /login
+  param: { module: general, action: login }
+
+auto_login:
+  url:  /auto-login/:hash
+  param: { module: general, action: login }
+
+rpx_token:
+  url:   /rpx-token
+  param: { module: general, action: RPXTokenLogin }
+
+logout:
+  url:   /logout
+  param: { module: general, action: logout }
+
+recover_password:
+  url:   /recover-password
+  param: { module: general, action: recoverPassword }
+
+feedback:
+  url:   /feedback
+  param: { module: general, action: feedback }

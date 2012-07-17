@@ -1,0 +1,89 @@
+### A&E
+
+aetn_landing:
+  url: /history
+  param: { module: aent, action: landing }
+  requirements: { sf_method: [GET] }
+
+aetn_american_pickers:
+  url: /history/american-pickers
+  param: { module: aent, action: americanPickers }
+  requirements: { sf_method: [GET] }
+
+aetn_pawn_stars:
+  url: /history/pawn-stars
+  param: { module: aent, action: pawnStars }
+  requirements: { sf_method: [GET] }
+
+aetn_storage_wars:
+  url: /history/storage-wars
+  param: { module: aent, action: storageWars }
+  requirements: { sf_method: [GET] }
+
+aetn_collectible_by_slug:
+  url:  /aetn/collectible/:id/:slug
+  class: cqPropelRoute
+  options: { model: Collectible, type: object, method: getObjectForRoute }
+  param: { module: aent, action: collectibleFixedMatching }
+  requirements: { id: '\d+', slug: '[\-\w\.]+' }
+
+
+### COLLECTIONS
+
+collections:
+  url:   /collections
+  param: { module: collections, action: index }
+
+collections_with_sort:
+  url:   /collections/:sort.:sf_format
+  param: { module: collections, action: index, sort: latest, sf_format: html }
+  requirements: { sf_format: (?:html|rss) }
+
+collection_by_slug:
+  url:  /collection/:id/:slug
+  class: cqPropelRoute
+  options: { model: CollectorCollection, type: object, method: getObjectForRoute }
+  param: { module: collection, action: index }
+  requirements: { id: '\d+', slug: '[\-\w\.]+' }
+
+collections_by_collector_legacy:
+  url:  /collections/by/:collector_slug
+  class: sfPropelRoute
+  options: { model: Collector, type: object, method: getObjectForRoute }
+  param: { module: collections, action: collector }
+  requirements: { collector_slug: '[\-\w\.]+' }
+
+collections_by_collector:
+  url:  /collections/by/:collector_id/:collector_slug
+  class: sfPropelRoute
+  options: { model: Collector, type: object, method: getObjectForRoute }
+  param: { module: collections, action: collector }
+  requirements: { collector_id: '\d+', collector_slug: '[\-\w\.]+' }
+
+collections_by_tag:
+  url:   /collections/tag/:tag
+  param: { module: search, action: collections }
+
+
+### COLLECTIBLES
+
+collectible_by_slug:
+  url:  /collectible/:id/:slug
+  class: cqPropelRoute
+  options: { model: Collectible, type: object, method: getObjectForRoute, statsd: true }
+  param: { module: collection, action: collectible }
+  requirements: { id: '\d+', slug: '[\-\w\.]+' }
+
+collectibles_by_collector:
+  url:  /collectibles/by/:id/:slug
+  class: cqPropelRoute
+  options: { model: Collector, type: object, method: getObjectForRoute, statsd: true }
+  param: { module: collectibles, action: collectorList, onlyForSale: false }
+  requirements: { id: '\d+', slug: '[\-\w\.]+' }
+
+collectibles_for_sale_by_collector:
+  url:  /collectibles-for-sale/by/:id/:slug
+  class: cqPropelRoute
+  options: { model: Collector, type: object, method: getObjectForRoute, statsd: true }
+  param: { module: collectibles, action: collectorList, onlyForSale: true }
+  requirements: { id: '\d+', slug: '[\-\w\.]+' }
