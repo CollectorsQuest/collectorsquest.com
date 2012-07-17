@@ -42,8 +42,10 @@
   </div>
 
   <?php
-    if (($pager->getPage() === 1 && $i === 4) || ($pager->count() === $i+1 && $pager->count() < 5))
-    {
+    if (
+      ($pager->getPage() === 1 && $i === 4) ||
+      ($pager->count() === $i+1 && $pager->count() < 5)
+    ) {
       include_slot('mycq_create_collectible');
     }
   ?>
@@ -69,17 +71,18 @@
   <script>
     $(document).ready(function()
     {
-      var $url = '<?= url_for('@ajax_mycq?section=component&page=collections', true) ?>';
-      var $form = $('#form-mycq-collections');
+      var $url = '<?= url_for('@ajax_mycq?section=component&page=collectibles', true) ?>';
+      var $form = $('#form-mycq-collectibles');
 
       $('#collectibles-pagination a').click(function(e)
       {
         e.preventDefault();
+        var page = $(this).data('page');
 
         $('#collectibles').parent().showLoading();
 
         $('#collectibles').load(
-          $url +'?p=2', $form.serialize(),
+          $url +'?p='+ page, $form.serialize(),
           function(data) {
             $('#collectibles').parent().hideLoading();
           }
@@ -105,47 +108,47 @@
 <?php endif; ?>
 
 <script>
-  $(document).ready(function()
+$(document).ready(function()
+{
+  $(document).controls();
+
+  $("#mycq-create-collectible").droppable(
   {
-    $(document).controls();
-
-    $("#mycq-create-collectible").droppable(
+    over: function(event, ui)
     {
-      over: function(event, ui)
-      {
-        $(this)
-          .addClass('ui-state-highlight')
-          .find('i')
-          .removeClass('icon-plus')
-          .addClass('icon-download-alt');
-      },
-      out: function(event, ui)
-      {
-        $(this)
-          .removeClass('ui-state-highlight')
-          .find('i')
-          .removeClass('icon-download-alt')
-          .addClass('icon-plus');
-      },
-      drop: function(event, ui)
-      {
-        $(this)
-          .removeClass('ui-state-highlight')
-          .find('i')
-          .removeClass('icon-download-alt')
-          .addClass('icon-plus');
+      $(this)
+        .addClass('ui-state-highlight')
+        .find('i')
+        .removeClass('icon-plus')
+        .addClass('icon-download-alt');
+    },
+    out: function(event, ui)
+    {
+      $(this)
+        .removeClass('ui-state-highlight')
+        .find('i')
+        .removeClass('icon-download-alt')
+        .addClass('icon-plus');
+    },
+    drop: function(event, ui)
+    {
+      $(this)
+        .removeClass('ui-state-highlight')
+        .find('i')
+        .removeClass('icon-download-alt')
+        .addClass('icon-plus');
 
-        ui.draggable.draggable('option', 'revert', false);
-        ui.draggable.hide();
+      ui.draggable.draggable('option', 'revert', false);
+      ui.draggable.hide();
 
-        $(this).showLoading();
+      $(this).showLoading();
 
-        var url = '<?= url_for('@mycq_collection_collectible_create') ?>';
+      var url = '<?= url_for('@mycq_collection_collectible_create') ?>';
 
-        window.location.href = url +
-          '?collection_id=' + $(this).data('collection-id') +
-          '&collectible_id=' + ui.draggable.data('collectible-id');
-      }
-    });
+      window.location.href = url +
+        '?collection_id=' + $(this).data('collection-id') +
+        '&collectible_id=' + ui.draggable.data('collectible-id');
+    }
   });
+});
 </script>

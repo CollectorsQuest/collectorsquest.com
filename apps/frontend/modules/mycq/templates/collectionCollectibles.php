@@ -51,32 +51,12 @@
 
       </div><!-- .tab-content-inner -->
     </div> <!-- .tab-pane.active -->
-    <div id="tab4" class="tab-pane">
-      <div class="tab-content-inner spacer">
-
-      </div><!-- .tab-content-inner -->
-    </div><!-- #tab4.tab-pane -->
   </div><!-- .tab-content -->
 </div>
 
 <script>
 $(document).ready(function()
 {
-  $('#collection_description').wysihtml5({
-    "font-styles": false, "image": false, "link": false,
-    events:
-    {
-      "load": function() {
-        $('#collection_description')
-          .removeClass('js-hide')
-          .removeClass('js-invisible');
-      },
-      "focus": function() {
-        $(editor.composer.iframe).autoResize();
-      }
-    }
-  });
-
   $('.add-new-zone').on('mouseenter', function() {
     var $this = $(this);
     $this.find('i.icon-plus')
@@ -91,81 +71,22 @@ $(document).ready(function()
       .addClass('icon-plus')
       .show();
   });
-
-  $("#form-collection .drop-zone-large").droppable(
-  {
-    over: function(event, ui)
-    {
-      $(this).addClass('ui-state-highlight');
-      $(this).find('.icon-plus-holder i')
-        .removeClass('icon-plus')
-        .addClass('icon-download-alt');
-      $(this).find('img').hide();
-      $(this).find('.holder-icon-edit').hide();
-      $(this).find('span.icon-plus-holder').show();
-    },
-    out: function(event, ui)
-    {
-      $(this).removeClass('ui-state-highlight');
-      $(this).find('.icon-plus-holder i')
-        .removeClass('icon-download-alt')
-        .addClass('icon-plus');
-      $(this).find('span.icon-plus-holder').hide();
-      $(this).find('.holder-icon-edit').show();
-      $(this).find('img').show();
-    },
-    drop: function(event, ui)
-    {
-      $(this).removeClass('ui-state-highlight');
-      $(this).find('.holder-icon-edit i')
-        .removeClass('icon-download-alt')
-        .addClass('icon-plus');
-      ui.draggable.draggable('option', 'revert', false);
-
-      $(this).showLoading();
-
-      $.ajax({
-        url: '<?= url_for('@ajax_mycq?section=collection&page=setThumbnail'); ?>',
-        type: 'GET',
-        data: {
-          collectible_id: ui.draggable.data('collectible-id'),
-          collection_id: '<?= $collection->getId() ?>'
-        },
-        success: function()
-        {
-          window.location.reload();
-        },
-        error: function()
-        {
-          // error
-        }
-      });
-    }
-  });
 });
 </script>
 
 <script>
 $(document).ready(function()
 {
-  $('.dropdown-menu a.sortBy').click(function()
-  {
-    $('#sortByName').html($(this).data('name'));
-    $('#sortByValue').val($(this).data('sort'));
-
-    $('#form-mycq-collectibles').submit();
-  });
-
   var $url = '<?= url_for('@ajax_mycq?section=component&page=collectibles', true) ?>';
   var $form = $('#form-mycq-collectibles');
 
   $form.submit(function()
   {
-    $('div.mycq-collections .thumbnails').fadeOut();
+    $('div.mycq-collectibles .thumbnails').fadeOut();
 
     $.post($url +'?p=1', $form.serialize(), function(data)
     {
-      $('div.mycq-collections .thumbnails').html(data).fadeIn();
+      $('div.mycq-collectibles .thumbnails').html(data).fadeIn();
     },'html');
 
     return false;

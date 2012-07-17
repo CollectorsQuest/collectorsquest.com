@@ -19,17 +19,21 @@ cq_sidebar_title(
 <div class="blue-well spacer-bottom-15 cf">
   <div class="row-fluid">
     <div class="span6">
-      <div class="buttons-container">
-        <a href="<?= url_for('@ajax_mycq?section=component&page=createCollection'); ?>"
-           class="btn-blue-simple open-dialog" title="Create a new collection by clicking here">
-          <i class="icon-plus"></i>
-          New Collection
-        </a>
-        <a href="<?= url_for('collections_by_collector', $collector) ?>" class="btn-blue-simple">
-          <i class="icon-globe"></i>
-          Public View
-        </a>
-      </div>
+      <ul class="nav nav-pills" style="margin-bottom: 0;">
+        <li>
+          <a href="<?= url_for('@ajax_mycq?section=component&page=createCollection'); ?>"
+             class="open-dialog" title="Create a new collection by clicking here">
+            <i class="icon-plus"></i>
+            New Collection
+          </a>
+        </li>
+        <li>
+          <a href="<?= url_for('collections_by_collector', $collector) ?>">
+            <i class="icon-globe"></i>
+            Public View
+          </a>
+        </li>
+      </ul>
     </div>
     <div class="span6">
       <?php if ($total > 0): ?>
@@ -53,15 +57,6 @@ cq_sidebar_title(
         </div>
       </div>
       <?php endif; ?>
-      <!--
-      <div class="mini-input-append-search">
-        <div class="input-append pull-right">
-          <form method="post" id="form-mycq-collections" action="/ajax/mycq/component/collections">
-            <input type="text" name="q" id="appendedPrependedInput" class="input-sort-by"><button type="submit" class="btn gray-button"><strong>Search</strong></button>
-          </form>
-        </div>
-      </div>
-      -->
     </div>
   </div>
 </div>
