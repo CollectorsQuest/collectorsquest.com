@@ -126,7 +126,7 @@ class SellerPackagesForm extends BaseForm
     $this->setWidget('cc_number', new cqWidgetFormCreditCard(array(), array(
       'placeholder' => 'Credit card number',
     )));
-    $this->setValidator('cc_number', new sfValidatorString());
+    $this->setValidator('cc_number', new cqValidatorCreditCardNumber());
   }
 
   private function setupCardExpiryDateField()
