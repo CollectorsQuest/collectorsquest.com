@@ -112,7 +112,7 @@
         <?php else: ?>
           <?php
             echo link_to(
-              'Log In', '@login',
+              'Sign In', '@login',
               array('class' => 'requires-login bold-links padding-signup', 'absolute' => true)
             );
           ?>

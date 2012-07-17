@@ -9,7 +9,7 @@ ice_breadcrumbs:
 
   general:
     index: [{ name: 'Home', route: homepage }]
-    login: [{ name: 'Login' }]
+    login: [{ name: 'Signin' }]
     recoverPassword: [{ name: 'Recover password' }]
     feedback: [{ name: 'Feedback' }]
     error404: [{ name: 'This page isn’t here anymore' }]
