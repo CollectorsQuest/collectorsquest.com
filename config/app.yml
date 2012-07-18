@@ -37,6 +37,7 @@ all:
     facebook:
       application_id: "293221397397430"
       application_secret: "21b6fb4368bbe3bf4157afe83e6945d4"
+      admins: "119338990397,74502459,555733876,501327639"
 
   paypal:
     sandbox: true

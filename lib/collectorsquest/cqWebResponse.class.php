@@ -46,4 +46,44 @@ class cqWebResponse extends iceWebResponse
       $this->addMeta('ICBM', implode(', ', $geo_position));
     }
   }
+
+  public function addOpenGraphMeta($name, $value)
+  {
+    // By default, escape the tag value
+    $escape = true;
+
+    if (is_array($value))
+    {
+      $value = serialize($value);
+      $escape = false;
+    }
+
+    $this->addMeta('og:'. $name, $value, false, $escape);
+  }
+
+  public function addOpenGraphMetaFor(BaseObject $object)
+  {
+    /** @var cqApplicationConfiguration $configuration */
+    $configuration = sfProjectConfiguration::getActive();
+    $configuration->loadHelpers(array('cqLinks', 'cqImages'));
+
+    $this->addOpenGraphMeta('title', (string) $object .' | Collectors Quest');
+    $this->addOpenGraphMeta('url', $this->getCanonicalUrl() ?: cq_url_for($object, true));
+
+    if (method_exists($object, 'getDescription')) {
+      $this->addOpenGraphMeta('description', (string) $object->getDescription());
+    }
+
+    if ($multimedia = $object->getMultimedia(0, 'image'))
+    {
+      foreach ($multimedia as $m) {
+        $images[] = src_tag_multimedia($m, 'original');
+      }
+      $this->addOpenGraphMeta('image', $images);
+    }
+
+    $this->addOpenGraphMeta(
+      'type', 'collectorsquest:'. sfInflector::underscore(get_class($object))
+    );
+  }
 }

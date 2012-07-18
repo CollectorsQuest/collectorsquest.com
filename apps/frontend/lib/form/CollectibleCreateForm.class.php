@@ -12,8 +12,9 @@ class CollectibleCreateForm extends CollectibleForm
         'required' => 'required',
         'class' => 'input-xlarge'
       )),
-      'tags'  => new sfWidgetFormInputText(array(
-        'label' => 'Tags'
+      'tags'  => new cqWidgetFormInputTags(array(
+        'label' => 'Tags',
+        'autocompleteURL' => '@ajax_typeahead?section=tags&page=edit',
       ), array(
         'required' => 'required',
         'class' => 'input-xlarge'
@@ -42,11 +43,11 @@ class CollectibleCreateForm extends CollectibleForm
     // to keep the field's state between requests...
     $tags = $this->getObject()->getTags();
 
-    $this->widgetSchema['tags'] = new cqWidgetFormMultipleInputText(array(
+    $this->widgetSchema['tags'] = new cqWidgetFormInputTags(array(
       'label' => 'Tags',
+      'autocompleteURL' => '@ajax_typeahead?section=tags&page=edit',
     ), array(
       'required' => 'required',
-      'class' => 'tag js-hide'
     ));
 
     $this->widgetSchema['tags']->setDefault($tags);

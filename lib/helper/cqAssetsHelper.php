@@ -31,11 +31,21 @@ function cq_include_metas()
   $i = 0;
   foreach ($response->getMetas() as $name => $content)
   {
-    // Do not display empty meta tags
-    if ($content === '' || $content === null) continue;
+    if (substr($content, 0, 2) == 'a:' && ($u = unserialize($content)))
+    {
+      $content = $u;
+    }
+    $content = (array) $content;
 
-    echo ($i++ > 0) ? '  ' : '';
-    echo tag('meta', array('name' => $name, 'content' => null === $i18n ? $content : $i18n->__($content)))."\n";
+    foreach ($content as $_content)
+    {
+      // Do not display empty meta tags
+      if ($_content === '' || $_content === null) continue;
+
+      echo ($i++ > 0) ? '  ' : '';
+      $key = substr($name, 0, 3) === 'og:' ? 'property' : 'name';
+      echo tag('meta', array($key => $name, 'content' => null === $i18n ? $_content : $i18n->__($_content)))."\n";
+    }
   }
 }
 

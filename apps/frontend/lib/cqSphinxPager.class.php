@@ -34,7 +34,7 @@ class cqSphinxPager extends sfPager
     $maxRecordLimit = $this->getMaxRecordLimit();
 
     $total = self::search($this->query, $this->types, 'total');
-    $this->setNbResults($total);
+    $this->setNbResults($total > 1000 ? 1000 : $total);
 
     if (($this->getPage() == 0 || $this->getMaxPerPage() == 0))
     {

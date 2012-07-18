@@ -13,8 +13,8 @@ class PackageTransactionCreditQuery extends BasePackageTransactionCreditQuery
    */
   public function notExpired($now = null)
   {
-    return $this->
-      filterByExpiryDate($now ?: time(), Criteria::GREATER_EQUAL);
+    return $this
+      ->filterByExpiryDate($now ?: time(), Criteria::GREATER_EQUAL);
   }
 
   /**
@@ -25,8 +25,8 @@ class PackageTransactionCreditQuery extends BasePackageTransactionCreditQuery
    */
   public function isExpired($now = null)
   {
-    return $this->
-      filterByExpiryDate($now ?: time(), Criteria::LESS_THAN);
+    return $this
+      ->filterByExpiryDate($now ?: time(), Criteria::LESS_THAN);
   }
 
 }

@@ -32,7 +32,7 @@
 <?php if (!$sf_user->isAuthenticated()): ?>
   <p>
     In order to streamline your future shopping experience and track your orders,
-    please <strong>signup for an account</strong> using the form to the right.
+    please <strong>sign up for an account</strong> using the form to the right.
   </p>
 <?php endif; ?>
 

@@ -36,7 +36,7 @@ all:
       dsn:        mysql:dbname=collectorsquest_dev;host=127.0.0.1
       username:   root
       password:
-      encoding:   utf8
+      encoding:   latin1
       persistent: true
       pooling:    true
 

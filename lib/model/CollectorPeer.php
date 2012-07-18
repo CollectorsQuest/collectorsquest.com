@@ -526,21 +526,26 @@ class CollectorPeer extends BaseCollectorPeer
    *
    * @param     sfEvent $event
    */
-  public function listenToChangeAuthenticationEvent(sfEvent $event)
+  public static function listenToChangeAuthenticationEvent(sfEvent $event)
   {
     $params = $event->getParameters();
+    /** @var $cq_user cqFrontendUser */
+    $cq_user = $event->getSubject();
 
     // if the user is beign authenticated
-    if (true === $params['authenticated'])
+    if (true == $params['authenticated'])
     {
-      /** @var $cq_user cqFrontendUser */
-      $cq_user = $event->getSubject();
-
       // and we can successfully get the related collector
       if (( $collector = $cq_user->getCollector($strict = true) ))
       {
         if (( $uuid = $cq_user->getCookieUuid() ))
         {
+          // remove the UUID from the last user that had it
+          CollectorQuery::create()
+            ->filterByCookieUuid($uuid)
+            ->update(array('CookieUuid' => null));
+
+          // and set it to the current user
           $collector->setCookieUuid($uuid);
         }
 

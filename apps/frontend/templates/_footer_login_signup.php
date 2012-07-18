@@ -39,13 +39,13 @@
   <div id="footer-control-login">
     <span class="pull-right">
       Already have an account?
-      <?= link_to('Log In', '@login', array('id' => 'footer-control-login-button')); ?>
+      <?= link_to('Sign In', '@login', array('id' => 'footer-control-login-button')); ?>
     </span>
   </div>
 </div><!-- #footer-form-signup -->
 
 <div id="footer-form-login" style="<?= 'login' == $display ? '' : 'display: none;' ?>">
-  <h2 class="Chivo webfont">Log In</h2>
+  <h2 class="Chivo webfont">Sign In</h2>
 
   <form action="<?= url_for($login_action, true); ?>"
         method="post" class="form-horizontal form-footer">
@@ -80,7 +80,7 @@
         ?>
       </div>
       <div class="span4">
-        <button type="submit" class="btn btn-primary pull-right">Log&nbsp;In</button>
+        <button type="submit" class="btn btn-primary pull-right">Sign&nbsp;In</button>
       </div>
     </div>
     <div class="row-fluid">

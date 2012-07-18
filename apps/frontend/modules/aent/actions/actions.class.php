@@ -72,6 +72,9 @@ class aentActions extends cqFrontendActions
         ->addAscendingOrderByColumn('FIELD(collectible_id, ' . implode(',', $collectible_ids) . ')');
     $this->collectibles_for_sale = $q->find();
 
+    // Set the OpenGraph meta tags
+    $this->getResponse()->addOpenGraphMetaFor($collection);
+
     return sfView::SUCCESS;
   }
 
@@ -118,6 +121,9 @@ class aentActions extends cqFrontendActions
         ->limit(8)
         ->addAscendingOrderByColumn('FIELD(collectible_id, ' . implode(',', $collectible_ids) . ')');
     $this->collectibles_for_sale = $q->find();
+
+    // Set the OpenGraph meta tags
+    $this->getResponse()->addOpenGraphMetaFor($collection);
 
     return sfView::SUCCESS;
   }
@@ -171,6 +177,9 @@ class aentActions extends cqFrontendActions
 
     $this->collectible = $collectible;
     $this->collection  = $collection;
+
+    // Set the OpenGraph meta tags
+    $this->getResponse()->addOpenGraphMetaFor($collectible);
 
     return sfView::SUCCESS;
   }
@@ -340,6 +349,9 @@ class aentActions extends cqFrontendActions
     {
       $this->video = $videos;
     }
+
+    // Set the OpenGraph meta tags
+    $this->getResponse()->addOpenGraphMetaFor($collectible);
 
     $this->setTemplate('collectible');
 
