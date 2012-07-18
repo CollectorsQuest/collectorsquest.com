@@ -24,10 +24,14 @@ function cq_link_to()
   // for BC with 1.1
   $arguments = func_get_args();
 
-  if (empty($arguments[1]) || is_array($arguments[1]) ||
-      '@' == substr($arguments[1], 0, 1) || false !== strpos($arguments[1], '/')
-  )
+  if ($arguments[0] instanceof BaseObject)
   {
+    return call_user_func_array('link_to_'. get_class($arguments[0]), $arguments);
+  }
+  else if (
+    empty($arguments[1]) || is_array($arguments[1]) ||
+    '@' == substr($arguments[1], 0, 1) || false !== strpos($arguments[1], '/')
+  ) {
     if (!array_key_exists(2, $arguments))
     {
       $arguments[2] = array();
@@ -62,6 +66,24 @@ function cq_link_to()
     }
 
     return call_user_func_array('link_to2', $arguments);
+  }
+}
+
+/**
+ * @see url_for()
+ */
+function cq_url_for()
+{
+  // for BC with 1.1
+  $arguments = func_get_args();
+
+  if ($arguments[0] instanceof BaseObject)
+  {
+    return call_user_func_array('url_for_'. sfInflector::underscore(get_class($arguments[0])), $arguments);
+  }
+  else
+  {
+    return call_user_func_array('url_for', $arguments);
   }
 }
 
@@ -197,6 +219,14 @@ function url_for_collection(Collection $collection = null, $absolute = false)
       null;
 }
 
+/**
+ * @see url_for_collection()
+ */
+function url_for_collector_collection()
+{
+  return call_user_func_array('url_for_collection', func_get_args());
+}
+
 function route_for_collection(Collection $collection = null)
 {
   $route = null;
@@ -275,6 +305,14 @@ function url_for_collectible($collectible = null, $absolute = true)
   return ($collectible) ?
       url_for(route_for_collectible($collectible), $absolute) :
       null;
+}
+
+/**
+ * @see url_for_collectible()
+ */
+function url_for_collection_collectible()
+{
+  return call_user_func_array('url_for_collectible', func_get_args());
 }
 
 /**

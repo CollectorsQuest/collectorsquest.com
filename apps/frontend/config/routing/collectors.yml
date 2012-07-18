@@ -1,0 +1,77 @@
+
+### COLLECTORS
+
+legacy_collectors_filter:
+  url: /collectors/filter/:sort
+  param: { module: collectors, action: index, sort: latest }
+
+collectors:
+  url:  /collectors/:sort.:sf_format
+  param: { module: collectors, action: index, sort: latest, sf_format: html }
+  requirements: { sf_format: (?:html|rss) }
+
+collector_verify_email:
+  url:  /collector/verify-email/:hash
+  class: cqPropelRoute
+  param: { module: collector, action: verifyEmail }
+  options: { model: CollectorEmail, type: object }
+
+collector_signup:
+  url:   /collector/signup/:step
+  param: { module: collector, action: signup, step: 1 }
+  requirements: { step: '[1-3]' }
+
+collector_dropbox:
+  url:  /collector/dropbox
+  param: { module: collector, action: dropbox }
+
+collector_me:
+  url:  /collector/me
+  class: sfPropelRoute
+  options: { model: Collector, type: object, method: getObjectForRoute }
+  param: { module: collector, action: me }
+
+collector_avatar:
+  url:  /collector/:id/:size/avatar.jpg
+  class: cqPropelRoute
+  options: { model: Collector, type: object, method: getObjectForRoute }
+  param: { module: collector, action: avatar, size: '100x100' }
+  requirements: { id: '\d+', size: '\d+x\d+' }
+
+collector_by_slug:
+  url:  /collector/:id/:slug
+  class: cqPropelRoute
+  options: { model: Collector, type: object, method: getObjectForRoute, statsd: true }
+  param: { module: collector, action: index }
+  requirements: { id: '\d+', slug: '[\-\w\.]+' }
+
+### SELLERS
+
+seller_packages:
+  url:   /seller/packages
+  param: { module: seller, action: packages }
+
+seller_cancel_payment:
+  url: /seller/payment/cancel/:id
+  param: { module: seller, action: cancelPayment }
+  requirements: { id: '\d+' }
+
+seller_callback_ipn:
+  url: /seller/ipn
+  param: { module: seller, action: callbackIPN }
+  options: { extra_parameters_as_query_string: true }
+  requirements: { sf_method: [post] }
+
+seller_shopping_order:
+  url:   /seller/order/:uuid
+  class: sfPropelRoute
+  options: { model: ShoppingOrder, type: object }
+  param: { module: seller, action: shoppingOrder }
+
+seller_shopping_orders:
+  url:   /seller/orders
+  param: { module: seller, action: shoppingOrders }
+
+sellers:
+  url:  /sellers/:sort
+  param: { module: collectors, action: index, type: sellers, sort: latest }
