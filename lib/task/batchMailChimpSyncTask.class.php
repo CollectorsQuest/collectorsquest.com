@@ -30,13 +30,74 @@ EOF;
     $databaseManager = new sfDatabaseManager($this->configuration);
 
     $mc = cqStatic::getMailChimpClient();
+    $batch = array();
 
-    $collectors = CollectorQuery::create()
-      ->setFormatter(ModelCriteria::FORMAT_ON_DEMAND)
+    $q = CollectorQuery::create()
+      ->filterByCreatedAt(strtotime('yesterday'), Criteria::GREATER_EQUAL)
+      ->filterByCreatedAt(strtotime('today'), Criteria::LESS_THAN)
       ->orderBy('CreatedAt', Criteria::DESC)
-      ->find();
+      ->setFormatter(ModelCriteria::FORMAT_ON_DEMAND);
 
-    /** @var $collector Collector */
+    /** @var $collectors Collector[] */
+    $collectors = $q->find();
+
+    foreach ($collectors as $collector)
+    {
+      $avatar = !$collector->getProfile()->getIsImageAuto() && !$collector->hasPhoto() ?
+        'Yes' : 'No';
+
+      $batch[] = array(
+        'EMAIL' => $collector->getEmail(),
+        'EMAIL_TYPE' => 'html',
+        'ID' => $collector->getId(),
+        'DNAME' => $collector->getDisplayName(),
+        'AVATAR' => $avatar,
+        'TYPE' => $collector->getUserType(),
+        'NUMCTIONS' => $collector->countCollectorCollections(),
+        'NUMCIBLES' => $collector->countCollectionCollectibles(),
+        'COMPLETED' => (int) $collector->getProfile()->getProfileCompleted(),
+        'PAGEVIEWS' => $collector->getVisitorInfoNumPageViews(),
+        'VISITS' => $collector->getVisitorInfoNumVisits(),
+        'VISITED_AT' => $collector->getLastVisitedAt('m/d/Y'),
+        'SEEN_AT' => $collector->getLastSeenAt('m/d/Y'),
+        'CREATED_AT' => $collector->getCreatedAt('m/d/Y'),
+      );
+    }
+
+    // Do the API call to MailChimp only if there are new Collectors
+    if (!empty($batch))
+    {
+      $result = $mc->listBatchSubscribe('4b51c2b29c', $batch, false, false, false);
+
+      if ($mc->errorCode)
+      {
+        $this->logSection('error', "Batch Subscribe failed!");
+        $this->logSection('error', "Code: ". $mc->errorCode);
+        $this->logSection('error', "Message: ".$mc->errorMessage);
+      }
+      else
+      {
+        $this->logSection('success', "Added: ". $result['add_count']);
+        $this->logSection('success', "Updated: ". $result['update_count']);
+        $this->logSection('success', "Errors: ". $result['error_count']);
+
+        foreach($result['errors'] as $error)
+        {
+          $this->logSection('error', $error['email_address']. " failed");
+          $this->logSection('error', "Code: ". $error['code']);
+          $this->logSection('error', "Message: ". $error['message']);
+        }
+      }
+    }
+
+    $q = CollectorQuery::create()
+      ->filterByCreatedAt(strtotime('yesterday'), Criteria::LESS_THAN)
+      ->orderBy('CreatedAt', Criteria::DESC)
+      ->setFormatter(ModelCriteria::FORMAT_ON_DEMAND);
+
+    /** @var $collectors Collector[] */
+    $collectors = $q->find();
+
     foreach ($collectors as $collector)
     {
       $avatar = !$collector->getProfile()->getIsImageAuto() && !$collector->hasPhoto() ?
@@ -50,20 +111,19 @@ EOF;
         'NUMCTIONS' => $collector->countCollectorCollections(),
         'NUMCIBLES' => $collector->countCollectionCollectibles(),
         'COMPLETED' => (int) $collector->getProfile()->getProfileCompleted(),
+        'PAGEVIEWS' => $collector->getVisitorInfoNumPageViews(),
+        'VISITS' => $collector->getVisitorInfoNumVisits(),
         'VISITED_AT' => $collector->getLastVisitedAt('m/d/Y'),
         'SEEN_AT' => $collector->getLastSeenAt('m/d/Y'),
         'CREATED_AT' => $collector->getCreatedAt('m/d/Y'),
       );
 
-      $mc->listSubscribe(
-        '4b51c2b29c', $collector->getEmail(), $fields,
-        'html', false, true, true, false
-      );
+      $mc->listSubscribe('4b51c2b29c', $collector->getEmail(), $fields, 'html', false);
 
       if ($mc->errorCode) {
         $this->logSection('error', $mc->errorMessage);
       } else {
-        $this->logSection('success', 'Syncronized collector '. $collector->getDisplayName());
+        $this->logSection('success', 'Updated collector '. $collector->getDisplayName());
       }
     }
 
