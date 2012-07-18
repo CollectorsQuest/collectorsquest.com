@@ -75,7 +75,7 @@ class cq_our_bloggers_widget extends WP_Widget {
         }
         $exclude = implode(',', $exclude);
         $exclude = str_replace(",7", "", $exclude);
-        $blogusers = get_users('exclude=' . $exclude . ',4,11,13,23');
+        $blogusers = get_users('exclude=' . $exclude . ',4,6,11,13,23');
       }
       $authors = array();
       foreach ($blogusers as $bloguser) {
