@@ -118,7 +118,7 @@ EOF;
         'CREATED_AT' => $collector->getCreatedAt('m/d/Y'),
       );
 
-      $mc->listSubscribe('4b51c2b29c', $collector->getEmail(), $fields, 'html', false);
+      $mc->listUpdateMember('4b51c2b29c', $collector->getEmail(), $fields, 'html', false);
 
       if ($mc->errorCode) {
         $this->logSection('error', $mc->errorMessage);
