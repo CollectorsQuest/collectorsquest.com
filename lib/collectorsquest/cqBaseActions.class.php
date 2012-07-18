@@ -37,7 +37,9 @@ class cqBaseActions extends sfActions
    */
   protected function addBreadcrumb($name, $url = null, $options = array())
   {
-    IceBreadcrumbs::getInstance($this->getContext())->addItem($name, $url, $options);
+    IceBreadcrumbs::getInstance($this->getContext())->addItem(
+      $name, $url, @$options['title'] ?: null
+    );
   }
 
   /**
