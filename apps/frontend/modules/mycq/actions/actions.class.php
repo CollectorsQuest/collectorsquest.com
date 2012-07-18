@@ -531,7 +531,7 @@ class mycqActions extends cqFrontendActions
 
     $c = new Criteria();
     $c->add(CollectionCollectiblePeer::COLLECTIBLE_ID, $collectible->getId(), Criteria::NOT_EQUAL);
-    $c->setLimit(11);
+    $c->setLimit(10);
     $this->collectibles = $collection->getCollectionCollectibles($c);
 
     $this->multimedia = $collectible->getMultimedia(0, 'image', false);

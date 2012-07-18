@@ -207,11 +207,12 @@
 
   <div class="row-fluid">
     <div class="span6">
-      Edit other collectibles in this collection
+      Edit other items in this collection:
     </div>
     <div class="span6">
-      <a href="#" class="pull-right">
-        Edit collection &raquo;
+      <a href="<?= url_for('mycq_collection_by_section', array('id' => $collection->getId(), 'section' => 'details'))?>"
+         class="pull-right">
+        See All Items &raquo;
       </a>
     </div>
   </div>
@@ -225,12 +226,14 @@
     </li>
     <?php endforeach; ?>
 
+    <!--
     <li class="wrapper-90">
       <div class="drop-zone ui-droppable">
         <i class="icon icon-plus" data-collection-id="3269"></i>
         <span class="drop-zone-txt">Add Item<span>
       </div>
     </li>
+    //-->
   </ul>
 </div>
 <?php endif; ?>

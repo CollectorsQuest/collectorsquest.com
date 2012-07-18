@@ -27,12 +27,14 @@
             <b class="caret"></b>
           </a>
           <ul class="dropdown-menu">
+            <!--
             <li>
               <a href="#">
                 <i class="icon icon-move"></i>
                 Re-order Collectibles
               </a>
             </li>
+            //-->
             <li>
               <a href="<?= url_for('mycq_collection_by_section', array('id' => $collection->getId(), 'section' => 'details', 'cmd' => 'delete', 'encrypt' => '1')); ?>"
                  class="btn-delete-simple" onclick="return confirm('Are you sure you want to delete this Collection?');">
