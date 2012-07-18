@@ -67,7 +67,7 @@ class cqWebResponse extends iceWebResponse
     $configuration = sfProjectConfiguration::getActive();
     $configuration->loadHelpers(array('cqLinks', 'cqImages'));
 
-    $this->addOpenGraphMeta('name', (string) $object);
+    $this->addOpenGraphMeta('title', (string) $object .' | Collectors Quest');
     $this->addOpenGraphMeta('url', $this->getCanonicalUrl() ?: cq_url_for($object, true));
 
     if (method_exists($object, 'getDescription')) {

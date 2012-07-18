@@ -43,7 +43,8 @@ function cq_include_metas()
       if ($_content === '' || $_content === null) continue;
 
       echo ($i++ > 0) ? '  ' : '';
-      echo tag('meta', array('name' => $name, 'content' => null === $i18n ? $_content : $i18n->__($_content)))."\n";
+      $key = substr($name, 0, 3) === 'og:' ? 'property' : 'name';
+      echo tag('meta', array($key => $name, 'content' => null === $i18n ? $_content : $i18n->__($_content)))."\n";
     }
   }
 }

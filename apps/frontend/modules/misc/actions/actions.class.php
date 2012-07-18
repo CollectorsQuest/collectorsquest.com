@@ -193,8 +193,8 @@ class miscActions extends cqFrontendActions
 
     $this->getResponse()->addOpenGraphMeta('type', 'website');
     $this->getResponse()->addOpenGraphMeta('url', 'http://www.collectorsquest.com/guide');
-    $this->getResponse()->addOpenGraphMeta('name',
-      'Quest Your Best: The Essential Guide to Collecting'
+    $this->getResponse()->addOpenGraphMeta('title',
+      'Quest Your Best: The Essential Guide to Collecting | Collectors Quest'
     );
     $this->getResponse()->addOpenGraphMeta('image',
       'http://www.collectorsquest.com/images/frontend/misc/guide-splash-page-img.png'
