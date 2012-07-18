@@ -70,7 +70,7 @@
       revert: true,
       cursor: 'move',
       cursorAt: { top: 36, left: 36 },
-      zIndex: 4000,
+      zIndex: 2000,
       start: function() {
         $(this).toggleClass('invisible')
       },
