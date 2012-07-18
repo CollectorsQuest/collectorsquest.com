@@ -411,7 +411,7 @@ function link_to_blog_author(wpUser $author, $type = 'text', $options = array())
   switch ($type)
   {
     case "image":
-      if (!$avatar_url = $author->getAvatarUrl('64'))
+      if (!$avatar_url = $author->getAvatarUrl('40'))
       {
         $avatar_url = 'blog/avatar-' . str_replace(' ', '-', strtolower($author->getDisplayName()));
       }
