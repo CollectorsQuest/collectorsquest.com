@@ -13,7 +13,7 @@
     <div class="tab-content">
 
       <div id="modal-login-username-pane" class="tab-pane active">
-        <h3 class="text-center">Log in to your account:</h3>
+        <h3 class="text-center">Sign in to your account:</h3>
         <br />
         <form action="<?= url_for('@login', true); ?>" class="form-horizontal" method="post">
           <?= $login_form['username']->renderRow(); ?>

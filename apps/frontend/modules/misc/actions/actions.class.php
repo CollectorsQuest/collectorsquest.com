@@ -191,6 +191,18 @@ class miscActions extends cqFrontendActions
 
     $this->hash = $hash;
 
+    $this->getResponse()->addOpenGraphMeta('type', 'website');
+    $this->getResponse()->addOpenGraphMeta('url', 'http://www.collectorsquest.com/guide');
+    $this->getResponse()->addOpenGraphMeta('name',
+      'Quest Your Best: The Essential Guide to Collecting'
+    );
+    $this->getResponse()->addOpenGraphMeta('image',
+      'http://www.collectorsquest.com/images/frontend/misc/guide-splash-page-img.png'
+    );
+    $this->getResponse()->addOpenGraphMeta('description',
+      "The guide has something for every collector, whether you're just beginning to acquire treasures or you're a dedicated hunter looking for the next, perfect addition to your display case."
+    );
+
     return sfView::SUCCESS;
   }
 

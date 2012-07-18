@@ -1,4 +1,8 @@
   <meta charset="utf-8" />
+  <meta property="fb:admins" content="<?= cqConfig::getCredentials('facebook', 'admins') ?>">
+  <meta property="fb:app_id" content="<?= cqConfig::getCredentials('facebook', 'application_id') ?>">
+  <meta name="og:site_name" content="CollectorsQuest.com" />
+
   <?php cq_include_http_metas() ?>
   <?php cq_include_metas() ?>
   <?php cq_include_title() ?>

@@ -97,6 +97,9 @@ class collectionActions extends cqFrontendActions
     $this->getResponse()->addMeta('description', $collection->getDescription('stripped'));
     $this->getResponse()->addMeta('keywords', $collection->getTagString());
 
+    // Set the OpenGraph meta tags
+    $this->getResponse()->addOpenGraphMetaFor($collection);
+
     if ($collection->getNumItems() == 0)
     {
       $this->collections = null;
@@ -210,6 +213,9 @@ class collectionActions extends cqFrontendActions
       )));
     }
     $breadcrumbs->addItem($collectible->getName());
+
+    // Set the OpenGraph meta tags
+    $this->getResponse()->addOpenGraphMetaFor($collectible);
 
     $this->collector = $collector;
     $this->collection = $collection;
