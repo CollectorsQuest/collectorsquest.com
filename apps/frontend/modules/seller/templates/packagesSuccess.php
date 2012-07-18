@@ -73,7 +73,23 @@
         <?php cq_sidebar_title('How would you pay'); ?>
         <?php if (IceGateKeeper::open('mycq_seller_pay')): ?>
           <div class="payment-type">
-            <?= $packagesForm['payment_type']->renderRow() ?>
+            <div class="control-group">
+              <div class="controls-inline">
+                <ul class="packages unstyled">
+                  <li><input name="packages[payment_type]" type="radio" value="paypal" id="packages_payment_type_paypal">&nbsp;
+                    <label for="packages_payment_type_paypal" class="radio inline">
+                      <img src="/images/legacy/payment/paypal.gif" alt="paypal">
+                    </label>
+                  </li>
+                  <li>
+                    <input name="packages[payment_type]" type="radio" value="cc" id="packages_payment_type_cc">&nbsp;
+                    <label for="packages_payment_type_cc" class="radio inline">
+                      <img src="/images/legacy/payment/cc.gif" alt="cc">
+                    </label>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
         <?php endif; ?>
       </fieldset>
@@ -84,6 +100,15 @@
         <?= $packagesForm['cc_number']->renderRow() ?>
         <?= $packagesForm['expiry_date']->renderRow(array('class'=> 'input-mini pull-left')) ?>
         <?= $packagesForm['cvv_number']->renderRow() ?>
+        <div class="control-group ">
+          <label for="packages_cvv_number" class=" control-label">Cvv number</label>
+          <div class="controls">
+            <div class="cid_icon_generic">
+              <img src="/images/frontend/cid_icon_generic.gif" alt="ccv number">
+            </div>
+            <input type="text" id="packages_cvv_number" name="packages[cvv_number]" placeholder="CVV number" maxlength="3">
+          </div>
+        </div>
         <?= $packagesForm['first_name']->renderRow() ?>
         <?= $packagesForm['last_name']->renderRow() ?>
         <?= $packagesForm['street']->renderRow() ?>
