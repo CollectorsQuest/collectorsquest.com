@@ -30,9 +30,6 @@ ice_breadcrumbs:
   collection:
     index:
       - { name: '%Name%', model: true }
-    collectible:
-      - { name: '%Collection%', model: true, route: collection_by_slug, subobject: Collection }
-      - { name: '%Name%', model: true }
     create:
       - { name: 'Collections' }
       - { name: 'Create' }

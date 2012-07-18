@@ -196,6 +196,21 @@ class collectionActions extends cqFrontendActions
       SmartMenu::setSelected('header_main_menu', 'marketplace');
     }
 
+    $breadcrumbs = IceBreadcrumbs::getInstance($this->getContext());
+
+    if (preg_match('#/marketplace#i', IceRequestHistory::getRequestUriFromCurrent(-1)))
+    {
+      $breadcrumbs->addItem('Marketplace', '@marketplace');
+    }
+    else
+    {
+      $breadcrumbs->addItem((string)$collection, $this->getController()->genUrl(array(
+        'sf_route'  => 'collection_by_slug',
+        'sf_subject'=> $collection
+      )));
+    }
+    $breadcrumbs->addItem((string)$collectible);
+
     $this->collector = $collector;
     $this->collection = $collection;
     $this->collectible = $collectible;
