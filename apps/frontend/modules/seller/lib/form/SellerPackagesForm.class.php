@@ -133,7 +133,7 @@ class SellerPackagesForm extends BaseForm
   {
     $expDateYears = range(date('Y'), date('Y') + 10);
     $this->setWidget('expiry_date', new sfWidgetFormDate(array(
-      'format'=> '%month% %year%',
+      'format'=> '%month%<div class="expiration-date-slash">/</div>%year%',
       'years' => array_combine($expDateYears, $expDateYears),
       'label' => 'Expiration date',
     ), array(
