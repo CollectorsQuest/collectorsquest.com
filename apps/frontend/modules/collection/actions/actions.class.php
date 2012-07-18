@@ -204,12 +204,12 @@ class collectionActions extends cqFrontendActions
     }
     else
     {
-      $breadcrumbs->addItem((string)$collection, $this->getController()->genUrl(array(
+      $breadcrumbs->addItem($collection->getName(), $this->getController()->genUrl(array(
         'sf_route'  => 'collection_by_slug',
         'sf_subject'=> $collection
       )));
     }
-    $breadcrumbs->addItem((string)$collectible);
+    $breadcrumbs->addItem($collectible->getName());
 
     $this->collector = $collector;
     $this->collection = $collection;
