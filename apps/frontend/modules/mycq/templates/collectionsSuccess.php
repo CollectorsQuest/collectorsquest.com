@@ -73,6 +73,20 @@ cq_sidebar_title(
 <script>
   $(document).ready(function()
   {
+    $('.mycq-collections-4x9 ul.thumbnails li').on('mouseenter', function() {
+      var $this = $(this);
+      $this.find('i.icon-plus')
+        .removeClass('icon-plus')
+        .addClass('icon-hand-up')
+        .show();
+    });
+    $('.mycq-collections-4x9 ul.thumbnails li').on('mouseleave', function() {
+      var $this = $(this);
+      $this.find('i.icon-hand-up')
+        .removeClass('icon-hand-up')
+        .addClass('icon-plus')
+        .show();
+    });
     $('.add-new-zone').on('mouseenter', function() {
       var $this = $(this);
       $this.find('i.icon-plus')
