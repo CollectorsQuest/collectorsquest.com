@@ -1569,6 +1569,34 @@ textarea.input-xlarge {
 	input.input-sort-by {
 		width: 190px;
 	}
+  .nav-pills {
+	  margin-top: 4px;
+
+	  li > a {
+		  margin: 0 3px;
+		  padding: 6px 8px 4px 8px;
+		  font-size: 12px;
+		  line-height: 14px;
+		  font-weight: bold;
+	  //letter-spacing: 0.03em;
+		  color: @blue;
+		  background: none;
+		  cursor: pointer;
+		  &:hover {
+			  color: #fff;
+			  background-color: @blue;
+			  .border-radius(8px);
+		  }
+		  &:active {
+			  background-color: #0a80c0;
+		  }
+	  }
+  }
+}
+
+.nav-pills .dropdown-toggle:hover .caret {
+	border-top-color: #fff;
+	border-bottom-color: #fff;
 }
 
 //COLLECTIONS
@@ -1711,11 +1739,6 @@ textarea.input-xlarge {
 	margin-top: 10px;
 	margin-left: -12px;
 
-	> p {
-		height: 40px;
-		padding: 0 0 4px 4px;
-	}
-
 	.collectible_grid_view_square {
 		.size(244px, 208px);
 		margin-left: 15px;
@@ -1727,9 +1750,15 @@ textarea.input-xlarge {
 			cursor: auto;
 		}
 
+		> p {
+			height: 32px;
+			line-height: 16px;
+			padding: 0 0 4px 4px;
+		}
+
 		.thumbnails {
 			margin-bottom: 0;
-			margin-left: -6px;
+			margin-left: -4px;
 		}
 		.thumbnails > li {
       margin-bottom: 6px;
@@ -1742,10 +1771,9 @@ textarea.input-xlarge {
 	}
 
 	.drop-zone {
-		.square(46px);
-		margin: 1px 0 1px 2px;
-		padding-top: 4px;
-		line-height: 50px;
+		.square(48px);
+		margin: 1px;
+		line-height: 48px;
 	}
 	.add-new-zone {
 		.size(242px, 206px);
