@@ -13,6 +13,13 @@
       so we can match you with people who share the same passion as you.
       Welcome to the community!
     </p>
+
+    <?php
+      echo link_to(
+        image_tag('banners/2012-06-24_CQGuide_160x600.png'),
+        '@misc_guide_download'
+      );
+    ?>
   </div>
   <div class="span9 welcome-mycq">
     <div class="rectangle"></div>
