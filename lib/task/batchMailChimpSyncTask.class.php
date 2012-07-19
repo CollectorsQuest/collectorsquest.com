@@ -43,6 +43,7 @@ EOF;
 
     foreach ($collectors as $collector)
     {
+      $preferences = $collector->getProfile()->getPreferences();
       $avatar = !$collector->getProfile()->getIsImageAuto() && !$collector->hasPhoto() ?
         'Yes' : 'No';
 
@@ -58,6 +59,7 @@ EOF;
         'COMPLETED' => (int) $collector->getProfile()->getProfileCompleted(),
         'PAGEVIEWS' => $collector->getVisitorInfoNumPageViews(),
         'VISITS' => $collector->getVisitorInfoNumVisits(),
+        'NEWSLETTER' => $preferences['newsletter'] ? 'Yes' : 'No',
         'VISITED_AT' => $collector->getLastVisitedAt('m/d/Y'),
         'SEEN_AT' => $collector->getLastSeenAt('m/d/Y'),
         'CREATED_AT' => $collector->getCreatedAt('m/d/Y'),
@@ -100,6 +102,7 @@ EOF;
 
     foreach ($collectors as $collector)
     {
+      $preferences = $collector->getProfile()->getPreferences();
       $avatar = !$collector->getProfile()->getIsImageAuto() && !$collector->hasPhoto() ?
         'Yes' : 'No';
 
@@ -113,6 +116,7 @@ EOF;
         'COMPLETED' => (int) $collector->getProfile()->getProfileCompleted(),
         'PAGEVIEWS' => $collector->getVisitorInfoNumPageViews(),
         'VISITS' => $collector->getVisitorInfoNumVisits(),
+        'NEWSLETTER' => $preferences['newsletter'] ? 'Yes' : 'No',
         'VISITED_AT' => $collector->getLastVisitedAt('m/d/Y'),
         'SEEN_AT' => $collector->getLastSeenAt('m/d/Y'),
         'CREATED_AT' => $collector->getCreatedAt('m/d/Y'),

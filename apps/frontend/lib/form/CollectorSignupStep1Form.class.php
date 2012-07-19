@@ -51,6 +51,9 @@ class CollectorSignupStep1Form extends BaseForm
         'required' => 'required',
         'style' => 'padding-top: 3px;'
       )),
+      'newsletter'  => new sfWidgetFormInputCheckbox(array(), array(
+        'checked'   => 'checked'
+      )),
     ));
 
     $this->setValidators(array(
@@ -86,6 +89,7 @@ class CollectorSignupStep1Form extends BaseForm
         ), array(
           'invalid'    => 'This email address is invalid.',
         )),
+      'newsletter'     => new sfValidatorBoolean(array('required' => false))
     ));
 
     $this->validatorSchema['password_again'] = clone $this->validatorSchema['password'];

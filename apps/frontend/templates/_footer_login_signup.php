@@ -11,15 +11,24 @@
   $signup_action = isset($signup_action) ? $signup_action : '@collector_signup';
   $login_action = isset($login_action) ? $login_action : '@login';
   $display = $sf_request->getParameter('display', 'signup');
+
+  unset($signup_form['newsletter']);
 ?>
 
-<div id="footer-form-signup" style="<?= 'signup' == $display ? '' : 'display: none;'?>">
+<div id="footer-form-signup" style="<?= 'signup' == $display ? '' : 'display: none;'; ?>">
   <h2 class="Chivo webfont">Sign Up</h2>
 
   <form action="<?= url_for($signup_action, true); ?>"
         method="post" class="form-horizontal form-footer">
 
     <?= $signup_form->renderUsing('BootstrapWithRowFluid'); ?>
+
+    <div class="row-fluid spacer-15">
+      <input type="checkbox" name="<?= $signup_form->getName() ?>[newsletter]"
+             id="<?= $signup_form->getName() ?>_newsletter" checked="checked"
+             style="float: left; width: auto; margin: 3px 5px 15px 0;">
+      Sign me up for the Collectors Quest newsletter
+    </div>
 
     <div class="row-fluid spacer-7">
       <div class="span8 spacer-inner-top">
