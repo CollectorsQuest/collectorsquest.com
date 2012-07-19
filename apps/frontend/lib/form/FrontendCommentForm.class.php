@@ -40,6 +40,7 @@ class FrontendCommentForm extends BaseCommentForm
   public function configure()
   {
     $this->setupBodyField();
+    $this->setupAuthorNameField();
     $this->setupAuthorEmailField();
     $this->setupTokenField();
     $this->setupRefererField();
@@ -61,17 +62,35 @@ class FrontendCommentForm extends BaseCommentForm
   protected function setupBodyField()
   {
     $this->validatorSchema['body'] = new sfValidatorAnd(array(
-      $this->validatorSchema['body'],
       new sfValidatorCallback(array('callback' => function($validator, $value) {
         return IceStatic::cleanText($value);
       })),
+      new sfValidatorString(array(
+          'trim' => true,
+          'required' => !$this->isAuthenticated(),
+      )),
+    ));
+  }
+
+  protected function setupAuthorNameField()
+  {
+    $this->validatorSchema['author_name'] = new sfValidatorString(array(
+        'trim' => true,
+        'required' => !$this->isAuthenticated(),
     ));
   }
 
   protected function setupAuthorEmailField()
   {
-    $this->validatorSchema['author_email'] = new sfValidatorEmail(array(
-        'required' => false,
+    $this->validatorSchema['author_email'] = new sfValidatorAnd(array(
+      new sfValidatorString(array(
+          'trim' => true,
+          'required' => !$this->isAuthenticated(),
+      )),
+      new sfValidatorEmail(array(
+          'trim' => true,
+          'required' => !$this->isAuthenticated(),
+      ))
     ));
   }
 
