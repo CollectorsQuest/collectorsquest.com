@@ -51,7 +51,28 @@
     <form action="<?= url_for('seller_packages')?>" method="post"
           id="form-seller-packages" class="form-horizontal" novalidate="novalidate">
       <?= $packagesForm->renderHiddenFields() ?>
-      <?= $packagesForm->renderAllErrors(); ?>
+
+      <?php if ($packagesForm->isError('pending_transaction_confirm')): ?>
+        <div id="pending-transaction-warning" class="alert alert-info">
+          <a class="close" data-dismiss="alert" href="#">×</a>
+          <p>
+             <h4>Warning: Your recent transaction with us is still pending!</h4>
+             Did you complete payment with your payment service provider?
+             We're not sure yet, and we're waiting to receive an answer from them.
+          </p>
+          <br />
+
+          <p>
+            If you continue, and are purchasing any items a second time,
+            you risk being charged twice.
+          </p>
+        </div>
+
+        <label class="checkbox spacer-left-5">
+          <?= $packagesForm['pending_transaction_confirm']->render(); ?>
+          <strong>I understand. Continue with this transaction.</strong>
+        </label>
+      <?php endif; ?>
 
       <?php cq_sidebar_title('Which package is right for you'); ?>
       <fieldset>
@@ -74,9 +95,10 @@
         <?php if (IceGateKeeper::open('mycq_seller_pay')): ?>
           <div class="payment-type">
             <div class="control-group">
-              <div class="controls-inline">
+              <div class="controls-inline clearfix">
                 <?= $packagesForm['payment_type']->render() ?>
               </div>
+              <?= $packagesForm['payment_type']->renderError() ?>
             </div>
           </div>
         <?php endif; ?>
@@ -176,5 +198,6 @@ $(document).ready(function() {
     display_cc_info($(this).val());
   });
 
+  $('#pending-transaction-warning').effect("highlight", {}, 3000)
 });
 </script>
