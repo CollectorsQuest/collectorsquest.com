@@ -70,15 +70,21 @@ class cqWebResponse extends iceWebResponse
     $this->addOpenGraphMeta('title', (string) $object .' | Collectors Quest');
     $this->addOpenGraphMeta('url', $this->getCanonicalUrl() ?: cq_url_for($object, true));
 
-    if (method_exists($object, 'getDescription')) {
+    if (method_exists($object, 'getDescription'))
+    {
       $this->addOpenGraphMeta('description', (string) $object->getDescription());
     }
 
-    if ($multimedia = $object->getMultimedia(0, 'image'))
+    /** @var PropelObjectCollection */
+    $multimedia = $object->getMultimedia(0, 'image');
+
+    if (count($multimedia))
     {
-      foreach ($multimedia as $m) {
+      foreach ($multimedia as $m)
+      {
         $images[] = src_tag_multimedia($m, 'original');
       }
+
       $this->addOpenGraphMeta('image', $images);
     }
 
@@ -86,4 +92,5 @@ class cqWebResponse extends iceWebResponse
       'type', 'collectorsquest:'. sfInflector::underscore(get_class($object))
     );
   }
+
 }
