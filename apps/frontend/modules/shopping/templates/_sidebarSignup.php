@@ -11,7 +11,7 @@
           <?php
             include_partial(
               'global/footer_signup_external_buttons',
-              array('action' => 'signup')
+              array('action' => 'sign up')
             );
           ?>
         </div>
