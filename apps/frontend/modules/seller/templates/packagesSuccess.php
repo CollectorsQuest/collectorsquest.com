@@ -52,7 +52,7 @@
           id="form-seller-packages" class="form-horizontal" novalidate="novalidate">
       <?= $packagesForm->renderHiddenFields() ?>
 
-      <?php if ($packagesForm->isError('pending_transaction_confirm')): ?>
+      <?php if (IceGateKeeper::open('mycq_seller_pay') && $packagesForm->isError('pending_transaction_confirm')): ?>
       <div class="pending-transaction-holder">
         <div id="pending-transaction-warning" class="alert alert-info">
           <a class="close" data-dismiss="alert" href="#">×</a>
