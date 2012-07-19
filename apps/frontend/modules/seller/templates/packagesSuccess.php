@@ -53,6 +53,7 @@
       <?= $packagesForm->renderHiddenFields() ?>
 
       <?php if ($packagesForm->isError('pending_transaction_confirm')): ?>
+      <div class="pending-transaction-holder">
         <div id="pending-transaction-warning" class="alert alert-info">
           <a class="close" data-dismiss="alert" href="#">×</a>
           <p>
@@ -72,6 +73,10 @@
           <?= $packagesForm['pending_transaction_confirm']->render(); ?>
           <strong>I understand. Continue with this transaction.</strong>
         </label>
+        <div class="help-block spacer-left-25">
+          Need help? <?= link_to('Contact us here!', '/pages/contact-us/', array('target' => '_blank')); ?>
+        </div>
+      </div>
       <?php endif; ?>
 
       <?php cq_sidebar_title('Which package is right for you'); ?>
