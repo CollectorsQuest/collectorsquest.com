@@ -55,8 +55,6 @@ ice_breadcrumbs:
     collectorList:
       - { name: 'Collectors', route: collectors }
       - { name: '%DisplayName%', model: true, route: collector_by_slug }
-      - { name: 'Collectibles by %DisplayName%', model: true }
-
 
   collectors:
     index: [{ name: 'Collectors' }]

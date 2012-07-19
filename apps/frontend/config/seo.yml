@@ -72,7 +72,7 @@ seo:
   collector:
     index:
       model: true
-      title: Collectibles for Sale by %DisplayName% | Buy Vintage Collectibles
+      title: Items for Sale by %DisplayName% | Buy Vintage Collectibles
       description: |
         CollectorsQuest.com is the best place to find %AboutWhatYouCollect% and items for sale.
         Find collectors selling %AboutWhatYouCollect%.
