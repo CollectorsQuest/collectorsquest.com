@@ -20,8 +20,7 @@
 <form action="<?= url_for('@ajax_mycq?section=component&page=createCollectibleForSale'); ?>"
       method="post" id="form-create-collectible" class="ajax form-horizontal form-modal">
 
-  <h1>Create a New Collectible for Sale</h1>
-
+  <h1>Create a New Item for Sale</h1>
   <?= $form->renderGlobalErrors(); ?>
 
   <?php

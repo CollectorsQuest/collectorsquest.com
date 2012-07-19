@@ -111,6 +111,8 @@ class CollectibleForSaleCreateForm extends CollectibleForSaleForm
       );
     }
 
+    $collectible->getWidget('name')->setLabel('Name');
+
     $fields = array_merge($fields, array(
       'name',
       'tags',

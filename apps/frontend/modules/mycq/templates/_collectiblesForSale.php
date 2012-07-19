@@ -11,7 +11,7 @@
     <div class="span8">
       <a href="<?php echo url_for('@ajax_mycq?section=component&page=createCollectibleForSale'); ?>"
          id="collectible-create-link" class="open-dialog create-collection-text">
-        Add a new Collectible for Sale by clicking here.
+        Add a new Item for Sale by clicking here.
       </a>
     </div>
   </div>

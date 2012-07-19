@@ -474,4 +474,5 @@ class CollectorEditForm extends CollectorForm
 
     return $values;
   }
+
 }
