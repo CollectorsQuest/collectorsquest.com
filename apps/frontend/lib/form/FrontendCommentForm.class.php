@@ -67,7 +67,7 @@ class FrontendCommentForm extends BaseCommentForm
       })),
       new sfValidatorString(array(
           'trim' => true,
-          'required' => !$this->isAuthenticated(),
+          'required' => true,
       )),
     ));
   }
