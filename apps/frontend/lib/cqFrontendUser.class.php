@@ -312,7 +312,7 @@ class cqFrontendUser extends cqBaseUser
   /**
    * This will be executed after new user (Collector) is created
    */
-  public function postCreateHook($collector = null)
+  public function postCreateHook($collector = null, $send_email = true)
   {
     /** @var $collector Collector */
     $collector = $collector ?: $this->getCollector();
@@ -353,19 +353,22 @@ class cqFrontendUser extends cqBaseUser
       }
     }
 
-    $collector_email = CollectorEmailPeer::retrieveByCollectorEmail(
-      $collector, $collector->getEmail()
-    );
+    // Finally, send the welcome email if requested
+    if ($send_email === true)
+    {
+      $collector_email = CollectorEmailPeer::retrieveByCollectorEmail(
+        $collector, $collector->getEmail()
+      );
 
-    // Finally, send the welcome email
-    $cqEmail = new cqEmail(sfContext::getInstance()->getMailer());
-    $cqEmail->send($collector->getUserType() . '/welcome_verify_email', array(
-      'to' => $collector->getEmail(),
-      'params' => array(
-        'collector' => $collector,
-        'collector_email' => $collector_email,
-      )
-    ));
+      $cqEmail = new cqEmail(sfContext::getInstance()->getMailer());
+      $cqEmail->send($collector->getUserType() . '/welcome_verify_email', array(
+        'to' => $collector->getEmail(),
+        'params' => array(
+          'collector' => $collector,
+          'collector_email' => $collector_email,
+        )
+      ));
+    }
 
     return true;
   }

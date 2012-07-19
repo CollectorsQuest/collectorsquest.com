@@ -29,9 +29,7 @@ class CollectorGuideSignupForm extends CollectorSignupStep1Form
   public function setup()
   {
     parent::setup();
-
     unset($this->widgetSchema['display_name']);
-    $this->setDefault('seller', 0);
 
     $this->widgetSchema->setFormFormatterName('BootstrapWithRowFluid');
   }

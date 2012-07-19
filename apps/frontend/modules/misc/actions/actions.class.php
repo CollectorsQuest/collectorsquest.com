@@ -48,6 +48,7 @@ class miscActions extends cqFrontendActions
         if ($signupForm->isValid())
         {
           $values = $signupForm->getValues();
+
           // try to guess the collector's country based on IP address
           $values['country_iso3166'] = cqStatic::getGeoIpCountryCode(
             $request->getRemoteAddress(), $check_against_geo_country = true
@@ -74,9 +75,11 @@ class miscActions extends cqFrontendActions
             ),
           ));
 
-
           // authenticate the collector and redirect to @misc_guide_download
           $this->getUser()->Authenticate(true, $collector, false);
+
+          // Run the post create hook (not sending the welcome email yet)
+          $this->getUser()->postCreateHook($collector, false);
 
           $this->getUser()->setFlash(
             'success', sprintf('Email with download link was sent to %s', $collector->getEmail())
