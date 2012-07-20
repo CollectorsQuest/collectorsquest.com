@@ -13,6 +13,8 @@ class cqWidgetFormSelectPayment extends sfWidgetFormSelectRadio
   protected function formatChoices($name, $value, $choices, $attributes)
   {
     $inputs = array();
+    $i = 0;
+
     foreach ($choices as $key => $option)
     {
       $baseAttributes = array(
@@ -22,8 +24,10 @@ class cqWidgetFormSelectPayment extends sfWidgetFormSelectRadio
         'id'    => $id = $this->generateId($name, self::escapeOnce($key)),
       );
 
-      if (strval($key) == strval($value === false ? 0 : $value))
-      {
+      if (
+        (null === $value && ++$i === 1) ||
+        (strval($key) == strval($value === false ? 0 : $value))
+      ) {
         $baseAttributes['checked'] = 'checked';
       }
 

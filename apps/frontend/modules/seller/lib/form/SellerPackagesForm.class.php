@@ -243,8 +243,8 @@ class SellerPackagesForm extends BaseForm
   {
     //TODO: Replace with proper labeling
     return array(
-      'paypal' => '/images/legacy/payment/paypal.gif',
-      'cc'     => '/images/legacy/payment/cc.gif',
+      'paypal' => '/images/frontend/payment/paypal.gif',
+      'cc'     => '/images/frontend/payment/cc.gif',
     );
   }
 
