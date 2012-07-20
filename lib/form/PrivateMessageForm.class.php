@@ -26,6 +26,9 @@ class PrivateMessageForm extends BasePrivateMessageForm
         'required' => true
     ));
 
+    $this->validatorSchema['subject']->setOption('trim', true);
+    $this->validatorSchema['body']->setOption('trim', true);
+
     $this->validatorSchema->setOption('allow_extra_fields', true);
     $this->validatorSchema->setOption('filter_extra_fields', true);
 
