@@ -79,8 +79,18 @@ $(document).ready(function() {
     animSpeed: %d,
   });
 
+  // fake tabbing into the tags input
   $('#%s').attr('tabIndex', %d).on('focus', function() {
     $(this).find('ul').click();
+  });
+
+  // consider tabbing out of input when there is something entered in it to be
+  // and valid tag input
+  $('#%s').on('blur', 'input', function() {
+    var \$this = $(this);
+    if (\$this.val()) {
+      \$this.trigger('click');
+    }
   });
 });
 </script>
@@ -94,7 +104,8 @@ EOF
       $this->getOption('additionalListClass'),
       $this->getOption('animSpeed'),
       $this->generateId($name).'_holder',
-      $tabindex
+      $tabindex,
+      $this->generateId($name).'_holder'
     );
   }
 
