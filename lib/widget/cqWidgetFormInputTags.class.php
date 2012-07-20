@@ -86,11 +86,16 @@ $(document).ready(function() {
 
   // consider tabbing out of input when there is something entered in it to be
   // and valid tag input
-  $('#%s').on('blur', 'input', function() {
+  $('#%s').on('blur', 'input', function(event) {
     var \$this = $(this);
     if (\$this.val()) {
+      event.preventDefault();
       \$this.trigger('click');
+
+      return false;
     }
+
+    return true;
   });
 });
 </script>
