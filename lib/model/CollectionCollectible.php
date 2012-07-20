@@ -35,6 +35,11 @@ class CollectionCollectible extends BaseCollectionCollectible
     return true;
   }
 
+  public function __toString()
+  {
+    return (string) $this->getCollectible();
+  }
+
   /**
    * Update the aggregate column in the related Collection object
    *
