@@ -68,12 +68,12 @@ dev:
   domain_name: "collectorsquest.dev"
   www_domain: "www.collectorsquest.dev"
   static_domain: "www.collectorsquest.dev"
-  multimedia_domain: "multimedia.collectorsquest.dev"
+  multimedia_domain: "multimedia.cqcdns.dev"
 
   cq:
     www_domain: "http://www.collectorsquest.dev/"
     static_domain: "http://static.collectorsquest.dev/"
-    multimedia_domain: "http://multimedia.collectorsquest.dev"
+    multimedia_domain: "http://multimedia.cqcdns.dev"
 
   credentials:
     rpxnow:

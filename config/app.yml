@@ -1,7 +1,4 @@
 all:
-  shopify_domain_name: "collectorsquest.myshopify.com"
-  admin_email_id: "no-reply@collectorsquest.com"
-
   ice_libs:
     emails:
       sender: "no-reply@collectorsquest.com"
@@ -374,13 +371,7 @@ all:
 dev:
   domain_name: "collectorsquest.dev"
   www_domain: "www.collectorsquest.dev"
-  static_domain: "www.collectorsquest.dev"
-  multimedia_domain: "multimedia.collectorsquest.dev"
-
-  cq:
-    www_domain: "http://www.collectorsquest.dev/"
-    static_domain: "http://static.collectorsquest.dev/"
-    multimedia_domain: "http://multimedia.collectorsquest.dev"
+  multimedia_domain: "multimedia.cqcdns.dev"
 
   ice_libs:
     kint:

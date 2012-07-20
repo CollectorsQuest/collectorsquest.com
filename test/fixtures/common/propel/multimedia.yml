@@ -16782,7 +16782,7 @@ Multimedia:
     type: image
     slug: ''
     md5: a3e9534a8fefc4ee37abc7516de3e9c0
-    source: 'http://multimedia.collectorsquest.com/image/420x1000/apollo-11-signed-photo-11874.jpg?1266888730'
+    source: 'http://multimedia.cqcdns.com/image/420x1000/apollo-11-signed-photo-11874.jpg?1266888730'
     is_primary: '1'
     position: '65535'
     created_at: '2010-07-28 23:58:53'
@@ -16792,7 +16792,7 @@ Multimedia:
     type: image
     slug: ''
     md5: a3e9534a8fefc4ee37abc7516de3e9c0
-    source: 'http://multimedia.collectorsquest.com/image/420x1000/apollo-11-signed-photo-11874.jpg?1266888730'
+    source: 'http://multimedia.cqcdns.com/image/420x1000/apollo-11-signed-photo-11874.jpg?1266888730'
     is_primary: '1'
     position: '65535'
     created_at: '2010-07-29 00:03:46'
@@ -16802,7 +16802,7 @@ Multimedia:
     type: image
     slug: ''
     md5: a3e9534a8fefc4ee37abc7516de3e9c0
-    source: 'http://multimedia.collectorsquest.com/image/420x1000/apollo-11-signed-photo-11874.jpg?1266888730'
+    source: 'http://multimedia.cqcdns.com/image/420x1000/apollo-11-signed-photo-11874.jpg?1266888730'
     is_primary: '1'
     position: '65535'
     created_at: '2010-07-29 00:09:47'
@@ -16812,7 +16812,7 @@ Multimedia:
     type: image
     slug: ''
     md5: 4601c8839822f31473187eb6771fd060
-    source: 'http://multimedia.collectorsquest.com/image/75x75/mission-control-signed-photo-11879.jpg?1266888746'
+    source: 'http://multimedia.cqcdns.com/image/75x75/mission-control-signed-photo-11879.jpg?1266888746'
     is_primary: '1'
     position: '65535'
     created_at: '2010-07-29 00:24:04'
@@ -16822,7 +16822,7 @@ Multimedia:
     type: image
     slug: ''
     md5: 6e0e7891fe2014c6a89e6a57b91a8f97
-    source: 'http://multimedia.collectorsquest.com/image/75x75/cover-flown-on-apollo-11-11873.jpg?1266888727'
+    source: 'http://multimedia.cqcdns.com/image/75x75/cover-flown-on-apollo-11-11873.jpg?1266888727'
     is_primary: '1'
     position: '65535'
     created_at: '2010-07-29 00:32:29'
@@ -16832,7 +16832,7 @@ Multimedia:
     type: image
     slug: ''
     md5: a3e9534a8fefc4ee37abc7516de3e9c0
-    source: 'http://multimedia.collectorsquest.com/image/420x1000/apollo-11-signed-photo-11874.jpg?1266888730'
+    source: 'http://multimedia.cqcdns.com/image/420x1000/apollo-11-signed-photo-11874.jpg?1266888730'
     is_primary: '1'
     position: '65535'
     created_at: '2010-07-29 00:39:53'
@@ -16852,7 +16852,7 @@ Multimedia:
     type: image
     slug: ''
     md5: a3e9534a8fefc4ee37abc7516de3e9c0
-    source: 'http://multimedia.collectorsquest.com/image/420x1000/apollo-11-signed-photo-11874.jpg?1266888730'
+    source: 'http://multimedia.cqcdns.com/image/420x1000/apollo-11-signed-photo-11874.jpg?1266888730'
     is_primary: '1'
     position: '65535'
     created_at: '2010-07-29 00:49:00'
@@ -16862,7 +16862,7 @@ Multimedia:
     type: image
     slug: ''
     md5: a3e9534a8fefc4ee37abc7516de3e9c0
-    source: 'http://multimedia.collectorsquest.com/image/420x1000/apollo-11-signed-photo-11874.jpg?1266888730'
+    source: 'http://multimedia.cqcdns.com/image/420x1000/apollo-11-signed-photo-11874.jpg?1266888730'
     is_primary: '1'
     position: '65535'
     created_at: '2010-07-29 00:53:19'
@@ -16872,7 +16872,7 @@ Multimedia:
     type: image
     slug: ''
     md5: a3e9534a8fefc4ee37abc7516de3e9c0
-    source: 'http://multimedia.collectorsquest.com/image/420x1000/apollo-11-signed-photo-11874.jpg?1266888730'
+    source: 'http://multimedia.cqcdns.com/image/420x1000/apollo-11-signed-photo-11874.jpg?1266888730'
     is_primary: '1'
     position: '65535'
     created_at: '2010-07-29 00:57:58'
@@ -16882,7 +16882,7 @@ Multimedia:
     type: image
     slug: ''
     md5: a3e9534a8fefc4ee37abc7516de3e9c0
-    source: 'http://multimedia.collectorsquest.com/image/420x1000/apollo-11-signed-photo-11874.jpg?1266888730'
+    source: 'http://multimedia.cqcdns.com/image/420x1000/apollo-11-signed-photo-11874.jpg?1266888730'
     is_primary: '1'
     position: '65535'
     created_at: '2010-07-29 01:09:02'
@@ -16892,7 +16892,7 @@ Multimedia:
     type: image
     slug: ''
     md5: 3851bfab88274f1a55cb6f97de852323
-    source: 'http://multimedia.collectorsquest.com/image/75x75/mercury-seven-signed-photo-11872.jpg?1266888724'
+    source: 'http://multimedia.cqcdns.com/image/75x75/mercury-seven-signed-photo-11872.jpg?1266888724'
     is_primary: '1'
     position: '65535'
     created_at: '2010-07-29 01:15:41'
@@ -17228,7 +17228,7 @@ Multimedia:
     type: image
     slug: ''
     md5: 5011e05e5b8034fbeb1bab1e549c1a38
-    source: 'http://multimedia.collectorsquest.com/image/150x150/collectible-32376.jpg?1266965000'
+    source: 'http://multimedia.cqcdns.com/image/150x150/collectible-32376.jpg?1266965000'
     is_primary: '1'
     position: '65535'
     created_at: '2010-08-24 23:36:13'
@@ -17238,7 +17238,7 @@ Multimedia:
     type: image
     slug: ''
     md5: 5011e05e5b8034fbeb1bab1e549c1a38
-    source: 'http://multimedia.collectorsquest.com/image/150x150/collectible-32376.jpg?1266965000'
+    source: 'http://multimedia.cqcdns.com/image/150x150/collectible-32376.jpg?1266965000'
     is_primary: '1'
     position: '65535'
     created_at: '2010-08-24 23:45:13'
@@ -17267,7 +17267,7 @@ Multimedia:
     type: image
     slug: ''
     md5: b3ed9dbb570ef0eb362973e1ee50a98c
-    source: 'http://multimedia.collectorsquest.com/image/420x1000/ford-men-11405.jpg?1266886949'
+    source: 'http://multimedia.cqcdns.com/image/420x1000/ford-men-11405.jpg?1266886949'
     is_primary: '1'
     position: '65535'
     created_at: '2010-08-25 13:04:36'
