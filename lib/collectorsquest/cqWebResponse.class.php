@@ -88,8 +88,21 @@ class cqWebResponse extends iceWebResponse
       $this->addOpenGraphMeta('image', $images);
     }
 
+    // Infer the og:type from the class name
+    $type = sfInflector::underscore(get_class($object));
+
+    /**
+     * We want to simplify to "Collector", "Collection", "Collectible"
+     */
+    if ($type === 'collection_collectible') {
+      $type = 'collectible';
+    }
+    if ($type === 'collector_collection') {
+      $type = 'collection';
+    }
+
     $this->addOpenGraphMeta(
-      'type', 'collectorsquest:'. sfInflector::underscore(get_class($object))
+      'type', 'collectorsquest:'. $type
     );
   }
 
