@@ -110,9 +110,12 @@ class collectorsActions extends autoCollectorsActions
      ->orderBy('CreatedAt', Criteria::DESC)
      ->find();
 
+    $i = 0;
+
     /** @var $collector Collector */
     foreach ($collectors as $collector)
     {
+      $preferences = $collector->getProfile()->getPreferences();
       $avatar = !$collector->getProfile()->getIsImageAuto() && !$collector->hasPhoto() ?
         'Yes' : 'No';
 
@@ -124,6 +127,9 @@ class collectorsActions extends autoCollectorsActions
         'NUMCTIONS' => $collector->countCollectorCollections(),
         'NUMCIBLES' => $collector->countCollectionCollectibles(),
         'COMPLETED' => (int) $collector->getProfile()->getProfileCompleted(),
+        'PAGEVIEWS' => $collector->getVisitorInfoNumPageViews(),
+        'VISITS' => $collector->getVisitorInfoNumVisits(),
+        'NEWSLETTER' => $preferences['newsletter'] ? 'Yes' : 'No',
         'VISITED_AT' => $collector->getLastVisitedAt('m/d/Y'),
         'SEEN_AT' => $collector->getLastSeenAt('m/d/Y'),
         'CREATED_AT' => $collector->getCreatedAt('m/d/Y'),
@@ -133,7 +139,13 @@ class collectorsActions extends autoCollectorsActions
         '4b51c2b29c', $collector->getEmail(), $fields,
         'html', false, true, true, false
       );
+
+      $i++;
     }
+
+    $this->getUser()->setFlash(
+      'success', 'Synced <strong>'. $i .'</strong> collectors with the MailChimp subscribers list'
+    );
 
     $this->redirect('@collector');
   }

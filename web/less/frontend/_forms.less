@@ -165,6 +165,54 @@ ul.alert-error {
 	width: 260px;
 }
 
+.mini-input-append-search {
+	margin-bottom: 0;
+	padding: 2px 0 2px 15px;
+
+	.input-sort-by {
+		z-index: 1;
+		width: 145px;
+		margin-bottom: 2px !important;
+		padding-top: 3px;
+		padding-bottom: 3px;
+		font-size: 12px;
+		color: @blueDark;
+		.transition(none);
+		.border-radius(6px 0 0 6px);
+
+		&:focus {
+			.box-shadow(none);
+			border-top-color: @blue;
+			border-bottom-color: @blue;
+			border-right-color: #B5B7BD;
+		}
+	}
+	.btn-group {
+		float: left;
+		margin-right: -1px;
+	}
+	.input-append form {
+		margin: 0;
+	}
+	input, textarea, select, .uneditable-input, button, append-left-gray, .btn.dropdown-toggle {
+		border: 1px solid #b5b7bd;
+	}
+	.btn, .collection-search-box btn-group a, .collection-search-box .dropdown-menu a {
+		font-size: 12px;
+	}
+
+	.input-append button.btn {
+		margin-bottom: 2px;
+		padding: 3px 14px;
+		border-color: #B5B7BD;
+		border: 1px 1px 1px none;
+		border-style: solid;
+		.border-radius(0 6px 6px 0);
+	}
+}
+.mini-input-append-search input:focus ~ button {
+	border-color: @blue @blue @blue #BFBABA !important;
+}
 
 // Email suggestion for .form-horizonSee all videotal
 .form-horizontal .email-suggestion {

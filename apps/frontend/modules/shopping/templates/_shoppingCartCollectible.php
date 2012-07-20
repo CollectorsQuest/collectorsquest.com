@@ -82,7 +82,7 @@
             </td>
           </tr>
           <tr>
-            <td colspan="2" style="text-align: center;">
+            <td colspan="2" class="text-center">
               <button type="submit" name="Checkout" <?= (!$cannot_ship ?: 'disabled="disabled"'); ?>
                       class="btn btn-primary" value="Checkout" style="width: 100%;">
                 Proceed to Checkout

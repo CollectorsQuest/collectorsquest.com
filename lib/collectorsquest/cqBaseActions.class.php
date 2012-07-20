@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @method  sfPropelRoute    getRoute()
+ * @method  cqPropelRoute    getRoute()
  * @method  sfWebController  getController()
  * @method  cqWebResponse    getResponse()
  * @method  cqWebRequest     getRequest()
@@ -37,7 +37,9 @@ class cqBaseActions extends sfActions
    */
   protected function addBreadcrumb($name, $url = null, $options = array())
   {
-    IceBreadcrumbs::getInstance($this->getContext())->addItem($name, $url, $options);
+    IceBreadcrumbs::getInstance($this->getContext())->addItem(
+      $name, $url, @$options['title'] ?: null
+    );
   }
 
   /**

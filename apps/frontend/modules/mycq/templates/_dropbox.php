@@ -55,94 +55,93 @@
 </div>
 
 <script>
-$(document).ready(function()
-{
-  $('.collectibles-to-sort li').draggable(
+  $(document).ready(function()
   {
-    // containment: '#content',
-    appendTo: 'body',
-    helper: function() {
-      return $(this).clone().removeAttr('id').addClass('ui-draggable-dragging')[0];
-    },
-    scroll: false,
-    handle: 'img',
-    opacity: 0.7,
-    revert: true,
-    cursor: 'move',
-    cursorAt: { top: 36, left: 36 },
-    zIndex: 4000,
-    start: function() {
-      $(this).toggleClass('invisible')
-    },
-    stop: function() {
-      $(this).toggleClass('invisible')
-    }
-  });
-
-
-  $('.collectibles-to-sort .icon-remove-sign').click(MISC.modalConfirmDestructive(
-    'Delete Uploaded Photo', 'Are you sure you want to delete this photo?',
-    function()
+    $('.collectibles-to-sort li').draggable(
     {
-      var $icon = $(this);
+      // containment: '#content',
+      appendTo: 'body',
+      helper: function() {
+        return $(this).clone().removeAttr('id').addClass('ui-draggable-dragging')[0];
+      },
+      scroll: false,
+      handle: 'img',
+      opacity: 0.7,
+      revert: true,
+      cursor: 'move',
+      cursorAt: { top: 36, left: 36 },
+      zIndex: 2000,
+      start: function() {
+        $(this).toggleClass('invisible')
+      },
+      stop: function() {
+        $(this).toggleClass('invisible')
+      }
+    });
 
-      $(this).hide();
-      $icon.parent('li.span2').showLoading();
+    $('.collectibles-to-sort .icon-remove-sign').click(MISC.modalConfirmDestructive(
+      'Delete Uploaded Photo', 'Are you sure you want to delete this photo?',
+      function()
+      {
+        var $icon = $(this);
 
-      $.ajax({
-        url: '<?= url_for('@ajax_mycq?section=collectible&page=delete&encrypt=1'); ?>',
-        type: 'post', data: { collectible_id: $icon.data('collectible-id') },
-        success: function()
-        {
-          $icon.parent('li.span2').fadeOut('fast', function()
+        $(this).hide();
+        $icon.parent('li.span2').showLoading();
+
+        $.ajax({
+          url: '<?= url_for('@ajax_mycq?section=collectible&page=delete&encrypt=1'); ?>',
+          type: 'post', data: { collectible_id: $icon.data('collectible-id') },
+          success: function()
           {
-            $(this).hideLoading().remove();
-
-            if ($('.collectibles-to-sort .span2').length === 0)
+            $icon.parent('li.span2').fadeOut('fast', function()
             {
-              window.location.reload();
-            }
-          });
-        },
-        error: function()
-        {
-          $(this).show();
-        }
-      });
-    }, true));
+              $(this).hideLoading().remove();
 
-  // Use outerHeight() instead of height() if have padding
-  var aboveHeight = $('#slot1').outerHeight();
+              if ($('.collectibles-to-sort .span2').length === 0)
+              {
+                window.location.reload();
+              }
+            });
+          },
+          error: function()
+          {
+            $(this).show();
+          }
+        });
+      }, true));
 
-  var $div = $('<div></div>')
-    .addClass('hide')
-    .css('width', $('#dropzone-wrapper').outerWidth())
-    .css('height', $('#dropzone-wrapper').outerHeight());
+    // Use outerHeight() instead of height() if have padding
+    var aboveHeight = $('#slot1').outerHeight();
 
-  // when scrolling
-  $(window).scroll(function()
-  {
-    // if scrolled down more than the header’s height
-    if (
-      $('#dropzone-wrapper').is(':visible') &&
-      $('#dropzone-wrapper ul.thumbnails li').length > 0 &&
-      $(window).scrollTop() > aboveHeight - 30
-    ) {
-      $div.removeClass('hide');
-      $div.insertBefore($('#dropzone-wrapper'));
+    var $div = $('<div></div>')
+      .addClass('hide')
+      .css('width', $('#dropzone-wrapper').outerWidth())
+      .css('height', $('#dropzone-wrapper').outerHeight());
 
-      $('#dropzone-wrapper')
-        .addClass('fixed')
-        .css('top', '0')
-        .css('padding-top', '5px');
-    }
-    else
+    // when scrolling
+    $(window).scroll(function()
     {
-      $div.addClass('hide');
-      $('#dropzone-wrapper')
-        .removeClass('fixed')
-        .css('padding-top', '15px');
-    }
+      // if scrolled down more than the header’s height
+      if (
+        $('#dropzone-wrapper').is(':visible') &&
+          $('#dropzone-wrapper ul.thumbnails li').length > 0 &&
+          $(window).scrollTop() > aboveHeight - 30
+        ) {
+        $div.removeClass('hide');
+        $div.insertBefore($('#dropzone-wrapper'));
+
+        $('#dropzone-wrapper')
+          .addClass('fixed')
+          .css('top', '0')
+          .css('padding-top', '5px');
+      }
+      else
+      {
+        $div.addClass('hide');
+        $('#dropzone-wrapper')
+          .removeClass('fixed')
+          .css('padding-top', '15px');
+      }
+    });
   });
-});
 </script>

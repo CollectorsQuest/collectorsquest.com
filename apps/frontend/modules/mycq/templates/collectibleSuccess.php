@@ -8,9 +8,67 @@
 ?>
 
 <form action="<?= url_for('mycq_collectible_by_slug', $collectible); ?>"
-      enctype="multipart/form-data" novalidate
-      id="form-collectible" method="post" class="form-horizontal">
+      method="post" enctype="multipart/form-data" novalidate
+      id="form-collectible" class="form-horizontal">
   <?= $form->renderAllErrors(); ?>
+
+  <?php
+    cq_sidebar_title(
+      $collectible->getName(), null,
+      array('left' => 10, 'right' => 2, 'class'=>'spacer-top-reset row-fluid sidebar-title')
+    );
+  ?>
+  <div class="blue-well spacer-bottom-15 cf">
+    <div class="pull-left">
+      <ul class="nav nav-pills" style="margin-bottom: 0;">
+        <li>
+        <?php
+          if ($collectible->isForSale())
+          {
+            $link = link_to(
+              '<i class="icon-circle-arrow-left"></i> Go to Market', '@mycq_marketplace'
+            );
+          }
+          else
+          {
+            $link = link_to(
+              '<i class="icon-arrow-left"></i> Back to Collection', 'mycq_collection_by_section',
+              array('id' => $collection->getId(), 'section' => 'collectibles')
+            );
+          }
+
+          echo $link
+        ?>
+        </li>
+        <li>
+          <a href="<?= url_for_collectible($collectible) ?>">
+            <i class="icon-globe"></i>
+            Public View
+          </a>
+        </li>
+        <li class="dropdown" id="menu1">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#menu1">
+            More Actions
+            <b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a href="<?= url_for('mycq_collectible_by_slug', array('sf_subject' => $collectible, 'cmd' => 'delete', 'encrypt' => '1')); ?>"
+                 onclick="return confirm('Are you sure you want to delete this Collectible?');">
+                <i class="icon-trash"></i>
+                Delete Collectible
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <?php /*
+    <div class="pull-right">
+      <a href="#">Back to Collection »</a>
+    </div>
+    */ ?>
+  </div>
 
   <div class="row-fluid">
     <div class="span4">
@@ -19,36 +77,35 @@
           <ul class="thumbnails">
             <li class="span12 main-thumb">
               <?php if ($image = $collectible->getPrimaryImage()): ?>
-                <div class="thumbnail drop-zone-large" data-is-primary="1">
-                  <?php
-                    echo image_tag_multimedia(
-                      $image, '300x0',
-                      array(
-                        'id' => 'multimedia-'. $image->getId(),
-                        'width' => 294, 'height' => null
-                      )
-                    );
-                  ?>
-                  <i class="icon icon-remove-sign" data-multimedia-id="<?= $image->getId(); ?>"></i>
-                  <i class="icon icon-plus icon-plus-pos hide"></i>
+              <div class="thumbnail drop-zone-large" data-is-primary="1">
+                <?php
+                echo image_tag_multimedia(
+                  $image, '300x0',
+                  array(
+                    'width' => 294, 'id' => 'multimedia-'. $image->getId(),
+                  )
+                );
+                ?>
+                <i class="icon icon-remove-sign" data-multimedia-id="<?= $image->getId(); ?>"></i>
+                <i class="icon icon-plus icon-plus-pos hide"></i>
                   <span class="multimedia-edit holder-icon-edit"
-                    data-original-image-url="<?= src_tag_multimedia($image, 'original') ?>"
-                    data-post-data='<?= $sf_user->hmacSignMessage(json_encode(array(
-                        'multimedia-id' => $image->getId(),
-                    )), cqConfig::getCredentials('aviary', 'hmac_secret')); ?>'
-                  >
+                        data-original-image-url="<?= src_tag_multimedia($image, 'original') ?>"
+                        data-post-data='<?= $sf_user->hmacSignMessage(json_encode(array(
+                          'multimedia-id' => $image->getId(),
+                        )), cqConfig::getCredentials('aviary', 'hmac_secret')); ?>'
+                    >
                     <i class="icon icon-camera"></i><br/>
                     Edit Photo
                   </span>
-                </div>
+              </div>
               <?php else: ?>
-                <div class="thumbnail drop-zone-large empty" data-is-primary="1">
-                  <i class="icon icon-plus"></i>
+              <div class="thumbnail drop-zone-large empty" data-is-primary="1">
+                <i class="icon icon-plus"></i>
                   <span class="info-text">
                     Drag and drop your main image here from your <strong>"Uploaded&nbsp;Photos"</strong>
                     or use the <strong>Browse</strong> button on the right.
                   </span>
-                </div>
+              </div>
               <?php endif; ?>
             </li>
             <?php for ($i = 0; $i < 3 * (intval(count($multimedia) / 3)  + 1); $i++): ?>
@@ -56,20 +113,20 @@
             <li class="span4 square-thumb <?= $has_image ? 'ui-state-full' : 'ui-state-empty'; ?>">
               <div class="thumbnail drop-zone" data-is-primary="0">
                 <?php if ($has_image): ?>
-                  <?= image_tag_multimedia($multimedia[$i], '150x150', array('width' => 92, 'height' => 92)); ?>
-                  <i class="icon icon-remove-sign" data-multimedia-id="<?= $multimedia[$i]->getId(); ?>"></i>
-                  <i class="icon icon-plus icon-plus-pos hide"></i>
-                  <span class="multimedia-edit holder-icon-edit"
-                    data-original-image-url="<?= src_tag_multimedia($multimedia[$i], 'original') ?>"
-                    data-post-data='<?= $sf_user->hmacSignMessage(json_encode(array(
+                <?= image_tag_multimedia($multimedia[$i], '150x150', array('width' => 92, 'height' => 92)); ?>
+                <i class="icon icon-remove-sign" data-multimedia-id="<?= $multimedia[$i]->getId(); ?>"></i>
+                <i class="icon icon-plus icon-plus-pos hide"></i>
+                <span class="multimedia-edit holder-icon-edit"
+                      data-original-image-url="<?= src_tag_multimedia($multimedia[$i], 'original') ?>"
+                      data-post-data='<?= $sf_user->hmacSignMessage(json_encode(array(
                         'multimedia-id' => $multimedia[$i]->getId(),
-                    )), cqConfig::getCredentials('aviary', 'hmac_secret')); ?>'
+                      )), cqConfig::getCredentials('aviary', 'hmac_secret')); ?>'
                   >
                     <i class="icon icon-camera"></i>
                   </span>
                 <?php else: ?>
-                  <i class="icon icon-plus white-alternate-view"></i>
-                  <span class="info-text">
+                <i class="icon icon-plus white-alternate-view"></i>
+                <span class="info-text">
                     Alternate<br/> View
                   </span>
                 <?php endif; ?>
@@ -82,28 +139,6 @@
 
     </div><!-- ./span4 -->
     <div class="span8">
-      <?php
-        if ($collectible->isForSale())
-        {
-          $link = link_to(
-            'Go to Market &raquo;', '@mycq_marketplace',
-            array('class' => 'text-v-middle link-align')
-          );
-        }
-        else
-        {
-          $link = link_to(
-            'Back to Collection &raquo;',
-            'mycq_collection_by_slug', array('sf_subject' => $collection),
-            array('class' => 'text-v-middle link-align')
-          );
-        }
-
-        cq_sidebar_title(
-          $collectible->getName(), $link,
-          array('left' => 8, 'right' => 4, 'class'=>'spacer-top-reset row-fluid sidebar-title')
-        );
-      ?>
 
       <?= $form['collection_collectible_list']->renderRow(); ?>
       <?= $form['name']->renderRow(); ?>
@@ -118,43 +153,39 @@
         </div>
       </div>
       <?php else: ?>
-        <?= $form['thumbnail']->renderRow(); ?>
+      <?= $form['thumbnail']->renderRow(); ?>
       <?php endif;?>
 
       <?= $form['description']->renderRow(); ?>
       <?= $form['tags']->renderRow(); ?>
 
       <?php
-        if ($form_for_sale)
-        {
-          include_partial(
-            'mycq/collectible_form_for_sale', array(
-                'collectible' => $collectible,
-                'form' => $form_for_sale,
-                'form_shipping_us' => $form_shipping_us,
-                'form_shipping_zz' => $form_shipping_zz,
-          ));
-        }
-        else
-        {
-          echo link_to(
-            image_tag('banners/want-to-sell-this-item.png', array('align' => 'right')),
-            '@seller_packages'
-          );
-          echo '<br clear="all"/><br/>';
-        }
+      if ($form_for_sale)
+      {
+        include_partial(
+          'mycq/collectible_form_for_sale', array(
+          'collectible' => $collectible,
+          'form' => $form_for_sale,
+          'form_shipping_us' => $form_shipping_us,
+          'form_shipping_zz' => $form_shipping_zz,
+        ));
+      }
+      else
+      {
+        echo link_to(
+          image_tag('banners/want-to-sell-this-item.png', array('align' => 'right')),
+          '@seller_packages'
+        );
+        echo '<br clear="all"/>';
+      }
       ?>
 
     </div><!-- ./span8 -->
 
+    <br clear="all"><br/>
     <div class="row-fluid">
       <div class="span12">
         <div class="form-actions text-center spacer-inner-15">
-          <a href="<?= url_for('mycq_collectible_by_slug', array('sf_subject' => $collectible, 'cmd' => 'delete', 'encrypt' => '1')); ?>"
-             class="btn pull-left spacer-left"
-             onclick="return confirm('Are you sure you want to delete this Collectible?');">
-            <i class="icon icon-trash"></i>
-            Delete Collectible
           </a>
           <button type="submit" formnovalidate class="btn btn-primary">Save Changes</button>
           <a href="<?= url_for('mycq_collectible_by_slug', $collectible) ?>"
@@ -170,18 +201,39 @@
   <?= $form->renderHiddenFields(); ?>
 </form>
 
+
 <?php if (count($collectibles) > 0): ?>
-<br/>
-<div class="list-thumbs-other-collectibles">
-  Other items in the <?= link_to_collection($collection, 'text') ?> collection
+<div class="list-thumbs-10x">
+
+  <div class="row-fluid">
+    <div class="span6">
+      Edit other items in this collection:
+    </div>
+    <div class="span6">
+      <a href="<?= url_for('mycq_collection_by_section', array('id' => $collection->getId(), 'section' => 'details'))?>"
+         class="pull-right">
+        See All Items &raquo;
+      </a>
+    </div>
+  </div>
+
   <ul class="thumbnails">
     <?php foreach ($collectibles as $c): ?>
-    <li class="span2">
-      <a href="<?= url_for('mycq_collectible_by_slug', $c); ?>" class="thumbnail">
-        <?= image_tag_collectible($c, '75x75'); ?>
+    <li class="wrapper-90">
+      <a href="<?= url_for('mycq_collectible_by_slug', $c); ?>" class="thumb">
+        <?= image_tag_collectible($c, '100x100', array('width' => 85, 'height' => 85)); ?>
       </a>
     </li>
     <?php endforeach; ?>
+
+    <!--
+    <li class="wrapper-90">
+      <div class="drop-zone ui-droppable">
+        <i class="icon icon-plus" data-collection-id="3269"></i>
+        <span class="drop-zone-txt">Add Item<span>
+      </div>
+    </li>
+    //-->
   </ul>
 </div>
 <?php endif; ?>
@@ -227,9 +279,9 @@ $(document).ready(function()
       $this.find('img').fadeTo('fast', 0);
       $this.find('.holder-icon-edit').hide();
       $this.find('i.icon-plus')
-       .removeClass('icon-plus')
-       .addClass('icon-download-alt')
-       .show();
+        .removeClass('icon-plus')
+        .addClass('icon-download-alt')
+        .show();
     },
     out: function(event, ui)
     {
@@ -248,8 +300,8 @@ $(document).ready(function()
       $this.removeClass("ui-state-highlight");
       $this.find('.holder-icon-edit').show();
       $this.find('i.icon-download-alt')
-       .removeClass('icon-download-alt')
-       .addClass('icon-plus');
+        .removeClass('icon-download-alt')
+        .addClass('icon-plus');
       ui.draggable.draggable('option', 'revert', false);
       ui.draggable.hide();
 
@@ -278,25 +330,25 @@ $(document).ready(function()
 
   $('#main-image-set .icon-remove-sign').click(MISC.modalConfirmDestructive(
     'Delete image', 'Are you sure you want to delete this image?', function()
-  {
-    var $icon = $(this);
+    {
+      var $icon = $(this);
 
-    $icon.hide();
-    $icon.parent('div.ui-droppable').showLoading();
+      $icon.hide();
+      $icon.parent('div.ui-droppable').showLoading();
 
-    $.ajax({
-      url: '<?= url_for('@ajax_mycq?section=multimedia&page=delete&encrypt=1'); ?>',
-      type: 'post', data: { multimedia_id: $icon.data('multimedia-id') },
-      success: function()
-      {
-        window.location.reload();
-      },
-      error: function()
-      {
-        $(this).hideLoading();
-        $icon.show();
-      }
-    });
-  }, true));
+      $.ajax({
+        url: '<?= url_for('@ajax_mycq?section=multimedia&page=delete&encrypt=1'); ?>',
+        type: 'post', data: { multimedia_id: $icon.data('multimedia-id') },
+        success: function()
+        {
+          window.location.reload();
+        },
+        error: function()
+        {
+          $(this).hideLoading();
+          $icon.show();
+        }
+      });
+    }, true));
 });
 </script>

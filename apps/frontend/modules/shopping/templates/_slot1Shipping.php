@@ -11,7 +11,7 @@
   <div class="span6">
     <form action="<?= url_for('@login', true); ?>" method="post">
       <div class="row-fluid">
-        <h3>Login now to use your saved details:</h3>
+        <h3>Sign in now to use your saved details:</h3>
         <br/>
         <div class="span5" style="margin-left: 0;">
           <?= $form['username']->renderLabel(); ?>
@@ -29,9 +29,9 @@
         </div>
         <div class="span2">
           <label>&nbsp;</label>
-          <button type="submit" class="btn" value="Login" data-loading-text="loading..."
+          <button type="submit" class="btn" value="Sign In" data-loading-text="loading..."
                   style="white-space: nowrap; padding: 4px 15px; margin-top: -2px;">
-            <i class="icon-signin"></i>&nbsp;Login
+            <i class="icon-signin"></i>&nbsp;Sign In
           </button>
         </div>
       </div>

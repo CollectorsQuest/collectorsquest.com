@@ -162,7 +162,8 @@ class CollectorProfile extends BaseCollectorProfile
       $v = array(
         'show_age'    => false,
         'msg_on'      => true,
-        'invite_only' => false
+        'invite_only' => false,
+        'newsletter'  => false
       );
     }
 

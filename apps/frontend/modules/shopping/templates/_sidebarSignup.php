@@ -1,6 +1,6 @@
 <?php if (!$sf_user->isAuthenticated()): ?>
 
-  <?php cq_sidebar_title('Signup for an Account', null, array('style' => 'margin-top: 0;')); ?>
+  <?php cq_sidebar_title('Sign up for an Account', null, array('style' => 'margin-top: 0;')); ?>
 
   <div class="signup-form-sidebar">
     <form action="<?= url_for('@collector_signup', true); ?>" method="post"
@@ -11,7 +11,7 @@
           <?php
             include_partial(
               'global/footer_signup_external_buttons',
-              array('action' => 'signup')
+              array('action' => 'sign up')
             );
           ?>
         </div>

@@ -48,6 +48,7 @@ class miscActions extends cqFrontendActions
         if ($signupForm->isValid())
         {
           $values = $signupForm->getValues();
+
           // try to guess the collector's country based on IP address
           $values['country_iso3166'] = cqStatic::getGeoIpCountryCode(
             $request->getRemoteAddress(), $check_against_geo_country = true
@@ -74,9 +75,11 @@ class miscActions extends cqFrontendActions
             ),
           ));
 
-
           // authenticate the collector and redirect to @misc_guide_download
           $this->getUser()->Authenticate(true, $collector, false);
+
+          // Run the post create hook (not sending the welcome email yet)
+          $this->getUser()->postCreateHook($collector, false);
 
           $this->getUser()->setFlash(
             'success', sprintf('Email with download link was sent to %s', $collector->getEmail())
@@ -113,7 +116,7 @@ class miscActions extends cqFrontendActions
    *
    * @return string
    */
-  public function executeGuideDownload()
+  public function executeGuideDownload(sfWebRequest $request)
   {
     $this->redirectUnless($this->getUser()->isAuthenticated(), '@misc_guide_to_collecting');
 
@@ -190,6 +193,25 @@ class miscActions extends cqFrontendActions
     }
 
     $this->hash = $hash;
+
+    $this->getResponse()->addOpenGraphMeta('type', 'website');
+    $this->getResponse()->addOpenGraphMeta('url', 'http://www.collectorsquest.com/guide');
+    $this->getResponse()->addOpenGraphMeta('title',
+      'Quest Your Best: The Essential Guide to Collecting | Collectors Quest'
+    );
+    $this->getResponse()->addOpenGraphMeta('image',
+      'http://www.collectorsquest.com/images/frontend/misc/guide-splash-page-img.png'
+    );
+    $this->getResponse()->addOpenGraphMeta('description',
+      "The guide has something for every collector, whether you're just
+       beginning to acquire treasures or you're a dedicated hunter looking for the next,
+       perfect addition to your display case."
+    );
+
+    $this->redirectIf(
+      $request->getRequestFormat() && $request->getRequestFormat() !== 'html',
+      '@misc_guide_to_collecting'
+    );
 
     return sfView::SUCCESS;
   }

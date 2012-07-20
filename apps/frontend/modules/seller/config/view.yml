@@ -23,5 +23,10 @@ all:
   components:
     slot1: [mycq, navigation]
 
+signupSuccess:
+  components:
+    slot1: []
+    sidebar_300: [seller, sidebarSignup]
+
 # packagesSuccess:
 #   javascripts: [/assets/js/jquery/creditCardValidator.js]

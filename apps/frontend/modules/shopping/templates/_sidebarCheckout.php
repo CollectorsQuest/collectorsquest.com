@@ -49,7 +49,7 @@
   <?php cq_sidebar_title('Checkout Help', null, array('style' => 'margin-top: 0;')); ?>
   <div style="padding: 10px;">
     <ul>
-      <li><a href="#registerHelp">Do I have to login?</a></li>
+      <li><a href="#registerHelp">Do I have to log in?</a></li>
       <li><a href="#deliveryCostHelp">How much is delivery?</a></li>
       <li><a href="#secureShoppingHelp">Secure shopping</a></li>
       <li><a href="#privacyPolicyHelp">Privacy Policy</a></li>

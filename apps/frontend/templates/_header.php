@@ -87,7 +87,7 @@
                 <?php if (IceGateKeeper::open('mycq_marketplace')): ?>
                 <li>
                   <a href="<?= url_for('@mycq_marketplace', true); ?>"
-                     title="Manage your Collectibles for Sale!">
+                     title="Manage your Items for Sale!">
                     <i class="icon icon-shopping-cart"></i> My Market
                   </a>
                 </li>
@@ -112,7 +112,7 @@
         <?php else: ?>
           <?php
             echo link_to(
-              'Log In', '@login',
+              'Sign In', '@login',
               array('class' => 'requires-login bold-links padding-signup', 'absolute' => true)
             );
           ?>

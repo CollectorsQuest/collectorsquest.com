@@ -97,6 +97,9 @@ class collectionActions extends cqFrontendActions
     $this->getResponse()->addMeta('description', $collection->getDescription('stripped'));
     $this->getResponse()->addMeta('keywords', $collection->getTagString());
 
+    // Set the OpenGraph meta tags
+    $this->getResponse()->addOpenGraphMetaFor($collection);
+
     if ($collection->getNumItems() == 0)
     {
       $this->collections = null;
@@ -195,6 +198,24 @@ class collectionActions extends cqFrontendActions
     {
       SmartMenu::setSelected('header_main_menu', 'marketplace');
     }
+
+    $breadcrumbs = IceBreadcrumbs::getInstance($this->getContext());
+
+    if (preg_match('#/marketplace#i', IceRequestHistory::getRequestUriFromCurrent(-1)))
+    {
+      $breadcrumbs->addItem('Marketplace', '@marketplace');
+    }
+    else
+    {
+      $breadcrumbs->addItem($collection->getName(), $this->getController()->genUrl(array(
+        'sf_route'  => 'collection_by_slug',
+        'sf_subject'=> $collection
+      )));
+    }
+    $breadcrumbs->addItem($collectible->getName());
+
+    // Set the OpenGraph meta tags
+    $this->getResponse()->addOpenGraphMetaFor($collectible);
 
     $this->collector = $collector;
     $this->collection = $collection;

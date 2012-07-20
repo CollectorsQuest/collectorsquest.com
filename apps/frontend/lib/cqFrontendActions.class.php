@@ -3,7 +3,7 @@
 /**
  * @method  cqFrontendUser  getUser()
  */
-class cqFrontendActions extends cqBaseActions
+abstract class cqFrontendActions extends cqBaseActions
 {
   /**
    * @param  boolean $strict

@@ -2,14 +2,14 @@ ice_breadcrumbs:
   _root: { name: 'Home', route: homepage }
   _separator: ' → '
   _lost: ''
-  _default_case: 'ucwords'
+  _default_case: 'IceFunctions::title_case'
 
   _video:
     index: [{ name: 'Video', route: video }]
 
   general:
     index: [{ name: 'Home', route: homepage }]
-    login: [{ name: 'Login' }]
+    login: [{ name: 'Sign in to Collectors Quest' }]
     recoverPassword: [{ name: 'Recover password' }]
     feedback: [{ name: 'Feedback' }]
     error404: [{ name: 'This page isn’t here anymore' }]
@@ -29,9 +29,6 @@ ice_breadcrumbs:
 
   collection:
     index:
-      - { name: '%Name%', model: true }
-    collectible:
-      - { name: '%Collection%', model: true, route: collection_by_slug, subobject: Collection }
       - { name: '%Name%', model: true }
     create:
       - { name: 'Collections' }
@@ -53,6 +50,11 @@ ice_breadcrumbs:
     signup:
       - { name: 'Collectors', route: collectors }
       - { name: 'Signup' }
+
+  collectibles:
+    collectorList:
+      - { name: 'Collectors', route: collectors }
+      - { name: '%DisplayName%', model: true, route: collector_by_slug }
 
   collectors:
     index: [{ name: 'Collectors' }]
@@ -101,7 +103,7 @@ ice_breadcrumbs:
       - { name: 'Collections', route: mycq_collections }
       - { name: '%Name%', model: true }
     collectible:
-      - { name: '%Collection%', route: mycq_collection_by_slug, model: true, subobject: Collection }
+      - { name: '%Collection%', route: mycq_collection_by_id, model: true, subobject: Collection }
       - { name: '%Name%', model: true }
 
   messages:

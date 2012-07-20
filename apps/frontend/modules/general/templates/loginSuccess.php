@@ -2,7 +2,7 @@
   /* @var $form CollectorLoginForm */
 ?>
 
-<?php cq_page_title('Login to Collectors Quest'); ?>
+<?php cq_page_title('Sign in to Collectors Quest'); ?>
 
 <div class="row-fluid">
   <div class="span7">
@@ -19,7 +19,7 @@
           </div>
         </div>
         <div class="form-actions">
-          <input type="submit" class="btn btn-primary" value="Login" />
+          <input type="submit" class="btn btn-primary" value="Sign In" />
           <span class="spacer-left-15">
             <?= link_to('Forgot your password?', '@recover_password'); ?>
           </span>
