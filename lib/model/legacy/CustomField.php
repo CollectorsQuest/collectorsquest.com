@@ -1,6 +1,6 @@
 <?php
 
-require 'lib/model/om/BaseCustomField.php';
+require 'lib/model/legacy/om/BaseCustomField.php';
 
 class CustomField extends BaseCustomField
 {

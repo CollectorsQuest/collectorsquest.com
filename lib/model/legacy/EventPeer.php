@@ -1,6 +1,6 @@
 <?php
 
-require 'lib/model/om/BaseEventPeer.php';
+require 'lib/model/legacy/om/BaseEventPeer.php';
 
 class EventPeer extends BaseEventPeer
 {

@@ -1,6 +1,6 @@
 <?php
 
-require 'lib/model/om/BaseFeaturedQuery.php';
+require 'lib/model/legacy/om/BaseFeaturedQuery.php';
 
 class FeaturedQuery extends BaseFeaturedQuery
 {

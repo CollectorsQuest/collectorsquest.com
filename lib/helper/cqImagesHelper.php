@@ -53,7 +53,7 @@ function src_tag_collector($collector, $which = '100x100', $options = array())
   {
     if (isset($options['absolute']) && true === $options['absolute'])
     {
-      $default = sfConfig::get('app_cq_multimedia_domain') . $default;
+      $default = sfConfig::get('app_www_domain') . $default;
     }
 
     return $default;
@@ -286,8 +286,8 @@ function src_tag_multimedia($multimedia, $which = 'thumb', $options = array())
   }
 
   $src = sprintf(
-    '%s/%s/%s/%s-%d.%s?%d',
-    sfConfig::get('app_cq_multimedia_domain'),
+    '//%s/%s/%s/%s-%d.%s?%d',
+    sfConfig::get('app_multimedia_domain'),
     $multimedia->getType(), $which,
     (!empty($options['slug'])) ? $options['slug'] : strtolower($multimedia->getModel()),
     $multimedia->getId(), $multimedia->getFileExtension(), $multimedia->getCreatedAt('U')

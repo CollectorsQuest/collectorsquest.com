@@ -1,6 +1,6 @@
 <?php
 
-require 'lib/model/om/BaseCollectionCategory.php';
+require 'lib/model/legacy/om/BaseCollectionCategory.php';
 
 /**
  * IceTaggableBehavior

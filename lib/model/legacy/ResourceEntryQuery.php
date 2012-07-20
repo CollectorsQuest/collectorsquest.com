@@ -1,6 +1,6 @@
 <?php
 
-require 'lib/model/om/BaseResourceEntryQuery.php';
+require 'lib/model/legacy/om/BaseResourceEntryQuery.php';
 
 class ResourceEntryQuery extends BaseResourceEntryQuery
 {

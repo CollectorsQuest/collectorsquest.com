@@ -1,6 +1,6 @@
 <?php
 
-require 'lib/model/om/BaseEventVideoPeer.php';
+require 'lib/model/legacy/om/BaseEventVideoPeer.php';
 
 class EventVideoPeer extends BaseEventVideoPeer
 {

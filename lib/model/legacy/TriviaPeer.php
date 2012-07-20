@@ -1,6 +1,6 @@
 <?php
 
-require 'lib/model/om/BaseTriviaPeer.php';
+require 'lib/model/legacy/om/BaseTriviaPeer.php';
 
 class TriviaPeer extends BaseTriviaPeer
 {

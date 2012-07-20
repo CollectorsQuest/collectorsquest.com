@@ -1,6 +1,6 @@
 <?php
 
-require 'lib/model/om/BaseTriviaQuery.php';
+require 'lib/model/legacy/om/BaseTriviaQuery.php';
 
 class TriviaQuery extends BaseTriviaQuery
 {

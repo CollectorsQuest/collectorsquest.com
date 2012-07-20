@@ -1,6 +1,6 @@
 <?php
 
-require 'lib/model/om/BaseFeaturedNestedSet.php';
+require 'lib/model/legacy/om/BaseFeaturedNestedSet.php';
 
 class Featured extends BaseFeaturedNestedSet
 {

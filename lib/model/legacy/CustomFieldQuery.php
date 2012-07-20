@@ -1,6 +1,6 @@
 <?php
 
-require 'lib/model/om/BaseCustomFieldQuery.php';
+require 'lib/model/legacy/om/BaseCustomFieldQuery.php';
 
 class CustomFieldQuery extends BaseCustomFieldQuery
 {

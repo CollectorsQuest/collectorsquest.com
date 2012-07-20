@@ -1,6 +1,6 @@
 <?php
 
-require 'lib/model/om/BaseVideoPlaylist.php';
+require 'lib/model/legacy/om/BaseVideoPlaylist.php';
 
 class VideoPlaylist extends BaseVideoPlaylist
 {

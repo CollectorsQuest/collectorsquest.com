@@ -1,6 +1,6 @@
 <?php
 
-require 'lib/model/om/BaseInterviewQuestionPeer.php';
+require 'lib/model/legacy/om/BaseInterviewQuestionPeer.php';
 
 class InterviewQuestionPeer extends BaseInterviewQuestionPeer
 {

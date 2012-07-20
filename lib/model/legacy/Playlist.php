@@ -1,6 +1,6 @@
 <?php
 
-require 'lib/model/om/BasePlaylist.php';
+require 'lib/model/legacy/om/BasePlaylist.php';
 
 class Playlist extends BasePlaylist
 {

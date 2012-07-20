@@ -1,6 +1,6 @@
 <?php
 
-require 'lib/model/om/BaseFeaturedNestedSetPeer.php';
+require 'lib/model/legacy/om/BaseFeaturedNestedSetPeer.php';
 
 class FeaturedPeer extends BaseFeaturedNestedSetPeer
 {

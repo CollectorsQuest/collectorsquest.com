@@ -1,6 +1,6 @@
 <?php
 
-require 'lib/model/om/BaseVideoCollectionCategoryQuery.php';
+require 'lib/model/legacy/om/BaseVideoCollectionCategoryQuery.php';
 
 class VideoCollectionCategoryQuery extends BaseVideoCollectionCategoryQuery
 {

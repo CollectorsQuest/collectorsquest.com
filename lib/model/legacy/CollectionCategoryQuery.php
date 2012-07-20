@@ -1,6 +1,6 @@
 <?php
 
-require 'lib/model/om/BaseCollectionCategoryQuery.php';
+require 'lib/model/legacy/om/BaseCollectionCategoryQuery.php';
 
 class CollectionCategoryQuery extends BaseCollectionCategoryQuery
 {

@@ -1,6 +1,6 @@
 <?php
 
-require 'lib/model/om/BaseVideoQuery.php';
+require 'lib/model/legacy/om/BaseVideoQuery.php';
 
 class VideoQuery extends BaseVideoQuery
 {

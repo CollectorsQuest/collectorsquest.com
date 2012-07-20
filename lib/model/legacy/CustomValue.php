@@ -1,6 +1,6 @@
 <?php
 
-require 'lib/model/om/BaseCustomValue.php';
+require 'lib/model/legacy/om/BaseCustomValue.php';
 
 class CustomValue extends BaseCustomValue
 {

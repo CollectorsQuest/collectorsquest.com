@@ -1,6 +1,6 @@
 <?php
 
-require 'lib/model/om/BaseCollectionCategoryPeer.php';
+require 'lib/model/legacy/om/BaseCollectionCategoryPeer.php';
 
 class CollectionCategoryPeer extends BaseCollectionCategoryPeer
 {

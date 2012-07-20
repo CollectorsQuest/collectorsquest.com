@@ -1,6 +1,6 @@
 <?php
 
-require 'lib/model/om/BaseResourceEntryPeer.php';
+require 'lib/model/legacy/om/BaseResourceEntryPeer.php';
 
 class ResourceEntryPeer extends BaseResourceEntryPeer
 {

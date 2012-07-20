@@ -1,6 +1,6 @@
 <?php
 
-require 'lib/model/om/BaseVideoPeer.php';
+require 'lib/model/legacy/om/BaseVideoPeer.php';
 
 class VideoPeer extends BaseVideoPeer
 {

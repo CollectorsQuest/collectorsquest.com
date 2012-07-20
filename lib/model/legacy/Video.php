@@ -1,6 +1,6 @@
 <?php
 
-require 'lib/model/om/BaseVideo.php';
+require 'lib/model/legacy/om/BaseVideo.php';
 
 /**
  * IceTaggableBehavior
@@ -46,12 +46,12 @@ class Video extends BaseVideo
 
   public function getThumbSmallSrc($rand = false)
   {
-    return sfConfig::get('app_cq_www_domain') .'/uploads/videos/thumbs/'.$this->getThumbSmall() . (($rand) ? '?'.rand(1, 100000) : '');
+    return sfConfig::get('app_www_domain') .'/uploads/videos/thumbs/'.$this->getThumbSmall() . (($rand) ? '?'.rand(1, 100000) : '');
   }
 
   public function getThumbLargeSrc($rand = false)
   {
-    return sfConfig::get('app_cq_www_domain') .'/uploads/videos/thumbs/'.$this->getThumbLarge() . (($rand) ? '?'.rand(1, 100000) : '');
+    return sfConfig::get('app_www_domain') .'/uploads/videos/thumbs/'.$this->getThumbLarge() . (($rand) ? '?'.rand(1, 100000) : '');
   }
 
   public function getTagRelatedVideos($limit = 5, Criteria $criteria = null)

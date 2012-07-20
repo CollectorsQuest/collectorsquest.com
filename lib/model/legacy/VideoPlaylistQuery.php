@@ -1,6 +1,6 @@
 <?php
 
-require 'lib/model/om/BaseVideoPlaylistQuery.php';
+require 'lib/model/legacy/om/BaseVideoPlaylistQuery.php';
 
 class VideoPlaylistQuery extends BaseVideoPlaylistQuery
 {

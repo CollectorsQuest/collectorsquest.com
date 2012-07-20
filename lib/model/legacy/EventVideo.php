@@ -1,6 +1,6 @@
 <?php
 
-require 'lib/model/om/BaseEventVideo.php';
+require 'lib/model/legacy/om/BaseEventVideo.php';
 
 class EventVideo extends BaseEventVideo
 {

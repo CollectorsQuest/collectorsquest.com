@@ -1,6 +1,6 @@
 <?php
 
-require 'lib/model/om/BaseNewsletterSignupQuery.php';
+require 'lib/model/legacy/om/BaseNewsletterSignupQuery.php';
 
 class NewsletterSignupQuery extends BaseNewsletterSignupQuery
 {

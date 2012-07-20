@@ -1,6 +1,6 @@
 <?php
 
-require 'lib/model/om/BaseInterviewQuestionQuery.php';
+require 'lib/model/legacy/om/BaseInterviewQuestionQuery.php';
 
 class InterviewQuestionQuery extends BaseInterviewQuestionQuery
 {
