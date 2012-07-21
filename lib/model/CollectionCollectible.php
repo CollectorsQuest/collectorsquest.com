@@ -77,6 +77,25 @@ class CollectionCollectible extends BaseCollectionCollectible
     return $this->getCollectible($con)->getCollectorId();
   }
 
+  /**
+   * @see Collectible::getName()
+   */
+  public function getName()
+  {
+    return $this->getCollectible()->getName();
+  }
+
+  /**
+   * @see Collectible::getDescription()
+   */
+  public function getDescription()
+  {
+    return call_user_func_array(
+      array($this->getCollectible(), 'getDescription'),
+      func_get_args()
+    );
+  }
+
   public function getPrimaryImage($mode = Propel::CONNECTION_READ)
   {
     return $this->getCollectible()->getPrimaryImage($mode);

@@ -72,7 +72,7 @@ class cqWebResponse extends iceWebResponse
 
     if (method_exists($object, 'getDescription'))
     {
-      $this->addOpenGraphMeta('description', (string) $object->getDescription());
+      $this->addOpenGraphMeta('description', (string) $object->getDescription('stripped', 300));
     }
 
     /** @var PropelObjectCollection */
