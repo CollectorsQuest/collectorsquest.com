@@ -168,3 +168,15 @@ recover_password:
 feedback:
   url:   /feedback
   param: { module: general, action: feedback }
+
+error_404:
+  url:   /errors/404
+  param: { module: general, action: error404 }
+
+error_500:
+  url:   /errors/500
+  param: { module: general, action: error500 }
+
+error_50x:
+  url:   /errors/50x
+  param: { module: general, action: error50x }
