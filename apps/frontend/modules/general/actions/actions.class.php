@@ -12,7 +12,9 @@ class generalActions extends cqFrontendActions
 
   public function executeIndex()
   {
-    // Get the latest 2 Blog posts and its first image
+    /**
+     * Get the latest 2 Blog posts and its first image
+     */
     $blog_posts = wpPostPeer::getLatestPosts(2);
 
     /** @var $blog_post wpPost */
