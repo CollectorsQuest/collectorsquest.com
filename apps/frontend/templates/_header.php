@@ -32,7 +32,7 @@
           </form>
         </div>
       </div>
-      <div class="span4 pull-right" style="float: right; text-align: right; padding-top: 2px;">
+      <div class="span4 right-section-header">
 
         <?php if (IceGateKeeper::open('shopping_cart')): ?>
           <a href="<?= url_for('@shopping_cart', true); ?>" class="link-cart"
@@ -55,7 +55,7 @@
               My Account &nbsp;<span class="caret"></span>
             </a>
             <?php if ($sf_params->get('module') === '_video'): ?>
-              <ul class="dropdown-menu" style="min-width: 123px;">
+              <ul class="dropdown-menu dd-menu-min-width">
                 <li>
                   <a href="<?= url_for('@mycq_profile', true); ?>"
                      title="Manage your CollectorsQuest.com profile!">
@@ -71,7 +71,7 @@
                 </li>
               </ul>
             <?php else: ?>
-              <ul class="dropdown-menu" style="min-width: 123px;">
+              <ul class="dropdown-menu dd-menu-min-width">
                 <li>
                   <a href="<?= url_for('@mycq_profile', true); ?>"
                      title="Manage your CollectorsQuest.com profile!">
