@@ -31,7 +31,7 @@
 
 <?php foreach ($collections as $collection): ?>
   <div id="sidebar_collection_<?php echo  $collection->getId(); ?>" class="row-fluid link">
-    <div class="span3" style="text-align: center">
+    <div class="span3 text-center">
       <?= link_to_collection($collection, 'image', array('width' => 50, 'height' => 50)); ?>
     </div>
     <div class="span9">

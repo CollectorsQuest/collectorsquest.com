@@ -30,7 +30,7 @@
 <div id="user-collections">
   <div class="row">
     <?php foreach ($pager->getResults() as $collection): ?>
-    <div class="span4" style="margin-bottom: 15px;">
+    <div class="span4 spacer-bottom-15">
       <div class="user-collections-inner">
         <span class="link-user-collection">
           <?= link_to_collection($collection, 'text', array('truncate' => 30)) ?>

@@ -19,7 +19,7 @@ cq_sidebar_title(
 <div class="blue-well spacer-bottom-15 cf">
   <div class="row-fluid">
     <div class="span6">
-      <ul class="nav nav-pills" style="margin-bottom: 0;">
+      <ul class="nav nav-pills spacer-bottom-reset">
         <li>
           <a href="<?= url_for('@ajax_mycq?section=component&page=createCollection'); ?>"
              class="open-dialog" title="Create a new collection by clicking here">

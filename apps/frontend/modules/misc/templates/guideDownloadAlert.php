@@ -14,7 +14,7 @@
           <br/>
           <form action="" id="form-verify-email" class="form-horizontal" method="post">
             <?= $form->renderHiddenFields(); ?>
-            <div class="span8" style="margin-left: 0;">
+            <div class="span8 spacer-left-reset">
               <?= $form['email']->render(); ?>
             </div>
             <div class="span4">

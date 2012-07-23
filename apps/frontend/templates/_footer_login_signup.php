@@ -101,7 +101,7 @@
     </div>
   </form>
 
-  <div id="footer-control-signup" style="display: none">
+  <div id="footer-control-signup dn">
     <span class="pull-right">
       Don't have an account yet?
       <?php

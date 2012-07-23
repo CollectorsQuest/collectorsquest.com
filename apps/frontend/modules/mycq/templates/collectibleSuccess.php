@@ -20,7 +20,7 @@
   ?>
   <div class="blue-well spacer-bottom-15 cf">
     <div class="pull-left">
-      <ul class="nav nav-pills" style="margin-bottom: 0;">
+      <ul class="nav nav-pills spacer-bottom-reset">
         <li>
         <?php
           if ($collectible->isForSale())

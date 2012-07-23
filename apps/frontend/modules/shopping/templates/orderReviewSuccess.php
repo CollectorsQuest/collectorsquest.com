@@ -46,7 +46,7 @@
       array('left' => 8, 'right' => 4, 'class'=>'spacer-top-reset row-fluid sidebar-title')
     );
   ?>
-  <div class="span7" style="margin-left: 0;">
+  <div class="span7 spacer-left-reset">
     <table class="table">
       <tr>
         <td style="width: 38%;">Status:</td>

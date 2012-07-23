@@ -13,7 +13,7 @@
       <i class="icon-chevron-right white"></i>
     </a>
     <div id="carousel" data-loaded='<?= json_encode(array_fill(1, $carousel_page, true)); ?>'
-         class="thumbnails" style="">
+         class="thumbnails">
       <?php foreach ($collectibles as $c): ?>
         <a href="<?= url_for_collectible($c) ?>"
            class="thumbnail <?= $c->getId() == $collectible->getId() ? 'active' : '' ?>">

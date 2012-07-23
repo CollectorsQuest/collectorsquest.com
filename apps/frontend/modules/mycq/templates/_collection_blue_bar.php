@@ -1,7 +1,7 @@
 <div class="blue-well spacer-15 cf">
   <div class="row-fluid">
     <div class="span8">
-      <ul class="nav nav-pills" style="margin-bottom: 0;">
+      <ul class="nav nav-pills spacer-bottom-reset">
         <li>
           <a href="<?= url_for('mycq_collections'); ?>">
             <i class="icon-arrow-left"></i>

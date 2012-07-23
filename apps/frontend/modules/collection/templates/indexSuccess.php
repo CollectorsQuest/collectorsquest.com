@@ -55,8 +55,7 @@
 </div>
 
 <?php if ($pager->getPage() === 1): ?>
-<div class="cf <?= $editable ? 'editable_html' : '' ?>"
-     style="margin-top: 20px;"
+<div class="cf spacer-top-20 <?= $editable ? 'editable_html' : '' ?>"
      id="<?= sprintf('%s_%s_description', get_class($collection), $collection->getId()) ?>">
   <?= $collection->getDescription('html'); ?>
 </div>

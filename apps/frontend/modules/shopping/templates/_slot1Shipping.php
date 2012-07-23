@@ -13,7 +13,7 @@
       <div class="row-fluid">
         <h3>Sign in now to use your saved details:</h3>
         <br/>
-        <div class="span5" style="margin-left: 0;">
+        <div class="span5 spacer-left-reset">
           <?= $form['username']->renderLabel(); ?>
           <div class="input-prepend">
             <span class="add-on"><i class="icon-user"></i></span>

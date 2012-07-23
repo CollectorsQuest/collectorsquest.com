@@ -24,7 +24,7 @@
         <div class="span4 thumbnail" style="margin-top: -55px; background: #fff;">
           <?= image_tag_collector($collector, '235x315', array('max_width' => 138, 'max_height' => 185)) ?>
         </div>
-        <div class="span8" style="padding-top: 10px;">
+        <div class="span8 spacer-inner-top">
           <?php
             echo sprintf(
               'I am %s <strong>%s</strong> collector',
@@ -42,7 +42,7 @@
           ?>
 
           <?php if ($text = $collector->getICollect()): ?>
-          <p style="margin-top: 10px;">
+          <p class="spacer-top">
             <strong>I collect:</strong>
             <?= $text ?>
           </p>
