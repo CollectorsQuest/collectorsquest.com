@@ -2,7 +2,7 @@
   <img src="/images/banners/2012-0420_AP_Promo_Space_620x180_FIN.jpg" alt="Check out items seen on American Pickers">
 </div>
 
-<p style="text-align: justify;">
+<p class="text-justify">
   Part sleuths, part antiques experts, and part cultural historians,
   professional ‘pickers’ Mike Wolfe and Frank Fritz’s adventures in
   <strong><i>AMERICAN PICKERS</i></strong><sup>&reg;</sup> on HISTORY<sup>&reg;</sup>

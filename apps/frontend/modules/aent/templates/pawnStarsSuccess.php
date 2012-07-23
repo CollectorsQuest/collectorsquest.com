@@ -2,7 +2,7 @@
   <img src="/images/banners/2012-0420_PS_Promo_Space_620x180_FIN.jpg" alt="">
 </div>
 
-<p style="text-align: justify;">
+<p class="text-justify">
   In the only family-run pawn shop in Las Vegas, three generations of men
   from the Harrison family buy and sell collectible, unusual and historically
   significant items on HISTORY’s <strong><i>PAWN STARS</i></strong><sup>&reg;</sup>.

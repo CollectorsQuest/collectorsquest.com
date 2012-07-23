@@ -23,7 +23,7 @@
   <span class="content">
     <?= $wp_post->getPostExcerpt(140, '...') ?>
   </span><br/>
-  <small class="font10">
+  <small>
     posted by <?= link_to_blog_author($wp_post->getwpUser(), 'text'); ?>
     <span class="grey"><?php echo time_ago_in_words($wp_post->getPostDate('U')) ?> ago</span>
   </small>

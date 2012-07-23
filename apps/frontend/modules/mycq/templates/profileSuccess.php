@@ -33,7 +33,7 @@
               <label for="input01" class="control-label">Profile Photo</label>
               <div class="controls">
                 <div class="row-fluid">
-                  <div class="span12" style="margin-bottom: 20px;">
+                  <div class="span12 spacer-bottom-20">
                     <?= $avatar_form['filename']->render(array('style' => 'width: auto;')); ?>
                     <button type="submit" class="btn btn-primary spacer-left">
                       Upload File

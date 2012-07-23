@@ -58,7 +58,7 @@
             <td>Price:</td>
             <td class="text-right">
               <?= money_format('%.2n', (float) $shopping_cart_collectible->getPriceAmount()); ?>
-              <small style="font-size: 80%;"><?= $shopping_cart_collectible->getPriceCurrency(); ?></small>
+              <small><?= $shopping_cart_collectible->getPriceCurrency(); ?></small>
             </td>
           </tr>
           <tr>
@@ -68,7 +68,7 @@
                 <span class="red">Cannot be shipped to <?= $country ?>!</span>
               <?php elseif ($shopping_cart_collectible->getShippingFeeAmount() > 0): ?>
                 <?= money_format('%.2n', (float) $shopping_cart_collectible->getShippingFeeAmount()); ?>
-                <small style="font-size: 80%;"><?= $shopping_cart_collectible->getPriceCurrency(); ?></small>
+                <small><?= $shopping_cart_collectible->getPriceCurrency(); ?></small>
               <?php else: ?>
                 Free
               <?php endif; ?>
@@ -78,7 +78,7 @@
             <td><strong>Total:</strong></td>
             <td class="text-right">
               <strong><?= money_format('%.2n', (float) $shopping_cart_collectible->getTotalPrice()); ?></strong>
-              <small style="font-size: 80%; font-weight: bold;"><?= $shopping_cart_collectible->getPriceCurrency(); ?></small>
+              <small class="text-bold"><?= $shopping_cart_collectible->getPriceCurrency(); ?></small>
             </td>
           </tr>
           <tr>

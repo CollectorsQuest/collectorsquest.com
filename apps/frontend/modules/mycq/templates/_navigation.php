@@ -9,7 +9,7 @@
     <div class="span10 upload-items-wrapper-l">
       <?php
         $links = link_to('View Public Profile', '@collector_me') .
-                 '<span style="color: #fff;">&nbsp; | &nbsp;</span>'.
+                 '<span class="white">&nbsp; | &nbsp;</span>'.
                  link_to('Log Out', '@logout', array('class'=>'logout-link'));
 
         cq_page_title($collector->getDisplayName(), $links);
