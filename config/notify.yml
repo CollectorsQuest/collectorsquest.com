@@ -32,3 +32,13 @@ dev:
   driver:
     class:   fpErrorNotifierDriverNull
     options: {}
+
+cli:
+  driver:
+    class:   fpErrorNotifierDriverNull
+    options: {}
+
+test:
+  driver:
+    class:   fpErrorNotifierDriverNull
+    options: {}

@@ -8,7 +8,7 @@ class frontendConfiguration extends cqApplicationConfiguration
   {
     parent::setup();
 
-    $this->enablePlugins(array('fpErrorNotifierPlugin', 'sfFeed2Plugin'));
+    $this->enablePlugins(array('sfFeed2Plugin'));
 
     $this->dispatcher->connect(
       'user.change_authentication', array('CollectorPeer', 'listenToChangeAuthenticationEvent')

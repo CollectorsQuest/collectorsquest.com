@@ -12,7 +12,7 @@ class backendConfiguration extends cqApplicationConfiguration
   {
     parent::setup();
 
-    $this->enablePlugins(array('iceBackendPlugin', 'fpErrorNotifierPlugin'));
+    $this->enablePlugins(array('iceBackendPlugin'));
   }
 
   public function configure()
