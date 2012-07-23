@@ -65,7 +65,7 @@
           <?= image_tag_collector($message->getCollectorRelatedBySender(),
             '50x50', array('class' => 'avatar')); ?>
           <?= link_to_collector($message->getCollectorRelatedBySender()); ?>
-          <p style="font-size: 10px">
+          <p class="font10">
             <?= time_ago_in_words($message->getCreatedAt('U')); ?> ago
           </p>
         </td>
