@@ -398,12 +398,14 @@ class generalActions extends cqFrontendActions
 
   public function executeError404()
   {
-    return sfView::SUCCESS;
+    return cqStatic::isCrawler() ?
+      sfView::HEADER_ONLY : sfView::SUCCESS;
   }
 
   public function executeError50x()
   {
-    return sfView::SUCCESS;
+    return cqStatic::isCrawler() ?
+      sfView::HEADER_ONLY : sfView::SUCCESS;
   }
 
 }
