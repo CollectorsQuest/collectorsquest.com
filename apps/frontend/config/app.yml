@@ -70,11 +70,6 @@ dev:
   static_domain: "www.collectorsquest.dev"
   multimedia_domain: "multimedia.cqcdns.dev"
 
-  cq:
-    www_domain: "http://www.collectorsquest.dev/"
-    static_domain: "http://static.collectorsquest.dev/"
-    multimedia_domain: "http://multimedia.cqcdns.dev"
-
   credentials:
     rpxnow:
       application_domain: "https://collectorsquest-dev.rpxnow.com/"
