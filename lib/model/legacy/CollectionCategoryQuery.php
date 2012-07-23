@@ -23,32 +23,32 @@ class CollectionCategoryQuery extends BaseCollectionCategoryQuery
     return $this;
   }
 
-	public function isParent()
+  public function isParent()
   {
-    $this->filterByParentId(0, Criteria::EQUAL);
-
-    return $this;
+    return $this->filterByParentId(0, Criteria::EQUAL);
   }
 
   public function isNotParent()
   {
-    $this->filterByParentId(0, Criteria::GREATER_THAN);
-
-    return $this;
+    return $this->filterByParentId(0, Criteria::GREATER_THAN);
   }
 
+  /**
+   * @param  string  $name
+   *
+   * @return CollectionCategoryQuery
+   */
   public function filterByParentName($name = null)
   {
-    if (is_null($name))
+    if (null === $name)
     {
       return $this;
     }
 
-    $this->useQuery('CollectionCategory')
-      ->filterByName("%$q%", Criteria::LIKE)
+    return $this
+      ->useQuery('CollectionCategory')
+        ->filterByName("%$name%", Criteria::LIKE)
       ->endUse();
-
-    return $this;
   }
 
   /**
@@ -66,7 +66,7 @@ class CollectionCategoryQuery extends BaseCollectionCategoryQuery
   {
     return $this
       ->joinCollectionCategoryRelatedByParentId($relationAlias, $joinType)
-      ->useQuery($relationAlias ? $relationAlias : 'CollectionCategoryRelatedByParentId', 'CollectionCategoryQuery');
+      ->useQuery($relationAlias ?: 'CollectionCategoryRelatedByParentId', 'CollectionCategoryQuery');
   }
 
   /**
@@ -111,6 +111,7 @@ class CollectionCategoryQuery extends BaseCollectionCategoryQuery
    * @param     CollectionCategory|PropelCollection $collectionCategory The related object(s) to use as filter
    * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
    *
+   * @throws    PropelException
    * @return    CollectionCategoryQuery The current query, for fluid interface
    */
   public function filterByCollectionCategoryRelatedByParentId($collectionCategory, $comparison = null)
