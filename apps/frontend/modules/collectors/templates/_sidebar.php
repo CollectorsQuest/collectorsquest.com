@@ -5,7 +5,7 @@
  */
 ?>
 
-<div class="well" style="padding: 8px 0;">
+<div class="well spacer-inner-8">
   <ul class="nav nav-list">
 
     <li class="nav-header">Sort by:</li>

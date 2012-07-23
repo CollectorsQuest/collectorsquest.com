@@ -29,8 +29,7 @@
         </div>
         <div class="span2">
           <label>&nbsp;</label>
-          <button type="submit" class="btn" value="Sign In" data-loading-text="loading..."
-                  style="white-space: nowrap; padding: 4px 15px; margin-top: -2px;">
+          <button type="submit" class="btn sign-in-btn" value="Sign In" data-loading-text="loading...">
             <i class="icon-signin"></i>&nbsp;Sign In
           </button>
         </div>

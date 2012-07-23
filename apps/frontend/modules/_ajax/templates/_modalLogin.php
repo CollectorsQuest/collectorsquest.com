@@ -60,7 +60,7 @@
 
       <div id="modal-login-username-footer" class="tab-pane active">
         <button type="button" class="btn btn-primary">Sign&nbsp;In</button>
-        <span class="spacer-left-15 modal-link" style="text-align: left;">
+        <span class="spacer-left-15 modal-link text-left">
           - <?= link_to('Forgot your password?', '@recover_password'); ?> <br/>
           - <?= link_to('Sign up for a new account?', '@collector_signup'); ?>
         </span>

@@ -45,7 +45,7 @@
 
         <form action="<?= url_for('mycq_collection_by_section', array('id' => $collection->getId(), 'section' => 'details')); ?>" novalidate
               id="form-collection" method="post" enctype="multipart/form-data"
-              class="form-horizontal spacer-bottom-reset" style="padding-top: 20px;">
+              class="form-horizontal spacer-bottom-reset spacer-top-20">
           <?= $form->renderAllErrors(); ?>
 
           <div class="row-fluid">
@@ -53,7 +53,7 @@
               <div class="drop-zone-large thumbnail collection">
                 <?php if ($collection->hasThumbnail()): ?>
                 <?= image_tag_collection($collection, '190x190'); ?>
-                <span class="icon-plus-holder h-center" style="display: none; padding-top: 25px;">
+                <span class="icon-plus-holder h-center dn spacer-top-25">
                   <i class="icon icon-download-alt icon-white"></i>
                 </span>
                 <span class="multimedia-edit holder-icon-edit"

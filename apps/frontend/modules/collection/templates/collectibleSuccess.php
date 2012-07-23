@@ -239,7 +239,7 @@
         <?= money_format('%.2n', (float) $collectible_for_sale->getPrice()); ?>
 
         <?php if ($collectible_for_sale->isShippingFree()): ?>
-          <small style="white-space: nowrap;">with FREE shipping & handling</small>
+          <small class="text-nowrap">with FREE shipping & handling</small>
         <?php endif; ?>
       </p>
       <button type="submit" class="btn btn-primary pull-left" value="Add Item to Cart">

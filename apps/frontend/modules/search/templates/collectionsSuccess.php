@@ -28,7 +28,7 @@
   <?php
     foreach ($pager->getResults() as $i => $collection)
     {
-      echo '<div class="span4 brick" style="height: 165px; float: left;">';
+      echo '<div class="span4 brick fixed-height">';
       include_partial(
         'collection/collection_'. $display .'_view',
         array('collection' => $collection, 'i' => $i)
