@@ -52,9 +52,7 @@ all:
     sso_secret_key: ifHiFRaGaMH87b
 
 
-
   rocketshipit:
-
     generic:
       # 1 for Debug mode; 0 for normal operations
       # This also changes from testing to production mode
@@ -380,6 +378,3 @@ dev:
 
   ice_assets:
     domain: "cqcdns.dev"
-
-
-
