@@ -1,10 +1,6 @@
 <?php
 
 require __DIR__ .'/../config/bootstrap.php';
-require __DIR__ .'/../config/ProjectConfiguration.class.php';
-
-/** @var cqApplicationConfiguration $configuration */
-$configuration = ProjectConfiguration::getApplicationConfiguration(SF_APP, SF_ENV, SF_DEBUG);
 
 // Set the location of the shared/ directory
 $shared = (SF_ENV === 'dev') ?
@@ -69,6 +65,11 @@ if (in_array($type, array('image', 'video')))
 
       if ($type === 'image' && !$is_readable && is_readable($shared . $original))
       {
+        require __DIR__ .'/../config/ProjectConfiguration.class.php';
+
+        /** @var cqApplicationConfiguration $configuration */
+        $configuration = ProjectConfiguration::getApplicationConfiguration(SF_APP, SF_ENV, SF_DEBUG);
+
         $thumb = iceModelMultimediaPeer::makeThumb($shared . $original, $size, 'top', false);
         $thumb && $thumb->saveAs($shared . $path, 'image/jpeg') && ($is_readable = true);
       }

@@ -1,5 +1,8 @@
 <?php
 
+// Set the correct timezone and do not rely on php.ini settings
+date_default_timezone_set('America/New_York');
+
 if (
   $_SERVER['SERVER_NAME'] == '92.247.236.83' ||
   $_SERVER['SERVER_NAME'] == 'zecho.dyndns-home.com'
