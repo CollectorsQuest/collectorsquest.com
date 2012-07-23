@@ -2,7 +2,7 @@
   <h2 class="Chivo webfont">Wanted List</h2>
 </div>
 
-<div class="details-container spacer-12">
+<div class="details-container">
   <div class="row-fluid">
     <div class="span2">
       <small>View as:</small>
@@ -130,7 +130,7 @@
 </div>
 
 
-<div class="details-container spacer-12">
+<div class="details-container">
   <div class="row-fluid">
     <div class="span2">
       <small>View as:</small>
@@ -373,7 +373,7 @@
 
 </div>
 
-<div class="details-container spacer-12">
+<div class="details-container">
   <div class="row-fluid">
     <div class="span2">
       <small>View as:</small>
