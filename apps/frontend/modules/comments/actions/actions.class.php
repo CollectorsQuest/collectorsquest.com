@@ -23,13 +23,14 @@ class commentsActions extends cqFrontendActions
 
             if (!$this->getUser()->isAuthenticated() || $this->getCollector()->getId() != $owner->getId())
             {
-              $cqEmail->send('Comments/new_comment_on_owned_item_notification', array(
+              $ret = $cqEmail->send('Comments/new_comment_on_owned_item_notification', array(
                   'to' => $owner->getEmail(),
                   'params' => array(
                       'oOwner' => $owner,
                       'oModelObject' => $comment->getModelObject(),
                       'oNewComment' => $comment,
-                      'sThreadUrl' => $request->getReferer() . '#comments',
+                      'sThreadUrl' => $request->getReferer(),
+                      'sCommentRemoveUrl' => $this->getController()->genUrl('@homepage', true),
                   ),
               ));
             }

@@ -170,11 +170,33 @@ class Comment extends BaseComment
     return $cutoff_date > $this->getCreatedAt(null);
   }
 
-  public function setCollectorCollection($v)
+  /**
+   * Check if the comment was made by a registered collector
+   *
+   * @return    boolean
+   */
+  public function isByRegisteredUser()
   {
-    return $this->setCollection($v);
+    return !! $this->getCollectorId();
   }
 
+  /**
+   * Convenience method
+   *
+   * @param     CollectorCollection|null $v
+   * @return    Comment
+   */
+  public function setCollectorCollection(CollectorCollection $v = null)
+  {
+    return $this->setCollection($v ? $v->getCollection() : null);
+  }
+
+  /**
+   * Convenience method
+   *
+   * @param     CollectionCollectible|null $v
+   * @return    Comment
+   */
   public function setCollectionCollectible(CollectionCollectible $v = null)
   {
     $this->setCollection($v !== null ? $v->getCollection() : null);
@@ -182,4 +204,5 @@ class Comment extends BaseComment
 
     return $this;
   }
+
 }

@@ -50,7 +50,7 @@ all:
         required_params: [ oModelObject, oNewComment, oYourComment, sThreadUrl, sUnsubscribeUrl ]
       new_comment_on_owned_item_notification:
         subject: "Someone posted a new comment about your {{ oModelObject }} on Collectors Quest!"
-        required_params: [ oModelObject, oNewComment, sThreadUrl ]
+        required_params: [ oModelObject, oNewComment, sThreadUrl, sCommentRemoveUrl ]
 
     Shopping:
       buyer_order_confirmation:
