@@ -72,23 +72,34 @@ class cqEmail
     // Render the body of the email
     $rendered_template = $template->render($options['params']);
 
-    $message = Swift_Message::newInstance()
-      ->setFrom($options['from'])
-      ->setReplyTo(isset($options['replyTo']) ? $options['replyTo'] : $options['from'])
-      ->setTo($options['to'])
-      ->setSubject($rendered_subject)
-      ->setCharset('UTF-8')
-      ->addPart(strip_tags($rendered_template), 'text/plain')
-      ->addPart($rendered_template, 'text/html');
+    try
+    {
+      $message = Swift_Message::newInstance()
+        ->setFrom($options['from'])
+        ->setReplyTo(isset($options['replyTo']) ? $options['replyTo'] : $options['from'])
+        ->setTo($options['to'])
+        ->setSubject($rendered_subject)
+        ->setCharset('UTF-8')
+        ->addPart(strip_tags($rendered_template), 'text/plain')
+        ->addPart($rendered_template, 'text/html');
 
-    try {
       $return = $this->getMailer()->send($message);
+    }
+    catch (Swift_RfcComplianceException $e)
+    {
+      // one of the emails failed swift address validation, in which case simply
+      // assume that the message is undelivarable and return false
+
+      return false;
     }
     catch (Swift_TransportException $e)
     {
-      if (false !== stripos($e->getMessage(), '554 Message rejected: Address blacklisted')) {
+      if (false !== stripos($e->getMessage(), '554 Message rejected: Address blacklisted'))
+      {
         $return = false;
-      } else {
+      }
+      else
+      {
         throw $e;
       }
     }
