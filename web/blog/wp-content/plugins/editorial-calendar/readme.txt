@@ -2,8 +2,8 @@
 Contributors: cvernon, justinstresslimit, jkudish, MaryVogt, zgrossbart
 Tags: posts, post, calendar, AJAX, admin, administration
 Requires at least: 2.8.5
-Tested up to: 3.4
-Stable tag: 2.1
+Tested up to: 3.4.1
+Stable tag: 2.3
 
 The Editorial Calendar makes it possible to see all your posts and drag and drop them to manage your blog.
 
@@ -121,7 +121,7 @@ The calendar is written in JavaScript.  It contacts your blog when it scrolls to
 
 = Is the calendar collecting data about my blog? =
 
-After you use the calendar a few times we'll prompt you to let us collect a little anonymous data about your blog.  Information like the size of your browser window and the number of posts you have per day help us make the calendar even better.
+After you use the calendar a few times we'll prompt you to let us collect a little data about your blog.  Information like the size of your browser window and the number of posts you have per day help us make the calendar even better.
 
 The collected data is all available to the public.  Check out the <a href="http://www.zackgrossbart.com/edcal/mint/">Editorial Calendar Statistics</a>.
 
@@ -172,6 +172,24 @@ Moving published posts can cause problems with some RSS feeds and is generally n
 7. Use the new unscheduled drafts section to manage drafts before you schedule them.
 
 == Changelog ==
+
+= 2.3 = 
+
+The calendar is now loading relative URLs for CSS, JavaScript, and image files using the right API so they load properly when using SSL.
+
+= 2.2.1 =
+
+Fixed a memory leak in the calendar where the calendar doesn't load if you have too many posts in your blog.
+
+= 2.2 =
+
+The calendar is using JavaScript compression to load less data and run faster.
+
+We've added a new mechanism to load the unscheduled drafts which spaces out the loading so the calendar responds super fast even when you have hundreds of unscheduled drafts.
+
+Added a new button to jump to the last post in the calendar.
+
+Added a namespace to fix a small issue of potential JavaScript file conflict with wp_enqueue_script().
 
 = 2.1 =
 
