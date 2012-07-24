@@ -492,3 +492,51 @@ function link_to_content_category(ContentCategory $category, $type = 'text', $op
 
   return $link;
 }
+
+/**
+ * Try to provide an url for a model object's cononical url
+ *
+ * @param     BaseObject $model_object
+ * @return    string|false
+ *
+ * @see       cqFrontWebController::genUrlForModelObject()
+ */
+function url_for_model_object(BaseObject $model_object, $absolute = false)
+{
+  return sfContext::getInstance()->getController()
+    ->genUrlForModelObject($model_object, $absolute);
+}
+
+/**
+ * Try to provide a link to a model object's canonical url
+ *
+ * @param     mixed $name
+ * @param     BaseObject $model_object
+ * @param     array $options
+ * @return    string
+ *
+ * @see       cqFrontWebController::genUrlForModelObject()
+ */
+function link_to_model_object($name, BaseObject $model_object, $options = array())
+{
+  $html_options = _parse_attributes($options);
+
+  $html_options = _convert_options_to_javascript($html_options);
+
+  $absolute = false;
+  if (isset($html_options['absolute_url']))
+  {
+    $html_options['absolute'] = $html_options['absolute_url'];
+    unset($html_options['absolute_url']);
+  }
+  if (isset($html_options['absolute']))
+  {
+    $absolute = (boolean) $html_options['absolute'];
+    unset($html_options['absolute']);
+  }
+
+  $uri = url_for_model_object($model_object, true);
+  $uri = false == $uri ? '#' : $uri;
+
+  return link_to1($name, $uri, $options);
+}
