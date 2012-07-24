@@ -32,7 +32,8 @@
       <div id="modal-login-openid-pane" class="tab-pane">
         <fieldset class="rpxnow-login clearfix">
           <iframe
-            src="<?= $rpxnow['application_domain']; ?>openid/embed?token_url=<?= url_for('@rpx_token', true); ?>"
+            id="modal-rpx-iframe"
+            src=""
             scrolling="no"
             frameBorder="no"
             style="width:350px; height:217px;"
@@ -78,3 +79,9 @@
   </div> <!-- .modal-body -->
 
 </div> <!-- #modal-loginholder .modal.fade -->
+
+<script>
+$(document).ready(function() {
+  $('#modal-rpx-iframe').attr('src', "<?= $rpxnow['application_domain']; ?>openid/embed?token_url=<?= url_for('@rpx_token', true); ?>");
+});
+</script>
