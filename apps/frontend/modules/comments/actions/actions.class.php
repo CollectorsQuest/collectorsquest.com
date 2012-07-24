@@ -185,9 +185,10 @@ class commentsActions extends cqFrontendActions
       if ($form->isValid())
       {
         $comment->delete();
-        $this->getUser()->setFlash('success', 'Comment successfully deleted.');
+        $this->getUser()->setFlash('comment_success', 'Comment successfully deleted.');
 
-        return $this->redirect('@homepage');
+        return $this->redirect(
+          $this->getController()->genUrlForModelObject($comment).'#comments');
       }
     }
 

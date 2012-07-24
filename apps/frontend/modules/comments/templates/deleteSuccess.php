@@ -4,7 +4,7 @@
    * @var $form     CommentDeleteConfirmationForm
    */
 
-  $link = link_to('Back to comment thread >>', 'homepage');
+  $link = link_to_model_object('Back to comment thread >>', $comment);
   cq_page_title('Remove comment on "'.$comment->getModelObject().'"', $link, array());
 ?>
 
@@ -23,7 +23,7 @@
 
       <div class="form-actions">
         <button type="submit" class="btn btn-danger">Delete Comment</button>
-        <a href="<?= url_for('@homepage'); ?>" class="btn">Cancel</a>
+        <a href="<?= url_for_model_object($comment); ?>" class="btn">Cancel</a>
       </div>
     </form>
   </fieldset>
