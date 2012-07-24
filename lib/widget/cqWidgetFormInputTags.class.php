@@ -88,9 +88,11 @@ $(document).ready(function() {
   // and valid tag input
   $('#%s').on('blur', 'input', function(event) {
     var \$this = $(this);
+    var trigger_event = jQuery.Event("keydown");
     if (\$this.val()) {
       event.preventDefault();
-      \$this.trigger('click');
+      trigger_event.which = 9; // tab
+      \$this.trigger(trigger_event); // trigger jQuery tags handling
 
       return false;
     }
