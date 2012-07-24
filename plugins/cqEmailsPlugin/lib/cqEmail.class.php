@@ -94,6 +94,8 @@ class cqEmail
     }
     catch (Swift_TransportException $e)
     {
+      // Handle error 554 from Amazon SES described here:
+      // https://forums.aws.amazon.com/thread.jspa?threadID=91218
       if (false !== stripos($e->getMessage(), '554 Message rejected: Address blacklisted'))
       {
         $return = false;
