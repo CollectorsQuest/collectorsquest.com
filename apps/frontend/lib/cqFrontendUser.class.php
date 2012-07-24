@@ -357,17 +357,21 @@ class cqFrontendUser extends cqBaseUser
     if ($send_email === true)
     {
       $collector_email = CollectorEmailPeer::retrieveByCollectorEmail(
-        $collector, $collector->getEmail()
+        $collector, $collector->getEmail(), false
       );
 
-      $cqEmail = new cqEmail(sfContext::getInstance()->getMailer());
-      $cqEmail->send($collector->getUserType() . '/welcome_verify_email', array(
-        'to' => $collector->getEmail(),
-        'params' => array(
-          'collector' => $collector,
-          'collector_email' => $collector_email,
-        )
-      ));
+      // Only send the email if the email is not verified
+      if ($collector_email)
+      {
+        $cqEmail = new cqEmail(sfContext::getInstance()->getMailer());
+        $cqEmail->send($collector->getUserType() . '/welcome_verify_email', array(
+          'to' => $collector->getEmail(),
+          'params' => array(
+            'collector' => $collector,
+            'collector_email' => $collector_email,
+          )
+        ));
+      }
     }
 
     return true;
