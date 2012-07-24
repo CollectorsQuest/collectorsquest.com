@@ -63,6 +63,9 @@ class collectionAction extends cqFrontendAction
       case 'details':
         return $this->executeCollectionDetails($request);
         break;
+      case 'reorder':
+        return $this->executeCollectiblesReorder($request);
+        break;
       case 'collectibles':
       default:
         return $this->executeCollectionCollectibles($request);
@@ -83,14 +86,8 @@ class collectionAction extends cqFrontendAction
 
   private function executeCollectionDetails(sfWebRequest $request)
   {
-    SmartMenu::setSelected('mycq_menu', 'collections');
-
     /** @var $collection CollectorCollection */
-    $collection = $this->getRoute()->getObject();
-    $this->redirectUnless(
-      $this->getCollector()->isOwnerOf($collection),
-      '@mycq_collections'
-    );
+    $collection = $this->collection;
 
     $form = new CollectorCollectionEditForm($collection);
 
@@ -147,5 +144,17 @@ class collectionAction extends cqFrontendAction
 
     return 'Details';
   }
-}
 
+  protected function executeCollectiblesReorder(sfWebRequest $request)
+  {
+    $this->total = $this->collection->countCollectionCollectibles();
+
+    $c = new Criteria();
+    $c->addAscendingOrderByColumn(CollectionCollectiblePeer::POSITION);
+    $c->addDescendingOrderByColumn(CollectionCollectiblePeer::CREATED_AT);
+
+    $this->collectibles = $this->collection->getCollectibles($c);
+
+    return 'CollectiblesReorder';
+  }
+}

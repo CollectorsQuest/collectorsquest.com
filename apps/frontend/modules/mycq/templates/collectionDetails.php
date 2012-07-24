@@ -41,11 +41,11 @@
   </ul>
   <div class="tab-content">
     <div class="tab-pane active">
-      <div class="tab-content-inner spacer-inner-top-reset">
+      <div class="tab-content-inner">
 
         <form action="<?= url_for('mycq_collection_by_section', array('id' => $collection->getId(), 'section' => 'details')); ?>" novalidate
               id="form-collection" method="post" enctype="multipart/form-data"
-              class="form-horizontal spacer-bottom-reset spacer-top-20">
+              class="form-horizontal spacer-bottom-reset">
           <?= $form->renderAllErrors(); ?>
 
           <div class="row-fluid">
