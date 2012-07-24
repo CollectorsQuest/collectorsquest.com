@@ -3,6 +3,11 @@
 class commentsActions extends cqFrontendActions
 {
 
+  /**
+   * Add a comment for any eligeble object in the site;
+   *
+   * Combine with the comments/addComment or comments/comments component
+   */
   public function executeAddComment(sfWebRequest $request)
   {
     if ($request->isMethod('post'))
@@ -30,7 +35,10 @@ class commentsActions extends cqFrontendActions
                       'oModelObject' => $comment->getModelObject(),
                       'oNewComment' => $comment,
                       'sThreadUrl' => $request->getReferer(),
-                      'sCommentRemoveUrl' => $this->getController()->genUrl('@homepage', true),
+                      'sCommentRemoveUrl' => $this->getController()->genUrl(array(
+                          'sf_route' => 'comments_delete',
+                          'sf_subject' => $comment,
+                        ),true),
                   ),
               ));
             }
@@ -83,6 +91,9 @@ class commentsActions extends cqFrontendActions
     return $this->redirect($request->getReferer() . "#comments");
   }
 
+  /**
+   * Ajax load more comments
+   */
   public function executeLoadMoreComments(sfWebRequest $request)
   {
     $token = $request->getParameter('token');
@@ -116,6 +127,9 @@ class commentsActions extends cqFrontendActions
     return sfView::NONE;
   }
 
+  /**
+   * Unsubscribe from a comment thread
+   */
   public function executeUnsubscribe(sfWebRequest $request)
   {
     if (( $model_object = CommentPeer::retrieveCommentableObject(
@@ -143,6 +157,44 @@ class commentsActions extends cqFrontendActions
     }
 
     $this->redirect($request->getParameter('r', '@homepage') . '#comments');
+  }
+
+  /**
+   * Delete a comment if the commented object is owned by the currently logged in
+   * collector. Orherwize forward 404. A confirmation is requried for the deletion
+   *
+   * PropelObjectRoute for Comment
+   */
+  public function executeDelete(sfWebRequest $request)
+  {
+    /** @var Comment */
+    $comment = $this->getRoute()->getObject();
+
+    $this->forward404Unless(
+      // owner of the object that was commented on
+      $this->getCollector()->isOwnerOf($comment->getModelObject()) ||
+      // owner of the comment itself
+      $this->getCollector()->isOwnerOf($comment)
+    );
+
+    $form = new CommentDeleteConfirmationForm();
+    if (sfRequest::POST == $request->getMethod())
+    {
+      $form->bind($request->getParameter($form->getName()));
+
+      if ($form->isValid())
+      {
+        $comment->delete();
+        $this->getUser()->setFlash('success', 'Comment successfully deleted.');
+
+        return $this->redirect('@homepage');
+      }
+    }
+
+    $this->comment = $comment;
+    $this->form = $form;
+
+    return sfView::SUCCESS;
   }
 
 }
