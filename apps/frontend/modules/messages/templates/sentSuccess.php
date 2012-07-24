@@ -9,10 +9,7 @@
   <?php if (count($messages)): foreach ($messages as $message): ?>
     <tr
       class="linkify <?= $message->getIsRead() ? 'read' : 'unread' ?>"
-      data-url="<?= url_for(array(
-          'sf_route' => 'messages_show',
-          'sf_subject' => $message,
-        )); ?>"
+      data-url="<?= url_for('messages_show', $message); ?>"
     >
       <td class="sender-col">
         <?= image_tag_collector($message->getCollectorRelatedBySender(),
@@ -23,10 +20,7 @@
         </p>
       </td>
       <td class="message-col">
-        <?= link_to($message->getSubject(), array(
-          'sf_route' => 'messages_show',
-          'sf_subject' => $message,
-        )); ?>
+        <?= link_to($message->getSubject(), 'messages_show', $message); ?>
         <span>
           <?= Utf8::truncateHtmlKeepWordsWhole($message->getBody(), 100); ?>
         </span>

@@ -25,7 +25,7 @@
       <?endif; ?>
     >
       <td class="sender" rowspan="<?= $message->hasAttachedCollectionOrCollectible() ? 3 : 2 ?>">
-        <span>By&nbsp;<?= link_to($sender, array('sf_route' => 'collector_by_slug', 'sf_subject' => $sender)); ?></span>
+        <span>By&nbsp;<?= link_to_if($sender, $sender, 'collector_by_slug', $sender); ?></span>
         <br/>
         <span><?= time_ago_in_words_or_exact_date($message->getCreatedAt()); ?></span>
         <br/>
