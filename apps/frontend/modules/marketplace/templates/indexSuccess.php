@@ -39,11 +39,10 @@
 <?php endif; ?>
 
 <!--
-<br/>
-<div class="banners-620">
-  <?= link_to(image_tag('banners/040412_show_and_sell_red.gif'), '@collector_signup'); ?>
+<div class="banners-620 spacer-top-20">
+  <?= link_to(image_tag('banners/show_and_sell_red_635x111.png'), '@collector_signup'); ?>
 </div>
-//-->
+-->
 
 <?php cq_section_title('Discover More Items for Sale'); ?>
 
