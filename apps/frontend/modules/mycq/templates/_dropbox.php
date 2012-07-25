@@ -10,12 +10,13 @@
 <div id="dropzone-wrapper" class="dropzone-container
      <?= $sf_user->getMycqDropboxOpenState() ? '' : 'hidden' ?>"
 >
+  <?php if ($total > 0): ?>
   <div class="row-fluid sidebar-title spacer-bottom-reset">
     <div class="span8">
       <h3 class="Chivo webfont"><?= 'Uploaded Photos ('. $total .')'; ?></h3>
     </div>
     <div class="span4">
-    <?php
+      <?php
       if (false && $total > 0)
       {
         echo  link_to(
@@ -26,10 +27,9 @@
           )
         );
       }
-    ?>
+      ?>
     </div>
   </div>
-  <?php if ($total > 0): ?>
   <div class="collectibles-to-sort" id="dropzone">
     <ul class="thumbnails">
       <?php foreach ($collectibles as $collectible): ?>
@@ -50,8 +50,9 @@
   <?php else: ?>
   <div id="dropzone" class="collectibles-to-sort no-items-to-sort-box Chivo webfont" style="margin: 10px auto;">
     <span class="info-no-items-to-sort">
-      &nbsp;&nbsp;<strong>Drag and drop</strong> image files from your desktop or
-      use the <strong>"+ Upload Photos"</strong> button
+      &nbsp;&nbsp;<strong>Drag and drop</strong> photos from your computer or
+      use the <strong>Upload Photos</strong> button
+      <?= image_tag('frontend/arrow-thin-up.png', array('style' => 'margin-top: -35px; margin-left: -5px;')) ?>
     </span>
   </div>
   <?php endif; ?>
