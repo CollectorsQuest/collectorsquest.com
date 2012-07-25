@@ -13,7 +13,7 @@
     </a>
     <a href="<?= url_for('@ajax_mycq?section=component&page=createCollectible&collection_id='. $collection->getId()); ?>"
        id="collectible-create-link" class="open-dialog btn-upload-collectible-txt">
-      Add a new item to your collection by dragging it here.
+      ADD NEW ITEM
     </a>
   </div>
 </div>
@@ -97,13 +97,13 @@
 
 <?php else: ?>
 
+<?php include_slot('mycq_create_collectible'); ?>
 <div class="span12 thumbnail link no-collections-uploaded-box">
   <span class="Chivo webfont info-no-collections-uploaded">
     Share your collectibles with the community today!<br/>
     Get Started Now!
   </span>
 </div>
-<?php include_slot('mycq_create_collectible'); ?>
 
 <?php endif; ?>
 
