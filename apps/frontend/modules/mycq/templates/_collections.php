@@ -4,6 +4,19 @@
  */
 ?>
 
+<?php slot('mycq_create_collection'); ?>
+<a href="<?= url_for('@ajax_mycq?section=component&page=createCollection'); ?>"
+   id="collection-create-html" class="span5 add-new-zone open-dialog"
+   title="Create a new collection by clicking here">
+      <span id="collection-create-icon" class="btn-upload-collectible spacer-top-40">
+        <i class="icon-plus icon-white"></i>
+      </span>
+      <span id="collection-create-link" class="btn-upload-collectible-txt spacer-top-20">
+        CREATE A NEW<br> COLLECTION
+      </span>
+</a>
+<?php end_slot(); ?>
+
 <?php foreach ($pager->getResults() as $i => $collection): ?>
   <div class="span5 collectible_grid_view_square link">
     <p>
@@ -43,31 +56,17 @@
     </ul>
   </div>
 
-  <?php if (($pager->getPage() === 1 && $i === 2) || ($pager->count() === $i+1 && $pager->count() < 3)): ?>
-    <a href="<?= url_for('@ajax_mycq?section=component&page=createCollection'); ?>"
-       id="collection-create-html" class="span5 add-new-zone open-dialog"
-       title="Create a new collection by clicking here">
-      <span id="collection-create-icon" class="btn-upload-collectible">
-        <i class="icon-plus icon-white"></i>
-      </span>
-      <span id="collection-create-link" class="btn-upload-collectible-txt">
-        CREATE A NEW<br> COLLECTION
-      </span>
-    </a>
-  <?php endif; ?>
+<?php
+  if (($pager->getPage() === 1 && $i === 2) || ($pager->count() === $i+1 && $pager->count() < 3))
+  {
+    include_slot('mycq_create_collection');
+  }
+?>
+
 <?php endforeach;?>
 
 <?php if ($pager->count() === 0): ?>
-  <a href="<?= url_for('@ajax_mycq?section=component&page=createCollection'); ?>"
-     id="collection-create-html" class="span5 add-new-zone open-dialog"
-     title="Create a new collection by clicking here">
-    <span id="collection-create-icon" class="btn-upload-collectible spacer-top-40">
-      <i class="icon-plus icon-white"></i>
-    </span>
-    <span id="collection-create-link" class="btn-upload-collectible-txt spacer-top-20">
-      ADD NEW ITEM
-    </span>
-  </a>
+  <?php include_slot('mycq_create_collection'); ?>
   <div class="span12 thumbnail link no-collections-uploaded-box">
     <?php if ($sf_params->get('q')): ?>
       <span class="Chivo webfont info-no-collections-uploaded spacer-top-15">
