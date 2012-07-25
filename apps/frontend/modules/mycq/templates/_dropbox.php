@@ -16,7 +16,7 @@
     </div>
     <div class="span4">
     <?php
-      if ($total > 0)
+      if (false && $total > 0)
       {
         echo  link_to(
           '<i class="icon-trash"></i> Delete all Photos', '@mycq_dropbox?cmd=empty&encrypt=1',

@@ -289,7 +289,6 @@ class mycqActions extends cqFrontendActions
           }
         }
 
-        $this->getUser()->setFlash('success', 'All uploaded photos were deleted!', true);
         break;
     }
 
@@ -639,13 +638,7 @@ class mycqActions extends cqFrontendActions
 
     $total = $q->count();
 
-    if ($total > 0)
-    {
-      $this->getUser()->setFlash(
-        'success', 'Total of <b>' . $total . '</b> photos were uploaded successfully'
-      );
-    }
-    else
+    if ($total === 0)
     {
       $this->getUser()->setFlash(
         'error', 'There was a problem uploading your photos and none were uploaded'
