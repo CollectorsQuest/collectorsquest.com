@@ -43,6 +43,9 @@
       </li>
       <?php endforeach; ?>
     </ul>
+    <div class="info-message">
+      Drag a photo into a Collection below to add it.
+    </div>
   </div>
   <?php else: ?>
   <div id="dropzone" class="collectibles-to-sort no-items-to-sort-box Chivo webfont">

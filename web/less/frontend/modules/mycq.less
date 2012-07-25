@@ -558,14 +558,18 @@ a.buy-credits-button {
 	margin-left: 40px;
 }
 
+
+//DROPZONE
+
 .collectibles-to-sort {
 
 	.thumbnails {
 		padding-top: 10px;
 		overflow: auto;
-		max-height: 162px;
+		max-height: 158px;
 		margin-bottom: 0;
 		margin-left: -5px;
+
 		.span2 {
 			.square(74px);
 			margin: 0 5px 5px 0;
@@ -604,7 +608,70 @@ a.buy-credits-button {
 		background: url("@{iconUrl}/fancy_close.png") no-repeat center;
 		cursor: pointer;
 	}
+	.info-message {
+		text-align: center;
+		font-weight: bold;
+		font-style: italic;
+		color: @brown;
+	}
 }
+
+.dropzone-container {
+	padding: 10px 15px 5px 15px;
+	background-color: #fff8e0;
+
+	.sidebar-title {
+		margin-top: 0;
+	}
+
+	&.fixed {
+		position: fixed;
+		width: 910px;
+		z-index: 999;
+	}
+}
+
+.dropzone-container-slide {
+	display: block;
+	.size(12px,150px);
+	padding: 5px;
+	background-color: #fff8e0;
+	.border-radius(0 0 6px 6px);
+	.box-shadow(inset 4px 1px 5px 0 rgba(211, 206, 185, 0.8));
+
+	> span {
+		font-size: 10px;
+		line-height: 12px;
+		text-transform: uppercase;
+		text-align: center;
+		outline: none;
+	}
+
+	.close-dropzone {
+		display: none;
+	}
+	.open-dropzone {
+		display: block;
+	}
+	&.open {
+		.close-dropzone {
+			display: block;
+		}
+		.open-dropzone {
+			display: none;
+		}
+
+		.box-shadow(none);
+		&:hover {
+			.box-shadow(none);
+		}
+	}
+	&:hover {
+		.box-shadow(inset 3px 3px 5px 0 rgba(150, 150, 150, 0.7));
+	}
+}
+
+//draggable&dragging
 
 .ui-draggable-dragging {
 	img {
@@ -1297,23 +1364,6 @@ textarea.input-xlarge {
 }
 
 
-// dropzone
-
-.dropzone-container {
-	padding: 10px 15px 5px 15px;
-	background-color: #fff8e0;
-
-	.sidebar-title {
-		margin-top: 0;
-	}
-
-	&.fixed {
-		position: fixed;
-		width: 910px;
-		z-index: 999;
-	}
-}
-
 .span10.upload-items-wrapper-l {
 	width: 774px !important;
 }
@@ -1362,46 +1412,6 @@ textarea.input-xlarge {
 		float: left;
 		padding: 12px;
 		font-size: 40px;
-	}
-}
-
-.dropzone-container-slide {
-	display: block;
-	.size(12px,150px);
-	padding: 5px;
-	background-color: #fff8e0;
-	.border-radius(0 0 6px 6px);
-	.box-shadow(inset 4px 1px 5px 0 rgba(211, 206, 185, 0.8));
-
-	> span {
-		font-size: 10px;
-		line-height: 12px;
-		text-transform: uppercase;
-		text-align: center;
-		outline: none;
-	}
-
-	.close-dropzone {
-		display: none;
-	}
-	.open-dropzone {
-		display: block;
-	}
-	&.open {
-		.close-dropzone {
-			display: block;
-		}
-		.open-dropzone {
-			display: none;
-		}
-
-		.box-shadow(none);
-		&:hover {
-			.box-shadow(none);
-		}
-	}
-	&:hover {
-		.box-shadow(inset 3px 3px 5px 0 rgba(150, 150, 150, 0.7));
 	}
 }
 
