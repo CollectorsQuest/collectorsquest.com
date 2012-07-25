@@ -183,6 +183,9 @@ class ajaxAction extends cqAjaxAction
   }
 
   /**
+   * @param  sfWebRequest  $request
+   *
+   * @throws PropelException
    * @return string
    */
   protected function executeCollectibleDonateImage(sfWebRequest $request)
@@ -289,6 +292,7 @@ class ajaxAction extends cqAjaxAction
   }
 
   /**
+   * @param  sfWebRequest  $request
    * @return string
    */
   protected function executeCollectionSetThumbnail(sfWebRequest $request)

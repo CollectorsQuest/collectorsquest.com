@@ -7,16 +7,15 @@
  * @var $collectibles Collectible[] | PropelObjectCollection
  */
 ?>
-<div id="dropzone-wrapper" class="dropzone-container
-     <?= $sf_user->getMycqDropboxOpenState() ? '' : 'hidden' ?>"
->
+<div id="dropzone-wrapper"
+     class="dropzone-container <?= $sf_user->getMycqDropboxOpenState() ? '' : 'hidden' ?>">
   <?php if ($total > 0): ?>
   <div class="row-fluid sidebar-title spacer-bottom-reset">
     <div class="span8">
       <h3 class="Chivo webfont"><?= 'Uploaded Photos ('. $total .')'; ?></h3>
     </div>
     <div class="span4">
-      <?php
+    <?php
       if (false && $total > 0)
       {
         echo  link_to(
@@ -27,7 +26,7 @@
           )
         );
       }
-      ?>
+    ?>
     </div>
   </div>
   <div class="collectibles-to-sort" id="dropzone">
@@ -35,9 +34,9 @@
       <?php foreach ($collectibles as $collectible): ?>
       <li class="span2 thumbnail draggable" data-collectible-id="<?= $collectible->getId(); ?>">
         <?php
-        echo image_tag_collectible(
-          $collectible, '75x75', array('max_width' => 72, 'max_height' => 72)
-        );
+          echo image_tag_collectible(
+            $collectible, '75x75', array('max_width' => 72, 'max_height' => 72)
+          );
         ?>
         <i class="icon icon-remove-sign" data-collectible-id="<?= $collectible->getId(); ?>"></i>
       </li>
@@ -50,7 +49,7 @@
   <?php else: ?>
   <div id="dropzone" class="collectibles-to-sort no-items-to-sort-box Chivo webfont" style="margin: 10px auto;">
     <span class="info-no-items-to-sort">
-      &nbsp;&nbsp;<strong>Drag and drop</strong> photos from your computer or
+      &nbsp;&nbsp;<strong>Drag and drop</strong> photos from your desktop or
       use the <strong>Upload Photos</strong> button
       <?= image_tag('frontend/arrow-thin-up.png', array('style' => 'margin-top: -35px; margin-left: -5px;')) ?>
     </span>

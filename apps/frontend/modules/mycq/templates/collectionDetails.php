@@ -3,6 +3,8 @@
  * @var $collection CollectorCollection
  * @var $form CollectorCollectionEditForm
  */
+
+slot('mycq_dropbox_info_message', 'Drag a photo into a Collection thumbnail below');
 ?>
 
 <?php

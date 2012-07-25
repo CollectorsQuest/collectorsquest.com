@@ -2,9 +2,16 @@
 
 class aviaryUpdateImageAction extends sfAction
 {
+
   public function execute($request)
   {
     sfConfig::set('sf_web_debug', false);
+
+    /** @var $sf_response IceWebResponse */
+    $sf_response = $this->getResponse();
+
+    /** @var $sf_user cqFrontendUser */
+    $sf_user = $this->getUser();
 
     if (
       sfRequest::POST == $request->getMethod() && $request->hasParameter('url') &&
@@ -13,7 +20,7 @@ class aviaryUpdateImageAction extends sfAction
       $postdata = urldecode($request->getParameter('postdata'));
       $url = urldecode($request->getParameter('url'));
 
-      $message_data = $this->getUser()->hmacVerifyMessage(
+      $message_data = $sf_user->hmacVerifyMessage(
         $postdata, '+ 20 days', cqConfig::getCredentials('aviary', 'hmac_secret')
       );
 
@@ -23,8 +30,7 @@ class aviaryUpdateImageAction extends sfAction
       }
       else
       {
-        $this->getResponse()->setStatusCode(401);
-
+        $sf_response->setStatusCode(401);
         $this->getLogger()->log(json_encode($postdata));
 
         return $this->renderText($postdata);
@@ -44,10 +50,11 @@ class aviaryUpdateImageAction extends sfAction
         {
           $image->save();
 
-          $this->getResponse()->setStatusCode(200);
-          $this->getResponse()->setHttpHeader('Content-Encoding', 'chunked');
-          $this->getResponse()->setHttpHeader('Transfer-Encoding', 'chunked');
-          $this->getResponse()->sendHttpHeaders();
+          $sf_response->setStatusCode(200);
+          $sf_response->setHttpHeader('Content-Encoding', 'chunked');
+          $sf_response->setHttpHeader('Transfer-Encoding', 'chunked');
+          $sf_response->sendHttpHeaders();
+
           ignore_user_abort(true);
           flush();
 
@@ -60,20 +67,19 @@ class aviaryUpdateImageAction extends sfAction
         }
         else
         {
-          $this->getResponse()->setStatusCode(500);
-
+          $sf_response->setStatusCode(500);
           return $this->renderText('Error copying image from url');
         }
       }
       else
       {
-        $this->getResponse()->setStatusCode(403);
+        $sf_response->setStatusCode(403);
 
         return $this->renderText('Invalid multimedia id');
       }
     }
 
-    $this->getResponse()->setStatusCode(400);
+    $sf_response->setStatusCode(400);
 
     return sfView::NONE;
   }

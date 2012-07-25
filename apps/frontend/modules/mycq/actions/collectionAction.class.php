@@ -73,7 +73,7 @@ class collectionAction extends cqFrontendAction
     }
   }
 
-  private function executeCollectionCollectibles(sfWebRequest $request)
+  private function executeCollectionCollectibles()
   {
     $collector = $this->getCollector();
     $dropbox = $collector->getCollectionDropbox();
@@ -114,7 +114,7 @@ class collectionAction extends cqFrontendAction
         {
           $collection->save();
 
-          $this->getUser()->setFlash("success", 'Changes were saved!');
+          $this->getUser()->setFlash('success', 'Changes were saved!');
           $this->redirect($this->getController()->genUrl(array(
             'sf_route'   => 'mycq_collection_by_section',
             'id' => $collection->getId(),
@@ -145,7 +145,7 @@ class collectionAction extends cqFrontendAction
     return 'Details';
   }
 
-  protected function executeCollectiblesReorder(sfWebRequest $request)
+  protected function executeCollectiblesReorder()
   {
     $this->total = $this->collection->countCollectionCollectibles();
 

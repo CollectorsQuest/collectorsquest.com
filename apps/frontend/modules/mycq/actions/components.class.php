@@ -66,9 +66,12 @@ class mycqComponents extends cqFrontendComponents
   public function executeCollectibles()
   {
     /** @var $collection CollectorCollection */
-    if ($this->getVar('collection')) {
+    if ($this->getVar('collection'))
+    {
       $collection = $this->getVar('collection');
-    } else {
+    }
+    else
+    {
       $collection = CollectorCollectionQuery::create()
         ->findOneById($this->getRequestParameter('collection_id'));
     }
@@ -252,7 +255,7 @@ class mycqComponents extends cqFrontendComponents
         if ($values['thumbnail'])
         {
           $image = iceModelMultimediaQuery::create()
-              ->findOneById((int)$values['thumbnail']);
+              ->findOneById((integer) $values['thumbnail']);
 
           if ($this->getCollector()->isOwnerOf($image))
           {
@@ -378,7 +381,7 @@ class mycqComponents extends cqFrontendComponents
       if (!empty($tainted['collectible']['collection_collectible_list']))
       {
         $collection_collectible_list = &$tainted['collectible']['collection_collectible_list'];
-        foreach($collection_collectible_list as $i => $id)
+        foreach ($collection_collectible_list as $i => $id)
         {
           if (!is_numeric($id) && !empty($id))
           {
@@ -386,7 +389,8 @@ class mycqComponents extends cqFrontendComponents
             $collection->setCollector($this->getCollector());
             $collection->setName($id);
 
-            try {
+            try
+            {
               $collection->save();
               $collection_collectible_list[$i] = $collection->getId();
             }
