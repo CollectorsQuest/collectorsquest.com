@@ -204,7 +204,7 @@ class cqFrontendUser extends cqBaseUser
   public function getMycqDropboxOpenState()
   {
     // Respect the cookie only in selected areas of My CQ
-    if (in_array(SmartMenu::getSelected('mycq_menu'), array('collections')))
+    if (in_array(SmartMenu::getSelected('mycq_menu'), array('collections', 'marketplace')))
     {
       return !!sfContext::getInstance()->getRequest()->getCookie(
         self::DROPBOX_OPEN_STATE_COOKIE_NAME, true);
