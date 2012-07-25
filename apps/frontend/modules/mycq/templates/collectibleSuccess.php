@@ -15,10 +15,10 @@
   <?php
     cq_sidebar_title(
       $collectible->getName(), null,
-      array('left' => 10, 'right' => 2, 'class'=>'spacer-top-reset row-fluid sidebar-title')
+      array('left' => 10, 'right' => 2, 'class'=>'mycq-red-title row-fluid')
     );
   ?>
-  <div class="blue-well spacer-bottom-15 cf">
+  <div class="gray-well cf">
     <div class="pull-left">
       <ul class="nav nav-pills spacer-bottom-reset">
         <li>

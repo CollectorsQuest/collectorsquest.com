@@ -1,4 +1,4 @@
-<div class="blue-well spacer-15 cf">
+<div class="gray-well cf">
   <div class="row-fluid">
     <div class="span8">
       <ul class="nav nav-pills spacer-bottom-reset">

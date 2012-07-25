@@ -8,11 +8,11 @@
 <?php
   cq_sidebar_title(
     $collection->getName(), null,
-    array('left' => 10, 'right' => 2, 'class'=>'spacer-top-reset row-fluid sidebar-title')
+    array('left' => 10, 'right' => 2, 'class'=>'mycq-red-title row-fluid')
   );
 ?>
 
-<?php include_partial('mycq/collection_blue_bar', array('collection' => $collection)); ?>
+<?php include_partial('mycq/collection_gray_bar', array('collection' => $collection)); ?>
 
 <div id="mycq-tabs">
   <ul class="nav nav-tabs">

@@ -12,13 +12,13 @@
 
   cq_sidebar_title(
     'My Collections (' . $total . ')', null,
-    array('left' => 8, 'right' => 4, 'class'=>'spacer-top-reset row-fluid sidebar-title')
+    array('left' => 8, 'right' => 4, 'class'=>'mycq-red-title row-fluid')
   );
 
   slot('mycq_dropbox_info_message', 'Drag a photo into a Collection below to add it');
 ?>
 
-<div class="blue-well spacer-bottom-15 cf">
+<div class="gray-well cf">
   <div class="row-fluid">
     <div class="span6">
       <ul class="nav nav-pills spacer-bottom-reset">

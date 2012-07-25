@@ -91,7 +91,7 @@
 		margin-top: 0;
 		padding: 20px 0;
 		border-top: none;
-		background-color: @lightBlue !important;
+		background-color: #fff;
 	}
 }
 
@@ -1491,9 +1491,11 @@ textarea.input-xlarge {
 	margin: 14px auto;
 }
 
-.blue-well {
-	padding: 8px 8px 8px 3px;
-	background-color: @lightBlue;
+.gray-well {
+	margin-bottom: 15px;
+	padding: 4px 8px 4px 3px;
+	//background-color: @lightBlue;
+	#gradient > .vertical(#fff, #F5F5F5);
 	.border-radius(3px);
 
 	input.input-sort-by {
@@ -1571,7 +1573,7 @@ textarea.input-xlarge {
 	.btn-upload-collectible-txt {
 		display: block;
 		width: 90%;
-		margin: 6px auto 0 auto;
+		margin: 10px auto 0 auto;
 		font-size: 14px;
 		line-height: 16px;
 		font-weight: bold;
@@ -1857,3 +1859,16 @@ textarea.input-xlarge {
   margin-bottom: 15px;
   width: 76px;
 }
+
+.mycq-red-title {
+	margin: 0 0 1px 0;
+	background: url("@{baseUrl}/red-dotted-line.png") repeat-x bottom;
+
+	h3 {
+		.custom-font(20px, 22px, italic, normal);
+		letter-spacing: 0.01em;
+		color: @red;
+		.smooth-font();
+	}
+}
+
