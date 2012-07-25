@@ -57,26 +57,6 @@
 <script>
 $(document).ready(function()
 {
-  $('.add-new-zone').on('mouseenter', function() {
-    var $this = $(this);
-    $this.find('i.icon-plus')
-      .removeClass('icon-plus')
-      .addClass('icon-hand-up')
-      .show();
-  });
-  $('.add-new-zone').on('mouseleave', function() {
-    var $this = $(this);
-    $this.find('i.icon-hand-up')
-      .removeClass('icon-hand-up')
-      .addClass('icon-plus')
-      .show();
-  });
-});
-</script>
-
-<script>
-$(document).ready(function()
-{
   var $url = '<?= url_for('@ajax_mycq?section=component&page=collectibles', true) ?>';
   var $form = $('#form-mycq-collectibles');
 
