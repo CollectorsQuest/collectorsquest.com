@@ -10,6 +10,7 @@ RewriteBase /blog/
 RewriteCond %{HTTP_HOST} !^www.collectorsquest.dev$
 RewriteCond %{HTTP_HOST} !^www.cqnext.com$
 RewriteCond %{HTTP_HOST} !^backend.collectorsquest.com$
+RewriteCond %{REQUEST_METHOD} !^POST$
 RewriteRule ^(wp-admin|wp-includes) http://backend.collectorsquest.com%{REQUEST_URI} [QSA,L,R=301]
 
 # Redirect everything which is not wp-admin/ to www.collectorsquest.com
