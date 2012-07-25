@@ -44,7 +44,7 @@
   </ul>
 </div>
 
-<?php if (($pager->getPage() === 1 && $i === 2) || ($pager->count() === $i+1 && $pager->count() < 3)) ?>
+<?php if (($pager->getPage() === 1 && $i === 2) || ($pager->count() === $i+1 && $pager->count() < 3)): ?>
   <a href="<?= url_for('@ajax_mycq?section=component&page=createCollection'); ?>"
      id="collection-create-html" class="span5 add-new-zone open-dialog"
      title="Create a new collection by clicking here">
@@ -55,6 +55,7 @@
       Create a new<br> collection by<br> clicking here
     </span>
   </a>
+<?php endif; ?>
 <?php endforeach;?>
 
 <?php if ($pager->count() === 0): ?>

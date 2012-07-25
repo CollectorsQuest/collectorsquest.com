@@ -5,15 +5,17 @@
 ?>
 
 <?php
-$link = link_to(
-  'Back to Collections &raquo;', '@mycq_collections',
-  array('class' => 'text-v-middle link-align')
-);
+  $link = link_to(
+    'Back to Collections &raquo;', '@mycq_collections',
+    array('class' => 'text-v-middle link-align')
+  );
 
-cq_sidebar_title(
-  'My Collections (' . $total . ')', null,
-  array('left' => 8, 'right' => 4, 'class'=>'spacer-top-reset row-fluid sidebar-title')
-);
+  cq_sidebar_title(
+    'My Collections (' . $total . ')', null,
+    array('left' => 8, 'right' => 4, 'class'=>'spacer-top-reset row-fluid sidebar-title')
+  );
+
+  slot('mycq_dropbox_info_message', 'Drag a photo into a Collection below to add it');
 ?>
 
 <div class="blue-well spacer-bottom-15 cf">

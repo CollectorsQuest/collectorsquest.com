@@ -44,14 +44,14 @@
       <?php endforeach; ?>
     </ul>
     <div class="info-message">
-      Drag a photo into a Collection below to add it.
+      <?php include_slot('mycq_dropbox_info_message'); ?>
     </div>
   </div>
   <?php else: ?>
-  <div id="dropzone" class="collectibles-to-sort no-items-to-sort-box Chivo webfont">
+  <div id="dropzone" class="collectibles-to-sort no-items-to-sort-box Chivo webfont" style="margin: 10px auto;">
     <span class="info-no-items-to-sort">
-      There are currently no Uploaded Photos.<br/>
-      Please use the <strong>"+ Upload Photos"</strong> button on the right to get started!
+      &nbsp;&nbsp;<strong>Drag and drop</strong> image files from your desktop or
+      use the <strong>"+ Upload Photos"</strong> button
     </span>
   </div>
   <?php endif; ?>
