@@ -5,57 +5,56 @@
 ?>
 
 <?php foreach ($pager->getResults() as $i => $collection): ?>
+  <div class="span5 collectible_grid_view_square link">
+    <p>
+      <a href="<?= url_for('mycq_collection_by_section', array('id' => $collection->getId(), 'section' => 'collectibles')) ?>" class="target">
+        <?= cqStatic::reduceText($collection->getName(), 35, '[...]'); ?>
+      </a>
+    </p>
+    <ul class="thumbnails">
+      <?php
+      $c = new Criteria();
+      $c->setLimit(8);
+      $collectibles = $collection->getCollectionCollectibles($c);
 
-<div class="span5 collectible_grid_view_square link">
-  <p>
-    <a href="<?= url_for('mycq_collection_by_section', array('id' => $collection->getId(), 'section' => 'collectibles')) ?>" class="target">
-      <?= cqStatic::reduceText($collection->getName(), 35, '[...]'); ?>
+      for ($k = 0; $k < 9; $k++)
+      {
+        if (isset($collectibles[$k]))
+        {
+          echo '<li>';
+          echo link_to(
+            image_tag_collectible(
+              $collectibles[$k], '75x75',
+              array('width' => 62, 'height' => 62)
+            ),
+            url_for(
+              'mycq_collection_by_section',
+              array('id' => $collection->getid(), 'section' => 'collectibles')
+            )
+          );
+          echo '</li>';
+        }
+        else
+        {
+          echo '<li><i class="icon icon-plus drop-zone" data-collection-id="'.  $collection->getId() .'"></i></li>';
+        }
+      }
+      ?>
+    </ul>
+  </div>
+
+  <?php if (($pager->getPage() === 1 && $i === 2) || ($pager->count() === $i+1 && $pager->count() < 3)): ?>
+    <a href="<?= url_for('@ajax_mycq?section=component&page=createCollection'); ?>"
+       id="collection-create-html" class="span5 add-new-zone open-dialog"
+       title="Create a new collection by clicking here">
+      <span id="collection-create-icon" class="btn-upload-collectible">
+        <i class="icon-plus icon-white"></i>
+      </span>
+      <span id="collection-create-link" class="btn-upload-collectible-txt">
+        CREATE A NEW<br> COLLECTION
+      </span>
     </a>
-  </p>
-  <ul class="thumbnails">
-    <?php
-    $c = new Criteria();
-    $c->setLimit(8);
-    $collectibles = $collection->getCollectionCollectibles($c);
-
-    for ($k = 0; $k < 9; $k++)
-    {
-      if (isset($collectibles[$k]))
-      {
-        echo '<li>';
-        echo link_to(
-          image_tag_collectible(
-            $collectibles[$k], '75x75',
-            array('width' => 62, 'height' => 62)
-          ),
-          url_for(
-            'mycq_collection_by_section',
-            array('id' => $collection->getid(), 'section' => 'collectibles')
-          )
-        );
-        echo '</li>';
-      }
-      else
-      {
-        echo '<li><i class="icon icon-plus drop-zone" data-collection-id="'.  $collection->getId() .'"></i></li>';
-      }
-    }
-    ?>
-  </ul>
-</div>
-
-<?php if (($pager->getPage() === 1 && $i === 2) || ($pager->count() === $i+1 && $pager->count() < 3)): ?>
-  <a href="<?= url_for('@ajax_mycq?section=component&page=createCollection'); ?>"
-     id="collection-create-html" class="span5 add-new-zone open-dialog"
-     title="Create a new collection by clicking here">
-    <span id="collection-create-icon" class="btn-upload-collectible">
-      <i class="icon-plus icon-white"></i>
-    </span>
-    <span id="collection-create-link" class="btn-upload-collectible-txt">
-      Create a new<br> collection by<br> clicking here
-    </span>
-  </a>
-<?php endif; ?>
+  <?php endif; ?>
 <?php endforeach;?>
 
 <?php if ($pager->count() === 0): ?>
@@ -84,6 +83,7 @@
 <?php endif; ?>
 
 <?php if ($pager->haveToPaginate()): ?>
+
   <br clear="all">
   <div class="row-fluid text-center">
   <?php
