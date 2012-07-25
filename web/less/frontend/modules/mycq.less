@@ -1651,9 +1651,11 @@ textarea.input-xlarge {
 		padding: 6px;
 		border: 1px solid @boxBorder2;
 		&:hover {
-			//background-color: #F5FCFF;
-			border: 1px solid @blue;
+			border: 1px solid @red;
 			cursor: auto;
+			p > a {
+				color: @red;
+			}
 		}
 
 		> p {
@@ -1671,15 +1673,6 @@ textarea.input-xlarge {
       margin-left: 6px;
 
 			&:hover i {
-				padding-top: 10px;
-				padding-bottom: 0;
-				font-size: 32px;
-				line-height: 32px;
-				color: @red;
-				background-color: #fff;
-				//border-color: #efefef;
-				border-color: @lightBlue;
-				border-style: solid;
 				cursor: pointer
 			}
 
@@ -1751,7 +1744,7 @@ textarea.input-xlarge {
 		border: 1px solid @boxBorder2;
 		&:hover {
 			background-color: #F5FCFF;
-			border: 1px solid @blue;
+			border: 1px solid @red;
 			cursor: auto;
 		}
 
