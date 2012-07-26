@@ -20,7 +20,7 @@
 <form action="<?= url_for('@ajax_mycq?section=component&page=createCollectible'); ?>"
       method="post" id="form-create-collectible" class="ajax form-horizontal form-modal">
 
-  <h1>Create a New Collectible</h1>
+  <h1>Add a New Item</h1>
 
   <?= $form ?>
 

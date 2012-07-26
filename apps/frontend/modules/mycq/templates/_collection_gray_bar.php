@@ -12,7 +12,7 @@
           <a href="<?= url_for('@ajax_mycq?section=component&page=createCollectible&collection_id='. $collection->getId()); ?>"
              class="open-dialog">
             <i class="icon icon-plus"></i>
-            Add Collectible
+            Add Item
           </a>
         </li>
         <li>
@@ -30,7 +30,7 @@
             <li>
               <a href="<?= url_for('mycq_collection_by_section', array('id' => $collection->getId(), 'section' => 'reorder')); ?>">
                 <i class="icon icon-move"></i>
-                Re-order Collectibles
+                Re-order Items
               </a>
             </li>
             <li>

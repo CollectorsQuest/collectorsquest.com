@@ -54,9 +54,9 @@
           <ul class="dropdown-menu">
             <li>
               <a href="<?= url_for('mycq_collectible_by_slug', array('sf_subject' => $collectible, 'cmd' => 'delete', 'encrypt' => '1')); ?>"
-                 onclick="return confirm('Are you sure you want to delete this Collectible?');">
+                 onclick="return confirm('Are you sure you want to delete this Item?');">
                 <i class="icon-trash"></i>
-                Delete Collectible
+                Delete Item
               </a>
             </li>
           </ul>

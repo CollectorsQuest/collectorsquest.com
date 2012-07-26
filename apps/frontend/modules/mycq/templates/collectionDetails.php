@@ -4,7 +4,7 @@
  * @var $form CollectorCollectionEditForm
  */
 
-slot('mycq_dropbox_info_message', 'Drag a photo into a Collection thumbnail below');
+slot('mycq_dropbox_info_message', 'Drag a photo into the Collection thumbnail below');
 ?>
 
 <?php
@@ -27,7 +27,7 @@ slot('mycq_dropbox_info_message', 'Drag a photo into a Collection thumbnail belo
     <li>
     <?php
       echo link_to(
-        'Collectibles ('. $total .')',
+        'Items ('. $total .')',
         'mycq_collection_by_section', array(
           'id' => $collection->getId(),
           'section' => 'collectibles'

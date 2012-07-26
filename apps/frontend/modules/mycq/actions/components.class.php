@@ -46,13 +46,11 @@ class mycqComponents extends cqFrontendComponents
       case 'most-recent':
       default:
         $q
-          ->distinct()
-          ->joinCollection()
           ->useCollectionQuery()
-            ->useCollectionCollectibleQuery(null, Criteria::LEFT_JOIN)
-              ->orderByCreatedAt(Criteria::DESC)
-            ->endUse()
+            ->joinCollectionCollectible('Collectible', Criteria::LEFT_JOIN)
+            ->addDescendingOrderByColumn('MAX(IF(Collectible.created_at IS NULL, NOW(), Collectible.created_at))')
           ->endUse()
+          ->groupById()
           ->orderByCreatedAt(Criteria::DESC);
         break;
     }

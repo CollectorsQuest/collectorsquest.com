@@ -17,7 +17,7 @@
     <li class="active">
     <?php
       echo link_to(
-        'Collectibles ('. $total .')',
+        'Items ('. $total .')',
         'mycq_collection_by_section', array(
           'id' => $collection->getId(),
           'section' => 'collectibles'
