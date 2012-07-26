@@ -82,6 +82,7 @@ class wpFaqCheckinit {
         break;
       case 'prod':
       default:
+      // backend.collectorsquest.com 33C8610E93A7F9B3F3B2D5D25B239CBA
       if ($serial = '9B526DEB078EDD51DDFE7063267751D3') {
         return $serial;
       }
@@ -117,8 +118,6 @@ class wpFaqCheckinit {
 			}
 		}
 
-		return false;
+		return true;
 	}
 }
-
-?>
