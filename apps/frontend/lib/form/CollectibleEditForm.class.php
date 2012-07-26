@@ -99,7 +99,7 @@ class CollectibleEditForm extends BaseCollectibleForm
   protected function setupThumbnailField()
   {
     $this->widgetSchema['thumbnail'] = new sfWidgetFormInputFile(array(
-      'label' => 'Photo'
+      'label' => 'Thumbnail'
     ));
     $this->validatorSchema['thumbnail'] = new sfValidatorFile(array(
       'mime_types' => 'web_images', 'required' => false
