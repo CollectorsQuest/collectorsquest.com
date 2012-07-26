@@ -67,6 +67,12 @@ class cqWebResponse extends iceWebResponse
     $configuration = sfProjectConfiguration::getActive();
     $configuration->loadHelpers(array('cqLinks', 'cqImages'));
 
+    // CollectionCollectibles need to be normalized to Collectibles
+    if ($object instanceof CollectionCollectible)
+    {
+      $object = $object->getCollectible();
+    }
+
     $this->addOpenGraphMeta('title', (string) $object .' | Collectors Quest');
     $this->addOpenGraphMeta('url', $this->getCanonicalUrl() ?: cq_url_for($object, true));
 
