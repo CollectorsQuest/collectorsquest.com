@@ -18,7 +18,8 @@
 <?php end_slot(); ?>
 
 <?php foreach ($pager->getResults() as $i => $collection): ?>
-  <div class="span5 collectible_grid_view_square link">
+  <div class="span5 collectible_grid_view_square link"
+       data-collection-id="<?= $collection->getId(); ?>">
     <p>
       <a href="<?= url_for('mycq_collection_by_section', array('id' => $collection->getId(), 'section' => 'collectibles')) ?>" class="target">
         <?= cqStatic::reduceText($collection->getName(), 35, '[...]'); ?>
@@ -54,6 +55,14 @@
       }
       ?>
     </ul>
+    <div class="hidden">
+      <span class="btn-upload-collectible spacer-top-40">
+        <i class="icon-plus icon-white"></i>
+      </span>
+      <span class="btn-upload-collectible-txt spacer-top-20">
+        ADD ITEM
+      </span>
+    </div>
   </div>
 
 <?php
@@ -130,25 +139,19 @@ $(document).ready(function()
 {
   $(document).controls();
 
-  $("#collections .drop-zone").droppable(
+  $("#collections .collectible_grid_view_square").droppable(
   {
     over: function(event, ui)
     {
-      $(this)
-        .removeClass('icon-plus')
-        .addClass('ui-state-highlight')
-        .addClass('icon-download-alt');
+      $(this).addClass('dashed');
     },
     out: function(event, ui)
     {
-      $(this)
-        .removeClass('ui-state-highlight')
-        .removeClass('icon-download-alt')
-        .addClass('icon-plus');
+      $(this).removeClass('dashed');
     },
     drop: function(event, ui)
     {
-      $(this).removeClass('ui-state-highlight');
+      $(this).removeClass('dashed');
       ui.draggable.draggable('option', 'revert', false);
       ui.draggable.hide();
 

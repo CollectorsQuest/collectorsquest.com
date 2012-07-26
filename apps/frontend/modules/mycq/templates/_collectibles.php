@@ -97,13 +97,13 @@
 
 <?php else: ?>
 
-<?php include_slot('mycq_create_collectible'); ?>
-<div class="span12 thumbnail link no-collections-uploaded-box">
-  <span class="Chivo webfont info-no-collections-uploaded">
-    Share your collectibles with the community today!<br/>
-    Get Started Now!
-  </span>
-</div>
+  <?php include_slot('mycq_create_collectible'); ?>
+  <div class="span12 thumbnail link no-collections-uploaded-box">
+    <span class="Chivo webfont info-no-collections-uploaded" style="padding-top: 20px;">
+      Upload photos and drag them here to add to your collection.<br/>
+      Get Started Now!
+    </span>
+  </div>
 
 <?php endif; ?>
 
@@ -112,31 +112,13 @@ $(document).ready(function()
 {
   $(document).controls();
 
-  $("#mycq-create-collectible").droppable(
+  var collection_id = <?= $collection->getId(); ?>;
+
+  $('#mycq-tabs .mycq-collectibles').droppable(
   {
-    over: function(event, ui)
-    {
-      $(this)
-        .addClass('ui-state-highlight')
-        //.find('i')
-        //.removeClass('icon-plus')
-        //.addClass('icon-download-alt');
-    },
-    out: function(event, ui)
-    {
-      $(this)
-        .removeClass('ui-state-highlight')
-        //.find('i')
-        //.removeClass('icon-download-alt')
-        //.addClass('icon-plus');
-    },
     drop: function(event, ui)
     {
-      $(this)
-        .removeClass('ui-state-highlight')
-        //.find('i')
-        //.removeClass('icon-download-alt')
-        //.addClass('icon-plus');
+      $(this).removeClass('ui-state-highlight');
 
       ui.draggable.draggable('option', 'revert', false);
       ui.draggable.hide();
@@ -146,7 +128,34 @@ $(document).ready(function()
       var url = '<?= url_for('@mycq_collection_collectible_create') ?>';
 
       window.location.href = url +
-        '?collection_id=' + $(this).data('collection-id') +
+        '?collection_id=' + collection_id +
+        '&collectible_id=' + ui.draggable.data('collectible-id');
+    }
+  });
+
+  $("#mycq-create-collectible").droppable(
+  {
+    over: function(event, ui)
+    {
+      $(this).addClass('ui-state-highlight');
+    },
+    out: function(event, ui)
+    {
+      $(this).removeClass('ui-state-highlight');
+    },
+    drop: function(event, ui)
+    {
+      $(this).removeClass('ui-state-highlight');
+
+      ui.draggable.draggable('option', 'revert', false);
+      ui.draggable.hide();
+
+      $(this).showLoading();
+
+      var url = '<?= url_for('@mycq_collection_collectible_create') ?>';
+
+      window.location.href = url +
+        '?collection_id=' + collection_id +
         '&collectible_id=' + ui.draggable.data('collectible-id');
     }
   });

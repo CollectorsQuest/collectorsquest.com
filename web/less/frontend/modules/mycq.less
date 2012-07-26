@@ -106,9 +106,8 @@
 	background-color: #fff;
 
 	.tab-content {
-		border-width: 1px;
-		border-style: none solid solid solid;
-		border-color: #A7D1E8;
+		border: 1px solid #A7D1E8;
+		border-top-color: #fff;
 	}
 
 	ul.nav-tabs {
@@ -1213,8 +1212,6 @@ textarea.input-xlarge {
 	}
 }
 
-.ui-droppable
-
 .mycq-collections .see-more-full {
 	width: 99%;
 	margin-left: 1%;
@@ -1545,6 +1542,10 @@ textarea.input-xlarge {
 		margin-left: 10px;
 	}
 
+  &.ui-droppable {
+    border: none;
+  }
+
 	.add-new-zone {
 		height: 128px;
 		margin-top: 4px;
@@ -1671,7 +1672,7 @@ textarea.input-xlarge {
 	}
 }
 
-.mycq-collections-4x9 {
+#collections {
 	margin-top: 10px;
 	margin-left: -12px;
 
@@ -1688,7 +1689,7 @@ textarea.input-xlarge {
 			}
 		}
 
-		> p {
+		& > p {
 			height: 32px;
 			line-height: 16px;
 			padding: 0 0 4px 4px;
@@ -1697,17 +1698,38 @@ textarea.input-xlarge {
 		.thumbnails {
 			margin-bottom: 0;
 			margin-left: -4px;
-		}
-		.thumbnails > li {
-      margin-bottom: 6px;
-      margin-left: 6px;
 
-			&:hover i {
-				cursor: pointer
-			}
+		  & > li {
+        margin-bottom: 6px;
+        margin-left: 6px;
 
-      a > img {
-        margin: 1px 0 1px 2px;
+        &:hover i {
+          cursor: pointer
+        }
+
+        a > img {
+          margin: 1px 0 1px 2px;
+        }
+      }
+    }
+
+    &.dashed {
+
+      color: #03ae00 !important;
+      background: #cdffcb !important;
+      border: 1px dashed #03ae00;
+      .btn-upload-collectible, .btn-upload-collectible-txt, .icon-download-alt {
+        color: #03ae00 !important;
+      }
+
+      .thumbnails {
+        display: none;
+      }
+
+      .hidden {
+        margin-top: -30px;
+        display: block !important;
+        visibility: visible;
       }
     }
 	}
