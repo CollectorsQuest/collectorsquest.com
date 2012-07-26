@@ -118,25 +118,25 @@ $(document).ready(function()
     {
       $(this)
         .addClass('ui-state-highlight')
-        .find('i')
-        .removeClass('icon-plus')
-        .addClass('icon-download-alt');
+        //.find('i')
+        //.removeClass('icon-plus')
+        //.addClass('icon-download-alt');
     },
     out: function(event, ui)
     {
       $(this)
         .removeClass('ui-state-highlight')
-        .find('i')
-        .removeClass('icon-download-alt')
-        .addClass('icon-plus');
+        //.find('i')
+        //.removeClass('icon-download-alt')
+        //.addClass('icon-plus');
     },
     drop: function(event, ui)
     {
       $(this)
         .removeClass('ui-state-highlight')
-        .find('i')
-        .removeClass('icon-download-alt')
-        .addClass('icon-plus');
+        //.find('i')
+        //.removeClass('icon-download-alt')
+        //.addClass('icon-plus');
 
       ui.draggable.draggable('option', 'revert', false);
       ui.draggable.hide();
