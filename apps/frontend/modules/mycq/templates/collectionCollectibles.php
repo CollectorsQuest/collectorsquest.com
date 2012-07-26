@@ -27,7 +27,7 @@ slot('mycq_dropbox_info_message', 'Drag a photo into "ADD NEW ITEM" below');
     <li class="active">
       <?php
         echo link_to(
-          'Items ('. $total .')',
+          'Items in Collection ('. $total .')',
           'mycq_collection_by_section', array(
             'id' => $collection->getId(),
             'section' => 'collectibles'
