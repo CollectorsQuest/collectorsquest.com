@@ -3,11 +3,19 @@
  * @var $collection CollectorCollection
  * @var $form CollectorCollectionEditForm
  */
+
+slot('mycq_dropbox_info_message', 'Drag a photo into "ADD NEW ITEM" below');
 ?>
 
 <?php
   cq_sidebar_title(
-    $collection->getName(), null,
+    format_number_choice(
+      '[0] %1% <small>(no items yet)</small>|[1] %1% <small>(1 item)</small>|(1,+Inf] %1% <small>(%2% items)</small>',
+      array(
+        '%1%' => $collection->getName(),
+        '%2%' => number_format($total)),
+      $total
+    ), null,
     array('left' => 10, 'right' => 2, 'class'=>'mycq-red-title row-fluid')
   );
 ?>
