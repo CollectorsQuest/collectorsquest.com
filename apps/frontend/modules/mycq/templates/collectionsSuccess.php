@@ -55,7 +55,7 @@
 
 
 <div class="mycq-collections-wrapper">
-  <div class="row mycq-collections-4x9">
+  <div class="mycq-collections-4x9">
     <div class="row-content" id="collections">
       <?php include_component('mycq', 'collections'); ?>
     </div>
