@@ -88,6 +88,9 @@
           }
         );
 
+        // Scroll to #slot1 so that we can see the first row of results
+        $.scrollTo('#slot1');
+
         return false;
       });
     });

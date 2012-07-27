@@ -59,12 +59,29 @@ $linkPrev = $linkNext = false;
     <li class="disabled"><a href="javascript:void(0);"> ... </a></li>
     <li>
       <?php
-        echo link_to($pager->getLastPage(), $url . $mark . $options['page_param'] . '=' . $pager->getLastPage()); ?></li>
+        echo link_to(
+          $pager->getLastPage(),
+          $url . $mark . $options['page_param'] . '=' . $pager->getLastPage(),
+          array(
+            'data-page' => $pager->getLastPage(),
+            'title' => 'Go to page '. $pager->getLastPage()
+          )
+        );
+      ?>
+    </li>
     <?php endif; ?>
     <?php if ($pager->getPage() != $pager->getCurrentMaxLink()): ?>
     <li class="next">
       <?php $linkNext = $url . $mark . $options['page_param'] . '=' . $pager->getNextPage(); ?>
-      <?= link_to(' &rarr; ', $linkNext); ?>
+      <?php
+        echo link_to(
+          ' &rarr; ', $linkNext,
+          array(
+            'data-page' => $pager->getNextPage(),
+            'title' => 'Go to page '. $pager->getNextPage()
+          )
+        );
+      ?>
     </li>
     <?php else: ?>
     <li class="disabled"><a href="javascript:void(0);"> &rarr; </a></li>
