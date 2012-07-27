@@ -149,17 +149,6 @@ $(document).ready(function()
     drop: function(event, ui)
     {
       $(this).removeClass('ui-state-highlight');
-
-      ui.draggable.draggable('option', 'revert', false);
-      ui.draggable.hide();
-
-      $(this).showLoading();
-
-      var url = '<?= url_for('@mycq_collection_collectible_create') ?>';
-
-      window.location.href = url +
-        '?collection_id=' + collection_id +
-        '&collectible_id=' + ui.draggable.data('collectible-id');
     }
   });
 });

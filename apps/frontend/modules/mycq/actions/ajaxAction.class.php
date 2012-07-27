@@ -218,11 +218,16 @@ class ajaxAction extends cqAjaxAction
       {
         $primary->delete();
       }
+      else if (!$is_primary && !$recipient->getPrimaryImage())
+      {
+        $is_primary = true;
+      }
 
       try
       {
         $image->setIsPrimary($is_primary);
         $image->setModelId($recipient->getId());
+        $image->setSource($donor->getId());
         $image->save();
       }
       catch (PropelException $e)
@@ -240,7 +245,7 @@ class ajaxAction extends cqAjaxAction
       $recipient->setUpdatedAt(time());
       $recipient->save();
 
-      // Delete the $donor, not needed anymore
+      // Archive the $donor, not needed anymore
       $donor->delete();
 
       // Return "Success"
@@ -325,6 +330,8 @@ class ajaxAction extends cqAjaxAction
 
     if ($multimedia instanceof iceModelMultimedia)
     {
+      $object = $multimedia->getModelObject();
+
       if ($multimedia->getIsPrimary())
       {
         $model = $multimedia->getModelObject();
@@ -335,7 +342,35 @@ class ajaxAction extends cqAjaxAction
         }
       }
 
-      $multimedia->delete();
+      /** @var $archive CollectibleArchive */
+      if (
+        ($source = $multimedia->getSource()) &&
+        ($archive = CollectibleArchiveQuery::create()->findOneById((integer) $source))
+      )
+      {
+        $collectible = new Collectible();
+        $collectible->populateFromArchive($archive);
+        $collectible->save();
+
+        $multimedia->setModel($collectible);
+        $multimedia->setSource(null);
+        $multimedia->save();
+
+        /**
+         * Update the Eblob cache
+         */
+        if ($object)
+        {
+          $m = iceModelMultimediaPeer::retrieveByModel($object);
+
+          $object->setEblobElement('multimedia', $m->toXML(true));
+          $object->save();
+        }
+      }
+      else
+      {
+        $multimedia->delete();
+      }
     }
 
     return $this->success();

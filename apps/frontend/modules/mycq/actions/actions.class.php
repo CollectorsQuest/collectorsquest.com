@@ -316,6 +316,7 @@ class mycqActions extends cqFrontendActions
 
     $collectible = CollectibleQuery::create()
       ->findOneById($request->getParameter('collectible_id'));
+
     $this->redirectUnless(
       $this->getCollector()->isOwnerOf($collectible),
       '@mycq_collections'
@@ -412,11 +413,36 @@ class mycqActions extends cqFrontendActions
 
           try
           {
-            // Delete the Collectible
-            $collectible->delete();
-            $this->getUser()->setFlash(
-              'success', sprintf('Collectible "%s" was deleted!', $name)
-            );
+            switch ($request->getParameter('scope', 'collections'))
+            {
+              case 'collectible':
+                // Delete the Collectible
+                $collectible->delete();
+                $this->getUser()->setFlash('success', sprintf('Item "%s" was deleted!', $name));
+                break;
+              case 'collection':
+                // Delete the CollectionCollectible reference for this collection
+                CollectionCollectibleQuery::create()
+                  ->filterByCollection($collection)
+                  ->filterByCollectible($collectible)
+                  ->delete();
+
+                $this->getUser()->setFlash(
+                  'success', sprintf('Item "%s" was removed from this Collection!', $name)
+                );
+                break;
+              case 'collections':
+              default:
+                // Delete the CollectionCollectible references
+                CollectionCollectibleQuery::create()
+                  ->filterByCollectible($collectible)
+                  ->delete();
+
+                $this->getUser()->setFlash(
+                  'success', sprintf('Item "%s" was removed from all Collections!', $name)
+                );
+                break;
+            }
           }
           catch (PropelException $e)
           {

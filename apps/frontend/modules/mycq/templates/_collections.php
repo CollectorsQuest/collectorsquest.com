@@ -184,8 +184,7 @@ $(document).ready(function()
     },
     drop: function(event, ui)
     {
-      $(this)
-        .removeClass('ui-state-highlight')
+      $(this).removeClass('ui-state-highlight');
 
       ui.draggable.draggable('option', 'revert', true);
 
