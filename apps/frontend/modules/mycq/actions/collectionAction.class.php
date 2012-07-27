@@ -100,7 +100,6 @@ class collectionAction extends cqFrontendAction
       {
         $values = $form->getValues();
 
-        $collection->setCollectionCategoryId($values['collection_category_id']);
         $collection->setName($values['name']);
         $collection->setDescription($values['description'], 'html');
         $collection->setTags($values['tags']);

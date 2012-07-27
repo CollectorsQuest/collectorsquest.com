@@ -17,7 +17,7 @@ slot('mycq_dropbox_info_message', 'Drag a photo into "Alternate View" below');
 
   <?php
     cq_sidebar_title(
-      $collectible->getName(), null,
+      sprintf('%s <small>(%s)</small>', $collectible->getName(), $collection->getName()), null,
       array('left' => 10, 'right' => 2, 'class'=>'mycq-red-title row-fluid')
     );
   ?>
@@ -102,7 +102,7 @@ slot('mycq_dropbox_info_message', 'Drag a photo into "Alternate View" below');
 
       <?php if ($form['is_alt_view']->getWidget() instanceof sfWidgetFormInputCheckbox): ?>
       <div class="control-group">
-        <?= $form['thumbnail']->renderLabel(); ?>
+        <?= $form['thumbnail']->renderLabel('Update Photo'); ?>
         <div class="controls">
           <?= $form['thumbnail']->render(); ?>
           <label><?= $form['is_alt_view']; ?>&nbsp; Add as an alternate view instead?</label>
