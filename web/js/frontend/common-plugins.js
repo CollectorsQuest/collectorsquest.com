@@ -96,7 +96,7 @@ else{indicatorID=jQuery(this).attr('id');}
 // http://newism.com.au
 // Notes: Tooltip code from fitted.js - http://www.trovster.com/lab/plugins/fitted/
 (function(a){function g(){if(window.getSelection)return window.getSelection().toString();else if(document.getSelection)return document.getSelection();else if(document.selection)return document.selection.createRange().text}a.fn.bigTarget=function(h){var e=a.extend({},a.fn.bigTarget.defaults,h);return this.each(function(){var c=a(this),f=c.attr("href"),d=c.attr("title"),b=a.meta?a.extend({},e,c.data()):e;c.parents(b.clickZone).hover(function(){$h=a(this);$h.addClass(b.hoverClass);typeof b.title!="undefined"&&
-  b.title===true&&d!=""&&$h.attr("title",d)},function(){$h.removeClass(b.hoverClass);typeof b.title!="undefined"&&b.title===true&&d!=""&&$h.removeAttr("title")}).click(function(){if(g()=="")if(c.is("[rel*=external]")){window.open(f);return false}else window.location=f})})};a.fn.bigTarget.defaults={hoverClass:"hover",clickZone:"li:eq(0)",title:true}})(jQuery);
+  b.title===true&&d!=""&&$h.attr("title",d)},function(){$h=a(this);$h.removeClass(b.hoverClass);typeof b.title!="undefined"&&b.title===true&&d!=""&&$h.removeAttr("title")}).click(function(){if(g()=="")if(c.is("[rel*=external]")){window.open(f);return false}else window.location=f})})};a.fn.bigTarget.defaults={hoverClass:"hover",clickZone:"li:eq(0)",title:true}})(jQuery);
 
 
 /*
