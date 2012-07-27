@@ -144,6 +144,7 @@ $(document).ready(function()
 
   $("#collections .collectible_grid_view_square").droppable(
   {
+    activeClass: 'ui-state-hover',
     over: function(event, ui)
     {
       $(this).addClass('dashed');
@@ -170,6 +171,7 @@ $(document).ready(function()
 
   $("#collection-create-html").droppable(
   {
+    activeClass: 'ui-state-hover',
     over: function(event, ui)
     {
       $(this)

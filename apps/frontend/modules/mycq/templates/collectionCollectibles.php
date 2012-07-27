@@ -68,6 +68,11 @@ $(document).ready(function()
   var $url = '<?= url_for('@ajax_mycq?section=component&page=collectibles', true) ?>';
   var $form = $('#form-mycq-collectibles');
 
+  $("#mycq-create-collectible").droppable(
+    {
+      activeClass: 'ui-state-hover'
+    });
+
   $form.submit(function()
   {
     $('div.mycq-collectibles .thumbnails').fadeOut();
