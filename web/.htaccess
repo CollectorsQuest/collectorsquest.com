@@ -82,5 +82,6 @@ Allow from all
 
   # no, so we redirect to our front web controller
   RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_URI} !^\/?(uploads|images|css|js|swf|xhprof)
   RewriteRule ^(.*)$ index.php [QSA,L]
 </IfModule>
