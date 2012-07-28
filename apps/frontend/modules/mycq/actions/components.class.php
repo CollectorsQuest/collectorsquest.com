@@ -227,69 +227,6 @@ class mycqComponents extends cqFrontendComponents
     return sfView::SUCCESS;
   }
 
-  public function executeCreateCollection()
-  {
-    $form = new CollectionCreateForm();
-
-    if ($collectible_id = $this->getRequestParameter('collectible_id'))
-    {
-      $q = CollectibleQuery::create()
-          ->filterByCollector($this->getCollector())
-          ->filterById($collectible_id);
-
-      /** @var $image iceModelMultimedia */
-      if (($collectible = $q->findOne()) && $image = $collectible->getPrimaryImage())
-      {
-        $form->setDefault('thumbnail', $image->getId());
-      }
-    }
-
-    if ($this->getRequest()->isMethod('post'))
-    {
-      $form->bind($this->getRequestParameter('collection'));
-      if ($form->isValid())
-      {
-        $values = $form->getValues();
-        $values['collector_id'] = $this->getCollector()->getId();
-
-        /** @var $collection CollectorCollection */
-        $collection = $form->updateObject($values);
-        $collection->setTags($values['tags']);
-        $collection->save();
-
-        if ($values['thumbnail'])
-        {
-          $image = iceModelMultimediaQuery::create()
-              ->findOneById((integer) $values['thumbnail']);
-
-          if ($this->getCollector()->isOwnerOf($image))
-          {
-            $collection->setThumbnail($image->getAbsolutePath('original'));
-            $collection->save();
-          }
-        }
-
-        $this->getCollector()->getProfile()->updateProfileProgress();
-
-        $this->collection = $collection;
-      }
-      else
-      {
-        // @todo: Here we need to add ModelCriteria filterByTags
-        // $form->getWidget('content_category_id')->setOption('', '');
-      }
-    }
-
-    $root = ContentCategoryQuery::create()->findRoot();
-    $this->categories = ContentCategoryQuery::create()
-        ->descendantsOf($root)
-        ->findTree();
-
-    $this->form = $form;
-
-    return sfView::SUCCESS;
-  }
-
   public function executeCreateCollectible()
   {
     $form = new CollectibleCreateForm();

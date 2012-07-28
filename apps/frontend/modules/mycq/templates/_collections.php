@@ -5,7 +5,7 @@
 ?>
 
 <?php slot('mycq_create_collection'); ?>
-<a href="<?= url_for('@ajax_mycq?section=component&page=createCollection'); ?>"
+<a href="<?= url_for('@ajax_mycq?section=collection&page=create'); ?>"
    id="collection-create-html" class="span5 add-new-zone open-dialog"
    title="Create a new collection by clicking here">
       <span id="collection-create-icon" class="btn-upload-collectible spacer-top-40">

@@ -5,21 +5,7 @@
  */
 ?>
 
-<?php
-  if (isset($collection) && !$collection->isNew())
-  {
-    include_partial(
-      'global/loading',
-      array('url' => url_for(
-        'mycq_collection_by_section',
-        array('id' => $collection->getId(), 'section' => 'details')
-      ))
-    );
-
-    return;
-  }
-?>
-<form action="<?= url_for('@ajax_mycq?section=component&page=createCollection'); ?>"
+<form action="<?= url_for('@ajax_mycq?section=collection&page=create'); ?>"
       method="post" id="form-create-collection" class="ajax form-horizontal form-modal">
 
   <h1>Create a New Collection</h1>

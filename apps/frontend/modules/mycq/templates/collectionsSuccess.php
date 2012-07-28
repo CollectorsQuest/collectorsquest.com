@@ -23,7 +23,7 @@
     <div class="span6">
       <ul class="nav nav-pills spacer-bottom-reset">
         <li>
-          <a href="<?= url_for('@ajax_mycq?section=component&page=createCollection'); ?>"
+          <a href="<?= url_for('@ajax_mycq?section=collection&page=create'); ?>"
              class="open-dialog" title="Create a new collection by clicking here">
             <i class="icon-plus"></i>
             New Collection

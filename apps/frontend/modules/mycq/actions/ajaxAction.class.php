@@ -422,4 +422,124 @@ class ajaxAction extends cqAjaxAction
 
     return $this->success();
   }
+
+  /**
+   * section: collection
+   * page: create
+   */
+  protected function executeCollectionCreate(sfWebRequest $request, $template)
+  {
+    $form = new CollectionCreateForm();
+
+    if ($collectible_id = $request->getParameter('collectible_id'))
+    {
+      $q = CollectibleQuery::create()
+          ->filterByCollector($this->getUser()->getCollector())
+          ->filterById($collectible_id);
+
+      /** @var $image iceModelMultimedia */
+      if (($collectible = $q->findOne()) && $image = $collectible->getPrimaryImage())
+      {
+        $form->setDefault('thumbnail', $image->getId());
+      }
+    }
+
+    if (sfRequest::POST == $request->getMethod())
+    {
+      $form->bind($request->getParameter('collection'));
+      if ($form->isValid())
+      {
+        $values = $form->getValues();
+        $values['collector_id'] = $this->getUser()->getCollector()->getId();
+
+        /** @var $collection CollectorCollection */
+        $collection = $form->updateObject($values);
+        $collection->setTags($values['tags']);
+        $collection->save();
+
+        if ($values['thumbnail'])
+        {
+          $image = iceModelMultimediaQuery::create()
+              ->findOneById((integer) $values['thumbnail']);
+
+          if ($this->getUser()->getCollector()->isOwnerOf($image))
+          {
+            $collection->setThumbnail($image->getAbsolutePath('original'));
+            $collection->save();
+          }
+        }
+
+        $this->getUser()->getCollector()->getProfile()->updateProfileProgress();
+
+        return $this->redirect('ajax_mycq', array(
+            'section' => 'collection',
+            'page' => 'setDetailsAndThumbnail',
+            'collection-id' => $collection->getId(),
+        ));
+      }
+    }
+
+    $root = ContentCategoryQuery::create()->findRoot();
+    $this->categories = ContentCategoryQuery::create()
+        ->descendantsOf($root)
+        ->findTree();
+
+    $this->form = $form;
+
+    return $template;
+  }
+
+  /**
+   * section: collection
+   * page: setDetailsAndThumbanil
+   *
+   */
+  public function executeCollectionSetDetailsAndThumbnail(sfWebRequest $request, $template)
+  {
+    $collection = CollectorCollectionPeer::retrieveByPK(
+      $request->getParameter('collection-id')
+    );
+    $this->forward404Unless($collection);
+
+    $form = new CollectorCollectionEditForm($collection);
+    $form->useFields(array(
+        'thumbnail',
+        'description',
+    ));
+
+    if (sfRequest::POST == $request->getMethod())
+    {
+      $taintedValues = $request->getParameter($form->getName());
+      $form->bind($taintedValues, $request->getFiles($form->getName()));
+
+      if ($form->isValid())
+      {
+        $values = $form->getValues();
+
+        $collection->setName($values['name']);
+        $collection->setDescription($values['description'], 'html');
+
+        if ($values['thumbnail'] instanceof sfValidatedFile)
+        {
+          $collection->setThumbnail($values['thumbnail']);
+        }
+
+        $collection->save();
+
+        return $this->renderPartial('global/loading', array(
+            'url' => $this->generateUrl('mycq_collection_by_section', array(
+                'id' => $collection->getId(),
+                'section' => 'collectibles',
+            )),
+        ));
+      }
+    }
+
+    $this->form = $form;
+    $this->collection = $collection;
+
+    return $template;
+  }
+
+
 }
