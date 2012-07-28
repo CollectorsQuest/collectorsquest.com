@@ -21,9 +21,9 @@
       Edit Photo
     </span>
   <?php else: ?>
-    <a class="icon-plus-holder h-center" href="#">
+    <span class="icon-plus-holder h-center">
       <i class="icon icon-plus icon-white"></i>
-    </a>
+    </span>
     <div class="info-text">
       Drag and drop from <br>"Uploaded Photos"
     </div>

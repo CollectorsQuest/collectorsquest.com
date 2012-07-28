@@ -5,10 +5,10 @@
  */
 ?>
 
-<form action="<?= url_for('@ajax_mycq?section=collection&page=create'); ?>"
+<form action="<?= url_for('@ajax_mycq?section=collection&page=createStep1'); ?>"
       method="post" id="form-create-collection" class="ajax form-horizontal form-modal">
 
-  <h1>Create a New Collection - Step 1</h1>
+  <h1>Create Collection - Step 1</h1>
   <?= $form ?>
 
   <?php if (isset($form['content_category_id'])): ?>

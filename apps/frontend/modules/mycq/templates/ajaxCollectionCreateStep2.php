@@ -5,9 +5,9 @@
  */
 ?>
 
-<h1>Create a New Collection - Step 2</h1>
+<h1>Create Collection - Step 2</h1>
 
-<form action="<?= url_for('ajax_mycq', array('section' => 'collection', 'page' => 'setDetailsAndThumbnail', 'collection-id' => $collection->getId())); ?>"
+<form action="<?= url_for('ajax_mycq', array('section' => 'collection', 'page' => 'createStep1', 'collection-id' => $collection->getId())); ?>"
       method="post" id="blah" class="ajax form-horizontal form-modal">
 
   <?= $form->renderAllErrors(); ?>
@@ -23,7 +23,7 @@
                 'section' => 'collectibles',
             )); ?>'"
       class="btn">
-      Skip step
+      Skip this for now
     </a>
   </div>
 </form>

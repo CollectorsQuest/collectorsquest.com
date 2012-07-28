@@ -434,9 +434,9 @@ class ajaxAction extends cqAjaxAction
 
   /**
    * section: collection
-   * page: create
+   * page: createStep1
    */
-  protected function executeCollectionCreate(sfWebRequest $request, $template)
+  protected function executeCollectionCreateStep1(sfWebRequest $request, $template)
   {
     $form = new CollectionCreateForm();
 
@@ -482,7 +482,7 @@ class ajaxAction extends cqAjaxAction
 
         return $this->redirect('ajax_mycq', array(
             'section' => 'collection',
-            'page' => 'setDetailsAndThumbnail',
+            'page' => 'createStep2',
             'collection-id' => $collection->getId(),
         ));
       }
@@ -500,10 +500,9 @@ class ajaxAction extends cqAjaxAction
 
   /**
    * section: collection
-   * page: setDetailsAndThumbanil
-   *
+   * page: createStep2
    */
-  public function executeCollectionSetDetailsAndThumbnail(sfWebRequest $request, $template)
+  public function executeCollectionCreateStep2(sfWebRequest $request, $template)
   {
     $collection = CollectorCollectionPeer::retrieveByPK(
       $request->getParameter('collection-id')
@@ -548,6 +547,5 @@ class ajaxAction extends cqAjaxAction
 
     return $template;
   }
-
 
 }
