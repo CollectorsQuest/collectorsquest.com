@@ -395,11 +395,43 @@ class mycqComponents extends cqFrontendComponents
     return sfView::SUCCESS;
   }
 
+  public function executeCollectionMultimedia()
+  {
+    $q = CollectorCollectionQuery::create()
+      ->filterById((integer) $this->getRequestParameter('collection_id'));
+    $this->collection = $this->getVar('collection') ?: $q->findOne();
+
+    // Stop right here if the CollectorCollection is not accessible
+    if (!$this->getUser()->isOwnerOf($this->collection))
+    {
+      return sfView::NONE;
+    }
+
+    if ($this->image = $this->collection->getThumbnail())
+    {
+      $this->aviary_hmac_message = $this->getUser()->hmacSignMessage(
+        json_encode(array('multimedia-id' => $this->image->getId())),
+        cqConfig::getCredentials('aviary', 'hmac_secret')
+      );
+    }
+
+    return sfView::SUCCESS;
+  }
+
   public function executeCollectibleMultimedia()
   {
-    /** @var $collectible Collectible */
-    $collectible = $this->getVar('collectible');
+    $q = CollectibleQuery::create()
+      ->filterById((integer) $this->getRequestParameter('collectible_id'));
+    $this->collectible = $this->getVar('collectible') ?: $q->findOne();
 
-    $this->multimedia = $collectible->getMultimedia(0, 'image', false);
+    // Stop right here if the Collectible is not accessible
+    if (!$this->getUser()->isOwnerOf($this->collectible))
+    {
+      return sfView::NONE;
+    }
+
+    $this->multimedia = $this->collectible->getMultimedia(0, 'image', false);
+
+    return sfView::SUCCESS;
   }
 }

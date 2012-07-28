@@ -1,22 +1,13 @@
 <?php
-
-/** @var $collection CollectorCollection */
-$collection = isset($object) ? $object : $collection;
-
-/** @var $image iceModelMultimedia */
-$image = $collection->getThumbnail();
-
-if ($image)
-{
-  $hmac_message = $sf_user->hmacSignMessage(
-    json_encode(array('multimedia-id' => $image->getId())),
-    cqConfig::getCredentials('aviary', 'hmac_secret')
-  );
-}
+/**
+ * @var $collection CollectorCollection
+ * @var $image iceModelMultimedia
+ * @var $aviary_hmac_message string
+ */
 ?>
 
 <div class="drop-zone-large thumbnail collection">
-  <?php if ($image): ?>
+  <?php if (isset($image) && $image instanceof iceModelMultimedia): ?>
     <?= image_tag_multimedia($image, '190x190'); ?>
     <span class="icon-plus-holder h-center dn spacer-top-25">
       <i class="icon icon-download-alt icon-white"></i>
@@ -24,7 +15,7 @@ if ($image)
     <i class="icon icon-remove-sign" data-multimedia-id="<?= $image->getId(); ?>"></i>
     <span class="multimedia-edit holder-icon-edit"
           data-original-image-url="<?= src_tag_multimedia($image, 'original') ?>"
-          data-post-data='<?= $hmac_message; ?>'>
+          data-post-data='<?= $aviary_hmac_message; ?>'>
 
       <i class="icon icon-camera"></i><br/>
       Edit Photo
@@ -55,11 +46,14 @@ $(document).ready(function()
         type: 'post', data: { multimedia_id: $icon.data('multimedia-id') },
         success: function()
         {
-          window.location.reload();
+          $('#main-image').load(
+            '<?= url_for('@ajax_mycq?section=component&page=collectionMultimedia&collection_id='. $collection->getId()); ?>',
+            function () { $icon.parent('div.ui-droppable').hideLoading(); }
+          );
         },
         error: function()
         {
-          $(this).hideLoading();
+          $icon.parent('div.ui-droppable').hideLoading();
           $icon.show();
         }
       });
@@ -87,13 +81,15 @@ $(document).ready(function()
     },
     drop: function(event, ui)
     {
-      $(this).removeClass('ui-state-highlight');
-      $(this).find('.holder-icon-edit i')
+      var $this = $(this);
+
+      $this.removeClass('ui-state-highlight');
+      $this.find('.holder-icon-edit i')
         .removeClass('icon-download-alt')
         .addClass('icon-plus');
       ui.draggable.draggable('option', 'revert', false);
 
-      $(this).showLoading();
+      $this.showLoading();
 
       $.ajax({
         url: '<?= url_for('@ajax_mycq?section=collection&page=setThumbnail'); ?>',
@@ -104,11 +100,14 @@ $(document).ready(function()
         },
         success: function()
         {
-          window.location.reload();
+          $('#main-image').load(
+            '<?= url_for('@ajax_mycq?section=component&page=collectionMultimedia&collection_id='. $collection->getId()); ?>',
+            function () { $this.hideLoading(); }
+          );
         },
         error: function()
         {
-          // error
+          $this.hideLoading();
         }
       });
     }

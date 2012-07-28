@@ -62,7 +62,7 @@ slot('mycq_dropbox_info_message', 'Drag a photo into the Collection thumbnail be
           <?= $form->renderAllErrors(); ?>
 
           <div class="row-fluid">
-            <div class="span3">
+            <div id="main-image" class="span3">
               <?php
                 include_partial(
                   'mycq/collectionMultimedia',

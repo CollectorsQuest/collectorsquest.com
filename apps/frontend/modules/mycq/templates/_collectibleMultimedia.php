@@ -135,7 +135,10 @@ $(document).ready(function()
         dataType: 'json',
         success: function()
         {
-          window.location.reload();
+          $('#main-image-set').load(
+            '<?= url_for('@ajax_mycq?section=component&page=collectibleMultimedia&collectible_id='. $collectible->getId()); ?>',
+            function () { $this.hideLoading(); }
+          );
         },
         error: function(data, response)
         {
@@ -148,6 +151,7 @@ $(document).ready(function()
   $('#main-image-set .icon-remove-sign').click(MISC.modalConfirmDestructive(
     'Delete image', 'Are you sure you want to delete this image?', function()
     {
+      var $this = $(this);
       var $icon = $(this);
 
       $icon.hide();
@@ -158,11 +162,14 @@ $(document).ready(function()
         type: 'post', data: { multimedia_id: $icon.data('multimedia-id') },
         success: function()
         {
-          window.location.reload();
+          $('#main-image-set').load(
+            '<?= url_for('@ajax_mycq?section=component&page=collectibleMultimedia&collectible_id='. $collectible->getId()); ?>',
+            function () { $this.hideLoading(); }
+          );
         },
         error: function()
         {
-          $(this).hideLoading();
+          $this.hideLoading();
           $icon.show();
         }
       });
