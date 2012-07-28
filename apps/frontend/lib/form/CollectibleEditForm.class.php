@@ -157,6 +157,13 @@ class CollectibleEditForm extends BaseCollectibleForm
     return $object;
   }
 
+  protected function doSave($con = null)
+  {
+    parent::doSave($con);
+
+    $this->saveCollectionCollectibleList($con);
+  }
+
   public function updateObject($values = null)
   {
     if (null === $values)
@@ -249,4 +256,19 @@ class CollectibleEditForm extends BaseCollectibleForm
     }
   }
 
+  public function updateDefaultsFromObject()
+  {
+    parent::updateDefaultsFromObject();
+
+    if (isset($this->widgetSchema['collection_collectible_list']))
+    {
+      $values = array();
+      foreach ($this->object->getCollectionCollectibles() as $obj)
+      {
+        $values[] = $obj->getCollectionId();
+      }
+
+      $this->setDefault('collection_collectible_list', $values);
+    }
+  }
 }
