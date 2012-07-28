@@ -329,6 +329,13 @@ class mycqActions extends cqFrontendActions
     $collection_collectible = $q->findOneOrCreate();
     $collection_collectible->save();
 
+    if (1 == $collection->countCollectibles() && !$collection->hasThumbnail())
+    {
+      $collection->setPrimaryImage($collectible->getPrimaryImage()
+        ->getAbsolutePath('original'));
+      $collection->save();
+    }
+
     $this->redirect('mycq_collectible_by_slug', $collection_collectible);
   }
 
