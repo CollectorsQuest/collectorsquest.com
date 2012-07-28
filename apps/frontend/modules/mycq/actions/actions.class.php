@@ -329,6 +329,7 @@ class mycqActions extends cqFrontendActions
     $collection_collectible = $q->findOneOrCreate();
     $collection_collectible->save();
 
+    // auto-set collection thumbnail if none set yet
     if (1 == $collection->countCollectibles() && !$collection->hasThumbnail())
     {
       $collection->setPrimaryImage($collectible->getPrimaryImage()
@@ -544,6 +545,17 @@ class mycqActions extends cqFrontendActions
         {
           $form->save();
           $this->getUser()->setFlash('success', $message, true);
+
+          // auto-set collection thumbnail if none set yet
+          $values = $form->getValues();
+          if ($values['thumbnail'] instanceof sfValidatedFile)
+          {
+            if (1 == $collection->countCollectibles() && !$collection->hasThumbnail())
+            {
+              $collection->setPrimaryImage($values['thumbnail']);
+              $collection->save();
+            }
+          }
 
           // If we save the form the request has to be redirected
           $this->redirect('mycq_collectible_by_slug', $form->getObject());

@@ -245,6 +245,15 @@ class ajaxAction extends cqAjaxAction
       $recipient->setUpdatedAt(time());
       $recipient->save();
 
+      // auto-set collection thumbnail if none set yet
+      $collection = $recipient->getCollectorCollection();
+      if (1 == $collection->countCollectibles() && !$collection->hasThumbnail())
+      {
+        $collection->setPrimaryImage($recipient->getPrimaryImage()
+          ->getAbsolutePath('original'));
+        $collection->save();
+      }
+
       // Archive the $donor, not needed anymore
       $donor->delete();
 
