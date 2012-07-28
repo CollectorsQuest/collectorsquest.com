@@ -499,7 +499,8 @@ class ajaxAction extends cqAjaxAction
     $collection = CollectorCollectionPeer::retrieveByPK(
       $request->getParameter('collection-id')
     );
-    $this->forward404Unless($collection);
+    $this->forward404Unless($collection &&
+      $this->getUser()->getCollector()->isOwnerOf($collection));
 
     $form = new CollectorCollectionEditForm($collection);
     $form->useFields(array(
