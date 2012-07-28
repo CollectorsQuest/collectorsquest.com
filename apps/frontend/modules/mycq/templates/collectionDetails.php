@@ -64,8 +64,8 @@ slot('mycq_dropbox_info_message', 'Drag a photo into the Collection thumbnail be
           <div class="row-fluid">
             <div id="main-image" class="span3">
               <?php
-                include_partial(
-                  'mycq/collectionMultimedia',
+                include_component(
+                  'mycq', 'collectionMultimedia',
                   array('collection' => $collection)
                 );
               ?>
