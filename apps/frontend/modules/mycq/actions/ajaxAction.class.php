@@ -516,9 +516,7 @@ class ajaxAction extends cqAjaxAction
       {
         $values = $form->getValues();
 
-        $collection->setName($values['name']);
         $collection->setDescription($values['description'], 'html');
-
         if ($values['thumbnail'] instanceof sfValidatedFile)
         {
           $collection->setThumbnail($values['thumbnail']);

@@ -5,7 +5,7 @@
  */
 ?>
 
-<h1>Set Description and Upload Thumbanil</h1>
+<h1>Create a New Collection - Step 2</h1>
 
 <form action="<?= url_for('ajax_mycq', array('section' => 'collection', 'page' => 'setDetailsAndThumbnail', 'collection-id' => $collection->getId())); ?>"
       method="post" id="blah" class="ajax form-horizontal form-modal">
@@ -15,12 +15,16 @@
 
   <div class="form-actions">
     <button type="submit" class="btn btn-primary spacer-right-15">
-      Save changes
+      Save
     </button>
-    <button type="reset" class="btn"
-            onClick="$(this).parents('.modal').find('.modal-body').dialog2('close')">
+    <a href="#"
+       onClick="window.location = '<?= url_for('mycq_collection_by_section', array(
+                'id' => $collection->getId(),
+                'section' => 'collectibles',
+            )); ?>'"
+      class="btn">
       Skip step
-    </button>
+    </a>
   </div>
 </form>
 
@@ -34,7 +38,8 @@ $(document).ready(function()
       "load": function() {
         $('#collection_description')
           .removeClass('js-hide')
-          .removeClass('js-invisible');
+          .removeClass('js-invisible')
+          .removeAttr('required');
       },
       "focus": function() {
         $(editor.composer.iframe).autoResize();
