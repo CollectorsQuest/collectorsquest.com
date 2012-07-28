@@ -559,8 +559,6 @@ class mycqActions extends cqFrontendActions
     $c->setLimit(10);
     $this->collectibles = $collection->getCollectionCollectibles($c);
 
-    $this->multimedia = $collectible->getMultimedia(0, 'image', false);
-
     $this->collection = $collection;
     $this->collectible = $collectible;
 

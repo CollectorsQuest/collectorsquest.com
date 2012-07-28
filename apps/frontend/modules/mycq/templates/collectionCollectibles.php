@@ -20,7 +20,12 @@ slot('mycq_dropbox_info_message', 'Drag a photo into "ADD NEW ITEM" below');
   );
 ?>
 
-<?php include_partial('mycq/collection_gray_bar', array('collection' => $collection)); ?>
+<?php
+  include_partial(
+    'mycq/partials/collection_gray_bar',
+    array('collection' => $collection)
+  );
+?>
 
 <div id="mycq-tabs">
   <ul class="nav nav-tabs">

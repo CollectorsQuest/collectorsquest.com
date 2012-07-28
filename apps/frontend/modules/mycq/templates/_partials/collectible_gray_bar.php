@@ -17,7 +17,7 @@
             );
           }
 
-          echo $link
+          echo $link;
         ?>
       </li>
       <li>

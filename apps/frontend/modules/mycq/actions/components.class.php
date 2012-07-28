@@ -458,4 +458,11 @@ class mycqComponents extends cqFrontendComponents
     return sfView::SUCCESS;
   }
 
+  public function executeCollectibleMultimedia()
+  {
+    /** @var $collectible Collectible */
+    $collectible = $this->getVar('collectible');
+
+    $this->multimedia = $collectible->getMultimedia(0, 'image', false);
+  }
 }

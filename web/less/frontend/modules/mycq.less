@@ -1060,6 +1060,23 @@ textarea.input-xlarge {
 				line-height: 55px;
 			}
 		}
+
+    &:hover .icon-remove-sign {
+      display: block;
+    }
+
+    .icon-remove-sign {
+      position: absolute;
+      left: 94%;
+      top: -10px;
+      display: none;
+      .square(26px);
+      margin-top: 0;
+      font-size: 30px;
+      color: transparent;
+      background: url("@{iconUrl}/fancy_close.png") no-repeat center top;
+      cursor: pointer;
+    }
 	}
 }
 

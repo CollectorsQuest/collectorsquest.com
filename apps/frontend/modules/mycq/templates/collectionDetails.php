@@ -20,7 +20,12 @@ slot('mycq_dropbox_info_message', 'Drag a photo into the Collection thumbnail be
   );
 ?>
 
-<?php include_partial('mycq/collection_gray_bar', array('collection' => $collection)); ?>
+<?php
+  include_partial(
+    'mycq/partials/collection_gray_bar',
+    array('collection' => $collection)
+  );
+?>
 
 <div id="mycq-tabs">
   <ul class="nav nav-tabs">
@@ -58,30 +63,12 @@ slot('mycq_dropbox_info_message', 'Drag a photo into the Collection thumbnail be
 
           <div class="row-fluid">
             <div class="span3">
-              <div class="drop-zone-large thumbnail collection">
-                <?php if ($collection->hasThumbnail()): ?>
-                <?= image_tag_collection($collection, '190x190'); ?>
-                <span class="icon-plus-holder h-center dn spacer-top-25">
-                  <i class="icon icon-download-alt icon-white"></i>
-                </span>
-                <span class="multimedia-edit holder-icon-edit"
-                  data-original-image-url="<?= src_tag_multimedia($collection->getThumbnail(), 'original') ?>"
-                  data-post-data='<?= $sf_user->hmacSignMessage(json_encode(array(
-                    'multimedia-id' => $collection->getThumbnail()->getId(),
-                  )), cqConfig::getCredentials('aviary', 'hmac_secret')); ?>'>
-
-                  <i class="icon icon-camera"></i><br/>
-                  Edit Photo
-                </span>
-                <?php else: ?>
-                <a class="icon-plus-holder h-center" href="#">
-                  <i class="icon icon-plus icon-white"></i>
-                </a>
-                <div class="info-text">
-                  Drag and drop from <br>"Uploaded Photos"
-                </div>
-                <?php endif; ?>
-              </div>
+              <?php
+                include_partial(
+                  'mycq/collectionMultimedia',
+                  array('collection' => $collection)
+                );
+              ?>
             </div>
 
             <div class="span9">
@@ -108,7 +95,7 @@ slot('mycq_dropbox_info_message', 'Drag a photo into the Collection thumbnail be
     </div> <!-- .tab-pane.active -->
     <div id="tab4" class="tab-pane">
       <div class="tab-content-inner spacer">
-
+        &nbsp;
       </div><!-- .tab-content-inner -->
     </div><!-- #tab4.tab-pane -->
   </div><!-- .tab-content -->
@@ -129,57 +116,6 @@ $(document).ready(function()
       "focus": function() {
         $(editor.composer.iframe).autoResize();
       }
-    }
-  });
-
-  $("#form-collection .drop-zone-large").droppable(
-  {
-    over: function(event, ui)
-    {
-      $(this).addClass('ui-state-highlight');
-      $(this).find('.icon-plus-holder i')
-        .removeClass('icon-plus')
-        .addClass('icon-download-alt');
-      $(this).find('img').hide();
-      $(this).find('.holder-icon-edit').hide();
-      $(this).find('span.icon-plus-holder').show();
-    },
-    out: function(event, ui)
-    {
-      $(this).removeClass('ui-state-highlight');
-      $(this).find('.icon-plus-holder i')
-        .removeClass('icon-download-alt')
-        .addClass('icon-plus');
-      $(this).find('span.icon-plus-holder').hide();
-      $(this).find('.holder-icon-edit').show();
-      $(this).find('img').show();
-    },
-    drop: function(event, ui)
-    {
-      $(this).removeClass('ui-state-highlight');
-      $(this).find('.holder-icon-edit i')
-        .removeClass('icon-download-alt')
-        .addClass('icon-plus');
-      ui.draggable.draggable('option', 'revert', false);
-
-      $(this).showLoading();
-
-      $.ajax({
-        url: '<?= url_for('@ajax_mycq?section=collection&page=setThumbnail'); ?>',
-        type: 'GET',
-        data: {
-          collectible_id: ui.draggable.data('collectible-id'),
-          collection_id: '<?= $collection->getId() ?>'
-        },
-        success: function()
-        {
-          window.location.reload();
-        },
-        error: function()
-        {
-          // error
-        }
-      });
     }
   });
 });
