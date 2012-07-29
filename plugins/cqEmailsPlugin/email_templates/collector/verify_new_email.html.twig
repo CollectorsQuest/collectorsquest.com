@@ -5,7 +5,9 @@
     Hello again, {{ collector.displayName }}!
   </p>
   <p>
-    Your email has been changed to <strong>{{ collector_email.email }}</strong> and needs verification
-    {{ link_to('here', 'collector_verify_email', { hash: collector_email.hash }, { absolute: true}) }}.
+    Your email has been changed to <strong>{{ collector_email.email }}</strong> and needs to be verified.
+    Please click or copy and paste the link below:<br><br>
+
+    {{ url_for('collector_verify_email', { hash: collector_email.hash }, { absolute: true}) }}.
   </p>
 {% endblock %}

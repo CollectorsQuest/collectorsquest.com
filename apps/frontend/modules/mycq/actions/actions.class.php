@@ -121,15 +121,15 @@ class mycqActions extends cqFrontendActions
         {
           $cqEmail = new cqEmail($this->getMailer());
           $cqEmail->send('Collector/verify_new_email', array(
-              'to' => $collector_email,
+              'to' => $collector_email->getEmail(),
               'params' => array(
-                'collector' => $this->collector,
+                'collector' => $collector_email->getCollector(),
                 'collector_email' => $collector_email,
               )
           ));
 
           $this->getUser()->setFlash('success',
-            'A verification email was sent to '.$this->collector->getEmail()
+            'A verification email was sent to '. $collector_email->getEmail()
           );
 
           $this->redirect('mycq_profile_account_info');
