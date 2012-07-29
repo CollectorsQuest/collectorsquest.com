@@ -230,7 +230,15 @@ class mycqComponents extends cqFrontendComponents
   public function executeCreateCollectible()
   {
     $form = new CollectibleCreateForm();
-    $form->setDefault('collection_id', $this->getRequestParameter('collection_id'));
+
+    $q = CollectorCollectionQuery::create()
+      ->filterById($this->getRequestParameter('collection_id'));
+
+    if ($collection = $q->findOne())
+    {
+      $form->setDefault('collection_id', $collection->getId());
+      $form->setDefault('tags', $collection->getTags());
+    }
 
     if ($collectible_id = $this->getRequestParameter('collectible_id'))
     {
@@ -266,6 +274,7 @@ class mycqComponents extends cqFrontendComponents
 
         /** @var $collectible Collectible */
         $collectible = $form->updateObject($values);
+        $collectible->setDescription($values['description'], 'html');
         $collectible->setTags($values['tags']);
         $collectible->save();
 

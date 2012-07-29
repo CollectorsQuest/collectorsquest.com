@@ -7,11 +7,18 @@ class CollectibleCreateForm extends CollectibleForm
     $this->setWidgets(array(
       'collection_id'  => new sfWidgetFormInputHidden(),
       'name'  => new sfWidgetFormInputText(array(
-        'label' => 'Collectible Name',
+        'label' => 'Name',
       ), array(
         'required' => 'required',
         'class' => 'input-xlarge'
       )),
+      'description' => new sfWidgetFormTextarea(
+        array(),
+        array(
+          'required' => 'required',
+          'class' => 'input-xlarge js-invisible'
+        )
+      ),
       'tags'  => new cqWidgetFormInputTags(array(
         'label' => 'Tags',
         'autocompleteURL' => '@ajax_typeahead?section=tags&page=edit',
@@ -26,7 +33,8 @@ class CollectibleCreateForm extends CollectibleForm
       'collection_id'  => new sfValidatorPropelChoice(array(
         'model' => 'CollectorCollection', 'column' => 'id', 'required' => true
       )),
-      'name'  => new sfValidatorString(),
+      'name'  => new sfValidatorString(array('required' => true)),
+      'description'  => new sfValidatorString(array('required' => true)),
       'thumbnail'  => new sfValidatorInteger(array('required' => false))
     ));
 

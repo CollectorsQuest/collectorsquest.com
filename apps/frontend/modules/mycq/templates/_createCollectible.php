@@ -26,7 +26,7 @@
 
   <div class="form-actions">
     <button type="submit" class="btn btn-primary spacer-right-15">
-      Next Step
+      Add Item
     </button>
     <button type="reset" class="btn"
             onClick="$(this).parents('.modal').find('.modal-body').dialog2('close')">
@@ -45,6 +45,22 @@
       autocompleteOptions: { minLength: 3 },
       // return, comma, semicolon
       breakKeyCodes: [ 13, 44, 59 ]
+    });
+
+    $('#collectible_description').wysihtml5({
+      "font-styles": false, "image": false, "link": false,
+      events:
+      {
+        "load": function() {
+          $('#collectible_description')
+            .removeClass('js-hide')
+            .removeClass('js-invisible')
+            .removeAttr('required');
+        },
+        "focus": function() {
+          $(editor.composer.iframe).autoResize();
+        }
+      }
     });
 
     <?php

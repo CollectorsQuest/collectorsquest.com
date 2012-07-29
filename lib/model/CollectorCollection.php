@@ -54,7 +54,7 @@ class CollectorCollection extends BaseCollectorCollection
    * @param  string  $v     The description text itself
    * @param  string  $type  Can be 'html' or 'markdown'
    */
-  public function setDescription($v, $type = 'markdown')
+  public function setDescription($v, $type = 'html')
   {
     if ('html' == $type)
     {
