@@ -23,23 +23,36 @@
 
   <?php foreach ($pager->getResults() as $i => $collectible): ?>
   <div class="span3 collectible_grid_view_square link">
-    <?php
+    <div class="collectible-view-slot">
+      <?php
       echo link_to(
         image_tag_collectible(
           $collectible, '150x150', array('width' => 140, 'height' => 140)
         ),
         'mycq_collectible_by_slug', $collectible
       );
-    ?>
-    <p>
-      <?php
+      ?>
+      <p>
+        <?php
         echo link_to(
           cqStatic::reduceText($collectible->getName(), 30), 'mycq_collectible_by_slug',
           $collectible, array('class' => 'target')
         );
-      ?>
-    </p>
+        ?>
+      </p>
+    </div>
+    <div class="hidden">
+      <div class="add-new-zone ui-droppable ui-state-hover ui-state-highlight" id="mycq-create-collectible">
+        <div class="btn-upload-collectible">
+          <i class="icon-plus icon-white"></i>
+        </div>
+        <div class="btn-upload-collectible-txt">
+          ADD NEW ITEM
+        </div>
+      </div>
+    </div>
   </div>
+
 
   <?php
     if (
@@ -116,6 +129,23 @@ $(document).ready(function()
   $(document).controls();
 
   var collection_id = <?= $collection->getId(); ?>;
+
+  $("#mycq-tabs .collectible_grid_view_square").droppable(
+    {
+      addClasses: false,
+      over: function(event, ui)
+      {
+        $(this).addClass('dashed');
+      },
+      out: function(event, ui)
+      {
+        $(this).removeClass('dashed');
+      },
+      drop: function(event, ui)
+      {
+        $(this).removeClass('dashed');
+      }
+    });
 
   $('#mycq-tabs .mycq-collectibles').droppable(
   {

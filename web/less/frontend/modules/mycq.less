@@ -230,6 +230,16 @@
 	overflow: visible;
 }
 
+#mycq-tabs .collectible_grid_view_square.dashed {
+	.collectible-view-slot {
+		display: none;
+	}
+	.hidden {
+		display: block !important;
+		visibility: visible;
+	}
+}
+
 .nav-tabs {
 
   & > li > a {
@@ -1988,4 +1998,8 @@ textarea.input-xlarge {
 #collections .collectible_grid_view_square.ui-state-hover {
 	border-color: #C1B6AD;
 	border-style: dashed;
+}
+
+.collectible-view-slot {
+	border: none;
 }
