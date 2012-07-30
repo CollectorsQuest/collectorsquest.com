@@ -421,7 +421,13 @@ class mycqActions extends cqFrontendActions
 
           try
           {
-            switch ($request->getParameter('scope', 'collections'))
+            /**
+             * If the Collectible has Multimedia associated with it, let's just delete
+             * the CollectionCollectible references so that it can return to the Dropbox
+             */
+            $default = $collectible->getMultimediaCount() > 0 ? 'collections' : 'collectible';
+
+            switch ($request->getParameter('scope', $default))
             {
               case 'collectible':
                 // Delete the Collectible
