@@ -7,7 +7,7 @@
  * @var $for_for_sale CollectibleForSaleEditForm
  */
 
-slot('mycq_dropbox_info_message', 'Drag a photo into "Alternate View" below');
+slot('mycq_dropbox_info_message', 'To add another view of this item, drag an image into the "Alternate View" boxes below your main image.');
 ?>
 
 <form action="<?= url_for('mycq_collectible_by_slug', $collectible); ?>"
