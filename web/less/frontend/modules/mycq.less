@@ -473,6 +473,33 @@ a.buy-credits-button {
 	}
 }
 
+#body-mycq-collection .drop-zone-large {
+	.drop-zone;
+	.size(190px, 190px);
+	margin-left: 20px;
+	padding: 0;
+	background-color: @lightBlue;
+	.blue-link {
+		text-align: center;
+	}
+	.icon-plus-holder {
+		margin-top: 10px;
+		font-size: 100px;
+		line-height: 100px;
+	}
+	.blue-link {
+		margin-top: 10px;
+	}
+	&.over .icon-plus-holder {
+		line-height: 80px;
+		margin-top: 20px;
+	}
+	&.over .info-text {
+		font-size: 22px;
+	}
+}
+
+
 .create-collection-text {
 	display: block;
 	margin-top: 6px;
@@ -985,26 +1012,6 @@ a.buy-credits-button {
 	}
 }
 
-
-#body-mycq-collection .drop-zone-large {
-	.drop-zone;
-	.size(190px, 190px);
-	margin-left: 20px;
-	padding: 0;
-	background-color: @lightBlue;
-	.blue-link {
-		text-align: center;
-	}
-	.icon-plus-holder {
-		margin-top: 10px;
-		font-size: 100px;
-		line-height: 100px;
-	}
-	.blue-link {
-		margin-top: 10px;
-	}
-}
-
 input.input-xlarge {
 	width: 400px;
 }
@@ -1152,7 +1159,7 @@ textarea.input-xlarge {
 			.alt-view-img {
 				position: relative;
 			}
-		
+
 			.greed-rollover {
 				position: absolute;
 				z-index: 2;
@@ -1252,21 +1259,31 @@ textarea.input-xlarge {
 	}
 }
 
-#main-image-set .main-image-set-container {
+//Collectible Edit
+#main-image-set .main-image-set-container{
 	.drop-zone-large.over .hidden	{
 		display: block !important;
 		visibility: visible;
 	}
 	.drop-zone.over,
-	.drop-zone-large.empty.over
-	{
-		& .alt-view-slot {display: none;}
-		& .alt-view-img  {display: none;}
-		& .hidden {
+	.drop-zone-large.empty.over {
+		.alt-view-slot {display: none;}
+		.alt-view-img  {display: none;}
+		.hidden {
 			display: block !important;
 			visibility: visible;
 		}
 	}
+}
+
+//Collection Details
+#main-image .drop-zone-large.over {
+	.hidden	{
+		display: block !important;
+		visibility: visible;
+	}
+	.alt-view-slot {display: none;}
+	.alt-view-img  {display: none;}
 }
 
 .ui-droppable {
@@ -1506,7 +1523,8 @@ textarea.input-xlarge {
 	a {
 		color: #039c00;
 	}
-	.info-text, .icon-download-alt, .icon-camera, .btn-upload-collectible-txt {
+	.info-text, .icon-download-alt, .icon-camera,
+	.btn-upload-collectible-txt, .icon-plus-holder {
 		color: #039c00 !important;
 	}
 	.holder-icon-edit {
