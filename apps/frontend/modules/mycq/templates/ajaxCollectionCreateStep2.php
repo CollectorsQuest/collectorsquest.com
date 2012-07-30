@@ -15,7 +15,7 @@
 
   <div class="form-actions">
     <button type="submit" class="btn btn-primary spacer-right-15">
-      Save
+      Create Collection
     </button>
     <a href="#"
        onClick="window.location = '<?= url_for('mycq_collection_by_section', array(
