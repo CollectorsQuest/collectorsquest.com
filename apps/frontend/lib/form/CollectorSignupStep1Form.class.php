@@ -84,9 +84,10 @@ class CollectorSignupStep1Form extends BaseForm
           'required'   => true,
 		)),
       'email'          => new sfValidatorEmail(
-		array(
-          'required'   => true
-		), array(
+        array(
+          'required'   => true,
+          'trim'       => true,
+        ), array(
           'invalid'    => 'This email address is invalid.',
 		)),
       'newsletter'     => new sfValidatorBoolean(array('required' => false))
