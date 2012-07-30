@@ -53,7 +53,7 @@ mycq_collection_by_section:
   param: { module: mycq, action: collection }
   requirements: { id: '\d+', sf_method: [get, post] }
 
-mycq_collection_by_id:
+mycq_collection_by_slug:
   url:  /mycq/collection/:id/:slug
   class: sfPropelRoute
   options: { model: CollectorCollection, type: object, method: getObjectForRoute }

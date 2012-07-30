@@ -89,7 +89,7 @@ slot('mycq_dropbox_info_message', 'To add another view of this item, drag an ima
       <div class="span12">
         <div class="form-actions text-center spacer-inner-15">
           <button type="submit" formnovalidate class="btn btn-primary">Save Changes</button>
-          <a href="<?= url_for('mycq_collectible_by_slug', $collectible) ?>" class="btn spacer-left">
+          <a href="<?= url_for('mycq_collection_by_slug', $collection) ?>" class="btn spacer-left">
             Cancel
           </a>
         </div>
