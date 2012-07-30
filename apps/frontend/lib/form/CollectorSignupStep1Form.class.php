@@ -99,10 +99,13 @@ class CollectorSignupStep1Form extends BaseForm
       array('invalid' => 'This username is already taken, please choose another one!')
     ));
 
-    $this->mergePostValidator(new sfValidatorPropelUnique(
-      array('model' => 'Collector', 'column' => array('email')),
-      array('invalid' => 'This email already has an account, did you forget your password?')
-    ));
+    if (isset($_POST['signup_step1']['email']) && $_POST['signup_step1']['email'] != '')
+    {
+	    $this->mergePostValidator(new sfValidatorPropelUnique(
+	      array('model' => 'Collector', 'column' => array('email')),
+	      array('invalid' => 'This email already has an account, did you forget your password?')
+	    ));
+    }
 
     $this->mergePostValidator(new sfValidatorSchemaCompare(
       'password', sfValidatorSchemaCompare::EQUAL, 'password_again',
