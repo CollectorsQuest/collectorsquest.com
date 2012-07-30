@@ -8,11 +8,11 @@
 <div class="span3 collectible_grid_view_square link">
   <div id="mycq-create-collectible" data-collection-id="<?= $collection->getId() ?>" class="add-new-zone">
     <a href="<?= url_for('@ajax_mycq?section=component&page=createCollectible&collection_id='. $collection->getId()); ?>"
-       id="collectible-create-icon" class="open-dialog btn-upload-collectible">
+       id="collectible-create-icon" class="open-dialog btn-upload-collectible" onclick="return false;">
       <i class="icon-plus icon-white"></i>
     </a>
     <a href="<?= url_for('@ajax_mycq?section=component&page=createCollectible&collection_id='. $collection->getId()); ?>"
-       id="collectible-create-link" class="open-dialog btn-upload-collectible-txt">
+       id="collectible-create-link" class="open-dialog btn-upload-collectible-txt" onclick="return false;">
       ADD NEW ITEM
     </a>
   </div>

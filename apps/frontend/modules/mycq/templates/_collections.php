@@ -7,7 +7,7 @@
 <?php slot('mycq_create_collection'); ?>
 <a href="<?= url_for('@ajax_mycq?section=collection&page=createStep1'); ?>"
    id="collection-create-html" class="span5 add-new-zone open-dialog"
-   title="Create a new collection by clicking here">
+   title="Create a new collection by clicking here" onclick="return false;">
       <span id="collection-create-icon" class="btn-upload-collectible spacer-top-40">
         <i class="icon-plus icon-white"></i>
       </span>

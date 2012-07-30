@@ -27,7 +27,8 @@
       <ul class="nav nav-pills spacer-bottom-reset">
         <li>
           <a href="<?= url_for('@ajax_mycq?section=collection&page=createStep1'); ?>"
-             class="open-dialog" title="Create a new collection by clicking here">
+             class="open-dialog" onclick="return false;"
+             title="Create a new collection by clicking here">
             <i class="icon-plus"></i>
             Create Collection
           </a>
