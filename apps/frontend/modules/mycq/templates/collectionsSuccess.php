@@ -32,12 +32,14 @@
             Create Collection
           </a>
         </li>
+        <!--
         <li>
           <a href="<?= url_for('collections_by_collector', $collector) ?>">
             <i class="icon-globe"></i>
             Public View
           </a>
         </li>
+        //-->
       </ul>
     </div>
     <div class="span6">
