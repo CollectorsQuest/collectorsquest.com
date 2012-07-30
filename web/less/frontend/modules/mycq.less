@@ -1149,6 +1149,31 @@ textarea.input-xlarge {
 				text-align: center;
 				color: @blueDark;
 			}
+			.alt-view-img {
+				position: relative;
+			}
+		
+			.greed-rollover {
+				position: absolute;
+				z-index: 2;
+				top: 15%;
+				left: 15%;
+
+				.icon-plus {
+					position: relative;
+					top: 10%;
+					margin: 0 auto;
+					padding-left: 0;
+
+				}
+				.info-text {
+					position: relative;
+					top: 15%;
+					left: 0;
+					padding-left: 0;
+					margin-top: 0!important;
+				}
+			}
 			&.over .info-text {
 				margin-top: 25px;
 				font-size: 22px;
@@ -1228,8 +1253,12 @@ textarea.input-xlarge {
 }
 
 #main-image-set .main-image-set-container {
+	.drop-zone-large.over .hidden	{
+		display: block !important;
+		visibility: visible;
+	}
 	.drop-zone.over,
-	.drop-zone-large.over
+	.drop-zone-large.empty.over
 	{
 		& .alt-view-slot {display: none;}
 		& .alt-view-img  {display: none;}

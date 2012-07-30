@@ -12,6 +12,12 @@
       <?php if ($image = $collectible->getPrimaryImage()): ?>
       <div class="thumbnail drop-zone-large" data-is-primary="1">
         <div class="alt-view-img">
+          <div class="hidden greed-rollover">
+            <i class="icon icon-plus spacer-top"></i>
+            <span class="info-text spacer-top-5">
+              ADD ITEM
+            </span>
+          </div>
           <?php
             echo image_tag_multimedia(
               $image, '300x0',
@@ -34,12 +40,6 @@
             <i class="icon icon-camera"></i><br/>
             Edit Photo
           </span>
-        </div>
-        <div class="hidden">
-          <i class="icon icon-plus spacer-top"></i>
-            <span class="info-text spacer-top-5">
-              ADD ITEM
-            </span>
         </div>
       </div>
       <?php else: ?>
