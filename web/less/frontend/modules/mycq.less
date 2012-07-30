@@ -1138,8 +1138,7 @@ textarea.input-xlarge {
 				margin-top: 35px;
 			}
 
-			.info-text
-			{
+			.info-text {
 				position: absolute;
 				display: block;
 				top: 160px;
@@ -1149,6 +1148,11 @@ textarea.input-xlarge {
 				line-height: 22px;
 				text-align: center;
 				color: @blueDark;
+			}
+			&.over .info-text {
+				margin-top: 25px;
+				font-size: 22px;
+				line-height: 22px;
 			}
 		}
 
@@ -1219,6 +1223,19 @@ textarea.input-xlarge {
 			position: absolute;
 			top: 5%;
 			left: 18%;
+		}
+	}
+}
+
+#main-image-set .main-image-set-container {
+	.drop-zone.over,
+	.drop-zone-large.over
+	{
+		& .alt-view-slot {display: none;}
+		& .alt-view-img  {display: none;}
+		& .hidden {
+			display: block !important;
+			visibility: visible;
 		}
 	}
 }

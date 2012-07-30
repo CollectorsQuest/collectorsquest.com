@@ -11,36 +11,52 @@
       <?php /** @var $image iceModelMultimedia */ ?>
       <?php if ($image = $collectible->getPrimaryImage()): ?>
       <div class="thumbnail drop-zone-large" data-is-primary="1">
-        <?php
-          echo image_tag_multimedia(
-            $image, '300x0',
-            array(
-              'width' => 294, 'id' => 'multimedia-'. $image->getId(),
-            )
-          );
-        ?>
-        <i class="icon icon-remove-sign" data-multimedia-id="<?= $image->getId(); ?>"></i>
-        <i class="icon icon-plus icon-plus-pos hide"></i>
-        <?php
-          $aviary_hmac_message = $sf_user->hmacSignMessage(
-            json_encode(array('multimedia-id' => $image->getId())),
-            cqConfig::getCredentials('aviary', 'hmac_secret')
-          );
-        ?>
-        <span class="multimedia-edit holder-icon-edit"
-              data-original-image-url="<?= src_tag_multimedia($image, 'original') ?>"
-              data-post-data='<?= $aviary_hmac_message; ?>'>
-          <i class="icon icon-camera"></i><br/>
-          Edit Photo
-        </span>
+        <div class="alt-view-img">
+          <?php
+            echo image_tag_multimedia(
+              $image, '300x0',
+              array(
+                'width' => 294, 'id' => 'multimedia-'. $image->getId(),
+              )
+            );
+          ?>
+          <i class="icon icon-remove-sign" data-multimedia-id="<?= $image->getId(); ?>"></i>
+          <i class="icon icon-plus icon-plus-pos hide"></i>
+          <?php
+            $aviary_hmac_message = $sf_user->hmacSignMessage(
+              json_encode(array('multimedia-id' => $image->getId())),
+              cqConfig::getCredentials('aviary', 'hmac_secret')
+            );
+          ?>
+          <span class="multimedia-edit holder-icon-edit"
+                data-original-image-url="<?= src_tag_multimedia($image, 'original') ?>"
+                data-post-data='<?= $aviary_hmac_message; ?>'>
+            <i class="icon icon-camera"></i><br/>
+            Edit Photo
+          </span>
+        </div>
+        <div class="hidden">
+          <i class="icon icon-plus spacer-top"></i>
+            <span class="info-text spacer-top-5">
+              ADD ITEM
+            </span>
+        </div>
       </div>
       <?php else: ?>
       <div class="thumbnail drop-zone-large empty" data-is-primary="1">
-        <i class="icon icon-plus"></i>
-        <span class="info-text">
-          Drag and drop your main image here from your <strong>"Uploaded&nbsp;Photos"</strong>
-          or use the <strong>Browse</strong> button on the right.
-        </span>
+        <div class="alt-view-slot">
+          <i class="icon icon-plus"></i>
+            <span class="info-text">
+              Drag and drop your main image here from your <strong>"Uploaded&nbsp;Photos"</strong>
+              or use the <strong>Browse</strong> button on the right.
+            </span>
+        </div>
+        <div class="hidden">
+          <i class="icon icon-plus spacer-top-15"></i>
+            <span class="info-text spacer-top-5">
+              ADD ITEM
+            </span>
+        </div>
       </div>
       <?php endif; ?>
     </li>
@@ -49,26 +65,36 @@
     <li class="span4 square-thumb <?= $has_image ? 'ui-state-full' : 'ui-state-empty'; ?>">
       <div class="thumbnail drop-zone" data-is-primary="0">
       <?php if ($has_image): ?>
-        <?= image_tag_multimedia($multimedia[$i], '150x150', array('width' => 92, 'height' => 92)); ?>
-        <i class="icon icon-remove-sign" data-multimedia-id="<?= $multimedia[$i]->getId(); ?>"></i>
-        <i class="icon icon-plus icon-plus-pos hide"></i>
-        <?php
-          $aviary_hmac_message = $sf_user->hmacSignMessage(
-            json_encode(array('multimedia-id' => $multimedia[$i]->getId())),
-            cqConfig::getCredentials('aviary', 'hmac_secret')
-          );
-        ?>
-        <span class="multimedia-edit holder-icon-edit"
-              data-original-image-url="<?= src_tag_multimedia($multimedia[$i], 'original') ?>"
-              data-post-data='<?= $aviary_hmac_message; ?>'>
-          <i class="icon icon-camera"></i>
-        </span>
+        <div class="alt-view-img">
+          <?= image_tag_multimedia($multimedia[$i], '150x150', array('width' => 92, 'height' => 92)); ?>
+          <i class="icon icon-remove-sign" data-multimedia-id="<?= $multimedia[$i]->getId(); ?>"></i>
+          <i class="icon icon-plus icon-plus-pos hide"></i>
+          <?php
+            $aviary_hmac_message = $sf_user->hmacSignMessage(
+              json_encode(array('multimedia-id' => $multimedia[$i]->getId())),
+              cqConfig::getCredentials('aviary', 'hmac_secret')
+            );
+          ?>
+          <span class="multimedia-edit holder-icon-edit"
+                data-original-image-url="<?= src_tag_multimedia($multimedia[$i], 'original') ?>"
+                data-post-data='<?= $aviary_hmac_message; ?>'>
+            <i class="icon icon-camera"></i>
+          </span>
+        </div>
       <?php else: ?>
-        <i class="icon icon-plus white-alternate-view"></i>
-        <span class="info-text">
-          Alternate<br/> View
-        </span>
+        <div class="alt-view-slot">
+          <i class="icon icon-plus white-alternate-view"></i>
+          <span class="info-text">
+            Alternate<br/> View
+          </span>
+        </div>
       <?php endif; ?>
+        <div class="hidden">
+          <i class="icon icon-plus white-alternate-view spacer-top"></i>
+            <span class="info-text spacer-top-5">
+              ADD ITEM
+            </span>
+        </div>
       </div>
     </li>
     <?php endfor; ?>
@@ -96,19 +122,21 @@ $(document).ready(function()
     {
       var $this = $(this);
       $this.addClass('ui-state-highlight');
-      $this.find('img').fadeTo('fast', 0);
-      $this.find('i.icon-plus')
-        .removeClass('icon-plus')
-        .addClass('icon-download-alt')
+      $this.addClass('over');
+      $this.find('img').fadeTo('fast', 0)
+//      $this.find('i.icon-plus')
+//        .removeClass('icon-plus')
+//        .addClass('icon-download-alt')
         .show();
     },
     out: function(event, ui)
     {
       var $this = $(this);
       $this.removeClass("ui-state-highlight");
-      $this.find('i.icon-download-alt')
-        .removeClass('icon-download-alt')
-        .addClass('icon-plus');
+      $this.removeClass('over');
+//      $this.find('i.icon-download-alt')
+//        .removeClass('icon-download-alt')
+//        .addClass('icon-plus');
       $this.find('i.hide').hide();
       $this.find('img').fadeTo('slow', 1);
     },
@@ -116,9 +144,10 @@ $(document).ready(function()
     {
       var $this = $(this);
       $this.removeClass("ui-state-highlight");
-      $this.find('i.icon-download-alt')
-        .removeClass('icon-download-alt')
-        .addClass('icon-plus');
+      $this.removeClass('over');
+//      $this.find('i.icon-download-alt')
+//        .removeClass('icon-download-alt')
+//        .addClass('icon-plus');
       ui.draggable.draggable('option', 'revert', false);
       ui.draggable.hide();
 
@@ -155,7 +184,7 @@ $(document).ready(function()
       var $icon = $(this);
 
       $icon.hide();
-      $icon.parent('div.ui-droppable').showLoading();
+      $icon.parent('div.alt-view-img').showLoading();
 
       $.ajax({
         url: '<?= url_for('@ajax_mycq?section=multimedia&page=delete&encrypt=1'); ?>',
