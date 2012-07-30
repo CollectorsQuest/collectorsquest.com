@@ -4,7 +4,10 @@
  * @var $form CollectorCollectionEditForm
  */
 
-slot('mycq_dropbox_info_message', 'Drag a photo into "ADD NEW ITEM" below');
+slot(
+  'mycq_dropbox_info_message',
+  'To add an item to your collection, drag it into the "Add New Item" box below.'
+);
 ?>
 
 <?php

@@ -15,7 +15,10 @@
     array('left' => 8, 'right' => 4, 'class'=>'mycq-red-title row-fluid')
   );
 
-  slot('mycq_dropbox_info_message', 'Drag a photo into a Collection below to add it');
+  slot(
+    'mycq_dropbox_info_message',
+    'To add an item to a collection, drag and drop it into a collection below.'
+  );
 ?>
 
 <div class="gray-well cf">

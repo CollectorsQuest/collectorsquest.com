@@ -42,9 +42,11 @@
       </li>
       <?php endforeach; ?>
     </ul>
+    <?php if (has_slot('mycq_dropbox_info_message')): ?>
     <div class="info-message">
       <?php include_slot('mycq_dropbox_info_message'); ?>
     </div>
+    <?php endif; ?>
   </div>
   <?php else: ?>
   <div id="dropzone" class="collectibles-to-sort no-items-to-sort-box Chivo webfont" style="margin: 10px auto;">
