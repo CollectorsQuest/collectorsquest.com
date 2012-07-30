@@ -19,6 +19,7 @@ crawl-delay: 30
 User-Agent: *
 crawl-delay: 5
 
+Disallow: /ad_slot.php
 Disallow: /blog/wp-admin/
 Disallow: /blog/wp-includes/
 Disallow: /ajax/
