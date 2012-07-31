@@ -6,7 +6,7 @@
 
 <?php slot('mycq_create_collectible'); ?>
 <div class="span3 collectible_grid_view_square link">
-  <div id="mycq-create-collectible" data-collection-id="<?= $collection->getId() ?>" class="add-new-zone">
+  <div data-collection-id="<?= $collection->getId() ?>" class="add-new-zone mycq-create-collectible">
     <a href="<?= url_for('@ajax_mycq?section=component&page=createCollectible&collection_id='. $collection->getId()); ?>"
        id="collectible-create-icon" class="open-dialog btn-upload-collectible" onclick="return false;">
       <i class="icon-plus icon-white"></i>
@@ -42,7 +42,7 @@
       </p>
     </div>
     <div class="hidden">
-      <div class="add-new-zone ui-droppable ui-state-hover ui-state-highlight" id="mycq-create-collectible">
+      <div class="add-new-zone ui-droppable ui-state-hover ui-state-highlight mycq-create-collectible">
         <div class="btn-upload-collectible">
           <i class="icon-plus icon-white"></i>
         </div>
@@ -174,7 +174,7 @@ $(document).ready(function()
     }
   });
 
-  $("#mycq-create-collectible").droppable(
+  $(".mycq-create-collectible").droppable(
   {
     over: function(event, ui)
     {
