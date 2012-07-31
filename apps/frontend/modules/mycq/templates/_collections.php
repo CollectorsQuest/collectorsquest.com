@@ -75,19 +75,20 @@
 <?php endforeach;?>
 
 <?php if ($pager->count() === 0): ?>
-  <?php include_slot('mycq_create_collection'); ?>
-  <div class="span12 thumbnail link no-collections-uploaded-box">
-    <?php if ($sf_params->get('q')): ?>
-      <span class="Chivo webfont info-no-collections-uploaded spacer-top-15">
-        None of your collections match search term: <strong><?= $sf_params->get('q'); ?></strong>
-      </span>
-    <?php else: ?>
+  <?php if ($sf_params->get('q')): ?>
+    <span class="Chivo webfont info-no-collections-uploaded spacer-top-15">
+      None of your collections match search term: <strong><?= $sf_params->get('q'); ?></strong><br/>
+      Do you want to <?= link_to('see all', '@mycq_collections'); ?> collections?
+    </span>
+  <?php else: ?>
+    <?php include_slot('mycq_create_collection'); ?>
+    <div class="span12 thumbnail link no-collections-uploaded-box">
       <span class="Chivo webfont info-no-collections-uploaded">
         Share your collections with the community today!<br/>
         Get Started Now!
       </span>
-    <?php endif; ?>
-  </div>
+    </div>
+  <?php endif; ?>
 <?php endif; ?>
 
 <?php if ($pager->haveToPaginate()): ?>

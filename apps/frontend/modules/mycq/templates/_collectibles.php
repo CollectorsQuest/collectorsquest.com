@@ -113,13 +113,21 @@
 
 <?php else: ?>
 
-  <?php include_slot('mycq_create_collectible'); ?>
-  <div class="span12 thumbnail link no-collections-uploaded-box">
+  <?php if ($sf_params->get('q')): ?>
     <span class="Chivo webfont info-no-collections-uploaded" style="padding-top: 20px;">
-      Upload photos and drag them here to add to your collection.<br/>
-      Get Started Now!
+      None of your items match search term: <strong><?= $sf_params->get('q'); ?></strong><br/>
+      Do you want to <?= link_to('see all', 'mycq_collection_by_slug', $collection); ?> items
+      or <?= link_to('add a new item?', '@ajax_mycq?section=component&page=createCollectible&collection_id='. $collection->getId(), array('class' => 'open-dialog', 'onclick' => 'return false;')); ?>
     </span>
-  </div>
+  <?php else: ?>
+    <?php include_slot('mycq_create_collectible'); ?>
+    <div class="span12 thumbnail link no-collections-uploaded-box">
+      <span class="Chivo webfont info-no-collections-uploaded" style="padding-top: 20px;">
+        Upload photos and drag them here to add to your collection.<br/>
+        Get Started Now!
+      </span>
+    </div>
+  <?php endif; ?>
 
 <?php endif; ?>
 
