@@ -178,7 +178,7 @@ $(document).ready(function()
       if (pos.top < 600) {
         $add_new.show();
       }
-    },
+    }
   });
 
   $('#mycq-tabs .mycq-collectibles').droppable({
