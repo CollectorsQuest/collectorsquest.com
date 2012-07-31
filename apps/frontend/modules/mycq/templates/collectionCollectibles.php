@@ -76,17 +76,14 @@ $(document).ready(function()
   var $url = '<?= url_for('@ajax_mycq?section=component&page=collectibles', true) ?>';
   var $form = $('#form-mycq-collectibles');
 
-  $(".mycq-create-collectible").droppable(
-    {
-      activeClass: 'ui-state-hover'
-    });
+  $(".mycq-create-collectible").droppable({
+    activeClass: 'ui-state-hover'
+  });
 
-  $form.submit(function()
-  {
+  $form.submit(function() {
     $('div.mycq-collectibles .thumbnails').fadeOut();
 
-    $.post($url +'?p=1', $form.serialize(), function(data)
-    {
+    $.post($url +'?p=1', $form.serialize(), function(data) {
       $('div.mycq-collectibles .thumbnails').html(data).fadeIn();
     },'html');
 

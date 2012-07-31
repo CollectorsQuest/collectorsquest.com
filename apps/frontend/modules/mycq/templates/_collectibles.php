@@ -5,7 +5,7 @@
 ?>
 
 <?php slot('mycq_create_collectible'); ?>
-<div class="span3 collectible_grid_view_square link">
+<div class="span3 collectible_grid_view_square link add-new-holder">
   <div data-collection-id="<?= $collection->getId() ?>" class="add-new-zone mycq-create-collectible">
     <a href="<?= url_for('@ajax_mycq?section=component&page=createCollectible&collection_id='. $collection->getId()); ?>"
        id="collectible-create-icon" class="open-dialog btn-upload-collectible" onclick="return false;">
@@ -138,27 +138,36 @@ $(document).ready(function()
 
   var collection_id = <?= $collection->getId(); ?>;
 
-  $("#mycq-tabs .collectible_grid_view_square").droppable(
-    {
-      addClasses: false,
-      over: function(event, ui)
-      {
-        $(this).addClass('dashed');
-      },
-      out: function(event, ui)
-      {
-        $(this).removeClass('dashed');
-      },
-      drop: function(event, ui)
-      {
-        $(this).removeClass('dashed');
-      }
-    });
+  var $add_new_placeholder = $('<div id="add-new-collectible-placeholder" class="span3 collectible_grid_view_square link dashed">' +
+      '<div id="mycq-create-collectible" class="add-new-zone ui-droppable ui-state-highlight ui-state-hover">' +
+        '<div class="btn-upload-collectible">' +
+          '<i class="icon-plus icon-white"></i>' +
+        '</div>' +
+        '<div class="btn-upload-collectible-txt">' +
+          'ADD NEW ITEM' +
+        '</div>' +
+      '</div>' +
+  '</div>');
 
-  $('#mycq-tabs .mycq-collectibles').droppable(
-  {
-    drop: function(event, ui)
-    {
+  /* */
+  $("#mycq-tabs .collectible_grid_view_square:not(.add-new-holder)").droppable({
+    addClasses: false,
+    over: function(event, ui) {
+      //$('#mycq-tabs .collectible_grid_view_square.add-new-holder').hide();
+      $(this).before($add_new_placeholder);
+    },
+    out: function(event, ui) {
+      $('#add-new-collectible-placeholder').remove();
+      //$('#mycq-tabs .collectible_grid_view_square.add-new-holder').show();
+    },
+    drop: function(event, ui) {
+
+    }
+  });
+  /* */
+
+  $('#mycq-tabs .mycq-collectibles').droppable({
+    drop: function(event, ui) {
       $(this).removeClass('ui-state-highlight');
 
       ui.draggable.draggable('option', 'revert', false);
