@@ -138,33 +138,48 @@ $(document).ready(function()
 
   var collection_id = <?= $collection->getId(); ?>;
 
+  // the Add new collectible button
+  var $add_new = $('#mycq-tabs .collectible_grid_view_square.add-new-holder');
+  // a virtual "add new collectible" dom node
   var $add_new_placeholder = $('<div id="add-new-collectible-placeholder" class="span3 collectible_grid_view_square link dashed">' +
       '<div id="mycq-create-collectible" class="add-new-zone ui-droppable ui-state-highlight ui-state-hover">' +
         '<div class="btn-upload-collectible">' +
           '<i class="icon-plus icon-white"></i>' +
         '</div>' +
         '<div class="btn-upload-collectible-txt">' +
-          'ADD NEW ITEM' +
+          'ADD NEW' +
         '</div>' +
       '</div>' +
   '</div>');
 
-  /* */
+  // Add the placeholder when dragging a collectible from the dropbox over another
+  // collectible (except the "add new collectible button")
   $("#mycq-tabs .collectible_grid_view_square:not(.add-new-holder)").droppable({
     addClasses: false,
     over: function(event, ui) {
-      //$('#mycq-tabs .collectible_grid_view_square.add-new-holder').hide();
-      $(this).before($add_new_placeholder);
+      var $this = $(this);
+          pos = $this.position();
+
+      // if we are on the first row of collectibles hide the "add new collectible" button
+      if (pos.top < 600) {
+        $add_new.hide();
+      }
+
+      // and add the dom node before the current collectible
+      $this.before($add_new_placeholder);
     },
     out: function(event, ui) {
+      var $this = $(this)
+          pos = $this.position();
+      // remove the previously inserted dom node
       $('#add-new-collectible-placeholder').remove();
-      //$('#mycq-tabs .collectible_grid_view_square.add-new-holder').show();
-    },
-    drop: function(event, ui) {
 
-    }
+      // and if we had hidden the "add new collectible" button, show it again
+      if (pos.top < 600) {
+        $add_new.show();
+      }
+    },
   });
-  /* */
 
   $('#mycq-tabs .mycq-collectibles').droppable({
     drop: function(event, ui) {
