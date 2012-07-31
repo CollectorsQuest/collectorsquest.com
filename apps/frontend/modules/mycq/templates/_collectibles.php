@@ -147,7 +147,7 @@ $(document).ready(function()
           '<i class="icon-plus icon-white"></i>' +
         '</div>' +
         '<div class="btn-upload-collectible-txt">' +
-          'ADD NEW' +
+          'ADD ITEM' +
         '</div>' +
       '</div>' +
   '</div>');
