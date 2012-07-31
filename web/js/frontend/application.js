@@ -116,6 +116,12 @@ var APP = window.APP = {
   mycq: {
     init: function()
     {
+      /**
+       * When the jquery-controls plugin is added to a website,
+       * a.open-dialog links will open a dialog which shows in page or ajax content.
+       *
+       * @see: https://github.com/Nikku/jquery-bootstrap-scripting/
+       */
       $(document).controls();
 
       // If a a.auto-close is contained in the dialogs content,
