@@ -77,8 +77,10 @@
 <?php if ($pager->count() === 0): ?>
   <?php if ($sf_params->get('q')): ?>
   <div class="alert alert-no-results">
-    None of your collections match search term: <strong><?= $sf_params->get('q'); ?></strong><br/>
-    Do you want to <?= link_to('see all', '@mycq_collections'); ?> collections?
+    <i class="icon-warning-sign"></i>&nbsp;
+    None of your collections match search term: <strong><?= $sf_params->get('q'); ?></strong>.
+    Do you want to <?= link_to('see all collections', '@mycq_collections'); ?> or
+    <?= link_to('create a new collection', '@ajax_mycq?section=collection&page=createStep1', array('class' => 'open-dialog', 'onclick' => 'return false;')); ?>?
   </div>
   <?php else: ?>
     <?php include_slot('mycq_create_collection'); ?>

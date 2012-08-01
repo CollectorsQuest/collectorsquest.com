@@ -20,6 +20,11 @@ class CollectorCollectionEditForm extends CollectorCollectionForm
         'description',
         'tags',
     ));
+
+    if ($this->getObject()->hasThumbnail())
+    {
+      $this->offsetUnset('thumbnail');
+    }
   }
 
 }

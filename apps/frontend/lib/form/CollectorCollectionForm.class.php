@@ -53,7 +53,9 @@ class CollectorCollectionForm extends BaseCollectorCollectionForm
 
   protected function setupThumbnailField()
   {
-    $this->widgetSchema['thumbnail'] = new sfWidgetFormInputFile();
+    $this->widgetSchema['thumbnail'] = new sfWidgetFormInputFile(
+      array('label' => 'Photo')
+    );
     $this->validatorSchema['thumbnail'] = new sfValidatorFile(array(
       'mime_types' => 'web_images', 'required' => false
     ));

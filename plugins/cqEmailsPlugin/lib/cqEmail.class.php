@@ -82,6 +82,9 @@ class cqEmail
         ->setCharset('UTF-8')
         ->addPart(strip_tags($rendered_template), 'text/plain')
         ->addPart($rendered_template, 'text/html');
+      
+      if (isset($options['cc']) && $options['cc'])
+      $message->setCc($options['cc']);
 
       $return = $this->getMailer()->send($message);
     }

@@ -10,33 +10,13 @@ class CollectibleEditForm extends BaseCollectibleForm
     /** @var $collector Collector */
     $collector = $this->getOption('collector', $collectible->getCollector());
 
-    $criteria = new Criteria();
-    $criteria->add(CollectorCollectionPeer::COLLECTOR_ID, $collector->getId());
-    $criteria->addAscendingOrderByColumn(CollectorCollectionPeer::NAME);
-
-    $this->widgetSchema['collection_collectible_list'] = new sfWidgetFormPropelChoice(
-      array(
-        'label' => 'Collection(s)',
-        'model' => 'CollectorCollection', 'criteria' => $criteria,
-        'add_empty' => true, 'multiple' => true
-      ),
-      array(
-        'data-placeholder' => 'Please, choose at least one Collection',
-        'class' => 'input-xlarge chzn-select js-hide',
-        'style' => 'width: 410px;',
-        'required' => 'required'
-      )
-    );
-    $this->validatorSchema['collection_collectible_list'] = new sfValidatorPropelChoice(array(
-      'model' => 'CollectorCollection', 'criteria' => $criteria,
-      'multiple' => true, 'required' => true
-    ));
-
+    $this->widgetSchema['name']->setLabel('Item Name');
     $this->widgetSchema['name']->setAttribute('class', 'input-xlarge');
     $this->widgetSchema['name']->setAttribute('required', 'required');
     $this->widgetSchema['description']->setAttribute('class', 'input-xlarge js-invisible');
     $this->widgetSchema['description']->setAttribute('required', 'required');
 
+    $this->setupCollectorCollectionsField();
     $this->setupThumbnailField();
     $this->setupTagsField();
 
@@ -51,6 +31,14 @@ class CollectibleEditForm extends BaseCollectibleForm
       'description',
       'tags'
     ));
+
+    // We do not want to show the thumbnail field
+    // if there are images already for the Collectible
+    if ($collectible->getMultimediaCount('image') > 0)
+    {
+      $this->offsetUnset('thumbnail');
+      $this->offsetUnset('is_alt_view');
+    }
 
     if ($collector->getIsSeller())
     {
@@ -99,7 +87,7 @@ class CollectibleEditForm extends BaseCollectibleForm
   protected function setupThumbnailField()
   {
     $this->widgetSchema['thumbnail'] = new sfWidgetFormInputFile(array(
-      'label' => 'Photo'
+      'label' => 'Item Photo'
     ));
     $this->validatorSchema['thumbnail'] = new sfValidatorFile(array(
       'mime_types' => 'web_images', 'required' => false
@@ -122,6 +110,37 @@ class CollectibleEditForm extends BaseCollectibleForm
     {
       $this->widgetSchema['is_alt_view'] = new sfWidgetFormInputCheckbox();
     }
+  }
+
+  private function setupCollectorCollectionsField()
+  {
+    /** @var $collectible Collectible */
+    $collectible = $this->getObject();
+
+    /** @var $collector Collector */
+    $collector = $this->getOption('collector', $collectible->getCollector());
+
+    $criteria = new Criteria();
+    $criteria->add(CollectorCollectionPeer::COLLECTOR_ID, $collector->getId());
+    $criteria->addAscendingOrderByColumn(CollectorCollectionPeer::NAME);
+
+    $this->widgetSchema['collection_collectible_list'] = new sfWidgetFormPropelChoice(
+      array(
+        'label' => 'Collection(s)',
+        'model' => 'CollectorCollection', 'criteria' => $criteria,
+        'add_empty' => true, 'multiple' => true
+      ),
+      array(
+        'data-placeholder' => 'Please, choose at least one Collection',
+        'class' => 'input-xlarge chzn-select js-hide',
+        'style' => 'width: 410px;',
+        'required' => 'required'
+      )
+    );
+    $this->validatorSchema['collection_collectible_list'] = new sfValidatorPropelChoice(array(
+      'model' => 'CollectorCollection', 'criteria' => $criteria,
+      'multiple' => true, 'required' => true
+    ));
   }
 
   public function updateDescriptionColumn($value)
