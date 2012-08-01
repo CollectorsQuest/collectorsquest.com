@@ -55,7 +55,10 @@
 //            );
 
             echo link_to(
-              image_tag('banners/2012-06-24_CQGuide_300x250_footer.png'),
+              image_tag('banners/2012-06-24_CQGuide_300x250_footer.png',
+                array('size' => '300x250',
+                      'alt' => 'Unlock your free guide to collecting—sign up today'
+                )),
               '@misc_guide_to_collecting'
             );
           }
