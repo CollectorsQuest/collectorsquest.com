@@ -1,3 +1,9 @@
+<script type="text/javascript">
+$(document).ready(function()
+{
+  $(document).controls();
+});
+</script>
 <div id="footer-links">
   <div class="footer-links-inner">
     <div class="row-fluid">
@@ -9,7 +15,7 @@
           <li><?= link_to('Terms', 'blog_page', array('slug' => 'terms-and-conditions')); ?></li>
           <li><?= link_to('RSS', 'blog_page', array('slug' => 'rss-feeds')); ?></li>
           <li><?= urldecode(link_to('Help/FAQ', 'blog_page', array('slug' => 'cq-faqs/general-questions'))); ?></li>
-          <li><?= link_to('Report an Error', '@feedback', array('target' => '_blank', 'class' => 'red')); ?></li>
+          <li><?= link_to('Report an Error', '@ajax_feedback', array('class' => 'red open-dialog', 'onclick' => 'return false;')); ?></li>
         </ul>
       </div>
       <div class="span5 text-right">

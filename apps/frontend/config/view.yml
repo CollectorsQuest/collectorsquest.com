@@ -22,7 +22,11 @@ default:
   ## Please use css/frontend/stylesheets.bundle.css and
   ##             js/frontend/scripts.common.bundle.js
   # stylesheets:
-  # javascripts:
+  javascripts:
+    - /assets/js/jquery/controls.js
+    - /assets/js/jquery/form.js
+    - /assets/js/bootstrap/dialog2.js
+    - /assets/js/bootstrap/dialog2.helpers.js
 
   components:
     header:       [global, header]
