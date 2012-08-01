@@ -46,18 +46,20 @@ slot('mycq_dropbox_info_message', 'To add another view of this item, drag an ima
       <?= $form['collection_collectible_list']->renderRow(); ?>
       <?= $form['name']->renderRow(); ?>
 
-      <?php if ($form['is_alt_view']->getWidget() instanceof sfWidgetFormInputCheckbox): ?>
-        <div class="control-group">
-          <?= $form['thumbnail']->renderLabel('Update Photo'); ?>
-          <div class="controls">
-            <?= $form['thumbnail']->render(); ?>
-            <label><?= $form['is_alt_view']; ?>&nbsp; Add as an alternate view instead?</label>
-            <?= $form['thumbnail']->renderError(); ?>
+      <?php if (isset($form['thumbnail'])): ?>
+        <?php if ($form['is_alt_view']->getWidget() instanceof sfWidgetFormInputCheckbox): ?>
+          <div class="control-group">
+            <?= $form['thumbnail']->renderLabel('Update Photo'); ?>
+            <div class="controls">
+              <?= $form['thumbnail']->render(); ?>
+              <label><?= $form['is_alt_view']; ?>&nbsp; Add as an alternate view instead?</label>
+              <?= $form['thumbnail']->renderError(); ?>
+            </div>
           </div>
-        </div>
-      <?php else: ?>
-        <?= $form['thumbnail']->renderRow(); ?>
-      <?php endif;?>
+        <?php else: ?>
+          <?= $form['thumbnail']->renderRow(); ?>
+        <?php endif;?>
+      <?php endif; ?>
 
       <?= $form['description']->renderRow(); ?>
       <?= $form['tags']->renderRow(); ?>
@@ -88,10 +90,22 @@ slot('mycq_dropbox_info_message', 'To add another view of this item, drag an ima
     <div class="row-fluid">
       <div class="span12">
         <div class="form-actions text-center spacer-inner-15">
-          <button type="submit" formnovalidate class="btn btn-primary">Save Changes</button>
-          <a href="<?= url_for('mycq_collection_by_slug', $collection) ?>" class="btn spacer-left">
-            Cancel
-          </a>
+          <button type="submit" formnovalidate
+                  class="btn btn-primary" name="save" value="Save Changes">
+            Save Changes
+          </button>
+          &nbsp;&nbsp;
+          <button type="submit" formnovalidate
+                  class="btn" name="save_and_go" value="Save & Back to Items">
+            Save & Go to Items
+          </button>
+
+          <div style="float: right; margin-right: 15px;">
+            <a href="<?= url_for('mycq_collection_by_slug', $collection) ?>" class="btn spacer-left">
+              Cancel
+            </a>
+          </div>
+
         </div>
       </div>
     </div>

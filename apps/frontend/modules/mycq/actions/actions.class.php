@@ -567,8 +567,12 @@ class mycqActions extends cqFrontendActions
             }
           }
 
-          // If we save the form successfully, the request has to be redirected
-          $this->redirect('mycq_collection_by_slug', $collection);
+          // Did the Collector use the "Save & Go to Items" button?
+          if ($request->getParameter('save_and_go'))
+          {
+            // If we save the form successfully, the request has to be redirected
+            $this->redirect('mycq_collection_by_slug', $collection);
+          }
         }
         catch (PropelException $e)
         {

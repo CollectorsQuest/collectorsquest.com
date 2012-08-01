@@ -106,7 +106,7 @@
 	background-color: #fff;
 
 	.tab-content {
-		border-width: 0 2px 2px 2px;
+		border-width: 0 1px 1px 1px;
 		border-color: @tabsBorder;
 		border-style: solid;
 		//.box-shadow(1px 1px 1px rgba(50, 50, 50, 0.46));
@@ -116,12 +116,11 @@
 		margin-bottom: 0;
 		border-bottom-color: @tabsBorder;
 		background-color: #fff;
-		border-width: 2px;
+		border-width: 1px;
 
 		li {
 			width: 180px;
 			margin-left: 5px;
-			margin-bottom: -2px;
 			background-color: transparent;
 		}
 		li.active a {
@@ -155,8 +154,8 @@
 		height: 45px;
 		padding-top: 10px;
 		text-align: center;
-		border-top: 2px solid white;
-		border-bottom: 2px solid white;
+		border-top: 1px solid white;
+		border-bottom: 1px solid white;
 		background-color: @yellowLight;
 
 		.instruction-box-inner {
@@ -257,9 +256,10 @@
     font-weight: bold;
     line-height: @baseLineHeight;
     color: @blue;
-  // background-color: @lightBlue;
-    background-color: #fff;
+    // background-color: @lightBlue;
+    // #gradient > .vertical(#fff, #F5F5F5);
     border-bottom-width: 0;
+    border-color: #F5F5F5;
 
     .border-radius(6px 6px 0 0);
     &:hover {
@@ -274,7 +274,7 @@
       background: -ms-linear-gradient(top, rgba(32, 147, 195, 1) 0%, rgba(9, 113, 186, 1) 96%, rgba(4, 67, 126, 1) 99%); /* IE10+ */
       background: linear-gradient(top, rgba(32, 147, 195, 1) 0%, rgba(9, 113, 186, 1) 96%, rgba(4, 67, 126, 1) 99%); /* W3C */
       filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#2093c3', endColorstr = '#04437e', GradientType = 0); /* IE6-8 */
-      border: 2px solid @tabsBorder;
+      border: 1px solid @tabsBorder;
       border-bottom-color: @tabsBorder;
     }
   }
@@ -283,7 +283,7 @@
   & > .active > a:hover {
     color: @brown;
     background: @lightBlue;
-    border: 2px solid @tabsBorder;
+    border: 1px solid @tabsBorder;
     border-bottom-color: #fff;
     cursor: default;
     .border-radius(6px 6px 0 0);
