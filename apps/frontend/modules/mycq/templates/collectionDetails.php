@@ -78,27 +78,29 @@ slot('mycq_dropbox_info_message', 'Drag a photo into the Collection thumbnail be
             </div>
 
             <div class="row-fluid">
-              <div class="form-actions text-center spacer-inner-15">
-                <button type="submit" formnovalidate
-                        class="btn btn-primary" name="save" value="Save Changes">
-                  Save Changes
-                </button>
-                &nbsp;&nbsp;
-                <?php $label = $collection->getNumItems() === 0 ? 'Save & Start Adding Items' : 'Save & Go to Items'; ?>
-                <button type="submit" formnovalidate
-                        class="btn" name="save_and_go" value="<?= $label ?>">
-                  <?= $label ?>
-                </button>
+              <div class="span12">
+                <div class="form-actions text-center spacer-inner-15">
+                  <button type="submit" formnovalidate
+                          class="btn btn-primary" name="save" value="Save Changes">
+                    Save Changes
+                  </button>
+                  &nbsp;&nbsp;
+                  <?php $label = $collection->getNumItems() === 0 ? 'Save & Start Adding Items' : 'Save & Go to Items'; ?>
+                  <button type="submit" formnovalidate
+                          class="btn" name="save_and_go" value="<?= $label ?>">
+                    <?= $label ?>
+                  </button>
 
-                <div style="float: right; margin-right: 15px;">
-                  <a href="<?= url_for('mycq_collection_by_section', array('id' => $collection->getId(), 'section' => 'collectibles')) ?>"
-                     class="btn spacer-left">
-                    Cancel
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
+                  <div style="float: right; margin-right: 15px;">
+                    <a href="<?= url_for('mycq_collection_by_section', array('id' => $collection->getId(), 'section' => 'collectibles')) ?>"
+                       class="btn spacer-left">
+                      Cancel
+                    </a>
+                  </div>
+                </div> <!-- .form-actions.text-center.spacer-inner-15 -->
+              </div> <!-- .span12 -->
+            </div> <!-- .row-fluid -->
+          </div> <!-- .row-fluid -->
         </form>
 
       </div><!-- .tab-content-inner -->
