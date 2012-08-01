@@ -8,9 +8,9 @@
         <div class="wrapper">
           <?php
             if (sfConfig::get('sf_environment') == 'dev') {
-              echo ice_image_tag_flickholdr('520x310', array('i' => $i, 'alt' => escape_once($carousel['title'])));
+              echo ice_image_tag_flickholdr('520x310', array('i' => $i, 'alt' => $carousel['title']));
             } else {
-              echo image_tag($carousel['image'], array('alt' => escape_once($carousel['title'])));
+              echo image_tag($carousel['image'], array('alt' => $carousel['title']));
             }
           ?>
           <div class="carousel-in-focus-title-container link">
