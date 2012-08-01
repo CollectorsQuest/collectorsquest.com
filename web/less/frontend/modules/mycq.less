@@ -554,6 +554,28 @@ a.buy-credits-button {
 	}
 }
 
+.large-box-no-items-green-dashed {
+	.size (128px, 738px);
+	margin-top: 4px;
+	color: #03ae00;
+	background: #cdffcb;
+	border: 2px dashed #03ae00;
+	.border-radius(0);
+
+	.hidden {
+		display: block !important;
+		visibility: visible;
+	}
+	.info-no-collections-uploaded {
+		display: none;
+	}
+	.dropped-zone {
+		margin-top: 12px;
+		margin-bottom: 0;
+		background-color: transparent;
+	}
+}
+
 .no-items-to-sort-box {
 	border: none;
 	.box-shadow(none);
@@ -1523,7 +1545,7 @@ textarea.input-xlarge {
 
 //STATE HIGHLIGHT
 
-.ui-state-highlight {
+.ui-state-highlight, .large-box-no-items-green-dashed {
 	z-index: 100;
 	color: #039c00 !important;
 	background: #cdffcb !important;
@@ -1534,7 +1556,7 @@ textarea.input-xlarge {
 		color: #039c00;
 	}
 	.info-text, .icon-download-alt, .icon-camera,
-	.btn-upload-collectible-txt, .icon-plus-holder {
+	.btn-upload-collectible-txt, .icon-plus-holder, .btn-upload-collectible {
 		color: #039c00 !important;
 	}
 	.holder-icon-edit {

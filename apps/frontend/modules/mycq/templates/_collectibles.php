@@ -126,6 +126,16 @@
         Upload photos and drag them here to add to your collection.<br/>
         Get Started Now!
       </span>
+      <div class="hidden">
+        <div class="dropped-zone">
+          <div class="btn-upload-collectible">
+            <i class="icon-plus icon-white"></i>
+          </div>
+          <div class="btn-upload-collectible-txt">
+            ADD NEW ITEM
+          </div>
+        </div>
+      </div>
     </div>
   <?php endif; ?>
 
@@ -211,6 +221,24 @@ $(document).ready(function()
     drop: function(event, ui)
     {
       $(this).removeClass('ui-state-highlight');
+    }
+  });
+  $("#collectibles .span12.thumbnail").droppable({
+    addClasses: false,
+    over: function(event, ui)
+    {
+      $(this).addClass('large-box-no-items-green-dashed');
+      $(this).removeClass('no-collections-uploaded-box');
+    },
+    out: function(event, ui)
+    {
+      $(this).removeClass('large-box-no-items-green-dashed');
+      $(this).addClass('no-collections-uploaded-box');
+    },
+    drop: function(event, ui)
+    {
+      $(this).removeClass('large-box-no-items-green-dashed');
+      $(this).addClass('no-collections-uploaded-box');
     }
   });
 });
