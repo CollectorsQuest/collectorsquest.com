@@ -3,10 +3,18 @@
  * @var $collector Collector
  * @var $sf_params sfParameterHolder
  */
+
+/**
+ * We want to show the dropbox and the Upload Photos functionality
+ * only in selected parts of MyCQ (ex. collections and marketplace)
+ */
+(in_array(SmartMenu::getSelected('mycq_menu'), array('collections', 'marketplace'))) ?
+  $spans = array(10, 2) : $spans = array(12, 0);
+
 ?>
 <div class="slot1-inner-mycq">
   <div class="row-fluid">
-    <div class="span10 upload-items-wrapper-l">
+    <div class="span<?= $spans[0]; ?> upload-items-wrapper-l">
       <?php
         $links = link_to('View Public Profile', '@collector_me') .
                  '<span class="white">&nbsp; | &nbsp;</span>'.
@@ -27,25 +35,31 @@
         </div><!-- /navbar-inner -->
       </div>
     </div>
-    <div class="span2 upload-items-wrapper-r">
+    <?php if ($spans[1] > 0): ?>
+    <div class="span<?= $spans[1]; ?> upload-items-wrapper-r">
       <?php include_partial('mycq/upload_photos'); ?>
     </div>
+    <?php endif; ?>
   </div>
 
-  <?php include_component('mycq', 'dropbox'); ?>
-  <div class="row-fluid">
-    <div class="span10 upload-items-wrapper-l"></div>
-    <div class="span2 upload-items-wrapper-r">
-      <a href="javascript:void(0)" class="dropzone-container-slide pull-right <?= $sf_user->getMycqDropboxOpenState() ? 'open' : '' ?>">
-        <span class="open-dropzone">
-          Open Uploaded Photos <i class="icon-caret-down"></i>
-        </span>
-        <span class="close-dropzone">
-          Close Uploaded Photos <i class="icon-caret-up"></i>
-        </span>
-      </a>
+  <?php if ($spans[1] > 0): ?>
+
+    <?php include_component('mycq', 'dropbox'); ?>
+
+    <div class="row-fluid">
+      <div class="span10 upload-items-wrapper-l"></div>
+      <div class="span2 upload-items-wrapper-r">
+        <a href="javascript:void(0)" class="dropzone-container-slide pull-right <?= $sf_user->getMycqDropboxOpenState() ? 'open' : '' ?>">
+          <span class="open-dropzone">
+            Open Uploaded Photos <i class="icon-caret-down"></i>
+          </span>
+          <span class="close-dropzone">
+            Close Uploaded Photos <i class="icon-caret-up"></i>
+          </span>
+        </a>
+      </div>
     </div>
-  </div>
+  <?php endif; ?>
 </div>
 
 <script>
