@@ -34,9 +34,8 @@
           <iframe
             id="modal-rpx-iframe"
             src=""
-            scrolling="no"
-            frameBorder="no"
-            style="width:350px; height:217px;"
+            frameBorder="0"
+            style="width:350px; height:217px; overflow: hidden; border: 0;"
             width="350"
             height="217">
           </iframe>
