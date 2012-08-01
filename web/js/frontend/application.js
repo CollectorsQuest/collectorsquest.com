@@ -119,7 +119,7 @@ var APP = window.APP = {
       /**
        * @see: https://basecamp.com/1759305/projects/824949-collectorsquest-com/todos/11926034-when-going-from-page
        */
-      $.scrollTo('#slot1', { offset: -10, duration: 1000, easing: 'easeOutBack' });
+      $.scrollTo('#slot1', { offset: -10, duration: 500, easing: 'easeOutBack' });
 
       /**
        * When the jquery-controls plugin is added to a website,
