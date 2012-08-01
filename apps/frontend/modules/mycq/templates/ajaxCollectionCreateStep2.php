@@ -7,7 +7,7 @@
 
 <h1>Create Collection - Step 2</h1>
 
-<form action="<?= url_for('ajax_mycq', array('section' => 'collection', 'page' => 'createStep2', 'collection-id' => $collection->getId())); ?>"
+<form action="<?= url_for('ajax_mycq', array('section' => 'collection', 'page' => 'createStep2', 'collection_id' => $collection->getId())); ?>"
       method="post" id="blah" class="ajax form-horizontal form-modal">
 
   <?= $form->renderAllErrors(); ?>

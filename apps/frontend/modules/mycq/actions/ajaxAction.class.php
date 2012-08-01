@@ -440,7 +440,7 @@ class ajaxAction extends cqAjaxAction
   {
     $form = new CollectionCreateForm();
 
-    if ($collectible_id = $request->getParameter('collectible_id'))
+    if (( $collectible_id = $request->getParameter('collectible_id') ))
     {
       $q = CollectibleQuery::create()
           ->filterByCollector($this->getUser()->getCollector())
@@ -483,7 +483,7 @@ class ajaxAction extends cqAjaxAction
         return $this->redirect('ajax_mycq', array(
             'section' => 'collection',
             'page' => 'createStep2',
-            'collection-id' => $collection->getId(),
+            'collection_id' => $collection->getId(),
         ));
       }
     }
@@ -505,7 +505,7 @@ class ajaxAction extends cqAjaxAction
   public function executeCollectionCreateStep2(sfWebRequest $request, $template)
   {
     $collection = CollectorCollectionPeer::retrieveByPK(
-      $request->getParameter('collection-id')
+      $request->getParameter('collection_id')
     );
     $this->forward404Unless($collection &&
       $this->getUser()->getCollector()->isOwnerOf($collection));
