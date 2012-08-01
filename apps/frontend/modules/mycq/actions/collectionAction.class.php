@@ -52,7 +52,7 @@ class collectionAction extends cqFrontendAction
           }
 
           // Redirect appropriately to avoid refreshes to trigger the same action
-          $this->redirect($url);
+          return $this->redirect($url);
 
           break;
       }
@@ -118,10 +118,18 @@ class collectionAction extends cqFrontendAction
           // Did the Collector use the "Save & Go to Items" button?
           if ($request->getParameter('save_and_go'))
           {
-            $this->redirect($this->getController()->genUrl(array(
+            return $this->redirect($this->getController()->genUrl(array(
               'sf_route'   => 'mycq_collection_by_section',
               'id' => $collection->getId(),
-              'section' => 'collectibles'
+              'section' => 'collectibles',
+            )));
+          }
+          else
+          {
+            return $this->redirect($this->getController()->genUrl(array(
+              'sf_route'   => 'mycq_collection_by_section',
+              'id' => $collection->getId(),
+              'section' => 'details',
             )));
           }
         }
