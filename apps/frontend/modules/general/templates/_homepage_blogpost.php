@@ -5,11 +5,11 @@
         <?php
           if ($thumbnail = $blog_post->getPostThumbnail('homepage'))
           {
-            echo image_tag($thumbnail, array('width' => 270, 'height' => 270));
+            echo image_tag($thumbnail, array('width' => 270, 'height' => 270, 'alt' => escape_once($blog_post->getPostTitle())));
           }
           else
           {
-            echo image_tag_multimedia($blog_post->getPrimaryImage(), '270x270');
+            echo image_tag_multimedia($blog_post->getPrimaryImage(), '270x270', array('alt_title' => escape_once($blog_post->getPostTitle())));
           }
         ?>
       </div>
