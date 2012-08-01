@@ -38,7 +38,7 @@ class CollectorCollectionEditForm extends CollectorCollectionForm
         'collection_id' => $this->getObject()->getId(),
     ));
     $this->widgetSchema['content_category_plain'] = new cqWidgetFormPlain(array(
-        'label' => 'Content Category',
+        'label' => 'Category',
         'content_tag' => 'span',
         'default_html' => '<span>&nbsp;</span>',
         'extra_html' => '<br/>'.sprintf('<a class="btn btn-mini open-dialog" href="%s">%s</a>',
@@ -54,7 +54,9 @@ class CollectorCollectionEditForm extends CollectorCollectionForm
     parent::updateDefaultsFromObject();
 
     $this->setDefault('content_category_plain',
-      $this->getObject()->getContentCategory()->getPath());
+      $this->getObject()->getContentCategory()
+      ? $this->getObject()->getContentCategory()->getPath()
+      : 'No category selected');
   }
 
 }
