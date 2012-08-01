@@ -44,17 +44,19 @@
         </li>
       </ul>
     </div>
+    <?php if ($collection->getNumViews() > 0): ?>
     <div class="span4">
       <div class="mini-input-append-search">
         <div class="input-append pull-right">
           <form id="form-mycq-collectibles" method="post">
-            <input type="text" class="input-sort-by" id="appendedPrependedInput" name="q"><button class="btn gray-button" type="submit"><strong>Search</strong></button>
+            <input type="text" class="input-sort-by" id="appendedPrependedInput" name="q" value="<?= $sf_params->get('q'); ?>"><button class="btn gray-button" type="submit"><strong>Search</strong></button>
             <!-- keep INPUT and BUTTON elements in same line -->
             <input type="hidden" value="<?= $collection->getId() ?>" name="collection_id">
           </form>
         </div>
       </div>
     </div>
+    <?php endif; ?>
   </div>
 </div>
 
@@ -66,13 +68,23 @@ $(document).ready(function()
 
   $form.submit(function()
   {
-    $('#collectibles').showLoading();
+    console.log($('#collectibles'));
 
-    $.post($url +'?p=1', $form.serialize(), function(data)
+    if ($('#collectibles').length > 0)
     {
-      $('#collectibles').html(data);
-      $('#collectibles').hideLoading();
-    },'html');
+      $('#collectibles').showLoading();
+
+      $.post($url +'?p=1', $form.serialize(), function(data)
+      {
+        $('#collectibles').html(data);
+        $('#collectibles').hideLoading();
+      },'html');
+    }
+    else
+    {
+      var q = $('#appendedPrependedInput').val();
+      window.location.href = '<?= url_for('mycq_collection_by_slug', $collection) ?>?q=' + q;
+    }
 
     return false;
   });

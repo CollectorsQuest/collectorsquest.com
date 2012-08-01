@@ -115,11 +115,15 @@ class collectionAction extends cqFrontendAction
 
           $this->getUser()->setFlash('success', 'Changes to your collection details were saved!');
 
-          $this->redirect($this->getController()->genUrl(array(
-            'sf_route'   => 'mycq_collection_by_section',
-            'id' => $collection->getId(),
-            'section' => 'collectibles'
-          )));
+          // Did the Collector use the "Save & Go to Items" button?
+          if ($request->getParameter('save_and_go'))
+          {
+            $this->redirect($this->getController()->genUrl(array(
+              'sf_route'   => 'mycq_collection_by_section',
+              'id' => $collection->getId(),
+              'section' => 'collectibles'
+            )));
+          }
         }
         catch (PropelException $e)
         {

@@ -115,9 +115,10 @@
 
   <?php if ($sf_params->get('q')): ?>
     <div class="alert alert-no-results">
-      None of your items match search term: <strong><?= $sf_params->get('q'); ?></strong><br/>
-      Do you want to <?= link_to('see all', 'mycq_collection_by_slug', $collection); ?> items
-      or <?= link_to('add a new item?', '@ajax_mycq?section=component&page=createCollectible&collection_id='. $collection->getId(), array('class' => 'open-dialog', 'onclick' => 'return false;')); ?>
+      <i class="icon-warning-sign"></i>&nbsp;
+      None of your items match search term: <strong><?= $sf_params->get('q'); ?></strong>.
+      Do you want to <?= link_to('see all items', 'mycq_collection_by_slug', $collection); ?> or
+      <?= link_to('add a new item', '@ajax_mycq?section=component&page=createCollectible&collection_id='. $collection->getId(), array('class' => 'open-dialog', 'onclick' => 'return false;')); ?>?
     </div>
   <?php else: ?>
     <?php include_slot('mycq_create_collectible'); ?>
