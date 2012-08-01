@@ -37,15 +37,17 @@ class CollectorCollectionEditForm extends CollectorCollectionForm
         'page' => 'changeCategory',
         'collection_id' => $this->getObject()->getId(),
     ));
-    $this->widgetSchema['content_category_plain'] = new cqWidgetFormPlain(array(
-        'label' => 'Category',
-        'content_tag' => 'span',
+
+    $this->widgetSchema['content_category_plain'] = new cqWidgetFormPlain(
+      array(
+        'label' => 'Category:',
+        'content_tag' => 'div',
         'default_html' => '<span>&nbsp;</span>',
-        'extra_html' => '<br/>'.sprintf('<a class="btn btn-mini open-dialog" href="%s">%s</a>',
+        'extra_html' => '<br/>'.sprintf('<a class="btn btn-mini open-dialog" href="%s" style="margin-top: 3px;">%s</a>',
                         $category_edit_url, 'click to change'),
-      ), array(
-        'required' => 'required',
-    ));
+      ),
+      array('style' => 'margin-top: 5px; float: left;')
+    );
     $this->validatorSchema['content_category_plain'] = new sfValidatorPass();
   }
 
