@@ -511,10 +511,19 @@ class ajaxAction extends cqAjaxAction
       $this->getUser()->getCollector()->isOwnerOf($collection));
 
     $form = new CollectorCollectionEditForm($collection);
-    $form->useFields(array(
-        'thumbnail',
-        'description',
-    ));
+    if ($collection->hasThumbnail())
+    {
+      $form->useFields(array(
+          'description',
+      ));
+    }
+    else
+    {
+      $form->useFields(array(
+          'thumbnail',
+          'description',
+      ));
+    }
 
     if (sfRequest::POST == $request->getMethod())
     {
@@ -524,9 +533,9 @@ class ajaxAction extends cqAjaxAction
       if ($form->isValid())
       {
         $values = $form->getValues();
-
         $collection->setDescription($values['description'], 'html');
-        if ($values['thumbnail'] instanceof sfValidatedFile)
+
+        if (isset($values['thumbnail']) && $values['thumbnail'] instanceof sfValidatedFile)
         {
           $collection->setThumbnail($values['thumbnail']);
         }
