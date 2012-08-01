@@ -25,7 +25,7 @@
     </div>
   </div>
   <div class="span7 max-height-video-box-sidebar">
-    <div id="sidebar-videos">
+    <div class="sidebar-videos">
         <span class="title">
           <a href="<?= $video->getPlayUrl() ?>" title="<?= $video->getTitle() ?>">
             <?= cqStatic::truncateText($video->getTitle(), 50) ?>
