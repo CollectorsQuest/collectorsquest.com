@@ -23,33 +23,32 @@
 
     <?= $signup_form->renderUsing('BootstrapWithRowFluid'); ?>
 
+    <p class="text-center spacer-15">- OR -</p>
+
+    <?php
+    include_partial(
+      'global/footer_signup_external_buttons',
+      array('action' => 'sign up')
+    );
+    ?>
+
     <div class="row-fluid spacer-15">
       <input type="checkbox" name="<?= $signup_form->getName() ?>[newsletter]"
              id="<?= $signup_form->getName() ?>_newsletter" checked="checked"
-             style="float: left; width: auto; margin: 3px 5px 15px 0;">
+             style="float: left; width: auto; margin: 3px 5px 3px 0;">
       Sign me up for the Collectors Quest newsletter
     </div>
 
-    <div class="row-fluid spacer-7">
-      <div class="span8 spacer-inner-top">
-        <?php
-          include_partial(
-            'global/footer_signup_external_buttons',
-            array('action' => 'sign up')
-          );
-        ?>
-      </div>
-      <div class="span4">
-        <button type="submit" class="btn btn-primary pull-right">Sign Up</button>
-      </div>
+    <div class="cf spacer-7 text-center">
+      <button type="submit" class="btn btn-primary btn-primary-long">Sign Up</button>
     </div>
   </form>
 
   <div id="footer-control-login">
-    <span class="pull-right">
+    <p class="text-center">
       Already have an account?
       <?= link_to('Sign In', '@login', array('id' => 'footer-control-login-button')); ?>
-    </span>
+    </p>
   </div>
 </div><!-- #footer-form-signup -->
 

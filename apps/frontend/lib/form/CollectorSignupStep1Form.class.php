@@ -27,30 +27,6 @@ class CollectorSignupStep1Form extends BaseForm
         'required'    => 'required',
         'placeholder' => 'Email'
       )),
-      'seller'          => new sfWidgetFormSelectRadio(array(
-        'label'       => 'Choose one',
-        'choices'     => array(
-          0 => 'I collect',
-          1 => 'I sell',
-          2 => 'I collect and sell',
-        ),
-
-        'formatter'   =>   function($widget, $inputs) {
-          $rows = array();
-          foreach ($inputs as $input)
-          {
-            $rows[] = $widget->renderContentTag('label',
-              $input['input'].$widget->getOption('label_separator').strip_tags($input['label']),
-              array('class'=>'radio'));
-          }
-
-          return !$rows ? '' : $widget->renderContentTag('div', implode($widget->getOption('separator'), $rows), array('class' => $widget->getOption('class')));
-        }
-
-      ), array(
-        'required' => 'required',
-        'style' => 'padding-top: 3px;'
-      )),
       'newsletter'  => new sfWidgetFormInputCheckbox(array(), array(
         'checked'   => 'checked'
       )),
