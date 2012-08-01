@@ -501,6 +501,7 @@ class ajaxAction extends cqAjaxAction
   /**
    * section: collection
    * page: createStep2
+   * params: collection_id
    */
   public function executeCollectionCreateStep2(sfWebRequest $request, $template)
   {
@@ -553,6 +554,51 @@ class ajaxAction extends cqAjaxAction
 
     $this->form = $form;
     $this->collection = $collection;
+
+    return $template;
+  }
+
+  /**
+   * section: collection
+   * page: changeCategoty
+   * params: collection_id
+   */
+  public function executeCollectionChangeCategory(sfWebRequest $request, $template)
+  {
+    $collection = CollectorCollectionPeer::retrieveByPK(
+      $request->getParameter('collection_id')
+    );
+    $this->forward404Unless($collection &&
+      $this->getUser()->getCollector()->isOwnerOf($collection));
+
+    $form = new CollectionCreateForm($collection);
+    $form->useFields(array('content_category_id'));
+
+    if (sfRequest::POST == $request->getMethod())
+    {
+      $taintedValues = $request->getParameter($form->getName());
+      $form->bind($taintedValues, $request->getFiles($form->getName()));
+
+      if ($form->isValid())
+      {
+        $form->save();
+
+        return $this->renderPartial('global/loading', array(
+            'url' => $this->generateUrl('mycq_collection_by_section', array(
+                'id' => $collection->getId(),
+                'section' => 'details',
+            )),
+        ));
+      }
+    }
+
+    $this->form = $form;
+    $this->collection = $collection;
+
+    $root = ContentCategoryQuery::create()->findRoot();
+    $this->categories = ContentCategoryQuery::create()
+        ->descendantsOf($root)
+        ->findTree();
 
     return $template;
   }

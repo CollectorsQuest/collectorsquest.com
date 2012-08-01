@@ -31,6 +31,7 @@ class cqWidgetFormPlain extends sfWidgetForm
     $this->addOption('render_callback', null);
     // what will be displayed if value is empty
     $this->addOption('default_html', '<br />');
+    $this->addOption('extra_html', '');
   }
 
 
@@ -72,7 +73,7 @@ class cqWidgetFormPlain extends sfWidgetForm
         $attributes)
       : $this->getOption('default_html');
 
-    return $hidden_input_tag.$display_html;
+    return $hidden_input_tag.$display_html.$this->getOption('extra_html');
   }
 
 }
