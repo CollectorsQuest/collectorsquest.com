@@ -103,7 +103,7 @@ ice_breadcrumbs:
       - { name: 'Collections', route: mycq_collections }
       - { name: '%Name%', model: true }
     collectible:
-      - { name: '%Collection%', route: mycq_collection_by_id, model: true, subobject: Collection }
+      - { name: '%Collection%', route: mycq_collection_by_slug, model: true, subobject: Collection }
       - { name: '%Name%', model: true }
 
   messages:

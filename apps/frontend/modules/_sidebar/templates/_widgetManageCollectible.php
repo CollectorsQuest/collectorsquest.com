@@ -20,7 +20,7 @@
         <li>
           <a rel="nofollow" href="<?= url_for('mycq_collectible_by_slug', $collectible); ?>">
             <i class="icon-edit"></i>
-            Edit Collectible
+            Edit Item
           </a>
         </li>
         <?php endif; ?>

@@ -1,3 +1,9 @@
+<?php
+/**
+ * @var $collectible Collectible
+ */
+?>
+
 <div class="span3 brick">
   <div class="square">
     <a href="<?= url_for_collectible($collectible); ?>" class="link-brick">

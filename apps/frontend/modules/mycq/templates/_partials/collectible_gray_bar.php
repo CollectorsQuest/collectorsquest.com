@@ -43,7 +43,7 @@
               ));
             ?>
             <!--
-            <a href="<?= $url; ?>" class="open-dialog">
+            <a href="<?= $url; ?>" class="open-dialog" onclick="return false;">
               <i class="icon-trash"></i>
               Delete Item
             </a>

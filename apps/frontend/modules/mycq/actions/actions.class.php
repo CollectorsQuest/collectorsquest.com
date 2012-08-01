@@ -421,7 +421,13 @@ class mycqActions extends cqFrontendActions
 
           try
           {
-            switch ($request->getParameter('scope', 'collections'))
+            /**
+             * If the Collectible has Multimedia associated with it, let's just delete
+             * the CollectionCollectible references so that it can return to the Dropbox
+             */
+            $default = $collectible->getMultimediaCount() > 0 ? 'collections' : 'collectible';
+
+            switch ($request->getParameter('scope', $default))
             {
               case 'collectible':
                 // Delete the Collectible
@@ -528,17 +534,21 @@ class mycqActions extends cqFrontendActions
           null !== $for_sale &&
           $for_sale['is_ready'] !== $collectible->getCollectibleForSale()->getIsReady() &&
           $for_sale['is_ready'] === true
-        )
-        {
-          $message = $this->__(
-            'Your collectible has been posted to the Market.
-             Click <a href="%url%">here</a> to manage your items for sale!',
-            array('%url%' => $this->generateUrl('mycq_marketplace'))
+        ) {
+          $message = sprintf(
+            'Your item has been posted to the Market.
+             Click <a href="%s">here</a> to manage your items for sale!',
+
+            $this->generateUrl('mycq_marketplace')
           );
         }
         else
         {
-          $message = $this->__('Changes were saved!');
+          $message = sprintf(
+            'Changes to your item "<a href="%s">%s</a>" were saved!',
+            $this->generateUrl('mycq_collectible_by_slug', array('sf_subject' => $collectible)),
+            $collectible->getName()
+          );
         }
 
         try
@@ -557,8 +567,8 @@ class mycqActions extends cqFrontendActions
             }
           }
 
-          // If we save the form the request has to be redirected
-          $this->redirect('mycq_collectible_by_slug', $form->getObject());
+          // If we save the form successfully, the request has to be redirected
+          $this->redirect('mycq_collection_by_slug', $collection);
         }
         catch (PropelException $e)
         {

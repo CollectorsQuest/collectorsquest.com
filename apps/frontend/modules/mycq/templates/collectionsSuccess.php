@@ -15,7 +15,10 @@
     array('left' => 8, 'right' => 4, 'class'=>'mycq-red-title row-fluid')
   );
 
-  slot('mycq_dropbox_info_message', 'Drag a photo into a Collection below to add it');
+  slot(
+    'mycq_dropbox_info_message',
+    'To add an item to a collection, drag and drop it into a collection below.'
+  );
 ?>
 
 <div class="gray-well cf">
@@ -24,17 +27,20 @@
       <ul class="nav nav-pills spacer-bottom-reset">
         <li>
           <a href="<?= url_for('@ajax_mycq?section=collection&page=createStep1'); ?>"
-             class="open-dialog" title="Create a new collection by clicking here">
+             class="open-dialog" onclick="return false;"
+             title="Create a new collection by clicking here">
             <i class="icon-plus"></i>
             Create Collection
           </a>
         </li>
+        <!--
         <li>
           <a href="<?= url_for('collections_by_collector', $collector) ?>">
             <i class="icon-globe"></i>
             Public View
           </a>
         </li>
+        //-->
       </ul>
     </div>
     <div class="span6">

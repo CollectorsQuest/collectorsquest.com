@@ -25,7 +25,7 @@
 
     <div class="form-actions">
       <button type="submit" class="btn btn-primary spacer-right-15">
-        Create Collection
+        Next
       </button>
       <button type="reset" class="btn"
               onClick="$(this).parents('.modal').find('.modal-body').dialog2('close')">

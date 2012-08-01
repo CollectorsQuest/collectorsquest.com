@@ -1,6 +1,6 @@
 
 <?php slot('mycq_create_collectible_for_sale'); ?>
-<div id="mycq-create-collectible" class="span4 thumbnail link">
+<div class="span4 thumbnail link mycq-create-collectible">
   <div class="row-fluid spacer-inner-top-20">
     <div class="span4">
       <a href="<?php echo url_for('@ajax_mycq?section=component&page=createCollectibleForSale'); ?>"
@@ -111,7 +111,7 @@
   <?php if (isset($seller) && $seller->hasPackageCredits()): ?>
     <?php include_slot('mycq_create_collectible_for_sale'); ?>
   <?php else: ?>
-  <div id="mycq-create-collectible" class="span4 thumbnail link">
+  <div class="span4 thumbnail link mycq-create-collectible">
     <div class="row-fluid spacer-inner-top-20">
       <div class="span4">
         <a href="<?php echo url_for('@seller_packages'); ?>"

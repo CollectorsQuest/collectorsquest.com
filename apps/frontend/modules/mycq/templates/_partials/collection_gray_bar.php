@@ -10,7 +10,7 @@
         </li>
         <li>
           <a href="<?= url_for('@ajax_mycq?section=component&page=createCollectible&collection_id='. $collection->getId()); ?>"
-             class="open-dialog">
+             class="open-dialog" onclick="return false;">
             <i class="icon icon-plus"></i>
             Add Item
           </a>

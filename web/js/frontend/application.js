@@ -116,6 +116,12 @@ var APP = window.APP = {
   mycq: {
     init: function()
     {
+      /**
+       * When the jquery-controls plugin is added to a website,
+       * a.open-dialog links will open a dialog which shows in page or ajax content.
+       *
+       * @see: https://github.com/Nikku/jquery-bootstrap-scripting/
+       */
       $(document).controls();
 
       // If a a.auto-close is contained in the dialogs content,
@@ -242,8 +248,7 @@ var COMMON = window.COMMON = (function(){
     },
     setupCssHelpers: function() {
       // search box extend overline over close-by elements
-      $('.sort-search-box').on('focusin focusout', 'input.input-sort-by', function(){
-        console.log('wat?')
+      $('.sort-search-box').on('focusin focusout', 'input.input-sort-by', function() {
         var $this = $(this);
         $this.siblings('button').toggleClass('blue-outline-t-b-r');
         $this.siblings('.btn-group').find('div').toggleClass('blue-outline-t-b-l');

@@ -5,11 +5,8 @@ class CollectorEmailChangeForm extends BaseForm
   /** @var Collector */
   protected $collector;
 
-  public function __construct(
-    Collector $collector,
-    $options = array(),
-    $CSRFSecret = null
-  ) {
+  public function __construct(Collector $collector, $options = array(), $CSRFSecret = null)
+  {
     $this->collector = $collector;
 
     parent::__construct(array(), $options, $CSRFSecret);
@@ -23,22 +20,19 @@ class CollectorEmailChangeForm extends BaseForm
             'placeholder' => 'Your CollectorsQuest.com account password',
         )),
         'email' => new sfWidgetFormInputText(
-          array(
-            'label' => 'New Email'
-          ),
+          array('label' => 'New Email'),
           array(
             'type' => 'email',
             'required' => 'required',
-            'placeholder' => 'Your new email address',
-        )),
+            'placeholder' => 'Enter your new email address',
+          )
+        ),
         'email_again' => new sfWidgetFormInputText(
-          array(
-            'label' => 'Confirm Email'
-          ),
+          array('label' => 'Confirm New Email'),
           array(
             'type' => 'email',
             'required' => 'required',
-            'placeholder' => 'Enter your new address again',
+            'placeholder' => 'Enter your new email address again',
         )),
     ));
 
@@ -48,22 +42,23 @@ class CollectorEmailChangeForm extends BaseForm
         'email_again' => new sfValidatorPass(),
     ));
 
-    $this->mergePostValidator(new sfValidatorAnd(array(
+    $this->mergePostValidator(
+      new sfValidatorAnd(array(
         new CollectorEditFormPasswordSchemaValidator(null, array(
             'collector' => $this->collector,
             'old_password_field' => 'password',
         )),
-        new sfValidatorCallback(array(
-            'callback' => array($this, 'validateEmail'),
-        ),array(
-            'invalid' => "This email address is already validated",
-        )),
+        new sfValidatorCallback(
+          array('callback' => array($this, 'validateEmail')),
+          array('invalid' => 'This email address is already validated')
+        ),
         new sfValidatorSchemaCompare(
           'email', sfValidatorSchemaCompare::EQUAL, 'email_again',
           array('throw_global_error' => true),
           array('invalid' => 'The two emails do not match, please enter them again!')
         ),
-    ), array('halt_on_error' => true)));
+      ), array('halt_on_error' => true))
+    );
 
     $this->widgetSchema->setNameFormat('collector_email[%s]');
     $this->widgetSchema->setFormFormatterName('Bootstrap');
@@ -77,28 +72,36 @@ class CollectorEmailChangeForm extends BaseForm
 
     if ($this->collector->getEmail() == $email)
     {
-      $errorSchema->addError(new sfValidatorError($validator,
-        'This is the same email as your current one'), 'email');
+      $errorSchema->addError(
+        new sfValidatorError($validator, 'This is the same email as your current one'),
+        'email'
+      );
+
       throw $errorSchema;
     }
 
-    $collector = CollectorQuery::create()
-      ->filterByEmail($email)
-      ->findOne();
-    if ($collector)
+    $q = CollectorQuery::create()
+      ->filterByEmail($email);
+
+    if ($q->count() > 0)
     {
-      $errorSchema->addError(new sfValidatorError($validator,
-        'This email address is taken'), 'email');
+      $errorSchema->addError(
+        new sfValidatorError($validator, 'This email address is taken'), 'email'
+      );
+
       throw $errorSchema;
     }
 
-    $collector = CollectorEmailQuery::create()
+    $q = CollectorEmailQuery::create()
       ->filterByIsVerified(true)
-      ->findOneByEmail($email);
-    if ($collector)
+      ->filterByEmail($email);
+
+    if ($q->count() > 0)
     {
-      $errorSchema->addError(new sfValidatorError($validator,
-        'invalid'), 'email');
+      $errorSchema->addError(
+        new sfValidatorError($validator, 'invalid'), 'email'
+      );
+
       throw $errorSchema;
     }
 
@@ -113,10 +116,8 @@ class CollectorEmailChangeForm extends BaseForm
    *
    * @return CollectorEmail|null
    */
-  public function bindAndCreateCollectorEmail(
-    array $taintedValues = null,
-    PropelPDO $con = null
-  ) {
+  public function bindAndCreateCollectorEmail(array $taintedValues = null, PropelPDO $con = null)
+  {
     $this->bind($taintedValues);
 
     if ($this->isValid())
@@ -124,7 +125,8 @@ class CollectorEmailChangeForm extends BaseForm
       $new_email = $this->getValue('email');
 
       $collector_email = CollectorEmailPeer::retrieveByCollectorEmail(
-        $this->collector, $new_email, null, $con);
+        $this->collector, $new_email, null, $con
+      );
 
       if (!$collector_email)
       {
@@ -151,6 +153,5 @@ class CollectorEmailChangeForm extends BaseForm
 
     return null;
   }
-
 
 }

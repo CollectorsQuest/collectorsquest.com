@@ -230,6 +230,16 @@
 	overflow: visible;
 }
 
+#mycq-tabs .collectible_grid_view_square.dashed {
+	.collectible-view-slot {
+		display: none;
+	}
+	.hidden {
+		display: block !important;
+		visibility: visible;
+	}
+}
+
 .nav-tabs {
 
   & > li > a {
@@ -1631,7 +1641,7 @@ textarea.input-xlarge {
   }
 
 	.add-new-zone {
-		height: 128px;
+		height: 127px;
 		margin-top: 4px;
 		margin-bottom: 30px;
 		padding-top: 8px;
@@ -1956,7 +1966,7 @@ textarea.input-xlarge {
 	background: url("@{baseUrl}/bg-no-collectibles.png") no-repeat center 116px;
 }
 
-#mycq-create-collectible:hover {
+.mycq-create-collectible:hover {
 	border-color: @red;
 	.btn-create-collection-middle, .icon-shopping-cart, .btn-large-box a {
 		color: @red;
@@ -1988,4 +1998,8 @@ textarea.input-xlarge {
 #collections .collectible_grid_view_square.ui-state-hover {
 	border-color: #C1B6AD;
 	border-style: dashed;
+}
+
+.collectible-view-slot {
+	border: none;
 }

@@ -15,7 +15,7 @@
           <div class="hidden greed-rollover">
             <i class="icon icon-plus spacer-top"></i>
             <span class="info-text spacer-top-5">
-              ADD ITEM
+              Update Photo
             </span>
           </div>
           <?php
@@ -54,7 +54,7 @@
         <div class="hidden">
           <i class="icon icon-plus spacer-top-15"></i>
             <span class="info-text spacer-top-5">
-              ADD ITEM
+              Main Photo
             </span>
         </div>
       </div>
@@ -92,7 +92,7 @@
         <div class="hidden">
           <i class="icon icon-plus white-alternate-view spacer-top"></i>
             <span class="info-text spacer-top-5">
-              ADD ITEM
+              Add View
             </span>
         </div>
       </div>

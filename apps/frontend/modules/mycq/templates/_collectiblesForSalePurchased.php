@@ -43,7 +43,7 @@
       </span>
   <?php endif; ?>
 </div>
-<div id="mycq-create-collectible" class="span4 thumbnail link">
+<div class="mycq-create-collectible span4 thumbnail link">
   <div class="row-fluid spacer-inner-top-20">
     <div class="span4">
       <a href="<?php echo url_for('@marketplace'); ?>"

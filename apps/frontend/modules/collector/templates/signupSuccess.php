@@ -6,7 +6,6 @@ cq_page_title(
 ?>
 
 <?php use_javascripts_for_form($form); ?>
-
 <div class="row-fluid">
   <div class="span4 signup-text-bg">
     <h3>Why Should You Join?</h3>
@@ -48,9 +47,18 @@ cq_page_title(
       </div>
     </fieldset>
 
+	<?php unset($form['newsletter']); ?>
     <?= form_tag('@collector_signup', array('class' => 'form-horizontal')) ?>
     <fieldset>
       <?= $form ?>
+      <div class="control-group ">
+      	<div class="row-fluid spacer-15" style="margin-left: 130px;">
+      	<input type="checkbox" name="<?= $form->getName() ?>[newsletter]"
+             id="<?= $form->getName() ?>_newsletter" checked="checked"
+             style="float: left; width: auto; margin: 3px 5px 15px 0;">
+      	Sign me up for the Collectors Quest newsletter
+	    </div>
+	  </div>
       <div class="form-actions">
         <input type="submit" class="btn btn-primary" value="Sign Up" />
       </div>
