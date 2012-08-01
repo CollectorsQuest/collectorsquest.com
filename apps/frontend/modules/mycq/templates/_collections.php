@@ -76,10 +76,10 @@
 
 <?php if ($pager->count() === 0): ?>
   <?php if ($sf_params->get('q')): ?>
-    <span class="Chivo webfont info-no-collections-uploaded spacer-top-15">
-      None of your collections match search term: <strong><?= $sf_params->get('q'); ?></strong><br/>
-      Do you want to <?= link_to('see all', '@mycq_collections'); ?> collections?
-    </span>
+  <div class="alert alert-no-results">
+    None of your collections match search term: <strong><?= $sf_params->get('q'); ?></strong><br/>
+    Do you want to <?= link_to('see all', '@mycq_collections'); ?> collections?
+  </div>
   <?php else: ?>
     <?php include_slot('mycq_create_collection'); ?>
     <div class="span12 thumbnail link no-collections-uploaded-box">
