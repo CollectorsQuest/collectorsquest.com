@@ -41,7 +41,7 @@ class CollectorCollectionEditForm extends CollectorCollectionForm
         'label' => 'Content Category',
         'content_tag' => 'span',
         'default_html' => '<span>&nbsp;</span>',
-        'extra_html' => sprintf('<a class="btn open-dialog" href="%s">%s</a>',
+        'extra_html' => '<br/>'.sprintf('<a class="btn btn-mini open-dialog" href="%s">%s</a>',
                         $category_edit_url, 'click to change'),
       ), array(
         'required' => 'required',
