@@ -117,6 +117,11 @@ var APP = window.APP = {
     init: function()
     {
       /**
+       * @see: https://basecamp.com/1759305/projects/824949-collectorsquest-com/todos/11926034-when-going-from-page
+       */
+      $.scrollTo('#slot1', { offset: -10, duration: 1000, easing: 'easeOutBack' });
+
+      /**
        * When the jquery-controls plugin is added to a website,
        * a.open-dialog links will open a dialog which shows in page or ajax content.
        *
