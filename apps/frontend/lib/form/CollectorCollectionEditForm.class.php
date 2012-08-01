@@ -12,9 +12,11 @@ class CollectorCollectionEditForm extends CollectorCollectionForm
     $this->widgetSchema['description']->setAttribute('required', 'required');
 
     $this->setupThumbnailField();
+    $this->setupContentCategoryPlainField();
 
     // Define which fields to use from the base form
     $this->useFields(array(
+        'content_category_plain',
         'name',
         'thumbnail',
         'description',
@@ -25,6 +27,24 @@ class CollectorCollectionEditForm extends CollectorCollectionForm
     {
       $this->offsetUnset('thumbnail');
     }
+  }
+
+  protected function setupContentCategoryPlainField()
+  {
+    $this->widgetSchema['content_category_plain'] = new cqWidgetFormPlain(array(
+        'label' => 'Content Category',
+      ), array(
+        'required' => 'required',
+    ));
+    $this->validatorSchema['content_category_plain'] = new sfValidatorPass();
+  }
+
+  protected function updateDefaultsFromObject()
+  {
+    parent::updateDefaultsFromObject();
+
+    $this->setDefault('content_category_plain',
+      $this->getObject()->getContentCategory()->getPath());
   }
 
 }

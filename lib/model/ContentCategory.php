@@ -4,8 +4,28 @@ require 'lib/model/om/BaseContentCategory.php';
 
 class ContentCategory extends BaseContentCategory
 {
+
   protected $autoSort = true;
   protected $isAutoSorting = false;
+
+  /**
+   * Retrieve a text representation of the path to this content category, ex:
+   * Art / Asian / Vases
+   *
+   * @param     string $glue
+   * @return    string
+   */
+  public function getPath($glue = ' / ')
+  {
+    $ancestors = ContentCategoryQuery::create()
+      ->ancestorsOfObjectIncluded($this)
+      ->notRoot()
+      ->orderByTreeLevel()
+      ->select('Name')
+      ->find()->getArrayCopy();
+
+    return implode($glue, $ancestors);
+  }
 
   /**
    * Enable/Disable auto sorting siblings for this object
@@ -29,6 +49,9 @@ class ContentCategory extends BaseContentCategory
 
   /**
    * Add sibling sorting in post-save
+   *
+   * When the Content Category is saved it and all its siblings are oredered
+   * alphabetically in the Nested Set tree
    *
    * @param     PropelPDO $con
    * @return    boolean
