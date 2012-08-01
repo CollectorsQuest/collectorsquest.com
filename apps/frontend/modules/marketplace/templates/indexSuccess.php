@@ -51,7 +51,7 @@
     <form action="<?= url_for('@search_collectibles_for_sale'); ?>" method="post" id="form-discover-collectibles">
       <div class="btn-group">
         <div class="append-left-gray">Sort By <strong id="sortByName">Most Popular</strong></div>
-        <a href="#" data-toggle="dropdown" class="btn dropdown-toggle">
+        <a href="javascript:void(0)" data-toggle="dropdown" class="btn dropdown-toggle">
           <span class="caret arrow-up"></span><br><span class="caret arrow-down"></span>
         </a>
         <ul class="dropdown-menu">

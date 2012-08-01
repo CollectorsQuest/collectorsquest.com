@@ -8,7 +8,7 @@
     <form action="<?= url_for('@search_collections', true); ?>" method="post" id="form-explore-collections">
     <div class="btn-group">
       <div class="append-left-gray">Sort by <strong id="sortByName">Most Relevant</strong></div>
-      <a href="#" data-toggle="dropdown" class="btn dropdown-toggle">
+      <a href="javascript:void(0)" data-toggle="dropdown" class="btn dropdown-toggle">
         <span class="caret arrow-up"></span><br><span class="caret arrow-down"></span>
       </a>
       <ul class="dropdown-menu">

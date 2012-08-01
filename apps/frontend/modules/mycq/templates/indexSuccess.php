@@ -32,7 +32,7 @@
         <p>
           Update your profile picture, edit your profile, email, or password
           <br>
-          <!--<a href="#">Show me how!</a>//-->
+          <!--<a href="javascript:void(0)">Show me how!</a>//-->
         </p>
       </div>
       <div class="span4 text-center">
@@ -44,7 +44,7 @@
           Upload new collections, add to existing ones or
           organize the collections that you have
           <br>
-          <!--<a href="#">Show me how!</a>//-->
+          <!--<a href="javascript:void(0)">Show me how!</a>//-->
         </p>
       </div>
       <div class="span4 text-center">
@@ -55,7 +55,7 @@
         <p>
           Check your private messages from other members or compose new messages
           <br>
-          <!--<a href="#">Show me how!</a>//-->
+          <!--<a href="javascript:void(0)">Show me how!</a>//-->
         </p>
       </div>
     </div>

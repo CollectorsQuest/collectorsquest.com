@@ -118,7 +118,7 @@
   <!--/footer-inner-->
 
   <!--
-    <a id="top-link" href="#" class="btn btn-large sticky">
+    <a id="top-link" href="javascript:void(0)" class="btn btn-large sticky">
       <i class="icon-arrow-up"></i> Scroll<br/> to Top
     </a>
   //-->

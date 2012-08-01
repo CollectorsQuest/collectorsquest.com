@@ -60,7 +60,7 @@
   </div>
   <?php /*
     <div class="pull-right">
-      <a href="#">Back to Collection »</a>
+      <a href="javascript:void(0)">Back to Collection »</a>
     </div>
     */ ?>
 </div>

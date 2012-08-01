@@ -36,9 +36,7 @@
   <div class="row-fluid">
     <div class="span10 upload-items-wrapper-l"></div>
     <div class="span2 upload-items-wrapper-r">
-      <a href="#" class="dropzone-container-slide pull-right
-                         <?= $sf_user->getMycqDropboxOpenState() ? 'open' : '' ?>"
-      >
+      <a href="javascript:void(0)" class="dropzone-container-slide pull-right <?= $sf_user->getMycqDropboxOpenState() ? 'open' : '' ?>">
         <span class="open-dropzone">
           Open Uploaded Photos <i class="icon-caret-down"></i>
         </span>

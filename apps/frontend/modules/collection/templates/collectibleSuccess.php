@@ -86,10 +86,10 @@
         </a>
         <?php endforeach; ?>
       </div>
-      <a href="#" id="ui-carousel-prev" title="previous collectible" class="ui-carousel-navigation hidden left-arrow">
+      <a href="javascript:void(0)" id="ui-carousel-prev" title="previous collectible" class="ui-carousel-navigation hidden left-arrow">
         <i class="icon-chevron-up white"></i>
       </a>
-      <a href="#" id="ui-carousel-next" title="next collectible" class="ui-carousel-navigation hidden right-arrow">
+      <a href="javascript:void(0)" id="ui-carousel-next" title="next collectible" class="ui-carousel-navigation hidden right-arrow">
         <i class="icon-chevron-down white"></i>
       </a>
     </div>

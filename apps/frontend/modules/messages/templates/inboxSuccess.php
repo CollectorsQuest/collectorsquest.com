@@ -19,10 +19,10 @@
             <span class="caret"></span>
           </button>
           <ul class="dropdown-menu">
-            <li><a href="#" data-select="all">All</a></li>
-            <li><a href="#" data-select="none">None</a></li>
-            <li><a href="#" data-select="read">Read</a></li>
-            <li><a href="#" data-select="unread">Unread</a></li>
+            <li><a href="javascript:void(0)" data-select="all">All</a></li>
+            <li><a href="javascript:void(0)" data-select="none">None</a></li>
+            <li><a href="javascript:void(0)" data-select="read">Read</a></li>
+            <li><a href="javascript:void(0)" data-select="unread">Unread</a></li>
           </ul>
         </div>
       </div>

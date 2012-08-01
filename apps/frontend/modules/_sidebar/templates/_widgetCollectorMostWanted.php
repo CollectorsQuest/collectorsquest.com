@@ -10,62 +10,62 @@
   <div class="thumbnails-inner">
     <ul class="thumbnails">
       <li class="span3">
-        <a href="#" class="thumbnail">
+        <a href="javascript:void(0)" class="thumbnail">
           <img src="http://placehold.it/70x70" alt="">
         </a>
       </li>
       <li class="span3">
-        <a href="#" class="thumbnail">
+        <a href="javascript:void(0)" class="thumbnail">
           <img src="http://placehold.it/70x70" alt="">
         </a>
       </li>
       <li class="span3">
-        <a href="#" class="thumbnail">
+        <a href="javascript:void(0)" class="thumbnail">
           <img src="http://placehold.it/70x70" alt="">
         </a>
       </li>
       <li class="span3">
-        <a href="#" class="thumbnail">
+        <a href="javascript:void(0)" class="thumbnail">
           <img src="http://placehold.it/70x70" alt="">
         </a>
       </li>
       <li class="span3">
-        <a href="#" class="thumbnail">
+        <a href="javascript:void(0)" class="thumbnail">
           <img src="http://placehold.it/70x70" alt="">
         </a>
       </li>
       <li class="span3">
-        <a href="#" class="thumbnail">
+        <a href="javascript:void(0)" class="thumbnail">
           <img src="http://placehold.it/70x70" alt="">
         </a>
       </li>
       <li class="span3">
-        <a href="#" class="thumbnail">
+        <a href="javascript:void(0)" class="thumbnail">
           <img src="http://placehold.it/70x70" alt="">
         </a>
       </li>
       <li class="span3">
-        <a href="#" class="thumbnail">
+        <a href="javascript:void(0)" class="thumbnail">
           <img src="http://placehold.it/70x70" alt="">
         </a>
       </li>
       <li class="span3">
-        <a href="#" class="thumbnail">
+        <a href="javascript:void(0)" class="thumbnail">
           <img src="http://placehold.it/70x70" alt="">
         </a>
       </li>
       <li class="span3">
-        <a href="#" class="thumbnail">
+        <a href="javascript:void(0)" class="thumbnail">
           <img src="http://placehold.it/70x70" alt="">
         </a>
       </li>
       <li class="span3">
-        <a href="#" class="thumbnail">
+        <a href="javascript:void(0)" class="thumbnail">
           <img src="http://placehold.it/70x70" alt="">
         </a>
       </li>
       <li class="span3">
-        <a href="#" class="thumbnail">
+        <a href="javascript:void(0)" class="thumbnail">
           <img src="http://placehold.it/70x70" alt="">
         </a>
       </li>

@@ -9,19 +9,19 @@
       by <?= link_to_collector($collection, 'text'); ?>
     </p>
     <div class="thumb-container">
-      <a href="#" class="thumbnails54">
+      <a href="javascript:void(0)" class="thumbnails54">
         <img width="54" height="54" alt="" src="http://multimedia.cqcdns.dev/image/75x75/p1-704738-76682.jpg?1328815166">
       </a>
-      <a href="#" class="thumbnails54">
+      <a href="javascript:void(0)" class="thumbnails54">
         <img width="54" height="54" alt="" src="http://multimedia.cqcdns.dev/image/75x75/p1-704738-76682.jpg?1328815166">
       </a>
-      <a href="#" class="thumbnails54">
+      <a href="javascript:void(0)" class="thumbnails54">
         <img width="54" height="54" alt="" src="http://multimedia.cqcdns.dev/image/75x75/p1-704738-76682.jpg?1328815166">
       </a>
-      <a href="#" class="thumbnails54">
+      <a href="javascript:void(0)" class="thumbnails54">
         <img width="54" height="54" alt="" src="http://multimedia.cqcdns.dev/image/75x75/p1-704738-76682.jpg?1328815166">
       </a>
-      <a href="#" class="thumbnails54">
+      <a href="javascript:void(0)" class="thumbnails54">
         <img width="54" height="54" alt="" src="http://multimedia.cqcdns.dev/image/75x75/p1-704738-76682.jpg?1328815166">
       </a>
     </div>

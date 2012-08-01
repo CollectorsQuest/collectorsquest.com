@@ -125,7 +125,7 @@ function cq_nestedset_to_ul(PropelObjectCollection $collection, $print_method = 
     echo sprintf('<li class="%s">%s',
       $object->hasChildren() ? 'expanded' : 'leaf',
       sprintf(
-        '<a href="#" data-object-id="%d">%s</a>',
+        '<a href="javascript:void(0)" data-object-id="%d">%s</a>',
         $object->getId(), call_user_func(array($object, $print_method))
       )
     );
@@ -170,7 +170,7 @@ function cq_content_categories_to_ul(PropelObjectCollection $collections, $optio
     {
       $close_str =
         '   <li class="leaf">
-              <a href="#" data-object-id="-1">Other</a>
+              <a href="javascript:void(0)" data-object-id="-1">Other</a>
             </li>
           </ul>
         </li>' . "\n";
@@ -182,7 +182,7 @@ function cq_content_categories_to_ul(PropelObjectCollection $collections, $optio
     $html .= sprintf('<li class="%s">%s',
       $object->hasChildren() ? 'expanded' : 'leaf',
       sprintf(
-        '<a href="#" data-object-id="%d">%s</a>',
+        '<a href="javascript:void(0)" data-object-id="%d">%s</a>',
         $object->getId(), $object->getName()
       )
     );

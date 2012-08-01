@@ -17,7 +17,7 @@
     <button type="submit" class="btn btn-primary spacer-right-15">
       Create Collection
     </button>
-    <a href="#"
+    <a href="javascript:void(0)"
        onClick="window.location = '<?= url_for('mycq_collection_by_section', array(
                 'id' => $collection->getId(),
                 'section' => 'collectibles',

@@ -14,7 +14,7 @@
       {
         if ($params['active'] === true)
         {
-          echo '<li class="active"><a href="#" rel="nofollow"><i class="icon-ok"></i>&nbsp;', $params['name'],'</a></li>';
+          echo '<li class="active"><a href="javascript:void(0)" rel="nofollow"><i class="icon-ok"></i>&nbsp;', $params['name'],'</a></li>';
         }
         else
         {
@@ -36,7 +36,7 @@
 
         if ($params['active'] === true)
         {
-          echo '<li class="active"><a href="#"><i class="icon-ok"></i>&nbsp;', $name,'</a></li>';
+          echo '<li class="active"><a href="javascript:void(0)"><i class="icon-ok"></i>&nbsp;', $name,'</a></li>';
         }
         else
         {
