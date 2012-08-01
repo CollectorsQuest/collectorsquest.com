@@ -7,7 +7,21 @@
  * @var $for_for_sale CollectibleForSaleEditForm
  */
 
-slot('mycq_dropbox_info_message', 'To add another view of this item, drag an image into the "Alternate View" boxes below your main image.');
+if ($collectible->getMultimediaCount('image') > 0)
+{
+  slot(
+    'mycq_dropbox_info_message',
+    'To add another view of this item, drag an image
+     into the "Alternate View" boxes below your main image.'
+  );
+}
+else
+{
+  slot(
+    'mycq_dropbox_info_message',
+    'Drag a photo below to set it as the "Main Image" for this item.'
+  );
+}
 ?>
 
 <form action="<?= url_for('mycq_collectible_by_slug', $collectible); ?>"
