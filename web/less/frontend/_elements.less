@@ -216,13 +216,22 @@ li {
 }
 
 .social-signin-wapper {
+	height: 75px;
 	text-align: center;
 
 	.facebook-big-icon, .twitter-big-icon, .google-big-icon, .live-id-big-icon {
 		display: inline-block;
 		margin: 0 10px;
 	}
+	.hover-info-f, .hover-info-t, .hover-info-g, .hover-info-w {
+		display: none;
+		margin-top: 8px;
+	}
+	.facebook-big-icon:hover ~ .hover-info-f,
+	.twitter-big-icon:hover ~ .hover-info-t,
+	.google-big-icon:hover ~ .hover-info-g,
+	.live-id-big-icon:hover ~ .hover-info-w {
+		display: block;
+	}
 }
-
-
 

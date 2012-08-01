@@ -31,11 +31,9 @@
       array('action' => 'sign up')
     );
     ?>
-
-    <div class="row-fluid spacer-15">
+    <div class="row-fluid spacer-top-5 spacer-bottom-15">
       <input type="checkbox" name="<?= $signup_form->getName() ?>[newsletter]"
-             id="<?= $signup_form->getName() ?>_newsletter" checked="checked"
-             style="float: left; width: auto; margin: 3px 5px 3px 0;">
+             id="<?= $signup_form->getName() ?>_newsletter" checked="checked">
       Sign me up for the Collectors Quest newsletter
     </div>
 
@@ -112,3 +110,5 @@
     </span>
   </div>
 </div> <!-- #footer-form-login -->
+
+

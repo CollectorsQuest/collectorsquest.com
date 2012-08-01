@@ -54,8 +54,7 @@ cq_page_title(
       <div class="control-group ">
       	<div class="row-fluid spacer-15" style="margin-left: 130px;">
       	<input type="checkbox" name="<?= $form->getName() ?>[newsletter]"
-             id="<?= $form->getName() ?>_newsletter" checked="checked"
-             style="float: left; width: auto; margin: 3px 5px 15px 0;">
+             id="<?= $form->getName() ?>_newsletter" checked="checked">
       	Sign me up for the Collectors Quest newsletter
 	    </div>
 	  </div>
