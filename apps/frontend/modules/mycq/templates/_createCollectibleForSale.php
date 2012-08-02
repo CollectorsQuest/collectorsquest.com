@@ -10,7 +10,10 @@
   {
     include_partial(
       'global/loading',
-      array('url' => url_for('mycq_collectible_by_slug', $collectible))
+      array('url' => url_for(
+          'mycq_collectible_by_slug',
+          array('sf_subject' => $collectible, 'available_for_sale' => 'yes')
+      ))
     );
 
     return;
@@ -27,8 +30,6 @@
     if (isset($form['collectible']['collection_id'])) {
       echo $form['collectible']['collection_id'];
     }
-  ?>
-  <?php
     if (isset($form['collectible']['collection_collectible_list'])) {
       echo $form['collectible']['collection_collectible_list']->renderRow();
     }
