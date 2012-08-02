@@ -25,6 +25,7 @@ class sfWidgetFormSchemaFormatterBootstrap extends sfWidgetFormSchemaFormatter
   protected $errorListFormatForField     = '<ul class="unstyled alert alert-error">%errors%  </ul>';
   protected $errorListFormatForRowAll    = '<div class="alert alert-error all-errors">
                                               <a class="close" data-dismiss="alert">×</a>
+                                              <h4 class="alert-heading">There were some problems with your data:</h4>
                                               <ul class="unstyled">
                                               %errors%
                                               </ul>
@@ -45,7 +46,7 @@ class sfWidgetFormSchemaFormatterBootstrap extends sfWidgetFormSchemaFormatter
         '%field%'         => $this->formatRequiredField($field),
                              // show help only when there are no errors
         '%help%'          => 0 == count($errors) ? $this->formatHelp($help) : '',
-        '%errors%'        => $this->formatErrorsForField($errors),
+        '%errors%'        => $this->formatErrorsForField($errors, preg_replace('/:$/', '', strip_tags($label))),
         '%error_class%'   => count($errors) ? 'error' : '',
         '%hidden_fields%' => null === $hiddenFields ? '%hidden_fields%' : $hiddenFields,
     ));
@@ -54,7 +55,7 @@ class sfWidgetFormSchemaFormatterBootstrap extends sfWidgetFormSchemaFormatter
   /**
    * Displays all errors for a given form, both field and global
    *
-   * @param type $errors
+   * @param     sfValidatorErrorSchema|null $errors
    */
   public function formatAllErrorsForRow($errors)
   {
@@ -110,7 +111,7 @@ class sfWidgetFormSchemaFormatterBootstrap extends sfWidgetFormSchemaFormatter
         {
           $name = trim($this->generateLabelName($name), '?:');
 
-          $newErrors[] = strtr($this->namedErrorRowFormatForRowAll, array('%error%' => $err, '%name%' => ($prefix ? $prefix.' > ' : '').$name));
+          $newErrors[] = $this->formatNamedErrorRowForRowAll($err, $prefix, $name);
         }
         else
         {
@@ -120,6 +121,32 @@ class sfWidgetFormSchemaFormatterBootstrap extends sfWidgetFormSchemaFormatter
     }
 
     return $newErrors;
+  }
+
+  /**
+   * Special formatting for all-errors blog fields with a single error, that is either
+   * "required" or "invalid"
+   *
+   * @param     string $error
+   * @param     string $prefix
+   * @param     string $name
+   *
+   * @return    string
+   */
+  protected function formatNamedErrorRowForRowAll($error, $prefix, $name)
+  {
+    $error = strtr($this->namedErrorRowFormatForRowAll, array('%error%' => $error, '%name%' => ($prefix ? $prefix.' > ' : '').$name));
+
+    // see sfValidatorBase::$globalDefaultMessages
+    // In case we have one of the two default error messages, we write out
+    // the error in the format "The FIELD_NAME field is ERROR_MESSAGE."
+    $error = preg_replace(
+      '/(\w+): ((?:Invalid.|Required.))/ue',
+      '"The " . strtolower("$1") . " field is " . strtolower("$2")',
+      $error
+    );
+
+    return $error;
   }
 
   /**
@@ -175,9 +202,11 @@ class sfWidgetFormSchemaFormatterBootstrap extends sfWidgetFormSchemaFormatter
    * Format erros to be displayed alongside the field
    *
    * @param     sfValidatorErrorSchema $errors
-   * @return    type
+   * @param     string $label
+   *
+   * @return    string
    */
-  public function formatErrorsForField($errors)
+  public function formatErrorsForField($errors, $label = '')
   {
     if (null === $errors || !$errors)
     {
@@ -189,7 +218,7 @@ class sfWidgetFormSchemaFormatterBootstrap extends sfWidgetFormSchemaFormatter
       $errors = array($errors);
     }
 
-    return strtr($this->errorListFormatForField, array('%errors%' => implode('', $this->unnestErrorsForField($errors))));
+    return strtr($this->errorListFormatForField, array('%errors%' => implode('', $this->unnestErrorsForField($errors, '', $label))));
   }
 
   /**
@@ -197,10 +226,11 @@ class sfWidgetFormSchemaFormatterBootstrap extends sfWidgetFormSchemaFormatter
    *
    * @param     sfValidatorErrorSchema $errors
    * @param     string $prefix
+   * @param     string $label
    *
    * @return    array of strings
    */
-  protected function unnestErrorsForField($errors, $prefix = '')
+  protected function unnestErrorsForField($errors, $prefix = '', $label = '')
   {
     $newErrors = array();
 
@@ -208,7 +238,7 @@ class sfWidgetFormSchemaFormatterBootstrap extends sfWidgetFormSchemaFormatter
     {
       if ($error instanceof ArrayAccess || is_array($error))
       {
-        $newErrors = array_merge($newErrors, $this->unnestErrorsForField($error, ($prefix ? $prefix.' > ' : '').$name));
+        $newErrors = array_merge($newErrors, $this->unnestErrorsForField($error, ($prefix ? $prefix.' > ' : '').$name, $label));
       }
       else
       {
@@ -227,13 +257,38 @@ class sfWidgetFormSchemaFormatterBootstrap extends sfWidgetFormSchemaFormatter
         }
         else
         {
-          $newErrors[] = strtr($this->errorRowFormatForField, array('%error%' => $err));
+          $newErrors[] = $this->formatErrorRowFormatForField($err, $label);
         }
       }
     }
 
     return $newErrors;
   }
+
+  /**
+   * Special formatting for non-named field errors
+   *
+   * @param     string $error
+   * @param     string $label
+   * @return    string
+   */
+  protected function formatErrorRowFormatForField($error, $label = '')
+  {
+    if ('' != trim($label))
+    {
+      // see sfValidatorBase::$globalDefaultMessages
+      // In case we have one of the two default error messages, we write out
+      // the error in the format "The FIELD_NAME field is ERROR_MESSAGE."
+      $error = preg_replace(
+        '/(?:Invalid.|Required.)/ue',
+        '"The " . strtolower($label) . " field is " . strtolower("$0")',
+        $error
+      );
+    }
+
+    return strtr($this->errorRowFormatForField, array('%error%' => $error));
+  }
+
 
   /**
    * @param     string $name
