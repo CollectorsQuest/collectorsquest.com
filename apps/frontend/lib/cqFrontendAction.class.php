@@ -2,7 +2,6 @@
 
 /**
  * @method  cqFrontendUser getUser()
- * @method  mixed redirect($url, $statusCode)
  */
 abstract class cqFrontendAction extends cqBaseAction
 {
