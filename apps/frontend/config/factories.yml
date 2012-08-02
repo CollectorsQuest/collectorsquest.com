@@ -153,3 +153,6 @@ all:
     class: sfNoLogger
     param:
       loggers: ~
+
+  controller:
+    class: cqFrontWebController

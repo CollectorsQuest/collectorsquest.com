@@ -90,7 +90,7 @@
       </fieldset>
       <?php endif; ?>
 
-      <div class="control-group" style="margin-bottom: 0;">
+      <div class="control-group spacer-bottom-reset">
         <label class="control-label control-label">&nbsp;</label>
         <div class="controls form-inline">
           <label for="<?= $packagesForm['terms']->renderId() ?>" class="radio inline">

@@ -10,7 +10,10 @@
   {
     include_partial(
       'global/loading',
-      array('url' => url_for('mycq_collectible_by_slug', $collectible))
+      array('url' => url_for(
+          'mycq_collectible_by_slug',
+          array('sf_subject' => $collectible, 'available_for_sale' => 'yes')
+      ))
     );
 
     return;
@@ -20,16 +23,13 @@
 <form action="<?= url_for('@ajax_mycq?section=component&page=createCollectibleForSale'); ?>"
       method="post" id="form-create-collectible" class="ajax form-horizontal form-modal">
 
-  <h1>Create a New Collectible for Sale</h1>
-
+  <h1>Add a New Item for Sale</h1>
   <?= $form->renderGlobalErrors(); ?>
 
   <?php
     if (isset($form['collectible']['collection_id'])) {
       echo $form['collectible']['collection_id'];
     }
-  ?>
-  <?php
     if (isset($form['collectible']['collection_collectible_list'])) {
       echo $form['collectible']['collection_collectible_list']->renderRow();
     }

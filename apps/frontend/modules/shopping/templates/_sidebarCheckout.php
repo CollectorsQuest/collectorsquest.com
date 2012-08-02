@@ -14,13 +14,13 @@
     </tr>
     <tr>
       <td>Quantity:</td>
-      <td style="text-align: right;">
+      <td class="text-right">
         1 <strong>x</strong> <?= money_format('%.2n', (float) $shopping_order->getCollectiblesAmount()); ?>
       </td>
     </tr>
     <tr>
       <td style="vertical-align: top;">Shipping:</td>
-      <td style="text-align: right;">
+      <td class="text-right">
 
       <?php if (null === $shopping_order->getShippingFeeAmount()): ?>
         <span class="red">Cannot be shipped to <br/>the chosen country!</span>

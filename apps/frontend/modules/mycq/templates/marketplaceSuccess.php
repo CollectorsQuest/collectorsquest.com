@@ -32,7 +32,7 @@
                       action="<?= url_for('@ajax_mycq?section=component&page=collectiblesForSale') ?>">
                   <div class="btn-group">
                     <div class="append-left-gray">Sort by <strong id="sortByName">Most Recent</strong></div>
-                    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                    <a class="btn dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
                       <span class="caret arrow-up"></span><br><span class="caret arrow-down"></span>
                     </a>
                     <ul class="dropdown-menu">

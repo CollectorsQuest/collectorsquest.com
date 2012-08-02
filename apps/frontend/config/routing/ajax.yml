@@ -52,3 +52,7 @@ ajax_editable:
 ajax_editable_load:
   url:   /ajax/editable-load
   param: { module: _ajax, action: editableLoad }
+  
+ajax_feedback:
+  url:   /ajax/feedback
+  param: { module: _ajax, action: feedback }

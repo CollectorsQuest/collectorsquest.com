@@ -10,6 +10,8 @@ class frontendConfiguration extends cqApplicationConfiguration
 
     $this->enablePlugins(array('sfFeed2Plugin'));
 
-    $this->dispatcher->connect('user.change_authentication', array('CollectorPeer', 'listenToChangeAuthenticationEvent'));
+    $this->dispatcher->connect(
+      'user.change_authentication', array('CollectorPeer', 'listenToChangeAuthenticationEvent')
+    );
   }
 }

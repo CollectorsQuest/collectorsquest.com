@@ -62,7 +62,7 @@
       array('left' => 8, 'right' => 4, 'class'=>'spacer-top-reset row-fluid sidebar-title')
     );
   ?>
-  <div class="span8" style="margin-left: 0;">
+  <div class="span8 spacer-left-reset">
     <table class="table">
       <tr>
         <td>Email Address:</td>
@@ -114,7 +114,7 @@
           <?php else: ?>
             <div class="row-fluid">
             <form action="<?= url_for('mycq_shopping_order_tracking', $shopping_order); ?>" method="post">
-              <div class="span4" style="margin-left: 0;">
+              <div class="span4 spacer-left-reset">
                 <select name="carrier" style="width: 100px;">
                   <option value="">Courier</option>
                   <option value="">-------</option>
@@ -150,7 +150,7 @@
       array('left' => 8, 'right' => 4, 'class'=>'spacer-top-reset row-fluid sidebar-title')
     );
   ?>
-  <div class="span8" style="margin-left: 0;">
+  <div class="span8 spacer-left-reset">
     <table class="table">
       <tr>
         <td style="width: 38%;">Payment Status:</td>

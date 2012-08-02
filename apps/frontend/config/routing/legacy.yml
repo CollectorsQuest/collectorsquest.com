@@ -27,11 +27,6 @@ legacy_15_minutes_of_fame:
   url:   /community/15-minutes-of-fame
   param: { module: _legacy, action: spotlight }
 
-legacy_seller_signup:
-  url:   /seller/signup/:step
-  param: { module: _legacy, action: signup, step: 1 }
-  requirements: { step: '[1-3]' }
-
 legacy_seller_subscribe:
   url:   /seller/subscribe
   param: { module: _legacy, action: comingSoon }

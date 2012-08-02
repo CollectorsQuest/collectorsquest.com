@@ -17,6 +17,7 @@ class cqWidgetFormPlain extends sfWidgetForm
    *                      default is TRUE
    *  * render_callback:  Calback function if the value needs to be processed
    *                      before rendering
+   *  * default_html:     What to display if the field is empty
    *
    * @param array $options     An array of options
    * @param array $attributes  An array of default HTML attributes
@@ -28,6 +29,9 @@ class cqWidgetFormPlain extends sfWidgetForm
     $this->addOption('content_tag', 'pre');
     $this->addOption('escape', true);
     $this->addOption('render_callback', null);
+    // what will be displayed if value is empty
+    $this->addOption('default_html', '<br />');
+    $this->addOption('extra_html', '');
   }
 
 
@@ -67,9 +71,9 @@ class cqWidgetFormPlain extends sfWidgetForm
           ? self::escapeOnce($rendered_value)
           : $rendered_value,
         $attributes)
-      : '<br />'; // symfony's default css fucks up without this
+      : $this->getOption('default_html');
 
-    return $hidden_input_tag.$display_html;
+    return $hidden_input_tag.$display_html.$this->getOption('extra_html');
   }
 
 }

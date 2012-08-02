@@ -12,7 +12,7 @@
     <?php endif; ?>
   </div>
   <div class="span10">
-    <p class="bubble left">
+    <p id="comment-<?= $comment->getId(); ?>" class="bubble left">
       <?php if ($collector): ?>
         <span class="username"><?= link_to_collector($collector); ?></span>
       <?php else: ?>

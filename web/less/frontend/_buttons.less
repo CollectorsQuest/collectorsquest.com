@@ -151,34 +151,10 @@ select,
 
 //MyCQ SECTION
 
-a.btn-cq-style span {
-	.btn-cq-left;
-	display: block;
-	line-height: 22px;
-	padding: 7px 0 5px 18px;
-	color: #fff;
+.btn-primary-long {
+	padding: 4px 24px;
 }
 
-a.btn-cq-style {
-	.btn-cq-right;
-	display: block;
-	float: left;
-	height: 34px;
-	margin-right: 6px;
-	padding-right: 20px;
-	text-decoration: none;
-	font-family: Arial, Helvetica, sans-serif;
-	font-size:12px;
-	font-weight:bold;
-}
-
-a.btn-cq-style:hover span {
-	background-position: 0 -34px; color: #fff;
-}
-
-a.btn-cq-style:hover {
-	background-position: right -34px;
-}
 
 // CUSTOM STYLES
 
@@ -285,7 +261,6 @@ button.btn-primary:hover i.add-to-card-button {
 	border-right: 1px solid lighten(@red, 40%);
 }
 
-
 .btn-blue-simple {
 	margin: 0 3px;
 	padding: 4px 8px;
@@ -313,7 +288,7 @@ button.btn-primary:hover i.add-to-card-button {
 	//letter-spacing: 0.03em;
 	color: #9a9ba2;
 	&:hover {
-		color: #716a70;
+		color: @red;
 	}
 	&:active {
 		color: #68757b;
@@ -423,7 +398,7 @@ input[type="submit"].btn.btn-micro {
 .cb-enable, .cb-disable, .cb-enable span, .cb-disable span {
 	display: block;
 	float: left;
-  background: url(/images/frontend/switch.gif) repeat-x;
+  background: url("@{baseUrl}/switch.gif") repeat-x;
 }
 
 .cb-enable span, .cb-disable span {

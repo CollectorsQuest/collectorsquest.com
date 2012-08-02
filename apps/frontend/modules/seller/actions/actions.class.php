@@ -22,6 +22,11 @@ class sellerActions extends cqFrontendActions
     $this->redirect('@mycq_marketplace');
   }
 
+  public function executeSignup()
+  {
+    return sfView::SUCCESS;
+  }
+
   /**
    * Action Packages
    *

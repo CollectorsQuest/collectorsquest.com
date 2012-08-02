@@ -111,7 +111,7 @@ var edcal_test = {
          /*
           * Now we'll move 4 weeks into the future
           */
-         asyncTest('Move 4 week in the future and check visible dates', function() {
+         asyncTest('Move 4 weeks in the future and check visible dates', function() {
              expect(2);
 
              edcal.move(4, true, function() {
@@ -136,7 +136,7 @@ var edcal_test = {
          /*
           * Now 8 weeks into the past
           */
-         asyncTest('Move 8 week in the past and check visible dates', function() {
+         asyncTest('Move 8 weeks in the past and check visible dates', function() {
              expect(2);
 
              edcal.move(8, false, function() {
@@ -147,8 +147,44 @@ var edcal_test = {
 
                  edcal.move(8, true, function() {
                      start();
-                     edcal_test.testCreatePost();
+                     edcal_test.testMoveToLast();
                  });
+             });
+
+
+         });
+    },
+    
+    testMoveToLast: function() {
+         if (edcal.lastPostDate === '-1') {
+             /*
+              * Then there aren't any posts and we can't go
+              * to the last one so we just skip this test.
+              */
+             edcal_test.testCreatePost();
+             return;
+         }
+         
+         var d = Date.parseExact(edcal.lastPostDate, 'ddMMyyyy');
+         var curSunday = edcal.nextStartOfWeek(d).add(-1).weeks();
+
+         /*
+          * Now move to the last post, get the post date, and make sure the post
+          * is there with the correct ID.
+          */
+         asyncTest('Move to the last post', function() {
+             expect(1);
+
+             edcal.moveTo(d);
+             edcal.getPosts(edcal.nextStartOfWeek(d).add(-3).weeks(),
+                            edcal.nextStartOfWeek(d).add(edcal.weeksPref + 3).weeks(), function() {
+
+                 equals(jQuery('#post-' + edcal.lastPostId).length, 1, 'The post should be added at ' + 
+                        d.toString(Date.CultureInfo.formatPatterns.longDate));
+
+                 edcal.moveTo(Date.today());
+                 start();
+                 edcal_test.testCreatePost();
              });
 
 

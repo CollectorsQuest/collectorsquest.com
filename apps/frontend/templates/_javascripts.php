@@ -48,7 +48,13 @@
   var s = d.getElementsByTagName(t)[0];
 
   addthis.async = true;
-  addthis.src = '//s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4fa2c6240b775d05';
+  addthis.src = '//s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4fa2c6240b775d05&async=true';
   s.parentNode.insertBefore(addthis, s);
+
+
 })(document, 'script');
+
+$(window).load(function() {
+  addthis.init()
+})
 </script>

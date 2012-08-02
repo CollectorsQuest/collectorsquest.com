@@ -5,7 +5,7 @@
 //  );
 ?>
 
-<div class="row-fluid">
+<div class="row-fluid spacer-top-20">
   <div class="span3">
     <p class="spacer-right">
       One of the best parts about collecting is sharing your love and treasures with others,
@@ -13,6 +13,13 @@
       so we can match you with people who share the same passion as you.
       Welcome to the community!
     </p>
+
+    <?php
+      echo link_to(
+        image_tag('banners/2012-06-24_CQGuide_160x600.png'),
+        '@misc_guide_download'
+      );
+    ?>
   </div>
   <div class="span9 welcome-mycq">
     <div class="rectangle"></div>
@@ -25,7 +32,7 @@
         <p>
           Update your profile picture, edit your profile, email, or password
           <br>
-          <!--<a href="#">Show me how!</a>//-->
+          <!--<a href="javascript:void(0)">Show me how!</a>//-->
         </p>
       </div>
       <div class="span4 text-center">
@@ -37,7 +44,7 @@
           Upload new collections, add to existing ones or
           organize the collections that you have
           <br>
-          <!--<a href="#">Show me how!</a>//-->
+          <!--<a href="javascript:void(0)">Show me how!</a>//-->
         </p>
       </div>
       <div class="span4 text-center">
@@ -48,7 +55,7 @@
         <p>
           Check your private messages from other members or compose new messages
           <br>
-          <!--<a href="#">Show me how!</a>//-->
+          <!--<a href="javascript:void(0)">Show me how!</a>//-->
         </p>
       </div>
     </div>

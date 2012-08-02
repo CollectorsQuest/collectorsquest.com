@@ -16,7 +16,7 @@ IceClassLoader::getLoader()->registerPrefixes(array(
     'Twig_' => __DIR__ . '/../lib/vendor/twig/lib'
 ));
 
-class ProjectConfiguration extends IceProjectConfiguration
+class ProjectConfiguration extends sfProjectConfiguration
 {
 
   protected $rocketShipItAutoloaderRegistered = false;
@@ -31,12 +31,15 @@ class ProjectConfiguration extends IceProjectConfiguration
     iconv_set_encoding('output_encoding', 'UTF-8');
     iconv_set_encoding('internal_encoding', 'UTF-8');
 
+    sfConfig::set('sf_phing_path', __DIR__.'/../plugins/sfPropelORMPlugin/lib/vendor/phing');
+    sfConfig::set('sf_propel_path', __DIR__.'/../plugins/sfPropelORMPlugin/lib/vendor/propel');
+
     $this->enablePlugins('sfPropelORMPlugin', 'sfGuardPlugin');
     $this->enablePlugins(array(
       'iceAssetsPlugin', 'iceBehaviorsPlugin', 'iceLibsPlugin',
       'iceTaggablePlugin', 'iceJobQueuePlugin', 'iceCrontabPlugin',
       'iceSpamControlPlugin', 'iceGeoLocationPlugin', 'iceMultimediaPlugin',
-      'cqEmailsPlugin', 'cqMagnifyPlugin', 'iceSEOPlugin',
+      'cqEmailsPlugin', 'cqMagnifyPlugin', 'iceSEOPlugin', 'fpErrorNotifierPlugin'
     ));
 
     sfConfig::add(array(

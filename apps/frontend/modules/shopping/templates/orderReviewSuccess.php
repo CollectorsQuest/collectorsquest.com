@@ -26,7 +26,7 @@
 <p class="spacer-top-20">
   The seller, <?= link_to_collector($seller) ?>, has been notified and
   will be in contact with you soon to finalize any outstanding details if needed.
-  You should receive a confirmation email when you item ships.
+  You should receive a confirmation email when your item ships.
 </p>
 
 <?php if (!$sf_user->isAuthenticated()): ?>
@@ -46,7 +46,7 @@
       array('left' => 8, 'right' => 4, 'class'=>'spacer-top-reset row-fluid sidebar-title')
     );
   ?>
-  <div class="span7" style="margin-left: 0;">
+  <div class="span7 spacer-left-reset">
     <table class="table">
       <tr>
         <td style="width: 38%;">Status:</td>

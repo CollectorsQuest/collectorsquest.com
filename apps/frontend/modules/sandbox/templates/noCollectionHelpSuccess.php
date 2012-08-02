@@ -15,7 +15,7 @@
                 id="form-mycq-collections" method="post">
             <div class="btn-group">
               <div class="append-left-gray">Sort by <strong id="sortByName">Most Recent</strong></div>
-              <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+              <a class="btn dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
                 <span class="caret arrow-up"></span><br><span class="caret arrow-down"></span>
               </a>
               <ul class="dropdown-menu">
@@ -53,7 +53,7 @@
           <p>
             Take pictures of your treasures and upload them to the site.
             Click on the Upload Items button to get started<br>
-            <a href="#">Show me how!</a>
+            <a href="javascript:void(0)">Show me how!</a>
           </p>
         </div>
         <div class="span4 text-center">
@@ -65,7 +65,7 @@
             Create a listing for your collection populate your
             new grouping with the images you uploaded
             <br>
-            <a href="#">Show me how!</a>
+            <a href="javascript:void(0)">Show me how!</a>
           </p>
         </div>
         <div class="span4 text-center">
@@ -76,13 +76,13 @@
           <p>
             Describe your items and set alternate views.
             Share your collectibles with the CQ community<br>
-            <a href="#">Show me how!</a>
+            <a href="javascript:void(0)">Show me how!</a>
           </p>
         </div>
       </div>
     </div>
     <div class="span3">
-      <a href="#" class="zone-add-new" title="Create a new collection by clicking here">
+      <a href="javascript:void(0)" class="zone-add-new" title="Create a new collection by clicking here">
           <span id="collection-create-icon"
                 class="btn-upload-collectible">
             <i class="icon-plus icon-white"></i>

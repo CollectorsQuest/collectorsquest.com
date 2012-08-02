@@ -28,7 +28,7 @@
   <?php
     foreach ($pager->getResults() as $i => $collector)
     {
-      echo '<div class="span6 brick" style="height: 165px; float: left;">';
+      echo '<div class="span6 brick fixed-height">';
       include_partial(
         'collector/collector_'. $display .'_view_span6',
         array('collector' => $collector, 'excerpt' => $pager->getExcerpt($i), 'i' => $i)
@@ -39,7 +39,7 @@
   </div>
 </div>
 
-<div class="row-fluid" style="text-align: center;">
+<div class="row-fluid text-center">
 <?php
   include_component(
     'global', 'pagination', array('pager' => $pager)

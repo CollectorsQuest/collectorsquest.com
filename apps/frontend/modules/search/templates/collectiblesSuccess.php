@@ -37,7 +37,7 @@
   </div>
 </div>
 
-<div class="row-fluid" style="text-align: center;">
+<div class="row-fluid text-center">
 <?php
   include_component(
     'global', 'pagination', array('pager' => $pager)

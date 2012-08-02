@@ -6,7 +6,6 @@ cq_page_title(
 ?>
 
 <?php use_javascripts_for_form($form); ?>
-
 <div class="row-fluid">
   <div class="span4 signup-text-bg">
     <h3>Why Should You Join?</h3>
@@ -35,7 +34,7 @@ cq_page_title(
     </dl>
   </div>
   <div class="span8">
-    <fieldset class="rpxnow-login clearfix" id="rpx-login" style="text-align: center;">
+    <fieldset class="rpxnow-login clearfix text-center" id="rpx-login">
       <iframe
         src="<?= $rpxnow['application_domain']; ?>openid/embed?token_url=<?= url_for('@rpx_token', true); ?>"
         scrolling="no" frameBorder="no" style="width:350px; height:217px;" width="350" height="217">
@@ -48,9 +47,17 @@ cq_page_title(
       </div>
     </fieldset>
 
+	<?php unset($form['newsletter']); ?>
     <?= form_tag('@collector_signup', array('class' => 'form-horizontal')) ?>
     <fieldset>
       <?= $form ?>
+      <div class="control-group ">
+      	<div class="row-fluid spacer-15" style="margin-left: 130px;">
+      	<input type="checkbox" name="<?= $form->getName() ?>[newsletter]"
+             id="<?= $form->getName() ?>_newsletter" checked="checked">
+      	Sign me up for the Collectors Quest newsletter
+	    </div>
+	  </div>
       <div class="form-actions">
         <input type="submit" class="btn btn-primary" value="Sign Up" />
       </div>

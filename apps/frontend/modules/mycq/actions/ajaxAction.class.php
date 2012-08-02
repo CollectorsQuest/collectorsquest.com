@@ -183,6 +183,9 @@ class ajaxAction extends cqAjaxAction
   }
 
   /**
+   * @param  sfWebRequest  $request
+   *
+   * @throws PropelException
    * @return string
    */
   protected function executeCollectibleDonateImage(sfWebRequest $request)
@@ -215,11 +218,16 @@ class ajaxAction extends cqAjaxAction
       {
         $primary->delete();
       }
+      else if (!$is_primary && !$recipient->getPrimaryImage())
+      {
+        $is_primary = true;
+      }
 
       try
       {
         $image->setIsPrimary($is_primary);
         $image->setModelId($recipient->getId());
+        $image->setSource($donor->getId());
         $image->save();
       }
       catch (PropelException $e)
@@ -237,7 +245,16 @@ class ajaxAction extends cqAjaxAction
       $recipient->setUpdatedAt(time());
       $recipient->save();
 
-      // Delete the $donor, not needed anymore
+      // auto-set collection thumbnail if none set yet
+      $collection = $recipient->getCollectorCollection();
+      if (1 == $collection->countCollectibles() && !$collection->hasThumbnail())
+      {
+        $collection->setPrimaryImage($recipient->getPrimaryImage()
+          ->getAbsolutePath('original'));
+        $collection->save();
+      }
+
+      // Archive the $donor, not needed anymore
       $donor->delete();
 
       // Return "Success"
@@ -289,6 +306,7 @@ class ajaxAction extends cqAjaxAction
   }
 
   /**
+   * @param  sfWebRequest  $request
    * @return string
    */
   protected function executeCollectionSetThumbnail(sfWebRequest $request)
@@ -321,6 +339,8 @@ class ajaxAction extends cqAjaxAction
 
     if ($multimedia instanceof iceModelMultimedia)
     {
+      $object = $multimedia->getModelObject();
+
       if ($multimedia->getIsPrimary())
       {
         $model = $multimedia->getModelObject();
@@ -331,7 +351,35 @@ class ajaxAction extends cqAjaxAction
         }
       }
 
-      $multimedia->delete();
+      /** @var $archive CollectibleArchive */
+      if (
+        ($source = $multimedia->getSource()) &&
+        ($archive = CollectibleArchiveQuery::create()->findOneById((integer) $source))
+      )
+      {
+        $collectible = new Collectible();
+        $collectible->populateFromArchive($archive);
+        $collectible->save();
+
+        $multimedia->setModel($collectible);
+        $multimedia->setSource(null);
+        $multimedia->save();
+
+        /**
+         * Update the Eblob cache
+         */
+        if ($object)
+        {
+          $m = iceModelMultimediaPeer::retrieveByModel($object);
+
+          $object->setEblobElement('multimedia', $m->toXML(true));
+          $object->save();
+        }
+      }
+      else
+      {
+        $multimedia->delete();
+      }
     }
 
     return $this->success();
@@ -383,4 +431,185 @@ class ajaxAction extends cqAjaxAction
 
     return $this->success();
   }
+
+  /**
+   * section: collection
+   * page: createStep1
+   */
+  protected function executeCollectionCreateStep1(sfWebRequest $request, $template)
+  {
+    $form = new CollectionCreateForm();
+    $form->setDefault('collectible_id', $request->getParameter('collectible_id'));
+
+    if (sfRequest::POST == $request->getMethod())
+    {
+      $form->bind($request->getParameter('collection'));
+      if ($form->isValid())
+      {
+        $values = $form->getValues();
+        $values['collector_id'] = $this->getUser()->getCollector()->getId();
+
+        /** @var $collection CollectorCollection */
+        $collection = $form->updateObject($values);
+        $collection->setTags($values['tags']);
+        $collection->save();
+
+        if (isset($values['collectible_id']))
+        {
+          $q = CollectibleQuery::create()
+            ->filterByCollector($this->getUser()->getCollector())
+            ->filterById($values['collectible_id']);
+
+          if (($collectible = $q->findOne()) && $this->getUser()->isOwnerOf($collectible))
+          {
+            // Let's create the CollectionCollectible
+            $q = CollectionCollectibleQuery::create()
+              ->filterByCollection($collection)
+              ->filterByCollectible($collectible);
+
+            $collection_collectible = $q->findOneOrCreate();
+            $collection_collectible->save();
+
+            /**
+             * If the Collectible has a thumnail (it should!),
+             * let's add it as the Collection thumbnail also
+             *
+             * @var $thumbnail iceModelMultimedia
+             */
+            if ($thumbnail = $collectible->getPrimaryImage())
+            {
+              $collection->setThumbnail($thumbnail->getAbsolutePath('original'));
+              $collection->save();
+            }
+
+          }
+        }
+
+        $this->getUser()->getCollector()->getProfile()->updateProfileProgress();
+
+        return $this->redirect('ajax_mycq', array(
+            'section' => 'collection',
+            'page' => 'createStep2',
+            'collection_id' => $collection->getId(),
+        ));
+      }
+    }
+
+    $root = ContentCategoryQuery::create()->findRoot();
+    $this->categories = ContentCategoryQuery::create()
+        ->descendantsOf($root)
+        ->findTree();
+
+    $this->form = $form;
+
+    return $template;
+  }
+
+  /**
+   * section: collection
+   * page: createStep2
+   * params: collection_id
+   */
+  public function executeCollectionCreateStep2(sfWebRequest $request, $template)
+  {
+    $collection = CollectorCollectionPeer::retrieveByPK(
+      $request->getParameter('collection_id')
+    );
+    $this->forward404Unless($collection &&
+      $this->getUser()->getCollector()->isOwnerOf($collection));
+
+    $form = new CollectorCollectionEditForm($collection);
+    if ($collection->hasThumbnail())
+    {
+      $form->useFields(array(
+          'description',
+      ));
+    }
+    else
+    {
+      $form->useFields(array(
+          'thumbnail',
+          'description',
+      ));
+    }
+
+    if (sfRequest::POST == $request->getMethod())
+    {
+      $taintedValues = $request->getParameter($form->getName());
+      $form->bind($taintedValues, $request->getFiles($form->getName()));
+
+      if ($form->isValid())
+      {
+        $values = $form->getValues();
+        $collection->setDescription($values['description'], 'html');
+
+        if (isset($values['thumbnail']))
+        {
+          $collection->setThumbnail($values['thumbnail']);
+        }
+
+        $collection->save();
+
+        // Tell the Dropbox to stay closed
+        $this->getUser()->setFlash('cq_mycq_dropbox_open', false, true, 'cookies');
+
+        return $this->renderPartial('global/loading', array(
+            'url' => $this->generateUrl('mycq_collection_by_section', array(
+                'id' => $collection->getId(),
+                'section' => 'details',
+            )),
+        ));
+      }
+    }
+
+    $this->form = $form;
+    $this->collection = $collection;
+
+    return $template;
+  }
+
+  /**
+   * section: collection
+   * page: changeCategoty
+   * params: collection_id
+   */
+  public function executeCollectionChangeCategory(sfWebRequest $request, $template)
+  {
+    $collection = CollectorCollectionPeer::retrieveByPK(
+      $request->getParameter('collection_id')
+    );
+    $this->forward404Unless($this->getUser()->isOwnerOf($collection));
+
+    $form = new CollectionCreateForm($collection);
+    $form->useFields(array('content_category_id'));
+
+    if (sfRequest::POST == $request->getMethod())
+    {
+      $taintedValues = $request->getParameter($form->getName());
+      $form->bind($taintedValues, $request->getFiles($form->getName()));
+
+      if ($form->isValid())
+      {
+        $form->save();
+
+        return $this->renderPartial('global/loading', array(
+            'url' => $this->generateUrl('mycq_collection_by_section', array(
+                'id' => $collection->getId(),
+                'section' => 'details',
+            )),
+        ));
+      }
+    }
+
+    $this->form = $form;
+    $this->collection = $collection;
+
+    $root = ContentCategoryQuery::create()->findRoot();
+    $this->categories = ContentCategoryQuery::create()
+        ->descendantsOf($root)
+        ->findTree();
+
+    return $template;
+  }
+
 }

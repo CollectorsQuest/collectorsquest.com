@@ -14,6 +14,10 @@
   <a class="close" data-dismiss="alert">×</a>
   <?= $sf_user->getFlash('success', null, true); ?>
 </div>
+<?php elseif ($sf_user->hasFlash('success_ajax')): ?>
+<div class="alert alert-success fade in" data-alert="alert">
+  <?= $sf_user->getFlash('success_ajax', null, true); ?>
+</div>
 <?php elseif ($sf_user->hasFlash('info')): ?>
 <div class="alert alert-info fade in" data-alert="alert">
   <a class="close" data-dismiss="alert">×</a>

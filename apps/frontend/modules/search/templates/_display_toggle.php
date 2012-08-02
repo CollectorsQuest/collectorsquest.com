@@ -1,5 +1,5 @@
 <!--
-<div id="search-display" class="btn-group" data-toggle="buttons-radio" style="float: right;">
+<div id="search-display" class="btn-group pull-right" data-toggle="buttons-radio">
   <a href="<?= $url->replaceQueryString('display', 'grid'); ?>"
      class="btn <?php echo $display == 'grid' ? 'active' : ''; ?>" rel="nofollow">
     <i class="icon-th"></i>

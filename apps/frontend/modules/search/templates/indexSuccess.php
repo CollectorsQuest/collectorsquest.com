@@ -32,7 +32,7 @@
       switch (strtolower(get_class($object)))
       {
         case 'wppost':
-          echo '<div class="span8 brick" style="height: 165px;">';
+          echo '<div class="span8 brick fixed-height">';
           include_partial(
             '_blog/wp_post_'. $display .'_view',
             array(
@@ -43,7 +43,7 @@
           echo '</div>';
           break;
         case 'collectible':
-          echo '<div class="span4 brick" style="height: 165px;">';
+          echo '<div class="span4 brick fixed-height">';
           include_partial(
             'collection/collectible_'. $display .'_view',
             array('collectible' => $object, 'i' => $i)
@@ -52,7 +52,7 @@
           break;
         case 'collection':
         case 'collectorcollection':
-          echo '<div class="span4 brick" style="height: 165px;">';
+          echo '<div class="span4 brick fixed-height">';
           include_partial(
             'collection/collection_stack_'. $display .'_view',
             array('collection' => $object, 'excerpt' => $pager->getExcerpt($i), 'i' => $i)
@@ -60,7 +60,7 @@
           echo '</div>';
           break;
         case 'collector':
-          echo '<div class="span8 brick" style="height: 165px;">';
+          echo '<div class="span8 brick fixed-height">';
           include_partial(
             'collector/collector_'. $display .'_view_span8',
             array('collector' => $object, 'excerpt' => $pager->getExcerpt($i), 'i' => $i)
@@ -73,7 +73,7 @@
   </div>
 </div>
 
-<div class="row-fluid" style="text-align: center;">
+<div class="row-fluid text-center">
   <?php
     include_component(
       'global', 'pagination',

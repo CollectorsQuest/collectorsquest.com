@@ -19,6 +19,11 @@ crawl-delay: 30
 User-Agent: *
 crawl-delay: 5
 
+
+# References:
+#   - http://support.google.com/webmasters/bin/answer.py?hl=en&answer=35769#2
+
+Disallow: /ad_slot.php
 Disallow: /blog/wp-admin/
 Disallow: /blog/wp-includes/
 Disallow: /ajax/

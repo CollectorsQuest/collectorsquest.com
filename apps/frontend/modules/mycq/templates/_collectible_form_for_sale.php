@@ -146,6 +146,14 @@ $(document).ready(function()
     $('.cb-disable').toggleClass('selected', !checked);
   }).change();
 
+  <?php if ($sf_params->get('available_for_sale') === 'yes'): ?>
+    $('#collectible_for_sale_is_ready').attr('checked', 'checked');
+    $('#collectible_for_sale_is_ready').change();
+  <?php elseif ($sf_params->get('available_for_sale') === 'no'): ?>
+    $('#collectible_for_sale_is_ready').removeAttr('checked');
+    $('#collectible_for_sale_is_ready').change();
+  <?php endif; ?>
+
   $('.flat-rate-controller').on('change', 'input[type=radio]', function() {
     var $flat_rate_field = $(this).parents('.controls').find('.flat-rate-field');
     var flat_rate_checked = !!$(this).parents('.controls').find('.flat-rate-checkbox:checked').length;
@@ -155,7 +163,7 @@ $(document).ready(function()
     } else {
       $flat_rate_field.attr('disabled', 'disabled');
     }
-  })
+  });
 
   <?php if (IceGateKeeper::open('collectible_allow_no_shipping')): ?>
   $('#shipping_rates_zz_do_not_ship_to').chosen({

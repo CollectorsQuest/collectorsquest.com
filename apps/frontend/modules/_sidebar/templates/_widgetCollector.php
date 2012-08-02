@@ -41,7 +41,7 @@
 <?php if (!$sf_user->isOwnerOf($collector) && isset($message) && $message === true): ?>
 <div class="row-fluid spacer">
   <div class="send-pm">
-    <form action="<?= url_for2('messages_compose', array('to'=>$collector->getUsername()), true); ?>" method="post" style="margin-bottom: 0;" id="form-private-message">
+    <form action="<?= url_for2('messages_compose', array('to'=>$collector->getUsername()), true); ?>" method="post" class="spacer-bottom-reset" id="form-private-message">
       <?= $pm_form->renderHiddenFields(); ?>
       <textarea class="requires-login" required data-login-title="Please log in to contact this member:" data-signup-title="Create an account to contact this member:" name="message[body]" style="width: 97%; margin-bottom: 0;" placeholder="Send a message to <?= $collector; ?>"></textarea>
       <div class="buttons-container" id="buttons-private-message">

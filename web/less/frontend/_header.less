@@ -38,8 +38,7 @@ header > .container {
   position: relative;
   top: 1px;
   left: 9px;
-  width: 16px;
-  height: 14px;
+	.size(14px, 16px);
   display: block;
   font: bold 10px/14px "Trebuchet", Arial, Helvetica;
   color: @white;
@@ -118,6 +117,38 @@ a.sing-up-now-btn, a.my-account-btn {
   margin-left: 12px;
 }
 
+/** ref: https://github.com/twitter/bootstrap/issues/1436 */
+#menu-my-account {
+  &.open {
+    .dropdown-toggle {
+      border-bottom-left-radius: 0 !important;
+      border-bottom-right-radius: 0 !important;
+    }
+  }
+
+  &:hover {
+    .dropdown-toggle {
+      border-bottom-left-radius: 0 !important;
+      border-bottom-right-radius: 0 !important;
+    }
+
+    .dropdown-menu {
+      display: block;
+    }
+  }
+
+  .dropdown-menu {
+
+    &:hover {
+      display: block;
+    }
+
+    .border-radius(0);
+    margin-top: -1px;
+    min-width: 124px;
+  }
+}
+
 .header-inner {
 	background-color: transparent;
 	background-image: none;
@@ -170,4 +201,14 @@ a.sing-up-now-btn, a.my-account-btn {
 
 .input-append .btn:last-child {
 	border-radius: 0 7px 7px 0;
+}
+
+.right-section-header {
+	float: right;
+	text-align: right;
+	padding-top: 2px;
+}
+
+.dd-menu-min-width {
+	min-width: 123px;
 }

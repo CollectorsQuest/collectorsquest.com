@@ -1,11 +1,13 @@
 <?php
 
 /**
- * @method  sfPropelRoute    getRoute()
+ * @method  cqPropelRoute    getRoute()
  * @method  sfWebController  getController()
  * @method  cqWebResponse    getResponse()
  * @method  cqWebRequest     getRequest()
  * @method  cqBaseUser       getUser()
+ *
+ * @method  mixed            redirect($url, $statusCode)
  */
 class cqBaseActions extends sfActions
 {

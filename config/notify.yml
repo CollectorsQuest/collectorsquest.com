@@ -1,0 +1,44 @@
+all:
+  handler:
+    class:                     fpErrorNotifierHandlerIgnore
+    options:
+      ignore_@:                true
+      ignore_errors:           []
+      ignore_exceptions:       []
+      log_ignored:             true
+      ignore_duplication:      true
+      ignore_duplication_time: 60  # seconds
+
+  message:
+    class:   fpErrorNotifierMessage
+    options: {}
+
+  helper:
+    class:   fpErrorNotifierMessageHelper
+    options: {}
+
+  decorator:
+    class:   fpErrorNotifierDecoratorHtml
+    options: {}
+
+  driver:
+    class:   fpErrorNotifierDriverMailSymfony
+    options:
+      to:    developers@collectorsquest.com
+      from:  no-reply@collectorsquest.com
+
+
+dev:
+  driver:
+    class:   fpErrorNotifierDriverNull
+    options: {}
+
+cli:
+  driver:
+    class:   fpErrorNotifierDriverNull
+    options: {}
+
+test:
+  driver:
+    class:   fpErrorNotifierDriverNull
+    options: {}

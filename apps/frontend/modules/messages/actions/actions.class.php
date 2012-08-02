@@ -142,11 +142,6 @@ class messagesActions extends cqFrontendActions
         }
         else
         {
-          // else we are sending a message to a plain email
-          $message_body = $form->getValue('body');
-          $message_subject = $form->getValue('subject')
-            ?: 'Message from '.$sender->getDisplayName();
-
           // so we just notify the recepient and set the reply-to header to
           // the sender's email
           $cqEmail->send('Messages/relay_message_to_unregistered_user', array(
@@ -154,7 +149,20 @@ class messagesActions extends cqFrontendActions
               'replyTo' => $sender->getEmail(),
               'params' => array(
                 'oSender' => $sender,
-                'sMessageBody' => $message_body,
+                'sMessageBody' => $form->getValue('body'),
+              ),
+          ));
+        }
+
+        // if the sender opted for receiving a copy of the message
+        if ($form->getValue('copy_for_sender'))
+        {
+          $cqEmail->send('Messages/private_message_copy_for_sender', array(
+              'to' => $sender->getEmail(),
+              'params' => array(
+                'oSender' => $sender,
+                'sReceiver' => (string) $receiver,
+                'sMessageBody' => $form->getValue('body'),
               ),
           ));
         }

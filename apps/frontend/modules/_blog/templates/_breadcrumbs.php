@@ -1,9 +1,9 @@
 <div class="breadcrumbs-inner">
   <div class="pull-right">
-    <span style="color: #887777">You are here:</span>
+    <span class="brown">You are here:</span>
     <?php
       include_component('iceBreadcrumbsModule', 'breadcrumbs');
-      echo $data['breadcrumbs'] ? $data['breadcrumbs'] : null;
+      echo trim($data['breadcrumbs'], ' →') ?: null;
     ?>
   </div>
 </div>

@@ -27,7 +27,7 @@
                 <form id="form-explore-collections" method="post" action="/search/collections">
                   <div class="btn-group">
                     <div class="append-left-gray">Sort by <strong id="sortByName">Most Relevant</strong></div>
-                    <a class="btn gray-button dropdown-toggle" data-toggle="dropdown" href="#">
+                    <a class="btn gray-button dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">
                       <span class="caret arrow-up"></span><br><span class="caret arrow-down"></span>
                     </a>
                     <ul class="dropdown-menu">

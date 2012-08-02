@@ -1,5 +1,5 @@
 <?php
-/*  
+/*
 	Copyright 2007-2012  John Havlik  (email : mtekkmonkey@gmail.com)
 
     This program is free software; you can redistribute it and/or modify
@@ -40,7 +40,7 @@ class bcn_breadcrumb
 	public $type;
 	/**
 	 * The enhanced default constructor, ends up setting all parameters via the set_ functions
-	 *  
+	 *
 	 * @param string $title (optional) The title of the breadcrumb
 	 * @param string $template (optional) The html template for the breadcrumb
 	 * @param string $type (optional) The breadcrumb type
@@ -70,7 +70,7 @@ class bcn_breadcrumb
 	}
 	/**
 	 * Function to set the protected title member
-	 * 
+	 *
 	 * @param string $title The title of the breadcrumb
 	 */
 	public function set_title($title)
@@ -80,7 +80,7 @@ class bcn_breadcrumb
 	}
 	/**
 	 * Function to get the protected title member
-	 * 
+	 *
 	 * @return $this->title
 	 */
 	public function get_title()
@@ -90,7 +90,7 @@ class bcn_breadcrumb
 	}
 	/**
 	 * Function to set the internal URL variable
-	 * 
+	 *
 	 * @param string $url the url to link to
 	 */
 	public function set_url($url)
@@ -104,7 +104,7 @@ class bcn_breadcrumb
 	}
 	/**
 	 * Sets the internal breadcrumb template
-	 * 
+	 *
 	 * @param string $template the template to use durring assebly
 	 */
 	public function set_template($template)
@@ -114,7 +114,7 @@ class bcn_breadcrumb
 	}
 	/**
 	 * Append a type entry to the type array
-	 * 
+	 *
 	 * @param string $type the type to append
 	 */
 	public function add_type($type)
@@ -123,7 +123,7 @@ class bcn_breadcrumb
 	}
 	/**
 	 * This function will intelligently trim the title to the value passed in through $max_length.
-	 * 
+	 *
 	 * @param int $max_length of the title.
 	 */
 	public function title_trim($max_length)
@@ -148,7 +148,7 @@ class bcn_breadcrumb
 	}
 	/**
 	 * Assembles the parts of the breadcrumb into a html string
-	 * 
+	 *
 	 * @param bool $linked (optional) Allow the output to contain anchors?
 	 * @return string The compiled breadcrumb string
 	 */
@@ -193,7 +193,7 @@ class bcn_breadcrumb_trail
 	//Default constructor
 	function bcn_breadcrumb_trail()
 	{
-		//Load the translation domain as the next part needs it		
+		//Load the translation domain as the next part needs it
 		load_plugin_textdomain($domain = 'breadcrumb-navxt', false, 'breadcrumb-navxt/languages');
 		//Initilize with default option values
 		$this->opt = array(
@@ -303,7 +303,7 @@ class bcn_breadcrumb_trail
 	}
 	/**
 	 * Adds a breadcrumb to the breadcrumb trail
-	 * 
+	 *
 	 * @return pointer to the just added Breadcrumb
 	 * @param bcn_breadcrumb $object Breadcrumb to add to the trail
 	 */
@@ -315,7 +315,7 @@ class bcn_breadcrumb_trail
 	}
 	/**
 	 * A Breadcrumb Trail Filling Function
-	 * 
+	 *
 	 * This functions fills a breadcrumb for a search page.
 	 */
 	function do_search()
@@ -335,7 +335,7 @@ class bcn_breadcrumb_trail
 	}
 	/**
 	 * A Breadcrumb Trail Filling Function
-	 * 
+	 *
 	 * This functions fills a breadcrumb for an author page.
 	 */
 	function do_author()
@@ -363,12 +363,12 @@ class bcn_breadcrumb_trail
 	}
 	/**
 	 * A Breadcrumb Trail Filling Function
-	 * 
+	 *
 	 * This function fills breadcrumbs for any post taxonomy.
 	 * @param int $id The id of the post to figure out the taxonomy for.
 	 * @param string $type The post type of the post to figure out the taxonomy for.
 	 * @param int $parent (optional) The id of the parent of the current post, used if hiearchal posts will be the "taxonomy" for the current post
-	 * 
+	 *
 	 * TODO: Add logic for contextual taxonomy selection
 	 */
 	function post_taxonomy($id, $type, $parent = null)
@@ -430,11 +430,11 @@ class bcn_breadcrumb_trail
 	}
 	/**
 	 * A Breadcrumb Trail Filling Function
-	 * 
+	 *
 	 * This functions fills a breadcrumb for the terms of a post
 	 * @param int $id The id of the post to find the terms for.
 	 * @param string $taxonomy The name of the taxonomy that the term belongs to
-	 * 
+	 *
 	 * TODO Need to implement this cleaner, fix up the entire tag_ thing, as this is now generic
 	 * TODO This still needs to be updated to the new method of adding breadcrumbs to the trail
 	 */
@@ -471,7 +471,7 @@ class bcn_breadcrumb_trail
 	}
 	/**
 	 * A Breadcrumb Trail Filling Function
-	 * 
+	 *
 	 * This recursive functions fills the trail with breadcrumbs for parent terms.
 	 * @param int $id The id of the term.
 	 * @param string $taxonomy The name of the taxonomy that the term belongs to
@@ -493,7 +493,7 @@ class bcn_breadcrumb_trail
 	}
 	/**
 	 * A Breadcrumb Trail Filling Function
-	 * 
+	 *
 	 * This recursive functions fills the trail with breadcrumbs for parent posts/pages.
 	 * @param int $id The id of the parent page.
 	 * @param int $frontpage The id of the front page.
@@ -513,9 +513,9 @@ class bcn_breadcrumb_trail
 	}
 	/**
 	 * A Breadcrumb Trail Filling Function
-	 * 
+	 *
 	 * This functions fills a breadcrumb for posts
-	 * 
+	 *
 	 */
 	function do_post()
 	{
@@ -543,7 +543,7 @@ class bcn_breadcrumb_trail
 			else if(!$this->is_builtin($post->post_type))
 			{
 				//Handle the post's taxonomy
-				$this->post_taxonomy($post->ID, $post->post_type, $post->post_parent);	
+				$this->post_taxonomy($post->ID, $post->post_type, $post->post_parent);
 			}
 		}
 		//Otherwise we need the follow the taxonomy tree
@@ -555,9 +555,9 @@ class bcn_breadcrumb_trail
 	}
 	/**
 	 * A Breadcrumb Trail Filling Function
-	 * 
+	 *
 	 * This functions fills a breadcrumb for an attachment page.
-	 * 
+	 *
 	 * @TODO Evaluate if this can be merged in with the do_post function
 	 */
 	function do_attachment()
@@ -589,7 +589,7 @@ class bcn_breadcrumb_trail
 			else if(!$this->is_builtin($parent->post_type))
 			{
 				//Handle the post's taxonomy
-				$this->post_taxonomy($post->post_parent, $parent->post_type);	
+				$this->post_taxonomy($post->post_parent, $parent->post_type);
 			}
 		}
 		else
@@ -600,9 +600,9 @@ class bcn_breadcrumb_trail
 	}
 	/**
 	 * A Breadcrumb Trail Filling Function
-	 * 
+	 *
 	 * This function fills a breadcrumb for any taxonomy archive, was previously two separate functions
-	 * 
+	 *
 	 */
 	function do_archive_by_term()
 	{
@@ -628,7 +628,7 @@ class bcn_breadcrumb_trail
 	}
 	/**
 	 * A Breadcrumb Trail Filling Function
-	 * 
+	 *
 	 * This functions fills a breadcrumb for a date archive.
 	 *
 	 */
@@ -691,7 +691,7 @@ class bcn_breadcrumb_trail
 	}
 	/**
 	 * A Breadcrumb Trail Filling Function
-	 * 
+	 *
 	 * This functions fills a breadcrumb for a post type archive (WP 3.1 feature)
 	 */
 	function do_archive_by_post_type()
@@ -707,7 +707,7 @@ class bcn_breadcrumb_trail
 	}
 	/**
 	 * A Breadcrumb Trail Filling Function
-	 * 
+	 *
 	 * This functions fills a breadcrumb for the front page.
 	 */
 	function do_front_page()
@@ -731,7 +731,7 @@ class bcn_breadcrumb_trail
 	}
 	/**
 	 * A Breadcrumb Trail Filling Function
-	 * 
+	 *
 	 * This functions fills a breadcrumb for the home page.
 	 */
 	function do_home()
@@ -752,7 +752,7 @@ class bcn_breadcrumb_trail
 	}
 	/**
 	 * A modified version of WordPress' function of the same name
-	 * 
+	 *
 	 * @param object $object the post or taxonomy object used to attempt to find the title
 	 * @return string the title
 	 */
@@ -765,7 +765,7 @@ class bcn_breadcrumb_trail
 	}
 	/**
 	 * Determines if a post type is a built in type or not
-	 * 
+	 *
 	 * @param string $post_type the name of the post type
 	 * @return bool
 	 */
@@ -776,7 +776,7 @@ class bcn_breadcrumb_trail
 	}
 	/**
 	 * Determines if a post type has archives enabled or not
-	 * 
+	 *
 	 * @param string $post_type the name of the post type
 	 * @return bool
 	 */
@@ -787,7 +787,7 @@ class bcn_breadcrumb_trail
 	}
 	/**
 	 * This function populates our type_str and posts_id variables
-	 * 
+	 *
 	 * @param post $type A post object we are using to figureout the type
 	 * @param string $type_str The type string variable, passed by reference
 	 * @param int $root_id The ID for the post type root
@@ -834,10 +834,10 @@ class bcn_breadcrumb_trail
 		}
 	}
 	/**
-	 * A Breadcrumb Trail Filling Function 
+	 * A Breadcrumb Trail Filling Function
 	 *
 	 * Handles only the root page stuff for post types, including the "page for posts"
-	 * 
+	 *
 	 * TODO: this still needs to be cleaned up
 	 */
 	function do_root()
@@ -908,7 +908,7 @@ class bcn_breadcrumb_trail
 	}
 	/**
 	 * A Breadcrumb Trail Filling Function
-	 * 
+	 *
 	 * This functions fills a breadcrumb for 404 pages.
 	 */
 	function do_404()
@@ -918,7 +918,7 @@ class bcn_breadcrumb_trail
 	}
 	/**
 	 * A Breadcrumb Trail Filling Function
-	 * 
+	 *
 	 * This functions fills a breadcrumb for paged pages.
 	 */
 	function do_paged()
@@ -938,7 +938,7 @@ class bcn_breadcrumb_trail
 	}
 	/**
 	 * Breadcrumb Trail Filling Function
-	 * 
+	 *
 	 * This functions fills the breadcrumb trail.
 	 */
 	function fill()
@@ -1025,9 +1025,9 @@ class bcn_breadcrumb_trail
 		do_action('bcn_after_fill', $this);
 	}
 	/**
-	 * This function will either set the order of the trail to reverse key 
+	 * This function will either set the order of the trail to reverse key
 	 * order, or make sure it is forward key ordered.
-	 * 
+	 *
 	 * @param bool $reverse[optional] Whether to reverse the trail or not.
 	 */
 	function order($reverse = false)
@@ -1050,7 +1050,7 @@ class bcn_breadcrumb_trail
 	 * @return string String-Data of breadcrumb trail.
 	 * @param bool $return Whether to return data or to echo it.
 	 * @param bool $linked[optional] Whether to allow hyperlinks in the trail or not.
-	 * @param bool $reverse[optional] Whether to reverse the output or not. 
+	 * @param bool $reverse[optional] Whether to reverse the output or not.
 	 */
 	function display($return = false, $linked = true, $reverse = false)
 	{
@@ -1058,14 +1058,23 @@ class bcn_breadcrumb_trail
 		$this->order($reverse);
 		//Initilize the string which will hold the assembled trail
 		$trail_str = '';
+
+    $offset = 0;
+
 		//The main compiling loop
 		foreach($this->trail as $key => $breadcrumb)
 		{
+      if ($breadcrumb->get_title() === 'Pages')
+      {
+        $offset = 1;
+        continue;
+      }
+
 			//Must branch if we are reversing the output or not
 			if($reverse)
 			{
 				//Add in the separator only if we are the 2nd or greater element
-				if($key > 0)
+				if($key - $offset > 0)
 				{
 					$trail_str .= $this->opt['hseparator'];
 				}
@@ -1106,8 +1115,8 @@ class bcn_breadcrumb_trail
 	 * @return string String-Data of breadcrumb trail.
 	 * @param bool $return Whether to return data or to echo it.
 	 * @param bool $linked[optional] Whether to allow hyperlinks in the trail or not.
-	 * @param bool $reverse[optional] Whether to reverse the output or not. 
-	 * 
+	 * @param bool $reverse[optional] Whether to reverse the output or not.
+	 *
 	 * TODO: Can probably write this one in a smarter way now
 	 */
 	function display_list($return = false, $linked = true, $reverse = false)

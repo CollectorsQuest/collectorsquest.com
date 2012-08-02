@@ -19,10 +19,10 @@
             <span class="caret"></span>
           </button>
           <ul class="dropdown-menu">
-            <li><a href="#" data-select="all">All</a></li>
-            <li><a href="#" data-select="none">None</a></li>
-            <li><a href="#" data-select="read">Read</a></li>
-            <li><a href="#" data-select="unread">Unread</a></li>
+            <li><a href="javascript:void(0)" data-select="all">All</a></li>
+            <li><a href="javascript:void(0)" data-select="none">None</a></li>
+            <li><a href="javascript:void(0)" data-select="read">Read</a></li>
+            <li><a href="javascript:void(0)" data-select="unread">Unread</a></li>
           </ul>
         </div>
       </div>
@@ -65,7 +65,7 @@
           <?= image_tag_collector($message->getCollectorRelatedBySender(),
             '50x50', array('class' => 'avatar')); ?>
           <?= link_to_collector($message->getCollectorRelatedBySender()); ?>
-          <p style="font-size: 10px">
+          <p class="font10">
             <?= time_ago_in_words($message->getCreatedAt('U')); ?> ago
           </p>
         </td>

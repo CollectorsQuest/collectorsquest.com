@@ -4,8 +4,7 @@
  */
 ?>
 
-<div id="collectible_for_sale_<?= $collectible_for_sale->getCollectorId(); ?>_grid_view_square"
-     data-id="<?= $collectible_for_sale->getCollectorId(); ?>"
+<div data-id="<?= $collectible_for_sale->getCollectorId(); ?>"
      class="span4 collectible_for_sale_grid_view_square link">
 
   <?php

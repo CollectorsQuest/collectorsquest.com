@@ -10,7 +10,7 @@
       <ul class="nav nav-list spacer-inner-left-reset">
         <li class="nav-header">Owner Options:</li>
         <li>
-          <a rel="nofollow" href="<?= url_for('mycq_collection_by_slug', $collection); ?>">
+          <a rel="nofollow" href="<?= url_for('mycq_collection_by_section', array('id' => $collection->getId(), 'section' => 'details')); ?>">
             <i class="icon-edit"></i>
             Edit Collection
           </a>
@@ -18,7 +18,7 @@
         <li>
           <a href="<?=url_for('@ajax_collection?section=component&page=collectiblesReorder') . '?id=' . $collection->getId()?>" onclick="ajax_load('#main', this.href); return false;">
             <i class="icon-move"></i>
-            Reorder Collectibles
+            Reorder Items
           </a>
         </li>
       </ul>

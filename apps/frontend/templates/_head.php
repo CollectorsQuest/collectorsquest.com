@@ -1,4 +1,13 @@
   <meta charset="utf-8" />
+  <link rel="dns-prefetch" href="//multimedia.cqcdns.com">
+  <link rel="dns-prefetch" href="//cqcdns.com">
+  <link rel="dns-prefetch" href="//fonts.googleapis.com">
+  <link rel="dns-prefetch" href="//ajax.googleapis.com">
+  <link rel="dns-prefetch" href="//nexus.ensighten.com">
+  <link rel="dns-prefetch" href="//video.collectorsquest.com">
+  <link rel="dns-prefetch" href="//collectorsquest.rpxnow.com">
+  <link rel="dns-prefetch" href="//s7.addthis.com">
+
   <meta property="fb:admins" content="<?= cqConfig::getCredentials('facebook', 'admins') ?>">
   <meta property="fb:app_id" content="<?= cqConfig::getCredentials('facebook', 'application_id') ?>">
   <meta property="og:site_name" content="CollectorsQuest.com" />

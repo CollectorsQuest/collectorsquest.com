@@ -28,7 +28,7 @@
   <?php
     foreach ($pager->getResults() as $i => $video)
     {
-      echo '<div class="span4 brick" style="height: 165px; float: left;">';
+      echo '<div class="span4 brick fixed-height">';
       include_partial(
         '_video/video_'. $display .'_view',
         array('video' => $video, 'i' => $i)
@@ -39,7 +39,7 @@
   </div>
 </div>
 
-<div class="row-fluid" style="text-align: center;">
+<div class="row-fluid text-center">
 <?php
   include_component(
     'global', 'pagination', array('pager' => $pager)

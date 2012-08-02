@@ -21,6 +21,12 @@ class collectorComponents extends cqFrontendComponents
     $this->about_collections = $this->profile->getProperty('about.collections');
     $this->about_interests = $this->profile->getProperty('about.interests');
 
+    $this->store_welcome = $this->collector->getSellerSettingsWelcome();
+    $this->store_shipping = $this->collector->getSellerSettingsShipping();
+    $this->store_refunds = $this->collector->getSellerSettingsRefunds();
+    $this->store_return_policy = $this->collector->getSellerSettingsReturnPolicy();
+    $this->store_additional_policies = $this->collector->getSellerSettingsAdditionalPolicies();
+
     return sfView::SUCCESS;
   }
 

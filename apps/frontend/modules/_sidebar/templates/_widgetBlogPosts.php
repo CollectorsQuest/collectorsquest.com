@@ -23,9 +23,9 @@
   <span class="content">
     <?= $wp_post->getPostExcerpt(140, '...') ?>
   </span><br/>
-  <small style="font-size: 80%">
+  <small>
     posted by <?= link_to_blog_author($wp_post->getwpUser(), 'text'); ?>
-    <span style="color: grey"><?php echo time_ago_in_words($wp_post->getPostDate('U')) ?> ago</span>
+    <span class="grey"><?php echo time_ago_in_words($wp_post->getPostDate('U')) ?> ago</span>
   </small>
 </div>
 <?php endforeach; ?>

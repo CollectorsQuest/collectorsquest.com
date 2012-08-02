@@ -28,6 +28,8 @@
   }
 
 	.modal-body {
+		padding: 20px 15px;
+
 		label {
 			font-weight: bold;
 			color: @brown;
@@ -67,20 +69,32 @@
 	}
 }
 
-.modal.loading .modal-header {
-
-  h3 {
-    margin-right: 10px;
-  }
+.modal {
 
   span.loader {
-    height: 26px;
-    width: 36px;
-    background: no-repeat scroll url('/images/loading.gif') center center;
-    display: block;
-    float: left;
+    .custom-font(20px, 22px, italic, normal);
+    .smooth-font();
+    color: @red;
+    letter-spacing: 0.04em;
+    margin-top: 2px;
+    display: none;
+    padding-left: 36px;
+    background: no-repeat scroll url('/images/loading.gif') left center;
   }
 
+  &.loading
+  {
+    .modal-header {
+      h3 {
+        margin-right: 10px;
+        display: none;
+      }
+
+      span.loader {
+        display: block;
+      }
+    }
+  }
 }
 
 .loading-indicator {
@@ -131,4 +145,13 @@
 .modal-wrapper .modal .modal-body {
   overflow-y: visible;
   max-height: none;
+}
+
+//Ultra fix :/ Prevent modals from vertival scrollbar.
+.modal-body .form-modal .form-actions {
+	margin: 0;
+	padding: 0 !important;
+	border: 0 none;
+	font: 0px/0 a;
+	overflow: hidden;
 }

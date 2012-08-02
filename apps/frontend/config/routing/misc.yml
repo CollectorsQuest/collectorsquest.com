@@ -116,6 +116,12 @@ comments_unsubscribe:
   url:    /comments/unsubscribe/email/:email/model_class/:model_class/model_pk/:model_pk
   param:  { module: comments, action: unsubscribe }
 
+comments_delete:
+  url:     /comments/delete/:id
+  class:   cqPropelRoute
+  options: { model: Comment, type: object, column: id }
+  param:   { module: comments, action: delete }
+  requirements: { id: \d+, sf_method: [get, post] }
 
 ### MISC
 
@@ -168,3 +174,15 @@ recover_password:
 feedback:
   url:   /feedback
   param: { module: general, action: feedback }
+
+error_404:
+  url:   /errors/404
+  param: { module: general, action: error404 }
+
+error_500:
+  url:   /errors/500
+  param: { module: general, action: error500 }
+
+error_50x:
+  url:   /errors/50x
+  param: { module: general, action: error50x }

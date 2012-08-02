@@ -35,7 +35,7 @@
         <?php
           include_partial(
             'global/footer_signup_external_buttons',
-            array('action' => 'signup')
+            array('action' => 'sign up')
           );
         ?>
       </div>
@@ -84,7 +84,7 @@
         <?php
           include_partial(
             'global/footer_signup_external_buttons',
-            array('action' => 'login')
+            array('action' => 'sign in')
           );
         ?>
       </div>
@@ -101,7 +101,7 @@
     </div>
   </form>
 
-  <div id="footer-control-signup" style="display: none">
+  <div id="footer-control-signup dn">
     <span class="pull-right">
       Don't have an account yet?
       <?php

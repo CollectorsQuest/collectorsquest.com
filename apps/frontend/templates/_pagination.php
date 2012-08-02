@@ -16,33 +16,72 @@ $linkPrev = $linkNext = false;
   <ul>
     <?php if ($pager->getPage() != 1): ?>
     <li class="prev">
+      <?php $linkPrev =  $url . $mark . $options['page_param'] . '=' . $pager->getPreviousPage(); ?>
       <?php
-      $linkPrev =  $url . $mark . $options['page_param'] . '=' . $pager->getPreviousPage();
+        echo link_to(
+          ' &larr; ', $linkPrev,
+          array(
+            'data-page' => $pager->getPreviousPage(),
+            'title' => ' &larr; Go to the previous page'
+          )
+        );
       ?>
-      <?= link_to(' &larr; ', $linkPrev); ?>
     </li>
     <?php else: ?>
     <li class="disabled"><a href="javascript:void(0);"> &larr; </a></li>
     <?php endif; ?>
     <?php if ($pager->getPage() > 5): ?>
-    <li><?= link_to(1, $url . $mark . $options['page_param'] . '=1'); ?></li>
+    <li>
+      <?php
+        echo link_to(
+          1, $url . $mark . $options['page_param'] . '=1',
+          array('data-page' => 1, 'title' => 'Go to the first page')
+        );
+      ?>
+    </li>
     <li class="disabled"><a href="javascript:void(0);"> ... </a></li>
     <?php endif; ?>
     <?php foreach ($pager->getLinks() as $page): ?>
     <?php if ($page != $pager->getPage()): ?>
-      <li><?= link_to($page, $url . $mark . $options['page_param'] . '=' . $page); ?></li>
+      <li>
+        <?php
+          echo link_to(
+            $page, $url . $mark . $options['page_param'] . '=' . $page,
+            array('data-page' => $page, 'title' => 'Go to page '. $page)
+          );
+        ?>
+      </li>
       <?php else: ?>
       <li class="active"><a href="javascript:void(0);"><?= $page ?></a></li>
       <?php endif; ?>
     <?php endforeach; ?>
     <?php if ($pager->getLastPage() > $page): ?>
     <li class="disabled"><a href="javascript:void(0);"> ... </a></li>
-    <li><?= link_to($pager->getLastPage(), $url . $mark . $options['page_param'] . '=' . $pager->getLastPage()); ?></li>
+    <li>
+      <?php
+        echo link_to(
+          $pager->getLastPage(),
+          $url . $mark . $options['page_param'] . '=' . $pager->getLastPage(),
+          array(
+            'data-page' => $pager->getLastPage(),
+            'title' => 'Go to page '. $pager->getLastPage()
+          )
+        );
+      ?>
+    </li>
     <?php endif; ?>
     <?php if ($pager->getPage() != $pager->getCurrentMaxLink()): ?>
     <li class="next">
       <?php $linkNext = $url . $mark . $options['page_param'] . '=' . $pager->getNextPage(); ?>
-      <?= link_to(' &rarr; ', $linkNext); ?>
+      <?php
+        echo link_to(
+          ' &rarr; ', $linkNext,
+          array(
+            'data-page' => $pager->getNextPage(),
+            'title' => 'Go to page '. $pager->getNextPage()
+          )
+        );
+      ?>
     </li>
     <?php else: ?>
     <li class="disabled"><a href="javascript:void(0);"> &rarr; </a></li>

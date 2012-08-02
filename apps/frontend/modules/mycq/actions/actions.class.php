@@ -121,15 +121,15 @@ class mycqActions extends cqFrontendActions
         {
           $cqEmail = new cqEmail($this->getMailer());
           $cqEmail->send('Collector/verify_new_email', array(
-              'to' => $collector_email,
+              'to' => $collector_email->getEmail(),
               'params' => array(
-                'collector' => $this->collector,
+                'collector' => $collector_email->getCollector(),
                 'collector_email' => $collector_email,
               )
           ));
 
           $this->getUser()->setFlash('success',
-            'A verification email was sent to '.$this->collector->getEmail()
+            'A verification email was sent to '. $collector_email->getEmail()
           );
 
           $this->redirect('mycq_profile_account_info');
@@ -289,7 +289,6 @@ class mycqActions extends cqFrontendActions
           }
         }
 
-        $this->getUser()->setFlash('success', 'All uploaded photos were deleted!', true);
         break;
     }
 
@@ -306,110 +305,6 @@ class mycqActions extends cqFrontendActions
     return sfView::SUCCESS;
   }
 
-  public function executeCollection(sfWebRequest $request)
-  {
-    SmartMenu::setSelected('mycq_menu', 'collections');
-
-    /** @var $collection CollectorCollection */
-    $collection = $this->getRoute()->getObject();
-    $this->redirectUnless(
-      $this->getCollector()->isOwnerOf($collection),
-      '@mycq_collections'
-    );
-
-    if ($request->getParameter('cmd'))
-    {
-      switch ($request->getParameter('cmd'))
-      {
-        case 'delete':
-          $name = $collection->getName();
-          $url = '@mycq_collections';
-          try
-          {
-            $collection->delete();
-
-            $this->getUser()->setFlash(
-              'success', sprintf('Your collection "%s" was deleted!', $name)
-            );
-          }
-          catch (PropelException $e)
-          {
-            if (stripos($e->getMessage(), 'a foreign key constraint fails'))
-            {
-              $this->getUser()->setFlash(
-                'error', sprintf(
-                  'Collection "%s" cannot be deleted.
-                   Please, try to archive it instead.', $name)
-              );
-
-              $url = $this->generateUrl(
-                'mycq_collection_by_slug', array('sf_subject' => $collection)
-              );
-            }
-          }
-
-          // Redirect appropriately to avoid refreshes to trigger the same action
-          $this->redirect($url);
-
-          break;
-      }
-    }
-
-    $form = new CollectorCollectionEditForm($collection);
-
-    if ($request->isMethod('post'))
-    {
-      $taintedValues = $request->getParameter($form->getName());
-      $form->bind($taintedValues, $request->getFiles($form->getName()));
-
-      if ($form->isValid())
-      {
-        $values = $form->getValues();
-
-        $collection->setCollectionCategoryId($values['collection_category_id']);
-        $collection->setName($values['name']);
-        $collection->setDescription($values['description'], 'html');
-        $collection->setTags($values['tags']);
-
-        if ($values['thumbnail'] instanceof sfValidatedFile)
-        {
-          $collection->setThumbnail($values['thumbnail']);
-        }
-
-        try
-        {
-          $collection->save();
-
-          $this->getUser()->setFlash("success", 'Changes were saved!');
-          $this->redirect($this->getController()->genUrl(array(
-            'sf_route'   => 'mycq_collection_by_slug',
-            'sf_subject' => $collection,
-          )));
-        }
-        catch (PropelException $e)
-        {
-          $this->getUser()->setFlash(
-            'error', 'There was a problem while saving the information you provided!'
-          );
-        }
-      }
-      else
-      {
-        $this->defaults = $taintedValues;
-      }
-    }
-
-    $collector = $this->getCollector();
-    $dropbox = $collector->getCollectionDropbox();
-    $this->dropbox_total = $dropbox->countCollectibles();
-
-    $this->total = $collection->countCollectionCollectibles();
-    $this->collection = $collection;
-    $this->form = $form;
-
-    return sfView::SUCCESS;
-  }
-
   public function executeCollectionCollectibleCreate(sfWebRequest $request)
   {
     $collection = CollectorCollectionQuery::create()
@@ -421,6 +316,7 @@ class mycqActions extends cqFrontendActions
 
     $collectible = CollectibleQuery::create()
       ->findOneById($request->getParameter('collectible_id'));
+
     $this->redirectUnless(
       $this->getCollector()->isOwnerOf($collectible),
       '@mycq_collections'
@@ -432,6 +328,14 @@ class mycqActions extends cqFrontendActions
 
     $collection_collectible = $q->findOneOrCreate();
     $collection_collectible->save();
+
+    // auto-set collection thumbnail if none set yet
+    if (1 == $collection->countCollectibles() && !$collection->hasThumbnail())
+    {
+      $collection->setPrimaryImage($collectible->getPrimaryImage()
+        ->getAbsolutePath('original'));
+      $collection->save();
+    }
 
     $this->redirect('mycq_collectible_by_slug', $collection_collectible);
   }
@@ -510,16 +414,49 @@ class mycqActions extends cqFrontendActions
           $name = $collectible->getName();
 
           $url = $this->generateUrl(
-            'mycq_collection_by_slug', array('sf_subject' => $collection)
+            'mycq_collection_by_section', array(
+              'id' => $collection->getId(), 'section' => 'collectibles'
+            )
           );
 
           try
           {
-            // Delete the Collectible
-            $collectible->delete();
-            $this->getUser()->setFlash(
-              'success', sprintf('Collectible "%s" was deleted!', $name)
-            );
+            /**
+             * If the Collectible has Multimedia associated with it, let's just delete
+             * the CollectionCollectible references so that it can return to the Dropbox
+             */
+            $default = $collectible->getMultimediaCount() > 0 ? 'collections' : 'collectible';
+
+            switch ($request->getParameter('scope', $default))
+            {
+              case 'collectible':
+                // Delete the Collectible
+                $collectible->delete();
+                $this->getUser()->setFlash('success', sprintf('Item "%s" was deleted!', $name));
+                break;
+              case 'collection':
+                // Delete the CollectionCollectible reference for this collection
+                CollectionCollectibleQuery::create()
+                  ->filterByCollection($collection)
+                  ->filterByCollectible($collectible)
+                  ->delete();
+
+                $this->getUser()->setFlash(
+                  'success', sprintf('Item "%s" was removed from this Collection!', $name)
+                );
+                break;
+              case 'collections':
+              default:
+                // Delete the CollectionCollectible references
+                CollectionCollectibleQuery::create()
+                  ->filterByCollectible($collectible)
+                  ->delete();
+
+                $this->getUser()->setFlash(
+                  'success', sprintf('Item "%s" was removed from all Collections!', $name)
+                );
+                break;
+            }
           }
           catch (PropelException $e)
           {
@@ -597,17 +534,21 @@ class mycqActions extends cqFrontendActions
           null !== $for_sale &&
           $for_sale['is_ready'] !== $collectible->getCollectibleForSale()->getIsReady() &&
           $for_sale['is_ready'] === true
-        )
-        {
-          $message = $this->__(
-            'Your collectible has been posted to the Market.
-             Click <a href="%url%">here</a> to manage your items for sale!',
-            array('%url%' => $this->generateUrl('mycq_marketplace'))
+        ) {
+          $message = sprintf(
+            'Your item has been posted to the Market.
+             Click <a href="%s">here</a> to manage your items for sale!',
+
+            $this->generateUrl('mycq_marketplace')
           );
         }
         else
         {
-          $message = $this->__('Changes were saved!');
+          $message = sprintf(
+            'Changes to your item "<a href="%s">%s</a>" were saved!',
+            $this->generateUrl('mycq_collectible_by_slug', array('sf_subject' => $collectible)),
+            $collectible->getName()
+          );
         }
 
         try
@@ -615,8 +556,23 @@ class mycqActions extends cqFrontendActions
           $form->save();
           $this->getUser()->setFlash('success', $message, true);
 
-          // If we save the form the request has to be redirected
-          $this->redirect('mycq_collectible_by_slug', $form->getObject());
+          // auto-set collection thumbnail if none set yet
+          $values = $form->getValues();
+          if (isset($values['thumbnail']))
+          {
+            if (1 == $collection->countCollectibles() && !$collection->hasThumbnail())
+            {
+              $collection->setPrimaryImage($values['thumbnail']);
+              $collection->save();
+            }
+          }
+
+          // Did the Collector use the "Save & Go to Items" button?
+          if ($request->getParameter('save_and_go'))
+          {
+            // If we save the form successfully, the request has to be redirected
+            $this->redirect('mycq_collection_by_slug', $collection);
+          }
         }
         catch (PropelException $e)
         {
@@ -633,10 +589,8 @@ class mycqActions extends cqFrontendActions
 
     $c = new Criteria();
     $c->add(CollectionCollectiblePeer::COLLECTIBLE_ID, $collectible->getId(), Criteria::NOT_EQUAL);
-    $c->setLimit(11);
+    $c->setLimit(10);
     $this->collectibles = $collection->getCollectionCollectibles($c);
-
-    $this->multimedia = $collectible->getMultimedia(0, 'image', false);
 
     $this->collection = $collection;
     $this->collectible = $collectible;
@@ -646,9 +600,12 @@ class mycqActions extends cqFrontendActions
     $this->form_shipping_us = $form_shipping_us;
     $this->form_shipping_zz = $form_shipping_zz;
 
-    if ($collectible->isForSale()) {
+    if ($collectible->isForSale())
+    {
       SmartMenu::setSelected('mycq_menu', 'marketplace');
-    } else  {
+    }
+    else
+    {
       SmartMenu::setSelected('mycq_menu', 'collections');
     }
 
@@ -741,13 +698,7 @@ class mycqActions extends cqFrontendActions
 
     $total = $q->count();
 
-    if ($total > 0)
-    {
-      $this->getUser()->setFlash(
-        'success', 'Total of <b>' . $total . '</b> photos were uploaded successfully'
-      );
-    }
-    else
+    if ($total === 0)
     {
       $this->getUser()->setFlash(
         'error', 'There was a problem uploading your photos and none were uploaded'

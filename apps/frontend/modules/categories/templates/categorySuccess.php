@@ -44,7 +44,7 @@
     cq_section_title("The Collectors' Question", $link, array('left' => 8, 'right' => 4));
   ?>
 
-  <div class="row-fluid" style="position: relative;">
+  <div class="row-fluid relative">
     <img src="<?= $collectors_question['image']; ?>" alt="<?= $collectors_question['title']; ?>" title="<?= $collectors_question['title']; ?>"/>
     <div class="span12" style="position: absolute; top: 65%; background: url(/images/frontend/white.png); padding: 15px 25px; margin: 0;">
       <h2 class="Chivo webfont" style="font-size: 26px; font-weight: bold; font-style: italic;"><?= $collectors_question['title']; ?></h2>
@@ -55,7 +55,7 @@
 
 <?php else: ?>
 
-  <div class="row-fluid" style="text-align: center;">
+<div class="row-fluid text-center">
   <?php
     include_component(
       'global', 'pagination', array('pager' => $pager)

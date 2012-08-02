@@ -92,15 +92,15 @@
 
   .tags {
 	  display: inline-block;
-	  vertical-align: middle;
+	  max-width: 270px;
 	  margin-right: 10px;
 	  margin-bottom: 7px;
 	  padding: 6px 14px 6px;
+	  vertical-align: middle;
 	  line-height: 14px;
     color: @brown;
-    white-space: nowrap;
+	  word-wrap: break-word;
     background-color: @grayNormal;
-
     .border-radius(5px);
   }
 
@@ -114,7 +114,7 @@
   }
 }
 
-#sidebar-videos {
+.sidebar-videos {
   padding: 5px 10px 10px 10px;
 
   .title {
