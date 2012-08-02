@@ -160,7 +160,7 @@
             <i class="s-24-icon-twitter social-ico-padding"></i>
           </a>
           <a href="https://plus.google.com/113404032517505188429"
-             target="_blank" class="social-link" rel="tooltip" title="Follow us on Google">
+             target="_blank" class="social-link" rel="tooltip" title="Follow us on Google+">
             <i class="s-24-icon-google social-ico-padding"></i>
           </a>
           <a href="http://pinterest.com/CollectorsQuest"
