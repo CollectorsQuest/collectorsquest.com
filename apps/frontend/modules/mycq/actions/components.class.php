@@ -281,7 +281,7 @@ class mycqComponents extends cqFrontendComponents
         $collectible->addCollection($collection);
         $collectible->save();
 
-        if ($values['thumbnail'])
+        if (isset($values['thumbnail']))
         {
           $image = iceModelMultimediaQuery::create()
               ->findOneById((integer) $values['thumbnail']);
