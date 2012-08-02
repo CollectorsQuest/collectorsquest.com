@@ -6,6 +6,8 @@
  * @method  cqWebResponse    getResponse()
  * @method  cqWebRequest     getRequest()
  * @method  cqBaseUser       getUser()
+ *
+ * @method  mixed            redirect($url, $statusCode)
  */
 class cqBaseActions extends sfActions
 {
