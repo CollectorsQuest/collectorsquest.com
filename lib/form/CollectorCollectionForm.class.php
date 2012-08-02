@@ -21,7 +21,6 @@ class CollectorCollectionForm extends BaseCollectorCollectionForm
     $this->widgetSchema['content_category_id'] = new cqWidgetFormPropelChoiceByNestedSet(array(
       'model' => 'ContentCategory',
     ));
-    $this->validatorSchema['content_category_id']->setOption('required', false);
   }
 
   protected function setupTagsField()

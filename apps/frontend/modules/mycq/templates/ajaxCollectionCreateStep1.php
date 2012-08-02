@@ -16,7 +16,10 @@
     <div class="control-group ">
       <?= $form['content_category_id']->renderLabel('Category') ?>
       <div class="controls">
-        <?php cq_content_categories_to_ul($categories, array('id' => 'categories', 'tabindex'=>3)); ?>
+        <div class="with-required-token">
+          <span class="required-token">*</span>
+          <?php cq_content_categories_to_ul($categories, array('id' => 'categories', 'tabindex'=>3)); ?>
+        </div>
       </div>
     </div>
 
