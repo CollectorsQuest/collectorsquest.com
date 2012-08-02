@@ -104,7 +104,8 @@ class collectionAction extends cqFrontendAction
         $collection->setDescription($values['description'], 'html');
         $collection->setTags($values['tags']);
 
-        if ($values['thumbnail'] instanceof sfValidatedFile)
+        if ( isset($values['thumbnail'])
+          && $values['thumbnail'] instanceof sfValidatedFile )
         {
           $collection->setThumbnail($values['thumbnail']);
         }
