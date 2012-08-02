@@ -50,6 +50,7 @@ class FeedbackForm extends BaseForm
     ));
 
     $this->widgetSchema->setNameFormat('feedback[%s]');
+    $this->widgetSchema->setFormFormatterName('Bootstrap');
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
 
     parent::setup();
