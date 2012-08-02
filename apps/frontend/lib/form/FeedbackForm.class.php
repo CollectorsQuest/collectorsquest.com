@@ -7,7 +7,7 @@ class FeedbackForm extends BaseForm
     /**
      * Widgets
      */
-    if(sfContext::getInstance()->getUser()->isAuthenticated())
+    if (sfContext::getInstance()->getUser()->isAuthenticated())
     {
       $widget = new sfWidgetFormInputHidden();
     }
