@@ -107,13 +107,13 @@ else
     <div class="span12">
       <div class="form-actions text-center spacer-inner-15">
         <button type="submit" formnovalidate
-                class="btn btn-primary" name="save" value="Save Changes">
-          Save Changes
+                class="btn btn-primary" name="save_and_go" value="Save & Back to Items">
+          Save & Go to Items
         </button>
         &nbsp;&nbsp;
         <button type="submit" formnovalidate
-                class="btn" name="save_and_go" value="Save & Back to Items">
-          Save & Go to Items
+                class="btn" name="save" value="Save Changes">
+          Save Changes
         </button>
 
         <div style="float: right; margin-right: 15px;">
