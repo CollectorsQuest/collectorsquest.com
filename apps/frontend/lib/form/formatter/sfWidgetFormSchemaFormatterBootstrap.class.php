@@ -141,8 +141,8 @@ class sfWidgetFormSchemaFormatterBootstrap extends sfWidgetFormSchemaFormatter
     // In case we have one of the two default error messages, we write out
     // the error in the format "The FIELD_NAME field is ERROR_MESSAGE."
     $error = preg_replace(
-      '/(\w+): ((?:Invalid.|Required.))/ue',
-      '"The " . strtolower("$1") . " field is " . strtolower("$2")',
+      '/([\w\s]+): ((?:Invalid.|Required.))/ue',
+      '"$1: The " . strtolower("$1") . " field is " . strtolower("$2")',
       $error
     );
 
