@@ -7,11 +7,15 @@ class FeedbackForm extends BaseForm
     /**
      * Widgets
      */
-  	if(sfContext::getInstance()->getUser()->isAuthenticated())
-  	$widget = new sfWidgetFormInputHidden();
-  	else
-  	$widget = new sfWidgetFormInputText();
-  	
+    if(sfContext::getInstance()->getUser()->isAuthenticated())
+    {
+      $widget = new sfWidgetFormInputHidden();
+    }
+    else
+    {
+      $widget = new sfWidgetFormInputText();
+    }
+     
     $this->setWidgets(array(
       'fullname'    => $widget,
       'email'       => $widget,
@@ -24,7 +28,7 @@ class FeedbackForm extends BaseForm
       'f_browser_color_depth' => new sfWidgetFormInputHidden(),
       'f_resolution'          => new sfWidgetFormInputHidden(),
       'f_browser_size'        => new sfWidgetFormInputHidden(),
-      
+
       'send_copy' => new sfWidgetFormInputCheckbox()
     ));
 
@@ -41,7 +45,7 @@ class FeedbackForm extends BaseForm
       'f_browser_color_depth'  => new sfValidatorPass(),
       'f_resolution'           => new sfValidatorPass(),
       'f_browser_size'         => new sfValidatorPass(),
-      
+
       'send_copy' => new sfValidatorString(array('required' => false))
     ));
 
