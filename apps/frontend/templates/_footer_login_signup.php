@@ -17,35 +17,39 @@
 
 <div id="footer-form-signup" style="<?= 'signup' == $display ? '' : 'display: none;'; ?>">
   <h2 class="Chivo webfont">Sign Up</h2>
-  <?php
-  include_partial(
-    'global/footer_signup_external_buttons',
-    array('action' => 'sign up')
-  );
-  ?>
-  <p class="text-center spacer-15">- OR -</p>
 
   <form action="<?= url_for($signup_action, true); ?>"
         method="post" class="form-horizontal form-footer">
 
     <?= $signup_form->renderUsing('BootstrapWithRowFluid'); ?>
 
-    <div class="row-fluid spacer-top-5 spacer-bottom-15">
+    <div class="row-fluid spacer-15">
       <input type="checkbox" name="<?= $signup_form->getName() ?>[newsletter]"
-             id="<?= $signup_form->getName() ?>_newsletter" checked="checked">
+             id="<?= $signup_form->getName() ?>_newsletter" checked="checked"
+             style="float: left; width: auto; margin: 3px 5px 15px 0;">
       Sign me up for the Collectors Quest newsletter
     </div>
 
-    <div class="cf spacer-7 text-center">
-      <button type="submit" class="btn btn-primary btn-primary-long">Sign Up</button>
+    <div class="row-fluid spacer-7">
+      <div class="span8 spacer-inner-top">
+        <?php
+          include_partial(
+            'global/footer_signup_external_buttons',
+            array('action' => 'sign up')
+          );
+        ?>
+      </div>
+      <div class="span4">
+        <button type="submit" class="btn btn-primary pull-right">Sign Up</button>
+      </div>
     </div>
   </form>
 
   <div id="footer-control-login">
-    <p class="text-center">
+    <span class="pull-right">
       Already have an account?
       <?= link_to('Sign In', '@login', array('id' => 'footer-control-login-button')); ?>
-    </p>
+    </span>
   </div>
 </div><!-- #footer-form-signup -->
 
@@ -109,5 +113,3 @@
     </span>
   </div>
 </div> <!-- #footer-form-login -->
-
-
