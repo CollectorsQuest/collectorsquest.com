@@ -178,7 +178,8 @@ header {
 		text-shadow: -1px 1px 1px rgba(42, 44, 42, 1);
 	}
 
-	.dropdown-menu > li {
+	.dropdown-menu
+		& > li {
 		font: 12px Arial;
 		font-variant: normal;
 	}
@@ -199,4 +200,23 @@ header {
 	}
 }
 
+.menu-wrapper-social-icons {
+	position: absolute;
+	top: 0;
+	right: 0;
+	.size(25px, 194px);
+	padding-top: 9px;
+
+	span.white {
+		display: inline-block;
+		vertical-align: top;
+		padding-top: 4px;
+	}
+}
+
+.s-24-icon-facebook, .s-24-icon-twitter,
+.s-24-icon-pinterest, .s-24-icon-google {
+	display: inline-block;
+	margin-left: 3px;
+}
 
