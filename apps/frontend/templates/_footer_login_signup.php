@@ -17,20 +17,19 @@
 
 <div id="footer-form-signup" style="<?= 'signup' == $display ? '' : 'display: none;'; ?>">
   <h2 class="Chivo webfont">Sign Up</h2>
+  <?php
+  include_partial(
+    'global/footer_signup_external_buttons',
+    array('action' => 'sign up')
+  );
+  ?>
+  <p class="text-center spacer-15">- OR -</p>
 
   <form action="<?= url_for($signup_action, true); ?>"
         method="post" class="form-horizontal form-footer">
 
     <?= $signup_form->renderUsing('BootstrapWithRowFluid'); ?>
 
-    <p class="text-center spacer-15">- OR -</p>
-
-    <?php
-    include_partial(
-      'global/footer_signup_external_buttons',
-      array('action' => 'sign up')
-    );
-    ?>
     <div class="row-fluid spacer-top-5 spacer-bottom-15">
       <input type="checkbox" name="<?= $signup_form->getName() ?>[newsletter]"
              id="<?= $signup_form->getName() ?>_newsletter" checked="checked">
