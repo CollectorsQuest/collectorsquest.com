@@ -86,7 +86,6 @@ class _ajaxActions extends cqFrontendActions
         $cqEmail = new cqEmail($this->getMailer());
         $sent = $cqEmail->send('internal/feedback', array(
             'to' => 'info@collectorsquest.com',
-            'cc' => $values['send_copy'] ? $values['email'] : false,
             'subject' => '[Feedback] '. $values['fullname'],
             'params' => array(
               'feedback' => array(
@@ -106,6 +105,23 @@ class _ajaxActions extends cqFrontendActions
               ),
             ),
         ));
+        
+        if ($values['send_copy'])
+        {
+          $cqEmail = new cqEmail($this->getMailer());
+          $sent = $cqEmail->send('internal/feedback_copy', array(
+              'to' => $values['email'],
+              'subject' => '[Feedback] '. $values['fullname'],
+              'params' => array(
+                'feedback' => array(
+                'fullname' => $values['fullname'],
+                'email' => $values['email'],
+                'message' => nl2br($values['message']),
+                'page' => urldecode($values['page'])
+              ),
+            ),
+          ));
+        }
       }
 
       if ($sent)
