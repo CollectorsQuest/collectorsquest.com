@@ -439,19 +439,7 @@ class ajaxAction extends cqAjaxAction
   protected function executeCollectionCreateStep1(sfWebRequest $request, $template)
   {
     $form = new CollectionCreateForm();
-
-    if (( $collectible_id = $request->getParameter('collectible_id') ))
-    {
-      $q = CollectibleQuery::create()
-          ->filterByCollector($this->getUser()->getCollector())
-          ->filterById($collectible_id);
-
-      /** @var $image iceModelMultimedia */
-      if (($collectible = $q->findOne()) && $image = $collectible->getPrimaryImage())
-      {
-        $form->setDefault('thumbnail', $image->getId());
-      }
-    }
+    $form->setDefault('collectible_id', $request->getParameter('collectible_id'));
 
     if (sfRequest::POST == $request->getMethod())
     {
@@ -466,15 +454,34 @@ class ajaxAction extends cqAjaxAction
         $collection->setTags($values['tags']);
         $collection->save();
 
-        if ($values['thumbnail'])
+        if (isset($values['collectible_id']))
         {
-          $image = iceModelMultimediaQuery::create()
-              ->findOneById((integer) $values['thumbnail']);
+          $q = CollectibleQuery::create()
+            ->filterByCollector($this->getUser()->getCollector())
+            ->filterById($values['collectible_id']);
 
-          if ($this->getUser()->getCollector()->isOwnerOf($image))
+          if (($collectible = $q->findOne()) && $this->getUser()->isOwnerOf($collectible))
           {
-            $collection->setThumbnail($image->getAbsolutePath('original'));
-            $collection->save();
+            // Let's create the CollectionCollectible
+            $q = CollectionCollectibleQuery::create()
+              ->filterByCollection($collection)
+              ->filterByCollectible($collectible);
+
+            $collection_collectible = $q->findOneOrCreate();
+            $collection_collectible->save();
+
+            /**
+             * If the Collectible has a thumnail (it should!),
+             * let's add it as the Collection thumbnail also
+             *
+             * @var $thumbnail iceModelMultimedia
+             */
+            if ($thumbnail = $collectible->getPrimaryImage())
+            {
+              $collection->setThumbnail($thumbnail->getAbsolutePath('original'));
+              $collection->save();
+            }
+
           }
         }
 
