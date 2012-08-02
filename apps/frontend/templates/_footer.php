@@ -36,11 +36,20 @@
           </p>
 
           <p>
+            <a href="https://plus.google.com/113404032517505188429"
+               target="_blank" class="social-link" title="Follow us on Google+">
+              <i class="s-16-icon-google social-ico-padding"></i>Follow us on Google+
+            </a>
+          </p>
+          
+          <p>
             <a href="http://pinterest.com/CollectorsQuest"
                target="_blank" class="social-link" title="Follow us on Pinterest">
               <i class="s-16-icon-pinterest social-ico-padding"></i>Follow us on Pinterest
             </a>
           </p>
+
+
         </div>
       </div>
       <!-- .span4 -->

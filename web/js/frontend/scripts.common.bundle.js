@@ -5,6 +5,7 @@
 <!--#include virtual="bootstrap/bootstrap-tab.js" -->
 <!--#include virtual="bootstrap/bootstrap-transition.js" -->
 <!--#include virtual="bootstrap/enhanced-typeahead.js" -->
+<!--#include virtual="bootstrap/bootstrap-tooltip.js" -->
 
 $.support.transition = false;
 

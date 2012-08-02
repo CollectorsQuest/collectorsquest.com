@@ -20,6 +20,11 @@ var APP = window.APP = {
       $(".alert").alert();
       $('.dropdown-toggle').dropdown();
       $('.fade-white').mosaic();
+      $("[rel=tooltip]").tooltip(
+        {
+          placement: 'bottom'
+        }
+      );
 
       $("a.target").bigTarget({
         hoverClass: 'over',
