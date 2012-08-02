@@ -8,37 +8,37 @@
 class PropelMigration_1343899617
 {
 
-	public function preUp($manager)
-	{
+  public function preUp()
+  {
     $uncategorized = new ContentCategory();
     $uncategorized->setName('Uncategorized');
     $root = ContentCategoryQuery::create()->findRoot();
 
     $uncategorized->insertAsLastChildOf($root);
     $uncategorized->save();
-	}
+  }
 
-	public function postUp($manager)
-	{
-		// add the post-migration code here
-	}
+  public function postUp($manager)
+  {
+    // add the post-migration code here
+  }
 
-	public function preDown($manager)
-	{
-		// add the pre-migration code here
-	}
+  public function preDown($manager)
+  {
+    // add the pre-migration code here
+  }
 
-	public function postDown($manager)
-	{
-		// add the post-migration code here
-	}
+  public function postDown($manager)
+  {
+    // add the post-migration code here
+  }
 
-	/**
-	 * Get the SQL statements for the Up migration
-	 *
-	 * @return array list of the SQL strings to execute for the Up migration
-	 *               the keys being the datasources
-	 */
+  /**
+   * Get the SQL statements for the Up migration
+   *
+   * @return array list of the SQL strings to execute for the Up migration
+   *               the keys being the datasources
+   */
   public function getUpSQL()
   {
     return array (
