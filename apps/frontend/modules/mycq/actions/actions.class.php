@@ -558,7 +558,7 @@ class mycqActions extends cqFrontendActions
 
           // auto-set collection thumbnail if none set yet
           $values = $form->getValues();
-          if ($values['thumbnail'] instanceof sfValidatedFile)
+          if (isset($values['thumbnail']) && $values['thumbnail'] instanceof sfValidatedFile)
           {
             if (1 == $collection->countCollectibles() && !$collection->hasThumbnail())
             {
@@ -600,9 +600,12 @@ class mycqActions extends cqFrontendActions
     $this->form_shipping_us = $form_shipping_us;
     $this->form_shipping_zz = $form_shipping_zz;
 
-    if ($collectible->isForSale()) {
+    if ($collectible->isForSale())
+    {
       SmartMenu::setSelected('mycq_menu', 'marketplace');
-    } else  {
+    }
+    else
+    {
       SmartMenu::setSelected('mycq_menu', 'collections');
     }
 

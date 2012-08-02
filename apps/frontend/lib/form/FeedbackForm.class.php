@@ -15,7 +15,7 @@ class FeedbackForm extends BaseForm
     {
       $widget = new sfWidgetFormInputText();
     }
-     
+
     $this->setWidgets(array(
       'fullname'    => $widget,
       'email'       => $widget,
