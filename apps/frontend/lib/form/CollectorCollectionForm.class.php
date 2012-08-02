@@ -48,7 +48,9 @@ class CollectorCollectionForm extends BaseCollectorCollectionForm
     );
 
     $this->widgetSchema['tags']->setDefault($tags);
-    $this->validatorSchema['tags'] = new cqValidatorTags();
+    $this->validatorSchema['tags'] = new cqValidatorTags(array(), array(
+        'required' => 'Please enter tags for your collection.',
+    ));
   }
 
   protected function setupThumbnailField()
