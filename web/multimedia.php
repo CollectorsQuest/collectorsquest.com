@@ -37,7 +37,7 @@ if (in_array($type, array('image', 'video')))
 
   if (isset($m[1]) && ctype_digit($m[1]))
   {
-    $stmt = $dbh->prepare("SELECT * FROM `multimedia` WHERE `id` = ? AND `type` = ? LIMIT 1");
+    $stmt = $dbh->prepare('SELECT * FROM `multimedia` WHERE `id` = ? AND `type` = ? LIMIT 1');
 
     if ($stmt->execute(array($m[1], $type)))
     {
@@ -81,21 +81,21 @@ if (in_array($type, array('image', 'video')))
         $created_at->getTimestamp();
 
       // Set the Last-Modified header based on the created_at date
-      header("Last-Modified: ". gmdate("D, d M Y H:i:s", $modified_at) ." GMT");
+      header('Last-Modified: '. gmdate('D, d M Y H:i:s', $modified_at) .' GMT');
 
       // Expires 30 days after this request
-      header("Expires: ". gmdate("D, d M Y H:i:s", $modified_at + 2592000) ." GMT");
+      header('Expires: '. gmdate('D, d M Y H:i:s', time() + 2592000) .' GMT');
 
       // Set the Etag based on the md5 hash and created_at date
-      $etag = $row['md5'] ."-". $modified_at;
-      header("Etag: ". $etag);
+      $etag = $row['md5'] .'-'. $modified_at;
+      header('Etag: '. $etag);
 
       if (
         isset($_SERVER['HTTP_IF_NONE_MATCH']) &&
         stripslashes($_SERVER['HTTP_IF_NONE_MATCH']) == '"'. $etag .'"'
       ) {
         // Return visit and no modifications, so do not send anything
-        header ("HTTP/1.0 304 Not Modified");
+        header ('HTTP/1.0 304 Not Modified');
         header ('Content-Length: 0');
 
         exit;
@@ -103,8 +103,8 @@ if (in_array($type, array('image', 'video')))
       else if ($is_readable)
       {
         // Send Content-Type and the X-SendFile header
-        header("Content-Type: ". $content_type);
-        header("X-SendFile: ". $shared . $path);
+        header('Content-Type: '. $content_type);
+        header('X-SendFile: '. $shared . $path);
 
         exit;
       }
@@ -113,8 +113,8 @@ if (in_array($type, array('image', 'video')))
         $path  = '/images/'. SF_APP .'/multimedia/'. $row['model'] .'/'. $size .'.png';
 
         // Send Content-Type and the X-SendFile header
-        header("Content-Type: image/png");
-        header("X-SendFile: ". $web . $path);
+        header('Content-Type: image/png');
+        header('X-SendFile: '. $web . $path);
 
         exit;
       }
@@ -122,4 +122,4 @@ if (in_array($type, array('image', 'video')))
   }
 }
 
-header("HTTP/1.0 404 Not Found");
+header('HTTP/1.0 404 Not Found');
