@@ -203,15 +203,19 @@ class cqFrontendUser extends cqBaseUser
    */
   public function getMycqDropboxOpenState()
   {
-    // Respect the cookie only in selected areas of My CQ
-    if (in_array(SmartMenu::getSelected('mycq_menu'), array('collections', 'marketplace')))
+    /**
+     * Check if we have requested a different state
+     * than the one defined in the cookie
+     */
+    if ($this->hasFlash('cq_mycq_dropbox_open', 'cookies'))
     {
-      return !!sfContext::getInstance()->getRequest()->getCookie(
-        self::DROPBOX_OPEN_STATE_COOKIE_NAME, true);
+      return (boolean) $this->getFlash('cq_mycq_dropbox_open', false, true, 'cookies');
     }
     else
     {
-      return false;
+      return (boolean) sfContext::getInstance()->getRequest()->getCookie(
+        self::DROPBOX_OPEN_STATE_COOKIE_NAME, true
+      );
     }
   }
 
