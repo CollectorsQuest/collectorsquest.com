@@ -13,3 +13,8 @@ $.support.transition = false;
 <!--#include virtual="application.js" -->
 
 <!--#include virtual="controller.js" -->
+
+<!--#include virtual="/assets/js/jquery/controls.js" -->
+<!--#include virtual="/assets/js/jquery/form.js" -->
+<!--#include virtual="/assets/js/bootstrap/dialog2.js" -->
+<!--#include virtual="/assets/js/bootstrap/dialog2.helpers.js" -->

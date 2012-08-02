@@ -28,7 +28,7 @@ function closeModal()
 <form action="<?= url_for('@ajax_feedback')?>"
       method="post" id="form-create-collection" class="ajax form-horizontal form-modal">
 
-  <?=  $form ?>
+  <?= $form ?>
 
   <div class="form-actions">
     <button type="submit" class="btn btn-primary">

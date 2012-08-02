@@ -78,14 +78,12 @@ class cqEmail
         ->setFrom($options['from'])
         ->setReplyTo(isset($options['replyTo']) ? $options['replyTo'] : $options['from'])
         ->setTo($options['to'])
+        ->setCc(isset($options['cc']) ? $options['cc'] : array())
         ->setSubject($rendered_subject)
         ->setCharset('UTF-8')
         ->addPart(strip_tags($rendered_template), 'text/plain')
         ->addPart($rendered_template, 'text/html');
       
-      if (isset($options['cc']) && $options['cc'])
-      $message->setCc($options['cc']);
-
       $return = $this->getMailer()->send($message);
     }
     catch (Swift_RfcComplianceException $e)
