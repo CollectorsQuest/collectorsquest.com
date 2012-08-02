@@ -21,6 +21,7 @@
               <button type="submit" class="btn btn-primary pull-right">Resend</button>
             </div>
           </form>
+          <br/><br/>
         </div>
       </div>
     </div>

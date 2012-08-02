@@ -166,7 +166,7 @@
           <a href="http://pinterest.com/CollectorsQuest"
              target="_blank" class="social-link" rel="tooltip" title="Follow us on Pinterest">
             <i class="s-24-icon-pinterest social-ico-padding"></i>
-            </a>
+          </a>
         </div>
       </div>
     </div>
