@@ -118,6 +118,8 @@ class _ajaxActions extends cqFrontendActions
             array(), 'flash'
           )
         );
+        
+        $this->setTemplate('successFeedback');
       }
       else
       {

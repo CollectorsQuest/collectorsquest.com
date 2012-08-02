@@ -9,17 +9,23 @@ class FeedbackForm extends BaseForm
      */
     if (sfContext::getInstance()->getUser()->isAuthenticated())
     {
-      $widget = new sfWidgetFormInputHidden();
+       $widget = new sfWidgetFormInputHidden();
     }
     else
     {
-      $widget = new sfWidgetFormInputText();
+      $widget = new sfWidgetFormInputText(array(),
+        array(
+          'class' => 'input-xlarge'
+      ));
     }
      
     $this->setWidgets(array(
       'fullname'    => $widget,
       'email'       => $widget,
-      'message'     => new sfWidgetFormTextarea(),
+      'message'     => new sfWidgetFormTextarea(array(),
+                         array(
+                         	'class' => 'input-xlarge'
+                       )),
       'page'        => new sfWidgetFormInputHidden(),
 
       'f_ip_address'          => new sfWidgetFormInputHidden(),
@@ -48,6 +54,8 @@ class FeedbackForm extends BaseForm
 
       'send_copy' => new sfValidatorString(array('required' => false))
     ));
+    
+    $this->widgetSchema->setLabel('fullname', 'Name');
 
     $this->widgetSchema->setNameFormat('feedback[%s]');
     $this->widgetSchema->setFormFormatterName('Bootstrap');

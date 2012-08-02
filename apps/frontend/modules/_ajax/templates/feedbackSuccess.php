@@ -7,32 +7,28 @@
 
 <h1>Feedback</h1>
 
-<?php
-  $success = $sf_user->hasFlash('success_ajax');
-  include_partial('global/flash_messages');
-?>
-<?php if ($success):?>
-<script>
-window.setTimeout(closeModal, 5000);
-
-function closeModal()
-{
-  $('.modal a.close').click();
-}
-</script>
-<?php 
-  return;
-  endif; 
-?>
-
+<?php unset($form['send_copy']); ?>
 <form action="<?= url_for('@ajax_feedback')?>"
       method="post" id="form-create-collection" class="ajax form-horizontal form-modal">
 
   <?= $form ?>
+  
+  <div class="control-group ">
+    <label for="feedback_message" class=" control-label">&nbsp;</label>
+    <div class="controls">
+      <input type="checkbox" name="<?= $form->getName() ?>[send_copy]"
+             id="<?= $form->getName() ?>_send_copy">
+      Send a copy to your email address
+    </div>
+  </div>
 
   <div class="form-actions">
     <button type="submit" class="btn btn-primary">
       Send Feedback
+    </button>
+    <button type="reset" class="btn"
+            onClick="$(this).parents('.modal').find('.modal-body').dialog2('close')">
+      Cancel
     </button>
   </div>
 
