@@ -7,6 +7,8 @@
 slot('mycq_dropbox_info_message', 'Drag a photo into the Collection thumbnail below');
 ?>
 
+<?= $form->renderAllErrors(); ?>
+
 <?php
   cq_sidebar_title(
     format_number_choice(
@@ -59,7 +61,6 @@ slot('mycq_dropbox_info_message', 'Drag a photo into the Collection thumbnail be
         <form action="<?= url_for('mycq_collection_by_section', array('id' => $collection->getId(), 'section' => 'details')); ?>" novalidate
               id="form-collection" method="post" enctype="multipart/form-data"
               class="form-horizontal spacer-bottom-reset">
-          <?= $form->renderAllErrors(); ?>
 
           <div class="row-fluid">
             <div id="main-image" class="span3">
