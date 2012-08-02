@@ -188,8 +188,7 @@ $(document).ready(function()
     drop: function(event, ui)
     {
       $(this).removeClass('ui-state-highlight');
-
-      ui.draggable.draggable('option', 'revert', true);
+      ui.draggable.draggable('option', 'revert', false);
 
       var href = $(this).attr('href');
       href = href +'?collectible_id=' + ui.draggable.data('collectible-id');

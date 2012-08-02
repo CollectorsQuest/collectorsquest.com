@@ -159,7 +159,7 @@ class CollectibleEditForm extends BaseCollectibleForm
     $object->setDescription($values['description'], 'html');
     $object->setTags($values['tags']);
 
-    if ($values['thumbnail'] instanceof sfValidatedFile)
+    if (isset($values['thumbnail']) && $values['thumbnail'] instanceof sfValidatedFile)
     {
       if (isset($values['is_alt_view']) && $values['is_alt_view'] === true)
       {

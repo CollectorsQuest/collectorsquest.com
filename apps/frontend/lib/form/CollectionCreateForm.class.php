@@ -27,7 +27,7 @@ class CollectionCreateForm extends CollectorCollectionForm
       ), array(
         'required' => 'required'
       )),
-      'thumbnail'  => new sfWidgetFormInputHidden(),
+      'collectible_id'  => new sfWidgetFormInputHidden(),
       'step'       => new sfWidgetFormInputHidden(array('default' => 1)),
     ));
 
@@ -45,7 +45,7 @@ class CollectionCreateForm extends CollectorCollectionForm
         'model' => 'ContentCategory',
         'column' => 'id',
       )),
-      'thumbnail'  => new sfValidatorInteger(array('required' => false)),
+      'collectible_id'  => new sfValidatorInteger(array('required' => false)),
       'step'  => new sfValidatorInteger(),
     ));
 

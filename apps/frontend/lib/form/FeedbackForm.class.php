@@ -18,7 +18,7 @@ class FeedbackForm extends BaseForm
           'class' => 'input-xlarge'
       ));
     }
-     
+
     $this->setWidgets(array(
       'fullname'    => $widget,
       'email'       => $widget,
