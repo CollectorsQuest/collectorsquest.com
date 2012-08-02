@@ -78,7 +78,7 @@ class cqEmail
         ->setFrom($options['from'])
         ->setReplyTo(isset($options['replyTo']) ? $options['replyTo'] : $options['from'])
         ->setTo($options['to'])
-        ->setCc(isset($options['cc']) ? $options['cc'] : array())
+        ->setCc(isset($options['cc']) && $options['cc'] ? $options['cc'] : array())
         ->setSubject($rendered_subject)
         ->setCharset('UTF-8')
         ->addPart(strip_tags($rendered_template), 'text/plain')
