@@ -558,7 +558,7 @@ class mycqActions extends cqFrontendActions
 
           // auto-set collection thumbnail if none set yet
           $values = $form->getValues();
-          if (isset($values['thumbnail']) && $values['thumbnail'] instanceof sfValidatedFile)
+          if (isset($values['thumbnail']))
           {
             if (1 == $collection->countCollectibles() && !$collection->hasThumbnail())
             {
