@@ -42,15 +42,9 @@
 
     <div class="cf spacer-7 text-center">
       <button type="submit" class="btn btn-primary btn-primary-long">Sign Up</button>
-      &nbsp; or you can also <?= link_to('sign in →', '@login', array('id' => 'footer-control-login-button')); ?>
     </div>
   </form>
 
-  <div id="footer-control-login">
-    <p class="text-center">
-
-    </p>
-  </div>
 </div><!-- #footer-form-signup -->
 
 <div id="footer-form-login" style="<?= 'login' == $display ? '' : 'display: none;' ?>">
