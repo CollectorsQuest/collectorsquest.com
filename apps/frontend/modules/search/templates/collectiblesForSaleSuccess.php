@@ -41,7 +41,7 @@ include_partial(
   </div>
 </div>
 
-<div class="row-fluid text-center"s>
+<div class="row-fluid text-center">
 <?php
   include_component(
     'global', 'pagination', array('pager' => $pager)

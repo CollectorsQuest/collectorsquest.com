@@ -32,7 +32,6 @@ class messagesActions extends cqFrontendActions
       ->_endif()
       ->filterByIsDeleted(false)
       ->orderByCreatedAt(Criteria::DESC);
-      //->find();
     
     $pager = new PropelModelPager($q);
     $pager->setPage($request->getParameter('page', 1));
@@ -49,7 +48,6 @@ class messagesActions extends cqFrontendActions
       ->filterByCollectorRelatedBySender($this->getCollector())
       ->groupByThread()
       ->orderByCreatedAt(Criteria::DESC);
-      //->find();
       
     $pager = new PropelModelPager($q);
     $pager->setPage($request->getParameter('page', 1));
