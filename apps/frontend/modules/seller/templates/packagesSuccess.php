@@ -1,5 +1,9 @@
 <?php
-/* @var $packagesForm SellerPackagesForm */
+  /* @var $packagesForm SellerPackagesForm */
+  $tainted_form_values = $sf_request->getParameter($packagesForm->getName());
+  $package_id_value = isset($tainted_form_values['package_id'])
+    ? $tainted_form_values['package_id']
+    : 0;
 ?>
 
 <?php if ($packagesForm->hasGlobalErrors()): ?>
@@ -52,8 +56,7 @@
           id="form-seller-packages" class="form-horizontal" novalidate="novalidate">
       <?= $packagesForm->renderHiddenFields() ?>
 
-      <?php
-        if (
+      <?php if (
           IceGateKeeper::open('mycq_seller_pay') &&
           isset($packagesForm['pending_transaction_confirm']) &&
           $packagesForm->isError('pending_transaction_confirm')
@@ -86,39 +89,35 @@
 
       <?php cq_sidebar_title('Which package is right for you'); ?>
 
-
       <div class="control-group">
-
-          <div class="with-required-token choice-packages">
-            <div required="required" class="radio_list">
-              <label required="required" class="radio">
-                <input required="required" name="packages[package_id]" type="radio" value="1" id="packages_package_id_11">
+          <div class="choice-packages">
+            <div class="radio_list">
+              <label class="radio">
+                <input required="required" name="packages[package_id]" type="radio" value="1" <?= 1 == $package_id_value ? 'checked' : '' ?> id="packages_package_id_1">
                 <span class="package1 Chivo webfont">1 listing <span class="red pull-right">$2.50</span></span>
                 <span class="price-per-item">$2.50 per item</span>
               </label>
-              <label required="required" class="radio">
-                <input required="required" name="packages[package_id]" type="radio" value="1" id="packages_package_id_12">
+              <label class="radio">
+                <input required="required" name="packages[package_id]" type="radio" value="2" <?= 2 == $package_id_value ? 'checked' : '' ?> id="packages_package_id_2">
                 <span class="package2 Chivo webfont">10 listings <span class="red pull-right">$20</span></span>
                 <span class="price-per-item">$2.00 per item</span>
               </label>
-              <label required="required" class="radio">
-                <input required="required" name="packages[package_id]" type="radio" value="1" id="packages_package_id_13">
+              <label class="radio">
+                <input required="required" name="packages[package_id]" type="radio" value="3" <?= 3 == $package_id_value ? 'checked' : '' ?> id="packages_package_id_3">
                 <span class="package3 Chivo webfont">100 listings <span class="red pull-right">$150</span></span>
                 <span class="price-per-item">$1.50 per item</span>
               </label>
-              <label required="required" class="radio">
-                <input required="required" name="packages[package_id]" type="radio" value="1" id="packages_package_id_14">
+              <label class="radio">
+                <input required="required" name="packages[package_id]" type="radio" value="6" <?= 6 == $package_id_value ? 'checked' : '' ?> id="packages_package_id_4">
                 <span class="package4 Chivo webfont"><span class="red-bold">UNLIMITED</span> listings <span class="red pull-right">only $250</span></span>
                 <span class="price-per-item red">unlimited items</span>
               </label>
             </div>
+            <?= $packagesForm['package_id']->renderError(); ?>
           </div>
       </div>
 
-
-
       <fieldset>
-        <?= $packagesForm['package_id']->renderRow() ?>
         <div class="control-group">
           <?= $packagesForm['promo_code']->renderLabel(null, array('class'=> 'control-label')) ?>
           <div class="controls form-inline">
