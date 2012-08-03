@@ -1,5 +1,9 @@
 <?php
-/* @var $packagesForm SellerPackagesForm */
+  /* @var $packagesForm SellerPackagesForm */
+  $tainted_form_values = $sf_request->getParameter($packagesForm->getName());
+  $package_id_value = isset($tainted_form_values['package_id'])
+    ? $tainted_form_values['package_id']
+    : 0;
 ?>
 
 <?php if ($packagesForm->hasGlobalErrors()): ?>
@@ -52,8 +56,7 @@
           id="form-seller-packages" class="form-horizontal" novalidate="novalidate">
       <?= $packagesForm->renderHiddenFields() ?>
 
-      <?php
-        if (
+      <?php if (
           IceGateKeeper::open('mycq_seller_pay') &&
           isset($packagesForm['pending_transaction_confirm']) &&
           $packagesForm->isError('pending_transaction_confirm')
@@ -118,7 +121,6 @@
 
 
       <fieldset>
-        <?= $packagesForm['package_id']->renderRow() ?>
         <div class="control-group">
           <?= $packagesForm['promo_code']->renderLabel(null, array('class'=> 'control-label')) ?>
           <div class="controls form-inline">
