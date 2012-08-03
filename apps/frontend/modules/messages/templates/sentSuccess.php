@@ -12,9 +12,10 @@
       data-url="<?= url_for('messages_show', $message); ?>"
     >
       <td class="sender-col">
-        <?= image_tag_collector($message->getCollectorRelatedBySender(),
+        <?= image_tag_collector($message->getCollectorRelatedByReceiver(),
           '50x50', array('class' => 'avatar')); ?>
-        <?= link_to_collector($message->getCollectorRelatedBySender()); ?>
+        To:
+        <?= link_to_collector($message->getCollectorRelatedByReceiver()); ?>
         <p class="font10">
           <?= time_ago_in_words($message->getCreatedAt('U')); ?> ago
         </p>
