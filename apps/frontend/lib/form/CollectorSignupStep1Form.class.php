@@ -10,6 +10,8 @@ class CollectorSignupStep1Form extends BaseForm
       ), array(
         'pattern'     => '^(?=^[a-zA-Z])[a-zA-Z0-9\.\_]*$',
         'required'    => 'required',
+        'oninvalid'   => 'setCustomValidity("");
+          this.validity.valid || setCustomValidity("Only letters, numbers, periods and underscores allowed. Must start with a letter.")',
         'placeholder' => 'Username',
       )),
       'password'        => new sfWidgetFormInputPassword(array(), array(
