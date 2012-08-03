@@ -123,7 +123,7 @@
           <?= $packagesForm['promo_code']->renderLabel(null, array('class'=> 'control-label')) ?>
           <div class="controls form-inline">
             <?= $packagesForm['promo_code']->render() ?>
-            <button type="submit" name="applyPromo" id="applyPromo3"
+            <button type="submit" name="applyPromo" id="applyPromo3" class="btn btn-primary"
                     value="applyPromo" formnovalidate="formnovalidate">
               Apply
             </button>
