@@ -221,3 +221,55 @@ span.current-price {
 		#gradient > .horizontal(#fcfaf3, #fff4cf);
 	}
 }
+
+.package-wrapper .columns {
+	position: relative;
+	height: 300px;
+	text-align: center;
+}
+
+.package-bar {
+	position: absolute;
+	bottom: 0;
+	width: 130px;
+	margin: 0 auto;
+	padding-top: 20px;
+	font-size: 20px;
+	line-height: 22px;
+	border: 1px solid #ededed;
+	.border-radius(8px 8px 0 0);
+	.box-shadow(~"inset 0px 0px 0px 1px #fff, 0px 1px 5px 0px #efefef");
+	#gradient > .vertical(#fbe9b1, #fffbec);
+
+	&.package1 {height: 90px; padding-top: 12px!important;}
+	&.package2 {height: 130px;}
+	&.package3 {height: 180px;}
+	&.package4 {height: 300px;}
+
+	.price {
+		position: absolute;
+		bottom: 0;
+		width: 130px;
+		margin-bottom: 10px;
+		text-align: center;
+		.desc {
+			display: block;
+			padding-top: 10px;
+			font-size: 14px;
+			line-height: 14px;
+			color: @brown;
+		}
+	}
+	.desc-blue {
+		display: block;
+		padding-top: 10px;
+		font-size: 14px;
+		line-height: 14px;
+		color: @blueDark;
+	}
+	.desc-red {
+		display: block;
+		padding: 15px 0;
+		color: @red;
+	}
+}
