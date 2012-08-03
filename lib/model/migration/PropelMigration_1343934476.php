@@ -2,20 +2,18 @@
 
 /**
  * Data object containing the SQL and PHP code to migrate the database
- * up to version 1342793177.
- * Generated on 2012-07-20 10:06:17 by root
+ * up to version 1343899617.
+ * Generated on 2012-08-02 05:26:57 by root
  */
-class PropelMigration_1342793177
+class PropelMigration_1343934476
 {
 
   public function preUp()
   {
-    // add the pre-migration code here
-    $affected_rows = CommentQuery::create()
-      ->where('LTRIM(Comment.Body) = ?', '')
-      ->delete();
+    $cat = ContentCategoryQuery::create()->filterByName('Uncategorized')->findOne();
+    $cat->setName('Other');
 
-    echo sprintf('Deleted %d empty comments...', $affected_rows)."\n";
+    $cat->save();
   }
 
   public function postUp($manager)
@@ -72,5 +70,4 @@ class PropelMigration_1342793177
       '
     );
   }
-
 }

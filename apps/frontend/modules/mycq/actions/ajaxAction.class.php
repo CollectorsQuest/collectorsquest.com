@@ -550,6 +550,9 @@ class ajaxAction extends cqAjaxAction
 
         $collection->save();
 
+        // Tell the Dropbox to stay closed
+        $this->getUser()->setFlash('cq_mycq_dropbox_open', false, true, 'cookies');
+
         return $this->renderPartial('global/loading', array(
             'url' => $this->generateUrl('mycq_collection_by_section', array(
                 'id' => $collection->getId(),

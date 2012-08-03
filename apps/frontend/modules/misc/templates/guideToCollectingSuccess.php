@@ -12,7 +12,7 @@
       <div class="span5">
         <div class="signup-form-splash">
         <?php
-          include_partial('global/footer_login_signup', array(
+          include_partial('misc/guide_login_or_signup', array(
             'signup_form' => $signup_form,
             'login_form'  => $login_form,
             'signup_action' => '@misc_guide_to_collecting',

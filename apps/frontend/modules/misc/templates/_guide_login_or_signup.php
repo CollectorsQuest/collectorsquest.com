@@ -16,45 +16,49 @@
 ?>
 
 <div id="footer-form-signup" style="<?= 'signup' == $display ? '' : 'display: none;'; ?>">
-  <h2 class="Chivo webfont">Sign Up</h2>
+  <?php
+    include_partial(
+      'misc/guide_social_login',
+      array('action' => 'sign up')
+    );
+  ?>
+
+  <hr/>
+  <div style="background: #FFF5D5; margin: auto; margin-top: -29px; width: 50px; text-align: center; font-size: 150%;">
+    OR
+  </div>
+  <br/>
 
   <form action="<?= url_for($signup_action, true); ?>"
         method="post" class="form-horizontal form-footer">
 
     <?= $signup_form->renderUsing('BootstrapWithRowFluid'); ?>
 
-    <div class="row-fluid spacer-15">
+    <div class="row-fluid spacer-top-5 spacer-bottom-15">
       <input type="checkbox" name="<?= $signup_form->getName() ?>[newsletter]"
-             id="<?= $signup_form->getName() ?>_newsletter" checked="checked"
-             style="float: left; width: auto; margin: 3px 5px 15px 0;">
+             id="<?= $signup_form->getName() ?>_newsletter" checked="checked">
       Sign me up for the Collectors Quest newsletter
     </div>
 
-    <div class="row-fluid spacer-7">
-      <div class="span8 spacer-inner-top">
-        <?php
-          include_partial(
-            'global/footer_signup_external_buttons',
-            array('action' => 'sign up')
-          );
-        ?>
-      </div>
-      <div class="span4">
-        <button type="submit" class="btn btn-primary pull-right">Sign Up</button>
-      </div>
+    <div class="cf spacer-7 text-center">
+      <button type="submit" class="btn btn-primary btn-primary-long">Sign Up</button>
     </div>
   </form>
 
-  <div id="footer-control-login">
-    <span class="pull-right">
-      Already have an account?
-      <?= link_to('Sign In', '@login', array('id' => 'footer-control-login-button')); ?>
-    </span>
-  </div>
 </div><!-- #footer-form-signup -->
 
 <div id="footer-form-login" style="<?= 'login' == $display ? '' : 'display: none;' ?>">
-  <h2 class="Chivo webfont">Sign In</h2>
+  <?php
+    include_partial(
+      'misc/guide_social_login',
+      array('action' => 'sign in')
+    );
+  ?>
+  <hr/>
+  <div style="background: #FFF5D5; margin: auto; margin-top: -29px; width: 50px; text-align: center; font-size: 150%;">
+    OR
+  </div>
+  <br/>
 
   <form action="<?= url_for($login_action, true); ?>"
         method="post" class="form-horizontal form-footer">
@@ -79,30 +83,8 @@
       </div>
     </div>
 
-    <div class="row-fluid spacer-7">
-      <div class="span8 spacer-inner-top">
-        <?php
-          include_partial(
-            'global/footer_signup_external_buttons',
-            array('action' => 'sign in')
-          );
-        ?>
-      </div>
-      <div class="span4">
-        <button type="submit" class="btn btn-primary pull-right">Sign&nbsp;In</button>
-      </div>
-    </div>
-    <div class="row-fluid">
-      <div class="span12">
-        <span class="pull-right">
-          <?= link_to('Forgot your password?', '@recover_password'); ?>
-        </span>
-      </div>
-    </div>
-  </form>
-
-  <div id="footer-control-signup dn">
-    <span class="pull-right">
+    <div class="cf spacer-7 text-center">
+      <button type="submit" class="btn btn-primary btn-primary-long">Sign In</button><br/><br/>
       Don't have an account yet?
       <?php
         echo link_to(
@@ -110,6 +92,9 @@
           array('id' => 'footer-control-signup-button')
         );
       ?>
-    </span>
-  </div>
+    </div>
+
+  </form>
 </div> <!-- #footer-form-login -->
+
+

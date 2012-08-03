@@ -217,7 +217,7 @@ function cq_combine_stylesheets($stylesheets)
   if (!empty($stylesheets) && is_array($stylesheets))
   {
     $url = sprintf(
-      'http://%s/combine.php?type=css&files=%s',
+      '//%s/combine.php?type=css&files=%s',
       sfConfig::get('app_static_domain'), implode(',', $stylesheets)
     );
 
@@ -244,7 +244,7 @@ function cq_combine_javascripts($javascripts)
   if (!empty($javascripts) && is_array($javascripts))
   {
     $url = sprintf(
-      'http://%s/combine.php?type=javascript&files=%s',
+      '//%s/combine.php?type=javascript&files=%s',
       sfConfig::get('app_static_domain'), implode(',', $javascripts)
     );
 

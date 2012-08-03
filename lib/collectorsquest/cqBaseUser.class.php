@@ -94,7 +94,7 @@ class cqBaseUser extends IceSecurityUser
 
       // remove remember me cookie
       $expiration_age = sfConfig::get('app_collector_remember_cookie_expiration_age', 15 * 24 * 3600);
-      $remember_cookie = sfConfig::get('app_collector_remember_cookie_name', 'cqRemember');
+      $remember_cookie = sfConfig::get('app_collector_remember_cookie_name', 'cq_remember');
       $response->setCookie($remember_cookie, '', time() - $expiration_age);
     }
     else if ($collector instanceof Collector && $boolean == true)
@@ -126,7 +126,7 @@ class cqBaseUser extends IceSecurityUser
         $rk->save();
 
         // make key as a cookie
-        $remember_cookie = sfConfig::get('app_collector_remember_cookie_name', 'cqRemember');
+        $remember_cookie = sfConfig::get('app_collector_remember_cookie_name', 'cq_remember');
         $response->setCookie($remember_cookie, $key, time() + $expiration_age);
       }
 

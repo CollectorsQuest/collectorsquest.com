@@ -37,6 +37,7 @@
             <a class="addthis_counter addthis_bubble_style"></a>
           </div>
           <!-- AddThis Button END -->
+          <br>
         </div>
       </div>
     </div>

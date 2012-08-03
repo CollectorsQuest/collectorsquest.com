@@ -41,7 +41,7 @@
               <i class="s-16-icon-google social-ico-padding"></i>Follow us on Google+
             </a>
           </p>
-          
+
           <p>
             <a href="http://pinterest.com/CollectorsQuest"
                target="_blank" class="social-link" title="Follow us on Pinterest">
@@ -64,10 +64,13 @@
 //            );
 
             echo link_to(
-              image_tag('banners/2012-06-24_CQGuide_300x250_footer.png',
-                array('size' => '300x250',
-                      'alt' => 'Unlock your free guide to collecting—sign up today'
-                )),
+              image_tag(
+                'banners/2012-06-24_CQGuide_300x250_footer.png',
+                array(
+                  'size' => '300x250',
+                  'alt_title' => 'Unlock your free guide to collecting—sign up today'
+                )
+              ),
               '@misc_guide_to_collecting'
             );
           }

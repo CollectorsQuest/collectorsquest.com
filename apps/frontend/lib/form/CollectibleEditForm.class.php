@@ -81,7 +81,9 @@ class CollectibleEditForm extends BaseCollectibleForm
                or phrases, separated by commas'
     );
 
-    $this->validatorSchema['tags'] = new cqValidatorTags();
+    $this->validatorSchema['tags'] = new cqValidatorTags(array(), array(
+        'required' => 'Please enter tags for your item.',
+    ));
   }
 
   protected function setupThumbnailField()

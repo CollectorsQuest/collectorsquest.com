@@ -12,7 +12,7 @@ class ContentCategoryPeer extends BaseContentCategoryPeer
 
   // Category names that should always got to bottom among their ancestors
   public static $force_order_to_bottom = array(
-      // nothing yet
+      'Other',
   );
 
 }
