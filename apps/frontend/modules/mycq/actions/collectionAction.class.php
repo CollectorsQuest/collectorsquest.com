@@ -115,7 +115,7 @@ class collectionAction extends cqFrontendAction
 
           $this->getUser()->setFlash('success', 'Changes to your collection details were saved!');
 
-          // Did the Collector use the "Save & Go to Items" button?
+          // Did the Collector use the "Save and Add Items" button?
           if ($request->getParameter('save_and_go'))
           {
             return $this->redirect($this->getController()->genUrl(array(
