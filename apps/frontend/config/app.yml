@@ -46,7 +46,7 @@ all:
       items:
         personal_info:   { name: "Personal Information", uri: "@mycq_profile" }
         account_info:    { name: "Account Settings",  uri: "@mycq_profile_account_info" }
-        store_settings:  { name: "Store Settings",       uri: "@mycq_profile_store_settings" }
+        store_settings:  { name: "Store Settings",       uri: "@mycq_profile_store_settings", check_expression: "sfContext::getInstance()->getUser()->getCollector()->getIsSeller()" }
         addresses:       { name: "Address Book",         uri: "@mycq_profile_addresses", check_lock: mycq_profile_addresses }
 
     mycq_marketplace_tabs:

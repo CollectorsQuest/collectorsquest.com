@@ -32,6 +32,14 @@ class SmartMenu
         continue;
       }
 
+      if (isset($item['check_expression']) && $item['check_expression'])
+      {
+        if (!eval('return ' . $item['check_expression'] . ';'))
+        {
+          continue;
+        }
+      }
+
       // Set template values, defaults when none provided
       $item = array(
         '%id%'    => $id,
