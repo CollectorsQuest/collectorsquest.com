@@ -174,3 +174,52 @@ span.current-price {
   color: green;
   font-weight: bold;
 }
+
+
+.choice-packages {
+
+	.radio input {
+		margin-top: 12px;
+	}
+	.radio {
+		margin-bottom: 20px;
+	}
+	.price-per-item {
+		display: block;
+		margin: 2px 0 0 20px;
+		font-style: italic;
+	}
+
+	.package {
+		display: block;
+		.size (18px, 150px);
+		margin-left: 6px;
+		padding: 6px 10px 8px 10px;
+		font-size: 22px;
+		line-height: 22px;
+		color: @blueDark;
+		border: 1px solid #ededed;
+		.border-radius(6px);
+		.box-shadow( inset 0px 0px 0px 1px #fff);
+		background-color: #fcfaf3;
+	}
+	.package1 {
+		.package();
+	}
+	.package2 {
+		.package();
+		width: 200px;
+		#gradient > .horizontal(#fcfaf3, #fff7e0);
+	}
+	.package3 {
+		.package();
+		width: 360px;
+		#gradient > .horizontal(#fcfaf3, #fff6da);
+	}
+	.package4 {
+		.package();
+		width: 550px;
+		#gradient > .horizontal(#fcfaf3, #fff4cf);
+	}
+}
+

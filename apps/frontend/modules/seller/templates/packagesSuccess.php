@@ -54,6 +54,38 @@
       <?= $packagesForm->renderAllErrors(); ?>
 
       <?php cq_sidebar_title('Which package is right for you'); ?>
+
+
+      <div class="control-group">
+
+          <div class="with-required-token choice-packages">
+            <div required="required" class="radio_list">
+              <label required="required" class="radio">
+                <input required="required" name="packages[package_id]" type="radio" value="1" id="packages_package_id_11">
+                <span class="package1 Chivo webfont">1 credit <span class="red pull-right">$2.50</span></span>
+                <span class="price-per-item">$2.50 per item</span>
+              </label>
+              <label required="required" class="radio">
+                <input required="required" name="packages[package_id]" type="radio" value="1" id="packages_package_id_12">
+                <span class="package2 Chivo webfont">10 credits <span class="red pull-right">$20</span></span>
+                <span class="price-per-item">$2.00 per item</span>
+              </label>
+              <label required="required" class="radio">
+                <input required="required" name="packages[package_id]" type="radio" value="1" id="packages_package_id_13">
+                <span class="package3 Chivo webfont">100 credits <span class="red pull-right">$150</span></span>
+                <span class="price-per-item">$1.50 per item</span>
+              </label>
+              <label required="required" class="radio">
+                <input required="required" name="packages[package_id]" type="radio" value="1" id="packages_package_id_14">
+                <span class="package4 Chivo webfont"><span class="red-bold">UNLIMITED</span> credits <span class="red pull-right">only $250</span></span>
+                <span class="price-per-item red">unlimited</span>
+              </label>
+            </div>
+          </div>
+      </div>
+
+
+
       <fieldset>
         <?= $packagesForm['package_id']->renderRow() ?>
         <div class="control-group">
