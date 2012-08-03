@@ -16,9 +16,11 @@
   <div class="control-group ">
     <label for="feedback_send_copy" class=" control-label">&nbsp;</label>
     <div class="controls">
-      <input type="checkbox" name="<?= $form->getName() ?>[send_copy]"
-             id="<?= $form->getName() ?>_send_copy" class="inputToLeft">
-      <label for="feedback_send_copy" class="labelRightSide"> Send a copy to your email address</label>
+      <label for="feedback_send_copy">
+      	<input type="checkbox" name="<?= $form->getName() ?>[send_copy]"
+               id="<?= $form->getName() ?>_send_copy">
+       	Send a copy to your email address
+      </label>
     </div>
   </div>
 
