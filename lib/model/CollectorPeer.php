@@ -264,12 +264,14 @@ class CollectorPeer extends BaseCollectorPeer
     $collector->setEmail($data['email']);
     $collector->setUserType(isset($data['seller']) && !!$data['seller'] ? 'Seller' : 'Collector');
 
-    /* Temporary disable before tests are written * /
-    if (!empty($data['facebook_id']))
-    {
-      $collector->setFacebookId($data['facebook_id']);
-    }
-    /* */
+    /**
+     * Temporary disable before tests are written
+     *
+       if (!empty($data['facebook_id']))
+       {
+         $collector->setFacebookId($data['facebook_id']);
+       }
+    */
 
     // All of the profile data is optional, thus make sure to check it is provided
     $collector_profile = new CollectorProfile();
@@ -279,7 +281,8 @@ class CollectorPeer extends BaseCollectorPeer
     $collector_profile->setPreferences(array(
       'show_age'    => false,
       'msg_on'      => true,
-      'invite_only' => false
+      'invite_only' => false,
+      'newsletter'  => (boolean) @$data['newsletter']
     ));
 
     $collector_profile->setNotifications(array(

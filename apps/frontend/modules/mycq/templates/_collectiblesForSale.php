@@ -11,7 +11,7 @@
     <div class="span8">
       <a href="<?php echo url_for('@ajax_mycq?section=component&page=createCollectibleForSale'); ?>"
          id="collectible-create-link" class="open-dialog create-collection-text">
-        Add a new Collectible for Sale by clicking here.
+        Add a new Item for Sale by clicking here.
       </a>
     </div>
   </div>
@@ -119,10 +119,12 @@
           <i class="icon-shopping-cart"></i>
         </a>
       </div>
-      <div class="span8" style="font-size:28px; padding-left: 20px;">
-        <a href="<?php echo url_for('@seller_packages'); ?>">
-          Buy<br/> Credits
-        </a>
+      <div class="span8">
+        <div class="btn-large-box">
+          <a href="<?php echo url_for('@seller_packages'); ?>">
+            Buy<br/> Credits
+          </a>
+        </div>
       </div>
     </div>
   </div>

@@ -40,10 +40,14 @@ class collectiblesActions extends cqFrontendActions
     if ($request->getParameter('onlyForSale'))
     {
       SmartMenu::setSelected('collectibles_for_collector_list', 'for_sale');
+      $this->title = 'Items for sale by '. $collector;
+      $this->addBreadcrumb('Items for Sale');
     }
     else
     {
       SmartMenu::setSelected('collectibles_for_collector_list', 'normal');
+      $this->title = 'Collectibles by '. $collector;
+      $this->addBreadcrumb('Collectibles');
     }
 
     $this->collector = $collector;

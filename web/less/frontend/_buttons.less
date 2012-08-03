@@ -285,7 +285,6 @@ button.btn-primary:hover i.add-to-card-button {
 	border-right: 1px solid lighten(@red, 40%);
 }
 
-
 .btn-blue-simple {
 	margin: 0 3px;
 	padding: 4px 8px;
@@ -313,7 +312,7 @@ button.btn-primary:hover i.add-to-card-button {
 	//letter-spacing: 0.03em;
 	color: #9a9ba2;
 	&:hover {
-		color: #716a70;
+		color: @red;
 	}
 	&:active {
 		color: #68757b;
@@ -423,7 +422,7 @@ input[type="submit"].btn.btn-micro {
 .cb-enable, .cb-disable, .cb-enable span, .cb-disable span {
 	display: block;
 	float: left;
-  background: url(/images/frontend/switch.gif) repeat-x;
+  background: url("@{baseUrl}/switch.gif") repeat-x;
 }
 
 .cb-enable span, .cb-disable span {

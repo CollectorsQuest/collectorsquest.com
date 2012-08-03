@@ -72,7 +72,7 @@ seo:
   collector:
     index:
       model: true
-      title: Collectibles for Sale by %DisplayName% | Buy Vintage Collectibles
+      title: Items for Sale by %DisplayName% | Buy Vintage Collectibles
       description: |
         CollectorsQuest.com is the best place to find %AboutWhatYouCollect% and items for sale.
         Find collectors selling %AboutWhatYouCollect%.
@@ -125,3 +125,7 @@ seo:
 
     guideDownload:
       title: Quest Your Best: The Essential Guide to Collecting | Download
+      description: |
+        The Essential Guide to Collecting has something for every collector,
+        whether you're just beginning to acquire treasures or you're a dedicated hunter looking for the next,
+        perfect addition to your display case.

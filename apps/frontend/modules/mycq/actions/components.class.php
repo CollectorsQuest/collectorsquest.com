@@ -66,9 +66,12 @@ class mycqComponents extends cqFrontendComponents
   public function executeCollectibles()
   {
     /** @var $collection CollectorCollection */
-    $collection = $this->getVar('collection') ? :
-        CollectorCollectionQuery::create()->findOneById($this->getRequestParameter('collection_id'));
-    $sort = $this->getRequestParameter('s', 'position');
+    if ($this->getVar('collection')) {
+      $collection = $this->getVar('collection');
+    } else {
+      $collection = CollectorCollectionQuery::create()
+        ->findOneById($this->getRequestParameter('collection_id'));
+    }
 
     // Let's make sure the current user is the owner
     if (!$this->getUser()->isOwnerOf($collection))
@@ -79,7 +82,7 @@ class mycqComponents extends cqFrontendComponents
     $q = CollectionCollectibleQuery::create()
         ->filterByCollection($collection);
 
-    switch ($sort)
+    switch ($this->getRequestParameter('s', 'position'))
     {
       case 'most-popular':
         $q
@@ -107,7 +110,7 @@ class mycqComponents extends cqFrontendComponents
       $q->search($this->getRequestParameter('q'));
     }
 
-    $pager = new PropelModelPager($q, 11);
+    $pager = new PropelModelPager($q, 17);
     $pager->setPage($this->getRequestParameter('p', 1));
     $pager->init();
 

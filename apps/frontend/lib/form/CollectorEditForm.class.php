@@ -408,7 +408,7 @@ class CollectorEditForm extends CollectorForm
   public function setupSellerSettingsRefundsField()
   {
     $this->widgetSchema['seller_settings_refunds'] = new sfWidgetFormTextarea(
-      array('label' => 'Refunds and Exchange'),
+      array('label' => 'Refunds and Exchanges'),
       array('required' => 'required')
     );
 
@@ -474,4 +474,5 @@ class CollectorEditForm extends CollectorForm
 
     return $values;
   }
+
 }

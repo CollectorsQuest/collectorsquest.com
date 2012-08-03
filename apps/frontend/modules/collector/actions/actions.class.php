@@ -23,6 +23,9 @@ class collectorActions extends cqFrontendActions
     $this->collector = $collector;
     $this->profile   = $profile;
 
+    // Set the OpenGraph meta tags
+    $this->getResponse()->addOpenGraphMetaFor($collector);
+
     return sfView::SUCCESS;
   }
 

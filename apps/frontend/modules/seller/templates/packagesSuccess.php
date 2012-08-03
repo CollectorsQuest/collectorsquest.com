@@ -51,7 +51,38 @@
     <form action="<?= url_for('seller_packages')?>" method="post"
           id="form-seller-packages" class="form-horizontal" novalidate="novalidate">
       <?= $packagesForm->renderHiddenFields() ?>
-      <?= $packagesForm->renderAllErrors(); ?>
+
+      <?php
+        if (
+          IceGateKeeper::open('mycq_seller_pay') &&
+          isset($packagesForm['pending_transaction_confirm']) &&
+          $packagesForm->isError('pending_transaction_confirm')
+        ): ?>
+      <div class="pending-transaction-holder">
+        <div id="pending-transaction-warning" class="alert alert-info">
+          <a class="close" data-dismiss="alert" href="#">×</a>
+          <p>
+             <h4>Warning: Your recent transaction with us is still pending!</h4>
+             Did you complete payment with your payment service provider?
+             We're not sure yet, and we're waiting to receive an answer from them.
+          </p>
+          <br />
+
+          <p>
+            If you continue, and are purchasing any items a second time,
+            you risk being charged twice.
+          </p>
+        </div>
+
+        <label class="checkbox spacer-left-5">
+          <?= $packagesForm['pending_transaction_confirm']->render(); ?>
+          <strong>I understand. Continue with this transaction.</strong>
+        </label>
+        <div class="help-block spacer-left-25">
+          Need help? <?= link_to('Contact us here!', '/pages/contact-us/', array('target' => '_blank')); ?>
+        </div>
+      </div>
+      <?php endif; ?>
 
       <?php cq_sidebar_title('Which package is right for you'); ?>
 
@@ -102,43 +133,33 @@
             <?php endif; ?>
           </div>
         </div>
-        <?php cq_sidebar_title('How would you pay'); ?>
         <?php if (IceGateKeeper::open('mycq_seller_pay')): ?>
+        <?php cq_sidebar_title('How would you pay'); ?>
           <div class="payment-type">
             <div class="control-group">
-              <div class="controls-inline">
-                <ul class="packages unstyled">
-                  <li><input name="packages[payment_type]" type="radio" value="paypal" id="packages_payment_type_paypal">&nbsp;
-                    <label for="packages_payment_type_paypal" class="radio inline">
-                      <img src="/images/legacy/payment/paypal.gif" alt="paypal">
-                    </label>
-                  </li>
-                  <li>
-                    <input name="packages[payment_type]" type="radio" value="cc" id="packages_payment_type_cc">&nbsp;
-                    <label for="packages_payment_type_cc" class="radio inline">
-                      <img src="/images/legacy/payment/cc.gif" alt="cc">
-                    </label>
-                  </li>
-                </ul>
+              <div class="controls-inline clearfix">
+                <?= $packagesForm['payment_type']->render() ?>
               </div>
+              <?= $packagesForm['payment_type']->renderError() ?>
             </div>
           </div>
         <?php endif; ?>
       </fieldset>
 
       <?php if (IceGateKeeper::open('mycq_seller_pay')): ?>
-      <fieldset id="credit_card">
+      <fieldset id="credit-card-info" class="js-hide clearfix">
         <?= $packagesForm['cc_type']->renderRow() ?>
         <?= $packagesForm['cc_number']->renderRow() ?>
         <?= $packagesForm['expiry_date']->renderRow(array('class'=> 'input-mini pull-left')) ?>
-        <?= $packagesForm['cvv_number']->renderRow() ?>
         <div class="control-group ">
-          <label for="packages_cvv_number" class=" control-label">Cvv number</label>
+          <label class="control-label" for="<?= $packagesForm['cvv_number']->renderId(); ?>">
+            <?= $packagesForm['cvv_number']->renderLabelName(); ?>
+          </label>
           <div class="controls">
             <div class="cid_icon_generic">
               <img src="/images/frontend/cid_icon_generic.gif" alt="ccv number">
             </div>
-            <input type="text" id="packages_cvv_number" name="packages[cvv_number]" placeholder="CVV number" maxlength="3">
+            <?= $packagesForm['cvv_number']->render(); ?>
           </div>
         </div>
         <?= $packagesForm['first_name']->renderRow() ?>
@@ -192,3 +213,33 @@
     </form>
   </div>
 </div>
+
+
+<script>
+$(document).ready(function() {
+  'use strict';
+
+  var $payment_type_input = $('input[name="packages[payment_type]"]');
+  var $credit_card_info = $('#credit-card-info');
+
+  // display or hide extra CC info fields based on the selected payment_type
+  var display_cc_info = function(payment_type) {
+    console.log(payment_type);
+    if ('cc' === payment_type) {
+      $credit_card_info.slideDown();
+    } else if ('paypal' === payment_type) {
+      $credit_card_info.slideUp();
+    }
+  }
+
+  // first setup state on page load
+  display_cc_info($('input:checked[name="packages[payment_type]"]').val());
+
+  // and then call display_cc_info on every change
+  $payment_type_input.on('change', function(){
+    display_cc_info($(this).val());
+  });
+
+  $('#pending-transaction-warning').effect("highlight", {}, 3000)
+});
+</script>

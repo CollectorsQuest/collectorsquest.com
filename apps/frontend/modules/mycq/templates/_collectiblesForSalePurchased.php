@@ -33,7 +33,7 @@
 <?php else: ?>
 <div class="span12 thumbnail link no-collections-uploaded-box">
   <?php if ($sf_params->get('q')): ?>
-  <span class="Chivo webfont info-no-collections-uploaded" style="padding-top: 15px;">
+  <span class="Chivo webfont info-no-collections-uploaded spacer-top-15">
         None of your Items for Sale match search term: <strong><?= $sf_params->get('q'); ?></strong>
       </span>
   <?php else: ?>
@@ -51,10 +51,12 @@
         <i class="icon-shopping-cart"></i>
       </a>
     </div>
-    <div class="span8" style="font-size:28px; padding-left: 15px;">
-      <a href="<?php echo url_for('@seller_packages'); ?>">
-        Start<br/> Shopping
-      </a>
+    <div class="span8">
+      <div class="btn-large-box">
+        <a href="<?php echo url_for('@seller_packages'); ?>">
+          Start<br/> Shopping
+        </a>
+      </div>
     </div>
   </div>
 </div>

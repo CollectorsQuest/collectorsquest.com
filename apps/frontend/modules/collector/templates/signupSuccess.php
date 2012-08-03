@@ -35,7 +35,7 @@ cq_page_title(
     </dl>
   </div>
   <div class="span8">
-    <fieldset class="rpxnow-login clearfix" id="rpx-login" style="text-align: center;">
+    <fieldset class="rpxnow-login clearfix text-center" id="rpx-login">
       <iframe
         src="<?= $rpxnow['application_domain']; ?>openid/embed?token_url=<?= url_for('@rpx_token', true); ?>"
         scrolling="no" frameBorder="no" style="width:350px; height:217px;" width="350" height="217">
