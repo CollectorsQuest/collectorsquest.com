@@ -23,7 +23,7 @@ class messagesActions extends cqFrontendActions
     // possible values: all, read, unread
     $this->filter_by = $request->getParameter('filter', 'all');
 
-    $this->messages = PrivateMessageQuery::create()
+    $q = PrivateMessageQuery::create()
       ->filterByCollectorRelatedByReceiver($this->getCollector())
       ->_if('read' == $this->filter_by)
         ->filterByIsRead(true)
@@ -31,19 +31,31 @@ class messagesActions extends cqFrontendActions
         ->filterByIsRead(false)
       ->_endif()
       ->filterByIsDeleted(false)
-      ->orderByCreatedAt(Criteria::DESC)
-      ->find();
+      ->orderByCreatedAt(Criteria::DESC);
+      //->find();
+    
+    $pager = new PropelModelPager($q);
+    $pager->setPage($request->getParameter('page', 1));
+    $pager->init();
+    
+    $this->pager = $pager;
 
     return sfView::SUCCESS;
   }
 
   public function executeSent(sfWebRequest $request)
   {
-    $this->messages = PrivateMessageQuery::create()
+    $q = PrivateMessageQuery::create()
       ->filterByCollectorRelatedBySender($this->getCollector())
       ->groupByThread()
-      ->orderByCreatedAt(Criteria::DESC)
-      ->find();
+      ->orderByCreatedAt(Criteria::DESC);
+      //->find();
+      
+    $pager = new PropelModelPager($q);
+    $pager->setPage($request->getParameter('page', 1));
+    $pager->init();
+    
+    $this->pager = $pager;
 
     return sfView::SUCCESS;
   }
