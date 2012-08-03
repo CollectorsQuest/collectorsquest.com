@@ -938,6 +938,18 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
     return $seller;
   }
 
+  /**
+   * Check if this collector has bought credits at any point in the past
+   *
+   * @return    boolean
+   */
+  public function hasBoughtCredits()
+  {
+    return (boolean) PackageTransactionQuery::create()
+      ->filterByCollector($this)
+      ->count();
+  }
+
   public function getIsSeller()
   {
     return $this->getUserType() == 'Seller';

@@ -227,6 +227,8 @@ class mycqActions extends cqFrontendActions
 
   public function executeProfileStoreSettings(sfWebRequest $request)
   {
+    $this->forward404Unless($this->getCollector()->hasBoughtCredits());
+
     SmartMenu::setSelected('mycq_menu', 'profile');
 
     $form = new CollectorEditForm($this->getCollector(), array(
