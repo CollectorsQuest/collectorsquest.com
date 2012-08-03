@@ -286,7 +286,8 @@ function src_tag_multimedia($multimedia, $which = 'thumb', $options = array())
   }
 
   $src = sprintf(
-    '//%s/%s/%s/%s-%d.%s?%d',
+    '%s://%s/%s/%s/%s-%d.%s?%d',
+    sfContext::getInstance()->getRequest()->getProtocol(),
     sfConfig::get('app_multimedia_domain'),
     $multimedia->getType(), $which,
     (!empty($options['slug'])) ? $options['slug'] : strtolower($multimedia->getModel()),
