@@ -32,9 +32,9 @@ class SmartMenu
         continue;
       }
 
-      if (isset($item['check_expression']) && $item['check_expression'])
+      if (isset($item['check_eval']) && $item['check_eval'])
       {
-        if (!eval('return ' . $item['check_expression'] . ';'))
+        if (!eval('return ' . $item['check_eval'] . ';'))
         {
           continue;
         }
