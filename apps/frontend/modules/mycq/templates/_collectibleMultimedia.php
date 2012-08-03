@@ -35,7 +35,7 @@
             );
           ?>
           <span class="multimedia-edit holder-icon-edit"
-                data-original-image-url="<?= src_tag_multimedia($image, 'original') ?>"
+                data-original-image-url="<?= $sf_request->getProtocol() . ':' . src_tag_multimedia($image, 'original') ?>"
                 data-post-data='<?= $aviary_hmac_message; ?>'>
             <i class="icon icon-camera"></i><br/>
             Edit Photo
