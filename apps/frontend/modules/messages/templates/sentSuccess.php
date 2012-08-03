@@ -14,8 +14,7 @@
       <td class="sender-col">
         <?= image_tag_collector($message->getCollectorRelatedByReceiver(),
           '50x50', array('class' => 'avatar')); ?>
-        To:
-        <?= link_to_collector($message->getCollectorRelatedByReceiver()); ?>
+        To:&nbsp;<?= link_to_collector($message->getCollectorRelatedByReceiver()); ?>
         <p class="font10">
           <?= time_ago_in_words($message->getCreatedAt('U')); ?> ago
         </p>
