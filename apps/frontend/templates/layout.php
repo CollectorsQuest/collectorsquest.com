@@ -115,9 +115,11 @@
   </div><!--/#main-->
 
   <?php
+    $route = $sf_context->getInstance()->getRouting()->getCurrentRouteName(); 
     if (null !== $sidebar)
     {
-      echo '<div id="sidebar">';
+      $end = $route == "messages_inbox" ? 'class="messages-sidebar"' : '';
+      echo '<div id="sidebar" '.$end.'>';
       include_component_slot($sidebar, array('sf_cache_key' => $sf_cache_key));
       echo '</div>';
     }

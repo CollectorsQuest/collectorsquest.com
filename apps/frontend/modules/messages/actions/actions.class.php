@@ -25,12 +25,21 @@ class messagesActions extends cqFrontendActions
 
     $q = PrivateMessageQuery::create()
       ->filterByCollectorRelatedByReceiver($this->getCollector())
+      ->joinCollectorRelatedBySender(null, Criteria::LEFT_JOIN)
       ->_if('read' == $this->filter_by)
         ->filterByIsRead(true)
       ->_elseif('unread' == $this->filter_by)
         ->filterByIsRead(false)
       ->_endif()
       ->filterByIsDeleted(false)
+      ->filterBySubject('%'.$request->getParameter('search').'%', Criteria::LIKE)
+      ->_or()
+      ->filterByBody('%'.$request->getParameter('search').'%', Criteria::LIKE)
+      ->_or()
+      ->useCollectorRelatedBySenderQuery()
+        ->filterByDisplayName('%'.$request->getParameter('search').'%', Criteria::LIKE)
+      ->endUse()
+    
       ->orderByCreatedAt(Criteria::DESC);
     
     $pager = new PropelModelPager($q);
@@ -234,7 +243,7 @@ class messagesActions extends cqFrontendActions
       $q->update(array('IsDeleted' => true));
     }
 
-    return $this->redirect('@messages_inbox');
+    return $this->redirect('@messages_inbox?filter='.$request->getParameter('filter_hidden').'&search='.$request->getParameter('search'));
   }
 
 }
