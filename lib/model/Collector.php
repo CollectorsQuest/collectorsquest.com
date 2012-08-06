@@ -938,6 +938,18 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
     return $seller;
   }
 
+  /**
+   * Check if this collector has bought credits at any point in the past
+   *
+   * @return    boolean
+   */
+  public function hasBoughtCredits()
+  {
+    return (boolean) PackageTransactionQuery::create()
+      ->filterByCollector($this)
+      ->count();
+  }
+
   public function getIsSeller()
   {
     return $this->getUserType() == 'Seller';
@@ -1320,7 +1332,7 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
    */
   public function assignRandomAvatar()
   {
-    $avatar_id = CollectorPeer::$avatars[mt_rand(0, count(CollectorPeer::$avatars)-1)];
+    $avatar_id = CollectorPeer::$default_avatar_ids[array_rand(CollectorPeer::$default_avatar_ids)];
     $image = sfConfig::get('sf_web_dir')
       .'/images/frontend/multimedia/Collector/default/235x315/'. $avatar_id .'.jpg';
 

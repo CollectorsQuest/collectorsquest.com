@@ -25,13 +25,15 @@
       <?endif; ?>
     >
       <td class="sender" rowspan="<?= $message->hasAttachedCollectionOrCollectible() ? 3 : 2 ?>">
-        <span>By&nbsp;<?= link_to_if($sender, $sender, 'collector_by_slug', $sender); ?></span>
+        <span>From:&nbsp;<?= link_to_if($sender, $sender, 'collector_by_slug', $sender); ?></span>
         <br/>
         <span><?= time_ago_in_words_or_exact_date($message->getCreatedAt()); ?></span>
         <br/>
         <div class="spacer-inner-top-7">
           <?= link_to_collector($sender, 'image', array('width' => 100, 'height' => null)); ?>
         </div>
+        <br/>
+        <span>To:&nbsp;<?= link_to_if($receiver, $receiver, 'collector_by_slug', $receiver); ?></span>
       </td>
       <td class="subject"><b><?= $message->getSubject(); ?></b></td>
     </tr>

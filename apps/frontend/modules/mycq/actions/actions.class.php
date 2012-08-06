@@ -68,7 +68,7 @@ class mycqActions extends cqFrontendActions
       }
     }
 
-    $this->avatars = CollectorPeer::$avatars;
+    $this->avatars = CollectorPeer::$default_avatar_ids;
     $this->avatar_form = $avatar_form;
 
     $this->collector = $this->getUser()->getCollector();
@@ -227,6 +227,8 @@ class mycqActions extends cqFrontendActions
 
   public function executeProfileStoreSettings(sfWebRequest $request)
   {
+    $this->forward404Unless($this->getCollector()->hasBoughtCredits());
+
     SmartMenu::setSelected('mycq_menu', 'profile');
 
     $form = new CollectorEditForm($this->getCollector(), array(
@@ -545,16 +547,15 @@ class mycqActions extends cqFrontendActions
         else
         {
           $message = sprintf(
-            'Changes to your item "<a href="%s">%s</a>" were saved!',
-            $this->generateUrl('mycq_collectible_by_slug', array('sf_subject' => $collectible)),
-            $collectible->getName()
+            'Changes to your item "<a href="%s">%%s</a>" were saved!',
+            $this->generateUrl('mycq_collectible_by_slug', array('sf_subject' => $collectible))
           );
         }
 
         try
         {
           $form->save();
-          $this->getUser()->setFlash('success', $message, true);
+          $this->getUser()->setFlash('success', sprintf($message, $form->getValue('name')), true);
 
           // auto-set collection thumbnail if none set yet
           $values = $form->getValues();
@@ -567,7 +568,7 @@ class mycqActions extends cqFrontendActions
             }
           }
 
-          // Did the Collector use the "Save & Go to Items" button?
+          // Did the Collector use the "Save and Add Items" button?
           if ($request->getParameter('save_and_go'))
           {
             // If we save the form successfully, the request has to be redirected

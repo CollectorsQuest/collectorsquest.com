@@ -81,7 +81,7 @@ slot('mycq_dropbox_info_message', 'Drag a photo into the Collection thumbnail be
             <div class="row-fluid">
               <div class="span12">
                 <div class="form-actions text-center spacer-inner-15">
-                  <?php $label = $collection->getNumItems() === 0 ? 'Save & Start Adding Items' : 'Save & Go to Items'; ?>
+                  <?php $label = $collection->getNumItems() === 0 ? 'Save and Start Adding Items' : 'Save and Add Items'; ?>
                   <button type="submit" formnovalidate
                           class="btn btn-primary" name="save_and_go" value="<?= $label ?>">
                     <?= $label ?>

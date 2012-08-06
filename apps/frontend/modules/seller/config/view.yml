@@ -6,9 +6,6 @@ all:
     - frontend/modules/seller.css
 
   javascripts:
-    - /assets/js/bootstrap/dialog2.js
-    - /assets/js/bootstrap/dialog2.helpers.js
-
     - jquery/ui.js
     - jquery/columnview.js
     - jquery/tmpl.js

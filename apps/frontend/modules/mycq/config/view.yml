@@ -7,10 +7,6 @@ all:
     - frontend/modules/mycq.css
 
   javascripts:
-    - /assets/js/jquery/controls.js
-    - /assets/js/jquery/form.js
-    - /assets/js/bootstrap/dialog2.js
-    - /assets/js/bootstrap/dialog2.helpers.js
     - /assets/js/wysihtml5.js
     - /assets/js/bootstrap/wysihtml5.js
     - /assets/js/jquery/chosen.js

@@ -108,7 +108,7 @@ else
       <div class="form-actions text-center spacer-inner-15">
         <button type="submit" formnovalidate
                 class="btn btn-primary" name="save_and_go" value="Save & Back to Items">
-          Save & Go to Items
+          Save and Add More Items
         </button>
         &nbsp;&nbsp;
         <button type="submit" formnovalidate

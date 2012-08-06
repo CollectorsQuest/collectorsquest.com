@@ -130,6 +130,9 @@ all:
   response:
     class: cqWebResponse
 
+  request:
+    class: cqWebRequest
+
   view_cache_manager:
     class: sfViewCacheManager
     param:

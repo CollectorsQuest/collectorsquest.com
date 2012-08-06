@@ -40,7 +40,7 @@ class CollectorPeer extends BaseCollectorPeer
   const TYPE_COLLECTOR = 'Collector';
   const TYPE_SELLER = 'Seller';
 
-  static public $avatars = array(
+  static public $default_avatar_ids = array(
     '159763', '2551491', '2805695', '12528549', '13709194',
     '13721607', '14193613', '17227104', '17744242', '18048813'
   );

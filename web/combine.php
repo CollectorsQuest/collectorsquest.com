@@ -22,8 +22,11 @@ else
   $revision = rand(1, PHP_INT_MAX);
 }
 
+$type = isset($_GET['type']) ? $_GET['type'] : null;
+$elements = isset($_GET['files']) ? explode(',', $_GET['files']) : array();
+
 // Determine the directory and type we should use
-switch ($_GET['type'])
+switch ($type)
 {
   case 'css':
     $base = realpath($cssdir);
@@ -35,18 +38,18 @@ switch ($_GET['type'])
     $base = realpath($jsdir);
     break;
   default:
-    header ("HTTP/1.0 503 Not Implemented");
+    header ('HTTP/1.0 503 Not Implemented');
     exit;
 };
-
-$type = $_GET['type'];
-$elements = explode(',', $_GET['files']);
 
 // Determine last modification date of the files
 $lastmodified = 0;
 while (list(,$element) = each($elements))
 {
-  if (empty($element)) continue;
+  if (empty($element))
+  {
+    continue;
+  }
 
   if ($type == 'javascript' && substr($element, -3) != '.js')
   {
@@ -72,7 +75,7 @@ while (list(,$element) = each($elements))
 
   if (!file_exists($path))
   {
-    header ("HTTP/1.0 404 Not Found");
+    header ('HTTP/1.0 404 Not Found');
     exit;
   }
 
@@ -81,17 +84,19 @@ while (list(,$element) = each($elements))
 
 $lastmodified = $lastmodified + $revision;
 $hash = $lastmodified .'-'. md5($_GET['files']) .'-'. $revision;
-header ("Etag: \"". $hash ."\"");
+header ('Etag: "'. $hash .'"');
 
-header("Vary: Accept-Encoding");
-header("Last-Modified: ".gmdate("D, d M Y H:i:s", $lastmodified)." GMT");
-header("Expires: ".gmdate("D, d M Y H:i:s", $lastmodified + 2592000)." GMT");
+header('Vary: Accept-Encoding');
+header('Last-Modified: '. gmdate('D, d M Y H:i:s', $lastmodified) .' GMT');
+header('Expires: '. gmdate('D, d M Y H:i:s', $lastmodified + 2592000) .' GMT');
 
-if (isset($_SERVER['HTTP_IF_NONE_MATCH']) &&
-stripslashes($_SERVER['HTTP_IF_NONE_MATCH']) == '"'. $hash .'"')
+if (
+  isset($_SERVER['HTTP_IF_NONE_MATCH']) &&
+  stripslashes($_SERVER['HTTP_IF_NONE_MATCH']) == '"'. $hash .'"'
+)
 {
   // Return visit and no modifications, so do not send anything
-  header ("HTTP/1.0 304 Not Modified");
+  header ('HTTP/1.0 304 Not Modified');
   header ('Content-Length: 0');
 }
 else
@@ -123,10 +128,13 @@ else
       $version = floatval($matches[1]);
 
       if ($version < 6)
-      $encoding = 'none';
-
-      if ($version == 6 && !strstr($_SERVER['HTTP_USER_AGENT'], 'EV1'))
-      $encoding = 'none';
+      {
+        $encoding = 'none';
+      }
+      else if ($version == 6 && !strstr($_SERVER['HTTP_USER_AGENT'], 'EV1'))
+      {
+        $encoding = 'none';
+      }
     }
 
     // Try the cache first to see if the combined files were already generated
@@ -138,11 +146,11 @@ else
       {
         if ($encoding != 'none')
         {
-          header ("Content-Encoding: " . $encoding);
+          header ('Content-Encoding: ' . $encoding);
         }
 
-        header ("Content-Type: text/" . $type);
-        header ("Content-Length: " . filesize($cachedir . '/' . $cachefile));
+        header ('Content-Type: text/' . $type);
+        header ('Content-Length: ' . filesize($cachedir . '/' . $cachefile));
 
         fpassthru($fp);
         fclose($fp);
@@ -157,7 +165,10 @@ else
   reset($elements);
   while (list(,$element) = each($elements))
   {
-    if (empty($element)) continue;
+    if (empty($element))
+    {
+      continue;
+    }
 
     if ($type == 'javascript' && substr($element, -3) != '.js')
     {
@@ -200,39 +211,27 @@ else
     $contents = preg_replace($pattern, '', $contents);
 
     // remove new lines, tabs, spaces
-    $contents = str_replace(array(
-      "\r\n",
-      "\r",
-      "\n",
-      "\t",
-      ' {',
-      '} ',
-      ';}'
-      ),
-      array(
-      '',
-      '',
-      '',
-      '',
-      '{',
-      '}',
-      '}'
-      )
-      , $contents);
+    $contents = str_replace(
+      array("\r\n", "\r", "\n", "\t", ' {', '} ', ';}'),
+      array('', '', '', '', '{', '}', '}'),
+      $contents
+    );
 
     // drop more unecessary spaces
-    $contents = preg_replace(array('!\s+!','!(\w+:)\s*([\w\s,#]+;?)!'),array(' ','$1$2'), $contents);
+    $contents = preg_replace(
+      array('!\s+!','!(\w+:)\s*([\w\s,#]+;?)!'), array(' ','$1$2'), $contents
+    );
     $contents = trim($contents);
   }
 
   // Send Content-Type
-  header ("Content-Type: text/" . $type);
+  header ('Content-Type: text/' . $type);
 
   if (isset($encoding) && $encoding != 'none')
   {
     // Send compressed contents
     $contents = gzencode($contents, 9, isset($gzip) && $gzip ? FORCE_GZIP : FORCE_DEFLATE);
-    header ("Content-Encoding: " . $encoding);
+    header ('Content-Encoding: ' . $encoding);
     header ('Content-Length: ' . strlen($contents));
 
     echo $contents;
