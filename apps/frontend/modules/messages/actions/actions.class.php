@@ -42,13 +42,18 @@ class messagesActions extends cqFrontendActions
     
       ->orderByCreatedAt(Criteria::DESC);
     
-    $pager = new PropelModelPager($q);
+    $pager = new PropelModelPager($q, 1);
     $pager->setPage($request->getParameter('page', 1));
     $pager->init();
     
     $this->pager = $pager;
 
     return sfView::SUCCESS;
+  }
+  
+  public function executeInboxAjax(sfWebRequest $request)
+  {
+    return $this->renderComponent('messages', 'inboxTable');
   }
 
   public function executeSent(sfWebRequest $request)
