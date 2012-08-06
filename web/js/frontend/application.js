@@ -83,15 +83,19 @@ var APP = window.APP = {
         switch ($(this).data('select')) {
           case 'all':
             $checkboxes.attr('checked', 'checked');
+            shouldBatchActionsBeEnabled();
             break;
           case 'none':
             $checkboxes.attr('checked', false);
+            shouldBatchActionsBeEnabled();
             break;
           case 'read':
             $checkboxes.attr('checked', false).filter('.read').attr('checked', 'checked');
+            shouldBatchActionsBeEnabled();
             break;
           case 'unread':
             $checkboxes.attr('checked', false).filter('.unread').attr('checked', 'checked');
+            shouldBatchActionsBeEnabled();
             break;
         }
       });
@@ -99,13 +103,14 @@ var APP = window.APP = {
                             .addClass('disabled').attr('disabled', 'disabled');
       var $messages_inbox = $('#private-messages-inbox');
 
-      $messages_inbox.on('change', 'input', function(){
+      var shouldBatchActionsBeEnabled = function() {
         if ($messages_inbox.find('input:checked').length) {
           $action_buttons.removeClass('disabled').removeAttr('disabled');
         } else {
           $action_buttons.addClass('disabled').attr('disabled', 'disabled');
         }
-      });
+      };
+      $messages_inbox.on('change', 'input', shouldBatchActionsBeEnabled);
     },
     show: function() {
       $('#message_body').elastic();
