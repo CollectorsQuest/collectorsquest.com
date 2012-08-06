@@ -387,7 +387,7 @@ class ajaxAction extends cqAjaxAction
 
   protected function executeCollectorAvatarFromDefault(sfWebRequest $request)
   {
-    $avatars = CollectorPeer::$avatars;
+    $avatars = CollectorPeer::$default_avatar_ids;
 
     $avatar_id = $request->getParameter('avatar_id');
     $this->forward404Unless($avatar_id && false !== array_search($avatar_id, $avatars));

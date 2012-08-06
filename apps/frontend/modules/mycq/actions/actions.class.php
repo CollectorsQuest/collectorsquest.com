@@ -68,7 +68,7 @@ class mycqActions extends cqFrontendActions
       }
     }
 
-    $this->avatars = CollectorPeer::$avatars;
+    $this->avatars = CollectorPeer::$default_avatar_ids;
     $this->avatar_form = $avatar_form;
 
     $this->collector = $this->getUser()->getCollector();
