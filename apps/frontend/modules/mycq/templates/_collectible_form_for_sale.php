@@ -43,7 +43,6 @@
 
     <?php if (IceGateKeeper::open('collectible_shipping')): ?>
       <?= $form_shipping_us->renderHiddenFields(); ?>
-      <?= $form_shipping_us->renderAllErrors(); ?>
       <div class="control-group form-inline">
         <label class="control-label" for="">US shipping</label>
         <div class="controls flat-rate-controller">
@@ -70,9 +69,9 @@
           </div>
         </div>
       </div>
+      <?= $form_shipping_us->renderAllErrors(); ?>
 
       <?= $form_shipping_zz->renderHiddenFields(); ?>
-      <?= $form_shipping_zz->renderAllErrors(); ?>
       <div class="control-group form-inline">
         <label class="control-label" for="">International shipping</label>
         <div class="controls flat-rate-controller">
@@ -111,6 +110,7 @@
           <?php endif; ?>
         </div>
       </div>
+      <?= $form_shipping_zz->renderAllErrors(); ?>
     <?php endif; // if collectible shipping allowed in gatekeeper ?>
 
   <?php elseif (!$sf_user->getSeller()->hasPackageCredits()): ?>
