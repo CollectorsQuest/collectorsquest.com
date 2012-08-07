@@ -48,7 +48,7 @@ class messagesActions extends cqFrontendActions
       ->_endif()
       ->orderByCreatedAt(Criteria::DESC);
 
-    $pager = new PropelModelPager($q);
+    $pager = new PropelModelPager($q, 1);
     $pager->setPage($request->getParameter('page', 1));
     $pager->init();
 
@@ -252,8 +252,9 @@ class messagesActions extends cqFrontendActions
       $q->update(array('IsDeleted' => true));
     }
 
-    return $this->redirect('@messages_inbox?filter=' . $request->getParameter('filter_hidden') .
-      ($request->getParameter('search') ? '&search=' . $request->getParameter('search') : ''));
+//     return $this->redirect('@messages_inbox?filter=' . $request->getParameter('filter_hidden') .
+//       ($request->getParameter('search') ? '&search=' . $request->getParameter('search') : ''));
+    return $this->renderComponent('messages', 'inboxTable');
   }
 
 }

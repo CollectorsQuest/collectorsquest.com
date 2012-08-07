@@ -7,7 +7,7 @@
   SmartMenu::setSelected('mycq_messages_sidebar', 'inbox');
 ?>
 
-<form action="<?= url_for('@messages_batch_actions'); ?>" method="post">
+<form action="<?= url_for('@messages_batch_actions'); ?>" method="post" id="inbox-form">
 
   <div class="row-fluid messages-row">
     <div class="span5">
@@ -32,6 +32,7 @@
           <input type="submit" class="btn btn-mini" name="batch_action[mark_as_read]" value="Mark as Read" />
           <input type="submit" class="btn btn-mini" name="batch_action[mark_as_unread]" value="Mark as Unread" />
           <input type="submit" onclick="return confirm('Are you sure you sure you want to delete these messages?')" class="btn btn-mini" name="batch_action[delete]" value="Delete" />
+          <input type="hidden" id="batchAction" name="" value="on"/>
         </div>
       </div>
     </div>
@@ -39,10 +40,10 @@
     <div class="span3">
       <span class="pull-left show-all-text">Show:</span>
       <div class="control-group pull-left">
-        <div class=" btn-group">
-          <?= link_to('All', '@messages_inbox?filter=all', array('class' => 'btn btn-mini '.('all' == $filter_by ? 'active' : '') )); ?>
-          <?= link_to('Unread', '@messages_inbox?filter=unread', array('class' => 'btn btn-mini '.('unread' == $filter_by ? 'active' : '') )); ?>
-          <?= link_to('Read', '@messages_inbox?filter=read', array('class' => 'btn btn-mini '.('read' == $filter_by ? 'active' : '') )); ?>
+        <div class="btn-filter-all btn-group">
+          <?= link_to('All', '@messages_inbox?filter=all', array('id' => 'filter-all', 'class' => 'btn btn-mini btn-filter '.('all' == $filter_by ? 'active' : '') )); ?>
+          <?= link_to('Unread', '@messages_inbox?filter=unread', array('id' => 'filter-unread', 'class' => 'btn btn-mini btn-filter '.('unread' == $filter_by ? 'active' : '') )); ?>
+          <?= link_to('Read', '@messages_inbox?filter=read', array('id' => 'filter-read', 'class' => 'btn btn-mini btn-filter '.('read' == $filter_by ? 'active' : '') )); ?>
         </div>
       </div> <!-- .control-group.pull-left -->
     </div>
@@ -51,7 +52,7 @@
       <div class="mini-input-append-search">
         <div class="input-append pull-right">
             <input type="text" class="input-sort-by" id="appendedPrependedInput" name="search" value="<?= $sf_request->getParameter('search'); ?>"><button class="btn gray-button" id="search-button" type="submit"><strong>Search</strong></button>
-            <input type="hidden" name="filter_hidden" value="<?= $filter_by; ?>">
+            <input type="hidden" name="filter" id="filter-hidden" value="<?= $filter_by; ?>">
         </div>
       </div>
     </div>
@@ -59,49 +60,70 @@
   </div>
 
   <div id="messages-table">
-    <table id="private-messages-inbox" class="private-messages-list table table-bordered">
-      <tbody>
-      <?php if (!$pager->isEmpty()): foreach ($pager->getResults() as $message):
-        $message_link = url_for('messages_show', $message)
-          .($message->getIsRead() ? '' : '#latest-message');
-      ?>
-        <tr
-          class="linkify <?= $message->getIsRead() ? 'read' : 'unread' ?>"
-          data-url="<?= $message_link; ?>"
-        >
-          <td class="select-col dont-linkify">
-            <input type="checkbox" name="ids[]" value="<?= $message->getId() ?>" class="<?= $message->getIsRead() ? 'read' : 'unread' ?>" />
-          </td>
-          <td class="sender-col">
-            <?= image_tag_collector($message->getCollectorRelatedBySender(),
-              '50x50', array('class' => 'avatar')); ?>
-            From:&nbsp;<?= link_to_collector($message->getCollectorRelatedBySender()); ?>
-            <p class="font10">
-              <?= time_ago_in_words($message->getCreatedAt('U')); ?> ago
-            </p>
-          </td>
-          <td class="message-col">
-            <?= link_to($message->getSubject(), $message_link); ?>
-            <span>
-              <?= Utf8::truncateHtmlKeepWordsWhole($message->getBody(), 150); ?>
-            </span>
-          </td>
-        </tr>
-      <?php endforeach; else: ?>
-        <tr>
-          <td colspan="5">You have no messages in your inbox</td>
-        </tr>
-      <?php endif; ?>
-      </tbody>
-    </table>
+    <?php include_component('messages', 'inboxTable')?>
   </div>
 
 </form>
 
-<div class="row-fluid text-center">
-  <?php
-    include_component(
-      'global', 'pagination', array('pager' => $pager)
+
+<script>
+    
+  $(document).ready(function()
+  {
+    $('#search-button').click(function()
+    {
+      loadingTable();
+
+      return false;
+    });
+
+    $('.btn-filter').click(function()
+    {
+      $('.btn-filter-all .active').removeClass('active');
+      $(this).addClass('active');
+      $('#filter-hidden').val($(this).attr('id').replace('filter-', ''));
+      loadingTable();
+
+      return false;
+    });
+
+    $('.private-messages-list-actions input').click(function()
+    {
+      var name = $(this).attr('name');
+      $('#batchAction').attr('name', name);
+      
+      var $url = '<?= url_for('@messages_batch_actions'); ?>';
+      var $form = $('#inbox-form');
+
+      $('#messages-table').showLoading();
+
+      $('#messages-table').load(
+        $url, $form.serialize(),
+        function(data) {
+          $('#messages-table').hideLoading();
+          $('#batchAction').attr('name', '');
+          $('.private-messages-list-actions input').addClass('disabled').attr('disabled', 'disabled');
+        }
+      );
+
+      return false;
+    });
+  });
+
+  function loadingTable()
+  {
+    var $url = '<?= url_for('@messages_inbox_ajax') ?>';
+    var $form = $('#inbox-form');
+
+    $('#messages-table').showLoading();
+
+    $('#messages-table').load(
+      $url, $form.serialize(),
+      function(data) {
+        $('#messages-table').hideLoading();
+
+        APP.messages.inbox();
+      }
     );
-  ?>
-</div>
+  }
+</script>
