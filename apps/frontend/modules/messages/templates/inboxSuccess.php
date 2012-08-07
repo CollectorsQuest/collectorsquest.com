@@ -102,7 +102,8 @@
         function(data) {
           $('#messages-table').hideLoading();
           $('#batchAction').attr('name', '');
-          $('.private-messages-list-actions input').addClass('disabled').attr('disabled', 'disabled');
+
+          APP.messages.inbox();
         }
       );
 
