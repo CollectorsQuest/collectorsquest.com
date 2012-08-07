@@ -18,7 +18,7 @@
 <?php endif; ?>
 
 <div class="row-fluid">
-  <div class="span4 info-box-left-y">
+  <div class="span4 seller-info-box-yellow">
     <h3>Why Sell on Collectors Quest?</h3>
     <dl class="text-container">
 
