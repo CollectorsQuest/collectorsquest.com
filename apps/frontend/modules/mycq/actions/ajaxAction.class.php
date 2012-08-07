@@ -564,6 +564,8 @@ class ajaxAction extends cqAjaxAction
 
     $this->form = $form;
     $this->collection = $collection;
+    
+    $this->setLayout(false);
 
     return $template;
   }
