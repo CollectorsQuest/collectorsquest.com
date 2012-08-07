@@ -39,7 +39,7 @@ class globalComponents extends cqFrontendComponents
     return sfView::SUCCESS;
   }
 
-  public function executePagination()
+  public function executePagination(sfWebRequest $request)
   {
     /** @var $pager sfPropelPager */
     $pager = $this->getVar('pager');
@@ -56,13 +56,17 @@ class globalComponents extends cqFrontendComponents
 
     $params = array();
     $url = isset($options['url']) ? $options['url'] : $this->getRequest()->getUri();
-    $questionMark = strpos($url, '?');
 
+    $questionMark = strpos($url, '?');
     if (false !== $questionMark)
     {
-      $queryStr = substr($url, $questionMark + 1);
       $url = substr($url, 0, $questionMark);
+    }
 
+    $pathInfo = $request->getPathInfoArray();
+    $queryStr = $pathInfo['QUERY_STRING'];
+    if ($queryStr)
+    {
       foreach (explode('&', $queryStr) as $param)
       {
         $item = explode('=', $param);
