@@ -48,7 +48,7 @@ class messagesActions extends cqFrontendActions
       ->_endif()
       ->orderByCreatedAt(Criteria::DESC);
 
-    $pager = new PropelModelPager($q, 1);
+    $pager = new PropelModelPager($q);
     $pager->setPage($request->getParameter('page', 1));
     $pager->init();
 
