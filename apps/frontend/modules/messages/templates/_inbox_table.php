@@ -26,9 +26,13 @@
         </span>
       </td>
     </tr>
-  <?php endforeach; else: ?>
+  <?php endforeach; elseif ('' == $search): ?>
     <tr>
-      <td colspan="5">You have no messages in your inbox</td>
+      <td colspan="5">You have no messages in your inbox.</td>
+    </tr>
+  <?php else: ?>
+    <tr>
+      <td colspan="5">No messages matched your search term "<?= $search?>".</td>
     </tr>
   <?php endif; ?>
   </tbody>
@@ -52,7 +56,7 @@
 <script>
   $(document).ready(function()
   {
-    var $url = '<?= url_for('@messages_inbox_ajax') ?>';
+    var $url = '<?= url_for('@messages_inbox') ?>';
     var $form = $('#inbox-form');
 
     $('#messages-pagination a').click(function(e)
@@ -62,8 +66,9 @@
 
       $('#messages-table').showLoading();
       $('#messages-table').load(
-    	$url +'?page='+ page, $form.serialize(),
-    	function(data) {
+        $url + '?page=' + page,
+        $form.serialize(),
+        function() {
           $('#messages-table').hideLoading();
         }
       );

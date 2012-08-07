@@ -53,13 +53,18 @@ class messagesActions extends cqFrontendActions
     $pager->init();
 
     $this->pager = $pager;
+    $this->search = $request->getParameter('search');
+
+    if ($request->isXmlHttpRequest())
+    {
+      return $this->renderPartial('inbox_table', array(
+          'filter_by' => $this->filter_by,
+          'pager' => $this->pager,
+          'search' => $this->search,
+      ));
+    }
 
     return sfView::SUCCESS;
-  }
-  
-  public function executeInboxAjax(sfWebRequest $request)
-  {
-    return $this->renderComponent('messages', 'inboxTable');
   }
 
   public function executeSent(sfWebRequest $request)
@@ -252,9 +257,19 @@ class messagesActions extends cqFrontendActions
       $q->update(array('IsDeleted' => true));
     }
 
-//     return $this->redirect('@messages_inbox?filter=' . $request->getParameter('filter_hidden') .
-//       ($request->getParameter('search') ? '&search=' . $request->getParameter('search') : ''));
-    return $this->renderComponent('messages', 'inboxTable');
+    if ($request->isXmlHttpRequest())
+    {
+      // if ajax request, simply forward the rendering to messages/inbox
+      return $this->forward('messages', 'inbox');
+    }
+    else
+    {
+      // if a normal request, do a proper redirect to the inbox
+      return $this->redirect('messages_inbox', array(
+          'filter' => $request->getParameter('filter_hidden') ?: null,
+          'search' => $request->getParameter('search') ?: null,
+          ));
+    }
   }
 
 }

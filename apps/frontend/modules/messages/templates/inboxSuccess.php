@@ -47,34 +47,50 @@
         </div>
       </div> <!-- .control-group.pull-left -->
     </div>
-    
+
     <div class="span4">
       <div class="mini-input-append-search">
         <div class="input-append pull-right">
-            <input type="text" class="input-sort-by" id="appendedPrependedInput" name="search" value="<?= $sf_request->getParameter('search'); ?>"><button class="btn gray-button" id="search-button" type="submit"><strong>Search</strong></button>
+            <input type="text" class="input-sort-by" id="search-input" name="search" value="<?= $sf_request->getParameter('search'); ?>"><button class="btn gray-button" id="search-button" type="submit"><strong>Search</strong></button>
             <input type="hidden" name="filter" id="filter-hidden" value="<?= $filter_by; ?>">
         </div>
       </div>
     </div>
-    
-  </div>
+
+  </div> <!-- .row-fluid.messages-row -->
 
   <div id="messages-table">
-    <?php include_component('messages', 'inboxTable')?>
+    <?php include_partial('inbox_table', array(
+        'filter_by' => $filter_by,
+        'pager' => $pager,
+        'search' => $search,
+    ))?>
   </div>
 
 </form>
 
 
 <script>
-    
+
   $(document).ready(function()
   {
+
     $('#search-button').click(function()
     {
       loadingTable();
 
       return false;
+    });
+
+    $('#search-input').on('keydown', function(e) {
+      if (13 === e.which) {
+        e.preventDefault();
+        loadingTable();
+
+        return false;
+      }
+
+      return true;
     });
 
     $('.btn-filter').click(function()
@@ -89,17 +105,16 @@
 
     $('.private-messages-list-actions input').click(function()
     {
-      var name = $(this).attr('name');
-      $('#batchAction').attr('name', name);
-      
-      var $url = '<?= url_for('@messages_batch_actions'); ?>';
       var $form = $('#inbox-form');
 
-      $('#messages-table').showLoading();
+      var name = $(this).attr('name');
+      $('#batchAction').attr('name', name);
 
+      $('#messages-table').showLoading();
       $('#messages-table').load(
-        $url, $form.serialize(),
-        function(data) {
+        $form.attr('action'),
+        $form.serialize(),
+        function() {
           $('#messages-table').hideLoading();
           $('#batchAction').attr('name', '');
 
@@ -113,14 +128,14 @@
 
   function loadingTable()
   {
-    var $url = '<?= url_for('@messages_inbox_ajax') ?>';
+    var $url = '<?= url_for('@messages_inbox') ?>';
     var $form = $('#inbox-form');
 
     $('#messages-table').showLoading();
-
     $('#messages-table').load(
-      $url, $form.serialize(),
-      function(data) {
+      $url,
+      $form.serialize(),
+      function() {
         $('#messages-table').hideLoading();
 
         APP.messages.inbox();

@@ -158,13 +158,9 @@ mycq:
 ### MESSAGES
 
 messages_inbox:
-  url:    /messages/inbox/:filter
-  param:  { module: messages, action: inbox, filter: all }
+  url:    /messages/inbox
+  param:  { module: messages, action: inbox }
   requirements: { filter: "^(?|all|read|unread)$" }
-  
-messages_inbox_ajax:
-  url:    /messages_ajax/inbox
-  param:  { module: messages, action: inboxAjax }
 
 messages_sent:
   url:    /messages/sent
