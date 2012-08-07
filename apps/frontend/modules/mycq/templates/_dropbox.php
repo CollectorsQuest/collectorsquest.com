@@ -49,7 +49,7 @@
     <?php endif; ?>
   </div>
   <?php else: ?>
-  <div id="dropzone" class="collectibles-to-sort no-items-to-sort-box Chivo webfont" style="margin: 10px auto;">
+  <div id="dropzone" class="collectibles-to-sort no-items-to-sort-box Chivo webfont spacer-inner">
     <span class="info-no-items-to-sort">
       &nbsp;&nbsp;<strong>Drag and drop</strong> photos from your desktop or
       use the <strong>Upload Photos</strong> button

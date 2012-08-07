@@ -51,7 +51,7 @@
       </div>
     </div>
     <div class="span3">
-      <span class="stat-area spacer-bottom-20" style="padding-bottom: 5px;">
+      <span class="stat-area spacer-bottom-20 spacer-inner-bottom-5">
       <?php
         $count = $collector->countCollections();
         echo format_number_choice(
@@ -60,7 +60,7 @@
         );
       ?>
       </span>
-      <span class="stat-area" style="padding-bottom: 5px;">
+      <span class="stat-area spacer-inner-bottom-5">
       <?php
         $count = $collector->countCollectiblesInCollections();
         echo format_number_choice(
