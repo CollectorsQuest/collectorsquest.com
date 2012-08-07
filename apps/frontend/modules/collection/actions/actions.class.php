@@ -104,7 +104,7 @@ class collectionActions extends cqFrontendActions
     {
       $this->collections = null;
 
-      if (!($collection instanceof CollectionDropbox) && !$collector->isOwnerOf($collection))
+      if (!($collection instanceof CollectionDropbox) && !$this->getUser()->isOwnerOf($collection))
       {
         $c = new Criteria();
         $c->add(CollectionPeer::IS_PUBLIC, true);
@@ -117,7 +117,7 @@ class collectionActions extends cqFrontendActions
         $c->addDescendingOrderByColumn(CollectionPeer::CREATED_AT);
         $c->setLimit(9);
 
-        $this->collections = CollectionPeer::doSelect($c);
+        $this->collections = CollectorCollectionPeer::doSelect($c);
       }
 
       return 'NoCollectibles';
