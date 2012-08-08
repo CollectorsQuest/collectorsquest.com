@@ -4,6 +4,10 @@ class mycqActions extends cqFrontendActions
 {
   public function executeIndex()
   {
+    // Redirect to Collections if the homepage is not allowed
+    $this->redirectUnless(IceGateKeeper::open('mycq_homepage'), '@mycq_collections');
+
+    // Set the "home" as the active mycq menu item
     SmartMenu::setSelected('mycq_menu', 'home');
 
     $this->collector = $this->getUser()->getCollector();
