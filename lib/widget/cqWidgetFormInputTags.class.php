@@ -90,7 +90,7 @@ $(document).ready(function() {
     var \$this = $(this),
         is_click = \$this.data('clicked');
 
-    console.log(is_click);
+    \$this.removeData('clicked');
     if (!is_click) {
       \$this.find('ul').trigger('click');
     }
