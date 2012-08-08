@@ -42,23 +42,19 @@
       <div class="tab-content-inner spacer-inner-top-reset">
 
         <div class="row mycq-collectibles">
-          <div class="row-content" id="sortable-collectibles">
+          <div class="row-content cf" id="sortable-collectibles">
 
             <?php foreach ($collectibles as $i => $collectible): ?>
             <div id="collectible-<?=$collectible->getId() ?>" class="span2">
               <?= image_tag_collectible($collectible, '75x75', array('style' => 'cursor: move;')) ?>
             </div>
             <?php endforeach; ?>
-
-            <br clear="all"><br/>
-            <div class="row text-center">
-              <a href="<?= url_for('mycq_collection_by_section', array('id' => $collection->getId(), 'section' => 'collectibles')) ?>" class="btn btn-primary">
-                <i class="icon-ok"></i>
-                Finish Reordering
-              </a>
-            </div>
-            <br/>
-
+          </div>
+          <div class="row text-center spacer-bottom-15">
+            <a href="<?= url_for('mycq_collection_by_section', array('id' => $collection->getId(), 'section' => 'collectibles')) ?>" class="btn btn-primary">
+              <i class="icon-ok"></i>
+              Finish Reordering
+            </a>
           </div>
         </div>
 

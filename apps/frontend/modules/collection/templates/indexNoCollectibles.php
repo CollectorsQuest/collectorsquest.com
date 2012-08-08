@@ -49,7 +49,7 @@ else
   {
     // Show the collection (in grid, list or hybrid view)
     include_partial(
-      'collections/grid_view_collection',
+      'collection/collection_grid_view',
       array('collection' => $collection, 'i' => $i)
     );
 

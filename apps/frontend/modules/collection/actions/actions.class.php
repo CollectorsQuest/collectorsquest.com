@@ -104,20 +104,19 @@ class collectionActions extends cqFrontendActions
     {
       $this->collections = null;
 
-      if (!($collection instanceof CollectionDropbox) && !$collector->isOwnerOf($collection))
+      if (!($collection instanceof CollectionDropbox) && !$this->getUser()->isOwnerOf($collection))
       {
-        $c = new Criteria();
-        $c->add(CollectionPeer::IS_PUBLIC, true);
-        if ($collection->getCollectionCategoryId())
-        {
-          $c->add(CollectionPeer::COLLECTION_CATEGORY_ID, $collection->getCollectionCategoryId());
-        }
-        $c->add(CollectionPeer::NUM_ITEMS, 4, Criteria::GREATER_EQUAL);
-        $c->addAscendingOrderByColumn(CollectionPeer::SCORE);
-        $c->addDescendingOrderByColumn(CollectionPeer::CREATED_AT);
-        $c->setLimit(9);
-
-        $this->collections = CollectionPeer::doSelect($c);
+        $this->collections = CollectorCollectionQuery::create()
+          ->_if($collection->getCollectionCategoryId())
+            ->filterByCollectionCategoryId($collection->getCollectionCategoryId())
+          ->_elseif($collection->getContentCategoryId())
+            ->filterByContentCategoryId($collection->getContentCategoryId())
+          ->_endif()
+          ->filterByNumItems(4, Criteria::GREATER_EQUAL)
+          ->orderByScore()
+          ->orderByCreatedAt(Criteria::DESC)
+          ->limit(9)
+          ->find();
       }
 
       return 'NoCollectibles';

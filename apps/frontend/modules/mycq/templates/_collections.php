@@ -95,8 +95,7 @@
 
 <?php if ($pager->haveToPaginate()): ?>
 
-  <br clear="all">
-  <div class="row-fluid text-center">
+  <div class="row-fluid pagination-wrapper">
   <?php
     include_component(
       'global', 'pagination',
