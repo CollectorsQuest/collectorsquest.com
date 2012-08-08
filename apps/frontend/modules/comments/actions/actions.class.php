@@ -143,7 +143,7 @@ class commentsActions extends cqFrontendActions
 
       foreach ($comments as $comment)
       {
-        if ( urldecode($request->getParameter('email')) == $comment->getEmail())
+        if (urldecode($request->getParameter('email')) == $comment->getEmail())
         {
           $comment->setIsNotify(false);
         }
@@ -188,7 +188,8 @@ class commentsActions extends cqFrontendActions
         $this->getUser()->setFlash('comment_success', 'Comment successfully deleted.');
 
         return $this->redirect(
-          $this->getController()->genUrlForModelObject($comment).'#comments');
+          $this->getController()->genUrlForModelObject($comment).'#comments'
+        );
       }
     }
 
