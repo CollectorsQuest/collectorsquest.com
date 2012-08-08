@@ -47,6 +47,20 @@
 			width: 430px;
 			margin-left: 170px;
 		}
+		.controls-inline {
+			.radio.inline {
+				padding-left: 5px;
+			}
+			ul.packages {
+				float: left;
+				width: 500px;
+
+				li {
+					float: left;
+					margin-left: 40px;
+				}
+			}
+		}
 		.help-block {
 			color: @brown;
 			font-size: 12px;
@@ -72,13 +86,57 @@
 			border-color: #d3d9de;
 		}
 	}
+	.payment-type label.control-label {
+		float: none;
+		width: 100%;
+	}
+	input, textarea, select, .uneditable-input {
+		.border-radius(3px);
+	}
+	#packages_expiry_date_month {
+		width: 50px;
+	}
+	#packages_expiry_date_year {
+		width: 65px;
+		margin-left: 4px;
+	}
+	.info-text {
+		margin: 20px 10px 10px 180px;
+		color: @blueDark;
+		font-size: 11px;
+		font-weight: bold;
+	}
+	.reset-label-colors label {
+		color: @blueDark !important;
+	}
+
+	.form-horizontal #credit-card-info .control-group  {
+		margin: 12px auto;
+	}
+	#packages_cvv_number {
+		width: 30px;
+	}
+	.expiration-date-slash {
+		float:left;
+		margin: 2px 0 2px 2px;
+		font-size: 18px;
+		line-height:22px;
+	}
+	.cid_icon_generic {
+		width: 36px;
+		float: left;
+		margin-top: 2px;
+		margin-right: 6px;
+	}
 }
 
-.info-box-left-y {
+.seller-info-box-yellow {
 	padding: 15px 15px 0 15px;
 	background: #fff8e0;
 
 	.text-container {
+		margin-bottom: 0;
+
 		dd {
 			margin-top: 5px;
 			margin-bottom: 20px;
@@ -109,7 +167,6 @@
 }
 
 
-
 span.old-price {
   text-decoration: line-through;
 }
@@ -117,4 +174,108 @@ span.old-price {
 span.current-price {
   color: green;
   font-weight: bold;
+}
+
+
+.choice-packages {
+
+	.radio input {
+		margin-top: 12px;
+	}
+	.radio {
+		margin-bottom: 20px;
+	}
+	.price-per-item {
+		display: block;
+		margin: 2px 0 0 20px;
+		font-style: italic;
+	}
+
+	.package {
+		display: block;
+		.size (18px, 150px);
+		margin-left: 6px;
+		padding: 6px 10px 8px 10px;
+		font-size: 22px;
+		line-height: 22px;
+		color: @blueDark;
+		border: 1px solid #ededed;
+		.border-radius(6px);
+		.box-shadow( inset 0 0 0 1px #fff);
+		background-color: #fcfaf3;
+	}
+	.package1 {
+		.package();
+	}
+	.package2 {
+		.package();
+		width: 200px;
+		#gradient > .horizontal(#fcfaf3, #fff7e0);
+	}
+	.package3 {
+		.package();
+		width: 360px;
+		#gradient > .horizontal(#fcfaf3, #fff6da);
+	}
+	.package4 {
+		.package();
+		width: 550px;
+		#gradient > .horizontal(#fcfaf3, #fff4cf);
+	}
+}
+
+.package-wrapper {
+	margin-top: 160px;
+
+	.columns {
+	position: relative;
+	height: 300px;
+	text-align: center;
+	}
+}
+
+.package-bar {
+	position: absolute;
+	bottom: 0;
+	width: 143px;
+	margin: 0 auto;
+	padding-top: 20px;
+	font-size: 20px;
+	line-height: 22px;
+	border: 1px solid #ededed;
+	.border-radius(8px 8px 0 0);
+	.box-shadow(~"inset 0 0 0 1px #fff, 0 1px 5px 0 #efefef");
+	#gradient > .vertical(#fbe9b1, #fffbec);
+
+	&.package1 {height: 90px; padding-top: 12px!important;}
+	&.package2 {height: 130px;}
+	&.package3 {height: 180px;}
+	&.package4 {height: 440px;}
+
+	.price {
+		position: absolute;
+		bottom: 0;
+		width: 130px;
+		margin-bottom: 10px;
+		text-align: center;
+		.desc {
+			display: block;
+			padding-top: 10px;
+			font-size: 14px;
+			line-height: 14px;
+			color: @brown;
+		}
+	}
+	.desc-blue {
+		display: block;
+		padding-top: 10px;
+		font-size: 14px;
+		line-height: 14px;
+		color: @blueDark;
+	}
+	.desc-red {
+		display: block;
+		padding: 15px 0;
+		color: @red;
+	}
 }

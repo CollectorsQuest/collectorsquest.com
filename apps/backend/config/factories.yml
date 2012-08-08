@@ -19,6 +19,12 @@ all:
       generate_shortest_url:            true
       extra_parameters_as_query_string: true
 
+  response:
+    class: cqWebResponse
+
+  request:
+    class: cqWebRequest
+
   view_cache_manager:
     class: sfViewCacheManager
     param:

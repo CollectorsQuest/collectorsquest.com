@@ -674,6 +674,20 @@ class mycqActions extends cqFrontendActions
     return sfView::SUCCESS;
   }
 
+  public function executeMarketplacePackages()
+  {
+    SmartMenu::setSelected('mycq_menu', 'marketplace');
+
+    $this->package_transactions = PackageTransactionQuery::create()
+      ->filterByCollector($this->getCollector())
+      ->_if('dev' != sfConfig::get('sf_environment'))
+        ->paidFor()
+      ->_endif()
+      ->find();
+
+    return sfView::SUCCESS;
+  }
+
   public function executeUploadCancel(sfWebRequest $request)
   {
     $this->redirectUnless(
