@@ -22,7 +22,7 @@ default:
   ## Please use css/frontend/stylesheets.bundle.css and
   ##             js/frontend/scripts.common.bundle.js
   # stylesheets:
-  # javascripts:
+  #javascripts:
 
   components:
     header:       [global, header]

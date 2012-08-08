@@ -12,6 +12,7 @@ class CollectorAvatarForm extends BaseFormPropel
     ));
 
     $this->widgetSchema->setNameFormat('avatar[%s]');
+    $this->widgetSchema->setFormFormatterName('Bootstrap');
   }
 
   public function getModelName()

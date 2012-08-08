@@ -26,7 +26,7 @@ class CollectorEmailPeer extends BaseCollectorEmailPeer
 
     if (null !== $verified)
     {
-      $q->filterByIsVerified((bool)$verified);
+      $q->filterByIsVerified((boolean) $verified);
     }
 
     return $q->findOne($con);

@@ -224,8 +224,8 @@ class Collection extends BaseCollection
    */
   public function preDelete(PropelPDO $con = null)
   {
-    /** @var $collectibles Collectible[] */
-    if ($collectibles = $this->getCollectibles())
+    /** @var $collectibles CollectionCollectible[] */
+    if ($collectibles = $this->getCollectionCollectibles())
     foreach ($collectibles as $collectible)
     {
       $collectible->delete($con);

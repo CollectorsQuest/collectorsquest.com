@@ -20,20 +20,20 @@
         </div>
       </div><!-- /span8 -->
       <div class="span4">
-        <table style="margin-bottom: 0;"><!--Start cost table-->
+        <table class="spacer-bottom-reset"><!--Start cost table-->
           <tr>
             <td>Price:</td>
-            <td style="text-align: right;">
+            <td class="text-right">
               <?= money_format('%.2n', (float) $shopping_order->getTotalPrice()); ?>
-              <small style="font-size: 80%;"><?= $shopping_order->getPriceCurrency(); ?></small>
+              <small><?= $shopping_order->getPriceCurrency(); ?></small>
             </td>
           </tr>
           <tr>
             <td>Shipping:</td>
-            <td style="text-align: right;">
+            <td class="text-right">
               <?php if ($shopping_cart_collectible->getShippingFeeAmount() > 0): ?>
               <?= money_format('%.2n', (float) $shopping_cart_collectible->getShippingFeeAmount()); ?>
-              <small style="font-size: 80%;"><?= $shopping_cart_collectible->getPriceCurrency(); ?></small>
+              <small><?= $shopping_cart_collectible->getPriceCurrency(); ?></small>
               <?php else: ?>
               Free
               <?php endif; ?>
@@ -41,9 +41,9 @@
           </tr>
           <tr class="rainbow-dash">
             <td><strong>Total:</strong></td>
-            <td style="text-align: right;">
+            <td class="text-right">
               <strong><?= money_format('%.2n', (float) $shopping_cart_collectible->getTotalPrice()); ?></strong>
-              <small style="font-size: 80%; font-weight: bold;"><?= $shopping_cart_collectible->getPriceCurrency(); ?></small>
+              <small class="text-bold"><?= $shopping_cart_collectible->getPriceCurrency(); ?></small>
             </td>
           </tr>
           <tr>

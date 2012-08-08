@@ -18,7 +18,7 @@
         <li>
           <a href="<?=url_for('@ajax_collection?section=component&page=collectiblesReorder') . '?id=' . $collection->getId()?>" onclick="ajax_load('#main', this.href); return false;">
             <i class="icon-move"></i>
-            Reorder Collectibles
+            Reorder Items
           </a>
         </li>
       </ul>

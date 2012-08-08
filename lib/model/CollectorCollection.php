@@ -54,7 +54,7 @@ class CollectorCollection extends BaseCollectorCollection
    * @param  string  $v     The description text itself
    * @param  string  $type  Can be 'html' or 'markdown'
    */
-  public function setDescription($v, $type = 'markdown')
+  public function setDescription($v, $type = 'html')
   {
     if ('html' == $type)
     {
@@ -84,10 +84,9 @@ class CollectorCollection extends BaseCollectorCollection
     {
       case 'stripped':
         $v = trim(strip_tags($v));
-        $v = ($limit > 0) ? cqStatic::truncateText($v, $limit, '...', true) : $v;
+        $v = (intval($limit) > 0) ? cqStatic::truncateText($v, $limit, '...', true) : $v;
         break;
       case 'html':
-        //$v = cqMarkdown::doConvert($v);
         break;
     }
 

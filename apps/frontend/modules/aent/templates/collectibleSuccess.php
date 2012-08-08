@@ -47,7 +47,7 @@
     <div class="pull-right share">
       <!-- AddThis Button BEGIN -->
       <?php /*
-      <a href="#" class="btn-lightblue btn-mini-social">
+      <a href="javascript:void(0)" class="btn-lightblue btn-mini-social">
         <i class="add-icon-medium"></i> Add to your wanted list
       </a>
       */?>

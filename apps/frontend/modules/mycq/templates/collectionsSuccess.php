@@ -5,52 +5,50 @@
 ?>
 
 <?php
-$link = link_to(
-  'Back to Collections &raquo;', '@mycq_collections',
-  array('class' => 'text-v-middle link-align')
-);
+  $link = link_to(
+    'Back to Collections &raquo;', '@mycq_collections',
+    array('class' => 'text-v-middle link-align')
+  );
 
-cq_sidebar_title(
-  'My Collections (' . $total . ')', null,
-  array('left' => 8, 'right' => 4, 'class'=>'spacer-top-reset row-fluid sidebar-title')
-);
+  cq_sidebar_title(
+    'My Collections (' . $total . ')', null,
+    array('left' => 8, 'right' => 4, 'class'=>'mycq-red-title row-fluid')
+  );
+
+  slot(
+    'mycq_dropbox_info_message',
+    'To add an item to a collection, drag and drop it into a collection below.'
+  );
 ?>
 
-<div class="blue-well spacer-bottom-15 cf">
+<div class="gray-well cf">
   <div class="row-fluid">
     <div class="span6">
-      <ul class="nav nav-pills" style="margin-bottom: 0;">
+      <ul class="nav nav-pills spacer-bottom-reset">
         <li>
-          <a href="<?= url_for('@ajax_mycq?section=component&page=createCollection'); ?>"
-             class="open-dialog" title="Create a new collection by clicking here">
+          <a href="<?= url_for('@ajax_mycq?section=collection&page=createStep1'); ?>"
+             class="open-dialog" onclick="return false;"
+             title="Create a new collection by clicking here">
             <i class="icon-plus"></i>
-            New Collection
+            Create Collection
           </a>
         </li>
+        <!--
         <li>
           <a href="<?= url_for('collections_by_collector', $collector) ?>">
             <i class="icon-globe"></i>
             Public View
           </a>
         </li>
+        //-->
       </ul>
     </div>
     <div class="span6">
-      <?php if ($total > 0): ?>
-      <div class="sort-search-box">
+      <?php if ($total > 11): ?>
+      <div class="mini-input-append-search">
         <div class="input-append pull-right">
           <form action="<?= url_for('@ajax_mycq?section=component&page=collections') ?>"
                 id="form-mycq-collections" method="post">
-            <div class="btn-group">
-              <div class="append-left-gray">Sort by <strong id="sortByName">Most Recent</strong></div>
-              <a class="btn gray-button dropdown-toggle" data-toggle="dropdown" href="#">
-                <span class="caret arrow-up"></span><br><span class="caret arrow-down"></span>
-              </a>
-              <ul class="dropdown-menu">
-                <li><a data-sort="most-recent" data-name="Most Recent" class="sortBy" href="javascript:">Sort by <strong>Most Recent</strong></a></li>
-                <li><a data-sort="most-relevant" data-name="Most Relevant" class="sortBy" href="javascript:">Sort by <strong>Most Relevant</strong></a></li>
-              </ul>
-            </div>
             <input type="text" class="input-sort-by" id="appendedPrependedInput" name="q"><button class="btn gray-button" type="submit"><strong>Search</strong></button>
             <input type="hidden" value="most-recent" id="sortByValue" name="s">
           </form>
@@ -63,7 +61,7 @@ cq_sidebar_title(
 
 
 <div class="mycq-collections-wrapper">
-  <div class="row mycq-collections-4x9">
+  <div class="mycq-collections-4x9">
     <div class="row-content" id="collections">
       <?php include_component('mycq', 'collections'); ?>
     </div>
@@ -73,34 +71,6 @@ cq_sidebar_title(
 <script>
   $(document).ready(function()
   {
-    $('.mycq-collections-4x9 ul.thumbnails li').on('mouseenter', function() {
-      var $this = $(this);
-      $this.find('i.icon-plus')
-        .removeClass('icon-plus')
-        .addClass('icon-hand-up')
-        .show();
-    });
-    $('.mycq-collections-4x9 ul.thumbnails li').on('mouseleave', function() {
-      var $this = $(this);
-      $this.find('i.icon-hand-up')
-        .removeClass('icon-hand-up')
-        .addClass('icon-plus')
-        .show();
-    });
-    $('.add-new-zone').on('mouseenter', function() {
-      var $this = $(this);
-      $this.find('i.icon-plus')
-        .removeClass('icon-plus')
-        .addClass('icon-hand-up')
-        .show();
-    });
-    $('.add-new-zone').on('mouseleave', function() {
-      var $this = $(this);
-      $this.find('i.icon-hand-up')
-        .removeClass('icon-hand-up')
-        .addClass('icon-plus')
-        .show();
-    });
     $('.dropdown-menu a.sortBy').click(function()
     {
       $('#sortByName').html($(this).data('name'));

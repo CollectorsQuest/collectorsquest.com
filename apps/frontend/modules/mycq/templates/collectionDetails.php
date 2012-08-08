@@ -3,23 +3,38 @@
  * @var $collection CollectorCollection
  * @var $form CollectorCollectionEditForm
  */
+
+slot('mycq_dropbox_info_message', 'Drag a photo into the Collection thumbnail below');
 ?>
+
+<?= $form->renderAllErrors(); ?>
 
 <?php
   cq_sidebar_title(
-    $collection->getName(), null,
-    array('left' => 10, 'right' => 2, 'class'=>'spacer-top-reset row-fluid sidebar-title')
+    format_number_choice(
+      '[0] %1% <small>(no items yet)</small>|[1] %1% <small>(1 item)</small>|(1,+Inf] %1% <small>(%2% items)</small>',
+      array(
+        '%1%' => $collection->getName(),
+        '%2%' => number_format($total)),
+      $total
+    ), null,
+    array('left' => 10, 'right' => 2, 'class'=>'mycq-red-title row-fluid')
   );
 ?>
 
-<?php include_partial('mycq/collection_blue_bar', array('collection' => $collection)); ?>
+<?php
+  include_partial(
+    'mycq/partials/collection_gray_bar',
+    array('collection' => $collection)
+  );
+?>
 
 <div id="mycq-tabs">
   <ul class="nav nav-tabs">
     <li>
     <?php
       echo link_to(
-        'Collectibles ('. $total .')',
+        'Items in Collection ('. $total .')',
         'mycq_collection_by_section', array(
           'id' => $collection->getId(),
           'section' => 'collectibles'
@@ -41,39 +56,20 @@
   </ul>
   <div class="tab-content">
     <div class="tab-pane active">
-      <div class="tab-content-inner spacer-inner-top-reset">
+      <div class="tab-content-inner">
 
         <form action="<?= url_for('mycq_collection_by_section', array('id' => $collection->getId(), 'section' => 'details')); ?>" novalidate
               id="form-collection" method="post" enctype="multipart/form-data"
-              class="form-horizontal spacer-bottom-reset" style="padding-top: 20px;">
-          <?= $form->renderAllErrors(); ?>
+              class="form-horizontal spacer-bottom-reset">
 
           <div class="row-fluid">
-            <div class="span3">
-              <div class="drop-zone-large thumbnail collection">
-                <?php if ($collection->hasThumbnail()): ?>
-                <?= image_tag_collection($collection, '190x190'); ?>
-                <span class="icon-plus-holder h-center" style="display: none; padding-top: 25px;">
-                  <i class="icon icon-download-alt icon-white"></i>
-                </span>
-                <span class="multimedia-edit holder-icon-edit"
-                  data-original-image-url="<?= src_tag_multimedia($collection->getThumbnail(), 'original') ?>"
-                  data-post-data='<?= $sf_user->hmacSignMessage(json_encode(array(
-                    'multimedia-id' => $collection->getThumbnail()->getId(),
-                  )), cqConfig::getCredentials('aviary', 'hmac_secret')); ?>'>
-
-                  <i class="icon icon-camera"></i><br/>
-                  Edit Photo
-                </span>
-                <?php else: ?>
-                <a class="icon-plus-holder h-center" href="#">
-                  <i class="icon icon-plus icon-white"></i>
-                </a>
-                <div class="info-text">
-                  Drag and Drop from <br>"Uploaded Photos"
-                </div>
-                <?php endif; ?>
-              </div>
+            <div id="main-image" class="span3">
+              <?php
+                include_component(
+                  'mycq', 'collectionMultimedia',
+                  array('collection' => $collection)
+                );
+              ?>
             </div>
 
             <div class="span9">
@@ -85,22 +81,34 @@
             <div class="row-fluid">
               <div class="span12">
                 <div class="form-actions text-center spacer-inner-15">
-                  <button type="submit" formnovalidate class="btn btn-primary">Save Changes</button>
-                  <a href="<?= url_for('mycq_collection_by_section', array('id' => $collection->getId(), 'section' => 'collectibles')) ?>"
-                     class="btn spacer-left">
-                    Cancel
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
+                  <?php $label = $collection->getNumItems() === 0 ? 'Save and Start Adding Items' : 'Save and Add Items'; ?>
+                  <button type="submit" formnovalidate
+                          class="btn btn-primary" name="save_and_go" value="<?= $label ?>">
+                    <?= $label ?>
+                  </button>
+                  &nbsp;&nbsp;
+                  <button type="submit" formnovalidate
+                          class="btn" name="save" value="Save Changes">
+                    Save Changes
+                  </button>
+
+                  <div style="float: right; margin-right: 15px;">
+                    <a href="<?= url_for('mycq_collection_by_section', array('id' => $collection->getId(), 'section' => 'collectibles')) ?>"
+                       class="btn spacer-left">
+                      Cancel
+                    </a>
+                  </div>
+                </div> <!-- .form-actions.text-center.spacer-inner-15 -->
+              </div> <!-- .span12 -->
+            </div> <!-- .row-fluid -->
+          </div> <!-- .row-fluid -->
         </form>
 
       </div><!-- .tab-content-inner -->
     </div> <!-- .tab-pane.active -->
     <div id="tab4" class="tab-pane">
       <div class="tab-content-inner spacer">
-
+        &nbsp;
       </div><!-- .tab-content-inner -->
     </div><!-- #tab4.tab-pane -->
   </div><!-- .tab-content -->
@@ -121,57 +129,6 @@ $(document).ready(function()
       "focus": function() {
         $(editor.composer.iframe).autoResize();
       }
-    }
-  });
-
-  $("#form-collection .drop-zone-large").droppable(
-  {
-    over: function(event, ui)
-    {
-      $(this).addClass('ui-state-highlight');
-      $(this).find('.icon-plus-holder i')
-        .removeClass('icon-plus')
-        .addClass('icon-download-alt');
-      $(this).find('img').hide();
-      $(this).find('.holder-icon-edit').hide();
-      $(this).find('span.icon-plus-holder').show();
-    },
-    out: function(event, ui)
-    {
-      $(this).removeClass('ui-state-highlight');
-      $(this).find('.icon-plus-holder i')
-        .removeClass('icon-download-alt')
-        .addClass('icon-plus');
-      $(this).find('span.icon-plus-holder').hide();
-      $(this).find('.holder-icon-edit').show();
-      $(this).find('img').show();
-    },
-    drop: function(event, ui)
-    {
-      $(this).removeClass('ui-state-highlight');
-      $(this).find('.holder-icon-edit i')
-        .removeClass('icon-download-alt')
-        .addClass('icon-plus');
-      ui.draggable.draggable('option', 'revert', false);
-
-      $(this).showLoading();
-
-      $.ajax({
-        url: '<?= url_for('@ajax_mycq?section=collection&page=setThumbnail'); ?>',
-        type: 'GET',
-        data: {
-          collectible_id: ui.draggable.data('collectible-id'),
-          collection_id: '<?= $collection->getId() ?>'
-        },
-        success: function()
-        {
-          window.location.reload();
-        },
-        error: function()
-        {
-          // error
-        }
-      });
     }
   });
 });

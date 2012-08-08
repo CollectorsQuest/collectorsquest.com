@@ -54,10 +54,12 @@ class ComposePrivateMessageForm extends PrivateMessageForm
     $this->setupCaptchaField();
     $this->setupRedirectField();
     $this->setupAttachFields();
+    $this->setupCopyForSenderField();
 
     $this->widgetSchema->setLabels(array(
         'receiver' => 'To',
         'body' => 'Message',
+        'copy_for_sender' => 'Email me a copy',
     ));
 
     $this->unsetFields();
@@ -211,6 +213,13 @@ class ComposePrivateMessageForm extends PrivateMessageForm
         }
       }
     }
+  }
+
+  protected function setupCopyForSenderField()
+  {
+    $this->widgetSchema['copy_for_sender'] = new sfWidgetFormInputCheckbox();
+    // we want to allow no value being passed to the field
+    $this->validatorSchema['copy_for_sender'] = new sfValidatorPass();
   }
 
   /**

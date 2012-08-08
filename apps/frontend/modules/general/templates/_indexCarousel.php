@@ -1,16 +1,16 @@
 <div class="slot1-inner">
   <div id="carousel-holder">
-    <span class="carousel-next ir"><a href="#" class="button-carousel-next" title="Next">Next</a></span>
-    <span class="carousel-previous ir"><a href="#" class="button-carousel-previous" title="Previous">Prev</a></span>
+    <span class="carousel-next ir"><a href="javascript:void(0)" class="button-carousel-next" title="Next">Next</a></span>
+    <span class="carousel-previous ir"><a href="javascript:void(0)" class="button-carousel-previous" title="Previous">Prev</a></span>
     <ul id="sample-roundabout">
       <?php foreach ($carousels as $i => $carousel): ?>
       <li>
         <div class="wrapper">
           <?php
             if (sfConfig::get('sf_environment') == 'dev') {
-              echo ice_image_tag_flickholdr('520x310', array('i' => $i));
+              echo ice_image_tag_flickholdr('520x310', array('i' => $i, 'alt' => $carousel['title']));
             } else {
-              echo image_tag($carousel['image']);
+              echo image_tag($carousel['image'], array('alt' => $carousel['title']));
             }
           ?>
           <div class="carousel-in-focus-title-container link">

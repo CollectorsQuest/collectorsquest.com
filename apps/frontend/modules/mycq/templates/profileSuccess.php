@@ -33,7 +33,7 @@
               <label for="input01" class="control-label">Profile Photo</label>
               <div class="controls">
                 <div class="row-fluid">
-                  <div class="span12" style="margin-bottom: 20px;">
+                  <div class="span12 spacer-bottom-20">
                     <?= $avatar_form['filename']->render(array('style' => 'width: auto;')); ?>
                     <button type="submit" class="btn btn-primary spacer-left">
                       Upload File
@@ -110,7 +110,7 @@
                   <label for="<?= $collector_form['country_iso3166']->renderId(); ?>" class="spacer-left">
                     <?= $collector_form['country_iso3166']->renderLabelName(); ?>
                   </label>
-                  <span class="required-token" style="position: relative; left: 0px;">*</span>
+                  <span class="required-token-relative">*</span>
                   <?= $collector_form['country_iso3166']->render(array('class' => 'span4')); ?>
                 </div>
               </div>

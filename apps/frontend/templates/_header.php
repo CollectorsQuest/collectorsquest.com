@@ -32,7 +32,7 @@
           </form>
         </div>
       </div>
-      <div class="span4 pull-right" style="float: right; text-align: right; padding-top: 2px;">
+      <div class="span4 right-section-header">
 
         <?php if (IceGateKeeper::open('shopping_cart')): ?>
           <a href="<?= url_for('@shopping_cart', true); ?>" class="link-cart"
@@ -55,7 +55,7 @@
               My Account &nbsp;<span class="caret"></span>
             </a>
             <?php if ($sf_params->get('module') === '_video'): ?>
-              <ul class="dropdown-menu" style="min-width: 123px;">
+              <ul class="dropdown-menu dd-menu-min-width">
                 <li>
                   <a href="<?= url_for('@mycq_profile', true); ?>"
                      title="Manage your CollectorsQuest.com profile!">
@@ -71,7 +71,7 @@
                 </li>
               </ul>
             <?php else: ?>
-              <ul class="dropdown-menu" style="min-width: 123px;">
+              <ul class="dropdown-menu dd-menu-min-width">
                 <li>
                   <a href="<?= url_for('@mycq_profile', true); ?>"
                      title="Manage your CollectorsQuest.com profile!">
@@ -149,6 +149,25 @@
         <ul class="nav">
           <?= SmartMenu::generate('header_main_menu'); ?>
         </ul>
+        <div class="menu-wrapper-social-icons">
+          <span class="white">Follow us:</span>
+          <a href="http://www.facebook.com/pages/Collectors-Quest/119338990397"
+             target="_blank" class="social-link" rel="tooltip" title="Follow us on Facebook">
+            <i class="s-24-icon-facebook social-ico-padding"></i>
+          </a>
+          <a href="http://twitter.com/CollectorsQuest"
+             target="_blank" class="social-link" rel="tooltip" title="Follow us on Twitter">
+            <i class="s-24-icon-twitter social-ico-padding"></i>
+          </a>
+          <a href="https://plus.google.com/113404032517505188429"
+             target="_blank" class="social-link" rel="tooltip" title="Follow us on Google+">
+            <i class="s-24-icon-google social-ico-padding"></i>
+          </a>
+          <a href="http://pinterest.com/CollectorsQuest"
+             target="_blank" class="social-link" rel="tooltip" title="Follow us on Pinterest">
+            <i class="s-24-icon-pinterest social-ico-padding"></i>
+          </a>
+        </div>
       </div>
     </div>
   </div>

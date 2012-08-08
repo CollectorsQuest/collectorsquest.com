@@ -9,20 +9,20 @@
       by <?= link_to_collector($collection, 'text'); ?>
     </p>
     <div class="thumb-container">
-      <a href="#" class="thumbnails54">
-        <img width="54" height="54" alt="" src="http://multimedia.collectorsquest.dev/image/75x75/p1-704738-76682.jpg?1328815166">
+      <a href="javascript:void(0)" class="thumbnails54">
+        <img width="54" height="54" alt="" src="http://multimedia.cqcdns.dev/image/75x75/p1-704738-76682.jpg?1328815166">
       </a>
-      <a href="#" class="thumbnails54">
-        <img width="54" height="54" alt="" src="http://multimedia.collectorsquest.dev/image/75x75/p1-704738-76682.jpg?1328815166">
+      <a href="javascript:void(0)" class="thumbnails54">
+        <img width="54" height="54" alt="" src="http://multimedia.cqcdns.dev/image/75x75/p1-704738-76682.jpg?1328815166">
       </a>
-      <a href="#" class="thumbnails54">
-        <img width="54" height="54" alt="" src="http://multimedia.collectorsquest.dev/image/75x75/p1-704738-76682.jpg?1328815166">
+      <a href="javascript:void(0)" class="thumbnails54">
+        <img width="54" height="54" alt="" src="http://multimedia.cqcdns.dev/image/75x75/p1-704738-76682.jpg?1328815166">
       </a>
-      <a href="#" class="thumbnails54">
-        <img width="54" height="54" alt="" src="http://multimedia.collectorsquest.dev/image/75x75/p1-704738-76682.jpg?1328815166">
+      <a href="javascript:void(0)" class="thumbnails54">
+        <img width="54" height="54" alt="" src="http://multimedia.cqcdns.dev/image/75x75/p1-704738-76682.jpg?1328815166">
       </a>
-      <a href="#" class="thumbnails54">
-        <img width="54" height="54" alt="" src="http://multimedia.collectorsquest.dev/image/75x75/p1-704738-76682.jpg?1328815166">
+      <a href="javascript:void(0)" class="thumbnails54">
+        <img width="54" height="54" alt="" src="http://multimedia.cqcdns.dev/image/75x75/p1-704738-76682.jpg?1328815166">
       </a>
     </div>
   </div>
@@ -30,8 +30,8 @@
 <?php endforeach; ?>
 
 <?php foreach ($collections as $collection): ?>
-  <div id="sidebar_collection_<?php echo  $collection->getId(); ?>" class="row-fluid link">
-    <div class="span3" style="text-align: center">
+  <div id="sidebar_collection_<?php echo  $collection->getId(); ?>" class="row-fluid sidebar-collections-interest link">
+    <div class="span3 text-center">
       <?= link_to_collection($collection, 'image', array('width' => 50, 'height' => 50)); ?>
     </div>
     <div class="span9">
@@ -39,7 +39,6 @@
       <br/>by <?= link_to_collector($collection, 'text'); ?>
     </div>
   </div>
-  <br clear="all">
 <?php endforeach; ?>
 
 

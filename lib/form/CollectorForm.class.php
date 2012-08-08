@@ -19,6 +19,7 @@ class CollectorForm extends BaseCollectorForm
   protected function unsetFields()
   {
     unset ($this['graph_id']);
+    unset ($this['cookie_uuid']);
     unset ($this['facebook_id']);
     unset ($this['slug']);
     unset ($this['sha1_password']);

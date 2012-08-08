@@ -1,10 +1,6 @@
 <?php
 
 require __DIR__ .'/../config/bootstrap.php';
-require __DIR__ .'/../config/ProjectConfiguration.class.php';
-
-/** @var cqApplicationConfiguration $configuration */
-$configuration = ProjectConfiguration::getApplicationConfiguration(SF_APP, SF_ENV, SF_DEBUG);
 
 // Set the location of the shared/ directory
 $shared = (SF_ENV === 'dev') ?
@@ -41,13 +37,14 @@ if (in_array($type, array('image', 'video')))
 
   if (isset($m[1]) && ctype_digit($m[1]))
   {
-    $stmt = $dbh->prepare("SELECT * FROM `multimedia` WHERE `id` = ? AND `type` = ? LIMIT 1");
+    $stmt = $dbh->prepare('SELECT * FROM `multimedia` WHERE `id` = ? AND `type` = ? LIMIT 1');
 
     if ($stmt->execute(array($m[1], $type)))
     {
       $row = $stmt->fetch(PDO::FETCH_NAMED);
+      $created_at = new DateTime($row['created_at']);
 
-      $path  = '/uploads/'. $row['model'] .'/'. date_format(new DateTime($row['created_at']), 'Y/m/d');
+      $path  = '/uploads/'. $row['model'] .'/'. date_format($created_at, 'Y/m/d');
 
       $extension = @array_shift(explode('?', end(explode('.', $filename))));
       $original = implode('.', array($path .'/'. $row['md5'], 'original', $extension));
@@ -69,15 +66,45 @@ if (in_array($type, array('image', 'video')))
 
       if ($type === 'image' && !$is_readable && is_readable($shared . $original))
       {
+        require __DIR__ .'/../config/ProjectConfiguration.class.php';
+
+        /** @var cqApplicationConfiguration $configuration */
+        $configuration = ProjectConfiguration::getApplicationConfiguration(SF_APP, SF_ENV, SF_DEBUG);
+
         $thumb = iceModelMultimediaPeer::makeThumb($shared . $original, $size, 'top', false);
         $thumb && $thumb->saveAs($shared . $path, 'image/jpeg') && ($is_readable = true);
       }
 
-      if ($is_readable)
+      $modified_at = (string) @array_shift(array_keys($_GET));
+      $modified_at = (ctype_digit($modified_at) && strlen($modified_at) >= 10) ?
+        (int) $modified_at :
+        $created_at->getTimestamp();
+
+      // Set the Last-Modified header based on the created_at date
+      header('Last-Modified: '. gmdate('D, d M Y H:i:s', $modified_at) .' GMT');
+
+      // Expires 30 days after this request
+      header('Expires: '. gmdate('D, d M Y H:i:s', time() + 2592000) .' GMT');
+
+      // Set the Etag based on the md5 hash and created_at date
+      $etag = $row['md5'] .'-'. $modified_at;
+      header('Etag: '. $etag);
+
+      if (
+        isset($_SERVER['HTTP_IF_NONE_MATCH']) &&
+        stripslashes($_SERVER['HTTP_IF_NONE_MATCH']) == '"'. $etag .'"'
+      ) {
+        // Return visit and no modifications, so do not send anything
+        header ('HTTP/1.0 304 Not Modified');
+        header ('Content-Length: 0');
+
+        exit;
+      }
+      else if ($is_readable)
       {
         // Send Content-Type and the X-SendFile header
-        header("Content-Type: ". $content_type);
-        header("X-SendFile: ". $shared . $path);
+        header('Content-Type: '. $content_type);
+        header('X-SendFile: '. $shared . $path);
 
         exit;
       }
@@ -86,8 +113,8 @@ if (in_array($type, array('image', 'video')))
         $path  = '/images/'. SF_APP .'/multimedia/'. $row['model'] .'/'. $size .'.png';
 
         // Send Content-Type and the X-SendFile header
-        header("Content-Type: image/png");
-        header("X-SendFile: ". $web . $path);
+        header('Content-Type: image/png');
+        header('X-SendFile: '. $web . $path);
 
         exit;
       }
@@ -95,4 +122,4 @@ if (in_array($type, array('image', 'video')))
   }
 }
 
-header("HTTP/1.0 404 Not Found");
+header('HTTP/1.0 404 Not Found');

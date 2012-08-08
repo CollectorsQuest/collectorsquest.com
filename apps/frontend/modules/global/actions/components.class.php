@@ -39,39 +39,51 @@ class globalComponents extends cqFrontendComponents
     return sfView::SUCCESS;
   }
 
-  public function executePagination()
+  public function executePagination(sfWebRequest $request)
   {
     /** @var $pager sfPropelPager */
     $pager = $this->getVar('pager');
 
-    if (!$pager instanceof sfPager && !$pager instanceof PropelModelPager) {
+    if (!$pager instanceof sfPager && !$pager instanceof PropelModelPager)
+    {
       return sfView::NONE;
     }
 
     /** @var $options array */
     $options = $this->getVar('options');
 
-    $options['title'] = (!empty($options['title']) && stripos($options['title'], '%d')) ? $options['title'] : __('Page %d');
+    // Figure out the title of the link
+    $options['title'] = (!empty($options['title']) && stripos($options['title'], '%d')) ?
+      $options['title'] :
+      __('Page %d');
+
+    // We sometimes need to overwrite the name of the $_GET varibale for "page"
     $options['page_param'] = @$options['page_param'] ?: 'page';
 
     $params = array();
     $url = isset($options['url']) ? $options['url'] : $this->getRequest()->getUri();
-    $questionMark = strpos($url, '?');
 
+    $questionMark = strpos($url, '?');
     if (false !== $questionMark)
     {
-      $queryStr = substr($url, $questionMark + 1);
       $url = substr($url, 0, $questionMark);
+    }
 
+    $pathInfo = $request->getPathInfoArray();
+    $queryStr = $pathInfo['QUERY_STRING'];
+    if ($queryStr)
+    {
       foreach (explode('&', $queryStr) as $param)
       {
         $item = explode('=', $param);
+
         //Remove any 'page' and 'show' keys
         if (in_array($item[0], array($options['page_param'], 'show')))
         {
           continue;
         }
-        $params[$item[0]] = urldecode($item[1]);
+
+        $params[$item[0]] = isset($item[1]) ? urldecode($item[1]) : null;
       }
     }
 

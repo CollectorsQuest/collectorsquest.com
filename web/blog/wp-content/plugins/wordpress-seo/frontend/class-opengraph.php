@@ -20,7 +20,7 @@ class WPSEO_OpenGraph extends WPSEO_Frontend {
 	 */
 	public function __construct() {
 		$this->options = get_option('wpseo_social');
-		
+
 		add_action( 'wpseo_head', array( $this, 'opengraph' ) );
 		add_filter( 'language_attributes', array( $this, 'add_opengraph_namespace' ) );
 	}
@@ -30,7 +30,7 @@ class WPSEO_OpenGraph extends WPSEO_Frontend {
 	 */
 	public function opengraph() {
 		wp_reset_query();
-		
+
 		$this->locale();
 		$this->site_owner();
 		$this->og_title();
@@ -90,7 +90,7 @@ class WPSEO_OpenGraph extends WPSEO_Frontend {
 	 */
 	public function locale() {
 		$locale = apply_filters( 'wpseo_locale', strtolower( get_locale() ) );
-		
+
 		// catch some weird locales served out by WP.
 		$locales = array(
 			'ar'=> 'ar_ar',
@@ -105,10 +105,10 @@ class WPSEO_OpenGraph extends WPSEO_Frontend {
 			'vi'=> 'vi_vn',
 			'zh'=> 'zh_cn'
 		);
-		
-		if ( isset( $locales[ $locale ] ) ) 
+
+		if ( isset( $locales[ $locale ] ) )
 			$locale = $locales[$locale];
-		
+
 		echo "<meta property='og:locale' content='".esc_attr( $locale )."'/>\n";
 	}
 
@@ -143,32 +143,39 @@ class WPSEO_OpenGraph extends WPSEO_Frontend {
 					$og_image = '';
 					if ( isset( $this->options['og_frontpage_image'] ) )
 						$og_image = $this->options['og_frontpage_image'];
-						
+
 					$og_image = apply_filters( 'wpseo_opengraph_image', $og_image );
 
-					if ( isset( $og_image ) && $og_image != '' ) 
+					if ( isset( $og_image ) && $og_image != '' )
 						echo "<meta property='og:image' content='".esc_attr( $og_image )."'/>\n";
-				}				
-			} 
-			
+				}
+			}
+
 			if ( function_exists('has_post_thumbnail') && has_post_thumbnail( $post->ID ) ) {
 				$featured_img = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), apply_filters( 'wpseo_opengraph_image_size', 'medium' ) );
-				
+
 				if ( $featured_img ) {
 					$img = apply_filters( 'wpseo_opengraph_image', $featured_img[0] );
-					echo "<meta property='og:image' content='".esc_attr( $img )."'/>\n";
-					$shown_images[] = $img;
+          if ( strpos($img, 'http') !== 0 ) {
+            if ( $img[0] === '/' )
+            {
+              $img = get_bloginfo('url') . $img;
+            }
+          }
+
+          echo "<meta property='og:image' content='".esc_attr( $img )."'/>\n";
+          $shown_images[] = $img;
 				}
-			} 
-			
+			}
+
 			if ( preg_match_all( '/<img [^>]+>/', $post->post_content, $matches ) ) {
 				foreach ( $matches[0] as $img ) {
 					if ( preg_match( '/src=("|\')([^"|\']+)("|\')/', $img, $match ) ) {
 						$img = $match[2];
-						
+
 						if ( in_array( $img, $shown_images ) )
 							continue;
-							
+
 						if ( strpos($img, 'http') !== 0 ) {
 							if ( $img[0] != '/' )
 								continue;
@@ -179,20 +186,20 @@ class WPSEO_OpenGraph extends WPSEO_Frontend {
 							continue;
 
 						$img = apply_filters( 'wpseo_opengraph_image', $img );
-						
+
 						echo "<meta property='og:image' content='".esc_attr( $img )."'/>\n";
-						
+
 						$shown_images[] = $img;
 					}
 				}
 			}
 			if ( count( $shown_images ) > 0 )
 				return true;
-		} 
-		
+		}
+
 
 		$og_image = '';
-		
+
 		if ( is_front_page() ) {
 			if ( isset( $this->options['og_frontpage_image'] ) )
 				$og_image = $this->options['og_frontpage_image'];
@@ -205,7 +212,7 @@ class WPSEO_OpenGraph extends WPSEO_Frontend {
 
 		$og_image = apply_filters( 'wpseo_opengraph_image', $og_image );
 
-		if ( isset( $og_image ) && $og_image != '' ) 
+		if ( isset( $og_image ) && $og_image != '' )
 			echo "<meta property='og:image' content='".esc_attr( $og_image )."'/>\n";
 
         // @TODO add G+ image stuff
@@ -216,7 +223,7 @@ class WPSEO_OpenGraph extends WPSEO_Frontend {
 	 */
 	public function description() {
 		$ogdesc = wpseo_get_value('opengraph-description');
-		
+
 		if ( !$ogdesc )
 			$ogdesc = $this->metadesc( false );
 

@@ -10,33 +10,13 @@ class CollectibleEditForm extends BaseCollectibleForm
     /** @var $collector Collector */
     $collector = $this->getOption('collector', $collectible->getCollector());
 
-    $criteria = new Criteria();
-    $criteria->add(CollectorCollectionPeer::COLLECTOR_ID, $collector->getId());
-    $criteria->addAscendingOrderByColumn(CollectorCollectionPeer::NAME);
-
-    $this->widgetSchema['collection_collectible_list'] = new sfWidgetFormPropelChoice(
-      array(
-        'label' => 'Collection(s)',
-        'model' => 'CollectorCollection', 'criteria' => $criteria,
-        'add_empty' => true, 'multiple' => true
-      ),
-      array(
-        'data-placeholder' => 'Please, choose at least one Collection',
-        'class' => 'input-xlarge chzn-select js-hide',
-        'style' => 'width: 410px;',
-        'required' => 'required'
-      )
-    );
-    $this->validatorSchema['collection_collectible_list'] = new sfValidatorPropelChoice(array(
-      'model' => 'CollectorCollection', 'criteria' => $criteria,
-      'multiple' => true, 'required' => true
-    ));
-
+    $this->widgetSchema['name']->setLabel('Item Name');
     $this->widgetSchema['name']->setAttribute('class', 'input-xlarge');
     $this->widgetSchema['name']->setAttribute('required', 'required');
     $this->widgetSchema['description']->setAttribute('class', 'input-xlarge js-invisible');
     $this->widgetSchema['description']->setAttribute('required', 'required');
 
+    $this->setupCollectorCollectionsField();
     $this->setupThumbnailField();
     $this->setupTagsField();
 
@@ -51,6 +31,14 @@ class CollectibleEditForm extends BaseCollectibleForm
       'description',
       'tags'
     ));
+
+    // We do not want to show the thumbnail field
+    // if there are images already for the Collectible
+    if ($collectible->getMultimediaCount('image') > 0)
+    {
+      $this->offsetUnset('thumbnail');
+      $this->offsetUnset('is_alt_view');
+    }
 
     if ($collector->getIsSeller())
     {
@@ -93,13 +81,15 @@ class CollectibleEditForm extends BaseCollectibleForm
                or phrases, separated by commas'
     );
 
-    $this->validatorSchema['tags'] = new cqValidatorTags();
+    $this->validatorSchema['tags'] = new cqValidatorTags(array(), array(
+        'required' => 'Please enter tags for your item.',
+    ));
   }
 
   protected function setupThumbnailField()
   {
     $this->widgetSchema['thumbnail'] = new sfWidgetFormInputFile(array(
-      'label' => 'Photo'
+      'label' => 'Item Photo'
     ));
     $this->validatorSchema['thumbnail'] = new sfValidatorFile(array(
       'mime_types' => 'web_images', 'required' => false
@@ -124,6 +114,37 @@ class CollectibleEditForm extends BaseCollectibleForm
     }
   }
 
+  private function setupCollectorCollectionsField()
+  {
+    /** @var $collectible Collectible */
+    $collectible = $this->getObject();
+
+    /** @var $collector Collector */
+    $collector = $this->getOption('collector', $collectible->getCollector());
+
+    $criteria = new Criteria();
+    $criteria->add(CollectorCollectionPeer::COLLECTOR_ID, $collector->getId());
+    $criteria->addAscendingOrderByColumn(CollectorCollectionPeer::NAME);
+
+    $this->widgetSchema['collection_collectible_list'] = new sfWidgetFormPropelChoice(
+      array(
+        'label' => 'Collection(s)',
+        'model' => 'CollectorCollection', 'criteria' => $criteria,
+        'add_empty' => true, 'multiple' => true
+      ),
+      array(
+        'data-placeholder' => 'Please, choose at least one Collection',
+        'class' => 'input-xlarge chzn-select js-hide',
+        'style' => 'width: 410px;',
+        'required' => 'required'
+      )
+    );
+    $this->validatorSchema['collection_collectible_list'] = new sfValidatorPropelChoice(array(
+      'model' => 'CollectorCollection', 'criteria' => $criteria,
+      'multiple' => true, 'required' => true
+    ));
+  }
+
   public function updateDescriptionColumn($value)
   {
     $this->getObject()->setDescription($value, 'html');
@@ -140,7 +161,7 @@ class CollectibleEditForm extends BaseCollectibleForm
     $object->setDescription($values['description'], 'html');
     $object->setTags($values['tags']);
 
-    if ($values['thumbnail'] instanceof sfValidatedFile)
+    if (isset($values['thumbnail']))
     {
       if (isset($values['is_alt_view']) && $values['is_alt_view'] === true)
       {
@@ -155,6 +176,13 @@ class CollectibleEditForm extends BaseCollectibleForm
     $object->save();
 
     return $object;
+  }
+
+  protected function doSave($con = null)
+  {
+    parent::doSave($con);
+
+    $this->saveCollectionCollectibleList($con);
   }
 
   public function updateObject($values = null)
@@ -249,4 +277,19 @@ class CollectibleEditForm extends BaseCollectibleForm
     }
   }
 
+  public function updateDefaultsFromObject()
+  {
+    parent::updateDefaultsFromObject();
+
+    if (isset($this->widgetSchema['collection_collectible_list']))
+    {
+      $values = array();
+      foreach ($this->object->getCollectionCollectibles() as $obj)
+      {
+        $values[] = $obj->getCollectionId();
+      }
+
+      $this->setDefault('collection_collectible_list', $values);
+    }
+  }
 }

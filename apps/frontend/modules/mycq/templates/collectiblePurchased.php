@@ -60,7 +60,7 @@
       array('left' => 8, 'right' => 4, 'class'=>'spacer-top-reset row-fluid sidebar-title')
     );
   ?>
-  <div class="span8" style="margin-left: 0;">
+  <div class="span8 spacer-left-reset">
     <table class="table">
       <tr>
         <td style="width: 38%;">Name:</td>
@@ -102,7 +102,7 @@
     );
   ?>
 
-  <div class="span8" style="margin-left: 0;">
+  <div class="span8  spacer-left-reset">
     <table class="table">
       <tr>
         <td style="width: 38%;">Payment Status:</td>

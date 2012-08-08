@@ -3,23 +3,39 @@
  * @var $collection CollectorCollection
  * @var $form CollectorCollectionEditForm
  */
+
+slot(
+  'mycq_dropbox_info_message',
+  'To add an item to your collection, drag it into the "Add New Item" box below.'
+);
 ?>
 
 <?php
   cq_sidebar_title(
-    $collection->getName(), null,
-    array('left' => 10, 'right' => 2, 'class'=>'spacer-top-reset row-fluid sidebar-title')
+    format_number_choice(
+      '[0] %1% <small>(no items yet)</small>|[1] %1% <small>(1 item)</small>|(1,+Inf] %1% <small>(%2% items)</small>',
+      array(
+        '%1%' => $collection->getName(),
+        '%2%' => number_format($total)),
+      $total
+    ), null,
+    array('left' => 10, 'right' => 2, 'class'=>'mycq-red-title row-fluid')
   );
 ?>
 
-<?php include_partial('mycq/collection_blue_bar', array('collection' => $collection)); ?>
+<?php
+  include_partial(
+    'mycq/partials/collection_gray_bar',
+    array('collection' => $collection)
+  );
+?>
 
 <div id="mycq-tabs">
   <ul class="nav nav-tabs">
     <li class="active">
       <?php
         echo link_to(
-          'Collectibles ('. $total .')',
+          'Items in Collection ('. $total .')',
           'mycq_collection_by_section', array(
             'id' => $collection->getId(),
             'section' => 'collectibles'
@@ -57,35 +73,17 @@
 <script>
 $(document).ready(function()
 {
-  $('.add-new-zone').on('mouseenter', function() {
-    var $this = $(this);
-    $this.find('i.icon-plus')
-      .removeClass('icon-plus')
-      .addClass('icon-hand-up')
-      .show();
-  });
-  $('.add-new-zone').on('mouseleave', function() {
-    var $this = $(this);
-    $this.find('i.icon-hand-up')
-      .removeClass('icon-hand-up')
-      .addClass('icon-plus')
-      .show();
-  });
-});
-</script>
-
-<script>
-$(document).ready(function()
-{
   var $url = '<?= url_for('@ajax_mycq?section=component&page=collectibles', true) ?>';
   var $form = $('#form-mycq-collectibles');
 
-  $form.submit(function()
-  {
+  $(".mycq-create-collectible").droppable({
+    activeClass: 'ui-state-hover'
+  });
+
+  $form.submit(function() {
     $('div.mycq-collectibles .thumbnails').fadeOut();
 
-    $.post($url +'?p=1', $form.serialize(), function(data)
-    {
+    $.post($url +'?p=1', $form.serialize(), function(data) {
       $('div.mycq-collectibles .thumbnails').html(data).fadeIn();
     },'html');
 

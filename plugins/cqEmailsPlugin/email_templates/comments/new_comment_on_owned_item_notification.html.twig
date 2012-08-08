@@ -11,12 +11,28 @@
 </p>
 
 <p>
+  {% if oNewComment.isByRegisteredUser %}
+    Author: {{ link_to_collector(oNewComment.collector, 'text', { absolute: true }) }}<br />
+  {% else %}
+    Author: {{ oNewComment.authorName }}<br />
+    E-mail: {{ oNewComment.authorEmail }}<br />
+  {% endif %}
+
+  <br />
+  Comment:<br />
   {{ oNewComment.body }}
+
 </p>
 
 <p>
-  {{ link_to('Click here', sThreadUrl) }} to respond and make a friend!
-  <br />
+  {{ link_to('See all comments here', sThreadUrl ~ '#comments') }} to respond and make a friend!
 </p>
 
+<p>
+  Permalink: {{ sThreadUrl ~ '#comment-' ~ oNewComment.id }}
+</p>
+
+<p>
+  Delete comment: {{ sCommentRemoveUrl }}
+</p>
 {% endblock %}

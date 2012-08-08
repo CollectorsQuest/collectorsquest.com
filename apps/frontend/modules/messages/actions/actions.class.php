@@ -23,7 +23,10 @@ class messagesActions extends cqFrontendActions
     // possible values: all, read, unread
     $this->filter_by = $request->getParameter('filter', 'all');
 
-    $this->messages = PrivateMessageQuery::create()
+    $is_search = $request->hasParameter('search');
+    $search = '%'.$request->getParameter('search').'%';
+
+    $q = PrivateMessageQuery::create()
       ->filterByCollectorRelatedByReceiver($this->getCollector())
       ->_if('read' == $this->filter_by)
         ->filterByIsRead(true)
@@ -31,19 +34,51 @@ class messagesActions extends cqFrontendActions
         ->filterByIsRead(false)
       ->_endif()
       ->filterByIsDeleted(false)
-      ->orderByCreatedAt(Criteria::DESC)
-      ->find();
+      ->_if($is_search)
+        //->joinCollectorRelatedBySender(null, Criteria::LEFT_JOIN)
+        ->filterBySubject($search)
+        ->_or()
+        ->filterByBody($search)
+        ->_or()
+        ->useCollectorRelatedBySenderQuery()
+          ->filterByDisplayName($search)
+          ->_or()
+          ->filterByUsername($search)
+        ->endUse()
+      ->_endif()
+      ->orderByCreatedAt(Criteria::DESC);
+
+    $pager = new PropelModelPager($q);
+    $pager->setPage($request->getParameter('page', 1));
+    $pager->init();
+
+    $this->pager = $pager;
+    $this->search = $request->getParameter('search');
+
+    if ($request->isXmlHttpRequest())
+    {
+      return $this->renderPartial('inbox_table', array(
+          'filter_by' => $this->filter_by,
+          'pager' => $this->pager,
+          'search' => $this->search,
+      ));
+    }
 
     return sfView::SUCCESS;
   }
 
   public function executeSent(sfWebRequest $request)
   {
-    $this->messages = PrivateMessageQuery::create()
+    $q = PrivateMessageQuery::create()
       ->filterByCollectorRelatedBySender($this->getCollector())
       ->groupByThread()
-      ->orderByCreatedAt(Criteria::DESC)
-      ->find();
+      ->orderByCreatedAt(Criteria::DESC);
+
+    $pager = new PropelModelPager($q);
+    $pager->setPage($request->getParameter('page', 1));
+    $pager->init();
+
+    $this->pager = $pager;
 
     return sfView::SUCCESS;
   }
@@ -142,11 +177,6 @@ class messagesActions extends cqFrontendActions
         }
         else
         {
-          // else we are sending a message to a plain email
-          $message_body = $form->getValue('body');
-          $message_subject = $form->getValue('subject')
-            ?: 'Message from '.$sender->getDisplayName();
-
           // so we just notify the recepient and set the reply-to header to
           // the sender's email
           $cqEmail->send('Messages/relay_message_to_unregistered_user', array(
@@ -154,7 +184,20 @@ class messagesActions extends cqFrontendActions
               'replyTo' => $sender->getEmail(),
               'params' => array(
                 'oSender' => $sender,
-                'sMessageBody' => $message_body,
+                'sMessageBody' => $form->getValue('body'),
+              ),
+          ));
+        }
+
+        // if the sender opted for receiving a copy of the message
+        if ($form->getValue('copy_for_sender'))
+        {
+          $cqEmail->send('Messages/private_message_copy_for_sender', array(
+              'to' => $sender->getEmail(),
+              'params' => array(
+                'oSender' => $sender,
+                'sReceiver' => (string) $receiver,
+                'sMessageBody' => $form->getValue('body'),
               ),
           ));
         }
@@ -168,7 +211,7 @@ class messagesActions extends cqFrontendActions
         else
         {
           // we are starting a new thread, so redirect to inbox with a success flash
-          $this->getUser()->setFlash('success',sprintf(
+          $this->getUser()->setFlash('success', sprintf(
             'Your message has been sent to %s.',
             $receiver instanceof Collector
               ? $receiver->getDisplayName()
@@ -182,7 +225,7 @@ class messagesActions extends cqFrontendActions
       {
         // Set the error message
         $this->getUser()->setFlash(
-          "error", $this->__("There is a problem with sending your message.")
+          'error', $this->__('There is a problem with sending your message.')
         );
       }
     }
@@ -205,18 +248,28 @@ class messagesActions extends cqFrontendActions
     {
       $q->update(array('IsRead' => false));
     }
-
-    else if (isset($action['mark_as_read']))
+    elseif (isset($action['mark_as_read']))
     {
       $q->update(array('IsRead' => true));
     }
-
-    else if (isset($action['delete']))
+    elseif (isset($action['delete']))
     {
       $q->update(array('IsDeleted' => true));
     }
 
-    return $this->redirect('@messages_inbox');
+    if ($request->isXmlHttpRequest())
+    {
+      // if ajax request, simply forward the rendering to messages/inbox
+      return $this->forward('messages', 'inbox');
+    }
+    else
+    {
+      // if a normal request, do a proper redirect to the inbox
+      return $this->redirect('messages_inbox', array(
+          'filter' => $request->getParameter('filter_hidden') ?: null,
+          'search' => $request->getParameter('search') ?: null,
+          ));
+    }
   }
 
 }

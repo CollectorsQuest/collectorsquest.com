@@ -24,18 +24,18 @@
         </li>
         <li>
           <?php
-          echo format_number_choice(
-            '[0] no collectibles yet|[1] 1 Collectible|(1,+Inf] %1% Collectibles',
-            array('%1%' => number_format($collection->getNumItems())), $collection->getNumItems()
-          );
+            echo format_number_choice(
+              '[0] no items yet|[1] 1 Item|(1,+Inf] %1% Items',
+              array('%1%' => number_format($collection->getNumItems())), $collection->getNumItems()
+            );
           ?>
         </li>
         <li>
           <?php
-          echo format_number_choice(
-            '[0] no views yet|[1] 1 View|(1,+Inf] %1% Views',
-            array('%1%' => number_format($collection->getNumViews())), $collection->getNumViews()
-          );
+            echo format_number_choice(
+              '[0] no views yet|[1] 1 View|(1,+Inf] %1% Views',
+              array('%1%' => number_format($collection->getNumViews())), $collection->getNumViews()
+            );
           ?>
         </li>
       </ul>
@@ -55,8 +55,7 @@
 </div>
 
 <?php if ($pager->getPage() === 1): ?>
-<div class="cf <?= $editable ? 'editable_html' : '' ?>"
-     style="margin-top: 20px;"
+<div class="cf spacer-top-20 <?= $editable ? 'editable_html' : '' ?>"
      id="<?= sprintf('%s_%s_description', get_class($collection), $collection->getId()) ?>">
   <?= $collection->getDescription('html'); ?>
 </div>

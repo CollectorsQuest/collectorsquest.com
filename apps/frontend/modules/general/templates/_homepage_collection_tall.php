@@ -3,7 +3,7 @@
     <a href="<?= url_for('collection_by_slug', $collection, true); ?>" class="link-brick">
       <?= image_tag_collection($collection, '140x295'); ?>
     </a>
-    <div class="details" style="word-wrap: break-word;">
+    <div class="details text-word-wrap">
       <h3><?= $collection->getName(); ?></h3><br/>
       <p><?= $collection->getDescription('stripped', 140); ?></p>
     </div>

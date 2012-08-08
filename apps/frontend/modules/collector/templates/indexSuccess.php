@@ -24,7 +24,7 @@
         <div class="span4 thumbnail" style="margin-top: -55px; background: #fff;">
           <?= image_tag_collector($collector, '235x315', array('max_width' => 138, 'max_height' => 185)) ?>
         </div>
-        <div class="span8" style="padding-top: 10px;">
+        <div class="span8 spacer-inner-top">
           <?php
             echo sprintf(
               'I am %s <strong>%s</strong> collector',
@@ -42,7 +42,7 @@
           ?>
 
           <?php if ($text = $collector->getICollect()): ?>
-          <p style="margin-top: 10px;">
+          <p class="spacer-top">
             <strong>I collect:</strong>
             <?= $text ?>
           </p>
@@ -51,7 +51,7 @@
       </div>
     </div>
     <div class="span3">
-      <span class="stat-area spacer-bottom-20" style="padding-bottom: 5px;">
+      <span class="stat-area spacer-bottom-20 spacer-inner-bottom-5">
       <?php
         $count = $collector->countCollections();
         echo format_number_choice(
@@ -60,7 +60,7 @@
         );
       ?>
       </span>
-      <span class="stat-area" style="padding-bottom: 5px;">
+      <span class="stat-area spacer-inner-bottom-5">
       <?php
         $count = $collector->countCollectiblesInCollections();
         echo format_number_choice(

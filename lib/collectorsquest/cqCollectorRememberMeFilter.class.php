@@ -20,7 +20,7 @@ class cqCollectorRememberMeFilter extends sfFilter
    */
   public function execute($filterChain)
   {
-    $cookieName = sfConfig::get('app_collector_remember_cookie_name', 'cqRemember');
+    $cookieName = sfConfig::get('app_collector_remember_cookie_name', 'cq_remember');
 
     if ( $this->isFirstCall()
       && !$this->context->getUser()->isAuthenticated()

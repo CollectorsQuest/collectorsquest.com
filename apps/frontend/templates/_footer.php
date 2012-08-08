@@ -36,11 +36,20 @@
           </p>
 
           <p>
+            <a href="https://plus.google.com/113404032517505188429"
+               target="_blank" class="social-link" title="Follow us on Google+">
+              <i class="s-16-icon-google social-ico-padding"></i>Follow us on Google+
+            </a>
+          </p>
+
+          <p>
             <a href="http://pinterest.com/CollectorsQuest"
                target="_blank" class="social-link" title="Follow us on Pinterest">
               <i class="s-16-icon-pinterest social-ico-padding"></i>Follow us on Pinterest
             </a>
           </p>
+
+
         </div>
       </div>
       <!-- .span4 -->
@@ -55,7 +64,13 @@
 //            );
 
             echo link_to(
-              image_tag('banners/2012-06-24_CQGuide_300x250_footer.png'),
+              image_tag(
+                'banners/2012-06-24_CQGuide_300x250_footer.png',
+                array(
+                  'size' => '300x250',
+                  'alt_title' => 'Unlock your free guide to collecting—sign up today'
+                )
+              ),
               '@misc_guide_to_collecting'
             );
           }
@@ -115,7 +130,7 @@
   <!--/footer-inner-->
 
   <!--
-    <a id="top-link" href="#" class="btn btn-large sticky">
+    <a id="top-link" href="javascript:void(0)" class="btn btn-large sticky">
       <i class="icon-arrow-up"></i> Scroll<br/> to Top
     </a>
   //-->

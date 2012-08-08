@@ -5,57 +5,65 @@
 ?>
 
 <?php slot('mycq_create_collection'); ?>
-<a href="<?= url_for('@ajax_mycq?section=component&page=createCollection'); ?>"
+<a href="<?= url_for('@ajax_mycq?section=collection&page=createStep1'); ?>"
    id="collection-create-html" class="span5 add-new-zone open-dialog"
-   title="Create a new collection by clicking here">
-  <span id="collection-create-icon" class="btn-upload-collectible">
-    <i class="icon-plus icon-white"></i>
-  </span>
-  <span id="collection-create-link" class="btn-upload-collectible-txt">
-    Create a new<br> collection by<br> clicking here
-  </span>
+   title="Create a new collection by clicking here" onclick="return false;">
+      <span id="collection-create-icon" class="btn-upload-collectible spacer-top-40">
+        <i class="icon-plus icon-white"></i>
+      </span>
+      <span id="collection-create-link" class="btn-upload-collectible-txt spacer-top-20">
+        CREATE A NEW<br> COLLECTION
+      </span>
 </a>
 <?php end_slot(); ?>
 
 <?php foreach ($pager->getResults() as $i => $collection): ?>
+  <div class="span5 collectible_grid_view_square link"
+       data-collection-id="<?= $collection->getId(); ?>">
+    <p>
+      <a href="<?= url_for('mycq_collection_by_section', array('id' => $collection->getId(), 'section' => 'collectibles')) ?>" class="target">
+        <?= cqStatic::reduceText($collection->getName(), 35, '[...]'); ?>
+      </a>
+    </p>
+    <ul class="thumbnails">
+      <?php
+      $c = new Criteria();
+      $c->setLimit(8);
+      $collectibles = $collection->getCollectionCollectibles($c);
 
-<div class="span5 collectible_grid_view_square link">
-  <p>
-    <a href="<?= url_for('mycq_collection_by_section', array('id' => $collection->getId(), 'section' => 'collectibles')) ?>" class="target">
-      <?= cqStatic::reduceText($collection->getName(), 35, '[...]'); ?>
-    </a>
-  </p>
-  <ul class="thumbnails">
-    <?php
-    $c = new Criteria();
-    $c->setLimit(8);
-    $collectibles = $collection->getCollectionCollectibles($c);
-
-    for ($k = 0; $k < 9; $k++)
-    {
-      if (isset($collectibles[$k]))
+      for ($k = 0; $k < 9; $k++)
       {
-        echo '<li>';
-        echo link_to(
-          image_tag_collectible(
-            $collectibles[$k], '75x75',
-            array('width' => 62, 'height' => 62)
-          ),
-          url_for(
-            'mycq_collection_by_section',
-            array('id' => $collection->getid(), 'section' => 'collectibles')
-          )
-        );
-        echo '</li>';
+        if (isset($collectibles[$k]))
+        {
+          echo '<li>';
+          echo link_to(
+            image_tag_collectible(
+              $collectibles[$k], '75x75',
+              array('width' => 62, 'height' => 62)
+            ),
+            url_for(
+              'mycq_collection_by_section',
+              array('id' => $collection->getid(), 'section' => 'collectibles')
+            )
+          );
+          echo '</li>';
+        }
+        else
+        {
+          echo '<li><i class="icon icon-plus drop-zone" data-collection-id="'.  $collection->getId() .'"></i></li>';
+        }
       }
-      else
-      {
-        echo '<li><i class="icon icon-plus drop-zone" data-collection-id="'.  $collection->getId() .'"></i></li>';
-      }
-    }
-    ?>
-  </ul>
-</div>
+      ?>
+    </ul>
+    <div class="hidden">
+      <span class="btn-upload-collectible spacer-top-40">
+        <i class="icon-plus icon-white"></i>
+      </span>
+      <span class="btn-upload-collectible-txt spacer-top-20">
+        ADD ITEM
+      </span>
+    </div>
+  </div>
 
 <?php
   if (($pager->getPage() === 1 && $i === 2) || ($pager->count() === $i+1 && $pager->count() < 3))
@@ -64,27 +72,30 @@
   }
 ?>
 
-<?php endforeach; ?>
+<?php endforeach;?>
 
 <?php if ($pager->count() === 0): ?>
-  <div class="span12 thumbnail link no-collections-uploaded-box">
-    <?php if ($sf_params->get('q')): ?>
-      <span class="Chivo webfont info-no-collections-uploaded spacer-top-15">
-        None of your collections match search term: <strong><?= $sf_params->get('q'); ?></strong>
-      </span>
-    <?php else: ?>
+  <?php if ($sf_params->get('q')): ?>
+  <div class="alert alert-no-results">
+    <i class="icon-warning-sign"></i>&nbsp;
+    None of your collections match search term: <strong><?= $sf_params->get('q'); ?></strong>.
+    Do you want to <?= link_to('see all collections', '@mycq_collections'); ?> or
+    <?= link_to('create a new collection', '@ajax_mycq?section=collection&page=createStep1', array('class' => 'open-dialog', 'onclick' => 'return false;')); ?>?
+  </div>
+  <?php else: ?>
+    <?php include_slot('mycq_create_collection'); ?>
+    <div class="span12 thumbnail link no-collections-uploaded-box">
       <span class="Chivo webfont info-no-collections-uploaded">
         Share your collections with the community today!<br/>
         Get Started Now!
       </span>
-    <?php endif; ?>
-  </div>
-  <?php include_slot('mycq_create_collection'); ?>
+    </div>
+  <?php endif; ?>
 <?php endif; ?>
 
 <?php if ($pager->haveToPaginate()): ?>
-  <br clear="all">
-  <div class="row-fluid text-center">
+
+  <div class="row-fluid pagination-wrapper">
   <?php
     include_component(
       'global', 'pagination',
@@ -118,6 +129,9 @@
           }
         );
 
+        // Scroll to #slot1 so that we can see the first row of results
+        $.scrollTo('#slot1');
+
         return false;
       });
     });
@@ -130,25 +144,20 @@ $(document).ready(function()
 {
   $(document).controls();
 
-  $("#collections .drop-zone").droppable(
+  $("#collections .collectible_grid_view_square").droppable(
   {
+    activeClass: 'ui-state-hover',
     over: function(event, ui)
     {
-      $(this)
-        .removeClass('icon-plus')
-        .addClass('ui-state-highlight')
-        .addClass('icon-download-alt');
+      $(this).addClass('dashed');
     },
     out: function(event, ui)
     {
-      $(this)
-        .removeClass('ui-state-highlight')
-        .removeClass('icon-download-alt')
-        .addClass('icon-plus');
+      $(this).removeClass('dashed');
     },
     drop: function(event, ui)
     {
-      $(this).removeClass('ui-state-highlight');
+      $(this).removeClass('dashed');
       ui.draggable.draggable('option', 'revert', false);
       ui.draggable.hide();
 
@@ -164,31 +173,21 @@ $(document).ready(function()
 
   $("#collection-create-html").droppable(
   {
+    activeClass: 'ui-state-hover',
     over: function(event, ui)
     {
       $(this)
         .addClass('ui-state-highlight')
-        .find('i')
-          .removeClass('icon-plus')
-          .addClass('icon-download-alt');
     },
     out: function(event, ui)
     {
       $(this)
         .removeClass('ui-state-highlight')
-        .find('i')
-         .removeClass('icon-download-alt')
-         .addClass('icon-plus');
     },
     drop: function(event, ui)
     {
-      $(this)
-        .removeClass('ui-state-highlight')
-        .find('i')
-          .removeClass('icon-download-alt')
-          .addClass('icon-plus');
-
-      ui.draggable.draggable('option', 'revert', true);
+      $(this).removeClass('ui-state-highlight');
+      ui.draggable.draggable('option', 'revert', false);
 
       var href = $(this).attr('href');
       href = href +'?collectible_id=' + ui.draggable.data('collectible-id');

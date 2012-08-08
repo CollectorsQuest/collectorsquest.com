@@ -68,7 +68,7 @@ class mycqActions extends cqFrontendActions
       }
     }
 
-    $this->avatars = CollectorPeer::$avatars;
+    $this->avatars = CollectorPeer::$default_avatar_ids;
     $this->avatar_form = $avatar_form;
 
     $this->collector = $this->getUser()->getCollector();
@@ -121,15 +121,15 @@ class mycqActions extends cqFrontendActions
         {
           $cqEmail = new cqEmail($this->getMailer());
           $cqEmail->send('Collector/verify_new_email', array(
-              'to' => $collector_email,
+              'to' => $collector_email->getEmail(),
               'params' => array(
-                'collector' => $this->collector,
+                'collector' => $collector_email->getCollector(),
                 'collector_email' => $collector_email,
               )
           ));
 
           $this->getUser()->setFlash('success',
-            'A verification email was sent to '.$this->collector->getEmail()
+            'A verification email was sent to '. $collector_email->getEmail()
           );
 
           $this->redirect('mycq_profile_account_info');
@@ -227,6 +227,8 @@ class mycqActions extends cqFrontendActions
 
   public function executeProfileStoreSettings(sfWebRequest $request)
   {
+    $this->forward404Unless($this->getCollector()->hasBoughtCredits());
+
     SmartMenu::setSelected('mycq_menu', 'profile');
 
     $form = new CollectorEditForm($this->getCollector(), array(
@@ -289,7 +291,6 @@ class mycqActions extends cqFrontendActions
           }
         }
 
-        $this->getUser()->setFlash('success', 'All uploaded photos were deleted!', true);
         break;
     }
 
@@ -317,6 +318,7 @@ class mycqActions extends cqFrontendActions
 
     $collectible = CollectibleQuery::create()
       ->findOneById($request->getParameter('collectible_id'));
+
     $this->redirectUnless(
       $this->getCollector()->isOwnerOf($collectible),
       '@mycq_collections'
@@ -328,6 +330,14 @@ class mycqActions extends cqFrontendActions
 
     $collection_collectible = $q->findOneOrCreate();
     $collection_collectible->save();
+
+    // auto-set collection thumbnail if none set yet
+    if (1 == $collection->countCollectibles() && !$collection->hasThumbnail())
+    {
+      $collection->setPrimaryImage($collectible->getPrimaryImage()
+        ->getAbsolutePath('original'));
+      $collection->save();
+    }
 
     $this->redirect('mycq_collectible_by_slug', $collection_collectible);
   }
@@ -413,11 +423,42 @@ class mycqActions extends cqFrontendActions
 
           try
           {
-            // Delete the Collectible
-            $collectible->delete();
-            $this->getUser()->setFlash(
-              'success', sprintf('Collectible "%s" was deleted!', $name)
-            );
+            /**
+             * If the Collectible has Multimedia associated with it, let's just delete
+             * the CollectionCollectible references so that it can return to the Dropbox
+             */
+            $default = $collectible->getMultimediaCount() > 0 ? 'collections' : 'collectible';
+
+            switch ($request->getParameter('scope', $default))
+            {
+              case 'collectible':
+                // Delete the Collectible
+                $collectible->delete();
+                $this->getUser()->setFlash('success', sprintf('Item "%s" was deleted!', $name));
+                break;
+              case 'collection':
+                // Delete the CollectionCollectible reference for this collection
+                CollectionCollectibleQuery::create()
+                  ->filterByCollection($collection)
+                  ->filterByCollectible($collectible)
+                  ->delete();
+
+                $this->getUser()->setFlash(
+                  'success', sprintf('Item "%s" was removed from this Collection!', $name)
+                );
+                break;
+              case 'collections':
+              default:
+                // Delete the CollectionCollectible references
+                CollectionCollectibleQuery::create()
+                  ->filterByCollectible($collectible)
+                  ->delete();
+
+                $this->getUser()->setFlash(
+                  'success', sprintf('Item "%s" was removed from all Collections!', $name)
+                );
+                break;
+            }
           }
           catch (PropelException $e)
           {
@@ -477,6 +518,13 @@ class mycqActions extends cqFrontendActions
       }
 
       if (
+        ($form_shipping_us->isBound() && $form_shipping_zz->isBound()) &&
+        !($form_shipping_us->isValid() && $form_shipping_zz->isValid())
+      ) {
+        $this->getUser()->setFlash('error', 'There is a problem with your shipping information.');
+      }
+
+      if (
         $form->isValid() &&
         (!$form_shipping_us->isBound() || $form_shipping_us->isValid()) &&
         (!$form_shipping_zz->isBound() || $form_shipping_zz->isValid())
@@ -495,26 +543,44 @@ class mycqActions extends cqFrontendActions
           null !== $for_sale &&
           $for_sale['is_ready'] !== $collectible->getCollectibleForSale()->getIsReady() &&
           $for_sale['is_ready'] === true
-        )
-        {
-          $message = $this->__(
-            'Your collectible has been posted to the Market.
-             Click <a href="%url%">here</a> to manage your items for sale!',
-            array('%url%' => $this->generateUrl('mycq_marketplace'))
+        ) {
+          $message = sprintf(
+            'Your item has been posted to the Market.
+             Click <a href="%s">here</a> to manage your items for sale!',
+
+            $this->generateUrl('mycq_marketplace')
           );
         }
         else
         {
-          $message = $this->__('Changes were saved!');
+          $message = sprintf(
+            'Changes to your item "<a href="%s">%%s</a>" were saved!',
+            $this->generateUrl('mycq_collectible_by_slug', array('sf_subject' => $collectible))
+          );
         }
 
         try
         {
           $form->save();
-          $this->getUser()->setFlash('success', $message, true);
+          $this->getUser()->setFlash('success', sprintf($message, $form->getValue('name')), true);
 
-          // If we save the form the request has to be redirected
-          $this->redirect('mycq_collectible_by_slug', $form->getObject());
+          // auto-set collection thumbnail if none set yet
+          $values = $form->getValues();
+          if (isset($values['thumbnail']))
+          {
+            if (1 == $collection->countCollectibles() && !$collection->hasThumbnail())
+            {
+              $collection->setPrimaryImage($values['thumbnail']);
+              $collection->save();
+            }
+          }
+
+          // Did the Collector use the "Save and Add Items" button?
+          if ($request->getParameter('save_and_go'))
+          {
+            // If we save the form successfully, the request has to be redirected
+            $this->redirect('mycq_collection_by_slug', $collection);
+          }
         }
         catch (PropelException $e)
         {
@@ -534,8 +600,6 @@ class mycqActions extends cqFrontendActions
     $c->setLimit(10);
     $this->collectibles = $collection->getCollectionCollectibles($c);
 
-    $this->multimedia = $collectible->getMultimedia(0, 'image', false);
-
     $this->collection = $collection;
     $this->collectible = $collectible;
 
@@ -544,9 +608,12 @@ class mycqActions extends cqFrontendActions
     $this->form_shipping_us = $form_shipping_us;
     $this->form_shipping_zz = $form_shipping_zz;
 
-    if ($collectible->isForSale()) {
+    if ($collectible->isForSale())
+    {
       SmartMenu::setSelected('mycq_menu', 'marketplace');
-    } else  {
+    }
+    else
+    {
       SmartMenu::setSelected('mycq_menu', 'collections');
     }
 
@@ -653,13 +720,7 @@ class mycqActions extends cqFrontendActions
 
     $total = $q->count();
 
-    if ($total > 0)
-    {
-      $this->getUser()->setFlash(
-        'success', 'Total of <b>' . $total . '</b> photos were uploaded successfully'
-      );
-    }
-    else
+    if ($total === 0)
     {
       $this->getUser()->setFlash(
         'error', 'There was a problem uploading your photos and none were uploaded'

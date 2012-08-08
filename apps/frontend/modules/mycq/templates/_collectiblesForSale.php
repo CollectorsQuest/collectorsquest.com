@@ -1,6 +1,6 @@
 
 <?php slot('mycq_create_collectible_for_sale'); ?>
-<div id="mycq-create-collectible" class="span4 thumbnail link">
+<div class="span4 thumbnail link mycq-create-collectible">
   <div class="row-fluid spacer-inner-top-20">
     <div class="span4">
       <a href="<?php echo url_for('@ajax_mycq?section=component&page=createCollectibleForSale'); ?>"
@@ -50,7 +50,7 @@
         ?>
       </div>
       <span>
-        <a href="<?= url_for('mycq_collectible_by_slug', $collectible_for_sale->getCollectible()) ?>" style="margin-left: 0px;" class="target">
+        <a href="<?= url_for('mycq_collectible_by_slug', $collectible_for_sale->getCollectible()) ?>" class="target spacer-left-reset">
           <?= Utf8::truncateHtmlKeepWordsWhole($collectible_for_sale->getName(), 32); ?>
         </a>
       </span>
@@ -98,7 +98,7 @@
 <?php else: ?>
   <div class="span12 thumbnail link no-collections-uploaded-box">
     <?php if ($sf_params->get('q')): ?>
-      <span class="Chivo webfont info-no-collections-uploaded" style="padding-top: 15px;">
+      <span class="Chivo webfont info-no-collections-uploaded spacer-top-15">
         None of your Items for Sale match search term: <strong><?= $sf_params->get('q'); ?></strong>
       </span>
     <?php else: ?>
@@ -111,7 +111,7 @@
   <?php if (isset($seller) && $seller->hasPackageCredits()): ?>
     <?php include_slot('mycq_create_collectible_for_sale'); ?>
   <?php else: ?>
-  <div id="mycq-create-collectible" class="span4 thumbnail link">
+  <div class="span4 thumbnail link mycq-create-collectible">
     <div class="row-fluid spacer-inner-top-20">
       <div class="span4">
         <a href="<?php echo url_for('@seller_packages'); ?>"

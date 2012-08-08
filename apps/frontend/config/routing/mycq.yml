@@ -53,7 +53,7 @@ mycq_collection_by_section:
   param: { module: mycq, action: collection }
   requirements: { id: '\d+', sf_method: [get, post] }
 
-mycq_collection_by_id:
+mycq_collection_by_slug:
   url:  /mycq/collection/:id/:slug
   class: sfPropelRoute
   options: { model: CollectorCollection, type: object, method: getObjectForRoute }
@@ -162,8 +162,8 @@ mycq:
 ### MESSAGES
 
 messages_inbox:
-  url:    /messages/inbox/:filter
-  param:  { module: messages, action: inbox, filter: all }
+  url:    /messages/inbox
+  param:  { module: messages, action: inbox }
   requirements: { filter: "^(?|all|read|unread)$" }
 
 messages_sent:

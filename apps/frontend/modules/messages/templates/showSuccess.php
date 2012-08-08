@@ -25,13 +25,15 @@
       <?endif; ?>
     >
       <td class="sender" rowspan="<?= $message->hasAttachedCollectionOrCollectible() ? 3 : 2 ?>">
-        <span>By&nbsp;<?= link_to($sender, array('sf_route' => 'collector_by_slug', 'sf_subject' => $sender)); ?></span>
+        <span>From:&nbsp;<?= link_to_if($sender, $sender, 'collector_by_slug', $sender); ?></span>
         <br/>
         <span><?= time_ago_in_words_or_exact_date($message->getCreatedAt()); ?></span>
         <br/>
         <div class="spacer-inner-top-7">
           <?= link_to_collector($sender, 'image', array('width' => 100, 'height' => null)); ?>
         </div>
+        <br/>
+        <span>To:&nbsp;<?= link_to_if($receiver, $receiver, 'collector_by_slug', $receiver); ?></span>
       </td>
       <td class="subject"><b><?= $message->getSubject(); ?></b></td>
     </tr>
@@ -67,12 +69,23 @@
 
 <div class="reply-form">
   <span class="reply-form-title">Write a reply</span>
+  <?php unset($reply_form['copy_for_sender']); ?>
   <?= form_tag('@messages_compose', array('class' => 'form-private-message-reply form-horizontal')) ?>
   <fieldset>
     <?= $reply_form->renderUsing('Bootstrap', array(
     'subject' => array('class' => 'span7'),
     'body'    => array('class' => 'span7', 'rows' => 6),
   )); ?>
+  	<div class="control-group ">
+      <label for="message_copy_for_sender" class=" control-label">&nbsp;</label>
+      <div class="controls">
+        <label for="message_copy_for_sender">
+        	<input type="checkbox" name="<?= $reply_form->getName() ?>[copy_for_sender]"
+                 id="<?= $reply_form->getName() ?>_copy_for_sender">
+         	Email me a copy of this message to my email address
+        </label>
+      </div>
+    </div>
     <div class="form-actions">
       <input type="submit" class="btn btn-primary" value="Send reply" />
     </div>

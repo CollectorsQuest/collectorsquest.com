@@ -52,7 +52,7 @@ class collectionAction extends cqFrontendAction
           }
 
           // Redirect appropriately to avoid refreshes to trigger the same action
-          $this->redirect($url);
+          return $this->redirect($url);
 
           break;
       }
@@ -63,6 +63,9 @@ class collectionAction extends cqFrontendAction
       case 'details':
         return $this->executeCollectionDetails($request);
         break;
+      case 'reorder':
+        return $this->executeCollectiblesReorder($request);
+        break;
       case 'collectibles':
       default:
         return $this->executeCollectionCollectibles($request);
@@ -70,7 +73,7 @@ class collectionAction extends cqFrontendAction
     }
   }
 
-  private function executeCollectionCollectibles(sfWebRequest $request)
+  private function executeCollectionCollectibles()
   {
     $collector = $this->getCollector();
     $dropbox = $collector->getCollectionDropbox();
@@ -83,14 +86,8 @@ class collectionAction extends cqFrontendAction
 
   private function executeCollectionDetails(sfWebRequest $request)
   {
-    SmartMenu::setSelected('mycq_menu', 'collections');
-
     /** @var $collection CollectorCollection */
-    $collection = $this->getRoute()->getObject();
-    $this->redirectUnless(
-      $this->getCollector()->isOwnerOf($collection),
-      '@mycq_collections'
-    );
+    $collection = $this->collection;
 
     $form = new CollectorCollectionEditForm($collection);
 
@@ -103,12 +100,11 @@ class collectionAction extends cqFrontendAction
       {
         $values = $form->getValues();
 
-        $collection->setCollectionCategoryId($values['collection_category_id']);
         $collection->setName($values['name']);
         $collection->setDescription($values['description'], 'html');
         $collection->setTags($values['tags']);
 
-        if ($values['thumbnail'] instanceof sfValidatedFile)
+        if (isset($values['thumbnail']))
         {
           $collection->setThumbnail($values['thumbnail']);
         }
@@ -117,12 +113,25 @@ class collectionAction extends cqFrontendAction
         {
           $collection->save();
 
-          $this->getUser()->setFlash("success", 'Changes were saved!');
-          $this->redirect($this->getController()->genUrl(array(
-            'sf_route'   => 'mycq_collection_by_section',
-            'id' => $collection->getId(),
-            'section' => 'details'
-          )));
+          $this->getUser()->setFlash('success', 'Changes to your collection details were saved!');
+
+          // Did the Collector use the "Save and Add Items" button?
+          if ($request->getParameter('save_and_go'))
+          {
+            return $this->redirect($this->getController()->genUrl(array(
+              'sf_route'   => 'mycq_collection_by_section',
+              'id' => $collection->getId(),
+              'section' => 'collectibles',
+            )));
+          }
+          else
+          {
+            return $this->redirect($this->getController()->genUrl(array(
+              'sf_route'   => 'mycq_collection_by_section',
+              'id' => $collection->getId(),
+              'section' => 'details',
+            )));
+          }
         }
         catch (PropelException $e)
         {
@@ -147,5 +156,17 @@ class collectionAction extends cqFrontendAction
 
     return 'Details';
   }
-}
 
+  protected function executeCollectiblesReorder()
+  {
+    $this->total = $this->collection->countCollectionCollectibles();
+
+    $c = new Criteria();
+    $c->addAscendingOrderByColumn(CollectionCollectiblePeer::POSITION);
+    $c->addDescendingOrderByColumn(CollectionCollectiblePeer::CREATED_AT);
+
+    $this->collectibles = $this->collection->getCollectibles($c);
+
+    return 'CollectiblesReorder';
+  }
+}

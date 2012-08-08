@@ -7,10 +7,25 @@ class FeedbackForm extends BaseForm
     /**
      * Widgets
      */
+    if (sfContext::getInstance()->getUser()->isAuthenticated())
+    {
+       $widget = new sfWidgetFormInputHidden();
+    }
+    else
+    {
+      $widget = new sfWidgetFormInputText(array(),
+        array(
+          'class' => 'input-xlarge'
+      ));
+    }
+
     $this->setWidgets(array(
-      'fullname'    => new sfWidgetFormInputText(),
-      'email'       => new sfWidgetFormInputText(),
-      'message'     => new sfWidgetFormTextarea(),
+      'fullname'    => $widget,
+      'email'       => $widget,
+      'message'     => new sfWidgetFormTextarea(array(),
+                         array(
+                         	'class' => 'input-xlarge'
+                       )),
       'page'        => new sfWidgetFormInputHidden(),
 
       'f_ip_address'          => new sfWidgetFormInputHidden(),
@@ -18,7 +33,9 @@ class FeedbackForm extends BaseForm
       'f_browser_type'        => new sfWidgetFormInputHidden(),
       'f_browser_color_depth' => new sfWidgetFormInputHidden(),
       'f_resolution'          => new sfWidgetFormInputHidden(),
-      'f_browser_size'        => new sfWidgetFormInputHidden()
+      'f_browser_size'        => new sfWidgetFormInputHidden(),
+
+      'send_copy' => new sfWidgetFormInputCheckbox()
     ));
 
     $this->setValidators(array(
@@ -33,10 +50,15 @@ class FeedbackForm extends BaseForm
       'f_browser_version'      => new sfValidatorPass(),
       'f_browser_color_depth'  => new sfValidatorPass(),
       'f_resolution'           => new sfValidatorPass(),
-      'f_browser_size'         => new sfValidatorPass()
+      'f_browser_size'         => new sfValidatorPass(),
+
+      'send_copy' => new sfValidatorString(array('required' => false))
     ));
+    
+    $this->widgetSchema->setLabel('fullname', 'Name');
 
     $this->widgetSchema->setNameFormat('feedback[%s]');
+    $this->widgetSchema->setFormFormatterName('Bootstrap');
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
 
     parent::setup();

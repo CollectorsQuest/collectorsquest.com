@@ -46,7 +46,12 @@ class mycqComponents extends cqFrontendComponents
       case 'most-recent':
       default:
         $q
-            ->orderByCreatedAt(Criteria::DESC);
+          ->useCollectionQuery()
+            ->joinCollectionCollectible('Collectible', Criteria::LEFT_JOIN)
+            ->addDescendingOrderByColumn('MAX(IF(Collectible.created_at IS NULL, NOW(), Collectible.created_at))')
+          ->endUse()
+          ->groupById()
+          ->orderByCreatedAt(Criteria::DESC);
         break;
     }
 
@@ -66,9 +71,12 @@ class mycqComponents extends cqFrontendComponents
   public function executeCollectibles()
   {
     /** @var $collection CollectorCollection */
-    if ($this->getVar('collection')) {
+    if ($this->getVar('collection'))
+    {
       $collection = $this->getVar('collection');
-    } else {
+    }
+    else
+    {
       $collection = CollectorCollectionQuery::create()
         ->findOneById($this->getRequestParameter('collection_id'));
     }
@@ -219,73 +227,18 @@ class mycqComponents extends cqFrontendComponents
     return sfView::SUCCESS;
   }
 
-  public function executeCreateCollection()
-  {
-    $form = new CollectionCreateForm();
-
-    if ($collectible_id = $this->getRequestParameter('collectible_id'))
-    {
-      $q = CollectibleQuery::create()
-          ->filterByCollector($this->getCollector())
-          ->filterById($collectible_id);
-
-      /** @var $image iceModelMultimedia */
-      if (($collectible = $q->findOne()) && $image = $collectible->getPrimaryImage())
-      {
-        $form->setDefault('thumbnail', $image->getId());
-      }
-    }
-
-    if ($this->getRequest()->isMethod('post'))
-    {
-      $form->bind($this->getRequestParameter('collection'));
-      if ($form->isValid())
-      {
-        $values = $form->getValues();
-        $values['collector_id'] = $this->getCollector()->getId();
-
-        /** @var $collection CollectorCollection */
-        $collection = $form->updateObject($values);
-        $collection->setTags($values['tags']);
-        $collection->save();
-
-        if ($values['thumbnail'])
-        {
-          $image = iceModelMultimediaQuery::create()
-              ->findOneById((int)$values['thumbnail']);
-
-          if ($this->getCollector()->isOwnerOf($image))
-          {
-            $collection->setThumbnail($image->getAbsolutePath('original'));
-            $collection->save();
-          }
-        }
-
-        $this->getCollector()->getProfile()->updateProfileProgress();
-
-        $this->collection = $collection;
-      }
-      else
-      {
-        // @todo: Here we need to add ModelCriteria filterByTags
-        // $form->getWidget('content_category_id')->setOption('', '');
-      }
-    }
-
-    $root = ContentCategoryQuery::create()->findRoot();
-    $this->categories = ContentCategoryQuery::create()
-        ->descendantsOf($root)
-        ->findTree();
-
-    $this->form = $form;
-
-    return sfView::SUCCESS;
-  }
-
   public function executeCreateCollectible()
   {
     $form = new CollectibleCreateForm();
-    $form->setDefault('collection_id', $this->getRequestParameter('collection_id'));
+
+    $q = CollectorCollectionQuery::create()
+      ->filterById($this->getRequestParameter('collection_id'));
+
+    if ($collection = $q->findOne())
+    {
+      $form->setDefault('collection_id', $collection->getId());
+      $form->setDefault('tags', $collection->getTags());
+    }
 
     if ($collectible_id = $this->getRequestParameter('collectible_id'))
     {
@@ -321,13 +274,14 @@ class mycqComponents extends cqFrontendComponents
 
         /** @var $collectible Collectible */
         $collectible = $form->updateObject($values);
+        $collectible->setDescription($values['description'], 'html');
         $collectible->setTags($values['tags']);
         $collectible->save();
 
         $collectible->addCollection($collection);
         $collectible->save();
 
-        if ($values['thumbnail'])
+        if (isset($values['thumbnail']))
         {
           $image = iceModelMultimediaQuery::create()
               ->findOneById((integer) $values['thumbnail']);
@@ -378,7 +332,7 @@ class mycqComponents extends cqFrontendComponents
       if (!empty($tainted['collectible']['collection_collectible_list']))
       {
         $collection_collectible_list = &$tainted['collectible']['collection_collectible_list'];
-        foreach($collection_collectible_list as $i => $id)
+        foreach ($collection_collectible_list as $i => $id)
         {
           if (!is_numeric($id) && !empty($id))
           {
@@ -386,7 +340,8 @@ class mycqComponents extends cqFrontendComponents
             $collection->setCollector($this->getCollector());
             $collection->setName($id);
 
-            try {
+            try
+            {
               $collection->save();
               $collection_collectible_list[$i] = $collection->getId();
             }
@@ -439,4 +394,53 @@ class mycqComponents extends cqFrontendComponents
     return sfView::SUCCESS;
   }
 
+  public function executeDeleteCollectionCollectible()
+  {
+    if ($this->getRequest()->isMethod('post'))
+    {
+
+    }
+
+    return sfView::SUCCESS;
+  }
+
+  public function executeCollectionMultimedia()
+  {
+    $q = CollectorCollectionQuery::create()
+      ->filterById((integer) $this->getRequestParameter('collection_id'));
+    $this->collection = $this->getVar('collection') ?: $q->findOne();
+
+    // Stop right here if the CollectorCollection is not accessible
+    if (!$this->getUser()->isOwnerOf($this->collection))
+    {
+      return sfView::NONE;
+    }
+
+    if ($this->image = $this->collection->getThumbnail())
+    {
+      $this->aviary_hmac_message = $this->getUser()->hmacSignMessage(
+        json_encode(array('multimedia-id' => $this->image->getId())),
+        cqConfig::getCredentials('aviary', 'hmac_secret')
+      );
+    }
+
+    return sfView::SUCCESS;
+  }
+
+  public function executeCollectibleMultimedia()
+  {
+    $q = CollectibleQuery::create()
+      ->filterById((integer) $this->getRequestParameter('collectible_id'));
+    $this->collectible = $this->getVar('collectible') ?: $q->findOne();
+
+    // Stop right here if the Collectible is not accessible
+    if (!$this->getUser()->isOwnerOf($this->collectible))
+    {
+      return sfView::NONE;
+    }
+
+    $this->multimedia = $this->collectible->getMultimedia(0, 'image', false);
+
+    return sfView::SUCCESS;
+  }
 }

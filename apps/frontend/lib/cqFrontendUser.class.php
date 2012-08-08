@@ -203,15 +203,19 @@ class cqFrontendUser extends cqBaseUser
    */
   public function getMycqDropboxOpenState()
   {
-    // Respect the cookie only in selected areas of My CQ
-    if (in_array(SmartMenu::getSelected('mycq_menu'), array('collections')))
+    /**
+     * Check if we have requested a different state
+     * than the one defined in the cookie
+     */
+    if ($this->hasFlash('cq_mycq_dropbox_open', 'cookies'))
     {
-      return !!sfContext::getInstance()->getRequest()->getCookie(
-        self::DROPBOX_OPEN_STATE_COOKIE_NAME, true);
+      return (boolean) $this->getFlash('cq_mycq_dropbox_open', false, true, 'cookies');
     }
     else
     {
-      return false;
+      return (boolean) sfContext::getInstance()->getRequest()->getCookie(
+        self::DROPBOX_OPEN_STATE_COOKIE_NAME, true
+      );
     }
   }
 
@@ -357,17 +361,21 @@ class cqFrontendUser extends cqBaseUser
     if ($send_email === true)
     {
       $collector_email = CollectorEmailPeer::retrieveByCollectorEmail(
-        $collector, $collector->getEmail()
+        $collector, $collector->getEmail(), false
       );
 
-      $cqEmail = new cqEmail(sfContext::getInstance()->getMailer());
-      $cqEmail->send($collector->getUserType() . '/welcome_verify_email', array(
-        'to' => $collector->getEmail(),
-        'params' => array(
-          'collector' => $collector,
-          'collector_email' => $collector_email,
-        )
-      ));
+      // Only send the email if the email is not verified
+      if ($collector_email)
+      {
+        $cqEmail = new cqEmail(sfContext::getInstance()->getMailer());
+        $cqEmail->send($collector->getUserType() . '/welcome_verify_email', array(
+          'to' => $collector->getEmail(),
+          'params' => array(
+            'collector' => $collector,
+            'collector_email' => $collector_email,
+          )
+        ));
+      }
     }
 
     return true;

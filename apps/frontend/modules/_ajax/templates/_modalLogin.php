@@ -2,10 +2,10 @@
   <div class="modal-header">
     <button class="close" data-dismiss="modal">×</button>
     <ul class="nav nav-pills">
-      <li class="active"><a href="#modal-login-username-pane" class="btn" data-toggle="tab">Collectors Quest</a></li>
-      <li><a href="#modal-login-openid-pane" class="btn spacer-left" data-toggle="tab">Facebook or Twitter</a></li>
+      <li class="active"><a href="#modal-login-username-pane" class="btn" data-toggle="tab">Sing in with Collectors Quest</a></li>
+      <li><a href="#modal-login-openid-pane" class="btn spacer-left" data-toggle="tab">Sign in with Social Networks</a></li>
       <!--<li class="pull-right spacer-right"><a href="#modal-sign-up-pane" data-toggle="tab">Sign up!</a></li>//-->
-      <li class="pull-right spacer-right"><?= link_to('Sign up!', '@collector_signup'); ?></li>
+      <!--<li class="pull-right spacer-right"><?= link_to('Sign up!', '@collector_signup'); ?></li>//-->
     </ul>
   </div>
 
@@ -32,10 +32,10 @@
       <div id="modal-login-openid-pane" class="tab-pane">
         <fieldset class="rpxnow-login clearfix">
           <iframe
-            src="<?= $rpxnow['application_domain']; ?>openid/embed?token_url=<?= url_for('@rpx_token', true); ?>"
-            scrolling="no"
-            frameBorder="no"
-            style="width:350px; height:217px;"
+            id="modal-rpx-iframe"
+            src=""
+            frameBorder="0"
+            style="width:350px; height:217px; overflow: hidden; border: 0; margin-left: 70px;"
             width="350"
             height="217">
           </iframe>
@@ -60,7 +60,10 @@
 
       <div id="modal-login-username-footer" class="tab-pane active">
         <button type="button" class="btn btn-primary">Sign&nbsp;In</button>
-        <span class="spacer-left-15 modal-link"><?= link_to('Forgot your password?', '@recover_password'); ?></span>
+        <span class="spacer-left-15 modal-link text-left">
+          - <?= link_to('Forgot your password?', '@recover_password'); ?> <br/>
+          - <?= link_to('Sign up for a new account?', '@collector_signup'); ?>
+        </span>
       </div>
 
       <div id="modal-login-openid-footer" class="tab-pane">
@@ -75,3 +78,9 @@
   </div> <!-- .modal-body -->
 
 </div> <!-- #modal-loginholder .modal.fade -->
+
+<script>
+$(document).ready(function() {
+  $('#modal-rpx-iframe').attr('src', "<?= $rpxnow['application_domain']; ?>openid/embed?token_url=<?= url_for('@rpx_token', true); ?>");
+});
+</script>

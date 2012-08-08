@@ -6,14 +6,14 @@
 <div class="carousel-sidebar">
   <span>Other items in this collection:</span>
   <div class="thumbnails-inner well">
-    <a href="#" id="ui-carousel-prev" title="previous collectible" class="left-arrow">
+    <a href="javascript:void(0)" id="ui-carousel-prev" title="previous collectible" class="left-arrow">
       <i class="icon-chevron-left white"></i>
     </a>
-    <a href="#" id="ui-carousel-next" title="next collectible" class="right-arrow">
+    <a href="javascript:void(0)" id="ui-carousel-next" title="next collectible" class="right-arrow">
       <i class="icon-chevron-right white"></i>
     </a>
     <div id="carousel" data-loaded='<?= json_encode(array_fill(1, $carousel_page, true)); ?>'
-         class="thumbnails" style="">
+         class="thumbnails">
       <?php foreach ($collectibles as $c): ?>
         <a href="<?= url_for_collectible($c) ?>"
            class="thumbnail <?= $c->getId() == $collectible->getId() ? 'active' : '' ?>">

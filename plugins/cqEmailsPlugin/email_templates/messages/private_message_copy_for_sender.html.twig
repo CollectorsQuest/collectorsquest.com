@@ -1,0 +1,19 @@
+{% extends "common/base.html.twig" %}
+
+{% block content %}
+
+<p style="margin-bottom: 10px; font-weight: bold;">
+  You've sent the following message to {{ sReceiver }}:
+</p>
+
+<p>
+  {{ link_to_collector(oSender, 'image', { style: "float: right"}) }}
+
+  {{ link_to_collector(oSender, 'text', { absolute: true }) }}
+  has sent you a message through CollectorsQuest.com:
+  <br /><br />
+  <em>{{ sMessageBody|raw }}</em>
+</p>
+<br style="clear: both;" />
+
+{% endblock %}

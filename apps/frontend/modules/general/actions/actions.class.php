@@ -12,7 +12,9 @@ class generalActions extends cqFrontendActions
 
   public function executeIndex()
   {
-    // Get the latest 2 Blog posts and its first image
+    /**
+     * Get the latest 2 Blog posts and its first image
+     */
     $blog_posts = wpPostPeer::getLatestPosts(2);
 
     /** @var $blog_post wpPost */
@@ -334,57 +336,6 @@ class generalActions extends cqFrontendActions
     return sfView::SUCCESS;
   }
 
-  public function executeFeedback(sfWebRequest $request)
-  {
-    $this->form = new FeedbackForm();
-    $this->form->setDefault('page', $request->getParameter('page', $request->getReferer()));
-
-    if ($request->isMethod('post'))
-    {
-      $sent = false;
-
-      $this->form->bind($request->getParameter('feedback'));
-      if ($this->form->isValid())
-      {
-        $values = $this->form->getValues();
-
-        $cqEmail = new cqEmail($this->getMailer());
-        $sent = $cqEmail->send('internal/feedback', array(
-          'to' => 'info@collectorsquest.com',
-          'subject' => '[Feedback] '. $values['fullname'],
-          'params' => array(
-            'feedback' => array(
-              'fullname' => $values['fullname'],
-              'email' => $values['email'],
-              'message' => nl2br($values['message']),
-              'page' => urldecode($values['page'])
-            ),
-            'browser' => array(
-              "f_ip_address" => cqStatic::getUserIpAddress(),
-              "f_javascript_enabled" => $values['f_javascript_enabled'],
-              "f_browser_type" => $values['f_browser_type'],
-              "f_browser_version" => $values['f_browser_version'],
-              "f_browser_color_depth" => $values['f_browser_color_depth'],
-              "f_resolution" => $values['f_resolution'],
-              "f_browser_size" => $values['f_browser_size']
-            ),
-          ),
-        ));
-      }
-
-      if ($sent)
-      {
-        $this->getUser()->setFlash('success', $this->__('Thank you for the feedback. If needed, we will get in touch with you within the next business day.', array(), 'flash'));
-      }
-      else
-      {
-        $this->getUser()->setFlash('error', $this->__('There are errors in the fields or some are left empty.', array(), 'flash'));
-      }
-    }
-
-    return sfView::SUCCESS;
-  }
-
   public function executeComingSoon()
   {
     // Building the breadcrumbs and page title
@@ -396,12 +347,14 @@ class generalActions extends cqFrontendActions
 
   public function executeError404()
   {
-    return sfView::SUCCESS;
+    return cqStatic::isCrawler() ?
+      sfView::HEADER_ONLY : sfView::SUCCESS;
   }
 
   public function executeError50x()
   {
-    return sfView::SUCCESS;
+    return cqStatic::isCrawler() ?
+      sfView::HEADER_ONLY : sfView::SUCCESS;
   }
 
 }

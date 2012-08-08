@@ -82,7 +82,7 @@ class CollectorProfileEditForm extends BaseCollectorProfileForm
       'birthday' => new sfValidatorDate(array('required' => false)),
       'gender' => new sfValidatorChoice(array('choices' => array('f', 'm'), 'required' => false)),
       'zip_postal' => new sfValidatorString(array('max_length' => 10, 'required' => false)),
-      'country_iso3166' => new sfValidatorI18nChoiceCountry(array('required' => false)),
+      'country_iso3166' => new sfValidatorI18nChoiceCountry(array('required' => true)),
       'website' => new sfValidatorString(array('max_length' => 128, 'required' => false)),
 
       'about_me' => new sfValidatorString(array('required' => false)),

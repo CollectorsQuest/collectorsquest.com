@@ -32,6 +32,14 @@ class SmartMenu
         continue;
       }
 
+      if (isset($item['check_eval']) && $item['check_eval'])
+      {
+        if (!eval('return ' . $item['check_eval'] . ';'))
+        {
+          continue;
+        }
+      }
+
       // Set template values, defaults when none provided
       $item = array(
         '%id%'    => $id,

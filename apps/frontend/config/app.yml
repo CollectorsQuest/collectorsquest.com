@@ -1,7 +1,4 @@
 all:
-  countdown_module: "general"
-  countdown_action: "countdown"
-
   cqnext_auto_login_parameter_name: "i"
   cqnext_auto_login_time_limit: "+5 minutes"
 
@@ -49,7 +46,7 @@ all:
       items:
         personal_info:   { name: "Personal Information", uri: "@mycq_profile" }
         account_info:    { name: "Account Settings",  uri: "@mycq_profile_account_info" }
-        store_settings:  { name: "Store Settings",       uri: "@mycq_profile_store_settings" }
+        store_settings:  { name: "Store Settings",       uri: "@mycq_profile_store_settings", check_eval: "sfContext::getInstance()->getUser()->getCollector()->hasBoughtCredits()" }
         addresses:       { name: "Address Book",         uri: "@mycq_profile_addresses", check_lock: mycq_profile_addresses }
 
     mycq_marketplace_tabs:
@@ -69,12 +66,7 @@ dev:
   domain_name: "collectorsquest.dev"
   www_domain: "www.collectorsquest.dev"
   static_domain: "www.collectorsquest.dev"
-  multimedia_domain: "multimedia.collectorsquest.dev"
-
-  cq:
-    www_domain: "http://www.collectorsquest.dev/"
-    static_domain: "http://static.collectorsquest.dev/"
-    multimedia_domain: "http://multimedia.collectorsquest.dev"
+  multimedia_domain: "multimedia.cqcdns.dev"
 
   credentials:
     rpxnow:

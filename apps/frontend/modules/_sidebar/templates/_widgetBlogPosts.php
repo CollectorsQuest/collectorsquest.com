@@ -15,7 +15,7 @@
 
 <?php foreach ($wp_posts as $wp_post): ?>
 <div class="row-fluid spacer-bottom">
-  <h4 style="margin-bottom: 5px;">
+  <h4 class="spacer-bottom-5">
     <a href="<?= $wp_post->getPostUrl(); ?>" class="link">
       <?= cqStatic::truncateText($wp_post->getPostTitle(), 75) ?>
     </a>
@@ -23,9 +23,9 @@
   <span class="content">
     <?= $wp_post->getPostExcerpt(140, '...') ?>
   </span><br/>
-  <small style="font-size: 80%">
+  <small>
     posted by <?= link_to_blog_author($wp_post->getwpUser(), 'text'); ?>
-    <span style="color: grey"><?php echo time_ago_in_words($wp_post->getPostDate('U')) ?> ago</span>
+    <span class="grey"><?php echo time_ago_in_words($wp_post->getPostDate('U')) ?> ago</span>
   </small>
 </div>
 <?php endforeach; ?>

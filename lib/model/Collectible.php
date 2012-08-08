@@ -95,7 +95,7 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
     parent::setDescription($v);
   }
 
-  public function getDescription($type = 'html', $limit = null)
+  public function getDescription($type = 'html', $limit = 0)
   {
     $v = parent::getDescription();
 
@@ -103,12 +103,13 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
     {
       case 'stripped':
         $v = trim(strip_tags($v));
+        $v = (intval($limit) > 0) ? cqStatic::truncateText($v, $limit, '...', true) : $v;
         break;
       case 'html':
         break;
     }
 
-    return (null !== $limit) ? cqStatic::truncateText($v, (int) $limit, '...', true) : $v;
+    return $v;
   }
 
   public function getRelatedCollectibles($limit = 8, &$rnd_flag = false)

@@ -1,0 +1,13 @@
+{% extends "common/internal.html.twig" %}
+
+{% block content %}
+  <b>Page:</b> {{ feedback.page }}<br>
+  <b>Full Name:</b> {{ feedback.fullname }}<br>
+  <b>Email:</b> {{ feedback.email  }}<br>
+  <br><hr>
+
+  <p>
+    <br> {{ feedback.message }}
+  </p>
+
+{% endblock %}

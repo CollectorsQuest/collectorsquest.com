@@ -1,8 +1,8 @@
 <br/><br/>
 <div class="row-fluid">
-  <div class="span3" style="margin-left: 40px;">
-    <h3 style="margin-bottom: 10px;">Checkout below <br/>without registering</h3>
-    <small style="color: #999;">
+  <div class="span3 spacer-left-40">
+    <h3 class="spacer-bottom">Checkout below <br/>without registering</h3>
+    <small class="lightgrey">
       You will be able to create an account<br/>
       at the end of the checkout process!
     </small>
@@ -13,7 +13,7 @@
       <div class="row-fluid">
         <h3>Sign in now to use your saved details:</h3>
         <br/>
-        <div class="span5" style="margin-left: 0;">
+        <div class="span5 spacer-left-reset">
           <?= $form['username']->renderLabel(); ?>
           <div class="input-prepend">
             <span class="add-on"><i class="icon-user"></i></span>
@@ -29,8 +29,7 @@
         </div>
         <div class="span2">
           <label>&nbsp;</label>
-          <button type="submit" class="btn" value="Sign In" data-loading-text="loading..."
-                  style="white-space: nowrap; padding: 4px 15px; margin-top: -2px;">
+          <button type="submit" class="btn sign-in-btn" value="Sign In" data-loading-text="loading...">
             <i class="icon-signin"></i>&nbsp;Sign In
           </button>
         </div>

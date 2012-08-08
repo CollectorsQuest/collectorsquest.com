@@ -20,6 +20,12 @@ class wpPostPeer extends BasewpPostPeer
     return wpPostPeer::doSelect($c);
   }
 
+  /**
+   * @static
+   * @param  integer $limit
+   *
+   * @return array
+   */
   public static function getLatestPosts($limit = 10)
   {
     $c = new Criteria();

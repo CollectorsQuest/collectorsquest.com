@@ -7,16 +7,16 @@
  * @var $collectibles Collectible[] | PropelObjectCollection
  */
 ?>
-<div id="dropzone-wrapper" class="dropzone-container
-     <?= $sf_user->getMycqDropboxOpenState() ? '' : 'hidden' ?>"
->
+<div id="dropzone-wrapper"
+     class="dropzone-container <?= $sf_user->getMycqDropboxOpenState() ? '' : 'hidden' ?>">
+  <?php if ($total > 0): ?>
   <div class="row-fluid sidebar-title spacer-bottom-reset">
     <div class="span8">
       <h3 class="Chivo webfont"><?= 'Uploaded Photos ('. $total .')'; ?></h3>
     </div>
     <div class="span4">
     <?php
-      if ($total > 0)
+      if (false && $total > 0)
       {
         echo  link_to(
           '<i class="icon-trash"></i> Delete all Photos', '@mycq_dropbox?cmd=empty&encrypt=1',
@@ -29,26 +29,31 @@
     ?>
     </div>
   </div>
-  <?php if ($total > 0): ?>
   <div class="collectibles-to-sort" id="dropzone">
     <ul class="thumbnails">
       <?php foreach ($collectibles as $collectible): ?>
       <li class="span2 thumbnail draggable" data-collectible-id="<?= $collectible->getId(); ?>">
         <?php
-        echo image_tag_collectible(
-          $collectible, '75x75', array('max_width' => 72, 'max_height' => 72)
-        );
+          echo image_tag_collectible(
+            $collectible, '75x75', array('max_width' => 72, 'max_height' => 72)
+          );
         ?>
         <i class="icon icon-remove-sign" data-collectible-id="<?= $collectible->getId(); ?>"></i>
       </li>
       <?php endforeach; ?>
     </ul>
+    <?php if (has_slot('mycq_dropbox_info_message')): ?>
+    <div class="info-message">
+      <?php include_slot('mycq_dropbox_info_message'); ?>
+    </div>
+    <?php endif; ?>
   </div>
   <?php else: ?>
-  <div id="dropzone" class="collectibles-to-sort no-items-to-sort-box Chivo webfont">
+  <div id="dropzone" class="collectibles-to-sort no-items-to-sort-box Chivo webfont spacer-inner">
     <span class="info-no-items-to-sort">
-      There are currently no Uploaded Photos.<br/>
-      Please use the <strong>"+ Upload Photos"</strong> button on the right to get started!
+      &nbsp;&nbsp;<strong>Drag and drop</strong> photos from your desktop or
+      use the <strong>Upload Photos</strong> button
+      <?= image_tag('frontend/arrow-thin-up.png', array('style' => 'margin-top: -35px; margin-left: -5px;')) ?>
     </span>
   </div>
   <?php endif; ?>

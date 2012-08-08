@@ -5,7 +5,7 @@
  */
 ?>
 
-<div class="well" style="padding: 8px 0;">
+<div class="well spacer-inner-8">
   <ul class="nav nav-list">
 
     <li class="nav-header">Sort by:</li>
@@ -14,7 +14,7 @@
       {
         if ($params['active'] === true)
         {
-          echo '<li class="active"><a href="#" rel="nofollow"><i class="icon-ok"></i>&nbsp;', $params['name'],'</a></li>';
+          echo '<li class="active"><a href="javascript:void(0)" rel="nofollow"><i class="icon-ok"></i>&nbsp;', $params['name'],'</a></li>';
         }
         else
         {
@@ -36,7 +36,7 @@
 
         if ($params['active'] === true)
         {
-          echo '<li class="active"><a href="#"><i class="icon-ok"></i>&nbsp;', $name,'</a></li>';
+          echo '<li class="active"><a href="javascript:void(0)"><i class="icon-ok"></i>&nbsp;', $name,'</a></li>';
         }
         else
         {

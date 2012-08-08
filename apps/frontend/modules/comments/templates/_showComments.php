@@ -5,7 +5,7 @@
 
 <div class="user-comments">
   <?php foreach ($comments as $comment): ?>
-    <?= include_partial('comments/single_comment', array('comment' => $comment)); ?>
+    <?php include_partial('comments/single_comment', array('comment' => $comment)); ?>
   <?php endforeach; ?>
 </div>
 

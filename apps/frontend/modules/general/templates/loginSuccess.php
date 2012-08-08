@@ -19,9 +19,10 @@
           </div>
         </div>
         <div class="form-actions">
-          <input type="submit" class="btn btn-primary" value="Sign In" />
-          <span class="spacer-left-15">
-            <?= link_to('Forgot your password?', '@recover_password'); ?>
+          <input type="submit" class="btn btn-primary pull-left" value="Sign In" />
+          <span class="spacer-left-15 text-left"">
+            - <?= link_to('Forgot your password?', '@recover_password'); ?> <br/>
+            &nbsp;&nbsp;&nbsp; - <?= link_to('Sign up for a new account?', '@collector_signup'); ?>
           </span>
         </div>
       </fieldset>

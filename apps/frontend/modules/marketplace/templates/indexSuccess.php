@@ -39,11 +39,10 @@
 <?php endif; ?>
 
 <!--
-<br/>
-<div class="banners-620">
-  <?= link_to(image_tag('banners/040412_show_and_sell_red.gif'), '@collector_signup'); ?>
+<div class="banners-620 spacer-top-20">
+  <?= link_to(image_tag('banners/show_and_sell_red_635x111.png'), '@collector_signup'); ?>
 </div>
-//-->
+-->
 
 <?php cq_section_title('Discover More Items for Sale'); ?>
 
@@ -52,7 +51,7 @@
     <form action="<?= url_for('@search_collectibles_for_sale'); ?>" method="post" id="form-discover-collectibles">
       <div class="btn-group">
         <div class="append-left-gray">Sort By <strong id="sortByName">Most Popular</strong></div>
-        <a href="#" data-toggle="dropdown" class="btn dropdown-toggle">
+        <a href="javascript:void(0)" data-toggle="dropdown" class="btn dropdown-toggle">
           <span class="caret arrow-up"></span><br><span class="caret arrow-down"></span>
         </a>
         <ul class="dropdown-menu">
