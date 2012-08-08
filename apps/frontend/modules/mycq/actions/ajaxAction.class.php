@@ -18,6 +18,9 @@ class ajaxAction extends cqAjaxAction
     // Stop here if there is no valid Collector or the Collector object is not saved yet
     $this->forward404if(!$this->collector || $this->collector->isNew());
 
+    // Turning off the layout for this action
+    $this->setLayout(false);
+
     return parent::execute($request);
   }
 
@@ -564,8 +567,6 @@ class ajaxAction extends cqAjaxAction
 
     $this->form = $form;
     $this->collection = $collection;
-    
-    $this->setLayout(false);
 
     return $template;
   }
