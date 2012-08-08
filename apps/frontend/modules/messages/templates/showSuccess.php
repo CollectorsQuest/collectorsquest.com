@@ -69,12 +69,23 @@
 
 <div class="reply-form">
   <span class="reply-form-title">Write a reply</span>
+  <?php unset($reply_form['copy_for_sender']); ?>
   <?= form_tag('@messages_compose', array('class' => 'form-private-message-reply form-horizontal')) ?>
   <fieldset>
     <?= $reply_form->renderUsing('Bootstrap', array(
     'subject' => array('class' => 'span7'),
     'body'    => array('class' => 'span7', 'rows' => 6),
   )); ?>
+  	<div class="control-group ">
+      <label for="message_copy_for_sender" class=" control-label">&nbsp;</label>
+      <div class="controls">
+        <label for="message_copy_for_sender">
+        	<input type="checkbox" name="<?= $reply_form->getName() ?>[copy_for_sender]"
+                 id="<?= $reply_form->getName() ?>_copy_for_sender">
+         	Email me a copy of this message to my email address
+        </label>
+      </div>
+    </div>
     <div class="form-actions">
       <input type="submit" class="btn btn-primary" value="Send reply" />
     </div>
