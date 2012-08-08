@@ -43,6 +43,9 @@ all:
     param:
       session_name: backend
 
+  request:
+    class: cqWebRequest
+
 dev:
   mailer:
     param:

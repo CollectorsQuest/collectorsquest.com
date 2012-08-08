@@ -81,7 +81,7 @@ $(document).ready(function() {
 
   // fake tabbing into the tags input
   $('#%s').attr('tabIndex', %d).on('focus', function() {
-    $(this).find('ul').click();
+    //$(this).find('ul').click();
   });
 
   // consider tabbing out of input when there is something entered in it to be
@@ -99,6 +99,7 @@ $(document).ready(function() {
 
     return true;
   });
+
 });
 </script>
 
