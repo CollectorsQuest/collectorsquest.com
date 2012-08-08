@@ -7,19 +7,29 @@
 
 <?php cq_page_title($collection); ?>
 
-<br/>
-<i class="icon-exclamation-sign" style="float: left; font-size: 26px; margin-right: 10px; color: #DF912F;"></i>
 <?php
 if ($sf_user->isOwnerOf($collection))
 {
   if ($collection instanceof CollectionDropbox)
   {
-    echo __('Your Dropbox is currently empty.'), '<br>';
+    echo '
+    <div class="alert spacer-top-40">
+      <button type="button" class="close" data-dismiss="alert">×</button>
+      <i class="icon-exclamation-sign alert-icon-orange"></i>
+      Your Dropbox is currently empty.
+    </div>
+    ';
     // echo __('Please, use the menu on the right and click on <b>"+ Add Collectibles"</b> and upload all pictures of your collectibles.');
   }
   else
   {
-    echo __('Your collection is currently empty.'), '<br>';
+    echo '
+    <div class="alert spacer-top-40">
+      <button type="button" class="close" data-dismiss="alert">×</button>
+      <i class="icon-exclamation-sign alert-icon-orange"></i>
+      Your collection is currently empty.
+    </div>
+    ';
     // echo __('Please, use the menu on the right and click on <b>"+ Add Collectibles"</b> and upload all pictures of your collectibles.');
   }
 }
