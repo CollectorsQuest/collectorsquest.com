@@ -1,6 +1,11 @@
 <?php
   /* @var $pager PropelModelPager */ $pager;
 
+  cq_sidebar_title(
+        'Sent', null,
+  array('left' => 8, 'right' => 4, 'class'=>'mycq-red-title row-fluid messages-row indent-bottom15')
+  );
+  
   SmartMenu::setSelected('mycq_messages_sidebar', 'sent');
 ?>
 
