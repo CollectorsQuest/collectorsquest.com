@@ -1,4 +1,8 @@
 <?php
+  /**
+   * @var $categories ContentCategory[]
+   */
+
   $link = link_to(
     'See all &raquo;', '@marketplace_categories',
     array('class' => 'text-v-middle link-align')
@@ -10,10 +14,7 @@
 
 <div class="twocolumn cf">
   <ul>
-    <?php
-      /** @var $categories ContentCategory[] */
-      foreach ($categories as $i => $category):
-    ?>
+    <?php foreach ($categories as $i => $category): ?>
     <li>
       <?php
         echo link_to(
