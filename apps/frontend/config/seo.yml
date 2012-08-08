@@ -10,6 +10,13 @@ seo:
         Get the latest from the world of collectibles, vintage items, antique figurines,
         sports memorabilia and more at the Collectors Quest blog.
 
+    general:
+      index:
+      title: Buy Sell Show | Collectibles, Antiques, Vintage Items | Collectors Quest
+      description: |
+        Join Collectors Quest to buy, sell, trade & show off your amazing collections,
+        from antiques to collectibles, vintage to modern. See what other people collect!
+
   aent:
     pawnStars:
       title: Pawn Stars Collectibles | TV Show Collectibles | Collectors Quest
@@ -82,13 +89,6 @@ seo:
       description: |
         Sign up to sell or buy collectibles online.
         CollectorsQuest.com provides a unique marketplace for buying and selling collectibles online.
-
-  general:
-    index:
-      title: Buy Sell Show | Collectibles, Antiques, Vintage Items  Collectors Quest
-      description: |
-        Join Collectors Quest to buy, sell, trade & show off your amazing collections,
-        from antiques to collectibles, vintage to modern. See what other people collect!
 
   marketplace:
     index:
