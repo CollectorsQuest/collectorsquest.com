@@ -195,7 +195,6 @@ $lastclass = 0;
           }
         }
         $data['categories'] = $categories;
-        $data['title'] = get_the_title();
       }
     ?>
 
