@@ -272,6 +272,66 @@ class ComposePrivateMessageForm extends PrivateMessageForm
       );
     }
   }
+  
+  /**
+  * Checking similarity of sent messages in one session
+  * 
+  * If message similar to sent before we will send message about spam
+  * else we will save for checking current message
+  */
+  protected function checkingMessagesSimilarity()
+  {
+    if ($this->sf_user)
+    {
+      if ( $this->sf_user->getAttribute(
+      	cqFrontendUser::PRIVATE_MESSAGES_SENT_TEXT, null, 'collector') )
+      {
+        $percent = $this->getSimilarityPercent();
+        
+        if ( $percent
+          >= sfConfig::get('app_private_messages_similarity_percent') )
+        {
+          $this->sendSpamNotification($percent);
+        } 
+      }
+      
+      $this->sf_user->setAttribute(
+    	cqFrontendUser::PRIVATE_MESSAGES_SENT_TEXT,
+    	$this->getObject()->getBody(),
+        'collector'
+      );
+    }
+  }
+  
+  protected function getSimilarityPercent()
+  {
+    $percent = 0;
+    similar_text($this->sf_user->getAttribute(
+      cqFrontendUser::PRIVATE_MESSAGES_SENT_TEXT, null, 'collector'),
+      $this->getObject()->getBody(), 
+      $percent
+    );
+    
+    return $percent;
+  }
+  
+  protected function sendSpamNotification($percent)
+  {
+    $cqEmail = new cqEmail(sfContext::getInstance()->getMailer());
+    
+    $cqEmail->send('internal/spam_notification', array(
+        'to' => sfConfig::get('app_private_messages_spam_receiver'),
+    	'subject' => 'Spam notification',
+        'params' => array(
+          'sender' => $this->getObject()->getCollectorRelatedBySender(),
+          'receiver' => $this->getObject()->getCollectorRelatedByReceiver(),
+          'similarity' => $percent,
+          'lastText' => $this->sf_user->getAttribute(
+            cqFrontendUser::PRIVATE_MESSAGES_SENT_TEXT, null, 'collector'),
+          'currentText' => $this->getObject()->getBody(),
+        ),
+    ));
+  }
 
   /**
    * Update the object and handle set body's specifics
@@ -307,6 +367,8 @@ class ComposePrivateMessageForm extends PrivateMessageForm
 
     // When do we show the captcha?
     $threshold = sfConfig::get('app_private_messages_require_captcha_threshold', 5);
+    
+    $this->checkingMessagesSimilarity();
 
     if ($this->userGetSentMessagesCount() < $threshold)
     {
