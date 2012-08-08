@@ -118,9 +118,9 @@ class SellerPackagesForm extends BaseForm
   {
     $this->setWidget('cc_type', new sfWidgetFormChoice(array(
         'choices'=> array_merge(array('' => ''), $this->getCardTypes()),
-        'label' => 'CC Type',
+        'label' => 'Card Type',
       ), array(
-        'placeholder' => 'Credit card type',
+        'placeholder' => 'credit/debit card type',
     )));
     $this->setValidator('cc_type', new sfValidatorChoice(array('choices'=> array_keys($this->getCardTypes()))));
   }
@@ -128,7 +128,7 @@ class SellerPackagesForm extends BaseForm
   private function setupCardNumberField()
   {
     $this->setWidget('cc_number', new cqWidgetFormCreditCard(array(
-        'label' => 'CC Numer',
+        'label' => 'Card Numer',
       ), array(
         'placeholder' => 'Credit card number',
     )));
