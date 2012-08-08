@@ -4,8 +4,11 @@
    * @var $filter_by string read|unread|all $filter_by;
    */
   cq_sidebar_title(
-      'Inbox', null,
-  array('left' => 8, 'right' => 4, 'class'=>'mycq-red-title row-fluid messages-row')
+    'Inbox', null,
+    array(
+      'left' => 8, 'right' => 4,
+      'class'=>'mycq-red-title row-fluid messages-row'
+    )
   );
 
   SmartMenu::setSelected('mycq_messages_sidebar', 'inbox');

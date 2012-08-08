@@ -1,24 +1,31 @@
 <?php
-  /* @var $pager PropelModelPager */ $pager;
+  /**
+   * @var $pager PropelModelPager
+   * @var $message PrivateMessage
+   */
 
   cq_sidebar_title(
-        'Sent', null,
-  array('left' => 8, 'right' => 4, 'class'=>'mycq-red-title row-fluid messages-row indent-bottom15')
+    'Sent Messages', null,
+    array(
+      'left' => 8, 'right' => 4,
+      'class'=>'mycq-red-title row-fluid messages-row indent-bottom15'
+    )
   );
-  
+
   SmartMenu::setSelected('mycq_messages_sidebar', 'sent');
 ?>
 
 <table class="private-messages-list table table-bordered">
   <tbody>
   <?php if (!$pager->isEmpty()): foreach ($pager->getResults() as $message): ?>
-    <tr
-      class="linkify <?= $message->getIsRead() ? 'read' : 'unread' ?>"
-      data-url="<?= url_for('messages_show', $message); ?>"
-    >
+    <tr class="linkify <?= $message->getIsRead() ? 'read' : 'unread' ?>"
+        data-url="<?= url_for('messages_show', $message); ?>">
       <td class="sender-col">
-        <?= image_tag_collector($message->getCollectorRelatedByReceiver(),
-          '50x50', array('class' => 'avatar')); ?>
+        <?php
+          echo image_tag_collector(
+            $message->getCollectorRelatedByReceiver(), '50x50', array('class' => 'avatar')
+          );
+        ?>
         To:&nbsp;<?= link_to_collector($message->getCollectorRelatedByReceiver()); ?>
         <p class="font10">
           <?= time_ago_in_words($message->getCreatedAt('U')); ?> ago
@@ -33,7 +40,10 @@
     </tr>
   <?php endforeach; else: ?>
     <tr>
-      <td colspan="5">You have not sent any messages</td>
+      <td colspan="5">
+        You have not sent any messages yet.
+        Do you want to <?= link_to('compose a new message', '@messages_compose') ?> now?
+      </td>
     </tr>
   <?php endif; ?>
   </tbody>
