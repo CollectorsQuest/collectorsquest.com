@@ -49,10 +49,10 @@ seo:
       keywords: %Name%
 
   collections:
-    title: Collectors Items | Find Unique Vintage Collectibles and Antiques
+    title: Unique Collectible, Vintage & Antique Items | Collectors Quest
     description: |
-      CollectorsQuest.com has unique collectors items from  every era.
-      Find unique vintage collectibles and antiques sold by trusted buyers.
+      Browse our amazing collections of antique, vintage & collectible items
+      from passionate collectors around the world.
 
   collection:
     index:
@@ -92,10 +92,10 @@ seo:
 
   marketplace:
     index:
-      title: Collectibles & Antiques for Sale | Collectors Quest
+      title: Buy & Sell Collectibles, Antiques & Vintage Items | Collectors Quest
       description: |
-        CollectorsQuest.com is a trusted source to buy antiques and collectibles online.
-        Our experienced collectors sell an amazing array of collections online.
+        Browse our amazing collections of antique, vintage & collectible items
+        from passionate collectors around the world.
 
     browse:
       model: true
