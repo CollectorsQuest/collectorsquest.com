@@ -3,6 +3,8 @@
 
 rendering: ~
 
+ssl:
+  class: cqSslRedirectFilter
 remember_me:
   class: cqCollectorRememberMeFilter
 uuid:

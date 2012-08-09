@@ -17,8 +17,8 @@
       <strong>{{ package_transaction.credits }}</strong><br/>
     {% endif %}
 
-    Pricing level: <strong>${{ package.packagePrice }}</strong><br/>
-    Expiration date: <strong>{{ package_transaction.expiryDate|date('m/d/Y') }}</strong>
+    Pricing level: <strong>${{ package.packagePrice | number_format(2, '.', ',') }}</strong><br/>
+    Expiration date: <strong>{{ package_transaction.expiryDate | date('m/d/Y') }}</strong>
   </p>
 
   <p>Happy selling!</p>

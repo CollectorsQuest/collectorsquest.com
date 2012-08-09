@@ -1,4 +1,16 @@
 all:
+
+  ssl_redirect:
+    # if insecure pages accesed with https should be rerouted to http
+    strict: true
+
+    # modules and actions that should be https
+    secure:
+      mycq:  ~
+      messages: ~
+      shopping: ~
+      seller: ~
+
   cqnext_auto_login_parameter_name: "i"
   cqnext_auto_login_time_limit: "+5 minutes"
 
@@ -69,6 +81,10 @@ dev:
   www_domain: "www.collectorsquest.dev"
   static_domain: "www.collectorsquest.dev"
   multimedia_domain: "multimedia.cqcdns.dev"
+
+  ssl_redirect:
+    # do not force SSL on collectorsquest.dev
+    secure: ~
 
   credentials:
     rpxnow:
