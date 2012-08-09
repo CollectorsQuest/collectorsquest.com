@@ -345,18 +345,15 @@ class sellerActions extends cqFrontendActions
 
       case 'ipn':
 
-        include 'lib/vendor/PayPalIPN.class.php';
-
-        // intantiate the IPN listener
-        $ipn = new PayPalIPN();
-
-        // tell the IPN listener to use the PayPal test sandbox or not
-        $ipn->use_sandbox = sfConfig::get('app_paypal_sandbox', true);
-
-        // try to process the IPN post
         try
         {
+          // Intantiate the IPN listener
+          $ipn = cqStatic::getPayPalIPNClient();
+
+          // Check if the request is a valid POST
           $ipn->requirePostMethod();
+
+          // Finally process the IPN and see if it is valid
           $verified = $ipn->processIpn();
         }
         catch (Exception $e)
