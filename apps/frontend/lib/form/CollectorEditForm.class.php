@@ -454,7 +454,7 @@ class CollectorEditForm extends CollectorForm
       )
     );
 
-    $AdaptivePayments = cqStatic::getPayPaylAdaptivePaymentsClient();
+    $AdaptivePayments = cqStatic::getPayPalAdaptivePaymentsClient();
     $result = $AdaptivePayments->GetVerifiedStatus($data);
 
     if ($AdaptivePayments->APICallSuccessful($result['Ack']))

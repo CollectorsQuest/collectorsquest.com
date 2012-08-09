@@ -289,7 +289,7 @@ class sellerActions extends cqFrontendActions
     );
     $PayPalRequestData = array('GetShippingAddressFields' => $GetShippingAddressFields);
 
-    $AdaptivePayments = cqStatic::getPayPaylAdaptivePaymentsClient();
+    $AdaptivePayments = cqStatic::getPayPalAdaptivePaymentsClient();
     $result = $AdaptivePayments->GetShippingAddress($PayPalRequestData);
 
     dd($result);
