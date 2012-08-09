@@ -32,12 +32,12 @@ class PackagePeer extends BasePackagePeer
         }
 
         $price = sprintf('<span class="old-price">%s</span> <span class="current-price">%s</span>',
-          money_format('%.2n', $package->getPackagePrice()),
-          0 < $discountedPrice ? money_format('%.2n', $discountedPrice) : 'Free');
+          number_format($package->getPackagePrice(), 2),
+          0 < $discountedPrice ? number_format($discountedPrice, 2) : 'Free');
       }
       else
       {
-        $price = money_format('%.2n', $package->getPackagePrice());
+        $price = number_format($package->getPackagePrice(), 2);
       }
 
       $packages[$package->getId()] = sprintf('%s ‒ %s', $price, $package->getPackageName());

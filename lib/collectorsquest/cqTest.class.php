@@ -32,6 +32,7 @@ class cqTest
           'collector_profile_extra_property'
         ));
         break;
+
       case 'Collection':
         self::resetTables(array(
           'collection',
@@ -42,6 +43,7 @@ class cqTest
           'collector_collection',
         ));
         break;
+
       case 'Collectible':
         self::resetTables(array(
           'collector',
@@ -52,6 +54,10 @@ class cqTest
           'collectible_for_sale',
           'collectible_for_sale_archive'
         ));
+        break;
+
+      default:
+        self::resetTables(sfInflector::tableize($class));
         break;
     }
   }

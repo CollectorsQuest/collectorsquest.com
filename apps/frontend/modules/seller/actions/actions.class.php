@@ -19,7 +19,7 @@ class sellerActions extends cqFrontendActions
 
   public function executeIndex()
   {
-    $this->redirect('@mycq_marketplace');
+    return $this->redirect('@mycq_marketplace');
   }
 
   public function executeSignup()
@@ -72,8 +72,6 @@ class sellerActions extends cqFrontendActions
       }
       else
       {
-
-
         $packagesForm->bind($request->getParameter($packagesForm->getName()));
 
         if ($packagesForm->isValid())
@@ -109,16 +107,15 @@ class sellerActions extends cqFrontendActions
               'success', 'Congratulations! You’ve received a free subscription!'
             );
 
-            $this->redirect('@mycq_marketplace');
+            return $this->redirect('@mycq_marketplace');
           }
           else if ('paypal' == $packagesForm->getValue('payment_type'))
           {
             //2.2. If paypal - redirect to paypal
             $this->packageTransaction = $transaction;
             $this->promotion = $promotion;
-            $this->setTemplate('redirect');
 
-            return sfView::SUCCESS;
+            return 'RedirectToPaypal';
           }
           else if ('cc' == $packagesForm->getValue('payment_type'))
           {
@@ -220,7 +217,8 @@ class sellerActions extends cqFrontendActions
               }
 
               $this->getUser()->setFlash('success', 'Thanks! Your payment has been received!');
-              $this->redirect('@mycq_marketplace');
+
+              return $this->redirect('@mycq_marketplace');
             }
             else
             {
@@ -232,10 +230,9 @@ class sellerActions extends cqFrontendActions
               );
 
               $this->packagesForm = $packagesForm;
+
               return sfView::SUCCESS;
             }
-            //@todo redirect on success
-
           }
           //2.4. Not supported payment method used
           else
@@ -280,7 +277,7 @@ class sellerActions extends cqFrontendActions
       $this->getUser()->setFlash('error', 'There is no active order');
     }
 
-    $this->redirect('@mycq');
+    return $this->redirect('@mycq');
   }
 
   /**
@@ -294,8 +291,8 @@ class sellerActions extends cqFrontendActions
   {
     if ('COMPLETED' != strtoupper($request->getParameter('payment_status')))
     {
-      $this->getUser()->setFlash('success', 'The payment was not successful!');
-      $this->redirect('@seller_become');
+      $this->getUser()->setFlash('error', 'The payment was not successful!');
+      return $this->redirect('@seller_become');
     }
 
     $this->forward404Unless($request->hasParameter('invoice'));
@@ -334,7 +331,7 @@ class sellerActions extends cqFrontendActions
       $promotion->save();
     }
 
-    $this->redirect('@mycq_collections');
+    return $this->redirect('@mycq_collections');
   }
 
   public function executeShoppingOrders()

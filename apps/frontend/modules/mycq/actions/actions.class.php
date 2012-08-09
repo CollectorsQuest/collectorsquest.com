@@ -4,6 +4,10 @@ class mycqActions extends cqFrontendActions
 {
   public function executeIndex()
   {
+    // Redirect to Collections if the homepage is not allowed
+    $this->redirectUnless(IceGateKeeper::open('mycq_homepage'), '@mycq_collections');
+
+    // Set the "home" as the active mycq menu item
     SmartMenu::setSelected('mycq_menu', 'home');
 
     $this->collector = $this->getUser()->getCollector();
@@ -670,6 +674,20 @@ class mycqActions extends cqFrontendActions
       ->filterByCollectorId($this->getCollector()->getId());
 
     $this->purchases_total = $q->count();
+
+    return sfView::SUCCESS;
+  }
+
+  public function executeMarketplacePackages()
+  {
+    SmartMenu::setSelected('mycq_menu', 'marketplace');
+
+    $this->package_transactions = PackageTransactionQuery::create()
+      ->filterByCollector($this->getCollector())
+      ->_if('dev' != sfConfig::get('sf_environment'))
+        ->paidFor()
+      ->_endif()
+      ->find();
 
     return sfView::SUCCESS;
   }

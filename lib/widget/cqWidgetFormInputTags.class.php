@@ -80,8 +80,20 @@ $(document).ready(function() {
   });
 
   // fake tabbing into the tags input
-  $('#%s').attr('tabIndex', %d).on('focus', function() {
-    $(this).find('ul').click();
+  $('#%s').attr('tabIndex', %d).on('mousedown', function() {
+    var \$this = $(this);
+
+    if (!\$this.is(':focus')) {
+      \$this.data('clicked', true);
+    }
+  }).on('focus', function() {
+    var \$this = $(this),
+        is_click = \$this.data('clicked');
+
+    \$this.removeData('clicked');
+    if (!is_click) {
+      \$this.find('ul').trigger('click');
+    }
   });
 
   // consider tabbing out of input when there is something entered in it to be
@@ -99,6 +111,7 @@ $(document).ready(function() {
 
     return true;
   });
+
 });
 </script>
 

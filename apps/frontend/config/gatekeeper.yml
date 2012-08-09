@@ -20,7 +20,7 @@ next:
     mycq_homepage: false
     mycq_marketplace: true
     mycq_wanted: false
-    mycq_seller_pay: false
+    mycq_seller_pay: true
     mycq_profile_addresses: false
     collectible_shipping: true
     collectible_allow_no_shipping: true
@@ -31,10 +31,10 @@ dev:
   features:
     shopping_cart: true
     shopping_checkout_help: false
-    mycq_homepage: true
+    mycq_homepage: false
     mycq_marketplace: true
     mycq_wanted: false
-    mycq_seller_pay: false
+    mycq_seller_pay: true
     mycq_profile_addresses: false
     collectible_shipping: true
     collectible_allow_no_shipping: true
