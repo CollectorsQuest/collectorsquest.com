@@ -7,10 +7,10 @@
   </p>
 
   <p>
-    Thanks for purchasing credits on Collectors Quest! We hope you enjoy continuing to sell your neat
+    Thanks for purchasing listings on Collectors Quest! We hope you enjoy continuing to sell your neat
     stuff to our audience of passionate, active collectors. Here’s your package information:<br/><br/>
 
-    Number of credits:
+    Number of listings:
     {% if package_transaction.credits >= 9999 %}
       <strong>Unlimited</strong><br/>
     {% else %}
@@ -18,7 +18,7 @@
     {% endif %}
 
     Pricing level: <strong>${{ package.packagePrice }}</strong><br/>
-    Expiry date: <strong>{{ package_transaction.expiryDate|date('m/d/Y') }}</strong>
+    Expiration date: <strong>{{ package_transaction.expiryDate|date('m/d/Y') }}</strong>
   </p>
 
   <p>Happy selling!</p>

@@ -39,7 +39,7 @@ class sellerActions extends cqFrontendActions
   {
     $packagesForm = new SellerPackagesForm();
 
-    if (sfRequest::POST == $request->getMethod())
+    if ($request->isMethod('post'))
     {
       if ('applyPromo' == $request->getParameter('applyPromo', false))
       {
@@ -50,23 +50,10 @@ class sellerActions extends cqFrontendActions
         {
           $promotion = $packagesForm->getPromotion();
           $package = $packagesForm->getPackage();
-          $afterDiscountPrice = $package->getPackagePrice();
 
           if ($promotion)
           {
             $package->applyPromo($promotion);
-            $afterDiscountPrice = $package->getPackagePrice() - $package->getDiscount();
-            $freeSubscription = (boolean) ($afterDiscountPrice <= 0);
-
-//            if ($freeSubscription)
-//            {
-//              $this->discountMessage = 'Free Subscription!';
-//            }
-//            else
-//            {
-//              $this->discountMessage = sprintf('%d%s discount', $promotion->getAmount(),
-//                PromotionPeer::DISCOUNT_FIXED == $package->getDiscountType() ? '$' : '%');
-//            }
           }
         }
       }
@@ -100,11 +87,13 @@ class sellerActions extends cqFrontendActions
 
             if (!$sent)
             {
-              $this->logMessage(sprintf('Email about package confirmation to %s not sent', $collector->getEmail()));
+              $this->logMessage(sprintf(
+                 'Email about package confirmation to %s not sent', $collector->getEmail()
+              ));
             }
 
             $this->getUser()->setFlash(
-              'success', 'Congratulations! You’ve received a free subscription!'
+              'success', 'Congratulations! You have received a free subscription!'
             );
 
             return $this->redirect('@mycq_marketplace');
@@ -115,13 +104,42 @@ class sellerActions extends cqFrontendActions
             $this->packageTransaction = $transaction;
             $this->promotion = $promotion;
 
+            $this->return_url = $this->generateUrl(
+              'seller_payment_paypal',
+              array('id' => $transaction->getId(), 'cmd' => 'return', 'encrypt' => true),
+              true
+            );
+
+            $this->cancel_return_url = $this->generateUrl(
+              'seller_payment_paypal',
+              array('id' => $transaction->getId(), 'cmd' => 'cancel', 'encrypt' => true),
+              true
+            );
+
+            if ($domain = sfConfig::get('app_paypal_ipn_domain'))
+            {
+              $this->notify_url = $domain . $this->generateUrl(
+                'seller_payment_paypal',
+                array('id' => $transaction->getId(), 'cmd' => 'ipn', 'encrypt' => true),
+                false
+              );
+            }
+            else
+            {
+              $this->notify_url = $this->generateUrl(
+                'seller_payment_paypal',
+                array('id' => $transaction->getId(), 'cmd' => 'ipn', 'encrypt' => true),
+                true
+              );
+            }
+
             $this->setLayout('layout-minimal');
 
             return 'RedirectToPaypal';
           }
           else if ('cc' == $packagesForm->getValue('payment_type'))
           {
-            //2.3. If cc - try to pay
+            // 2.3. If cc - try to pay
             //@todo replace cc payment with method
             //@todo cc payment
 
@@ -168,16 +186,20 @@ class sellerActions extends cqFrontendActions
               'taxamt'       => 0.00, // Required if you specify itemized cart tax details. Sum of tax for all items on the order.  Total sales tax.
               'desc'         => sprintf('Package %s order', $package->getPackageName()), // Description of the order the customer is purchasing.  127 char max.
               'invnum'       => $transaction->getId(), // Your own invoice or tracking number
-              'notifyurl'    => $this->generateUrl('seller_callback_ipn', array(), true) // URL for receiving Instant Payment Notifications.  This overrides what your profile is set to use.
+              'notifyurl'    => $this->generateUrl(
+                'seller_payment_paypal',
+                array('id' => $transaction->getId(), 'cmd' => 'ipn', 'encrypt' => true),
+                true
+              )
             );
 
             $orderItems = array(
               array(
-                'l_name'                 => $package->getPackageName(), // Item Name.  127 char max.
-                'l_amt'                  => $transaction->getPackagePrice(), // Cost of individual item.
-                'l_number'               => $package->getId(), // Item Number.  127 char max.
-                'l_qty'                  => '1', // Item quantity.  Must be any positive integer.
-                'l_taxamt'               => 0, // Item's sales tax amount.
+                'l_name'    => $package->getPackageName(), // Item Name.  127 char max.
+                'l_amt'     => $transaction->getPackagePrice(), // Cost of individual item.
+                'l_number'  => $package->getId(), // Item Number.  127 char max.
+                'l_qty'     => '1', // Item quantity.  Must be any positive integer.
+                'l_taxamt'  => 0, // Item's sales tax amount.
               )
             );
 
@@ -191,7 +213,7 @@ class sellerActions extends cqFrontendActions
               'OrderItems'     => $orderItems,
             ));
 
-            if ('SUCCESS' == strtoupper($paypalResult["ACK"]))
+            if ('SUCCESS' === strtoupper($paypalResult['ACK']))
             {
               // Save package information with payment status paid while payment successfully done.
               $transaction->setPaymentStatus(PackageTransactionPeer::PAYMENT_STATUS_PAID);
@@ -203,9 +225,8 @@ class sellerActions extends cqFrontendActions
               $collector->save();
 
               // Send Mail To Seller
-              //@todo send email on success
               $cqEmail = new cqEmail($this->getMailer());
-              $sent = $cqEmail->send('Seller/package_confirmation', array(
+              $cqEmail->send('Seller/package_confirmation', array(
                 'to'     => $collector->getEmail(),
                 'params' => array(
                   'collector' => $collector,
@@ -213,19 +234,15 @@ class sellerActions extends cqFrontendActions
                 ),
               ));
 
-              if (!$sent)
-              {
-                $this->logMessage(sprintf('Email about package confirmation to %s not sent', $collector->getEmail()));
-              }
-
-              $this->getUser()->setFlash('success', 'Thanks! Your payment has been received!');
+              $this->getUser()->setFlash(
+                'success', 'Thank you for your payment!
+                            You can now start listing items for sale in the Market Place.'
+              );
 
               return $this->redirect('@mycq_marketplace');
             }
             else
             {
-              $this->sendEmail(sfConfig::get('app_ice_libs_emails_notify'), 'CC DEBUG', var_export($paypalResult, true));
-
               $this->getUser()->setFlash(
                 'error', 'Your payment could not be processed.
                           Please check your credit card information and try again.'
@@ -249,91 +266,8 @@ class sellerActions extends cqFrontendActions
     }
 
     $this->packagesForm = $packagesForm;
+
     return sfView::SUCCESS;
-  }
-
-  /**
-   * Action CancelPayment
-   *
-   * @param sfWebRequest $request
-   *
-   * @return string
-   */
-  public function executeCancelPayment(sfWebRequest $request)
-  {
-    $packageTransaction = PackageTransactionQuery::create()
-        ->filterByCollector($this->getCollector())
-        ->filterById($request->getParameter('id'))
-        ->filterByPaymentStatus(PackageTransactionPeer::PAYMENT_STATUS_PENDING)
-        ->findOne();
-
-    if ($packageTransaction)
-    {
-      $packageTransaction->setPaymentStatus(PackageTransactionPeer::PAYMENT_STATUS_CANCELLED);
-      $packageTransaction->save();
-
-      $this->getUser()->setFlash('success', 'Order canceled successfully.');
-    }
-    else
-    {
-      $this->getUser()->setFlash('error', 'There is no active order');
-    }
-
-    return $this->redirect('@mycq');
-  }
-
-  /**
-   * Action CallbackIPN
-   *
-   * @param sfWebRequest $request
-   *
-   * @return string
-   */
-  public function executeCallbackIPN(sfWebRequest $request)
-  {
-    if ('COMPLETED' != strtoupper($request->getParameter('payment_status')))
-    {
-      $this->getUser()->setFlash('error', 'The payment was not successful!');
-      return $this->redirect('@seller_become');
-    }
-
-    $this->forward404Unless($request->hasParameter('invoice'));
-
-    $packageTransaction = PackageTransactionPeer::retrieveByPK($request->getParameter('invoice'));
-    $this->forward404Unless((boolean) $packageTransaction);
-
-    $collector = $packageTransaction->getCollector();
-    $package = $packageTransaction->getPackage();
-
-    $collector->setUserType(CollectorPeer::TYPE_SELLER);
-    $collector->setItemsAllowed($package->getCredits());
-    $collector->save();
-
-    $packageTransaction->setPackagePrice($request->getParameter('mc_gross'));
-    $packageTransaction->setPaymentStatus(PackageTransactionPeer::PAYMENT_STATUS_PAID);
-    $packageTransaction->save();
-
-    // Send Mail To Seller
-    $cqEmail = new cqEmail($this->getMailer());
-    $sent = $cqEmail->send('Seller/package_confirmation', array(
-      'to'     => $collector->getEmail(),
-      'params' => array(
-        'collector' => $collector,
-        'package_transaction' => $packageTransaction
-      ),
-    ));
-
-    // Deduct Number of time used promo code.
-    if ($request->getParameter('option_name1', false) &&
-        $promotion = PromotionPeer::retrieveByPK($request->getParameter('option_name1'))
-    )
-    {
-
-      $promotion->setNoOfTimeUsed($promotion->getNoOfTimeUsed() - 1);
-      $promotion->save();
-    }
-
-    return $this->redirect('@mycq_collections');
   }
 
   public function executeShoppingOrders()
@@ -363,4 +297,122 @@ class sellerActions extends cqFrontendActions
     return sfView::SUCCESS;
   }
 
+  public function executePaypal(sfWebRequest $request)
+  {
+    /** @var $package_transaction PackageTransaction */
+    $package_transaction = $this->getRoute()->getObject();
+
+    /** @var $cmd string */
+    $cmd = strtolower($request->getParameter('cmd'));
+
+    switch ($cmd)
+    {
+      case 'return':
+
+        if ($package_transaction->getPaymentStatus() === PackageTransactionPeer::PAYMENT_STATUS_PAID)
+        {
+          $this->getUser()->setFlash(
+            'success',
+            'Thank you for your payment!
+             You can now start listing items for sale in the Market Place.',
+            true
+          );
+        }
+        else if ($package_transaction->getPaymentStatus() === PackageTransactionPeer::PAYMENT_STATUS_PENDING)
+        {
+          $this->getUser()->setFlash(
+            'success',
+            'You payment is currently being processed.
+             You will receive a confirmation email upon successful completion of your package purchase.',
+            true
+          );
+        }
+
+        return $this->redirect('@mycq_marketplace');
+        break;
+
+      case 'cancel':
+
+        $package_transaction->setPaymentStatus(PackageTransactionPeer::PAYMENT_STATUS_CANCELLED);
+        $package_transaction->save();
+
+        $this->getUser()->setFlash(
+          'error', 'You did not complete your payment!', true
+        );
+
+        return $this->redirect('@seller_packages');
+        break;
+
+      case 'ipn':
+
+        include 'lib/vendor/PayPalIPN.class.php';
+
+        // intantiate the IPN listener
+        $ipn = new PayPalIPN();
+
+        // tell the IPN listener to use the PayPal test sandbox or not
+        $ipn->use_sandbox = sfConfig::get('app_paypal_sandbox', true);
+
+        // try to process the IPN post
+        try
+        {
+          $ipn->requirePostMethod();
+          $verified = $ipn->processIpn();
+        }
+        catch (Exception $e)
+        {
+          $verified = false;
+        }
+
+        if ($verified && 'COMPLETED' === strtoupper($request->getParameter('payment_status')))
+        {
+          $collector = $package_transaction->getCollector();
+          $package = $package_transaction->getPackage();
+
+          $collector->setUserType(CollectorPeer::TYPE_SELLER);
+          $collector->setItemsAllowed($package->getCredits());
+          $collector->save();
+
+          $package_transaction->setPackagePrice($request->getParameter('mc_gross'));
+          $package_transaction->setPaymentStatus(PackageTransactionPeer::PAYMENT_STATUS_PAID);
+          $package_transaction->save();
+
+          if (!$collector->getSellerSettingsPaypalEmail())
+          {
+            $collector->setSellerSettingsPaypalAccountStatus(strtoupper($request->getParameter('payer_status')));
+            $collector->setSellerSettingsPaypalAccountId($request->getParameter('payer_id'));
+            $collector->setSellerSettingsPaypalBusinessName('');
+            $collector->setSellerSettingsPaypalEmail($request->getParameter('payer_email'));
+            $collector->setSellerSettingsPaypalFirstName($request->getParameter('first_name'));
+            $collector->setSellerSettingsPaypalLastName($request->getParameter('last_name'));
+            $collector->save();
+          }
+
+          // Send Mail To Seller
+          $cqEmail = new cqEmail($this->getMailer());
+          $cqEmail->send('Seller/package_confirmation', array(
+            'to'     => $collector->getEmail(),
+            'params' => array(
+              'collector' => $collector,
+              'package_transaction' => $package_transaction
+            ),
+          ));
+
+          // Deduct Number of time used promo code.
+          if (
+            $request->getParameter('custom', false) &&
+            ($promotion = PromotionPeer::retrieveByPK($request->getParameter('custom')))
+          )
+          {
+            $promotion->setNoOfTimeUsed($promotion->getNoOfTimeUsed() - 1);
+            $promotion->save();
+          }
+        }
+
+        return sfView::NONE;
+        break;
+    }
+
+    return sfView::ERROR;
+  }
 }

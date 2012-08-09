@@ -245,5 +245,11 @@ $(document).ready(function() {
   });
 
   $('#pending-transaction-warning').effect("highlight", {}, 3000);
+
+  $('#form-seller-packages').submit(function()
+  {
+    $(this).showLoading();
+    $('.btn-primary', $(this)).button('loading');
+  });
 });
 </script>

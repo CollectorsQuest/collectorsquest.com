@@ -379,3 +379,6 @@ dev:
 
   ice_assets:
     domain: "cqcdns.dev"
+
+  paypal:
+    ipn_domain: 'http://221.58.193.147'

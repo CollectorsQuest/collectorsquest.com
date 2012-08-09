@@ -92,13 +92,15 @@ class SellerPackagesForm extends BaseForm
       'label'=> 'Promo code',
     ), array(
       'required' => 'required',
-      'placeholder' => 'Enter Your Promo Code',
+      'placeholder' => 'enter your promo code here',
     )));
     $this->setValidator('promo_code', new sfValidatorString(
       array('required'=> false),
       array('required' => 'The promo code is required while we are in private beta!')
     ));
-    $this->mergePreValidator(new sfValidatorCallback(array('callback'=> array($this, 'applyPromoCode'))));
+    $this->mergePreValidator(
+      new sfValidatorCallback(array('callback'=> array($this, 'applyPromoCode')))
+    );
   }
 
   private function setupPaymentTypeField()
@@ -111,7 +113,9 @@ class SellerPackagesForm extends BaseForm
       ),
     )));
 
-    $this->setValidator('payment_type', new sfValidatorChoice(array('choices'=> array_keys($this->getPaymentTypes()))));
+    $this->setValidator(
+      'payment_type', new sfValidatorChoice(array('choices'=> array_keys($this->getPaymentTypes())))
+    );
   }
 
   private function setupCardTypeField()
@@ -122,7 +126,9 @@ class SellerPackagesForm extends BaseForm
       ), array(
         'placeholder' => 'credit/debit card type',
     )));
-    $this->setValidator('cc_type', new sfValidatorChoice(array('choices'=> array_keys($this->getCardTypes()))));
+    $this->setValidator(
+      'cc_type', new sfValidatorChoice(array('choices'=> array_keys($this->getCardTypes())))
+    );
   }
 
   private function setupCardNumberField()
@@ -284,6 +290,8 @@ class SellerPackagesForm extends BaseForm
     }
 
     $promo = PromotionPeer::findByPromotionCode($values['promo_code']);
+
+    /** @var $collector Collector */
     $collector = sfContext::getInstance()->getUser()->getCollector();
     $error = false;
 
@@ -322,11 +330,19 @@ class SellerPackagesForm extends BaseForm
         }
         else if (IceGateKeeper::locked('mycq_seller_pay'))
         {
-          throw new sfValidatorErrorSchema($validator, array('promo_code' => new sfValidatorError($validator, 'This promo code cannot be used in beta testing mode!')));
+          throw new sfValidatorErrorSchema(
+            $validator, array(
+              'promo_code' => new sfValidatorError(
+                $validator, 'This promo code cannot be used in beta testing mode!'
+              )
+            )
+          );
         }
       }
 
-      $this->getWidget('package_id')->setOption('choices', PackagePeer::getAllPackagesForSelectGroupedByPlanType($promo));
+      $this->getWidget('package_id')->setOption(
+        'choices', PackagePeer::getAllPackagesForSelectGroupedByPlanType($promo)
+      );
     }
     else
     {
@@ -340,7 +356,10 @@ class SellerPackagesForm extends BaseForm
 
   public function setPartialRequirements()
   {
-    $fields = array('package_id', 'payment_type', 'cc_type', 'cc_number', 'expiry_date', 'cvv_number', 'first_name', 'last_name', 'street', 'city', 'state', 'zip', 'country', 'terms');
+    $fields = array(
+      'package_id', 'payment_type', 'cc_type', 'cc_number', 'expiry_date', 'cvv_number',
+      'first_name', 'last_name', 'street', 'city', 'state', 'zip', 'country', 'terms', 'fyi'
+    );
     foreach ($fields as $field)
     {
       $this->getValidator($field)->setOption('required', false);
@@ -351,14 +370,18 @@ class SellerPackagesForm extends BaseForm
   {
     if (!isset($taintedValues['payment_type']) || 'cc' != $taintedValues['payment_type'])
     {
-      $fields = array('cc_type', 'cc_number', 'expiry_date', 'cvv_number', 'first_name', 'last_name', 'street', 'city', 'state', 'zip', 'country');
+      $fields = array(
+        'cc_type', 'cc_number', 'expiry_date', 'cvv_number', 'first_name',
+        'last_name', 'street', 'city', 'state', 'zip', 'country'
+      );
+
       foreach ($fields as $field)
       {
         $this->getValidator($field)->setOption('required', false);
       }
     }
 
-    return parent::bind($taintedValues, $taintedFiles);
+    parent::bind($taintedValues, $taintedFiles);
   }
 
   protected function setupPendingTransactionConfirmationField()

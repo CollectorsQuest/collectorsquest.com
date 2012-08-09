@@ -13,7 +13,7 @@ class CollectibleForSaleEditForm extends CollectibleForSaleForm
     $this->mergePostValidator(new sfValidatorCallback(array(
         'callback' => array($this, 'validateIsReadyField')
       ), array(
-        'invalid' => "Please purchase credits if you'd like to sell this item.",
+        'invalid' => "Please purchase a seller package if you'd like to sell this item.",
     )));
 
     // validate the collector has setup his paypal info
