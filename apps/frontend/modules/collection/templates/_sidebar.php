@@ -29,6 +29,16 @@
 
 <?php
   include_component(
+    '_sidebar', 'widgetCollectiblesForSale',
+    array(
+      'collection' => $collection, 'limit' => 3,
+      'fallback' => 'random'
+    )
+  );
+?>
+
+<?php
+  include_component(
     '_sidebar', 'widgetCollections',
     array('collection' => $collection, 'limit' => 5)
   );
