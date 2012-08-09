@@ -23,7 +23,7 @@ all:
 signupSuccess:
   components:
     slot1: []
-    sidebar_300: [seller, sidebarSignup]
+    footer: []
 
 # packagesSuccess:
 #   javascripts: [/assets/js/jquery/creditCardValidator.js]
