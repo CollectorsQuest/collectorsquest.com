@@ -21,7 +21,7 @@
   <div class="row-fluid">
     <div class="span9">
       <div class="row-fluid profile-info">
-        <div class="span4 thumbnail" style="margin-top: -55px; background: #fff;">
+        <div class="span4 thumbnail profile-avatar">
           <?= image_tag_collector($collector, '235x315', array('max_width' => 138, 'max_height' => 185)) ?>
         </div>
         <div class="span8 spacer-inner-top">
