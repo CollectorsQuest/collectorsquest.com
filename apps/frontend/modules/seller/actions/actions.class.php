@@ -14,7 +14,7 @@ class sellerActions extends cqFrontendActions
   {
     $this->redirectIf(IceGateKeeper::locked('mycq_marketplace'), '@mycq');
 
-    SmartMenu::setSelected('mycq_menu', 'marketplace');
+    // SmartMenu::setSelected('mycq_menu', 'marketplace');
   }
 
   public function executeIndex()
@@ -114,6 +114,8 @@ class sellerActions extends cqFrontendActions
             //2.2. If paypal - redirect to paypal
             $this->packageTransaction = $transaction;
             $this->promotion = $promotion;
+
+            $this->setLayout('layout-minimal');
 
             return 'RedirectToPaypal';
           }

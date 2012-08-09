@@ -53,7 +53,7 @@ all:
 
     mycq_marketplace_tabs:
       items:
-        collectibles_for_sale:   { name: "Items for Sale", uri: "@mycq_marketplace" }
+        collectibles_for_sale:   { name: "Items for Sale / Sold", uri: "@mycq_marketplace" }
         # collectibles_sold:       { name: "Sold Items", uri: "@mycq_marketplace_sold" }
         collectibles_purchased:  { name: "Purchases", uri: "@mycq_marketplace_purchased", check_lock: shopping_cart }
         packages:                { name: "Packages",  uri: "@mycq_marketplace_packages", check_lock: shopping_cart }
