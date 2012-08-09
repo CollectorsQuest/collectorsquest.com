@@ -60,30 +60,29 @@
         </div>
       </div>
     </div>
+    <div class="row-fluid spacer-top-20">
+      <div class="span3 text-center">
+        <button type="submit" class="btn btn-primary" value="Order now">
+          <span>Order now</span>
+        </button>
+      </div>
+      <div class="span3 text-center">
+        <button type="submit" class="btn btn-primary" value="Order now">
+          <span>Order now</span>
+        </button>
+      </div>
+      <div class="span3 text-center">
+        <button type="submit" class="btn btn-primary" value="Order now">
+          <span>Order now</span>
+        </button>
+      </div>
+      <div class="span3 text-center">
+        <button type="submit" class="btn btn-primary" value="Order now">
+          <span>Order now</span>
+        </button>
+      </div>
+    </div>
   </div>
-  <div class="row-fluid spacer-top-20">
-    <div class="span3 text-center">
-      <button type="submit" class="btn btn-primary" value="Order now">
-        <span>Order now</span>
-      </button>
-    </div>
-    <div class="span3 text-center">
-      <button type="submit" class="btn btn-primary" value="Order now">
-        <span>Order now</span>
-      </button>
-    </div>
-    <div class="span3 text-center">
-      <button type="submit" class="btn btn-primary" value="Order now">
-        <span>Order now</span>
-      </button>
-    </div>
-    <div class="span3 text-center">
-      <button type="submit" class="btn btn-primary" value="Order now">
-        <span>Order now</span>
-      </button>
-    </div>
-  </div>
-
   <div class="wrapper-bottom">
     <?php
     cq_sidebar_title(
