@@ -16,14 +16,13 @@
       <?php
         echo link_to(
           cqStatic::truncateText(
-            $shopping_order->getCollectible()->getName(), 18, '...', true
+            $shopping_order->getCollectible()->getName(), 30, '...', true
           ),
           'mycq_collectible_by_slug', $shopping_order->getCollectible(),
           array('class' => 'target')
         );
       ?>
-      <br/>
-      <strong class="pull-right">
+      <strong class="pull-right spacer-top">
         <?= money_format('%.2n', (float) $shopping_order->getCollectibleForSale()->getPrice()); ?>
       </strong>
     </p>
