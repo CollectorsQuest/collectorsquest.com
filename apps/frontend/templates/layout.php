@@ -105,10 +105,10 @@
     }
   ?>
 
+  <?php include_partial('global/flash_messages'); ?>
+  
   <div id="main">
     <?php
-      include_partial('global/flash_messages');
-
       /** @var $sf_content string */
       echo $sf_content;
     ?>
