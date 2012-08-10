@@ -5,6 +5,7 @@
  */
 ?>
 
+<div id="collectibles-for-sale">
 <?php
   cq_sidebar_title(
     $title, cq_link_to(
@@ -48,4 +49,6 @@
     </div>
   </div>
 <?php endforeach; ?>
+</div>
+
 </div>

@@ -1,3 +1,10 @@
+<script>
+$( document ).ready(function() 
+{
+	window.SIDEBAR_HEIGHT.init(); 
+});
+</script>
+
 <?php
 /**
  * @var $collection CollectorCollection

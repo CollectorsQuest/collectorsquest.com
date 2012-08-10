@@ -1,3 +1,4 @@
+<div id="collections-of-interest">
 
 <?php cq_sidebar_title('Collections of Interest') ?>
 
@@ -40,6 +41,8 @@
     </div>
   </div>
 <?php endforeach; ?>
+
+</div>
 
 
 

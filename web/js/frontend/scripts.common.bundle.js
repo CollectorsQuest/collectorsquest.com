@@ -18,3 +18,5 @@ $.support.transition = false;
 <!--#include virtual="application.js" -->
 
 <!--#include virtual="controller.js" -->
+
+<!--#include virtual="sidebar-height.js" -->
