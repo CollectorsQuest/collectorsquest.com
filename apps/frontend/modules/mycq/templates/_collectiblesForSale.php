@@ -1,21 +1,15 @@
 
 <?php slot('mycq_create_collectible_for_sale'); ?>
-<div class="span4 thumbnail link mycq-create-collectible">
-  <div class="row-fluid spacer-inner-top-20">
-    <div class="span4">
-      <a href="<?php echo url_for('@ajax_mycq?section=component&page=createCollectibleForSale'); ?>"
-         id="collectible-create-icon" class="open-dialog btn-create-collection-middle spacer-left-20">
+<a href="<?php echo url_for('@ajax_mycq?section=component&page=createCollectibleForSale'); ?>"
+   id="collection-create-html" class="span3 collectible_sold_items_grid_view_square add-new-zone ui-droppable open-dialog"
+   title="Add a new Item for Sale by clicking here." onclick="return false;">
+      <span id="collection-create-icon" class="btn-upload-collectible spacer-top-40">
         <i class="icon-plus icon-white"></i>
-      </a>
-    </div>
-    <div class="span8">
-      <a href="<?php echo url_for('@ajax_mycq?section=component&page=createCollectibleForSale'); ?>"
-         id="collectible-create-link" class="open-dialog create-collection-text">
-        Add a new Item for Sale by clicking here.
-      </a>
-    </div>
-  </div>
-</div>
+      </span>
+      <span id="collection-create-link" class="btn-upload-collectible-txt spacer-top-20">
+        SALE ITEM
+      </span>
+</a>
 <?php end_slot(); ?>
 
 
@@ -23,40 +17,28 @@
 
   <?php foreach ($pager->getResults() as $i => $collectible_for_sale): ?>
 
-    <div class="span4 thumbnail link">
-      <div class="collectibles-container">
+  <div class="span3 collectible_sold_items_grid_view_square link">
+    <?php
+    echo link_to(image_tag_collectible(
+      $collectible_for_sale->getCollectible(), '140x140',
+      array('width' => 130, 'height' => 130)
+    ), 'mycq_collectible_by_slug', $collectible_for_sale->getCollectible());
+    ?>
+    <span class="for-sale">FOR SALE</span>
+      <p>
         <?php
-          $q = iceModelMultimediaQuery::create()
-            ->filterByModel('Collectible')
-            ->filterByModelId($collectible_for_sale->getCollectibleId())
-            ->orderByIsPrimary(Criteria::DESC)
-            ->orderByCreatedAt(Criteria::DESC);
-          $multimedia = $q->limit(2)->find();
-
-          for ($k = 0; $k < 3; $k++)
-          {
-            if (isset($multimedia[$k]))
-            {
-              echo link_to(image_tag_multimedia(
-                $multimedia[$k], '75x75',
-                array('max_width' => 64, 'max_height' => 64,)
-              ), url_for('mycq_collectible_by_slug', $collectible_for_sale->getCollectible()));
-            }
-            else
-            {
-              echo '<i class="icon icon-plus drop-zone" data-collectible-id="'.  $collectible_for_sale->getCollectibleId() .'"></i>';
-            }
-          }
+        echo link_to(
+          cqStatic::truncateText(
+            $collectible_for_sale->getCollectible()->getName(), 36, '...', true
+          ),
+          'mycq_collectible_by_slug', $collectible_for_sale->getCollectible(),
+          array('class' => 'target')
+        ) ;
         ?>
-      </div>
-      <span>
-        <a href="<?= url_for('mycq_collectible_by_slug', $collectible_for_sale->getCollectible()) ?>" class="target spacer-left-reset">
-          <?= Utf8::truncateHtmlKeepWordsWhole($collectible_for_sale->getName(), 32); ?>
-        </a>
-      </span>
-      <div class="prices">
+        <strong class="pull-right">
         <?= money_format('%.2n', (float) $collectible_for_sale->getPrice()); ?>
-      </div>
+        </strong>
+      </p>
     </div>
 
     <?php

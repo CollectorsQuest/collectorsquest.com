@@ -46,8 +46,8 @@
           </div>
         </div>
 
-        <div class="mycq-collectibles-for-sale">
-          <div class="row thumbnails">
+        <div class="row collectible-sell-sold-items">
+          <div class="row-content">
             <?php include_component('mycq', 'collectiblesForSalePurchased'); ?>
           </div>
         </div>

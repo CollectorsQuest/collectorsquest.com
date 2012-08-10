@@ -140,7 +140,7 @@
 
 	.tab-content-inner {
 		margin: 0 15px;
-		padding-top: 20px;
+		padding-top: 10px;
 		//padding-bottom: 10px;
 
 		.sort-search-box {
@@ -823,8 +823,44 @@ a.buy-credits-button {
 	}
 }
 
-.collectible_sold_items {
+.collectible-sell-sold-items {
 	margin-left: -13px;
+
+	.add-new-zone {
+		.size(171px, 124px);
+		margin-bottom: 13px;
+		margin-left: 13px;
+		padding: 6px;
+		border: 2px dashed @blue;
+		background-color: #fff;
+		&:hover {
+			background-color: #fff;
+			border: 2px solid @red;
+			.btn-upload-collectible, .btn-upload-collectible-txt
+			{
+				color: @red;
+			}
+		}
+	}
+	.btn-upload-collectible {
+		display: block;
+		margin-top: 0;
+		font-size: 60px;
+		line-height: 40px;
+		decoration: none;
+		text-align: center;
+		color: @blue;
+	}
+	.btn-upload-collectible-txt {
+		display: block;
+		width: 90%;
+		margin: 6px auto 0 auto;
+		font-size: 16px;
+		line-height: 28px;
+		font-weight: bold;
+		text-align: center;
+		color: @blue;
+	}
 }
 
 .collectible_sold_items_grid_view_square {
@@ -866,6 +902,17 @@ a.buy-credits-button {
 		color: white;
 		background-color: @red;
 	}
+	.for-sale {
+		position: absolute;
+		top: 12px;
+		left: -1px;
+		padding: 2px 6px;
+		font-size: 14px;
+		font-weight: bold;
+		color: white;
+		background-color: @blue;
+	}
+
 }
 
 .details-container {
