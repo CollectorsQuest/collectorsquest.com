@@ -79,6 +79,27 @@
 <script>
 $(document).ready(function()
 {
+  $("#collection-create-html").droppable(
+    {
+      activeClass: 'ui-state-hover',
+      over: function(event, ui)
+      {
+        $(this)
+          .addClass('ui-state-highlight')
+      },
+      out: function(event, ui)
+      {
+        $(this)
+          .removeClass('ui-state-highlight')
+      },
+      drop: function(event, ui)
+      {
+        $(this).removeClass('ui-state-highlight');
+        ui.draggable.draggable('option', 'revert', false);
+
+      }
+  });
+
   $('.dropdown-menu a.sortBy').click(function()
   {
     $('#sortByName').html($(this).data('name'));
