@@ -20,7 +20,7 @@
   }
 ?>
 
-<form action="<?= url_for('@ajax_mycq?section=component&page=createCollectibleForSale'); ?>"
+<form action="<?= url_for('@ajax_mycq?section=collectibleForSale&page=create'); ?>"
       method="post" id="form-create-collectible" class="ajax form-horizontal form-modal">
 
   <h1>Add a New Item for Sale</h1>

@@ -17,7 +17,7 @@
   }
 ?>
 
-<form action="<?= url_for('@ajax_mycq?section=component&page=createCollectible'); ?>"
+<form action="<?= url_for('@ajax_mycq?section=collectible&page=create'); ?>"
       method="post" id="form-create-collectible" class="ajax form-horizontal form-modal">
 
   <h1>Add a New Item</h1>

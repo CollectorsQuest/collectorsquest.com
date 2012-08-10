@@ -1,14 +1,14 @@
 
 <?php slot('mycq_create_collectible_for_sale'); ?>
-<a href="<?php echo url_for('@ajax_mycq?section=component&page=createCollectibleForSale'); ?>"
-   id="collection-create-html" class="span3 collectible_sold_items_grid_view_square add-new-zone ui-droppable open-dialog"
+<a href="<?php echo url_for('@ajax_mycq?section=collectibleForSale&page=create'); ?>"
+   id="collectible-create-html" class="span3 collectible_sold_items_grid_view_square add-new-zone ui-droppable open-dialog"
    title="Add a new Item for Sale by clicking here." onclick="return false;">
-      <span id="collection-create-icon" class="btn-upload-collectible">
-        <i class="icon-plus icon-white"></i>
-      </span>
-      <span id="collection-create-link" class="btn-upload-collectible-txt">
-        Add New<br> Item for Sale
-      </span>
+    <span id="collection-create-icon" class="btn-upload-collectible">
+      <i class="icon-plus icon-white"></i>
+    </span>
+    <span id="collection-create-link" class="btn-upload-collectible-txt">
+      Add New<br> Item for Sale
+    </span>
 </a>
 <?php end_slot(); ?>
 
@@ -119,50 +119,36 @@ $(document).ready(function()
 {
   $(document).controls();
 
-  $(".mycq-collectibles-for-sale .drop-zone").droppable(
-  {
-    over: function(event, ui)
+  $("#collectible-create-html").droppable(
     {
-      $(this)
-        .addClass('ui-state-highlight')
-        .removeClass('icon-plus')
-        .addClass('icon-download-alt');
-    },
-    out: function(event, ui)
-    {
-      $(this)
-        .removeClass('ui-state-highlight')
-        .removeClass('icon-download-alt')
-        .addClass('icon-plus');
-    },
-    drop: function(event, ui)
-    {
-      $(this)
-        .removeClass('ui-state-highlight')
-        .removeClass('icon-download-alt')
-        .addClass('icon-plus');
-      ui.draggable.draggable('option', 'revert', false);
+      activeClass: 'ui-state-hover',
+      over: function(event, ui)
+      {
+        $(this)
+          .addClass('ui-state-highlight')
+      },
+      out: function(event, ui)
+      {
+        $(this)
+          .removeClass('ui-state-highlight')
+      },
+      drop: function(event, ui)
+      {
+        $(this).removeClass('ui-state-highlight');
+        ui.draggable.draggable('option', 'revert', false);
 
-      $.ajax({
-        url: '<?php echo url_for('@ajax_mycq?section=collectible&page=donateImage'); ?>',
-        type: 'GET',
-        data: {
-          donor_id: ui.draggable.data('collectible-id'),
-          recipient_id: $(this).data('collectible-id')
-        },
-        success: function()
-        {
-          ui.draggable.draggable('option', 'revert', false);
-          ui.draggable.hide();
-        },
-        error: function()
-        {
-          ui.draggable.draggable('option', 'revert', true);
-          ui.draggable.show();
-        }
-      });
-    }
-  });
+        var href = $(this).attr('href');
+        href = href +'?collectible_id=' + ui.draggable.data('collectible-id');
+
+        var options = {
+          modal: true,
+          autOpen: true,
+          content: href
+        };
+
+        $("<div></div>").dialog2(options);
+      }
+    });
 
 });
 </script>

@@ -6,7 +6,7 @@
           if ($collectible->isForSale())
           {
             $link = link_to(
-              '<i class="icon-circle-arrow-left"></i> Go to Market', '@mycq_marketplace'
+              '<i class="icon-arrow-left"></i> Go to Market', '@mycq_marketplace'
             );
           }
           else
