@@ -11,7 +11,7 @@
         'mycq_collectible_by_slug', $shopping_order->getCollectible()
       );
     ?>
-    <span class="sold">PURCHASED</span>
+    <span class="purchased">PURCHASED</span>
     <p>
       <?php
         echo link_to(

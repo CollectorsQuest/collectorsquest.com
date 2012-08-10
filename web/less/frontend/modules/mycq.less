@@ -815,7 +815,6 @@ a.buy-credits-button {
 }
 
 #sold-items-box {
-	background-color: @yellowHighlight;
 	padding: 0 15px 10px 15px;
 
 	.sidebar-title {
@@ -893,7 +892,7 @@ a.buy-credits-button {
 		color: @blue;
 		.text-overflow();
 	}
-	.sold {
+	.labels-mysq-marketplace {
 		position: absolute;
 		top: 12px;
 		left: -1px;
@@ -901,16 +900,17 @@ a.buy-credits-button {
 		font-size: 14px;
 		font-weight: bold;
 		color: white;
+	}
+	.purchased {
+		.labels-mysq-marketplace();
 		background-color: @red;
 	}
+	.sold {
+		.labels-mysq-marketplace();
+		background-color: #57a957;
+	}
 	.for-sale {
-		position: absolute;
-		top: 12px;
-		left: -1px;
-		padding: 2px 6px;
-		font-size: 14px;
-		font-weight: bold;
-		color: white;
+		.labels-mysq-marketplace();
 		background-color: @blue;
 	}
 
