@@ -3,11 +3,11 @@
 <a href="<?php echo url_for('@ajax_mycq?section=component&page=createCollectibleForSale'); ?>"
    id="collection-create-html" class="span3 collectible_sold_items_grid_view_square add-new-zone ui-droppable open-dialog"
    title="Add a new Item for Sale by clicking here." onclick="return false;">
-      <span id="collection-create-icon" class="btn-upload-collectible spacer-top-40">
+      <span id="collection-create-icon" class="btn-upload-collectible">
         <i class="icon-plus icon-white"></i>
       </span>
-      <span id="collection-create-link" class="btn-upload-collectible-txt spacer-top-20">
-        SALE ITEM
+      <span id="collection-create-link" class="btn-upload-collectible-txt">
+        Add New<br> Item for Sale
       </span>
 </a>
 <?php end_slot(); ?>
