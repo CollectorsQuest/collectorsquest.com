@@ -45,7 +45,7 @@
           </div>
         </div>
 
-        <?php if ($sold_total > 1): ?>
+        <?php if ($sold_total >= 1): ?>
         <!-- Sold Items -->
             <div class="row-fluid sidebar-title spacer-inner-bottom spacer-inner-top">
               <div class="span5 link-align">
@@ -61,11 +61,9 @@
                 <?php include_component('mycq', 'collectiblesForSaleSold', array('seller' => $seller)); ?>
               </div>
             </div>
-
-
-
         <!-- /Sold Items -->
         <?php endif; ?>
+
       </div><!-- /.tab-content-inner -->
     </div><!-- .tab-pane.active -->
   </div><!-- .tab-content -->
