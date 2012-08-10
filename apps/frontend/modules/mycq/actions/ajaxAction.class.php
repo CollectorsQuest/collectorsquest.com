@@ -196,12 +196,12 @@ class ajaxAction extends cqAjaxAction
   {
     /** @var $recipient Collectible */
     $recipient = CollectibleQuery::create()
-      ->findOneById($this->getRequestParameter('recipient_id'));
+      ->findOneById($request->getParameter('recipient_id'));
     $this->forward404Unless($this->getUser()->isOwnerOf($recipient));
 
     /** @var $donor Collectible */
     $donor = CollectibleQuery::create()
-      ->findOneById($this->getRequestParameter('donor_id'));
+      ->findOneById($request->getParameter('donor_id'));
     $this->forward404Unless($this->getUser()->isOwnerOf($donor));
 
     /**
@@ -276,17 +276,18 @@ class ajaxAction extends cqAjaxAction
   }
 
   /**
+   * @param  sfWebRequest  $request
    * @return string
    */
-  protected function executeCollectibleDelete()
+  protected function executeCollectibleDelete(sfWebRequest $request)
   {
     /** @var $collectible Collectible */
     $collectible = CollectibleQuery::create()
-      ->findOneById($this->getRequestParameter('collectible_id'));
+      ->findOneById($request->getParameter('collectible_id'));
     $this->forward404Unless($collectible instanceof Collectible);
 
     $collection = CollectorCollectionQuery::create()
-      ->findOneById($this->getRequestParameter('collection_id'));
+      ->findOneById($request->getParameter('collection_id'));
 
     if ($collection && $collection instanceof Collection)
     {
@@ -653,9 +654,9 @@ class ajaxAction extends cqAjaxAction
       }
     }
 
-    if ($this->getRequest()->isMethod('post'))
+    if ($request->isMethod('post'))
     {
-      $form->bind($this->getRequestParameter('collectible'));
+      $form->bind($request->getParameter('collectible'));
 
       if ($form->isValid())
       {
@@ -709,22 +710,30 @@ class ajaxAction extends cqAjaxAction
 
     $form = new CollectibleForSaleCreateForm();
 
-    if ($collectible_id = $this->getRequestParameter('collectible_id'))
+    if ($collectible_id = $request->getParameter('collectible_id'))
     {
       $q = CollectibleQuery::create()
         ->filterByCollector($collector)
         ->filterById($collectible_id);
 
-      /** @var $image iceModelMultimedia */
-      if (($collectible = $q->findOne()) && $image = $collectible->getPrimaryImage())
+      if ($collectible = $q->findOne())
       {
-        $form->setDefault('collectible', array('thumbnail' => $image->getId()));
+        $form->setDefault('collectible_id', $collectible->getId());
+        $default = array('name' => $collectible->getName());
+
+        /** @var $image iceModelMultimedia */
+        if ($image = $collectible->getPrimaryImage())
+        {
+          $default['thumbnail'] = $image->getId();
+        }
+
+        $form->setDefault('collectible', $default);
       }
     }
 
-    if ($this->getRequest()->isMethod('post'))
+    if ($request->isMethod('post'))
     {
-      $tainted = $this->getRequestParameter('collectible_for_sale');
+      $tainted = $request->getParameter('collectible_for_sale');
 
       /**
        * The logic below is to support creating of new CollectorCollections
@@ -772,15 +781,23 @@ class ajaxAction extends cqAjaxAction
         $collectible->setTags($values['collectible']['tags']);
         $collectible->save();
 
-        if ($values['collectible']['thumbnail'])
+        if ($values['collectible_id']['thumbnail'])
         {
           $image = iceModelMultimediaQuery::create()
             ->findOneById((integer) $values['collectible']['thumbnail']);
 
           if ($collector->isOwnerOf($image))
           {
-            $collectible->setThumbnail($image->getAbsolutePath('original'));
-            $collectible->save();
+            /** @var $donor Collectible */
+            $donor = $image->getModelObject();
+
+            $image->setIsPrimary(true);
+            $image->setModelId($collectible->getId());
+            $image->setSource($donor->getId());
+            $image->save();
+
+            // Archive the $donor, not needed anymore
+            $donor->delete();
           }
         }
 
