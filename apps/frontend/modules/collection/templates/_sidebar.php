@@ -40,6 +40,8 @@
 <?php
   include_component(
     '_sidebar', 'widgetCollections',
-    array('collection' => $collection, 'limit' => 5)
+    array(
+      'collection' => $collection, 'limit' => 5,
+      'fallback' => 'random')
   );
 ?>
