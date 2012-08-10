@@ -78,13 +78,13 @@
   <?php endif; ?>
 
 <?php else: ?>
-  <div class="span12 thumbnail link no-collections-uploaded-box">
+  <div class="span12 thumbnail link no-collections-uploaded-box spacer-bottom">
     <?php if ($sf_params->get('q')): ?>
       <span class="Chivo webfont info-no-collections-uploaded spacer-top-15">
         None of your Items for Sale match search term: <strong><?= $sf_params->get('q'); ?></strong>
       </span>
     <?php else: ?>
-      <span class="Chivo webfont info-no-collections-uploaded">
+      <span class="Chivo webfont info-no-collections-uploaded spacer-bottom">
         Sell your items in the marketplace today!<br/>
         Get Started Now!
       </span>
