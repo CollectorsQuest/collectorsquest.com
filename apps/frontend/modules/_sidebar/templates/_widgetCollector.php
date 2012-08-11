@@ -60,11 +60,13 @@
 <?php if (!empty($collections) && count($collections) > 0): ?>
   <div class="row-fluid min-height-13 spacer-top cf">
     <div class="span9 text-word-wrap">
-      Other collections by <?= $collector; ?>
+      <?= $collector; ?>'s Collections:
     </div>
+    <?php if ($collector->countCollectorCollections() > 3): ?>
     <div class="span3">
       <?= link_to('View all &raquo;', 'collections_by_collector', $collector, array('class' => 'pull-right')); ?>
     </div>
+    <?php endif; ?>
   </div>
 
   <?php foreach ($collections as $collection): ?>
