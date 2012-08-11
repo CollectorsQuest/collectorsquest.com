@@ -13,7 +13,10 @@ class CollectorCollectionForm extends BaseCollectorCollectionForm
   {
     $this->setupTagsField();
     $this->setupContentCategoryIdField();
-    $this->widgetSchema['description']->setAttributes(array('rows'=>10, 'cols'=>50, 'style'=>'width: 300px;'));
+    $this->widgetSchema['description']->setAttributes(array(
+        'rows' => 10, 'cols' => 50,
+        'style' => 'width: 300px;'
+    ));
   }
 
   protected function setupContentCategoryIdField()
@@ -57,7 +60,6 @@ class CollectorCollectionForm extends BaseCollectorCollectionForm
 
     $object->setDescription($values['description'], 'html');
     $object->setTags($values['tags']);
-
     $object->save();
 
     return $object;

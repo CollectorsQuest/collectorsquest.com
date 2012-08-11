@@ -91,8 +91,8 @@ class CollectibleEditForm extends BaseCollectibleForm
     $this->widgetSchema['thumbnail'] = new sfWidgetFormInputFile(array(
       'label' => 'Item Photo'
     ));
-    $this->validatorSchema['thumbnail'] = new sfValidatorFile(array(
-      'mime_types' => 'web_images', 'required' => false
+    $this->validatorSchema['thumbnail'] = new cqValidatorFile(array(
+      'mime_types' => 'cq_supported_images', 'required' => false
     ));
 
     $this->widgetSchema['is_alt_view'] = new sfWidgetFormInputHidden();

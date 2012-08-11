@@ -29,7 +29,7 @@ class CollectorEditForm extends BaseFormPropel
       'display_name'  => new sfValidatorString(array('max_length' => 64)),
       'password'      => new sfValidatorString(array('max_length' => 64, 'required' => false)),
       'email'         => new sfValidatorEmail(array('max_length' => 128, 'required' => true)),
-      'photo'         => new sfValidatorFile(array('mime_types' => 'web_images', 'required' => false)),
+      'photo'         => new cqValidatorFile(array('mime_types' => 'cq_supported_images', 'required' => false)),
       'is_public'     => new sfValidatorBoolean(array('required' => false)),
       'has_cqnext_access' => new sfValidatorBoolean(array('required' => false)),
     ));

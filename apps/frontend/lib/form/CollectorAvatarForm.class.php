@@ -7,8 +7,8 @@ class CollectorAvatarForm extends BaseFormPropel
     parent::configure();
 
     $this->widgetSchema['filename']    = new sfWidgetFormInputFile();
-    $this->validatorSchema['filename'] = new sfValidatorFile(array(
-      'mime_types' => 'web_images'
+    $this->validatorSchema['filename'] = new cqValidatorFile(array(
+      'mime_types' => 'cq_supported_images'
     ));
 
     $this->widgetSchema->setNameFormat('avatar[%s]');

@@ -12,6 +12,9 @@ all:
   ice_assets:
     domain: "cqcdns.com"
 
+  ice_multimedia:
+    default_adapter: ImageMagick
+
   credentials:
     akismet: "8fd3f2fddbaa"
     google_maps: "ABQIAAAAFWhrOd_LZ8oN4w-vkUWughQAU-WnqYQCO7zppSGvHR51tCrN4xRY0TaQWDhMG_uhoslQtMZplJu3gg"
