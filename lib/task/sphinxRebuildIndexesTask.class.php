@@ -36,7 +36,7 @@ EOF;
 
     $indexes = array();
 
-    if (empty($arguments["indexes"]))
+    if (empty($arguments['indexes']))
     {
       if ($options['delta'] == 'yes')
       {
@@ -53,11 +53,12 @@ EOF;
         $indexes[] = sprintf('%s_collectors_normalized', $options['env']);
         $indexes[] = sprintf('%s_collections_normalized', $options['env']);
         $indexes[] = sprintf('%s_collectibles_normalized', $options['env']);
+        $indexes[] = sprintf('%s_did_you_mean', $options['env']);
       }
     }
     else
     {
-      $indexes = explode(',', $arguments["indexes"]);
+      $indexes = explode(',', $arguments['indexes']);
     }
 
     if (!empty($indexes))

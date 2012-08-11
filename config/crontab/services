@@ -12,4 +12,5 @@ HOME=/www/vhosts/collectorsquest.com/current
 # Sphinx indexes
  */5  *  *  *  *  root  cronic solo -silent -port=2037 ./symfony sphinx:rebuild-indexes --env=prod --delta=yes
 */10  *  *  *  *  root  cronic solo -silent -port=2037 ./symfony sphinx:rebuild-indexes --env=prod
+*/30  *  *  *  *  root  cronic solo -silent -port=2038 ./symfony sphinx:did-you-mean --env=prod
 # 30,31,32,33,34,35,36,37,38,39 06 * * *  root  cronic solo -silent -port=2037 ./symfony sphinx:rebuild-indexes --delta=no --env=prod >/dev/null 2>&1

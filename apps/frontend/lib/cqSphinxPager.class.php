@@ -545,6 +545,56 @@ class cqSphinxPager extends sfPager
     }
   }
 
+  public function getDidYouMean($keyword)
+  {
+    $keyword = trim($keyword);
+    $t = '__' . $keyword . '__';
+
+    $trigrams = '';
+    for ($i = 0; $i < strlen($t) - 2; $i++)
+    {
+      $trigrams .= substr($t, $i, 3) . ' ';
+    }
+
+    $query = '"'. $trigrams .'"/1';
+    $len = strlen($keyword);
+
+    // $delta = LENGTH_THRESHOLD;
+    $delta = 2;
+
+    $sphinx = self::getSphinxClient();
+    $sphinx->SetMatchMode(SPH_MATCH_EXTENDED2);
+    $sphinx->SetRankingMode(SPH_RANK_WORDCOUNT);
+    $sphinx->SetFilterRange('len', $len - $delta, $len + $delta );
+    $sphinx->SetSelect('*, @weight + '. $delta .' - abs(len-'. $len .') AS myrank');
+    $sphinx->SetSortMode(SPH_SORT_EXTENDED, 'myrank DESC, freq DESC');
+    $sphinx->SetArrayResult(true);
+
+    // pull top-N best trigram matches and run them through Levenshtein
+    // $res = $sphinx->Query($query, 'did_you_mean', 0, TOP_COUNT);
+
+    $env = defined('SF_ENV') ? SF_ENV : sfConfig::get('sf_environment');
+    $env = str_replace('_debug', '', $env);
+
+    /** @var $results array */
+    $results = $sphinx->Query($query, sprintf('%s_did_you_mean', $env), 0, 10);
+
+    if (!empty($results['matches']))
+    {
+      // further restrict trigram matches with a sane Levenshtein distance limit
+      foreach ($results['matches'] as $match)
+      {
+        $suggested = $match['attrs']['keyword'];
+        if ($keyword !== $suggested && levenshtein($keyword, $suggested) <= 2)
+        {
+          return $suggested;
+        }
+      }
+    }
+
+    return null;
+  }
+
   public static function getSphinxClient()
   {
     $sphinx = cqStatic::getSphinxClient();

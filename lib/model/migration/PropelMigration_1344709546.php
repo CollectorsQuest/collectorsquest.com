@@ -3,31 +3,12 @@
 /**
  * Assign random avatars to Collectors who do not have one currently
  */
-class PropelMigration_1344253748
+class PropelMigration_1344709546
 {
 
   public function preUp($manager)
   {
-    $collectors_count = CollectorQuery::create()->count();
-    $collectors = CollectorQuery::create()
-      ->setFormatter(ModelCriteria::FORMAT_ON_DEMAND)
-      ->find();
-
-    echo "Assigning random avatars on collectors without any set\n";
-
-    /** @var $collectors Collector[] */
-    foreach ($collectors as $k => $collector)
-    {
-      if (null ===  $collector->getPrimaryImage())
-      {
-        $collector->assignRandomAvatar();
-        $collector->save();
-      }
-      IceMultimediaBehavior::clearStaticCache();
-      echo sprintf("\r Completed: %.2f%%", round($k/$collectors_count, 4) * 100);
-    }
-
-    echo "\r Completed: 100% Done!\n";
+    // add the pre-migration code here
   }
 
   public function postUp($manager)
@@ -56,6 +37,16 @@ class PropelMigration_1344253748
     return array (
       'propel' => '
         SET FOREIGN_KEY_CHECKS = 0;
+
+        DROP TABLE IF EXISTS search_did_you_mean;
+        CREATE TABLE search_did_you_mean (
+          id INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
+          keyword VARCHAR(255) NOT NULL,
+          trigrams VARCHAR(255) NOT NULL,
+          freq INTEGER NOT NULL,
+          UNIQUE(keyword)
+        );
+
         SET FOREIGN_KEY_CHECKS = 1;
       ',
       'blog' => '
@@ -76,6 +67,7 @@ class PropelMigration_1344253748
     return array (
       'propel' => '
         SET FOREIGN_KEY_CHECKS = 0;
+        DROP TABLE IF EXISTS search_did_you_mean;
         SET FOREIGN_KEY_CHECKS = 1;
       ',
       'blog' => '
@@ -84,4 +76,5 @@ class PropelMigration_1344253748
       '
     );
   }
+
 }
