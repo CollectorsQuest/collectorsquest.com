@@ -49,7 +49,7 @@ class ajaxAction extends cqAjaxAction
 
       foreach ($files as $file)
       {
-        $name = preg_replace('/\.(jpg|jpeg|png|gif)$/iu', '', $file['name']);
+        $name = preg_replace('/\.(jpg|jpeg|png|gif|bmp)$/iu', '', $file['name']);
         $name = mb_substr(str_replace(array('_', '-'), ' ', ucfirst($name)), 0, 64, 'utf8');
 
         try

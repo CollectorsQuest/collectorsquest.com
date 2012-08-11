@@ -155,7 +155,7 @@ $(document).ready(function()
 
   $('#fileupload').fileupload('option', {
     maxFileSize: 10000000,
-    acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i
+    acceptFileTypes: /(\.|\/)(gif|jpe?g|png|bmp)$/i
   });
 
   // Load existing files:
