@@ -11,6 +11,11 @@ class cqSphinxPager extends sfPager
     $offset   = null;
 
   /**
+   * @var boolean
+   */
+  private $strictMode = false;
+
+  /**
    * @param  array    $query
    * @param  array    $types
    * @param  integer  $maxPerPage
@@ -92,7 +97,10 @@ class cqSphinxPager extends sfPager
   public function getResults()
   {
     // Have we populated the matches array yet?
-    if (empty($this->matches)) return array();
+    if (empty($this->matches))
+    {
+      return array();
+    }
 
     $objects         = array();
     $contents        = array();
@@ -191,9 +199,11 @@ class cqSphinxPager extends sfPager
 
     // Make sure all objects are BaseObjects
     foreach ($objects as $key => $object)
-    if (!$object instanceof BaseObject)
     {
-      unset($objects[$key]);
+      if (!$object instanceof BaseObject)
+      {
+        unset($objects[$key]);
+      }
     }
 
     $sphinx = self::getSphinxClient();
@@ -206,11 +216,14 @@ class cqSphinxPager extends sfPager
     if (
       !empty($this->query['q']) &&
       ($excerpts = $sphinx->BuildExcerpts($contents, $index, $this->query['q'], array('limit' => 140)))
-    ) {
+    )
+    {
       foreach ($excerpts as $i => $excerpt)
-      if (!empty($excerpt))
       {
-        $this->excerpts[$keys[$i]] = $excerpt;
+        if (!empty($excerpt))
+        {
+          $this->excerpts[$keys[$i]] = $excerpt;
+        }
       }
     }
 
@@ -280,6 +293,37 @@ class cqSphinxPager extends sfPager
     }
 
     return $this->offset;
+  }
+
+  /**
+   * Sets the last page number.
+   *
+   * @param integer $page
+   */
+  protected function setLastPage($page)
+  {
+    $this->lastPage = $page;
+
+    if ($this->getStrictMode() && $this->getPage() > $page)
+    {
+      $this->setPage($page);
+    }
+  }
+
+  /**
+   * @param bool $strictMode
+   */
+  public function setStrictMode($strictMode)
+  {
+    $this->strictMode = $strictMode;
+  }
+
+  /**
+   * @return bool
+   */
+  public function getStrictMode()
+  {
+    return $this->strictMode;
   }
 
   /**
@@ -366,7 +410,8 @@ class cqSphinxPager extends sfPager
         else if (
           substr($name, -4) == '_max' &&
           !isset($query['filters'][substr($name, 0, -4)]['max'])
-        ) {
+        )
+        {
           $query['filters'][substr($name, 0, -4)]['max'] = $values;
           unset($query['filters'][$name]);
         }
@@ -406,8 +451,14 @@ class cqSphinxPager extends sfPager
 
           if (!empty($values) && (isset($values['min']) || isset($values['max'])))
           {
-            if (!isset($values['min']) || (int) $values['min'] < 0)  $values['min'] = 0;
-            if (!isset($values['max']) || (int) $values['max'] <= 0) $values['max'] = PHP_INT_MAX;
+            if (!isset($values['min']) || (int) $values['min'] < 0)
+            {
+              $values['min'] = 0;
+            }
+            if (!isset($values['max']) || (int) $values['max'] <= 0)
+            {
+              $values['max'] = PHP_INT_MAX;
+            }
 
             $sphinx->setFilterRange($name, (int) $values['min'], (int) $values['max']);
           }

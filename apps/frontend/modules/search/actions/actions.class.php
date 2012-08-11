@@ -114,6 +114,7 @@ class searchActions extends cqFrontendActions
 
     $pager = new cqSphinxPager(self::$_query, array(), 24);
     $pager->setPage($page);
+    $pager->setStrictMode('all' === $request->getParameter('show'));
     $this->sid = $pager->init();
 
     $this->pager = $pager;
@@ -137,6 +138,7 @@ class searchActions extends cqFrontendActions
   {
     $pager = new cqSphinxPager(self::$_query, array('collections'), 24);
     $pager->setPage($request->getParameter('page', 1));
+    $pager->setStrictMode('all' === $request->getParameter('show'));
     $this->sid = $pager->init();
 
     $this->pager = $pager;
@@ -150,6 +152,7 @@ class searchActions extends cqFrontendActions
   {
     $pager = new cqSphinxPager(self::$_query, array('collectors'), 24);
     $pager->setPage($request->getParameter('page', 1));
+    $pager->setStrictMode('all' === $request->getParameter('show'));
     $this->sid = $pager->init();
 
     $this->pager = $pager;
@@ -163,6 +166,7 @@ class searchActions extends cqFrontendActions
   {
     $pager = new cqSphinxPager(self::$_query, array('collectibles'), 24);
     $pager->setPage($request->getParameter('page', 1));
+    $pager->setStrictMode('all' === $request->getParameter('show'));
     $this->sid = $pager->init();
 
     $this->pager = $pager;
@@ -178,6 +182,7 @@ class searchActions extends cqFrontendActions
 
     $pager = new cqSphinxPager(self::$_query, array('collectibles'), 24);
     $pager->setPage($request->getParameter('page', 1));
+    $pager->setStrictMode('all' === $request->getParameter('show'));
     $this->sid = $pager->init();
 
     $this->pager = $pager;
@@ -191,6 +196,7 @@ class searchActions extends cqFrontendActions
   {
     $pager = new cqSphinxPager(self::$_query, array('blog'), 24);
     $pager->setPage($request->getParameter('page', 1));
+    $pager->setStrictMode('all' === $request->getParameter('show'));
     $this->sid = $pager->init();
 
     $this->pager = $pager;
