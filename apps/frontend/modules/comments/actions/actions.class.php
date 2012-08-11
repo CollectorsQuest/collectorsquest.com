@@ -17,6 +17,7 @@ class commentsActions extends cqFrontendActions
 
       if ($form->isValid())
       {
+        $form->getObject()->setIpAddress($request->getRemoteAddress());
         $comment = $form->save();
         $cqEmail = new cqEmail($this->getMailer());
 
