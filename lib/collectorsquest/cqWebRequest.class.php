@@ -24,7 +24,7 @@ class cqWebRequest extends sfWebRequest
   public function getRemoteAddress()
   {
     if (null !== $proxy_forwards = $this->getForwardedFor()) {
-      $ip = $proxy_forwards[0]; // in a non-anonymous proxy, this is the real IP
+      return $proxy_forwards[0]; // in a non-anonymous proxy, this is the real IP
     } else {
       return parent::getRemoteAddress();
     }
