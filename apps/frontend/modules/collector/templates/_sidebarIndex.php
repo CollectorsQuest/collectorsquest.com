@@ -10,7 +10,7 @@
                       $store_return_policy || $store_additional_policies;
 ?>
 
-<div class="blue-actions-panel spacer-bottom-10">
+<div class="blue-actions-panel spacer-bottom">
   <div class="row-fluid">
     <div class="pull-left">
       <ul>
