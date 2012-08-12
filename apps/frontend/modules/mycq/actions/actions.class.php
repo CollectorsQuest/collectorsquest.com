@@ -643,10 +643,6 @@ class mycqActions extends cqFrontendActions
 
     $q = CollectibleForSaleQuery::create()
       ->filterByCollector($collector)
-      ->joinCollectible()
-      ->useCollectibleQuery()
-        ->joinWith('ShoppingOrder', Criteria::RIGHT_JOIN)
-      ->endUse()
       ->filterByIsSold(true);
     $this->sold_total = $q->count();
 
