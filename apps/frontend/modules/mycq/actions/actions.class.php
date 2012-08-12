@@ -643,7 +643,13 @@ class mycqActions extends cqFrontendActions
 
     $q = CollectibleForSaleQuery::create()
       ->filterByCollector($collector)
-      ->filterByIsSold(true);
+      ->filterByIsSold(true)
+      ->groupByCollectibleId()
+      ->joinCollectible()
+      ->useCollectibleQuery()
+        ->joinWith('ShoppingOrder', Criteria::RIGHT_JOIN)
+      ->endUse();
+
     $this->sold_total = $q->count();
 
     // Make the seller available to the template
