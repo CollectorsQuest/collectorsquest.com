@@ -30,7 +30,7 @@
   <?php endforeach; ?>
 
 <?php else: ?>
-<div class="mycq-create-collectible thumbnail">
+<div class="mycq-create-collectible">
   <div class="row-fluid spacer-inner-top-20">
     <div class="span4">
       <a href="<?php echo url_for('@marketplace'); ?>"
