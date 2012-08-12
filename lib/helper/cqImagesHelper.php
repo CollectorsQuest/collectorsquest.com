@@ -19,7 +19,7 @@ function image_tag_collector($collector, $which = '100x100', $options = array())
 {
   if (!($collector instanceof Collector))
   {
-    return image_tag(sfConfig::get('sf_app') .'/multimedia/Collector/'. $which .'.png', $options);
+    return cq_image_tag(sfConfig::get('sf_app') .'/multimedia/Collector/'. $which .'.png', $options);
   }
 
   $options = array_merge(
@@ -32,7 +32,7 @@ function image_tag_collector($collector, $which = '100x100', $options = array())
 
   if (empty($image_tag))
   {
-    $image_tag = image_tag(sfConfig::get('sf_app') .'/multimedia/Collector/'. $which .'.png', $options);
+    $image_tag = cq_image_tag(sfConfig::get('sf_app') .'/multimedia/Collector/'. $which .'.png', $options);
   }
 
   return $image_tag;
@@ -86,7 +86,7 @@ function image_tag_collection($collection, $which = '150x150', $options = array(
   if (is_null($collection) || !($collection instanceof Collection))
   {
     $class = is_object($collection) ? get_class($collection) : 'Collection';
-    return image_tag(sfConfig::get('sf_app') .'/multimedia/'. $class .'/'. $which .'.png');
+    return cq_image_tag(sfConfig::get('sf_app') .'/multimedia/'. $class .'/'. $which .'.png');
   }
 
   $options = array_merge(
@@ -99,7 +99,7 @@ function image_tag_collection($collection, $which = '150x150', $options = array(
 
   if (empty($image_tag))
   {
-    $image_tag = image_tag(sfConfig::get('sf_app') .'/multimedia/'. get_class($collection) .'/'. $which .'.png', $options);
+    $image_tag = cq_image_tag(sfConfig::get('sf_app') .'/multimedia/'. get_class($collection) .'/'. $which .'.png', $options);
   }
 
   return $image_tag;
@@ -162,7 +162,7 @@ function image_tag_collectible($collectible, $which = null, $options = array())
 
   if (!$collectible instanceof Collectible)
   {
-    return image_tag($default, $options);
+    return cq_image_tag($default, $options);
   }
 
   $options = array_merge(
@@ -175,7 +175,7 @@ function image_tag_collectible($collectible, $which = null, $options = array())
 
   if (empty($image_tag))
   {
-    $image_tag = image_tag($default, $options);
+    $image_tag = cq_image_tag($default, $options);
   }
 
   return $image_tag;
@@ -215,7 +215,7 @@ function image_tag_wp_post($wp_post, $which = '150x150')
     $src = '/images/'. sfConfig::get('sf_app') .'/multimedia/wpPost/'. $which .'.png';
   }
 
-  return image_tag($src, array('width' => $width, 'height' => $height));
+  return cq_image_tag($src, array('width' => $width, 'height' => $height));
 }
 
 

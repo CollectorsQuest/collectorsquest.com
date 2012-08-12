@@ -8,14 +8,14 @@
             <div class="span6 pdf">
               <a href="<?= url_for('misc_guide_download_file', array('hash' => $hash, 'sf_format' => 'pdf')) ?>"
                  title="Download the Essential Guide to Collecting - PDF">
-                <?= image_tag('frontend/pdf-ico.png', array('alt' => 'Adobe PDF'))?>
+                <?= cq_image_tag('frontend/pdf-ico.png', array('alt' => 'Adobe PDF'))?>
                 <span>Download PDF</span>
               </a>
             </div>
             <div class="span6 zip">
               <a href="<?= url_for('misc_guide_download_file', array('hash'=>$hash, 'sf_format' => 'zip')) ?>"
                  title="Download the Essential Guide to Collecting - ZIP Archive">
-                <?= image_tag('frontend/zip-ico.png', array('alt' => 'ZIP archive'))?>
+                <?= cq_image_tag('frontend/zip-ico.png', array('alt' => 'ZIP archive'))?>
                 <span>Download ZIP</span>
               </a>
             </div>

@@ -22,7 +22,7 @@ function cq_ad_slot($slot, $width, $height, $delayed = false)
     $image = 'iab/'. $width .'x'. $height .'.gif';
     if (is_file(sfConfig::get('sf_web_dir').'/images/' . $image))
     {
-      echo '<center>', image_tag($image), '</center>';
+      echo '<center>', cq_image_tag($image), '</center>';
     }
     else
     {

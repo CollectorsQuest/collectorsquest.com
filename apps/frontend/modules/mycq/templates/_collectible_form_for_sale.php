@@ -117,7 +117,7 @@
     <center>
       <?php
         echo link_to(
-          image_tag('banners/want-to-sell-this-item.png'),
+          cq_image_tag('banners/want-to-sell-this-item.png'),
           '@seller_packages'
         );
       ?>

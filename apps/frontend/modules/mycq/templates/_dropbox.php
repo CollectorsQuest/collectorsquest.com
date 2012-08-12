@@ -53,7 +53,7 @@
     <span class="info-no-items-to-sort">
       &nbsp;&nbsp;<strong>Drag and drop</strong> photos from your desktop or
       use the <strong>Upload Photos</strong> button
-      <?= image_tag('frontend/arrow-thin-up.png', array('style' => 'margin-top: -35px; margin-left: -5px;')) ?>
+      <?= cq_image_tag('frontend/arrow-thin-up.png', array('style' => 'margin-top: -35px; margin-left: -5px;')) ?>
     </span>
   </div>
   <?php endif; ?>

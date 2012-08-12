@@ -3,7 +3,7 @@
     if (!$sf_user->isAuthenticated())
     {
       echo link_to(
-        image_tag('banners/2012-06-24_CQGuidePromo_160x600.png'),
+        cq_image_tag('banners/2012-06-24_CQGuidePromo_160x600.png'),
         '@misc_guide_to_collecting'
       );
     }

@@ -64,7 +64,7 @@
 //            );
 
             echo link_to(
-              image_tag(
+              cq_image_tag(
                 'banners/2012-06-24_CQGuide_300x250_footer.png',
                 array(
                   'size' => '300x250',

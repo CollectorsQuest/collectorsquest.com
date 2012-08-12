@@ -5,7 +5,7 @@
         <?php
           if ($thumbnail = $blog_post->getPostThumbnail('homepage'))
           {
-            echo image_tag($thumbnail, array('width' => 270, 'height' => 270, 'alt' => $blog_post->getPostTitle()));
+            echo cq_image_tag($thumbnail, array('width' => 270, 'height' => 270, 'alt' => $blog_post->getPostTitle()));
           }
           else
           {

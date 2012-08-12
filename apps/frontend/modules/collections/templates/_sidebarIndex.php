@@ -28,7 +28,7 @@
   if (!$sf_user->isAuthenticated())
   {
     echo link_to(
-      image_tag('banners/2012-06-24_CQGuidePromo_300x90.png', array('class' => 'spacer-top-20')),
+      cq_image_tag('banners/2012-06-24_CQGuidePromo_300x90.png', array('class' => 'spacer-top-20')),
       '@misc_guide_to_collecting'
     );
   }

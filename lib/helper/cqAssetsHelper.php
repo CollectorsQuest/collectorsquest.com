@@ -75,17 +75,30 @@ function cq_htmLaw_tag($html, $config = array())
 
 function cq_image_tag($source, $options = array())
 {
-  return image_tag(cq_image_src($source), $options);
+  // Do we want an absolute path for the image?
+  $absolute = isset($options['absolute']) ? $options['absolute'] : true;
+
+  // Hardcoding for now to now use any versioning for images
+  $options['rev'] = null;
+
+  // Do we want to version it?
+  $source = (isset($options['rev']) && $options['rev'] === null) ?
+    $source : $source .'?rev='. (defined('SVN_REVISION') ? SVN_REVISION : 0);
+
+  return image_tag(cq_image_src($source, $absolute), $options);
 }
 
-function cq_image_src($image)
+function cq_image_src($image, $absolute = true)
 {
-  return '//'. sfConfig::get('app_static_domain') .'/images/'. $image;
+  return $absolute === true ?
+    '//'. sfConfig::get('app_static_domain') .'/images/'. ltrim($image, '/') :
+    '/images/'. ltrim($image, '/');
 }
 
 function cq_stylesheet_src($stylesheet)
 {
-  return '//'. sfConfig::get('app_static_domain') .'/css/'. $stylesheet .'?rev='. (defined('SVN_REVISION') ? SVN_REVISION : 0);
+  return '//'. sfConfig::get('app_static_domain') .'/css/'.
+         $stylesheet .'?rev='. (defined('SVN_REVISION') ? SVN_REVISION : 0);
 }
 
 function cq_javascript_src($javascript)

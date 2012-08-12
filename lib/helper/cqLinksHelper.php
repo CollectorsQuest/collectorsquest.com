@@ -417,7 +417,7 @@ function link_to_blog_author(wpUser $author, $type = 'text', $options = array())
       }
 
       return link_to(
-        image_tag($avatar_url, $options),
+        cq_image_tag($avatar_url, $options),
         '/blog/author/' . urlencode($author->getUserNicename()) . '/'
       );
       break;
