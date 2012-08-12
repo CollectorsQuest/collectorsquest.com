@@ -45,7 +45,7 @@
           </div>
         </div>
 
-        <?php if ($sold_total >= 1): ?>
+        <?php if ($sold_total > 0): ?>
         <!-- Sold Items -->
             <div class="row-fluid sidebar-title spacer-inner-bottom spacer-inner-top">
               <div class="span5 link-align">
