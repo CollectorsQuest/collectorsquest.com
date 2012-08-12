@@ -15,30 +15,65 @@ class commentsActions extends autoCommentsActions
 {
 
   /**
-   * Action Block
-   *
-   * @param sfWebRequest $request
-   *
-   * @return string
+   * Action Block IP
    */
-  public function executeBlock(sfWebRequest $request)
+  public function executeBlockIp()
   {
     /* @var $comment Comment */
     $comment = $this->getRoute()->getObject();
 
-    $spamControl = new iceModelSpamControl();
-    $spamControl->setField('ip');
-    $spamControl->setValue($comment->getIpAddress());
-    try
+    $ban_added = iceModelSpamControlPeer::addBan(
+      'ip',
+      $comment->getIpAddress(),
+      iceModelSpamControlPeer::CREDENTIALS_COMMENT
+    );
+    if ($ban_added)
     {
-      $spamControl->save();
-      $this->getUser()->setFlash('success', sprintf('Blocked %s as spam', $comment->getIpAddress()));
-    } catch (PropelException $e)
+      $this->getUser()->setFlash(
+        'success',
+        sprintf('Blocked %s as spam', $comment->getIpAddress())
+      );
+    }
+    else
     {
-      $this->getUser()->setFlash('error', sprintf('%s already in blocked list', $comment->getIpAddress()));
+      $this->getUser()->setFlash(
+        'error',
+        sprintf('%s already in blocked list', $comment->getIpAddress())
+      );
     }
 
-    $this->redirect('@comment');
+    return $this->redirect('@comment');
+  }
+
+  /**
+   * Action Block Email
+   */
+  public function executeBlockEmail()
+  {
+    /* @var $comment Comment */
+    $comment = $this->getRoute()->getObject();
+
+    $ban_added = iceModelSpamControlPeer::addBan(
+      'email',
+      $comment->getAuthorEmail(),
+      iceModelSpamControlPeer::CREDENTIALS_COMMENT
+    );
+    if ($ban_added)
+    {
+      $this->getUser()->setFlash(
+        'success',
+        sprintf('Blocked %s as spam', $comment->getAuthorEmail())
+      );
+    }
+    else
+    {
+      $this->getUser()->setFlash(
+        'error',
+        sprintf('%s already in blocked list', $comment->getAuthorEmail())
+      );
+    }
+
+    return $this->redirect('@comment');
   }
 
   /**
