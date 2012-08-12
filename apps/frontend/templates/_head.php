@@ -1,5 +1,8 @@
   <meta charset="utf-8" />
+  <link rel="dns-prefetch" href="//www.collectorsquest.com">
+  <link rel="dns-prefetch" href="//static.collectorsquest.com">
   <link rel="dns-prefetch" href="//multimedia.cqcdns.com">
+  <link rel="dns-prefetch" href="//assets.cqcdns.com">
   <link rel="dns-prefetch" href="//cqcdns.com">
   <link rel="dns-prefetch" href="//fonts.googleapis.com">
   <link rel="dns-prefetch" href="//ajax.googleapis.com">
