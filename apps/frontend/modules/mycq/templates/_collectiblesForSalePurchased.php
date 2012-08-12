@@ -43,20 +43,14 @@
   <?php endif; ?>
 </div>
 <div class="mycq-create-collectible span4 thumbnail link">
-  <div class="row-fluid spacer-inner-top-20">
-    <div class="span4">
-      <a href="<?php echo url_for('@marketplace'); ?>"
-         class="btn-create-collection-middle spacer-left-20">
-        <i class="icon-shopping-cart"></i>
+    <a href="<?php echo url_for('@marketplace'); ?>"
+       class="btn-create-collection-middle spacer-left-20">
+      <i class="icon-shopping-cart"></i>
+    </a>
+    <div class="btn-large-box">
+      <a href="<?php echo url_for('@marketplace'); ?>">
+        Start<br/>Shopping
       </a>
     </div>
-    <div class="span8">
-      <div class="btn-large-box">
-        <a href="<?php echo url_for('@marketplace'); ?>">
-          Start<br/> Shopping
-        </a>
-      </div>
-    </div>
-  </div>
 </div>
 <?php endif; ?>

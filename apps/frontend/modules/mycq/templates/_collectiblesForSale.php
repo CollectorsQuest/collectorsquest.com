@@ -94,20 +94,14 @@
     <?php include_slot('mycq_create_collectible_for_sale'); ?>
   <?php else: ?>
   <div class="span4 thumbnail link mycq-create-collectible">
-    <div class="row-fluid spacer-inner-top-20">
-      <div class="span4">
-        <a href="<?php echo url_for('@seller_packages'); ?>"
-           class="btn-create-collection-middle spacer-left-20">
-          <i class="icon-shopping-cart"></i>
-        </a>
-      </div>
-      <div class="span8">
-        <div class="btn-large-box">
-          <a href="<?php echo url_for('@seller_packages'); ?>">
-            Buy<br/> Credits
-          </a>
-        </div>
-      </div>
+    <a href="<?php echo url_for('@seller_packages'); ?>"
+       class="btn-create-collection-middle spacer-left-20">
+      <i class="icon-shopping-cart"></i>
+    </a>
+    <div class="btn-large-box">
+      <a href="<?php echo url_for('@seller_packages'); ?>">
+        Buy<br/> Credits
+      </a>
     </div>
   </div>
   <?php endif; ?>
