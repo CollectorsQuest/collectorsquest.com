@@ -172,10 +172,14 @@
 		padding-left:0;
 		text-align: center;
 	}
-
 	.pagination {
 		margin-left: 10px;
-
+	}
+	.see-more-full {
+		width: 905px;
+		margin-left: 15px;
+		margin-bottom: 15px;
+		margin-bottom: 15px;
 	}
 }
 
@@ -244,6 +248,36 @@
 		display: block !important;
 		visibility: visible;
 	}
+}
+
+#body-mycq-marketplace, #body-mycq-marketplacePurchased {
+	.mycq-create-collectible {
+		.size(100px, 190px);
+		float: left;
+		padding-left: 15px;
+		cursor: pointer;
+
+		.btn-large-box {
+			line-height: 30px;
+		}
+	}
+	.no-collections-uploaded-box {
+		float: left;
+		.size(95px, 655px);
+		margin-left: 15px;
+		padding: 10px;
+
+		.info-no-collections-uploaded {
+			padding: 0;
+		}
+	}
+	#items-for-sale .add-new-zone ~ div.no-collections-uploaded-box {
+		.size(167px, 730px);
+	}
+}
+
+#body-mycq-marketplacePurchased .mycq-create-collectible .btn-large-box {
+	padding-left: 5px;
 }
 
 .nav-tabs {
@@ -622,38 +656,7 @@ a.buy-credits-button {
 	margin-left: 40px;
 }
 
-.collectible-sell-sold-items .no-collections-uploaded-box ~ .add-new-zone {
-	.size(240px, 204px);
 
-	.btn-upload-collectible {
-		margin-top: 45px;
-		font-size: 80px;
-		line-height: 70px;
-
-		.btn-create-collection-middle {
-			margin-left: 0;
-		}
-		.btn-large-box {
-			padding-left: 0;
-			text-align: center;
-			border: 1px solid red;
-		}
-	}
-}
-
-.collectible-sell-sold-items .no-collections-uploaded-box ~ .mycq-create-collectible {
-	.btn-create-collection-middle {
-		margin-top: 10px;
-		margin-left: 0;
-		font-size: 80px;
-	}
-	.btn-large-box {
-		margin-top: 15px;
-		padding-left: 0;
-		line-height: 38px;
-		text-align: center;
-	}
-}
 
 //DROPZONE
 

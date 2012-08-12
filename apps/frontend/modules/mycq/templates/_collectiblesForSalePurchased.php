@@ -30,27 +30,33 @@
   <?php endforeach; ?>
 
 <?php else: ?>
-<div class="span12 thumbnail link no-collections-uploaded-box">
+<div class="mycq-create-collectible thumbnail">
+  <div class="row-fluid spacer-inner-top-20">
+    <div class="span4">
+      <a href="<?php echo url_for('@marketplace'); ?>"
+         class="btn-create-collection-middle">
+        <i class="icon-shopping-cart"></i>
+      </a>
+    </div>
+    <div class="span8">
+      <div class="btn-large-box">
+        <a href="<?php echo url_for('@marketplace'); ?>">
+          Start<br/> Shopping
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="no-collections-uploaded-box link">
   <?php if ($sf_params->get('q')): ?>
   <span class="Chivo webfont info-no-collections-uploaded spacer-top-15">
         None of your Items for Sale match search term: <strong><?= $sf_params->get('q'); ?></strong>
       </span>
   <?php else: ?>
-  <span class="Chivo webfont info-no-collections-uploaded">
+  <span class="Chivo webfont info-no-collections-uploaded spacer-bottom">
         Buy items from the marketplace today!<br/>
         Shop the Market Now!
       </span>
   <?php endif; ?>
-</div>
-<div class="mycq-create-collectible span4 thumbnail link">
-    <a href="<?php echo url_for('@marketplace'); ?>"
-       class="btn-create-collection-middle spacer-left-20">
-      <i class="icon-shopping-cart"></i>
-    </a>
-    <div class="btn-large-box">
-      <a href="<?php echo url_for('@marketplace'); ?>">
-        Start<br/>Shopping
-      </a>
-    </div>
 </div>
 <?php endif; ?>
