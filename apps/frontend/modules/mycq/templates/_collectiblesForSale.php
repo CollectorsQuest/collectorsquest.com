@@ -42,7 +42,7 @@
     </div>
 
     <?php
-      if (($pager->getPage() === 1 && $i === 4) || ($pager->count() === $i+1 && $pager->count() < 3))
+      if (($pager->getPage() === 1 && $i === 4) || ($pager->count() === $i+1 && $pager->count() < 5))
       {
         include_slot('mycq_create_collectible_for_sale');
       }
