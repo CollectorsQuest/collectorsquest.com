@@ -42,10 +42,10 @@ seo:
 
   categories:
     index:
-      title: Explore Our Endless Collection of Collectibles | Category Listing
+      title: Browse Antique, Collectible & Vintage Items | Collectors Quest
       description: |
-        We have unique vintage items such as antique figurines and political memorabilia.
-        Browse over 10,000 unique vintage antiques and collectibles today!
+        Browse collectible, vintage & antique items on display at Collectors Quest.
+        Share, interact, and show off your own collections!
 
     category:
       model: true
@@ -105,10 +105,10 @@ seo:
         Browse over %countCollections% collectible %Name% in the CollectorsQuest.com marketplace.
 
     categories:
-      title: Collectors | Buy Collectors Items in Our Marketplace
+      title: Buy Collectible Vintage & Antique Marketplace Items | Collectors Quest
       description: |
-        CollectorsQuest.com is the leading online source for collectors to buy or sell collectibles.
-        Buy unique vintage collectors items in our marketplace.
+        Find the collectible, vintage or antique item you’ve been looking for from trusted
+        sellers in the Collectors Quest marketplace.
 
   collectibles:
     collectorList:
