@@ -53,7 +53,7 @@
     <div class="span3">
       <span class="stat-area spacer-bottom-20 spacer-inner-bottom-5">
       <?php
-        $count = $collector->countCollections();
+        $count = $collector->countCollectorCollections();
         echo format_number_choice(
           '[0] No <span>COLLECTIONS</span>|[1] 1 <span>COLLECTION</span>|(1,+Inf] %1% <span>COLLECTIONS</span>',
           array('%1%' => number_format($count)), $count
