@@ -3,7 +3,7 @@
 Plugin Name: Multiple Post Thumbnails
 Plugin URI: http://wordpress.org/extend/plugins/multiple-post-thumbnails/
 Description: Adds the ability to add multiple post thumbnails to a post type.
-Version: 1.1
+Version: 1.3
 Author: Chris Scott
 Author URI: http://vocecommuncations.com/
 */
@@ -81,7 +81,7 @@ if (!class_exists('MultiPostThumbnails')) {
 
 			add_action('add_meta_boxes', array($this, 'add_metabox'));
 			add_filter('attachment_fields_to_edit', array($this, 'add_attachment_field'), 20, 2);
-			add_action('admin_init', array($this, 'enqueue_admin_scripts'));
+			add_action('admin_enqueue_scripts', array($this, 'enqueue_admin_scripts'));
 			add_action("wp_ajax_set-{$this->post_type}-{$this->id}-thumbnail", array($this, 'set_thumbnail'));
 			add_action('delete_attachment', array($this, 'action_delete_attachment'));
 		}
@@ -119,6 +119,9 @@ if (!class_exists('MultiPostThumbnails')) {
 				$calling_post_id = absint($_GET['post_id']);
 			elseif (isset($_POST) && count($_POST)) // Like for async-upload where $_GET['post_id'] isn't set
 				$calling_post_id = $post->post_parent;
+			
+			if (!$calling_post_id)
+				return $form_fields;
 
 			// check the post type to see if link needs to be added
 			$calling_post = get_post($calling_post_id);
@@ -140,8 +143,13 @@ if (!class_exists('MultiPostThumbnails')) {
 		 *
 		 * @return void
 		 */
-		public function enqueue_admin_scripts() {
-			wp_enqueue_script("featured-image-custom", $this->plugins_url('js/multi-post-thumbnails-admin.js', __FILE__), array('jquery'));
+		public function enqueue_admin_scripts( $hook ) {
+			// only load on select pages
+			if ( ! in_array( $hook, array( 'post-new.php', 'post.php', 'media-upload-popup' ) ) )
+				return;
+
+			add_thickbox();
+			wp_enqueue_script( "featured-image-custom", $this->plugins_url( 'js/multi-post-thumbnails-admin.js', __FILE__ ), array( 'jquery', 'media-upload' ) );
 		}
 
 		/**
