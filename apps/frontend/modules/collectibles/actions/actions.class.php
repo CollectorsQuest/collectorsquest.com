@@ -47,7 +47,7 @@ class collectiblesActions extends cqFrontendActions
     {
       SmartMenu::setSelected('collectibles_for_collector_list', 'normal');
       $this->title = 'Collectibles by '. $collector;
-      $this->addBreadcrumb('Collectibles');
+      $this->addBreadcrumb('Collectibles by '. $collector);
     }
 
     $this->collector = $collector;
