@@ -17,8 +17,7 @@
       (Or you can <?= link_to('upload something new', '@mycq_collections'); ?> to the site!)
   </div>
 <?php elseif ($pager->getPage() > 1): ?>
-  <br clear="all"/>
-  <div class="well clearfix">
+  <div class="well clear-both">
     <i class="icon icon-search"></i>&nbsp;
     <?php
       if ($sf_params->get('q'))

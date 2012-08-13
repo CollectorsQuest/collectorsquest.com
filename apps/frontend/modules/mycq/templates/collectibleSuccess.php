@@ -95,7 +95,6 @@ else
             cq_image_tag('banners/want-to-sell-this-item.png', array('align' => 'right')),
             '@seller_packages'
           );
-          echo '<br clear="all"/>';
         }
       ?>
     </div><!-- ./span8 -->

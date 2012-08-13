@@ -17,8 +17,7 @@
   (Or you can <?= link_to('sell something of your own', '@mycq_collections'); ?> on the site!)
 </div>
 <?php elseif ($pager->getPage() > 1): ?>
-<br clear="all"/>
-<div class="well clearfix" style="margin: 0; margin-left: 13px; padding: 10px;">
+<div class="well clear-both" style="margin: 0; margin-left: 13px; padding: 10px;">
   <i class="icon icon-search"></i>&nbsp;
   <?= link_to('Not finding what you are looking for? Click here to find it on our search page!', $url); ?>
 </div>
