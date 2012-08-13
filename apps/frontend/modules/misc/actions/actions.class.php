@@ -82,10 +82,15 @@ class miscActions extends cqFrontendActions
           $this->getUser()->postCreateHook($collector, false);
 
           $this->getUser()->setFlash(
-            'success', sprintf('Email with download link was sent to %s', $collector->getEmail())
+            'success',
+            sprintf(
+              'Email with download link was sent to %s.
+               Click <a href="%s">here</a> if you did not receive the email.',
+              $collector->getEmail(), $this->generateUrl('misc_guide_download')
+            )
           );
 
-          $this->redirect('@misc_guide_download');
+          $this->redirect('@mycq');
         }
       }
       else if ($request->getParameter($loginForm->getName()))
