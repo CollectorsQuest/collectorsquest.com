@@ -8,14 +8,10 @@
   <link rel="dns-prefetch" href="//collectorsquest.rpxnow.com">
   <link rel="dns-prefetch" href="//s7.addthis.com">
 
-  <meta charset="utf-8" />
+  <meta charset="utf-8">
   <meta property="fb:admins" content="<?= cqConfig::getCredentials('facebook', 'admins') ?>">
   <meta property="fb:app_id" content="<?= cqConfig::getCredentials('facebook', 'application_id') ?>">
-  <meta property="og:site_name" content="CollectorsQuest.com" />
-
-  <?php if ($canonical_url = $sf_response->getCanonicalUrl()): ?>
-    <link rel="canonical" href="<?php echo (substr($canonical_url, 0, 1) == '@') ? url_for($canonical_url, true) : $canonical_url; ?>" />
-  <?php endif ?>
+  <meta property="og:site_name" content="CollectorsQuest.com">
 
   <?php cq_include_http_metas() ?>
   <?php cq_include_metas() ?>
@@ -36,10 +32,12 @@
   <?php include_partial('global/head_ie'); ?>
 
   <link href='//fonts.googleapis.com/css?family=Chivo:400,400italic,900,900italic' rel='stylesheet' type='text/css'>
-  <link rel="shortcut icon" href="<?php echo cq_image_src('frontend/favicon.ico', true); ?>"/>
-  <link rel="icon" type="image/png" href="<?php echo cq_image_src('frontend/favicon.png', true); ?>"/>
+  <link rel="shortcut icon" href="<?php echo cq_image_src('frontend/favicon.ico', true); ?>">
+  <link rel="icon" type="image/png" href="<?php echo cq_image_src('frontend/favicon.png', true); ?>">
+  <?php cq_canonical_url(); ?>
   <?php echo get_slot('prev_next') ?>
   <?php echo get_slot('collectible_prev_next') ?>
+
 
   <script>
     window.cq = {

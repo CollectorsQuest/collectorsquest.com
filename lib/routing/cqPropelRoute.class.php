@@ -20,20 +20,4 @@ class cqPropelRoute extends sfPropelRoute
     return $object;
   }
 
-  public function getCanonicalUrl()
-  {
-    $object = $this->getObject();
-
-    if ($object instanceof CollectionCollectible || $object instanceof Collectible)
-    {
-      $canonical_url = url_for(route_for_collectible($object), $object, true);
-    }
-    else
-    {
-      $canonical_url = url_for(sfContext::getInstance()->getRouting()->getCurrentRouteName(), $object, true);
-    }
-
-    return $canonical_url;
-  }
-
 }

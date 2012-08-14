@@ -79,7 +79,17 @@ function cq_url_for()
 
   if ($arguments[0] instanceof BaseObject)
   {
-    return call_user_func_array('url_for_'. sfInflector::underscore(get_class($arguments[0])), $arguments);
+    if (
+      ($function = 'url_for_'. sfInflector::underscore(get_class($arguments[0]))) &&
+      function_exists($function)
+    )
+    {
+      return call_user_func_array($function, $arguments);
+    }
+    else
+    {
+      return url_for_model_object($arguments[0]);
+    }
   }
   else
   {
@@ -539,4 +549,34 @@ function link_to_model_object($name, BaseObject $model_object, $options = array(
   $uri = false == $uri ? '#' : $uri;
 
   return link_to1($name, $uri, $options);
+}
+
+function cq_canonical_url()
+{
+  if (!$canonical_url = sfContext::getInstance()->getResponse()->getCanonicalUrl())
+  {
+    /** @var $route cqPropelRoute */
+    $route = sfContext::getInstance()->getRequest()->getAttribute('sf_route');
+
+    if ($route instanceof cqPropelRoute)
+    {
+      /** @var $object BaseObject */
+      $object = $route->getObject();
+
+      try
+      {
+        $canonical_url = cq_url_for($object, true);
+      }
+      catch (InvalidArgumentException $e)
+      {
+        $canonical_url = url_for(sfContext::getInstance()->getRouting()->getCurrentRouteName(), $object, true);
+      }
+    }
+  }
+
+  if (!empty($canonical_url))
+  {
+    $canonical_url = (substr($canonical_url, 0, 1) == '@') ? url_for($canonical_url, true) : $canonical_url;
+    echo tag('link', array('rel' => 'canonical', 'href' => $canonical_url), true);
+  }
 }

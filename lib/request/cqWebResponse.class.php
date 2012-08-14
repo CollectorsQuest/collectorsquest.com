@@ -15,15 +15,6 @@ class cqWebResponse extends iceWebResponse
 
   public function getCanonicalUrl()
   {
-    if (!$this->_canonical_url && sfContext::getInstance()->getRequest()->getAttribute('sf_route') instanceof cqPropelRoute)
-    {
-      $this->_canonical_url = sfContext::getInstance()->getRequest()->getAttribute('sf_route')->getCanonicalUrl();
-    }
-
-    /**
-     * @todo Cases where we don't have Object in routing
-     */
-
     return $this->_canonical_url;
   }
 
