@@ -163,7 +163,7 @@
       <div class="credit-card-inner">
         <div class="row-fluid">
           <div class="span8">
-            <small>Credit Cart Number</small>
+            <small>Credit cart number:</small>
           </div>
           <div class="span4">
             <small>CVV code:</small>
@@ -174,9 +174,6 @@
             <?= $packagesForm['cc_number']->render() ?>
           </div>
           <div class="span4 cvv_number">
-            <div class="cid_icon_generic">
-              <img src="/images/frontend/cid_icon_generic.gif" alt="ccv number">
-            </div>
             <?= $packagesForm['cvv_number']->render(); ?>
             <span class="help" rel="tooltip"
                   title="For <strong>Visa, MasterCard, and Discover</strong> cards,
@@ -190,7 +187,7 @@
         </div>
         <div class="row-fluid spacer-top-15">
           <div class="span8">
-            <small>Card holder's name</small>
+            <small>Card holder's name:</small>
           </div>
           <div class="span4">
             <small>Expiration date:</small>
@@ -205,14 +202,6 @@
             <?= $packagesForm['expiry_date']->render(array('class'=> 'input-mini pull-left')) ?>
           </div>
       </div>
-      </div>
-    </div>
-
-    <div class="control-group ">
-      <div class="controls">
-        <h3 class="Chivo webfont red text-normal">
-          Billing Address
-        </h3>
       </div>
     </div>
 
