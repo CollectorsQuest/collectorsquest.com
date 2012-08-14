@@ -503,18 +503,6 @@ function link_to_content_category(ContentCategory $category, $type = 'text', $op
   return $link;
 }
 
-function url_for_content_category(ContentCategory $content_category = null, $absolute = false)
-{
-  return ($content_category) ? url_for(route_for_content_category($content_category), $absolute) : null;
-}
-
-function route_for_content_category(ContentCategory $content_category = null)
-{
-  return ($content_category) ?
-    '@content_category?id=' . $content_category->getId() . '&slug=' . $content_category->getSlug() :
-    null;
-}
-
 /**
  * Try to provide an url for a model object's cononical url
  *
@@ -586,6 +574,6 @@ function cq_canonical_url()
   if (!empty($canonical_url))
   {
     $canonical_url = (substr($canonical_url, 0, 1) == '@') ? url_for($canonical_url) : $canonical_url;
-    echo tag('link', array('rel' => 'canonical', 'href' => 'http://'. sfConfig::get('app_www_domain') . $canonical_url), true);
+    echo tag('link', array('rel' => 'canonical', 'href' => 'http://' . sfConfig::get('app_www_domain') . $canonical_url), true);
   }
 }

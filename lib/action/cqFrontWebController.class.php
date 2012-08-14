@@ -65,6 +65,14 @@ class cqFrontWebController extends sfFrontWebController
           'sf_route' => 'collection_by_slug',
         );
 
+      case 'ContentCategory':
+        /** @var $model_object ContentCategory */
+
+        return array(
+          'sf_subject' => $model_object,
+          'sf_route' => 'content_category',
+        );
+
       case 'Comment':
         /** @var $model_object Comment */
 
