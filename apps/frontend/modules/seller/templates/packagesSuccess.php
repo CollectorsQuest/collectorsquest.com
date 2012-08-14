@@ -154,23 +154,63 @@
   </fieldset>
 
   <?php if (IceGateKeeper::open('mycq_seller_pay')): ?>
-  <fieldset id="credit-card-info" class="js-hide clearfix">
-    <?= $packagesForm['cc_type']->renderRow() ?>
-    <?= $packagesForm['cc_number']->renderRow() ?>
-    <?= $packagesForm['expiry_date']->renderRow(array('class'=> 'input-mini pull-left')) ?>
-    <div class="control-group ">
-      <label class="control-label" for="<?= $packagesForm['cvv_number']->renderId(); ?>">
-        <?= $packagesForm['cvv_number']->renderLabelName(); ?>
-      </label>
-      <div class="controls">
-        <div class="cid_icon_generic">
-          <img src="/images/frontend/cid_icon_generic.gif" alt="ccv number">
+  <fieldset id="credit-card-info" class="js-hide cf">
+
+    <div class="credit-card-wrapper">
+      <div class="gray-bg">
+        Credit Card
+      </div>
+      <div class="credit-card-inner">
+        <div class="row-fluid">
+          <div class="span8">
+            <small>Credit Cart Number</small>
+          </div>
+          <div class="span4">
+            <small>CVV code:</small>
+          </div>
         </div>
-        <?= $packagesForm['cvv_number']->render(); ?>
+        <div class="row-fluid">
+          <div class="span8 cc_number">
+            <?= $packagesForm['cc_number']->render() ?>
+          </div>
+          <div class="span4 cvv_number">
+            <div class="cid_icon_generic">
+              <img src="/images/frontend/cid_icon_generic.gif" alt="ccv number">
+            </div>
+            <?= $packagesForm['cvv_number']->render(); ?>
+            <span class="help title="first tooltip" rel="tooltip">
+              <i class="icon-question-sign"></i>
+            </span>
+          </div>
+        </div>
+        <div class="row-fluid spacer-top-15">
+          <div class="span8">
+            <small>Card holder's name</small>
+          </div>
+          <div class="span4">
+            <small>Expiration date:</small>
+          </div>
+        </div>
+        <div class="row-fluid">
+          <div class="span8 cc_name">
+            <?= $packagesForm['first_name']->render() ?>
+            <?= $packagesForm['last_name']->render() ?>
+          </div>
+          <div class="span4">
+            <?= $packagesForm['expiry_date']->render(array('class'=> 'input-mini pull-left')) ?>
+          </div>
+      </div>
       </div>
     </div>
-    <?= $packagesForm['first_name']->renderRow() ?>
-    <?= $packagesForm['last_name']->renderRow() ?>
+
+    <div class="control-group ">
+      <div class="controls">
+        <h3 class="Chivo webfont red text-normal">
+          Billing Address
+        </h3>
+      </div>
+    </div>
+
     <?= $packagesForm['street']->renderRow() ?>
     <?= $packagesForm['city']->renderRow() ?>
     <?= $packagesForm['state']->renderRow() ?>

@@ -324,3 +324,58 @@ span.current-price {
 		}
 	}
 }
+
+.credit-card-wrapper {
+	.size (205px, 420px);
+	margin-left: 70px;
+	border: 1px solid #D4D4D4;
+	background: #f8f8f8; /* Old browsers */
+/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICA8c3RvcCBvZmZzZXQ9IjU4JSIgc3RvcC1jb2xvcj0iI2Y4ZjhmOCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZWZlZmUiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+	background: -moz-linear-gradient(-45deg,  #f8f8f8 58%, #fefefe 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, right bottom, color-stop(58%,#f8f8f8), color-stop(100%,#fefefe)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(-45deg,  #f8f8f8 58%,#fefefe 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(-45deg,  #f8f8f8 58%,#fefefe 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(-45deg,  #f8f8f8 58%,#fefefe 100%); /* IE10+ */
+	background: linear-gradient(135deg,  #f8f8f8 58%,#fefefe 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f8f8f8', endColorstr='#fefefe',GradientType=1 ); /* IE6-8 fallback on horizontal gradient */
+	.border-radius(6px);
+
+	.gray-bg {
+		background-color: #D5D5D5;
+		margin-top: 15px;
+		padding: 8px 15px;
+		font-size: 20px;
+		line-height: 20px;
+		font-weight: bold;
+		color: @brown;
+	}
+	.credit-card-inner {
+		margin: 10px;
+
+		small {
+			font-size: 11px;
+			color: @brown;
+		}
+		.cc_number input {
+			width: 245px;
+		}
+		.cvv_number
+		input {
+			width: 55px;
+		}
+		.help {
+			display: inline-block;
+			vertical-align: middle;
+			font-size: 26px;
+			color: #D5D5D5;
+		}
+		.cc_name input {
+			width: 115px;
+		}
+	}
+}
+
+.lt-ie10 .credit-card-wrapper {
+	filter: none;
+}
