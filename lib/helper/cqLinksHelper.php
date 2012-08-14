@@ -545,7 +545,7 @@ function link_to_model_object($name, BaseObject $model_object, $options = array(
     unset($html_options['absolute']);
   }
 
-  $uri = url_for_model_object($model_object, true);
+  $uri = url_for_model_object($model_object, $absolute);
   $uri = false == $uri ? '#' : $uri;
 
   return link_to1($name, $uri, $options);
@@ -563,11 +563,8 @@ function cq_canonical_url()
       /** @var $object BaseObject */
       $object = $route->getObject();
 
-      try
-      {
-        $canonical_url = cq_url_for($object, true);
-      }
-      catch (InvalidArgumentException $e)
+      /** If we cannot generate a */
+      if (!$canonical_url = cq_url_for($object, true))
       {
         $canonical_url = url_for(sfContext::getInstance()->getRouting()->getCurrentRouteName(), $object, true);
       }
