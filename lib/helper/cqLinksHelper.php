@@ -573,6 +573,13 @@ function cq_canonical_url()
       /** @var $object BaseObject */
       $object = $route->getObject();
 
+      // CollectionCollectibles need to be normalized to Collectibles
+      if ($object instanceof CollectionCollectible)
+      {
+        /** @var $object CollectionCollectible */
+        $object = $object->getCollectible();
+      }
+
       /** If we cannot generate a */
       if (!$canonical_url = cq_url_for($object, false))
       {

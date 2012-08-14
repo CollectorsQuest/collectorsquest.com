@@ -70,6 +70,7 @@ class cqWebResponse extends iceWebResponse
     // CollectionCollectibles need to be normalized to Collectibles
     if ($object instanceof CollectionCollectible)
     {
+      /** @var $object CollectionCollectible */
       $object = $object->getCollectible();
     }
 
@@ -86,6 +87,7 @@ class cqWebResponse extends iceWebResponse
 
     if (count($multimedia))
     {
+      $images = array();
       foreach ($multimedia as $m)
       {
         $images[] = src_tag_multimedia($m, 'original');
@@ -100,10 +102,12 @@ class cqWebResponse extends iceWebResponse
     /**
      * We want to simplify to "Collector", "Collection", "Collectible"
      */
-    if ($type === 'collection_collectible') {
+    if ($type === 'collection_collectible')
+    {
       $type = 'collectible';
     }
-    if ($type === 'collector_collection') {
+    else if ($type === 'collector_collection')
+    {
       $type = 'collection';
     }
 
