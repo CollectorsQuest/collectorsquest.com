@@ -140,7 +140,7 @@
       </div>
     </div>
     <?php if (IceGateKeeper::open('mycq_seller_pay')): ?>
-    <?php cq_section_title('How would you pay?'); ?>
+    <?php cq_section_title('How would you like to pay?'); ?>
       <div class="payment-type">
         <div class="control-group">
           <div class="controls-inline clearfix">
