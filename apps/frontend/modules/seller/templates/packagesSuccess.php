@@ -212,7 +212,7 @@
   </fieldset>
   <?php endif; ?>
 
-  <div class="control-group spacer-bottom-reset">
+  <div class="agreement-checks control-group spacer-bottom-reset">
     <label class="control-label control-label">&nbsp;</label>
     <div class="controls form-inline reset-label-colors">
       <label for="<?= $packagesForm['terms']->renderId() ?>" class="radio inline">
