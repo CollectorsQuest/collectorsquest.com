@@ -39,6 +39,7 @@
   <link rel="shortcut icon" href="<?php echo cq_image_src('frontend/favicon.ico', true); ?>"/>
   <link rel="icon" type="image/png" href="<?php echo cq_image_src('frontend/favicon.png', true); ?>"/>
   <?php echo get_slot('prev_next') ?>
+  <?php echo get_slot('collectible_prev_next') ?>
 
   <script>
     window.cq = {

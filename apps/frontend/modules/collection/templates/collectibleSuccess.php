@@ -264,6 +264,12 @@
 
 <?php endif; ?>
 
+<?php slot('collectible_prev_next'); ?>
+  <link rel="prev" href="<?= url_for_collectible($previous) ?>">
+  <link rel="next" href="<?= url_for_collectible($next) ?>">
+  <link rel="start" href="<?= url_for_collectible($first) ?>">
+<?php end_slot(); ?>
+
 <script>
 $(document).ready(function()
 {
