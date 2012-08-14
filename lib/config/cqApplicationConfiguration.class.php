@@ -1,6 +1,6 @@
 <?php
 
-require dirname(__FILE__).'/../../plugins/iceLibsPlugin/lib/config/IceApplicationConfiguration.class.php';
+require dirname(__FILE__) . '/../../plugins/iceLibsPlugin/lib/config/IceApplicationConfiguration.class.php';
 
 class cqApplicationConfiguration extends IceApplicationConfiguration
 {
