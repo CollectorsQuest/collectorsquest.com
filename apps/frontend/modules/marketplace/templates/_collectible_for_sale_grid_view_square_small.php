@@ -15,7 +15,7 @@
     <?php
       echo link_to_collectible(
         $collectible_for_sale->getCollectible(), 'text',
-        array('class' => 'target', 'truncate' => 20)
+        array('class' => 'target')
       );
     ?>
   </p>
