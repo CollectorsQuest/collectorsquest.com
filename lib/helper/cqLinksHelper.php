@@ -31,7 +31,8 @@ function cq_link_to()
   else if (
     empty($arguments[1]) || is_array($arguments[1]) ||
     '@' == substr($arguments[1], 0, 1) || false !== strpos($arguments[1], '/')
-  ) {
+  )
+  {
     if (!array_key_exists(2, $arguments))
     {
       $arguments[2] = array();
@@ -79,7 +80,17 @@ function cq_url_for()
 
   if ($arguments[0] instanceof BaseObject)
   {
-    return call_user_func_array('url_for_'. sfInflector::underscore(get_class($arguments[0])), $arguments);
+    if (
+      ($function = 'url_for_'. sfInflector::underscore(get_class($arguments[0]))) &&
+      function_exists($function)
+    )
+    {
+      return call_user_func_array($function, $arguments);
+    }
+    else
+    {
+      return url_for_model_object($arguments[0]);
+    }
   }
   else
   {
@@ -129,17 +140,17 @@ function link_to_collector($object, $type = 'text', $options = array(), $image_o
 
   if (array_key_exists('truncate', $options) && strlen($display_name) > $options['truncate'])
   {
-    $display_name = truncate_text($display_name, $options['truncate'], "...", true);
+    $display_name = truncate_text($display_name, $options['truncate'], '...', true);
     unset($options['truncate']);
   }
 
   $url = route_for_collector($collector);
   switch ($type)
   {
-    case "image":
+    case 'image':
       $link = link_to(image_tag_collector($collector, '100x100', $image_options), $url, $options);
       break;
-    case "text":
+    case 'text':
     default:
       $link = link_to($display_name, $url, $options);
       break;
@@ -190,7 +201,7 @@ function link_to_collection($object, $type = 'text', $options = array())
 
   if (array_key_exists('truncate', $options))
   {
-    $title = truncate_text($title, $options['truncate'], "...", true);
+    $title = truncate_text($title, $options['truncate'], '...', true);
     unset($options['truncate']);
   }
 
@@ -198,7 +209,10 @@ function link_to_collection($object, $type = 'text', $options = array())
   switch ($type)
   {
     case 'image':
-      $which     = (isset($options['width']) && isset($options['height'])) ? $options['width'] . 'x' . $options['height'] : '150x150';
+      $which = (isset($options['width']) && isset($options['height'])) ?
+        $options['width'] . 'x' . $options['height'] :
+        '150x150';
+
       $image_tag = image_tag_collection($collection, $which, $options);
 
       $link = link_to($image_tag, $route);
@@ -271,7 +285,7 @@ function link_to_collectible($collectible, $type = 'text', $options = array())
   $title = $collectible->getName();
   if (array_key_exists('truncate', $options) && strlen($title) > $options['truncate'])
   {
-    $title = truncate_text($title, $options['truncate'], "...", true);
+    $title = truncate_text($title, $options['truncate'], '...', true);
     unset($options['truncate']);
   }
 
@@ -348,16 +362,16 @@ function link_to_video(Video $video, $type = 'text', $options = array())
 
   if (array_key_exists('truncate', $options) && strlen($title) > $options['truncate'])
   {
-    $title = truncate_text($title, $options['truncate'], "...", true);
+    $title = truncate_text($title, $options['truncate'], '...', true);
     unset($options['truncate']);
   }
 
   switch ($type)
   {
-    case "image":
+    case 'image':
       return link_to(image_tag($video->getThumbLargeSrc(), $options), url_for_video($video), $options);
       break;
-    case "text":
+    case 'text':
     default:
       return link_to($title, url_for_video($video), $options);
       break;
@@ -376,13 +390,13 @@ function link_to_featured_week(Featured $featured_week, $type = 'text', $options
 
   if (array_key_exists('truncate', $options) && strlen($title) > $options['truncate'])
   {
-    $title = truncate_text($title, $options['truncate'], "...", true);
+    $title = truncate_text($title, $options['truncate'], '...', true);
     unset($options['truncate']);
   }
 
   switch ($type)
   {
-    case "text":
+    case 'text':
     default:
       return link_to($title, url_for_featured_week($featured_week), $options);
       break;
@@ -399,7 +413,7 @@ function link_to_blog_post(wpPost $post, $type = 'text', $options = array())
   $title = $post->getPostTitle();
   if (array_key_exists('truncate', $options) && strlen($title) > $options['truncate'])
   {
-    $title = truncate_text($title, $options['truncate'], "...", true);
+    $title = truncate_text($title, $options['truncate'], '...', true);
     unset($options['truncate']);
   }
 
@@ -410,7 +424,7 @@ function link_to_blog_author(wpUser $author, $type = 'text', $options = array())
 {
   switch ($type)
   {
-    case "image":
+    case 'image':
       if (!$avatar_url = $author->getAvatarUrl('40'))
       {
         $avatar_url = 'blog/avatar-' . str_replace(' ', '-', strtolower($author->getDisplayName()));
@@ -421,7 +435,7 @@ function link_to_blog_author(wpUser $author, $type = 'text', $options = array())
         '/blog/author/' . urlencode($author->getUserNicename()) . '/'
       );
       break;
-    case "text":
+    case 'text':
     default:
       return link_to(
         $author->getDisplayName(),
@@ -497,14 +511,17 @@ function link_to_content_category(ContentCategory $category, $type = 'text', $op
  * Try to provide an url for a model object's cononical url
  *
  * @param     BaseObject $model_object
- * @return    string|false
+ * @param     boolean $absolute
+ * @return    string|boolean
  *
  * @see       cqFrontWebController::genUrlForModelObject()
  */
 function url_for_model_object(BaseObject $model_object, $absolute = false)
 {
-  return sfContext::getInstance()->getController()
-    ->genUrlForModelObject($model_object, $absolute);
+  /** @var $controller cqFrontWebController */
+  $controller = sfContext::getInstance()->getController();
+
+  return $controller->genUrlForModelObject($model_object, $absolute);
 }
 
 /**
@@ -535,8 +552,50 @@ function link_to_model_object($name, BaseObject $model_object, $options = array(
     unset($html_options['absolute']);
   }
 
-  $uri = url_for_model_object($model_object, true);
+  $uri = url_for_model_object($model_object, $absolute);
   $uri = false == $uri ? '#' : $uri;
 
   return link_to1($name, $uri, $options);
+}
+
+function cq_canonical_url()
+{
+  /** @var $response cqWebResponse */
+  $response = sfContext::getInstance()->getResponse();
+
+  if (!$canonical_url = $response->getCanonicalUrl())
+  {
+    /** @var $route cqPropelRoute */
+    $route = sfContext::getInstance()->getRequest()->getAttribute('sf_route');
+
+    if ($route instanceof cqPropelRoute)
+    {
+      /** @var $object BaseObject */
+      $object = $route->getObject();
+
+      // CollectionCollectibles need to be normalized to Collectibles
+      if ($object instanceof CollectionCollectible)
+      {
+        /** @var $object CollectionCollectible */
+        $object = $object->getCollectible();
+      }
+
+      /** If we cannot generate a */
+      if (!$canonical_url = cq_url_for($object, false))
+      {
+        /** @var $routing cqPatternRouting */
+        $routing = sfContext::getInstance()->getRouting();
+
+        $canonical_url = url_for($routing->getCurrentRouteName(), $object, false);
+      }
+    }
+  }
+
+  if (!empty($canonical_url))
+  {
+    $canonical_url = (substr($canonical_url, 0, 1) == '@') ? url_for($canonical_url) : $canonical_url;
+    $options = array('rel' => 'canonical', 'href' => 'http://' . sfConfig::get('app_www_domain') . $canonical_url);
+
+    echo tag('link', $options, true);
+  }
 }

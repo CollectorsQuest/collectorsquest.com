@@ -193,6 +193,14 @@ class collectionActions extends cqFrontendActions
       $this->next = $q->findOne();
     }
 
+    /**
+     * Figure out the first item in the collection
+     */
+    $q = CollectionCollectibleQuery::create()
+      ->filterByCollection($collection)
+      ->filterByCollectibleId($collectible_ids[0]);
+    $this->first = $q->findOne();
+
     if ($collectible->isWasForSale())
     {
       SmartMenu::setSelected('header_main_menu', 'marketplace');

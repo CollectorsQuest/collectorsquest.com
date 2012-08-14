@@ -7,7 +7,7 @@
 <?php elseif ($sf_user->hasFlash('error')): ?>
 <div class="alert alert-error fade in" data-alert="alert">
   <a class="close" data-dismiss="alert">×</a>
-  <?= implode('<br/><br/>', array_filter((array) $sf_user->getFlash('error', null, true))); ?>
+  <?= implode('<br><br>', array_filter((array) $sf_user->getFlash('error', null, true))); ?>
 </div>
 <?php elseif ($sf_user->hasFlash('success')): ?>
 <div class="alert alert-success fade in" data-alert="alert">

@@ -8,9 +8,11 @@ function cq_include_http_metas()
   /** @var $response sfWebResponse */
   $response = sfContext::getInstance()->getResponse();
 
+  $i = 0;
   foreach ((array) $response->getHttpMetas() as $httpequiv => $value)
   {
-    echo tag('meta', array('http-equiv' => $httpequiv, 'content' => $value))."\n";
+    echo ($i++ > 0) ? '  ' : '';
+    echo tag('meta', array('http-equiv' => $httpequiv, 'content' => $value), true)."\n";
   }
 }
 
@@ -40,11 +42,18 @@ function cq_include_metas()
     foreach ($content as $_content)
     {
       // Do not display empty meta tags
-      if ($_content === '' || $_content === null) continue;
+      if ($_content === '' || $_content === null)
+      {
+        continue;
+      }
 
       echo ($i++ > 0) ? '  ' : '';
       $key = substr($name, 0, 3) === 'og:' ? 'property' : 'name';
-      echo tag('meta', array($key => $name, 'content' => null === $i18n ? $_content : $i18n->__($_content)))."\n";
+      echo tag(
+        'meta',
+        array($key => $name, 'content' => null === $i18n ? $_content : $i18n->__($_content)),
+        true
+      ) . "\n";
     }
   }
 }
@@ -103,7 +112,8 @@ function cq_stylesheet_src($stylesheet)
 
 function cq_javascript_src($javascript)
 {
-  return '//'. sfConfig::get('app_static_domain') .'/js/'. $javascript .'?rev='. (defined('SVN_REVISION') ? SVN_REVISION : 0);
+  return '//'. sfConfig::get('app_static_domain') .'/js/'.
+         $javascript .'?rev='. (defined('SVN_REVISION') ? SVN_REVISION : 0);
 }
 
 function cq_include_stylesheets()
@@ -243,7 +253,7 @@ function cq_combine_stylesheets($stylesheets)
       $url .= '&cache=0';
     }
 
-    echo '<link rel="stylesheet" type="text/css" href="', $url, '"/>';
+    echo '<link rel="stylesheet" type="text/css" href="', $url, '">';
   }
 }
 

@@ -585,7 +585,7 @@ class cqSphinxPager extends sfPager
       foreach ($results['matches'] as $match)
       {
         $suggested = $match['attrs']['keyword'];
-        if ($keyword !== $suggested && levenshtein($keyword, $suggested) <= 2)
+        if (strcasecmp($keyword, $suggested) !== 0 && levenshtein($keyword, $suggested) <= 2)
         {
           return $suggested;
         }

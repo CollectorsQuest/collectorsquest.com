@@ -75,7 +75,7 @@ function src_tag_collector($collector, $which = '100x100', $options = array())
  *
  * @see image_tag_multimedia()
  *
- * @param  Collection  $collection
+ * @param  Collection|CollectorCollection  $collection
  * @param  string      $which
  * @param  array       $options
  *
@@ -99,15 +99,18 @@ function image_tag_collection($collection, $which = '150x150', $options = array(
 
   if (empty($image_tag))
   {
-    $image_tag = cq_image_tag(sfConfig::get('sf_app') .'/multimedia/'. get_class($collection) .'/'. $which .'.png', $options);
+    $image_tag = cq_image_tag(
+      sfConfig::get('sf_app') .'/multimedia/'. get_class($collection) .'/'. $which .'.png',
+      $options
+    );
   }
 
   return $image_tag;
 }
 
 /**
- * @param  Collection   $collection
- * @param  string       $which
+ * @param  Collection|CollectorCollection  $collection
+ * @param  string  $which
  *
  * @return null|string
  */
@@ -245,15 +248,15 @@ function image_tag_multimedia($multimedia, $which, $options = array())
 
   if (isset($options['max_width']) || isset($options['max_height']))
   {
-    if(list($w, $h) = @getimagesize($multimedia->getAbsolutePath($which)))
+    if (list($w, $h) = @getimagesize($multimedia->getAbsolutePath($which)))
     {
       $mw = @$options['max_width'];
       $mh = @$options['max_height'];
-      foreach(array('w','h') as $v)
+      foreach (array('w','h') as $v)
       {
         $m = "m{$v}";
 
-        if(${$v} > ${$m} && ${$m}) { $o = ($v == 'w') ? 'h' : 'w';
+        if (${$v} > ${$m} && ${$m}) { $o = ($v == 'w') ? 'h' : 'w';
         $r = ${$m} / ${$v}; ${$v} = ${$m}; ${$o} = ceil(${$o} * $r); }
       }
     }
@@ -285,9 +288,12 @@ function src_tag_multimedia($multimedia, $which = 'thumb', $options = array())
     return null;
   }
 
+  /** @var $request cqWebRequest */
+  $request = sfContext::getInstance()->getRequest();
+
   // Take into consideration the current protocol only in production
   $protocol = sfConfig::get('sf_environment') === 'prod' ?
-    sfContext::getInstance()->getRequest()->getProtocol() :
+    $request->getProtocol() :
     'http';
 
   $src = sprintf(

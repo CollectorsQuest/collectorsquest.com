@@ -17,9 +17,9 @@
   <div class="span9 welcome-mycq">
     <?php if (100 > $collector->getProfile()->getProfileCompleted()): ?>
     <p>
-      One of the best parts about collecting is sharing your love and treasures with others,
-      so make sure to <?= link_to('fill out your profile', '@mycq_profile') ?>
-      so we can match you with people who share the same passion as you.
+      Show off your stuff to other Collectors Quest members by
+      <?= link_to('filling out your profile', '@mycq_profile') ?>, so you can buy,
+      sell, trade and share with people who have the same passions as you.
       <strong>Welcome to the community!</strong>
     </p>
     <br><br>
@@ -52,12 +52,12 @@
         </p>
       </div>
       <div class="span4 text-center">
-        <a href="<?= url_for('@messages_inbox'); ?>" title="Check My Messages">
+        <a href="<?= url_for('@mycq_marketplace'); ?>" title="Sell Your Stuff">
           <i class="check-messages"></i>
-          <h3>Check My Messages</h3>
+          <h3>Sell Your Stuff</h3>
         </a>
         <p>
-          Check your private messages from other members or compose new messages
+          List your collectible, vintage and antique items for sale in our Marketplace.
           <br>
           <!--<a href="javascript:void(0)">Show me how!</a>//-->
         </p>
