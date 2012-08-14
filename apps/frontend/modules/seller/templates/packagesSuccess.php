@@ -165,7 +165,7 @@
             <small>Credit cart number:</small>
           </div>
           <div class="span4">
-            <small>CVV code:</small>
+            <small>CVV/CSC Number:</small>
           </div>
         </div>
         <div class="row-fluid">
@@ -178,8 +178,7 @@
                   title="For <strong>Visa, MasterCard, and Discover</strong> cards,
                   the card code is the last 3 digit number located on the back of
                   your card on or above your signature line. For an <strong>American Express</strong>
-                  card, it is the 4 digits on the FRONT above the end of your card number."
-            >
+                  card, it is the 4 digits on the FRONT above the end of your card number.">
               <i class="icon-question-sign"></i>
             </span>
           </div>

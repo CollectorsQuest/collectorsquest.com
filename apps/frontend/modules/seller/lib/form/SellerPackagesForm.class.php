@@ -136,7 +136,7 @@ class SellerPackagesForm extends BaseForm
     $this->setWidget('cc_number', new cqWidgetFormCreditCard(array(
         'label' => 'Card Numer',
       ), array(
-        'placeholder' => 'Credit card number',
+        'placeholder' => 'XXXX-XXXX-XXXX-XXXX',
     )));
     $this->setValidator('cc_number', new cqValidatorCreditCardNumber());
   }
@@ -160,17 +160,15 @@ class SellerPackagesForm extends BaseForm
 
   private function setupCardVerificationNumberField()
   {
-    $this->setWidget('cvv_number', new sfWidgetFormInputText(array(
-        'label' => 'CVV Number',
-      ), array(
-        'maxlength'   => 3,
-        'placeholder' => 'CVV number',
-    )));
+    $this->setWidget('cvv_number', new sfWidgetFormInputText(
+      array('label' => 'CVV/CSC Number'),
+      array('maxlength' => 4)
+    ));
 
     $this->setValidator('cvv_number', new sfValidatorNumber(array(
-      'min'     => 100,
-      'max'     => 999,
-      'required'=> true,
+      'min'      => 100,
+      'max'      => 9999,
+      'required' => true,
     )));
   }
 
@@ -194,34 +192,34 @@ class SellerPackagesForm extends BaseForm
 
   private function setupCardStreetField()
   {
-    $this->setWidget('street', new sfWidgetFormInputText(array(), array(
-      'placeholder' => 'Street',
-    )));
-    $this->setValidator('street', new sfValidatorString());
+    $this->setWidget('street', new sfWidgetFormInputText(
+      array(
+        'label' => 'Address'
+      )
+    ));
+    $this->setValidator('street', new sfValidatorString(array('required' => true)));
   }
 
   private function setupCardCityField()
   {
-    $this->setWidget('city', new sfWidgetFormInputText(array(), array(
-      'placeholder' => 'City',
-    )));
-    $this->setValidator('city', new sfValidatorString());
+    $this->setWidget('city', new sfWidgetFormInputText());
+    $this->setValidator('city', new sfValidatorString(array('required' => true)));
   }
 
   private function setupCardStateField()
   {
-    $this->setWidget('state', new sfWidgetFormInputText(array(), array(
-      'placeholder' => 'State',
+    $this->setWidget('state', new sfWidgetFormInputText(array(
+      'label' => 'State / Province / Region',
     )));
-    $this->setValidator('state', new sfValidatorString());
+    $this->setValidator('state', new sfValidatorString(array('required' => true)));
   }
 
   private function setupCardZipField()
   {
-    $this->setWidget('zip', new sfWidgetFormInputText(array(), array(
-      'placeholder' => 'Zip',
+    $this->setWidget('zip', new sfWidgetFormInputText(array(
+      'label' => 'Zip / Postal code',
     )));
-    $this->setValidator('zip', new sfValidatorString());
+    $this->setValidator('zip', new sfValidatorString(array('required' => true)));
   }
 
   private function setupTermsField()
