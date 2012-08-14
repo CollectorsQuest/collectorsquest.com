@@ -23,7 +23,7 @@
       sfConfig::get('app_static_domain'),
       ltrim(stylesheet_path('frontend/stylesheets.bundle.' . GIT_REVISION . '.css', false), '/')
     );
-    echo '<link rel="stylesheet" type="text/css" media="screen" href="'. $bundle .'">';
+    echo '<link rel="stylesheet" type="text/css" media="screen" href="'. $bundle .'">'."\n";
     unset($bundle);
 
     // Include the application specific stylesheets
@@ -35,9 +35,7 @@
   <link rel="shortcut icon" href="<?php echo cq_image_src('frontend/favicon.ico', true); ?>">
   <link rel="icon" type="image/png" href="<?php echo cq_image_src('frontend/favicon.png', true); ?>">
   <?php cq_canonical_url(); ?>
-  <?php echo get_slot('prev_next') ?>
-  <?php echo get_slot('collectible_prev_next') ?>
-
+  <?php echo "\n" . get_slot('prev_next') ?>
 
   <script>
     window.cq = {

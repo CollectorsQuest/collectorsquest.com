@@ -8,8 +8,10 @@ function cq_include_http_metas()
   /** @var $response sfWebResponse */
   $response = sfContext::getInstance()->getResponse();
 
+  $i = 0;
   foreach ((array) $response->getHttpMetas() as $httpequiv => $value)
   {
+    echo ($i++ > 0) ? '  ' : '';
     echo tag('meta', array('http-equiv' => $httpequiv, 'content' => $value), true)."\n";
   }
 }
