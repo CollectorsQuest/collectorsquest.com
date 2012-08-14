@@ -359,7 +359,8 @@ class cqFrontendUser extends cqBaseUser
     }
 
     // Finally, send the welcome email if requested
-    if ($send_email === true)
+    // NOTE: Currently it is disabled on purpose
+    if (false && $send_email === true)
     {
       $collector_email = CollectorEmailPeer::retrieveByCollectorEmail(
         $collector, $collector->getEmail(), false
