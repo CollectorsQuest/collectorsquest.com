@@ -8,12 +8,17 @@ class commentsActions extends cqFrontendActions
    *
    * Combine with the comments/addComment or comments/comments component
    */
-  public function executeAddComment(sfWebRequest $request)
+  public function executeAddComment(cqWebRequest $request)
   {
     if ($request->isMethod('post'))
     {
       $form = new FrontendCommentForm($this->getUser());
-      $form->bind($request->getParameter($form->getName()));
+      $form->bind(array_merge(
+        $request->getParameter($form->getName()),
+        array(
+          'ip_address' => $request->getRemoteAddress(),
+        )
+      ));
 
       if ($form->isValid())
       {
@@ -95,7 +100,7 @@ class commentsActions extends cqFrontendActions
   /**
    * Ajax load more comments
    */
-  public function executeLoadMoreComments(sfWebRequest $request)
+  public function executeLoadMoreComments(cqWebRequest $request)
   {
     $token = $request->getParameter('token');
     $offset = $request->getParameter('offset');
@@ -131,7 +136,7 @@ class commentsActions extends cqFrontendActions
   /**
    * Unsubscribe from a comment thread
    */
-  public function executeUnsubscribe(sfWebRequest $request)
+  public function executeUnsubscribe(cqWebRequest $request)
   {
     if (( $model_object = CommentPeer::retrieveCommentableObject(
       $request->getParameter('model_class'),
@@ -166,7 +171,7 @@ class commentsActions extends cqFrontendActions
    *
    * PropelObjectRoute for Comment
    */
-  public function executeDelete(sfWebRequest $request)
+  public function executeDelete(cqWebRequest $request)
   {
     /** @var Comment */
     $comment = $this->getRoute()->getObject();

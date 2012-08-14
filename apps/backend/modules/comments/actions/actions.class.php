@@ -22,10 +22,11 @@ class commentsActions extends autoCommentsActions
     /* @var $comment Comment */
     $comment = $this->getRoute()->getObject();
 
-    $ban_added = iceModelSpamControlPeer::addBan(
+    $ban_added = iceSpamControl::ban(
       'ip',
       $comment->getIpAddress(),
-      iceModelSpamControlPeer::CREDENTIALS_COMMENT
+      $validate = true,
+      iceSpamControl::CREDENTIALS_COMMENT
     );
     if ($ban_added)
     {
@@ -53,10 +54,11 @@ class commentsActions extends autoCommentsActions
     /* @var $comment Comment */
     $comment = $this->getRoute()->getObject();
 
-    $ban_added = iceModelSpamControlPeer::addBan(
+    $ban_added = iceSpamControl::ban(
       'email',
       $comment->getAuthorEmail(),
-      iceModelSpamControlPeer::CREDENTIALS_COMMENT
+      $validate = false,
+      iceSpamControl::CREDENTIALS_COMMENT
     );
     if ($ban_added)
     {
