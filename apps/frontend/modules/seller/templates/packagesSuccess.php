@@ -46,10 +46,9 @@
   <?= $packagesForm->renderGlobalErrors(); ?>
 <?php elseif (IceGateKeeper::locked('mycq_seller_pay')): ?>
   <div class="alert alert-info">
-    The market is currently in private beta testing mode.
-    If you have received a promo code for participation, please enter it below.
-    If you'd like to be a beta tester, please email
-    <?= mail_to('info@collectorsquest.com', 'info@collectorsquest.com'); ?> for more information.
+    The Marketplace is almost ready! If you're interested in becoming a seller,
+    please email <?= mail_to('info@collectorsquest.com', 'info@collectorsquest.com'); ?>
+    and we'll add you to our notification list.
   </div>
 <?php endif; ?>
 
