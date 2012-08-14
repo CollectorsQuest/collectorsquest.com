@@ -680,7 +680,7 @@ class mycqActions extends cqFrontendActions
     return sfView::SUCCESS;
   }
 
-  public function executeMarketplacePackages()
+  public function executeMarketplaceCreditHistory()
   {
     SmartMenu::setSelected('mycq_menu', 'marketplace');
 

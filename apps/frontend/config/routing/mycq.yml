@@ -97,9 +97,9 @@ mycq_marketplace_purchased:
   url:   /mycq/marketplace/purchased
   param: { module: mycq, action: marketplacePurchased }
 
-mycq_marketplace_packages:
-  url:   /mycq/marketplace/packages
-  param: { module: mycq, action: marketplacePackages }
+mycq_marketplace_credit_history:
+  url:   /mycq/marketplace/credit-history
+  param: { module: mycq, action: marketplaceCreditHistory }
 
 mycq_wanted:
   url:   /mycq/wanted
