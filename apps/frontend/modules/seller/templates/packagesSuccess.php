@@ -178,7 +178,12 @@
               <img src="/images/frontend/cid_icon_generic.gif" alt="ccv number">
             </div>
             <?= $packagesForm['cvv_number']->render(); ?>
-            <span class="help title="first tooltip" rel="tooltip">
+            <span class="help" rel="tooltip"
+                  title="For <strong>Visa, MasterCard, and Discover</strong> cards,
+                  the card code is the last 3 digit number located on the back of
+                  your card on or above your signature line. For an <strong>American Express</strong>
+                  card, it is the 4 digits on the FRONT above the end of your card number."
+            >
               <i class="icon-question-sign"></i>
             </span>
           </div>
