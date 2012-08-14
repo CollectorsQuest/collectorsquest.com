@@ -7,13 +7,6 @@
 
 <div class="row-fluid spacer-top-20">
   <div class="span3">
-    <p class="spacer-right">
-      One of the best parts about collecting is sharing your love and treasures with others,
-      so make sure to <?= link_to('fill out your collector profile', '@mycq_profile') ?>
-      so we can match you with people who share the same passion as you.
-      Welcome to the community!
-    </p>
-
     <?php
       echo link_to(
         cq_image_tag('banners/2012-06-24_CQGuide_160x600.png'),
@@ -22,6 +15,17 @@
     ?>
   </div>
   <div class="span9 welcome-mycq">
+    <?php if (100 > $collector->getProfile()->getProfileCompleted()): ?>
+    <p>
+      One of the best parts about collecting is sharing your love and treasures with others,
+      so make sure to <?= link_to('fill out your profile', '@mycq_profile') ?>
+      so we can match you with people who share the same passion as you.
+      <strong>Welcome to the community!</strong>
+    </p>
+    <br><br>
+    <?php endif; ?>
+
+    <br>
     <div class="rectangle"></div>
     <div class="row-fluid content-box">
       <div class="span4 text-center">
