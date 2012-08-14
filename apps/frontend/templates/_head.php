@@ -13,8 +13,8 @@
   <meta property="fb:app_id" content="<?= cqConfig::getCredentials('facebook', 'application_id') ?>">
   <meta property="og:site_name" content="CollectorsQuest.com" />
 
-  <?php if($sf_response->getCanonicalUrl()): ?>
-    <link rel="canonical" href="<?php echo $sf_response->getCanonicalUrl(); ?>" />
+  <?php if ($canonical_url = $sf_response->getCanonicalUrl()): ?>
+    <link rel="canonical" href="<?php echo (substr($canonical_url, 0, 1) == '@') ? url_for($canonical_url, true) : $canonical_url; ?>" />
   <?php endif ?>
 
   <?php cq_include_http_metas() ?>
