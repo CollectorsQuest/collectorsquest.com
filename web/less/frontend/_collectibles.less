@@ -38,10 +38,10 @@
   p {
     margin: 0;
     margin-top: 1px;
-    overflow: hidden;
     height: 18px;
     line-height: 20px;
     padding: 5px;
+    .text-overflow();
   }
 }
 
@@ -184,6 +184,11 @@
 				padding-right: 2px;
 			}
 		}
+    .thumbnail {
+      p {
+        .text-overflow();
+      }
+    }
 	}
 	.mycq-create-collectible {
 		//.size(210px, 204px);

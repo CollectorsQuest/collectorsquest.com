@@ -33,7 +33,7 @@
     <div class="span4 spacer-bottom-15">
       <div class="user-collections-inner">
         <span class="link-user-collection">
-          <?= link_to_collection($collection, 'text', array('truncate' => 30)) ?>
+          <?= link_to_collection($collection, 'text') ?>
         </span>
         <ul class="thumbnails">
           <?php foreach ($collection->getLatestCollectibles(9) as $collectible): ?>
