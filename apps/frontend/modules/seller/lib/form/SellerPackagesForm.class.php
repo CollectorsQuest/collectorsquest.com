@@ -126,7 +126,7 @@ class SellerPackagesForm extends BaseForm
         'placeholder' => 'credit/debit card type',
     )));
     $this->setValidator(
-      'cc_type', new sfValidatorChoice(array('choices'=> array_keys($this->getCardTypes())))
+      'cc_type', new sfValidatorChoice(array('choices'=> array_keys($this->getCardTypes()), 'required' => false))
     );
   }
 
@@ -137,7 +137,13 @@ class SellerPackagesForm extends BaseForm
       ), array(
         'placeholder' => 'XXXX-XXXX-XXXX-XXXX',
     )));
-    $this->setValidator('cc_number', new cqValidatorCreditCardNumber());
+    $this->setValidator('cc_number', new cqValidatorCreditCardNumber(
+      array(),
+      array(
+        'required' => 'The card number field is required.',
+        'invalid' => 'The card number is invalid.'
+      )
+    ));
   }
 
   private function setupCardExpiryDateField()
@@ -150,11 +156,17 @@ class SellerPackagesForm extends BaseForm
     ), array(
     )));
 
-    $this->setValidator('expiry_date', new cqValidatorExpiryDate(array(
-      'min'                    => strtotime('previous month'),
-      'date_format'            => '~(?P<month>\d{2})/(?P<year>\d{4})~',
-      'date_format_range_error'=> 'm/Y'
-    )));
+    $this->setValidator('expiry_date', new cqValidatorExpiryDate(
+      array(
+        'min'                    => strtotime('previous month'),
+        'date_format'            => '~(?P<month>\d{2})/(?P<year>\d{4})~',
+        'date_format_range_error'=> 'm/Y'
+      ),
+      array(
+        'required' => 'Both expiration date fields are required.',
+        'invalid' => 'The expiration date is invalid.'
+      )
+    ));
   }
 
   private function setupCardVerificationNumberField()
@@ -164,11 +176,17 @@ class SellerPackagesForm extends BaseForm
       array('maxlength' => 4)
     ));
 
-    $this->setValidator('cvv_number', new sfValidatorNumber(array(
-      'min'      => 100,
-      'max'      => 9999,
-      'required' => true,
-    )));
+    $this->setValidator('cvv_number', new sfValidatorNumber(
+      array(
+        'min'      => 100,
+        'max'      => 9999,
+        'required' => true,
+      ),
+      array(
+        'required' => 'The CVV/CSC number field is required.',
+        'invalid' => 'The CVV/CSC number is invalid.'
+      )
+    ));
   }
 
   private function setupCardFirstNameField()
@@ -178,7 +196,13 @@ class SellerPackagesForm extends BaseForm
       ), array(
         'placeholder' => 'First name',
     )));
-    $this->setValidator('first_name', new sfValidatorString());
+    $this->setValidator('first_name', new sfValidatorString(
+      array(),
+      array(
+        'required' => 'The first name field is required.',
+        'invalid' => 'The first name is invalid.'
+      )
+    ));
   }
 
   private function setupCardLastNameField()
@@ -186,7 +210,13 @@ class SellerPackagesForm extends BaseForm
     $this->setWidget('last_name', new sfWidgetFormInputText(array(), array(
       'placeholder' => 'Last name',
     )));
-    $this->setValidator('last_name', new sfValidatorString());
+    $this->setValidator('last_name', new sfValidatorString(
+      array(),
+      array(
+        'required' => 'The last name field is required.',
+        'invalid' => 'The last name is invalid.'
+      )
+    ));
   }
 
   private function setupCardStreetField()

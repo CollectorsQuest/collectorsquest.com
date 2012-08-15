@@ -92,14 +92,13 @@
           </span>
         <?php endif; ?>
       </div>
-    <?php else: ?>
-
+  <?php else: ?>
+    <?php
+      include_partial(
+        'mycq/partials/buy_package_listing'
+      );
+    ?>
   <?php endif; ?>
-      <?php
-        include_partial(
-          'mycq/partials/buy_package_listing'
-        );
-      ?>
 <?php endif; ?>
 
 

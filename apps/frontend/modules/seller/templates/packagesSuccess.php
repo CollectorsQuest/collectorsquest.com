@@ -182,6 +182,9 @@
             </span>
           </div>
         </div>
+        <?= $packagesForm['cc_number']->renderError() ?>
+        <?= $packagesForm['cvv_number']->renderError(); ?>
+
         <div class="row-fluid spacer-top-15">
           <div class="span8">
             <small>Cardholder's name:</small>
@@ -198,7 +201,10 @@
           <div class="span4">
             <?= $packagesForm['expiry_date']->render(array('class'=> 'input-mini pull-left')) ?>
           </div>
-      </div>
+        </div>
+        <?= $packagesForm['first_name']->renderError() ?>
+        <?= $packagesForm['last_name']->renderError() ?>
+        <?= $packagesForm['expiry_date']->renderError() ?>
       </div>
     </div>
 
