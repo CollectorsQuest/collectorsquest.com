@@ -35,11 +35,7 @@
             );
           ?>
           <p>
-            <?php
-              echo cqStatic::truncateText(
-                $collectible_for_sale->getCollectible()->getDescription('stripped'), 35
-              );
-            ?>
+            <?= $collectible_for_sale->getCollectible()->getDescription(); ?>
           </p>
           <span class="price">
             <?= money_format('%.2n', (float) $collectible_for_sale->getPrice()); ?>
