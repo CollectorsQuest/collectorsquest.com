@@ -719,7 +719,9 @@ class ajaxAction extends cqAjaxAction
       if ($collectible = $q->findOne())
       {
         $form->setDefault('collectible_id', $collectible->getId());
-        $default = array('name' => $collectible->getName());
+
+        $default = (array) $form->getDefault('collectible');
+        $default['name'] = $collectible->getName();
 
         /** @var $image iceModelMultimedia */
         if ($image = $collectible->getPrimaryImage())
