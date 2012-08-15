@@ -71,7 +71,7 @@
         <?= link_to('Buy Now', '@seller_packages?package=3', array('class' => 'btn btn-primary')) ?>
       </div>
       <div class="span3 text-center">
-        <?= link_to('Buy Now', '@seller_packages?package=4', array('class' => 'btn btn-primary')) ?>
+        <?= link_to('Buy Now', '@seller_packages?package=6', array('class' => 'btn btn-primary')) ?>
       </div>
     </div>
   </div>

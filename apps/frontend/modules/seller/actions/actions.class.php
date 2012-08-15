@@ -38,6 +38,7 @@ class sellerActions extends cqFrontendActions
   public function executePackages(sfWebRequest $request)
   {
     $packagesForm = new SellerPackagesForm();
+    $packagesForm->setDefault('package_id', $request->getParameter('package'));
 
     if ($request->isMethod('post'))
     {

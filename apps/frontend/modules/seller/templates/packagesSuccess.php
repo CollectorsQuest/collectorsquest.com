@@ -3,7 +3,7 @@
   $tainted_form_values = $sf_request->getParameter($packagesForm->getName());
   $package_id_value = isset($tainted_form_values['package_id'])
     ? $tainted_form_values['package_id']
-    : 0;
+    : $sf_params->get('package');
 ?>
 
 <?php slot('sidebar_300'); ?>
@@ -35,7 +35,7 @@
       If you don't have a PayPal<sup>®</sup> account, make sure to
       <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_registration-run"
          target="_blank">
-        sign up now
+        <strong>sign up now</strong>
       </a>!
     </dd>
   </dl>
@@ -52,8 +52,7 @@
   </div>
 <?php endif; ?>
 
-<form action="<?= url_for('seller_packages')?>" method="post"
-      style="margin-top: 10px;"
+<form action="<?= url_for('seller_packages')?>" method="post" style="margin-top: 10px;"
       id="form-seller-packages" class="form-horizontal" novalidate="novalidate">
   <?= $packagesForm->renderHiddenFields() ?>
 
@@ -126,12 +125,12 @@
 
   <fieldset>
     <div class="control-group">
-      <?= $packagesForm['promo_code']->renderLabel('You have got a promo code?', array('class'=> 'control-label')) ?>
-      <div class="controls form-inline">
+      <?= $packagesForm['promo_code']->renderLabel('You have got a promo code?', array('class'=> 'control-label', 'style' => 'width: 180px;')) ?>
+      <div class="controls form-inline" style="margin-left: 190px;">
         <?= $packagesForm['promo_code']->render() ?>
         <button type="submit" name="applyPromo" id="applyPromo3" class="btn btn-primary"
                 value="applyPromo" formnovalidate="formnovalidate">
-          Apply
+          Apply Discount
         </button>
         <?= $packagesForm['promo_code']->renderError() ?>
         <?php if (!empty($discountMessage)): ?>
@@ -157,12 +156,12 @@
 
     <div class="credit-card-wrapper">
       <div class="gray-bg">
-        Credit Card
+        Credit/Debit Card
       </div>
       <div class="credit-card-inner">
         <div class="row-fluid">
           <div class="span8">
-            <small>Credit card number:</small>
+            <small>Card number:</small>
           </div>
           <div class="span4">
             <small>CVV/CSC number:</small>
@@ -237,11 +236,6 @@
       <?= $packagesForm['fyi']->renderError() ?>
     </div>
   </div>
-
-  <?php if (IceGateKeeper::open('mycq_seller_pay')): ?>
-  <h5 class="info-text">* To avoid interruption of service, annual subscriptions
-    automatically<br> renew at the end of the subscription period</h5>
-  <?php endif; ?>
 
   <div class="form-actions">
     <button type="submit" class="btn btn-primary">Purchase Package</button>

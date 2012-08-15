@@ -92,7 +92,6 @@ class SellerPackagesForm extends BaseForm
       'label'=> 'Promo code',
     ), array(
       'required' => 'required',
-      'placeholder' => 'enter your promo code here',
     )));
     $this->setValidator('promo_code', new sfValidatorString(
       array('required'=> false),
