@@ -98,7 +98,7 @@ class _sidebarComponents extends cqFrontendComponents
     if (($collection = $this->getVar('collection')) && $collection instanceof CollectorCollection)
     {
       $tags = $collection->getTags();
-      $content_category_id = $collection->getContentCategoryId(); 
+      $content_category_id = $collection->getContentCategoryId();
       $q
         ->filterByTags($tags)
         ->_or()

@@ -126,7 +126,7 @@
 
   <fieldset>
     <div class="control-group">
-      <?= $packagesForm['promo_code']->renderLabel('You\'ve got a promo code?', array('class'=> 'control-label')) ?>
+      <?= $packagesForm['promo_code']->renderLabel('You have got a promo code?', array('class'=> 'control-label')) ?>
       <div class="controls form-inline">
         <?= $packagesForm['promo_code']->render() ?>
         <button type="submit" name="applyPromo" id="applyPromo3" class="btn btn-primary"
@@ -162,10 +162,10 @@
       <div class="credit-card-inner">
         <div class="row-fluid">
           <div class="span8">
-            <small>Credit cart number:</small>
+            <small>Credit card number:</small>
           </div>
           <div class="span4">
-            <small>CVV/CSC Number:</small>
+            <small>CVV/CSC number:</small>
           </div>
         </div>
         <div class="row-fluid">
@@ -185,7 +185,7 @@
         </div>
         <div class="row-fluid spacer-top-15">
           <div class="span8">
-            <small>Card holder's name:</small>
+            <small>Cardholder's name:</small>
           </div>
           <div class="span4">
             <small>Expiration date:</small>
@@ -230,7 +230,7 @@
     </div>
     <div class="controls form-inline reset-label-colors">
       <label for="<?= $packagesForm['fyi']->renderId() ?>" class="radio inline">
-        <?= $packagesForm['fyi']->render(array('style' => 'margin-bottom: 25px; float: left; margin-right: 5px; margin-top: 4px;')) ?>
+        <?= $packagesForm['fyi']->render(array('style' => 'margin-bottom: 25px; float: left; margin-right: 5px; margin-top: 3px;')) ?>
         I acknowledge that all payments made to me for items sold on
         Collectors Quest are processed through PayPal<sup>®</sup>.
       </label>
