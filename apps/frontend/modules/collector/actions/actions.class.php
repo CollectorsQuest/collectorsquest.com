@@ -132,7 +132,7 @@ class collectorActions extends cqFrontendActions
     if ($this->getUser()->isAuthenticated())
     {
       $completedSteps = $this->getUser()->getCollector()
-          ->getSingupNumCompletedSteps();
+          ->getSignupNumCompletedSteps();
 
       // if the requested step is not step 2, but the user has not yet
       // completed step 2 then redirect the user to step 2
@@ -221,7 +221,7 @@ class collectorActions extends cqFrontendActions
             $this->form->save();
 
             // mark step 2 as completed and save
-            $this->getUser()->getCollector()->setSingupNumCompletedSteps(2)
+            $this->getUser()->getCollector()->setSignupNumCompletedSteps(2)
                 ->save();
 
             // redirect to step 3
@@ -237,7 +237,7 @@ class collectorActions extends cqFrontendActions
 
             $collector = $this->getUser()->getCollector();
             // mark step 3 as completed, registration as completed and save
-            $collector->setSingupNumCompletedSteps(3)
+            $collector->setSignupNumCompletedSteps(3)
                 ->setHasCompletedRegistration(true)
                 ->save();
             $collector->sendToDefensio('UPDATE');
