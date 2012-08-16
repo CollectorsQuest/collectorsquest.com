@@ -754,7 +754,7 @@ var AVIARY = window.AVIARY = (function(){
   function loadAviary(callback) {
     if (false === aviary_loaded) {
       Modernizr.load({
-        load: '//feather.aviary.com/js/feather.js',
+        load: '//dme0ih8comzn4.cloudfront.net/js/feather.js',
         callback: function() {
           aviary_loaded = true;
           $.isFunction(callback) && callback();
