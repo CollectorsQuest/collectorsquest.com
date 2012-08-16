@@ -94,8 +94,8 @@ class collectionActions extends cqFrontendActions
     $this->editable = $this->getUser()->isOwnerOf($collection);
 
     // Building the meta tags
-    $this->getResponse()->addMeta('description', $collection->getDescription('stripped'));
-    $this->getResponse()->addMeta('keywords', $collection->getTagString());
+    // $this->getResponse()->addMeta('description', $collection->getDescription('stripped'));
+    // $this->getResponse()->addMeta('keywords', $collection->getTagString());
 
     // Set the OpenGraph meta tags
     $this->getResponse()->addOpenGraphMetaFor($collection);

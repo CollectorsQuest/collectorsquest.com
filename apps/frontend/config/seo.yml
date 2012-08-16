@@ -64,10 +64,13 @@ seo:
   collection:
     index:
       model: true
-      title: %Name%  | A Curated Collection
-      description: |
-        At Collectors Quest, our collectors share their antiques and collections,
-        like this %Name%, a curated collection.
+      title:
+        - %Name%
+        - %Name% | Collectors Quest
+        - %Name% - %TagString% | Collectors Quest
+      description:
+        0: %Description%
+        1: %Description% | From: %Collector%
 
     collectible:
       model: true
