@@ -9,7 +9,10 @@ var APP = window.APP = {
    * Defaults to be used throughout the project
    */
   defaults:   {
-    // empty ;)
+
+    tooltip: {
+      position: 'bottom'
+    }
   }, // defaults
 
   /**
@@ -22,7 +25,23 @@ var APP = window.APP = {
       $('.fade-white').mosaic();
       $("[rel=tooltip]").tooltip(
         {
-          placement: 'bottom'
+          placement: function(template, el) {
+            var $el = $(el),
+                settings = $.extend(true, {}, APP.defaults, window.cq.settings);
+
+            if ($el.hasClass('tooltip-position-right')) {
+              return 'right';
+            } else if ($el.hasClass('tooltip-position-left')) {
+              return 'left';
+            } else if ($el.hasClass('tooltip-position-top')) {
+              return 'top';
+            } else if ($el.hasClass('tooltip-position-bottom')) {
+              return 'bottom';
+            }
+
+            return settings.tooltip.position;
+          }
+
         }
       );
 
