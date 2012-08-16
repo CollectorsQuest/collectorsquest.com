@@ -69,22 +69,31 @@ seo:
       title:
         - %Name%
         - %Name% | Collectors Quest
+        - %Name% by %Collector%
+        - %Name% by %Collector% | Collectors Quest
         - %Name% - %TagString% | Collectors Quest
+        - %Name% by %Collector% - %TagString%
+        - %Name% by %Collector% - %TagString% | Collectors Quest
       description:
         - %Description%
-        - %Description% | From %Collector%
+        - %Description% | %Name% by %Collector%
+        - %Description% | %Name% by %Collector% (%NumViews% views)
 
     # https://basecamp.com/1759305/projects/288122-collectorsquest-com/todos/11739468-collectible-product
     collectible:
       model: true
       title:
+        - %Name%
         - %Name% | Collectors Quest
+        - %Name% by %Collector% | Collectors Quest
         - %Name% - %Collection% | Collectors Quest
+        - %Name% - %Collection% by %Collector%
+        - %Name% - %Collection% by %Collector% | Collectors Quest
       description:
         - %Description%
         - %Description% | %Name%
-        - %Description% | %Name% | %Collection%
-        - %Description% | %Name% | %Collection% | Viewed %NumViews% times
+        - %Description% | %Name% from %Collection%
+        - %Description% | %Name% from %Collection% by %Collector% (%NumViews% views)
 
   # https://basecamp.com/1759305/projects/288122-collectorsquest-com/todos/11749079-collector-page
   collector:
