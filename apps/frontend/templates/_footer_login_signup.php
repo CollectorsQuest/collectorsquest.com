@@ -8,7 +8,7 @@
    */
   use_javascripts_for_form($signup_form);
 
-  $signup_action = isset($signup_action) ? $signup_action : '@collector_signup';
+  $signup_action = isset($signup_action) ? $signup_action : '@misc_guide_to_collecting';
   $login_action = isset($login_action) ? $login_action : '@login';
   $display = $sf_request->getParameter('display', 'signup');
 
@@ -106,7 +106,7 @@
       Don't have an account yet?
       <?php
         echo link_to(
-          'Sign up now!', '@collector_signup',
+          'Sign up now!', '@misc_guide_to_collecting',
           array('id' => 'footer-control-signup-button')
         );
       ?>

@@ -10,7 +10,7 @@
             collections: post a gallery of your neat stuff to share and use as an archive,
             buy and sell treasures quickly and easily, learn what’s going on in the collecting
             world, and meet other like-minded collectors.
-            <?= link_to('Join us', '@collector_signup') ?> to make collecting more fun than ever!
+            <?= link_to('Join us', '@misc_guide_to_collecting') ?> to make collecting more fun than ever!
           </p>
 
           <div class="row-spacing-footer">
@@ -93,7 +93,7 @@
               <h2 class="Chivo webfont">Show Off</h2>
               <p>
                 Show your collections to the world! Upload and organize your stuff here.<br />
-                <?= link_to('Show&nbsp;Off&nbsp;Now!', '@collector_signup'); ?>
+                <?= link_to('Show&nbsp;Off&nbsp;Now!', '@misc_guide_to_collecting'); ?>
               </p>
             </div>
           </li>

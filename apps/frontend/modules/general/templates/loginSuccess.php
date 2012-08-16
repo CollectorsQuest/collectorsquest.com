@@ -22,7 +22,7 @@
           <input type="submit" class="btn btn-primary pull-left" value="Sign In" />
           <span class="spacer-left-15 text-left"">
             - <?= link_to('Forgot your password?', '@recover_password'); ?> <br/>
-            &nbsp;&nbsp;&nbsp; - <?= link_to('Sign up for a new account?', '@collector_signup'); ?>
+            &nbsp;&nbsp;&nbsp; - <?= link_to('Sign up for a new account?', '@misc_guide_to_collecting'); ?>
           </span>
         </div>
       </fieldset>
