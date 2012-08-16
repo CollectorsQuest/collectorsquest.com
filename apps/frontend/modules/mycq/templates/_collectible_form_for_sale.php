@@ -125,8 +125,8 @@
     <br/>
   <?php elseif (!$sf_user->getCollector()->hasPayPalDetails()): ?>
     <div class="alert alert-error all-errors">
-      You must <?= link_to('setup your paypal account', '@mycq_profile_store_settings') ?>
-      before you can sell in the Marketplace.
+      You must <?= link_to('setup your paypal account', '@mycq_marketplace_settings') ?>
+      before you can sell in the Market.
     </div>
   <?php endif; ?>
 </div>

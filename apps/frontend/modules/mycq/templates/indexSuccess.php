@@ -62,7 +62,7 @@
           <h3>Sell Your Stuff</h3>
         </a>
         <p>
-          List your collectible, vintage and antique items for sale in our Marketplace.
+          List your collectible, vintage and antique items for sale in our Market.
           <br>
           <!--<a href="javascript:void(0)">Show me how!</a>//-->
         </p>
@@ -70,5 +70,3 @@
     </div>
   </div>
 </div>
-
-

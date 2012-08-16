@@ -240,7 +240,7 @@ class sellerActions extends cqFrontendActions
                             You can now start listing items for sale in the Market.'
               );
 
-              return $this->redirect('@mycq_marketplace');
+              return $this->redirect('@mycq_marketplace_settings');
             }
             else
             {

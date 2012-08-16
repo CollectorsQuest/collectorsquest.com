@@ -229,47 +229,6 @@ class mycqActions extends cqFrontendActions
     return sfView::SUCCESS;
   }
 
-  public function executeProfileStoreSettings(sfWebRequest $request)
-  {
-    $this->forward404Unless($this->getCollector()->hasBoughtCredits());
-
-    SmartMenu::setSelected('mycq_menu', 'profile');
-
-    $form = new CollectorEditForm($this->getCollector(), array(
-      'seller_settings_show' => true,
-      'seller_settings_required' => false,
-    ));
-
-    $form->useFields(array(
-      'seller_settings_paypal_email',
-      'seller_settings_paypal_fname',
-      'seller_settings_paypal_lname',
-      'seller_settings_phone_number',
-      'seller_settings_return_policy',
-      'seller_settings_welcome',
-      'seller_settings_shipping',
-      'seller_settings_refunds',
-      'seller_settings_additional_policies',
-    ));
-
-    if (sfRequest::POST == $request->getMethod())
-    {
-      if ($form->bindAndSave($request->getParameter($form->getName())))
-      {
-        $this->getUser()->setFlash(
-          'success', 'You have successfully updated your store settings.'
-        );
-
-        $this->redirect('@mycq_profile_store_settings');
-      };
-    }
-
-    $this->collector = $this->getCollector(true);
-    $this->form = $form;
-
-    return sfView::SUCCESS;
-  }
-
   public function executeDropbox(sfWebRequest $request)
   {
     $collector = $this->getCollector();
@@ -690,6 +649,47 @@ class mycqActions extends cqFrontendActions
         ->paidFor()
       ->_endif()
       ->find();
+
+    return sfView::SUCCESS;
+  }
+
+  public function executeMarketplaceSettings(sfWebRequest $request)
+  {
+    $this->forward404Unless($this->getCollector()->hasBoughtCredits());
+
+    SmartMenu::setSelected('mycq_menu', 'marketplace');
+
+    $form = new CollectorEditForm($this->getCollector(), array(
+      'seller_settings_show' => true,
+      'seller_settings_required' => false,
+    ));
+
+    $form->useFields(array(
+      'seller_settings_paypal_email',
+      'seller_settings_paypal_fname',
+      'seller_settings_paypal_lname',
+      'seller_settings_phone_number',
+      'seller_settings_return_policy',
+      'seller_settings_welcome',
+      'seller_settings_shipping',
+      'seller_settings_refunds',
+      'seller_settings_additional_policies',
+    ));
+
+    if (sfRequest::POST == $request->getMethod())
+    {
+      if ($form->bindAndSave($request->getParameter($form->getName())))
+      {
+        $this->getUser()->setFlash(
+          'success', 'You have successfully updated your store settings.'
+        );
+
+        $this->redirect('@mycq_marketplace_settings');
+      };
+    }
+
+    $this->collector = $this->getCollector(true);
+    $this->form = $form;
 
     return sfView::SUCCESS;
   }

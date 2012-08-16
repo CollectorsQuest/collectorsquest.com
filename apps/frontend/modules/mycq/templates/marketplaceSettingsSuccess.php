@@ -7,13 +7,13 @@
     );
   }
 
-  SmartMenu::setSelected('mycq_profile_tabs', 'store_settings');
+  SmartMenu::setSelected('mycq_marketplace_tabs', 'settings');
 ?>
 
 <div id="mycq-tabs">
 
   <ul class="nav nav-tabs">
-    <?= SmartMenu::generate('mycq_profile_tabs'); ?>
+    <?= SmartMenu::generate('mycq_marketplace_tabs'); ?>
   </ul>
 
   <div class="tab-content">
@@ -21,7 +21,7 @@
       <div class="tab-content-inner spacer">
 
         <?php cq_sidebar_title('PayPal Account'); ?>
-        <?= form_tag('@mycq_profile_store_settings', array('class' => 'form-horizontal')); ?>
+        <?= form_tag('@mycq_marketplace_settings', array('class' => 'form-horizontal')); ?>
         <?= $form->renderHiddenFields(); ?>
 
         <?php if ($form->hasGlobalErrors()): ?>

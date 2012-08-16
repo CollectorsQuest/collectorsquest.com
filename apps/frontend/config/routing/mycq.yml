@@ -12,10 +12,6 @@ mycq_profile_account_info:
   url:   /mycq/profile/account-information
   param: { module: mycq, action: profileAccountInfo }
 
-mycq_profile_store_settings:
-  url:   /mycq/profile/store/settings
-  param: { module: mycq, action: profileStoreSettings }
-
 mycq_profile_addresses:
   url:   /mycq/profile/addresses
   param: { module: mycq, action: profileAddresses }
@@ -96,6 +92,10 @@ mycq_marketplace_sold:
 mycq_marketplace_purchased:
   url:   /mycq/marketplace/purchased
   param: { module: mycq, action: marketplacePurchased }
+
+mycq_marketplace_settings:
+  url:   /mycq/marketplace/settings
+  param: { module: mycq, action: marketplaceSettings }
 
 mycq_marketplace_credit_history:
   url:   /mycq/marketplace/credit-history
