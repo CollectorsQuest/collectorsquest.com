@@ -122,16 +122,18 @@
 			//margin-bottom: -1px;
 			background-color: transparent;
 		}
+
 		li.active a {
-      color: @blueDark;
+      color: @linkColor;
       //background-color: #fff;
       #gradient > .vertical(#F5F5F5, #fff);
       .box-shadow(-1px -1px 3px rgba(35, 35, 39, 0.13));
+      border-top: 2px solid @linkColor;
       background-position: 0% 0%;
       outline: none;
 		}
-		li.active
-		.styles-reset {
+
+		li.active .styles-reset {
 			height: 32px;
 			background: none;
 
@@ -284,7 +286,7 @@
 
   & > li > a {
     margin-right: 0 !important;
-	  margin-top: 3px;
+	  margin-top: 4px;
     padding-top: 7px;
     padding-bottom: 6px;
     font-size: 12px;
