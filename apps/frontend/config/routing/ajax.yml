@@ -45,6 +45,11 @@ ajax_shopping:
   options: { extra_parameters_as_query_string: true }
   requirements: { sf_format: (?:html|json) }
 
+ajax_search:
+  url:   /ajax/search/:section/:page
+  param: { module: search, action: ajax }
+  requirements: { sf_method: [GET], sf_format: json }
+
 ajax_editable:
   url:   /ajax/editable
   param: { module: _ajax, action: editable }
@@ -52,7 +57,7 @@ ajax_editable:
 ajax_editable_load:
   url:   /ajax/editable-load
   param: { module: _ajax, action: editableLoad }
-  
+
 ajax_feedback:
   url:   /ajax/feedback
   param: { module: _ajax, action: feedback }

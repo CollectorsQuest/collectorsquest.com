@@ -6,6 +6,7 @@ all:
 
     # modules and actions that should be https
     secure:
+      _ajax: ~
       mycq:  ~
       messages: ~
       shopping: ~

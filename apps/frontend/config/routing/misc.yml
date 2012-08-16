@@ -8,10 +8,6 @@ channels:
 
 ### SEARCH
 
-search_typeahead:
-  url:   /search/typeahead
-  param: { module: search, action: ajax }
-
 search_collectibles:
   url:   /search/collectibles
   param: { module: search, action: collectibles }
