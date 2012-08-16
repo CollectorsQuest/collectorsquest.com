@@ -938,16 +938,6 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
     return $seller;
   }
 
-  public function getProfileAboutMe()
-  {
-    return $this->getProfile()->getAboutMe();
-  }
-
-  public function getProfileAboutCollections()
-  {
-    return $this->getProfile()->getAboutCollections();
-  }
-
   /**
    * Check if this collector has bought credits at any point in the past
    *

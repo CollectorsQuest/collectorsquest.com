@@ -87,11 +87,11 @@ seo:
         - %DisplayName%’s Collectibles | Collectors Quest
         - %DisplayName%’s Collectibles | Buy & Sell on Collectors Quest
       description:
-        - Collectors Quest member %DisplayName% is sharing their %AboutWhatYouCollect% items on Collectors Quest. Upload your own collectibles and show off today!
-        - Collectors Quest member %DisplayName% is sharing %countCollectiblesInCollections% items on Collectors Quest. Upload your own %AboutWhatYouCollect% items and show off today!
-        - %ProfileAboutMe%
-        - %ProfileAboutMe% | %AboutWhatYouCollect%
-        - %ProfileAboutMe% | %ProfileAboutCollections% | %AboutWhatYouCollect%
+        #- Collectors Quest member %DisplayName% is sharing their %AboutWhatYouCollect% items on Collectors Quest. Upload your own collectibles and show off today!
+        #- Collectors Quest member %DisplayName% is sharing %countCollectiblesInCollections% items on Collectors Quest. Upload your own %AboutWhatYouCollect% items and show off today!
+        #- %ProfileAboutMe%
+        #- %ProfileAboutMe% | %AboutWhatYouCollect%
+        #- %ProfileAboutMe% | %ProfileAboutCollections% | %AboutWhatYouCollect%
 
     signup:
       title: Buy and Sell Collectibles Online | Sign Up at CollectorsQuest.com
