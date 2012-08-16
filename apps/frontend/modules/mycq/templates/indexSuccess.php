@@ -9,10 +9,15 @@
   <div class="span3">
     <?php
       echo link_to(
-        cq_image_tag('banners/2012-06-24_CQGuide_160x600.png'),
+        cq_image_tag('banners/2012-08-18_CQGuide_160x600.png'),
         '@misc_guide_download'
       );
     ?>
+    <p style="padding: 10px 0 10px 10px;">
+      The download link should have been sent to your email address.
+      <strong><?= link_to('Click here', '@misc_guide_download'); ?></strong>
+      if you did not receive it.
+    </p>
   </div>
   <div class="span9 welcome-mycq">
     <?php if (100 > $collector->getProfile()->getProfileCompleted()): ?>
