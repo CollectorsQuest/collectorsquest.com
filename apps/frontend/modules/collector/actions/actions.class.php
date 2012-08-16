@@ -53,14 +53,14 @@ class collectorActions extends cqFrontendActions
     }
 
     // display only About information
-    else if (strlen($about_me) > 156)
+    else if (strlen ($about_me) > 156)
     {
       //remove HTML tags and cut
       $meta_description = substr (strip_tags ($about_me), 0, 155);
     }
 
     // About information too short, adding about collections info
-    else if (strlen($new_description =
+    else if (strlen ($new_description =
       $about_me . ' | ' . $about_collections = $profile->getProperty('about.collections')) > 156)
     {
       $meta_description = substr (strip_tags ($new_description), 0, 155);
@@ -69,8 +69,8 @@ class collectorActions extends cqFrontendActions
     // About information plus about collections information too short, adding about me info
     else
     {
-      $meta_description = substr (strip_tags ($about_me .
-        ' | ' . $about_collections . ' | ' . $profile->getAboutWhatYouCollect()), 0, 155);
+      $meta_description = strip_tags ($about_me . ' | ' . $about_collections . ' | ' . $profile->getAboutWhatYouCollect());
+      $meta_description = substr ($meta_description, 0, 155);
     }
 
     $this->getResponse()->addMeta('description', $meta_description);
