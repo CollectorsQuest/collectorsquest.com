@@ -29,33 +29,34 @@ class collectorActions extends cqFrontendActions
     /*
      * Set meta description
      */
-    $meta_description = '';
+
     // if user has no about text we want to display default info
     $about_me = $profile->getProperty('about.me');
-    if ($about_me=='')
+    if (empty($about_me))
     {
       // if user has a few collectibles we don't want to display them
       $collectibles = $collector->countCollectiblesInCollections();
       if ($collectibles < 25)
       {
-        $meta_description = 'Collectors Quest member '. $collector->getDisplayName(). '
-        is sharing their '. $profile->getAboutWhatYouCollect() .'
-        items on Collectors Quest. Upload your own collectibles and show off today!';
+        $meta_description =
+            'Collectors Quest member ' . $collector->getDisplayName() .
+            ' is sharing their ' . $profile->getAboutWhatYouCollect() .
+            ' items on Collectors Quest. Upload your own collectibles and show off today!';
       }
       else
       {
-        $meta_description = 'Collectors Quest member ' . $collector->getDisplayName() . '
-        is sharing ' . $collectibles. ' items on Collectors Quest.
-        Upload your own ' . $profile->getAboutWhatYouCollect() . ' items and show off today!';
+        $meta_description =
+          'Collectors Quest member ' . $collector->getDisplayName() . 'is sharing ' . $collectibles.
+          ' items on Collectors Quest. Upload your own ' . $profile->getAboutWhatYouCollect() .
+          ' items and show off today!';
       }
-
     }
 
     // display only About information
     else if (strlen($about_me) > 156)
     {
       //remove HTML tags and cut
-      $meta_description = substr ( strip_tags($about_me), 0, 155);
+      $meta_description = substr (strip_tags ($about_me), 0, 155);
     }
 
     // About information too short, adding about collections info
@@ -68,8 +69,8 @@ class collectorActions extends cqFrontendActions
     // About information plus about collections information too short, adding about me info
     else
     {
-      $meta_description = substr (strip_tags (
-        $about_me . ' | ' . $about_collections . ' | ' . $profile->getAboutWhatYouCollect()), 0, 155);
+      $meta_description = substr (strip_tags ($about_me .
+        ' | ' . $about_collections . ' | ' . $profile->getAboutWhatYouCollect()), 0, 155);
     }
 
     $this->getResponse()->addMeta('description', $meta_description);
