@@ -53,7 +53,7 @@
       </div>
       <div class="span4 text-center">
         <a href="<?= url_for('@mycq_marketplace'); ?>" title="Sell Your Stuff">
-          <i class="check-messages"></i>
+          <i class="marketplace"></i>
           <h3>Sell Your Stuff</h3>
         </a>
         <p>
