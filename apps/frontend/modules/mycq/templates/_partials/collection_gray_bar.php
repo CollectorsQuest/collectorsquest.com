@@ -68,8 +68,6 @@ $(document).ready(function()
 
   $form.submit(function()
   {
-    console.log($('#collectibles'));
-
     if ($('#collectibles').length > 0)
     {
       $('#collectibles').showLoading();

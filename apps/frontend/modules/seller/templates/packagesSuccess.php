@@ -282,7 +282,6 @@ $(document).ready(function() {
 
   // display or hide extra CC info fields based on the selected payment_type
   var display_cc_info = function (payment_type) {
-    console.log(payment_type);
     if ('cc' === payment_type) {
       $credit_card_info.slideDown();
     } else if ('paypal' === payment_type) {
