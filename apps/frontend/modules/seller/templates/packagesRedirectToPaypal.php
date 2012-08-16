@@ -5,16 +5,16 @@
   $discount = $package->getPackagePrice() - $packageTransaction->getPackagePrice();
 ?>
 
-<h3 class="text-center spacer-top-20">Please wait while we redirect you to PayPal</h3>
-
 <div class="row-fluid spacer-top-30">
-  <div class="span5">
+  <div class="span4">
     <div class="pull-right">
       <img src="/images/frontend/cq-logo-175.png" alt="">
     </div>
   </div>
-  <div class="span2">
-    <img class="block spacer-top-30" src="/images/ajax-loader-blue.gif" alt="">
+  <div class="span3" style="text-align: center;">
+    <center>
+      <?= cq_image_tag('loading.arrows.gif', array('class' => 'block spacer-top-30')); ?>
+    </center>
   </div>
   <div class="span5">
     <div class="pull-left">
@@ -23,8 +23,11 @@
   </div>
 </div>
 
-<p class="brown text-center spacer-top-40">
-  If you're not redirected to PayPal within 5 seconds click here.
+<br>
+<h3 class="text-center spacer-top-20">Please wait while we redirect you to PayPal</h3>
+<p id="manual" class="brown text-center js-hide">
+  If you're not redirected within 5 seconds
+  <?= link_to_function('click here.', "$('input#submit').click();"); ?>
 </p>
 
 <form action="<?= sfConfig::get('app_paypal_url'); ?>" name="frmpaypal" id="frmpaypal" method="post">
@@ -54,14 +57,15 @@
   <input type="hidden" name="notify_url" value="<?= $notify_url ?>" />
 
   <input type="hidden" name="cmd" value="_xclick">
-  <input type="submit" id="submit" value="Continue" style="display: block; margin: 0 auto;" />
+  <input type="submit" id="submit" value="Continue to PayPal →" style="display: block; margin: 0 auto;" />
   <script>
     $(document).ready(function()
     {
-      $('input#submit').hide().click();
+      $('#manual').show();
+      $('#submit').hide().click();
     });
   </script>
   <noscript>
-    <p>Javascript is disabled. Please click on the 'Continue' button to be redirected to PayPal.</p>
+    <p>Javascript is disabled. Please click on the 'Continue to PayPal' button to be redirected to PayPal.</p>
   </noscript>
 </form>
