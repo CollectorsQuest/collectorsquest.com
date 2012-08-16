@@ -30,6 +30,7 @@ seo:
         Check out these collectors items from the American Pickers Collection.
         CollectorsQuest.com gives you an inside look at the American Pickers collection.
 
+    # https://basecamp.com/1759305/projects/288122-collectorsquest-com/todos/11828067-history-a-e
     collectible:
       model: true
       title: %Name% | %Collection%
@@ -61,6 +62,7 @@ seo:
       Browse our amazing collections of antique, vintage & collectible items
       from passionate collectors around the world.
 
+  # https://basecamp.com/1759305/projects/288122-collectorsquest-com/todos/11746674-collection-page
   collection:
     index:
       model: true
@@ -72,13 +74,19 @@ seo:
         - %Description%
         - %Description% | From %Collector%
 
+    # https://basecamp.com/1759305/projects/288122-collectorsquest-com/todos/11739468-collectible-product
     collectible:
       model: true
-      title: %Name% | %Collection%
-      description: |
-        Collectors are selling collectible items such as this %Collection%.
-        CollectorsQuest.com is the place to find %Name%, collectible items and more.
+      title:
+        - %Name% | Collectors Quest
+        - %Name% - %Collection% | Collectors Quest
+      description:
+        - %Description%
+        - %Description% | %Name%
+        - %Description% | %Name% | %Collection%
+        - %Description% | %Name% | %Collection% | Viewed %NumViews% times
 
+  # https://basecamp.com/1759305/projects/288122-collectorsquest-com/todos/11749079-collector-page
   collector:
     index:
       model: true
