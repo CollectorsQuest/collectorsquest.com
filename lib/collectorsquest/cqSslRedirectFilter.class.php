@@ -27,8 +27,8 @@ class cqSslRedirectFilter extends sfFilter
       /** @var $request cqWebRequest */
       $request = $this->getContext()->getRequest();
 
-      //only filter is the request is get or head
-      if ($request->isMethod('get') || $request->isMethod('head'))
+      // only filter is the request is get or head
+      if (($request->isMethod('get') || $request->isMethod('head')) && !$request->isXmlHttpRequest())
       {
         $controller = $this->getContext()->getController();
         $stackEntry = $controller->getActionStack()->getLastEntry();
