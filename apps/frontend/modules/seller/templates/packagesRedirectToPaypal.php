@@ -5,7 +5,27 @@
   $discount = $package->getPackagePrice() - $packageTransaction->getPackagePrice();
 ?>
 
-<h3 style="text-align: center; margin-top: 20px;">Redirecting to PayPal ...</h3>
+<h3 class="text-center spacer-top-20">Please wait while we redirect you to PayPal</h3>
+
+<div class="row-fluid spacer-top-30">
+  <div class="span5">
+    <div class="pull-right">
+      <img src="/images/frontend/cq-logo-175.png" alt="">
+    </div>
+  </div>
+  <div class="span2">
+    <img class="block spacer-top-30" src="/images/ajax-loader-blue.gif" alt="">
+  </div>
+  <div class="span5">
+    <div class="pull-left">
+      <img src="/images/frontend/paypal-logo-175.png" alt="">
+    </div>
+  </div>
+</div>
+
+<p class="brown text-center spacer-top-40">
+  If you're not redirected to PayPal within 5 seconds click here.
+</p>
 
 <form action="<?= sfConfig::get('app_paypal_url'); ?>" name="frmpaypal" id="frmpaypal" method="post">
   <input type="hidden" name="item_number" value="PKG-<?= $package->getId() ?>" />
