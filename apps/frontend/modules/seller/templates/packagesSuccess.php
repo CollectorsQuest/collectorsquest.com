@@ -99,19 +99,19 @@
       <div class="radio_list">
         <label class="radio hide">
           <input required="required" name="packages[package_id]" type="radio" value="1" <?= 1 == $package_id_value ? 'checked' : '' ?> id="packages_package_id_1">
-          <span class="package1 Chivo webfont tooltip-position-top" rel="tooltip" title="$2.50 per item">1 listing <span class="blue pull-right">$2.50</span></span>
+          <span class="package1 Chivo webfont tooltip-position-right" rel="tooltip" title="$2.50 per item">1 listing <span class="blue pull-right">$2.50</span></span>
         </label>
         <label class="radio">
           <input required="required" name="packages[package_id]" type="radio" value="2" <?= 2 == $package_id_value ? 'checked' : '' ?> id="packages_package_id_2">
-          <span class="package2 Chivo webfont tooltip-position-top" rel="tooltip" title="$2.00 per item">10 listings <span class="blue pull-right">$20</span></span>
+          <span class="package2 Chivo webfont tooltip-position-right" rel="tooltip" title="$2.00 per item">10 listings <span class="blue pull-right">$20</span></span>
         </label>
         <label class="radio hide">
           <input required="required" name="packages[package_id]" type="radio" value="3" <?= 3 == $package_id_value ? 'checked' : '' ?> id="packages_package_id_3">
-          <span class="package3 Chivo webfont tooltip-position-top" rel="tooltip" title="$1.50 per item">100 listings <span class="blue pull-right">$150</span></span>
+          <span class="package3 Chivo webfont tooltip-position-right" rel="tooltip" title="$1.50 per item">100 listings <span class="blue pull-right">$150</span></span>
         </label>
         <label class="radio hide">
           <input required="required" name="packages[package_id]" type="radio" value="6" <?= 6 == $package_id_value ? 'checked' : '' ?> id="packages_package_id_4">
-          <span class="package4 Chivo webfont tooltip-position-top" rel="tooltip" title="unlimited items"><span class="red-bold">UNLIMITED</span> listings <span class="blue pull-right">only $250</span></span>
+          <span class="package4 Chivo webfont" title="unlimited items"><span class="red-bold">UNLIMITED</span> listings <span class="blue pull-right">only $250</span></span>
           <!--<span class="price-per-item red">unlimited items</span>-->
         </label>
       </div>
