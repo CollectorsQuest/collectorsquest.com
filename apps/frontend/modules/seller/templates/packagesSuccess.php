@@ -52,7 +52,7 @@
   </div>
 <?php endif; ?>
 
-<form action="<?= url_for('seller_packages')?>" method="post" style="margin-top: 10px;"
+<form action="<?= url_for('seller_packages')?>" method="post""
       id="form-seller-packages" class="form-horizontal" novalidate="novalidate">
   <?= $packagesForm->renderHiddenFields() ?>
 
@@ -94,37 +94,59 @@
       array('class' => 'row-fluid section-title')
     );
   ?>
-
-  <div class="control-group">
+  <div class="control-group packages-wrapper">
+    <div class="choice-packages">
+      <div class="radio_list">
+        <label class="radio hide">
+          <input required="required" name="packages[package_id]" type="radio" value="1" <?= 1 == $package_id_value ? 'checked' : '' ?> id="packages_package_id_1">
+          <span class="package1 Chivo webfont tooltip-position-top" rel="tooltip" title="$2.50 per item">1 listing <span class="blue pull-right">$2.50</span></span>
+        </label>
+        <label class="radio">
+          <input required="required" name="packages[package_id]" type="radio" value="2" <?= 2 == $package_id_value ? 'checked' : '' ?> id="packages_package_id_2">
+          <span class="package2 Chivo webfont tooltip-position-top" rel="tooltip" title="$2.00 per item">10 listings <span class="blue pull-right">$20</span></span>
+        </label>
+        <label class="radio hide">
+          <input required="required" name="packages[package_id]" type="radio" value="3" <?= 3 == $package_id_value ? 'checked' : '' ?> id="packages_package_id_3">
+          <span class="package3 Chivo webfont tooltip-position-top" rel="tooltip" title="$1.50 per item">100 listings <span class="blue pull-right">$150</span></span>
+        </label>
+        <label class="radio hide">
+          <input required="required" name="packages[package_id]" type="radio" value="6" <?= 6 == $package_id_value ? 'checked' : '' ?> id="packages_package_id_4">
+          <span class="package4 Chivo webfont tooltip-position-top" rel="tooltip" title="unlimited items"><span class="red-bold">UNLIMITED</span> listings <span class="blue pull-right">only $250</span></span>
+          <!--<span class="price-per-item red">unlimited items</span>-->
+        </label>
+      </div>
+      <?= $packagesForm['package_id']->renderError(); ?>
+    </div>
+  </div>
+    <a href="#" class="show-radio-list spacer-left-35">Show me other packages</a>
+  <?php /*
+  <div class="control-group packages-wrapper">
       <div class="choice-packages">
         <div class="radio_list">
           <label class="radio">
             <input required="required" name="packages[package_id]" type="radio" value="1" <?= 1 == $package_id_value ? 'checked' : '' ?> id="packages_package_id_1">
-            <span class="package1 Chivo webfont">1 listing <span class="red pull-right">$2.50</span></span>
-            <span class="price-per-item">$2.50 per item</span>
+            <span class="package1 Chivo webfont tooltip-position-top" rel="tooltip" title="$2.50 per item">1 listing <span class="blue pull-right">$2.50</span></span>
           </label>
           <label class="radio">
             <input required="required" name="packages[package_id]" type="radio" value="2" <?= 2 == $package_id_value ? 'checked' : '' ?> id="packages_package_id_2">
-            <span class="package2 Chivo webfont">10 listings <span class="red pull-right">$20</span></span>
-            <span class="price-per-item">$2.00 per item</span>
+            <span class="package2 Chivo webfont tooltip-position-top" rel="tooltip" title="$2.00 per item">10 listings <span class="blue pull-right">$20</span></span>
           </label>
           <label class="radio">
             <input required="required" name="packages[package_id]" type="radio" value="3" <?= 3 == $package_id_value ? 'checked' : '' ?> id="packages_package_id_3">
-            <span class="package3 Chivo webfont">100 listings <span class="red pull-right">$150</span></span>
-            <span class="price-per-item">$1.50 per item</span>
+            <span class="package3 Chivo webfont tooltip-position-top" rel="tooltip" title="$1.50 per item">100 listings <span class="blue pull-right">$150</span></span>
           </label>
           <label class="radio">
             <input required="required" name="packages[package_id]" type="radio" value="6" <?= 6 == $package_id_value ? 'checked' : '' ?> id="packages_package_id_4">
-            <span class="package4 Chivo webfont"><span class="red-bold">UNLIMITED</span> listings <span class="red pull-right">only $250</span></span>
-            <span class="price-per-item red">unlimited items</span>
+            <span class="package4 Chivo webfont tooltip-position-top" rel="tooltip" title="unlimited items"><span class="red-bold">UNLIMITED</span> listings <span class="blue pull-right">only $250</span></span>
+            <!--<span class="price-per-item red">unlimited items</span>-->
           </label>
         </div>
         <?= $packagesForm['package_id']->renderError(); ?>
       </div>
   </div>
-
+  */ ?>
   <fieldset>
-    <div class="control-group">
+    <div class="control-group discount-code-wrapper">
       <?= $packagesForm['promo_code']->renderLabel('You have got a promo code?', array('class'=> 'control-label', 'style' => 'width: 180px;')) ?>
       <div class="controls form-inline" style="margin-left: 190px;">
         <?= $packagesForm['promo_code']->render() ?>
@@ -283,5 +305,32 @@ $(document).ready(function() {
     $(this).showLoading();
     $('.btn-primary', $(this)).button('loading');
   });
+
+  //radio box checked on click
+  $("input:checked").parent().addClass('selected');
+
+  $(":radio").on('change', function () {
+    if ($(this).prop('checked')) {
+      $(':radio[name="' + $(this).attr('name') + '"]').parent().removeClass('selected');
+      $(this).parent().addClass('selected');
+    }
+  });
+
+  $(":checkbox").on('change', function () {
+    if ($(this).prop('checked')) {
+      $(this).parent().addClass('selected');
+    } else {
+      $(this).parent().removeClass('selected');
+    }
+  });
+
+  $(this).find("input:checkbox").click()
+
+  $(".show-radio-list").click(function(){
+    $(".radio_list .radio").show();
+    $(this).hide();
+  })
+
+
 });
 </script>

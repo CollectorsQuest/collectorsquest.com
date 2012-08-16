@@ -15,16 +15,24 @@
 	}
 
 	#main .form-horizontal {
-		margin-top: 20px;
+		margin-top: 0;
 
     .radio_list {
       margin-top: 3px;
     }
-
 		.control-group {
 			width: 600px;
 			margin: 20px auto 25px auto;
 		}
+
+		.discount-code-wrapper {
+			margin: 10px auto;
+		}
+		.control-group.packages-wrapper {
+			margin-top: 10px;
+			margin-bottom: 0;
+		}
+
 		.form-actions {
 			padding-left: 180px;
 		}
@@ -182,10 +190,13 @@ span.current-price {
 .choice-packages {
 
 	.radio input {
-		margin-top: 12px;
+		margin-top: 9px;
 	}
 	.radio {
-		margin-bottom: 20px;
+		margin-bottom: 15px;
+		cursor: pointer;
+
+
 	}
 	.price-per-item {
 		display: block;
@@ -197,14 +208,19 @@ span.current-price {
 		display: block;
 		.size (18px, 150px);
 		margin-left: 6px;
-		padding: 6px 10px 8px 10px;
-		font-size: 22px;
-		line-height: 22px;
+		padding: 4px 10px 6px 10px;
+		font-size: 20px;
+		line-height: 20px;
 		color: @blueDark;
 		border: 1px solid #ededed;
 		.border-radius(6px);
 		.box-shadow( inset 0 0 0 1px #fff);
 		background-color: #fcfaf3;
+		&:hover {
+			background-color: #FFF4CF !important;
+			#gradient > .horizontal(#FFF4CF, #FFF4CF);
+			border-color: #ffefbb;
+		}
 	}
 	.package1 {
 		.package();
@@ -224,7 +240,28 @@ span.current-price {
 		width: 550px;
 		#gradient > .horizontal(#fcfaf3, #fff4cf);
 	}
+	.selected {
+		&> span {
+		border: 1px solid @blue;
+		#gradient > .horizontal(@lightBlue, @lightBlue);
+		}
+	}
 }
+
+#body-seller-packages .tooltip.top.in {
+	.opacity(100);
+}
+#body-seller-packages .tooltip.top .tooltip-inner {
+	background-color: #fff !important;
+	border: 1px solid @red !important;
+	color: @red;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+#body-seller-packages .tooltip.top .tooltip-arrow {
+	border-top-color: @red !important;
+}
+
 
 .packages-container {
 	.bars-wrapper {
