@@ -28,52 +28,59 @@ class collectorActions extends cqFrontendActions
 
     /*
      * Set meta description
+     *
+     * @see https://basecamp.com/1759305/projects/288122-collectorsquest-com/todos/11749079-collector-page
      */
 
-    // if user has no about text we want to display default info
-    $about_me = $profile->getProperty('about.me');
+    $about_me = $profile->getAboutMe();
+    $about_collections = $profile->getAboutCollections();
+    $new_description = $about_me . ' | ' . $about_collections;
+
     if (empty($about_me))
     {
       // if user has a few collectibles we don't want to display them
       $collectibles = $collector->countCollectiblesInCollections();
       if ($collectibles < 25)
       {
-        $meta_description =
-            'Collectors Quest member ' . $collector->getDisplayName() .
-            ' is sharing their ' . $profile->getAboutWhatYouCollect() .
-            ' items on Collectors Quest. Upload your own collectibles and show off today!';
+        $meta_description = sprintf(
+          'Collectors Quest member %s is sharing their %s items on Collectors Quest.
+           Upload your own collectibles and show off today!',
+          $collector->getDisplayName(), $profile->getAboutWhatYouCollect()
+        );
       }
       else
       {
-        $meta_description =
-          'Collectors Quest member ' . $collector->getDisplayName() . 'is sharing ' . $collectibles.
-          ' items on Collectors Quest. Upload your own ' . $profile->getAboutWhatYouCollect() .
-          ' items and show off today!';
+        $meta_description = sprintf(
+          'Collectors Quest member %s is sharing %s items on Collectors Quest.
+           Upload your own %s items and show off today!',
+          $collector->getDisplayName(), $collectibles, $profile->getAboutWhatYouCollect()
+        );
       }
     }
 
-    // display only About information
-    else if (strlen ($about_me) > 156)
+    // Display only About information
+    else if (strlen($about_me) > 156)
     {
-      //remove HTML tags and cut
-      $meta_description = substr (strip_tags ($about_me), 0, 155);
+      // Remove HTML tags and cut
+      $meta_description = $about_me;
     }
 
     // About information too short, adding about collections info
-    else if (strlen ($new_description =
-      $about_me . ' | ' . $about_collections = $profile->getProperty('about.collections')) > 156)
+    else if (strlen($new_description) > 156)
     {
-      $meta_description = substr (strip_tags ($new_description), 0, 155);
+      $meta_description = $new_description;
     }
 
     // About information plus about collections information too short, adding about me info
     else
     {
-      $meta_description = strip_tags ($about_me . ' | ' . $about_collections . ' | ' . $profile->getAboutWhatYouCollect());
-      $meta_description = substr ($meta_description, 0, 155);
+      $meta_description = $about_me . ' | ' . $about_collections . ' | ' . $profile->getAboutWhatYouCollect();
     }
 
-    $this->getResponse()->addMeta('description', $meta_description);
+    // Finally add the meta description to the response
+    $this->getResponse()->addMeta(
+      'description', cqStatic::truncateText(strip_tags($meta_description), 156, '...', true)
+    );
 
     return sfView::SUCCESS;
   }

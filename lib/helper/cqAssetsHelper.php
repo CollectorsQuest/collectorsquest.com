@@ -47,6 +47,9 @@ function cq_include_metas()
         continue;
       }
 
+      // Get rid of new lines and extra spaces in the content of the meta
+      $_content = preg_replace('/\s+/iu', ' ', $_content);
+
       echo ($i++ > 0) ? '  ' : '';
       $key = substr($name, 0, 3) === 'og:' ? 'property' : 'name';
       echo tag(
