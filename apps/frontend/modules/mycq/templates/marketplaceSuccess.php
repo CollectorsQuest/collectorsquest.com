@@ -44,27 +44,37 @@
 
         <div class="row collectible-sell-sold-items">
           <div id="items-for-sale" class="row-content">
-            <?php include_component('mycq', 'collectiblesForSale', array('seller' => $seller)); ?>
+            <?php
+              if ($total > 0 || (isset($seller) && $seller->hasPackageCredits()))
+              {
+                include_component('mycq', 'collectiblesForSale', array('seller' => $seller));
+              }
+              else if (!isset($seller) || !$seller->hasPackageCredits())
+              {
+                $this->setComponentSlot('mycq_upload_photos', null, null);
+                include_partial('mycq/partials/buy_package_listing');
+              }
+            ?>
           </div>
         </div>
 
         <?php if ($sold_total > 0): ?>
-        <!-- Sold Items -->
-            <div class="row-fluid sidebar-title spacer-inner-bottom spacer-inner-top">
-              <div class="span5 link-align">
-                <h3 class="Chivo webfont">My Sold Items (<?= $sold_total ?>)</h3>
-              </div>
-              <div class="span7">
-                &nbsp;
-              </div>
+          <!-- Sold Items -->
+          <div class="row-fluid sidebar-title spacer-inner-bottom spacer-inner-top">
+            <div class="span5 link-align">
+              <h3 class="Chivo webfont">My Sold Items (<?= $sold_total ?>)</h3>
             </div>
+            <div class="span7">
+              &nbsp;
+            </div>
+          </div>
 
-            <div class="row collectible-sell-sold-items">
-              <div id="items-for-sale" class="row-content">
-                <?php include_component('mycq', 'collectiblesForSaleSold', array('seller' => $seller)); ?>
-              </div>
+          <div class="row collectible-sell-sold-items">
+            <div id="items-sold" class="row-content">
+              <?php include_component('mycq', 'collectiblesForSaleSold', array('seller' => $seller)); ?>
             </div>
-        <!-- /Sold Items -->
+          </div>
+          <!-- /Sold Items -->
         <?php endif; ?>
 
       </div><!-- /.tab-content-inner -->
@@ -72,8 +82,6 @@
   </div><!-- .tab-content -->
 
 </div><!-- #mycq-tabs -->
-
-
 
 
 <script>
@@ -84,19 +92,16 @@ $(document).ready(function()
       activeClass: 'ui-state-hover',
       over: function(event, ui)
       {
-        $(this)
-          .addClass('ui-state-highlight')
+        $(this).addClass('ui-state-highlight')
       },
       out: function(event, ui)
       {
-        $(this)
-          .removeClass('ui-state-highlight')
+        $(this).removeClass('ui-state-highlight')
       },
       drop: function(event, ui)
       {
         $(this).removeClass('ui-state-highlight');
         ui.draggable.draggable('option', 'revert', false);
-
       }
   });
 

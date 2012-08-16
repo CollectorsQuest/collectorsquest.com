@@ -25,3 +25,30 @@ all:
 
   components:
     slot1: [mycq, navigation]
+    mycq_upload_photos: []
+    mycq_dropbox: []
+
+collectionsSuccess:
+  components:
+    mycq_upload_photos: [mycq, uploadPhotos]
+    mycq_dropbox: [mycq, dropbox]
+
+collectionCollectibles:
+  components:
+    mycq_upload_photos: [mycq, uploadPhotos]
+    mycq_dropbox: [mycq, dropbox]
+
+collectionDetails:
+  components:
+    mycq_upload_photos: [mycq, uploadPhotos]
+    mycq_dropbox: [mycq, dropbox]
+
+collectibleSuccess:
+  components:
+    mycq_upload_photos: [mycq, uploadPhotos]
+    mycq_dropbox: [mycq, dropbox]
+
+marketplaceSuccess:
+  components:
+    mycq_upload_photos: [mycq, uploadPhotos]
+    mycq_dropbox: [mycq, dropbox]

@@ -80,24 +80,18 @@
 <?php else: ?>
   <?php if (isset($seller) && $seller->hasPackageCredits()): ?>
     <?php include_slot('mycq_create_collectible_for_sale'); ?>
-      <div class="no-collections-uploaded-box spacer-bottom link">
-        <?php if ($sf_params->get('q')): ?>
-        <span class="Chivo webfont info-no-collections-uploaded spacer-top-15">
-            None of your Items for Sale match search term: <strong><?= $sf_params->get('q'); ?></strong>
-          </span>
-        <?php else: ?>
-        <span class="Chivo webfont info-no-collections-uploaded spacer-bottom">
-            Sell your items in the marketplace today!<br/>
-            Get Started Now!
-          </span>
-        <?php endif; ?>
-      </div>
-  <?php else: ?>
-    <?php
-      include_partial(
-        'mycq/partials/buy_package_listing'
-      );
-    ?>
+    <div class="no-collections-uploaded-box spacer-bottom link">
+      <?php if ($sf_params->get('q')): ?>
+      <span class="Chivo webfont info-no-collections-uploaded spacer-top-15">
+          None of your Items for Sale match search term: <strong><?= $sf_params->get('q'); ?></strong>
+        </span>
+      <?php else: ?>
+      <span class="Chivo webfont info-no-collections-uploaded spacer-bottom">
+          Sell your items in the marketplace today!<br/>
+          Get Started Now!
+        </span>
+      <?php endif; ?>
+    </div>
   <?php endif; ?>
 <?php endif; ?>
 

@@ -18,7 +18,7 @@
     <?php
       if (false && $total > 0)
       {
-        echo  link_to(
+        echo link_to(
           '<i class="icon-trash"></i> Delete all Photos', '@mycq_dropbox?cmd=empty&encrypt=1',
           array(
             'class' => 'btn btn-mini',
