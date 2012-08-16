@@ -237,7 +237,7 @@ class sellerActions extends cqFrontendActions
 
               $this->getUser()->setFlash(
                 'success', 'Thank you for your payment!
-                            You can now start listing items for sale in the Market Place.'
+                            You can now start listing items for sale in the Market.'
               );
 
               return $this->redirect('@mycq_marketplace');
@@ -315,7 +315,7 @@ class sellerActions extends cqFrontendActions
           $this->getUser()->setFlash(
             'success',
             'Thank you for your payment!
-             You can now start listing items for sale in the Market Place.',
+             You can now start listing items for sale in the Market.',
             true
           );
         }

@@ -111,7 +111,7 @@
         <h4 class="Chivo webfont">List for Six Months<br/>&nbsp;</h4>
         <p>
           Buy Credits that last for one full year. Once an item is marked for sale,
-          it remains in the Market Place for up to 6 months (or until sold).
+          it remains in the Market for up to 6 months (or until sold).
         </p>
       </div>
     </div>
