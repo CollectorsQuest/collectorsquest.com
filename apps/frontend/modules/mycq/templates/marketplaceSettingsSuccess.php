@@ -20,24 +20,32 @@
     <div class="tab-pane active">
       <div class="tab-content-inner spacer">
 
-        <?php cq_sidebar_title('PayPal Account'); ?>
         <?= form_tag('@mycq_marketplace_settings', array('class' => 'form-horizontal')); ?>
         <?= $form->renderHiddenFields(); ?>
 
         <?php if ($form->hasGlobalErrors()): ?>
           <?= $form->renderAllErrors(); ?>
         <?php elseif (!$collector->getSellerSettingsPaypalAccountStatus()): ?>
-          <p>
-            Collectors Quest uses PayPal<sup>®</sup> to process all payments made to sellers on our site.
-            If you don't have a PayPal<sup>®</sup> account, make sure to
-            <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_registration-run" target="_blank">
-              <strong>sign up now</strong>
-            </a>!
-            <br>
-            You need to enter your <strong>full name</strong> and <strong>email address</strong>
-            exactly as it appears on your PayPal account so that we can verify your information.
-          </p><br>
+          <div class="alert alert-block">
+            <h2 class="alert-heading">You must complete all information on this page before you can begin selling.</h2>
+            <ul>
+              <li>Collectors Quest uses PayPal<sup>®</sup> to process all payments made to sellers on our site.</li>
+              <li>
+                If you don't have a PayPal<sup>®</sup> account, make sure to
+                <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_registration-run" target="_blank">
+                  <strong>sign up now</strong>
+                </a>!
+              </li>
+              <li>
+                You need to enter your <strong>full name</strong> and <strong>email address</strong>
+                exactly as it appears on your PayPal account so that we can verify your information.
+              </li>
+            </ul>
+          </div>
         <?php endif; ?>
+
+
+        <?php cq_sidebar_title('PayPal Account'); ?>
 
         <?php if ($collector->getSellerSettingsPaypalAccountStatus()): ?>
         <fieldset class="form-container-center">
@@ -69,7 +77,7 @@
 
         <div class="form-actions">
           <input type="submit" class="btn btn-primary spacer-right-15" value="Save Changes" />
-          <?= link_to('Cancel', '@mycq_profile', array('class' => 'btn')); ?>
+          <? // link_to('Cancel', '@mycq_profile', array('class' => 'btn')); ?>
         </div>
         <?php echo '</form>'; ?>
 
