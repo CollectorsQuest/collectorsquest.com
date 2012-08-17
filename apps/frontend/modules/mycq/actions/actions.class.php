@@ -681,11 +681,10 @@ class mycqActions extends cqFrontendActions
       'seller_settings_paypal_fname',
       'seller_settings_paypal_lname',
       'seller_settings_phone_number',
-      'seller_settings_return_policy',
-      'seller_settings_welcome',
-      'seller_settings_shipping',
+      'seller_settings_store_name',
+      'seller_settings_store_title',
       'seller_settings_refunds',
-      'seller_settings_additional_policies',
+      'seller_settings_shipping'
     ));
 
     if (sfRequest::POST == $request->getMethod())

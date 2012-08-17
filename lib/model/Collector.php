@@ -36,6 +36,12 @@ require 'lib/model/om/BaseCollector.php';
  * @method     Collector setSellerSettingsPhoneExtension(string $v)
  * @method     string    getSellerSettingsPhoneExtension()
  *
+ * @method     Collector setSellerSettingsStoreName(string $v)
+ * @method     string    getSellerSettingsStoreName()
+ *
+ * @method     Collector setSellerSettingsStoreTitle(string $v)
+ * @method     string    getSellerSettingsStoreTitle()
+ *
  * @method     Collector setSellerSettingsStoreDescription(string $v)
  * @method     string    getSellerSettingsStoreDescription()
  *
@@ -90,6 +96,8 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
     $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_PHONE_CODE);
     $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_PHONE_NUMBER);
     $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_PHONE_EXTENSION);
+    $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_STORE_NAME);
+    $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_STORE_TITLE);
     $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_STORE_DESCRIPTION);
     $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_RETURN_POLICY);
     $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_PAYMENT_ACCEPTED);
