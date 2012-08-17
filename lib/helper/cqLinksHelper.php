@@ -327,6 +327,20 @@ function link_to_collectible($collectible, $type = 'text', $options = array('lin
     unset($options['image_tag']['width']);
     unset($options['image_tag']['height']);
   }
+  foreach ($options['image_tag'] as $option)
+  {
+    if (empty($option))
+    {
+      unset($option);
+    }
+  }
+  foreach ($options['link_to'] as $option)
+  {
+    if (empty($option))
+    {
+      unset($option);
+    }
+  }
 
   $title = $collectible->getName();
   if (array_key_exists('truncate', $options['link_to']) && strlen($title) > $options['link_to']['truncate'])
