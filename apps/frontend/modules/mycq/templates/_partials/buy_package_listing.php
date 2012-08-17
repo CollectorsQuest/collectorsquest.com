@@ -9,7 +9,7 @@
           <div class="price red">
             $2.50
             <span class="desc">
-              $2.50 per item
+              $2.50 per listing
             </span>
           </div>
         </div>
@@ -22,7 +22,7 @@
           <div class="price red">
             $20
             <span class="desc">
-              $2.00 per item
+              $2.00 per listing
             </span>
           </div>
         </div>
@@ -35,7 +35,7 @@
           <div class="price red">
             $150
             <span class="desc">
-              $1.50 per item
+              $1.50 per listing
             </span>
           </div>
         </div>

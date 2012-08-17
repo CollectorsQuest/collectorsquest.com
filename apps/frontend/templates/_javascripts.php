@@ -51,10 +51,13 @@
   addthis.src = '//s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4fa2c6240b775d05&async=true';
   s.parentNode.insertBefore(addthis, s);
 
-
 })(document, 'script');
 
 $(window).load(function() {
   addthis.init()
 })
 </script>
+
+<?php if ($sf_request->isSecure()): ?>
+  <script src="https://www.startssl.com/seal.js"></script>
+<?php endif; ?>
