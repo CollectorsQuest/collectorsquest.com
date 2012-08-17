@@ -2,7 +2,7 @@
 
 /** @var cqApplicationConfiguration $configuration */
 $configuration = sfProjectConfiguration::getActive();
-$configuration->loadHelpers(array('Asset', 'Tag'));
+$configuration->loadHelpers(array('Asset', 'Tag', 'cqAssets'));
 
 /**
  * Returns an HTML image tag for a Collector object
