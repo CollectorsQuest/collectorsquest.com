@@ -482,7 +482,8 @@ class mycqActions extends cqFrontendActions
 
       if (
         ($form_shipping_us->isBound() && $form_shipping_zz->isBound()) &&
-        !($form_shipping_us->isValid() && $form_shipping_zz->isValid())
+        !($form_shipping_us->isValid() && $form_shipping_zz->isValid()) &&
+        $form->isValid()
       ) {
         $this->getUser()->setFlash('error', 'There is a problem with your shipping information.');
       }

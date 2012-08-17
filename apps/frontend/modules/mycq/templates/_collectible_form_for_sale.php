@@ -67,9 +67,11 @@
             <span class="add-on">$</span><?= $form_shipping_us['flat_rate']->render(array(
               'class' => 'input-small flat-rate-field')); ?>
           </div>
+          <?php if ($form_shipping_us->isError('flat_rate')): ?>
+            <?= $form_shipping_us['flat_rate']->renderError(); ?>
+          <?php endif; ?>
         </div>
       </div>
-      <?= $form_shipping_us->renderAllErrors(); ?>
 
       <?= $form_shipping_zz->renderHiddenFields(); ?>
       <div class="control-group form-inline">
@@ -103,14 +105,17 @@
           <div class="input-prepend spacer-left-15 spacer-top-5">
             <span class="add-on">$</span><?= $form_shipping_zz['flat_rate']->render(array(
               'class' => 'input-small flat-rate-field')); ?>
-          </div><br />
+          </div>
+          <?php if ($form_shipping_zz->isError('flat_rate')): ?>
+            <?= $form_shipping_zz['flat_rate']->renderError(); ?>
+          <?php endif; ?>
+          <br />
           <?php if (IceGateKeeper::open('collectible_allow_no_shipping')): ?><br />
           <label for="shipping_rates_zz_do_not_ship_to">We do not ship to these countries:</label><br />
           <?= $form_shipping_zz['do_not_ship_to']; ?>
           <?php endif; ?>
         </div>
       </div>
-      <?= $form_shipping_zz->renderAllErrors(); ?>
     <?php endif; // if collectible shipping allowed in gatekeeper ?>
 
   <?php elseif (!$sf_user->getSeller()->hasPackageCredits()): ?>
