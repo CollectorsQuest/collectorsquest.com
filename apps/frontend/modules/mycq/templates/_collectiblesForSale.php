@@ -19,21 +19,25 @@
 
   <div class="span3 collectible_sold_items_grid_view_square link">
     <?php
-    echo link_to(image_tag_collectible(
-      $collectible_for_sale->getCollectible(), '140x140',
-      array('width' => 130, 'height' => 130)
-    ), 'mycq_collectible_by_slug', $collectible_for_sale->getCollectible());
+      echo link_to(
+        image_tag_collectible(
+          $collectible_for_sale->getCollectible(), '140x140',
+          array('width' => 130, 'height' => 130)
+        ),
+        'mycq_collectible_by_slug',
+        array('sf_subject' => $collectible_for_sale->getCollectible(), 'return_to' => 'market')
+      );
     ?>
     <span class="for-sale">FOR SALE</span>
       <p>
         <?php
-        echo link_to(
-          cqStatic::truncateText(
-            $collectible_for_sale->getCollectible()->getName(), 36, '...', true
-          ),
-          'mycq_collectible_by_slug', $collectible_for_sale->getCollectible(),
-          array('class' => 'target')
-        ) ;
+          echo link_to(
+            cqStatic::truncateText(
+              $collectible_for_sale->getCollectible()->getName(), 36, '...', true
+            ),
+            'mycq_collectible_by_slug', $collectible_for_sale->getCollectible(),
+            array('class' => 'target')
+          );
         ?>
         <strong class="pull-right">
         <?= money_format('%.2n', (float) $collectible_for_sale->getPrice()); ?>
@@ -82,11 +86,11 @@
     <?php include_slot('mycq_create_collectible_for_sale'); ?>
     <div class="no-collections-uploaded-box spacer-bottom link">
       <?php if ($sf_params->get('q')): ?>
-      <span class="Chivo webfont info-no-collections-uploaded spacer-top-15">
+        <span class="Chivo webfont info-no-collections-uploaded spacer-top-15">
           None of your Items for Sale match search term: <strong><?= $sf_params->get('q'); ?></strong>
         </span>
       <?php else: ?>
-      <span class="Chivo webfont info-no-collections-uploaded spacer-bottom">
+        <span class="Chivo webfont info-no-collections-uploaded spacer-bottom">
           Sell your items in the marketplace today!<br/>
           Get Started Now!
         </span>
@@ -102,35 +106,33 @@ $(document).ready(function()
   $(document).controls();
 
   $("#collectible-create-html").droppable(
+  {
+    activeClass: 'ui-state-hover',
+    over: function(event, ui)
     {
-      activeClass: 'ui-state-hover',
-      over: function(event, ui)
-      {
-        $(this)
-          .addClass('ui-state-highlight')
-      },
-      out: function(event, ui)
-      {
-        $(this)
-          .removeClass('ui-state-highlight')
-      },
-      drop: function(event, ui)
-      {
-        $(this).removeClass('ui-state-highlight');
-        ui.draggable.draggable('option', 'revert', false);
+      $(this).addClass('ui-state-highlight')
+    },
+    out: function(event, ui)
+    {
+      $(this).removeClass('ui-state-highlight')
+    },
+    drop: function(event, ui)
+    {
+      $(this).removeClass('ui-state-highlight');
+      ui.draggable.draggable('option', 'revert', false);
 
-        var href = $(this).attr('href');
-        href = href +'?collectible_id=' + ui.draggable.data('collectible-id');
+      var href = $(this).attr('href');
+      href = href +'?collectible_id=' + ui.draggable.data('collectible-id');
 
-        var options = {
-          modal: true,
-          autOpen: true,
-          content: href
-        };
+      var options = {
+        modal: true,
+        autOpen: true,
+        content: href
+      };
 
-        $("<div></div>").dialog2(options);
-      }
-    });
+      $("<div></div>").dialog2(options);
+    }
+  });
 
 });
 </script>

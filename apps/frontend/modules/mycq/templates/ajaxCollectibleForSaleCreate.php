@@ -11,8 +11,12 @@
     include_partial(
       'global/loading',
       array('url' => url_for(
-          'mycq_collectible_by_slug',
-          array('sf_subject' => $collectible, 'available_for_sale' => 'yes')
+        'mycq_collectible_by_slug',
+        array(
+          'sf_subject' => $collectible,
+          'available_for_sale' => 'yes',
+          'return_to' => 'market'
+        )
       ))
     );
 

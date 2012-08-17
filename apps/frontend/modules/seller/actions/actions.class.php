@@ -14,7 +14,7 @@ class sellerActions extends cqFrontendActions
   {
     $this->redirectIf(IceGateKeeper::locked('mycq_marketplace'), '@mycq');
 
-    // SmartMenu::setSelected('mycq_menu', 'marketplace');
+    SmartMenu::setSelected('mycq_menu', 'marketplace');
   }
 
   public function executeIndex()
@@ -237,7 +237,7 @@ class sellerActions extends cqFrontendActions
 
               $this->getUser()->setFlash(
                 'success', 'Thank you for your payment!
-                            You can now start listing items for sale in the Market.'
+                            Please, enter your PayPal Account details and start listing your items for sale.'
               );
 
               return $this->redirect('@mycq_marketplace_settings');

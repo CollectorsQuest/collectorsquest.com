@@ -446,6 +446,8 @@ class mycqActions extends cqFrontendActions
     }
 
     $form = new CollectibleEditForm($collectible);
+    $form->setDefault('return_to', $request->getParameter('return_to'));
+
     $form_shipping_us = new SimpleShippingCollectorCollectibleForCountryForm(
       $collectible,
       'US',
@@ -543,7 +545,16 @@ class mycqActions extends cqFrontendActions
           if ($request->getParameter('save_and_go'))
           {
             // If we save the form successfully, the request has to be redirected
-            $this->redirect('mycq_collection_by_slug', $collection);
+            switch ($form->getValue('return_to'))
+            {
+              case 'market':
+                $this->redirect('mycq_marketplace');
+                break;
+              case 'collection':
+              default:
+                $this->redirect('mycq_collection_by_slug', $collection);
+                break;
+            }
           }
         }
         catch (PropelException $e)
