@@ -932,7 +932,7 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
     if ($this->getIsSeller())
     {
       $seller = new Seller();
-      $this->copyInto($seller, false, false);
+      $this->copyInto($seller, $deep = true, $make_new = false);
       $seller->setId($this->getId());
     }
 
