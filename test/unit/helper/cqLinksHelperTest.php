@@ -118,28 +118,28 @@ $t->is(
 // Simple call with image option and no parameters
 $t->is(
   link_to_collectible($collectible, 'image', array()),
-  '<a title="GEM Razors voice-o-graph" href="/collectible/1/gem-razors-voice-o-graph"><img slug="gem-razors-voice-o-graph" width="150" height="150" alt="GEM Razors voice-o-graph" title="GEM Razors voice-o-graph" src="//static.example.com/images/frontend/multimedia/Collectible/150x150.png" /></a>'
+  '<a title="GEM Razors voice-o-graph" href="/collectible/1/gem-razors-voice-o-graph"><img title="GEM Razors voice-o-graph" alt="GEM Razors voice-o-graph" width="150" height="150" src="//static.example.com/images/frontend/multimedia/Collectible/150x150.png" /></a>'
 );
 
 // Call with old function signature and text option
 $t->is(
   link_to_collectible($collectible, 'text', array('width' => 140, 'height' => 140, 'class' => 'mosaic-backdrop')),
-  '<a title="GEM Razors voice-o-graph" width="140" height="140" class="mosaic-backdrop" href="/collectible/1/gem-razors-voice-o-graph">GEM Razors voice-o-graph</a>'
+  '<a title="GEM Razors voice-o-graph" class="mosaic-backdrop" href="/collectible/1/gem-razors-voice-o-graph">GEM Razors voice-o-graph</a>'
 );
 
 // Call with new function signature and image option and "optimal" paramters
 $t->is(
   link_to_collectible($collectible, 'image', array(
-    'link_to' => array('width' => '', 'height' => '', 'alt' => ''),
+    'link_to' => array(),
     'image_tag' => array('width' => 140, 'height' => 140, 'class' => 'mosaic-backdrop')
   )),
-  '<a title="GEM Razors voice-o-graph" href="/collectible/1/gem-razors-voice-o-graph"><img width="140" height="140" alt="GEM Razors voice-o-graph" title="GEM Razors voice-o-graph" class="mosaic-backdrop" src="//static.example.com/images/frontend/multimedia/Collectible/140x140.png" /></a>'
+  '<a title="GEM Razors voice-o-graph" href="/collectible/1/gem-razors-voice-o-graph"><img title="GEM Razors voice-o-graph" alt="GEM Razors voice-o-graph" width="140" height="140" class="mosaic-backdrop" src="//static.example.com/images/frontend/multimedia/Collectible/140x140.png" /></a>'
 );
 
 // Call with new function signature and text option and "optimal" parameters
 $t->is(
   link_to_collectible($collectible, 'text', array(
-    'link_to' => array('width' => '', 'height' => '', 'alt' => ''),
+    'link_to' => array(),
     'image_tag' => array('width' => 140, 'height' => 140, 'class' => 'mosaic-backdrop')
   )),
   '<a title="GEM Razors voice-o-graph" href="/collectible/1/gem-razors-voice-o-graph">GEM Razors voice-o-graph</a>'
@@ -147,9 +147,20 @@ $t->is(
 
 // Call with new function signature and text option and no parameters
 $t->is(
-  link_to_collectible($collectible, 'text', array(
-    'link_to' => array(''),
-    'image_tag' => array('')
-  )),
+  link_to_collectible($collectible, 'text'),
   '<a title="GEM Razors voice-o-graph" href="/collectible/1/gem-razors-voice-o-graph">GEM Razors voice-o-graph</a>'
+);
+
+$t->is(
+  link_to_collectible($collectible, 'text', array(
+    'width' => 140, 'height' => 140, 'max_height' => 100, 'max_width' => 80, 'class' => 'mosaic-backdrop'
+  )),
+  '<a title="GEM Razors voice-o-graph" class="mosaic-backdrop" href="/collectible/1/gem-razors-voice-o-graph">GEM Razors voice-o-graph</a>'
+);
+
+$t->is(
+  link_to_collectible($collectible, 'image', array(
+    'width' => 140, 'height' => 140, 'max_height' => 100, 'max_width' => 80, 'class' => 'mosaic-backdrop'
+  )),
+  '<a title="GEM Razors voice-o-graph" class="mosaic-backdrop" href="/collectible/1/gem-razors-voice-o-graph"><img title="GEM Razors voice-o-graph" alt="GEM Razors voice-o-graph" width="140" height="140" max_height="100" max_width="80" class="mosaic-backdrop" src="//static.example.com/images/frontend/multimedia/Collectible/140x140.png" /></a>'
 );

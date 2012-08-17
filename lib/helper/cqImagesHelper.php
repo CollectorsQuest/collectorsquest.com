@@ -143,45 +143,39 @@ function image_tag_collectible($collectible, $which = null, $options = array())
 {
   if ($which === null)
   {
-    switch (sfConfig::get('sf_app'))
-    {
-      case 'frontend':
-        $which = '190x150';
-        break;
-
-      case 'legacy':
-      default:
-        $which = '150x150';
-        break;
-    }
+    $which = '190x150';
   }
-
-  $default = sfConfig::get('sf_app') . '/multimedia/Collectible/'. $which .'.png';
 
   if ($collectible instanceof CollectionCollectible)
   {
     $collectible = $collectible->getCollectible();
   }
 
-  if (!$collectible instanceof Collectible)
-  {
-    return cq_image_tag($default, $options);
-  }
-
   $options = array_merge(
-    array('alt_title' => $collectible->getName(), 'slug' => $collectible->getSlug()),
+    array(
+      'title' => $collectible->getName(),
+      'alt' => $collectible->getName()
+    ),
     $options
   );
 
-  $multimedia = $collectible->getPrimaryImage();
-  $image_tag = image_tag_multimedia($multimedia, $which, $options);
+  $default = cq_image_tag(
+    sfConfig::get('sf_app') . '/multimedia/Collectible/'. $which .'.png',
+    $options
+  );
 
-  if (empty($image_tag))
+  if ($collectible instanceof Collectible)
   {
-    $image_tag = cq_image_tag($default, $options);
+    $options['slug'] = $collectible->getSlug();
+    $multimedia = $collectible->getPrimaryImage();
+    $image_tag = image_tag_multimedia($multimedia, $which, $options);
+  }
+  else
+  {
+    $image_tag = null;
   }
 
-  return $image_tag;
+  return $image_tag ? $image_tag : $default;
 }
 
 /**

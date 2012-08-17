@@ -289,3 +289,34 @@ function cq_combine_javascripts($javascripts)
     echo '<script type="text/javascript" src="', $url,'"></script>';
   }
 }
+
+function _cq_parse_options($options, $defaults = array())
+{
+  // used for second merge function - how should we avoid merging without this?
+  $options_link_to = $options_image_tag = $options;
+
+  unset($options_link_to['image_tag']);
+  unset($options_image_tag['link_to']);
+
+  $options['link_to'] = array_merge(
+    isset($defaults['link_to']) ? (array) $defaults['link_to'] : array(),
+    !empty($options['link_to']) ? $options['link_to'] : $options_link_to
+  );
+
+  $options['image_tag'] = array_merge(
+    isset($defaults['image_tag']) ? (array) $defaults['image_tag'] : array(),
+    !empty($options['image_tag']) ? $options['image_tag'] : $options_image_tag
+  );
+
+  $options['link_to'] = cqFunctions::array_filter_recursive($options['link_to']);
+  $options['image_tag'] = cqFunctions::array_filter_recursive($options['image_tag']);
+
+  // Cleaning some of the options we expect, definitely not a full list
+  unset(
+    $options['link_to']['width'], $options['link_to']['height'],
+    $options['link_to']['max_width'], $options['link_to']['max_height'],
+    $options['link_to']['alt']
+  );
+
+  return $options;
+}
