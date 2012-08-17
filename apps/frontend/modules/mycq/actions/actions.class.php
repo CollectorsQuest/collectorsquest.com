@@ -583,7 +583,7 @@ class mycqActions extends cqFrontendActions
     $this->form_shipping_us = $form_shipping_us;
     $this->form_shipping_zz = $form_shipping_zz;
 
-    if ($collectible->isForSale())
+    if ($collectible->isForSale() || $request->getParameter('available_for_sale') === 'yes')
     {
       SmartMenu::setSelected('mycq_menu', 'marketplace');
     }
