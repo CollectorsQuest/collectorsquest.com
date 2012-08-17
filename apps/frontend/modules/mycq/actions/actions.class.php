@@ -695,7 +695,7 @@ class mycqActions extends cqFrontendActions
           'success', 'You have successfully updated your store settings.'
         );
 
-        $this->redirect('@mycq_marketplace_settings');
+        $this->redirect('@mycq_marketplace');
       };
     }
 
