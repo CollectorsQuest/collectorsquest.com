@@ -5,7 +5,7 @@
 </script>
 
 <?php if ($sf_params->get('gcf')): ?>
-<script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
 <script> CFInstall.check({ mode: "overlay" }); </script>
 <?php endif; ?>
 

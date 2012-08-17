@@ -22,14 +22,14 @@
             ?>
           </div>
           <p>
-            <a href="http://www.facebook.com/pages/Collectors-Quest/119338990397"
+            <a href="https://www.facebook.com/pages/Collectors-Quest/119338990397"
                target="_blank" class="social-link" title="Follow us on Facebook">
               <i class="s-16-icon-facebook social-ico-padding"></i>Follow us on Facebook
             </a>
           </p>
 
           <p>
-            <a href="http://twitter.com/CollectorsQuest"
+            <a href="https://twitter.com/CollectorsQuest"
                target="_blank" class="social-link" title="Follow us on Twitter">
               <i class="s-16-icon-twitter social-ico-padding"></i>Follow us on Twitter
             </a>
@@ -43,7 +43,7 @@
           </p>
 
           <p>
-            <a href="http://pinterest.com/CollectorsQuest"
+            <a href="https://pinterest.com/CollectorsQuest"
                target="_blank" class="social-link" title="Follow us on Pinterest">
               <i class="s-16-icon-pinterest social-ico-padding"></i>Follow us on Pinterest
             </a>
