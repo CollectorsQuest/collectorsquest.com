@@ -9,7 +9,11 @@ class CollectibleForSaleForm extends BaseCollectibleForSaleForm
     $conditions = CollectibleForSalePeer::$conditions;
     $conditions[''] = '';
 
-    $this->setWidget('condition', new sfWidgetFormChoice(array('choices' => $conditions)));
+    $this->setWidget('condition', new sfWidgetFormChoice(array(
+        'choices' => $conditions
+      ), array(
+        'required' => 'required',
+    )));
     $this->setValidator('condition', new sfValidatorChoice(
       array('choices' => array_keys($conditions), 'required' => false)
     ));
