@@ -10,5 +10,5 @@ unset($routing_params['sf_route']);
 
 echo link_to(
   sprintf('%s (%s)', $model_object, get_class($model_object)),
-  sfContext::getInstance()->getConfiguration()->generateFrontendUrl($route_name, $routing_params)
+  cqContext::getInstance()->getConfiguration()->generateFrontendUrl($route_name, $routing_params)
 );

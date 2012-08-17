@@ -29,7 +29,7 @@ class CollectibleForSaleForm extends BaseCollectibleForSaleForm
     if (!empty($values['is_ready']))
     {
       /** @var $seller Seller */
-      $seller = sfContext::getInstance()->getUser()->getSeller();
+      $seller = cqContext::getInstance()->getUser()->getSeller();
 
       $collectible_has_credit = (boolean) PackageTransactionCreditQuery::create()
         ->filterByCollectibleId($this->getObject()->getCollectibleId())

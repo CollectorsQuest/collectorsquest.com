@@ -31,7 +31,7 @@ class CollectorCollectionEditForm extends CollectorCollectionForm
 
   protected function setupContentCategoryPlainField()
   {
-    $category_edit_url = sfContext::getInstance()->getController()->genUrl(array(
+    $category_edit_url = cqContext::getInstance()->getController()->genUrl(array(
         'sf_route' => 'ajax_mycq',
         'section' => 'collection',
         'page' => 'changeCategory',

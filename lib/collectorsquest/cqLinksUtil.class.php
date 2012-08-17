@@ -51,7 +51,7 @@ class cqLinkUtils
       $this->security = array('all' => false);
 
       // then try to get the file (or generate if necessary)
-      $file = sfContext::getInstance()->getConfigCache()->checkConfig(
+      $file = cqContext::getInstance()->getConfigCache()->checkConfig(
         'modules/'.$module.'/config/security.yml', true
       );
 
@@ -145,7 +145,7 @@ class cqLinkUtils
       }
 
       /** @var $sf_controller sfWebController */
-      $sf_controller = sfContext::getInstance()->getController();
+      $sf_controller = cqContext::getInstance()->getController();
 
       list($route, $parameters) = $sf_controller->convertUrlStringToParameters($parameters);
     }
@@ -164,7 +164,7 @@ class cqLinkUtils
     if ( !(isset($parameters['module']) || isset($parameters['action'])) )
     {
       // get all routes
-      $routes = sfContext::getInstance()->getRouting()->getRoutes();
+      $routes = cqContext::getInstance()->getRouting()->getRoutes();
 
       // check if a named route exists
       if (!isset($routes[$route]))

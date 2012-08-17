@@ -496,7 +496,7 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
       $limit = $limit - $found;
 
       /** @var $sf_user cqBaseUser */
-      $sf_user = sfContext::getInstance()->getUser();
+      $sf_user = cqContext::getInstance()->getUser();
 
       if ($sf_user->isAuthenticated())
       {
@@ -923,20 +923,6 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
   public function isFacebookOnly()
   {
     return ($this->hasFacebook() && preg_match('/^fb(\d+)$/', $this->getUsername()));
-  }
-
-  public function getSeller()
-  {
-    $seller = null;
-
-    if ($this->getIsSeller())
-    {
-      $seller = new Seller();
-      $this->copyInto($seller, $deep = true, $make_new = false);
-      $seller->setId($this->getId());
-    }
-
-    return $seller;
   }
 
   /**

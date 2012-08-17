@@ -24,10 +24,10 @@ class cqFrontendUser extends cqBaseUser
   {
     if (!($this->collector instanceof Collector))
     {
-      if ($this->collector === null && ($this->getAttribute("id", null, "collector") !== null))
+      if ($this->collector === null && ($this->getAttribute('id', null, 'collector') !== null))
       {
         $this->collector = CollectorPeer::retrieveByPK(
-          $this->getAttribute("id", null, "collector")
+          $this->getAttribute('id', null, 'collector')
         );
 
         if (!$this->collector)
@@ -43,9 +43,9 @@ class cqFrontendUser extends cqBaseUser
         $this->collector = new Collector();
       }
     }
-    else if ($this->collector->getId() == null && $this->getAttribute("id", null, "collector") !== null)
+    else if ($this->collector->getId() == null && $this->getAttribute('id', null, 'collector') !== null)
     {
-      $this->collector = CollectorPeer::retrieveByPK($this->getAttribute("id", null, "collector"));
+      $this->collector = CollectorPeer::retrieveByPK($this->getAttribute('id', null, 'collector'));
     }
 
     return $this->collector;
@@ -69,7 +69,10 @@ class cqFrontendUser extends cqBaseUser
       return $country_code;
     }
 
-    return cqStatic::getGeoIpCountryCode(sfContext::getInstance()->getRequest()->getRemoteAddress(), true) ?: $default;
+    // Get the IP address of the request
+    $ip_address = cqContext::getInstance()->getRequest()->getRemoteAddress();
+
+    return cqStatic::getGeoIpCountryCode($ip_address, true) ?: $default;
   }
 
   /**
@@ -99,9 +102,13 @@ class cqFrontendUser extends cqBaseUser
    */
   public function getSeller($strict = false)
   {
-    if ($collector = $this->getCollector($strict))
+    if (($collector = $this->getCollector($strict)) && $collector->getIsSeller())
     {
-      return $collector->getSeller();
+      $seller = new Seller();
+      $collector->copyInto($seller, $deep = false, $make_new = false);
+      $seller->setId($this->getId());
+
+      return $seller;
     }
 
     return null;
@@ -111,9 +118,12 @@ class cqFrontendUser extends cqBaseUser
   {
     $q = ShoppingCartQuery::create();
 
-    if ($this->isAuthenticated()) {
+    if ($this->isAuthenticated())
+    {
       $q->filterByCollector($this->getCollector());
-    } else {
+    }
+    else
+    {
       $q->filterByCollectorId(null, Criteria::EQUAL);
       $q->filterByCookieUuid($this->getCookieUuid());
     }
@@ -157,7 +167,7 @@ class cqFrontendUser extends cqBaseUser
   public function setUsernameCookie()
   {
     /** @var $response sfWebResponse */
-    $response = sfContext::getInstance()->getResponse();
+    $response = cqContext::getInstance()->getResponse();
 
     if ($this->isAuthenticated())
     {
@@ -183,7 +193,7 @@ class cqFrontendUser extends cqBaseUser
    */
   public function setMycqDropboxOpenState($is_open)
   {
-    sfContext::getInstance()->getResponse()->setCookie(
+    cqContext::getInstance()->getResponse()->setCookie(
       self::DROPBOX_OPEN_STATE_COOKIE_NAME,
       // boolean value
       !!$is_open,
@@ -214,7 +224,7 @@ class cqFrontendUser extends cqBaseUser
     }
     else
     {
-      return (boolean) sfContext::getInstance()->getRequest()->getCookie(
+      return (boolean) cqContext::getInstance()->getRequest()->getCookie(
         self::DROPBOX_OPEN_STATE_COOKIE_NAME, true
       );
     }
@@ -225,7 +235,7 @@ class cqFrontendUser extends cqBaseUser
    */
   public function clearMycqDropboxOpenStateCookie()
   {
-    sfContext::getInstance()->getResponse()->setCookie(
+    cqContext::getInstance()->getResponse()->setCookie(
       self::DROPBOX_OPEN_STATE_COOKIE_NAME,
       '',
       // 10 years
@@ -241,7 +251,7 @@ class cqFrontendUser extends cqBaseUser
   public function getUsernameFromCookie()
   {
     $username_cookie = sfConfig::get('app_collector_username_cookie_name', 'cq_username');
-    return sfContext::getInstance()->getRequest()->getCookie($username_cookie);
+    return cqContext::getInstance()->getRequest()->getCookie($username_cookie);
   }
 
   /**
@@ -252,7 +262,7 @@ class cqFrontendUser extends cqBaseUser
     // remove the username cookie
     $expiration_time = sfConfig::get('app_collector_username_cookie_expiration_age', 15 * 24 * 3600);
     $username_cookie = sfConfig::get('app_collector_username_cookie_name', 'cq_username');
-    sfContext::getInstance()->getResponse()->setCookie($username_cookie, '', time() - $expiration_time);
+    cqContext::getInstance()->getResponse()->setCookie($username_cookie, '', time() - $expiration_time);
   }
 
   /**
@@ -323,7 +333,8 @@ class cqFrontendUser extends cqBaseUser
     $collector = $collector ?: $this->getCollector();
 
     // We cannot do anything without a Collector
-    if (!($collector instanceof Collector) || $collector->isNew()) {
+    if (!($collector instanceof Collector) || $collector->isNew())
+    {
       return false;
     }
 
@@ -369,7 +380,7 @@ class cqFrontendUser extends cqBaseUser
       // Only send the email if the email is not verified
       if ($collector_email)
       {
-        $cqEmail = new cqEmail(sfContext::getInstance()->getMailer());
+        $cqEmail = new cqEmail(cqContext::getInstance()->getMailer());
         $cqEmail->send($collector->getUserType() . '/welcome_verify_email', array(
           'to' => $collector->getEmail(),
           'params' => array(
@@ -505,7 +516,8 @@ class cqFrontendUser extends cqBaseUser
         if (
           $prop_name === CollectorPeer::PROPERTY_VISITOR_INFO_FIRST_VISIT_AT &&
           $collector->getProperty($prop_name)
-        ) {
+        )
+        {
           continue;
         }
 
@@ -586,7 +598,7 @@ class cqFrontendUser extends cqBaseUser
   protected function setVisitorInfoCookieData($data)
   {
     /** @var $response sfWebResponse */
-    $response = sfContext::getInstance()->getResponse();
+    $response = cqContext::getInstance()->getResponse();
     $response->setCookie(
       self::VISITOR_INFO_COOKIE_NAME,
       base64_encode(json_encode($data)),
@@ -608,7 +620,7 @@ class cqFrontendUser extends cqBaseUser
     );
 
     /** @var $request sfWebRequest */
-    $request = sfContext::getInstance()->getRequest();
+    $request = cqContext::getInstance()->getRequest();
     $raw_data = $request->getCookie(self::VISITOR_INFO_COOKIE_NAME, null);
 
     if (!$raw_data)

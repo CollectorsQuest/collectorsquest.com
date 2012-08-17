@@ -26,7 +26,7 @@ class CollectorCollectionForm extends BaseCollectorCollectionForm
     $tags = $this->getObject()->getTags();
     if (sfContext::hasInstance())
     {
-      $request = sfContext::getInstance()->getRequest();
+      $request = cqContext::getInstance()->getRequest();
       if (( $values = $request->getParameter($this->getName()) ))
       {
         if (isset($values['tags']))

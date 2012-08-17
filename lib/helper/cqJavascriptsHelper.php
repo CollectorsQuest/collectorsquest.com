@@ -42,7 +42,7 @@ function cq_ad_slot($slot, $width, $height, $delayed = false)
 
   if ($delayed == true)
   {
-    $request = sfContext::getInstance()->getRequest();
+    $request = cqContext::getInstance()->getRequest();
     $slots = $request->getAttribute('slots', array(), 'cq/view/ads');
 
     echo sprintf(
@@ -89,7 +89,7 @@ function cq_dart_slot($size, $zone1 = 'other', $zone2 = null, $pos = null)
 function cq_javascript_tag()
 {
   /** @var $request sfWebRequest */
-  $request = sfContext::getInstance()->getRequest();
+  $request = cqContext::getInstance()->getRequest();
 
   if (SF_ENV != 'prod' || $request->isXmlHttpRequest())
   {
@@ -103,14 +103,14 @@ function cq_javascript_tag()
 function cq_end_javascript_tag()
 {
   /** @var $request sfWebRequest */
-  $request = sfContext::getInstance()->getRequest();
+  $request = cqContext::getInstance()->getRequest();
 
   if (SF_ENV != 'prod' || $request->isXmlHttpRequest())
   {
     return;
   }
 
-  $request = sfContext::getInstance()->getRequest();
+  $request = cqContext::getInstance()->getRequest();
   $contents = (array) @unserialize($request->getAttribute('contents', '', 'symfony/view/cqJavascripts'));
 
   $script = ob_get_clean();
@@ -124,7 +124,7 @@ function cq_end_javascript_tag()
 
 function cq_echo_javascripts()
 {
-  $request = sfContext::getInstance()->getRequest();
+  $request = cqContext::getInstance()->getRequest();
   $contents = (array) @unserialize($request->getAttribute('contents', '', 'symfony/view/cqJavascripts'));
   $contents = implode("\n", array_unique($contents));
 

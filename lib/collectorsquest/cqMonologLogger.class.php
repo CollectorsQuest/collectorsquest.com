@@ -137,7 +137,7 @@ class cqMonologLogger extends sfLogger
         break;
 
       case 'swift_mailer':
-        $mailer = sfContext::getInstance()->getMailer();
+        $mailer = cqContext::getInstance()->getMailer();
         $message = $mailer->compose($params['from_email'], $params['to_email'], $params['subject']);
         $handler = new Monolog\Handler\SwiftMailerHandler($mailer, $message, $params['level']);
         break;

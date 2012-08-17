@@ -76,7 +76,7 @@ class SellerPackagesForm extends BaseForm
   private function setupCountryField()
   {
     $this->setWidget('country', new cqWidgetFormChoiceGeoIpCountry(array(
-      'remote_address' => sfContext::getInstance()->getRequest()->getRemoteAddress(),
+      'remote_address' => cqContext::getInstance()->getRequest()->getRemoteAddress(),
       'add_empty'=> true,
     ), array(
       'placeholder' => 'Country',
@@ -319,7 +319,7 @@ class SellerPackagesForm extends BaseForm
     $promo = PromotionPeer::findByPromotionCode($values['promo_code']);
 
     /** @var $collector Collector */
-    $collector = sfContext::getInstance()->getUser()->getCollector();
+    $collector = cqContext::getInstance()->getUser()->getCollector();
     $error = false;
 
     if (!$promo)

@@ -6,7 +6,7 @@
 function cq_include_http_metas()
 {
   /** @var $response sfWebResponse */
-  $response = sfContext::getInstance()->getResponse();
+  $response = cqContext::getInstance()->getResponse();
 
   $i = 0;
   foreach ((array) $response->getHttpMetas() as $httpequiv => $value)
@@ -22,7 +22,7 @@ function cq_include_http_metas()
 function cq_include_metas()
 {
   /** @var $context sfContext */
-  $context = sfContext::getInstance();
+  $context = cqContext::getInstance();
 
   /** @var $response sfWebResponse */
   $response = $context->getResponse();
@@ -67,7 +67,7 @@ function cq_include_metas()
 function cq_include_title()
 {
   /** @var $response sfWebResponse */
-  $response = sfContext::getInstance()->getResponse();
+  $response = cqContext::getInstance()->getResponse();
 
   /** @var $title string */
   $title = $response->getTitle();
@@ -130,7 +130,7 @@ function cq_include_stylesheets()
   }
 
   /** @var $response sfWebResponse */
-  $response = sfContext::getInstance()->getResponse();
+  $response = cqContext::getInstance()->getResponse();
   sfConfig::set('symfony.asset.stylesheets_included', true);
 
   if ($response->getStylesheets(sfWebResponse::FIRST))
@@ -187,7 +187,7 @@ function cq_include_javascripts()
   }
 
   /** @var $response sfWebResponse */
-  $response = sfContext::getInstance()->getResponse();
+  $response = cqContext::getInstance()->getResponse();
   sfConfig::set('symfony.asset.javascripts_included', true);
 
   if ($response->getJavascripts(sfWebResponse::FIRST))

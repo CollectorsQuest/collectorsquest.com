@@ -118,7 +118,7 @@ $(document).ready(function() {
 EOF
       ,
       $this->generateId($name).'_holder',
-      sfContext::getInstance()->getController()->genUrl($this->getOption('autocompleteURL'), true),
+      cqContext::getInstance()->getController()->genUrl($this->getOption('autocompleteURL'), true),
       json_encode($this->getOption('autocompleteOptions')),
       implode(', ', $this->getOption('breakKeyCodes')),
       $this->getOption('additionalListClass'),

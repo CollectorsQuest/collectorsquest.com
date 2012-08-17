@@ -144,7 +144,7 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
     if ($limit != $found = count($collections))
     {
       $limit = $limit - $found;
-      $sf_context = sfContext::getInstance();
+      $sf_context = cqContext::getInstance();
 
       /** @var $sf_user cqBaseUser */
       $sf_user = $sf_context->getUser();

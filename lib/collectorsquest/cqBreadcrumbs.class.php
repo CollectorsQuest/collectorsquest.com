@@ -90,7 +90,7 @@ class cqBreadcrumbs
   {
     if (is_null(self::$instance))
     {
-      if (!self::$instance = sfContext::getInstance()->getRequest()->getParameter('cqBreadcrumbs'))
+      if (!self::$instance = cqContext::getInstance()->getRequest()->getParameter('cqBreadcrumbs'))
       {
         self::$instance = new cqBreadcrumbs();
         self::$instance->save();
@@ -126,6 +126,6 @@ class cqBreadcrumbs
    */
   protected function save()
   {
-    sfContext::getInstance()->getRequest()->setParameter('cqBreadcrumbs', $this);
+    cqContext::getInstance()->getRequest()->setParameter('cqBreadcrumbs', $this);
   }
 }

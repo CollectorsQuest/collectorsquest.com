@@ -24,7 +24,7 @@ class CollectibleForSaleEditForm extends CollectibleForSaleForm
         'invalid'  => sprintf(
           'You must <a href="%s">setup your paypal account</a>
            before you can sell in the Marketplace',
-          sfContext::getInstance()->getController()->genUrl('@mycq_marketplace_settings')),
+          cqContext::getInstance()->getController()->genUrl('@mycq_marketplace_settings')),
       )
     ));
 
@@ -46,7 +46,7 @@ class CollectibleForSaleEditForm extends CollectibleForSaleForm
   {
     if (isset($values['is_ready']) && $values['is_ready'])
     {
-      $collector = sfContext::getInstance()->getUser()->getCollector();
+      $collector = cqContext::getInstance()->getUser()->getCollector();
 
       if (!$collector->hasPaypalDetails())
       {

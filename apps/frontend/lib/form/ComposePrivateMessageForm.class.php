@@ -77,7 +77,7 @@ class ComposePrivateMessageForm extends PrivateMessageForm
     {
       // if no, then allow the user to input the receiver
       $this->widgetSchema['receiver'] = new bsWidgetFormInputTypeAhead(array(
-        'source' => sfContext::getInstance()->getController()->genUrl(
+        'source' => cqContext::getInstance()->getController()->genUrl(
           array('sf_route' => 'ajax_typeahead', 'section' => 'messages', 'page' => 'compose')
         )
       ));
@@ -310,7 +310,7 @@ class ComposePrivateMessageForm extends PrivateMessageForm
 
   protected function sendSpamNotification($percent)
   {
-    $cqEmail = new cqEmail(sfContext::getInstance()->getMailer());
+    $cqEmail = new cqEmail(cqContext::getInstance()->getMailer());
 
     $cqEmail->send('internal/spam_notification', array(
         'to' => sfConfig::get('app_private_messages_spam_receiver'),

@@ -519,7 +519,7 @@ function link_to_content_category(ContentCategory $category, $type = 'text', $op
 function url_for_model_object(BaseObject $model_object, $absolute = false)
 {
   /** @var $controller cqFrontWebController */
-  $controller = sfContext::getInstance()->getController();
+  $controller = cqContext::getInstance()->getController();
 
   return $controller->genUrlForModelObject($model_object, $absolute);
 }
@@ -561,12 +561,12 @@ function link_to_model_object($name, BaseObject $model_object, $options = array(
 function cq_canonical_url()
 {
   /** @var $response cqWebResponse */
-  $response = sfContext::getInstance()->getResponse();
+  $response = cqContext::getInstance()->getResponse();
 
   if (!$canonical_url = $response->getCanonicalUrl())
   {
     /** @var $route cqPropelRoute */
-    $route = sfContext::getInstance()->getRequest()->getAttribute('sf_route');
+    $route = cqContext::getInstance()->getRequest()->getAttribute('sf_route');
 
     if ($route instanceof cqPropelRoute)
     {
@@ -584,7 +584,7 @@ function cq_canonical_url()
       if (!$canonical_url = cq_url_for($object, false))
       {
         /** @var $routing cqPatternRouting */
-        $routing = sfContext::getInstance()->getRouting();
+        $routing = cqContext::getInstance()->getRouting();
 
         $canonical_url = url_for($routing->getCurrentRouteName(), $object, false);
       }

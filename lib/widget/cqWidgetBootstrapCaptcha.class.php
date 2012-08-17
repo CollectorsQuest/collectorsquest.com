@@ -41,7 +41,7 @@ class cqWidgetBootstrapCaptcha extends sfWidgetForm
 
   protected function getCaptchaUrl()
   {
-    return sfContext::getInstance()->getRouting()->generate(
+    return cqContext::getInstance()->getRouting()->generate(
       'ice_captcha_image',
       array(),
       true

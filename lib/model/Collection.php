@@ -79,8 +79,8 @@ class Collection extends BaseCollection
     {
       $limit = $limit - $found;
 
-      /** @var $sf_context sfContext */
-      $sf_context = sfContext::getInstance();
+      /** @var $sf_context cqContext */
+      $sf_context = cqContext::getInstance();
 
       /** @var $sf_user cqBaseUser */
       $sf_user = $sf_context->getUser();

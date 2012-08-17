@@ -289,7 +289,7 @@ function src_tag_multimedia($multimedia, $which = 'thumb', $options = array())
   }
 
   /** @var $request cqWebRequest */
-  $request = sfContext::getInstance()->getRequest();
+  $request = cqContext::getInstance()->getRequest();
 
   // Take into consideration the current protocol only in production
   $protocol = sfConfig::get('sf_environment') === 'prod' ?
