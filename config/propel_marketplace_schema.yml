@@ -164,11 +164,11 @@ classes:
       id:  ~
       package_id:               { type: integer, foreignClass: Package, foreignReference: id, required: true, onDelete: restrict }
       collector_id:             { type: integer, foreignClass: Collector, foreignReference: id, required: true, onDelete: cascade }
-      payment_status:           { type: enum,    valueSet: "pending, paid, cancelled", default: pending }
+      payment_status:           { type: enum,    valueSet: "pending, paid, cancelled, processing", default: pending }
       credits:                  { type: integer, required: true, default: 0 }
       credits_used:             { type: integer, required: true, default: 0 }
       package_price:            { type: float }
-      discount:                 { type: float, required: false, sqlType: 'float unsigned' }
+      discount:                 { type: float,   required: false, sqlType: 'float unsigned' }
       promotion_transaction_id: { type: integer, required: false, foreignClass: PromotionTransaction, foreignReference: id, onDelete: restrict }
       expiry_date:              { type: timestamp }
       created_at:  ~

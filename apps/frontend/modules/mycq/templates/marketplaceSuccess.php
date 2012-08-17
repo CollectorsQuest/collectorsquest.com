@@ -51,7 +51,10 @@
               }
               else if (!isset($seller) || !$seller->hasPackageCredits())
               {
+                // We need to show the Upload Photos button
+                // because there is nothing to with dragging and dropping on this page
                 $this->setComponentSlot('mycq_upload_photos', null, null);
+
                 include_partial('mycq/partials/buy_package_listing');
               }
             ?>

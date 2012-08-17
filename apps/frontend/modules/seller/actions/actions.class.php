@@ -141,15 +141,15 @@ class sellerActions extends cqFrontendActions
           else if ('cc' == $packagesForm->getValue('payment_type'))
           {
             // 2.3. If cc - try to pay
-            //@todo replace cc payment with method
-            //@todo cc payment
+            // @todo replace cc payment with method
+            // @todo cc payment
 
             $paypalAPI = cqStatic::getPayPalClient();
 
             $directPaymentFields = array(
-              'paymentaction'    => 'Sale', // How you want to obtain payment.  Authorization indidicates the payment is a basic auth subject to settlement with Auth & Capture.  Sale indicates that this is a final sale for which you are requesting payment.  Default is Sale.
+              'paymentaction'    => 'Sale', // How you want to obtain payment. Default is Sale.
               'ipaddress'        => $request->getRemoteAddress(),
-              'returnfmfdetails' => '1', // Flag to determine whether you want the results returned by FMF.  1 or 0.  Default is 0.
+              'returnfmfdetails' => '1', // Whether you want the results returned by FMF. Default is 0.
             );
 
             $creditCardDetails = array(
@@ -160,7 +160,7 @@ class sellerActions extends cqFrontendActions
             );
 
             $payerInfo = array(
-              'email'       => $collector->getEmail(),
+              'email' => $collector->getEmail(),
             );
 
             $payerName = array(
@@ -179,13 +179,20 @@ class sellerActions extends cqFrontendActions
             );
 
             $paymentDetails = array(
-              'amt'          => $transaction->getPackagePrice(), // Required.  Total amount of order, including shipping, handling, and tax.
-              'currencycode' => sfConfig::get('app_paypal_currency_code', 'USD'), // Required.  Three-letter currency code.  Default is USD.
-              'itemamt'      => $transaction->getPackagePrice(), // Required if you include itemized cart details. (L_AMTn, etc.)  Subtotal of items not including S&H, or tax.
-              'shippingamt'  => 0.00, // Total shipping costs for the order.  If you specify shippingamt, you must also specify itemamt.
-              'handlingamt'  => 0.00, // Total handling costs for the order.  If you specify handlingamt, you must also specify itemamt.
-              'taxamt'       => 0.00, // Required if you specify itemized cart tax details. Sum of tax for all items on the order.  Total sales tax.
-              'desc'         => sprintf('Package %s order', $package->getPackageName()), // Description of the order the customer is purchasing.  127 char max.
+              // Required.  Total amount of order, including shipping, handling, and tax.
+              'amt'          => $transaction->getPackagePrice(),
+              // Required.  Three-letter currency code.  Default is USD.
+              'currencycode' => sfConfig::get('app_paypal_currency_code', 'USD'),
+              // Required if you include itemized cart details. Subtotal of items not including S&H, or tax.
+              'itemamt'      => $transaction->getPackagePrice(),
+              // Total shipping costs for the order. If you specify shippingamt, you must also specify itemamt.
+              'shippingamt'  => 0.00,
+              // Total handling costs for the order. If you specify handlingamt, you must also specify itemamt.
+              'handlingamt'  => 0.00,
+              // Sum of tax for all items on the order. Total sales tax.
+              'taxamt'       => 0.00,
+              // Description of the order the customer is purchasing.  127 char max.
+              'desc'         => sprintf('Package %s order', $package->getPackageName()),
               'invnum'       => $transaction->getId(), // Your own invoice or tracking number
               'notifyurl'    => $this->generateUrl(
                 'seller_payment_paypal',
@@ -321,6 +328,9 @@ class sellerActions extends cqFrontendActions
         }
         else if ($package_transaction->getPaymentStatus() === PackageTransactionPeer::PAYMENT_STATUS_PENDING)
         {
+          $package_transaction->setPaymentStatus(PackageTransactionPeer::PAYMENT_STATUS_PROCESSING);
+          $package_transaction->save();
+
           $this->getUser()->setFlash(
             'success',
             'You payment is currently being processed.

@@ -12,6 +12,19 @@
   </a>
 <?php end_slot(); ?>
 
+<?php slot('mycq_buy_credits'); ?>
+<a href="<?php echo url_for('@seller_packages'); ?>"
+   id="buy-credits-html" class="span3 collectible_sold_items_grid_view_square add-new-zone"
+   title="Click here to buy more listings">
+  <span class="btn-upload-collectible">
+    <i class="icon-shopping-cart icon-white"></i>
+  </span>
+  <span class="btn-upload-collectible-txt">
+    Click Here<br> To Buy More Listings
+  </span>
+</a>
+<?php end_slot(); ?>
+
 
 <?php if ($pager->getNbResults() > 0): ?>
 
@@ -48,7 +61,14 @@
     <?php
       if (($pager->getPage() === 1 && $i === 4) || ($pager->count() === $i+1 && $pager->count() < 5))
       {
-        include_slot('mycq_create_collectible_for_sale');
+        if (isset($seller) && $seller->hasPackageCredits())
+        {
+          include_slot('mycq_create_collectible_for_sale');
+        }
+        else
+        {
+          include_slot('mycq_buy_credits');
+        }
       }
     ?>
   <?php endforeach; ?>

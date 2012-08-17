@@ -384,7 +384,7 @@ dev:
     domain: "cqcdns.dev"
 
   paypal:
-    ipn_domain: 'https://221.58.193.147'
+    ipn_domain: 'http://221.58.193.147'
 
 test:
   domain_name: "example.com"

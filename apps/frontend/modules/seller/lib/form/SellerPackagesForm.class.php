@@ -413,12 +413,12 @@ class SellerPackagesForm extends BaseForm
 
   protected function setupPendingTransactionConfirmationField()
   {
-    $has_recent_pending_transactions = !! PackageTransactionQuery::create()
-      ->filterByPaymentStatus(PackageTransactionPeer::PAYMENT_STATUS_PENDING)
+    $has_recent_processing_transactions = !! PackageTransactionQuery::create()
+      ->filterByPaymentStatus(PackageTransactionPeer::PAYMENT_STATUS_PROCESSING)
       ->filterByCreatedAt(strtotime('-'.self::PENDING_TRANSACTION_TIMEOUT), Criteria::GREATER_EQUAL)
       ->count();
 
-    if ($has_recent_pending_transactions)
+    if ($has_recent_processing_transactions)
     {
       $this->setWidget('pending_transaction_confirm', new sfWidgetFormInputCheckbox(array(
           'label' => 'I understand. Continue with this transaction',
