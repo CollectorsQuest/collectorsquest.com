@@ -212,7 +212,8 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
    */
   public function hasPayPalDetails()
   {
-    return !! $this->getSellerSettingsPaypalAccountId();
+    return CollectorPeer::PAYPAL_ACCOUNT_STATUS_VERIFIED ==
+      $this->getSellerSettingsPaypalAccountStatus();
   }
 
   /**

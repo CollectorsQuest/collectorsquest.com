@@ -50,6 +50,7 @@ class CollectorPeer extends BaseCollectorPeer
   const TAGS_NAMESPACE_COLLECTOR  = 'seller';
   const TAGS_KEY_I_SELL           = 'isell';
 
+  const PAYPAL_ACCOUNT_STATUS_VERIFIED = 'VERIFIED';
   /**
    * @param     string $username
    * @param     PropelPDO $con
