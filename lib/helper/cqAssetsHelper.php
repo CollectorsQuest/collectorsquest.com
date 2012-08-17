@@ -300,12 +300,12 @@ function _cq_parse_options($options, $defaults = array())
 
   $options['link_to'] = array_merge(
     isset($defaults['link_to']) ? (array) $defaults['link_to'] : array(),
-    !empty($options['link_to']) ? $options['link_to'] : $options_link_to
+    isset($options['link_to']) ? $options['link_to'] : $options_link_to
   );
 
   $options['image_tag'] = array_merge(
     isset($defaults['image_tag']) ? (array) $defaults['image_tag'] : array(),
-    !empty($options['image_tag']) ? $options['image_tag'] : $options_image_tag
+    isset($options['image_tag']) ? $options['image_tag'] : $options_image_tag
   );
 
   $options['link_to'] = cqFunctions::array_filter_recursive($options['link_to']);
