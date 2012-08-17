@@ -8,7 +8,7 @@
 <div class="row-fluid spacer-top-30">
   <div class="span4">
     <div class="pull-right">
-      <img src="/images/frontend/cq-logo-175.png" alt="">
+      <?= cq_image_tag('frontend/logo/175x80.png'); ?>
     </div>
   </div>
   <div class="span3" style="text-align: center;">
@@ -18,7 +18,7 @@
   </div>
   <div class="span5">
     <div class="pull-left">
-      <img src="/images/frontend/paypal-logo-175.png" alt="">
+      <?= cq_image_tag('frontend/paypal-logo-175.png'); ?>
     </div>
   </div>
 </div>
