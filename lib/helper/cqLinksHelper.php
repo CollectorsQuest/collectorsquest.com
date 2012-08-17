@@ -264,44 +264,96 @@ function route_for_collection(Collection $collection = null)
  *
  * @return string
  */
-function link_to_collectible($collectible, $type = 'text', $options = array())
+function link_to_collectible($collectible, $type = 'text', $options = array('link_to' => array(), 'image_tag' => array()))
 {
-  $options = array_merge(
-    array(
-      'width'  => 150,
-      'height' => 150,
-      'alt'    => $collectible->getName(),
-      'title'  => $collectible->getName()
-    ),
-    $options
-  );
-
-  if (empty($options['width']) || empty($options['height']))
+  //used for second merge function - how should we avoid merging without this?
+  $options_copy = $options;
+  if (!empty($options['link_to']))
   {
-    unset($options['width']);
-    unset($options['height']);
+    $options['link_to'] = array_merge(
+      array(
+        'width'  => '',
+        'height' => '',
+        'alt'    => '',
+        'title'  => $collectible->getName()
+      ),
+      $options['link_to']
+    );
+  }
+  else
+  {
+    $options['link_to'] = array_merge(
+      array(
+        'width'  => 150,
+        'height' => 150,
+        'alt'    => $collectible->getName(),
+        'title'  => $collectible->getName()
+      ),
+      $options
+    );
+  }
+
+  if (!empty($options['image_tag']))
+  {
+    $options['image_tag'] = array_merge(
+      array(
+        'width'  => 150,
+        'height' => 150,
+        'alt'    => $collectible->getName(),
+        'title'  => $collectible->getName()
+      ),
+      $options['image_tag']
+    );
+  }
+  else
+  {
+    $options['image_tag'] = array_merge(
+      array(
+        'width'  => 150,
+        'height' => 150,
+        'alt'    => $collectible->getName(),
+        'title'  => $collectible->getName()
+      ),
+      $options_copy
+    );
+  }
+
+  // unset empty parameters
+  if (empty($options['link_to']['width']) || empty($options['link_to']['height']))
+  {
+    unset($options['link_to']['width']);
+    unset($options['link_to']['height']);
+  }
+  if (empty($options['link_to']['alt']))
+  {
+    unset($options['link_to']['alt']);
+  }
+  if (empty($options['image_tag']['width']) || empty($options['image_tag']['height']))
+  {
+    unset($options['image_tag']['width']);
+    unset($options['image_tag']['height']);
   }
 
   $title = $collectible->getName();
-  if (array_key_exists('truncate', $options) && strlen($title) > $options['truncate'])
+  if (array_key_exists('truncate', $options['link_to']) && strlen($title) > $options['link_to']['truncate'])
   {
-    $title = truncate_text($title, $options['truncate'], '...', true);
-    unset($options['truncate']);
+    $title = truncate_text($title, $options['link_to']['truncate'], '...', true);
+    unset($options['link_to']['truncate']);
   }
 
   $route = route_for_collectible($collectible);
   switch ($type)
   {
     case 'image':
-      $which = (isset($options['width']) && isset($options['height'])) ?
-        $options['width'] . 'x' . $options['height'] :
+      $which = (isset($options['image_tag']['width']) && isset($options['image_tag']['height'])) ?
+        $options['image_tag']['width'] . 'x' . $options['image_tag']['height'] :
         '150x150';
 
-      $link = link_to(image_tag_collectible($collectible, $which, $options), $route, $options);
+      $link = link_to(image_tag_collectible($collectible, $which, $options['image_tag']), $route, $options['link_to']);
       break;
     case 'text':
     default:
-      $link = link_to($title, $route, $options);
+      $link = link_to($title, $route, $options['link_to']);
       break;
   }
 
