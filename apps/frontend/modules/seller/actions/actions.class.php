@@ -317,7 +317,21 @@ class sellerActions extends cqFrontendActions
     {
       case 'return':
 
-        if ($package_transaction->getPaymentStatus() === PackageTransactionPeer::PAYMENT_STATUS_PAID)
+        if ($package_transaction->getPaymentStatus() === PackageTransactionPeer::PAYMENT_STATUS_PENDING)
+        {
+          $package_transaction->setPaymentStatus(PackageTransactionPeer::PAYMENT_STATUS_PROCESSING);
+          $package_transaction->save();
+
+          $this->getUser()->setFlash(
+            'success',
+            'You payment is currently being processed.
+             Please take the time to update your store information below.',
+            true
+          );
+
+          return $this->redirect('@mycq_marketplace_settings');
+        }
+        else if ($package_transaction->getPaymentStatus() === PackageTransactionPeer::PAYMENT_STATUS_PAID)
         {
           $this->getUser()->setFlash(
             'success',
@@ -326,15 +340,12 @@ class sellerActions extends cqFrontendActions
             true
           );
         }
-        else if ($package_transaction->getPaymentStatus() === PackageTransactionPeer::PAYMENT_STATUS_PENDING)
+        else
         {
-          $package_transaction->setPaymentStatus(PackageTransactionPeer::PAYMENT_STATUS_PROCESSING);
-          $package_transaction->save();
-
           $this->getUser()->setFlash(
-            'success',
-            'You payment is currently being processed.
-             You will receive a confirmation email upon successful completion of your package purchase.',
+            'error',
+            'There was a problem processing your PayPal payment.
+             Please contact our customer support for assistance!',
             true
           );
         }
