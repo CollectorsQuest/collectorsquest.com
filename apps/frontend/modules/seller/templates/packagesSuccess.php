@@ -103,7 +103,7 @@
   <div class="control-group packages-wrapper">
     <div class="choice-packages">
       <div class="radio_list">
-        <label class="radio hide">
+        <label class="radio <?= isset($package_id_value) && 1 != $package_id_value ? 'hide' : '' ?>">
           <input required="required" name="packages[package_id]" type="radio" value="1"
             <?= 1 == $package_id_value ? 'checked' : '' ?>
             id="packages_package_id_1" class="package-input"
@@ -112,7 +112,7 @@
             1 listing<span class="blue pull-right">$2.50</span>
           </span>
         </label>
-        <label class="radio">
+        <label class="radio <?= isset($package_id_value) && 2 != $package_id_value ? 'hide' : '' ?>">
           <input required="required" name="packages[package_id]" type="radio" value="2"
             <?= 2 == $package_id_value ? 'checked' : '' ?>
             id="packages_package_id_2" class="package-input"
@@ -121,7 +121,7 @@
             10 listings<span class="blue pull-right">$20</span>
           </span>
         </label>
-        <label class="radio hide">
+        <label class="radio <?= isset($package_id_value) && 3 != $package_id_value ? 'hide' : '' ?>">
           <input required="required" name="packages[package_id]" type="radio" value="3"
             <?= 3 == $package_id_value ? 'checked' : '' ?>
              id="packages_package_id_3" class="package-input"
@@ -130,7 +130,7 @@
             100 listings<span class="blue pull-right">$150</span>
           </span>
         </label>
-        <label class="radio hide">
+        <label class="radio <?= isset($package_id_value) && 6 != $package_id_value ? 'hide' : '' ?>">
           <input required="required" name="packages[package_id]" type="radio" value="6"
             <?= 6 == $package_id_value ? 'checked' : '' ?>
             id="packages_package_id_4" class="package-input"
