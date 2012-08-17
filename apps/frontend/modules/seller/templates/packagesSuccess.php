@@ -88,12 +88,18 @@
   <br>
   <?php endif; ?>
 
-  <?php
-    cq_section_title(
-      'Which package is right for you?', null,
-      array('class' => 'row-fluid section-title')
+    <?php
+    $link = link_to(
+      'Show me other packages', $sf_request->getUri() ,
+      array('class' => 'show-radio-list text-v-middle link-align', 'anchor' => '')
     );
-  ?>
+
+    cq_sidebar_title(
+      'Which package is right for you?', $link,
+      array('left' => 6, 'right' => 6, 'class'=>'spacer-top-reset row-fluid sidebar-title')
+    );
+    ?>
+
   <div class="control-group packages-wrapper">
     <div class="choice-packages">
       <div class="radio_list">
@@ -118,7 +124,6 @@
       <?= $packagesForm['package_id']->renderError(); ?>
     </div>
   </div>
-    <a href="#" class="show-radio-list spacer-left-35">Show me other packages</a>
   <?php /*
   <div class="control-group packages-wrapper">
       <div class="choice-packages">
@@ -147,7 +152,7 @@
   */ ?>
   <fieldset>
     <div class="control-group discount-code-wrapper">
-      <?= $packagesForm['promo_code']->renderLabel('You have got a promo code?', array('class'=> 'control-label', 'style' => 'width: 180px;')) ?>
+      <?= $packagesForm['promo_code']->renderLabel('Have a promo code?', array('class'=> 'control-label', 'style' => 'width: 180px;')) ?>
       <div class="controls form-inline" style="margin-left: 190px;">
         <?= $packagesForm['promo_code']->render() ?>
         <button type="submit" name="applyPromo" id="applyPromo3" class="btn btn-primary"
