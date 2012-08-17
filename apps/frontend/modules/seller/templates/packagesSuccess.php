@@ -104,27 +104,40 @@
     <div class="choice-packages">
       <div class="radio_list">
         <label class="radio hide">
-          <input required="required" name="packages[package_id]" type="radio" value="1" <?= 1 == $package_id_value ? 'checked' : '' ?> id="packages_package_id_1">
-          <span class="package1 Chivo webfont tooltip-position-right" rel="tooltip" title="$2.50 per listing">
-            1 listing <span class="blue pull-right">$2.50</span>
+          <input required="required" name="packages[package_id]" type="radio" value="1"
+            <?= 1 == $package_id_value ? 'checked' : '' ?>
+            id="packages_package_id_1" class="package-input"
+          >
+          <span class="package1 Chivo webfont tooltip-position-right" rel="tooltip" title="$2.50 per item">
+            1 listing<span class="blue pull-right">$2.50</span>
           </span>
         </label>
         <label class="radio">
-          <input required="required" name="packages[package_id]" type="radio" value="2" <?= 2 == $package_id_value ? 'checked' : '' ?> id="packages_package_id_2">
-          <span class="package2 Chivo webfont tooltip-position-right" rel="tooltip" title="$2.00 per listing">
-            10 listings <span class="blue pull-right">$20</span>
+          <input required="required" name="packages[package_id]" type="radio" value="2"
+            <?= 2 == $package_id_value ? 'checked' : '' ?>
+            id="packages_package_id_2" class="package-input"
+          >
+          <span class="package2 Chivo webfont tooltip-position-right" rel="tooltip" title="$2.00 per item">
+            10 listings<span class="blue pull-right">$20</span>
           </span>
         </label>
         <label class="radio hide">
-          <input required="required" name="packages[package_id]" type="radio" value="3" <?= 3 == $package_id_value ? 'checked' : '' ?> id="packages_package_id_3">
+          <input required="required" name="packages[package_id]" type="radio" value="3"
+            <?= 3 == $package_id_value ? 'checked' : '' ?>
+             id="packages_package_id_3" class="package-input"
+          >
           <span class="package3 Chivo webfont tooltip-position-right" rel="tooltip" title="$1.50 per item">
-            100 listings <span class="blue pull-right">$150</span>
+            100 listings<span class="blue pull-right">$150</span>
           </span>
         </label>
         <label class="radio hide">
-          <input required="required" name="packages[package_id]" type="radio" value="6" <?= 6 == $package_id_value ? 'checked' : '' ?> id="packages_package_id_4">
+          <input required="required" name="packages[package_id]" type="radio" value="6"
+            <?= 6 == $package_id_value ? 'checked' : '' ?>
+            id="packages_package_id_4" class="package-input"
+          >
           <span class="package4 Chivo webfont" title="unlimited items">
-            <span class="red-bold">UNLIMITED</span> listings <span class="blue pull-right">only $250</span>
+            <span class="red-bold">UNLIMITED</span> listings
+            <span class="blue pull-right">only $250</span>
           </span>
           <!--<span class="price-per-item red">unlimited items</span>-->
         </label>
@@ -319,29 +332,18 @@ $(document).ready(function() {
   });
 
   //radio box checked on click
-  $("input:checked").parent().addClass('selected');
+  $('.package-input').click(function() {
+    $(this).parents().find(".selected").removeClass("selected");
 
-  $(":radio").on('change', function () {
-    if ($(this).prop('checked')) {
-      $(':radio[name="' + $(this).attr('name') + '"]').parent().removeClass('selected');
+    if($(this).is(':checked'))  {
       $(this).parent().addClass('selected');
     }
   });
 
-  $(":checkbox").on('change', function () {
-    if ($(this).prop('checked')) {
-      $(this).parent().addClass('selected');
-    } else {
-      $(this).parent().removeClass('selected');
-    }
-  });
-
-  $(this).find("input:checkbox").click()
-
-  $(".show-radio-list").click(function(){
+  $(".show-radio-list").click(function() {
     $(".radio_list .radio").show();
     $(this).hide();
-  })
+  });
 
 
 });
