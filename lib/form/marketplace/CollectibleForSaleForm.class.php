@@ -41,7 +41,7 @@ class CollectibleForSaleForm extends BaseCollectibleForSaleForm
       }
       else
       {
-        // throw an error bound to the price field
+        // throw a global error
         $errorSchema = new sfValidatorErrorSchema($validator);
         $errorSchema->addError(new sfValidatorError($validator, 'invalid'));
 
