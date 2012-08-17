@@ -30,7 +30,6 @@ ice_breadcrumbs:
   collection:
     index:
       - { name: 'Collections', route: collections }
-      - { name: '%ContentCategory%', route: content_category, model: true, subobject: ContentCategory, title: 'Category: %ContentCategory%' }
       - { name: '%Name%', model: true }
     create:
       - { name: 'Collections' }
@@ -40,7 +39,7 @@ ice_breadcrumbs:
     index: [{ name: 'Collections' }]
     category:
       - { name: 'Collections', route: collections }
-      - { name: '%Name%', model: true, title: 'Category %Name%' }
+      - { name: '%Name%', model: true, title: 'Category: %Name%' }
     collector:
       - { name: 'Collections', route: collections }
       - { name: 'by %DisplayName%', model: true, title: 'Collections by %DisplayName%' }
