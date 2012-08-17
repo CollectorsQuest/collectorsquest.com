@@ -90,12 +90,15 @@ function cq_image_tag($source, $options = array())
   // Do we want an absolute path for the image?
   $absolute = isset($options['absolute']) ? $options['absolute'] : true;
 
-  // Hardcoding for now to now use any versioning for images
+  // Hardcoding for now to not use any versioning for images
   $options['rev'] = null;
 
   // Do we want to version it?
-  $source = (isset($options['rev']) && $options['rev'] === null) ?
+  $source = (!isset($options['rev']) || (isset($options['rev']) && $options['rev'] === null)) ?
     $source : $source .'?rev='. (defined('SVN_REVISION') ? SVN_REVISION : 0);
+
+  // We do not need this option anymore
+  unset($options['rev']);
 
   return image_tag(cq_image_src($source, $absolute), $options);
 }

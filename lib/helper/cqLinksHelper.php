@@ -272,9 +272,6 @@ function link_to_collectible($collectible, $type = 'text', $options = array('lin
   {
     $options['link_to'] = array_merge(
       array(
-        'width'  => '',
-        'height' => '',
-        'alt'    => '',
         'title'  => $collectible->getName()
       ),
       $options['link_to']
@@ -284,9 +281,6 @@ function link_to_collectible($collectible, $type = 'text', $options = array('lin
   {
     $options['link_to'] = array_merge(
       array(
-        'width'  => 150,
-        'height' => 150,
-        'alt'    => $collectible->getName(),
         'title'  => $collectible->getName()
       ),
       $options

@@ -20,12 +20,13 @@
     <div class="tab-pane active" id="tab1">
 
       <div class="tab-content-inner">
+        <?php if ($total > 0): ?>
         <div class="row-fluid sidebar-title spacer-inner-bottom-5">
           <div class="span5 link-align">
             <h3 class="Chivo webfont">My Items for Sale (<?= $total ?>)</h3>
           </div>
           <div class="span7">
-            <?php if ($total > 0): ?>
+            <?php if ($total > 11): ?>
             <div class="mini-input-append-search">
               <div class="input-append pull-right">
                 <form action="<?= url_for('@ajax_mycq?section=component&page=collectiblesForSale') ?>"
@@ -39,6 +40,7 @@
             <?php endif; ?>
           </div>
         </div>
+        <?php endif; ?>
 
         <div class="row collectible-sell-sold-items">
           <div id="items-for-sale" class="row-content">
