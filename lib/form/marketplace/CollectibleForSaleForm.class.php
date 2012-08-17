@@ -27,7 +27,11 @@ class CollectibleForSaleForm extends BaseCollectibleForSaleForm
       /** @var $seller Seller */
       $seller = sfContext::getInstance()->getUser()->getSeller();
 
-      if ($seller && $seller->hasPackageCredits())
+      $collectible_has_credit = (boolean) PackageTransactionCreditQuery::create()
+        ->filterByCollectibleId($this->getObject()->getCollectibleId())
+        ->notExpired()
+        ->count();
+      if ($seller && ($seller->hasPackageCredits() || $collectible_has_credit))
       {
         if ($seller->hasPaypalDetails())
         {
