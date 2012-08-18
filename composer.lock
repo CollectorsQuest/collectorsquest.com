@@ -28,7 +28,7 @@
     "aliases": [
 
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "stability-flags": {
         "lib/vendor/faker": 20
     }
