@@ -107,10 +107,10 @@ class cqStatic extends IceStatic
 
   static public function getPayPalClient()
   {
-    include_once __DIR__.'/../vendor/PayPal.class.php';
+    include_once __DIR__ .'/../vendor/PayPal.class.php';
 
     return new PayPal(array(
-      'Sandbox'     => sfConfig::get('sf_environment') !== 'prod',
+      'Sandbox'     => (boolean) sfConfig::get('app_paypal_sandbox'),
       'APIUsername' => sfConfig::get('app_paypal_api_username'),
       'APIPassword' => sfConfig::get('app_paypal_api_password'),
       'APISignature' => sfConfig::get('app_paypal_api_signature')
@@ -121,9 +121,9 @@ class cqStatic extends IceStatic
    * @static
    * @return PayPalAdaptivePayments
    */
-  static public function getPayPaylAdaptivePaymentsClient()
+  static public function getPayPalAdaptivePaymentsClient()
   {
-    include_once __DIR__.'/../vendor/PayPalAdaptivePayments.class.php';
+    include_once __DIR__ .'/../vendor/PayPalAdaptivePayments.class.php';
 
     return new PayPalAdaptivePayments(array(
       'Sandbox'       => (boolean) sfConfig::get('app_paypal_sandbox'),
@@ -132,6 +132,23 @@ class cqStatic extends IceStatic
       'APIPassword'   => sfConfig::get('app_paypal_api_password'),
       'APISignature'  => sfConfig::get('app_paypal_api_signature')
     ));
+  }
+
+  /**
+   * @static
+   * @return PayPalIPN
+   */
+  static public function getPayPalIPNClient()
+  {
+    include_once __DIR__ .'/../vendor/PayPalIpn.class.php';
+
+    // intantiate the IPN listener
+    $ipn = new PayPalIPN();
+
+    // tell the IPN listener to use the PayPal test sandbox or not
+    $ipn->use_sandbox = (boolean) sfConfig::get('app_paypal_sandbox', true);
+
+    return $ipn;
   }
 
   static public function getMailChimpClient()

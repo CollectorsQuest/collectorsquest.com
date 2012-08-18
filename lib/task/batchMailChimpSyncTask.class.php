@@ -43,8 +43,14 @@ EOF;
 
     foreach ($collectors as $collector)
     {
-      $preferences = $collector->getProfile()->getPreferences();
-      $avatar = !$collector->getProfile()->getIsImageAuto() && !$collector->hasPhoto() ?
+      // Continue to the next Collector if there is a problem with the Profile
+      if (!$profile = $collector->getProfile())
+      {
+        continue;
+      }
+
+      $preferences = $profile->getPreferences();
+      $avatar = !$profile->getIsImageAuto() && !$collector->hasPhoto() ?
         'Yes' : 'No';
 
       $batch[] = array(
@@ -56,7 +62,7 @@ EOF;
         'TYPE' => $collector->getUserType(),
         'NUMCTIONS' => $collector->countCollectorCollections(),
         'NUMCIBLES' => $collector->countCollectionCollectibles(),
-        'COMPLETED' => (int) $collector->getProfile()->getProfileCompleted(),
+        'COMPLETED' => (int) $profile->getProfileCompleted(),
         'PAGEVIEWS' => $collector->getVisitorInfoNumPageViews(),
         'VISITS' => $collector->getVisitorInfoNumVisits(),
         'NEWSLETTER' => $preferences['newsletter'] ? 'Yes' : 'No',
@@ -73,21 +79,21 @@ EOF;
 
       if ($mc->errorCode)
       {
-        $this->logSection('error', "Batch Subscribe failed!");
-        $this->logSection('error', "Code: ". $mc->errorCode);
-        $this->logSection('error', "Message: ".$mc->errorMessage);
+        $this->logSection('error', 'Batch Subscribe failed!');
+        $this->logSection('error', 'Code: '. $mc->errorCode);
+        $this->logSection('error', 'Message: '. $mc->errorMessage);
       }
       else
       {
-        $this->logSection('success', "Added: ". $result['add_count']);
-        $this->logSection('success', "Updated: ". $result['update_count']);
-        $this->logSection('success', "Errors: ". $result['error_count']);
+        $this->logSection('success', 'Added: '. $result['add_count']);
+        $this->logSection('success', 'Updated: '. $result['update_count']);
+        $this->logSection('success', 'Errors: '. $result['error_count']);
 
-        foreach($result['errors'] as $error)
+        foreach ($result['errors'] as $error)
         {
-          $this->logSection('error', $error['email_address']. " failed");
-          $this->logSection('error', "Code: ". $error['code']);
-          $this->logSection('error', "Message: ". $error['message']);
+          $this->logSection('error', $error['email_address']. ' failed');
+          $this->logSection('error', 'Code: '. $error['code']);
+          $this->logSection('error', 'Message: '. $error['message']);
         }
       }
     }
@@ -102,8 +108,14 @@ EOF;
 
     foreach ($collectors as $collector)
     {
-      $preferences = $collector->getProfile()->getPreferences();
-      $avatar = !$collector->getProfile()->getIsImageAuto() && !$collector->hasPhoto() ?
+      // Continue to the next Collector if there is a problem with the Profile
+      if (!$profile = $collector->getProfile())
+      {
+        continue;
+      }
+
+      $preferences = $profile->getPreferences();
+      $avatar = !$profile->getIsImageAuto() && !$collector->hasPhoto() ?
         'Yes' : 'No';
 
       $fields = array(
@@ -113,7 +125,7 @@ EOF;
         'TYPE' => $collector->getUserType(),
         'NUMCTIONS' => $collector->countCollectorCollections(),
         'NUMCIBLES' => $collector->countCollectionCollectibles(),
-        'COMPLETED' => (int) $collector->getProfile()->getProfileCompleted(),
+        'COMPLETED' => (int) $profile->getProfileCompleted(),
         'PAGEVIEWS' => $collector->getVisitorInfoNumPageViews(),
         'VISITS' => $collector->getVisitorInfoNumVisits(),
         'NEWSLETTER' => $preferences['newsletter'] ? 'Yes' : 'No',
@@ -124,9 +136,12 @@ EOF;
 
       $mc->listUpdateMember('4b51c2b29c', $collector->getEmail(), $fields, 'html', false);
 
-      if ($mc->errorCode) {
+      if ($mc->errorCode)
+      {
         $this->logSection('error', $mc->errorMessage);
-      } else {
+      }
+      else
+      {
         $this->logSection('success', 'Updated collector '. $collector->getDisplayName());
       }
     }

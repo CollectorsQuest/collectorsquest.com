@@ -83,6 +83,9 @@ class marketplaceActions extends cqFrontendActions
     $this->pager = $pager;
     $this->content_category = $content_category;
 
+    // Set Canonical Url meta tag
+    $this->getResponse()->setCanonicalUrl($this->generateUrl('marketplace_category_by_slug', $content_category));
+
     return sfView::SUCCESS;
   }
 

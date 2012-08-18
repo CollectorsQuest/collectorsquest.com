@@ -22,7 +22,7 @@ function cq_ad_slot($slot, $width, $height, $delayed = false)
     $image = 'iab/'. $width .'x'. $height .'.gif';
     if (is_file(sfConfig::get('sf_web_dir').'/images/' . $image))
     {
-      echo '<center>', image_tag($image), '</center>';
+      echo '<center>', cq_image_tag($image), '</center>';
     }
     else
     {
@@ -30,7 +30,10 @@ function cq_ad_slot($slot, $width, $height, $delayed = false)
         '<div style="margin: auto; width: %dpx; height: %dpx; background: #59CF76; border: 1px solid #00AC52; position: relative;">',
         $width, $height
       );
-      echo sprintf('<div style="position: absolute; bottom: 5px; right: 5px; color: #638606; font-size: 14px; font-weight: bold;">%dx%d</div>', $width, $height);
+      echo sprintf(
+        '<div style="position: absolute; bottom: 5px; right: 5px; color: #638606; font-size: 14px; font-weight: bold;">%dx%d</div>',
+        $width, $height
+      );
       echo '</div>';
     }
 
@@ -39,7 +42,7 @@ function cq_ad_slot($slot, $width, $height, $delayed = false)
 
   if ($delayed == true)
   {
-    $request = sfContext::getInstance()->getRequest();
+    $request = cqContext::getInstance()->getRequest();
     $slots = $request->getAttribute('slots', array(), 'cq/view/ads');
 
     echo sprintf(
@@ -86,9 +89,12 @@ function cq_dart_slot($size, $zone1 = 'other', $zone2 = null, $pos = null)
 function cq_javascript_tag()
 {
   /** @var $request sfWebRequest */
-  $request = sfContext::getInstance()->getRequest();
+  $request = cqContext::getInstance()->getRequest();
 
-  if (SF_ENV != 'prod' || $request->isXmlHttpRequest()) return;
+  if (SF_ENV != 'prod' || $request->isXmlHttpRequest())
+  {
+    return;
+  }
 
   ob_start();
   ob_implicit_flush(0);
@@ -97,11 +103,14 @@ function cq_javascript_tag()
 function cq_end_javascript_tag()
 {
   /** @var $request sfWebRequest */
-  $request = sfContext::getInstance()->getRequest();
+  $request = cqContext::getInstance()->getRequest();
 
-  if (SF_ENV != 'prod' || $request->isXmlHttpRequest()) return;
+  if (SF_ENV != 'prod' || $request->isXmlHttpRequest())
+  {
+    return;
+  }
 
-  $request = sfContext::getInstance()->getRequest();
+  $request = cqContext::getInstance()->getRequest();
   $contents = (array) @unserialize($request->getAttribute('contents', '', 'symfony/view/cqJavascripts'));
 
   $script = ob_get_clean();
@@ -115,7 +124,7 @@ function cq_end_javascript_tag()
 
 function cq_echo_javascripts()
 {
-  $request = sfContext::getInstance()->getRequest();
+  $request = cqContext::getInstance()->getRequest();
   $contents = (array) @unserialize($request->getAttribute('contents', '', 'symfony/view/cqJavascripts'));
   $contents = implode("\n", array_unique($contents));
 
@@ -133,7 +142,10 @@ function cq_echo_javascripts()
       {
         $contents = (sfConfig::get('sf_environment') == 'prod') ? JavaScriptMinify::minify($contents) : $contents;
       }
-      catch (Exception $e) { ; }
+      catch (Exception $e)
+      {
+        ;
+      }
     }
 
     echo content_tag('script', javascript_cdata_section(trim($contents)), array('type' => 'text/javascript'));

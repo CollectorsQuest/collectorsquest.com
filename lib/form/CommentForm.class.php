@@ -14,7 +14,7 @@ class CommentForm extends BaseCommentForm
     parent::setup();
 
     /** @var $sf_user cqBaseUser */
-    $sf_user = sfContext::getInstance()->getUser();
+    $sf_user = cqContext::getInstance()->getUser();
 
     $is_authenticated = $sf_user->isAuthenticated();
 
@@ -67,7 +67,7 @@ class CommentForm extends BaseCommentForm
   public function doSave($con = null)
   {
     /** @var $sf_user cqBaseUser */
-    $sf_user = sfContext::getInstance()->getUser();
+    $sf_user = cqContext::getInstance()->getUser();
 
     $is_authenticated = $sf_user->isAuthenticated();
     $is_facebook_authenticated = $sf_user->isFacebookAuthenticated();
@@ -158,7 +158,7 @@ class CommentForm extends BaseCommentForm
     $object->addComment($comment);
     $object->save($con);
 
-    $session = sfContext::getInstance()->getUser();
+    $session = cqContext::getInstance()->getUser();
     $session->setAttribute($token, array(), 'cq/user/comments');
 
     return $comment;
@@ -175,7 +175,7 @@ class CommentForm extends BaseCommentForm
    */
   public static function addTokenToSession($object_model, $object_id)
   {
-    $session = sfContext::getInstance()->getUser();
+    $session = cqContext::getInstance()->getUser();
 
     $token = self::generateToken($object_model, $object_id);
     $tokens = $session->getAttribute('tokens', array(), 'cq/user/comments');
@@ -221,7 +221,7 @@ class CommentForm extends BaseCommentForm
    */
   private static function retrieveFromToken($token)
   {
-    $session = sfContext::getInstance()->getUser();
+    $session = cqContext::getInstance()->getUser();
     $tokens = $session->getAttribute('tokens', array(), 'cq/user/comments');
 
     if (array_key_exists($token, $tokens) && is_array($tokens[$token]) && class_exists($tokens[$token][0]))
@@ -270,7 +270,7 @@ class CommentForm extends BaseCommentForm
     }
     catch (Exception $e)
     {
-      return sfContext::getInstance()->getLogger()->log($e->getMessage());
+      return cqContext::getInstance()->getLogger()->log($e->getMessage());
     }
   }
 
@@ -279,7 +279,7 @@ class CommentForm extends BaseCommentForm
     $token = $taintedValues['token'];
     if ($object = self::retrieveFromToken($token))
     {
-      $session = sfContext::getInstance()->getUser();
+      $session = cqContext::getInstance()->getUser();
       $session->setAttribute($token, $taintedValues, 'cq/user/comments');
     }
 
@@ -290,7 +290,7 @@ class CommentForm extends BaseCommentForm
   {
     if (!empty($defaults['token']))
     {
-      $session = sfContext::getInstance()->getUser();
+      $session = cqContext::getInstance()->getUser();
       $comment = $session->getAttribute($defaults['token'], array(), 'cq/user/comments');
 
       $defaults = array_merge($defaults, $comment);

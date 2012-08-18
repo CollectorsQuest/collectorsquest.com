@@ -18,7 +18,7 @@
     <?php
       if (false && $total > 0)
       {
-        echo  link_to(
+        echo link_to(
           '<i class="icon-trash"></i> Delete all Photos', '@mycq_dropbox?cmd=empty&encrypt=1',
           array(
             'class' => 'btn btn-mini',
@@ -49,11 +49,11 @@
     <?php endif; ?>
   </div>
   <?php else: ?>
-  <div id="dropzone" class="collectibles-to-sort no-items-to-sort-box Chivo webfont" style="margin: 10px auto;">
+  <div id="dropzone" class="collectibles-to-sort no-items-to-sort-box Chivo webfont spacer-inner">
     <span class="info-no-items-to-sort">
       &nbsp;&nbsp;<strong>Drag and drop</strong> photos from your desktop or
       use the <strong>Upload Photos</strong> button
-      <?= image_tag('frontend/arrow-thin-up.png', array('style' => 'margin-top: -35px; margin-left: -5px;')) ?>
+      <?= cq_image_tag('frontend/arrow-thin-up.png', array('style' => 'margin-top: -35px; margin-left: -5px;')) ?>
     </span>
   </div>
   <?php endif; ?>

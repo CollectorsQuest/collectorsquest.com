@@ -98,9 +98,12 @@ class _sidebarComponents extends cqFrontendComponents
     if (($collection = $this->getVar('collection')) && $collection instanceof CollectorCollection)
     {
       $tags = $collection->getTags();
+      $content_category_id = $collection->getContentCategoryId();
       $q
-        ->filterById($collection->getId(), Criteria::NOT_EQUAL)
         ->filterByTags($tags)
+        ->_or()
+        ->filterByContentCategoryId($content_category_id)
+        ->filterById($collection->getId(), Criteria::NOT_EQUAL)
         ->orderByUpdatedAt(Criteria::DESC);
     }
     /** @var $collectible Collectible */
@@ -373,7 +376,6 @@ class _sidebarComponents extends cqFrontendComponents
   public function executeWidgetCollectiblesForSale()
   {
     $this->title = $this->getVar('title') ?: 'Items for Sale';
-
     // Set the limit of Collectibles For Sale to show
     $this->limit = (int) $this->getVar('limit') ?: 3;
 

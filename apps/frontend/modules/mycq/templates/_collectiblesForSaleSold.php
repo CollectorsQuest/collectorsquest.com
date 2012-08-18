@@ -18,7 +18,6 @@
         array('class' => 'target')
       ) ;
     ?>
-    <br/>
     <strong class="pull-right">
       <?= money_format('%.2n', (float) $collectible_for_sale->getPrice()); ?>
     </strong>

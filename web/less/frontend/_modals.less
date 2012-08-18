@@ -79,7 +79,7 @@
     margin-top: 2px;
     display: none;
     padding-left: 36px;
-    background: no-repeat scroll url('/images/loading.gif') left center;
+    background: no-repeat scroll url(/images/loading.gif) left center;
   }
 
   &.loading
@@ -100,7 +100,7 @@
 .loading-indicator {
   height: 80px;
   width: 80px;
-  background: url('/images/loading.gif');
+  background: url(/images/loading.gif);
   background-repeat: no-repeat;
   background-position: center center;
 }
@@ -154,4 +154,8 @@
 	border: 0 none;
 	font: 0px/0 a;
 	overflow: hidden;
+}
+
+#body-mycq-marketplace .modal .modal-body.opened {
+	overflow-y: hidden
 }

@@ -37,20 +37,14 @@
   <fieldset>
     <legend>
       Shipping Address
-      <?php if ($sf_user->isAuthenticated() && count($shipping_addresses) > 0): ?>
-        <button type="submit" class="btn pull-right" style="font-size: 60%;" name="new_address">
-          <i class="icon icon-plus"></i>
-          &nbsp;Add new shipping address
-        </button>
-      <?php endif; ?>
     </legend>
 
     <br/>
     <div class="row-fluid">
       <?php if (count($shipping_addresses) > 0): ?>
-      <div class="span4">
+      <div class="span4 shipping-addresses">
         <?php foreach ($shipping_addresses as $shipping_address): ?>
-        <div class="well">
+        <div class="well <?= $sf_params->get('address_id') == $shipping_address->getId() ? 'highlight' : '' ?>">
           <?= $shipping_address->getFullName(); ?><br/>
           <?= $shipping_address->getAddressLine1(); ?>
           <p>
@@ -69,6 +63,10 @@
       <?php endif; ?>
 
       <div class="span8">
+        <h4 class="text-center spacer-bottom-25"><?= null ===$sf_params->get('address_id')
+          ? 'Enter your shipping information here'
+          : 'Edit your shipping information if necessary'
+        ?></h4>
         <?= $form['shipping_address'] ?>
       </div>
     </div>

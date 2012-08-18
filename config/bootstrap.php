@@ -5,8 +5,10 @@ date_default_timezone_set('America/New_York');
 
 if (
   $_SERVER['SERVER_NAME'] == '92.247.236.83' ||
+  $_SERVER['SERVER_NAME'] == '221.58.193.147' ||
   $_SERVER['SERVER_NAME'] == 'zecho.dyndns-home.com'
-) {
+)
+{
   $app = 'frontend';
   $env = 'dev';
   $dbg = true;
@@ -47,16 +49,17 @@ if (!defined('GIT_REVISION'))
       $git = apc_fetch('GIT_REVISION', $success);
     }
 
-    if (empty($git) || $success !== true)
+    if (empty($git) || (isset($success) && $success !== true))
     {
       $git = `git rev-parse HEAD`;
       $git = trim($git);
 
-      if (strlen($git) !== 40) {
+      if (strlen($git) !== 40)
+      {
         $git = sha1(uniqid('git_revision_', true));
       }
-
-      if (function_exists('apc_store')) {
+      if (function_exists('apc_store'))
+      {
         apc_store('GIT_REVISION', $git, 60);
       }
     }
@@ -67,7 +70,7 @@ if (!defined('GIT_REVISION'))
   }
 
   $git = substr($git, 0, 7);
-  $svn = sprintf("%u", crc32($git));
+  $svn = sprintf('%u', crc32($git));
 
   define('GIT_REVISION', $git);
   define('SVN_REVISION', $svn);

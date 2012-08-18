@@ -22,7 +22,7 @@
        data-collection-id="<?= $collection->getId(); ?>">
     <p>
       <a href="<?= url_for('mycq_collection_by_section', array('id' => $collection->getId(), 'section' => 'collectibles')) ?>" class="target">
-        <?= cqStatic::reduceText($collection->getName(), 35, '[...]'); ?>
+        <?= cqStatic::reduceText($collection->getName() . ' ('. $collection->getNumItems() .')', 35, '[...]'); ?>
       </a>
     </p>
     <ul class="thumbnails">
@@ -95,8 +95,7 @@
 
 <?php if ($pager->haveToPaginate()): ?>
 
-  <br clear="all">
-  <div class="row-fluid text-center">
+  <div class="row-fluid pagination-wrapper">
   <?php
     include_component(
       'global', 'pagination',

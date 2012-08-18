@@ -57,6 +57,13 @@ class FrontendCommentForm extends BaseCommentForm
     $this->mergePostValidator(
       new FrontendCommentFormValidatorSchema($this->sf_user)
     );
+    $this->mergePostValidator(new iceSpamControlValidatorSchema(null, array(
+        'credentials' => iceSpamControl::CREDENTIALS_COMMENT,
+        'fields' => array(
+            'author_email' => 'email',
+            'ip_address' => 'ip',
+        )
+    )));
   }
 
   protected function setupBodyField()
@@ -136,7 +143,6 @@ class FrontendCommentForm extends BaseCommentForm
     unset ($this['collector_id']);
     unset ($this['author_url']);
     unset ($this['subject']);
-    unset ($this['ip_address']);
     unset ($this['created_at']);
   }
 

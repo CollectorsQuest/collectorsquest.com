@@ -31,7 +31,7 @@ class CollectibleForSaleCreateForm extends CollectibleForSaleForm
   protected function setupCollectibleForm()
   {
     /** @var $collector Collector */
-    $collector = sfContext::getInstance()
+    $collector = cqContext::getInstance()
       ->getUser()
       ->getCollector();
 

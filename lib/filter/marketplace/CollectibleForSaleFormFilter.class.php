@@ -30,7 +30,7 @@ class CollectibleForSaleFormFilter extends BaseCollectibleForSaleFormFilter
 
     $this->setWidget('seller', new sfWidgetFormPropelJQueryAutocompleter(array(
       'model' => 'Collector',
-      'url'   => sfContext::getInstance()->getController()->genUrl('collectors/list')
+      'url'   => cqContext::getInstance()->getController()->genUrl('collectors/list')
     )));
     $this->setValidator('seller', new sfValidatorPropelChoice(array(
       'model'    => 'Collector',

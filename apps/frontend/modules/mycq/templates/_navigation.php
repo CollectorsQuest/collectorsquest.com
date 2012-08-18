@@ -8,8 +8,7 @@
  * We want to show the dropbox and the Upload Photos functionality
  * only in selected parts of MyCQ (ex. collections and marketplace)
  */
-(in_array(SmartMenu::getSelected('mycq_menu'), array('collections', 'marketplace'))) ?
-  $spans = array(10, 2) : $spans = array(12, 0);
+has_component_slot('mycq_upload_photos') ? $spans = array(10, 2) : $spans = array(12, 0);
 
 ?>
 <div class="slot1-inner-mycq">
@@ -37,28 +36,30 @@
     </div>
     <?php if ($spans[1] > 0): ?>
     <div class="span<?= $spans[1]; ?> upload-items-wrapper-r">
-      <?php include_partial('mycq/upload_photos'); ?>
+      <?php include_component_slot('mycq_upload_photos'); ?>
     </div>
     <?php endif; ?>
   </div>
 
-  <?php if ($spans[1] > 0): ?>
+  <?php if ($spans[1] > 0 && has_component_slot('mycq_dropbox')): ?>
 
-    <?php include_component('mycq', 'dropbox'); ?>
+  <?php include_component_slot('mycq_dropbox'); ?>
 
-    <div class="row-fluid">
-      <div class="span10 upload-items-wrapper-l"></div>
-      <div class="span2 upload-items-wrapper-r">
-        <a href="javascript:void(0)" class="dropzone-container-slide pull-right <?= $sf_user->getMycqDropboxOpenState() ? 'open' : '' ?>">
+  <div class="row-fluid">
+    <div class="span10 upload-items-wrapper-l"></div>
+    <div class="span2 upload-items-wrapper-r">
+      <a href="javascript:void(0)" class="dropzone-container-slide pull-right <?= $sf_user->getMycqDropboxOpenState() ? 'open' : '' ?>">
           <span class="open-dropzone">
             Open Uploaded Photos <i class="icon-caret-down"></i>
           </span>
           <span class="close-dropzone">
             Close Uploaded Photos <i class="icon-caret-up"></i>
           </span>
-        </a>
-      </div>
+      </a>
     </div>
+  </div>
+  <?php elseif ($spans[1] > 0): ?>
+  <br><br>
   <?php endif; ?>
 </div>
 

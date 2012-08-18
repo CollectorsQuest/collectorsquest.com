@@ -14,14 +14,14 @@
   {% if oNewComment.isByRegisteredUser %}
     Author: {{ link_to_collector(oNewComment.collector, 'text', { absolute: true }) }}<br />
   {% else %}
-    Author: {{ oNewComment.authorName }}<br />
-    E-mail: {{ oNewComment.authorEmail }}<br />
+    Author: {{ oNewComment.authorName }} ({{ oNewComment.authorEmail }})<br />
   {% endif %}
+</p>
+<br />
 
-  <br />
+<p style="background-color: #ffffcc">
   Comment:<br />
   {{ oNewComment.body }}
-
 </p>
 
 <p>

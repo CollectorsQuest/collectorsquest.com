@@ -19,11 +19,11 @@ $blog_post = wpPostQuery::create()->findOneById(26075);
         <?php
           if ($thumbnail = $blog_post->getPostThumbnail('original'))
           {
-            echo image_tag($thumbnail, array('width' => 320, 'height' => 320));
+            echo cq_image_tag($thumbnail, array('width' => 320, 'height' => 320));
           }
           else
           {
-            echo image_tag('frontend/mockups/Untitled-2.jpg');
+            echo cq_image_tag('frontend/mockups/Untitled-2.jpg');
           }
         ?>
         </div>
@@ -52,7 +52,7 @@ $blog_post = wpPostQuery::create()->findOneById(26075);
 
     <!-- This is for the stars of the flag to take two rows instead of 3
     <div class="span6" style="width: 320px;">
-      <?= image_tag('frontend/mockups/Untitled-2.png') ?>
+      <?= cq_image_tag('frontend/mockups/Untitled-2.png') ?>
     </div>
     <?php foreach ($collectibles as $i => $collectible): ?>
     <div class="span2" style="width: 100px; margin-bottom: 10px; <?= (($i-8)%7 !== 0 || $i < 8) ? 'margin-left: 10px' : ''; ?>">

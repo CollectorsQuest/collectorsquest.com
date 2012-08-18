@@ -1,3 +1,9 @@
+<?php if ($suggestion = $pager->getDidYouMean($sf_params->get('q'))): ?>
+<p class="alert alert-info">
+  Did you mean: <strong><i><?= link_to($suggestion, '@search?q='. $suggestion); ?></i></strong>
+</p>
+<?php endif; ?>
+
 <h1 class="Chivo webfont">Search results <small>for <?= $sf_params->get('q') ?> (no results)</small></h1>
 
 <br/>

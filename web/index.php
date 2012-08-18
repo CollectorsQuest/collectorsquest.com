@@ -26,7 +26,7 @@ $configuration = ProjectConfiguration::getApplicationConfiguration(SF_APP, SF_EN
 cqTimer::getInstance()->startTimer();
 
 // Handle the request
-sfContext::createInstance($configuration)->dispatch();
+sfContext::createInstance($configuration, null, 'cqContext')->dispatch();
 
 // Time the request and send it to Graphite
 cqStats::timing('collectorsquest.response', cqTimer::getInstance()->getElapsedTime());
@@ -45,9 +45,9 @@ if ($_xhprof_on && ((isset($_GET['_profile']) && $_GET['_profile'] == '1') || (2
   // stop profiler
   $_xhprof_data = xhprof_disable();
 
-  include __DIR__ ."/../config/xhprof.php";
-  include __DIR__ ."/../plugins/iceLibsPlugin/lib/vendor/xhprof/xhprof_lib.php";
-  include __DIR__ ."/../plugins/iceLibsPlugin/lib/vendor/xhprof/xhprof_runs.php";
+  include __DIR__ .'/../config/xhprof.php';
+  include __DIR__ .'/../plugins/iceLibsPlugin/lib/vendor/xhprof/xhprof_lib.php';
+  include __DIR__ .'/../plugins/iceLibsPlugin/lib/vendor/xhprof/xhprof_runs.php';
 
   $_xhprof_runs = new XHProfRuns_Default();
   $_xhprof_run = $_xhprof_runs->save_run($_xhprof_data, 'collectorsquest_'. SF_APP);

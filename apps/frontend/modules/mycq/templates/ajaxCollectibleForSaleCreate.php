@@ -11,8 +11,12 @@
     include_partial(
       'global/loading',
       array('url' => url_for(
-          'mycq_collectible_by_slug',
-          array('sf_subject' => $collectible, 'available_for_sale' => 'yes')
+        'mycq_collectible_by_slug',
+        array(
+          'sf_subject' => $collectible,
+          'available_for_sale' => 'yes',
+          'return_to' => 'market'
+        )
       ))
     );
 
@@ -20,7 +24,7 @@
   }
 ?>
 
-<form action="<?= url_for('@ajax_mycq?section=component&page=createCollectibleForSale'); ?>"
+<form action="<?= url_for('@ajax_mycq?section=collectibleForSale&page=create'); ?>"
       method="post" id="form-create-collectible" class="ajax form-horizontal form-modal">
 
   <h1>Add a New Item for Sale</h1>

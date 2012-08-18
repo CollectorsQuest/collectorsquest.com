@@ -1,10 +1,25 @@
 all:
+
+  ssl_redirect:
+    # if insecure pages accesed with https should be rerouted to http
+    strict: true
+
+    # modules and actions that should be https
+    secure:
+      _ajax: ~
+      mycq:  ~
+      messages: ~
+      shopping: ~
+      seller: ~
+
   cqnext_auto_login_parameter_name: "i"
   cqnext_auto_login_time_limit: "+5 minutes"
 
   private_messages:
     # require the user to input a captcha every N outgoing messages
     require_captcha_threshold: 5
+    similarity_percent: 90
+    spam_receiver: info@collectorsquest.com
 
   comments:
     num_load: 10
@@ -46,14 +61,15 @@ all:
       items:
         personal_info:   { name: "Personal Information", uri: "@mycq_profile" }
         account_info:    { name: "Account Settings",  uri: "@mycq_profile_account_info" }
-        store_settings:  { name: "Store Settings",       uri: "@mycq_profile_store_settings", check_eval: "sfContext::getInstance()->getUser()->getCollector()->hasBoughtCredits()" }
         addresses:       { name: "Address Book",         uri: "@mycq_profile_addresses", check_lock: mycq_profile_addresses }
 
     mycq_marketplace_tabs:
       items:
-        collectibles_for_sale:   { name: "Items for Sale", uri: "@mycq_marketplace" }
+        collectibles_for_sale:   { name: "Items for Sale / Sold", uri: "@mycq_marketplace" }
         # collectibles_sold:       { name: "Sold Items", uri: "@mycq_marketplace_sold" }
         collectibles_purchased:  { name: "Purchases", uri: "@mycq_marketplace_purchased", check_lock: shopping_cart }
+        settings:                { name: "Store Settings",  uri: "@mycq_marketplace_settings", check_eval: "cqContext::getInstance()->getUser()->getCollector()->hasBoughtCredits()" }
+        packages:                { name: "Credit History",  uri: "@mycq_marketplace_credit_history", check_eval: "cqContext::getInstance()->getUser()->getCollector()->hasBoughtCredits()" }
 
     mycq_messages_sidebar:
       items:
@@ -66,6 +82,10 @@ dev:
   www_domain: "www.collectorsquest.dev"
   static_domain: "www.collectorsquest.dev"
   multimedia_domain: "multimedia.cqcdns.dev"
+
+  ssl_redirect:
+    # do not force SSL on collectorsquest.dev
+    secure: ~
 
   credentials:
     rpxnow:

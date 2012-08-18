@@ -90,6 +90,7 @@ $(document).ready(function() {
     var \$this = $(this),
         is_click = \$this.data('clicked');
 
+    \$this.removeData('clicked');
     if (!is_click) {
       \$this.find('ul').trigger('click');
     }
@@ -110,13 +111,14 @@ $(document).ready(function() {
 
     return true;
   });
+
 });
 </script>
 
 EOF
       ,
       $this->generateId($name).'_holder',
-      sfContext::getInstance()->getController()->genUrl($this->getOption('autocompleteURL'), true),
+      cqContext::getInstance()->getController()->genUrl($this->getOption('autocompleteURL'), true),
       json_encode($this->getOption('autocompleteOptions')),
       implode(', ', $this->getOption('breakKeyCodes')),
       $this->getOption('additionalListClass'),

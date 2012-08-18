@@ -1,5 +1,3 @@
-<?php $batch = cqStatic::getUniqueId(32); ?>
-
 <form action="<?= url_for('@ajax_mycq?section=collectibles&page=upload&batch='. $batch); ?>"
       id="fileupload" method="POST" enctype="multipart/form-data">
 
@@ -16,10 +14,10 @@
       <div class="alert alert-info alert-gcf">
         <strong>NOTE:</strong> If you want to upload more than one file at a time, please
         <?php
-        echo link_to(
-          'click here.', 'http://www.google.com/chromeframe',
-          array('target' => '_blank')
-        );
+          echo link_to(
+            'click here.', 'http://www.google.com/chromeframe',
+            array('target' => '_blank')
+          );
         ?>
       </div>
 
@@ -155,7 +153,7 @@ $(document).ready(function()
 
   $('#fileupload').fileupload('option', {
     maxFileSize: 10000000,
-    acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i
+    acceptFileTypes: /(\.|\/)(gif|jpe?g|png|bmp)$/i
   });
 
   // Load existing files:

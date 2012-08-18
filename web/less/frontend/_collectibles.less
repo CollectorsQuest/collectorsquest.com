@@ -38,10 +38,10 @@
   p {
     margin: 0;
     margin-top: 1px;
-    overflow: hidden;
     height: 18px;
     line-height: 20px;
     padding: 5px;
+    .text-overflow();
   }
 }
 
@@ -157,34 +157,58 @@
 
 
 #items-for-sale {
-  .thumbnails {
-    .span3 {
-      border: 1px solid @boxBorder;
-      width: 133px;
-      margin-bottom: 15px;
-      font-size: 12px;
-      .box-shadow(none);
-      .border-radius(0);
+	.thumbnails {
+		.span3 {
+			border: 1px solid @boxBorder;
+			width: 133px;
+			margin-bottom: 15px;
+			font-size: 12px;
+			.box-shadow(none);
+			.border-radius(0);
 
-      &:hover {
-        background-color: white;
-        border: 1px solid @blue;
-        .border-radius(0);
-      }
+			&:hover {
+				background-color: white;
+				border: 1px solid @blue;
+				.border-radius(0);
+			}
+			p {
+				font-size: 12px;
+				margin-bottom: 2px;
+				padding: 5px 2px 0 2px;
+			}
+			span {
+				font-weight: bold;
+				color: @blueDark;
+				display: block;
+				text-align: right;
+				padding-right: 2px;
+			}
+		}
+    .thumbnail {
       p {
-        font-size: 12px;
-        margin-bottom: 2px;
-        padding: 5px 2px 0 2px;
-      }
-      span {
-        font-weight: bold;
-        color: @blueDark;
-        display: block;
-        text-align: right;
-        padding-right: 2px;
+        .text-overflow();
       }
     }
-  }
+	}
+	.mycq-create-collectible {
+		//.size(210px, 204px);
+		margin-bottom: 15px;
+		margin-left: 15px;
+		padding: 6px;
+		//padding-top: 40px;
+		border: 1px solid @blue;
+		background-color: #fff;
+		&:hover {
+			border-color: @red;
+		}
+	}
+	.no-collections-uploaded-box {
+		//.size(250px, 664px);
+	}
+	.info-no-collections-uploaded {
+		padding-top: 30px;
+		padding-left: 40px;
+	}
 }
 
 #collectible-items {

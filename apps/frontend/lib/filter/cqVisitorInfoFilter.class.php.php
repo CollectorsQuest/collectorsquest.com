@@ -148,7 +148,7 @@ class cqVisitorInfoFilter extends sfFilter
 
       $response->addDelayedFunction(function()
       {
-        if (( $collector = sfContext::getInstance()->getUser()->getCollector($strict = true) ))
+        if ($collector = cqContext::getInstance()->getUser()->getCollector($strict = true))
         {
           $collector->save();
         }

@@ -26,6 +26,62 @@ class collectorActions extends cqFrontendActions
     // Set the OpenGraph meta tags
     $this->getResponse()->addOpenGraphMetaFor($collector);
 
+    /*
+     * Set meta description
+     *
+     * @see https://basecamp.com/1759305/projects/288122-collectorsquest-com/todos/11749079-collector-page
+     */
+
+    $about_me = $profile->getAboutMe();
+    $about_collections = $profile->getAboutCollections();
+    $new_description = $about_me . ' | ' . $about_collections;
+
+    if (empty($about_me))
+    {
+      // if user has a few collectibles we don't want to display them
+      $collectibles = $collector->countCollectiblesInCollections();
+      if ($collectibles < 25)
+      {
+        $meta_description = sprintf(
+          'Collectors Quest member %s is sharing their %s items on Collectors Quest.
+           Upload your own collectibles and show off today!',
+          $collector->getDisplayName(), $profile->getAboutWhatYouCollect()
+        );
+      }
+      else
+      {
+        $meta_description = sprintf(
+          'Collectors Quest member %s is sharing %s items on Collectors Quest.
+           Upload your own %s items and show off today!',
+          $collector->getDisplayName(), $collectibles, $profile->getAboutWhatYouCollect()
+        );
+      }
+    }
+
+    // Display only About information
+    else if (strlen($about_me) > 156)
+    {
+      // Remove HTML tags and cut
+      $meta_description = $about_me;
+    }
+
+    // About information too short, adding about collections info
+    else if (strlen($new_description) > 156)
+    {
+      $meta_description = $new_description;
+    }
+
+    // About information plus about collections information too short, adding about me info
+    else
+    {
+      $meta_description = $about_me . ' | ' . $about_collections . ' | ' . $profile->getAboutWhatYouCollect();
+    }
+
+    // Finally add the meta description to the response
+    $this->getResponse()->addMeta(
+      'description', cqStatic::truncateText(strip_tags($meta_description), 156, '...', true)
+    );
+
     return sfView::SUCCESS;
   }
 
@@ -92,7 +148,7 @@ class collectorActions extends cqFrontendActions
         // authenticate the collector and redirect to @mycq_profile
         $this->getUser()->Authenticate(true, $collector, false);
 
-        $this->redirect('@mycq_profile');
+        return $this->redirect('@mycq_profile');
       }
     }
 
@@ -132,7 +188,7 @@ class collectorActions extends cqFrontendActions
     if ($this->getUser()->isAuthenticated())
     {
       $completedSteps = $this->getUser()->getCollector()
-          ->getSingupNumCompletedSteps();
+          ->getSignupNumCompletedSteps();
 
       // if the requested step is not step 2, but the user has not yet
       // completed step 2 then redirect the user to step 2
@@ -221,7 +277,7 @@ class collectorActions extends cqFrontendActions
             $this->form->save();
 
             // mark step 2 as completed and save
-            $this->getUser()->getCollector()->setSingupNumCompletedSteps(2)
+            $this->getUser()->getCollector()->setSignupNumCompletedSteps(2)
                 ->save();
 
             // redirect to step 3
@@ -237,7 +293,7 @@ class collectorActions extends cqFrontendActions
 
             $collector = $this->getUser()->getCollector();
             // mark step 3 as completed, registration as completed and save
-            $collector->setSingupNumCompletedSteps(3)
+            $collector->setSignupNumCompletedSteps(3)
                 ->setHasCompletedRegistration(true)
                 ->save();
             $collector->sendToDefensio('UPDATE');

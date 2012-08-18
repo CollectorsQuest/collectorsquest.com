@@ -19,6 +19,7 @@ class CollectibleEditForm extends BaseCollectibleForm
     $this->setupCollectorCollectionsField();
     $this->setupThumbnailField();
     $this->setupTagsField();
+    $this->setupReturnToField();
 
     $this->validatorSchema->setPostValidator(new sfValidatorPass());
 
@@ -29,7 +30,8 @@ class CollectibleEditForm extends BaseCollectibleForm
       'thumbnail',
       'is_alt_view',
       'description',
-      'tags'
+      'tags',
+      'return_to'
     ));
 
     // We do not want to show the thumbnail field
@@ -91,8 +93,8 @@ class CollectibleEditForm extends BaseCollectibleForm
     $this->widgetSchema['thumbnail'] = new sfWidgetFormInputFile(array(
       'label' => 'Item Photo'
     ));
-    $this->validatorSchema['thumbnail'] = new sfValidatorFile(array(
-      'mime_types' => 'web_images', 'required' => false
+    $this->validatorSchema['thumbnail'] = new cqValidatorFile(array(
+      'mime_types' => 'cq_supported_images', 'required' => false
     ));
 
     $this->widgetSchema['is_alt_view'] = new sfWidgetFormInputHidden();
@@ -143,6 +145,12 @@ class CollectibleEditForm extends BaseCollectibleForm
       'model' => 'CollectorCollection', 'criteria' => $criteria,
       'multiple' => true, 'required' => true
     ));
+  }
+
+  protected function setupReturnToField()
+  {
+    $this->widgetSchema['return_to'] = new sfWidgetFormInputHidden();
+    $this->validatorSchema['return_to'] = new sfValidatorPass();
   }
 
   public function updateDescriptionColumn($value)

@@ -1,3 +1,10 @@
+<script>
+$( document ).ready(function() 
+{
+	window.SIDEBAR_HEIGHT.init(); 
+});
+</script>
+
 <?php
 /**
  * @var $collection CollectorCollection
@@ -29,7 +36,19 @@
 
 <?php
   include_component(
+    '_sidebar', 'widgetCollectiblesForSale',
+    array(
+      'collection' => $collection, 'limit' => 3,
+      'fallback' => 'random'
+    )
+  );
+?>
+
+<?php
+  include_component(
     '_sidebar', 'widgetCollections',
-    array('collection' => $collection, 'limit' => 5)
+    array(
+      'collection' => $collection, 'limit' => 5,
+      'fallback' => 'random')
   );
 ?>

@@ -1,0 +1,25 @@
+{% extends "common/internal.html.twig" %}
+
+{% block content %}
+  <b>Sender Id:</b> {{ sender.id }}<br>
+  <b>Sender Username:</b> {{ sender.username }}<br>
+  <b>Sender Email:</b> {{ sender.email }}<br>
+  <br>
+  <b>Receiver Id:</b> {{ receiver.id }}<br>
+  <b>Receiver Username:</b> {{ receiver.username }}<br>
+  <b>Receiver Email:</b> {{ receiver.email }}<br>
+  <br><hr>
+  <b>Similarity:</b> {{ similarity }}%<br>
+  <br><hr>
+
+  <b>Last Message Text:</b>
+  <p>
+    <br> {{ lastText }}
+  </p>
+  <br><hr>
+  
+  <b>Current Message Text:</b>
+  <p>
+    <br> {{ currentText }}
+  </p>
+{% endblock %}

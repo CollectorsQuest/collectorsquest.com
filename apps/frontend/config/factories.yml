@@ -10,7 +10,7 @@ test:
       session_path: %SF_TEST_CACHE_DIR%/sessions
 
   response:
-    class: sfWebResponse
+    class: cqWebResponse
     param:
       send_http_headers: false
 
@@ -133,16 +133,19 @@ all:
   request:
     class: cqWebRequest
 
-  view_cache_manager:
-    class: sfViewCacheManager
-    param:
-      cache_key_use_vary_headers: true
-      cache_key_use_host_name:    true
-
   storage:
     class: cqSessionStorage
     param:
       session_name: cq_frontend
+
+  view_cache:
+    class: cqMemcacheCache
+
+  view_cache_manager:
+    class: IceViewCacheManager
+    param:
+      cache_key_use_vary_headers: true
+      cache_key_use_host_name:    false
 
   user:
     class: cqFrontendUser

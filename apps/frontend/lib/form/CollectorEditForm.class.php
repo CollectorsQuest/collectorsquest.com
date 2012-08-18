@@ -47,18 +47,24 @@ class CollectorEditForm extends CollectorForm
 
   protected function setupPasswordFields()
   {
-    $this->widgetSchema['old_password'] = new sfWidgetFormInputPassword(
-      array('label'       => 'Current Password'),
-      array('placeholder' => 'Enter your current CollectorsQuest.com account password')
-    );
-    $this->widgetSchema['password'] = new sfWidgetFormInputPassword(
-      array('label'       => 'New Password'),
-      array('placeholder' => 'Set new password here')
-    );
-    $this->widgetSchema['password_again'] = new sfWidgetFormInputPassword(
-      array('label'       => 'Confirm New Password'),
-      array('placeholder' => 'Confirm your new password')
-    );
+    $this->widgetSchema['old_password'] = new sfWidgetFormInputPassword(array(
+        'label'       => 'Current Password',
+      ), array(
+        'placeholder' => 'Enter your current CollectorsQuest.com account password',
+        'required'    => 'required',
+    ));
+    $this->widgetSchema['password'] = new sfWidgetFormInputPassword(array(
+        'label'       => 'New Password',
+      ), array(
+        'placeholder' => 'Enter your new password',
+        'required'    => 'required',
+    ));
+    $this->widgetSchema['password_again'] = new sfWidgetFormInputPassword(array(
+        'label'       => 'Confirm New Password',
+      ), array(
+        'placeholder' => 'Confirm your new password',
+        'required'    => 'required',
+    ));
 
     $this->validatorSchema['old_password'] = new sfValidatorPass();
     $this->validatorSchema['password'] = new sfValidatorString(
@@ -94,6 +100,8 @@ class CollectorEditForm extends CollectorForm
     $this->setupSellerSettingsPayPalFields();
     $this->setupSellerSettingsPhoneNumberField(false);
 
+    $this->setupSellerSettingsStoreNameField();
+    $this->setupSellerSettingsStoreTitleField();
     $this->setupSellerSettingsRefundsField();
     $this->setupSellerSettingsReturnPolicyField();
     $this->setupSellerSettingsWelcomeField($required);
@@ -206,6 +214,24 @@ class CollectorEditForm extends CollectorForm
         $values['seller_settings_phone_number']
       );
     }
+    if (isset($values['seller_settings_store_name']))
+    {
+      $this->getObject()->setSellerSettingsStoreName(
+        strip_tags($values['seller_settings_store_name'])
+      );
+    }
+    if (isset($values['seller_settings_store_title']))
+    {
+      $this->getObject()->setSellerSettingsStoreTitle(
+        strip_tags($values['seller_settings_store_title'])
+      );
+    }
+    if (isset($values['seller_settings_return_policy']))
+    {
+      $this->getObject()->setSellerSettingsReturnPolicy(
+        strip_tags($values['seller_settings_return_policy'])
+      );
+    }
     if (isset($values['seller_settings_return_policy']))
     {
       $this->getObject()->setSellerSettingsReturnPolicy(
@@ -252,6 +278,8 @@ class CollectorEditForm extends CollectorForm
       'seller_settings_paypal_lname'          => $this->getObject()->getSellerSettingsPaypalLastName(),
       'seller_settings_phone_code'            => $this->getObject()->getSellerSettingsPhoneCode(),
       'seller_settings_phone_number'          => $this->getObject()->getSellerSettingsPhoneNumber(),
+      'seller_settings_store_name'            => $this->getObject()->getSellerSettingsStoreName(),
+      'seller_settings_store_title'           => $this->getObject()->getSellerSettingsStoreTitle(),
       'seller_settings_return_policy'         => $this->getObject()->getSellerSettingsReturnPolicy(),
       'seller_settings_welcome'               => $this->getObject()->getSellerSettingsWelcome(),
       'seller_settings_shipping'              => $this->getObject()->getSellerSettingsShipping(),
@@ -380,6 +408,30 @@ class CollectorEditForm extends CollectorForm
     ));
   }
 
+  public function setupSellerSettingsStoreNameField()
+  {
+    $this->widgetSchema['seller_settings_store_name'] = new sfWidgetFormInputText(
+      array('label' => 'Store Name'),
+      array('required' => 'required')
+    );
+
+    $this->validatorSchema['seller_settings_store_name'] = new sfValidatorString(
+      array('required' => true)
+    );
+  }
+
+  public function setupSellerSettingsStoreTitleField()
+  {
+    $this->widgetSchema['seller_settings_store_title'] = new sfWidgetFormInputText(
+      array('label' => 'Store Title'),
+      array('required' => 'required')
+    );
+
+    $this->validatorSchema['seller_settings_store_title'] = new sfValidatorString(
+      array('max_length' => 55, 'required' => true)
+    );
+  }
+
   public function setupSellerSettingsWelcomeField($required = false)
   {
     $this->widgetSchema['seller_settings_welcome'] = new sfWidgetFormTextarea(array(
@@ -405,7 +457,7 @@ class CollectorEditForm extends CollectorForm
   public function setupSellerSettingsRefundsField()
   {
     $this->widgetSchema['seller_settings_refunds'] = new sfWidgetFormTextarea(
-      array('label' => 'Refunds and Exchanges'),
+      array('label' => 'Refunds Policy'),
       array('required' => 'required')
     );
 
@@ -448,7 +500,7 @@ class CollectorEditForm extends CollectorForm
       )
     );
 
-    $AdaptivePayments = cqStatic::getPayPaylAdaptivePaymentsClient();
+    $AdaptivePayments = cqStatic::getPayPalAdaptivePaymentsClient();
     $result = $AdaptivePayments->GetVerifiedStatus($data);
 
     if ($AdaptivePayments->APICallSuccessful($result['Ack']))

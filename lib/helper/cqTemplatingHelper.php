@@ -15,7 +15,7 @@
  * @param     string $cutoff_date strtotime() compatible string defining the date
  *                               after which the exact date will be returned instead
  *                               of the distance of time in words
- * @param     string|\The $datetime_format The format to be used when returning the exact date
+ * @param     string  $datetime_format  The $datetime_format The format to be used when returning the exact date
  * @param     integer $now          The current time
  * @return    string              Localized time string
  *
@@ -66,10 +66,7 @@ function time_ago_in_words_or_exact_date(
 function distance_of_time_in_short_words($from_time, $to_time = null, $with_secondary = true)
 {
   $to_time = $to_time? $to_time: time();
-
   $distance_in_minutes = floor(abs($to_time - $from_time) / 60);
-
-  $string = '';
   $parameters = array();
 
   if ($distance_in_minutes <= 1)

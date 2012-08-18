@@ -23,6 +23,9 @@ class messagesActions extends cqFrontendActions
     // possible values: all, read, unread
     $this->filter_by = $request->getParameter('filter', 'all');
 
+    $is_search = $request->hasParameter('search');
+    $search = '%'.$request->getParameter('search').'%';
+
     $q = PrivateMessageQuery::create()
       ->filterByCollectorRelatedByReceiver($this->getCollector())
       ->_if('read' == $this->filter_by)
@@ -31,13 +34,35 @@ class messagesActions extends cqFrontendActions
         ->filterByIsRead(false)
       ->_endif()
       ->filterByIsDeleted(false)
+      ->_if($is_search)
+        //->joinCollectorRelatedBySender(null, Criteria::LEFT_JOIN)
+        ->filterBySubject($search)
+        ->_or()
+        ->filterByBody($search)
+        ->_or()
+        ->useCollectorRelatedBySenderQuery()
+          ->filterByDisplayName($search)
+          ->_or()
+          ->filterByUsername($search)
+        ->endUse()
+      ->_endif()
       ->orderByCreatedAt(Criteria::DESC);
-    
+
     $pager = new PropelModelPager($q);
     $pager->setPage($request->getParameter('page', 1));
     $pager->init();
-    
+
     $this->pager = $pager;
+    $this->search = $request->getParameter('search');
+
+    if ($request->isXmlHttpRequest())
+    {
+      return $this->renderPartial('inbox_table', array(
+          'filter_by' => $this->filter_by,
+          'pager' => $this->pager,
+          'search' => $this->search,
+      ));
+    }
 
     return sfView::SUCCESS;
   }
@@ -48,11 +73,11 @@ class messagesActions extends cqFrontendActions
       ->filterByCollectorRelatedBySender($this->getCollector())
       ->groupByThread()
       ->orderByCreatedAt(Criteria::DESC);
-      
+
     $pager = new PropelModelPager($q);
     $pager->setPage($request->getParameter('page', 1));
     $pager->init();
-    
+
     $this->pager = $pager;
 
     return sfView::SUCCESS;
@@ -186,7 +211,7 @@ class messagesActions extends cqFrontendActions
         else
         {
           // we are starting a new thread, so redirect to inbox with a success flash
-          $this->getUser()->setFlash('success',sprintf(
+          $this->getUser()->setFlash('success', sprintf(
             'Your message has been sent to %s.',
             $receiver instanceof Collector
               ? $receiver->getDisplayName()
@@ -200,7 +225,7 @@ class messagesActions extends cqFrontendActions
       {
         // Set the error message
         $this->getUser()->setFlash(
-          "error", $this->__("There is a problem with sending your message.")
+          'error', $this->__('There is a problem with sending your message.')
         );
       }
     }
@@ -223,18 +248,28 @@ class messagesActions extends cqFrontendActions
     {
       $q->update(array('IsRead' => false));
     }
-
-    else if (isset($action['mark_as_read']))
+    elseif (isset($action['mark_as_read']))
     {
       $q->update(array('IsRead' => true));
     }
-
-    else if (isset($action['delete']))
+    elseif (isset($action['delete']))
     {
       $q->update(array('IsDeleted' => true));
     }
 
-    return $this->redirect('@messages_inbox');
+    if ($request->isXmlHttpRequest())
+    {
+      // if ajax request, simply forward the rendering to messages/inbox
+      return $this->forward('messages', 'inbox');
+    }
+    else
+    {
+      // if a normal request, do a proper redirect to the inbox
+      return $this->redirect('messages_inbox', array(
+          'filter' => $request->getParameter('filter_hidden') ?: null,
+          'search' => $request->getParameter('search') ?: null,
+          ));
+    }
   }
 
 }

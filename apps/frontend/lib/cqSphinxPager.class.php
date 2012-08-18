@@ -11,6 +11,11 @@ class cqSphinxPager extends sfPager
     $offset   = null;
 
   /**
+   * @var boolean
+   */
+  private $strictMode = false;
+
+  /**
    * @param  array    $query
    * @param  array    $types
    * @param  integer  $maxPerPage
@@ -92,7 +97,10 @@ class cqSphinxPager extends sfPager
   public function getResults()
   {
     // Have we populated the matches array yet?
-    if (empty($this->matches)) return array();
+    if (empty($this->matches))
+    {
+      return array();
+    }
 
     $objects         = array();
     $contents        = array();
@@ -191,9 +199,11 @@ class cqSphinxPager extends sfPager
 
     // Make sure all objects are BaseObjects
     foreach ($objects as $key => $object)
-    if (!$object instanceof BaseObject)
     {
-      unset($objects[$key]);
+      if (!$object instanceof BaseObject)
+      {
+        unset($objects[$key]);
+      }
     }
 
     $sphinx = self::getSphinxClient();
@@ -206,11 +216,14 @@ class cqSphinxPager extends sfPager
     if (
       !empty($this->query['q']) &&
       ($excerpts = $sphinx->BuildExcerpts($contents, $index, $this->query['q'], array('limit' => 140)))
-    ) {
+    )
+    {
       foreach ($excerpts as $i => $excerpt)
-      if (!empty($excerpt))
       {
-        $this->excerpts[$keys[$i]] = $excerpt;
+        if (!empty($excerpt))
+        {
+          $this->excerpts[$keys[$i]] = $excerpt;
+        }
       }
     }
 
@@ -280,6 +293,37 @@ class cqSphinxPager extends sfPager
     }
 
     return $this->offset;
+  }
+
+  /**
+   * Sets the last page number.
+   *
+   * @param integer $page
+   */
+  protected function setLastPage($page)
+  {
+    $this->lastPage = $page;
+
+    if ($this->getStrictMode() && $this->getPage() > $page)
+    {
+      $this->setPage($page);
+    }
+  }
+
+  /**
+   * @param bool $strictMode
+   */
+  public function setStrictMode($strictMode)
+  {
+    $this->strictMode = $strictMode;
+  }
+
+  /**
+   * @return bool
+   */
+  public function getStrictMode()
+  {
+    return $this->strictMode;
   }
 
   /**
@@ -366,7 +410,8 @@ class cqSphinxPager extends sfPager
         else if (
           substr($name, -4) == '_max' &&
           !isset($query['filters'][substr($name, 0, -4)]['max'])
-        ) {
+        )
+        {
           $query['filters'][substr($name, 0, -4)]['max'] = $values;
           unset($query['filters'][$name]);
         }
@@ -406,8 +451,14 @@ class cqSphinxPager extends sfPager
 
           if (!empty($values) && (isset($values['min']) || isset($values['max'])))
           {
-            if (!isset($values['min']) || (int) $values['min'] < 0)  $values['min'] = 0;
-            if (!isset($values['max']) || (int) $values['max'] <= 0) $values['max'] = PHP_INT_MAX;
+            if (!isset($values['min']) || (int) $values['min'] < 0)
+            {
+              $values['min'] = 0;
+            }
+            if (!isset($values['max']) || (int) $values['max'] <= 0)
+            {
+              $values['max'] = PHP_INT_MAX;
+            }
 
             $sphinx->setFilterRange($name, (int) $values['min'], (int) $values['max']);
           }
@@ -492,6 +543,56 @@ class cqSphinxPager extends sfPager
           break;
       }
     }
+  }
+
+  public function getDidYouMean($keyword)
+  {
+    $keyword = trim($keyword);
+    $t = '__' . $keyword . '__';
+
+    $trigrams = '';
+    for ($i = 0; $i < strlen($t) - 2; $i++)
+    {
+      $trigrams .= substr($t, $i, 3) . ' ';
+    }
+
+    $query = '"'. $trigrams .'"/1';
+    $len = strlen($keyword);
+
+    // $delta = LENGTH_THRESHOLD;
+    $delta = 2;
+
+    $sphinx = self::getSphinxClient();
+    $sphinx->SetMatchMode(SPH_MATCH_EXTENDED2);
+    $sphinx->SetRankingMode(SPH_RANK_WORDCOUNT);
+    $sphinx->SetFilterRange('len', $len - $delta, $len + $delta );
+    $sphinx->SetSelect('*, @weight + '. $delta .' - abs(len-'. $len .') AS myrank');
+    $sphinx->SetSortMode(SPH_SORT_EXTENDED, 'myrank DESC, freq DESC');
+    $sphinx->SetArrayResult(true);
+
+    // pull top-N best trigram matches and run them through Levenshtein
+    // $res = $sphinx->Query($query, 'did_you_mean', 0, TOP_COUNT);
+
+    $env = defined('SF_ENV') ? SF_ENV : sfConfig::get('sf_environment');
+    $env = str_replace('_debug', '', $env);
+
+    /** @var $results array */
+    $results = $sphinx->Query($query, sprintf('%s_did_you_mean', $env), 0, 10);
+
+    if (!empty($results['matches']))
+    {
+      // further restrict trigram matches with a sane Levenshtein distance limit
+      foreach ($results['matches'] as $match)
+      {
+        $suggested = $match['attrs']['keyword'];
+        if (strcasecmp($keyword, $suggested) !== 0 && levenshtein($keyword, $suggested) <= 2)
+        {
+          return $suggested;
+        }
+      }
+    }
+
+    return null;
   }
 
   public static function getSphinxClient()

@@ -10,6 +10,7 @@
  */
 class BackendCollectionCategoryFormFilter extends BaseCollectionCategoryFormFilter
 {
+
   public function configure()
   {
     $this->setupParentIdField();
@@ -18,11 +19,16 @@ class BackendCollectionCategoryFormFilter extends BaseCollectionCategoryFormFilt
   public function setupParentIdField()
   {
     $this->widgetSchema['parent_id'] = new bsWidgetFormInputTypeAhead(array(
-      'source' => $this->getOption('url_parent', sfContext::getInstance()->getController()->genUrl('collectionCategories/parent')),
+      'source' => $this->getOption(
+        'url_parent', cqContext::getInstance()->getController()->genUrl('collectionCategories/parent')
+      ),
     ));
 
-    $this->validatorSchema['parent_id'] = new sfValidatorPropelChoice(array('required' => false, 'model' => 'CollectionCategory', 'column' => 'id'));
+    $this->validatorSchema['parent_id'] = new sfValidatorPropelChoice(array(
+        'required' => false, 'model' => 'CollectionCategory', 'column' => 'id'
+    ));
   }
+
   /**
    * @param CollectionCategoryQuery $criteria
    * @param string $field
@@ -47,4 +53,5 @@ class BackendCollectionCategoryFormFilter extends BaseCollectionCategoryFormFilt
 
     return $criteria;
   }
+
 }

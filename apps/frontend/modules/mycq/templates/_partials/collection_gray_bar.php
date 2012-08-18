@@ -9,7 +9,7 @@
           </a>
         </li>
         <li>
-          <a href="<?= url_for('@ajax_mycq?section=component&page=createCollectible&collection_id='. $collection->getId()); ?>"
+          <a href="<?= url_for('@ajax_mycq?section=collectible&page=create&collection_id='. $collection->getId()); ?>"
              class="open-dialog" onclick="return false;">
             <i class="icon icon-plus"></i>
             Add Item
@@ -68,8 +68,6 @@ $(document).ready(function()
 
   $form.submit(function()
   {
-    console.log($('#collectibles'));
-
     if ($('#collectibles').length > 0)
     {
       $('#collectibles').showLoading();

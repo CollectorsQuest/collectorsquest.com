@@ -9,7 +9,10 @@ var APP = window.APP = {
    * Defaults to be used throughout the project
    */
   defaults:   {
-    // empty ;)
+
+    tooltip: {
+      position: 'bottom'
+    }
   }, // defaults
 
   /**
@@ -22,7 +25,23 @@ var APP = window.APP = {
       $('.fade-white').mosaic();
       $("[rel=tooltip]").tooltip(
         {
-          placement: 'bottom'
+          placement: function(template, el) {
+            var $el = $(el),
+                settings = $.extend(true, {}, APP.defaults, window.cq.settings);
+
+            if ($el.hasClass('tooltip-position-right')) {
+              return 'right';
+            } else if ($el.hasClass('tooltip-position-left')) {
+              return 'left';
+            } else if ($el.hasClass('tooltip-position-top')) {
+              return 'top';
+            } else if ($el.hasClass('tooltip-position-bottom')) {
+              return 'bottom';
+            }
+
+            return settings.tooltip.position;
+          }
+
         }
       );
 
@@ -83,15 +102,19 @@ var APP = window.APP = {
         switch ($(this).data('select')) {
           case 'all':
             $checkboxes.attr('checked', 'checked');
+            shouldBatchActionsBeEnabled();
             break;
           case 'none':
             $checkboxes.attr('checked', false);
+            shouldBatchActionsBeEnabled();
             break;
           case 'read':
             $checkboxes.attr('checked', false).filter('.read').attr('checked', 'checked');
+            shouldBatchActionsBeEnabled();
             break;
           case 'unread':
             $checkboxes.attr('checked', false).filter('.unread').attr('checked', 'checked');
+            shouldBatchActionsBeEnabled();
             break;
         }
       });
@@ -99,13 +122,14 @@ var APP = window.APP = {
                             .addClass('disabled').attr('disabled', 'disabled');
       var $messages_inbox = $('#private-messages-inbox');
 
-      $messages_inbox.on('change', 'input', function(){
+      var shouldBatchActionsBeEnabled = function() {
         if ($messages_inbox.find('input:checked').length) {
           $action_buttons.removeClass('disabled').removeAttr('disabled');
         } else {
           $action_buttons.addClass('disabled').attr('disabled', 'disabled');
         }
-      });
+      };
+      $messages_inbox.on('change', 'input', shouldBatchActionsBeEnabled);
     },
     show: function() {
       $('#message_body').elastic();
@@ -730,7 +754,7 @@ var AVIARY = window.AVIARY = (function(){
   function loadAviary(callback) {
     if (false === aviary_loaded) {
       Modernizr.load({
-        load: '//feather.aviary.com/js/feather.js',
+        load: '//dme0ih8comzn4.cloudfront.net/js/feather.js',
         callback: function() {
           aviary_loaded = true;
           $.isFunction(callback) && callback();

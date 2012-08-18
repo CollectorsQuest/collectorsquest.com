@@ -123,7 +123,7 @@ class CommentPeer extends BaseCommentPeer
     }
     catch (Exception $e)
     {
-      return sfContext::getInstance()->getLogger()->log($e->getMessage());
+      return cqContext::getInstance()->getLogger()->log($e->getMessage());
     }
   }
 

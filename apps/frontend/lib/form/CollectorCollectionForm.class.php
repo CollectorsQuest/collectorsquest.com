@@ -26,7 +26,7 @@ class CollectorCollectionForm extends BaseCollectorCollectionForm
     $tags = $this->getObject()->getTags();
     if (sfContext::hasInstance())
     {
-      $request = sfContext::getInstance()->getRequest();
+      $request = cqContext::getInstance()->getRequest();
       if (( $values = $request->getParameter($this->getName()) ))
       {
         if (isset($values['tags']))
@@ -58,8 +58,8 @@ class CollectorCollectionForm extends BaseCollectorCollectionForm
     $this->widgetSchema['thumbnail'] = new sfWidgetFormInputFile(
       array('label' => 'Photo')
     );
-    $this->validatorSchema['thumbnail'] = new sfValidatorFile(array(
-      'mime_types' => 'web_images', 'required' => false
+    $this->validatorSchema['thumbnail'] = new cqValidatorFile(array(
+      'mime_types' => 'cq_supported_images', 'required' => false
     ));
 
     /**

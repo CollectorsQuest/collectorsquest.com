@@ -29,6 +29,7 @@ ice_breadcrumbs:
 
   collection:
     index:
+      - { name: 'Collections', route: collections }
       - { name: '%Name%', model: true }
     create:
       - { name: 'Collections' }
@@ -38,7 +39,7 @@ ice_breadcrumbs:
     index: [{ name: 'Collections' }]
     category:
       - { name: 'Collections', route: collections }
-      - { name: '%Name%', model: true, title: 'Category %Name%' }
+      - { name: '%Name%', model: true, title: 'Category: %Name%' }
     collector:
       - { name: 'Collections', route: collections }
       - { name: 'by %DisplayName%', model: true, title: 'Collections by %DisplayName%' }
@@ -54,7 +55,7 @@ ice_breadcrumbs:
   collectibles:
     collectorList:
       - { name: 'Collectors', route: collectors }
-      - { name: '%DisplayName%', model: true, route: collector_by_slug }
+      - { name: '%DisplayName%', route: collector_by_slug, model: true, subobject: Collector, title: 'Collector: %DisplayName%' }
 
   collectors:
     index: [{ name: 'Collectors' }]
@@ -92,6 +93,7 @@ ice_breadcrumbs:
   categories:
     index: [{ name: 'Categories' }]
     category:
+      - { name: 'Categories', route: content_categories }
       - { name: '%Name%', model: true, title: 'Category: %Name%' }
 
   mycq:
@@ -105,6 +107,37 @@ ice_breadcrumbs:
     collectible:
       - { name: '%Collection%', route: mycq_collection_by_slug, model: true, subobject: Collection }
       - { name: '%Name%', model: true }
+    profile:
+      - { name: 'Profile'}
+      - { name: 'Personal Information' }
+    profileAccountInfo:
+      - { name: 'Profile', route: mycq_profile}
+      - { name: 'Account Settings' }
+    profileAddresses:
+      - { name: 'Profile', route: mycq_profile}
+      - { name: 'Address Book' }
+    profileAddressesNew:
+      - { name: 'Profile', route: mycq_profile}
+      - { name: 'Address Book', route: mycq_profile_addresses }
+      - { name: 'Add New' }
+    profileAddressesEdit:
+      - { name: 'Profile', route: mycq_profile}
+      - { name: 'Address Book', route: mycq_profile_addresses }
+      - { name: 'Edit' }
+    marketplace:
+      - { name: 'My Market' }
+      - { name: 'Items for Sale / Sold' }
+    marketplacePurchased:
+      - { name: 'My Market', route: mycq_marketplace }
+      - { name: 'Purchases' }
+    marketplaceSettings:
+      - { name: 'My Market', route: mycq_marketplace }
+      - { name: 'Store Settings' }
+    marketplaceCreditHistory:
+      - { name: 'My Market', route: mycq_marketplace }
+      - { name: 'Credit History' }
+    wanted:
+      - { name: 'Wanted List' }
 
   messages:
     _prepend:

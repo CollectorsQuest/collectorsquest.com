@@ -43,7 +43,6 @@
 
     <?php if (IceGateKeeper::open('collectible_shipping')): ?>
       <?= $form_shipping_us->renderHiddenFields(); ?>
-      <?= $form_shipping_us->renderAllErrors(); ?>
       <div class="control-group form-inline">
         <label class="control-label" for="">US shipping</label>
         <div class="controls flat-rate-controller">
@@ -68,11 +67,13 @@
             <span class="add-on">$</span><?= $form_shipping_us['flat_rate']->render(array(
               'class' => 'input-small flat-rate-field')); ?>
           </div>
+          <?php if ($form_shipping_us->isError('flat_rate')): ?>
+            <?= $form_shipping_us['flat_rate']->renderError(); ?>
+          <?php endif; ?>
         </div>
       </div>
 
       <?= $form_shipping_zz->renderHiddenFields(); ?>
-      <?= $form_shipping_zz->renderAllErrors(); ?>
       <div class="control-group form-inline">
         <label class="control-label" for="">International shipping</label>
         <div class="controls flat-rate-controller">
@@ -104,7 +105,11 @@
           <div class="input-prepend spacer-left-15 spacer-top-5">
             <span class="add-on">$</span><?= $form_shipping_zz['flat_rate']->render(array(
               'class' => 'input-small flat-rate-field')); ?>
-          </div><br />
+          </div>
+          <?php if ($form_shipping_zz->isError('flat_rate')): ?>
+            <?= $form_shipping_zz['flat_rate']->renderError(); ?>
+          <?php endif; ?>
+          <br />
           <?php if (IceGateKeeper::open('collectible_allow_no_shipping')): ?><br />
           <label for="shipping_rates_zz_do_not_ship_to">We do not ship to these countries:</label><br />
           <?= $form_shipping_zz['do_not_ship_to']; ?>
@@ -117,7 +122,7 @@
     <center>
       <?php
         echo link_to(
-          image_tag('banners/want-to-sell-this-item.png'),
+          cq_image_tag('banners/want-to-sell-this-item.png'),
           '@seller_packages'
         );
       ?>
@@ -125,8 +130,8 @@
     <br/>
   <?php elseif (!$sf_user->getCollector()->hasPayPalDetails()): ?>
     <div class="alert alert-error all-errors">
-      You must <?= link_to('setup your paypal account', '@mycq_profile_store_settings') ?>
-      before you can sell in the Marketplace.
+      You must <?= link_to('setup your paypal account', '@mycq_marketplace_settings') ?>
+      before you can sell in the Market.
     </div>
   <?php endif; ?>
 </div>

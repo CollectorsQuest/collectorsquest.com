@@ -8,8 +8,10 @@
  * Id: $Id$
  */
 
-class SellerPackagesForm extends sfForm
+class SellerPackagesForm extends BaseForm
 {
+  const PENDING_TRANSACTION_TIMEOUT = '30 minutes';
+
 
   /* @var $promotion Promotion */
   public $promotion = null;
@@ -35,6 +37,7 @@ class SellerPackagesForm extends sfForm
     $this->setupCardZipField();
 
     $this->setupTermsField();
+    $this->setupPendingTransactionConfirmationField();
 
     $this->widgetSchema->setFormFormatterName('Bootstrap');
     $this->widgetSchema->setNameFormat('packages[%s]');
@@ -72,31 +75,31 @@ class SellerPackagesForm extends sfForm
 
   private function setupCountryField()
   {
-    $this->setWidget('country', new sfWidgetFormI18nChoiceCountry(array(
-      'choices'  => $this->getCountries(),
+    $this->setWidget('country', new cqWidgetFormChoiceGeoIpCountry(array(
+      'remote_address' => cqContext::getInstance()->getRequest()->getRemoteAddress(),
       'add_empty'=> true,
     ), array(
       'placeholder' => 'Country',
     )));
 
     $this->setValidator('country', new sfValidatorI18nChoiceCountry(array(
-      'choices'=> array_keys($this->getCountries()),
     )));
   }
 
   private function setupPromoCodeField()
   {
     $this->setWidget('promo_code', new sfWidgetFormInputText(array(
-      'label'=> false,
+      'label'=> 'Promo code',
     ), array(
       'required' => 'required',
-      'placeholder' => 'Enter Your Promo Code',
     )));
     $this->setValidator('promo_code', new sfValidatorString(
       array('required'=> false),
       array('required' => 'The promo code is required while we are in private beta!')
     ));
-    $this->mergePreValidator(new sfValidatorCallback(array('callback'=> array($this, 'applyPromoCode'))));
+    $this->mergePreValidator(
+      new sfValidatorCallback(array('callback'=> array($this, 'applyPromoCode')))
+    );
   }
 
   private function setupPaymentTypeField()
@@ -109,64 +112,97 @@ class SellerPackagesForm extends sfForm
       ),
     )));
 
-    $this->setValidator('payment_type', new sfValidatorChoice(array('choices'=> array_keys($this->getPaymentTypes()))));
+    $this->setValidator(
+      'payment_type', new sfValidatorChoice(array('choices'=> array_keys($this->getPaymentTypes())))
+    );
   }
 
   private function setupCardTypeField()
   {
     $this->setWidget('cc_type', new sfWidgetFormChoice(array(
-      'choices'=> array_merge(array('' => ''), $this->getCardTypes()),
-    ), array(
-      'placeholder' => 'Credit card type',
+        'choices'=> array_merge(array('' => ''), $this->getCardTypes()),
+        'label' => 'Card Type',
+      ), array(
+        'placeholder' => 'credit/debit card type',
     )));
-    $this->setValidator('cc_type', new sfValidatorChoice(array('choices'=> array_keys($this->getCardTypes()))));
+    $this->setValidator(
+      'cc_type', new sfValidatorChoice(array('choices'=> array_keys($this->getCardTypes()), 'required' => false))
+    );
   }
 
   private function setupCardNumberField()
   {
-    $this->setWidget('cc_number', new cqWidgetFormCreditCard(array(), array(
-      'placeholder' => 'Credit card number',
+    $this->setWidget('cc_number', new cqWidgetFormCreditCard(array(
+        'label' => 'Card Numer',
+      ), array(
+        'placeholder' => 'XXXX-XXXX-XXXX-XXXX',
     )));
-    $this->setValidator('cc_number', new sfValidatorString());
+    $this->setValidator('cc_number', new cqValidatorCreditCardNumber(
+      array(),
+      array(
+        'required' => 'The card number field is required.',
+        'invalid' => 'The card number is invalid.'
+      )
+    ));
   }
 
   private function setupCardExpiryDateField()
   {
     $expDateYears = range(date('Y'), date('Y') + 10);
     $this->setWidget('expiry_date', new sfWidgetFormDate(array(
-      'format'=> '%month% %year%',
+      'format'=> '%month%<div class="expiration-date-slash">/</div>%year%',
       'years' => array_combine($expDateYears, $expDateYears),
-      'label' => 'Expiration date',
+      'label' => 'Expiration Date',
     ), array(
     )));
 
-    $this->setValidator('expiry_date', new cqValidatorExpiryDate(array(
-      'min'                    => strtotime('previous month'),
-      'date_format'            => '~(?P<month>\d{2})/(?P<year>\d{4})~',
-      'date_format_range_error'=> 'm/Y'
-    )));
+    $this->setValidator('expiry_date', new cqValidatorExpiryDate(
+      array(
+        'min'                    => strtotime('previous month'),
+        'date_format'            => '~(?P<month>\d{2})/(?P<year>\d{4})~',
+        'date_format_range_error'=> 'm/Y'
+      ),
+      array(
+        'required' => 'Both expiration date fields are required.',
+        'invalid' => 'The expiration date is invalid.'
+      )
+    ));
   }
 
   private function setupCardVerificationNumberField()
   {
-    $this->setWidget('cvv_number', new sfWidgetFormInputText(array(), array(
-      'maxlength'   => 3,
-      'placeholder' => 'CVV number',
-    )));
+    $this->setWidget('cvv_number', new sfWidgetFormInputText(
+      array('label' => 'CVV/CSC Number'),
+      array('maxlength' => 4)
+    ));
 
-    $this->setValidator('cvv_number', new sfValidatorNumber(array(
-      'min'     => 100,
-      'max'     => 999,
-      'required'=> true,
-    )));
+    $this->setValidator('cvv_number', new sfValidatorNumber(
+      array(
+        'min'      => 100,
+        'max'      => 9999,
+        'required' => true,
+      ),
+      array(
+        'required' => 'The CVV/CSC number field is required.',
+        'invalid' => 'The CVV/CSC number is invalid.'
+      )
+    ));
   }
 
   private function setupCardFirstNameField()
   {
-    $this->setWidget('first_name', new sfWidgetFormInputText(array(), array(
-      'placeholder' => 'First name',
+    $this->setWidget('first_name', new sfWidgetFormInputText(array(
+        'label' => 'First Name',
+      ), array(
+        'placeholder' => 'First name',
     )));
-    $this->setValidator('first_name', new sfValidatorString());
+    $this->setValidator('first_name', new sfValidatorString(
+      array(),
+      array(
+        'required' => 'The first name field is required.',
+        'invalid' => 'The first name is invalid.'
+      )
+    ));
   }
 
   private function setupCardLastNameField()
@@ -174,51 +210,49 @@ class SellerPackagesForm extends sfForm
     $this->setWidget('last_name', new sfWidgetFormInputText(array(), array(
       'placeholder' => 'Last name',
     )));
-    $this->setValidator('last_name', new sfValidatorString());
+    $this->setValidator('last_name', new sfValidatorString(
+      array(),
+      array(
+        'required' => 'The last name field is required.',
+        'invalid' => 'The last name is invalid.'
+      )
+    ));
   }
 
   private function setupCardStreetField()
   {
-    $this->setWidget('street', new sfWidgetFormInputText(array(), array(
-      'placeholder' => 'Street',
-    )));
-    $this->setValidator('street', new sfValidatorString());
+    $this->setWidget('street', new sfWidgetFormInputText(
+      array(
+        'label' => 'Address'
+      )
+    ));
+    $this->setValidator('street', new sfValidatorString(array('required' => true)));
   }
 
   private function setupCardCityField()
   {
-    $this->setWidget('city', new sfWidgetFormInputText(array(), array(
-      'placeholder' => 'City',
-    )));
-    $this->setValidator('city', new sfValidatorString());
+    $this->setWidget('city', new sfWidgetFormInputText());
+    $this->setValidator('city', new sfValidatorString(array('required' => true)));
   }
 
   private function setupCardStateField()
   {
-    $this->setWidget('state', new sfWidgetFormInputText(array(), array(
-      'placeholder' => 'State',
+    $this->setWidget('state', new sfWidgetFormInputText(array(
+      'label' => 'State / Province / Region',
     )));
-    $this->setValidator('state', new sfValidatorString());
+    $this->setValidator('state', new sfValidatorString(array('required' => true)));
   }
 
   private function setupCardZipField()
   {
-    $this->setWidget('zip', new sfWidgetFormInputText(array(), array(
-      'placeholder' => 'Zip',
+    $this->setWidget('zip', new sfWidgetFormInputText(array(
+      'label' => 'Zip / Postal code',
     )));
-    $this->setValidator('zip', new sfValidatorString());
+    $this->setValidator('zip', new sfValidatorString(array('required' => true)));
   }
 
   private function setupTermsField()
   {
-    $this->setWidget('fyi', new sfWidgetFormInputCheckbox(array(), array(
-      'required' => 'required',
-    )));
-    $this->setValidator('fyi', new sfValidatorBoolean(
-      array('required' => true),
-      array('required' => 'You need to acknowledge the PayPal<sup>®</sup> account requirement')
-    ));
-
     $this->setWidget('terms', new sfWidgetFormInputCheckbox(array(), array(
       'required' => 'required',
     )));
@@ -226,36 +260,24 @@ class SellerPackagesForm extends sfForm
       array('required' => true),
       array('required' => 'You need to accept the terms and conditions')
     ));
-  }
 
-  private function getCountries()
-  {
-    $countries = sfCultureInfo::getInstance('en')->getCountries();
-
-    // Dirty hack to display given countries at the top but only solution currently
-    $top = array(
-      ''   => '',
-      'US' => $countries['US'],
-      'GB' => $countries['GB'],
-      'AU' => $countries['AU'],
-    );
-
-    foreach ($top as $key => $value)
-    {
-      unset($countries[$key]);
-    }
-
-    $countries = array_merge($top, $countries);
-
-    return $countries;
+    $this->setWidget('fyi', new sfWidgetFormInputCheckbox(array(
+        'label' => 'Paypal terms',
+      ), array(
+        'required' => 'required',
+    )));
+    $this->setValidator('fyi', new sfValidatorBoolean(
+      array('required' => true),
+      array('required' => 'You need to acknowledge the PayPal<sup>®</sup> account requirement')
+    ));
   }
 
   protected function getPaymentTypes()
   {
     //TODO: Replace with proper labeling
     return array(
-      'paypal' => '/images/legacy/payment/paypal.gif',
-      'cc'     => '/images/legacy/payment/cc.gif',
+      'paypal' => '/images/frontend/payment/paypal.gif',
+      'cc'     => '/images/frontend/payment/cc.gif',
     );
   }
 
@@ -295,7 +317,9 @@ class SellerPackagesForm extends sfForm
     }
 
     $promo = PromotionPeer::findByPromotionCode($values['promo_code']);
-    $collector = sfContext::getInstance()->getUser()->getCollector();
+
+    /** @var $collector Collector */
+    $collector = cqContext::getInstance()->getUser()->getCollector();
     $error = false;
 
     if (!$promo)
@@ -333,11 +357,19 @@ class SellerPackagesForm extends sfForm
         }
         else if (IceGateKeeper::locked('mycq_seller_pay'))
         {
-          throw new sfValidatorErrorSchema($validator, array('promo_code' => new sfValidatorError($validator, 'This promo code cannot be used in beta testing mode!')));
+          throw new sfValidatorErrorSchema(
+            $validator, array(
+              'promo_code' => new sfValidatorError(
+                $validator, 'This promo code cannot be used in beta testing mode!'
+              )
+            )
+          );
         }
       }
 
-      $this->getWidget('package_id')->setOption('choices', PackagePeer::getAllPackagesForSelectGroupedByPlanType($promo));
+      $this->getWidget('package_id')->setOption(
+        'choices', PackagePeer::getAllPackagesForSelectGroupedByPlanType($promo)
+      );
     }
     else
     {
@@ -351,7 +383,10 @@ class SellerPackagesForm extends sfForm
 
   public function setPartialRequirements()
   {
-    $fields = array('package_id', 'payment_type', 'cc_type', 'cc_number', 'expiry_date', 'cvv_number', 'first_name', 'last_name', 'street', 'city', 'state', 'zip', 'country', 'terms');
+    $fields = array(
+      'package_id', 'payment_type', 'cc_type', 'cc_number', 'expiry_date', 'cvv_number',
+      'first_name', 'last_name', 'street', 'city', 'state', 'zip', 'country', 'terms', 'fyi'
+    );
     foreach ($fields as $field)
     {
       $this->getValidator($field)->setOption('required', false);
@@ -362,14 +397,39 @@ class SellerPackagesForm extends sfForm
   {
     if (!isset($taintedValues['payment_type']) || 'cc' != $taintedValues['payment_type'])
     {
-      $fields = array('cc_type', 'cc_number', 'expiry_date', 'cvv_number', 'first_name', 'last_name', 'street', 'city', 'state', 'zip', 'country');
+      $fields = array(
+        'cc_type', 'cc_number', 'expiry_date', 'cvv_number', 'first_name',
+        'last_name', 'street', 'city', 'state', 'zip', 'country'
+      );
+
       foreach ($fields as $field)
       {
         $this->getValidator($field)->setOption('required', false);
       }
     }
 
-    return parent::bind($taintedValues, $taintedFiles);
+    parent::bind($taintedValues, $taintedFiles);
+  }
+
+  protected function setupPendingTransactionConfirmationField()
+  {
+    $has_recent_processing_transactions = !! PackageTransactionQuery::create()
+      ->filterByPaymentStatus(PackageTransactionPeer::PAYMENT_STATUS_PROCESSING)
+      ->filterByCreatedAt(strtotime('-'.self::PENDING_TRANSACTION_TIMEOUT), Criteria::GREATER_EQUAL)
+      ->count();
+
+    if ($has_recent_processing_transactions)
+    {
+      $this->setWidget('pending_transaction_confirm', new sfWidgetFormInputCheckbox(array(
+          'label' => 'I understand. Continue with this transaction',
+        ), array(
+          'required' => 'required',
+      )));
+      $this->setValidator('pending_transaction_confirm', new sfValidatorBoolean(
+        array('required' => true),
+        array('required' => 'You need to acknowledge you may be purchasing the same item a second time.')
+      ));
+    }
   }
 
   /**

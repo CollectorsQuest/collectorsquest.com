@@ -6,11 +6,13 @@
 function cq_include_http_metas()
 {
   /** @var $response sfWebResponse */
-  $response = sfContext::getInstance()->getResponse();
+  $response = cqContext::getInstance()->getResponse();
 
+  $i = 0;
   foreach ((array) $response->getHttpMetas() as $httpequiv => $value)
   {
-    echo tag('meta', array('http-equiv' => $httpequiv, 'content' => $value))."\n";
+    echo ($i++ > 0) ? '  ' : '';
+    echo tag('meta', array('http-equiv' => $httpequiv, 'content' => $value), true)."\n";
   }
 }
 
@@ -20,7 +22,7 @@ function cq_include_http_metas()
 function cq_include_metas()
 {
   /** @var $context sfContext */
-  $context = sfContext::getInstance();
+  $context = cqContext::getInstance();
 
   /** @var $response sfWebResponse */
   $response = $context->getResponse();
@@ -40,11 +42,21 @@ function cq_include_metas()
     foreach ($content as $_content)
     {
       // Do not display empty meta tags
-      if ($_content === '' || $_content === null) continue;
+      if ($_content === '' || $_content === null)
+      {
+        continue;
+      }
+
+      // Get rid of new lines and extra spaces in the content of the meta
+      $_content = preg_replace('/\s+/iu', ' ', $_content);
 
       echo ($i++ > 0) ? '  ' : '';
       $key = substr($name, 0, 3) === 'og:' ? 'property' : 'name';
-      echo tag('meta', array($key => $name, 'content' => null === $i18n ? $_content : $i18n->__($_content)))."\n";
+      echo tag(
+        'meta',
+        array($key => $name, 'content' => null === $i18n ? $_content : $i18n->__($_content)),
+        true
+      ) . "\n";
     }
   }
 }
@@ -55,7 +67,7 @@ function cq_include_metas()
 function cq_include_title()
 {
   /** @var $response sfWebResponse */
-  $response = sfContext::getInstance()->getResponse();
+  $response = cqContext::getInstance()->getResponse();
 
   /** @var $title string */
   $title = $response->getTitle();
@@ -75,22 +87,39 @@ function cq_htmLaw_tag($html, $config = array())
 
 function cq_image_tag($source, $options = array())
 {
-  return image_tag(cq_image_src($source), $options);
+  // Do we want an absolute path for the image?
+  $absolute = isset($options['absolute']) ? $options['absolute'] : true;
+
+  // Hardcoding for now to not use any versioning for images
+  $options['rev'] = null;
+
+  // Do we want to version it?
+  $source = (!isset($options['rev']) || (isset($options['rev']) && $options['rev'] === null)) ?
+    $source : $source .'?rev='. (defined('SVN_REVISION') ? SVN_REVISION : 0);
+
+  // We do not need this option anymore
+  unset($options['rev']);
+
+  return image_tag(cq_image_src($source, $absolute), $options);
 }
 
-function cq_image_src($image)
+function cq_image_src($image, $absolute = true)
 {
-  return '//'. sfConfig::get('app_static_domain') .'/images/'. $image;
+  return $absolute === true ?
+    '//'. sfConfig::get('app_static_domain') .'/images/'. ltrim($image, '/') :
+    '/images/'. ltrim($image, '/');
 }
 
 function cq_stylesheet_src($stylesheet)
 {
-  return '//'. sfConfig::get('app_static_domain') .'/css/'. $stylesheet .'?rev='. (defined('SVN_REVISION') ? SVN_REVISION : 0);
+  return '//'. sfConfig::get('app_static_domain') .'/css/'.
+         $stylesheet .'?rev='. (defined('SVN_REVISION') ? SVN_REVISION : 0);
 }
 
 function cq_javascript_src($javascript)
 {
-  return '//'. sfConfig::get('app_static_domain') .'/js/'. $javascript .'?rev='. (defined('SVN_REVISION') ? SVN_REVISION : 0);
+  return '//'. sfConfig::get('app_static_domain') .'/js/'.
+         $javascript .'?rev='. (defined('SVN_REVISION') ? SVN_REVISION : 0);
 }
 
 function cq_include_stylesheets()
@@ -104,7 +133,7 @@ function cq_include_stylesheets()
   }
 
   /** @var $response sfWebResponse */
-  $response = sfContext::getInstance()->getResponse();
+  $response = cqContext::getInstance()->getResponse();
   sfConfig::set('symfony.asset.stylesheets_included', true);
 
   if ($response->getStylesheets(sfWebResponse::FIRST))
@@ -161,7 +190,7 @@ function cq_include_javascripts()
   }
 
   /** @var $response sfWebResponse */
-  $response = sfContext::getInstance()->getResponse();
+  $response = cqContext::getInstance()->getResponse();
   sfConfig::set('symfony.asset.javascripts_included', true);
 
   if ($response->getJavascripts(sfWebResponse::FIRST))
@@ -230,7 +259,7 @@ function cq_combine_stylesheets($stylesheets)
       $url .= '&cache=0';
     }
 
-    echo '<link rel="stylesheet" type="text/css" href="', $url, '"/>';
+    echo '<link rel="stylesheet" type="text/css" href="', $url, '">';
   }
 }
 
@@ -259,4 +288,35 @@ function cq_combine_javascripts($javascripts)
 
     echo '<script type="text/javascript" src="', $url,'"></script>';
   }
+}
+
+function _cq_parse_options($options, $defaults = array())
+{
+  // used for second merge function - how should we avoid merging without this?
+  $options_link_to = $options_image_tag = $options;
+
+  unset($options_link_to['image_tag']);
+  unset($options_image_tag['link_to']);
+
+  $options['link_to'] = array_merge(
+    isset($defaults['link_to']) ? (array) $defaults['link_to'] : array(),
+    isset($options['link_to']) ? $options['link_to'] : $options_link_to
+  );
+
+  $options['image_tag'] = array_merge(
+    isset($defaults['image_tag']) ? (array) $defaults['image_tag'] : array(),
+    isset($options['image_tag']) ? $options['image_tag'] : $options_image_tag
+  );
+
+  $options['link_to'] = cqFunctions::array_filter_recursive($options['link_to']);
+  $options['image_tag'] = cqFunctions::array_filter_recursive($options['image_tag']);
+
+  // Cleaning some of the options we expect, definitely not a full list
+  unset(
+    $options['link_to']['width'], $options['link_to']['height'],
+    $options['link_to']['max_width'], $options['link_to']['max_height'],
+    $options['link_to']['alt']
+  );
+
+  return $options;
 }

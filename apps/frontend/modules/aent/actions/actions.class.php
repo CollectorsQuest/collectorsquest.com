@@ -353,6 +353,9 @@ class aentActions extends cqFrontendActions
     // Set the OpenGraph meta tags
     $this->getResponse()->addOpenGraphMetaFor($collectible);
 
+    // Set Canonical Url meta tag
+    $this->getResponse()->setCanonicalUrl($this->generateUrl('aetn_collectible_by_slug', $collectible));
+
     $this->setTemplate('collectible');
 
     return sfView::SUCCESS;

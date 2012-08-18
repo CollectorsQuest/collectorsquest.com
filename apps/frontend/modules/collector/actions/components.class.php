@@ -4,7 +4,11 @@ class collectorComponents extends cqFrontendComponents
 {
   public function executeSidebarIndex()
   {
-    $this->collector = CollectorPeer::retrieveByPk($this->getRequestParameter('id'));
+    if (!$this->collector = CollectorPeer::retrieveByPk($this->getRequestParameter('id')))
+    {
+      return sfView::NONE;
+    }
+
     $this->profile = $this->collector->getProfile();
 
     // if we are not viewing our own profile

@@ -376,7 +376,7 @@ class shoppingActions extends cqFrontendActions
         $shopping_payment->setPayPalPayRequest($PayPalRequest);
         $shopping_payment->save();
 
-        $AdaptivePayments = cqStatic::getPayPaylAdaptivePaymentsClient();
+        $AdaptivePayments = cqStatic::getPayPalAdaptivePaymentsClient();
         $result = $AdaptivePayments->Pay($PayPalRequest);
 
         if ($AdaptivePayments->APICallSuccessful($result['Ack']))
@@ -564,7 +564,7 @@ class shoppingActions extends cqFrontendActions
           'TrackingID' => $shopping_payment->getTrackingId()
         ));
 
-        $AdaptivePayments = cqStatic::getPayPaylAdaptivePaymentsClient();
+        $AdaptivePayments = cqStatic::getPayPalAdaptivePaymentsClient();
         $result = $AdaptivePayments->PaymentDetails($PayPalRequestData);
 
         if (!$AdaptivePayments->APICallSuccessful($result['Ack']))
@@ -675,13 +675,7 @@ class shoppingActions extends cqFrontendActions
         // We do not want the web debug bar on IPN requests
         sfConfig::set('sf_web_debug', false);
 
-        include 'lib/vendor/PayPalIPN.class.php';
-
-        // intantiate the IPN listener
-        $ipn = new PayPalIPN();
-
-        // tell the IPN listener to use the PayPal test sandbox or not
-        $ipn->use_sandbox = sfConfig::get('app_paypal_sandbox', true);
+        $ipn = cqStatic::getPayPalIPNClient();
 
         // try to process the IPN post
         try

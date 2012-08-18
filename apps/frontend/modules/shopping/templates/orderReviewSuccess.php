@@ -99,9 +99,10 @@
       </tr>
     </table>
   </div>
+</div>
 
-  <br clear="all"/>
-  <div class="span8" style="margin-left: 0; clear: left;">
+<div class="row-fluid">
+  <div class="span8 spacer-left-reset">
     <table class="table">
       <tr>
         <td style="width: 25%;">Item Name:</td>
@@ -131,5 +132,4 @@
     ?>
     </div>
   </div><!-- ./span4 -->
-
 </div>

@@ -59,7 +59,7 @@ class CollectorsquestJobQueueCallbacks extends IceJobQueueCallbacks
 
     try
     {
-      $mailer = sfContext::getInstance()->getMailer();
+      $mailer = cqContext::getInstance()->getMailer();
 
       $message = $mailer->compose('no-reply@collectorsquest.com', $to, $subject);
       $message->setFrom('no-reply@collectorsquest.com', 'CollectorsQuest.com');

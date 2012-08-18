@@ -9,7 +9,11 @@ class CollectibleForSaleForm extends BaseCollectibleForSaleForm
     $conditions = CollectibleForSalePeer::$conditions;
     $conditions[''] = '';
 
-    $this->setWidget('condition', new sfWidgetFormChoice(array('choices' => $conditions)));
+    $this->setWidget('condition', new sfWidgetFormChoice(array(
+        'choices' => $conditions
+      ), array(
+        'required' => 'required',
+    )));
     $this->setValidator('condition', new sfValidatorChoice(
       array('choices' => array_keys($conditions), 'required' => false)
     ));
@@ -25,9 +29,13 @@ class CollectibleForSaleForm extends BaseCollectibleForSaleForm
     if (!empty($values['is_ready']))
     {
       /** @var $seller Seller */
-      $seller = sfContext::getInstance()->getUser()->getSeller();
+      $seller = cqContext::getInstance()->getUser()->getSeller();
 
-      if ($seller && $seller->hasPackageCredits())
+      $collectible_has_credit = (boolean) PackageTransactionCreditQuery::create()
+        ->filterByCollectibleId($this->getObject()->getCollectibleId())
+        ->notExpired()
+        ->count();
+      if ($seller && ($seller->hasPackageCredits() || $collectible_has_credit))
       {
         if ($seller->hasPaypalDetails())
         {
@@ -37,7 +45,7 @@ class CollectibleForSaleForm extends BaseCollectibleForSaleForm
       }
       else
       {
-        // throw an error bound to the price field
+        // throw a global error
         $errorSchema = new sfValidatorErrorSchema($validator);
         $errorSchema->addError(new sfValidatorError($validator, 'invalid'));
 

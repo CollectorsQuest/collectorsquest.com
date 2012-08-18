@@ -10,7 +10,7 @@
             collections: post a gallery of your neat stuff to share and use as an archive,
             buy and sell treasures quickly and easily, learn what’s going on in the collecting
             world, and meet other like-minded collectors.
-            <?= link_to('Join us', '@collector_signup') ?> to make collecting more fun than ever!
+            <?= link_to('Join us', '@misc_guide_to_collecting') ?> to make collecting more fun than ever!
           </p>
 
           <div class="row-spacing-footer">
@@ -22,14 +22,14 @@
             ?>
           </div>
           <p>
-            <a href="http://www.facebook.com/pages/Collectors-Quest/119338990397"
+            <a href="https://www.facebook.com/pages/Collectors-Quest/119338990397"
                target="_blank" class="social-link" title="Follow us on Facebook">
               <i class="s-16-icon-facebook social-ico-padding"></i>Follow us on Facebook
             </a>
           </p>
 
           <p>
-            <a href="http://twitter.com/CollectorsQuest"
+            <a href="https://twitter.com/CollectorsQuest"
                target="_blank" class="social-link" title="Follow us on Twitter">
               <i class="s-16-icon-twitter social-ico-padding"></i>Follow us on Twitter
             </a>
@@ -43,7 +43,7 @@
           </p>
 
           <p>
-            <a href="http://pinterest.com/CollectorsQuest"
+            <a href="https://pinterest.com/CollectorsQuest"
                target="_blank" class="social-link" title="Follow us on Pinterest">
               <i class="s-16-icon-pinterest social-ico-padding"></i>Follow us on Pinterest
             </a>
@@ -64,7 +64,7 @@
 //            );
 
             echo link_to(
-              image_tag(
+              cq_image_tag(
                 'banners/2012-06-24_CQGuide_300x250_footer.png',
                 array(
                   'size' => '300x250',
@@ -93,7 +93,7 @@
               <h2 class="Chivo webfont">Show Off</h2>
               <p>
                 Show your collections to the world! Upload and organize your stuff here.<br />
-                <?= link_to('Show&nbsp;Off&nbsp;Now!', '@collector_signup'); ?>
+                <?= link_to('Show&nbsp;Off&nbsp;Now!', '@misc_guide_to_collecting'); ?>
               </p>
             </div>
           </li>
@@ -131,7 +131,7 @@
 
   <!--
     <a id="top-link" href="javascript:void(0)" class="btn btn-large sticky">
-      <i class="icon-arrow-up"></i> Scroll<br/> to Top
+      <i class="icon-arrow-up"></i> Scroll<br> to Top
     </a>
   //-->
 </footer>

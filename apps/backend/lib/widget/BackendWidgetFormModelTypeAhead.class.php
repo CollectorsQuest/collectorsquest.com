@@ -10,7 +10,7 @@ class BackendWidgetFormModelTypeAhead extends bsWidgetFormInputTypeAhead
     $model = lcfirst(sfInflector::camelize(strtolower($model)));
     $field = lcfirst(sfInflector::camelize(strtolower($field)));
 
-    $options['source'] = sfContext::getInstance()->getController()->genUrl(
+    $options['source'] = cqContext::getInstance()->getController()->genUrl(
       '@ajax_typeahead?section='. $model .'&page='. $field
     );
 

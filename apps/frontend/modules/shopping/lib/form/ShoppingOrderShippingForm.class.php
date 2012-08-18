@@ -18,7 +18,7 @@ class ShoppingOrderShippingForm extends BaseForm
   public function setup()
   {
     /** @var $sf_user cqFrontendUser */
-    $sf_user = sfContext::getInstance()->getUser();
+    $sf_user = cqContext::getInstance()->getUser();
 
     $this->setWidgets(array(
       'buyer_email'  => new sfWidgetFormInputText(
@@ -128,11 +128,12 @@ class ShoppingOrderShippingForm extends BaseForm
       ->updateShippingFeeAmountFromCountryCode()
       ->save();
 
-    try {
+    try
+    {
       $this->shopping_order->save();
 
       /** @var $sf_user cqFrontendUser */
-      $sf_user = sfContext::getInstance()->getUser();
+      $sf_user = cqContext::getInstance()->getUser();
 
       // Save the buyer email address for later purchases
       $sf_user->setAttribute('buyer_email', $values['buyer_email'], 'shopping');

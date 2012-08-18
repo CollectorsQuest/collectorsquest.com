@@ -4,6 +4,10 @@ class mycqActions extends cqFrontendActions
 {
   public function executeIndex()
   {
+    // Redirect to Collections if the homepage is not allowed
+    $this->redirectUnless(IceGateKeeper::open('mycq_homepage'), '@mycq_collections');
+
+    // Set the "home" as the active mycq menu item
     SmartMenu::setSelected('mycq_menu', 'home');
 
     $this->collector = $this->getUser()->getCollector();
@@ -68,7 +72,7 @@ class mycqActions extends cqFrontendActions
       }
     }
 
-    $this->avatars = CollectorPeer::$avatars;
+    $this->avatars = CollectorPeer::$default_avatar_ids;
     $this->avatar_form = $avatar_form;
 
     $this->collector = $this->getUser()->getCollector();
@@ -221,47 +225,6 @@ class mycqActions extends cqFrontendActions
     }
 
     $this->collector_address = $address;
-
-    return sfView::SUCCESS;
-  }
-
-  public function executeProfileStoreSettings(sfWebRequest $request)
-  {
-    $this->forward404Unless($this->getCollector()->hasBoughtCredits());
-
-    SmartMenu::setSelected('mycq_menu', 'profile');
-
-    $form = new CollectorEditForm($this->getCollector(), array(
-      'seller_settings_show' => true,
-      'seller_settings_required' => false,
-    ));
-
-    $form->useFields(array(
-      'seller_settings_paypal_email',
-      'seller_settings_paypal_fname',
-      'seller_settings_paypal_lname',
-      'seller_settings_phone_number',
-      'seller_settings_return_policy',
-      'seller_settings_welcome',
-      'seller_settings_shipping',
-      'seller_settings_refunds',
-      'seller_settings_additional_policies',
-    ));
-
-    if (sfRequest::POST == $request->getMethod())
-    {
-      if ($form->bindAndSave($request->getParameter($form->getName())))
-      {
-        $this->getUser()->setFlash(
-          'success', 'You have successfully updated your store settings.'
-        );
-
-        $this->redirect('@mycq_profile_store_settings');
-      };
-    }
-
-    $this->collector = $this->getCollector(true);
-    $this->form = $form;
 
     return sfView::SUCCESS;
   }
@@ -483,6 +446,8 @@ class mycqActions extends cqFrontendActions
     }
 
     $form = new CollectibleEditForm($collectible);
+    $form->setDefault('return_to', $request->getParameter('return_to'));
+
     $form_shipping_us = new SimpleShippingCollectorCollectibleForCountryForm(
       $collectible,
       'US',
@@ -515,6 +480,14 @@ class mycqActions extends cqFrontendActions
       ) {
         $form_shipping_us->bind($request->getParameter('shipping_rates_us'));
         $form_shipping_zz->bind($request->getParameter('shipping_rates_zz'));
+      }
+
+      if (
+        ($form_shipping_us->isBound() && $form_shipping_zz->isBound()) &&
+        !($form_shipping_us->isValid() && $form_shipping_zz->isValid()) &&
+        $form->isValid()
+      ) {
+        $this->getUser()->setFlash('error', 'There is a problem with your shipping information.');
       }
 
       if (
@@ -572,7 +545,16 @@ class mycqActions extends cqFrontendActions
           if ($request->getParameter('save_and_go'))
           {
             // If we save the form successfully, the request has to be redirected
-            $this->redirect('mycq_collection_by_slug', $collection);
+            switch ($form->getValue('return_to'))
+            {
+              case 'market':
+                $this->redirect('mycq_marketplace');
+                break;
+              case 'collection':
+              default:
+                $this->redirect('mycq_collection_by_slug', $collection);
+                break;
+            }
           }
         }
         catch (PropelException $e)
@@ -601,7 +583,7 @@ class mycqActions extends cqFrontendActions
     $this->form_shipping_us = $form_shipping_us;
     $this->form_shipping_zz = $form_shipping_zz;
 
-    if ($collectible->isForSale())
+    if ($collectible->isForSale() || $request->getParameter('available_for_sale') === 'yes')
     {
       SmartMenu::setSelected('mycq_menu', 'marketplace');
     }
@@ -632,11 +614,13 @@ class mycqActions extends cqFrontendActions
 
     $q = CollectibleForSaleQuery::create()
       ->filterByCollector($collector)
+      ->filterByIsSold(true)
+      ->groupByCollectibleId()
       ->joinCollectible()
       ->useCollectibleQuery()
         ->joinWith('ShoppingOrder', Criteria::RIGHT_JOIN)
-      ->endUse()
-      ->filterByIsSold(true);
+      ->endUse();
+
     $this->sold_total = $q->count();
 
     // Make the seller available to the template
@@ -663,6 +647,60 @@ class mycqActions extends cqFrontendActions
       ->filterByCollectorId($this->getCollector()->getId());
 
     $this->purchases_total = $q->count();
+
+    return sfView::SUCCESS;
+  }
+
+  public function executeMarketplaceCreditHistory()
+  {
+    SmartMenu::setSelected('mycq_menu', 'marketplace');
+
+    $this->package_transactions = PackageTransactionQuery::create()
+      ->filterByCollector($this->getCollector())
+      ->_if('dev' != sfConfig::get('sf_environment'))
+        ->paidFor()
+      ->_endif()
+      ->find();
+
+    return sfView::SUCCESS;
+  }
+
+  public function executeMarketplaceSettings(sfWebRequest $request)
+  {
+    $this->forward404Unless($this->getCollector()->hasBoughtCredits());
+
+    SmartMenu::setSelected('mycq_menu', 'marketplace');
+
+    $form = new CollectorEditForm($this->getCollector(), array(
+      'seller_settings_show' => true,
+      'seller_settings_required' => false,
+    ));
+
+    $form->useFields(array(
+      'seller_settings_paypal_email',
+      'seller_settings_paypal_fname',
+      'seller_settings_paypal_lname',
+      'seller_settings_phone_number',
+      'seller_settings_store_name',
+      'seller_settings_store_title',
+      'seller_settings_refunds',
+      'seller_settings_shipping'
+    ));
+
+    if (sfRequest::POST == $request->getMethod())
+    {
+      if ($form->bindAndSave($request->getParameter($form->getName())))
+      {
+        $this->getUser()->setFlash(
+          'success', 'You have successfully updated your store settings.'
+        );
+
+        $this->redirect('@mycq_marketplace');
+      };
+    }
+
+    $this->collector = $this->getCollector(true);
+    $this->form = $form;
 
     return sfView::SUCCESS;
   }

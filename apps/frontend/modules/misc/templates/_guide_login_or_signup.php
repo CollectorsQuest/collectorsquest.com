@@ -8,7 +8,7 @@
    */
   use_javascripts_for_form($signup_form);
 
-  $signup_action = isset($signup_action) ? $signup_action : '@collector_signup';
+  $signup_action = isset($signup_action) ? $signup_action : '@misc_guide_to_collecting';
   $login_action = isset($login_action) ? $login_action : '@login';
   $display = $sf_request->getParameter('display', 'signup');
 
@@ -29,7 +29,7 @@
   </div>
   <br/>
 
-  <form action="<?= url_for($signup_action, true); ?>"
+  <form action="<?= url_for($signup_action, true); ?>" id="form-guide-signup"
         method="post" class="form-horizontal form-footer">
 
     <?= $signup_form->renderUsing('BootstrapWithRowFluid'); ?>
@@ -60,7 +60,7 @@
   </div>
   <br/>
 
-  <form action="<?= url_for($login_action, true); ?>"
+  <form action="<?= url_for($login_action, true); ?>" id="form-guide-login"
         method="post" class="form-horizontal form-footer">
     <?php $login_form->renderHiddenFields(); ?>
 
@@ -97,4 +97,11 @@
   </form>
 </div> <!-- #footer-form-login -->
 
-
+<script>
+$(document).ready(function()
+{
+  $('#form-guide-signup, #form-guide-login').submit(function() {
+    $('.signup-form-splash').showLoading();
+  });
+});
+</script>

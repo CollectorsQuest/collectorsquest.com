@@ -9,7 +9,7 @@
     <div class="span12 relative">
       <span class="guide-splash-page">
         <?php
-          echo image_tag(
+          echo cq_image_tag(
             'frontend/misc/guide-splash-page-img.png',
             array('alt' => 'Essential Guide to Collecting')
           );

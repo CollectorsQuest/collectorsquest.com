@@ -15,7 +15,7 @@
           ?>
         </div>
         <div class="span9">
-          <h2 style="margin-bottom: 5px;">
+          <h2 class="spacer-bottom-5">
             <?= link_to_collector($collector, 'text', array('class' => 'target')); ?>
           </h2>
           <ul style="list-style: none; margin-left: 0;">
@@ -52,7 +52,7 @@
     <div class="span3">
       <span class="stat-area spacer-bottom">
         <?php
-          $count = $collector->countCollections();
+          $count = $collector->countCollectorCollections();
           echo format_number_choice(
             '[0] No <span>COLLECTIONS</span>|[1] 1 <span>COLLECTION</span>|(1,+Inf] %1% <span>COLLECTIONS</span>',
             array('%1%' => number_format($count)), $count
@@ -61,7 +61,7 @@
       </span>
       <span class="stat-area">
         <?php
-          $count = $collector->countCollectibles();
+          $count = $collector->countCollectiblesInCollections();
           echo format_number_choice(
             '[0] No <span>COLLECTIBLES</span>|[1] 1 <span>COLLECTIBLE</span>|(1,+Inf] %1% <span>COLLECTIBLES</span>',
             array('%1%' => number_format($count)), $count

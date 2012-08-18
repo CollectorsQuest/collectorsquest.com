@@ -64,7 +64,7 @@
                     <?php foreach ($avatars as $id): ?>
                     <div class="avatars-suggestion">
                       <?php
-                        echo image_tag(
+                        echo cq_image_tag(
                           'frontend/multimedia/Collector/default/100x100/'. $id. '.jpg',
                           array(
                             'width' => 57, 'height' => 57, 'data-id' => $id,

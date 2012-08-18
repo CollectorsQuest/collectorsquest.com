@@ -36,6 +36,12 @@ require 'lib/model/om/BaseCollector.php';
  * @method     Collector setSellerSettingsPhoneExtension(string $v)
  * @method     string    getSellerSettingsPhoneExtension()
  *
+ * @method     Collector setSellerSettingsStoreName(string $v)
+ * @method     string    getSellerSettingsStoreName()
+ *
+ * @method     Collector setSellerSettingsStoreTitle(string $v)
+ * @method     string    getSellerSettingsStoreTitle()
+ *
  * @method     Collector setSellerSettingsStoreDescription(string $v)
  * @method     string    getSellerSettingsStoreDescription()
  *
@@ -90,6 +96,8 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
     $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_PHONE_CODE);
     $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_PHONE_NUMBER);
     $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_PHONE_EXTENSION);
+    $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_STORE_NAME);
+    $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_STORE_TITLE);
     $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_STORE_DESCRIPTION);
     $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_RETURN_POLICY);
     $this->registerProperty(CollectorPeer::PROPERTY_SELLER_SETTINGS_PAYMENT_ACCEPTED);
@@ -212,7 +220,8 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
    */
   public function hasPayPalDetails()
   {
-    return !! $this->getSellerSettingsPaypalAccountId();
+    return CollectorPeer::PAYPAL_ACCOUNT_STATUS_VERIFIED ==
+      $this->getSellerSettingsPaypalAccountStatus();
   }
 
   /**
@@ -495,7 +504,7 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
       $limit = $limit - $found;
 
       /** @var $sf_user cqBaseUser */
-      $sf_user = sfContext::getInstance()->getUser();
+      $sf_user = cqContext::getInstance()->getUser();
 
       if ($sf_user->isAuthenticated())
       {
@@ -924,20 +933,6 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
     return ($this->hasFacebook() && preg_match('/^fb(\d+)$/', $this->getUsername()));
   }
 
-  public function getSeller()
-  {
-    $seller = null;
-
-    if ($this->getIsSeller())
-    {
-      $seller = new Seller();
-      $this->copyInto($seller, false, false);
-      $seller->setId($this->getId());
-    }
-
-    return $seller;
-  }
-
   /**
    * Check if this collector has bought credits at any point in the past
    *
@@ -1332,7 +1327,7 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
    */
   public function assignRandomAvatar()
   {
-    $avatar_id = CollectorPeer::$avatars[mt_rand(0, count(CollectorPeer::$avatars)-1)];
+    $avatar_id = CollectorPeer::$default_avatar_ids[array_rand(CollectorPeer::$default_avatar_ids)];
     $image = sfConfig::get('sf_web_dir')
       .'/images/frontend/multimedia/Collector/default/235x315/'. $avatar_id .'.jpg';
 

@@ -13,7 +13,10 @@ class BackendCollectorCollectionFormFilter extends BaseCollectorCollectionFormFi
   public function configure()
   {
     $this->widgetSchema['collection_category_id'] = new bsWidgetFormInputTypeAhead(array(
-      'source'    => $this->getOption('collection_category_id_url', sfContext::getInstance()->getController()->genUrl('collections/collectionCategory')),
+      'source' => $this->getOption(
+        'collection_category_id_url',
+        cqContext::getInstance()->getController()->genUrl('collections/collectionCategory')
+      ),
     ));
     $this->setupIdField();
   }
@@ -71,4 +74,5 @@ class BackendCollectorCollectionFormFilter extends BaseCollectorCollectionFormFi
 
     return $criteria;
   }
+
 }

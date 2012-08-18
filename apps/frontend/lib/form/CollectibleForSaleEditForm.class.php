@@ -13,7 +13,7 @@ class CollectibleForSaleEditForm extends CollectibleForSaleForm
     $this->mergePostValidator(new sfValidatorCallback(array(
         'callback' => array($this, 'validateIsReadyField')
       ), array(
-        'invalid' => "Please purchase credits if you'd like to sell this item.",
+        'invalid' => "Please purchase a seller package if you'd like to sell this item.",
     )));
 
     // validate the collector has setup his paypal info
@@ -24,7 +24,7 @@ class CollectibleForSaleEditForm extends CollectibleForSaleForm
         'invalid'  => sprintf(
           'You must <a href="%s">setup your paypal account</a>
            before you can sell in the Marketplace',
-          sfContext::getInstance()->getController()->genUrl('@mycq_profile_store_settings')),
+          cqContext::getInstance()->getController()->genUrl('@mycq_marketplace_settings')),
       )
     ));
 
@@ -46,7 +46,7 @@ class CollectibleForSaleEditForm extends CollectibleForSaleForm
   {
     if (isset($values['is_ready']) && $values['is_ready'])
     {
-      $collector = sfContext::getInstance()->getUser()->getCollector();
+      $collector = cqContext::getInstance()->getUser()->getCollector();
 
       if (!$collector->hasPaypalDetails())
       {

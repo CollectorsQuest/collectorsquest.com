@@ -40,11 +40,20 @@
 </div>
 <?php endif; ?>
 
-<!--
+<?php /*
 <div class="banners-620 spacer-top-20">
-  <?= link_to(image_tag('banners/show_and_sell_red_635x111.png'), '@collector_signup'); ?>
+
+
+  if (!$sf_user->isAuthenticated())
+  {
+    echo  link_to(image_tag('banners/show_and_sell_red_635x111.png'), '@collector_signup');
+  }
+  else {
+    echo link_to(image_tag('banners/show_and_sell_red_635x111_user.png'), '@seller_packages');
+  }
 </div>
--->
+
+ */ ?>
 
 <?php cq_section_title('Discover More Items for Sale'); ?>
 

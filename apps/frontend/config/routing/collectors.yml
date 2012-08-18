@@ -56,16 +56,12 @@ seller_packages:
   url:   /seller/packages
   param: { module: seller, action: packages }
 
-seller_cancel_payment:
-  url: /seller/payment/cancel/:id
-  param: { module: seller, action: cancelPayment }
-  requirements: { id: '\d+' }
-
-seller_callback_ipn:
-  url: /seller/ipn
-  param: { module: seller, action: callbackIPN }
-  options: { extra_parameters_as_query_string: true }
-  requirements: { sf_method: [post] }
+seller_payment_paypal:
+  url: /seller/payment/:id/paypal
+  class: sfPropelRoute
+  options: { model: PackageTransaction, type: object }
+  param: { module: seller, action: paypal }
+  requirements: { id: '\d+', sf_method: [get, post] }
 
 seller_shopping_order:
   url:   /seller/order/:uuid

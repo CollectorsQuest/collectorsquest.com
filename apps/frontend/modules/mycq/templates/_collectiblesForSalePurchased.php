@@ -11,19 +11,18 @@
         'mycq_collectible_by_slug', $shopping_order->getCollectible()
       );
     ?>
-    <span class="sold">PURCHASED</span>
+    <span class="purchased">PURCHASED</span>
     <p>
       <?php
         echo link_to(
           cqStatic::truncateText(
-            $shopping_order->getCollectible()->getName(), 18, '...', true
+            $shopping_order->getCollectible()->getName(), 30, '...', true
           ),
           'mycq_collectible_by_slug', $shopping_order->getCollectible(),
           array('class' => 'target')
         );
       ?>
-      <br/>
-      <strong class="pull-right">
+      <strong class="pull-right spacer-top">
         <?= money_format('%.2n', (float) $shopping_order->getCollectibleForSale()->getPrice()); ?>
       </strong>
     </p>
@@ -31,23 +30,11 @@
   <?php endforeach; ?>
 
 <?php else: ?>
-<div class="span12 thumbnail link no-collections-uploaded-box">
-  <?php if ($sf_params->get('q')): ?>
-  <span class="Chivo webfont info-no-collections-uploaded spacer-top-15">
-        None of your Items for Sale match search term: <strong><?= $sf_params->get('q'); ?></strong>
-      </span>
-  <?php else: ?>
-  <span class="Chivo webfont info-no-collections-uploaded">
-        Buy items from the marketplace today!<br/>
-        Shop the Market Now!
-      </span>
-  <?php endif; ?>
-</div>
-<div class="mycq-create-collectible span4 thumbnail link">
+<div class="mycq-create-collectible">
   <div class="row-fluid spacer-inner-top-20">
     <div class="span4">
       <a href="<?php echo url_for('@marketplace'); ?>"
-         class="btn-create-collection-middle spacer-left-20">
+         class="btn-create-collection-middle">
         <i class="icon-shopping-cart"></i>
       </a>
     </div>
@@ -59,5 +46,17 @@
       </div>
     </div>
   </div>
+</div>
+<div class="no-collections-uploaded-box link">
+  <?php if ($sf_params->get('q')): ?>
+  <span class="Chivo webfont info-no-collections-uploaded spacer-top-15">
+        None of your Items for Sale match search term: <strong><?= $sf_params->get('q'); ?></strong>
+      </span>
+  <?php else: ?>
+  <span class="Chivo webfont info-no-collections-uploaded spacer-bottom">
+        Buy items from the marketplace today!<br/>
+        Shop the Market Now!
+      </span>
+  <?php endif; ?>
 </div>
 <?php endif; ?>

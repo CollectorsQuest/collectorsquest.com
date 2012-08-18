@@ -19,7 +19,7 @@ class cqBaseUser extends IceSecurityUser
   public function getCookieUuid()
   {
     /** @var $request cqWebRequest */
-    $request = sfContext::getInstance()->getRequest();
+    $request = cqContext::getInstance()->getRequest();
 
     return $request->getCookie('cq_uuid', null);
   }
@@ -85,7 +85,7 @@ class cqBaseUser extends IceSecurityUser
     }
 
     /** @var $response cqWebResponse */
-    $response = sfContext::getInstance()->getResponse();
+    $response = cqContext::getInstance()->getResponse();
 
     if ($boolean == false)
     {

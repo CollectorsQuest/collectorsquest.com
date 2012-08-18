@@ -3,22 +3,21 @@
 {% block content %}
 
   <p style="margin-bottom: 10px; font-weight: bold;">
-    Hello again, {{ collector.displayName }}!
+    Hello, {{ collector.displayName }}!
   </p>
 
   <p>
-    Thanks for purchasing credits on Collectors Quest! We hope you enjoy continuing to sell your neat
-    stuff to our audience of passionate, active collectors. Here’s your package information:<br/><br/>
+    Thanks for selling on Collectors Quest! We hope you enjoy selling your cool stuff to our
+    audience of passionate, active collectors. Here’s your package information:<br/>
 
-    Number of credits:
+    <br/>Purchase price: <strong>${{ package_transaction.packagePrice | number_format(2, '.', ',') }}</strong>
+    <br/>Number of listings:
     {% if package_transaction.credits >= 9999 %}
-      <strong>Unlimited</strong><br/>
+    <strong>Unlimited</strong>
     {% else %}
-      <strong>{{ package_transaction.credits }}</strong><br/>
+    <strong>{{ package_transaction.credits }}</strong>
     {% endif %}
-
-    Pricing level: <strong>${{ package.packagePrice }}</strong><br/>
-    Expiry date: <strong>{{ package_transaction.expiryDate|date('m/d/Y') }}</strong>
+    <br/>Expiration date: <strong>{{ package_transaction.expiryDate | date('m/d/Y') }}</strong>
   </p>
 
   <p>Happy selling!</p>

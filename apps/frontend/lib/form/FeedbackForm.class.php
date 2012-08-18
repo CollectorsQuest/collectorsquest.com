@@ -7,7 +7,7 @@ class FeedbackForm extends BaseForm
     /**
      * Widgets
      */
-    if (sfContext::getInstance()->getUser()->isAuthenticated())
+    if (cqContext::getInstance()->getUser()->isAuthenticated())
     {
        $widget = new sfWidgetFormInputHidden();
     }
@@ -54,7 +54,7 @@ class FeedbackForm extends BaseForm
 
       'send_copy' => new sfValidatorString(array('required' => false))
     ));
-    
+
     $this->widgetSchema->setLabel('fullname', 'Name');
 
     $this->widgetSchema->setNameFormat('feedback[%s]');

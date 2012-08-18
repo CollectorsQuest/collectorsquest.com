@@ -70,6 +70,9 @@ class collectionsActions extends cqFrontendActions
 
     $this->pager = $pager;
 
+    // Set Canonical Url meta tag
+    $this->getResponse()->setCanonicalUrl($this->generateUrl('collections_by_collector', $this->collector));
+
     return sfView::SUCCESS;
   }
 

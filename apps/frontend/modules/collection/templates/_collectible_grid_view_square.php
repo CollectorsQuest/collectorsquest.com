@@ -9,5 +9,5 @@
      class="span4 collectible_grid_view_square link">
 
   <?= link_to_collectible($collectible, 'image', array('width' => 190, 'height' => 190)); ?>
-  <p><?= link_to_collectible($collectible, 'text', array('class' => 'target', 'truncate' => 30)); ?></p>
+  <p><?= link_to_collectible($collectible, 'text', array('class' => 'target')); ?></p>
 </div>

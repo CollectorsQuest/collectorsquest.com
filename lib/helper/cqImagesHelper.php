@@ -2,7 +2,7 @@
 
 /** @var cqApplicationConfiguration $configuration */
 $configuration = sfProjectConfiguration::getActive();
-$configuration->loadHelpers(array('Asset', 'Tag'));
+$configuration->loadHelpers(array('Asset', 'Tag', 'cqAssets'));
 
 /**
  * Returns an HTML image tag for a Collector object
@@ -19,7 +19,7 @@ function image_tag_collector($collector, $which = '100x100', $options = array())
 {
   if (!($collector instanceof Collector))
   {
-    return image_tag(sfConfig::get('sf_app') .'/multimedia/Collector/'. $which .'.png', $options);
+    return cq_image_tag(sfConfig::get('sf_app') .'/multimedia/Collector/'. $which .'.png', $options);
   }
 
   $options = array_merge(
@@ -32,7 +32,7 @@ function image_tag_collector($collector, $which = '100x100', $options = array())
 
   if (empty($image_tag))
   {
-    $image_tag = image_tag(sfConfig::get('sf_app') .'/multimedia/Collector/'. $which .'.png', $options);
+    $image_tag = cq_image_tag(sfConfig::get('sf_app') .'/multimedia/Collector/'. $which .'.png', $options);
   }
 
   return $image_tag;
@@ -75,7 +75,7 @@ function src_tag_collector($collector, $which = '100x100', $options = array())
  *
  * @see image_tag_multimedia()
  *
- * @param  Collection  $collection
+ * @param  Collection|CollectorCollection  $collection
  * @param  string      $which
  * @param  array       $options
  *
@@ -86,7 +86,7 @@ function image_tag_collection($collection, $which = '150x150', $options = array(
   if (is_null($collection) || !($collection instanceof Collection))
   {
     $class = is_object($collection) ? get_class($collection) : 'Collection';
-    return image_tag(sfConfig::get('sf_app') .'/multimedia/'. $class .'/'. $which .'.png');
+    return cq_image_tag(sfConfig::get('sf_app') .'/multimedia/'. $class .'/'. $which .'.png');
   }
 
   $options = array_merge(
@@ -99,15 +99,18 @@ function image_tag_collection($collection, $which = '150x150', $options = array(
 
   if (empty($image_tag))
   {
-    $image_tag = image_tag(sfConfig::get('sf_app') .'/multimedia/'. get_class($collection) .'/'. $which .'.png', $options);
+    $image_tag = cq_image_tag(
+      sfConfig::get('sf_app') .'/multimedia/'. get_class($collection) .'/'. $which .'.png',
+      $options
+    );
   }
 
   return $image_tag;
 }
 
 /**
- * @param  Collection   $collection
- * @param  string       $which
+ * @param  Collection|CollectorCollection  $collection
+ * @param  string  $which
  *
  * @return null|string
  */
@@ -140,45 +143,39 @@ function image_tag_collectible($collectible, $which = null, $options = array())
 {
   if ($which === null)
   {
-    switch (sfConfig::get('sf_app'))
-    {
-      case 'frontend':
-        $which = '190x150';
-        break;
-
-      case 'legacy':
-      default:
-        $which = '150x150';
-        break;
-    }
+    $which = '190x150';
   }
-
-  $default = sfConfig::get('sf_app') . '/multimedia/Collectible/'. $which .'.png';
 
   if ($collectible instanceof CollectionCollectible)
   {
     $collectible = $collectible->getCollectible();
   }
 
-  if (!$collectible instanceof Collectible)
-  {
-    return image_tag($default, $options);
-  }
-
   $options = array_merge(
-    array('alt_title' => $collectible->getName(), 'slug' => $collectible->getSlug()),
+    array(
+      'title' => $collectible->getName(),
+      'alt' => $collectible->getName()
+    ),
     $options
   );
 
-  $multimedia = $collectible->getPrimaryImage();
-  $image_tag = image_tag_multimedia($multimedia, $which, $options);
+  $default = cq_image_tag(
+    sfConfig::get('sf_app') . '/multimedia/Collectible/'. $which .'.png',
+    $options
+  );
 
-  if (empty($image_tag))
+  if ($collectible instanceof Collectible)
   {
-    $image_tag = image_tag($default, $options);
+    $options['slug'] = $collectible->getSlug();
+    $multimedia = $collectible->getPrimaryImage();
+    $image_tag = image_tag_multimedia($multimedia, $which, $options);
+  }
+  else
+  {
+    $image_tag = null;
   }
 
-  return $image_tag;
+  return $image_tag ? $image_tag : $default;
 }
 
 /**
@@ -215,7 +212,7 @@ function image_tag_wp_post($wp_post, $which = '150x150')
     $src = '/images/'. sfConfig::get('sf_app') .'/multimedia/wpPost/'. $which .'.png';
   }
 
-  return image_tag($src, array('width' => $width, 'height' => $height));
+  return cq_image_tag($src, array('width' => $width, 'height' => $height));
 }
 
 
@@ -245,15 +242,15 @@ function image_tag_multimedia($multimedia, $which, $options = array())
 
   if (isset($options['max_width']) || isset($options['max_height']))
   {
-    if(list($w, $h) = @getimagesize($multimedia->getAbsolutePath($which)))
+    if (list($w, $h) = @getimagesize($multimedia->getAbsolutePath($which)))
     {
       $mw = @$options['max_width'];
       $mh = @$options['max_height'];
-      foreach(array('w','h') as $v)
+      foreach (array('w','h') as $v)
       {
         $m = "m{$v}";
 
-        if(${$v} > ${$m} && ${$m}) { $o = ($v == 'w') ? 'h' : 'w';
+        if (${$v} > ${$m} && ${$m}) { $o = ($v == 'w') ? 'h' : 'w';
         $r = ${$m} / ${$v}; ${$v} = ${$m}; ${$o} = ceil(${$o} * $r); }
       }
     }
@@ -285,10 +282,17 @@ function src_tag_multimedia($multimedia, $which = 'thumb', $options = array())
     return null;
   }
 
+  /** @var $request cqWebRequest */
+  $request = cqContext::getInstance()->getRequest();
+
+  // Take into consideration the current protocol only in production
+  $protocol = sfConfig::get('sf_environment') === 'prod' ?
+    $request->getProtocol() :
+    'http';
+
   $src = sprintf(
     '%s://%s/%s/%s/%s-%d.%s?%d',
-    sfContext::getInstance()->getRequest()->getProtocol(),
-    sfConfig::get('app_multimedia_domain'),
+    $protocol, sfConfig::get('app_multimedia_domain'),
     $multimedia->getType(), $which,
     (!empty($options['slug'])) ? $options['slug'] : strtolower($multimedia->getModel()),
     $multimedia->getId(), $multimedia->getFileExtension(), $multimedia->getCreatedAt('U')

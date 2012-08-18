@@ -105,7 +105,7 @@ header .search-header button {
   .transition(@transition);
 }
 
-a.sing-up-now-btn, a.my-account-btn {
+a.sign-up-now-btn, a.my-account-btn {
   display: inline-block;
   text-indent: -9999px;
   vertical-align: middle;
@@ -119,6 +119,10 @@ a.sing-up-now-btn, a.my-account-btn {
 
 /** ref: https://github.com/twitter/bootstrap/issues/1436 */
 #menu-my-account {
+	.dropdown-menu {
+		z-index: 10000;
+	}
+
   &.open {
     .dropdown-toggle {
       border-bottom-left-radius: 0 !important;

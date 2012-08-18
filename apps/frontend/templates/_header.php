@@ -120,8 +120,8 @@
           <?php
             echo link_to(
               // '&nbsp;', '@misc_guide_to_collecting',
-              '&nbsp;', '@collector_signup',
-              array('class' => 'sing-up-now-btn sing-up-now-red', 'absolute' => true)
+              '&nbsp;', '@misc_guide_to_collecting',
+              array('class' => 'sign-up-now-btn sign-up-now-red', 'absolute' => true)
             );
           ?>
         <?php endif; ?>

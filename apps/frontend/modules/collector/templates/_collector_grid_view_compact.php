@@ -16,14 +16,14 @@
       ?>
     </div>
     <div class="span9">
-      <h2 style="margin-bottom: 5px;">
+      <h2 class="spacer-bottom-5">
         <?= link_to_collector($collector, 'text', array('class' => 'target')); ?>
       </h2>
       <ul style="list-style: none; margin-left: 0;">
         <?php
           if (
-            ($collectionsCount = $collector->countCollections()) &&
-            ($collectiblesCount = $collector->countCollectibles())
+            ($collectionsCount = $collector->countCollectorCollections()) &&
+            ($collectiblesCount = $collector->countCollectiblesInCollections())
           ):
         ?>
         <li>

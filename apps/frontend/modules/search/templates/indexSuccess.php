@@ -1,3 +1,10 @@
+
+<?php if (!$pager->haveToPaginate() && ($suggestion = $pager->getDidYouMean($sf_params->get('q')))): ?>
+<p class="alert alert-info">
+  Did you mean: <strong><i><?= link_to($suggestion, '@search?q='. $suggestion); ?></i></strong>
+</p>
+<?php endif; ?>
+
 <?php
   include_partial(
     'search/display_toggle',
