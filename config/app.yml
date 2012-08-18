@@ -10,7 +10,7 @@ all:
       timeout:  3600
 
   ice_assets:
-    domain: "cqcdns.com"
+    domain: "d2y8496azcwpd6.cloudfront.net"
 
   ice_multimedia:
     default_adapter: ImageMagick

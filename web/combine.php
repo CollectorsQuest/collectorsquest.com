@@ -6,7 +6,7 @@ $lessdir  = __DIR__ . '/less';
 $jsdir    = __DIR__ . '/js';
 
 /**
- * Reuse symfony's test directory
+ * Reuse symfony's cache directory
  * Added benefit: "php ./symfony cc" will clear assets cache also
  */
 $cachedir = realpath(__DIR__ . '/../cache');
@@ -24,6 +24,28 @@ else
 
 $type = isset($_GET['type']) ? $_GET['type'] : null;
 $elements = isset($_GET['files']) ? explode(',', $_GET['files']) : array();
+
+foreach ($elements as $k => $element)
+{
+  // Special case for iceBackendPlugin web/ resources
+  if (substr($element, 0, 12) == '/backend/js/')
+  {
+    $elements[$k] = substr_replace($element, '/../plugins/iceBackendPlugin/web/js/', 0, 12);
+  }
+  else if (substr($element, 0, 13) == '/backend/css/')
+  {
+    $elements[$k] = substr_replace($element, '/../plugins/iceBackendPlugin/web/css/', 0, 13);
+  }
+  // Special case for iceAssetsPlugin web/ resources
+  else if (substr($element, 0, 11) == '/assets/js/')
+  {
+    $elements[$k] = substr_replace($element, '/../plugins/iceAssetsPlugin/web/js/', 0, 11);
+  }
+  else if (substr($element, 0, 12) == '/assets/css/')
+  {
+    $elements[$k] = substr_replace($element, '/../plugins/iceAssetsPlugin/web/css/', 0, 12);
+  }
+}
 
 // Determine the directory and type we should use
 switch ($type)
