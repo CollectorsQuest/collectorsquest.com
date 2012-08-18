@@ -73,31 +73,49 @@
     ?>
   <?php endforeach; ?>
 
-  <?php if ($pager->haveToPaginate() && $pager->getPage() === 1): ?>
+<?php if ($pager->haveToPaginate()): ?>
+  <div class="row-fluid pagination-wrapper">
+    <?php
+    include_component(
+      'global', 'pagination',
+      array(
+        'pager' => $pager,
+        'options' => array(
+          'id' => 'collectibles-for-sale-pagination',
+          'show_all' => false
+        )
+      )
+    );
+    ?>
+  </div>
 
-    <button class="btn btn-small see-more-full" id="seemore-mycq-collectibles-for-sale">
-      See more
-    </button>
+  <script>
+    $(document).ready(function()
+    {
+      var $url = '<?= url_for('@ajax_mycq?section=component&page=collectiblesForSale', true) ?>';
+      var $form = $('#form-mycq-collectibles-for-sale');
 
-    <script>
-      $(document).ready(function()
+      $('#collectibles-for-sale-pagination a').click(function(e)
       {
-        var $url = '<?= url_for('@ajax_mycq?section=component&page=collectiblesForSale', true) ?>';
-        var $form = $('#form-mycq-collectibles-for-sale');
+        e.preventDefault();
+        var page = $(this).data('page');
 
-        $('#seemore-mycq-collectibles-for-sale').click(function()
-        {
-          var $button = $(this);
-          $button.html('loading...');
+        $('#items-for-sale').showLoading();
 
-          $.post($url +'?p=2', $form.serialize(), function(data)
-          {
-            $('div.mycq-collectibles-for-sale .thumbnails').append(data);
-            $button.hide();
-          }, 'html');
-        });
+        $('#items-for-sale').load(
+          $url +'?p='+ page, $form.serialize(),
+          function(data) {
+            $('#items-for-sale').hideLoading();
+          }
+        );
+
+        // Scroll to #slot1 so that we can see the first row of results
+        $.scrollTo('#slot1');
+
+        return false;
       });
-    </script>
+    });
+  </script>
 
   <?php endif; ?>
 

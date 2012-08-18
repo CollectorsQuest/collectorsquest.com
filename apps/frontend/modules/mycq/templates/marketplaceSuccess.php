@@ -30,7 +30,7 @@
             <div class="mini-input-append-search">
               <div class="input-append pull-right">
                 <form action="<?= url_for('@ajax_mycq?section=component&page=collectiblesForSale') ?>"
-                      id="form-mycq-collections" method="post">
+                      id="form-mycq-collectibles-for-sale" method="post">
                   <input type="text" class="input-sort-by" id="appendedPrependedInput" name="q"><button class="btn gray-button" type="submit"><strong>Search</strong></button>
                   <!-- keep INPUT and BUTTON elements in same line, if you break to two lines, you will see the "gap" between the text box and button -->
                   <input type="hidden" value="most-recent" id="sortByValue" name="s">
