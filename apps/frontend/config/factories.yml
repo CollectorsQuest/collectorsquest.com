@@ -9,8 +9,11 @@ test:
     param:
       session_path: %SF_TEST_CACHE_DIR%/sessions
 
+  request:
+    class: cqWebTestRequest
+
   response:
-    class: cqWebResponse
+    class: cqWebTestResponse
     param:
       send_http_headers: false
 
@@ -71,8 +74,22 @@ next:
           password: AopixiXkTynN3qP0V3fkbRvoFiGZrteHcVveJRczBQUA
           encryption: tls
 
-
 next_debug:
+  mailer:
+    class: cqMailer
+    param:
+      delivery_strategy: single_address
+      delivery_address:  developers@collectorsquest.com
+      charset: UTF-8
+      transport:
+        class: Swift_SmtpTransport
+        param:
+          host: email-smtp.us-east-1.amazonaws.com
+          port: 465
+          username: AKIAJXXQN5BYO3YM5AAQ
+          password: AopixiXkTynN3qP0V3fkbRvoFiGZrteHcVveJRczBQUA
+          encryption: tls
+
   logger:
     class: sfAggregateLogger
     param:
@@ -91,8 +108,27 @@ next_debug:
             level: debug
             file: %SF_LOG_DIR%/%SF_APP%_%SF_ENVIRONMENT%.log
 
+
+prod:
+  view_cache:
+    class: cqMemcacheCache
+
+  view_cache_manager:
+    class: IceViewCacheManager
+    param:
+      cache_key_use_vary_headers: true
+      cache_key_use_host_name:    false
 
 prod_debug:
+  view_cache:
+    class: cqMemcacheCache
+
+  view_cache_manager:
+    class: IceViewCacheManager
+    param:
+      cache_key_use_vary_headers: true
+      cache_key_use_host_name:    false
+
   logger:
     class: sfAggregateLogger
     param:
@@ -110,6 +146,7 @@ prod_debug:
           param:
             level: debug
             file: %SF_LOG_DIR%/%SF_APP%_%SF_ENVIRONMENT%.log
+
 
 all:
   mailer:
@@ -137,15 +174,6 @@ all:
     class: cqSessionStorage
     param:
       session_name: cq_frontend
-
-  view_cache:
-    class: cqMemcacheCache
-
-  view_cache_manager:
-    class: IceViewCacheManager
-    param:
-      cache_key_use_vary_headers: true
-      cache_key_use_host_name:    false
 
   user:
     class: cqFrontendUser
