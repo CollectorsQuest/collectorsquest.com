@@ -328,8 +328,6 @@ class sellerActions extends cqFrontendActions
              Please take the time to update your store information below.',
             true
           );
-
-          return $this->redirect('@mycq_marketplace_settings');
         }
         else if ($package_transaction->getPaymentStatus() === PackageTransactionPeer::PAYMENT_STATUS_PAID)
         {
@@ -350,7 +348,7 @@ class sellerActions extends cqFrontendActions
           );
         }
 
-        return $this->redirect('@mycq_marketplace');
+        return $this->redirect('@mycq_marketplace_settings');
         break;
 
       case 'cancel':
