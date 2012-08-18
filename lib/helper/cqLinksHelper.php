@@ -572,10 +572,11 @@ function cq_canonical_url()
     /** @var $route cqPropelRoute */
     $route = cqContext::getInstance()->getRequest()->getAttribute('sf_route');
 
-    if ($route instanceof cqPropelRoute)
+    // We want to check if the route object actually exists because this code
+    // will be triggered even for 404 pages
+    if ($route instanceof cqPropelRoute && ($object = $route->getObject()))
     {
       /** @var $object BaseObject */
-      $object = $route->getObject();
 
       // CollectionCollectibles need to be normalized to Collectibles
       if ($object instanceof CollectionCollectible)
