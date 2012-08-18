@@ -151,11 +151,11 @@
         </ul>
         <div class="menu-wrapper-social-icons">
           <span class="white">Follow us:</span>
-          <a href="http://www.facebook.com/pages/Collectors-Quest/119338990397"
+          <a href="https://www.facebook.com/pages/Collectors-Quest/119338990397"
              target="_blank" class="social-link" rel="tooltip" title="Follow us on Facebook">
             <i class="s-24-icon-facebook social-ico-padding"></i>
           </a>
-          <a href="http://twitter.com/CollectorsQuest"
+          <a href="https://twitter.com/CollectorsQuest"
              target="_blank" class="social-link" rel="tooltip" title="Follow us on Twitter">
             <i class="s-24-icon-twitter social-ico-padding"></i>
           </a>
