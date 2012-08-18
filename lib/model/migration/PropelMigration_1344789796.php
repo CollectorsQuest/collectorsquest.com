@@ -24,8 +24,8 @@ class PropelMigration_1344789796
       ),
   );
 
-	public function preUp($manager)
-	{
+  public function preUp($manager)
+  {
     // remove empty spam control records
     iceModelSpamControlQuery::create()
       ->filterByValue('')
@@ -37,43 +37,43 @@ class PropelMigration_1344789796
       {
         // Change all old enum values to their new propel_enum value
         iceModelSpamControlQuery::create()
-          ->where('iceModelSpamControl.'.$field.' = ?',  $old)
+          ->where('iceModelSpamControl.' . $field .' = ?', $old)
           ->update(array($field => $new));
       }
     }
-	}
+  }
 
-	public function postUp($manager)
-	{
-		// add the post-migration code here
-	}
+  public function postUp($manager)
+  {
+    // add the post-migration code here
+  }
 
-	public function preDown($manager)
-	{
-		// add the pre-migration code here
-	}
+  public function preDown($manager)
+  {
+    // add the pre-migration code here
+  }
 
-	public function postDown($manager)
-	{
+  public function postDown($manager)
+  {
     foreach (self::$enum_modifications as $field => $modification)
     {
       foreach ($modification as $old => $new)
       {
         // a reverse of the preUp
         iceModelSpamControlQuery::create()
-          ->where('iceModelSpamControl.'.$field.' = ?',  $new)
+          ->where('iceModelSpamControl.'. $field .' = ?', $new)
           ->update(array($field => $old));
       }
     }
-	}
+  }
 
-	/**
-	 * Get the SQL statements for the Up migration
-	 *
-	 * @return array list of the SQL strings to execute for the Up migration
-	 *               the keys being the datasources
-	 */
-	public function getUpSQL()
+  /**
+   * Get the SQL statements for the Up migration
+   *
+   * @return array list of the SQL strings to execute for the Up migration
+   *               the keys being the datasources
+   */
+  public function getUpSQL()
   {
     return array (
       'propel' => '
