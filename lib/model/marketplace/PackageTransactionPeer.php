@@ -1,7 +1,5 @@
 <?php
 
-require 'lib/model/marketplace/om/BasePackageTransactionPeer.php';
-
 class PackageTransactionPeer extends BasePackageTransactionPeer
 {
 
@@ -22,28 +20,17 @@ class PackageTransactionPeer extends BasePackageTransactionPeer
     $transaction->setExpiryDate(strtotime('+1 year'));
     $transaction->setCredits($package->getCredits());
 
-    $priceWithDiscount = $package->getPackagePrice();
     if (!is_null($promotion))
     {
-      if (PromotionPeer::DISCOUNT_FIXED == $promotion->getAmountType())
-      {
-        $discount = (float) $promotion->getAmount();
-        $discountTypeString = '$';
-      }
-      else
-      {
-        $discount = (float) ($package->getPackagePrice() * $promotion->getAmount()) / 100;
-        $discountTypeString = '%';
-      }
-      $priceWithDiscount = max(0, (float) $package->getPackagePrice() - $discount);
-
+      $package->applyPromo($promotion);
       $promoTransaction = PromotionTransactionPeer::newTransaction(
-        $collector, $promotion, $discount, $promotion->getAmountType()
+        $collector, $promotion, $package->getDiscount(), $promotion->getAmountType()
       );
 
       $transaction->setPromotionTransaction($promoTransaction);
-      $transaction->setDiscount($discount); //Keep it here even if prices change
+      $transaction->setDiscount($package->getDiscount()); //Keep it here even if prices change
     }
+    $priceWithDiscount = $package->getPriceWithDiscount($promotion);
 
     $transaction->setPackagePrice($priceWithDiscount);
     $transaction->setPaymentStatus(
