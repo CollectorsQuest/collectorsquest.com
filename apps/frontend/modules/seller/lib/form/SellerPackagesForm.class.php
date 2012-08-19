@@ -409,6 +409,16 @@ class SellerPackagesForm extends BaseForm
     }
 
     parent::bind($taintedValues, $taintedFiles);
+
+    // automatically guess cc_type if payment is cc, but type is not selected
+    if (
+      $this->isValid() &&
+      'cc' == $this->getValue('payment_type') &&
+      !$this->getValue('cc_type')
+    ) {
+      $this->values['cc_type'] = cqValidatorCreditCardNumber
+        ::getCreditCardTypeFromNumber($this->getValue('cc_number'));
+    }
   }
 
   protected function setupPendingTransactionConfirmationField()
@@ -457,6 +467,10 @@ class SellerPackagesForm extends BaseForm
     return $this->promotion;
   }
 
+  /**
+   * @param     int $packageId
+   * @return    null|Package
+   */
   public function getPackage($packageId = null)
   {
     if (null !== $this->package)
