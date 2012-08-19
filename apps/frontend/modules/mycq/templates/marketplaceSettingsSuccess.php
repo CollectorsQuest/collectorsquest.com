@@ -25,7 +25,7 @@
 
         <?php if ($form->hasGlobalErrors()): ?>
           <?= $form->renderAllErrors(); ?>
-        <?php elseif (!$collector->getSellerSettingsPaypalAccountStatus()): ?>
+        <?php else: ?>
           <div class="alert alert-block">
             <h2 class="alert-heading">You must complete all information on this page before you can begin selling.</h2>
             <ul>

@@ -6,6 +6,83 @@
 ?>
 
 <div class="row-fluid">
+
+
+  <?php
+  cq_sidebar_title(
+    'Order Information', null,
+    array('left' => 8, 'right' => 4, 'class'=>'spacer-top-reset row-fluid sidebar-title')
+  );
+  ?>
+
+  <div class="span8  spacer-left-reset">
+    <table class="table">
+      <tr>
+        <td style="width: 38%;">Payment Status:</td>
+        <td>
+          <?= strtoupper($shopping_order->getShoppingPaymentRelatedByShoppingPaymentId()->getStatus()); ?>
+        </td>
+      </tr>
+      <tr>
+        <td>Order #:</td>
+        <td><?= $shopping_order->getUuid() ?></td>
+      </tr>
+      <tr>
+        <td>Date & Time:</td>
+        <td><?= $shopping_order->getCreatedAt() ?></td>
+      </tr>
+      <tr>
+        <td>Shipping Address:</td>
+        <td>
+          <?= $shopping_order->getShippingAddressLine1(); ?>
+          <p>
+            <?= $shopping_order->getShippingCity(); ?>,
+            <?= $shopping_order->getShippingStateRegion(); ?>
+            <?= $shopping_order->getShippingZipPostcode(); ?>
+          </p>
+          <p style="font-weight: bold;"><?= $shopping_order->getShippingCountryName(); ?></p>
+        </td>
+      </tr>
+      <?php if ($v = $shopping_order->getNoteToSeller()): ?>
+      <tr>
+        <td>Extra Information:</td>
+        <td><?= $v; ?></td>
+      </tr>
+      <?php endif; ?>
+      <tr>
+        <td>Tracking Number:</td>
+        <td>
+          <?php if ($shopping_order->getShippingTrackingNumber()): ?>
+          <a href="http://www.faranow.com/track/<?= strtoupper($shopping_order->getShippingCarrier()) ?>/<?= $shopping_order->getShippingTrackingNumber() ?>"
+             target="_blank">
+            <?= $shopping_order->getShippingTrackingNumber() ?>
+          </a>
+          <?php else: ?>
+          N/A
+          <?php endif; ?>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="span4">
+    <table class="table">
+      <tr>
+        <td style="width: 50%;">Item Price:</td>
+        <td>1 × <?= money_format('%.2n', (float) $shopping_order->getCollectiblesAmount()) ?></td>
+      </tr>
+      <tr>
+        <td>Shipping Fee:</td>
+        <td><?= money_format('%.2n', (float) $shopping_order->getShippingFeeAmount()) ?></td>
+      </tr>
+      <tr>
+        <td>Total Amount:</td>
+        <td><?= money_format('%.2n', (float) $shopping_order->getTotalAmount()) ?></td>
+      </tr>
+    </table>
+  </div>
+
+
   <div class="span8">
     <?php
     $link = link_to(
@@ -95,78 +172,5 @@
     <?= '</form>'; ?>
   </div>
 
-  <?php
-    cq_sidebar_title(
-      'Order Information', null,
-      array('left' => 8, 'right' => 4, 'class'=>'spacer-top-reset row-fluid sidebar-title')
-    );
-  ?>
-
-  <div class="span8  spacer-left-reset">
-    <table class="table">
-      <tr>
-        <td style="width: 38%;">Payment Status:</td>
-        <td>
-          <?= strtoupper($shopping_order->getShoppingPaymentRelatedByShoppingPaymentId()->getStatus()); ?>
-        </td>
-      </tr>
-      <tr>
-        <td>Order #:</td>
-        <td><?= $shopping_order->getUuid() ?></td>
-      </tr>
-      <tr>
-        <td>Date & Time:</td>
-        <td><?= $shopping_order->getCreatedAt() ?></td>
-      </tr>
-      <tr>
-        <td>Shipping Address:</td>
-        <td>
-          <?= $shopping_order->getShippingAddressLine1(); ?>
-          <p>
-            <?= $shopping_order->getShippingCity(); ?>,
-            <?= $shopping_order->getShippingStateRegion(); ?>
-            <?= $shopping_order->getShippingZipPostcode(); ?>
-          </p>
-          <p style="font-weight: bold;"><?= $shopping_order->getShippingCountryName(); ?></p>
-        </td>
-      </tr>
-      <?php if ($v = $shopping_order->getNoteToSeller()): ?>
-      <tr>
-        <td>Extra Information:</td>
-        <td><?= $v; ?></td>
-      </tr>
-      <?php endif; ?>
-      <tr>
-        <td>Tracking Number:</td>
-        <td>
-          <?php if ($shopping_order->getShippingTrackingNumber()): ?>
-            <a href="http://www.faranow.com/track/<?= strtoupper($shopping_order->getShippingCarrier()) ?>/<?= $shopping_order->getShippingTrackingNumber() ?>"
-               target="_blank">
-              <?= $shopping_order->getShippingTrackingNumber() ?>
-            </a>
-          <?php else: ?>
-            N/A
-          <?php endif; ?>
-        </td>
-      </tr>
-    </table>
-  </div>
-
-  <div class="span4">
-    <table class="table">
-      <tr>
-        <td style="width: 50%;">Item Price:</td>
-        <td>1 × <?= money_format('%.2n', (float) $shopping_order->getCollectiblesAmount()) ?></td>
-      </tr>
-      <tr>
-        <td>Shipping Fee:</td>
-        <td><?= money_format('%.2n', (float) $shopping_order->getShippingFeeAmount()) ?></td>
-      </tr>
-      <tr>
-        <td>Total Amount:</td>
-        <td><?= money_format('%.2n', (float) $shopping_order->getTotalAmount()) ?></td>
-      </tr>
-    </table>
-  </div>
 
 </div>
