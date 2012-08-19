@@ -78,6 +78,9 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
 
   protected $collCollectiblesInCollections;
 
+  /** @var Collector */
+  protected $seller;
+
   public function initializeProperties()
   {
     $this->registerProperty('SINGUP_NUM_COMPLETED_STEPS', 1);
@@ -945,9 +948,34 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
       ->count();
   }
 
+  /**
+   * @return    boolean
+   */
   public function getIsSeller()
   {
-    return $this->getUserType() == 'Seller';
+    return CollectorPeer::TYPE_SELLER == $this->getUserType();
+  }
+
+  /**
+   * Get a Seller wrapped Collector
+   *
+   * @return    Seller|null
+   */
+  public function getSeller()
+  {
+    if ($this->getIsSeller())
+    {
+      if (null === $this->seller)
+      {
+        $this->seller = new Seller($this);
+      }
+
+      return $this->seller;
+    }
+    else
+    {
+      return null;
+    }
   }
 
   public function fromArray($array, $keyType = BasePeer::TYPE_PHPNAME)
