@@ -229,7 +229,6 @@ class sellerActions extends cqFrontendActions
               $transaction->save();
 
               $collector->setUserType(CollectorPeer::TYPE_SELLER);
-              $collector->setItemsAllowed($package->getCredits());
               $collector->save();
 
               // Send Mail To Seller
@@ -387,7 +386,6 @@ class sellerActions extends cqFrontendActions
           $package = $package_transaction->getPackage();
 
           $collector->setUserType(CollectorPeer::TYPE_SELLER);
-          $collector->setItemsAllowed($package->getCredits());
           $collector->save();
 
           $package_transaction->setPackagePrice($request->getParameter('mc_gross'));

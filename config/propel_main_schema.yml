@@ -20,8 +20,6 @@ classes:
       salt:           { type: varchar, size: 32, required: true }
       email:          { type: varchar, size: 128, index: unique }
       user_type:      { type: char, sqlType: "ENUM('Collector','Seller')", default: "Collector", required: true }
-      items_allowed:  { type: integer, default: 0 }
-      max_collectibles_for_sale: { type: integer, default: 0 }
       locale:         { type: varchar, size: 5, default: "en_US" }
       score:          { type: integer, default: 0 }
       spam_score:     { type: integer, default: 0 }
@@ -235,6 +233,7 @@ classes:
       num_comments:      { type: integer, default: 0 }
       score:             { type: integer, default: 0 }
       is_name_automatic: { type: boolean, default: false }
+      is_public:         { type: boolean, default: true }
 
       eblob:             { type: longvarchar, default: null }
 

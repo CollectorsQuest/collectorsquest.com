@@ -294,8 +294,6 @@ class CollectorEditForm extends CollectorForm
     unset ($this['email']);
     unset ($this['has_completed_registration']);
     unset ($this['user_type']);
-    unset ($this['items_allowed']);
-    unset ($this['max_collectibles_for_sale']);
     unset ($this['locale']);
     unset ($this['is_spam']);
     unset ($this['is_public']);
