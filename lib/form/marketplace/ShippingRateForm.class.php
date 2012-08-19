@@ -23,6 +23,7 @@ class ShippingRateForm extends BaseShippingRateForm
         'label' => 'Cost',
         'show_zero_as_empty' => true,
     ));
+    $this->setDefault('flat_rate_in_cents', sprintf('%01.2f', $this->getObject()->getFlatRateInUSD()));
     $this->validatorSchema['flat_rate_in_cents'] = new cqValidatorUSDtoCents();
   }
 
