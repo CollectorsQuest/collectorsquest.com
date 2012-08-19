@@ -46,7 +46,7 @@ class SellerPackagesForm extends BaseForm
   private function setupPackageIdField()
   {
     $this->setWidget('package_id', new sfWidgetFormSelectRadio(array(
-      'choices'    => PackagePeer::getAllPackagesForSelectGroupedByPlanType(),
+      'choices'    => PackagePeer::getAllPackageLabelsForSelectById(),
       'label'      => 'Package',
       'formatter'  => function($widget, $inputs)
       {
@@ -368,7 +368,7 @@ class SellerPackagesForm extends BaseForm
       }
 
       $this->getWidget('package_id')->setOption(
-        'choices', PackagePeer::getAllPackagesForSelectGroupedByPlanType($promo)
+        'choices', PackagePeer::getAllPackageLabelsForSelectById($promo)
       );
     }
     else

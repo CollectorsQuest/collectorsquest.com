@@ -216,11 +216,20 @@ span.current-price {
 		.border-radius(6px);
 		.box-shadow( inset 0 0 0 1px #fff);
 		background-color: #fcfaf3;
+
 		&:hover {
 			background-color: #FFF4CF !important;
 			#gradient > .horizontal(#FFF4CF, #FFF4CF);
 			border-color: #ffefbb;
 		}
+
+    span.strikethrough {
+      text-decoration: line-through;
+    }
+    span.green {
+      color: @green;
+    }
+
 	}
 	.package1 {
 		.package();
@@ -235,7 +244,7 @@ span.current-price {
 		width: 360px;
 		#gradient > .horizontal(#fcfaf3, #fff6da);
 	}
-	.package4 {
+	.package6 {
 		.package();
 		width: 550px;
 		#gradient > .horizontal(#fcfaf3, #fff4cf);

@@ -47,14 +47,32 @@ class sellerActions extends cqFrontendActions
         $packagesForm->setPartialRequirements();
         $packagesForm->bind($request->getParameter($packagesForm->getName()));
 
-        if ($packagesForm->isValid() && !is_null($packagesForm->getValue('package_id')))
+        if ($packagesForm->isValid())
         {
           $promotion = $packagesForm->getPromotion();
-          $package = $packagesForm->getPackage();
+          // expose the promotion for the template
+          $this->promotion = $promotion;
 
-          if ($promotion)
+          if ($promotion && !is_null($packagesForm->getValue('package_id')))
           {
+            $package = $packagesForm->getPackage();
+
+            // apply it to the package
             $package->applyPromo($promotion);
+            // and prepare the discount message
+
+            if (0 == $package->getPriceWithDiscount())
+            {
+              $this->discount_message = 'Free Subscription!';
+            }
+            else
+            {
+              $this->discount_message = sprintf(
+                '%d%s discount',
+                $promotion->getAmount(),
+                $promotion->getAmountTypeString()
+              );
+            }
           }
         }
       }
