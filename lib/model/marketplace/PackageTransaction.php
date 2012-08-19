@@ -26,7 +26,6 @@ class PackageTransaction extends BasePackageTransaction
     /* @var $collector Collector */
     $collector = $this->getCollector();
     $collector->setUserType(CollectorPeer::TYPE_SELLER);
-    $collector->updateCollectiblesForSaleLimit();
     $collector->save();
 
     return $this;

@@ -511,10 +511,8 @@ class mycqActions extends cqFrontendActions
           $for_sale['is_ready'] === true
         ) {
           $message = sprintf(
-            'Your item has been posted to the Market.
-             Click <a href="%s">here</a> to manage your items for sale!',
-
-            $this->generateUrl('mycq_marketplace')
+            'Your item item "<a href="%s">%%s</a>" has been posted to the Market!',
+            $this->generateUrl('mycq_collectible_by_slug', array('sf_subject' => $collectible))
           );
         }
         else
@@ -695,7 +693,15 @@ class mycqActions extends cqFrontendActions
           'success', 'You have successfully updated your store settings.'
         );
 
-        $this->redirect('@mycq_marketplace');
+        if ($request->getParameter('save_and_go'))
+        {
+          if ($return_to = $this->getUser()->getAttribute('purchase_credits_return_to', null, 'seller'))
+          {
+            $this->getUser()->setAttribute('purchase_credits_return_to', null, 'seller');
+          }
+
+          $this->redirect($return_to ? $return_to : '@mycq_marketplace');
+        }
       };
     }
 

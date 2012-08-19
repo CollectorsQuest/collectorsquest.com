@@ -97,7 +97,7 @@ class sellerActions extends cqFrontendActions
               'success', 'Congratulations! You have received a free subscription!'
             );
 
-            return $this->redirect('@mycq_marketplace');
+            return $this->redirect('@mycq_marketplace_settings');
           }
           else if ('paypal' == $packagesForm->getValue('payment_type'))
           {
@@ -272,6 +272,10 @@ class sellerActions extends cqFrontendActions
       }
     }
 
+    if ($request->getParameter('return_to'))
+    {
+      $this->getUser()->setAttribute('purchase_credits_return_to', $request->getParameter('return_to'), 'seller');
+    }
     $this->packagesForm = $packagesForm;
 
     return sfView::SUCCESS;

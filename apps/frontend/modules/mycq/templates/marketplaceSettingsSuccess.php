@@ -76,8 +76,9 @@
         </fieldset>
 
         <div class="form-actions">
-          <input type="submit" class="btn btn-primary spacer-right-15" value="Save Changes" />
-          <? // link_to('Cancel', '@mycq_profile', array('class' => 'btn')); ?>
+          <input type="submit" class="btn btn-primary spacer-right-15"
+                 name="save_and_go" value="Save & Add Items for Sale" />
+          <?= link_to('Save Changes', '@mycq_profile', array('class' => 'btn')); ?>
         </div>
         <?php echo '</form>'; ?>
 
