@@ -7,7 +7,7 @@
  * @method  cqWebRequest     getRequest()
  * @method  cqBaseUser       getUser()
  *
- * @method  mixed  redirect($url, $statusCode = 302)
+ * @method  mixed  redirect($url, mixed $statusCode = 302)
  */
 class cqBaseActions extends sfActions
 {
@@ -60,7 +60,7 @@ class cqBaseActions extends sfActions
 
     $response = $this->getResponse();
     $delimiter = sfConfig::get('app_title_delimiter', ' - ');
-    $current_title = ($response->getTitle()) ? $response->getTitle() : sfConfig::get('app_title', 'CollectorsQuest.com');
+    $current_title = $response->getTitle() ?: sfConfig::get('app_title', 'CollectorsQuest.com');
     $response->setTitle($title . $delimiter . $current_title, false);
   }
 
@@ -88,7 +88,7 @@ class cqBaseActions extends sfActions
    * @param  string  $subject
    * @param  string  $body
    *
-   * @return false|int
+   * @return boolean|integer
    */
   protected function sendEmail($to, $subject, $body)
   {
