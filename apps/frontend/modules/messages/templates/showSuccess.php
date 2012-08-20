@@ -30,7 +30,7 @@
         <span><?= time_ago_in_words_or_exact_date($message->getCreatedAt()); ?></span>
         <br/>
         <div class="spacer-inner-top-7">
-          <?= link_to_collector($sender, 'image', array('width' => 100, 'height' => null)); ?>
+          <?= link_to_collector($sender, 'image'); ?>
         </div>
         <br/>
         <span>To:&nbsp;<?= link_to_if($receiver, $receiver, 'collector_by_slug', $receiver); ?></span>

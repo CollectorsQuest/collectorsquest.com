@@ -302,7 +302,11 @@ class mycqActions extends cqFrontendActions
       $collection->save();
     }
 
-    $this->redirect('mycq_collectible_by_slug', $collection_collectible);
+    return $this->redirect($this->getController()->genUrl(array(
+        'sf_route' => 'mycq_collectible_by_slug',
+        'sf_subject' => $collection_collectible,
+        'suggest_tags' => true,
+    )));
   }
 
   public function executeCollectible(sfWebRequest $request)
@@ -387,8 +391,9 @@ class mycqActions extends cqFrontendActions
           try
           {
             /**
-             * If the Collectible has Multimedia associated with it, let's just delete
-             * the CollectionCollectible references so that it can return to the Dropbox
+             * If the Collectible has Multimedia associated with it, let's just
+             * delete the CollectionCollectible references so that it can return
+             * to the Dropbox
              */
             $default = $collectible->getMultimediaCount() > 0 ? 'collections' : 'collectible';
 
@@ -447,6 +452,11 @@ class mycqActions extends cqFrontendActions
 
     $form = new CollectibleEditForm($collectible);
     $form->setDefault('return_to', $request->getParameter('return_to'));
+
+    if ($request->getParameter('suggest_tags') && !count($collectible->getTags()))
+    {
+      $form->setDefault('tags', $collection->getTags());
+    }
 
     $form_shipping_us = new SimpleShippingCollectorCollectibleForCountryForm(
       $collectible,
@@ -511,10 +521,8 @@ class mycqActions extends cqFrontendActions
           $for_sale['is_ready'] === true
         ) {
           $message = sprintf(
-            'Your item has been posted to the Market.
-             Click <a href="%s">here</a> to manage your items for sale!',
-
-            $this->generateUrl('mycq_marketplace')
+            'Your item item "<a href="%s">%%s</a>" has been posted to the Market!',
+            $this->generateUrl('mycq_collectible_by_slug', array('sf_subject' => $collectible))
           );
         }
         else
@@ -695,7 +703,15 @@ class mycqActions extends cqFrontendActions
           'success', 'You have successfully updated your store settings.'
         );
 
-        $this->redirect('@mycq_marketplace');
+        if ($request->getParameter('save_and_go'))
+        {
+          if ($return_to = $this->getUser()->getAttribute('purchase_credits_return_to', null, 'seller'))
+          {
+            $this->getUser()->setAttribute('purchase_credits_return_to', null, 'seller');
+          }
+
+          $this->redirect($return_to ? $return_to : '@mycq_marketplace');
+        }
       };
     }
 

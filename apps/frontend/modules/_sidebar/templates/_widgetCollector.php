@@ -12,10 +12,10 @@
 
   <div class="span3">
     <?php
-      echo link_to_collector(
-        $collector, 'image', array('class' => 'target'),
-        array('max_width' => 60, 'max_height' => 60)
-      );
+      echo link_to_collector($collector, 'image', array(
+        'link_to' => array('class' => 'target'),
+        'image_tag' => array('max_width' => 60, 'max_height' => 60)
+      ));
     ?>
   </div>
   <div class="span8">

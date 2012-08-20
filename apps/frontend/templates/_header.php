@@ -152,19 +152,23 @@
         <div class="menu-wrapper-social-icons">
           <span class="white">Follow us:</span>
           <a href="https://www.facebook.com/pages/Collectors-Quest/119338990397"
-             target="_blank" class="social-link" rel="tooltip" title="Follow us on Facebook">
+             target="_blank" class="social-link"
+             rel="tooltip" title="Follow us on Facebook">
             <i class="s-24-icon-facebook social-ico-padding"></i>
           </a>
           <a href="https://twitter.com/CollectorsQuest"
-             target="_blank" class="social-link" rel="tooltip" title="Follow us on Twitter">
+             target="_blank" class="social-link"
+             rel="tooltip" title="Follow us on Twitter">
             <i class="s-24-icon-twitter social-ico-padding"></i>
           </a>
           <a href="https://plus.google.com/113404032517505188429"
-             target="_blank" class="social-link" rel="tooltip" title="Follow us on Google+">
+             target="_blank" class="social-link"
+             rel="tooltip" title="Follow us on Google+">
             <i class="s-24-icon-google social-ico-padding"></i>
           </a>
           <a href="http://pinterest.com/CollectorsQuest"
-             target="_blank" class="social-link" rel="tooltip" title="Follow us on Pinterest">
+             target="_blank" class="social-link"
+             rel="tooltip" title="Follow us on Pinterest">
             <i class="s-24-icon-pinterest social-ico-padding"></i>
           </a>
         </div>

@@ -688,11 +688,24 @@ class shoppingActions extends cqFrontendActions
           $verified = false;
         }
 
-        if ($verified)
+        if ($verified && 'COMPLETED' === strtoupper($request->getParameter('payment_status')))
         {
-          $request->getParameter('payment_status');
+          $shopping_payment->setProperty('paypal.transaction_id', $request->getParameter('txn_id'));
+          $shopping_payment->setStatus(ShoppingPaymentPeer::STATUS_COMPLETED);
+          $shopping_payment->save();
 
-          file_put_contents('/tmp/paypal.txt', var_export($_POST, true));
+          // Remove the CollectibleForSale from the shopping cart
+          $q = ShoppingCartCollectibleQuery::create()
+            ->filterByCollectible($shopping_order->getCollectible())
+            ->filterByShoppingCart($shopping_order->getShoppingCart());
+          $q->delete();
+
+          // The Collectible has sold, so decrease the quantity (make zero)
+          $shopping_order->getCollectibleForSale()->setQuantity(0);
+
+          // The Collectible has sold, mark it as sold (legacy)
+          $shopping_order->getCollectibleForSale()->setIsSold(true);
+          $shopping_order->getCollectibleForSale()->save();
         }
 
         return sfView::NONE;

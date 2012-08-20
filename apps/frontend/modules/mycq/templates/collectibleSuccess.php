@@ -93,7 +93,7 @@ else
         {
           echo link_to(
             cq_image_tag('banners/want-to-sell-this-item.png', array('align' => 'right')),
-            '@seller_packages'
+            '@seller_packages?return_to='. url_for('mycq_collectible_by_slug', $collectible)
           );
         }
       ?>

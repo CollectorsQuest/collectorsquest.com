@@ -124,7 +124,6 @@ classes:
     tableName: wp_options
     columns:
       option_id:              { type: integer,      required: true, primaryKey: true, auto_increment: true }
-      blog_id:                { type: integer,      required: true, primaryKey: true, default: 0 }
       option_name:            { type: varchar(64),  required: true, primaryKey: true }
       option_value:           { type: longvarchar,  required: true  }
       autoload:               { type: varchar(20),  required: true, default: "yes" }

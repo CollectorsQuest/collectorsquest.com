@@ -187,6 +187,90 @@ TermRelationship:
     term_id: Term_1142
     model: Collector
     model_id: '644'
+  TermRelationship_1518:
+    term_id: Term_1198
+    model: Collection
+    model_id: '51'
+  TermRelationship_1519:
+    term_id: Term_1199
+    model: Collection
+    model_id: '51'
+  TermRelationship_1520:
+    term_id: Term_132
+    model: Collection
+    model_id: '51'
+  TermRelationship_2003:
+    term_id: Term_1529
+    model: Collection
+    model_id: '219'
+  TermRelationship_2004:
+    term_id: Term_1530
+    model: Collection
+    model_id: '219'
+  TermRelationship_2005:
+    term_id: Term_1531
+    model: Collection
+    model_id: '219'
+  TermRelationship_2006:
+    term_id: Term_1532
+    model: Collection
+    model_id: '219'
+  TermRelationship_2007:
+    term_id: Term_1533
+    model: Collection
+    model_id: '219'
+  TermRelationship_2008:
+    term_id: Term_1534
+    model: Collection
+    model_id: '219'
+  TermRelationship_2009:
+    term_id: Term_13
+    model: Collection
+    model_id: '219'
+  TermRelationship_2010:
+    term_id: Term_14
+    model: Collection
+    model_id: '219'
+  TermRelationship_2705:
+    term_id: Term_36
+    model: Collection
+    model_id: '495'
+  TermRelationship_2706:
+    term_id: Term_1970
+    model: Collection
+    model_id: '495'
+  TermRelationship_2719:
+    term_id: Term_1977
+    model: Collection
+    model_id: '499'
+  TermRelationship_7808:
+    term_id: Term_4388
+    model: Collectible
+    model_id: '3357'
+  TermRelationship_17036:
+    term_id: Term_4826
+    model: Collectible
+    model_id: '6571'
+  TermRelationship_17037:
+    term_id: Term_7872
+    model: Collectible
+    model_id: '6571'
+  TermRelationship_19126:
+    term_id: Term_8717
+    model: Collectible
+    model_id: '7303'
+  TermRelationship_19127:
+    term_id: Term_8718
+    model: Collectible
+    model_id: '7303'
+  TermRelationship_19128:
+    term_id: Term_1977
+    model: Collectible
+    model_id: '7303'
+  TermRelationship_24660:
+    term_id: Term_2136
+    model: Collection
+    model_id: '637'
   TermRelationship_28371:
     term_id: Term_12165
     model: Collector
@@ -227,6 +311,22 @@ TermRelationship:
     term_id: Term_4583
     model: Collector
     model_id: '714'
+  TermRelationship_29957:
+    term_id: Term_857
+    model: Collectible
+    model_id: '11699'
+  TermRelationship_29958:
+    term_id: Term_4976
+    model: Collectible
+    model_id: '11699'
+  TermRelationship_30344:
+    term_id: Term_7239
+    model: Collectible
+    model_id: '11805'
+  TermRelationship_30345:
+    term_id: Term_2407
+    model: Collectible
+    model_id: '11805'
   TermRelationship_33514:
     term_id: Term_13862
     model: Collector

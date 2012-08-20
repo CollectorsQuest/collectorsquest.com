@@ -447,13 +447,13 @@ var COMMON = window.COMMON = (function(){
            '</div>';
 
       // check if js/jquery/mailcheck.js is loaded
-      if ($().mailcheck) {
+      if ($.fn.mailcheck) {
         // find input elements of type email
         $('input[type=email]').each(function() {
           var $email_el = $(this),
               $email_el_form = $email_el.parents('form');
 
-          var perform_mailcheck = function($el) {
+          var perform_mailcheck = function($el, $form) {
             $el.mailcheck({
               suggested: function(element, suggestion) {
                 // if we have a suggestion by mailcheck, display it
@@ -465,14 +465,14 @@ var COMMON = window.COMMON = (function(){
                 $suggestion.find('.address').html(suggestion.address);
                 $suggestion.find('.domain').html(suggestion.domain);
                 $suggestion.find('a').data('suggested-address', suggestion.full);
-                $el.data('suggestion-shown', true);
                 $suggestion.slideDown(200);
+                $form.addClass('mailcheck-has-suggestion');
               },
               empty: function() {
                 // if the user manually fixes the problem, hide the suggestion
                 var $suggestion = $el.siblings('div.email-suggestion');
-                $el.data('suggestion-shown', false);
                 $suggestion.hide();
+                $form.addClass('mailcheck-has-suggestion');
               }
             });
           };
@@ -485,14 +485,17 @@ var COMMON = window.COMMON = (function(){
           })
           // add an on submit hook to require the user to click 2 times on the submit
           // button before submitting with an email that may be wrong
-          .on('submit', function(e) {
-            perform_mailcheck($email_el);
+          .bindFirst('submit', function() {
+            perform_mailcheck($email_el, $email_el_form);
 
-            if ($email_el.data('suggestion-shown') && !$email_el_form.data('not-first-submit') ){
-              $email_el_form.data('not-first-submit', true);
-              // possibly add highlight effect?
-              //$email_el.siblings('div.email-suggestion').effect("highlight");
-              return false;
+            if ($email_el_form.hasClass('mailcheck-has-suggestion')) {
+              if (!$email_el_form.data('mailcheck-blocked-first-submit') ) {
+                $email_el_form.data('mailcheck-blocked-first-submit', true);
+
+                return false;
+              } else {
+                $email_el_form.data('mailcheck-unblocked-second-submit', true);
+              }
             }
 
             return true;
@@ -500,9 +503,27 @@ var COMMON = window.COMMON = (function(){
 
           // setup blur event - check if the email is ok
           $email_el.on('blur', function() {
-            perform_mailcheck($email_el);
+            perform_mailcheck($email_el, $email_el_form);
           });
         });
+
+        // DUCK-PUNCHING $.fn.showLoading to work with our mailcheck
+        if ($.fn.showLoading) {
+          (function(){
+            var old_showLoading = $.fn.showLoading;
+            $.fn.showLoading = function(options) {
+              var $form = $(this).find('form.mailcheck-has-suggestion');
+              if (!$form.length || $form.data('mailcheck-unblocked-second-submit'))
+              {
+                return old_showLoading.apply(this, arguments);
+              }
+              else
+              {
+                return this;
+              }
+            }
+          }());
+        }
       }
     },
 

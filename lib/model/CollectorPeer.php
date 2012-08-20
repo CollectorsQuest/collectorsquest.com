@@ -137,7 +137,7 @@ class CollectorPeer extends BaseCollectorPeer
       // Split the Hash parts
       @list($version, $id, $hmac, $time_of_hash) = explode(';', $hash);
 
-      $time_limit_target = strtotime($time_limit, (int)$time_of_hash);
+      $time_limit_target = strtotime($time_limit, (integer) $time_of_hash);
 
       if ($time_limit_target < $time)
       {
@@ -171,14 +171,16 @@ class CollectorPeer extends BaseCollectorPeer
   {
     $con = Propel::getConnection();
 
-    $query = "
+    $query = '
       SELECT DISTINCT zip2.COLLECTOR_ID AS id,
-             3963 * ACOS( COS( RADIANS(zip1.latitude) ) * COS( RADIANS( zip2.latitude ) ) * COS( RADIANS( zip2.longitude ) - RADIANS(zip1.longitude) ) + SIN( RADIANS(zip1.latitude) ) * SIN( RADIANS( zip2.latitude ) ) )  AS distance_in_miles
+             3963 * ACOS( COS( RADIANS(zip1.latitude) ) * COS( RADIANS( zip2.latitude ) ) *
+             COS( RADIANS( zip2.longitude ) - RADIANS(zip1.longitude) ) + SIN( RADIANS(zip1.latitude) ) *
+             SIN( RADIANS( zip2.latitude ) ) )  AS distance_in_miles
         FROM %s zip1, %s zip2
        WHERE zip1.zip_postal = %d
       HAVING distance_in_miles <= %d
        ORDER BY distance_in_miles ASC;
-    ";
+    ';
 
     $query = sprintf(
       $query, CollectorGeocachePeer::TABLE_NAME, CollectorGeocachePeer::TABLE_NAME, $zip, $miles
@@ -335,18 +337,18 @@ class CollectorPeer extends BaseCollectorPeer
     $tags = array();
 
     $con = Propel::getConnection();
-    $query = "
-      SELECT DISTINCT CONCAT(collector_geocache.city, ', ', UPPER(collector_geocache.state)) AS tag,
+    $query = '
+      SELECT DISTINCT CONCAT(collector_geocache.city, \', \', UPPER(collector_geocache.state)) AS tag,
              collector_geocache.city AS city,
              collector_geocache.state AS state,
              GROUP_CONCAT(collector_geocache.zip_postal) AS zip,
              COUNT(DISTINCT collector_geocache.collector_id) AS count
         FROM collector_geocache
-       WHERE collector_geocache.country_iso3166 = 'US' AND city IS NOT NULL
+       WHERE collector_geocache.country_iso3166 = \'US\' AND city IS NOT NULL
        GROUP BY tag
        ORDER BY count DESC, tag DESC
        LIMIT 0, {$max}
-    ";
+    ';
 
     $stmt = $con->prepare($query);
     $stmt->execute();
@@ -373,21 +375,21 @@ class CollectorPeer extends BaseCollectorPeer
   public static function getCountry2Tags($max = 50)
   {
     $con = Propel::getConnection();
-    $query = sprintf("
+    $query = sprintf('
       SELECT %s AS tag, COUNT(*) AS count
         FROM %s
         JOIN %s
          ON %s = %s
-       GROUP BY %s
-       ORDER BY count DESC
-       LIMIT 0, %d
-    ",
-/*select*/    GeoCountryPeer::NAME,
-/*from*/      CollectorProfilePeer::TABLE_NAME,
-/*join*/      GeoCountryPeer::TABLE_NAME,
-/*on*/        CollectorProfilePeer::COUNTRY_ISO3166, GeoCountryPeer::ISO3166,
-/*group by*/  GeoCountryPeer::NAME,
-/*limit*/      $max
+        GROUP BY %s
+        ORDER BY count DESC
+        LIMIT 0, %d
+      ',
+      /*select*/    GeoCountryPeer::NAME,
+      /*from*/      CollectorProfilePeer::TABLE_NAME,
+      /*join*/      GeoCountryPeer::TABLE_NAME,
+      /*on*/        CollectorProfilePeer::COUNTRY_ISO3166, GeoCountryPeer::ISO3166,
+      /*group by*/  GeoCountryPeer::NAME,
+      /*limit*/      $max
     );
 
     $stmt = $con->prepare($query);
@@ -420,51 +422,6 @@ class CollectorPeer extends BaseCollectorPeer
     return CollectorPeer::retrieveByPKs($pks);
   }
 
-  /* added by Prakash Panchal 13-APR-2011
-   * updateCollectorAsSeller function.
-   * return object
-   */
-  public static function updateCollectorAsSeller($amSellerInfo = array())
-  {
-    $omSeller = CollectorPeer::retrieveByPK($amSellerInfo['id']);
-
-    $snTotalItemAllowed = ($amSellerInfo['items_allowed'] < 0) ? $amSellerInfo['items_allowed'] : (int)$omSeller->getItemsAllowed() + $amSellerInfo['items_allowed'];
-    $omSeller->setUserType($amSellerInfo['user_type']);
-    $omSeller->setItemsAllowed($snTotalItemAllowed);
-
-    try
-    {
-      $omSeller->save();
-    }
-    catch (PropelException $e)
-    {
-      return false;
-    }
-    return $omSeller;
-  }
-
-  /**
-   * @deprecated
-   *
-   * @param  integer $snSellerId
-   * @return boolean|\Collector
-   */
-  public static function deductAllowedItems($snSellerId)
-  {
-    $omSeller = CollectorPeer::retrieveByPK($snSellerId);
-    $omSeller->setItemsAllowed($omSeller->getItemsAllowed() - 1);
-
-    try
-    {
-      $omSeller->save();
-    }
-    catch (PropelException $e)
-    {
-      return false;
-    }
-    return $omSeller;
-  }
-
   public static function retrieveForSelect($q, $limit = 0)
   {
     $criteria = new Criteria();
@@ -485,40 +442,59 @@ class CollectorPeer extends BaseCollectorPeer
    */
   public static function translateTimeToStringPropelStyle($v)
   {
+    /** @var $dt PropelDateTime */
     $dt = PropelDateTime::newInstance($v, null, 'DateTime');
     return $dt ? $dt->format('Y-m-d H:i:s') : null;
   }
 
   /**
-   * @param     mixed $time string, integer (timestamp), or DateTime value.
-   * @param     type $format The date/time format string (either date()-style or strftime()-style).
-   * @return    mixed Formatted date/time value as string or DateTime object (if format is NULL), NULL if column is NULL, and 0 if column value is 0000-00-00 00:00:00
+   * @param     mixed $time     string, integer (timestamp), or DateTime value.
+   * @param     string $format  The date/time format string (either date()-style or strftime()-style).
    *
    * @throws    RuntimeException
+   * @return    mixed Formatted date/time value as string or
+   *                  DateTime object (if format is NULL),
+   *                  NULL if column is NULL, and 0 if column value is 0000-00-00 00:00:00
+   *
    */
   public static function formatTimePropelSyle($time, $format = 'Y-m-d H:i:s')
   {
-    if ($time === null) {
+    if ($time === null)
+    {
       return null;
     }
 
-    if ($time === '0000-00-00 00:00:00') {
+    if ($time === '0000-00-00 00:00:00')
+    {
       // while technically this is not a default value of NULL,
       // this seems to be closest in meaning.
       return null;
-    } else {
-      try {
+    }
+    else
+    {
+      try
+      {
         $dt = new DateTime($time);
-      } catch (Exception $x) {
-        throw new RuntimeException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($time, true), $x);
+      }
+      catch (Exception $x)
+      {
+        throw new RuntimeException(
+          'Internally stored date/time/timestamp value could not be converted to DateTime: ' . var_export($time, true),
+          $x
+        );
       }
     }
 
-    if ($format === null) {
+    if ($format === null)
+    {
       return $dt;
-    } elseif (strpos($format, '%') !== false) {
+    }
+    elseif (strpos($format, '%') !== false)
+    {
       return strftime($format, $dt->format('U'));
-    } else {
+    }
+    else
+    {
       return $dt->format($format);
     }
   }
@@ -527,8 +503,8 @@ class CollectorPeer extends BaseCollectorPeer
    * Listener for user.change_authentication
    *
    * Used to set COOKIE_UUID from the request cookie;
-   * Because the cookie can change at some points (ie, using the site form a different PC), it's preferred to keep the collector's COOKIE_UUID updating
-   * based on that cookie.
+   * Because the cookie can change at some points (ie, using the site form a different PC),
+   * it's preferred to keep the collector's COOKIE_UUID updating based on that cookie.
    *
    * @param     sfEvent $event
    */

@@ -1,31 +1,13 @@
 php_value tidy.clean_output 0
 
 # BEGIN WordPress
-
 <IfModule mod_rewrite.c>
 RewriteEngine On
 RewriteBase /blog/
-
-# Redirect all wp-includes/ or wp-admin/ requests to backend.collectorsquest.com
-RewriteCond %{HTTP_HOST} !^www.collectorsquest.dev$
-RewriteCond %{HTTP_HOST} !^www.cqnext.com$
-RewriteCond %{HTTP_HOST} !^backend.collectorsquest.com$
-RewriteCond %{REQUEST_METHOD} !^POST$
-RewriteRule ^(wp-admin|wp-includes) http://backend.collectorsquest.com%{REQUEST_URI} [QSA,L,R=301]
-
-# Redirect everything which is not wp-admin/ to www.collectorsquest.com
-RewriteCond %{HTTP_HOST} ^backend.collectorsquest.com$
-RewriteRule !^(wp-admin|wp-includes) http://www.collectorsquest.com%{REQUEST_URI} [QSA,L,R=301]
-
 RewriteRule ^index\.php$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /blog/index.php [L]
-
-RewriteRule ^pages/ /blog/pages/about-us/
 </IfModule>
-
-RedirectPermanent /blog/author/colin /blog/author/collin
-RedirectPermanent /blog/author/shaun-hennessy /blog/author/ms-hennessy
 
 # END WordPress

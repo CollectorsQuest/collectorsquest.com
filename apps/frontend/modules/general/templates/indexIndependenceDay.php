@@ -33,10 +33,10 @@ $blog_post = wpPostQuery::create()->findOneById(26075);
       <div class="masonry-blogpost-author">
         <p>
           <?php
-            echo link_to_blog_author(
-              $blog_post->getwpUser(), 'image',
-              array('width' => 35, 'height' => 35, 'style' => 'float: left; margin-right: 10px;')
-            );
+            echo link_to_blog_author($blog_post->getwpUser(), 'image', array(
+              'link_to' => array('style' => 'float: left; margin-right: 10px;'),
+              'image_tag' => array('width' => 35, 'height' => 35, 'style' => 'float: left; margin-right: 10px;')
+            ));
           ?>
           posted by<br/>
           <?= link_to_blog_author($blog_post->getwpUser(), 'text'); ?>
@@ -46,7 +46,11 @@ $blog_post = wpPostQuery::create()->findOneById(26075);
 
     <?php foreach ($collectibles as $i => $collectible): ?>
     <div class="span2" style="width: 100px; margin-bottom: 10px; <?= (($i-12)%7 !== 0 || $i < 12) ? 'margin-left: 10px' : ''; ?>">
-      <?= link_to_collectible($collectible, 'image', array('width' => 100, 'height' => 100)); ?>
+      <?php
+        echo link_to_collectible($collectible, 'image', array(
+          'image_tag' => array('width' => 100, 'height' => 100)
+        ));
+      ?>
     </div>
     <?php endforeach; ?>
 
@@ -56,7 +60,11 @@ $blog_post = wpPostQuery::create()->findOneById(26075);
     </div>
     <?php foreach ($collectibles as $i => $collectible): ?>
     <div class="span2" style="width: 100px; margin-bottom: 10px; <?= (($i-8)%7 !== 0 || $i < 8) ? 'margin-left: 10px' : ''; ?>">
-      <?= link_to_collectible($collectible, 'image', array('width' => 100, 'height' => 100)); ?>
+      <?php
+        echo link_to_collectible($collectible, 'image', array(
+          'image_tag' => array('width' => 100, 'height' => 100)
+        ));
+      ?>
     </div>
     <?php endforeach; ?>
     //-->

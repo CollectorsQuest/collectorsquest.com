@@ -6,15 +6,18 @@
   <div class="row-fluid profile-info link">
     <div class="span3">
       <?php
-        echo link_to_collector(
-          $collector, 'image', array(),
-          array('max_width' => 64, 'max_height' => '64')
-        );
+        echo link_to_collector($collector, 'image', array(
+            'image_tag' => array('max_width' => 64, 'max_height' => '64')
+        ));
       ?>
     </div>
     <div class="span9">
       <h2 class="spacer-bottom-5">
-        <?= link_to_collector($collector, 'text', array('class' => 'target')); ?>
+        <?php
+          echo link_to_collector($collector, 'text', array(
+            'link_to' => array('class' => 'target')
+          ));
+        ?>
       </h2>
       <ul style="list-style: none; margin-left: 0;">
         <li>

@@ -6,10 +6,9 @@
 
 <div class="span3 thumbnail link">
   <?php
-    echo link_to_collectible(
-      $collectible_for_sale->getCollectible(), 'image',
-      array('width' => 150, 'height' => 150, 'max_width' => 132, 'max_height' => 132)
-    );
+    echo link_to_collectible($collectible_for_sale->getCollectible(), 'image', array(
+      'image_tag' => array('width' => 150, 'height' => 150, 'max_width' => 132, 'max_height' => 132)
+    ));
   ?>
   <p>
     <?php

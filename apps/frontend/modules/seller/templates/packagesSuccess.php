@@ -103,74 +103,50 @@
   <div class="control-group packages-wrapper">
     <div class="choice-packages">
       <div class="radio_list">
+        <?php $package_labels = PackagePeer::getAllPackageLabelsForSelectById(
+          isset($promotion) ? $promotion : null,
+          array(
+            'template' =>
+              '<span class="%package_id_class% Chivo webfont tooltip-position-right" rel="tooltip" title="%price_per_item% per item">
+                %num_listings%
+                <span class="spacer-left-5 green pull-right">%package_price_discounted%</span>
+                <span class="blue pull-right %discounted_class%">%package_price%</span>
+              </span>',
+            'discount_class' => 'strikethrough',
+        )); ?>
         <label class="radio <?= isset($package_id_value) && 1 != $package_id_value ? 'hide' : '' ?>">
           <input required="required" name="packages[package_id]" type="radio" value="1"
             <?= 1 == $package_id_value ? 'checked' : '' ?>
             id="packages_package_id_1" class="package-input"
           >
-          <span class="package1 Chivo webfont tooltip-position-right" rel="tooltip" title="$2.50 per item">
-            1 listing<span class="blue pull-right">$2.50</span>
-          </span>
+          <?= $package_labels[1] ?>
         </label>
         <label class="radio <?= isset($package_id_value) && 2 != $package_id_value ? 'hide' : '' ?>">
           <input required="required" name="packages[package_id]" type="radio" value="2"
             <?= 2 == $package_id_value ? 'checked' : '' ?>
             id="packages_package_id_2" class="package-input"
           >
-          <span class="package2 Chivo webfont tooltip-position-right" rel="tooltip" title="$2.00 per item">
-            10 listings<span class="blue pull-right">$20</span>
-          </span>
+          <?= $package_labels[2] ?>
         </label>
         <label class="radio <?= isset($package_id_value) && 3 != $package_id_value ? 'hide' : '' ?>">
           <input required="required" name="packages[package_id]" type="radio" value="3"
             <?= 3 == $package_id_value ? 'checked' : '' ?>
              id="packages_package_id_3" class="package-input"
           >
-          <span class="package3 Chivo webfont tooltip-position-right" rel="tooltip" title="$1.50 per item">
-            100 listings<span class="blue pull-right">$150</span>
-          </span>
+          <?= $package_labels[3] ?>
         </label>
         <label class="radio <?= isset($package_id_value) && 6 != $package_id_value ? 'hide' : '' ?>">
           <input required="required" name="packages[package_id]" type="radio" value="6"
             <?= 6 == $package_id_value ? 'checked' : '' ?>
             id="packages_package_id_4" class="package-input"
           >
-          <span class="package4 Chivo webfont" title="unlimited items">
-            <span class="red-bold">UNLIMITED</span> listings
-            <span class="blue pull-right">only $250</span>
-          </span>
-          <!--<span class="price-per-item red">unlimited items</span>-->
+          <?= $package_labels[6] ?>
         </label>
       </div>
       <?= $packagesForm['package_id']->renderError(); ?>
     </div>
   </div>
-  <?php /*
-  <div class="control-group packages-wrapper">
-      <div class="choice-packages">
-        <div class="radio_list">
-          <label class="radio">
-            <input required="required" name="packages[package_id]" type="radio" value="1" <?= 1 == $package_id_value ? 'checked' : '' ?> id="packages_package_id_1">
-            <span class="package1 Chivo webfont tooltip-position-top" rel="tooltip" title="$2.50 per item">1 listing <span class="blue pull-right">$2.50</span></span>
-          </label>
-          <label class="radio">
-            <input required="required" name="packages[package_id]" type="radio" value="2" <?= 2 == $package_id_value ? 'checked' : '' ?> id="packages_package_id_2">
-            <span class="package2 Chivo webfont tooltip-position-top" rel="tooltip" title="$2.00 per item">10 listings <span class="blue pull-right">$20</span></span>
-          </label>
-          <label class="radio">
-            <input required="required" name="packages[package_id]" type="radio" value="3" <?= 3 == $package_id_value ? 'checked' : '' ?> id="packages_package_id_3">
-            <span class="package3 Chivo webfont tooltip-position-top" rel="tooltip" title="$1.50 per item">100 listings <span class="blue pull-right">$150</span></span>
-          </label>
-          <label class="radio">
-            <input required="required" name="packages[package_id]" type="radio" value="6" <?= 6 == $package_id_value ? 'checked' : '' ?> id="packages_package_id_4">
-            <span class="package4 Chivo webfont tooltip-position-top" rel="tooltip" title="unlimited items"><span class="red-bold">UNLIMITED</span> listings <span class="blue pull-right">only $250</span></span>
-            <!--<span class="price-per-item red">unlimited items</span>-->
-          </label>
-        </div>
-        <?= $packagesForm['package_id']->renderError(); ?>
-      </div>
-  </div>
-  */ ?>
+
   <fieldset>
     <div class="control-group discount-code-wrapper">
       <?= $packagesForm['promo_code']->renderLabel('Have a promo code?', array('class'=> 'control-label')) ?>
@@ -181,8 +157,9 @@
           Apply Discount
         </button>
         <?= $packagesForm['promo_code']->renderError() ?>
-        <?php if (!empty($discountMessage)): ?>
-        <span style="color: green; font-weight: bold;"><?=$discountMessage ?></span>
+        <?php if (isset($discount_message)): ?>
+        <br />
+        <span style="color: green; font-weight: bold;"><?= $discount_message ?></span>
         <?php endif; ?>
       </div>
     </div>

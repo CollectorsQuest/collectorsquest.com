@@ -47,14 +47,32 @@ class sellerActions extends cqFrontendActions
         $packagesForm->setPartialRequirements();
         $packagesForm->bind($request->getParameter($packagesForm->getName()));
 
-        if ($packagesForm->isValid() && !is_null($packagesForm->getValue('package_id')))
+        if ($packagesForm->isValid())
         {
           $promotion = $packagesForm->getPromotion();
-          $package = $packagesForm->getPackage();
+          // expose the promotion for the template
+          $this->promotion = $promotion;
 
-          if ($promotion)
+          if ($promotion && !is_null($packagesForm->getValue('package_id')))
           {
+            $package = $packagesForm->getPackage();
+
+            // apply it to the package
             $package->applyPromo($promotion);
+            // and prepare the discount message
+
+            if (0 == $package->getPriceWithDiscount())
+            {
+              $this->discount_message = 'Free Subscription!';
+            }
+            else
+            {
+              $this->discount_message = sprintf(
+                '%d%s discount',
+                $promotion->getAmount(),
+                $promotion->getAmountTypeString()
+              );
+            }
           }
         }
       }
@@ -97,7 +115,7 @@ class sellerActions extends cqFrontendActions
               'success', 'Congratulations! You have received a free subscription!'
             );
 
-            return $this->redirect('@mycq_marketplace');
+            return $this->redirect('@mycq_marketplace_settings');
           }
           else if ('paypal' == $packagesForm->getValue('payment_type'))
           {
@@ -229,7 +247,6 @@ class sellerActions extends cqFrontendActions
               $transaction->save();
 
               $collector->setUserType(CollectorPeer::TYPE_SELLER);
-              $collector->setItemsAllowed($package->getCredits());
               $collector->save();
 
               // Send Mail To Seller
@@ -273,6 +290,10 @@ class sellerActions extends cqFrontendActions
       }
     }
 
+    if ($request->getParameter('return_to'))
+    {
+      $this->getUser()->setAttribute('purchase_credits_return_to', $request->getParameter('return_to'), 'seller');
+    }
     $this->packagesForm = $packagesForm;
 
     return sfView::SUCCESS;
@@ -387,7 +408,6 @@ class sellerActions extends cqFrontendActions
           $package = $package_transaction->getPackage();
 
           $collector->setUserType(CollectorPeer::TYPE_SELLER);
-          $collector->setItemsAllowed($package->getCredits());
           $collector->save();
 
           $package_transaction->setPackagePrice($request->getParameter('mc_gross'));

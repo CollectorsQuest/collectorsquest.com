@@ -8,10 +8,10 @@ wpUser:
     user_registered: '2006-01-07 12:24:34'
     user_activation_key: 39ojSC3OOyAUNw0lkIaR
     user_status: '0'
-    display_name: 'Collectors'' Quest'
+    display_name: 'Collectors Quest'
   wpUser_3:
     user_login: deanna
-    user_pass: $P$Bu0fWIpJmeFYHA7mFEXtq8dKwes.bE1
+    user_pass: $P$BBvN6Jjfvkyaf2rPvAKH7NzZNgCMLG0
     user_nicename: deanna
     user_email: deanna@collectorsquest.com
     user_url: 'http://www.google.com/profiles/Deanna.Pop.Tart'
@@ -50,9 +50,9 @@ wpUser:
     user_status: '0'
     display_name: 'Lorraine Newberry'
   wpUser_7:
-    user_login: colin
+    user_login: collin
     user_pass: $P$BRgHM78J7N/t5FdvWPLVXnS4S3g.qy1
-    user_nicename: colin
+    user_nicename: collin
     user_email: collin@collectorsquest.com
     user_url: 'http://www.resonantfish.com'
     user_registered: '2006-02-07 22:52:51'
@@ -61,7 +61,7 @@ wpUser:
     display_name: 'Collin David'
   wpUser_8:
     user_login: val
-    user_pass: $P$B.blDZxxdxeC3lVMtgNrlbfk0K.Ule0
+    user_pass: $P$BCwIbXiPAkUD2YfsRYXrpWkJBztWCo0
     user_nicename: val
     user_email: val@collectorsquest.com
     user_url: 'http://www.collectorsquest.com'
@@ -81,12 +81,12 @@ wpUser:
     display_name: 'The Dean'
   wpUser_10:
     user_login: Liz
-    user_pass: $P$BPIr3pgjCC2NuRRz4Wd2tXN83XsrgU1
+    user_pass: $P$BjQK7JkywUOtCj.VsWl4Ohmr/FcXOx1
     user_nicename: liz
     user_email: ekressel@collectorsquest.com
     user_url: 'http://www.collectorsquest.com'
     user_registered: '2007-06-13 20:03:52'
-    user_activation_key: kN0luurNORBbMuMsz2RU
+    user_activation_key: EW8FSmfA0CTmzjgGWKot
     user_status: '0'
     display_name: 'Liz Kressel'
   wpUser_11:
@@ -151,8 +151,8 @@ wpUser:
     display_name: 'Joe Szilvagyi'
   wpUser_18:
     user_login: 'Shawn Hennessy'
-    user_pass: $P$BRyHa2c6jLvdzpCW2TJCPgaBHw4r5T/
-    user_nicename: shawn-hennessy
+    user_pass: $P$BMD1QZ/.lM6rZcSQnUTxR70gy2.uG70
+    user_nicename: ms-hennessy
     user_email: shawn@collectorsquest.com
     user_url: ''
     user_registered: '2012-02-06 14:23:21'
@@ -161,22 +161,22 @@ wpUser:
     display_name: 'M. S. Hennessy'
   wpUser_19:
     user_login: alex
-    user_pass: $P$BEQbUqhB61oht/Erm2tyjznB8.NYFH1
+    user_pass: $P$BBEZfPqwI.O8nRkDqV36qKXOLgTAhd.
     user_nicename: alex
     user_email: alex@collectorsquest.com
     user_url: ''
     user_registered: '2012-02-23 18:15:35'
-    user_activation_key: ''
+    user_activation_key: xFxrS9x7GIpDpTChHZyX
     user_status: '0'
     display_name: 'Alex Rice'
   wpUser_20:
     user_login: Craig
-    user_pass: $P$BCpLvaPgaJWXIdkb0w7i2d5Ijnviq8.
+    user_pass: $P$BKZdKjXwY9IsDkjBsgM51FnSe4832M.
     user_nicename: craig
     user_email: craig@collectorsquest.com
     user_url: ''
     user_registered: '2012-04-12 14:16:00'
-    user_activation_key: ''
+    user_activation_key: 0nd4a3j69bBuiWWYShKX
     user_status: '0'
     display_name: Craig
   wpUser_21:
@@ -189,3 +189,43 @@ wpUser:
     user_activation_key: ''
     user_status: '0'
     display_name: estein
+  wpUser_22:
+    user_login: erimille
+    user_pass: $P$BgZ0PhN4An6x7AuSrS96pNa4QAdUcJ0
+    user_nicename: erimille
+    user_email: erimille@adobe.com
+    user_url: 'http://adobe.com'
+    user_registered: '2012-05-26 20:26:29'
+    user_activation_key: ''
+    user_status: '0'
+    display_name: erimille
+  wpUser_23:
+    user_login: tod
+    user_pass: $P$BwOfLHd/cT6vQBAv3JrC/3xLQ.CwCD.
+    user_nicename: tod
+    user_email: tod@collectorsquest.com
+    user_url: ''
+    user_registered: '2012-06-08 11:33:56'
+    user_activation_key: ''
+    user_status: '0'
+    display_name: 'Tod Westlake'
+  wpUser_25:
+    user_login: developers
+    user_pass: $P$BJschxXb4t7quuv5zNTOQLMziplzDm.
+    user_nicename: developers
+    user_email: developers@collectorsquest.com
+    user_url: 'http://www.collectorsquest.com/'
+    user_registered: '2012-08-13 16:28:12'
+    user_activation_key: ''
+    user_status: '0'
+    display_name: developers
+  wpUser_24:
+    user_login: angie
+    user_pass: $P$BW3iTzfAXC56FumekCbF6rJFo3F8QY.
+    user_nicename: angie
+    user_email: angie@collectorsquest.com
+    user_url: 'http://www.collectorsquest.com/'
+    user_registered: '2012-08-03 16:11:12'
+    user_activation_key: ''
+    user_status: '0'
+    display_name: angie

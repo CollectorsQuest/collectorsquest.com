@@ -97,18 +97,14 @@ class cqFrontendUser extends cqBaseUser
   }
 
   /**
-   * @param  boolean  $strict
-   * @return null|Seller
+   * @param     boolean  $strict
+   * @return    null|Seller
    */
   public function getSeller($strict = false)
   {
-    if (($collector = $this->getCollector($strict)) && $collector->getIsSeller())
+    if (($collector = $this->getCollector($strict)))
     {
-      $seller = new Seller();
-      $collector->copyInto($seller, $deep = false, $make_new = false);
-      $seller->setId($this->getId());
-
-      return $seller;
+      return $collector->getSeller();
     }
 
     return null;

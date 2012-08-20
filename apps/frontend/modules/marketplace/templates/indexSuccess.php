@@ -40,20 +40,20 @@
 </div>
 <?php endif; ?>
 
-<?php /*
+<?php if (IceGateKeeper::open('mycq_seller_pay')): ?>
 <div class="banners-620 spacer-top-20">
-
-
+  <?php
   if (!$sf_user->isAuthenticated())
   {
-    echo  link_to(image_tag('banners/show_and_sell_red_635x111.png'), '@collector_signup');
+    echo link_to(image_tag('banners/show_and_sell_red_635x111.png'), '@collector_signup');
   }
-  else {
+  elseif ($sf_user->getSeller() && !$sf_user->getSeller()->hasPackageCredits())
+  {
     echo link_to(image_tag('banners/show_and_sell_red_635x111_user.png'), '@seller_packages');
   }
+  ?>
 </div>
-
- */ ?>
+<?php endif; ?>
 
 <?php cq_section_title('Discover More Items for Sale'); ?>
 

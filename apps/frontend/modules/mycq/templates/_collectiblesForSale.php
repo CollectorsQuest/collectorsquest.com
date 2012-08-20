@@ -13,7 +13,7 @@
 <?php end_slot(); ?>
 
 <?php slot('mycq_buy_credits'); ?>
-<a href="<?php echo url_for('@seller_packages'); ?>"
+<a href="<?= url_for('@seller_packages'); ?>"
    id="buy-credits-html" class="span3 collectible_sold_items_grid_view_square add-new-zone"
    title="Click here to buy more listings">
   <span class="btn-upload-collectible">

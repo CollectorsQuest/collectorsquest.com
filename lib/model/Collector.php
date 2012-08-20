@@ -78,6 +78,9 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
 
   protected $collCollectiblesInCollections;
 
+  /** @var Collector */
+  protected $seller;
+
   public function initializeProperties()
   {
     $this->registerProperty('SINGUP_NUM_COMPLETED_STEPS', 1);
@@ -945,9 +948,34 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
       ->count();
   }
 
+  /**
+   * @return    boolean
+   */
   public function getIsSeller()
   {
-    return $this->getUserType() == 'Seller';
+    return CollectorPeer::TYPE_SELLER == $this->getUserType();
+  }
+
+  /**
+   * Get a Seller wrapped Collector
+   *
+   * @return    Seller|null
+   */
+  public function getSeller()
+  {
+    if ($this->getIsSeller())
+    {
+      if (null === $this->seller)
+      {
+        $this->seller = new Seller($this);
+      }
+
+      return $this->seller;
+    }
+    else
+    {
+      return null;
+    }
   }
 
   public function fromArray($array, $keyType = BasePeer::TYPE_PHPNAME)
@@ -1252,55 +1280,6 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
   {
     return CollectorEmailPeer::retrieveLastPending($this, $verified);
   }
-
-  /**
-   * Sets new limit of max collectibles for sale
-   *
-   * @param $collectiblesForSale
-   * @return Collector
-   * @todo add tests
-   */
-  public function addCollectiblesForSaleLimit($collectiblesForSale)
-  {
-    $newLimit = $collectiblesForSale < 0 ? 10000 : ($this->getItemsAllowed() + $collectiblesForSale);
-    $this->setItemsAllowed($newLimit);
-    $this->setMaxCollectiblesForSale($newLimit);
-
-    return $this;
-  }
-
-  /**
-   * Recalculates max collectibles for sale based on currently active packages
-   *
-   * @return Collector
-   *
-   * @todo add tests
-   */
-  public function updateCollectiblesForSaleLimit()
-  {
-    /* @var $activePackageTransactions PackageTransaction[] */
-    $activePackageTransactions = PackageTransactionQuery::create()
-        ->filterByCollector($this)
-        ->filterByExpiryDate(time(), Criteria::GREATER_THAN)
-        ->find()
-        ;
-
-    $collectiblesForSale = 0;
-    foreach ($activePackageTransactions as $packageTransaction)
-    {
-      if ($packageTransaction->getCredits() < 0)
-      {
-        $collectiblesForSale = 10000;
-        break;
-      }
-      $collectiblesForSale += $packageTransaction->getCredits();
-    }
-
-    $this->setMaxCollectiblesForSale($collectiblesForSale);
-
-    return $this;
-  }
-
 
   /**
    * For each Multimedia that is added to the Advert, this method will be called

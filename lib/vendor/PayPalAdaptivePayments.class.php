@@ -897,7 +897,7 @@ class PayPalAdaptivePayments extends PayPal
     $FeesPayer = isset($PreapprovalFields['FeesPayer']) ? $PreapprovalFields['FeesPayer'] : '';
     $DisplayMaxTotalAmount = isset($PreapprovalFields['DisplayMaxTotalAmount']) ? $PreapprovalFields['DisplayMaxTotalAmount'] : '';
 
-    $ClientDetailsFields = isset($DataArray['ClientDetailsFields']) ? $DataArray['ClientDetails'] : array();
+    $ClientDetailsFields = isset($DataArray['ClientDetailsFields']) ? $DataArray['ClientDetailsFields'] : array();
     $CustomerID = isset($ClientDetailsFields['CustomerID']) ? $ClientDetailsFields['CustomerID'] : '';
     $CustomerType = isset($ClientDetailsFields['CustomerType']) ? $ClientDetailsFields['CustomerType'] : '';
     $GeoLocation = isset($ClientDetailsFields['GeoLocation']) ? $ClientDetailsFields['GeoLocation'] : '';

@@ -8,10 +8,9 @@
      class="span4 collectible_for_sale_grid_view_square link">
 
   <?php
-    echo link_to_collectible(
-      $collectible_for_sale->getCollectible(), 'image',
-      array('width' => 190, 'height' => 190)
-    );
+    echo link_to_collectible($collectible_for_sale->getCollectible(), 'image', array(
+      'image_tag' => array('width' => 190, 'height' => 190)
+    ));
   ?>
   <p>
     <?php

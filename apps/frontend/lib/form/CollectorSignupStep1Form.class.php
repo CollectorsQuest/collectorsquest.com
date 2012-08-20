@@ -49,7 +49,6 @@ class CollectorSignupStep1Form extends BaseForm
           return !$rows ? '' : $widget->renderContentTag('div', implode($widget->getOption('separator'), $rows), array('class' => $widget->getOption('class')));
         }
       ), array(
-        'required' => 'required',
         'style' => 'padding-top: 3px;'
       )),
       'newsletter'  => new sfWidgetFormInputCheckbox(array(), array(

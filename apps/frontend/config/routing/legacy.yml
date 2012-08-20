@@ -45,3 +45,14 @@ legacy_collector_by_slug:
   options: { model: Collector, type: object, method: getObjectForRoute }
   param: { module: collector, action: index }
   requirements: { slug: '[\-\w\.]+' }
+
+legacy_collectible_by_slug:
+  url:  /collection/item/:id/:slug
+  class: cqPropelRoute
+  options: { model: Collectible, type: object, method: getObjectForRoute, statsd: true }
+  param: { module: collection, action: collectible }
+  requirements: { id: '\d+', slug: '[\-\w\.]+' }
+
+legacy_featured_week_page:
+  url:  /featured-week/Rubber+Ducks
+  param: { module: collections, action: index }

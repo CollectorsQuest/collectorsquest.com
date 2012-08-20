@@ -5,7 +5,6 @@
  */
 ?>
 
-<div id="collectibles-for-sale">
 <?php
   cq_sidebar_title(
     $title, cq_link_to(
@@ -21,10 +20,9 @@
     <div class="inner-border">
       <div class="span3">
         <?php
-          echo link_to_collectible(
-            $collectible_for_sale->getCollectible(), 'image',
-            array('width' => 75, 'height' => 75, 'max_width' => 60)
-          );
+          echo link_to_collectible($collectible_for_sale->getCollectible(), 'image', array(
+            'image_tag' => array('width' => 75, 'height' => 75, 'max_width' => 60)
+          ));
         ?>
       </div>
       <div class="span9 fix-height-text-block">
@@ -45,6 +43,4 @@
     </div>
   </div>
 <?php endforeach; ?>
-</div>
-
 </div>

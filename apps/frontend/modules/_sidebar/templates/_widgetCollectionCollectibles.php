@@ -3,8 +3,8 @@
   use_javascript('jquery/rcarousel.js');
 ?>
 
-<div class="carousel-sidebar">
-  <span>Other items in this collection:</span>
+<div class="carousel-sidebar sidebar-title">
+  <h3 class="Chivo webfont spacer-bottom-5">Other items in this collection:</h3>
   <div class="thumbnails-inner well">
     <a href="javascript:void(0)" id="ui-carousel-prev" title="previous collectible" class="left-arrow">
       <i class="icon-chevron-left white"></i>

@@ -34,13 +34,13 @@ class cqValidatorCreditCardNumber extends sfValidatorBase
     $this->addMessage('invalid', 'The credit card number you entered is not valid');
   }
 
-  public function doClean($value)
+  protected function doClean($value)
   {
     // clean all non-numberic characters from value
     // based on http://stackoverflow.com/questions/406230/regular-expression-to-match-string-not-containing-a-word
     $value = preg_replace('/((?![0-9]).)*/', '', $value);
 
-    if (!$this->_isValidCreditCard($value, $this->options['card_type']))
+    if (!self::isValidCreditCard($value, $this->options['card_type']))
     {
       throw new sfValidatorError($this, 'invalid', array('value' => $value));
     }
@@ -55,7 +55,7 @@ class cqValidatorCreditCardNumber extends sfValidatorBase
    *
    * @return    boolean
    */
-  private function _checkSum($ccnum)
+  protected static function _checkSum($ccnum)
   {
     $checksum = 0;
     for ($i = (2-(strlen($ccnum) % 2)); $i <= strlen($ccnum); $i+=2)
@@ -88,28 +88,42 @@ class cqValidatorCreditCardNumber extends sfValidatorBase
    *
    * @return    boolean
    */
-  private function _isValidCreditCard($ccnum, $type = null)
+  public static function isValidCreditCard($ccnum, $type = null)
   {
-    if (!$type)
+    if (null === $type)
     {
-      $match = false;
-      foreach (self::$_ccregex as $type => $pattern)
-      {
-        if (preg_match($pattern,$ccnum) == 1)
-        {
-          $match = true;
-          break;
-        }
-      }
+      $matches_type = (boolean) self::getCreditCardTypeFromNumber($ccnum);
 
-      return $match ? $this->_checkSum($ccnum) : false;
+      return $matches_type
+        ? self::_checkSum($ccnum)
+        : false;
     }
 
-    if (@preg_match(self::$_ccregex[strtolower(trim($type))],$ccnum) == 0)
+    if (@preg_match(self::$_ccregex[strtolower(trim($type))], $ccnum) == 0)
     {
       return false;
     }
 
-    return $this->_checkSum($ccnum);
+    return self::_checkSum($ccnum);
   }
+
+  /**
+   * Try to guess the credit card type from the number
+   *
+   * @param     string $ccnum
+   * @return    string|false
+   */
+  public static function getCreditCardTypeFromNumber($ccnum)
+  {
+    foreach (self::$_ccregex as $type => $pattern)
+    {
+      if (preg_match($pattern, $ccnum) == 1)
+      {
+        return $type;
+      }
+    }
+
+    return false;
+  }
+
 }
