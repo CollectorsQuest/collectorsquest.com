@@ -302,7 +302,11 @@ class mycqActions extends cqFrontendActions
       $collection->save();
     }
 
-    $this->redirect('mycq_collectible_by_slug', $collection_collectible);
+    return $this->redirect($this->getController()->genUrl(array(
+        'sf_route' => 'mycq_collectible_by_slug',
+        'sf_subject' => $collection_collectible,
+        'suggest_tags' => true,
+    )));
   }
 
   public function executeCollectible(sfWebRequest $request)
@@ -387,8 +391,9 @@ class mycqActions extends cqFrontendActions
           try
           {
             /**
-             * If the Collectible has Multimedia associated with it, let's just delete
-             * the CollectionCollectible references so that it can return to the Dropbox
+             * If the Collectible has Multimedia associated with it, let's just
+             * delete the CollectionCollectible references so that it can return
+             * to the Dropbox
              */
             $default = $collectible->getMultimediaCount() > 0 ? 'collections' : 'collectible';
 
@@ -447,6 +452,11 @@ class mycqActions extends cqFrontendActions
 
     $form = new CollectibleEditForm($collectible);
     $form->setDefault('return_to', $request->getParameter('return_to'));
+
+    if ($request->getParameter('suggest_tags') && !count($collectible->getTags()))
+    {
+      $form->setDefault('tags', $collection->getTags());
+    }
 
     $form_shipping_us = new SimpleShippingCollectorCollectibleForCountryForm(
       $collectible,
