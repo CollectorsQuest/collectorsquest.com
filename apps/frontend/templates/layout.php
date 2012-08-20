@@ -14,7 +14,7 @@
 <!--[if IE 7 ]>       <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#" xmlns:og="http://opengraph.org/schema/" lang="en" class="no-js lt-ie10 lt-ie9 lt-ie8"><![endif]-->
 <!--[if IE 8 ]>       <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#" xmlns:og="http://opengraph.org/schema/" lang="en" class="no-js lt-ie10 lt-ie9"><![endif]-->
 <!--[if IE 9]>        <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#" xmlns:og="http://opengraph.org/schema/" lang="en" class="no-js lt-ie10"><![endif]-->
-<!--[if gt IE 9]><!--><html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#" xmlns:og="http://opengraph.org/schema/ lang="en" class="no-js"><!--<![endif]-->
+<!--[if gt IE 9]><!--><html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#" xmlns:og="http://opengraph.org/schema/" lang="en" class="no-js"><!--<![endif]-->
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# collectorsquest: http://ogp.me/ns/fb/collectorsquest#">
   <?php include_partial('global/head'); ?>
 
@@ -106,7 +106,7 @@
   ?>
 
   <?php include_partial('global/flash_messages'); ?>
-  
+
   <div id="main">
     <?php
       /** @var $sf_content string */
