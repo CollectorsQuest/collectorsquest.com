@@ -21,34 +21,30 @@
               );
             ?>
           </div>
-          <p>
+
+          <div class="footer-social-icons">
+            <strong>Follow us:</strong>
             <a href="https://www.facebook.com/pages/Collectors-Quest/119338990397"
-               target="_blank" class="social-link" title="Follow us on Facebook">
-              <i class="s-16-icon-facebook social-ico-padding"></i>Follow us on Facebook
+               target="_blank" class="social-link spacer-left"
+               rel="tooltip" title="Follow us on Facebook">
+              <i class="s-24-icon-facebook social-ico-padding"></i>
             </a>
-          </p>
-
-          <p>
             <a href="https://twitter.com/CollectorsQuest"
-               target="_blank" class="social-link" title="Follow us on Twitter">
-              <i class="s-16-icon-twitter social-ico-padding"></i>Follow us on Twitter
+               target="_blank" class="social-link"
+               rel="tooltip" title="Follow us on Twitter">
+              <i class="s-24-icon-twitter social-ico-padding"></i>
             </a>
-          </p>
-
-          <p>
             <a href="https://plus.google.com/113404032517505188429"
-               target="_blank" class="social-link" title="Follow us on Google+">
-              <i class="s-16-icon-google social-ico-padding"></i>Follow us on Google+
+               target="_blank" class="social-link"
+               rel="tooltip" title="Follow us on Google+">
+              <i class="s-24-icon-google social-ico-padding"></i>
             </a>
-          </p>
-
-          <p>
-            <a href="https://pinterest.com/CollectorsQuest"
-               target="_blank" class="social-link" title="Follow us on Pinterest">
-              <i class="s-16-icon-pinterest social-ico-padding"></i>Follow us on Pinterest
+            <a href="http://pinterest.com/CollectorsQuest"
+               target="_blank" class="social-link"
+               rel="tooltip" title="Follow us on Pinterest">
+              <i class="s-24-icon-pinterest social-ico-padding"></i>
             </a>
-          </p>
-
+          </div>
 
         </div>
       </div>
