@@ -1,19 +1,21 @@
 CollectorProfileExtraProperty:
   CollectorProfileExtraProperty_50:
     property_name: ABOUT.PURCHASES_PER_YEAR
-    property_value: '0'
     collector_profile_collector_id: CollectorProfile_12
   CollectorProfileExtraProperty_51:
     property_name: ABOUT.WHAT_YOU_SELL
     collector_profile_collector_id: CollectorProfile_12
   CollectorProfileExtraProperty_52:
     property_name: ABOUT.ANNUALLY_SPEND
+    property_value: ''
     collector_profile_collector_id: CollectorProfile_12
   CollectorProfileExtraProperty_53:
     property_name: ABOUT.MOST_EXPENSIVE_ITEM
+    property_value: ''
     collector_profile_collector_id: CollectorProfile_12
   CollectorProfileExtraProperty_54:
     property_name: ABOUT.COMPANY
+    property_value: ''
     collector_profile_collector_id: CollectorProfile_12
   CollectorProfileExtraProperty_182:
     property_name: ABOUT.PURCHASES_PER_YEAR
@@ -30,6 +32,7 @@ CollectorProfileExtraProperty:
     collector_profile_collector_id: CollectorProfile_52
   CollectorProfileExtraProperty_186:
     property_name: ABOUT.COMPANY
+    property_value: ''
     collector_profile_collector_id: CollectorProfile_52
   CollectorProfileExtraProperty_224:
     property_name: ABOUT.PURCHASES_PER_YEAR
@@ -40,6 +43,7 @@ CollectorProfileExtraProperty:
     collector_profile_collector_id: CollectorProfile_59
   CollectorProfileExtraProperty_228:
     property_name: ABOUT.COMPANY
+    property_value: ''
     collector_profile_collector_id: CollectorProfile_59
   CollectorProfileExtraProperty_823:
     property_name: ABOUT.WHAT_YOU_COLLECT
@@ -59,6 +63,7 @@ CollectorProfileExtraProperty:
     collector_profile_collector_id: CollectorProfile_163
   CollectorProfileExtraProperty_828:
     property_name: ABOUT.COMPANY
+    property_value: ''
     collector_profile_collector_id: CollectorProfile_163
   CollectorProfileExtraProperty_1226:
     property_name: ABOUT.PURCHASES_PER_YEAR
@@ -69,6 +74,7 @@ CollectorProfileExtraProperty:
     collector_profile_collector_id: CollectorProfile_235
   CollectorProfileExtraProperty_1230:
     property_name: ABOUT.COMPANY
+    property_value: ''
     collector_profile_collector_id: CollectorProfile_235
   CollectorProfileExtraProperty_2960:
     property_name: ABOUT.PURCHASES_PER_YEAR
@@ -79,6 +85,7 @@ CollectorProfileExtraProperty:
     collector_profile_collector_id: CollectorProfile_531
   CollectorProfileExtraProperty_2964:
     property_name: ABOUT.COMPANY
+    property_value: ''
     collector_profile_collector_id: CollectorProfile_531
   CollectorProfileExtraProperty_3578:
     property_name: ABOUT.PURCHASES_PER_YEAR
@@ -89,6 +96,7 @@ CollectorProfileExtraProperty:
     collector_profile_collector_id: CollectorProfile_644
   CollectorProfileExtraProperty_3582:
     property_name: ABOUT.COMPANY
+    property_value: ''
     collector_profile_collector_id: CollectorProfile_644
   CollectorProfileExtraProperty_3992:
     property_name: ABOUT.PURCHASES_PER_YEAR
@@ -102,6 +110,7 @@ CollectorProfileExtraProperty:
     collector_profile_collector_id: CollectorProfile_714
   CollectorProfileExtraProperty_3996:
     property_name: ABOUT.COMPANY
+    property_value: ''
     collector_profile_collector_id: CollectorProfile_714
   CollectorProfileExtraProperty_4718:
     property_name: ABOUT.PURCHASES_PER_YEAR
@@ -112,6 +121,7 @@ CollectorProfileExtraProperty:
     collector_profile_collector_id: CollectorProfile_846
   CollectorProfileExtraProperty_4722:
     property_name: ABOUT.COMPANY
+    property_value: ''
     collector_profile_collector_id: CollectorProfile_846
   CollectorProfileExtraProperty_4862:
     property_name: ABOUT.PURCHASES_PER_YEAR
@@ -122,6 +132,7 @@ CollectorProfileExtraProperty:
     collector_profile_collector_id: CollectorProfile_870
   CollectorProfileExtraProperty_4866:
     property_name: ABOUT.COMPANY
+    property_value: ''
     collector_profile_collector_id: CollectorProfile_870
   CollectorProfileExtraProperty_5360:
     property_name: ABOUT.PURCHASES_PER_YEAR
@@ -138,6 +149,7 @@ CollectorProfileExtraProperty:
     collector_profile_collector_id: CollectorProfile_963
   CollectorProfileExtraProperty_5364:
     property_name: ABOUT.COMPANY
+    property_value: ''
     collector_profile_collector_id: CollectorProfile_963
   CollectorProfileExtraProperty_6050:
     property_name: ABOUT.PURCHASES_PER_YEAR
@@ -148,6 +160,7 @@ CollectorProfileExtraProperty:
     collector_profile_collector_id: CollectorProfile_1082
   CollectorProfileExtraProperty_6054:
     property_name: ABOUT.COMPANY
+    property_value: ''
     collector_profile_collector_id: CollectorProfile_1082
   CollectorProfileExtraProperty_6800:
     property_name: ABOUT.PURCHASES_PER_YEAR
@@ -158,6 +171,7 @@ CollectorProfileExtraProperty:
     collector_profile_collector_id: CollectorProfile_1212
   CollectorProfileExtraProperty_6804:
     property_name: ABOUT.COMPANY
+    property_value: ''
     collector_profile_collector_id: CollectorProfile_1212
   CollectorProfileExtraProperty_7394:
     property_name: ABOUT.PURCHASES_PER_YEAR
@@ -168,6 +182,7 @@ CollectorProfileExtraProperty:
     collector_profile_collector_id: CollectorProfile_1317
   CollectorProfileExtraProperty_7398:
     property_name: ABOUT.COMPANY
+    property_value: ''
     collector_profile_collector_id: CollectorProfile_1317
   CollectorProfileExtraProperty_7718:
     property_name: ABOUT.PURCHASES_PER_YEAR
@@ -178,6 +193,7 @@ CollectorProfileExtraProperty:
     collector_profile_collector_id: CollectorProfile_1374
   CollectorProfileExtraProperty_7722:
     property_name: ABOUT.COMPANY
+    property_value: ''
     collector_profile_collector_id: CollectorProfile_1374
   CollectorProfileExtraProperty_18673:
     property_name: ABOUT.WHAT_YOU_COLLECT
@@ -197,6 +213,7 @@ CollectorProfileExtraProperty:
     collector_profile_collector_id: CollectorProfile_3632
   CollectorProfileExtraProperty_18678:
     property_name: ABOUT.COMPANY
+    property_value: ''
     collector_profile_collector_id: CollectorProfile_3632
   CollectorProfileExtraProperty_21769:
     property_name: ABOUT.WHAT_YOU_COLLECT
@@ -216,6 +233,7 @@ CollectorProfileExtraProperty:
     collector_profile_collector_id: CollectorProfile_4208
   CollectorProfileExtraProperty_21774:
     property_name: ABOUT.COMPANY
+    property_value: ''
     collector_profile_collector_id: CollectorProfile_4208
   CollectorProfileExtraProperty_22231:
     property_name: ABOUT.WHAT_YOU_COLLECT
@@ -235,6 +253,7 @@ CollectorProfileExtraProperty:
     collector_profile_collector_id: CollectorProfile_4295
   CollectorProfileExtraProperty_22236:
     property_name: ABOUT.COMPANY
+    property_value: ''
     collector_profile_collector_id: CollectorProfile_4295
   CollectorProfileExtraProperty_30967:
     property_name: ABOUT.WHAT_YOU_COLLECT
@@ -242,7 +261,6 @@ CollectorProfileExtraProperty:
     collector_profile_collector_id: CollectorProfile_6610
   CollectorProfileExtraProperty_30968:
     property_name: ABOUT.PURCHASES_PER_YEAR
-    property_value: '0'
     collector_profile_collector_id: CollectorProfile_6610
   CollectorProfileExtraProperty_30969:
     property_name: ABOUT.WHAT_YOU_SELL
@@ -250,12 +268,15 @@ CollectorProfileExtraProperty:
     collector_profile_collector_id: CollectorProfile_6610
   CollectorProfileExtraProperty_30970:
     property_name: ABOUT.ANNUALLY_SPEND
+    property_value: ''
     collector_profile_collector_id: CollectorProfile_6610
   CollectorProfileExtraProperty_30971:
     property_name: ABOUT.MOST_EXPENSIVE_ITEM
+    property_value: ''
     collector_profile_collector_id: CollectorProfile_6610
   CollectorProfileExtraProperty_30972:
     property_name: ABOUT.COMPANY
+    property_value: ''
     collector_profile_collector_id: CollectorProfile_6610
   CollectorProfileExtraProperty_31298:
     property_name: ABOUT.PURCHASES_PER_YEAR
@@ -274,11 +295,11 @@ CollectorProfileExtraProperty:
     collector_profile_collector_id: CollectorProfile_6700
   CollectorProfileExtraProperty_38735:
     property_name: ABOUT.ME
-    property_value: 'Staff writer for CQ, NES over-enthusiast, sushi devourer, daytime librarian, former teacher, painter, non-functional robot builder.'
+    property_value: 'Writer and Content & Community Manager for Collectors Quest. NES over-enthusiast, sushi devourer, former library slave, former teacher. Professional illustrator and designer.'
     collector_profile_collector_id: CollectorProfile_12
   CollectorProfileExtraProperty_38736:
     property_name: ABOUT.COLLECTIONS
-    property_value: 'Infinite and delicious.'
+    property_value: 'A little bit of everything: superheroes, history, music, nature.'
     collector_profile_collector_id: CollectorProfile_12
   CollectorProfileExtraProperty_38737:
     property_name: ABOUT.NEW_ITEM_EVERY
@@ -286,7 +307,7 @@ CollectorProfileExtraProperty:
     collector_profile_collector_id: CollectorProfile_12
   CollectorProfileExtraProperty_38738:
     property_name: ABOUT.INTERESTS
-    property_value: ''
+    property_value: 'Infinite and delicious.'
     collector_profile_collector_id: CollectorProfile_12
   CollectorProfileExtraProperty_38739:
     property_name: ABOUT.WHAT_YOU_COLLECT
@@ -314,11 +335,11 @@ CollectorProfileExtraProperty:
     collector_profile_collector_id: CollectorProfile_52
   CollectorProfileExtraProperty_38864:
     property_name: ABOUT.ME
-    property_value: "\"Hello, my name is Deanna Dahlsad, and I’m a hoarder.\"  (You say, \"Hello, Deanna,\" just like any other support group member. *wink*) <p><br>\r\n\r\n\r\nSo I'm a hoarder, married to another hoarder, and together we also raise little hoarders.  I write at <a href=\"http://www.inherited-values.com/\" target=\"_blank\">Inherited Values</a>, <a href=\"http://www.kitschy-kitschy-coo.com/\" target=\"_blank\">Kitschy Kitschy Coo</a>, <a href=\"http://www.kitsch-slapped.com/\" target=\"_blank\">Kitsch Slapped</a>, <a href=\"http://thingsyourgrandmotherknew.blogspot.com/\" target=\"_blank\">Things Your Grandmother Knew</a>, previously here at <a href=\"http://www.collectorsquest.com/blog/index.php?author=3\" target=\"_blank\">CQ</a> and numerous other places.  We sell here in the CQ Marketplace and at <a href=\"http://www.wehaveyourcollectibles.com/\" target=\"_blank\">We Have Your Collectibles</a>.<p>\r\n\r\n<a href=\"http://pinkpopulace.blogspot.com/2009/04/vintage-cosmetics-beauty-accessories.html\" target=\"_blank\"><i>Collectors News</i> says</a> I am \"a touchstone of where women have been, what they wore, and how they carried themselves to get there. She is a historian of how powder puffs and nail polish have both ensnared and enshrined the image of womankind.\"<p>\r\n\r\nWant to know anything else?  Just ask me a question & I'll talk your ear off! :)"
+    property_value: "\"Hello, my name is Deanna Dahlsad, and I’m a hoarder.\"  (You say, \"Hello, Deanna,\" just like any other support group member. *wink*) \r\n\r\nSo I'm a hoarder, married to another hoarder, and together we also raise little hoarders.  I write at Inherited Values, Kitschy Kitschy Coo, Kitsch Slapped, Things Your Grandmother Knew, and here at Collectors Quest."
     collector_profile_collector_id: CollectorProfile_59
   CollectorProfileExtraProperty_38865:
     property_name: ABOUT.COLLECTIONS
-    property_value: "The power of the number of three.  It begins with one thing... but once you have three of something, it's official:  It's a collection. <p><br>\r\n\r\nSo, while I normally only photograph things that I'm writing about, I'm going to make an effort to get at least 3 things from each (some?) of my collections here.  Wish me luck. *wink*<p><br>\r\n\r\n\r\nSticking to my Rule of Three, I shall give you three interests:  reading, writing and talking.  If you can read about it, write about it, or talk about it, I'm interested in it and can easily start collecting it.  Hence the problem with hoarding.  And not having much time to photograph or catalog."
+    property_value: "The power of the number of three.  It begins with one thing... but once you have three of something, it's official:  It's a collection.\r\n\r\nSo, while I normally only photograph things that I'm writing about, I'm going to make an effort to get at least 3 things from each (some?) of my collections here.  Wish me luck. *wink*\r\n\r\nSticking to my Rule of Three, I shall give you three interests:  reading, writing and talking.  If you can read about it, write about it, or talk about it, I'm interested in it and can easily start collecting it.  Hence the problem with hoarding.  And not having much time to photograph or catalog."
     collector_profile_collector_id: CollectorProfile_59
   CollectorProfileExtraProperty_38866:
     property_name: ABOUT.NEW_ITEM_EVERY
@@ -326,7 +347,7 @@ CollectorProfileExtraProperty:
     collector_profile_collector_id: CollectorProfile_59
   CollectorProfileExtraProperty_38867:
     property_name: ABOUT.INTERESTS
-    property_value: 'Well, you really shouldn''t get me started... I write ''everywhere'' because many things (nearly anything can) interest me (& therefore I have a lot to say!). '
+    property_value: 'Well, you really shouldn''t get me started... I write ''everywhere'' because many things (nearly anything can) interest me (& therefore I have a lot to say!).'
     collector_profile_collector_id: CollectorProfile_59
   CollectorProfileExtraProperty_38868:
     property_name: ABOUT.WHAT_YOU_COLLECT
@@ -570,7 +591,7 @@ CollectorProfileExtraProperty:
     collector_profile_collector_id: CollectorProfile_1082
   CollectorProfileExtraProperty_44261:
     property_name: ABOUT.ME
-    property_value: 'I''m College Professor who teaches and lectures about the cultural and historical significance of 1970’s Black films. '
+    property_value: "I am the Curator from an online museum called The Museum of UnCut Funk.\r\nwww.museumofuncutfunk.com"
     collector_profile_collector_id: CollectorProfile_1212
   CollectorProfileExtraProperty_44262:
     property_name: ABOUT.COLLECTIONS
@@ -582,7 +603,7 @@ CollectorProfileExtraProperty:
     collector_profile_collector_id: CollectorProfile_1212
   CollectorProfileExtraProperty_44264:
     property_name: ABOUT.INTERESTS
-    property_value: "I have placed my collection on my web site called The Museum of UnCut Funk. Also writing a blog. Come check it out at museumofuncutfunk.com\r\n\r\n"
+    property_value: 'Collecting and preserving artifacts from the greatest decade ever the 1970''s.'
     collector_profile_collector_id: CollectorProfile_1212
   CollectorProfileExtraProperty_44265:
     property_name: ABOUT.WHAT_YOU_COLLECT
@@ -654,6 +675,7 @@ CollectorProfileExtraProperty:
     collector_profile_collector_id: CollectorProfile_1374
   CollectorProfileExtraProperty_53018:
     property_name: ABOUT.ME
+    property_value: ''
     collector_profile_collector_id: CollectorProfile_3632
   CollectorProfileExtraProperty_53019:
     property_name: ABOUT.COLLECTIONS
@@ -663,9 +685,11 @@ CollectorProfileExtraProperty:
     collector_profile_collector_id: CollectorProfile_3632
   CollectorProfileExtraProperty_53021:
     property_name: ABOUT.INTERESTS
+    property_value: ''
     collector_profile_collector_id: CollectorProfile_3632
   CollectorProfileExtraProperty_55085:
     property_name: ABOUT.ME
+    property_value: ''
     collector_profile_collector_id: CollectorProfile_4208
   CollectorProfileExtraProperty_55086:
     property_name: ABOUT.COLLECTIONS
@@ -675,9 +699,11 @@ CollectorProfileExtraProperty:
     collector_profile_collector_id: CollectorProfile_4208
   CollectorProfileExtraProperty_55088:
     property_name: ABOUT.INTERESTS
+    property_value: ''
     collector_profile_collector_id: CollectorProfile_4208
   CollectorProfileExtraProperty_55394:
     property_name: ABOUT.ME
+    property_value: ''
     collector_profile_collector_id: CollectorProfile_4295
   CollectorProfileExtraProperty_55395:
     property_name: ABOUT.COLLECTIONS
@@ -687,10 +713,11 @@ CollectorProfileExtraProperty:
     collector_profile_collector_id: CollectorProfile_4295
   CollectorProfileExtraProperty_55397:
     property_name: ABOUT.INTERESTS
+    property_value: ''
     collector_profile_collector_id: CollectorProfile_4295
   CollectorProfileExtraProperty_61338:
     property_name: ABOUT.ME
-    property_value: "Offering photographic collectibles including 19th & 20th century cameras, lenses, images, and related accessories. Over 25 years of experience dealing in vintage photographica. \r\n\r\nPayment Options: We accept money orders or personal checks (10 day clearance for checks)"
+    property_value: "Offering photographic collectibles including 19th & 20th century cameras, lenses, images, and related accessories. Over 25 years of experience dealing in vintage photographica. \r\n\r\nPayment Options: We accept money orders, personal checks (10 day clearance for checks), and Paypal."
     collector_profile_collector_id: CollectorProfile_6610
   CollectorProfileExtraProperty_61339:
     property_name: ABOUT.COLLECTIONS
@@ -727,4 +754,84 @@ CollectorProfileExtraProperty:
   CollectorProfileExtraProperty_61621:
     property_name: ABOUT.MOST_EXPENSIVE_ITEM
     property_value: '500'
+    collector_profile_collector_id: CollectorProfile_6700
+  CollectorProfileExtraProperty_72973:
+    property_name: COMPLETED
+    property_value: '100'
+    collector_profile_collector_id: CollectorProfile_12
+  CollectorProfileExtraProperty_72995:
+    property_name: COMPLETED
+    property_value: '100'
+    collector_profile_collector_id: CollectorProfile_52
+  CollectorProfileExtraProperty_73002:
+    property_name: COMPLETED
+    property_value: '25'
+    collector_profile_collector_id: CollectorProfile_59
+  CollectorProfileExtraProperty_73102:
+    property_name: COMPLETED
+    property_value: '75'
+    collector_profile_collector_id: CollectorProfile_163
+  CollectorProfileExtraProperty_73165:
+    property_name: COMPLETED
+    property_value: '100'
+    collector_profile_collector_id: CollectorProfile_235
+  CollectorProfileExtraProperty_73445:
+    property_name: COMPLETED
+    property_value: '100'
+    collector_profile_collector_id: CollectorProfile_531
+  CollectorProfileExtraProperty_73544:
+    property_name: COMPLETED
+    property_value: '100'
+    collector_profile_collector_id: CollectorProfile_644
+  CollectorProfileExtraProperty_73612:
+    property_name: COMPLETED
+    property_value: '100'
+    collector_profile_collector_id: CollectorProfile_714
+  CollectorProfileExtraProperty_73727:
+    property_name: COMPLETED
+    property_value: '100'
+    collector_profile_collector_id: CollectorProfile_846
+  CollectorProfileExtraProperty_73750:
+    property_name: COMPLETED
+    property_value: '100'
+    collector_profile_collector_id: CollectorProfile_870
+  CollectorProfileExtraProperty_73832:
+    property_name: COMPLETED
+    property_value: '100'
+    collector_profile_collector_id: CollectorProfile_963
+  CollectorProfileExtraProperty_73942:
+    property_name: COMPLETED
+    property_value: '100'
+    collector_profile_collector_id: CollectorProfile_1082
+  CollectorProfileExtraProperty_74063:
+    property_name: COMPLETED
+    property_value: '75'
+    collector_profile_collector_id: CollectorProfile_1212
+  CollectorProfileExtraProperty_74160:
+    property_name: COMPLETED
+    property_value: '100'
+    collector_profile_collector_id: CollectorProfile_1317
+  CollectorProfileExtraProperty_74212:
+    property_name: COMPLETED
+    property_value: '100'
+    collector_profile_collector_id: CollectorProfile_1374
+  CollectorProfileExtraProperty_76027:
+    property_name: COMPLETED
+    property_value: '75'
+    collector_profile_collector_id: CollectorProfile_3632
+  CollectorProfileExtraProperty_76537:
+    property_name: COMPLETED
+    property_value: '75'
+    collector_profile_collector_id: CollectorProfile_4208
+  CollectorProfileExtraProperty_76613:
+    property_name: COMPLETED
+    property_value: '75'
+    collector_profile_collector_id: CollectorProfile_4295
+  CollectorProfileExtraProperty_78043:
+    property_name: COMPLETED
+    property_value: '75'
+    collector_profile_collector_id: CollectorProfile_6610
+  CollectorProfileExtraProperty_78098:
+    property_name: COMPLETED
+    property_value: '100'
     collector_profile_collector_id: CollectorProfile_6700

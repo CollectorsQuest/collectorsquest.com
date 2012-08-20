@@ -1,277 +1,231 @@
 wpOption:
-  wpOption_1_0_siteurl:
+  wpOption_1_siteurl:
     option_id: '1'
-    blog_id: '0'
     option_name: siteurl
-    option_value: 'http://www.collectorsquest.next/blog'
+    option_value: 'http://www.collectorsquest.dev/blog'
     autoload: yes
-  wpOption_2_0_blogname:
+  wpOption_2_blogname:
     option_id: '2'
-    blog_id: '0'
     option_name: blogname
-    option_value: 'Collectorsâ€™ Quest'
+    option_value: 'Collectors Quest'
     autoload: yes
-  wpOption_3_0_blogdescription:
+  wpOption_3_blogdescription:
     option_id: '3'
-    blog_id: '0'
     option_name: blogdescription
     option_value: 'Where Hunters Gather'
     autoload: yes
-  wpOption_5_0_users_can_register:
+  wpOption_5_users_can_register:
     option_id: '5'
-    blog_id: '0'
     option_name: users_can_register
     option_value: '0'
     autoload: yes
-  wpOption_6_0_admin_email:
+  wpOption_6_admin_email:
     option_id: '6'
-    blog_id: '0'
     option_name: admin_email
     option_value: blog@collectorsquest.com
     autoload: yes
-  wpOption_7_0_start_of_week:
+  wpOption_7_start_of_week:
     option_id: '7'
-    blog_id: '0'
     option_name: start_of_week
     option_value: '1'
     autoload: yes
-  wpOption_8_0_use_balanceTags:
+  wpOption_8_use_balanceTags:
     option_id: '8'
-    blog_id: '0'
     option_name: use_balanceTags
     option_value: ''
     autoload: yes
-  wpOption_9_0_use_smilies:
+  wpOption_9_use_smilies:
     option_id: '9'
-    blog_id: '0'
     option_name: use_smilies
     option_value: '1'
     autoload: yes
-  wpOption_10_0_require_name_email:
+  wpOption_10_require_name_email:
     option_id: '10'
-    blog_id: '0'
     option_name: require_name_email
     option_value: '1'
     autoload: yes
-  wpOption_11_0_comments_notify:
+  wpOption_11_comments_notify:
     option_id: '11'
-    blog_id: '0'
     option_name: comments_notify
     option_value: '1'
     autoload: yes
-  wpOption_12_0_posts_per_rss:
+  wpOption_12_posts_per_rss:
     option_id: '12'
-    blog_id: '0'
     option_name: posts_per_rss
     option_value: '20'
     autoload: yes
-  wpOption_14_0_rss_use_excerpt:
+  wpOption_14_rss_use_excerpt:
     option_id: '14'
-    blog_id: '0'
     option_name: rss_use_excerpt
     option_value: '0'
     autoload: yes
-  wpOption_15_0_mailserver_url:
+  wpOption_15_mailserver_url:
     option_id: '15'
-    blog_id: '0'
     option_name: mailserver_url
     option_value: mail.example.com
     autoload: yes
-  wpOption_16_0_mailserver_login:
+  wpOption_16_mailserver_login:
     option_id: '16'
-    blog_id: '0'
     option_name: mailserver_login
     option_value: login@example.com
     autoload: yes
-  wpOption_17_0_mailserver_pass:
+  wpOption_17_mailserver_pass:
     option_id: '17'
-    blog_id: '0'
     option_name: mailserver_pass
     option_value: password
     autoload: yes
-  wpOption_18_0_mailserver_port:
+  wpOption_18_mailserver_port:
     option_id: '18'
-    blog_id: '0'
     option_name: mailserver_port
     option_value: '110'
     autoload: yes
-  wpOption_19_0_default_category:
+  wpOption_19_default_category:
     option_id: '19'
-    blog_id: '0'
     option_name: default_category
     option_value: '1'
     autoload: yes
-  wpOption_20_0_default_comment_status:
+  wpOption_20_default_comment_status:
     option_id: '20'
-    blog_id: '0'
     option_name: default_comment_status
     option_value: open
     autoload: yes
-  wpOption_21_0_default_ping_status:
+  wpOption_21_default_ping_status:
     option_id: '21'
-    blog_id: '0'
     option_name: default_ping_status
     option_value: open
     autoload: yes
-  wpOption_22_0_default_pingback_flag:
+  wpOption_22_default_pingback_flag:
     option_id: '22'
-    blog_id: '0'
     option_name: default_pingback_flag
     option_value: '1'
     autoload: yes
-  wpOption_23_0_default_post_edit_rows:
+  wpOption_23_default_post_edit_rows:
     option_id: '23'
-    blog_id: '0'
     option_name: default_post_edit_rows
     option_value: '15'
     autoload: yes
-  wpOption_24_0_posts_per_page:
+  wpOption_24_posts_per_page:
     option_id: '24'
-    blog_id: '0'
     option_name: posts_per_page
     option_value: '5'
     autoload: yes
-  wpOption_26_0_date_format:
+  wpOption_26_date_format:
     option_id: '26'
-    blog_id: '0'
     option_name: date_format
     option_value: 'F j, Y'
     autoload: yes
-  wpOption_27_0_time_format:
+  wpOption_27_time_format:
     option_id: '27'
-    blog_id: '0'
     option_name: time_format
     option_value: 'g:i A'
     autoload: yes
-  wpOption_28_0_links_updated_date_format:
+  wpOption_28_links_updated_date_format:
     option_id: '28'
-    blog_id: '0'
     option_name: links_updated_date_format
     option_value: 'F j, Y g:i a'
     autoload: yes
-  wpOption_29_0_links_recently_updated_prepend:
+  wpOption_29_links_recently_updated_prepend:
     option_id: '29'
-    blog_id: '0'
     option_name: links_recently_updated_prepend
     option_value: '<em>'
     autoload: yes
-  wpOption_30_0_links_recently_updated_append:
+  wpOption_30_links_recently_updated_append:
     option_id: '30'
-    blog_id: '0'
     option_name: links_recently_updated_append
     option_value: '</em>'
     autoload: yes
-  wpOption_31_0_links_recently_updated_time:
+  wpOption_31_links_recently_updated_time:
     option_id: '31'
-    blog_id: '0'
     option_name: links_recently_updated_time
     option_value: '120'
     autoload: yes
-  wpOption_32_0_comment_moderation:
+  wpOption_32_comment_moderation:
     option_id: '32'
-    blog_id: '0'
     option_name: comment_moderation
     option_value: ''
     autoload: yes
-  wpOption_33_0_moderation_notify:
+  wpOption_33_moderation_notify:
     option_id: '33'
-    blog_id: '0'
     option_name: moderation_notify
     option_value: ''
     autoload: yes
-  wpOption_34_0_permalink_structure:
+  wpOption_34_permalink_structure:
     option_id: '34'
-    blog_id: '0'
     option_name: permalink_structure
     option_value: /%year%/%monthnum%/%day%/%postname%/
     autoload: yes
-  wpOption_35_0_gzipcompression:
+  wpOption_35_gzipcompression:
     option_id: '35'
-    blog_id: '0'
     option_name: gzipcompression
     option_value: ''
     autoload: yes
-  wpOption_36_0_hack_file:
+  wpOption_36_hack_file:
     option_id: '36'
-    blog_id: '0'
     option_name: hack_file
     option_value: ''
     autoload: yes
-  wpOption_37_0_blog_charset:
+  wpOption_37_blog_charset:
     option_id: '37'
-    blog_id: '0'
     option_name: blog_charset
     option_value: UTF-8
     autoload: yes
-  wpOption_38_0_moderation_keys:
+  wpOption_38_moderation_keys:
     option_id: '38'
-    blog_id: '0'
     option_name: moderation_keys
     option_value: ''
     autoload: no
-  wpOption_39_0_active_plugins:
+  wpOption_39_active_plugins:
     option_id: '39'
-    blog_id: '0'
     option_name: active_plugins
-    option_value: 'a:14:{i:0;s:19:"akismet/akismet.php";i:1;s:35:"collapsing-archives/collapsArch.php";i:2;s:36:"contact-form-7/wp-contact-form-7.php";i:3;s:36:"google-sitemap-generator/sitemap.php";i:4;s:19:"jetpack/jetpack.php";i:5;s:19:"members/members.php";i:6;s:41:"multiple-galleries/multiple-galleries.php";i:7;s:50:"multiple-post-thumbnails/multi-post-thumbnails.php";i:8;s:47:"post-thumbnail-editor/post-thumbnail-editor.php";i:9;s:29:"shadowbox-js/shadowbox-js.php";i:10;s:37:"shadowbox-js/shadowbox-title-push.php";i:11;s:30:"smart-youtube/smartyoutube.php";i:12;s:29:"wp-mail-smtp/wp_mail_smtp.php";i:13;s:24:"wp-postrank/postrank.php";}'
+    option_value: 'a:23:{i:0;s:19:"akismet/akismet.php";i:1;s:43:"breadcrumb-navxt/breadcrumb_navxt_admin.php";i:2;s:36:"contact-form-7/wp-contact-form-7.php";i:3;s:28:"editorial-calendar/edcal.php";i:4;s:35:"gallery-metabox/gallery-metabox.php";i:5;s:36:"google-sitemap-generator/sitemap.php";i:6;s:29:"html-sitemap/html-sitemap.php";i:7;s:19:"jetpack/jetpack.php";i:8;s:25:"mail-queues/pbci-mail.php";i:9;s:19:"members/members.php";i:10;s:41:"multiple-galleries/multiple-galleries.php";i:11;s:50:"multiple-post-thumbnails/multi-post-thumbnails.php";i:12;s:25:"multiple_domain_names.php";i:13;s:47:"post-thumbnail-editor/post-thumbnail-editor.php";i:14;s:47:"regenerate-thumbnails/regenerate-thumbnails.php";i:15;s:29:"shadowbox-js/shadowbox-js.php";i:16;s:37:"shadowbox-js/shadowbox-title-push.php";i:17;s:13:"si-widont.php";i:18;s:45:"simple-local-avatars/simple-local-avatars.php";i:19;s:30:"smart-youtube/smartyoutube.php";i:20;s:41:"wordpress-importer/wordpress-importer.php";i:21;s:24:"wordpress-seo/wp-seo.php";i:22;s:17:"wp-faq/wp-faq.php";}'
     autoload: yes
-  wpOption_40_0_home:
+  wpOption_40_home:
     option_id: '40'
-    blog_id: '0'
     option_name: home
-    option_value: 'http://www.collectorsquest.next/blog'
+    option_value: 'http://www.collectorsquest.dev/blog'
     autoload: yes
-  wpOption_41_0_category_base:
+  wpOption_41_category_base:
     option_id: '41'
-    blog_id: '0'
     option_name: category_base
     option_value: ''
     autoload: yes
-  wpOption_42_0_ping_sites:
+  wpOption_42_ping_sites:
     option_id: '42'
-    blog_id: '0'
     option_name: ping_sites
     option_value: "http://rpc.pingomatic.com/\r\nhttp://rpc.technorati.com/rpc/ping\r\nhttp://rpc.blogcatalog.com/\r\nhttp://api.feedster.com/ping\r\nhttp://api.moreover.com/ping\r\nhttp://api.my.yahoo.com/rss/ping\r\nhttp://www.blogdigger.com/RPC2\r\nhttp://www.newsisfree.com/xmlrpctest.php\r\nhttp://ping.bloggers.jp/rpc/\r\nhttp://ping.feedburner.com/\r\nhttp://pingoat.com/goat/RPC2\r\nhttp://rpc.weblogs.com/RPC2"
     autoload: yes
-  wpOption_43_0_advanced_edit:
+  wpOption_43_advanced_edit:
     option_id: '43'
-    blog_id: '0'
     option_name: advanced_edit
     option_value: '0'
     autoload: yes
-  wpOption_44_0_comment_max_links:
+  wpOption_44_comment_max_links:
     option_id: '44'
-    blog_id: '0'
     option_name: comment_max_links
     option_value: '1'
     autoload: yes
-  wpOption_45_0_gmt_offset:
+  wpOption_45_gmt_offset:
     option_id: '45'
-    blog_id: '0'
     option_name: gmt_offset
     option_value: ''
     autoload: yes
-  wpOption_46_0_default_email_category:
+  wpOption_46_default_email_category:
     option_id: '46'
-    blog_id: '0'
     option_name: default_email_category
     option_value: '1'
     autoload: yes
-  wpOption_47_0_recently_edited:
+  wpOption_47_recently_edited:
     option_id: '47'
-    blog_id: '0'
     option_name: recently_edited
     option_value: 'a:3:{i:0;s:145:"/www/vhosts/collectorsquest.com/releases/201202272300/web/blog/wp-content/plugins/feedburner_feedsmith_plugin_2.3/FeedBurner_FeedSmith_Plugin.php";i:1;s:123:"/www/vhosts/collectorsquest.com/releases/201202152130/web/blog/wp-content/plugins/multiple-galleries/multiple-galleries.php";i:2;b:0;}'
     autoload: yes
-  wpOption_49_0_template:
+  wpOption_49_template:
     option_id: '49'
-    blog_id: '0'
     option_name: template
     option_value: collectorsquest
     autoload: yes
-  wpOption_50_0_stylesheet:
+  wpOption_50_stylesheet:
     option_id: '50'
-    blog_id: '0'
     option_name: stylesheet
     option_value: collectorsquest
     autoload: yes

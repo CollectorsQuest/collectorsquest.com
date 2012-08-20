@@ -41,6 +41,7 @@ class PropelMigration_1345389228
         ALTER TABLE `collector` DROP `max_collectibles_for_sale`;
         ALTER TABLE `collector` DROP `items_allowed`;
         ALTER TABLE `collectible` ADD `is_public` TINYINT(1) DEFAULT 1 AFTER `is_name_automatic`;
+        DROP TABLE `collectible_offer`;
 
         SET FOREIGN_KEY_CHECKS = 1;
       ',
@@ -50,6 +51,7 @@ class PropelMigration_1345389228
         ALTER TABLE `collector_archive` DROP `max_collectibles_for_sale`;
         ALTER TABLE `collector_archive` DROP `items_allowed`;
         ALTER TABLE `collectible_archive` ADD `is_public` TINYINT(1) DEFAULT 1 AFTER `is_name_automatic`;
+        DROP TABLE `collectible_offer_archive`;
 
         SET FOREIGN_KEY_CHECKS = 1;
       ',

@@ -1,0 +1,778 @@
+ShippingRate:
+  ShippingRate_2:
+    shipping_reference_id: ShippingReference_3
+    flat_rate_in_cents: '500'
+    is_free_shipping: '0'
+  ShippingRate_3:
+    shipping_reference_id: ShippingReference_5
+    flat_rate_in_cents: '400'
+    is_free_shipping: '0'
+  ShippingRate_4:
+    shipping_reference_id: ShippingReference_7
+    flat_rate_in_cents: '400'
+    is_free_shipping: '0'
+  ShippingRate_5:
+    shipping_reference_id: ShippingReference_9
+    flat_rate_in_cents: '600'
+    is_free_shipping: '0'
+  ShippingRate_6:
+    shipping_reference_id: ShippingReference_11
+    flat_rate_in_cents: '500'
+    is_free_shipping: '0'
+  ShippingRate_7:
+    shipping_reference_id: ShippingReference_13
+    flat_rate_in_cents: '500'
+    is_free_shipping: '0'
+  ShippingRate_8:
+    shipping_reference_id: ShippingReference_15
+    flat_rate_in_cents: '500'
+    is_free_shipping: '0'
+  ShippingRate_9:
+    shipping_reference_id: ShippingReference_17
+    flat_rate_in_cents: '500'
+    is_free_shipping: '0'
+  ShippingRate_10:
+    shipping_reference_id: ShippingReference_19
+    flat_rate_in_cents: '500'
+    is_free_shipping: '0'
+  ShippingRate_11:
+    shipping_reference_id: ShippingReference_21
+    is_free_shipping: '1'
+  ShippingRate_12:
+    shipping_reference_id: ShippingReference_23
+    is_free_shipping: '1'
+  ShippingRate_13:
+    shipping_reference_id: ShippingReference_25
+    is_free_shipping: '1'
+  ShippingRate_14:
+    shipping_reference_id: ShippingReference_27
+    is_free_shipping: '1'
+  ShippingRate_15:
+    shipping_reference_id: ShippingReference_29
+    is_free_shipping: '1'
+  ShippingRate_16:
+    shipping_reference_id: ShippingReference_31
+    flat_rate_in_cents: '500'
+    is_free_shipping: '0'
+  ShippingRate_17:
+    shipping_reference_id: ShippingReference_33
+    flat_rate_in_cents: '500'
+    is_free_shipping: '0'
+  ShippingRate_18:
+    shipping_reference_id: ShippingReference_35
+    flat_rate_in_cents: '500'
+    is_free_shipping: '0'
+  ShippingRate_19:
+    shipping_reference_id: ShippingReference_37
+    flat_rate_in_cents: '500'
+    is_free_shipping: '0'
+  ShippingRate_20:
+    shipping_reference_id: ShippingReference_39
+    flat_rate_in_cents: '500'
+    is_free_shipping: '0'
+  ShippingRate_21:
+    shipping_reference_id: ShippingReference_41
+    flat_rate_in_cents: '500'
+    is_free_shipping: '0'
+  ShippingRate_22:
+    shipping_reference_id: ShippingReference_43
+    flat_rate_in_cents: '500'
+    is_free_shipping: '0'
+  ShippingRate_23:
+    shipping_reference_id: ShippingReference_45
+    flat_rate_in_cents: '500'
+    is_free_shipping: '0'
+  ShippingRate_24:
+    shipping_reference_id: ShippingReference_47
+    flat_rate_in_cents: '500'
+    is_free_shipping: '0'
+  ShippingRate_26:
+    shipping_reference_id: ShippingReference_49
+    flat_rate_in_cents: '500'
+    is_free_shipping: '0'
+  ShippingRate_27:
+    shipping_reference_id: ShippingReference_51
+    flat_rate_in_cents: '500'
+    is_free_shipping: '0'
+  ShippingRate_28:
+    shipping_reference_id: ShippingReference_53
+    flat_rate_in_cents: '500'
+    is_free_shipping: '0'
+  ShippingRate_29:
+    shipping_reference_id: ShippingReference_55
+    flat_rate_in_cents: '500'
+    is_free_shipping: '0'
+  ShippingRate_30:
+    shipping_reference_id: ShippingReference_57
+    flat_rate_in_cents: '500'
+    is_free_shipping: '0'
+  ShippingRate_31:
+    shipping_reference_id: ShippingReference_59
+    flat_rate_in_cents: '500'
+    is_free_shipping: '0'
+  ShippingRate_33:
+    shipping_reference_id: ShippingReference_63
+    flat_rate_in_cents: '500'
+    is_free_shipping: '0'
+  ShippingRate_35:
+    shipping_reference_id: ShippingReference_67
+    flat_rate_in_cents: '700'
+    is_free_shipping: '0'
+  ShippingRate_36:
+    shipping_reference_id: ShippingReference_69
+    flat_rate_in_cents: '700'
+    is_free_shipping: '0'
+  ShippingRate_37:
+    shipping_reference_id: ShippingReference_71
+    flat_rate_in_cents: '500'
+    is_free_shipping: '0'
+  ShippingRate_38:
+    shipping_reference_id: ShippingReference_73
+    flat_rate_in_cents: '500'
+    is_free_shipping: '0'
+  ShippingRate_39:
+    shipping_reference_id: ShippingReference_75
+    flat_rate_in_cents: '500'
+    is_free_shipping: '0'
+  ShippingRate_41:
+    shipping_reference_id: ShippingReference_77
+    is_free_shipping: '1'
+  ShippingRate_43:
+    shipping_reference_id: ShippingReference_79
+    is_free_shipping: '1'
+  ShippingRate_44:
+    shipping_reference_id: ShippingReference_81
+    is_free_shipping: '1'
+  ShippingRate_47:
+    shipping_reference_id: ShippingReference_83
+    is_free_shipping: '1'
+  ShippingRate_49:
+    shipping_reference_id: ShippingReference_85
+    is_free_shipping: '1'
+  ShippingRate_51:
+    shipping_reference_id: ShippingReference_87
+    is_free_shipping: '1'
+  ShippingRate_52:
+    shipping_reference_id: ShippingReference_89
+    is_free_shipping: '1'
+  ShippingRate_53:
+    shipping_reference_id: ShippingReference_91
+    is_free_shipping: '1'
+  ShippingRate_55:
+    shipping_reference_id: ShippingReference_93
+    is_free_shipping: '1'
+  ShippingRate_56:
+    shipping_reference_id: ShippingReference_95
+    is_free_shipping: '1'
+  ShippingRate_57:
+    shipping_reference_id: ShippingReference_97
+    is_free_shipping: '1'
+  ShippingRate_59:
+    shipping_reference_id: ShippingReference_101
+    flat_rate_in_cents: '550'
+    is_free_shipping: '0'
+  ShippingRate_60:
+    shipping_reference_id: ShippingReference_103
+    flat_rate_in_cents: '1300'
+    is_free_shipping: '0'
+  ShippingRate_61:
+    shipping_reference_id: ShippingReference_105
+    flat_rate_in_cents: '850'
+    is_free_shipping: '0'
+  ShippingRate_62:
+    shipping_reference_id: ShippingReference_107
+    flat_rate_in_cents: '800'
+    is_free_shipping: '0'
+  ShippingRate_65:
+    shipping_reference_id: ShippingReference_113
+    flat_rate_in_cents: '500'
+    is_free_shipping: '0'
+  ShippingRate_66:
+    shipping_reference_id: ShippingReference_115
+    flat_rate_in_cents: '800'
+    is_free_shipping: '0'
+  ShippingRate_67:
+    shipping_reference_id: ShippingReference_117
+    flat_rate_in_cents: '1350'
+    is_free_shipping: '0'
+  ShippingRate_68:
+    shipping_reference_id: ShippingReference_119
+    flat_rate_in_cents: '600'
+    is_free_shipping: '0'
+  ShippingRate_69:
+    shipping_reference_id: ShippingReference_121
+    flat_rate_in_cents: '450'
+    is_free_shipping: '0'
+  ShippingRate_70:
+    shipping_reference_id: ShippingReference_123
+    flat_rate_in_cents: '1200'
+    is_free_shipping: '0'
+  ShippingRate_71:
+    shipping_reference_id: ShippingReference_125
+    flat_rate_in_cents: '1700'
+    is_free_shipping: '0'
+  ShippingRate_72:
+    shipping_reference_id: ShippingReference_127
+    flat_rate_in_cents: '650'
+    is_free_shipping: '0'
+  ShippingRate_80:
+    shipping_reference_id: ShippingReference_133
+    is_free_shipping: '1'
+  ShippingRate_81:
+    shipping_reference_id: ShippingReference_135
+    is_free_shipping: '1'
+  ShippingRate_82:
+    shipping_reference_id: ShippingReference_137
+    is_free_shipping: '1'
+  ShippingRate_84:
+    shipping_reference_id: ShippingReference_139
+    is_free_shipping: '1'
+  ShippingRate_85:
+    shipping_reference_id: ShippingReference_141
+    flat_rate_in_cents: '1300'
+    is_free_shipping: '0'
+  ShippingRate_86:
+    shipping_reference_id: ShippingReference_131
+    flat_rate_in_cents: '500'
+    is_free_shipping: '0'
+  ShippingRate_89:
+    shipping_reference_id: ShippingReference_129
+    flat_rate_in_cents: '100'
+    is_free_shipping: '0'
+  ShippingRate_90:
+    shipping_reference_id: ShippingReference_130
+    flat_rate_in_cents: '100'
+    is_free_shipping: '0'
+  ShippingRate_91:
+    shipping_reference_id: ShippingReference_143
+    flat_rate_in_cents: '600'
+    is_free_shipping: '0'
+  ShippingRate_92:
+    shipping_reference_id: ShippingReference_144
+    flat_rate_in_cents: '2000'
+    is_free_shipping: '0'
+  ShippingRate_93:
+    shipping_reference_id: ShippingReference_146
+    flat_rate_in_cents: '600'
+    is_free_shipping: '0'
+  ShippingRate_94:
+    shipping_reference_id: ShippingReference_147
+    flat_rate_in_cents: '2000'
+    is_free_shipping: '0'
+  ShippingRate_95:
+    shipping_reference_id: ShippingReference_61
+    flat_rate_in_cents: '1500'
+    is_free_shipping: '0'
+  ShippingRate_96:
+    shipping_reference_id: ShippingReference_65
+    flat_rate_in_cents: '600'
+    is_free_shipping: '0'
+  ShippingRate_97:
+    shipping_reference_id: ShippingReference_149
+    flat_rate_in_cents: '500'
+    is_free_shipping: '0'
+  ShippingRate_98:
+    shipping_reference_id: ShippingReference_151
+    is_free_shipping: '1'
+  ShippingRate_99:
+    shipping_reference_id: ShippingReference_152
+    is_free_shipping: '1'
+  ShippingRate_100:
+    shipping_reference_id: ShippingReference_153
+    is_free_shipping: '1'
+  ShippingRate_102:
+    shipping_reference_id: ShippingReference_155
+    flat_rate_in_cents: '800'
+    is_free_shipping: '0'
+  ShippingRate_103:
+    shipping_reference_id: ShippingReference_157
+    flat_rate_in_cents: '2000'
+    is_free_shipping: '0'
+  ShippingRate_104:
+    shipping_reference_id: ShippingReference_159
+    flat_rate_in_cents: '1300'
+    is_free_shipping: '0'
+  ShippingRate_106:
+    shipping_reference_id: ShippingReference_161
+    is_free_shipping: '1'
+  ShippingRate_107:
+    shipping_reference_id: ShippingReference_163
+    flat_rate_in_cents: '900'
+    is_free_shipping: '0'
+  ShippingRate_126:
+    shipping_reference_id: ShippingReference_169
+    is_free_shipping: '1'
+  ShippingRate_128:
+    shipping_reference_id: ShippingReference_171
+    is_free_shipping: '1'
+  ShippingRate_130:
+    shipping_reference_id: ShippingReference_173
+    is_free_shipping: '1'
+  ShippingRate_131:
+    shipping_reference_id: ShippingReference_175
+    is_free_shipping: '1'
+  ShippingRate_133:
+    shipping_reference_id: ShippingReference_177
+    is_free_shipping: '1'
+  ShippingRate_140:
+    shipping_reference_id: ShippingReference_179
+    is_free_shipping: '1'
+  ShippingRate_143:
+    shipping_reference_id: ShippingReference_167
+    is_free_shipping: '1'
+  ShippingRate_145:
+    shipping_reference_id: ShippingReference_165
+    is_free_shipping: '1'
+  ShippingRate_146:
+    shipping_reference_id: ShippingReference_181
+    is_free_shipping: '1'
+  ShippingRate_147:
+    shipping_reference_id: ShippingReference_183
+    flat_rate_in_cents: '3500'
+    is_free_shipping: '0'
+  ShippingRate_148:
+    shipping_reference_id: ShippingReference_185
+    flat_rate_in_cents: '2500'
+    is_free_shipping: '0'
+  ShippingRate_149:
+    shipping_reference_id: ShippingReference_187
+    flat_rate_in_cents: '3500'
+    is_free_shipping: '0'
+  ShippingRate_150:
+    shipping_reference_id: ShippingReference_189
+    flat_rate_in_cents: '2000'
+    is_free_shipping: '0'
+  ShippingRate_151:
+    shipping_reference_id: ShippingReference_191
+    flat_rate_in_cents: '800'
+    is_free_shipping: '0'
+  ShippingRate_152:
+    shipping_reference_id: ShippingReference_193
+    flat_rate_in_cents: '800'
+    is_free_shipping: '0'
+  ShippingRate_153:
+    shipping_reference_id: ShippingReference_195
+    flat_rate_in_cents: '900'
+    is_free_shipping: '0'
+  ShippingRate_154:
+    shipping_reference_id: ShippingReference_197
+    flat_rate_in_cents: '500'
+    is_free_shipping: '0'
+  ShippingRate_155:
+    shipping_reference_id: ShippingReference_199
+    flat_rate_in_cents: '600'
+    is_free_shipping: '0'
+  ShippingRate_157:
+    shipping_reference_id: ShippingReference_201
+    flat_rate_in_cents: '700'
+    is_free_shipping: '0'
+  ShippingRate_159:
+    shipping_reference_id: ShippingReference_203
+    flat_rate_in_cents: '500'
+    is_free_shipping: '0'
+  ShippingRate_161:
+    shipping_reference_id: ShippingReference_207
+    flat_rate_in_cents: '1000'
+    is_free_shipping: '0'
+  ShippingRate_162:
+    shipping_reference_id: ShippingReference_209
+    flat_rate_in_cents: '1200'
+    is_free_shipping: '0'
+  ShippingRate_164:
+    shipping_reference_id: ShippingReference_213
+    flat_rate_in_cents: '600'
+    is_free_shipping: '0'
+  ShippingRate_165:
+    shipping_reference_id: ShippingReference_215
+    flat_rate_in_cents: '700'
+    is_free_shipping: '0'
+  ShippingRate_166:
+    shipping_reference_id: ShippingReference_217
+    flat_rate_in_cents: '700'
+    is_free_shipping: '0'
+  ShippingRate_167:
+    shipping_reference_id: ShippingReference_219
+    flat_rate_in_cents: '600'
+    is_free_shipping: '0'
+  ShippingRate_168:
+    shipping_reference_id: ShippingReference_221
+    flat_rate_in_cents: '800'
+    is_free_shipping: '0'
+  ShippingRate_169:
+    shipping_reference_id: ShippingReference_223
+    flat_rate_in_cents: '500'
+    is_free_shipping: '0'
+  ShippingRate_170:
+    shipping_reference_id: ShippingReference_225
+    flat_rate_in_cents: '600'
+    is_free_shipping: '0'
+  ShippingRate_171:
+    shipping_reference_id: ShippingReference_227
+    flat_rate_in_cents: '1300'
+    is_free_shipping: '0'
+  ShippingRate_173:
+    shipping_reference_id: ShippingReference_229
+    flat_rate_in_cents: '800'
+    is_free_shipping: '0'
+  ShippingRate_174:
+    shipping_reference_id: ShippingReference_231
+    flat_rate_in_cents: '600'
+    is_free_shipping: '0'
+  ShippingRate_175:
+    shipping_reference_id: ShippingReference_233
+    flat_rate_in_cents: '600'
+    is_free_shipping: '0'
+  ShippingRate_176:
+    shipping_reference_id: ShippingReference_235
+    flat_rate_in_cents: '1300'
+    is_free_shipping: '0'
+  ShippingRate_177:
+    shipping_reference_id: ShippingReference_237
+    flat_rate_in_cents: '900'
+    is_free_shipping: '0'
+  ShippingRate_178:
+    shipping_reference_id: ShippingReference_239
+    flat_rate_in_cents: '900'
+    is_free_shipping: '0'
+  ShippingRate_179:
+    shipping_reference_id: ShippingReference_241
+    flat_rate_in_cents: '900'
+    is_free_shipping: '0'
+  ShippingRate_180:
+    shipping_reference_id: ShippingReference_243
+    flat_rate_in_cents: '900'
+    is_free_shipping: '0'
+  ShippingRate_181:
+    shipping_reference_id: ShippingReference_245
+    flat_rate_in_cents: '700'
+    is_free_shipping: '0'
+  ShippingRate_182:
+    shipping_reference_id: ShippingReference_247
+    flat_rate_in_cents: '900'
+    is_free_shipping: '0'
+  ShippingRate_183:
+    shipping_reference_id: ShippingReference_249
+    flat_rate_in_cents: '900'
+    is_free_shipping: '0'
+  ShippingRate_184:
+    shipping_reference_id: ShippingReference_251
+    flat_rate_in_cents: '600'
+    is_free_shipping: '0'
+  ShippingRate_185:
+    shipping_reference_id: ShippingReference_253
+    flat_rate_in_cents: '900'
+    is_free_shipping: '0'
+  ShippingRate_186:
+    shipping_reference_id: ShippingReference_255
+    flat_rate_in_cents: '900'
+    is_free_shipping: '0'
+  ShippingRate_187:
+    shipping_reference_id: ShippingReference_257
+    flat_rate_in_cents: '1200'
+    is_free_shipping: '0'
+  ShippingRate_188:
+    shipping_reference_id: ShippingReference_259
+    flat_rate_in_cents: '1200'
+    is_free_shipping: '0'
+  ShippingRate_189:
+    shipping_reference_id: ShippingReference_261
+    flat_rate_in_cents: '1500'
+    is_free_shipping: '0'
+  ShippingRate_193:
+    shipping_reference_id: ShippingReference_263
+    flat_rate_in_cents: '1300'
+    is_free_shipping: '0'
+  ShippingRate_194:
+    shipping_reference_id: ShippingReference_265
+    flat_rate_in_cents: '900'
+    is_free_shipping: '0'
+  ShippingRate_195:
+    shipping_reference_id: ShippingReference_267
+    flat_rate_in_cents: '1700'
+    is_free_shipping: '0'
+  ShippingRate_196:
+    shipping_reference_id: ShippingReference_269
+    flat_rate_in_cents: '1000'
+    is_free_shipping: '0'
+  ShippingRate_197:
+    shipping_reference_id: ShippingReference_271
+    flat_rate_in_cents: '1000'
+    is_free_shipping: '0'
+  ShippingRate_198:
+    shipping_reference_id: ShippingReference_273
+    flat_rate_in_cents: '1200'
+    is_free_shipping: '0'
+  ShippingRate_199:
+    shipping_reference_id: ShippingReference_275
+    flat_rate_in_cents: '1500'
+    is_free_shipping: '0'
+  ShippingRate_200:
+    shipping_reference_id: ShippingReference_277
+    is_free_shipping: '1'
+  ShippingRate_201:
+    shipping_reference_id: ShippingReference_279
+    is_free_shipping: '1'
+  ShippingRate_202:
+    shipping_reference_id: ShippingReference_281
+    is_free_shipping: '1'
+  ShippingRate_203:
+    shipping_reference_id: ShippingReference_283
+    is_free_shipping: '1'
+  ShippingRate_204:
+    shipping_reference_id: ShippingReference_285
+    is_free_shipping: '1'
+  ShippingRate_205:
+    shipping_reference_id: ShippingReference_287
+    is_free_shipping: '1'
+  ShippingRate_206:
+    shipping_reference_id: ShippingReference_289
+    is_free_shipping: '1'
+  ShippingRate_207:
+    shipping_reference_id: ShippingReference_291
+    is_free_shipping: '1'
+  ShippingRate_208:
+    shipping_reference_id: ShippingReference_293
+    flat_rate_in_cents: '2500'
+    is_free_shipping: '0'
+  ShippingRate_209:
+    shipping_reference_id: ShippingReference_295
+    flat_rate_in_cents: '800'
+    is_free_shipping: '0'
+  ShippingRate_210:
+    shipping_reference_id: ShippingReference_297
+    flat_rate_in_cents: '1000'
+    is_free_shipping: '0'
+  ShippingRate_211:
+    shipping_reference_id: ShippingReference_299
+    flat_rate_in_cents: '1500'
+    is_free_shipping: '0'
+  ShippingRate_212:
+    shipping_reference_id: ShippingReference_301
+    flat_rate_in_cents: '1200'
+    is_free_shipping: '0'
+  ShippingRate_213:
+    shipping_reference_id: ShippingReference_303
+    flat_rate_in_cents: '1200'
+    is_free_shipping: '0'
+  ShippingRate_214:
+    shipping_reference_id: ShippingReference_305
+    flat_rate_in_cents: '1400'
+    is_free_shipping: '0'
+  ShippingRate_215:
+    shipping_reference_id: ShippingReference_307
+    flat_rate_in_cents: '500'
+    is_free_shipping: '0'
+  ShippingRate_216:
+    shipping_reference_id: ShippingReference_309
+    flat_rate_in_cents: '1300'
+    is_free_shipping: '0'
+  ShippingRate_217:
+    shipping_reference_id: ShippingReference_311
+    flat_rate_in_cents: '1200'
+    is_free_shipping: '0'
+  ShippingRate_219:
+    shipping_reference_id: ShippingReference_315
+    flat_rate_in_cents: '1700'
+    is_free_shipping: '0'
+  ShippingRate_220:
+    shipping_reference_id: ShippingReference_317
+    flat_rate_in_cents: '1500'
+    is_free_shipping: '0'
+  ShippingRate_221:
+    shipping_reference_id: ShippingReference_319
+    flat_rate_in_cents: '1300'
+    is_free_shipping: '0'
+  ShippingRate_222:
+    shipping_reference_id: ShippingReference_321
+    flat_rate_in_cents: '700'
+    is_free_shipping: '0'
+  ShippingRate_223:
+    shipping_reference_id: ShippingReference_323
+    flat_rate_in_cents: '1200'
+    is_free_shipping: '0'
+  ShippingRate_224:
+    shipping_reference_id: ShippingReference_325
+    flat_rate_in_cents: '1500'
+    is_free_shipping: '0'
+  ShippingRate_225:
+    shipping_reference_id: ShippingReference_327
+    flat_rate_in_cents: '3500'
+    is_free_shipping: '0'
+  ShippingRate_226:
+    shipping_reference_id: ShippingReference_329
+    flat_rate_in_cents: '3000'
+    is_free_shipping: '0'
+  ShippingRate_227:
+    shipping_reference_id: ShippingReference_331
+    flat_rate_in_cents: '5000'
+    is_free_shipping: '0'
+  ShippingRate_228:
+    shipping_reference_id: ShippingReference_333
+    flat_rate_in_cents: '3500'
+    is_free_shipping: '0'
+  ShippingRate_229:
+    shipping_reference_id: ShippingReference_335
+    flat_rate_in_cents: '2000'
+    is_free_shipping: '0'
+  ShippingRate_230:
+    shipping_reference_id: ShippingReference_337
+    flat_rate_in_cents: '700'
+    is_free_shipping: '0'
+  ShippingRate_231:
+    shipping_reference_id: ShippingReference_339
+    flat_rate_in_cents: '700'
+    is_free_shipping: '0'
+  ShippingRate_232:
+    shipping_reference_id: ShippingReference_341
+    flat_rate_in_cents: '500'
+    is_free_shipping: '0'
+  ShippingRate_233:
+    shipping_reference_id: ShippingReference_343
+    flat_rate_in_cents: '500'
+    is_free_shipping: '0'
+  ShippingRate_234:
+    shipping_reference_id: ShippingReference_345
+    flat_rate_in_cents: '1500'
+    is_free_shipping: '0'
+  ShippingRate_235:
+    shipping_reference_id: ShippingReference_347
+    flat_rate_in_cents: '2000'
+    is_free_shipping: '0'
+  ShippingRate_237:
+    shipping_reference_id: ShippingReference_351
+    flat_rate_in_cents: '2500'
+    is_free_shipping: '0'
+  ShippingRate_238:
+    shipping_reference_id: ShippingReference_353
+    flat_rate_in_cents: '1500'
+    is_free_shipping: '0'
+  ShippingRate_239:
+    shipping_reference_id: ShippingReference_355
+    flat_rate_in_cents: '2500'
+    is_free_shipping: '0'
+  ShippingRate_240:
+    shipping_reference_id: ShippingReference_357
+    flat_rate_in_cents: '2000'
+    is_free_shipping: '0'
+  ShippingRate_242:
+    shipping_reference_id: ShippingReference_359
+    flat_rate_in_cents: '900'
+    is_free_shipping: '0'
+  ShippingRate_243:
+    shipping_reference_id: ShippingReference_361
+    flat_rate_in_cents: '500'
+    is_free_shipping: '0'
+  ShippingRate_244:
+    shipping_reference_id: ShippingReference_363
+    flat_rate_in_cents: '2500'
+    is_free_shipping: '0'
+  ShippingRate_245:
+    shipping_reference_id: ShippingReference_365
+    flat_rate_in_cents: '900'
+    is_free_shipping: '0'
+  ShippingRate_246:
+    shipping_reference_id: ShippingReference_367
+    flat_rate_in_cents: '500'
+    is_free_shipping: '0'
+  ShippingRate_247:
+    shipping_reference_id: ShippingReference_369
+    flat_rate_in_cents: '1000'
+    is_free_shipping: '0'
+  ShippingRate_248:
+    shipping_reference_id: ShippingReference_371
+    flat_rate_in_cents: '2500'
+    is_free_shipping: '0'
+  ShippingRate_249:
+    shipping_reference_id: ShippingReference_373
+    flat_rate_in_cents: '2000'
+    is_free_shipping: '0'
+  ShippingRate_250:
+    shipping_reference_id: ShippingReference_375
+    flat_rate_in_cents: '1300'
+    is_free_shipping: '0'
+  ShippingRate_251:
+    shipping_reference_id: ShippingReference_377
+    flat_rate_in_cents: '1400'
+    is_free_shipping: '0'
+  ShippingRate_252:
+    shipping_reference_id: ShippingReference_379
+    flat_rate_in_cents: '500'
+    is_free_shipping: '0'
+  ShippingRate_253:
+    shipping_reference_id: ShippingReference_381
+    flat_rate_in_cents: '500'
+    is_free_shipping: '0'
+  ShippingRate_254:
+    shipping_reference_id: ShippingReference_383
+    flat_rate_in_cents: '500'
+    is_free_shipping: '0'
+  ShippingRate_255:
+    shipping_reference_id: ShippingReference_385
+    flat_rate_in_cents: '800'
+    is_free_shipping: '0'
+  ShippingRate_256:
+    shipping_reference_id: ShippingReference_387
+    flat_rate_in_cents: '500'
+    is_free_shipping: '0'
+  ShippingRate_257:
+    shipping_reference_id: ShippingReference_389
+    flat_rate_in_cents: '700'
+    is_free_shipping: '0'
+  ShippingRate_258:
+    shipping_reference_id: ShippingReference_391
+    flat_rate_in_cents: '2000'
+    is_free_shipping: '0'
+  ShippingRate_259:
+    shipping_reference_id: ShippingReference_393
+    flat_rate_in_cents: '2500'
+    is_free_shipping: '0'
+  ShippingRate_260:
+    shipping_reference_id: ShippingReference_395
+    flat_rate_in_cents: '2000'
+    is_free_shipping: '0'
+  ShippingRate_261:
+    shipping_reference_id: ShippingReference_397
+    flat_rate_in_cents: '2000'
+    is_free_shipping: '0'
+  ShippingRate_262:
+    shipping_reference_id: ShippingReference_399
+    flat_rate_in_cents: '1500'
+    is_free_shipping: '0'
+  ShippingRate_263:
+    shipping_reference_id: ShippingReference_401
+    flat_rate_in_cents: '1000'
+    is_free_shipping: '0'
+  ShippingRate_264:
+    shipping_reference_id: ShippingReference_403
+    flat_rate_in_cents: '2000'
+    is_free_shipping: '0'
+  ShippingRate_265:
+    shipping_reference_id: ShippingReference_405
+    flat_rate_in_cents: '1000'
+    is_free_shipping: '0'
+  ShippingRate_266:
+    shipping_reference_id: ShippingReference_407
+    flat_rate_in_cents: '900'
+    is_free_shipping: '0'
+  ShippingRate_267:
+    shipping_reference_id: ShippingReference_409
+    flat_rate_in_cents: '800'
+    is_free_shipping: '0'
+  ShippingRate_268:
+    shipping_reference_id: ShippingReference_411
+    flat_rate_in_cents: '700'
+    is_free_shipping: '0'
+  ShippingRate_269:
+    shipping_reference_id: ShippingReference_413
+    flat_rate_in_cents: '500'
+    is_free_shipping: '0'
+  ShippingRate_270:
+    shipping_reference_id: ShippingReference_415
+    flat_rate_in_cents: '500'
+    is_free_shipping: '0'
+  ShippingRate_271:
+    shipping_reference_id: ShippingReference_417
+    is_free_shipping: '1'
+  ShippingRate_273:
+    shipping_reference_id: ShippingReference_1
+    is_free_shipping: '1'

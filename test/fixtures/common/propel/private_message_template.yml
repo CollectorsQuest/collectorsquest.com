@@ -1,13 +1,13 @@
 PrivateMessageTemplate:
   PrivateMessageTemplate_1:
-    subject: 'Welcome to Collectors'' Quest'
-    body: "Welcome to Collectors' Quest - the destination place for all collectors & sellers.\r\n        Get started by <a href=\"http://www.collectorsquest.com/collection/create.html\">adding your own collection</a> or just click around to find some great <a href=\"http://www.collectorsquest.com/collections/filter/most-recent\">collections</a> and <a href=\"http://www.collectorsquest.com/collectors\">collectors</a>.\r\n\r\n        What's in your collection?"
+    subject: 'Welcome to Collectors Quest'
+    body: "Thanks for joining the fine folks at Collectors Quest! We hope you enjoy sharing your collections with other collectors throughout the world, as well as viewing the collections of others. As a registered, human member of the site, you can now buy, sell, share and interact with your fellow collectors like never before.\n\nWhy don't you start by filling out <a href=\"http://www.collectorsquest.com/mycq/profile\">your profile</a>?\n\nThanks again, and enjoy!"
     description: 'The welcome email to be sent to collectors upon signup'
     created_at: '2011-05-29 21:42:28'
     updated_at: '2011-05-29 21:42:26'
   PrivateMessageTemplate_2:
-    subject: 'Welcome to Collectors'' Quest'
-    body: "Welcome to Collectors' Quest - the destination place for all collectors & sellers.\r\n        Get started by <a href=\"http://www.collectorsquest.com/collection/create.html\">adding your own collection for sale</a> or just click around to find some great <a href=\"http://www.collectorsquest.com/collections/filter/most-recent\">collections</a> and <a href=\"http://www.collectorsquest.com/collectors\">collectors</a>.\r\n\r\n        What do you have for sale?"
+    subject: 'Welcome to Collectors Quest'
+    body: "Thanks for joining the fine folks at Collectors Quest! We hope you enjoy sharing your collections with other collectors throughout the world, as well as viewing the collections of others. As a registered, human member of the site, you can now buy, sell, share and interact with your fellow collectors like never before.\n\nWhy don't you start by filling out <a href=\"http://www.collectorsquest.com/mycq/profile\">your profile</a>?\n\nThanks again, and enjoy!"
     description: 'The welcome email to be sent to sellers upon signup'
     created_at: '2011-05-29 21:42:28'
     updated_at: '2011-05-29 21:42:26'

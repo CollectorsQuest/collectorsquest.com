@@ -67,3 +67,235 @@ CollectorExtraProperty:
     property_name: CQNEXT_ACCESS_ALLOWED
     property_value: '1'
     collector_id: Collector_12
+  CollectorExtraProperty_2534:
+    property_name: MAGNIFY.SSO_SIGNATURE
+    property_value: 8c3753124e9907c4dc9879040dbdda1d
+    collector_id: Collector_12
+  CollectorExtraProperty_2535:
+    property_name: MAGNIFY.SSO_TIMESTAMP
+    property_value: '1337808555'
+    collector_id: Collector_12
+  CollectorExtraProperty_2607:
+    property_name: MAGNIFY.SSO_SIGNATURE
+    property_value: bd20c64dd9cec4e6bca9021e1543bedd
+    collector_id: Collector_52
+  CollectorExtraProperty_2608:
+    property_name: MAGNIFY.SSO_TIMESTAMP
+    property_value: '1338395384'
+    collector_id: Collector_52
+  CollectorExtraProperty_2664:
+    property_name: SELLER_SETTINGS_PAYPAL_EMAIL
+    property_value: robotbacon@gmail.com
+    collector_id: Collector_12
+  CollectorExtraProperty_2665:
+    property_name: SELLER_SETTINGS_PHONE_NUMBER
+    property_value: ''
+    collector_id: Collector_12
+  CollectorExtraProperty_2666:
+    property_name: SELLER_SETTINGS_STORE_DESCRIPTION
+    property_value: 'Lots of neat stuff from many years of collecting, happy to give it new homes. Some of it is extras, some of it is just making room for new stuff! Happy to combine shipping - just let me know!'
+    collector_id: Collector_12
+  CollectorExtraProperty_2667:
+    property_name: SELLER_SETTINGS_RETURN_POLICY
+    property_value: 'Everything is as is! If you''d like more details / photos / etcetera, please let me know. I''ve been selling with 100% positive feedback for 15 years, and I don''t plan on changing that.'
+    collector_id: Collector_12
+  CollectorExtraProperty_2668:
+    property_name: SELLER_SETTINGS_PAYMENT_ACCEPTED
+    property_value: 'All payments processed through PayPal.'
+    collector_id: Collector_12
+  CollectorExtraProperty_2681:
+    property_name: SELLER_SETTINGS_PAYPAL_ACCOUNT_STATUS
+    property_value: VERIFIED
+    collector_id: Collector_12
+  CollectorExtraProperty_2682:
+    property_name: SELLER_SETTINGS_PAYPAL_ACCOUNT_ID
+    property_value: YKS8T7W6UXGZC
+    collector_id: Collector_12
+  CollectorExtraProperty_2683:
+    property_name: SELLER_SETTINGS_PAYPAL_BUSINESS_NAME
+    property_value: ''
+    collector_id: Collector_12
+  CollectorExtraProperty_2684:
+    property_name: SELLER_SETTINGS_PAYPAL_FIRST_NAME
+    property_value: Collin
+    collector_id: Collector_12
+  CollectorExtraProperty_2685:
+    property_name: SELLER_SETTINGS_PAYPAL_LAST_NAME
+    property_value: David
+    collector_id: Collector_12
+  CollectorExtraProperty_2686:
+    property_name: SELLER_SETTINGS_WELCOME
+    property_value: 'I hope you enjoy the excess from 20 years of collecting awesome stuff! Whether it''s extras or just stuff that needs to move along to collect new stuff, I''m happy to give it a new home!'
+    collector_id: Collector_12
+  CollectorExtraProperty_2687:
+    property_name: SELLER_SETTINGS_SHIPPING
+    property_value: 'All shipping rates described on items. Totally happy to combine shipping - just drop me a line!'
+    collector_id: Collector_12
+  CollectorExtraProperty_2688:
+    property_name: SELLER_SETTINGS_REFUNDS
+    property_value: ''
+    collector_id: Collector_12
+  CollectorExtraProperty_2689:
+    property_name: SELLER_SETTINGS_ADDITIONAL_POLICIES
+    property_value: ''
+    collector_id: Collector_12
+  CollectorExtraProperty_2738:
+    property_name: SELLER_SETTINGS_PAYPAL_ACCOUNT_STATUS
+    property_value: VERIFIED
+    collector_id: Collector_52
+  CollectorExtraProperty_2739:
+    property_name: SELLER_SETTINGS_PAYPAL_ACCOUNT_ID
+    property_value: 2QPZN4KLGPKKY
+    collector_id: Collector_52
+  CollectorExtraProperty_2740:
+    property_name: SELLER_SETTINGS_PAYPAL_BUSINESS_NAME
+    property_value: ''
+    collector_id: Collector_52
+  CollectorExtraProperty_2741:
+    property_name: SELLER_SETTINGS_PAYPAL_EMAIL
+    property_value: bfplatt@ku.edu
+    collector_id: Collector_52
+  CollectorExtraProperty_2742:
+    property_name: SELLER_SETTINGS_PAYPAL_FIRST_NAME
+    property_value: Brian
+    collector_id: Collector_52
+  CollectorExtraProperty_2743:
+    property_name: SELLER_SETTINGS_PAYPAL_LAST_NAME
+    property_value: Platt
+    collector_id: Collector_52
+  CollectorExtraProperty_2744:
+    property_name: SELLER_SETTINGS_PHONE_NUMBER
+    property_value: ''
+    collector_id: Collector_52
+  CollectorExtraProperty_2745:
+    property_name: SELLER_SETTINGS_RETURN_POLICY
+    property_value: ''
+    collector_id: Collector_52
+  CollectorExtraProperty_2746:
+    property_name: SELLER_SETTINGS_WELCOME
+    property_value: ''
+    collector_id: Collector_52
+  CollectorExtraProperty_2747:
+    property_name: SELLER_SETTINGS_SHIPPING
+    property_value: ''
+    collector_id: Collector_52
+  CollectorExtraProperty_2748:
+    property_name: SELLER_SETTINGS_REFUNDS
+    property_value: ''
+    collector_id: Collector_52
+  CollectorExtraProperty_2749:
+    property_name: SELLER_SETTINGS_ADDITIONAL_POLICIES
+    property_value: ''
+    collector_id: Collector_52
+  CollectorExtraProperty_2841:
+    property_name: VISITOR_INFO_FIRST_VISIT_AT
+    property_value: '2012-08-17 10:04:59'
+    collector_id: Collector_12
+  CollectorExtraProperty_2842:
+    property_name: VISITOR_INFO_LAST_VISIT_AT
+    property_value: '2012-08-17 16:30:07'
+    collector_id: Collector_12
+  CollectorExtraProperty_2843:
+    property_name: VISITOR_INFO_NUM_VISITS
+    property_value: '2457118'
+    collector_id: Collector_12
+  CollectorExtraProperty_2844:
+    property_name: VISITOR_INFO_NUM_PAGE_VIEWS
+    property_value: '121248771'
+    collector_id: Collector_12
+  CollectorExtraProperty_2845:
+    property_name: VISITOR_INFO_FIRST_VISIT_AT
+    property_value: '2012-07-16 13:49:56'
+    collector_id: Collector_963
+  CollectorExtraProperty_2846:
+    property_name: VISITOR_INFO_NUM_VISITS
+    property_value: '4'
+    collector_id: Collector_963
+  CollectorExtraProperty_2847:
+    property_name: VISITOR_INFO_NUM_PAGE_VIEWS
+    property_value: '5'
+    collector_id: Collector_963
+  CollectorExtraProperty_3111:
+    property_name: VISITOR_INFO_LAST_VISIT_AT
+    property_value: '2012-07-25 13:49:51'
+    collector_id: Collector_963
+  CollectorExtraProperty_3112:
+    property_name: VISITOR_INFO_FIRST_VISIT_AT
+    property_value: '2012-07-18 18:29:30'
+    collector_id: Collector_59
+  CollectorExtraProperty_3113:
+    property_name: VISITOR_INFO_LAST_VISIT_AT
+    property_value: '2012-08-07 23:23:24'
+    collector_id: Collector_59
+  CollectorExtraProperty_3114:
+    property_name: VISITOR_INFO_NUM_VISITS
+    property_value: '4'
+    collector_id: Collector_59
+  CollectorExtraProperty_3115:
+    property_name: VISITOR_INFO_NUM_PAGE_VIEWS
+    property_value: '6'
+    collector_id: Collector_59
+  CollectorExtraProperty_6700:
+    property_name: VISITOR_INFO_FIRST_VISIT_AT
+    property_value: '2012-08-09 13:32:20'
+    collector_id: Collector_6610
+  CollectorExtraProperty_6701:
+    property_name: VISITOR_INFO_NUM_VISITS
+    property_value: '3'
+    collector_id: Collector_6610
+  CollectorExtraProperty_6702:
+    property_name: VISITOR_INFO_NUM_PAGE_VIEWS
+    property_value: '49'
+    collector_id: Collector_6610
+  CollectorExtraProperty_6703:
+    property_name: VISITOR_INFO_LAST_VISIT_AT
+    property_value: '2012-08-10 16:41:27'
+    collector_id: Collector_6610
+  CollectorExtraProperty_6704:
+    property_name: SELLER_SETTINGS_PAYPAL_ACCOUNT_STATUS
+    property_value: VERIFIED
+    collector_id: Collector_6610
+  CollectorExtraProperty_6705:
+    property_name: SELLER_SETTINGS_PAYPAL_ACCOUNT_ID
+    property_value: ME74PV5WW4WHY
+    collector_id: Collector_6610
+  CollectorExtraProperty_6706:
+    property_name: SELLER_SETTINGS_PAYPAL_BUSINESS_NAME
+    property_value: ''
+    collector_id: Collector_6610
+  CollectorExtraProperty_6707:
+    property_name: SELLER_SETTINGS_PAYPAL_EMAIL
+    property_value: stardust466@juno.com
+    collector_id: Collector_6610
+  CollectorExtraProperty_6708:
+    property_name: SELLER_SETTINGS_PAYPAL_FIRST_NAME
+    property_value: Donna
+    collector_id: Collector_6610
+  CollectorExtraProperty_6709:
+    property_name: SELLER_SETTINGS_PAYPAL_LAST_NAME
+    property_value: McArthur
+    collector_id: Collector_6610
+  CollectorExtraProperty_6710:
+    property_name: SELLER_SETTINGS_PHONE_NUMBER
+    property_value: ''
+    collector_id: Collector_6610
+  CollectorExtraProperty_6711:
+    property_name: SELLER_SETTINGS_RETURN_POLICY
+    property_value: 'Refunds are acceptable for items that are significantly not as described within 7 days of delivery. No refunds or exchanges for buyers who simply changed their mind about their purchase.'
+    collector_id: Collector_6610
+  CollectorExtraProperty_6712:
+    property_name: SELLER_SETTINGS_WELCOME
+    property_value: ''
+    collector_id: Collector_6610
+  CollectorExtraProperty_6713:
+    property_name: SELLER_SETTINGS_SHIPPING
+    property_value: 'We ship most often USPS Priority mail with Delivery Confirmation tracking. '
+    collector_id: Collector_6610
+  CollectorExtraProperty_6714:
+    property_name: SELLER_SETTINGS_REFUNDS
+    property_value: 'Refunds are acceptable for items that are significantly not as described within 7 days of delivery. No refunds or exchanges for buyers who simply changed their mind about their purchase. We make no guarantee that classic, used photographic equipment, or any other antique/collectible is performing at it''s original factory specifications. '
+    collector_id: Collector_6610
+  CollectorExtraProperty_6715:
+    property_name: SELLER_SETTINGS_ADDITIONAL_POLICIES
+    property_value: ''
+    collector_id: Collector_6610
