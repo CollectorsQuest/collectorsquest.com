@@ -97,6 +97,17 @@ class _sidebarComponents extends cqFrontendComponents
     /** @var $collection CollectorCollection */
     if (($collection = $this->getVar('collection')) && $collection instanceof CollectorCollection)
     {
+      if ($this->getUser()->getAttribute('no_collectibles'))
+      {
+        if ($this->_collection_content_count($collection) < 6)
+        return sfView::NONE;
+      }
+      
+      if ($this->_collection_content_count($collection) < 8)
+      return sfView::NONE;
+      
+      $this->getUser()->setAttribute('no_collectibles', null);
+      
       $tags = $collection->getTags();
       $content_category_id = $collection->getContentCategoryId();
       $q
@@ -407,6 +418,8 @@ class _sidebarComponents extends cqFrontendComponents
       $q
         ->filterByCollection($collection, Criteria::NOT_EQUAL)
         ->filterByTags($tags, Criteria::IN);
+      
+      $content_count = $this->_collection_content_count($collection);
     }
     /** @var $collectible Collectible */
     else if (($collectible = $this->getVar('collectible')) && $collectible instanceof Collectible)
@@ -427,6 +440,9 @@ class _sidebarComponents extends cqFrontendComponents
 
     // Make the actual query and get the CollectiblesForSale
     $this->collectibles_for_sale = $q->limit($this->limit)->find();
+    
+    if ($content_count < 6)
+    return sfView::NONE;
 
     return $this->_sidebar_if(count($this->collectibles_for_sale) > 0);
   }
@@ -563,8 +579,26 @@ class _sidebarComponents extends cqFrontendComponents
     ) {
       echo call_user_func_array($this->fallback[0], $this->fallback[1]);
     }
+    $trace = debug_backtrace();
+    $caller = $trace[1]['function'];
+    
+    if ($caller == 'executeWidgetCollectiblesForSale')
+    $this->getUser()->setAttribute('no_collectibles', true);
 
     return sfView::NONE;
+  }
+  
+  private function _collection_content_count($collection)
+  {
+    $collectionItems =
+      $collection->getNumItems() > sfConfig::get('app_pager_list_collectibles_max', 24) ?
+      sfConfig::get('app_pager_list_collectibles_max', 24) / 3 :
+      $collection->getNumItems() / 3;
+    
+    $collectionItems = (int) $collectionItems;
+    $overall = $collectionItems + $collection->getNumComments();
+    
+    return $overall;
   }
 
 }
