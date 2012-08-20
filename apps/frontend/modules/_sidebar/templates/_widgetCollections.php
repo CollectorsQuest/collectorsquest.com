@@ -31,7 +31,7 @@
 <?php endforeach; ?>
 
 <?php foreach ($collections as $collection): ?>
-  <div id="sidebar_collection_<?php echo  $collection->getId(); ?>" class="row-fluid sidebar-collections-interest link">
+  <div id="sidebar_collection_<?php echo  $collection->getId(); ?>" class="row-fluid collection-container link">
     <div class="span3 text-center">
       <?php
         echo link_to_collection($collection, 'image', array(
