@@ -97,19 +97,6 @@ class _sidebarComponents extends cqFrontendComponents
     /** @var $collection CollectorCollection */
     if (($collection = $this->getVar('collection')) && $collection instanceof CollectorCollection)
     {
-      if ($this->getUser()->getAttribute('no_collectibles'))
-      {
-        if ($this->getVar('content_count') < 6)
-        return sfView::NONE;
-      }
-      
-      if ($this->getVar('content_count') < 8)
-      {
-        return sfView::NONE;
-      }
-      
-      $this->getUser()->setAttribute('no_collectibles', null);
-      
       $tags = $collection->getTags();
       $content_category_id = $collection->getContentCategoryId();
       $q
@@ -420,8 +407,6 @@ class _sidebarComponents extends cqFrontendComponents
       $q
         ->filterByCollection($collection, Criteria::NOT_EQUAL)
         ->filterByTags($tags, Criteria::IN);
-      
-      $content_count = $this->getVar('content_count');
     }
     /** @var $collectible Collectible */
     else if (($collectible = $this->getVar('collectible')) && $collectible instanceof Collectible)
@@ -442,13 +427,8 @@ class _sidebarComponents extends cqFrontendComponents
 
     // Make the actual query and get the CollectiblesForSale
     $this->collectibles_for_sale = $q->limit($this->limit)->find();
-    
-    if ($content_count < 6)
-    {
-      return sfView::NONE;
-    }
 
-    return $this->_sidebar_if(count($this->collectibles_for_sale) > 0, 'CollectiblesForSale');
+    return $this->_sidebar_if(count($this->collectibles_for_sale) > 0);
   }
 
   public function executeWidgetBlogPosts()
@@ -566,7 +546,7 @@ class _sidebarComponents extends cqFrontendComponents
     return $this->_sidebar_if($collectible_for_sale instanceof CollectibleForSale);
   }
 
-  private function _sidebar_if($condition = false, $method = null)
+  private function _sidebar_if($condition = false)
   {
     if ($condition) {
       return sfView::SUCCESS;
@@ -583,14 +563,8 @@ class _sidebarComponents extends cqFrontendComponents
     ) {
       echo call_user_func_array($this->fallback[0], $this->fallback[1]);
     }
-    $trace = debug_backtrace();
-    $caller = $trace[1]['function'];
-    
-    if ($method && $method == "CollectiblesForSale")
-    {
-      $this->getUser()->setAttribute('no_collectibles', true);
-    }
 
     return sfView::NONE;
   }
+
 }

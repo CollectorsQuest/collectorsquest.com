@@ -9,7 +9,6 @@ class collectionComponents extends cqFrontendComponents
     {
       return sfView::NONE;
     }
-    $this->content_count = $this->collectionContentCount($this->collection);
 
     return sfView::SUCCESS;
   }
@@ -71,18 +70,5 @@ class collectionComponents extends cqFrontendComponents
         $this->collection = $collector->getCollectionDropbox();
       }
     }
-  }
-  
-  private function collectionContentCount($collection)
-  {
-  	$collectionItems =
-  	  $collection->getNumItems() > sfConfig::get('app_pager_list_collectibles_max', 24) ?
-  	  sfConfig::get('app_pager_list_collectibles_max', 24) / 3 :
-  	  $collection->getNumItems() / 3;
-  
-  	$collectionItems = (int) $collectionItems;
-  	$overall = $collectionItems + $collection->getNumComments();
-  
-  	return $overall;
   }
 }

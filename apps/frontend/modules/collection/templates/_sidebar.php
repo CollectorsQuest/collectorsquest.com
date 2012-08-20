@@ -32,8 +32,7 @@
     '_sidebar', 'widgetCollectiblesForSale',
     array(
       'collection' => $collection, 'limit' => 3,
-      'fallback' => 'random',
-      'content_count' => $content_count
+      'fallback' => 'random'
     )
   );
 ?>
@@ -43,8 +42,6 @@
     '_sidebar', 'widgetCollections',
     array(
       'collection' => $collection, 'limit' => 5,
-      'fallback' => 'random',
-  	  'content_count' => $content_count
-    )
+      'fallback' => 'random')
   );
 ?>
