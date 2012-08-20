@@ -14,8 +14,10 @@
     </p>
   </div>
 
-  <?= link_to_collectible($collectible, 'image', array(
-    'link_to' => array('width' => '', 'height' => '', 'alt' => ''),
-    'image_tag' => array('width' => 140, 'height' => 140, 'class' => 'mosaic-backdrop')
-  )); ?>
+  <?=
+    link_to_collectible($collectible, 'image', array(
+      'link_to' => array('width' => '', 'height' => '', 'alt' => ''),
+      'image_tag' => array('width' => 140, 'height' => 140, 'class' => 'mosaic-backdrop')
+    ));
+  ?>
 </div>

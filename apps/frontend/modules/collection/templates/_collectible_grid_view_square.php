@@ -8,6 +8,11 @@
      data-id="<?= $collectible->getId(); ?>"
      class="span4 collectible_grid_view_square link">
 
-  <?= link_to_collectible($collectible, 'image', array('width' => 190, 'height' => 190)); ?>
+  <?=
+    link_to_collectible($collectible, 'image', array(
+      'link_to' => array('width' => '', 'height' => '', 'alt' => ''),
+      'image_tag' => array('width' => 190, 'height' => 190)
+    ));
+  ?>
   <p><?= link_to_collectible($collectible, 'text', array('class' => 'target')); ?></p>
 </div>

@@ -8,11 +8,11 @@
      data-id="<?= $collectible_for_sale->getCollectibleId(); ?>"
      class="collectible_for_sale_grid_view link">
 
-  <?php
-    echo link_to_collectible(
-      $collectible_for_sale->getCollectible(), 'image',
-      array('width' => 190, 'height' => 150, 'class' => 'mosaic-backdrop')
-    );
+  <?=
+    link_to_collectible($collectible_for_sale->getCollectible(), 'image', array(
+      'link_to' => array(),
+      'image_tag' => array('width' => 190, 'height' => 150, 'class' => 'mosaic-backdrop')
+    ));
   ?>
   <div class="mosaic-overlay">
     <p><?= link_to_collectible($collectible_for_sale->getCollectible(), 'text'); ?></p>
