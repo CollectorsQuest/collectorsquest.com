@@ -12,7 +12,7 @@
 
 <p>
   {% if oNewComment.isByRegisteredUser %}
-    Author: {{ link_to_collector(oNewComment.collector, 'text', { absolute: true }) }}<br />
+    Author: {{ link_to_collector(oNewComment.collector, 'text') }}<br />
   {% else %}
     Author: {{ oNewComment.authorName }} ({{ oNewComment.authorEmail }})<br />
   {% endif %}

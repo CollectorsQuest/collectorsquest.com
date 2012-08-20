@@ -45,10 +45,9 @@
       <div class="row-fluid">
         <div class="span3">
           <?php
-            echo link_to_collector(
-              $collector, 'image', array(),
-              array('max_width' => '60', 'max_height' => 60)
-            );
+            echo link_to_collector($collector, 'image', array(
+                'image_tag' => array('max_width' => '60', 'max_height' => 60)
+            ));
           ?>
         </div>
         <div class="span9">

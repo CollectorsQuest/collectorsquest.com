@@ -7,12 +7,12 @@
 </p>
 
 <p>
-  {{ link_to_collector(oSender, 'text', { absolute: true }) }}
+  {{ link_to_collector(oSender, 'text') }}
   has sent you a message on Collectors Quest:
 </p>
 
 <p>
-  {{ link_to_collector(oSender, 'image', { style: "float: right"}) }}
+  {{ link_to_collector(oSender, 'image', {'link_to' : {'style': 'float: right'} }) }}
   <br /><br />
   <em>{{ oMessage.body|raw }}</em>
 </p>
@@ -20,7 +20,7 @@
 
 <p>
   {{ link_to('Click here', sThreadUrl, { absolute: true }) }} to respond to
-  {{ link_to_collector(oSender, 'text', { absolute: true }) }}!
+  {{ link_to_collector(oSender, 'text') }}!
 </p>
 
 {% endblock %}

@@ -98,7 +98,7 @@ function cq_url_for()
   }
 }
 
-function link_to_collector($object, $type = 'text', $options = array(), $image_options = array())
+function link_to_collector($object, $type = 'text', $options = array('link_to' => array(), 'image_tag' => array()))
 {
   if ($object instanceof Collectible)
   {
@@ -121,26 +121,22 @@ function link_to_collector($object, $type = 'text', $options = array(), $image_o
 
   /** @var Collector $collector */
 
-  $display_name = $collector->getDisplayName();
-  $alt = isset($image_options['alt']) ?
-    $image_options['alt'] :
-    (isset($options['alt']) ? $options['alt'] : $display_name);
+  $title = $collector->getDisplayName();
+  $defaults = array(
+    'link_to' => array(
+      'title' => $title,
+      'absolute'=> true
+    ),
+    'image_tag' => array(
+      'alt'    => $title,
+      'absolute'=> true
+    )
+  );
+  $options = _cq_parse_options($options, $defaults);
 
-  $options = array_merge(array(
-    'absolute'=> true,
-    'title'   => $display_name
-  ), $options);
-
-  $image_options = array_merge(array(
-    'alt'     => $alt,
-    'absolute'=> true,
-  ), $image_options);
-
-  unset($options['alt'], $image_options['title']);
-
-  if (array_key_exists('truncate', $options) && strlen($display_name) > $options['truncate'])
+  if (array_key_exists('truncate', $options) && strlen($title) > $options['truncate'])
   {
-    $display_name = truncate_text($display_name, $options['truncate'], '...', true);
+    $title = truncate_text($title, $options['truncate'], '...', true);
     unset($options['truncate']);
   }
 
@@ -148,11 +144,11 @@ function link_to_collector($object, $type = 'text', $options = array(), $image_o
   switch ($type)
   {
     case 'image':
-      $link = link_to(image_tag_collector($collector, '100x100', $image_options), $url, $options);
+      $link = link_to(image_tag_collector($collector, '100x100', $options['image_tag']), $url, $options['link_to']);
       break;
     case 'text':
     default:
-      $link = link_to($display_name, $url, $options);
+      $link = link_to($title, $url, $options['link_to']);
       break;
   }
 

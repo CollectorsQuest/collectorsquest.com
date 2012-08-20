@@ -13,7 +13,11 @@
     <p class="details">
       <?= link_to_collection($collection, 'text', array('class' => 'target', 'style' => 'font-size: 130%;')); ?>
       <br/><small>by</small>
-      <?= link_to_collector($collection->getCollector(), 'text', array('style' => 'color: #000;')); ?>
+      <?php
+        echo link_to_collector($collection->getCollector(), 'text', array(
+          'link_to' => array('style' => 'color: #000;')
+        ));
+      ?>
     </p>
   </div>
   <?php

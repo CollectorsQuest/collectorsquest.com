@@ -7,9 +7,9 @@
 </p>
 
 <p>
-  {{ link_to_collector(oSender, 'image', { style: "float: right"}) }}
+  {{ link_to_collector(oSender, 'image', { 'link_to': {'style': 'float: right'} }) }}
 
-  {{ link_to_collector(oSender, 'text', { absolute: true }) }}
+  {{ link_to_collector(oSender, 'text') }}
   has sent you a message through CollectorsQuest.com:
   <br /><br />
   <em>{{ sMessageBody|raw }}</em>
@@ -18,7 +18,7 @@
 
 <p>
   <a href="mailto:{{ oSender.email }}">Write back</a> to
-  {{ link_to_collector(oSender, 'text', { absolute: true }) }}!
+  {{ link_to_collector(oSender, 'text') }}!
 </p>
 
 {% endblock %}
