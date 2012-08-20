@@ -65,7 +65,7 @@ $t->is(
 // Simple image call
 $t->is(
   link_to_collector($collector, 'image'),
-  '<a title="Robotbacon" href="http://www.example.org/collector/1/robotbacon"><img alt="Robotbacon" slug="robotbacon" src="//static.example.org/images/frontend/multimedia/Collector/100x100.png" /></a>'
+  '<a title="Robotbacon" href="http://www.example.org/collector/1/robotbacon"><img alt="Robotbacon" slug="robotbacon" src="//static.example.com/images/frontend/multimedia/Collector/100x100.png" /></a>'
 );
 
 // Call with absolute=false
@@ -77,30 +77,30 @@ $t->is(
 // Call with alt on $options - alt goes to image
 $t->is(
   link_to_collector($collector, 'image', array('alt'=> 'test')),
-  '<a title="Robotbacon" href="http://www.example.org/collector/1/robotbacon"><img alt="test" slug="robotbacon" src="//static.example.org/images/frontend/multimedia/Collector/100x100.png" /></a>'
+  '<a title="Robotbacon" href="http://www.example.org/collector/1/robotbacon"><img alt="test" slug="robotbacon" src="//static.example.com/images/frontend/multimedia/Collector/100x100.png" /></a>'
 );
 
 // When image title should be only on <a>
 $t->is(
   link_to_collector($collector, 'image', array('title'=> 'test')),
-  '<a title="test" href="http://www.example.org/collector/1/robotbacon"><img alt="Robotbacon" slug="robotbacon" src="//static.example.org/images/frontend/multimedia/Collector/100x100.png" /></a>'
+  '<a title="test" href="http://www.example.org/collector/1/robotbacon"><img alt="Robotbacon" slug="robotbacon" src="//static.example.com/images/frontend/multimedia/Collector/100x100.png" /></a>'
 );
 
 // When image used title is only on <a>, alt goes to <img>
 $t->is(
   link_to_collector($collector, 'image', array('title' => 'test_title', 'alt' => 'test_alt')),
-  '<a title="test_title" href="http://www.example.org/collector/1/robotbacon"><img alt="test_alt" slug="robotbacon" src="//static.example.org/images/frontend/multimedia/Collector/100x100.png" /></a>'
+  '<a title="test_title" href="http://www.example.org/collector/1/robotbacon"><img alt="test_alt" slug="robotbacon" src="//static.example.com/images/frontend/multimedia/Collector/100x100.png" /></a>'
 );
 
 $t->is(
   link_to_collector($collector, 'image', array('title' => 'test'), array('alt' => 'test')),
-  '<a title="test" href="http://www.example.org/collector/1/robotbacon"><img alt="test" slug="robotbacon" src="//static.example.org/images/frontend/multimedia/Collector/100x100.png" /></a>'
+  '<a title="test" href="http://www.example.org/collector/1/robotbacon"><img alt="test" slug="robotbacon" src="//static.example.com/images/frontend/multimedia/Collector/100x100.png" /></a>'
 );
 
 // Alt in $image_options overwrites this from $options
 $t->is(
   link_to_collector($collector, 'image', array('title' => 'test', 'alt' => 'test_options'), array('alt' => 'test_image')),
-  '<a title="test" href="http://www.example.org/collector/1/robotbacon"><img alt="test_image" slug="robotbacon" src="//static.example.org/images/frontend/multimedia/Collector/100x100.png" /></a>'
+  '<a title="test" href="http://www.example.org/collector/1/robotbacon"><img alt="test_image" slug="robotbacon" src="//static.example.com/images/frontend/multimedia/Collector/100x100.png" /></a>'
 );
 
 $t->diag('link_to_collectible()');
@@ -109,7 +109,7 @@ cqTest::resetClasses(array('Collectible'));
 
 $collectible = cqTest::getModelObject('Collectible', false);
 
-// Simple call with text option and no parameters
+// Simple call with text option and empty array parameters
 $t->is(
   link_to_collectible($collectible, 'text', array()),
   '<a title="GEM Razors voice-o-graph" href="/collectible/1/gem-razors-voice-o-graph">GEM Razors voice-o-graph</a>'
@@ -170,3 +170,34 @@ $t->is(
   )),
   '<a title="GEM Razors voice-o-graph" class="mosaic-backdrop" href="/collectible/1/gem-razors-voice-o-graph"><img title="GEM Razors voice-o-graph" alt="GEM Razors voice-o-graph" width="140" height="140" max_height="100" max_width="80" class="mosaic-backdrop" src="//static.example.com/images/frontend/multimedia/Collectible/140x140.png" /></a>'
 );
+
+$t->diag('link_to_collection()');
+
+cqTest::resetClasses(array('Collection'));
+
+$collection = cqTest::getModelObject('Collection', false);
+
+// Simple call with text option and no parameters
+$t->is(
+  link_to_collection($collection, 'text'),
+  '<a title="Voice-O-Graph Recordings" href="/collection/1/voice-o-graph-recordings">Voice-O-Graph Recordings</a>'
+);
+
+// Simple call with image option and no parameters
+$t->is(
+  link_to_collection($collection, 'image'),
+  '<a title="Voice-O-Graph Recordings" href="/collection/1/voice-o-graph-recordings">Voice-O-Graph Recordings</a>'
+);
+
+// Simple call with text option and empty array parameter
+$t->is(
+  link_to_collection($collection, 'text', array()),
+  '<a title="Voice-O-Graph Recordings" href="/collection/1/voice-o-graph-recordings">Voice-O-Graph Recordings</a>'
+);
+
+// Simple call with image option and empty array parameter
+$t->is(
+  link_to_collection($collection, 'image', array('width' => 140, 'height' => 140, 'class' => 'mosaic-backdrop')),
+  '<a title="Voice-O-Graph Recordings" href="/collection/1/voice-o-graph-recordings">Voice-O-Graph Recordings</a>'
+);
+

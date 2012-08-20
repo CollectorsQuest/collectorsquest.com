@@ -171,7 +171,7 @@ function route_for_collector(Collector $collector = null)
       null;
 }
 
-function link_to_collection($object, $type = 'text', $options = array())
+function link_to_collection($object, $type = 'text', $options = array('link_to' => array(), 'image_tag' => array()))
 {
   if ($object instanceof Collectible)
   {
@@ -189,15 +189,18 @@ function link_to_collection($object, $type = 'text', $options = array())
   }
 
   $title   = trim($collection->getName());
-  $options = array_merge(
-    array(
+  $defaults = array(
+    'link_to' => array(
+      'title' => $title
+    ),
+    'image_tag' => array(
       'width'  => 150,
       'height' => 150,
       'alt'    => $title,
       'title'  => $title
-    ),
-    $options
+    )
   );
+  $options = _cq_parse_options($options, $defaults);
 
   if (array_key_exists('truncate', $options))
   {
@@ -209,17 +212,24 @@ function link_to_collection($object, $type = 'text', $options = array())
   switch ($type)
   {
     case 'image':
-      $which = (isset($options['width']) && isset($options['height'])) ?
-        $options['width'] . 'x' . $options['height'] :
+      $which = (isset($options['image_tag']['width']) && isset($options['image_tag']['height'])) ?
+        $options['image_tag']['width'] . 'x' . $options['image_tag']['height'] :
         '150x150';
 
-      $image_tag = image_tag_collection($collection, $which, $options);
+      // unset both width and height if any of them is not specified
+      if (empty($options['image_tag']['width']) || empty($options['image_tag']['height']))
+      {
+        unset($options['image_tag']['width']);
+        unset($options['image_tag']['height']);
+      }
 
-      $link = link_to($image_tag, $route);
+      $image_tag = image_tag_collection($collection, $which, $options['image_tag']);
+
+      $link = link_to($image_tag, $route, $options['link_to']);
       break;
     case 'text':
     default:
-      $link = link_to($title, $route, $options);
+      $link = link_to($title, $route, $options['link_to']);
       break;
   }
 
