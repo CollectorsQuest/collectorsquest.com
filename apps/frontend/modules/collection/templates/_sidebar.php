@@ -2,6 +2,7 @@
 /**
  * @var $collection CollectorCollection
  */
+  $content_count = $collection->collectionContentCount();
 ?>
 
 <?php
@@ -32,7 +33,8 @@
     '_sidebar', 'widgetCollectiblesForSale',
     array(
       'collection' => $collection, 'limit' => 3,
-      'fallback' => 'random'
+      'fallback' => 'random',
+      'content_count' => $content_count
     )
   );
 ?>
@@ -42,6 +44,8 @@
     '_sidebar', 'widgetCollections',
     array(
       'collection' => $collection, 'limit' => 5,
-      'fallback' => 'random')
+      'fallback' => 'random',
+  	  'content_count' => $content_count
+    )
   );
 ?>
