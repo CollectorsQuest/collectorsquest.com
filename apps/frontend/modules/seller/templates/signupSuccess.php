@@ -64,24 +64,16 @@
     </div>
     <div class="row-fluid spacer-top-20">
       <div class="span3 text-center">
-        <button type="submit" class="btn btn-primary" value="Order now">
-          <span>Buy now</span>
-        </button>
+        <?= link_to('Sign up now', '@collector_signup', array('class' => 'btn btn-primary')); ?>
       </div>
       <div class="span3 text-center">
-        <button type="submit" class="btn btn-primary" value="Order now">
-          <span>Buy now</span>
-        </button>
+        <?= link_to('Sign up now', '@collector_signup', array('class' => 'btn btn-primary')); ?>
       </div>
       <div class="span3 text-center">
-        <button type="submit" class="btn btn-primary" value="Order now">
-          <span>Buy now</span>
-        </button>
+        <?= link_to('Sign up now', '@collector_signup', array('class' => 'btn btn-primary')); ?>
       </div>
       <div class="span3 text-center">
-        <button type="submit" class="btn btn-primary" value="Order now">
-          <span>Buy now</span>
-        </button>
+        <?= link_to('Sign up now', '@collector_signup', array('class' => 'btn btn-primary')); ?>
       </div>
     </div>
   </div>
