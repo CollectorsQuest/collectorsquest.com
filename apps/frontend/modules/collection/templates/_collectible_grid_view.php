@@ -13,9 +13,8 @@
       <?= link_to_collectible($collectible, 'text', array('class' => 'target')); ?>
     </p>
   </div>
-  <?=
-    link_to_collectible($collectible, 'image', array(
-      'link_to' => array(),
+  <?php
+    echo link_to_collectible($collectible, 'image', array(
       'image_tag' => array('width' => 190, 'height' => 150, 'class' => 'mosaic-backdrop')
     ));
   ?>

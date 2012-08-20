@@ -7,9 +7,8 @@
 <div data-id="<?= $collectible_for_sale->getCollectorId(); ?>"
      class="span4 collectible_for_sale_grid_view_square link">
 
-  <?=
-    link_to_collectible($collectible_for_sale->getCollectible(), 'image', array(
-      'link_to' => array(),
+  <?php
+    echo link_to_collectible($collectible_for_sale->getCollectible(), 'image', array(
       'image_tag' => array('width' => 190, 'height' => 190)
     ));
   ?>

@@ -20,17 +20,16 @@
   <div class="row-fluid">
     <div class="inner-border">
       <div class="span3">
-        <?=
-          link_to_collectible($collectible_for_sale->getCollectible(), 'image', array(
-            'link_to' => array(),
+        <?php
+          echo link_to_collectible($collectible_for_sale->getCollectible(), 'image', array(
             'image_tag' => array('width' => 75, 'height' => 75, 'max_width' => 60)
           ));
         ?>
       </div>
       <div class="span9 fix-height-text-block">
         <div class="content-container">
-          <?=
-            link_to_collectible(
+          <?php
+            echo link_to_collectible(
               $collectible_for_sale->getCollectible(), 'text', array('class' => 'target')
             );
           ?>

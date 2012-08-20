@@ -46,9 +46,8 @@ $blog_post = wpPostQuery::create()->findOneById(26075);
 
     <?php foreach ($collectibles as $i => $collectible): ?>
     <div class="span2" style="width: 100px; margin-bottom: 10px; <?= (($i-12)%7 !== 0 || $i < 12) ? 'margin-left: 10px' : ''; ?>">
-      <?=
-        link_to_collectible($collectible, 'image', array(
-          'link_to' => array(),
+      <?php
+        echo link_to_collectible($collectible, 'image', array(
           'image_tag' => array('width' => 100, 'height' => 100)
         ));
       ?>
@@ -61,9 +60,8 @@ $blog_post = wpPostQuery::create()->findOneById(26075);
     </div>
     <?php foreach ($collectibles as $i => $collectible): ?>
     <div class="span2" style="width: 100px; margin-bottom: 10px; <?= (($i-8)%7 !== 0 || $i < 8) ? 'margin-left: 10px' : ''; ?>">
-      <?=
-        link_to_collectible($collectible, 'image', array(
-          'link_to' => array(),
+      <?php
+        echo link_to_collectible($collectible, 'image', array(
           'image_tag' => array('width' => 100, 'height' => 100)
         ));
       ?>
