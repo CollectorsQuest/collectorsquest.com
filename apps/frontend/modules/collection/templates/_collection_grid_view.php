@@ -17,11 +17,9 @@
     </p>
   </div>
   <?php
-    echo link_to_collection(
-      $collection, 'image',
-      array(
-        'width' => 190, 'height' => 150,
-        'class' => 'mosaic-backdrop'
+    echo link_to_collection($collection, 'image', array(
+        'image_tag' => array( 'width' => 190, 'height' => 150, 'class' => 'mosaic-backdrop'),
+        'link_to' => array('class' => 'mosaic-backdrop')
       )
     );
   ?>

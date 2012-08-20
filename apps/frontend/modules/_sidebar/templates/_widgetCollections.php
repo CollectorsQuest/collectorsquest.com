@@ -33,7 +33,11 @@
 <?php foreach ($collections as $collection): ?>
   <div id="sidebar_collection_<?php echo  $collection->getId(); ?>" class="row-fluid sidebar-collections-interest link">
     <div class="span3 text-center">
-      <?= link_to_collection($collection, 'image', array('width' => 50, 'height' => 50)); ?>
+      <?php
+        echo link_to_collection($collection, 'image', array(
+            'image_tag' => array('width' => 50, 'height' => 50)
+        ));
+      ?>
     </div>
     <div class="span9">
       <?= link_to_collection($collection, 'text', array('class' => 'target')); ?>

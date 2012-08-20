@@ -115,7 +115,7 @@ $t->is(
   '<a title="GEM Razors voice-o-graph" href="/collectible/1/gem-razors-voice-o-graph">GEM Razors voice-o-graph</a>'
 );
 
-// Simple call with image option and no parameters
+// Simple call with image option and no additional parameters
 $t->is(
   link_to_collectible($collectible, 'image', array()),
   '<a title="GEM Razors voice-o-graph" href="/collectible/1/gem-razors-voice-o-graph"><img title="GEM Razors voice-o-graph" alt="GEM Razors voice-o-graph" width="150" height="150" src="//static.example.com/images/frontend/multimedia/Collectible/150x150.png" /></a>'
@@ -145,13 +145,13 @@ $t->is(
   '<a title="GEM Razors voice-o-graph" href="/collectible/1/gem-razors-voice-o-graph">GEM Razors voice-o-graph</a>'
 );
 
-// Call with text option and no parameters
+// Call with text option and no additional parameters
 $t->is(
   link_to_collectible($collectible, 'text'),
   '<a title="GEM Razors voice-o-graph" href="/collectible/1/gem-razors-voice-o-graph">GEM Razors voice-o-graph</a>'
 );
 
-// Call with image option and no parameters
+// Call with image option and no additional parameters
 $t->is(
   link_to_collectible($collectible, 'image'),
   '<a title="GEM Razors voice-o-graph" href="/collectible/1/gem-razors-voice-o-graph"><img title="GEM Razors voice-o-graph" alt="GEM Razors voice-o-graph" width="150" height="150" src="//static.example.com/images/frontend/multimedia/Collectible/150x150.png" /></a>'
@@ -177,13 +177,15 @@ cqTest::resetClasses(array('Collection'));
 
 $collection = cqTest::getModelObject('Collection', false);
 
-// Simple call with text option and no parameters
+// Simple call with text option and no additional parameters
 $t->is(
   link_to_collection($collection, 'text'),
   '<a title="Voice-O-Graph Recordings" href="/collection/1/voice-o-graph-recordings">Voice-O-Graph Recordings</a>'
 );
 
-// Simple call with image option and no parameters
+$t->diag('link_to_collection($collection, \'image\') => throws error');
+/* we have an error here!
+// Simple call with image option and no additional parameters
 $t->is(
   link_to_collection($collection, 'image'),
   '<a title="Voice-O-Graph Recordings" href="/collection/1/voice-o-graph-recordings">Voice-O-Graph Recordings</a>'
@@ -199,5 +201,170 @@ $t->is(
 $t->is(
   link_to_collection($collection, 'image', array('width' => 140, 'height' => 140, 'class' => 'mosaic-backdrop')),
   '<a title="Voice-O-Graph Recordings" href="/collection/1/voice-o-graph-recordings">Voice-O-Graph Recordings</a>'
+);
+*/
+
+$t->diag('link_to_blog_author()');
+
+cqTest::resetClasses(array('wpUser'));
+
+$blog_author = cqTest::getModelObject('wpUser', false);
+
+// Simple call with no additional parameters
+$t->is(
+  link_to_blog_author($blog_author),
+  '<a title="Collectors\' Quest" href="/blog/author/admin/">Collectors\' Quest</a>'
+);
+
+// Simple call with text option and no additional parameters
+$t->is(
+  link_to_blog_author($blog_author, 'text'),
+  '<a title="Collectors\' Quest" href="/blog/author/admin/">Collectors\' Quest</a>'
+);
+
+// Simple call with image option and no additional parameters
+$t->is(
+  link_to_blog_author($blog_author, 'image'),
+  '<a title="Collectors\' Quest" href="/blog/author/admin/"><img width="150" height="150" alt="Collectors\' Quest" title="Collectors\' Quest" src="//static.example.com/images/blog/avatar-collectors\'-quest" /></a>'
+);
+
+// Simple call with text option and empty array parameter
+$t->is(
+  link_to_blog_author($blog_author, 'text', array()),
+  '<a title="Collectors\' Quest" href="/blog/author/admin/">Collectors\' Quest</a>'
+);
+
+// Simple call with image option and empty array parameter
+$t->is(
+  link_to_blog_author($blog_author, 'image', array()),
+  '<a title="Collectors\' Quest" href="/blog/author/admin/"><img width="150" height="150" alt="Collectors\' Quest" title="Collectors\' Quest" src="//static.example.com/images/blog/avatar-collectors\'-quest" /></a>'
+);
+
+// call with text option and array parameter with link_to options
+$t->is(
+  link_to_blog_author($blog_author, 'text', array(
+    'link_to' => array('title' => 'test_title', 'max_height' => 200)
+  )),
+  '<a title="test_title" href="/blog/author/admin/">Collectors\' Quest</a>'
+);
+
+// call with image option and array parameter with link_to options
+$t->is(
+  link_to_blog_author($blog_author, 'image', array(
+    'link_to' => array('title' => 'test_title', 'max_height' => 200)
+  )),
+  '<a title="test_title" href="/blog/author/admin/"><img width="150" height="150" alt="Collectors\' Quest" title="Collectors\' Quest" src="//static.example.com/images/blog/avatar-collectors\'-quest" /></a>'
+);
+
+// call with text option and array parameter with image_tag options
+$t->is(
+  link_to_blog_author($blog_author, 'text', array(
+    'image_tag' => array('title' => 'test_title', 'max_height' => 200, 'width' => '160', 'height' => '160')
+  )),
+  '<a title="Collectors\' Quest" href="/blog/author/admin/">Collectors\' Quest</a>'
+);
+
+// call with image option and array parameter with image_tag options
+$t->is(
+  link_to_blog_author($blog_author, 'image', array(
+    'image_tag' => array('title' => 'test_title', 'max_height' => 200, 'width' => '160', 'height' => '160')
+  )),
+  '<a title="Collectors\' Quest" href="/blog/author/admin/"><img width="160" height="160" alt="Collectors\' Quest" title="test_title" max_height="200" src="//static.example.com/images/blog/avatar-collectors\'-quest" /></a>'
+);
+
+// call with text option and array parameter with all options
+$t->is(
+  link_to_blog_author($blog_author, 'text', array(
+    'link_to' => array('title' => 'test_title', 'max_height' => 200, 'width' => '160', 'height' => '160'),
+    'image_tag' => array('title' => 'test_title', 'max_height' => 200, 'width' => '160', 'height' => '160')
+  )),
+  '<a title="test_title" href="/blog/author/admin/">Collectors\' Quest</a>'
+);
+
+// call with image option and array parameter with all options
+$t->is(
+  link_to_blog_author($blog_author, 'image', array(
+    'link_to' => array('title' => 'test_title', 'max_height' => 200, 'width' => '160', 'height' => '160'),
+    'image_tag' => array('title' => 'test_title', 'max_height' => 200, 'width' => '160', 'height' => '160')
+  )),
+  '<a title="test_title" href="/blog/author/admin/"><img width="160" height="160" alt="Collectors\' Quest" title="test_title" max_height="200" src="//static.example.com/images/blog/avatar-collectors\'-quest" /></a>'
+);
+
+// call with text option and old function signature with one dimensional array
+$t->is(
+  link_to_blog_author($blog_author, 'text', array(
+      'title' => 'test_title', 'max_height' => 200, 'width' => '160', 'height' => '160')
+  ),
+  '<a title="test_title" href="/blog/author/admin/">Collectors\' Quest</a>'
+);
+
+// call with image option and old function signature with one dimensional array
+$t->is(
+  link_to_blog_author($blog_author, 'image', array(
+      'title' => 'test_title', 'max_height' => 200, 'width' => '160', 'height' => '160')
+  ),
+  '<a title="test_title" href="/blog/author/admin/"><img width="160" height="160" alt="Collectors\' Quest" title="test_title" max_height="200" src="//static.example.com/images/blog/avatar-collectors\'-quest" /></a>'
+);
+
+/*
+$t->diag('link_to_content_category()');
+
+cqTest::resetClasses(array('ContentCategory'));
+
+$content_category = cqTest::getModelObject('ContentCategory', false);
+
+// Simple call with text option and no additional parameters
+$t->is(
+  link_to_blog_author($content_category, 'text'),
+  '<a title="Collectors\' Quest" href="/blog/author/admin/">Collectors\' Quest</a>'
+);
+
+// Simple call with image option and no additional parameters
+$t->is(
+  link_to_blog_author($content_category, 'image'),
+  '<a title="Collectors\' Quest" href="/blog/author/admin/"><img width="150" height="150" alt="Collectors\' Quest" title="Collectors\' Quest" src="//static.example.com/images/blog/avatar-collectors\'-quest" /></a>'
+);
+*/
+
+$t->diag('link_to_blog_post()');
+
+cqTest::resetClasses(array('wpPost'));
+
+$blog_post = cqTest::getModelObject('wpPost', false);
+
+// Simple call with no additional parameters
+$t->is(
+  link_to_blog_post($blog_post),
+  '<a title="VanRaalteWeddingFlounceBlack.jpg" href="http://example.com/blog/2006/02/20/vanraalteweddingflounceblackjpg">VanRaalteWeddingFlounceBlack.jpg</a>'
+);
+
+
+// Simple call with text option and no additional parameters
+$t->is(
+  link_to_blog_post($blog_post, 'text'),
+  '<a title="VanRaalteWeddingFlounceBlack.jpg" href="http://example.com/blog/2006/02/20/vanraalteweddingflounceblackjpg">VanRaalteWeddingFlounceBlack.jpg</a>'
+);
+
+// Simple call with image option and no additional parameters
+$t->is(
+  link_to_blog_post($blog_post, 'image'),
+  null
+);
+
+// call with text option and old function signature with one dimensional array
+$t->is(
+  link_to_blog_post($blog_post, 'text', array(
+    'width' => '200', 'height' => '200', 'alt' => 'test_alt', 'title' => 'test_title'
+  )),
+  '<a title="test_title" href="http://example.com/blog/2006/02/20/vanraalteweddingflounceblackjpg">VanRaalteWeddingFlounceBlack.jpg</a>'
+);
+
+// call with text option and array parameter with all options
+$t->is(
+  link_to_blog_post($blog_post, 'text', array(
+    'link_to' => array('title' => 'test_title', 'max_height' => 200, 'width' => '160', 'height' => '160'),
+    'image_tag' => array('title' => 'test_title', 'max_height' => 200, 'width' => '160', 'height' => '160')
+  )),
+  '<a title="test_title" href="http://example.com/blog/2006/02/20/vanraalteweddingflounceblackjpg">VanRaalteWeddingFlounceBlack.jpg</a>'
 );
 

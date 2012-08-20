@@ -369,113 +369,22 @@ function route_for_collectible($collectible = null)
   return '@collectible_by_slug?id=' . $id . '&slug=' . $slug;
 }
 
-function link_to_video(Video $video, $type = 'text', $options = array())
-{
-  $title   = $video->getTitle();
-  $options = array_merge($options, array('title' => $title));
-
-  if (array_key_exists('truncate', $options) && strlen($title) > $options['truncate'])
-  {
-    $title = truncate_text($title, $options['truncate'], '...', true);
-    unset($options['truncate']);
-  }
-
-  switch ($type)
-  {
-    case 'image':
-      return link_to(image_tag($video->getThumbLargeSrc(), $options), url_for_video($video), $options);
-      break;
-    case 'text':
-    default:
-      return link_to($title, url_for_video($video), $options);
-      break;
-  }
-}
-
-function url_for_video(Video $video)
-{
-  return url_for('@video_by_id?id=' . $video->getId() . '&slug=' . $video->getSlug());
-}
-
-function link_to_featured_week(Featured $featured_week, $type = 'text', $options = array())
-{
-  $title   = $featured_week->title;
-  $options = array_merge($options, array('title' => $title));
-
-  if (array_key_exists('truncate', $options) && strlen($title) > $options['truncate'])
-  {
-    $title = truncate_text($title, $options['truncate'], '...', true);
-    unset($options['truncate']);
-  }
-
-  switch ($type)
-  {
-    case 'text':
-    default:
-      return link_to($title, url_for_featured_week($featured_week), $options);
-      break;
-  }
-}
-
-function url_for_featured_week(Featured $featured_week)
-{
-  return url_for('@featured_week?id=' . $featured_week->getId() . '&slug=' . Utf8::slugify($featured_week->title));
-}
-
-function link_to_blog_post(wpPost $post, $type = 'text', $options = array())
+function link_to_blog_post(wpPost $post, $type = 'text', $options = array('link_to' => array(), 'image_tag' => array()))
 {
   $title = $post->getPostTitle();
+  $defaults = array(
+    'link_to' => array(
+      'title' => $title
+    )
+  );
+  $options = _cq_parse_options($options, $defaults);
+
   if (array_key_exists('truncate', $options) && strlen($title) > $options['truncate'])
   {
     $title = truncate_text($title, $options['truncate'], '...', true);
     unset($options['truncate']);
   }
 
-  return link_to($title, $post->getPostUrl(), $options);
-}
-
-function link_to_blog_author(wpUser $author, $type = 'text', $options = array())
-{
-  switch ($type)
-  {
-    case 'image':
-      if (!$avatar_url = $author->getAvatarUrl('40'))
-      {
-        $avatar_url = 'blog/avatar-' . str_replace(' ', '-', strtolower($author->getDisplayName()));
-      }
-
-      return link_to(
-        cq_image_tag($avatar_url, $options),
-        '/blog/author/' . urlencode($author->getUserNicename()) . '/'
-      );
-      break;
-    case 'text':
-    default:
-      return link_to(
-        $author->getDisplayName(),
-        '/blog/author/' . urlencode($author->getUserLogin()) . '/'
-      );
-      break;
-  }
-}
-
-function link_to_collection_category(CollectionCategory $category, $type = 'text', $options = array())
-{
-  $options = array_merge(
-    array(
-      'alt'   => $category->getName(),
-      'title' => $category->getName()
-    ),
-    $options
-  );
-
-  if (empty($options['width']) || empty($options['height']))
-  {
-    unset($options['width']);
-    unset($options['height']);
-  }
-
-  $route = url_for('collections_by_category', $category);
   switch ($type)
   {
     case 'image':
@@ -483,28 +392,69 @@ function link_to_collection_category(CollectionCategory $category, $type = 'text
       break;
     case 'text':
     default:
-      $link = link_to($category->getName(), $route, $options);
+      $link = link_to($title, $post->getPostUrl(), $options['link_to']);
       break;
   }
 
   return $link;
 }
 
-function link_to_content_category(ContentCategory $category, $type = 'text', $options = array())
+function link_to_blog_author(wpUser $author, $type = 'text', $options = array('link_to' => array(), 'image_tag' => array()))
 {
-  $options = array_merge(
-    array(
-      'alt'   => $category->getName(),
-      'title' => $category->getName()
+  $title = $author->getDisplayName();
+  $defaults = array(
+    'link_to' => array(
+      'title' => $title
     ),
-    $options
+    'image_tag' => array(
+      'width'  => 150,
+      'height' => 150,
+      'alt'    => $title,
+      'title'  => $title
+    )
   );
+  $options = _cq_parse_options($options, $defaults);
 
-  if (empty($options['width']) || empty($options['height']))
+  switch ($type)
   {
-    unset($options['width']);
-    unset($options['height']);
+    case 'image':
+      // unset both width and height if any of them is not specified
+      if (empty($options['image_tag']['width']) || empty($options['image_tag']['height']))
+      {
+        unset($options['image_tag']['width']);
+        unset($options['image_tag']['height']);
+      }
+
+      if (!$avatar_url = $author->getAvatarUrl('40'))
+      {
+        $avatar_url = 'blog/avatar-' . str_replace(' ', '-', strtolower($author->getDisplayName()));
+      }
+
+      $link = link_to(
+        cq_image_tag($avatar_url, $options['image_tag']),
+        '/blog/author/' . urlencode($author->getUserNicename()) . '/', $options['link_to']
+      );
+      break;
+    case 'text':
+    default:
+      $link = link_to(
+        $title, '/blog/author/' . urlencode($author->getUserLogin()) . '/', $options['link_to']
+      );
+      break;
   }
+
+  return $link;
+}
+
+function link_to_content_category(ContentCategory $category, $type = 'text', $options = array('link_to' => array(), 'image_tag' => array()))
+{
+  $title = $category->getName();
+  $defaults = array(
+    'link_to' => array(
+      'title' => $title
+    )
+  );
+  $options = _cq_parse_options($options, $defaults);
 
   $route = url_for('content_category', $category);
   switch ($type)
@@ -514,7 +464,7 @@ function link_to_content_category(ContentCategory $category, $type = 'text', $op
       break;
     case 'text':
     default:
-      $link = link_to($category->getName(), $route, $options);
+      $link = link_to($title, $route, $options['link_to']);
       break;
   }
 
