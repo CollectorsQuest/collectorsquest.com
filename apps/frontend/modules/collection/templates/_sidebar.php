@@ -2,7 +2,6 @@
 /**
  * @var $collection CollectorCollection
  */
-  $content_count = $collection->collectionContentCount();
 ?>
 
 <?php

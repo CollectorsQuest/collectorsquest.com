@@ -240,17 +240,4 @@ class Collection extends BaseCollection
 
     return parent::preDelete($con);
   }
-  
-  public function collectionContentCount()
-  {
-  	$collectionItems =
-  	  $this->getNumItems() > sfConfig::get('app_pager_list_collectibles_max', 24) ?
-  	  sfConfig::get('app_pager_list_collectibles_max', 24) / 3 :
-  	  $this->getNumItems() / 3;
-  
-  	$collectionItems = (int) $collectionItems;
-  	$overall = $collectionItems + $this->getNumComments();
-  
-  	return $overall;
-  }
 }
