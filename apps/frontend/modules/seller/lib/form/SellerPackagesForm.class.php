@@ -43,7 +43,7 @@ class SellerPackagesForm extends BaseForm
     $this->widgetSchema->setNameFormat('packages[%s]');
   }
 
-  private function setupPackageIdField()
+  protected function setupPackageIdField()
   {
     $this->setWidget('package_id', new sfWidgetFormSelectRadio(array(
       'choices'    => PackagePeer::getAllPackageLabelsForSelectById(),
@@ -59,7 +59,11 @@ class SellerPackagesForm extends BaseForm
           );
         }
 
-        return !$rows ? '' : $widget->renderContentTag('div', implode($widget->getOption('separator'), $rows), array('class' => $widget->getOption('class')));
+        return !$rows ? '' : $widget->renderContentTag(
+          'div',
+          implode($widget->getOption('separator'), $rows),
+          array('class' => $widget->getOption('class'))
+        );
       }
     ), array(
       'required' => 'required',
@@ -73,7 +77,7 @@ class SellerPackagesForm extends BaseForm
     )));
   }
 
-  private function setupCountryField()
+  protected function setupCountryField()
   {
     $this->setWidget('country', new cqWidgetFormChoiceGeoIpCountry(array(
       'remote_address' => cqContext::getInstance()->getRequest()->getRemoteAddress(),
@@ -86,7 +90,7 @@ class SellerPackagesForm extends BaseForm
     )));
   }
 
-  private function setupPromoCodeField()
+  protected function setupPromoCodeField()
   {
     $this->setWidget('promo_code', new sfWidgetFormInputText(array(
       'label'=> 'Promo code',
@@ -102,7 +106,7 @@ class SellerPackagesForm extends BaseForm
     );
   }
 
-  private function setupPaymentTypeField()
+  protected function setupPaymentTypeField()
   {
     $this->setWidget('payment_type', new sfWidgetFormChoice(array(
       'choices'           => $this->getPaymentTypes(),
@@ -117,7 +121,7 @@ class SellerPackagesForm extends BaseForm
     );
   }
 
-  private function setupCardTypeField()
+  protected function setupCardTypeField()
   {
     $this->setWidget('cc_type', new sfWidgetFormChoice(array(
         'choices'=> array_merge(array('' => ''), $this->getCardTypes()),
@@ -130,7 +134,7 @@ class SellerPackagesForm extends BaseForm
     );
   }
 
-  private function setupCardNumberField()
+  protected function setupCardNumberField()
   {
     $this->setWidget('cc_number', new cqWidgetFormCreditCard(array(
         'label' => 'Card Numer',
@@ -146,7 +150,7 @@ class SellerPackagesForm extends BaseForm
     ));
   }
 
-  private function setupCardExpiryDateField()
+  protected function setupCardExpiryDateField()
   {
     $expDateYears = range(date('Y'), date('Y') + 10);
     $this->setWidget('expiry_date', new sfWidgetFormDate(array(
@@ -169,7 +173,7 @@ class SellerPackagesForm extends BaseForm
     ));
   }
 
-  private function setupCardVerificationNumberField()
+  protected function setupCardVerificationNumberField()
   {
     $this->setWidget('cvv_number', new sfWidgetFormInputText(
       array('label' => 'CVV/CSC Number'),
@@ -189,7 +193,7 @@ class SellerPackagesForm extends BaseForm
     ));
   }
 
-  private function setupCardFirstNameField()
+  protected function setupCardFirstNameField()
   {
     $this->setWidget('first_name', new sfWidgetFormInputText(array(
         'label' => 'First Name',
@@ -205,7 +209,7 @@ class SellerPackagesForm extends BaseForm
     ));
   }
 
-  private function setupCardLastNameField()
+  protected function setupCardLastNameField()
   {
     $this->setWidget('last_name', new sfWidgetFormInputText(array(), array(
       'placeholder' => 'Last name',
@@ -219,7 +223,7 @@ class SellerPackagesForm extends BaseForm
     ));
   }
 
-  private function setupCardStreetField()
+  protected function setupCardStreetField()
   {
     $this->setWidget('street', new sfWidgetFormInputText(
       array(
@@ -229,13 +233,13 @@ class SellerPackagesForm extends BaseForm
     $this->setValidator('street', new sfValidatorString(array('required' => true)));
   }
 
-  private function setupCardCityField()
+  protected function setupCardCityField()
   {
     $this->setWidget('city', new sfWidgetFormInputText());
     $this->setValidator('city', new sfValidatorString(array('required' => true)));
   }
 
-  private function setupCardStateField()
+  protected function setupCardStateField()
   {
     $this->setWidget('state', new sfWidgetFormInputText(array(
       'label' => 'State / Province / Region',
@@ -243,7 +247,7 @@ class SellerPackagesForm extends BaseForm
     $this->setValidator('state', new sfValidatorString(array('required' => true)));
   }
 
-  private function setupCardZipField()
+  protected function setupCardZipField()
   {
     $this->setWidget('zip', new sfWidgetFormInputText(array(
       'label' => 'Zip / Postal code',
@@ -251,7 +255,7 @@ class SellerPackagesForm extends BaseForm
     $this->setValidator('zip', new sfValidatorString(array('required' => true)));
   }
 
-  private function setupTermsField()
+  protected function setupTermsField()
   {
     $this->setWidget('terms', new sfWidgetFormInputCheckbox(array(), array(
       'required' => 'required',
@@ -291,15 +295,18 @@ class SellerPackagesForm extends BaseForm
     );
   }
 
-  private function getPackagesKeys()
+  /**
+   * Return the package keys for validation; based on the same function used for
+   * displaying the values
+   *
+   * @return    array
+   */
+  protected function getPackagesKeys()
   {
-    return PackageQuery::create()
-        ->filterById(9999, Criteria::LESS_THAN)
-        ->find()
-        ->getPrimaryKeys(false);
+    return array_keys(PackagePeer::getAllPackageLabelsForSelectById());
   }
 
-  public function applyPromoCode($validator, $values, $arguments)
+  public function applyPromoCode($validator, $values)
   {
     if (IceGateKeeper::locked('mycq_seller_pay') && empty($values['promo_code']))
     {
@@ -334,7 +341,7 @@ class SellerPackagesForm extends BaseForm
     {
       $error = new sfValidatorError($validator, 'Sorry! That code has expired.');
     }
-    else if ($used = PromotionTransactionPeer::findOneByCollectorAndCode($this->getOption('collector', $collector), $values['promo_code']))
+    else if (PromotionTransactionPeer::findOneByCollectorAndCode($this->getOption('collector', $collector), $values['promo_code']))
     {
       $error = new sfValidatorError($validator, 'Sorry! You’ve already used this code!');
     }
@@ -408,6 +415,9 @@ class SellerPackagesForm extends BaseForm
       }
     }
 
+    // disable some more validators if not necessary
+    $this->checkPaymentNotRequired($taintedValues);
+
     parent::bind($taintedValues, $taintedFiles);
 
     // automatically guess cc_type if payment is cc, but type is not selected
@@ -415,9 +425,41 @@ class SellerPackagesForm extends BaseForm
       $this->isValid() &&
       'cc' == $this->getValue('payment_type') &&
       !$this->getValue('cc_type')
-    ) {
+    )
+    {
       $this->values['cc_type'] = cqValidatorCreditCardNumber
         ::getCreditCardTypeFromNumber($this->getValue('cc_number'));
+    }
+  }
+
+  /**
+   * Disable the validators for payment type and the 2 checkboxses for terms and
+   * conditions if not necessary
+   *
+   * @param     array $taintedValues
+   */
+  protected function checkPaymentNotRequired($taintedValues)
+  {
+    // rudamentary promo code validation
+    $promo_code = filter_var($taintedValues['promo_code'], FILTER_SANITIZE_STRING);
+    $promotion = $this->getPromotion($promo_code);
+
+    if ($promotion)
+    {
+      // rudamentary package id validation
+      $package_id = filter_var($taintedValues['package_id'], FILTER_SANITIZE_NUMBER_INT);
+      $package_id = in_array($package_id, $this->getPackagesKeys())
+        ? $package_id
+        : null;
+
+      if (( $package = $this->getPackage($package_id) ))
+      {
+        if (0 == $package->getPriceWithDiscount($promotion))
+        {
+          $this->getValidator('payment_type')->setOption('required', false);
+          $this->getValidator('fyi')->setOption('required', false);
+        }
+      }
     }
   }
 
@@ -443,54 +485,49 @@ class SellerPackagesForm extends BaseForm
   }
 
   /**
-   * @return Promotion|null
+   * @return    Promotion|null
    */
-  public function getPromotion()
+  public function getPromotion($promo_code = null)
   {
-    if (null !== $this->promotion)
+    if (null === $this->promotion)
     {
-      return $this->promotion;
-    }
+      $promo_code = is_null($promo_code)
+        ? $this->getValue('promo_code')
+        : $promo_code;
 
-    if (!$this->getValue('promo_code'))
-    {
-      return null;
-    }
+      if (!$promo_code)
+      {
+        return null;
+      }
 
-    $promo = PromotionQuery::create()->findOneByPromotionCode($this->getValue('promo_code'));
-
-    if ($promo)
-    {
-      $this->promotion = $promo;
+      $this->promotion = PromotionQuery::create()
+        ->findOneByPromotionCode($promo_code);
     }
 
     return $this->promotion;
   }
 
   /**
-   * @param     int $packageId
+   * @param     int $package_id
    * @return    null|Package
    */
-  public function getPackage($packageId = null)
+  public function getPackage($package_id = null)
   {
-    if (null !== $this->package)
+    if (null === $this->package)
     {
-      return $this->package;
+      $package_id = !is_null($package_id)
+        ? $package_id
+        : $this->getValue('package_id');
+
+      if (!$package_id)
+      {
+        return null;
+      }
+
+      $this->package = PackagePeer::retrieveByPK($package_id);
     }
 
-    $packageId = !is_null($packageId) ? $packageId : $this->getValue('package_id');
-
-    if (!$packageId)
-    {
-      return null;
-    }
-
-    if ($package = PackagePeer::retrieveByPK($packageId))
-    {
-      $this->package = $package;
-    }
-
-    return $package;
+    return $this->package;
   }
 
 }
