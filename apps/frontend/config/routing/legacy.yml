@@ -56,3 +56,9 @@ legacy_collectible_by_slug:
 legacy_featured_week_page:
   url:  /featured-week/:slug
   param: { module: _legacy, action: featuredWeek }
+
+legacy_calendar_events:
+  url:  /calendar/events/:string
+  param: { module: _legacy, action: calendarEvents }
+  requirements: { string: "[^/]+" }
+

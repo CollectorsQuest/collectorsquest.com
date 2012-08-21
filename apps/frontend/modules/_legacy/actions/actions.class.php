@@ -84,4 +84,15 @@ class _legacyActions extends sfActions
      $this->redirect('collections', 301);
   }
 
+  /**
+   * Action CalendarEvents
+   *
+   * @param sfWebRequest $request
+   *
+   * @return string
+   */
+  public function executeCalendarEvents(sfWebRequest $request)
+  {
+     $this->redirect('collections', 301);
+  }
 }
