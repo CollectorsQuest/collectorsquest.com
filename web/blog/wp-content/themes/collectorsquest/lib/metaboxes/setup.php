@@ -13,10 +13,7 @@ include_once 'market-explore-spec.php';
 include_once 'market-featured-spec.php';
 include_once 'collections-explore-spec.php';
 include_once 'featured-week-spec.php';
+include_once 'featured-items-spec.php';
 include_once 'seller-spotlight-spec.php';
-
-
-
-
 
 /* eof */

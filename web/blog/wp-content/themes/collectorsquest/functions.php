@@ -223,7 +223,32 @@ function cq_custom_post_type_init()
     'rewrite'         => false,
     'query_var'       => false,
     'menu_position'   => 100,
-    'supports'        => array('title', 'editor', 'custom-fields', 'thumbnail')
+    'supports'        => array('title', 'editor', 'thumbnail')
+  ));
+
+  register_post_type('featured_items', array(
+    'labels' => array(
+      'name'               => _x('Featured Collectibles', 'post type general name'),
+      'singular_name'      => _x('Featured Collectibles', 'post type singular name'),
+      'add_new'            => _x('Add New', 'Featured Collectibles'),
+      'add_new_item'       => __('Add New Featured Collectibles'),
+      'edit_item'          => __('Edit Featured Collectibles'),
+      'new_item'           => __('New Featured Collectibles'),
+      'view_item'          => __('View Featured Collectibles'),
+      'search_items'       => __('Search Featured Collectibles'),
+      'not_found'          => __('No Featured Collectibles found'),
+      'not_found_in_trash' => __('No Featured Collectibles found in Trash'),
+      'parent_item_colon'  => ''
+    ),
+    'public'          => true,
+    'show_ui'         => true,
+    'capability_type' => 'editorial',
+    'capabilities'    => $capabilities,
+    'hierarchical'    => false,
+    'rewrite'         => false,
+    'query_var'       => false,
+    'menu_position'   => 100,
+    'supports'        => array('title', 'editor', 'thumbnail')
   ));
 
   register_post_type('seller_spotlight', array(

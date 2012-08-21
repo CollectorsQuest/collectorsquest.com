@@ -247,4 +247,54 @@ class miscActions extends cqFrontendActions
     $this->redirect('@misc_guide_download');
   }
 
+  public function executeWordPress()
+  {
+    /** @var $wp_post wpPost */
+    $wp_post = $this->getRoute()->getObject();
+
+    $values = unserialize($wp_post->getPostMetaValue('_featured_items'));
+
+    // Initialize the arrays
+    $collection_ids = $collectible_ids = $collectibles_for_sale_ids = $wp_post_ids = array();
+
+    if (!empty($values['cq_collection_ids']))
+    {
+      $collection_ids = explode(',', $values['cq_collection_ids']);
+      $collection_ids = array_map('trim', $collection_ids);
+      $collection_ids = array_filter($collection_ids);
+    }
+    if (!empty($values['cq_collectible_ids']))
+    {
+      $collectible_ids = explode(',', $values['cq_collectible_ids']);
+      $collectible_ids = array_map('trim', $collectible_ids);
+      $collectible_ids = array_filter($collectible_ids);
+    }
+    if (!empty($values['cq_collectibles_for_sale_ids']))
+    {
+      $collectibles_for_sale_ids = explode(',', $values['cq_collectibles_for_sale_ids']);
+      $collectibles_for_sale_ids = array_map('trim', $collectibles_for_sale_ids);
+      $collectibles_for_sale_ids = array_filter($collectibles_for_sale_ids);
+    }
+    if (!empty($values['wp_post_ids']))
+    {
+      $wp_post_ids = explode(',', $values['wp_post_ids']);
+      $wp_post_ids = array_map('trim', $wp_post_ids);
+      $wp_post_ids = array_filter($wp_post_ids);
+    }
+
+    /** @var $q CollectionCollectibleQuery */
+    $q = CollectionCollectibleQuery::create()
+      ->filterByCollectionId($collection_ids, Criteria::IN)
+      ->_or()
+      ->filterByCollectibleId($collectible_ids, Criteria::IN)
+      ->addAscendingOrderByColumn('RAND()')
+      ->limit(9);
+
+    $this->collectibles = $q->find();
+    $this->wp_post = $wp_post;
+
+    $this->addBreadcrumb($wp_post->getPostTitle(), null);
+
+    return sfInflector::classify($wp_post->getPostType());
+  }
 }

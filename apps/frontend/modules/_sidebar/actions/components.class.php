@@ -379,9 +379,16 @@ class _sidebarComponents extends cqFrontendComponents
     // Set the limit of Collectibles For Sale to show
     $this->limit = (int) $this->getVar('limit') ?: 3;
 
+    /** @var $q CollectibleForSaleQuery */
     $q = CollectibleForSaleQuery::create()
       ->isForSale()
       ->orderByUpdatedAt(Criteria::DESC);
+
+    // See if we need to filter by CollectibleId first
+    if (!empty($this->ids) && is_array($this->ids))
+    {
+      $q->filterByCollectibleId($this->ids, Criteria::IN);
+    }
 
     /** @var $wp_post wpPost */
     if (($wp_post = $this->getVar('wp_post')) && $wp_post instanceof wpPost)
@@ -395,13 +402,15 @@ class _sidebarComponents extends cqFrontendComponents
       $tags = $wp_user->getTags('array');
       $q->filterByTags($tags, Criteria::IN);
     }
+
     /** @var $category ContentCategory */
-    else if (($category = $this->getVar('category')) && $category instanceof ContentCategory)
+    if (($category = $this->getVar('category')) && $category instanceof ContentCategory)
     {
       $q->filterByContentCategoryWithDescendants($category);
     }
+
     /** @var $collection Collection */
-    else if (($collection = $this->getVar('collection')) && $collection instanceof CollectorCollection)
+    if (($collection = $this->getVar('collection')) && $collection instanceof CollectorCollection)
     {
       $tags = $collection->getTags();
       $q
@@ -436,13 +445,20 @@ class _sidebarComponents extends cqFrontendComponents
     $this->title = $this->getVar('title') ?: 'In Other News';
 
     // Set the limit of other Collections to show
-    $this->limit = (int) $this->getVar('limit') ?: 0;
+    $this->limit = (int) $this->getVar('limit') ?: 3;
 
+    /** @var $q wpPostQuery */
     $q = wpPostQuery::create()
       ->filterByPostType('post')
       ->filterByPostStatus('publish')
       ->orderByPostDate(Criteria::DESC)
       ->limit($this->limit);
+
+    if (!empty($this->ids) && is_array($this->ids))
+    {
+      $q->filterById($this->ids, Criteria::IN);
+    }
+
     $this->wp_posts = $q->find();
 
     return $this->_sidebar_if(count($this->wp_posts) > 0);
@@ -487,13 +503,14 @@ class _sidebarComponents extends cqFrontendComponents
       // limit the total collectibles depending on how many pages we will be showing
       $limit = min($page * $limit_per_page, ($pages_before_current + 1) * $limit_per_page);
 
-      $q = CollectionCollectibleQuery::create()
-        ->joinWith('Collectible')
-        ->filterByCollection($collection)
-        ->offset($offset)
-        ->limit($limit)
+      /** @var $q CollectionCollectibleQuery */
+      $q = CollectionCollectibleQuery::create();
+      $q->joinWith('Collectible');
+      $q->filterByCollection($collection)
         ->orderByPosition(Criteria::ASC)
-        ->orderByCreatedAt(Criteria::ASC);
+        ->orderByCreatedAt(Criteria::ASC)
+        ->offset($offset)
+        ->limit($limit);
 
       $this->collectibles = $q->find();
       $this->collection = $collection;
@@ -548,19 +565,22 @@ class _sidebarComponents extends cqFrontendComponents
 
   private function _sidebar_if($condition = false)
   {
-    if ($condition) {
+    if ($condition)
+    {
       return sfView::SUCCESS;
     }
     else if (
       $this->fallback && is_string($this->fallback) &&
       method_exists($this, 'execute' . $this->fallback)
-    ) {
+    )
+    {
       echo get_component('_sidebar', $this->fallback, $this->getVarHolder()->getAll());
     }
     else if (
       $this->fallback && count($this->fallback) === 2 &&
       function_exists($this->fallback[0])
-    ) {
+    )
+    {
       echo call_user_func_array($this->fallback[0], $this->fallback[1]);
     }
 

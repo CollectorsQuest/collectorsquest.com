@@ -16,3 +16,7 @@ guideDownloadAlert:
     footer:  []
     breadcrumbs: []
 
+
+wordPressFeaturedItems:
+  components:
+    sidebar_300:  [misc, sidebarWordPressFeaturedItems]
