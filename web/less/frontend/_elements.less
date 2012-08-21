@@ -247,3 +247,34 @@ li {
 	font-size: 22px;
 	line-height: 22px;
 }
+
+
+//Table
+.table-credit-history {
+	margin-bottom: 10px;
+
+	td, th {
+		text-align: center
+	}
+	.expired td {
+		color: #b0b0b0;
+		background-color: #F7F7F7;
+		&:first-child {
+			text-decoration: line-through;
+		}
+	}
+	.alert td {
+		color: @red;
+		//background-color: #F2DEDE;
+	}
+	.not-paid td {
+		color: #b0b0b0;
+	}
+}
+
+.row-fluid.min-height-13 > [class*="span"] {
+	min-height: 13px;
+}
+
+
+
