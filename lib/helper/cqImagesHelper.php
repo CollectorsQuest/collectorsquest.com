@@ -275,7 +275,7 @@ function image_tag_multimedia($multimedia, $which, $options = array())
  *
  * @return null|string
  */
-function src_tag_multimedia($multimedia, $which = 'thumb', $options = array())
+function src_tag_multimedia($multimedia, $which = 'thumbnail', $options = array())
 {
   if (!$multimedia instanceof iceModelMultimedia)
   {
