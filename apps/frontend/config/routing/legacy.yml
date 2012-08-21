@@ -4,28 +4,25 @@ legacy_community_help:
   url:  /community/help
   param: { module: _legacy, action: help }
 
-legacy_community_spotlight:
-  url:   /community/spotlight
-  param: { module: _legacy, action: spotlight }
-
 legacy_community:
   url:   /community
-  param: { module: _legacy, action: spotlight }
+  param: { module: _legacy, action: redirectToCollections }
 
 legacy_collectible_sell:
   url:  /collectible/sell
-  param: { module: _legacy, action: spotlight }
+  param: { module: _legacy, action: redirectToCollections }
 
 legacy_featured_week:
   url:   /community/spotlight/:id/:slug
   class: sfPropelRoute
   options: { model: Featured, type: object, method: getObjectForFeaturedWeek }
-  param: { module: _legacy, action: spotlight }
+  param: { module: _legacy, action: redirectToCollections }
   requirements: { id: '\d+', slug: '[\-\w\.]+' }
 
-legacy_15_minutes_of_fame:
-  url:   /community/15-minutes-of-fame
-  param: { module: _legacy, action: spotlight }
+legacy_community_pages:
+  url:  /community/:string
+  param: { module: _legacy, action: redirectToCollections }
+  requirements: { string: "[^/]+" }
 
 legacy_seller_subscribe:
   url:   /seller/subscribe
@@ -37,7 +34,7 @@ legacy_collector_signup_facebook:
 
 legacy_collections_most_recent:
   url:  /collections/filter/most-recent
-  param: { module: _legacy, action: collectionsMostRecent }
+  param: { module: _legacy, action: redirectToCollections }
 
 legacy_collector_by_slug:
   url:  /collector/:slug
@@ -55,10 +52,26 @@ legacy_collectible_by_slug:
 
 legacy_featured_week_page:
   url:  /featured-week/:slug
-  param: { module: _legacy, action: featuredWeek }
+  param: { module: _legacy, action: redirectToCollections }
 
 legacy_calendar_events:
   url:  /calendar/events/:string
-  param: { module: _legacy, action: calendarEvents }
+  param: { module: _legacy, action: redirectToCollections }
   requirements: { string: "[^/]+" }
+
+legacy_general_pages:
+  url:  /general/:string
+  param: { module: _legacy, action: redirectToCollections }
+  requirements: { string: "[^/]+" }
+
+legacy_redirect_pages:
+  url:  /redirect/:string
+  param: { module: _legacy, action: redirectToContentCategories }
+  requirements: { string: "[^/]+" }
+
+legacy_feed_pages:
+  url:  /feed/:string
+  param: { module: _legacy, action: redirectToContentCategories }
+  requirements: { string: "[^/]+" }
+
 
