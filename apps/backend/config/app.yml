@@ -1,10 +1,7 @@
 all:
 
-  credentials:
-    rpxnow:
-      application_domain: "https://collectorsquest-dev.rpxnow.com/"
-      application_id: "epghfmlgdcconfbmkmof"
-      api_key: "dabc61cdced770898eccd13f3b9f100e40d46b40"
+  ice_assets:
+    domain: "cqcdns.com"
 
   ice_backend:
     site: "CollectorsQuest.com"
@@ -74,3 +71,13 @@ all:
         items:
           Meta Tags:
             url: ice_model_meta_tag
+
+
+next:
+  ice_assets:
+    domain: "next.cqcdns.com"
+
+
+dev:
+  ice_assets:
+    domain: "cqcdns.dev"

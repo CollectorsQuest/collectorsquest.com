@@ -23,20 +23,6 @@ class _legacyActions extends sfActions
   }
 
   /**
-   * Action Spotlight
-   *
-   * @param sfWebRequest $request
-   *
-   * @return string
-   *
-   * @deprecated
-   */
-  public function executeSpotlight(sfWebRequest $request)
-  {
-    $this->redirect('@collections', 301);
-  }
-
-  /**
    * Action Signup
    *
    * @param sfWebRequest $request
@@ -61,15 +47,26 @@ class _legacyActions extends sfActions
   }
 
   /**
-   * Action CollectionsMostRecent
+   * Action RedirectToCollections
    *
    * @param sfWebRequest $request
    *
    * @return string
    */
-  public function executeCollectionsMostRecent(sfWebRequest $request)
+  public function executeRedirectToCollections(sfWebRequest $request)
   {
-    $this->redirect('collections', 301);
+     $this->redirect('@collections', 301);
   }
 
+  /**
+   * Action RedirectToContentCategories
+   *
+   * @param sfWebRequest $request
+   *
+   * @return string
+   */
+  public function executeRedirectToContentCategories(sfWebRequest $request)
+  {
+     $this->redirect('@content_categories', 301);
+  }
 }

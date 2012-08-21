@@ -39,11 +39,6 @@ class collectionsActions extends cqFrontendActions
       $this->pager = $pager;
     }
 
-    if ($this->getContext()->getRouting()->getCurrentInternalUri(true) == '@legacy_featured_week_page')
-    {
-      $this->redirect('@collections', 301);
-    }
-
     return sfView::SUCCESS;
   }
 

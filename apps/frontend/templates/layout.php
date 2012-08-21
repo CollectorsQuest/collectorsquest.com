@@ -10,11 +10,26 @@
   $sf_cache_key .= $sf_user->isAuthenticated() ? 'authenticated' : 'not_authenticated';
 ?>
 <!doctype html>
+<<<<<<< HEAD
 <!--[if lt IE 7 ]>    <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#" xmlns:og="http://opengraph.org/schema/" lang="en" class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7"><![endif]-->
 <!--[if IE 7 ]>       <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#" xmlns:og="http://opengraph.org/schema/" lang="en" class="no-js lt-ie10 lt-ie9 lt-ie8"><![endif]-->
 <!--[if IE 8 ]>       <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#" xmlns:og="http://opengraph.org/schema/" lang="en" class="no-js lt-ie10 lt-ie9"><![endif]-->
 <!--[if IE 9]>        <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#" xmlns:og="http://opengraph.org/schema/" lang="en" class="no-js lt-ie10"><![endif]-->
 <!--[if gt IE 9]><!--><html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#" xmlns:og="http://opengraph.org/schema/" lang="en" class="no-js"><!--<![endif]-->
+=======
+<!--[if IE 8 ]>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#" xmlns:og="http://opengraph.org/schema/"
+      lang="en" class="no-js lt-ie10 lt-ie9">
+<![endif]-->
+<!--[if IE 9]>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#" xmlns:og="http://opengraph.org/schema/"
+      lang="en" class="no-js lt-ie10">
+<![endif]-->
+<!--[if gt IE 9]>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#" xmlns:og="http://opengraph.org/schema/"
+      lang="en" class="no-js">
+<!--<![endif]-->
+>>>>>>> develop
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# collectorsquest: http://ogp.me/ns/fb/collectorsquest#">
   <?php include_partial('global/head'); ?>
 
@@ -28,6 +43,8 @@
       data-controller="<?= $sf_context->getModuleName(); ?>"
       data-action="<?= $sf_context->getActionName(); ?>">
   <a name="top"></a>
+
+  <!--
   <div id="fb-root"></div>
   <script>
     window.fbAsyncInit = function()
@@ -48,6 +65,7 @@
       d.getElementsByTagName('head')[0].appendChild(js);
     }(document));
   </script>
+  //-->
 
   <?php
     $k = $sf_user->getShoppingCartCollectiblesCount();

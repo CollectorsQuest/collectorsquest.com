@@ -72,6 +72,7 @@ videos:
 tag:
   url:   /tag/:tag
   param: { module: search, action: index }
+  requirements: { tag: "[^/]+" }
 
 tags:
   url:   /tags/:which
