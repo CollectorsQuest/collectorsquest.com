@@ -98,7 +98,7 @@ class SellerPackagesForm extends BaseForm
       'required' => 'required',
     )));
     $this->setValidator('promo_code', new sfValidatorString(
-      array('required'=> false),
+      array('required' => false, 'trim' => true),
       array('required' => 'The promo code is required while we are in private beta!')
     ));
     $this->mergePreValidator(
@@ -433,8 +433,8 @@ class SellerPackagesForm extends BaseForm
   }
 
   /**
-   * Disable the validators for payment type and the 2 checkboxses for terms and
-   * conditions if not necessary
+   * Disable the validators for payment type and the checkbox for terms and
+   * conditions if promotion covers the full package price
    *
    * @param     array $taintedValues
    */

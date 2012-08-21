@@ -44,6 +44,7 @@ class sellerActions extends cqFrontendActions
 
     if ($request->isMethod('post'))
     {
+      // Apply Discount button was clicked
       if ('applyPromo' == $request->getParameter('applyPromo', false))
       {
         $packagesForm->setPartialRequirements();
@@ -51,19 +52,12 @@ class sellerActions extends cqFrontendActions
 
         if ($packagesForm->isValid())
         {
-          $promotion = $packagesForm->getPromotion();
-          // expose the promotion for the template
-          $this->promotion = $promotion;
+          // expose promotion for the template
+          $this->promotion = $packagesForm->getPromotion();
 
-          if ($promotion && !is_null($packagesForm->getValue('package_id')))
+          if ($this->promotion && $package = $packagesForm->getPackage())
           {
-            $package = $packagesForm->getPackage();
-
-            // apply it to the package
-            $package->applyPromo($promotion);
-            // and prepare the discount message
-
-            if (0 == $package->getPriceWithDiscount())
+            if (0 == $package->getPriceWithDiscount($this->promotion))
             {
               $this->discount_message = 'Free Subscription!';
             }
@@ -71,16 +65,25 @@ class sellerActions extends cqFrontendActions
             {
               $this->discount_message = sprintf(
                 '%d%s discount',
-                $promotion->getAmount(),
-                $promotion->getAmountTypeString()
+                $this->promotion->getAmount(),
+                $this->promotion->getAmountTypeString()
               );
             }
           }
         }
       }
+      // Normal submit button was clicked
       else
       {
-        $packagesForm->bind($request->getParameter($packagesForm->getName()));
+        $packages_request = $request->getParameter($packagesForm->getName());
+        $packagesForm->bind($packages_request);
+
+        // this is needed so we can display the appropriate pricing even when
+        // there is an error in the payment part of the form; Validation for the
+        // field is unrelated and will still be executed
+        $this->promotion = PromotionQuery::create()->findOneByPromotionCode(
+          trim($packages_request['promo_code']) // propel escapes the value for us
+        );
 
         if ($packagesForm->isValid())
         {
