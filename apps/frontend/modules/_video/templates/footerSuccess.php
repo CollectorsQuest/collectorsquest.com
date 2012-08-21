@@ -19,7 +19,7 @@
   <?php include_partial('global/head'); ?>
   <base target="_top" />
 </head>
-<body id="body-_video-header" data-controller="_video" data-action="footer">
+<body id="body-_video-footer" data-controller="_video" data-action="footer">
   <?php
     $sf_cache_key  = (int) $sf_user->getId() .'_';
     $sf_cache_key .= $sf_user->isAuthenticated() ? 'authenticated' : 'not_authenticated';
