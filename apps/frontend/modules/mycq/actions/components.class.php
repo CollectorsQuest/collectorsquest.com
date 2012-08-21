@@ -198,6 +198,7 @@ class mycqComponents extends cqFrontendComponents
     $collector = $this->getCollector();
 
     $q = ShoppingOrderQuery::create()
+      ->paid()
       ->filterByCollectorId($collector->getId())
       ->orderByCreatedAt(Criteria::DESC);
 

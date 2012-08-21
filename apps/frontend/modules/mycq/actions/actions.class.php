@@ -652,7 +652,8 @@ class mycqActions extends cqFrontendActions
     SmartMenu::setSelected('mycq_menu', 'marketplace');
 
     $q = ShoppingOrderQuery::create()
-      ->filterByCollectorId($this->getCollector()->getId());
+      ->filterByCollectorId($this->getCollector()->getId())
+      ->paid();
 
     $this->purchases_total = $q->count();
 
