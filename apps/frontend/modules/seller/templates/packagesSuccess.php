@@ -107,41 +107,24 @@
           isset($promotion) ? $promotion : null,
           array(
             'template' =>
-              '<span class="%package_id_class% Chivo webfont tooltip-position-right" rel="tooltip" title="%price_per_item% per item">
+              '<span class="%package_id_class% Chivo webfont tooltip-position-right label-holder" data-actual-price="%package_price_discounted%" rel="tooltip" title="%price_per_item% per item">
                 %num_listings%
                 <span class="spacer-left-5 green pull-right">%package_price_discounted%</span>
                 <span class="blue pull-right %discounted_class%">%package_price%</span>
               </span>',
             'discount_class' => 'strikethrough',
         )); ?>
-        <label class="radio <?= isset($package_id_value) && 1 != $package_id_value ? 'hide' : '' ?>">
-          <input required="required" name="packages[package_id]" type="radio" value="1"
-            <?= 1 == $package_id_value ? 'checked' : '' ?>
-            id="packages_package_id_1" class="package-input"
+        <?php foreach ($package_labels as $package_id => $package_label): ?>
+        <label class="radio <?= isset($package_id_value) && $package_id != $package_id_value ? 'hide' : '' ?>">
+          <input required="required" name="packages[package_id]" type="radio"
+            value="<?= $package_id; ?>"
+            <?= $package_id == $package_id_value ? 'checked' : '' ?>
+            id="packages_package_id_<?= $package_id; ?>"
+            class="package-input"
           >
-          <?= $package_labels[1] ?>
+          <?= $package_label ?>
         </label>
-        <label class="radio <?= isset($package_id_value) && 2 != $package_id_value ? 'hide' : '' ?>">
-          <input required="required" name="packages[package_id]" type="radio" value="2"
-            <?= 2 == $package_id_value ? 'checked' : '' ?>
-            id="packages_package_id_2" class="package-input"
-          >
-          <?= $package_labels[2] ?>
-        </label>
-        <label class="radio <?= isset($package_id_value) && 3 != $package_id_value ? 'hide' : '' ?>">
-          <input required="required" name="packages[package_id]" type="radio" value="3"
-            <?= 3 == $package_id_value ? 'checked' : '' ?>
-             id="packages_package_id_3" class="package-input"
-          >
-          <?= $package_labels[3] ?>
-        </label>
-        <label class="radio <?= isset($package_id_value) && 6 != $package_id_value ? 'hide' : '' ?>">
-          <input required="required" name="packages[package_id]" type="radio" value="6"
-            <?= 6 == $package_id_value ? 'checked' : '' ?>
-            id="packages_package_id_4" class="package-input"
-          >
-          <?= $package_labels[6] ?>
-        </label>
+        <?php endforeach; ?>
       </div>
       <?= $packagesForm['package_id']->renderError(); ?>
     </div>
@@ -164,7 +147,7 @@
       </div>
     </div>
     <?php if (IceGateKeeper::open('mycq_seller_pay')): ?>
-    <?php cq_section_title('How would you like to pay?'); ?>
+    <?php cq_section_title('How would you like to pay?', null, array('id' => 'payment-header')); ?>
       <div class="payment-type">
         <div class="control-group">
           <div class="controls-inline clearfix">
@@ -282,9 +265,11 @@ $(document).ready(function() {
 
   var $payment_type_input = $('input[name="packages[payment_type]"]');
   var $credit_card_info = $('#credit-card-info');
+  var $packages = $('input[name="packages[package_id]"]');
 
   // display or hide extra CC info fields based on the selected payment_type
-  var display_cc_info = function (payment_type) {
+  var display_cc_info = function () {
+    var payment_type = $('input:checked[name="packages[payment_type]"]').val();
     if ('cc' === payment_type) {
       $credit_card_info.slideDown();
     } else if ('paypal' === payment_type) {
@@ -292,13 +277,32 @@ $(document).ready(function() {
     }
   };
 
-  // first setup state on page load
-  display_cc_info($('input:checked[name="packages[payment_type]"]').val());
-
-  // and then call display_cc_info on every change
+  // setup payment type change event an trigger it for initial state
   $payment_type_input.on('change', function(){
-    display_cc_info($(this).val());
-  });
+    display_cc_info();
+  }).trigger('change');
+
+  $payment_type_input.on('change', function(){
+    display_cc_info();
+  }).trigger('change');
+
+  // on packages change check if we have a free package and hide payment info
+  // also trigger the event to get initial state
+  $packages.on('change', function(e, undefined){
+    var $checked = $packages.filter(':checked'),
+        $label_holder = $checked.siblings('span.label-holder');
+    if ('$0' === $label_holder.data('actual-price', undefined)) {
+      $('div.payment-type').slideUp();
+      $('#packages_fyi').parents('div.controls').slideUp();
+      $('#payment-header').slideUp();
+      $credit_card_info.slideUp();
+    } else {
+      $('div.payment-type:hidden').slideDown();
+      $('#packages_fyi').parents('div.controls:hidden').slideDown();
+      $('#payment-header:hidden').slideDown();
+      display_cc_info();
+    }
+  }).trigger('change');
 
   $('#pending-transaction-warning').effect("highlight", {}, 3000);
 
