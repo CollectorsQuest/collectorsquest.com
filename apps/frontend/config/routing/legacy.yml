@@ -54,5 +54,5 @@ legacy_collectible_by_slug:
   requirements: { id: '\d+', slug: '[\-\w\.]+' }
 
 legacy_featured_week_page:
-  url:  /featured-week/Rubber+Ducks
-  param: { module: collections, action: index }
+  url:  /featured-week/:slug
+  param: { module: _legacy, action: featuredWeek }

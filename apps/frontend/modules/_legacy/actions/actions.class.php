@@ -72,4 +72,16 @@ class _legacyActions extends sfActions
     $this->redirect('collections', 301);
   }
 
+  /**
+   * Action FeaturedWeek
+   *
+   * @param sfWebRequest $request
+   *
+   * @return string
+   */
+  public function executeFeaturedWeek(sfWebRequest $request)
+  {
+     $this->redirect('collections', 301);
+  }
+
 }
