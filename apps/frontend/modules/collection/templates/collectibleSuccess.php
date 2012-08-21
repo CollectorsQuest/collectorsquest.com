@@ -21,10 +21,11 @@
 ?>
 
 <?php
-  $options = array('id' => sprintf('collectible_%d_name', $collectible->getId()));
-  if ($editable) {
-    $options['class'] = 'row-fluid header-bar editable';
-  }
+  $options = array(
+    'id' => sprintf('collectible_%d_name', $collectible->getId()),
+    'class' => isset($editable) && true === $editable ? 'row-fluid header-bar editable' : 'row-fluid header-bar'
+  );
+
   cq_page_title($collectible->getName(), null, $options);
 ?>
 

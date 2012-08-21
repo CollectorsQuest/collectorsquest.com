@@ -8,10 +8,11 @@
 ?>
 
 <?php
-  $options = array('id' => sprintf('%s_%d_name', get_class($collection), $collection->getId()));
-  if ($editable) {
-    $options['class'] = 'row-fluid header-bar editable';
-  }
+  $options = array(
+    'id' => sprintf('%s_%d_name', get_class($collection), $collection->getId()),
+    'class' => isset($editable) && true === $editable ? 'row-fluid header-bar editable' : 'row-fluid header-bar'
+  );
+
   cq_page_title($collection, null, $options);
 ?>
 
