@@ -89,7 +89,7 @@ function cq_url_for()
     }
     else
     {
-      return url_for_model_object($arguments[0]);
+      return call_user_func_array('url_for_model_object', $arguments);
     }
   }
   else
