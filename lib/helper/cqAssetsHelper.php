@@ -315,7 +315,7 @@ function _cq_parse_options($options, $defaults = array())
   unset(
     $options['link_to']['width'], $options['link_to']['height'],
     $options['link_to']['max_width'], $options['link_to']['max_height'],
-    $options['link_to']['alt']
+    $options['link_to']['alt'], $options['link_to']['truncate']
   );
 
   return $options;
