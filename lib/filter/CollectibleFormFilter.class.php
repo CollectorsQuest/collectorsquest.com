@@ -31,10 +31,14 @@ class CollectibleFormFilter extends BaseCollectibleFormFilter
     $this->widgetSchema['id'] = new sfWidgetFormInputText(array('label' => 'Collectible #'));
     $this->widgetSchema['collection_collectible_list'] = new sfWidgetFormInputText(array('label' => 'Collection #'));
 
-    $this->validatorSchema['collection_collectible_list']->setOption('multiple', true);
-    $this->validatorSchema['collection_collectible_list']->setOption('required', false);
     $this->validatorSchema['id'] = new sfValidatorPropelChoice(array(
       'model'    => 'Collectible',
+      'column'   => 'id',
+      'required' => false,
+      'multiple' => true
+    ));
+    $this->validatorSchema['collection_collectible_list'] = new sfValidatorPropelChoice(array(
+      'model'    => 'CollectorCollection',
       'column'   => 'id',
       'required' => false,
       'multiple' => true
@@ -70,20 +74,16 @@ class CollectibleFormFilter extends BaseCollectibleFormFilter
    */
   public function addCollectionCollectibleListColumnCriteria(Criteria $criteria, $field, $values)
   {
-    if (!is_array($values))
-    {
-      $values = array($values);
-    }
-
-    if (!count($values))
+    if (!$values = (array) $values)
     {
       return $criteria;
     }
 
-    $criteria->joinCollectionCollectible();
-    $criteria->useCollectionCollectibleQuery()
+    $criteria
+      ->joinCollectionCollectible()
+      ->useCollectionCollectibleQuery()
         ->filterByCollectionId($values, Criteria::IN)
-        ->endUse();
+      ->endUse();
 
     return $criteria;
   }
@@ -106,7 +106,8 @@ class CollectibleFormFilter extends BaseCollectibleFormFilter
     {
       $criteria->filterById($values, Criteria::IN);
     }
-    else {
+    else
+    {
       $criteria->filterById($values, Criteria::EQUAL);
     }
 
