@@ -25,7 +25,7 @@ EAT
 , (int) $options['left'], @$options['id'] ?: cqStatic::getUniqueId(10), $h1, (int) $options['right'], $link);
   }
 
-  unset($options['left'], $options['right']);
+  unset($options['left'], $options['right'], $options['id']);
   $options = array_merge(array('class' => 'row-fluid header-bar'), $options);
 
   echo content_tag('div', $content, $options);
