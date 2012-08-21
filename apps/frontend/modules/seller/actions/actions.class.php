@@ -24,6 +24,8 @@ class sellerActions extends cqFrontendActions
 
   public function executeSignup()
   {
+    $this->redirectIf($this->getUser()->isAuthenticated(), '@seller_packages');
+
     return sfView::SUCCESS;
   }
 
