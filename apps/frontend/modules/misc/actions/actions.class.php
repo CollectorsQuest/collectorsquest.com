@@ -294,6 +294,7 @@ class miscActions extends cqFrontendActions
     $this->wp_post = $wp_post;
 
     $this->addBreadcrumb($wp_post->getPostTitle(), null);
+    $this->getResponse()->addOpenGraphMetaFor($wp_post);
 
     return sfInflector::classify($wp_post->getPostType());
   }

@@ -67,53 +67,73 @@ class cqWebResponse extends iceWebResponse
     $configuration = sfProjectConfiguration::getActive();
     $configuration->loadHelpers(array('cqLinks', 'cqImages'));
 
-    // CollectionCollectibles need to be normalized to Collectibles
-    if ($object instanceof CollectionCollectible)
+    switch (get_class($object))
     {
-      /** @var $object CollectionCollectible */
-      $object = $object->getCollectible();
+      // Special case for WordPress Posts (custom post types mainly)
+      case 'wpPost':
+        /** @var $object wpPost */
+
+        // The OpenGraph description has priority over the SEO meta description
+        $description = $object->getPostMetaValue('_yoast_wpseo_opengraph-description') ?:
+                       $object->getPostMetaValue('_yoast_wpseo_metadesc');
+
+        $this->addOpenGraphMeta('url', $this->getCanonicalUrl() ?: cq_url_for($object, true));
+        $this->addOpenGraphMeta('title', $object->getPostMetaValue('_yoast_wpseo_title'));
+        $this->addOpenGraphMeta('description', $description);
+        $this->addOpenGraphMeta('image', $object->getPostThumbnail('original'));
+        $this->addOpenGraphMeta('type', 'collectorsquest:'. $object->getPostType());
+        break;
+      default:
+        // CollectionCollectibles need to be normalized to Collectibles
+        if ($object instanceof CollectionCollectible)
+        {
+          /** @var $object CollectionCollectible */
+          $object = $object->getCollectible();
+        }
+
+        $this->addOpenGraphMeta('title', (string) $object .' | Collectors Quest');
+        $this->addOpenGraphMeta('url', $this->getCanonicalUrl() ?: cq_url_for($object, true));
+
+        if (method_exists($object, 'getDescription'))
+        {
+          $this->addOpenGraphMeta('description', (string) $object->getDescription('stripped', 300));
+        }
+
+        /** @var PropelObjectCollection */
+        $multimedia = $object->getMultimedia(0, 'image');
+
+        if (count($multimedia))
+        {
+          $images = array();
+          foreach ($multimedia as $m)
+          {
+            $images[] = src_tag_multimedia($m, 'original');
+          }
+
+          $this->addOpenGraphMeta('image', $images);
+        }
+
+        // Infer the og:type from the class name
+        $type = sfInflector::underscore(get_class($object));
+
+        /**
+         * We want to simplify to "Collector", "Collection", "Collectible"
+         */
+        if ($type === 'collection_collectible')
+        {
+          $type = 'collectible';
+        }
+        else if ($type === 'collector_collection')
+        {
+          $type = 'collection';
+        }
+
+        $this->addOpenGraphMeta(
+          'type', 'collectorsquest:'. $type
+        );
+        break;
     }
 
-    $this->addOpenGraphMeta('title', (string) $object .' | Collectors Quest');
-    $this->addOpenGraphMeta('url', $this->getCanonicalUrl() ?: cq_url_for($object, true));
-
-    if (method_exists($object, 'getDescription'))
-    {
-      $this->addOpenGraphMeta('description', (string) $object->getDescription('stripped', 300));
-    }
-
-    /** @var PropelObjectCollection */
-    $multimedia = $object->getMultimedia(0, 'image');
-
-    if (count($multimedia))
-    {
-      $images = array();
-      foreach ($multimedia as $m)
-      {
-        $images[] = src_tag_multimedia($m, 'original');
-      }
-
-      $this->addOpenGraphMeta('image', $images);
-    }
-
-    // Infer the og:type from the class name
-    $type = sfInflector::underscore(get_class($object));
-
-    /**
-     * We want to simplify to "Collector", "Collection", "Collectible"
-     */
-    if ($type === 'collection_collectible')
-    {
-      $type = 'collectible';
-    }
-    else if ($type === 'collector_collection')
-    {
-      $type = 'collection';
-    }
-
-    $this->addOpenGraphMeta(
-      'type', 'collectorsquest:'. $type
-    );
   }
 
 }

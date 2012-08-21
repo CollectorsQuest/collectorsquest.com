@@ -40,6 +40,7 @@ class cqFrontWebController extends sfFrontWebController
           'sf_subject' => $model_object,
           'sf_route' => 'collection_by_slug',
         );
+        break;
 
       case 'Collectible':
       case 'CollectionCollectible':
@@ -49,6 +50,7 @@ class cqFrontWebController extends sfFrontWebController
           'sf_subject' => $model_object,
           'sf_route' => 'collectible_by_slug',
         );
+        break;
 
       case 'Collector':
         /** @var $model_object Collector */
@@ -57,6 +59,7 @@ class cqFrontWebController extends sfFrontWebController
           'sf_subject' => $model_object,
           'sf_route' => 'collector_by_slug',
         );
+        break;
 
       case 'CollectorCollection':
         /** @var $model_object CollectorCollection */
@@ -64,6 +67,7 @@ class cqFrontWebController extends sfFrontWebController
           'sf_subject' => $model_object->getCollection(),
           'sf_route' => 'collection_by_slug',
         );
+        break;
 
       case 'ContentCategory':
         /** @var $model_object ContentCategory */
@@ -72,6 +76,7 @@ class cqFrontWebController extends sfFrontWebController
           'sf_subject' => $model_object,
           'sf_route' => 'content_category',
         );
+        break;
 
       case 'Comment':
         /** @var $model_object Comment */
@@ -80,6 +85,15 @@ class cqFrontWebController extends sfFrontWebController
         return self::generateRouteParamsForModelObject(
           $model_object->getModelObject()
         );
+        break;
+
+      case 'wpPost':
+        /** @var $model_object wpPost */
+        return array(
+          'sf_subject' => $model_object,
+          'sf_route' => 'wordpress_'. $model_object->getPostType(),
+        );
+        break;
 
       default:
         return false;

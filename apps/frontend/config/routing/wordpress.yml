@@ -1,0 +1,8 @@
+### WordPress Custom Post Types
+
+wordpress_featured_items:
+  url:  /featured/:id/:slug
+  class: cqPropelRoute
+  options: { model: wpPost, type: object }
+  param: { module: misc, action: wordPress }
+  requirements: { id: '\d+', slug: '[\-\w\.]+' }

@@ -45,7 +45,7 @@ function cq_custom_post_type_init()
     'capability_type' => 'editorial',
     'capabilities'    => $capabilities,
     'hierarchical'    => false,
-    'rewrite'         => false,
+    'rewrite'         => array( 'slug' => 'cms', 'with_front' => false ),
     'query_var'       => false,
     'menu_position'   => 100,
     'supports'        => array('title', 'excerpt', 'editor')
@@ -70,7 +70,7 @@ function cq_custom_post_type_init()
     'capability_type' => 'editorial',
     'capabilities'    => $capabilities,
     'hierarchical'    => false,
-    'rewrite'         => false,
+    'rewrite'         => array( 'slug' => 'cms', 'with_front' => false ),
     'query_var'       => false,
     'menu_position'   => 100,
     'supports'        => array('title', 'editor', 'thumbnail')
@@ -95,7 +95,7 @@ function cq_custom_post_type_init()
     'capability_type' => 'editorial',
     'capabilities'    => $capabilities,
     'hierarchical'    => false,
-    'rewrite'         => false,
+    'rewrite'         => array( 'slug' => 'cms', 'with_front' => false ),
     'query_var'       => false,
     'menu_position'   => 100,
     'supports'        => array('title', 'custom-fields')
@@ -120,7 +120,7 @@ function cq_custom_post_type_init()
     'capability_type' => 'editorial',
     'capabilities'    => $capabilities,
     'hierarchical'    => false,
-    'rewrite'         => false,
+    'rewrite'         => array( 'slug' => 'cms', 'with_front' => false ),
     'query_var'       => false,
     'menu_position'   => 100,
     'supports'        => array('title', 'editor', 'custom-fields', 'thumbnail')
@@ -145,7 +145,7 @@ function cq_custom_post_type_init()
     'capability_type' => 'editorial',
     'capabilities'    => $capabilities,
     'hierarchical'    => false,
-    'rewrite'         => false,
+    'rewrite'         => array( 'slug' => 'cms', 'with_front' => false ),
     'query_var'       => false,
     'menu_position'   => 100,
     'supports'        => array('title', 'custom-fields')
@@ -170,7 +170,7 @@ function cq_custom_post_type_init()
     'capability_type' => 'editorial',
     'capabilities'    => $capabilities,
     'hierarchical'    => false,
-    'rewrite'         => false,
+    'rewrite'         => array( 'slug' => 'cms', 'with_front' => false ),
     'query_var'       => false,
     'menu_position'   => 100,
     'supports'        => array('title','custom-fields')
@@ -195,7 +195,7 @@ function cq_custom_post_type_init()
     'capability_type' => 'editorial',
     'capabilities'    => $capabilities,
     'hierarchical'    => false,
-    'rewrite'         => false,
+    'rewrite'         => array( 'slug' => 'cms', 'with_front' => false ),
     'query_var'       => false,
     'menu_position'   => 100,
     'supports'        => array('title')
@@ -220,7 +220,7 @@ function cq_custom_post_type_init()
     'capability_type' => 'editorial',
     'capabilities'    => $capabilities,
     'hierarchical'    => false,
-    'rewrite'         => false,
+    'rewrite'         => array( 'slug' => 'cms', 'with_front' => false ),
     'query_var'       => false,
     'menu_position'   => 100,
     'supports'        => array('title', 'editor', 'thumbnail')
@@ -245,7 +245,7 @@ function cq_custom_post_type_init()
     'capability_type' => 'editorial',
     'capabilities'    => $capabilities,
     'hierarchical'    => false,
-    'rewrite'         => false,
+    'rewrite'         => array( 'slug' => 'cms', 'with_front' => false ),
     'query_var'       => false,
     'menu_position'   => 100,
     'supports'        => array('title', 'editor', 'thumbnail')
@@ -270,7 +270,7 @@ function cq_custom_post_type_init()
     'capability_type' => 'editorial',
     'capabilities'    => $capabilities,
     'hierarchical'    => false,
-    'rewrite'         => false,
+    'rewrite'         => array( 'slug' => 'cms', 'with_front' => false ),
     'query_var'       => false,
     'menu_position'   => 100,
     'supports'        => array('title')
@@ -330,18 +330,6 @@ function hide_edit_permalinks_admin_css() {
   if ($typenow != 'post' && $typenow != 'page') :
 
     ?>
-  <style type="text/css">
-    <!--
-    #titlediv
-    {
-      margin-bottom: 10px;
-    }
-    #edit-slug-box
-    {
-      display: none;
-    }
-    -->
-  </style>
   <?php
 
   endif;

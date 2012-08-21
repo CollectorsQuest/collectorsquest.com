@@ -5,13 +5,6 @@ channels:
   url:  /channels
   param: { module: channels, action: index }
 
-wordpress_post_types:
-  url:  /featured/:id/:slug
-  class: cqPropelRoute
-  options: { model: wpPost, type: object }
-  param: { module: misc, action: wordPress }
-  requirements: { id: '\d+', slug: '[\-\w\.]+' }
-
 ### SEARCH
 
 search_collectibles:

@@ -40,6 +40,11 @@ class wpPost extends BasewpPost
     return wpPostPeer::sanitize(parent::getPostTitle());
   }
 
+  public function getSlug()
+  {
+    return $this->getPostName();
+  }
+
   public function getPostContent()
   {
     return wpPostPeer::sanitize(parent::getPostContent());
