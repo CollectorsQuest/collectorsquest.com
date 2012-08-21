@@ -444,7 +444,7 @@ class SellerPackagesForm extends BaseForm
     $promo_code = filter_var($taintedValues['promo_code'], FILTER_SANITIZE_STRING);
     $promotion = $this->getPromotion($promo_code);
 
-    if ($promotion)
+    if ($promotion && isset($taintedValues['package_id']))
     {
       // rudamentary package id validation
       $package_id = filter_var($taintedValues['package_id'], FILTER_SANITIZE_NUMBER_INT);
