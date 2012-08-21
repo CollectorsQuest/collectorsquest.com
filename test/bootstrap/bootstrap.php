@@ -1,9 +1,9 @@
 <?php
 
 $_SERVER = array(
-  'SCRIPT_URI'  => 'http://www.example.com',
-  'HTTP_HOST'   => 'www.example.com',
-  'SERVER_NAME' => 'www.example.com',
+  'SCRIPT_URI'  => 'http://www.example.org',
+  'HTTP_HOST'   => 'www.example.org',
+  'SERVER_NAME' => 'www.example.org',
   'SCRIPT_NAME' => '/index.php',
   'PHP_SELF'    => '/index.php'
 );
@@ -15,7 +15,9 @@ define('SF_ENV', 'test');
 
 // configuration
 require_once $_root_dir . '/config/ProjectConfiguration.class.php';
-$sf_configuration = ProjectConfiguration::hasActive() ? ProjectConfiguration::getActive() : new ProjectConfiguration(realpath($_root_dir));
+$sf_configuration = ProjectConfiguration::hasActive() ?
+  ProjectConfiguration::getActive() :
+  new ProjectConfiguration(realpath($_root_dir));
 
 // autoloader for sfPHPUnit2Plugin libs
 $autoload = sfSimpleAutoload::getInstance(sfConfig::get('sf_cache_dir') . '/project_autoload.cache');

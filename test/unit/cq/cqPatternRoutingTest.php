@@ -15,7 +15,10 @@ $t = new lime_test(5, array('output' => new lime_output_color(), 'error_reportin
   $t->is(substr($url, 0, 7), '/ex/v1;', 'Testing the passing of GET parameters with encryption');
 
   $url = url_for('@collection_by_slug?id=1&slug=slideonover&encrypt=1', true);
-  $t->is(substr($url, 0, 29), 'http://www.example.com/ex/v1;', 'Testing the passing of GET parameters with encryption and absolute');
+  $t->is(
+    substr($url, 0, 29), 'http://www.example.org/ex/v1;',
+    'Testing the passing of GET parameters with encryption and absolute'
+  );
 
   $url = url_for('@collection_by_slug?id=1&slug=slideonover&encrypt=1', false);
   $t->is($routing->decryptUrl($url), '/collection/1/slideonover', 'Testing the decryption');

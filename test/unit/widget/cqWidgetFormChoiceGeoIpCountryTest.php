@@ -54,32 +54,32 @@ $t->cmp_ok($w->getChoices(), '===', array(
 $w->setOption('add_worldwide', false);
 
 
-if (function_exists('geoip_country_code_by_name')):
+if (function_exists('geoip_country_code_by_name'))
+{
+  $w->setOption('remote_address', 'www.example.org');
+  $w->buildCountriesList();
+  $t->cmp_ok($w->getChoices(), '===', array(
+      'US' => 'United States',
+      'FR' => 'France',
+      'BG' => 'Bulgaria',
+      'RO' => 'Romania',
+  ), 'Reorder the list based on geoip (common countries)');
 
-$w->setOption('remote_address', 'www.example.com');
-$w->buildCountriesList();
-$t->cmp_ok($w->getChoices(), '===', array(
-    'US' => 'United States',
-    'FR' => 'France',
-    'BG' => 'Bulgaria',
-    'RO' => 'Romania',
-), 'Reorder the list based on geoip (common countries)');
+  $w->setOption('remote_address', 'www.diplomatie.gouv.fr');
+  $w->buildCountriesList();
+  $t->cmp_ok($w->getChoices(), '===', array(
+      'FR' => 'France',
+      'US' => 'United States',
+      'BG' => 'Bulgaria',
+      'RO' => 'Romania',
+  ), 'Reorder the list based on geoip (common countries)');
 
-$w->setOption('remote_address', 'www.diplomatie.gouv.fr');
-$w->buildCountriesList();
-$t->cmp_ok($w->getChoices(), '===', array(
-    'FR' => 'France',
-    'US' => 'United States',
-    'BG' => 'Bulgaria',
-    'RO' => 'Romania',
-), 'Reorder the list based on geoip (common countries)');
-
-$w->setOption('remote_address', 'www.government.bg');
-$w->buildCountriesList();
-$t->cmp_ok($w->getChoices(), '===', array(
-    'BG' => 'Bulgaria',
-    'FR' => 'France',
-    'US' => 'United States',
-    'RO' => 'Romania',
-), 'Reorder the list based on geoip (all countries)');
-endif; // end if function_exists geoip_country_code_by_name
+  $w->setOption('remote_address', 'www.government.bg');
+  $w->buildCountriesList();
+  $t->cmp_ok($w->getChoices(), '===', array(
+      'BG' => 'Bulgaria',
+      'FR' => 'France',
+      'US' => 'United States',
+      'RO' => 'Romania',
+  ), 'Reorder the list based on geoip (all countries)');
+}

@@ -13,10 +13,11 @@ $t->diag('cqStatic::getGeoIpCountryCode()');
 $t->is_deeply(cqStatic::getGeoIpCountryCode('127.0.0.1'), false,
   '::getGeoIpCountryCode() returns the expected result');
 
-if (function_exists('geoip_country_code_by_name')):
-$t->is(cqStatic::getGeoIpCountryCode('www.government.bg'), 'BG',
-  '::getGeoIpCountryCode() returns the expected result');
+if (function_exists('geoip_country_code_by_name'))
+{
+  $t->is(cqStatic::getGeoIpCountryCode('www.government.bg'), 'BG',
+    '::getGeoIpCountryCode() returns the expected result');
 
-$t->is(cqStatic::getGeoIpCountryCode('www.example.com'), 'US',
-  '::getGeoIpCountryCode() returns the expected result');
-endif;
+  $t->is(cqStatic::getGeoIpCountryCode('www.example.org'), 'US',
+    '::getGeoIpCountryCode() returns the expected result');
+}
