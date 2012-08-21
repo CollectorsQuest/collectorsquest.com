@@ -402,7 +402,11 @@ class SellerPackagesForm extends BaseForm
 
   public function bind(array $taintedValues = null, array $taintedFiles = null)
   {
-    if (!isset($taintedValues['payment_type']) || 'cc' != $taintedValues['payment_type'])
+    // disable the credit card validators if payment type is not credit card
+    // or the promotion makes the selected package free
+    $no_payment_or_not_cc = !isset($taintedValues['payment_type']) ||
+      'cc' != $taintedValues['payment_type'];
+    if ($no_payment_or_not_cc || $this->isNoPaymentInfoRequired($taintedValues))
     {
       $fields = array(
         'cc_type', 'cc_number', 'expiry_date', 'cvv_number', 'first_name',
@@ -413,10 +417,12 @@ class SellerPackagesForm extends BaseForm
       {
         $this->getValidator($field)->setOption('required', false);
       }
+      // specifically, we don't even need the payment_type field in this case
+      if ($this->isNoPaymentInfoRequired($taintedValues))
+      {
+        $this->getValidator('payment_type') ->setOption('required', false);
+      }
     }
-
-    // disable some more validators if not necessary
-    $this->checkPaymentNotRequired($taintedValues);
 
     parent::bind($taintedValues, $taintedFiles);
 
@@ -433,12 +439,13 @@ class SellerPackagesForm extends BaseForm
   }
 
   /**
-   * Disable the validators for payment type and the checkbox for terms and
-   * conditions if promotion covers the full package price
+   * Check if payment information is required based on the selected package
+   * and promotion; If the promotion covers 100% of the package price, then
+   * no payment information is required
    *
    * @param     array $taintedValues
    */
-  protected function checkPaymentNotRequired($taintedValues)
+  protected function isNoPaymentInfoRequired($taintedValues)
   {
     // rudamentary promo code validation
     $promo_code = filter_var($taintedValues['promo_code'], FILTER_SANITIZE_STRING);
@@ -456,11 +463,12 @@ class SellerPackagesForm extends BaseForm
       {
         if (0 == $package->getPriceWithDiscount($promotion))
         {
-          $this->getValidator('payment_type')->setOption('required', false);
-          $this->getValidator('fyi')->setOption('required', false);
+          return true;
         }
       }
     }
+
+    return false;
   }
 
   protected function setupPendingTransactionConfirmationField()

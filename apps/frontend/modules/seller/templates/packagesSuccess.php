@@ -293,12 +293,10 @@ $(document).ready(function() {
         $label_holder = $checked.siblings('span.label-holder');
     if ('$0' === $label_holder.data('actual-price', undefined)) {
       $('div.payment-type').slideUp();
-      $('#packages_fyi').parents('div.controls').slideUp();
       $('#payment-header').slideUp();
       $credit_card_info.slideUp();
     } else {
       $('div.payment-type:hidden').slideDown();
-      $('#packages_fyi').parents('div.controls:hidden').slideDown();
       $('#payment-header:hidden').slideDown();
       display_cc_info();
     }
