@@ -1,28 +1,23 @@
 
 default:
-  http_metas:
-    content-type: "text/html"
-    X-UA-Compatible: "IE=Edge,chrome=1"
 
   metas:
     title:        "Interactive Community and Marketplace for Collectors - CollectorsQuest.com"
-    robots:       "index, follow, noodp, noydir"
     description:  "Collectors Quest is interactive community and marketplace for the collectible community. Showcase your collections, meet other collectors and buy, sell or trade with others. Find out the latest happenings in your own collectible community."
     keywords:     ""
-    language:     "en"
-    verify-v1:    "+PAY5RqU44ztUAkVcbSIFxiqmn8vAgwgEZbJB+kd6a0="
-    y_key:        "f4bf8cfd736a1ff1"
     viewport:     "width=device-width, initial-scale=1.0"
 
+    robots:       "index, follow, noodp, noydir"
     googlebot:    "all, index, follow"
-    coverage:     "Worldwide"
+
+    author:       "Collectors Quest, Inc."
     copyright:    "Copyright (c) 2006-<?php echo date('Y'); ?> CollectorsQuest.com"
 
   ## Stylesheets and Javascripts are forbidden to be defined here!
   ## Please use css/frontend/stylesheets.bundle.css and
   ##             js/frontend/scripts.common.bundle.js
   # stylesheets:
-  #javascripts:
+  # javascripts:
 
   components:
     header:       [global, header]

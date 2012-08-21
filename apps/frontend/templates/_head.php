@@ -1,3 +1,10 @@
+<?php
+/**
+ * @var $sf_user cqFrontendUser
+ */
+?>
+
+  <meta charset="utf-8">
 
   <link rel="dns-prefetch" href="//d2y8496azcwpd6.cloudfront.net">
   <link rel="dns-prefetch" href="//d2qss72tiioiku.cloudfront.net">
@@ -8,10 +15,12 @@
   <link rel="dns-prefetch" href="//collectorsquest.rpxnow.com">
   <link rel="dns-prefetch" href="//s7.addthis.com">
 
-  <meta charset="utf-8">
   <meta property="fb:admins" content="<?= cqConfig::getCredentials('facebook', 'admins') ?>">
   <meta property="fb:app_id" content="<?= cqConfig::getCredentials('facebook', 'application_id') ?>">
   <meta property="og:site_name" content="CollectorsQuest.com">
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <!--[if ie]><meta http-equiv="X-Ua-Compatible" content="IE=Edge,chrome=1"><![endif]-->
 
   <?php cq_include_http_metas() ?>
   <?php cq_include_metas() ?>
