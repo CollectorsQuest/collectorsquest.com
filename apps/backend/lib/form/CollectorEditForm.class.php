@@ -20,8 +20,7 @@ class CollectorEditForm extends BaseFormPropel
       'password'      => new sfWidgetFormInputText(),
       'email'         => new sfWidgetFormInputText(),
       'photo'         => new sfWidgetFormInputFile(),
-      'is_public'     => new sfWidgetFormInputCheckbox(),
-      'has_cqnext_access' => new sfWidgetFormInputCheckbox(),
+      'is_public'     => new sfWidgetFormInputCheckbox()
     ));
 
     $this->setValidators(array(
@@ -30,8 +29,7 @@ class CollectorEditForm extends BaseFormPropel
       'password'      => new sfValidatorString(array('max_length' => 64, 'required' => false)),
       'email'         => new sfValidatorEmail(array('max_length' => 128, 'required' => true)),
       'photo'         => new cqValidatorFile(array('mime_types' => 'cq_supported_images', 'required' => false)),
-      'is_public'     => new sfValidatorBoolean(array('required' => false)),
-      'has_cqnext_access' => new sfValidatorBoolean(array('required' => false)),
+      'is_public'     => new sfValidatorBoolean(array('required' => false))
     ));
 
     $this->validatorSchema->setPostValidator(
@@ -48,20 +46,6 @@ class CollectorEditForm extends BaseFormPropel
   public function getModelName()
   {
     return 'Collector';
-  }
-
-  public function updateDefaultsFromObject()
-  {
-    parent::updateDefaultsFromObject();
-
-    $this->setDefault('has_cqnext_access', $this->getObject()->getCqnextAccessAllowed());
-  }
-
-  public function doUpdateObject($values = null)
-  {
-    parent::doUpdateObject($values);
-
-    $this->getObject()->setCqnextAccessAllowed($values['has_cqnext_access']);
   }
 
 }
