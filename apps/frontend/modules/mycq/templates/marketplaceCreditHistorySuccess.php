@@ -89,8 +89,8 @@
               <td><?= $package_transaction->getPackage()->getPackageName(); ?></td>
               <td><?= $package_transaction->getCredits(); ?></td>
               <td><?= $package_transaction->getCreditsUsed(); ?></td>
-              <td><?= $package_transaction->getCreatedAt(); ?></td>
-              <td><?= $package_transaction->getExpiryDate(); ?></td>
+              <td><?= $package_transaction->getCreatedAt('F j, Y'); ?></td>
+              <td><?= $package_transaction->getExpiryDate('F j, Y'); ?></td>
               <?php if ('dev' == sfConfig::get('sf_environment')): ?>
               <td><?= $package_transaction->getPaymentStatus(); ?></td>
               <?php endif; ?>
