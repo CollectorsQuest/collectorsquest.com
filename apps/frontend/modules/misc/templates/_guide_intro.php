@@ -25,7 +25,7 @@
           Sign up to become a member and get this electronic guide for free.
           It just takes a minute to complete the form on the right, and we’ll
           email you a link to get the PDF*.<br/><br/>
-          * <a href="http://get.adobe.com/reader/" target="_blank" title="Adobe Acrobat Reader">
+          * <a href="http://get.adobe.com/reader/" target="_blank" title="Adobe Acrobat Reader" rel="nofollow">
           Adobe Acrobat Reader required
         </a>
         </p>

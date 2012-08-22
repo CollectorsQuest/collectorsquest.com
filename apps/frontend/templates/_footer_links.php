@@ -20,7 +20,7 @@ $(document).ready(function()
       </div>
       <div class="span5 text-right">
         © <?= date('Y'); ?> Collectors Quest, Inc. &nbsp; • &nbsp;
-        <a href="http://nytm.org/made" title="Made in NY">Made by hand in NY</a>
+        <a href="http://nytm.org/made" title="Made in NY" rel="nofollow">Made by hand in NY</a>
       </div>
     </div>
   </div>
