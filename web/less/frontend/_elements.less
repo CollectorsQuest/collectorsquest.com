@@ -256,6 +256,12 @@ li {
 	td, th {
 		text-align: center
 	}
+	td {
+		height: 30px;
+		padding: 4px 8px;
+		vertical-align: middle;
+		line-height: 14px;
+	}
 	.expired td {
 		color: #b0b0b0;
 		background-color: #F7F7F7;
@@ -267,10 +273,39 @@ li {
 		color: @red;
 		//background-color: #F2DEDE;
 	}
-	.not-paid td {
+	.processing td {
 		color: #b0b0b0;
 	}
 }
+
+.table-listing-history {
+
+	td, th {
+		padding: 8px 8px 6px 8px;
+		text-align: center;
+		vertical-align: middle;
+	}
+	.items-column {
+		width: 350px
+	}
+	.title {
+		display: block;
+		width: 285px;
+		.text-overflow();
+	}
+	.description {
+		display: block;
+		width: 285px;
+		.text-overflow();
+	}
+  .price {
+	  display: block;
+	  text-align: left;
+	  width: 285px;
+	  .text-overflow();
+  }
+}
+
 
 .row-fluid.min-height-13 > [class*="span"] {
 	min-height: 13px;

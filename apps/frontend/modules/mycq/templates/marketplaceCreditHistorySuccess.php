@@ -15,6 +15,26 @@
     <div class="tab-pane active">
       <div class="tab-content-inner spacer">
 
+        <!-- Credit purchase history -->
+        <div class="row-fluid sidebar-title spacer-top">
+          <div class="span8">
+            <h3 class="Chivo webfont">Credit purchase history</h3>
+          </div>
+          <div class="span4 text-right">
+            <span class="show-all-text">
+              Show: &nbsp;
+            </span>
+            <div class="control-group pull-right">
+              <div class="btn-filter-all btn-group">
+                <a id="filter-paid" class="btn btn-mini btn-filter active" href="#">Paid</a>
+                <a id="filter-processing" class="btn btn-mini btn-filter" href="#">Processing</a>
+                <a id="filter-expiring" class="btn btn-mini btn-filter " href="#">Expiring</a>
+                <a id="filter-expired" class="btn btn-mini btn-filter " href="#">Expired</a>
+              </div>
+            </div> <!-- /.control-group -->
+          </div>
+        </div><!-- /.sidebar-title -->
+
         <table class="table table-credit-history">
           <thead>
           <tr>
@@ -26,7 +46,7 @@
           </tr>
           </thead>
           <tbody>
-          <tr class="not-paid">
+          <tr class=" processing">
             <td>unlimited</td>
             <td>unlimited</td>
             <td>August 18, 2012</td>
@@ -64,12 +84,160 @@
           </tbody>
         </table>
         <div class="cf spacer-bottom-20">
-          <button type="submit" class="btn btn-primary pull-right" value="Buy Credits">
-            <i class="icon-plus"></i>
+          <button type="submit" class="btn btn-primary pull-left" value="Buy Credits">
             <span>Buy Credits</span>
           </button>
         </div>
 
+        <!-- Items listing history -->
+        <div class="row-fluid sidebar-title spacer-top">
+          <div class="span8">
+            <h3 class="Chivo webfont">Items listing history</h3>
+          </div>
+          <div class="span4 text-right">
+            <span class="show-all-text">
+              Show: &nbsp;
+            </span>
+            <div class="control-group pull-right">
+              <div class="btn-filter-all btn-group">
+                <a id="filter-items-all" class="btn btn-mini btn-filter active" href="#">All</a>
+                <a id="filter-items-active" class="btn btn-mini btn-filter" href="#">Active</a>
+                <a id="filter-items-inactive" class="btn btn-mini btn-filter" href="#">Inactive</a>
+                <a id="filter-items-expired" class="btn btn-mini btn-filter" href="#">Expired</a>
+              </div>
+            </div> <!-- /.control-group -->
+          </div>
+        </div><!-- /.sidebar-title -->
+
+        <table class="table table-striped table-listing-history">
+          <thead>
+          <tr>
+            <th class="items-column">Item</th>
+            <th>Purchased</th>
+            <th>Expires</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>
+              <div class="row-fluid items">
+                <div class="span2">
+                  <a href="">
+                    <img src="http://placehold.it/75x75" alt="">
+                  </a>
+                </div>
+                <div class="span10">
+                  <span class="title">
+                    <a href="">
+                      Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                    </a>
+                  </span>
+                  <span class="description">
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                  </span>
+                  <span class="price">
+                    $ 9,999,999.00
+                  </span>
+                  </div>
+                </div>
+            </td>
+            <td>
+              March 25, 2012
+            </td>
+            <td>
+              August 25, 2012
+            </td>
+            <td>
+              Active
+            </td>
+            <td>
+              <button class="btn btn-mini" type="button">
+                <i class="icon-minus-sign"></i>&nbsp;Deactivate
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="row-fluid items">
+                <div class="span2">
+                  <a href="">
+                    <img src="http://placehold.it/75x75" alt="">
+                  </a>
+                </div>
+                <div class="span10">
+                  <span class="title">
+                    <a href="">
+                      Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                    </a>
+                  </span>
+                  <span class="description">
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                  </span>
+                  <span class="price">
+                    $ 9,999,999.00
+                  </span>
+                </div>
+              </div>
+            </td>
+            <td>
+              March 25, 2012
+            </td>
+            <td>
+              August 25, 2012
+            </td>
+            <td>
+              Inactive
+            </td>
+            <td>
+              <button class="btn btn-mini" type="button">
+                <i class="icon-ok"></i>&nbsp;Activate
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="row-fluid items">
+                <div class="span2">
+                  <a href="">
+                    <img src="http://placehold.it/75x75" alt="">
+                  </a>
+                </div>
+                <div class="span10">
+                  <span class="title">
+                    <a href="">
+                      Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                    </a>
+                  </span>
+                  <span class="description">
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                  </span>
+                  <span class="price">
+                    $ 9,999,999.00
+                  </span>
+                </div>
+              </div>
+            </td>
+            <td>
+              March 25, 2012
+            </td>
+            <td>
+              August 25, 2012
+            </td>
+            <td>
+              Expired
+            </td>
+            <td>
+              <button class="btn btn-mini" type="button">
+                <i class="icon-undo"></i>&nbsp;Re-list
+              </button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+
+<?php /*
         <table class="table table-bordered">
           <thead>
             <tr>
@@ -104,6 +272,7 @@
           <?php endif; ?>
           </tbody>
         </table>
+*/?>
 
       </div> <!-- .tab-content-inner.spacer -->
     </div> <!-- .tab-pane.active -->
