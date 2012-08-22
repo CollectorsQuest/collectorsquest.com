@@ -2,17 +2,20 @@
 
 class batchGenerateSitemapTask extends sfBaseTask
 {
-  private
-    $total = 8,
-    $i = 0;
-
   /** @var SimpleXMLElement */
   protected $sitemap_index = null;
 
-  protected
-    $month = null,
-    $start_date = null,
-    $end_date = null;
+  /** @var null|integer */
+  protected $month = null;
+
+  /** @var null|integer */
+  protected $start_date = null;
+
+  /** @var null|integer */
+  protected $end_date = null;
+
+  /** @var sfApplicationConfiguration */
+  protected $configuration;
 
   protected function configure()
   {
@@ -32,12 +35,16 @@ class batchGenerateSitemapTask extends sfBaseTask
     sfContext::createInstance($this->configuration);
 
     // Database initialization
-    $databaseManager = new sfDatabaseManager($this->configuration);
+    new sfDatabaseManager($this->configuration);
 
     // For the sitemap we can easily use the slave servers
     Propel::setForceMasterConnection(false);
 
-    // Get a read-only connection
+    /**
+     * Get a read-only connection
+     *
+     * @var $connection PropelPDO
+     */
     $connection = Propel::getConnection('propel', Propel::CONNECTION_READ);
 
     // Load the Links helper
@@ -73,8 +80,11 @@ class batchGenerateSitemapTask extends sfBaseTask
    */
   private function _collectors(PropelPDO $connection = null)
   {
+    /** @var $q CollectorQuery */
     $q = CollectorQuery::create()
       ->orderBy('Collector.CreatedAt', 'DESC');
+
+    /** @var $collectors Collector[] */
     $collectors = $q->find($connection);
 
     if (!empty($collectors))
@@ -94,9 +104,8 @@ class batchGenerateSitemapTask extends sfBaseTask
         /**
          * @see http://www.google.com/support/webmasters/bin/answer.py?hl=en&answer=178636
          */
-
-        $writer->startElement("image:image");
-        $writer->writeElement('image:loc', src_tag_multimedia($collector->getPhoto(), '100x100'));
+        $writer->startElement('image:image');
+        $writer->writeElement('image:loc', src_tag_collector($collector, '235x315'));
         $writer->writeElement('image:caption', $collector->getDisplayName());
         $writer->writeElement('image:title', 'Collectors Quest Collector - ' . $collector->getDisplayName());
 
@@ -116,8 +125,11 @@ class batchGenerateSitemapTask extends sfBaseTask
    */
   private function _collections(PropelPDO $connection = null)
   {
+    /** @var $q CollectorCollectionQuery */
     $q = CollectorCollectionQuery::create()
       ->orderBy('CollectorCollection.CreatedAt', 'DESC');
+
+    /** @var $collections CollectorCollection[] */
     $collections = $q->find($connection);
 
     if (!empty($collections))
@@ -137,9 +149,8 @@ class batchGenerateSitemapTask extends sfBaseTask
         /**
          * @see http://www.google.com/support/webmasters/bin/answer.py?hl=en&answer=178636
          */
-
-        $writer->startElement("image:image");
-        $writer->writeElement('image:loc', src_tag_multimedia($collection->getThumbnail(), '150x150', array('slug' => $collection->getSlug())));
+        $writer->startElement('image:image');
+        $writer->writeElement('image:loc', src_tag_collection($collection, '190x190'));
         $writer->writeElement('image:caption', $collection->getName());
         $writer->writeElement('image:title', 'Collectors Quest Collection - ' . $collection->getName());
 
@@ -159,8 +170,11 @@ class batchGenerateSitemapTask extends sfBaseTask
    */
   private function _collectibles(PropelPDO $connection = null)
   {
+    /** @var $q CollectibleQuery */
     $q = CollectibleQuery::create()
       ->orderBy('Collectible.CreatedAt', 'DESC');
+
+    /** @var $collectibles Collectible[] */
     $collectibles = $q->find($connection);
 
     if (!empty($collectibles))
@@ -182,12 +196,13 @@ class batchGenerateSitemapTask extends sfBaseTask
         /**
          * @see http://www.google.com/support/webmasters/bin/answer.py?hl=en&answer=178636
          */
-
-        $writer->startElement("image:image");
-        $writer->writeElement('image:loc', src_tag_multimedia($collectible->getPrimaryImage(), '150x150', array('slug' => $collectible->getSlug())));
+        $writer->startElement('image:image');
+        $writer->writeElement('image:loc', src_tag_collectible($collectible, '620x0'));
         $writer->writeElement('image:caption', $collectible->getName());
         $title_string = $is_for_sale ? 'Item for Sale' : 'Collectible';
-        $writer->writeElement('image:title', sprintf('Collectors Quest %s - %s', $title_string, $collectible->getName()));
+        $writer->writeElement(
+          'image:title', sprintf('Collectors Quest %s - %s', $title_string, $collectible->getName())
+        );
 
         $writer->endElement();
       }
@@ -231,10 +246,9 @@ class batchGenerateSitemapTask extends sfBaseTask
   /**
    * Static Pages
    *
-   * @param  PropelPDO  $connection
    * @return void
    */
-  private function _landing_pages(PropelPDO $connection = null)
+  private function _landing_pages()
   {
     $sitemap = sfConfig::get('sf_web_dir') . '/sitemaps/landing_pages.xml';
     $writer = $this->getWriter($sitemap);
@@ -341,7 +355,10 @@ class batchGenerateSitemapTask extends sfBaseTask
     // declare it as an rss document
     $writer->startElement('urlset');
     $writer->writeAttribute('xmlns:xsi', 'http://www.w3.org/2001/XMLSchema-instance');
-    $writer->writeAttribute('xsi:schemaLocation', 'http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd');
+    $writer->writeAttribute(
+      'xsi:schemaLocation',
+      'http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd'
+    );
     $writer->writeAttribute('xmlns', 'http://www.sitemaps.org/schemas/sitemap/0.9');
     $writer->writeAttribute('xmlns:image', 'http://www.google.com/schemas/sitemap-image/1.1');
 

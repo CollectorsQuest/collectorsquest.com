@@ -40,6 +40,10 @@ base
 /web/sf
 /web/sf*Plugin
 
+# sitemaps
+/web/sitemaps/*
+!/web/sitemaps/.ignore
+
 # wordpress blog
 /web/blog/wp-content/mail-*
 
@@ -53,4 +57,3 @@ base
 /config/vagrant/.vagrant
 /config/vagrant/platform
 /config/vagrant/id_rsa
-
