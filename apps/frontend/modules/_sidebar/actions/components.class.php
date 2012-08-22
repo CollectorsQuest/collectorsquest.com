@@ -107,7 +107,10 @@ class _sidebarComponents extends cqFrontendComponents
         ->orderByUpdatedAt(Criteria::DESC);
     }
     /** @var $collectible Collectible */
-    else if (($collectible = $this->getVar('collectible')) && $collectible instanceof Collectible)
+    else if (
+      ($collectible = $this->getVar('collectible')) &&
+      ($collectible instanceof Collectible || $collectible instanceof CollectionCollectible)
+    )
     {
       $tags = $collectible->getTags();
       $q
