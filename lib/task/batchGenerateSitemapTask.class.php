@@ -194,9 +194,9 @@ class batchGenerateSitemapTask extends sfBaseTask
       $i = 0;
       foreach ($collectibles as $collectible)
       {
-        if ($i % 50000 == 0)
+        if ($i % 20000 == 0)
         {
-          $sitemap = sfConfig::get('sf_web_dir') . '/sitemaps/collectibles_' . $i / 50000 . '.xml';
+          $sitemap = sfConfig::get('sf_web_dir') . '/sitemaps/collectibles_' . $i / 20000 . '.xml';
           $writer = $this->getWriter($sitemap);
         }
 
@@ -222,7 +222,7 @@ class batchGenerateSitemapTask extends sfBaseTask
 
         $writer->endElement();
 
-        if ($i % 50000 == 49999)
+        if ($i % 20000 == 19999)
         {
           $this->flushWriter($writer);
           $this->addSitemap($sitemap);
