@@ -27,6 +27,8 @@ class batchGenerateSitemapTask extends sfBaseTask
 
   protected function execute($arguments = array(), $options = array())
   {
+    $_SERVER['HTTP_HOST'] = sfConfig::get('app_www_domain');
+
     sfContext::createInstance($this->configuration);
 
     // Database initialization
@@ -41,7 +43,12 @@ class batchGenerateSitemapTask extends sfBaseTask
     // Load the Links helper
     $this->configuration->loadHelpers('cqLinks');
 
+    $this->_landing_pages($connection);
     $this->_collectors($connection);
+    $this->_collections($connection);
+    $this->_collectibles($connection);
+    $this->_content_categories($connection);
+    $this->_wp_posts($connection);
 
     // Write the sitemap index file
     if ($this->sitemap_index instanceof SimpleXMLElement)
@@ -57,8 +64,6 @@ class batchGenerateSitemapTask extends sfBaseTask
       file('http://webmaster.live.com/webmaster/ping.aspx?siteMap='. $sitemap_url);
       file('http://submissions.ask.com/ping?sitemap='. $sitemap_url);
     }
-
-    //$this->progress(++$this->i, $this->total);
   }
 
   /**
@@ -73,51 +78,298 @@ class batchGenerateSitemapTask extends sfBaseTask
       ->orderBy('Collector.CreatedAt', 'DESC');
     $collectors = $q->find($connection);
 
-    /**
-     * Avoid generation of empty sitemap files (for the months and dates there is no data)
-     */
     if (!empty($collectors))
     {
-      $sitemap = sfConfig::get('sf_web_dir') . '/sitemaps/collectors/collectors.xml';
+      $sitemap = sfConfig::get('sf_web_dir') . '/sitemaps/collectors.xml';
       $writer = $this->getWriter($sitemap);
 
-      $i = 0;
       foreach ($collectors as $collector)
       {
-        // for testing purposes - reduce execution time
-        if ($i < 50)
-        {
-          $writer->startElement('url');
-          $writer->writeElement('loc', link_to_collector($collector, 'text'));
-          $writer->writeElement('changefreq', 'weekly');
-          $writer->writeElement('priority', '0.9');
+        $writer->startElement('url');
+        $writer->writeElement('loc', url_for_collector($collector, true));
+        $writer->writeElement('changefreq', 'weekly');
+        $writer->writeElement('priority', '0.7');
 
-          $writer->endElement();
+        $writer->endElement();
 
-          /**
-           * @see http://www.google.com/support/webmasters/bin/answer.py?hl=en&answer=178636
-           */
+        /**
+         * @see http://www.google.com/support/webmasters/bin/answer.py?hl=en&answer=178636
+         */
 
-          $writer->startElement("image:image");
-          $writer->writeElement('image:loc', link_to_collector($collector, 'image'));
+        $writer->startElement("image:image");
+        $writer->writeElement('image:loc', src_tag_multimedia($collector->getPhoto(), '100x100'));
+        $writer->writeElement('image:caption', $collector->getDisplayName());
+        $writer->writeElement('image:title', 'Collectors Quest Collector - ' . $collector->getDisplayName());
 
-          $writer->endElement();
-        }
-        else
-        {
-          break;
-        }
-        $i++;
+        $writer->endElement();
       }
 
       $this->flushWriter($writer);
-      $this->addSitemap($sitemap, 'collectors');
+      $this->addSitemap($sitemap);
     }
-
-    //$this->progress(++$this->i, $this->total);
   }
 
-  private function addSitemap($sitemap, $path)
+  /**
+   * Collections
+   *
+   * @param  PropelPDO  $connection
+   * @return void
+   */
+  private function _collections(PropelPDO $connection = null)
+  {
+    $q = CollectorCollectionQuery::create()
+      ->orderBy('CollectorCollection.CreatedAt', 'DESC');
+    $collections = $q->find($connection);
+
+    if (!empty($collections))
+    {
+      $sitemap = sfConfig::get('sf_web_dir') . '/sitemaps/collections.xml';
+      $writer = $this->getWriter($sitemap);
+
+      foreach ($collections as $collection)
+      {
+        $writer->startElement('url');
+        $writer->writeElement('loc', url_for_collection($collection, true));
+        $writer->writeElement('changefreq', 'weekly');
+        $writer->writeElement('priority', '0.7');
+
+        $writer->endElement();
+
+        /**
+         * @see http://www.google.com/support/webmasters/bin/answer.py?hl=en&answer=178636
+         */
+
+        $writer->startElement("image:image");
+        $writer->writeElement('image:loc', src_tag_multimedia($collection->getThumbnail(), '150x150', array('slug' => $collection->getSlug())));
+        $writer->writeElement('image:caption', $collection->getName());
+        $writer->writeElement('image:title', 'Collectors Quest Collection - ' . $collection->getName());
+
+        $writer->endElement();
+      }
+
+      $this->flushWriter($writer);
+      $this->addSitemap($sitemap);
+    }
+  }
+
+  /**
+   * Collectibles
+   *
+   * @param  PropelPDO  $connection
+   * @return void
+   */
+  private function _collectibles(PropelPDO $connection = null)
+  {
+    $q = CollectibleQuery::create()
+      ->orderBy('Collectible.CreatedAt', 'DESC');
+    $collectibles = $q->find($connection);
+
+    if (!empty($collectibles))
+    {
+      $sitemap = sfConfig::get('sf_web_dir') . '/sitemaps/collectibles.xml';
+      $writer = $this->getWriter($sitemap);
+
+      foreach ($collectibles as $collectible)
+      {
+        $is_for_sale = $collectible->isForSale();
+
+        $writer->startElement('url');
+        $writer->writeElement('loc', url_for_collectible($collectible, true));
+        $writer->writeElement('changefreq', 'weekly');
+        $writer->writeElement('priority', $is_for_sale ? '0.8' : '0.7');
+
+        $writer->endElement();
+
+        /**
+         * @see http://www.google.com/support/webmasters/bin/answer.py?hl=en&answer=178636
+         */
+
+        $writer->startElement("image:image");
+        $writer->writeElement('image:loc', src_tag_multimedia($collectible->getPrimaryImage(), '150x150', array('slug' => $collectible->getSlug())));
+        $writer->writeElement('image:caption', $collectible->getName());
+        $title_string = $is_for_sale ? 'Item for Sale' : 'Collectible';
+        $writer->writeElement('image:title', sprintf('Collectors Quest %s - %s', $title_string, $collectible->getName()));
+
+        $writer->endElement();
+      }
+
+      $this->flushWriter($writer);
+      $this->addSitemap($sitemap);
+    }
+  }
+
+  /**
+   * Content Categories
+   *
+   * @param  PropelPDO  $connection
+   * @return void
+   */
+  private function _content_categories(PropelPDO $connection = null)
+  {
+    $q = ContentCategoryQuery::create();
+    $content_categories = $q->find($connection);
+
+    if (!empty($content_categories))
+    {
+      $sitemap = sfConfig::get('sf_web_dir') . '/sitemaps/content_categories.xml';
+      $writer = $this->getWriter($sitemap);
+
+      foreach ($content_categories as $category)
+      {
+        $writer->startElement('url');
+        $writer->writeElement('loc', url_for('content_category', $category, true));
+        $writer->writeElement('changefreq', 'weekly');
+        $writer->writeElement('priority', '0.6');
+
+        $writer->endElement();
+      }
+
+      $this->flushWriter($writer);
+      $this->addSitemap($sitemap);
+    }
+  }
+
+  /**
+   * WP Posts
+   *
+   * @param  PropelPDO  $connection
+   * @return void
+   */
+  private function _wp_posts(PropelPDO $connection = null)
+  {
+    $q = wpPostQuery::create();
+    $wp_posts = $q->find($connection);
+
+    if (!empty($wp_posts))
+    {
+      $sitemap = sfConfig::get('sf_web_dir') . '/sitemaps/wp_posts.xml';
+      $writer = $this->getWriter($sitemap);
+
+      foreach ($wp_posts as $post)
+      {
+        $writer->startElement('url');
+        $writer->writeElement('loc', $post->getPostUrl());
+        $writer->writeElement('changefreq', 'monthly');
+        $writer->writeElement('priority', '0.8');
+
+        $writer->endElement();
+
+        /**
+         * @see http://www.google.com/support/webmasters/bin/answer.py?hl=en&answer=178636
+         */
+
+        //whay am I doing wrong here? This IF is never true
+        if ($post->getPostThumbnail())
+        {
+          $writer->startElement("image:image");
+          $writer->writeElement('image:loc', $post->getPostThumbnail());
+          $writer->writeElement('image:caption', $post->getPostTitle());
+          $writer->writeElement('image:title', 'Collectors Quest Article - ' . $post->getPostTitle());
+
+          $writer->endElement();
+        }
+      }
+
+      $this->flushWriter($writer);
+      $this->addSitemap($sitemap);
+    }
+  }
+  /**
+   * WP Pages
+   *
+   * @param  PropelPDO  $connection
+   * @return void
+   */
+  private function _wp_pages(PropelPDO $connection = null)
+  {
+     //how can I get objects with route /blog/pages/*?
+
+  }
+
+  /**
+   * Videos
+   *
+   * @param  PropelPDO  $connection
+   * @return void
+   */
+  private function _videos(PropelPDO $connection = null)
+  {
+    //do we need this at all?
+
+  }
+
+  /**
+   * Static Pages
+   *
+   * @param  PropelPDO  $connection
+   * @return void
+   */
+  private function _landing_pages(PropelPDO $connection = null)
+  {
+    $sitemap = sfConfig::get('sf_web_dir') . '/sitemaps/landing_pages.xml';
+    $writer = $this->getWriter($sitemap);
+
+    //routes with daily changes and 1 priority
+    $daily_routes_highest = array('@homepage', '@blog', '@video', '@marketplace');
+
+    //routes with weekly changes and 1 priority
+    $weekly_routes_highest = array(
+      '@feedback', '@misc_guide_to_collecting', '@misc_guide_to_collecting_shortcut', '@misc_guide_download'
+    );
+
+    //routes with daily changes and 0.9 priority
+    $daily_routes = array(
+      '@aetn_landing', '@aetn_american_pickers', '@aetn_pawn_stars', '@collections', '@collectors'
+    );
+
+    //routes with weekly changes and 0.9 priority
+    $weekly_routes = array('@content_categories', '@collectors?sort=most-popular', '@marketplace_categories');
+
+    foreach ($daily_routes_highest as $route)
+    {
+      $writer->startElement('url');
+      $writer->writeElement('loc', url_for($route, true));
+      $writer->writeElement('changefreq', 'daily');
+      $writer->writeElement('priority', '1.0');
+
+      $writer->endElement();
+    }
+
+    foreach ($weekly_routes_highest as $route)
+    {
+      $writer->startElement('url');
+      $writer->writeElement('loc', url_for($route, true));
+      $writer->writeElement('changefreq', 'weekly');
+      $writer->writeElement('priority', '1.0');
+
+      $writer->endElement();
+    }
+
+    foreach ($daily_routes as $route)
+    {
+      $writer->startElement('url');
+      $writer->writeElement('loc', url_for($route, true));
+      $writer->writeElement('changefreq', 'daily');
+      $writer->writeElement('priority', '0.9');
+
+      $writer->endElement();
+    }
+
+    foreach ($weekly_routes as $route)
+    {
+      $writer->startElement('url');
+      $writer->writeElement('loc', url_for($route, true));
+      $writer->writeElement('changefreq', 'weekly');
+      $writer->writeElement('priority', '0.9');
+
+      $writer->endElement();
+    }
+
+    $this->flushWriter($writer);
+    $this->addSitemap($sitemap);
+  }
+
+  private function addSitemap($sitemap)
   {
     if (!($this->sitemap_index instanceof SimpleXmlElement))
     {
@@ -142,7 +394,7 @@ class batchGenerateSitemapTask extends sfBaseTask
     if ($present == false)
     {
       $url = $this->sitemap_index->addChild('sitemap');
-      $url->addChild('loc', 'http://'. sfConfig::get('app_www_domain') . '/sitemaps/' . $path . '/'. basename($sitemap));
+      $url->addChild('loc', 'http://'. sfConfig::get('app_www_domain') . '/sitemaps/' . basename($sitemap));
       $url->addChild('lastmod', date_format(new DateTime(), DATE_W3C));
     }
   }
