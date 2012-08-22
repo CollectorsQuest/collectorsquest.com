@@ -28,10 +28,10 @@
 class cqMagnifyPager extends sfPager
 {
   /** @var null|string */
-  private $query = null;
+  protected $query = null;
 
   /** @var null|ContentFeed */
-  private $results = null;
+  protected $results = null;
 
   public function __construct($query, $maxPerPage = 12)
   {
