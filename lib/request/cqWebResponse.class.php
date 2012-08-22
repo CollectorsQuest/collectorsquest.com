@@ -73,12 +73,14 @@ class cqWebResponse extends iceWebResponse
       case 'wpPost':
         /** @var $object wpPost */
 
-        // The OpenGraph description has priority over the SEO meta description
+        // The OpenGraph title/description has priority over the SEO meta title/description
+        $title = $object->getPostMetaValue('_yoast_wpseo_title') ?:
+                 $object->getPostTitle();
         $description = $object->getPostMetaValue('_yoast_wpseo_opengraph-description') ?:
                        $object->getPostMetaValue('_yoast_wpseo_metadesc');
 
         $this->addOpenGraphMeta('url', $this->getCanonicalUrl() ?: cq_url_for($object, true));
-        $this->addOpenGraphMeta('title', $object->getPostMetaValue('_yoast_wpseo_title'));
+        $this->addOpenGraphMeta('title', $title);
         $this->addOpenGraphMeta('description', $description);
         $this->addOpenGraphMeta('image', $object->getPostThumbnail('original'));
         $this->addOpenGraphMeta('type', 'collectorsquest:'. $object->getPostType());

@@ -299,7 +299,7 @@ class miscActions extends cqFrontendActions
         'FIELD(collectible_id, ' . implode(',', $_collectible_ids) . ')'
       );
 
-    $pager = new PropelModelPager($q, 20);
+    $pager = new PropelModelPager($q, 24);
     $pager->setPage($request->getParameter('page', 1));
     $pager->init();
 
@@ -307,6 +307,10 @@ class miscActions extends cqFrontendActions
     $this->wp_post = $wp_post;
 
     $this->addBreadcrumb($wp_post->getPostTitle(), null);
+
+    $title = $wp_post->getPostMetaValue('_yoast_wpseo_title') ?:
+             $wp_post->getPostTitle();
+    $this->getResponse()->setTitle($title);
     $this->getResponse()->addOpenGraphMetaFor($wp_post);
 
     return sfView::SUCCESS;
