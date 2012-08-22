@@ -82,7 +82,8 @@ class batchGenerateSitemapTask extends sfBaseTask
   {
     /** @var $q CollectorQuery */
     $q = CollectorQuery::create()
-      ->orderBy('Collector.CreatedAt', 'DESC');
+      ->orderBy('Collector.CreatedAt', 'DESC')
+      ->filterByIsPublic(true);
 
     /** @var $collectors Collector[] */
     $collectors = $q->find($connection);
@@ -96,7 +97,7 @@ class batchGenerateSitemapTask extends sfBaseTask
       {
         $writer->startElement('url');
         $writer->writeElement('loc', url_for_collector($collector, true));
-        $writer->writeElement('changefreq', 'monthly');
+        $writer->writeElement('changefreq', 'weekly');
         $writer->writeElement('priority', '0.4');
 
         $writer->endElement();
@@ -127,7 +128,8 @@ class batchGenerateSitemapTask extends sfBaseTask
   {
     /** @var $q CollectorCollectionQuery */
     $q = CollectorCollectionQuery::create()
-      ->orderBy('CollectorCollection.CreatedAt', 'DESC');
+      ->orderBy('CollectorCollection.CreatedAt', 'DESC')
+      ->filterByIsPublic(true);
 
     /** @var $collections CollectorCollection[] */
     $collections = $q->find($connection);
@@ -172,23 +174,37 @@ class batchGenerateSitemapTask extends sfBaseTask
   {
     /** @var $q CollectibleQuery */
     $q = CollectibleQuery::create()
-      ->orderBy('Collectible.CreatedAt', 'DESC');
+      ->orderBy('Collectible.CreatedAt', 'DESC')
+      ->filterByIsPublic(true);
 
     /** @var $collectibles Collectible[] */
     $collectibles = $q->find($connection);
 
+    //declare variables that will be overwritten later
+    $sitemap = sfConfig::get('sf_web_dir') . '/sitemaps/collectibles.xml';
+    $writer = $this->getWriter($sitemap);
+
     if (!empty($collectibles))
     {
-      $sitemap = sfConfig::get('sf_web_dir') . '/sitemaps/collectibles.xml';
-      $writer = $this->getWriter($sitemap);
-
+      /**
+       * used to create separate sitemap files as there is 50 000 entries limit
+       *
+       * @var $i integer
+       */
+      $i = 0;
       foreach ($collectibles as $collectible)
       {
+        if ($i % 50000 == 0)
+        {
+          $sitemap = sfConfig::get('sf_web_dir') . '/sitemaps/collectibles_' . $i / 50000 . '.xml';
+          $writer = $this->getWriter($sitemap);
+        }
+
         $is_for_sale = $collectible->isForSale();
 
         $writer->startElement('url');
         $writer->writeElement('loc', url_for_collectible($collectible, true));
-        $writer->writeElement('changefreq', 'monthly');
+        $writer->writeElement('changefreq', 'weekly');
         $writer->writeElement('priority', $is_for_sale ? '0.6' : '0.5');
 
         $writer->endElement();
@@ -205,6 +221,14 @@ class batchGenerateSitemapTask extends sfBaseTask
         );
 
         $writer->endElement();
+
+        if ($i % 50000 == 49999)
+        {
+          $this->flushWriter($writer);
+          $this->addSitemap($sitemap);
+        }
+
+        $i++;
       }
 
       $this->flushWriter($writer);
@@ -260,15 +284,15 @@ class batchGenerateSitemapTask extends sfBaseTask
     $daily_routes_highest = array('@homepage', '@blog', '@video', '@marketplace');
 
     //routes with weekly changes and 0.9 priority (Sub Pages / Product  Listings)
-    $weekly_routes = array(
+    $daily_routes = array(
       '@aetn_american_pickers', '@aetn_pawn_stars', '@collections', '@collectors', '@collectors?sort=most-popular'
     );
 
-    //routes with monthly changes and 0.9 priority (Sub Pages / Product  Listings)
-    $monthly_routes = array('@content_categories', '@marketplace_categories');
+    //routes with weekly changes and 0.9 priority (Sub Pages / Product  Listings)
+    $weekly_routes = array('@content_categories', '@marketplace_categories');
 
-    //routes with monthly changes and 0.5 priority (Resource Pages)
-    $monthly_routes_resource = array(
+    //routes with weekly changes and 0.5 priority (Resource Pages)
+    $weekly_routes_resource = array(
       '@feedback', '@misc_guide_to_collecting', '@misc_guide_to_collecting_shortcut', '@misc_guide_download'
     );
 
@@ -282,7 +306,7 @@ class batchGenerateSitemapTask extends sfBaseTask
       $writer->endElement();
     }
 
-    foreach ($weekly_routes as $route)
+    foreach ($daily_routes as $route)
     {
       $writer->startElement('url');
       $writer->writeElement('loc', url_for($route, true));
@@ -292,7 +316,7 @@ class batchGenerateSitemapTask extends sfBaseTask
       $writer->endElement();
     }
 
-    foreach ($monthly_routes as $route)
+    foreach ($weekly_routes as $route)
     {
       $writer->startElement('url');
       $writer->writeElement('loc', url_for($route, true));
@@ -302,11 +326,11 @@ class batchGenerateSitemapTask extends sfBaseTask
       $writer->endElement();
     }
 
-    foreach ($monthly_routes_resource as $route)
+    foreach ($weekly_routes_resource as $route)
     {
       $writer->startElement('url');
       $writer->writeElement('loc', url_for($route, true));
-      $writer->writeElement('changefreq', 'monthly');
+      $writer->writeElement('changefreq', 'weekly');
       $writer->writeElement('priority', '0.5');
 
       $writer->endElement();
