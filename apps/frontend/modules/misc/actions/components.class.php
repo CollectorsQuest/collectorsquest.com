@@ -22,7 +22,7 @@ class miscComponents extends cqFrontendComponents
       $collectibles_for_sale_ids = array_filter($collectibles_for_sale_ids);
 
       // Get some element of surprise
-      array_shift($collectibles_for_sale_ids);
+      shuffle($collectibles_for_sale_ids);
 
       /** @var $q CollectibleForSaleQuery */
       $q = CollectibleForSaleQuery::create()

@@ -17,11 +17,12 @@
 <div id="items-for-sale-sidebar">
 <?php foreach ($collectibles_for_sale as $i => $collectible_for_sale): ?>
   <div class="row-fluid">
-    <div class="inner-border">
+    <div class="inner-border link">
       <div class="span3">
         <?php
           echo link_to_collectible($collectible_for_sale->getCollectible(), 'image', array(
-            'image_tag' => array('width' => 75, 'height' => 75, 'max_width' => 60)
+            'image_tag' => array('width' => 75, 'height' => 75, 'max_width' => 60),
+            'link_to' => array('class' => 'target')
           ));
         ?>
       </div>

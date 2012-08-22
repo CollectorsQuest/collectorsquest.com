@@ -13,18 +13,26 @@
   );
 ?>
 
-<div class="row">
+<br/>
+<div class="row" style="margin-left: -12px;">
   <div id="collectibles" class="row-content">
   <?php
-    /** @var $collectibles Collectible[] */
-    foreach ($collectibles as $i => $collectible)
+    foreach ($pager->getResults() as $i => $collectible)
     {
       // Show the collectible (in grid, list or hybrid view)
       include_partial(
-        'collection/collectible_grid_view_square',
+        'collection/collectible_grid_view_square_small',
         array('collectible' => $collectible, 'i' => (int) $i)
       );
     }
   ?>
   </div>
+</div>
+
+<div class="row-fluid text-center">
+<?php
+  include_component(
+    'global', 'pagination', array('pager' => $pager)
+  );
+?>
 </div>

@@ -55,7 +55,7 @@
 
 <?php else: ?>
 
-<div class="row-fluid text-center">
+  <div class="row-fluid text-center">
   <?php
     include_component(
       'global', 'pagination', array('pager' => $pager)

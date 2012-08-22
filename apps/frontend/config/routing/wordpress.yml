@@ -4,5 +4,5 @@ wordpress_featured_items:
   url:  /featured/:id/:slug
   class: cqPropelRoute
   options: { model: wpPost, type: object }
-  param: { module: misc, action: wordPress }
+  param: { module: misc, action: wordPressFeaturedItems }
   requirements: { id: '\d+', slug: '[\-\w\.]+' }
