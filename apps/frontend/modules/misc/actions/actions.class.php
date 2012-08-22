@@ -116,6 +116,7 @@ class miscActions extends cqFrontendActions
   /**
    * Action GuideDownload
    *
+   * @param  sfWebRequest  $request
    * @return string
    */
   public function executeGuideDownload(sfWebRequest $request)
@@ -299,7 +300,7 @@ class miscActions extends cqFrontendActions
         'FIELD(collectible_id, ' . implode(',', $_collectible_ids) . ')'
       );
 
-    $pager = new PropelModelPager($q, 24);
+    $pager = new PropelModelPager($q, 20);
     $pager->setPage($request->getParameter('page', 1));
     $pager->init();
 

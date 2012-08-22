@@ -1,3 +1,9 @@
+<?php
+  cq_page_title(
+    $wp_post->getPostTitle(), null,
+    array('class' => 'row-fluid header-bar')
+  );
+?>
 <div class="spacer-bottom-15">
   <?= cq_image_tag($wp_post->getPostThumbnail('original'), array('alt' => $wp_post->getPostTitle())); ?>
 </div>
@@ -5,13 +11,6 @@
 <p class="text-justify">
   <?= $wp_post->getPostContent(); ?>
 </p>
-
-<?php
-  cq_page_title(
-    $wp_post->getPostTitle(), null,
-    array('class' => 'row-fluid header-bar spacer-bottom-15')
-  );
-?>
 
 <br/>
 <div class="row" style="margin-left: -12px;">
