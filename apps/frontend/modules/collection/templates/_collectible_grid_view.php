@@ -10,12 +10,13 @@
 
   <div class="mosaic-overlay">
     <p class="details">
-      <?= link_to_collectible($collectible, 'text', array('class' => 'target')); ?>
+      <?= link_to_collectible($collectible, 'text', array('link_to' => array('class' => 'target'))); ?>
     </p>
   </div>
   <?php
     echo link_to_collectible($collectible, 'image', array(
-      'image_tag' => array('width' => 190, 'height' => 150, 'class' => 'mosaic-backdrop')
+      'image_tag' => array('width' => 190, 'height' => 150),
+      'link_to' => array('class' => 'mosaic-backdrop')
     ));
   ?>
 </div>

@@ -11,9 +11,10 @@
   ?>
   <p>
     <?php
-      echo link_to_collectible($collectible, 'text',
-        array('class' => 'target', 'truncate' => 20)
-      );
+      echo link_to_collectible($collectible, 'text', array(
+        'truncate' => 20,
+        'link_to' => array('class' => 'target')
+      ));
     ?>
   </p>
 </div>

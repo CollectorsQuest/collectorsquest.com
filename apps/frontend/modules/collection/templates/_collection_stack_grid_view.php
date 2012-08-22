@@ -12,7 +12,14 @@
   <div class="stack">
     <div class="mosaic-overlay">
       <p class="details">
-        <?php echo link_to_collection($collection, 'text', array('class' => 'target')); ?>&nbsp;<span style="color:#ccc;">(<?php echo (int) $collection->getNumItems(); ?>)</span>&nbsp;<?php if ($collection->countCollectiblesSince('7 day ago') > 0) echo cq_image_tag('icons/new.png'); ?>
+        <?php
+          echo sprintf(
+            '%s&nbsp;<span style="color:#ccc;">(%d)</span>&nbsp;%s',
+            link_to_collection($collection, 'text', array('link_to' => array('class' => 'target'))),
+            $collection->getNumItems(),
+            ($collection->countCollectiblesSince('7 day ago') > 0) ? cq_image_tag('icons/new.png') : null
+          );
+        ?>
         <br><small>by</small>
         <?php
           echo link_to_collector($collection->getCollector(), 'text', array(
@@ -22,13 +29,10 @@
       </p>
     </div>
     <?php
-      echo link_to_collection(
-        $collection, 'image',
-        array(
-          'width' => 175, 'height' => 138,
-          'class' => 'mosaic-backdrop'
-        )
-      );
+      echo link_to_collection($collection, 'image', array(
+          'image_tag' => array('width' => 175, 'height' => 138),
+          'link_to' => array('class' => 'mosaic-backdrop')
+      ));
     ?>
   </div>
 </div>

@@ -13,5 +13,5 @@
       'image_tag' => array('width' => 190, 'height' => 190)
     ));
   ?>
-  <p><?= link_to_collectible($collectible, 'text', array('class' => 'target')); ?></p>
+  <p><?= link_to_collectible($collectible, 'text', array('link_to' => array('class' => 'target'))); ?></p>
 </div>

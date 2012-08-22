@@ -11,7 +11,11 @@
 
   <div class="mosaic-overlay">
     <p class="details">
-      <?= link_to_collection($collection, 'text', array('class' => 'target', 'style' => 'font-size: 130%;')); ?>
+      <?php
+        echo link_to_collection($collection, 'text', array(
+          'link_to' => array('class' => 'target', 'style' => 'font-size: 130%;')
+        ));
+      ?>
       <br/><small>by</small>
       <?php
         echo link_to_collector($collection->getCollector(), 'text', array(
@@ -22,9 +26,8 @@
   </div>
   <?php
     echo link_to_collection($collection, 'image', array(
-        'image_tag' => array( 'width' => 190, 'height' => 150, 'class' => 'mosaic-backdrop'),
+        'image_tag' => array( 'width' => 190, 'height' => 150),
         'link_to' => array('class' => 'mosaic-backdrop')
-      )
-    );
+    ));
   ?>
 </div>

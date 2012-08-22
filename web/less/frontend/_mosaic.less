@@ -3,7 +3,7 @@
 .mosaic-block {
   position: relative;
   overflow: hidden;
-  background: #111 url("@{baseUrl}/progress.gif") no-repeat center center;
+  background: #F5F5F5 url("@{baseUrl}/progress.gif") no-repeat center center;
 }
 
 .mosaic-backdrop {
@@ -11,7 +11,11 @@
 	display: none;
   top: 0;
 	.square(100%);
-  background: #111;
+  background: #F5F5F5;
+
+  img {
+    margin-top: 0;
+  }
 }
 
 .mosaic-overlay {
@@ -19,7 +23,7 @@
 	display: none;
   z-index: 5;
 	.square(100%);
-  background: #111;
+  background: #F5F5F5;
 }
 
 .circle .mosaic-overlay {
