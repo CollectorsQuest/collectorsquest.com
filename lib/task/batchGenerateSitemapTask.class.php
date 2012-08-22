@@ -50,7 +50,7 @@ class batchGenerateSitemapTask extends sfBaseTask
     // Load the Links helper
     $this->configuration->loadHelpers('cqLinks');
 
-    $this->_landing_pages($connection);
+    $this->_landing_pages();
     $this->_collectors($connection);
     $this->_collections($connection);
     $this->_collectibles($connection);
@@ -96,8 +96,8 @@ class batchGenerateSitemapTask extends sfBaseTask
       {
         $writer->startElement('url');
         $writer->writeElement('loc', url_for_collector($collector, true));
-        $writer->writeElement('changefreq', 'weekly');
-        $writer->writeElement('priority', '0.7');
+        $writer->writeElement('changefreq', 'monthly');
+        $writer->writeElement('priority', '0.4');
 
         $writer->endElement();
 
@@ -142,7 +142,7 @@ class batchGenerateSitemapTask extends sfBaseTask
         $writer->startElement('url');
         $writer->writeElement('loc', url_for_collection($collection, true));
         $writer->writeElement('changefreq', 'weekly');
-        $writer->writeElement('priority', '0.7');
+        $writer->writeElement('priority', '0.6');
 
         $writer->endElement();
 
@@ -188,8 +188,8 @@ class batchGenerateSitemapTask extends sfBaseTask
 
         $writer->startElement('url');
         $writer->writeElement('loc', url_for_collectible($collectible, true));
-        $writer->writeElement('changefreq', 'weekly');
-        $writer->writeElement('priority', $is_for_sale ? '0.8' : '0.7');
+        $writer->writeElement('changefreq', 'monthly');
+        $writer->writeElement('priority', $is_for_sale ? '0.6' : '0.5');
 
         $writer->endElement();
 
@@ -220,7 +220,10 @@ class batchGenerateSitemapTask extends sfBaseTask
    */
   private function _content_categories(PropelPDO $connection = null)
   {
+    /** @var $q ContentCategoryQuery */
     $q = ContentCategoryQuery::create();
+
+    /** @var $content_categories ContentCategory[] */
     $content_categories = $q->find($connection);
 
     if (!empty($content_categories))
@@ -233,7 +236,7 @@ class batchGenerateSitemapTask extends sfBaseTask
         $writer->startElement('url');
         $writer->writeElement('loc', url_for('content_category', $category, true));
         $writer->writeElement('changefreq', 'weekly');
-        $writer->writeElement('priority', '0.6');
+        $writer->writeElement('priority', '0.7');
 
         $writer->endElement();
       }
@@ -253,21 +256,21 @@ class batchGenerateSitemapTask extends sfBaseTask
     $sitemap = sfConfig::get('sf_web_dir') . '/sitemaps/landing_pages.xml';
     $writer = $this->getWriter($sitemap);
 
-    //routes with daily changes and 1 priority
+    //routes with daily changes and 1 priority (Main Pages)
     $daily_routes_highest = array('@homepage', '@blog', '@video', '@marketplace');
 
-    //routes with weekly changes and 1 priority
-    $weekly_routes_highest = array(
+    //routes with weekly changes and 0.9 priority (Sub Pages / Product  Listings)
+    $weekly_routes = array(
+      '@aetn_american_pickers', '@aetn_pawn_stars', '@collections', '@collectors', '@collectors?sort=most-popular'
+    );
+
+    //routes with monthly changes and 0.9 priority (Sub Pages / Product  Listings)
+    $monthly_routes = array('@content_categories', '@marketplace_categories');
+
+    //routes with monthly changes and 0.5 priority (Resource Pages)
+    $monthly_routes_resource = array(
       '@feedback', '@misc_guide_to_collecting', '@misc_guide_to_collecting_shortcut', '@misc_guide_download'
     );
-
-    //routes with daily changes and 0.9 priority
-    $daily_routes = array(
-      '@aetn_landing', '@aetn_american_pickers', '@aetn_pawn_stars', '@collections', '@collectors'
-    );
-
-    //routes with weekly changes and 0.9 priority
-    $weekly_routes = array('@content_categories', '@collectors?sort=most-popular', '@marketplace_categories');
 
     foreach ($daily_routes_highest as $route)
     {
@@ -279,17 +282,7 @@ class batchGenerateSitemapTask extends sfBaseTask
       $writer->endElement();
     }
 
-    foreach ($weekly_routes_highest as $route)
-    {
-      $writer->startElement('url');
-      $writer->writeElement('loc', url_for($route, true));
-      $writer->writeElement('changefreq', 'weekly');
-      $writer->writeElement('priority', '1.0');
-
-      $writer->endElement();
-    }
-
-    foreach ($daily_routes as $route)
+    foreach ($weekly_routes as $route)
     {
       $writer->startElement('url');
       $writer->writeElement('loc', url_for($route, true));
@@ -299,12 +292,22 @@ class batchGenerateSitemapTask extends sfBaseTask
       $writer->endElement();
     }
 
-    foreach ($weekly_routes as $route)
+    foreach ($monthly_routes as $route)
     {
       $writer->startElement('url');
       $writer->writeElement('loc', url_for($route, true));
       $writer->writeElement('changefreq', 'weekly');
       $writer->writeElement('priority', '0.9');
+
+      $writer->endElement();
+    }
+
+    foreach ($monthly_routes_resource as $route)
+    {
+      $writer->startElement('url');
+      $writer->writeElement('loc', url_for($route, true));
+      $writer->writeElement('changefreq', 'monthly');
+      $writer->writeElement('priority', '0.5');
 
       $writer->endElement();
     }
