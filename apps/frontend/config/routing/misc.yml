@@ -3,7 +3,7 @@
 
 channels:
   url:  /channels
-  param: { module: channels, action: index }
+  param: { module: _legacy, action: redirectToCollections }
 
 ### SEARCH
 
@@ -80,7 +80,7 @@ tags:
 
 tags_index:
   url:   /tags
-  param: { module: tags, action: index }
+  param: { module: _legacy, action: redirectToCollections }
 
 
 ### CONTENT CATEGORIES
