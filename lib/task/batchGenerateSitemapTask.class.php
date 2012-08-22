@@ -48,7 +48,6 @@ class batchGenerateSitemapTask extends sfBaseTask
     $this->_collections($connection);
     $this->_collectibles($connection);
     $this->_content_categories($connection);
-    $this->_wp_posts($connection);
 
     // Write the sitemap index file
     if ($this->sitemap_index instanceof SimpleXMLElement)
@@ -227,75 +226,6 @@ class batchGenerateSitemapTask extends sfBaseTask
       $this->flushWriter($writer);
       $this->addSitemap($sitemap);
     }
-  }
-
-  /**
-   * WP Posts
-   *
-   * @param  PropelPDO  $connection
-   * @return void
-   */
-  private function _wp_posts(PropelPDO $connection = null)
-  {
-    $q = wpPostQuery::create();
-    $wp_posts = $q->find($connection);
-
-    if (!empty($wp_posts))
-    {
-      $sitemap = sfConfig::get('sf_web_dir') . '/sitemaps/wp_posts.xml';
-      $writer = $this->getWriter($sitemap);
-
-      foreach ($wp_posts as $post)
-      {
-        $writer->startElement('url');
-        $writer->writeElement('loc', $post->getPostUrl());
-        $writer->writeElement('changefreq', 'monthly');
-        $writer->writeElement('priority', '0.8');
-
-        $writer->endElement();
-
-        /**
-         * @see http://www.google.com/support/webmasters/bin/answer.py?hl=en&answer=178636
-         */
-
-        //whay am I doing wrong here? This IF is never true
-        if ($post->getPostThumbnail())
-        {
-          $writer->startElement("image:image");
-          $writer->writeElement('image:loc', $post->getPostThumbnail());
-          $writer->writeElement('image:caption', $post->getPostTitle());
-          $writer->writeElement('image:title', 'Collectors Quest Article - ' . $post->getPostTitle());
-
-          $writer->endElement();
-        }
-      }
-
-      $this->flushWriter($writer);
-      $this->addSitemap($sitemap);
-    }
-  }
-  /**
-   * WP Pages
-   *
-   * @param  PropelPDO  $connection
-   * @return void
-   */
-  private function _wp_pages(PropelPDO $connection = null)
-  {
-     //how can I get objects with route /blog/pages/*?
-
-  }
-
-  /**
-   * Videos
-   *
-   * @param  PropelPDO  $connection
-   * @return void
-   */
-  private function _videos(PropelPDO $connection = null)
-  {
-    //do we need this at all?
-
   }
 
   /**
