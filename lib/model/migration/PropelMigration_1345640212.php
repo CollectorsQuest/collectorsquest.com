@@ -24,7 +24,10 @@ class PropelMigration_1345640212
     /** @var $multimedia iceModelMultimedia[] */
     $multimedia = $q->find();
 
-    foreach ($multimedia as $i => $m)
+    /** @var $multimedia_count interger */
+    $multimedia_count = count($multimedia);
+
+    foreach ($multimedia as $k => $m)
     {
       if (
         !$m->fileExists('620x0') ||
@@ -34,12 +37,10 @@ class PropelMigration_1345640212
         copy($m->getAbsolutePath('420x1000'), $m->getAbsolutePath('620x0'));
       }
 
-      if ($i % 100 === 0) {
-        echo ".";
-      }
+      echo sprintf("\r Completed: %.2f%%", round($k/$multimedia_count, 4) * 100);
     }
 
-    echo "\n";
+    echo "\r Completed: 100%  \n";
   }
 
   public function postUp($manager)
