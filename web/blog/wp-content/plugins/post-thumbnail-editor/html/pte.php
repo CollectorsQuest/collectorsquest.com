@@ -57,7 +57,7 @@
 								<div class="pte-size-label"><?php print $size_label; ?> <?php
 								print("(${size_array['width']}x${size_array['height']})");
 								print("<br><span class='actual'>" . __( 'Current image:', PTE_DOMAIN )
-									. $size_array['current']['width'] . "x" 
+									. $size_array['current']['width'] . "x"
 									. $size_array['current']['height'] . "</span>");
 								?></div>
 								<img src="<?php print( $size_array['current']['url'] . "?" . mt_rand() ); ?>"/><br/>
@@ -74,12 +74,12 @@
 		<script id="stage2template" type="text/x-jquery-tmpl">
 			<a onclick="goBack(); return false;" href="#back" class="stage-navigation"
 				alt="Return to Step 1" title="Return to Step 1">
-				<img src="<?php print( PTE_PLUGINURL . "images/back.gif" ); ?>"/> <?php 
-					_e( 'Back', PTE_DOMAIN ); 
+				<img src="<?php print( PTE_PLUGINURL . "images/back.gif" ); ?>"/> <?php
+					_e( 'Back', PTE_DOMAIN );
 				?></a>
 			<h1 class="stage-header"><?php echo( __( 'Post Thumbnail Editor - Step 2', PTE_DOMAIN ) ); ?></h1>
 			{{if $data['error']}}
-			<div id="error"><?php 
+			<div id="error" style="display: none"><?php
 								_e( 'We noticed some potential issues:', PTE_DOMAIN );
 								echo( "&nbsp;" );
 								if ( $options['pte_debug'] ){
@@ -123,7 +123,7 @@
 				<button id="pte-confirm">
 					<?php _e( 'Okay, these look good...', PTE_DOMAIN ); ?>
 				</button>&nbsp;
-				<a href="#back" id="pte-cancel" 
+				<a href="#back" id="pte-cancel"
 						onclick="goBack(); return false;">
 					<?php _e( 'I\'d rather start over...', PTE_DOMAIN ); ?>
 				</a>
@@ -142,25 +142,25 @@
 			</div>
 			{{/if}}
 			{{if $data['error']}}
-			<div id="error"><?php _e( 'We noticed some potential issues:', PTE_DOMAIN ); ?>
+			<div id="error" style="display: none;"><?php _e( 'We noticed some potential issues:', PTE_DOMAIN ); ?>
 				<ul>
 					{{each $data['error']}}<li>${$value}</li>{{/each}}
 				</ul>
 			</div>
 			{{/if}}
 		</script>
-		<div id="pte-loading"> 
+		<div id="pte-loading">
 			<div class="pte-opaque"></div>
 			<div id="pte-loading-spinner">
 				<img src="<?php print PTE_PLUGINURL; ?>images/loading.gif" alt="<?php
 					_e( 'Please wait', PTE_DOMAIN ); ?>" />
 		</div></div>
 		<?php if ( $options['pte_debug'] ): ?>
-		<a id="pte-log-button" class="show-log-messages" href="" alt="<?php 
-			_e( 'Click here to show application logs', PTE_DOMAIN ); 
-			?>" title="Click here to show application logs"><?php 
+		<a id="pte-log-button" class="show-log-messages" href="" alt="<?php
+			_e( 'Click here to show application logs', PTE_DOMAIN );
+			?>" title="Click here to show application logs"><?php
 			_e( 'Debug', PTE_DOMAIN ); ?></a>
-		<div id="pte-log"> 
+		<div id="pte-log">
 			<div class="pte-opaque"></div>
 			<div id="pte-log-container">
 				<div id="pte-log-messages">
@@ -180,8 +180,8 @@
 					<!--<a id="clipboard" href="">Copy to Clipboard</a>&nbsp;-->
 					<a class="button" id="pastebin" href=""><?php _e( 'Send to Pastebin', PTE_DOMAIN ); ?></a>&nbsp;
 					<a class="button" id="clear-log" href=""><?php _e( 'Clear Messages', PTE_DOMAIN ); ?></a>&nbsp;
-					<a class="button" id="test" target="ptetest" href="<?php 
-						echo( $testurl ); ?>"><?php 
+					<a class="button" id="test" target="ptetest" href="<?php
+						echo( $testurl ); ?>"><?php
 						_e( 'Run Tests', PTE_DOMAIN ); ?></a>&nbsp;
 					<a class="button" id="close-log" href=""><?php _e( 'Close', PTE_DOMAIN ); ?></a>
 				</div>
