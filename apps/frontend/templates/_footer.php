@@ -13,7 +13,7 @@
             <?= link_to('Join us', '@misc_guide_to_collecting') ?> to make collecting more fun than ever!
           </p>
 
-          <div class="row-spacing-footer">
+          <div class="contact-us-button">
             <?php
               echo link_to(
                 'Contact Us', 'blog_page', array('slug' => 'contact-us'),
