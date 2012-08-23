@@ -74,8 +74,19 @@ class cqSphinxPager extends sfPager
       $this->query = array_merge($this->query, array('limits' => array($offset, $limit)));
     }
 
-    // Populate the matches array
-    $results = self::search($this->query, $this->types, 'raw');
+    /**
+     * Sphinx is limited to showing only 1000 results so do not bother
+     * to ask Sphinx for results when the Offset is off limits
+     */
+    if ($this->getOffset() > 1000)
+    {
+      $results = array();
+    }
+    else
+    {
+      // Populate the matches array
+      $results = self::search($this->query, $this->types, 'raw');
+    }
 
     $this->matches = isset($results['matches']) ? $results['matches'] : array();
     $this->words   = isset($results['words'])   ? $results['words']   : array();
