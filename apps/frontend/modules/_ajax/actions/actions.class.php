@@ -105,7 +105,7 @@ class _ajaxActions extends cqFrontendActions
               ),
             ),
         ));
-        
+
         if ($values['send_copy'])
         {
           $cqEmail = new cqEmail($this->getMailer());
@@ -134,7 +134,7 @@ class _ajaxActions extends cqFrontendActions
             array(), 'flash'
           )
         );
-        
+
         $this->setTemplate('successFeedback');
       }
       else
@@ -145,6 +145,19 @@ class _ajaxActions extends cqFrontendActions
         );
       }
     }
+  }
+
+  public function executeMultimedia(sfWebRequest $request)
+  {
+    if (!$mutlimedia = iceModelMultimediaQuery::create()->findOneById($request->getParameter('id')))
+    {
+      return sfView::NONE;
+    }
+
+    $this->multimedia = $mutlimedia;
+    $this->which = $request->getParameter('which', 'original');
+
+    return sfView::SUCCESS;
   }
 
 }

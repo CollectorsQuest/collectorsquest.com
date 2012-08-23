@@ -293,7 +293,6 @@ $(document).ready(function()
     });
   }
 
-
   $vertical_carousel.on('click', '.zoom', function(e) {
     var source = $(this).find('img');
     var target = $('#collectible_multimedia_primary');
@@ -305,11 +304,39 @@ $(document).ready(function()
       .attr({
         src: path[0] + '/620x0/' + path[1],
         alt: $(source).attr('alt')
-      });
+      })
+      .data('id', $(source).data('id'));
 
     $(target)
       .siblings('a.zoom-zone')
       .attr('href', path[0] + '/original/' + path[1]);
+
+    return false;
+  });
+
+  $('a.zoom-zone').click(function(e)
+  {
+    e.preventDefault();
+
+    var url = '<?= url_for('@ajax_multimedia?which=original'); ?>';
+    var $a = $(this);
+    var $img = $('img.multimedia', $a.parent());
+    var $div = $('<div></div>');
+
+    $img.showLoading();
+    $div.appendTo('body').load(url + '&id=' + $img.data('id'), function()
+    {
+      var width = $('img.multimedia', this).attr('width');
+      var height = $('img.multimedia', this).attr('height');
+
+      var margin = -1 * (width / 2 - 280);
+
+      $('.modal', this).css('width', width);
+      $('.modal', this).css('margin-left', margin + 'px');
+      $('.modal', this).modal('show');
+
+      $('img', $a).hideLoading();
+    });
 
     return false;
   });

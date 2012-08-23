@@ -145,9 +145,10 @@
 .modal-wrapper .modal .modal-body {
   overflow-y: visible;
   max-height: none;
+  z-index: 1060; /* IE8 fix for radio button focus / blur issue */
 }
 
-//Ultra fix :/ Prevent modals from vertival scrollbar.
+// Ultra fix :/ Prevent modals from vertical scrollbar
 .modal-body .form-modal .form-actions {
 	margin: 0;
 	padding: 0 !important;

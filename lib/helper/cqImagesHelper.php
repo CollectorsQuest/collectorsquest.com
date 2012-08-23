@@ -236,7 +236,10 @@ function image_tag_multimedia($multimedia, $which, $options = array())
 
   $image_info = $multimedia->getImageInfo($which);
   $options = array_merge(
-    array('alt_title' => '', 'width' => $image_info['width'], 'height' => $image_info['height']),
+    array(
+      'alt_title' => '', 'class' => 'multimedia', 'data-id' => $multimedia->getId(),
+      'width' => $image_info['width'], 'height' => $image_info['height']
+    ),
     $options
   );
 
