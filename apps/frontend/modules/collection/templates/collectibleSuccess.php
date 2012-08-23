@@ -1,6 +1,5 @@
 <?php
 
-  use_javascript('jquery/ui.js');
   use_javascript('jquery/rcarousel.js');
 
 /**
@@ -326,16 +325,19 @@ $(document).ready(function()
     $img.showLoading();
     $div.appendTo('body').load(url + '&id=' + $img.data('id'), function()
     {
-      var width = $('img.multimedia', this).attr('width');
-      var height = $('img.multimedia', this).attr('height');
+      $('img.multimedia', this).load(function()
+      {
+        var width = $(this).attr('width');
+        var height = $(this).attr('height');
 
-      var margin = -1 * (width / 2 - 280);
+        var margin = -1 * (width / 2 - 280);
 
-      $('.modal', this).css('width', width);
-      $('.modal', this).css('margin-left', margin + 'px');
-      $('.modal', this).modal('show');
+        $('.modal', $div).css('width', width);
+        $('.modal', $div).css('margin-left', margin + 'px');
+        $('.modal', $div).modal('show');
 
-      $('img', $a).hideLoading();
+        $('img', $a).hideLoading();
+      });
     });
 
     return false;

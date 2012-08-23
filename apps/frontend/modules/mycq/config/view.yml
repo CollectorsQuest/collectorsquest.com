@@ -11,7 +11,6 @@ all:
     - /assets/js/bootstrap/wysihtml5.js
     - /assets/js/jquery/chosen.js
 
-    - jquery/ui.js
     - jquery/columnview.js
     - jquery/tmpl.js
     - jquery/iframe-transport.js

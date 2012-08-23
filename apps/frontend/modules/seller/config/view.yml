@@ -6,7 +6,6 @@ all:
     - frontend/modules/seller.css
 
   javascripts:
-    - jquery/ui.js
     - jquery/columnview.js
     - jquery/tmpl.js
     - jquery/iframe-transport.js
