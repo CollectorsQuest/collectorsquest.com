@@ -412,7 +412,8 @@ var edcal = {
         });
 
         jQuery('#edcal-title-new-field').bind('keyup', function(evt) {
-            if (jQuery('#edcal-title-new-field').val().length > 0 && jQuery('#edcal-time').val().length > 0) {
+            if (jQuery('#edcal-title-new-field').val().length > 0 && 
+                (!jQuery('#edcal-time').is(':visible') || jQuery('#edcal-time').val().length > 0)) {
                 jQuery('#newPostScheduleButton').removeClass('disabled');
             } else {
                 jQuery('#newPostScheduleButton').addClass('disabled');
@@ -1357,7 +1358,8 @@ var edcal = {
 
 
 
-        if (edcal.getDayFromDayId(post.date).compareTo(Date.today()) === -1) {
+        if (post.formatteddate !== edcal.NO_DATE &&
+            edcal.getDayFromDayId(post.date).compareTo(Date.today()) === -1) {
             /*
              * We only allow drafts in the past
              */
