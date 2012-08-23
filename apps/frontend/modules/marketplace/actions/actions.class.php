@@ -31,15 +31,26 @@ class marketplaceActions extends cqFrontendActions
 
       $values = unserialize($wp_post->getPostMetaValue('_market_featured_items'));
 
-      for ($i = 1; $i <= 3; $i++)
-      if (isset($values['cq_collectible_id_'. $i]))
+      for ($i = 1; $i <= 6; $i++)
       {
-        $collectibles_for_sale[$i] = CollectibleForSaleQuery::create()
-          ->findOneByCollectibleId(trim($values['cq_collectible_id_'. $i]));
-
-        if (isset($values['cq_collectible_text_'. $i]))
+        if (isset($values['cq_collectible_id_'. $i]))
         {
-          $collectibles_for_sale_text[$i] = trim($values['cq_collectible_text_'. $i]);
+          $collectible_for_sale = CollectibleForSaleQuery::create()
+            ->findOneByCollectibleId(trim($values['cq_collectible_id_'. $i]));
+
+          if ($collectible_for_sale)
+          {
+            $collectibles_for_sale[$i] = $collectible_for_sale;
+
+            if (isset($values['cq_collectible_text_'. $i]))
+            {
+              $collectibles_for_sale_text[$i] = trim($values['cq_collectible_text_'. $i]);
+            }
+          }
+        }
+        if (sizeof($collectibles_for_sale) == 3)
+        {
+          break;
         }
       }
 
