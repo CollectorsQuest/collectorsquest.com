@@ -19,6 +19,12 @@
   $shipping_no_shipping_countries = array();
 ?>
 
+<?php slot('prev_next'); ?>
+  <link rel="prev" href="<?= url_for_collectible($previous) ?>">
+  <link rel="next" href="<?= url_for_collectible($next) ?>">
+  <link rel="start" href="<?= url_for_collectible($first) ?>">
+<?php end_slot(); ?>
+
 <?php
   $options = array(
     'id' => sprintf('collectible_%d_name', $collectible->getId()),
@@ -264,12 +270,6 @@
 
 <?php endif; ?>
 
-<?php slot('prev_next'); ?>
-  <link rel="prev" href="<?= url_for_collectible($previous) ?>">
-  <link rel="next" href="<?= url_for_collectible($next) ?>">
-  <link rel="start" href="<?= url_for_collectible($first) ?>">
-<?php end_slot(); ?>
-
 <script>
 $(document).ready(function()
 {
@@ -278,7 +278,8 @@ $(document).ready(function()
   var $vertical_carousel = $('#vertical-carousel');
 
   // enable vertical carousel only if we have more than 3 alternate views
-  if ($vertical_carousel.children().length > 3) {
+  if ($vertical_carousel.children().length > 3)
+  {
     // show navigation arrows
     $vertical_carousel.siblings('.ui-carousel-navigation').removeClass('hidden');
 
@@ -292,21 +293,22 @@ $(document).ready(function()
     });
   }
 
-  $vertical_carousel.on('click', '.zoom', function(e) {
-    var source = $(this).find('img');
-    var target = $('#collectible_multimedia_primary');
-    var path = $(source).attr('src').split(/\/150x150\//);
+  $vertical_carousel.on('click', '.zoom', function(e)
+  {
+    var $source = $(this).find('img');
+    var $target = $('#collectible_multimedia_primary');
+    var path = $source.attr('src').split(/\/150x150\//);
 
-    $(target)
+    $target
       .attr('href', path[0] + '/original/' + path[1])
       .find('img')
       .attr({
         src: path[0] + '/620x0/' + path[1],
-        alt: $(source).attr('alt')
+        alt: $source.attr('alt')
       })
-      .data('id', $(source).data('id'));
+      .data('id', $source.data('id'));
 
-    $(target)
+    $target
       .siblings('a.zoom-zone')
       .attr('href', path[0] + '/original/' + path[1]);
 
@@ -336,7 +338,7 @@ $(document).ready(function()
         $('.modal', $div).css('margin-left', margin + 'px');
         $('.modal', $div).modal('show');
 
-        $('img', $a).hideLoading();
+        $img.hideLoading();
       });
     });
 

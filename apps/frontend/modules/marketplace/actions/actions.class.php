@@ -66,6 +66,7 @@ class marketplaceActions extends cqFrontendActions
 
   public function executeBrowse(sfWebRequest $request)
   {
+    /** @var $content_category ContentCategory */
     $content_category = $this->getRoute()->getObject();
 
     $q = CollectibleForSaleQuery::create()
@@ -96,7 +97,9 @@ class marketplaceActions extends cqFrontendActions
     $this->content_category = $content_category;
 
     // Set Canonical Url meta tag
-    $this->getResponse()->setCanonicalUrl($this->generateUrl('marketplace_category_by_slug', $content_category));
+    $this->getResponse()->setCanonicalUrl(
+      $this->generateUrl('marketplace_category_by_slug', array('sf_subject' => $content_category))
+    );
 
     return sfView::SUCCESS;
   }
