@@ -334,6 +334,7 @@ $(document).ready(function()
 
         var margin = -1 * (width / 2 - 280);
 
+        $('.modal', $div).addClass('rounded-bottom');
         $('.modal', $div).css('width', width);
         $('.modal', $div).css('margin-left', margin + 'px');
         $('.modal', $div).modal('show');
