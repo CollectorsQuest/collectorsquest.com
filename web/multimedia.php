@@ -64,7 +64,18 @@ if (in_array($type, array('image', 'video')))
       // Does the multimedia exist? (we want to avoid extra stat() calls)
       $is_readable = is_readable($shared . $path);
 
-      if ($type === 'image' && !$is_readable && is_readable($shared . $original))
+      /**
+       * We want to (re)generate the requested thumbnail if:
+       *   1. The requested multimedia is image
+       *   2. There is original image file available
+       *   3. The requested thumbnail does not exist already OR for some reason
+       *      the original image was updated after the thumbnail was generated
+       */
+      if (
+        $type === 'image' &&
+        is_readable($shared . $original) &&
+        (!$is_readable || filemtime($shared . $original) > filemtime($shared . $path))
+      )
       {
         require __DIR__ .'/../config/ProjectConfiguration.class.php';
 
