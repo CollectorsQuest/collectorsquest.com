@@ -36,6 +36,7 @@ class marketplaceActions extends cqFrontendActions
         if (isset($values['cq_collectible_id_'. $i]))
         {
           $collectible_for_sale = CollectibleForSaleQuery::create()
+            ->isForSale()
             ->findOneByCollectibleId(trim($values['cq_collectible_id_'. $i]));
 
           if ($collectible_for_sale)
