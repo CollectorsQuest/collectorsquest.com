@@ -93,19 +93,19 @@
               </p>
             </div>
           </li>
-          <?php /**
-        <li>
-        <i class="big-piggy-bank-icon"></i>
-        <div class="info-box-text">
-        <h2 class="Chivo webfont">Get Paid</h2>
-        <p>
-        Do you have something you'd like to sell?
-        It's easy! Become a member of Collectors Quest and get started.<br/>
-        <?= link_to('Get&nbsp;Paid&nbsp;Now!', '@seller_packages'); ?>
-        </p>
-        </div>
-        </li>
-         **/ ?>
+
+          <li>
+            <i class="big-piggy-bank-icon"></i>
+            <div class="info-box-text">
+              <h2 class="Chivo webfont">Get Paid</h2>
+              <p>
+                Do you have something you'd like to sell?
+                It's easy! Become a member of Collectors Quest and get started.<br/>
+                <?= link_to('Get&nbsp;Paid&nbsp;Now!', '@seller_signup'); ?>
+              </p>
+            </div>
+          </li>
+
           <li>
             <i class="big-question-icon"></i>
             <div class="info-box-text">
