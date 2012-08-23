@@ -1,5 +1,5 @@
 <div class="spacer-bottom-15">
-  <img src="/images/banners/2012-0420_AP_Promo_Space_620x180_FIN.jpg" alt="Check out items seen on American Pickers">
+  <img src="/images/headlines/2012-0420_AP_Promo_Space_620x180_FIN.jpg" alt="Check out items seen on American Pickers">
 </div>
 
 <p class="text-justify">

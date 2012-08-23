@@ -45,11 +45,11 @@
   <?php
   if (!$sf_user->isAuthenticated())
   {
-    echo link_to(image_tag('banners/show_and_sell_red_635x111.png'), '@seller_signup');
+    echo link_to(image_tag('headlines/show_and_sell_red_635x111.png'), '@seller_signup');
   }
   elseif ($sf_user->getSeller() && !$sf_user->getSeller()->hasPackageCredits())
   {
-    echo link_to(image_tag('banners/show_and_sell_red_635x111_user.png'), '@seller_packages');
+    echo link_to(image_tag('headlines/show_and_sell_red_635x111_user.png'), '@seller_packages');
   }
   ?>
 </div>

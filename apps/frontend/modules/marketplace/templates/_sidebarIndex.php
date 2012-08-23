@@ -12,7 +12,7 @@
   if (!$sf_user->isAuthenticated())
   {
     echo link_to(
-      cq_image_tag('banners/2012-06-24_CQGuidePromo_300x90.png', array('class' => 'spacer-top-20')),
+      cq_image_tag('headlines/2012-06-24_CQGuidePromo_300x90.png', array('class' => 'spacer-top-20')),
       '@misc_guide_to_collecting'
     );
   }
@@ -27,7 +27,7 @@
   <div class="spacer-20">
   <?php
     echo link_to(
-      cq_image_tag('banners/040412_CQ_Market_blue.gif'),
+      cq_image_tag('headlines/040412_CQ_Market_blue.gif'),
       '@seller_signup'
     );
   ?>

@@ -4,7 +4,7 @@
 
 <?php
   echo link_to(
-    cq_image_tag('banners/040412_CQ_Market_blue.gif'),
+    cq_image_tag('headlines/040412_CQ_Market_blue.gif'),
     '@seller_signup'
   );
 ?>

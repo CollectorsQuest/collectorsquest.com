@@ -61,7 +61,7 @@
 
             echo link_to(
               cq_image_tag(
-                'banners/2012-06-24_CQGuide_300x250_footer.png',
+                'headlines/2012-06-24_CQGuide_300x250_footer.png',
                 array(
                   'size' => '300x250',
                   'alt_title' => 'Unlock your free guide to collecting—sign up today'

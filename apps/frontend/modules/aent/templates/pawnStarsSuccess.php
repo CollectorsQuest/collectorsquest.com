@@ -1,5 +1,5 @@
 <div class="spacer-bottom-15">
-  <img src="/images/banners/2012-0420_PS_Promo_Space_620x180_FIN.jpg" alt="">
+  <img src="/images/headlines/2012-0420_PS_Promo_Space_620x180_FIN.jpg" alt="">
 </div>
 
 <p class="text-justify">
