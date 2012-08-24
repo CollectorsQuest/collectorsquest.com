@@ -24,7 +24,7 @@ function fb_friend_page_autocomplete() {
         try {
           $friends = $facebook->api('/me/friends', 'GET', array('ref' => 'fbwpp'));
         }
-        catch (FacebookApiException $e) {
+        catch (WP_FacebookApiException $e) {
         }
         
         set_transient( 'fb_friends_' . $facebook->getUser(), $friends, 60*15 );
@@ -72,7 +72,7 @@ function fb_friend_page_autocomplete() {
         try {
           $pages = $facebook->api( '/search', 'GET', array( 'access_token' => '', 'q' => $_GET['q'], 'type' => 'page', 'fields' => 'picture,name,id,likes', 'ref' => 'fbwpp' ) );
         }
-        catch (FacebookApiException $e) {
+        catch (WP_FacebookApiException $e) {
         }
         set_transient( 'fb_pages_' . $_GET['q'], $pages, 60*60 );
       }
@@ -131,28 +131,32 @@ add_action( 'save_post', 'fb_add_page_mention_box_save' );
 
 function fb_add_page_mention_box() {
 	global $post;
-	
+	global $facebook;
+	$options = get_option('fb_options');
+  
 	if ($post->post_status == 'publish')	
 		return;
 	
-	add_meta_box(
-			'fb_page_mention_box_id',
-			__( 'Mention Facebook Pages', 'facebook' ),
-			'fb_add_page_mention_box_content',
-			'post',
-			'side'
-	);
-	add_meta_box(
-			'fb_page_mention_box_id',
-			__( 'Mention Facebook Pages', 'facebook' ),
-			'fb_add_page_mention_box_content',
-			'page',
-			'side'
-	);
+  if ( isset( $options['social_publisher']['enabled'] ) ) {
+    add_meta_box(
+        'fb_page_mention_box_id',
+        __( 'Mention Facebook Pages', 'facebook' ),
+        'fb_add_page_mention_box_content',
+        'post',
+        'side'
+    );
+    add_meta_box(
+        'fb_page_mention_box_id',
+        __( 'Mention Facebook Pages', 'facebook' ),
+        'fb_add_page_mention_box_content',
+        'page',
+        'side'
+    );
+  }
 }
 
 function fb_add_page_mention_box_content( $post ) {
-	//wp_enqueue_script('suggest');
+	wp_enqueue_script('suggest');
 
 	global $facebook;
 
@@ -176,7 +180,7 @@ function fb_add_page_mention_box_content( $post ) {
 		echo '</label> ';
 		echo '<input type="text" class="widefat" id="pages-mention-message" name="fb_page_mention_box_message" value="" size="44" placeholder="'.esc_attr__('Write something...').'" />';
 		echo '<p class="howto">';
-		if ( is_page() ) {
+		if ( $post->post_type == 'page' ) {
 			_e('This will add the page and message to the Timeline of each Facebook Page mentioned. They will also appear in the contents of the page.', 'facebook');
 		} else {
 			_e('This will add the post and message to the Timeline of each Facebook Page mentioned. They will also appear in the contents of the post.', 'facebook');
@@ -248,24 +252,27 @@ add_action( 'save_post', 'fb_add_friend_mention_box_save' );
 function fb_add_friend_mention_box() {
 	global $post;
 	global $facebook;
-	
+	$options = get_option('fb_options');
+  
 	if ($post->post_status == 'publish')	
 		return;
 	
-	add_meta_box(
-			'fb_friend_mention_box_id',
-			__( 'Mention Facebook Friends', 'facebook' ),
-			'fb_add_friend_mention_box_content',
-			'post',
-			'side'
-	);
-	add_meta_box(
-			'fb_friend_mention_box_id',
-			__( 'Mention Facebook Friends', 'facebook' ),
-			'fb_add_friend_mention_box_content',
-			'page',
-			'side'
-	);
+  if ( isset( $options['social_publisher']['enabled'] ) ) {
+    add_meta_box(
+        'fb_friend_mention_box_id',
+        __( 'Mention Facebook Friends', 'facebook' ),
+        'fb_add_friend_mention_box_content',
+        'post',
+        'side'
+    );
+    add_meta_box(
+        'fb_friend_mention_box_id',
+        __( 'Mention Facebook Friends', 'facebook' ),
+        'fb_add_friend_mention_box_content',
+        'page',
+        'side'
+    );
+  }
 }
 
 function fb_add_friend_mention_box_content( $post ) {
@@ -294,7 +301,7 @@ function fb_add_friend_mention_box_content( $post ) {
 		echo '<input type="text" class="widefat" id="friends-mention-message" name="fb_friend_mention_box_message" value="" size="44" placeholder="Write something..." />';
 
 		echo '<p class="howto">';
-		if ( is_page() ) {
+		if ( $post->post_type == 'page' ) {
 			_e('This will add the page and message to the Timeline of each friend mentioned. They will also appear in the contents of the page.', 'facebook');
 		} else {
 			_e('This will add the post and message to the Timeline of each friend mentioned. They will also appear in the contents of the post.', 'facebook');

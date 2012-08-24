@@ -1,6 +1,6 @@
 <?php
 /*  
-Copyright 2010-2012 Arnan de Gans  (email : adegans@meandmymac.net)
+Copyright 2010-2012 Arnan de Gans - AJdG Solutions (email : info@ajdg.net)
 */
 
 /*-------------------------------------------------------------
@@ -15,8 +15,11 @@ require('../../../wp-blog-header.php');
 global $wpdb, $adrotate_crawlers, $adrotate_debug;
 
 if(isset($_GET['track']) OR $_GET['track'] != '') {
-	$meta 									= base64_decode($_GET['track']);	
-//	$meta 									= $_GET['track'];	
+	if($adrotate_debug['track'] == true) {
+		$meta = $_GET['track'];
+	} else {
+		$meta = base64_decode($_GET['track']);
+	}
 	$useragent 								= trim($_SERVER['HTTP_USER_AGENT'], ' \t\r\n\0\x0B');
 	$prefix									= $wpdb->prefix;
 
@@ -44,10 +47,13 @@ if(isset($_GET['track']) OR $_GET['track'] != '') {
 		$ip = $wpdb->get_var($wpdb->prepare("SELECT COUNT(*) FROM `".$prefix."adrotate_tracker` WHERE `ipaddress` = '%s' AND `stat` = 'c' AND `timer` < '$tomorrow' AND `bannerid` = '%s' LIMIT 1;", $remote_ip, $ad));
 		if($ip < 1 AND $nocrawler == true AND (!isset($preview) OR empty($preview)) AND (strlen($useragent) > 0 OR !empty($useragent))) {
 			$wpdb->query($wpdb->prepare("UPDATE `".$prefix."adrotate_stats_tracker` SET `clicks` = `clicks` + 1 WHERE `ad` = '%s' AND `group` = '%s' AND `block` = '%s' AND `thetime` = '$today';", $ad, $group, $block));
-			$wpdb->query($wpdb->prepare("INSERT INTO `".$prefix."adrotate_tracker` (`ipaddress`, `timer`, `bannerid`, `stat`, `useragent`) VALUES ('%s', '$now', '%s', 'c', '%s');", $remote_ip, $ad, $useragent));
+			if($remote_ip != "unknown" AND $remote_ip != "") {
+				$wpdb->query($wpdb->prepare("INSERT INTO `".$prefix."adrotate_tracker` (`ipaddress`, `timer`, `bannerid`, `stat`, `useragent`) VALUES ('%s', '$now', '%s', 'c', '%s');", $remote_ip, $ad, $useragent));
+			}
 		}
 
-		header('Location: '.htmlspecialchars_decode($bannerurl));
+		wp_redirect(htmlspecialchars_decode($bannerurl), 302);
+		exit();
 	} else {
 		echo 'There was an error retrieving the ad! Contact an administrator!';
 	}

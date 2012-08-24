@@ -54,7 +54,7 @@ function fb_extend_access_token() {
 		return;
 	
 	if ( false === ( $test = get_transient( 'fb_extended_access_token_' . $facebook->getUser() ) ) ) {
-		$facebook->getExtendedAccessToken();
+		$facebook->setExtendedAccessToken();
 		
 		//the extended token should be good for a couple of months, but lets refresh it every couple of weeks just in case
 		set_transient( 'fb_extended_access_token_' . $facebook->getUser(), 'extended', 60*60*24*14 );
@@ -77,6 +77,6 @@ function fb_get_current_user() {
 
 		return $user;
 	}
-	catch (FacebookApiException $e) {
+	catch (WP_FacebookApiException $e) {
 	}
 }

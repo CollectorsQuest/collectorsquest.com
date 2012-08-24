@@ -1,6 +1,7 @@
 <?php
 add_action( 'init', 'fb_init' );
 add_action( 'admin_notices', 'fb_install_warning' );
+add_action( 'admin_notices', 'fb_ssl_warning' );
 //add_action( 'admin_notices', 'fb_rate_message' );
 add_action( 'wp_enqueue_scripts', 'fb_style' );
 
@@ -16,6 +17,27 @@ function fb_install_warning() {
 
 	if ((empty($options['app_id']) || empty($options['app_secret'])) && $page != 'facebook-settings' && current_user_can( 'manage_options' ) ) {
 		fb_admin_dialog( sprintf( __('You must %sconfigure the plugin%s to enable Facebook for WordPress.', 'facebook' ), '<a href="admin.php?page=facebook-settings">', '</a>' ), true);
+	}
+}
+
+/**
+ * Display an admin-facing warning if openSSL is not installed properly
+ *
+ * @since 1.0.2
+ */
+function fb_ssl_warning() {
+	$options = get_option( 'fb_options' );
+
+	$page = (isset($_GET['page']) ? $_GET['page'] : null);
+
+	if ( ! wp_http_supports( array( 'ssl' => true ) )  && current_user_can( 'manage_options' ) ) {
+		$msg = 'SSL must be enabled on your server for Facebook Social Publisher to work.';
+		if ( $options['social_publisher']['enabled'] ) {
+			unset($options['social_publisher']['enabled']);
+			update_option( 'fb_options', $options );
+			$msg .= ' As a result, Social Publisher has been disabled.';
+		}
+		fb_admin_dialog( __( $msg, 'facebook' ), true );
 	}
 }
 
@@ -58,7 +80,7 @@ function fb_rate_message_ignore() {
 	$user_id = $current_user->ID;
 	
 	if ( isset($_GET['fb_rate_message_ignore']) && '1' == $_GET['fb_rate_message_ignore'] ) {
-		add_user_meta($user_id, 'fb_rate_message_ignore_notice', 'true', true);
+		fb_update_user_meta($user_id, 'fb_rate_message_ignore_notice', 'true');
 	}
 }
 */
@@ -82,10 +104,6 @@ function fb_js_sdk_setup() {
 		'xfbml' => true,
 		'oauth' => true
 	) );
-
-	// enforce minimum requirements
-	if ( empty( $args['appId'] ) )
-		return;
 
 	echo '<script type="text/javascript">window.fbAsyncInit=function(){FB.init(' . json_encode( $args ) . ');';
 	do_action( 'fb_async_init', $args );
@@ -124,7 +142,7 @@ function fb_init() {
 	
 	// appId and secret are required by BaseFacebook
 	if ( ( ! empty( $options['app_id'] ) && ! empty( $options['app_secret'] ) ) ) {
-		$facebook = new Facebook_WP(array(
+		$facebook = new Facebook_WP_Extend(array(
 			'appId'  => $options['app_id'],
 			'secret' => $options['app_secret'],
 		));

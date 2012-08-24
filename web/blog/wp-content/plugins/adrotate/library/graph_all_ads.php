@@ -12,7 +12,7 @@ $graph->setBarColor('#14568A');
 $graph->setTitle($title);
 
 $graph->setupYAxis(false);
-$graph->setupXAxis(30, '#EEE');
+$graph->setupXAxis(15, '#EEE');
 
 $graph->setDataValues(true);
 

@@ -1,4 +1,8 @@
 <?php
+/*  
+Copyright 2010-2012 Arnan de Gans - AJdG Solutions (email : info@ajdg.net)
+*/
+
 /*-------------------------------------------------------------
  Name:      adrotate_receiver
 
@@ -14,10 +18,7 @@ function adrotate_receiver() {
 	$body 				= $_POST['body']; 				// Array() of values, typically: array( 'id' 			=> 0, 
 														//										'title' 		=> 'Ad Title', 
 														//										'bannercode' 	=> '&lt;strong&gt;This is an Ad&lt;/strong&gt;', 
-														//										'active' 		=> 'yes', 
-														//										'image' 		=> 'http://example.com/path/to/ad.jpg', 
 														//										'link' 			=> 'http://url.to/track', 
-														//										'tracker'		=> 'Y', 
 														//										'start' 		=> 1269190163, 
 														//										'end' 			=> 1332201600, 
 														//										'maxclicks' 	=> 0, 
@@ -32,7 +33,6 @@ function adrotate_receiver() {
 		$active 			= $body['active']; 			// VARCHAR		yes|no	Is the banner active? Should default to yes
 		$image				= $body['image']; 			// VARCHAR				Ad image url
 		$link				= $body['link']; 			// LONGTEXT				Link for click tracking
-		$tracker			= $body['tracker']; 		// VARCHAR		Y|N 	value enables or disables click tracking
 		$startdate			= $body['start'];			// INT					Date when ad STARTS showing, UNIXTIME
 		$enddate 			= $body['end'];				// INT					Date then ad ENDS, Auto disabled, UNIXTIME
 		$maxclicks			= $body['maxclicks'];		// INT					Ad disables after this many clicks
@@ -41,13 +41,13 @@ function adrotate_receiver() {
 		/* Check if you need to update or insert a new record */
 		if($banner_id > 0) {
 			/* Update */
-			$postquery = "UPDATE `".$wpdb->prefix."adrotate`	SET `title` = '$title', `bannercode` = '$bannercode', `updated` = '$thetime', `author` = '$author', `active` = '$active', `startshow` = '$startdate', `endshow` = '$enddate', `group` = '$group', `image` = '$image', `link` = '$link', `tracker` = '$tracker', `maxclicks` = '$maxclicks', `maxshown` = '$maxshown' WHERE `id` = '$banner_id'";
+			$postquery = "UPDATE `".$wpdb->prefix."adrotate`	SET `title` = '$title', `bannercode` = '$bannercode', `updated` = '$thetime', `author` = '$author', `image` = '', `imagetype` = '', `link` = '$link', `tracker` = 'Y', `maxclicks` = '$maxclicks', `maxshown` = '$maxshown', `targetclicks` = '0', `targetimpressions` = '0', `type` = 'network', `weight` = '6', `sortorder` = '0' WHERE `id` = '$banner_id'";
 			$action = "update";
 		} else {
 			/* New */
 			$postquery = "INSERT INTO `".$wpdb->prefix."adrotate` (
-					`title`, `bannercode`, `thetime`, `updated`, `author`, `active`, `startshow`, `endshow`, `group`, `image`, `link`, `tracker`, `clicks`, `maxclicks`, `shown`, `maxshown` ,`magic`) 
-			VALUES ('$title', '$bannercode', '$thetime', '$thetime', '$author', '$active', '$startdate', '$enddate', '$group', '$image', '$link', '$tracker', 0, '$maxclicks', 0, '$maxshown', 0)";
+					`title`, `bannercode`, `thetime`, `updated`, `author`, `image`, `imagetype`, `link`, `tracker`, `maxclicks`, `maxshown` ,`targetclicks`, `targetimpressions`, `type`, `weight`, `sortorder`) 
+			VALUES ('$title', '$bannercode', '$thetime', '$thetime', '$author', '', '', '$link', 'Y', '$maxclicks', '$maxshown', 0, 0, 'network', 6, 0)";
 			$action = "new";
 		}
 		if($wpdb->query($postquery) !== FALSE) {
@@ -90,6 +90,4 @@ function adrotate_transmit($key, $blogurl) {
 
 	wp_remote_post($url, $post_data);
 }
-
-
 ?>

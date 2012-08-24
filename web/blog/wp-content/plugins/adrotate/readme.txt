@@ -1,10 +1,10 @@
 === Plugin Name ===
 Contributors: Arnan de Gans
 Donate link: http://meandmymac.net/donate/
-Tags: ads, banner, commercial, admin, plugin, random, rotator, ad, advertising, advertisement, block, blocks, advertiser, publisher, adsense, referrer, email, menu, statistics, stats
+Tags: ads, banner, commercial, admin, plugin, random, rotator, ad, advertising, advertisement, block, blocks, advertiser, analytics, advert, publisher, adsense, referrer, email, menu, statistics, stats
 Requires at least: 3.0, PHP5.2
-Tested up to: 3.3.2
-Stable tag: 3.6.10.1
+Tested up to: 3.4.1
+Stable tag: 3.7.3.5
  
 The very best way of putting ads on your website. As many as you want... Make making money easy!
 
@@ -27,12 +27,15 @@ Receive a periodic email when banners are (about to) expire(d) informing you to 
 
 * Super easy management of ads, groups and blocks of ads
 * Get email notifications when your ads need you
+* Perfectly suited for 125x125 or any size of advertisement
 * Simple stats so you can follow which ad is working the best
 * Couple ads to users so that user can follow his personalized stats
 * Advertisers can easily contact you from their dashboard
 * Track how many a banner is clicked and show it's Cick-Through-Ratio
 * Put random, or selected, banners in pages or posts
 * Preview banners on edit
+* Advanced time schedules and restrictions
+* CSV Exports of statistics
 * Multiple groups per banner location
 * Works with Google Ads and most other referrer/ad programs
 * Unlimited widgets

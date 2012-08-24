@@ -1,5 +1,5 @@
 === Facebook ===
-Contributors: Facebook, automattic, mattwkelly, niallkennedy, jamesgpearce, ravi.grover, danielbachhuber, gigawats, eosgood, Otto42
+Contributors: Facebook, automattic, mattwkelly, niallkennedy, rgharpuray, ngfeldman, jamesgpearce, ravi.grover, danielbachhuber, gigawats, eosgood, Otto42
 Tags: Facebook, comments, social, friends, like, like button, social plugins, facebook platform, page, posts, sidebar, plugin, open graph
 Requires at least: 3.2.1
 Tested up to: 3.4
@@ -53,6 +53,23 @@ Facebook Insights (http://www.facebook.com/insights) integration included. This 
 8. Widgets are also available.
 
 == Changelog ==
+
+= 1.0.2 =
+
+* Fixed issue where some sites were extremely slow as a result of installing the plugin (due to cURL not being installed).
+* Added warning and actively disable portions of the plugin if SSL not installed.
+* Fixed bug in social publishing.
+* Added logic to disable meta boxes/publishing if social publishing is disabled.
+* Fixed forever loading issue on FB settings page if no active user exists.
+* Added proper escaping.
+* Added global settings to set whether social plugins show on all posts, all pages, both, or neither. Done for like button, subscribe button, send button, comments, and recommendations bar.
+* Added per-post/page settings for showing/hiding social plugins.
+* Fixed poorly formatted description that was being set when publishing to friends' and Pages' feeds.
+* Added notification if plugins that are potentially conflicting are installed.
+* Added suggestions for what to enter in fields in the new user experience.
+* Bug fixes to ensure everything works on mobile (including support for WPTouch).
+* Bug fixes to Pages drop down on the Facebook settings page.
+* Removed the need to create PHP sessions, relying on user meta/transients now.
 
 = 1.0.1 =
 

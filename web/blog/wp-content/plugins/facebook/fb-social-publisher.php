@@ -1,5 +1,6 @@
 <?php
 require_once( $facebook_plugin_directory . '/fb-social-publisher-mentioning.php');
+require_once('fb-open-graph.php');
 
 $options = get_option('fb_options');
 
@@ -15,27 +16,30 @@ if ( isset($options['social_publisher']) && isset($options['social_publisher']['
 
 /**
  * Add meta boxes for a custom Status that is used when posting to an Author's Timeline
- *
+ *5
  * @since 1.0
  */
 function fb_add_author_message_box() {
 	global $post;
-	
+	$options = get_option('fb_options');
+  
 	if ($post->post_status == 'publish')	
 		return;
-
-	add_meta_box(
-		'fb_author_message_box_id',
-		__( 'Facebook Status on Your Timeline', 'facebook' ),
-		'fb_add_author_message_box_content',
-		'post'
-	);
-	add_meta_box(
-		'fb_author_message_box_id',
-		__( 'Facebook Status on Your Timeline', 'facebook' ),
-		'fb_add_author_message_box_content',
-		'page'
-	);
+  
+  if ( isset( $options['social_publisher']['enabled'] ) ) {
+    add_meta_box(
+      'fb_author_message_box_id',
+      __( 'Facebook Status on Your Timeline', 'facebook' ),
+      'fb_add_author_message_box_content',
+      'post'
+    );
+    add_meta_box(
+      'fb_author_message_box_id',
+      __( 'Facebook Status on Your Timeline', 'facebook' ),
+      'fb_add_author_message_box_content',
+      'page'
+    );
+  }
 }
 
 /**
@@ -122,7 +126,7 @@ function fb_add_fan_page_message_box() {
 	if ($post->post_status == 'publish')	
 		return;
 	
-  if ( isset( $fan_page_info ) && isset( $fan_page_info[0] ) && isset( $fan_page_info[0][2] ) ) {
+  if ( isset( $options['social_publisher']['enabled'] ) && isset( $fan_page_info ) && isset( $fan_page_info[0] ) && isset( $fan_page_info[0][2] ) ) {
     add_meta_box(
       'fb_fan_page_message_box_id',
       sprintf( __( 'Facebook Status on %s\'s Timeline', 'facebook' ), $fan_page_info[0][1] ),
@@ -231,7 +235,7 @@ function fb_post_to_fb_page($post_id) {
         'link' => apply_filters( 'rel_canonical', get_permalink()),
         'name' => get_the_title(),
         'caption' => apply_filters( 'the_excerpt', get_the_excerpt() ),
-        'description' => apply_filters( 'the_excerpt', get_the_excerpt() ),
+        'description' => fb_strip_and_format_desc( $post ), 
         'message' => $fan_page_message,
       );
     }
@@ -242,7 +246,7 @@ function fb_post_to_fb_page($post_id) {
         'picture' => $post_thumbnail_url,
         'name' => get_the_title(),
         'caption' => apply_filters( 'the_excerpt', get_the_excerpt() ),
-        'description' => apply_filters( 'the_excerpt', get_the_excerpt() ),
+        'description' => fb_strip_and_format_desc( $post ), 
         'message' => $fan_page_message,
       );
     }
@@ -259,7 +263,7 @@ function fb_post_to_fb_page($post_id) {
   
       update_post_meta($post_id, 'fb_fan_page_post_id', sanitize_text_field($publish_result['id']));
     }
-    catch (FacebookApiException $e) {
+    catch (WP_FacebookApiException $e) {
       $error_result = $e->getResult();
       
       if ($e->getCode() == 190) {
@@ -350,7 +354,7 @@ function fb_post_to_author_fb_timeline($post_id) {
 						'link' => apply_filters( 'rel_canonical', get_permalink()),
 						'name' => get_the_title(),
 						'caption' => apply_filters( 'the_excerpt', get_the_excerpt() ),
-						'description' => apply_filters( 'the_excerpt', get_the_excerpt() ),
+        					'description' => fb_strip_and_format_desc( $post ), 
 						'message' => $mentioned_friends_message,
 					);
 				}
@@ -360,7 +364,7 @@ function fb_post_to_author_fb_timeline($post_id) {
 						'picture' => $post_thumbnail_url,
 						'name' => get_the_title(),
 						'caption' => apply_filters( 'the_excerpt', get_the_excerpt() ),
-						'description' => apply_filters( 'the_excerpt', get_the_excerpt() ),
+        					'description' => fb_strip_and_format_desc( $post ), 
 						'message' => $mentioned_friends_message,
 					);
 				}
@@ -371,16 +375,16 @@ function fb_post_to_author_fb_timeline($post_id) {
 				
 				$publish_ids_friends[] = sanitize_text_field( $publish_result['id'] );
 				
-				$friends_posts .= '<a href="' . sanitize_text_field( fb_get_permalink_from_feed_publish_id( $publish_result['id'] ) ) . '" target="_blank"><img src="http://graph.facebook.com/' . $friend['id'] . '/picture" width="15"></a> ';
+				$friends_posts .= '<a href="' . esc_url( fb_get_permalink_from_feed_publish_id( $publish_result['id'] ) ) . '" target="_blank"><img src="' . esc_url( 'http://graph.facebook.com/' . $friend['id'] . '/picture' ) . '" width="15"></a> ';
 			}
-			catch (FacebookApiException $e) {
+			catch (WP_FacebookApiException $e) {
         $error_result = $e->getResult();
         
         if ($e->getCode() == 210) {
-          $status_messages[] = array( 'message' => sprintf( __( 'Failed posting to mentioned friend\'s Facebook Timeline. <img src="http://graph.facebook.com/' . $friend['id'] . '/picture" width="15"> Error: Page doesn\'t allow posts from other Facebook users. Full error: ' . json_encode ( $error_result['error'] ), true ) ), 'error' => true );
+          $status_messages[] = array( 'message' => sprintf( __( 'Failed posting to mentioned friend\'s Facebook Timeline. <img src="' . esc_url( 'http://graph.facebook.com/' . $friend['id'] . '/picture' ) . '" width="15"> Error: Page doesn\'t allow posts from other Facebook users. Full error: ' . json_encode ( $error_result['error'] ), true ) ), 'error' => true );
         }
         else {
-          $status_messages[] = array( 'message' => sprintf( __( 'Failed posting to mentioned friend\'s Facebook Timeline. <img src="http://graph.facebook.com/' . $friend['id'] . '/picture" width="15"> Error: ' . json_encode ( $error_result['error'] ), true ) ), 'error' => true );
+          $status_messages[] = array( 'message' => sprintf( __( 'Failed posting to mentioned friend\'s Facebook Timeline. <img src="' . esc_url( 'http://graph.facebook.com/' . $friend['id'] . '/picture' ) . '" width="15"> Error: ' . json_encode ( $error_result['error'] ), true ) ), 'error' => true );
         }
 			}
 		}
@@ -409,7 +413,7 @@ function fb_post_to_author_fb_timeline($post_id) {
 						'link' => apply_filters( 'rel_canonical', get_permalink()),
 						'name' => get_the_title(),
 						'caption' => apply_filters( 'the_excerpt', get_the_excerpt() ),
-						'description' => apply_filters( 'the_excerpt', get_the_excerpt() ),
+					        'description' => fb_strip_and_format_desc( $post ), 
 						'message' => $mentioned_pages_message,
 					);
 				}
@@ -419,7 +423,7 @@ function fb_post_to_author_fb_timeline($post_id) {
 						'picture' => $post_thumbnail_url,
 						'name' => get_the_title(),
 						'caption' => apply_filters( 'the_excerpt', get_the_excerpt() ),
-						'description' => apply_filters( 'the_excerpt', get_the_excerpt() ),
+					        'description' => fb_strip_and_format_desc( $post ), 
 						'message' => $mentioned_pages_message,
 					);
 				}
@@ -433,7 +437,7 @@ function fb_post_to_author_fb_timeline($post_id) {
 				$pages_posts .= '<a href="' . sanitize_text_field( fb_get_permalink_from_feed_publish_id ( $publish_result['id'] ) ) . '" target="_blank"><img src="http://graph.facebook.com/' . $page['id'] . '/picture" width="15" target="_blank"></a> ';
 
 			}
-			catch (FacebookApiException $e) {
+			catch (WP_FacebookApiException $e) {
         $error_result = $e->getResult();
         
         if ($e->getCode() == 210) {
@@ -468,7 +472,7 @@ function fb_post_to_author_fb_timeline($post_id) {
       update_post_meta($post_id, 'fb_author_post_id', sanitize_text_field($publish_result['id']));
       
     }
-    catch (FacebookApiException $e) {
+    catch (WP_FacebookApiException $e) {
       $error_result = $e->getResult();
       
       //Unset the option to publish to an author's Timeline, since the likely failure is because the admin didn't set up the proper OG action and object in their App Settings
@@ -509,31 +513,51 @@ function fb_get_social_publisher_fields() {
 
 	if ( ! isset( $facebook ) )
 		return;
+  
+  $fan_page_option = array();
+  
+  if (!$facebook->getUser() ) {
+    $fan_page_option = array(
+			'name' => 'publish_to_fan_page',
+			'type' => 'disabled_text',
+			'disabled_text' => '<a href="#" onclick="authFacebook(); return false;">'.__('Link your Facebook account to your WordPress account to enable.','facebook').'</a>',
+			'help_text' => __( 'All new posts will be automatically published to this Facebook Page.', 'facebook' ),
+			);
+  }
+	else {
+    $accounts = fb_get_user_pages();
 
-	$accounts = fb_get_user_pages();
-
-	$accounts_options = array('disabled' => '[Disabled]');
-	
-	$options = get_option('fb_options');
-
-	if (isset($options['social_publisher']) && isset($options['social_publisher']['publish_to_fan_page']) && $options['social_publisher']['publish_to_fan_page'] != 'disabled') {
-		preg_match_all("/(.*?)@@!!(.*?)@@!!(.*?)$/su", $options['social_publisher']['publish_to_fan_page'], $fan_page_info, PREG_SET_ORDER); 
-	}
-
-	foreach($accounts as $account) {
-		if (isset($account['name']) && isset($account['category']) && $account['category'] != 'Application') {
-			$account_options_key = $account['name'] . "@@!!" . $account['id'] . "@@!!" . $account['access_token'];
-			$accounts_options[$account_options_key] = $account['name'];
-			
-			if ( isset( $fan_page_info ) && isset( $fan_page_info[0] ) && isset( $fan_page_info[0][2] ) ) {
-				if ($account['id'] == $fan_page_info[0][2]) {
-					$options['social_publisher']['publish_to_fan_page'] = $account_options_key;
-				
-					update_option( 'fb_options', $options );
-				}
-			}
-		}
-	}
+    $accounts_options = array('disabled' => '[Disabled]');
+    
+    $options = get_option('fb_options');
+  
+    if (isset($options['social_publisher']) && isset($options['social_publisher']['publish_to_fan_page']) && $options['social_publisher']['publish_to_fan_page'] != 'disabled') {
+      preg_match_all("/(.*?)@@!!(.*?)@@!!(.*?)$/su", $options['social_publisher']['publish_to_fan_page'], $fan_page_info, PREG_SET_ORDER); 
+    }
+  
+    foreach($accounts as $account) {
+      if (isset($account['name']) && isset($account['category']) && $account['category'] != 'Application') {
+        $account_options_key = $account['name'] . "@@!!" . $account['id'] . "@@!!" . $account['access_token'];
+        $accounts_options[$account_options_key] = $account['name'];
+        
+        if ( isset( $fan_page_info ) && isset( $fan_page_info[0] ) && isset( $fan_page_info[0][2] ) ) {
+          if ($account['id'] == $fan_page_info[0][2]) {
+            $options['social_publisher']['publish_to_fan_page'] = $account_options_key;
+          
+            update_option( 'fb_options', $options );
+          }
+        }
+      }
+    }
+    
+    $fan_page_option = array(
+      'name' => 'publish_to_fan_page',
+      'type' => 'dropdown',
+      'options' => $accounts_options,
+      'help_text' => __( 'New posts will be publish to this Facebook Page.', 'facebook' ),
+      );
+    
+  }
 	
 	$parent = array(
 		'name' => 'social_publisher',
@@ -543,24 +567,7 @@ function fb_get_social_publisher_fields() {
 		'help_link' => 'http://developers.facebook.com/wordpress',
 		'image' => plugins_url( 'images/settings_social_publisher.png', __FILE__)
 	);
-
-	if (count($accounts_options) < 2) {
-		$fan_page_option = array(
-			'name' => 'publish_to_fan_page',
-			'type' => 'disabled_text',
-			'disabled_text' => '<a href="#" onclick="authFacebook(); return false;">'.__('Link your Facebook account to your WordPress account to enable.','facebook').'</a>',
-			'help_text' => __( 'All new posts will be automatically published to this Facebook Page.', 'facebook' ),
-			);
-	}
-	else {
-		$fan_page_option = array(
-			'name' => 'publish_to_fan_page',
-			'type' => 'dropdown',
-			'options' => $accounts_options,
-			'help_text' => __( 'New posts will be publish to this Facebook Page.', 'facebook' ),
-			);
-	}
-
+  
 	$children = array(
 		array(
 			'name' => 'publish_to_authors_facebook_timeline',
@@ -592,12 +599,14 @@ function fb_get_social_publisher_fields() {
 
 add_action( 'transition_post_status', 'fb_publish_later', 10, 3);
 function fb_publish_later($new_status, $old_status, $post) {
+  $options = get_option('fb_options');
+  
 	// check that the new status is "publish" and that the old status was not "publish"
 	if ($new_status == 'publish' && $old_status != 'publish') {
 		// only publish "public" post types
 		$post_types = get_post_types( array('public' => true), 'objects' );
 		foreach ( $post_types as $post_type ) {
-			if ( $post->post_type == $post_type->name ) {
+			if ( $post->post_type == $post_type->name && isset( $options['social_publisher']['enabled'] ) ) {
 				fb_post_to_fb_page($post->ID);
 
 				fb_post_to_author_fb_timeline($post->ID);
@@ -622,7 +631,7 @@ function fb_delete_social_posts( $post_id ) {
 		try {
 			$delete_result = $facebook->api('/' . $fb_page_post_id, 'DELETE', array('ref' => 'fbwpp'));
 		}
-		catch (FacebookApiException $e) {
+		catch (WP_FacebookApiException $e) {
 		}
 	}
 	
@@ -632,7 +641,7 @@ function fb_delete_social_posts( $post_id ) {
 		try {
 			$delete_result = $facebook->api('/' . $fb_author_post_id, 'DELETE', array('ref' => 'fbwpp'));
 		}
-		catch (FacebookApiException $e) {
+		catch (WP_FacebookApiException $e) {
 		}
 
 	}
@@ -644,7 +653,7 @@ function fb_delete_social_posts( $post_id ) {
 			try {
 					$delete_result = $facebook->api('/' . $page_post_ids, 'DELETE', array('ref' => 'fbwpp'));
 			}
-			catch (FacebookApiException $e) {
+			catch (WP_FacebookApiException $e) {
 			}
 		}
 	}
@@ -656,7 +665,7 @@ function fb_delete_social_posts( $post_id ) {
 			try {
 					$delete_result = $facebook->api('/' . $page_post_ids, 'DELETE', array('ref' => 'fbwpp'));
 			}
-			catch (FacebookApiException $e) {
+			catch (WP_FacebookApiException $e) {
 			}
 		}
 	}
@@ -685,7 +694,7 @@ function fb_get_user_pages() {
 	try {
 		$accounts = $facebook->api('/me/accounts', 'GET', array('ref' => 'fbwpp'));
 	}
-	catch (FacebookApiException $e) {
+	catch (WP_FacebookApiException $e) {
 		return $accounts;
 	}
 
