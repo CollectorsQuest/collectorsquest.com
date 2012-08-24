@@ -18,7 +18,16 @@
       /** @var $categories ContentCategory[] */
       foreach ($categories as $i => $category)
       {
-        echo '<li>', ($category) ? link_to_content_category($category, 'text') : '', '</li>';
+        // Special case for the Political Buttons landing page
+        if ($category->getId() === 2266)
+        {
+          $route = '@wordpress_featured_items?id=29455&slug=political-buttons';
+          echo '<li>', link_to('Political Buttons', $route), '</li>';
+        }
+        else
+        {
+          echo '<li>', ($category) ? link_to_content_category($category, 'text') : '', '</li>';
+        }
       }
     ?>
   </ul>
