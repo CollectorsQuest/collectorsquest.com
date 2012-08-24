@@ -11,7 +11,7 @@ class ConfirmDestructiveActionForm extends BaseForm
 
     $this->validatorSchema['input'] = new sfValidatorChoice(array(
       'required' => true,
-      'choices' => array('DELETE', 'CONFIRM')
+      'choices' => array('DELETE', 'CONFIRM', 'delete', 'confirm')
     ));
 
     $this->getWidgetSchema()->setNameFormat('confirm[%s]');
