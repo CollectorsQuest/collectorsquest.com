@@ -49,12 +49,12 @@ has_component_slot('mycq_upload_photos') ? $spans = array(10, 2) : $spans = arra
     <div class="span10 upload-items-wrapper-l"></div>
     <div class="span2 upload-items-wrapper-r">
       <a href="javascript:void(0)" class="dropzone-container-slide pull-right <?= $sf_user->getMycqDropboxOpenState() ? 'open' : '' ?>">
-          <span class="open-dropzone">
-            Open Uploaded Photos <i class="icon-caret-down"></i>
-          </span>
-          <span class="close-dropzone">
-            Close Uploaded Photos <i class="icon-caret-up"></i>
-          </span>
+        <span class="open-dropzone">
+          Open Uploaded Photos <i class="icon-caret-down"></i>
+        </span>
+        <span class="close-dropzone">
+          Close Uploaded Photos <i class="icon-caret-up"></i>
+        </span>
       </a>
     </div>
   </div>

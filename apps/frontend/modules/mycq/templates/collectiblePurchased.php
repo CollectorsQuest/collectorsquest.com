@@ -171,8 +171,8 @@ cq_sidebar_title(
         <td>Name:</td>
         <td>
           <?= $shopping_order->getSeller(); ?>
-          <a href="#">
-            (View Public Profile)
+          <a href="<?= url_for_collector($shopping_order->getSeller()); ?>">
+            (View Profile)
           </a>
         </td>
       </tr>
