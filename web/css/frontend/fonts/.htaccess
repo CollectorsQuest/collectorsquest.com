@@ -1,0 +1,3 @@
+AddType  application/x-woff             woff
+AddType  application/x-font-ttf         ttf
+AddType  application/vnd.bw-fontobject  eot
