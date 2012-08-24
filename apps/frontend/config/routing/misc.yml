@@ -167,10 +167,6 @@ recover_password:
   url:   /recover-password
   param: { module: general, action: recoverPassword }
 
-feedback:
-  url:   /feedback
-  param: { module: general, action: feedback }
-
 error_404:
   url:   /errors/404
   param: { module: general, action: error404 }
