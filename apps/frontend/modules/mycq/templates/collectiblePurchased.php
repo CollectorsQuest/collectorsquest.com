@@ -115,7 +115,7 @@ cq_sidebar_title(
 <?php
   cq_sidebar_title(
     $collectible->getName(), null,
-    array('left' => 8, 'right' => 4, 'class'=>'spacer-top-reset row-fluid sidebar-title')
+    array('left' => 8, 'right' => 4, 'class'=>'row-fluid sidebar-title')
   );
 ?>
 <div class="row-fluid">
@@ -160,7 +160,7 @@ cq_sidebar_title(
 <?php
 cq_sidebar_title(
   'Seller Information', null,
-  array('left' => 8, 'right' => 4, 'class'=>'spacer-top-reset row-fluid sidebar-title')
+  array('left' => 8, 'right' => 4, 'class'=>'row-fluid sidebar-title')
 );
 ?>
 
@@ -169,7 +169,12 @@ cq_sidebar_title(
     <table class="table table-collectible-purchased">
       <tr>
         <td>Name:</td>
-        <td><?= $shopping_order->getSeller(); ?></td>
+        <td>
+          <?= $shopping_order->getSeller(); ?>
+          <a href="#">
+            (View Public Profile)
+          </a>
+        </td>
       </tr>
       <tr>
         <td>Email Address:</td>
@@ -188,12 +193,6 @@ cq_sidebar_title(
         <td><?= $v; ?></td>
       </tr>
       <?php endif; ?>
-      <tr>
-        <td>Seller Public Profile:</td>
-        <td>
-          <?= link_to('Open', '@seller_packages', array('class' => 'btn btn-mini')) ?>
-        </td>
-      </tr>
     </table>
   </div>
   <div class="span4">
