@@ -293,7 +293,7 @@ class batchGenerateSitemapTask extends sfBaseTask
 
     //routes with weekly changes and 0.5 priority (Resource Pages)
     $weekly_routes_resource = array(
-      '@feedback', '@misc_guide_to_collecting', '@misc_guide_to_collecting_shortcut', '@misc_guide_download'
+      '@misc_guide_to_collecting', '@misc_guide_to_collecting_shortcut', '@misc_guide_download'
     );
 
     foreach ($daily_routes_highest as $route)

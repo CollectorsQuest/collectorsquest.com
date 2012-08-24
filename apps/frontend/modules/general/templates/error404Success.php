@@ -4,13 +4,13 @@
 <br/>
 <h2 style="color: #877; line-height: 26px; margin-top: 10px;">
   If you reached this page from another part of this website, please
-  <?= link_to('let us know', '@feedback'); ?> and we'll try to fix our link.
+  <?= link_to('let us know', 'blog_page', array('slug' => 'contact-us')); ?> and we'll try to fix our link.
 </h2>
 
 <br/>
 <section class="404">
   <p>
-    If you came from another site, <?= link_to('let us know', '@feedback'); ?>
+    If you came from another site, <?= link_to('let us know', 'blog_page', array('slug' => 'contact-us')); ?>
     where you came from so that we can try to fix the problem.
   </p>
   <p>And if you typed the address yourself, check to make sure you got it right!</p>
