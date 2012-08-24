@@ -30,6 +30,11 @@ if ($data['is_single'])
   echo '<!-- Blog Sidebar Widget7 //-->';
   echo '<!-- Blog Sidebar Widget8 //-->';
   echo '<!-- Blog Sidebar Widget9 //-->';
+
+  if (!$sf_user->isAuthenticated())
+  {
+    include_component('_sidebar', 'widgetMailChimpSubscribe');
+  }
 }
 else if ($data['is_page'])
 {
@@ -60,6 +65,11 @@ else if ($data['is_author'])
     array('wp_user' => $wp_user, 'limit' => 3)
   );
 
+  if (!$sf_user->isAuthenticated())
+  {
+    include_component('_sidebar', 'widgetMailChimpSubscribe');
+  }
+
   echo '<!-- Blog Sidebar Widget2 //-->';
   echo '<!-- Blog Sidebar Widget3 //-->';
   echo '<!-- Blog Sidebar Widget4 //-->';
@@ -79,6 +89,8 @@ else
       cq_image_tag('headlines/2012-06-24_CQGuidePromo_300x90.png', array('class' => 'spacer-top-20')),
       '@misc_guide_to_collecting'
     );
+
+    include_component('_sidebar', 'widgetMailChimpSubscribe');
   }
 
   echo '<!-- Blog Sidebar Widget2 //-->';

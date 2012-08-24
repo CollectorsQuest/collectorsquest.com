@@ -23,7 +23,7 @@ class wpPost extends BasewpPost
     return 'http://'. sfConfig::get('app_domain_name') .'/blog/'.$this->getPostDate('Y/m/d').'/'.$this->getPostName();
   }
 
-  public function getPostExcerpt($length = 250, $truncate_string = '...')
+  public function getPostExcerpt($length = 0, $truncate_string = '...')
   {
     $excerpt = parent::getPostExcerpt();
 
@@ -32,7 +32,7 @@ class wpPost extends BasewpPost
       $excerpt = strip_tags($this->getPostContentStripped());
     }
 
-    return cqStatic::truncateText($excerpt, $length, $truncate_string);
+    return $length > 0 ? cqStatic::truncateText($excerpt, $length, $truncate_string) : $excerpt;
   }
 
   public function getPostTitle()

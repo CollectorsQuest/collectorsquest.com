@@ -18,5 +18,6 @@ guideDownloadAlert:
 
 
 wordPressFeaturedItemsSuccess:
+  javascripts: [jquery/expander.js]
   components:
     sidebar_300:  [misc, sidebarWordPressFeaturedItems]

@@ -572,6 +572,11 @@ class _sidebarComponents extends cqFrontendComponents
     return $this->_sidebar_if($collectible_for_sale instanceof CollectibleForSale);
   }
 
+  public function executeWidgetMailChimpSubscribe()
+  {
+    return sfView::SUCCESS;
+  }
+
   private function _sidebar_if($condition = false)
   {
     if ($condition)

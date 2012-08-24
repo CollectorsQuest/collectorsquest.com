@@ -48,7 +48,7 @@ function cq_custom_post_type_init()
     'rewrite'         => array( 'slug' => 'cms', 'with_front' => false ),
     'query_var'       => false,
     'menu_position'   => 100,
-    'supports'        => array('title', 'excerpt', 'editor')
+    'supports'        => array('title', 'excerpt', 'editor', 'revisions')
   ));
 
   register_post_type('homepage_carousel', array(
@@ -73,7 +73,7 @@ function cq_custom_post_type_init()
     'rewrite'         => array( 'slug' => 'cms', 'with_front' => false ),
     'query_var'       => false,
     'menu_position'   => 100,
-    'supports'        => array('title', 'editor', 'thumbnail')
+    'supports'        => array('title', 'editor', 'thumbnail', 'revisions')
   ));
 
   register_post_type('homepage_showcase', array(
@@ -98,7 +98,7 @@ function cq_custom_post_type_init()
     'rewrite'         => array( 'slug' => 'cms', 'with_front' => false ),
     'query_var'       => false,
     'menu_position'   => 100,
-    'supports'        => array('title', 'custom-fields')
+    'supports'        => array('title', 'custom-fields', 'revisions')
   ));
 
   register_post_type('collectors_question', array(
@@ -123,7 +123,7 @@ function cq_custom_post_type_init()
     'rewrite'         => array( 'slug' => 'cms', 'with_front' => false ),
     'query_var'       => false,
     'menu_position'   => 100,
-    'supports'        => array('title', 'editor', 'custom-fields', 'thumbnail')
+    'supports'        => array('title', 'editor', 'custom-fields', 'thumbnail', 'revisions')
   ));
 
   register_post_type('marketplace_explore', array(
@@ -148,7 +148,7 @@ function cq_custom_post_type_init()
     'rewrite'         => array( 'slug' => 'cms', 'with_front' => false ),
     'query_var'       => false,
     'menu_position'   => 100,
-    'supports'        => array('title', 'custom-fields')
+    'supports'        => array('title', 'custom-fields', 'revisions')
   ));
 
   register_post_type('marketplace_featured', array(
@@ -173,7 +173,7 @@ function cq_custom_post_type_init()
     'rewrite'         => array( 'slug' => 'cms', 'with_front' => false ),
     'query_var'       => false,
     'menu_position'   => 100,
-    'supports'        => array('title','custom-fields')
+    'supports'        => array('title','custom-fields', 'revisions')
   ));
 
   register_post_type('collections_explore', array(
@@ -198,7 +198,7 @@ function cq_custom_post_type_init()
     'rewrite'         => array( 'slug' => 'cms', 'with_front' => false ),
     'query_var'       => false,
     'menu_position'   => 100,
-    'supports'        => array('title')
+    'supports'        => array('title', 'revisions')
   ));
 
   register_post_type('featured_week', array(
@@ -223,7 +223,7 @@ function cq_custom_post_type_init()
     'rewrite'         => array( 'slug' => 'cms', 'with_front' => false ),
     'query_var'       => false,
     'menu_position'   => 100,
-    'supports'        => array('title', 'editor', 'thumbnail')
+    'supports'        => array('title', 'editor', 'thumbnail', 'revisions')
   ));
 
   register_post_type('featured_items', array(
@@ -248,7 +248,7 @@ function cq_custom_post_type_init()
     'rewrite'         => array( 'slug' => 'cms', 'with_front' => false ),
     'query_var'       => false,
     'menu_position'   => 100,
-    'supports'        => array('title', 'editor', 'thumbnail')
+    'supports'        => array('title', 'editor', 'excerpt', 'thumbnail', 'revisions')
   ));
 
   register_post_type('seller_spotlight', array(
@@ -273,7 +273,7 @@ function cq_custom_post_type_init()
     'rewrite'         => array( 'slug' => 'cms', 'with_front' => false ),
     'query_var'       => false,
     'menu_position'   => 100,
-    'supports'        => array('title')
+    'supports'        => array('title', 'revisions')
   ));
 }
 
