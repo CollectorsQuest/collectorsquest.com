@@ -105,11 +105,11 @@ class collectionsComponents extends cqFrontendComponents
   public function executeExploreCollections()
   {
     $q = (string) $this->getRequestParameter('q');
-    $s = (string) $this->getRequestParameter('s', 'most-relevant');
+    $s = (string) $this->getRequestParameter('s', 'most-recent');
     $p = (int) $this->getRequestParameter('p', 1);
     $pager = null;
 
-    if (!empty($q) || $s != 'most-relevant')
+    if ($s != 'most-relevant')
     {
       $query = array(
         'q' => $q,
@@ -118,17 +118,17 @@ class collectionsComponents extends cqFrontendComponents
 
       switch ($s)
       {
-        case 'most-recent':
-          $query['sortby'] = 'date';
+        case 'most-relevant':
+          $query['sortby'] = 'relevance';
           $query['order'] = 'desc';
           break;
         case 'most-popular':
           $query['sortby'] = 'popularity';
           $query['order'] = 'desc';
           break;
-        case 'most-relevant':
+        case 'most-recent':
         default:
-          $query['sortby'] = 'relevance';
+          $query['sortby'] = 'date';
           $query['order'] = 'desc';
           break;
       }
