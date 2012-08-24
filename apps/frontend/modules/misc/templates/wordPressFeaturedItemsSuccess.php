@@ -8,8 +8,8 @@
   <?= cq_image_tag($wp_post->getPostThumbnail('original'), array('alt' => $wp_post->getPostTitle())); ?>
 </div>
 
-<p class="text-justify">
-  <?= $wp_post->getPostContent(); ?>
+<p class="truncate js-hide">
+  <?= nl2br($wp_post->getPostContent()); ?>
 </p>
 
 <br/>
@@ -35,3 +35,18 @@
   );
 ?>
 </div>
+
+<script>
+$(document).ready(function ()
+{
+  $('.truncate').expander({
+    slicePoint: <?= strlen($wp_post->getPostExcerpt()) ?: 500; ?>,
+    widow: 2,
+    expandEffect: 'show',
+    expandText: 'Read More',
+    expandPrefix: '',
+    userCollapseText: '[^]',
+    onSlice: function() { $(this).show(); }
+  });
+});
+</script>

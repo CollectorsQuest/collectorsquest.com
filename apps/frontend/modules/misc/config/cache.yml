@@ -1,4 +1,4 @@
-wordPressFeaturedItems:
+_sidebarWordPressFeaturedItems:
   enabled:     true
   with_layout: false
   lifetime:    300

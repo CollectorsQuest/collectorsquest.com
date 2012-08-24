@@ -12,8 +12,8 @@
 
 <div class="twocolumn cf">
   <ul>
-    <li><?= link_to('American Pickers', '@aetn_american_pickers') ?></li>
-    <li><?= link_to('Pawn Stars', '@aetn_pawn_stars') ?></li>
+    <li><strong><?= link_to('American Pickers', '@aetn_american_pickers') ?></strong></li>
+    <li><strong><?= link_to('Pawn Stars', '@aetn_pawn_stars') ?></strong></li>
     <?php
       /** @var $categories ContentCategory[] */
       foreach ($categories as $i => $category)
@@ -22,7 +22,7 @@
         if ($category->getId() === 2266)
         {
           $route = '@wordpress_featured_items?id=29455&slug=political-buttons';
-          echo '<li>', link_to('Political Buttons', $route), '</li>';
+          echo '<li>', link_to('<strong>Political Buttons</strong> <sup style="color: #cc0000">NEW!</sup>', $route), '</li>';
         }
         else
         {
