@@ -61,3 +61,7 @@ ajax_editable_load:
 ajax_feedback:
   url:   /ajax/feedback
   param: { module: _ajax, action: feedback }
+
+ajax_multimedia:
+  url:   /ajax/multimedia
+  param: { module: _ajax, action: multimedia }

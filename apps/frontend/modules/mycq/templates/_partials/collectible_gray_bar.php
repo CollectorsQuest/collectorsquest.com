@@ -33,21 +33,6 @@
         </a>
         <ul class="dropdown-menu">
           <li>
-            <?php
-              $url = url_for('ajax_mycq', array(
-                'section' => 'component',
-                'page' => 'deleteCollectionCollectible',
-                'collection_id' => $collection->getId(),
-                'collectible_id' => $collectible->getId(),
-                'encrypt' => '1'
-              ));
-            ?>
-            <!--
-            <a href="<?= $url; ?>" class="open-dialog" onclick="return false;">
-              <i class="icon-trash"></i>
-              Delete Item
-            </a>
-            //-->
             <a href="<?= url_for('mycq_collectible_by_slug', array('sf_subject' => $collectible, 'cmd' => 'delete', 'encrypt' => '1')); ?>"
                onclick="return confirm('Are you sure you want to delete this Item?');">
               <i class="icon-trash"></i>

@@ -31,15 +31,27 @@ class marketplaceActions extends cqFrontendActions
 
       $values = unserialize($wp_post->getPostMetaValue('_market_featured_items'));
 
-      for ($i = 1; $i <= 3; $i++)
-      if (isset($values['cq_collectible_id_'. $i]))
+      for ($i = 1; $i <= 6; $i++)
       {
-        $collectibles_for_sale[$i] = CollectibleForSaleQuery::create()
-          ->findOneByCollectibleId(trim($values['cq_collectible_id_'. $i]));
-
-        if (isset($values['cq_collectible_text_'. $i]))
+        if (isset($values['cq_collectible_id_'. $i]))
         {
-          $collectibles_for_sale_text[$i] = trim($values['cq_collectible_text_'. $i]);
+          $collectible_for_sale = CollectibleForSaleQuery::create()
+            ->isForSale()
+            ->findOneByCollectibleId(trim($values['cq_collectible_id_'. $i]));
+
+          if ($collectible_for_sale)
+          {
+            $collectibles_for_sale[$i] = $collectible_for_sale;
+
+            if (isset($values['cq_collectible_text_'. $i]))
+            {
+              $collectibles_for_sale_text[$i] = trim($values['cq_collectible_text_'. $i]);
+            }
+          }
+        }
+        if (sizeof($collectibles_for_sale) == 3)
+        {
+          break;
         }
       }
 
@@ -54,6 +66,7 @@ class marketplaceActions extends cqFrontendActions
 
   public function executeBrowse(sfWebRequest $request)
   {
+    /** @var $content_category ContentCategory */
     $content_category = $this->getRoute()->getObject();
 
     $q = CollectibleForSaleQuery::create()
@@ -84,7 +97,9 @@ class marketplaceActions extends cqFrontendActions
     $this->content_category = $content_category;
 
     // Set Canonical Url meta tag
-    $this->getResponse()->setCanonicalUrl($this->generateUrl('marketplace_category_by_slug', $content_category));
+    $this->getResponse()->setCanonicalUrl(
+      $this->generateUrl('marketplace_category_by_slug', array('sf_subject' => $content_category))
+    );
 
     return sfView::SUCCESS;
   }

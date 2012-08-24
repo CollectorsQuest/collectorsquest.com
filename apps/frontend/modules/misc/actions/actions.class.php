@@ -116,6 +116,7 @@ class miscActions extends cqFrontendActions
   /**
    * Action GuideDownload
    *
+   * @param  sfWebRequest  $request
    * @return string
    */
   public function executeGuideDownload(sfWebRequest $request)
@@ -247,7 +248,11 @@ class miscActions extends cqFrontendActions
     $this->redirect('@misc_guide_download');
   }
 
-  public function executeWordPress()
+  /**
+   * @param  sfWebRequest  $request
+   * @return string
+   */
+  public function executeWordPressFeaturedItems(sfWebRequest $request)
   {
     /** @var $wp_post wpPost */
     $wp_post = $this->getRoute()->getObject();
@@ -255,7 +260,7 @@ class miscActions extends cqFrontendActions
     $values = unserialize($wp_post->getPostMetaValue('_featured_items'));
 
     // Initialize the arrays
-    $collection_ids = $collectible_ids = $collectibles_for_sale_ids = $wp_post_ids = array();
+    $collection_ids = $collectible_ids = array();
 
     if (!empty($values['cq_collection_ids']))
     {
@@ -269,33 +274,46 @@ class miscActions extends cqFrontendActions
       $collectible_ids = array_map('trim', $collectible_ids);
       $collectible_ids = array_filter($collectible_ids);
     }
-    if (!empty($values['cq_collectibles_for_sale_ids']))
+
+    if (!$_collectible_ids = $this->getUser()->getAttribute('featured_items_collectible_ids', null, 'cache'))
     {
-      $collectibles_for_sale_ids = explode(',', $values['cq_collectibles_for_sale_ids']);
-      $collectibles_for_sale_ids = array_map('trim', $collectibles_for_sale_ids);
-      $collectibles_for_sale_ids = array_filter($collectibles_for_sale_ids);
-    }
-    if (!empty($values['wp_post_ids']))
-    {
-      $wp_post_ids = explode(',', $values['wp_post_ids']);
-      $wp_post_ids = array_map('trim', $wp_post_ids);
-      $wp_post_ids = array_filter($wp_post_ids);
+      /** @var $q CollectionCollectibleQuery */
+      $q = CollectionCollectibleQuery::create()
+        ->select('CollectibleId')
+        ->filterByCollectionId($collection_ids, Criteria::IN)
+        ->_or()
+        ->filterByCollectibleId($collectible_ids, Criteria::IN);
+
+      /** @var $collectible_ids array */
+      $_collectible_ids = $q->find()->toArray();
+
+      // Give some element of surprise
+      shuffle($_collectible_ids);
+
+      // Cache the result for the life of the session
+      $this->getUser()->setAttribute('featured_items_collectible_ids', $_collectible_ids, 'cache');
     }
 
-    /** @var $q CollectionCollectibleQuery */
     $q = CollectionCollectibleQuery::create()
-      ->filterByCollectionId($collection_ids, Criteria::IN)
-      ->_or()
-      ->filterByCollectibleId($collectible_ids, Criteria::IN)
-      ->addAscendingOrderByColumn('RAND()')
-      ->limit(9);
+      ->filterByCollectibleId($_collectible_ids)
+      ->addAscendingOrderByColumn(
+        'FIELD(collectible_id, ' . implode(',', $_collectible_ids) . ')'
+      );
 
-    $this->collectibles = $q->find();
+    $pager = new PropelModelPager($q, 20);
+    $pager->setPage($request->getParameter('page', 1));
+    $pager->init();
+
+    $this->pager = $pager;
     $this->wp_post = $wp_post;
 
     $this->addBreadcrumb($wp_post->getPostTitle(), null);
+
+    $title = $wp_post->getPostMetaValue('_yoast_wpseo_title') ?:
+             $wp_post->getPostTitle();
+    $this->getResponse()->setTitle($title);
     $this->getResponse()->addOpenGraphMetaFor($wp_post);
 
-    return sfInflector::classify($wp_post->getPostType());
+    return sfView::SUCCESS;
   }
 }

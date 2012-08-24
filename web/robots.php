@@ -7,7 +7,16 @@
 
 require __DIR__ .'/../config/bootstrap.php';
 
-if (SF_ENV !== 'prod')
+/**
+ * These domains should be excluded from search engines
+ */
+$forbidden = array(
+  'static.collectorsquest.com',
+  'd2y8496azcwpd6.cloudfront.net',
+  'web-471984672.us-east-1.elb.amazonaws.com'
+);
+
+if (SF_ENV !== 'prod' || in_array(strtolower($_SERVER['HTTP_HOST']), $forbidden, true))
 {
   echo "User-Agent: *\n";
   echo "Disallow: /";
@@ -15,4 +24,9 @@ if (SF_ENV !== 'prod')
 else if (file_exists(__DIR__ .'/robots.txt'))
 {
   include __DIR__ .'/robots.txt';
+}
+else
+{
+  echo "User-Agent: *\n";
+  echo "Allow: /";
 }

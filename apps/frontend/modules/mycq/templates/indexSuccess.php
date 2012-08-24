@@ -9,7 +9,7 @@
   <div class="span3">
     <?php
       echo link_to(
-        cq_image_tag('banners/2012-08-18_CQGuide_160x600.png'),
+        cq_image_tag('headlines/2012-08-18_CQGuide_160x600.png'),
         '@misc_guide_download'
       );
     ?>

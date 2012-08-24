@@ -2,11 +2,11 @@
   <?php
     if ($brand === 'American Pickers')
     {
-      echo link_to(image_tag('banners/2012-0420_AP_Promo_Space_620x67_FIN.jpg'), '@aetn_american_pickers');
+      echo link_to(image_tag('headlines/2012-0420_AP_Promo_Space_620x67_FIN.jpg'), '@aetn_american_pickers');
     }
     else if ($brand === 'Pawn Stars')
     {
-      echo link_to(image_tag('banners/2012-0420_PS_Promo_Space_620x67_FIN.jpg'), '@aetn_pawn_stars');
+      echo link_to(image_tag('headlines/2012-0420_PS_Promo_Space_620x67_FIN.jpg'), '@aetn_pawn_stars');
     }
   ?>
 </div>

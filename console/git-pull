@@ -4,10 +4,28 @@ SOURCE="${BASH_SOURCE[0]}"
 while [ -h "${SOURCE}" ] ; do SOURCE="$(readlink "${SOURCE}")"; done
 DIR="$( cd -P "$( dirname "${SOURCE}" )" && pwd )"
 
+cd ${DIR}/..
+
 br=`git branch | grep "*"`
 [[ $1 != '' ]] && branch=$1 || branch=${br/* /}
 
-git pull --ff-only origin ${branch}
-git submodule update --init --recursive
-cd ${DIR}/.. && exec watchr -l apps/frontend/config/less.watchr
-cd ${DIR}/.. && php symfony cache:clear
+if [ -f ~/.ssh/id_rsa.collectorsquest ]
+then
+
+  ssh-agent bash -c '\
+    ssh-add ~/.ssh/id_rsa.collectorsquest; \
+    git pull --ff-only origin ${branch}'
+
+  ssh-agent bash -c '\
+    ssh-add ~/.ssh/id_rsa.collectorsquest; \
+    git submodule update --init --recursive'
+
+else
+
+  git pull --ff-only origin ${branch}
+  git submodule update --init --recursive
+
+fi
+
+exec watchr -l apps/frontend/config/less.watchr
+php symfony cache:clear

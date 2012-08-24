@@ -13,7 +13,7 @@
             <?= link_to('Join us', '@misc_guide_to_collecting') ?> to make collecting more fun than ever!
           </p>
 
-          <div class="row-spacing-footer">
+          <div class="contact-us-button">
             <?php
               echo link_to(
                 'Contact Us', 'blog_page', array('slug' => 'contact-us'),
@@ -61,7 +61,7 @@
 
             echo link_to(
               cq_image_tag(
-                'banners/2012-06-24_CQGuide_300x250_footer.png',
+                'headlines/2012-06-24_CQGuide_300x250_footer.png',
                 array(
                   'size' => '300x250',
                   'alt_title' => 'Unlock your free guide to collecting—sign up today'
@@ -93,19 +93,19 @@
               </p>
             </div>
           </li>
-          <?php /**
-        <li>
-        <i class="big-piggy-bank-icon"></i>
-        <div class="info-box-text">
-        <h2 class="Chivo webfont">Get Paid</h2>
-        <p>
-        Do you have something you'd like to sell?
-        It's easy! Become a member of Collectors Quest and get started.<br/>
-        <?= link_to('Get&nbsp;Paid&nbsp;Now!', '@seller_packages'); ?>
-        </p>
-        </div>
-        </li>
-         **/ ?>
+
+          <li>
+            <i class="big-piggy-bank-icon"></i>
+            <div class="info-box-text">
+              <h2 class="Chivo webfont">Get Paid</h2>
+              <p>
+                Do you have something you'd like to sell?
+                It's easy! Become a member of Collectors Quest and get started.<br/>
+                <?= link_to('Get&nbsp;Paid&nbsp;Now!', '@seller_signup'); ?>
+              </p>
+            </div>
+          </li>
+
           <li>
             <i class="big-question-icon"></i>
             <div class="info-box-text">

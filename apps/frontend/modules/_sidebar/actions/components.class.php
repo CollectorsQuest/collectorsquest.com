@@ -107,7 +107,10 @@ class _sidebarComponents extends cqFrontendComponents
         ->orderByUpdatedAt(Criteria::DESC);
     }
     /** @var $collectible Collectible */
-    else if (($collectible = $this->getVar('collectible')) && $collectible instanceof Collectible)
+    else if (
+      ($collectible = $this->getVar('collectible')) &&
+      ($collectible instanceof Collectible || $collectible instanceof CollectionCollectible)
+    )
     {
       $tags = $collectible->getTags();
       $q
@@ -160,8 +163,6 @@ class _sidebarComponents extends cqFrontendComponents
   }
 
   /**
-   * TODO: Thrown magnify errors should be handled
-   *
    * @return string
    */
   public function executeWidgetMagnifyVideos()
@@ -387,7 +388,11 @@ class _sidebarComponents extends cqFrontendComponents
     // See if we need to filter by CollectibleId first
     if (!empty($this->ids) && is_array($this->ids))
     {
-      $q->filterByCollectibleId($this->ids, Criteria::IN);
+      $q
+        ->filterByCollectibleId($this->ids, Criteria::IN)
+        ->addAscendingOrderByColumn(
+          'FIELD(collectible_id, ' . implode(',', $this->ids) . ')'
+        );
     }
 
     /** @var $wp_post wpPost */
@@ -456,7 +461,11 @@ class _sidebarComponents extends cqFrontendComponents
 
     if (!empty($this->ids) && is_array($this->ids))
     {
-      $q->filterById($this->ids, Criteria::IN);
+      $q
+        ->filterById($this->ids, Criteria::IN)
+        ->addAscendingOrderByColumn(
+          'FIELD(id, ' . implode(',', $this->ids) . ')'
+        );
     }
 
     $this->wp_posts = $q->find();

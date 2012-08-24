@@ -627,4 +627,19 @@ class cqFrontendUser extends cqBaseUser
     return json_decode(base64_decode($raw_data), true);
   }
 
+  public function delete()
+  {
+    try
+    {
+      $collector = $this->getCollector(true);
+      $this->Authenticate(false);
+      $collector->delete();
+    }
+    catch (PropelException $e)
+    {
+      return false;
+    }
+
+    return true;
+  }
 }

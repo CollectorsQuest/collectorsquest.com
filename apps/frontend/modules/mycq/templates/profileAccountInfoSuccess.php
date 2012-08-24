@@ -89,6 +89,39 @@
           </fieldset>
         </form> <!-- CollectorEditForm -->
 
+        <?php cq_sidebar_title('Delete Account'); ?>
+
+        <div class="alert alert-block alert-error">
+          <p>
+            Deleting your account also deletes all data associated
+            with it like collections, collectibles, items for sale, comments, etc.<br>
+            Here is some of your current data on CollectorsQuest.com:
+            <ul class="spacer-top">
+              <li><strong>Username</strong> <?= $collector->getUsername(); ?></li>
+              <li><strong>Email</strong> <?= $collector->getEmail(); ?></li>
+              <li><strong>Collections:</strong> <?= $collector->countCollectorCollections(); ?></li>
+              <li>
+                <strong>Collectibles:</strong>
+                <?= number_format($collector->countCollectiblesInCollections()); ?>
+              </li>
+            </ul>
+          </p>
+          <br/>
+          <p style="spacer-top">
+            <?php
+              $url = url_for('ajax_mycq', array(
+                'section' => 'account',
+                'page' => 'delete',
+                'encrypt' => '1'
+              ));
+            ?>
+            <a href="<?= $url; ?>" class="btn btn-danger open-dialog" onclick="return false;">
+              <i class="icon-trash"></i>
+              Delete Account
+            </a>
+          </p>
+        </div>
+
       </div><!-- .tab-content-inner -->
     </div> <!-- .tab-pane.active -->
     <div class="tab-pane" id="tab4">

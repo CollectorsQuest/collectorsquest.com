@@ -12,9 +12,11 @@ require 'lib/model/om/BaseCollectorCollection.php';
  */
 class CollectorCollection extends BaseCollectorCollection
 {
-  public
-    $_multimedia = array(),
-    $_counts = array();
+  /** @var array */
+  public $_multimedia = array();
+
+  /** @var array */
+  public $_counts = array();
 
 
   public function getGraphId()
@@ -53,6 +55,8 @@ class CollectorCollection extends BaseCollectorCollection
    *
    * @param  string  $v     The description text itself
    * @param  string  $type  Can be 'html' or 'markdown'
+   *
+   * @return CollectorCollection
    */
   public function setDescription($v, $type = 'html')
   {
@@ -65,7 +69,7 @@ class CollectorCollection extends BaseCollectorCollection
     }
 
     // We should always save the description in Markdown format
-    parent::setDescription($v);
+    return parent::setDescription($v);
   }
 
   /**
@@ -87,6 +91,9 @@ class CollectorCollection extends BaseCollectorCollection
         $v = (intval($limit) > 0) ? cqStatic::truncateText($v, $limit, '...', true) : $v;
         break;
       case 'html':
+      default:
+        $v = str_replace('&lt;a ', '&lt;a rel=&quot;nofollow&quot; ', $v);
+        $v = str_replace('<a ', '<a rel="nofollow" ', $v);
         break;
     }
 

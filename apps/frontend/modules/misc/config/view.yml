@@ -17,6 +17,6 @@ guideDownloadAlert:
     breadcrumbs: []
 
 
-wordPressFeaturedItems:
+wordPressFeaturedItemsSuccess:
   components:
     sidebar_300:  [misc, sidebarWordPressFeaturedItems]

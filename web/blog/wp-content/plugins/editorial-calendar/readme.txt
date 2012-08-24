@@ -3,7 +3,7 @@ Contributors: cvernon, justinstresslimit, jkudish, MaryVogt, zgrossbart
 Tags: posts, post, calendar, AJAX, admin, administration
 Requires at least: 2.8.5
 Tested up to: 3.4.1
-Stable tag: 2.3
+Stable tag: 2.4
 
 The Editorial Calendar makes it possible to see all your posts and drag and drop them to manage your blog.
 
@@ -172,6 +172,10 @@ Moving published posts can cause problems with some RSS feeds and is generally n
 7. Use the new unscheduled drafts section to manage drafts before you schedule them.
 
 == Changelog ==
+
+= 2.4 =
+
+Creating a new unscheduled draft is now working properly from the calendar.
 
 = 2.3 = 
 
