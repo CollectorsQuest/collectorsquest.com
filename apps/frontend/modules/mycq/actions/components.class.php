@@ -235,16 +235,6 @@ class mycqComponents extends cqFrontendComponents
     return sfView::SUCCESS;
   }
 
-  public function executeDeleteCollectionCollectible()
-  {
-    if ($this->getRequest()->isMethod('post'))
-    {
-
-    }
-
-    return sfView::SUCCESS;
-  }
-
   public function executeCollectionMultimedia()
   {
     $q = CollectorCollectionQuery::create()

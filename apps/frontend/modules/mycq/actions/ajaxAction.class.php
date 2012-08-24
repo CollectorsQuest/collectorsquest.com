@@ -816,4 +816,46 @@ class ajaxAction extends cqAjaxAction
     return $template;
   }
 
+  public function executeAccountDelete(sfWebRequest $request, $template)
+  {
+    $form = new ConfirmDestructiveActionForm();
+    $form->getWidget('input')
+         ->setLabel('TYPE "DELETE" TO CONFIRM THE DELETION OF YOUR ACCOUNT');
+
+    if ($this->getRequest()->isMethod('post'))
+    {
+      $form->bind($request->getParameter('confirm'), array());
+      if ($form->isValid())
+      {
+        if ($this->getUser()->delete())
+        {
+          $this->getUser()->getFlash(
+            'success', 'Thank you for being part of Collectors Quest!
+                        Your account with us is now suspended.',
+            true
+          );
+
+          return $this->renderPartial('global/loading', array(
+            'url' => $this->generateUrl('homepage'),
+          ));
+        }
+        else
+        {
+          $message = sprintf(
+            'We are sorry but your account cannot be currently deleted!
+           Please contact the customer support (<a href="mailto:%s">%s</a>) for more information.',
+            'custsrv@collectorsquest.com', 'custsrv@collectorsquest.com'
+          );
+          $form->getErrorSchema()->addError(
+            new sfValidatorError(new sfValidatorPass(), $message), 'input'
+          );
+        }
+      }
+    }
+
+    $this->form = $form;
+
+    return $template;
+  }
+
 }
