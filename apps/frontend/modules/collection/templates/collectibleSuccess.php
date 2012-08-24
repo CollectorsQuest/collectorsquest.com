@@ -319,7 +319,7 @@ $(document).ready(function()
   {
     e.preventDefault();
 
-    var url = '<?= url_for('@ajax_multimedia?which=original'); ?>';
+    var url = '<?= url_for('@ajax_multimedia?which=940x0'); ?>';
     var $a = $(this);
     var $img = $('img.multimedia', $a.parent());
     var $div = $('<div></div>');
