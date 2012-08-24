@@ -15,6 +15,7 @@
     <div class="tab-pane active">
       <div class="tab-content-inner spacer">
 
+      <?php /*
       <div class="alert alert-block alert-notice fade in">
         <h4 class="alert-heading">Oh snap! You are out of credits for listing items for sale!</h4>
         <p class="spacer-top">
@@ -306,8 +307,9 @@
 
 
       </div>
+      */ ?>
 
-<?php /*
+
         <table class="table table-bordered">
           <thead>
             <tr>
@@ -342,7 +344,6 @@
           <?php endif; ?>
           </tbody>
         </table>
-*/?>
 
       </div> <!-- .tab-content-inner.spacer -->
     </div> <!-- .tab-pane.active -->
