@@ -15,11 +15,22 @@
     <div class="tab-pane active">
       <div class="tab-content-inner spacer">
 
+      <div class="alert alert-block alert-notice fade in">
+        <h4 class="alert-heading">Oh snap! You are out of credits for listing items for sale!</h4>
+        <p class="spacer-top">
+          Change this and that and try again. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum.
+        </p>
+        <br/>
+        <a class="btn btn-primary" href="#">Buy Credits</a>
+        <button type="button" class="btn" data-dismiss="alert">Ok</button>
+      </div>
+
         <!-- Credit purchase history -->
         <div class="row-fluid sidebar-title spacer-top">
           <div class="span8">
-            <h3 class="Chivo webfont">Credit purchase history</h3>
+            <h3 class="Chivo webfont">Credit History</h3>
           </div>
+          <!--
           <div class="span4 text-right">
             <span class="show-all-text">
               Show: &nbsp;
@@ -31,8 +42,9 @@
                 <a id="filter-expiring" class="btn btn-mini btn-filter " href="#">Expiring</a>
                 <a id="filter-expired" class="btn btn-mini btn-filter " href="#">Expired</a>
               </div>
-            </div> <!-- /.control-group -->
+            </div>
           </div>
+          //-->
         </div><!-- /.sidebar-title -->
 
         <table class="table table-credit-history">
@@ -83,37 +95,45 @@
           </tr>
           </tbody>
         </table>
-        <div class="cf spacer-bottom-20">
-          <button type="submit" class="btn btn-primary pull-left" value="Buy Credits">
-            <span>Buy Credits</span>
-          </button>
-        </div>
+        <br class="cf"/>
 
         <!-- Items listing history -->
-        <div class="row-fluid sidebar-title spacer-top">
+        <div class="row-fluid sidebar-title spacer-top-20" style="margin-bottom: 0;">
           <div class="span8">
-            <h3 class="Chivo webfont">Items listing history</h3>
+            <h3 class="Chivo webfont">Items for Sale History</h3>
           </div>
-          <div class="span4 text-right">
-            <span class="show-all-text">
+        </div><!-- /.sidebar-title -->
+        <div class="row-fluid messages-row gray-well cf">
+          <div class="span8">
+            <span class="show-all-text pull-left">
               Show: &nbsp;
             </span>
-            <div class="control-group pull-right">
+            <div class="control-group">
               <div class="btn-filter-all btn-group">
                 <a id="filter-items-all" class="btn btn-mini btn-filter active" href="#">All</a>
                 <a id="filter-items-active" class="btn btn-mini btn-filter" href="#">Active</a>
                 <a id="filter-items-inactive" class="btn btn-mini btn-filter" href="#">Inactive</a>
+                <a id="filter-items-sold" class="btn btn-mini btn-filter" href="#">Sold</a>
                 <a id="filter-items-expired" class="btn btn-mini btn-filter" href="#">Expired</a>
               </div>
             </div> <!-- /.control-group -->
           </div>
-        </div><!-- /.sidebar-title -->
+
+          <div class="span4">
+            <div class="mini-input-append-search">
+              <div class="input-append pull-right">
+                <input type="text" class="input-sort-by" id="search-input" name="search" value=""><button class="btn gray-button" id="search-button" type="submit"><strong>Search</strong></button>
+                <input type="hidden" name="filter" id="filter-hidden" value="all">
+              </div>
+            </div>
+          </div>
+
+        </div>
 
         <table class="table table-striped table-listing-history">
           <thead>
           <tr>
-            <th class="items-column">Item</th>
-            <th>Purchased</th>
+            <th class="items-column">&nbsp;</th>
             <th>Expires</th>
             <th>Status</th>
             <th>Actions</th>
@@ -142,9 +162,6 @@
                   </span>
                   </div>
                 </div>
-            </td>
-            <td>
-              March 25, 2012
             </td>
             <td>
               August 25, 2012
@@ -182,9 +199,6 @@
               </div>
             </td>
             <td>
-              March 25, 2012
-            </td>
-            <td>
               August 25, 2012
             </td>
             <td>
@@ -220,7 +234,39 @@
               </div>
             </td>
             <td>
-              March 25, 2012
+              August 25, 2012
+            </td>
+            <td>
+              Sold \(-_-)/
+            </td>
+            <td>
+              <button class="btn btn-mini" type="button">
+                <i class="icon-undo"></i>&nbsp;Re-list
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="row-fluid items">
+                <div class="span2">
+                  <a href="">
+                    <img src="http://placehold.it/75x75" alt="">
+                  </a>
+                </div>
+                <div class="span10">
+                  <span class="title">
+                    <a href="">
+                      Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                    </a>
+                  </span>
+                  <span class="description">
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                  </span>
+                  <span class="price">
+                    $ 9,999,999.00
+                  </span>
+                </div>
+              </div>
             </td>
             <td>
               August 25, 2012
@@ -236,6 +282,27 @@
           </tr>
           </tbody>
         </table>
+
+      <div class="row-fluid pagination-wrapper">
+
+        <div class="pagination" style="margin-top: 0;">
+          <ul>
+            <li class="disabled"><a href="javascript:void(0);"> ← </a></li>
+            <li class="active"><a href="javascript:void(0);">1</a></li>
+            <li>
+              <a data-page="2" title="Go to page 2" href="http://www.collectorsquest.dev/mycq/marketplace?page=2">2</a>      </li>
+            <li>
+              <a data-page="3" title="Go to page 3" href="http://www.collectorsquest.dev/mycq/marketplace?page=3">3</a>      </li>
+            <li>
+              <a data-page="4" title="Go to page 4" href="http://www.collectorsquest.dev/mycq/marketplace?page=4">4</a>      </li>
+            <li class="next">
+              <a data-page="2" title="Go to page 2" href="http://www.collectorsquest.dev/mycq/marketplace?page=2"> → </a>    </li>
+
+          </ul>
+        </div>
+
+
+      </div>
 
 <?php /*
         <table class="table table-bordered">
