@@ -1,4 +1,4 @@
-<div class="my_meta_control" style="height:230px;">
+<div class="my_meta_control">
 
   <p>
      Enter comma separated ID numbers. (1,2,3,4,5,6) 4,5,6 will be used
@@ -89,4 +89,5 @@
     </label>
   </div>
 
+  <div class="clear"></div>
 </div>
