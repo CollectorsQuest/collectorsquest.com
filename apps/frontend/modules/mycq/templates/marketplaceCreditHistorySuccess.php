@@ -105,18 +105,20 @@
         </div><!-- /.sidebar-title -->
         <div class="row-fluid messages-row gray-well cf">
           <div class="span8">
-            <span class="show-all-text pull-left">
-              Show: &nbsp;
-            </span>
-            <div class="control-group">
-              <div class="btn-filter-all btn-group">
-                <a id="filter-items-all" class="btn btn-mini btn-filter active" href="#">All</a>
-                <a id="filter-items-active" class="btn btn-mini btn-filter" href="#">Active</a>
-                <a id="filter-items-inactive" class="btn btn-mini btn-filter" href="#">Inactive</a>
-                <a id="filter-items-sold" class="btn btn-mini btn-filter" href="#">Sold</a>
-                <a id="filter-items-expired" class="btn btn-mini btn-filter" href="#">Expired</a>
-              </div>
-            </div> <!-- /.control-group -->
+            <div class="filter-container">
+              <span class="show-all-text pull-left">
+                Show: &nbsp;
+              </span>
+              <div class="control-group">
+                <div class="btn-filter-all btn-group">
+                  <a id="filter-items-all" class="btn btn-mini btn-filter active" href="#">All</a>
+                  <a id="filter-items-active" class="btn btn-mini btn-filter" href="#">Active</a>
+                  <a id="filter-items-inactive" class="btn btn-mini btn-filter" href="#">Inactive</a>
+                  <a id="filter-items-sold" class="btn btn-mini btn-filter" href="#">Sold</a>
+                  <a id="filter-items-expired" class="btn btn-mini btn-filter" href="#">Expired</a>
+                </div>
+              </div> <!-- /.control-group -->
+            </div>
           </div>
 
           <div class="span4">
@@ -130,7 +132,7 @@
 
         </div>
 
-        <table class="table table-striped table-listing-history">
+        <table class="table table-striped table-items-for-sale-history">
           <thead>
           <tr>
             <th class="items-column">&nbsp;</th>
@@ -144,7 +146,7 @@
             <td>
               <div class="row-fluid items">
                 <div class="span2">
-                  <a href="">
+                  <a href="" class="thumb">
                     <img src="http://placehold.it/75x75" alt="">
                   </a>
                 </div>
@@ -179,7 +181,7 @@
             <td>
               <div class="row-fluid items">
                 <div class="span2">
-                  <a href="">
+                  <a href="#" class="thumb">
                     <img src="http://placehold.it/75x75" alt="">
                   </a>
                 </div>
@@ -214,7 +216,7 @@
             <td>
               <div class="row-fluid items">
                 <div class="span2">
-                  <a href="">
+                  <a href="#" class="thumb">
                     <img src="http://placehold.it/75x75" alt="">
                   </a>
                 </div>
@@ -240,16 +242,17 @@
               Sold \(-_-)/
             </td>
             <td>
-              <button class="btn btn-mini" type="button">
+              -
+              <!--<button class="btn btn-mini" type="button">
                 <i class="icon-undo"></i>&nbsp;Re-list
-              </button>
+              </button> -->
             </td>
           </tr>
           <tr>
             <td>
               <div class="row-fluid items">
                 <div class="span2">
-                  <a href="">
+                  <a href="#" class="thumb">
                     <img src="http://placehold.it/75x75" alt="">
                   </a>
                 </div>
@@ -285,18 +288,18 @@
 
       <div class="row-fluid pagination-wrapper">
 
-        <div class="pagination" style="margin-top: 0;">
+        <div class="pagination spacer-top-reset">
           <ul>
             <li class="disabled"><a href="javascript:void(0);"> ← </a></li>
             <li class="active"><a href="javascript:void(0);">1</a></li>
             <li>
-              <a data-page="2" title="Go to page 2" href="http://www.collectorsquest.dev/mycq/marketplace?page=2">2</a>      </li>
+              <a data-page="2" title="Go to page 2" href="#">2</a>      </li>
             <li>
-              <a data-page="3" title="Go to page 3" href="http://www.collectorsquest.dev/mycq/marketplace?page=3">3</a>      </li>
+              <a data-page="3" title="Go to page 3" href="#">3</a>      </li>
             <li>
-              <a data-page="4" title="Go to page 4" href="http://www.collectorsquest.dev/mycq/marketplace?page=4">4</a>      </li>
+              <a data-page="4" title="Go to page 4" href="#">4</a>      </li>
             <li class="next">
-              <a data-page="2" title="Go to page 2" href="http://www.collectorsquest.dev/mycq/marketplace?page=2"> → </a>    </li>
+              <a data-page="2" title="Go to page 2" href="#"> → </a>    </li>
 
           </ul>
         </div>
