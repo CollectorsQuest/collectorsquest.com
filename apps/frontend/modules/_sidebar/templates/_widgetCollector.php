@@ -31,7 +31,7 @@
       </li>
       <?php if ($country_iso3166 = $collector->getProfile()->getCountryIso3166()): ?>
       <li>
-        From <?= ($country_iso3166 == 'US') ? 'the United States' : $collector->getProfile()->getCountry(); ?>
+        From <?= ($country_iso3166 == 'US') ? 'the United States' : $collector->getProfile()->getCountryName(); ?>
       </li>
       <?php endif; ?>
     </ul>

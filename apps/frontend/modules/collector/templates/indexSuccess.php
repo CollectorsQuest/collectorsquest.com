@@ -34,9 +34,10 @@
 
             if ($profile->getCountryIso3166())
             {
-              echo sprintf(
-                ' from %s',
-                ($profile->getCountryIso3166() == 'US') ? 'the United States' : $profile->getCountry()
+              echo sprintf(' from %s',
+                'US' == $profile->getCountryIso3166()
+                  ? 'the United States'
+                  : $profile->getCountryName()
               );
             }
           ?>

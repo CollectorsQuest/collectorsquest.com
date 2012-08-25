@@ -39,7 +39,10 @@ class CollectorProfile extends BaseCollectorProfile
     return $birthdate_dt->diff( new DateTime($now) )->y;
   }
 
-  public function getCountry()
+  /**
+   * @return    string|null
+   */
+  public function getCountryName()
   {
     if (( $country = $this->getGeoCountry() ))
     {

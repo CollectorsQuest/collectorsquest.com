@@ -28,7 +28,7 @@
         </p>
         <p>
           <strong>From:&nbsp;</strong>
-          <?= $profile->getCountry(); ?>
+          <?= $profile->getCountryName(); ?>
         </p>
         <?php if ($text = $collector->getICollect()): ?>
         <p>

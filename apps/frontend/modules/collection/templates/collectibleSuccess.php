@@ -150,7 +150,7 @@
     <tr class="shipping-dest">
       <th colspan="2">
         <strong>Shipping from:</strong> <span class="darkblue">
-          <?= $collector->getProfile()->getCountry() ?: '-'; ?>
+          <?= $collector->getProfile()->getCountryName() ?: '-'; ?>
         </span>
       </th>
     </tr>
