@@ -39,6 +39,22 @@ class CollectorPeer extends BaseCollectorPeer
       self::PROPERTY_VISITOR_INFO_NUM_PAGE_VIEWS,
   );
 
+  const PROPERTY_PREFERENCES_SHOW_AGE = 'PREFERENCES_SHOW_AGE';
+  const PROPERTY_PREFERENCES_SHOW_AGE_DEFAULT = false;
+  const PROPERTY_PREFERENCES_MSG_ON = 'PREFERENCES_MSG_ON';
+  const PROPERTY_PREFERENCES_MSG_ON_DEFAULT = true;
+  const PROPERTY_PREFERENCES_INVITE_ONLY = 'PREFERENCES_INVITE_ONLY';
+  const PROPERTY_PREFERENCES_INVITE_ONLY_DEFAULT = false;
+  const PROPERTY_PREFERENCES_NEWSLETTER = 'PREFERENCES_NEWSLETTER';
+  const PROPERTY_PREFERENCES_NEWSLETTER_DEFAULT = true;
+
+  const PROPERTY_NOTIFICATIONS_COMMENT = 'NOTIFICATIONS_COMMENT';
+  const PROPERTY_NOTIFICATIONS_COMMENT_DEFAULT = true;
+  const PROPERTY_NOTIFICATIONS_BUDDY = 'NOTIFICATIONS_BUDDY';
+  const PROPERTY_NOTIFICATIONS_BUDDY_DEFAULT = true;
+  const PROPERTY_NOTIFICATIONS_MESSAGE = 'NOTIFICATIONS_MESSAGE';
+  const PROPERTY_NOTIFICATIONS_MESSAGE_DEFAULT = true;
+
   const TYPE_COLLECTOR = 'Collector';
   const TYPE_SELLER = 'Seller';
 
@@ -53,6 +69,7 @@ class CollectorPeer extends BaseCollectorPeer
   const TAGS_KEY_I_SELL           = 'isell';
 
   const PAYPAL_ACCOUNT_STATUS_VERIFIED = 'VERIFIED';
+
   /**
    * @param     string $username
    * @param     PropelPDO $con
@@ -267,8 +284,14 @@ class CollectorPeer extends BaseCollectorPeer
     $collector->setPassword($data['password']);
     $collector->setDisplayName($display_name);
     $collector->setEmail($data['email']);
-    $collector->setUserType(isset($data['seller']) && !!$data['seller'] ? 'Seller' : 'Collector');
-
+    $collector->setUserType(isset($data['seller']) && !!$data['seller']
+      ? CollectorPeer::TYPE_SELLER
+      : CollectorPeer::TYPE_COLLECTOR
+    );
+    $collector->setPreferencesNewsletter(isset($data['newsletter'])
+      ? (boolean) $data['newsletter']
+      : CollectorPeer::PROPERTY_PREFERENCES_NEWSLETTER_DEFAULT
+    );
     /**
      * Temporary disable before tests are written
      *
@@ -282,20 +305,6 @@ class CollectorPeer extends BaseCollectorPeer
     $collector_profile = new CollectorProfile();
     $collector_profile->setCollector($collector);
     $collector_profile->setProfileCompleted(25);
-
-    $collector_profile->setPreferences(array(
-      'show_age'    => false,
-      'msg_on'      => true,
-      'invite_only' => false,
-      'newsletter'  => (boolean) @$data['newsletter']
-    ));
-
-    $collector_profile->setNotifications(array(
-      'comment' => true,
-      'buddy'   => true,
-      'message' => true
-    ));
-
 
     // set profile country code if present
     if (isset($data['country_iso3166']) && false !== $data['country_iso3166'])

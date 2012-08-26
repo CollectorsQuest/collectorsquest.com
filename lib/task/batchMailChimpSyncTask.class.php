@@ -41,6 +41,7 @@ EOF;
     /** @var $collectors Collector[] */
     $collectors = $q->find();
 
+    /* @var $collector Collector */
     foreach ($collectors as $collector)
     {
       // Continue to the next Collector if there is a problem with the Profile
@@ -49,7 +50,6 @@ EOF;
         continue;
       }
 
-      $preferences = $profile->getPreferences();
       $avatar = !$profile->getIsImageAuto() && !$collector->hasPhoto() ?
         'Yes' : 'No';
 
@@ -65,7 +65,7 @@ EOF;
         'COMPLETED' => (int) $profile->getProfileCompleted(),
         'PAGEVIEWS' => $collector->getVisitorInfoNumPageViews(),
         'VISITS' => $collector->getVisitorInfoNumVisits(),
-        'NEWSLETTER' => $preferences['newsletter'] ? 'Yes' : 'No',
+        'NEWSLETTER' => $collector->getPreferencesNewsletter(),
         'VISITED_AT' => $collector->getLastVisitedAt('m/d/Y'),
         'SEEN_AT' => $collector->getLastSeenAt('m/d/Y'),
         'CREATED_AT' => $collector->getCreatedAt('m/d/Y'),
@@ -106,6 +106,7 @@ EOF;
     /** @var $collectors Collector[] */
     $collectors = $q->find();
 
+    /* @var $collector Collector */
     foreach ($collectors as $collector)
     {
       // Continue to the next Collector if there is a problem with the Profile
@@ -114,7 +115,6 @@ EOF;
         continue;
       }
 
-      $preferences = $profile->getPreferences();
       $avatar = !$profile->getIsImageAuto() && !$collector->hasPhoto() ?
         'Yes' : 'No';
 
@@ -128,7 +128,7 @@ EOF;
         'COMPLETED' => (int) $profile->getProfileCompleted(),
         'PAGEVIEWS' => $collector->getVisitorInfoNumPageViews(),
         'VISITS' => $collector->getVisitorInfoNumVisits(),
-        'NEWSLETTER' => $preferences['newsletter'] ? 'Yes' : 'No',
+        'NEWSLETTER' => $collector->getPreferencesNewsletter(),
         'VISITED_AT' => $collector->getLastVisitedAt('m/d/Y'),
         'SEEN_AT' => $collector->getLastSeenAt('m/d/Y'),
         'CREATED_AT' => $collector->getCreatedAt('m/d/Y'),

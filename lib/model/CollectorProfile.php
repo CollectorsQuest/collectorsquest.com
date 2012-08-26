@@ -30,8 +30,9 @@ class CollectorProfile extends BaseCollectorProfile
   }
 
   /**
-   * @param string|null $now Current date in a compatible format http://www.php.net/manual/en/datetime.formats.date.php
-   * @return integer
+   * @param     string|null $now Current date in a compatible format:
+   *                         http://www.php.net/manual/en/datetime.formats.date.php
+   * @return    integer
    */
   public function getAge($now = null)
   {
@@ -145,7 +146,7 @@ class CollectorProfile extends BaseCollectorProfile
     $v = preg_replace(array('/^http:\/\//i', '/^https:\/\//i'), '', $v);
     $v = preg_replace('/^www\./', '', $v);
 
-    parent::setWebsite($v);
+    return parent::setWebsite($v);
   }
 
   public function getWebsiteUrl()
@@ -156,49 +157,6 @@ class CollectorProfile extends BaseCollectorProfile
     }
 
     return null;
-  }
-
-  public function setPreferences($v)
-  {
-    if (empty($v))
-    {
-      $v = array(
-        'show_age'    => false,
-        'msg_on'      => true,
-        'invite_only' => false,
-        'newsletter'  => false
-      );
-    }
-
-    parent::setPreferences(serialize((array) $v));
-  }
-
-  public function getPreferences()
-  {
-    $v = @unserialize(parent::getPreferences());
-
-    return (array) $v;
-  }
-
-  public function setNotifications($v)
-  {
-    if (empty($v))
-    {
-      $v = array(
-        'comment' => true,
-        'buddy'   => true,
-        'message' => true
-      );
-    }
-
-    parent::setNotifications(serialize((array) $v));
-  }
-
-  public function getNotifications()
-  {
-    $v = @unserialize(parent::getNotifications());
-
-    return (array) $v;
   }
 
   public function getGeoCache()

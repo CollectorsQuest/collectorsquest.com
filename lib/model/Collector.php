@@ -69,6 +69,29 @@ require 'lib/model/om/BaseCollector.php';
  *
  * @method     Collector setVisitorInfoNumPageViews(int $v)
  * @method     int       getVisitorInfoNumPageViews()
+ *
+ *
+ * @method     Collector setPreferencesShowAge(boolean $v)
+ * @method     boolean   getPreferencesShowAge()
+ *
+ * @method     Collector setPreferencesMsgOn(boolean $v)
+ * @method     boolean   getPreferencesMsgOn()
+ *
+ * @method     Collector setPreferencesInviteOnly(boolean $v)
+ * @method     boolean   getPreferencesInviteOnly()
+ *
+ * @method     Collector setPreferencesNewsletter(boolean $v)
+ * @method     boolean   getPreferencesNewsletter()
+ *
+ *
+ * @method     Collector setNotificationsComment(boolean $v)
+ * @method     boolean   getNotificationsComment()
+ *
+ * @method     Collector setNotificationsBuddy(boolean $v)
+ * @method     boolean   getNotificationsBuddy()
+ *
+ * @method     Collector setNotificationsMessage(boolean $v)
+ * @method     boolean   getNotificationsMessage()
  */
 class Collector extends BaseCollector implements ShippingReferencesInterface
 {
@@ -81,6 +104,11 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
   /** @var Collector */
   protected $seller;
 
+  /**
+   * Register extra properties to allow magic getters/setters to be used
+   *
+   * @see     ExtraPropertiesBehavior
+   */
   public function initializeProperties()
   {
     $this->registerProperty('SINGUP_NUM_COMPLETED_STEPS', 1);
@@ -113,6 +141,23 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
     $this->registerProperty(CollectorPeer::PROPERTY_VISITOR_INFO_LAST_VISIT_AT);
     $this->registerProperty(CollectorPeer::PROPERTY_VISITOR_INFO_NUM_VISITS);
     $this->registerProperty(CollectorPeer::PROPERTY_VISITOR_INFO_NUM_PAGE_VIEWS);
+
+    $this->registerProperty(CollectorPeer::PROPERTY_PREFERENCES_SHOW_AGE,
+      CollectorPeer::PROPERTY_PREFERENCES_SHOW_AGE_DEFAULT);
+    $this->registerProperty(CollectorPeer::PROPERTY_PREFERENCES_MSG_ON,
+      CollectorPeer::PROPERTY_PREFERENCES_MSG_ON_DEFAULT);
+    $this->registerProperty(CollectorPeer::PROPERTY_PREFERENCES_INVITE_ONLY,
+      CollectorPeer::PROPERTY_PREFERENCES_INVITE_ONLY_DEFAULT);
+    $this->registerProperty(CollectorPeer::PROPERTY_PREFERENCES_NEWSLETTER,
+      CollectorPeer::PROPERTY_PREFERENCES_NEWSLETTER_DEFAULT);
+
+    $this->registerProperty(CollectorPeer::PROPERTY_NOTIFICATIONS_COMMENT,
+      CollectorPeer::PROPERTY_NOTIFICATIONS_COMMENT_DEFAULT);
+    $this->registerProperty(CollectorPeer::PROPERTY_NOTIFICATIONS_BUDDY,
+      CollectorPeer::PROPERTY_NOTIFICATIONS_BUDDY_DEFAULT);
+    $this->registerProperty(CollectorPeer::PROPERTY_NOTIFICATIONS_MESSAGE,
+      CollectorPeer::PROPERTY_NOTIFICATIONS_MESSAGE_DEFAULT);
+
   }
 
   /**
@@ -1257,6 +1302,15 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
     return parent::preDelete($con);
   }
 
+  /**
+   * For undefined methods, first try to find an appropriate method in the
+   * CollectorProfile, after which fallback to Propel runtime behaviors
+   *
+   * @param     string $m
+   * @param     array $a
+   *
+   * @return    mixed
+   */
   public function __call($m, $a)
   {
     $profile = $this->getProfile();
