@@ -1,10 +1,4 @@
-<!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
-<script>
-  window.jQuery    || document.write('<script src="<?= cq_javascript_src('frontend/jquery.js'); ?>"><\/script>');
-  window.jQuery.ui || document.write('<script src="<?= cq_javascript_src('frontend/jquery.ui.js'); ?>"><\/script>');
-</script>
+<?php include_component_slot('jquery_footer'); ?>
 
 <?php if ($sf_params->get('gcf')): ?>
 <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
@@ -29,12 +23,16 @@
     both: '<?= javascript_path('frontend/scripts.common.bundle.' . GIT_REVISION . '.js'); ?>',
     complete: function ()
     {
+      // Restore the original jQuery ready() function
+      jQuery.fn.ready = window.cq._ready;
+
       // http://stackoverflow.com/a/8567229
       (function ($, window, document)
       {
-        for (func in window.docready) {
-          $(document).ready(window.docready[func]);
+        for (func in window.cq.docready) {
+          $(document).ready(window.cq.docready[func]);
         }
+        window.cq.docready=[];
       }(jQuery, this, this.document));
 
       // Execute the controller in scripts.common.bundle.js
