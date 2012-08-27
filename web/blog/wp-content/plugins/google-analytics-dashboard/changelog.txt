@@ -1,3 +1,6 @@
+2.0.4
+  - Updated to use version 2.4 of the Google Analytics API 
+  - Fixed bug with PHP reference passing.
 2.0.3
   - Changed included javascript to use ajaxurl instead of getting it from 
     calling a php function.

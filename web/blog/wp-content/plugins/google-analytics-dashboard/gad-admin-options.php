@@ -269,7 +269,7 @@ class GADAdminOptions
 
       if( isset($_POST['gad_login_type']) && $_POST['gad_login_type'] == 'client' )
       {
-        if( $this->admin_handle_clientlogin_login_options(&$ui, $info_message) )
+        if( $this->admin_handle_clientlogin_login_options($ui, $info_message) )
         {
           return;
         }
@@ -279,7 +279,7 @@ class GADAdminOptions
     $ui->display_admin_handle_login_options($gauth);
   }
 
-  function admin_handle_clientlogin_login_options($ui, $info_message = '')
+  function admin_handle_clientlogin_login_options(&$ui, $info_message = '')
   {
     if( !isset($_POST['ga_email']) || trim($_POST['ga_email']) == '' )
     {
@@ -353,7 +353,7 @@ class GADAdminOptions
     $params = array();
 
     $params['oauth_callback'] = gad_get_admin_url('/options-general.php') . '?page=google-analytics-dashboard/gad-admin-options.php&oauth_return=true';
-    $params['scope'] = 'https://www.google.com/analytics/feeds/'; // This is a space seperated list of applications we want access to
+    $params['scope'] = 'https://www.googleapis.com/auth/analytics.readonly'; // This is a space seperated list of applications we want access to
     $params['xoauth_displayname'] = 'Analytics Dashboard';
 
     $consumer = new GADOAuthConsumer('anonymous', 'anonymous', NULL);
