@@ -40,7 +40,9 @@
           <p>
             Update your profile picture, edit your profile, email, or password
             <br>
-            <!--<a href="javascript:void(0)">Show me how!</a>//-->
+            <a href="<?= $content_call . '1' ?>" class="open-dialog"
+               title="<?= $title_edit_profile ?>" onclick="return false;">Show me how!
+            </a>
           </p>
         </div>
         <div class="span4 text-center">
@@ -52,7 +54,9 @@
             Upload new collections, add to existing ones or
             organize the collections that you have
             <br>
-            <!--<a href="javascript:void(0)">Show me how!</a>//-->
+            <a href="<?= $content_call . '4' ?>" class="open-dialog"
+               title="<?= $title_edit_collections ?>" onclick="return false;">Show me how!
+            </a>
           </p>
         </div>
         <div class="span4 text-center">
@@ -63,7 +67,9 @@
           <p>
             List your collectible, vintage and antique items for sale in our Market.
             <br>
-            <!--<a href="javascript:void(0)">Show me how!</a>//-->
+            <a href="<?= $content_call . '5' ?>" class="open-dialog"
+               title="<?= $title_sell_stuff ?>" onclick="return false;">Show me how!
+            </a>
           </p>
         </div>
       </div>

@@ -556,6 +556,41 @@ function load_comments() {
   die();
 }
 
+// ajax how-tos
+function load_how_to() {
+  $id = $_REQUEST['group_id'];
+
+  echo do_shortcode('[wpfaqgroup id=' .$id  . ']');
+
+  die();
+}
+add_action( 'wp_ajax_load_how_to', 'load_how_to' );
+add_action( 'wp_ajax_nopriv_load_how_to', 'load_how_to' );
+
+function load_how_to_title()
+{
+  $id = $_REQUEST['group_id'];
+
+  //global variables
+  global $wpfaqDb, $wpfaqGroup;
+
+  $wpfaqDb -> model = $wpfaqGroup -> model;
+  $groups = $wpfaqDb -> find_all();
+
+  foreach ($groups as $group)
+  {
+    if ($group->id == $id)
+    {
+      echo $group -> name;
+      die();
+    }
+  }
+
+  die('invalid ID of group');
+}
+add_action( 'wp_ajax_load_how_to_title', 'load_how_to_title' );
+add_action( 'wp_ajax_nopriv_load_how_to_title', 'load_how_to_title' );
+
 // add TinyMCE editor to the "Biographical Info" field in a user profile
 function kpl_user_bio_visual_editor( $user ) {
   // Requires WP 3.3+ and author level capabilities
