@@ -27,7 +27,7 @@ require_once(dirname(__FILE__) . '/gad-content-tag.php');
 Plugin Name: Google Analytics Dashboard
 Plugin URI: http://www.ioncannon.net/projects/google-analytics-dashboard-wordpress-widget/
 Description: Google Analytics graph integration.
-Version: 2.0.3
+Version: 2.0.4
 Author: Carson McDonald
 Author URI: http://www.ioncannon.net/
 

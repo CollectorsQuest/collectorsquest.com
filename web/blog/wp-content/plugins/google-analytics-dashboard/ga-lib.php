@@ -28,7 +28,8 @@ class GALib
   var $auth;
   var $ids;
 
-  var $base_url = 'https://www.google.com/analytics/feeds/';
+  var $base_url = 'https://www.googleapis.com/analytics/v2.4/';
+  var $account_base_url = 'https://www.googleapis.com/analytics/v2.4/management/';
 
   var $http_code;
   var $error_message;
@@ -107,9 +108,9 @@ class GALib
   {
     $ch = curl_init();
 
-    curl_setopt($ch, CURLOPT_URL, $this->base_url . 'accounts/default');
+    curl_setopt($ch, CURLOPT_URL, $this->account_base_url . 'accounts/~all/webproperties/~all/profiles');
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, array($this->createAuthHeader($this->base_url . 'accounts/default', 'GET')));
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array($this->createAuthHeader($this->account_base_url . 'accounts/~all/webproperties/~all/profiles', 'GET')));
 
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
@@ -139,8 +140,8 @@ class GALib
       foreach($xml->entry as $entry)
       {
         $value = (string)$entry->id;
-        list($part1, $part2) = split('accounts/', $value);
-        $vhash[$part2] = (string)$entry->title;
+        list($part1, $part2) = split('profiles/', $value);
+        $vhash['ga:' . $part2] = (string)$entry->title;
       }
 
       return $vhash;

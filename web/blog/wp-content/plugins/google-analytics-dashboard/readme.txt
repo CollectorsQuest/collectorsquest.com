@@ -2,8 +2,8 @@
 Contributors: Carson McDonald
 Tags: google, analytics, google analytics, dashboard, widget
 Requires at least: 2.8
-Tested up to: 3.1.0
-Stable tag: 2.0.3
+Tested up to: 3.4.1
+Stable tag: 2.0.4
 
 This plugin will give you access to your Google Analytics data directly inside your WordPress blog.
 
@@ -14,6 +14,8 @@ This plugin will give you access to your Google Analytics data directly inside y
 This plugin does not provide the tracking code for Google Analytics. For that you will need to use a plugin like [Google Analytics for Wordpress](http://wordpress.org/extend/plugins/google-analytics-for-wordpress/ "Google Analytics for Wordpress").
 
 There is a [Google Group](http://groups.google.com/group/gad-wordpress-plugin "Google Group for Google Analytics Dashboard plugin") for this plugin that can be used for questions and feature requests.
+
+Please note: The Google Analytics API has been changed since the original version of this plugin. If you have problems after upgrading make sure to use the "forget authentication" option in the plugin configuration to re-authorize your account.
 
 == Installation ==
 
@@ -56,6 +58,11 @@ default with PHP 5. There is a backport for PHP 4 found here:
 http://sourceforge.net/projects/ister4framework/
 
 == Change Log ==
+
+= 2.0.4 =
+
+* Updated to use version 2.4 of the Google Analytics API. This will require you re-authenticate with Google.
+* Fixed bug with PHP reference passing.
 
 = 2.0.3 =
 
@@ -132,6 +139,8 @@ If you want to embed the analytics directly in a theme you can also call them
 directly. Here is an example of what you would would use:
 
 &lt;?php
+
 $data = new GADWidgetData();
 echo $data->gad_pageviews_sparkline(substr($_SERVER["REQUEST_URI"], -20));
+
 ?>
