@@ -28,13 +28,13 @@ generator:
         sort: [created_at, desc]
         batch_actions: {}
         actions:
-          _new: ~
           export: { label: "Export to CSV", action: export }
 
       filter:
         fields:
           id: { label: 'Collection #' }
-        display: [id, name, collection_category_id]
+          created_at: { label: 'Date' }
+        display: [id, name, collection_category_id, created_at]
         class: BackendCollectorCollectionFormFilter
 
       export:

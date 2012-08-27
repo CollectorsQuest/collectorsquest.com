@@ -56,7 +56,6 @@ class wpPostFormFilter extends BasewpPostFormFilter
     ));
   }
 
-
   protected function setupPostStatusField()
   {
     $this->widgetSchema['post_status'] = new sfWidgetFormChoice(array(
@@ -68,7 +67,6 @@ class wpPostFormFilter extends BasewpPostFormFilter
         'required' => false,
     ));
   }
-
 
   protected function setupPostTypeField()
   {
@@ -82,16 +80,15 @@ class wpPostFormFilter extends BasewpPostFormFilter
     ));
   }
 
-
   protected function setupPostDateField()
   {
-      $this->widgetSchema['post_date'] = new sfWidgetFormFilterDate(array(
-          'from_date' => new sfWidgetFormJQueryDate(),
-          'to_date' => new sfWidgetFormJQueryDate(),
-          'with_empty' => false,
-      ));
+    $this->widgetSchema['post_date'] = new sfWidgetFormJQueryDateRange(array(
+      'config' => '{}',
+    ));
+    $this->validatorSchema['post_date'] = new IceValidatorDateRange(array(
+      'required' => false, 'from_date' => 'from', 'to_date' => 'to'
+    ));
   }
-
 
   public function unsetFields()
   {
