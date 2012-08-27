@@ -578,6 +578,18 @@ function load_how_to()
 
   echo do_shortcode('[wpfaqgroup id=' .$id  . ']');
 
+  echo sprintf(<<<START
+  <div class="form-actions">
+    <a href="#" class="btn btn-primary spacer-right-15" onClick="window.location.href = '%s';">
+      Ok, I got it!
+    </a>
+    <button type="reset" class="btn" onClick="$(this).parents('.modal').find('.modal-body').dialog2('close')">
+      Close
+    </button>
+  </div>
+START
+  , $_GET['redirect']);
+
   die();
 }
 add_action( 'wp_ajax_load_how_to', 'load_how_to' );
