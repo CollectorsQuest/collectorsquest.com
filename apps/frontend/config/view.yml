@@ -20,14 +20,18 @@ default:
   # javascripts:
 
   components:
-    header:       [global, header]
-    footer:       [global, footer]
-    breadcrumbs:  [global, breadcrumbs]
-    slot1:        []
-    sidebar_120:  []
-    sidebar_160:  []
-    sidebar_180:  []
-    sidebar_300:  []
+    header:        [global, header]
+    footer:        [global, footer]
+    breadcrumbs:   [global, breadcrumbs]
+    slot1:         []
+
+    sidebar_120:   []
+    sidebar_160:   []
+    sidebar_180:   []
+    sidebar_300:   []
+
+    jquery_header: []
+    jquery_footer: [global, jquery]
 
   has_layout:     true
   layout:         layout
