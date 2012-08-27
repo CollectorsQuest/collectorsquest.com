@@ -499,6 +499,19 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
       : false;
   }
 
+  /**
+   * Check if the collectible has been sold
+   *
+   * @param     PropelPDO $con
+   * @return    bool
+   */
+  public function isSold(PropelPDO $con = null)
+  {
+    return $this->getCollectibleForSale($con)
+      ? $this->getCollectibleForSale($con)->getIsSold()
+      : false;
+  }
+
   public function isWasForSale(PropelPDO $con = null)
   {
     return !! $this->getCollectibleForSale($con);
