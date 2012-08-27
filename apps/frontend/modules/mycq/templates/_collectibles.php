@@ -32,6 +32,13 @@
         'mycq_collectible_by_slug', $collectible
       );
       ?>
+
+      <?php if ($collectible->isSold()): ?>
+        <span class="sold">SOLD</span>
+      <?php elseif ($collectible->isForSale()): ?>
+        <span class="for-sale">FOR SALE</span>
+      <?php endif; ?>
+
       <p>
         <?php
         echo link_to(
