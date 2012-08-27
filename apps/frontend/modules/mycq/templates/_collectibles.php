@@ -25,12 +25,12 @@
   <div class="span3 collectible_grid_view_square link">
     <div class="collectible-view-slot">
       <?php
-      echo link_to(
-        image_tag_collectible(
-          $collectible, '150x150', array('width' => 140, 'height' => 140)
-        ),
-        'mycq_collectible_by_slug', $collectible
-      );
+        echo link_to(
+          image_tag_collectible(
+            $collectible, '150x150', array('width' => 140, 'height' => 140)
+          ),
+          'mycq_collectible_by_slug', array('sf_subject' => $collectible, 'return_to' => 'collection')
+        );
       ?>
 
       <?php if ($collectible->isSold()): ?>
@@ -40,12 +40,13 @@
       <?php endif; ?>
 
       <p>
-        <?php
+      <?php
         echo link_to(
-          cqStatic::reduceText($collectible->getName(), 30), 'mycq_collectible_by_slug',
-          $collectible, array('class' => 'target')
+          cqStatic::reduceText($collectible->getName(), 30),
+          'mycq_collectible_by_slug', array('sf_subject' => $collectible, 'return_to' => 'collection'),
+          array('class' => 'target')
         );
-        ?>
+      ?>
       </p>
     </div>
     <div class="hidden">
