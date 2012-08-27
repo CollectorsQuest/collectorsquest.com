@@ -40,9 +40,12 @@
           <p>
             Update your profile picture, edit your profile, email, or password
             <br>
-            <a href="<?= $content_call . '1' ?>" class="open-dialog"
-               title="<?= $title_edit_profile ?>" onclick="return false;">Show me how!
-            </a>
+            <?php
+              echo link_to(
+                'Show me how!', '/blog/wp-admin/admin-ajax.php?action=load_how_to&group_id=1',
+                array('class' => 'open-dialog', 'onclick' => 'return false;')
+              );
+            ?>
           </p>
         </div>
         <div class="span4 text-center">
@@ -54,9 +57,12 @@
             Upload new collections, add to existing ones or
             organize the collections that you have
             <br>
-            <a href="<?= $content_call . '4' ?>" class="open-dialog"
-               title="<?= $title_edit_collections ?>" onclick="return false;">Show me how!
-            </a>
+            <?php
+              echo link_to(
+                'Show me how!', '/blog/wp-admin/admin-ajax.php?action=load_how_to&group_id=4',
+                array('class' => 'open-dialog', 'onclick' => 'return false;')
+              );
+            ?>
           </p>
         </div>
         <div class="span4 text-center">
@@ -67,9 +73,12 @@
           <p>
             List your collectible, vintage and antique items for sale in our Market.
             <br>
-            <a href="<?= $content_call . '5' ?>" class="open-dialog"
-               title="<?= $title_sell_stuff ?>" onclick="return false;">Show me how!
-            </a>
+            <?php
+              echo link_to(
+                'Show me how!', '/blog/wp-admin/admin-ajax.php?action=load_how_to&group_id=5',
+                array('class' => 'open-dialog', 'onclick' => 'return false;')
+              );
+            ?>
           </p>
         </div>
       </div>

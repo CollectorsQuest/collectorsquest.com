@@ -12,20 +12,6 @@ class mycqActions extends cqFrontendActions
 
     $this->collector = $this->getUser()->getCollector();
 
-    $domain = sfConfig::get('app_www_domain');
-
-    //add WP plugin stylesheet to view how-to modals right
-    $this->response->addStylesheet('http://' . $domain . '/blog/wp-content/plugins/wp-faq/views/default/style.css?ver=1.4.6', 'first');
-
-    //get the title of how-to modal dialog
-    $title_call = 'http://' . $domain . '/blog/wp-admin/admin-ajax.php?action=load_how_to_title&group_id=';
-    $this->title_edit_profile = file_get_contents($title_call . '1');
-    $this->title_edit_collections = file_get_contents($title_call . '4');
-    $this->title_sell_stuff = file_get_contents($title_call . '5');
-
-    //used to get the content of how-to modal dialog
-    $this->content_call = 'http://' . $domain . '/blog/wp-admin/admin-ajax.php?action=load_how_to&group_id=';
-
     return sfView::SUCCESS;
   }
 
