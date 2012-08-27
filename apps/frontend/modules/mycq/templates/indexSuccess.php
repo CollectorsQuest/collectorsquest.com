@@ -42,11 +42,12 @@
             <br>
             <?php
               echo link_to(
-                'Show me how!', '/blog/wp-admin/admin-ajax.php?action=load_how_to&group_id=1', array(
-                  'class' => 'open-dialog btn btn-small btn-primary-invert',
-                  'onclick' => 'return false;',
-                  'style' => 'margin-top: 28px;'
-              ));
+                'Show me how!', '/blog/wp-admin/admin-ajax.php?action=load_how_to&group_id=1',
+                array(
+                  'class' => 'btn btn-primary open-dialog',
+                  'onclick' => 'return false;', 'style' => 'margin-top: 28px;'
+                )
+              );
             ?>
           </p>
         </div>
@@ -61,11 +62,12 @@
             <br>
             <?php
               echo link_to(
-                'Show me how!', '/blog/wp-admin/admin-ajax.php?action=load_how_to&group_id=4', array(
-                  'class' => 'open-dialog btn btn-small btn-primary-invert',
-                  'onclick' => 'return false;',
-                  'style' => 'margin-top: 10px;'
-              ));
+                'Show me how!', '/blog/wp-admin/admin-ajax.php?action=load_how_to&group_id=4',
+                array(
+                  'class' => 'btn btn-primary open-dialog',
+                  'onclick' => 'return false;', 'style' => 'margin-top: 10px;'
+                )
+              );
             ?>
           </p>
         </div>
@@ -79,11 +81,12 @@
             <br>
             <?php
               echo link_to(
-                'Show me how!', '/blog/wp-admin/admin-ajax.php?action=load_how_to&group_id=5', array(
-                  'class' => 'open-dialog btn btn-small btn-primary-invert',
-                  'onclick' => 'return false;',
-                  'style' => 'margin-top: 28px;'
-              ));
+                'Show me how!', '/blog/wp-admin/admin-ajax.php?action=load_how_to&group_id=5',
+                array(
+                  'class' => 'btn btn-small btn-primary open-dialog',
+                  'onclick' => 'return false;', 'style' => 'margin-top: 28px;'
+                )
+              );
             ?>
           </p>
         </div>
