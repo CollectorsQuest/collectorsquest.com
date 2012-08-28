@@ -99,7 +99,7 @@ $_height = 0;
 <?php
   if (isset($height) && property_exists($height, 'value'))
   {
-    $height->value += $_height;
+    $height->value -= abs($_height);
   }
 ?>
 

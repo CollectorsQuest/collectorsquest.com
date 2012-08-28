@@ -170,7 +170,7 @@ class _sidebarComponents extends cqFrontendComponents
     $total = count($this->tags);
 
     //approximately how many rows of tags we have displayed
-    $this->tag_rows = (integer) (count($total) / 4 + 1);
+    $this->tag_rows = (integer) ($total / 4 + 1);
 
     $height = $this->getVar('height');
 
