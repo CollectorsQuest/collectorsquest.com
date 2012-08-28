@@ -44,7 +44,7 @@
         //-->
       </ul>
     </div>
-    <div class="pull-right share">
+    <div id="social-sharing" class="pull-right share">
       <!-- AddThis Button BEGIN -->
       <?php /*
       <a href="javascript:void(0)" class="btn-lightblue btn-mini-social">
