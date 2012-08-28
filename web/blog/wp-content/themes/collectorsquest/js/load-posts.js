@@ -1,13 +1,13 @@
 jQuery(document).ready(function ($)
 {
   // The number of the next page to load (/page/x/).
-  var pageNum = parseInt(cq.startPage) + 1;
+  var pageNum = parseInt(cq_i18n.startPage) + 1;
 
   // The maximum number of pages the current query can return.
-  var max = parseInt(cq.maxPages);
+  var max = parseInt(cq_i18n.maxPages);
 
   // The link of the next page of posts.
-  var nextLink = cq.nextLink;
+  var nextLink = cq_i18n.nextLink;
 
   /**
    * Replace the traditional navigation with our own,
