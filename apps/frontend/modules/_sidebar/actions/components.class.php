@@ -137,7 +137,14 @@ class _sidebarComponents extends cqFrontendComponents
       $this->collections = CollectorCollectionPeer::getRandomCollections($this->limit, $c);
     }
 
-    return $this->_sidebar_if(count($this->collections) > 0);
+    // Temporary variable to avoid calling count() multiple times
+    $total = count($this->collections);
+
+    $height = $this->getVar('height');
+
+    return $this->_sidebar_if(
+      $total > 0 && (!empty($height) ? $height->value >= ($total * 66 + 63) : true)
+    );
   }
 
   public function executeWidgetTags()
@@ -159,7 +166,17 @@ class _sidebarComponents extends cqFrontendComponents
       $this->tags = $collectible->getTags();
     }
 
-    return $this->_sidebar_if(count($this->tags) > 0);
+    // Temporary variable to avoid calling count() multiple times
+    $total = count($this->tags);
+
+    //approximately how many rows of tags we have displayed
+    $this->tag_rows = (integer) (count($total) / 4 + 1);
+
+    $height = $this->getVar('height');
+
+    return $this->_sidebar_if(
+      $total > 0 && (!empty($height) ? $height->value >= ($this->tag_rows * 33 + 63) : true)
+    );
   }
 
   /**
@@ -300,7 +317,18 @@ class _sidebarComponents extends cqFrontendComponents
         $this->collections = $collector->getCollectorCollections($c);
       }
 
-      return sfView::SUCCESS;
+      //calculate widget height with or without message
+      $widget_height = 128;
+      if (!$this->getUser()->isOwnerOf($collector) && isset($message) && $message === true)
+      {
+        $widget_height += 68;
+      }
+
+      $height = $this->getVar('height');
+
+      return $this->_sidebar_if(
+        (!empty($height) ? $height->value >= $widget_height : true)
+      );
     }
     else if ($this->fallback && method_exists($this, 'execute'.$this->fallback))
     {
@@ -445,8 +473,10 @@ class _sidebarComponents extends cqFrontendComponents
     // Temporary variable to avoid calling count() multiple times
     $total = count($this->collectibles_for_sale);
 
+    $height = $this->getVar('height');
+
     return $this->_sidebar_if(
-      $total > 0 && (isset($height) ? $height->value >= ($total * 85 + 63) : true)
+      $total > 0 && (!empty($height) ? $height->value >= ($total * 85 + 63) : true)
     );
   }
 
@@ -534,8 +564,12 @@ class _sidebarComponents extends cqFrontendComponents
       $this->carousel_page_offset = $page - $this->carousel_page;
     }
 
+    $height = $this->getVar('height');
+
     // show if at least two, because there is no sense in showing only itself
-    return $this->_sidebar_if(count($this->collectibles) > 1);
+    return $this->_sidebar_if(
+      count($this->collectibles) > 1 && (!empty($height) ? $height->value >= 165 : true)
+    );
   }
 
   public function executeWidgetMoreHistory()
@@ -554,7 +588,11 @@ class _sidebarComponents extends cqFrontendComponents
   {
     $collectible = $this->getVar('collectible');
 
-    return $this->_sidebar_if($this->getCollector()->isOwnerOf($collectible));
+    $height = $this->getVar('height');
+
+    return $this->_sidebar_if(
+      $this->getCollector()->isOwnerOf($collectible) && (!empty($height) ? $height->value >= 87 : true)
+    );
   }
 
   public function executeWidgetCollectibleBuy()
@@ -574,7 +612,11 @@ class _sidebarComponents extends cqFrontendComponents
       $this->form = new CollectibleForSaleBuyForm($collectible_for_sale);
     }
 
-    return $this->_sidebar_if($collectible_for_sale instanceof CollectibleForSale);
+    $height = $this->getVar('height');
+
+    return $this->_sidebar_if(
+      $collectible_for_sale instanceof CollectibleForSale && (!empty($height) ? $height->value >= 73 : true)
+    );
   }
 
   public function executeWidgetMailChimpSubscribe()

@@ -1,11 +1,6 @@
 <?php
   use_helper('Gravatar');
   /** @var Comment $comment */ $comment;
-
-  if (!isset($height)):
-    $height = new stdClass;
-    $height->value = 0;
-  endif;
 ?>
 
 <div class="row-fluid user-comment">
@@ -36,7 +31,10 @@
 </div>
 
 <?php
-  //calculate approximately how many more than 1 rows are contained
-  $comment_rows = (integer) (strlen($comment->getBody()) / 80);
-  $height->value += 84 + 18 * $comment_rows;
+    if (isset($height) && property_exists($height, 'value'))
+    {
+      //calculate approximately how many more than 1 rows are contained
+      $comment_rows = (integer) (strlen($comment->getBody()) / 80);
+      $height->value += 84 + 18 * $comment_rows;
+    }
 ?>
