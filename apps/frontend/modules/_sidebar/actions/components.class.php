@@ -91,14 +91,31 @@ class _sidebarComponents extends cqFrontendComponents
     // Set the limit of Collections to show
     $this->limit = $this->getVar('limit') ?: 5;
 
+    /** @var $height stdClass */
+    if ($height = $this->getVar('height'))
+    {
+      $this->limit = min(floor(($height->value - 63) / 66), $this->limit);
+    }
+
+    /** @var $q CollectorCollectionQuery */
     $q = CollectorCollectionQuery::create()
       ->filterByNumItems(3, Criteria::GREATER_EQUAL);
 
     /** @var $collection CollectorCollection */
     if (($collection = $this->getVar('collection')) && $collection instanceof CollectorCollection)
     {
+      /** @var $tags array */
       $tags = $collection->getTags();
+
+      /** @var $content_category_id integer */
       $content_category_id = $collection->getContentCategoryId();
+
+      /** @var $category ContentCategory */
+      if ($category = $collection->getContentCategory())
+      {
+        $q->filterByContentCategoryWithDescendants($category->getParent() ?: $category);
+      }
+
       $q
         ->filterByTags($tags)
         ->_or()
@@ -112,9 +129,23 @@ class _sidebarComponents extends cqFrontendComponents
       ($collectible instanceof Collectible || $collectible instanceof CollectionCollectible)
     )
     {
-      $tags = $collectible->getTags();
+      /** @var $collection CollectoCollection */
+      $collection = $collectible->getCollectorCollection();
+
+      $collectible_tags = $collectible->getTags();
+      $collection_tags = $collection->getTags();
+
+      // See if we can get common tags between the collectible and the collection and use those
+      $tags = array_intersect($collectible_tags, $collection_tags) ?: $collectible_tags;
+
+      /** @var $category ContentCategory */
+      if ($category = $collection->getContentCategory())
+      {
+        $q->filterByContentCategoryWithDescendants($category->getParent() ?: $category);
+      }
+
       $q
-        ->filterById($collectible->getCollectionId(), Criteria::NOT_EQUAL)
+        ->filterById($collection->getId(), Criteria::NOT_EQUAL)
         ->filterByTags($tags)
         ->orderByUpdatedAt(Criteria::DESC);
     }
@@ -134,13 +165,12 @@ class _sidebarComponents extends cqFrontendComponents
       $c = new Criteria();
       $c->add(CollectorCollectionPeer::NUM_ITEMS, 3, Criteria::GREATER_EQUAL);
       $c->add(CollectorCollectionPeer::NUM_VIEWS, 1000, Criteria::GREATER_EQUAL);
+
       $this->collections = CollectorCollectionPeer::getRandomCollections($this->limit, $c);
     }
 
     // Temporary variable to avoid calling count() multiple times
     $total = count($this->collections);
-
-    $height = $this->getVar('height');
 
     return $this->_sidebar_if(
       $total > 0 && (!empty($height) ? $height->value >= ($total * 66 + 63) : true)
@@ -390,8 +420,15 @@ class _sidebarComponents extends cqFrontendComponents
   public function executeWidgetCollectiblesForSale()
   {
     $this->title = $this->getVar('title') ?: 'Items for Sale';
+
     // Set the limit of Collectibles For Sale to show
     $this->limit = (int) $this->getVar('limit') ?: 3;
+
+    /** @var $height stdClass */
+    if ($height = $this->getVar('height'))
+    {
+      $this->limit = min(floor(($height->value - 63) / 85), $this->limit);
+    }
 
     /** @var $q CollectibleForSaleQuery */
     $q = CollectibleForSaleQuery::create()
@@ -430,14 +467,16 @@ class _sidebarComponents extends cqFrontendComponents
     /** @var $collection Collection */
     if (($collection = $this->getVar('collection')) && $collection instanceof CollectorCollection)
     {
-      /** @var $category ContentCategory */
-      $category = $collection->getContentCategory();
-
       /** @var $tags array */
       $tags = $collection->getTags();
 
+      /** @var $category ContentCategory */
+      if ($category = $collection->getContentCategory())
+      {
+        $q->filterByContentCategoryWithDescendants($category->getParent() ?: $category);
+      }
+
       $q
-        ->filterByContentCategoryWithDescendants($category->getParent() ?: $category)
         ->filterByCollection($collection, Criteria::NOT_EQUAL)
         ->filterByTags($tags, Criteria::IN);
     }
@@ -462,10 +501,12 @@ class _sidebarComponents extends cqFrontendComponents
       $tags = array_intersect($collectible_tags, $collection_tags) ?: $collectible_tags;
 
       /** @var $category ContentCategory */
-      $category = $collection->getContentCategory();
+      if ($category = $collection->getContentCategory())
+      {
+        $q->filterByContentCategoryWithDescendants($category->getParent() ?: $category);
+      }
 
       $q
-        ->filterByContentCategoryWithDescendants($category->getParent() ?: $category)
         ->filterByCollectionCollectible($collectible, Criteria::NOT_EQUAL)
         ->filterByTags($tags, Criteria::IN);
     }
@@ -475,9 +516,6 @@ class _sidebarComponents extends cqFrontendComponents
 
     // Temporary variable to avoid calling count() multiple times
     $total = count($this->collectibles_for_sale);
-
-    /** @var $height stdClass */
-    $height = $this->getVar('height');
 
     return $this->_sidebar_if(
       $total > 0 && (!empty($height) ? $height->value >= ($total * 85 + 63) : true)
@@ -490,6 +528,12 @@ class _sidebarComponents extends cqFrontendComponents
 
     // Set the limit of other Collections to show
     $this->limit = (int) $this->getVar('limit') ?: 3;
+
+    /** @var $height stdClass */
+    if ($height = $this->getVar('height'))
+    {
+      $this->limit = min(floor(($height->value - 63) / 120), $this->limit);
+    }
 
     /** @var $q wpPostQuery */
     $q = wpPostQuery::create()
@@ -511,9 +555,6 @@ class _sidebarComponents extends cqFrontendComponents
 
     // Temporary variable to avoid calling count() multiple times
     $total = count($this->wp_posts);
-
-    /** @var $height stdClass */
-    $height = $this->getVar('height');
 
     return $this->_sidebar_if(
       $total > 0 && (!empty($height) ? $height->value >= ($total * 120 + 63) : true)
@@ -596,13 +637,7 @@ class _sidebarComponents extends cqFrontendComponents
   {
     $collectible = $this->getVar('collectible');
 
-    /** @var $height stdClass */
-    $height = $this->getVar('height');
-
-    return $this->_sidebar_if(
-      $this->getCollector()->isOwnerOf($collectible) &&
-      (!empty($height) ? $height->value >= 87 : true)
-    );
+    return $this->_sidebar_if($this->getCollector()->isOwnerOf($collectible));
   }
 
   public function executeWidgetCollectibleBuy()
@@ -622,13 +657,7 @@ class _sidebarComponents extends cqFrontendComponents
       $this->form = new CollectibleForSaleBuyForm($collectible_for_sale);
     }
 
-    /** @var $height stdClass */
-    $height = $this->getVar('height');
-
-    return $this->_sidebar_if(
-      $collectible_for_sale instanceof CollectibleForSale &&
-      (!empty($height) ? $height->value >= 73 : true)
-    );
+    return $this->_sidebar_if($collectible_for_sale instanceof CollectibleForSale);
   }
 
   public function executeWidgetMailChimpSubscribe()

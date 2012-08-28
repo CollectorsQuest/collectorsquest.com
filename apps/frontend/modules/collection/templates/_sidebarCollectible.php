@@ -1,8 +1,9 @@
 <?php
 /**
- * @var $form CollectibleForSaleBuyForm
- * @var $collectible Collectible
- * @var $collectible_for_sale CollectibleForSale
+ * @var  $form  CollectibleForSaleBuyForm
+ * @var  $collectible  Collectible
+ * @var  $collectible_for_sale  CollectibleForSale
+ * @var  $sf_user  cqFrontendUser
  */
 
 /** @var $height stdClass */
@@ -69,7 +70,5 @@ if (!property_exists($height, 'value') || $height->value <= 0)
 <?php
   include_component(
     '_sidebar', 'widgetCollections',
-    array('collectible' => $collectible, 'fallback' => 'random',
-      'height' => &$height
-    )
+    array('collectible' => $collectible, 'fallback' => 'random', 'height' => &$height)
   );
