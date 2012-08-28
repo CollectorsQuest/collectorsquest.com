@@ -1,11 +1,16 @@
 <?php
   /** @var $for_object BaseObject */
   /** @var $comments Comment[] */
+
+  if (!isset($height)):
+    $height = new stdClass;
+    $height->value = 0;
+  endif;
 ?>
 
 <div class="user-comments">
   <?php foreach ($comments as $comment): ?>
-    <?php include_partial('comments/single_comment', array('comment' => $comment)); ?>
+    <?php include_partial('comments/single_comment', array('comment' => $comment, 'height' => &$height)); ?>
   <?php endforeach; ?>
 </div>
 
@@ -19,4 +24,5 @@
     See the next <?= sfConfig::get('app_comments_num_load', 20); ?> comments
   </button>
 </div>
+<?php $height->value += 28; ?>
 <?php endif; ?>

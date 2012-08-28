@@ -1,93 +1,117 @@
 <?php
 /**
  * @var  $title  string
+ * @var  $has_message  boolean
+ * @var  $widget_height  integer
  * @var  $collector  Collector
  * @var  $collectible Collectible
  * @var  $collections  Collection[]
+ * @var $height stdClass
  */
+
+  if (!isset($height)):
+    $height = new stdClass;
+    $height->value=0;
+  endif;
 ?>
 
-<div class="row-fluid spacer-top-20 link">
-  <?php cq_sidebar_title($title, null); ?>
+<?php
+  $has_message = false;
+  $widget_height = 128;
+  if (!$sf_user->isOwnerOf($collector) && isset($message) && $message === true):
+    $has_message = true;
+    $widget_height += 68;
+  endif;
+?>
 
-  <div class="span3">
-    <?php
-      echo link_to_collector($collector, 'image', array(
-        'link_to' => array('class' => 'target'),
-        'image_tag' => array('max_width' => 60, 'max_height' => 60)
-      ));
-    ?>
-  </div>
-  <div class="span8">
-    <ul style="list-style: none; margin-left: 5px;">
-      <li>
-        <?php
-        echo sprintf(
-          '%s %s collector',
-          in_array(strtolower(substr($collector->getCollectorType(), 0, 1)), array('a', 'e', 'i', 'o')) ? 'An' : 'A',
-          '<strong>'. $collector->getCollectorType() .'</strong>'
-        );
-        ?>
-      </li>
-      <?php if ($country_iso3166 = $collector->getProfile()->getCountryIso3166()): ?>
-      <li>
-        From <?= ($country_iso3166 == 'US') ? 'the United States' : $collector->getProfile()->getCountryName(); ?>
-      </li>
-      <?php endif; ?>
-    </ul>
-  </div>
-</div>
+<?php if ($height->value > $widget_height): ?>
 
-<?php if (!$sf_user->isOwnerOf($collector) && isset($message) && $message === true): ?>
-<div class="row-fluid spacer">
-  <div class="send-pm">
-    <form action="<?= url_for2('messages_compose', array('to'=>$collector->getUsername()), true); ?>" method="post" class="spacer-bottom-reset" id="form-private-message">
-      <?= $pm_form->renderHiddenFields(); ?>
-      <textarea class="requires-login" required data-login-title="Please log in to contact this member:" data-signup-title="Create an account to contact this member:" name="message[body]" style="width: 97%; margin-bottom: 0;" placeholder="Send a message to <?= $collector; ?>"></textarea>
-      <div class="buttons-container" id="buttons-private-message">
-        <?php /* <button type="button" class="btn cancel" value="cancel">cancel</button>
-         &nbsp; - or - &nbsp;
-        <input type="submit" class="btn-lightblue-normal" value="Send the Message"> */?>
-        <button type="submit" class="btn-lightblue-normal textright requires-login">
-          <i class="mail-icon-mini"></i> &nbsp;Send message
-        </button>
-      </div>
-    </form>
-  </div>
-</div>
-<?php endif; ?>
-
-<?php if (!empty($collections) && count($collections) > 0): ?>
-  <div class="row-fluid min-height-13 spacer-top cf">
-    <div class="span9 text-word-wrap">
-      <?= $collector; ?>'s Collections:
-    </div>
-    <?php if ($collector->countCollectorCollections() > 3): ?>
+  <div class="row-fluid spacer-top-20 link">
+    <?php cq_sidebar_title($title, null); ?>
     <div class="span3">
-      <?= link_to('View all &raquo;', 'collections_by_collector', $collector, array('class' => 'pull-right')); ?>
+      <?php
+        echo link_to_collector($collector, 'image', array(
+          'link_to' => array('class' => 'target'),
+          'image_tag' => array('max_width' => 60, 'max_height' => 60)
+        ));
+      ?>
     </div>
-    <?php endif; ?>
+    <div class="span8">
+      <ul style="list-style: none; margin-left: 5px;">
+        <li>
+          <?php
+          echo sprintf(
+            '%s %s collector',
+            in_array(strtolower(substr($collector->getCollectorType(), 0, 1)), array('a', 'e', 'i', 'o')) ? 'An' : 'A',
+            '<strong>'. $collector->getCollectorType() .'</strong>'
+          );
+          ?>
+        </li>
+        <?php if ($country_iso3166 = $collector->getProfile()->getCountryIso3166()): ?>
+        <li>
+          From <?= ($country_iso3166 == 'US') ? 'the United States' : $collector->getProfile()->getCountryName(); ?>
+        </li>
+        <?php endif; ?>
+      </ul>
+    </div>
   </div>
 
-  <?php foreach ($collections as $collection): ?>
-  <div class="thumbnails-box-1x4-sidebar bgyellow-border">
-    <div class="inner-thumbnails-box">
-    <p><?= link_to_collection($collection, 'text'); ?></p>
-      <div class="thumb-container">
-          <?php
-            $c = new Criteria();
-            $c->setLimit(4);
-            foreach ($collection->getCollectionCollectibles($c) as $i => $collectible)
-            {
-              $options = array('width' => 60, 'height' => 60);
-                  echo link_to(image_tag_collectible($collectible, '75x75', $options), 'collectible_by_slug', $collectible, array('class' => 'thumbnails60'));
-            }
-          ?>
-        </div>
+  <?php $height->value -= 128; ?>
+
+  <?php if ($has_message): ?>
+    <div class="row-fluid spacer">
+      <div class="send-pm">
+        <form action="<?= url_for2('messages_compose', array('to'=>$collector->getUsername()), true); ?>" method="post" class="spacer-bottom-reset" id="form-private-message">
+          <?= $pm_form->renderHiddenFields(); ?>
+          <textarea class="requires-login" required data-login-title="Please log in to contact this member:" data-signup-title="Create an account to contact this member:" name="message[body]" style="width: 97%; margin-bottom: 0;" placeholder="Send a message to <?= $collector; ?>"></textarea>
+          <div class="buttons-container" id="buttons-private-message">
+            <?php /* <button type="button" class="btn cancel" value="cancel">cancel</button>
+             &nbsp; - or - &nbsp;
+            <input type="submit" class="btn-lightblue-normal" value="Send the Message"> */?>
+            <button type="submit" class="btn-lightblue-normal textright requires-login">
+              <i class="mail-icon-mini"></i> &nbsp;Send message
+            </button>
+          </div>
+        </form>
       </div>
-  </div>
-  <?php endforeach; ?>
-<?php endif; ?>
+    </div>
+    <?php $height->value -= 58; ?>
+  <?php endif; ?>
+
+  <?php if (!empty($collections) && count($collections) > 0): ?>
+    <div class="row-fluid min-height-13 spacer-top cf">
+      <div class="span9 text-word-wrap">
+        <?= $collector; ?>'s Collections:
+      </div>
+      <?php if ($collector->countCollectorCollections() > 3): ?>
+      <div class="span3">
+        <?= link_to('View all &raquo;', 'collections_by_collector', $collector, array('class' => 'pull-right')); ?>
+      </div>
+      <?php endif; ?>
+    </div>
+
+    <?php foreach ($collections as $collection): ?>
+    <div class="thumbnails-box-1x4-sidebar bgyellow-border">
+      <div class="inner-thumbnails-box">
+      <p><?= link_to_collection($collection, 'text'); ?></p>
+        <div class="thumb-container">
+            <?php
+              $c = new Criteria();
+              $c->setLimit(4);
+              foreach ($collection->getCollectionCollectibles($c) as $i => $collectible)
+              {
+                $options = array('width' => 60, 'height' => 60);
+                    echo link_to(image_tag_collectible($collectible, '75x75', $options), 'collectible_by_slug', $collectible, array('class' => 'thumbnails60'));
+              }
+            ?>
+          </div>
+        </div>
+    </div>
+    <?php endforeach; ?>
+  <?php endif; ?>
+<?php endif; //($height->value > 166) ?>
+
+
 
 <script>
 $(document).ready(function()

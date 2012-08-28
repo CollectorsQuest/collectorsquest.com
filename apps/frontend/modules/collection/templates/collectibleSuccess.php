@@ -11,7 +11,12 @@
  * @var  $collectible_for_sale  CollectibleForSale
  *
  * @var  $additional_multimedia iceModelMultimedia[]
+ *
+ * determine page height so we can display more/less sidebar widgets
+ * @var  $height_main_div  stdClass
  */
+  $height_main_div = new stdClass;
+  $height_main_div->value = 0;
 
   $buy_form = new CollectibleForSaleBuyForm($collectible_for_sale);
 
@@ -32,6 +37,7 @@
   );
 
   cq_page_title($collectible->getName(), null, $options);
+  $height_main_div->value += 36 //cq_page_title();
 ?>
 
 <div class="row-fluid main-collectible-container">
@@ -77,6 +83,15 @@
       );
     ?>
   </div>
+
+  <?php
+    if (sfConfig::get('sf_environment') == 'prod'):
+      $height_main_div->value += 15 + getimagesize(src_tag_collectible($collectible, '620x0'));
+    else:
+      // default - 20 margin to top + 490 height of image itself
+      $height_main_div->value += 15 + 490;
+    endif;
+  ?>
 
   <?php if (count($additional_multimedia) > 0): ?>
   <div class="span2">
@@ -134,16 +149,31 @@
   </div>
 </div>
 
+<?php $height_main_div->value += 58 //<div class="blue-actions-panel spacer-20">?>
+
 <?php if ($collectible->getDescription('stripped')): ?>
 <div class="item-description <?= $editable ? 'editable_html' : '' ?>"
      id="collectible_<?= $collectible->getId(); ?>_description">
-  <?= $collectible->getDescription('html'); ?>
+  <?= $description = $collectible->getDescription('html'); ?>
 </div>
 <?php endif; ?>
+
+<?php
+  /*
+   * calculate height of <div class="item-description">
+   *
+   * we have around 100 symbols in a row
+   */
+  $description_rows = (integer) (strlen($description) / 100 + 1);
+  //approximately 2 <br> tags account for a new line
+  $br_count = (integer) (substr_count($description, '<br') / 2);
+  $height_main_div->value += 20 + 18 * ($br_count + $description_rows);
+?>
 
 <?php if (isset($collectible_for_sale) && $collectible_for_sale->isForSale() && $collectible_for_sale->hasActiveCredit()): ?>
   <!-- sale items -->
   <span class="item-condition"><strong>Condition:</strong> <?= $collectible_for_sale->getCondition(); ?></span>
+  <?php $height_main_div->value += 48 ?>
 
   <table class="shipping-rates">
     <thead>
@@ -160,6 +190,8 @@
     </tr>
     </thead>
     <tbody>
+    <?php $height_main_div->value += 69;?>
+
     <?php if (count($collectible->getShippingReferencesByCountryCode())):
       foreach ($collectible->getShippingReferencesByCountryCode() as $country_code => $shipping_reference):
         if (ShippingReferencePeer::SHIPPING_TYPE_NO_SHIPPING != $shipping_reference->getShippingType()): ?>
@@ -179,7 +211,9 @@
 
         <?php else: // shipping_type = no shipping
           $shipping_no_shipping_countries[] = $shipping_reference->getCountryName();
+
         endif;
+        $height_main_div->value += 25;
       endforeach; // foreach shipping reference ?>
 
       <?= $shipping_will_ship_text; // first output which countries we ship to ?>
@@ -205,10 +239,10 @@
         <td>Everywhere Else</td>
         <td>Free shipping</td>
       </tr>
+      <?php $height_main_div->value += 25; ?>
     <?php endif; // if has shipping references ?>
     </tbody>
   </table>
-
 
   <div id="information-box">
     <p>Have a question about shipping? <?= cq_link_to(
@@ -217,14 +251,31 @@
       array('to' => $collector->getUsername(), 'subject' => 'Regarding your item: '. $collectible->getName(), 'goto' => $sf_request->getUri())
     ); ?></p>
 
-    <?php if ($collector->getSellerSettingsReturnPolicy()): ?>
-      <p>Return Policy: <?= $collector->getSellerSettingsReturnPolicy(); ?></p>
-    <?endif; ?>
+    <?php
+      $return_policy = $collector->getSellerSettingsReturnPolicy();
+      if ($return_policy): ?>
+        <p>Return Policy: <?= $return_policy ?></p>
 
-    <?php if ($collector->getSellerSettingsPaymentAccepted()): ?>
-      <p>Payment: <?= $collector->getSellerSettingsPaymentAccepted(); ?></p>
-    <?php endif; ?>
+        <?php
+          $return_policy_rows = (integer) (strlen('Return Policy: ' . $return_policy) / 100 + 1);
+          $height_main_div->value += 9 + 18 * $return_policy_rows;
+        ?>
+      <? endif; ?>
+
+    <?php
+      $payment_accepted = $collector->getSellerSettingsPaymentAccepted();
+      if ($payment_accepted): ?>
+        <p>Payment: <?= $payment_accepted; ?></p>
+
+        <?php
+          $payment_accepted_rows = (integer) (strlen('Return Policy: ' . $payment_accepted) / 100 + 1);
+          $height_main_div->value += 9 + 18 * $payment_accepted_rows;
+        ?>
+      <?php endif; ?>
   </div>
+
+
+  <?php $height_main_div->value += 67; //information-box top link, padding and margin ?>
 
 
   <?php if ($collectible_for_sale->getIsSold()): ?>
@@ -237,6 +288,7 @@
     </p>
     Quantity sold: 1
   </div>
+  <?php $height_main_div->value += 59 ?>
 
   <?php elseif ($collectible_for_sale->isForSale() && IceGateKeeper::open('shopping_cart')): ?>
   <form action="<?= url_for('@shopping_cart', true); ?>" method="post">
@@ -256,6 +308,7 @@
 
     <?= $buy_form->renderHiddenFields(); ?>
   </form>
+  <?php $height_main_div->value += 91 ?>
   <?php endif; // if for sale ?>
 
 
@@ -264,11 +317,13 @@
   <?php
     include_partial(
       'comments/comments',
-      array('for_object' => $collectible->getCollectible())
+      array('for_object' => $collectible->getCollectible(), 'height' => &$height_main_div)
     );
   ?>
 
 <?php endif; ?>
+
+<?php sfContext::getInstance()->getUser()->setAttribute('height_main_div', $height_main_div->value); ?>
 
 <script>
 $(document).ready(function()

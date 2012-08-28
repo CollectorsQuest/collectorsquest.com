@@ -1,31 +1,44 @@
 <?php
+/*
+ * @var $height stdClass
+ * @var $collectibles Collectible[]
+ */
+
   use_javascript('jquery/rcarousel.js');
+
+  if (!isset($height)):
+    $height = new stdClass;
+    $height->value=0;
+  endif;
 ?>
 
-<div class="carousel-sidebar sidebar-title">
-  <h3 class="Chivo webfont spacer-bottom-5">Other items in this collection:</h3>
-  <div class="thumbnails-inner well">
-    <a href="javascript:void(0)" id="ui-carousel-prev" title="previous collectible" class="left-arrow">
-      <i class="icon-chevron-left white"></i>
-    </a>
-    <a href="javascript:void(0)" id="ui-carousel-next" title="next collectible" class="right-arrow">
-      <i class="icon-chevron-right white"></i>
-    </a>
-    <div id="carousel" data-loaded='<?= json_encode(array_fill(1, $carousel_page, true)); ?>'
-         class="thumbnails">
-      <?php foreach ($collectibles as $c): ?>
-        <a href="<?= url_for_collectible($c) ?>"
-           class="thumbnail <?= $c->getId() == $collectible->getId() ? 'active' : '' ?>">
-          <?php
-            echo image_tag_collectible(
-              $c, '100x100', array('width' => 90, 'height' => 90)
-            );
-          ?>
-        </a>
-      <?php endforeach; ?>
+<?php if ($height->value > 165): ?>
+  <div class="carousel-sidebar sidebar-title">
+    <h3 class="Chivo webfont spacer-bottom-5">Other items in this collection:</h3>
+    <div class="thumbnails-inner well">
+      <a href="javascript:void(0)" id="ui-carousel-prev" title="previous collectible" class="left-arrow">
+        <i class="icon-chevron-left white"></i>
+      </a>
+      <a href="javascript:void(0)" id="ui-carousel-next" title="next collectible" class="right-arrow">
+        <i class="icon-chevron-right white"></i>
+      </a>
+      <div id="carousel" data-loaded='<?= json_encode(array_fill(1, $carousel_page, true)); ?>'
+           class="thumbnails">
+        <?php foreach ($collectibles as $c): ?>
+          <a href="<?= url_for_collectible($c) ?>"
+             class="thumbnail <?= $c->getId() == $collectible->getId() ? 'active' : '' ?>">
+            <?php
+              echo image_tag_collectible(
+                $c, '100x100', array('width' => 90, 'height' => 90)
+              );
+            ?>
+          </a>
+        <?php endforeach; ?>
+      </div>
     </div>
   </div>
-</div>
+  <?php $height->value -= 165; ?>
+<?php endif; ?>
 
 <script type="text/javascript">
 $(document).ready(function()
