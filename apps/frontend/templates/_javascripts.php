@@ -23,9 +23,6 @@
     both: '<?= javascript_path('frontend/scripts.common.bundle.' . GIT_REVISION . '.js'); ?>',
     complete: function ()
     {
-      // Restore the original jQuery.fn.ready() function
-      $.ready = window.cq._ready;
-
       // http://stackoverflow.com/a/8567229
       (function ($, window, document)
       {
@@ -35,7 +32,9 @@
       }(jQuery, this, this.document));
 
       // Execute the controller in scripts.common.bundle.js
-      $(document).ready(CONTROLLER.init());
+      $(document).ready(CONTROLLER.init);
+
+      $.holdReady(false);
     }
   }]);
 </script>
