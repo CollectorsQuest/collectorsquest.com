@@ -23,16 +23,15 @@
     both: '<?= javascript_path('frontend/scripts.common.bundle.' . GIT_REVISION . '.js'); ?>',
     complete: function ()
     {
-      // Restore the original jQuery ready() function
-      jQuery.fn.ready = window.cq._ready;
+      // Restore the original jQuery.fn.ready() function
+      $.ready = window.cq._ready;
 
       // http://stackoverflow.com/a/8567229
       (function ($, window, document)
       {
-        for (func in window.cq.docready) {
-          $(document).ready(window.cq.docready[func]);
+        for (func in window._docready) {
+          $(document).ready(window._docready[func]);
         }
-        window.cq.docready=[];
       }(jQuery, this, this.document));
 
       // Execute the controller in scripts.common.bundle.js
@@ -42,20 +41,23 @@
 </script>
 
 <script>
-(function(d, t)
+if (document.getElementById('social-sharing') !== null)
 {
-  var addthis = d.createElement(t);
-  var s = d.getElementsByTagName(t)[0];
+  (function(d, t)
+  {
+    var addthis = d.createElement(t);
+    var s = d.getElementsByTagName(t)[0];
 
-  addthis.async = true;
-  addthis.src = '//s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4fa2c6240b775d05&async=true';
-  s.parentNode.insertBefore(addthis, s);
+    addthis.async = true;
+    addthis.src = '//s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4fa2c6240b775d05&async=true';
+    s.parentNode.insertBefore(addthis, s);
 
-})(document, 'script');
+  })(document, 'script');
 
-$(window).load(function() {
-  addthis.init()
-})
+  $(window).load(function() {
+    addthis.init()
+  });
+}
 </script>
 
 <?php if ($sf_request->isSecure()): ?>

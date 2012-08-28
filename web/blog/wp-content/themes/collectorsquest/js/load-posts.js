@@ -1,4 +1,4 @@
-jQuery(document).ready(function ($)
+$(document).ready(function()
 {
   // The number of the next page to load (/page/x/).
   var pageNum = parseInt(cq_i18n.startPage) + 1;
