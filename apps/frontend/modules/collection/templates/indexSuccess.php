@@ -41,7 +41,7 @@
         </li>
       </ul>
     </div>
-    <div class="pull-right share">
+    <div id="social-sharing" class="pull-right share">
       <!-- AddThis Button BEGIN -->
       <a class="btn-lightblue btn-mini-social addthis_button_email">
         <i class="mail-icon-mini"></i> Email

@@ -62,15 +62,13 @@
           postUrl: '<?= url_for('@mycq_aviary_update_image', true); ?>'
         }
       },
-      docready: [],
-      ready: function(fn) { window.cq.docready.push(fn) },
       _ready: null
     };
 
     // http://stackoverflow.com/a/8567229
-    var $ = function() {
-      return { ready: window.cq.ready }
-    };
+    var _docready=[];
+    var _ready = function(fn){_docready.push(fn)};
+    var $ = function(){return{ready:_ready}};
   </script>
   <script src="<?= cq_javascript_src('frontend/head.js'); ?>"></script>
   <?php include_component_slot('jquery_header'); ?>

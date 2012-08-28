@@ -7,8 +7,8 @@
     window.jQuery.ui || document.write('<script src="<?= cq_javascript_src('frontend/jquery.ui.js'); ?>"><\/script>');
 
     // Store a reference to the original remove method.
-    window.cq._ready = jQuery.fn.ready;
+    window.cq._ready = $.ready;
 
     // Define overriding method. (http://stackoverflow.com/a/8567229)
-    jQuery.fn.ready = window.cq.ready;
+    $.ready = window._ready;
   </script>
