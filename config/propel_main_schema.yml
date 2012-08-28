@@ -55,8 +55,6 @@ classes:
       is_featured:     { type: boolean, default: false }
       is_seller:       { type: boolean, default: false }
       is_image_auto:   { type: boolean, default: true }
-      preferences:     longvarchar
-      notifications:   longvarchar
 
     propel_behaviors:
       archivable: { archive_class: CollectorProfileArchive, archived_at_column: archived_at }

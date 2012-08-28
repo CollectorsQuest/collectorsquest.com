@@ -38,9 +38,14 @@
             <h3>Edit My Profile</h3>
           </a>
           <p>
-            Update your profile picture, edit your profile, email, or password
-            <br>
-            <!--<a href="javascript:void(0)">Show me how!</a>//-->
+            Update your profile picture, edit your profile, email, or password.<br>
+            <?php
+              echo link_to(
+                '<i class="icon-question-sign"></i>&nbsp;Show me how!',
+                '/blog/wp-admin/admin-ajax.php?action=load_how_to&group_id=1&redirect='. url_for('@mycq_profile'),
+                array('class' => 'open-dialog', 'onclick' => 'return false;')
+              );
+            ?>
           </p>
         </div>
         <div class="span4 text-center">
@@ -49,21 +54,30 @@
             <h3>Edit My Collections</h3>
           </a>
           <p>
-            Upload new collections, add to existing ones or
-            organize the collections that you have
-            <br>
-            <!--<a href="javascript:void(0)">Show me how!</a>//-->
+            Upload new collections, add to existing ones or organize the collections that you have.<br>
+            <?php
+              echo link_to(
+                '<i class="icon-question-sign"></i>&nbsp;Show me how!',
+                '/blog/wp-admin/admin-ajax.php?action=load_how_to&group_id=4&redirect='. url_for('@mycq_collections'),
+                array('class' => 'open-dialog', 'onclick' => 'return false;')
+              );
+            ?>
           </p>
         </div>
         <div class="span4 text-center">
           <a href="<?= url_for('@mycq_marketplace'); ?>" title="Sell Your Stuff">
             <i class="marketplace"></i>
-            <h3>Sell Your Stuff</h3>
+            <h3>Sell My Stuff</h3>
           </a>
           <p>
-            List your collectible, vintage and antique items for sale in our Market.
-            <br>
-            <!--<a href="javascript:void(0)">Show me how!</a>//-->
+            List your collectible, vintage and antique items for sale in our Market.<br>
+            <?php
+              echo link_to(
+                '<i class="icon-question-sign"></i>&nbsp;Show me how!',
+                '/blog/wp-admin/admin-ajax.php?action=load_how_to&group_id=5&redirect='. url_for('@mycq_marketplace'),
+                array('class' => 'open-dialog', 'onclick' => 'return false;')
+              );
+            ?>
           </p>
         </div>
       </div>

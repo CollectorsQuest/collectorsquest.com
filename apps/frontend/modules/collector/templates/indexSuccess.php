@@ -34,17 +34,28 @@
 
             if ($profile->getCountryIso3166())
             {
-              echo sprintf(
-                ' from %s',
-                ($profile->getCountryIso3166() == 'US') ? 'the United States' : $profile->getCountry()
+              echo sprintf(' from %s',
+                'US' == $profile->getCountryIso3166()
+                  ? 'the United States'
+                  : $profile->getCountryName()
               );
             }
           ?>
 
-          <?php if ($text = $collector->getICollect()): ?>
+          <?php if (!empty($i_collect_tags)): ?>
           <p class="spacer-top">
             <strong>I collect:</strong>
-            <?= $text ?>
+            <?php
+              $i = 1;
+              foreach ($i_collect_tags as $tag)
+              {
+                echo link_to($tag, '@search?q=' . $tag, array(
+                       'title' => sprintf('Search for %s in Collectors Quest website!', $tag)
+                     ));
+                if ($i < count($i_collect_tags)) echo ', ';
+                $i++;
+              }
+            ?>
           </p>
           <?php endif; ?>
         </div>

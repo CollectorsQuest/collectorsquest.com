@@ -86,7 +86,11 @@ class cqSessionStorage extends sfSessionStorage
 
     if (!empty($session_id))
     {
-      session_id($session_id);
+      ini_set('session.use_cookies', 0);
+
+      is_array($options) ?
+        $options['session_id'] = $session_id :
+        $options = array('session_id' => $session_id);
     }
 
     parent::initialize($options);

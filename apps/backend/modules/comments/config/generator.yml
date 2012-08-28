@@ -14,10 +14,11 @@ generator:
     config:
       actions: ~
       fields:
-        author:      { label: Author }
-        list_body:   { label: Comment }
-        created_at:  { label: "Date & Time" }
-        model_object:     { label: Comment Target }
+        author:        { label: Author }
+        list_body:     { label: Comment }
+        created_at:    { label: 'Date & Time' }
+        model_object:  { label: Comment Target }
+        ip_address:    { label: IP Address }
 
       list:
         title:  Comments
@@ -31,10 +32,11 @@ generator:
           _delete:  { confirm: "Are you sure you want to delete this comment?" }
 
       filter:
-        display: [subject, body]
+        display: [subject, body, created_at]
         fields:
           subject:
             widgetOptions: { with_empty: false }
+          created_at: { label: Date }
 
       form:
         class: BackendCommentForm

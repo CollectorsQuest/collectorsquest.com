@@ -2,7 +2,7 @@
 
 include(__DIR__.'/../../bootstrap/model.php');
 
-$t = new lime_test(26, array('output' => new lime_output_color(), 'error_reporting' => true));
+$t = new lime_test(27, array('output' => new lime_output_color(), 'error_reporting' => true));
 
 cqTest::resetClasses(array('Collector'));
 
@@ -115,3 +115,9 @@ $t->diag("Test tagging functions");
 
   $t->is($new_collector->getTagsString(), 'standalone-tag, luna, is, best, pony, twilight, sparkle, disagrees',
     '::getTagsString()');
+
+
+$t->diag('Preferences Extra Properties tests');
+  $new_collector = new Collector();
+  $t->is($new_collector->getPreferencesNewsletter(), true,
+    'Preferences newsletter extra property exist with proper defaults');

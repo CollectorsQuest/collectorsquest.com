@@ -1,7 +1,5 @@
 all:
   stylesheets:
-    - jquery/ui/bootstrap/theme.css
-    - jquery/ui/bootstrap/theme.ie.css
     - jquery/chosen.css
     - jquery/tagedit.css
     - frontend/modules/mycq.css

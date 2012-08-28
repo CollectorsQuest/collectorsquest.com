@@ -23,6 +23,8 @@ class collectorActions extends cqFrontendActions
     $this->collector = $collector;
     $this->profile   = $profile;
 
+    $this->i_collect_tags = $collector->getICollectTags();
+
     // Set the OpenGraph meta tags
     $this->getResponse()->addOpenGraphMetaFor($collector);
 

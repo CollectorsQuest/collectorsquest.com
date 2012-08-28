@@ -49,7 +49,7 @@ if (Modernizr.isproduction)
 {
   var _gaq = _gaq || [];
 
-  window.onload = function ()
+  window.onload = function()
   {
     var _page_load_end = new Date(),
       _page_load_time = _page_load_end.getTime() - window.cq.page_load_start.getTime()

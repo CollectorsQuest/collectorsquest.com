@@ -3,7 +3,10 @@
     <ul class="nav nav-pills spacer-bottom-reset">
       <li>
         <?php
-          if ($collectible->isForSale() || $sf_params->get('available_for_sale') === 'yes')
+          if (
+            ($collectible->isForSale() || $sf_params->get('available_for_sale') === 'yes') &&
+             $sf_params->get('return_to', 'collection') !== 'collection'
+          )
           {
             $link = link_to(
               '<i class="icon-arrow-left"></i> Back to My Market', '@mycq_marketplace'

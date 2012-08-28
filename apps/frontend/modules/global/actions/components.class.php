@@ -39,6 +39,11 @@ class globalComponents extends cqFrontendComponents
     return sfView::SUCCESS;
   }
 
+  public function executeJquery()
+  {
+    return sfView::SUCCESS;
+  }
+
   public function executePagination(sfWebRequest $request)
   {
     /** @var $pager sfPropelPager */

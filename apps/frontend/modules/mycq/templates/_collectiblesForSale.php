@@ -48,7 +48,8 @@
             cqStatic::truncateText(
               $collectible_for_sale->getCollectible()->getName(), 36, '...', true
             ),
-            'mycq_collectible_by_slug', $collectible_for_sale->getCollectible(),
+            'mycq_collectible_by_slug',
+            array('sf_subject' => $collectible_for_sale->getCollectible(), 'return_to' => 'market'),
             array('class' => 'target')
           );
         ?>

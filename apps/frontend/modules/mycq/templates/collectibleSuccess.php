@@ -147,20 +147,11 @@ else
   <ul class="thumbnails">
     <?php foreach ($collectibles as $c): ?>
     <li class="wrapper-90">
-      <a href="<?= url_for('mycq_collectible_by_slug', $c); ?>" class="thumb">
+      <a href="<?= url_for('mycq_collectible_by_slug', array('sf_subject' => $c, 'return_to' => 'collection')); ?>" class="thumb">
         <?= image_tag_collectible($c, '100x100', array('width' => 85, 'height' => 85)); ?>
       </a>
     </li>
     <?php endforeach; ?>
-
-    <!--
-    <li class="wrapper-90">
-      <div class="drop-zone ui-droppable">
-        <i class="icon icon-plus" data-collection-id="3269"></i>
-        <span class="drop-zone-txt">Add Item<span>
-      </div>
-    </li>
-    //-->
   </ul>
 </div>
 <?php endif; ?>

@@ -25,20 +25,28 @@
   <div class="span3 collectible_grid_view_square link">
     <div class="collectible-view-slot">
       <?php
-      echo link_to(
-        image_tag_collectible(
-          $collectible, '150x150', array('width' => 140, 'height' => 140)
-        ),
-        'mycq_collectible_by_slug', $collectible
-      );
-      ?>
-      <p>
-        <?php
         echo link_to(
-          cqStatic::reduceText($collectible->getName(), 30), 'mycq_collectible_by_slug',
-          $collectible, array('class' => 'target')
+          image_tag_collectible(
+            $collectible, '150x150', array('width' => 140, 'height' => 140)
+          ),
+          'mycq_collectible_by_slug', array('sf_subject' => $collectible, 'return_to' => 'collection')
         );
-        ?>
+      ?>
+
+      <?php if ($collectible->isSold()): ?>
+        <span class="sold">SOLD</span>
+      <?php elseif ($collectible->isForSale()): ?>
+        <span class="for-sale">FOR SALE</span>
+      <?php endif; ?>
+
+      <p>
+      <?php
+        echo link_to(
+          cqStatic::reduceText($collectible->getName(), 30),
+          'mycq_collectible_by_slug', array('sf_subject' => $collectible, 'return_to' => 'collection'),
+          array('class' => 'target')
+        );
+      ?>
       </p>
     </div>
     <div class="hidden">

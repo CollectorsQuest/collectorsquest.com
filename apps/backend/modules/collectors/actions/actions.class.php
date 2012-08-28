@@ -88,18 +88,6 @@ class collectorsActions extends autoCollectorsActions
     $this->redirect('collector');
   }
 
-  public function executeChangeCqnextAccessAllowed()
-  {
-    /* @var $collector Collector */
-    $collector = $this->getRoute()->getObject();
-    $collector->setCqnextAccessAllowed(
-      !$collector->getCqnextAccessAllowed()
-    );
-    $collector->save();
-
-    $this->redirect('collector');
-  }
-
   public function executeSyncWithMailChimp()
   {
     $mc = cqStatic::getMailChimpClient();
@@ -112,10 +100,9 @@ class collectorsActions extends autoCollectorsActions
 
     $i = 0;
 
-    /** @var $collector Collector */
+    /* @var $collector Collector */
     foreach ($collectors as $collector)
     {
-      $preferences = $collector->getProfile()->getPreferences();
       $avatar = !$collector->getProfile()->getIsImageAuto() && !$collector->hasPhoto() ?
         'Yes' : 'No';
 
@@ -129,7 +116,7 @@ class collectorsActions extends autoCollectorsActions
         'COMPLETED' => (int) $collector->getProfile()->getProfileCompleted(),
         'PAGEVIEWS' => $collector->getVisitorInfoNumPageViews(),
         'VISITS' => $collector->getVisitorInfoNumVisits(),
-        'NEWSLETTER' => $preferences['newsletter'] ? 'Yes' : 'No',
+        'NEWSLETTER' => $collector->getPreferencesNewsletter(),
         'VISITED_AT' => $collector->getLastVisitedAt('m/d/Y'),
         'SEEN_AT' => $collector->getLastSeenAt('m/d/Y'),
         'CREATED_AT' => $collector->getCreatedAt('m/d/Y'),

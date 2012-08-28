@@ -18,7 +18,9 @@ class BackendCollectorCollectionFormFilter extends BaseCollectorCollectionFormFi
         cqContext::getInstance()->getController()->genUrl('collections/collectionCategory')
       ),
     ));
+
     $this->setupIdField();
+    $this->setupCreatedAtField();
   }
 
   public function setupIdField()
@@ -27,6 +29,16 @@ class BackendCollectorCollectionFormFilter extends BaseCollectorCollectionFormFi
     $this->validatorSchema['id'] = new cqValidatorNumber(array(
       'required'=> false,
       'multiple'=> true
+    ));
+  }
+
+  protected function setupCreatedAtField()
+  {
+    $this->widgetSchema['created_at'] = new sfWidgetFormJQueryDateRange(array(
+      'config' => '{}',
+    ));
+    $this->validatorSchema['created_at'] = new IceValidatorDateRange(array(
+      'required' => false, 'from_date' => 'from', 'to_date' => 'to'
     ));
   }
 

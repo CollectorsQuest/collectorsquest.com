@@ -3,6 +3,8 @@ all:
   components:
     breadcrumbs: [_blog, breadcrumbs]
     sidebar_300: [_blog, sidebar]
+    jquery_header: [global, jquery]
+    jquery_footer: []
 
   metas:
     title: ~

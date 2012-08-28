@@ -14,7 +14,7 @@ class CollectorFormFilter extends BaseCollectorFormFilter
   {
     $this->setupUserTypeField();
     $this->setupSpaminessField();
-    $this->setupCqnextAccessAllowedField();
+    $this->setupCreatedAtField();
   }
 
   public function getCollectorTypes()
@@ -44,13 +44,13 @@ class CollectorFormFilter extends BaseCollectorFormFilter
     ));
   }
 
-  protected function setupCqnextAccessAllowedField()
+  protected function setupCreatedAtField()
   {
-    $this->widgetSchema['cqnext_access_allowed'] = new sfWidgetFormChoice(array(
-      'choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no')
+    $this->widgetSchema['created_at'] = new sfWidgetFormJQueryDateRange(array(
+      'config' => '{}',
     ));
-    $this->validatorSchema['cqnext_access_allowed'] = new sfValidatorChoice(array(
-      'required' => false, 'choices' => array('', 1, 0)
+    $this->validatorSchema['created_at'] = new IceValidatorDateRange(array(
+      'required' => false, 'from_date' => 'from', 'to_date' => 'to'
     ));
   }
 

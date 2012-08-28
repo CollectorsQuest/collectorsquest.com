@@ -62,7 +62,7 @@ slot('mycq_dropbox_info_message', 'Drag a photo into the Collection thumbnail be
               id="form-collection" method="post" enctype="multipart/form-data"
               class="form-horizontal spacer-bottom-reset">
 
-          <div class="row-fluid">
+          <div class="row-fluid spacer-top">
             <div id="main-image" class="span3">
               <?php
                 include_component(

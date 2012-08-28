@@ -47,9 +47,9 @@
     );
   ?>
   <div class="span7 spacer-left-reset">
-    <table class="table">
+    <table class="table table-collectible-purchased">
       <tr>
-        <td style="width: 38%;">Status:</td>
+        <td>Status:</td>
         <td>
           <?= strtoupper($shopping_order->getShoppingPaymentRelatedByShoppingPaymentId()->getStatus()); ?>
         </td>
@@ -84,9 +84,9 @@
   </div>
 
   <div class="span5">
-    <table class="table">
+    <table class="table table-collectible-purchased">
       <tr>
-        <td style="width: 50%;">Item Price:</td>
+        <td>Item Price:</td>
         <td>1 × <?= money_format('%.2n', (float) $shopping_order->getCollectiblesAmount()) ?></td>
       </tr>
       <tr>
@@ -94,8 +94,8 @@
         <td><?= money_format('%.2n', (float) $shopping_order->getShippingFeeAmount()) ?></td>
       </tr>
       <tr>
-        <td style="font-weight: bold;">Total Amount:</td>
-        <td style="font-weight: bold;"><?= money_format('%.2n', (float) $shopping_order->getTotalAmount()) ?></td>
+        <td class="f-18 text-bold">Total Amount:</td>
+        <td class="f-18 text-bold"><?= money_format('%.2n', (float) $shopping_order->getTotalAmount()) ?></td>
       </tr>
     </table>
   </div>
@@ -103,9 +103,9 @@
 
 <div class="row-fluid">
   <div class="span8 spacer-left-reset">
-    <table class="table">
+    <table class="table table-collectible-purchased">
       <tr>
-        <td style="width: 25%;">Item Name:</td>
+        <td>Item Name:</td>
         <td><?= $collectible->getName(); ?></td>
       </tr>
       <tr>
