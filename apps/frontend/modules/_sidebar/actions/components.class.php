@@ -442,7 +442,12 @@ class _sidebarComponents extends cqFrontendComponents
     // Make the actual query and get the CollectiblesForSale
     $this->collectibles_for_sale = $q->limit($this->limit)->find();
 
-    return $this->_sidebar_if(count($this->collectibles_for_sale) > 0);
+    // Temporary variable to avoid calling count() multiple times
+    $total = count($this->collectibles_for_sale);
+
+    return $this->_sidebar_if(
+      $total > 0 && (isset($height) ? $height->value >= ($total * 85 + 63) : true)
+    );
   }
 
   public function executeWidgetBlogPosts()
