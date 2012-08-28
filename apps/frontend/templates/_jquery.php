@@ -6,9 +6,7 @@
     window.jQuery    || document.write('<script src="<?= cq_javascript_src('frontend/jquery.js'); ?>"><\/script>');
     window.jQuery.ui || document.write('<script src="<?= cq_javascript_src('frontend/jquery.ui.js'); ?>"><\/script>');
 
-    // Store a reference to the original remove method.
-    window.cq._ready = $.ready;
-
-    // Define overriding method. (http://stackoverflow.com/a/8567229)
-    $.ready = window._ready;
+    // We want to delay the $(document).ready()
+    // until Modernizr has loaded all dependencies
+    $.holdReady(true);
   </script>

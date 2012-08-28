@@ -23,14 +23,14 @@ default:
     header:        [global, header]
     footer:        [global, footer]
     breadcrumbs:   [global, breadcrumbs]
-    slot1:         []
+    slot1:         ~
 
-    sidebar_120:   []
-    sidebar_160:   []
-    sidebar_180:   []
-    sidebar_300:   []
+    sidebar_120:   ~
+    sidebar_160:   ~
+    sidebar_180:   ~
+    sidebar_300:   ~
 
-    jquery_header: []
+    jquery_header: ~
     jquery_footer: [global, jquery]
 
   has_layout:     true

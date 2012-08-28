@@ -6,7 +6,7 @@
     <input type="file" name="files[]" multiple="multiple">
   </span>
 
-  <div id="fileupload-modal" class="modal hide fade">
+  <div id="fileupload-modal" class="modal hide">
     <div class="modal-header">
       <h3>Uploading files, please wait...</h3>
     </div>
@@ -34,7 +34,7 @@
       </table>
     </div>
     <div class="modal-footer">
-      <div class="span3 fileupload-progress fade">
+      <div class="span3 fileupload-progress">
         <!-- The global progress bar -->
         <div class="progress progress-info progress-striped active">
           <div class="bar" style="width:0;"></div>
@@ -55,7 +55,7 @@
 <!-- The template to display files available for upload -->
 <script id="template-upload" type="text/x-tmpl">
   {% for (var i=0, file; file=o.files[i]; i++) { %}
-  <tr class="template-upload fade">
+  <tr class="template-upload">
     <td class="preview"><span class="fade"></span></td>
     <td class="name"><span>{%=o.formatFileName(file.name)%}</span></td>
     {% if (file.error) { %}
@@ -87,7 +87,7 @@
 <!-- The template to display files available for download -->
 <script id="template-download" type="text/x-tmpl">
   {% for (var i=0, file; file=o.files[i]; i++) { %}
-  <tr class="template-download fade">
+  <tr class="template-download">
     {% if (file.error) { %}
     <td>-</td>
     <td class="name"><span>{%=o.formatFileName(file.name)%}</span></td>

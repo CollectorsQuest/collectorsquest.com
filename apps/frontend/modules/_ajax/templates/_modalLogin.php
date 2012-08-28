@@ -1,4 +1,4 @@
-<div id="modal-login-holder" class="modal fade">
+<div id="modal-login-holder" class="modal hide">
   <div class="modal-header">
     <button class="close" data-dismiss="modal">×</button>
     <ul class="nav nav-pills">

@@ -16,7 +16,7 @@
       <div class="tab-content-inner spacer">
 
       <?php /*
-      <div class="alert alert-block alert-notice fade in">
+      <div class="alert alert-block alert-notice in">
         <h4 class="alert-heading">Oh snap! You are out of credits for listing items for sale!</h4>
         <p class="spacer-top">
           Change this and that and try again. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum.
