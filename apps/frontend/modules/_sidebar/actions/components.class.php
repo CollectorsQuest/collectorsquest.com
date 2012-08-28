@@ -169,14 +169,10 @@ class _sidebarComponents extends cqFrontendComponents
     // Temporary variable to avoid calling count() multiple times
     $total = count($this->tags);
 
-    //approximately how many rows of tags we have displayed
+    // Approximately how many rows of tags we have displayed
     $this->tag_rows = (integer) ($total / 4 + 1);
 
-    $height = $this->getVar('height');
-
-    return $this->_sidebar_if(
-      $total > 0 && (!empty($height) ? $height->value >= ($this->tag_rows * 33 + 63) : true)
-    );
+    return $this->_sidebar_if($total > 0);
   }
 
   /**
@@ -317,18 +313,7 @@ class _sidebarComponents extends cqFrontendComponents
         $this->collections = $collector->getCollectorCollections($c);
       }
 
-      //calculate widget height with or without message
-      $widget_height = 128;
-      if (!$this->getUser()->isOwnerOf($collector) && isset($message) && $message === true)
-      {
-        $widget_height += 68;
-      }
-
-      $height = $this->getVar('height');
-
-      return $this->_sidebar_if(
-        (!empty($height) ? $height->value >= $widget_height : true)
-      );
+      return sfView::SUCCESS;
     }
     else if ($this->fallback && method_exists($this, 'execute'.$this->fallback))
     {
@@ -445,8 +430,14 @@ class _sidebarComponents extends cqFrontendComponents
     /** @var $collection Collection */
     if (($collection = $this->getVar('collection')) && $collection instanceof CollectorCollection)
     {
+      /** @var $category ContentCategory */
+      $category = $collection->getContentCategory();
+
+      /** @var $tags array */
       $tags = $collection->getTags();
+
       $q
+        ->filterByContentCategoryWithDescendants($category->getParent() ?: $category)
         ->filterByCollection($collection, Criteria::NOT_EQUAL)
         ->filterByTags($tags, Criteria::IN);
     }
@@ -461,8 +452,20 @@ class _sidebarComponents extends cqFrontendComponents
     /** @var $collectible CollectionCollectible */
     else if (($collectible = $this->getVar('collectible')) && $collectible instanceof CollectionCollectible)
     {
-      $tags = $collectible->getTags();
+      /** @var $collection CollectorCollection */
+      $collection = $collectible->getCollectorCollection();
+
+      $collectible_tags = $collectible->getTags();
+      $collection_tags = $collection->getTags();
+
+      // See if we can get common tags between the collectible and the collection and use those
+      $tags = array_intersect($collectible_tags, $collection_tags) ?: $collectible_tags;
+
+      /** @var $category ContentCategory */
+      $category = $collection->getContentCategory();
+
       $q
+        ->filterByContentCategoryWithDescendants($category->getParent() ?: $category)
         ->filterByCollectionCollectible($collectible, Criteria::NOT_EQUAL)
         ->filterByTags($tags, Criteria::IN);
     }
@@ -473,6 +476,7 @@ class _sidebarComponents extends cqFrontendComponents
     // Temporary variable to avoid calling count() multiple times
     $total = count($this->collectibles_for_sale);
 
+    /** @var $height stdClass */
     $height = $this->getVar('height');
 
     return $this->_sidebar_if(
@@ -505,7 +509,15 @@ class _sidebarComponents extends cqFrontendComponents
 
     $this->wp_posts = $q->find();
 
-    return $this->_sidebar_if(count($this->wp_posts) > 0);
+    // Temporary variable to avoid calling count() multiple times
+    $total = count($this->wp_posts);
+
+    /** @var $height stdClass */
+    $height = $this->getVar('height');
+
+    return $this->_sidebar_if(
+      $total > 0 && (!empty($height) ? $height->value >= ($total * 120 + 63) : true)
+    );
   }
 
   public function executeWidgetCollectionCollectibles()
@@ -564,12 +576,8 @@ class _sidebarComponents extends cqFrontendComponents
       $this->carousel_page_offset = $page - $this->carousel_page;
     }
 
-    $height = $this->getVar('height');
-
     // show if at least two, because there is no sense in showing only itself
-    return $this->_sidebar_if(
-      count($this->collectibles) > 1 && (!empty($height) ? $height->value >= 165 : true)
-    );
+    return $this->_sidebar_if(count($this->collectibles) > 1);
   }
 
   public function executeWidgetMoreHistory()
@@ -588,10 +596,12 @@ class _sidebarComponents extends cqFrontendComponents
   {
     $collectible = $this->getVar('collectible');
 
+    /** @var $height stdClass */
     $height = $this->getVar('height');
 
     return $this->_sidebar_if(
-      $this->getCollector()->isOwnerOf($collectible) && (!empty($height) ? $height->value >= 87 : true)
+      $this->getCollector()->isOwnerOf($collectible) &&
+      (!empty($height) ? $height->value >= 87 : true)
     );
   }
 
@@ -612,10 +622,12 @@ class _sidebarComponents extends cqFrontendComponents
       $this->form = new CollectibleForSaleBuyForm($collectible_for_sale);
     }
 
+    /** @var $height stdClass */
     $height = $this->getVar('height');
 
     return $this->_sidebar_if(
-      $collectible_for_sale instanceof CollectibleForSale && (!empty($height) ? $height->value >= 73 : true)
+      $collectible_for_sale instanceof CollectibleForSale &&
+      (!empty($height) ? $height->value >= 73 : true)
     );
   }
 

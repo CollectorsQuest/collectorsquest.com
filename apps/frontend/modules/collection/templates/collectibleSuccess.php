@@ -80,7 +80,7 @@
 
   <?php
     /** @var $image iceModelMultimedia */
-    if ($image = $collectible->getPrimaryImage())
+    if (($image = $collectible->getPrimaryImage()) && $image->fileExists('620x0'))
     {
       $height_main_div->value += 15 + $image->getImageHeight('620x0');
     }
