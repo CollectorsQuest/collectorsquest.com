@@ -113,6 +113,9 @@ class _sidebarComponents extends cqFrontendComponents
       /** @var $category ContentCategory */
       if ($category = $collection->getContentCategory())
       {
+        // We want to go up several levels
+        $category = $category->getParent() ?: $category;
+
         $q->filterByContentCategoryWithDescendants($category->getParent() ?: $category);
       }
 
@@ -141,6 +144,9 @@ class _sidebarComponents extends cqFrontendComponents
       /** @var $category ContentCategory */
       if ($category = $collection->getContentCategory())
       {
+        // We want to go up several levels
+        $category = $category->getParent() ?: $category;
+
         $q->filterByContentCategoryWithDescendants($category->getParent() ?: $category);
       }
 
@@ -473,6 +479,9 @@ class _sidebarComponents extends cqFrontendComponents
       /** @var $category ContentCategory */
       if ($category = $collection->getContentCategory())
       {
+        // We want to go up several levels
+        $category = $category->getParent() ?: $category;
+
         $q->filterByContentCategoryWithDescendants($category->getParent() ?: $category);
       }
 
@@ -503,6 +512,9 @@ class _sidebarComponents extends cqFrontendComponents
       /** @var $category ContentCategory */
       if ($category = $collection->getContentCategory())
       {
+        // We want to go up several levels
+        $category = $category->getParent() ?: $category;
+
         $q->filterByContentCategoryWithDescendants($category->getParent() ?: $category);
       }
 
