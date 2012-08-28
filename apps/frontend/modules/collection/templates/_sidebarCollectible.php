@@ -3,10 +3,18 @@
  * @var $form CollectibleForSaleBuyForm
  * @var $collectible Collectible
  * @var $collectible_for_sale CollectibleForSale
- * @var $height stdClass
  */
-  $height = new stdClass;
-  $height->value = sfContext::getInstance()->getUser()->getAttribute('height_main_div');
+
+/** @var $height stdClass */
+$height = $sf_user->getFlash('height_main_div', null, true, 'internal');
+
+// Make sure we are backwords compatible to the old behavior
+if (!property_exists($height, 'value') || $height->value <= 0)
+{
+  $height = new stdClass();
+  $height->value = PHP_INT_MAX;
+}
+
 ?>
 
 <?php
