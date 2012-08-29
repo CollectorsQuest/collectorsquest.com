@@ -4,6 +4,8 @@
  */
 ?>
 
+<?php
+  /* commented out so there is now way for users to reach legacy route @collectibles_by_collector
 <div class="well" style="padding: 8px 0;">
   <ul class="nav nav-list">
 
@@ -33,11 +35,13 @@
     )); ?>
   </ul>
 </div>
+*/ ?>
+
+<?php include_component('_sidebar', 'widgetMagnifyVideos', array('limit' => 4)); ?>
+
+<?php include_component('_sidebar', 'widgetBlogPosts', array('limit' => 4)); ?>
 
 <?php include_component('_sidebar', 'widgetCollectiblesForSale', array('limit' => 3, 'fallback' => 'random')); ?>
 
 <?php include_component('_sidebar', 'widgetCollections', array('limit' => 5, 'fallback' => 'random')); ?>
 
-<?php include_component('_sidebar', 'widgetMagnifyVideos', array('limit' => 4)); ?>
-
-<?php include_component('_sidebar', 'widgetBlogPosts', array('limit' => 4)); ?>

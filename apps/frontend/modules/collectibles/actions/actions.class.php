@@ -53,7 +53,9 @@ class collectiblesActions extends cqFrontendActions
       $this->addBreadcrumb('Collectibles');
 
       // Set Canonical Url meta tag
-      $this->getResponse()->setCanonicalUrl($this->generateUrl('collectibles_by_collector', $collector));
+      /* routing no longer in use!
+       $this->getResponse()->setCanonicalUrl($this->generateUrl('collectibles_by_collector', $collector));
+      */
     }
 
     $this->collector = $collector;
