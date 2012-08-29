@@ -1,0 +1,20 @@
+<?php
+/*
+Template Name: Two Column (Copy Left, Image Right)
+Version: 1.0
+*/
+
+?>
+<?php if( !empty( $image ) ): ?>
+<div class="sd-node sd-node-container">
+    
+    <div class="sd-node sd-node-caption">
+        <h3 class="sd-node sd-node-caption-title"><?php echo $title; ?></h3>
+        <?php if( !empty( $excerpt ) ){ ?>
+            <div class="sd-node sd-node-caption-excerpt"><?php echo $excerpt; ?></div>
+        <?php } ?>
+    </div>
+    
+	<div class="sd-node sd-node-image"><a href="<?php echo $permalink; ?>"><img style="display:none;" src="<?php echo $image['src']; ?>" alt="<?php echo $title; ?>"<?php echo isset( $image['width'] ) ? ' width="' . $image['width'] . '"' : ''; ?><?php echo isset( $image['height'] ) ? ' height="' . $image['height'] . '"' : ''; ?> /></a></div>
+</div>
+<?php endif; ?>

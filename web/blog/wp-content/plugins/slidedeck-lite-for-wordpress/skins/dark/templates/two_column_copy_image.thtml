@@ -1,0 +1,41 @@
+<?php
+/*
+Template Name: Two Column (Copy Left, Image Right)
+Version: 1.0
+*/
+
+// Correct image aspect ratio to fit within skin's image constraints
+if( !empty( $image ) ){
+    if( !empty( $image['width'] ) ){
+        if( $image['width'] > 270 ){
+            $w_ratio = 270 / $image['width'];
+            $image['width'] = floor( $w_ratio * $image['width'] );
+            if( isset( $image['height'] ) ) {
+                $image['height'] = floor( $w_ratio * $image['height'] );
+            }
+        }
+    }
+    if( !empty( $image['height'] ) ){
+        if( $image['height'] > 250 ){
+            $h_ratio = 250 / $image['height'];
+            $image['width'] = floor( $h_ratio * $image['width'] );
+            $image['height'] = floor( $h_ratio * $image['height'] );
+        }
+    }
+}
+
+?>
+<div class="sd-node sd-node-container">
+	<div class="sd-node sd-node-content">
+		<?php if($type != 'rss'){ ?>
+		<div class="sd-node sd-node-type sd-node-type-<?php echo $type; ?>"><?php echo $title; ?></div>
+		<?php } ?>
+		<div class="sd-node sd-node-title"><a href="<?php echo $permalink; ?>"><?php echo $title; ?></a></div>
+		<div class="sd-node sd-node-timesince"><?php echo $timesince; ?></div>
+		<div class="sd-node sd-node-excerpt"><?php echo $excerpt; ?></div>
+		<div class="sd-node sd-node-permalink"><a href="<?php echo $permalink; ?>">Read More</a></div>
+	</div>
+    <?php if( !empty( $image ) ): ?>
+	<div class="sd-node sd-node-image"><div class="sd-node sd-node-image-child"><a href="<?php echo $permalink; ?>"><img src="<?php echo $image['src']; ?>" alt="<?php echo $title; ?>"<?php echo isset( $image['width'] ) ? ' width="' . $image['width'] . '"' : ''; ?><?php echo isset( $image['height'] ) ? ' height="' . $image['height'] . '"' : ''; ?> /></a></div></div>
+    <?php endif; ?>
+</div>
