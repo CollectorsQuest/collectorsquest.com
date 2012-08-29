@@ -95,7 +95,8 @@ class collectionActions extends cqFrontendActions
 
     // calculate how many rows of collectibles will be on the page
     $collectible_rows = count($pager->getResults());
-    $collectible_rows % 3 == 0 ? $collectible_rows = $collectible_rows / 3 : $collectible_rows = (integer) ($collectible_rows / 3 + 1);
+    $collectible_rows = $collectible_rows % 3 == 0 ? intval($collectible_rows / 3) : intval($collectible_rows / 3 + 1);
+
     $this->collectible_rows = $collectible_rows;
 
     // Building the meta tags
