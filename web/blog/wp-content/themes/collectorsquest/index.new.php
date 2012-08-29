@@ -404,11 +404,10 @@ $lastclass = 0;
   <?php if (!is_page()): ?>
 
     <?php if (is_single()) : ?>
-
-    <div id="comments">
-    <?php comments_template(); ?>
-    </div>
-
+      <?php slidedeck(30032, array( 'width' => '620px', 'height' => '100px')); ?>
+      <div id="comments">
+       <?php comments_template(); ?>
+      </div>
     <?php endif; ?>
 
     <?php if ( is_archive() && $wp_query->max_num_pages > 1 ) : ?>
