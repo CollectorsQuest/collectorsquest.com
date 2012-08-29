@@ -93,6 +93,11 @@ class collectionActions extends cqFrontendActions
     $this->collection = $collection;
     $this->editable = $this->getUser()->isOwnerOf($collection);
 
+    // calculate how many rows of collectibles will be on the page
+    $collectible_rows = count($pager->getResults());
+    $collectible_rows % 3 == 0 ? $collectible_rows = $collectible_rows / 3 : $collectible_rows = (integer) ($collectible_rows / 3 + 1);
+    $this->collectible_rows = $collectible_rows;
+
     // Building the meta tags
     // $this->getResponse()->addMeta('description', $collection->getDescription('stripped'));
     // $this->getResponse()->addMeta('keywords', $collection->getTagString());

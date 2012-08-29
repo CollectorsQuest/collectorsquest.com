@@ -39,7 +39,7 @@ $_height = 0;
   </div>
 
 </div>
-<?php $_height -= 87; ?>
+<?php $_height -= 94; ?>
 
 <?php
   if (isset($height) && property_exists($height, 'value'))

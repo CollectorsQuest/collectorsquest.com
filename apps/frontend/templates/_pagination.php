@@ -96,6 +96,13 @@ $linkPrev = $linkNext = false;
 </div>
 
 <?php
+  if (isset($height) && property_exists($height, 'value'))
+  {
+    $height->value += 92;
+  }
+?>
+
+<?php
   slot('prev_next');
 
   echo !empty($linkPrev) ? tag('link', array('rel' => 'prev', 'href' => $linkPrev), true) : null;
