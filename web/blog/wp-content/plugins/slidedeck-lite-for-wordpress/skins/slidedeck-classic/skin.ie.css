@@ -1,0 +1,20 @@
+.skin-slidedeck-classic dl.slidedeck ul.verticalSlideNav {
+    left: 40px;
+    top: 6px;
+    margin-left: -85px;
+    -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=1)";
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
+}
+.skin-slidedeck-classic dl.slidedeck dt.active ul.verticalSlideNav { top: 6px; }
+.skin-slidedeck-classic dl.slidedeck dt.spine .index,
+.skin-slidedeck-classic dl.slidedeck ul.verticalSlideNav li a {
+    background-color: #f6f6f6;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Chroma(color='#f6f6f6')";
+    filter: progid:DXImageTransform.Microsoft.Chroma(color='#f6f6f6');
+}
+.skin-slidedeck-classic dl.slidedeck dt.spine.active .index,
+.skin-slidedeck-classic dl.slidedeck dt.spine.active ul.verticalSlideNav li a {
+    background-color: #181818;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Chroma(color='#181818')";
+    filter: progid:DXImageTransform.Microsoft.Chroma(color='#181818');
+}
