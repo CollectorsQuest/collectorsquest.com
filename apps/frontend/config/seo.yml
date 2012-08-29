@@ -30,11 +30,6 @@ seo:
         Check out these collectors items from the American Pickers Collection.
         CollectorsQuest.com gives you an inside look at the American Pickers collection.
 
-    collectible:
-      model: true
-      title: %Name% | %Collection%
-      description: %Description%
-
     # https://basecamp.com/1759305/projects/288122-collectorsquest-com/todos/11828067-history-a-e
     collectibleFixedMatching:
       model: true
