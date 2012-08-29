@@ -1,7 +1,10 @@
 <?php
   /**
    * @var $categories ContentCategory[]
+   * @var $height stdClass
    */
+
+  $_height = 0;
 
   $link = link_to(
     'See all &raquo;', '@marketplace_categories',
@@ -11,6 +14,8 @@
 
   cq_sidebar_title('Explore the Market', $link);
 ?>
+
+<?php $_height -= 63 ?>
 
 <div class="twocolumn cf">
   <ul>
@@ -26,3 +31,12 @@
     <?php endforeach; ?>
   </ul>
 </div>
+
+<?php
+  $_height -= 336;
+
+  if (isset($height) && property_exists($height, 'value'))
+  {
+    $height->value -= abs($_height);
+  }
+?>

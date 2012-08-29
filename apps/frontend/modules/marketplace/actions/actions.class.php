@@ -93,8 +93,13 @@ class marketplaceActions extends cqFrontendActions
     $pager->setPage($this->getRequestParameter('page', 1));
     $pager->init();
 
+    // calculate how many rows of collectibles will be on the page
+    $collectible_rows = count($pager->getResults());
+    $collectible_rows = $collectible_rows % 3 == 0 ? intval($collectible_rows / 3) : intval($collectible_rows / 3 + 1);
+
     $this->pager = $pager;
     $this->content_category = $content_category;
+    $this->collectible_rows = $collectible_rows;
 
     // Set Canonical Url meta tag
     $this->getResponse()->setCanonicalUrl(
