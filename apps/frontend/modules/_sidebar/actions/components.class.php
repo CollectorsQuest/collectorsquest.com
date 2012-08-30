@@ -51,18 +51,24 @@ class _sidebarComponents extends cqFrontendComponents
    */
   public function executeWidgetContentSubCategories()
   {
-    $this->categories = ContentCategoryQuery::create()
-      ->childrenOfRoot()
-      ->withCollections()
-      ->orderBy('Name')
-      ->find();
-
     $this->current_category = $this->getVar('current_category');
     $this->current_sub_category = new ContentCategory();
-    if ($this->current_category->getParent() != 'Root')
+    $this->current_sub_subcategory = new ContentCategory();
+
+    $changed_current_category = false;
+
+    if ($this->current_category->getLevel() == 3)
+    {
+      $this->current_sub_subcategory = $this->current_category;
+      $this->current_sub_category = $this->current_category->getParent();
+      $this->current_category = $this->current_category->getParent()->getParent();
+      $changed_current_category = true;
+    }
+    else if ($this->current_category->getLevel() == 2)
     {
       $this->current_sub_category = $this->current_category;
       $this->current_category = $this->current_category->getParent();
+      $changed_current_category = true;
     }
 
     $this->subcategories = ContentCategoryQuery::create()
@@ -71,7 +77,13 @@ class _sidebarComponents extends cqFrontendComponents
       ->orderBy('Name')
       ->find();
 
-    return $this->_sidebar_if(count($this->categories) > 0);
+    if ($changed_current_category)
+    $this->sub_subcategories = ContentCategoryQuery::create()
+      ->childrenOf($this->current_sub_category)
+      ->withCollections()
+      ->find();
+
+    return $this->_sidebar_if(count($this->subcategories) > 0);
   }
 
   /**
