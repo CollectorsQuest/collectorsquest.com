@@ -22,7 +22,7 @@ class CollectorCollectionForm extends BaseCollectorCollectionForm
   protected function setupContentCategoryIdField()
   {
     $this->widgetSchema['content_category_id'] = new cqWidgetFormPropelChoiceByNestedSet(array(
-      'model' => 'ContentCategory',
+      'model' => 'ContentCategory', 'chozen' => true
     ));
   }
 
