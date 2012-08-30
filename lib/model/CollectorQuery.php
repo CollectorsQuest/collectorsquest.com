@@ -33,4 +33,19 @@ class CollectorQuery extends BaseCollectorQuery
       );
   }
 
+  /**
+   * Filter by Newsletter property
+   *
+   * @param $value integet
+   * @return CollectorQuery
+   */
+  public function filterByNewsletter($value)
+  {
+    return $this
+      ->filterByExtraProperty(
+      CollectorPeer::PROPERTY_PREFERENCES_NEWSLETTER,
+      $value=='0'?'':$value,
+      CollectorPeer::PROPERTY_PREFERENCES_NEWSLETTER_DEFAULT
+    );
+  }
 }

@@ -10,6 +10,7 @@ class BackendCollectorFormFilter extends CollectorFormFilter
     $this->setupUsernameField();
     $this->setupDisplayNameField();
     $this->setupCollectionIdField();
+    $this->setupNewsletterField();
   }
 
   public function setupUsernameField()
@@ -32,6 +33,17 @@ class BackendCollectorFormFilter extends CollectorFormFilter
     $this->validatorSchema['collection_id'] = new cqValidatorNumber(array(
       'required'=> false,
       'multiple'=> true
+    ));
+  }
+
+  public function setupNewsletterField()
+  {
+    $this->widgetSchema['newsletter'] = new sfWidgetFormChoice(array(
+      'choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no')
+    ));
+    $this->validatorSchema['newsletter'] = new sfValidatorChoice(array(
+      'required' => false,
+      'choices' => array('', 1, 0)
     ));
   }
 
