@@ -3,4 +3,4 @@ all:
 
 categorySuccess:
   components:
-    sidebar_160: [categories, sidebarCategory]
+    sidebar_300: [categories, sidebarCategory]
