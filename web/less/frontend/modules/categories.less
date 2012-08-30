@@ -7,22 +7,25 @@
 
 	.span4 {
 		margin-bottom: 20px;
+    width: 223px;
 
 		a {
 			color: @blue;
-			line-height: 20px;
+			line-height: 18px;
 			&:hover {
 				color: @red;
 				text-decoration: none;
 			}
 		}
 		h2 {
-			line-height: 28px;
-			margin-bottom: 15px;
+			line-height: 24px;
+			margin-bottom: 12px;
+      font-size: 19px;
 		}
 		h2 a {
 			color: @blueDark;
-			line-height: 28px;
+			line-height: 24px;
+      font-size: 19px;
 			&:hover {
 				text-decoration: none;
 				border-bottom: none;
@@ -31,19 +34,13 @@
 	}
 }
 
-div#collections {
-  div.collection_grid_view_square_small {
-    margin-left: 11px;
-  }
-}
-
 div.onecolumn {
   ul {
     list-style-type: none;
     margin: 0;
 
     li {
-      color: #C00;
+      color: @red;
     }
 
     ul {
