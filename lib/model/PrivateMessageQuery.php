@@ -7,7 +7,9 @@ class PrivateMessageQuery extends BasePrivateMessageQuery
   public function filterByCollectorSender($value)
   {
     $this->addAlias('sender_col', CollectorPeer::TABLE_NAME);
-    $this->addJoin(PrivateMessagePeer::SENDER, CollectorPeer::alias('sender_col', CollectorPeer::ID), Criteria::LEFT_JOIN);
+    $this->addJoin(
+      PrivateMessagePeer::SENDER, CollectorPeer::alias('sender_col', CollectorPeer::ID), Criteria::LEFT_JOIN
+    );
     $this->add(CollectorPeer::alias('sender_col', CollectorPeer::USERNAME), '%' . $value . '%', Criteria::LIKE);
     return $this;
   }
@@ -15,7 +17,9 @@ class PrivateMessageQuery extends BasePrivateMessageQuery
   public function filterByCollectorReceiver($value)
   {
     $this->addAlias('receiver_col', CollectorPeer::TABLE_NAME);
-    $this->addJoin(PrivateMessagePeer::RECEIVER, CollectorPeer::alias('receiver_col', CollectorPeer::ID), Criteria::LEFT_JOIN);
+    $this->addJoin(
+      PrivateMessagePeer::RECEIVER, CollectorPeer::alias('receiver_col', CollectorPeer::ID), Criteria::LEFT_JOIN
+    );
     $this->add(CollectorPeer::alias('receiver_col', CollectorPeer::USERNAME), '%' . $value . '%', Criteria::LIKE);
     return $this;
   }
@@ -28,7 +32,9 @@ class PrivateMessageQuery extends BasePrivateMessageQuery
   public function orderBySenderName($type)
   {
     $this->addAlias('sender_col', CollectorPeer::TABLE_NAME);
-    $this->addJoin(PrivateMessagePeer::SENDER, CollectorPeer::alias('sender_col', CollectorPeer::ID), Criteria::LEFT_JOIN);
+    $this->addJoin(
+      PrivateMessagePeer::SENDER, CollectorPeer::alias('sender_col', CollectorPeer::ID), Criteria::LEFT_JOIN
+    );
     switch ($type) {
       case 'asc':
         $this->addAscendingOrderByColumn(CollectorPeer::alias('sender_col', CollectorPeer::USERNAME));
