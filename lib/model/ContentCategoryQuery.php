@@ -90,4 +90,9 @@ class ContentCategoryQuery extends BaseContentCategoryQuery
       ->addUsingAlias(ContentCategoryPeer::RIGHT_COL, $contentCategory->getRightValue(), Criteria::GREATER_EQUAL);
   }
 
+  public function filterByLevel($level = null, $comparison = null)
+  {
+    return $this->filterByTreeLevel($level, $comparison);
+  }
+
 }
