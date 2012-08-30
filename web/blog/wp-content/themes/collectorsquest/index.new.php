@@ -404,7 +404,7 @@ $lastclass = 0;
   <?php if (!is_page()): ?>
 
     <?php if (is_single()) : ?>
-      <?php slidedeck(30032, array( 'width' => '620px', 'height' => '100px')); ?>
+      <?php slidedeck(30032, array( 'width' => '620px', 'height' => '65px')); ?>
       <div id="comments">
        <?php comments_template(); ?>
       </div>
