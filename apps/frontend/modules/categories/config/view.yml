@@ -7,4 +7,4 @@ indexSuccess:
 
 categorySuccess:
   components:
-    sidebar_300: [categories, sidebarCategory]
+    sidebar_160: [categories, sidebarCategory]

@@ -6,6 +6,6 @@
 <a class="block spacer-bottom" href="http://www.history.com/shows/american-restoration" title="American Restoration" target="_blank">
   <?php echo cq_image_tag('headlines/ar_more_history_promo.jpg', array('alt'=>'American Restoration'));?>
 </a>
-<a class="block spacer-bottom" href="http://www.history.com/shows/united-stats-of-america" title="United Stats of America" target="_blank">
-  <?php echo cq_image_tag('headlines/usoa_more_history_promo.jpg', array('alt'=>'United Stats of America'));?>
+<a class="block spacer-bottom" href="http://www.history.com/shows/counting-cars" title="Counting Cars" target="_blank">
+  <?php echo cq_image_tag('headlines/counting_cars_300x45.jpg', array('alt'=>'Counting Car'));?>
 </a>

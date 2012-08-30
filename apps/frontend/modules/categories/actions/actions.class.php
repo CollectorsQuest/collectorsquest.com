@@ -77,7 +77,7 @@ class categoriesActions extends cqFrontendActions
        ->filterByContentCategoryWithDescendants($this->category)
        ->orderByUpdatedAt(Criteria::DESC);
 
-    $pager = new PropelModelPager($q, $this->collectors_question !== null ? 16 : 36);
+    $pager = new PropelModelPager($q, $this->collectors_question !== null ? 20 : 35);
     $pager->setPage($request->getParameter('page', 1));
     $pager->init();
 

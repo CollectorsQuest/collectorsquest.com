@@ -49,6 +49,34 @@ class _sidebarComponents extends cqFrontendComponents
   /**
    * @return string
    */
+  public function executeWidgetContentSubCategories()
+  {
+    $this->categories = ContentCategoryQuery::create()
+      ->childrenOfRoot()
+      ->withCollections()
+      ->orderBy('Name')
+      ->find();
+
+    $this->current_category = $this->getVar('current_category');
+    $this->current_sub_category = new ContentCategory();
+    if ($this->current_category->getParent() != 'Root')
+    {
+      $this->current_sub_category = $this->current_category;
+      $this->current_category = $this->current_category->getParent();
+    }
+
+    $this->subcategories = ContentCategoryQuery::create()
+      ->childrenOf($this->current_category)
+      ->withCollections()
+      ->orderBy('Name')
+      ->find();
+
+    return $this->_sidebar_if(count($this->categories) > 0);
+  }
+
+  /**
+   * @return string
+   */
   public function executeWidgetMarketplaceCategories()
   {
     // Set the limit of Collections to show
