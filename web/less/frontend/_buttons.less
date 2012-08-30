@@ -16,8 +16,7 @@ select,
 	padding: 4px 14px;
 	font-size: 14px;
 	font-weight: bold;
-	color: @brown;
-	.buttonBackground(#f3f0f0, #d1cfcd);
+	.buttonBackground(#f3f0f0, #d1cfcd, @brown, none);
 	border-width: 2px;
 	border-style: solid;
 	border-color: #CED3D8;
@@ -26,8 +25,7 @@ select,
 
 	&:hover {
 		text-decoration: none;
-		color: @brown;
-		.buttonBackground(#f3f1f1, #eae8e7);
+		.buttonBackground(#f3f1f1, #eae8e7, @brown, none);
 		border-color: #cfd3d7;
 		background-position: 0 0;
 		.transition(none);
@@ -43,16 +41,14 @@ select,
 }
 
 .btn-primary {
-	color: @white;
-	.buttonBackground(#0f83c0, #0f72a6);
+	.buttonBackground(#0f83c0, #0f72a6, #fff, none);
 	border-width: 2px;
 	border-style: solid;
 	border-color: #0a82c2;
 	.box-shadow(~"inset 0 1px 0 rgba(26,137,194,1), 0 1px 2px rgba(0,0,0,.05)");
 
 	&:hover {
-		color: @white;
-		.buttonBackground(#cc0201, #b2100e);
+		.buttonBackground(#cc0201, #b2100e, #fff, none);
 		border-color: @red;
 		background-position: 0 0;
 		.transition(none);
@@ -66,8 +62,7 @@ select,
 }
 
 .btn-primary-invert {
-  color: @white;
-  .buttonBackground(#cc0201, #b2100e);
+  .buttonBackground(#cc0201, #b2100e, #fff);
   border-width: 2px;
   border-style: solid;
   border-color: @red;
@@ -75,8 +70,7 @@ select,
   text-shadow: none;
 
   &:hover {
-    color: @white;
-    .buttonBackground(#0f83c0, #0f72a6);
+    .buttonBackground(#0f83c0, #0f72a6, #fff);
     background-position: 0 0;
     .transition(none);
     border-color: #0a82c2;
@@ -90,12 +84,10 @@ select,
 }
 
 .btn-danger {
-	color: #fff;
-	.buttonBackground(#CC0000, #B2100E);
+	.buttonBackground(#CC0000, #B2100E, #fff);
 	border: 2px solid @red;
 	&:hover {
-		color: @white;
-		.buttonBackground(#A10504, #CC0000);
+		.buttonBackground(#A10504, #CC0000, #fff);
 		border-color: @red;
 		background-position: 0 0;
 		.transition(none);
@@ -154,8 +146,7 @@ select,
 }
 
 .btn.disabled, .btn[disabled] {
-	color: #a69f9f;
-	.buttonBackground(#f8f7f7, #e8e7e6);
+	.buttonBackground(#f8f7f7, #e8e7e6, #a69f9f, none);
 	border-color: #dae3e9;
 	&:hover {
 		.box-shadow(none);
@@ -163,8 +154,7 @@ select,
 }
 
 .btn-primary.disabled, .btn-primary.btn[disabled] {
-	color: #fff;
-	.buttonBackground(#aad2e9, #9ec4d8);
+	.buttonBackground(#aad2e9, #9ec4d8, #fff, none);
 	border-color: #b4d8ec;
 	&:hover {
 		.box-shadow(none);
@@ -183,8 +173,7 @@ select,
 // CUSTOM STYLES
 
 .btn-lightblue {
-	color: @blue;
-	.buttonBackground(#ddecf5, #cddce3);
+	.buttonBackground(#ddecf5, #cddce3, @blue);
 	border: 1px solid #90c7e3;
 	.border-radius(4px);
 	cursor: pointer;
@@ -205,18 +194,16 @@ select,
 }
 
 .btn-lightgray {
-	color: @blue;
 	border: 1px solid #90c7e3;
-	.buttonBackground(#fefefe, #dfdfdf);
+	.buttonBackground(#fefefe, #dfdfdf, @blue);
 	.border-radius(4px);
 	&:hover {
 		text-decoration: none;
-		color: @blueDark;
 		border: 1px solid #cccccc;
 		background-position: 0 0;
 		.transition(none);
 		.reset-filter();
-		.buttonBackground(#f4f6f7, #dcdfe0);
+		.buttonBackground(#f4f6f7, #dcdfe0, @blueDark);
 		*background-color: #f4f6f7;
 	}
 	&:active,
