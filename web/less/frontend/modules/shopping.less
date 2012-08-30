@@ -150,3 +150,27 @@
 	padding-top: 20px;
 	margin-left: 40px;
 }
+
+.close-button {
+	display: block;
+	.size(14px, 16px);
+	padding-top: 2px;
+	text-align: center;
+	background-color: #D4D3CE;
+	.border-radius(4px);
+	&:hover {
+		#gradient > .vertical(#ff7d7d, @red);
+	}
+
+	.icon-remove {
+		vertical-align: top;
+		font-size: 11px;
+		line-height: 11px;
+		color: #F6F5EF;
+		font-weight: bold;
+	}
+}
+
+.shopping-cart-container-item:hover .line-under-title .close-button {
+	background-color: darken(#D4D3CE, 10%);
+}
