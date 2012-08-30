@@ -14,14 +14,19 @@ generator:
     config:
       actions: ~
       fields:
-        num_collections: { label: Collections (desc) }
+        id: { label: ID }
+        num_collections: { label: Collections (total) }
+        tree_level: { label: Level }
       list:
-        display: [id, =name, _ancestors, _collection_category, _num_collections]
+        display: [id,  tree_level, =name, _ancestors, _num_collections]
         title: Content Categories
         actions:
           export: { label: "Export to CSV", sf_format: csv }
       filter:
-        display: [collection_category_id, name, ancestor_id]
+        fields:
+          with_collections: { label: With Collections }
+          level: { label: Category Level }
+        display: [id, name, ancestor_id, level, with_collections]
 
       export:
         sort: [id, asc]
