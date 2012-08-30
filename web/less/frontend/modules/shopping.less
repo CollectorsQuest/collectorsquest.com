@@ -153,19 +153,20 @@
 
 .close-button {
 	display: block;
-	.size(14px, 16px);
-	padding-top: 2px;
+	.size(16px, 16px);
 	text-align: center;
 	background-color: #D4D3CE;
-	.border-radius(4px);
+	.border-radius(2px);
 	&:hover {
 		#gradient > .vertical(#ff7d7d, @red);
+		.border-radius(2px);
 	}
 
 	.icon-remove {
-		vertical-align: top;
-		font-size: 11px;
-		line-height: 11px;
+		display: block;
+		padding-top: 2px;
+		font-size: 10px;
+		line-height: 14px;
 		color: #F6F5EF;
 		font-weight: bold;
 	}
