@@ -120,6 +120,7 @@
     [class*="span"] {
       float: left;
       margin-left: @gridGutterWidth;
+	    min-height: @baseLineHeight + 10;
     }
 
   // Set the container width, and override it for fixed navbars in media queries
@@ -154,6 +155,7 @@
         float: left;
         margin-left: @fluidGridGutterWidth;
         *margin-left: @fluidGridGutterWidth - (.5 / @gridRowWidth * 100 * 1%);
+	      min-height: @baseLineHeight + 10;
       }
       [class*="span"]:first-child {
         margin-left: 0;
