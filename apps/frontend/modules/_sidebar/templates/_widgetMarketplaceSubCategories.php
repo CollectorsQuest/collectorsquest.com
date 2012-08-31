@@ -1,11 +1,13 @@
 <?php
   /**
-   * @var $categories               ContentCategory[]
-   * @var $subcategories            ContentCategory[]
-   * @var $sub_subcategories        ContentCategory[]
-   * @var $current_category         ContentCategory
-   * @var $current_sub_category     ContentCategory
-   * @var $current_sub_subcategory  ContentCategory
+   * @var $categories                  ContentCategory[]
+   * @var $subcategories               ContentCategory[]
+   * @var $sub_subcategories           ContentCategory[]
+   * @var $sub_sub_subcategories       ContentCategory[]
+   * @var $current_category            ContentCategory
+   * @var $current_sub_category        ContentCategory
+   * @var $current_sub_subcategory     ContentCategory
+   * @var $current_sub_sub_subcategory  ContentCategory
    * @var $height stdClass
    */
   $link = link_to(
@@ -63,18 +65,53 @@
                       $_height -= 20;
                     }
                   }
-                  else if ($sub_subcategory)
+                  else
                   {
-                    echo $sub_subcategory;
-                    $_height -= 20;
-                  }
+                    if (empty($sub_sub_subcategories) || $current_sub_sub_subcategory->isNew())
+                    {
+                      echo ($sub_subcategory) ? $sub_subcategory : '';
+                      $_height -= 20;
+                    }
+                    else if ($sub_subcategory)
+                    {
+                      echo link_to(
+                        $sub_subcategory->getName(), 'marketplace_category_by_slug',
+                        $sub_subcategory, array('title' => $sub_subcategory->getName())
+                      );
+                      $_height -= 20;
+                    }
                 ?>
+                    <ul>
+                      <?php foreach ($sub_sub_subcategories as $k => $sub_sub_subcategory): ?>
+                        <li>
+                          <?php
+                              if ($sub_sub_subcategory != $current_sub_sub_subcategory)
+                              {
+                                if ($sub_sub_subcategory)
+                                {
+                                  echo link_to(
+                                    $sub_sub_subcategory->getName(), 'marketplace_category_by_slug',
+                                    $sub_sub_subcategory, array('title' => $sub_sub_subcategory->getName())
+                                  );
+                                  $_height -= 20;
+                                }
+                              }
+                              else if ($sub_sub_subcategory)
+                              {
+                                echo ($sub_sub_subcategory) ? $sub_sub_subcategory : '';
+                                $_height -= 20;
+                              }
+                           ?>
+                          </li>
+                      <?php endforeach; ?>
+                    </ul>
+                <?php } // endif ($sub_subcategory != $current_sub_subcategory) ?>
               </li>
-            <?php endforeach ?>
+            <?php endforeach; ?>
           </ul>
         <?php } // endif ($subcategory != $current_sub_category) ?>
       </li>
-    <?php endforeach ?>
+    <?php endforeach; ?>
   </ul>
 </div>
 

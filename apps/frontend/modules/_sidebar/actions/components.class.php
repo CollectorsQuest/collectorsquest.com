@@ -129,15 +129,27 @@ class _sidebarComponents extends cqFrontendComponents
     $this->current_category = $this->getVar('current_category');
     $this->current_sub_category = new ContentCategory();
     $this->current_sub_subcategory = new ContentCategory();
+    $this->current_sub_sub_subcategory = new ContentCategory();
+    $this->sub_sub_subcategories = array();
 
     $changed_current_category = false;
-
-    if ($this->current_category->getLevel() == 3)
+    $changed_current_category_more_levels = false;
+    if ($this->current_category->getLevel() == 4)
+    {
+      $this->current_sub_sub_subcategory = $this->current_category;
+      $this->current_sub_subcategory = $this->current_category->getParent();
+      $this->current_sub_category = $this->current_category->getParent()->getParent();
+      $this->current_category = $this->current_category->getParent()->getParent()->getParent();
+      $changed_current_category = true;
+      $changed_current_category_more_levels = true;
+    }
+    else if ($this->current_category->getLevel() == 3)
     {
       $this->current_sub_subcategory = $this->current_category;
       $this->current_sub_category = $this->current_category->getParent();
       $this->current_category = $this->current_category->getParent()->getParent();
       $changed_current_category = true;
+      $changed_current_category_more_levels = true;
     }
     else if ($this->current_category->getLevel() == 2)
     {
@@ -166,9 +178,72 @@ class _sidebarComponents extends cqFrontendComponents
       ->endUse()
       ->find();
 
+    /*
+    * logic of $this->subcategories query should be changed so all subcategories with
+    * sub_subcategories that have items for sale should be visible. Currently adding the
+    * current_sub_category by hand if it doesn't exist in list
+    */
+
+    $missing_category = true;
+    foreach ($this->subcategories as $subcateogry)
+    {
+      if ($subcateogry == $this->current_sub_category)
+      {
+        $missing_category = false;
+      }
+    }
+
+    if ($missing_category)
+    {
+      $this->subcategories[] = $this->current_sub_category;
+    }
+
     if ($changed_current_category)
-    $this->sub_subcategories = ContentCategoryQuery::create()
-      ->childrenOf($this->current_sub_category)
+    {
+      $this->sub_subcategories = ContentCategoryQuery::create()
+        ->childrenOf($this->current_sub_category)
+        ->distinct()
+        ->filterByName('None', Criteria::NOT_EQUAL)
+        ->orderBy('Name', Criteria::ASC)
+        ->joinCollection()
+        ->useCollectionQuery()
+          ->joinCollectionCollectible()
+          ->useCollectionCollectibleQuery()
+            ->joinCollectible()
+            ->useCollectibleQuery()
+              ->joinCollectibleForSale()
+              ->useCollectibleForSaleQuery()
+                ->isForSale()
+              ->endUse()
+            ->endUse()
+          ->endUse()
+        ->endUse()
+        ->find();
+
+      /*
+       * logic of $this->sub_subcategories query should be changed so all sub_subcategories with
+       * sub_sub_subcategories that have items for sale should be visible. Currently adding the
+       * current_sub_subcategory by hand if it doesn't exist in list
+       */
+
+      $missing_category = true;
+      foreach ($this->sub_subcategories as $sub_subcateogry)
+      {
+        if ($sub_subcateogry == $this->current_sub_subcategory)
+        {
+            $missing_category = false;
+        }
+      }
+
+      if ($missing_category)
+      {
+        $this->sub_subcategories[] = $this->current_sub_subcategory;
+      }
+    }
+
+    if ($changed_current_category_more_levels)
+    $this->sub_sub_subcategories = ContentCategoryQuery::create()
+      ->childrenOf($this->current_sub_subcategory)
       ->distinct()
       ->filterByName('None', Criteria::NOT_EQUAL)
       ->orderBy('Name', Criteria::ASC)
