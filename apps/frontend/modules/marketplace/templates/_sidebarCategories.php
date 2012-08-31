@@ -5,6 +5,6 @@
 <?php
   echo link_to(
     cq_image_tag('headlines/040412_CQ_Market_blue.gif'),
-    '@seller_signup'
+    'http://' . sfConfig::get('app_www_domain') . '/blog/pages/cq-faqs/guide-selling/'
   );
 ?>
