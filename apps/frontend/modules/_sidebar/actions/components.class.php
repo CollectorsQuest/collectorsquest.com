@@ -635,6 +635,18 @@ class _sidebarComponents extends cqFrontendComponents
     // Make the actual query and get the CollectiblesForSale
     $this->collectibles_for_sale = $q->limit($this->limit)->find();
 
+    if (count($this->collectibles_for_sale) === 0 && $this->getVar('fallback') === 'random')
+    {
+      // Get some random Collectibles for Sale updated last 2 weeks and with price at least 1
+      $c = new Criteria();
+      $c->add(CollectibleForSalePeer::UPDATED_AT, strtotime('-2 week'), Criteria::GREATER_EQUAL);
+      $c->add(CollectibleForSalePeer::PRICE_AMOUNT, 1, Criteria::GREATER_EQUAL);
+      $c->addAscendingOrderByColumn('RAND()');
+      $c->setLimit(3);
+
+      $this->collectibles_for_sale = CollectibleForSalePeer::doSelect($c);
+    }
+
     // Temporary variable to avoid calling count() multiple times
     $total = count($this->collectibles_for_sale);
 
