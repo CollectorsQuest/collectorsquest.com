@@ -23,6 +23,14 @@ if (!property_exists($height, 'value') || $height->value <= 0)
 
 <?php $height->value -= 250; ?>
 
+<?php
+  if (isset($category) && $category instanceof ContentCategory)
+    include_component(
+      '_sidebar', 'widgetMarketplaceSubCategories',
+      array('current_category' => $category, 'height' => &$height)
+    );
+?>
+
 <?php include_component('_sidebar', 'widgetMarketplaceCategories', array('height' => &$height)); ?>
 
 <?php

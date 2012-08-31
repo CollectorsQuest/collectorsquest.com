@@ -124,6 +124,75 @@ class _sidebarComponents extends cqFrontendComponents
   /**
    * @return string
    */
+  public function executeWidgetMarketplaceSubCategories()
+  {
+    $this->current_category = $this->getVar('current_category');
+    $this->current_sub_category = new ContentCategory();
+    $this->current_sub_subcategory = new ContentCategory();
+
+    $changed_current_category = false;
+
+    if ($this->current_category->getLevel() == 3)
+    {
+      $this->current_sub_subcategory = $this->current_category;
+      $this->current_sub_category = $this->current_category->getParent();
+      $this->current_category = $this->current_category->getParent()->getParent();
+      $changed_current_category = true;
+    }
+    else if ($this->current_category->getLevel() == 2)
+    {
+      $this->current_sub_category = $this->current_category;
+      $this->current_category = $this->current_category->getParent();
+      $changed_current_category = true;
+    }
+
+    $this->subcategories = ContentCategoryQuery::create()
+      ->childrenOf($this->current_category)
+      ->distinct()
+      ->filterByName('None', Criteria::NOT_EQUAL)
+      ->orderBy('Name', Criteria::ASC)
+      ->joinCollection()
+      ->useCollectionQuery()
+        ->joinCollectionCollectible()
+        ->useCollectionCollectibleQuery()
+          ->joinCollectible()
+          ->useCollectibleQuery()
+            ->joinCollectibleForSale()
+            ->useCollectibleForSaleQuery()
+              ->isForSale()
+            ->endUse()
+          ->endUse()
+        ->endUse()
+      ->endUse()
+      ->find();
+
+    if ($changed_current_category)
+    $this->sub_subcategories = ContentCategoryQuery::create()
+      ->childrenOf($this->current_sub_category)
+      ->distinct()
+      ->filterByName('None', Criteria::NOT_EQUAL)
+      ->orderBy('Name', Criteria::ASC)
+      ->joinCollection()
+      ->useCollectionQuery()
+        ->joinCollectionCollectible()
+        ->useCollectionCollectibleQuery()
+          ->joinCollectible()
+          ->useCollectibleQuery()
+            ->joinCollectibleForSale()
+            ->useCollectibleForSaleQuery()
+              ->isForSale()
+            ->endUse()
+          ->endUse()
+        ->endUse()
+      ->endUse()
+      ->find();
+
+    return $this->_sidebar_if(count($this->subcategories) > 0);
+  }
+
+  /**
+   * @return string
+   */
   public function executeWidgetCollections()
   {
     $this->collections = $this->getVar('collections') ?: array();
