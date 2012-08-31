@@ -111,8 +111,7 @@ class marketplaceActions extends cqFrontendActions
 
   public function executeCategories()
   {
-    $this->level1_categories = ContentCategoryQuery::create()
-      ->childrenOfRoot()
+    $this->categories = ContentCategoryQuery::create()
       ->withCollectiblesForSale()
       ->orderBy('Name')
       ->find();
