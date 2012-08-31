@@ -615,62 +615,42 @@ class _sidebarComponents extends cqFrontendComponents
 
   public function executeWidgetCollectionCollectibles()
   {
-    // Set the limit of other Collections to show
+
+
     /** @var $collection CollectorCollection */
-    $collection = $this->getVar('collection') ?: null;
+    $collection = $this->getVar('collection') ? : null;
 
     /** @var $collectible CollectionCollectible */
-    $collectible = $this->getVar('collectible') ?: null;
-
+    $collectible = $this->getVar('collectible') ? : null;
+    $limit_per_page = $this->getVar('limit_per_page') ? : 3;
+    $this->curCollectible = null;
+    $default_page = 1;
     if ($collectible instanceof CollectionCollectible)
     {
       $collection = $collectible->getCollection();
+      $this->curCollectible = $collectible->getId();
+      $default_page = (integer) ceil($collectible->getPosition() / $limit_per_page);
     }
 
-    // Initialize the array
-    $this->collectibles = array();
+    $page = $this->getRequest()->getParameter('collWidgetPage', $default_page);
 
-    if ($collection instanceof Collection)
-    {
-      /**
-       * Figure out the previous and the next items in the collection
-       */
-      $collectible_ids = $collection->getCollectibleIds();
-      $position = array_search($collectible->getId(), $collectible_ids);
+    $q = CollectionCollectibleQuery::create();
+    $q->joinWith('Collectible');
+    $q->filterByCollection($collection)
+      ->orderByPosition(Criteria::ASC);
 
-      // collectibles per page
-      $limit_per_page = 3;
-      // how many pages before the current one should be shown
-      $pages_before_current = 2;
+    $pager = new PropelModelPager($q, $limit_per_page);
+    $pager->setPage($page);
+    $pager->init();
+    $this->count = count($collection->getCollectibleIds());
+    $this->page = $pager->getPage();
 
-      // page numbering starts from 1
-      $page = (integer) ceil(($position + 1)  / $limit_per_page);
+    $this->collection = $collection;
+    $this->lastPage = $pager->getLastPage();
+    $this->collectibles = $pager->getResults();
 
-      // offset should be always >= 0
-      $offset = max(0, ($page - $pages_before_current - 1) * $limit_per_page);
-
-      // limit the total collectibles depending on how many pages we will be showing
-      $limit = min($page * $limit_per_page, ($pages_before_current + 1) * $limit_per_page);
-
-      /** @var $q CollectionCollectibleQuery */
-      $q = CollectionCollectibleQuery::create();
-      $q->joinWith('Collectible');
-      $q->filterByCollection($collection)
-        ->orderByPosition(Criteria::ASC)
-        ->orderByCreatedAt(Criteria::ASC)
-        ->offset($offset)
-        ->limit($limit);
-
-      $this->collectibles = $q->find();
-      $this->collection = $collection;
-      $this->carousel_page = $page <= $pages_before_current
-        ? $page
-        : $pages_before_current + 1;
-      $this->carousel_page_offset = $page - $this->carousel_page;
-    }
-
-    // show if at least two, because there is no sense in showing only itself
     return $this->_sidebar_if(count($this->collectibles) > 1);
+
   }
 
   public function executeWidgetMoreHistory()

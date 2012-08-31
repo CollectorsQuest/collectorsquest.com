@@ -73,7 +73,40 @@ class ajaxAction extends cqAjaxAction
 
     return $this->output(array('collectibles' => $data));
   }
+  protected function executeCollectiblesCollectionsWidget(sfWebRequest $request)
+  {
+    $data = array();
 
+    $collectible = CollectionCollectibleQuery::create()
+      ->filterByCollection($this->collection)
+      ->filterByCollectibleId($request->getParameter('collectible_id'))
+      ->findOne();
+
+    if ($collectible)
+    {
+
+      $page = $request->getParameter('widgetPage', 1);
+
+      $q = CollectionCollectibleQuery::create();
+      $q->joinWith('Collectible');
+      $q->filterByCollection($this->collection)
+        ->orderByPosition(Criteria::ASC);
+      $pager = new PropelModelPager($q, $request->getParameter('ItemsPerPage', 3));
+      $pager->setPage($page);
+      $pager->init();
+      $this->page = $pager->getPage();
+
+      $collectibles = $pager->getResults();
+      $data = '';
+      foreach ($collectibles as $item)
+      {
+        $data.=$this->getPartial('_sidebar/widgetCollectionCollectiblesItem', array('item'=>$item));
+      }
+
+    }
+
+    return $this->output(array('html' => $data));
+  }
   /**
    * @param  sfWebRequest $request
    * @return string

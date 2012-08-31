@@ -3,40 +3,44 @@
  * @var $collectibles Collectible[]
  */
 
-  use_javascript('jquery/rcarousel.js');
-
 $_height = 0;
 ?>
 
 
-<div class="carousel-sidebar sidebar-title">
+<div class="carousel-sidebar sidebar-title" id="collectionCollectiblesWidget" data-page="<?=$page ?>"  data-lastpage="<?=$lastPage ?>" data-url="<?= url_for('ajax_collection', array('section' => 'collectibles', 'page' => 'collectionsWidget')); ?>">
   <h3 class="Chivo webfont spacer-bottom-5">Other items in this collection:</h3>
   <div class="thumbnails-inner well">
+      <?php if ($lastPage!=1)
+  { ?>
     <a href="javascript:void(0)" id="ui-carousel-prev" title="previous collectible" class="left-arrow">
       <i class="icon-chevron-left white"></i>
     </a>
     <a href="javascript:void(0)" id="ui-carousel-next" title="next collectible" class="right-arrow">
       <i class="icon-chevron-right white"></i>
     </a>
-    <div id="carousel" data-loaded='<?= json_encode(array_fill(1, $carousel_page, true)); ?>'
+<?php } ?>
+    <div id="carousel"
          class="thumbnails">
-      <?php foreach ($collectibles as $c): ?>
-        <a href="<?= url_for_collectible($c) ?>"
-           class="thumbnail <?= $c->getId() == $collectible->getId() ? 'active' : '' ?>">
-          <?php
-            echo image_tag_collectible(
-              $c, '100x100', array('width' => 90, 'height' => 90)
-            );
-          ?>
-        </a>
-      <?php endforeach; ?>
+      <?php foreach ($collectibles as $key=>$c): ?>
+        <?php if ($c->getId()== $curCollectible )
+        {
+          slot('lastItem');
+          echo link_to($count.'<br />Items', 'collection_by_slug', $collection, array('class'=>'moreItems'));
+          end_slot();
+        }
+        else
+        {
+          include_partial('_sidebar/widgetCollectionCollectiblesItem', array('item'=> $c));
+        } ?>
+      <?php endforeach ?>
+      <?php echo get_slot('lastItem') ?>
     </div>
   </div>
 </div>
 <?php $_height -= 165; ?>
 
 <?php
-  if (isset($height) && property_exists($height, 'value'))
+if (isset($height) && property_exists($height, 'value'))
   {
     $height->value -= abs($_height);
   }
@@ -44,85 +48,87 @@ $_height = 0;
 
 
 <script type="text/javascript">
-$(document).ready(function()
-{
-  var carousel_page = <?= $carousel_page; ?>;
-  var carousel_page_offset = <?= $carousel_page_offset; ?>;
 
-  var $carousel = $('#carousel');
-
-  if ($carousel.children().length >= 3) {
-    $carousel.rcarousel({
-      visible: 3, step: 1,
-      width: 90, height: 90,
-      margin: 6,
-      auto: { enabled: false, interval: 15000 },
-      start: firstLoad,
-      pageLoaded: loadPage
-    });
-  }
-
-  function firstLoad(event)
+  $(document).ready(function()
   {
-    $carousel.css('height', 'auto');
+    (function($){
 
-    if (carousel_page !== 1) {
-      // execute carousel animation
-      $carousel.rcarousel('goToPage', carousel_page);
-    }
+    $.fn.extend({
 
-    // when current page is first page, manually fire event to load next page,
-    // because goToPage will not fire the "pageLoaded" event
-    if (1 == $carousel.rcarousel('getCurrentPage')) {
-      loadPage(event, {});
-    }
-  }
+      collectionCollectiblesWidget: function() {
 
-  function loadPage()
-  {
-    var loaded = $carousel.data('loaded');
-
-    var $link, $img, $jqElements = $();
-    var url = '<?= url_for('ajax_collection', array('section' => 'collectibles', 'page' => 'carousel')); ?>';
-    var target_page = $carousel.rcarousel('getCurrentPage') + 1;
-
-    if (typeof(loaded) !== 'undefined' && loaded[target_page] === true)
-    {
-      return;
-    }
-
-    $.getJSON(url +'?p='+ (target_page + carousel_page_offset),
-      {
-        id: <?= $collection->getId(); ?>,
-        collectible_id: <?= $collectible->getId(); ?>
-      },
-      function(data)
-      {
-        $.each(data.collectibles, function(i, collectible)
-        {
-          $link = $( "<a />" )
-            .attr( "href", collectible.url )
-            .attr( "class", 'thumbnail' );
-
-          $img = $( "<img />" )
-            .attr( "src", collectible.thumbnails.x75 )
-            .attr( "width", 90 )
-            .attr( "height", 90 );
-
-          $link.html($img);
-          $jqElements = $jqElements.add( $link );
-        });
-
-        if ($jqElements.length > 0)
-        {
-          $carousel.rcarousel("append", $jqElements);
+        var defaults = {
+          nextControl : '.right-arrow',
+          prevControl : '.left-arrow',
+          itemsHolder : '.thumbnails'
         }
 
-        loaded[target_page] = true;
-      }
-    );
+        var options =  $.extend(defaults, options);
 
-    $carousel.data('loaded', loaded);
-  }
+        return this.each(function() {
+
+          var o = options;
+          var widget = $(this);
+          var curPage = widget.data('page');
+          var lastPage = widget.data('lastpage');
+          var url = widget.data('url');
+          var cache = {};
+          var holder = $(o.itemsHolder, widget);
+
+          $(o.nextControl, widget).click(function(){
+
+              loadPage(lastPage == curPage ? 1 : curPage+1);
+          });
+          $(o.prevControl, widget).click(function(){
+
+            loadPage(curPage ==1 ? lastPage : curPage-1);
+          });
+
+          function loadPage(page)
+          {
+            curPage = page;
+            if ( page in cache )
+            {
+              update();
+            }
+            else
+            {
+              holder.animate({'opacity':0.4},200);
+
+              $.getJSON(url +'?widgetPage='+ page,
+                {
+                  id: <?= $collection->getId(); ?>,
+                  collectible_id: <?= $collectible->getId(); ?>
+                },
+                function(data)
+                {
+                  cache[ page ] = data;
+                  update();
+                }
+              );
+            }
+          }
+
+          function update(){
+            var data = cache[curPage];
+            if(curPage != widget.data('page')&&data.html)
+            {
+              holder.animate({'opacity':0},200,function(){
+                holder.html('');
+                $(data.html).appendTo(holder);
+                holder.animate({'opacity':1},300);
+              });
+            }
+            widget.data('page',curPage);
+          }
+        });
+      }
+    });
+
+  })(jQuery);
+
+
+  $('#collectionCollectiblesWidget').collectionCollectiblesWidget();
+
 });
 </script>

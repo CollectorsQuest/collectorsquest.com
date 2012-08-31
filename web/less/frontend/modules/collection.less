@@ -46,8 +46,9 @@
   .thumbnails {
     display: relative;
 	  overflow: hidden;
-    height: 90px;
+    height: 92px;
     margin-left: 2px;
+      margin-right: -5px !important;
     margin-bottom: 5px;
 
     a {
@@ -59,6 +60,21 @@
 		  padding-bottom: 5px;
 		  border-bottom: 5px solid #CC0000;
     }
+  a.moreItems{
+      background-color: white;
+      color: #0A82C2;
+      font-size: 24px;
+      height: 57px;
+      line-height: 25px;
+      padding: 17px 0;
+      text-align: center;
+      width: 90px;
+      &:hover{
+          color:red;
+          background-color: #f8f8ff;
+      }
+  }
+
   }
   .thumbnail {
     .square(90px);
@@ -67,9 +83,11 @@
 	  border: none;
     .border-radius(0);
   }
-
+   .thumbnail:last-child {
+      margin-right: 0px;
+    }
   .well {
-    padding: 7px 3px 0 3px;
+    padding: 7px 3px 0 3px!important;
     background: #FFF5D5;
     margin-left: -4px;
     .border-radius(0);
