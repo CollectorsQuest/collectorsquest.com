@@ -61,11 +61,25 @@
 @iconWhiteSpritePath:     "/assets/images/glyphicons-halflings-white.png";
 @fontAwesomePath:         "/css/frontend/fonts";
 
+
 // Navbar
 // -------------------------
+@navbarCollapseWidth:             979px;
+
+@navbarHeight:                    40px;
+@navbarBackground:                darken(@navbarBackgroundHighlight, 5%);
+@navbarBackgroundHighlight:       #ffffff;
+@navbarBorder:                    darken(@navbarBackground, 12%);
+
+@navbarText:                      @gray;
 @navbarLinkColor:                 @white;
+@navbarLinkColorHover:            @white;
 @navbarLinkColorActive:           @white;
-@navbatLinkSubmenuColor:          @blueDark;
+@navbarLinkBackgroundHover:       transparent;
+@navbarLinkBackgroundActive:      darken(@navbarBackground, 5%);
+
+@navbarBrandColor:                @navbarLinkColor;
+
 
 // Backgrounds
 // -------------------------
