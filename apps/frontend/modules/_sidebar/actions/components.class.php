@@ -159,23 +159,10 @@ class _sidebarComponents extends cqFrontendComponents
     }
 
     $this->subcategories = ContentCategoryQuery::create()
-      ->childrenOf($this->current_category)
-      ->distinct()
-      ->filterByName('None', Criteria::NOT_EQUAL)
+      ->descendantsOf($this->current_category)
+      ->withCollectiblesForSale()
+      ->filterByLevel(2)
       ->orderBy('Name', Criteria::ASC)
-      ->joinCollection()
-      ->useCollectionQuery()
-        ->joinCollectionCollectible()
-        ->useCollectionCollectibleQuery()
-          ->joinCollectible()
-          ->useCollectibleQuery()
-            ->joinCollectibleForSale()
-            ->useCollectibleForSaleQuery()
-              ->isForSale()
-            ->endUse()
-          ->endUse()
-        ->endUse()
-      ->endUse()
       ->find();
 
     /*
@@ -201,23 +188,10 @@ class _sidebarComponents extends cqFrontendComponents
     if ($changed_current_category)
     {
       $this->sub_subcategories = ContentCategoryQuery::create()
-        ->childrenOf($this->current_sub_category)
-        ->distinct()
-        ->filterByName('None', Criteria::NOT_EQUAL)
+        ->descendantsOf($this->current_sub_category)
+        ->withCollectiblesForSale()
         ->orderBy('Name', Criteria::ASC)
-        ->joinCollection()
-        ->useCollectionQuery()
-          ->joinCollectionCollectible()
-          ->useCollectionCollectibleQuery()
-            ->joinCollectible()
-            ->useCollectibleQuery()
-              ->joinCollectibleForSale()
-              ->useCollectibleForSaleQuery()
-                ->isForSale()
-              ->endUse()
-            ->endUse()
-          ->endUse()
-        ->endUse()
+        ->filterByLevel(3)
         ->find();
 
       /*
@@ -243,23 +217,9 @@ class _sidebarComponents extends cqFrontendComponents
 
     if ($changed_current_category_more_levels)
     $this->sub_sub_subcategories = ContentCategoryQuery::create()
-      ->childrenOf($this->current_sub_subcategory)
-      ->distinct()
-      ->filterByName('None', Criteria::NOT_EQUAL)
+      ->descendantsOf($this->current_sub_subcategory)
+      ->withCollectiblesForSale()
       ->orderBy('Name', Criteria::ASC)
-      ->joinCollection()
-      ->useCollectionQuery()
-        ->joinCollectionCollectible()
-        ->useCollectionCollectibleQuery()
-          ->joinCollectible()
-          ->useCollectibleQuery()
-            ->joinCollectibleForSale()
-            ->useCollectibleForSaleQuery()
-              ->isForSale()
-            ->endUse()
-          ->endUse()
-        ->endUse()
-      ->endUse()
       ->find();
 
     return $this->_sidebar_if(count($this->subcategories) > 0);
