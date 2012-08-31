@@ -124,6 +124,110 @@ class _sidebarComponents extends cqFrontendComponents
   /**
    * @return string
    */
+  public function executeWidgetMarketplaceSubCategories()
+  {
+    $this->current_category = $this->getVar('current_category');
+    $this->current_sub_category = new ContentCategory();
+    $this->current_sub_subcategory = new ContentCategory();
+    $this->current_sub_sub_subcategory = new ContentCategory();
+    $this->sub_sub_subcategories = array();
+
+    $changed_current_category = false;
+    $changed_current_category_more_levels = false;
+    if ($this->current_category->getLevel() == 4)
+    {
+      $this->current_sub_sub_subcategory = $this->current_category;
+      $this->current_sub_subcategory = $this->current_category->getParent();
+      $this->current_sub_category = $this->current_category->getParent()->getParent();
+      $this->current_category = $this->current_category->getParent()->getParent()->getParent();
+      $changed_current_category = true;
+      $changed_current_category_more_levels = true;
+    }
+    else if ($this->current_category->getLevel() == 3)
+    {
+      $this->current_sub_subcategory = $this->current_category;
+      $this->current_sub_category = $this->current_category->getParent();
+      $this->current_category = $this->current_category->getParent()->getParent();
+      $changed_current_category = true;
+      $changed_current_category_more_levels = true;
+    }
+    else if ($this->current_category->getLevel() == 2)
+    {
+      $this->current_sub_category = $this->current_category;
+      $this->current_category = $this->current_category->getParent();
+      $changed_current_category = true;
+    }
+
+    $this->subcategories = ContentCategoryQuery::create()
+      ->descendantsOf($this->current_category)
+      ->withCollectiblesForSale()
+      ->filterByLevel(2)
+      ->orderBy('Name', Criteria::ASC)
+      ->find();
+
+    /*
+    * logic of $this->subcategories query should be changed so all subcategories with
+    * sub_subcategories that have items for sale should be visible. Currently adding the
+    * current_sub_category by hand if it doesn't exist in list
+    */
+
+    $missing_category = true;
+    foreach ($this->subcategories as $subcateogry)
+    {
+      if ($subcateogry == $this->current_sub_category)
+      {
+        $missing_category = false;
+      }
+    }
+
+    if ($missing_category)
+    {
+      $this->subcategories[] = $this->current_sub_category;
+    }
+
+    if ($changed_current_category)
+    {
+      $this->sub_subcategories = ContentCategoryQuery::create()
+        ->descendantsOf($this->current_sub_category)
+        ->withCollectiblesForSale()
+        ->orderBy('Name', Criteria::ASC)
+        ->filterByLevel(3)
+        ->find();
+
+      /*
+       * logic of $this->sub_subcategories query should be changed so all sub_subcategories with
+       * sub_sub_subcategories that have items for sale should be visible. Currently adding the
+       * current_sub_subcategory by hand if it doesn't exist in list
+       */
+
+      $missing_category = true;
+      foreach ($this->sub_subcategories as $sub_subcateogry)
+      {
+        if ($sub_subcateogry == $this->current_sub_subcategory)
+        {
+            $missing_category = false;
+        }
+      }
+
+      if ($missing_category)
+      {
+        $this->sub_subcategories[] = $this->current_sub_subcategory;
+      }
+    }
+
+    if ($changed_current_category_more_levels)
+    $this->sub_sub_subcategories = ContentCategoryQuery::create()
+      ->descendantsOf($this->current_sub_subcategory)
+      ->withCollectiblesForSale()
+      ->orderBy('Name', Criteria::ASC)
+      ->find();
+
+    return $this->_sidebar_if(count($this->subcategories) > 0);
+  }
+
+  /**
+   * @return string
+   */
   public function executeWidgetCollections()
   {
     $this->collections = $this->getVar('collections') ?: array();
@@ -565,6 +669,21 @@ class _sidebarComponents extends cqFrontendComponents
 
     // Make the actual query and get the CollectiblesForSale
     $this->collectibles_for_sale = $q->limit($this->limit)->find();
+
+    if (count($this->collectibles_for_sale) === 0 && $this->getVar('fallback') === 'random')
+    {
+      // We want to go up several levels
+      $category = $category->getParent() ?: $category;
+
+      /* @var $q CollectibleForSaleQuery */
+      $q = CollectibleForSaleQuery::create()
+        ->isForSale()
+        ->hasActiveCredit()
+        ->filterByContentCategoryWithDescendants($category->getParent() ?: $category)
+        ->addAscendingOrderByColumn('RAND()');
+
+      $this->collectibles_for_sale = $q->limit(3)->find();
+    }
 
     // Temporary variable to avoid calling count() multiple times
     $total = count($this->collectibles_for_sale);
