@@ -8,8 +8,12 @@
    * @var $current_sub_subcategory  ContentCategory
    * @var $height stdClass
    */
+  $link = link_to(
+    'See all &raquo;', '@marketplace_categories',
+    array('class' => 'text-v-middle link-align')
+  );
 
-  cq_sidebar_title($current_category);
+  cq_sidebar_title($current_category, $link);
   $_height = -63;
 ?>
 
