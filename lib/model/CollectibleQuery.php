@@ -42,6 +42,14 @@ class CollectibleQuery extends BaseCollectibleQuery
     return $this;
   }
 
+  public function isForSale()
+  {
+    return $this
+      ->useCollectibleForSaleQuery()
+        ->isForSale()
+      ->endUse();
+  }
+
   /**
    * @param  string  $v
    * @return CollectibleQuery

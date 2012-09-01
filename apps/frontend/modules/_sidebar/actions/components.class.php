@@ -99,23 +99,12 @@ class _sidebarComponents extends cqFrontendComponents
 
     /** @var $q CollectionCategoryQuery */
     $q = ContentCategoryQuery::create()
-      ->distinct()
       ->filterByName('None', Criteria::NOT_EQUAL)
-      ->filterByTreeLevel(array(1, 2))
+      ->filterByLevel(array(1, 2))
+      ->hasCollectiblesForSale()
       ->orderBy('Name', Criteria::ASC)
-      ->joinCollection()
-      ->useCollectionQuery()
-        ->joinCollectionCollectible()
-        ->useCollectionCollectibleQuery()
-          ->joinCollectible()
-          ->useCollectibleQuery()
-            ->joinCollectibleForSale()
-            ->useCollectibleForSaleQuery()
-              ->isForSale()
-            ->endUse()
-          ->endUse()
-        ->endUse()
-      ->endUse();
+      ->distinct();
+
     $this->categories = $q->find();
 
     return $this->_sidebar_if(count($this->categories) > 0);
@@ -160,7 +149,7 @@ class _sidebarComponents extends cqFrontendComponents
 
     $this->subcategories = ContentCategoryQuery::create()
       ->descendantsOf($this->current_category)
-      ->withCollectiblesForSale()
+      ->hasCollectiblesForSale()
       ->filterByLevel(2)
       ->orderBy('Name', Criteria::ASC)
       ->find();
@@ -189,9 +178,9 @@ class _sidebarComponents extends cqFrontendComponents
     {
       $this->sub_subcategories = ContentCategoryQuery::create()
         ->descendantsOf($this->current_sub_category)
-        ->withCollectiblesForSale()
-        ->orderBy('Name', Criteria::ASC)
+        ->hasCollectiblesForSale()
         ->filterByLevel(3)
+        ->orderBy('Name', Criteria::ASC)
         ->find();
 
       /*
@@ -218,7 +207,7 @@ class _sidebarComponents extends cqFrontendComponents
     if ($changed_current_category_more_levels)
     $this->sub_sub_subcategories = ContentCategoryQuery::create()
       ->descendantsOf($this->current_sub_subcategory)
-      ->withCollectiblesForSale()
+      ->hasCollectiblesForSale()
       ->orderBy('Name', Criteria::ASC)
       ->find();
 

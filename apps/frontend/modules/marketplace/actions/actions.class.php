@@ -112,7 +112,7 @@ class marketplaceActions extends cqFrontendActions
   public function executeCategories()
   {
     $this->categories = ContentCategoryQuery::create()
-      ->withCollectiblesForSale()
+      ->hasCollectiblesForSale()
       ->orderBy('Name')
       ->find();
 

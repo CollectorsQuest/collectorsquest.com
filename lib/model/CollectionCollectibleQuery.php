@@ -22,6 +22,14 @@ class CollectionCollectibleQuery extends BaseCollectionCollectibleQuery
     ;
   }
 
+  public function isForSale()
+  {
+    return $this
+      ->useCollectibleQuery()
+        ->isForSale()
+      ->endUse();
+  }
+
   /**
    * @param  string $v
    * @return CollectionCollectibleQuery
