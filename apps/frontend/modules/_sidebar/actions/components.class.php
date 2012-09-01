@@ -728,43 +728,70 @@ class _sidebarComponents extends cqFrontendComponents
     );
   }
 
-  public function executeWidgetCollectionCollectibles()
+  public function executeWidgetCollectionCollectibles(sfWebRequest $request)
   {
-
+    /** @var $collectible Collectible|CollectionCollectible */
+    $collectible = $this->getVar('collectible') ?: null;
 
     /** @var $collection CollectorCollection */
-    $collection = $this->getVar('collection') ? : null;
-
-    /** @var $collectible CollectionCollectible */
-    $collectible = $this->getVar('collectible') ? : null;
-    $limit_per_page = $this->getVar('limit_per_page') ? : 3;
-    $this->curCollectible = null;
-    $default_page = 1;
-    if ($collectible instanceof CollectionCollectible)
+    if (!$collection = $this->getVar('collection') ?: null)
     {
-      $collection = $collectible->getCollection();
-      $this->curCollectible = $collectible->getId();
-      $default_page = (integer) ceil($collectible->getPosition() / $limit_per_page);
+      if ($collectible)
+      {
+        $collection = $collectible->getCollectible()->getCollectorCollection();
+      }
+      else if ($request->getParameter('collection_id'))
+      {
+        $collection = CollectorCollectionQuery::create()
+          ->findOneById($request->getParameter('collection_id'));
+      }
     }
 
-    $page = $this->getRequest()->getParameter('collWidgetPage', $default_page);
+    // Stop right here if there are not Collection OR Collectible specified
+    if (!$collection && !$collectible)
+    {
+      return sfView::NONE;
+    }
+
+    /** @var $limit integer */
+    $limit = (integer) $this->getVar('limit') ?: (integer) $request->getParameter('per_page', 3);
+    $page = $collectible ? (integer) ceil($collectible->getPosition() / $limit) : $limit;
+    $page = $this->getRequest()->getParameter('p', $page);
 
     $q = CollectionCollectibleQuery::create();
-    $q->joinWith('Collectible');
-    $q->filterByCollection($collection)
-      ->orderByPosition(Criteria::ASC);
+    $q->joinWith('Collectible')
+      ->orderBy('Position', Criteria::ASC);
 
-    $pager = new PropelModelPager($q, $limit_per_page);
+    // Filter by Collection if specified
+    if ($collection)
+    {
+      $q->filterByCollection($collection);
+    }
+
+    $a = clone $q;
+
+    $pager = new PropelModelPager($q, $limit);
     $pager->setPage($page);
     $pager->init();
-    $this->count = count($collection->getCollectibleIds());
-    $this->page = $pager->getPage();
 
+    // NOTE: Here we have to assume that we show 3 collectibles per "page"
+    if ($collectible && $collectible->getPosition() % 3 != 2)
+    {
+      $position = $collectible->getPosition();
+      $this->collectibles = $a
+        ->filterByPosition(array($position > 1 ? $position - 1 : 3, $position, $position + 1), Criteria::IN)
+        ->find();
+    }
+    else
+    {
+      $this->collectibles = $pager->getResults();
+    }
+
+    $this->pager = $pager;
     $this->collection = $collection;
-    $this->lastPage = $pager->getLastPage();
-    $this->collectibles = $pager->getResults();
+    $this->collectible = $collectible;
 
-    return $this->_sidebar_if(count($this->collectibles) > 1);
+    return $this->_sidebar_if($pager->getNbResults() > 1);
 
   }
 
