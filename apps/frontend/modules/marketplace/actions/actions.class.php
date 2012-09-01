@@ -111,6 +111,11 @@ class marketplaceActions extends cqFrontendActions
 
   public function executeCategories()
   {
+    if (IceGateKeeper::locked('marketplace_categories', 'page'))
+    {
+      $this->redirect('@marketplace', 302);
+    }
+
     $this->categories = ContentCategoryQuery::create()
       ->hasCollectiblesForSale()
       ->orderBy('Name')

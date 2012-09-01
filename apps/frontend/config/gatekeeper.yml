@@ -1,5 +1,7 @@
 all:
-  pages: ~
+  pages:
+    marketplace_categories: false
+
   features:
     shopping_cart: true
     shopping_checkout_help: false
@@ -13,7 +15,9 @@ all:
     independence_day: false
 
 next:
-  pages: ~
+  pages:
+    marketplace_categories: false
+
   features:
     shopping_cart: true
     shopping_checkout_help: false
@@ -27,7 +31,9 @@ next:
     independence_day: false
 
 dev:
-  pages: ~
+  pages:
+    marketplace_categories: true
+
   features:
     shopping_cart: true
     shopping_checkout_help: false

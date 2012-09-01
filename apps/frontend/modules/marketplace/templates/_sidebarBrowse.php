@@ -9,10 +9,20 @@
 <?php $height->value -= 250; ?>
 
 <?php
-  include_component(
-    '_sidebar', 'widgetMarketplaceCategories',
-    array('current_category' => $category, 'height' => &$height)
-  );
+  if (IceGateKeeper::open('marketplace_categories', 'page'))
+  {
+    include_component(
+      '_sidebar', 'widgetMarketplaceCategories',
+      array('current_category' => $category, 'height' => &$height)
+    );
+  }
+  else
+  {
+    include_component(
+      '_sidebar', 'widgetMarketplaceExplore',
+      array('category' => $category, 'height' => &$height)
+    );
+  }
 ?>
 
 <?php
