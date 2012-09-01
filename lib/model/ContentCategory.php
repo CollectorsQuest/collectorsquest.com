@@ -166,7 +166,7 @@ class ContentCategory extends BaseContentCategory
   {
     if ($level < 0)
     {
-      $level = $this->getTreeLevel() - $level;
+      $level = $this->getTreeLevel() - abs($level);
     }
 
     if (!$this->hasParent() || $level < 0)
