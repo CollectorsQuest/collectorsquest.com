@@ -5,25 +5,20 @@
  */
 ?>
 
-<?php
-  cq_dart_slot(
-    '300x250', 'market',
-    isset($category) && $category instanceof ContentCategory ? $category->getSlug() : 'landing',
-    'sidebar'
-  );
-?>
-
+<?php cq_dart_slot('300x250', 'market', 'landing', 'sidebar'); ?>
 <?php $height->value -= 250; ?>
 
 <?php
   if (isset($category) && $category instanceof ContentCategory)
+  {
     include_component(
-      '_sidebar', 'widgetMarketplaceSubCategories',
+      '_sidebar', 'widgetMarketplaceCategories',
       array('current_category' => $category, 'height' => &$height)
     );
+  }
 ?>
 
-<?php include_component('_sidebar', 'widgetMarketplaceCategories', array('height' => &$height)); ?>
+<?php include_component('_sidebar', 'widgetMarketplaceExplore', array('height' => &$height)); ?>
 
 <?php
   if (!$sf_user->isAuthenticated())

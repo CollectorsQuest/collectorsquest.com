@@ -1,3 +1,17 @@
+### BLOG
+
+blog:
+  url:   /blog
+  param: { module: _blog, action: index }
+
+blog_post:
+  url:   /blog/:slug
+  param: { module: _blog, action: post }
+
+blog_page:
+  url:   /pages/:slug
+  param: { module: _blog, action: page }
+
 ### WordPress Custom Post Types
 
 wordpress_featured_items:

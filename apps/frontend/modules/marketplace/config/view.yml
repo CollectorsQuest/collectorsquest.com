@@ -7,7 +7,7 @@ indexSuccess:
 
 browseSuccess:
   components:
-    sidebar_300: [marketplace, sidebarIndex]
+    sidebar_300: [marketplace, sidebarBrowse]
 
 categoriesSuccess:
   components:

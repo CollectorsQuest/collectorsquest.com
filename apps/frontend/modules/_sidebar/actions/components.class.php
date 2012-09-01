@@ -89,7 +89,7 @@ class _sidebarComponents extends cqFrontendComponents
   /**
    * @return string
    */
-  public function executeWidgetMarketplaceCategories()
+  public function executeWidgetMarketplaceExplore()
   {
     // Set the limit of Collections to show
     $this->limit = (int) $this->getVar('limit') ?: 30;
@@ -113,7 +113,7 @@ class _sidebarComponents extends cqFrontendComponents
   /**
    * @return string
    */
-  public function executeWidgetMarketplaceSubCategories()
+  public function executeWidgetMarketplaceCategories()
   {
     $this->current_category = $this->getVar('current_category');
     $this->current_sub_category = new ContentCategory();

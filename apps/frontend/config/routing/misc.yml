@@ -40,21 +40,6 @@ search:
   param: { module: search, action: index }
 
 
-### BLOG
-
-blog:
-  url:   /blog
-  param: { module: _blog, action: index }
-
-blog_post:
-  url:   /blog/:slug
-  param: { module: _blog, action: post }
-
-blog_page:
-  url:   /pages/:slug
-  param: { module: _blog, action: page }
-
-
 ### VIDEO
 
 video:

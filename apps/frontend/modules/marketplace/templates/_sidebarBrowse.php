@@ -1,10 +1,17 @@
-<?php cq_dart_slot('300x250', 'market', 'categories', 'sidebar') ?>
+<?php
+/**
+ * @var $category ContentCategory
+ * @var $height stdClass
+ */
+?>
+
+<?php cq_dart_slot('300x250', 'market', 'categories', $category->getSlug()) ?>
 <?php $height->value -= 250; ?>
 
 <?php
   include_component(
-    '_sidebar', 'widgetFeaturedSellers',
-    array('title' => 'Spotlight', 'height' => &$height)
+    '_sidebar', 'widgetMarketplaceCategories',
+    array('current_category' => $category, 'height' => &$height)
   );
 ?>
 
