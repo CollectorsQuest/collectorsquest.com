@@ -257,10 +257,10 @@ class _sidebarComponents extends cqFrontendComponents
       /** @var $category ContentCategory */
       if ($category = $collection->getContentCategory())
       {
-        // We want to go up several levels
-        $category = $category->getParent() ?: $category;
+        // We need broader limit by category so let's get the parent at level 1
+        $category = $category->getParentAtLevel(1) ?: $category;
 
-        $q->filterByContentCategoryWithDescendants($category->getParent() ?: $category);
+        $q->filterByContentCategoryWithDescendants($category);
       }
 
       $q
@@ -288,10 +288,10 @@ class _sidebarComponents extends cqFrontendComponents
       /** @var $category ContentCategory */
       if ($category = $collection->getContentCategory())
       {
-        // We want to go up several levels
-        $category = $category->getParent() ?: $category;
+        // We need broader limit by category so let's get the parent at level 1
+        $category = $category->getParentAtLevel(1) ?: $category;
 
-        $q->filterByContentCategoryWithDescendants($category->getParent() ?: $category);
+        $q->filterByContentCategoryWithDescendants($category);
       }
 
       $q
@@ -580,6 +580,12 @@ class _sidebarComponents extends cqFrontendComponents
       $this->limit = min(floor(($height->value - 63) / 85), $this->limit);
     }
 
+    // We want to stop right here if we are not going to show anything (0 items)
+    if ($this->limit <= 0)
+    {
+      return sfView::NONE;
+    }
+
     /** @var $q CollectibleForSaleQuery */
     $q = CollectibleForSaleQuery::create()
       ->isForSale()
@@ -623,10 +629,10 @@ class _sidebarComponents extends cqFrontendComponents
       /** @var $category ContentCategory */
       if ($category = $collection->getContentCategory())
       {
-        // We want to go up several levels
-        $category = $category->getParent() ?: $category;
+        // We need broader limit by category so let's get the parent at level 1
+        $category = $category->getParentAtLevel(1) ?: $category;
 
-        $q->filterByContentCategoryWithDescendants($category->getParent() ?: $category);
+        $q->filterByContentCategoryWithDescendants($category);
       }
 
       $q
@@ -656,10 +662,10 @@ class _sidebarComponents extends cqFrontendComponents
       /** @var $category ContentCategory */
       if ($category = $collection->getContentCategory())
       {
-        // We want to go up several levels
-        $category = $category->getParent() ?: $category;
+        // We need broader limit by category so let's get the parent at level 1
+        $category = $category->getParentAtLevel(1) ?: $category;
 
-        $q->filterByContentCategoryWithDescendants($category->getParent() ?: $category);
+        $q->filterByContentCategoryWithDescendants($category);
       }
 
       $q
@@ -672,25 +678,26 @@ class _sidebarComponents extends cqFrontendComponents
 
     if (count($this->collectibles_for_sale) === 0 && $this->getVar('fallback') === 'random')
     {
-      // We want to go up several levels
-      $category = $category->getParent() ?: $category;
-
       /* @var $q CollectibleForSaleQuery */
       $q = CollectibleForSaleQuery::create()
-        ->isForSale()
         ->hasActiveCredit()
-        ->filterByContentCategoryWithDescendants($category->getParent() ?: $category)
+        ->isForSale()
         ->addAscendingOrderByColumn('RAND()');
 
-      $this->collectibles_for_sale = $q->limit(3)->find();
+      /** @var $category ContentCategory */
+      if (isset($category) && $category instanceof ContentCategory)
+      {
+        $a = clone $q;
+        if ($a->filterByContentCategoryWithDescendants($category)->count() >= $this->limit)
+        {
+          $q->filterByContentCategoryWithDescendants($category);
+        }
+      }
+
+      $this->collectibles_for_sale = $q->limit($this->limit)->find();
     }
 
-    // Temporary variable to avoid calling count() multiple times
-    $total = count($this->collectibles_for_sale);
-
-    return $this->_sidebar_if(
-      $total > 0 && (!empty($height) ? $height->value >= ($total * 85 + 63) : true)
-    );
+    return $this->_sidebar_if(count($this->collectibles_for_sale) > 0);
   }
 
   public function executeWidgetBlogPosts()

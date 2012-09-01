@@ -153,4 +153,21 @@ class ContentCategory extends BaseContentCategory
     return true;
   }
 
+  public function getParentAtLevel($level, PropelPDO $con = null)
+  {
+    if (!$this->hasParent() || $level < 0)
+    {
+      $parent = $this->getParent($con);
+    }
+    else
+    {
+      $parent = ContentCategoryQuery::create()
+        ->ancestorsOf($this)
+        ->filterByLevel($level, Criteria::EQUAL)
+        ->findOne($con);
+    }
+
+    return $parent;
+  }
+
 }
