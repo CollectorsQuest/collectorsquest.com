@@ -113,7 +113,13 @@
               <p>
                 Have a question or a concern? Having trouble figuring something out?
                 Get the most out of the site by checking out our FAQs.<br />
-                <a href="<?=urldecode(url_for('blog_page', array('slug' => 'cq-faqs/general-questions'), true))?>">Get&nbsp;Help&nbsp;Now!</a>
+                <?php
+                  echo link_to(
+                    'Get&nbsp;Help&nbsp;Now!', 'blog_page',
+                    array('slug' => 'cq-faqs/general-questions', '_decode' => true),
+                    array('absolute' => true)
+                  );
+                ?>
               </p>
             </div>
           </li>
