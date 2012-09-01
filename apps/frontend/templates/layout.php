@@ -127,8 +127,20 @@
   <?php
     if (null !== $sidebar)
     {
+      $height = $sf_user->getFlash('height_main_div', null, true, 'internal');
+
+      // Make sure we are backwords compatible to the old behavior
+      if (!property_exists($height, 'value') || $height->value <= 0)
+      {
+        $height = new stdClass();
+        $height->value = PHP_INT_MAX;
+      }
+
       echo '<div id="sidebar">';
-      include_component_slot($sidebar, array('sf_cache_key' => $sf_cache_key));
+      include_component_slot($sidebar, array(
+        'sf_cache_key' => $sf_cache_key,
+        'height' => $height
+      ));
       echo '</div>';
     }
     echo '</div>';

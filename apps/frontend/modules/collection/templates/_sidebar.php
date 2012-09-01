@@ -1,19 +1,9 @@
 <?php
 /**
- * @var $collection CollectorCollection
- * @var $sf_user    cqFrontendUser
+ * @var  $collection  CollectorCollection
+ * @var  $sf_user  cqFrontendUser
+ * @var  $height  stdClass
  */
-
-/** @var $height stdClass */
-$height = $sf_user->getFlash('height_main_div', null, true, 'internal');
-
-// Make sure we are backwards compatible to the old behavior
-if (!property_exists($height, 'value') || $height->value <= 0)
-{
-  $height = new stdClass();
-  $height->value = PHP_INT_MAX;
-}
-
 ?>
 
 <?php
