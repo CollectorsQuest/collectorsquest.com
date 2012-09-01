@@ -153,11 +153,25 @@ class ContentCategory extends BaseContentCategory
     return true;
   }
 
-  public function getParentAtLevel($level, PropelPDO $con = null)
+  /**
+   * A special case of getParent() where we want to get the Ancestor
+   * at a certain level rather than the immediate parent
+   *
+   * @param  integer    $level
+   * @param  PropelPDO  $con
+   *
+   * @return null|ContentCategory
+   */
+  public function getAncestorAtLevel($level, PropelPDO $con = null)
   {
+    if ($level < 0)
+    {
+      $level = $this->getTreeLevel() - $level;
+    }
+
     if (!$this->hasParent() || $level < 0)
     {
-      $parent = $this->getParent($con);
+      $parent = null;
     }
     else
     {

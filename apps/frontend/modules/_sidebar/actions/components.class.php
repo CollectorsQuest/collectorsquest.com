@@ -247,7 +247,7 @@ class _sidebarComponents extends cqFrontendComponents
       if ($category = $collection->getContentCategory())
       {
         // We need broader limit by category so let's get the parent at level 1
-        $category = $category->getParentAtLevel(1) ?: $category;
+        $category = $category->getAncestorAtLevel(1) ?: $category;
 
         $q->filterByContentCategoryWithDescendants($category);
       }
@@ -278,7 +278,7 @@ class _sidebarComponents extends cqFrontendComponents
       if ($category = $collection->getContentCategory())
       {
         // We need broader limit by category so let's get the parent at level 1
-        $category = $category->getParentAtLevel(1) ?: $category;
+        $category = $category->getAncestorAtLevel(1) ?: $category;
 
         $q->filterByContentCategoryWithDescendants($category);
       }
@@ -619,7 +619,7 @@ class _sidebarComponents extends cqFrontendComponents
       if ($category = $collection->getContentCategory())
       {
         // We need broader limit by category so let's get the parent at level 1
-        $category = $category->getParentAtLevel(1) ?: $category;
+        $category = $category->getAncestorAtLevel(1) ?: $category;
 
         $q->filterByContentCategoryWithDescendants($category);
       }
@@ -652,7 +652,7 @@ class _sidebarComponents extends cqFrontendComponents
       if ($category = $collection->getContentCategory())
       {
         // We need broader limit by category so let's get the parent at level 1
-        $category = $category->getParentAtLevel(1) ?: $category;
+        $category = $category->getAncestorAtLevel(1) ?: $category;
 
         $q->filterByContentCategoryWithDescendants($category);
       }
