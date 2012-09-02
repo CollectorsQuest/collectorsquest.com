@@ -1,34 +1,34 @@
 
 //Comments
 #comments {
-	margin: 30px 0 40px 0;
+  margin: 30px 0 40px 0;
 }
 
 .user-comments {
-	margin: 10px 25px 10px 0;
+  margin: 10px 25px 10px 0;
 
-	.username {
-		display: block;
-		width: 100%;
-		margin-bottom: 5px;
-		font-weight: bold;
-		color: @blue;
-		border-bottom: 1px dashed @grayLighter;
-	}
-	.user-comment {
-		margin-bottom: 10px;
-		.comment-time {
-			display: block;
-			font-size: 9px;
-			color: @blue;
-		}
-	}
+  .username {
+    display: block;
+    width: 100%;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: @blue;
+    border-bottom: 1px dashed @grayLighter;
+  }
+  .user-comment {
+    margin-bottom: 10px;
+    .comment-time {
+      display: block;
+      font-size: 9px;
+      color: @blue;
+    }
+  }
 }
 
 .post-comment {
-	padding: 15px 5px 15px 15px;
-	margin: 10px auto;
-	background-color: #c2e0f0;
+  padding: 15px 5px 15px 15px;
+  margin: 10px auto;
+  background-color: #c2e0f0;
 
   .extra-fields {
     display: none;
@@ -43,27 +43,27 @@
     color: @grayLight;
   }
 
-	.btn-large {
-		padding: 8px 10px;
-		margin-left: -5px;
-		font-size: 14px;
-		font-weight: bold;
-		line-height: 16px;
-		color: #786767;
-		border-top: 1px solid #7cb9da;
-		border-right: 1px solid #7cb9da;
-		border-bottom: 1px solid #7cb9da;
-		#gradient > .vertical(#e1dede,#cecbcb);
+  .btn-large {
+    padding: 8px 10px;
+    margin-left: -5px;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 16px;
+    color: #786767;
+    border-top: 1px solid #7cb9da;
+    border-right: 1px solid #7cb9da;
+    border-bottom: 1px solid #7cb9da;
+    #gradient > .vertical(#e1dede,#cecbcb);
     .background-clip(padding-box);
-		.border-radius(0 7px 7px 0);
+    .border-radius(0 7px 7px 0);
     .transition(0.3s linear)
-	}
-	.btn:hover {
-		text-decoration: none;
-		background: #e1dddd;
-		background-position: 0;
-		.transition(none);
-	}
+  }
+  .btn:hover {
+    text-decoration: none;
+    background: #e1dddd;
+    background-position: 0;
+    .transition(none);
+  }
   .shrink {
     height: 18px;
   }
@@ -81,96 +81,96 @@
   }
 
   input{
-		.border-radius(5px);
+    .border-radius(5px);
   }
-	textarea {
-		width: 490px;
-		padding-top: 7px;
-		padding-bottom: 7px;
-		margin-bottom: 0;
-		border-top: 1px solid #7cb9da;
-		border-left: 1px solid #7cb9da;
-		border-bottom: 1px solid #7cb9da;
-		border-right: 1px solid c1b9b9;
-		.border-radius(7px 0 0 7px);
-		.box-shadow(inset 2px 2px 2px 2px rgba(0, 0, 0, .07));
+  textarea {
+    width: 490px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    margin-bottom: 0;
+    border-top: 1px solid #7cb9da;
+    border-left: 1px solid #7cb9da;
+    border-bottom: 1px solid #7cb9da;
+    border-right: 1px solid c1b9b9;
+    .border-radius(7px 0 0 7px);
+    .box-shadow(inset 2px 2px 2px 2px rgba(0, 0, 0, .07));
     // disable chrome and ff textarea resize control
     resize: none;
 
-		&:focus ~ button {
-			border-color: @blue @blue @blue #B7B7B7!important;
-		}
-		&::-webkit-input-placeholder {
-			color: @blueDark;
-		}
+    &:focus ~ button {
+      border-color: @blue @blue @blue #B7B7B7!important;
+    }
+    &::-webkit-input-placeholder {
+      color: @blueDark;
+    }
 
-		&:-moz-placeholder {
-			color: @blueDark;
-		}
+    &:-moz-placeholder {
+      color: @blueDark;
+    }
   }
-	form {
-		margin-bottom: 0;
-	}
+  form {
+    margin-bottom: 0;
+  }
 }
 
 .upload-photo {
-	display: inline-block;
-	margin-left: 5px;
+  display: inline-block;
+  margin-left: 5px;
 }
 
 #body-collection-collectible #comments {
-	margin-top: 15px;
+  margin-top: 15px;
 }
 
 .bubble {
-	position: relative;
-	margin: 0 0 0 5px;
-	padding: 6px;
-	background: none repeat scroll 0 0 #FFFFFF;
-	border: 1px solid #b8adad;
-	.border-radius(6px);
-	.box-shadow(-1px 1px 1px rgba(50, 50, 50, 0.1);
-	color: #555;
+  position: relative;
+  margin: 0 0 0 5px;
+  padding: 6px;
+  background: none repeat scroll 0 0 #FFFFFF;
+  border: 1px solid #b8adad;
+  .border-radius(6px);
+  .box-shadow(-1px 1px 1px rgba(50, 50, 50, 0.1);
+  color: #555;
 
-	&:before {
-		border-color: #b8adad transparent;
-		border-style: solid;
-		border-width: 20px 20px 0;
-		bottom: -20px;
-		content: "";
-		display: block;
-		left: 10px;
-		position: absolute;
-		width: 0;
-	}
-	&:after {
-		border-color: #FFFFFF transparent;
-		border-style: solid;
-		border-width: 12px 12px 0;
-		bottom: -13px;
-		content: "";
-		display: block;
-		left: 48px;
-		position: absolute;
-		width: 0;
-	}
-	&.left {
-		margin-left: 10px;
-	}
+  &:before {
+    border-color: #b8adad transparent;
+    border-style: solid;
+    border-width: 20px 20px 0;
+    bottom: -20px;
+    content: "";
+    display: block;
+    left: 10px;
+    position: absolute;
+    width: 0;
+  }
+  &:after {
+    border-color: #FFFFFF transparent;
+    border-style: solid;
+    border-width: 12px 12px 0;
+    bottom: -13px;
+    content: "";
+    display: block;
+    left: 48px;
+    position: absolute;
+    width: 0;
+  }
+  &.left {
+    margin-left: 10px;
+  }
 
-	&.left:before {
-		border-color: transparent #b8adad;
-		border-width: 8px 8px 8px 0;
-		bottom: auto;
-		left: -9px;
-		top: 14px;
-	}
-	&.left:after {
-		border-color: transparent #FFFFFF;
-		border-width: 7px 7px 7px 0;
-		bottom: auto;
-		left: -7px;
-		top: 14px;
-		//top: 15px; without box-shadow
-	}
+  &.left:before {
+    border-color: transparent #b8adad;
+    border-width: 8px 8px 8px 0;
+    bottom: auto;
+    left: -9px;
+    top: 14px;
+  }
+  &.left:after {
+    border-color: transparent #FFFFFF;
+    border-width: 7px 7px 7px 0;
+    bottom: auto;
+    left: -7px;
+    top: 14px;
+    //top: 15px; without box-shadow
+  }
 }

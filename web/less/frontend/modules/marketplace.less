@@ -4,169 +4,169 @@
 // Market
 
 #marketplace-spotlight {
-	background-color: @yellowHighlight;
-	padding: 15px 0 10px 0;
-	margin-top: 20px;
-	font-size:12px;
+  background-color: @yellowHighlight;
+  padding: 15px 0 10px 0;
+  margin-top: 20px;
+  font-size:12px;
 
-	.thumbnail:hover {
-		border: 1px solid @blue;
-	}
+  .thumbnail:hover {
+    border: 1px solid @blue;
+  }
 
-	.span4 {
-		width: 190px;
-		margin-left: 10px;
-		margin-right: 5px;
-	}
+  .span4 {
+    width: 190px;
+    margin-left: 10px;
+    margin-right: 5px;
+  }
 
-	.spotlight-title {
-		.custom-font(20px, 22px, italic, bold);
-		.smooth-font();
-		padding: 0 0 10px 10px;
-		color: @blueDark;
-	}
+  .spotlight-title {
+    .custom-font(20px, 22px, italic, bold);
+    .smooth-font();
+    padding: 0 0 10px 10px;
+    color: @blueDark;
+  }
 
-	.thumbnail {
-		.border-radius(0);
-		border-color: #c9beb1;
-		background-color: white;
-		padding: 3px 3px 6px 3px;
+  .thumbnail {
+    .border-radius(0);
+    border-color: #c9beb1;
+    background-color: white;
+    padding: 3px 3px 6px 3px;
 
-		h4 {
-			margin: 0;
-			font-size: 12px;
-			line-height: 16px;
-		}
-		.spotlight-thumb {
-			position: relative;
-			overflow: hidden;
-			width: 181px;
-			margin-left: 1px;
-			img {
-				margin-top: 1px;
-			}
+    h4 {
+      margin: 0;
+      font-size: 12px;
+      line-height: 16px;
+    }
+    .spotlight-thumb {
+      position: relative;
+      overflow: hidden;
+      width: 181px;
+      margin-left: 1px;
+      img {
+        margin-top: 1px;
+      }
 
-			.blue-label {
-				position: absolute;
-				top: 24px;
-				right: -32px;
-				display: block;
-				line-height: 20px;
+      .blue-label {
+        position: absolute;
+        top: 24px;
+        right: -32px;
+        display: block;
+        line-height: 20px;
         text-transform: uppercase;
-				letter-spacing: 0.07em;
+        letter-spacing: 0.07em;
         font-weight: bold;
         font-size: 11px;
-				background: @blueDark;
-				color: white;
-				text-align: center;
-				.size(20px, 138px);
-				.transform(rotate(45deg)translate3d(0, 0, 0));
-			}
-		}
-		.spotlight-text {
-			padding: 10px 5px 0 5px;
-			height: 110px;
-			overflow: hidden;
-			p {
-				margin-bottom: 0;
-				font-size:12px;
-				line-height: 16px;
-			}
-		}
-		.spotlight-price {
-			text-align: right;
-			font-weight: bold;
-			color: @blueDark;
-			margin-top: 8px;
-		}
-	}
+        background: @blueDark;
+        color: white;
+        text-align: center;
+        .size(20px, 138px);
+        .transform(rotate(45deg)translate3d(0, 0, 0));
+      }
+    }
+    .spotlight-text {
+      padding: 10px 5px 0 5px;
+      height: 110px;
+      overflow: hidden;
+      p {
+        margin-bottom: 0;
+        font-size:12px;
+        line-height: 16px;
+      }
+    }
+    .spotlight-price {
+      text-align: right;
+      font-weight: bold;
+      color: @blueDark;
+      margin-top: 8px;
+    }
+  }
 }
 .lt-ie10 #marketplace-spotlight .thumbnail .blue-label {
-	-ms-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
 }
 .lt-ie9 #marketplace-spotlight .thumbnail .blue-label {
-	width: 90px;
-	right: 0;
-	padding-right: 4px;
-	text-align: right;
+  width: 90px;
+  right: 0;
+  padding-right: 4px;
+  text-align: right;
 
 }
 
 .featured-sellers {
-	width: 100%;
-	margin-bottom: 10px;
+  width: 100%;
+  margin-bottom: 10px;
 
-	.spotlight-inner {
-		border: 1px solid @boxBorder;
-	}
-	.thumbnails-inner {
-		background-color: @yellowHighlight;
-		.clearfix();
-	}
-	.span2 {
-		.square(54px);
-		margin: 5px 0 4px 4px;
-	}
-	.thumbnails {
-		margin-left: 2px;
-		margin-bottom: 5px;
+  .spotlight-inner {
+    border: 1px solid @boxBorder;
+  }
+  .thumbnails-inner {
+    background-color: @yellowHighlight;
+    .clearfix();
+  }
+  .span2 {
+    .square(54px);
+    margin: 5px 0 4px 4px;
+  }
+  .thumbnails {
+    margin-left: 2px;
+    margin-bottom: 5px;
 
-		a {
-		.box-shadow(none);
-		&:hover {
-			padding: 3px;
-			background-color: white;
-			border: 1px solid @blue;
-			.border-radius(0);
+    a {
+    .box-shadow(none);
+    &:hover {
+      padding: 3px;
+      background-color: white;
+      border: 1px solid @blue;
+      .border-radius(0);
 
-		}
-		}
-	}
-	.thumbnail {
-		border: none;
-		padding: 0;
-		&:hover img {
-			max-width: 48px;
-			max-height: 46px;
-		}
-	}
-	.seller {
-		margin: 8px 8px 7px 8px;
+    }
+    }
+  }
+  .thumbnail {
+    border: none;
+    padding: 0;
+    &:hover img {
+      max-width: 48px;
+      max-height: 46px;
+    }
+  }
+  .seller {
+    margin: 8px 8px 7px 8px;
 
-		p {
-			margin: 2px 0;
-			line-height: 16px;
-		}
-	}
+    p {
+      margin: 2px 0;
+      line-height: 16px;
+    }
+  }
 }
 
 #all-market-categories {
-	margin-top: 20px;
+  margin-top: 20px;
 
-	.span4 {
-		margin-bottom: 20px;
+  .span4 {
+    margin-bottom: 20px;
 
-		a {
-			color: @blue;
-			line-height: 20px;
-			&:hover {
-				color: @red;
-				text-decoration: none;
-			}
-		}
-		h2 {
-			line-height: 28px;
-			margin-bottom: 15px;
-		}
-		h2 a {
-			color: @blueDark;
-			line-height: 28px;
-			&:hover {
-				text-decoration: none;
-				border-bottom: none;
-			}
-		}
-	}
+    a {
+      color: @blue;
+      line-height: 20px;
+      &:hover {
+        color: @red;
+        text-decoration: none;
+      }
+    }
+    h2 {
+      line-height: 28px;
+      margin-bottom: 15px;
+    }
+    h2 a {
+      color: @blueDark;
+      line-height: 28px;
+      &:hover {
+        text-decoration: none;
+        border-bottom: none;
+      }
+    }
+  }
 }
 
 div.onecolumn {

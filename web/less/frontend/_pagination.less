@@ -2,70 +2,70 @@
 // ----------
 
 .pagination-wrapper {
-	clear: both;
-	text-align: center;
+  clear: both;
+  text-align: center;
 }
 
 .pagination {
-	height: @baseLineHeight * 2;
-	margin: @baseLineHeight 0;
-	padding: 12px 0 8px 0;
-	text-align: center;
-	background: @paginationBackground;
+  height: @baseLineHeight * 2;
+  margin: @baseLineHeight 0;
+  padding: 12px 0 8px 0;
+  text-align: center;
+  background: @paginationBackground;
 }
 .pagination ul {
-	display: inline-block;
-	.ie7-inline-block();
-	margin-left: 0;
-	margin-bottom: 0;
-	.border-radius(none);
-	.box-shadow(none);
+  display: inline-block;
+  .ie7-inline-block();
+  margin-left: 0;
+  margin-bottom: 0;
+  .border-radius(none);
+  .box-shadow(none);
 }
 .pagination li {
-	display: inline;
+  display: inline;
 }
 .pagination a {
-	float: left;
-	margin: 0 3px;
-	padding: 0 13px;
-	line-height: (@baseLineHeight * 2) - 4;
-	text-decoration: none;
-	border: none;
-	border-left-width: 0;
+  float: left;
+  margin: 0 3px;
+  padding: 0 13px;
+  line-height: (@baseLineHeight * 2) - 4;
+  text-decoration: none;
+  border: none;
+  border-left-width: 0;
 
 }
 .pagination a:hover,
 .pagination .active a {
-	background-color: @paginationActiveBackground;
-	.border-radius(5px);
+  background-color: @paginationActiveBackground;
+  .border-radius(5px);
 }
 .pagination .active a {
-	color: @blue;
-	cursor: default;
-	.border-radius(5px);
-	.box-shadow(none);
+  color: @blue;
+  cursor: default;
+  .border-radius(5px);
+  .box-shadow(none);
 }
 .pagination .disabled span,
 .pagination .disabled a,
 .pagination .disabled a:hover {
-	color: @grayLight;
-	background-color: transparent;
-	cursor: default;
+  color: @grayLight;
+  background-color: transparent;
+  cursor: default;
 }
 .pagination li:first-child a {
-	border-left-width: 1px;
-	.border-radius(5px);
+  border-left-width: 1px;
+  .border-radius(5px);
 }
 .pagination li:last-child a {
-	.border-radius(5px);
+  .border-radius(5px);
 }
 
 // Centered
 .pagination-centered {
-	text-align: center;
+  text-align: center;
 }
 .pagination-right {
-	text-align: right;
+  text-align: right;
 }
 
 
