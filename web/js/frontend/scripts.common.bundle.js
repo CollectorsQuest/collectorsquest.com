@@ -1,3 +1,4 @@
+<!--#include virtual="bootstrap/bootstrap-affix.js" -->
 <!--#include virtual="bootstrap/bootstrap-alert.js" -->
 <!--#include virtual="bootstrap/bootstrap-button.js" -->
 <!--#include virtual="bootstrap/bootstrap-dropdown.js" -->
