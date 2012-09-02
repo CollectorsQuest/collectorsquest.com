@@ -31,15 +31,14 @@ seo:
         CollectorsQuest.com gives you an inside look at the American Pickers collection.
 
     # https://basecamp.com/1759305/projects/288122-collectorsquest-com/todos/11828067-history-a-e
-    collectible:
-      model: true
-      title: %Name% | %Collection%
-      description: %Description%
-
     collectibleFixedMatching:
       model: true
-      title: %Name% | %Collection%
-      description: %Description%
+      title:
+        - %Name% | Collectors Quest
+        - %Name% - %Collection% | Collectors Quest
+      description:
+        - %Description%
+        - %Description% | %TagString%
 
   categories:
     index:

@@ -12,9 +12,10 @@ $_height = 0;
 <?php
   cq_sidebar_title(
     $title, cq_link_to(
-      'See all &raquo;',
+      'Explore Market &raquo;',
       '@marketplace', array('class' => 'text-v-middle link-align')
-    )
+    ),
+    array('left' => 7, 'right' => 5)
   );
 
   $_height -= 63;

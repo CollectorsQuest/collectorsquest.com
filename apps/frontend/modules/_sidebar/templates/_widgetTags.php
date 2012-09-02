@@ -2,8 +2,6 @@
 /*
  * @var $height stdClass
  * @var $title string
- *
- * approximately how many rows of tags we have
  */
 
 $_height = 0;

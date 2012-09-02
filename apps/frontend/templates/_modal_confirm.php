@@ -1,4 +1,4 @@
-<div id="confirmation-modal" class="modal hide fade">
+<div id="confirmation-modal" class="modal hide">
     <div class="modal-header">
       <a href="javascript:void(0)" class="close">&times;</a>
       <h3></h3>

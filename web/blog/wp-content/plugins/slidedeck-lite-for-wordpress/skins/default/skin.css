@@ -1,0 +1,151 @@
+/*
+Skin Name: SlideDeck WordPress Plugin Default
+Skin URI: http://www.slidedeck.com/
+Skin Type: flexible
+Description: The default skin for the SlideDeck WordPress Plugin.
+Version: 1.1
+Author: digital-telepathy
+Author URI: http://www.dtelepathy.com/
+Contributors: dtelepathy, ricklee, kynatro
+Tags: flexible, white, black, multi-color
+*/
+
+.skin-default dl.slidedeck { margin: 0 0 25px; }
+
+.skin-default dl.slidedeck > dt {
+	position: relative;
+	cursor: pointer;
+    height: 30px;
+	line-height: 30px;
+	font-size: 13px;
+	font-weight: normal;
+	font-family: "Lucida Grande", Arial, Helvetica, sans-serif;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	background: url('spines.png') bottom right #f8f8f8;
+	color: #333;
+	border-bottom: 1px solid #fff;
+	margin:0;
+	padding:0;
+}
+
+.skin-default dl.slidedeck > dt:hover { color: #000; }
+
+.skin-default dl.slidedeck > dt.active, .skin-default dl.slidedeck > dt.active:hover {
+	cursor: default;
+	color: #fff !important;
+	background-color: #333;
+	background-position: top right;
+	border-left-color: #000;
+}
+
+.skin-default dl.slidedeck > dt .index {
+	font-size: 14px;
+	font-weight: bold;
+	font-family: "Lucida Grande", Arial, Helvetica, sans-serif;
+	color: #666;
+	background: url('indexes.png') 0 -32px no-repeat;
+	margin-left: -5px;
+}
+
+.skin-default dl.slidedeck > dt:hover .index { color: #000; }
+
+.skin-default dl.slidedeck > dt.active .index {
+	color: #fff !important;
+	background-position: 0 -1px;
+}
+
+.skin-default dl.slidedeck .activeCorner {
+	margin-left: -2px;
+	margin-top: -11px;
+	background-image: url('corner.png');
+	width: 7px;
+	height: 15px;
+}
+.skin-default dl.slidedeck > dd {
+    padding: 10px;
+	border: 1px solid #dcdcdc;
+	border-right: none;
+	background: url('slides.png') right top repeat-y;
+	background-color: rgb(255,255,255);
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;
+	-moz-border-radius-topright: 4px;
+	-moz-border-radius-bottomright: 4px;
+	-webkit-border-top-right-radius: 4px;
+	-webkit-border-bottom-right-radius: 4px;
+}
+
+.skin-default dl.slidedeck dd.slide ul.slidesVertical,
+.skin-default dl.slidedeck dd.slide dl.slidesVertical { text-indent: 0; }
+.skin-default dl.slidedeck dd.slide ul.slidesVertical li,
+.skin-default dl.slidedeck dd.slide dl.slidesVertical dd {
+    overflow: hidden;
+    padding: 10px !important;
+    margin: 0 !important;
+}
+.skin-default dl.slidedeck dd.slide ul.verticalSlideNav {
+    top: 10px;
+    right: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.skin-default dl.slidedeck dd.slide ul.verticalSlideNav li {
+    position: relative;
+    z-index: 2;
+    margin: 0;
+    padding: 0 0 3px;
+	width: 12px;
+	height: 12px;
+	overflow: hidden;
+	line-height: 12px;
+    list-style: none;
+	font-size: 1px; /* Stupid IE */
+}
+.skin-default dl.slidedeck ul li:before { content: "" !important; }
+.skin-default dl.slidedeck dd.slide ul.verticalSlideNav li.arrow {
+    position: absolute;
+    display: block;
+    z-index: 1;
+    width: 10px;
+    height: 0;
+    padding-top: 10px;
+    padding-bottom: 0;
+    overflow: hidden;
+    left: 0;
+    border: 1px solid #333;
+    background: #444;
+    background-image: -moz-linear-gradient(top, #000, #444); /* FF3.6 */
+    background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #000),color-stop(1, #444)); /* Saf4+, Chrome */
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -khtml-border-radius: 3px;
+    -o-border-radius: 3px;
+}
+.skin-default dl.slidedeck dd.slide ul.verticalSlideNav li a, .skin-default dl.slidedeck dd.slide ul.verticalSlideNav li a:link, .skin-default dl.slidedeck dd.slide ul.verticalSlideNav li a:visited {
+    position: relative;
+    display: block;
+    width: 10px;
+    height: 0;
+    overflow: hidden;
+    padding-top: 10px;
+    background: #fff;
+    outline: none;
+	text-decoration: none;
+    border: 1px solid #ccc;
+    opacity: 0.5;
+    -moz-opacity: 0.5;
+    -webkit-opacity: 0.5;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -khtml-border-radius: 3px;
+    -o-border-radius: 3px;
+}
+.skin-default dl.slidedeck dd.slide ul.verticalSlideNav li a:hover {
+    opacity: 0.75;
+    -moz-opacity: 0.75;
+    -webkit-opacity: 0.75;
+}

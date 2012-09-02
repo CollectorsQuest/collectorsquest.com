@@ -1,13 +1,14 @@
 <?php
 
-  use_javascript('jquery/rcarousel.js');
-
 /**
  * @var  $sf_user  cqFrontendUser
  *
  * @var  $collector    Collector
  * @var  $collection   Collection
  * @var  $collectible  Collectible
+ * @var  $previous  Collectible
+ * @var  $next  Collectible
+ * @var  $first Collectible
  * @var  $collectible_for_sale  CollectibleForSale
  *
  * @var  $additional_multimedia iceModelMultimedia[]
@@ -18,13 +19,13 @@
   $height_main_div = new stdClass;
   $height_main_div->value = 92;
 ?>
-
-<?php slot('prev_next'); ?>
-  <link rel="prev" href="<?= url_for_collectible($previous) ?>">
-  <link rel="next" href="<?= url_for_collectible($next) ?>">
-  <link rel="start" href="<?= url_for_collectible($first) ?>">
-<?php end_slot(); ?>
-
+<?php if (isset($first)): ?>
+  <?php slot('prev_next'); ?>
+    <link rel="prev" href="<?= url_for_collectible($previous) ?>">
+    <link rel="next" href="<?= url_for_collectible($next) ?>">
+    <link rel="start" href="<?= url_for_collectible($first) ?>">
+  <?php end_slot(); ?>
+<?php endif; ?>
 <?php
   $options = array(
     'id' => sprintf('collectible_%d_name', $collectible->getId()),
@@ -44,7 +45,7 @@
   ?>
   <div class="span<?= $span; ?> text-center relative">
 
-    <?php if ($previous): ?>
+    <?php if (isset($previous)): ?>
     <a href="<?= url_for_collectible($previous) ?>"
        class="prev-collectible" title="Previous: <?= $previous->getName(); ?>">
       <span>prev</span>
@@ -52,7 +53,7 @@
     </a>
     <?php endif; ?>
 
-    <?php if ($next): ?>
+    <?php if (isset($next)): ?>
     <a href="<?= url_for_collectible($next) ?>"
        class="next-collectible" title="Next: <?= $next->getName(); ?>">
       <span>next</span>

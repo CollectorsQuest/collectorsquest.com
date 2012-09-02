@@ -40,7 +40,7 @@ class ContentCategoryForm extends BaseContentCategoryForm
   {
     $this->widgetSchema['parent_id'] = new cqWidgetFormPropelChoiceByNestedSet(array(
         'model' => 'ContentCategory',
-        'add_empty' => true,
+        'add_empty' => true, 'chozen' => true
     ));
     $this->validatorSchema['parent_id'] = new sfValidatorPropelChoice(array(
         'model' => 'ContentCategory',

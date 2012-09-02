@@ -1,0 +1,18 @@
+/*
+Skin Name: Dynamic SlideDeck Dark
+Skin URI: http://www.slidedeck.com/
+Skin Type: dynamic
+Description: Dark colored default skin for dynamic SlideDecks
+Version: 1.1
+Author: digital-telepathy
+Author URI: http://www.dtelepathy.com/
+Contributors: dtelepathy, dtrenkner, kynatro
+Tags: black, dark, grayscale, dynamic, slidedeck
+
+IE 7 Specific node width overrides
+
+*/
+
+.skin-dark ul.sd-node-navigation-type-post-titles.sd-node-total-3 li a.sd-node-nav-link { width: 33.33333332%; }
+.skin-dark ul.sd-node-navigation-type-post-titles.sd-node-total-4 li a.sd-node-nav-link { width: 24.9%; }
+.skin-dark ul.sd-node-navigation-type-post-titles.sd-node-total-5 li a.sd-node-nav-link { width: 19.9%; }

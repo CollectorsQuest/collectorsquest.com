@@ -3,7 +3,12 @@
  * @var $wp_post wpPost
  * @var $collectibles_for_sale CollectibleForSale[]
  * @var $collectibles_for_sale_text array
+ * @var $sf_user  cqFrontendUser
  */
+$height_main_div = new stdClass;
+$height_main_div->value = 1300;
+
+$sf_user->setFlash('height_main_div', $height_main_div, 'false', 'internal');
 ?>
 
 <?php cq_page_title('Collectibles Marketplace'); ?>

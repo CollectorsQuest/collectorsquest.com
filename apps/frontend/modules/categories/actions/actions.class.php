@@ -18,6 +18,10 @@ class categoriesActions extends cqFrontendActions
       ->orderBy('Name')
       ->find();
 
+    // find the category "Other"
+    $this->category_other = ContentCategoryQuery::create()
+      ->findOneById('3560');
+
     return sfView::SUCCESS;
   }
 

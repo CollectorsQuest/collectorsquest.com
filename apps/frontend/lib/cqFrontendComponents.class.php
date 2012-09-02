@@ -10,10 +10,11 @@
 class cqFrontendComponents extends sfComponents
 {
   /**
+   * @param bool $strict
    * @return Collector
    */
-  protected function getCollector()
+  protected function getCollector($strict = false)
   {
-    return $this->getUser()->getCollector();
+    return $this->getUser()->getCollector($strict);
   }
 }

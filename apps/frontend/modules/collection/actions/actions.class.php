@@ -93,6 +93,12 @@ class collectionActions extends cqFrontendActions
     $this->collection = $collection;
     $this->editable = $this->getUser()->isOwnerOf($collection);
 
+    // calculate how many rows of collectibles will be on the page
+    $collectible_rows = count($pager->getResults());
+    $collectible_rows = $collectible_rows % 3 == 0 ? intval($collectible_rows / 3) : intval($collectible_rows / 3 + 1);
+
+    $this->collectible_rows = $collectible_rows;
+
     // Building the meta tags
     // $this->getResponse()->addMeta('description', $collection->getDescription('stripped'));
     // $this->getResponse()->addMeta('keywords', $collection->getTagString());
@@ -162,45 +168,45 @@ class collectionActions extends cqFrontendActions
      * Figure out the previous and the next item in the collection
      */
     $collectible_ids = $collection->getCollectibleIds();
-
-    if (array_search($collectible->getId(), $collectible_ids) - 1 < 0)
+    if (count($collectible_ids) > 1)
     {
-      $q = CollectionCollectibleQuery::create()
-          ->filterByCollection($collection)
-          ->filterByCollectibleId($collectible_ids[count($collectible_ids) - 1]);
-      $this->previous = $q->findOne();
-    }
-    else
-    {
-      $q = CollectionCollectibleQuery::create()
-          ->filterByCollection($collection)
-          ->filterByCollectibleId($collectible_ids[array_search($collectible->getId(), $collectible_ids) - 1]);
-      $this->previous = $q->findOne();
-    }
+      if (array_search($collectible->getId(), $collectible_ids) - 1 < 0)
+      {
+        $q = CollectionCollectibleQuery::create()
+            ->filterByCollection($collection)
+            ->filterByCollectibleId($collectible_ids[count($collectible_ids) - 1]);
+        $this->previous = $q->findOne();
+      }
+      else
+      {
+        $q = CollectionCollectibleQuery::create()
+            ->filterByCollection($collection)
+            ->filterByCollectibleId($collectible_ids[array_search($collectible->getId(), $collectible_ids) - 1]);
+        $this->previous = $q->findOne();
+      }
 
-    if (array_search($collectible->getId(), $collectible_ids) + 1 >= count($collectible_ids))
-    {
+      if (array_search($collectible->getId(), $collectible_ids) + 1 >= count($collectible_ids))
+      {
+        $q = CollectionCollectibleQuery::create()
+            ->filterByCollection($collection)
+            ->filterByCollectibleId($collectible_ids[0]);
+        $this->next = $q->findOne();
+      }
+      else
+      {
+        $q = CollectionCollectibleQuery::create()
+            ->filterByCollection($collection)
+            ->filterByCollectibleId($collectible_ids[array_search($collectible->getId(), $collectible_ids) + 1]);
+        $this->next = $q->findOne();
+      }
+      /**
+       * Figure out the first item in the collection
+       */
       $q = CollectionCollectibleQuery::create()
-          ->filterByCollection($collection)
-          ->filterByCollectibleId($collectible_ids[0]);
-      $this->next = $q->findOne();
+        ->filterByCollection($collection)
+        ->filterByCollectibleId($collectible_ids[0]);
+      $this->first = $q->findOne();
     }
-    else
-    {
-      $q = CollectionCollectibleQuery::create()
-          ->filterByCollection($collection)
-          ->filterByCollectibleId($collectible_ids[array_search($collectible->getId(), $collectible_ids) + 1]);
-      $this->next = $q->findOne();
-    }
-
-    /**
-     * Figure out the first item in the collection
-     */
-    $q = CollectionCollectibleQuery::create()
-      ->filterByCollection($collection)
-      ->filterByCollectibleId($collectible_ids[0]);
-    $this->first = $q->findOne();
-
     if ($collectible->isWasForSale())
     {
       SmartMenu::setSelected('header_main_menu', 'marketplace');

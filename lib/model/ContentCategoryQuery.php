@@ -32,20 +32,15 @@ class ContentCategoryQuery extends BaseContentCategoryQuery
    *
    * @return    ContentCategoryQuery
    */
-  public function withCollectiblesForSale()
+  public function hasCollectiblesForSale()
   {
     return $this
       ->useCollectionQuery()
         ->useCollectionCollectibleQuery()
-          ->useCollectibleQuery()
-            ->useCollectibleForSaleQuery()
-              ->isForSale()
-            ->endUse()
-          ->endUse()
+          ->isForSale()
         ->endUse()
       ->endUse()
-      ->groupBy('Id')
-    ;
+      ->groupBy('Id');
   }
 
   /**
@@ -53,7 +48,7 @@ class ContentCategoryQuery extends BaseContentCategoryQuery
    *
    * @return    ContentCategoryQuery
    */
-  public function withCollections()
+  public function hasCollections()
   {
     return $this
       ->innerJoinCollection()
@@ -88,6 +83,11 @@ class ContentCategoryQuery extends BaseContentCategoryQuery
     return $this
       ->addUsingAlias(ContentCategoryPeer::LEFT_COL, $contentCategory->getLeftValue(), Criteria::LESS_EQUAL)
       ->addUsingAlias(ContentCategoryPeer::RIGHT_COL, $contentCategory->getRightValue(), Criteria::GREATER_EQUAL);
+  }
+
+  public function filterByLevel($level = null, $comparison = null)
+  {
+    return $this->filterByTreeLevel($level, $comparison);
   }
 
 }

@@ -232,10 +232,10 @@
         <?php
           echo sprintf(
             'I accept the %s set forth by Collectors Quest.',
-            urldecode(link_to(
-              'terms and conditions', '@blog_page?slug=terms-and-conditions',
-              array('target' => '_blank')
-            ))
+            link_to(
+              'terms and conditions', 'blog_page',
+              array('slug' => 'terms-and-conditions'), array('target' => '_blank')
+            )
           );
         ?>
       </label>

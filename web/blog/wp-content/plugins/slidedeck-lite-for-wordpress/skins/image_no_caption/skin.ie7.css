@@ -1,0 +1,21 @@
+/*
+Skin Name: Image Only, No Text
+Skin URI: http://www.slidedeck.com/
+Skin Type: dynamic
+Skin Slide Type: image
+Skin Image Width: 1000
+Skin Image Height: 800
+Description: Dark colored image only skin for dynamic SlideDecks
+Version: 1.1
+Author: digital-telepathy
+Author URI: http://www.dtelepathy.com/
+Contributors: dtelepathy, dtrenkner, kynatro, jamie3d
+Tags: black, dark, grayscale, dynamic, slidedeck
+
+IE 7 Specific node width overrides
+
+*/
+
+.skin-image_no_caption ul.sd-node-navigation-type-post-titles.sd-node-total-3 li a.sd-node-nav-link { width: 33.33333332%; }
+.skin-image_no_caption ul.sd-node-navigation-type-post-titles.sd-node-total-4 li a.sd-node-nav-link { width: 24.9%; }
+.skin-image_no_caption ul.sd-node-navigation-type-post-titles.sd-node-total-5 li a.sd-node-nav-link { width: 19.9%; }

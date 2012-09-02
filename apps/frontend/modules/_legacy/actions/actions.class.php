@@ -19,7 +19,9 @@ class _legacyActions extends sfActions
   */
   public function executeHelp(sfWebRequest $request)
   {
-    $this->redirect(urldecode($this->generateUrl('blog_page', array('slug' => 'cq-faqs/general-questions'))), 301);
+    $this->redirect($this->generateUrl(
+      'blog_page', array('slug' => 'cq-faqs/general-questions', '_decode' => 1)
+    ), 301);
   }
 
   /**

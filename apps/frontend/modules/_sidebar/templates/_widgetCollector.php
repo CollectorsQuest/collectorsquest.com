@@ -75,6 +75,7 @@ $_height = 0;
     </div>
     <?php endif; ?>
   </div>
+  <?php $_height -= 28; ?>
 
   <?php foreach ($collections as $collection): ?>
   <div class="thumbnails-box-1x4-sidebar bgyellow-border">
@@ -93,6 +94,7 @@ $_height = 0;
         </div>
       </div>
   </div>
+  <?php $_height -= 120; ?>
   <?php endforeach; ?>
 <?php endif; ?>
 

@@ -1,30 +1,25 @@
-#sf_admin_container .sf_admin_action_markasspam a
-{
+#sf_admin_container .sf_admin_action_markasspam a {
   color: #C43C35;
 }
-
-.sf_admin_action_markasham a
-{
+.sf_admin_action_markasham a {
   color: #46A546;
 }
-
 #sf_admin_container .sf_admin_list_td_list_spaminess {
   text-align: center;
 }
-
 .sf_admin_list_td_body {
   width: 300px;
 }
-
 .sf_admin_list_td_created_at {
   width: 100px;
 }
-
+.sf_admin_filter.in.collapse {
+  overflow: visible;
+}
 button#inline-save {
   display: block;
   margin: 5px 10px 10px;
 }
-
 ul.wysihtml5-toolbar {
   margin: 0;
   padding: 0;
