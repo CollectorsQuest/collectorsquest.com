@@ -49,7 +49,9 @@ base
 
 # stylesheets
 /web/css/frontend/*.css
+/web/css/frontend/*.css.gz
 /web/css/frontend/modules/*.css
+/web/css/frontend/modules/*.css.gz
 !/web/css/frontend/ie.css
 !/web/css/frontend/stylesheets.bundle.css
 
