@@ -7,6 +7,15 @@ class _sidebarComponents extends cqFrontendComponents
    */
   public function executeWidgetFacebookLikeBox()
   {
+    /** @var $height stdClass */
+    if ($height = $this->getVar('height'))
+    {
+      if ($height->value < 19)
+      {
+        return sfView::NONE;
+      }
+    }
+
     return sfView::SUCCESS;
   }
 
@@ -15,6 +24,15 @@ class _sidebarComponents extends cqFrontendComponents
    */
   public function executeWidgetFacebookRecommendations()
   {
+    /** @var $height stdClass */
+    if ($height = $this->getVar('height'))
+    {
+      if ($height->value < 19)
+      {
+        return sfView::NONE;
+      }
+    }
+
     return sfView::SUCCESS;
   }
 
@@ -227,7 +245,17 @@ class _sidebarComponents extends cqFrontendComponents
     /** @var $height stdClass */
     if ($height = $this->getVar('height'))
     {
+      if ($height->value < 129)
+      {
+        return sfView::NONE;
+      }
       $this->limit = min(floor(($height->value - 63) / 66), $this->limit);
+    }
+
+    // We want to stop right here if we are not going to show anything (0 items)
+    if ($this->limit <= 0)
+    {
+      return sfView::NONE;
     }
 
     /** @var $q CollectorCollectionQuery */
@@ -350,6 +378,22 @@ class _sidebarComponents extends cqFrontendComponents
   public function executeWidgetMagnifyVideos()
   {
     $this->limit = (int) $this->getVar('limit') ?: 5;
+
+    /** @var $height stdClass */
+    if ($height = $this->getVar('height'))
+    {
+      if ($height->value < 163)
+      {
+        return sfView::NONE;
+      }
+      $this->limit = min(floor(($height->value - 63) / 100), $this->limit);
+    }
+
+    // We want to stop right here if we are not going to show anything (0 items)
+    if ($this->limit <= 0)
+    {
+      return sfView::NONE;
+    }
 
     $this->tags = $this->getVar('tags') ?: array();
 
@@ -521,6 +565,22 @@ class _sidebarComponents extends cqFrontendComponents
     // Set the limit of other Collections to show
     $this->limit = (int) $this->getVar('limit') ?: 0;
 
+    /** @var $height stdClass */
+    if ($height = $this->getVar('height'))
+    {
+      if ($height->value < 224)
+      {
+        return sfView::NONE;
+      }
+      $this->limit = min(floor(($height->value - 63) / 161), $this->limit);
+    }
+
+    // We want to stop right here if we are not going to show anything (0 items)
+    if ($this->limit <= 0)
+    {
+      return sfView::NONE;
+    }
+
     $q = wpPostQuery::create()
       ->filterByPostType('seller_spotlight')
       ->orderByPostDate(Criteria::DESC);
@@ -552,7 +612,6 @@ class _sidebarComponents extends cqFrontendComponents
       $this->wp_post = $wp_post;
     }
 
-
     return $this->_sidebar_if(count($this->collectors) > 0);
   }
 
@@ -566,6 +625,10 @@ class _sidebarComponents extends cqFrontendComponents
     /** @var $height stdClass */
     if ($height = $this->getVar('height'))
     {
+      if ($height->value < 148)
+      {
+        return sfView::NONE;
+      }
       $this->limit = min(floor(($height->value - 63) / 85), $this->limit);
     }
 
@@ -836,6 +899,15 @@ class _sidebarComponents extends cqFrontendComponents
 
   public function executeWidgetMailChimpSubscribe()
   {
+    /** @var $height stdClass */
+    if ($height = $this->getVar('height'))
+    {
+      if ($height->value < 190)
+      {
+        return sfView::NONE;
+      }
+    }
+
     return sfView::SUCCESS;
   }
 

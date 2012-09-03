@@ -1,8 +1,11 @@
 <?php
 /**
- * @var $video ContentEntry
+ * @var $video  ContentEntry
  * @var $videos ContentFeed
+ * @var $height stdClass
  */
+
+$_height = 0;
 ?>
 
 <?php
@@ -12,6 +15,7 @@
     array('class' => 'text-v-middle link-align')
   );
   cq_sidebar_title('Now Playing', $link, array('left' => 8, 'right' => 4));
+  $_height -= 63;
 ?>
 
 <?php foreach ($videos as $video): ?>
@@ -37,4 +41,13 @@
     </div>
   </div>
 </div>
-<?php endforeach; ?>
+
+<?php
+  $_height -= 100;
+  endforeach;
+
+  if (isset($height) && property_exists($height, 'value'))
+  {
+    $height->value -= abs($_height);
+  }
+?>
