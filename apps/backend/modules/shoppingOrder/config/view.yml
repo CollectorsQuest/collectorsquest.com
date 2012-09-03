@@ -1,0 +1,6 @@
+indexSuccess:
+  javascripts: #can I get this scripts from other places, not frontend?
+    - frontend/bootstrap/bootstrap-tooltip.js
+    - frontend/bootstrap/bootstrap-popover.js
+
+
