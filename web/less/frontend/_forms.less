@@ -31,6 +31,7 @@ input[type="search"],
 input[type="tel"],
 input[type="color"],
 .uneditable-input {
+	color: @blueDark;
   background-color: @inputBackground;
   border: 1px solid @inputBorder;
   .border-radius(@inputBorderRadius);
@@ -45,6 +46,11 @@ input[type="color"],
     outline: thin dotted \9; /* IE6-9 */
     .box-shadow(none);
   }
+}
+
+input,
+textarea {
+	.placeholder(#999);
 }
 
 input[type="radio"],
