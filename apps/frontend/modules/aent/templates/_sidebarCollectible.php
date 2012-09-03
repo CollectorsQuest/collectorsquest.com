@@ -59,13 +59,6 @@
 
 <?php
   include_component(
-    '_sidebar', 'widgetCollectionCollectibles',
-    array('collectible' => $collectible)
-  );
-?>
-
-<?php
-  include_component(
     '_sidebar', 'widgetTags',
     array('collectible' => $collectible)
   );
