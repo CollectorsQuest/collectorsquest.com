@@ -17,7 +17,7 @@ all:
 
   private_messages:
     # require the user to input a captcha every N outgoing messages
-    require_captcha_threshold: 5
+    require_captcha_threshold: 3
     similarity_percent: 90
     spam_receiver: info@collectorsquest.com
 
