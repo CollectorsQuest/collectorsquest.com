@@ -370,6 +370,12 @@ class _sidebarComponents extends cqFrontendComponents
       }
       else if (isset($this->collectible) && $this->collectible instanceof BaseObject)
       {
+        // Get the actual Collectible if we are dealing with CollectionCollectible
+        if ($this->collectible instanceof CollectionCollectible)
+        {
+          $this->collectible = $this->collectible->getCollectible();
+        }
+
         if (!$tags = $this->collectible->getTags())
         {
           $vq = (string) $tags[array_rand($tags, 1)];
