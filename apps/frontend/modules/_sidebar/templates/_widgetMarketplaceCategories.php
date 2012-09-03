@@ -10,10 +10,18 @@
    * @var $current_sub_sub_subcategory  ContentCategory
    * @var $height stdClass
    */
-  $link = link_to(
-    'See all &raquo;', '@marketplace_categories',
-    array('class' => 'text-v-middle link-align')
-  );
+
+  if (IceGateKeeper::open('marketplace_categories', 'page'))
+  {
+    $link = link_to(
+      'See all &raquo;', '@marketplace_categories',
+      array('class' => 'text-v-middle link-align')
+    );
+  }
+  else
+  {
+    $link = null;
+  }
 
   cq_sidebar_title($current_category, $link);
   $_height = -63;
