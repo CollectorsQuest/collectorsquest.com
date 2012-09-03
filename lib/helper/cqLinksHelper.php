@@ -552,6 +552,13 @@ function cq_canonical_url()
     }
   }
 
+  return $canonical_url;
+}
+
+function cq_canonical_tag()
+{
+  $canonical_url = cq_canonical_url();
+
   if (!empty($canonical_url))
   {
     $canonical_url = (substr($canonical_url, 0, 1) == '@') ? url_for($canonical_url) : $canonical_url;
