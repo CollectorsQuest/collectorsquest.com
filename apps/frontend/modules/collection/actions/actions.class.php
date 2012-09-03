@@ -43,8 +43,13 @@ class collectionActions extends cqFrontendActions
      */
     $pawn_stars = sfConfig::get('app_aetn_pawn_stars');
     $american_pickers = sfConfig::get('app_aetn_american_pickers');
+    $picked_off = sfConfig::get('app_aetn_picked_off');
 
-    if (in_array($collection->getId(), array($pawn_stars['collection'], $american_pickers['collection'])))
+    if (in_array($collection->getId(),
+        array(
+          $pawn_stars['collection'], $american_pickers['collection'], $picked_off['collection']
+        )
+    ))
     {
       if ($collection->getId() == $pawn_stars['collection'])
       {
@@ -53,6 +58,10 @@ class collectionActions extends cqFrontendActions
       else if ($collection->getId() == $american_pickers['collection'])
       {
         $this->redirect('@aetn_american_pickers', 301);
+      }
+      else if ($collection->getId() == $picked_off['collection'])
+      {
+        $this->redirect('@aetn_picked_off', 301);
       }
     }
 
@@ -149,8 +158,13 @@ class collectionActions extends cqFrontendActions
      */
     $pawn_stars = sfConfig::get('app_aetn_pawn_stars');
     $american_pickers = sfConfig::get('app_aetn_american_pickers');
+    $picked_off = sfConfig::get('app_aetn_picked_off');
 
     if (in_array($collection->getId(), array($pawn_stars['collection'], $american_pickers['collection'])))
+    {
+      $this->redirect('aetn_collectible_by_slug_fixed_matching', $collectible);
+    }
+    if ($collection->getId() == $picked_off['collection'])
     {
       $this->redirect('aetn_collectible_by_slug', $collectible);
     }

@@ -11,6 +11,10 @@ pawnStarsSuccess:
   components:
     sidebar_300: [aent, sidebarPawnStars]
 
+pickedOffSuccess:
+  components:
+    sidebar_300: [aent, sidebarPickedOff]
+
 storageWarsSuccess:
   components:
     sidebar_300: [aent, sidebarStorageWars]

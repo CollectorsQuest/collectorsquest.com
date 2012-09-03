@@ -1,19 +1,20 @@
 <div class="spacer-bottom-15">
-  <img src="/images/headlines/2012-0420_PS_Promo_Space_620x180_FIN.jpg" alt="Check out items seen on Pawn Stars">
+  <?php
+  /**
+   * we should replace with proper 'Picked Off' image
+   *
+     <img src="/images/headlines/2012-0420_PS_Promo_Space_620x180_FIN.jpg" alt="">
+   */
+  ?>
 </div>
 
 <p class="text-justify">
-  In the only family-run pawn shop in Las Vegas, three generations of men
-  from the Harrison family buy and sell collectible, unusual and historically
-  significant items on HISTORY’s <strong><i>PAWN STARS</i></strong><sup>&reg;</sup>.
-  Their customers are carrying on a centuries-old practice: pawning or selling
-  their possessions to make a quick buck. What would you be willing to gamble
-  on these items from the show?
+  Text about HISTORY’s <strong><i>PICKED OFF</i></strong><sup>&reg;</sup>.
 </p>
 
 <?php
   cq_page_title(
-    'Collectibles Seen on <strong><i>Pawn Stars</i></strong>', null,
+    'Collectibles Seen on <strong><i>Picked Off</i></strong>', null,
     array('class' => 'row-fluid header-bar spacer-bottom-15')
   );
 ?>
@@ -35,8 +36,9 @@
 </div>
 
 <?php
-  $link = link_to('See all items for sale  &raquo;', '@marketplace', array('class' => 'text-v-middle link-align'));
-  cq_section_title('Featured Items For Sale', $link);
+  if (count($collectibles_for_sale) > 0):
+    $link = link_to('See all items for sale  &raquo;', '@marketplace', array('class' => 'text-v-middle link-align'));
+    cq_section_title('Featured Items For Sale', $link);
 ?>
 
 <div id="items-for-sale">
@@ -53,3 +55,5 @@
   ?>
   </div>
 </div>
+
+<?php endif; ?>

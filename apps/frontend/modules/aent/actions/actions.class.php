@@ -128,6 +128,42 @@ class aentActions extends cqFrontendActions
     return sfView::SUCCESS;
   }
 
+  public function executePickedOff()
+  {
+    $picked_off = sfConfig::get('app_aetn_picked_off');
+
+    $collection = CollectorCollectionQuery::create()->findOneById($picked_off['collection']);
+    $this->forward404Unless($collection instanceof CollectorCollection);
+
+    /**
+     * Increment the number of views
+     */
+    if (!$this->getCollector()->isOwnerOf($collection))
+    {
+      $collection->setNumViews($collection->getNumViews() + 1);
+      $collection->save();
+    }
+
+    $q = CollectionCollectibleQuery::create()
+        ->filterByCollectionId($picked_off['collection'])
+        ->orderByPosition(Criteria::ASC)
+        ->orderByUpdatedAt(Criteria::ASC);
+
+    // should we include a limit here? I initially did but had second thoughts
+    $this->collectibles = $q->find();
+
+    /** @var $q CollectibleForSaleQuery */
+    $q                           = CollectibleForSaleQuery::create()
+        ->filterByCollection($collection)
+        ->limit(8);
+    $this->collectibles_for_sale = $q->find();
+
+    // Set the OpenGraph meta tags
+    $this->getResponse()->addOpenGraphMetaFor($collection);
+
+    return sfView::SUCCESS;
+  }
+
   public function executeStorageWars()
   {
     return sfView::SUCCESS;
@@ -143,6 +179,7 @@ class aentActions extends cqFrontendActions
 
     $american_pickers = sfConfig::get('app_aetn_american_pickers');
     $pawn_stars       = sfConfig::get('app_aetn_pawn_stars');
+    $picked_off       = sfConfig::get('app_aetn_picked_off');
     $storage_wars     = sfConfig::get('app_aetn_storage_wars');
 
     if ($collection->getId() === $american_pickers['collection'])
@@ -152,6 +189,10 @@ class aentActions extends cqFrontendActions
     else if ($collection->getId() === $pawn_stars['collection'])
     {
       $this->brand = 'Pawn Stars';
+    }
+    else if ($collection->getId() === $picked_off['collection'])
+    {
+      $this->brand = 'Picked Off';
     }
     else if ($collection->getId() === $storage_wars['collection'])
     {
@@ -180,6 +221,12 @@ class aentActions extends cqFrontendActions
 
     // Set the OpenGraph meta tags
     $this->getResponse()->addOpenGraphMetaFor($collectible);
+
+    // Set Canonical Url meta tag
+    $this->getResponse()->setCanonicalUrl(
+      'http://' . sfConfig::get('app_www_domain') .
+        $this->generateUrl('aetn_collectible_by_slug', array('sf_subject' => $collectible))
+    );
 
     // Set Canonical Url meta tag
     $this->getResponse()->setCanonicalUrl(

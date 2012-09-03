@@ -40,6 +40,15 @@ seo:
         - %Description%
         - %Description% | %TagString%
 
+    collectible:
+      model: true
+      title:
+        - %Name% | Collectors Quest
+        - %Name% - %Collection% | Collectors Quest
+      description:
+        - %Description%
+        - %Description% | %TagString%
+
   categories:
     index:
       title: Browse Antique, Collectible & Vintage Items | Collectors Quest
