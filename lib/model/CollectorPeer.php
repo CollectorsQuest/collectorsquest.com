@@ -55,6 +55,11 @@ class CollectorPeer extends BaseCollectorPeer
   const PROPERTY_NOTIFICATIONS_MESSAGE = 'NOTIFICATIONS_MESSAGE';
   const PROPERTY_NOTIFICATIONS_MESSAGE_DEFAULT = true;
 
+  // Timeouts denote that the user is not allowed to perform a specific action
+  // until the timeout datatime is reached
+  const PROPERTY_TIMEOUT_COMMENTS_AT = 'TIMEOUT_COMMENTS_AT';
+  const PROPERTY_TIMEOUT_PRIVATE_MESSAGES_AT = 'TIMEOUT_PRIVATE_MESSAGES_AT';
+
   const TYPE_COLLECTOR = 'Collector';
   const TYPE_SELLER = 'Seller';
 

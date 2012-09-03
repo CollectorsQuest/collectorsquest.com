@@ -2,7 +2,7 @@
 
 include(__DIR__.'/../../bootstrap/model.php');
 
-$t = new lime_test(27, array('output' => new lime_output_color(), 'error_reporting' => true));
+$t = new lime_test(29, array('output' => new lime_output_color(), 'error_reporting' => true));
 
 cqTest::resetClasses(array('Collector'));
 
@@ -121,3 +121,14 @@ $t->diag('Preferences Extra Properties tests');
   $new_collector = new Collector();
   $t->is($new_collector->getPreferencesNewsletter(), true,
     'Preferences newsletter extra property exist with proper defaults');
+
+$t->diag('Timeout Extra Properties tests');
+  $new_collector = new Collector();
+
+  $new_collector->setTimeoutCommentsAt(strtotime('+30 minutes'));
+  $t->is($new_collector->getTimeoutCommentsAt('Y-m-d H:i'), date('Y-m-d H:i', strtotime('+30 minutes')),
+    'Simple passthrough test of get/setTimeoutCommentsAt() to check that the function workds');
+
+  $new_collector->setTimeoutPrivateMessagesAt(strtotime('+30 minutes'));
+  $t->is($new_collector->getTimeoutPrivateMessagesAt('Y-m-d H:i'), date('Y-m-d H:i', strtotime('+30 minutes')),
+    'Simple passthrough test of get/setTimeoutPrivateMessagesAt() to check that the function workds');
