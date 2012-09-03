@@ -14,7 +14,7 @@ class categoriesActions extends cqFrontendActions
   {
     $this->level1_categories = ContentCategoryQuery::create()
       ->childrenOfRoot()
-      ->withCollections()
+      ->hasCollections()
       ->orderBy('Name')
       ->find();
 
