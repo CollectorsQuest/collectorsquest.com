@@ -518,7 +518,7 @@ function link_to_model_object($name, BaseObject $model_object, $options = array(
   return link_to1($name, $uri, $options);
 }
 
-function cq_canonical_url()
+function cq_canonical_url($absolute = true)
 {
   /** @var $response cqWebResponse */
   $response = cqContext::getInstance()->getResponse();
@@ -541,13 +541,19 @@ function cq_canonical_url()
         $object = $object->getCollectible();
       }
 
-      /** If we cannot generate a */
       if (!$canonical_url = cq_url_for($object, false))
       {
         /** @var $routing cqPatternRouting */
         $routing = cqContext::getInstance()->getRouting();
 
+        /** @var $canonical_url string */
         $canonical_url = url_for($routing->getCurrentRouteName(), $object, false);
+
+        // Check if we need to return an absolute URL or not
+        if ($canonical_url && $absolute === true)
+        {
+          $canonical_url = 'http://' . sfConfig::get('app_www_domain') . $canonical_url;
+        }
       }
     }
   }
@@ -557,11 +563,9 @@ function cq_canonical_url()
 
 function cq_canonical_tag()
 {
-  $canonical_url = cq_canonical_url();
-
-  if (!empty($canonical_url))
+  if ($canonical_url = cq_canonical_url(false))
   {
-    $canonical_url = (substr($canonical_url, 0, 1) == '@') ? url_for($canonical_url) : $canonical_url;
+    $canonical_url = (substr($canonical_url, 0, 1) == '@') ? url_for($canonical_url, false) : $canonical_url;
     $options = array('rel' => 'canonical', 'href' => 'http://' . sfConfig::get('app_www_domain') . $canonical_url);
 
     echo tag('link', $options, true);

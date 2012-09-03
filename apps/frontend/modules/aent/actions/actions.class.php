@@ -181,6 +181,12 @@ class aentActions extends cqFrontendActions
     // Set the OpenGraph meta tags
     $this->getResponse()->addOpenGraphMetaFor($collectible);
 
+    // Set Canonical Url meta tag
+    $this->getResponse()->setCanonicalUrl(
+      'http://' . sfConfig::get('app_www_domain') .
+        $this->generateUrl('aetn_collectible_by_slug', array('sf_subject' => $collectible))
+    );
+
     return sfView::SUCCESS;
   }
 
@@ -354,7 +360,10 @@ class aentActions extends cqFrontendActions
     $this->getResponse()->addOpenGraphMetaFor($collectible);
 
     // Set Canonical Url meta tag
-    $this->getResponse()->setCanonicalUrl($this->generateUrl('aetn_collectible_by_slug', $collectible));
+    $this->getResponse()->setCanonicalUrl(
+      'http://' . sfConfig::get('app_www_domain') .
+      $this->generateUrl('aetn_collectible_by_slug', array('sf_subject' => $collectible))
+    );
 
     $this->setTemplate('collectible');
 

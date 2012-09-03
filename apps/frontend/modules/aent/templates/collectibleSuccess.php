@@ -151,8 +151,8 @@ $(document).ready(function()
       skin: "<?= cq_image_src('glow.zip', false); ?>",
       'plugins': 'fbit-1,tweetit-1,gapro-2',
       'gapro.accountid': 'UA-669177-1',
-      'fbit.link': 'false',
-      'tweetit.link': 'false'
+      'fbit.link': '<?= cq_canonical_url(); ?>',
+      'tweetit.link': '<?= cq_canonical_url(); ?>'
     });
 
     $('#mediaspace').modal();
