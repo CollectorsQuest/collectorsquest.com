@@ -73,14 +73,14 @@ class _sidebarComponents extends cqFrontendComponents
 
     $this->subcategories = ContentCategoryQuery::create()
       ->childrenOf($this->current_category)
-      ->withCollections()
+      ->hasCollections()
       ->orderBy('Name')
       ->find();
 
     if ($changed_current_category)
     $this->sub_subcategories = ContentCategoryQuery::create()
       ->childrenOf($this->current_sub_category)
-      ->withCollections()
+      ->hasCollections()
       ->find();
 
     return $this->_sidebar_if(count($this->subcategories) > 0);
@@ -287,6 +287,13 @@ class _sidebarComponents extends cqFrontendComponents
         ->filterById($collection->getId(), Criteria::NOT_EQUAL)
         ->filterByTags($tags)
         ->orderByUpdatedAt(Criteria::DESC);
+    }
+    else if (($category = $this->getVar('category')) && $category instanceof ContentCategory)
+    {
+      // We need broader limit by category so let's get the parent at level 1
+      $category = $category->getAncestorAtLevel(1) ?: $category;
+
+      $q->filterByContentCategoryWithDescendants($category);
     }
     else
     {
