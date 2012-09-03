@@ -641,6 +641,12 @@ class cqFrontendUser extends cqBaseUser
     return json_decode(base64_decode($raw_data), true);
   }
 
+  /**
+   * Try to delete the related collector; Returns true on successful deletion
+   * and false when the collector was already removed or never committed to teh DB
+   *
+   * @return    boolean
+   */
   public function delete()
   {
     try
@@ -649,11 +655,12 @@ class cqFrontendUser extends cqBaseUser
       $this->Authenticate(false);
       $collector->delete();
     }
-    catch (PropelException $e)
+    catch (Exception $e)
     {
       return false;
     }
 
     return true;
   }
+
 }
