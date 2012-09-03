@@ -8,25 +8,27 @@
 <?php cq_page_title('Categories'); ?>
 
 <div id="all-categories" class="row">
-  <?php foreach ($level1_categories as $k => $category):
+<?php
+  $i = 0;
+  foreach ($level1_categories as $category)
+  {
     $level2_links = array();
-  ?>
+    foreach ($category->getChildrenWithCollections() as $child_category)
+    {
+      $level2_links[] = link_to_content_category($child_category);
+    }
 
-    <?php foreach ($category->getChildren(ContentCategoryQuery::create()->withCollections()->orderBy('Name')) as $child_category): ?>
-      <?php $level2_links[] =  link_to_content_category($child_category); ?>
-    <?php endforeach; ?>
+    if (!empty($level2_links))
+    {
+      echo '<div class="span4">';
+      cq_section_title(link_to_content_category($category));
+      echo implode(', ', $level2_links);
+      echo '</div>';
 
-    <?php if (!empty($level2_links)): ?>
-      <div class="span4">
-        <h2><?= link_to_content_category($category); ?></h2>
-        <?php echo implode(', ', $level2_links); ?>
-      </div>
-    <?php endif; ?>
+      $i++;
+    }
 
-  <?php endforeach; ?>
-
-  <?php //display the "Other" category last ?>
-  <div class="span4">
-    <h2><?= link_to_content_category($category_other); ?></h2>
-  </div>
+    echo ($i % 4 == 0) ? '<br class="clearfix">' : null;
+  }
+?>
 </div>

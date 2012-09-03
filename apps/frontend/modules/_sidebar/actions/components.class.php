@@ -73,14 +73,14 @@ class _sidebarComponents extends cqFrontendComponents
 
     $this->subcategories = ContentCategoryQuery::create()
       ->childrenOf($this->current_category)
-      ->withCollections()
+      ->hasCollections()
       ->orderBy('Name')
       ->find();
 
     if ($changed_current_category)
     $this->sub_subcategories = ContentCategoryQuery::create()
       ->childrenOf($this->current_sub_category)
-      ->withCollections()
+      ->hasCollections()
       ->find();
 
     return $this->_sidebar_if(count($this->subcategories) > 0);

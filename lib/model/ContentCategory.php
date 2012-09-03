@@ -184,4 +184,13 @@ class ContentCategory extends BaseContentCategory
     return $parent;
   }
 
+  public function getChildrenWithCollections()
+  {
+    $q = ContentCategoryQuery::create()
+      ->hasCollections()
+      ->orderBy('Name');
+
+    return $this->getChildren($q);
+  }
+
 }
