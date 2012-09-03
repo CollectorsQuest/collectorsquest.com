@@ -47,13 +47,17 @@ input[type="color"],
   }
 }
 
-input[type="radio"] {
-  margin: 2px 0;
+input[type="radio"],
+input[type="checkbox"] {
+	margin: 2px 0 0 0;
+	*margin-top: 0; /* IE7 */
+	margin-top: 1px \9; /* IE8-9 */
 }
 
-input[type="checkbox"] {
-  margin: 0 0 2px 0;
+select {
+	border-color: @inputBorder;
 }
+
 
 ul.alert-error {
   margin: 10px;
