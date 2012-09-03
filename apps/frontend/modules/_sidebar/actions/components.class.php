@@ -288,6 +288,13 @@ class _sidebarComponents extends cqFrontendComponents
         ->filterByTags($tags)
         ->orderByUpdatedAt(Criteria::DESC);
     }
+    else if (($category = $this->getVar('category')) && $category instanceof ContentCategory)
+    {
+      // We need broader limit by category so let's get the parent at level 1
+      $category = $category->getAncestorAtLevel(1) ?: $category;
+
+      $q->filterByContentCategoryWithDescendants($category);
+    }
     else
     {
       $q

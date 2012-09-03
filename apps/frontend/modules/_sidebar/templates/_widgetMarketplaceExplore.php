@@ -25,7 +25,7 @@
         echo link_to(
           $category->getName(), 'marketplace_category_by_slug',
           $category, array('title' => $category->getName())
-        )
+        );
       ?>
     </li>
     <?php endforeach; ?>
