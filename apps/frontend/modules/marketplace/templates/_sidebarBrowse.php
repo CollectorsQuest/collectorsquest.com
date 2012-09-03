@@ -1,7 +1,9 @@
 <?php
 /**
  * @var $category ContentCategory
- * @var $height stdClass
+ * @var $sf_user  cqFrontendUser
+ * @var $seller   Collector
+ * @var $height   stdClass
  */
 ?>
 
@@ -17,8 +19,10 @@
   {
     cq_dart_slot('300x250', 'market', 'categories');
   }
+
+  $height->value -= 250;
 ?>
-<?php $height->value -= 250; ?>
+
 
 <?php
   if (IceGateKeeper::open('marketplace_categories', 'page'))
