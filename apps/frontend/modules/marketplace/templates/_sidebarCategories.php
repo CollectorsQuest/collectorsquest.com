@@ -1,6 +1,8 @@
 <?php
 /**
- * @var $sf_user cqFrontendUser
+ * @var $sf_user  cqFrontendUser
+ * @var $seller   Collector
+ * @var $height   stdClass
  */
 ?>
 
@@ -16,8 +18,10 @@
   {
     cq_dart_slot('300x250', 'market', 'categories');
   }
+
+  $height->value -= 250;
 ?>
-<?php $height->value -= 250; ?>
+
 
 <?php
   include_component(
