@@ -4,7 +4,7 @@ SOURCE="${BASH_SOURCE[0]}"
 while [ -h "${SOURCE}" ] ; do SOURCE="$(readlink "${SOURCE}")"; done
 DIR="$( cd -P "$( dirname "${SOURCE}" )" && pwd )"
 
-br=`git branch | grep "*"`
+br=`git rev-parse --abbrev-ref HEAD`
 [[ $1 != '' ]] && branch=$1 || branch=${br/* /}
 
 cd ${DIR}/..

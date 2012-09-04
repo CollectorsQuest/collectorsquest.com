@@ -6,7 +6,7 @@ DIR="$( cd -P "$( dirname "${SOURCE}" )" && pwd )"
 
 cd ${DIR}/..
 
-br=`git branch | grep "*"`
+br=`git rev-parse --abbrev-ref HEAD`
 [[ $1 != '' ]] && branch=$1 || branch=${br/* /}
 
 if [ -f ~/.ssh/id_rsa.collectorsquest ]
