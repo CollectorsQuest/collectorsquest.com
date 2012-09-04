@@ -109,7 +109,7 @@ class cqBaseActions extends sfActions
       'cq/components/%s/%s', $module ?: $this->getModuleName(), $action
     );
 
-    $this->getUser()->setFlash($name, $value, false, $namespace);
+    $this->getUser()->setFlash($name, $value, $persist = false, $namespace);
   }
 
   /**
