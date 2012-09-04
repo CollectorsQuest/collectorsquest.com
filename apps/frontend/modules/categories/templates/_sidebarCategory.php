@@ -4,7 +4,6 @@
  */
 ?>
 
-
 <?php
   include_component(
     '_sidebar', 'widgetContentSubCategories',
