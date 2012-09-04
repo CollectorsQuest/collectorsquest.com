@@ -134,6 +134,9 @@ class aentActions extends cqFrontendActions
 
   public function executePickedOff(sfWebRequest $request)
   {
+    // Check if the page is publicly available yet
+    $this->forward404Unless(IceGateKeeper::open('aetn_picked_off', 'page'));
+
     $picked_off = sfConfig::get('app_aetn_picked_off');
 
     $collection = CollectorCollectionQuery::create()->findOneById($picked_off['collection']);

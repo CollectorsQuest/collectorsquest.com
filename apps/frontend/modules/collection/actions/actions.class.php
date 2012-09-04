@@ -61,7 +61,10 @@ class collectionActions extends cqFrontendActions
       }
       else if ($collection->getId() == $picked_off['collection'])
       {
-        $this->redirect('@aetn_picked_off', 301);
+        $this->redirectIf(
+          IceGateKeeper::open('aetn_picked_off', 'page'),
+          '@aetn_picked_off', 301
+        );
       }
     }
 
@@ -166,7 +169,10 @@ class collectionActions extends cqFrontendActions
     }
     else if ($collection->getId() == $picked_off['collection'])
     {
-      $this->redirect('aetn_collectible_by_slug', $collectible);
+      $this->redirectIf(
+        IceGateKeeper::open('aetn_picked_off', 'page'),
+        'aetn_collectible_by_slug', $collectible
+      );
     }
 
     /**
