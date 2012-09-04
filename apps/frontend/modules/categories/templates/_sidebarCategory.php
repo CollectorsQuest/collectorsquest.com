@@ -8,6 +8,9 @@
 <?php
   include_component(
     '_sidebar', 'widgetCollectionSubCategories',
-    array('current_category' => $category, 'fallback' => 'widgetCollectionCategories')
+    array(
+      'current_category' => $category,
+      'fallback' => 'widgetCollectionCategories', 'level' => 1
+    )
   );
 ?>
