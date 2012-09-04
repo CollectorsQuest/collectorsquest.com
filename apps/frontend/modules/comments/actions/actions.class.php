@@ -32,7 +32,7 @@ class commentsActions extends cqFrontendActions
           {
             $owner = $comment->getModelObject()->getCollector();
 
-            // if the user is not authenticated or not the onwer of the object being
+            // if the user is not authenticated or not the owner of the object being
             // commented on and wants to receive comment notifications
             if (
               !$this->getUser()->isAuthenticated() ||
