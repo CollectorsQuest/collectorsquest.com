@@ -12,7 +12,7 @@
     $level2_links = array();
   ?>
 
-    <?php foreach ($category->getChildren(ContentCategoryQuery::create()->withCollections()->orderBy('Name')) as $child_category): ?>
+    <?php foreach ($category->getChildren(ContentCategoryQuery::create()->hasCollections()->orderBy('Name')) as $child_category): ?>
       <?php $level2_links[] =  link_to_content_category($child_category); ?>
     <?php endforeach; ?>
 

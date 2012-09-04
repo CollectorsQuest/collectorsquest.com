@@ -72,6 +72,7 @@ class _sidebarComponents extends cqFrontendComponents
     $this->current_category = $this->getVar('current_category');
     $this->current_sub_category = new ContentCategory();
     $this->current_sub_subcategory = new ContentCategory();
+    $this->sub_subcategories = array();
 
     $changed_current_category = false;
 
@@ -91,15 +92,32 @@ class _sidebarComponents extends cqFrontendComponents
 
     $this->subcategories = ContentCategoryQuery::create()
       ->childrenOf($this->current_category)
-      ->withCollections()
+      ->hasCollections()
       ->orderBy('Name')
       ->find();
 
     if ($changed_current_category)
-    $this->sub_subcategories = ContentCategoryQuery::create()
-      ->childrenOf($this->current_sub_category)
-      ->withCollections()
-      ->find();
+    {
+      $this->sub_subcategories = ContentCategoryQuery::create()
+        ->childrenOf($this->current_sub_category)
+        ->hasCollections()
+        ->find();
+    }
+
+    if (count($this->subcategories) === 0 && $this->getVar('fallback') === '1st_level_categories')
+    {
+      /** @var $q CollectionCategoryQuery */
+      $q = ContentCategoryQuery::create()
+        ->filterByName('None', Criteria::NOT_EQUAL)
+        ->filterByLevel(1)
+        ->hasCollections()
+        ->orderBy('Name', Criteria::ASC);
+
+      $this->subcategories = $q->find();
+
+      $this->current_sub_category = $this->current_category;
+      $this->current_category = 'Categories';
+    }
 
     return $this->_sidebar_if(count($this->subcategories) > 0);
   }
