@@ -103,6 +103,15 @@ class cqBaseActions extends sfActions
     return $this->getMailer()->send($message);
   }
 
+  protected function setComponentVar($name, $value, $action, $module = null)
+  {
+    $namespace = sprintf(
+      'cq/components/%s/%s', $module ?: $this->getModuleName(), $action
+    );
+
+    $this->getUser()->setFlash($name, $value, false, $namespace);
+  }
+
   /**
    * @param  string  $string
    * @param  array   $args
