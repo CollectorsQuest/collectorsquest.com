@@ -71,11 +71,11 @@ tags_index:
 ### CONTENT CATEGORIES
 
 content_category:
-  url:  /category/:id/:slug
-  class: cqPropelRoute
+  url:  /category/:path
+  class: cqPropelRouteContentCategory
   options: { model: ContentCategory, type: object }
   param: { module: categories, action: category }
-  requirements: { id: '\d+', slug: '[\-\w\.]+' }
+  requirements: { path: '[\/\-\w\.]+' }
 
 content_categories:
   url:  /categories
