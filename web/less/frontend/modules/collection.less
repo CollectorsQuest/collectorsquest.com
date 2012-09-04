@@ -3,7 +3,7 @@
 @import "../_wysihtml5.less";
 
 .carousel-sidebar {
-  width: 296px;
+  width: 300px;
   margin: 20px 0;
 
   .thumbnails-inner {
@@ -46,10 +46,8 @@
   .thumbnails {
     display: relative;
     overflow: hidden;
-    height: 90px;
-    margin-left: 2px;
-    margin-bottom: 5px;
-	  margin-right: -5px !important;
+	  height: 90px;
+	  margin: 3px 0 5px 5px;
 
     a {
       float: left;
@@ -62,16 +60,26 @@
 
 	  a.moreItems {
 		  display: block;
-		  .square(90px);
-		  padding: 17px 0;
-		  color: #0A82C2;
-		  background-color: white;
-		  font-size: 24px;
-		  line-height: 24px;
+		  .square(80px);
+		  font-size: 13px;
+		  line-height: 13px;
 		  text-align: center;
+		  color: #0A82C2;
+		  border: 5px solid #efefef;
+		  //border: 1px solid #f6eccd;
+		  background-color: white;
 	    &:hover {
-	      color:red;
+	      color: @red;
 	      background-color: #f8f8ff;
+		    border-color: #f8f8ff;
+	    }
+	    > span {
+		    display: block;
+		    padding-top: 20px;
+		    padding-bottom: 4px;
+		    font-size: 24px;
+		    line-height: 24px;
+		    font-weight: bold;
 	    }
 	  }
 
@@ -89,7 +97,6 @@
   .well {
     padding: 7px 3px 0 3px;
     background: #FFF5D5;
-    margin-left: -4px;
     .border-radius(0);
   }
 }
@@ -126,11 +133,6 @@
   width: 88px;
   margin-bottom: 25px;
   text-align: right;
-}
-
-#carousel {
-  margin-left: 5px;
-  width: 282px;
 }
 
 .ui-carousel {
