@@ -13,17 +13,16 @@ class BackendShoppingOrderFormFilter extends ShoppingOrderFormFilter
   {
     parent::configure();
 
-    $this->setupCollectorBuyer();
+
     $this->setupCollectorSeller();
     $this->setupPaymentStatus();
-  }
 
-  public function setupCollectorBuyer()
-  {
-    $this->widgetSchema['collector_buyer'] = new BackendWidgetFormModelTypeAhead(array(
-      'field' => CollectorPeer::DISPLAY_NAME
+    $this->widgetSchema['buyer_email'] = new BackendWidgetFormModelTypeAhead(array(
+      'field' => ShoppingOrderPeer::BUYER_EMAIL
     ));
-    $this->validatorSchema['collector_buyer'] = new sfValidatorPass(array('required' => false));
+    $this->widgetSchema['shipping_full_name'] = new BackendWidgetFormModelTypeAhead(array(
+      'field' => ShoppingOrderPeer::SHIPPING_FULL_NAME
+    ));
   }
 
   public function setupCollectorSeller()

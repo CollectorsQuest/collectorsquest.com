@@ -116,7 +116,7 @@ classes:
       amount_shipping_fee: { type: integer, required: true, default: 0 }
       amount_tax:          { type: integer, required: true, default: 0 }
 
-    propel_behaviors:ID
+    propel_behaviors:
       extra_properties: ~
       timestampable:  ~
 
