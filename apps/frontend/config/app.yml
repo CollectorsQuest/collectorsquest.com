@@ -63,8 +63,9 @@ all:
     mycq_profile_tabs:
       items:
         personal_info:   { name: "Personal Information", uri: "@mycq_profile" }
-        account_info:    { name: "Account Settings",  uri: "@mycq_profile_account_info" }
-        addresses:       { name: "Address Book",         uri: "@mycq_profile_addresses", check_lock: mycq_profile_addresses }
+        account_info:    { name: "Account Settings", uri: "@mycq_profile_account_info" }
+        email_preferences: { name: "Email Preferences", uri: "@mycq_profile_email_preferences" }
+        addresses:       { name: "Address Book", uri: "@mycq_profile_addresses", check_lock: mycq_profile_addresses }
 
     mycq_marketplace_tabs:
       items:
