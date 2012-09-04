@@ -96,7 +96,7 @@
 
     cq_sidebar_title(
       'Which package is right for you?', isset($package_id_value) ? $link : '',
-      array('left' => 6, 'right' => 6, 'class'=>'spacer-top-reset row-fluid sidebar-title')
+      array('left' => 7, 'right' => 5, 'class'=>'spacer-top-reset row-fluid sidebar-title')
     );
     ?>
 
