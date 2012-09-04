@@ -227,7 +227,7 @@
   <div class="agreement-checks control-group spacer-bottom-reset">
     <label class="control-label control-label">&nbsp;</label>
     <div class="controls form-inline reset-label-colors">
-      <label for="<?= $packagesForm['terms']->renderId() ?>" class="radio inline">
+      <label for="<?= $packagesForm['terms']->renderId() ?>" class="checkbox">
         <?= $packagesForm['terms']->render() ?>&nbsp;
         <?php
           echo sprintf(
@@ -242,8 +242,8 @@
       <?= $packagesForm['terms']->renderError() ?>
     </div>
     <div class="controls form-inline reset-label-colors">
-      <label for="<?= $packagesForm['fyi']->renderId() ?>" class="radio inline">
-        <?= $packagesForm['fyi']->render(array('style' => 'margin-bottom: 25px; float: left; margin-right: 5px; margin-top: 3px;')) ?>
+      <label for="<?= $packagesForm['fyi']->renderId() ?>" class="checkbox">
+        <?= $packagesForm['fyi']->render(array('class' => 'checkbox-indent')) ?>
         I acknowledge that all payments made to me for items sold on
         Collectors Quest are processed through PayPal<sup>®</sup>.
       </label>
