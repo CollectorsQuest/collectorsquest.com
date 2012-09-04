@@ -12,6 +12,7 @@ class BackendShoppingOrderFormFilter extends ShoppingOrderFormFilter
   public function configure()
   {
     parent::configure();
+
     $this->setupCollectorBuyer();
     $this->setupCollectorSeller();
     $this->setupPaymentStatus();
@@ -22,7 +23,7 @@ class BackendShoppingOrderFormFilter extends ShoppingOrderFormFilter
     $this->widgetSchema['collector_buyer'] = new BackendWidgetFormModelTypeAhead(array(
       'field' => CollectorPeer::DISPLAY_NAME
     ));
-    $this->validatorSchema['collector_buyer'] = new  sfValidatorPass(array('required' => false));
+    $this->validatorSchema['collector_buyer'] = new sfValidatorPass(array('required' => false));
   }
 
   public function setupCollectorSeller()
@@ -30,7 +31,7 @@ class BackendShoppingOrderFormFilter extends ShoppingOrderFormFilter
     $this->widgetSchema['collector_seller'] = new BackendWidgetFormModelTypeAhead(array(
       'field' => CollectorPeer::DISPLAY_NAME
     ));
-    $this->validatorSchema['collector_seller'] = new  sfValidatorPass(array('required' => false));
+    $this->validatorSchema['collector_seller'] = new sfValidatorPass(array('required' => false));
   }
 
   public function setupPaymentStatus()

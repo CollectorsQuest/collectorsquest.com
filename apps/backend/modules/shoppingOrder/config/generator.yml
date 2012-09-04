@@ -19,7 +19,7 @@ generator:
           list_seller: { label: Seller }
           list_buyer: { label: Buyer }
           list_collectible: { label: Collectible }
-          list_total_amount: { label: Total amount }
+          list_total_amount: { label: Total }
           list_payment_details: { label: Payment }
           list_shipping: { label: Shipping }
           created_at: { label: Date, date_format: 'MM/dd/yyyy'  }
