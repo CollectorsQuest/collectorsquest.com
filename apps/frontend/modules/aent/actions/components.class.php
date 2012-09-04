@@ -20,7 +20,10 @@ class aentComponents extends sfComponents
 
   public function executeSidebarCollectible()
   {
-    if (!$this->collectible = CollectiblePeer::retrieveByPk($this->getRequestParameter('id')))
+    $q = CollectionCollectibleQuery::create()
+      ->filterByCollectibleId($this->getRequestParameter('id'));
+
+    if (!$this->collectible = $q->findOne())
     {
       return sfView::NONE;
     }

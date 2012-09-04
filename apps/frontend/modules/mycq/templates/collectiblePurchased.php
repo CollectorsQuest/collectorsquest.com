@@ -199,7 +199,7 @@ cq_sidebar_title(
     <div class="send-pm cf">
       <?= form_tag('@messages_compose'); ?>
       <?= $pm_form->renderHiddenFields(); ?>
-      <?= $pm_form['body']->render(array('style' => "width: 97%; height: 100px; margin-bottom: 0;")); ?>
+      <?= $pm_form['body']->render(); ?>
       <button type="submit" class="btn-lightblue-normal textright" style="float: right; margin-top: 10px;">
         <i class="mail-icon-mini"></i> &nbsp;Send message
       </button>

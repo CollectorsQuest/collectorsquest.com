@@ -30,7 +30,9 @@
     $bundle = sprintf(
       '//%s/%s',
       sfConfig::get('app_static_domain'),
-      ltrim(stylesheet_path('frontend/stylesheets.bundle.' . GIT_REVISION . '.css', false), '/')
+      sfConfig::get('sf_environment') !== 'dev' ?
+        ltrim(stylesheet_path('frontend/stylesheets.bundle.' . GIT_REVISION . '.min.css', false), '/') :
+        ltrim(stylesheet_path('frontend/stylesheets.bundle.' . GIT_REVISION . '.css', false), '/')
     );
     echo '<link rel="stylesheet" type="text/css" media="screen" href="'. $bundle .'">'."\n";
     unset($bundle);

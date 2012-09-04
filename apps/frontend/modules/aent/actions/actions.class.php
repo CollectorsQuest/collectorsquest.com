@@ -94,7 +94,7 @@ class aentActions extends cqFrontendActions
       $collection->save();
     }
 
-    $q                  = CollectionCollectibleQuery::create()
+    $q = CollectionCollectibleQuery::create()
         ->filterByCollectionId($pawn_stars['collection'])
         ->orderByPosition(Criteria::ASC)
         ->orderByUpdatedAt(Criteria::ASC);

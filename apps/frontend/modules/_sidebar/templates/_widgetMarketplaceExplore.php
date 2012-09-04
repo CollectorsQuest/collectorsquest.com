@@ -13,9 +13,8 @@
   $link = null;
 
   cq_sidebar_title('Explore the Market', $link);
+  $_height -= 63;
 ?>
-
-<?php $_height -= 63 ?>
 
 <div class="twocolumn cf">
   <ul>
@@ -25,7 +24,7 @@
         echo link_to(
           $category->getName(), 'marketplace_category_by_slug',
           $category, array('title' => $category->getName())
-        )
+        );
       ?>
     </li>
     <?php endforeach; ?>

@@ -3,10 +3,10 @@
  * @var $sf_user  cqFrontendUser
  * @var $height stdClass
  */
-?>
 
-<?php cq_dart_slot('300x250', 'market', 'landing', 'sidebar'); ?>
-<?php $height->value -= 250; ?>
+cq_dart_slot('300x250', 'market', 'landing', 'sidebar');
+$height->value -= 250;
+?>
 
 <?php
   if (isset($category) && $category instanceof ContentCategory)

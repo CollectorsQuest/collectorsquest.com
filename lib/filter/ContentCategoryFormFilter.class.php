@@ -55,7 +55,7 @@ class ContentCategoryFormFilter extends BaseContentCategoryFormFilter
   {
     if ($value === true)
     {
-      $q->withCollections();
+      $q->hasCollections();
     }
   }
 }

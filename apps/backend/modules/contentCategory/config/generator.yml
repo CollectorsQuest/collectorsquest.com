@@ -15,7 +15,7 @@ generator:
       actions: ~
       fields:
         id: { label: ID }
-        num_collections: { label: Collections (total) }
+        num_collections: { label: Collections }
         tree_level: { label: Level }
       list:
         display: [id,  tree_level, =name, _ancestors, _num_collections]
@@ -30,7 +30,7 @@ generator:
 
       export:
         sort: [id, asc]
-        display: [id,collection_category_id, name, slug, description, tree_left, tree_right, tree_level, num_collections, _num_collections]
+        display: [id, tree_level, name, _num_collections]
 
       form:    ~
       edit:
