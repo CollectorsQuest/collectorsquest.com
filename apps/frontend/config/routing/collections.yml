@@ -76,7 +76,10 @@ collectible_by_slug:
 
 collectibles_by_collector:
   url:  /collectibles/by/:id/:slug
-  param: { module: _legacy, action: redirectToCollections }
+  class: cqPropelRoute
+  options: { model: Collector, type: object, method: getObjectForRoute, statsd: true }
+  param: { module: collectibles, action: collectorList, legacy: true }
+  requirements: { id: '\d+', slug: '[\-\w\.]+' }
 
 collectibles_for_sale_by_collector:
   url:  /collectibles-for-sale/by/:id/:slug
