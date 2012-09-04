@@ -27,17 +27,17 @@ class _sidebarComponents extends cqFrontendComponents
   /**
    * @return string
    */
-  public function executeWidgetContentCategories()
+  public function executeWidgetCollectionCategories()
   {
     // Set the limit of Categories to show
     $this->limit = (int) $this->getVar('limit') ?: 30;
 
-    // Set the number of columns to show
-    $this->columns = (int) $this->getVar('columns') ?: 2;
+    // Set the level of Categories to show
+    $level = (int) $this->getVar('level') ?: 2;
 
     /** @var $q ContentCategoryQuery */
     $q = ContentCategoryQuery::create()
-      ->filterByTreeLevel(2)
+      ->filterByTreeLevel($level)
       ->joinCollectorCollection(null, Criteria::INNER_JOIN)
       ->addDescendingOrderByColumn('COUNT(collector_collection.id)')
       ->orderBy('Name', Criteria::ASC)
@@ -60,7 +60,7 @@ class _sidebarComponents extends cqFrontendComponents
   /**
    * @return string
    */
-  public function executeWidgetContentSubCategories()
+  public function executeWidgetCollectionSubCategories()
   {
     $this->current_category = $this->getVar('current_category');
 
@@ -99,21 +99,6 @@ class _sidebarComponents extends cqFrontendComponents
         ->childrenOf($this->current_sub_category)
         ->hasCollections()
         ->find();
-    }
-
-    if (count($this->subcategories) === 0 && $this->getVar('fallback') === '1st_level_categories')
-    {
-      /** @var $q CollectionCategoryQuery */
-      $q = ContentCategoryQuery::create()
-        ->filterByName('None', Criteria::NOT_EQUAL)
-        ->filterByLevel(1)
-        ->hasCollections()
-        ->orderBy('Name', Criteria::ASC);
-
-      $this->subcategories = $q->find();
-
-      $this->current_sub_category = $this->current_category;
-      $this->current_category = 'Categories';
     }
 
     return $this->_sidebar_if(count($this->subcategories) > 0);
