@@ -16,7 +16,7 @@ $linkPrev = $linkNext = false;
   <ul>
     <?php if ($pager->getPage() != 1): ?>
     <li class="prev">
-      <?php $linkPrev =  $url . $mark . $options['page_param'] . '=' . $pager->getPreviousPage(); ?>
+      <?php $linkPrev = $url . $mark . $options['page_param'] . '=' . $pager->getPreviousPage(); ?>
       <?php
         echo link_to(
           ' &larr; ', $linkPrev,

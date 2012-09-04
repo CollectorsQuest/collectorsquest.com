@@ -7,24 +7,19 @@
 <div class="spacer-bottom-15">
   <?php
     echo cq_image_tag(
-      'headlines/2012-0420_PS_Promo_Space_620x180_FIN.jpg',
-      array('alt_title' => 'Check out items seen on Pawn Stars')
+      'headlines/2012-0777_Picked_Off_620x180.jpg',
+      array('alt_title' => 'Check out items seen on Picked Off')
     );
   ?>
 </div>
 
 <p class="text-justify">
-  In the only family-run pawn shop in Las Vegas, three generations of men
-  from the Harrison family buy and sell collectible, unusual and historically
-  significant items on HISTORY’s <strong><i>PAWN STARS</i></strong><sup>&reg;</sup>.
-  Their customers are carrying on a centuries-old practice: pawning or selling
-  their possessions to make a quick buck. What would you be willing to gamble
-  on these items from the show?
+  <?= $collection->getDescription(); ?>
 </p>
 
 <?php
   cq_page_title(
-    'Collectibles Seen on <strong><i>Pawn Stars</i></strong>', null,
+    'Collectibles Seen on <strong><i>Picked Off</i></strong>', null,
     array('class' => 'row-fluid header-bar spacer-bottom-15')
   );
 ?>

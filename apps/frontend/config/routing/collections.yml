@@ -20,13 +20,24 @@ aetn_storage_wars:
   param: { module: aent, action: storageWars }
   requirements: { sf_method: [GET] }
 
+aetn_picked_off:
+  url: /history/picked-off
+  param: { module: aent, action: pickedOff }
+  requirements: { sf_method: [GET] }
+
 aetn_collectible_by_slug:
+  url:  /aetn/collectible/:id/:slug
+  class: cqPropelRoute
+  options: { model: Collectible, type: object, method: getObjectForRoute }
+  param: { module: aent, action: collectible }
+  requirements: { id: '\d+', slug: '[\-\w\.]+' }
+
+aetn_collectible_by_slug_fixed_matching:
   url:  /aetn/collectible/:id/:slug
   class: cqPropelRoute
   options: { model: Collectible, type: object, method: getObjectForRoute }
   param: { module: aent, action: collectibleFixedMatching }
   requirements: { id: '\d+', slug: '[\-\w\.]+' }
-
 
 ### COLLECTIONS
 
