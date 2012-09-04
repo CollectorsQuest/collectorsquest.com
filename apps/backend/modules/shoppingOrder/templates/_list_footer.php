@@ -2,6 +2,10 @@
 <script type="text/javascript">
   $(document).ready(function()
   {
-    $('a[rel="popover"]').popover();
+   var p = $('a[rel="popover"]').popover();
+    console.log(p);
+    $('.popover button.close').live('click', function(){
+      $(this).closest('.popover').removeClass('in').removeAttr('style');
+    });
   });
 </script>

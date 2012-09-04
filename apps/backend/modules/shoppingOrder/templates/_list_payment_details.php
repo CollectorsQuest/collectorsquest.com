@@ -5,7 +5,8 @@ if ($ShoppingPayment = $ShoppingOrder->getShoppingPayment())
 {
   echo ucfirst($ShoppingPayment->getStatus()) ;
   ?>
-  <a  href="javascript:void(0)" rel="popover" data-original-title="<?= $ShoppingPayment->getProcessor() ?> Details"
+  <a  href="javascript:void(0)" rel="popover" data-original-title="<?= $ShoppingPayment->getProcessor() ?> Details
+    <button class='close' type='button'>×</button>"
     data-content="
     <?php switch($ShoppingPayment->getProcessor()):
       case ('PayPal'): ?>

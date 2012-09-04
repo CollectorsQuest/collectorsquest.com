@@ -3,7 +3,8 @@
 ?>
 <?php if ($ShoppingOrder->getShippingCity())
 { ?>
-  <a href="javascript:void(0)" rel="popover" data-original-title="Shipping Details" data-placement="top"
+  <a href="javascript:void(0)" rel="popover" data-original-title="Shipping Details
+  <button class='close' type='button'>×</button>" data-placement="top"
       data-content="
 
          <b><?= $ShoppingOrder->getShippingFullName(); ?></b><br /><br />

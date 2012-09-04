@@ -6,7 +6,8 @@ $collector = $ShoppingOrder->getCollectorRelatedByCollectorId();
 if ($collector)
 { ?>
   <a href="javascript:void(0)" rel="popover" data-original-title='
-    <?= link_to($collector->getDisplayName(), 'collector_edit', $collector); ?>'
+    <?= link_to($collector->getDisplayName(), 'collector_edit', $collector); ?>
+    <button class="close" type="button">×</button>'
     data-content='
      <div class="row-fluid">
       <div class="span2">
