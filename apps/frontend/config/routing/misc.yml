@@ -77,13 +77,6 @@ content_category:
   param: { module: categories, action: category }
   requirements: { path: '[\/\-\w\.]+' }
 
-#content_category:
-  #url:  /category/:id/:slug
-  #class: cqPropelRoute
-  #options: { model: ContentCategory, type: object }
-  #param: { module: categories, action: category }
-  #requirements: { id: '\d+', slug: '[\-\w\.]+' }
-
 content_categories:
   url:  /categories
   param: { module: categories, action: index }
