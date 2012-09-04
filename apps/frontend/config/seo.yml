@@ -19,16 +19,22 @@ seo:
 
   aent:
     pawnStars:
-      title: Pawn Stars Collectibles | TV Show Collectibles | Collectors Quest
+      title: Pawn Stars | TV Show Collectibles | Collectors Quest
       description: |
         CollectorsQuest.com gives you an exclusive look at the Pawn Stars Collectibles.
         See these and other TV Show Collectibles.
 
     americanPickers:
-      title: American Pickers Collection | TV Show Collectibles | Collectors Quest
+      title: American Pickers | TV Show Collectibles | Collectors Quest
       description: |
-        Check out these collectors items from the American Pickers Collection.
-        CollectorsQuest.com gives you an inside look at the American Pickers collection.
+        Check out these collectors items from the American Pickers collection.
+        CollectorsQuest.com gives you an inside look at the American Pickers collectibles.
+
+    pickedOff:
+      title: Picked Off | TV Show Collectibles | Collectors Quest
+      description: |
+        Check out these collectors items from the Picked Off collection.
+        CollectorsQuest.com gives you an inside look at the Picked Off collectibles.
 
     # https://basecamp.com/1759305/projects/288122-collectorsquest-com/todos/11828067-history-a-e
     collectibleFixedMatching:
