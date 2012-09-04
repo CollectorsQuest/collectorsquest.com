@@ -13,6 +13,7 @@
   foreach ($level1_categories as $category)
   {
     $level2_links = array();
+
     foreach ($category->getChildrenWithCollections() as $child_category)
     {
       $level2_links[] = link_to_content_category($child_category);
