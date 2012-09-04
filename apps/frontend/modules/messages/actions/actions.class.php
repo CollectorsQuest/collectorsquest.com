@@ -158,7 +158,8 @@ class messagesActions extends cqFrontendActions
         $cqEmail = new cqEmail($this->getMailer());
 
         // if we are sending a message to an actual collector
-        if ($receiver instanceof Collector)
+        // and the collector wants to receive notifications
+        if ($receiver instanceof Collector && $receiver->getNotificationsMessage())
         {
           // then we need to save a message object
           $message = $form->save();

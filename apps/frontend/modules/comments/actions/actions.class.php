@@ -32,8 +32,14 @@ class commentsActions extends cqFrontendActions
           {
             $owner = $comment->getModelObject()->getCollector();
 
-            if (!$this->getUser()->isAuthenticated() || $this->getCollector()->getId() != $owner->getId())
-            {
+            // if the user is not authenticated or not the onwer of the object being
+            // commented on and wants to receive comment notifications
+            if (
+              !$this->getUser()->isAuthenticated() ||
+              ( $this->getCollector()->getId() != $owner->getId() &&
+                $owner->getNotificationsComment()
+              )
+            ) {
               $ret = $cqEmail->send('Comments/new_comment_on_owned_item_notification', array(
                   'to' => $owner->getEmail(),
                   'params' => array(
@@ -44,7 +50,7 @@ class commentsActions extends cqFrontendActions
                       'sCommentRemoveUrl' => $this->getController()->genUrl(array(
                           'sf_route' => 'comments_delete',
                           'sf_subject' => $comment,
-                        ),true),
+                        ), true),
                   ),
               ));
             }
