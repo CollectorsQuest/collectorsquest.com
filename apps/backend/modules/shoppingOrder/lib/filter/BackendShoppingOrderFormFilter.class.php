@@ -13,9 +13,9 @@ class BackendShoppingOrderFormFilter extends ShoppingOrderFormFilter
   {
     parent::configure();
 
-
-    $this->setupCollectorSeller();
-    $this->setupPaymentStatus();
+    $this->setupCollectorSellerField();
+    $this->setupPaymentStatusField();
+    $this->setupCreatedAtField();
 
     $this->widgetSchema['buyer_email'] = new BackendWidgetFormModelTypeAhead(array(
       'field' => ShoppingOrderPeer::BUYER_EMAIL
@@ -25,7 +25,7 @@ class BackendShoppingOrderFormFilter extends ShoppingOrderFormFilter
     ));
   }
 
-  public function setupCollectorSeller()
+  public function setupCollectorSellerField()
   {
     $this->widgetSchema['collector_seller'] = new BackendWidgetFormModelTypeAhead(array(
       'field' => CollectorPeer::DISPLAY_NAME
@@ -33,7 +33,7 @@ class BackendShoppingOrderFormFilter extends ShoppingOrderFormFilter
     $this->validatorSchema['collector_seller'] = new sfValidatorPass(array('required' => false));
   }
 
-  public function setupPaymentStatus()
+  public function setupPaymentStatusField()
   {
     $this->widgetSchema['payment_status'] = new sfWidgetFormChoice(array(
       'choices' =>
@@ -43,8 +43,18 @@ class BackendShoppingOrderFormFilter extends ShoppingOrderFormFilter
         )
 
     ));
-    $this->validatorSchema['payment_status'] = new sfValidatorChoice(array('required' => false,
-      'choices' => array(0 => 0, 1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5,)
+    $this->validatorSchema['payment_status'] = new sfValidatorChoice(array(
+      'required' => false, 'choices' => array(0 => 0, 1 => 1, 2 => 2, 3 => 3, 4 => 4, 5 => 5,)
+    ));
+  }
+
+  protected function setupCreatedAtField()
+  {
+    $this->widgetSchema['created_at'] = new sfWidgetFormJQueryDateRange(array(
+      'config' => '{}',
+    ));
+    $this->validatorSchema['created_at'] = new IceValidatorDateRange(array(
+      'required' => false, 'from_date' => 'from', 'to_date' => 'to'
     ));
   }
 }
