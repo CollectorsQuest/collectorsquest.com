@@ -43,7 +43,7 @@
     </div>
 
     <div class="cf spacer-7 text-center">
-      <button type="submit" class="btn btn-primary btn-primary-long">Sign Up</button>
+      <button type="submit" class="btn btn-primary-long">Sign Up</button>
     </div>
   </form>
 
@@ -86,7 +86,7 @@
     </div>
 
     <div class="cf spacer-7 text-center">
-      <button type="submit" class="btn btn-primary btn-primary-long">Sign In</button><br/><br/>
+      <button type="submit" class="btn btn-primary-long">Sign In</button><br/><br/>
       Don't have an account yet?
       <?php
         echo link_to(
