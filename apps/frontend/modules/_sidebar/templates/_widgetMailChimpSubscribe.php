@@ -1,3 +1,10 @@
+<?php
+/**
+ * @var  $height  stdClass
+ */
+
+$_height = 0;
+?>
 
 <div id="mc_embed_signup">
   <?php cq_sidebar_title('Subscribe To Our Newsletter', null); ?>
@@ -42,3 +49,11 @@
     </div>
   </form>
 </div>
+
+<?php
+  $_height -= 190;
+  if (isset($height) && property_exists($height, 'value'))
+  {
+    $height->value -= abs($_height);
+  }
+?>

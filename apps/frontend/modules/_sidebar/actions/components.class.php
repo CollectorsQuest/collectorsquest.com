@@ -7,7 +7,10 @@ class _sidebarComponents extends cqFrontendComponents
    */
   public function executeWidgetFacebookLikeBox()
   {
-    return sfView::SUCCESS;
+    /** @var $height stdClass */
+    $height = $this->getVar('height');
+
+    return $this->_sidebar_if(!property_exists($height, 'value') || $height->value >= 340);
   }
 
   /**
@@ -15,31 +18,39 @@ class _sidebarComponents extends cqFrontendComponents
    */
   public function executeWidgetFacebookRecommendations()
   {
-    return sfView::SUCCESS;
+    /** @var $height stdClass */
+    $height = $this->getVar('height');
+
+    return $this->_sidebar_if(!property_exists($height, 'value') || $height->value >= 370);
   }
 
   /**
    * @return string
    */
-  public function executeWidgetContentCategories()
+  public function executeWidgetCollectionCategories()
   {
     // Set the limit of Categories to show
     $this->limit = (int) $this->getVar('limit') ?: 30;
 
-    // Set the number of columns to show
-    $this->columns = (int) $this->getVar('columns') ?: 2;
+    // Set the level of Categories to show
+    $level = (int) $this->getVar('level') ?: 2;
 
+    /** @var $q ContentCategoryQuery */
     $q = ContentCategoryQuery::create()
-      ->filterByTreeLevel(2)
+      ->filterByTreeLevel($level)
       ->joinCollectorCollection(null, Criteria::INNER_JOIN)
       ->addDescendingOrderByColumn('COUNT(collector_collection.id)')
-      ->orderByName(Criteria::ASC)
+      ->orderBy('Name', Criteria::ASC)
       ->groupById()
       ->limit($this->limit);
     $this->categories = $q->find()->getArrayCopy();
 
     usort($this->categories, function($a, $b)
     {
+      /**
+       * @var $a ContentCategory
+       * @var $b ContentCategory
+       */
       return strcmp($a->getName(), $b->getName());
     });
 
@@ -49,13 +60,14 @@ class _sidebarComponents extends cqFrontendComponents
   /**
    * @return string
    */
-  public function executeWidgetContentSubCategories()
+  public function executeWidgetCollectionSubCategories()
   {
     $this->current_category = $this->getVar('current_category');
 
     // initialize as new ContentCategory so we can check in template if value was assigned
     $this->current_sub_category = new ContentCategory();
     $this->current_sub_subcategory = new ContentCategory();
+    $this->sub_subcategories = array();
 
     // if current_category is level > 1 we should retrieve sub_subcategories
     $retrieve_sub_subcategories = false;
@@ -82,10 +94,12 @@ class _sidebarComponents extends cqFrontendComponents
       ->find();
 
     if ($retrieve_sub_subcategories)
-    $this->sub_subcategories = ContentCategoryQuery::create()
-      ->childrenOf($this->current_sub_category)
-      ->hasCollections()
-      ->find();
+    {
+      $this->sub_subcategories = ContentCategoryQuery::create()
+        ->childrenOf($this->current_sub_category)
+        ->hasCollections()
+        ->find();
+    }
 
     return $this->_sidebar_if(count($this->subcategories) > 0);
   }
@@ -241,6 +255,12 @@ class _sidebarComponents extends cqFrontendComponents
       $this->limit = min(floor(($height->value - 63) / 66), $this->limit);
     }
 
+    // We want to stop right here if we are not going to show anything (0 items)
+    if ($this->limit <= 0)
+    {
+      return sfView::NONE;
+    }
+
     /** @var $q CollectorCollectionQuery */
     $q = CollectorCollectionQuery::create()
       ->filterByNumItems(3, Criteria::GREATER_EQUAL);
@@ -263,8 +283,7 @@ class _sidebarComponents extends cqFrontendComponents
         $q->filterByContentCategoryWithDescendants($category);
       }
 
-      $q
-        ->filterByTags($tags)
+      $q->filterByTags($tags)
         ->_or()
         ->filterByContentCategoryId($content_category_id)
         ->filterById($collection->getId(), Criteria::NOT_EQUAL)
@@ -276,7 +295,7 @@ class _sidebarComponents extends cqFrontendComponents
       ($collectible instanceof Collectible || $collectible instanceof CollectionCollectible)
     )
     {
-      /** @var $collection CollectoCollection */
+      /** @var  $collectible  CollectionCollectible */
       $collection = $collectible->getCollectorCollection();
 
       $collectible_tags = $collectible->getTags();
@@ -368,6 +387,18 @@ class _sidebarComponents extends cqFrontendComponents
   public function executeWidgetMagnifyVideos()
   {
     $this->limit = (int) $this->getVar('limit') ?: 5;
+
+    /** @var $height stdClass */
+    if ($height = $this->getVar('height'))
+    {
+      $this->limit = min(floor(($height->value - 63) / 100), $this->limit);
+    }
+
+    // We want to stop right here if we are not going to show anything (0 items)
+    if ($this->limit <= 0)
+    {
+      return sfView::NONE;
+    }
 
     $this->tags = $this->getVar('tags') ?: array();
 
@@ -496,7 +527,7 @@ class _sidebarComponents extends cqFrontendComponents
         $c->add(CollectorCollectionPeer::NUM_ITEMS, 0, Criteria::GREATER_THAN);
         $c->setLimit($this->limit);
 
-        /** @var $collection Collection */
+        /** @var $collection CollectorCollection */
         $collection = $this->getVar('collection');
         if ($collection instanceof BaseObject)
         {
@@ -545,6 +576,18 @@ class _sidebarComponents extends cqFrontendComponents
     // Set the limit of other Collections to show
     $this->limit = (int) $this->getVar('limit') ?: 0;
 
+    /** @var $height stdClass */
+    if ($height = $this->getVar('height'))
+    {
+      $this->limit = min(floor(($height->value - 63) / 161), $this->limit);
+    }
+
+    // We want to stop right here if we are not going to show anything (0 items)
+    if ($this->limit <= 0)
+    {
+      return sfView::NONE;
+    }
+
     $q = wpPostQuery::create()
       ->filterByPostType('seller_spotlight')
       ->orderByPostDate(Criteria::DESC);
@@ -565,6 +608,7 @@ class _sidebarComponents extends cqFrontendComponents
         $collector_ids = array_map('trim', $collector_ids);
         $collector_ids = array_filter($collector_ids);
 
+        /** @var $q CollectorQuery */
         $q = CollectorQuery::create()
           ->filterById($collector_ids, Criteria::IN)
           ->filterByUserType(CollectorPeer::TYPE_SELLER)
@@ -575,7 +619,6 @@ class _sidebarComponents extends cqFrontendComponents
 
       $this->wp_post = $wp_post;
     }
-
 
     return $this->_sidebar_if(count($this->collectors) > 0);
   }
@@ -663,7 +706,7 @@ class _sidebarComponents extends cqFrontendComponents
     /** @var $collectible CollectionCollectible */
     else if (($collectible = $this->getVar('collectible')) && $collectible instanceof CollectionCollectible)
     {
-      /** @var $collection CollectorCollection */
+      /** @var $collectible CollectionCollectible */
       $collection = $collectible->getCollectorCollection();
 
       $collectible_tags = $collectible->getTags();
@@ -860,7 +903,10 @@ class _sidebarComponents extends cqFrontendComponents
 
   public function executeWidgetMailChimpSubscribe()
   {
-    return sfView::SUCCESS;
+    /** @var $height stdClass */
+    $height = $this->getVar('height');
+
+    return $this->_sidebar_if(!property_exists($height, 'value') || $height->value >= 190);
   }
 
   private function _sidebar_if($condition = false)

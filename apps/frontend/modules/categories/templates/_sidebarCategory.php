@@ -4,10 +4,12 @@
  */
 ?>
 
-
 <?php
   include_component(
-    '_sidebar', 'widgetContentSubCategories',
-    array('current_category' => $category)
+    '_sidebar', 'widgetCollectionSubCategories',
+    array(
+      'current_category' => $category,
+      'fallback' => 'widgetCollectionCategories', 'level' => 1
+    )
   );
 ?>
