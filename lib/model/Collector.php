@@ -95,10 +95,13 @@ require 'lib/model/om/BaseCollector.php';
  */
 class Collector extends BaseCollector implements ShippingReferencesInterface
 {
-  public
-    $_multimedia = array(),
-    $_counts = array();
+  /** @var array */
+  public $_multimedia = array();
 
+  /** @var array */
+  public $_counts = array();
+
+  /** @var array */
   protected $collCollectiblesInCollections;
 
   /** @var Collector */
@@ -173,9 +176,10 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
   }
 
   /**
-   * @param     string $format The date/time format string (either date()-style or strftime()-style).
-   *              If format is NULL, then the raw DateTime object will be returned.
-   * @return    mixed Formatted date/time value as string or DateTime object (if format is NULL), NULL if column is NULL, and 0 if column value is 0000-00-00 00:00:00
+   * @param     string $format  The date/time format string (either date()-style or strftime()-style).
+   *                            If format is NULL, then the raw DateTime object will be returned.
+   * @return    mixed  Formatted date/time value as string or DateTime object (if format is NULL),
+   *                   NULL if column is NULL, and 0 if column value is 0000-00-00 00:00:00
    * @throws    RuntimeException - if unable to parse/validate the date/time value.
    */
   public function getVisitorInfoFirstVisitAt($format = 'Y-m-d H:i:s')
@@ -199,9 +203,11 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
   }
 
   /**
-   * @param     string $format The date/time format string (either date()-style or strftime()-style).
-   *              If format is NULL, then the raw DateTime object will be returned.
-   * @return    mixed Formatted date/time value as string or DateTime object (if format is NULL), NULL if column is NULL, and 0 if column value is 0000-00-00 00:00:00
+   * @param     string $format  The date/time format string (either date()-style or strftime()-style).
+   *                             If format is NULL, then the raw DateTime object will be returned.
+   *
+   * @return    mixed  Formatted date/time value as string or DateTime object (if format is NULL),
+   *                   NULL if column is NULL, and 0 if column value is 0000-00-00 00:00:00
    * @throws    RuntimeException - if unable to parse/validate the date/time value.
    */
   public function getVisitorInfoLastVisitAt($format = 'Y-m-d H:i:s')
@@ -222,39 +228,42 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
   {
     foreach (CollectorPeer::$visitor_info_props as $prop_name)
     {
-      if (isset($data[$prop_name]) && $value = $data[$prop_name]) switch ($prop_name)
+      if (isset($data[$prop_name]) && $value = $data[$prop_name])
       {
-        case CollectorPeer::PROPERTY_VISITOR_INFO_FIRST_VISIT_AT:
-          $new_time = strtotime($value);
-          if ($new_time < $this->getVisitorInfoFirstVisitAt('U'))
-          {
-            $this->setVisitorInfoFirstVisitAt($new_time);
-          }
-          break;
+        switch ($prop_name)
+        {
+          case CollectorPeer::PROPERTY_VISITOR_INFO_FIRST_VISIT_AT:
+            $new_time = strtotime($value);
+            if ($new_time < $this->getVisitorInfoFirstVisitAt('U'))
+            {
+              $this->setVisitorInfoFirstVisitAt($new_time);
+            }
+            break;
 
-        case CollectorPeer::PROPERTY_VISITOR_INFO_LAST_VISIT_AT:
-          $new_time = strtotime($value);
-          if ($new_time > $this->getVisitorInfoLastVisitAt('U'))
-          {
-            $this->setVisitorInfoFirstVisitAt($new_time);
-          }
-          break;
+          case CollectorPeer::PROPERTY_VISITOR_INFO_LAST_VISIT_AT:
+            $new_time = strtotime($value);
+            if ($new_time > $this->getVisitorInfoLastVisitAt('U'))
+            {
+              $this->setVisitorInfoFirstVisitAt($new_time);
+            }
+            break;
 
-        case CollectorPeer::PROPERTY_VISITOR_INFO_NUM_PAGE_VIEWS:
-          $this->setVisitorInfoNumPageViews(
-            $this->getVisitorInfoNumPageViews() + $value
-          );
-          break;
+          case CollectorPeer::PROPERTY_VISITOR_INFO_NUM_PAGE_VIEWS:
+            $this->setVisitorInfoNumPageViews(
+              $this->getVisitorInfoNumPageViews() + $value
+            );
+            break;
 
-        case CollectorPeer::PROPERTY_VISITOR_INFO_NUM_VISITS:
-          $this->setVisitorInfoNumVisits(
-            $this->getVisitorInfoNumVisits() + $value
-          );
-          break;
+          case CollectorPeer::PROPERTY_VISITOR_INFO_NUM_VISITS:
+            $this->setVisitorInfoNumVisits(
+              $this->getVisitorInfoNumVisits() + $value
+            );
+            break;
 
-        default:
-          $this->setProperty($prop_name, $value);
-          break;
+          default:
+            $this->setProperty($prop_name, $value);
+            break;
+        }
       }
     }
 
@@ -298,7 +307,8 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
 
     if (!$this->isNew() && null === $graph_id)
     {
-      try {
+      try
+      {
         $client = cqStatic::getNeo4jClient();
 
         $node = $client->makeNode();
@@ -310,7 +320,9 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
 
         $this->setGraphId($node->getId());
         $this->save();
-      } catch (Exception $e) {
+      }
+      catch (Exception $e)
+      {
         // Error when trying to create a new neo4j node
       }
     }
@@ -335,7 +347,8 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
   public function isOwnerOf($something)
   {
     // Assume the User is not the owner if not an object
-    if (!is_object($something)) {
+    if (!is_object($something))
+    {
       return false;
     }
 
@@ -370,7 +383,7 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
   {
     $time = parent::getLastSeenAt($format);
 
-    return ($time == "1999-11-30 00:00:00") ? null : $time;
+    return ($time == '1999-11-30 00:00:00') ? null : $time;
   }
 
   /**
@@ -448,7 +461,7 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
         ));
 
         $hash = sprintf(
-          "%s;%d;%s;%d", $version, $this->getId(), hash_hmac('sha1', base64_encode($json), $salt), $time
+          '%s;%d;%s;%d', $version, $this->getId(), hash_hmac('sha1', base64_encode($json), $salt), $time
         );
         break;
     }
@@ -457,7 +470,8 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
   }
 
   /**
-   * @return CollectorProfile
+   * @param     PropelPDO  $con
+   * @return    CollectorProfile
    */
   public function getProfile(PropelPDO $con = null)
   {
@@ -465,7 +479,8 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
   }
 
   /***
-   * @return Collector
+   * @param     CollectorProfile  $v
+   * @return    Collector
    */
   public function setProfile(CollectorProfile $v)
   {
@@ -562,7 +577,9 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
         $c->add(CollectorCollectionPeer::COLLECTOR_ID, $collector->getId(), Criteria::NOT_EQUAL);
         $c->addAscendingOrderByColumn('RAND()');
 
-        $collections = array_merge($collections, CollectorCollectionPeer::getRelatedCollections($collector, $limit, $c));
+        $collections = array_merge(
+          $collections, CollectorCollectionPeer::getRelatedCollections($collector, $limit, $c)
+        );
       }
     }
 
@@ -632,7 +649,7 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
     $tag_ids = array();
     while ($tag_id = $stmt->fetchColumn(0))
     {
-      $tag_ids[] = (int)$tag_id;
+      $tag_ids[] = (integer) $tag_id;
     }
 
     return $tag_ids;
@@ -674,6 +691,9 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
    *
    * @param     string|array $tagname Anything that ::addTag() accepts
    * @param     string $ns
+   * @param     string $key
+   *
+   * @return void
    */
   protected function addNamespacedTag($tagname, $ns, $key)
   {
@@ -697,6 +717,9 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
    *
    * @param     string|array $tags Anything that ::addTag() accepts
    * @param     string $ns
+   * @param     string $key
+   *
+   * @return    void
    */
   protected function setNamespacedTags($tags, $ns, $key)
   {
@@ -707,7 +730,10 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
   /**
    * Remove all tags for a specific namespace
    *
-   * @param     string $ns
+   * @param     string  $ns
+   * @param     string  $key
+   *
+   * @return    void
    */
   protected function removeAllNamespacedTags($ns, $key)
   {
@@ -880,63 +906,73 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
    */
   public function initCollectiblesInCollections($overrideExisting = true)
   {
-    if (null !== $this->collCollectiblesInCollections && !$overrideExisting) {
+    if (null !== $this->collCollectiblesInCollections && !$overrideExisting)
+    {
       return;
     }
+
     $this->collCollectiblesInCollections = new PropelObjectCollection();
     $this->collCollectiblesInCollections->setModel('Collectible');
   }
 
   /**
-   * Get the collectibles related to this collector that are asigned in
-   * collections
+   * Get the collectibles related to this collector
+   * which are assigned to collections
    *
    * @param     Criteria $criteria
    * @param     PropelPDO $con
    * @return    PropelObjectCollection Collectible[]
    */
-  public function getCollectiblesInCollections(
-    Criteria $criteria = null,
-    PropelPDO $con = null
-  ) {
-    if (null === $this->collCollectiblesInCollections || null !== $criteria) {
-      if ($this->isNew() && null === $this->collCollectiblesInCollections) {
+  public function getCollectiblesInCollections(Criteria $criteria = null, PropelPDO $con = null)
+  {
+    if (null === $this->collCollectiblesInCollections || null !== $criteria)
+    {
+      if ($this->isNew() && null === $this->collCollectiblesInCollections)
+      {
         // return empty collection
         $this->initCollectiblesInCollections();
-      } else {
+      }
+      else
+      {
         $coll = CollectibleQuery::create(null, $criteria)
           ->filterByCollector($this)
           ->innerJoinCollectionCollectible()
           ->find($con);
-        if (null !== $criteria) {
+
+        if (null !== $criteria)
+        {
           return $coll;
         }
         $this->collCollectiblesInCollections = $coll;
       }
     }
+
     return $this->collCollectiblesInCollections;
   }
 
   /**
-   * Count the number of collectibles related to this collector that
-   * are asigned in collections
+   * Count the number of collectibles related to this collector which
+   * are assigned to collections
    *
-   * @param     Criteria $criteria
-   * @param     boolean $distinct
-   * @param     PropelPDO $con
+   * @param     Criteria   $criteria
+   * @param     boolean    $distinct
+   * @param     PropelPDO  $con
+   *
    * @return    integer
    */
-  public function countCollectiblesInCollections(
-    Criteria $criteria = null,
-    $distinct = false,
-    PropelPDO $con = null
-  ) {
-    if (null === $this->collCollectiblesInCollections || null !== $criteria) {
-      if ($this->isNew() && null === $this->collCollectiblesInCollections) {
+  public function countCollectiblesInCollections(Criteria $criteria = null, $distinct = false, PropelPDO $con = null)
+  {
+    if (null === $this->collCollectiblesInCollections || null !== $criteria)
+    {
+      if ($this->isNew() && null === $this->collCollectiblesInCollections)
+      {
         return 0;
-      } else {
+      }
+      else
+      {
         $query = CollectibleQuery::create(null, $criteria);
-        if($distinct) {
+        if ($distinct)
+        {
           $query->distinct();
         }
         return $query
@@ -944,7 +980,9 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
           ->innerJoinCollectionCollectible()
           ->count($con);
       }
-    } else {
+    }
+    else
+    {
       return count($this->collCollectiblesInCollections);
     }
   }
@@ -1080,16 +1118,16 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
     if (php_sapi_name() !== 'cli')
     {
       $params['author-ip'] = IceStatic::getUserIpAddress();
-      $params['referrer'] = $_SERVER["HTTP_REFERER"];
+      $params['referrer'] = $_SERVER['HTTP_REFERER'];
       $params['http-headers'] =
-          "HTTP_ACCEPT_LANGUAGE: " . $_SERVER["HTTP_ACCEPT_LANGUAGE"] . "\n" .
-              "HTTP_REFERER: " . $_SERVER["HTTP_REFERER"] . "\n" .
-              "HTTP_ACCEPT_CHARSET: " . @$_SERVER["HTTP_ACCEPT_CHARSET"] . "\n" .
-              "HTTP_KEEP_ALIVE: " . @$_SERVER["HTTP_KEEP_ALIVE"] . "\n" .
-              "HTTP_ACCEPT_ENCODING: " . $_SERVER["HTTP_ACCEPT_ENCODING"] . "\n" .
-              "HTTP_CONNECTION: " . $_SERVER["HTTP_CONNECTION"] . "\n" .
-              "HTTP_ACCEPT: " . $_SERVER["HTTP_ACCEPT"] . "\n" .
-              "HTTP_USER_AGENT: " . $_SERVER["HTTP_USER_AGENT"];
+        'HTTP_ACCEPT_LANGUAGE: ' . $_SERVER['HTTP_ACCEPT_LANGUAGE'] . "\n" .
+        'HTTP_REFERER: ' . $_SERVER['HTTP_REFERER'] . "\n" .
+        'HTTP_ACCEPT_CHARSET: ' . @$_SERVER['HTTP_ACCEPT_CHARSET'] . "\n" .
+        'HTTP_KEEP_ALIVE: ' . @$_SERVER['HTTP_KEEP_ALIVE'] . "\n" .
+        'HTTP_ACCEPT_ENCODING: ' . $_SERVER['HTTP_ACCEPT_ENCODING'] . "\n" .
+        'HTTP_CONNECTION: ' . $_SERVER['HTTP_CONNECTION'] . "\n" .
+        'HTTP_ACCEPT: ' . $_SERVER['HTTP_ACCEPT'] . "\n" .
+        'HTTP_USER_AGENT: ' . $_SERVER['HTTP_USER_AGENT'];
     }
 
     try
@@ -1097,10 +1135,10 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
       $defensio = cqStatic::getDefensioClient();
       $result = $defensio->postDocument($params);
 
-      if (is_array($result) && (int)$result[0] == 200)
+      if (is_array($result) && intval($result[0]) == 200)
       {
-        $this->setIsSpam((string)$result[1]->allow == 'false' ? true : false);
-        $this->setSpamScore(100 * (float)$result[1]->spaminess);
+        $this->setIsSpam(strval($result[1]->allow) == 'false' ? true : false);
+        $this->setSpamScore(100 * strval($result[1]->spaminess));
         $this->setProperty('spam.signature', $result[1]->signature);
         $this->setProperty('spam.classification', $result[1]->classification);
         $this->setProperty('spam.profanity-match', 'false' == $result[1]['profanity-match'] ? false : true);
@@ -1159,14 +1197,14 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
       $result = null;
     }
 
-    if (is_array($result) && (int)$result[0] == 200)
+    if (is_array($result) && intval($result[0]) == 200)
     {
-      $this->setIsSpam((string)$result[1]->allow == 'false' ? true : false);
-      $this->setSpamScore(100 * (float)$result[1]->spaminess);
-      $this->setProperty('spam.signature', (string)$result[1]->signature);
-      $this->setProperty('spam.classification', (string)$result[1]->classification);
-      $this->setProperty('spam.profanity-match', 'false' == (string)$result[1]['profanity-match'] ? false : true);
-      $this->setProperty('spam.allow', 'false' == (string)$result[1]['allow'] ? false : true);
+      $this->setIsSpam((string) $result[1]->allow == 'false' ? true : false);
+      $this->setSpamScore(100 * (float) $result[1]->spaminess);
+      $this->setProperty('spam.signature', (string) $result[1]->signature);
+      $this->setProperty('spam.classification', (string) $result[1]->classification);
+      $this->setProperty('spam.profanity-match', 'false' == (string) $result[1]['profanity-match'] ? false : true);
+      $this->setProperty('spam.allow', 'false' == (string) $result[1]['allow'] ? false : true);
 
       return true;
     }
@@ -1375,6 +1413,7 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
     $image = sfConfig::get('sf_web_dir')
       .'/images/frontend/multimedia/Collector/default/235x315/'. $avatar_id .'.jpg';
 
+    /** @var $multimedia iceModelMultimedia */
     if ($multimedia = $this->setPhoto($image))
     {
       /**
