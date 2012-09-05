@@ -35,13 +35,15 @@
     <?= $signup_form->renderUsing('BootstrapWithRowFluid'); ?>
 
     <div class="row-fluid spacer-top-5 spacer-bottom-15">
-      <input type="checkbox" name="<?= $signup_form->getName() ?>[newsletter]"
-             id="<?= $signup_form->getName() ?>_newsletter" checked="checked">
-      Sign me up for the Collectors Quest newsletter
+      <label class="checkbox">
+        <input type="checkbox" name="<?= $signup_form->getName() ?>[newsletter]"
+               id="<?= $signup_form->getName() ?>_newsletter" checked="checked">
+        Sign me up for the Collectors Quest newsletter
+      </label>
     </div>
 
     <div class="cf spacer-7 text-center">
-      <button type="submit" class="btn btn-primary btn-primary-long">Sign Up</button>
+      <button type="submit" class="btn btn-primary-long">Sign Up</button>
     </div>
   </form>
 
@@ -84,7 +86,7 @@
     </div>
 
     <div class="cf spacer-7 text-center">
-      <button type="submit" class="btn btn-primary btn-primary-long">Sign In</button><br/><br/>
+      <button type="submit" class="btn btn-primary-long">Sign In</button><br/><br/>
       Don't have an account yet?
       <?php
         echo link_to(

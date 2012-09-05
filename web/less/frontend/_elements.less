@@ -213,17 +213,36 @@ li {
 //
 
 .holder-icon-edit {
-  position: absolute;
-  display: none;
-  background-color: transparent;
-  background-color: rgba(0, 0, 0, 0.6);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#7F000000', endColorstr = '#7F000000', GradientType = 0);
-  .border-radius(7px);
-  cursor: pointer;
+	 position: absolute;
+	 display: none;
+	 background-color: transparent;
+	 background-color: rgba(0, 0, 0, 0.6);
+	 filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#7F000000', endColorstr = '#7F000000', GradientType = 0);
+	 .border-radius(7px);
+	 cursor: pointer;
 
-  i {
-    color: @grayLighter;
-  }
+	 i {
+		 color: @grayLighter;
+	 }
+ }
+
+.holder-icon-play {
+	position: absolute;
+	top: 45%;
+	left: 46%;
+	.square(55px);
+	font-size: 14px;
+	background-color: transparent;
+	background-color: rgba(0, 0, 0, 0.6);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#7F000000', endColorstr = '#7F000000', GradientType = 0);
+	.border-radius(7px);
+	cursor: pointer;
+
+	> i {
+		font-size: 44px;
+		line-height: 58px;
+		color: @grayLighter;
+	}
 }
 
 // Bricks

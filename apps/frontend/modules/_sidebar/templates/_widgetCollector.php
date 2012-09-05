@@ -1,12 +1,12 @@
 <?php
 /**
- * @var  $title  string
- * @var  $has_message  boolean
+ * @var  $title          string
+ * @var  $has_message    boolean
  * @var  $widget_height  integer
- * @var  $collector  Collector
- * @var  $collectible Collectible
- * @var  $collections  Collection[]
- * @var $height stdClass
+ * @var  $collector      Collector
+ * @var  $collectible    Collectible
+ * @var  $collections    Collection[]
+ * @var  $height         stdClass
  */
 
 $_height = 0;

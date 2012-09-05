@@ -53,9 +53,11 @@ cq_page_title(
       <?= $form ?>
       <div class="control-group ">
       	<div class="row-fluid spacer-15" style="margin-left: 130px;">
-      	<input type="checkbox" name="<?= $form->getName() ?>[newsletter]"
-             id="<?= $form->getName() ?>_newsletter" checked="checked">
-      	Sign me up for the Collectors Quest newsletter
+          <label class="checkbox">
+            <input type="checkbox" name="<?= $signup_form->getName() ?>[newsletter]"
+                   id="<?= $signup_form->getName() ?>_newsletter" checked="checked">
+            Sign me up for the Collectors Quest newsletter
+          </label>
 	    </div>
 	  </div>
       <div class="form-actions">
