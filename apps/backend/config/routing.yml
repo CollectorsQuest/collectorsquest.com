@@ -1,3 +1,16 @@
+shopping_order:
+  class: sfPropelORMRouteCollection
+  options:
+    model:                ShoppingOrder
+    module:               shoppingOrder
+    prefix_path:          /shoppingOrder
+    column:               id
+    with_wildcard_routes: true
+
+shopping_order_export:
+  url: /ShoppingOrder/export
+  param: { module: ShoppingOrder, action: export }
+
 ajax_typeahead:
   url:   /ajax/typeahead/:section/:page
   param: { module: ajax, action: typeAhead }
