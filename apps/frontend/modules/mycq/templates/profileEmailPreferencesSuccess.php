@@ -1,5 +1,5 @@
 <?php
-  /* @var $collector       Collector */
+  /* @var $collector Collector */
   $newsletter = $collector->getPreferencesNewsletter();
   $comments = $collector->getNotificationsComment();
   $messages = $collector->getNotificationsMessage();
@@ -13,41 +13,46 @@
     <?= SmartMenu::generate('mycq_profile_tabs'); ?>
   </ul>
 
-
   <div class="tab-content">
     <div class="tab-pane active">
       <div class="tab-content-inner spacer">
 
-        <?php cq_sidebar_title('Change Your Email Preferences'); ?>
         <div class="row">
           <div class="span12 boolean-selection">
-            <span class="">Receive newsletters: </span>
-            <?= link_to(
-              $newsletter ? 'Enabled' : 'Disabled',
-              '@mycq_profile_email_preferences?newsletter='.((integer) !$newsletter),
-              array('class' => 'pull-right btn btn-mini '.($newsletter ? 'btn-success' : 'btn-danger'))
-            ) ?>
+            <span class="">Receive our weekly newsletters: </span>
+            <?php
+              echo link_to(
+                $newsletter ? '&nbsp;Enabled&nbsp;' : 'Disabled',
+                '@mycq_profile_email_preferences?newsletter=' . ((integer) !$newsletter),
+                array('class' => 'pull-right btn btn-mini ' . ($newsletter ? 'btn-success' : 'btn-danger'))
+              );
+            ?>
           </div>
         </div>
 
         <div class="row">
           <div class="span12 boolean-selection">
-            <span class="">Receive notifications of comments on your collections/collectibles: </span>
-            <?= link_to(
-              $comments ? 'Enabled' : 'Disabled',
-              '@mycq_profile_email_preferences?comments='.((integer) !$comments),
-              array('class' => 'pull-right btn btn-mini '.($comments ? 'btn-success' : 'btn-danger'))
-            ) ?>
+            <span class="">Receive notifications of comments on your collections and collectibles: </span>
+            <?php
+              echo link_to(
+                $comments ? '&nbsp;Enabled&nbsp;' : 'Disabled',
+                '@mycq_profile_email_preferences?comments=' . ((integer) !$comments),
+                array('class' => 'pull-right btn btn-mini ' . ($comments ? 'btn-success' : 'btn-danger'))
+              );
+            ?>
           </div>
         </div>
 
         <div class="row">
           <div class="span12 boolean-selection">
-            <span class="">Receive notifications for new private messages: </span> <?= link_to(
-              $messages ? 'Enabled' : 'Disabled',
-              '@mycq_profile_email_preferences?messages='.((integer) !$messages),
-              array('class' => 'pull-right btn btn-mini '.($messages ? 'btn-success' : 'btn-danger'))
-            ) ?>
+            <span class="">Receive notifications for new private messages: </span>
+            <?php
+              echo link_to(
+                $messages ? '&nbsp;Enabled&nbsp;' : 'Disabled',
+                '@mycq_profile_email_preferences?messages=' . ((integer) !$messages),
+                array('class' => 'pull-right btn btn-mini ' . ($messages ? 'btn-success' : 'btn-danger'))
+              );
+            ?>
           </div>
         </div>
 
@@ -66,7 +71,7 @@ $(document).ready(function(){
 
     $this.data('original-button-state', original_button_state)
          .data('original-text', $this.text())
-         .text('Change')
+         .html('&nbsp;Change&nbsp;')
          .removeClass(original_button_state)
          .addClass('btn-warning')
   }, function(){ // hover-out
