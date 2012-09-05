@@ -165,7 +165,7 @@ class collectionActions extends cqFrontendActions
 
     if (in_array($collection->getId(), array($pawn_stars['collection'], $american_pickers['collection'])))
     {
-      $this->redirect('aetn_collectible_by_slug_fixed_matching', $collectible);
+      $this->redirect('aetn_collectible_by_slug', $collectible);
     }
     else if ($collection->getId() == $picked_off['collection'])
     {

@@ -24,10 +24,11 @@
     <?= $signup_form->renderUsing('BootstrapWithRowFluid'); ?>
 
     <div class="row-fluid spacer-15">
-      <input type="checkbox" name="<?= $signup_form->getName() ?>[newsletter]"
-             id="<?= $signup_form->getName() ?>_newsletter" checked="checked"
-             style="float: left; width: auto; margin: 3px 5px 15px 0;">
-      Sign me up for the Collectors Quest newsletter
+      <label class="checkbox">
+        <input class="newsletter-checkbox" type="checkbox" name="<?= $signup_form->getName() ?>[newsletter]"
+               id="<?= $signup_form->getName() ?>_newsletter" checked="checked">
+        Sign me up for the Collectors Quest newsletter
+      </label>
     </div>
 
     <div class="row-fluid spacer-7">
