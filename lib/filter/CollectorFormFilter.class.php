@@ -14,7 +14,6 @@ class CollectorFormFilter extends BaseCollectorFormFilter
   {
     $this->setupUserTypeField();
     $this->setupSpaminessField();
-    $this->setupCreatedAtField();
   }
 
   public function getCollectorTypes()
@@ -41,16 +40,6 @@ class CollectorFormFilter extends BaseCollectorFormFilter
     $this->validatorSchema['spaminess'] = new sfValidatorChoice(array(
       'required' => false,
       'choices' => array('', 'green', 'yellow', 'red')
-    ));
-  }
-
-  protected function setupCreatedAtField()
-  {
-    $this->widgetSchema['created_at'] = new sfWidgetFormJQueryDateRange(array(
-      'config' => '{}',
-    ));
-    $this->validatorSchema['created_at'] = new IceValidatorDateRange(array(
-      'required' => false, 'from_date' => 'from', 'to_date' => 'to'
     ));
   }
 
