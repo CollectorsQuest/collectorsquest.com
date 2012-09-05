@@ -6,24 +6,23 @@
  * @var $pm_form ComposeAbridgedPrivateMessageForm
  */
 ?>
+<?php
+  $link = link_to(
+    'Back to Items for Sale &raquo;', '@mycq_marketplace',
+    array('class' => 'text-v-middle link-align')
+  );
+
+  cq_sidebar_title(
+    $collectible->getName(), $link,
+    array('left' => 8, 'right' => 4, 'class'=>'spacer-top-reset row-fluid sidebar-title')
+  );
+?>
 
 <div class="row-fluid">
   <div class="span8">
-    <?php
-      $link = link_to(
-        'Back to Items for Sale &raquo;', '@mycq_marketplace',
-        array('class' => 'text-v-middle link-align')
-      );
-
-      cq_sidebar_title(
-        $collectible->getName(), $link,
-        array('left' => 8, 'right' => 4, 'class'=>'spacer-top-reset row-fluid sidebar-title')
-      );
-    ?>
-
-    <table class="table">
+    <table class="table table-collectible-purchased">
       <tr>
-        <td style="width: 25%;">Name:</td>
+        <td>Name:</td>
         <td><?= $collectible->getName(); ?></td>
       </tr>
       <tr>
@@ -55,15 +54,17 @@
     ?>
     </div>
   </div><!-- ./span4 -->
+</div>
 
-  <?php
-    cq_sidebar_title(
-      'Shipping Information', null,
-      array('left' => 8, 'right' => 4, 'class'=>'spacer-top-reset row-fluid sidebar-title')
-    );
-  ?>
+<?php
+  cq_sidebar_title(
+    'Shipping Information', null,
+    array('left' => 8, 'right' => 4, 'class'=>'spacer-top-reset row-fluid sidebar-title')
+  );
+?>
+<div class="row-fluid">
   <div class="span8 spacer-left-reset">
-    <table class="table">
+    <table class="table table-collectible-purchased">
       <tr>
         <td>Email Address:</td>
         <td>
@@ -76,7 +77,7 @@
         </td>
       </tr>
       <tr>
-        <td style="width: 38%;">Name:</td>
+        <td>Name:</td>
         <td><?= $shopping_order->getShippingFullName(); ?></td>
       </tr>
       <?php if ($v = $shopping_order->getShippingPhone()): ?>
@@ -94,7 +95,7 @@
             <?= $shopping_order->getShippingStateRegion(); ?>
             <?= $shopping_order->getShippingZipPostcode(); ?>
           </p>
-          <p style="font-weight: bold;"><?= $shopping_order->getShippingCountryName(); ?></p>
+          <p><strong><?= $shopping_order->getShippingCountryName(); ?></strong></p>
         </td>
       </tr>
       <?php if ($v = $shopping_order->getNoteToSeller()): ?>
@@ -134,26 +135,30 @@
       </tr>
     </table>
   </div>
-  <div class="span4 send-pm">
-    <?= form_tag('@messages_compose'); ?>
+  <div class="span4">
+    <div class="send-pm">
+      <?= form_tag('@messages_compose'); ?>
       <?= $pm_form->renderHiddenFields(); ?>
-      <?= $pm_form['body']->render(array('style' => "width: 97%; height: 100px; margin-bottom: 0;")); ?>
+      <?= $pm_form['body']->render(); ?>
       <button type="submit" class="btn-lightblue-normal textright" style="float: right; margin-top: 10px;">
         <i class="mail-icon-mini"></i> &nbsp;Send message
       </button>
-    <?= '</form>'; ?>
+      <?= '</form>'; ?>
+    </div>
   </div>
+</div>
 
-  <?php
-    cq_sidebar_title(
-      'Order Information', null,
-      array('left' => 8, 'right' => 4, 'class'=>'spacer-top-reset row-fluid sidebar-title')
-    );
-  ?>
+<?php
+  cq_sidebar_title(
+    'Order Information', null,
+    array('left' => 8, 'right' => 4, 'class'=>'spacer-top-reset row-fluid sidebar-title')
+  );
+?>
+<div class="row-fluid">
   <div class="span8 spacer-left-reset">
-    <table class="table">
+    <table class="table table-collectible-purchased">
       <tr>
-        <td style="width: 38%;">Payment Status:</td>
+        <td>Payment Status:</td>
         <td>
           <?= strtoupper($shopping_order->getShoppingPaymentRelatedByShoppingPaymentId()->getStatus()); ?>
         </td>
@@ -170,9 +175,9 @@
   </div>
 
   <div class="span4">
-    <table class="table">
+    <table class="table table-collectible-purchased">
       <tr>
-        <td style="width: 50%;">Item Price:</td>
+        <td>Item Price:</td>
         <td>1 × <?= money_format('%.2n', (float) $shopping_order->getCollectiblesAmount()) ?></td>
       </tr>
       <tr>
@@ -180,34 +185,43 @@
         <td><?= money_format('%.2n', (float) $shopping_order->getShippingFeeAmount()) ?></td>
       </tr>
       <tr>
-        <td>Total Amount:</td>
-        <td><?= money_format('%.2n', (float) $shopping_order->getTotalAmount()) ?></td>
+        <td>
+          <span class="f-20">
+            Total Amount:
+          </span>
+        </td>
+        <td>
+          <span class="f-20">
+          <?= money_format('%.2n', (float) $shopping_order->getTotalAmount()) ?>
+          </span>
+        </td>
       </tr>
     </table>
   </div>
-
-  <?php
-    cq_sidebar_title(
-      'PayPal Transaction', null,
-      array('left' => 8, 'right' => 4, 'class'=>'spacer-top-reset row-fluid sidebar-title')
-    );
-  ?>
-  <table class="table">
-    <tr>
-      <td style="width: 25%;">Payment Status:</td>
-      <td><?= strtoupper($shopping_payment->getStatus()); ?></td>
-    </tr>
-    <?php if ($v = $shopping_payment->getTransactionId()): ?>
-    <tr>
-      <td style="width: 25%;">Transaction ID:</td>
-      <td><?= $v ?></td>
-    </tr>
-    <?php endif; ?>
-    <?php if ($v = $shopping_payment->getSenderEmail()): ?>
-    <tr>
-      <td style="width: 25%;">Sender Email:</td>
-      <td><?= $v; ?></td>
-    </tr>
-    <?php endif; ?>
-  </table>
 </div>
+
+<?php
+  cq_sidebar_title(
+    'PayPal Transaction', null,
+    array('left' => 8, 'right' => 4, 'class'=>'row-fluid sidebar-title spacer-top-20')
+  );
+?>
+<table class="table table-collectible-purchased">
+  <tr>
+    <td>Payment Status:</td>
+    <td><?= strtoupper($shopping_payment->getStatus()); ?></td>
+  </tr>
+  <?php if ($v = $shopping_payment->getTransactionId()): ?>
+  <tr>
+    <td>Transaction ID:</td>
+    <td><?= $v ?></td>
+  </tr>
+  <?php endif; ?>
+  <?php if ($v = $shopping_payment->getSenderEmail()): ?>
+  <tr>
+    <td>Sender Email:</td>
+    <td><?= $v; ?></td>
+  </tr>
+  <?php endif; ?>
+</table>
+

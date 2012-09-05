@@ -1,12 +1,12 @@
 <?php
 /**
- * @var  $title  string
- * @var  $has_message  boolean
+ * @var  $title          string
+ * @var  $has_message    boolean
  * @var  $widget_height  integer
- * @var  $collector  Collector
- * @var  $collectible Collectible
- * @var  $collections  Collection[]
- * @var $height stdClass
+ * @var  $collector      Collector
+ * @var  $collectible    Collectible
+ * @var  $collections    Collection[]
+ * @var  $height         stdClass
  */
 
 $_height = 0;
@@ -49,7 +49,7 @@ $_height = 0;
     <div class="send-pm">
       <form action="<?= url_for2('messages_compose', array('to'=>$collector->getUsername()), true); ?>" method="post" class="spacer-bottom-reset" id="form-private-message">
         <?= $pm_form->renderHiddenFields(); ?>
-        <textarea class="requires-login" required data-login-title="Please log in to contact this member:" data-signup-title="Create an account to contact this member:" name="message[body]" style="width: 97%; margin-bottom: 0;" placeholder="Send a message to <?= $collector; ?>"></textarea>
+        <textarea class="requires-login" required data-login-title="Please log in to contact this member:" data-signup-title="Create an account to contact this member:" name="message[body]" placeholder="Send a message to <?= $collector; ?>"></textarea>
         <div class="buttons-container" id="buttons-private-message">
           <?php /* <button type="button" class="btn cancel" value="cancel">cancel</button>
            &nbsp; - or - &nbsp;

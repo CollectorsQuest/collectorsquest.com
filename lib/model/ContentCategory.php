@@ -7,24 +7,42 @@ class ContentCategory extends BaseContentCategory
 
   protected $autoSort = true;
   protected $isAutoSorting = false;
+  protected $path = array();
 
   /**
    * Retrieve a text representation of the path to this content category, ex:
    * Art / Asian / Vases
    *
    * @param     string $glue
+   * @param     string $column, the column to be used to generate the path
+   *
    * @return    string
    */
-  public function getPath($glue = ' / ')
+  public function getPath($glue = ' / ', $column = 'Name')
   {
-    $ancestors = ContentCategoryQuery::create()
-      ->ancestorsOfObjectIncluded($this)
-      ->notRoot()
-      ->orderByTreeLevel()
-      ->select('Name')
-      ->find()->getArrayCopy();
+    if (!isset($this->path[$column]))
+    {
+      $ancestors = ContentCategoryQuery::create()
+        ->ancestorsOfObjectIncluded($this)
+        ->notRoot()
+        ->orderByTreeLevel()
+        ->select($column)
+        ->find()->getArrayCopy();
 
-    return implode($glue, $ancestors);
+      $this->path[$column] = $ancestors;
+    }
+
+    return implode($glue, $this->path[$column]);
+  }
+
+  /**
+   * Slug path used for url generation
+   *
+   * @return    string
+   */
+  public function getSlugPath()
+  {
+    return $this->getPath('/', 'Slug');
   }
 
   /**
@@ -182,6 +200,15 @@ class ContentCategory extends BaseContentCategory
     }
 
     return $parent;
+  }
+
+  public function getChildrenWithCollections()
+  {
+    $q = ContentCategoryQuery::create()
+      ->hasCollections()
+      ->orderBy('Name');
+
+    return $this->getChildren($q);
   }
 
 }

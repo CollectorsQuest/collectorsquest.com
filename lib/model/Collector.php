@@ -610,6 +610,17 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
     return $this->countCollectorCollections($criteria, $distinct, $con);
   }
 
+  public function countCollectionsWithCollectibles(Criteria $criteria = null, $distinct = false, PropelPDO $con = null)
+  {
+    if ($criteria == null)
+    {
+      $criteria = new Criteria();
+    }
+    $criteria->add(CollectorCollectionPeer::NUM_ITEMS, 0, Criteria::GREATER_THAN);
+
+    return $this->countCollectorCollections($criteria, $distinct, $con);
+  }
+
   public function getTagIds()
   {
     $c = new Criteria;

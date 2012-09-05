@@ -1,26 +1,31 @@
-<?php cq_dart_slot('300x250', 'market', 'categories', 'sidebar') ?>
-<?php $height->value -= 250; ?>
+<?php
+/**
+ * @var $sf_user  cqFrontendUser
+ * @var $seller   Collector
+ * @var $height   stdClass
+ */
+?>
 
 <?php
-  if (IceGateKeeper::open('marketplace_categories', 'page'))
+  if (($seller = $sf_user->getSeller(true)) && !$seller->hasBoughtCredits())
   {
-    include_component(
-      '_sidebar', 'widgetMarketplaceCategories',
-      array('current_category' => isset($category) ? $category : null, 'height' => &$height)
+    echo cq_link_to(
+      cq_image_tag('headlines/040412_CQ_Market_blue.gif', array('class' => 'spacer-top-25')),
+      'blog_page', array('slug' => 'cq-faqs/guide-selling', '_decode' => 1)
     );
   }
   else
   {
-    include_component(
-      '_sidebar', 'widgetMarketplaceExplore',
-      array('category' =>  isset($category) ? $category : null, 'height' => &$height)
-    );
+    cq_dart_slot('300x250', 'market', 'categories');
   }
+
+  $height->value -= 250;
 ?>
 
+
 <?php
-  echo cq_link_to(
-    cq_image_tag('headlines/040412_CQ_Market_blue.gif', array('class' => 'spacer-top-25')),
-    'blog_page', array('slug' => 'cq-faqs/guide-selling', '_decode' => 1)
+  include_component(
+    '_sidebar', 'widgetCollections',
+    array('limit' => 8, 'height' => &$height)
   );
 ?>

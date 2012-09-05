@@ -7,7 +7,10 @@ class _sidebarComponents extends cqFrontendComponents
    */
   public function executeWidgetFacebookLikeBox()
   {
-    return sfView::SUCCESS;
+    /** @var $height stdClass */
+    $height = $this->getVar('height');
+
+    return $this->_sidebar_if(!property_exists($height, 'value') || $height->value >= 340);
   }
 
   /**
@@ -15,31 +18,39 @@ class _sidebarComponents extends cqFrontendComponents
    */
   public function executeWidgetFacebookRecommendations()
   {
-    return sfView::SUCCESS;
+    /** @var $height stdClass */
+    $height = $this->getVar('height');
+
+    return $this->_sidebar_if(!property_exists($height, 'value') || $height->value >= 370);
   }
 
   /**
    * @return string
    */
-  public function executeWidgetContentCategories()
+  public function executeWidgetCollectionCategories()
   {
     // Set the limit of Categories to show
     $this->limit = (int) $this->getVar('limit') ?: 30;
 
-    // Set the number of columns to show
-    $this->columns = (int) $this->getVar('columns') ?: 2;
+    // Set the level of Categories to show
+    $level = (int) $this->getVar('level') ?: 2;
 
+    /** @var $q ContentCategoryQuery */
     $q = ContentCategoryQuery::create()
-      ->filterByTreeLevel(2)
+      ->filterByTreeLevel($level)
       ->joinCollectorCollection(null, Criteria::INNER_JOIN)
       ->addDescendingOrderByColumn('COUNT(collector_collection.id)')
-      ->orderByName(Criteria::ASC)
+      ->orderBy('Name', Criteria::ASC)
       ->groupById()
       ->limit($this->limit);
     $this->categories = $q->find()->getArrayCopy();
 
     usort($this->categories, function($a, $b)
     {
+      /**
+       * @var $a ContentCategory
+       * @var $b ContentCategory
+       */
       return strcmp($a->getName(), $b->getName());
     });
 
@@ -49,39 +60,46 @@ class _sidebarComponents extends cqFrontendComponents
   /**
    * @return string
    */
-  public function executeWidgetContentSubCategories()
+  public function executeWidgetCollectionSubCategories()
   {
     $this->current_category = $this->getVar('current_category');
+
+    // initialize as new ContentCategory so we can check in template if value was assigned
     $this->current_sub_category = new ContentCategory();
     $this->current_sub_subcategory = new ContentCategory();
+    $this->sub_subcategories = array();
 
-    $changed_current_category = false;
+    // if current_category is level > 1 we should retrieve sub_subcategories
+    $retrieve_sub_subcategories = false;
 
-    if ($this->current_category->getLevel() == 3)
+    switch ($this->current_category->getLevel())
     {
-      $this->current_sub_subcategory = $this->current_category;
-      $this->current_sub_category = $this->current_category->getParent();
-      $this->current_category = $this->current_category->getParent()->getParent();
-      $changed_current_category = true;
-    }
-    else if ($this->current_category->getLevel() == 2)
-    {
-      $this->current_sub_category = $this->current_category;
-      $this->current_category = $this->current_category->getParent();
-      $changed_current_category = true;
+      case 3:
+        $this->current_sub_subcategory = $this->current_category;
+        $this->current_sub_category = $this->current_category->getParent();
+        $this->current_category = $this->current_category->getParent()->getParent();
+        $retrieve_sub_subcategories = true;
+        break;
+      case 2:
+        $this->current_sub_category = $this->current_category;
+        $this->current_category = $this->current_category->getParent();
+        $retrieve_sub_subcategories = true;
+        break;
     }
 
     $this->subcategories = ContentCategoryQuery::create()
       ->childrenOf($this->current_category)
-      ->withCollections()
+      ->hasCollections()
       ->orderBy('Name')
       ->find();
 
-    if ($changed_current_category)
-    $this->sub_subcategories = ContentCategoryQuery::create()
-      ->childrenOf($this->current_sub_category)
-      ->withCollections()
-      ->find();
+    if ($retrieve_sub_subcategories)
+    {
+      $this->sub_subcategories = ContentCategoryQuery::create()
+        ->childrenOf($this->current_sub_category)
+        ->hasCollections()
+        ->find();
+    }
 
     return $this->_sidebar_if(count($this->subcategories) > 0);
   }
@@ -116,35 +134,42 @@ class _sidebarComponents extends cqFrontendComponents
   public function executeWidgetMarketplaceCategories()
   {
     $this->current_category = $this->getVar('current_category');
-    $this->current_sub_category = new ContentCategory();
+
+    // initialize as new ContentCategory so we can check in template if value was assigned
+    $this->current_subcategory = new ContentCategory();
     $this->current_sub_subcategory = new ContentCategory();
     $this->current_sub_sub_subcategory = new ContentCategory();
+
+    // 4th level categories
     $this->sub_sub_subcategories = array();
 
-    $changed_current_category = false;
-    $changed_current_category_more_levels = false;
-    if ($this->current_category->getLevel() == 4)
+    // if current_category is level > 1 we should retrieve sub_subcategories
+    $retrieve_sub_subcategories = false;
+    // if current_category is level > 2 we should retrieve sub_sub_subcategories
+    $retrieve_sub_sub_subcategories = false;
+
+    switch ($this->current_category->getLevel())
     {
-      $this->current_sub_sub_subcategory = $this->current_category;
-      $this->current_sub_subcategory = $this->current_category->getParent();
-      $this->current_sub_category = $this->current_category->getParent()->getParent();
-      $this->current_category = $this->current_category->getParent()->getParent()->getParent();
-      $changed_current_category = true;
-      $changed_current_category_more_levels = true;
-    }
-    else if ($this->current_category->getLevel() == 3)
-    {
-      $this->current_sub_subcategory = $this->current_category;
-      $this->current_sub_category = $this->current_category->getParent();
-      $this->current_category = $this->current_category->getParent()->getParent();
-      $changed_current_category = true;
-      $changed_current_category_more_levels = true;
-    }
-    else if ($this->current_category->getLevel() == 2)
-    {
-      $this->current_sub_category = $this->current_category;
-      $this->current_category = $this->current_category->getParent();
-      $changed_current_category = true;
+      case 4:
+        $this->current_sub_sub_subcategory = $this->current_category;
+        $this->current_sub_subcategory = $this->current_category->getParent();
+        $this->current_subcategory = $this->current_category->getParent()->getParent();
+        $this->current_category = $this->current_category->getParent()->getParent()->getParent();
+        $retrieve_sub_subcategories = true;
+        $retrieve_sub_sub_subcategories = true;
+        break;
+      case 3:
+        $this->current_sub_subcategory = $this->current_category;
+        $this->current_subcategory = $this->current_category->getParent();
+        $this->current_category = $this->current_category->getParent()->getParent();
+        $retrieve_sub_subcategories = true;
+        $retrieve_sub_sub_subcategories = true;
+        break;
+      case 2:
+        $this->current_subcategory = $this->current_category;
+        $this->current_category = $this->current_category->getParent();
+        $retrieve_sub_subcategories = true;
+        break;
     }
 
     $this->subcategories = ContentCategoryQuery::create()
@@ -157,13 +182,13 @@ class _sidebarComponents extends cqFrontendComponents
     /*
     * logic of $this->subcategories query should be changed so all subcategories with
     * sub_subcategories that have items for sale should be visible. Currently adding the
-    * current_sub_category by hand if it doesn't exist in list
+    * current_subcategory by hand if it doesn't exist in list
     */
 
     $missing_category = true;
     foreach ($this->subcategories as $subcateogry)
     {
-      if ($subcateogry == $this->current_sub_category)
+      if ($subcateogry == $this->current_subcategory)
       {
         $missing_category = false;
       }
@@ -171,13 +196,13 @@ class _sidebarComponents extends cqFrontendComponents
 
     if ($missing_category)
     {
-      $this->subcategories[] = $this->current_sub_category;
+      $this->subcategories[] = $this->current_subcategory;
     }
 
-    if ($changed_current_category)
+    if ($retrieve_sub_subcategories)
     {
       $this->sub_subcategories = ContentCategoryQuery::create()
-        ->descendantsOf($this->current_sub_category)
+        ->descendantsOf($this->current_subcategory)
         ->hasCollectiblesForSale()
         ->filterByLevel(3)
         ->orderBy('Name', Criteria::ASC)
@@ -204,7 +229,7 @@ class _sidebarComponents extends cqFrontendComponents
       }
     }
 
-    if ($changed_current_category_more_levels)
+    if ($retrieve_sub_sub_subcategories)
     $this->sub_sub_subcategories = ContentCategoryQuery::create()
       ->descendantsOf($this->current_sub_subcategory)
       ->hasCollectiblesForSale()
@@ -230,6 +255,12 @@ class _sidebarComponents extends cqFrontendComponents
       $this->limit = min(floor(($height->value - 63) / 66), $this->limit);
     }
 
+    // We want to stop right here if we are not going to show anything (0 items)
+    if ($this->limit <= 0)
+    {
+      return sfView::NONE;
+    }
+
     /** @var $q CollectorCollectionQuery */
     $q = CollectorCollectionQuery::create()
       ->filterByNumItems(3, Criteria::GREATER_EQUAL);
@@ -252,8 +283,7 @@ class _sidebarComponents extends cqFrontendComponents
         $q->filterByContentCategoryWithDescendants($category);
       }
 
-      $q
-        ->filterByTags($tags)
+      $q->filterByTags($tags)
         ->_or()
         ->filterByContentCategoryId($content_category_id)
         ->filterById($collection->getId(), Criteria::NOT_EQUAL)
@@ -265,7 +295,7 @@ class _sidebarComponents extends cqFrontendComponents
       ($collectible instanceof Collectible || $collectible instanceof CollectionCollectible)
     )
     {
-      /** @var $collection CollectoCollection */
+      /** @var  $collectible  CollectionCollectible */
       $collection = $collectible->getCollectorCollection();
 
       $collectible_tags = $collectible->getTags();
@@ -287,6 +317,13 @@ class _sidebarComponents extends cqFrontendComponents
         ->filterById($collection->getId(), Criteria::NOT_EQUAL)
         ->filterByTags($tags)
         ->orderByUpdatedAt(Criteria::DESC);
+    }
+    else if (($category = $this->getVar('category')) && $category instanceof ContentCategory)
+    {
+      // We need broader limit by category so let's get the parent at level 1
+      $category = $category->getAncestorAtLevel(1) ?: $category;
+
+      $q->filterByContentCategoryWithDescendants($category);
     }
     else
     {
@@ -351,6 +388,18 @@ class _sidebarComponents extends cqFrontendComponents
   {
     $this->limit = (int) $this->getVar('limit') ?: 5;
 
+    /** @var $height stdClass */
+    if ($height = $this->getVar('height'))
+    {
+      $this->limit = min(floor(($height->value - 63) / 100), $this->limit);
+    }
+
+    // We want to stop right here if we are not going to show anything (0 items)
+    if ($this->limit <= 0)
+    {
+      return sfView::NONE;
+    }
+
     $this->tags = $this->getVar('tags') ?: array();
 
     $magnify = cqStatic::getMagnifyClient();
@@ -370,6 +419,12 @@ class _sidebarComponents extends cqFrontendComponents
       }
       else if (isset($this->collectible) && $this->collectible instanceof BaseObject)
       {
+        // Get the actual Collectible if we are dealing with CollectionCollectible
+        if ($this->collectible instanceof CollectionCollectible)
+        {
+          $this->collectible = $this->collectible->getCollectible();
+        }
+
         if (!$tags = $this->collectible->getTags())
         {
           $vq = (string) $tags[array_rand($tags, 1)];
@@ -472,7 +527,7 @@ class _sidebarComponents extends cqFrontendComponents
         $c->add(CollectorCollectionPeer::NUM_ITEMS, 0, Criteria::GREATER_THAN);
         $c->setLimit($this->limit);
 
-        /** @var $collection Collection */
+        /** @var $collection CollectorCollection */
         $collection = $this->getVar('collection');
         if ($collection instanceof BaseObject)
         {
@@ -521,6 +576,18 @@ class _sidebarComponents extends cqFrontendComponents
     // Set the limit of other Collections to show
     $this->limit = (int) $this->getVar('limit') ?: 0;
 
+    /** @var $height stdClass */
+    if ($height = $this->getVar('height'))
+    {
+      $this->limit = min(floor(($height->value - 63) / 161), $this->limit);
+    }
+
+    // We want to stop right here if we are not going to show anything (0 items)
+    if ($this->limit <= 0)
+    {
+      return sfView::NONE;
+    }
+
     $q = wpPostQuery::create()
       ->filterByPostType('seller_spotlight')
       ->orderByPostDate(Criteria::DESC);
@@ -541,6 +608,7 @@ class _sidebarComponents extends cqFrontendComponents
         $collector_ids = array_map('trim', $collector_ids);
         $collector_ids = array_filter($collector_ids);
 
+        /** @var $q CollectorQuery */
         $q = CollectorQuery::create()
           ->filterById($collector_ids, Criteria::IN)
           ->filterByUserType(CollectorPeer::TYPE_SELLER)
@@ -551,7 +619,6 @@ class _sidebarComponents extends cqFrontendComponents
 
       $this->wp_post = $wp_post;
     }
-
 
     return $this->_sidebar_if(count($this->collectors) > 0);
   }
@@ -639,7 +706,7 @@ class _sidebarComponents extends cqFrontendComponents
     /** @var $collectible CollectionCollectible */
     else if (($collectible = $this->getVar('collectible')) && $collectible instanceof CollectionCollectible)
     {
-      /** @var $collection CollectorCollection */
+      /** @var $collectible CollectionCollectible */
       $collection = $collectible->getCollectorCollection();
 
       $collectible_tags = $collectible->getTags();
@@ -836,7 +903,10 @@ class _sidebarComponents extends cqFrontendComponents
 
   public function executeWidgetMailChimpSubscribe()
   {
-    return sfView::SUCCESS;
+    /** @var $height stdClass */
+    $height = $this->getVar('height');
+
+    return $this->_sidebar_if(!property_exists($height, 'value') || $height->value >= 190);
   }
 
   private function _sidebar_if($condition = false)

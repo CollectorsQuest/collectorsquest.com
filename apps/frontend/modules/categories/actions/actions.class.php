@@ -14,7 +14,7 @@ class categoriesActions extends cqFrontendActions
   {
     $this->level1_categories = ContentCategoryQuery::create()
       ->childrenOfRoot()
-      ->withCollections()
+      ->hasCollections()
       ->orderBy('Name')
       ->find();
 
@@ -28,6 +28,10 @@ class categoriesActions extends cqFrontendActions
   public function executeCategory(sfWebRequest $request)
   {
     $this->category = $this->getRoute()->getObject();
+
+    // Make the category available in the sidebar action
+    $this->setComponentVar('category', $this->category, 'sidebarCategory');
+
     $this->collectors_question = null;
 
     if ($request->getParameter('page', 1) == 1)

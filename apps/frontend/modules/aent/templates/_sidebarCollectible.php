@@ -15,38 +15,70 @@
     {
       cq_dart_slot('300x250', 'collections', 'pawnstars', 'sidebar');
     }
+    else if ($brand === 'Picked Off')
+    {
+      cq_dart_slot('300x250', 'collections', 'pickedoff', 'sidebar');
+    }
   ?>
 </div>
 
 
 <?php if ($brand === 'Pawn Stars'): ?>
-<?php /*
+<?php /**
 <div class="banner-sidebar-promo-300-90">
-  <a href="<?= url_for('@aetn_storage_wars', true); ?>" title="Check out items seen on Storage Wars">
-    <img src="/images/headlines/storage-wars-banner.jpg" alt="">
-      <span>
-        Check out items seen on Storage Wars
-      </span>
-  </a>
+  <?php
+    echo cq_link_to(
+      cq_image_tag('headlines/picked-off-banner.jpg'), '@aetn_picked_off',
+      array('alt_title' => 'Check out items seen on Picked Off')
+    );
+  ?>
 </div>
 */ ?>
 <div class="banner-sidebar-promo-300-90">
-  <a href="<?= url_for('@aetn_american_pickers', true); ?>" title="Check out items seen on American Pickers">
-    <img src="/images/headlines/american-pickers-banner.jpg" alt="Check out items seen on American Pickers">
-  </a>
+  <?php
+    echo cq_link_to(
+      cq_image_tag('headlines/american-pickers-banner.jpg'), '@aetn_american_pickers',
+      array('alt_title' => 'Check out items seen on American Pickers')
+    );
+  ?>
 </div>
 <?php elseif ($brand === 'American Pickers'): ?>
 <?php /*
 <div class="banner-sidebar-promo-300-90">
-  <a href="<?= url_for('@aetn_storage_wars', true); ?>" title="Check out items seen on Storage Wars">
-    <img src="/images/headlines/storage-wars-banner.jpg" alt="Check out items seen on Storage Wars">
-  </a>
+  <?php
+    echo cq_link_to(
+      cq_image_tag('headlines/picked-off-banner.jpg'), '@aetn_picked_off',
+      array('alt_title' => 'Check out items seen on Picked Off')
+    );
+  ?>
 </div>
 */ ?>
 <div class="banner-sidebar-promo-300-90">
-  <a href="<?= url_for('@aetn_pawn_stars', true); ?>" title="Check out items seen on Pawn Stars">
-    <img src="/images/headlines/pawn-stars-banner.jpg" alt="Check out items seen on Pawn Stars">
-  </a>
+  <?php
+    echo cq_link_to(
+      cq_image_tag('headlines/pawn-stars-banner.jpg'), '@aetn_pawn_stars',
+      array('alt_title' => 'Check out items seen on Pawn Stars')
+    );
+  ?>
+</div>
+<?php elseif ($brand === 'Picked Off'): ?>
+
+<div class="banner-sidebar-promo-300-90">
+  <?php
+    echo cq_link_to(
+      cq_image_tag('headlines/american-pickers-banner.jpg'), '@aetn_american_pickers',
+      array('alt_title' => 'Check out items seen on American Pickers')
+    );
+  ?>
+</div>
+
+<div class="banner-sidebar-promo-300-90">
+  <?php
+    echo cq_link_to(
+      cq_image_tag('headlines/pawn-stars-banner.jpg'), '@aetn_pawn_stars',
+      array('alt_title' => 'Check out items seen on Pawn Stars')
+    );
+  ?>
 </div>
 <?php endif; ?>
 
@@ -54,13 +86,6 @@
   include_component(
     '_sidebar', 'widgetCollectiblesForSale',
     array('collectible' => $collectible, 'limit' => 3)
-  );
-?>
-
-<?php
-  include_component(
-    '_sidebar', 'widgetCollectionCollectibles',
-    array('collectible' => $collectible)
   );
 ?>
 
