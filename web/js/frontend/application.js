@@ -123,7 +123,7 @@ var APP = window.APP = {
               {
                 holder.showLoading();
 
-                holder.load(url +' #carousel > *',
+                $.post(url +' #carousel > *',
                   {
                     p: page,
                     collection_id: options.collection_id
@@ -134,8 +134,36 @@ var APP = window.APP = {
                     if ($carousel = $(data).find('#carousel'))
                     {
                       cache[page] = $carousel.html();
+                      var imagesCount = 0;
+                      var images ={};
+                      $carousel.find('img').each(function(){
+                        var cacheImage = document.createElement('img');
+                        cacheImage.src = $(this).attr('src');
+
+                        images[$(this).attr('src')] = $(this).attr('src');
+
+                        var s = function()
+                        {
+                          if($(this).attr('src') in images)
+                          {
+                            delete  images[$(this).attr('src')];
+                          }
+                          var key, count = 0;
+                          for(key in images) {
+                            count++;
+                          }
+                          if (count == 0)
+                          {
+                            holder.hideLoading();
+                            update(page);
+                          }
+                        };
+
+                        $(cacheImage).load(s);
+                        //firefox, ie
+                        $(this).load(s);
+                      });
                     }
-                    holder.hideLoading();
                   }
                 );
               }
@@ -146,11 +174,7 @@ var APP = window.APP = {
               var html = cache[page];
               if (page != widget.data('page') && html)
               {
-                holder.animate({'opacity':0}, 100, function()
-                {
                   holder.html(html);
-                  holder.animate({'opacity':1}, 100);
-                });
               }
               widget.data('page', curPage);
             }
