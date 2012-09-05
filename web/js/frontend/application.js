@@ -106,10 +106,10 @@ var APP = window.APP = {
             var holder = $(options.itemsHolder, widget);
 
             $(options.nextControl, widget).click(function() {
-              loadPage(lastPage == curPage ? 1 : curPage + 1);
+              loadPage(lastPage === curPage ? 1 : curPage + 1);
             });
             $(options.prevControl, widget).click(function() {
-              loadPage(curPage == 1 ? lastPage : curPage - 1);
+              loadPage(curPage === 1 ? lastPage : curPage - 1);
             });
 
             function loadPage(page)
@@ -123,47 +123,20 @@ var APP = window.APP = {
               {
                 holder.showLoading();
 
-                $.post(url +' #carousel > *',
+                holder.load(url +' #carousel > *',
                   {
                     p: page,
                     collection_id: options.collection_id
                   },
                   function(data)
                   {
-                    var $carousel = undefined;
-                    if ($carousel = $(data).find('#carousel'))
+                    var $carousel = $(data).find('#carousel');
+                    if ($carousel)
                     {
                       cache[page] = $carousel.html();
-                      var imagesCount = 0;
-                      var images ={};
-                      $carousel.find('img').each(function(){
-                        var cacheImage = document.createElement('img');
-                        cacheImage.src = $(this).attr('src');
-
-                        images[$(this).attr('src')] = $(this).attr('src');
-
-                        var s = function()
-                        {
-                          if($(this).attr('src') in images)
-                          {
-                            delete  images[$(this).attr('src')];
-                          }
-                          var key, count = 0;
-                          for(key in images) {
-                            count++;
-                          }
-                          if (count == 0)
-                          {
-                            holder.hideLoading();
-                            update(page);
-                          }
-                        };
-
-                        $(cacheImage).load(s);
-                        //firefox, ie
-                        $(this).load(s);
-                      });
                     }
+
+                    update(page);
                   }
                 );
               }
@@ -172,9 +145,16 @@ var APP = window.APP = {
             function update(page)
             {
               var html = cache[page];
-              if (page != widget.data('page') && html)
+              if (page !== widget.data('page') && html)
               {
+                holder.fadeOut(0, function()
+                {
                   holder.html(html);
+                  holder.imagesLoaded(function()
+                  {
+                    $(this).fadeIn('fast', $(this).hideLoading);
+                  });
+                });
               }
               widget.data('page', curPage);
             }
