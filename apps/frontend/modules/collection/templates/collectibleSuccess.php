@@ -44,7 +44,15 @@
     }
   ?>
   <div class="span<?= $span; ?> text-center relative">
-
+    <?php/*
+      https://basecamp.com/1759305/projects/127256-collectorsquest-com/todos/14537137-for-the-play-button
+      <span class="holder-icon-play">
+        <i class="icon icon-play"></i>
+      </span>
+    */?>
+    <span class="holder-icon-play">
+      <i class="icon icon-play"></i>
+    </span>
     <?php if (isset($previous)): ?>
     <a href="<?= url_for_collectible($previous) ?>"
        class="prev-collectible" title="Previous: <?= $previous->getName(); ?>">
