@@ -67,7 +67,7 @@
                   'alt_title' => 'Unlock your free guide to collecting—sign up today'
                 )
               ),
-              '@misc_guide_to_collecting'
+              'misc_guide_to_collecting', array('ref' => cq_link_ref('footer'))
             );
           }
           else

@@ -178,7 +178,10 @@ function cq_url_for()
     if (is_array($arguments[0]) || '@' == substr($arguments[0], 0, 1) || false !== strpos($arguments[0], '/'))
     {
       // Let's try to add "ref=" to the link
-      if (!stripos($arguments[0], '?ref=') && !stripos($arguments[0], '&ref=') && ($ref = cq_link_ref()))
+      if (
+        is_string($arguments[0]) && ($ref = cq_link_ref()) &&
+        !stripos($arguments[0], '?ref=') && !stripos($arguments[0], '&ref=')
+      )
       {
         $arguments[0] .= !stripos($arguments[0], '?') ? '?ref='. $ref : '&ref='. $ref;
       }
