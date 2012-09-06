@@ -25,7 +25,7 @@
     );
   ?>
   <?php if (!empty($video)): ?>
-  <div style="position: absolute; top: 150px; left: 290px;">
+  <div style="position: absolute; top: 145px; left: 285px;">
     <?php
       echo link_to(
         cq_image_tag('icons/play.png'),
