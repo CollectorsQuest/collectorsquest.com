@@ -1,6 +1,9 @@
 <?php
-  /* @var $package_transactions PackageTransaction[] */
-  /* @var $package_transaction  PackageTransaction   */
+/*
+ * @var $package_transactions PackageTransaction[]
+ * @var $package_transaction  PackageTransaction
+ * @var $has_no_credits       boolean
+ */
 
   SmartMenu::setSelected('mycq_marketplace_tabs', 'packages');
 ?>
@@ -15,16 +18,17 @@
     <div class="tab-pane active">
       <div class="tab-content-inner spacer">
 
-      <?php /*
-      <div class="alert alert-block alert-notice in">
-        <h4 class="alert-heading">Oh snap! You are out of credits for listing items for sale!</h4>
-        <p class="spacer-top">
-          Change this and that and try again. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum.
-        </p>
-        <br/>
-        <a class="btn btn-primary" href="#">Buy Credits</a>
-        <button type="button" class="btn" data-dismiss="alert">Ok</button>
-      </div>
+      <?php if($has_no_credits): ?>
+        <div class="alert alert-block alert-notice in">
+          <h4 class="alert-heading">Oh snap! You are out of credits for listing items for sale!</h4>
+          <p class="spacer-top">
+            Change this and that and try again. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum.
+          </p>
+          <br/>
+          <a class="btn btn-primary" href="<?php echo url_for('@seller_packages') ?>">Buy Credits</a>
+          <button type="button" class="btn" data-dismiss="alert">Ok</button>
+        </div>
+      <?php endif; ?>
 
         <!-- Credit purchase history -->
         <div class="row-fluid sidebar-title spacer-top">
@@ -55,45 +59,63 @@
             <th>Credits Purchased</th>
             <th>Purchased On</th>
             <th>Expires On</th>
+            <?php if ('dev' == sfConfig::get('sf_environment')): ?>
             <th>Status</th>
+            <?php endif; ?>
           </tr>
           </thead>
           <tbody>
-          <tr class=" processing">
-            <td>unlimited</td>
-            <td>unlimited</td>
-            <td>August 18, 2012</td>
+          <?php if (count($package_transactions)): foreach ($package_transactions as $package_transaction): ?>
+          <?php
+            switch ($package_transaction->getPaymentStatus()) {
+              case PackageTransactionPeer::PAYMENT_STATUS_PAID:
+                $class = '';
+                if ($package_transaction->getCredits() - $package_transaction->getCreditsUsed() <= 5)
+                  $class = 'alert';
+                if ($package_transaction->getExpiryDate('YmdHis') < date('YmdHis'))
+                  $class = 'expired';
+                break;
+              case PackageTransactionPeer::PAYMENT_STATUS_PROCESSING:
+                $class = 'processing';
+                break;
+              default:
+                // what are the other cases here?
+                break;
+            }
+          ?>
+          <tr class=" <?= $class ?>">
+            <td><?= $package_transaction->getPackage()->getPackageName(); ?></td>
+            <td><?= $package_transaction->getCredits(); ?></td>
+            <td><?= $package_transaction->getCreatedAt('F j, Y'); ?></td>
+            <td><?= $package_transaction->getExpiryDate('F j, Y'); ?></td>
+            <?php if ('dev' == sfConfig::get('sf_environment')): ?>
             <td>
-              -
+              <?php
+                switch ($class) {
+                  case '':
+                    echo 'paid';
+                    break;
+                  case 'processing':
+                    echo '<span class="red">processing<br>payment</span>';
+                    break;
+                  case 'alert':
+                    echo 'expiring<br>soon';
+                    break;
+                  case 'expired':
+                    echo 'expired';
+                    break;
+                }
+              ?>
             </td>
-            <td>
-              <span class="red">
-                processing<br>payment
-              </span>
-            </td>
-          </tr><tr>
-            <td>100 credits</td>
-            <td>100</td>
-            <td>August 18, 2012</td>
-            <td>August 18, 2013</td>
-            <td>paid</td>
+            <?php endif; ?>
           </tr>
-          <tr class="alert">
-            <td>100 credits</td>
-            <td>1</td>
-            <td>August 18, 2011</td>
-            <td><strong>August 18, 2012</strong></td>
-            <td>
-              expiring<br>soon
+            <?php endforeach; else: ?>
+          <tr>
+            <td colspan="<?= 'dev' == sfConfig::get('sf_environment') ? 6 : 5 ?>">
+              You have not purchased any packages yet.
             </td>
           </tr>
-          <tr class="expired">
-            <td>100 credits</td>
-            <td>0</td>
-            <td>2012-06-17 15:57:11</td>
-            <td>2012-06-19 12:57:11</td>
-            <td>expired</td>
-          </tr>
+          <?php endif; ?>
           </tbody>
         </table>
         <br class="cf"/>
@@ -143,147 +165,68 @@
           </tr>
           </thead>
           <tbody>
+
+          <?php if ($total): foreach ($collectibles_for_sale as $collectible_for_sale): ?>
           <tr>
             <td>
               <div class="row-fluid items">
                 <div class="span2">
                   <a href="" class="thumb">
-                    <img src="http://placehold.it/75x75" alt="">
+                    <?php
+                      echo link_to_collectible($collectible_for_sale->getCollectible(), 'image', array(
+                        'image_tag' => array('width' => 75, 'height' => 75),
+                      ));
+                    ?>
                   </a>
                 </div>
                 <div class="span10">
                   <span class="title">
-                    <a href="">
-                      Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                    </a>
+                     <?= link_to_collectible($collectible_for_sale->getCollectible()); ?>
                   </span>
                   <span class="description">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                    <?= $collectible_for_sale->getCollectible()->getDescription('stripped') ?>
                   </span>
                   <span class="price">
-                    $ 9,999,999.00
+                    <?= money_format('%.2n', (float) $collectible_for_sale->getPrice()); ?>
                   </span>
                   </div>
                 </div>
             </td>
             <td>
-              August 25, 2012
+              <?= $collectible_for_sale->getExpiryDate($format = 'F j, Y'); ?>
             </td>
             <td>
-              Active
+              <?php // should think of another way to approach this ?>
+              <?php if ($collectible_for_sale->getIsSold()): ?>
+                Sold
+              <?php elseif ($collectible_for_sale->getExpiryDate() > date('Y-m-d H:i:s')): ?>
+                Active
+              <?php elseif($collectible_for_sale->getExpiryDate() == null): ?>
+                Inactive
+              <?php else: ?>
+                Expired
+              <?php endif; ?>
             </td>
             <td>
-              <button class="btn btn-mini" type="button">
-                <i class="icon-minus-sign"></i>&nbsp;Deactivate
-              </button>
+              <?php // should optimize and not use same function calls as for the previous <td> ?>
+              <?php if ($collectible_for_sale->getIsSold()): ?>
+                -
+              <?php elseif ($collectible_for_sale->getExpiryDate() > date('Y-m-d H:i:s')): ?>
+                <button class="btn btn-mini" type="button">
+                  <i class="icon-minus-sign"></i>&nbsp;Deactivate
+                </button>
+              <?php elseif($collectible_for_sale->getExpiryDate() == null): ?>
+                <button class="btn btn-mini" type="button">
+                  <i class="icon-ok"></i>&nbsp;Activate
+                </button>
+              <?php else: ?>
+                <button class="btn btn-mini" type="button">
+                  <i class="icon-undo"></i>&nbsp;Re-list
+                </button>
+              <?php endif; ?>
             </td>
           </tr>
-          <tr>
-            <td>
-              <div class="row-fluid items">
-                <div class="span2">
-                  <a href="#" class="thumb">
-                    <img src="http://placehold.it/75x75" alt="">
-                  </a>
-                </div>
-                <div class="span10">
-                  <span class="title">
-                    <a href="">
-                      Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                    </a>
-                  </span>
-                  <span class="description">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                  </span>
-                  <span class="price">
-                    $ 9,999,999.00
-                  </span>
-                </div>
-              </div>
-            </td>
-            <td>
-              August 25, 2012
-            </td>
-            <td>
-              Inactive
-            </td>
-            <td>
-              <button class="btn btn-mini" type="button">
-                <i class="icon-ok"></i>&nbsp;Activate
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div class="row-fluid items">
-                <div class="span2">
-                  <a href="#" class="thumb">
-                    <img src="http://placehold.it/75x75" alt="">
-                  </a>
-                </div>
-                <div class="span10">
-                  <span class="title">
-                    <a href="">
-                      Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                    </a>
-                  </span>
-                  <span class="description">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                  </span>
-                  <span class="price">
-                    $ 9,999,999.00
-                  </span>
-                </div>
-              </div>
-            </td>
-            <td>
-              August 25, 2012
-            </td>
-            <td>
-              Sold \(-_-)/
-            </td>
-            <td>
-              -
-              <!--<button class="btn btn-mini" type="button">
-                <i class="icon-undo"></i>&nbsp;Re-list
-              </button> -->
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div class="row-fluid items">
-                <div class="span2">
-                  <a href="#" class="thumb">
-                    <img src="http://placehold.it/75x75" alt="">
-                  </a>
-                </div>
-                <div class="span10">
-                  <span class="title">
-                    <a href="">
-                      Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                    </a>
-                  </span>
-                  <span class="description">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                  </span>
-                  <span class="price">
-                    $ 9,999,999.00
-                  </span>
-                </div>
-              </div>
-            </td>
-            <td>
-              August 25, 2012
-            </td>
-            <td>
-              Expired
-            </td>
-            <td>
-              <button class="btn btn-mini" type="button">
-                <i class="icon-undo"></i>&nbsp;Re-list
-              </button>
-            </td>
-          </tr>
+          <?php endforeach; endif; ?>
           </tbody>
         </table>
 
@@ -305,45 +248,7 @@
           </ul>
         </div>
 
-
       </div>
-      */ ?>
-
-
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th>Package</th>
-              <th>Credits Purchased</th>
-              <th>Credits Used</th>
-              <th>Purchased On</th>
-              <th>Expires On</th>
-              <?php if ('dev' == sfConfig::get('sf_environment')): ?>
-              <th>Payment Status</th>
-              <?php endif; ?>
-            </tr>
-          </thead>
-          <tbody>
-          <?php if (count($package_transactions)): foreach ($package_transactions as $package_transaction): ?>
-            <tr>
-              <td><?= $package_transaction->getPackage()->getPackageName(); ?></td>
-              <td><?= $package_transaction->getCredits(); ?></td>
-              <td><?= $package_transaction->getCreditsUsed(); ?></td>
-              <td><?= $package_transaction->getCreatedAt('F j, Y'); ?></td>
-              <td><?= $package_transaction->getExpiryDate('F j, Y'); ?></td>
-              <?php if ('dev' == sfConfig::get('sf_environment')): ?>
-              <td><?= $package_transaction->getPaymentStatus(); ?></td>
-              <?php endif; ?>
-            </tr>
-          <?php endforeach; else: ?>
-            <tr>
-              <td colspan="<?= 'dev' == sfConfig::get('sf_environment') ? 6 : 5 ?>">
-                You have not purchased any packages yet.
-              </td>
-            </tr>
-          <?php endif; ?>
-          </tbody>
-        </table>
 
       </div> <!-- .tab-content-inner.spacer -->
     </div> <!-- .tab-pane.active -->

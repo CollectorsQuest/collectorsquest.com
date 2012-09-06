@@ -201,6 +201,22 @@ class CollectibleForSale extends BaseCollectibleForSale
       ->findOne($con);
   }
 
+  // this function should probably be refacotred
+  public function getExpiryDate($format = 'Y-m-d H:i:s')
+  {
+    /* @var $package_transaction PackageTransactionCredit */
+    $package_transaction = self::getActiveCredit();
+
+    if ($package_transaction)
+    {
+      return $package_transaction->getExpiryDate($format);
+    }
+    else
+    {
+      return null;
+    }
+  }
+
   public function getShoppingOrder()
   {
     return ShoppingOrderQuery::create()
