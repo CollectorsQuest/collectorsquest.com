@@ -90,8 +90,8 @@ seo:
         - %Name% by %Collector% - %TagString% | Collectors Quest
       description:
         - %Description%
-        - %Description% | %Name% by %Collector%
-        - %Description% | %Name% by %Collector% (%NumViews% views)
+        - %Description% | %TagString%
+        - %Description% | From %ContentCategory% | %TagString%
 
     # https://basecamp.com/1759305/projects/288122-collectorsquest-com/todos/11739468-collectible-product
     collectible:
@@ -107,7 +107,8 @@ seo:
         - %Description%
         - %Description% | %Name%
         - %Description% | %Name% from %Collection%
-        - %Description% | %Name% from %Collection% by %Collector% (%NumViews% views)
+        - %Description% | %Name% from %Collection% by %Collector%
+        - %Description% | %Name% from %Collection% by %Collector% | %TagString%
 
   # https://basecamp.com/1759305/projects/288122-collectorsquest-com/todos/11749079-collector-page
   collector:
