@@ -38,7 +38,7 @@ class CollectibleForSaleFormFilter extends BaseCollectibleForSaleFormFilter
     )));
 
     $this->setupCreatedAtField();
-    $this->setupMarkedForSaleAt();
+    $this->setupMarkedForSaleAtField();
   }
 
   protected function setupCreatedAtField()
@@ -52,7 +52,7 @@ class CollectibleForSaleFormFilter extends BaseCollectibleForSaleFormFilter
   }
 
 
-  protected function setupMarkedForSaleAt()
+  protected function setupMarkedForSaleAtField()
   {
     $this->widgetSchema['marked_for_sale_at'] = new sfWidgetFormJQueryDateRange(array(
       'config' => '{}',
