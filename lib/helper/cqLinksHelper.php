@@ -26,7 +26,17 @@ function cq_link_to()
 
   if ($arguments[0] instanceof BaseObject)
   {
-    return call_user_func_array('link_to_'. get_class($arguments[0]), $arguments);
+    if (
+      ($function = 'link_to_'. sfInflector::underscore(get_class($arguments[0]))) &&
+      function_exists($function)
+    )
+    {
+      return call_user_func_array($function, $arguments);
+    }
+    else
+    {
+      return call_user_func_array('link_to_model_object', $arguments);
+    }
   }
   else if (
     empty($arguments[1]) || is_array($arguments[1]) ||
@@ -167,11 +177,17 @@ function cq_url_for()
   {
     if (is_array($arguments[0]) || '@' == substr($arguments[0], 0, 1) || false !== strpos($arguments[0], '/'))
     {
+      // Let's try to add "ref=" to the link
+      if (!stripos($arguments[0], '?ref=') && !stripos($arguments[0], '&ref=') && ($ref = cq_link_ref()))
+      {
+        $arguments[0] .= !stripos($arguments[0], '?') ? '?ref='. $ref : '&ref='. $ref;
+      }
+
       return call_user_func_array('url_for1', $arguments);
     }
     else
     {
-      // Let's try to add "rel=" to the link
+      // Let's try to add "ref=" to the link
       if (is_array($arguments[1]) && !array_key_exists('ref', $arguments[1]))
       {
         $arguments[1]['ref'] = cq_link_ref();
@@ -193,7 +209,7 @@ function cq_link_ref($ref = null)
   }
   else if ($sf_context->isCollectionsPage())
   {
-    $ref = 'mp' . (!empty($ref) ? '_' . $ref : '');
+    $ref = 'cp' . (!empty($ref) ? '_' . $ref : '');
   }
   else if ($sf_context->isBlogPage())
   {
@@ -253,15 +269,15 @@ function link_to_collector($object, $type = 'text', $options = array('link_to' =
     unset($options['truncate']);
   }
 
-  $url = route_for_collector($collector);
+  $route = route_for_collector($collector);
   switch ($type)
   {
     case 'image':
-      $link = link_to(image_tag_collector($collector, '100x100', $options['image_tag']), $url, $options['link_to']);
+      $link = cq_link_to(image_tag_collector($collector, '100x100', $options['image_tag']), $route, $options['link_to']);
       break;
     case 'text':
     default:
-      $link = link_to($title, $url, $options['link_to']);
+      $link = cq_link_to($title, $route, $options['link_to']);
       break;
   }
 
@@ -334,11 +350,11 @@ function link_to_collection($object, $type = 'text', $options = array('link_to' 
 
       $image_tag = image_tag_collection($collection, $which, $options['image_tag']);
 
-      $link = link_to($image_tag, $route, $options['link_to']);
+      $link = cq_link_to($image_tag, $route, $options['link_to']);
       break;
     case 'text':
     default:
-      $link = link_to($title, $route, $options['link_to']);
+      $link = cq_link_to($title, $route, $options['link_to']);
       break;
   }
 
@@ -420,11 +436,14 @@ function link_to_collectible($collectible, $type = 'text', $options = array('lin
         unset($options['image_tag']['height']);
       }
 
-      $link = link_to(image_tag_collectible($collectible, $which, $options['image_tag']), $route, $options['link_to']);
+      $link = cq_link_to(
+        image_tag_collectible($collectible, $which, $options['image_tag']),
+        $route, $options['link_to']
+      );
       break;
     case 'text':
     default:
-      $link = link_to($title, $route, $options['link_to']);
+      $link = cq_link_to($title, $route, $options['link_to']);
       break;
   }
 
@@ -573,7 +592,7 @@ function link_to_content_category(ContentCategory $category, $type = 'text', $op
       break;
     case 'text':
     default:
-      $link = link_to($title, $route, $options['link_to']);
+      $link = cq_link_to($title, $route, $options['link_to']);
       break;
   }
 
@@ -628,7 +647,7 @@ function link_to_model_object($name, BaseObject $model_object, $options = array(
   $uri = url_for_model_object($model_object, $absolute);
   $uri = false == $uri ? '#' : $uri;
 
-  return link_to1($name, $uri, $options);
+  return cq_link_to($name, $uri, $options);
 }
 
 function cq_canonical_url($absolute = true)

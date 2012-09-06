@@ -126,10 +126,10 @@ class cqLinkUtils
       {
         // now relative urls are 100% pointing to our application,
         // and in this case we throw an exception
-        throw new Exception(sprintf(
-          '[cqLinkUtils] Cannot asses if a route is secure for relative routes "%s"',
-          $parameters
-        ));
+        // throw new Exception(sprintf(
+        //   '[cqLinkUtils] Cannot asses if a route is secure for relative routes "%s"',
+        //   $parameters
+        // ));
       }
 
       if ($parameters == '#')
