@@ -31,8 +31,7 @@
           <span class="required-token">*</span>
           <?php
             echo $form['price']->render(array(
-              'class' => 'span5 text-center', 'required' => 'required',
-              'style' => 'margin-left: -4px; font-size: 120%; padding-top: 8px;'
+              'class' => 'item-price text-center', 'required' => 'required'
             ));
           ?>
         </div>

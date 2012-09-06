@@ -59,6 +59,9 @@ all:
           Package Transactions:
             url: package_transaction
             image: theme/icons/backup.png
+          Orders:
+            url: shopping_order
+            image: theme/icons/generic.png
 
       Blog:
         icon: book

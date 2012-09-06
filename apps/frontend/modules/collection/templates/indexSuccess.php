@@ -1,10 +1,13 @@
 <?php
 /**
- * @var  $sf_user     cqFrontendUser
- * @var  $display     string
- * @var  $collection  Collection
- * @var  $pager       sfPropelPager
+ * @var  $sf_user            cqFrontendUser
+ * @var  $display            string
+ * @var  $collection         Collection
+ * @var  $pager              sfPropelPager
+ * @var  $collectible_rows   integer
  */
+$height_main_div = new stdClass;
+$height_main_div->value = 116;
 ?>
 
 <?php
@@ -58,7 +61,18 @@
 <?php if ($pager->getPage() === 1): ?>
 <div class="cf spacer-top-20 <?= $editable ? 'editable_html' : '' ?>"
      id="<?= sprintf('%s_%s_description', get_class($collection), $collection->getId()) ?>">
-  <?= $collection->getDescription('html'); ?>
+  <?= $description = $collection->getDescription('html'); ?>
+  <?php
+  /**
+   * Calculate height of description
+   * We have around 100 symbols in a row
+   */
+  $description_rows = (integer) (strlen($description) / 100 + 1);
+
+  // Approximately 2 <br> tags account for a new line
+  $br_count = (integer) (substr_count($description, '<br') / 2);
+  $height_main_div->value += 18 * ($br_count + $description_rows);
+  ?>
 </div>
 <?php endif; ?>
 
@@ -95,12 +109,15 @@
   </div>
 </div>
 
+<?php $height_main_div->value += $collectible_rows * 238; ?>
+
 <div class="row-fluid text-center">
   <?php
   include_component(
     'global', 'pagination',
     array(
       'pager' => $pager,
+      'height' => &$height_main_div,
       'options' => array(
         'id' => 'collectibles-pagination',
         'show_all' => true
@@ -110,7 +127,15 @@
   ?>
 </div>
 
-<?php include_partial('comments/comments', array('for_object' => $collection)); ?>
+<?php
+  include_partial(
+    'comments/comments', array(
+      'for_object' => $collection,
+      'height' => &$height_main_div
+  ));
+?>
+
+<?php $sf_user->setFlash('height_main_div', $height_main_div, 'false', 'internal'); ?>
 
 <?php if ($sf_params->get('show') == 'all'): ?>
 <script>

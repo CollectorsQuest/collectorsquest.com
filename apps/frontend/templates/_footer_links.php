@@ -14,7 +14,7 @@ $(document).ready(function()
           <li><?= link_to('Contact', 'blog_page', array('slug' => 'contact-us')); ?></li>
           <li><?= link_to('Terms', 'blog_page', array('slug' => 'terms-and-conditions')); ?></li>
           <li><?= link_to('RSS', 'blog_page', array('slug' => 'rss-feeds')); ?></li>
-          <li><?= urldecode(link_to('Help/FAQ', 'blog_page', array('slug' => 'cq-faqs/general-questions'))); ?></li>
+          <li><?= link_to('Help/FAQ', 'blog_page', array('slug' => 'cq-faqs/general-questions', '_decode' => 1)); ?></li>
           <li><?= link_to('Report an Error', '@ajax_feedback', array('class' => 'red open-dialog', 'onclick' => 'return false;')); ?></li>
         </ul>
       </div>

@@ -16,6 +16,11 @@ class collectiblesActions extends cqFrontendActions
   {
     $collector = $this->getRoute()->getObject();
 
+    if ($request->getParameter('legacy'))
+    {
+      $this->redirect('collector_by_slug', $collector, 301);
+    }
+
     $for_sale_ids = CollectibleForSaleQuery::create()
       ->filterByCollector($collector)
       ->isForSale()
@@ -53,7 +58,9 @@ class collectiblesActions extends cqFrontendActions
       $this->addBreadcrumb('Collectibles');
 
       // Set Canonical Url meta tag
-      $this->getResponse()->setCanonicalUrl($this->generateUrl('collectibles_by_collector', $collector));
+      /* routing no longer in use!
+       $this->getResponse()->setCanonicalUrl($this->generateUrl('collectibles_by_collector', $collector));
+      */
     }
 
     $this->collector = $collector;

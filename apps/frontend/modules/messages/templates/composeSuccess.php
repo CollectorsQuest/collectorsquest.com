@@ -7,7 +7,7 @@
     'Compose Message', null,
     array(
       'left' => 8, 'right' => 4,
-      'class'=>'mycq-red-title row-fluid messages-row indent-bottom15'
+      'class'=>'mycq-red-title row-fluid messages-row spacer-bottom-15'
     )
   );
 
@@ -22,7 +22,7 @@
         'subject' => array('class' => 'span7'),
         'body'    => array('class' => 'span7', 'rows' => 6),
     )); ?>
-    
+
     <div class="control-group ">
       <label for="message_copy_for_sender" class=" control-label">&nbsp;</label>
       <div class="controls">

@@ -7,7 +7,7 @@ class marketplaceActions extends cqFrontendActions
   {
     parent::preExecute();
 
-    SmartMenu::setSelected('header_main_menu', 'marketplace');
+    SmartMenu::setSelected('header', 'marketplace');
   }
 
   public function executeIndex()
@@ -93,8 +93,13 @@ class marketplaceActions extends cqFrontendActions
     $pager->setPage($this->getRequestParameter('page', 1));
     $pager->init();
 
+    // calculate how many rows of collectibles will be on the page
+    $collectible_rows = count($pager->getResults());
+    $collectible_rows = $collectible_rows % 3 == 0 ? intval($collectible_rows / 3) : intval($collectible_rows / 3 + 1);
+
     $this->pager = $pager;
     $this->content_category = $content_category;
+    $this->collectible_rows = $collectible_rows;
 
     // Set Canonical Url meta tag
     $this->getResponse()->setCanonicalUrl(
@@ -106,9 +111,13 @@ class marketplaceActions extends cqFrontendActions
 
   public function executeCategories()
   {
-    $this->level1_categories = ContentCategoryQuery::create()
-      ->childrenOfRoot()
-      ->withCollectiblesForSale()
+    if (IceGateKeeper::locked('marketplace_categories', 'page'))
+    {
+      $this->redirect('@marketplace', 302);
+    }
+
+    $this->categories = ContentCategoryQuery::create()
+      ->hasCollectiblesForSale()
       ->orderBy('Name')
       ->find();
 

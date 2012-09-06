@@ -22,6 +22,17 @@ class cqFrontendUser extends cqBaseUser
    */
   public function getCollector($strict = false)
   {
+    // If the user is not authenticated return null immediately
+    if (!$this->isAuthenticated())
+    {
+      if (null !== $this->getAttribute('id', null, 'collector'))
+      {
+        $this->Authenticate(false);
+      }
+
+      return $this->collector = ($strict === true) ? null : new Collector();
+    }
+
     if (!($this->collector instanceof Collector))
     {
       if ($this->collector === null && ($this->getAttribute('id', null, 'collector') !== null))
@@ -386,6 +397,9 @@ class cqFrontendUser extends cqBaseUser
         ));
       }
     }
+
+    // Defensio request
+    $collector->sendToDefensio('UPDATE');
 
     return true;
   }

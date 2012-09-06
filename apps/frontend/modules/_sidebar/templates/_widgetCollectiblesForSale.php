@@ -2,16 +2,23 @@
 /**
  * @var  $title  string
  * @var  $collectibles_for_sale  CollectibleForSale[]
+ * @var  $height  stdClass
+ * @var  $limit  integer
  */
+
+$_height = 0;
 ?>
 
 <?php
   cq_sidebar_title(
     $title, cq_link_to(
-      'See all &raquo;',
+      'Explore Market &raquo;',
       '@marketplace', array('class' => 'text-v-middle link-align')
-    )
+    ),
+    array('left' => 7, 'right' => 5)
   );
+
+  $_height -= 63;
 ?>
 
 <div id="items-for-sale-sidebar">
@@ -43,5 +50,13 @@
        </div>
     </div>
   </div>
+  <?php $_height -= 85; ?>
 <?php endforeach; ?>
 </div>
+
+<?php
+  if (isset($height) && property_exists($height, 'value'))
+  {
+    $height->value -= abs($_height);
+  }
+?>

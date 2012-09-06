@@ -22,10 +22,12 @@ generator:
         list_auto_login: { label: '' }
         created_at: { label: Since, date_format: 'MM/dd/yyyy' }
         is_public: { label: "Public?" }
+        newsletter: { label: "" }
+        list_avatar: { label: "" }
 
       list:
         title: Collectors
-        display: [id, =username, display_name, _email, _list_count_collections, _list_spaminess, created_at]
+        display: [id, =username, _list_avatar, display_name, _email, _newsletter, _list_count_collections, _list_spaminess, created_at]
         sort: [created_at, desc]
         object_actions:
           _edit: ~
@@ -39,7 +41,7 @@ generator:
 
       filter:
         class: BackendCollectorFormFilter
-        display: [username, display_name, email, user_type, spaminess, is_spam, collection_id, created_at]
+        display: [username, display_name, email, user_type, spaminess, is_spam, newsletter, collection_id, created_at]
         fields:
           email:
             widgetOptions: { with_empty: false }

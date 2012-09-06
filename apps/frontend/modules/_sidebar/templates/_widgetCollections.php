@@ -1,5 +1,14 @@
+<?php
+/*
+ * @var $height stdClass
+ * @var $collections Collection[]
+ */
+
+$_height = 0;
+?>
 
 <?php cq_sidebar_title('Collections of Interest') ?>
+<?php $_height -= 63; ?>
 
 <?php if (false) foreach ($collections as $collection): ?>
 <div class="thumbnails-box-1x4-sidebar bgyellow-noborder">
@@ -43,8 +52,14 @@
       <br/>by <?= link_to_collector($collection, 'text'); ?>
     </div>
   </div>
+  <?php $_height -= 66; ?>
 <?php endforeach; ?>
 
-
+<?php
+  if (isset($height) && property_exists($height, 'value'))
+  {
+    $height->value -= abs($_height);
+  }
+?>
 
 

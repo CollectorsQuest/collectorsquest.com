@@ -16,7 +16,7 @@ $linkPrev = $linkNext = false;
   <ul>
     <?php if ($pager->getPage() != 1): ?>
     <li class="prev">
-      <?php $linkPrev =  $url . $mark . $options['page_param'] . '=' . $pager->getPreviousPage(); ?>
+      <?php $linkPrev = $url . $mark . $options['page_param'] . '=' . $pager->getPreviousPage(); ?>
       <?php
         echo link_to(
           ' &larr; ', $linkPrev,
@@ -94,6 +94,13 @@ $linkPrev = $linkNext = false;
     <?php endif; ?>
   </ul>
 </div>
+
+<?php
+  if (isset($height) && property_exists($height, 'value'))
+  {
+    $height->value += 92;
+  }
+?>
 
 <?php
   slot('prev_next');

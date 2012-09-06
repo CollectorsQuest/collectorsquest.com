@@ -23,9 +23,8 @@ var APP = window.APP = {
       $(".alert").alert();
       $('.dropdown-toggle').dropdown();
       $('.fade-white').mosaic();
-      $("[rel=tooltip]").tooltip(
-        {
-          placement: function(template, el) {
+      $("[rel=tooltip]").tooltip({
+        placement: function(template, el) {
             var $el = $(el),
                 settings = $.extend(true, {}, APP.defaults, window.cq.settings);
 
@@ -41,9 +40,7 @@ var APP = window.APP = {
 
             return settings.tooltip.position;
           }
-
-        }
-      );
+      });
 
       $("a.target").bigTarget({
         hoverClass: 'over',
@@ -80,6 +77,92 @@ var APP = window.APP = {
       GENERAL.setupCarousel();
     }
   }, // general
+
+  /**
+   * "collection" symfony module
+   */
+  collection: {
+    // collection/collectible action
+    collectible: function() {
+      jQuery.fn.extend({
+        collectionCollectiblesWidget: function(options)
+        {
+          var defaults = {
+            collection_id: 0,
+            nextControl:'.right-arrow',
+            prevControl:'.left-arrow',
+            itemsHolder:'.thumbnails'
+          };
+
+          options = $.extend(defaults, options);
+
+          return this.each(function()
+          {
+            var widget = $(this);
+            var curPage = widget.data('page');
+            var lastPage = widget.data('lastpage');
+            var url = widget.data('url');
+            var cache = {};
+            var holder = $(options.itemsHolder, widget);
+
+            $(options.nextControl, widget).click(function() {
+              loadPage(lastPage === curPage ? 1 : curPage + 1);
+            });
+            $(options.prevControl, widget).click(function() {
+              loadPage(curPage === 1 ? lastPage : curPage - 1);
+            });
+
+            function loadPage(page)
+            {
+              curPage = page;
+              if (page in cache)
+              {
+                update(page);
+              }
+              else
+              {
+                holder.showLoading();
+
+                holder.load(url +' #carousel > *',
+                  {
+                    p: page,
+                    collection_id: options.collection_id
+                  },
+                  function(data)
+                  {
+                    var $carousel = $(data).find('#carousel');
+                    if ($carousel)
+                    {
+                      cache[page] = $carousel.html();
+                    }
+
+                    update(page);
+                  }
+                );
+              }
+            }
+
+            function update(page)
+            {
+              var html = cache[page];
+              if (page !== widget.data('page') && html)
+              {
+                holder.fadeOut(0, function()
+                {
+                  holder.html(html);
+                  holder.imagesLoaded(function()
+                  {
+                    $(this).fadeIn('fast', $(this).hideLoading);
+                  });
+                });
+              }
+              widget.data('page', curPage);
+            }
+          });
+        }
+      });
+    }
+  },
 
   /**
    * "search" symfony module

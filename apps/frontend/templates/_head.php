@@ -30,7 +30,9 @@
     $bundle = sprintf(
       '//%s/%s',
       sfConfig::get('app_static_domain'),
-      ltrim(stylesheet_path('frontend/stylesheets.bundle.' . GIT_REVISION . '.css', false), '/')
+      sfConfig::get('sf_environment') !== 'dev' ?
+        ltrim(stylesheet_path('frontend/stylesheets.bundle.' . GIT_REVISION . '.min.css', false), '/') :
+        ltrim(stylesheet_path('frontend/stylesheets.bundle.' . GIT_REVISION . '.css', false), '/')
     );
     echo '<link rel="stylesheet" type="text/css" media="screen" href="'. $bundle .'">'."\n";
     unset($bundle);
@@ -43,7 +45,7 @@
   <link href='//fonts.googleapis.com/css?family=Chivo:400,400italic,900,900italic' rel='stylesheet' type='text/css'>
   <link rel="shortcut icon" href="<?php echo cq_image_src('frontend/favicon.ico', true); ?>">
   <link rel="icon" type="image/png" href="<?php echo cq_image_src('frontend/favicon.png', true); ?>">
-  <?php cq_canonical_url(); ?>
+  <?php cq_canonical_tag(); ?>
   <?php echo "\n" . get_slot('prev_next') ?>
 
   <script>

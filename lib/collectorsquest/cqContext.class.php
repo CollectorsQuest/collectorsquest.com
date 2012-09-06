@@ -11,4 +11,39 @@
 class cqContext extends sfContext
 {
 
+  public function isHomePage()
+  {
+    return
+      $this->getModuleName() == 'general' &&
+      $this->getActionName() == 'index';
+  }
+
+  public function isCollectionsPage()
+  {
+    return
+      $this->getModuleName() == 'collections' &&
+      $this->getActionName() == 'index';
+  }
+
+  public function isBlogPage()
+  {
+    return
+      $this->getModuleName() == '_blog' &&
+      $this->getActionName() == 'index';
+  }
+
+  public function isVideoPage()
+  {
+    return
+      ($this->getModuleName() == '_video' && $this->getActionName() == 'header') ||
+      ($this->getModuleName() == '_video' && $this->getActionName() == 'footer');
+  }
+
+  public function isMarketPage()
+  {
+    return
+      $this->getModuleName() == 'marketplace' &&
+      $this->getActionName() == 'index';
+  }
+
 }

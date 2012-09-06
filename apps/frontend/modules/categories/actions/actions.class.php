@@ -7,16 +7,20 @@ class categoriesActions extends cqFrontendActions
   {
     parent::preExecute();
 
-    SmartMenu::setSelected('header_main_menu', 'collections');
+    SmartMenu::setSelected('header', 'collections');
   }
 
   public function executeIndex()
   {
     $this->level1_categories = ContentCategoryQuery::create()
       ->childrenOfRoot()
-      ->withCollections()
+      ->hasCollections()
       ->orderBy('Name')
       ->find();
+
+    // find the category "Other"
+    $this->category_other = ContentCategoryQuery::create()
+      ->findOneById('3560');
 
     return sfView::SUCCESS;
   }
@@ -24,6 +28,10 @@ class categoriesActions extends cqFrontendActions
   public function executeCategory(sfWebRequest $request)
   {
     $this->category = $this->getRoute()->getObject();
+
+    // Make the category available in the sidebar action
+    $this->setComponentVar('category', $this->category, 'sidebarCategory');
+
     $this->collectors_question = null;
 
     if ($request->getParameter('page', 1) == 1)

@@ -1,15 +1,19 @@
 <?php
 /**
- * @var  $title  string
- * @var  $collector  Collector
- * @var  $collectible Collectible
- * @var  $collections  Collection[]
+ * @var  $title          string
+ * @var  $has_message    boolean
+ * @var  $widget_height  integer
+ * @var  $collector      Collector
+ * @var  $collectible    Collectible
+ * @var  $collections    Collection[]
+ * @var  $height         stdClass
  */
+
+$_height = 0;
 ?>
 
 <div class="row-fluid spacer-top-20 link">
   <?php cq_sidebar_title($title, null); ?>
-
   <div class="span3">
     <?php
       echo link_to_collector($collector, 'image', array(
@@ -38,23 +42,26 @@
   </div>
 </div>
 
+<?php $_height -= 128; ?>
+
 <?php if (!$sf_user->isOwnerOf($collector) && isset($message) && $message === true): ?>
-<div class="row-fluid spacer">
-  <div class="send-pm">
-    <form action="<?= url_for2('messages_compose', array('to'=>$collector->getUsername()), true); ?>" method="post" class="spacer-bottom-reset" id="form-private-message">
-      <?= $pm_form->renderHiddenFields(); ?>
-      <textarea class="requires-login" required data-login-title="Please log in to contact this member:" data-signup-title="Create an account to contact this member:" name="message[body]" style="width: 97%; margin-bottom: 0;" placeholder="Send a message to <?= $collector; ?>"></textarea>
-      <div class="buttons-container" id="buttons-private-message">
-        <?php /* <button type="button" class="btn cancel" value="cancel">cancel</button>
-         &nbsp; - or - &nbsp;
-        <input type="submit" class="btn-lightblue-normal" value="Send the Message"> */?>
-        <button type="submit" class="btn-lightblue-normal textright requires-login">
-          <i class="mail-icon-mini"></i> &nbsp;Send message
-        </button>
-      </div>
-    </form>
+  <div class="row-fluid spacer">
+    <div class="send-pm">
+      <form action="<?= url_for2('messages_compose', array('to'=>$collector->getUsername()), true); ?>" method="post" class="spacer-bottom-reset" id="form-private-message">
+        <?= $pm_form->renderHiddenFields(); ?>
+        <textarea class="requires-login" required data-login-title="Please log in to contact this member:" data-signup-title="Create an account to contact this member:" name="message[body]" placeholder="Send a message to <?= $collector; ?>"></textarea>
+        <div class="buttons-container" id="buttons-private-message">
+          <?php /* <button type="button" class="btn cancel" value="cancel">cancel</button>
+           &nbsp; - or - &nbsp;
+          <input type="submit" class="btn-lightblue-normal" value="Send the Message"> */?>
+          <button type="submit" class="btn-lightblue-normal textright requires-login">
+            <i class="mail-icon-mini"></i> &nbsp;Send message
+          </button>
+        </div>
+      </form>
+    </div>
   </div>
-</div>
+  <?php $_height -= 58; ?>
 <?php endif; ?>
 
 <?php if (!empty($collections) && count($collections) > 0): ?>
@@ -68,6 +75,7 @@
     </div>
     <?php endif; ?>
   </div>
+  <?php $_height -= 28; ?>
 
   <?php foreach ($collections as $collection): ?>
   <div class="thumbnails-box-1x4-sidebar bgyellow-border">
@@ -86,8 +94,16 @@
         </div>
       </div>
   </div>
+  <?php $_height -= 120; ?>
   <?php endforeach; ?>
 <?php endif; ?>
+
+<?php
+  if (isset($height) && property_exists($height, 'value'))
+  {
+    $height->value -= abs($_height);
+  }
+?>
 
 <script>
 $(document).ready(function()

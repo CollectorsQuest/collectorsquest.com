@@ -155,6 +155,48 @@ class mycqActions extends cqFrontendActions
     return sfView::SUCCESS;
   }
 
+  /**
+   * Allow the user to change email notification options, as well as newsletter
+   * options
+   */
+  public function executeProfileEmailPreferences(cqWebRequest $request)
+  {
+    /* @var $collector Collector */
+    $collector = $this->getCollector();
+
+    $_preferences = array(
+        'newsletter' => CollectorPeer::PROPERTY_PREFERENCES_NEWSLETTER,
+        'comments' => CollectorPeer::PROPERTY_NOTIFICATIONS_COMMENT,
+        'messages' => CollectorPeer::PROPERTY_NOTIFICATIONS_MESSAGE,
+    );
+
+    foreach ($_preferences as $key => $property)
+    {
+      $_property_changed = false;
+      if ($request->hasParameter($key))
+      {
+        $collector->setProperty($property, (boolean) $request->getParameter($key));
+        $_property_changed = $key;
+      }
+
+      if (false !== $_property_changed)
+      {
+        $collector->save();
+
+        $this->getUser()->setFlash('success', sprintf(
+          'You\'ve successfully changed your %s notification settings.',
+          $_property_changed
+        ));
+
+        return $this->redirect('@mycq_profile_email_preferences');
+      }
+    }
+
+    $this->collector = $collector;
+
+    return sfView::SUCCESS;
+  }
+
   public function executeProfileAddresses()
   {
     $this->collector_addresses = $this->getCollector()->getCollectorAddresses();

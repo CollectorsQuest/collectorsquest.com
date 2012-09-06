@@ -77,13 +77,24 @@ if (in_array($type, array('image', 'video')))
         (!$is_readable || filemtime($shared . $original) > filemtime($shared . $path))
       )
       {
-        require __DIR__ .'/../config/ProjectConfiguration.class.php';
+        @list($width, $height) = getimagesize($shared . $original);
+        @list($_width, $_height) = explode('x', $size);
 
-        /** @var cqApplicationConfiguration $configuration */
-        $configuration = ProjectConfiguration::getApplicationConfiguration(SF_APP, SF_ENV, SF_DEBUG);
+        if ($width && ($_width == 0 || $width <= $_width) && $height && ($height <= $_height || $_height == 0))
+        {
+          copy($shared . $original, $shared . $path);
+          $is_readable = true;
+        }
+        else
+        {
+          require __DIR__ .'/../config/ProjectConfiguration.class.php';
 
-        $thumb = iceModelMultimediaPeer::makeThumb($shared . $original, $size, 'top', false);
-        $thumb && $thumb->saveAs($shared . $path, 'image/jpeg') && ($is_readable = true);
+          /** @var cqApplicationConfiguration $configuration */
+          $configuration = ProjectConfiguration::getApplicationConfiguration(SF_APP, SF_ENV, SF_DEBUG);
+
+          $thumb = iceModelMultimediaPeer::makeThumb($shared . $original, $size, 'top', false);
+          $thumb && $thumb->saveAs($shared . $path, 'image/jpeg') && ($is_readable = true);
+        }
       }
 
       $modified_at = (string) @array_shift(array_keys($_GET));
@@ -104,7 +115,8 @@ if (in_array($type, array('image', 'video')))
       if (
         isset($_SERVER['HTTP_IF_NONE_MATCH']) &&
         stripslashes($_SERVER['HTTP_IF_NONE_MATCH']) == '"'. $etag .'"'
-      ) {
+      )
+      {
         // Return visit and no modifications, so do not send anything
         header ('HTTP/1.0 304 Not Modified');
         header ('Content-Length: 0');

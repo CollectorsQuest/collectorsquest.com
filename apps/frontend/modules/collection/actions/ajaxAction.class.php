@@ -28,52 +28,6 @@ class ajaxAction extends cqAjaxAction
     return parent::execute($request);
   }
 
-  protected function executeCollectiblesCarousel(sfWebRequest $request)
-  {
-    $data = array();
-
-    $collectible = CollectionCollectibleQuery::create()
-      ->filterByCollection($this->collection)
-      ->filterByCollectibleId($request->getParameter('collectible_id'))
-      ->findOne();
-
-    if ($collectible)
-    {
-      $collectible_ids = $this->collection->getCollectibleIds();
-    }
-
-    // pages start from 1
-    $p = (int) $request->getParameter('p', 1);
-    $s = (int) $request->getParameter('s', 3);
-
-    $q = CollectionCollectibleQuery::create()
-      ->filterByCollection($this->collection)
-      ->orderByPosition(Criteria::ASC)
-      ->orderByCreatedAt(Criteria::ASC)
-      ->offset(($p - 1) * $s)
-      ->limit($s);
-
-    if ($collectibles = $q->find())
-    {
-      $this->loadHelpers('cqLinks', 'cqImages');
-
-      /** @var $collectible Collectible */
-      foreach ($collectibles as $collectible)
-      {
-        $data[] = array(
-          'id' => $collectible->getId(),
-          'url' => url_for_collectible($collectible),
-          'thumbnails' => array(
-            'x75' => src_tag_collectible($collectible, '75x75'),
-            'x150' => src_tag_collectible($collectible, '150x150')
-          )
-        );
-      }
-    }
-
-    return $this->output(array('collectibles' => $data));
-  }
-
   /**
    * @param  sfWebRequest $request
    * @return string

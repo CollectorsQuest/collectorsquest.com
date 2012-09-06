@@ -1,5 +1,10 @@
 <?php
-  /* @var $collectible_for_sale CollectibleForSale */
+/*
+ * @var $collectible_for_sale CollectibleForSale
+ * @var $height stdClass
+ */
+
+$_height = 0;
 ?>
 
 <?php if ($collectible_for_sale->hasActiveCredit() && IceGateKeeper::open('shopping_cart') ): ?>
@@ -15,7 +20,7 @@
       </p>
       Quantity sold: 1
     </div>
-
+    <?php $_height -= 59; ?>
   <?php elseif ($collectible_for_sale->isForSale()): ?>
     <form action="<?= url_for('@shopping_cart', true); ?>" method="post">
       <div id="price-container">
@@ -34,6 +39,7 @@
 
       <?= $form->renderHiddenFields(); ?>
     </form>
+    <?php $_height -= 73; ?>
   <?php endif; // is for sale ?>
 
 <?php elseif ($collectible_for_sale->isForSale()): // and has no active credit ?>
@@ -46,4 +52,12 @@
       <span>Send a Message to the Seller</span>
     </button>
   </div>
+  <?php $_height -= 73; ?>
 <?php endif; ?>
+
+<?php
+  if (isset($height) && property_exists($height, 'value'))
+  {
+    $height->value -= abs($_height);
+  }
+?>

@@ -12,7 +12,9 @@
     </div><!-- /Title-->
     <div class="span1"><!-- Remove from cart-->
       <div class="pull-right">
-        <?= link_to('&nbsp;', '@shopping_cart_remove?id='. $shopping_cart_collectible->getCollectibleId(), array('class' => 'remove-item')); ?>
+        <?= link_to('<i class="icon-remove"></i>', '@shopping_cart_remove?id='. $shopping_cart_collectible->getCollectibleId(),
+          array('class' => 'close-button', 'rel' => 'tooltip', 'title' => 'Remove Item'
+        )); ?>
       </div>
     </div><!-- /Remove from cart-->
   </div>

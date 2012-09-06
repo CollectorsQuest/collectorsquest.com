@@ -53,6 +53,9 @@ EOF;
       $avatar = !$profile->getIsImageAuto() && !$collector->hasPhoto() ?
         'Yes' : 'No';
 
+      $newsletter = $collector->getPreferencesNewsletter() ?
+        'Yes' : 'No';
+
       $batch[] = array(
         'EMAIL' => $collector->getEmail(),
         'EMAIL_TYPE' => 'html',
@@ -65,7 +68,7 @@ EOF;
         'COMPLETED' => (int) $profile->getProfileCompleted(),
         'PAGEVIEWS' => $collector->getVisitorInfoNumPageViews(),
         'VISITS' => $collector->getVisitorInfoNumVisits(),
-        'NEWSLETTER' => $collector->getPreferencesNewsletter(),
+        'NEWSLETTER' => $newsletter,
         'VISITED_AT' => $collector->getLastVisitedAt('m/d/Y'),
         'SEEN_AT' => $collector->getLastSeenAt('m/d/Y'),
         'CREATED_AT' => $collector->getCreatedAt('m/d/Y'),
@@ -118,6 +121,9 @@ EOF;
       $avatar = !$profile->getIsImageAuto() && !$collector->hasPhoto() ?
         'Yes' : 'No';
 
+      $newsletter = $collector->getPreferencesNewsletter() ?
+        'Yes' : 'No';
+
       $fields = array(
         'ID' => $collector->getId(),
         'DNAME' => $collector->getDisplayName(),
@@ -128,7 +134,7 @@ EOF;
         'COMPLETED' => (int) $profile->getProfileCompleted(),
         'PAGEVIEWS' => $collector->getVisitorInfoNumPageViews(),
         'VISITS' => $collector->getVisitorInfoNumVisits(),
-        'NEWSLETTER' => $collector->getPreferencesNewsletter(),
+        'NEWSLETTER' => $newsletter,
         'VISITED_AT' => $collector->getLastVisitedAt('m/d/Y'),
         'SEEN_AT' => $collector->getLastSeenAt('m/d/Y'),
         'CREATED_AT' => $collector->getCreatedAt('m/d/Y'),

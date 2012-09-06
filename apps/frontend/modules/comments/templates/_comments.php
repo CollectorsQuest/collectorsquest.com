@@ -1,5 +1,11 @@
 <div id="comments">
   <?php include_component('comments', 'addComment', array('for_object' => $for_object)); ?>
+  <?php
+    if (isset($height) && property_exists($height, 'value'))
+    {
+      $height->value += 121;
+    }
+  ?>
 
   <?php if ($sf_user->hasFlash('comment_success')): ?>
     <div class="alert alert-success">
@@ -17,5 +23,5 @@
     </div>
   <?php endif; ?>
 
-  <?php include_component('comments', 'showComments', array('for_object' => $for_object)); ?>
+  <?php include_component('comments', 'showComments', array('for_object' => $for_object, 'height' => &$height)); ?>
 </div>

@@ -1,7 +1,10 @@
 <?php
 /**
  * @var $collection CollectorCollection
+ * @var $height stdClass
  */
+
+$_height = 0;
 ?>
 
 <div class="well">
@@ -28,6 +31,16 @@
     </div>
   </div>
 </div>
+
+<?php $_height -= 94; ?>
+
+<?php
+  if (isset($height) && property_exists($height, 'value'))
+  {
+    $height->value -= abs($_height);
+  }
+?>
+
 <script type="text/javascript">
   var ajax_load = function(target, url) {
     var $target = $(target);

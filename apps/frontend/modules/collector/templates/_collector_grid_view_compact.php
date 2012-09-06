@@ -22,7 +22,7 @@
       <ul style="list-style: none; margin-left: 0;">
         <?php
           if (
-            ($collectionsCount = $collector->countCollectorCollections()) &&
+            ($collectionsCount = $collector->countCollectionsWithCollectibles()) &&
             ($collectiblesCount = $collector->countCollectiblesInCollections())
           ):
         ?>

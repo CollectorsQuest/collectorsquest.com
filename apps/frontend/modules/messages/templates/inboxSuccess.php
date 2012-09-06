@@ -17,7 +17,7 @@
 <form action="<?= url_for('@messages_batch_actions'); ?>" method="post" id="inbox-form">
 
   <div class="row-fluid messages-row gray-well cf">
-    <div class="span5 indent-top5">
+    <div class="span5 spacer-top-5">
       <div class="checkbox-arrow pull-left"></div>
       <div class="private-messages-list-select control-group pull-left">
         <div class="btn-group">
@@ -38,13 +38,13 @@
         <div class="btn-group ">
           <input type="submit" class="btn btn-mini" name="batch_action[mark_as_read]" value="Mark as Read" />
           <input type="submit" class="btn btn-mini" name="batch_action[mark_as_unread]" value="Mark as Unread" />
-          <input type="submit" onclick="return confirm('Are you sure you sure you want to delete these messages?')" class="btn btn-mini" name="batch_action[delete]" value="Delete" />
           <input type="hidden" id="batchAction" name="" value="on"/>
+          <input type="submit" onclick="return confirm('Are you sure you sure you want to delete these messages?')" class="btn btn-mini" name="batch_action[delete]" value="Delete" />
         </div>
       </div>
     </div>
 
-    <div class="span3 indent-top5">
+    <div class="span3 spacer-top-5">
       <span class="pull-left show-all-text">Show:</span>
       <div class="control-group pull-left">
         <div class="btn-filter-all btn-group">

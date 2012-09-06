@@ -1,5 +1,8 @@
 all:
-  pages: ~
+  pages:
+    marketplace_categories: false
+    aetn_picked_off: true
+
   features:
     shopping_cart: true
     shopping_checkout_help: false
@@ -11,9 +14,14 @@ all:
     collectible_shipping: true
     collectible_allow_no_shipping: true
     independence_day: false
+    expose_collection_categories: false
+    expose_market_categories: false
 
 next:
-  pages: ~
+  pages:
+    marketplace_categories: false
+    aetn_picked_off: true
+
   features:
     shopping_cart: true
     shopping_checkout_help: false
@@ -25,9 +33,13 @@ next:
     collectible_shipping: true
     collectible_allow_no_shipping: true
     independence_day: false
+    expose_collection_categories: false
 
 dev:
-  pages: ~
+  pages:
+    marketplace_categories: true
+    aetn_picked_off: true
+
   features:
     shopping_cart: true
     shopping_checkout_help: false
@@ -39,3 +51,4 @@ dev:
     collectible_shipping: true
     collectible_allow_no_shipping: true
     independence_day: false
+    expose_collection_categories: true

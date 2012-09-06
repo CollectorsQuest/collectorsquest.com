@@ -45,6 +45,11 @@ class cqPatternRouting extends sfPatternRouting
       $url = str_replace(array('&encrypt=1', '?encrypt=1'), '', $url);
       $url = str_replace($relative, $encrypted, $url);
     }
+    if (stripos($url, '&_decode=1') || stripos($url, '?_decode=1'))
+    {
+      $url = str_replace(array('&_decode=1', '?_decode=1'), '', $url);
+      $url = urldecode($url);
+    }
 
     return !empty($url) ? $url : '/';
   }

@@ -67,4 +67,32 @@ class typeAheadAction extends cqAjaxAction
 
     return $this->output($tags);
   }
+
+  protected function executeShoppingOrderBuyerEmail($request)
+  {
+    $q = $request->getParameter('q');
+    $limit = $request->getParameter('limit', 10);
+
+    $email = ShoppingOrderQuery::create()
+      ->filterByBuyerEmail("%$q%", Criteria::LIKE)
+      ->limit($limit)
+      ->find()
+      ->toKeyValue('Id', 'BuyerEmail');
+
+    return $this->output($email);
+  }
+
+  protected function executeShoppingOrderShippingFullName($request)
+  {
+    $q = $request->getParameter('q');
+    $limit = $request->getParameter('limit', 10);
+
+    $names = ShoppingOrderQuery::create()
+      ->filterByShippingFullName("%$q%", Criteria::LIKE)
+      ->limit($limit)
+      ->find()
+      ->toKeyValue('Id', 'ShippingFullName');
+
+    return $this->output($names);
+  }
 }

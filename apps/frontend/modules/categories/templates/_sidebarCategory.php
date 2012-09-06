@@ -2,25 +2,38 @@
 /**
  * @var $category ContentCategory
  */
-?>
 
-<?php cq_dart_slot('300x250', 'collections', $category->getSlug(), 'sidebar') ?>
+if (IceGateKeeper::open('expose_collection_categories'))
+{
+  include_component(
+    '_sidebar', 'widgetCollectionSubCategories',
+    array(
+      'current_category' => $category,
+      'fallback' => 'widgetCollectionCategories', 'level' => 1
+    )
+  );
 
-<?php
   include_component(
     '_sidebar', 'widgetCollectiblesForSale',
     array('category' => $category,'limit' => 3)
   );
-?>
-<?php
+}
+else
+{
+  cq_dart_slot('300x250', 'collections', $category->getSlug(), 'sidebar');
+
+  include_component(
+    '_sidebar', 'widgetCollectiblesForSale',
+    array('category' => $category,'limit' => 3)
+  );
+
   include_component(
     '_sidebar', 'widgetBlogPosts',
     array('category' => $category, 'limit' => 2)
   );
-?>
-<?php
+
   include_component(
     '_sidebar', 'widgetMagnifyVideos',
     array('category' => $category, 'limit' => 5)
   );
-?>
+}

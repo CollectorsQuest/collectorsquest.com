@@ -12,6 +12,13 @@ class marketplaceComponents extends cqFrontendComponents
     return sfView::SUCCESS;
   }
 
+  public function executeSidebarBrowse()
+  {
+    $this->category = ContentCategoryQuery::create()->findOneById($this->getRequestParameter('id'));
+
+    return $this->category ? sfView::SUCCESS : sfView::NONE;
+  }
+
   public function executeSidebarCategories()
   {
     return sfView::SUCCESS;

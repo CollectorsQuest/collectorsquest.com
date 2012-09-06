@@ -20,13 +20,17 @@ aetn_storage_wars:
   param: { module: aent, action: storageWars }
   requirements: { sf_method: [GET] }
 
+aetn_picked_off:
+  url: /history/picked-off
+  param: { module: aent, action: pickedOff }
+  requirements: { sf_method: [GET] }
+
 aetn_collectible_by_slug:
   url:  /aetn/collectible/:id/:slug
   class: cqPropelRoute
   options: { model: Collectible, type: object, method: getObjectForRoute }
   param: { module: aent, action: collectibleFixedMatching }
   requirements: { id: '\d+', slug: '[\-\w\.]+' }
-
 
 ### COLLECTIONS
 
@@ -78,7 +82,7 @@ collectibles_by_collector:
   url:  /collectibles/by/:id/:slug
   class: cqPropelRoute
   options: { model: Collector, type: object, method: getObjectForRoute, statsd: true }
-  param: { module: collectibles, action: collectorList, onlyForSale: false }
+  param: { module: collectibles, action: collectorList, legacy: true }
   requirements: { id: '\d+', slug: '[\-\w\.]+' }
 
 collectibles_for_sale_by_collector:

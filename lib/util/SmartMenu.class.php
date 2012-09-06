@@ -40,12 +40,31 @@ class SmartMenu
         }
       }
 
+      // Do we have an icon defined?
+      $icon = isset($item['icon']) ? sprintf('<i class="icon icon-%s"></i> ', $item['icon']) : '';
+
+      if (isset($item['uri']))
+      {
+        $rel = 'sm_'. $menu_name;
+
+        if (sfContext::getInstance()->isHomePage())
+        {
+          $rel = 'hp_' . $rel;
+        }
+
+        $url = cq_url_for(
+          $item['uri'],
+          array('ref' => $rel),
+          isset($item['absolute']) ? $item['absolute'] : true
+        );
+      }
+
       // Set template values, defaults when none provided
       $item = array(
         '%id%'    => $id,
-        '%name%'  => (isset($item['icon']) ? sprintf('<i class="icon icon-%s"></i> ', $item['icon']) : '') . $item['name'],
+        '%name%'  => $icon . $item['name'],
         '%title%' => isset($item['title']) ? $item['title'] : strip_tags($item['name']),
-        '%url%'   => isset($item['uri']) ? url_for($item['uri'], isset($item['absolute']) ? $item['absolute'] : true) : '#',
+        '%url%'   => isset($url) ? $url : '#',
 
         // https://developer.mozilla.org/en/HTML/Element/a#attr-target
         '%target%'=> isset($item['target']) ? $item['target'] : '_self',

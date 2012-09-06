@@ -15,12 +15,18 @@ generator:
       actions: ~
       fields:
         created_at: { label: Date }
+        list_sender:  { label: Sender }
+        list_receiver:  { label: Receiver }
       list:
         title: Messages
-        display: [sender, receiver, =subject, is_read, is_replied, is_deleted, created_at]
+        display: [_list_sender, _list_receiver, =subject, is_read, is_replied, is_deleted, created_at]
         sort: [created_at, desc]
       filter:
-        display: [subject, body, created_at]
+        class: BackendPrivateMessageFormFilter
+        display: [collector_sender,collector_receiver, subject, body, created_at]
+        fields:
+          collector_sender: {label: "Sender"}
+          collector_receiver: {label: "Receiver"}
       form:
         display: [subject, body]
       edit:    ~

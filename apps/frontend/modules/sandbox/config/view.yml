@@ -35,3 +35,9 @@ searchSuccess:
   javascripts: [jquery/masonry.js, jquery/infinitescroll.js]
   components:
     sidebar_300: [global, sidebar300]
+
+sidebarAccordionSuccess:
+  components:
+    sidebar_120: []
+    sidebar_180: []
+    sidebar_300: []

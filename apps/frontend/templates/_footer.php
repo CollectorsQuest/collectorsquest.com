@@ -27,22 +27,22 @@
             <a href="https://www.facebook.com/pages/Collectors-Quest/119338990397"
                target="_blank" class="social-link spacer-left"
                rel="tooltip" title="Follow us on Facebook">
-              <i class="s-24-icon-facebook social-ico-padding"></i>
+              <i class="s-24-icon-facebook"></i>
             </a>
             <a href="https://twitter.com/CollectorsQuest"
                target="_blank" class="social-link"
                rel="tooltip" title="Follow us on Twitter">
-              <i class="s-24-icon-twitter social-ico-padding"></i>
+              <i class="s-24-icon-twitter"></i>
             </a>
             <a href="https://plus.google.com/113404032517505188429"
                target="_blank" class="social-link"
                rel="tooltip" title="Follow us on Google+">
-              <i class="s-24-icon-google social-ico-padding"></i>
+              <i class="s-24-icon-google"></i>
             </a>
             <a href="http://pinterest.com/CollectorsQuest"
                target="_blank" class="social-link"
                rel="tooltip" title="Follow us on Pinterest">
-              <i class="s-24-icon-pinterest social-ico-padding"></i>
+              <i class="s-24-icon-pinterest"></i>
             </a>
           </div>
 
@@ -113,7 +113,13 @@
               <p>
                 Have a question or a concern? Having trouble figuring something out?
                 Get the most out of the site by checking out our FAQs.<br />
-                <a href="<?=urldecode(url_for('blog_page', array('slug' => 'cq-faqs/general-questions'), true))?>">Get&nbsp;Help&nbsp;Now!</a>
+                <?php
+                  echo link_to(
+                    'Get&nbsp;Help&nbsp;Now!', 'blog_page',
+                    array('slug' => 'cq-faqs/general-questions', '_decode' => true),
+                    array('absolute' => true)
+                  );
+                ?>
               </p>
             </div>
           </li>

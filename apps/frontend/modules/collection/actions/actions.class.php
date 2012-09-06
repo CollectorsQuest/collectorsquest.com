@@ -7,7 +7,7 @@ class collectionActions extends cqFrontendActions
   {
     parent::preExecute();
 
-    SmartMenu::setSelected('header_main_menu', 'collections');
+    SmartMenu::setSelected('header', 'collections');
   }
 
   /**
@@ -43,8 +43,13 @@ class collectionActions extends cqFrontendActions
      */
     $pawn_stars = sfConfig::get('app_aetn_pawn_stars');
     $american_pickers = sfConfig::get('app_aetn_american_pickers');
+    $picked_off = sfConfig::get('app_aetn_picked_off');
 
-    if (in_array($collection->getId(), array($pawn_stars['collection'], $american_pickers['collection'])))
+    if (
+      in_array($collection->getId(), array(
+        $pawn_stars['collection'], $american_pickers['collection'], $picked_off['collection']
+      ))
+    )
     {
       if ($collection->getId() == $pawn_stars['collection'])
       {
@@ -53,6 +58,13 @@ class collectionActions extends cqFrontendActions
       else if ($collection->getId() == $american_pickers['collection'])
       {
         $this->redirect('@aetn_american_pickers', 301);
+      }
+      else if ($collection->getId() == $picked_off['collection'])
+      {
+        $this->redirectIf(
+          IceGateKeeper::open('aetn_picked_off', 'page'),
+          '@aetn_picked_off', 301
+        );
       }
     }
 
@@ -92,6 +104,12 @@ class collectionActions extends cqFrontendActions
     $this->collector = $collector;
     $this->collection = $collection;
     $this->editable = $this->getUser()->isOwnerOf($collection);
+
+    // calculate how many rows of collectibles will be on the page
+    $collectible_rows = count($pager->getResults());
+    $collectible_rows = $collectible_rows % 3 == 0 ? intval($collectible_rows / 3) : intval($collectible_rows / 3 + 1);
+
+    $this->collectible_rows = $collectible_rows;
 
     // Building the meta tags
     // $this->getResponse()->addMeta('description', $collection->getDescription('stripped'));
@@ -143,10 +161,18 @@ class collectionActions extends cqFrontendActions
      */
     $pawn_stars = sfConfig::get('app_aetn_pawn_stars');
     $american_pickers = sfConfig::get('app_aetn_american_pickers');
+    $picked_off = sfConfig::get('app_aetn_picked_off');
 
     if (in_array($collection->getId(), array($pawn_stars['collection'], $american_pickers['collection'])))
     {
       $this->redirect('aetn_collectible_by_slug', $collectible);
+    }
+    else if ($collection->getId() == $picked_off['collection'])
+    {
+      $this->redirectIf(
+        IceGateKeeper::open('aetn_picked_off', 'page'),
+        'aetn_collectible_by_slug', $collectible
+      );
     }
 
     /**
@@ -162,48 +188,48 @@ class collectionActions extends cqFrontendActions
      * Figure out the previous and the next item in the collection
      */
     $collectible_ids = $collection->getCollectibleIds();
-
-    if (array_search($collectible->getId(), $collectible_ids) - 1 < 0)
+    if (count($collectible_ids) > 1)
     {
-      $q = CollectionCollectibleQuery::create()
-          ->filterByCollection($collection)
-          ->filterByCollectibleId($collectible_ids[count($collectible_ids) - 1]);
-      $this->previous = $q->findOne();
-    }
-    else
-    {
-      $q = CollectionCollectibleQuery::create()
-          ->filterByCollection($collection)
-          ->filterByCollectibleId($collectible_ids[array_search($collectible->getId(), $collectible_ids) - 1]);
-      $this->previous = $q->findOne();
-    }
+      if (array_search($collectible->getId(), $collectible_ids) - 1 < 0)
+      {
+        $q = CollectionCollectibleQuery::create()
+            ->filterByCollection($collection)
+            ->filterByCollectibleId($collectible_ids[count($collectible_ids) - 1]);
+        $this->previous = $q->findOne();
+      }
+      else
+      {
+        $q = CollectionCollectibleQuery::create()
+            ->filterByCollection($collection)
+            ->filterByCollectibleId($collectible_ids[array_search($collectible->getId(), $collectible_ids) - 1]);
+        $this->previous = $q->findOne();
+      }
 
-    if (array_search($collectible->getId(), $collectible_ids) + 1 >= count($collectible_ids))
-    {
+      if (array_search($collectible->getId(), $collectible_ids) + 1 >= count($collectible_ids))
+      {
+        $q = CollectionCollectibleQuery::create()
+            ->filterByCollection($collection)
+            ->filterByCollectibleId($collectible_ids[0]);
+        $this->next = $q->findOne();
+      }
+      else
+      {
+        $q = CollectionCollectibleQuery::create()
+            ->filterByCollection($collection)
+            ->filterByCollectibleId($collectible_ids[array_search($collectible->getId(), $collectible_ids) + 1]);
+        $this->next = $q->findOne();
+      }
+      /**
+       * Figure out the first item in the collection
+       */
       $q = CollectionCollectibleQuery::create()
-          ->filterByCollection($collection)
-          ->filterByCollectibleId($collectible_ids[0]);
-      $this->next = $q->findOne();
+        ->filterByCollection($collection)
+        ->filterByCollectibleId($collectible_ids[0]);
+      $this->first = $q->findOne();
     }
-    else
-    {
-      $q = CollectionCollectibleQuery::create()
-          ->filterByCollection($collection)
-          ->filterByCollectibleId($collectible_ids[array_search($collectible->getId(), $collectible_ids) + 1]);
-      $this->next = $q->findOne();
-    }
-
-    /**
-     * Figure out the first item in the collection
-     */
-    $q = CollectionCollectibleQuery::create()
-      ->filterByCollection($collection)
-      ->filterByCollectibleId($collectible_ids[0]);
-    $this->first = $q->findOne();
-
     if ($collectible->isWasForSale())
     {
-      SmartMenu::setSelected('header_main_menu', 'marketplace');
+      SmartMenu::setSelected('header', 'marketplace');
     }
 
     $breadcrumbs = IceBreadcrumbs::getInstance($this->getContext());

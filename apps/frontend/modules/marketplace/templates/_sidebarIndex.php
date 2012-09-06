@@ -1,12 +1,24 @@
 <?php
-  cq_dart_slot(
-    '300x250', 'market',
-    isset($category) && $category instanceof ContentCategory ? $category->getSlug() : 'landing',
-    'sidebar'
-  );
+/**
+ * @var $sf_user  cqFrontendUser
+ * @var $height stdClass
+ */
+
+cq_dart_slot('300x250', 'market', 'landing', 'sidebar');
+$height->value -= 250;
 ?>
 
-<?php include_component('_sidebar', 'widgetMarketplaceCategories'); ?>
+<?php
+  if (isset($category) && $category instanceof ContentCategory)
+  {
+    include_component(
+      '_sidebar', 'widgetMarketplaceCategories',
+      array('current_category' => $category, 'height' => &$height)
+    );
+  }
+?>
+
+<?php include_component('_sidebar', 'widgetMarketplaceExplore', array('height' => &$height)); ?>
 
 <?php
   if (!$sf_user->isAuthenticated())
@@ -15,10 +27,13 @@
       cq_image_tag('headlines/2012-06-24_CQGuidePromo_300x90.png', array('class' => 'spacer-top-20')),
       '@misc_guide_to_collecting'
     );
+    $height->value -= 110;
   }
 ?>
 
-<?php include_component('_sidebar', 'widgetCollections', array('limit' => 8)); ?>
+<?php include_component('_sidebar', 'widgetCollections', array('limit' => 8, 'height' => &$height)); ?>
+
+<?php include_component('_sidebar', 'widgetCollectiblesForSale', array('limit' => 3, 'height' => &$height)); ?>
 
 <?php
 /**
