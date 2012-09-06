@@ -161,7 +161,7 @@ class cqLinkUtils
     // if the route is not a default route like:
     //   url:   /:module/:action/*
     // then we need to get the parameters from the named route
-    if ( !(isset($parameters['module']) || isset($parameters['action'])) )
+    if ( is_array($parameters) && !(isset($parameters['module']) || isset($parameters['action'])) )
     {
       // get all routes
       $routes = cqContext::getInstance()->getRouting()->getRoutes();

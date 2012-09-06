@@ -48,7 +48,7 @@ function cq_link_to()
       $arguments[2]['absolute'] = true;
     }
 
-    return call_user_func_array('link_to1', $arguments);
+    return call_user_func_array('cq_link_to1', $arguments);
   }
   else
   {
@@ -66,8 +66,79 @@ function cq_link_to()
       $arguments[3]['absolute'] = true;
     }
 
-    return call_user_func_array('link_to2', $arguments);
+    return call_user_func_array('cq_link_to2', $arguments);
   }
+}
+
+/**
+ * @ignore
+ */
+function cq_link_to2($name, $routeName, $params, $options = array())
+{
+  $params = array_merge(
+    array('sf_route' => $routeName),
+    is_object($params) ? array('sf_subject' => $params) : $params
+  );
+
+  return cq_link_to1($name, $params, $options);
+}
+
+/**
+ * @ignore
+ */
+function cq_link_to1($name, $internal_uri, $options = array())
+{
+  $html_options = _parse_attributes($options);
+
+  $html_options = _convert_options_to_javascript($html_options);
+
+  $absolute = false;
+  if (isset($html_options['absolute_url']))
+  {
+    $html_options['absolute'] = $html_options['absolute_url'];
+    unset($html_options['absolute_url']);
+  }
+  if (isset($html_options['absolute']))
+  {
+    $absolute = (boolean) $html_options['absolute'];
+    unset($html_options['absolute']);
+  }
+
+  $html_options['href'] = cq_url_for($internal_uri, $absolute);
+
+  if (isset($html_options['query_string']))
+  {
+    $html_options['href'] .= '?'.$html_options['query_string'];
+    unset($html_options['query_string']);
+  }
+
+  if (isset($html_options['anchor']))
+  {
+    $html_options['href'] .= '#'.$html_options['anchor'];
+    unset($html_options['anchor']);
+  }
+
+  if (is_object($name))
+  {
+    if (method_exists($name, '__toString'))
+    {
+      $name = $name->__toString();
+    }
+    else
+    {
+      throw new sfException(sprintf(
+        'Object of class "%s" cannot be converted to string (Please create a __toString() method).',
+        get_class($name)
+      ));
+    }
+  }
+
+  if (!strlen($name))
+  {
+    $name = $html_options['href'];
+  }
+
+  return content_tag('a', $name, $html_options);
 }
 
 /**
@@ -94,8 +165,50 @@ function cq_url_for()
   }
   else
   {
-    return call_user_func_array('url_for', $arguments);
+    if (is_array($arguments[0]) || '@' == substr($arguments[0], 0, 1) || false !== strpos($arguments[0], '/'))
+    {
+      return call_user_func_array('url_for1', $arguments);
+    }
+    else
+    {
+      // Let's try to add "rel=" to the link
+      if (is_array($arguments[1]) && !array_key_exists('ref', $arguments[1]))
+      {
+        $arguments[1]['ref'] = cq_link_ref();
+      }
+
+      return call_user_func_array('url_for2', $arguments);
+    }
   }
+}
+
+function cq_link_ref($ref = null)
+{
+  /** @var $sf_context cqContext */
+  $sf_context = sfContext::getInstance();
+
+  if ($sf_context->isHomePage())
+  {
+    $ref = 'hp' . (!empty($ref) ? '_' . $ref : '');
+  }
+  else if ($sf_context->isCollectionsPage())
+  {
+    $ref = 'mp' . (!empty($ref) ? '_' . $ref : '');
+  }
+  else if ($sf_context->isBlogPage())
+  {
+    $ref = 'bp' . (!empty($ref) ? '_' . $ref : '');
+  }
+  else if ($sf_context->isVideoPage())
+  {
+    $ref = 'vp' . (!empty($ref) ? '_' . $ref : '');
+  }
+  else if ($sf_context->isMarketPage())
+  {
+    $ref = 'mp' . (!empty($ref) ? '_' . $ref : '');
+  }
+
+  return $ref;
 }
 
 function link_to_collector($object, $type = 'text', $options = array('link_to' => array(), 'image_tag' => array()))
@@ -546,8 +659,13 @@ function cq_canonical_url($absolute = true)
         /** @var $routing cqPatternRouting */
         $routing = cqContext::getInstance()->getRouting();
 
+        $parameters = array(
+          'ref' => null,
+          'sf_subject' => $object
+        );
+
         /** @var $canonical_url string */
-        $canonical_url = url_for($routing->getCurrentRouteName(), $object, false);
+        $canonical_url = url_for($routing->getCurrentRouteName(), $parameters, false);
 
         // Check if we need to return an absolute URL or not
         if ($canonical_url && $absolute === true)

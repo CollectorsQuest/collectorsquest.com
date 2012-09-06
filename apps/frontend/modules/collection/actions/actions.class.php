@@ -7,7 +7,7 @@ class collectionActions extends cqFrontendActions
   {
     parent::preExecute();
 
-    SmartMenu::setSelected('header_main_menu', 'collections');
+    SmartMenu::setSelected('header', 'collections');
   }
 
   /**
@@ -229,7 +229,7 @@ class collectionActions extends cqFrontendActions
     }
     if ($collectible->isWasForSale())
     {
-      SmartMenu::setSelected('header_main_menu', 'marketplace');
+      SmartMenu::setSelected('header', 'marketplace');
     }
 
     $breadcrumbs = IceBreadcrumbs::getInstance($this->getContext());

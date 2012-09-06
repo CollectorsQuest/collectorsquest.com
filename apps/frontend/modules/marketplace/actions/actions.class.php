@@ -7,7 +7,7 @@ class marketplaceActions extends cqFrontendActions
   {
     parent::preExecute();
 
-    SmartMenu::setSelected('header_main_menu', 'marketplace');
+    SmartMenu::setSelected('header', 'marketplace');
   }
 
   public function executeIndex()

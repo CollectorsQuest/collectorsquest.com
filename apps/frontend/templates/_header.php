@@ -57,7 +57,7 @@
             <?php if ($sf_params->get('module') === '_video'): ?>
               <ul class="dropdown-menu dd-menu-min-width">
                 <li>
-                  <a href="<?= url_for('@mycq_profile', true); ?>"
+                  <a href="<?= url_for('mycq_profile', array('ref' => cq_link_ref('header')), true); ?>"
                      title="Manage your CollectorsQuest.com profile!">
                     <i class="icon icon-user"></i> Profile
                   </a>
@@ -73,34 +73,34 @@
             <?php else: ?>
               <ul class="dropdown-menu dd-menu-min-width">
                 <li>
-                  <a href="<?= url_for('@mycq_profile', true); ?>"
+                  <a href="<?= url_for('mycq_profile', array('ref' => cq_link_ref('header')), true); ?>"
                      title="Manage your CollectorsQuest.com profile!">
                     <i class="icon icon-user"></i> Profile
                   </a>
                 </li>
                 <li>
-                  <a href="<?= url_for('@mycq_collections', true); ?>"
+                  <a href="<?= url_for('mycq_collections', array('ref' => cq_link_ref('header')), true); ?>"
                      title="Manage your Collections!">
                     <i class="icon icon-th-large"></i> Collections
                   </a>
                 </li>
                 <?php if (IceGateKeeper::open('mycq_marketplace')): ?>
                 <li>
-                  <a href="<?= url_for('@mycq_marketplace', true); ?>"
+                  <a href="<?= url_for('mycq_marketplace', array('ref' => cq_link_ref('header')), true); ?>"
                      title="Manage your Items for Sale!">
                     <i class="icon icon-shopping-cart"></i> My Market
                   </a>
                 </li>
                 <?php endif; ?>
                 <li>
-                  <a href="<?= url_for('@messages_inbox', true); ?>"
+                  <a href="<?= url_for('messages_inbox', array('ref' => cq_link_ref('header')), true); ?>"
                      title="Read and send private messages!">
                     <i class="icon icon-envelope"></i> Messages
                   </a>
                 </li>
                 <li class="divider"></li>
                 <li>
-                  <a href="<?= url_for('@logout', true); ?>"
+                  <a href="<?= url_for('logout', array('ref' => cq_link_ref('header')), true); ?>"
                      class="logout-link"
                      title="Log Out from your CollectorsQuest.com account!">
                     <i class="icon icon-signout"></i> Log Out
@@ -142,12 +142,13 @@
           }
 
           echo link_to(
-            'Collectors Quest', '@homepage',
+            'Collectors Quest', 'homepage',
+            array('ref' => cq_link_ref('logo')),
             array('class' => $class .' hide-text', 'title' => 'Home', 'absolute' => true)
           );
         ?>
         <ul class="nav">
-          <?= SmartMenu::generate('header_main_menu'); ?>
+          <?= SmartMenu::generate('header'); ?>
         </ul>
         <div class="menu-wrapper-social-icons">
           <span class="white">Follow us:</span>
