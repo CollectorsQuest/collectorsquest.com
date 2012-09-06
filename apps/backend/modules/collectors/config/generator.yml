@@ -22,11 +22,21 @@ generator:
         list_auto_login: { label: '' }
         created_at: { label: Since, date_format: 'MM/dd/yyyy' }
         is_public: { label: "Public?" }
-        newsletter:  { label: "" }
+        list_newsletter: { label: '<i class="icon-envelope"></i>' }
+        list_avatar: { label: "" }
 
       list:
         title: Collectors
-        display: [id, =username, display_name, _email, _newsletter, _list_count_collections, _list_spaminess,  created_at]
+        display:
+          - id
+          - _list_avatar
+          - =username
+          - display_name
+          - _list_email
+          - _list_newsletter
+          - _list_count_collections
+          - _list_spaminess
+          - created_at
         sort: [created_at, desc]
         object_actions:
           _edit: ~

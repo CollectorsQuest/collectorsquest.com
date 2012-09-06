@@ -1,6 +1,6 @@
 <div class="span3 brick">
   <div class="tall">
-    <a href="<?= url_for('collection_by_slug', $collection, true); ?>" class="link-brick">
+    <a href="<?= url_for_collection($collection); ?>" class="link-brick">
       <?= image_tag_collection($collection, '140x295'); ?>
     </a>
     <div class="details text-word-wrap">

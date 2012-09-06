@@ -30,9 +30,15 @@ class commentsActions extends cqFrontendActions
         {
           if (method_exists($comment->getModelObject(), 'getCollector'))
           {
+            /** @var $owner Collector */
             $owner = $comment->getModelObject()->getCollector();
 
-            if (!$this->getUser()->isAuthenticated() || $this->getCollector()->getId() != $owner->getId())
+            // if the user is not authenticated or not the owner of the object being
+            // commented on and wants to receive comment notifications
+            if (
+              !$this->getUser()->isAuthenticated() ||
+              ($this->getCollector()->getId() != $owner->getId() && $owner->getNotificationsComment())
+            )
             {
               $ret = $cqEmail->send('Comments/new_comment_on_owned_item_notification', array(
                   'to' => $owner->getEmail(),
@@ -44,12 +50,13 @@ class commentsActions extends cqFrontendActions
                       'sCommentRemoveUrl' => $this->getController()->genUrl(array(
                           'sf_route' => 'comments_delete',
                           'sf_subject' => $comment,
-                        ),true),
+                        ), true),
                   ),
               ));
             }
           }
 
+          /** @var $notify_comments Comment[] */
           $notify_comments = CommentQuery::create()
             ->filterByModelObject($comment->getModelObject())
             ->filterByIsNotify(true)
@@ -94,7 +101,7 @@ class commentsActions extends cqFrontendActions
       }
     }
 
-    return $this->redirect($request->getReferer() . "#comments");
+    return $this->redirect($request->getReferer() . '#comments');
   }
 
   /**
@@ -138,15 +145,20 @@ class commentsActions extends cqFrontendActions
    */
   public function executeUnsubscribe(cqWebRequest $request)
   {
-    if (( $model_object = CommentPeer::retrieveCommentableObject(
+    $model_object = CommentPeer::retrieveCommentableObject(
       $request->getParameter('model_class'),
-      $request->getParameter('model_pk')) ))
+      $request->getParameter('model_pk')
+    );
+
+    if ($model_object)
     {
+      /** @var $comments PropelObjectCollection */
       $comments = CommentQuery::create()
         ->filterByModelObject($model_object)
         ->leftJoinCollector()
         ->find();
 
+      /** @var $comment Comment */
       foreach ($comments as $comment)
       {
         if (urldecode($request->getParameter('email')) == $comment->getEmail())
@@ -173,7 +185,7 @@ class commentsActions extends cqFrontendActions
    */
   public function executeDelete(cqWebRequest $request)
   {
-    /** @var Comment */
+    /** @var $comment Comment */
     $comment = $this->getRoute()->getObject();
 
     $this->forward404Unless(

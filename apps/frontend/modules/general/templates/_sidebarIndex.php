@@ -4,7 +4,7 @@
     {
       echo link_to(
         cq_image_tag('headlines/2012-06-24_CQGuidePromo_160x600.png'),
-        '@misc_guide_to_collecting'
+        'misc_guide_to_collecting', array('ref' => cq_link_ref('sidebar'))
       );
     }
     else

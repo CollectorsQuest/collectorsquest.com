@@ -121,20 +121,7 @@
             </a>
           </p>
         </div>
-
       </div><!-- .tab-content-inner -->
     </div> <!-- .tab-pane.active -->
-    <div class="tab-pane" id="tab4">
-      <div class="tab-content-inner spacer">
-        <?php
-        $link = link_to(
-          'View public profile &raquo;', 'collector/me/index',
-          array('class' => 'text-v-middle link-align')
-        );
-        cq_sidebar_title('Edit Your Profile', $link, array('left' => 8, 'right' => 4));
-        ?>
-        <p>Settings Content</p>
-      </div><!-- .tab-content-inner -->
-    </div><!-- #tab4.tab-pane -->
   </div><!-- .tab-content -->
 </div>

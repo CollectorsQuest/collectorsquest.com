@@ -136,6 +136,9 @@ function cq_include_stylesheets()
   $response = cqContext::getInstance()->getResponse();
   sfConfig::set('symfony.asset.stylesheets_included', true);
 
+  // Get all the stylesheets
+  $_stylesheets = $response->getStylesheets(sfWebResponse::ALL);
+
   if ($response->getStylesheets(sfWebResponse::FIRST))
   {
     $stylesheets = array();
@@ -144,6 +147,7 @@ function cq_include_stylesheets()
       if ($stylesheet[0] != '/' || substr($stylesheet, 0, 5) == '/css/')
       {
         $stylesheets[] = $stylesheet;
+        unset($_stylesheets[$stylesheet[0]]);
       }
     }
 
@@ -158,6 +162,7 @@ function cq_include_stylesheets()
       if ($stylesheet[0] != '/' || substr($stylesheet, 0, 5) == '/css/')
       {
         $stylesheets[] = $stylesheet;
+        unset($_stylesheets[$stylesheet[0]]);
       }
     }
 
@@ -172,7 +177,19 @@ function cq_include_stylesheets()
       if ($stylesheet[0] != '/' || substr($stylesheet, 0, 5) == '/css/')
       {
         $stylesheets[] = $stylesheet;
+        unset($_stylesheets[$stylesheet[0]]);
       }
+    }
+
+    cq_combine_stylesheets($stylesheets);
+  }
+
+  if (!empty($_stylesheets))
+  {
+    $stylesheets = array();
+    foreach ($_stylesheets as $stylesheet => $options)
+    {
+      $stylesheets[] = $stylesheet;
     }
 
     cq_combine_stylesheets($stylesheets);
@@ -193,6 +210,9 @@ function cq_include_javascripts()
   $response = cqContext::getInstance()->getResponse();
   sfConfig::set('symfony.asset.javascripts_included', true);
 
+  // Get all the javascripts
+  $_javascripts = $response->getJavascripts(sfWebResponse::ALL);
+
   if ($response->getJavascripts(sfWebResponse::FIRST))
   {
     $javascripts = array();
@@ -201,6 +221,7 @@ function cq_include_javascripts()
       if ($javascript[0] != '/' || substr($javascript, 0, 3) == '/js/')
       {
         $javascripts[] = $javascript;
+        unset($_javascripts[$javascript[0]]);
       }
     }
 
@@ -215,6 +236,7 @@ function cq_include_javascripts()
       if ($javascript[0] != '/' || substr($javascript, 0, 3) == '/js/')
       {
         $javascripts[] = $javascript;
+        unset($_javascripts[$javascript[0]]);
       }
     }
 
@@ -229,7 +251,19 @@ function cq_include_javascripts()
       if ($javascript[0] != '/' || substr($javascript, 0, 3) == '/js/')
       {
         $javascripts[] = $javascript;
+        unset($_javascripts[$javascript[0]]);
       }
+    }
+
+    cq_combine_javascripts($javascripts);
+  }
+
+  if (!empty($_javascripts))
+  {
+    $javascripts = array();
+    foreach ($_javascripts as $javascript => $options)
+    {
+      $javascripts[] = $javascript;
     }
 
     cq_combine_javascripts($javascripts);

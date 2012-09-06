@@ -106,10 +106,10 @@ var APP = window.APP = {
             var holder = $(options.itemsHolder, widget);
 
             $(options.nextControl, widget).click(function() {
-              loadPage(lastPage == curPage ? 1 : curPage + 1);
+              loadPage(lastPage === curPage ? 1 : curPage + 1);
             });
             $(options.prevControl, widget).click(function() {
-              loadPage(curPage == 1 ? lastPage : curPage - 1);
+              loadPage(curPage === 1 ? lastPage : curPage - 1);
             });
 
             function loadPage(page)
@@ -130,12 +130,13 @@ var APP = window.APP = {
                   },
                   function(data)
                   {
-                    var $carousel = undefined;
-                    if ($carousel = $(data).find('#carousel'))
+                    var $carousel = $(data).find('#carousel');
+                    if ($carousel)
                     {
                       cache[page] = $carousel.html();
                     }
-                    holder.hideLoading();
+
+                    update(page);
                   }
                 );
               }
@@ -144,12 +145,15 @@ var APP = window.APP = {
             function update(page)
             {
               var html = cache[page];
-              if (page != widget.data('page') && html)
+              if (page !== widget.data('page') && html)
               {
-                holder.animate({'opacity':0}, 100, function()
+                holder.fadeOut(0, function()
                 {
                   holder.html(html);
-                  holder.animate({'opacity':1}, 100);
+                  holder.imagesLoaded(function()
+                  {
+                    $(this).fadeIn('fast', $(this).hideLoading);
+                  });
                 });
               }
               widget.data('page', curPage);

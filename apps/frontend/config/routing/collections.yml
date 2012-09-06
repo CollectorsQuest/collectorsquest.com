@@ -29,13 +29,6 @@ aetn_collectible_by_slug:
   url:  /aetn/collectible/:id/:slug
   class: cqPropelRoute
   options: { model: Collectible, type: object, method: getObjectForRoute }
-  param: { module: aent, action: collectible }
-  requirements: { id: '\d+', slug: '[\-\w\.]+' }
-
-aetn_collectible_by_slug_fixed_matching:
-  url:  /aetn/collectible/:id/:slug
-  class: cqPropelRoute
-  options: { model: Collectible, type: object, method: getObjectForRoute }
   param: { module: aent, action: collectibleFixedMatching }
   requirements: { id: '\d+', slug: '[\-\w\.]+' }
 

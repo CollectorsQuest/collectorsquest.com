@@ -94,7 +94,7 @@ ice_breadcrumbs:
   categories:
     index: [{ name: 'Categories' }]
     category:
-      - { name: 'Categories', route: content_categories }
+      - { name: 'Collections', route: collections }
       - { name: '%Name%', model: true, title: 'Category: %Name%' }
 
   mycq:

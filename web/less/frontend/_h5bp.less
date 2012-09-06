@@ -45,6 +45,9 @@
 .cf:before, .cf:after {
   content: "";
   display: table;
+	// Fixes Opera/contenteditable bug:
+	// http://nicolasgallagher.com/micro-clearfix-hack/#comment-36952
+	line-height: 0;
 }
 
 .clearfix:after, .cf:after {
