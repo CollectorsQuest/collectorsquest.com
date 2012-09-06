@@ -514,7 +514,7 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
 
   public function isWasForSale(PropelPDO $con = null)
   {
-    return !! $this->getCollectibleForSale($con);
+    return $this->isForSale($con) || $this->isSold($con);
   }
 
   /**
