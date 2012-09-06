@@ -136,6 +136,8 @@ function cq_include_stylesheets()
   $response = cqContext::getInstance()->getResponse();
   sfConfig::set('symfony.asset.stylesheets_included', true);
 
+  $_stylesheets = $response->getStylesheets(sfWebResponse::ALL);
+
   if ($response->getStylesheets(sfWebResponse::FIRST))
   {
     $stylesheets = array();
@@ -144,6 +146,7 @@ function cq_include_stylesheets()
       if ($stylesheet[0] != '/' || substr($stylesheet, 0, 5) == '/css/')
       {
         $stylesheets[] = $stylesheet;
+        unset($_stylesheets[$stylesheet[0]]);
       }
     }
 
@@ -158,6 +161,7 @@ function cq_include_stylesheets()
       if ($stylesheet[0] != '/' || substr($stylesheet, 0, 5) == '/css/')
       {
         $stylesheets[] = $stylesheet;
+        unset($_stylesheets[$stylesheet[0]]);
       }
     }
 
@@ -172,7 +176,19 @@ function cq_include_stylesheets()
       if ($stylesheet[0] != '/' || substr($stylesheet, 0, 5) == '/css/')
       {
         $stylesheets[] = $stylesheet;
+        unset($_stylesheets[$stylesheet[0]]);
       }
+    }
+
+    cq_combine_stylesheets($stylesheets);
+  }
+
+  if (!empty($_stylesheets))
+  {
+    $stylesheets = array();
+    foreach ($_stylesheets as $stylesheet => $options)
+    {
+      $stylesheets[] = $stylesheet;
     }
 
     cq_combine_stylesheets($stylesheets);
