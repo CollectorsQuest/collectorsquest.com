@@ -38,7 +38,7 @@ class CollectionCreateForm extends CollectorCollectionForm
       'id'    => new sfValidatorPropelChoice(
         array('model' => 'CollectorCollection', 'column' => 'id', 'required' => false)
       ),
-      'name'  => new sfValidatorString(),
+      'name'  => new cqValidatorName(array('required' => true)),
       'tags'  => new cqValidatorTags(),
       'content_category_id' => new sfValidatorPropelChoice(array(
         'required' => true,

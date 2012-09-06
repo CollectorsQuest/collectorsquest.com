@@ -21,6 +21,7 @@ class CollectibleEditForm extends BaseCollectibleForm
     $this->setupTagsField();
     $this->setupReturnToField();
 
+    $this->validatorSchema['name'] = new cqValidatorName(array('required' => true));
     $this->validatorSchema->setPostValidator(new sfValidatorPass());
 
     // Define which fields to use from the base form
