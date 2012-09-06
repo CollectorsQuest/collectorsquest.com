@@ -20,7 +20,8 @@
   <?php
     echo link_to_if(
       !empty($video), image_tag_collectible($collectible, '620x370'),
-      '@collectible_by_slug?id='. $collectible->getId() .'&slug='. $collectible->getSlug() .'#mediaspace', array('id' => 'video1')
+      '@collectible_by_slug?id='. $collectible->getId() .'&slug='. $collectible->getSlug() .'#mediaspace',
+      array('id' => 'video1')
     );
   ?>
   <?php if (!empty($video)): ?>
@@ -151,7 +152,7 @@ $(document).ready(function()
       flashplayer: '/swf/mediaplayer.swf',
       file: '<?= src_tag_multimedia($video, 'original'); ?>',
       autostart: true,
-      width: 848, height: 480,
+      width: 720, height: 416,
       skin: "<?= cq_image_src('glow.zip', false); ?>",
       'plugins': 'fbit-1,tweetit-1,gapro-2',
       'gapro.accountid': 'UA-669177-1',
