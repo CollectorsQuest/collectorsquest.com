@@ -64,11 +64,13 @@ seo:
 
     category:
       model: true
-      title: Collectible %Name% | Collectible and Antique %Name%
+      title:
+        - %Name% | Collectors Quest
+        - %Name% Collections | Collectors Quest
+        - %Name% Collectible, Vintage & Antique | Collectors Quest
       description: |
-        CollectorsQuest.com is the place to browse antique %Name%.
-        Our sellers are serious about their interest in antique and collectible %Name%.
-      keywords: %Name%
+        Browse collectible, vintage and antique items on Collectors Quest,
+        like these %Name% items, posted by trusted sellers and passionate collectors!
 
   collections:
     title: Unique Collectible, Vintage & Antique Items | Collectors Quest
@@ -141,10 +143,13 @@ seo:
 
     browse:
       model: true
-      title: Collectable %Name% | Vintage Collectable %Name%
-      description: |
-        Buy, sell and trade vintage collectable %Name%.
-        Browse over %countCollections% collectible %Name% in the CollectorsQuest.com marketplace.
+      title:
+        - %Name% | Collectors Quest
+        - %Name% - Marketplace | Collectors Quest
+        - Buy %Name% - Marketplace | Collectors Quest
+      description:
+        - Buy, sell & trade on Collectors Quest! Find %Name% posted by passionate collectors and trusted sellers.
+        - Buy and sell antique, vintage & collectible items on Collectors Quest! Find %Name% posted by passionate collectors and trusted sellers.
 
     categories:
       title: Buy Collectible Vintage & Antique Marketplace Items | Collectors Quest
