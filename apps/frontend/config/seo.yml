@@ -90,8 +90,8 @@ seo:
         - %Name% by %Collector% - %TagString% | Collectors Quest
       description:
         - %Description%
-        - %Description% | %Name% by %Collector%
-        - %Description% | %Name% by %Collector% (%NumViews% views)
+        - %Description% | %TagString%
+        - %Description% | From %ContentCategory% | %TagString%
 
     # https://basecamp.com/1759305/projects/288122-collectorsquest-com/todos/11739468-collectible-product
     collectible:
@@ -107,7 +107,8 @@ seo:
         - %Description%
         - %Description% | %Name%
         - %Description% | %Name% from %Collection%
-        - %Description% | %Name% from %Collection% by %Collector% (%NumViews% views)
+        - %Description% | %Name% from %Collection% by %Collector%
+        - %Description% | %Name% from %Collection% by %Collector% | %TagString%
 
   # https://basecamp.com/1759305/projects/288122-collectorsquest-com/todos/11749079-collector-page
   collector:
@@ -117,18 +118,19 @@ seo:
         - %DisplayName% | Collectors Quest
         - %DisplayName%’s Collectibles | Collectors Quest
         - %DisplayName%’s Collectibles | Buy & Sell on Collectors Quest
-      description:
-        #- Collectors Quest member %DisplayName% is sharing their %AboutWhatYouCollect% items on Collectors Quest. Upload your own collectibles and show off today!
-        #- Collectors Quest member %DisplayName% is sharing %countCollectiblesInCollections% items on Collectors Quest. Upload your own %AboutWhatYouCollect% items and show off today!
-        #- %ProfileAboutMe%
-        #- %ProfileAboutMe% | %AboutWhatYouCollect%
-        #- %ProfileAboutMe% | %ProfileAboutCollections% | %AboutWhatYouCollect%
 
     signup:
       title: Buy and Sell Collectibles Online | Sign Up at CollectorsQuest.com
       description: |
         Sign up to sell or buy collectibles online.
         CollectorsQuest.com provides a unique marketplace for buying and selling collectibles online.
+
+  collectors:
+    index:
+      title: Newest Collectors & Sellers | Collectors Quest
+      description: |
+        Check out the newest members on Collectors Quest! Show off your antique,
+        vintage and collectible items, meet other collectors and buy, sell or trade with others.
 
   marketplace:
     index:
