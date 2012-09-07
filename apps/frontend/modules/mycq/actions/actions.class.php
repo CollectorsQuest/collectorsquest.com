@@ -660,46 +660,13 @@ class mycqActions extends cqFrontendActions
     return sfView::SUCCESS;
   }
 
-  public function executeMarketplaceCreditHistory()
+  public function executeMarketplaceCreditHistory(sfWebRequest $request)
   {
     $this->redirectUnless(IceGateKeeper::open('mycq_marketplace_credit_history'), '@mycq');
 
+    $this->filter_by = $request->getParameter('filter', 'all');
+
     SmartMenu::setSelected('mycq_menu', 'marketplace');
-
-    // Get the Collector
-    $collector = $this->getCollector(true);
-
-    $q = CollectibleForSaleQuery::create()
-      ->filterByCollector($collector);
-      //->isForSale()
-      //->filterByIsSold(true)
-    $this->total = $q->count();
-    $this->collectibles_for_sale = $q->find();
-
-    // Make the collector available to the template
-    $this->collector = $collector;
-
-    // retrieve the package transactions
-    $this->package_transactions = PackageTransactionQuery::create()
-      ->filterByCollector($this->getCollector())
-      ->_if('dev' != sfConfig::get('sf_environment'))
-        ->paidFor()
-      ->_endif()
-      ->find();
-
-    // check if the seller has valid credits left
-    $this->has_no_credits = true;
-    foreach ($this->package_transactions as $package)
-    {
-      /* @var $package PackageTransaction */
-      if (
-        $package->getCredits() - $package->getCreditsUsed() > 0 &&
-        $package->getExpiryDate('YmdHis') > date('YmdHis')
-      )
-      {
-        $this->has_no_credits = false;
-      }
-    }
 
     return sfView::SUCCESS;
   }
