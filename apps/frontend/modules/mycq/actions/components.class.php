@@ -332,4 +332,96 @@ class mycqComponents extends cqFrontendComponents
     return sfView::SUCCESS;
   }
 
+  public function executeCreditPurchaseHistory()
+  {
+    // Get the Collector
+    $collector = $this->getCollector(true);
+
+    // Make the collector available to the template
+    $this->collector = $collector;
+
+    // retrieve the package transactions
+    $this->package_transactions = PackageTransactionQuery::create()
+      ->filterByCollector($collector)
+      ->_if('dev' != sfConfig::get('sf_environment'))
+      ->paidFor()
+      ->_endif()
+      ->find();
+
+    // check if the seller has valid credits left
+    $this->has_no_credits = true;
+    foreach ($this->package_transactions as $package)
+    {
+      /* @var $package PackageTransaction */
+      if (
+        $package->getCredits() - $package->getCreditsUsed() > 0 &&
+        $package->getExpiryDate('YmdHis') > date('YmdHis')
+      )
+      {
+        $this->has_no_credits = false;
+      }
+    }
+
+    return sfView::SUCCESS;
+  }
+
+  public function executeItemsForSaleHistory()
+  {
+    // Get the Collector
+    $collector = $this->getCollector(true);
+
+    // Make the collector available to the template
+    $this->collector = $collector;
+
+    $this->filter_by = $this->getRequestParameter('filter_by');
+
+    /*
+     * @todo get query to show adequate items for all cases
+     * @var $q CollectibleForSaleQuery
+     */
+    $q = CollectibleForSaleQuery::create()
+      ->filterByCollector($collector)
+      ->_if('active' == $this->filter_by)
+        ->hasActiveCredit()
+      ->_elseif('sold' == $this->filter_by)
+        ->filterByIsSold(true)
+      ->_elseif('inactive' == $this->filter_by)
+        // should fix this case
+        ->isForSale(false)
+      ->_elseif('expired' == $this->filter_by)
+        // should fix this case
+      ->_endif();
+
+    switch ($this->getRequestParameter('s', 'most-recent'))
+    {
+      case 'most-popular':
+        $q
+          ->joinCollectible()
+          ->useCollectibleQuery()
+          ->orderByNumViews(Criteria::DESC)
+          ->endUse();
+        break;
+
+      case 'most-recent':
+      default:
+        $q
+          ->orderByCreatedAt(Criteria::DESC);
+        break;
+    }
+
+    $this->search = '';
+    if ($this->search = $this->getRequestParameter('q'))
+    {
+      $q->search($this->getRequestParameter('q'));
+    }
+
+    $pager = new PropelModelPager($q, 8);
+    $pager->setPage($this->getRequestParameter('p', 1));
+    $pager->init();
+
+    $this->pager = $pager;
+
+    return sfView::SUCCESS;
+  }
+
 }
