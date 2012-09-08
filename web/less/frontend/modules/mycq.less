@@ -194,6 +194,60 @@
   }
 }
 
+.nav-tabs {
+
+	& > li > a {
+		margin-right: 0 !important;
+		margin-top: 4px;
+		padding-top: 7px;
+		padding-bottom: 6px;
+		font-size: 12px;
+		font-weight: bold;
+		line-height: @baseLineHeight;
+		color: @blue;
+	//background-color: #F5F5F5;
+		#gradient > .vertical(#fff, #F5F5F5);
+	//border-bottom-width: 0;
+		border-width: 1px;
+		border-style: solid;
+		border-color: #E8E8E8 #E8E8E8 @tabsBorderColor #E8E8E8!important;
+
+		.border-radius(6px 6px 0 0);
+		&:hover {
+			margin-top: 0;
+			padding-top: 10px;
+			color: @navbarLinkColorHover;
+			.blue-gradient();
+		}
+	}
+
+	& > .active > a,
+	& > .active > a:hover {
+		margin-top: 0;
+		padding-top: 10px;
+		color: @brown;
+		background: @lightBlue;
+		border: 1px solid @tabsBorderColor;
+		border-bottom-color: #FEFEFE;
+		cursor: default;
+		.border-radius(6px 6px 0 0);
+		text-shadow: none;
+
+	}
+}
+
+.lt-ie9 .nav-tabs {
+	& > .active > a,
+	& > .active > a:hover {
+		height: 20px;
+		border: 1px solid @tabsBorderColor!important;
+		border-bottom-color: #FEFEFE!important;
+	}
+	> li, > li.active {
+		margin-bottom: -1px;
+	}
+}
+
 .buttons-container {
   margin: 6px 0 0 0;
 }
@@ -289,47 +343,6 @@
 
 #body-mycq-marketplacePurchased .mycq-create-collectible .btn-large-box {
   padding-left: 5px;
-}
-
-.nav-tabs {
-
-  & > li > a {
-    margin-right: 0 !important;
-    margin-top: 4px;
-    padding-top: 7px;
-    padding-bottom: 6px;
-    font-size: 12px;
-    font-weight: bold;
-    line-height: @baseLineHeight;
-    color: @blue;
-    //background-color: #F5F5F5;
-    #gradient > .vertical(#fff, #F5F5F5);
-    //border-bottom-width: 0;
-    border-width: 1px;
-    border-style: solid;
-    border-color: #E8E8E8 #E8E8E8 @tabsBorderColor #E8E8E8;
-
-    .border-radius(6px 6px 0 0);
-    &:hover {
-      margin-top: 0;
-      padding-top: 10px;
-      color: @navbarLinkColorHover;
-      .blue-gradient();
-    }
-  }
-
-  & > .active > a,
-  & > .active > a:hover {
-    margin-top: 0;
-    padding-top: 10px;
-    color: @brown;
-    background: @lightBlue;
-    border: 1px solid @tabsBorderColor;
-    border-bottom-color: #FEFEFE;
-    cursor: default;
-    .border-radius(6px 6px 0 0);
-    text-shadow: none;
-  }
 }
 
 a.add-new-items-button {
