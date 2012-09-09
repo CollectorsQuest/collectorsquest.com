@@ -116,7 +116,6 @@
     border-width: 0 1px 1px 1px;
     border-color: @tabsBorderColor;
     border-style: solid;
-    //.box-shadow(1px 1px 1px rgba(50, 50, 50, 0.46));
   }
 
   ul.nav-tabs {
@@ -563,38 +562,6 @@ a.buy-credits-button {
   color: @blue;
 }
 
-.no-collections-box {
-  border: none;
-  border-top: 1px solid @yellowLight;
-  border-bottom: 1px solid @yellowLight;
-  background-color: @yellowLight !important;
-  .box-shadow(none);
-  .border-radius(0);
-
-  .info-no-collections-uploaded {
-    display: block;
-    margin: 15px 20px 10px;
-    .custom-font(20px, 30px, italic, normal);
-    letter-spacing: 0.04em;
-    color: @blueDark;
-  }
-  .info-no-collectibles-for-sale {
-    display: block;
-    margin: 5px 20px 10px;
-    .custom-font(20px, 30px, italic, normal);
-    letter-spacing: 0.01em;
-    color: @blueDark;
-  }
-  .bolder-title {
-    .custom-font(20px, 30px, normal, bold);
-    text-transform: uppercase;
-    color: @blueDark;
-  }
-  .spacer-inner-l {
-    padding-left: 15px;
-  }
-}
-
 .large-box-no-items-green-dashed {
   .size (128px, 738px);
   margin-top: 4px;
@@ -1038,26 +1005,27 @@ a.buy-credits-button {
 .collectible_wanted-list_grid_view_square .remove {
   display: none;
 }
-.collectible_wanted-list_grid_view_square:hover .remove:hover {
-  background-color: @red;
-  .opacity(50);
-}
+
 .collectible_wanted-list_grid_view_square:hover .remove {
-  display: block;
-  position: absolute;
-  vertical-align: middle;
-  top: 4px;
-  right: 4px;
-  z-index: 20;
-  padding: 2px 6px 4px 6px;
-  font-size: 9px;
-  line-height: 12px;
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 0.01em;
-  color: white;
-  background-color: #000000;
-  .opacity(50);
+	display: block;
+	position: absolute;
+	vertical-align: middle;
+	top: 4px;
+	right: 4px;
+	z-index: 20;
+	padding: 2px 6px 4px 6px;
+	font-size: 9px;
+	line-height: 12px;
+	font-weight: bold;
+	text-transform: uppercase;
+	letter-spacing: 0.01em;
+	color: white;
+	background-color: #000000;
+	.opacity(50);
+	&:hover {
+		background-color: @red;
+		.opacity(50);
+	}
 }
 
 .btn-create-collection-middle {
@@ -1383,7 +1351,7 @@ textarea.input-xlarge {
 }
 
 //Collectible Edit
-#main-image-set .main-image-set-container{
+#main-image-set .main-image-set-container {
   .drop-zone-large.over .hidden  {
     display: block !important;
     visibility: visible;
@@ -1640,6 +1608,8 @@ textarea.input-xlarge {
   z-index: 100;
   color: #039c00 !important;
   background: #cdffcb !important;
+	background-image: none;
+	filter: none;
   border-color: #0cc909 !important;
   text-shadow: none;
 
@@ -1655,15 +1625,20 @@ textarea.input-xlarge {
   }
 }
 
-.add-new-zone.ui-state-highlight {
+
+
+.add-new-zone.ui-state-highlight, .drop-zone-large.ui-state-highlight {
   color: #039c00 !important;
-  background-color: #cdffcb !important;
+  background: #cdffcb !important;
+	background-image: none;
+	filter: none;
   border-color: #0cc909 !important;
   .border-radius(0);
   .btn-upload-collectible, .btn-upload-collectible-txt, .icon-download-alt {
     color: #03ae00 !important;
   }
 }
+
 
 //MYCQ HOME
 
