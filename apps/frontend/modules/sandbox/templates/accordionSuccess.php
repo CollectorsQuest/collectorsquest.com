@@ -3,6 +3,9 @@
     <div class="accordion-heading">
       <div class="accordion-toggle Chivo webfont">
         Step #1
+        <span class="description">
+          Create collection
+        </span>
       </div>
     </div>
     <div id="collapseOne" class="accordion-body collapse">
@@ -31,6 +34,9 @@
     <div class="accordion-heading">
       <div class="accordion-toggle Chivo webfont">
         Step #2
+        <span class="description">
+          Collection Details
+        </span>
       </div>
     </div>
     <div class="accordion-body collapse">
@@ -72,6 +78,9 @@
     <div class="accordion-heading">
       <div class="accordion-toggle Chivo webfont">
         Step #3
+        <span class="description">
+          Add Items
+        </span>
       </div>
     </div>
     <div class="accordion-body collapse">
@@ -85,6 +94,9 @@
     <div class="accordion-heading">
       <div class="accordion-toggle Chivo webfont">
         Step #4
+        <span class="description">
+          Describe Items
+        </span>
       </div>
     </div>
     <div class="accordion-body collapse">

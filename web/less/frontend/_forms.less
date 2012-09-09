@@ -60,6 +60,18 @@ input[type="checkbox"] {
 	margin-top: 0 \9; /* IE8-9 */
 }
 
+// Set the height of select and file controls to match text inputs
+select,
+input[type="file"] {
+	height: 28px; /* In IE7, the height of the select element cannot be changed by height, only font-size */
+	*margin-top: 4px; /* For IE7, add top margin to align select with labels */
+	line-height: 28px;
+}
+
+.lt-ie9 select[class*="span"] {
+	min-height: 18px;
+}
+
 select {
 	border-color: @inputBorder;
 }
