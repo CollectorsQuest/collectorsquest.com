@@ -130,22 +130,49 @@
       margin-left: 5px;
       //margin-bottom: -1px;
       background-color: transparent;
+
+	    > a {
+		    margin-right: 0 !important;
+		    margin-top: 4px;
+		    padding-top: 7px;
+		    padding-bottom: 6px;
+		    font-size: 12px;
+		    line-height: @baseLineHeight;
+		    font-weight: bold;
+		    color: @blue;
+		    #gradient > .vertical(#fff, #F5F5F5);
+		    border-width: 1px;
+		    border-style: solid;
+		    border-color: #E8E8E8 #E8E8E8 @tabsBorderColor #E8E8E8;
+		    .border-radius(6px 6px 0 0);
+		    &:hover {
+			    margin-top: 2px;
+			    padding-top: 9px;
+			    color: @navbarLinkColorHover;
+			    .blue-gradient();
+			    .border-radius(6px 6px 0 0);
+		    }
+	    }
     }
 
-    li.active a {
+    li.active > a {
+	    margin-top: 0;
+	    padding-top: 10px;
       color: @linkColor;
-      //background-color: #fff;
-      #gradient > .vertical(#F5F5F5, #fff);
+      #gradient > .vertical(#F5F5F5, #ffffff);
+	    background-position: 0% 0%;
       .box-shadow(-1px -1px 3px rgba(35, 35, 39, 0.13));
+	    border: 1px solid @tabsBorderColor;
+	    border-bottom-color: #FEFEFE;
       border-top: 2px solid @linkColor;
-      background-position: 0% 0%;
+	    text-shadow: none;
       outline: none;
-    }
-
-    li.active .styles-reset {
-      height: 32px;
-      background: none;
-
+	    cursor: default;
+	    .border-radius(6px 6px 0 0);
+	    &:hover {
+		    #gradient > .vertical(#F5F5F5, #ffffff);
+		    background-position: 0% 0%;
+	    }
     }
   }
 
@@ -160,24 +187,6 @@
   }
   .sidebar-title {
     margin-top: 0;
-  }
-  .instruction-box {
-    height: 45px;
-    padding-top: 10px;
-    text-align: center;
-    border-top: 1px solid white;
-    border-bottom: 1px solid white;
-    background-color: @yellowLight;
-
-    .instruction-box-inner {
-      width: 420px;
-      margin: 0 auto;
-    }
-    .hint-text {
-      display: block;
-      margin-top: 10px;
-      color: @brown;
-    }
   }
   .form-actions {
     padding-left:0;
@@ -194,62 +203,32 @@
   }
 }
 
-.nav-tabs {
-
-	& > li > a {
-		margin-right: 0 !important;
-		margin-top: 4px;
-		padding-top: 7px;
-		padding-bottom: 6px;
-		font-size: 12px;
-		font-weight: bold;
-		line-height: @baseLineHeight;
-		color: @blue;
-	//background-color: #F5F5F5;
-		#gradient > .vertical(#fff, #F5F5F5);
-	//border-bottom-width: 0;
-		border-width: 1px;
-		border-style: solid;
-		border-color: #E8E8E8 #E8E8E8 @tabsBorderColor #E8E8E8!important;
-
-		.border-radius(6px 6px 0 0);
-		&:hover {
-			margin-top: 0;
-			padding-top: 10px;
-			color: @navbarLinkColorHover;
-			.blue-gradient();
-		}
+.lt-ie10 .nav-tabs {
+	li > a {
+		filter: none !important;
 	}
-
-	& > .active > a,
-	& > .active > a:hover {
-		margin-top: 0;
-		padding-top: 10px;
-		color: @brown;
-		background: @lightBlue;
-		border: 1px solid @tabsBorderColor;
-		border-bottom-color: #FEFEFE;
-		cursor: default;
-		.border-radius(6px 6px 0 0);
-		text-shadow: none;
-
+	li > a:hover {
+		filter: none !important;
+		.box-shadow(-1px -1px 3px rgba(35, 35, 39, 0.13));
 	}
 }
 
 .lt-ie9 .nav-tabs {
-	& > .active > a,
-	& > .active > a:hover {
-		height: 20px;
-		border: 1px solid @tabsBorderColor!important;
-		border-bottom-color: #FEFEFE!important;
+	li > a {
+		border: 1px solid #E8E8E8 !important;
+		border-bottom-color: @tabsBorderColor !important;
 	}
-	> li, > li.active {
+
+	.active {
+		> a, > a:hover {
+			height: 20px;
+			border: 1px solid @tabsBorderColor!important;
+			border-bottom-color: #FEFEFE!important;
+		}
+	}
+	li, li.active {
 		margin-bottom: -1px;
 	}
-}
-
-.buttons-container {
-  margin: 6px 0 0 0;
 }
 
 #mycq-tabs .control-group {
