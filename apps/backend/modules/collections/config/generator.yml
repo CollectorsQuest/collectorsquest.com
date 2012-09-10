@@ -28,7 +28,7 @@ generator:
         sort: [created_at, desc]
         batch_actions: {}
         actions:
-          export: { label: "Export to CSV", action: export }
+          export: { label: "Export to CSV", action: export, sf_format: csv }
 
       filter:
         fields:
@@ -41,7 +41,7 @@ generator:
         sort: [id, asc]
         fields:
           count_collectibles: { label: Collectibles }
-        display: [id, collection_category_parent, collection_category, collector, name, count_collectibles, created_at]
+        display: [id, collection_category, collector, name, _description, tag_string, count_collectibles, created_at, _list_url]
 
       form:
         display: [name, description, tags, collection_category_id, content_category_id]
