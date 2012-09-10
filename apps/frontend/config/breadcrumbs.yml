@@ -34,6 +34,9 @@ ice_breadcrumbs:
     create:
       - { name: 'Collections' }
       - { name: 'Create' }
+    aentCollectibleFixedMatching:
+      - { name: '%Collection%', route: collection_by_slug, model: true, subobject: Collection }
+      - { name: '%Name%', model: true }
 
   collections:
     index: [{ name: 'Collections' }]

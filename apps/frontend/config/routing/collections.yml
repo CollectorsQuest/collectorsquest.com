@@ -24,7 +24,7 @@ aetn_collectible_by_slug:
   url:  /aetn/collectible/:id/:slug
   class: cqPropelRoute
   options: { model: Collectible, type: object, method: getObjectForRoute }
-  param: { module: aent, action: collectibleFixedMatching }
+  param: { module: collection, action: aentCollectibleFixedMatching }
   requirements: { id: '\d+', slug: '[\-\w\.]+' }
 
 

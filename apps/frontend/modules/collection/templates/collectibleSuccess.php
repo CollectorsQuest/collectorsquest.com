@@ -26,6 +26,23 @@
     <link rel="start" href="<?= url_for_collectible($first) ?>">
   <?php end_slot(); ?>
 <?php endif; ?>
+
+<?php if(isset($brand)): ?>
+  <div class="banners-620 spacer-bottom-20">
+    <?php
+      if ($brand === 'American Pickers')
+      {
+        echo link_to(image_tag('headlines/2012-0420_AP_Promo_Space_620x67_FIN.jpg'), '@aetn_american_pickers');
+      }
+      else if ($brand === 'Pawn Stars')
+      {
+        echo link_to(image_tag('headlines/2012-0420_PS_Promo_Space_620x67_FIN.jpg'), '@aetn_pawn_stars');
+      }
+      $height_main_div->value += 87;
+    ?>
+  </div>
+<?php endif; ?>
+
 <?php
   $options = array(
     'id' => sprintf('collectible_%d_name', $collectible->getId()),
@@ -194,7 +211,49 @@
   }
 ?>
 
+<?php if(isset($brand)): ?>
+  <?php
+    $link = link_to(
+      'See all related collectibles &raquo;', '@marketplace',
+      array('class' => 'text-v-middle link-align')
+    );
+    $link = null;
+
+    cq_section_title('Showcase', $link);
+  ?>
+
+  <div class="row">
+    <div id="collectibles" class="row-content">
+      <?php
+      if (!empty($related_collectibles))
+      {
+        /** @var $related_collectibles Collectible[] */
+        foreach ($related_collectibles as $i => $collectible)
+        {
+          include_partial(
+            'collection/collectible_grid_view_square_small',
+            array('collectible' => $collectible, 'i' => $i)
+          );
+        }
+      }
+      else if (!empty($related_collections))
+      {
+        foreach ($related_collections as $i => $collection)
+        {
+          include_partial(
+            'collection/collection_grid_view_square_small',
+            array('collection' => $collection, 'i' => $i)
+          );
+        }
+      }
+      ?>
+    </div>
+  </div>
+  <?php $height_main_div->value += 379; ?>
+<?php endif; ?>
+
 <?php $sf_user->setFlash('height_main_div', $height_main_div, 'false', 'internal'); ?>
+<?php $sf_user->setFlash('brand', $brand, 'false', 'internal'); ?>
 
 <script>
 $(document).ready(function()

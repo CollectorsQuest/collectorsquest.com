@@ -94,6 +94,16 @@ seo:
         - %Description% | %Name% from %Collection%
         - %Description% | %Name% from %Collection% by %Collector% (%NumViews% views)
 
+    # https://basecamp.com/1759305/projects/288122-collectorsquest-com/todos/11828067-history-a-e
+    aentCollectibleFixedMatching:
+      model: true
+      title:
+        - %Name% | Collectors Quest
+        - %Name% - %Collection% | Collectors Quest
+      description:
+        - %Description%
+        - %Description% | %TagString%
+
   # https://basecamp.com/1759305/projects/288122-collectorsquest-com/todos/11749079-collector-page
   collector:
     index:
