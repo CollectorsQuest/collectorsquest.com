@@ -56,13 +56,10 @@
         </div>
         <?php endif; ?>
 
-        <!--<p><small><strong>XHTML:</strong> You can use these tags: <?php echo allowed_tags(); ?></small></p>-->
-
-        <textarea class="input-append" name="comment" id="c" rows="10" colspan="3" style="width: 494px; height: 18px;resize: none;" placeholder=" What do you think?"></textarea>
-        <!-- <input class="input-append" type="text" id="c" data-provide="comment" autocomplete="off" name="comment">
-
-        <!--<p><input name="submit" type="submit" id="submit" tabindex="5" value="Submit Comment" />-->
-        <button type="submit" class="btn btn-large">Comment</button>
+        <div class="input-append">
+          <textarea name="comment" id="c" rows="10" colspan="3" style="width: 494px; height: 18px;resize: none;" placeholder=" What do you think?"></textarea>
+          <button type="submit" class="add-on btn btn-large">Comment</button>
+        </div>
 
         <input type="hidden" name="comment_post_ID" value="<?php echo $id; ?>" />
 
