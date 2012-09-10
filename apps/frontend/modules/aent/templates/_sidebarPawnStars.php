@@ -26,8 +26,10 @@
 
 <?php
   include_component(
-    '_sidebar', 'widgetMagnifyVideos',
-    array('playlist' => 'Pawn Stars')
+    '_sidebar', 'widgetCollectiblesForSale',
+    array(
+      'limit' => 6, 'fallback' => 'random'
+    )
   );
 ?>
 

@@ -23,7 +23,14 @@
   </a>
 </div>
 
-<?php include_component('_sidebar', 'widgetMagnifyVideos'); ?>
+<?php
+  include_component(
+    '_sidebar', 'widgetCollectiblesForSale',
+    array(
+      'limit' => 6, 'fallback' => 'random'
+    )
+  );
+?>
 
 <?php
   include_component(
