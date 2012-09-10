@@ -51,7 +51,7 @@ generator:
           tag_string: { label: Tags }
           list_price: { label: Price }
           created_at: { label: Date }
-          list_url: { label: Url }
+          list_url: { label: Link }
         display:
           - collectible_id
           - collector

@@ -127,6 +127,24 @@ class CollectorCollection extends BaseCollectorCollection
   }
 
   /**
+   * Proxy method for CollectionCategory::getPath()
+   *
+   * @param  string  $glue
+   * @param  string  $column
+   *
+   * @return null|string
+   */
+  public function getCategoryPath($glue = ' / ', $column = 'Name')
+  {
+    if ($content_category = $this->getContentCategory())
+    {
+      return $content_category->getPath($glue, $column);
+    }
+
+    return null;
+  }
+
+  /**
    * For each Multimedia that is added to the Advert, this method will be called
    * to take care of creating the right thumnail sizes
    *
