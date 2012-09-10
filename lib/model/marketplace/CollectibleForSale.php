@@ -218,6 +218,16 @@ class CollectibleForSale extends BaseCollectibleForSale
   }
 
   /**
+   * Proxy method to Collection::getContentCategory()->getPath()
+   *
+   * @return string
+   */
+  public function getCategoryPath()
+  {
+    return $this->getCollection()->getContentCategory()->getPath();
+  }
+
+  /**
    * Proxy method to Collectible::getTagString()
    *
    * @return string
