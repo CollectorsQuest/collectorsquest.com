@@ -9,7 +9,7 @@
     <?= $form->renderUsing('Bootstrap'); ?>
   </fieldset>
   <div class="form-actions">
-    <input class="btn btn-primary" type="submit" value="Recover your credentials!" />
+    <input class="btn btn-primary" type="submit" value="Recover your information!" />
     <span class="spacer-left-15">
       &nbsp;
     </span>
