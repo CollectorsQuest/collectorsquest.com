@@ -47,7 +47,9 @@
   <tbody>
   <?php if (count($package_transactions)): foreach ($package_transactions as $package_transaction): ?>
     <?php
-    switch ($package_transaction->getPaymentStatus()) {
+    // @todo what is the proper way to determine status?
+    switch ($package_transaction->getPaymentStatus())
+    {
       case PackageTransactionPeer::PAYMENT_STATUS_PAID:
         $class = '';
         if ($package_transaction->getCredits() - $package_transaction->getCreditsUsed() <= 5)

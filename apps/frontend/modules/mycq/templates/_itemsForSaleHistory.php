@@ -57,22 +57,27 @@
             <?php endif; ?>
           </td>
           <td>
-            <?php // @todo should optimize and not use same function calls as for the previous <td> ?>
-            <?php if ($collectible_for_sale->getIsSold()): ?>
-            -
-            <?php elseif ($collectible_for_sale->getExpiryDate() > date('Y-m-d H:i:s')): ?>
-            <button class="btn btn-mini" type="button">
-              <i class="icon-minus-sign"></i>&nbsp;Deactivate
-            </button>
-            <?php elseif($collectible_for_sale->getExpiryDate() == null): ?>
-            <button class="btn btn-mini" type="button">
-              <i class="icon-ok"></i>&nbsp;Activate
-            </button>
-            <?php else: ?>
-            <button class="btn btn-mini" type="button">
-              <i class="icon-undo"></i>&nbsp;Re-list
-            </button>
-            <?php endif; ?>
+            <form action="<?= url_for('@mycq_item_actions'); ?>" method="post" id="inbox-form">
+              <?php // @todo should optimize and not use same function calls as for the previous <td> ?>
+              <?php if ($collectible_for_sale->getIsSold()): ?>
+              -
+              <?php elseif ($collectible_for_sale->getExpiryDate() > date('Y-m-d H:i:s')): ?>
+              <button class="btn btn-mini" type="button" name="action[deactivate]"
+                      onclick="return confirm('Are you sure you sure you want to deactivate this item?')">
+                <i class="icon-minus-sign"></i>&nbsp;Deactivate
+              </button>
+              <?php elseif($collectible_for_sale->getExpiryDate() == null): ?>
+              <button class="btn btn-mini" type="button" name="action[activate]"
+                      onclick="return confirm('Are you sure you sure you want to activate this item?')">
+                <i class="icon-ok"></i>&nbsp;Activate
+              </button>
+              <?php else: ?>
+              <button class="btn btn-mini" type="button" name="action[re-list]"
+                      onclick="return confirm('Are you sure you sure you want to re-list this item?')">
+                <i class="icon-undo"></i>&nbsp;Re-list
+              </button>
+              <?php endif; ?>
+            </form>
           </td>
         </tr>
       <?php // @todo add cases for filters */ ?>
