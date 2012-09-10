@@ -9,7 +9,7 @@ class _blogActions extends cqFrontendActions
     $this->getResponse()->addMeta('description', null, true);
     $this->getResponse()->addMeta('keywords', null, true);
 
-    SmartMenu::setSelected('header_main_menu', 'blog');
+    SmartMenu::setSelected('header', 'blog');
   }
 
   public function executeIndex()
@@ -48,7 +48,7 @@ class _blogActions extends cqFrontendActions
     // We do not want to hightlight the Blog header menu on static pages
     if ($this->data['is_page'])
     {
-      SmartMenu::setSelected('header_main_menu', null);
+      SmartMenu::setSelected('header', null);
     }
 
     // Set the right title based on data from the blog

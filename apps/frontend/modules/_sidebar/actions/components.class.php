@@ -625,7 +625,7 @@ class _sidebarComponents extends cqFrontendComponents
 
   public function executeWidgetCollectiblesForSale()
   {
-    $this->title = $this->getVar('title') ?: 'Items for Sale';
+    $this->title = $this->getVar('title') ?: 'From the Market';
 
     // Set the limit of Collectibles For Sale to show
     $this->limit = (int) $this->getVar('limit') ?: 3;

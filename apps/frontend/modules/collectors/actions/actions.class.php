@@ -33,6 +33,18 @@ class collectorsActions extends cqFrontendActions
           ->withColumn('SUM(CollectorCollection.NumViews)', 'TotalCollectionsViews')
           ->groupBy('CollectorCollection.CollectorId')
           ->orderBy('CollectorCollection.NumViews', Criteria::DESC);
+
+        $this->getResponse()->addMeta(
+          'title',
+          'Popular Collectors & Collections | Collectors Quest'
+        );
+        $this->getResponse()->addMeta(
+          'description',
+          sprintf(
+            'Collectors Quest is an interactive community and marketplace for the passionate collector.
+            Come join members like %s, and share your collections today!', $q->findOne()
+          )
+        );
         break;
 
       case 'near-you':

@@ -15,6 +15,7 @@
     '/assets/js/jquery.js', '/assets/js/jquery/ui.js',
     '/assets/js/bootstrap/alert.js', '/assets/js/bootstrap/collapse.js', '/assets/js/bootstrap/dropdown.js',
     '/assets/js/bootstrap/tooltip.js', '/assets/js/bootstrap/popover.js', '/assets/js/bootstrap/clickover.js',
+    '/assets/js/jquery/counter.js', '/assets/js/jquery/targets.js', '/assets/js/jquery/checkboxes.js',
     'backend/application.js'
   ));
 
