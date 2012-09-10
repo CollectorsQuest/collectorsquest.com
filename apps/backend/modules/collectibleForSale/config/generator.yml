@@ -15,22 +15,30 @@ generator:
       actions: ~
       fields:
         created_at: { label: Date, date_format: 'MM/dd/yyyy' }
-        marked_for_sale_at: { label: "For sale from" , date_format: 'MM/dd/yyyy' }
+        marked_for_sale_at: { label: Market Date , date_format: 'MM/dd/yyyy' }
 
       list:
         title: Items for Sale
         fields:
           list_seller: { label: Seller }
-          list_collectible: { label: Item }
+          list_thumbnail: { label: Thumbnail }
+          list_collectible: { label: Name }
           list_price: { label: Price }
-        display: [_list_seller, _list_collectible, _list_price, condition, created_at, marked_for_sale_at]
+        display:
+          - _list_seller
+          - _list_thumbnail
+          - _list_collectible
+          - _list_price
+          - condition
+          - marked_for_sale_at
+          - created_at
         object_actions: {}
         batch_actions: {}
         actions:
           export: { label: 'Export to CSV', sf_format: csv }
 
       filter:
-        display: [price, condition, created_at, marked_for_sale_at]
+        display: [price, condition, marked_for_sale_at, created_at]
 
       form:
         display: [collectible_id, condition, is_ready, quantity]
@@ -39,8 +47,19 @@ generator:
 
       export:
         fields:
+          category_path: { label: Category }
           tag_string: { label: Tags }
           list_price: { label: Price }
           created_at: { label: Date }
           list_url: { label: Url }
-        display: [name, _description, category, tag_string, _list_price, collector, created_at, condition, _list_url]
+        display:
+          - collectible_id
+          - collector
+          - category_path
+          - name
+          - _description
+          - tag_string
+          - _list_price
+          - condition
+          - marked_for_sale_at
+          - _list_url

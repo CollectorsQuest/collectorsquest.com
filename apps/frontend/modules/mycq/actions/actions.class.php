@@ -176,12 +176,17 @@ class mycqActions extends cqFrontendActions
       if ($request->hasParameter($key))
       {
         $collector->setProperty($property, (boolean) $request->getParameter($key));
-        $_property_changed = true;
+        $_property_changed = $key;
       }
 
-      if ($_property_changed)
+      if (false !== $_property_changed)
       {
         $collector->save();
+
+        $this->getUser()->setFlash('success', sprintf(
+          'You\'ve successfully changed your %s notification settings.',
+          $_property_changed
+        ));
 
         return $this->redirect('@mycq_profile_email_preferences');
       }

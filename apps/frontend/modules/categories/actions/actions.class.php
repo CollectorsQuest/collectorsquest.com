@@ -7,7 +7,7 @@ class categoriesActions extends cqFrontendActions
   {
     parent::preExecute();
 
-    SmartMenu::setSelected('header_main_menu', 'collections');
+    SmartMenu::setSelected('header', 'collections');
   }
 
   public function executeIndex()

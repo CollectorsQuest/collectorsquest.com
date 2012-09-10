@@ -45,7 +45,7 @@ class collectorActions extends cqFrontendActions
       if ($collectibles < 25)
       {
         $meta_description = sprintf(
-          'Collectors Quest member %s is sharing their %s items on Collectors Quest.
+          'Collectors Quest member %s is sharing their %s collection on Collectors Quest.
            Upload your own collectibles and show off today!',
           $collector->getDisplayName(), $profile->getAboutWhatYouCollect()
         );
@@ -53,8 +53,8 @@ class collectorActions extends cqFrontendActions
       else
       {
         $meta_description = sprintf(
-          'Collectors Quest member %s is sharing %s items on Collectors Quest.
-           Upload your own %s items and show off today!',
+          '%s shares their %s items of their %s collection on Collectors Quest.
+           Upload your own items and show off today!',
           $collector->getDisplayName(), $collectibles, $profile->getAboutWhatYouCollect()
         );
       }

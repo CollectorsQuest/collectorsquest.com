@@ -56,4 +56,9 @@ class sandboxActions extends cqFrontendActions
     return sfView::SUCCESS;
   }
 
+  public function executeAccordion()
+  {
+    return sfView::SUCCESS;
+  }
+
 }

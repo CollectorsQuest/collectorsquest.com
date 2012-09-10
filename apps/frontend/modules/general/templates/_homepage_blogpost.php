@@ -9,7 +9,10 @@
           }
           else
           {
-            echo image_tag_multimedia($blog_post->getPrimaryImage(), '270x270', array('alt_title' => $blog_post->getPostTitle()));
+            echo image_tag_multimedia(
+              $blog_post->getPrimaryImage(), '270x270',
+              array('alt_title' => $blog_post->getPostTitle())
+            );
           }
         ?>
       </div>

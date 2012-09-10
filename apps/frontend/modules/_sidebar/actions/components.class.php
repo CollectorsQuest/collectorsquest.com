@@ -625,7 +625,7 @@ class _sidebarComponents extends cqFrontendComponents
 
   public function executeWidgetCollectiblesForSale()
   {
-    $this->title = $this->getVar('title') ?: 'Items for Sale';
+    $this->title = $this->getVar('title') ?: 'From the Market';
 
     // Set the limit of Collectibles For Sale to show
     $this->limit = (int) $this->getVar('limit') ?: 3;
@@ -842,7 +842,7 @@ class _sidebarComponents extends cqFrontendComponents
     $pager->init();
 
     // NOTE: Here we have to assume that we show 3 collectibles per "page"
-    if ($collectible && $collectible->getPosition() % 3 != 2 && $pager->getLastPage() != 1)
+    if ($collectible && $collectible->getPosition() % 3 !== 2 && $pager->haveToPaginate())
     {
       $position = $collectible->getPosition();
       $this->collectibles = $a

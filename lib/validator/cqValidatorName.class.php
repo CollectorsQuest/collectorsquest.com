@@ -29,7 +29,7 @@ class cqValidatorName extends sfValidatorRegex
     $this->setOption('pattern', new sfCallable(array($this, 'generateRegex')));
     $this->setOption('must_match', false);
 
-    $this->setMessage('invalid', 'Wrong name.');
+    $this->setMessage('invalid', 'Wrong format.');
   }
 
   /**

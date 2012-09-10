@@ -27,5 +27,6 @@ else
 
 fi
 
+exec watchr -l apps/backend/config/less.watchr
 exec watchr -l apps/frontend/config/less.watchr
 php symfony cache:clear
