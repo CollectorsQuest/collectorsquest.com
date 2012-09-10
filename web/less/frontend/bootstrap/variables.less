@@ -57,7 +57,6 @@
 @headingsFontWeight:    bold;    // instead of browser default, bold
 @headingsColor:         inherit; // empty to use BS default, @textColor
 
-
 // Tables
 // -------------------------
 @tableBackground:                   transparent; // overall background-color
@@ -65,15 +64,14 @@
 @tableBackgroundHover:              #f5f5f5; // for hover
 @tableBorder:                       #ddd; // table and cell border
 
-
 // Buttons
 // -------------------------
 @btnBackground:                     @white;
 @btnBackgroundHighlight:            darken(@white, 10%);
-@btnBorder:                         #ccc;
+@btnBorder:                         #bbb;
 
 @btnPrimaryBackground:              @linkColor;
-@btnPrimaryBackgroundHighlight:     spin(@btnPrimaryBackground, 15%);
+@btnPrimaryBackgroundHighlight:     spin(@btnPrimaryBackground, 20%);
 
 @btnInfoBackground:                 #5bc0de;
 @btnInfoBackgroundHighlight:        #2f96b4;
@@ -87,7 +85,7 @@
 @btnDangerBackground:               #ee5f5b;
 @btnDangerBackgroundHighlight:      #bd362f;
 
-@btnInverseBackground:              @gray;
+@btnInverseBackground:              #444;
 @btnInverseBackgroundHighlight:     @grayDarker;
 
 
@@ -107,12 +105,11 @@
 @dropdownDividerBottom:         @white;
 
 @dropdownLinkColor:             @grayDark;
-
 @dropdownLinkColorHover:        @white;
-@dropdownLinkBackgroundHover:   @dropdownLinkBackgroundActive;
-
 @dropdownLinkColorActive:       @dropdownLinkColor;
+
 @dropdownLinkBackgroundActive:  @linkColor;
+@dropdownLinkBackgroundHover:   @dropdownLinkBackgroundActive;
 
 
 
@@ -147,6 +144,11 @@
 @hrBorder:                @grayLighter;
 
 
+// Horizontal forms & lists
+// -------------------------
+@horizontalComponentOffset:       180px;
+
+
 // Wells
 // -------------------------
 @wellBackground:                  #f5f5f5;
@@ -157,12 +159,12 @@
 @navbarCollapseWidth:             979px;
 
 @navbarHeight:                    40px;
-@navbarBackground:                darken(@navbarBackgroundHighlight, 5%);
 @navbarBackgroundHighlight:       #ffffff;
+@navbarBackground:                darken(@navbarBackgroundHighlight, 5%);
 @navbarBorder:                    darken(@navbarBackground, 12%);
 
-@navbarText:                      @gray;
-@navbarLinkColor:                 @gray;
+@navbarText:                      #777;
+@navbarLinkColor:                 #777;
 @navbarLinkColorHover:            @grayDark;
 @navbarLinkColorActive:           @gray;
 @navbarLinkBackgroundHover:       transparent;
@@ -214,10 +216,9 @@
 @errorBackground:         #f2dede;
 @errorBorder:             darken(spin(@errorBackground, -10), 3%);
 
-@successText:             #039c00;
-@successBackground:       #cdffcb;
-@successBorder:           #91dc8d;
-//@successBorder:           darken(spin(@successBackground, -10), 5%);
+@successText:             #468847;
+@successBackground:       #dff0d8;
+@successBorder:           darken(spin(@successBackground, -10), 5%);
 
 @infoText:                #3a87ad;
 @infoBackground:          #d9edf7;

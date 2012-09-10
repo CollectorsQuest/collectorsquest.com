@@ -82,7 +82,7 @@
 }
 
 .tagedit-list {
-  background-color: white;
+  background-color: #fff;
 }
 
 #body-mycq-collection, #body-mycq-collectible {
@@ -116,7 +116,6 @@
     border-width: 0 1px 1px 1px;
     border-color: @tabsBorderColor;
     border-style: solid;
-    //.box-shadow(1px 1px 1px rgba(50, 50, 50, 0.46));
   }
 
   ul.nav-tabs {
@@ -130,22 +129,49 @@
       margin-left: 5px;
       //margin-bottom: -1px;
       background-color: transparent;
+
+	    > a {
+		    margin-right: 0 !important;
+		    margin-top: 4px;
+		    padding-top: 7px;
+		    padding-bottom: 6px;
+		    font-size: 12px;
+		    line-height: @baseLineHeight;
+		    font-weight: bold;
+		    color: @blue;
+		    #gradient > .vertical(#fff, #F5F5F5);
+		    border-width: 1px;
+		    border-style: solid;
+		    border-color: #E8E8E8 #E8E8E8 @tabsBorderColor #E8E8E8;
+		    .border-radius(6px 6px 0 0);
+		    &:hover {
+			    margin-top: 2px;
+			    padding-top: 9px;
+			    color: @navbarLinkColorHover;
+			    .blue-gradient();
+			    .border-radius(6px 6px 0 0);
+		    }
+	    }
     }
 
-    li.active a {
+    li.active > a {
+	    margin-top: 0;
+	    padding-top: 10px;
       color: @linkColor;
-      //background-color: #fff;
-      #gradient > .vertical(#F5F5F5, #fff);
+      #gradient > .vertical(#F5F5F5, #ffffff);
+	    background-position: 0% 0%;
       .box-shadow(-1px -1px 3px rgba(35, 35, 39, 0.13));
+	    border: 1px solid @tabsBorderColor;
+	    border-bottom-color: #FEFEFE;
       border-top: 2px solid @linkColor;
-      background-position: 0% 0%;
+	    text-shadow: none;
       outline: none;
-    }
-
-    li.active .styles-reset {
-      height: 32px;
-      background: none;
-
+	    cursor: default;
+	    .border-radius(6px 6px 0 0);
+	    &:hover {
+		    #gradient > .vertical(#F5F5F5, #ffffff);
+		    background-position: 0% 0%;
+	    }
     }
   }
 
@@ -160,24 +186,6 @@
   }
   .sidebar-title {
     margin-top: 0;
-  }
-  .instruction-box {
-    height: 45px;
-    padding-top: 10px;
-    text-align: center;
-    border-top: 1px solid white;
-    border-bottom: 1px solid white;
-    background-color: @yellowLight;
-
-    .instruction-box-inner {
-      width: 420px;
-      margin: 0 auto;
-    }
-    .hint-text {
-      display: block;
-      margin-top: 10px;
-      color: @brown;
-    }
   }
   .form-actions {
     padding-left:0;
@@ -194,9 +202,17 @@
   }
 }
 
-.buttons-container {
-  margin: 6px 0 0 0;
+.ie9 .nav-tabs {
+	// IE9 and rounded corners SVG fix - goo.gl/pCFc7
+	li > a:hover {
+		filter: none !important;
+		.box-shadow(-1px -1px 3px rgba(35, 35, 39, 0.13));
+	}
+	li.active > a:hover {
+		background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2Y1ZjVmNSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZmZmZmYiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+) !important;
+	}
 }
+
 
 #mycq-tabs .control-group {
   label {
@@ -289,47 +305,6 @@
 
 #body-mycq-marketplacePurchased .mycq-create-collectible .btn-large-box {
   padding-left: 5px;
-}
-
-.nav-tabs {
-
-  & > li > a {
-    margin-right: 0 !important;
-    margin-top: 4px;
-    padding-top: 7px;
-    padding-bottom: 6px;
-    font-size: 12px;
-    font-weight: bold;
-    line-height: @baseLineHeight;
-    color: @blue;
-    //background-color: #F5F5F5;
-    #gradient > .vertical(#fff, #F5F5F5);
-    //border-bottom-width: 0;
-    border-width: 1px;
-    border-style: solid;
-    border-color: #E8E8E8 #E8E8E8 @tabsBorderColor #E8E8E8;
-
-    .border-radius(6px 6px 0 0);
-    &:hover {
-      margin-top: 0;
-      padding-top: 10px;
-      color: @navbarLinkColorHover;
-      .blue-gradient();
-    }
-  }
-
-  & > .active > a,
-  & > .active > a:hover {
-    margin-top: 0;
-    padding-top: 10px;
-    color: @brown;
-    background: @lightBlue;
-    border: 1px solid @tabsBorderColor;
-    border-bottom-color: #FEFEFE;
-    cursor: default;
-    .border-radius(6px 6px 0 0);
-    text-shadow: none;
-  }
 }
 
 a.add-new-items-button {
@@ -569,38 +544,6 @@ a.buy-credits-button {
   font-weight: bold;
   text-align: left;
   color: @blue;
-}
-
-.no-collections-box {
-  border: none;
-  border-top: 1px solid @yellowLight;
-  border-bottom: 1px solid @yellowLight;
-  background-color: @yellowLight !important;
-  .box-shadow(none);
-  .border-radius(0);
-
-  .info-no-collections-uploaded {
-    display: block;
-    margin: 15px 20px 10px;
-    .custom-font(20px, 30px, italic, normal);
-    letter-spacing: 0.04em;
-    color: @blueDark;
-  }
-  .info-no-collectibles-for-sale {
-    display: block;
-    margin: 5px 20px 10px;
-    .custom-font(20px, 30px, italic, normal);
-    letter-spacing: 0.01em;
-    color: @blueDark;
-  }
-  .bolder-title {
-    .custom-font(20px, 30px, normal, bold);
-    text-transform: uppercase;
-    color: @blueDark;
-  }
-  .spacer-inner-l {
-    padding-left: 15px;
-  }
 }
 
 .large-box-no-items-green-dashed {
@@ -1046,26 +989,27 @@ a.buy-credits-button {
 .collectible_wanted-list_grid_view_square .remove {
   display: none;
 }
-.collectible_wanted-list_grid_view_square:hover .remove:hover {
-  background-color: @red;
-  .opacity(50);
-}
+
 .collectible_wanted-list_grid_view_square:hover .remove {
-  display: block;
-  position: absolute;
-  vertical-align: middle;
-  top: 4px;
-  right: 4px;
-  z-index: 20;
-  padding: 2px 6px 4px 6px;
-  font-size: 9px;
-  line-height: 12px;
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 0.01em;
-  color: white;
-  background-color: #000000;
-  .opacity(50);
+	display: block;
+	position: absolute;
+	vertical-align: middle;
+	top: 4px;
+	right: 4px;
+	z-index: 20;
+	padding: 2px 6px 4px 6px;
+	font-size: 9px;
+	line-height: 12px;
+	font-weight: bold;
+	text-transform: uppercase;
+	letter-spacing: 0.01em;
+	color: white;
+	background-color: #000000;
+	.opacity(50);
+	&:hover {
+		background-color: @red;
+		.opacity(50);
+	}
 }
 
 .btn-create-collection-middle {
@@ -1391,7 +1335,7 @@ textarea.input-xlarge {
 }
 
 //Collectible Edit
-#main-image-set .main-image-set-container{
+#main-image-set .main-image-set-container {
   .drop-zone-large.over .hidden  {
     display: block !important;
     visibility: visible;
@@ -1648,6 +1592,8 @@ textarea.input-xlarge {
   z-index: 100;
   color: #039c00 !important;
   background: #cdffcb !important;
+	background-image: none;
+	filter: none;
   border-color: #0cc909 !important;
   text-shadow: none;
 
@@ -1663,15 +1609,20 @@ textarea.input-xlarge {
   }
 }
 
-.add-new-zone.ui-state-highlight {
+
+
+.add-new-zone.ui-state-highlight, .drop-zone-large.ui-state-highlight {
   color: #039c00 !important;
-  background-color: #cdffcb !important;
+  background: #cdffcb !important;
+	background-image: none;
+	filter: none;
   border-color: #0cc909 !important;
   .border-radius(0);
   .btn-upload-collectible, .btn-upload-collectible-txt, .icon-download-alt {
     color: #03ae00 !important;
   }
 }
+
 
 //MYCQ HOME
 

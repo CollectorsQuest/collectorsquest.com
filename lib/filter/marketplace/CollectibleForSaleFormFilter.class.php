@@ -12,8 +12,8 @@ class CollectibleForSaleFormFilter extends BaseCollectibleForSaleFormFilter
   public function configure()
   {
     $this->setWidget('price', new cqWidgetFormRange(array(
-      'from' => new sfWidgetFormInput(),
-      'to'   => new sfWidgetFormInput(),
+      'from' => new sfWidgetFormInput(array(), array('class'=>'input-mini')),
+      'to'   => new sfWidgetFormInput(array(), array('class'=>'input-mini')),
     )));
 
     $this->setValidator('price', new cqValidatorNumberRange(array(
@@ -38,6 +38,7 @@ class CollectibleForSaleFormFilter extends BaseCollectibleForSaleFormFilter
     )));
 
     $this->setupCreatedAtField();
+    $this->setupMarkedForSaleAtField();
   }
 
   protected function setupCreatedAtField()
@@ -46,6 +47,17 @@ class CollectibleForSaleFormFilter extends BaseCollectibleForSaleFormFilter
       'config' => '{}',
     ));
     $this->validatorSchema['created_at'] = new IceValidatorDateRange(array(
+      'required' => false, 'from_date' => 'from', 'to_date' => 'to'
+    ));
+  }
+
+
+  protected function setupMarkedForSaleAtField()
+  {
+    $this->widgetSchema['marked_for_sale_at'] = new sfWidgetFormJQueryDateRange(array(
+      'config' => '{}',
+    ));
+    $this->validatorSchema['marked_for_sale_at'] = new IceValidatorDateRange(array(
       'required' => false, 'from_date' => 'from', 'to_date' => 'to'
     ));
   }

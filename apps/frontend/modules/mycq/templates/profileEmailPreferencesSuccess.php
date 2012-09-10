@@ -22,7 +22,7 @@
             <span class="">Receive our weekly newsletters: </span>
             <?php
               echo link_to(
-                $newsletter ? '&nbsp;Enabled&nbsp;' : 'Disabled',
+                $newsletter ? 'Yes' : '&nbsp;No&nbsp;',
                 '@mycq_profile_email_preferences?newsletter=' . ((integer) !$newsletter),
                 array('class' => 'pull-right btn btn-mini ' . ($newsletter ? 'btn-success' : 'btn-danger'))
               );
@@ -35,7 +35,7 @@
             <span class="">Receive notifications of comments on your collections and collectibles: </span>
             <?php
               echo link_to(
-                $comments ? '&nbsp;Enabled&nbsp;' : 'Disabled',
+                $comments ? 'Yes' : '&nbsp;No&nbsp;',
                 '@mycq_profile_email_preferences?comments=' . ((integer) !$comments),
                 array('class' => 'pull-right btn btn-mini ' . ($comments ? 'btn-success' : 'btn-danger'))
               );
@@ -48,7 +48,7 @@
             <span class="">Receive notifications for new private messages: </span>
             <?php
               echo link_to(
-                $messages ? '&nbsp;Enabled&nbsp;' : 'Disabled',
+                $messages ? 'Yes' : '&nbsp;No&nbsp;',
                 '@mycq_profile_email_preferences?messages=' . ((integer) !$messages),
                 array('class' => 'pull-right btn btn-mini ' . ($messages ? 'btn-success' : 'btn-danger'))
               );
