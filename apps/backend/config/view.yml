@@ -7,9 +7,11 @@ default:
     title:        "Backend - Collectors Quest"
     robots:       noindex, nofollow
 
-  stylesheets:    [backend/default.css]
-  javascripts:
-    - backend/default.js
+  ## Stylesheets and Javascripts are forbidden to be defined here!
+  ## Please use modules/iceBackendModule/templates/_head.php
+  ##
+  # stylesheets:
+  # javascripts:
 
   has_layout:     true
   layout:         layout

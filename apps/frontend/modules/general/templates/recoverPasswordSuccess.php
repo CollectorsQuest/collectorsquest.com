@@ -9,9 +9,9 @@
     <?= $form->renderUsing('Bootstrap'); ?>
   </fieldset>
   <div class="form-actions">
-    <input class="btn btn-primary" type="submit" value="Recover your account!" />
+    <input class="btn btn-primary" type="submit" value="Recover your credentials!" />
     <span class="spacer-left-15">
-      <?= link_to('Did you recover your credentials?', '@login'); ?>
+      &nbsp;
     </span>
   </div>
 </form>

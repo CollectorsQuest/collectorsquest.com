@@ -33,7 +33,10 @@ class CollectibleCreateForm extends CollectibleForm
       'collection_id'  => new sfValidatorPropelChoice(array(
         'model' => 'CollectorCollection', 'column' => 'id', 'required' => true
       )),
-      'name'  => new sfValidatorString(array('required' => true)),
+      'name'  => new cqValidatorName(
+        array('required' => true),
+        array('invalid' => 'You need to use more descriptive name for your item
+                            (is it the camera auto generated name?)')),
       'description'  => new sfValidatorString(array('required' => true)),
       'thumbnail'  => new sfValidatorInteger(array('required' => false))
     ));

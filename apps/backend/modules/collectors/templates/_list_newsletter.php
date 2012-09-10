@@ -4,5 +4,5 @@
 
 if ($Collector->getPreferencesNewsletter())
 {
-  echo '<i class="icon-envelope pull-right" title="Subscribed to newsletter"></i>';
+  echo '<i class="icon-envelope" title="Subscribed to newsletter"></i>';
 }

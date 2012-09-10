@@ -13,7 +13,7 @@ if ($data['is_single'])
   {
     echo link_to(
       cq_image_tag('headlines/2012-06-24_CQGuidePromo_300x90.png', array('class' => 'spacer-top-20')),
-      '@misc_guide_to_collecting'
+      'misc_guide_to_collecting', array('ref' => cq_link_ref('sidebar'))
     );
   }
 
@@ -56,7 +56,7 @@ else if ($data['is_author'])
   {
     echo link_to(
       cq_image_tag('headlines/2012-06-24_CQGuidePromo_300x90.png', array('class' => 'spacer-top-20')),
-      '@misc_guide_to_collecting'
+      'misc_guide_to_collecting', array('ref' => cq_link_ref('sidebar'))
     );
   }
 
@@ -87,7 +87,7 @@ else
   {
     echo link_to(
       cq_image_tag('headlines/2012-06-24_CQGuidePromo_300x90.png', array('class' => 'spacer-top-20')),
-      '@misc_guide_to_collecting'
+      'misc_guide_to_collecting', array('ref' => cq_link_ref('sidebar'))
     );
 
     include_component('_sidebar', 'widgetMailChimpSubscribe');

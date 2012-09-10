@@ -29,7 +29,7 @@ $_height = 0;
           {
             slot('lastItem');
             echo link_to(
-              $pager->getNbResults().'<br />Items',
+              '<span>'.$pager->getNbResults().'</span>'.'Items',
               'collection_by_slug', $collection, array('class' => 'moreItems')
             );
             end_slot();

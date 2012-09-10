@@ -8,7 +8,7 @@ class _sidebarComponents extends cqFrontendComponents
   public function executeWidgetFacebookLikeBox()
   {
     /** @var $height stdClass */
-    $height = $this->getVar('height');
+    $height = $this->getVar('height') ?: new stdClass();
 
     return $this->_sidebar_if(!property_exists($height, 'value') || $height->value >= 340);
   }
@@ -19,7 +19,7 @@ class _sidebarComponents extends cqFrontendComponents
   public function executeWidgetFacebookRecommendations()
   {
     /** @var $height stdClass */
-    $height = $this->getVar('height');
+    $height = $this->getVar('height') ?: new stdClass();
 
     return $this->_sidebar_if(!property_exists($height, 'value') || $height->value >= 370);
   }
@@ -625,7 +625,7 @@ class _sidebarComponents extends cqFrontendComponents
 
   public function executeWidgetCollectiblesForSale()
   {
-    $this->title = $this->getVar('title') ?: 'Items for Sale';
+    $this->title = $this->getVar('title') ?: 'From the Market';
 
     // Set the limit of Collectibles For Sale to show
     $this->limit = (int) $this->getVar('limit') ?: 3;
@@ -842,7 +842,7 @@ class _sidebarComponents extends cqFrontendComponents
     $pager->init();
 
     // NOTE: Here we have to assume that we show 3 collectibles per "page"
-    if ($collectible && $collectible->getPosition() % 3 != 2)
+    if ($collectible && $collectible->getPosition() % 3 !== 2 && $pager->haveToPaginate())
     {
       $position = $collectible->getPosition();
       $this->collectibles = $a
@@ -904,7 +904,7 @@ class _sidebarComponents extends cqFrontendComponents
   public function executeWidgetMailChimpSubscribe()
   {
     /** @var $height stdClass */
-    $height = $this->getVar('height');
+    $height = $this->getVar('height') ?: new stdClass();
 
     return $this->_sidebar_if(!property_exists($height, 'value') || $height->value >= 190);
   }
