@@ -6,12 +6,6 @@
 <?php endif; ?>
 
 <?php
-  if (SF_ENV === 'prod')
-  {
-    // Include the cqcdns.com javascript files
-    ice_include_javascripts();
-  }
-
   // Include the cqcdns.com javascript files
   cq_include_javascripts();
 ?>
