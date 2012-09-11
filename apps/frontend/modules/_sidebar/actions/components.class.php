@@ -852,7 +852,7 @@ class _sidebarComponents extends cqFrontendComponents
     $pager->init();
 
     // NOTE: Here we have to assume that we show 3 collectibles per "page"
-    if ($collectible && $collectible->getPosition() % 3 != 2)
+    if ($collectible && $collectible->getPosition() % 3 !== 2 && $pager->haveToPaginate())
     {
       $position = $collectible->getPosition();
       $this->collectibles = $a

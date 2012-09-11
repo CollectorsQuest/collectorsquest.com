@@ -38,7 +38,11 @@ class CollectionCreateForm extends CollectorCollectionForm
       'id'    => new sfValidatorPropelChoice(
         array('model' => 'CollectorCollection', 'column' => 'id', 'required' => false)
       ),
-      'name'  => new sfValidatorString(),
+      'name'  => new cqValidatorName(
+        array('required' => true),
+        array('invalid' => 'You need to use more descriptive name for your collection
+                            (is it the camera auto generated name?)')
+      ),
       'tags'  => new cqValidatorTags(),
       'content_category_id' => new sfValidatorPropelChoice(array(
         'required' => true,

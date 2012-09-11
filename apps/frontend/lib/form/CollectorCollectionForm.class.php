@@ -9,14 +9,29 @@ class CollectorCollectionForm extends BaseCollectorCollectionForm
 
   public function configure()
   {
-    $this->widgetSchema['name']->setAttribute('required', 'required');
-    $this->widgetSchema['description']->setAttribute('required', 'required');
-
+    $this->setupNameField();
+    $this->setupDescriptionField();
     $this->setupTagsField();
     $this->unsetFields();
 
     $this->getWidgetSchema()->setFormFormatterName('Bootstrap');
     $this->widgetSchema->setNameFormat('collection[%s]');
+  }
+
+  protected function setupNameField()
+  {
+    $this->widgetSchema['name']->setAttribute('required', 'required');
+
+    $this->validatorSchema['name'] = new cqValidatorName(
+      array('required' => true),
+      array('invalid' => 'You need to use more descriptive name for your collection
+                          (is it the camera auto generated name?)')
+    );
+  }
+
+  protected function setupDescriptionField()
+  {
+    $this->widgetSchema['description']->setAttribute('required', 'required');
   }
 
   protected function setupTagsField()
