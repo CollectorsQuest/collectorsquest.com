@@ -161,11 +161,16 @@ class aentActions extends cqFrontendActions
     $pager->init();
     $this->pager = $pager;
 
+    $categories = ContentCategoryQuery::create()
+      ->filterById(array(2, 364, 388, 674, 1559, 2409, 2836), Criteria::IN)
+      ->find();
+
     /** @var $q CollectibleForSaleQuery */
     $q = CollectibleForSaleQuery::create()
-      ->filterByCollection($collection)
-      ->limit(8);
-    $this->collectibles_for_sale = array(); //$q->find();
+      ->filterByContentCategoryWithDescendants($categories)
+      ->isForSale()
+      ->orderByUpdatedAt(Criteria::DESC);
+    $this->collectibles_for_sale = $q->limit(8)->find();
 
     $this->collection = $collection;
 
@@ -323,6 +328,19 @@ class aentActions extends cqFrontendActions
           array(1847, 545, 1290, 789, 477, 307, 1934, 823), Criteria::IN
         )->orderById('DESC')->find();
       }
+      else
+      {
+        $categories = ContentCategoryQuery::create()
+          ->filterById(array(115, 364, 388, 775, 1559, 1145, 1806, 2423), Criteria::IN)
+          ->find();
+
+        /** @var $q CollectorCollectionQuery */
+        $q = CollectorCollectionQuery::create()
+          ->filterByContentCategoryWithDescendants($categories)
+          ->addAscendingOrderByColumn('RAND()');
+
+        $this->related_collections = $q->limit(8)->find();
+      }
     }
 
     /**
@@ -393,19 +411,35 @@ class aentActions extends cqFrontendActions
           array(819, 618, 26, 574, 752, 1727, 1059, 910), Criteria::IN
         )->find();
       }
+      else
+      {
+        $categories = ContentCategoryQuery::create()
+          ->filterById(array(2, 364, 388, 674, 1559, 2409, 2836), Criteria::IN)
+          ->find();
+
+        /** @var $q CollectorCollectionQuery */
+        $q = CollectorCollectionQuery::create()
+          ->filterByContentCategoryWithDescendants($categories)
+          ->addAscendingOrderByColumn('RAND()');
+
+        $this->related_collections = $q->limit(8)->find();
+      }
     }
 
     elseif ($collection->getId() == $picked_off['collection'])
     {
       $this->brand = 'Picked Off';
 
-      $tags = $collectible->getTags();
-      $q = CollectibleQuery::create()
-        ->filterById($collectible->getId(), Criteria::NOT_EQUAL)
-        ->filterByTags($tags)
-        ->orderByNumViews(Criteria::DESC)
-        ->limit(8);
-      $this->related_collectibles = $q->find();
+      $categories = ContentCategoryQuery::create()
+        ->filterById(array(2, 364, 674, 2409, 1367), Criteria::IN)
+        ->find();
+
+      /** @var $q CollectorCollectionQuery */
+      $q = CollectorCollectionQuery::create()
+        ->filterByContentCategoryWithDescendants($categories)
+        ->addAscendingOrderByColumn('RAND()');
+
+      $this->related_collections = $q->limit(8)->find();
     }
 
     /**
