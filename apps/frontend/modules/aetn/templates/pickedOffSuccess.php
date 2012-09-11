@@ -6,10 +6,10 @@
 
 <div class="spacer-bottom-15">
   <?php
-    echo cq_image_tag(
+    echo link_to(cq_image_tag(
       'headlines/2012-0777_Picked_Off_620x180.jpg',
       array('alt_title' => 'Check out items seen on Picked Off')
-    );
+    ), 'http://www.history.com/shows/picked-off', array('target' => '_blank'));
   ?>
 </div>
 
