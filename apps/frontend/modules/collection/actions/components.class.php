@@ -31,6 +31,8 @@ class collectionComponents extends cqFrontendComponents
       $this->form = new CollectibleForSaleBuyForm($collectible_for_sale);
     }
 
+    $this->brand = $this->getUser()->getFlash('brand', null, true, 'internal');
+
     return sfView::SUCCESS;
   }
 

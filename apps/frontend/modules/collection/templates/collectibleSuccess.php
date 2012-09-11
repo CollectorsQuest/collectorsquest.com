@@ -43,6 +43,10 @@
       {
         echo link_to(image_tag('headlines/2012-0420_PS_Promo_Space_620x67_FIN.jpg'), '@aetn_pawn_stars');
       }
+      else if ($brand === 'Picked Off')
+      {
+        echo link_to(image_tag('headlines/2012-0777_Picked_Off_620x67.jpg'), '@aetn_picked_off');
+      }
       $height_main_div->value += 87;
     ?>
   </div>
@@ -277,7 +281,7 @@
 <?php
   // pass variables to the sidebar
   $sf_user->setFlash('height_main_div', $height_main_div, false, 'internal');
-  $sf_user->setFlash('brand', $brand, 'false', 'internal');
+  $sf_user->setFlash('brand', $brand, false, 'internal');
 ?>
 
 <script type="text/javascript">
