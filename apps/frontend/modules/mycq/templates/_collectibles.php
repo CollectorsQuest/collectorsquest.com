@@ -41,7 +41,8 @@
 
       <p>
       <?php
-        echo link_to(
+        echo link_to_if(
+          $collectible->getName(),
           cqStatic::reduceText($collectible->getName(), 30),
           'mycq_collectible_by_slug', array('sf_subject' => $collectible, 'return_to' => 'collection'),
           array('class' => 'target')

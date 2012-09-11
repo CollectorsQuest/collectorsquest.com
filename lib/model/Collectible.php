@@ -16,6 +16,54 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
     $_multimedia = array(),
     $_counts = array();
 
+  public function postSave(PropelPDO $con = null)
+  {
+    if ($con === null)
+    {
+      $con = Propel::getConnection(
+        CollectiblePeer::DATABASE_NAME, Propel::CONNECTION_WRITE
+      );
+    }
+
+    parent::postSave($con);
+
+    // Let's assume we can make the Collectible public
+    $is_public = true;
+
+    if (!$this->getName() || $this->getIsNameAutomatic())
+    {
+      $is_public = false;
+    }
+    else if (!$this->getDescription())
+    {
+      $is_public = false;
+    }
+    else if (!$this->getTags())
+    {
+      $is_public = false;
+    }
+    else if (!$this->getMultimediaCount('image'))
+    {
+      $is_public = false;
+    }
+
+    // Update only if there is a change of the public status
+    if ($is_public !== $this->getIsPublic())
+    {
+      $sql = sprintf(
+        'UPDATE %s SET %s = %d WHERE %s = %d',
+        CollectiblePeer::TABLE_NAME, CollectiblePeer::IS_PUBLIC, $is_public,
+        CollectiblePeer::ID, $this->getId()
+      );
+      $con->exec($sql);
+    }
+  }
+
+  public function __toString()
+  {
+    return parent::__toString() ?: 'Untitled';
+  }
+
   public function getGraphId()
   {
     $graph_id = null;
