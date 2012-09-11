@@ -38,6 +38,7 @@ class marketplaceComponents extends cqFrontendComponents
       $query = array(
         'q' => $q,
         'filters' => array('has_thumbnail' => 1, 'uint1' => 1)
+        //TO DO Here shod be public filter
       );
 
       $query['sortby'] = 'date';
@@ -96,6 +97,7 @@ class marketplaceComponents extends cqFrontendComponents
           $collectible_ids = array_filter($collectible_ids);
 
           $query = CollectibleQuery::create()
+            ->filterByIsPublic(true)
             ->filterById($collectible_ids)
             ->haveThumbnail()
             ->useCollectibleForSaleQuery(null, Criteria::RIGHT_JOIN)
@@ -124,6 +126,7 @@ class marketplaceComponents extends cqFrontendComponents
           ->orderByCreatedAt(Criteria::DESC)
         ->endUse()
         ->filterById(null, Criteria::NOT_EQUAL)
+        ->filterByIsPublic(true)
         ->orderByCreatedAt(Criteria::DESC);
 
       $pager = new PropelModelPager($query, 12);

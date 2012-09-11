@@ -15,7 +15,8 @@ class collectionsActions extends cqFrontendActions
     if ($request->getRequestFormat() === 'rss')
     {
       /** @var $q CollectorCollectionQuery */
-      $q = CollectorCollectionQuery::create();
+      $q = CollectorCollectionQuery::create()
+        ->filterByIsPublic(true);
 
       switch ($request->getParameter('sort', 'latest'))
       {
@@ -61,6 +62,7 @@ class collectionsActions extends cqFrontendActions
     $this->collector = $this->getRoute()->getObject();
 
     $q = CollectorCollectionQuery::create()
+        ->filterByIsPublic(true)
         ->filterByCollector($this->collector)
         ->orderByUpdatedAt(Criteria::DESC);
 

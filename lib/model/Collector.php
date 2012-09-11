@@ -1443,6 +1443,17 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
     return $this->getProfile()->getAboutMe();
   }
 
+  /**
+   * Returns the number of related public CollectorCollection objects.
+   *
+   * @return int
+   */
+  public function countPublicCollectorCollections()
+  {
+    $q = CollectorCollectionQuery::create();
+    $q->findByIsPublic(true);
+    return $this->countCollectorCollections($q);
+  }
 }
 
 sfPropelBehavior::add('Collector', array('IceMultimediaBehavior'));

@@ -37,6 +37,9 @@ class marketplaceActions extends cqFrontendActions
         {
           $collectible_for_sale = CollectibleForSaleQuery::create()
             ->isForSale()
+              ->useCollectibleQuery()
+              ->filterByIsPublic(true)
+              ->endUse()
             ->findOneByCollectibleId(trim($values['cq_collectible_id_'. $i]));
 
           if ($collectible_for_sale)
@@ -70,6 +73,9 @@ class marketplaceActions extends cqFrontendActions
     $content_category = $this->getRoute()->getObject();
 
     $q = CollectibleForSaleQuery::create()
+       ->useCollectibleQuery()
+        ->filterByIsPublic(true)
+        ->endUse()
        ->filterByContentCategoryWithDescendants($content_category)
        ->isForSale()
        ->orderByUpdatedAt(Criteria::DESC);

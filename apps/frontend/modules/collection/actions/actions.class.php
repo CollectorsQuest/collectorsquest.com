@@ -76,6 +76,7 @@ class collectionActions extends cqFrontendActions
 
     $c = new Criteria();
     $c->add(CollectiblePeer::COLLECTOR_ID, $collection->getCollectorId());
+    $c->add(CollectiblePeer::IS_PUBLIC, true);
 
     if ($collection instanceof CollectionDropbox)
     {

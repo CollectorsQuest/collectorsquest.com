@@ -38,12 +38,16 @@ class collectorComponents extends cqFrontendComponents
   {
     $collector = $this->getVar('collector') ?: CollectorPeer::retrieveByPk($this->getRequestParameter('id'));
 
-    if (!$collector) {
+    if (!$collector)
+    {
       return sfView::NONE;
     }
 
     $q = CollectibleForSaleQuery::create()
       ->joinCollectible()
+        ->useCollectibleQuery()
+        ->filterByIsPublic(true)
+        ->endUse()
       ->filterByCollector($collector)
       ->isForSale()
       ->orderByUpdatedAt(Criteria::DESC);
@@ -62,12 +66,14 @@ class collectorComponents extends cqFrontendComponents
   {
     $collector = $this->getVar('collector') ?: CollectorPeer::retrieveByPk($this->getRequestParameter('id'));
 
-    if (!$collector) {
+    if (!$collector)
+    {
       return sfView::NONE;
     }
 
     /** @var $q CollectorCollectionQuery */
     $q = CollectorCollectionQuery::create()
+      ->filterByIsPublic(true)
       ->filterByCollector($collector)
       ->addJoin(CollectorCollectionPeer::ID, CollectionCollectiblePeer::COLLECTION_ID, Criteria::RIGHT_JOIN)
       ->orderByCreatedAt(Criteria::DESC)

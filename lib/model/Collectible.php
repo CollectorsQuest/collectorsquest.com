@@ -626,6 +626,50 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
     return parent::preDelete($con);
   }
 
+  /**
+   * Code to be run before persisting the object
+   * @param PropelPDO $con
+   * @return bloolean
+   */
+  public function preSave(PropelPDO $con = null)
+  {
+    $this->updatePublic();
+    return parent::preSave($con);
+  }
+
+  public function updatePublic()
+  {
+    /** @var $public boolean */
+    $public = true;
+
+    if (!$this->getName() || strlen(trim($this->getName())) == 0)
+    {
+      $public = false;
+    }
+    else if (!$this->getDescription('stripped') || strlen(trim($this->getDescription())) == 0)
+    {
+      $public = false;
+    }
+    else if ($this->getTags() == array())
+    {
+      $public = false;
+    }
+    else if (!$this->getPrimaryImage())
+    {
+      $public = false;
+    }
+
+    $this->setIsPublic($public);
+    // Checks Collection public flag
+    // Not sure we need this,
+    // If need, then need addd postDelete check
+//    $collection = $this->getCollection();
+//    if (!$collection->getIsPublic() && $collection->getIsPublic() != $collection->updatePublic()->getIsPublic())
+//    {
+//      $collection->save();
+//    }
+    return $this;
+  }
 }
 
 sfPropelBehavior::add('Collectible', array('IceMultimediaBehavior'));

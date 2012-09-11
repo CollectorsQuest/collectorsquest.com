@@ -100,12 +100,17 @@ class CollectorCollection extends BaseCollectorCollection
     return $v;
   }
 
-  public function getLatestCollectibles($limit)
+  public function getLatestCollectibles($limit,$onlyPublic = false)
   {
     $c = new Criteria();
     $c->add(CollectionCollectiblePeer::COLLECTION_ID, $this->getId());
     $c->addDescendingOrderByColumn(CollectionCollectiblePeer::POSITION);
     $c->addDescendingOrderByColumn(CollectionCollectiblePeer::UPDATED_AT);
+    if ($onlyPublic)
+    {
+      $c->addJoin(CollectionCollectiblePeer::COLLECTIBLE_ID, CollectiblePeer::ID, Criteria::LEFT_JOIN);
+      $c->add(CollectiblePeer::IS_PUBLIC, true);
+    }
     $c->setLimit($limit);
 
     return CollectionCollectiblePeer::doSelect($c);

@@ -57,6 +57,7 @@ class collectionsComponents extends cqFrontendComponents
 
         /** @var $q CollectibleQuery */
         $q = CollectibleQuery::create()
+          ->filterByIsPublic(true)
           ->filterById($collectible_ids)
           ->limit(4)
           ->addAscendingOrderByColumn(
@@ -113,7 +114,8 @@ class collectionsComponents extends cqFrontendComponents
     {
       $query = array(
         'q' => $q,
-        'filters' => array('has_thumbnail' => 1)
+        'filters' => array('has_thumbnail' => 1),
+        #TO DO here should be is_public filter
       );
 
       switch ($s)
@@ -163,6 +165,7 @@ class collectionsComponents extends cqFrontendComponents
           $collection_ids = array_merge(array(2842, 2841), $collection_ids);
 
           $query = CollectorCollectionQuery::create()
+            ->filterByIsPublic(true)
             ->filterById($collection_ids)
             ->haveThumbnail()
             ->addAscendingOrderByColumn('FIELD(id, '. implode(',', $collection_ids) .')');
