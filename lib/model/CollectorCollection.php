@@ -18,6 +18,60 @@ class CollectorCollection extends BaseCollectorCollection
   /** @var array */
   public $_counts = array();
 
+  public function postSave(PropelPDO $con = null)
+  {
+    parent::postSave($con);
+
+    if ($con === null)
+    {
+      $con = Propel::getConnection(
+        CollectorCollectionPeer::DATABASE_NAME, Propel::CONNECTION_WRITE
+      );
+    }
+
+    // Let's assume we can make the Collectible public
+    $is_public = true;
+
+    if (!$this->getName())
+    {
+      $is_public = false;
+    }
+    else if (!$this->getDescription())
+    {
+      $is_public = false;
+    }
+    else if (!$this->getTags())
+    {
+      $is_public = false;
+    }
+    else if (!$this->getMultimediaCount('image'))
+    {
+      $is_public = false;
+    }
+
+    // Update only if there is a change of the public status
+    if ($is_public !== $this->getIsPublic())
+    {
+      $sql = sprintf(
+        'UPDATE %s SET %s = %d WHERE %s = %d',
+        CollectorCollectionPeer::TABLE_NAME, CollectorCollectionPeer::IS_PUBLIC, $is_public,
+        CollectorCollectionPeer::ID, $this->getId()
+      );
+      $con->exec($sql);
+
+      $sql = sprintf(
+        'UPDATE %s SET %s = %d WHERE %s = %d',
+        CollectionPeer::TABLE_NAME, CollectionPeer::IS_PUBLIC, $is_public,
+        CollectionPeer::ID, $this->getId()
+      );
+      $con->exec($sql);
+    }
+  }
+
+  public function __toString()
+  {
+    return parent::__toString() ?: 'Untitled';
+  }
 
   public function getGraphId()
   {
