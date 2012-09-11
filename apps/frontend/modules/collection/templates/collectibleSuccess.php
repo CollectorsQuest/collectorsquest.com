@@ -276,7 +276,7 @@
 
 <?php
   // pass variables to the sidebar
-  $sf_user->setFlash('height_main_div', $height_main_div, 'false', 'internal');
+  $sf_user->setFlash('height_main_div', $height_main_div, false, 'internal');
   $sf_user->setFlash('brand', $brand, 'false', 'internal');
 ?>
 
