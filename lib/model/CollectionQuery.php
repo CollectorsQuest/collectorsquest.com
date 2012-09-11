@@ -15,17 +15,30 @@ class CollectionQuery extends BaseCollectionQuery
     /** @var $q ContentCategoryQuery */
     $q = ContentCategoryQuery::create();
 
-    foreach ((array) $content_category as $category)
+    if (is_array($content_category) || $content_category instanceof PropelCollection)
     {
-      if ($category instanceof ContentCategory)
+      foreach ($content_category as $category)
       {
-        $q->_or()
-          ->descendantsOfObjectIncluded($category);
+        if ($category instanceof ContentCategory)
+        {
+          $q->_or()
+            ->descendantsOfObjectIncluded($category);
+        }
       }
     }
+    else if ($content_category instanceof ContentCategory)
+    {
+      $q->descendantsOfObjectIncluded($content_category);
+    }
 
-    return $this
-      ->filterByContentCategory($q->find(), $comparison);
+    if ($q->hasWhereClause())
+    {
+      return $this->filterByContentCategory($q->find(), $comparison);
+    }
+    else
+    {
+      return $this->filterByContentCategory($content_category, $comparison);
+    }
   }
 
   /**
