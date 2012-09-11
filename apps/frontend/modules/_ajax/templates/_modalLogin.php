@@ -1,12 +1,14 @@
 <div id="modal-login-holder" class="modal hide">
-  <div class="modal-header">
+  <div class="modal-header" style="min-height: 28px;">
     <button class="close" data-dismiss="modal">×</button>
-    <ul class="nav nav-pills">
-      <li class="active"><a href="#modal-login-username-pane" class="btn" data-toggle="tab">Sign in with Collectors Quest</a></li>
-      <li><a href="#modal-login-openid-pane" class="btn spacer-left" data-toggle="tab">Sign in with Social Networks</a></li>
-      <!--<li class="pull-right spacer-right"><a href="#modal-sign-up-pane" data-toggle="tab">Sign up!</a></li>//-->
-      <!--<li class="pull-right spacer-right"><?= link_to('Sign up!', '@misc_guide_to_collecting'); ?></li>//-->
-    </ul>
+    <div class="social-only">
+      <ul class="nav nav-pills">
+        <li class="active"><a href="#modal-login-username-pane" class="btn" data-toggle="tab">Sign in with Collectors Quest</a></li>
+        <li><a href="#modal-login-openid-pane" class="btn spacer-left" data-toggle="tab">Sign in with Social Networks</a></li>
+        <!--<li class="pull-right spacer-right"><a href="#modal-sign-up-pane" data-toggle="tab">Sign up!</a></li>//-->
+        <!--<li class="pull-right spacer-right"><?= link_to('Sign up!', '@misc_guide_to_collecting'); ?></li>//-->
+      </ul>
+     </div>
   </div>
 
   <div class="modal-body">
@@ -55,27 +57,29 @@
     </div> <!-- .tab-content -->
   </div> <!-- .modal-body -->
 
-  <div class="modal-footer">
-    <div class="tab-content">
+  <div class="social-only">
+    <div class="modal-footer">
+      <div class="tab-content">
 
-      <div id="modal-login-username-footer" class="tab-pane active">
-        <button type="button" class="btn btn-primary">Sign&nbsp;In</button>
-        <span class="spacer-left-15 modal-link text-left">
-          - <?= link_to('Forgot your password?', '@recover_password'); ?> <br/>
-          - <?= link_to('Sign up for a new account?', '@misc_guide_to_collecting'); ?>
-        </span>
-      </div>
+        <div id="modal-login-username-footer" class="tab-pane active">
+          <button type="button" class="btn btn-primary">Sign&nbsp;In</button>
+          <span class="spacer-left-15 modal-link text-left">
+            - <?= link_to('Forgot your password?', '@recover_password'); ?> <br/>
+            - <?= link_to('Sign up for a new account?', '@misc_guide_to_collecting'); ?>
+          </span>
+        </div>
 
-      <div id="modal-login-openid-footer" class="tab-pane">
-        <!-- nothing in the footer here -->
-      </div>
+        <div id="modal-login-openid-footer" class="tab-pane">
+          <!-- nothing in the footer here -->
+        </div>
 
-      <div id="modal-sign-up-footer" class="tab-pane">
-        <button type="button" class="btn btn-primary">Submit</button>
-      </div>
+        <div id="modal-sign-up-footer" class="tab-pane">
+          <button type="button" class="btn btn-primary">Submit</button>
+        </div>
 
-    </div> <!-- .tab-content -->
-  </div> <!-- .modal-body -->
+      </div> <!-- .tab-content -->
+    </div> <!-- .modal-body -->
+  </div>
 
 </div> <!-- #modal-loginholder .modal.fade -->
 
