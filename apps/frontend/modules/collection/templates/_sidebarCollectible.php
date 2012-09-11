@@ -1,18 +1,16 @@
 <?php
 /**
- * @var  $form  CollectibleForSaleBuyForm
  * @var  $collectible  Collectible
- * @var  $collectible_for_sale  CollectibleForSale
- * @var  $sf_user  cqFrontendUser
- * @var  $height  stdClass
- * @var  $brand string
+ * @var  $sf_user      cqFrontendUser
+ * @var  $height       stdClass
+ * @var  $brand        string
  */
 
   $brand = $sf_user->getFlash('brand', null, true, 'internal');
 ?>
 
 <?php
-  // if the collectible is part of aent collection
+  // if the collectible is part of aent Collection
   if(isset($brand)):
 ?>
   <div class="banner-sidebar-top">
@@ -27,7 +25,6 @@
       }
     ?>
   </div>
-
 
   <?php if ($brand === 'Pawn Stars'): ?>
   <?php /*

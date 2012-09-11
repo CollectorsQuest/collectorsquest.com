@@ -6,16 +6,21 @@
  * @var  $collector    Collector
  * @var  $collection   Collection
  * @var  $collectible  Collectible
- * @var  $previous  Collectible
- * @var  $next  Collectible
- * @var  $first Collectible
+ * @var  $previous     Collectible
+ * @var  $next         Collectible
+ * @var  $first        Collectible
  * @var  $collectible_for_sale  CollectibleForSale
+ * @var  $editable     boolean
  *
  * @var  $additional_multimedia iceModelMultimedia[]
  *
  * determine page height so we can display more/less sidebar widgets
  * @var  $height_main_div  stdClass
+ *
+ * this variable is set when the Collectible is part of aent Collection
+ * @var  $brand  string
  */
+
   $height_main_div = new stdClass;
   $height_main_div->value = 92;
 ?>
@@ -27,7 +32,10 @@
   <?php end_slot(); ?>
 <?php endif; ?>
 
-<?php if(isset($brand)): ?>
+<?php
+  // if the collectible is part of aent Collection
+  if(isset($brand)):
+?>
   <div class="banners-620 spacer-bottom-20">
     <?php
       if ($brand === 'American Pickers')
@@ -211,7 +219,10 @@
   }
 ?>
 
-<?php if(isset($brand)): ?>
+<?php
+  // if the collectible is part of aent Collection
+  if(isset($brand)):
+?>
   <?php
     $link = link_to(
       'See all related collectibles &raquo;', '@marketplace',
@@ -252,10 +263,13 @@
   <?php $height_main_div->value += 379; ?>
 <?php endif; ?>
 
-<?php $sf_user->setFlash('height_main_div', $height_main_div, 'false', 'internal'); ?>
-<?php $sf_user->setFlash('brand', $brand, 'false', 'internal'); ?>
+<?php
+  // pass variables to the sidebar
+  $sf_user->setFlash('height_main_div', $height_main_div, 'false', 'internal');
+  $sf_user->setFlash('brand', $brand, 'false', 'internal');
+?>
 
-<script>
+<script type="text/javascript">
 $(document).ready(function()
 {
  'use strict';
