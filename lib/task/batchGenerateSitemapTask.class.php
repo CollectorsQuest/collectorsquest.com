@@ -285,7 +285,8 @@ class batchGenerateSitemapTask extends sfBaseTask
 
     //routes with weekly changes and 0.9 priority (Sub Pages / Product  Listings)
     $daily_routes = array(
-      '@aetn_american_pickers', '@aetn_pawn_stars', '@collections', '@collectors', '@collectors?sort=most-popular'
+      '@aetn_american_pickers', '@aetn_pawn_stars', '@aetn_picked_off',
+      '@collections', '@collectors', '@collectors?sort=most-popular'
     );
 
     //routes with weekly changes and 0.9 priority (Sub Pages / Product  Listings)

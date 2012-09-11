@@ -126,10 +126,10 @@ class cqLinkUtils
       {
         // now relative urls are 100% pointing to our application,
         // and in this case we throw an exception
-        throw new Exception(sprintf(
-          '[cqLinkUtils] Cannot asses if a route is secure for relative routes "%s"',
-          $parameters
-        ));
+        // throw new Exception(sprintf(
+        //   '[cqLinkUtils] Cannot asses if a route is secure for relative routes "%s"',
+        //   $parameters
+        // ));
       }
 
       if ($parameters == '#')
@@ -161,7 +161,7 @@ class cqLinkUtils
     // if the route is not a default route like:
     //   url:   /:module/:action/*
     // then we need to get the parameters from the named route
-    if ( !(isset($parameters['module']) || isset($parameters['action'])) )
+    if ( is_array($parameters) && !(isset($parameters['module']) || isset($parameters['action'])) )
     {
       // get all routes
       $routes = cqContext::getInstance()->getRouting()->getRoutes();

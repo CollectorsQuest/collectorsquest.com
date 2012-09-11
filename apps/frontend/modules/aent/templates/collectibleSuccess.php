@@ -8,12 +8,33 @@
     {
       echo link_to(image_tag('headlines/2012-0420_PS_Promo_Space_620x67_FIN.jpg'), '@aetn_pawn_stars');
     }
+    else if ($brand === 'Picked Off')
+    {
+      echo link_to(image_tag('headlines/2012-0777_Picked_Off_620x67.jpg'), '@aetn_picked_off');
+    }
   ?>
 </div>
 <?php cq_page_title($collectible->getName()); ?>
 
-<div class="brand-item">
-  <?= image_tag_collectible($collectible, '620x370'); ?>
+<div class="brand-item" style="position: relative;">
+  <?php
+    echo link_to_if(
+      !empty($video), image_tag_collectible($collectible, '620x370'),
+      '@collectible_by_slug?id='. $collectible->getId() .'&slug='. $collectible->getSlug() .'#mediaspace',
+      array('id' => 'video1')
+    );
+  ?>
+  <?php if (!empty($video)): ?>
+  <div style="position: absolute; top: 145px; left: 285px;">
+    <?php
+      echo link_to(
+        cq_image_tag('icons/play.png'),
+        '@collectible_by_slug?id='. $collectible->getId() .'&slug='. $collectible->getSlug() .'#mediaspace',
+        array('id' => 'video2')
+      );
+    ?>
+  </div>
+  <?php endif; ?>
 </div>
 
 <div class="blue-actions-panel spacer-20">
@@ -112,3 +133,37 @@
   ?>
   </div>
 </div>
+
+<div id="mediaspace" class="modal hide" tabindex="-1" role="dialog">
+  <div id="mediaspace-body" class="modal-body">
+    &nbsp;
+  </div>
+</div>
+
+<?php if (!empty($video)): ?>
+<script type="text/javascript">
+$(document).ready(function()
+{
+  $("a#video1, a#video2").click(function(e)
+  {
+    e.preventDefault();
+
+    jwplayer('mediaspace-body').setup({
+      flashplayer: '/swf/mediaplayer.swf',
+      file: '<?= src_tag_multimedia($video, 'original'); ?>',
+      autostart: true,
+      width: 720, height: 416,
+      skin: "<?= cq_image_src('glow.zip', false); ?>",
+      'plugins': 'fbit-1,tweetit-1,gapro-2',
+      'gapro.accountid': 'UA-669177-1',
+      'fbit.link': '<?= cq_canonical_url(); ?>',
+      'tweetit.link': '<?= cq_canonical_url(); ?>'
+    });
+
+    $('#mediaspace').modal();
+
+    return false;
+  });
+});
+</script>
+<?php endif; ?>

@@ -7,7 +7,7 @@ class categoriesActions extends cqFrontendActions
   {
     parent::preExecute();
 
-    SmartMenu::setSelected('header_main_menu', 'collections');
+    SmartMenu::setSelected('header', 'collections');
   }
 
   public function executeIndex()
@@ -28,6 +28,10 @@ class categoriesActions extends cqFrontendActions
   public function executeCategory(sfWebRequest $request)
   {
     $this->category = $this->getRoute()->getObject();
+
+    // Make the category available in the sidebar action
+    $this->setComponentVar('category', $this->category, 'sidebarCategory');
+
     $this->collectors_question = null;
 
     if ($request->getParameter('page', 1) == 1)
@@ -76,8 +80,8 @@ class categoriesActions extends cqFrontendActions
     }
 
     $q = CollectorCollectionQuery::create()
-       ->haveThumbnail()
-       ->haveCollectibles()
+       ->hasThumbnail()
+       ->hasCollectibles()
        ->filterByContentCategoryWithDescendants($this->category)
        ->orderByUpdatedAt(Criteria::DESC);
 

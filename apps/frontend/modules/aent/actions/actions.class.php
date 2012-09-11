@@ -7,7 +7,7 @@ class aentActions extends cqFrontendActions
   {
     parent::preExecute();
 
-    SmartMenu::setSelected('header_main_menu', 'collections');
+    SmartMenu::setSelected('header', 'collections');
   }
 
   public function executeIndex()
@@ -45,10 +45,10 @@ class aentActions extends cqFrontendActions
       $collection->save();
     }
 
-    $q                  = CollectionCollectibleQuery::create()
-        ->filterByCollectionId($american_pickers['collection'])
-        ->orderByPosition(Criteria::ASC)
-        ->orderByUpdatedAt(Criteria::ASC);
+    $q = CollectionCollectibleQuery::create()
+      ->filterByCollectionId($american_pickers['collection'])
+      ->orderByPosition(Criteria::ASC)
+      ->orderByUpdatedAt(Criteria::ASC);
     $this->collectibles = $q->find();
 
     $collectible_ids = array(
@@ -65,11 +65,11 @@ class aentActions extends cqFrontendActions
     shuffle($collectible_ids);
 
     /** @var $q CollectibleForSaleQuery */
-    $q                           = CollectibleForSaleQuery::create()
-        ->filterByCollectibleId($collectible_ids, Criteria::IN)
-        ->joinWith('Collectible')->useQuery('Collectible')->endUse()
-        ->limit(8)
-        ->addAscendingOrderByColumn('FIELD(collectible_id, ' . implode(',', $collectible_ids) . ')');
+    $q = CollectibleForSaleQuery::create()
+      ->filterByCollectibleId($collectible_ids, Criteria::IN)
+      ->joinWith('Collectible')->useQuery('Collectible')->endUse()
+      ->limit(8)
+      ->addAscendingOrderByColumn('FIELD(collectible_id, ' . implode(',', $collectible_ids) . ')');
     $this->collectibles_for_sale = $q->find();
 
     // Set the OpenGraph meta tags
@@ -78,7 +78,7 @@ class aentActions extends cqFrontendActions
     return sfView::SUCCESS;
   }
 
-  public function executePawnStars()
+  public function executePawnStars(sfWebRequest $request)
   {
     $pawn_stars = sfConfig::get('app_aetn_pawn_stars');
 
@@ -95,10 +95,14 @@ class aentActions extends cqFrontendActions
     }
 
     $q = CollectionCollectibleQuery::create()
-        ->filterByCollectionId($pawn_stars['collection'])
-        ->orderByPosition(Criteria::ASC)
-        ->orderByUpdatedAt(Criteria::ASC);
-    $this->collectibles = $q->find();
+      ->filterByCollectionId($pawn_stars['collection'])
+      ->orderByPosition(Criteria::ASC)
+      ->orderByUpdatedAt(Criteria::ASC);
+
+    $pager = new PropelModelPager($q, 9);
+    $pager->setPage($request->getParameter('page', 1));
+    $pager->init();
+    $this->pager = $pager;
 
     $collectible_ids = array(
       56600, 56597, 56543, 56088, 56396, 56393,
@@ -115,12 +119,60 @@ class aentActions extends cqFrontendActions
     shuffle($collectible_ids);
 
     /** @var $q CollectibleForSaleQuery */
-    $q                           = CollectibleForSaleQuery::create()
-        ->filterByCollectibleId($collectible_ids, Criteria::IN)
-        ->joinWith('Collectible')->useQuery('Collectible')->endUse()
-        ->limit(8)
-        ->addAscendingOrderByColumn('FIELD(collectible_id, ' . implode(',', $collectible_ids) . ')');
+    $q = CollectibleForSaleQuery::create()
+      ->filterByCollectibleId($collectible_ids, Criteria::IN)
+      ->joinWith('Collectible')->useQuery('Collectible')->endUse()
+      ->limit(8)
+      ->addAscendingOrderByColumn('FIELD(collectible_id, ' . implode(',', $collectible_ids) . ')');
     $this->collectibles_for_sale = $q->find();
+
+    // Set the OpenGraph meta tags
+    $this->getResponse()->addOpenGraphMetaFor($collection);
+
+    return sfView::SUCCESS;
+  }
+
+  public function executePickedOff(sfWebRequest $request)
+  {
+    // Check if the page is publicly available yet
+    $this->forward404Unless(IceGateKeeper::open('aetn_picked_off', 'page'));
+
+    $picked_off = sfConfig::get('app_aetn_picked_off');
+
+    $collection = CollectorCollectionQuery::create()->findOneById($picked_off['collection']);
+    $this->forward404Unless($collection instanceof CollectorCollection);
+
+    /**
+     * Increment the number of views
+     */
+    if (!$this->getCollector()->isOwnerOf($collection))
+    {
+      $collection->setNumViews($collection->getNumViews() + 1);
+      $collection->save();
+    }
+
+    $q = CollectionCollectibleQuery::create()
+      ->filterByCollectionId($picked_off['collection'])
+      ->orderByPosition(Criteria::ASC)
+      ->orderByUpdatedAt(Criteria::ASC);
+
+    $pager = new PropelModelPager($q, 9);
+    $pager->setPage($request->getParameter('page', 1));
+    $pager->init();
+    $this->pager = $pager;
+
+    $categories = ContentCategoryQuery::create()
+      ->filterById(array(2, 364, 388, 674, 1559, 2409, 2836), Criteria::IN)
+      ->find();
+
+    /** @var $q CollectibleForSaleQuery */
+    $q = CollectibleForSaleQuery::create()
+      ->filterByContentCategoryWithDescendants($categories)
+      ->isForSale()
+      ->orderByUpdatedAt(Criteria::DESC);
+    $this->collectibles_for_sale = $q->limit(8)->find();
+
+    $this->collection = $collection;
 
     // Set the OpenGraph meta tags
     $this->getResponse()->addOpenGraphMetaFor($collection);
@@ -143,6 +195,7 @@ class aentActions extends cqFrontendActions
 
     $american_pickers = sfConfig::get('app_aetn_american_pickers');
     $pawn_stars       = sfConfig::get('app_aetn_pawn_stars');
+    $picked_off       = sfConfig::get('app_aetn_picked_off');
     $storage_wars     = sfConfig::get('app_aetn_storage_wars');
 
     if ($collection->getId() === $american_pickers['collection'])
@@ -152,6 +205,10 @@ class aentActions extends cqFrontendActions
     else if ($collection->getId() === $pawn_stars['collection'])
     {
       $this->brand = 'Pawn Stars';
+    }
+    else if ($collection->getId() === $picked_off['collection'])
+    {
+      $this->brand = 'Picked Off';
     }
     else if ($collection->getId() === $storage_wars['collection'])
     {
@@ -172,7 +229,7 @@ class aentActions extends cqFrontendActions
        ->filterById($collectible->getId(), Criteria::NOT_EQUAL)
        ->filterByTags($tags)
        ->orderByNumViews(Criteria::DESC)
-       ->limit(4);
+       ->limit(8);
     $this->related_collectibles = $q->find();
 
     $this->collectible = $collectible;
@@ -180,6 +237,12 @@ class aentActions extends cqFrontendActions
 
     // Set the OpenGraph meta tags
     $this->getResponse()->addOpenGraphMetaFor($collectible);
+
+    // Set Canonical Url meta tag
+    $this->getResponse()->setCanonicalUrl(
+      'http://' . sfConfig::get('app_www_domain') .
+      $this->generateUrl('aetn_collectible_by_slug', array('sf_subject' => $collectible), false)
+    );
 
     return sfView::SUCCESS;
   }
@@ -194,133 +257,194 @@ class aentActions extends cqFrontendActions
 
     $pawn_stars = sfConfig::get('app_aetn_pawn_stars');
     $american_pickers = sfConfig::get('app_aetn_american_pickers');
-
-    /** @var $q CollectibleQuery */
-    $q = CollectionCollectibleQuery::create()
-      ->filterByCollectionId($pawn_stars['collection'])
-      ->orderByCollectibleId(Criteria::ASC);
-    $ps_collectibles = $q->find();
-
-    $q = CollectionCollectibleQuery::create()
-      ->filterByCollectionId($american_pickers['collection'])
-      ->orderByCollectibleId(Criteria::ASC);
-    $ap_collectibles = $q->find();
+    $picked_off = sfConfig::get('app_aetn_picked_off');
 
     /**
      * Pawn Stars
      */
-    if ($collectible->getId() == $ps_collectibles[0]->getId())
+    if ($collection->getId() == $pawn_stars['collection'])
     {
-      $this->related_collections = CollectorCollectionQuery::create()->filterById(
-        array(1288, 1044, 478, 401, 1280, 1043, 2792, 1042), Criteria::IN
-      )->orderById('DESC')->find();
-    }
-    else if ($collectible->getId() == $ps_collectibles[1]->getId())
-    {
-      $this->related_collections = CollectorCollectionQuery::create()->filterById(
-        array(1597, 1244, 1585, 1249, 1268, 2815, 602, 1168), Criteria::IN
-      )->orderById('DESC')->find();
-    }
-    else if ($collectible->getId() == $ps_collectibles[2]->getId())
-    {
-      $this->related_collections = CollectorCollectionQuery::create()->filterById(
-        array(1811, 1953, 1122, 375, 378, 30928, 374, 1161, 1727), Criteria::IN
-      )->orderById('DESC')->find();
-    }
-    else if ($collectible->getId() == $ps_collectibles[3]->getId())
-    {
-      $this->related_collections = CollectorCollectionQuery::create()->filterById(
-        array(2791, 2173, 1281, 1452, 2373, 1290, 699, 1183), Criteria::IN
-      )->orderById('DESC')->find();
-    }
-    else if ($collectible->getId() == $ps_collectibles[4]->getId())
-    {
-      $this->related_collections = CollectorCollectionQuery::create()->filterById(
-        array(2151, 270, 2649, 1695, 2651, 2831, 1249, 675, 1044, 1782), Criteria::IN
-      )->orderById('DESC')->find();
-    }
-    else if ($collectible->getId() == $ps_collectibles[5]->getId())
-    {
-      $this->related_collections = CollectorCollectionQuery::create()->filterById(
-        array(1080, 866, 855, 862, 863, 949, 463, 970), Criteria::IN
-      )->orderById('DESC')->find();
-    }
-    else if ($collectible->getId() == $ps_collectibles[6]->getId())
-    {
-      $this->related_collections = CollectorCollectionQuery::create()->filterById(
-        array(1484, 1352, 1287, 1280, 1260, 1346, 1337, 1335), Criteria::IN
-      )->orderById('DESC')->find();
-    }
-    else if ($collectible->getId() == $ps_collectibles[7]->getId())
-    {
-      $this->related_collections = CollectorCollectionQuery::create()->filterById(
-        array(1117, 290, 1138, 1323, 1072, 1151, 2180, 2308), Criteria::IN
-      )->orderById('DESC')->find();
-    }
-    else if ($collectible->getId() == $ps_collectibles[8]->getId())
-    {
-      $this->related_collections = CollectorCollectionQuery::create()->filterById(
-        array(1847, 545, 1290, 789, 477, 307, 1934, 823), Criteria::IN
-      )->orderById('DESC')->find();
+      $this->brand = 'Pawn Stars';
+
+      /** @var $q CollectibleQuery */
+      $q = CollectionCollectibleQuery::create()
+        ->filterByCollectionId($pawn_stars['collection'])
+        ->orderByCollectibleId(Criteria::ASC);
+
+      /** @var $ps_collectibles CollectionCollectible[] */
+      $ps_collectibles = $q->find();
+
+      if ($collectible->getId() == $ps_collectibles[0]->getId())
+      {
+        $this->related_collections = CollectorCollectionQuery::create()->filterById(
+          array(1288, 1044, 478, 401, 1280, 1043, 2792, 1042), Criteria::IN
+        )->orderById('DESC')->find();
+      }
+      else if ($collectible->getId() == $ps_collectibles[1]->getId())
+      {
+        $this->related_collections = CollectorCollectionQuery::create()->filterById(
+          array(1597, 1244, 1585, 1249, 1268, 2815, 602, 1168), Criteria::IN
+        )->orderById('DESC')->find();
+      }
+      else if ($collectible->getId() == $ps_collectibles[2]->getId())
+      {
+        $this->related_collections = CollectorCollectionQuery::create()->filterById(
+          array(1811, 1953, 1122, 375, 378, 30928, 374, 1161, 1727), Criteria::IN
+        )->orderById('DESC')->find();
+      }
+      else if ($collectible->getId() == $ps_collectibles[3]->getId())
+      {
+        $this->related_collections = CollectorCollectionQuery::create()->filterById(
+          array(2791, 2173, 1281, 1452, 2373, 1290, 699, 1183), Criteria::IN
+        )->orderById('DESC')->find();
+      }
+      else if ($collectible->getId() == $ps_collectibles[4]->getId())
+      {
+        $this->related_collections = CollectorCollectionQuery::create()->filterById(
+          array(2151, 270, 2649, 1695, 2651, 2831, 1249, 675, 1044, 1782), Criteria::IN
+        )->orderById('DESC')->find();
+      }
+      else if ($collectible->getId() == $ps_collectibles[5]->getId())
+      {
+        $this->related_collections = CollectorCollectionQuery::create()->filterById(
+          array(1080, 866, 855, 862, 863, 949, 463, 970), Criteria::IN
+        )->orderById('DESC')->find();
+      }
+      else if ($collectible->getId() == $ps_collectibles[6]->getId())
+      {
+        $this->related_collections = CollectorCollectionQuery::create()->filterById(
+          array(1484, 1352, 1287, 1280, 1260, 1346, 1337, 1335), Criteria::IN
+        )->orderById('DESC')->find();
+      }
+      else if ($collectible->getId() == $ps_collectibles[7]->getId())
+      {
+        $this->related_collections = CollectorCollectionQuery::create()->filterById(
+          array(1117, 290, 1138, 1323, 1072, 1151, 2180, 2308), Criteria::IN
+        )->orderById('DESC')->find();
+      }
+      else if ($collectible->getId() == $ps_collectibles[8]->getId())
+      {
+        $this->related_collections = CollectorCollectionQuery::create()->filterById(
+          array(1847, 545, 1290, 789, 477, 307, 1934, 823), Criteria::IN
+        )->orderById('DESC')->find();
+      }
+      else
+      {
+        $categories = ContentCategoryQuery::create()
+          ->filterById(array(115, 364, 388, 775, 1559, 1145, 1806, 2423), Criteria::IN)
+          ->find();
+
+        /** @var $q CollectorCollectionQuery */
+        $q = CollectorCollectionQuery::create()
+          ->hasCollectibles()
+          ->filterByContentCategoryWithDescendants($categories)
+          ->addAscendingOrderByColumn('RAND()');
+
+        $this->related_collections = $q->limit(8)->find();
+      }
     }
 
     /**
      * American Pickers
      */
-    else if ($collectible->getId() == $ap_collectibles[0]->getId())
+    else if ($collection->getId() == $american_pickers['collection'])
     {
-      $this->related_collections = CollectorCollectionQuery::create()->filterById(
-        array(531, 891, 807, 982, 1123, 557, 1547, 838, 2888), Criteria::IN
-      )->find();
+      $this->brand = 'American Pickers';
+
+      $q = CollectionCollectibleQuery::create()
+        ->filterByCollectionId($american_pickers['collection'])
+        ->orderByCollectibleId(Criteria::ASC);
+
+      /** @var $ap_collectibles CollectionCollectible[] */
+      $ap_collectibles = $q->find();
+
+      if ($collectible->getId() == $ap_collectibles[0]->getId())
+      {
+        $this->related_collections = CollectorCollectionQuery::create()->filterById(
+          array(531, 891, 807, 982, 1123, 557, 1547, 838, 2888), Criteria::IN
+        )->find();
+      }
+      else if ($collectible->getId() == $ap_collectibles[1]->getId())
+      {
+        $this->related_collections = CollectorCollectionQuery::create()->filterById(
+          array(761, 1284, 228, 495, 156, 11, 914, 294), Criteria::IN
+        )->find();
+      }
+      else if ($collectible->getId() == $ap_collectibles[2]->getId())
+      {
+        $this->related_collections = CollectorCollectionQuery::create()->filterById(
+          array(1780, 1335, 1457, 2838, 831, 1337, 1303, 1485), Criteria::IN
+        )->find();
+      }
+      else if ($collectible->getId() == $ap_collectibles[3]->getId())
+      {
+        $this->related_collections = CollectorCollectionQuery::create()->filterById(
+          array(1329, 1328, 852, 1573, 1048, 2713, 512, 2201), Criteria::IN
+        )->find();
+      }
+      else if ($collectible->getId() == $ap_collectibles[4]->getId())
+      {
+        $this->related_collections = CollectorCollectionQuery::create()->filterById(
+          array(260, 234, 1168, 263, 51, 843, 2810, 1098, 415), Criteria::IN
+        )->find();
+      }
+      else if ($collectible->getId() == $ap_collectibles[5]->getId())
+      {
+        $this->related_collections = CollectorCollectionQuery::create()->filterById(
+          array(390, 932, 465, 201, 447, 804, 708, 2117), Criteria::IN
+        )->find();
+      }
+      else if ($collectible->getId() == $ap_collectibles[6]->getId())
+      {
+        $this->related_collections = CollectorCollectionQuery::create()->filterById(
+          array(619, 2844, 40, 122, 454, 894, 456, 703), Criteria::IN
+        )->find();
+      }
+      else if ($collectible->getId() == $ap_collectibles[7]->getId())
+      {
+        $this->related_collections = CollectorCollectionQuery::create()->filterById(
+          array(752, 616, 807, 1576, 437, 812, 1584, 1183, 709), Criteria::IN
+        )->find();
+      }
+      else if ($collectible->getId() == $ap_collectibles[8]->getId())
+      {
+        $this->related_collections = CollectorCollectionQuery::create()->filterById(
+          array(819, 618, 26, 574, 752, 1727, 1059, 910), Criteria::IN
+        )->find();
+      }
+      else
+      {
+        $categories = ContentCategoryQuery::create()
+          ->filterById(array(2, 364, 388, 674, 1559, 2409, 2836), Criteria::IN)
+          ->find();
+
+        /** @var $q CollectorCollectionQuery */
+        $q = CollectorCollectionQuery::create()
+          ->hasCollectibles()
+          ->filterByContentCategoryWithDescendants($categories)
+          ->addAscendingOrderByColumn('RAND()');
+
+        $this->related_collections = $q->limit(8)->find();
+      }
     }
-    else if ($collectible->getId() == $ap_collectibles[1]->getId())
+
+    elseif ($collection->getId() == $picked_off['collection'])
     {
-      $this->related_collections = CollectorCollectionQuery::create()->filterById(
-        array(761, 1284, 228, 495, 156, 11, 914, 294), Criteria::IN
-      )->find();
+      $this->brand = 'Picked Off';
+
+      $categories = ContentCategoryQuery::create()
+        ->filterById(array(2, 364, 674, 2409, 1367), Criteria::IN)
+        ->find();
+
+      /** @var $q CollectorCollectionQuery */
+      $q = CollectorCollectionQuery::create()
+        ->hasCollectibles()
+        ->filterByContentCategoryWithDescendants($categories)
+        ->addAscendingOrderByColumn('RAND()');
+
+      $this->related_collections = $q->limit(8)->find();
     }
-    else if ($collectible->getId() == $ap_collectibles[2]->getId())
-    {
-      $this->related_collections = CollectorCollectionQuery::create()->filterById(
-        array(1780, 1335, 1457, 2838, 831, 1337, 1303, 1485), Criteria::IN
-      )->find();
-    }
-    else if ($collectible->getId() == $ap_collectibles[3]->getId())
-    {
-      $this->related_collections = CollectorCollectionQuery::create()->filterById(
-        array(1329, 1328, 852, 1573, 1048, 2713, 512, 2201), Criteria::IN
-      )->find();
-    }
-    else if ($collectible->getId() == $ap_collectibles[4]->getId())
-    {
-      $this->related_collections = CollectorCollectionQuery::create()->filterById(
-        array(260, 234, 1168, 263, 51, 843, 2810, 1098, 415), Criteria::IN
-      )->find();
-    }
-    else if ($collectible->getId() == $ap_collectibles[5]->getId())
-    {
-      $this->related_collections = CollectorCollectionQuery::create()->filterById(
-        array(390, 932, 465, 201, 447, 804, 708, 2117), Criteria::IN
-      )->find();
-    }
-    else if ($collectible->getId() == $ap_collectibles[6]->getId())
-    {
-      $this->related_collections = CollectorCollectionQuery::create()->filterById(
-        array(619, 2844, 40, 122, 454, 894, 456, 703), Criteria::IN
-      )->find();
-    }
-    else if ($collectible->getId() == $ap_collectibles[7]->getId())
-    {
-      $this->related_collections = CollectorCollectionQuery::create()->filterById(
-        array(752, 616, 807, 1576, 437, 812, 1584, 1183, 709), Criteria::IN
-      )->find();
-    }
-    else if ($collectible->getId() == $ap_collectibles[8]->getId())
-    {
-      $this->related_collections = CollectorCollectionQuery::create()->filterById(
-        array(819, 618, 26, 574, 752, 1727, 1059, 910), Criteria::IN
-      )->find();
-    }
+
     /**
      * Fall back
      */
@@ -332,19 +456,6 @@ class aentActions extends cqFrontendActions
     $this->collectible = $collectible;
     $this->collection = $collection;
 
-    if ($collection->getId() == $american_pickers['collection'])
-    {
-      $this->brand = "American Pickers";
-    }
-    else if ($collection->getId() == $pawn_stars['collection'])
-    {
-      $this->brand = "Pawn Stars";
-    }
-    else
-    {
-      $this->brand = null;
-    }
-
     if ($videos = $collectible->getMultimedia(1, 'video', false))
     {
       $this->video = $videos;
@@ -354,7 +465,10 @@ class aentActions extends cqFrontendActions
     $this->getResponse()->addOpenGraphMetaFor($collectible);
 
     // Set Canonical Url meta tag
-    $this->getResponse()->setCanonicalUrl($this->generateUrl('aetn_collectible_by_slug', $collectible));
+    $this->getResponse()->setCanonicalUrl(
+      'http://' . sfConfig::get('app_www_domain') .
+      $this->generateUrl('aetn_collectible_by_slug', array('sf_subject' => $collectible), false)
+    );
 
     $this->setTemplate('collectible');
 

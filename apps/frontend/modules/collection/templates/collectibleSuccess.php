@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @var  $sf_user  cqFrontendUser
  *
@@ -12,7 +11,7 @@
  * @var  $collectible_for_sale  CollectibleForSale
  * @var  $editable     boolean
  *
- * @var  $additional_multimedia iceModelMultimedia[]
+ * @var  $additional_multimedia  iceModelMultimedia[]
  *
  * determine page height so we can display more/less sidebar widgets
  * @var  $height_main_div  stdClass
@@ -24,6 +23,7 @@
   $height_main_div = new stdClass;
   $height_main_div->value = 92;
 ?>
+
 <?php if (isset($first)): ?>
   <?php slot('prev_next'); ?>
     <link rel="prev" href="<?= url_for_collectible($previous) ?>">
@@ -32,10 +32,7 @@
   <?php end_slot(); ?>
 <?php endif; ?>
 
-<?php
-  // if the collectible is part of aent Collection
-  if(isset($brand)):
-?>
+<?php if (isset($brand)): ?>
   <div class="banners-620 spacer-bottom-20">
     <?php
       if ($brand === 'American Pickers')
@@ -69,6 +66,12 @@
     }
   ?>
   <div class="span<?= $span; ?> text-center relative">
+    <?php /*
+      https://basecamp.com/1759305/projects/127256-collectorsquest-com/todos/14537137-for-the-play-button
+      <span class="holder-icon-play">
+        <i class="icon icon-play"></i>
+      </span>
+    */ ?>
 
     <?php if (isset($previous)): ?>
     <a href="<?= url_for_collectible($previous) ?>"
@@ -121,20 +124,27 @@
   <div class="span2">
     <div class="vertical-carousel-wrapper">
       <div id="vertical-carousel">
-        <a class="zoom" href="<?php echo src_tag_collectible($collectible, '150x150'); ?>" title="<?php echo $collectible->getName(); ?>">
+        <a class="zoom" href="<?php echo src_tag_collectible($collectible, '150x150'); ?>"
+           title="<?php echo $collectible->getName(); ?>">
           <?= image_tag_collectible($collectible, '150x150', array(
             'height' => null, 'title' => $collectible->getName(), 'style' => 'margin-bottom: 12px;')); ?>
         </a>
         <?php foreach ($additional_multimedia as $i => $m): ?>
         <a class="zoom" href="<?php echo src_tag_multimedia($m, 'original'); ?>" title="<?php echo $m->getName(); ?>">
-          <?= image_tag_multimedia($m, '150x150', array('height' => null, 'title' => $m->getName(), 'style' => 'margin-bottom: 12px;')); ?>
+          <?php
+            echo image_tag_multimedia(
+              $m, '150x150', array('height' => null, 'title' => $m->getName(), 'style' => 'margin-bottom: 12px;')
+            );
+          ?>
         </a>
         <?php endforeach; ?>
       </div>
-      <a href="javascript:void(0)" id="ui-carousel-prev" title="previous collectible" class="ui-carousel-navigation hidden left-arrow">
+      <a href="javascript:void(0)" id="ui-carousel-prev" title="previous collectible"
+         class="ui-carousel-navigation hidden left-arrow">
         <i class="icon-chevron-up white"></i>
       </a>
-      <a href="javascript:void(0)" id="ui-carousel-next" title="next collectible" class="ui-carousel-navigation hidden right-arrow">
+      <a href="javascript:void(0)" id="ui-carousel-next" title="next collectible"
+         class="ui-carousel-navigation hidden right-arrow">
         <i class="icon-chevron-down white"></i>
       </a>
     </div>
@@ -164,7 +174,8 @@
       <a class="btn-lightblue btn-mini-social addthis_button_email">
         <i class="mail-icon-mini"></i> Email
       </a>
-      <a class="addthis_button_pinterest_pinit" pi:pinit:media="<?= src_tag_collectible($collectible, 'original'); ?>" pi:pinit:layout="horizontal"></a>
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"
+         pi:pinit:media="<?= src_tag_collectible($collectible, 'original'); ?>"></a>
       <a class="addthis_button_tweet" tw:twitter:data-count="none"></a>
       <a class="addthis_button_google_plusone" g:plusone:size="medium" g:plusone:annotation="none"></a>
       <a class="addthis_button_facebook_like" fb:like:layout="button_count" fb:like:width="40"></a>

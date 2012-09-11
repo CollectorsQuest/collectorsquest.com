@@ -19,6 +19,7 @@ ice_breadcrumbs:
     americanPickers: [{ name: 'As Seen on American Pickers' }]
     pawnStars: [{ name: 'Pawn Stars' }]
     storageWars: [{ name: 'Storage Wars' }]
+    pickedOff: [{ name: 'Picked Off' }]
     collectibleFixedMatching:
       - { name: '%Collection%', route: collection_by_slug, model: true, subobject: Collection }
       - { name: '%Name%', model: true }
@@ -96,7 +97,7 @@ ice_breadcrumbs:
   categories:
     index: [{ name: 'Categories' }]
     category:
-      - { name: 'Categories', route: content_categories }
+      - { name: 'Collections', route: collections }
       - { name: '%Name%', model: true, title: 'Category: %Name%' }
 
   mycq:
