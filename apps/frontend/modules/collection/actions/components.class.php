@@ -15,12 +15,16 @@ class collectionComponents extends cqFrontendComponents
 
   public function executeSidebarCollectible()
   {
-    $parameters = array('id' => $this->getRequestParameter('id'));
-    if (!$this->collectible = CollectionCollectiblePeer::getObjectForRoute($parameters))
+    $this->aetn_show = $this->getVar('aetn_show');
+    $this->collectible = $this->getVar('collectible');
+
+    // We need a collectible for building the sidebar
+    if (!$this->collectible)
     {
       return sfView::NONE;
     }
 
+    // Are we dealing with an item for sale?
     if ($this->collectible->isForSale())
     {
       /* @var $collectible_for_sale CollectibleForSale */
@@ -30,8 +34,6 @@ class collectionComponents extends cqFrontendComponents
       $this->collectible_for_sale = $collectible_for_sale;
       $this->form = new CollectibleForSaleBuyForm($collectible_for_sale);
     }
-
-    $this->brand = $this->getUser()->getFlash('brand', null, true, 'internal');
 
     return sfView::SUCCESS;
   }

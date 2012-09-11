@@ -2,27 +2,27 @@
 
 aetn_landing:
   url: /history
-  param: { module: aent, action: landing }
+  param: { module: aetn, action: landing }
   requirements: { sf_method: [GET] }
 
 aetn_american_pickers:
   url: /history/american-pickers
-  param: { module: aent, action: americanPickers }
+  param: { module: aetn, action: americanPickers }
   requirements: { sf_method: [GET] }
 
 aetn_pawn_stars:
   url: /history/pawn-stars
-  param: { module: aent, action: pawnStars }
+  param: { module: aetn, action: pawnStars }
   requirements: { sf_method: [GET] }
 
 aetn_storage_wars:
   url: /history/storage-wars
-  param: { module: aent, action: storageWars }
+  param: { module: aetn, action: storageWars }
   requirements: { sf_method: [GET] }
 
 aetn_picked_off:
   url: /history/picked-off
-  param: { module: aent, action: pickedOff }
+  param: { module: aetn, action: pickedOff }
   requirements: { sf_method: [GET] }
 
 aetn_collectible_by_slug:

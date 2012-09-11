@@ -17,7 +17,7 @@ seo:
         Join Collectors Quest to buy, sell, trade & show off your amazing collections,
         from antiques to collectibles, vintage to modern. See what other people collect!
 
-  aent:
+  aetn:
     pawnStars:
       title: Pawn Stars | TV Show Collectibles | Collectors Quest
       description: |
@@ -36,24 +36,6 @@ seo:
         Check out these collectors items from the Picked Off collection.
         CollectorsQuest.com gives you an inside look at the Picked Off collectibles.
 
-    # https://basecamp.com/1759305/projects/288122-collectorsquest-com/todos/11828067-history-a-e
-    collectibleFixedMatching:
-      model: true
-      title:
-        - %Name% | Collectors Quest
-        - %Name% - %Collection% | Collectors Quest
-      description:
-        - %Description%
-        - %Description% | %TagString%
-
-    collectible:
-      model: true
-      title:
-        - %Name% | Collectors Quest
-        - %Name% - %Collection% | Collectors Quest
-      description:
-        - %Description%
-        - %Description% | %TagString%
 
   categories:
     index:
@@ -112,15 +94,6 @@ seo:
         - %Description% | %Name% from %Collection% by %Collector%
         - %Description% | %Name% from %Collection% by %Collector% | %TagString%
 
-    # https://basecamp.com/1759305/projects/288122-collectorsquest-com/todos/11828067-history-a-e
-    aentCollectibleFixedMatching:
-      model: true
-      title:
-        - %Name% | Collectors Quest
-        - %Name% - %Collection% | Collectors Quest
-      description:
-        - %Description%
-        - %Description% | %TagString%
 
   # https://basecamp.com/1759305/projects/288122-collectorsquest-com/todos/11749079-collector-page
   collector:

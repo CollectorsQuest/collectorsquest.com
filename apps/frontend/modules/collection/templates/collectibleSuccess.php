@@ -13,10 +13,10 @@
  *
  * @var  $additional_multimedia  iceModelMultimedia[]
  *
- * determine page height so we can display more/less sidebar widgets
+ * Determine page height so we can display more/less sidebar widgets
  * @var  $height_main_div  stdClass
  *
- * this variable is set when the Collectible is part of aent Collection
+ * This variable is set when the Collectible is part of A&E Collection
  * @var  $brand  string
  */
 
@@ -32,18 +32,18 @@
   <?php end_slot(); ?>
 <?php endif; ?>
 
-<?php if (isset($brand)): ?>
+<?php if (!empty($aetn_show)): ?>
   <div class="banners-620 spacer-bottom-20">
     <?php
-      if ($brand === 'American Pickers')
+      if ($aetn_show['id'] === 'american_pickers')
       {
         echo link_to(image_tag('headlines/2012-0420_AP_Promo_Space_620x67_FIN.jpg'), '@aetn_american_pickers');
       }
-      else if ($brand === 'Pawn Stars')
+      else if ($aetn_show['id'] === 'pawn_stars')
       {
         echo link_to(image_tag('headlines/2012-0420_PS_Promo_Space_620x67_FIN.jpg'), '@aetn_pawn_stars');
       }
-      else if ($brand === 'Picked Off')
+      else if ($aetn_show['id'] === 'picked_off')
       {
         echo link_to(image_tag('headlines/2012-0777_Picked_Off_620x67.jpg'), '@aetn_picked_off');
       }
@@ -232,56 +232,23 @@
       )
     );
   }
-?>
 
-<?php
-  // if the collectible is part of aent Collection
-  if(isset($brand)):
-?>
-  <?php
-    $link = link_to(
-      'See all related collectibles &raquo;', '@marketplace',
-      array('class' => 'text-v-middle link-align')
+  if (!empty($aetn_show))
+  {
+    include_partial(
+      'collection/aetn_collectible_related',
+      array(
+        'collectible' => $collectible,
+        'related_collections' => $related_collections,
+        'height' => &$height_main_div
+      )
     );
-    $link = null;
-
-    cq_section_title('Showcase', $link);
-  ?>
-
-  <div class="row">
-    <div id="collectibles" class="row-content">
-      <?php
-      if (!empty($related_collectibles))
-      {
-        /** @var $related_collectibles Collectible[] */
-        foreach ($related_collectibles as $i => $collectible)
-        {
-          include_partial(
-            'collection/collectible_grid_view_square_small',
-            array('collectible' => $collectible, 'i' => $i)
-          );
-        }
-      }
-      else if (!empty($related_collections))
-      {
-        foreach ($related_collections as $i => $collection)
-        {
-          include_partial(
-            'collection/collection_grid_view_square_small',
-            array('collection' => $collection, 'i' => $i)
-          );
-        }
-      }
-      ?>
-    </div>
-  </div>
-  <?php $height_main_div->value += 379; ?>
-<?php endif; ?>
+  }
+?>
 
 <?php
-  // pass variables to the sidebar
+  // pass the main div's height to the sidebar
   $sf_user->setFlash('height_main_div', $height_main_div, false, 'internal');
-  $sf_user->setFlash('brand', $brand, false, 'internal');
 ?>
 
 <script type="text/javascript">
