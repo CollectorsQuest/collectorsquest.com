@@ -1451,7 +1451,7 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
   public function countPublicCollectorCollections()
   {
     $q = CollectorCollectionQuery::create();
-    $q->findByIsPublic(true);
+    $q->filterByIsPublic(true);
     return $this->countCollectorCollections($q);
   }
 }

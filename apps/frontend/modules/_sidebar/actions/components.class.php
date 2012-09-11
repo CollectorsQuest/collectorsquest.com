@@ -613,7 +613,7 @@ class _sidebarComponents extends cqFrontendComponents
 
         /** @var $q CollectorQuery */
         $q = CollectorQuery::create()
-          ->findByIsPublic(true)
+          ->filterByIsPublic(true)
           ->filterById($collector_ids, Criteria::IN)
           ->filterByUserType(CollectorPeer::TYPE_SELLER)
           ->addAscendingOrderByColumn('RAND()');
