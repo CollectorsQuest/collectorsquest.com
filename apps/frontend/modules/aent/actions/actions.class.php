@@ -336,6 +336,7 @@ class aentActions extends cqFrontendActions
 
         /** @var $q CollectorCollectionQuery */
         $q = CollectorCollectionQuery::create()
+          ->hasCollectibles()
           ->filterByContentCategoryWithDescendants($categories)
           ->addAscendingOrderByColumn('RAND()');
 
@@ -419,6 +420,7 @@ class aentActions extends cqFrontendActions
 
         /** @var $q CollectorCollectionQuery */
         $q = CollectorCollectionQuery::create()
+          ->hasCollectibles()
           ->filterByContentCategoryWithDescendants($categories)
           ->addAscendingOrderByColumn('RAND()');
 
@@ -436,6 +438,7 @@ class aentActions extends cqFrontendActions
 
       /** @var $q CollectorCollectionQuery */
       $q = CollectorCollectionQuery::create()
+        ->hasCollectibles()
         ->filterByContentCategoryWithDescendants($categories)
         ->addAscendingOrderByColumn('RAND()');
 

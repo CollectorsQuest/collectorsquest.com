@@ -33,7 +33,7 @@ class CollectorCollectionQuery extends BaseCollectorCollectionQuery
   /**
    * @return CollectorCollectionQuery
    */
-  public function haveThumbnail()
+  public function hasThumbnail()
   {
     // @todo: we need implementation
     return $this;

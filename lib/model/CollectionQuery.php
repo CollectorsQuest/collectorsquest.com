@@ -31,7 +31,7 @@ class CollectionQuery extends BaseCollectionQuery
   /**
    * @return CollectorCollectionQuery
    */
-  public function haveCollectibles()
+  public function hasCollectibles()
   {
     return $this
       ->filterByNumItems(0, Criteria::GREATER_THAN);
