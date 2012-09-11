@@ -136,6 +136,10 @@ login:
   url:   /login
   param: { module: general, action: login }
 
+modal_login:
+  url:   /modal-login
+  param: { module: general, action: modalLogin }
+
 auto_login:
   url:  /auto-login/:hash
   param: { module: general, action: login }

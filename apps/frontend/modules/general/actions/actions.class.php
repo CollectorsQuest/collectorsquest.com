@@ -201,6 +201,17 @@ class generalActions extends cqFrontendActions
     return sfView::SUCCESS;
   }
 
+  public function executeModalLogin(sfWebRequest $request)
+  {
+    $this->social_only = $request->getParameter('social_only', false);
+
+    $this->login_form = new CollectorLoginForm();
+    $this->signup_form = new CollectorSignupStep1Form();
+    $this->rpxnow = sfConfig::get('app_credentials_rpxnow');
+
+    return sfView::SUCCESS;
+  }
+
   public function executeRPXTokenLogin(sfWebRequest $request)
   {
     $this->forward404Unless($token = $request->getParameter('token'));
