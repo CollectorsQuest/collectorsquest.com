@@ -142,7 +142,7 @@ class CollectibleEditForm extends BaseCollectibleForm
       array(
         'data-placeholder' => 'Please, choose at least one Collection',
         'class' => 'input-xlarge chzn-select js-hide',
-        'style' => 'width: 410px;',
+        'style' => 'width: 414px;',
         'required' => 'required'
       )
     );
