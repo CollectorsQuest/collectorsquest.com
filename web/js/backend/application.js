@@ -1,9 +1,14 @@
 (function($) {
   "use strict";
 
-  $(document).ready(function() {
+  $(document).ready(function()
+  {
     $('a[rel="popover"]').popover();
     $('a[rel="clickover"]').clickover();
+
+    $("a[target='_blank']", '#sf_admin_content')
+      .attr({title: 'Opens in a new window'})
+      .after('&nbsp;<i class="icon-external-link">&nbsp;</i>');
   });
 
   // Adjust table to fit filters if they exist
