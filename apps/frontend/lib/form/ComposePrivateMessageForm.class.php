@@ -73,6 +73,8 @@ class ComposePrivateMessageForm extends PrivateMessageForm
         'fields' => array(
             $this->getIpAddressFieldName() => 'ip',
         ),
+      ), array(
+        'spam' => 'We are sorry we could not add your private message. Please try again later.',
     )));
   }
 

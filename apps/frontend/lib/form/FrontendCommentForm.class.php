@@ -64,7 +64,9 @@ class FrontendCommentForm extends BaseCommentForm
             'author_email' => 'email',
             $this->getIpAddressFieldName() => 'ip',
         )
-    )));
+      ), array(
+        'spam' => 'We are sorry we could not add your comment. Please try again later.',
+     )));
   }
 
   protected function setupBodyField()

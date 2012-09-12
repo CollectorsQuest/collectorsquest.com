@@ -118,6 +118,8 @@ class CollectorSignupStep1Form extends BaseForm
             $this->getIpAddressFieldName() => 'ip',
             'email' => 'email',
         ),
+      ), array(
+        'spam' => 'We are sorry we cannot create an account at this time. Please try again later.',
     )));
 
     $this->setDefault('seller', 0);
