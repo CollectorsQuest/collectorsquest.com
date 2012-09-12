@@ -39,6 +39,10 @@
       {
         echo link_to(image_tag('headlines/2012-0420_AP_Promo_Space_620x67_FIN.jpg'), '@aetn_american_pickers');
       }
+      else if ($aetn_show['id'] === 'american_restoration')
+      {
+        echo link_to(image_tag('headlines/2012-0777_AR_620x67.jpg'), '@aetn_american_restoration');
+      }
       else if ($aetn_show['id'] === 'pawn_stars')
       {
         echo link_to(image_tag('headlines/2012-0420_PS_Promo_Space_620x67_FIN.jpg'), '@aetn_pawn_stars');

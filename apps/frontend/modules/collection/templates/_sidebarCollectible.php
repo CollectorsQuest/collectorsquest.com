@@ -49,7 +49,25 @@
       ?>
     </div>
     <?php $height->value -= 120; ?>
+  <?php elseif ($aetn_show['id'] === 'american_restoration'): ?>
+    <div class="banner-sidebar-promo-300-90">
+      <?php
+        echo cq_link_to(
+          cq_image_tag('headlines/pawn-stars-banner.jpg'), '@aetn_pawn_stars',
+          array('alt_title' => 'Check out items seen on Pawn Stars')
+        );
+      ?>
+    </div>
 
+    <div class="banner-sidebar-promo-300-90">
+      <?php
+        echo cq_link_to(
+          cq_image_tag('headlines/american-pickers-banner.jpg'), '@aetn_american_pickers',
+          array('alt_title' => 'Check out items seen on American Pickers')
+        );
+      ?>
+    </div>
+    <?php $height->value -= 120; ?>
   <?php endif; ?>
 
   <?php $height->value -= 375; ?>
@@ -87,10 +105,23 @@
 ?>
 
 <?php
-  include_component(
-    '_sidebar', 'widgetTags',
-    array('collectible' => $collectible, 'height' => &$height)
-  );
+  if ($aetn_show['id'] === 'american_restoration'):
+
+    include_component(
+        '_sidebar', 'widgetMoreHistory',
+        array(
+          'show_american_restoration' => false, 'height' => &$height
+        )
+      );
+
+  else:
+
+    include_component(
+      '_sidebar', 'widgetTags',
+      array('collectible' => $collectible, 'height' => &$height)
+    );
+
+  endif;
 ?>
 
 <?php

@@ -7,6 +7,10 @@ americanPickersSuccess:
   components:
     sidebar_300: [aetn, sidebarAmericanPickers]
 
+americanRestorationSuccess:
+  components:
+    sidebar_300: [aetn, sidebarAmericanRestoration]
+
 pawnStarsSuccess:
   components:
     sidebar_300: [aetn, sidebarPawnStars]

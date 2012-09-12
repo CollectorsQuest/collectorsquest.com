@@ -10,6 +10,11 @@ aetn_american_pickers:
   param: { module: aetn, action: americanPickers }
   requirements: { sf_method: [GET] }
 
+aetn_american_restoration:
+  url: /history/american-restoration
+  param: { module: aetn, action: americanRestoration }
+  requirements: { sf_method: [GET] }
+
 aetn_pawn_stars:
   url: /history/pawn-stars
   param: { module: aetn, action: pawnStars }

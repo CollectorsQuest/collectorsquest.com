@@ -81,6 +81,63 @@ class aetnActions extends cqFrontendActions
     return sfView::SUCCESS;
   }
 
+  public function executeAmericanRestoration (sfWebRequest $request)
+  {
+    // Check if the page is publicly available yet
+    $this->forward404Unless(IceGateKeeper::open('aetn_american_restoration', 'page'));
+
+    $american_restoration = sfConfig::get('app_aetn_american_restoration');
+
+    $collection = CollectorCollectionQuery::create()->findOneById($american_restoration['collection']);
+    $this->forward404Unless($collection instanceof CollectorCollection);
+
+    /**
+     * Increment the number of views
+     */
+    if (!$this->getCollector()->isOwnerOf($collection))
+    {
+      $collection->setNumViews($collection->getNumViews() + 1);
+      $collection->save();
+    }
+
+    $q = CollectionCollectibleQuery::create()
+      ->filterByCollectionId($american_restoration['collection'])
+      ->orderByPosition(Criteria::ASC)
+      ->orderByUpdatedAt(Criteria::ASC);
+
+    $pager = new PropelModelPager($q, 9);
+    $pager->setPage($request->getParameter('page', 1));
+    $pager->init();
+    $this->pager = $pager;
+
+    // use the same categories as Picked Off for now
+    $categories = ContentCategoryQuery::create()
+      ->filterById(array(2, 364, 388, 674, 1559, 2409, 2836), Criteria::IN)
+      ->find();
+
+    /** @var $q CollectibleForSaleQuery */
+    $q = CollectibleForSaleQuery::create()
+      ->filterByContentCategoryWithDescendants($categories)
+      ->isForSale()
+      ->orderByUpdatedAt(Criteria::DESC);
+    $this->collectibles_for_sale = $q->limit(8)->find();
+
+    $this->collection = $collection;
+
+    // use same Categories for "From the Market" as American Pickers for now
+    $american_pickers = sfConfig::get('app_aetn_american_pickers');
+    $american_pickers_collection = CollectorCollectionQuery::create()->findOneById($american_pickers['collection']);
+    $this->forward404Unless($american_pickers_collection instanceof CollectorCollection);
+
+    // Make the Collection available in the sidebar
+    $this->setComponentVar('collection', $american_pickers_collection, 'sidebarAmericanRestoration');
+
+    // Set the OpenGraph meta tags
+    $this->getResponse()->addOpenGraphMetaFor($collection);
+
+    return sfView::SUCCESS;
+  }
+
   public function executePawnStars(sfWebRequest $request)
   {
     $pawn_stars = sfConfig::get('app_aetn_pawn_stars');
