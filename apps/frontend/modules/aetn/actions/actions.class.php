@@ -67,7 +67,7 @@ class aetnActions extends cqFrontendActions
     /** @var $q CollectibleForSaleQuery */
     $q = CollectibleForSaleQuery::create()
       ->filterByCollectibleId($collectible_ids, Criteria::IN)
-      ->joinWith('Collectible')->useQuery('Collectible')->endUse()
+      ->isForSale()
       ->limit(8)
       ->addAscendingOrderByColumn('FIELD(collectible_id, ' . implode(',', $collectible_ids) . ')');
     $this->collectibles_for_sale = $q->find();
@@ -81,14 +81,16 @@ class aetnActions extends cqFrontendActions
     return sfView::SUCCESS;
   }
 
-  public function executeAmericanRestoration (sfWebRequest $request)
+  public function executeAmericanRestoration(sfWebRequest $request)
   {
     // Check if the page is publicly available yet
     $this->forward404Unless(IceGateKeeper::open('aetn_american_restoration', 'page'));
 
-    $american_restoration = sfConfig::get('app_aetn_american_restoration');
+    /** @var $aetn_shows array */
+    $aetn_shows = sfConfig::get('app_aetn_shows');
 
-    $collection = CollectorCollectionQuery::create()->findOneById($american_restoration['collection']);
+    $collection = CollectorCollectionQuery::create()
+      ->findOneById($aetn_shows['american_restoration']['collection']);
     $this->forward404Unless($collection instanceof CollectorCollection);
 
     /**
@@ -101,7 +103,7 @@ class aetnActions extends cqFrontendActions
     }
 
     $q = CollectionCollectibleQuery::create()
-      ->filterByCollectionId($american_restoration['collection'])
+      ->filterByCollection($collection)
       ->orderByPosition(Criteria::ASC)
       ->orderByUpdatedAt(Criteria::ASC);
 
@@ -111,26 +113,16 @@ class aetnActions extends cqFrontendActions
     $this->pager = $pager;
 
     // use the same categories as American Pickers for now
-    $collectible_ids = array(
-      56402, 56180, 56206, 56090, 56398, 56091,
-      56663, 56680, 56599, 56094, 23304, 56859,
-      56540, 56759, 56761, 22184, 56063, 56760,
-      56544, 56590, 56596, 56593, 56591, 56598,
-      56175, 56028, 56534, 56030, 56616, 56618,
-      56395, 56622, 11132, 56035, 56619, 56034,
-      56762, 56382, 56757, 23705, 56381, 51400,
-      56784, 23054, 56400, 56753, 20207, 56393,
-      56753, 56681, 56380, 51391, 56664, 56662,
-    );
-    shuffle($collectible_ids);
+    $categories = ContentCategoryQuery::create()
+      ->filterById(array(2, 364, 388, 674, 1559, 2409, 2836), Criteria::IN)
+      ->find();
 
     /** @var $q CollectibleForSaleQuery */
     $q = CollectibleForSaleQuery::create()
-      ->filterByCollectibleId($collectible_ids, Criteria::IN)
-      ->joinWith('Collectible')->useQuery('Collectible')->endUse()
-      ->limit(8)
-      ->addAscendingOrderByColumn('FIELD(collectible_id, ' . implode(',', $collectible_ids) . ')');
-    $this->collectibles_for_sale = $q->find();
+      ->filterByContentCategoryWithDescendants($categories)
+      ->isForSale()
+      ->orderByUpdatedAt(Criteria::DESC);
+    $this->collectibles_for_sale = $q->limit(8)->find();
 
     $this->collection = $collection;
 
@@ -183,7 +175,7 @@ class aetnActions extends cqFrontendActions
     /** @var $q CollectibleForSaleQuery */
     $q = CollectibleForSaleQuery::create()
       ->filterByCollectibleId($collectible_ids, Criteria::IN)
-      ->joinWith('Collectible')->useQuery('Collectible')->endUse()
+      ->isForSale()
       ->limit(8)
       ->addAscendingOrderByColumn('FIELD(collectible_id, ' . implode(',', $collectible_ids) . ')');
     $this->collectibles_for_sale = $q->find();
@@ -227,7 +219,7 @@ class aetnActions extends cqFrontendActions
     $this->pager = $pager;
 
     $categories = ContentCategoryQuery::create()
-      ->filterById(array(2, 364, 388, 674, 1559, 2409, 2836), Criteria::IN)
+      ->filterById(array(2, 364, 674, 2409, 1367), Criteria::IN)
       ->find();
 
     /** @var $q CollectibleForSaleQuery */

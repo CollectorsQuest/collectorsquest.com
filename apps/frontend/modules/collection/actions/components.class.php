@@ -5,12 +5,7 @@ class collectionComponents extends cqFrontendComponents
 
   public function executeSidebar()
   {
-    if (!$this->collection = CollectorCollectionPeer::retrieveByPk($this->getRequestParameter('id')))
-    {
-      return sfView::NONE;
-    }
-
-    return sfView::SUCCESS;
+    return ($this->collection = $this->_get_collection()) ? sfView::SUCCESS : sfView::NONE;
   }
 
   public function executeSidebarCollectible()
@@ -40,7 +35,7 @@ class collectionComponents extends cqFrontendComponents
 
   public function executeCollectiblesReorder()
   {
-    $this->_get_collection();
+    $this->collection = $this->_get_collection();
 
     if ($this->getUser()->isOwnerOf($this->collection))
     {
@@ -49,30 +44,37 @@ class collectionComponents extends cqFrontendComponents
       $c->addDescendingOrderByColumn(CollectionCollectiblePeer::CREATED_AT);
 
       $this->collectibles = $this->collection->getCollectibles($c);
+
+      return sfView::SUCCESS;
     }
 
-    return sfView::SUCCESS;
+    return sfView::NONE;
   }
 
   private function _get_collection()
   {
+    $collection = null;
+
     if ($id = $this->getRequestParameter('id'))
     {
-      $this->collection = CollectorCollectionPeer::retrieveByPk($id);
+      $collection = CollectorCollectionPeer::retrieveByPk($id);
     }
     else if ($id = $this->getRequestParameter('collector_id'))
     {
       if ($collector = CollectorPeer::retrieveByPK($id))
       {
-        $this->collection = $collector->getCollectionDropbox();
+        $collection = $collector->getCollectionDropbox();
       }
     }
     else if ('0' === $id = $this->getRequestParameter('id'))
     {
       if ($collector = $this->getCollector())
       {
-        $this->collection = $collector->getCollectionDropbox();
+        $collection = $collector->getCollectionDropbox();
       }
     }
+
+    return $collection;
   }
+
 }
