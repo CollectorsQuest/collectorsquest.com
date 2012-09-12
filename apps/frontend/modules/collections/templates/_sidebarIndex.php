@@ -12,11 +12,6 @@
 
 <div class="twocolumn cf">
   <ul>
-    <li><strong><?= link_to('American Pickers', '@aetn_american_pickers') ?></strong></li>
-    <li><strong><?= link_to('Pawn Stars', '@aetn_pawn_stars') ?></strong></li>
-    <?php if(IceGateKeeper::open('aetn_american_restoration', 'page')): ?>
-      <li><strong><?= link_to('American Restoration', '@aetn_american_restoration') ?></strong></li>
-    <?php endif; ?>
     <?php
       /** @var $categories ContentCategory[] */
       foreach ($categories as $i => $category)
@@ -24,11 +19,24 @@
         // Special case for the Political Buttons landing page
         if ($category->getId() === 2266)
         {
+          // Special case to have Pawn Stars appear alphabetically in list
+          echo '<li><strong>' . link_to('Pawn Stars', '@aetn_pawn_stars') . '</strong></li>';
+
           $route = '@wordpress_featured_items?id=29455&slug=political-buttons';
           echo '<li>', link_to('<strong>Political Buttons</strong> <sup style="color: #cc0000">NEW!</sup>', $route), '</li>';
         }
         else
         {
+          // Special case to have both shows appear alphabetically in list
+          if ($category->getId() === 152)
+          {
+            echo '<li><strong>' . link_to('American Pickers', '@aetn_american_pickers') . '</strong></li>';
+            if (IceGateKeeper::open('aetn_american_restoration', 'page'))
+            {
+              echo '<li><strong>' . link_to('American Restoration', '@aetn_american_restoration') . '</strong></li>';
+            }
+          }
+
           echo '<li>', ($category) ? link_to_content_category($category, 'text') : '', '</li>';
         }
       }
