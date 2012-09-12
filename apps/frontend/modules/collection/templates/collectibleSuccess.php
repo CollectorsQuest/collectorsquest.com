@@ -186,7 +186,7 @@
          pi:pinit:media="<?= src_tag_collectible($collectible, 'original'); ?>"></a>
       <a class="addthis_button_tweet" tw:twitter:data-count="none"></a>
       <a class="addthis_button_google_plusone" g:plusone:size="medium" g:plusone:annotation="none"></a>
-      <a class="addthis_button_facebook_like" fb:like:layout="button_count" fb:like:width="40"></a>
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count" fb:like:width="75"></a>
       <!-- AddThis Button END -->
     </div>
   </div>
