@@ -59,4 +59,4 @@ generator:
 
       edit:
         title: Edit collection %%name%%
-      new:     ~
+      new: ~

@@ -8,7 +8,7 @@ class _sidebarComponents extends cqFrontendComponents
   public function executeWidgetFacebookLikeBox()
   {
     /** @var $height stdClass */
-    $height = $this->getVar('height');
+    $height = $this->getVar('height') ?: new stdClass();
 
     return $this->_sidebar_if(!property_exists($height, 'value') || $height->value >= 340);
   }
@@ -19,7 +19,7 @@ class _sidebarComponents extends cqFrontendComponents
   public function executeWidgetFacebookRecommendations()
   {
     /** @var $height stdClass */
-    $height = $this->getVar('height');
+    $height = $this->getVar('height') ?: new stdClass();
 
     return $this->_sidebar_if(!property_exists($height, 'value') || $height->value >= 370);
   }
@@ -914,7 +914,7 @@ class _sidebarComponents extends cqFrontendComponents
   public function executeWidgetMailChimpSubscribe()
   {
     /** @var $height stdClass */
-    $height = $this->getVar('height');
+    $height = $this->getVar('height') ?: new stdClass();
 
     return $this->_sidebar_if(!property_exists($height, 'value') || $height->value >= 190);
   }

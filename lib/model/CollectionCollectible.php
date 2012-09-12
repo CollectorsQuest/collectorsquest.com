@@ -30,9 +30,9 @@ class CollectionCollectible extends BaseCollectionCollectible
 
   public function postSave(PropelPDO $con = null)
   {
-    $this->updateRelatedCollection($con);
+    parent::postSave($con);
 
-    return true;
+    $this->updateRelatedCollection($con);
   }
 
   public function __toString()

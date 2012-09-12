@@ -52,12 +52,29 @@ class ajaxAction extends cqAjaxAction
         $name = preg_replace('/\.(jpg|jpeg|png|gif|bmp)$/iu', '', $file['name']);
         $name = mb_substr(str_replace(array('_', '-'), ' ', ucfirst($name)), 0, 64, 'utf8');
 
+        /**
+         * We need to pass the name through the name validator
+         * before we decide if we should be using it for Collectible name
+         */
+        try
+        {
+          $validator = new cqValidatorName();
+          $collectible_name = $validator->clean($name);
+          $is_name_automatic = true;
+        }
+        catch (sfValidatorError $e)
+        {
+          $collectible_name = null;
+          $is_name_automatic = false;
+        }
+
         try
         {
           $collectible = new Collectible();
           $collectible->setCollector($collector);
-          $collectible->setName($name, true);
+          $collectible->setName($collectible_name, $is_name_automatic);
           $collectible->setBatchHash($request->getParameter('batch', null));
+          $collectible->setIsPublic(false);
           $collectible->save();
 
           // Set the Collection after the collectible has been saved
