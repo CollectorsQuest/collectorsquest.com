@@ -816,7 +816,7 @@ a.buy-credits-button {
   margin-right: -15px;
 
   .add-new-zone {
-    .size(171px, 124px);
+    .size(162px, 124px);
     margin-bottom: 13px;
     margin-left: 13px;
     padding: 6px;
@@ -1718,8 +1718,8 @@ textarea.input-xlarge {
   }
 
   .add-new-zone {
-    height: 127px;
-    margin-top: 4px;
+    height: 130px;
+    margin-top: 0;
     margin-bottom: 30px;
     padding-top: 8px;
     border: 2px dashed @blue;
@@ -1878,8 +1878,13 @@ textarea.input-xlarge {
           cursor: pointer
         }
 
-        a > img {
-          margin: 1px 0 1px 2px;
+        > a {
+	        display: block;
+	        .square(64px);
+
+	        > img {
+		        margin: 0;
+	        }
         }
       }
     }
@@ -1909,7 +1914,8 @@ textarea.input-xlarge {
   .drop-zone {
     .square(48px);
     margin: 1px;
-    line-height: 48px;
+	  font-size: 50px;
+    line-height: 52px;
   }
   .add-new-zone {
     .size(242px, 206px);
@@ -2080,6 +2086,14 @@ textarea.input-xlarge {
 .collectible-view-slot {
   position: relative;
   border: none;
+
+	> a {
+		.square(140px);
+
+		img {
+			margin: 0;
+		}
+	}
 
   .labels-mysq-collectibles {
     position: absolute;
