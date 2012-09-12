@@ -205,8 +205,21 @@ class generalActions extends cqFrontendActions
   {
     $this->social_only = $request->getParameter('social_only', false);
 
-    $this->login_form = new CollectorLoginForm();
-    $this->signup_form = new CollectorSignupStep1Form();
+    // Auto login the collector if a hash was provided
+    if ($collector = CollectorPeer::retrieveByHash($request->getParameter('hash')))
+    {
+      $this->getUser()->Authenticate(true, $collector, $remember = false);
+
+      // redirect to last page or homepage after login
+      return $this->redirect($request->getParameter('r', '@collector_me'));
+    }
+    // redirect to homepage if already logged in
+    else if ($this->getUser()->isAuthenticated())
+    {
+      return $this->redirect($request->getParameter('r', '@collector_me'));
+    }
+
+    $this->login_form =  new CollectorLoginForm();
     $this->rpxnow = sfConfig::get('app_credentials_rpxnow');
 
     return sfView::SUCCESS;
