@@ -21,6 +21,14 @@
         );
       ?>
     </div>
+
+    <?php if(IceGateKeeper::open('aetn_american_restoration', 'page')): ?>
+      <div class="banner-sidebar-promo-300-90">
+        <a href="<?= url_for('@aetn_american_restoration', true); ?>" title="Check out items seen on American Restoration">
+          <img src="/images/headlines/2012-0777_AR_300x90.jpg" alt="Check out items seen on American Restoration">
+        </a>
+      </div>
+    <?php endif; ?>
   <?php elseif ($aetn_show['id'] === 'american_pickers'): ?>
     <div class="banner-sidebar-promo-300-90">
       <?php
@@ -30,6 +38,14 @@
         );
       ?>
     </div>
+
+    <?php if(IceGateKeeper::open('aetn_american_restoration', 'page')): ?>
+      <div class="banner-sidebar-promo-300-90">
+        <a href="<?= url_for('@aetn_american_restoration', true); ?>" title="Check out items seen on American Restoration">
+          <img src="/images/headlines/2012-0777_AR_300x90.jpg" alt="Check out items seen on American Restoration">
+        </a>
+      </div>
+    <?php endif; ?>
   <?php elseif ($aetn_show['id'] === 'picked_off'): ?>
     <div class="banner-sidebar-promo-300-90">
       <?php
@@ -107,20 +123,19 @@
 <?php
   if ($aetn_show['id'] === 'american_restoration'):
 
-    include_component(
-        '_sidebar', 'widgetMoreHistory',
-        array(
-          'show_american_restoration' => false, 'height' => &$height
-        )
-      );
+    include_component('_sidebar', 'widgetMoreHistory', array('height' => &$height));
 
+  elseif (IceGateKeeper::open('aetn_american_restoration', 'page') &&
+          ($aetn_show['id'] === 'american_pickers' || $aetn_show['id'] === 'pawn_stars')
+    ):
+    /*
+     * Remove Tags module from these item pages.
+     */
   else:
-
     include_component(
       '_sidebar', 'widgetTags',
       array('collectible' => $collectible, 'height' => &$height)
     );
-
   endif;
 ?>
 

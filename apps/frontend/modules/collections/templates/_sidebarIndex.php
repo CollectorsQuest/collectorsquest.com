@@ -14,6 +14,9 @@
   <ul>
     <li><strong><?= link_to('American Pickers', '@aetn_american_pickers') ?></strong></li>
     <li><strong><?= link_to('Pawn Stars', '@aetn_pawn_stars') ?></strong></li>
+    <?php if(IceGateKeeper::open('aetn_american_restoration', 'page')): ?>
+      <li><strong><?= link_to('American Restoration', '@aetn_american_restoration') ?></strong></li>
+    <?php endif; ?>
     <?php
       /** @var $categories ContentCategory[] */
       foreach ($categories as $i => $category)

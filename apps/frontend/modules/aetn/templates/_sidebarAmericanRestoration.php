@@ -26,9 +26,6 @@ include_component(
 
 <?php
   include_component(
-    '_sidebar', 'widgetMoreHistory',
-    array(
-      'show_american_restoration' => false
-    )
+    '_sidebar', 'widgetMoreHistory'
   );
 ?>

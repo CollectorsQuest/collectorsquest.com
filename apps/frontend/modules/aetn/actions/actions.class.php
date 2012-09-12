@@ -110,27 +110,29 @@ class aetnActions extends cqFrontendActions
     $pager->init();
     $this->pager = $pager;
 
-    // use the same categories as Picked Off for now
-    $categories = ContentCategoryQuery::create()
-      ->filterById(array(2, 364, 388, 674, 1559, 2409, 2836), Criteria::IN)
-      ->find();
+    // use the same categories as American Pickers for now
+    $collectible_ids = array(
+      56402, 56180, 56206, 56090, 56398, 56091,
+      56663, 56680, 56599, 56094, 23304, 56859,
+      56540, 56759, 56761, 22184, 56063, 56760,
+      56544, 56590, 56596, 56593, 56591, 56598,
+      56175, 56028, 56534, 56030, 56616, 56618,
+      56395, 56622, 11132, 56035, 56619, 56034,
+      56762, 56382, 56757, 23705, 56381, 51400,
+      56784, 23054, 56400, 56753, 20207, 56393,
+      56753, 56681, 56380, 51391, 56664, 56662,
+    );
+    shuffle($collectible_ids);
 
     /** @var $q CollectibleForSaleQuery */
     $q = CollectibleForSaleQuery::create()
-      ->filterByContentCategoryWithDescendants($categories)
-      ->isForSale()
-      ->orderByUpdatedAt(Criteria::DESC);
-    $this->collectibles_for_sale = $q->limit(8)->find();
+      ->filterByCollectibleId($collectible_ids, Criteria::IN)
+      ->joinWith('Collectible')->useQuery('Collectible')->endUse()
+      ->limit(8)
+      ->addAscendingOrderByColumn('FIELD(collectible_id, ' . implode(',', $collectible_ids) . ')');
+    $this->collectibles_for_sale = $q->find();
 
     $this->collection = $collection;
-
-    // use same Categories for "From the Market" as American Pickers for now
-    $american_pickers = sfConfig::get('app_aetn_american_pickers');
-    $american_pickers_collection = CollectorCollectionQuery::create()->findOneById($american_pickers['collection']);
-    $this->forward404Unless($american_pickers_collection instanceof CollectorCollection);
-
-    // Make the Collection available in the sidebar
-    $this->setComponentVar('collection', $american_pickers_collection, 'sidebarAmericanRestoration');
 
     // Set the OpenGraph meta tags
     $this->getResponse()->addOpenGraphMetaFor($collection);

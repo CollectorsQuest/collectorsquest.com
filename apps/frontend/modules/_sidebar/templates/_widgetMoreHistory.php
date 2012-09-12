@@ -2,8 +2,7 @@
 /*
  * @var $height   stdClass
  * @var $_height  integer
- * @var $show_american_restoration  boolean
- * @var $title string
+ * @var $title    string
  */
 $_height = 0;
 
@@ -15,7 +14,7 @@ $_height -= 63;
   <?php echo cq_image_tag('headlines/cps_more_history_promo.jpg', array('alt'=>'Cajun Pawn Stars'));?>
 </a>
 
-<?php if(!isset($show_american_restoration)): ?>
+<?php if(!IceGateKeeper::open('aetn_american_restoration', 'page')): ?>
   <a class="block spacer-bottom" href="http://www.history.com/shows/american-restoration" title="American Restoration" target="_blank">
     <?php echo cq_image_tag('headlines/ar_more_history_promo.jpg', array('alt'=>'American Restoration'));?>
   </a>
