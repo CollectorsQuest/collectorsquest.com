@@ -102,8 +102,7 @@ class generalActions extends cqFrontendActions
          *
          * @var $q CollectorCollectionQuery
          */
-        $q = CollectorCollectionQuery::create()
-          ->filterByIsPublic(true)
+        $q = FrontendCollectorCollectionQuery::create()
           ->filterById($collection_ids, Criteria::IN)
           ->limit(2)
           ->addAscendingOrderByColumn('FIELD(id, '. implode(',', $collection_ids) .')');
@@ -120,10 +119,9 @@ class generalActions extends cqFrontendActions
         /**
          * Get the Collectibles
          *
-         * @var $q CollectibleQuery
+         * @var $q FrontendCollectibleQuery
          */
-        $q = CollectibleQuery::create()
-           ->filterByIsPublic(true)
+        $q = FrontendCollectibleQuery::create()
            ->filterById($collectible_ids, Criteria::IN)
            ->addAscendingOrderByColumn('FIELD(id, '. implode(',', $collectible_ids) .')');
 

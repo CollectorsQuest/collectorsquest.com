@@ -263,8 +263,7 @@ class _sidebarComponents extends cqFrontendComponents
     }
 
     /** @var $q CollectorCollectionQuery */
-    $q = CollectorCollectionQuery::create()
-      ->filterByIsPublic(true)
+    $q = FrontendCollectorCollectionQuery::create()
       ->filterByNumItems(3, Criteria::GREATER_EQUAL);
 
     /** @var $collection CollectorCollection */
@@ -611,9 +610,8 @@ class _sidebarComponents extends cqFrontendComponents
         $collector_ids = array_map('trim', $collector_ids);
         $collector_ids = array_filter($collector_ids);
 
-        /** @var $q CollectorQuery */
-        $q = CollectorQuery::create()
-          ->filterByIsPublic(true)
+        /** @var $q FrontendCollectorQuery */
+        $q = FrontendCollectorQuery::create()
           ->filterById($collector_ids, Criteria::IN)
           ->filterByUserType(CollectorPeer::TYPE_SELLER)
           ->addAscendingOrderByColumn('RAND()');

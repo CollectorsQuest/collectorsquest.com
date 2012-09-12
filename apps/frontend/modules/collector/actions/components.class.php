@@ -43,12 +43,14 @@ class collectorComponents extends cqFrontendComponents
       return sfView::NONE;
     }
 
+    /** @var $q CollectibleForSaleQuery */
     $q = CollectibleForSaleQuery::create()
       ->joinCollectible()
-        ->useCollectibleQuery()
+      ->useCollectibleQuery()
         ->filterByIsPublic(true)
-        ->endUse()
-      ->filterByCollector($collector)
+      ->endUse();
+
+    $q->filterByCollector($collector)
       ->isForSale()
       ->orderByUpdatedAt(Criteria::DESC);
 
@@ -72,8 +74,7 @@ class collectorComponents extends cqFrontendComponents
     }
 
     /** @var $q CollectorCollectionQuery */
-    $q = CollectorCollectionQuery::create()
-      ->filterByIsPublic(true)
+    $q = FrontendCollectorCollectionQuery::create()
       ->filterByCollector($collector)
       ->addJoin(CollectorCollectionPeer::ID, CollectionCollectiblePeer::COLLECTION_ID, Criteria::RIGHT_JOIN)
       ->orderByCreatedAt(Criteria::DESC)

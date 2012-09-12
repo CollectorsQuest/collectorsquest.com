@@ -96,13 +96,11 @@ class marketplaceComponents extends cqFrontendComponents
           $collectible_ids = array_map('trim', $collectible_ids);
           $collectible_ids = array_filter($collectible_ids);
 
-          $query = CollectibleQuery::create()
-            ->filterByIsPublic(true)
+          /** @var $query FrontendCollectibleQuery */
+          $query = FrontendCollectibleQuery::create()
             ->filterById($collectible_ids)
-            ->haveThumbnail()
-            ->useCollectibleForSaleQuery(null, Criteria::RIGHT_JOIN)
-              ->isForSale()
-            ->endUse()
+            ->hasThumbnail()
+            ->isForSale()
             ->addAscendingOrderByColumn('FIELD(collectible.id, '. implode(',', $collectible_ids) .')');
 
           $pager = new PropelModelPager($query, 12);
@@ -113,23 +111,25 @@ class marketplaceComponents extends cqFrontendComponents
     }
     else
     {
-      /** @var $query CollectibleQuery */
-      $query = CollectibleQuery::create()
-        ->distinct()
-        ->haveThumbnail()
-        ->useCollectionCollectibleQuery(null, Criteria::RIGHT_JOIN)
+      /** @var $q FrontendCollectibleQuery */
+      $q = FrontendCollectibleQuery::create()
+        ->distinct();
+
+      $q->useCollectionCollectibleQuery(null, Criteria::RIGHT_JOIN)
           ->groupByCollectionId()
-        ->endUse()
-        ->useCollectibleForSaleQuery(null, Criteria::RIGHT_JOIN)
+        ->endUse();
+
+      $q->useCollectibleForSaleQuery(null, Criteria::RIGHT_JOIN)
           ->isForSale()
-          ->orderBy('MarkedForSaleAt', Criteria::DESC)
+          ->orderByMarkedForSaleAt(Criteria::DESC)
           ->orderByCreatedAt(Criteria::DESC)
-        ->endUse()
+        ->endUse();
+
+      $q->hasThumbnail()
         ->filterById(null, Criteria::NOT_EQUAL)
-        ->filterByIsPublic(true)
         ->orderByCreatedAt(Criteria::DESC);
 
-      $pager = new PropelModelPager($query, 12);
+      $pager = new PropelModelPager($q, 12);
     }
 
     if ($pager)

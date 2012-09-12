@@ -79,7 +79,7 @@ class categoriesActions extends cqFrontendActions
       }
     }
 
-    $q = CollectorCollectionQuery::create()
+    $q = FrontendCollectorCollectionQuery::create()
        ->hasThumbnail()
        ->hasCollectibles()
        ->filterByContentCategoryWithDescendants($this->category)

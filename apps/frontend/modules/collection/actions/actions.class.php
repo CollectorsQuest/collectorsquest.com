@@ -125,7 +125,7 @@ class collectionActions extends cqFrontendActions
 
       if (!($collection instanceof CollectionDropbox) && !$this->getUser()->isOwnerOf($collection))
       {
-        $this->collections = CollectorCollectionQuery::create()
+        $this->collections = FrontendCollectorCollectionQuery::create()
           ->_if($collection->getCollectionCategoryId())
             ->filterByCollectionCategoryId($collection->getCollectionCategoryId())
           ->_elseif($collection->getContentCategoryId())

@@ -37,9 +37,9 @@ class marketplaceActions extends cqFrontendActions
         {
           $collectible_for_sale = CollectibleForSaleQuery::create()
             ->isForSale()
-              ->useCollectibleQuery()
+            ->useCollectibleQuery()
               ->filterByIsPublic(true)
-              ->endUse()
+            ->endUse()
             ->findOneByCollectibleId(trim($values['cq_collectible_id_'. $i]));
 
           if ($collectible_for_sale)
@@ -72,11 +72,13 @@ class marketplaceActions extends cqFrontendActions
     /** @var $content_category ContentCategory */
     $content_category = $this->getRoute()->getObject();
 
+    /** @var $q CollectibleForSaleQuery */
     $q = CollectibleForSaleQuery::create()
-       ->useCollectibleQuery()
+      ->useCollectibleQuery()
         ->filterByIsPublic(true)
-        ->endUse()
-       ->filterByContentCategoryWithDescendants($content_category)
+      ->endUse();
+
+     $q->filterByContentCategoryWithDescendants($content_category)
        ->isForSale()
        ->orderByUpdatedAt(Criteria::DESC);
 
