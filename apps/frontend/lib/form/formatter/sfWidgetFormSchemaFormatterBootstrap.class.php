@@ -41,6 +41,14 @@ class sfWidgetFormSchemaFormatterBootstrap extends sfWidgetFormSchemaFormatter
 
   public function formatRow($label, $field, $errors = array(), $help = '', $hiddenFields = null)
   {
+    // we want to hide null fields completely, so we skip all renrering, including
+    // labels (but we still need to output hidden fields)
+    if (cqWidgetFormNullInput::NULL_RENDER === $field)
+    {
+      return "\n" . cqWidgetFormNullInput::NULL_RENDER . "\n"
+        . (null === $hiddenFields ? '%hidden_fields%' : $hiddenFields);
+    }
+
     return strtr($this->getRowFormat(), array(
         '%label%'         => $label,
         '%field%'         => $this->formatRequiredField($field),
