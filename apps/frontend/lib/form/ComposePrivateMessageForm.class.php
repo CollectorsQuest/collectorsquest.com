@@ -10,6 +10,9 @@
 class ComposePrivateMessageForm extends PrivateMessageForm
 {
 
+  /** @var cqBaseUser */
+  protected $sf_user;
+
   /** @var Collector */
   protected $sender_collector;
 
@@ -20,7 +23,7 @@ class ComposePrivateMessageForm extends PrivateMessageForm
    * The Compose form takes a Collector object in its constructor that
    * will be set the "sender"
    *
-   * If $sf_user parameter is supplied, the for will check how many messages
+   * If the $sf_user parameter is supplied, the form will check how many messages
    * has the user sent in the current session and append a captcha field
    * if over the threshold
    *
@@ -55,6 +58,7 @@ class ComposePrivateMessageForm extends PrivateMessageForm
     $this->setupRedirectField();
     $this->setupAttachFields();
     $this->setupCopyForSenderField();
+    $this->setupIpAddressField();
 
     $this->widgetSchema->setLabels(array(
         'receiver' => 'To',
@@ -63,6 +67,15 @@ class ComposePrivateMessageForm extends PrivateMessageForm
     ));
 
     $this->unsetFields();
+
+    $this->mergePostValidator(new iceSpamControlValidatorSchema(array(
+        'credentials' => iceSpamControl::CREDENTIALS_ALL,
+        'fields' => array(
+            $this->getIpAddressFieldName() => 'ip',
+        ),
+      ), array(
+        'spam' => 'We are sorry we could not send your private message. Please try again later.',
+    )));
   }
 
   protected function setupReceiverField()

@@ -32,19 +32,3 @@ $height->value -= 250;
 ?>
 
 <?php include_component('_sidebar', 'widgetCollections', array('limit' => 8, 'height' => &$height)); ?>
-
-<?php include_component('_sidebar', 'widgetCollectiblesForSale', array('limit' => 3, 'height' => &$height)); ?>
-
-<?php
-/**
-  <?php include_component('_sidebar', 'widgetFeaturedSellers', array('title' => 'Spotlight')); ?>
-
-  <div class="spacer-20">
-  <?php
-    echo link_to(
-      cq_image_tag('headlines/040412_CQ_Market_blue.gif'),
-      '@seller_signup'
-    );
-  ?>
-  </div>
-**/

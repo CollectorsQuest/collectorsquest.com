@@ -13,12 +13,7 @@ class commentsActions extends cqFrontendActions
     if ($request->isMethod('post'))
     {
       $form = new FrontendCommentForm($this->getUser());
-      $form->bind(array_merge(
-        $request->getParameter($form->getName()),
-        array(
-          'ip_address' => $request->getRemoteAddress(),
-        )
-      ));
+      $form->bind($request->getParameter($form->getName()));
 
       if ($form->isValid())
       {

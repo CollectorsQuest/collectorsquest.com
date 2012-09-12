@@ -15,11 +15,14 @@ generator:
       actions: ~
       fields:
         id: { label: ID }
+        list_collector: { label: Collector }
+        list_collection: { label: Collection }
+        list_collectible: { label: Collectible }
         created_at: { label: Date, date_format: 'MM/dd/yyyy' }
 
       list:
         title: Collectibles
-        display: [id, collector, collection, =name, score, created_at]
+        display: [id, _list_collector, _list_collection, _list_collectible, score, created_at]
         sort: [created_at, desc]
 
       filter:
