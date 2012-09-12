@@ -18,8 +18,3 @@ pickedOffSuccess:
 storageWarsSuccess:
   components:
     sidebar_300: [aetn, sidebarStorageWars]
-
-collectibleSuccess:
-  javascripts: [jwplayer.js]
-  components:
-    sidebar_300: [aetn, sidebarCollectible]

@@ -70,12 +70,6 @@
     }
   ?>
   <div class="span<?= $span; ?> text-center relative">
-    <?php /*
-      https://basecamp.com/1759305/projects/127256-collectorsquest-com/todos/14537137-for-the-play-button
-      <span class="holder-icon-play">
-        <i class="icon icon-play"></i>
-      </span>
-    */ ?>
 
     <?php if (isset($previous)): ?>
     <a href="<?= url_for_collectible($previous) ?>"
@@ -93,12 +87,22 @@
     </a>
     <?php endif; ?>
 
-    <a class="zoom-zone" target="_blank" title="Click to zoom"
-       href="<?= src_tag_collectible($collectible, 'original') ?>">
-      <span class="picture-zoom holder-icon-edit">
-        <i class="icon icon-zoom-in"></i>
-      </span>
-    </a>
+    <?php if (!empty($video)): ?>
+      <a class="play-zone" target="_blank" title="Click to play"
+         href="<?= url_for_collectible($collectible) ?>#mediaspace">
+        <span class="holder-icon-play">
+          <i class="icon icon-play"></i>
+        </span>
+      </a>
+    <?php else: ?>
+      <a class="zoom-zone" target="_blank" title="Click to zoom"
+         href="<?= src_tag_collectible($collectible, 'original') ?>">
+        <span class="picture-zoom holder-icon-edit">
+          <i class="icon icon-zoom-in"></i>
+        </span>
+      </a>
+    <?php endif; ?>
+
     <?php
       echo link_to(
         image_tag_collectible(
@@ -329,3 +333,38 @@ $(document).ready(function()
 
 });
 </script>
+
+<?php if (!empty($video)): ?>
+
+<div id="mediaspace" class="modal hide" tabindex="-1" role="dialog">
+  <div id="mediaspace-body" class="modal-body">
+    &nbsp;
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function()
+  {
+    $("a.play-zone").click(function(e)
+    {
+      e.preventDefault();
+
+      jwplayer('mediaspace-body').setup({
+        flashplayer: '/swf/mediaplayer.swf',
+        file: '<?= src_tag_multimedia($video, 'original'); ?>',
+        autostart: true,
+        width: 720, height: 416,
+        skin: "<?= cq_image_src('glow.zip', false); ?>",
+        'plugins': 'fbit-1,tweetit-1,gapro-2',
+        'gapro.accountid': 'UA-669177-1',
+        'fbit.link': '<?= cq_canonical_url(); ?>',
+        'tweetit.link': '<?= cq_canonical_url(); ?>'
+      });
+
+      $('#mediaspace').modal();
+
+      return false;
+    });
+  });
+</script>
+<?php endif; ?>
