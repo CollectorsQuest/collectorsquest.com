@@ -121,16 +121,8 @@
 ?>
 
 <?php
-  if ($aetn_show['id'] === 'american_restoration'):
-
+  if (!empty($aetn_show)):
     include_component('_sidebar', 'widgetMoreHistory', array('height' => &$height));
-
-  elseif (IceGateKeeper::open('aetn_american_restoration', 'page') &&
-          ($aetn_show['id'] === 'american_pickers' || $aetn_show['id'] === 'pawn_stars')
-    ):
-    /*
-     * Remove Tags module from these item pages.
-     */
   else:
     include_component(
       '_sidebar', 'widgetTags',
