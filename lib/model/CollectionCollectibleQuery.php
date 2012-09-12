@@ -41,4 +41,5 @@ class CollectionCollectibleQuery extends BaseCollectionCollectibleQuery
         ->search(trim($v))
       ->endUse();
   }
+
 }

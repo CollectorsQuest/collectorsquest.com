@@ -63,7 +63,7 @@ class ContentCategoryQuery extends BaseContentCategoryQuery
    *
    * @return    ContentCategoryQuery The current query, for fluid interface
    */
-  public function descendantsOfObjectIncluded($contentCategory)
+  public function descendantsOfObjectIncluded(ContentCategory $contentCategory)
   {
     return $this
       ->addUsingAlias(ContentCategoryPeer::LEFT_COL, $contentCategory->getLeftValue(), Criteria::GREATER_EQUAL)
@@ -78,7 +78,7 @@ class ContentCategoryQuery extends BaseContentCategoryQuery
    *
    * @return    ContentCategoryQuery The current query, for fluid interface
    */
-  public function ancestorsOfObjectIncluded($contentCategory)
+  public function ancestorsOfObjectIncluded(ContentCategory $contentCategory)
   {
     return $this
       ->addUsingAlias(ContentCategoryPeer::LEFT_COL, $contentCategory->getLeftValue(), Criteria::LESS_EQUAL)

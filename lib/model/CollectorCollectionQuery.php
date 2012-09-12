@@ -4,23 +4,6 @@ require 'lib/model/om/BaseCollectorCollectionQuery.php';
 
 class CollectorCollectionQuery extends BaseCollectorCollectionQuery
 {
-  /**
-   * @param ContentCategory $content_category
-   * @param string $comparison
-   *
-   * @return CollectorCollectionQuery
-   */
-  public function filterByContentCategoryWithDescendants($content_category, $comparison = null)
-  {
-    return $this
-      ->useCollectionQuery()
-        ->filterByContentCategory(
-          ContentCategoryQuery::create()
-            ->descendantsOfObjectIncluded($content_category)->find(),
-          $comparison
-        )
-      ->endUse();
-  }
 
   /**
    * @param  array   $tags
@@ -50,32 +33,10 @@ class CollectorCollectionQuery extends BaseCollectorCollectionQuery
   /**
    * @return CollectorCollectionQuery
    */
-  public function haveThumbnail()
+  public function hasThumbnail()
   {
     // @todo: we need implementation
     return $this;
   }
 
-  /**
-   * @return CollectorCollectionQuery
-   */
-  public function haveCollectibles()
-  {
-    return $this
-      ->filterByNumItems(0, Criteria::GREATER_THAN);
-  }
-
-  /**
-   * @param      string  $v
-   * @return     CollectorCollectionQuery
-   */
-  public function search($v)
-  {
-    return $this
-      ->useCollectionQuery()
-        ->filterByName('%'. trim($v) .'%', Criteria::LIKE)
-        ->_or()
-        ->filterByDescription('%'. trim($v) .'%', Criteria::LIKE)
-      ->endUse();
-  }
 }

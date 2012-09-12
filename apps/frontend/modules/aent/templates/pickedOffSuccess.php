@@ -14,7 +14,7 @@
 </div>
 
 <p class="text-justify">
-  <?= $collection->getDescription(); ?>
+  <?= $collection->getDescription('html'); ?>
 </p>
 
 <?php
