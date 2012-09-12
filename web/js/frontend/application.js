@@ -377,8 +377,8 @@ var COMMON = window.COMMON = (function(){
         var $this = $(this);
         e.preventDefault();
 
-        MISC.modalConfirm($this.data('modal-title'),
-          $this.data('modal-text'), $this.attr('href'));
+        MISC.modalConfirm($this.data('modalTitle'),
+          $this.data('modalText'), $this.attr('href'));
 
         return false;
       });
@@ -386,8 +386,8 @@ var COMMON = window.COMMON = (function(){
         var $this = $(this);
         e.preventDefault();
 
-        MISC.modalConfirmDestructive($this.data('modal-title'),
-          $this.data('modal-text'), $this.attr('href'));
+        MISC.modalConfirmDestructive($this.data('modalTitle'),
+          $this.data('modalText'), $this.attr('href'));
 
         return false;
       });
@@ -440,12 +440,12 @@ var COMMON = window.COMMON = (function(){
         if (!window.cq.authenticated) {
           $holder.modal('show');
 
-          if (undefined !== $this.data('login-title')) {
-            $holder.find('#modal-login-username-pane h3').html($this.data('login-title'));
+          if (undefined !== $this.data('loginTitle')) {
+            $holder.find('#modal-login-username-pane h3').html($this.data('loginTitle'));
           }
 
-          if (undefined !== $this.data('signup-title')) {
-            $holder.find('#modal-sign-up-pane h3').html($this.data('signup-title'));
+          if (undefined !== $this.data('signupTitle')) {
+            $holder.find('#modal-sign-up-pane h3').html($this.data('signupTitle'));
           }
 
           $holder.find('input:visible').first().focus();
@@ -547,7 +547,7 @@ var COMMON = window.COMMON = (function(){
                 }
                 $suggestion.find('.address').html(suggestion.address);
                 $suggestion.find('.domain').html(suggestion.domain);
-                $suggestion.find('a').data('suggested-address', suggestion.full);
+                $suggestion.find('a').data('suggestedAddress', suggestion.full);
                 $suggestion.slideDown(200);
                 $form.addClass('mailcheck-has-suggestion');
               },
@@ -563,7 +563,7 @@ var COMMON = window.COMMON = (function(){
           // add delegated click event on the suggestion to fill it in the email filed
           $email_el_form.on('click', '.email-suggestion a', function() {
             var $this = $(this);
-            $email_el.val($this.data('suggested-address'));
+            $email_el.val($this.data('suggestedAddress'));
             $this.parent('div').hide();
           })
           // add an on submit hook to require the user to click 2 times on the submit
@@ -572,12 +572,12 @@ var COMMON = window.COMMON = (function(){
             perform_mailcheck($email_el, $email_el_form);
 
             if ($email_el_form.hasClass('mailcheck-has-suggestion')) {
-              if (!$email_el_form.data('mailcheck-blocked-first-submit') ) {
-                $email_el_form.data('mailcheck-blocked-first-submit', true);
+              if (!$email_el_form.data('mailcheckBlockedFirstSubmit') ) {
+                $email_el_form.data('mailcheckBlockedFirstSubmit', true);
 
                 return false;
               } else {
-                $email_el_form.data('mailcheck-unblocked-second-submit', true);
+                $email_el_form.data('mailcheckUnblockedSecondSubmit', true);
               }
             }
 
@@ -596,7 +596,7 @@ var COMMON = window.COMMON = (function(){
             var old_showLoading = $.fn.showLoading;
             $.fn.showLoading = function(options) {
               var $form = $(this).find('form.mailcheck-has-suggestion');
-              if (!$form.length || $form.data('mailcheck-unblocked-second-submit'))
+              if (!$form.length || $form.data('mailcheckUnblockedSecondSubmit'))
               {
                 return old_showLoading.apply(this, arguments);
               }
@@ -913,8 +913,8 @@ var AVIARY = window.AVIARY = (function(){
           // launch the image editor
           aviary_editor.launch({
             image: $this.siblings('img')[0],
-            postData: $this.data('post-data'),
-            url: $this.data('original-image-url')
+            postData: $this.data('postData'),
+            url: $this.data('originalImageUrl')
             // test image
             // url: 'http://images.aviary.com/imagesv5/feather_default.jpg'
           });
