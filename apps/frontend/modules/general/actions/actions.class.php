@@ -100,7 +100,7 @@ class generalActions extends cqFrontendActions
         /**
          * Get 2 Collections
          *
-         * @var $q CollectorCollectionQuery
+         * @var $q FrontendCollectorCollectionQuery
          */
         $q = FrontendCollectorCollectionQuery::create()
           ->filterById($collection_ids, Criteria::IN)

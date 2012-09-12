@@ -262,7 +262,7 @@ class _sidebarComponents extends cqFrontendComponents
       return sfView::NONE;
     }
 
-    /** @var $q CollectorCollectionQuery */
+    /** @var $q FrontendCollectorCollectionQuery */
     $q = FrontendCollectorCollectionQuery::create()
       ->filterByNumItems(3, Criteria::GREATER_EQUAL);
 

@@ -73,10 +73,11 @@ class collectorComponents extends cqFrontendComponents
       return sfView::NONE;
     }
 
-    /** @var $q CollectorCollectionQuery */
+    /** @var $q FrontendCollectorCollectionQuery */
     $q = FrontendCollectorCollectionQuery::create()
-      ->filterByCollector($collector)
-      ->addJoin(CollectorCollectionPeer::ID, CollectionCollectiblePeer::COLLECTION_ID, Criteria::RIGHT_JOIN)
+      ->addJoin(CollectorCollectionPeer::ID, CollectionCollectiblePeer::COLLECTION_ID, Criteria::RIGHT_JOIN);
+
+    $q->filterByCollector($collector)
       ->orderByCreatedAt(Criteria::DESC)
       ->groupById();
 

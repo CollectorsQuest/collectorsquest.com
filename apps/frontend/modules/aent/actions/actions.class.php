@@ -225,7 +225,9 @@ class aentActions extends cqFrontendActions
     }
 
     $tags = $collectible->getTags();
-    $q = CollectibleQuery::create()
+
+    /** @var $q FrontendCollectibleQuery */
+    $q = FrontendCollectibleQuery::create()
        ->filterById($collectible->getId(), Criteria::NOT_EQUAL)
        ->filterByTags($tags)
        ->orderByNumViews(Criteria::DESC)

@@ -176,7 +176,9 @@ class cqSphinxPager extends sfPager
     if (!empty($collector_ids))
     {
       /** @var $collectors Collector[] */
-      $collectors = CollectorQuery::create()->filterById($collector_ids, Criteria::IN)->find();
+      $collectors = FrontendCollectorQuery::create()
+        ->filterById($collector_ids, Criteria::IN)
+        ->find();
 
       foreach ($collectors as $collector)
       {
@@ -194,7 +196,7 @@ class cqSphinxPager extends sfPager
     if (!empty($collectible_ids))
     {
       /** @var $collectibles Collectible[] */
-      $collectibles = CollectibleQuery::create()
+      $collectibles = FrontendCollectibleQuery::create()
         ->filterById($collectible_ids, Criteria::IN)
         ->find();
 

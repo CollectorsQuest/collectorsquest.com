@@ -14,7 +14,7 @@ class collectionsActions extends cqFrontendActions
   {
     if ($request->getRequestFormat() === 'rss')
     {
-      /** @var $q CollectorCollectionQuery */
+      /** @var $q FrontendCollectorCollectionQuery */
       $q = FrontendCollectorCollectionQuery::create();
 
       switch ($request->getParameter('sort', 'latest'))
