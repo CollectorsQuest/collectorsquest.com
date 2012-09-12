@@ -111,25 +111,28 @@ class marketplaceComponents extends cqFrontendComponents
     }
     else
     {
-      /** @var $q FrontendCollectibleQuery */
-      $q = FrontendCollectibleQuery::create()
+      /** @var $query FrontendCollectibleQuery */
+      $query = FrontendCollectibleQuery::create()
         ->distinct();
 
-      $q->useCollectionCollectibleQuery(null, Criteria::RIGHT_JOIN)
+      $query
+        ->useCollectionCollectibleQuery(null, Criteria::RIGHT_JOIN)
           ->groupByCollectionId()
         ->endUse();
 
-      $q->useCollectibleForSaleQuery(null, Criteria::RIGHT_JOIN)
+      $query
+        ->useCollectibleForSaleQuery(null, Criteria::RIGHT_JOIN)
           ->isForSale()
           ->orderByMarkedForSaleAt(Criteria::DESC)
           ->orderByCreatedAt(Criteria::DESC)
         ->endUse();
 
-      $q->hasThumbnail()
+      $query
+        ->hasThumbnail()
         ->filterById(null, Criteria::NOT_EQUAL)
         ->orderByCreatedAt(Criteria::DESC);
 
-      $pager = new PropelModelPager($q, 12);
+      $pager = new PropelModelPager($query, 12);
     }
 
     if ($pager)
