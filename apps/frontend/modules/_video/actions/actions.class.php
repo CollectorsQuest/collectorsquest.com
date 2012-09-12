@@ -7,7 +7,7 @@ class _videoActions extends cqFrontendActions
   {
     parent::preExecute();
 
-    SmartMenu::setSelected('header_main_menu', 'video');
+    SmartMenu::setSelected('header', 'video');
   }
 
   public function executeIndex()

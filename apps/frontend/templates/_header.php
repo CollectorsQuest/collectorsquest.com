@@ -35,7 +35,7 @@
       <div class="span4 right-section-header">
 
         <?php if (IceGateKeeper::open('shopping_cart')): ?>
-          <a href="<?= url_for('@shopping_cart', true); ?>" class="link-cart"
+          <a href="<?= url_for('shopping_cart', array('ref' => cq_link_ref('header')), true); ?>" class="link-cart"
              title="<?= (0 < $k) ? 'View your shopping cart' : 'Your shopping cart is empty!'; ?>">
             <span class="shopping-cart-inner shopping-cart">
             <?php if (0 < $k): ?>
@@ -57,7 +57,7 @@
             <?php if ($sf_params->get('module') === '_video'): ?>
               <ul class="dropdown-menu dd-menu-min-width">
                 <li>
-                  <a href="<?= url_for('@mycq_profile', true); ?>"
+                  <a href="<?= url_for('mycq_profile', array('ref' => cq_link_ref('header')), true); ?>"
                      title="Manage your CollectorsQuest.com profile!">
                     <i class="icon icon-user"></i> Profile
                   </a>
@@ -73,34 +73,34 @@
             <?php else: ?>
               <ul class="dropdown-menu dd-menu-min-width">
                 <li>
-                  <a href="<?= url_for('@mycq_profile', true); ?>"
+                  <a href="<?= url_for('mycq_profile', array('ref' => cq_link_ref('header')), true); ?>"
                      title="Manage your CollectorsQuest.com profile!">
                     <i class="icon icon-user"></i> Profile
                   </a>
                 </li>
                 <li>
-                  <a href="<?= url_for('@mycq_collections', true); ?>"
+                  <a href="<?= url_for('mycq_collections', array('ref' => cq_link_ref('header')), true); ?>"
                      title="Manage your Collections!">
                     <i class="icon icon-th-large"></i> Collections
                   </a>
                 </li>
                 <?php if (IceGateKeeper::open('mycq_marketplace')): ?>
                 <li>
-                  <a href="<?= url_for('@mycq_marketplace', true); ?>"
+                  <a href="<?= url_for('mycq_marketplace', array('ref' => cq_link_ref('header')), true); ?>"
                      title="Manage your Items for Sale!">
                     <i class="icon icon-shopping-cart"></i> My Market
                   </a>
                 </li>
                 <?php endif; ?>
                 <li>
-                  <a href="<?= url_for('@messages_inbox', true); ?>"
+                  <a href="<?= url_for('messages_inbox', array('ref' => cq_link_ref('header')), true); ?>"
                      title="Read and send private messages!">
                     <i class="icon icon-envelope"></i> Messages
                   </a>
                 </li>
                 <li class="divider"></li>
                 <li>
-                  <a href="<?= url_for('@logout', true); ?>"
+                  <a href="<?= url_for('logout', array('ref' => cq_link_ref('header')), true); ?>"
                      class="logout-link"
                      title="Log Out from your CollectorsQuest.com account!">
                     <i class="icon icon-signout"></i> Log Out
@@ -112,17 +112,18 @@
         <?php else: ?>
           <?php
             echo link_to(
-              'Sign In', '@modal_login',
-                array(
-                  'class' => 'open-dialog requires-login bold-links padding-signup', 'onclick' => 'return false'
-                )
+              'Sign In', 'modal_login', array('ref' => cq_link_ref('header')),
+              array(
+                'class' => 'open-dialog requires-login bold-links padding-signup',
+                'onclick' => 'return false;'
+              )
             );
           ?>
           &nbsp;or&nbsp;
           <?php
             echo link_to(
               // '&nbsp;', '@misc_guide_to_collecting',
-              '&nbsp;', '@misc_guide_to_collecting',
+              '&nbsp;', 'misc_guide_to_collecting', array('ref' => cq_link_ref('header')),
               array('class' => 'sign-up-now-btn sign-up-now-red', 'absolute' => true)
             );
           ?>
@@ -135,42 +136,44 @@
     <div class="navbar-inner">
       <div class="container dark-bg">
         <?php
-          if (sfConfig::get('sf_environment') === 'dev') {
+          if (sfConfig::get('sf_environment') === 'dev')
+          {
             $class = 'cq-logo logo-development';
-          } else if (sfConfig::get('sf_environment') === 'next') {
+          }
+          else if (sfConfig::get('sf_environment') === 'next')
+          {
             $class = 'cq-logo logo-staging';
-          } else {
+          }
+          else
+          {
             $class = 'cq-logo logo';
           }
 
           echo link_to(
-            'Collectors Quest', '@homepage',
+            'Collectors Quest', 'homepage',
+            array('ref' => cq_link_ref('logo')),
             array('class' => $class .' hide-text', 'title' => 'Home', 'absolute' => true)
           );
         ?>
         <ul class="nav">
-          <?= SmartMenu::generate('header_main_menu'); ?>
+          <?= SmartMenu::generate('header'); ?>
         </ul>
         <div class="menu-wrapper-social-icons">
           <span class="white">Follow us:</span>
           <a href="https://www.facebook.com/pages/Collectors-Quest/119338990397"
-             target="_blank" class="social-link"
-             rel="tooltip" title="Follow us on Facebook">
+             target="_blank" class="social-link" rel="tooltip" title="Follow us on Facebook">
             <i class="s-24-icon-facebook"></i>
           </a>
           <a href="https://twitter.com/CollectorsQuest"
-             target="_blank" class="social-link"
-             rel="tooltip" title="Follow us on Twitter">
+             target="_blank" class="social-link" rel="tooltip" title="Follow us on Twitter">
             <i class="s-24-icon-twitter"></i>
           </a>
           <a href="https://plus.google.com/113404032517505188429"
-             target="_blank" class="social-link"
-             rel="tooltip" title="Follow us on Google+">
+             target="_blank" class="social-link" rel="tooltip" title="Follow us on Google+">
             <i class="s-24-icon-google"></i>
           </a>
           <a href="http://pinterest.com/CollectorsQuest"
-             target="_blank" class="social-link"
-             rel="tooltip" title="Follow us on Pinterest">
+             target="_blank" class="social-link" rel="tooltip" title="Follow us on Pinterest">
             <i class="s-24-icon-pinterest"></i>
           </a>
         </div>

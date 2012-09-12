@@ -1,7 +1,8 @@
 <?php
 
 /**
- * @method  cqFrontendUser  getUser()
+ * @method  cqFrontendUser        getUser()
+ * @method  cqFrontWebController  getController()
  */
 abstract class cqFrontendActions extends cqBaseActions
 {

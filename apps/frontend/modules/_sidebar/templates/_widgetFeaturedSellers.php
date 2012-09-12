@@ -1,8 +1,11 @@
 <?php
 /**
- * @var $title string
- * @var $collectors Collector[]
+ * @var $title       string
+ * @var $collectors  Collector[]
+ * @var $height      stdClass
  */
+
+$_height = 0;
 ?>
 
 <?php
@@ -10,6 +13,7 @@
   $link = null;
 
   cq_sidebar_title($title, $link, array('left' => 7, 'right' => 5));
+  $_height -= 63;
 ?>
 
 <?php foreach ($collectors as $collector): ?>
@@ -38,6 +42,10 @@
             );
             echo '</li>';
           }
+          if (count($collectibles_for_sale) > 0)
+          {
+            $_height -= 63;
+          }
         ?>
       </ul>
     </div><!-- /.thumbnails-inner -->
@@ -62,4 +70,13 @@
     </div><!-- /.seller -->
   </div><!-- /.spotlight-inner -->
 </div><!-- /#spotlight-sidebar -->
-<?php endforeach; ?>
+
+<?php
+  $_height -= 98;
+  endforeach;
+
+  if (isset($height) && property_exists($height, 'value'))
+  {
+    $height->value -= abs($_height);
+  }
+?>

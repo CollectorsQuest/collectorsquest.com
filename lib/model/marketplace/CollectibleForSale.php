@@ -207,4 +207,39 @@ class CollectibleForSale extends BaseCollectibleForSale
       ->findOneByCollectibleId($this->getCollectibleId());
   }
 
+  /**
+   * Proxy method to Collection::getContentCategory()
+   *
+   * @return ContentCategory The associated ContentCategory object.
+   */
+  public function getCategory()
+  {
+    return $this->getCollection()->getContentCategory();
+  }
+
+  /**
+   * Proxy method to Collection::getContentCategory()->getPath()
+   *
+   * @return string
+   */
+  public function getCategoryPath()
+  {
+    /** @var $content_category ContentCategory */
+    if ($content_category = $this->getCollection()->getContentCategory())
+    {
+      return $content_category->getPath();
+    }
+
+    return null;
+  }
+
+  /**
+   * Proxy method to Collectible::getTagString()
+   *
+   * @return string
+   */
+  public function getTagString()
+  {
+    return $this->getCollectible()->getTagString();
+  }
 }

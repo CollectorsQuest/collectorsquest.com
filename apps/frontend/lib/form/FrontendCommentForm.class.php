@@ -44,6 +44,7 @@ class FrontendCommentForm extends BaseCommentForm
     $this->setupAuthorEmailField();
     $this->setupTokenField();
     $this->setupRefererField();
+    $this->setupIpAddressField();
 
     $this->widgetSchema->setLabels(array(
         'is_notify' => 'Notify me of follow-up comments by email.',
@@ -57,12 +58,14 @@ class FrontendCommentForm extends BaseCommentForm
     $this->mergePostValidator(
       new FrontendCommentFormValidatorSchema($this->sf_user)
     );
-    $this->mergePostValidator(new iceSpamControlValidatorSchema(null, array(
-        'credentials' => iceSpamControl::CREDENTIALS_COMMENT,
+    $this->mergePostValidator(new iceSpamControlValidatorSchema(array(
+        'credentials' => iceSpamControl::CREDENTIALS_ALL,
         'fields' => array(
             'author_email' => 'email',
-            'ip_address' => 'ip',
+            $this->getIpAddressFieldName() => 'ip',
         )
+      ), array(
+        'spam' => 'We are sorry we could not add your comment. Please try again later.',
     )));
   }
 

@@ -96,7 +96,7 @@
 
     cq_sidebar_title(
       'Which package is right for you?', isset($package_id_value) ? $link : '',
-      array('left' => 6, 'right' => 6, 'class'=>'spacer-top-reset row-fluid sidebar-title')
+      array('left' => 7, 'right' => 5, 'class'=>'spacer-top-reset row-fluid sidebar-title')
     );
     ?>
 
@@ -227,7 +227,7 @@
   <div class="agreement-checks control-group spacer-bottom-reset">
     <label class="control-label control-label">&nbsp;</label>
     <div class="controls form-inline reset-label-colors">
-      <label for="<?= $packagesForm['terms']->renderId() ?>" class="radio inline">
+      <label for="<?= $packagesForm['terms']->renderId() ?>" class="checkbox">
         <?= $packagesForm['terms']->render() ?>&nbsp;
         <?php
           echo sprintf(
@@ -242,8 +242,8 @@
       <?= $packagesForm['terms']->renderError() ?>
     </div>
     <div class="controls form-inline reset-label-colors">
-      <label for="<?= $packagesForm['fyi']->renderId() ?>" class="radio inline">
-        <?= $packagesForm['fyi']->render(array('style' => 'margin-bottom: 25px; float: left; margin-right: 5px; margin-top: 3px;')) ?>
+      <label for="<?= $packagesForm['fyi']->renderId() ?>" class="checkbox">
+        <?= $packagesForm['fyi']->render(array('class' => 'checkbox-indent')) ?>
         I acknowledge that all payments made to me for items sold on
         Collectors Quest are processed through PayPal<sup>®</sup>.
       </label>
@@ -288,10 +288,10 @@ $(document).ready(function() {
 
   // on packages change check if we have a free package and hide payment info
   // also trigger the event to get initial state
-  $packages.on('change', function(e, undefined){
+  $packages.on('change', function(e){
     var $checked = $packages.filter(':checked'),
-        $label_holder = $checked.siblings('span.label-holder');
-    if ('$0' === $label_holder.data('actual-price', undefined)) {
+        $label_holder = $checked.siblings('span.label-holder').eq(0);
+    if ('$0' === $label_holder.data('actualPrice')) {
       $('div.payment-type').slideUp();
       $('#payment-header').slideUp();
       $credit_card_info.slideUp();

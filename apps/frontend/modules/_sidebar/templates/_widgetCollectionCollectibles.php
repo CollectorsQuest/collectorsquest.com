@@ -1,7 +1,7 @@
 <?php
 /**
  * @var $collectibles Collectible[]
- * @var $pager PropelModelPager
+ * @var $pager        PropelModelPager
  */
 
 $_height = 0;
@@ -29,7 +29,7 @@ $_height = 0;
           {
             slot('lastItem');
             echo link_to(
-              $pager->getNbResults().'<br />Items',
+              '<span>'.$pager->getNbResults().'</span>'.'Items',
               'collection_by_slug', $collection, array('class' => 'moreItems')
             );
             end_slot();
@@ -47,10 +47,11 @@ $_height = 0;
     </div>
   </div>
 </div>
-<?php $_height -= 165; ?>
 
 <?php
-if (isset($height) && property_exists($height, 'value'))
+  $_height -= 165;
+
+  if (isset($height) && property_exists($height, 'value'))
   {
     $height->value -= abs($_height);
   }
