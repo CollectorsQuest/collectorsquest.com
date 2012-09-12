@@ -66,7 +66,7 @@ class FrontendCommentForm extends BaseCommentForm
         )
       ), array(
         'spam' => 'We are sorry we could not add your comment. Please try again later.',
-     )));
+    )));
   }
 
   protected function setupBodyField()
