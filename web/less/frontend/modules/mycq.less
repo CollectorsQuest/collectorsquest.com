@@ -2083,6 +2083,7 @@ textarea.input-xlarge {
 
   .labels-mysq-collectibles {
     position: absolute;
+	  z-index: 101;
     top: 16px;
     left: 2px;
     padding: 2px 6px;
@@ -2102,6 +2103,34 @@ textarea.input-xlarge {
     .labels-mysq-collectibles();
     background-color: @red;
   }
+
+	.overlay {
+		display: none;
+	}
+
+	&.incomplete {
+
+		&:hover .overlay {
+			background-image: url("@{baseUrl}/not-public.png");
+			background-position: center 50px;
+			background-repeat: no-repeat;
+		}
+		.overlay {
+			display: block;
+			.square(150px);
+			position: absolute;
+			z-index: 100;
+			top: 0;
+			left: 0;
+			background-color: #fff;
+			background-color: #fff;
+			.opacity(70);
+		}
+
+		a.target {
+			color: @brown;
+		}
+	}
 }
 
 //Alert
