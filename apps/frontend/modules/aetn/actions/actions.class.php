@@ -112,19 +112,10 @@ class aetnActions extends cqFrontendActions
     $pager->init();
     $this->pager = $pager;
 
-    // use the same categories as American Pickers for now
-    $categories = ContentCategoryQuery::create()
-      ->filterById(array(2, 364, 388, 674, 1559, 2409, 2836), Criteria::IN)
-      ->find();
-
-    /** @var $q CollectibleForSaleQuery */
-    $q = CollectibleForSaleQuery::create()
-      ->filterByContentCategoryWithDescendants($categories)
-      ->isForSale()
-      ->orderByUpdatedAt(Criteria::DESC);
-    $this->collectibles_for_sale = $q->limit(8)->find();
-
     $this->collection = $collection;
+
+    // Make the Collection available in the sidebar
+    $this->setComponentVar('collection', $collection, 'sidebarAmericanRestoration');
 
     // Set the OpenGraph meta tags
     $this->getResponse()->addOpenGraphMetaFor($collection);
@@ -217,17 +208,6 @@ class aetnActions extends cqFrontendActions
     $pager->setPage($request->getParameter('page', 1));
     $pager->init();
     $this->pager = $pager;
-
-    $categories = ContentCategoryQuery::create()
-      ->filterById(array(2, 364, 674, 2409, 1367), Criteria::IN)
-      ->find();
-
-    /** @var $q CollectibleForSaleQuery */
-    $q = CollectibleForSaleQuery::create()
-      ->filterByContentCategoryWithDescendants($categories)
-      ->isForSale()
-      ->orderByUpdatedAt(Criteria::DESC);
-    $this->collectibles_for_sale = $q->limit(8)->find();
 
     $this->collection = $collection;
 
