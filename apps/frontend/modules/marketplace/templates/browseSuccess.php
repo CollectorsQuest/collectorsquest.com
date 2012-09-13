@@ -49,5 +49,5 @@ $height_main_div->value = 51;
 
 <?php
   $height_main_div->value > 500 ?: $height_main_div->value = 500;
-  $sf_user->setFlash('height_main_div', $height_main_div, 'false', 'internal');
+  $sf_user->setFlash('height_main_div', $height_main_div, false, 'internal');
 ?>
