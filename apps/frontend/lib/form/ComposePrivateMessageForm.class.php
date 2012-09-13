@@ -19,6 +19,9 @@ class ComposePrivateMessageForm extends PrivateMessageForm
   /** @var string */
   protected $thread;
 
+  /** @var cqFrontendUser */
+  protected $sf_user;
+
   /**
    * The Compose form takes a Collector object in its constructor that
    * will be set the "sender"
@@ -35,7 +38,7 @@ class ComposePrivateMessageForm extends PrivateMessageForm
    */
   public function __construct(
     Collector $sender,
-    cqBaseUser $sf_user = null,
+    cqFrontendUser $sf_user = null,
     $thread = null,
     $options = array(),
     $CSRFSecret = null
@@ -246,8 +249,8 @@ class ComposePrivateMessageForm extends PrivateMessageForm
   {
     if ($this->sf_user)
     {
-      return $this->sf_user->getAttribute(
-        cqFrontendUser::PRIVATE_MESSAGES_SENT_COUNT_KEY, 0, 'collector'
+      return $this->sf_user->getSentCount(
+        cqFrontendUser::SENT_COUNT_PRIVATE_MESSAGES
       );
     }
 
@@ -261,11 +264,8 @@ class ComposePrivateMessageForm extends PrivateMessageForm
   {
     if ($this->sf_user)
     {
-      $this->sf_user->setAttribute(
-        cqFrontendUser::PRIVATE_MESSAGES_SENT_COUNT_KEY,
-        $this->sf_user->getAttribute(
-          cqFrontendUser::PRIVATE_MESSAGES_SENT_COUNT_KEY, 0, 'collector') + 1,
-        'collector'
+      $this->sf_user->incrementSentCount(
+        cqFrontendUser::SENT_COUNT_PRIVATE_MESSAGES
       );
     }
   }
@@ -281,10 +281,7 @@ class ComposePrivateMessageForm extends PrivateMessageForm
   {
     if ($this->sf_user)
     {
-      $this->sf_user->setAttribute(
-        cqFrontendUser::PRIVATE_MESSAGES_SENT_COUNT_KEY,
-        0, 'collector'
-      );
+      $this->sf_user->resetSentCount(cqFrontendUser::SENT_COUNT_PRIVATE_MESSAGES);
     }
   }
 
