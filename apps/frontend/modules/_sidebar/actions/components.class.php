@@ -801,7 +801,7 @@ class _sidebarComponents extends cqFrontendComponents
     $collectible = $this->getVar('collectible') ?: null;
 
     /** @var $collection CollectorCollection */
-    if (!$collection = $this->getVar('collection') ?: null)
+    if (!$collection = ($this->getVar('collection') ?: null))
     {
       if ($collectible)
       {
@@ -821,11 +821,11 @@ class _sidebarComponents extends cqFrontendComponents
     }
 
     // We need to make sure $collectible is CollectionCollectible
-    if (!$collectible instanceof CollectionCollectible)
+    if ($collectible instanceof Collectible)
     {
       /** @var $q CollectionCollectibleQuery */
       $q = CollectionCollectibleQuery::create()
-        ->filterByCollectible($collectible);
+        ->filterByCollectible($collectible->getCollectible());
 
       if ($collection)
       {
