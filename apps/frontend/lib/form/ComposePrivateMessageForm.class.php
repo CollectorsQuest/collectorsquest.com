@@ -10,9 +10,6 @@
 class ComposePrivateMessageForm extends PrivateMessageForm
 {
 
-  /** @var cqBaseUser */
-  protected $sf_user;
-
   /** @var Collector */
   protected $sender_collector;
 
@@ -177,8 +174,8 @@ class ComposePrivateMessageForm extends PrivateMessageForm
 
   protected function setupCaptchaField()
   {
-    if ( $this->userGetSentMessagesCount()
-      >= sfConfig::get('app_private_messages_require_captcha_threshold') )
+    // setup captha only every $threshold sent messages
+    if ($this->userSentMessagesCaptchaThresholdReached())
     {
       $this->widgetSchema['captcha'] = new cqWidgetBootstrapCaptcha(array(
           'width' => 200,
@@ -271,26 +268,25 @@ class ComposePrivateMessageForm extends PrivateMessageForm
   }
 
   /**
-   * Reset sent messages count back to 0. We do not want to display captcha
-   * on every message after the threshold, only on every (threshold number) messages
+   * Check if we have reached the captcha threshold for sent messages
    *
-   * If the user solves it right one time they should not be required to do it again
-   * for a while
+   * @return    boolean
    */
-  protected function userResetSentMessagesCount()
+  protected function userSentMessagesCaptchaThresholdReached()
   {
-    if ($this->sf_user)
-    {
-      $this->sf_user->resetSentCount(cqFrontendUser::SENT_COUNT_PRIVATE_MESSAGES);
-    }
+    $sent_messages = $this->userGetSentMessagesCount();
+    $threshold = sfConfig::get('app_private_messages_require_captcha_threshold', 3);
+
+    return (0 != $sent_messages) && (0 == $sent_messages % $threshold);
   }
 
+
   /**
-  * Checking similarity of sent messages in one session
-  *
-  * If message similar to sent before we will send message about spam
-  * else we will save for checking current message
-  */
+   * Checking similarity of sent messages in one session
+   *
+   * If message similar to sent before we will send message about spam
+   * else we will save for checking current message
+   */
   protected function checkingMessagesSimilarity()
   {
     if ($this->sf_user)
@@ -368,22 +364,8 @@ class ComposePrivateMessageForm extends PrivateMessageForm
   {
     parent::doSave($con);
 
-    // When do we show the captcha?
-    $threshold = sfConfig::get('app_private_messages_require_captcha_threshold', 5);
-
     $this->checkingMessagesSimilarity();
-
-    if ($this->userGetSentMessagesCount() < $threshold)
-    {
-      // we have not reached the threshold yet, so incriment the count
-      $this->userIncrementSentMessagesCount();
-    }
-    else
-    {
-      // we have reached the threshold, and the user successfully solved the captha
-      // so we reset the count to 0
-      $this->userResetSentMessagesCount();
-    }
+    $this->userIncrementSentMessagesCount();
   }
 
   protected function updateDefaultsFromObject()
