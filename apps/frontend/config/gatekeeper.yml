@@ -2,7 +2,7 @@ all:
   pages:
     marketplace_categories: false
     aetn_picked_off: true
-    aetn_american_restoration: false
+    aetn_american_restoration: true
 
   features:
     shopping_cart: true
