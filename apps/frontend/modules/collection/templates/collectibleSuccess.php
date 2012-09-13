@@ -258,8 +258,9 @@
     include_partial(
       'collection/aetn_collectible_related',
       array(
+        'title' => 'Other Items from '. $aetn_show['name'],
         'collectible' => $collectible,
-        'related_collections' => $related_collections,
+        'related_collectibles' => $related_collectibles,
         'height' => &$height_main_div
       )
     );

@@ -1,12 +1,4 @@
-<?php
-  $link = link_to(
-    'See all related collectibles &raquo;', '@marketplace',
-    array('class' => 'text-v-middle link-align')
-  );
-  $link = null;
-
-  cq_section_title('Showcase', $link);
-?>
+<?php cq_section_title($title ?: 'Showcase', null); ?>
 
 <div class="row">
   <div id="collectibles" class="row-content">
