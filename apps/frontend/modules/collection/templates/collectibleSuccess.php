@@ -98,6 +98,12 @@
           <i class="icon icon-play"></i>
         </span>
       </a>
+      <a class="zoom-zone" target="_blank" title="Click to zoom" style="display: none"
+         href="<?= src_tag_collectible($collectible, 'original') ?>">
+          <span class="picture-zoom holder-icon-edit">
+            <i class="icon icon-zoom-in"></i>
+          </span>
+      </a>
     <?php else: ?>
       <a class="zoom-zone" target="_blank" title="Click to zoom"
          href="<?= src_tag_collectible($collectible, 'original') ?>">
@@ -138,8 +144,14 @@
       <div id="vertical-carousel">
         <a class="zoom" href="<?php echo src_tag_collectible($collectible, '150x150'); ?>"
            title="<?php echo $collectible->getName(); ?>">
-          <?= image_tag_collectible($collectible, '150x150', array(
-            'height' => null, 'title' => $collectible->getName(), 'style' => 'margin-bottom: 12px;')); ?>
+          <?php
+            echo image_tag_collectible($collectible, '150x150',
+              array(
+                'height' => null, 'title' => $collectible->getName(),
+                'style' => 'margin-bottom: 12px;', 'class' => 'first'
+              )
+            );
+          ?>
         </a>
         <?php foreach ($additional_multimedia as $i => $m): ?>
         <a class="zoom" href="<?php echo src_tag_multimedia($m, 'original'); ?>" title="<?php echo $m->getName(); ?>">
@@ -265,6 +277,7 @@ $(document).ready(function()
  'use strict';
 
   var $vertical_carousel = $('#vertical-carousel');
+  var first_picture_id = $vertical_carousel.find('img.first').data('id');
 
   // enable vertical carousel only if we have more than 3 alternate views
   if ($vertical_carousel.children().length > 3)
@@ -300,6 +313,19 @@ $(document).ready(function()
     $target
       .siblings('a.zoom-zone')
       .attr('href', path[0] + '/original/' + path[1]);
+
+    <?php if (!empty($video)): ?>
+      if ($source.data('id') == first_picture_id)
+      {
+        $('a.play-zone').show();
+        $('a.zoom-zone').hide();
+      }
+      else
+      {
+        $('a.play-zone').hide();
+        $('a.zoom-zone').show();
+      }
+    <?php endif; ?>
 
     return false;
   });
