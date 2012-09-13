@@ -2,30 +2,30 @@
 
 function cq_page_title($h1, $link = null, $options = array())
 {
-  $default = null !== $link ? array('left' => 8, 'right' => 4) : array();
+  $default = null !== $link ? array('left' => 8, 'right' => 4, 'itemprop' => '') : array('itemprop' => '');
   $options = array_merge($default, $options);
 
   if (null === $link)
   {
     $content = sprintf(<<<EAT
   <div class="span12">
-    <h1 class="Chivo webfont" id="%s">%s</h1>
+    <h1 class="Chivo webfont" id="%s" %s>%s</h1>
   </div>
 EAT
-, @$options['id'] ?: cqStatic::getUniqueId(10), $h1, $link);
+, @$options['id'] ?: cqStatic::getUniqueId(10), $options['itemprop'], $h1, $link);
   }
   else
   {
     $content = sprintf(<<<EAT
   <div class="span%d">
-    <h1 class="Chivo webfont" id="%s">%s</h1>
+    <h1 class="Chivo webfont" id="%s" %s>%s</h1>
   </div>
   <div class="span%d text-right">%s</div>
 EAT
-, (int) $options['left'], @$options['id'] ?: cqStatic::getUniqueId(10), $h1, (int) $options['right'], $link);
+, (int) $options['left'], @$options['id'] ?: cqStatic::getUniqueId(10), $options['itemprop'],  $h1, (int) $options['right'], $link);
   }
 
-  unset($options['left'], $options['right'], $options['id']);
+  unset($options['left'], $options['right'], $options['id'], $options['itemprop']);
   $options = array_merge(array('class' => 'row-fluid header-bar'), $options);
 
   echo content_tag('div', $content, $options);

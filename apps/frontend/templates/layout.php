@@ -88,30 +88,41 @@
       echo '</div></div>';
     }
 
+    $itemscope = '';
+    $current_internal_uri = $routes = cqContext::getInstance()->getRouting()->getCurrentInternalUri(true);
+    if (strstr($current_internal_uri, '@collector_by_slug'))
+    {
+      $itemscope = ' itemscope itemtype="http://schema.org/Person"';
+    }
+    else if (strstr($current_internal_uri, '@collectible_by_slug'))
+    {
+      $itemscope = ' itemscope itemtype="http://schema.org/Product"';
+    }
+
     if (has_component_slot('sidebar_120'))
     {
       $sidebar = 'sidebar_120';
-      echo '<div id="content" class="container-fluid fixed-right-120">';
+      echo '<div id="content" class="container-fluid fixed-right-120"' . $itemscope .'>';
     }
     else if (has_component_slot('sidebar_160'))
     {
       $sidebar = 'sidebar_160';
-      echo '<div id="content" class="container-fluid fixed-right-160">';
+      echo '<div id="content" class="container-fluid fixed-right-160"' . $itemscope .'>';
     }
     else if (has_component_slot('sidebar_180'))
     {
       $sidebar = 'sidebar_180';
-      echo '<div id="content" class="container-fluid fixed-right-180">';
+      echo '<div id="content" class="container-fluid fixed-right-180"' . $itemscope .'>';
     }
     else if (has_component_slot('sidebar_300'))
     {
       $sidebar = 'sidebar_300';
-      echo '<div id="content" class="container-fluid fixed-right-300">';
+      echo '<div id="content" class="container-fluid fixed-right-300"' . $itemscope .'>';
     }
     else
     {
       $sidebar = null;
-      echo '<div id="content" class="container-fluid without-column">';
+      echo '<div id="content" class="container-fluid without-column"' . $itemscope .'>';
     }
   ?>
 
