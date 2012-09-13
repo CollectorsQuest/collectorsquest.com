@@ -820,6 +820,21 @@ class _sidebarComponents extends cqFrontendComponents
       return sfView::NONE;
     }
 
+    // We need to make sure $collectible is CollectionCollectible
+    if (!$collectible instanceof CollectionCollectible)
+    {
+      /** @var $q CollectionCollectibleQuery */
+      $q = CollectionCollectibleQuery::create()
+        ->filterByCollectible($collectible);
+
+      if ($collection)
+      {
+        $q->filterByCollection($collection);
+      }
+
+      $collectible = $q->findOne();
+    }
+
     /** @var $limit integer */
     $limit = (integer) $this->getVar('limit') ?: (integer) $request->getParameter('per_page', 3);
     $page = $collectible ? (integer) ceil($collectible->getPosition() / $limit) : $limit;
