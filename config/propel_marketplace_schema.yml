@@ -40,10 +40,10 @@ classes:
       timestampable:  ~
 
   ShoppingCartCollectible:
-    isCrossRef: true
     columns:
-      shopping_cart_id:          { type: integer, required: true, foreignClass: ShoppingCart, foreignReference: id, onDelete: cascade, primaryKey: true }
-      collectible_id:            { type: integer, required: true, foreignClass: Collectible, foreignReference: id, onDelete: cascade, primaryKey: true }
+      id: ~
+      shopping_cart_id:          { type: integer, required: true, foreignClass: ShoppingCart, foreignReference: id, onDelete: cascade }
+      collectible_id:            { type: integer, required: true, foreignClass: Collectible, foreignReference: id, onDelete: cascade }
       price_amount:              { type: integer, required: true, default: 0 }
       price_currency:            { type: char, size: 3, required: true, default: 'USD' }
       tax_amount:                { type: integer, required: true, default: 0 }
@@ -60,10 +60,7 @@ classes:
     columns:
       id:  ~
       uuid:                 { type: varchar, size: 8 }
-      seller_id:            { type: integer, required: false, foreignClass: Collector, foreignReference: id, onDelete: setnull }
       collector_id:         { type: integer, required: false, foreignClass: Collector, foreignReference: id, onDelete: setnull }
-      shopping_cart_id:     { type: integer, required: true, foreignClass: ShoppingCart, foreignReference: id, onDelete: restrict }
-      collectible_id:       { type: integer, required: true, foreignClass: Collectible, foreignReference: id, onDelete: restrict }
       shopping_payment_id:  { type: integer, required: false, foreignClass: ShoppingPayment, foreignReference: id, onDelete: setnull }
 
       buyer_email:          { type: varchar, size: 128, index: true }
@@ -78,13 +75,25 @@ classes:
       shipping_zip_postcode:     { type: varchar(50),  required: true }
       shipping_country_iso3166:  { type: char, size: 2, required: false, foreignTable: geo_country, foreignReference: iso3166 }
 
+      note_to_seller:       { type: varchar, size: 255 }
+
+    propel_behaviors:
+      timestampable:  ~
+
+  ShoppingOrderCollectible:
+    columns:
+      id: ~
+      shopping_order_id:  { type: integer, required: true, foreignClass: ShoppingOrder, foreignReference: id, onDelete: cascade }
+      seller_id:          { type: integer, required: false, foreignClass: Collector, foreignReference: id, onDelete: setnull }
+      collectible_id:     { type: integer, required: true, foreignClass: Collectible, foreignReference: id, onDelete: restrict }
+
+      shopping_cart_collectible_id:     { type: integer, required: true, foreignClass: ShoppingCartCollectible, foreignReference: id, onDelete: restrict}
+
       shipping_carrier:          { type: enum, required: false, valueSet: "FedEx, UPS, USPS, DHL" }
       shipping_tracking_number:  { type: varchar(64), required: false }
 
-      note_to_seller:       { type: varchar, size: 255 }
-
     uniques:
-      shopping_order_U_1: [shopping_cart_id, collectible_id]
+      shopping_order_collectible_U_1: [collectible_id, shopping_cart_collectible_id]
 
     propel_behaviors:
       timestampable:  ~
