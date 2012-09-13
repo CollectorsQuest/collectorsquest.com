@@ -28,7 +28,7 @@ class ComposeAbridgedPrivateMessageForm extends ComposePrivateMessageForm
   ) {
     $this->receiver = $receiver;
 
-    parent::__construct($sender, $sf_user = null, $thread = null, $options, $CSRFSecret);
+    parent::__construct($sender, $thread = null, $options, $CSRFSecret);
 
     $this->setDefault('subject', $subject);
   }

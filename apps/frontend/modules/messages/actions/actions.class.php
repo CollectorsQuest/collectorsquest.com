@@ -112,7 +112,7 @@ class messagesActions extends cqFrontendActions
 
     $this->messages = $messages;
     $this->reply_form = new ComposePrivateMessageForm(
-      $this->getCollector(), $this->getUser(), $message->getThread()
+      $this->getCollector(), $message->getThread()
     );
     $this->reply_form->setDefault('subject', $messages->getLast()->getReplySubject());
 
@@ -121,7 +121,7 @@ class messagesActions extends cqFrontendActions
 
   public function executeCompose(sfWebRequest $request)
   {
-    $form = new ComposePrivateMessageForm($sender = $this->getCollector(), $this->getUser());
+    $form = new ComposePrivateMessageForm($sender = $this->getCollector());
     $form->setDefault('subject', $request->getParameter('subject'));
 
     if ($request->hasParameter('goto'))

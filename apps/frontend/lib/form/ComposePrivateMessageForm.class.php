@@ -35,14 +35,13 @@ class ComposePrivateMessageForm extends PrivateMessageForm
    */
   public function __construct(
     Collector $sender,
-    cqFrontendUser $sf_user = null,
     $thread = null,
     $options = array(),
     $CSRFSecret = null
   ) {
     $this->sender_collector = $sender;
     $this->thread = $thread;
-    $this->sf_user = $sf_user;
+    $this->sf_user = cqContext::getInstance()->getUser();
 
     parent::__construct(null, $options, $CSRFSecret);
   }
