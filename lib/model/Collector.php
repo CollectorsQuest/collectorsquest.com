@@ -172,7 +172,7 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
    */
   public function setTimeoutCommentsAt($v)
   {
-    $v = CollectorPeer::translateTimeToStringPropelStyle($v);
+    $v = cqPropelTime::translateTimeToString($v);
 
     return parent::setTimeoutCommentsAt($v);
   }
@@ -185,7 +185,7 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
    */
   public function getTimeoutCommentsAt($format = 'Y-m-d H:i:s')
   {
-    return CollectorPeer::formatTimePropelSyle(
+    return cqPropelTime::format(
       parent::getTimeoutCommentsAt(),
       $format
     );
@@ -198,7 +198,7 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
    */
   public function setTimeoutPrivateMessagesAt($v)
   {
-    $v = CollectorPeer::translateTimeToStringPropelStyle($v);
+    $v = cqPropelTime::translateTimeToString($v);
 
     return parent::setTimeoutPrivateMessagesAt($v);
   }
@@ -211,7 +211,7 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
    */
   public function getTimeoutPrivateMessagesAt($format = 'Y-m-d H:i:s')
   {
-    return CollectorPeer::formatTimePropelSyle(
+    return cqPropelTime::format(
       parent::getTimeoutPrivateMessagesAt(),
       $format
     );
@@ -224,7 +224,7 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
    */
   public function setVisitorInfoFirstVisitAt($v)
   {
-    $v = CollectorPeer::translateTimeToStringPropelStyle($v);
+    $v = cqPropelTime::translateTimeToString($v);
 
     return parent::setVisitorInfoFirstVisitAt($v);
   }
@@ -238,7 +238,7 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
    */
   public function getVisitorInfoFirstVisitAt($format = 'Y-m-d H:i:s')
   {
-    return CollectorPeer::formatTimePropelSyle(
+    return cqPropelTime::format(
       parent::getVisitorInfoFirstVisitAt(),
       $format
     );
@@ -251,7 +251,7 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
    */
   public function setVisitorInfoLastVisitAt($v)
   {
-    $v = CollectorPeer::translateTimeToStringPropelStyle($v);
+    $v = cqPropelTime::translateTimeToString($v);
 
     return parent::setVisitorInfoLastVisitAt($v);
   }
@@ -266,7 +266,7 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
    */
   public function getVisitorInfoLastVisitAt($format = 'Y-m-d H:i:s')
   {
-    return CollectorPeer::formatTimePropelSyle(
+    return cqPropelTime::format(
       parent::getVisitorInfoLastVisitAt(),
       $format
     );
