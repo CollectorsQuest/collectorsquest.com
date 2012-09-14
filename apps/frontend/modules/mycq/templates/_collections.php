@@ -39,7 +39,7 @@
           echo link_to(
             image_tag_collectible(
               $collectibles[$k], '75x75',
-              array('width' => 62, 'height' => 62)
+              array('width' => 64, 'height' => 64)
             ),
             url_for(
               'mycq_collection_by_section',
