@@ -10,8 +10,9 @@
   <p class="spacer-top">
     You have Collections/Collectibles which are not fully described yet.
     If you would like others too see and buy them you should describe them as best as you can!
+  </p>
   <br/>
-  <a class="btn btn-primary" href="<?php echo url_for('@mycq_not_public_collectibles') ?>">View Collectibles</a>
+  <a class="btn btn-primary" href="<?php echo url_for('@mycq_incomplete_collections') ?>">Fix Incomplete Collections</a>
   <button type="button" class="btn" data-dismiss="alert">Ok</button>
 </div>
 <?php endif; ?>
