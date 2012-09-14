@@ -879,7 +879,7 @@ var AVIARY = window.AVIARY = (function(){
         onSave: aviaryOnSave,
         onClose: aviaryOnClose,
         onLoad: $.isFunction(onLoad) && onload || window.noop,
-        appendTo: ''
+        appendTo: 'aviary_append_to'
       }));
     }
 
