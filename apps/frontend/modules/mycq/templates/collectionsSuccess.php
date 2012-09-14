@@ -4,11 +4,12 @@
  */
 ?>
 
-<?php if($first_time_on_page): ?>
+<?php if ($first_time_on_page): ?>
 <div class="alert alert-block alert-notice in">
   <h4 class="alert-heading">Welcome to the My Collections page!</h4>
   <p class="spacer-top">
-    You have Collections/Collectibles which are not fully described yet.  If you would like others too see and buy them you should describe them as best as you can!
+    You have Collections/Collectibles which are not fully described yet.
+    If you would like others too see and buy them you should describe them as best as you can!
   <br/>
   <a class="btn btn-primary" href="<?php echo url_for('@mycq_not_public_collectibles') ?>">View Collectibles</a>
   <button type="button" class="btn" data-dismiss="alert">Ok</button>

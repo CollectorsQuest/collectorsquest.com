@@ -51,6 +51,32 @@ class CollectibleQuery extends BaseCollectibleQuery
   }
 
   /**
+   * @return CollectibleQuery
+   */
+  public function isPartOfCollection()
+  {
+    return $this
+      ->joinWith('CollectionCollectible', Criteria::RIGHT_JOIN)
+      ->groupBy('Id');
+  }
+
+  /**
+   * @return CollectibleQuery
+   */
+  public function isComplete()
+  {
+    return $this->filterByIsPublic(true, Criteria::EQUAL);
+  }
+
+  /**
+   * @return CollectibleQuery
+   */
+  public function isIncomplete()
+  {
+    return $this->filterByIsPublic(false, Criteria::EQUAL);
+  }
+
+  /**
    * @param  string  $v
    * @return CollectibleQuery
    */

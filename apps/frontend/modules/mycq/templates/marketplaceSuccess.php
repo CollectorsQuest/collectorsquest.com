@@ -10,7 +10,7 @@
   // include_partial('mycq/seller_snapshot', array('seller' => $seller));
 ?>
 
-<?php if($first_time_on_page): ?>
+<?php if ($first_time_on_page): ?>
 <div class="alert alert-block alert-notice in">
   <h4 class="alert-heading">Welcome to the My Marketplace page!</h4>
   <p class="spacer-top">

@@ -884,8 +884,60 @@ class mycqActions extends cqFrontendActions
     return sfView::SUCCESS;
   }
 
-  public function executeNotPublicCollectibles()
+  public function executeIncomplete()
   {
+    $q = CollectorCollectionQuery::create()
+      ->filterByCollector($this->getUser()->getCollector())
+      ->isIncomplete();
+    if ($q->count() > 0)
+    {
+      return $this->redirect('@mycq_incomplete_collections');
+    }
+
+    $q = CollectibleQuery::create()
+      ->filterByCollector($this->getUser()->getCollector())
+      ->isPartOfCollection()
+      ->isIncomplete();
+    if ($q->count() > 0)
+    {
+      return $this->redirect('@mycq_incomplete_collectibles');
+    }
+
+    $this->getUser()->setFlash(
+      'success',
+      'Great! You do not have any incomplete collections or collectibles.'
+    );
+
+    return $this->redirect('@mycq_collections');
+  }
+
+  public function executeIncompleteCollections()
+  {
+    $q = CollectorCollectionQuery::create()
+      ->filterByCollector($this->getUser()->getCollector())
+      ->isIncomplete();
+
+    $pager = new PropelModelPager($q, 18);
+    $pager->setPage($this->getRequestParameter('p', 1));
+    $pager->init();
+
+    $this->pager = $pager;
+
+    return sfView::SUCCESS;
+  }
+
+  public function executeIncompleteCollectibles()
+  {
+    $q = CollectibleQuery::create()
+      ->filterByCollector($this->getUser()->getCollector())
+      ->isIncomplete();
+
+    $pager = new PropelModelPager($q, 18);
+    $pager->setPage($this->getRequestParameter('p', 1));
+    $pager->init();
+
+    $this->pager = $pager;
+
     return sfView::SUCCESS;
   }
 
