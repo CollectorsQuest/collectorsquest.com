@@ -85,6 +85,10 @@ mycq_collectible_by_slug:
   param: { module: mycq, action: collectible }
   requirements: { id: '\d+', slug: '[\-\w\.]+', sf_method: [get, post] }
 
+mycq_not_public_collectibles:
+  url:   /mycq/not_public_collectibles
+  param: { module: mycq, action: notPublicCollectibles }
+
 mycq_marketplace:
   url:   /mycq/marketplace
   param: { module: mycq, action: marketplace }

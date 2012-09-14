@@ -309,6 +309,9 @@ class mycqActions extends cqFrontendActions
     $this->collector = $this->getUser()->getCollector();
     $this->total = $this->collector->countCollectorCollections();
 
+    // @todo determine this variable properly
+    $this->first_time_on_page = true;
+
     return sfView::SUCCESS;
   }
 
@@ -680,6 +683,9 @@ class mycqActions extends cqFrontendActions
     // Make the collector available to the template
     $this->collector = $collector;
 
+    // @todo determine this variable properly
+    $this->first_time_on_page = true;
+
     return sfView::SUCCESS;
   }
 
@@ -875,6 +881,11 @@ class mycqActions extends cqFrontendActions
   {
     SmartMenu::setSelected('mycq_menu', 'wanted');
 
+    return sfView::SUCCESS;
+  }
+
+  public function executeNotPublicCollectibles()
+  {
     return sfView::SUCCESS;
   }
 

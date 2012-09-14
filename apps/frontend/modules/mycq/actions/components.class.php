@@ -128,6 +128,52 @@ class mycqComponents extends cqFrontendComponents
     return sfView::SUCCESS;
   }
 
+  public function executeNotPublicCollectibles()
+  {
+    /*
+     * should figure out a way to determine not public items
+     * var $q CollectionCollectibleQuery
+     */
+    $q = CollectionCollectibleQuery::create()
+      ->filterByCollector($this->getUser()->getCollector());
+
+    switch ($this->getRequestParameter('s', 'position'))
+    {
+      case 'most-popular':
+        $q
+          ->joinCollection()
+          ->useCollectionQuery()
+          ->orderByNumViews(Criteria::DESC)
+          ->endUse();
+        break;
+
+      case 'most-recent':
+        $q
+          ->orderByCreatedAt(Criteria::DESC);
+        break;
+
+      case 'position':
+      default:
+        $q
+          ->orderByPosition(Criteria::ASC)
+          ->orderByCreatedAt(Criteria::DESC);
+        break;
+    }
+
+    if ($this->getRequestParameter('q'))
+    {
+      $q->search($this->getRequestParameter('q'));
+    }
+
+    $pager = new PropelModelPager($q, 17);
+    $pager->setPage($this->getRequestParameter('p', 1));
+    $pager->init();
+
+    $this->pager = $pager;
+
+    return sfView::SUCCESS;
+  }
+
   public function executeCollectiblesForSale()
   {
     $collector = $this->getCollector();
