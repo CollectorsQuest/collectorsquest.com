@@ -105,6 +105,17 @@
 <?php else: ?>
 
   <?php
+
+    include_component(
+      '_sidebar', 'widgetManageCollectible',
+      array('collectible' => $collectible, 'height' => &$height)
+    );
+
+    include_component(
+      '_sidebar', 'widgetCollectibleBuy',
+      array('collectible' => $collectible, 'height' => &$height)
+    );
+
     include_component(
       '_sidebar', 'widgetCollector',
       array(
