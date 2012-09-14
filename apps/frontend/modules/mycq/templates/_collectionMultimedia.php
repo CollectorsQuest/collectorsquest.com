@@ -8,7 +8,7 @@
 
 <div class="drop-zone-large thumbnail collection">
   <?php if (isset($image) && $image instanceof iceModelMultimedia): ?>
-    <div class="alt-view-img" id="aviary_append_to">
+    <div class="alt-view-img">
       <?= image_tag_multimedia($image, '190x190'); ?>
       <i class="icon icon-remove-sign" data-multimedia-id="<?= $image->getId(); ?>"></i>
       <span class="multimedia-edit holder-icon-edit"

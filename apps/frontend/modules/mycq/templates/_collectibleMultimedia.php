@@ -11,7 +11,7 @@
       <?php /** @var $image iceModelMultimedia */ ?>
       <?php if ($image = $collectible->getPrimaryImage()): ?>
       <div class="thumbnail drop-zone-large" data-is-primary="1">
-        <div class="alt-view-img" id="aviary_append_to">
+        <div class="alt-view-img">
           <div class="hidden greed-rollover">
             <i class="icon icon-plus spacer-top"></i>
             <span class="info-text spacer-top-5">
@@ -66,7 +66,7 @@
     <li class="span4 square-thumb <?= $has_image ? 'ui-state-full' : 'ui-state-empty'; ?>">
       <div class="thumbnail drop-zone" data-is-primary="0">
       <?php if ($has_image): ?>
-        <div class="alt-view-img" id="aviary_append_to">
+        <div class="alt-view-img">
           <?= image_tag_multimedia($multimedia[$i], '150x150', array('width' => 92, 'height' => 92)); ?>
           <i class="icon icon-remove-sign" data-multimedia-id="<?= $multimedia[$i]->getId(); ?>"></i>
           <i class="icon icon-plus icon-plus-pos hide"></i>

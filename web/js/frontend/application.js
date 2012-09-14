@@ -879,7 +879,7 @@ var AVIARY = window.AVIARY = (function(){
         onSave: aviaryOnSave,
         onClose: aviaryOnClose,
         onLoad: $.isFunction(onLoad) && onload || window.noop,
-        appendTo: 'aviary_append_to'
+        appendTo: ''
       }));
     }
 
@@ -907,6 +907,9 @@ var AVIARY = window.AVIARY = (function(){
       loadAviary(setupAviary);
 
       $('.multimedia-edit').on('click', function clickclackclock() {
+        // make sure we are at the top of the document so the whole editor is visible
+        $('html, body').animate({scrollTop:0}, 'medium');
+
         // if aviary is loaded
         if (undefined !== aviary_editor && AV.feather_loaded) {
           var $this = $(this);
