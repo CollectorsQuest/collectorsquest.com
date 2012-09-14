@@ -280,60 +280,25 @@ class Collection extends BaseCollection
 
   /**
    * Code to be run before persisting the object
+   *
    * @param PropelPDO $con
-   * @return bloolean
+   * @return boolean
    */
   public function preSave(PropelPDO $con = null)
   {
-    $this->updatePublic();
-  //  var_dump($this->getIsPublic()); exit;
     return parent::preSave($con);
-  }
-
-  public function updatePublic()
-  {
-    /** @var $public boolean */
-    $public = true;
-
-    if (!$this->getName() || strlen(trim($this->getName())) == 0)
-    {
-      $public = false;
-    }
-    else if (!$this->getDescription() || strlen(trim($this->getDescription())) == 0)
-    {
-      $public = false;
-    }
-    else if (!$this->getContentCategoryId())
-    {
-      $public = false;
-    }
-    else if (method_exists($this, 'getTags') && $this->getTags() == array())
-    {
-      $public = false;
-    }
-    else if (method_exists($this, 'getThumbnail') && !$this->getThumbnail())
-    {
-      $public = false;
-    }
-    //Not sure we need this
-//    else if ($this->getCountCollectibles() == 0)
-//    {
-//      $public = false;
-//    }
-    $this->setIsPublic($public);
-    return $this;
   }
 
   /**
    * Gets an array of CollectionCollectible objects which contain a foreign key that references this object
    * and public flag set to true.
    *
-   * @param ini $limit
+   * @param int $limit
    * @return array|PropelCollection
    */
   public function getPublicCollectionCollectibles($limit = null)
   {
-    $q =  CollectionCollectibleQuery::create();
+    $q = CollectionCollectibleQuery::create();
     $q->useCollectibleQuery()
       ->filterByIsPublic(true)
       ->endUse();
