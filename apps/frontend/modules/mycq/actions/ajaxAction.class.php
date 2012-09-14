@@ -222,10 +222,6 @@ class ajaxAction extends cqAjaxAction
       {
         $primary->delete();
       }
-      else if (!$is_primary && !$recipient->getPrimaryImage())
-      {
-        $is_primary = true;
-      }
 
       try
       {
@@ -367,8 +363,16 @@ class ajaxAction extends cqAjaxAction
         $collectible->save();
 
         $multimedia->setModel($collectible);
+        $multimedia->setIsPrimary(true);
         $multimedia->setSource(null);
         $multimedia->save();
+
+        $m = iceModelMultimediaPeer::retrieveByModel($collectible);
+
+        $collectible->setEblobElement('multimedia', $m->toXML(true));
+        $collectible->save();
+
+
 
         /**
          * Update the Eblob cache
