@@ -23,7 +23,7 @@
 
   <?php foreach ($pager->getResults() as $i => $collectible): ?>
   <div class="span3 collectible_grid_view_square link">
-    <div class="collectible-view-slot">
+    <div class="collectible-view-slot <?= !$collectible->getIsPublic() ? 'incomplete' : null; ?>">
       <div class="overlay"></div>
       <?php
         echo link_to(
