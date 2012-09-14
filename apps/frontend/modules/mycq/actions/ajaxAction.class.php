@@ -363,16 +363,6 @@ class ajaxAction extends cqAjaxAction
     {
       $object = $multimedia->getModelObject();
 
-      if ($multimedia->getIsPrimary())
-      {
-        $model = $multimedia->getModelObject();
-        if ($alternative = $model->getMultimedia(1, 'image', false, Propel::CONNECTION_WRITE))
-        {
-          $alternative->setIsPrimary(true);
-          $alternative->save();
-        }
-      }
-
       /** @var $archive CollectibleArchive */
       if (
         ($source = $multimedia->getSource()) &&
@@ -386,21 +376,21 @@ class ajaxAction extends cqAjaxAction
         $multimedia->setModel($collectible);
         $multimedia->setSource(null);
         $multimedia->save();
-
-        /**
-         * Update the Eblob cache
-         */
-        if ($object)
-        {
-          $m = iceModelMultimediaPeer::retrieveByModel($object);
-
-          $object->setEblobElement('multimedia', $m->toXML(true));
-          $object->save();
-        }
       }
       else
       {
         $multimedia->delete();
+      }
+
+      /**
+       * Update the Eblob cache
+       */
+      if ($object)
+      {
+        $m = iceModelMultimediaPeer::retrieveByModel($object);
+
+        $object->setEblobElement('multimedia', $m->toXML(true));
+        $object->save();
       }
     }
 

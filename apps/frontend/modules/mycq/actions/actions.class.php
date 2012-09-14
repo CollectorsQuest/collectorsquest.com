@@ -612,7 +612,6 @@ class mycqActions extends cqFrontendActions
         }
         catch (PropelException $e)
         {
-          dd($e->getMessage());
           $this->getUser()->setFlash(
             'error', 'There was a problem saving your information'
           );

@@ -42,7 +42,7 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
     {
       $is_public = false;
     }
-    else if (!$this->getMultimediaCount('image'))
+    else if (!$this->getPrimaryImage())
     {
       $is_public = false;
     }
