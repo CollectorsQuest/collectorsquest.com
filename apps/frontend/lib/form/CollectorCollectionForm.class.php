@@ -86,6 +86,10 @@ class CollectorCollectionForm extends BaseCollectorCollectionForm
       $this->widgetSchema['thumbnail']->setAttribute('required', 'required');
       $this->validatorSchema['thumbnail']->setOption('required', true);
     }
+
+    $this->getWidgetSchema()->setHelp(
+      'thumbnail', 'Choose a photo which represents your entire collection.'
+    );
   }
 
   protected function unsetFields()
