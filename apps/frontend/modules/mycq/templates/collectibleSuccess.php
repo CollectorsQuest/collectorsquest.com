@@ -27,7 +27,19 @@ else
 <form action="<?= url_for('mycq_collectible_by_slug', $collectible); ?>"
       method="post" enctype="multipart/form-data" novalidate
       id="form-collectible" class="form-horizontal">
-  <?= $form->renderAllErrors(); ?>
+  <?php
+    if ($form->hasErrors())
+    {
+      echo $form->renderAllErrors();
+    }
+    else if ($collectible->getIsPublic() === false)
+    {
+      echo '<div class="alert"><strong>NOTE: </strong>',
+           'Your item will not be publicly viewable until you fill in all the required information!',
+           '(marked with a <span style="color: #cc0000;">*</span> in the form below)',
+           '</div>';
+    }
+  ?>
 
   <?php
     cq_sidebar_title(
