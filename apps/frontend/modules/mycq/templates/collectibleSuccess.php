@@ -102,28 +102,15 @@ else
 
   <br />
 
-  <div class="row-fluid">
-    <div class="span12">
-      <div class="form-actions text-center spacer-inner-15">
-        <button type="submit" formnovalidate
-                class="btn btn-primary" name="save_and_go" value="Save & Back to Items">
-          Save and Add More Items
-        </button>
-        &nbsp;&nbsp;
-        <button type="submit" formnovalidate
-                class="btn" name="save" value="Save Changes">
-          Save Changes
-        </button>
-
-        <div style="float: right; margin-right: 15px;">
-          <a href="<?= url_for('mycq_collection_by_slug', $collection) ?>" class="btn spacer-left">
-            Cancel
-          </a>
-        </div>
-
-      </div> <!-- .form-actions -->
-    </div> <!-- .span12 -->
-  </div> <!-- .row-fluid -->
+  <div class="form-actions text-center spacer-inner-15">
+    <button type="submit" formnovalidate class="btn" name="save" value="Save Changes">
+      Save Changes
+    </button>
+    &nbsp;&nbsp;
+    <button type="submit" formnovalidate class="btn btn-primary" name="save_and_go" value="Save & Back to Items">
+      Save and Add More Items
+    </button>
+  </div>
 
   <?= $form->renderHiddenFields(); ?>
 </form>

@@ -239,16 +239,13 @@ class ajaxAction extends cqAjaxAction
       {
         $primary->delete();
       }
-      else if (!$is_primary && !$recipient->getPrimaryImage())
-      {
-        $is_primary = true;
-      }
 
       try
       {
         $image->setIsPrimary($is_primary);
         $image->setModelId($recipient->getId());
         $image->setSource($donor->getId());
+        $image->setCreatedAt(time());
         $image->save();
       }
       catch (PropelException $e)
@@ -374,8 +371,16 @@ class ajaxAction extends cqAjaxAction
         $collectible->save();
 
         $multimedia->setModel($collectible);
+        $multimedia->setIsPrimary(true);
         $multimedia->setSource(null);
         $multimedia->save();
+
+        /**
+         * Update the Eblob cache
+         */
+        $m = iceModelMultimediaPeer::retrieveByModel($collectible);
+        $collectible->setEblobElement('multimedia', $m->toXML(true));
+        $collectible->save();
       }
       else
       {
@@ -803,6 +808,7 @@ class ajaxAction extends cqAjaxAction
             $image->setIsPrimary(true);
             $image->setModelId($collectible->getId());
             $image->setSource($donor->getId());
+            $image->setCreatedAt(time());
             $image->save();
 
             // Archive the $donor, not needed anymore
