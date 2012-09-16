@@ -199,6 +199,7 @@ class _sidebarComponents extends cqFrontendComponents
       $this->subcategories[] = $this->current_subcategory;
     }
 
+    $this->sub_subcategories = array();
     if ($retrieve_sub_subcategories)
     {
       $this->sub_subcategories = ContentCategoryQuery::create()
@@ -261,8 +262,8 @@ class _sidebarComponents extends cqFrontendComponents
       return sfView::NONE;
     }
 
-    /** @var $q CollectorCollectionQuery */
-    $q = CollectorCollectionQuery::create()
+    /** @var $q FrontendCollectorCollectionQuery */
+    $q = FrontendCollectorCollectionQuery::create()
       ->filterByNumItems(3, Criteria::GREATER_EQUAL);
 
     /** @var $collection CollectorCollection */
@@ -533,6 +534,7 @@ class _sidebarComponents extends cqFrontendComponents
         {
           $c->add(CollectorCollectionPeer::ID, $collection->getId(), Criteria::NOT_EQUAL);
         }
+        $c->add(CollectorCollectionPeer::IS_PUBLIC, true);
 
         $this->collections = $collector->getCollectorCollections($c);
       }
@@ -608,8 +610,8 @@ class _sidebarComponents extends cqFrontendComponents
         $collector_ids = array_map('trim', $collector_ids);
         $collector_ids = array_filter($collector_ids);
 
-        /** @var $q CollectorQuery */
-        $q = CollectorQuery::create()
+        /** @var $q FrontendCollectorQuery */
+        $q = FrontendCollectorQuery::create()
           ->filterById($collector_ids, Criteria::IN)
           ->filterByUserType(CollectorPeer::TYPE_SELLER)
           ->addAscendingOrderByColumn('RAND()');
@@ -644,6 +646,9 @@ class _sidebarComponents extends cqFrontendComponents
 
     /** @var $q CollectibleForSaleQuery */
     $q = CollectibleForSaleQuery::create()
+      ->useCollectibleQuery()
+        ->filterByIsPublic(true)
+        ->endUse()
       ->isForSale()
       ->orderByUpdatedAt(Criteria::DESC);
 
@@ -841,6 +846,9 @@ class _sidebarComponents extends cqFrontendComponents
     $page = $this->getRequest()->getParameter('p', $page);
 
     $q = CollectionCollectibleQuery::create();
+    $q->useCollectibleQuery()
+      ->filterByIsPublic(true)
+      ->endUse();
     $q->joinWith('Collectible')
       ->orderBy('Position', Criteria::ASC);
 

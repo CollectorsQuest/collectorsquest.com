@@ -10,6 +10,19 @@
   // include_partial('mycq/seller_snapshot', array('seller' => $seller));
 ?>
 
+<?php if ($first_time_on_page): ?>
+<div class="alert alert-block alert-notice in">
+  <h4 class="alert-heading">Welcome to the My Marketplace page!</h4>
+  <p class="spacer-top">
+    You have Collections/Collectibles which are not fully described yet.
+    If you would like others too see and buy them you should describe them as best as you can!
+  </p>
+  <br/>
+  <a class="btn btn-primary" href="<?php echo url_for('@mycq_incomplete_collectibles') ?>">Fix Incomplete Collectibles</a>
+  <button type="button" class="btn" data-dismiss="alert">Ok</button>
+</div>
+<?php endif; ?>
+
 <div id="mycq-tabs">
 
   <ul class="nav nav-tabs">

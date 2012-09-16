@@ -52,12 +52,29 @@ class ajaxAction extends cqAjaxAction
         $name = preg_replace('/\.(jpg|jpeg|png|gif|bmp)$/iu', '', $file['name']);
         $name = mb_substr(str_replace(array('_', '-'), ' ', ucfirst($name)), 0, 64, 'utf8');
 
+        /**
+         * We need to pass the name through the name validator
+         * before we decide if we should be using it for Collectible name
+         */
+        try
+        {
+          $validator = new cqValidatorName();
+          $collectible_name = $validator->clean($name);
+          $is_name_automatic = true;
+        }
+        catch (sfValidatorError $e)
+        {
+          $collectible_name = null;
+          $is_name_automatic = false;
+        }
+
         try
         {
           $collectible = new Collectible();
           $collectible->setCollector($collector);
-          $collectible->setName($name, true);
+          $collectible->setName($collectible_name, $is_name_automatic);
           $collectible->setBatchHash($request->getParameter('batch', null));
+          $collectible->setIsPublic(false);
           $collectible->save();
 
           // Set the Collection after the collectible has been saved
@@ -343,16 +360,6 @@ class ajaxAction extends cqAjaxAction
     {
       $object = $multimedia->getModelObject();
 
-      if ($multimedia->getIsPrimary())
-      {
-        $model = $multimedia->getModelObject();
-        if ($alternative = $model->getMultimedia(1, 'image', false, Propel::CONNECTION_WRITE))
-        {
-          $alternative->setIsPrimary(true);
-          $alternative->save();
-        }
-      }
-
       /** @var $archive CollectibleArchive */
       if (
         ($source = $multimedia->getSource()) &&
@@ -368,27 +375,27 @@ class ajaxAction extends cqAjaxAction
         $multimedia->setSource(null);
         $multimedia->save();
 
-        $m = iceModelMultimediaPeer::retrieveByModel($collectible);
-
-        $collectible->setEblobElement('multimedia', $m->toXML(true));
-        $collectible->save();
-
-
-
         /**
          * Update the Eblob cache
          */
-        if ($object)
-        {
-          $m = iceModelMultimediaPeer::retrieveByModel($object);
-
-          $object->setEblobElement('multimedia', $m->toXML(true));
-          $object->save();
-        }
+        $m = iceModelMultimediaPeer::retrieveByModel($collectible);
+        $collectible->setEblobElement('multimedia', $m->toXML(true));
+        $collectible->save();
       }
       else
       {
         $multimedia->delete();
+      }
+
+      /**
+       * Update the Eblob cache
+       */
+      if ($object)
+      {
+        $m = iceModelMultimediaPeer::retrieveByModel($object);
+
+        $object->setEblobElement('multimedia', $m->toXML(true));
+        $object->save();
       }
     }
 
