@@ -10,3 +10,9 @@
   <script>
     window.jQuery.ui || document.write('<script src="<?= cq_javascript_src('frontend/jquery.ui.js'); ?>"><\/script>');
   </script>
+
+  <script>
+    // We want to delay the $(document).ready()
+    // until Modernizr has loaded all dependencies
+    $.holdReady(true);
+  </script>
