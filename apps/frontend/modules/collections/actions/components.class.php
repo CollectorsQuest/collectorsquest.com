@@ -55,8 +55,8 @@ class collectionsComponents extends cqFrontendComponents
         $collectible_ids = array_map('trim', $collectible_ids);
         $collectible_ids = array_filter($collectible_ids);
 
-        /** @var $q CollectibleQuery */
-        $q = CollectibleQuery::create()
+        /** @var $q FrontendCollectibleQuery */
+        $q = FrontendCollectibleQuery::create()
           ->filterById($collectible_ids)
           ->limit(4)
           ->addAscendingOrderByColumn(
@@ -113,7 +113,8 @@ class collectionsComponents extends cqFrontendComponents
     {
       $query = array(
         'q' => $q,
-        'filters' => array('has_thumbnail' => 1)
+        'filters' => array('has_thumbnail' => 1),
+        #TO DO here should be is_public filter
       );
 
       switch ($s)
@@ -162,9 +163,10 @@ class collectionsComponents extends cqFrontendComponents
           // Adding American Pickers and Pawn Stars at the top
           $collection_ids = array_merge(array(2842, 2841), $collection_ids);
 
-          $query = CollectorCollectionQuery::create()
+          /** @var $query FrontendCollectorCollectionQuery */
+          $query = FrontendCollectorCollectionQuery::create()
             ->filterById($collection_ids)
-            ->haveThumbnail()
+            ->hasThumbnail()
             ->addAscendingOrderByColumn('FIELD(id, '. implode(',', $collection_ids) .')');
 
           $pager = new PropelModelPager($query, 16);

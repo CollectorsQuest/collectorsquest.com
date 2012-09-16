@@ -202,6 +202,9 @@ class ContentCategory extends BaseContentCategory
     return $parent;
   }
 
+  /**
+   * @return array|PropelObjectCollection|ContentCategory[]
+   */
   public function getChildrenWithCollections()
   {
     $q = ContentCategoryQuery::create()
