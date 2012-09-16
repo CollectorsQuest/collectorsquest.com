@@ -23,7 +23,7 @@
   <a class="close" data-dismiss="alert">×</a>
   <?= $sf_user->getFlash('info', null, true); ?>
 </div>
-<?php elseif ($sf_user->hasFlash('hightlight')): ?>
+<?php elseif ($sf_user->hasFlash('highlight')): ?>
 <div class="alert">
   <?= has_slot('flash_highlight') ? get_slot('flash_highlight') : $sf_user->getFlash('highlight', null, true); ?>
 </div>
