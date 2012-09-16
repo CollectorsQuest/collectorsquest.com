@@ -12,7 +12,8 @@
         <i class="icon-plus icon-white"></i>
       </span>
       <span id="collection-create-link" class="btn-upload-collectible-txt spacer-top-20">
-        CREATE A NEW<br> COLLECTION
+        CREATE A NEW<br> COLLECTION<br>
+        <span style="color: #999;">(a group of items)</span>
       </span>
 </a>
 <?php end_slot(); ?>
