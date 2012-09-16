@@ -645,11 +645,6 @@ class mycqActions extends cqFrontendActions
       SmartMenu::setSelected('mycq_menu', 'collections');
     }
 
-    if ($collectible->getIsPublic() === false)
-    {
-      $this->getUser()->setFlash('highlight', 'test', false);
-    }
-
     return sfView::SUCCESS;
   }
 

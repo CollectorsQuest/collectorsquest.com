@@ -1,3 +1,9 @@
+<?php
+/**
+ * @var $sf_user cqFrontendUser
+ */
+?>
+
 <?php if (has_slot('flash_error')): ?>
 <div class="alert alert-error alert-block in" data-alert="alert">
   <a class="close" data-dismiss="alert">×</a>
