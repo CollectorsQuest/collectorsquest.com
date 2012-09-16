@@ -436,11 +436,11 @@ class cqSphinxPager extends sfPager
         {
           $sphinx->setFilter('object_id', (array) $values[0], (boolean) $values[1]);
         }
-        else if ($name == 'thumbnail')
+        else if (substr($name, 0, 3) === 'is_' || substr($name, 0, 4) === 'has_')
         {
-          if (in_array($values, array('yes', 'no')))
+          if (in_array($values, array('yes', 'no', true, false), true))
           {
-            $sphinx->setFilter('has_thumbnail', array(0), ($values == 'yes') ? true : false);
+            $sphinx->setFilter($name, array(0), ($values === 'no' || !$values) ? false : true);
           }
         }
         else
