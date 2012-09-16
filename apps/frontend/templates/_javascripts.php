@@ -25,11 +25,12 @@
         }
       }(jQuery, this, this.document));
 
-      $.holdReady(false);
-
       // execute the main controller after template level JS to allow
       // window.cq.settings modifications :)
       $(document).ready(CONTROLLER.init);
+
+      // Let is "free" :)
+      $.holdReady(false);
     }
   }]);
 </script>
