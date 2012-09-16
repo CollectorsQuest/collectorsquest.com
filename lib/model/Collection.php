@@ -15,6 +15,41 @@ class Collection extends BaseCollection
     $_multimedia = array(),
     $_counts = array();
 
+  public function postSave(PropelPDO $con = null)
+  {
+    parent::postSave($con);
+
+    if ($con === null)
+    {
+      $con = Propel::getConnection(
+        CollectionPeer::DATABASE_NAME, Propel::CONNECTION_WRITE
+      );
+    }
+
+    // Let's assume we can make the Collectible public
+    $is_public = true;
+
+    if (!$this->getName())
+    {
+      $is_public = false;
+    }
+    else if (!$this->getDescription())
+    {
+      $is_public = false;
+    }
+
+    // Update only if there is a change of the public status
+    if ($is_public !== $this->getIsPublic())
+    {
+      $sql = sprintf(
+        'UPDATE %s SET %s = %d WHERE %s = %d',
+        CollectionPeer::TABLE_NAME, CollectionPeer::IS_PUBLIC, $is_public,
+        CollectionPeer::ID, $this->getId()
+      );
+      $con->exec($sql);
+    }
+  }
+
   public function getTagString()
   {
     return implode(", ", $this->getTags());
@@ -186,7 +221,9 @@ class Collection extends BaseCollection
     $stmt = $con->prepare('
       SELECT COUNT(collectible_id)
         FROM `collection_collectible`
+        RIGHT JOIN `collectible` ON (collectible.id = collection_collectible.collectible_id)
        WHERE collection_collectible.COLLECTION_ID = :p1
+         AND collectible.is_public = 1
     ');
     $stmt->bindValue(':p1', $this->getId());
     $stmt->execute();
@@ -239,5 +276,36 @@ class Collection extends BaseCollection
     }
 
     return parent::preDelete($con);
+  }
+
+  /**
+   * Code to be run before persisting the object
+   *
+   * @param PropelPDO $con
+   * @return boolean
+   */
+  public function preSave(PropelPDO $con = null)
+  {
+    return parent::preSave($con);
+  }
+
+  /**
+   * Gets an array of CollectionCollectible objects which contain a foreign key that references this object
+   * and public flag set to true.
+   *
+   * @param int $limit
+   * @return array|PropelCollection
+   */
+  public function getPublicCollectionCollectibles($limit = null)
+  {
+    $q = CollectionCollectibleQuery::create();
+    $q->useCollectibleQuery()
+      ->filterByIsPublic(true)
+      ->endUse();
+    if ($limit)
+    {
+      $q->setLimit($limit);
+    }
+    return $this->getCollectionCollectibles($q);
   }
 }

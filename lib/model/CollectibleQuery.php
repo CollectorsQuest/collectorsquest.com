@@ -36,7 +36,7 @@ class CollectibleQuery extends BaseCollectibleQuery
     return $this->where($where);
   }
 
-  public function haveThumbnail()
+  public function hasThumbnail()
   {
     // @todo: to implement
     return $this;
@@ -48,6 +48,32 @@ class CollectibleQuery extends BaseCollectibleQuery
       ->useCollectibleForSaleQuery()
         ->isForSale()
       ->endUse();
+  }
+
+  /**
+   * @return CollectibleQuery
+   */
+  public function isPartOfCollection()
+  {
+    return $this
+      ->joinWith('CollectionCollectible', Criteria::RIGHT_JOIN)
+      ->groupBy('Id');
+  }
+
+  /**
+   * @return CollectibleQuery
+   */
+  public function isComplete()
+  {
+    return $this->filterByIsPublic(true, Criteria::EQUAL);
+  }
+
+  /**
+   * @return CollectibleQuery
+   */
+  public function isIncomplete()
+  {
+    return $this->filterByIsPublic(false, Criteria::EQUAL);
   }
 
   /**

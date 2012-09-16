@@ -23,6 +23,14 @@ class collectorActions extends cqFrontendActions
     $this->collector = $collector;
     $this->profile   = $profile;
 
+    $c = new Criteria();
+    $c->add(CollectorCollectionPeer::IS_PUBLIC, true);
+    $this->collectionsCount = $collector->countCollectionsWithCollectibles($c);
+
+    $c = new Criteria();
+    $c->add(CollectiblePeer::IS_PUBLIC, true);
+    $this->collectiblesCount = $collector->countCollectiblesInCollections($c);
+
     $this->i_collect_tags = $collector->getICollectTags();
 
     // Set the OpenGraph meta tags
@@ -41,7 +49,7 @@ class collectorActions extends cqFrontendActions
     if (empty($about_me))
     {
       // if user has a few collectibles we don't want to display them
-      $collectibles = $collector->countCollectiblesInCollections();
+      $collectibles = $this->collectiblesCount;
       if ($collectibles < 25)
       {
         $meta_description = sprintf(
