@@ -60,10 +60,10 @@ $(document).ready(function()
         $("#collection_content_category_id").val($(element).data('object-id'));
       }
       $('#categories').scrollLeft(500);
-      $('#categories .feature').hide();
+      $('.feature', '#categories').hide();
     }
   });
 
-  $('#categories top').attr('role', 'listbox').attr('tabIndex', categories_tabindex);
+  $('.top', '#categories').attr('role', 'listbox').attr('tabIndex', categories_tabindex);
 });
 </script>

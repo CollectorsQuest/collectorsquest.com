@@ -1,3 +1,6 @@
+@import "../_variables.less";
+@import "../_mixins.less";
+
 /*!
  * jQuery UI Bootstrap (0.22)
  * http://addyosmani.github.com/jquery-ui-bootstrap
@@ -60,7 +63,7 @@
   left: 0;
   position: absolute;
   opacity: 0;
-  filter: Alpha(Opacity = 0);
+  filter: Alpha(Opacity=0);
 }
 
 /* Interaction Cues
@@ -122,7 +125,7 @@
 
 .ui-widget-content {
   border: 1px solid #aaaaaa;
-  background: #ffffff url(/css/jquery/ui/bootstrap/images/ui-bg_glass_75_ffffff_1x400.png) 50% 50% repeat-x;
+  background: #ffffff url("@{baseUrl}/jquery/ui/ui-bg_glass_75_ffffff_1x400.png") 50% 50% repeat-x;
   color: #404040;
 }
 
@@ -294,13 +297,13 @@
 
 .ui-priority-secondary, .ui-widget-content .ui-priority-secondary, .ui-widget-header .ui-priority-secondary {
   opacity: .7;
-  filter: Alpha(Opacity = 70);
+  filter: Alpha(Opacity=70);
   font-weight: normal;
 }
 
 .ui-state-disabled, .ui-widget-content .ui-state-disabled, .ui-widget-header .ui-state-disabled {
   opacity: .35;
-  filter: Alpha(Opacity = 35);
+  filter: Alpha(Opacity=35);
   background-image: none;
 }
 
@@ -311,35 +314,35 @@
 .ui-icon {
   width: 16px;
   height: 16px;
-  background-image: url(/css/jquery/ui/bootstrap/images/ui-icons_222222_256x240.png);
+  background-image: url("@{baseUrl}/jquery/ui/ui-icons_222222_256x240.png");
 }
 
 .ui-widget-content .ui-icon {
-  background-image: url(/css/jquery/ui/bootstrap/images/ui-icons_222222_256x240.png);
+  background-image: url("@{baseUrl}/jquery/ui/ui-icons_222222_256x240.png");
 }
 
 .ui-widget-header .ui-icon {
-  background-image: url(/css/jquery/ui/bootstrap/images/ui-icons_222222_256x240.png);
+  background-image: url("@{baseUrl}/jquery/ui/ui-icons_222222_256x240.png");
 }
 
 .ui-state-default .ui-icon {
-  background-image: url(/css/jquery/ui/bootstrap/images/ui-icons_888888_256x240.png);
+  background-image: url("@{baseUrl}/jquery/ui/ui-icons_888888_256x240.png");
 }
 
 .ui-state-hover .ui-icon, .ui-state-focus .ui-icon {
-  background-image: url(/css/jquery/ui/bootstrap/images/ui-icons_454545_256x240.png);
+  background-image: url("@{baseUrl}/jquery/ui/ui-icons_454545_256x240.png");
 }
 
 .ui-state-active .ui-icon {
-  background-image: url(/css/jquery/ui/bootstrap/images/ui-icons_454545_256x240.png);
+  background-image: url("@{baseUrl}/jquery/ui/ui-icons_454545_256x240.png");
 }
 
 .ui-state-highlight .ui-icon {
-  background-image: url(/css/jquery/ui/bootstrap/images/ui-icons_2e83ff_256x240.png);
+  background-image: url("@{baseUrl}/jquery/ui/ui-icons_2e83ff_256x240.png");
 }
 
 .ui-state-error .ui-icon, .ui-state-error-text .ui-icon {
-  background-image: url(/css/jquery/ui/bootstrap/images/ui-icons_f6cf3b_256x240.png);
+  background-image: url("@{baseUrl}/jquery/ui/ui-icons_f6cf3b_256x240.png");
 }
 
 /* positioning */
@@ -1074,17 +1077,17 @@
 
 /* Overlays */
 .ui-widget-overlay {
-  background: #aaaaaa url(/css/jquery/ui/bootstrap/images/ui-bg_flat_0_aaaaaa_40x100.png) 50% 50% repeat-x;
+  background: #aaaaaa url("@{baseUrl}/jquery/ui/ui-bg_flat_0_aaaaaa_40x100.png") 50% 50% repeat-x;
   opacity: .30;
-  filter: Alpha(Opacity = 30);
+  filter: Alpha(Opacity=30);
 }
 
 .ui-widget-shadow {
   margin: -8px 0 0 -8px;
   padding: 8px;
-  background: #aaaaaa url(/css/jquery/ui/bootstrap/images/ui-bg_flat_0_aaaaaa_40x100.png) 50% 50% repeat-x;
+  background: #aaaaaa url("@{baseUrl}/jquery/ui/ui-bg_flat_0_aaaaaa_40x100.png") 50% 50% repeat-x;
   opacity: .30;
-  filter: Alpha(Opacity = 30);
+  filter: Alpha(Opacity=30);
   -moz-border-radius: 8px;
   -khtml-border-radius: 8px;
   -webkit-border-radius: 8px;
@@ -1596,7 +1599,7 @@ button.ui-button::-moz-focus-inner {
   font-weight: bold;
   line-height: 13.5px;
   text-shadow: 0 1px 0 #ffffff;
-  filter: alpha(opacity = 25);
+  filter: alpha(Opacity=25);
   -khtml-opacity: 0.25;
   -moz-opacity: 0.25;
   opacity: 0.25;
@@ -1609,7 +1612,7 @@ button.ui-button::-moz-focus-inner {
 }
 
 .ui-dialog .ui-dialog-titlebar-close:hover, .ui-dialog .ui-dialog-titlebar-close:focus {
-  filter: alpha(opacity = 90);
+  filter: alpha(Opacity=90);
   -khtml-opacity: 0.90;
   -moz-opacity: 0.90;
   opacity: 0.90;
@@ -2127,7 +2130,6 @@ button.ui-button::-moz-focus-inner {
 /* IE6 IFRAME FIX (taken from datepicker 1.5.3 */
 .ui-datepicker-cover {
   display: none; /*sorry for IE5*/
-  display /**/: block; /*sorry for IE5*/
   position: absolute; /*must have*/
   z-index: -1; /*must have*/
   filter: mask(); /*must have*/
