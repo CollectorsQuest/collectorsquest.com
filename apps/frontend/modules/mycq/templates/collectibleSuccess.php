@@ -34,9 +34,9 @@ else
     }
     else if ($collectible->getIsPublic() === false)
     {
-      echo '<div class="alert"><strong>NOTE: </strong>',
-           'Your item will not be publicly viewable until you fill in all the required information!',
-           '(marked with a <span style="color: #cc0000;">*</span> in the form below)',
+      echo '<div class="alert"><strong>NOTE:</strong>',
+           ' Your item will not be publicly viewable until you fill in all the required information!',
+           ' (marked with a <span style="color: #cc0000;">*</span> in the form below)',
            '</div>';
     }
   ?>
