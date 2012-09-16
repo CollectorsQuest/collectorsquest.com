@@ -752,16 +752,21 @@ class mycqActions extends cqFrontendActions
           'success', 'You have successfully updated your store settings.'
         );
 
-        if ($request->getParameter('save_and_go'))
+        $save_button = $request->getParameter('save');
+
+        if (isset($save_button['and_add_new_items']))
         {
           if ($return_to = $this->getUser()->getAttribute('purchase_credits_return_to', null, 'seller'))
           {
             $this->getUser()->setAttribute('purchase_credits_return_to', null, 'seller');
           }
 
-          $this->redirect($return_to ? $return_to : '@mycq_marketplace');
+          return $this->redirect($return_to ? $return_to : '@mycq_marketplace');
         }
-      };
+
+        // always redirect after successful post!
+        return $this->redirect($request->getUri());
+      }
     }
 
     $this->collector = $this->getCollector(true);
