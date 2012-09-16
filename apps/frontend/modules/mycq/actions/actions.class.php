@@ -885,6 +885,8 @@ class mycqActions extends cqFrontendActions
 
   public function executeIncomplete()
   {
+    $this->forward404Unless(IceGateKeeper::open('mycq_incomplete', 'page'));
+
     $q = CollectorCollectionQuery::create()
       ->filterByCollector($this->getUser()->getCollector())
       ->isIncomplete();
@@ -912,6 +914,8 @@ class mycqActions extends cqFrontendActions
 
   public function executeIncompleteCollections()
   {
+    $this->forward404Unless(IceGateKeeper::open('mycq_incomplete', 'page'));
+
     $q = CollectorCollectionQuery::create()
       ->filterByCollector($this->getUser()->getCollector())
       ->isIncomplete();
@@ -927,6 +931,8 @@ class mycqActions extends cqFrontendActions
 
   public function executeIncompleteCollectibles()
   {
+    $this->forward404Unless(IceGateKeeper::open('mycq_incomplete', 'page'));
+
     $q = CollectibleQuery::create()
       ->filterByCollector($this->getUser()->getCollector())
       ->isIncomplete();

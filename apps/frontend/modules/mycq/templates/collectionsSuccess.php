@@ -4,7 +4,7 @@
  */
 ?>
 
-<?php if ($first_time_on_page): ?>
+<?php if ($first_time_on_page && IceGateKeeper::open('mycq_incomplete', 'page')): ?>
 <div class="alert alert-block alert-notice in">
   <h4 class="alert-heading">Welcome to the My Collections page!</h4>
   <p class="spacer-top">

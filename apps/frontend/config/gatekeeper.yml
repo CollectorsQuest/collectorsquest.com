@@ -3,6 +3,7 @@ all:
     marketplace_categories: false
     aetn_picked_off: true
     aetn_american_restoration: true
+    mycq_incomplete: false
 
   features:
     shopping_cart: true
@@ -23,6 +24,7 @@ next:
     marketplace_categories: false
     aetn_picked_off: true
     aetn_american_restoration: true
+    mycq_incomplete: false
 
   features:
     shopping_cart: true
@@ -42,6 +44,7 @@ dev:
     marketplace_categories: true
     aetn_picked_off: true
     aetn_american_restoration: true
+    mycq_incomplete: true
 
   features:
     shopping_cart: true
