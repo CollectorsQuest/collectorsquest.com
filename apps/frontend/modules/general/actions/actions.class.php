@@ -100,9 +100,9 @@ class generalActions extends cqFrontendActions
         /**
          * Get 2 Collections
          *
-         * @var $q CollectorCollectionQuery
+         * @var $q FrontendCollectorCollectionQuery
          */
-        $q = CollectorCollectionQuery::create()
+        $q = FrontendCollectorCollectionQuery::create()
           ->filterById($collection_ids, Criteria::IN)
           ->limit(2)
           ->addAscendingOrderByColumn('FIELD(id, '. implode(',', $collection_ids) .')');
@@ -111,16 +111,17 @@ class generalActions extends cqFrontendActions
       }
       if ($collectible_ids)
       {
-        if (IceGateKeeper::locked('independence_day')) {
+        if (IceGateKeeper::locked('independence_day'))
+        {
           shuffle($collectible_ids);
         }
 
         /**
          * Get the Collectibles
          *
-         * @var $q CollectibleQuery
+         * @var $q FrontendCollectibleQuery
          */
-        $q = CollectibleQuery::create()
+        $q = FrontendCollectibleQuery::create()
            ->filterById($collectible_ids, Criteria::IN)
            ->addAscendingOrderByColumn('FIELD(id, '. implode(',', $collectible_ids) .')');
 
