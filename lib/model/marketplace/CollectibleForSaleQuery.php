@@ -34,6 +34,14 @@ class CollectibleForSaleQuery extends BaseCollectibleForSaleQuery
       ->endUse();
   }
 
+  public function isPartOfCollection()
+  {
+    return $this
+      ->useCollectibleQuery()
+      ->isPartOfCollection()
+      ->endUse();
+  }
+
   /**
    * Does not check for a transaction credit present or not!
    *
