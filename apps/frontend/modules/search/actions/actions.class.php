@@ -4,7 +4,10 @@ class searchActions extends cqFrontendActions
 {
   /** @var array */
   private static $_query = array(
-    'filters' => array('thumbnail' => 'yes')
+    'filters' => array(
+      'has_thumbnail' => 'yes',
+      'is_public' => true
+    )
   );
 
   public function preExecute()
@@ -89,7 +92,7 @@ class searchActions extends cqFrontendActions
       'limits' => array(4 * ($page - 1), 4),
       'filters' => array(
         'object_type' => 'collectible',
-        'thumbnail' => 'yes',
+        'has_thumbnail' => 'yes',
         'uint1' => 1
       )
     );

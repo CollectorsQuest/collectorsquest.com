@@ -3,8 +3,8 @@
 @import "../_wysihtml5.less";
 
 .carousel-sidebar {
-  width: 296px;
-  margin: 20px 0 20px 4px;
+  width: 300px;
+  margin: 20px 0;
 
   .thumbnails-inner {
     height: 102px;
@@ -46,13 +46,10 @@
   .thumbnails {
     display: relative;
     overflow: hidden;
-    height: 92px;
-    margin-left: 2px;
-      margin-right: -5px !important;
-    margin-bottom: 5px;
+	  height: 90px;
+	  margin: 3px 0 5px 5px;
 
     a {
-      margin-top: 2px;
       float: left;
       .box-shadow(none);
     }
@@ -60,20 +57,31 @@
       padding-bottom: 5px;
       border-bottom: 5px solid #CC0000;
     }
-  a.moreItems{
-      background-color: white;
-      color: #0A82C2;
-      font-size: 24px;
-      height: 57px;
-      line-height: 25px;
-      padding: 17px 0;
-      text-align: center;
-      width: 90px;
-      &:hover{
-          color:red;
-          background-color: #f8f8ff;
-      }
-  }
+
+	  a.moreItems {
+		  display: block;
+		  .square(80px);
+		  font-size: 13px;
+		  line-height: 13px;
+		  text-align: center;
+		  color: #0A82C2;
+		  border: 5px solid #efefef;
+		  //border: 1px solid #f6eccd;
+		  background-color: white;
+	    &:hover {
+	      color: @red;
+	      background-color: #f8f8ff;
+		    border-color: #f8f8ff;
+	    }
+	    > span {
+		    display: block;
+		    padding-top: 20px;
+		    padding-bottom: 4px;
+		    font-size: 24px;
+		    line-height: 24px;
+		    font-weight: bold;
+	    }
+	  }
 
   }
   .thumbnail {
@@ -84,12 +92,11 @@
     .border-radius(0);
   }
    .thumbnail:last-child {
-      margin-right: 0px;
+      margin-right: 0;
     }
   .well {
-    padding: 7px 3px 0 3px!important;
+    padding: 7px 3px 0 3px;
     background: #FFF5D5;
-    margin-left: -4px;
     .border-radius(0);
   }
 }
@@ -126,11 +133,6 @@
   width: 88px;
   margin-bottom: 25px;
   text-align: right;
-}
-
-#carousel {
-  margin-left: 5px;
-  width: 282px;
 }
 
 .ui-carousel {
@@ -259,4 +261,10 @@
   }
 }
 
-
+#mediaspace {
+  width: 720px;
+  height: 416px;
+  margin: -250px 0 0 -360px;
+  overflow: hidden;
+  .border-radius(0);
+}

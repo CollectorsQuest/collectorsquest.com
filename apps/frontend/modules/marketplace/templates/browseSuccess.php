@@ -2,6 +2,7 @@
 /**
  * @var $content_category  ContentCategory
  * @var $pager             sfPropelPager
+ * @var $collectible_rows  integer
  * @var $sf_user           cqFrontendUser
  */
 
@@ -39,13 +40,14 @@ $height_main_div->value = 51;
 <?php
   include_component(
     'global', 'pagination',
-    array('pager' => $pager, 'height' => &$height_main_div, 'options' => array('id' => 'collectibles-for-sale-pagination'))
+    array('pager' => $pager, 'height' => &$height_main_div,
+          'options' => array('id' => 'collectibles-for-sale-pagination')
+    )
   );
 ?>
 </div>
 
-
 <?php
-  $height_main_div->value < 500 ? $height_main_div->value = 500 : null;
-  $sf_user->setFlash('height_main_div', $height_main_div, 'false', 'internal');
+  $height_main_div->value > 500 ?: $height_main_div->value = 500;
+  $sf_user->setFlash('height_main_div', $height_main_div, false, 'internal');
 ?>

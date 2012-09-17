@@ -50,7 +50,7 @@ class PackagePeer extends BasePackagePeer
           '%discounted_class%' => isset($promotion)
             ? (isset($options['discount_class']) ? $options['discount_class'] : '')
             : '',
-          '%package_price%' => '$' . $package->getPackagePrice(),
+          '%package_price%' => '$' . number_format($package->getPackagePrice(), 2),
           '%package_price_discounted%' => isset($promotion)
             ? '$' . $package->getPriceWithDiscount($promotion)
             : '',

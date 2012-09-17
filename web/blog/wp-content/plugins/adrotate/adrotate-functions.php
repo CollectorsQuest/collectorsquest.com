@@ -401,13 +401,13 @@ function adrotate_prepare_evaluate_ads() {
 				$expired++;
 			if($result == 'error')
 				$error++;
-			$wpdb->query("UPDATE `".$wpdb->prefix."adrotate` SET `type` = 'error' WHERE `id` = '".$ad->id."';");
+			$wpdb->update($wpdb->prefix."adrotate", array('type' => 'error'), array('id' => $ad->id));
 		} else if($result == 'expires2days' OR $result == 'expires7days' OR $result == 'normal') {
 			if($result == 'expires2days' OR $result == 'expires7days')
 				$expiressoon++;
 			if($result == 'normal')
 				$normal++;
-			$wpdb->query("UPDATE `".$wpdb->prefix."adrotate` SET `type` = 'active' WHERE `id` = '".$ad->id."';");
+			$wpdb->update($wpdb->prefix."adrotate", array('type' => 'active'), array('id' => $ad->id));
 		} else {
 			continue;	
 		}

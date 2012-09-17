@@ -1,12 +1,12 @@
 <?php
 /**
- * @var  $title  string
- * @var  $has_message  boolean
+ * @var  $title          string
+ * @var  $has_message    boolean
  * @var  $widget_height  integer
- * @var  $collector  Collector
- * @var  $collectible Collectible
- * @var  $collections  Collection[]
- * @var $height stdClass
+ * @var  $collector      Collector
+ * @var  $collectible    Collectible
+ * @var  $collections    Collection[]
+ * @var  $height         stdClass
  */
 
 $_height = 0;
@@ -69,7 +69,7 @@ $_height = 0;
     <div class="span9 text-word-wrap">
       <?= $collector; ?>'s Collections:
     </div>
-    <?php if ($collector->countCollectorCollections() > 3): ?>
+    <?php if ($collector->countPublicCollectorCollections() > 3): ?>
     <div class="span3">
       <?= link_to('View all &raquo;', 'collections_by_collector', $collector, array('class' => 'pull-right')); ?>
     </div>
@@ -83,9 +83,7 @@ $_height = 0;
     <p><?= link_to_collection($collection, 'text'); ?></p>
       <div class="thumb-container">
           <?php
-            $c = new Criteria();
-            $c->setLimit(4);
-            foreach ($collection->getCollectionCollectibles($c) as $i => $collectible)
+            foreach ($collection->getPublicCollectionCollectibles(4) as $i => $collectible)
             {
               $options = array('width' => 60, 'height' => 60);
                   echo link_to(image_tag_collectible($collectible, '75x75', $options), 'collectible_by_slug', $collectible, array('class' => 'thumbnails60'));

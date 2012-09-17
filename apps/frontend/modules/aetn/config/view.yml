@@ -1,0 +1,24 @@
+all:
+  stylesheets:
+    - frontend/modules/aetn.css
+    - frontend/modules/collections.css
+
+americanPickersSuccess:
+  components:
+    sidebar_300: [aetn, sidebarAmericanPickers]
+
+americanRestorationSuccess:
+  components:
+    sidebar_300: [aetn, sidebarAmericanRestoration]
+
+pawnStarsSuccess:
+  components:
+    sidebar_300: [aetn, sidebarPawnStars]
+
+pickedOffSuccess:
+  components:
+    sidebar_300: [aetn, sidebarPickedOff]
+
+storageWarsSuccess:
+  components:
+    sidebar_300: [aetn, sidebarStorageWars]

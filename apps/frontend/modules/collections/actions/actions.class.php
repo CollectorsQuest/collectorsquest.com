@@ -7,15 +7,15 @@ class collectionsActions extends cqFrontendActions
   {
     parent::preExecute();
 
-    SmartMenu::setSelected('header_main_menu', 'collections');
+    SmartMenu::setSelected('header', 'collections');
   }
 
   public function executeIndex(sfWebRequest $request)
   {
     if ($request->getRequestFormat() === 'rss')
     {
-      /** @var $q CollectorCollectionQuery */
-      $q = CollectorCollectionQuery::create();
+      /** @var $q FrontendCollectorCollectionQuery */
+      $q = FrontendCollectorCollectionQuery::create();
 
       switch ($request->getParameter('sort', 'latest'))
       {
@@ -60,7 +60,7 @@ class collectionsActions extends cqFrontendActions
   {
     $this->collector = $this->getRoute()->getObject();
 
-    $q = CollectorCollectionQuery::create()
+    $q = FrontendCollectorCollectionQuery::create()
         ->filterByCollector($this->collector)
         ->orderByUpdatedAt(Criteria::DESC);
 

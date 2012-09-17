@@ -1,9 +1,0 @@
-@import url(/css/screen.css);
-@import url(/css/legacy/main.css);
-
-html, body {
-  margin: 0;
-  padding: 5px;
-  background: #fff;
-  height: auto;
-}

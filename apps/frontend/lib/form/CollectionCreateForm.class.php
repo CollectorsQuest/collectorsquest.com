@@ -33,12 +33,17 @@ class CollectionCreateForm extends CollectorCollectionForm
 
     // Setup the Tags field
     $this->setupTagsField();
+    // Setup the Name field
+    $this->setupNameField();
 
     $this->setValidators(array(
       'id'    => new sfValidatorPropelChoice(
         array('model' => 'CollectorCollection', 'column' => 'id', 'required' => false)
       ),
-      'name'  => new sfValidatorString(),
+      'name'  => new cqValidatorName(
+        array('required' => true),
+        array('invalid' => 'Please enter a complete title for your collection.')
+      ),
       'tags'  => new cqValidatorTags(),
       'content_category_id' => new sfValidatorPropelChoice(array(
         'required' => true,
@@ -62,7 +67,14 @@ class CollectionCreateForm extends CollectorCollectionForm
     $this->widgetSchema['tags']->setDefault($tags);
     $this->getWidgetSchema()->setHelp(
       'tags', 'Choose at least three descriptive words
-               or phrases, separated by commas'
+               or phrases, separated by commas.'
+    );
+  }
+
+  protected function setupNameField()
+  {
+    $this->getWidgetSchema()->setHelp(
+      'name', 'Enter a title to describe your entire collection.'
     );
   }
 }

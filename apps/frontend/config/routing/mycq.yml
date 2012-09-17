@@ -12,6 +12,10 @@ mycq_profile_account_info:
   url:   /mycq/profile/account-information
   param: { module: mycq, action: profileAccountInfo }
 
+mycq_profile_email_preferences:
+  url:   /mycq/profile/email-preferences
+  param: { module: mycq, action: profileEmailPreferences }
+
 mycq_profile_addresses:
   url:   /mycq/profile/addresses
   param: { module: mycq, action: profileAddresses }
@@ -80,6 +84,18 @@ mycq_collectible_by_slug:
   options: { model: Collectible, type: object, method: getObjectForRoute }
   param: { module: mycq, action: collectible }
   requirements: { id: '\d+', slug: '[\-\w\.]+', sf_method: [get, post] }
+
+mycq_incomplete:
+  url:   /mycq/incomplete
+  param: { module: mycq, action: incomplete }
+
+mycq_incomplete_collections:
+  url:   /mycq/incomplete/collections
+  param: { module: mycq, action: incompleteCollections }
+
+mycq_incomplete_collectibles:
+  url:   /mycq/incomplete/collectibles
+  param: { module: mycq, action: incompleteCollectibles }
 
 mycq_marketplace:
   url:   /mycq/marketplace

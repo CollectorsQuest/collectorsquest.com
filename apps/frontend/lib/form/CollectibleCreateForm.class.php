@@ -33,13 +33,18 @@ class CollectibleCreateForm extends CollectibleForm
       'collection_id'  => new sfValidatorPropelChoice(array(
         'model' => 'CollectorCollection', 'column' => 'id', 'required' => true
       )),
-      'name'  => new sfValidatorString(array('required' => true)),
+      'name'  => new cqValidatorName(
+        array('required' => true),
+        array('invalid' => 'You need to use more descriptive name for your item
+                            (is it the camera auto generated name?)')),
       'description'  => new sfValidatorString(array('required' => true)),
       'thumbnail'  => new sfValidatorInteger(array('required' => false))
     ));
 
     // Setup the Tags field
     $this->setupTagsField();
+    // Setup the Name field
+    $this->setupNameField();
 
     $this->widgetSchema->setNameFormat('collectible[%s]');
     $this->widgetSchema->setFormFormatterName('Bootstrap');
@@ -77,5 +82,12 @@ class CollectibleCreateForm extends CollectibleForm
     else {
       return $values;
     }
+  }
+
+  protected function setupNameField()
+  {
+    $this->getWidgetSchema()->setHelp(
+      'name', 'Enter a name for this item.'
+    );
   }
 }

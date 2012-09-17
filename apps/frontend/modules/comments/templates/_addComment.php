@@ -23,10 +23,9 @@
       <button type="submit" class="btn btn-large hidden">Comment</button>
 
       <div class="extra-fields clearfix spacer-top non-optional">
-        <p class="one-line-input">
-          <?= $form['is_notify']; ?>
-          <?= $form['is_notify']->renderLabel(null, array('class' => 'spacer-left-5')); ?>
-        </p>
+        <label class="checkbox" for="comment_is_notify">
+          <?= $form['is_notify']; ?> Notify me of follow-up comments by email.
+        </label>
       </div>
     </form>
   </div>

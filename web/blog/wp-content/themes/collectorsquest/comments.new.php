@@ -36,7 +36,7 @@
 
 
   <div class="add-comment">
-    <div class="post-comment">
+    <div class="input-append post-comment">
       <form action="<?php echo get_option('siteurl'); ?>/wp-comments-post.php" method="post" id="commentform">
 
         <?php if ( $user_ID ) : ?>
@@ -56,13 +56,10 @@
         </div>
         <?php endif; ?>
 
-        <!--<p><small><strong>XHTML:</strong> You can use these tags: <?php echo allowed_tags(); ?></small></p>-->
 
-        <textarea class="input-append" name="comment" id="c" rows="10" colspan="3" style="width: 494px; height: 18px;resize: none;" placeholder=" What do you think?"></textarea>
-        <!-- <input class="input-append" type="text" id="c" data-provide="comment" autocomplete="off" name="comment">
+          <textarea name="comment" id="c" rows="10" colspan="3" style="width: 494px; height: 18px;resize: none;" placeholder=" What do you think?"></textarea>
+          <button type="submit" class="btn btn-large">Comment</button>
 
-        <!--<p><input name="submit" type="submit" id="submit" tabindex="5" value="Submit Comment" />-->
-        <button type="submit" class="btn btn-large">Comment</button>
 
         <input type="hidden" name="comment_post_ID" value="<?php echo $id; ?>" />
 

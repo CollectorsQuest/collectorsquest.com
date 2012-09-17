@@ -159,7 +159,7 @@ EOF
       else
       {
         $choices[$object->$methodKey()] = str_repeat(
-          $this->getOption('spacing_character'), $object->getLevel() - 1
+          $this->getOption('spacing_character'), max(0, $object->getLevel() - 1)
         ) .' '. $object->getLevel() .'. '. $object->$methodValue();
       }
     }

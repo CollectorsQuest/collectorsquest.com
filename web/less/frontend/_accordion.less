@@ -1,0 +1,76 @@
+// Parent container
+
+.collecton-wizard {
+	margin-bottom: @baseLineHeight;
+
+// Group == heading + body
+	.accordion-group {
+		margin-bottom: 10px;
+		border: 1px solid lighten(@tabsBorderColor, 15%);
+		.border-radius(0);
+
+		&.finished {
+			border: 1px solid @tabsBorderColor;
+
+			.accordion-inner {
+				background-color: darken(#f5f5f5, 1%);
+			}
+			.accordion-toggle {
+				padding: 12px 15px 10px 15px;
+				font-size: 18px;
+				font-weight: bold;
+			}
+			.accordion-body {
+				height: auto;
+			}
+		}
+		&.active {
+			border: 1px solid @tabsBorderColor;
+
+			.accordion-body {
+				height: auto;
+			}
+			.accordion-toggle {
+				padding: 12px 15px 10px 15px;
+				font-size: 18px;
+				font-weight: bold;
+				color: @red;
+			}
+		}
+	}
+
+	.accordion-heading {
+		border-bottom: 0;
+		#gradient > .vertical(#fff, #f5f5f5);
+	}
+	.accordion-heading .accordion-toggle {
+		display: block;
+		padding: 10px 15px 8px 15px;
+	}
+
+// General toggle styles
+	.accordion-toggle {
+		cursor: auto;
+	//color: @red;
+		font-size: 14px;
+
+		.description {
+			padding-left: 8px;
+			font-size: 16px;
+			font-weight: normal;
+		}
+	}
+
+	.accordion-inner {
+		padding: 20px 15px 10px 15px;
+		border-top: 1px solid #e5e5e5;
+	}
+
+
+	.button-wrapper {
+		margin-bottom: 15px;
+		.clearfix();
+	}
+
+}
+

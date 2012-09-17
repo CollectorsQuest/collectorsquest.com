@@ -16,6 +16,54 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
     $_multimedia = array(),
     $_counts = array();
 
+  public function postSave(PropelPDO $con = null)
+  {
+    if ($con === null)
+    {
+      $con = Propel::getConnection(
+        CollectiblePeer::DATABASE_NAME, Propel::CONNECTION_WRITE
+      );
+    }
+
+    parent::postSave($con);
+
+    // Let's assume we can make the Collectible public
+    $is_public = true;
+
+    if (!$this->getName() || $this->getIsNameAutomatic())
+    {
+      $is_public = false;
+    }
+    else if (!$this->getDescription())
+    {
+      $is_public = false;
+    }
+    else if (!$this->getTags())
+    {
+      $is_public = false;
+    }
+    else if (!$this->getPrimaryImage())
+    {
+      $is_public = false;
+    }
+
+    // Update only if there is a change of the public status
+    if ($is_public !== $this->getIsPublic())
+    {
+      $sql = sprintf(
+        'UPDATE %s SET %s = %d WHERE %s = %d',
+        CollectiblePeer::TABLE_NAME, CollectiblePeer::IS_PUBLIC, $is_public,
+        CollectiblePeer::ID, $this->getId()
+      );
+      $con->exec($sql);
+    }
+  }
+
+  public function __toString()
+  {
+    return parent::__toString() ?: 'Untitled';
+  }
+
   public function getGraphId()
   {
     $graph_id = null;
@@ -514,7 +562,7 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
 
   public function isWasForSale(PropelPDO $con = null)
   {
-    return !! $this->getCollectibleForSale($con);
+    return $this->isForSale($con) || $this->isSold($con);
   }
 
   /**
@@ -626,6 +674,50 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
     return parent::preDelete($con);
   }
 
+  /**
+   * Code to be run before persisting the object
+   * @param PropelPDO $con
+   * @return bloolean
+   */
+  public function preSave(PropelPDO $con = null)
+  {
+    $this->updatePublic();
+    return parent::preSave($con);
+  }
+
+  public function updatePublic()
+  {
+    /** @var $public boolean */
+    $public = true;
+
+    if (!$this->getName() || strlen(trim($this->getName())) == 0)
+    {
+      $public = false;
+    }
+    else if (!$this->getDescription('stripped') || strlen(trim($this->getDescription())) == 0)
+    {
+      $public = false;
+    }
+    else if ($this->getTags() == array())
+    {
+      $public = false;
+    }
+    else if (!$this->getPrimaryImage())
+    {
+      $public = false;
+    }
+
+    $this->setIsPublic($public);
+    // Checks Collection public flag
+    // Not sure we need this,
+    // If need, then need addd postDelete check
+//    $collection = $this->getCollection();
+//    if (!$collection->getIsPublic() && $collection->getIsPublic() != $collection->updatePublic()->getIsPublic())
+//    {
+//      $collection->save();
+//    }
+    return $this;
+  }
 }
 
 sfPropelBehavior::add('Collectible', array('IceMultimediaBehavior'));

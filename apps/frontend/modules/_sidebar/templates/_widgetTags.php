@@ -1,14 +1,15 @@
 <?php
 /*
- * @var $height stdClass
- * @var $title string
+ * @var $height   stdClass
+ * @var $_height  integer
+ * @var $title    string
+ * @var $tag_rows integer
  */
-
 $_height = 0;
-?>
 
-<?php cq_sidebar_title($title, null); ?>
-<?php $_height -= 63; ?>
+cq_sidebar_title($title, null);
+$_height -= 63;
+?>
 
 <div class="tags-container-sidebar">
   <?php
@@ -24,9 +25,10 @@ $_height = 0;
     }
   ?>
 </div>
-<?php $_height -= 33 * $tag_rows; ?>
 
 <?php
+  $_height -= 33 * $tag_rows;
+
   if (isset($height) && property_exists($height, 'value'))
   {
     $height->value -= abs($_height);

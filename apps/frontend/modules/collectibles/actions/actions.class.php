@@ -16,6 +16,11 @@ class collectiblesActions extends cqFrontendActions
   {
     $collector = $this->getRoute()->getObject();
 
+    if ($request->getParameter('legacy'))
+    {
+      $this->redirect('collector_by_slug', $collector, 301);
+    }
+
     $for_sale_ids = CollectibleForSaleQuery::create()
       ->filterByCollector($collector)
       ->isForSale()

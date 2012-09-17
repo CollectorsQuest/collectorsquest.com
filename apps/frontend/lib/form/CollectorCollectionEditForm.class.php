@@ -6,11 +6,8 @@ class CollectorCollectionEditForm extends CollectorCollectionForm
   {
     parent::configure();
 
-    $this->widgetSchema['name']->setAttribute('class', 'input-xlarge');
-    $this->widgetSchema['name']->setAttribute('required', 'required');
-    $this->widgetSchema['description']->setAttribute('class', 'input-xlarge js-invisible');
-    $this->widgetSchema['description']->setAttribute('required', 'required');
-
+    $this->setupNameField();
+    $this->setupDescriptionField();
     $this->setupThumbnailField();
     $this->setupContentCategoryPlainField();
 
@@ -27,6 +24,28 @@ class CollectorCollectionEditForm extends CollectorCollectionForm
     {
       $this->offsetUnset('thumbnail');
     }
+  }
+
+  protected function setupNameField()
+  {
+    $this->widgetSchema['name']->setAttribute('class', 'input-xlarge');
+    $this->widgetSchema['name']->setAttribute('required', 'required');
+
+    $this->validatorSchema['name'] = new cqValidatorName(
+      array('required' => true),
+      array('invalid' => 'You need to use more descriptive name for your collection!
+                          (is it the camera auto generated name?)')
+    );
+  }
+
+  protected function setupDescriptionField()
+  {
+    $this->widgetSchema['description']->setAttribute('class', 'input-xlarge js-invisible');
+    $this->widgetSchema['description']->setAttribute('required', 'required');
+
+    $this->getWidgetSchema()->setHelp(
+      'description', 'Add more details about your collection. (You can also change this later!)'
+    );
   }
 
   protected function setupContentCategoryPlainField()
