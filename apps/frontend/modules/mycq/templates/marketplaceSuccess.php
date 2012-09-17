@@ -1,6 +1,9 @@
 <?php
-  /**
- * @var $seller Seller
+/**
+ * @var $seller              Seller
+ * @var $first_time_on_page  boolean
+ * @var $total               integer
+ * @var $sold_total          integer
  */
 
   SmartMenu::setSelected('mycq_marketplace_tabs', 'collectibles_for_sale');
@@ -15,7 +18,7 @@
   <h4 class="alert-heading">Welcome to the My Marketplace page!</h4>
   <p class="spacer-top">
     You have Collections/Collectibles which are not fully described yet.
-    If you would like others too see and buy them you should describe them as best as you can!
+    If you would like others to see and buy them you should describe them as best as you can!
   </p>
   <br/>
   <a class="btn btn-primary" href="<?php echo url_for('@mycq_incomplete_collectibles') ?>">Fix Incomplete Collectibles</a>

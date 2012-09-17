@@ -5,8 +5,24 @@
  *
  * @var $form CollectibleEditForm
  * @var $for_for_sale CollectibleForSaleEditForm
+ * @var $show_return_message boolean
  */
+?>
 
+<?php if ($show_return_message && IceGateKeeper::open('mycq_incomplete', 'page')): ?>
+  <div class="alert alert-block alert-notice in">
+    <h4 class="alert-heading">Go back to Incomplete Collectibles</h4>
+    <p class="spacer-top">
+      Use this link to go back to the list of Collections/Collectibles which are not fully described yet.
+      If you would like others to see and buy them you should describe them as best as you can!
+    </p>
+    <br/>
+    <a class="btn btn-primary" href="<?php echo url_for('@mycq_incomplete_collectibles') ?>">Back to Incomplete Collectibles</a>
+    <button type="button" class="btn" data-dismiss="alert">Ok</button>
+  </div>
+<?php endif; ?>
+
+<?php
 if ($collectible->getMultimediaCount('image') > 0)
 {
   slot(
@@ -27,6 +43,11 @@ else
 <form action="<?= url_for('mycq_collectible_by_slug', $collectible); ?>"
       method="post" enctype="multipart/form-data" novalidate
       id="form-collectible" class="form-horizontal">
+
+  <?php if ($show_return_message && IceGateKeeper::open('mycq_incomplete', 'page')): ?>
+    <input type="hidden" name="return_to" value="incomplete_collectibles">
+  <?php endif; ?>
+
   <?php
     if ($form->hasErrors())
     {

@@ -2,10 +2,24 @@
 /**
  * @var $collection CollectorCollection
  * @var $form CollectorCollectionEditForm
+ * @var $show_return_message boolean
  */
 
 slot('mycq_dropbox_info_message', 'Drag a photo into the Collection thumbnail below');
 ?>
+
+<?php if ($show_return_message && IceGateKeeper::open('mycq_incomplete', 'page')): ?>
+<div class="alert alert-block alert-notice in">
+  <h4 class="alert-heading">Go back to Incomplete Collections</h4>
+  <p class="spacer-top">
+    Use this link to go back to the list of Collections/Collectibles which are not fully described yet.
+    If you would like others to see and buy them you should describe them as best as you can!
+  </p>
+  <br/>
+  <a class="btn btn-primary" href="<?php echo url_for('@mycq_incomplete_collections') ?>">Back to Incomplete Collections</a>
+  <button type="button" class="btn" data-dismiss="alert">Ok</button>
+</div>
+<?php endif; ?>
 
 <?= $form->renderAllErrors(); ?>
 
@@ -61,6 +75,10 @@ slot('mycq_dropbox_info_message', 'Drag a photo into the Collection thumbnail be
         <form action="<?= url_for('mycq_collection_by_section', array('id' => $collection->getId(), 'section' => 'details')); ?>" novalidate
               id="form-collection" method="post" enctype="multipart/form-data"
               class="form-horizontal spacer-bottom-reset">
+
+          <?php if ($show_return_message && IceGateKeeper::open('mycq_incomplete', 'page')): ?>
+            <input type="hidden" name="return_to" value="incomplete_collections">
+          <?php endif; ?>
 
           <div class="row-fluid spacer-top">
             <div id="main-image" class="span3">

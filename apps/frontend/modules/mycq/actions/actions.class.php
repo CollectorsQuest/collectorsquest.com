@@ -309,8 +309,23 @@ class mycqActions extends cqFrontendActions
     $this->collector = $this->getUser()->getCollector();
     $this->total = $this->collector->countCollectorCollections();
 
-    // @todo determine this variable properly
-    $this->first_time_on_page = true;
+    // determine weather to show message for incomplete collections
+    $this->first_time_on_page = false;
+    // check if we have already shown this message to user
+    $already_shown_message = $this->getUser()->getAttribute('incomplete_collections', false);
+
+    if (IceGateKeeper::open('mycq_incomplete', 'page') && !$already_shown_message)
+    {
+      $q = CollectorCollectionQuery::create()
+        ->filterByCollector($this->collector)
+        ->isIncomplete();
+      if ($q->count() > 0)
+      {
+        $this->first_time_on_page = true;
+        // make sure we show this message to the user only on first page load
+        $this->getUser()->setAttribute('incomplete_collections', true);
+      }
+    }
 
     return sfView::SUCCESS;
   }
@@ -645,6 +660,15 @@ class mycqActions extends cqFrontendActions
       SmartMenu::setSelected('mycq_menu', 'collections');
     }
 
+    // weather to show message to return to incomplete collectibles list
+    $this->show_return_message = false;
+    if ($request->getParameter('return_to') == 'incomplete_collectibles' &&
+        IceGateKeeper::open('mycq_incomplete', 'page')
+    )
+    {
+      $this->show_return_message = true;
+    }
+
     return sfView::SUCCESS;
   }
 
@@ -682,8 +706,24 @@ class mycqActions extends cqFrontendActions
     // Make the collector available to the template
     $this->collector = $collector;
 
-    // @todo determine this variable properly
-    $this->first_time_on_page = true;
+    // determine weather to show message for incomplete collectibles
+    $this->first_time_on_page = false;
+    // check if we have already shown this message to user
+    $already_shown_message = $this->getUser()->getAttribute('incomplete_collectibles', false);
+
+    if (IceGateKeeper::open('mycq_incomplete', 'page') && !$already_shown_message)
+    {
+      $q = CollectibleQuery::create()
+        ->filterByCollector($collector)
+        ->isPartOfCollection()
+        ->isIncomplete();
+      if ($q->count() > 0)
+      {
+        $this->first_time_on_page = true;
+        // make sure we show this message to the user only on first page load
+        $this->getUser()->setAttribute('incomplete_collectibles', true);
+      }
+    }
 
     return sfView::SUCCESS;
   }
@@ -925,6 +965,8 @@ class mycqActions extends cqFrontendActions
       ->filterByCollector($this->getUser()->getCollector())
       ->isIncomplete();
 
+    $this->total = $q->count();
+
     $pager = new PropelModelPager($q, 18);
     $pager->setPage($this->getRequestParameter('p', 1));
     $pager->init();
@@ -941,6 +983,8 @@ class mycqActions extends cqFrontendActions
     $q = CollectibleQuery::create()
       ->filterByCollector($this->getUser()->getCollector())
       ->isIncomplete();
+
+    $this->total = $q->count();
 
     $pager = new PropelModelPager($q, 18);
     $pager->setPage($this->getRequestParameter('p', 1));

@@ -146,6 +146,16 @@ class collectionAction extends cqFrontendAction
       }
     }
 
+    // @todo figure out why this is not working after form save as on Collectible page
+    // weather to show message to return to incomplete collections list
+    $this->show_return_message = false;
+    if ($request->getParameter('return_to') == 'incomplete_collections' &&
+        IceGateKeeper::open('mycq_incomplete', 'page')
+    )
+    {
+      $this->show_return_message = true;
+    }
+
     $collector = $this->getCollector();
     $dropbox = $collector->getCollectionDropbox();
     $this->dropbox_total = $dropbox->countCollectibles();

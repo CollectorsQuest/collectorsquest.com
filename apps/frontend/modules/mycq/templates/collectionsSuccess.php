@@ -1,6 +1,7 @@
 <?php
 /**
  * @var $total integer
+ * @var $first_time_on_page boolean
  */
 ?>
 
@@ -9,7 +10,7 @@
   <h4 class="alert-heading">Welcome to the My Collections page!</h4>
   <p class="spacer-top">
     You have Collections/Collectibles which are not fully described yet.
-    If you would like others too see and buy them you should describe them as best as you can!
+    If you would like others to see and buy them you should describe them as best as you can!
   </p>
   <br/>
   <a class="btn btn-primary" href="<?php echo url_for('@mycq_incomplete_collections') ?>">Fix Incomplete Collections</a>
