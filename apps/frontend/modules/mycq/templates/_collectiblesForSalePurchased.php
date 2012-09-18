@@ -1,14 +1,14 @@
 <?php if ($pager->getNbResults() > 0): ?>
 
-  <?php foreach ($pager->getResults() as $i => $shopping_order): ?>
+  <?php foreach ($pager->getResults() as $i => $shopping_order_collectible): ?>
   <div class="span3 collectible_sold_items_grid_view_square link">
     <?php
       echo link_to(
         image_tag_collectible(
-          $shopping_order->getCollectible(), '140x140',
+          $shopping_order_collectible->getCollectible(), '140x140',
           array('width' => 130, 'height' => 130)
         ),
-        'mycq_collectible_by_slug', $shopping_order->getCollectible()
+        'mycq_collectible_by_slug', $shopping_order_collectible->getCollectible()
       );
     ?>
     <span class="purchased">PURCHASED</span>
@@ -16,14 +16,14 @@
       <?php
         echo link_to(
           cqStatic::truncateText(
-            $shopping_order->getCollectible()->getName(), 30, '...', true
+            $shopping_order_collectible->getCollectible()->getName(), 30, '...', true
           ),
-          'mycq_collectible_by_slug', $shopping_order->getCollectible(),
+          'mycq_collectible_by_slug', $shopping_order_collectible->getCollectible(),
           array('class' => 'target')
         );
       ?>
       <strong class="pull-right spacer-top">
-        <?= money_format('%.2n', (float) $shopping_order->getCollectibleForSale()->getPrice()); ?>
+        <?= money_format('%.2n', (float) $shopping_order_collectible->getCollectibleForSale()->getPrice()); ?>
       </strong>
     </p>
   </div>

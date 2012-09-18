@@ -302,4 +302,20 @@ class ShoppingCartCollectible extends BaseShoppingCartCollectible
     return null;
   }
 
+  /**
+   * Create ShoppingOrderCollectible from ShoppingCartCollectible
+   *
+   * @return ShoppingOrderCollectible
+   */
+  public function getShoppingOrderCollectible()
+  {
+    $ShoppingOrderCollectible = new ShoppingOrderCollectible();
+    $ShoppingOrderCollectible->fromArray($this->toArray());
+
+    $ShoppingOrderCollectible
+      ->setCollector($this->getCollectibleForSale()->getCollector())
+      ->setShippingFeeAmount($this->getShippingFeeAmount());
+
+    return $ShoppingOrderCollectible;
+  }
 }

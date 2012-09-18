@@ -5,8 +5,6 @@ require 'lib/model/marketplace/om/BaseShoppingOrder.php';
 class ShoppingOrder extends BaseShoppingOrder
 {
 
-  /** @var ShippingReference */
-  protected $aShippingReference;
 
   /**
    * @param  null|PropelPDO  $con
@@ -24,11 +22,11 @@ class ShoppingOrder extends BaseShoppingOrder
     }
   }
 
-  public function getSeller()
-  {
-    return CollectorQuery::create()
-      ->findOneById($this->getSellerId());
-  }
+//  public function getSeller()
+//  {
+//    return CollectorQuery::create()
+//      ->findOneById($this->getSellerId());
+//  }
 
   public function getBuyer()
   {
@@ -61,18 +59,6 @@ class ShoppingOrder extends BaseShoppingOrder
   public function getDescription()
   {
     return $this->getShoppingCartCollectible()->getDescription();
-  }
-
-  public function getCurrency()
-  {
-    $currency = 'USD';
-
-    if ($collectible = $this->getShoppingCartCollectible())
-    {
-      $currency = $collectible->getPriceCurrency();
-    }
-
-    return $currency;
   }
 
   /**
@@ -113,9 +99,21 @@ class ShoppingOrder extends BaseShoppingOrder
     {
       return $payment->getAmountCollectibles($return);
     }
-    else if ($collectible = $this->getShoppingCartCollectible())
+    else if (count($this->getShoppingOrderCollectibles()))
     {
-      return $collectible->getPriceAmount($return);
+      $result = null;
+      foreach ($this->getShoppingOrderCollectibles() as $shopping_order_collectible)
+      {
+        if ($return == 'float')
+        {
+          $result =   bcadd($result, $shopping_order_collectible->getPriceAmount($return), 2);
+        }
+        else
+        {
+          $result = $result + $shopping_order_collectible->getPriceAmount($return);
+        }
+      }
+      return $result;
     }
 
     return null;
@@ -131,20 +129,13 @@ class ShoppingOrder extends BaseShoppingOrder
    */
   public function getShippingFeeAmount($return = 'float')
   {
-    if (
-      ($shipping_reference = $this->getShippingReference()) &&
-      ShippingReferencePeer::SHIPPING_TYPE_NO_SHIPPING == $shipping_reference->getShippingType()
-    ) {
-      return null;
-    }
-
     if ($payment = $this->getShoppingPaymentRelatedByShoppingPaymentId())
     {
       return $payment->getAmountShippingFee($return);
     }
-    else if ($collectible = $this->getShoppingCartCollectible())
+    else if (count($this->getShoppingOrderCollectibles()))
     {
-      return $collectible->getShippingFeeAmount($return);
+      return $this->getShippingFeeTotalAmount($return);
     }
 
     return null;
@@ -162,10 +153,18 @@ class ShoppingOrder extends BaseShoppingOrder
 
     // update shopping cart collectible shipping based on new
     // shipping address country
-    $this->getShoppingCartCollectible()
-      ->setShippingCountryIso3166($address->getCountryIso3166())
-      ->updateShippingFeeAmountFromCountryCode()
-      ->save();
+    foreach ($this->getShoppingOrderCollectibles() as $shopping_order_collectible)
+    {
+      /** @var $shopping_cart_collectible ShoppingCartCollectible */
+      $shopping_cart_collectible = ShoppingCartCollectiblePeer::retrieveByPK(
+        $this->getShoppingCartId(), $shopping_order_collectible->getCollectibleId()
+      );
+      $shopping_cart_collectible
+        ->setShippingCountryIso3166($address->getCountryIso3166())
+        ->updateShippingFeeAmountFromCountryCode()
+        ->save();
+    }
+    return $this;
   }
 
   public function getShippingCountryName()
@@ -183,7 +182,7 @@ class ShoppingOrder extends BaseShoppingOrder
       // create a payment request, but not fulfill the payment until the ExecutePayment is called.
       // Values are:  PAY, CREATE, PAY_PRIMARY
       'ActionType' => 'CREATE',
-      'CurrencyCode' => $this->getCurrency(),
+      'CurrencyCode' => $this->getPriceCurrency(),
 
       // The payer of the fees.  Values are:  SENDER, PRIMARYRECEIVER, EACHRECEIVER, SECONDARYONLY
       'FeesPayer' => 'EACHRECEIVER',
@@ -283,42 +282,14 @@ class ShoppingOrder extends BaseShoppingOrder
     return array('ECHECK', 'BALANCE', 'CREDITCARD');
   }
 
-  /**
-   * Get the shipping reference based on the currently set country iso 3166 or
-   * manual parameter value
-   *
-   * @param     string|null $country_code
-   * @param     PropelPDO $con
-   *
-   * @return    ShippingReference
-   */
-  public function getShippingReference($country_code = null, PropelPDO $con = null)
-  {
-    if (null === $this->aShippingReference || null !== $country_code)
-    {
-      $this->aShippingReference = $this->getCollectible($con)
-        ->getShippingReferenceForCountryCode(
-          $country_code ?: $this->getShippingCountryIso3166(),
-          $con);
-    }
 
-    return $this->aShippingReference;
-  }
 
   public function getShoppingPayment()
   {
     return $this->getShoppingPaymentRelatedByShoppingPaymentId();
   }
 
-  /**
-   * @return    ShoppingCartCollectible
-   */
-  public function clearShippingReference()
-  {
-    $this->aShippingReference = null;
 
-    return $this;
-  }
 
   public function getHash($version = 'v1', $time = null, $salt = null)
   {
@@ -348,6 +319,139 @@ class ShoppingOrder extends BaseShoppingOrder
     }
 
     return $hash;
+  }
+
+
+  /**
+   * Getting first ShoppingOrderCollectible
+   *
+   * @return ShoppingOrderCollectible
+   */
+  public function getFirstShoppingOrderCollectible()
+  {
+    $shopping_order_collectibles = $this->getShoppingOrderCollectibles();
+    return reset($shopping_order_collectibles);
+  }
+
+  /**
+   * Get Collector Seller
+   *
+   * @return Collector
+   */
+  public function getSeller()
+  {
+    return $this->getFirstShoppingOrderCollectible()->getCollector();
+  }
+
+  /**
+   * Get Currency
+   *
+   * @return string
+   */
+  public function getPriceCurrency()
+  {
+    return $this->getFirstShoppingOrderCollectible()->getPriceCurrency();
+  }
+
+  /**
+   * Get group key
+   *
+   * @return string
+   */
+  public function getGroupKey()
+  {
+    $key = parent::getGroupKey();
+    if ($key === null && $this->getFirstShoppingOrderCollectible())
+    {
+      $key = $this->getFirstShoppingOrderCollectible()->getGroupKey();
+      $this->setGroupKey($key);
+    }
+    return $key;
+  }
+
+  /**
+   * sum of collectibles price
+   *
+   * @param string $return
+   * @return int|float
+   */
+  public function getTotalPrice($return = 'float')
+  {
+    $result = null;
+    /** @var $shopping_order_collectible ShoppingOrderCollectible */
+    foreach ($this->getShoppingOrderCollectibles() as $shopping_order_collectible)
+    {
+      if ($return == 'float')
+      {
+        $result =   bcadd($result, $shopping_order_collectible->getTotalPrice($return), 2);
+      }
+      else
+      {
+        $result = $result + $shopping_order_collectible->getTotalPrice($return);
+      }
+    }
+    return $result;
+  }
+
+  /**
+   * sum of collectibles ShippingFee
+   *
+   * @param string $return
+   * @return int|float
+   */
+  public function getShippingFeeTotalAmount($return = 'float')
+  {
+    $result = null;
+    /** @var $shopping_order_collectible ShoppingOrderCollectible */
+    foreach ($this->getShoppingOrderCollectibles() as $shopping_order_collectible)
+    {
+      if ($return == 'float')
+      {
+        $result =   bcadd($result, $shopping_order_collectible->getShippingFeeAmount($return), 2);
+      }
+      else
+      {
+        $result = $result + $shopping_order_collectible->getShippingFeeAmount($return);
+      }
+    }
+    return $result;
+  }
+
+  /**
+   * Check is order cannot be shipped
+   *
+   * @return bool
+   */
+  public function isCannotShip()
+  {
+    $shopping_order_collectibles = $this->getShoppingOrderCollectibles();
+    foreach ($shopping_order_collectibles as $shopping_order_collectible)
+    {
+      if ($shopping_order_collectible->isCannotShip())
+      {
+          return true;
+      }
+    }
+    return false;
+  }
+
+  /**
+   * Clears out and remove from DB the collShoppingOrderCollectibles collection
+   *
+   * @return ShoppingOrder
+   */
+  public function deleteShoppingOrderCollectibles()
+  {
+    $c = new Criteria();
+    $c->add(ShoppingOrderCollectiblePeer::SHOPPING_ORDER_ID, $this->getId());
+    ShoppingOrderCollectiblePeer::doDelete($c);
+    $this->clearShoppingOrderCollectibles();
+    return $this;
+  }
+
+  public function getSellerId()
+  {
+    return $this->getFirstShoppingOrderCollectible()->getSellerId();
   }
 
 }

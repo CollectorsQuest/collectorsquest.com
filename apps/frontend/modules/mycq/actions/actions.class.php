@@ -367,14 +367,22 @@ class mycqActions extends cqFrontendActions
       $this->multimedia = $collectible->getMultimedia(0, 'image', false);
 
       $this->shopping_order = ShoppingOrderQuery::create()
-        ->filterByCollectibleId($collectible->getId())
+        ->useShoppingOrderCollectibleQuery()
+          ->filterByCollectibleId($collectible->getId())
+        ->endUse()
         ->joinShoppingPaymentRelatedByShoppingPaymentId()
         ->useShoppingPaymentRelatedByShoppingPaymentIdQuery()
           ->filterByStatus(ShoppingPaymentPeer::STATUS_COMPLETED)
         ->endUse()
         ->findOne();
 
-      if ($this->shopping_order instanceof ShoppingOrder)
+      $this->shopping_order_collectible = ShoppingOrderCollectibleQuery::create()
+        ->filterByShoppingOrder($this->shopping_order)
+        ->filterByCollectibleId($collectible->getId())
+        ->findOne();
+
+      if ($this->shopping_order instanceof ShoppingOrder &&
+        $this->shopping_order_collectible instanceof ShoppingOrderCollectible)
       {
         $this->shopping_payment = $this->shopping_order->getShoppingPayment();
 
@@ -668,7 +676,7 @@ class mycqActions extends cqFrontendActions
       ->groupByCollectibleId()
       ->joinCollectible()
       ->useCollectibleQuery()
-        ->joinWith('ShoppingOrder', Criteria::RIGHT_JOIN)
+        ->joinWith('ShoppingOrderCollectible', Criteria::RIGHT_JOIN)
       ->endUse();
 
     $this->sold_total = $q->count();
@@ -693,8 +701,10 @@ class mycqActions extends cqFrontendActions
   {
     SmartMenu::setSelected('mycq_menu', 'marketplace');
 
-    $q = ShoppingOrderQuery::create()
-      ->filterByCollectorId($this->getCollector()->getId())
+    $q = ShoppingOrderCollectibleQuery::create()
+      ->useShoppingOrderQuery()
+        ->filterByCollectorId($this->getCollector()->getId())
+        ->endUse()
       ->paid();
 
     $this->purchases_total = $q->count();
@@ -817,14 +827,17 @@ class mycqActions extends cqFrontendActions
     /** @var $shopping_order ShoppingOrder */
     $shopping_order = $this->getRoute()->getObject();
 
-    $collectible = $shopping_order->getCollectible();
-    $this->redirect('mycq_collectible_by_slug', $collectible);
+   // $collectible = $shopping_order->getFirstShoppingOrderCollectible()->getCollectible();
+   // $this->redirect('mycq_collectible_by_slug', $collectible);
+    $this->redirect('mycq_marketplace_purchased');
   }
 
   public function executeShoppingOrderTracking(sfWebRequest $request)
   {
+    /** @var $shopping_order_collectible ShoppingOrderCollectible */
+    $shopping_order_collectible = $this->getRoute()->getObject();
     /** @var $shopping_order ShoppingOrder */
-    $shopping_order = $this->getRoute()->getObject();
+    $shopping_order = $shopping_order_collectible->getShoppingOrder();
 
     if ($request->isMethod('post') && $this->getUser()->isOwnerOf($shopping_order))
     {
@@ -834,7 +847,7 @@ class mycqActions extends cqFrontendActions
           'error', 'You need to provide the tracking number in order to mark the item as shipped!'
         );
       }
-      else if ($shopping_order->getShippingTrackingNumber())
+      else if ($shopping_order_collectible->getShippingTrackingNumber())
       {
         $this->getUser()->setFlash(
           'error', 'You have already provided the tracking number for this order!'
@@ -842,18 +855,18 @@ class mycqActions extends cqFrontendActions
       }
       else
       {
-        $shopping_order->setShippingCarrier($request->getParameter('carrier'));
-        $shopping_order->setShippingTrackingNumber($request->getParameter('tracking_number'));
-        $shopping_order->save();
+        $shopping_order_collectible->setShippingCarrier($request->getParameter('carrier'));
+        $shopping_order_collectible->setShippingTrackingNumber($request->getParameter('tracking_number'));
+        $shopping_order_collectible->save();
 
         $cqEmail = new cqEmail($this->getMailer());
-        $cqEmail->send('shopping/buyer_order_shipped', array(
+        $cqEmail->send('shoppingnew/buyer_order_shipped', array( //TO DO Change template name
           'to' => $shopping_order->getBuyerEmail(),
           'subject' => 'Your order from CollectorsQuest.com has shipped',
           'params' => array(
             'buyer_name' => $shopping_order->getShippingFullName(),
-            'oCollectible' => $shopping_order->getCollectible(),
-            'oSeller' => $shopping_order->getSeller(),
+            'oCollectible' => $shopping_order_collectible,
+            'oSeller' => $shopping_order_collectible->getCollector(),
             'oShoppingOrder' => $shopping_order
           )
         ));
@@ -864,7 +877,7 @@ class mycqActions extends cqFrontendActions
         ));
       }
 
-      $this->redirect('mycq_collectible_by_slug', $shopping_order->getCollectible());
+      $this->redirect('mycq_collectible_by_slug', $shopping_order_collectible->getCollectible());
     }
 
     return sfView::SUCCESS;
