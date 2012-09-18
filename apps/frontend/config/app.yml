@@ -61,6 +61,11 @@ all:
         settings:                { name: "Store Settings",  uri: "mycq_marketplace_settings", check_eval: "cqContext::getInstance()->getUser()->getCollector()->hasBoughtCredits()" }
         packages:                { name: "Credit History",  uri: "mycq_marketplace_credit_history", check_eval: "cqContext::getInstance()->getUser()->getCollector()->hasBoughtCredits()" }
 
+    mycq_incomplete_tabs:
+      items:
+        collections:      { name: 'Incomplete Collections', uri: "mycq_incomplete_collections" }
+        collectibles:     { name: 'Incomplete Items',       uri: "mycq_incomplete_collectibles" }
+
     mycq_messages_sidebar:
       items:
         inbox:    { name: 'Inbox', icon: inbox, uri: "messages_inbox" }
