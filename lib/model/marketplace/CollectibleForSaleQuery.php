@@ -34,6 +34,9 @@ class CollectibleForSaleQuery extends BaseCollectibleForSaleQuery
       ->endUse();
   }
 
+  /**
+   * @return CollectibleForSaleQuery
+   */
   public function isPartOfCollection()
   {
     return $this
