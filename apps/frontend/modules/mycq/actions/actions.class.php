@@ -310,7 +310,7 @@ class mycqActions extends cqFrontendActions
     $this->total = $this->collector->countCollectorCollections();
 
     // determine weather to show message for incomplete collections/collectibles
-    $this->first_time_on_page = false;
+    $this->show_message_incomplete = false;
 
     /*
      * this variable will be set true only if user doesn't have
@@ -325,7 +325,7 @@ class mycqActions extends cqFrontendActions
         ->isIncomplete();
       if ($q->count() > 0)
       {
-        $this->first_time_on_page = true;
+        $this->show_message_incomplete = true;
       }
       else
       {
@@ -335,7 +335,7 @@ class mycqActions extends cqFrontendActions
           ->isIncomplete();
         if ($q->count() > 0)
         {
-          $this->first_time_on_page = true;
+          $this->show_message_incomplete = true;
           $this->incomplete_collectibles = true;
         }
       }
@@ -674,31 +674,6 @@ class mycqActions extends cqFrontendActions
       SmartMenu::setSelected('mycq_menu', 'collections');
     }
 
-    // weather to show message to return to incomplete collectibles list
-    $this->show_return_message = false;
-    if ($request->getParameter('return_to') == 'incomplete_collectibles' &&
-        IceGateKeeper::open('mycq_incomplete', 'page')
-    )
-    {
-      $q = CollectibleQuery::create()
-        ->filterByCollector($this->getUser()->getCollector())
-        ->isPartOfCollection()
-        ->isIncomplete();
-      // show return message only if there are more incomplete Collectibles
-      if ($q->count() > 0)
-      {
-        $this->show_return_message = true;
-      }
-      else
-      {
-        // let the user know there are not more incomplete Collectibles
-        $this->getUser()->setFlash(
-          'success',
-          'Great! You do not have any more incomplete Collectibles.'
-        );
-      }
-    }
-
     return sfView::SUCCESS;
   }
 
@@ -737,7 +712,7 @@ class mycqActions extends cqFrontendActions
     $this->collector = $collector;
 
     // determine weather to show message for incomplete collectibles
-    $this->first_time_on_page = false;
+    $this->show_message_incomplete = false;
 
     if (IceGateKeeper::open('mycq_incomplete', 'page'))
     {
@@ -748,7 +723,7 @@ class mycqActions extends cqFrontendActions
         ->isIncomplete();
       if ($q->count() > 0)
       {
-        $this->first_time_on_page = true;
+        $this->show_message_incomplete = true;
       }
     }
 

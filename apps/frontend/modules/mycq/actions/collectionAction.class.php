@@ -154,30 +154,6 @@ class collectionAction extends cqFrontendAction
     $this->collection = $collection;
     $this->form = $form;
 
-    // weather to show message to return to incomplete collections list
-    $this->show_return_message = false;
-    if ($request->getParameter('return_to') == 'incomplete_collections' &&
-      IceGateKeeper::open('mycq_incomplete', 'page')
-    )
-    {
-      // show return message only if there are more incomplete Collections
-      $q = CollectorCollectionQuery::create()
-        ->filterByCollector($collector)
-        ->isIncomplete();
-      if ($q->count() > 0)
-      {
-        $this->show_return_message = true;
-      }
-      else
-      {
-        // let the user know there are not more incomplete Collections
-        $this->getUser()->setFlash(
-          'success',
-          'Great! You do not have any more incomplete Collections.'
-        );
-      }
-    }
-
     return 'Details';
   }
 

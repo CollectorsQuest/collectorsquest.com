@@ -1,24 +1,24 @@
 <?php
 /**
  * @var $total integer
- * @var $first_time_on_page boolean
+ * @var $show_message_incomplete boolean
  * @var $incomplete_collectibles boolean
  */
 ?>
 
-<?php if ($first_time_on_page && IceGateKeeper::open('mycq_incomplete', 'page')): ?>
+<?php if ($show_message_incomplete && IceGateKeeper::open('mycq_incomplete', 'page')): ?>
 <div class="alert alert-block alert-notice in">
   <h4 class="alert-heading">
-    Some <?= $incomplete_collectibles ? 'Collectibles' : 'Collections' ?> need your attention!
+    Some <?= $incomplete_collectibles ? 'items' : 'collections' ?> need your attention!
   </h4>
   <p class="spacer-top">
-    You have <?= $incomplete_collectibles ? 'Collectibles' : 'Collections' ?> which are not fully described yet.
+    You have <?= $incomplete_collectibles ? 'items' : 'collections' ?> which are not fully described yet.
     If you would like others to see and buy them you should describe them as best as you can!
   </p>
   <br/>
   <a class="btn btn-primary"
      href="<?= $incomplete_collectibles ? url_for('@mycq_incomplete_collectibles') : url_for('@mycq_incomplete_collections') ?>">
-    Fix Incomplete Collections
+    Fix Incomplete <?= $incomplete_collectibles ? 'Items' : 'Collections' ?>
   </a>
   <button type="button" class="btn" data-dismiss="alert">Ok</button>
 </div>

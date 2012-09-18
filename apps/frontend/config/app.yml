@@ -64,7 +64,7 @@ all:
     mycq_incomplete_tabs:
       items:
         collections:      { name: 'Incomplete Collections', uri: "mycq_incomplete_collections" }
-        collectibles:     { name: 'Incomplete Collectibles', uri: "mycq_incomplete_collectibles" }
+        collectibles:     { name: 'Incomplete Items',       uri: "mycq_incomplete_collectibles" }
 
     mycq_messages_sidebar:
       items:

@@ -24,7 +24,7 @@
               <div class="thumbnail link no-collections-uploaded-box">
                   <span class="Chivo webfont info-no-collections-uploaded">
                     Great! <br>
-                    You do not have any incomplete Collectibles.
+                    You do not have any incomplete items.
                   </span>
               </div>
             <?php endif; ?>

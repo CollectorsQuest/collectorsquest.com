@@ -25,7 +25,7 @@ SmartMenu::setSelected('mycq_incomplete_tabs', 'collections');
               <div class="thumbnail link no-collections-uploaded-box">
                 <span class="Chivo webfont info-no-collections-uploaded">
                   Great! <br>
-                  You do not have any incomplete Collections.
+                  You do not have any incomplete collections.
                 </span>
               </div>
             <?php endif; ?>

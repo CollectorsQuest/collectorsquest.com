@@ -2,26 +2,12 @@
 /**
  * @var $collection CollectorCollection
  * @var $form CollectorCollectionEditForm
- * @var $show_return_message boolean
  */
 
 slot('mycq_dropbox_info_message', 'Drag a photo into the Collection thumbnail below');
 ?>
 
 <?= $form->renderAllErrors(); ?>
-
-<?php if ($show_return_message && IceGateKeeper::open('mycq_incomplete', 'page')): ?>
-<div class="alert alert-block alert-notice in">
-  <h4 class="alert-heading">Some more Collections need your attention!</h4>
-  <p class="spacer-top">
-    Use this link to go back to the list of Collections which are not fully described yet.
-    If you would like others to see and buy them you should describe them as best as you can!
-  </p>
-  <br/>
-  <a class="btn btn-primary" href="<?php echo url_for('@mycq_incomplete_collections') ?>">Back to Incomplete Collections</a>
-  <button type="button" class="btn" data-dismiss="alert">Ok</button>
-</div>
-<?php endif; ?>
 
 <?php
   cq_sidebar_title(
@@ -88,9 +74,6 @@ slot('mycq_dropbox_info_message', 'Drag a photo into the Collection thumbnail be
 
             <div class="span9">
               <fieldset style="width: 580px;">
-                <?php if ($show_return_message && IceGateKeeper::open('mycq_incomplete', 'page')): ?>
-                  <input type="hidden" name="return_to" value="incomplete_collections">
-                <?php endif; ?>
                 <?= $form; ?>
               </fieldset>
             </div>
