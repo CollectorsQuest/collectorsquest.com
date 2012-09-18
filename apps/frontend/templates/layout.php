@@ -89,7 +89,7 @@
     }
 
     $itemscope = '';
-    $current_internal_uri = $routes = cqContext::getInstance()->getRouting()->getCurrentInternalUri(true);
+    $current_internal_uri = $sf_context->getRouting()->getCurrentInternalUri(true);
     if (strstr($current_internal_uri, '@collector_by_slug'))
     {
       $itemscope = ' itemscope itemtype="http://schema.org/Person"';
