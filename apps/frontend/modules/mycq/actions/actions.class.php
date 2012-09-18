@@ -309,8 +309,37 @@ class mycqActions extends cqFrontendActions
     $this->collector = $this->getUser()->getCollector();
     $this->total = $this->collector->countCollectorCollections();
 
-    // @todo determine this variable properly
-    $this->first_time_on_page = true;
+    // determine weather to show message for incomplete collections/collectibles
+    $this->show_message_incomplete = false;
+
+    /*
+     * this variable will be set true only if user doesn't have
+     * incomplete collections but has incomplete collectibles
+     */
+    $this->incomplete_collectibles = false;
+
+    if (IceGateKeeper::open('mycq_incomplete', 'page'))
+    {
+      $q = CollectorCollectionQuery::create()
+        ->filterByCollector($this->collector)
+        ->isIncomplete();
+      if ($q->count() > 0)
+      {
+        $this->show_message_incomplete = true;
+      }
+      else
+      {
+        $q = CollectibleQuery::create()
+          ->filterByCollector($this->collector)
+          ->isPartOfCollection()
+          ->isIncomplete();
+        if ($q->count() > 0)
+        {
+          $this->show_message_incomplete = true;
+          $this->incomplete_collectibles = true;
+        }
+      }
+    }
 
     return sfView::SUCCESS;
   }
@@ -682,8 +711,21 @@ class mycqActions extends cqFrontendActions
     // Make the collector available to the template
     $this->collector = $collector;
 
-    // @todo determine this variable properly
-    $this->first_time_on_page = true;
+    // determine weather to show message for incomplete collectibles
+    $this->show_message_incomplete = false;
+
+    if (IceGateKeeper::open('mycq_incomplete', 'page'))
+    {
+      $q = CollectibleQuery::create()
+        ->filterByCollector($collector)
+        ->isPartOfCollection()
+        ->isForSale()
+        ->isIncomplete();
+      if ($q->count() > 0)
+      {
+        $this->show_message_incomplete = true;
+      }
+    }
 
     return sfView::SUCCESS;
   }
@@ -921,9 +963,14 @@ class mycqActions extends cqFrontendActions
   {
     $this->forward404Unless(IceGateKeeper::open('mycq_incomplete', 'page'));
 
+    SmartMenu::setSelected('mycq_menu', 'collections');
+
+    /* @var $q CollectorCollectionQuery */
     $q = CollectorCollectionQuery::create()
       ->filterByCollector($this->getUser()->getCollector())
       ->isIncomplete();
+
+    $this->total = $q->count();
 
     $pager = new PropelModelPager($q, 18);
     $pager->setPage($this->getRequestParameter('p', 1));
@@ -938,9 +985,14 @@ class mycqActions extends cqFrontendActions
   {
     $this->forward404Unless(IceGateKeeper::open('mycq_incomplete', 'page'));
 
+    SmartMenu::setSelected('mycq_menu', 'collections');
+
+    /* @var $q CollectibleQuery */
     $q = CollectibleQuery::create()
       ->filterByCollector($this->getUser()->getCollector())
       ->isIncomplete();
+
+    $this->total = $q->count();
 
     $pager = new PropelModelPager($q, 18);
     $pager->setPage($this->getRequestParameter('p', 1));
