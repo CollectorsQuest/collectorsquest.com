@@ -56,7 +56,7 @@ class CollectibleQuery extends BaseCollectibleQuery
   public function isPartOfCollection()
   {
     return $this
-      ->joinWith('CollectionCollectible', Criteria::RIGHT_JOIN)
+      ->join('CollectionCollectible', Criteria::RIGHT_JOIN)
       ->groupBy('Id');
   }
 
