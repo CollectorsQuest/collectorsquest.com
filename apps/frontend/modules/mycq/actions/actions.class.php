@@ -165,9 +165,10 @@ class mycqActions extends cqFrontendActions
     $collector = $this->getCollector();
 
     $_preferences = array(
+        'opt_in'     => CollectorPeer::PROPERTY_PREFERENCES_NEWSLETTER_OPT_IN,
         'newsletter' => CollectorPeer::PROPERTY_PREFERENCES_NEWSLETTER,
-        'comments' => CollectorPeer::PROPERTY_NOTIFICATIONS_COMMENT,
-        'messages' => CollectorPeer::PROPERTY_NOTIFICATIONS_MESSAGE,
+        'comments'   => CollectorPeer::PROPERTY_NOTIFICATIONS_COMMENT,
+        'messages'   => CollectorPeer::PROPERTY_NOTIFICATIONS_MESSAGE
     );
 
     foreach ($_preferences as $key => $property)
