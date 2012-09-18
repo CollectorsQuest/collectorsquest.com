@@ -654,7 +654,7 @@ class shoppingActions extends cqFrontendActions
 
         $cqEmail = new cqEmail($this->getMailer());
         $cqEmail->send('Shoppingnew/buyer_order_confirmation', array(
-          'to' =>'pavel@collectorsquest.com', // $shopping_order->getBuyerEmail(),
+          'to' => $shopping_order->getBuyerEmail(),
           'params' => array(
             'buyer_name'  => $shopping_order->getShippingFullName(),
             'oSeller' => $shopping_order->getSeller(),
@@ -666,7 +666,7 @@ class shoppingActions extends cqFrontendActions
 
         $cqEmail = new cqEmail($this->getMailer());
         $cqEmail->send('Shoppingnew/seller_order_notification', array(
-          'to' =>'pavel@collectorsquest.com', // $shopping_order->getSeller()->getEmail(),
+          'to' => $shopping_order->getSeller()->getEmail(),
           'params' => array(
             'buyer_name'  => $shopping_order->getShippingFullName(),
             'oSeller' => $shopping_order->getSeller(),
