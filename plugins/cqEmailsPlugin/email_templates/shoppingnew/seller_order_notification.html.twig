@@ -1,0 +1,25 @@
+{% extends "common/base.html.twig" %}
+
+{% block content %}
+
+<p style="margin-bottom: 10px; font-weight: bold;">
+  Hey, {{ oSeller.DisplayName }}!
+</p>
+
+<p>
+  Congratulations! {{ buyer_name }} has purchased your
+  collectible(s)
+  on Collectors Quest!
+</p>
+
+<p>Here are your transaction details:</p>
+{% include 'shoppingnew/_order_details.html.twig' %}
+
+<p>
+  Click on the address below to access your order details:
+</p>
+<p>
+  {{ url_for('mycq_marketplace',  {absolute: true}) }}
+</p>
+
+{% endblock %}

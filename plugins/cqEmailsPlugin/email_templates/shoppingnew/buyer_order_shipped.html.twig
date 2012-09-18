@@ -1,0 +1,24 @@
+{% extends "common/base.html.twig" %}
+
+{% block content %}
+
+<p style="margin-bottom: 10px; font-weight: bold;">
+  Hey, {{ buyer_name }}!
+</p>
+
+<p>
+  Congratulations! {{ link_to_collectible(oCollectible.getCollectible(), 'text', {absolute: true}) }} from your order from
+  {{ oSeller.displayName }}
+  has been shipped!
+</p>
+
+<p>
+  Shipping carrier: {{ oCollectible.ShippingCarrier }}<br/>
+  Tracking number:  {{ oCollectible.ShippingTrackingNumber }}<br/>
+  (http://www.faranow.com/track/{{ oCollectible.ShippingTrackingNumber }})
+</p>
+
+<p>Here are your order details:</p>
+{% include 'shoppingnew/_order_details.html.twig' %}
+
+{% endblock %}

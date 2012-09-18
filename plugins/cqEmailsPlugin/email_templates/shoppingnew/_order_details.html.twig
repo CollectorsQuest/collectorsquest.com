@@ -1,0 +1,68 @@
+<table class="table">
+  <tr>
+    <td style="width: 100px;">Order #:</td>
+    <td>{{ oShoppingOrder.getUuid() }}</td>
+  </tr>
+  <tr>
+    <td>Payment Status:</td>
+    <td>
+      {{ oShoppingOrder.getShoppingPaymentRelatedByShoppingPaymentId().getStatus() | upper }}
+    </td>
+  </tr>
+  <tr>
+    <td>Date:</td>
+    <td>{{ oShoppingOrder.getCreatedAt() }}</td>
+  </tr>
+  <tr>
+    <td colspan="2">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>Name:</td>
+    <td>{{ oShoppingOrder.getShippingFullName() }}</td>
+  </tr>
+  <tr>
+    <td style="vertical-align: top;" valign="top">Shipping Address:</td>
+    <td>
+      {{ oShoppingOrder.getShippingAddressLine1() }}<br/>
+      {{ oShoppingOrder.getShippingCity() }},
+      {{ oShoppingOrder.getShippingStateRegion() }}
+      {{ oShoppingOrder.getShippingZipPostcode() }}
+      <p style="font-weight: bold;">
+        {{ oShoppingOrder.getShippingCountryName() }}
+      </p>
+    </td>
+  </tr>
+  {% if oShoppingOrder.getNoteToSeller() %}
+  <tr>
+    <td>Extra Information:</td>
+    <td>{{ oShoppingOrder.getNoteToSeller() }}</td>
+  </tr>
+  {% endif %}
+</table>
+<br/>
+
+<table>
+    <tr>
+        <td></td>
+        <td>Name</td>
+        <td>Description</td>
+        <td>Condition</td>
+        <td>Price</td>
+        <td>Shipping</td>
+    </tr>
+    {% for orderCollectible in oCollectibles %}
+        <tr>
+            <td>{{ image_tag_multimedia(orderCollectible.getCollectible().getPrimaryImage(), '75x75') }}</td>
+            <td>{{ orderCollectible.getCollectible().getName() }}</td>
+            <td>{{ orderCollectible.getCollectible().getDescription() | striptags }}</td>
+            <td>{{ orderCollectible.getCollectible().getCollectibleForSale().getCondition() }}</td>
+            <td>${{ orderCollectible.getPriceAmount('float') | number_format(2, '.', ',') }}</td>
+            <td>${{ orderCollectible.getShippingFeeAmount('float') | number_format(2, '.', ',') }}</td>
+        </tr>
+    {% endfor %}
+    <tr>
+        <td colspan="4"><br /></td>
+        <td><b>Total:</b></td>
+        <td>${{ oShoppingOrder.getTotalAmount('float') | number_format(2, '.', ',') }}</td>
+    </tr>
+</table>
