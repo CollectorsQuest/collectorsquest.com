@@ -15,9 +15,9 @@
 
 <?php if ($first_time_on_page && IceGateKeeper::open('mycq_incomplete', 'page')): ?>
 <div class="alert alert-block alert-notice in">
-  <h4 class="alert-heading">Welcome to the My Marketplace page!</h4>
+  <h4 class="alert-heading">Some Items for Sale need your attention!</h4>
   <p class="spacer-top">
-    You have Collections/Collectibles which are not fully described yet.
+    You have Items for Sale which are not fully described yet.
     If you would like others to see and buy them you should describe them as best as you can!
   </p>
   <br/>

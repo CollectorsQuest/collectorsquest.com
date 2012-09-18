@@ -11,9 +11,9 @@
 
 <?php if ($show_return_message && IceGateKeeper::open('mycq_incomplete', 'page')): ?>
   <div class="alert alert-block alert-notice in">
-    <h4 class="alert-heading">Go back to Incomplete Collectibles</h4>
+    <h4 class="alert-heading">Some more Collectibles need your attention!</h4>
     <p class="spacer-top">
-      Use this link to go back to the list of Collections/Collectibles which are not fully described yet.
+      Use this link to go back to the list of Collectibles which are not fully described yet.
       If you would like others to see and buy them you should describe them as best as you can!
     </p>
     <br/>

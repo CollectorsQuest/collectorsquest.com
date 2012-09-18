@@ -130,6 +130,10 @@ ice_breadcrumbs:
       - { name: 'Credit History' }
     wanted:
       - { name: 'Wanted List' }
+    incompleteCollections:
+      - { name: 'Incomplete Collections' }
+    incompleteCollectibles:
+      - { name: 'Incomplete Collectibles' }
 
   messages:
     _prepend:

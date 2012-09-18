@@ -309,12 +309,16 @@ class mycqActions extends cqFrontendActions
     $this->collector = $this->getUser()->getCollector();
     $this->total = $this->collector->countCollectorCollections();
 
-    // determine weather to show message for incomplete collections
+    // determine weather to show message for incomplete collections/collectibles
     $this->first_time_on_page = false;
-    // check if we have already shown this message to user
-    $already_shown_message = $this->getUser()->getAttribute('incomplete_collections', false);
 
-    if (IceGateKeeper::open('mycq_incomplete', 'page') && !$already_shown_message)
+    /*
+     * this variable will be set true only if user doesn't have
+     * incomplete collections but has incomplete collectibles
+     */
+    $this->incomplete_collectibles = false;
+
+    if (IceGateKeeper::open('mycq_incomplete', 'page'))
     {
       $q = CollectorCollectionQuery::create()
         ->filterByCollector($this->collector)
@@ -322,8 +326,18 @@ class mycqActions extends cqFrontendActions
       if ($q->count() > 0)
       {
         $this->first_time_on_page = true;
-        // make sure we show this message to the user only on first page load
-        $this->getUser()->setAttribute('incomplete_collections', true);
+      }
+      else
+      {
+        $q = CollectibleQuery::create()
+          ->filterByCollector($this->collector)
+          ->isPartOfCollection()
+          ->isIncomplete();
+        if ($q->count() > 0)
+        {
+          $this->first_time_on_page = true;
+          $this->incomplete_collectibles = true;
+        }
       }
     }
 
@@ -666,7 +680,23 @@ class mycqActions extends cqFrontendActions
         IceGateKeeper::open('mycq_incomplete', 'page')
     )
     {
-      $this->show_return_message = true;
+      $q = CollectibleQuery::create()
+        ->filterByCollector($this->getUser()->getCollector())
+        ->isPartOfCollection()
+        ->isIncomplete();
+      // show return message only if there are more incomplete Collectibles
+      if ($q->count() > 0)
+      {
+        $this->show_return_message = true;
+      }
+      else
+      {
+        // let the user know there are not more incomplete Collectibles
+        $this->getUser()->setFlash(
+          'success',
+          'Great! You do not have any more incomplete Collectibles.'
+        );
+      }
     }
 
     return sfView::SUCCESS;
@@ -708,20 +738,17 @@ class mycqActions extends cqFrontendActions
 
     // determine weather to show message for incomplete collectibles
     $this->first_time_on_page = false;
-    // check if we have already shown this message to user
-    $already_shown_message = $this->getUser()->getAttribute('incomplete_collectibles', false);
 
-    if (IceGateKeeper::open('mycq_incomplete', 'page') && !$already_shown_message)
+    if (IceGateKeeper::open('mycq_incomplete', 'page'))
     {
       $q = CollectibleQuery::create()
         ->filterByCollector($collector)
         ->isPartOfCollection()
+        ->isForSale()
         ->isIncomplete();
       if ($q->count() > 0)
       {
         $this->first_time_on_page = true;
-        // make sure we show this message to the user only on first page load
-        $this->getUser()->setAttribute('incomplete_collectibles', true);
       }
     }
 
@@ -961,6 +988,9 @@ class mycqActions extends cqFrontendActions
   {
     $this->forward404Unless(IceGateKeeper::open('mycq_incomplete', 'page'));
 
+    SmartMenu::setSelected('mycq_menu', 'collections');
+
+    /* @var $q CollectorCollectionQuery */
     $q = CollectorCollectionQuery::create()
       ->filterByCollector($this->getUser()->getCollector())
       ->isIncomplete();
@@ -980,6 +1010,9 @@ class mycqActions extends cqFrontendActions
   {
     $this->forward404Unless(IceGateKeeper::open('mycq_incomplete', 'page'));
 
+    SmartMenu::setSelected('mycq_menu', 'collections');
+
+    /* @var $q CollectibleQuery */
     $q = CollectibleQuery::create()
       ->filterByCollector($this->getUser()->getCollector())
       ->isIncomplete();

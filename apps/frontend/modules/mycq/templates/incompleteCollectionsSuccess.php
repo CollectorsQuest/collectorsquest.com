@@ -18,7 +18,6 @@ SmartMenu::setSelected('mycq_incomplete_tabs', 'collections');
     <div class="tab-pane active">
 
       <div class="tab-content-inner">
-        <?php cq_section_title('Incomplete Collections (' . $total . ')'); ?>
 
         <div class="row mycq-collectibles">
           <div class="row-content">
@@ -26,14 +25,25 @@ SmartMenu::setSelected('mycq_incomplete_tabs', 'collections');
               <div class="thumbnail link no-collections-uploaded-box">
                 <span class="Chivo webfont info-no-collections-uploaded">
                   Great! <br>
-                  You do not have any incomplete collections.
+                  You do not have any incomplete Collections.
                 </span>
               </div>
             <?php endif; ?>
 
             <?php foreach ($pager->getResults() as $i => $collection): ?>
-              <div class="span5 collectible_grid_view_square link"
+              <div class="span3 collectible_grid_view_square"
                    data-collection-id="<?= $collection->getId(); ?>">
+                <?php
+                  echo link_to(
+                    image_tag_collection(
+                      $collection, '150x150', array('width' => 140, 'height' => 140)
+                    ),
+                    'mycq_collection_by_section',
+                    array(
+                      'id' => $collection->getId(), 'section' => 'details', 'return_to' => 'incomplete_collections'
+                    )
+                  );
+                ?>
                 <p>
                   <a href="<?= url_for('mycq_collection_by_section',
                       array(
@@ -44,36 +54,7 @@ SmartMenu::setSelected('mycq_incomplete_tabs', 'collections');
                     <?= cqStatic::reduceText($collection->getName() . ' ('. $collection->getNumItems() .')', 35, '[...]'); ?>
                   </a>
                 </p>
-                <ul class="thumbnails">
-                  <?php
-                  $c = new Criteria();
-                  $c->setLimit(8);
-                  $collectibles = $collection->getCollectionCollectibles($c);
 
-                  for ($k = 0; $k < 9; $k++)
-                  {
-                    if (isset($collectibles[$k]))
-                    {
-                      echo '<li>';
-                      echo link_to(
-                        image_tag_collectible(
-                          $collectibles[$k], '75x75',
-                          array('width' => 64, 'height' => 64)
-                        ),
-                        url_for(
-                          'mycq_collection_by_section',
-                          array('id' => $collection->getid(), 'section' => 'details', 'return_to' => 'incomplete_collections')
-                        )
-                      );
-                      echo '</li>';
-                    }
-                    else
-                    {
-                      echo '<li><i class="icon icon-plus drop-zone" data-collection-id="'.  $collection->getId() .'"></i></li>';
-                    }
-                  }
-                  ?>
-                </ul>
               </div>
 
             <?php endforeach;?>

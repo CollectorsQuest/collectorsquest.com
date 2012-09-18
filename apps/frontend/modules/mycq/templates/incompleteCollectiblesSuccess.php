@@ -18,15 +18,13 @@
 
       <div class="tab-content-inner">
 
-        <?php cq_section_title('Incomplete Collectibles (' . $total . ')'); ?>
-
         <div class="row mycq-collectibles">
           <div class="row-content">
             <?php if ($total == 0): ?>
               <div class="thumbnail link no-collections-uploaded-box">
                   <span class="Chivo webfont info-no-collections-uploaded">
                     Great! <br>
-                    You do not have any incomplete collectibles.
+                    You do not have any incomplete Collectibles.
                   </span>
               </div>
             <?php endif; ?>
