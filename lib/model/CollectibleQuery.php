@@ -60,7 +60,7 @@ class CollectibleQuery extends BaseCollectibleQuery
   {
     return $this
       ->join('CollectionCollectible', Criteria::RIGHT_JOIN)
-      ->groupBy('Id');
+      ->groupBy('Collectible.Id');
   }
 
   /**
