@@ -203,8 +203,6 @@ class generalActions extends cqFrontendActions
 
   public function executeModalLogin(sfWebRequest $request)
   {
-    $this->social_only = $request->getParameter('social_only', false);
-
     // Auto login the collector if a hash was provided
     if ($collector = CollectorPeer::retrieveByHash($request->getParameter('hash')))
     {
@@ -220,6 +218,19 @@ class generalActions extends cqFrontendActions
     }
 
     $this->login_form =  new CollectorLoginForm();
+    $this->rpxnow = sfConfig::get('app_credentials_rpxnow');
+
+    return sfView::SUCCESS;
+  }
+
+  public function executeSocialModalLogin(sfWebRequest $request)
+  {
+    // redirect to homepage if already logged in
+    if ($this->getUser()->isAuthenticated())
+    {
+      return $this->redirect($request->getParameter('r', '@collector_me'));
+    }
+
     $this->rpxnow = sfConfig::get('app_credentials_rpxnow');
 
     return sfView::SUCCESS;

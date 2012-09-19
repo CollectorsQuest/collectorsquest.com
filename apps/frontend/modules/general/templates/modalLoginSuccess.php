@@ -1,21 +1,17 @@
 <?php
   /*
-   * @var $social_only  boolean
    * @var $login_form   sfForm
-   * @var $signup_form  sfForm
    * @var $rpxnow       string
    */
 ?>
 
 <div id="modal-login-holder" class="modal">
-  <div class="modal-header" style="min-height: 28px;">
+  <div class="modal-header">
     <button class="close" data-dismiss="modal">×</button>
-    <div class="social-only">
-      <ul class="nav nav-pills">
-        <li class="active"><a href="#modal-login-username-pane" class="btn" data-toggle="tab">Sign in with Collectors Quest</a></li>
-        <li><a href="#modal-login-openid-pane" class="btn spacer-left" data-toggle="tab">Sign in with Social Networks</a></li>
-      </ul>
-    </div>
+    <ul class="nav nav-pills">
+      <li class="active"><a href="#modal-login-username-pane" class="btn" data-toggle="tab">Sign in with Collectors Quest</a></li>
+      <li><a href="#modal-login-openid-pane" class="btn spacer-left" data-toggle="tab">Sign in with Social Networks</a></li>
+    </ul>
   </div>
 
   <form action="<?= url_for('@login', true); ?>" class="form-horizontal" method="post">
@@ -54,25 +50,23 @@
       </div> <!-- .tab-content -->
     </div> <!-- .modal-body -->
 
-    <div class="social-only">
-      <div class="modal-footer">
-        <div class="tab-content">
+    <div class="modal-footer">
+      <div class="tab-content">
 
-          <div id="modal-login-username-footer" class="tab-pane active">
-            <button type="submit" class="btn btn-primary">Sign&nbsp;In</button>
-            <span class="spacer-left-15 modal-link text-left">
-              - <?= link_to('Forgot your password?', '@recover_password'); ?> <br/>
-              - <?= link_to('Sign up for a new account?', '@misc_guide_to_collecting'); ?>
-            </span>
-          </div>
+        <div id="modal-login-username-footer" class="tab-pane active">
+          <button type="submit" class="btn btn-primary">Sign&nbsp;In</button>
+          <span class="spacer-left-15 modal-link text-left">
+            - <?= link_to('Forgot your password?', '@recover_password'); ?> <br/>
+            - <?= link_to('Sign up for a new account?', '@misc_guide_to_collecting'); ?>
+          </span>
+        </div>
 
-          <div id="modal-login-openid-footer" class="tab-pane">
-            <!-- nothing in the footer here -->
-          </div>
+        <div id="modal-login-openid-footer" class="tab-pane">
+          <!-- nothing in the footer here -->
+        </div>
 
-        </div> <!-- .tab-content -->
-      </div> <!-- .modal-body -->
-    </div>
+      </div> <!-- .tab-content -->
+    </div> <!-- .modal-footer -->
 
   </form>
 
@@ -105,10 +99,5 @@
         return true;
       });
     }
-
-    <?php if($social_only): ?>
-      $($holder).find('a[href=#modal-login-openid-pane]').tab('show');
-      $($holder).find('.social-only').hide();
-    <?php endif; ?>
   });
 </script>

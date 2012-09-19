@@ -140,6 +140,10 @@ modal_login:
   url:   /modal-login
   param: { module: general, action: modalLogin }
 
+social_modal_login:
+  url:   /social-modal-login
+  param: { module: general, action: socialModalLogin }
+
 auto_login:
   url:  /auto-login/:hash
   param: { module: general, action: login }
