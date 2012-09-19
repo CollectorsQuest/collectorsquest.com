@@ -24,43 +24,7 @@ class Collection extends BaseCollection
   {
     parent::postSave($con);
 
-    if ($con === null)
-    {
-      $con = Propel::getConnection(
-        CollectionPeer::DATABASE_NAME, Propel::CONNECTION_WRITE
-      );
-    }
-
-    // Start with the current public status of the Collection
-    $is_public = $this->getIsPublic();
-
-    // We want to enforce the public status only on records after 15th of September, 2012
-    if ($this->getCreatedAt('U') > 1347667200 || $is_public === false)
-    {
-      if (!$this->getName())
-      {
-        $is_public = false;
-      }
-      else if (!$this->getDescription())
-      {
-        $is_public = false;
-      }
-      else
-      {
-        $is_public = true;
-      }
-    }
-
-    // Update only if there is a change of the public status
-    if ($is_public !== $this->getIsPublic())
-    {
-      $sql = sprintf(
-        'UPDATE %s SET %s = %d WHERE %s = %d',
-        CollectionPeer::TABLE_NAME, CollectionPeer::IS_PUBLIC, $is_public,
-        CollectionPeer::ID, $this->getId()
-      );
-      $con->exec($sql);
-    }
+    $this->updateIsPublic($con);
   }
 
   public function getTagString()
@@ -91,7 +55,7 @@ class Collection extends BaseCollection
        ->addSelectColumn('Id');
 
     /** @var $stmt PDOStatement */
-    $stmt = $q->find();
+    $stmt = $q->find($con);
 
     return $stmt->fetchAll(PDO::FETCH_COLUMN);
   }
@@ -317,10 +281,53 @@ class Collection extends BaseCollection
     $q->useCollectibleQuery()
       ->filterByIsPublic(true)
       ->endUse();
+
     if ($limit)
     {
       $q->setLimit($limit);
     }
+
     return $this->getCollectionCollectibles($q);
+  }
+
+  public function updateIsPublic(PropelPDO $con = null)
+  {
+    if ($con === null)
+    {
+      $con = Propel::getConnection(
+        CollectionPeer::DATABASE_NAME, Propel::CONNECTION_WRITE
+      );
+    }
+
+    // Start with the current public status of the Collection
+    $is_public = $this->getIsPublic();
+
+    // We want to enforce the public status only on records after 15th of September, 2012
+    if ($this->getCreatedAt('U') > 1347667200 || $is_public === false)
+    {
+      if (!$this->getName())
+      {
+        $is_public = false;
+      }
+      else if (!$this->getDescription())
+      {
+        $is_public = false;
+      }
+      else
+      {
+        $is_public = true;
+      }
+    }
+
+    // Update only if there is a change of the public status
+    if ($is_public !== $this->getIsPublic())
+    {
+      $sql = sprintf(
+        'UPDATE %s SET %s = %d WHERE %s = %d',
+        CollectionPeer::TABLE_NAME, CollectionPeer::IS_PUBLIC, $is_public,
+        CollectionPeer::ID, $this->getId()
+      );
+      $con->exec($sql);
+    }
   }
 }

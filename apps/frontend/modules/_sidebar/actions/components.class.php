@@ -120,8 +120,7 @@ class _sidebarComponents extends cqFrontendComponents
       ->filterByName('None', Criteria::NOT_EQUAL)
       ->filterByLevel(array(1, 2))
       ->hasCollectiblesForSale()
-      ->orderBy('Name', Criteria::ASC)
-      ->distinct();
+      ->orderBy('Name', Criteria::ASC);
 
     $this->categories = $q->find();
 
