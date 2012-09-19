@@ -33,29 +33,51 @@ class batchNewsletterConformationTask extends sfBaseTask
      */
     $connection = Propel::getConnection('propel', Propel::CONNECTION_WRITE);
 
-    /* @var $q Collector[] */
+    /**
+     * get all the collectors
+     * @var $q Collector[]
+     */
     $collectors = CollectorQuery::create()
-      // @todo change/remove next line
-      ->filterByExtraProperty('PROPERTY_PREFERENCES_NEWSLETTER_SENT_CONFORMATION', false)
-      // will increase this value for production
-      ->limit(2)
       ->find($connection);
 
     // Get the SwiftMailer
     $mailer = $this->getMailer();
 
-    // send emails to collectors and mark as sent
+    // get the array of Collector ID's we already sent to
+    $file_with_results = file_get_contents('/www/tmp/newsletter-conformation.txt');
+    $already_sent = explode(',', trim($file_with_results));
+
+    // how many letters we send per action
+    $limit = 100;
+
+    // counter for number of emails sent by the task
+    $i = 0;
+
+    // send emails to collectors and add ID's to array
     foreach ($collectors as $collector)
     {
       /* @var $collector Collector */
-      $cqEmail = new cqEmail($mailer);
-      $cqEmail->send('Collector/newsletter_subscription_confirmation', array(
-        'to' => 'anton@collectorsquest.com'
-        //'to' => $collector->getEmail()
-      ));
+      $id = $collector->getId();
+      if (!in_array($id, $already_sent))
+      {
+        $cqEmail = new cqEmail($mailer);
+        $cqEmail->send('Collector/newsletter_subscription_confirmation', array(
+          'to' => $collector->getEmail()
+        ));
 
-      // @todo mark collector as received email
+        $already_sent[] = $id;
+
+        $i++;
+      }
+
+      if ($i == $limit)
+      {
+        break;
+      }
     }
+
+    // write the Collector ID's we already sent to
+    file_put_contents('/www/tmp/newsletter-conformation.txt', implode(',', $already_sent));
   }
 
 }
