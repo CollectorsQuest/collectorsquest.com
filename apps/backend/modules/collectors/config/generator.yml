@@ -16,6 +16,8 @@ generator:
 
       fields:
         id: { label: ID }
+        list_username: { label: Username }
+        list_email: { label: Email }
         display_name: { label: Display Name }
         list_count_collections: { label: Collections }
         list_spaminess: { label: Spaminess }
@@ -30,7 +32,7 @@ generator:
         display:
           - id
           - _list_avatar
-          - =username
+          - _list_username
           - display_name
           - _list_email
           - _list_newsletter

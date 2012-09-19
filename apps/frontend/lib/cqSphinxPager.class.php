@@ -160,7 +160,7 @@ class cqSphinxPager extends sfPager
     if (!empty($collection_ids))
     {
       /** @var $collections CollectorCollection[] */
-      $collections = CollectorCollectionQuery::create()
+      $collections = FrontendCollectorCollectionQuery::create()
         ->filterById($collection_ids, Criteria::IN)
         ->find();
 
@@ -176,7 +176,9 @@ class cqSphinxPager extends sfPager
     if (!empty($collector_ids))
     {
       /** @var $collectors Collector[] */
-      $collectors = CollectorQuery::create()->filterById($collector_ids, Criteria::IN)->find();
+      $collectors = FrontendCollectorQuery::create()
+        ->filterById($collector_ids, Criteria::IN)
+        ->find();
 
       foreach ($collectors as $collector)
       {
@@ -194,7 +196,7 @@ class cqSphinxPager extends sfPager
     if (!empty($collectible_ids))
     {
       /** @var $collectibles Collectible[] */
-      $collectibles = CollectibleQuery::create()
+      $collectibles = FrontendCollectibleQuery::create()
         ->filterById($collectible_ids, Criteria::IN)
         ->find();
 
@@ -434,11 +436,11 @@ class cqSphinxPager extends sfPager
         {
           $sphinx->setFilter('object_id', (array) $values[0], (boolean) $values[1]);
         }
-        else if ($name == 'thumbnail')
+        else if (substr($name, 0, 3) === 'is_' || substr($name, 0, 4) === 'has_')
         {
-          if (in_array($values, array('yes', 'no')))
+          if (in_array($values, array('yes', 'no', true, false), true))
           {
-            $sphinx->setFilter('has_thumbnail', array(0), ($values == 'yes') ? true : false);
+            $sphinx->setFilter($name, array(0), ($values === 'no' || !$values) ? false : true);
           }
         }
         else

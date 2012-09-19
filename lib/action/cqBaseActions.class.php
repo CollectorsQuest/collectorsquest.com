@@ -106,7 +106,9 @@ class cqBaseActions extends sfActions
   protected function setComponentVar($name, $value, $action, $module = null)
   {
     $namespace = sprintf(
-      'cq/components/%s/%s', $module ?: $this->getModuleName(), $action
+      'cq/components/%s/%s',
+      $module ?: $this->getModuleName(),
+      $action ?: $this->getActionName()
     );
 
     $this->getUser()->setFlash($name, $value, $persist = false, $namespace);

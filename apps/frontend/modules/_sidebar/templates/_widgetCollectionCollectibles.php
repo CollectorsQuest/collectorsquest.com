@@ -61,8 +61,10 @@ $_height = 0;
 <script type="text/javascript">
   $(document).ready(function()
   {
-    $('#collectionCollectiblesWidget').collectionCollectiblesWidget({
-      collection_id: '<?= $collection->getId(); ?>'
+    window.cq.settings = $.extend(true, {}, window.cq.settings, {
+      collectionColletiblesWidget: {
+        collection_id: '<?= $collection->getId(); ?>'
+      }
     });
   });
 </script>

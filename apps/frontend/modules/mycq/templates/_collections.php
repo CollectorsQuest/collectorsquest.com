@@ -12,7 +12,8 @@
         <i class="icon-plus icon-white"></i>
       </span>
       <span id="collection-create-link" class="btn-upload-collectible-txt spacer-top-20">
-        CREATE A NEW<br> COLLECTION
+        CREATE A NEW<br> COLLECTION<br>
+        <span style="color: #999;">(a group of items)</span>
       </span>
 </a>
 <?php end_slot(); ?>
@@ -39,7 +40,7 @@
           echo link_to(
             image_tag_collectible(
               $collectibles[$k], '75x75',
-              array('width' => 62, 'height' => 62)
+              array('width' => 64, 'height' => 64)
             ),
             url_for(
               'mycq_collection_by_section',

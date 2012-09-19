@@ -8,10 +8,10 @@
 $height_main_div = new stdClass;
 $height_main_div->value = 1300;
 
-$sf_user->setFlash('height_main_div', $height_main_div, 'false', 'internal');
+$sf_user->setFlash('height_main_div', $height_main_div, false, 'internal');
 ?>
 
-<?php cq_page_title('Collectibles Marketplace'); ?>
+<?php cq_page_title('Shop Antique, Collectible and Vintage Items'); ?>
 
 <?php if (isset($wp_post) && $wp_post instanceof wpPost): ?>
 <div class="row-fluid" id="marketplace-spotlight">

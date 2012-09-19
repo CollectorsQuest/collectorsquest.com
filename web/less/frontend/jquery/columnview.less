@@ -1,0 +1,89 @@
+.columnview {
+  position: relative;
+  height: 15em;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  border: 1px solid #ccc;
+}
+
+.columnview div {
+  position: absolute;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 100%;
+}
+
+.columnview a {
+  display: block;
+  overflow: hidden;
+  clear: both;
+  padding: 2px 15px 2px 5px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.columnview a:focus {
+  outline: none;
+}
+
+.columnview a canvas {
+}
+
+.columnview .feature {
+  min-width: 210px;
+  overflow-y: auto;
+}
+
+.columnview .feature a {
+  white-space: normal;
+}
+
+.columnview .hasChildMenu {
+}
+
+.columnview .active {
+  background-color: #3671cf;
+  color: #fff;
+}
+
+.columnview .inpath {
+  background-color: #d0d0d0;
+  color: #000;
+}
+
+.columnview .hasChildMenu .widget {
+  position: absolute;
+  right: 0;
+  font-size: 0.7em;
+  color: black;
+  text-decoration: none;
+}
+
+.columnview .top {
+  min-width: 175px;
+}
+
+.columnview::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 11px;
+  height: 11px;
+}
+
+.columnview div::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 11px;
+  height: 11px;
+}
+
+.columnview::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  border: 2px solid white; /* should match background, can't be transparent */
+  background-color: rgba(0, 0, 0, .5);
+}
+
+.columnview div::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  border: 2px solid white; /* should match background, can't be transparent */
+  background-color: rgba(0, 0, 0, .5);
+}
