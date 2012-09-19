@@ -217,15 +217,7 @@
       <br><br>
 
       <small>
-        <?php if ($aetn_show['id'] === 'american_pickers'): ?>
-            <i>*&nbsp;American Pickers,</i>
-        <?php elseif ($aetn_show['id'] === 'american_restoration'): ?>
-            <i>*&nbsp;American Restoration,</i>
-        <?php elseif ($aetn_show['id'] === 'pawn_stars'): ?>
-            <i>*&nbsp;Pawn Stars,</i>
-        <?php elseif ($aetn_show['id'] === 'picked_off'): ?>
-            <i>*&nbsp;Picked Off,</i>
-        <?php endif; ?>
+        <i>*&nbsp;<?= $aetn_show['name'] ?>,</i>
         HISTORY and the History “H” logo are the trademarks of A&amp;E Television Networks, LLC.
       </small>
 
