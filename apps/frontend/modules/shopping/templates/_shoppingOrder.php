@@ -27,7 +27,7 @@
           <div class="span2 sc-thumb"><!--Image-->
             <?= image_tag_collectible($shopping_order_collectible->getCollectible(), '75x75'); ?>
           </div>
-          <div class="span7"><!--Info-->
+          <div class="span6"><!--Info-->
             <?= link_to_collectible($shopping_order_collectible->getCollectible(),
               'text', array('class' => 'title-item')); ?>
             <span class="label-condition">
@@ -38,8 +38,14 @@
             <input type="hidden" name="<?= $form['collectibles']->renderName() ?>[]"
                    value="<?= $shopping_order_collectible->getCollectibleId() ?>"/>
           </div>
-          <div class="span2 ">
-
+          <div class="span4">
+            <div class="span12"><!-- Remove from cart-->
+              <div class="pull-right">
+                <?= link_to('<i class="icon-remove"></i>',
+                '@shopping_cart_remove?id='. $shopping_order_collectible->getCollectibleId(),
+                array('class' => 'close-button', 'rel' => 'tooltip', 'title' => 'Remove Item')); ?>
+              </div>
+            </div><!-- /Remove from cart-->
             <?= money_format('%.2n', (float) $shopping_order_collectible->getPriceAmount()); ?>
             <small><?= $shopping_order_collectible->getPriceCurrency(); ?></small>
             <small>
@@ -55,40 +61,35 @@
               <?php endif; ?>
             </small>
           </div>
-
-          <div class="span1"><!-- Remove from cart-->
-            <div class="pull-right">
-              <?= link_to('<i class="icon-remove"></i>',
-              '@shopping_cart_remove?id='. $shopping_order_collectible->getCollectibleId(),
-              array('class' => 'close-button', 'rel' => 'tooltip', 'title' => 'Remove Item')); ?>
-            </div>
-          </div><!-- /Remove from cart-->
         </div>
 
         <?php endforeach; ?>
-        <div class="row-fluid"><!--Note on the order-->
+        <div class="row-fluid">
+          <div class="span8">
 
-          <div class="span8 ">
-          <?php
-          echo $form['note_to_seller']->render(array(
-            'class' => 'simple-textarea',
-            'placeholder' => 'If you have any special requests, please specify them here...'
-          ));
-          ?>
+          </div>
+          <div class="span4">
+              Ship to:<br/>
+            <?= $form['shipping_country_iso3166']->render(array(
+            'style' => 'width: 100%;',
+            'class' => 'collectible-country',
+            'data-group-key' => $shopping_order->getGroupKey(),
+          )); ?>
+          </div>
+        </div>
+
+        <div class="row-fluid">
+
+          <div class="span8"><!--Note on the order-->
+            <?php
+            echo $form['note_to_seller']->render(array(
+              'class' => 'simple-textarea',
+              'placeholder' => 'If you have any special requests, please specify them here...'
+            ));
+            ?>
             </div>
           <div class="span4">
             <table class="spacer-bottom-reset"><!--Start cost table-->
-              <tr>
-                <td colspan="2">
-                  Ship to:<br/>
-                  <?= $form['shipping_country_iso3166']->render(array(
-                  'style' => 'width: 100%;',
-                  'class' => 'collectible-country',
-                  'data-group-key' => $shopping_order->getGroupKey(),
-                )); ?>
-                </td>
-              </tr>
-              <tr>
               <tr>
                 <td>Shipping:</td>
                 <td class="text-right">
@@ -116,6 +117,9 @@
                           class="btn btn-primary" value="Checkout" style="width: 100%;">
                     Proceed to Checkout
                   </button>
+                  <div class="text-left spacer-top">
+                      or you can send a message to <?= link_to_collector($shopping_order->getSeller(), 'text'); ?>
+                  </div>
                 </td>
               </tr>
             </table><!--End cost table-->
