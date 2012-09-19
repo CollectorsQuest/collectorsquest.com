@@ -18,6 +18,8 @@ class batchNewsletterConformationTask extends sfBaseTask
 
   protected function execute($arguments = array(), $options = array())
   {
+    $_SERVER['HTTP_HOST'] = sfConfig::get('app_www_domain');
+
     sfContext::createInstance($this->configuration);
 
     // Database initialization
