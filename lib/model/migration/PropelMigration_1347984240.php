@@ -1,7 +1,7 @@
 <?php
 
 /**
- * make every collector who signed up BEFORE 08/01/2012 (1st of August) as newsletter = false
+ * Make every collector who signed up BEFORE 08/01/2012 (1st of August) as newsletter = false
  *
  * https://basecamp.com/1759305/projects/19290-collectorsquest-com/todos/15713021-we-need-to-have-a
  */
@@ -10,26 +10,21 @@ class PropelMigration_1347984240
 
   public function preUp()
   {
-    // add the pre-migration code here
+    /** @var $q CollectorQuery */
+    $q = CollectorQuery::create();
 
-    if (sfConfig::get('sf_environment') === 'dev')
-    {
-      return;
-    }
-
-    $q = CollectorQuery::create()
-      ->filterByCreatedAt('08/01/2012', Criteria::LESS_EQUAL);
-
+    /** @var $collectors PropelObjectCollection|Collector[] */
     $collectors = $q->find();
 
     /** @var $collector_count integer */
-    $collector_count = count($collectors);
+    $count = count($collectors);
 
     foreach ($collectors as $k => $collector)
     {
-      $collector->setProperty(CollectorPeer::PROPERTY_PREFERENCES_NEWSLETTER, false);
+      $collector->setProperty(CollectorPeer::PROPERTY_PREFERENCES_NEWSLETTER_OPT_OUT, false);
+      $collector->save();
 
-      echo sprintf("\r Completed: %.2f%%", round($k/$collector_count, 4) * 100);
+      echo sprintf("\r Completed: %.2f%%", round($k/$count, 4) * 100);
     }
 
     echo "\r Completed: 100%  \n";

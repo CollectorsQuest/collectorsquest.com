@@ -24,7 +24,7 @@ all:
         subject: "You have changed your email at CollectorsQuest.com"
         required_params: [collector, collector_email]
       newsletter_subscription_confirmation:
-        subject: "Would you like a Collectors Quest newsletter? Let us know!"
+        subject: "Would you like to continue receiving the Collectors Quest newsletter?"
 
 
     Seller:

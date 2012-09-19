@@ -2,10 +2,7 @@
 
 {% block content %}
   <p style="margin-bottom: 10px; font-weight: bold;">
-    Dear Collectors Quest Member,
-  </p>
-  <p>
-    Wait! Don't hit that spam button yet!
+    Dear {{ oCollector.displayName }},
   </p>
   <p>
     You may have noticed that we recently started sending out a weekly newsletter.
@@ -13,13 +10,14 @@
     but we want to make sure that you’re REALLY enjoying these newsletters.
   </p>
   <p>
-    If you don’t wish to receive these newsletters, please let us know by clicking
-    <a href="https://www.collectorsquest.com/mycq/profile/email-preferences?newsletter=0&opt_in=1" target="_blank">here</a>, and
-    we won't send you these weekly updates. Otherwise, you’ll continue
-    to receive our weekly news until you click ‘unsubscribe’ at the bottom of any one
-    of these newsletters... though we’d hate for you to miss it if we feature your collection!
+    If you <strong>don’t wish to receive these newsletters</strong>, please let us know by
+    <strong>
+      {{ link_to('CLICKING HERE', "@auto_login?hash=#{oCollector.autoLoginHash}&r=#{url_for('@mycq_profile_email_preferences?newsletter=0&opt_out=1', false) | url_encode}", {absolute: true}) }}
+    </strong>,
+    and we won't send you these weekly updates.
   </p>
   <p>
-    Thanks for being a part of Collectors Quest.
+    Otherwise, you’ll continue to receive our weekly news until you click ‘unsubscribe’ at the bottom of
+    any one of these newsletters... though we’d hate for you to miss it if we feature your collection!
   </p>
 {% endblock %}
