@@ -21,7 +21,7 @@
 foreach ($shopping_orders as $group_key => $shopping_order)
 {
   echo sprintf(
-      '<div class="shopping-cart-container-item" id="shopping_order_%s">',
+      '<div class="shopping-cart-container-items" id="shopping_order_%s">',
       $group_key
     );
   include_component(
