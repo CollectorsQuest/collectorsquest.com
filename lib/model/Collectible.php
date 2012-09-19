@@ -27,24 +27,28 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
 
     parent::postSave($con);
 
-    // Let's assume we can make the Collectible public
-    $is_public = true;
+    // Start with the current public status of the Collectible
+    $is_public = $this->getIsPublic();
 
-    if (!$this->getName() || $this->getIsNameAutomatic())
+    // We want to enforce the public status only on records after 15th of September, 2012
+    if ($this->getCreatedAt('U') > 1347667200)
     {
-      $is_public = false;
-    }
-    else if (!$this->getDescription())
-    {
-      $is_public = false;
-    }
-    else if (!$this->getTags())
-    {
-      $is_public = false;
-    }
-    else if (!$this->getPrimaryImage())
-    {
-      $is_public = false;
+      if (!$this->getName())
+      {
+        $is_public = false;
+      }
+      else if (!$this->getDescription())
+      {
+        $is_public = false;
+      }
+      else if (!$this->getTags())
+      {
+        $is_public = false;
+      }
+      else if (!$this->getPrimaryImage())
+      {
+        $is_public = false;
+      }
     }
 
     // Update only if there is a change of the public status
