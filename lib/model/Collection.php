@@ -11,10 +11,15 @@ require 'lib/model/om/BaseCollection.php';
  */
 class Collection extends BaseCollection
 {
-  public
-    $_multimedia = array(),
-    $_counts = array();
+  /** @var array */
+  public $_multimedia = array();
 
+  /** @var array */
+  public $_counts = array();
+
+  /**
+   * @param PropelPDO $con
+   */
   public function postSave(PropelPDO $con = null)
   {
     parent::postSave($con);
@@ -60,7 +65,7 @@ class Collection extends BaseCollection
 
   public function getTagString()
   {
-    return implode(", ", $this->getTags());
+    return implode(', ', $this->getTags());
   }
 
   public function getTagIds()
@@ -138,7 +143,9 @@ class Collection extends BaseCollection
         $c->add(CollectorCollectionPeer::COLLECTOR_ID, $collector->getId(), Criteria::NOT_EQUAL);
         $c->addAscendingOrderByColumn('RAND()');
 
-        $collections = array_merge($collections, CollectorCollectionPeer::getRelatedCollections($collector, $limit, $c));
+        $collections = array_merge(
+          $collections, CollectorCollectionPeer::getRelatedCollections($collector, $limit, $c)
+        );
       }
     }
 
