@@ -310,7 +310,7 @@ class mycqActions extends cqFrontendActions
     $this->total = $this->collector->countCollectorCollections();
 
     // determine weather to show message for incomplete collections/collectibles
-    $this->show_message_incomplete = false;
+    $this->incomplete_collections = false;
 
     /*
      * this variable will be set true only if user doesn't have
@@ -325,7 +325,7 @@ class mycqActions extends cqFrontendActions
         ->isIncomplete();
       if ($q->count() > 0)
       {
-        $this->show_message_incomplete = true;
+        $this->incomplete_collections = true;
       }
       else
       {
@@ -335,7 +335,7 @@ class mycqActions extends cqFrontendActions
           ->isIncomplete();
         if ($q->count() > 0)
         {
-          $this->show_message_incomplete = true;
+          $this->incomplete_collections = true;
           $this->incomplete_collectibles = true;
         }
       }
@@ -712,7 +712,7 @@ class mycqActions extends cqFrontendActions
     $this->collector = $collector;
 
     // determine weather to show message for incomplete collectibles
-    $this->show_message_incomplete = false;
+    $this->incomplete_collections = false;
 
     if (IceGateKeeper::open('mycq_incomplete', 'page'))
     {
@@ -723,7 +723,7 @@ class mycqActions extends cqFrontendActions
         ->isIncomplete();
       if ($q->count() > 0)
       {
-        $this->show_message_incomplete = true;
+        $this->incomplete_collections = true;
       }
     }
 

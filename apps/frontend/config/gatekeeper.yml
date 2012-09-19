@@ -24,7 +24,7 @@ next:
     marketplace_categories: false
     aetn_picked_off: true
     aetn_american_restoration: true
-    mycq_incomplete: false
+    mycq_incomplete: true
 
   features:
     shopping_cart: true

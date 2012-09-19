@@ -42,6 +42,9 @@ class CollectibleQuery extends BaseCollectibleQuery
     return $this;
   }
 
+  /**
+   * @return CollectibleQuery
+   */
   public function isForSale()
   {
     return $this
