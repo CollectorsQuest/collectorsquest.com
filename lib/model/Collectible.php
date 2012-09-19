@@ -31,7 +31,7 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
     $is_public = $this->getIsPublic();
 
     // We want to enforce the public status only on records after 15th of September, 2012
-    if ($this->getCreatedAt('U') > 1347667200)
+    if ($this->getCreatedAt('U') > 1347667200 || $is_public === false)
     {
       if (!$this->getName())
       {
@@ -48,6 +48,10 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
       else if (!$this->getPrimaryImage())
       {
         $is_public = false;
+      }
+      else
+      {
+        $is_public = true;
       }
     }
 
