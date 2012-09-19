@@ -1,9 +1,9 @@
 <?php
 /**
- * @var $seller                   Seller
- * @var $show_message_incomplete  boolean
- * @var $total                    integer
- * @var $sold_total               integer
+ * @var $seller                  Seller
+ * @var $incomplete_collections  boolean
+ * @var $total                   integer
+ * @var $sold_total              integer
  */
 
   SmartMenu::setSelected('mycq_marketplace_tabs', 'collectibles_for_sale');
@@ -13,7 +13,7 @@
   // include_partial('mycq/seller_snapshot', array('seller' => $seller));
 ?>
 
-<?php if ($show_message_incomplete && IceGateKeeper::open('mycq_incomplete', 'page')): ?>
+<?php if ($incomplete_collections && IceGateKeeper::open('mycq_incomplete', 'page')): ?>
 <div class="alert alert-block alert-notice in">
   <h4 class="alert-heading">Some items for sale need your attention!</h4>
   <p class="spacer-top">
