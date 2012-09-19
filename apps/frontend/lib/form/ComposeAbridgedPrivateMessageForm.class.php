@@ -43,7 +43,8 @@ class ComposeAbridgedPrivateMessageForm extends ComposePrivateMessageForm
     $this->widgetSchema['goto']->setAttribute('class', 'set-value-to-href');
 
     $this->widgetSchema['body']->setAttribute(
-      'placeholder', "Send a message to ". $this->receiver
+      'placeholder',
+      'Send a message to '. $this->receiver
     );
   }
 

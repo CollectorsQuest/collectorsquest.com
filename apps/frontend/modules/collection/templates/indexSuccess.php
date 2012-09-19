@@ -52,7 +52,7 @@ $height_main_div->value = 116;
       <a class="addthis_button_pinterest_pinit" pi:pinit:media="<?= src_tag_collection($collection, 'original'); ?>" pi:pinit:layout="horizontal"></a>
       <a class="addthis_button_tweet" tw:twitter:data-count="none"></a>
       <a class="addthis_button_google_plusone" g:plusone:size="medium" g:plusone:annotation="none"></a>
-      <a class="addthis_button_facebook_like" fb:like:layout="button_count" fb:like:width="40"></a>
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count" fb:like:width="75"></a>
       <!-- AddThis Button END -->
     </div>
   </div>
@@ -135,7 +135,7 @@ $height_main_div->value = 116;
   ));
 ?>
 
-<?php $sf_user->setFlash('height_main_div', $height_main_div, 'false', 'internal'); ?>
+<?php $sf_user->setFlash('height_main_div', $height_main_div, false, 'internal'); ?>
 
 <?php if ($sf_params->get('show') == 'all'): ?>
 <script>

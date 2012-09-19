@@ -21,6 +21,11 @@ class CollectibleEditForm extends BaseCollectibleForm
     $this->setupTagsField();
     $this->setupReturnToField();
 
+    $this->validatorSchema['name'] = new cqValidatorName(
+      array('required' => true),
+      array('invalid' => 'You need to use more descriptive name for your item
+                          (is it the camera auto generated name?)')
+    );
     $this->validatorSchema->setPostValidator(new sfValidatorPass());
 
     // Define which fields to use from the base form
@@ -35,8 +40,8 @@ class CollectibleEditForm extends BaseCollectibleForm
     ));
 
     // We do not want to show the thumbnail field
-    // if there are images already for the Collectible
-    if ($collectible->getMultimediaCount('image') > 0)
+    // if there is primary image for the Collectible
+    if ($collectible->getPrimaryImage())
     {
       $this->offsetUnset('thumbnail');
       $this->offsetUnset('is_alt_view');
@@ -103,7 +108,7 @@ class CollectibleEditForm extends BaseCollectibleForm
 
     /**
      * We need to make the Thumbnail field required if
-     * the Collection does not have a Thumbnail yet
+     * the Collectible does not have a Thumbnail yet
      */
     if (!$this->getObject()->getPrimaryImage())
     {
@@ -137,7 +142,7 @@ class CollectibleEditForm extends BaseCollectibleForm
       array(
         'data-placeholder' => 'Please, choose at least one Collection',
         'class' => 'input-xlarge chzn-select js-hide',
-        'style' => 'width: 410px;',
+        'style' => 'width: 414px;',
         'required' => 'required'
       )
     );

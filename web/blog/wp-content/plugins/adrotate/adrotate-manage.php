@@ -127,7 +127,7 @@ function adrotate_insert_input() {
 
 		// Save initial schedule for new ads or when a new schedule is made
 		if($type == 'empty' OR ($startdate > 1 AND $enddate > 1)) {
-			$wpdb->query("INSERT INTO `".$wpdb->prefix."adrotate_schedule` (`ad`, `starttime`, `stoptime`, `maxclicks`, `maximpressions`) VALUES ($id, $startdate, $enddate, $maxclicks, $maxshown);"); 
+		    $wpdb->insert($wpdb->prefix."adrotate_schedule", array('ad' => $id, 'starttime' => $startdate, 'stoptime' => $enddate, 'maxclicks' => $maxclicks, 'maximpressions' => $maxshown));
 		}
 
 		// Remove schedules from this ad
@@ -137,44 +137,48 @@ function adrotate_insert_input() {
 		}
 		unset($value);
 
+		// Save the ad to the DB
+	    $wpdb->update(
+	    	$wpdb->prefix."adrotate", 
+	    	array(
+	    		'title' => $title, 
+	    		'bannercode' => $bannercode, 
+	    		'updated' => $thetime, 
+	    		'author' => $author, 
+	    		'imagetype' => $imagetype, 
+	    		'image' => $image, 
+	    		'link' => $link, 
+	    		'tracker' => $tracker, 
+	    		'timeframe' => $timeframe, 
+	    		'timeframelength' => $timeframelength, 
+	    		'timeframeclicks' => $timeframeclicks, 
+	    		'timeframeimpressions' => $timeframeimpressions, 
+	    		'weight' => $weight, 
+	    		'sortorder' => $sortorder
+	    	), 
+	    	array(
+	    		'id' => $id
+	    	)
+	    );
+
+		if($active == "active") {
+			// Determine status of ad 
+			$adstate = adrotate_evaluate_ad($id);
+			if($adstate == 'error' OR $adstate == 'expired') {
+				$action = 'field_error';
+				$active = 'error';
+			} else {
+				if($type == "empty") {
+					$action = 'new';
+				} else {
+					$action = 'update';
+				}
+			}
+		} 
+	    $wpdb->update($wpdb->prefix."adrotate", array('type' => $active), array('id' => $id));
+
 		// Check all ads and update ad cache
 		adrotate_prepare_evaluate_ads();		
-
-		// Save the ad to the DB
-		$wpdb->query("UPDATE 
-						`".$wpdb->prefix."adrotate` 
-					SET 
-						`title` = '$title', 
-						`bannercode` = '$bannercode', 
-						`updated` = '$thetime', 
-						`author` = '$author', 
-						`imagetype` = '$imagetype', 
-						`image` = '$image', 
-						`link` = '$link', 
-						`tracker` = '$tracker', 
-						`timeframe` = '$timeframe', 
-						`timeframelength` = '$timeframelength', 
-						`timeframeclicks` = '$timeframeclicks', 
-						`timeframeimpressions` = '$timeframeimpressions', 
-						`weight` = '$weight', 
-						`sortorder` = '$sortorder' 
-					WHERE 
-						`id` = '$id'
-					;");
-
-		// Determine status of ad 
-		$adstate = adrotate_evaluate_ad($id);
-		if($adstate == 'error' OR $adstate == 'expired') {
-			$action = 'field_error';
-			$active = 'error';
-		} else {
-			if($type == "empty") {
-				$action = 'new';
-			} else {
-				$action = 'update';
-			}
-		}
-		$wpdb->query("UPDATE `".$wpdb->prefix."adrotate` SET `type` = '$active' WHERE `id` = '$id';");
 
 		// Fetch group records for the ad
 		$groupmeta = $wpdb->get_results("SELECT `group` FROM `".$wpdb->prefix."adrotate_linkmeta` WHERE `ad` = '$id' AND `block` = 0 AND `user` = 0;");
@@ -188,7 +192,7 @@ function adrotate_insert_input() {
 		// Add new groups to this ad
 		$insert = array_diff($groups, $group_array);
 		foreach($insert as &$value) {
-			$wpdb->query("INSERT INTO `".$wpdb->prefix."adrotate_linkmeta` (`ad`, `group`, `block`, `user`) VALUES ($id, $value, 0, 0);"); 
+		    $wpdb->insert($wpdb->prefix."adrotate_linkmeta", array('ad' => $id, 'group' => $value, 'block' => 0, 'user' => 0));
 		}
 		unset($value);
 		
@@ -203,8 +207,8 @@ function adrotate_insert_input() {
 		$linkmeta = $wpdb->get_var("SELECT COUNT(*) FROM `".$wpdb->prefix."adrotate_linkmeta` WHERE `ad` = '$id' AND `group` = 0 AND `block` = 0 AND `user` > 0;");
 
 		// Add/update/remove publisher on this ad
-		if($linkmeta == 0 AND $advertiser > 0) 		$wpdb->query("INSERT INTO `".$wpdb->prefix."adrotate_linkmeta` (`ad`, `group`, `block`, `user`) VALUES ($id, 0, 0, $advertiser);"); 
-		if($linkmeta == 1 AND $advertiser > 0) 		$wpdb->query("UPDATE `".$wpdb->prefix."adrotate_linkmeta` SET `user` = '$advertiser' WHERE `ad` = '$id' AND `group` = '0' AND `block` = '0';");
+		if($linkmeta == 0 AND $advertiser > 0)		$wpdb->insert($wpdb->prefix."adrotate_linkmeta", array('ad' => $id, 'group' => 0, 'block' => 0, 'user' => $advertiser));
+		if($linkmeta == 1 AND $advertiser > 0) 		$wpdb->update($wpdb->prefix."adrotate_linkmeta", array('user' => $advertiser), array('ad' => $id, 'group' => 0, 'block' => 0));
 		if($linkmeta == 1 AND $advertiser == 0) 	$wpdb->query("DELETE FROM `".$wpdb->prefix."adrotate_linkmeta` WHERE `ad` = '$id' AND `group` = 0 AND `block` = 0;"); 
 
 		adrotate_return($action, array($id));
@@ -274,7 +278,7 @@ function adrotate_insert_group() {
 		// Add new ads to this group
 		$insert = array_diff($ads,$meta_array);
 		foreach($insert as &$value) {
-				$wpdb->query("INSERT INTO `".$wpdb->prefix."adrotate_linkmeta` (`ad`, `group`, `block`, `user`) VALUES ($value, $id, 0, 0);"); 
+			$wpdb->insert($wpdb->prefix."adrotate_linkmeta", array('ad' => $value, 'group' => $id, 'block' => 0, 'user' => 0));
 		}
 		unset($value);
 		
@@ -286,7 +290,22 @@ function adrotate_insert_group() {
 		unset($value);
 
 		// Update the group itself
-		$wpdb->query("UPDATE `".$wpdb->prefix."adrotate_groups` SET `name` = '$name', `fallback` = '$fallback', `sortorder` = '$sortorder', `cat` = '$category', `cat_loc` = '$category_loc', `page` = '$page', `page_loc` = '$page_loc' WHERE `id` = '$id';");
+	    $wpdb->update(
+	    	$wpdb->prefix."adrotate_groups", 
+	    	array(
+	    		'name' => $name, 
+	    		'fallback' => $fallback, 
+	    		'sortorder' => $sortorder, 
+	    		'cat' => $category, 
+	    		'cat_loc' => $category_loc, 
+	    		'page' => $page, 
+	    		'page_loc' => $page_loc
+	    	), 
+	    	array(
+	    		'id' => $id
+	    	)
+	    );
+
 		adrotate_return($action, array($id));
 		exit;
 	} else {
@@ -348,7 +367,7 @@ function adrotate_insert_block() {
 		if((is_numeric($adheight) AND $adheight < 1 OR $adheight > 1000) OR $adheight == '' OR (!is_numeric($adheight) AND $adheight != 'auto')) $adheight = '125';
 		if($admargin < 0 OR $admargin > 99 OR $admargin == '' OR !is_numeric($admargin)) $admargin = 0;
 		if($adpadding < 0 OR $adpadding > 99 OR  $adpadding == '' OR !is_numeric($adpadding)) $adpadding = 0;
-		if($adpx >= 1 AND $adpx <= 99 AND is_numeric($adpx) AND $adcolor != '' AND preg_match('/^#[a-f0-9]{6}$/i', $adcolor) AND $adstyle != 'none') {
+		if($adpx >= 1 AND $adpx <= 99 AND is_numeric($adpx) AND $adcolor != '' AND preg_match('/^#[a-f0-9]{6}$/i', $adcolor) AND $adstyle != '') {
 			$adborder = $adpx."px ".$adcolor." ".$adstyle;
 		} else {
 			$adborder = 'none';
@@ -369,7 +388,7 @@ function adrotate_insert_block() {
 		// Add new groups to this block
 		$insert = array_diff($groups,$meta_array);
 		foreach($insert as &$value) {
-			$wpdb->query("INSERT INTO `".$wpdb->prefix."adrotate_linkmeta` (`ad`, `group`, `block`, `user`) VALUES (0, $value, $id, 0);"); 
+			$wpdb->insert($wpdb->prefix."adrotate_linkmeta", array('ad' => 0, 'group' => $value, 'block' => $id, 'user' => 0));
 		}
 		unset($value);
 		
@@ -381,26 +400,29 @@ function adrotate_insert_block() {
 		unset($value);
 
 		// Update the block itself
-		$wpdb->query("UPDATE 
-						`".$wpdb->prefix."adrotate_blocks` 
-					SET 
-						`name` = '$name', 
-						`rows` = '$rows', 
-						`columns` = '$columns', 
-						`gridfloat` = '$gridfloat', 
-						`gridpadding` = '$gridpadding', 
-						`gridborder` = '$gridborder', 
-						`adwidth` = '$adwidth', 
-						`adheight` = '$adheight', 
-						`admargin` = '$admargin', 
-						`adpadding` = '$adpadding', 
-						`adborder` = '$adborder', 
-						`wrapper_before` = '$wrapper_before', 
-						`wrapper_after` = '$wrapper_after', 
-						`sortorder` = '$sortorder' 
-					WHERE 
-						`id` = '$id'
-					;");
+	    $wpdb->update(
+	    	$wpdb->prefix."adrotate_blocks", 
+	    	array(
+	    		'name' => $name, 
+	    		'rows' => $rows, 
+	    		'columns' => $columns, 
+	    		'gridfloat' => $gridfloat, 
+	    		'gridpadding' => $gridpadding, 
+	    		'gridborder' => $gridborder, 
+	    		'adwidth' => $adwidth, 
+	    		'adheight' => $adheight, 
+	    		'adpadding' => $adpadding, 
+	    		'admargin' => $admargin, 
+	    		'adpadding' => $adpadding, 
+	    		'adborder' => $adborder, 
+	    		'wrapper_before' => $wrapper_before, 
+	    		'wrapper_after' => $wrapper_after, 
+	    		'sortorder' => $sortorder
+	    	), 
+	    	array(
+	    		'id' => $id
+	    	)
+	    );
 		adrotate_return($action, array($id));
 		exit;
 	} else {
@@ -587,14 +609,14 @@ function adrotate_active($id, $what) {
 
 	if($id > 0) {
 		if($what == 'deactivate') {
-			$wpdb->query("UPDATE `".$wpdb->prefix."adrotate` SET `type` = 'disabled' WHERE `id` = '$id'");
+			$wpdb->update($wpdb->prefix."adrotate", array('type' => 'disabled'), array('id' => $id));
 		}
 		if ($what == 'activate') {
 			// Determine status of ad 
 			$adstate = adrotate_evaluate_ad($id);
 			if($adstate == true) $adtype = 'error';
 				else $adtype = 'active';
-			$wpdb->query("UPDATE `".$wpdb->prefix."adrotate` SET `type` = '$adtype' WHERE `id` = '$id'");
+			$wpdb->update($wpdb->prefix."adrotate", array('type' => $adtype), array('id' => $id));
 		}
 	}
 }
@@ -631,7 +653,16 @@ function adrotate_renew($id, $howlong = 2592000) {
 		$starttime = $wpdb->get_var("SELECT `stoptime` FROM `".$wpdb->prefix."adrotate_schedule` WHERE `ad` = '".$id."' ORDER BY `id` DESC LIMIT 1;");
 		$stoptime = $starttime + $howlong;
 
-		$wpdb->query("INSERT INTO `".$wpdb->prefix."adrotate_schedule` (`ad`, `starttime`, `stoptime`, `maxclicks`, `maximpressions`) VALUES ($id, $starttime, $stoptime, 0, 0);"); 
+		$wpdb->insert(
+			$wpdb->prefix."adrotate_schedule", 
+			array(
+				'ad' => $id, 
+				'starttime' => $starttime, 
+				'stoptime' => $stoptime, 
+				'maxclicks' => 0, 
+				'maximpressions' => 0
+			)
+		);
 	}
 }
 
@@ -647,7 +678,7 @@ function adrotate_weight($id, $weight = 6) {
 	global $wpdb;
 
 	if($id > 0) {
-		$wpdb->query("UPDATE `".$wpdb->prefix."adrotate` SET `weight` = '$weight' WHERE `id` = '$id'");
+		$wpdb->update($wpdb->prefix."adrotate", array('weight' => $weight), array('id' => $id));
 	}
 }
 

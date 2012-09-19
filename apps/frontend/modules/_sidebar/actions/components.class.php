@@ -8,7 +8,7 @@ class _sidebarComponents extends cqFrontendComponents
   public function executeWidgetFacebookLikeBox()
   {
     /** @var $height stdClass */
-    $height = $this->getVar('height');
+    $height = $this->getVar('height') ?: new stdClass();
 
     return $this->_sidebar_if(!property_exists($height, 'value') || $height->value >= 340);
   }
@@ -19,7 +19,7 @@ class _sidebarComponents extends cqFrontendComponents
   public function executeWidgetFacebookRecommendations()
   {
     /** @var $height stdClass */
-    $height = $this->getVar('height');
+    $height = $this->getVar('height') ?: new stdClass();
 
     return $this->_sidebar_if(!property_exists($height, 'value') || $height->value >= 370);
   }
@@ -199,6 +199,7 @@ class _sidebarComponents extends cqFrontendComponents
       $this->subcategories[] = $this->current_subcategory;
     }
 
+    $this->sub_subcategories = array();
     if ($retrieve_sub_subcategories)
     {
       $this->sub_subcategories = ContentCategoryQuery::create()
@@ -261,8 +262,8 @@ class _sidebarComponents extends cqFrontendComponents
       return sfView::NONE;
     }
 
-    /** @var $q CollectorCollectionQuery */
-    $q = CollectorCollectionQuery::create()
+    /** @var $q FrontendCollectorCollectionQuery */
+    $q = FrontendCollectorCollectionQuery::create()
       ->filterByNumItems(3, Criteria::GREATER_EQUAL);
 
     /** @var $collection CollectorCollection */
@@ -533,6 +534,7 @@ class _sidebarComponents extends cqFrontendComponents
         {
           $c->add(CollectorCollectionPeer::ID, $collection->getId(), Criteria::NOT_EQUAL);
         }
+        $c->add(CollectorCollectionPeer::IS_PUBLIC, true);
 
         $this->collections = $collector->getCollectorCollections($c);
       }
@@ -608,8 +610,8 @@ class _sidebarComponents extends cqFrontendComponents
         $collector_ids = array_map('trim', $collector_ids);
         $collector_ids = array_filter($collector_ids);
 
-        /** @var $q CollectorQuery */
-        $q = CollectorQuery::create()
+        /** @var $q FrontendCollectorQuery */
+        $q = FrontendCollectorQuery::create()
           ->filterById($collector_ids, Criteria::IN)
           ->filterByUserType(CollectorPeer::TYPE_SELLER)
           ->addAscendingOrderByColumn('RAND()');
@@ -644,6 +646,9 @@ class _sidebarComponents extends cqFrontendComponents
 
     /** @var $q CollectibleForSaleQuery */
     $q = CollectibleForSaleQuery::create()
+      ->useCollectibleQuery()
+        ->filterByIsPublic(true)
+        ->endUse()
       ->isForSale()
       ->orderByUpdatedAt(Criteria::DESC);
 
@@ -801,7 +806,7 @@ class _sidebarComponents extends cqFrontendComponents
     $collectible = $this->getVar('collectible') ?: null;
 
     /** @var $collection CollectorCollection */
-    if (!$collection = $this->getVar('collection') ?: null)
+    if (!$collection = ($this->getVar('collection') ?: null))
     {
       if ($collectible)
       {
@@ -820,12 +825,30 @@ class _sidebarComponents extends cqFrontendComponents
       return sfView::NONE;
     }
 
+    // We need to make sure $collectible is CollectionCollectible
+    if ($collectible instanceof Collectible)
+    {
+      /** @var $q CollectionCollectibleQuery */
+      $q = CollectionCollectibleQuery::create()
+        ->filterByCollectible($collectible->getCollectible());
+
+      if ($collection)
+      {
+        $q->filterByCollection($collection);
+      }
+
+      $collectible = $q->findOne();
+    }
+
     /** @var $limit integer */
     $limit = (integer) $this->getVar('limit') ?: (integer) $request->getParameter('per_page', 3);
     $page = $collectible ? (integer) ceil($collectible->getPosition() / $limit) : $limit;
     $page = $this->getRequest()->getParameter('p', $page);
 
     $q = CollectionCollectibleQuery::create();
+    $q->useCollectibleQuery()
+      ->filterByIsPublic(true)
+      ->endUse();
     $q->joinWith('Collectible')
       ->orderBy('Position', Criteria::ASC);
 
@@ -842,7 +865,7 @@ class _sidebarComponents extends cqFrontendComponents
     $pager->init();
 
     // NOTE: Here we have to assume that we show 3 collectibles per "page"
-    if ($collectible && $collectible->getPosition() % 3 != 2)
+    if ($collectible && $collectible->getPosition() % 3 !== 2 && $pager->haveToPaginate())
     {
       $position = $collectible->getPosition();
       $this->collectibles = $a
@@ -904,7 +927,7 @@ class _sidebarComponents extends cqFrontendComponents
   public function executeWidgetMailChimpSubscribe()
   {
     /** @var $height stdClass */
-    $height = $this->getVar('height');
+    $height = $this->getVar('height') ?: new stdClass();
 
     return $this->_sidebar_if(!property_exists($height, 'value') || $height->value >= 190);
   }
