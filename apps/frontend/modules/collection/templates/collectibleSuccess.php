@@ -212,6 +212,26 @@
   <div class="item-description <?= $editable ? 'editable_html' : '' ?>"
        id="collectible_<?= $collectible->getId(); ?>_description">
     <?= $description = $collectible->getDescription('html'); ?>
+
+    <?php if (!empty($aetn_show)): ?>
+      <br><br>
+
+      <small>
+        <?php if ($aetn_show['id'] === 'american_pickers'): ?>
+            <i>*&nbsp;American Pickers,</i>
+        <?php elseif ($aetn_show['id'] === 'american_restoration'): ?>
+            <i>*&nbsp;American Restoration,</i>
+        <?php elseif ($aetn_show['id'] === 'pawn_stars'): ?>
+            <i>*&nbsp;Pawn Stars,</i>
+        <?php elseif ($aetn_show['id'] === 'picked_off'): ?>
+            <i>*&nbsp;Picked Off,</i>
+        <?php endif; ?>
+        HISTORY and the History “H” logo are the trademarks of A&amp;E Television Networks, LLC.
+      </small>
+
+      <?php $height_main_div->value += 29 ?>
+    <?php endif; ?>
+
   </div>
 
   <?php
@@ -224,6 +244,7 @@
     // Approximately 2 <br> tags account for a new line
     $br_count = (integer) (substr_count($description, '<br') / 2);
     $height_main_div->value += 20 + 18 * ($br_count + $description_rows);
+
   ?>
 <?php endif; ?>
 
