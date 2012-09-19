@@ -29,11 +29,13 @@
   .border-radius(8px);
 
   .shopping-cart-item {
-    border-top: 1px solid #deddda;
+    border-top: 1px solid #c7c7c7;
     margin: 8px 0 5px 0;
     padding-top: 10px;
 
     &:first-child {
+      margin-top: 0;
+      padding-top: 0;
       border-top: none;
     }
   }
@@ -93,6 +95,7 @@
   }
   .line-under-title {
    // border-bottom: 1px solid #DEDDDA;
+    background: url("@{baseUrl}/gray-dotted-line.png") repeat-x bottom;
     margin-bottom: 10px;
 
     p {
@@ -177,6 +180,6 @@
   }
 }
 
-.shopping-cart-container-item:hover .line-under-title .close-button {
-  background-color: darken(#D4D3CE, 10%);
+.shopping-cart-container-items:hover .pull-right .close-button {
+  background-color: darken(#D4D3CE, 7%);
 }
