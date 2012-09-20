@@ -15,6 +15,11 @@
 
 <p class="text-justify">
   <?= $collection->getDescription('html'); ?>
+  <br>
+  <small>
+    <i>*&nbsp;Picked Off,</i>&nbsp;HISTORY and the History “H”
+    logo are the trademarks of A&amp;E Television Networks, LLC.
+  </small>
 </p>
 
 <?php
