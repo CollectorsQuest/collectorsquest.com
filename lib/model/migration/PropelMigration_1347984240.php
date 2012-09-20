@@ -14,7 +14,7 @@ class PropelMigration_1347984240
     $q = CollectorQuery::create();
 
     /** @var $collectors PropelObjectCollection|Collector[] */
-    $collectors = $q->find();
+    $collectors = $q->setFormatter(ModelCriteria::FORMAT_ON_DEMAND)->find();
 
     /** @var $collector_count integer */
     $count = count($collectors);
