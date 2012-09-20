@@ -92,7 +92,7 @@
     <?php endif; ?>
 
     <?php if (!empty($video)): ?>
-      <a class="play-zone" target="_blank" title="Click to play"
+      <a class="play-zone" target="_blank" title="Click to play" onclick="return false;"
          href="<?= url_for_collectible($collectible) ?>#mediaspace">
         <span class="holder-icon-play">
           <i class="icon icon-play"></i>

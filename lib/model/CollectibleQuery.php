@@ -42,6 +42,9 @@ class CollectibleQuery extends BaseCollectibleQuery
     return $this;
   }
 
+  /**
+   * @return CollectibleQuery
+   */
   public function isForSale()
   {
     return $this
@@ -56,8 +59,8 @@ class CollectibleQuery extends BaseCollectibleQuery
   public function isPartOfCollection()
   {
     return $this
-      ->joinWith('CollectionCollectible', Criteria::RIGHT_JOIN)
-      ->groupBy('Id');
+      ->join('CollectionCollectible', Criteria::RIGHT_JOIN)
+      ->groupBy('Collectible.Id');
   }
 
   /**

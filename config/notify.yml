@@ -22,7 +22,7 @@ all:
     options: {}
 
   driver:
-    class:   fpErrorNotifierDriverMailSymfony
+    class:   fpErrorNotifierDriverPHPMailer
     options:
       to:    developers@collectorsquest.com
       from:  no-reply@collectorsquest.com
