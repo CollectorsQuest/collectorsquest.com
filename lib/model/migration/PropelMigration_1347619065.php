@@ -134,6 +134,7 @@ CREATE TABLE `shopping_order_collectible`
 		FOREIGN KEY (`collectible_id`)
 		REFERENCES `collectible` (`id`)
 		ON DELETE RESTRICT
+) ENGINE=InnoDB;
 
 # This restores the fkey checks, after having unset them earlier
 SET FOREIGN_KEY_CHECKS = 1;
