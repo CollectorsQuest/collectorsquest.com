@@ -40,7 +40,7 @@ var edcal_test = {
         css.attr({
             rel: 'stylesheet',
             type: 'text/css',
-            href: '../wp-content/plugins/edcal/lib/qunit.css'
+            href: edcal.plugin_url + '/lib/qunit.css'
         });
 
         jQuery('#wpbody-content .wrap').append('<div id="edcal-qunit"></div>');
@@ -60,14 +60,14 @@ var edcal_test = {
          var api = jQuery('#edcal_scrollable').scrollable();
          var items = api.getVisibleItems();
 
-         return edcal.getDayFromDayId(items.eq(0).children('.row').children('.day:first').attr('id'));
+         return edcal.getDayFromDayId(items.eq(0).children('.edcal_row').children('.day:first').attr('id'));
     },
 
     getLastDate: function() {
          var api = jQuery('#edcal_scrollable').scrollable();
          var items = api.getVisibleItems();
 
-         return edcal.getDayFromDayId(items.eq(edcal.weeksPref - 1).children('.row').children('.day:last').attr('id'));
+         return edcal.getDayFromDayId(items.eq(edcal.weeksPref - 1).children('.edcal_row').children('.day:last').attr('id'));
     },
 
     moveTests: function() {

@@ -71,4 +71,33 @@ class _legacyActions extends sfActions
   {
      $this->redirect('@content_categories', 301);
   }
+
+  /**
+   * Action RedirectToMarketplaceCategory
+   *
+   * @param sfWebRequest $request
+   *
+   * @return string
+   */
+  public function executeRedirectToMarketplaceCategory(sfWebRequest $request)
+  {
+    $id = $request->getParameter('id', 0);
+
+    $content_category = ContentCategoryQuery::create()
+      ->findOneByCollectionCategoryId($id);
+
+    if ($content_category)
+    {
+      $this->redirect(
+        $this->getController()->genUrl(
+          array(
+            'sf_route'  => 'marketplace_category_by_slug',
+            'sf_subject'=> $content_category
+          )
+        ),
+      301);
+    }
+
+    $this->redirect('@marketplace', 301);
+  }
 }
