@@ -51,7 +51,7 @@ SmartMenu::setSelected('mycq_incomplete_tabs', 'collections');
                         'return_to' => 'incomplete_collections'
                       )
                   ) ?>" class="target">
-                    <?= cqStatic::reduceText($collection->getName() . ' ('. $collection->getNumItems() .')', 35, '[...]'); ?>
+                    <?= cqStatic::reduceText($collection->getName() . ' ('. $collection->countCollectionCollectibles() .')', 35, '[...]'); ?>
                   </a>
                 </p>
 

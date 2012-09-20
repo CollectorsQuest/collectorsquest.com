@@ -113,8 +113,10 @@ class collectionsComponents extends cqFrontendComponents
     {
       $query = array(
         'q' => $q,
-        'filters' => array('has_thumbnail' => 1),
-        #TO DO here should be is_public filter
+        'filters' => array(
+          'has_thumbnail' => true,
+          'is_public' => true
+        ),
       );
 
       switch ($s)
