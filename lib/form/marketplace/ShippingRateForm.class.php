@@ -12,6 +12,7 @@ class ShippingRateForm extends BaseShippingRateForm
   public function configure()
   {
     $this->setupFlatRateInCentsField();
+    $this->setupCombinedFlatRateInCentsField();
     $this->setupShippingCarrierServiceIdField();
 
     $this->unsetFields();
@@ -20,11 +21,21 @@ class ShippingRateForm extends BaseShippingRateForm
   protected function setupFlatRateInCentsField()
   {
     $this->widgetSchema['flat_rate_in_cents'] = new cqWidgetFormInputCentsToUsd(array(
-        'label' => 'Cost',
+        'label' => 'Flat rate',
         'show_zero_as_empty' => true,
     ));
     $this->setDefault('flat_rate_in_cents', sprintf('%01.2f', $this->getObject()->getFlatRateInUSD()));
     $this->validatorSchema['flat_rate_in_cents'] = new cqValidatorUSDtoCents();
+  }
+
+  protected function setupCombinedFlatRateInCentsField()
+  {
+    $this->widgetSchema['combined_flat_rate_in_cents'] = new cqWidgetFormInputCentsToUsd(array(
+        'label' => 'Combined Flat Rate',
+        'show_zero_as_empty' => true,
+    ));
+    $this->setDefault('combined_flat_rate_in_cents', sprintf('%01.2f', $this->getObject()->getCombinedFlatRateInUSD()));
+    $this->validatorSchema['combined_flat_rate_in_cents'] = new cqValidatorUSDtoCents();
   }
 
   protected function setupShippingCarrierServiceIdField()

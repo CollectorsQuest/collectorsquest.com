@@ -621,6 +621,9 @@ class mycqActions extends cqFrontendActions
             'error', 'There was a problem saving your information'
           );
         }
+
+        // after a successful form save we should alway perform a redirect!
+        return $this->redirect($request->getUri());
       }
       else
       {

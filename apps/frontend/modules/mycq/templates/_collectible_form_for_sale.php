@@ -62,12 +62,24 @@
                    <?php if (!$form_shipping_us->isShippingTypeFreeShipping()) echo 'checked="checked"'; ?>
             />Flat rate
           </label>
-          <div class="input-prepend spacer-left-15 spacer-top-5">
-            <span class="add-on">$</span><?= $form_shipping_us['flat_rate']->render(array(
-              'class' => 'input-small flat-rate-field')); ?>
+          <div>
+            <div class="input-prepend spacer-left-15 spacer-top-5">
+              <span class="add-on">$</span><?= $form_shipping_us['flat_rate']->render(array(
+                'class' => 'input-small flat-rate-field')); ?>
+            </div>
+            <div class="pull-right">
+              <label>With another item:</label>
+              <div class="input-prepend spacer-left-15 spacer-top-5">
+                <span class="add-on">$</span><?= $form_shipping_us['combined_flat_rate']->render(array(
+                  'class' => 'input-small flat-rate-field')); ?>
+              </div>
+            </div>
           </div>
           <?php if ($form_shipping_us->isError('flat_rate')): ?>
             <?= $form_shipping_us['flat_rate']->renderError(); ?>
+          <?php endif; ?>
+          <?php if ($form_shipping_us->isError('combined_flat_rate')): ?>
+            <?= $form_shipping_us['combined_flat_rate']->renderError(); ?>
           <?php endif; ?>
         </div>
       </div>
@@ -101,12 +113,24 @@
                    <?php if (!($form_shipping_zz->isShippingTypeNoShipping() || $form_shipping_zz->isShippingTypeFreeShipping())) echo 'checked="checked"'; ?>
             />Flat rate
           </label>
-          <div class="input-prepend spacer-left-15 spacer-top-5">
-            <span class="add-on">$</span><?= $form_shipping_zz['flat_rate']->render(array(
-              'class' => 'input-small flat-rate-field')); ?>
+          <div>
+            <div class="input-prepend spacer-left-15 spacer-top-5">
+              <span class="add-on">$</span><?= $form_shipping_zz['flat_rate']->render(array(
+                'class' => 'input-small flat-rate-field')); ?>
+            </div>
+            <div class="pull-right">
+              <label>With another item:</label>
+              <div class="input-prepend spacer-left-15 spacer-top-5">
+                <span class="add-on">$</span><?= $form_shipping_zz['combined_flat_rate']->render(array(
+                  'class' => 'input-small flat-rate-field')); ?>
+              </div>
+            </div>
           </div>
           <?php if ($form_shipping_zz->isError('flat_rate')): ?>
             <?= $form_shipping_zz['flat_rate']->renderError(); ?>
+          <?php endif; ?>
+          <?php if ($form_shipping_zz->isError('combined_flat_rate')): ?>
+            <?= $form_shipping_zz['combined_flat_rate']->renderError(); ?>
           <?php endif; ?>
           <br />
           <?php if (IceGateKeeper::open('collectible_allow_no_shipping')): ?><br />

@@ -24,7 +24,7 @@ class SimpleShippingCollectorCollectibleForCountryFormValidatorSchema extends sf
     parent::configure($options, $messages);
 
     $this->addMessage('flat_rate_missing', 'Please enter a valid shipping amount.');
-    $this->addMessage('combined_flat_rate_higher_than_flat_rate', 'The rate for a second item must be lower or equal to the rate of a single item.');
+    $this->addMessage('combined_flat_rate_higher_than_flat_rate', 'Shipping rate with another item must be lower or equal to the rate of shipping a single item.');
   }
 
   /**
@@ -36,6 +36,7 @@ class SimpleShippingCollectorCollectibleForCountryFormValidatorSchema extends sf
   protected function doClean($values)
   {
     $errorSchema = new sfValidatorErrorSchema($this);
+
 
     if (ShippingReferencePeer::SHIPPING_TYPE_FLAT_RATE == $values['shipping_type'])
     {
@@ -55,7 +56,7 @@ class SimpleShippingCollectorCollectibleForCountryFormValidatorSchema extends sf
           'combined_flat_rate'
         );
       }
-      elseif (0 >= $values['combined_flat_rate'])
+      elseif ($values['combined_flat_rate'] <= 0)
       {
         $values['combined_flat_rate'] = $values['flat_rate'];
       }
