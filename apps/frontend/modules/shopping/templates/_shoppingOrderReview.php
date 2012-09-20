@@ -1,5 +1,5 @@
 
-<div class="shopping-cart-container-item">
+<div class="shopping-cart-container-items">
   <div class="row-fluid">
     <div class="row-fluid">
       <div class="span8">
@@ -21,7 +21,7 @@
       </div><!-- /span8 -->
       <div class="span4">
         <table class="spacer-bottom-reset"><!--Start cost table-->
-          <tr>
+          <tr class="rainbow-dash">
             <td>Price:</td>
             <td class="text-right">
               <?= money_format('%.2n', (float) $shopping_order->getTotalPrice()); ?>
@@ -39,7 +39,7 @@
               <?php endif; ?>
             </td>
           </tr>
-          <tr class="rainbow-dash">
+          <tr>
             <td><strong>Total:</strong></td>
             <td class="text-right">
               <strong><?= money_format('%.2n', (float) $shopping_cart_collectible->getTotalPrice()); ?></strong>
