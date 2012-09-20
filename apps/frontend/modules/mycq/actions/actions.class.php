@@ -165,14 +165,17 @@ class mycqActions extends cqFrontendActions
     $collector = $this->getCollector();
 
     $_preferences = array(
-        'newsletter' => CollectorPeer::PROPERTY_PREFERENCES_NEWSLETTER,
-        'comments' => CollectorPeer::PROPERTY_NOTIFICATIONS_COMMENT,
-        'messages' => CollectorPeer::PROPERTY_NOTIFICATIONS_MESSAGE,
+      'opt_out'     => CollectorPeer::PROPERTY_PREFERENCES_NEWSLETTER_OPT_OUT,
+      'newsletter'  => CollectorPeer::PROPERTY_PREFERENCES_NEWSLETTER,
+      'comments'    => CollectorPeer::PROPERTY_NOTIFICATIONS_COMMENT,
+      'messages'    => CollectorPeer::PROPERTY_NOTIFICATIONS_MESSAGE
     );
+
+    // Assume there are no properties changed in this request
+    $_property_changed = false;
 
     foreach ($_preferences as $key => $property)
     {
-      $_property_changed = false;
       if ($request->hasParameter($key))
       {
         $collector->setProperty($property, (boolean) $request->getParameter($key));
@@ -187,9 +190,12 @@ class mycqActions extends cqFrontendActions
           'You\'ve successfully changed your %s notification settings.',
           $_property_changed
         ));
-
-        return $this->redirect('@mycq_profile_email_preferences');
       }
+    }
+
+    if (false !== $_property_changed)
+    {
+      return $this->redirect('@mycq_profile_email_preferences');
     }
 
     $this->collector = $collector;
