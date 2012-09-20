@@ -23,7 +23,8 @@ class SimpleShippingCollectorCollectibleInternationalForm extends SimpleShipping
     parent::configure();
 
     $this->setupFlatRateAmountField(
-      $this->isShippingTypeNoShipping() || $this->isShippingTypeFreeShipping());
+      $disabled = $this->isShippingTypeNoShipping() || $this->isShippingTypeFreeShipping()
+    );
 
     $this->setupDoNotShipToField();
   }

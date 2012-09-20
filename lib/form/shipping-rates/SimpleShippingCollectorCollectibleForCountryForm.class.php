@@ -11,10 +11,11 @@ class SimpleShippingCollectorCollectibleForCountryForm extends ShippingCollector
   {
     parent::configure();
 
-    $this->setupFlatRateAmountField($this->isShippingTypeFreeShipping());
+    $this->setupFlatRateAmountField($disabled = $this->isShippingTypeFreeShipping());
 
     $this->mergePostValidator(
-      new SimpleShippingCollectorCollectibleForCountryFormValidatorSchema(null));
+      new SimpleShippingCollectorCollectibleForCountryFormValidatorSchema()
+    );
 
     $this->widgetSchema->setFormFormatterName('Bootstrap');
   }
