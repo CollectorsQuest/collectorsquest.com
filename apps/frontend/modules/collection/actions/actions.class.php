@@ -166,6 +166,12 @@ class collectionActions extends cqFrontendActions
     /** @var $collector Collector */
     $collector = $collectible->getCollector();
 
+    // Stop right here if we are missing any of these
+    $this->forward404Unless($collectible && $collection && $collector);
+
+    // We do not want to show Collectibles which are not assigned to a CollectorCollection
+    $this->forward404Unless($collection->getId());
+
     /**
      * Special checks for the Collectibles of A&E Shows
      */
@@ -270,7 +276,10 @@ class collectionActions extends cqFrontendActions
     $collectible = $this->getRoute()->getObject();
 
     /** @var $collection Collection */
-    $collection = $collectible->getCollectorCollection();
+    if (!$collection = $collectible->getCollectorCollection())
+    {
+      return false;
+    }
 
     $this->aetn_show = null;
     $aetn_shows = sfConfig::get('app_aetn_shows');
