@@ -154,7 +154,7 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
     $this->registerProperty(CollectorPeer::PROPERTY_PREFERENCES_NEWSLETTER,
       CollectorPeer::PROPERTY_PREFERENCES_NEWSLETTER_DEFAULT);
     $this->registerProperty(CollectorPeer::PROPERTY_PREFERENCES_NEWSLETTER_OPT_OUT,
-      CollectorPeer::PROPERTY_PREFERENCES_NEWSLETTER_OPT_OUT);
+      CollectorPeer::PROPERTY_PREFERENCES_NEWSLETTER_OPT_OUT_DEFAULT);
 
     $this->registerProperty(CollectorPeer::PROPERTY_NOTIFICATIONS_COMMENT,
       CollectorPeer::PROPERTY_NOTIFICATIONS_COMMENT_DEFAULT);
