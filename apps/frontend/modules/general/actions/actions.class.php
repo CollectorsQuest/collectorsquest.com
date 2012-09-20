@@ -173,6 +173,17 @@ class generalActions extends cqFrontendActions
         $collector = $form->getValue('collector');
         $this->getUser()->Authenticate(true, $collector, $form->getValue('remember'));
 
+        if ($this->getUser()->hasAttribute('preselected_seller_package'))
+        {
+          $package = $this->getUser()->getAttribute('preselected_seller_package');
+          $this->getUser()->getAttributeHolder()->remove('preselected_seller_package');
+
+          return $this->redirect(array(
+              'sf_route' =>'seller_packages',
+              'package' => $package
+          ));
+        }
+
         $goto = $request->getParameter('r', $form->getValue('goto'));
         $goto = !empty($goto) ? $goto : $this->getUser()->getReferer('@collector_me');
 
@@ -237,6 +248,16 @@ class generalActions extends cqFrontendActions
       {
         $this->getUser()->Authenticate(true, $collector, true);
 
+        if ($this->getUser()->hasAttribute('preselected_seller_package'))
+        {
+          $package = $this->getUser()->getAttribute('preselected_seller_package');
+          $this->getUser()->getAttributeHolder()->remove('preselected_seller_package');
+
+          return $this->redirect(array(
+              'sf_route' =>'seller_packages',
+              'package' => $package
+          ));
+        }
         if ($new_collector)
         {
           return $this->redirect('@mycq_profile');
