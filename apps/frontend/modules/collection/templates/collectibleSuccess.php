@@ -212,6 +212,18 @@
   <div class="item-description <?= $editable ? 'editable_html' : '' ?>"
        id="collectible_<?= $collectible->getId(); ?>_description">
     <?= $description = $collectible->getDescription('html'); ?>
+
+    <?php if (!empty($aetn_show)): ?>
+      <br><br>
+
+      <small>
+        <i>*&nbsp;<?= $aetn_show['name'] ?>,</i>
+        HISTORY and the History “H” logo are the trademarks of A&amp;E Television Networks, LLC.
+      </small>
+
+      <?php $height_main_div->value += 29 ?>
+    <?php endif; ?>
+
   </div>
 
   <?php
@@ -224,6 +236,7 @@
     // Approximately 2 <br> tags account for a new line
     $br_count = (integer) (substr_count($description, '<br') / 2);
     $height_main_div->value += 20 + 18 * ($br_count + $description_rows);
+
   ?>
 <?php endif; ?>
 
@@ -265,9 +278,16 @@
       )
     );
   }
-?>
 
-<?php
+  if (isset($collectible_for_sale) && $collectible_for_sale->isForSale())
+  {
+    include_component('collector', 'indexCollectiblesForSale',
+      array('collector' => $collector, 'title' => 'Other Items from this Seller')
+    );
+
+    $height_main_div->value += 293;
+  }
+
   // pass the main div's height to the sidebar
   $sf_user->setFlash('height_main_div', $height_main_div, false, 'internal');
 ?>

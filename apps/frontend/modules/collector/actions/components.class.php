@@ -38,6 +38,8 @@ class collectorComponents extends cqFrontendComponents
   {
     $collector = $this->getVar('collector') ?: CollectorPeer::retrieveByPk($this->getRequestParameter('id'));
 
+    $this->title = $this->getVar('title');
+
     if (!$collector)
     {
       return sfView::NONE;

@@ -14,6 +14,11 @@
   bring them to small towns across the country. Combing through memorabilia and
   artifacts and hoping to find treasures among the trash, they find their ‘gold’
   in items of all kinds, like the pieces featured below.
+  <br><br>
+  <small>
+    <i>*&nbsp;American Pickers,</i>&nbsp;HISTORY and the History “H”
+    logo are the trademarks of A&amp;E Television Networks, LLC.
+  </small>
 </p>
 
 <?php
