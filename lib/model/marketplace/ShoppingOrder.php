@@ -160,10 +160,10 @@ class ShoppingOrder extends BaseShoppingOrder
         $this->getShoppingCartId(), $shopping_order_collectible->getCollectibleId()
       );
       $shopping_cart_collectible
-        ->setShippingCountryIso3166($address->getCountryIso3166())
-        ->updateShippingFeeAmountFromCountryCode()
+        ->updateShippingFromCountryCode($address->getCountryIso3166())
         ->save();
     }
+
     return $this;
   }
 
