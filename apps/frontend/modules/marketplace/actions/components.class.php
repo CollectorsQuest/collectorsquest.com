@@ -37,8 +37,11 @@ class marketplaceComponents extends cqFrontendComponents
     {
       $query = array(
         'q' => $q,
-        'filters' => array('has_thumbnail' => 1, 'uint1' => 1)
-        //TO DO Here shod be public filter
+        'filters' => array(
+          'has_thumbnail' => true,
+          'is_public' => true,
+          'uint1' => 1
+        )
       );
 
       $query['sortby'] = 'date';
