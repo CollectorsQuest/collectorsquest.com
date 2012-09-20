@@ -278,9 +278,16 @@
       )
     );
   }
-?>
 
-<?php
+  if (isset($collectible_for_sale) && $collectible_for_sale->isForSale())
+  {
+    include_component('collector', 'indexCollectiblesForSale',
+      array('collector' => $collector, 'title' => 'Other Items from this Seller')
+    );
+
+    $height_main_div->value += 293;
+  }
+
   // pass the main div's height to the sidebar
   $sf_user->setFlash('height_main_div', $height_main_div, false, 'internal');
 ?>
