@@ -33,7 +33,14 @@ class ShippingRate extends BaseShippingRate
    */
   public function getCombinedFlatRateInUSD()
   {
-    return bcdiv($this->getCombinedFlatRateInCents(), 100, 2);
+    if (0 != $this->getCombinedFlatRateInCents())
+    {
+      return bcdiv($this->getCombinedFlatRateInCents(), 100, 2);
+    }
+    else
+    {
+      return $this->getFlatRateInUSD();
+    }
   }
 
   /**
