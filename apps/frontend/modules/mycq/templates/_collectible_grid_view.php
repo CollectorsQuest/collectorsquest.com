@@ -14,7 +14,8 @@
         image_tag_collectible(
           $collectible, '150x150', array('width' => 140, 'height' => 140)
         ),
-        'mycq_collectible_by_slug', array('sf_subject' => $collectible, 'return_to' => $return_to)
+        'mycq_collectible_by_slug', array('sf_subject' => $collectible, 'return_to' => $return_to),
+        array('class' => 'target')
       );
     ?>
 
@@ -26,9 +27,8 @@
 
     <p>
       <?php
-        echo link_to_if(
-          $collectible->getName(),
-          cqStatic::reduceText($collectible->getName(), 30),
+        echo link_to(
+          $collectible->getName() ? cqStatic::reduceText($collectible->getName(), 30) : 'Untitled',
           'mycq_collectible_by_slug', array('sf_subject' => $collectible, 'return_to' => $return_to),
           array('class' => 'target')
         );
