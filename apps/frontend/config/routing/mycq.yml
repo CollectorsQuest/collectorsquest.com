@@ -38,6 +38,13 @@ mycq_profile_addresses_delete:
   options:  { model: CollectorAddress, type: object }
   requirements: { id: '\d+', sf_method: [get, delete] }
 
+mycq_profile_addresses_make_primary:
+  url:      /mycq/profile/addresses/:id/make-primary
+  class:    sfPropelORMRoute
+  param:    { module: mycq, action: profileAddressesMakePrimary }
+  options:  { model: CollectorAddress, type: object }
+  requirements: { id: '\d+', sf_method: [get] }
+
 mycq_dropbox:
   url:   /mycq/dropbox
   param: { module: mycq, action: dropbox }

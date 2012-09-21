@@ -221,9 +221,10 @@ class mycqActions extends cqFrontendActions
       if ($form->bindAndSave($request->getParameter($form->getName())))
       {
         $this->getUser()->setFlash('success',
-          'You have successfully added a new address.');
+          'You have successfully added a new address.'
+        );
 
-        $this->redirect('@mycq_profile_addresses');
+        return $this->redirect('@mycq_profile_addresses');
       }
     }
     $this->form = $form;
@@ -245,9 +246,10 @@ class mycqActions extends cqFrontendActions
       if ($form->bindAndSave($request->getParameter($form->getName())))
       {
         $this->getUser()->setFlash('success',
-          'You have successfully edited your address.');
+          'You have successfully edited your address.'
+        );
 
-        $this->redirect('@mycq_profile_addresses');
+        return $this->redirect('@mycq_profile_addresses');
       }
     }
 
@@ -267,14 +269,38 @@ class mycqActions extends cqFrontendActions
     {
       $address->delete();
       $this->getUser()->setFlash('success',
-        $this->__('You have successfully removed an address from your account.'));
+        'You have successfully removed an address from your account.'
+      );
 
-      $this->redirect('@mycq_profile_addresses');
+      return $this->redirect('@mycq_profile_addresses');
     }
 
     $this->collector_address = $address;
 
     return sfView::SUCCESS;
+  }
+
+  public function executeProfileAddressesMakePrimary(cqWebRequest $request)
+  {
+    /* @var $address CollectorAddress */
+    $address = $this->getRoute()->getObject();
+
+    $this->forward404Unless($this->getUser()->isOwnerOf($address));
+
+    // unmark the old primary address
+    CollectorAddressQuery::create()
+      ->filterByCollector($this->getCollector())
+      ->filterByIsPrimary(true)
+      ->update(array('IsPrimary' => false));
+
+    // and set the new one
+    $address->setIsPrimary(true)->save();
+
+    $this->getUser()->setFlash('success',
+      'You have successfully changed your primary address'
+    );
+
+    return $this->redirect('@mycq_profile_addresses');
   }
 
   public function executeDropbox(sfWebRequest $request)
