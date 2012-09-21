@@ -8,8 +8,11 @@
 class PropelMigration_1345917554
 {
 
-	public function preUp($manager)
-	{
+  /**
+   * @param PropelMigrationManager $manager
+   */
+  public function preUp($manager)
+  {
     /* @var $con PropelPDO */
     $con = $manager->getPdoConnection('propel');
 
@@ -38,32 +41,32 @@ class PropelMigration_1345917554
     }
 
     echo "\r Completed: 100%  \n";
-	}
+  }
 
-	public function postUp($manager)
-	{
-		// add the post-migration code here
-	}
+  public function postUp($manager)
+  {
+    // add the post-migration code here
+  }
 
-	public function preDown($manager)
-	{
-		// add the pre-migration code here
-	}
+  public function preDown($manager)
+  {
+    // add the pre-migration code here
+  }
 
-	public function postDown($manager)
-	{
-		// add the post-migration code here
-	}
+  public function postDown($manager)
+  {
+    // add the post-migration code here
+  }
 
-	/**
-	 * Get the SQL statements for the Up migration
-	 *
-	 * @return array list of the SQL strings to execute for the Up migration
-	 *               the keys being the datasources
-	 */
-	public function getUpSQL()
-	{
-		return array (
+  /**
+   * Get the SQL statements for the Up migration
+   *
+   * @return array list of the SQL strings to execute for the Up migration
+   *               the keys being the datasources
+   */
+  public function getUpSQL()
+  {
+    return array (
       'propel' => '
         SET FOREIGN_KEY_CHECKS = 0;
 

@@ -135,7 +135,7 @@ $height_main_div->value = 116;
   ));
 ?>
 
-<?php $sf_user->setFlash('height_main_div', $height_main_div, 'false', 'internal'); ?>
+<?php $sf_user->setFlash('height_main_div', $height_main_div, false, 'internal'); ?>
 
 <?php if ($sf_params->get('show') == 'all'): ?>
 <script>

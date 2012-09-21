@@ -1,23 +1,9 @@
 <?php
 
-
 require 'lib/model/marketplace/om/BaseShoppingOrderCollectible.php';
 
-
-/**
- * Skeleton subclass for representing a row from the 'shopping_order_collectible' table.
- *
- *
- *
- * You should add additional methods to this class to meet the
- * application requirements.  This class will only be generated as
- * long as it does not already exist in the output directory.
- *
- * @package    propel.generator.lib.model.marketplace
- */
-class ShoppingOrderCollectible extends BaseShoppingOrderCollectible {
-
-
+class ShoppingOrderCollectible extends BaseShoppingOrderCollectible
+{
   /** @var ShippingReference */
   protected $aShippingReference;
 
@@ -249,4 +235,5 @@ class ShoppingOrderCollectible extends BaseShoppingOrderCollectible {
   {
     return $this->getShoppingOrder()->getCollectorId();
   }
+
 }

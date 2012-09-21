@@ -1,0 +1,23 @@
+{% extends "common/base.html.twig" %}
+
+{% block content %}
+  <p style="margin-bottom: 10px; font-weight: bold;">
+    Dear {{ oCollector.displayName }},
+  </p>
+  <p>
+    You may have noticed that we recently started sending out a weekly newsletter.
+    We hope you’ve been enjoying these peeks into the stuff that our site has to offer,
+    but we want to make sure that you’re REALLY enjoying these newsletters.
+  </p>
+  <p>
+    If you <strong>don’t wish to receive these newsletters</strong>, please let us know by
+    <strong>
+      {{ link_to('CLICKING HERE', "@auto_login?hash=#{oCollector.autoLoginHash}&r=#{url_for('@mycq_profile_email_preferences?newsletter=0&opt_out=1', false) | url_encode}", {absolute: true}) }}
+    </strong>,
+    and we won't send you these weekly updates.
+  </p>
+  <p>
+    Otherwise, you’ll continue to receive our weekly news until you click ‘unsubscribe’ at the bottom of
+    any one of these newsletters... though we’d hate for you to miss it if we feature your collection!
+  </p>
+{% endblock %}
