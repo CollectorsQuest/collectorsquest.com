@@ -26,8 +26,7 @@ class FrontendCollectorCollectionQuery extends CollectorCollectionQuery
 
   public function hasCollectibles()
   {
-    return $this
-      ->filterByNumItems(0, Criteria::GREATER_THAN)
+    return parent::hasCollectibles()
       ->useCollectionCollectibleQuery()
         ->filterByIsPublic(true)
       ->endUse();
