@@ -132,6 +132,16 @@ class collectorActions extends cqFrontendActions
           && $this->getUser()->getCollector()->getHasCompletedRegistration(),
       '@mycq');
 
+    // if we are comming from seller signup page, and the user
+    // has selected package to pay for after sign up we need to save it here
+    if ($request->hasParameter('preselect_package'))
+    {
+      $this->getUser()->setAttribute(
+        'preselected_seller_package',
+        $request->getParameter('preselect_package')
+      );
+    }
+
     $this->form = new CollectorSignupStep1Form();
 
     if (sfRequest::POST == $request->getMethod())
@@ -157,6 +167,17 @@ class collectorActions extends cqFrontendActions
 
         // authenticate the collector and redirect to @mycq_profile
         $this->getUser()->Authenticate(true, $collector, false);
+
+        if ($this->getUser()->hasAttribute('preselected_seller_package'))
+        {
+          $package = $this->getUser()->getAttribute('preselected_seller_package');
+          $this->getUser()->getAttributeHolder()->remove('preselected_seller_package');
+
+          return $this->redirect(array(
+              'sf_route' =>'seller_packages',
+              'package' => $package
+          ));
+        }
 
         return $this->redirect('@mycq_profile');
       }
