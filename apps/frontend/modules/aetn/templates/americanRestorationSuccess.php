@@ -26,7 +26,7 @@
 
 <?php
   cq_page_title(
-    'Collectibles Seen on <strong><i>American Restoration</i></strong>', null,
+    'Collectibles Seen on <strong><i>AMERICAN RESTORATION</i></strong>™', null,
     array('class' => 'row-fluid header-bar spacer-bottom-15')
   );
 ?>

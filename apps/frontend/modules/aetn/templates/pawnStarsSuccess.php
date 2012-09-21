@@ -29,7 +29,7 @@
 
 <?php
   cq_page_title(
-    'Collectibles Seen on <strong><i>Pawn Stars</i></strong>', null,
+    'Collectibles Seen on <strong><i>PAWN STARS</i></strong>', null,
     array('class' => 'row-fluid header-bar spacer-bottom-15')
   );
 ?>
