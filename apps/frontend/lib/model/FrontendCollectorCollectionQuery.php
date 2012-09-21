@@ -23,4 +23,13 @@ class FrontendCollectorCollectionQuery extends CollectorCollectionQuery
 
     return $query;
   }
+
+  public function hasCollectibles()
+  {
+    return $this
+      ->filterByNumItems(0, Criteria::GREATER_THAN)
+      ->useCollectionCollectibleQuery()
+        ->filterByIsPublic(true)
+      ->endUse();
+  }
 }
