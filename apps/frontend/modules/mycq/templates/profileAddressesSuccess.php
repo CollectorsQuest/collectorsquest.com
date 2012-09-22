@@ -32,6 +32,13 @@
                   ?>
 
                   <fieldset class="pull-right form-container-center">
+                    <span>
+                      <?php if ($address->getIsPrimary()): ?>
+                      <strong class="text-success">This your primary address</strong>
+                      <?php else: ?>
+                      <?= link_to('Click here', 'mycq_profile_addresses_make_primary', $address); ?> to make this your primary address.
+                      <?php endif; ?>
+                    </span>
                     <div class="form-actions">
                       <?php
                         echo link_to('Edit Address',
@@ -53,13 +60,6 @@
                         );
                       ?>
                     </div>
-                    <span>
-                      <?php if ($address->getIsPrimary()): ?>
-                      <strong class="text-success">This your primary address</strong>
-                      <?php else: ?>
-                      <?= link_to('Click here', 'mycq_profile_addresses_make_primary', $address); ?> to make this your primary address.
-                      <?php endif; ?>
-                    </span>
                   </fieldset>
 
                 </div> <!-- .address-data -->
