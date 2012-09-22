@@ -785,7 +785,7 @@ class _sidebarComponents extends cqFrontendComponents
       $q
         ->filterById($this->ids, Criteria::IN)
         ->addAscendingOrderByColumn(
-          'FIELD(id, ' . implode(',', $this->ids) . ')'
+          'FIELD(wp_post.id, ' . implode(',', $this->ids) . ')'
         );
     }
 
