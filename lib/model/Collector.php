@@ -1446,37 +1446,29 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
   }
 
   /**
-   * Returns the number of related public CollectorCollection objects.
+   * Returns the number of related FrontendCollectorCollection objects.
    *
    * @return int
    */
-  public function countPublicCollectorCollections()
+  public function countFrontendCollectorCollections()
   {
-    $q = CollectorCollectionQuery::create();
-    $q->filterByIsPublic(true);
-    return $this->countCollectorCollections($q);
+    return FrontendCollectorCollectionQuery::create()
+      ->filterByCollector($this)
+      ->count();
   }
 
   /**
-   * This is a shortcut method to be able to do stuff like:
+   * Returns the number of related FrontendCollectorCollection objects.
    *
-   *    $collector->getQuery('FrontendCollectionCollectible')->count()
-   *
-   * Notice that no checks are enforced on the $name or
-   * whether the resulting Query object has filterByCollector method
-   *
-   * @param  string  $name
-   * @return ModelCriteria
+   * @return int
    */
-  public function getQuery($name)
+  public function countFrontendCollectionCollectibles()
   {
-    if ($q = call_user_func(array($name . 'Query', 'create')))
-    {
-      $q->filterByCollector($this);
-    }
-
-    return $q;
+    return FrontendCollectionCollectibleQuery::create()
+      ->filterByCollector($this)
+      ->count();
   }
+
 }
 
 sfPropelBehavior::add('Collector', array('IceMultimediaBehavior'));

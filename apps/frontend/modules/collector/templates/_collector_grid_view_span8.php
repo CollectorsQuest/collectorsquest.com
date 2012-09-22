@@ -55,7 +55,11 @@
     <div class="span3">
       <span class="stat-area spacer-bottom">
         <?php
-          $count = $collector->getQuery('FrontendCollectorCollection')->count();
+          $q = FrontendCollectorCollectionQuery::create()
+            ->filterByCollector($collector)
+            ->hasCollectibles();
+          $count = $q->count();
+
           echo format_number_choice(
             '[0] No <span>COLLECTIONS</span>|[1] 1 <span>COLLECTION</span>|(1,+Inf] %1% <span>COLLECTIONS</span>',
             array('%1%' => number_format($count)), $count
@@ -64,7 +68,11 @@
       </span>
       <span class="stat-area">
         <?php
-          $count = $collector->getQuery('FrontendCollectionCollectible')->count();
+          $q = FrontendCollectibleQuery::create()
+            ->filterByCollector($collector)
+            ->isPartOfCollection();
+          $count = $q->count();
+
           echo format_number_choice(
             '[0] No <span>COLLECTIBLES</span>|[1] 1 <span>COLLECTIBLE</span>|(1,+Inf] %1% <span>COLLECTIBLES</span>',
             array('%1%' => number_format($count)), $count
