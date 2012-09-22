@@ -177,4 +177,23 @@ class aetnActions extends cqFrontendActions
     return sfView::SUCCESS;
   }
 
+  public function executeMwba()
+  {
+    return sfView::SUCCESS;
+  }
+
+  public function executeMwbaPetroliana()
+  {
+    return sfView::SUCCESS;
+  }
+
+  public function executeMwbaRooseveltiana()
+  {
+    return sfView::SUCCESS;
+  }
+
+  public function executeMwbaRailroadiana()
+  {
+    return sfView::SUCCESS;
+  }
 }

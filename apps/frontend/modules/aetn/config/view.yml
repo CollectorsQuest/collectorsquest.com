@@ -19,6 +19,26 @@ pickedOffSuccess:
   components:
     sidebar_300: [aetn, sidebarPickedOff]
 
+mwbaSuccess:
+  components:
+    breadcrumbs: []
+    footer: []
+
+mwbaPetrolianaSuccess:
+  components:
+    breadcrumbs: []
+    footer: []
+
+mwbaRooseveltianaSuccess:
+  components:
+    breadcrumbs: []
+    footer: []
+
+mwbaRailroadianaSuccess:
+  components:
+    breadcrumbs: []
+    footer: []
+
 storageWarsSuccess:
   components:
     sidebar_300: [aetn, sidebarStorageWars]

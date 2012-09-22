@@ -33,6 +33,10 @@ all:
         name: Picked Off™
         collector: 13389
         collection: 3751
+      mwba:
+        name: The Men Who Built America
+        collector: -1
+        collection: -1
       storage_wars:
         name: Storage Wars™
         collector: -1
