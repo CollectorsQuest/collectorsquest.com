@@ -6,7 +6,13 @@ class FrontendCollectibleQuery extends CollectibleQuery
   {
     if ($criteria instanceof FrontendCollectibleQuery)
     {
-      return $criteria->filterByIsPublic(true);
+      /**
+       * By default we want to only show public Collectibles
+       * which are part of a Collection
+       */
+      return $criteria
+        ->filterByIsPublic(true)
+        ->isPartOfCollection();
     }
 
     $query = new FrontendCollectibleQuery();
@@ -19,8 +25,13 @@ class FrontendCollectibleQuery extends CollectibleQuery
       $query->mergeWith($criteria);
     }
 
-    // By default we want to only show public Collections
-    $query->filterByIsPublic(true);
+    /**
+     * By default we want to only show public Collectibles
+     * which are part of a Collection
+     */
+    $query
+      ->filterByIsPublic(true)
+      ->isPartOfCollection();
 
     return $query;
   }
