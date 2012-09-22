@@ -6,8 +6,9 @@ class FrontendCollectibleQuery extends CollectibleQuery
   {
     if ($criteria instanceof FrontendCollectibleQuery)
     {
-      return $criteria;
+      return $criteria->filterByIsPublic(true);
     }
+
     $query = new FrontendCollectibleQuery();
     if (null !== $modelAlias)
     {
