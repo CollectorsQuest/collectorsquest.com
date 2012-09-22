@@ -2,6 +2,12 @@
 
 class FrontendCollectorCollectionQuery extends CollectorCollectionQuery
 {
+  /**
+   * @param null $modelAlias
+   * @param null $criteria
+   *
+   * @return CollectorCollectionQuery|FrontendCollectorCollectionQuery
+   */
   public static function create($modelAlias = null, $criteria = null)
   {
     if ($criteria instanceof FrontendCollectorCollectionQuery)
@@ -24,11 +30,15 @@ class FrontendCollectorCollectionQuery extends CollectorCollectionQuery
     return $query;
   }
 
+  /**
+   * @return FrontendCollectorCollectionQuery|CollectorCollectionQuery
+   */
   public function hasCollectibles()
   {
     return parent::hasCollectibles()
       ->useCollectionCollectibleQuery()
         ->filterByIsPublic(true)
-      ->endUse();
+      ->endUse()
+      ->groupBy('Id');
   }
 }
