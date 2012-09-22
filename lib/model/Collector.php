@@ -1456,6 +1456,27 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
     $q->filterByIsPublic(true);
     return $this->countCollectorCollections($q);
   }
+
+  /**
+   * This is a shortcut method to be able to do stuff like:
+   *
+   *    $collector->getQuery('FrontendCollectionCollectible')->count()
+   *
+   * Notice that no checks are enforced on the $name or
+   * whether the resulting Query object has filterByCollector method
+   *
+   * @param  string  $name
+   * @return ModelCriteria
+   */
+  public function getQuery($name)
+  {
+    if ($q = call_user_func(array($name . 'Query', 'create')))
+    {
+      $q->filterByCollector($this);
+    }
+
+    return $q;
+  }
 }
 
 sfPropelBehavior::add('Collector', array('IceMultimediaBehavior'));

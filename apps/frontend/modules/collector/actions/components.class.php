@@ -77,7 +77,7 @@ class collectorComponents extends cqFrontendComponents
 
     /** @var $q FrontendCollectorCollectionQuery */
     $q = FrontendCollectorCollectionQuery::create()
-      ->addJoin(CollectorCollectionPeer::ID, CollectionCollectiblePeer::COLLECTION_ID, Criteria::RIGHT_JOIN);
+      ->hasCollectibles();
 
     $q->filterByCollector($collector)
       ->orderByCreatedAt(Criteria::DESC)
