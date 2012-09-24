@@ -43,7 +43,7 @@ class commentsActions extends cqFrontendActions
                       'oNewComment' => $comment,
                       'sThreadUrl' => $request->getReferer(),
                       'sCommentRemoveUrl' => $this->getController()->genUrl(array(
-                          'sf_route' => 'comments_delete',
+                          'sf_route' => 'comments_hide',
                           'sf_subject' => $comment,
                         ), true),
                   ),
