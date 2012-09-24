@@ -37,6 +37,6 @@
 [submodule "plugins/iceSEOPlugin"]
 	path = plugins/iceSEOPlugin
 	url = git@github.com:CollectorsQuest/iceSEOPlugin.git
-[submodule "plugins/fpErrorNotifierPlugin"]
-	path = plugins/fpErrorNotifierPlugin
-	url = git@github.com:CollectorsQuest/fpErrorNotifierPlugin.git
+[submodule "plugins/cqErrorNotifierPlugin"]
+	path = plugins/cqErrorNotifierPlugin
+	url = git@github.com:CollectorsQuest/cqErrorNotifierPlugin.git

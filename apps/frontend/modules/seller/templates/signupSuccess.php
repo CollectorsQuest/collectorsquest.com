@@ -64,16 +64,16 @@
     </div>
     <div class="row-fluid spacer-top-20">
       <div class="span3 text-center">
-        <?= link_to('Sign up now', '@collector_signup', array('class' => 'btn btn-primary')); ?>
+        <?= link_to('Sign up now', '@collector_signup?preselect_package=1', array('class' => 'btn btn-primary')); ?>
       </div>
       <div class="span3 text-center">
-        <?= link_to('Sign up now', '@collector_signup', array('class' => 'btn btn-primary')); ?>
+        <?= link_to('Sign up now', '@collector_signup?preselect_package=2', array('class' => 'btn btn-primary')); ?>
       </div>
       <div class="span3 text-center">
-        <?= link_to('Sign up now', '@collector_signup', array('class' => 'btn btn-primary')); ?>
+        <?= link_to('Sign up now', '@collector_signup?preselect_package=3', array('class' => 'btn btn-primary')); ?>
       </div>
       <div class="span3 text-center">
-        <?= link_to('Sign up now', '@collector_signup', array('class' => 'btn btn-primary')); ?>
+        <?= link_to('Sign up now', '@collector_signup?preselect_package=6', array('class' => 'btn btn-primary')); ?>
       </div>
     </div>
   </div>

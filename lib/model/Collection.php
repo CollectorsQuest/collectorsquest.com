@@ -11,13 +11,25 @@ require 'lib/model/om/BaseCollection.php';
  */
 class Collection extends BaseCollection
 {
-  public
-    $_multimedia = array(),
-    $_counts = array();
+  /** @var array */
+  public $_multimedia = array();
+
+  /** @var array */
+  public $_counts = array();
+
+  /**
+   * @param PropelPDO $con
+   */
+  public function postSave(PropelPDO $con = null)
+  {
+    parent::postSave($con);
+
+    $this->updateIsPublic($con);
+  }
 
   public function getTagString()
   {
-    return implode(", ", $this->getTags());
+    return implode(', ', $this->getTags());
   }
 
   public function getTagIds()
@@ -43,7 +55,7 @@ class Collection extends BaseCollection
        ->addSelectColumn('Id');
 
     /** @var $stmt PDOStatement */
-    $stmt = $q->find();
+    $stmt = $q->find($con);
 
     return $stmt->fetchAll(PDO::FETCH_COLUMN);
   }
@@ -95,7 +107,9 @@ class Collection extends BaseCollection
         $c->add(CollectorCollectionPeer::COLLECTOR_ID, $collector->getId(), Criteria::NOT_EQUAL);
         $c->addAscendingOrderByColumn('RAND()');
 
-        $collections = array_merge($collections, CollectorCollectionPeer::getRelatedCollections($collector, $limit, $c));
+        $collections = array_merge(
+          $collections, CollectorCollectionPeer::getRelatedCollections($collector, $limit, $c)
+        );
       }
     }
 
@@ -186,6 +200,7 @@ class Collection extends BaseCollection
     $stmt = $con->prepare('
       SELECT COUNT(collectible_id)
         FROM `collection_collectible`
+        RIGHT JOIN `collectible` ON (collectible.id = collection_collectible.collectible_id)
        WHERE collection_collectible.COLLECTION_ID = :p1
     ');
     $stmt->bindValue(':p1', $this->getId());
@@ -239,5 +254,79 @@ class Collection extends BaseCollection
     }
 
     return parent::preDelete($con);
+  }
+
+  /**
+   * Code to be run before persisting the object
+   *
+   * @param PropelPDO $con
+   * @return boolean
+   */
+  public function preSave(PropelPDO $con = null)
+  {
+    return parent::preSave($con);
+  }
+
+  /**
+   * Gets an array of CollectionCollectible objects which contain a foreign key that references this object
+   * and public flag set to true.
+   *
+   * @param int $limit
+   * @return array|PropelCollection
+   */
+  public function getPublicCollectionCollectibles($limit = null)
+  {
+    $q = CollectionCollectibleQuery::create();
+    $q->useCollectibleQuery()
+      ->filterByIsPublic(true)
+      ->endUse();
+
+    if ($limit)
+    {
+      $q->setLimit($limit);
+    }
+
+    return $this->getCollectionCollectibles($q);
+  }
+
+  public function updateIsPublic(PropelPDO $con = null)
+  {
+    if ($con === null)
+    {
+      $con = Propel::getConnection(
+        CollectionPeer::DATABASE_NAME, Propel::CONNECTION_WRITE
+      );
+    }
+
+    // Start with the current public status of the Collection
+    $is_public = $this->getIsPublic();
+
+    // We want to enforce the public status only on records after 15th of September, 2012
+    if ($this->getCreatedAt('U') > 1347667200 || $is_public === false)
+    {
+      if (!$this->getName())
+      {
+        $is_public = false;
+      }
+      else if (!$this->getDescription())
+      {
+        $is_public = false;
+      }
+      else
+      {
+        $is_public = true;
+      }
+    }
+
+    // Update only if there is a change of the public status
+    if ($is_public !== $this->getIsPublic())
+    {
+      $sql = sprintf(
+        'UPDATE %s SET %s = %d WHERE %s = %d',
+        CollectionPeer::TABLE_NAME, CollectionPeer::IS_PUBLIC, $is_public,
+        CollectionPeer::ID, $this->getId()
+      );
+      $con->exec($sql);
+    }
   }
 }

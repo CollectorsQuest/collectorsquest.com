@@ -23,6 +23,16 @@ class collectorActions extends cqFrontendActions
     $this->collector = $collector;
     $this->profile   = $profile;
 
+    /** @var $q FrontendCollectorCollectionQuery */
+    $q = FrontendCollectorCollectionQuery::create()
+      ->hasCollectibles()
+      ->filterByCollector($collector);
+    $this->collectionsCount = $q->count();
+
+    $q = FrontendCollectionCollectibleQuery::create()
+      ->filterByCollector($collector);
+    $this->collectiblesCount = $q->count();
+
     $this->i_collect_tags = $collector->getICollectTags();
 
     // Set the OpenGraph meta tags
@@ -41,7 +51,7 @@ class collectorActions extends cqFrontendActions
     if (empty($about_me))
     {
       // if user has a few collectibles we don't want to display them
-      $collectibles = $collector->countCollectiblesInCollections();
+      $collectibles = $this->collectiblesCount;
       if ($collectibles < 25)
       {
         $meta_description = sprintf(
@@ -124,6 +134,16 @@ class collectorActions extends cqFrontendActions
           && $this->getUser()->getCollector()->getHasCompletedRegistration(),
       '@mycq');
 
+    // if we are comming from seller signup page, and the user
+    // has selected package to pay for after sign up we need to save it here
+    if ($request->hasParameter('preselect_package'))
+    {
+      $this->getUser()->setAttribute(
+        'preselected_seller_package',
+        $request->getParameter('preselect_package')
+      );
+    }
+
     $this->form = new CollectorSignupStep1Form();
 
     if (sfRequest::POST == $request->getMethod())
@@ -149,6 +169,17 @@ class collectorActions extends cqFrontendActions
 
         // authenticate the collector and redirect to @mycq_profile
         $this->getUser()->Authenticate(true, $collector, false);
+
+        if ($this->getUser()->hasAttribute('preselected_seller_package'))
+        {
+          $package = $this->getUser()->getAttribute('preselected_seller_package');
+          $this->getUser()->getAttributeHolder()->remove('preselected_seller_package');
+
+          return $this->redirect(array(
+              'sf_route' =>'seller_packages',
+              'package' => $package
+          ));
+        }
 
         return $this->redirect('@mycq_profile');
       }

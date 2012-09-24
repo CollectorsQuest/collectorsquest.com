@@ -153,6 +153,8 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
       CollectorPeer::PROPERTY_PREFERENCES_INVITE_ONLY_DEFAULT);
     $this->registerProperty(CollectorPeer::PROPERTY_PREFERENCES_NEWSLETTER,
       CollectorPeer::PROPERTY_PREFERENCES_NEWSLETTER_DEFAULT);
+    $this->registerProperty(CollectorPeer::PROPERTY_PREFERENCES_NEWSLETTER_OPT_OUT,
+      CollectorPeer::PROPERTY_PREFERENCES_NEWSLETTER_OPT_OUT_DEFAULT);
 
     $this->registerProperty(CollectorPeer::PROPERTY_NOTIFICATIONS_COMMENT,
       CollectorPeer::PROPERTY_NOTIFICATIONS_COMMENT_DEFAULT);
@@ -1495,6 +1497,30 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
   public function getFeedDescription()
   {
     return $this->getProfile()->getAboutMe();
+  }
+
+  /**
+   * Returns the number of related FrontendCollectorCollection objects.
+   *
+   * @return int
+   */
+  public function countFrontendCollectorCollections()
+  {
+    return FrontendCollectorCollectionQuery::create()
+      ->filterByCollector($this)
+      ->count();
+  }
+
+  /**
+   * Returns the number of related FrontendCollectorCollection objects.
+   *
+   * @return int
+   */
+  public function countFrontendCollectionCollectibles()
+  {
+    return FrontendCollectionCollectibleQuery::create()
+      ->filterByCollector($this)
+      ->count();
   }
 
 }

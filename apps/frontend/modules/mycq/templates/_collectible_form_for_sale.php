@@ -13,7 +13,9 @@
     <label class="cb-disable selected" for="<?= $form['is_ready']->renderId() ?>">
       <span>No</span>
     </label>
-    <?= $form['is_ready']->render(array('class' => 'checkbox hide')); ?>
+    <div class="visuallyhidden">
+      <?= $form['is_ready']->render(array('class' => 'checkbox', 'tabindex'=>'-1')); ?>
+    </div>
   </div>
   <br style="clear: both;"/>
   <?= $form['is_ready']->renderError(); ?>
