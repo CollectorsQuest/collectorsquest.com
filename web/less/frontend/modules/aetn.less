@@ -18,21 +18,30 @@
 
 .mwba-wrapper {
   position: relative;
-  .size(712px, 980px);
-  background: url("@{baseUrl}/misc/mwba-landing-page-bg.jpg") no-repeat top center;
+  .size(702px, 980px);
+  margin-top: 10px;
+  background: url("@{baseUrl}/misc/mwba-landing-page-bg.jpg") no-repeat 0 18px;
 
+  .top-banner {
+    position: absolute;
+    z-index: 2;
+    margin-left: 137px;
+  }
   .labels-ribbons {
     position: absolute;
-    top: 424px;
-    left: 187px;
-    .size(126px, 624px);
-
+    top: 396px;
+    left: 182px;
+    .size(150px, 624px);
+  }
+  .center-graphic {
+    padding-top: 68px;
+    padding-left: 130px;
   }
   .banner {
     position: absolute;
-    top: 585px;
-    left: 320px;
     display: block;
+    bottom: 54px;
+    left: 320px;
   }
 }
 
@@ -42,15 +51,10 @@
   background: url("@{baseUrl}/misc/mwba-sprites.png") no-repeat;
 }
 
-.vanderbilt_button {
-  .size(126px, 210px);
-  background-position: -425px 0;
-  &:hover {
-    background-position: -425px -130px;
-  }
-}
-
 .rockefeller_button {
+  position: relative;
+  top: 10px;
+  left: 2px;
   .size(126px, 211px);
   background-position: 0 0;
   &:hover {
@@ -65,5 +69,18 @@
     background-position: -219px -130px;
   }
 }
+.vanderbilt_button {
+  position: relative;
+  top: 12px;
+  right: 2px;
+  .size(126px, 210px);
+  background-position: -425px 0;
+  &:hover {
+    background-position: -425px -130px;
+  }
+}
+
+
+
 
 
