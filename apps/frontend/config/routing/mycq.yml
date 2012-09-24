@@ -200,3 +200,12 @@ messages_compose:
 messages_batch_actions:
   url:   /messages/batch-actions
   param: { module: messages, action: batchActions }
+
+### SELL/BUY FEEDBACK
+mycq_collectible_feedback_leave:
+  url:    /mycq/feedback/leave/:id
+  param:  { module: mycq, action: leaveFeedback }
+
+mycq_feedback_leave:
+  url:    /mycq/feedback/leave
+  param:  { module: mycq, action: leaveFeedback }

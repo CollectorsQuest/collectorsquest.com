@@ -132,6 +132,12 @@
             </div>
           <?php endif; ?>
         </td>
+        <?php
+        include_partial(
+          'mycq/partials/collectible_feedback',
+          array('collectible' => $collectible)
+        );
+        ?>
       </tr>
     </table>
   </div>

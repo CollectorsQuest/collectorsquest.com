@@ -1456,6 +1456,36 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
     $q->filterByIsPublic(true);
     return $this->countCollectorCollections($q);
   }
+
+  /**
+   * @param string $rate
+   * @return int
+   */
+  public function getFeedbackCount($rate = null)
+  {
+    $q = CollectorRatingQuery::create();
+    $q->add(CollectorRatingPeer::IS_RATED, true);
+    if ($rate)
+    {
+      $q->filterByRate($rate);
+    }
+    return $this->countCollectorRatingsRelatedByToCollectorId($q);
+  }
+
+  /**
+   * Get positive feedback percentage
+   * @return int
+   */
+  public function getPosFeedbackPercentage()
+  {
+    $criteria = new Criteria();
+    $criteria->add(CollectorRatingPeer::IS_RATED, true);
+    $total =  $this->countCollectorRatingsRelatedByToCollectorId($criteria);
+    $criteria->add(CollectorRatingPeer::RATE, CollectorRatingPeer::RATE_POSITIVE);
+    $positive = $this->countCollectorRatingsRelatedByToCollectorId($criteria);
+
+    return round(($positive/$total) * 100)  ;
+  }
 }
 
 sfPropelBehavior::add('Collector', array('IceMultimediaBehavior'));

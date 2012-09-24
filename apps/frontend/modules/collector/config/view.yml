@@ -8,3 +8,7 @@ indexSuccess:
 signupSuccess:
   components:
     footer: []
+
+allFeedbackSuccess:
+  components:
+    sidebar_300: [collector, sidebarIndex]

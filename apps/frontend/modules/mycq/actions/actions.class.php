@@ -1009,4 +1009,108 @@ class mycqActions extends cqFrontendActions
     return sfView::SUCCESS;
   }
 
+
+  public function executeLeaveFeedback(sfWebRequest $request)
+  {
+    $this->tab = null;
+    /* @var $q CollectorRatingQuery */
+    $q = CollectorRatingQuery::create()
+      ->filterByCollectorRelatedByFromCollectorId($this->getUser()->getCollector())
+      ->filterByIsRated(false);
+
+    if ($request->getParameter('id'))
+    {
+      $q->filterById((int) $request->getParameter('id'));
+      $this->collector_rating = $q->findOne();
+      if (!$this->collector_rating)
+      {
+        return $this->redirect('mycq_collectible_by_slug',
+          CollectorRatingPeer::retrieveByPK((int) $request->getParameter('id'))->getCollectible());
+      }
+      $collector_ratings = array($this->collector_rating);
+      $this->tab = $this->collector_rating->getCollectible()->getName();
+    }
+    else
+    {
+      $pager = new PropelModelPager($q, 5);
+      $pager->setPage($this->getRequestParameter('page', 1));
+      $pager->init();
+      /** @var $collector_ratings CollectorRating */
+      $collector_ratings = $pager->getResults();
+      $this->pager = $pager;
+    }
+
+    $success = false;
+    $forms = array();
+    foreach ($collector_ratings as $collector_rating)
+    {
+      $collector_rating->setRate(null);
+      $form = new CollectorRatingForm($collector_rating);
+      $f_name = $form->getName();
+      $form->getWidgetSchema()
+        ->setNameFormat($f_name . '[' . $collector_rating->getId(). '][%s]');
+      if ($request->isMethod(sfWebRequest::POST))
+      {
+        /** @var $collector_rating CollectorRating  */
+        $collector_rating->setIsRated(true);
+        /** @var $p array */
+        $p = $request->getParameter($f_name);
+        if (isset($p[$collector_rating->getId()]))
+        {
+          // skip feedbacks that left for later
+          if ($p[$collector_rating->getId()]['rate'] != '')
+          {
+            // leave only forms with errors
+            if ($form->bindAndSave($p[$collector_rating->getId()]))
+            {
+              $success = true;
+            }
+            else
+            {
+              $forms[] = $form;
+            }
+          }
+          // single item
+          elseif (isset($this->collector_rating))
+          {
+            return $this->redirect('mycq_collectible_by_slug', $this->collector_rating->getCollectible());
+          }
+        }
+      }
+      else
+      {
+        $forms[] = $form;
+      }
+    }
+    if ($request->isMethod(sfWebRequest::POST))
+    {
+      // we have at least one feedback
+      if ($success)
+      {
+        $this->getUser()->setFlash(
+          'success', 'Thank you for your feedback(s).'
+        );
+      }
+
+        // we have forms with error
+      if (count($forms) && count($forms) != count($collector_ratings))
+      {
+        $this->tab = 'Current';
+      }
+      else
+      {
+        if (isset($this->collector_rating))
+        {
+          return $this->redirect('mycq_collectible_by_slug', $this->collector_rating->getCollectible());
+        }
+        else
+        {
+          return $this->redirect('@mycq_feedback_leave');
+        }
+      }
+
+    }
+    $this->forms = $forms;;
+    return sfView::SUCCESS;
+  }
 }

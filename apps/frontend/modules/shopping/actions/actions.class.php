@@ -623,6 +623,24 @@ class shoppingActions extends cqFrontendActions
           $this->getUser()->setOwnerOf($shopping_order);
         }
 
+        // Create new ratings records
+        $seller_rate = new CollectorRating();
+        $seller_rate
+          ->setFromCollectorId($shopping_order->getCollectorId())
+          ->setToCollectorId($shopping_order->getSellerId())
+          ->setRateFor(CollectorRatingPeer::RATE_FOR_SELLER)
+          ->setCollectibleId($shopping_order->getCollectibleId())
+          ->save();
+
+        $buyer_rate = new CollectorRating();
+        $buyer_rate
+          ->setFromCollectorId($shopping_order->getSellerId())
+          ->setToCollectorId($shopping_order->getCollectorId())
+          ->setRateFor(CollectorRatingPeer::RATE_FOR_BUYER)
+          ->setCollectibleId($shopping_order->getCollectibleId())
+          ->save();
+
+
         $cqEmail = new cqEmail($this->getMailer());
         $cqEmail->send('Shopping/buyer_order_confirmation', array(
           'to' => $shopping_order->getBuyerEmail(),
