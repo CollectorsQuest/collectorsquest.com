@@ -17,6 +17,11 @@ class commentsComponents extends cqFrontendComponents
   {
     $this->checkForObjectIsValid();
 
+    if (!isset($this->with_controls))
+    {
+      $this->with_controls = $this->getUser()->isOwnerOf($this->for_object);
+    }
+
     $this->comments = CommentQuery::create()
       ->filterByModelObject($this->for_object)
       ->leftJoinCollector()
