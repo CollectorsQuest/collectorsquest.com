@@ -1,11 +1,12 @@
 <?php
-  /** @var $for_object BaseObject */
-  /** @var $comments Comment[] */
+  /* @var $for_object BaseObject */
+  /* @var $comments Comment[] */
+  /* @var $with_controls */
 ?>
 
 <div class="user-comments">
   <?php foreach ($comments as $comment): ?>
-    <?php include_partial('comments/single_comment', array('comment' => $comment, 'height' => &$height)); ?>
+    <?php include_partial('comments/single_comment', array('comment' => $comment, 'height' => &$height, 'with_controls' => $with_controls)); ?>
   <?php endforeach; ?>
 </div>
 

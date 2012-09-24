@@ -1,3 +1,8 @@
+<?php
+  /* @var $for_object BaseObject */
+  /* @var $with_controls boolean */
+?>
+
 <div id="comments">
   <?php include_component('comments', 'addComment', array('for_object' => $for_object)); ?>
   <?php
@@ -23,5 +28,5 @@
     </div>
   <?php endif; ?>
 
-  <?php include_component('comments', 'showComments', array('for_object' => $for_object, 'height' => &$height)); ?>
+  <?php include_component('comments', 'showComments', array('for_object' => $for_object, 'height' => &$height, 'with_controls' => $with_controls)); ?>
 </div>

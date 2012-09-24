@@ -25,14 +25,14 @@ class commentsActions extends cqFrontendActions
         {
           if (method_exists($comment->getModelObject(), 'getCollector'))
           {
-            /** @var $owner Collector */
+            /* @var $owner Collector */
             $owner = $comment->getModelObject()->getCollector();
 
             // if the user is not authenticated or not the owner of the object being
             // commented on and wants to receive comment notifications
             if (
               !$this->getUser()->isAuthenticated() ||
-              ($this->getCollector()->getId() != $owner->getId() && $owner->getNotificationsComment())
+              ($owner->equals($this->getCollector()) && $owner->getNotificationsComment())
             )
             {
               $ret = $cqEmail->send('Comments/new_comment_on_owned_item_notification', array(
@@ -51,7 +51,7 @@ class commentsActions extends cqFrontendActions
             }
           }
 
-          /** @var $notify_comments Comment[] */
+          /* @var $notify_comments Comment[] */
           $notify_comments = CommentQuery::create()
             ->filterByModelObject($comment->getModelObject())
             ->filterByIsNotify(true)
@@ -147,13 +147,13 @@ class commentsActions extends cqFrontendActions
 
     if ($model_object)
     {
-      /** @var $comments PropelObjectCollection */
+      /* @var $comments PropelObjectCollection */
       $comments = CommentQuery::create()
         ->filterByModelObject($model_object)
         ->leftJoinCollector()
         ->find();
 
-      /** @var $comment Comment */
+      /* @var $comment Comment */
       foreach ($comments as $comment)
       {
         if (urldecode($request->getParameter('email')) == $comment->getEmail())
@@ -173,6 +173,108 @@ class commentsActions extends cqFrontendActions
   }
 
   /**
+   * A separate manage page for users with javascript disabled
+   */
+  public function executeManage(cqWebRequest $request)
+  {
+    /* @var $comment Comment */
+    $comment = $this->getRoute()->getObject();
+
+    $this->forward404Unless(
+      // owner of the object that was commented on
+      $this->getUser()->isOwnerOf($comment->getModelObject()) ||
+      // owner of the comment itself
+      $this->getUser()->isOwnerOf($comment)
+    );
+
+    $this->is_object_owner = $this->getUser()->isOwnerOf($comment->getModelObject());
+    $this->comment = $comment;
+
+    return sfView::SUCCESS;
+  }
+
+  /**
+   * Hide a comment (available only to the owner of the object for which
+   * the comment was created)
+   */
+  public function executeHide(cqWebRequest $request)
+  {
+    /* @var $comment Comment */
+    $comment = $this->getRoute()->getObject();
+
+    // forward 404 unless logged in user is owner of the object that was commented on
+    $this->forward404Unless(
+      $this->getUser()->isOwnerOf($comment->getModelObject())
+    );
+
+    if (sfRequest::POST == $request->getMethod())
+    {
+      $comment->setIsHidden(true);
+      $comment->save();
+
+      if ($request->isXmlHttpRequest())
+      {
+        return $this->renderText(json_encode(array(
+            'status' => 'success',
+        )));
+      }
+      else
+      {
+        $this->getUser()->setFlash('comment_success', 'Comment successfully hidden.');
+
+        return $this->redirect(
+          $this->getController()->genUrlForModelObject($comment).'#comments'
+        );
+      }
+    }
+
+    $this->comment = $comment;
+
+    return sfView::SUCCESS;
+  }
+
+  /**
+   * Unhide a comment (available only to the owner of the object for which
+   * the comment was created)
+   */
+  public function executeUnhide(cqWebRequest $request)
+  {
+    /* @var $comment Comment */
+    $comment = $this->getRoute()->getObject();
+
+    // forward 404 unless logged in user is owner of the object that was commented on
+    $this->forward404Unless(
+      $this->getUser()->isOwnerOf($comment->getModelObject())
+    );
+
+    if (sfRequest::POST == $request->getMethod())
+    {
+      $comment->setIsHidden(false);
+      $comment->save();
+
+      if ($request->isXmlHttpRequest())
+      {
+        return $this->renderText(json_encode(array(
+            'status' => 'success',
+        )));
+      }
+      else
+      {
+        $this->getUser()->setFlash('comment_success', 'Comment successfully unhidden.');
+
+        return $this->redirect(
+          $this->getController()->genUrlForModelObject($comment)
+          .'#comment-'.$comment->getId()
+        );
+      }
+    }
+
+    $this->comment = $comment;
+
+    return sfView::SUCCESS;
+  }
+
+  /**
    * Delete a comment if the commented object is owned by the currently logged in
    * collector. Orherwize forward 404. A confirmation is requried for the deletion
    *
@@ -180,14 +282,14 @@ class commentsActions extends cqFrontendActions
    */
   public function executeDelete(cqWebRequest $request)
   {
-    /** @var $comment Comment */
+    /* @var $comment Comment */
     $comment = $this->getRoute()->getObject();
 
     $this->forward404Unless(
       // owner of the object that was commented on
-      $this->getCollector()->isOwnerOf($comment->getModelObject()) ||
+      $this->getUser()->isOwnerOf($comment->getModelObject()) ||
       // owner of the comment itself
-      $this->getCollector()->isOwnerOf($comment)
+      $this->getUser()->isOwnerOf($comment)
     );
 
     $form = new CommentDeleteConfirmationForm();
