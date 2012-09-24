@@ -24,6 +24,7 @@ default:
     footer:        [global, footer]
     breadcrumbs:   [global, breadcrumbs]
     slot1:         ~
+    slot2:         ~
 
     sidebar_120:   ~
     sidebar_160:   ~

@@ -147,6 +147,15 @@
   ?>
 
   <?php
+    if (has_component_slot('slot2'))
+    {
+      echo '<div class="slots-container"><div id="slot2">';
+      include_component_slot('slot2', array('sf_cache_key' => $sf_cache_key));
+      echo '</div></div>';
+    }
+  ?>
+
+  <?php
     include_component_slot('footer', array('sf_cache_key' => $sf_cache_key));
     include_partial('global/footer_links');
 

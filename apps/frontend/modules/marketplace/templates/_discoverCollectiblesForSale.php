@@ -21,6 +21,7 @@
   <i class="icon icon-search"></i>&nbsp;
   <?= link_to('Not finding what you are looking for? Click here to find it on our search page!', $url); ?>
 </div>
+<br>
 <?php elseif ($pager->haveToPaginate()): ?>
 <div class="see-more-under-image-set" style="padding: 0; margin-left: 13px;">
   <button class="btn btn-small see-more-full" id="seemore-explore-collectibles">

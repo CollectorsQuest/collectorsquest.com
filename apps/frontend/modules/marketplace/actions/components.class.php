@@ -24,6 +24,11 @@ class marketplaceComponents extends cqFrontendComponents
     return sfView::SUCCESS;
   }
 
+  public function executeIndexSlot2()
+  {
+    return sfView::SUCCESS;
+  }
+
   public function executeDiscoverCollectiblesForSale()
   {
     $q = $this->getRequestParameter('q');
@@ -134,7 +139,7 @@ class marketplaceComponents extends cqFrontendComponents
         ->filterById(null, Criteria::NOT_EQUAL)
         ->orderByCreatedAt(Criteria::DESC)
         ->clearGroupByColumns()
-        ->groupBy('Id');
+        ->groupBy('CollectorId');
 
       $pager = new PropelModelPager($query, 12);
     }
