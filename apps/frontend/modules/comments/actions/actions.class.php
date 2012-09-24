@@ -204,7 +204,8 @@ class commentsActions extends cqFrontendActions
 
     // forward 404 unless logged in user is owner of the object that was commented on
     $this->forward404Unless(
-      $this->getUser()->isOwnerOf($comment->getModelObject())
+      $this->getUser()->isOwnerOf($comment->getModelObject()) &&
+      !$comment->getIsHidden()
     );
 
     if (sfRequest::POST == $request->getMethod())
@@ -244,7 +245,8 @@ class commentsActions extends cqFrontendActions
 
     // forward 404 unless logged in user is owner of the object that was commented on
     $this->forward404Unless(
-      $this->getUser()->isOwnerOf($comment->getModelObject())
+      $this->getUser()->isOwnerOf($comment->getModelObject()) &&
+      $comment->getIsHidden()
     );
 
     if (sfRequest::POST == $request->getMethod())
