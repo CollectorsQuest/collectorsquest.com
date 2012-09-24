@@ -127,7 +127,18 @@
                 Proceed to Checkout
               </button>
               <div class="text-left spacer-top">
-                  or you can send a message to <?= link_to_collector($shopping_order->getSeller(), 'text'); ?>
+                  or you can send a message to
+                  <?php
+                    $seller = $shopping_order->getSeller();
+
+                    echo link_to($seller->getDisplayName(), 'ajax_send_pm',
+                      array(
+                        'to' => (string) $seller->getUsername(),
+                        'item' => $shopping_order_collectible->getCollectible()->getName()
+                      ),
+                      array('class' => 'open-dialog', 'onclick' => 'return false;')
+                    );
+                  ?>
               </div>
             </td>
           </tr>

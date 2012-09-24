@@ -147,6 +147,127 @@ class _ajaxActions extends cqFrontendActions
     }
   }
 
+  public function executeSendPm(sfWebRequest $request)
+  {
+    $form = new ComposePrivateMessageForm($sender = $this->getCollector(), $this->getUser());
+    $form->setDefault('subject', $request->getParameter('subject'));
+
+    // If "to" param is numeric, try to add corresponding Collector username as default
+    $to = $request->getParameter('to');
+    if (is_numeric($to) && $receiver = CollectorPeer::retrieveByPK($to))
+    {
+      $form->setDefault('receiver', $receiver->getUsername());
+    }
+    else
+    {
+      $form->setDefault('receiver', $to);
+    }
+
+    $this->item = $request->getParameter('item');
+    $subject = 'Question about item ' . $this->item;
+
+    $form->setDefault('subject', $subject);
+
+    if (sfRequest::POST == $request->getMethod())
+    {
+      $form->bind($request->getParameter($form->getName()));
+
+      if ($form->isValid())
+      {
+        $receiver = $form->getValue('receiver');
+        $cqEmail = new cqEmail($this->getMailer());
+
+        // if we are sending a message to an actual collector
+        // and the collector wants to receive notifications
+        if ($receiver instanceof Collector && $receiver->getNotificationsMessage())
+        {
+          // then we need to save a message object
+          $message = $form->save();
+
+          // and send it as normal
+          $sent = $cqEmail->send('Messages/private_message_notification', array(
+            'to' => $receiver->getEmail(),
+            'subject' => $subject,
+            'params' => array(
+              'oSender' => $sender,
+              'oReceiver' => $receiver,
+              'oMessage' => $message,
+              'sThreadUrl' => $this->generateUrl('messages_show', $message, true)
+                . '#latest-message',
+            ),
+          ));
+        }
+        else
+        {
+          // so we just notify the recepient and set the reply-to header to
+          // the sender's email
+          $sent = $cqEmail->send('Messages/relay_message_to_unregistered_user', array(
+            'to' => $receiver,
+            'subject' => $subject,
+            'replyTo' => $sender->getEmail(),
+            'params' => array(
+              'oSender' => $sender,
+              'sMessageBody' => $form->getValue('body'),
+            ),
+          ));
+        }
+
+        // if the sender opted for receiving a copy of the message
+        if ($form->getValue('copy_for_sender'))
+        {
+          $cqEmail->send('Messages/private_message_copy_for_sender', array(
+            'to' => $sender->getEmail(),
+            'subject' => $subject,
+            'params' => array(
+              'oSender' => $sender,
+              'sReceiver' => (string) $receiver,
+              'sMessageBody' => $form->getValue('body'),
+            ),
+          ));
+        }
+
+        if ($sent)
+        {
+          $this->getUser()->setFlash(
+            'success_ajax',
+            $this->__(
+              sprintf(
+                'Your message has been sent to %s.',
+                $receiver instanceof Collector
+                  ? $receiver->getDisplayName()
+                  : $receiver
+              ),
+             array(), 'flash'
+            )
+          );
+
+          $this->setTemplate('successFeedback');
+        }
+        else
+        {
+          $this->getUser()->setFlash(
+            'error',
+            $this->__('There are errors in the fields or some are left empty.', array(), 'flash')
+          );
+        }
+
+        return $this->redirect($form->getValue('goto') ?: 'shopping_cart');
+      }
+      else
+      {
+        // Set the error message
+        $this->getUser()->setFlash(
+          'error', $this->__('There is a problem with sending your message.')
+        );
+      }
+    }
+
+    $this->form = $form;
+
+    return sfView::SUCCESS;
+  }
+
+
   public function executeMultimedia(sfWebRequest $request)
   {
     if (!$mutlimedia = iceModelMultimediaQuery::create()->findOneById($request->getParameter('id')))

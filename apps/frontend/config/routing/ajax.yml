@@ -69,3 +69,7 @@ ajax_multimedia:
 ajax_sidebar:
   url:   /ajax/sidebar
   param: { module: _sidebar, action: ajax }
+
+ajax_send_pm:
+  url:   /ajax/send_pm
+  param: { module: _ajax, action: sendPm }
