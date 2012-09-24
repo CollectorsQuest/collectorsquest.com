@@ -4,3 +4,66 @@
 #body-aent-pawnStars .see-more-full {
   margin-top: 0;
 }
+
+#body-aetn-mwba {
+  #content {
+  padding: 0;
+  border-left: none;
+  }
+  .container-fluid.without-column {
+    width: auto;
+    margin: 0;
+  }
+}
+
+.mwba-wrapper {
+  position: relative;
+  .size(712px, 980px);
+  background: url("@{baseUrl}/misc/mwba-landing-page-bg.jpg") no-repeat top center;
+
+  .labels-ribbons {
+    position: absolute;
+    top: 424px;
+    left: 187px;
+    .size(126px, 624px);
+
+  }
+  .banner {
+    position: absolute;
+    top: 585px;
+    left: 320px;
+    display: block;
+  }
+}
+
+.rockefeller_button, .roosevelt_button, .vanderbilt_button {
+  display: block;
+  float: left;
+  background: url("@{baseUrl}/misc/mwba-sprites.png") no-repeat;
+}
+
+.vanderbilt_button {
+  .size(126px, 210px);
+  background-position: -425px 0;
+  &:hover {
+    background-position: -425px -130px;
+  }
+}
+
+.rockefeller_button {
+  .size(126px, 211px);
+  background-position: 0 0;
+  &:hover {
+    background-position: 0 -130px;
+  }
+}
+
+.roosevelt_button {
+  .size(117px, 194px);
+  background-position: -219px 0;
+  &:hover {
+    background-position: -219px -130px;
+  }
+}
+
+
