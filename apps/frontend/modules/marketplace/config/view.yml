@@ -4,6 +4,7 @@ all:
 indexSuccess:
   components:
     sidebar_300: [marketplace, sidebarIndex]
+    slot2: [marketplace, indexSlot2]
 
 browseSuccess:
   components:

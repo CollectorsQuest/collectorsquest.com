@@ -24,6 +24,11 @@ class marketplaceComponents extends cqFrontendComponents
     return sfView::SUCCESS;
   }
 
+  public function executeIndexSlot2()
+  {
+    return sfView::SUCCESS;
+  }
+
   public function executeDiscoverCollectiblesForSale()
   {
     $q = $this->getRequestParameter('q');
