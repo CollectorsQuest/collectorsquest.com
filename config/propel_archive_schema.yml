@@ -190,6 +190,8 @@ classes:
       author_email:    { type: varchar, size: 128 }
       author_url:      { type: varchar, size: 255 }
       is_notify:       { type: boolean, required: true, default: false }
+      is_hidden:       { type: boolean, required: true, default: false }
+      is_spam:         { type: boolean, required: true, default: false }
       subject:         { type: varchar, size: 128 }
       body:            { type: longvarchar, required: true }
       ip_address:      { type: varchar, size: 15 }

@@ -144,6 +144,8 @@ class FrontendCommentForm extends BaseCommentForm
     unset ($this['collection_id']);
     unset ($this['collectible_id']);
     unset ($this['collector_id']);
+    unset ($this['is_hidden']);
+    unset ($this['is_spam']);
     unset ($this['author_url']);
     unset ($this['subject']);
     unset ($this['created_at']);
