@@ -70,6 +70,7 @@
         $form.serialize(),
         function() {
           $('#messages-table').hideLoading();
+          APP.messages.inbox();
         }
       );
 
