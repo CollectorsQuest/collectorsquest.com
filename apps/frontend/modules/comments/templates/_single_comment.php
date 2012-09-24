@@ -22,7 +22,7 @@
       <?= $comment->getBody(); ?>
 
       <?php if (!$comment->isPastCutoffDate()): ?>
-      <span class="comment-time">
+      <span class="comment-time" title="<?= $comment->getCreatedAt('c'); ?>">
         <?= time_ago_in_words_or_exact_date($comment->getCreatedAt()); ?>
       </span>
       <?php endif; ?>

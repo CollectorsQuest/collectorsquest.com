@@ -27,7 +27,9 @@
       <td class="sender" rowspan="<?= $message->hasAttachedCollectionOrCollectible() ? 3 : 2 ?>">
         <span>From:&nbsp;<?= link_to_if($sender, $sender, 'collector_by_slug', $sender); ?></span>
         <br/>
-        <span><?= time_ago_in_words_or_exact_date($message->getCreatedAt()); ?></span>
+        <span title="<?= $message->getCreatedAt('c'); ?>">
+          <?= time_ago_in_words_or_exact_date($message->getCreatedAt()); ?>
+        </span>
         <br/>
         <div class="spacer-inner-top-7">
           <?= link_to_collector($sender, 'image'); ?>
