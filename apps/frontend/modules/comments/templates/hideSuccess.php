@@ -10,7 +10,7 @@
 
   <fieldset class="form-horizontal">
     <div class="user-comments">
-      <?php include_partial('comments/single_comment', array('comment' => $comment, 'with_controls' => false)); ?>
+      <?php include_partial('comments/single_comment', array('comment' => $comment, 'with_controls' => false, 'force_show' => true)); ?>
     </div>
     <div class="form-actions">
       <form method="post" action="<?= url_for('comments_hide', $comment); ?>" >

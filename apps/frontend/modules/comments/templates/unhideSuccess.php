@@ -5,7 +5,6 @@
   cq_page_title('Unhide comment on "'.$comment->getModelObject().'"', $link, array());
 ?>
 
-
 <div class="row-fluid">
   <h2> Are you sure you want to unhide this comment? </h2>
 

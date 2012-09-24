@@ -277,43 +277,15 @@ class commentsActions extends cqFrontendActions
   }
 
   /**
-   * Delete a comment if the commented object is owned by the currently logged in
-   * collector. Orherwize forward 404. A confirmation is requried for the deletion
-   *
-   * PropelObjectRoute for Comment
+   * The delete action is no longer allowed, we simply redirect users to the hide
+   * action
    */
   public function executeDelete(cqWebRequest $request)
   {
     /* @var $comment Comment */
     $comment = $this->getRoute()->getObject();
 
-    $this->forward404Unless(
-      // owner of the object that was commented on
-      $this->getUser()->isOwnerOf($comment->getModelObject()) ||
-      // owner of the comment itself
-      $this->getUser()->isOwnerOf($comment)
-    );
-
-    $form = new CommentDeleteConfirmationForm();
-    if (sfRequest::POST == $request->getMethod())
-    {
-      $form->bind($request->getParameter($form->getName()));
-
-      if ($form->isValid())
-      {
-        $comment->delete();
-        $this->getUser()->setFlash('comment_success', 'Comment successfully deleted.');
-
-        return $this->redirect(
-          $this->getController()->genUrlForModelObject($comment).'#comments'
-        );
-      }
-    }
-
-    $this->comment = $comment;
-    $this->form = $form;
-
-    return sfView::SUCCESS;
+    return $this->redirect('comments_hide', $comment);
   }
 
 }
