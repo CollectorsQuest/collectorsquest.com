@@ -125,6 +125,14 @@ comments_delete:
   param:   { module: comments, action: delete }
   requirements: { id: \d+, sf_method: [get, post] }
 
+comments_report_spam:
+  url:     /comments/manage/:id/report-spam
+  class:   cqPropelRoute
+  options: { model: Comment, type: object, column: id }
+  param:   { module: comments, action: reportSpam }
+  requirements: { id: \d+, sf_method: [get, post] }
+
+
 ### MISC
 
 misc_guide_to_collecting_shortcut:

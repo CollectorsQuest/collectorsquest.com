@@ -29,7 +29,8 @@
             <b class="caret no-js-hide"></b> <i class="icon-edit"></i>
           </a>
           <ul class="dropdown-menu" role="menu" aria-labelledby="comment-actions" >
-            <li><?= link_to('<i class="icon-remove"></i> Hide Comment</a>','comments_hide', $comment, array('post' => true)); ?></li>
+            <li><?= link_to('<i class="icon-remove"></i> Hide Comment', 'comments_hide', $comment, array('post' => true)); ?></li>
+            <li><?= link_to('<i class="icon-trash"></i> Report Spam', 'comments_report_spam', $comment); ?></li>
           </ul>
         </div>
         <?php endif; ?>
@@ -52,7 +53,7 @@
       $height->value += 84 + 18 * $comment_rows;
     }
   ?>
-<?php elseif ($sf_user->isOwnerOf($comment->getModelObject())): ?>
+<?php elseif ($sf_user->isOwnerOf($comment->getModelObject()) && !$comment->getIsSpam()): ?>
   <div class="bubble full-length text-center">
     <span class="text-center">
     Comment hidden by you.

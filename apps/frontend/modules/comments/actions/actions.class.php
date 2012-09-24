@@ -45,7 +45,11 @@ class commentsActions extends cqFrontendActions
                       'sCommentRemoveUrl' => $this->getController()->genUrl(array(
                           'sf_route' => 'comments_hide',
                           'sf_subject' => $comment,
-                        ), true),
+                        ), $absolute_url = true),
+                      'sCommentReportSpamUrl' => $this->getController()->genUrl(array(
+                          'sf_route' => 'comments_report_spam',
+                          'sf_subject' => $comment,
+                        ), $absolute_url = true),
                   ),
               ));
             }
@@ -328,6 +332,55 @@ class commentsActions extends cqFrontendActions
     {
       return $this->redirect('comments_hide', $comment);
     }
+  }
+
+  /**
+   * Report a comment as spam. This will perma-hide the comment, and send an
+   * email to the administrators who can judge if the offender should be banned
+   */
+  public function executeReportSpam(cqWebRequest $request)
+  {
+    /* @var $comment Comment */
+    $comment = $this->getRoute()->getObject();
+
+    $this->forward404Unless(
+      // owner of the object that was commented on
+      $this->getUser()->isOwnerOf($comment->getModelObject()) &&
+      !$comment->getIsSpam()
+    );
+      $form = new CommentReportSpamConfirmationForm();
+      if (sfRequest::POST == $request->getMethod())
+      {
+        $form->bind($request->getParameter($form->getName()));
+
+        if ($form->isValid())
+        {
+          $comment->setIsHidden(true);
+          $comment->setIsSpam(true);
+          $comment->save();
+
+          $this->getUser()->setFlash('comment_success', 'Comment successfully reported spam.');
+
+          $cqEmail = new cqEmail($this->getMailer());
+
+          $cqEmail->send('internal/comment_spam_notification', array(
+              'params' => array(
+                  'oComment' => $comment,
+                  'oReporterCollector' => $this->getCollector(),
+                  'oModelObject' => $comment->getModelObject(),
+              ),
+          ));
+
+          return $this->redirect(
+            $this->getController()->genUrlForModelObject($comment).'#comments'
+          );
+        }
+      }
+
+      $this->comment = $comment;
+      $this->form = $form;
+
+      return sfView::SUCCESS;
   }
 
 }
