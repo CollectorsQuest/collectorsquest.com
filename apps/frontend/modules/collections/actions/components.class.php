@@ -138,7 +138,7 @@ class collectionsComponents extends cqFrontendComponents
 
       $pager = new cqSphinxPager($query, array('collections'), 16);
     }
-    else
+    else if (false)
     {
       /** @var $query wpPostQuery */
       $query = wpPostQuery::create()
@@ -176,6 +176,19 @@ class collectionsComponents extends cqFrontendComponents
 
         $this->wp_post = $wp_post;
       }
+    }
+    else
+    {
+      $query = FrontendCollectorCollectionQuery::create()
+        ->hasCollectibles()
+        ->hasThumbnail()
+        ->groupByCollectorId()
+        ->orderByCreatedAt(Criteria::DESC);
+
+      // Temporary filter out Guruzen's collections
+      $query->filterByCollectorId(4267, Criteria::NOT_EQUAL);
+
+      $pager = new PropelModelPager($query, 16);
     }
 
     if ($pager)
