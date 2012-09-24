@@ -139,7 +139,7 @@ class marketplaceComponents extends cqFrontendComponents
         ->filterById(null, Criteria::NOT_EQUAL)
         ->orderByCreatedAt(Criteria::DESC)
         ->clearGroupByColumns()
-        ->groupBy('Id');
+        ->groupBy('CollectorId');
 
       $pager = new PropelModelPager($query, 12);
     }
