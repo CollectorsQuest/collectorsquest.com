@@ -131,8 +131,10 @@
                   <?php
                     $seller = $shopping_order->getSeller();
 
-                    echo link_to($seller->getDisplayName(), 'ajax_send_pm',
+                    echo link_to($seller->getDisplayName(), 'ajax_messages',
                       array(
+                        'section' => 'message',
+                        'page' => 'send',
                         'to' => (string) $seller->getUsername(),
                         'item' => $shopping_order_collectible->getCollectible()->getName()
                       ),

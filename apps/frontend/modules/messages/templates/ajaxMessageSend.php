@@ -8,10 +8,10 @@
 <h1>Ask a question</h1>
 
 <?php unset($form['copy_for_sender']); ?>
-<?= form_tag('@ajax_send_pm', array('class' => 'form-horizontal form-private-message-compose')) ?>
+<?= form_tag('@ajax_messages?section=message&page=send', array('class' => 'form-horizontal form-private-message-compose')) ?>
 <fieldset>
   <?= $form->renderUsing('Bootstrap', array(
-  'receiver'=> array('class' => 'span7 uneditable-input', 'readonly' => 'readonly'),
+  'receiver'=> array('class' => 'span7'),
   'subject' => array('class' => 'span7'),
   'body'    => array('class' => 'span7', 'rows' => 6),
 )); ?>
