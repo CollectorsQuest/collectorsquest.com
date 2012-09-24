@@ -60,7 +60,7 @@ class collectionsComponents extends cqFrontendComponents
           ->filterById($collectible_ids)
           ->limit(4)
           ->addAscendingOrderByColumn(
-            'FIELD(id, ' . implode(',', $collectible_ids) . ')'
+            'FIELD(collectible.id, ' . implode(',', $collectible_ids) . ')'
           );
         $this->collectibles = $q->find();
       }
@@ -91,7 +91,7 @@ class collectionsComponents extends cqFrontendComponents
           ->offset(4)
           ->limit(12)
           ->addAscendingOrderByColumn(
-            'FIELD(id, ' . implode(',', $collectible_ids) . ')'
+            'FIELD(collectible.id, ' . implode(',', $collectible_ids) . ')'
           );
         $this->collectibles = $q->find();
       }
@@ -169,7 +169,7 @@ class collectionsComponents extends cqFrontendComponents
           $query = FrontendCollectorCollectionQuery::create()
             ->filterById($collection_ids)
             ->hasThumbnail()
-            ->addAscendingOrderByColumn('FIELD(id, '. implode(',', $collection_ids) .')');
+            ->addAscendingOrderByColumn('FIELD(collector_collection.id, '. implode(',', $collection_ids) .')');
 
           $pager = new PropelModelPager($query, 16);
         }

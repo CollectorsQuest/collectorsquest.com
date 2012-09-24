@@ -105,7 +105,7 @@ class generalActions extends cqFrontendActions
         $q = FrontendCollectorCollectionQuery::create()
           ->filterById($collection_ids, Criteria::IN)
           ->limit(2)
-          ->addAscendingOrderByColumn('FIELD(id, '. implode(',', $collection_ids) .')');
+          ->addAscendingOrderByColumn('FIELD(collector_collection.id, '. implode(',', $collection_ids) .')');
 
         $this->collections = $q->find();
       }
@@ -123,7 +123,7 @@ class generalActions extends cqFrontendActions
          */
         $q = FrontendCollectibleQuery::create()
            ->filterById($collectible_ids, Criteria::IN)
-           ->addAscendingOrderByColumn('FIELD(id, '. implode(',', $collectible_ids) .')');
+           ->addAscendingOrderByColumn('FIELD(collectible.id, '. implode(',', $collectible_ids) .')');
 
         IceGateKeeper::open('independence_day') ?
           $q->limit(47) : $q->limit(22);

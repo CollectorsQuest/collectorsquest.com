@@ -1446,16 +1446,29 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
   }
 
   /**
-   * Returns the number of related public CollectorCollection objects.
+   * Returns the number of related FrontendCollectorCollection objects.
    *
    * @return int
    */
-  public function countPublicCollectorCollections()
+  public function countFrontendCollectorCollections()
   {
-    $q = CollectorCollectionQuery::create();
-    $q->filterByIsPublic(true);
-    return $this->countCollectorCollections($q);
+    return FrontendCollectorCollectionQuery::create()
+      ->filterByCollector($this)
+      ->count();
   }
+
+  /**
+   * Returns the number of related FrontendCollectorCollection objects.
+   *
+   * @return int
+   */
+  public function countFrontendCollectionCollectibles()
+  {
+    return FrontendCollectionCollectibleQuery::create()
+      ->filterByCollector($this)
+      ->count();
+  }
+
 }
 
 sfPropelBehavior::add('Collector', array('IceMultimediaBehavior'));

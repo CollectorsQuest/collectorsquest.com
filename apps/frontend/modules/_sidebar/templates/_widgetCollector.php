@@ -1,11 +1,12 @@
 <?php
 /**
- * @var  $title          string
- * @var  $has_message    boolean
- * @var  $widget_height  integer
  * @var  $collector      Collector
  * @var  $collectible    Collectible
  * @var  $collections    Collection[]
+ *
+ * @var  $title          string
+ * @var  $has_message    boolean
+ * @var  $widget_height  integer
  * @var  $height         stdClass
  */
 
@@ -47,9 +48,12 @@ $_height = 0;
 <?php if (!$sf_user->isOwnerOf($collector) && isset($message) && $message === true): ?>
   <div class="row-fluid spacer">
     <div class="send-pm">
-      <form action="<?= url_for2('messages_compose', array('to'=>$collector->getUsername()), true); ?>" method="post" class="spacer-bottom-reset" id="form-private-message">
+      <form action="<?= url_for2('messages_compose', array('to'=>$collector->getUsername()), true); ?>"
+            method="post" class="spacer-bottom-reset" id="form-private-message">
         <?= $pm_form->renderHiddenFields(); ?>
-        <textarea class="requires-login" required data-login-title="Please log in to contact this member:" data-signup-title="Create an account to contact this member:" name="message[body]" placeholder="Send a message to <?= $collector; ?>"></textarea>
+        <textarea class="requires-login" required data-login-title="Please log in to contact this member:"
+                  data-signup-title="Create an account to contact this member:" name="message[body]"
+                  placeholder="Send a message to <?= $collector; ?>"></textarea>
         <div class="buttons-container" id="buttons-private-message">
           <?php /* <button type="button" class="btn cancel" value="cancel">cancel</button>
            &nbsp; - or - &nbsp;
@@ -69,7 +73,7 @@ $_height = 0;
     <div class="span9 text-word-wrap">
       <?= $collector; ?>'s Collections:
     </div>
-    <?php if ($collector->countPublicCollectorCollections() > 3): ?>
+    <?php if ($collector->countFrontendCollectorCollections() > 3): ?>
     <div class="span3">
       <?= link_to('View all &raquo;', 'collections_by_collector', $collector, array('class' => 'pull-right')); ?>
     </div>
@@ -86,7 +90,11 @@ $_height = 0;
             foreach ($collection->getPublicCollectionCollectibles(4) as $i => $collectible)
             {
               $options = array('width' => 60, 'height' => 60);
-                  echo link_to(image_tag_collectible($collectible, '75x75', $options), 'collectible_by_slug', $collectible, array('class' => 'thumbnails60'));
+              echo link_to(
+                image_tag_collectible($collectible, '75x75', $options),
+                'collectible_by_slug', $collectible,
+                array('class' => 'thumbnails60')
+              );
             }
           ?>
         </div>
@@ -106,16 +114,16 @@ $_height = 0;
 <script>
 $(document).ready(function()
 {
-  $('#form-private-message textarea').focus(function()
+  $('textarea', '#form-private-message').focus(function()
   {
     $(this).css('height', '100px');
     $('#buttons-private-message').slideDown();
   });
 
-  $('#buttons-private-message .cancel').click(function()
+  $('.cancel', '#buttons-private-message').click(function()
   {
     $('#buttons-private-message').slideUp();
-    $('#form-private-message textarea').css('height', 'auto');
+    $('textarea', '#form-private-message').css('height', 'auto');
   });
 });
 </script>

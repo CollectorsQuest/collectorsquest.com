@@ -202,7 +202,6 @@ class Collection extends BaseCollection
         FROM `collection_collectible`
         RIGHT JOIN `collectible` ON (collectible.id = collection_collectible.collectible_id)
        WHERE collection_collectible.COLLECTION_ID = :p1
-         AND collectible.is_public = 1
     ');
     $stmt->bindValue(':p1', $this->getId());
     $stmt->execute();
