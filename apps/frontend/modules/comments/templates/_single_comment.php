@@ -1,8 +1,8 @@
 <?php
   use_helper('Gravatar');
   /* @var $comment Comment*/
-  /* @var $with_controls boolean */
   $force_show = isset($force_show) ? $force_show : false;
+  $with_controls = isset($with_controls) ? $with_controls : false;
 ?>
 
 <div id="comment-<?= $comment->getId(); ?>" class="row-fluid user-comment">
