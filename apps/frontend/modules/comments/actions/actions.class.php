@@ -123,7 +123,10 @@ class commentsActions extends cqFrontendActions
 
       foreach ($comments as $comment)
       {
-        $html .= $this->getPartial('single_comment', array('comment' => $comment));
+        $html .= $this->getPartial('single_comment', array(
+            'comment' => $comment,
+            'with_controls' =>  $this->getUser()->isOwnerOf($this->for_object)
+        ));
       }
 
       return $this->renderText(json_encode(array(
