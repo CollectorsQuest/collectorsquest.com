@@ -239,13 +239,14 @@ class cqFrontendUser extends cqBaseUser
    */
   public function getMycqDropboxOpenState()
   {
+    $this->setFlash();
     /**
      * Check if we have requested a different state
      * than the one defined in the cookie
      */
     if ($this->hasFlash('cq_mycq_dropbox_open', 'cookies'))
     {
-      return (boolean) $this->getFlash('cq_mycq_dropbox_open', false, true, 'cookies');
+      return (boolean) $this->getFlash('cq_mycq_dropbox_open', false, 'cookies');
     }
     else
     {

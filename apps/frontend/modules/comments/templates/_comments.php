@@ -12,21 +12,26 @@
     }
   ?>
 
-  <?php if ($sf_user->hasFlash('comment_success')): ?>
+  <?php if ($sf_user->hasFlash('success', 'comment')): ?>
     <div class="alert alert-success">
       <a class="close" data-dismiss="alert" href="javascript:void(0)">×</a>
-      <?= $sf_user->getFlash('comment_success'); ?>
+      <?= $sf_user->getFlash('success', '', 'comment'); ?>
     </div>
   <?php endif; ?>
 
-  <?php if ($sf_user->hasFlash('comment_error')): ?>
+  <?php if ($sf_user->hasFlash('error', 'comment')): ?>
     <div class="alert alert-error">
       <a class="close" data-dismiss="alert" href="javascript:void(0)">×</a>
       <strong>Error adding comment:</strong>
       <br />
-      <?= $sf_user->getFlash('comment_error'); ?>
+      <?= $sf_user->getFlash('error', '', 'comment'); ?>
     </div>
   <?php endif; ?>
 
-  <?php include_component('comments', 'showComments', array('for_object' => $for_object, 'height' => &$height, 'with_controls' => $with_controls)); ?>
+  <?php
+    include_component('comments', 'showComments', array(
+        'for_object' => $for_object,
+        'height' => &$height,
+        'with_controls' => $with_controls,
+    )); ?>
 </div>

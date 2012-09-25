@@ -127,12 +127,13 @@ class _ajaxActions extends cqFrontendActions
       if ($sent)
       {
         $this->getUser()->setFlash(
-          'success_ajax',
+          'success',
           $this->__(
             'Thank you for the feedback. If needed, we will get in
              touch with you within the next business day.',
             array(), 'flash'
-          )
+          ),
+          'ajax'
         );
 
         $this->setTemplate('successFeedback');

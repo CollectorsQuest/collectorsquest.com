@@ -90,12 +90,14 @@ class commentsActions extends cqFrontendActions
                 ),
             ));
           }
+
+          $this->getUser()->setFlash('success', 'Your comment was successfully added.', 'comment');
         }
       }
       else
       {
         $this->getUser()->setFlash(
-          'comment_error', $form->getErrorSchema()->__toString()
+          'error', $form->getErrorSchema()->__toString(), 'comment'
         );
       }
     }
@@ -171,8 +173,9 @@ class commentsActions extends cqFrontendActions
       $comments->save();
 
       $this->getUser()->setFlash(
-        'comment_success',
-        'You have successfully unsubscribed from new comment notifications.'
+        'success',
+        'You have successfully unsubscribed from new comment notifications.',
+        'comment'
       );
     }
 
@@ -232,7 +235,7 @@ class commentsActions extends cqFrontendActions
       }
       else
       {
-        $this->getUser()->setFlash('comment_success', 'Comment successfully hidden.');
+        $this->getUser()->setFlash('success', 'Comment successfully hidden.', 'comment');
 
         return $this->redirect(
           $this->getController()->genUrlForModelObject($comment).'#comments'
@@ -273,7 +276,7 @@ class commentsActions extends cqFrontendActions
       }
       else
       {
-        $this->getUser()->setFlash('comment_success', 'Comment successfully unhidden.');
+        $this->getUser()->setFlash('success', 'Comment successfully unhidden.', 'comment');
 
         return $this->redirect(
           $this->getController()->genUrlForModelObject($comment)
@@ -315,7 +318,7 @@ class commentsActions extends cqFrontendActions
         if ($form->isValid())
         {
           $comment->delete();
-          $this->getUser()->setFlash('comment_success', 'Comment successfully deleted.');
+          $this->getUser()->setFlash('success', 'Comment successfully deleted.', 'comment');
 
           return $this->redirect(
             $this->getController()->genUrlForModelObject($comment).'#comments'
@@ -359,7 +362,7 @@ class commentsActions extends cqFrontendActions
           $comment->setIsSpam(true);
           $comment->save();
 
-          $this->getUser()->setFlash('comment_success', 'Comment was successfully reported as spam. Thank you!');
+          $this->getUser()->setFlash('success', 'Comment was successfully reported as spam. Thank you!', 'comment');
 
           $cqEmail = new cqEmail($this->getMailer());
 
