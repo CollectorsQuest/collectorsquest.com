@@ -15,6 +15,7 @@
   text-align: center;
   background: @paginationBackground;
 }
+
 .pagination ul {
   display: inline-block;
   .ie7-inline-block();
@@ -23,9 +24,11 @@
   .border-radius(none);
   .box-shadow(none);
 }
+
 .pagination li {
   display: inline;
 }
+
 .pagination a {
   float: left;
   margin: 0 3px;
@@ -34,19 +37,21 @@
   text-decoration: none;
   border: none;
   border-left-width: 0;
-
 }
+
 .pagination a:hover,
 .pagination .active a {
   background-color: @paginationActiveBackground;
   .border-radius(5px);
 }
+
 .pagination .active a {
   color: @blue;
   cursor: default;
   .border-radius(5px);
   .box-shadow(none);
 }
+
 .pagination .disabled span,
 .pagination .disabled a,
 .pagination .disabled a:hover {
@@ -54,10 +59,12 @@
   background-color: transparent;
   cursor: default;
 }
+
 .pagination li:first-child a {
   border-left-width: 1px;
   .border-radius(5px);
 }
+
 .pagination li:last-child a {
   .border-radius(5px);
 }
