@@ -11,14 +11,7 @@
   $link = $sf_user->isOwnerOf($collector) ? link_to('Edit Market', '@mycq_marketplace', array('class' => 'text-v-middle link-align')) .'&nbsp; | &nbsp;' : null ;
   $link = link_to('See all &raquo;', 'collectibles_for_sale_by_collector', $collector, array('class' => 'text-v-middle link-align'));
 
-  if ($title)
-  {
-    cq_section_title($title, $link);
-  }
-  else
-  {
-    cq_section_title($collector->getDisplayName() ."'s Items for Sale", $link);
-  }
+  cq_section_title($title, $link);
 ?>
 
 <div id="user-collectibles-for-sale">

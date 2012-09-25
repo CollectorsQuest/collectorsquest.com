@@ -282,7 +282,10 @@
   if (isset($collectible_for_sale) && $collectible_for_sale->isForSale())
   {
     include_component('collector', 'indexCollectiblesForSale',
-      array('collector' => $collector, 'title' => 'Other Items from this Seller')
+      array(
+        'collector' => $collector, 'collectible' => $collectible->getCollectible(),
+        'title' => 'Other Items from this Seller'
+      )
     );
 
     $height_main_div->value += 293;
