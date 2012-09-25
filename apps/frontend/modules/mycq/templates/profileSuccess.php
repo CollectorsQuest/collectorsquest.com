@@ -1,7 +1,11 @@
 <?php
-  /** @var $collector       Collector */
-  /** @var $collector_form  CollectorEditForm */
-  /** @var $avatar_form     CollectorAvatarForm */
+  /**
+   * @var $collector       Collector
+   * @var $collector_form  CollectorEditForm
+   * @var $avatar_form     CollectorAvatarForm
+   * @var $image iceModelMultimedia
+   * @var $aviary_hmac_message string
+   */
 
   // set input-xxlarge as the default class of widgets
   foreach($collector_form->getWidgetSchema()->getFields() as $form_field)
@@ -54,6 +58,13 @@
                         )
                       );
                     ?>
+                    <span class="multimedia-edit holder-icon-edit"
+                          data-original-image-url="<?= src_tag_multimedia($image, 'original') ?>"
+                          data-post-data='<?= $aviary_hmac_message; ?>'>
+
+                      <i class="icon icon-camera"></i><br/>
+                      Edit Photo
+                    </span>
                   </div>
                   <div class="span8">
                     <div class="cf spacer-bottom-15">

@@ -213,6 +213,9 @@ var APP = window.APP = {
     },
     collectible: function() {
       AVIARY.setup();
+    },
+    profile: function() {
+      AVIARY.setup();
     }
   } // mycq
 
