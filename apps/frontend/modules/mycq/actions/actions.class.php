@@ -78,6 +78,14 @@ class mycqActions extends cqFrontendActions
     $this->collector = $this->getUser()->getCollector();
     $this->collector_form = $collector_form;
 
+    if ($this->image = $this->collector->getPhoto())
+    {
+      $this->aviary_hmac_message = $this->getUser()->hmacSignMessage(
+        json_encode(array('multimedia-id' => $this->image->getId())),
+        cqConfig::getCredentials('aviary', 'hmac_secret')
+      );
+    }
+
     return sfView::SUCCESS;
   }
 
