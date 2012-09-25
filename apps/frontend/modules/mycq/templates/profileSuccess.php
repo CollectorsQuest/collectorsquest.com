@@ -54,7 +54,6 @@
                         )
                       );
                     ?>
-                    <i class="icon icon-remove-sign"></i>
                   </div>
                   <div class="span8">
                     <div class="cf spacer-bottom-15">
@@ -167,28 +166,6 @@ $(document).ready(function()
       {
         $('div.avatar img').attr('src', '/images/frontend/multimedia/Collector/default/235x315/' + $id + '.jpg');
         $('div.avatar').hideLoading();
-      },
-      error: function()
-      {
-        $('div.avatar').hideLoading();
-      }
-    });
-  }, true));
-
-  $('div.avatar .icon-remove-sign').click(MISC.modalConfirmDestructive(
-    'Remove avatar', 'Are you sure you want to remove your avatar?', function()
-  {
-    var $icon = $(this);
-
-    $('div.avatar').showLoading();
-
-    $.ajax({
-      url: '<?= url_for('@ajax_mycq?section=collector&page=avatarDelete&encrypt=1'); ?>',
-      type: 'post',
-      success: function()
-      {
-        $('div.avatar').hideLoading();
-        $('div.avatar img').attr('src', '/images/frontend/multimedia/Collector/235x315.png');
       },
       error: function()
       {
