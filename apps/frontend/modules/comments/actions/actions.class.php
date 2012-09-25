@@ -359,7 +359,7 @@ class commentsActions extends cqFrontendActions
           $comment->setIsSpam(true);
           $comment->save();
 
-          $this->getUser()->setFlash('comment_success', 'Comment successfully reported spam.');
+          $this->getUser()->setFlash('comment_success', 'Comment was successfully reported as spam. Thank you!');
 
           $cqEmail = new cqEmail($this->getMailer());
 
