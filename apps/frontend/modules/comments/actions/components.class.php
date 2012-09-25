@@ -45,7 +45,7 @@ class commentsComponents extends cqFrontendComponents
    */
   protected function checkForObjectIsValid()
   {
-    if ( !( isset($this->for_object) && $this->for_object instanceof BaseObject ) )
+    if (!isset($this->for_object) || !$this->for_object instanceof BaseObject)
     {
       throw new Exception (sprintf('Cannot show comments for object of type %s',
         isset($this->for_object)
