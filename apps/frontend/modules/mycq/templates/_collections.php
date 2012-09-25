@@ -64,6 +64,10 @@
         ADD ITEM
       </span>
     </div>
+
+    <?php if ($collection->getIsPublic() === false): ?>
+      <span class="not-public">NOT PUBLIC</span>
+    <?php endif; ?>
   </div>
 
 <?php
