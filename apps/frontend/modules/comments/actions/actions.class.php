@@ -32,7 +32,7 @@ class commentsActions extends cqFrontendActions
             // commented on and wants to receive comment notifications
             if (
               !$this->getUser()->isAuthenticated() ||
-              ($owner->equals($this->getCollector()) && $owner->getNotificationsComment())
+              (!$owner->equals($this->getCollector()) && $owner->getNotificationsComment())
             )
             {
               $ret = $cqEmail->send('Comments/new_comment_on_owned_item_notification', array(
