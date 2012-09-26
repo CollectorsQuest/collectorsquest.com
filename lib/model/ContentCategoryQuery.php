@@ -51,7 +51,16 @@ class ContentCategoryQuery extends BaseContentCategoryQuery
   public function hasCollections()
   {
     return $this
-      ->innerJoinCollection()
+      ->innerJoinCollectorCollection()
+      ->groupBy('Id');
+  }
+
+  public function hasCollectionsWithCollectibles()
+  {
+    return $this
+      ->useCollectorCollectionQuery(null, Criteria::INNER_JOIN)
+        ->hasCollectibles()
+      ->endUse()
       ->groupBy('Id');
   }
 

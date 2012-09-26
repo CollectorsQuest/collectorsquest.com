@@ -34,7 +34,13 @@ class categoriesActions extends cqFrontendActions
 
     $this->collectors_question = null;
 
-    if ($request->getParameter('page', 1) == 1)
+    /**
+     * This is functionality for Collector Questions as described in:
+     * @see: https://basecamp.com/1759305/projects/353141-collectorsquest-com/todos/5134822-the-collectors
+     *
+     * NOTE: This is disabled as of now because it is not used
+     */
+    if (false && $request->getParameter('page', 1) == 1)
     {
       /** @var $q wpPostQuery */
       $q = wpPostQuery::create()
