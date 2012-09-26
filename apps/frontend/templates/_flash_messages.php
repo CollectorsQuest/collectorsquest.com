@@ -24,10 +24,10 @@
 <div class="alert alert-success in" data-alert="alert">
   <?= $sf_user->getFlashAndDelete('success', '', 'ajax'); ?>
 </div>
-<?php elseif ($sf_user->hasFlashAndDelete('info')): ?>
+<?php elseif ($sf_user->hasFlash('info')): ?>
 <div class="alert alert-info in" data-alert="alert">
   <a class="close" data-dismiss="alert">×</a>
-  <?= $sf_user->getFlash('info'); ?>
+  <?= $sf_user->getFlashAndDelete('info'); ?>
 </div>
 <?php elseif ($sf_user->hasFlash('highlight')): ?>
 <div class="alert">
