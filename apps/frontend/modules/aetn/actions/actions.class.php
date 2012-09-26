@@ -179,21 +179,50 @@ class aetnActions extends cqFrontendActions
 
   public function executeMwba()
   {
+    // Check if the page is publicly available yet
+    $this->forward404Unless(IceGateKeeper::open('aetn_mwba', 'page'));
+
     return sfView::SUCCESS;
   }
 
   public function executeMwbaPetroliana()
   {
+    // Check if the page is publicly available yet
+    $this->forward404Unless(IceGateKeeper::open('aetn_mwba', 'page'));
+
+    $collectible_ids = array(
+        461, 86332, 88537, 82253,
+      78137, 76082, 76081, 28180,
+      28179,  9618,  8289, 84250
+    );
+
+    /**
+     * Get the Collectibles
+     *
+     * @var $q FrontendCollectibleQuery
+     */
+    $q = FrontendCollectibleQuery::create()
+      ->filterById($collectible_ids, Criteria::IN)
+      ->addAscendingOrderByColumn('FIELD(id, '. implode(',', $collectible_ids) .')');
+
+    $this->collectibles = $q->find();
+
     return sfView::SUCCESS;
   }
 
   public function executeMwbaRooseveltiana()
   {
+    // Check if the page is publicly available yet
+    $this->forward404Unless(IceGateKeeper::open('aetn_mwba', 'page'));
+
     return sfView::SUCCESS;
   }
 
   public function executeMwbaRailroadiana()
   {
+    // Check if the page is publicly available yet
+    $this->forward404Unless(IceGateKeeper::open('aetn_mwba', 'page'));
+
     return sfView::SUCCESS;
   }
 }
