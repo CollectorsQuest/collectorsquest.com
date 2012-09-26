@@ -90,7 +90,7 @@ class searchActions extends cqFrontendActions
 
     $query = array(
       'q' => self::$_query['q'],
-      'limits' => array(4 * (min($page, 42) - 1), 4),
+      'limits' => array(4 * (min($page, 250) - 1), 4),
       'filters' => array(
         'object_type' => 'collectible',
         'has_thumbnail' => 'yes',
@@ -99,7 +99,6 @@ class searchActions extends cqFrontendActions
     );
 
     if (
-      $query['limits'][0] <= 1000 &&
       ($pks = cqSphinxPager::search($query, array('collectibles'), 'pks')) &&
       count($pks) >= 3
     ) {
