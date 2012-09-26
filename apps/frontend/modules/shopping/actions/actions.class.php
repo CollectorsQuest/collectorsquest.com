@@ -195,7 +195,7 @@ class shoppingActions extends cqFrontendActions
           //    'error', 'There was an error proceeding to the checkout screen'
           //  );
 
-          // return sfView::ERROR;
+           return sfView::ERROR;
         }
       }
       else
