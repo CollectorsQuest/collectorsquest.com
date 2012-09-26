@@ -1,9 +1,8 @@
 <?php
 
 /**
- * Data object containing the SQL and PHP code to migrate the database
- * up to version 1348501687.
- * Generated on 2012-09-24 11:48:07 by root
+ * Add hidden and spam fields to comment and comment archive
+ * Updated at: 2012-09-26 10:31PM
  */
 class PropelMigration_1348501687
 {
