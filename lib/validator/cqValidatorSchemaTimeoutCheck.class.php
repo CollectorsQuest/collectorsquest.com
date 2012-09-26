@@ -53,7 +53,7 @@ class cqValidatorSchemaTimeoutCheck extends sfValidatorSchema
    *
    *  optional:
    *  - ip_field: Used by the comments check for non logged in users
-   *  - timeout_check_period_increase_for_unsigned: how much longer the check period
+   *  - timeout_check_period_increase_for_unsigned: How much longer the check period
    *                                                should be for unsigned users
    *
    * Messages:
