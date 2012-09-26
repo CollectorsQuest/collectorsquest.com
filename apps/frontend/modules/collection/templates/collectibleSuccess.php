@@ -257,8 +257,8 @@
   }
   else
   {
-    include_partial(
-      'comments/comments',
+    include_component(
+      'comments', 'comments',
       array(
         'for_object' => $collectible->getCollectible(),
         'height' => &$height_main_div
