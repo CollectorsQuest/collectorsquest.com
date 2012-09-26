@@ -105,18 +105,18 @@ class cqValidatorSchemaTimeoutCheck extends sfValidatorSchema
         ->count();
 
       $now = new DateTime();
-      $timeout = $collector->getTimeoutCommentsAt(null);
+      $timeout = $collector->getTimeoutPrivateMessagesAt(null);
       // if we have hit the threshold and are not currently in a timeout
       if ($sent_pms != 0 && 0 == $sent_pms % $this->getOption('threshold') && $now > $timeout)
       {
-        $collector->setTimeoutCommentsAt(
+        $collector->setTimeoutPrivateMessagesAt(
           strtotime('+'.$this->getOption('timeout_duration'))
         );
         $collector->save();
       }
 
       // we may have set a new timeout in the previous if, so get it again
-      $timeout = $collector->getTimeoutCommentsAt(null);
+      $timeout = $collector->getTimeoutPrivateMessagesAt(null);
       if ($now < $timeout)
       {
         // we are currently in timeout, so throw a validator exception
