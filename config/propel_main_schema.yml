@@ -301,6 +301,8 @@ classes:
       author_email:    { type: varchar(128), required: false }
       author_url:      { type: varchar(255), required: false }
       is_notify:       { type: boolean,      required: true, default: false }
+      is_hidden:       { type: boolean,      required: true, dafault: false }
+      is_spam:         { type: boolean,      required: true, dafault: false }
       subject:         { type: varchar(128), required: false }
       body:            { type: longvarchar,  required: true  }
       ip_address:      { type: varchar(15),  required: false }
