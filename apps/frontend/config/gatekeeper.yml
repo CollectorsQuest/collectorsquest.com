@@ -37,7 +37,7 @@ next:
     collectible_shipping: true
     collectible_allow_no_shipping: true
     independence_day: false
-    expose_collection_categories: false
+    expose_collection_categories: true
 
 dev:
   pages:
