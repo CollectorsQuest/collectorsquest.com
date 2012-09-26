@@ -215,6 +215,26 @@ class aetnActions extends cqFrontendActions
     // Check if the page is publicly available yet
     $this->forward404Unless(IceGateKeeper::open('aetn_mwba', 'page'));
 
+    $collectible_ids = array(
+      16967, 56670, 56218, 16610,
+      16604, 16608, 16503, 16601,
+      75360, 87820, 87819, 87818,
+      87817, 87814, 87816, 87813,
+      87812, 87811, 87810, 87809,
+      87808, 87805, 87807
+    );
+
+    /**
+     * Get the Collectibles
+     *
+     * @var $q FrontendCollectibleQuery
+     */
+    $q = FrontendCollectibleQuery::create()
+      ->filterById($collectible_ids, Criteria::IN)
+      ->addAscendingOrderByColumn('FIELD(id, '. implode(',', $collectible_ids) .')');
+
+    $this->collectibles = $q->find();
+
     return sfView::SUCCESS;
   }
 
@@ -222,6 +242,23 @@ class aetnActions extends cqFrontendActions
   {
     // Check if the page is publicly available yet
     $this->forward404Unless(IceGateKeeper::open('aetn_mwba', 'page'));
+
+    $collectible_ids = array(
+      87910, 89843, 89893,  5420,
+       5304, 56685, 12738, 10722,
+      81752, 84281, 87252, 83667
+    );
+
+    /**
+     * Get the Collectibles
+     *
+     * @var $q FrontendCollectibleQuery
+     */
+    $q = FrontendCollectibleQuery::create()
+      ->filterById($collectible_ids, Criteria::IN)
+      ->addAscendingOrderByColumn('FIELD(id, '. implode(',', $collectible_ids) .')');
+
+    $this->collectibles = $q->find();
 
     return sfView::SUCCESS;
   }

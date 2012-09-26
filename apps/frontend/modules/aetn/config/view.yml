@@ -25,17 +25,26 @@ mwbaSuccess:
     footer: []
 
 mwbaPetrolianaSuccess:
+  javascripts:
+    - jquery/masonry.js
   components:
+    slot1:         ~
     breadcrumbs: []
     footer: []
 
 mwbaRooseveltianaSuccess:
+  javascripts:
+    - jquery/masonry.js
   components:
+    slot1:         ~
     breadcrumbs: []
     footer: []
 
 mwbaRailroadianaSuccess:
+  javascripts:
+    - jquery/masonry.js
   components:
+    slot1:         ~
     breadcrumbs: []
     footer: []
 
