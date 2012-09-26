@@ -6,99 +6,52 @@
 <div class="row">
   <div id="mwba_collectibles" class="row-content">
     <?php
-    if (isset($collectibles[0]) && $collectibles[0] instanceof Collectible)
-    {
-      include_partial(
-        'collection/collectible_grid_view_square_small',
-        array('collectible' => $collectibles[0], 'i' => $collectibles[0]->getId())
-      );
-    }
+    // set positions which will have the corresponding partials
+    $small = array ( 0,  2,  3,  6,  7, 10, 11, 12, 13, 14, 15, 17, 18, 19, 20, 21, 22, 23);
+    $wide  = array ( 1, 16 );
+    $tall  = array ( 4,  8 );
+    $big   = array ( 5,  9 );
 
-    if (isset($collectibles[1]) && $collectibles[1] instanceof Collectible)
+    foreach ($collectibles as $i => $collectible)
     {
-      include_partial(
-        'collection/collectible_grid_view_wide',
-        array('collectible' => $collectibles[1], 'i' => $collectibles[1]->getId())
+      // set the link to open modal dialog
+      $link = link_to($collectible->getName(), 'ajax_aetn',
+        array(
+          'section' => 'mwbaCollectible',
+          'page' => 'show',
+          'id' => $collectible->getId()
+        ),
+        array('class' => 'open-dialog', 'onclick' => 'return false;')
       );
-    }
 
-    for ($i = 2; $i < 4; $i++)
-      if (isset($collectibles[$i]) && $collectibles[$i] instanceof Collectible)
+      // which partial we want to show the Collectible with
+      $partial = '';
+      if (in_array($i, $small))
       {
-        include_partial(
-          'collection/collectible_grid_view_square_small',
-          array('collectible' => $collectibles[$i], 'i' => $collectibles[$i]->getId())
-        );
+        $partial = 'square_small';
+      }
+      else if (in_array($i, $wide))
+      {
+        $partial = 'wide';
+      }
+      else if (in_array($i, $tall))
+      {
+        $partial = 'tall';
+      }
+      else if (in_array($i, $big))
+      {
+        $partial = 'square_big';
       }
 
-    if (isset($collectibles[4]) && $collectibles[4] instanceof Collectible)
-    {
       include_partial(
-        'collection/collectible_grid_view_tall',
-        array('collectible' => $collectibles[4], 'i' => $collectibles[4]->getId())
+        'collection/collectible_grid_view_' . $partial,
+        array(
+          'collectible' => $collectible, 'i' => $collectible->getId(),
+          'link' => $link
+        )
       );
     }
-
-    if (isset($collectibles[5]) && $collectibles[5] instanceof Collectible)
-    {
-      include_partial(
-        'collection/collectible_grid_view_square_big',
-        array('collectible' => $collectibles[5], 'i' => $collectibles[5]->getId())
-      );
-    }
-
-    for ($i = 6; $i < 8; $i++)
-      if (isset($collectibles[$i]) && $collectibles[$i] instanceof Collectible)
-      {
-        include_partial(
-          'collection/collectible_grid_view_square_small',
-          array('collectible' => $collectibles[$i], 'i' => $collectibles[$i]->getId())
-        );
-      }
-
-    if (isset($collectibles[8]) && $collectibles[8] instanceof Collectible)
-    {
-      include_partial(
-        'collection/collectible_grid_view_tall',
-        array('collectible' => $collectibles[8], 'i' => $collectibles[8]->getId())
-      );
-    }
-
-    if (isset($collectibles[9]) && $collectibles[9] instanceof Collectible)
-    {
-      include_partial(
-        'collection/collectible_grid_view_square_big',
-        array('collectible' => $collectibles[9], 'i' => $collectibles[9]->getId())
-      );
-    }
-
-    for ($i = 10; $i < 16; $i++)
-      if (isset($collectibles[$i]) && $collectibles[$i] instanceof Collectible)
-      {
-        include_partial(
-          'collection/collectible_grid_view_square_small',
-          array('collectible' => $collectibles[$i], 'i' => $collectibles[$i]->getId())
-        );
-      }
-
-    if (isset($collectibles[16]) && $collectibles[16] instanceof Collectible)
-    {
-      include_partial(
-        'collection/collectible_grid_view_wide',
-        array('collectible' => $collectibles[16], 'i' => $collectibles[16]->getId())
-      );
-    }
-
-    for ($i = 17; $i < 24; $i++)
-      if (isset($collectibles[$i]) && $collectibles[$i] instanceof Collectible)
-      {
-        include_partial(
-          'collection/collectible_grid_view_square_small',
-          array('collectible' => $collectibles[$i], 'i' => $collectibles[$i]->getId())
-        );
-      }
     ?>
-
   </div>
 </div>
 

@@ -3,8 +3,11 @@
  * @var $collectible Collectible
  */
 ?>
+<h1>RAILROADIANA</h1>
 
 <?php
+  cq_page_title($collectible->getName());
+
   echo link_to(
     image_tag_collectible(
       $collectible, '620x0',
@@ -92,23 +95,15 @@
   }
 </style>
 
-<?php /* @todo fix addthis - it is not loading */ ?>
+
+<?php // @todo we get "Loading..." because of addthis.init(), should think of a way to improve ?>
 <script>
-  $(document).ready(function()
-  {
-    (function(d, t)
-    {
-      var addthis = d.createElement(t);
-      var s = d.getElementsByTagName(t)[0];
+  //addthis.init();
 
-      addthis.async = true;
-      addthis.src = '//s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4fa2c6240b775d05&async=true';
-      s.parentNode.insertBefore(addthis, s);
-
-    })(document, 'script');
-
-    $(window).load(function() {
-      addthis.init()
-    });
+  $("textarea").focus(function () {
+      $(this).addClass('expand');
+      $(".btn.btn-large").addClass('expand');
+      $(".extra-fields.non-optional").show();
   });
+
 </script>

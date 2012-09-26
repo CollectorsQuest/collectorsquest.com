@@ -10,7 +10,7 @@
 
   <div class="mosaic-overlay">
     <p class="details">
-      <?= link_to_collectible($collectible, 'text', array('class' => 'target', 'truncate' => 40)); ?>
+      <?= !empty($link) ? $link : link_to_collectible($collectible, 'text', array('class' => 'target', 'truncate' => 40)); ?>
     </p>
   </div>
 
