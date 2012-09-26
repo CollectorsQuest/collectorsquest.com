@@ -10,7 +10,20 @@
 
   <div class="mosaic-overlay">
     <p class="details">
-      <?= link_to_collectible($collectible, 'text', array('class' => 'target', 'truncate' => 40)); ?>
+      <?php if (isset($open_dialog)): ?>
+        <?php
+          echo link_to($collectible->getName(), 'ajax_aetn',
+            array(
+              'section' => 'mwbaCollectible',
+              'page' => 'show',
+              'id' => $collectible->getId()
+            ),
+            array('class' => 'open-dialog', 'onclick' => 'return false;')
+          );
+        ?>
+      <?php else: ?>
+        <?= link_to_collectible($collectible, 'text', array('class' => 'target', 'truncate' => 40)); ?>
+      <?php endif; ?>
     </p>
   </div>
 

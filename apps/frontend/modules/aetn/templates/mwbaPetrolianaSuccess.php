@@ -18,7 +18,10 @@
       {
         include_partial(
           'collection/collectible_grid_view_wide',
-          array('collectible' => $collectibles[1], 'i' => $collectibles[1]->getId())
+          array(
+            'collectible' => $collectibles[1], 'i' => $collectibles[1]->getId(),
+            'open_dialog' => true
+          )
         );
       }
 
