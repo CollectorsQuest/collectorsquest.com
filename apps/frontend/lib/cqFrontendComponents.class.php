@@ -26,7 +26,7 @@ class cqFrontendComponents extends sfComponents
         'cq/components/%s/%s', $this->getModuleName(), $this->getActionName()
       );
 
-      return $this->$name = $this->getUser()->getFlash($name, $default, $namespace);
+      return $this->$name = $this->getUser()->getFlashAndDelete($name, $default, $namespace);
     }
 
     return parent::getVar($name);

@@ -127,7 +127,7 @@
   <?php
     if (null !== $sidebar)
     {
-      $height = $sf_user->getFlash('height_main_div', null, 'internal');
+      $height = $sf_user->getFlashAndDelete('height_main_div', null, 'internal');
 
       // Make sure we are backwords compatible to the old behavior
       if (empty($height) || !property_exists($height, 'value') || $height->value <= 0)

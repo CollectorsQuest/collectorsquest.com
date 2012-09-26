@@ -246,7 +246,7 @@ class cqFrontendUser extends cqBaseUser
      */
     if ($this->hasFlash('cq_mycq_dropbox_open', 'cookies'))
     {
-      return (boolean) $this->getFlash('cq_mycq_dropbox_open', false, 'cookies');
+      return (boolean) $this->getFlashAndDelete('cq_mycq_dropbox_open', false, 'cookies');
     }
     else
     {
