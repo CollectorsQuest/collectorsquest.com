@@ -99,9 +99,9 @@ class searchActions extends cqFrontendActions
     );
 
     if (
+      $query['limits'][0] <= 1000 &&
       ($pks = cqSphinxPager::search($query, array('collectibles'), 'pks')) &&
-      count($pks) >= 3 &&
-      $query['limits'][0] <= 1000
+      count($pks) >= 3
     ) {
       $pks = array_map(create_function('$v', 'return $v - 400000000;'), $pks);
 
