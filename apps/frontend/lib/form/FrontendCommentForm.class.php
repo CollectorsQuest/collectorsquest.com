@@ -76,6 +76,7 @@ class FrontendCommentForm extends BaseCommentForm
         'threshold' => sfConfig::get('app_comments_timeout_threshold', 6),
         'timeout_duration' => sfConfig::get('app_comments_timeout_duration', '30 minutes'),
         'timeout_check_period' => sfConfig::get('app_comments_timeout_check_period', '60 minutes'),
+        'timeout_check_period_increase_for_unsigned' => sfConfig::get('app_comments_timeout_check_period_increase_for_unsigned', '0 minutes'),
     )));
   }
 

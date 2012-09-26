@@ -29,6 +29,7 @@ all:
     timeout_threshold: 6
     timeout_duration: 30 minutes
     timeout_check_period: 60 minutes
+    timeout_check_period_increase_for_unsigned: 30 minutes
 
   smart_menus:
     defaults:

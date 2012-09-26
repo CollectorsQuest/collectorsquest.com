@@ -44,11 +44,17 @@ class cqValidatorSchemaTimeoutCheck extends sfValidatorSchema
 
   /**
    * Options:
+   *  required:
    *  - type: One of TIMEOUT_TYPE_COMMENTS or TIMEOUT_TYPE_PRIVATE_MESSAGES
    *  - threshold: Threshold for timeout activation
    *  - timeout_check_period: How far back (strototime compatible) to check for
    *                          threshold breach
    *  - timeout_duration: How long will the timeout be in effect for
+   *
+   *  optional:
+   *  - ip_field: Used by the comments check for non logged in users
+   *  - timeout_check_period_increase_for_unsigned: how much longer the check period
+   *                                                should be for unsigned users
    *
    * Messages:
    *  - private_message_timeout
@@ -63,6 +69,8 @@ class cqValidatorSchemaTimeoutCheck extends sfValidatorSchema
     $this->addRequiredOption('threshold');
     $this->addRequiredOption('timeout_duration');
     $this->addRequiredOption('timeout_check_period');
+    $this->addOption('ip_field', 'ip_address');
+    $this->addOption('timeout_check_period_increase_for_unsigned', '0 minutes');
 
     $this->addMessage('private_message_timeout', 'You cannot send any more PMs right now. Try again later.');
     $this->addMessage('comment_timeout', 'You cannot post any more comments right now. Try again later.');
@@ -134,7 +142,7 @@ class cqValidatorSchemaTimeoutCheck extends sfValidatorSchema
     // and do the appropriate checks
     if (( $collector = $this->sf_user->getCollector($strct = true) ))
     {
-      $left_comments = CommentQuery::create()
+      $num_comments = CommentQuery::create()
         ->filterByCollector($collector)
         ->filterByCreatedAt(
           strtotime('-'.$this->getOption('timeout_check_period')),
@@ -145,7 +153,7 @@ class cqValidatorSchemaTimeoutCheck extends sfValidatorSchema
       $now = new DateTime();
       $timeout = $collector->getTimeoutCommentsAt(null);
       // if we have hit the threshold and are not currently in a timeout
-      if ($left_comments != 0 && 0 == $left_comments % $this->getOption('threshold') && $now > $timeout)
+      if ($num_comments != 0 && 0 == $num_comments % $this->getOption('threshold') && $now > $timeout)
       {
         $collector->setTimeoutCommentsAt(
           strtotime('+'.$this->getOption('timeout_duration'))
@@ -161,7 +169,31 @@ class cqValidatorSchemaTimeoutCheck extends sfValidatorSchema
         throw new sfValidatorError($this, 'comment_timeout');
       }
     }
+    // we are dealing with a user that is not logged in
+    else
+    {
+      // we filter by the user's IP address to get the number of recently posted
+      // comments. If we have more comments than the treshold in the last
+      // %timeout_check_period%  + %timeout_check_period_increase_for_unsigned%
+      // minutes, then we preven the posting of the current comment.
+      $num_comments = CommentQuery::create()
+        ->filterByIpAddress($values[$this->getOption('ip_field')])
+        ->filterByCreatedAt(
+          strtotime(
+            '-'.$this->getOption('timeout_check_period_increase_for_unsigned'),
+            $for_strtotime = strtotime('-'.$this->getOption('timeout_check_period'))
+          ),
+          Criteria::GREATER_EQUAL
+        )
+        ->count();
 
+      // if we have hit the threshold
+      if ($num_comments >= $this->getOption('threshold'))
+      {
+        // stop this comment
+        throw new sfValidatorError($this, 'comment_timeout');
+      }
+    }
   }
 
 }
