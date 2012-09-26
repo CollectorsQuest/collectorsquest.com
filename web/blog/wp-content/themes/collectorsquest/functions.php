@@ -2,15 +2,21 @@
 
 /** http://codex.wordpress.org/Post_Thumbnails */
 add_theme_support('post-thumbnails');
-//require_once __DIR__ .'/lib/crop-fix.php';
 
 /** Adding custom image size for the site's homepage (not the blog homepage) */
 add_image_size('homepage', 270, 270, true);
+
 /** Adding custom image size for the blog's homepage */
 add_image_size('blog-homepage-p1', 300, 300, true);
-//bt_add_image_size('thumbnail', 140, 140, array( 'center', 'top' ));
-//bt_add_image_size('large', 620, 440, array( 'center', 'top' ));
 
+// Custon taxonomy for blog posts matching
+register_taxonomy(
+  'matching', 'post',
+  array(
+    'hierarchical' => false, 'label' => 'Matching',
+    'query_var' =>  true, 'rewrite' => true
+  )
+);
 
 /**
  * @see http://blurback.com/post/1479456356/permissions-with-wordpress-custom-post-types
@@ -277,7 +283,6 @@ function cq_custom_post_type_init()
   ));
 }
 
-
 add_filter('map_meta_cap', 'map_meta_cap_editorial', 10, 4);
 function map_meta_cap_editorial($caps, $cap, $user_id, $args)
 {
@@ -335,7 +340,6 @@ function hide_edit_permalinks_admin_css() {
   endif;
 
 }
-
 
 // ajax post loading
 function cq_ajax_posts_comments() {

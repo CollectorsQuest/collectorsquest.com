@@ -32,7 +32,7 @@ class cq_other_news_widget extends WP_Widget {
     $title = apply_filters( 'widget_title', $instance['title'] );
 
     echo $before_widget;
-    if ( ! empty( $title ) ) :
+    if (!empty($title)):
       //echo $before_title . $title . $after_title;
     ?>
 
@@ -64,59 +64,65 @@ class cq_other_news_widget extends WP_Widget {
       $post_id = $post->ID;
 
       // find the tags associated with the post and construct tag string to match posts with
-      $posttags = get_the_tags();
       $tags = array();
-      if ($posttags)
+
+      if ($matching = get_the_terms($post_id, 'matching'))
       {
-        foreach ($posttags as $posttag)
+        foreach ($matching as $tag)
         {
-          $tags[] = $posttag->slug;
+          $tags[] = $tag->slug;
         }
+        $tag_string = implode(',', $tags);
       }
-      $tag_string = implode(',', $tags);
+      else if ($posttags = get_the_tags())
+      {
+        foreach ($posttags as $tag)
+        {
+          $tags[] = $tag->slug;
+        }
+        $tag_string = implode(',', $tags);
+      }
+      else
+      {
+        $tag_string = null;
+      }
 
       // construct WP_Query to find posts based on tag matching
       $args = array(
         'post_type' => 'post',
-        'tag' => $tag_string,
+        'post__not_in' => array($post->ID),
         'post_status' => 'publish',
+        'tag' => $tag_string,
+        'showposts' => 2,
+        'caller_get_posts' => 1,
         'orderby' => 'post_date',
         'order' => 'DESC'
       );
-      $the_query = new WP_Query( $args );
+      $the_query = new WP_Query($args);
 
-      // we don't want to display more than 2 posts based on tag matching
-      $limit = 2;
-      // variable that tracks the # of posts displayed
-      $displayed_posts = 0;
-
-    // display posts based on tag matching
+      // display posts based on tag matching
     ?>
-    <?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
-      <?php if ($post_id != $the_query->post->ID): ?>
-        <?php if ($displayed_posts < $limit): ?>
-          <div class="row-fluid bottom-margin">
-            <h4 style="margin-bottom: 5px;">
-              <a href="<?php the_permalink() ?>"><?php the_title(); ?></a>
-            </h4>
-            <span class="content">
-              <?php $length=100; $longString=get_the_excerpt('...more'); $truncated = substr($longString,0,strpos($longString,' ',$length)); echo $truncated.'... ' //.'... <a href="'.get_permalink().'">more</a>'; ?>
-            </span>
-            <small style="font-size: 80%">
-              <span style="color: grey">
-                Posted by <?php the_author_posts_link() ?>
-                <?= 'on '.get_the_date('M dS, Y'); ?>
-              </span>
-            </small>
-          </div>
-          <?php $displayed_posts++; ?>
-        <?php
-          else:
-            // limit reached, break out of the while
-            break;
-          endif;
-        ?>
-      <?php endif; ?>
+    <?php while($the_query->have_posts()): $the_query->the_post(); ?>
+      <div class="row-fluid bottom-margin">
+        <h4 style="margin-bottom: 5px;">
+          <a href="<?php the_permalink() ?>"><?php the_title(); ?></a>
+        </h4>
+        <span class="content">
+          <?php
+            $length = 100;
+            $longString = get_the_excerpt('...more');
+            $truncated = substr($longString, 0, strpos($longString, ' ', $length));
+
+            echo $truncated . '... ';
+          ?>
+        </span>
+        <small style="font-size: 80%">
+          <span style="color: grey">
+            Posted by <?php the_author_posts_link() ?>
+            <?= 'on '.get_the_date('M dS, Y'); ?>
+          </span>
+        </small>
+      </div>
     <?php endwhile; ?>
 
     <?php
@@ -126,7 +132,7 @@ class cq_other_news_widget extends WP_Widget {
        * determine how many posts are left to display, ideally we want to display 1
        * if we did not manage to find posts by matching tags we display up to 3
        */
-      $showposts = 3 - $displayed_posts;
+      $showposts = 3 - $the_query->post_count;
 
       // get category IDs of the post in a comma separated string
       $cats = get_the_category($post_id);
@@ -157,7 +163,12 @@ class cq_other_news_widget extends WP_Widget {
           <a href="<?php the_permalink() ?>"><?php the_title(); ?></a>
         </h4>
         <span class="content">
-          <?php $length=100; $longString=get_the_excerpt('...more'); $truncated = substr($longString,0,strpos($longString,' ',$length)); echo $truncated.'... ' //.'... <a href="'.get_permalink().'">more</a>'; ?>
+          <?php
+            $length=100;
+            $longString=get_the_excerpt('...more');
+            $truncated = substr($longString, 0, strpos($longString, ' ', $length));
+            echo $truncated.'... ' //.'... <a href="'.get_permalink().'">more</a>';
+          ?>
         </span>
         <small style="font-size: 80%">
           <span style="color: grey">

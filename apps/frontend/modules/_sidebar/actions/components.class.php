@@ -38,7 +38,7 @@ class _sidebarComponents extends cqFrontendComponents
     /** @var $q ContentCategoryQuery */
     $q = ContentCategoryQuery::create()
       ->filterByTreeLevel($level)
-      ->joinCollectorCollection(null, Criteria::INNER_JOIN)
+      ->hasCollectionsWithCollectibles()
       ->addDescendingOrderByColumn('COUNT(collector_collection.id)')
       ->orderBy('Name', Criteria::ASC)
       ->groupById()
@@ -89,7 +89,7 @@ class _sidebarComponents extends cqFrontendComponents
 
     $this->subcategories = ContentCategoryQuery::create()
       ->childrenOf($this->current_category)
-      ->hasCollections()
+      ->hasCollectionsWithCollectibles()
       ->orderBy('Name')
       ->find();
 
@@ -97,7 +97,7 @@ class _sidebarComponents extends cqFrontendComponents
     {
       $this->sub_subcategories = ContentCategoryQuery::create()
         ->childrenOf($this->current_sub_category)
-        ->hasCollections()
+        ->hasCollectionsWithCollectibles()
         ->find();
     }
 
