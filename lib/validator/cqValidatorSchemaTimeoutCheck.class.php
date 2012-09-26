@@ -83,7 +83,7 @@ class cqValidatorSchemaTimeoutCheck extends sfValidatorSchema
     }
     elseif (self::TIMEOUT_TYPE_COMMENTS == $this->getOption('type'))
     {
-      throw new RuntimeException('timeout for comments not implemented yet');
+      $this->executeCommentsCheck($values);
     }
 
     return $values;
@@ -123,6 +123,45 @@ class cqValidatorSchemaTimeoutCheck extends sfValidatorSchema
         throw new sfValidatorError($this, 'private_message_timeout');
       }
     }
+  }
+
+  /**
+   * Check for comments timeout
+   */
+  public function executeCommentsCheck($values)
+  {
+    // first we check if messages are being sent by a collector,
+    // and do the appropriate checks
+    if (( $collector = $this->sf_user->getCollector($strct = true) ))
+    {
+      $left_comments = CommentQuery::create()
+        ->filterByCollector($collector)
+        ->filterByCreatedAt(
+          strtotime('-'.$this->getOption('timeout_check_period')),
+          Criteria::GREATER_EQUAL
+        )
+        ->count();
+
+      $now = new DateTime();
+      $timeout = $collector->getTimeoutCommentsAt(null);
+      // if we have hit the threshold and are not currently in a timeout
+      if ($left_comments != 0 && 0 == $left_comments % $this->getOption('threshold') && $now > $timeout)
+      {
+        $collector->setTimeoutCommentsAt(
+          strtotime('+'.$this->getOption('timeout_duration'))
+        );
+        $collector->save();
+      }
+
+      // we may have set a new timeout in the previous if, so get it again
+      $timeout = $collector->getTimeoutCommentsAt(null);
+      if ($now < $timeout)
+      {
+        // we are currently in timeout, so throw a validator exception
+        throw new sfValidatorError($this, 'comment_timeout');
+      }
+    }
+
   }
 
 }

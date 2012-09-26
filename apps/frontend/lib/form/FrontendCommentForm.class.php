@@ -70,6 +70,13 @@ class FrontendCommentForm extends BaseCommentForm
       ), array(
         'spam' => 'We are sorry we could not add your comment. Please try again later.',
     )));
+
+    $this->mergePostValidator(new cqValidatorSchemaTimeoutCheck($this->sf_user, array(
+        'type' => cqValidatorSchemaTimeoutCheck::TIMEOUT_TYPE_COMMENTS,
+        'threshold' => sfConfig::get('app_comments_timeout_threshold', 6),
+        'timeout_duration' => sfConfig::get('app_comments_timeout_duration', '30 minutes'),
+        'timeout_check_period' => sfConfig::get('app_comments_timeout_check_period', '60 minutes'),
+    )));
   }
 
   protected function setupBodyField()
