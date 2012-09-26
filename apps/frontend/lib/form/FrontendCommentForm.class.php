@@ -55,6 +55,9 @@ class FrontendCommentForm extends BaseCommentForm
     $this->widgetSchema['author_email']->setAttribute('type', 'email');
 
     $this->unsetFields();
+
+    $this->widgetSchema->setFormFormatterName('Bootstrap');
+
     $this->mergePostValidator(
       new FrontendCommentFormValidatorSchema($this->sf_user)
     );

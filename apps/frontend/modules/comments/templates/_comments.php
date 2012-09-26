@@ -20,12 +20,7 @@
   <?php endif; ?>
 
   <?php if ($sf_user->hasFlash('error', 'comment')): ?>
-    <div class="alert alert-error">
-      <a class="close" data-dismiss="alert" href="javascript:void(0)">×</a>
-      <strong>Error adding comment:</strong>
-      <br />
       <?= $sf_user->getFlash('error', '', 'comment'); ?>
-    </div>
   <?php endif; ?>
 
   <?php

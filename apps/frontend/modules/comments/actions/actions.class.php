@@ -96,8 +96,11 @@ class commentsActions extends cqFrontendActions
       }
       else
       {
+
         $this->getUser()->setFlash(
-          'error', $form->getErrorSchema()->__toString(), 'comment'
+          'error',
+          $form->renderAllErrors('There was a problem with posting your comment:'),
+          'comment'
         );
       }
     }
