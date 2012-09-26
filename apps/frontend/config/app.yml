@@ -1,5 +1,8 @@
 all:
 
+  title: 'Collectors Quest'
+  title_delimiter: ' | '
+
   ssl_redirect:
     # if insecure pages accesed with https should be rerouted to http
     strict: true

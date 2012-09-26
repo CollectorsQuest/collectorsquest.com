@@ -50,15 +50,6 @@ seo:
         Browse collectible, vintage & antique items on display at Collectors Quest.
         Share, interact, and show off your own collections!
 
-    category:
-      model: true
-      title:
-        - %Name% | Collectors Quest
-        - %Name% Collections | Collectors Quest
-        - %Name% | Antique Collectible & Vintage | Collectors Quest
-      description: |
-        Browse collectible, vintage and antique items on Collectors Quest,
-        like these %Name% items, posted by trusted sellers and passionate collectors!
 
   collections:
     title: Unique Antique, Collectible & Vintage Items | Collectors Quest

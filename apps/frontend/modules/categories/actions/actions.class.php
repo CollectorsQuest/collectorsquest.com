@@ -27,10 +27,11 @@ class categoriesActions extends cqFrontendActions
 
   public function executeCategory(sfWebRequest $request)
   {
-    $this->category = $this->getRoute()->getObject();
+    /** @var $category ContentCategory */
+    $category = $this->getRoute()->getObject();
 
     // Make the category available in the sidebar action
-    $this->setComponentVar('category', $this->category, 'sidebarCategory');
+    $this->setComponentVar('category', $category, 'sidebarCategory');
 
     $this->collectors_question = null;
 
@@ -50,7 +51,7 @@ class categoriesActions extends cqFrontendActions
         ->joinwpPostMeta(null, Criteria::RIGHT_JOIN)
         ->usewpPostMetaQuery()
           ->filterByMetaKey('cq_content_category_id')
-          ->filterByMetaValue($this->category->getId())
+          ->filterByMetaValue($category->getId())
         ->endUse();
 
       if (sfConfig::get('sf_environment') === 'prod')
@@ -88,7 +89,7 @@ class categoriesActions extends cqFrontendActions
     $q = FrontendCollectorCollectionQuery::create()
        ->hasThumbnail()
        ->hasCollectibles()
-       ->filterByContentCategoryWithDescendants($this->category)
+       ->filterByContentCategoryWithDescendants($category)
        ->orderByUpdatedAt(Criteria::DESC);
 
     $pager = new PropelModelPager($q, $this->collectors_question !== null ? 16 : 36);
@@ -96,6 +97,33 @@ class categoriesActions extends cqFrontendActions
     $pager->init();
 
     $this->pager = $pager;
+
+    $this->category = $category;
+
+    /**
+     * Figure out the page title
+     */
+    $title = 'Collectible ' . $category->getName();
+
+    $q = ContentCategoryQuery::create()
+      ->hasCollectionsWithCollectibles()
+      ->limit(3);
+
+    /** @var $descendants ContentCategory[] */
+    $descendants = $category->getDescendants($q);
+
+    $names = array();
+    foreach ($descendants as $descendant)
+    {
+      $names[] = $descendant->getName();
+    }
+
+    if (!empty($names))
+    {
+      $title .= ' - ' . implode(', ', $names);
+    }
+
+    $this->prependTitle($title);
 
     return sfView::SUCCESS;
   }
