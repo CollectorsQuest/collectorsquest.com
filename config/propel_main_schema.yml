@@ -188,11 +188,13 @@ classes:
     columns:
       id: ~
       collection_category_id: { type: integer, required: false, foreignClass: CollectionCategory, foreignReference: id, onDelete: setnull }
-      name:         { type: varchar, size: 64, required: true, primaryString: true }
-      slug:         { type: varchar, size: 64, required: true }
-      description:  { type: longvarchar, required: false }
+      name:          { type: varchar, size: 64, required: true, primaryString: true }
+      name_singular: { type: varchar, size: 64, required: false }
+      slug:          { type: varchar, size: 64, required: true }
+      description:   { type: longvarchar, required: false }
     propel_behaviors:
       sluggable:  { slug_pattern: "{Name}", permanent: false }
+      extra_properties: ~
       nested_set: ~
 
   CollectionCollectible:
