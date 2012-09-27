@@ -36,4 +36,8 @@ class aetnComponents extends cqFrontendComponents
     return sfView::SUCCESS;
   }
 
+  public function executeHeaderMenWhoBuiltAmerica()
+  {
+    return sfView::SUCCESS;
+  }
 }
