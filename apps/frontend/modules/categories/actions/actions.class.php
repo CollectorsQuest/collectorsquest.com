@@ -27,14 +27,21 @@ class categoriesActions extends cqFrontendActions
 
   public function executeCategory(sfWebRequest $request)
   {
-    $this->category = $this->getRoute()->getObject();
+    /** @var $category ContentCategory */
+    $category = $this->getRoute()->getObject();
 
     // Make the category available in the sidebar action
-    $this->setComponentVar('category', $this->category, 'sidebarCategory');
+    $this->setComponentVar('category', $category, 'sidebarCategory');
 
     $this->collectors_question = null;
 
-    if ($request->getParameter('page', 1) == 1)
+    /**
+     * This is functionality for Collector Questions as described in:
+     * @see: https://basecamp.com/1759305/projects/353141-collectorsquest-com/todos/5134822-the-collectors
+     *
+     * NOTE: This is disabled as of now because it is not used
+     */
+    if (false && $request->getParameter('page', 1) == 1)
     {
       /** @var $q wpPostQuery */
       $q = wpPostQuery::create()
@@ -44,7 +51,7 @@ class categoriesActions extends cqFrontendActions
         ->joinwpPostMeta(null, Criteria::RIGHT_JOIN)
         ->usewpPostMetaQuery()
           ->filterByMetaKey('cq_content_category_id')
-          ->filterByMetaValue($this->category->getId())
+          ->filterByMetaValue($category->getId())
         ->endUse();
 
       if (sfConfig::get('sf_environment') === 'prod')
@@ -82,7 +89,7 @@ class categoriesActions extends cqFrontendActions
     $q = FrontendCollectorCollectionQuery::create()
        ->hasThumbnail()
        ->hasCollectibles()
-       ->filterByContentCategoryWithDescendants($this->category)
+       ->filterByContentCategoryWithDescendants($category)
        ->orderByUpdatedAt(Criteria::DESC);
 
     $pager = new PropelModelPager($q, $this->collectors_question !== null ? 16 : 36);
@@ -90,6 +97,8 @@ class categoriesActions extends cqFrontendActions
     $pager->init();
 
     $this->pager = $pager;
+
+    $this->category = $category;
 
     return sfView::SUCCESS;
   }

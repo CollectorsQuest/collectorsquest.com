@@ -4,25 +4,6 @@ require 'lib/model/om/BasePrivateMessageQuery.php';
 
 class PrivateMessageQuery extends BasePrivateMessageQuery
 {
-  public function filterByCollectorSender($value)
-  {
-    $this->addAlias('sender_col', CollectorPeer::TABLE_NAME);
-    $this->addJoin(
-      PrivateMessagePeer::SENDER, CollectorPeer::alias('sender_col', CollectorPeer::ID), Criteria::LEFT_JOIN
-    );
-    $this->add(CollectorPeer::alias('sender_col', CollectorPeer::USERNAME), '%' . $value . '%', Criteria::LIKE);
-    return $this;
-  }
-
-  public function filterByCollectorReceiver($value)
-  {
-    $this->addAlias('receiver_col', CollectorPeer::TABLE_NAME);
-    $this->addJoin(
-      PrivateMessagePeer::RECEIVER, CollectorPeer::alias('receiver_col', CollectorPeer::ID), Criteria::LEFT_JOIN
-    );
-    $this->add(CollectorPeer::alias('receiver_col', CollectorPeer::USERNAME), '%' . $value . '%', Criteria::LIKE);
-    return $this;
-  }
 
   /**
    * Order by Sender Username

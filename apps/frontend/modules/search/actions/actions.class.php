@@ -85,11 +85,12 @@ class searchActions extends cqFrontendActions
 
   public function executeIndex(sfWebRequest $request)
   {
+    /** @var $page integer */
     $page = $request->getParameter('page', 1);
 
     $query = array(
       'q' => self::$_query['q'],
-      'limits' => array(4 * ($page - 1), 4),
+      'limits' => array(4 * (min($page, 250) - 1), 4),
       'filters' => array(
         'object_type' => 'collectible',
         'has_thumbnail' => 'yes',

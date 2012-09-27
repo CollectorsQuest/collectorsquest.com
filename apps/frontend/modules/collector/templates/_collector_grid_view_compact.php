@@ -22,8 +22,8 @@
       <ul style="list-style: none; margin-left: 0;">
         <?php
           if (
-            ($collectionsCount = $collector->getQuery('FrontendCollectorCollection')->count()) &&
-            ($collectiblesCount = $collector->getQuery('FrontendCollectionCollectible')->count())
+            ($collectionsCount = $collector->countFrontendCollectorCollections()) &&
+            ($collectiblesCount = $collector->countFrontendCollectionCollectibles())
           ):
         ?>
         <li>

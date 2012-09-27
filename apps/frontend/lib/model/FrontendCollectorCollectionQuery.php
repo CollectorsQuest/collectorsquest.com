@@ -12,8 +12,15 @@ class FrontendCollectorCollectionQuery extends CollectorCollectionQuery
   {
     if ($criteria instanceof FrontendCollectorCollectionQuery)
     {
-      return $criteria;
+      /**
+       * By default we want to only show public Collections
+       * which have Collectibles asssigned to them
+       */
+      return $criteria
+        ->filterByIsPublic(true)
+        ->hasCollectibles();
     }
+
     $query = new FrontendCollectorCollectionQuery();
     if (null !== $modelAlias)
     {
@@ -24,8 +31,13 @@ class FrontendCollectorCollectionQuery extends CollectorCollectionQuery
       $query->mergeWith($criteria);
     }
 
-    // By default we want to only show public Collections
-    $query->filterByIsPublic(true);
+    /**
+     * By default we want to only show public Collections
+     * which have Collectibles asssigned to them
+     */
+    $query
+      ->filterByIsPublic(true)
+      ->hasCollectibles();
 
     return $query;
   }

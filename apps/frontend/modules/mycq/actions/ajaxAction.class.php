@@ -245,7 +245,7 @@ class ajaxAction extends cqAjaxAction
         $image->setIsPrimary($is_primary);
         $image->setModelId($recipient->getId());
         $image->setSource($donor->getId());
-        $image->setCreatedAt(time());
+        // $image->setCreatedAt(time());
         $image->save();
       }
       catch (PropelException $e)
@@ -434,19 +434,6 @@ class ajaxAction extends cqAjaxAction
     }
 
     return $this->error('Error', 'Error');
-  }
-
-  protected function executeCollectorAvatarDelete()
-  {
-    /** @var $collector Collector */
-    $collector = $this->getUser()->getCollector();
-
-    if ($image = $collector->getPhoto())
-    {
-      $image->delete();
-    }
-
-    return $this->success();
   }
 
   /**
@@ -808,7 +795,7 @@ class ajaxAction extends cqAjaxAction
             $image->setIsPrimary(true);
             $image->setModelId($collectible->getId());
             $image->setSource($donor->getId());
-            $image->setCreatedAt(time());
+            // $image->setCreatedAt(time());
             $image->save();
 
             // Archive the $donor, not needed anymore

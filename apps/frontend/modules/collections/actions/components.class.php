@@ -60,7 +60,7 @@ class collectionsComponents extends cqFrontendComponents
           ->filterById($collectible_ids)
           ->limit(4)
           ->addAscendingOrderByColumn(
-            'FIELD(id, ' . implode(',', $collectible_ids) . ')'
+            'FIELD(collectible.id, ' . implode(',', $collectible_ids) . ')'
           );
         $this->collectibles = $q->find();
       }
@@ -91,7 +91,7 @@ class collectionsComponents extends cqFrontendComponents
           ->offset(4)
           ->limit(12)
           ->addAscendingOrderByColumn(
-            'FIELD(id, ' . implode(',', $collectible_ids) . ')'
+            'FIELD(collectible.id, ' . implode(',', $collectible_ids) . ')'
           );
         $this->collectibles = $q->find();
       }
@@ -109,7 +109,7 @@ class collectionsComponents extends cqFrontendComponents
     $p = (int) $this->getRequestParameter('p', 1);
     $pager = null;
 
-    if ($s != 'most-relevant')
+    if ($s != 'most-recent')
     {
       $query = array(
         'q' => $q,
@@ -138,7 +138,7 @@ class collectionsComponents extends cqFrontendComponents
 
       $pager = new cqSphinxPager($query, array('collections'), 16);
     }
-    else
+    else if (false)
     {
       /** @var $query wpPostQuery */
       $query = wpPostQuery::create()
@@ -169,13 +169,26 @@ class collectionsComponents extends cqFrontendComponents
           $query = FrontendCollectorCollectionQuery::create()
             ->filterById($collection_ids)
             ->hasThumbnail()
-            ->addAscendingOrderByColumn('FIELD(id, '. implode(',', $collection_ids) .')');
+            ->addAscendingOrderByColumn('FIELD(collector_collection.id, '. implode(',', $collection_ids) .')');
 
           $pager = new PropelModelPager($query, 16);
         }
 
         $this->wp_post = $wp_post;
       }
+    }
+    else
+    {
+      $query = FrontendCollectorCollectionQuery::create()
+        ->hasCollectibles()
+        ->hasThumbnail()
+        ->groupByCollectorId()
+        ->orderByCreatedAt(Criteria::DESC);
+
+      // Temporary filter out Guruzen's collections
+      $query->filterByCollectorId(4267, Criteria::NOT_EQUAL);
+
+      $pager = new PropelModelPager($query, 16);
     }
 
     if ($pager)

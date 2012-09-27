@@ -78,6 +78,23 @@ class CollectionCollectible extends BaseCollectionCollectible
   }
 
   /**
+   * Gets a single CollectorCollection object, which is related to this object by a one-to-one relationship.
+   *
+   * @param      PropelPDO $con optional connection object
+   * @return     CollectorCollection
+   * @throws     PropelException
+   */
+  public function getCollectorCollection(PropelPDO $con = null)
+  {
+    if ($this->singleCollectorCollection === null && !$this->isNew())
+    {
+      $this->singleCollectorCollection = CollectorCollectionQuery::create()->findPk($this->getCollectionId(), $con);
+    }
+
+    return $this->singleCollectorCollection;
+  }
+
+  /**
    * @see Collectible::getName()
    */
   public function getName()

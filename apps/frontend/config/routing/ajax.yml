@@ -72,6 +72,11 @@ ajax_multimedia:
   url:   /ajax/multimedia
   param: { module: _ajax, action: multimedia }
 
+ajax_mailchimp_webhook:
+  url:   /ajax/mailchimp-webhook
+  param: { module: _ajax, action: mailChimpWebhook }
+  requirements: { sf_method: [POST] }
+
 ajax_sidebar:
   url:   /ajax/sidebar
   param: { module: _sidebar, action: ajax }
