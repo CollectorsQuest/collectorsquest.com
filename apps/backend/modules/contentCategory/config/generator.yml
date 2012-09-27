@@ -32,8 +32,19 @@ generator:
         sort: [id, asc]
         display: [id, tree_level, name, _num_collections]
 
-      form:    ~
+      form:  ~
       edit:
+        fields:
+          seo_title:
+            type:  plain
         title: Edit Content Category
+        display:
+         '':
+           - parent_id
+           - name
+         'SEO':
+           - description
+         'SEO (Preview)':
+           - _edit_seo_snippet
       new:
         title: New Content Category
