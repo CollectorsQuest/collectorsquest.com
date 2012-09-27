@@ -7,8 +7,10 @@ class cqValidatorName extends sfValidatorRegex
           [\d\-\s]*                     # numbers and dashes/spaces
         |
           (CIMG|DSC_|DSCF|DSCN|DSC
-          |DUW|IMG|JD|MGP|S700
-          |PICT|vlcsnap|KIF|IMAG).*     # have prefix
+          |DUW|JD|MGP|S700
+          |PICT|vlcsnap|KIF|IMG).*     # have prefix
+        |
+          (IMAG|IMAGE)[\d\-\s]*                # have prefix and only dashes/spaces
         |
           .{0,3}                        # have length 3
       )
