@@ -90,7 +90,7 @@ class cq_other_news_widget extends WP_Widget {
       // construct WP_Query to find posts based on tag matching
       $args = array(
         'post_type' => 'post',
-        'post__not_in' => array($post->ID),
+        'post__not_in' => array($post_id),
         'post_status' => 'publish',
         'tag' => $tag_string,
         'showposts' => 2,
@@ -141,43 +141,46 @@ class cq_other_news_widget extends WP_Widget {
       {
         foreach ($cats as $cat)
         {
-          $cats_array[] = $cat->ID;
+          $cats_array[] = $cat->cat_ID;
         }
       }
-      $cats = implode(',', $cats_array);
 
       // get the posts based on category matching
       $args = array(
+        'post_type' => 'post',
+        'post__not_in' => array($post_id),
+        'post_status' => 'publish',
+        'category__in' => $cats_array,
         'showposts' => $showposts,
-        'category' => $cats,
-        'exclude' => $post_id,
+        'caller_get_posts' => 1,
         'orderby' => 'post_date',
         'order' => 'DESC'
       );
-      $posts = get_posts( $args );
+      $the_query = new WP_Query($args);
     ?>
 
-    <?php foreach($posts as $post) { setup_postdata($post); ?>
+    <?php while($the_query->have_posts()): $the_query->the_post(); ?>
       <div class="row-fluid bottom-margin">
         <h4 style="margin-bottom: 5px;">
           <a href="<?php the_permalink() ?>"><?php the_title(); ?></a>
         </h4>
-        <span class="content">
-          <?php
-            $length=100;
-            $longString=get_the_excerpt('...more');
+          <span class="content">
+            <?php
+            $length = 100;
+            $longString = get_the_excerpt('...more');
             $truncated = substr($longString, 0, strpos($longString, ' ', $length));
-            echo $truncated.'... ' //.'... <a href="'.get_permalink().'">more</a>';
-          ?>
-        </span>
-        <small style="font-size: 80%">
-          <span style="color: grey">
-            Posted by <?php the_author_posts_link() ?>
-            <?= 'on '.get_the_date('M dS, Y'); ?>
+
+            echo $truncated . '... ';
+            ?>
           </span>
+        <small style="font-size: 80%">
+            <span style="color: grey">
+              Posted by <?php the_author_posts_link() ?>
+              <?= 'on '.get_the_date('M dS, Y'); ?>
+            </span>
         </small>
       </div>
-    <?php } ?>
+    <?php endwhile; ?>
 
   <?php
     echo $after_widget;
