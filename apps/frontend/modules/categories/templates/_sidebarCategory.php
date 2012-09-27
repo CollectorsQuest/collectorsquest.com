@@ -5,6 +5,14 @@
 
 if (IceGateKeeper::open('expose_collection_categories'))
 {
+  if (!$sf_user->isAuthenticated())
+  {
+    echo link_to(
+      cq_image_tag('headlines/2012-06-24_CQGuidePromo_300x90.png'),
+      'misc_guide_to_collecting', array('ref' => cq_link_ref('sidebar'))
+    );
+  }
+
   include_component(
     '_sidebar', 'widgetCollectionSubCategories',
     array(
@@ -15,7 +23,7 @@ if (IceGateKeeper::open('expose_collection_categories'))
 
   include_component(
     '_sidebar', 'widgetCollectiblesForSale',
-    array('category' => $category,'limit' => 3)
+    array('category' => $category,'limit' => 5)
   );
 }
 else
@@ -24,7 +32,7 @@ else
 
   include_component(
     '_sidebar', 'widgetCollectiblesForSale',
-    array('category' => $category,'limit' => 3)
+    array('category' => $category,'limit' => 5)
   );
 
   include_component(

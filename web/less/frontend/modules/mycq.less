@@ -1378,13 +1378,21 @@ textarea.input-xlarge {
     position: relative;
     margin-left: 0;
 
-    &:hover .icon-remove-sign {
-      display: block;
+    .holder-icon-edit {
+      top: 27%;
+      left: 21%;
+      .square(80px);
+      font-size: 15px;
+      text-align: center;
+      color: #fff;
+      i {
+        display: block;
+        font-size: 50px;
+        margin-top: 15px;
+      }
     }
-
-    .icon-remove-sign {
-      left: 130px;
-      top: -8px;
+    &:hover .holder-icon-edit {
+      display: block;
     }
   }
 

@@ -18,7 +18,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#" xmlns:og="http://opengraph.org/schema/"
       lang="en" class="no-js lt-ie10 ie9">
 <![endif]-->
-<!--[if gt IE 9]>
+<!--[if gt IE 9]><!-->
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#" xmlns:og="http://opengraph.org/schema/"
       lang="en" class="no-js">
 <!--<![endif]-->
@@ -127,7 +127,7 @@
   <?php
     if (null !== $sidebar)
     {
-      $height = $sf_user->getFlash('height_main_div', null, true, 'internal');
+      $height = $sf_user->getFlashAndDelete('height_main_div', null, 'internal');
 
       // Make sure we are backwords compatible to the old behavior
       if (empty($height) || !property_exists($height, 'value') || $height->value <= 0)
