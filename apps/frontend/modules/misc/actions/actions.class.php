@@ -260,7 +260,8 @@ class miscActions extends cqFrontendActions
     $values = unserialize($wp_post->getPostMetaValue('_featured_items'));
 
     // Initialize the arrays
-    $collection_ids = $collectible_ids = array();
+    $collection_ids = $collectible_ids = $category_ids = $tags = array();
+    $collection_ids_exclude = $collectible_ids_exclude = $category_ids_exclude = $tags_exclude = array();
 
     if (!empty($values['cq_collection_ids']))
     {
@@ -274,15 +275,56 @@ class miscActions extends cqFrontendActions
       $collectible_ids = array_map('trim', $collectible_ids);
       $collectible_ids = array_filter($collectible_ids);
     }
+    if (!empty($values['cq_category_ids']))
+    {
+      $category_ids = explode(',', $values['cq_category_ids']);
+      $category_ids = array_map('trim', $category_ids);
+      $category_ids = array_filter($category_ids);
+    }
+    if (!empty($values['cq_tags']))
+    {
+      $tags = explode(',', $values['cq_tags']);
+      $tags = array_map('trim', $tags);
+      $tags = array_filter($tags);
+    }
+    // exclude values
+    if (!empty($values['cq_collection_ids_exclude']))
+    {
+      $collection_ids_exclude = explode(',', $values['cq_collection_ids_exclude']);
+      $collection_ids_exclude = array_map('trim', $collection_ids_exclude);
+      $collection_ids_exclude = array_filter($collection_ids_exclude);
+    }
+    if (!empty($values['cq_collectible_ids_exclude']))
+    {
+      $collectible_ids_exclude = explode(',', $values['cq_collectible_ids_exclude']);
+      $collectible_ids_exclude = array_map('trim', $collectible_ids_exclude);
+      $collectible_ids_exclude = array_filter($collectible_ids_exclude);
+    }
+    if (!empty($values['cq_category_ids_exclude']))
+    {
+      $category_ids_exclude = explode(',', $values['cq_category_ids_exclude']);
+      $category_ids_exclude = array_map('trim', $category_ids_exclude);
+      $category_ids_exclude = array_filter($category_ids_exclude);
+    }
+    if (!empty($values['cq_tags_exclude']))
+    {
+      $tags_exclude = explode(',', $values['cq_tags_exclude']);
+      $tags_exclude = array_map('trim', $tags_exclude);
+      $tags_exclude = array_filter($tags_exclude);
+    }
 
     if (!$_collectible_ids = $this->getUser()->getAttribute('featured_items_collectible_ids', null, 'cache'))
     {
-      /** @var $q CollectionCollectibleQuery */
-      $q = CollectionCollectibleQuery::create()
+      /** @var $q FrontendCollectionCollectibleQuery */
+      $q = FrontendCollectionCollectibleQuery::create()
         ->select('CollectibleId')
         ->filterByCollectionId($collection_ids, Criteria::IN)
+        ->_and()
+        ->filterByCollectionId($collection_ids_exclude, Criteria::NOT_IN)
         ->_or()
-        ->filterByCollectibleId($collectible_ids, Criteria::IN);
+        ->filterByCollectibleId($collectible_ids, Criteria::IN)
+        ->_and()
+        ->filterByCollectibleId($collectible_ids_exclude, Criteria::NOT_IN);
 
       /** @var $collectible_ids array */
       $_collectible_ids = $q->find()->toArray();
