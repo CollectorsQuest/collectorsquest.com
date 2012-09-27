@@ -4,7 +4,7 @@
  * @var $collection  Collection
  */
 ?>
-<div id="modal-collectible"
+<div id="modal-collectible">
   <h1>RAILROADIANA</h1>
 
   <?php
@@ -73,13 +73,11 @@
         'for_object' => $collectible->getCollectible()
       )
     );
-
-    echo link_to(
-      image_tag('frontend/misc/seemore_popupbutton.png', 'style="display: block; margin: auto"'),
-      url_for_collection($collection)
-    )
-
   ?>
+
+  <div id="seemore_popupbutton">
+    <a href="<?= url_for_collection($collection); ?>"></a>
+  </div>
 </div>
 
 <!-- will transfer there styles later -->
@@ -104,6 +102,7 @@
   }
 </style>
 
+<script src="//s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4fa2c6240b775d05"></script>
 
 <script type="text/javascript">
   // expanding of comments section textarea and button
@@ -117,6 +116,5 @@
       });
   });
 
-  <?php // @todo we get "Loading..." because of addthis.init(), should think of a way to improve ?>
-  addthis.init();
+  addthis.toolbox("#social-sharing");
 </script>
