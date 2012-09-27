@@ -436,19 +436,6 @@ class ajaxAction extends cqAjaxAction
     return $this->error('Error', 'Error');
   }
 
-  protected function executeCollectorAvatarDelete()
-  {
-    /** @var $collector Collector */
-    $collector = $this->getUser()->getCollector();
-
-    if ($image = $collector->getPhoto())
-    {
-      $image->delete();
-    }
-
-    return $this->success();
-  }
-
   /**
    * section: collection
    * page: createStep1

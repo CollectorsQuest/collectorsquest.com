@@ -109,7 +109,7 @@ class collectionsComponents extends cqFrontendComponents
     $p = (int) $this->getRequestParameter('p', 1);
     $pager = null;
 
-    if ($s != 'most-relevant')
+    if ($s != 'most-recent')
     {
       $query = array(
         'q' => $q,
@@ -184,6 +184,9 @@ class collectionsComponents extends cqFrontendComponents
         ->hasThumbnail()
         ->groupByCollectorId()
         ->orderByCreatedAt(Criteria::DESC);
+
+      // Temporary filter out Guruzen's collections
+      $query->filterByCollectorId(4267, Criteria::NOT_EQUAL);
 
       $pager = new PropelModelPager($query, 16);
     }
