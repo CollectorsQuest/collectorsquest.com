@@ -100,31 +100,6 @@ class categoriesActions extends cqFrontendActions
 
     $this->category = $category;
 
-    /**
-     * Figure out the page title
-     */
-    $title = 'Collectible ' . $category->getName();
-
-    $q = ContentCategoryQuery::create()
-      ->hasCollectionsWithCollectibles()
-      ->limit(3);
-
-    /** @var $descendants ContentCategory[] */
-    $descendants = $category->getDescendants($q);
-
-    $names = array();
-    foreach ($descendants as $descendant)
-    {
-      $names[] = $descendant->getName();
-    }
-
-    if (!empty($names))
-    {
-      $title .= ' - ' . implode(', ', $names);
-    }
-
-    $this->prependTitle($title);
-
     return sfView::SUCCESS;
   }
 }

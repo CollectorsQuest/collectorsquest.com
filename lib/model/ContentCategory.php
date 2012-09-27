@@ -214,4 +214,41 @@ class ContentCategory extends BaseContentCategory
     return $this->getChildren($q);
   }
 
+  /**
+   * Page SEO
+   */
+  public function getSeoTitle()
+  {
+    $title = 'Collectible ' . $this->getName();
+
+    $q = ContentCategoryQuery::create()
+      ->hasCollectionsWithCollectibles()
+      ->limit(3);
+
+    /** @var $descendants ContentCategory[] */
+    $descendants = $this->getDescendants($q);
+
+    $names = array();
+    foreach ($descendants as $descendant)
+    {
+      $names[] = $descendant->getName();
+    }
+
+    if (!empty($names))
+    {
+      $title .= ' - ' . implode(', ', $names);
+    }
+
+    return $title;
+  }
+
+  public function getSeoDescription()
+  {
+    return cqStatic::truncateText($this->getDescription(), 160, '', true);
+  }
+
+  public function getSeoKeywords()
+  {
+    return null;
+  }
 }
