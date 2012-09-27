@@ -58,13 +58,15 @@
                         )
                       );
                     ?>
-                    <span class="multimedia-edit holder-icon-edit"
-                          data-original-image-url="<?= src_tag_multimedia($image, 'original') ?>"
-                          data-post-data='<?= $aviary_hmac_message; ?>'>
+                    <?php if (!empty($aviary_hmac_message)): ?>
+                      <span class="multimedia-edit holder-icon-edit"
+                            data-original-image-url="<?= src_tag_multimedia($image, 'original') ?>"
+                            data-post-data='<?= $aviary_hmac_message; ?>'>
 
-                      <i class="icon icon-camera"></i><br/>
-                      Edit Photo
-                    </span>
+                        <i class="icon icon-camera"></i><br/>
+                        Edit Photo
+                      </span>
+                    <?php endif; ?>
                   </div>
                   <div class="span8">
                     <div class="cf spacer-bottom-15">
