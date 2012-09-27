@@ -42,9 +42,20 @@ generator:
          '':
            - parent_id
            - name
-         'SEO':
+           - name_singular
            - description
-         'SEO (Preview)':
-           - _edit_seo_snippet
+
+         'SEO (Collections Pages)':
+#           - seo_collections_title_prefix
+#           - seo_collections_title_suffix
+#           - seo_collections_use_singular
+           - _edit_collections_seo_snippet
+
+         'SEO (Market Pages)':
+#           - seo_market_title_prefix
+#           - seo_market_title_suffix
+#           - seo_market_use_singular
+           - _edit_market_seo_snippet
+
       new:
         title: New Content Category

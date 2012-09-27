@@ -121,30 +121,27 @@ class _sidebarComponents extends cqFrontendComponents
       ->filterByLevel(array(1, 2))
       ->hasCollectiblesForSale()
       ->orderBy('Name', Criteria::ASC);
-    $categories = $q->find();
+    $this->categories = $q->find();
 
-    // if we have less than 4 Items For Sale in the category we don't want to display it
-    $this->categories = array();
-    foreach ($categories as $category)
-    {
-      /** @var $q CollectibleForSaleQuery */
-      $q = CollectibleForSaleQuery::create()
-        ->useCollectibleQuery()
-          ->filterByIsPublic(true)
-        ->endUse();
 
-      $q->filterByContentCategoryWithDescendants($category)
-        ->isForSale();
-
-      // how many items for sale are there in the category
-      $count_items = $q->count();
-
-      // if we have more at least 4 items we display the category in the widget
-      if ($count_items >= 4)
-      {
-        $this->categories[] = $category;
-      }
-    }
+//    // If we have less than 4 Items For Sale in the category we don't want to display it
+//    $this->categories = array();
+//    foreach ($categories as $category)
+//    {
+//      /** @var $q FrontendCollectibleForSaleQuery */
+//      $q = FrontendCollectibleForSaleQuery::create()
+//        ->filterByContentCategoryWithDescendants($category)
+//        ->isForSale();
+//
+//      // how many items for sale are there in the category
+//      $count_items = $q->count();
+//
+//      // if we have more at least 4 items we display the category in the widget
+//      if ($count_items >= 4)
+//      {
+//        $this->categories[] = $category;
+//      }
+//    }
 
     return $this->_sidebar_if(count($this->categories) > 0);
   }

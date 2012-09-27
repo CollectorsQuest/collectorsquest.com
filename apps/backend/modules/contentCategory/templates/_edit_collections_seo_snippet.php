@@ -8,9 +8,9 @@
   include_partial(
     'global/seo_snippet',
     array(
-      'title' => $ContentCategory->getSeoTitle() . ' | Collectors Quest',
+      'title' => $ContentCategory->getSeoCollectionsTitle(),
       'href' => url_for_frontend('content_category', array('sf_subject' => $ContentCategory)),
-      'description' => $ContentCategory->getSeoDescription() ?: $default
+      'description' => $ContentCategory->getSeoCollectionsDescription() ?: $default
     )
   );
 ?>
