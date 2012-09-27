@@ -1,15 +1,13 @@
 <div class="mwba-wrapper">
-  <div class="top-banner">
-    <?= image_tag('frontend/misc/mwba-top-banner.png', array('alt' => 'The Men Who Built America'));  ?>
-  </div>
+  <div class="top-banner"></div>
   <div class="labels-ribbons">
-      <a href="<?= url_for('@aetn_mwba_petroliana', true); ?>" class="rockefeller_button"></a>
-      <a href="<?= url_for('@aetn_mwba_rooseveltiana', true); ?>" class="roosevelt_button"></a>
-      <a href="<?= url_for('@aetn_mwba_railroadiana', true); ?>" class="vanderbilt_button"></a>
+      <a href="<?= url_for('@aetn_mwba_petroliana', true); ?>" class="rockefeller-button"></a>
+      <a href="<?= url_for('@aetn_mwba_rooseveltiana', true); ?>" class="roosevelt-button"></a>
+      <a href="<?= url_for('@aetn_mwba_railroadiana', true); ?>" class="vanderbilt-button"></a>
   </div>
 
   <div class="center-graphic">
-    <?= image_tag('frontend/misc/mwba-center-graphic.png'); ?>
+    <?= image_tag('frontend/misc/mwba/mwba-center-graphic.png'); ?>
   </div>
 
   <div class="banner">
