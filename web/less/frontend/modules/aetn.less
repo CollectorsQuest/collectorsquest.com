@@ -97,7 +97,8 @@
 
 .mwba-american-flag, .mwba-title-red-man-page, .mwba-rockefeller-page-banner,
 .mwba-roosevelt-page-banner, .mwba-vanderbilt-page-banner, .mwba-man-pages-bg,
-.title-petroliana-txt, .title-railroadiana-txt, .title-rooseveltiana-txt {
+.title-petroliana-txt, .title-railroadiana-txt, .title-rooseveltiana-txt,
+.next-tiny-arrow, .previous-tiny-arrow {
   background: url("@{baseUrl}/misc/mwba/mwba-sprites-man-pages.png") no-repeat;
   display: block;
 }
@@ -145,6 +146,16 @@
 .title-rooseveltiana-txt {
   .size(16px, 193px);
   background-position: -750px -250px;
+}
+
+.next-tiny-arrow {
+  .size(31px, 18px);
+  background-position: -950px -120px;
+}
+
+.previous-tiny-arrow {
+  .size(31px, 18px);
+  background-position: -900px -120px;
 }
 
 //END SPRITES
@@ -201,15 +212,17 @@
     .previous-man, .next-man {
       display: block;
       position: absolute;
-      top: 200px;
+      top: 195px;
       font-size: 36px;
       color: #000;
     }
     .next-man {
-      right: 15px;
+      right: 18px;
+      .next-tiny-arrow();
     }
     .previous-man {
-      left: 15px;
+      left: 18px;
+      .previous-tiny-arrow();
     }
   }
 

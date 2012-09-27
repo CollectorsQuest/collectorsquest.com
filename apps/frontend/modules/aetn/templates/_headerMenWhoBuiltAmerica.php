@@ -33,12 +33,8 @@
       </p>
     </div>
   </div>
-  <a href="#" class="previous-man">
-    <i class="icon-chevron-left"></i>
-  </a>
-    <a href="#" class="next-man">
-    <i class="icon-chevron-right"></i>
-  </a>
+  <a href="#" class="previous-man"></a>
+  <a href="#" class="next-man"></a>
 </div>
 
 <div class="mwba-american-flag">
