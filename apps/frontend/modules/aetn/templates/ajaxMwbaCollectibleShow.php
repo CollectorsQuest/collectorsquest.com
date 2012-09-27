@@ -73,13 +73,11 @@
         'for_object' => $collectible->getCollectible()
       )
     );
-
-    echo link_to(
-      image_tag('frontend/misc/seemore_popupbutton.png', 'style="display: block; margin: auto"'),
-      url_for_collection($collection)
-    )
-
   ?>
+
+  <div id="seemore_popupbutton">
+    <a href="<?= url_for_collection($collection); ?>"></a>
+  </div>
 </div>
 
 <!-- will transfer there styles later -->
