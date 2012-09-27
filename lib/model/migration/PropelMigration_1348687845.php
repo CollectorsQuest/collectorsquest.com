@@ -4,7 +4,7 @@
  * Add hidden and spam fields to comment and comment archive
  * Updated at: 2012-09-26 10:31PM
  */
-class PropelMigration_1348501687
+class PropelMigration_1348687845
 {
 
   public function preUp($manager)
