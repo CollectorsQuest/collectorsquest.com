@@ -673,6 +673,7 @@ class ajaxAction extends cqAjaxAction
     {
       $form->setDefault('collection_id', $collection->getId());
       $form->setDefault('tags', $collection->getTags());
+      $form->setDefault('content_category_id', $collection->getContentCategoryId());
     }
 
     if ($collectible_id = $request->getParameter('collectible_id'))

@@ -59,8 +59,15 @@ class CollectibleForm extends BaseCollectibleForm
     /** @var $values array */
     $values = $this->getValues();
 
-    $object->setDescription($values['description'], 'html');
-    $object->setTags($values['tags']);
+    if (isset($values['description']))
+    {
+      $object->setDescription($values['description'], 'html');
+    }
+
+    if (isset($values['tags']))
+    {
+      $object->setTags($values['tags']);
+    }
 
     $object->save();
 
