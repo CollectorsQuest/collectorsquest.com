@@ -166,9 +166,14 @@ class generalActions extends cqFrontendActions
 
     if (sfRequest::POST == $request->getMethod())
     {
-      $form->bind($request->getParameter($form->getName()));
+      // make sure we are logging in user without ' ' in username
+      $values = $request->getParameter($form->getName());
+      $values['username'] = preg_replace('/\s/', '', $values['username']);
+
+      $form->bind($values);
       if ($form->isValid())
       {
+
         /* @var $collector Collector */
         $collector = $form->getValue('collector');
         $this->getUser()->Authenticate(true, $collector, $form->getValue('remember'));
