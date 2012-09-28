@@ -67,12 +67,9 @@
   <?php endif; ?>
 
   <?php
-    include_partial(
-      'comments/comments',
-      array(
+    include_component('comments', 'comments', array(
         'for_object' => $collectible->getCollectible()
-      )
-    );
+    ));
   ?>
 
   <div id="seemore_popupbutton">
