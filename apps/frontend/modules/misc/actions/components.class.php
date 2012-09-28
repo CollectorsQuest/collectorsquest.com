@@ -17,9 +17,7 @@ class miscComponents extends cqFrontendComponents
 
     if (!empty($values['cq_collectibles_for_sale_ids']))
     {
-      $collectibles_for_sale_ids = explode(',', $values['cq_collectibles_for_sale_ids']);
-      $collectibles_for_sale_ids = array_map('trim', $collectibles_for_sale_ids);
-      $collectibles_for_sale_ids = array_filter($collectibles_for_sale_ids);
+      $collectibles_for_sale_ids = self::getValues($values['cq_collectibles_for_sale_ids']);
 
       // Get some element of surprise
       shuffle($collectibles_for_sale_ids);
@@ -36,9 +34,7 @@ class miscComponents extends cqFrontendComponents
     }
     if (!empty($values['cq_wp_post_ids']))
     {
-      $wp_post_ids = explode(',', $values['cq_wp_post_ids']);
-      $wp_post_ids = array_map('trim', $wp_post_ids);
-      $wp_post_ids = array_filter($wp_post_ids);
+      $wp_post_ids = self::getValues($values['cq_wp_post_ids']);
     }
 
     $this->wp_post = $wp_post;
@@ -46,5 +42,18 @@ class miscComponents extends cqFrontendComponents
     $this->collectibles_for_sale_ids = $collectibles_for_sale_ids;
 
     return $this->wp_post ? sfView::SUCCESS : sfView::NONE;
+  }
+
+  /**
+   * @param  $value string
+   * @return array
+   */
+  private function getValues ($value)
+  {
+    $value = explode(',', $value);
+    $value = array_map('trim', $value);
+    $value = array_filter($value);
+
+    return $value;
   }
 }
