@@ -1,9 +1,9 @@
 <div class="mwba-wrapper">
   <div class="top-banner"></div>
   <div class="labels-ribbons">
-      <a href="<?= url_for('@aetn_mwba_petroliana', true); ?>" class="rockefeller-button"></a>
-      <a href="<?= url_for('@aetn_mwba_rooseveltiana', true); ?>" class="roosevelt-button"></a>
-      <a href="<?= url_for('@aetn_mwba_railroadiana', true); ?>" class="vanderbilt-button"></a>
+    <a href="<?= url_for('@aetn_mwba_petroliana', true); ?>" class="rockefeller-button"></a>
+    <a href="<?= url_for('@aetn_mwba_rooseveltiana', true); ?>" class="roosevelt-button"></a>
+    <a href="<?= url_for('@aetn_mwba_railroadiana', true); ?>" class="vanderbilt-button"></a>
   </div>
 
   <div class="center-graphic">
