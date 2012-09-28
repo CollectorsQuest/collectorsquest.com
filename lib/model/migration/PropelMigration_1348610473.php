@@ -3,7 +3,7 @@
 /**
  * Update the is_public status for all recent collections/collectibles
  */
-class PropelMigration_1348586469
+class PropelMigration_1348610473
 {
 
   public function preUp()
@@ -23,19 +23,19 @@ class PropelMigration_1348586469
     {
       /* @var $collector Collector */
       $old_username = $collector->getUsername();
-      $new_username = preg_replace('/\s+/g', '',$old_username);
+      $new_username = preg_replace('/\s/', '',$old_username);
       if ($old_username != $new_username)
       {
         $collector->setUsername($new_username);
-        echo 'Changed username: '.$new_username;
-        //$collector->save();
+        $collector->save();
         $count_changes++;
       }
 
-      echo sprintf('Changed %s records', $count_changes);
+
       echo sprintf("\r Completed: %.2f%%", round($k/$count, 4) * 100);
     }
 
+    echo sprintf('Changed %s records', $count_changes);
     echo "\r Completed: 100%  \n";
   }
 
