@@ -618,7 +618,7 @@ class Collectible extends BaseCollectible implements ShippingReferencesInterface
       {
         $is_public = false;
       }
-      else if (!$this->getPrimaryImage())
+      else if (!$this->getPrimaryImage(Propel::CONNECTION_WRITE))
       {
         $is_public = false;
       }
