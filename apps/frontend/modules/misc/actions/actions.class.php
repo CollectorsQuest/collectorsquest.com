@@ -300,6 +300,48 @@ class miscActions extends cqFrontendActions
 
     if (!$_collectible_ids = $this->getUser()->getAttribute('featured_items_collectible_ids', null, 'cache'))
     {
+      // find Collectibles from Category IDs and add them to the rest
+      if (!empty($category_ids))
+      {
+        /** @var $q ContentCategoryQuery */
+        $q = ContentCategoryQuery::create()
+          ->filterById($category_ids, Criteria::IN);
+
+        /** @var $content_categories ContentCategory[] */
+        $_content_categories = $q->find();
+
+        /** @var $q FrontendCollectionCollectibleQuery */
+        $q = FrontendCollectionCollectibleQuery::create()
+          ->select('CollectibleId')
+          ->filterByContentCategoryWithDescendants($_content_categories);
+
+        $_collectible_ids_content_categories = $q->find()->toArray();
+
+        $collectible_ids = array_merge($collectible_ids, $_collectible_ids_content_categories);
+        $collectible_ids = array_unique($collectible_ids);
+      }
+
+      // find Collectibles from Category IDs and them to the rest that should be excluded
+      if (!empty($category_ids_exclude))
+      {
+        /** @var $q ContentCategoryQuery */
+        $q = ContentCategoryQuery::create()
+          ->filterById($category_ids_exclude, Criteria::IN);
+
+        /** @var $content_categories_exclude ContentCategory[] */
+        $_content_categories_exclude = $q->find();
+
+        /** @var $q FrontendCollectionCollectibleQuery */
+        $q = FrontendCollectionCollectibleQuery::create()
+          ->select('CollectibleId')
+          ->filterByContentCategoryWithDescendants($_content_categories_exclude);
+
+        $_collectible_ids_content_categories_exclude = $q->find()->toArray();
+
+        $collectible_ids_exclude = array_merge($collectible_ids_exclude, $_collectible_ids_content_categories_exclude);
+        $collectible_ids_exclude = array_unique($collectible_ids_exclude);
+      }
+
       /** @var $q FrontendCollectionCollectibleQuery */
       $q = FrontendCollectionCollectibleQuery::create()
         ->select('CollectibleId')
