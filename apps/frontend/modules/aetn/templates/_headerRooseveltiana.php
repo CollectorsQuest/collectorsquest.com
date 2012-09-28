@@ -10,15 +10,15 @@
       </p>
       <p>
         Of course, Rooseveltiana collectors have their share of
-        <a href="http://www.collectorsquest.com/collectible/16503/tr-in-oval-with-flag-button-c1021" target="_blank">
+        <a href="/collectible/16503/tr-in-oval-with-flag-button-c1021" target="_blank">
             political buttons</a>, but one can also find his face and figure on
-        <a href="http://www.collectorsquest.com/collectible/16967/teddy-roosevelt-clock" target="_blank">clocks</a> and
-        <a href="http://www.collectorsquest.com/collectible/16608/progressive-tr-watch-fob-c1021" target="_blank">
+        <a href="/collectible/16967/teddy-roosevelt-clock" target="_blank">clocks</a> and
+        <a href="/collectible/16608/progressive-tr-watch-fob-c1021" target="_blank">
             watches</a>,
-        <a href="http://www.collectorsquest.com/collectible/87813/rough-rider-knife-c1021" target="_blank">knives</a>,
-        <a href="http://www.collectorsquest.com/collectible/87810/tr-and-lion-mechanical-bank-c1021" target="_blank">
+        <a href="/collectible/87813/rough-rider-knife-c1021" target="_blank">knives</a>,
+        <a href="/collectible/87810/tr-and-lion-mechanical-bank-c1021" target="_blank">
             banks</a>,
-        <a href="http://www.collectorsquest.com/collectible/87808/tr-flow-blue-flower-plate-c1021" target="_blank">
+        <a href="/collectible/87808/tr-flow-blue-flower-plate-c1021" target="_blank">
           plates</a>, and many other types of items which we&rsquo;ve collected here. On October 27th,
         Roosevelt&rsquo;s 154th birthday, the American Museum of Natural History will re-open their
         <a href="http://www.amnh.org/explore/theodore-roosevelt-memorial-officially-reopens-october-27-2012"

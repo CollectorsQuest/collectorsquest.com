@@ -9,18 +9,18 @@
         petroliana produced by the many companies once under his control, and the few that weren&rsquo;t.
       </p>
       <p>
-        <a href="http://www.collectorsquest.com/collectible/78137/1912-champion-oil-can" target="_blank">Oil</a>
-        <a href="http://www.collectorsquest.com/collectible/78137/1912-champion-oil-can" target="_blank">cans</a>,
-        <a href="http://www.collectorsquest.com/collectible/86332/bowser-310-a-c3877" target="_blank">gas pumps</a> and
-        <a href="http://www.collectorsquest.com/collectible/28179/atlantic-hi-arc-gasoline-sign" target="_blank">station signs</a>
+        <a href="/collectible/78137/1912-champion-oil-can" target="_blank">Oil</a>
+        <a href="/collectible/78137/1912-champion-oil-can" target="_blank">cans</a>,
+        <a href="/collectible/86332/bowser-310-a-c3877" target="_blank">gas pumps</a> and
+        <a href="/collectible/28179/atlantic-hi-arc-gasoline-sign" target="_blank">station signs</a>
         have all found their way into the hands of dedicated collectors, as well as the other items we&rsquo;ve
         gathered here. Some objects
-        <a href="http://www.collectorsquest.com/collectible/82253/gargoyle-mobiloil-poem" target="_blank">
+        <a href="/collectible/82253/gargoyle-mobiloil-poem" target="_blank">
         wax poetic about the virtues of oil</a>, while others just
-        <a href="http://www.collectorsquest.com/collectible/84250/enco-sign" target="_blank">boldy</a>
-        <a href="http://www.collectorsquest.com/collectible/84250/enco-sign" target="_blank">proclaim</a>
-        <a href="http://www.collectorsquest.com/collectible/84250/enco-sign" target="_blank">their</a>
-        <a href="http://www.collectorsquest.com/collectible/84250/enco-sign" target="_blank">presence</a>.
+        <a href="/collectible/84250/enco-sign" target="_blank">boldy</a>
+        <a href="/collectible/84250/enco-sign" target="_blank">proclaim</a>
+        <a href=/collectible/84250/enco-sign" target="_blank">their</a>
+        <a href="/collectible/84250/enco-sign" target="_blank">presence</a>.
         For more information about collecting petroliana, check out
         <a href="http://www.petroliana.info/" target="_blank">Petroliana USA &amp; UK</a>.
       </p>

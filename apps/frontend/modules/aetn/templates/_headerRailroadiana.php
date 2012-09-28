@@ -9,11 +9,11 @@
       </p>
       <p>
         Today, railroadiana aficionados owe Vanderbilt a great debt as they collect and display
-        <a href="http://www.collectorsquest.com/collectible/5304/union-pacific-railroad-trade-sign-ca-1920" target="_blank">
+        <a href="/collectible/5304/union-pacific-railroad-trade-sign-ca-1920" target="_blank">
           railroad signs</a>,
-        <a href="http://www.collectorsquest.com/aetn/collectible/84281/adlake-railroad-lantern" target="_blank">lanterns</a>,
-        <a href="http://www.collectorsquest.com/collectible/10722/lego-hobby-train-10183" target="_blank">scale models</a>, and even
-        <a href="http://www.collectorsquest.com/collectible/83667/conductors-hat-walt-disney-world-railroad" target="_blank">
+        <a href="/aetn/collectible/84281/adlake-railroad-lantern" target="_blank">lanterns</a>,
+        <a href="/collectible/10722/lego-hobby-train-10183" target="_blank">scale models</a>, and even
+        <a href="/collectible/83667/conductors-hat-walt-disney-world-railroad" target="_blank">
           conductors&rsquo; caps</a>
         that celebrate his legacy and the power of the railroad in American history. For more information on
         railroadiana, check out <a href="http://www.railroadiana.org/" target="_blank">Railroadiana Online</a>.
