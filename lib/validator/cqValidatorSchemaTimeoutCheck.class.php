@@ -104,6 +104,12 @@ class cqValidatorSchemaTimeoutCheck extends sfValidatorSchema
   {
     if (( $collector = $this->sf_user->getCollector($strct = true) ))
     {
+      if ($collector->getTimeoutIgnoreForUser())
+      {
+        // timeouts check should not be applied to this user
+        return;
+      }
+
       $sent_pms = PrivateMessageQuery::create()
         ->filterByCollectorRelatedBySender($collector)
         ->filterByCreatedAt(
@@ -142,6 +148,12 @@ class cqValidatorSchemaTimeoutCheck extends sfValidatorSchema
     // and do the appropriate checks
     if (( $collector = $this->sf_user->getCollector($strct = true) ))
     {
+      if ($collector->getTimeoutIgnoreForUser())
+      {
+        // timeouts check should not be applied to this user
+        return;
+      }
+
       $num_comments = CommentQuery::create()
         ->filterByCollector($collector)
         ->filterByCreatedAt(
