@@ -187,7 +187,7 @@ class CollectorCollection extends BaseCollectorCollection
       {
         $is_public = false;
       }
-      else if (!$this->getMultimediaCount('image'))
+      else if (!$this->getPrimaryImage(Propel::CONNECTION_WRITE))
       {
         $is_public = false;
       }
