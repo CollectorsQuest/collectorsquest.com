@@ -49,4 +49,11 @@ class generalComponents extends cqFrontendComponents
 
     return sfView::SUCCESS;
   }
+
+  public function executeAdminBar()
+  {
+
+
+    return sfView::SUCCESS;
+  }
 }

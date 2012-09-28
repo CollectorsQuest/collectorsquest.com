@@ -412,6 +412,7 @@ dev:
   www_domain: "www.collectorsquest.dev"
   static_domain: "www.collectorsquest.dev"
   multimedia_domain: "multimedia.cqcdns.dev"
+  backend_domain: "backend.collectorsquest.dev"
 
   ice_libs:
     kint:
