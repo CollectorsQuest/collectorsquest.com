@@ -36,7 +36,17 @@ class aetnComponents extends cqFrontendComponents
     return sfView::SUCCESS;
   }
 
-  public function executeHeaderMenWhoBuiltAmerica()
+  public function executeHeaderPetroliana()
+  {
+    return sfView::SUCCESS;
+  }
+
+  public function executeHeaderRailroadiana()
+  {
+    return sfView::SUCCESS;
+  }
+
+  public function executeHeaderRooseveltiana()
   {
     return sfView::SUCCESS;
   }

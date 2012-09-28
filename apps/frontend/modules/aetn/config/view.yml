@@ -28,7 +28,7 @@ mwbaPetrolianaSuccess:
   javascripts:
     - jquery/masonry.js
   components:
-    slot1: [aetn, headerMenWhoBuiltAmerica]
+    slot1: [aetn, headerPetroliana]
     breadcrumbs: []
     footer: []
 
@@ -36,7 +36,7 @@ mwbaRooseveltianaSuccess:
   javascripts:
     - jquery/masonry.js
   components:
-    slot1: [aetn, headerMenWhoBuiltAmerica]
+    slot1: [aetn, headerRooseveltiana]
     breadcrumbs: []
     footer: []
 
@@ -44,7 +44,7 @@ mwbaRailroadianaSuccess:
   javascripts:
     - jquery/masonry.js
   components:
-    slot1: [aetn, headerMenWhoBuiltAmerica]
+    slot1: [aetn, headerRailroadiana]
     breadcrumbs: []
     footer: []
 
