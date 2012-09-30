@@ -34,7 +34,7 @@
       class="<?= 'body-'. $sf_context->getModuleName(); ?>"
       data-controller="<?= $sf_context->getModuleName(); ?>"
       data-action="<?= $sf_context->getActionName(); ?>">
-<?php include_component('general', 'adminBar'); ?>
+  <?php include_component('global', 'adminBar'); ?>
   <a name="top"></a>
 
   <!--

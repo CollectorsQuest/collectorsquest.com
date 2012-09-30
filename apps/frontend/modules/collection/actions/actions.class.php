@@ -267,6 +267,10 @@ class collectionActions extends cqFrontendActions
     // Make the Collectible available to the sidebar
     $this->setComponentVar('collectible', $collectible, 'sidebarCollectible');
 
+    $this->dispatcher->notify(
+      new sfEvent($this, 'application.show_object', array('object' => $this->collectible))
+    );
+
     return sfView::SUCCESS;
   }
 

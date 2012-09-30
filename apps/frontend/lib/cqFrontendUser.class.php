@@ -32,6 +32,17 @@ class cqFrontendUser extends cqBaseUser
   const VISITOR_INFO_COOKIE_NAME = 'cq_visitor';
   const PRIVATE_MESSAGES_SENT_TEXT = 'text_to_check_similarity';
 
+  public function __construct(sfEventDispatcher $dispatcher, sfStorage $storage, $options = array())
+  {
+    parent::__construct($dispatcher, $storage, $options);
+
+   if ($this->isAdmin())
+   {
+     //connect listeners
+     $dispatcher->connect('application.show_object', array('cqAdminBar', 'listenShowObject'));
+   }
+  }
+
   /**
    * @param  boolean  $strict
    *
