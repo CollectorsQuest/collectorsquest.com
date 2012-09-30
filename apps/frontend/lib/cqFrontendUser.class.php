@@ -745,4 +745,24 @@ class cqFrontendUser extends cqBaseUser
     return true;
   }
 
+  /**
+   * Check, is current user logged in at backend as admin
+   *
+   * @return bool
+   */
+  public function isAdmin()
+  {
+    $cq_frontend_admin_cookie = sfConfig::get('app_frontend_admin_cookie_name', 'cqAdmin');
+
+    if ($admin_key = sfContext::getInstance()->getRequest()->getCookie($cq_frontend_admin_cookie))
+    {
+      if ($admin_key == hash_hmac('md5', $_SERVER['REMOTE_ADDR'], $this->getCookieUuid()))
+      {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
 }

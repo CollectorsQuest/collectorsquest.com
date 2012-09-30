@@ -52,7 +52,10 @@ class generalComponents extends cqFrontendComponents
 
   public function executeAdminBar()
   {
-
+    if (!$this->getUser()->isAdmin())
+    {
+      return sfView::NONE;
+    }
 
     return sfView::SUCCESS;
   }

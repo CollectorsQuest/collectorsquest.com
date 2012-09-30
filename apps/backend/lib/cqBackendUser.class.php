@@ -11,4 +11,44 @@ class cqBackendUser extends IceBackendUser
   {
     return parent::completeAuthentication($return_to);
   }
+
+  public function getCookieUuid()
+  {
+    /** @var $request cqWebRequest */
+    $request = cqContext::getInstance()->getRequest();
+
+    return $request->getCookie('cq_uuid', null);
+  }
+
+  public function setAuthenticated($authenticated)
+  {
+    if ((bool) $authenticated !== $this->isAuthenticated())
+    {
+      /** @var $options array */
+      $options = $this->getOptions();
+      $cq_frontend_admin_cookie = sfConfig::get('app_frontend_admin_cookie_name', 'cqAdmin');
+
+      if ($authenticated === true)
+      {
+        sfContext::getInstance()->getResponse()->setCookie(
+          $cq_frontend_admin_cookie,
+          hash_hmac('md5', $_SERVER['REMOTE_ADDR'], $this->getCookieUuid()),
+          time() + $options['timeout'],
+          '/',
+          '.'. sfConfig::get('app_domain_name')
+        );
+      }
+      else
+      {
+        sfContext::getInstance()->getResponse()->setCookie(
+          $cq_frontend_admin_cookie, '', time() - $options['timeout'],
+          '/',
+          '.'. sfConfig::get('app_domain_name')
+        );
+      }
+
+    }
+
+    return parent::setAuthenticated($authenticated);
+  }
 }
