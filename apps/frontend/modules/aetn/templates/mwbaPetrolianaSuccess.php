@@ -8,8 +8,8 @@
     <?php
     // set positions which will have the corresponding partials
     $wide  = array ( 1 );
-    $tall  = array ( 4,  8);
-    $big   = array ( 5 );
+    $tall  = array ( 4, 8 );
+    $big   = array ( 5, 9 );
 
     foreach ($collectibles as $i => $collectible)
     {
