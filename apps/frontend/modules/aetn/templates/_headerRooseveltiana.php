@@ -22,7 +22,7 @@
           plates</a>, and many other types of items which we&rsquo;ve collected here. On October 27th,
         Roosevelt&rsquo;s 154th birthday, the American Museum of Natural History will re-open their
         <a href="http://www.amnh.org/explore/theodore-roosevelt-memorial-officially-reopens-october-27-2012"
-           target="_blank">Theodore Roosevelt memorial</a>.For more information on Theodore Roosevelt, check out the
+           target="_blank">Theodore Roosevelt memorial</a>. For more information on Theodore Roosevelt, check out the
         <a href="http://www.trassociation.org/">Theodore Roosevelt Association&rsquo;s website</a>.
       </p>
     </div>

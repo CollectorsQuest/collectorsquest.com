@@ -63,7 +63,7 @@
   left: 2px;
   .size(126px, 211px);
   background-position: 0 0;
-  &:hover {
+  &:hover, &.over {
     background-position: 0 -130px;
   }
 }
@@ -72,7 +72,7 @@
   float: left;
   .size(117px, 194px);
   background-position: -219px 0;
-  &:hover {
+  &:hover, &.over {
     background-position: -219px -130px;
   }
 }
@@ -83,7 +83,7 @@
   right: 2px;
   .size(126px, 210px);
   background-position: -425px 0;
-  &:hover {
+  &:hover, &.over {
     background-position: -425px -130px;
   }
 }
@@ -444,4 +444,18 @@
 
 .modal-floral-title {
   margin: 0 auto 7px auto;
+}
+
+
+//
+.map-petroliana ~ .labels-ribbons {
+  border: 1px solid red;
+}
+
+.map-rooseveltiana {
+
+}
+
+.map-railroadiana {
+
 }
