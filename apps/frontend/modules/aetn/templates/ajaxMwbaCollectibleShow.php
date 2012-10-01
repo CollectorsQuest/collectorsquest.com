@@ -4,12 +4,22 @@
  * @var $collection  Collection
  */
 ?>
+
+<div class="mwba-mp-modal-floral-rooseveltiana"></div>
+<!-- <div class="mwba-mp-modal-floral-railroadiana"></div>
+<div class="mwba-mp-modal-floral-petroliana"></div> -->
+
 <div id="modal-collectible">
 
-
+  <div class="red-decorative-title">
+    <div class="top">
+      <h1 class="Chivo webfont"><?= $collectible->getName() ?></h1>
+    </div>
+    <div class="bottom"></div>
+  </div>
 
   <?php
-    cq_page_title($collectible->getName());
+    //cq_page_title($collectible->getName());
 
     echo link_to(
       image_tag_collectible(

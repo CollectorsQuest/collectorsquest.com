@@ -175,27 +175,27 @@
 }
 
 .mwba-mp-modal-title-up {
-  .size(67px, 623px);
+  width: 513px;
   background-position: 0 -575px;
 }
 
 .mwba-mp-modal-title-down {
-  .size(20px, 623px);
+  .size(20px, 513px);
   background-position: 0 -650px;
 }
 
 .mwba-mp-modal-floral-rooseveltiana {
-  .size(30px, 623px);
+  .size(30px, 413px);
   background-position: -650px -614px;
 }
 
 .mwba-mp-modal-floral-railroadiana {
-  .size(30px, 623px);
+  .size(30px, 413px);
   background-position: -650px -650px;
 }
 
 .mwba-mp-modal-floral-petroliana {
-  .size(30px, 623px);
+  .size(30px, 413px);
   background-position: -650px -578px;
 }
 
@@ -281,7 +281,7 @@
     .mwba-man-pages-bg();
   }
 
-//Fixes
+  //Fixes
   .collectible_grid_view_square_small .mosaic-overlay .details a {
     .square(130px);
   }
@@ -296,6 +296,11 @@
   }
   #main {
     min-height: 400px;
+  }
+
+  //modal boxes
+  .modal-body.opened {
+    padding-top: 0;
   }
 }
 
@@ -317,7 +322,7 @@
     margin: 10px auto 0 auto;
   }
 
-//Modals
+  //Modal
   .modal-body.opened {
     background: url("@{baseUrl}/misc/mwba/mwba-mp-modal-petroliana-bg.png") no-repeat right 250px;
   }
@@ -341,7 +346,7 @@
     margin: 10px auto 0 auto;
   }
 
-//Modals
+   //Modal
   .modal-body.opened {
     background: url("@{baseUrl}/misc/mwba/mwba-mp-modal-petroliana-bg.png") no-repeat right 250px;
   }
@@ -364,7 +369,7 @@
     margin: 10px auto 0 auto;
   }
 
-//Modals
+   //Modal
   .modal-body.opened {
     background: url("@{baseUrl}/misc/mwba/mwba-mp-modal-petroliana-bg.png") no-repeat right 250px;
   }
@@ -388,3 +393,28 @@
   margin: auto;
 }
 
+
+//Modal boxes MWBA
+
+.red-decorative-title .top {
+  display: block;
+  .mwba-mp-modal-title-up;
+  .clearfix();
+
+  h1 {
+    width: 500px;
+    color: #fff;
+    font-weight: bold;
+    line-height: 24px;
+    margin: 14px 0 0 15px;
+  }
+}
+.red-decorative-title .bottom {
+  .mwba-mp-modal-title-down
+}
+
+.mwba-mp-modal-floral-rooseveltiana,
+.mwba-mp-modal-floral-railroadiana,
+.mwba-mp-modal-floral-petroliana {
+  margin: 0 auto 7px auto;
+}
