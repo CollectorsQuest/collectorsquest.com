@@ -13,7 +13,7 @@
   <div class="banner">
     <?php
       echo link_to(cq_image_tag(
-        'headlines/history-banner-mwba-landing-page.jpg',
+        'headlines/history-banner-mwba-landing-page-10-16.jpg',
         array('alt_title' => 'The Men Who Built America')
       ), 'http://www.history.com/shows/men-who-built-america', array('target' => '_blank'));
     ?>
