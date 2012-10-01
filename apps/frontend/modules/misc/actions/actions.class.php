@@ -300,7 +300,7 @@ class miscActions extends cqFrontendActions
 
     if (!$_collectible_ids = $this->getUser()->getAttribute('featured_items_collectible_ids', null, 'cache'))
     {
-      // find Collectibles from Category IDs and add them to the rest
+      // add Collectibles based on Category IDs
       if (!empty($category_ids))
       {
         /** @var $q ContentCategoryQuery */
@@ -321,7 +321,7 @@ class miscActions extends cqFrontendActions
         $collectible_ids = array_unique($collectible_ids);
       }
 
-      // find Collectibles from Category IDs and them to the rest that should be excluded
+      // exclude Collectibles based on Category IDs
       if (!empty($category_ids_exclude))
       {
         /** @var $q ContentCategoryQuery */
@@ -339,6 +339,59 @@ class miscActions extends cqFrontendActions
         $_collectible_ids_content_categories_exclude = $q->find()->toArray();
 
         $collectible_ids_exclude = array_merge($collectible_ids_exclude, $_collectible_ids_content_categories_exclude);
+        $collectible_ids_exclude = array_unique($collectible_ids_exclude);
+      }
+
+      // add Collections and Collectibles based on tag matching
+      if (!empty($tags))
+      {
+        /** @var $q FrontendCollectorCollectionQuery */
+        $q = FrontendCollectorCollectionQuery::create()
+          ->filterByTags($tags)
+          ->select('Id');
+
+        $_collection_ids_tags = $q->find()->toArray();
+
+        $collection_ids = array_merge($collection_ids, $_collection_ids_tags);
+        $collection_ids = array_unique($collection_ids);
+
+        // @todo not sure if/how this sould be done with CollectorCollectionQuery
+        /** @var $q CollectibleQuery */
+        $q = CollectibleQuery::create()
+          ->isComplete()
+          ->isPartOfCollection()
+          ->filterByTags($tags)
+          ->select('Id');
+
+        $_collectible_ids_tags = $q->find()->toArray();
+
+        $collectible_ids = array_merge($collectible_ids, $_collectible_ids_tags);
+        $collectible_ids = array_unique($collectible_ids);
+      }
+
+      // exclude Collections and Collectibles based on tag matching
+      if (!empty($tags_exclude))
+      {
+        /** @var $q FrontendCollectorCollectionQuery */
+        $q = FrontendCollectorCollectionQuery::create()
+          ->filterByTags($tags_exclude)
+          ->select('Id');
+
+        $_collection_ids_tags_exclude = $q->find()->toArray();
+
+        $collection_ids_exclude = array_merge($collection_ids_exclude, $_collection_ids_tags_exclude);
+        $collection_ids_exclude = array_unique($collection_ids_exclude);
+
+        /** @var $q CollectibleQuery */
+        $q = CollectibleQuery::create()
+          ->isComplete()
+          ->isPartOfCollection()
+          ->filterByTags($tags_exclude)
+          ->select('Id');
+
+        $_collectible_ids_tags_exclude = $q->find()->toArray();
+
+        $collectible_ids_exclude = array_merge($collectible_ids_exclude, $_collectible_ids_tags_exclude);
         $collectible_ids_exclude = array_unique($collectible_ids_exclude);
       }
 
