@@ -4,7 +4,7 @@
  */
 ?>
 <div class="row">
-  <div id="mwba_collectibles" class="row-content">
+  <div id="mwba-collectibles" class="row-content">
     <?php
     // set positions which will have the corresponding partials
     $wide  = array ( 1 );
@@ -57,7 +57,7 @@
 <script>
   $(document).ready(function()
   {
-    var $container = $('#mwba_collectibles');
+    var $container = $('#mwba-collectibles');
 
     $container.imagesLoaded(function()
     {

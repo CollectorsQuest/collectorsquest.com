@@ -5,7 +5,8 @@
  */
 ?>
 <div id="modal-collectible">
-  <h1>RAILROADIANA</h1>
+
+
 
   <?php
     cq_page_title($collectible->getName());
@@ -72,9 +73,7 @@
     ));
   ?>
 
-  <div id="seemore_popupbutton">
-    <a href="<?= url_for_collection($collection); ?>"></a>
-  </div>
+  <a href="<?= url_for_collection($collection); ?>" class="seemore-popupbutton"></a>
 </div>
 
 <!-- will transfer there styles later -->
