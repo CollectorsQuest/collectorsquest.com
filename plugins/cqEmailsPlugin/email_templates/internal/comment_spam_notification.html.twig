@@ -5,9 +5,9 @@
   <b>Object url:</b> {{ link_to_model_object(oModelObject, oModelObject) }}<br>
   <br>
   {% if oNewComment.isByRegisteredUser %}
-    Author: {{ link_to_collector(oComment.collector, 'text') }}<br />
+    Author: {{ link_to_collector(oComment.collector, 'text') }} ({{ oComment.ipAddress }})<br />
   {% else %}
-    Author: {{ oComment.authorName }} ({{ oComment.authorEmail }})<br />
+    Author: {{ oComment.authorName }} ({{ oComment.authorEmail }}) ({{ oComment.ipAddress }})<br />
   {% endif %}<br>
   <b>Added on:</b {{ oComment.createdAt }}
 
