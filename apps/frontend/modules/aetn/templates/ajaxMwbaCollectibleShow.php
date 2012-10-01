@@ -5,9 +5,7 @@
  */
 ?>
 
-<div class="mwba-mp-modal-floral-rooseveltiana"></div>
-<!-- <div class="mwba-mp-modal-floral-railroadiana"></div>
-<div class="mwba-mp-modal-floral-petroliana"></div> -->
+<div class="modal-floral-title"></div>
 
 <div id="modal-collectible">
 
