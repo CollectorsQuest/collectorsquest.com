@@ -7,9 +7,9 @@
   <div id="mwba_collectibles" class="row-content">
     <?php
     // set positions which will have the corresponding partials
-    $wide  = array ( 1 );
-    $tall  = array ( 4,  8);
-    $big   = array ( 5 );
+    $wide  = array ( 1,  9, 15 );
+    $tall  = array ( 4,  8, 16 );
+    $big   = array ( 5, 13 );
 
     foreach ($collectibles as $i => $collectible)
     {
