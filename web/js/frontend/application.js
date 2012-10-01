@@ -64,6 +64,10 @@ var APP = window.APP = {
         }
       };
 
+      $(function(){
+        $('img.lazy').jail();
+      });
+
       COMMON.setupProjectWideHelpers();
     } // init
   }, // common
