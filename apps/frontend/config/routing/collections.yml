@@ -31,17 +31,17 @@ aetn_mwba:
   requirements: { sf_method: [GET] }
 
 aetn_mwba_petroliana:
-  url: /history/mwba/john-d-rockefeller
+  url: /history/mwba/john-d-rockefeller-petroliana
   param: { module: aetn, action: mwbaPetroliana }
   requirements: { sf_method: [GET] }
 
 aetn_mwba_rooseveltiana:
-  url: /history/mwba/theodore-roosevelt
+  url: /history/mwba/theodore-roosevelt-rooseveltiana
   param: { module: aetn, action: mwbaRooseveltiana }
   requirements: { sf_method: [GET] }
 
 aetn_mwba_railroadiana:
-  url: /history/mwba/cornelius-vanderbilt
+  url: /history/mwba/cornelius-vanderbilt-railroadiana
   param: { module: aetn, action: mwbaRailroadiana }
   requirements: { sf_method: [GET] }
 
