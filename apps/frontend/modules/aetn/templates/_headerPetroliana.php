@@ -29,11 +29,12 @@
   <a href="<?php echo url_for('@aetn_mwba_railroadiana'); ?>"
     class="previous-man" title="Cornelius Vanderbilt">
   </a>
+    <span class="previous-tiny-arrow"></span>
   <a href="<?php echo url_for('@aetn_mwba_rooseveltiana'); ?>"
     class="next-man" title="Theodore Roosevelt">
   </a>
+    <span class="next-tiny-arrow"></span>
 </div>
-
 <div class="mwba-american-flag">
   <?php
   echo link_to(cq_image_tag(

@@ -20,12 +20,14 @@
       </p>
     </div>
   </div>
-  <a href="<?php echo url_for('@aetn_mwba_rooseveltiana'); ?>"
-    class="previous-man" title="Theodore Roosevelt">
-  </a>
-  <a href="<?php echo url_for('@aetn_mwba_petroliana'); ?>"
-    class="next-man" title="John D. Rockefeller">
-  </a>
+    <a href="<?php echo url_for('@aetn_mwba_rooseveltiana'); ?>"
+       class="previous-man" title="Theodore Roosevelt">
+    </a>
+    <span class="previous-tiny-arrow"></span>
+    <a href="<?php echo url_for('@aetn_mwba_petroliana'); ?>"
+       class="next-man" title="John D. Rockefeller">
+    </a>
+    <span class="next-tiny-arrow"></span>
 </div>
 
 <div class="mwba-american-flag">

@@ -257,20 +257,36 @@
       font-family: georgia;
       text-align: justify;
     }
+
     .previous-man, .next-man {
+      position: absolute;
+      top: 0;
+      z-index: 50;
+      .size(390px, 60px);
+      &:hover {
+        background-color: #68491f;
+        .opacity(20);
+      }
+
+    }
+    .previous-man {
+      left: 0;
+    }
+    .next-man {
+      right: 0;
+    }
+    .previous-tiny-arrow, .next-tiny-arrow {
       display: block;
       position: absolute;
-      top: 195px;
+      top: 185px;
       font-size: 36px;
       color: #000;
     }
-    .next-man {
-      right: 18px;
-      .next-tiny-arrow();
-    }
-    .previous-man {
+    .previous-tiny-arrow {
       left: 18px;
-      .previous-tiny-arrow();
+    }
+    .next-tiny-arrow {
+      right: 18px;
     }
   }
 
