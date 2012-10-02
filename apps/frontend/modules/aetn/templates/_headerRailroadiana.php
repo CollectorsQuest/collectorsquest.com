@@ -33,7 +33,7 @@
 <div class="mwba-american-flag">
   <?php
   echo link_to(cq_image_tag(
-    'headlines/history-banner-mwba-man-page-510x50.png',
+    'headlines/history-banner-mwba-man-page-500x50.png',
     array('alt_title' => 'The Men Who Built America')
   ), 'http://www.history.com/shows/men-who-built-america', array('target' => '_blank', 'class' => 'banner'));
   ?>
