@@ -13,22 +13,26 @@ use_helper('cqBackend');
         Admin Dashboard
       </a>
       <?php if (count($items)) : ?>
-        <ul class="nav">
-            <li class="dropdown">
-                <a href="#nogo" data-toggle="dropdown" class="dropdown-toggle">
-                    Edit <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                  <?php foreach ($items as $key => $item): ?>
-                    <li>
-                        <a target="_blank" href="<?= $key ?>">
-                            <span><?= $item ?></span>
-                        </a>
-                    </li>
-                  <?php endforeach; ?>
-                </ul>
-            </li>
-        </ul>
+        <?php foreach ($items as $name => $sub_item): ?>
+          <?php if (count($sub_item)): ?>
+            <ul class="nav">
+                <li class="dropdown">
+                    <a href="#nogo" data-toggle="dropdown" class="dropdown-toggle">
+                        <?= $name ?> <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <?php foreach ($sub_item as $key => $item): ?>
+                        <li>
+                            <a target="_blank" href="<?= $key ?>">
+                                <span><?= $item ?></span>
+                            </a>
+                        </li>
+                      <?php endforeach; ?>
+                    </ul>
+                </li>
+            </ul>
+          <?php endif ?>
+        <?php endforeach; ?>
       <?php endif ?>
       <ul class="nav pull-right">
         <li>

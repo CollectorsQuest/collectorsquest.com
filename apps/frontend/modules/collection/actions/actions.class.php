@@ -149,6 +149,9 @@ class collectionActions extends cqFrontendActions
 
       return 'NoCollectibles';
     }
+    $this->dispatcher->notify(
+      new sfEvent($this, 'application.show_object', array('object' => $this->collection))
+    );
 
     return sfView::SUCCESS;
   }
@@ -268,7 +271,9 @@ class collectionActions extends cqFrontendActions
     $this->setComponentVar('collectible', $collectible, 'sidebarCollectible');
 
     $this->dispatcher->notify(
-      new sfEvent($this, 'application.show_object', array('object' => $this->collectible))
+      new sfEvent($this, 'application.show_object', array(
+        'object' => $this->collectible instanceof CollectionCollectible
+          ? $this->collectible->getCollectible() : $this->collectible))
     );
 
     return sfView::SUCCESS;

@@ -94,6 +94,10 @@ class collectorActions extends cqFrontendActions
       'description', cqStatic::truncateText(strip_tags($meta_description), 156, '...', true)
     );
 
+    $this->dispatcher->notify(
+      new sfEvent($this, 'application.show_object', array('object' => $this->collector))
+    );
+
     return sfView::SUCCESS;
   }
 
