@@ -8,6 +8,7 @@ class ContentCategory extends BaseContentCategory
   protected $autoSort = true;
   protected $isAutoSorting = false;
   protected $path = array();
+  protected $count_collectibles_for_sale = 0;
 
   /**
    * Register extra properties to allow magic getters/setters to be used
@@ -301,6 +302,21 @@ class ContentCategory extends BaseContentCategory
   public function getSeoMarketKeywords()
   {
     return null;
+  }
+
+  /**
+   * @return integer
+   */
+  public function getCountCollectiblesForSale()
+  {
+    return $this->count_collectibles_for_sale;
+  }
+
+  public function computeCountCollectiblesForSale(PropelPDO $con = null)
+  {
+    return FrontendCollectibleForSaleQuery::create()
+      ->filterByContentCategoryWithDescendants($this)
+      ->count();
   }
 
 }

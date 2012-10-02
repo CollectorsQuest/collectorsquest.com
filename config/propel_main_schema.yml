@@ -196,6 +196,10 @@ classes:
       sluggable:  { slug_pattern: "{Name}", permanent: false }
       extra_properties: ~
       nested_set: ~
+    _propel_behaviors:
+      aggregate_column:
+        name: count_collectibles_for_sale
+        foreign_table: collectible
 
   CollectionCollectible:
     isCrossRef: true

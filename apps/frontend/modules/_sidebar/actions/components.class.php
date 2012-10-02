@@ -123,7 +123,6 @@ class _sidebarComponents extends cqFrontendComponents
       ->orderBy('Name', Criteria::ASC);
     $this->categories = $q->find();
 
-
 //    // If we have less than 4 Items For Sale in the category we don't want to display it
 //    $this->categories = array();
 //    foreach ($categories as $category)
