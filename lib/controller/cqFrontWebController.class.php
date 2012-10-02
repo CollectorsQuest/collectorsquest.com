@@ -7,7 +7,6 @@ class cqFrontWebController extends sfFrontWebController
 {
 
   /**
-   *
    * @param BaseObject $model_object
    * @param boolean $absolute
    *
@@ -28,6 +27,12 @@ class cqFrontWebController extends sfFrontWebController
     );
   }
 
+  /**
+   * Generates routing parameters (sf_route, sf_subject) for propel model objects
+   *
+   * @param     BaseObject $model_object
+   * @return    array
+   */
   public static function generateRouteParamsForModelObject(BaseObject $model_object)
   {
     switch (get_class($model_object))
@@ -98,6 +103,23 @@ class cqFrontWebController extends sfFrontWebController
       default:
         return false;
     }
+  }
+
+  /**
+   * Generates a route to collector/auto-login with a redirect to your desired route
+   *
+   * @param     Collector $collector
+   * @param     array $parameters
+   * @param     boolean $absolute
+   *
+   * @return    string
+   */
+  public function genUrlWithAutologin(Collector $collector, $parameters = array(), $absolute = true)
+  {
+    return $this->genUrl(array(
+        'sf_route' => 'auto_login',
+        'hash' => $collector->getAutoLoginHash(),
+    ), $absolute) . '?r=' . $this->genUrl($parameters);
   }
 
 }

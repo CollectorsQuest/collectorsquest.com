@@ -137,4 +137,34 @@ class collectorsActions extends autoCollectorsActions
     $this->redirect('@collector');
   }
 
+  /**
+   * List action for toggling whether posting timeouts for PMs and Comments apply
+   * to a specific user
+   */
+  public function executeListTogglePostingTimeouts(sfWebRequest $request)
+  {
+    /* @var $collector Collector */
+    $collector = $this->getRoute()->getObject();
+
+    $collector->setTimeoutIgnoreForUser(!$collector->getTimeoutIgnoreForUser());
+    $collector->save();
+
+    if ($collector->getTimeoutIgnoreForUser())
+    {
+      $this->getUser()->setFlash('notice', sprintf(
+        'Timeout restrictions were removed for user %s.',
+        $collector->getDisplayName()
+      ));
+    }
+    else
+    {
+      $this->getUser()->setFlash('notice', sprintf(
+        'Timeout restrictions were re-added for user %s.',
+        $collector->getDisplayName()
+      ));
+    }
+
+    return $this->redirect('@collector');
+  }
+
 }
