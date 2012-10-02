@@ -36,11 +36,11 @@ class cqFrontendUser extends cqBaseUser
   {
     parent::__construct($dispatcher, $storage, $options);
 
-   if ($this->isAdmin())
-   {
-     //connect listeners
-     $dispatcher->connect('application.show_object', array('cqAdminBar', 'listenShowObject'));
-   }
+    if ($this->isAdmin())
+    {
+      //connect listeners
+      $dispatcher->connect('application.show_object', array('cqAdminBar', 'listenShowObject'));
+    }
   }
 
   /**
@@ -763,11 +763,11 @@ class cqFrontendUser extends cqBaseUser
    */
   public function isAdmin()
   {
-    $cq_frontend_admin_cookie = sfConfig::get('app_frontend_admin_cookie_name', 'cqAdmin');
+    $cq_frontend_admin_cookie = sfConfig::get('app_frontend_admin_cookie_name', 'cq_admin');
 
     if ($admin_key = sfContext::getInstance()->getRequest()->getCookie($cq_frontend_admin_cookie))
     {
-      if ($admin_key == hash_hmac('md5', $_SERVER['REMOTE_ADDR'], $this->getCookieUuid()))
+      if ($admin_key == hash_hmac('sha1', $_SERVER['REMOTE_ADDR'], $this->getCookieUuid()))
       {
         return true;
       }

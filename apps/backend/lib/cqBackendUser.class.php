@@ -26,13 +26,13 @@ class cqBackendUser extends IceBackendUser
     {
       /** @var $options array */
       $options = $this->getOptions();
-      $cq_frontend_admin_cookie = sfConfig::get('app_frontend_admin_cookie_name', 'cqAdmin');
+      $cq_frontend_admin_cookie = sfConfig::get('app_frontend_admin_cookie_name', 'cq_admin');
 
       if ($authenticated === true)
       {
         sfContext::getInstance()->getResponse()->setCookie(
           $cq_frontend_admin_cookie,
-          hash_hmac('md5', $_SERVER['REMOTE_ADDR'], $this->getCookieUuid()),
+          hash_hmac('sha1', $_SERVER['REMOTE_ADDR'], $this->getCookieUuid()),
           time() + $options['timeout'],
           '/',
           '.'. sfConfig::get('app_domain_name')

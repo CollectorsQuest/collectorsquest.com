@@ -1,5 +1,4 @@
 all:
-  domain_name: "collectorsquest.com"
   ice_libs:
     emails:
       sender: "no-reply@collectorsquest.com"
