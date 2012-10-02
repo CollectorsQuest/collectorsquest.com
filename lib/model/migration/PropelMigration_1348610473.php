@@ -23,7 +23,7 @@ class PropelMigration_1348610473
     {
       /* @var $collector Collector */
       $old_username = $collector->getUsername();
-      $new_username = preg_replace('/\s/', '',$old_username);
+      $new_username = preg_replace('/\s+/', '',$old_username);
       if ($old_username != $new_username)
       {
         $collector->setUsername($new_username);
