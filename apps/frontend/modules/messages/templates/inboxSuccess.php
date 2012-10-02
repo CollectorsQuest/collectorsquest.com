@@ -39,7 +39,7 @@
           <input type="submit" class="btn btn-mini" name="batch_action[mark_as_read]" value="Mark as Read" />
           <input type="submit" class="btn btn-mini" name="batch_action[mark_as_unread]" value="Mark as Unread" />
           <input type="hidden" id="batchAction" name="" value="on"/>
-          <input type="submit" onclick="return confirm('Are you sure you sure you want to delete these messages?')" class="btn btn-mini" name="batch_action[delete]" value="Delete" />
+          <input type="submit" data-confirm="Are you sure you sure you want to delete these messages?" class="btn btn-mini" name="batch_action[delete]" value="Delete" />
         </div>
       </div>
     </div>
@@ -110,11 +110,17 @@
       return false;
     });
 
-    $('.private-messages-list-actions input').click(function()
+    $('.private-messages-list-actions input').click(function(e)
     {
+      var $this = $(this);
+      if ($this.data('confirm') && !confirm($this.data('confirm'))) {
+        e.preventDefault();
+        return false;
+      }
+
       var $form = $('#inbox-form');
 
-      var name = $(this).attr('name');
+      var name = $this.attr('name');
       $('#batchAction').attr('name', name);
 
       $('#messages-table').showLoading();
