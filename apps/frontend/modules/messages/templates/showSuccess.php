@@ -11,7 +11,30 @@
   {
     SmartMenu::setSelected('mycq_messages_sidebar', 'sent');
   }
+
+  cq_sidebar_title(
+    'Conversation with '.$messages->getFirst()->getCollectorRelatedBySender(), null,
+    array(
+      'left' => 8, 'right' => 4,
+      'class'=>'mycq-red-title row-fluid messages-header'
+    )
+  );
 ?>
+
+<div class="row-fluid gray-well messages-header">
+  <div class="spacer-top-5 spacer-bottom-5 clearfix">
+    <div class="btn-group pull-left">
+      <a class="btn btn-mini" href="#">Back</a>
+    </div>
+    <div class="btn-group pull-left">
+      <a class="btn btn-mini" href="#">Delete</a>
+      <a class="btn btn-mini" href="#">Report spam</a>
+    </div>
+    <div class="btn-group pull-left">
+      <a class="btn btn-mini" href="#">Mark unread</a>
+    </div>
+  </div>
+</div>
 
 <table class="private-message-thread table table-striped table-bordered">
   <tbody>
