@@ -257,6 +257,9 @@ class miscActions extends cqFrontendActions
     /** @var $wp_post wpPost */
     $wp_post = $this->getRoute()->getObject();
 
+    /** @var $post_id integer */
+    $post_id = $request->getParameter('id');
+
     $values = unserialize($wp_post->getPostMetaValue('_featured_items'));
 
     // Initialize the arrays
@@ -298,7 +301,7 @@ class miscActions extends cqFrontendActions
       $tags_exclude = self::getValues($values['cq_tags_exclude']);
     }
 
-    if (!$_collectible_ids = $this->getUser()->getAttribute('featured_items_collectible_ids', null, 'cache'))
+    if (!$_collectible_ids = $this->getUser()->getAttribute('featured_items_collectible_ids_' . $post_id, null, 'cache'))
     {
       // add Collectibles based on Category IDs
       if (!empty($category_ids))
@@ -413,7 +416,7 @@ class miscActions extends cqFrontendActions
       shuffle($_collectible_ids);
 
       // Cache the result for the life of the session
-      $this->getUser()->setAttribute('featured_items_collectible_ids', $_collectible_ids, 'cache');
+      $this->getUser()->setAttribute('featured_items_collectible_ids_' . $post_id, $_collectible_ids, 'cache');
     }
 
     $q = CollectionCollectibleQuery::create()
