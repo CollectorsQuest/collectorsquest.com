@@ -3,9 +3,9 @@
 /**
  * Data object containing the SQL and PHP code to migrate the database
  * up to version 1348861629.
- * Generated on 2012-09-28 15:47:09 by root
+ * Generated on 2012-10-03 23:45:09 by root
  */
-class PropelMigration_1348861629
+class PropelMigration_1348861630
 {
 
 	public function preUp($manager)
@@ -18,6 +18,7 @@ class PropelMigration_1348861629
    */
 	public function postUp($manager)
 	{
+    echo "Updating Collectibles with ContentCategoryId from their Collections: \n";
     /* @var $collection Collection */
     $collections = CollectionPeer::doSelect(new Criteria());
     $count = count($collections);
@@ -30,7 +31,7 @@ class PropelMigration_1348861629
           // using UPDATE SET in combination with JOIN. That's why we do things
           // the roundabout way
           CollectionCollectibleQuery::create()
-            ->filterByCollection($collection)
+            ->filterByCollectionId($collection->getId())
             ->select('CollectibleId')
             ->find()->getArrayCopy(),
           Criteria::IN
@@ -38,6 +39,25 @@ class PropelMigration_1348861629
         ->update(array(
             'ContentCategoryId' => $collection->getContentCategoryId()
         ));
+
+      echo sprintf("\r Completed: %.2f%%", round($k/$count, 4) * 100);
+    }
+
+    echo "\r Completed: 100%  \n";
+
+
+    echo "Updating NumCollectiblesForSale on ContentCategory records: \n";
+    /* @var $category Category */
+    $categories = ContentCategoryQuery::create()
+      ->descendantsOfRoot()
+      ->find();
+    $count = count($categories);
+    /* @var $con PropelPDO */
+    $con = Propel::getConnection();
+
+    foreach ($categories as $k => $category)
+    {
+      $category->updateNumCollectiblesForSale($con);
 
       echo sprintf("\r Completed: %.2f%%", round($k/$count, 4) * 100);
     }
@@ -80,6 +100,10 @@ ALTER TABLE `collectible` ADD CONSTRAINT `collectible_FK_2`
 ALTER TABLE `collectible_archive` ADD `content_category_id` INTEGER AFTER `collector_id`;
 CREATE INDEX `collectible_archive_I_4` ON `collectible_archive` (`content_category_id`);
 
+
+ALTER TABLE `content_category` ADD `num_collectibles_for_sale` INTEGER;
+ALTER TABLE `content_category_archive` ADD `num_collectibles_for_sale` INTEGER;
+
 # This restores the fkey checks, after having unset them earlier
 SET FOREIGN_KEY_CHECKS = 1;
 ',
@@ -102,6 +126,10 @@ SET FOREIGN_KEY_CHECKS = 0;
 
 ALTER TABLE `collectible` DROP `content_category_id`;
 ALTER TABLE `collectible_archive` DROP `content_category_id`;
+
+
+ALTER TABLE `content_category` DROP `num_collectibles_for_sale`;
+ALTER TABLE `content_category_archive` DROP `num_collectibles_for_sale`;
 
 # This restores the fkey checks, after having unset them earlier
 SET FOREIGN_KEY_CHECKS = 1;

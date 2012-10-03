@@ -303,9 +303,18 @@ class ContentCategory extends BaseContentCategory
     return null;
   }
 
+  /**
+   * Compute the number of relater collectibles for sale
+   *
+   * @param     PropelPDO $con
+   * @return    integer
+   */
   public function computeNumCollectiblesForSale(PropelPDO $con)
   {
-    return FrontendCollectibleForSaleQuery::create()
+    return CollectibleQuery::create()
+      ->isPartOfCollection()
+      ->isForSale()
+      ->filterByIsPublic(true)
       ->filterByContentCategoryWithDescendants($this)
       ->count($con);
   }
