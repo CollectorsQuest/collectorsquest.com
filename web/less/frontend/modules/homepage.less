@@ -35,8 +35,8 @@
   position: relative;
 
   .carousel-next {
-    position: absolute;
     display: block;
+    position: absolute;
     top: 45%;
     right: 30px;
     border: none;
@@ -47,8 +47,8 @@
   }
 
   .carousel-previous {
-    position: absolute;
     display: block;
+    position: absolute;
     top: 45%;
     left: 25px;
     border: none;
@@ -63,8 +63,8 @@
   }
 
   .carousel-in-focus-title-container {
-    position: absolute;
     display: block;
+    position: absolute;
     bottom: 8%;
     z-index: 100;
     width: 100%;
@@ -85,29 +85,29 @@
   }
 
   .carousel-in-focus-title h2 {
+    margin-bottom: 0;
+    padding-bottom: 8px;
     font-size: 1.75em;
     font-weight: bold;
     line-height: 1.1;
-    margin-bottom: 0;
-    padding-bottom: 8px;
     text-align: left;
     color: #125375;
   }
 
   .carousel-in-focus-title h3 {
+    margin-top: 0;
+    padding-top: 0;
     font-size: 1.5em;
     line-height: 1.1;
-    padding-top: 0;
-    margin-top: 0;
     text-align: center;
     color: #fff !important;
   }
 
   .carousel-in-focus-title p {
     width: auto;
+    margin: 0;
     font-size: 1em;
     text-align: left;
-    margin: 0;
   }
 
   div.over h2 {
@@ -193,10 +193,10 @@
   .size(295px, 140px);
 
   .details-inner {
+    overflow: hidden;
     height: auto !important;
     height: 240px;
     max-height: 240px;
-    overflow: hidden;
     margin-bottom: 8px;
   }
 }
@@ -205,10 +205,10 @@
   .square(140px);
 
   .details-inner {
+    overflow: hidden;
     height: auto !important;
     height: 88px;
     max-height: 88px;
-    overflow: hidden;
     margin-bottom: 8px;
   }
 }
@@ -217,10 +217,10 @@
   .size(140px, 295px);
 
   .details-inner {
+    overflow: hidden;
     height: auto !important;
     height: 90px;
     max-height: 90px;
-    overflow: hidden;
     margin-bottom: 8px;
   }
 }
@@ -242,10 +242,10 @@
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 100;
   .square(280px);
   padding: 10px 0 0 10px;
   background-color: @white;
-  z-index: 100;
   .transition(all 0.4s ease-in-out);
 }
 

@@ -1,15 +1,15 @@
 @import "_variables.less";
 
 .collection_grid_view {
-  margin-top: 2px;
-  height: 160px;
   overflow: hidden;
   position: relative;
+  height: 160px;
+  margin-top: 2px;
 
   .mosaic-backdrop {
     .size(150px, 190px);
-    margin-left: 3px;
     margin-top: 3px;
+    margin-left: 3px;
   }
 
   .mosaic-overlay {
@@ -30,14 +30,11 @@
       .size(138px, 175px);
       margin: 5px 0 0 0;
       border: none;
-      -webkit-box-shadow: none;
-      -moz-box-shadow: none;
-      box-shadow: none;
+      .box-shadow(none);
     }
 
     .mosaic-overlay {
-      width: 175px;
-      height: 138px;
+      .size(138px, 175px);
       margin: 0;
     }
   }
@@ -84,9 +81,9 @@
 }
 
 .item-condition {
+  display: block;
   font-weight: bold;
   margin-top: 30px;
-  display: block;
 }
 
 #user-collections .user-collections-inner {
@@ -134,12 +131,12 @@
         border-left: none;
       }
       a, span {
+        position: relative;
         margin: 0;
         color: @blueDark;
         text-decoration: none;
-        border: none;
-        position: relative;
         line-height: 10px;
+        border: none;
         &:hover {
           color: @blue;
         }
