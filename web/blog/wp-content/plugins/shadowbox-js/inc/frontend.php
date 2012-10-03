@@ -226,7 +226,7 @@
 	}
 
 	/**
-	 * This function is called by the add_filter WordPress function to 
+	 * This function is called by the add_filter WordPress function to
 	 * link the gallery images directly to their full size counterpart
 	 *
 	 * @param string $link The link of the attachment
@@ -300,7 +300,7 @@
 			$modify = false;
 
 			foreach ( $links[0] as $link ) {
-			
+
 				if ( preg_match ( $img_pattern , $link ) && $this->get_option ( 'autoimg' ) == "true" ) {
 					$link_pattern = $img_pattern;
 					$rel_attr     = $img_rel_attr;
