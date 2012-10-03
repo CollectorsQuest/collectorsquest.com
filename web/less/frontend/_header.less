@@ -12,9 +12,9 @@ header > .container {
 }
 
 #header-pushdown-ad {
+  width: 970px;
   margin: auto;
   margin-top: 10px;
-  width: 970px;
 }
 
 // LOGO
@@ -35,15 +35,15 @@ header > .container {
 }
 
 #shopping-cart-count {
+  display: block;
   position: relative;
   top: 1px;
   left: 9px;
   .size(14px, 16px);
-  display: block;
   font: bold 10px/14px "Trebuchet", Arial, Helvetica;
+  text-align: center;
   color: @white;
   background-color: @red;
-  text-align: center;
 }
 
 .empty-cart {
@@ -65,13 +65,12 @@ a.link-cart {
 }
 
 .nav-divider {
-  border-right: 1px solid #b4b7bc;
-  height: 23px;
-  overflow: hidden;
   display: inline-block;
-  vertical-align: middle;
-  width: 1px;
+  overflow: hidden;
+  .size(23px, 1px);
   margin: 0 15px;
+  vertical-align: middle;
+  border-right: 1px solid #b4b7bc;
 }
 
 .input-prepend, .input-append {
@@ -155,21 +154,22 @@ a.sign-up-now-btn, a.my-account-btn {
 }
 
 .header-inner {
+  padding: 15px 20px 0 15px;
   background-color: transparent;
   background-image: none;
   border-radius: 0;
-  box-shadow: none;
-  padding: 15px 20px 0 15px;
+  .box-shadow(none);
+
 
   input {
     width: 305px;
-    padding: 7px 0 6px 6px;
     margin-bottom: 0;
-    border: 1px solid;
-    border-color: #BDB9B8 #bfbaba #BDB9B8 #BDB9B8;
+    padding: 7px 0 6px 6px;
     font-size: 14px;
     line-height: 14px !important;
     color: @blueDark;
+    border: 1px solid;
+    border-color: #BDB9B8 #bfbaba #BDB9B8 #BDB9B8;
     .border-radius(7px 0 0 7px);
     .box-shadow(inset 2px 2px 2px 2px rgba(0, 0, 0, .07));
     &:-moz-placeholder {
@@ -177,6 +177,7 @@ a.sign-up-now-btn, a.my-account-btn {
     }
   }
   .btn-large {
+    margin-left: -5px;
     padding: 7px 10px 8px;
     font-size: 14px;
     line-height: 16px !important;
@@ -189,7 +190,6 @@ a.sign-up-now-btn, a.my-account-btn {
     -moz-background-clip: padding;
     -webkit-background-clip: padding-box;
     background-clip: padding-box;
-    margin-left: -5px;
   }
   .btn:hover {
     .transition(none);
