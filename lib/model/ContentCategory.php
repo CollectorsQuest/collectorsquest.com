@@ -303,7 +303,7 @@ class ContentCategory extends BaseContentCategory
     return null;
   }
 
-  public function computeCountCollectiblesForSale(PropelPDO $con)
+  public function computeNumCollectiblesForSale(PropelPDO $con)
   {
     return FrontendCollectibleForSaleQuery::create()
       ->filterByContentCategoryWithDescendants($this)

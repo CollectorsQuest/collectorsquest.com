@@ -2,10 +2,10 @@
 
 /**
  * Data object containing the SQL and PHP code to migrate the database
- * up to version 1348862738.
+ * up to version 1348862739.
  * Generated on 2012-09-28 15:47:09 by root
  */
-class PropelMigration_1348862738
+class PropelMigration_1348862739
 {
 
 	public function preUp($manager)
@@ -31,10 +31,10 @@ class PropelMigration_1348862738
       $q = CollectibleForSaleQuery::create()
         ->filterByContentCategoryWithDescendants($category);
 
-      $_count_collectibles_for_sale = $q->count($connection);
+      $_num_collectibles_for_sale = $q->count($connection);
 
       /** @var $category ContentCategory */
-      $category->setCountCollectiblesForSale($_count_collectibles_for_sale);
+      $category->setNumCollectiblesForSale($_num_collectibles_for_sale);
       $category->save();
 
       echo sprintf("\r Completed: %.2f%%", round($k/$count, 4) * 100);
@@ -67,9 +67,9 @@ class PropelMigration_1348862738
 # It "suspends judgement" for fkey relationships until are tables are set.
 SET FOREIGN_KEY_CHECKS = 0;
 
-ALTER TABLE `content_category` ADD `count_collectibles_for_sale` INTEGER;
+ALTER TABLE `content_category` ADD `num_collectibles_for_sale` INTEGER;
 
-ALTER TABLE `content_category_archive` ADD `count_collectibles_for_sale` INTEGER;
+ALTER TABLE `content_category_archive` ADD `num_collectibles_for_sale` INTEGER;
 
 # This restores the fkey checks, after having unset them earlier
 SET FOREIGN_KEY_CHECKS = 1;
@@ -91,9 +91,9 @@ SET FOREIGN_KEY_CHECKS = 1;
 # It "suspends judgement" for fkey relationships until are tables are set.
 SET FOREIGN_KEY_CHECKS = 0;
 
-ALTER TABLE `content_category` DROP `count_collectibles_for_sale`;
+ALTER TABLE `content_category` DROP `num_collectibles_for_sale`;
 
-ALTER TABLE `content_category_archive` DROP `count_collectibles_for_sale`;
+ALTER TABLE `content_category_archive` DROP `num_collectibles_for_sale`;
 
 # This restores the fkey checks, after having unset them earlier
 SET FOREIGN_KEY_CHECKS = 1;

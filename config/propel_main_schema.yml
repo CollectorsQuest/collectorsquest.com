@@ -197,7 +197,7 @@ classes:
       extra_properties: ~
       nested_set: ~
       aggregate_column:
-        name: count_collectibles_for_sale
+        name: num_collectibles_for_sale
         foreign_table: collectible
 
   CollectionCollectible:
