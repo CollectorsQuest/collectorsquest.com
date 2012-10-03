@@ -1,10 +1,10 @@
 @import "_variables.less";
 
 .collectible_grid_view {
-  height: 150px;
-  margin-bottom: 16px;
   overflow: hidden;
   position: relative;
+  height: 150px;
+  margin-bottom: 16px;
 
   a {
     color: #afafaf;
@@ -12,13 +12,11 @@
   }
 
   .mosaic-backdrop {
-    width: 190px;
-    height: 150px;
+    .size(150px, 190px);
   }
 
   .mosaic-overlay {
-    width: 190px;
-    height: 150px;
+    .size(150px, 190px);
   }
 
   .mosaic-overlay .details {
@@ -36,29 +34,27 @@
   }
 
   p {
+    height: 18px;
     margin: 0;
     margin-top: 1px;
-    height: 18px;
-    line-height: 20px;
     padding: 5px;
+    line-height: 20px;
     .text-overflow();
   }
 }
 
 .collectible_grid_view_square_small {
-  height: 140px;
-  margin-bottom: 16px;
   overflow: hidden;
   position: relative;
+  height: 140px;
+  margin-bottom: 16px;
 
   .mosaic-backdrop {
-    width: 140px;
-    height: 140px;
+    .square(100%);
   }
 
   .mosaic-overlay {
-    width: 140px;
-    height: 140px;
+    .square(140px);
   }
 
   .mosaic-overlay .details {
@@ -69,8 +65,7 @@
 
 
 .collectible_for_sale_grid_view {
-  width: 190px;
-  height: 150px;
+  .size(150px, 190px);
   overflow: hidden;
   position: relative;
   margin-left: 2px;
@@ -103,31 +98,29 @@
     display: none;
     position: absolute;
     top: 0;
-    height: 100%;
-    width: 100%;
+    .square(100%);
     background: #111;
   }
 
   .mosaic-overlay {
     display: none;
-    z-index: 5;
     position: absolute;
-    width: 100%;
-    height: 100%;
+    z-index: 5;
+    .square(100%);
     background: #111;
 
   }
 
   .mosaic-overlay .details {
+    padding: 3px;
     font-family: Arial, Helvetica, sans-serif;
-    color: #fff;
     font-size: 13px;
-    padding: 3px
+    color: #fff;
   }
 
   .mosaic-overlay {
-    bottom: -75px;
     height: 75px;
+    bottom: -75px;
     background: url("@{baseUrl}/black.png");
   }
 }
@@ -146,12 +139,12 @@
   }
 
   p {
+    overflow: hidden;
     margin: 0;
     margin-top: 5px;
-    overflow: hidden;
-    line-height: 20px;
     padding: 5px;
     padding-bottom: 2px;
+    line-height: 20px;
   }
 }
 
@@ -159,30 +152,29 @@
 #items-for-sale {
   .thumbnails {
     .span3 {
-      border: 1px solid @boxBorder;
-      width: 133px;
-      height: 165px;
+      .size(165px, 133px);
       margin-bottom: 15px;
       font-size: 12px;
+      border: 1px solid @boxBorder;
       .box-shadow(none);
       .border-radius(0);
 
       &:hover {
-        background-color: white;
         border: 1px solid @blue;
+        background-color: white;
         .border-radius(0);
       }
       p {
-        font-size: 12px;
         margin-bottom: 4px;
         padding: 5px 2px 0 2px;
+        font-size: 12px;
       }
       span {
-        font-weight: bold;
-        color: @blueDark;
         display: block;
-        text-align: right;
         padding-right: 2px;
+        font-weight: bold;
+        text-align: right;
+        color: @blueDark;
       }
     }
     .thumbnail {
@@ -192,19 +184,14 @@
     }
   }
   .mycq-create-collectible {
-    //.size(210px, 204px);
     margin-bottom: 15px;
     margin-left: 15px;
     padding: 6px;
-    //padding-top: 40px;
     border: 1px solid @blue;
     background-color: #fff;
     &:hover {
       border-color: @red;
     }
-  }
-  .no-collections-uploaded-box {
-    //.size(250px, 664px);
   }
   .info-no-collections-uploaded {
     padding-top: 30px;
@@ -248,18 +235,18 @@
 
 
   th {
-    color: @brown;
-    text-align: left;
     padding: 3px 6px;
+    text-align: left;
     text-size: 12px;
+    color: @brown;
   }
   td {
     padding: 3px 6px;
   }
   tr.dotted-line-brown {
-    background: url("@{baseUrl}/table-line-dotted.png") repeat-x bottom;
-    text-transform: uppercase;
     font-size: 10px;
+    text-transform: uppercase;
+    background: url("@{baseUrl}/table-line-dotted.png") repeat-x bottom;
   }
 }
 
@@ -272,11 +259,11 @@
   }
 
   .price {
-    color: @blueDark;
-    font-size: 24px;
     display: block;
-    font-weight: bold;
     margin-top: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    color: @blueDark;
   }
 
   .btn-primary {

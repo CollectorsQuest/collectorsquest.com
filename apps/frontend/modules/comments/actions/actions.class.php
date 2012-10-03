@@ -42,14 +42,18 @@ class commentsActions extends cqFrontendActions
                       'oModelObject' => $comment->getModelObject(),
                       'oNewComment' => $comment,
                       'sThreadUrl' => $request->getReferer(),
-                      'sCommentRemoveUrl' => $this->getController()->genUrl(array(
-                          'sf_route' => 'comments_hide',
-                          'sf_subject' => $comment,
-                        ), $absolute_url = true),
-                      'sCommentReportSpamUrl' => $this->getController()->genUrl(array(
-                          'sf_route' => 'comments_report_spam',
-                          'sf_subject' => $comment,
-                        ), $absolute_url = true),
+                      'sCommentRemoveUrl' => $this->getController()->genUrlWithAutologin(
+                          $owner,
+                          array(
+                            'sf_route' => 'comments_hide',
+                            'sf_subject' => $comment,
+                          )),
+                      'sCommentReportSpamUrl' => $this->getController()->genUrlWithAutologin(
+                          $owner,
+                          array(
+                            'sf_route' => 'comments_report_spam',
+                            'sf_subject' => $comment,
+                          )),
                   ),
               ));
             }

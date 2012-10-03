@@ -69,7 +69,7 @@ class PropelMigration_1348861629
 # It "suspends judgement" for fkey relationships until are tables are set.
 SET FOREIGN_KEY_CHECKS = 0;
 
-ALTER TABLE `collectible` ADD `content_category_id` INTEGER;
+ALTER TABLE `collectible` ADD `content_category_id` INTEGER AFTER `collector_id`;
 CREATE INDEX `collectible_FI_2` ON `collectible` (`content_category_id`);
 ALTER TABLE `collectible` ADD CONSTRAINT `collectible_FK_2`
 	FOREIGN KEY (`content_category_id`)
@@ -77,7 +77,7 @@ ALTER TABLE `collectible` ADD CONSTRAINT `collectible_FK_2`
 	ON DELETE SET NULL;
 
 
-ALTER TABLE `collectible_archive` ADD `content_category_id` INTEGER;
+ALTER TABLE `collectible_archive` ADD `content_category_id` INTEGER AFTER `collector_id`;
 CREATE INDEX `collectible_archive_I_4` ON `collectible_archive` (`content_category_id`);
 
 # This restores the fkey checks, after having unset them earlier
