@@ -143,6 +143,7 @@ classes:
       id:                { type: integer, primaryKey: true, autoIncrement: false }
       graph_id:          { type: integer, required: false, index: index }
       collector_id:      { type: integer, index: true }
+      content_category_id: { type: integer, required: false, index: true }
       name:              { type: varchar, size: 255, required: true, primaryString: true }
       slug:              { type: varchar, size: 128, index: true }
       description:       { type: longvarchar, required: true }
