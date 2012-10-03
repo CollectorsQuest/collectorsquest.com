@@ -91,16 +91,19 @@
   <?php $height->value -= 375; ?>
 
   <?php
-    include_component(
-      '_sidebar', 'widgetCollectiblesForSale',
-      array(
-        'collectible' => $collectible, 'limit' => 6,
-        'fallback' => 'random', 'height' => &$height
-      )
-    );
-
-    include_component('_sidebar', 'widgetMoreHistory', array('height' => &$height));
+    if (!$collectible->isForSale())
+    {
+      include_component(
+        '_sidebar', 'widgetCollectiblesForSale',
+        array(
+          'collectible' => $collectible, 'limit' => 3,
+          'fallback' => 'random', 'height' => &$height
+        )
+      );
+    }
   ?>
+
+  <?php include_component('_sidebar', 'widgetMoreHistory', array('height' => &$height)); ?>
 
 <?php else: ?>
 
@@ -130,23 +133,29 @@
       array('collectible' => $collectible, 'height' => &$height)
     );
 
-    include_component(
-      '_sidebar', 'widgetCollectiblesForSale',
-      array(
-        'collectible' => $collectible, 'limit' => 3,
-        'fallback' => 'random', 'height' => &$height
-      )
-    );
+    if (!$collectible->isForSale())
+    {
+      include_component(
+        '_sidebar', 'widgetCollectiblesForSale',
+        array(
+          'collectible' => $collectible, 'limit' => 3,
+          'fallback' => 'random', 'height' => &$height
+        )
+      );
+    }
 
     include_component(
       '_sidebar', 'widgetTags',
       array('collectible' => $collectible, 'height' => &$height)
     );
 
-    include_component(
-      '_sidebar', 'widgetCollections',
-      array('collectible' => $collectible, 'fallback' => 'random', 'height' => &$height)
-    );
+    if (!$collectible->isForSale())
+    {
+      include_component(
+        '_sidebar', 'widgetCollections',
+        array('collectible' => $collectible, 'fallback' => 'random', 'height' => &$height)
+      );
+    }
   ?>
 
 <?php endif; ?>

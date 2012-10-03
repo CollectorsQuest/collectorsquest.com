@@ -38,7 +38,7 @@ class _sidebarComponents extends cqFrontendComponents
     /** @var $q ContentCategoryQuery */
     $q = ContentCategoryQuery::create()
       ->filterByTreeLevel($level)
-      ->joinCollectorCollection(null, Criteria::INNER_JOIN)
+      ->hasCollectionsWithCollectibles()
       ->addDescendingOrderByColumn('COUNT(collector_collection.id)')
       ->orderBy('Name', Criteria::ASC)
       ->groupById()
@@ -89,7 +89,7 @@ class _sidebarComponents extends cqFrontendComponents
 
     $this->subcategories = ContentCategoryQuery::create()
       ->childrenOf($this->current_category)
-      ->hasCollections()
+      ->hasCollectionsWithCollectibles()
       ->orderBy('Name')
       ->find();
 
@@ -97,7 +97,7 @@ class _sidebarComponents extends cqFrontendComponents
     {
       $this->sub_subcategories = ContentCategoryQuery::create()
         ->childrenOf($this->current_sub_category)
-        ->hasCollections()
+        ->hasCollectionsWithCollectibles()
         ->find();
     }
 
@@ -121,8 +121,27 @@ class _sidebarComponents extends cqFrontendComponents
       ->filterByLevel(array(1, 2))
       ->hasCollectiblesForSale()
       ->orderBy('Name', Criteria::ASC);
-
     $this->categories = $q->find();
+
+
+//    // If we have less than 4 Items For Sale in the category we don't want to display it
+//    $this->categories = array();
+//    foreach ($categories as $category)
+//    {
+//      /** @var $q FrontendCollectibleForSaleQuery */
+//      $q = FrontendCollectibleForSaleQuery::create()
+//        ->filterByContentCategoryWithDescendants($category)
+//        ->isForSale();
+//
+//      // how many items for sale are there in the category
+//      $count_items = $q->count();
+//
+//      // if we have more at least 4 items we display the category in the widget
+//      if ($count_items >= 4)
+//      {
+//        $this->categories[] = $category;
+//      }
+//    }
 
     return $this->_sidebar_if(count($this->categories) > 0);
   }
@@ -785,7 +804,7 @@ class _sidebarComponents extends cqFrontendComponents
       $q
         ->filterById($this->ids, Criteria::IN)
         ->addAscendingOrderByColumn(
-          'FIELD(wp_post.id, ' . implode(',', $this->ids) . ')'
+          'FIELD(wp_posts.id, ' . implode(',', $this->ids) . ')'
         );
     }
 

@@ -18,7 +18,8 @@
   <h4 class="alert-heading">Some items for sale need your attention!</h4>
   <p class="spacer-top">
     You have items for sale which are not fully described yet.
-    If you would like others to see and buy them you should describe them as best as you can!
+    If you would like other users to be able to find and buy your items,
+    you should describe them as best as you can!
   </p>
   <br/>
   <a class="btn btn-primary" href="<?php echo url_for('@mycq_incomplete_collectibles') ?>">Fix Incomplete Items</a>

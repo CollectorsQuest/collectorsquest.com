@@ -46,6 +46,7 @@ generator:
           autologin: { label: "Auto Login", action: autoLogin, params: { target: '_blank' } }
           markAsSpam: { label: "Mark as spam", action: markAsSpam, params: { confirm: "Are you sure you want to mark as spam this collector?" } }
           markAsHam: { label: "Mark as ham", action: markAsHam, params: { confirm: "Are you sure you want to mark as ham this collector?" } }
+          togglePostingTimeouts: { label: "Toggle posting timeouts" }
         actions:
           mailchimp: { label: "Sync with MailChimp.com", action: syncWithMailChimp }
           export: { label: "Export to CSV", sf_format: csv }

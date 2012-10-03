@@ -188,11 +188,13 @@ classes:
     columns:
       id: ~
       collection_category_id: { type: integer, required: false, foreignClass: CollectionCategory, foreignReference: id, onDelete: setnull }
-      name:         { type: varchar, size: 64, required: true, primaryString: true }
-      slug:         { type: varchar, size: 64, required: true }
-      description:  { type: longvarchar, required: false }
+      name:          { type: varchar, size: 64, required: true, primaryString: true }
+      name_singular: { type: varchar, size: 64, required: false }
+      slug:          { type: varchar, size: 64, required: true }
+      description:   { type: longvarchar, required: false }
     propel_behaviors:
       sluggable:  { slug_pattern: "{Name}", permanent: false }
+      extra_properties: ~
       nested_set: ~
 
   CollectionCollectible:
@@ -301,6 +303,8 @@ classes:
       author_email:    { type: varchar(128), required: false }
       author_url:      { type: varchar(255), required: false }
       is_notify:       { type: boolean,      required: true, default: false }
+      is_hidden:       { type: boolean,      required: true, dafault: false }
+      is_spam:         { type: boolean,      required: true, dafault: false }
       subject:         { type: varchar(128), required: false }
       body:            { type: longvarchar,  required: true  }
       ip_address:      { type: varchar(15),  required: false }

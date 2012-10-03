@@ -8,16 +8,20 @@
 ?>
 
 <?php
-  if (($seller = $sf_user->getSeller(true)) && !$seller->hasBoughtCredits())
+  if (!$sf_user->isAuthenticated())
+  {
+    echo link_to(
+      cq_image_tag('headlines/2012-06-24_CQGuidePromo_300x90.png'),
+      'misc_guide_to_collecting', array('ref' => cq_link_ref('sidebar'))
+    );
+    $height->value -= 110;
+  }
+  else if ((!$seller = $sf_user->getSeller(true)) || ($seller && !$seller->hasBoughtCredits()))
   {
     echo cq_link_to(
-      cq_image_tag('headlines/040412_CQ_Market_blue.gif', array('class' => 'spacer-top-25')),
+      cq_image_tag('headlines/040412_CQ_Market_blue.gif'),
       'blog_page', array('slug' => 'cq-faqs/guide-selling', '_decode' => 1)
     );
-  }
-  else
-  {
-    cq_dart_slot('300x250', 'market', 'categories');
   }
 
   $height->value -= 250;
