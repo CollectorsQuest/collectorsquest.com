@@ -1157,6 +1157,10 @@ textarea.input-xlarge {
       background: url("@{iconUrl}/fancy_close.png") no-repeat center top;
       cursor: pointer;
     }
+
+    .not-public {
+      left: -2px;
+    }
   }
 }
 
@@ -1182,6 +1186,7 @@ textarea.input-xlarge {
 
       .main-thumb {
         width: 298px;
+        position: relative;
       }
       .square-thumb {
         width: 96px;
@@ -1804,6 +1809,7 @@ textarea.input-xlarge {
   margin-left: -12px;
 
   .collectible_grid_view_square {
+    position: relative;
     .size(244px, 208px);
     margin-left: 15px;
     padding: 6px;
@@ -1864,6 +1870,10 @@ textarea.input-xlarge {
         display: block !important;
         visibility: visible;
       }
+    }
+
+    .not-public {
+      top: 39px;
     }
   }
 
@@ -2197,4 +2207,18 @@ div.wpfaq {
 
 div.wpfaqask {
   display: none;
+}
+
+.not-public {
+  position: absolute;
+  z-index: 101;
+  top: 16px;
+  left: 0;
+  padding: 2px 6px;
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+  height: 20px;
+  line-height: 20px;
+  background-color: @blue;
 }
