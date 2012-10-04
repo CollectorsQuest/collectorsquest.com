@@ -1,33 +1,34 @@
 <?php
   use_helper('Gravatar');
-
   /* @var $comment Comment*/
   $force_show = isset($force_show) ? $force_show : false;
   $with_controls = isset($with_controls) ? $with_controls : false;
 ?>
 
-<div id="comment-<?= $comment->getId(); ?>" class="row-fluid user-comment">
+<div id="comment-<?= $comment->getId(); ?>" class="row-fluid user-comment"
+     itemscope itemtype="http://schema.org/Comment">
 <?php if (!$comment->getIsHidden() || $force_show): ?>
-  <div class="span2 text-right">
->>>>>>> develop
-    <?php if (( $collector = $comment->getCollector() )): ?>
-      <?php
+  <div class="span2 text-right" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <?php
+      if ($collector = $comment->getCollector())
+      {
         echo link_to(
           image_tag_collector($collector, '65x65', array('itemprop' => 'image')),
           url_for_collector($collector), array('absolute' => true, 'itemprop' => 'url')
         );
-      ?>
-    <?php else: ?>
-      <?= gravatar_image_tag($comment->getAuthorEmail(), 65, 'G', sfConfig::get('sf_app') .'/multimedia/Collector/65x65.png') ?>
-    <?php endif; ?>
+      }
+      else
+      {
+        echo gravatar_image_tag(
+          $comment->getAuthorEmail(), 65, 'G',
+          sfConfig::get('sf_app') .'/multimedia/Collector/65x65.png'
+        );
+      }
+    ?>
 
     <?php // name is mandatory parameter for the Person item type ?>
-    <span style="display: none;" itemprop = "name">
-      <?php if ($collector): ?>
-        <?= link_to_collector($collector); ?>
-      <?php else: ?>
-        <?= $comment->getAuthorName(); ?>
-      <?php endif; ?>
+    <span style="display: none;" itemprop="name">
+      <?= ($collector) ? link_to_collector($collector) : $comment->getAuthorName(); ?>
     </span>
   </div>
   <div class="span10">
@@ -52,10 +53,12 @@
         <?php endif; ?>
       </div>
       <p>
-        <?= $comment->getBody(); ?>
+        <span itemprop="text">
+          <?= $comment->getBody(); ?>
+        </span>
       </p>
       <?php if (!$comment->isPastCutoffDate()): ?>
-      <span class="comment-time" title="<?= $comment->getCreatedAt('c'); ?>">
+      <span class="comment-time" title="<?= $comment->getCreatedAt('c'); ?>" itemprop="dateCreated">
         <?= time_ago_in_words_or_exact_date($comment->getCreatedAt()); ?>
       </span>
       <?php endif; ?>
