@@ -36,7 +36,7 @@
       data-action="<?= $sf_context->getActionName(); ?>">
   <a name="top"></a>
 
-  <!--
+  <?php /*
   <div id="fb-root"></div>
   <script>
     window.fbAsyncInit = function()
@@ -57,7 +57,7 @@
       d.getElementsByTagName('head')[0].appendChild(js);
     }(document));
   </script>
-  //-->
+ */ ?>
 
   <?php
     $k = $sf_user->getShoppingCartCollectiblesCount();
@@ -88,41 +88,30 @@
       echo '</div></div>';
     }
 
-    $itemscope = '';
-    $current_internal_uri = $sf_context->getRouting()->getCurrentInternalUri(true);
-    if (strstr($current_internal_uri, '@collector_by_slug'))
-    {
-      $itemscope = ' itemscope itemtype="http://schema.org/Person"';
-    }
-    else if (strstr($current_internal_uri, '@collectible_by_slug'))
-    {
-      $itemscope = ' itemscope itemtype="http://schema.org/Product"';
-    }
-
     if (has_component_slot('sidebar_120'))
     {
       $sidebar = 'sidebar_120';
-      echo '<div id="content" class="container-fluid fixed-right-120"' . $itemscope .'>';
+      echo '<div id="content" class="container-fluid fixed-right-120">';
     }
     else if (has_component_slot('sidebar_160'))
     {
       $sidebar = 'sidebar_160';
-      echo '<div id="content" class="container-fluid fixed-right-160"' . $itemscope .'>';
+      echo '<div id="content" class="container-fluid fixed-right-160">';
     }
     else if (has_component_slot('sidebar_180'))
     {
       $sidebar = 'sidebar_180';
-      echo '<div id="content" class="container-fluid fixed-right-180"' . $itemscope .'>';
+      echo '<div id="content" class="container-fluid fixed-right-180">';
     }
     else if (has_component_slot('sidebar_300'))
     {
       $sidebar = 'sidebar_300';
-      echo '<div id="content" class="container-fluid fixed-right-300"' . $itemscope .'>';
+      echo '<div id="content" class="container-fluid fixed-right-300">';
     }
     else
     {
       $sidebar = null;
-      echo '<div id="content" class="container-fluid without-column"' . $itemscope .'>';
+      echo '<div id="content" class="container-fluid without-column">';
     }
   ?>
 
