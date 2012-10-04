@@ -9,7 +9,7 @@
     // set positions which will have the corresponding partials
     $wide  = array ( 1,  9, 20, 22 );
     $tall  = array ( 4,  8, 12, 15, 16 );
-    $big   = array ( 5, 13, 18 );
+    $big   = array ( 5, 19, 18 );
 
     foreach ($collectibles as $i => $collectible)
     {
