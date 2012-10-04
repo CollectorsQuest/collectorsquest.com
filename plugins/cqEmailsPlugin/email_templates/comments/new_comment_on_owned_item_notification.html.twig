@@ -30,7 +30,7 @@
 </p>
 
 <p>
-  Hide comment: {{ sCommentRemoveUrl }}<br />
-  Report spam: {{ sCommentReportSpamUrl }}
+  Hide comment: {{ link_to('Click here', sCommentRemoveUrl) }}<br />
+  Report spam: {{ link_to('Click here', sCommentReportSpamUrl) }}
 </p>
 {% endblock %}

@@ -169,6 +169,7 @@ class generalActions extends cqFrontendActions
       $form->bind($request->getParameter($form->getName()));
       if ($form->isValid())
       {
+
         /* @var $collector Collector */
         $collector = $form->getValue('collector');
         $this->getUser()->Authenticate(true, $collector, $form->getValue('remember'));

@@ -197,7 +197,7 @@ class collectionsComponents extends cqFrontendComponents
       $pager->init();
 
       $this->pager = $pager;
-      $this->url = '@search_collections?q='. $q . '&s='. $s .'&page='. $pager->getNextPage();
+      $this->url = '@search_collections?q='. $q . '&s='. $s .'&page=1';
 
       return sfView::SUCCESS;
     }

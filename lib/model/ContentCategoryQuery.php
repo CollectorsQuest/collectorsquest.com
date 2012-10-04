@@ -80,6 +80,17 @@ class ContentCategoryQuery extends BaseContentCategoryQuery
   }
 
   /**
+   * Find all descendants of our root
+   *
+   * @return    ContentCategory[]
+   */
+  public function descendantsOfRoot()
+  {
+    return $this
+      ->descendantsOf(ContentCategoryQuery::create()->findRoot());
+  }
+
+  /**
    * Filter the query to restrict the result to ancestors of an object, and the
    * object itself
    *

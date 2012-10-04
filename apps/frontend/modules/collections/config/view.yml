@@ -5,6 +5,10 @@ indexSuccess:
   components:
     sidebar_300: [collections, sidebarIndex]
 
+collectionsSuccess:
+  components:
+    sidebar_300: [collections, sidebarIndex]
+
 collectorSuccess:
   components:
     sidebar_300: [collections, sidebarCollector]

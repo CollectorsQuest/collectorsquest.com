@@ -128,6 +128,20 @@ class collectionActions extends cqFrontendActions
     // Set the OpenGraph meta tags
     $this->getResponse()->addOpenGraphMetaFor($collection);
 
+
+    if ($collection->getIsPublic() === false && $this->getCollector()->isOwnerOf($collection))
+    {
+      $this->getUser()->setFlash(
+        'error',
+        sprintf(
+          'Your collection will not be publicly viewable until you fill in all the required information!<br> %s',
+          link_to('Edit collection', 'mycq_collection_by_section',
+            array('id' => $collection->getId(), 'section' => 'details')
+          )
+        )
+      );
+    }
+
     if ($collection->getNumItems() == 0)
     {
       $this->collections = null;
@@ -266,6 +280,17 @@ class collectionActions extends cqFrontendActions
 
     // Make the Collectible available to the sidebar
     $this->setComponentVar('collectible', $collectible, 'sidebarCollectible');
+
+    if ($collectible->getIsPublic() === false && $this->getCollector()->isOwnerOf($collectible))
+    {
+      $this->getUser()->setFlash(
+        'error',
+        sprintf(
+          'Your item will not be publicly viewable until you fill in all the required information! %s',
+          link_to('Edit item', 'mycq_collectible_by_slug', $collectible)
+        )
+      );
+    }
 
     return sfView::SUCCESS;
   }
