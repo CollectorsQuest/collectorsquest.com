@@ -4,6 +4,7 @@ class cqAdminBar
 {
   private static $instance = null;
   private $application = null;
+  private $founded_routes = array();
   private $objects_edit_menu = array();
 
   public function __construct(frontendConfiguration $application)
@@ -38,9 +39,10 @@ class cqAdminBar
     if ($url = $this->generateBackendEditUrl($object))
     {
       /** @var $group string */
-      $group = 'Edit '.sfToolkit::pregtr(get_class($object), array('/([A-Z]+)([A-Z][a-z])/' => '\\1 \\2',
-                                                                   '/([a-z\d])([A-Z])/'     => '\\1 \\2'));
-      $this->objects_edit_menu[$group][$url] = $object->__toString();
+      $group = 'Edit ';
+      $this->objects_edit_menu[$group][$url] =
+        sfToolkit::pregtr(get_class($object), array('/([A-Z]+)([A-Z][a-z])/' => '\\1 \\2',
+                                                    '/([a-z\d])([A-Z])/'     => '\\1 \\2'));
     }
   }
 
@@ -56,18 +58,26 @@ class cqAdminBar
     $routing = $this->application->getBackendRouting()->getRoutes();
     /** @var $route_name string */
     $route_name = null;
-    // Trying to found backend route foe edit action
-    foreach ($routing as $key => $route)
+    if (isset($this->founded_routes[get_class($object)]))
     {
-      $options = $route->getOptions();
-      if (
-        isset($options['type']) && $options['type'] == 'object'
-        && isset($options['model']) && $options['model'] == get_class($object)
-        && substr($key, -5, 5) == '_edit'
-      )
+      $route_name = $this->founded_routes[get_class($object)];
+    }
+    else
+    {
+      // Trying to found backend route foe edit action
+      foreach ($routing as $key => $route)
       {
-        $route_name = $key;
-        break;
+        $options = $route->getOptions();
+        if (
+          isset($options['type']) && $options['type'] == 'object'
+          && isset($options['model']) && $options['model'] == get_class($object)
+          && substr($key, -5, 5) == '_edit'
+        )
+        {
+          $route_name = $this->founded_routes[get_class($object)] = $key;
+
+          break;
+        }
       }
     }
 
