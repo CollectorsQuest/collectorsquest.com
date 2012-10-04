@@ -13,7 +13,8 @@
   </h4>
   <p class="spacer-top">
     You have <?= $incomplete_collectibles ? 'items' : 'collections' ?> which are not fully described yet.
-    If you would like others to see and buy them you should describe them as best as you can!
+    If you would like other users to be able to see your <?= $incomplete_collectibles ? 'items' : 'collections' ?>,<br/>
+    you should describe them as best as you can!
   </p>
   <br/>
   <a class="btn btn-primary"
