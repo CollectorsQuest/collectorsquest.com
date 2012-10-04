@@ -8,7 +8,7 @@
 
     $("a[target='_blank']", '#sf_admin_content')
       .attr({title: 'Opens in a new window'})
-      .after('&nbsp;<i class="icon-external-link">&nbsp;</i>');
+      .prepend('<i class="icon-external-link">&nbsp;</i>&nbsp;');
   });
 
   // Adjust table to fit filters if they exist
