@@ -59,7 +59,8 @@
 <?php
   $options = array(
     'id' => sprintf('collectible_%d_name', $collectible->getId()),
-    'class' => isset($editable) && true === $editable ? 'row-fluid header-bar editable' : 'row-fluid header-bar'
+    'class' => isset($editable) && true === $editable ? 'row-fluid header-bar editable' : 'row-fluid header-bar',
+    'itemprop' => 'itemprop = "name"'
   );
 
   cq_page_title($collectible->getName(), null, $options);
@@ -117,7 +118,7 @@
       echo link_to(
         image_tag_collectible(
           $collectible, '620x0',
-          array('width' => null, 'height' => null)
+          array('width' => null, 'height' => null, 'itemprop' => 'image')
         ),
         src_tag_collectible($collectible, 'original'),
         array('id' => 'collectible_multimedia_primary', 'target' => '_blank')
@@ -156,8 +157,11 @@
         <?php foreach ($additional_multimedia as $i => $m): ?>
         <a class="zoom" href="<?php echo src_tag_multimedia($m, 'original'); ?>" title="<?php echo $m->getName(); ?>">
           <?php
-            echo image_tag_multimedia(
-              $m, '150x150', array('height' => null, 'title' => $m->getName(), 'style' => 'margin-bottom: 12px;')
+            echo image_tag_multimedia($m, '150x150',
+              array(
+                'height' => null, 'title' => $m->getName(),
+                'style' => 'margin-bottom: 12px;', 'itemprop' => 'image'
+              )
             );
           ?>
         </a>
@@ -210,7 +214,7 @@
 
 <?php if ($collectible->getDescription('stripped')): ?>
   <div class="item-description <?= $editable ? 'editable_html' : '' ?>"
-       id="collectible_<?= $collectible->getId(); ?>_description">
+       id="collectible_<?= $collectible->getId(); ?>_description" itemprop = "description">
     <?= $description = $collectible->getDescription('html'); ?>
 
     <?php if (!empty($aetn_show)): ?>
