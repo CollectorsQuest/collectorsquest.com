@@ -390,6 +390,13 @@ class mycqActions extends cqFrontendActions
       $collection->save();
     }
 
+    if (1 == $collectible->countCollections(new Criteria()))
+    {
+      // Give the collectible the same category as the collection
+      $collectible->setContentCategoryId($collection->getContentCategoryId());
+      $colletible->save();
+    }
+
     return $this->redirect($this->getController()->genUrl(array(
         'sf_route' => 'mycq_collectible_by_slug',
         'sf_subject' => $collection_collectible,

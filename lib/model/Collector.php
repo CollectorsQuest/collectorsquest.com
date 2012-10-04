@@ -92,6 +92,9 @@ require 'lib/model/om/BaseCollector.php';
  *
  * @method     Collector setNotificationsMessage(boolean $v)
  * @method     boolean   getNotificationsMessage()
+ *
+ * @method     Collector setTimeoutIgnoreForUser(boolean $v)
+ * @method     boolean   getTimeoutIgnoreForUser()
  */
 class Collector extends BaseCollector implements ShippingReferencesInterface
 {
@@ -165,6 +168,8 @@ class Collector extends BaseCollector implements ShippingReferencesInterface
 
     $this->registerProperty(CollectorPeer::PROPERTY_TIMEOUT_COMMENTS_AT);
     $this->registerProperty(CollectorPeer::PROPERTY_TIMEOUT_PRIVATE_MESSAGES_AT);
+
+    $this->registerProperty(CollectorPeer::PROPERTY_TIMEOUT_IGNORE_FOR_USER, false);
   }
 
   /**
