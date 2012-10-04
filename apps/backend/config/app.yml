@@ -17,6 +17,9 @@ all:
           Comments:
             url: comment
             image: theme/icons/language.png
+          Multimedia:
+            url: multimedia
+            image: theme/icons/mediamanager.png
 
       Collectors:
         icon: user

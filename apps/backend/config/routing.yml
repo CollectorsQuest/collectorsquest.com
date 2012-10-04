@@ -1,3 +1,12 @@
+multimedia:
+  class: sfPropelORMRouteCollection
+  options:
+    model:                Multimedia
+    module:               multimedia
+    prefix_path:          /multimedia
+    column:               id
+    with_wildcard_routes: true
+
 shopping_order:
   class: sfPropelORMRouteCollection
   options:
