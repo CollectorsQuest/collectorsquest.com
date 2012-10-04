@@ -4,9 +4,9 @@
  */
 ?>
 
-<div id="collectible_<?= $collectible->getId(); ?>_grid_view_square_small"
+<div id="collectible_<?= $collectible->getId(); ?>_grid_view_wide"
      data-id="<?= $collectible->getId(); ?>"
-     class="span3 collectible_grid_view_square_small fade-white link">
+     class="span6 collectible_grid_view_wide fade-white link">
 
   <div class="mosaic-overlay">
     <p class="details">
@@ -16,7 +16,7 @@
 
   <?php
     echo link_to_collectible($collectible, 'image', array(
-      'image_tag' => array('width' => 140, 'height' => 140, 'class' => 'lazy'),
+      'image_tag' => array('width' => 295, 'height' => 140, 'class' => 'lazy'),
       'link_to' => array('class' => 'mosaic-backdrop')
     ));
   ?>
